@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/disjointsparse/disjointsparse.hpp
     title: ds/disjointsparse/disjointsparse.hpp
   - icon: ':question:'

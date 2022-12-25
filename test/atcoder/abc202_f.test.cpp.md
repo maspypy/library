@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc202/tasks/abc202_f
@@ -334,38 +334,39 @@ data:
     \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
     \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
     \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
-    \  }\n  void write() { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
-    \ }\n  static constexpr int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt\
-    \ {\n  static constexpr bool is_modint = true;\n  int val;\n  ArbitraryModInt()\
-    \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
-    \                   : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
-    \ ArbitraryModInt &other) const {\n    return val < other.val;\n  } // To use\
-    \ std::map<ArbitraryModInt, T>\n  static int &get_mod() {\n    static int mod\
-    \ = 0;\n    return mod;\n  }\n  static void set_mod(int md) { get_mod() = md;\
-    \ }\n  ArbitraryModInt &operator+=(const ArbitraryModInt &p) {\n    if ((val +=\
-    \ p.val) >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt\
-    \ &operator-=(const ArbitraryModInt &p) {\n    if ((val += get_mod() - p.val)\
-    \ >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt &operator*=(const\
-    \ ArbitraryModInt &p) {\n    long long a = (long long)val * p.val;\n    int xh\
-    \ = (int)(a >> 32), xl = (int)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d),\
-    \ \"=d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return\
-    \ *this;\n  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n   \
-    \ *this *= p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-()\
-    \ const { return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) += p;\n  }\n\
-    \  ArbitraryModInt operator-(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
-    \ -= p;\n  }\n  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n\
-    \    return ArbitraryModInt(*this) *= p;\n  }\n  ArbitraryModInt operator/(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) /= p;\n  }\n\
-    \  bool operator==(const ArbitraryModInt &p) const { return val == p.val; }\n\
-    \  bool operator!=(const ArbitraryModInt &p) const { return val != p.val; }\n\
-    \  ArbitraryModInt inverse() const {\n    int a = val, b = get_mod(), u = 1, v\
-    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
-    \ -= t * v, v);\n    }\n    return ArbitraryModInt(u);\n  }\n  ArbitraryModInt\
-    \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
-    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
-    \  }\n    return ret;\n  }\n  void write() { fastio::printer.write(val); }\n \
-    \ void read() { fastio::scanner.read(val); }\n};\n\ntemplate <typename mint>\n\
+    \  }\n  void write() { fastio::printer.write(val); }\n  void read() {\n    ll\
+    \ x;\n    fastio::scanner.read(x);\n    if (x < 0 || x >= mod) x %= mod;\n   \
+    \ if (x < 0) x += mod;\n    val += x;\n  }\n  static constexpr int get_mod() {\
+    \ return mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr bool is_modint\
+    \ = true;\n  int val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t\
+    \ y)\n      : val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y)\
+    \ % get_mod()) % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other)\
+    \ const {\n    return val < other.val;\n  } // To use std::map<ArbitraryModInt,\
+    \ T>\n  static int &get_mod() {\n    static int mod = 0;\n    return mod;\n  }\n\
+    \  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const\
+    \ ArbitraryModInt &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n\
+    \    return *this;\n  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p)\
+    \ {\n    if ((val += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return\
+    \ *this;\n  }\n  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n   \
+    \ long long a = (long long)val * p.val;\n    int xh = (int)(a >> 32), xl = (int)a,\
+    \ d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"(m) : \"d\"(xh), \"a\"\
+    (xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n  }\n  ArbitraryModInt\
+    \ &operator/=(const ArbitraryModInt &p) {\n    *this *= p.inverse();\n    return\
+    \ *this;\n  }\n  ArbitraryModInt operator-() const { return ArbitraryModInt(get_mod()\
+    \ - val); }\n  ArbitraryModInt operator+(const ArbitraryModInt &p) const {\n \
+    \   return ArbitraryModInt(*this) += p;\n  }\n  ArbitraryModInt operator-(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) -= p;\n  }\n\
+    \  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
+    \ *= p;\n  }\n  ArbitraryModInt operator/(const ArbitraryModInt &p) const {\n\
+    \    return ArbitraryModInt(*this) /= p;\n  }\n  bool operator==(const ArbitraryModInt\
+    \ &p) const { return val == p.val; }\n  bool operator!=(const ArbitraryModInt\
+    \ &p) const { return val != p.val; }\n  ArbitraryModInt inverse() const {\n  \
+    \  int a = val, b = get_mod(), u = 1, v = 0, t;\n    while (b > 0) {\n      t\
+    \ = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return\
+    \ ArbitraryModInt(u);\n  }\n  ArbitraryModInt pow(int64_t n) const {\n    ArbitraryModInt\
+    \ ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n     \
+    \ mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n  void write() { fastio::printer.write(val);\
+    \ }\n  void read() { fastio::scanner.read(val); }\n};\n\ntemplate <typename mint>\n\
     mint inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
     \ dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n  while (int(dat.size())\
     \ <= n) {\n    int k = dat.size();\n    auto q = (mod + k - 1) / k;\n    int r\
@@ -462,8 +463,8 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc202_f.test.cpp
   requiredBy: []
-  timestamp: '2022-12-12 09:21:17+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-12-25 12:22:53+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/atcoder/abc202_f.test.cpp
 layout: document

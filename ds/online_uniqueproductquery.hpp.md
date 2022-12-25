@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dynamic_segtree.hpp
     title: ds/segtree/dynamic_segtree.hpp
   _extendedRequiredBy: []

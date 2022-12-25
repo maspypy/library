@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
@@ -246,8 +246,9 @@ data:
     \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t n) const {\n\
     \    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
     \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n  void write()\
-    \ { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
-    \ }\n  static constexpr int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt\
+    \ { fastio::printer.write(val); }\n  void read() {\n    ll x;\n    fastio::scanner.read(x);\n\
+    \    if (x < 0 || x >= mod) x %= mod;\n    if (x < 0) x += mod;\n    val += x;\n\
+    \  }\n  static constexpr int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt\
     \ {\n  static constexpr bool is_modint = true;\n  int val;\n  ArbitraryModInt()\
     \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
     \                   : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
@@ -561,8 +562,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   requiredBy: []
-  timestamp: '2022-12-23 10:58:40+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-12-25 12:22:53+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
 layout: document

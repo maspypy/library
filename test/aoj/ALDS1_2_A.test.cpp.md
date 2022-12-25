@@ -13,14 +13,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_2_A
@@ -244,16 +244,16 @@ data:
     \ ANS = 0;\n  ll K = MAX(A) + 1;\n  FenwickTree<Monoid_Add<int>> bit(K);\n  for\
     \ (auto&& x: A) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x, 1);\n  }\n  return\
     \ ANS;\n}\n#line 6 \"test/aoj/ALDS1_2_A.test.cpp\"\n\nvoid solve() {\n  LL(N);\n\
-    \  VEC(ll, A, N);\n  ll x = inversion(A);\n  sort(all(A));\n  print(A);\n  print(x);\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
-    \ return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_2_A\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"seq/inversion.hpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  ll x = inversion(A);\n  sort(all(A));\n\
-    \  print(A);\n  print(x);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  VEC(ll, A, N);\n  ll x = inversion<ll, false>(A);\n  sort(all(A));\n  print(A);\n\
+    \  print(x);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
     \n  return 0;\n}\n"
+  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_2_A\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"seq/inversion.hpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  ll x = inversion<ll, false>(A);\n\
+    \  sort(all(A));\n  print(A);\n  print(x);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -263,8 +263,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_2_A.test.cpp
   requiredBy: []
-  timestamp: '2022-12-25 11:20:22+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-25 12:23:03+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_2_A.test.cpp
 layout: document

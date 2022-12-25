@@ -292,38 +292,39 @@ data:
     \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
     \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
     \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
-    \  }\n  void write() { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
-    \ }\n  static constexpr int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt\
-    \ {\n  static constexpr bool is_modint = true;\n  int val;\n  ArbitraryModInt()\
-    \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
-    \                   : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
-    \ ArbitraryModInt &other) const {\n    return val < other.val;\n  } // To use\
-    \ std::map<ArbitraryModInt, T>\n  static int &get_mod() {\n    static int mod\
-    \ = 0;\n    return mod;\n  }\n  static void set_mod(int md) { get_mod() = md;\
-    \ }\n  ArbitraryModInt &operator+=(const ArbitraryModInt &p) {\n    if ((val +=\
-    \ p.val) >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt\
-    \ &operator-=(const ArbitraryModInt &p) {\n    if ((val += get_mod() - p.val)\
-    \ >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt &operator*=(const\
-    \ ArbitraryModInt &p) {\n    long long a = (long long)val * p.val;\n    int xh\
-    \ = (int)(a >> 32), xl = (int)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d),\
-    \ \"=d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return\
-    \ *this;\n  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n   \
-    \ *this *= p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-()\
-    \ const { return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) += p;\n  }\n\
-    \  ArbitraryModInt operator-(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
-    \ -= p;\n  }\n  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n\
-    \    return ArbitraryModInt(*this) *= p;\n  }\n  ArbitraryModInt operator/(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) /= p;\n  }\n\
-    \  bool operator==(const ArbitraryModInt &p) const { return val == p.val; }\n\
-    \  bool operator!=(const ArbitraryModInt &p) const { return val != p.val; }\n\
-    \  ArbitraryModInt inverse() const {\n    int a = val, b = get_mod(), u = 1, v\
-    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
-    \ -= t * v, v);\n    }\n    return ArbitraryModInt(u);\n  }\n  ArbitraryModInt\
-    \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
-    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
-    \  }\n    return ret;\n  }\n  void write() { fastio::printer.write(val); }\n \
-    \ void read() { fastio::scanner.read(val); }\n};\n\ntemplate <typename mint>\n\
+    \  }\n  void write() { fastio::printer.write(val); }\n  void read() {\n    ll\
+    \ x;\n    fastio::scanner.read(x);\n    if (x < 0 || x >= mod) x %= mod;\n   \
+    \ if (x < 0) x += mod;\n    val += x;\n  }\n  static constexpr int get_mod() {\
+    \ return mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr bool is_modint\
+    \ = true;\n  int val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t\
+    \ y)\n      : val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y)\
+    \ % get_mod()) % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other)\
+    \ const {\n    return val < other.val;\n  } // To use std::map<ArbitraryModInt,\
+    \ T>\n  static int &get_mod() {\n    static int mod = 0;\n    return mod;\n  }\n\
+    \  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const\
+    \ ArbitraryModInt &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n\
+    \    return *this;\n  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p)\
+    \ {\n    if ((val += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return\
+    \ *this;\n  }\n  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n   \
+    \ long long a = (long long)val * p.val;\n    int xh = (int)(a >> 32), xl = (int)a,\
+    \ d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"(m) : \"d\"(xh), \"a\"\
+    (xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n  }\n  ArbitraryModInt\
+    \ &operator/=(const ArbitraryModInt &p) {\n    *this *= p.inverse();\n    return\
+    \ *this;\n  }\n  ArbitraryModInt operator-() const { return ArbitraryModInt(get_mod()\
+    \ - val); }\n  ArbitraryModInt operator+(const ArbitraryModInt &p) const {\n \
+    \   return ArbitraryModInt(*this) += p;\n  }\n  ArbitraryModInt operator-(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) -= p;\n  }\n\
+    \  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
+    \ *= p;\n  }\n  ArbitraryModInt operator/(const ArbitraryModInt &p) const {\n\
+    \    return ArbitraryModInt(*this) /= p;\n  }\n  bool operator==(const ArbitraryModInt\
+    \ &p) const { return val == p.val; }\n  bool operator!=(const ArbitraryModInt\
+    \ &p) const { return val != p.val; }\n  ArbitraryModInt inverse() const {\n  \
+    \  int a = val, b = get_mod(), u = 1, v = 0, t;\n    while (b > 0) {\n      t\
+    \ = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return\
+    \ ArbitraryModInt(u);\n  }\n  ArbitraryModInt pow(int64_t n) const {\n    ArbitraryModInt\
+    \ ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n     \
+    \ mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n  void write() { fastio::printer.write(val);\
+    \ }\n  void read() { fastio::scanner.read(val); }\n};\n\ntemplate <typename mint>\n\
     mint inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
     \ dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n  while (int(dat.size())\
     \ <= n) {\n    int k = dat.size();\n    auto q = (mod + k - 1) / k;\n    int r\
@@ -381,7 +382,7 @@ data:
     \u624B\u524D\u3001\u5F8C\u308D\n// \u9023\u7D50\u9818\u57DF\u3092\u3072\u3068\u3064\
     \u4F5C\u308B\u3002\u591A\u89D2\u5F62\u3068\u306F\u9650\u3089\u306A\u3044\u3002\
     \npair<vvc<int>, vc<pair<int, int>>> connedted_dp_graph(int N,\n             \
-    \                                         bool merge_reverse) {\n  static HashMapLL<int>\
+    \                                         bool merge_reverse) {\n  static HashMap<int>\
     \ MP;\n  MP.reset();\n  vvc<int> states;\n  vc<pair<int, int>> edges;\n\n  states.eb(vc<int>(N,\
     \ -1));\n  states.eb(vc<int>(N, -1));\n  MP[hash_vector<int>(states[0])] = 0;\n\
     \n  int p = -1;\n  while (1) {\n    if (++p == len(states)) break;\n    if (p\
@@ -396,7 +397,7 @@ data:
     \  ll h = hash_vector<int>(nxt);\n      if (merge_reverse) { chmin(h, hash_vector<int>(reverse_state(nxt)));\
     \ }\n      if (!MP.count(h)) {\n        MP[h] = len(states);\n        states.eb(nxt);\n\
     \      }\n      edges.eb(p, MP[h]);\n    }\n  }\n  return {states, edges};\n}\n\
-    \npair<vvc<int>, vc<pair<int, int>>> polygon_dp_graph(int N) {\n  static HashMapLL<int>\
+    \npair<vvc<int>, vc<pair<int, int>>> polygon_dp_graph(int N) {\n  static HashMap<int>\
     \ MP;\n  MP.reset();\n  vvc<int> states;\n  vc<pair<int, int>> edges;\n\n  states.eb(vc<int>(N,\
     \ -1));\n  states.eb(vc<int>(N, -1));\n  MP[hash_vector<int>(states[0])] = 0;\n\
     \n  int p = -1;\n  while (1) {\n    if (++p == len(states)) break;\n    if (p\
@@ -427,7 +428,7 @@ data:
     \ {\n        MP[h] = len(states);\n        states.eb(nxt);\n      }\n      edges.eb(p,\
     \ MP[h]);\n    }\n  }\n  return {states, edges};\n}\n\n} // namespace connected_dp_squares\n\
     #line 9 \"test/mytest/tdpc_grid_dp.test.cpp\"\n\nusing mint = modint107;\n\nmint\
-    \ calc_tdpc_grid(int H, int W) {\n  HashMapLL<int> MP;\n\n  using P = pair<vc<int>,\
+    \ calc_tdpc_grid(int H, int W) {\n  HashMap<int> MP;\n\n  using P = pair<vc<int>,\
     \ int>;\n  vc<P> states;\n\n  auto get_hash = [&](vc<int> a, int b) -> ll {\n\
     \    a.eb(b);\n    return hash_vector<int>(a);\n  };\n\n  vc<int> init(H, -1);\n\
     \  init[0] = 0;\n  states.eb(init, 0);\n  vc<int> end(H, -1);\n  end[H - 1] =\
@@ -447,7 +448,7 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"ds/hashmap.hpp\"\n#include \"random/hash_vector.hpp\"\
     \n#include \"mod/modint.hpp\"\n#include \"other/connected_dp.hpp\"\n\nusing mint\
-    \ = modint107;\n\nmint calc_tdpc_grid(int H, int W) {\n  HashMapLL<int> MP;\n\n\
+    \ = modint107;\n\nmint calc_tdpc_grid(int H, int W) {\n  HashMap<int> MP;\n\n\
     \  using P = pair<vc<int>, int>;\n  vc<P> states;\n\n  auto get_hash = [&](vc<int>\
     \ a, int b) -> ll {\n    a.eb(b);\n    return hash_vector<int>(a);\n  };\n\n \
     \ vc<int> init(H, -1);\n  init[0] = 0;\n  states.eb(init, 0);\n  vc<int> end(H,\
@@ -476,7 +477,7 @@ data:
   isVerificationFile: true
   path: test/mytest/tdpc_grid_dp.test.cpp
   requiredBy: []
-  timestamp: '2022-12-23 11:10:49+09:00'
+  timestamp: '2022-12-25 12:23:03+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/tdpc_grid_dp.test.cpp

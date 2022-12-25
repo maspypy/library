@@ -8,17 +8,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
   - icon: ':x:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/abc270_g.test.cpp
     title: test/atcoder/abc270_g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -30,7 +30,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/set_xor_min.test.cpp
     title: test/library_checker/datastructure/set_xor_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
   - icon: ':heavy_check_mark:'
@@ -39,7 +39,7 @@ data:
   - icon: ':x:'
     path: test/mytest/tdpc_grid_dp.test.cpp
     title: test/mytest/tdpc_grid_dp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
   - icon: ':x:'

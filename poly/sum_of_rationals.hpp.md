@@ -20,37 +20,37 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/product_of_pow_of_linear.hpp
     title: poly/product_of_pow_of_linear.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/abc276_g.test.cpp
     title: test/atcoder/abc276_g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/abc276_g_2.test.cpp
     title: test/atcoder/abc276_g_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1145.test.cpp
     title: test/yukicoder/1145.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1875.test.cpp
     title: test/yukicoder/1875.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1962.test.cpp
     title: test/yukicoder/1962.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/sum_of_rationals.hpp\"\n\n#line 2 \"mod/modint.hpp\"\
@@ -74,38 +74,39 @@ data:
     \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
     \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
     \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
-    \  }\n  void write() { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
-    \ }\n  static constexpr int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt\
-    \ {\n  static constexpr bool is_modint = true;\n  int val;\n  ArbitraryModInt()\
-    \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
-    \                   : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
-    \ ArbitraryModInt &other) const {\n    return val < other.val;\n  } // To use\
-    \ std::map<ArbitraryModInt, T>\n  static int &get_mod() {\n    static int mod\
-    \ = 0;\n    return mod;\n  }\n  static void set_mod(int md) { get_mod() = md;\
-    \ }\n  ArbitraryModInt &operator+=(const ArbitraryModInt &p) {\n    if ((val +=\
-    \ p.val) >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt\
-    \ &operator-=(const ArbitraryModInt &p) {\n    if ((val += get_mod() - p.val)\
-    \ >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt &operator*=(const\
-    \ ArbitraryModInt &p) {\n    long long a = (long long)val * p.val;\n    int xh\
-    \ = (int)(a >> 32), xl = (int)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d),\
-    \ \"=d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return\
-    \ *this;\n  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n   \
-    \ *this *= p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-()\
-    \ const { return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) += p;\n  }\n\
-    \  ArbitraryModInt operator-(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
-    \ -= p;\n  }\n  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n\
-    \    return ArbitraryModInt(*this) *= p;\n  }\n  ArbitraryModInt operator/(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) /= p;\n  }\n\
-    \  bool operator==(const ArbitraryModInt &p) const { return val == p.val; }\n\
-    \  bool operator!=(const ArbitraryModInt &p) const { return val != p.val; }\n\
-    \  ArbitraryModInt inverse() const {\n    int a = val, b = get_mod(), u = 1, v\
-    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
-    \ -= t * v, v);\n    }\n    return ArbitraryModInt(u);\n  }\n  ArbitraryModInt\
-    \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
-    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
-    \  }\n    return ret;\n  }\n  void write() { fastio::printer.write(val); }\n \
-    \ void read() { fastio::scanner.read(val); }\n};\n\ntemplate <typename mint>\n\
+    \  }\n  void write() { fastio::printer.write(val); }\n  void read() {\n    ll\
+    \ x;\n    fastio::scanner.read(x);\n    if (x < 0 || x >= mod) x %= mod;\n   \
+    \ if (x < 0) x += mod;\n    val += x;\n  }\n  static constexpr int get_mod() {\
+    \ return mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr bool is_modint\
+    \ = true;\n  int val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t\
+    \ y)\n      : val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y)\
+    \ % get_mod()) % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other)\
+    \ const {\n    return val < other.val;\n  } // To use std::map<ArbitraryModInt,\
+    \ T>\n  static int &get_mod() {\n    static int mod = 0;\n    return mod;\n  }\n\
+    \  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const\
+    \ ArbitraryModInt &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n\
+    \    return *this;\n  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p)\
+    \ {\n    if ((val += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return\
+    \ *this;\n  }\n  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n   \
+    \ long long a = (long long)val * p.val;\n    int xh = (int)(a >> 32), xl = (int)a,\
+    \ d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"(m) : \"d\"(xh), \"a\"\
+    (xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n  }\n  ArbitraryModInt\
+    \ &operator/=(const ArbitraryModInt &p) {\n    *this *= p.inverse();\n    return\
+    \ *this;\n  }\n  ArbitraryModInt operator-() const { return ArbitraryModInt(get_mod()\
+    \ - val); }\n  ArbitraryModInt operator+(const ArbitraryModInt &p) const {\n \
+    \   return ArbitraryModInt(*this) += p;\n  }\n  ArbitraryModInt operator-(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) -= p;\n  }\n\
+    \  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
+    \ *= p;\n  }\n  ArbitraryModInt operator/(const ArbitraryModInt &p) const {\n\
+    \    return ArbitraryModInt(*this) /= p;\n  }\n  bool operator==(const ArbitraryModInt\
+    \ &p) const { return val == p.val; }\n  bool operator!=(const ArbitraryModInt\
+    \ &p) const { return val != p.val; }\n  ArbitraryModInt inverse() const {\n  \
+    \  int a = val, b = get_mod(), u = 1, v = 0, t;\n    while (b > 0) {\n      t\
+    \ = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return\
+    \ ArbitraryModInt(u);\n  }\n  ArbitraryModInt pow(int64_t n) const {\n    ArbitraryModInt\
+    \ ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n     \
+    \ mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n  void write() { fastio::printer.write(val);\
+    \ }\n  void read() { fastio::scanner.read(val); }\n};\n\ntemplate <typename mint>\n\
     mint inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
     \ dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n  while (int(dat.size())\
     \ <= n) {\n    int k = dat.size();\n    auto q = (mod + k - 1) / k;\n    int r\
@@ -362,8 +363,8 @@ data:
   - poly/composition_f_ex.hpp
   - poly/product_of_pow_of_linear.hpp
   - seq/sum_of_powers.hpp
-  timestamp: '2022-12-03 08:35:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-12-25 12:22:53+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1875.test.cpp
   - test/yukicoder/1145.test.cpp

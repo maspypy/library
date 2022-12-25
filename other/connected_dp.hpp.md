@@ -118,7 +118,7 @@ data:
     \u624B\u524D\u3001\u5F8C\u308D\n// \u9023\u7D50\u9818\u57DF\u3092\u3072\u3068\u3064\
     \u4F5C\u308B\u3002\u591A\u89D2\u5F62\u3068\u306F\u9650\u3089\u306A\u3044\u3002\
     \npair<vvc<int>, vc<pair<int, int>>> connedted_dp_graph(int N,\n             \
-    \                                         bool merge_reverse) {\n  static HashMapLL<int>\
+    \                                         bool merge_reverse) {\n  static HashMap<int>\
     \ MP;\n  MP.reset();\n  vvc<int> states;\n  vc<pair<int, int>> edges;\n\n  states.eb(vc<int>(N,\
     \ -1));\n  states.eb(vc<int>(N, -1));\n  MP[hash_vector<int>(states[0])] = 0;\n\
     \n  int p = -1;\n  while (1) {\n    if (++p == len(states)) break;\n    if (p\
@@ -133,7 +133,7 @@ data:
     \  ll h = hash_vector<int>(nxt);\n      if (merge_reverse) { chmin(h, hash_vector<int>(reverse_state(nxt)));\
     \ }\n      if (!MP.count(h)) {\n        MP[h] = len(states);\n        states.eb(nxt);\n\
     \      }\n      edges.eb(p, MP[h]);\n    }\n  }\n  return {states, edges};\n}\n\
-    \npair<vvc<int>, vc<pair<int, int>>> polygon_dp_graph(int N) {\n  static HashMapLL<int>\
+    \npair<vvc<int>, vc<pair<int, int>>> polygon_dp_graph(int N) {\n  static HashMap<int>\
     \ MP;\n  MP.reset();\n  vvc<int> states;\n  vc<pair<int, int>> edges;\n\n  states.eb(vc<int>(N,\
     \ -1));\n  states.eb(vc<int>(N, -1));\n  MP[hash_vector<int>(states[0])] = 0;\n\
     \n  int p = -1;\n  while (1) {\n    if (++p == len(states)) break;\n    if (p\
@@ -185,7 +185,7 @@ data:
     \u624B\u524D\u3001\u5F8C\u308D\n// \u9023\u7D50\u9818\u57DF\u3092\u3072\u3068\u3064\
     \u4F5C\u308B\u3002\u591A\u89D2\u5F62\u3068\u306F\u9650\u3089\u306A\u3044\u3002\
     \npair<vvc<int>, vc<pair<int, int>>> connedted_dp_graph(int N,\n             \
-    \                                         bool merge_reverse) {\n  static HashMapLL<int>\
+    \                                         bool merge_reverse) {\n  static HashMap<int>\
     \ MP;\n  MP.reset();\n  vvc<int> states;\n  vc<pair<int, int>> edges;\n\n  states.eb(vc<int>(N,\
     \ -1));\n  states.eb(vc<int>(N, -1));\n  MP[hash_vector<int>(states[0])] = 0;\n\
     \n  int p = -1;\n  while (1) {\n    if (++p == len(states)) break;\n    if (p\
@@ -200,7 +200,7 @@ data:
     \  ll h = hash_vector<int>(nxt);\n      if (merge_reverse) { chmin(h, hash_vector<int>(reverse_state(nxt)));\
     \ }\n      if (!MP.count(h)) {\n        MP[h] = len(states);\n        states.eb(nxt);\n\
     \      }\n      edges.eb(p, MP[h]);\n    }\n  }\n  return {states, edges};\n}\n\
-    \npair<vvc<int>, vc<pair<int, int>>> polygon_dp_graph(int N) {\n  static HashMapLL<int>\
+    \npair<vvc<int>, vc<pair<int, int>>> polygon_dp_graph(int N) {\n  static HashMap<int>\
     \ MP;\n  MP.reset();\n  vvc<int> states;\n  vc<pair<int, int>> edges;\n\n  states.eb(vc<int>(N,\
     \ -1));\n  states.eb(vc<int>(N, -1));\n  MP[hash_vector<int>(states[0])] = 0;\n\
     \n  int p = -1;\n  while (1) {\n    if (++p == len(states)) break;\n    if (p\
@@ -238,7 +238,7 @@ data:
   isVerificationFile: false
   path: other/connected_dp.hpp
   requiredBy: []
-  timestamp: '2022-12-23 11:10:49+09:00'
+  timestamp: '2022-12-25 12:23:03+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1561.test.cpp

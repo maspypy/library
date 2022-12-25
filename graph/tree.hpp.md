@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/lazy_tree_monoid.hpp
     title: graph/ds/lazy_tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -20,16 +20,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/tree_group.hpp
     title: graph/ds/tree_group.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
   - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/functional.hpp
     title: graph/functional.hpp
   - icon: ':heavy_check_mark:'
@@ -66,7 +66,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc266f.test.cpp
     title: test/atcoder/abc266f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/abc269ex.test.cpp
     title: test/atcoder/abc269ex.test.cpp
   - icon: ':heavy_check_mark:'
@@ -87,10 +87,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -135,7 +135,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1418.test.cpp
     title: test/yukicoder/1418.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1451.test.cpp
     title: test/yukicoder/1451.test.cpp
   - icon: ':heavy_check_mark:'
@@ -144,7 +144,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1524.test.cpp
     title: test/yukicoder/1524.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1600.test.cpp
     title: test/yukicoder/1600.test.cpp
   - icon: ':heavy_check_mark:'
@@ -168,16 +168,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1983.test.cpp
     title: test/yukicoder/1983.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
   _isVerificationFailed: true

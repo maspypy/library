@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':question:'
@@ -27,18 +27,18 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/eulerian_number.test.cpp
     title: test/mytest/eulerian_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1821.test.cpp
     title: test/yukicoder/1821.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2005.test.cpp
     title: test/yukicoder/2005.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = long long>\n\
@@ -82,8 +82,9 @@ data:
     \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t n) const {\n\
     \    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
     \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n  void write()\
-    \ { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
-    \ }\n  static constexpr int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt\
+    \ { fastio::printer.write(val); }\n  void read() {\n    ll x;\n    fastio::scanner.read(x);\n\
+    \    if (x < 0 || x >= mod) x %= mod;\n    if (x < 0) x += mod;\n    val += x;\n\
+    \  }\n  static constexpr int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt\
     \ {\n  static constexpr bool is_modint = true;\n  int val;\n  ArbitraryModInt()\
     \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
     \                   : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
@@ -361,8 +362,8 @@ data:
   isVerificationFile: false
   path: seq/famous/eulerian_number.hpp
   requiredBy: []
-  timestamp: '2022-12-12 09:21:17+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-12-25 12:22:53+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1821.test.cpp
   - test/yukicoder/2005.test.cpp

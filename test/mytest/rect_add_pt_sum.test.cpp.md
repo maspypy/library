@@ -298,8 +298,9 @@ data:
     \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t n) const {\n\
     \    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
     \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n  void write()\
-    \ { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
-    \ }\n  static constexpr int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt\
+    \ { fastio::printer.write(val); }\n  void read() {\n    ll x;\n    fastio::scanner.read(x);\n\
+    \    if (x < 0 || x >= mod) x %= mod;\n    if (x < 0) x += mod;\n    val += x;\n\
+    \  }\n  static constexpr int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt\
     \ {\n  static constexpr bool is_modint = true;\n  int val;\n  ArbitraryModInt()\
     \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
     \                   : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
@@ -380,21 +381,21 @@ data:
     \ [x, y]: sum_query) {\n    mint ans = 0;\n    for (auto&& [a, b, c, d, v]: add_query)\
     \ {\n      if (a <= x && x < b && c <= y && y < d) ans += mint(v);\n    }\n  \
     \  ANS.eb(ans);\n  }\n  return ANS;\n}\n\nvoid test() {\n  FOR(H, 1, 10) FOR(W,\
-    \ 1, 10) FOR(Q, 10) {\n    auto [add_query, sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Monoid_Add<mint>,\
+    \ 1, 10) FOR(Q, 10) {\n    auto [add_query, sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<int,\
+    \ Monoid_Add<mint>, 0> X;\n    for (auto&& [a, b, c, d, v]: add_query) X.add_query(a,\
+    \ b, c, d, v);\n    for (auto&& [a, b]: sum_query) X.sum_query(a, b);\n    assert(X.calc()\
+    \ == sol_1(H, W, add_query, sum_query));\n  }\n  FOR(H, 1, 10) FOR(W, 1, 10) FOR(Q,\
+    \ 10) {\n    auto [add_query, sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<int,\
+    \ Monoid_Add<mint>, 1> X;\n    for (auto&& [a, b, c, d, v]: add_query) X.add_query(a,\
+    \ b, c, d, v);\n    for (auto&& [a, b]: sum_query) X.sum_query(a, b);\n    assert(X.calc()\
+    \ == sol_1(H, W, add_query, sum_query));\n  }\n  FOR(10) {\n    int H = RNG(1,\
+    \ 1'000'000'000);\n    int W = RNG(1, 1'000'000'000);\n    int Q = 100;\n    auto\
+    \ [add_query, sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<int, Monoid_Add<mint>,\
     \ 0> X;\n    for (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);\n\
     \    for (auto&& [a, b]: sum_query) X.sum_query(a, b);\n    assert(X.calc() ==\
-    \ sol_1(H, W, add_query, sum_query));\n  }\n  FOR(H, 1, 10) FOR(W, 1, 10) FOR(Q,\
-    \ 10) {\n    auto [add_query, sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Monoid_Add<mint>,\
-    \ 1> X;\n    for (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);\n\
-    \    for (auto&& [a, b]: sum_query) X.sum_query(a, b);\n    assert(X.calc() ==\
-    \ sol_1(H, W, add_query, sum_query));\n  }\n  FOR(10) {\n    int H = RNG(1, 1'000'000'000);\n\
-    \    int W = RNG(1, 1'000'000'000);\n    int Q = 100;\n    auto [add_query, sum_query]\
-    \ = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Monoid_Add<mint>, 0> X;\n    for\
-    \ (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);\n    for (auto&&\
-    \ [a, b]: sum_query) X.sum_query(a, b);\n    assert(X.calc() == sol_2(H, W, add_query,\
-    \ sum_query));\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\n\
-    signed main() {\n  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\
-    \n  return 0;\n}\n"
+    \ sol_2(H, W, add_query, sum_query));\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n\
+    \  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"random/base.hpp\"\n\n#include \"ds/offline_query/rectangle_add_point_sum.hpp\"\
     \n#include \"mod/modint.hpp\"\n\nusing mint = modint998;\nusing QT = tuple<ll,\
@@ -412,21 +413,21 @@ data:
     \    for (auto&& [a, b, c, d, v]: add_query) {\n      if (a <= x && x < b && c\
     \ <= y && y < d) ans += mint(v);\n    }\n    ANS.eb(ans);\n  }\n  return ANS;\n\
     }\n\nvoid test() {\n  FOR(H, 1, 10) FOR(W, 1, 10) FOR(Q, 10) {\n    auto [add_query,\
-    \ sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Monoid_Add<mint>, 0>\
-    \ X;\n    for (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);\n\
+    \ sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<int, Monoid_Add<mint>,\
+    \ 0> X;\n    for (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);\n\
     \    for (auto&& [a, b]: sum_query) X.sum_query(a, b);\n    assert(X.calc() ==\
     \ sol_1(H, W, add_query, sum_query));\n  }\n  FOR(H, 1, 10) FOR(W, 1, 10) FOR(Q,\
-    \ 10) {\n    auto [add_query, sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Monoid_Add<mint>,\
-    \ 1> X;\n    for (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);\n\
+    \ 10) {\n    auto [add_query, sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<int,\
+    \ Monoid_Add<mint>, 1> X;\n    for (auto&& [a, b, c, d, v]: add_query) X.add_query(a,\
+    \ b, c, d, v);\n    for (auto&& [a, b]: sum_query) X.sum_query(a, b);\n    assert(X.calc()\
+    \ == sol_1(H, W, add_query, sum_query));\n  }\n  FOR(10) {\n    int H = RNG(1,\
+    \ 1'000'000'000);\n    int W = RNG(1, 1'000'000'000);\n    int Q = 100;\n    auto\
+    \ [add_query, sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<int, Monoid_Add<mint>,\
+    \ 0> X;\n    for (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);\n\
     \    for (auto&& [a, b]: sum_query) X.sum_query(a, b);\n    assert(X.calc() ==\
-    \ sol_1(H, W, add_query, sum_query));\n  }\n  FOR(10) {\n    int H = RNG(1, 1'000'000'000);\n\
-    \    int W = RNG(1, 1'000'000'000);\n    int Q = 100;\n    auto [add_query, sum_query]\
-    \ = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Monoid_Add<mint>, 0> X;\n    for\
-    \ (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c, d, v);\n    for (auto&&\
-    \ [a, b]: sum_query) X.sum_query(a, b);\n    assert(X.calc() == sol_2(H, W, add_query,\
-    \ sum_query));\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\n\
-    signed main() {\n  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\
-    \n  return 0;\n}\n"
+    \ sol_2(H, W, add_query, sum_query));\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n\
+    \  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  test();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -438,7 +439,7 @@ data:
   isVerificationFile: true
   path: test/mytest/rect_add_pt_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-12-23 11:02:13+09:00'
+  timestamp: '2022-12-25 12:23:03+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/rect_add_pt_sum.test.cpp

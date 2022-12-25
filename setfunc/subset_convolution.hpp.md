@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/subset_convolution.test.cpp
     title: test/library_checker/convolution/subset_convolution.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"setfunc/ranked_zeta.hpp\"\n\r\ntemplate <typename T, int\
@@ -57,7 +57,7 @@ data:
   path: setfunc/subset_convolution.hpp
   requiredBy: []
   timestamp: '2022-08-19 07:15:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/convolution/subset_convolution.test.cpp
 documentation_of: setfunc/subset_convolution.hpp

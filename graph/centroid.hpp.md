@@ -5,11 +5,11 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - icon: ':heavy_check_mark:'
@@ -21,7 +21,7 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1769.test.cpp
     title: test/yukicoder/1769.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1796.test.cpp
     title: test/yukicoder/1796.test.cpp
   _isVerificationFailed: true

@@ -280,24 +280,24 @@ data:
     \  return {true, values};\r\n  }\r\n};\n#line 5 \"test/library_checker/math/twosat.test.cpp\"\
     \n\r\nvoid solve() {\r\n  STR(p, cnf);\r\n  LL(N, M);\r\n  TwoSat ts(N);\r\n \
     \ FOR(i, M) {\r\n    LL(a, b, c);\r\n    a = (a > 0 ? a - 1 : a);\r\n    b = (b\
-    \ > 0 ? b - 1 : b);\r\n    ts.add(a, b);\r\n  }\r\n  bool ok = ts.calc();\r\n\
-    \  auto A = ts.values;\r\n  if (ok) {\r\n    print(\"s SATISFIABLE\");\r\n   \
-    \ vc<int> ANS(N);\r\n    FOR(i, N) ANS[i] = (A[i] ? i + 1 : -(i + 1));\r\n   \
-    \ print(\"v\", ANS, \"0\");\r\n  } else {\r\n    print(\"s UNSATISFIABLE\");\r\
-    \n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  // LL(T);\r\n  ll T = 1;\r\n  FOR(_, T)\
-    \ solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ > 0 ? b - 1 : b);\r\n    ts.add(a, b);\r\n  }\r\n  auto [ok, A] = ts.calc();\r\
+    \n  if (ok) {\r\n    print(\"s SATISFIABLE\");\r\n    vc<int> ANS(N);\r\n    FOR(i,\
+    \ N) ANS[i] = (A[i] ? i + 1 : -(i + 1));\r\n    print(\"v\", ANS, \"0\");\r\n\
+    \  } else {\r\n    print(\"s UNSATISFIABLE\");\r\n  }\r\n}\r\n\r\nsigned main()\
+    \ {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
+    \n\r\n  // LL(T);\r\n  ll T = 1;\r\n  FOR(_, T) solve();\r\n\r\n  return 0;\r\n\
+    }\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/two_sat\"\r\n#include \"\
     my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"graph/twosat.hpp\"\
     \r\n\r\nvoid solve() {\r\n  STR(p, cnf);\r\n  LL(N, M);\r\n  TwoSat ts(N);\r\n\
     \  FOR(i, M) {\r\n    LL(a, b, c);\r\n    a = (a > 0 ? a - 1 : a);\r\n    b =\
-    \ (b > 0 ? b - 1 : b);\r\n    ts.add(a, b);\r\n  }\r\n  bool ok = ts.calc();\r\
-    \n  auto A = ts.values;\r\n  if (ok) {\r\n    print(\"s SATISFIABLE\");\r\n  \
-    \  vc<int> ANS(N);\r\n    FOR(i, N) ANS[i] = (A[i] ? i + 1 : -(i + 1));\r\n  \
-    \  print(\"v\", ANS, \"0\");\r\n  } else {\r\n    print(\"s UNSATISFIABLE\");\r\
-    \n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  // LL(T);\r\n  ll T = 1;\r\n  FOR(_, T)\
-    \ solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ (b > 0 ? b - 1 : b);\r\n    ts.add(a, b);\r\n  }\r\n  auto [ok, A] = ts.calc();\r\
+    \n  if (ok) {\r\n    print(\"s SATISFIABLE\");\r\n    vc<int> ANS(N);\r\n    FOR(i,\
+    \ N) ANS[i] = (A[i] ? i + 1 : -(i + 1));\r\n    print(\"v\", ANS, \"0\");\r\n\
+    \  } else {\r\n    print(\"s UNSATISFIABLE\");\r\n  }\r\n}\r\n\r\nsigned main()\
+    \ {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
+    \n\r\n  // LL(T);\r\n  ll T = 1;\r\n  FOR(_, T) solve();\r\n\r\n  return 0;\r\n\
+    }\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -307,7 +307,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/twosat.test.cpp
   requiredBy: []
-  timestamp: '2022-12-25 11:19:47+09:00'
+  timestamp: '2022-12-25 12:23:03+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/twosat.test.cpp

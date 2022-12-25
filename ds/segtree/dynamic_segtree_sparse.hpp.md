@@ -12,7 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/dynamic_segtree_sparse.test.cpp
     title: test/mytest/dynamic_segtree_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1649_2.test.cpp
     title: test/yukicoder/1649_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -21,9 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/789_3.test.cpp
     title: test/yukicoder/789_3.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/dynamic_segtree_sparse.hpp\"\n\n// \u5E38\u306B\
@@ -172,7 +172,7 @@ data:
   path: ds/segtree/dynamic_segtree_sparse.hpp
   requiredBy: []
   timestamp: '2022-12-25 11:16:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1649_2.test.cpp
   - test/yukicoder/1826_2.test.cpp

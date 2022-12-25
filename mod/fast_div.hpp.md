@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/det.hpp
     title: linalg/det.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/det_mod.hpp
     title: linalg/det_mod.hpp
   - icon: ':heavy_check_mark:'
@@ -14,16 +14,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':heavy_check_mark:'
     path: mod/tetration.hpp
     title: mod/tetration.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/crt.hpp
     title: nt/crt.hpp
   - icon: ':heavy_check_mark:'
@@ -48,13 +48,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/det_mod.test.cpp
     title: test/library_checker/matrix/det_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/matrix/matrix_det.test.cpp
     title: test/library_checker/matrix/matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
   - icon: ':heavy_check_mark:'
@@ -72,12 +72,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2120.test.cpp
     title: test/yukicoder/2120.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://judge.yosupo.jp/submission/46090
@@ -118,7 +118,7 @@ data:
   - mod/mod_kth_root.hpp
   - mod/primitive_root.hpp
   timestamp: '2022-05-12 00:26:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1303.test.cpp
   - test/yukicoder/1025.test.cpp

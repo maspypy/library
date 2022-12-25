@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/offline_query/point_add_rectangle_sum.hpp
     title: ds/offline_query/point_add_rectangle_sum.hpp
   - icon: ':question:'

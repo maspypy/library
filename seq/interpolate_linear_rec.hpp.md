@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
   - icon: ':question:'
@@ -22,24 +22,24 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1500.test.cpp
     title: test/yukicoder/1500.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1516.test.cpp
     title: test/yukicoder/1516.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1547.test.cpp
     title: test/yukicoder/1547.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1844.test.cpp
     title: test/yukicoder/1844.test.cpp
   - icon: ':x:'
@@ -53,7 +53,7 @@ data:
     title: test/yukicoder/579.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"seq/interpolate_linear_rec.hpp\"\n\r\n#line 2 \"seq/find_linear_rec.hpp\"\
@@ -86,8 +86,9 @@ data:
     \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t n) const {\n\
     \    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
     \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n  void write()\
-    \ { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
-    \ }\n  static constexpr int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt\
+    \ { fastio::printer.write(val); }\n  void read() {\n    ll x;\n    fastio::scanner.read(x);\n\
+    \    if (x < 0 || x >= mod) x %= mod;\n    if (x < 0) x += mod;\n    val += x;\n\
+    \  }\n  static constexpr int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt\
     \ {\n  static constexpr bool is_modint = true;\n  int val;\n  ArbitraryModInt()\
     \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
     \                   : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
@@ -367,8 +368,8 @@ data:
   isVerificationFile: false
   path: seq/interpolate_linear_rec.hpp
   requiredBy: []
-  timestamp: '2022-12-03 08:35:02+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-12-25 12:22:53+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1561.test.cpp
   - test/yukicoder/1547.test.cpp

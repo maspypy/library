@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/double_ended_pq.test.cpp
     title: test/library_checker/datastructure/double_ended_pq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
     title: test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
   - icon: ':heavy_check_mark:'
@@ -18,7 +18,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036.test.cpp
     title: test/yukicoder/1036.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1649.test.cpp
     title: test/yukicoder/1649.test.cpp
   - icon: ':heavy_check_mark:'
@@ -27,9 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/789.test.cpp
     title: test/yukicoder/789.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/dynamic_segtree.hpp\"\n\r\n// sparse \u3082\u3042\
@@ -188,7 +188,7 @@ data:
   requiredBy:
   - ds/online_uniqueproductquery.hpp
   timestamp: '2022-12-12 00:25:40+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1826.test.cpp
   - test/yukicoder/1036.test.cpp
