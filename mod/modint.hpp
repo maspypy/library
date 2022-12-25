@@ -55,7 +55,13 @@ struct modint {
     return ret;
   }
   void write() { fastio::printer.write(val); }
-  void read() { fastio::scanner.read(val); }
+  void read() {
+    ll x;
+    fastio::scanner.read(x);
+    if (x < 0 || x >= mod) x %= mod;
+    if (x < 0) x += mod;
+    val += x;
+  }
   static constexpr int get_mod() { return mod; }
 };
 
