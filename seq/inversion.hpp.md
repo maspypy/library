@@ -9,15 +9,15 @@ data:
     title: ds/fenwicktree/fenwicktree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ALDS1_2_A.test.cpp
     title: test/aoj/ALDS1_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ALDS1_5.test.cpp
     title: test/aoj/ALDS1_5.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -54,25 +54,24 @@ data:
     \ dat[i + k - 1]);\n      if (check(t)) { i += k, s = t; }\n      k >>= 1;\n \
     \   }\n    return i;\n  }\n\n  int kth(E k) {\n    return max_right([&k](E x)\
     \ -> bool { return x <= k; });\n  }\n};\n#line 2 \"seq/inversion.hpp\"\n\ntemplate\
-    \ <typename T>\nll inversion(vc<T> A, bool SMALL = false) {\n  if (!SMALL) {\n\
-    \    auto key = A;\n    UNIQUE(key);\n    for (auto&& x: A) x = LB(key, x);\n\
-    \  }\n  ll ANS = 0;\n  ll K = MAX(A) + 1;\n  FenwickTree<Monoid_Add<int>> bit(K);\n\
-    \  for (auto&& x: A) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x, 1);\n  }\n\
-    \  return ANS;\n}\n"
-  code: "#include \"ds/fenwicktree/fenwicktree.hpp\"\n\ntemplate <typename T>\nll\
-    \ inversion(vc<T> A, bool SMALL = false) {\n  if (!SMALL) {\n    auto key = A;\n\
-    \    UNIQUE(key);\n    for (auto&& x: A) x = LB(key, x);\n  }\n  ll ANS = 0;\n\
-    \  ll K = MAX(A) + 1;\n  FenwickTree<Monoid_Add<int>> bit(K);\n  for (auto&& x:\
-    \ A) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x, 1);\n  }\n  return ANS;\n\
-    }\n"
+    \ <typename T, bool SMALL>\nll inversion(vc<T> A) {\n  if (!SMALL) {\n    auto\
+    \ key = A;\n    UNIQUE(key);\n    for (auto&& x: A) x = LB(key, x);\n  }\n  ll\
+    \ ANS = 0;\n  ll K = MAX(A) + 1;\n  FenwickTree<Monoid_Add<int>> bit(K);\n  for\
+    \ (auto&& x: A) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x, 1);\n  }\n  return\
+    \ ANS;\n}\n"
+  code: "#include \"ds/fenwicktree/fenwicktree.hpp\"\n\ntemplate <typename T, bool\
+    \ SMALL>\nll inversion(vc<T> A) {\n  if (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n\
+    \    for (auto&& x: A) x = LB(key, x);\n  }\n  ll ANS = 0;\n  ll K = MAX(A) +\
+    \ 1;\n  FenwickTree<Monoid_Add<int>> bit(K);\n  for (auto&& x: A) {\n    ANS +=\
+    \ bit.sum(x + 1, K);\n    bit.add(x, 1);\n  }\n  return ANS;\n}\n"
   dependsOn:
   - ds/fenwicktree/fenwicktree.hpp
   - alg/monoid/add.hpp
   isVerificationFile: false
   path: seq/inversion.hpp
   requiredBy: []
-  timestamp: '2022-12-11 11:10:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-12-25 11:20:22+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/ALDS1_2_A.test.cpp
   - test/aoj/ALDS1_5.test.cpp

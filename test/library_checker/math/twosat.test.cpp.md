@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/twosat.hpp
     title: graph/twosat.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/two_sat
@@ -267,26 +267,26 @@ data:
     \ y = comp[e.to];\n    if (x == y) continue;\n    edges[x].eb(y);\n  }\n  FOR(c,\
     \ C) {\n    UNIQUE(edges[c]);\n    for (auto&& to: edges[c]) DAG.add(c, to);\n\
     \  }\n  DAG.build();\n  return DAG;\n}\n#line 2 \"graph/twosat.hpp\"\n\r\nstruct\
-    \ TwoSat {\r\n  vc<int> values;\r\n\r\n  Graph<int, 1> G;\r\n  TwoSat(ll n) :\
+    \ TwoSat {\r\n  Graph<int, 1> G;\r\n  vc<int> values;\r\n\r\n  TwoSat(ll n) :\
     \ G(n + n), values(n, -1) {}\r\n  void add(int a, int b) {\r\n    a = (a >= 0\
     \ ? 2 * a + 1 : 2 * (~a));\r\n    b = (b >= 0 ? 2 * b + 1 : 2 * (~b));\r\n   \
     \ G.add(a ^ 1, b);\r\n    G.add(b ^ 1, a);\r\n  }\r\n  void set(int a) {\r\n \
     \   if (a >= 0)\r\n      values[a] = 1;\r\n    else\r\n      values[~a] = 0;\r\
     \n    a = (a >= 0 ? 2 * a + 1 : 2 * (~a));\r\n    G.add(a ^ 1, a);\r\n  }\r\n\
-    \  void implies(int a, int b) { add(~a, b); }\r\n\r\n  bool calc() {\r\n    G.build();\r\
-    \n    ll n = len(values);\r\n    auto [C, comp] = strongly_connected_component(G);\r\
-    \n    FOR(i, n) {\r\n      if (comp[2 * i] == comp[2 * i + 1]) return false;\r\
-    \n      values[i] = comp[2 * i] < comp[2 * i + 1];\r\n    }\r\n    return true;\r\
-    \n  }\r\n};\n#line 5 \"test/library_checker/math/twosat.test.cpp\"\n\r\nvoid solve()\
-    \ {\r\n  STR(p, cnf);\r\n  LL(N, M);\r\n  TwoSat ts(N);\r\n  FOR(i, M) {\r\n \
-    \   LL(a, b, c);\r\n    a = (a > 0 ? a - 1 : a);\r\n    b = (b > 0 ? b - 1 : b);\r\
-    \n    ts.add(a, b);\r\n  }\r\n  bool ok = ts.calc();\r\n  auto A = ts.values;\r\
-    \n  if (ok) {\r\n    print(\"s SATISFIABLE\");\r\n    vc<int> ANS(N);\r\n    FOR(i,\
-    \ N) ANS[i] = (A[i] ? i + 1 : -(i + 1));\r\n    print(\"v\", ANS, \"0\");\r\n\
-    \  } else {\r\n    print(\"s UNSATISFIABLE\");\r\n  }\r\n}\r\n\r\nsigned main()\
-    \ {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
-    \n\r\n  // LL(T);\r\n  ll T = 1;\r\n  FOR(_, T) solve();\r\n\r\n  return 0;\r\n\
-    }\r\n"
+    \  void implies(int a, int b) { add(~a, b); }\r\n\r\n  pair<bool, vc<int>> calc()\
+    \ {\r\n    G.build();\r\n    ll n = len(values);\r\n    auto [C, comp] = strongly_connected_component(G);\r\
+    \n    FOR(i, n) {\r\n      if (comp[2 * i] == comp[2 * i + 1]) return {false,\
+    \ values};\r\n      values[i] = comp[2 * i] < comp[2 * i + 1];\r\n    }\r\n  \
+    \  return {true, values};\r\n  }\r\n};\n#line 5 \"test/library_checker/math/twosat.test.cpp\"\
+    \n\r\nvoid solve() {\r\n  STR(p, cnf);\r\n  LL(N, M);\r\n  TwoSat ts(N);\r\n \
+    \ FOR(i, M) {\r\n    LL(a, b, c);\r\n    a = (a > 0 ? a - 1 : a);\r\n    b = (b\
+    \ > 0 ? b - 1 : b);\r\n    ts.add(a, b);\r\n  }\r\n  bool ok = ts.calc();\r\n\
+    \  auto A = ts.values;\r\n  if (ok) {\r\n    print(\"s SATISFIABLE\");\r\n   \
+    \ vc<int> ANS(N);\r\n    FOR(i, N) ANS[i] = (A[i] ? i + 1 : -(i + 1));\r\n   \
+    \ print(\"v\", ANS, \"0\");\r\n  } else {\r\n    print(\"s UNSATISFIABLE\");\r\
+    \n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \n  cout << setprecision(15);\r\n\r\n  // LL(T);\r\n  ll T = 1;\r\n  FOR(_, T)\
+    \ solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/two_sat\"\r\n#include \"\
     my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"graph/twosat.hpp\"\
     \r\n\r\nvoid solve() {\r\n  STR(p, cnf);\r\n  LL(N, M);\r\n  TwoSat ts(N);\r\n\
@@ -307,8 +307,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/twosat.test.cpp
   requiredBy: []
-  timestamp: '2022-12-12 09:20:37+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-12-25 11:19:47+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/twosat.test.cpp
 layout: document

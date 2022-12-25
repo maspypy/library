@@ -87,14 +87,15 @@ data:
     \  if (include_ends) {\n    ok1 = (a1 <= 0) && (0 <= b1);\n    ok2 = (a2 <= 0)\
     \ && (0 <= b2);\n  } else {\n    ok1 = (a1 < 0) && (0 < b1);\n    ok2 = (a2 <\
     \ 0) && (0 < b2);\n  }\n  return (ok1 && ok2 ? 1 : 0);\n}\n\n// 0 \u307E\u305F\
-    \u306F 1\n// \u8AA4\u5DEE\u306B\u3088\u3063\u3066\u306F\u9593\u9055\u3063\u305F\
-    \u7B54\u3092\u8FD4\u3059\u53EF\u80FD\u6027\u3042\u308A\u3002\ntemplate <typename\
-    \ T>\nint count_cross(Segment<T> S1, Segment<T> S2) {\n  Line<T> L1 = S1.to_Line();\n\
-    \  Line<T> L2 = S2.to_Line();\n  T a1 = L2.eval(S1.A), b1 = L2.eval(S1.B);\n \
-    \ T a2 = L1.eval(S2.A), b2 = L1.eval(S2.B);\n  bool ok1 = 0, ok2 = 0;\n  ok1 =\
-    \ (a1 <= 0) && (0 <= b1);\n  ok2 = (a2 <= 0) && (0 <= b2);\n  return (ok1 && ok2\
-    \ ? 1 : 0);\n}\n\n// \u552F\u4E00\u306E\u4EA4\u70B9\u3092\u6301\u3064\u3053\u3068\
-    \u3092\u4EEE\u5B9A\ntemplate <typename REAL, typename T>\nPoint<REAL> cross_point(Segment<T>\
+    \u306F 1\n// real \u3060\u3068\u8AA4\u5DEE\u306B\u3088\u3063\u3066\u306F\u9593\
+    \u9055\u3063\u305F\u7B54\u3092\u8FD4\u3059\u53EF\u80FD\u6027\u3042\u308A\u3002\
+    \ntemplate <typename T>\nint count_cross(Segment<T> S1, Segment<T> S2) {\n  Line<T>\
+    \ L1 = S1.to_Line();\n  Line<T> L2 = S2.to_Line();\n  T a1 = L2.eval(S1.A), b1\
+    \ = L2.eval(S1.B);\n  T a2 = L1.eval(S2.A), b2 = L1.eval(S2.B);\n  if (a1 > b1)\
+    \ swap(a1, b1);\n  if (a2 > b2) swap(a2, b2);\n  bool ok1 = 0, ok2 = 0;\n  ok1\
+    \ = (a1 <= 0) && (0 <= b1);\n  ok2 = (a2 <= 0) && (0 <= b2);\n  return (ok1 &&\
+    \ ok2 ? 1 : 0);\n}\n\n// \u552F\u4E00\u306E\u4EA4\u70B9\u3092\u6301\u3064\u3053\
+    \u3068\u3092\u4EEE\u5B9A\ntemplate <typename REAL, typename T>\nPoint<REAL> cross_point(Segment<T>\
     \ S1, Segment<T> S2) {\n  Line<T> L1 = S1.to_Line();\n  Line<T> L2 = S2.to_Line();\n\
     \  return cross_point<REAL, T>(L1, L2);\n}\n"
   code: "#include \"geo/base.hpp\"\n\n// \u5E73\u884C\u3067\u306A\u3044\u3053\u3068\
@@ -119,14 +120,15 @@ data:
     \  if (include_ends) {\n    ok1 = (a1 <= 0) && (0 <= b1);\n    ok2 = (a2 <= 0)\
     \ && (0 <= b2);\n  } else {\n    ok1 = (a1 < 0) && (0 < b1);\n    ok2 = (a2 <\
     \ 0) && (0 < b2);\n  }\n  return (ok1 && ok2 ? 1 : 0);\n}\n\n// 0 \u307E\u305F\
-    \u306F 1\n// \u8AA4\u5DEE\u306B\u3088\u3063\u3066\u306F\u9593\u9055\u3063\u305F\
-    \u7B54\u3092\u8FD4\u3059\u53EF\u80FD\u6027\u3042\u308A\u3002\ntemplate <typename\
-    \ T>\nint count_cross(Segment<T> S1, Segment<T> S2) {\n  Line<T> L1 = S1.to_Line();\n\
-    \  Line<T> L2 = S2.to_Line();\n  T a1 = L2.eval(S1.A), b1 = L2.eval(S1.B);\n \
-    \ T a2 = L1.eval(S2.A), b2 = L1.eval(S2.B);\n  bool ok1 = 0, ok2 = 0;\n  ok1 =\
-    \ (a1 <= 0) && (0 <= b1);\n  ok2 = (a2 <= 0) && (0 <= b2);\n  return (ok1 && ok2\
-    \ ? 1 : 0);\n}\n\n// \u552F\u4E00\u306E\u4EA4\u70B9\u3092\u6301\u3064\u3053\u3068\
-    \u3092\u4EEE\u5B9A\ntemplate <typename REAL, typename T>\nPoint<REAL> cross_point(Segment<T>\
+    \u306F 1\n// real \u3060\u3068\u8AA4\u5DEE\u306B\u3088\u3063\u3066\u306F\u9593\
+    \u9055\u3063\u305F\u7B54\u3092\u8FD4\u3059\u53EF\u80FD\u6027\u3042\u308A\u3002\
+    \ntemplate <typename T>\nint count_cross(Segment<T> S1, Segment<T> S2) {\n  Line<T>\
+    \ L1 = S1.to_Line();\n  Line<T> L2 = S2.to_Line();\n  T a1 = L2.eval(S1.A), b1\
+    \ = L2.eval(S1.B);\n  T a2 = L1.eval(S2.A), b2 = L1.eval(S2.B);\n  if (a1 > b1)\
+    \ swap(a1, b1);\n  if (a2 > b2) swap(a2, b2);\n  bool ok1 = 0, ok2 = 0;\n  ok1\
+    \ = (a1 <= 0) && (0 <= b1);\n  ok2 = (a2 <= 0) && (0 <= b2);\n  return (ok1 &&\
+    \ ok2 ? 1 : 0);\n}\n\n// \u552F\u4E00\u306E\u4EA4\u70B9\u3092\u6301\u3064\u3053\
+    \u3068\u3092\u4EEE\u5B9A\ntemplate <typename REAL, typename T>\nPoint<REAL> cross_point(Segment<T>\
     \ S1, Segment<T> S2) {\n  Line<T> L1 = S1.to_Line();\n  Line<T> L2 = S2.to_Line();\n\
     \  return cross_point<REAL, T>(L1, L2);\n}\n"
   dependsOn:
@@ -135,7 +137,7 @@ data:
   path: geo/cross_point.hpp
   requiredBy:
   - geo/distance.hpp
-  timestamp: '2022-12-23 11:03:30+09:00'
+  timestamp: '2022-12-25 11:15:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL_2_C.test.cpp

@@ -4,19 +4,19 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/fast_div.hpp
     title: mod/fast_div.hpp
   - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':question:'
@@ -36,9 +36,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/kth_root_mod
@@ -365,8 +365,8 @@ data:
     \ - mod_inv(m, pe);\r\n    k = (k * m + 1) / pe;\r\n    ll y = mod_pow(b, k, mod);\r\
     \n    x = x * y % fd;\r\n    return x;\r\n  };\r\n\r\n  auto pf = factor(k);\r\
     \n  for (auto&& [p, e]: pf) a = solve_pp(p, e, a);\r\n  return a;\r\n}\r\n\r\n\
-    ll mod_kth_root_long(ll k, ll a, ll mod) {\r\n  static HashMapLL<ll, 20> MP;\r\
-    \n\r\n  assert(primetest(mod) && 0 <= a && a < mod);\r\n  if (k == 0) return (a\
+    ll mod_kth_root_long(ll k, ll a, ll mod) {\r\n  static HashMap<ll, 20> MP;\r\n\
+    \r\n  assert(primetest(mod) && 0 <= a && a < mod);\r\n  if (k == 0) return (a\
     \ == 1 ? 1 : -1);\r\n  if (a == 0) return 0;\r\n  if (mod == 2) return a;\r\n\
     \  k %= mod - 1;\r\n\r\n  ll g = gcd(k, mod - 1);\r\n  if (mod_pow_long(a, (mod\
     \ - 1) / g, mod) != 1) return -1;\r\n\r\n  ll c = mod_inv(k / g, (mod - 1) / g);\r\
@@ -424,8 +424,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/kth_root_mod.test.cpp
   requiredBy: []
-  timestamp: '2022-12-23 11:10:49+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-25 11:16:23+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/kth_root_mod.test.cpp
 layout: document

@@ -238,21 +238,24 @@ data:
     \n  void reset() { pid = 0; }\n\n  vc<pair<ll, X>> get_all(np root) {\n    vc<pair<ll,\
     \ X>> res;\n    auto dfs = [&](auto &dfs, np c) -> void {\n      if (!c) return;\n\
     \      dfs(dfs, c->l);\n      res.eb(c->idx, c->x);\n      dfs(dfs, c->r);\n \
-    \   };\n    dfs(dfs, root);\n    return res;\n  }\n\nprivate:\n  void update(np\
-    \ c) {\n    c->prod = c->x;\n    if (c->l) c->prod = MX::op(c->l->prod, c->prod);\n\
-    \    if (c->r) c->prod = MX::op(c->prod, c->r->prod);\n  }\n\n  np copy_node(np\
-    \ c) {\n    if (!c || !PERSISTENT) return c;\n    pool[pid].idx = c->idx;\n  \
-    \  pool[pid].l = c->l;\n    pool[pid].r = c->r;\n    pool[pid].x = c->x;\n   \
-    \ pool[pid].prod = c->prod;\n    return &(pool[pid++]);\n  }\n\n  np set_rec(np\
-    \ c, ll l, ll r, ll i, X x) {\n    if (!c) {\n      c = new_node(i, x);\n    \
-    \  return c;\n    }\n    c = copy_node(c);\n    if (c->idx == i) {\n      c->x\
-    \ = x;\n      update(c);\n      return c;\n    }\n    ll m = (l + r) / 2;\n  \
-    \  if (i < m) {\n      if (c->idx < i) swap(c->idx, i), swap(c->x, x);\n     \
-    \ c->l = set_rec(c->l, l, m, i, x);\n    }\n    if (m <= i) {\n      if (i < c->idx)\
-    \ swap(c->idx, i), swap(c->x, x);\n      c->r = set_rec(c->r, m, r, i, x);\n \
-    \   }\n    update(c);\n    return c;\n  }\n\n  np multiply_rec(np c, ll l, ll\
-    \ r, ll i, X x) {\n    if (!c) {\n      c = new_node(i, x);\n      return c;\n\
-    \    }\n    c = copy_node(c);\n    if (c->idx == i) {\n      c->x = MX::op(c->x,\
+    \   };\n    dfs(dfs, root);\n    return res;\n  }\n\n  X get(np root, ll idx)\
+    \ {\n    auto dfs = [&](auto &dfs, np c) -> X {\n      if (!c) return Monoid::unit();\n\
+    \      if (idx == c->idx) return c->x;\n      if (idx < (c->idx)) return dfs(dfs,\
+    \ c->l);\n      return dfs(dfs, c->r);\n    };\n    return dfs(dfs, root);\n \
+    \ }\n\nprivate:\n  void update(np c) {\n    c->prod = c->x;\n    if (c->l) c->prod\
+    \ = MX::op(c->l->prod, c->prod);\n    if (c->r) c->prod = MX::op(c->prod, c->r->prod);\n\
+    \  }\n\n  np copy_node(np c) {\n    if (!c || !PERSISTENT) return c;\n    pool[pid].idx\
+    \ = c->idx;\n    pool[pid].l = c->l;\n    pool[pid].r = c->r;\n    pool[pid].x\
+    \ = c->x;\n    pool[pid].prod = c->prod;\n    return &(pool[pid++]);\n  }\n\n\
+    \  np set_rec(np c, ll l, ll r, ll i, X x) {\n    if (!c) {\n      c = new_node(i,\
+    \ x);\n      return c;\n    }\n    c = copy_node(c);\n    if (c->idx == i) {\n\
+    \      c->x = x;\n      update(c);\n      return c;\n    }\n    ll m = (l + r)\
+    \ / 2;\n    if (i < m) {\n      if (c->idx < i) swap(c->idx, i), swap(c->x, x);\n\
+    \      c->l = set_rec(c->l, l, m, i, x);\n    }\n    if (m <= i) {\n      if (i\
+    \ < c->idx) swap(c->idx, i), swap(c->x, x);\n      c->r = set_rec(c->r, m, r,\
+    \ i, x);\n    }\n    update(c);\n    return c;\n  }\n\n  np multiply_rec(np c,\
+    \ ll l, ll r, ll i, X x) {\n    if (!c) {\n      c = new_node(i, x);\n      return\
+    \ c;\n    }\n    c = copy_node(c);\n    if (c->idx == i) {\n      c->x = MX::op(c->x,\
     \ x);\n      update(c);\n      return c;\n    }\n    ll m = (l + r) / 2;\n   \
     \ if (i < m) {\n      if (c->idx < i) swap(c->idx, i), swap(c->x, x);\n      c->l\
     \ = multiply_rec(c->l, l, m, i, x);\n    }\n    if (m <= i) {\n      if (i < c->idx)\
@@ -300,7 +303,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
   requiredBy: []
-  timestamp: '2022-12-12 09:20:37+09:00'
+  timestamp: '2022-12-25 11:16:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp

@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/twosat.test.cpp
     title: test/library_checker/math/twosat.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -79,37 +79,37 @@ data:
     \ y = comp[e.to];\n    if (x == y) continue;\n    edges[x].eb(y);\n  }\n  FOR(c,\
     \ C) {\n    UNIQUE(edges[c]);\n    for (auto&& to: edges[c]) DAG.add(c, to);\n\
     \  }\n  DAG.build();\n  return DAG;\n}\n#line 2 \"graph/twosat.hpp\"\n\r\nstruct\
-    \ TwoSat {\r\n  vc<int> values;\r\n\r\n  Graph<int, 1> G;\r\n  TwoSat(ll n) :\
+    \ TwoSat {\r\n  Graph<int, 1> G;\r\n  vc<int> values;\r\n\r\n  TwoSat(ll n) :\
     \ G(n + n), values(n, -1) {}\r\n  void add(int a, int b) {\r\n    a = (a >= 0\
     \ ? 2 * a + 1 : 2 * (~a));\r\n    b = (b >= 0 ? 2 * b + 1 : 2 * (~b));\r\n   \
     \ G.add(a ^ 1, b);\r\n    G.add(b ^ 1, a);\r\n  }\r\n  void set(int a) {\r\n \
     \   if (a >= 0)\r\n      values[a] = 1;\r\n    else\r\n      values[~a] = 0;\r\
     \n    a = (a >= 0 ? 2 * a + 1 : 2 * (~a));\r\n    G.add(a ^ 1, a);\r\n  }\r\n\
-    \  void implies(int a, int b) { add(~a, b); }\r\n\r\n  bool calc() {\r\n    G.build();\r\
-    \n    ll n = len(values);\r\n    auto [C, comp] = strongly_connected_component(G);\r\
-    \n    FOR(i, n) {\r\n      if (comp[2 * i] == comp[2 * i + 1]) return false;\r\
-    \n      values[i] = comp[2 * i] < comp[2 * i + 1];\r\n    }\r\n    return true;\r\
-    \n  }\r\n};\n"
+    \  void implies(int a, int b) { add(~a, b); }\r\n\r\n  pair<bool, vc<int>> calc()\
+    \ {\r\n    G.build();\r\n    ll n = len(values);\r\n    auto [C, comp] = strongly_connected_component(G);\r\
+    \n    FOR(i, n) {\r\n      if (comp[2 * i] == comp[2 * i + 1]) return {false,\
+    \ values};\r\n      values[i] = comp[2 * i] < comp[2 * i + 1];\r\n    }\r\n  \
+    \  return {true, values};\r\n  }\r\n};\n"
   code: "#include \"graph/strongly_connected_component.hpp\"\r\n\r\nstruct TwoSat\
-    \ {\r\n  vc<int> values;\r\n\r\n  Graph<int, 1> G;\r\n  TwoSat(ll n) : G(n + n),\
+    \ {\r\n  Graph<int, 1> G;\r\n  vc<int> values;\r\n\r\n  TwoSat(ll n) : G(n + n),\
     \ values(n, -1) {}\r\n  void add(int a, int b) {\r\n    a = (a >= 0 ? 2 * a +\
     \ 1 : 2 * (~a));\r\n    b = (b >= 0 ? 2 * b + 1 : 2 * (~b));\r\n    G.add(a ^\
     \ 1, b);\r\n    G.add(b ^ 1, a);\r\n  }\r\n  void set(int a) {\r\n    if (a >=\
     \ 0)\r\n      values[a] = 1;\r\n    else\r\n      values[~a] = 0;\r\n    a = (a\
     \ >= 0 ? 2 * a + 1 : 2 * (~a));\r\n    G.add(a ^ 1, a);\r\n  }\r\n  void implies(int\
-    \ a, int b) { add(~a, b); }\r\n\r\n  bool calc() {\r\n    G.build();\r\n    ll\
-    \ n = len(values);\r\n    auto [C, comp] = strongly_connected_component(G);\r\n\
-    \    FOR(i, n) {\r\n      if (comp[2 * i] == comp[2 * i + 1]) return false;\r\n\
-    \      values[i] = comp[2 * i] < comp[2 * i + 1];\r\n    }\r\n    return true;\r\
-    \n  }\r\n};"
+    \ a, int b) { add(~a, b); }\r\n\r\n  pair<bool, vc<int>> calc() {\r\n    G.build();\r\
+    \n    ll n = len(values);\r\n    auto [C, comp] = strongly_connected_component(G);\r\
+    \n    FOR(i, n) {\r\n      if (comp[2 * i] == comp[2 * i + 1]) return {false,\
+    \ values};\r\n      values[i] = comp[2 * i] < comp[2 * i + 1];\r\n    }\r\n  \
+    \  return {true, values};\r\n  }\r\n};"
   dependsOn:
   - graph/strongly_connected_component.hpp
   - graph/base.hpp
   isVerificationFile: false
   path: graph/twosat.hpp
   requiredBy: []
-  timestamp: '2022-12-05 10:41:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-12-25 11:19:47+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/math/twosat.test.cpp
 documentation_of: graph/twosat.hpp
