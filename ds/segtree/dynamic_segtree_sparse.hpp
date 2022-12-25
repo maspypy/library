@@ -78,6 +78,16 @@ struct Dynamic_SegTree_Sparse {
     return res;
   }
 
+  X get(np root, ll idx) {
+    auto dfs = [&](auto &dfs, np c) -> X {
+      if (!c) return Monoid::unit();
+      if (idx == c->idx) return c->x;
+      if (idx < (c->idx)) return dfs(dfs, c->l);
+      return dfs(dfs, c->r);
+    };
+    return dfs(dfs, root);
+  }
+
 private:
   void update(np c) {
     c->prod = c->x;
