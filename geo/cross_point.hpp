@@ -52,13 +52,15 @@ int count_cross(Segment<T> S1, Segment<T> S2, bool include_ends) {
 }
 
 // 0 または 1
-// 誤差によっては間違った答を返す可能性あり。
+// real だと誤差によっては間違った答を返す可能性あり。
 template <typename T>
 int count_cross(Segment<T> S1, Segment<T> S2) {
   Line<T> L1 = S1.to_Line();
   Line<T> L2 = S2.to_Line();
   T a1 = L2.eval(S1.A), b1 = L2.eval(S1.B);
   T a2 = L1.eval(S2.A), b2 = L1.eval(S2.B);
+  if (a1 > b1) swap(a1, b1);
+  if (a2 > b2) swap(a2, b2);
   bool ok1 = 0, ok2 = 0;
   ok1 = (a1 <= 0) && (0 <= b1);
   ok2 = (a2 <= 0) && (0 <= b2);
