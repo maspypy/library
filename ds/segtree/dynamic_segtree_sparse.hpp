@@ -40,6 +40,8 @@ struct Dynamic_SegTree_Sparse {
     return x;
   }
 
+  X prod_all(np root) { return prod(root, L0, R0); }
+
   np set(np root, ll i, const X &x) {
     assert(L0 <= i && i < R0);
     return set_rec(root, L0, R0, i, x);
