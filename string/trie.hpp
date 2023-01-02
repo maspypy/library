@@ -1,81 +1,75 @@
 #include "alg/monoid/add.hpp"
 
-// 終端ノードに value を入れる。
-// failure link を作ると、そこが終端であるような文字列の value を
-// Monoid で集約した value が入る。
-template <int sigma, typename Monoid = Monoid_Add<int>>
+template <int sigma>
 struct Trie {
-  using X = typename Monoid::value_type;
+  using ARR = array<int, sigma>;
   int n_node;
-  vector<array<int, sigma>> TO;
-  vector<int> PAR;
-  vector<X> node_value;
-  vector<int> BFS;
-  vector<int> FAIL;
+  vc<ARR> TO;
+  vc<int> parent;
+  vc<int> suffix_link;
+  vc<int> words;
+  vc<int> V; // BFS 順
 
-  Trie()
-      : n_node(1),
-        TO({array<int, sigma>()}),
-        PAR({-1}),
-        node_value({Monoid::unit()}) {
-    FOR(s, sigma) TO[0][s] = -1;
+  Trie() {
+    n_node = 0;
+    new_node();
   }
 
   template <typename STRING>
-  int add(STRING S, int off, X val) {
+  int add(STRING S, int off) {
     int v = 0;
     for (auto&& ss: S) {
       int s = ss - off;
       assert(0 <= s && s < sigma);
       if (TO[v][s] == -1) {
-        TO[v][s] = create_node();
-        PAR[TO[v][s]] = v;
+        TO[v][s] = new_node();
+        parent.back() = v;
       }
       v = TO[v][s];
     }
-    node_value[v] = Monoid::op(node_value[v], val);
+    words.eb(v);
     return v;
   }
 
-  void make_failure() {
-    FAIL.assign(n_node, 0);
-    BFS.reserve(n_node);
-    deque<int> que;
-    que.emplace_back(0);
-    BFS.emplace_back(0);
-    while (!que.empty()) {
-      int v = que.front();
-      que.pop_front();
-      node_value[v] = Monoid::op(node_value[v], node_value[FAIL[v]]);
-      for (int s = 0; s < sigma; ++s) {
-        if (TO[v][s] == -1) continue;
+  void calc_suffix_link(bool upd_TO) {
+    suffix_link.assign(n_node, -1);
+    V.resize(n_node);
+    int p = 0, q = 0;
+    V[q++] = 0;
+    while (p < q) {
+      int v = V[p++];
+      FOR(s, sigma) {
         int w = TO[v][s];
-        que.emplace_back(w);
-        BFS.emplace_back(w);
-        if (v == 0) continue;
-        int f = FAIL[v];
-        while (f && TO[f][s] == -1) f = FAIL[f];
-        if (TO[f][s] == -1)
-          FAIL[w] = 0;
-        else
-          FAIL[w] = TO[f][s];
+        if (w == -1) continue;
+        V[q++] = w;
+        int f = suffix_link[v];
+        while (f != -1 && TO[f][s] == -1) f = suffix_link[f];
+        suffix_link[w] = (f == -1 ? 0 : TO[f][s]);
       }
     }
-    for (auto&& v: BFS) {
+    if (!upd_TO) return;
+    for (auto&& v: V) {
       FOR(s, sigma) if (TO[v][s] == -1) {
-        int f = FAIL[v];
-        TO[v][s] = TO[f][s];
-        if (TO[v][s] == -1) TO[v][s] = 0;
+        int f = suffix_link[v];
+        TO[v][s] = (f == -1 ? 0 : TO[f][s]);
       }
     }
   }
 
+  vc<int> calc_count() {
+    assert(!suffix_link.empty());
+    vc<int> count(n_node);
+    for (auto&& x: words) count[x]++;
+    for (auto&& v: V)
+      if (v) { count[v] += count[suffix_link[v]]; }
+    return count;
+  }
+
 private:
-  int create_node() {
-    TO.eb(array<int, sigma>());
-    FOR(s, sigma) TO.back()[s] = -1;
-    PAR.eb(-1);
-    node_value.eb(Monoid::unit());
+  int new_node() {
+    parent.eb(-1);
+    TO.eb(ARR{});
+    fill(all(TO.back()), -1);
     return n_node++;
   }
 };
