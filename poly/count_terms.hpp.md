@@ -24,6 +24,9 @@ data:
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/multivar_convolution_cyclic.hpp
+    title: poly/multivar_convolution_cyclic.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
   - icon: ':heavy_check_mark:'
@@ -63,6 +66,9 @@ data:
   - icon: ':x:'
     path: test/atcoder/abc272_h.test.cpp
     title: test/atcoder/abc272_h.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+    title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/partition.test.cpp
     title: test/library_checker/math/partition.test.cpp
@@ -212,6 +218,7 @@ data:
   - poly/product_of_one_minus_xn.hpp
   - poly/fps_inv.hpp
   - poly/fps_exp.hpp
+  - poly/multivar_convolution_cyclic.hpp
   - poly/poly_divmod.hpp
   - poly/product_of_f_rk_x.hpp
   - poly/composition_f_ex.hpp
@@ -266,6 +273,7 @@ data:
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/library_checker/polynomial/log_of_fps_sparse.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
+  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
   - test/library_checker/math/partition.test.cpp
   - test/atcoder/abc272_h.test.cpp

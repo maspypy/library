@@ -25,11 +25,17 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: poly/multivar_convolution_cyclic.hpp
+    title: poly/multivar_convolution_cyclic.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/atcoder/abc272_h.test.cpp
     title: test/atcoder/abc272_h.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+    title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/multipoint_evaluation.test.cpp
     title: test/library_checker/polynomial/multipoint_evaluation.test.cpp
@@ -444,7 +450,8 @@ data:
   - poly/fft.hpp
   isVerificationFile: false
   path: poly/multipoint.hpp
-  requiredBy: []
+  requiredBy:
+  - poly/multivar_convolution_cyclic.hpp
   timestamp: '2022-12-25 12:22:53+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -452,6 +459,7 @@ data:
   - test/mytest/chirp_z.test.cpp
   - test/library_checker/polynomial/polynomial_interpolation.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp
+  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/atcoder/abc272_h.test.cpp
 documentation_of: poly/multipoint.hpp
 layout: document

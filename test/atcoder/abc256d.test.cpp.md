@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/intervals.hpp
     title: ds/intervals.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc256/tasks/abc256_d
@@ -259,32 +259,32 @@ data:
     \ << (i % B));\r\n      if (seg[h][i / B]) break;\r\n      i /= B;\r\n    }\r\n\
     \  }\r\n\r\n  // x\u4EE5\u4E0A\u6700\u5C0F\u306E\u8981\u7D20\u3092\u8FD4\u3059\
     \u3002\u5B58\u5728\u3057\u306A\u3051\u308C\u3070 n\u3002\r\n  int next(int i)\
-    \ {\r\n    for (int h = 0; h < lg; h++) {\r\n      if (i / B == seg[h].size())\
-    \ break;\r\n      ull d = seg[h][i / B] >> (i % B);\r\n      if (!d) {\r\n   \
-    \     i = i / B + 1;\r\n        continue;\r\n      }\r\n      // find\r\n    \
-    \  i += bsf(d);\r\n      for (int g = h - 1; g >= 0; g--) {\r\n        i *= B;\r\
-    \n        i += bsf(seg[g][i / B]);\r\n      }\r\n      return i;\r\n    }\r\n\
-    \    return n;\r\n  }\r\n\r\n  // x\u4EE5\u4E0B\u6700\u5927\u306E\u8981\u7D20\u3092\
-    \u8FD4\u3059\u3002\u5B58\u5728\u3057\u306A\u3051\u308C\u3070 -1\u3002\r\n  int\
-    \ prev(int i) {\r\n    if (i < 0) return -1;\r\n    if (i >= n) i = n - 1;\r\n\
-    \    for (int h = 0; h < lg; h++) {\r\n      if (i == -1) break;\r\n      ull\
-    \ d = seg[h][i / B] << (63 - i % 64);\r\n      if (!d) {\r\n        i = i / B\
-    \ - 1;\r\n        continue;\r\n      }\r\n      // find\r\n      i += bsr(d) -\
-    \ (B - 1);\r\n      for (int g = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n\
-    \        i += bsr(seg[g][i / B]);\r\n      }\r\n      return i;\r\n    }\r\n \
-    \   return -1;\r\n  }\r\n\r\n  // [l, r) \u5185\u306E\u8981\u7D20\u3092\u5168\u90E8\
-    \u96C6\u3081\u308B\r\n  vector<int> collect(int l, int r) {\r\n    vector<int>\
-    \ res;\r\n    int x = l - 1;\r\n    while (1) {\r\n      x = next(x + 1);\r\n\
-    \      if (x >= r) break;\r\n      res.emplace_back(x);\r\n    }\r\n    return\
-    \ res;\r\n  }\r\n\r\n  void debug() {\r\n    string s;\r\n    for (int i = 0;\
-    \ i < n; ++i) s += ((*this)[i] ? '1' : '0');\r\n    print(s);\r\n  }\r\n};\r\n\
-    #line 129 \"ds/intervals.hpp\"\n\n// FastSet \u3067\u9AD8\u901F\u5316\u3057\u305F\
-    \u3082\u306E\ntemplate <typename T>\nstruct Intervals_Fast {\n  const int LLIM,\
-    \ RLIM;\n  const T none_val;\n  // none_val \u3067\u306A\u3044\u533A\u9593\u306E\
-    \u500B\u6570\u3068\u9577\u3055\u5408\u8A08\n  int total_num;\n  int total_len;\n\
-    \  vc<T> dat;\n  FastSet ss;\n\n  Intervals_Fast(int N, T none_val)\n      : LLIM(0),\n\
-    \        RLIM(N),\n        none_val(none_val),\n        total_num(0),\n      \
-    \  total_len(0),\n        dat(N, none_val),\n        ss(N + 1) {\n    ss.insert(0);\n\
+    \ {\r\n    chmax(i, 0);\r\n    if (i >= n) return n;\r\n    for (int h = 0; h\
+    \ < lg; h++) {\r\n      if (i / B == seg[h].size()) break;\r\n      ull d = seg[h][i\
+    \ / B] >> (i % B);\r\n      if (!d) {\r\n        i = i / B + 1;\r\n        continue;\r\
+    \n      }\r\n      // find\r\n      i += bsf(d);\r\n      for (int g = h - 1;\
+    \ g >= 0; g--) {\r\n        i *= B;\r\n        i += bsf(seg[g][i / B]);\r\n  \
+    \    }\r\n      return i;\r\n    }\r\n    return n;\r\n  }\r\n\r\n  // x\u4EE5\
+    \u4E0B\u6700\u5927\u306E\u8981\u7D20\u3092\u8FD4\u3059\u3002\u5B58\u5728\u3057\
+    \u306A\u3051\u308C\u3070 -1\u3002\r\n  int prev(int i) {\r\n    if (i < 0) return\
+    \ -1;\r\n    if (i >= n) i = n - 1;\r\n    for (int h = 0; h < lg; h++) {\r\n\
+    \      if (i == -1) break;\r\n      ull d = seg[h][i / B] << (63 - i % 64);\r\n\
+    \      if (!d) {\r\n        i = i / B - 1;\r\n        continue;\r\n      }\r\n\
+    \      // find\r\n      i += bsr(d) - (B - 1);\r\n      for (int g = h - 1; g\
+    \ >= 0; g--) {\r\n        i *= B;\r\n        i += bsr(seg[g][i / B]);\r\n    \
+    \  }\r\n      return i;\r\n    }\r\n    return -1;\r\n  }\r\n\r\n  // [l, r) \u5185\
+    \u306E\u8981\u7D20\u3092\u5168\u90E8\u96C6\u3081\u308B\r\n  vector<int> collect(int\
+    \ l, int r) {\r\n    vector<int> res;\r\n    int x = l - 1;\r\n    while (1) {\r\
+    \n      x = next(x + 1);\r\n      if (x >= r) break;\r\n      res.emplace_back(x);\r\
+    \n    }\r\n    return res;\r\n  }\r\n\r\n  void debug() {\r\n    string s;\r\n\
+    \    for (int i = 0; i < n; ++i) s += ((*this)[i] ? '1' : '0');\r\n    print(s);\r\
+    \n  }\r\n};\r\n#line 129 \"ds/intervals.hpp\"\n\n// FastSet \u3067\u9AD8\u901F\
+    \u5316\u3057\u305F\u3082\u306E\ntemplate <typename T>\nstruct Intervals_Fast {\n\
+    \  const int LLIM, RLIM;\n  const T none_val;\n  // none_val \u3067\u306A\u3044\
+    \u533A\u9593\u306E\u500B\u6570\u3068\u9577\u3055\u5408\u8A08\n  int total_num;\n\
+    \  int total_len;\n  vc<T> dat;\n  FastSet ss;\n\n  Intervals_Fast(int N, T none_val)\n\
+    \      : LLIM(0),\n        RLIM(N),\n        none_val(none_val),\n        total_num(0),\n\
+    \        total_len(0),\n        dat(N, none_val),\n        ss(N + 1) {\n    ss.insert(0);\n\
     \    ss.insert(N);\n  }\n\n  tuple<int, int, T> get(int x) {\n    auto l = ss.prev(x);\n\
     \    auto r = ss.next(x + 1);\n    return {l, r, dat[l]};\n  }\n\n  template <typename\
     \ ADD, typename RM>\n  void set(int L, int R, T t, ADD& add_f, RM& rm_f) {\n \
@@ -338,8 +338,8 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc256d.test.cpp
   requiredBy: []
-  timestamp: '2022-12-12 09:20:37+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-01-02 17:13:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/atcoder/abc256d.test.cpp
 layout: document

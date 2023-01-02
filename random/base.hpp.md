@@ -65,6 +65,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/multivar_convolution_cyclic.hpp
+    title: poly/multivar_convolution_cyclic.hpp
   - icon: ':question:'
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
@@ -111,6 +114,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+    title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/primitive_root.test.cpp
     title: test/library_checker/math/primitive_root.test.cpp
@@ -417,6 +423,7 @@ data:
   path: random/base.hpp
   requiredBy:
   - geo/count_points_in_triangles.hpp
+  - poly/multivar_convolution_cyclic.hpp
   - poly/fps_sqrt.hpp
   - random/hash_vector.hpp
   - other/connected_dp.hpp
@@ -542,6 +549,7 @@ data:
   - test/library_checker/graph/chromatic_number.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
+  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp

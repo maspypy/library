@@ -228,9 +228,10 @@ data:
     \ = pool[pid].r = nullptr;\n    pool[pid].x = pool[pid].prod = x;\n    return\
     \ &(pool[pid++]);\n  }\n\n  X prod(np root, ll l, ll r) {\n    assert(L0 <= l\
     \ && l < r && r <= R0);\n    X x = MX::unit();\n    prod_rec(root, L0, R0, l,\
-    \ r, x);\n    return x;\n  }\n\n  np set(np root, ll i, const X &x) {\n    assert(L0\
-    \ <= i && i < R0);\n    return set_rec(root, L0, R0, i, x);\n  }\n\n  np multiply(np\
-    \ root, ll i, const X &x) {\n    assert(L0 <= i && i < R0);\n    return multiply_rec(root,\
+    \ r, x);\n    return x;\n  }\n\n  X prod_all(np root) { return prod(root, L0,\
+    \ R0); }\n\n  np set(np root, ll i, const X &x) {\n    assert(L0 <= i && i < R0);\n\
+    \    return set_rec(root, L0, R0, i, x);\n  }\n\n  np multiply(np root, ll i,\
+    \ const X &x) {\n    assert(L0 <= i && i < R0);\n    return multiply_rec(root,\
     \ L0, R0, i, x);\n  }\n\n  template <typename F>\n  ll max_right(np root, F check,\
     \ ll L) {\n    assert(L0 <= L && L <= R0 && check(MX::unit()));\n    X x = MX::unit();\n\
     \    return max_right_rec(root, check, L0, R0, L, x);\n  }\n\n  template <typename\
@@ -332,7 +333,7 @@ data:
   isVerificationFile: true
   path: test/mytest/dynamic_segtree_sparse.test.cpp
   requiredBy: []
-  timestamp: '2022-12-25 11:16:15+09:00'
+  timestamp: '2023-01-02 17:18:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/dynamic_segtree_sparse.test.cpp

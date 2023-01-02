@@ -9,12 +9,12 @@ data:
     title: nt/primetest.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ITP1_D_D.test.cpp
     title: test/aoj/ITP1_D_D.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetest.hpp\"\nstruct m64 {\r\n  using i64 = int64_t;\r\
@@ -69,30 +69,32 @@ data:
     \  return pf;\n}\n\nvc<pair<ll, int>> factor_by_lpf(ll n, vc<int>& lpf) {\n  vc<pair<ll,\
     \ int>> res;\n  while (n > 1) {\n    int p = lpf[n];\n    int e = 0;\n    while\
     \ (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n \
-    \ return res;\n}\n#line 2 \"nt/divisors.hpp\"\n\r\nvc<ll> divisors_by_pf(const\
-    \ vc<pair<ll, int>>& pf, bool SORT) {\r\n  vi div = {1};\r\n  for (auto&& [p,\
-    \ e]: pf) {\r\n    ll n = len(div);\r\n    ll pp = 1;\r\n    FOR3(i, 1, e + 1)\
-    \ {\r\n      pp *= p;\r\n      FOR(j, n) div.eb(div[j] * pp);\r\n    }\r\n  }\r\
-    \n  if (SORT) sort(all(div));\r\n  return div;\r\n}\r\n\r\nvc<ll> divisors(ll\
-    \ N, bool SORT) {\r\n  auto pf = factor(N);\r\n  return divisors_by_pf(pf, SORT);\r\
-    \n}\r\n\r\nvc<ll> divisors_by_lpf(ll N, vc<int>& lpf, bool SORT) {\r\n  auto pf\
-    \ = factor_by_lpf(N, lpf);\r\n  return divisors_by_pf(pf, SORT);\r\n}\n"
-  code: "#include \"nt/factor.hpp\"\r\n\r\nvc<ll> divisors_by_pf(const vc<pair<ll,\
-    \ int>>& pf, bool SORT) {\r\n  vi div = {1};\r\n  for (auto&& [p, e]: pf) {\r\n\
-    \    ll n = len(div);\r\n    ll pp = 1;\r\n    FOR3(i, 1, e + 1) {\r\n      pp\
+    \ return res;\n}\n#line 2 \"nt/divisors.hpp\"\n\r\ntemplate <bool SORT>\r\nvc<ll>\
+    \ divisors_by_pf(const vc<pair<ll, int>>& pf) {\r\n  vi div = {1};\r\n  for (auto&&\
+    \ [p, e]: pf) {\r\n    ll n = len(div);\r\n    ll pp = 1;\r\n    FOR3(i, 1, e\
+    \ + 1) {\r\n      pp *= p;\r\n      FOR(j, n) div.eb(div[j] * pp);\r\n    }\r\n\
+    \  }\r\n  if (SORT) sort(all(div));\r\n  return div;\r\n}\r\n\r\ntemplate <bool\
+    \ SORT>\r\nvc<ll> divisors(ll N) {\r\n  auto pf = factor(N);\r\n  return divisors_by_pf<SORT>(pf);\r\
+    \n}\r\n\r\ntemplate <bool SORT>\r\nvc<ll> divisors_by_lpf(ll N, vc<int>& lpf)\
+    \ {\r\n  auto pf = factor_by_lpf(N, lpf);\r\n  return divisors_by_pf<SORT>(pf);\r\
+    \n}\n"
+  code: "#include \"nt/factor.hpp\"\r\n\r\ntemplate <bool SORT>\r\nvc<ll> divisors_by_pf(const\
+    \ vc<pair<ll, int>>& pf) {\r\n  vi div = {1};\r\n  for (auto&& [p, e]: pf) {\r\
+    \n    ll n = len(div);\r\n    ll pp = 1;\r\n    FOR3(i, 1, e + 1) {\r\n      pp\
     \ *= p;\r\n      FOR(j, n) div.eb(div[j] * pp);\r\n    }\r\n  }\r\n  if (SORT)\
-    \ sort(all(div));\r\n  return div;\r\n}\r\n\r\nvc<ll> divisors(ll N, bool SORT)\
-    \ {\r\n  auto pf = factor(N);\r\n  return divisors_by_pf(pf, SORT);\r\n}\r\n\r\
-    \nvc<ll> divisors_by_lpf(ll N, vc<int>& lpf, bool SORT) {\r\n  auto pf = factor_by_lpf(N,\
-    \ lpf);\r\n  return divisors_by_pf(pf, SORT);\r\n}"
+    \ sort(all(div));\r\n  return div;\r\n}\r\n\r\ntemplate <bool SORT>\r\nvc<ll>\
+    \ divisors(ll N) {\r\n  auto pf = factor(N);\r\n  return divisors_by_pf<SORT>(pf);\r\
+    \n}\r\n\r\ntemplate <bool SORT>\r\nvc<ll> divisors_by_lpf(ll N, vc<int>& lpf)\
+    \ {\r\n  auto pf = factor_by_lpf(N, lpf);\r\n  return divisors_by_pf<SORT>(pf);\r\
+    \n}"
   dependsOn:
   - nt/factor.hpp
   - nt/primetest.hpp
   isVerificationFile: false
   path: nt/divisors.hpp
   requiredBy: []
-  timestamp: '2022-10-24 10:54:14+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-01-02 17:18:13+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/ITP1_D_D.test.cpp
 documentation_of: nt/divisors.hpp
