@@ -37,6 +37,8 @@ struct FastSet {
 
   // x以上最小の要素を返す。存在しなければ n。
   int next(int i) {
+    chmax(i, 0);
+    if (i >= n) return n;
     for (int h = 0; h < lg; h++) {
       if (i / B == seg[h].size()) break;
       ull d = seg[h][i / B] >> (i % B);
