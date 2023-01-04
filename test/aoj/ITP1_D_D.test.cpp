@@ -5,7 +5,7 @@
 
 void solve() {
   LL(a, b, c);
-  auto divs = divisors(c, false);
+  auto divs = divisors<false>(c);
   ll ANS = 0;
   for (auto&& d: divs)
     if (a <= d && d <= b) ++ANS;
