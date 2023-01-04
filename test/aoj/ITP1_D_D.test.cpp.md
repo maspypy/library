@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/divisors.hpp
     title: nt/divisors.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_3_D
@@ -265,13 +265,13 @@ data:
     \n}\r\n\r\ntemplate <bool SORT>\r\nvc<ll> divisors_by_lpf(ll N, vc<int>& lpf)\
     \ {\r\n  auto pf = factor_by_lpf(N, lpf);\r\n  return divisors_by_pf<SORT>(pf);\r\
     \n}\n#line 5 \"test/aoj/ITP1_D_D.test.cpp\"\n\nvoid solve() {\n  LL(a, b, c);\n\
-    \  auto divs = divisors(c, false);\n  ll ANS = 0;\n  for (auto&& d: divs)\n  \
+    \  auto divs = divisors<false>(c);\n  ll ANS = 0;\n  for (auto&& d: divs)\n  \
     \  if (a <= d && d <= b) ++ANS;\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
     \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
     \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_3_D\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/divisors.hpp\"\
-    \n\nvoid solve() {\n  LL(a, b, c);\n  auto divs = divisors(c, false);\n  ll ANS\
+    \n\nvoid solve() {\n  LL(a, b, c);\n  auto divs = divisors<false>(c);\n  ll ANS\
     \ = 0;\n  for (auto&& d: divs)\n    if (a <= d && d <= b) ++ANS;\n  print(ANS);\n\
     }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
     \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
@@ -285,8 +285,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ITP1_D_D.test.cpp
   requiredBy: []
-  timestamp: '2023-01-02 17:18:13+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-01-05 00:26:45+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ITP1_D_D.test.cpp
 layout: document
