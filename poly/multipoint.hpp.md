@@ -30,7 +30,7 @@ data:
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc272_h.test.cpp
     title: test/atcoder/abc272_h.test.cpp
   - icon: ':heavy_check_mark:'

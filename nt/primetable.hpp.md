@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':heavy_check_mark:'
@@ -60,10 +60,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_1_D.test.cpp
     title: test/aoj/NTL_1_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc202_f.test.cpp
     title: test/atcoder/abc202_f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc249_ex.test.cpp
     title: test/atcoder/abc249_ex.test.cpp
   - icon: ':heavy_check_mark:'

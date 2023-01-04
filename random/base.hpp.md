@@ -8,7 +8,7 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':heavy_check_mark:'
@@ -56,7 +56,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
   - icon: ':heavy_check_mark:'
@@ -81,10 +81,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_14_C.test.cpp
     title: test/aoj/ALDS1_14_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc202_f.test.cpp
     title: test/atcoder/abc202_f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc270_g.test.cpp
     title: test/atcoder/abc270_g.test.cpp
   - icon: ':heavy_check_mark:'

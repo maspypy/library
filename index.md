@@ -77,10 +77,10 @@ data:
       title: alg/acted_monoid/summin_assign.hpp
   - name: alg/acted_set
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/acted_set/affine.hpp
       title: alg/acted_set/affine.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/acted_set/from_monoid.hpp
       title: alg/acted_set/from_monoid.hpp
   - name: alg/monoid
@@ -106,7 +106,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid/add_tuple_3.hpp
       title: alg/monoid/add_tuple_3.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/affine.hpp
       title: alg/monoid/affine.hpp
     - icon: ':heavy_check_mark:'
@@ -208,13 +208,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/dynamic_array.hpp
       title: ds/dynamic_array.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
     - icon: ':question:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/intervals.hpp
       title: ds/intervals.hpp
     - icon: ':heavy_check_mark:'
@@ -484,13 +484,13 @@ data:
       title: game/solve_partizan_game.hpp
   - name: geo
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/angle_sort.hpp
       title: geo/angle_sort.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/base.hpp
       title: geo/base.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/count_points_in_triangles.hpp
       title: geo/count_points_in_triangles.hpp
     - icon: ':heavy_check_mark:'
@@ -793,7 +793,7 @@ data:
     - icon: ':warning:'
       path: linalg/solve_linear_F2.hpp
       title: linalg/solve_linear_F2.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: linalg/solve_linear_lower.hpp
       title: linalg/solve_linear_lower.hpp
     - icon: ':heavy_check_mark:'
@@ -875,7 +875,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/modular_subset_sum.hpp
       title: mod/modular_subset_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/powertable.hpp
       title: mod/powertable.hpp
     - icon: ':heavy_check_mark:'
@@ -900,7 +900,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/crt.hpp
       title: nt/crt.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/discrete_log.hpp
       title: nt/discrete_log.hpp
     - icon: ':x:'
@@ -1018,7 +1018,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/convolution2d.hpp
       title: poly/convolution2d.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/convolution_all.hpp
       title: poly/convolution_all.hpp
     - icon: ':heavy_check_mark:'
@@ -1117,7 +1117,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/sum_of_exp_bx.hpp
       title: poly/sum_of_exp_bx.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/sum_of_prefix_suffix_products.hpp
       title: poly/sum_of_prefix_suffix_products.hpp
     - icon: ':question:'
@@ -1554,7 +1554,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc200a.test.cpp
       title: test/atcoder/abc200a.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc202_f.test.cpp
       title: test/atcoder/abc202_f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1569,10 +1569,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc244h.test.cpp
       title: test/atcoder/abc244h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc249_ex.test.cpp
       title: test/atcoder/abc249_ex.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc256d.test.cpp
       title: test/atcoder/abc256d.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1587,16 +1587,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc266h_2.test.cpp
       title: test/atcoder/abc266h_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc269ex.test.cpp
       title: test/atcoder/abc269ex.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc270_f.test.cpp
       title: test/atcoder/abc270_f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc270_g.test.cpp
       title: test/atcoder/abc270_g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc272_h.test.cpp
       title: test/atcoder/abc272_h.test.cpp
     - icon: ':heavy_check_mark:'

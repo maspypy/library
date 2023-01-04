@@ -72,7 +72,7 @@ data:
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc272_h.test.cpp
     title: test/atcoder/abc272_h.test.cpp
   - icon: ':heavy_check_mark:'
