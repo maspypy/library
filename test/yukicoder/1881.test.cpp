@@ -13,7 +13,7 @@ void solve() {
   auto lpf = lpf_table(MAX(A));
 
   // 指数の減少列とその遷移
-  HashMapLL<int, 15> MP1;
+  HashMap<int, 15> MP1;
   vvc<int> TO1;
 
   auto get = [&](vc<int> B) -> ll {
@@ -48,7 +48,7 @@ void solve() {
   }
 
   // node の組
-  HashMapLL<int, 15> MP2;
+  HashMap<int, 15> MP2;
 
   auto dfs = [&](auto& dfs, vc<int> A) -> int {
     // 全部を一斉に遷移させる。自己ループは除く。
