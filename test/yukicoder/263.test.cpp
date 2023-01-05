@@ -28,7 +28,7 @@ void solve() {
   auto A = get();
   auto B = get();
 
-  HashMapLL<int, 20> MP;
+  HashMap<int, 20> MP;
   for (auto&& [x, cnt]: A) MP[x] += cnt;
   ll ANS = 0;
   for (auto&& [y, cnt]: B) { ANS += MP.get(y, 0) * ll(cnt); }
