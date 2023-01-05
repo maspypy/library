@@ -19,11 +19,19 @@ void solve() {
   Trie<10> X;
   for (auto&& f: F) {
     string s = to_string(f);
-    X.add(s, '0', 1);
+    X.add(s, '0');
   }
-  X.make_failure();
+  X.calc_suffix_link(1);
 
   ll n = X.n_node;
+  vc<bool> ng(n);
+  for (auto&& v: X.words) ng[v] = 1;
+  for (auto&& v: X.V)
+    if (v) {
+      int p = X.suffix_link[v];
+      if (ng[p]) ng[v] = 1;
+    }
+
   vc<mint> dp(n);
   dp[0] = 1;
   FOR(N) {
@@ -31,7 +39,7 @@ void solve() {
     FOR(v, n) {
       FOR(d, 10) {
         int to = X.TO[v][d];
-        if (X.node_value[to]) continue;
+        if (ng[to]) continue;
         assert(0 <= to && to < n);
         newdp[to] += dp[v];
       }

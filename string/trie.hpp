@@ -31,6 +31,14 @@ struct Trie {
     return v;
   }
 
+  int add_char(int v, int c, int off) {
+    c -= off;
+    if (TO[v][c] != -1) return TO[v][c];
+    TO[v][c] = new_node();
+    parent.back() = v;
+    return TO[v][c];
+  }
+
   void calc_suffix_link(bool upd_TO) {
     suffix_link.assign(n_node, -1);
     V.resize(n_node);
