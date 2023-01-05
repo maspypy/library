@@ -11,7 +11,7 @@ void solve() {
   VEC(pi, AB, N);
   VEC(pi, CD, M);
 
-  HashMapLL<ll, 20> MP;
+  HashMap<ll, 20> MP;
 
   FOR(2) {
     for (auto&& [a, b]: AB) a = -a;
