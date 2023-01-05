@@ -3,8 +3,9 @@
 #include "other/io.hpp"
 #include "ds/hashmap.hpp"
 #include "random/base.hpp"
+#include "random/hash_vector.hpp"
 
-HashMapPLL<ll> MP;
+HashMap<ll> MP;
 
 void solve() {
   MP.reset();
@@ -18,7 +19,8 @@ void solve() {
 
   const ll INF = 1LL << 60;
   auto dfs = [&](auto& dfs, int n, ll val) -> ll {
-    pi key = {n, val};
+    ll key = hash_pair(n, val);
+    
     if (MP.count(key)) return MP[key];
     // 価値 -> n 個までで達成するための最小重さ
     if (val <= 0) return 0;
