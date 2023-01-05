@@ -61,6 +61,9 @@ data:
     path: test/yukicoder/2102.test.cpp
     title: test/yukicoder/2102.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/2167.test.cpp
+    title: test/yukicoder/2167.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/263.test.cpp
     title: test/yukicoder/263.test.cpp
   - icon: ':heavy_check_mark:'
@@ -167,6 +170,7 @@ data:
   - test/yukicoder/1881.test.cpp
   - test/yukicoder/4_1.test.cpp
   - test/yukicoder/541.test.cpp
+  - test/yukicoder/2167.test.cpp
   - test/mytest/tutte.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/library_checker/graph/rerooting_classify_subtree.test.cpp

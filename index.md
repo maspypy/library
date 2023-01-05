@@ -85,7 +85,7 @@ data:
       title: alg/acted_set/from_monoid.hpp
   - name: alg/monoid
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/add.hpp
       title: alg/monoid/add.hpp
     - icon: ':heavy_check_mark:'
@@ -1300,7 +1300,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/manacher.hpp
       title: string/manacher.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/palindromic_tree.hpp
       title: string/palindromic_tree.hpp
     - icon: ':question:'
@@ -1330,7 +1330,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/suffix_tree.hpp
       title: string/suffix_tree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/trie.hpp
       title: string/trie.hpp
     - icon: ':warning:'
@@ -2508,7 +2508,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1263.test.cpp
       title: test/yukicoder/1263.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1269.test.cpp
       title: test/yukicoder/1269.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2667,7 +2667,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1625_2.test.cpp
       title: test/yukicoder/1625_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1634.test.cpp
       title: test/yukicoder/1634.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2706,7 +2706,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1720.test.cpp
       title: test/yukicoder/1720.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1726.test.cpp
       title: test/yukicoder/1726.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2895,7 +2895,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/255.test.cpp
       title: test/yukicoder/255.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/263.test.cpp
       title: test/yukicoder/263.test.cpp
     - icon: ':heavy_check_mark:'

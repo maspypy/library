@@ -360,10 +360,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1634.test.cpp
     title: test/yukicoder/1634.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1726.test.cpp
     title: test/yukicoder/1726.test.cpp
   - icon: ':x:'
@@ -384,7 +384,7 @@ data:
   - icon: ':x:'
     path: test/yukicoder/2167.test.cpp
     title: test/yukicoder/2167.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/263.test.cpp
     title: test/yukicoder/263.test.cpp
   - icon: ':heavy_check_mark:'
