@@ -57,7 +57,7 @@ void solve() {
   auto Y = calc(N / 2, N, 1);
 
   ll ANS = 0;
-  HashMapLL<int, 14> MP;
+  HashMap<int, 14> MP;
   FOR(s, 1 << N) {
     if (X[s].empty() || Y[s].empty()) continue;
     MP.reset();
