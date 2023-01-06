@@ -65,7 +65,7 @@ void solve_1(int Q) {
     return x;
   };
   int MAX = 100'000;
-  const int b_sz = 5000;
+  const int b_sz = 5010;
   const int b_num = ceil(MAX, b_sz) + 1;
   vvc<int> QID(b_num);
   FOR(q, Q) {
@@ -87,7 +87,7 @@ void solve_1(int Q) {
     return dat[0];
   };
 
-  vc<int> ANS(Q);
+  vc<mint> ANS(Q);
 
   MAT suffix_prod = Mono::unit();
   FOR(b, b_num) {
