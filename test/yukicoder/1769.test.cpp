@@ -14,7 +14,7 @@ void solve() {
 
   vi ANS(N);
   Centroid_Decomposition<decltype(G)> CD(G);
-  HashMapLL<vc<int>> MP;
+  HashMap<vc<int>> MP;
 
   FOR(root, N) {
     auto [conv, G] = CD.get_subgraph(root);
