@@ -6,7 +6,7 @@
 #include "ds/hashmap.hpp"
 
 void solve() {
-  HashMapLL<bool, 21> MP;
+  HashMap<bool, 21> MP;
 
   RollingHash RH;
 
