@@ -180,6 +180,18 @@ struct TREE {
     return up;
   }
 
+  vc<int> restore_path(int u, int v) {
+    vc<int> P;
+    for (auto &&[a, b]: get_path_decomposition(u, v, 0)) {
+      if (a <= b) {
+        FOR(i, a, b + 1) P.eb(V[i]);
+      } else {
+        FOR_R(i, b, a + 1) P.eb(V[i]);
+      }
+    }
+    return P;
+  }
+
   void debug() {
     print("V", V);
     print("LID", LID);
