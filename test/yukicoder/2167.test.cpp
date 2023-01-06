@@ -19,7 +19,7 @@ void solve() {
 
   const ll INF = 1LL << 60;
   auto dfs = [&](auto& dfs, int n, ll val) -> ll {
-    ll key = hash_pair(n, val);
+    ll key = hash_pair(pair<ll, ll>{n, val});
     
     if (MP.count(key)) return MP[key];
     // 価値 -> n 個までで達成するための最小重さ
