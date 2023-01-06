@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy:
@@ -130,17 +130,20 @@ data:
     \    } else {\r\n        up.eb(LID[u], LID[head[u]]);\r\n        u = parent[head[u]];\r\
     \n      }\r\n    }\r\n    if (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\r\
     \n    elif (LID[v] + edge <= LID[u]) up.eb(LID[u], LID[v] + edge);\r\n    reverse(all(down));\r\
-    \n    up.insert(up.end(), all(down));\r\n    return up;\r\n  }\r\n\r\n  void debug()\
-    \ {\r\n    print(\"V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\",\
-    \ RID);\r\n    print(\"parent\", parent);\r\n    print(\"depth\", depth);\r\n\
-    \    print(\"head\", head);\r\n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"\
-    root\", root);\r\n  }\r\n};\r\n#line 4 \"graph/tree_dp.hpp\"\n\r\ntemplate <typename\
-    \ TREE, typename Data, typename F1, typename F2, typename F3>\r\nvc<Data> tree_dp(TREE&\
-    \ tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data unit) {\r\n  assert(!tree.G.is_directed());\r\
-    \n\r\n  int N = tree.G.N;\r\n  vc<Data> dp(N, unit);\r\n  FOR_R(i, 1, N) {\r\n\
-    \    int v = tree.V[i];\r\n    dp[v] = f_ev(dp[v], v);\r\n    for (auto&& e: tree.G[v])\r\
-    \n      if (e.to == tree.parent[v]) { dp[e.to] = f_ee(dp[e.to], f_ve(dp[v], e));\
-    \ }\r\n  }\r\n  return dp;\r\n};\n"
+    \n    up.insert(up.end(), all(down));\r\n    return up;\r\n  }\r\n\r\n  vc<int>\
+    \ restore_path(int u, int v) {\r\n    vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u,\
+    \ v, 0)) {\r\n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n\
+    \      } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\
+    \n    return P;\r\n  }\r\n\r\n  void debug() {\r\n    print(\"V\", V);\r\n   \
+    \ print(\"LID\", LID);\r\n    print(\"RID\", RID);\r\n    print(\"parent\", parent);\r\
+    \n    print(\"depth\", depth);\r\n    print(\"head\", head);\r\n    print(\"in_tree(edge)\"\
+    , in_tree);\r\n    print(\"root\", root);\r\n  }\r\n};\r\n#line 4 \"graph/tree_dp.hpp\"\
+    \n\r\ntemplate <typename TREE, typename Data, typename F1, typename F2, typename\
+    \ F3>\r\nvc<Data> tree_dp(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)\
+    \ {\r\n  assert(!tree.G.is_directed());\r\n\r\n  int N = tree.G.N;\r\n  vc<Data>\
+    \ dp(N, unit);\r\n  FOR_R(i, 1, N) {\r\n    int v = tree.V[i];\r\n    dp[v] =\
+    \ f_ev(dp[v], v);\r\n    for (auto&& e: tree.G[v])\r\n      if (e.to == tree.parent[v])\
+    \ { dp[e.to] = f_ee(dp[e.to], f_ve(dp[v], e)); }\r\n  }\r\n  return dp;\r\n};\n"
   code: "\r\n#include \"graph/base.hpp\"\r\n#include \"graph/tree.hpp\"\r\n\r\ntemplate\
     \ <typename TREE, typename Data, typename F1, typename F2, typename F3>\r\nvc<Data>\
     \ tree_dp(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data unit) {\r\n  assert(!tree.G.is_directed());\r\
@@ -155,7 +158,7 @@ data:
   path: graph/tree_dp.hpp
   requiredBy:
   - graph/classify_subtree.hpp
-  timestamp: '2022-12-05 10:41:25+09:00'
+  timestamp: '2023-01-06 18:12:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/graph/classify_tree.test.cpp

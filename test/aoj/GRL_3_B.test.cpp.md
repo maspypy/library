@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -313,21 +313,24 @@ data:
     \    } else {\r\n        up.eb(LID[u], LID[head[u]]);\r\n        u = parent[head[u]];\r\
     \n      }\r\n    }\r\n    if (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\r\
     \n    elif (LID[v] + edge <= LID[u]) up.eb(LID[u], LID[v] + edge);\r\n    reverse(all(down));\r\
-    \n    up.insert(up.end(), all(down));\r\n    return up;\r\n  }\r\n\r\n  void debug()\
-    \ {\r\n    print(\"V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\",\
-    \ RID);\r\n    print(\"parent\", parent);\r\n    print(\"depth\", depth);\r\n\
-    \    print(\"head\", head);\r\n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"\
-    root\", root);\r\n  }\r\n};\r\n#line 2 \"graph/two_edge_component.hpp\"\n\r\n\
-    // (\u6210\u5206\u6570, \u6210\u5206\u756A\u53F7\u306E vector)\r\ntemplate <typename\
-    \ Graph>\r\npair<int, vc<int>> two_edge_component(Graph& G) {\r\n  TREE tree(G);\r\
-    \n  int N = G.N;\r\n  vc<int> DP(N);\r\n  for (auto&& e: G.edges) {\r\n    if\
-    \ (!tree.in_tree[e.id]) {\r\n      int a = e.frm, b = e.to;\r\n      if (tree.depth[a]\
-    \ < tree.depth[b]) swap(a, b);\r\n      DP[a]++, DP[b]--;\r\n    }\r\n  }\r\n\
-    \  auto& V = tree.V;\r\n  FOR_R(i, len(V)) {\r\n    int v = V[i];\r\n    int p\
-    \ = tree.parent[v];\r\n    if (p != -1) DP[p] += DP[v];\r\n  }\r\n  int C = 0;\r\
-    \n  vc<int> comp(N, -1);\r\n  FOR(v, N) if (DP[v] == 0) comp[v] = C++;\r\n  for\
-    \ (auto&& v: V)\r\n    if (comp[v] == -1) comp[v] = comp[tree.parent[v]];\r\n\
-    \  return {C, comp};\r\n}\r\n#line 7 \"test/aoj/GRL_3_B.test.cpp\"\n\nvoid solve()\
+    \n    up.insert(up.end(), all(down));\r\n    return up;\r\n  }\r\n\r\n  vc<int>\
+    \ restore_path(int u, int v) {\r\n    vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u,\
+    \ v, 0)) {\r\n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n\
+    \      } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\
+    \n    return P;\r\n  }\r\n\r\n  void debug() {\r\n    print(\"V\", V);\r\n   \
+    \ print(\"LID\", LID);\r\n    print(\"RID\", RID);\r\n    print(\"parent\", parent);\r\
+    \n    print(\"depth\", depth);\r\n    print(\"head\", head);\r\n    print(\"in_tree(edge)\"\
+    , in_tree);\r\n    print(\"root\", root);\r\n  }\r\n};\r\n#line 2 \"graph/two_edge_component.hpp\"\
+    \n\r\n// (\u6210\u5206\u6570, \u6210\u5206\u756A\u53F7\u306E vector)\r\ntemplate\
+    \ <typename Graph>\r\npair<int, vc<int>> two_edge_component(Graph& G) {\r\n  TREE\
+    \ tree(G);\r\n  int N = G.N;\r\n  vc<int> DP(N);\r\n  for (auto&& e: G.edges)\
+    \ {\r\n    if (!tree.in_tree[e.id]) {\r\n      int a = e.frm, b = e.to;\r\n  \
+    \    if (tree.depth[a] < tree.depth[b]) swap(a, b);\r\n      DP[a]++, DP[b]--;\r\
+    \n    }\r\n  }\r\n  auto& V = tree.V;\r\n  FOR_R(i, len(V)) {\r\n    int v = V[i];\r\
+    \n    int p = tree.parent[v];\r\n    if (p != -1) DP[p] += DP[v];\r\n  }\r\n \
+    \ int C = 0;\r\n  vc<int> comp(N, -1);\r\n  FOR(v, N) if (DP[v] == 0) comp[v]\
+    \ = C++;\r\n  for (auto&& v: V)\r\n    if (comp[v] == -1) comp[v] = comp[tree.parent[v]];\r\
+    \n  return {C, comp};\r\n}\r\n#line 7 \"test/aoj/GRL_3_B.test.cpp\"\n\nvoid solve()\
     \ {\n  LL(N, M);\n  Graph<int, 0> G(N);\n  G.read_graph(M, 0, 0);\n  auto [C,\
     \ comp] = two_edge_component(G);\n  vc<pi> ANS;\n  for (auto&& e: G.edges) {\n\
     \    auto a = e.frm, b = e.to;\n    if (a > b) swap(a, b);\n    if (comp[a] !=\
@@ -351,7 +354,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_3_B.test.cpp
   requiredBy: []
-  timestamp: '2022-12-12 09:20:37+09:00'
+  timestamp: '2023-01-06 18:12:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_3_B.test.cpp

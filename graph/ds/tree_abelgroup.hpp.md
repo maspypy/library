@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
@@ -21,12 +21,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1326.test.cpp
     title: test/yukicoder/1326.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1641.test.cpp
     title: test/yukicoder/1641.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -172,30 +172,33 @@ data:
     \    } else {\r\n        up.eb(LID[u], LID[head[u]]);\r\n        u = parent[head[u]];\r\
     \n      }\r\n    }\r\n    if (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\r\
     \n    elif (LID[v] + edge <= LID[u]) up.eb(LID[u], LID[v] + edge);\r\n    reverse(all(down));\r\
-    \n    up.insert(up.end(), all(down));\r\n    return up;\r\n  }\r\n\r\n  void debug()\
-    \ {\r\n    print(\"V\", V);\r\n    print(\"LID\", LID);\r\n    print(\"RID\",\
-    \ RID);\r\n    print(\"parent\", parent);\r\n    print(\"depth\", depth);\r\n\
-    \    print(\"head\", head);\r\n    print(\"in_tree(edge)\", in_tree);\r\n    print(\"\
-    root\", root);\r\n  }\r\n};\r\n#line 3 \"graph/ds/tree_abelgroup.hpp\"\n\r\ntemplate\
-    \ <typename TREE, typename AbelGroup, bool edge = false,\r\n          bool path_query\
-    \ = true, bool subtree_query = false>\r\nstruct Tree_AbelGroup {\r\n  using X\
-    \ = typename AbelGroup::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  FenwickTree<AbelGroup>\
-    \ bit, bit_subtree;\r\n\r\n  Tree_AbelGroup(TREE &tree) : tree(tree), N(tree.N)\
-    \ {\r\n    if (path_query) { bit = FenwickTree<AbelGroup>(2 * N); }\r\n    if\
-    \ (subtree_query) { bit_subtree = FenwickTree<AbelGroup>(N); }\r\n  }\r\n\r\n\
-    \  Tree_AbelGroup(TREE &tree, vc<X> dat) : tree(tree), N(tree.N) {\r\n    if (path_query)\
-    \ {\r\n      vc<X> bit_raw(2 * N);\r\n      if (!edge) {\r\n        assert(len(dat)\
-    \ == N);\r\n        FOR(v, N) {\r\n          bit_raw[tree.ELID(v)] = dat[v];\r\
-    \n          bit_raw[tree.ERID(v)] = AbelGroup::inverse(dat[v]);\r\n        }\r\
-    \n      } else {\r\n        assert(len(dat) == N - 1);\r\n        FOR(e, N - 1)\
-    \ {\r\n          int v = tree.e_to_v(e);\r\n          bit_raw[tree.ELID(v)] =\
-    \ dat[e];\r\n          bit_raw[tree.ERID(v)] = AbelGroup::inverse(dat[e]);\r\n\
-    \        }\r\n      }\r\n      bit = FenwickTree<AbelGroup>(bit_raw);\r\n    }\r\
-    \n    if (subtree_query) {\r\n      vc<X> bit_raw(N);\r\n      if (!edge) {\r\n\
-    \        assert(len(dat) == N);\r\n        FOR(v, N) bit_raw[tree.LID[v]] = dat[v];\r\
-    \n      } else {\r\n        assert(len(dat) == N - 1);\r\n        FOR(e, N - 1)\
-    \ {\r\n          int v = tree.e_to_v(e);\r\n          bit_raw[tree.LID[v]] = dat[e];\r\
-    \n        }\r\n      }\r\n      bit_subtree = FenwickTree<AbelGroup>(bit_raw);\r\
+    \n    up.insert(up.end(), all(down));\r\n    return up;\r\n  }\r\n\r\n  vc<int>\
+    \ restore_path(int u, int v) {\r\n    vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u,\
+    \ v, 0)) {\r\n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n\
+    \      } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\
+    \n    return P;\r\n  }\r\n\r\n  void debug() {\r\n    print(\"V\", V);\r\n   \
+    \ print(\"LID\", LID);\r\n    print(\"RID\", RID);\r\n    print(\"parent\", parent);\r\
+    \n    print(\"depth\", depth);\r\n    print(\"head\", head);\r\n    print(\"in_tree(edge)\"\
+    , in_tree);\r\n    print(\"root\", root);\r\n  }\r\n};\r\n#line 3 \"graph/ds/tree_abelgroup.hpp\"\
+    \n\r\ntemplate <typename TREE, typename AbelGroup, bool edge = false,\r\n    \
+    \      bool path_query = true, bool subtree_query = false>\r\nstruct Tree_AbelGroup\
+    \ {\r\n  using X = typename AbelGroup::value_type;\r\n  TREE &tree;\r\n  int N;\r\
+    \n  FenwickTree<AbelGroup> bit, bit_subtree;\r\n\r\n  Tree_AbelGroup(TREE &tree)\
+    \ : tree(tree), N(tree.N) {\r\n    if (path_query) { bit = FenwickTree<AbelGroup>(2\
+    \ * N); }\r\n    if (subtree_query) { bit_subtree = FenwickTree<AbelGroup>(N);\
+    \ }\r\n  }\r\n\r\n  Tree_AbelGroup(TREE &tree, vc<X> dat) : tree(tree), N(tree.N)\
+    \ {\r\n    if (path_query) {\r\n      vc<X> bit_raw(2 * N);\r\n      if (!edge)\
+    \ {\r\n        assert(len(dat) == N);\r\n        FOR(v, N) {\r\n          bit_raw[tree.ELID(v)]\
+    \ = dat[v];\r\n          bit_raw[tree.ERID(v)] = AbelGroup::inverse(dat[v]);\r\
+    \n        }\r\n      } else {\r\n        assert(len(dat) == N - 1);\r\n      \
+    \  FOR(e, N - 1) {\r\n          int v = tree.e_to_v(e);\r\n          bit_raw[tree.ELID(v)]\
+    \ = dat[e];\r\n          bit_raw[tree.ERID(v)] = AbelGroup::inverse(dat[e]);\r\
+    \n        }\r\n      }\r\n      bit = FenwickTree<AbelGroup>(bit_raw);\r\n   \
+    \ }\r\n    if (subtree_query) {\r\n      vc<X> bit_raw(N);\r\n      if (!edge)\
+    \ {\r\n        assert(len(dat) == N);\r\n        FOR(v, N) bit_raw[tree.LID[v]]\
+    \ = dat[v];\r\n      } else {\r\n        assert(len(dat) == N - 1);\r\n      \
+    \  FOR(e, N - 1) {\r\n          int v = tree.e_to_v(e);\r\n          bit_raw[tree.LID[v]]\
+    \ = dat[e];\r\n        }\r\n      }\r\n      bit_subtree = FenwickTree<AbelGroup>(bit_raw);\r\
     \n    }\r\n  }\r\n\r\n  void add(int i, X x) {\r\n    int v = (edge ? tree.e_to_v(i)\
     \ : i);\r\n    if (path_query) {\r\n      X inv_x = AbelGroup::inverse(x);\r\n\
     \      bit.add(tree.ELID(v), x);\r\n      bit.add(tree.ERID(v), inv_x);\r\n  \
@@ -250,8 +253,8 @@ data:
   isVerificationFile: false
   path: graph/ds/tree_abelgroup.hpp
   requiredBy: []
-  timestamp: '2022-12-11 11:10:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-01-06 18:12:38+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1326.test.cpp
   - test/yukicoder/1641.test.cpp
