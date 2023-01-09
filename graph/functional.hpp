@@ -95,4 +95,11 @@ struct FunctionalGraph {
     int bottom = TO[r];
     return tree.in_subtree(bottom, v);
   }
+
+  vc<int> collect_cycle(int r) {
+    assert(r == root[r]);
+    vc<int> cyc = {TO[r]};
+    while (cyc.back() != r) cyc.eb(TO[cyc.back()]);
+    return cyc;
+  }
 };
