@@ -15,9 +15,9 @@ pair<vc<int>, typename TREE::Graph_type> compress_tree(TREE& tree, vc<int> V) {
   }
   // 辺を張ってグラフを作る
   int n = len(V);
-  using Graph = typename TREE::Graph_type;
-  using WT = typename Graph::cost_type;
-  Graph G(n);
+  using GT = typename TREE::Graph_type;
+  using WT = typename GT::cost_type;
+  GT G(n);
   vc<int> st = {0};
   FOR(i, 1, n) {
     while (1) {
