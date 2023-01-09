@@ -5,6 +5,7 @@
 // 木以外、非連結でも dfs 順序や親がとれる。
 template <typename GT>
 struct TREE {
+  using Graph_type = GT;
   GT &G;
   using WT = typename GT::cost_type;
   int N;
@@ -190,16 +191,5 @@ struct TREE {
       }
     }
     return P;
-  }
-
-  void debug() {
-    print("V", V);
-    print("LID", LID);
-    print("RID", RID);
-    print("parent", parent);
-    print("depth", depth);
-    print("head", head);
-    print("in_tree(edge)", in_tree);
-    print("root", root);
   }
 };
