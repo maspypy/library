@@ -6,7 +6,6 @@ struct m64 {
 
   inline static u64 m, r, n2; // r * m = -1 (mod 1<<64), n2 = 1<<128 (mod m)
   static void set_mod(u64 m) {
-    assert(m < (1ull << 62));
     assert((m & 1) == 1);
     m64::m = m;
     n2 = -u128(m) % m;
