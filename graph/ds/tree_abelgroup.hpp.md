@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
@@ -18,15 +18,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1326.test.cpp
     title: test/yukicoder/1326.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1641.test.cpp
     title: test/yukicoder/1641.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -110,16 +110,16 @@ data:
     \ }\n  }\n};\n#line 3 \"graph/tree.hpp\"\n\r\n// HLD euler tour \u3092\u3068\u3063\
     \u3066\u3044\u308D\u3044\u308D\u3002\r\n// \u6728\u4EE5\u5916\u3001\u975E\u9023\
     \u7D50\u3067\u3082 dfs \u9806\u5E8F\u3084\u89AA\u304C\u3068\u308C\u308B\u3002\r\
-    \ntemplate <typename GT>\r\nstruct TREE {\r\n  GT &G;\r\n  using WT = typename\
-    \ GT::cost_type;\r\n  int N;\r\n  bool hld;\r\n  vector<int> LID, RID, head, V,\
-    \ parent, root;\r\n  vc<int> depth;\r\n  vc<WT> depth_weighted;\r\n  vector<bool>\
-    \ in_tree;\r\n\r\n  TREE(GT &G, int r = -1, bool hld = 1)\r\n      : G(G),\r\n\
-    \        N(G.N),\r\n        hld(hld),\r\n        LID(G.N),\r\n        RID(G.N),\r\
-    \n        head(G.N, r),\r\n        V(G.N),\r\n        parent(G.N, -1),\r\n   \
-    \     root(G.N, -1),\r\n        depth(G.N, -1),\r\n        depth_weighted(G.N,\
-    \ 0),\r\n        in_tree(G.M, 0) {\r\n    assert(G.is_prepared());\r\n    int\
-    \ t1 = 0;\r\n    if (r != -1) {\r\n      dfs_sz(r, -1);\r\n      dfs_hld(r, t1);\r\
-    \n    } else {\r\n      for (int r = 0; r < N; ++r) {\r\n        if (parent[r]\
+    \ntemplate <typename GT>\r\nstruct TREE {\r\n  using Graph_type = GT;\r\n  GT\
+    \ &G;\r\n  using WT = typename GT::cost_type;\r\n  int N;\r\n  bool hld;\r\n \
+    \ vector<int> LID, RID, head, V, parent, root;\r\n  vc<int> depth;\r\n  vc<WT>\
+    \ depth_weighted;\r\n  vector<bool> in_tree;\r\n\r\n  TREE(GT &G, int r = -1,\
+    \ bool hld = 1)\r\n      : G(G),\r\n        N(G.N),\r\n        hld(hld),\r\n \
+    \       LID(G.N),\r\n        RID(G.N),\r\n        head(G.N, r),\r\n        V(G.N),\r\
+    \n        parent(G.N, -1),\r\n        root(G.N, -1),\r\n        depth(G.N, -1),\r\
+    \n        depth_weighted(G.N, 0),\r\n        in_tree(G.M, 0) {\r\n    assert(G.is_prepared());\r\
+    \n    int t1 = 0;\r\n    if (r != -1) {\r\n      dfs_sz(r, -1);\r\n      dfs_hld(r,\
+    \ t1);\r\n    } else {\r\n      for (int r = 0; r < N; ++r) {\r\n        if (parent[r]\
     \ == -1) {\r\n          head[r] = r;\r\n          dfs_sz(r, -1);\r\n         \
     \ dfs_hld(r, t1);\r\n        }\r\n      }\r\n    }\r\n    for (auto &&v: V) root[v]\
     \ = (parent[v] == -1 ? v : root[parent[v]]);\r\n  }\r\n\r\n  void dfs_sz(int v,\
@@ -176,14 +176,11 @@ data:
     \ restore_path(int u, int v) {\r\n    vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u,\
     \ v, 0)) {\r\n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n\
     \      } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\
-    \n    return P;\r\n  }\r\n\r\n  void debug() {\r\n    print(\"V\", V);\r\n   \
-    \ print(\"LID\", LID);\r\n    print(\"RID\", RID);\r\n    print(\"parent\", parent);\r\
-    \n    print(\"depth\", depth);\r\n    print(\"head\", head);\r\n    print(\"in_tree(edge)\"\
-    , in_tree);\r\n    print(\"root\", root);\r\n  }\r\n};\r\n#line 3 \"graph/ds/tree_abelgroup.hpp\"\
-    \n\r\ntemplate <typename TREE, typename AbelGroup, bool edge = false,\r\n    \
-    \      bool path_query = true, bool subtree_query = false>\r\nstruct Tree_AbelGroup\
-    \ {\r\n  using X = typename AbelGroup::value_type;\r\n  TREE &tree;\r\n  int N;\r\
-    \n  FenwickTree<AbelGroup> bit, bit_subtree;\r\n\r\n  Tree_AbelGroup(TREE &tree)\
+    \n    return P;\r\n  }\r\n};\r\n#line 3 \"graph/ds/tree_abelgroup.hpp\"\n\r\n\
+    template <typename TREE, typename AbelGroup, bool edge = false,\r\n          bool\
+    \ path_query = true, bool subtree_query = false>\r\nstruct Tree_AbelGroup {\r\n\
+    \  using X = typename AbelGroup::value_type;\r\n  TREE &tree;\r\n  int N;\r\n\
+    \  FenwickTree<AbelGroup> bit, bit_subtree;\r\n\r\n  Tree_AbelGroup(TREE &tree)\
     \ : tree(tree), N(tree.N) {\r\n    if (path_query) { bit = FenwickTree<AbelGroup>(2\
     \ * N); }\r\n    if (subtree_query) { bit_subtree = FenwickTree<AbelGroup>(N);\
     \ }\r\n  }\r\n\r\n  Tree_AbelGroup(TREE &tree, vc<X> dat) : tree(tree), N(tree.N)\
@@ -253,8 +250,8 @@ data:
   isVerificationFile: false
   path: graph/ds/tree_abelgroup.hpp
   requiredBy: []
-  timestamp: '2023-01-06 18:12:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-01-09 23:26:05+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1326.test.cpp
   - test/yukicoder/1641.test.cpp

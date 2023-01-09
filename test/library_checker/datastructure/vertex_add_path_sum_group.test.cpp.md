@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':heavy_check_mark:'
     path: alg/monoid/group_reverse.hpp
     title: alg/monoid/group_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/tree_group.hpp
     title: graph/ds/tree_group.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -309,25 +309,26 @@ data:
     \n\r\n// HLD euler tour \u3092\u3068\u3063\u3066\u3044\u308D\u3044\u308D\u3002\
     \r\n// \u6728\u4EE5\u5916\u3001\u975E\u9023\u7D50\u3067\u3082 dfs \u9806\u5E8F\
     \u3084\u89AA\u304C\u3068\u308C\u308B\u3002\r\ntemplate <typename GT>\r\nstruct\
-    \ TREE {\r\n  GT &G;\r\n  using WT = typename GT::cost_type;\r\n  int N;\r\n \
-    \ bool hld;\r\n  vector<int> LID, RID, head, V, parent, root;\r\n  vc<int> depth;\r\
-    \n  vc<WT> depth_weighted;\r\n  vector<bool> in_tree;\r\n\r\n  TREE(GT &G, int\
-    \ r = -1, bool hld = 1)\r\n      : G(G),\r\n        N(G.N),\r\n        hld(hld),\r\
-    \n        LID(G.N),\r\n        RID(G.N),\r\n        head(G.N, r),\r\n        V(G.N),\r\
-    \n        parent(G.N, -1),\r\n        root(G.N, -1),\r\n        depth(G.N, -1),\r\
-    \n        depth_weighted(G.N, 0),\r\n        in_tree(G.M, 0) {\r\n    assert(G.is_prepared());\r\
-    \n    int t1 = 0;\r\n    if (r != -1) {\r\n      dfs_sz(r, -1);\r\n      dfs_hld(r,\
-    \ t1);\r\n    } else {\r\n      for (int r = 0; r < N; ++r) {\r\n        if (parent[r]\
-    \ == -1) {\r\n          head[r] = r;\r\n          dfs_sz(r, -1);\r\n         \
-    \ dfs_hld(r, t1);\r\n        }\r\n      }\r\n    }\r\n    for (auto &&v: V) root[v]\
-    \ = (parent[v] == -1 ? v : root[parent[v]]);\r\n  }\r\n\r\n  void dfs_sz(int v,\
-    \ int p) {\r\n    auto &sz = RID;\r\n    parent[v] = p;\r\n    depth[v] = (p ==\
-    \ -1 ? 0 : depth[p] + 1);\r\n    sz[v] = 1;\r\n    int l = G.indptr[v], r = G.indptr[v\
-    \ + 1];\r\n    auto &csr = G.csr_edges;\r\n    // \u4F7F\u3046\u8FBA\u304C\u3042\
-    \u308C\u3070\u5148\u982D\u306B\u3059\u308B\r\n    for (int i = r - 2; i >= l;\
-    \ --i) {\r\n      if (hld && depth[csr[i + 1].to] == -1) swap(csr[i], csr[i +\
-    \ 1]);\r\n    }\r\n    int hld_sz = 0;\r\n    for (int i = l; i < r; ++i) {\r\n\
-    \      auto e = csr[i];\r\n      if (depth[e.to] != -1) continue;\r\n      in_tree[e.id]\
+    \ TREE {\r\n  using Graph_type = GT;\r\n  GT &G;\r\n  using WT = typename GT::cost_type;\r\
+    \n  int N;\r\n  bool hld;\r\n  vector<int> LID, RID, head, V, parent, root;\r\n\
+    \  vc<int> depth;\r\n  vc<WT> depth_weighted;\r\n  vector<bool> in_tree;\r\n\r\
+    \n  TREE(GT &G, int r = -1, bool hld = 1)\r\n      : G(G),\r\n        N(G.N),\r\
+    \n        hld(hld),\r\n        LID(G.N),\r\n        RID(G.N),\r\n        head(G.N,\
+    \ r),\r\n        V(G.N),\r\n        parent(G.N, -1),\r\n        root(G.N, -1),\r\
+    \n        depth(G.N, -1),\r\n        depth_weighted(G.N, 0),\r\n        in_tree(G.M,\
+    \ 0) {\r\n    assert(G.is_prepared());\r\n    int t1 = 0;\r\n    if (r != -1)\
+    \ {\r\n      dfs_sz(r, -1);\r\n      dfs_hld(r, t1);\r\n    } else {\r\n     \
+    \ for (int r = 0; r < N; ++r) {\r\n        if (parent[r] == -1) {\r\n        \
+    \  head[r] = r;\r\n          dfs_sz(r, -1);\r\n          dfs_hld(r, t1);\r\n \
+    \       }\r\n      }\r\n    }\r\n    for (auto &&v: V) root[v] = (parent[v] ==\
+    \ -1 ? v : root[parent[v]]);\r\n  }\r\n\r\n  void dfs_sz(int v, int p) {\r\n \
+    \   auto &sz = RID;\r\n    parent[v] = p;\r\n    depth[v] = (p == -1 ? 0 : depth[p]\
+    \ + 1);\r\n    sz[v] = 1;\r\n    int l = G.indptr[v], r = G.indptr[v + 1];\r\n\
+    \    auto &csr = G.csr_edges;\r\n    // \u4F7F\u3046\u8FBA\u304C\u3042\u308C\u3070\
+    \u5148\u982D\u306B\u3059\u308B\r\n    for (int i = r - 2; i >= l; --i) {\r\n \
+    \     if (hld && depth[csr[i + 1].to] == -1) swap(csr[i], csr[i + 1]);\r\n   \
+    \ }\r\n    int hld_sz = 0;\r\n    for (int i = l; i < r; ++i) {\r\n      auto\
+    \ e = csr[i];\r\n      if (depth[e.to] != -1) continue;\r\n      in_tree[e.id]\
     \ = 1;\r\n      depth_weighted[e.to] = depth_weighted[v] + e.cost;\r\n      dfs_sz(e.to,\
     \ v);\r\n      sz[v] += sz[e.to];\r\n      if (hld && chmax(hld_sz, sz[e.to])\
     \ && l < i) { swap(csr[l], csr[i]); }\r\n    }\r\n  }\r\n\r\n  void dfs_hld(int\
@@ -374,21 +375,18 @@ data:
     \ restore_path(int u, int v) {\r\n    vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u,\
     \ v, 0)) {\r\n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n\
     \      } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\
-    \n    return P;\r\n  }\r\n\r\n  void debug() {\r\n    print(\"V\", V);\r\n   \
-    \ print(\"LID\", LID);\r\n    print(\"RID\", RID);\r\n    print(\"parent\", parent);\r\
-    \n    print(\"depth\", depth);\r\n    print(\"head\", head);\r\n    print(\"in_tree(edge)\"\
-    , in_tree);\r\n    print(\"root\", root);\r\n  }\r\n};\r\n#line 2 \"alg/monoid/group_reverse.hpp\"\
-    \n\r\ntemplate <class Group>\r\nstruct Group_Reverse {\r\n  using value_type =\
-    \ typename Group::value_type;\r\n  using X = value_type;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) { return Group::op(y, x); }\r\n  static constexpr\
-    \ X inverse(const X &x) { return Group::inverse(x); }\r\n  static constexpr X\
-    \ unit() { return Group::unit(); }\r\n  static const bool commute = Group::commute;\r\
-    \n};\r\n#line 4 \"graph/ds/tree_group.hpp\"\n\r\n// \u4F5C\u3063\u3066\u307F\u305F\
-    \u3082\u306E\u306E\u3001HLD(log^2N)\u3088\u308A\u9045\u3044\u304C\u3061\uFF1F\r\
-    \n// EulerTour + \u30BB\u30B0\u6728\r\n// \u9006\u5143\u3092\u5229\u7528\u3057\
-    \u3066\u3001\u30D1\u30B9\u30AF\u30A8\u30EA\u3092 O(logN) \u6642\u9593\u3067\u884C\
-    \u3046\u3002\r\ntemplate <typename TREE, typename Group, bool edge = false,\r\n\
-    \          bool path_query = true, bool subtree_query = false>\r\nstruct Tree_Group\
+    \n    return P;\r\n  }\r\n};\r\n#line 2 \"alg/monoid/group_reverse.hpp\"\n\r\n\
+    template <class Group>\r\nstruct Group_Reverse {\r\n  using value_type = typename\
+    \ Group::value_type;\r\n  using X = value_type;\r\n  static constexpr X op(const\
+    \ X &x, const X &y) { return Group::op(y, x); }\r\n  static constexpr X inverse(const\
+    \ X &x) { return Group::inverse(x); }\r\n  static constexpr X unit() { return\
+    \ Group::unit(); }\r\n  static const bool commute = Group::commute;\r\n};\r\n\
+    #line 4 \"graph/ds/tree_group.hpp\"\n\r\n// \u4F5C\u3063\u3066\u307F\u305F\u3082\
+    \u306E\u306E\u3001HLD(log^2N)\u3088\u308A\u9045\u3044\u304C\u3061\uFF1F\r\n//\
+    \ EulerTour + \u30BB\u30B0\u6728\r\n// \u9006\u5143\u3092\u5229\u7528\u3057\u3066\
+    \u3001\u30D1\u30B9\u30AF\u30A8\u30EA\u3092 O(logN) \u6642\u9593\u3067\u884C\u3046\
+    \u3002\r\ntemplate <typename TREE, typename Group, bool edge = false,\r\n    \
+    \      bool path_query = true, bool subtree_query = false>\r\nstruct Tree_Group\
     \ {\r\n  using RevGroup = Group_Reverse<Group>;\r\n  using X = typename Group::value_type;\r\
     \n  TREE &tree;\r\n  int N;\r\n  SegTree<Group> seg, seg_subtree;\r\n  SegTree<RevGroup>\
     \ seg_r;\r\n\r\n  Tree_Group(TREE &tree) : tree(tree), N(tree.N) {\r\n    if (path_query)\
@@ -454,7 +452,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
   requiredBy: []
-  timestamp: '2023-01-06 18:12:38+09:00'
+  timestamp: '2023-01-09 23:26:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp

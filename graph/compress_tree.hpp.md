@@ -19,11 +19,11 @@ data:
     \ V.back()));\n    VV.eb(tree.V[0]);\n    UNIQUE(VV);\n    V = VV;\n    sort(all(V),\
     \ [&](auto& x, auto& y) { return tree.LID[x] < tree.LID[y]; });\n  }\n  // \u8FBA\
     \u3092\u5F35\u3063\u3066\u30B0\u30E9\u30D5\u3092\u4F5C\u308B\n  int n = len(V);\n\
-    \  using Graph = typename TREE::Graph_type;\n  using WT = typename Graph::cost_type;\n\
-    \  Graph G(n);\n  vc<int> st = {0};\n  FOR(i, 1, n) {\n    while (1) {\n     \
-    \ int p = V[st.back()];\n      int v = V[i];\n      if (tree.in_subtree(v, p))\
-    \ break;\n      st.pop_back();\n    }\n    int p = V[st.back()];\n    int v =\
-    \ V[i];\n    WT d = tree.depth_weighted[v] - tree.depth_weighted[p];\n    G.add(st.back(),\
+    \  using GT = typename TREE::Graph_type;\n  using WT = typename GT::cost_type;\n\
+    \  GT G(n);\n  vc<int> st = {0};\n  FOR(i, 1, n) {\n    while (1) {\n      int\
+    \ p = V[st.back()];\n      int v = V[i];\n      if (tree.in_subtree(v, p)) break;\n\
+    \      st.pop_back();\n    }\n    int p = V[st.back()];\n    int v = V[i];\n \
+    \   WT d = tree.depth_weighted[v] - tree.depth_weighted[p];\n    G.add(st.back(),\
     \ i, d);\n    st.eb(i);\n  }\n  G.build();\n  return {V, G};\n}\n"
   code: "// (\u5727\u7E2E\u3055\u308C\u305F\u6728\u306E\u9802\u70B9\u30E9\u30D9\u30EB\
     \u305F\u3061\u3001\u30B0\u30E9\u30D5)\ntemplate <typename TREE>\npair<vc<int>,\
@@ -35,18 +35,18 @@ data:
     \ V[i + 1])); }\n    VV.eb(tree.lca(V[0], V.back()));\n    VV.eb(tree.V[0]);\n\
     \    UNIQUE(VV);\n    V = VV;\n    sort(all(V), [&](auto& x, auto& y) { return\
     \ tree.LID[x] < tree.LID[y]; });\n  }\n  // \u8FBA\u3092\u5F35\u3063\u3066\u30B0\
-    \u30E9\u30D5\u3092\u4F5C\u308B\n  int n = len(V);\n  using Graph = typename TREE::Graph_type;\n\
-    \  using WT = typename Graph::cost_type;\n  Graph G(n);\n  vc<int> st = {0};\n\
-    \  FOR(i, 1, n) {\n    while (1) {\n      int p = V[st.back()];\n      int v =\
-    \ V[i];\n      if (tree.in_subtree(v, p)) break;\n      st.pop_back();\n    }\n\
-    \    int p = V[st.back()];\n    int v = V[i];\n    WT d = tree.depth_weighted[v]\
-    \ - tree.depth_weighted[p];\n    G.add(st.back(), i, d);\n    st.eb(i);\n  }\n\
-    \  G.build();\n  return {V, G};\n}\n"
+    \u30E9\u30D5\u3092\u4F5C\u308B\n  int n = len(V);\n  using GT = typename TREE::Graph_type;\n\
+    \  using WT = typename GT::cost_type;\n  GT G(n);\n  vc<int> st = {0};\n  FOR(i,\
+    \ 1, n) {\n    while (1) {\n      int p = V[st.back()];\n      int v = V[i];\n\
+    \      if (tree.in_subtree(v, p)) break;\n      st.pop_back();\n    }\n    int\
+    \ p = V[st.back()];\n    int v = V[i];\n    WT d = tree.depth_weighted[v] - tree.depth_weighted[p];\n\
+    \    G.add(st.back(), i, d);\n    st.eb(i);\n  }\n  G.build();\n  return {V, G};\n\
+    }\n"
   dependsOn: []
   isVerificationFile: false
   path: graph/compress_tree.hpp
   requiredBy: []
-  timestamp: '2022-08-22 17:45:56+09:00'
+  timestamp: '2023-01-09 23:28:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/compress_tree.hpp
