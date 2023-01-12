@@ -42,6 +42,13 @@ struct Incremental_MaxFlow {
     return flow_ans;
   }
 
+  // 残余グラフの辺
+  vc<tuple<int, int, Cap>> get_edges() {
+    vc<tuple<int, int, Cap>> edges;
+    FOR(v, N) for (auto&& e: G[v]) { edges.eb(v, e.to, e.cap); }
+    return edges;
+  }
+
 private:
   bool set_level(int source, int sink) {
     level.assign(N, -1);
