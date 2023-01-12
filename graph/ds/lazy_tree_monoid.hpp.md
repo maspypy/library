@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
   - icon: ':x:'
@@ -322,10 +322,10 @@ data:
   timestamp: '2023-01-09 23:26:05+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/GRL_5_E.test.cpp
   - test/yukicoder/1790.test.cpp
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1197.test.cpp
+  - test/aoj/GRL_5_E.test.cpp
 documentation_of: graph/ds/lazy_tree_monoid.hpp
 layout: document
 redirect_from:

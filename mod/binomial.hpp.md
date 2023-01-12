@@ -155,8 +155,8 @@ data:
   timestamp: '2023-01-09 23:28:24+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/2120.test.cpp
   - test/library_checker/math/binomial_coefficient.test.cpp
+  - test/yukicoder/2120.test.cpp
 documentation_of: mod/binomial.hpp
 layout: document
 redirect_from:

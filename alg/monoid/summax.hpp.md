@@ -52,11 +52,11 @@ data:
   timestamp: '2022-12-04 13:46:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/kdtree_am.test.cpp
+  - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
   - test/mytest/kdtree_monoid.test.cpp
   - test/mytest/dynamic_lazy_segtree.test.cpp
-  - test/mytest/kdtree_am.test.cpp
   - test/mytest/summax_add.test.cpp
-  - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
   - test/mytest/summax_assign.test.cpp
 documentation_of: alg/monoid/summax.hpp
 layout: document

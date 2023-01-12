@@ -8,32 +8,32 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
   - icon: ':x:'
     path: nt/lcm.hpp
     title: nt/lcm.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/primitive_root.test.cpp
     title: test/library_checker/math/primitive_root.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1593.test.cpp
     title: test/yukicoder/1593.test.cpp
   - icon: ':x:'
@@ -74,19 +74,19 @@ data:
   path: mod/mod_pow.hpp
   requiredBy:
   - poly/multivar_convolution_cyclic.hpp
+  - mod/primitive_root.hpp
+  - mod/mod_kth_root.hpp
   - nt/gaussian_integers.hpp
   - nt/lcm.hpp
-  - mod/mod_kth_root.hpp
-  - mod/primitive_root.hpp
   timestamp: '2022-05-19 23:05:54+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1025.test.cpp
-  - test/yukicoder/1593.test.cpp
-  - test/yukicoder/187.test.cpp
+  - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - test/library_checker/math/primitive_root.test.cpp
+  - test/yukicoder/1025.test.cpp
+  - test/yukicoder/187.test.cpp
+  - test/yukicoder/1593.test.cpp
 documentation_of: mod/mod_pow.hpp
 layout: document
 redirect_from:

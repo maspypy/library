@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
   - icon: ':heavy_check_mark:'
@@ -405,9 +405,9 @@ data:
   timestamp: '2022-12-25 12:22:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/library_checker/math/sharp_p_subset_sum.test.cpp
   - test/yukicoder/2062.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp
-  - test/library_checker/math/sharp_p_subset_sum.test.cpp
 documentation_of: poly/product_of_one_plus_xn.hpp
 layout: document
 redirect_from:

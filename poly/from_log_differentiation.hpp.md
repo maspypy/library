@@ -502,10 +502,10 @@ data:
   timestamp: '2022-12-25 12:22:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/2166.test.cpp
   - test/yukicoder/1080_2.test.cpp
-  - test/atcoder/abc276_g_2.test.cpp
+  - test/yukicoder/2166.test.cpp
   - test/atcoder/abc276_g.test.cpp
+  - test/atcoder/abc276_g_2.test.cpp
 documentation_of: poly/from_log_differentiation.hpp
 layout: document
 redirect_from:

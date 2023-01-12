@@ -99,8 +99,8 @@ data:
   timestamp: '2022-09-29 20:05:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/dyadic_rational.test.cpp
   - test/mytest/partizan.test.cpp
+  - test/mytest/dyadic_rational.test.cpp
   - test/atcoder/abc229h.test.cpp
 documentation_of: game/dyadic_rational.hpp
 layout: document

@@ -53,8 +53,8 @@ data:
   timestamp: '2022-12-23 10:56:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/datastructure/add_remove_query.test.cpp
   - test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
+  - test/library_checker/datastructure/add_remove_query.test.cpp
 documentation_of: ds/unionfind/rollback_unionfind.hpp
 layout: document
 redirect_from:

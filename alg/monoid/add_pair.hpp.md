@@ -53,12 +53,12 @@ data:
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/749.test.cpp
-  - test/yukicoder/235.test.cpp
   - test/yukicoder/255.test.cpp
+  - test/yukicoder/749.test.cpp
   - test/yukicoder/1919.test.cpp
-  - test/mytest/cf702_F.test.cpp
+  - test/yukicoder/235.test.cpp
   - test/mytest/cf702_F_splay.test.cpp
+  - test/mytest/cf702_F.test.cpp
 documentation_of: alg/monoid/add_pair.hpp
 layout: document
 redirect_from:

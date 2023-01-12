@@ -112,9 +112,9 @@ data:
   timestamp: '2022-12-11 11:11:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/count_points_in_triangles.test.cpp
   - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
+  - test/mytest/count_points_in_triangles.test.cpp
   - test/atcoder/abc202_f.test.cpp
 documentation_of: geo/angle_sort.hpp
 layout: document

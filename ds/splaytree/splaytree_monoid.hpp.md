@@ -184,8 +184,8 @@ data:
   timestamp: '2022-12-04 00:39:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/1508.test.cpp
   - test/yukicoder/1441.test.cpp
+  - test/aoj/1508.test.cpp
   - test/mytest/splay.test.cpp
   - test/mytest/splay_monoid.test.cpp
 documentation_of: ds/splaytree/splaytree_monoid.hpp

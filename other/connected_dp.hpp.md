@@ -244,11 +244,11 @@ data:
   timestamp: '2022-12-25 12:23:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1561.test.cpp
-  - test/yukicoder/1397.test.cpp
-  - test/yukicoder/578.test.cpp
   - test/yukicoder/579.test.cpp
+  - test/yukicoder/1397.test.cpp
+  - test/yukicoder/1561.test.cpp
   - test/yukicoder/541.test.cpp
+  - test/yukicoder/578.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
 documentation_of: other/connected_dp.hpp
 layout: document

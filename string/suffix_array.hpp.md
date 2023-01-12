@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/disjointsparse/disjointsparse.hpp
     title: ds/disjointsparse/disjointsparse.hpp
   _extendedRequiredBy:
@@ -204,10 +204,10 @@ data:
   timestamp: '2022-12-15 05:40:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/suffix_tree.test.cpp
   - test/library_checker/string/suffix_array_vec.test.cpp
   - test/library_checker/string/number_of_substrings.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
+  - test/mytest/suffix_tree.test.cpp
   - test/atcoder/arc151_e.test.cpp
 documentation_of: string/suffix_array.hpp
 layout: document

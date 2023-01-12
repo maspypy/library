@@ -54,18 +54,18 @@ data:
   isVerificationFile: false
   path: alg/monoid/min_idx.hpp
   requiredBy:
-  - geo/manhattan_nns.hpp
-  - convex/dynamic_lichao.hpp
-  - convex/persistent_dynamic_lichao.hpp
-  - alg/acted_monoid/minidx_add.hpp
   - string/suffix_tree.hpp
+  - convex/persistent_dynamic_lichao.hpp
+  - convex/dynamic_lichao.hpp
+  - alg/acted_monoid/minidx_add.hpp
+  - geo/manhattan_nns.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/minidx_add.test.cpp
-  - test/mytest/suffix_tree.test.cpp
   - test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
   - test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
+  - test/mytest/minidx_add.test.cpp
+  - test/mytest/suffix_tree.test.cpp
 documentation_of: alg/monoid/min_idx.hpp
 layout: document
 redirect_from:

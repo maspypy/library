@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_point_add.test.cpp
     title: test/library_checker/datastructure/range_affine_point_add.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1524.test.cpp
     title: test/yukicoder/1524.test.cpp
   - icon: ':heavy_check_mark:'
@@ -76,11 +76,11 @@ data:
   timestamp: '2022-12-04 02:25:39+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/GRL_2_A.test.cpp
-  - test/aoj/DSL_2_D.test.cpp
+  - test/library_checker/datastructure/range_affine_point_add.test.cpp
   - test/yukicoder/913.test.cpp
   - test/yukicoder/1524.test.cpp
-  - test/library_checker/datastructure/range_affine_point_add.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
+  - test/aoj/DSL_2_D.test.cpp
   - test/atcoder/abc270_f.test.cpp
 documentation_of: ds/segtree/dual_segtree.hpp
 layout: document

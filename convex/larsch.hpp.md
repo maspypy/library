@@ -1,17 +1,11 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: seq/monge.hpp
-    title: seq/monge.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/705.test.cpp
-    title: test/yukicoder/705.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links:
     - https://noshi91.github.io/Library/algorithm/larsch.cpp.html
@@ -84,12 +78,10 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: convex/larsch.hpp
-  requiredBy:
-  - seq/monge.hpp
+  requiredBy: []
   timestamp: '2022-12-03 09:41:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yukicoder/705.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: convex/larsch.hpp
 layout: document
 redirect_from:

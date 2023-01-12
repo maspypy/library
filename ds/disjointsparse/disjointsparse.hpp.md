@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/static_tree_monoid.hpp
     title: graph/ds/static_tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -36,18 +36,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1216.test.cpp
     title: test/yukicoder/1216.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1216_2.test.cpp
     title: test/yukicoder/1216_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2005.test.cpp
     title: test/yukicoder/2005.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/disjointsparse/disjointsparse.hpp\"\n\r\ntemplate <class\
@@ -110,20 +110,20 @@ data:
   requiredBy:
   - graph/ds/static_tree_monoid.hpp
   - string/longest_common_substring.hpp
-  - string/suffix_array.hpp
   - string/suffix_tree.hpp
+  - string/suffix_array.hpp
   timestamp: '2022-12-04 23:06:09+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/2005.test.cpp
-  - test/yukicoder/1216.test.cpp
-  - test/yukicoder/1216_2.test.cpp
-  - test/mytest/suffix_tree.test.cpp
-  - test/library_checker/datastructure/staticrmq_sparse.test.cpp
   - test/library_checker/string/suffix_array_vec.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - test/library_checker/string/number_of_substrings.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
+  - test/library_checker/datastructure/staticrmq_sparse.test.cpp
+  - test/yukicoder/1216_2.test.cpp
+  - test/yukicoder/1216.test.cpp
+  - test/yukicoder/2005.test.cpp
+  - test/mytest/suffix_tree.test.cpp
   - test/atcoder/arc151_e.test.cpp
 documentation_of: ds/disjointsparse/disjointsparse.hpp
 layout: document

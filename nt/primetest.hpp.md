@@ -11,10 +11,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/tetration.hpp
     title: mod/tetration.hpp
   - icon: ':x:'
@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/divisors.hpp
     title: nt/divisors.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
   - icon: ':question:'
@@ -32,16 +32,16 @@ data:
   - icon: ':x:'
     path: nt/function_on_divisors.hpp
     title: nt/function_on_divisors.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
   - icon: ':x:'
     path: nt/lcm.hpp
     title: nt/lcm.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_query.hpp
     title: seq/famous/stirling_number_query.hpp
   _extendedVerifiedWith:
@@ -66,31 +66,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/primitive_root.test.cpp
     title: test/library_checker/math/primitive_root.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_mod_p_1.test.cpp
     title: test/library_checker/math/stirling_mod_p_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_mod_p_2.test.cpp
     title: test/library_checker/math/stirling_mod_p_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1262.test.cpp
     title: test/yukicoder/1262.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1411.test.cpp
     title: test/yukicoder/1411.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1593.test.cpp
     title: test/yukicoder/1593.test.cpp
   - icon: ':x:'
@@ -185,46 +185,46 @@ data:
   isVerificationFile: false
   path: nt/primetest.hpp
   requiredBy:
-  - poly/multivar_convolution_cyclic.hpp
   - graph/chromatic.hpp
-  - nt/function_on_divisors.hpp
-  - nt/gaussian_integers.hpp
-  - nt/euler_phi.hpp
-  - nt/crt.hpp
-  - nt/lcm.hpp
-  - nt/divisors.hpp
-  - nt/factor.hpp
-  - mod/tetration.hpp
+  - seq/famous/stirling_number_query.hpp
+  - poly/multivar_convolution_cyclic.hpp
+  - mod/primitive_root.hpp
   - mod/binomial.hpp
   - mod/mod_kth_root.hpp
-  - mod/primitive_root.hpp
-  - seq/famous/stirling_number_query.hpp
+  - mod/tetration.hpp
+  - nt/gaussian_integers.hpp
+  - nt/euler_phi.hpp
+  - nt/function_on_divisors.hpp
+  - nt/crt.hpp
+  - nt/factor.hpp
+  - nt/lcm.hpp
+  - nt/divisors.hpp
   timestamp: '2023-01-09 23:28:24+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/NTL_1_D.test.cpp
-  - test/aoj/ALDS1_1_C.test.cpp
-  - test/aoj/ITP1_D_D.test.cpp
-  - test/yukicoder/1025.test.cpp
-  - test/yukicoder/590.test.cpp
-  - test/yukicoder/2120.test.cpp
-  - test/yukicoder/1262.test.cpp
-  - test/yukicoder/1593.test.cpp
-  - test/yukicoder/187.test.cpp
-  - test/yukicoder/1728.test.cpp
-  - test/yukicoder/1956.test.cpp
-  - test/yukicoder/1881.test.cpp
-  - test/yukicoder/1411.test.cpp
-  - test/yukicoder/2119.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
-  - test/library_checker/math/kth_root_mod.test.cpp
-  - test/library_checker/math/factorize.test.cpp
   - test/library_checker/math/stirling_mod_p_1.test.cpp
-  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/library_checker/math/primitive_root.test.cpp
-  - test/library_checker/math/binomial_coefficient.test.cpp
   - test/library_checker/math/stirling_mod_p_2.test.cpp
   - test/library_checker/math/tetration.test.cpp
+  - test/library_checker/math/kth_root_mod.test.cpp
+  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - test/library_checker/math/factorize.test.cpp
+  - test/library_checker/math/binomial_coefficient.test.cpp
+  - test/yukicoder/1025.test.cpp
+  - test/yukicoder/187.test.cpp
+  - test/yukicoder/2119.test.cpp
+  - test/yukicoder/590.test.cpp
+  - test/yukicoder/1593.test.cpp
+  - test/yukicoder/1956.test.cpp
+  - test/yukicoder/1262.test.cpp
+  - test/yukicoder/1728.test.cpp
+  - test/yukicoder/1411.test.cpp
+  - test/yukicoder/2120.test.cpp
+  - test/yukicoder/1881.test.cpp
+  - test/aoj/NTL_1_D.test.cpp
+  - test/aoj/ITP1_D_D.test.cpp
+  - test/aoj/ALDS1_1_C.test.cpp
 documentation_of: nt/primetest.hpp
 layout: document
 redirect_from:

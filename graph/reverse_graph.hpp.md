@@ -86,8 +86,8 @@ data:
   timestamp: '2022-12-05 10:41:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1601.test.cpp
   - test/library_checker/graph/K_shortest_walk.test.cpp
+  - test/yukicoder/1601.test.cpp
 documentation_of: graph/reverse_graph.hpp
 layout: document
 redirect_from:

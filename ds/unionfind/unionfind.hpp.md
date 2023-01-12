@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/functional.hpp
     title: graph/functional.hpp
   - icon: ':heavy_check_mark:'
@@ -32,7 +32,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/online_unionfind.hpp
     title: graph/online_unionfind.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
   _extendedVerifiedWith:
@@ -75,10 +75,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1170_2.test.cpp
     title: test/yukicoder/1170_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1211.test.cpp
     title: test/yukicoder/1211.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1242.test.cpp
     title: test/yukicoder/1242.test.cpp
   - icon: ':heavy_check_mark:'
@@ -87,13 +87,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1392.test.cpp
     title: test/yukicoder/1392.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1451.test.cpp
     title: test/yukicoder/1451.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1479.test.cpp
     title: test/yukicoder/1479.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1600.test.cpp
     title: test/yukicoder/1600.test.cpp
   - icon: ':heavy_check_mark:'
@@ -141,45 +141,45 @@ data:
   isVerificationFile: false
   path: ds/unionfind/unionfind.hpp
   requiredBy:
-  - geo/manhattan_mst.hpp
   - graph/functional.hpp
+  - graph/bipartite_edge_coloring.hpp
+  - graph/minimum_spanning_tree.hpp
+  - graph/tree_of_unionfind.hpp
   - graph/dag_path_cover.hpp
   - graph/online_mst.hpp
-  - graph/check_bipartite.hpp
-  - graph/minimum_spanning_tree.hpp
-  - graph/bipartite_edge_coloring.hpp
   - graph/maximum_antichain.hpp
   - graph/online_unionfind.hpp
-  - graph/tree_of_unionfind.hpp
+  - graph/check_bipartite.hpp
   - flow/bipartite.hpp
+  - geo/manhattan_mst.hpp
   timestamp: '2022-12-23 10:56:29+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/GRL_2_A.test.cpp
-  - test/aoj/2251_2.test.cpp
-  - test/aoj/2995.test.cpp
-  - test/aoj/2251_1.test.cpp
-  - test/aoj/1566.test.cpp
-  - test/yukicoder/1600.test.cpp
-  - test/yukicoder/1303.test.cpp
-  - test/yukicoder/1911.test.cpp
-  - test/yukicoder/1242.test.cpp
+  - test/library_checker/graph/bipartitematching.test.cpp
+  - test/library_checker/graph/bipartite_edge_coloring.test.cpp
+  - test/library_checker/graph/manhattan_mst.test.cpp
+  - test/library_checker/datastructure/unionfind.test.cpp
   - test/yukicoder/1451.test.cpp
-  - test/yukicoder/590.test.cpp
-  - test/yukicoder/1479.test.cpp
-  - test/yukicoder/114.test.cpp
-  - test/yukicoder/1983.test.cpp
   - test/yukicoder/1170_2.test.cpp
   - test/yukicoder/1744.test.cpp
-  - test/yukicoder/1745.test.cpp
+  - test/yukicoder/114.test.cpp
+  - test/yukicoder/590.test.cpp
+  - test/yukicoder/1242.test.cpp
+  - test/yukicoder/1983.test.cpp
+  - test/yukicoder/1479.test.cpp
+  - test/yukicoder/1911.test.cpp
+  - test/yukicoder/1303.test.cpp
   - test/yukicoder/2122.test.cpp
-  - test/yukicoder/1211.test.cpp
+  - test/yukicoder/1600.test.cpp
   - test/yukicoder/1392.test.cpp
+  - test/yukicoder/1211.test.cpp
+  - test/yukicoder/1745.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
+  - test/aoj/2251_1.test.cpp
+  - test/aoj/1566.test.cpp
+  - test/aoj/2251_2.test.cpp
+  - test/aoj/2995.test.cpp
   - test/mytest/tutte.test.cpp
-  - test/library_checker/datastructure/unionfind.test.cpp
-  - test/library_checker/graph/bipartite_edge_coloring.test.cpp
-  - test/library_checker/graph/bipartitematching.test.cpp
-  - test/library_checker/graph/manhattan_mst.test.cpp
   - test/atcoder/abc270_f.test.cpp
 documentation_of: ds/unionfind/unionfind.hpp
 layout: document

@@ -93,7 +93,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1311.test.cpp
     title: test/yukicoder/1311.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1326.test.cpp
     title: test/yukicoder/1326.test.cpp
   - icon: ':heavy_check_mark:'
@@ -184,43 +184,43 @@ data:
   isVerificationFile: false
   path: ds/fenwicktree/fenwicktree.hpp
   requiredBy:
-  - graph/ds/contour_sum.hpp
   - graph/ds/tree_abelgroup.hpp
-  - ds/offline_query/rectangle_add_rectangle_sum.hpp
-  - ds/offline_query/point_add_polygon_sum.hpp
-  - ds/offline_query/point_add_rectangle_sum.hpp
-  - ds/offline_query/coeffient_query_2d.hpp
-  - ds/offline_query/rectangle_add_point_sum.hpp
-  - ds/range_add_range_sum.hpp
+  - graph/ds/contour_sum.hpp
   - seq/inversion.hpp
   - seq/inversion_rotate.hpp
+  - ds/offline_query/point_add_rectangle_sum.hpp
+  - ds/offline_query/rectangle_add_rectangle_sum.hpp
+  - ds/offline_query/coeffient_query_2d.hpp
+  - ds/offline_query/point_add_polygon_sum.hpp
+  - ds/offline_query/rectangle_add_point_sum.hpp
+  - ds/range_add_range_sum.hpp
   timestamp: '2022-12-11 11:10:53+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/DSL_2_G.test.cpp
-  - test/aoj/DSL_2_E.test.cpp
-  - test/aoj/ALDS1_2_A.test.cpp
-  - test/aoj/ALDS1_5.test.cpp
-  - test/yukicoder/1311.test.cpp
-  - test/yukicoder/1326.test.cpp
-  - test/yukicoder/1641.test.cpp
-  - test/yukicoder/2161.test.cpp
-  - test/yukicoder/1490.test.cpp
-  - test/yukicoder/1038.test.cpp
-  - test/yukicoder/1270.test.cpp
-  - test/yukicoder/1874.test.cpp
-  - test/yukicoder/1838.test.cpp
-  - test/mytest/rect_add_pt_sum.test.cpp
-  - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
+  - test/library_checker/graph/verted_add_contour_sum.test.cpp
+  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - test/library_checker/datastructure/point_add_range_sum.test.cpp
+  - test/library_checker/datastructure/static_range_inversions_mo.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-  - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-  - test/library_checker/datastructure/point_add_range_sum.test.cpp
-  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
-  - test/library_checker/datastructure/static_range_inversions_mo.test.cpp
-  - test/library_checker/graph/verted_add_contour_sum.test.cpp
+  - test/yukicoder/1490.test.cpp
+  - test/yukicoder/2161.test.cpp
+  - test/yukicoder/1326.test.cpp
+  - test/yukicoder/1311.test.cpp
+  - test/yukicoder/1038.test.cpp
+  - test/yukicoder/1838.test.cpp
+  - test/yukicoder/1270.test.cpp
+  - test/yukicoder/1641.test.cpp
+  - test/yukicoder/1874.test.cpp
+  - test/aoj/ALDS1_5.test.cpp
+  - test/aoj/DSL_2_E.test.cpp
+  - test/aoj/ALDS1_2_A.test.cpp
+  - test/aoj/DSL_2_G.test.cpp
+  - test/mytest/rect_add_pt_sum.test.cpp
   - test/atcoder/abc190f.test.cpp
 documentation_of: ds/fenwicktree/fenwicktree.hpp
 layout: document
