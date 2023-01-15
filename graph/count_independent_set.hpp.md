@@ -34,20 +34,20 @@ data:
     \u306B\u3001\n// \u30D1\u30B9\u306E\u9802\u70B9\u5217, \u30B5\u30A4\u30AF\u30EB\
     \u306E\u9802\u70B9\u5217\n// \u306B\u5206\u89E3\u3059\u308B\ntemplate <typename\
     \ Graph>\npair<vvc<int>, vvc<int>> path_cycle(Graph& G) {\n  int N = G.N;\n  auto\
-    \ deg = G.deg_array();\n  assert(MAX(deg) <= 2);\n\n  vc<bool> done(N);\n  auto\
-    \ calc_frm = [&](int v) -> vc<int> {\n    vc<int> P = {v};\n    done[v] = 1;\n\
-    \    while (1) {\n      bool ok = 0;\n      for (auto&& e: G[P.back()]) {\n  \
-    \      if (done[e.to]) continue;\n        P.eb(e.to);\n        done[e.to] = 1;\n\
-    \        ok = 1;\n      }\n      if (!ok) break;\n    }\n    return P;\n  };\n\
-    \  vvc<int> paths, cycs;\n  FOR(v, N) {\n    if (deg[v] == 0) {\n      done[v]\
-    \ = 1;\n      paths.eb(vc<int>({int(v)}));\n    }\n    if (done[v] || deg[v] !=\
-    \ 1) continue;\n    paths.eb(calc_frm(v));\n  }\n  FOR(v, N) {\n    if (done[v])\
-    \ continue;\n    cycs.eb(calc_frm(v));\n  }\n  return {paths, cycs};\n}\n#line\
-    \ 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n  int val;\n  constexpr\
-    \ modint(ll x = 0) noexcept {\n    if (0 <= x && x < mod)\n      val = x;\n  \
-    \  else {\n      x %= mod;\n      val = (x < 0 ? x + mod : x);\n    }\n  }\n \
-    \ bool operator<(const modint &other) const {\n    return val < other.val;\n \
-    \ } // To use std::map\n  modint &operator+=(const modint &p) {\n    if ((val\
+    \ deg = G.deg_array();\n  assert(MAX(deg) <= 2);\n  assert(!G.is_directed());\n\
+    \n  vc<bool> done(N);\n  auto calc_frm = [&](int v) -> vc<int> {\n    vc<int>\
+    \ P = {v};\n    done[v] = 1;\n    while (1) {\n      bool ok = 0;\n      for (auto&&\
+    \ e: G[P.back()]) {\n        if (done[e.to]) continue;\n        P.eb(e.to);\n\
+    \        done[e.to] = 1;\n        ok = 1;\n      }\n      if (!ok) break;\n  \
+    \  }\n    return P;\n  };\n  vvc<int> paths, cycs;\n  FOR(v, N) {\n    if (deg[v]\
+    \ == 0) {\n      done[v] = 1;\n      paths.eb(vc<int>({int(v)}));\n    }\n   \
+    \ if (done[v] || deg[v] != 1) continue;\n    paths.eb(calc_frm(v));\n  }\n  FOR(v,\
+    \ N) {\n    if (done[v]) continue;\n    cycs.eb(calc_frm(v));\n  }\n  return {paths,\
+    \ cycs};\n}\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n\
+    \  int val;\n  constexpr modint(ll x = 0) noexcept {\n    if (0 <= x && x < mod)\n\
+    \      val = x;\n    else {\n      x %= mod;\n      val = (x < 0 ? x + mod : x);\n\
+    \    }\n  }\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
+    \  } // To use std::map\n  modint &operator+=(const modint &p) {\n    if ((val\
     \ += p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator-=(const\
     \ modint &p) {\n    if ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n\
     \  }\n  modint &operator*=(const modint &p) {\n    val = (int)(1LL * val * p.val\
@@ -418,7 +418,7 @@ data:
   isVerificationFile: false
   path: graph/count_independent_set.hpp
   requiredBy: []
-  timestamp: '2022-12-25 12:22:53+09:00'
+  timestamp: '2023-01-16 02:07:29+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/count_independent_set.hpp

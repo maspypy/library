@@ -928,6 +928,9 @@ data:
       path: nt/factor.hpp
       title: nt/factor.hpp
     - icon: ':heavy_check_mark:'
+      path: nt/four_square.hpp
+      title: nt/four_square.hpp
+    - icon: ':heavy_check_mark:'
       path: nt/function_on_divisors.hpp
       title: nt/function_on_divisors.hpp
     - icon: ':heavy_check_mark:'
@@ -2221,6 +2224,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/floor_ceil_ranges.test.cpp
       title: test/mytest/floor_ceil_ranges.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/four_square.test.cpp
+      title: test/mytest/four_square.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/gray_code.test.cpp
       title: test/mytest/gray_code.test.cpp

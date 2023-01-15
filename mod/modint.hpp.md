@@ -18,6 +18,9 @@ data:
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
   - icon: ':heavy_check_mark:'
+    path: nt/four_square.hpp
+    title: nt/four_square.hpp
+  - icon: ':heavy_check_mark:'
     path: nt/multiplicative_convolution_mod2n.hpp
     title: nt/multiplicative_convolution_mod2n.hpp
   - icon: ':heavy_check_mark:'
@@ -453,6 +456,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/four_square.test.cpp
+    title: test/mytest/four_square.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/multinomial.test.cpp
     title: test/mytest/multinomial.test.cpp
@@ -966,6 +972,7 @@ data:
   - poly/product_of_one_plus_xn.hpp
   - mod/mod_sqrt.hpp
   - mod/mod_log.hpp
+  - nt/four_square.hpp
   - nt/multiplicative_convolution_mod2n.hpp
   timestamp: '2022-12-25 12:22:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -1129,6 +1136,7 @@ data:
   - test/mytest/online_division.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/rbst_monoid_2.test.cpp
+  - test/mytest/four_square.test.cpp
   - test/mytest/multinomial.test.cpp
   - test/mytest/online_pow.test.cpp
   - test/mytest/conv2d.test.cpp

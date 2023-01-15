@@ -856,6 +856,9 @@ data:
     path: test/mytest/floor_ceil_ranges.test.cpp
     title: test/mytest/floor_ceil_ranges.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/four_square.test.cpp
+    title: test/mytest/four_square.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/gray_code.test.cpp
     title: test/mytest/gray_code.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2237,6 +2240,7 @@ data:
   - test/mytest/primesum_mod4.test.cpp
   - test/mytest/kdtree_monoid.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
+  - test/mytest/four_square.test.cpp
   - test/mytest/multinomial.test.cpp
   - test/mytest/online_pow.test.cpp
   - test/mytest/conv2d.test.cpp

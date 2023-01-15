@@ -60,6 +60,9 @@ data:
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
   - icon: ':heavy_check_mark:'
+    path: nt/four_square.hpp
+    title: nt/four_square.hpp
+  - icon: ':heavy_check_mark:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
   - icon: ':heavy_check_mark:'
@@ -183,6 +186,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/four_square.test.cpp
+    title: test/mytest/four_square.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/is_substring.test.cpp
     title: test/mytest/is_substring.test.cpp
@@ -439,6 +445,7 @@ data:
   - mod/mod_log.hpp
   - mod/mod_kth_root.hpp
   - mod/modular_subset_sum.hpp
+  - nt/four_square.hpp
   - nt/discrete_log.hpp
   - geo/count_points_in_triangles.hpp
   timestamp: '2022-10-23 11:21:57+09:00'
@@ -523,6 +530,7 @@ data:
   - test/mytest/min_max.test.cpp
   - test/mytest/kdtree_monoid.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
+  - test/mytest/four_square.test.cpp
   - test/mytest/online_pow.test.cpp
   - test/mytest/conv2d.test.cpp
   - test/mytest/maxidx_add.test.cpp
