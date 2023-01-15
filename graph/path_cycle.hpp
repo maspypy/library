@@ -6,6 +6,7 @@ pair<vvc<int>, vvc<int>> path_cycle(Graph& G) {
   int N = G.N;
   auto deg = G.deg_array();
   assert(MAX(deg) <= 2);
+  assert(!G.is_directed());
 
   vc<bool> done(N);
   auto calc_frm = [&](int v) -> vc<int> {
