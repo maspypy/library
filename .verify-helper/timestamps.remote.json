@@ -283,6 +283,7 @@
 "test/mytest/eulerian_number.test.cpp": "2022-12-25 12:22:53 +0900",
 "test/mytest/factorial_998.test.cpp": "2022-12-25 12:22:53 +0900",
 "test/mytest/floor_ceil_ranges.test.cpp": "2022-12-12 09:20:37 +0900",
+"test/mytest/four_square.test.cpp": "2023-01-16 02:07:41 +0900",
 "test/mytest/gray_code.test.cpp": "2022-12-12 09:20:37 +0900",
 "test/mytest/incremental_ch.test.cpp": "2022-12-12 09:20:37 +0900",
 "test/mytest/is_substring.test.cpp": "2022-12-12 09:20:37 +0900",
