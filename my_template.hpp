@@ -186,7 +186,7 @@ vector<int> argsort(const vector<T> &A) {
   vector<int> ids(len(A));
   iota(all(ids), 0);
   sort(all(ids),
-       [&](int i, int j) { return (A[i] == A[j] ? A[i] < A[j] : i < j); });
+       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });
   return ids;
 }
 
