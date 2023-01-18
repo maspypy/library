@@ -54,6 +54,7 @@ struct modint {
     }
     return ret;
   }
+#ifdef FASTIO
   void write() { fastio::printer.write(val); }
   void read() {
     ll x;
@@ -62,6 +63,7 @@ struct modint {
     if (x < 0) x += mod;
     val += x;
   }
+#endif
   static constexpr int get_mod() { return mod; }
 };
 
@@ -131,8 +133,10 @@ struct ArbitraryModInt {
     }
     return ret;
   }
+#ifdef FASTIO
   void write() { fastio::printer.write(val); }
   void read() { fastio::scanner.read(val); }
+#endif
 };
 
 template <typename mint>
