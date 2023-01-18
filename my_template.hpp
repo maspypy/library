@@ -30,7 +30,6 @@ using pq = priority_queue<T>;
 template <class T>
 using pqg = priority_queue<T, vector<T>, greater<T>>;
 
-#define vec(type, name, ...) vector<type> name(__VA_ARGS__)
 #define vv(type, name, h, ...) \
   vector<vector<type>> name(h, vector<type>(__VA_ARGS__))
 #define vvv(type, name, h, w, ...)   \
@@ -49,11 +48,10 @@ using pqg = priority_queue<T, vector<T>, greater<T>>;
 #define FOR1_R(a) for (ll i = (a)-1; i >= ll(0); --i)
 #define FOR2_R(i, a) for (ll i = (a)-1; i >= ll(0); --i)
 #define FOR3_R(i, a, b) for (ll i = (b)-1; i >= ll(a); --i)
-#define FOR4_R(i, a, b, c) for (ll i = (b)-1; i >= ll(a); i -= (c))
 #define overload4(a, b, c, d, e, ...) e
+#define overload3(a, b, c, d, ...) d
 #define FOR(...) overload4(__VA_ARGS__, FOR4, FOR3, FOR2, FOR1)(__VA_ARGS__)
-#define FOR_R(...) \
-  overload4(__VA_ARGS__, FOR4_R, FOR3_R, FOR2_R, FOR1_R)(__VA_ARGS__)
+#define FOR_R(...) overload3(__VA_ARGS__, FOR3_R, FOR2_R, FOR1_R)(__VA_ARGS__)
 
 #define FOR_subset(t, s) \
   for (ll t = (s); t >= 0; t = (t == 0 ? -1 : (t - 1) & (s)))
@@ -68,20 +66,6 @@ using pqg = priority_queue<T, vector<T>, greater<T>>;
 #define se second
 
 #define stoi stoll
-
-template <typename T, typename U>
-T SUM(const vector<U> &A) {
-  T sum = 0;
-  for (auto &&a: A) sum += a;
-  return sum;
-}
-
-#define MIN(v) *min_element(all(v))
-#define MAX(v) *max_element(all(v))
-#define LB(c, x) distance((c).begin(), lower_bound(all(c), (x)))
-#define UB(c, x) distance((c).begin(), upper_bound(all(c), (x)))
-#define UNIQUE(x) \
-  sort(all(x)), x.erase(unique(all(x)), x.end()), x.shrink_to_fit()
 
 int popcnt(int x) { return __builtin_popcount(x); }
 int popcnt(u32 x) { return __builtin_popcount(x); }
@@ -98,50 +82,59 @@ int lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }
 int lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }
 int lowbit(u64 x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }
 
-template <typename T>
-T pick(deque<T> &que) {
-  T a = que.front();
-  que.pop_front();
-  return a;
-}
-
-template <typename T>
-T pick(pq<T> &que) {
-  T a = que.top();
-  que.pop();
-  return a;
-}
-
-template <typename T>
-T pick(pqg<T> &que) {
-  assert(que.size());
-  T a = que.top();
-  que.pop();
-  return a;
-}
-
-template <typename T>
-T pick(vc<T> &que) {
-  assert(que.size());
-  T a = que.back();
-  que.pop_back();
-  return a;
-}
-
 template <typename T, typename U>
 T ceil(T x, U y) {
   return (x > 0 ? (x + y - 1) / y : x / y);
 }
-
 template <typename T, typename U>
 T floor(T x, U y) {
   return (x > 0 ? x / y : (x - y + 1) / y);
 }
-
 template <typename T, typename U>
 pair<T, T> divmod(T x, U y) {
   T q = floor(x, y);
   return {q, x - q * y};
+}
+
+template <typename T, typename U>
+T SUM(const vector<U> &A) {
+  T sum = 0;
+  for (auto &&a: A) sum += a;
+  return sum;
+}
+
+#define MIN(v) *min_element(all(v))
+#define MAX(v) *max_element(all(v))
+#define LB(c, x) distance((c).begin(), lower_bound(all(c), (x)))
+#define UB(c, x) distance((c).begin(), upper_bound(all(c), (x)))
+#define UNIQUE(x) \
+  sort(all(x)), x.erase(unique(all(x)), x.end()), x.shrink_to_fit()
+
+template <typename T>
+T POP(deque<T> &que) {
+  T a = que.front();
+  que.pop_front();
+  return a;
+}
+template <typename T>
+T POP(pq<T> &que) {
+  T a = que.top();
+  que.pop();
+  return a;
+}
+template <typename T>
+T POP(pqg<T> &que) {
+  assert(!que.empty());
+  T a = que.top();
+  que.pop();
+  return a;
+}
+template <typename T>
+T POP(vc<T> &que) {
+  assert(!que.empty());
+  T a = que.back();
+  que.pop_back();
+  return a;
 }
 
 template <typename F>
@@ -153,7 +146,6 @@ ll binary_search(F check, ll ok, ll ng) {
   }
   return ok;
 }
-
 template <typename F>
 double binary_search_real(F check, double ok, double ng, int iter = 100) {
   FOR(iter) {
@@ -172,9 +164,10 @@ inline bool chmin(T &a, const S &b) {
   return (a > b ? a = b, 1 : 0);
 }
 
+// ? は -1
 vc<int> s_to_vi(const string &S, char first_char) {
   vc<int> A(S.size());
-  FOR(i, S.size()) { A[i] = S[i] - first_char; }
+  FOR(i, S.size()) { A[i] = (S[i] == '?' ? S[i] - first_char : -1); }
   return A;
 }
 
@@ -187,29 +180,21 @@ vector<T> cumsum(vector<U> &A, int off = 1) {
   return B;
 }
 
-template <typename CNT, typename T>
-vc<CNT> bincount(const vc<T> &A, int size) {
-  vc<CNT> C(size);
-  for (auto &&x: A) { ++C[x]; }
-  return C;
-}
-
-// stable
+// stable sort
 template <typename T>
 vector<int> argsort(const vector<T> &A) {
-  vector<int> ids(A.size());
+  vector<int> ids(len(A));
   iota(all(ids), 0);
   sort(all(ids),
-       [&](int i, int j) { return A[i] < A[j] || (A[i] == A[j] && i < j); });
+       [&](int i, int j) { return (A[i] == A[j] ? A[i] < A[j] : i < j); });
   return ids;
 }
 
 // A[I[0]], A[I[1]], ...
 template <typename T>
 vc<T> rearrange(const vc<T> &A, const vc<int> &I) {
-  int n = len(I);
-  vc<T> B(n);
-  FOR(i, n) B[i] = A[I[i]];
+  vc<T> B(len(I));
+  FOR(i, len(I)) B[i] = A[I[i]];
   return B;
 }
 #endif
