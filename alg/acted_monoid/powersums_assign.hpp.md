@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: alg/monoid/add_array.hpp
     title: alg/monoid/add_array.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
   _extendedRequiredBy: []
