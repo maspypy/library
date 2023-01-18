@@ -15,10 +15,10 @@ vc<T> minplus_convolution_convex(vc<T> A, vc<T> B, const T INF) {
   int nB = R - L;
   int n = NA + nB - 1;
 
-  auto select = [&](int i, int j, int k) -> bool {
-    if (i < k) return false;
-    if (i - j >= nB) return true;
-    return A[j] + B[i - j] > A[k] + B[i - k];
+  auto select = [&](int i, int j, int k) -> int {
+    if (i < k) return j;
+    if (i - j >= nB) return k;
+    return (A[j] + B[i - j] > A[k] + B[i - k] ? k : j);
   };
 
   vc<int> J = SMAWK(n, NA, select);

@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "random/base.hpp"
 
-#include "seq/minplus_convolution_convex.hpp"
+#include "convex/minplus_convolution_convex.hpp"
 
 const int INF = numeric_limits<int>::max();
 
