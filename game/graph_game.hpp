@@ -25,7 +25,7 @@ struct Graph_Game {
     }
 
     while (!que.empty()) {
-      auto v = pick(que);
+      auto v = POP(que);
       if (win[v] || lose[v]) continue;
       lose[v] = 1;
       for (auto&& e: G[v]) {

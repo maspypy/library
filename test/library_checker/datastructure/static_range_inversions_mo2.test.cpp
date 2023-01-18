@@ -39,7 +39,7 @@ void solve() {
     history.eb(x);
   };
   auto rb = [&](int t) -> void {
-    while (len(history) > t) { bit.add(pick(history), -1); }
+    while (len(history) > t) { bit.add(POP(history), -1); }
   };
   auto reset = [&]() -> void {
     rb(0);

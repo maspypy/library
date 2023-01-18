@@ -64,8 +64,8 @@ struct Slope_Trick {
     i128 y = min_f;
     pq<ll> que_l_copy = que_l;
     pqg<ll> que_r_copy = que_r;
-    while (len(que_l_copy)) { y += max<ll>(0, (pick(que_l_copy) + add_l) - x); }
-    while (len(que_r_copy)) { y += max<ll>(0, x - (pick(que_r_copy) + add_r)); }
+    while (len(que_l_copy)) { y += max<ll>(0, (POP(que_l_copy) + add_l) - x); }
+    while (len(que_r_copy)) { y += max<ll>(0, x - (POP(que_r_copy) + add_r)); }
     return y;
   }
 
@@ -94,8 +94,8 @@ struct Slope_Trick {
     vi left, right;
     pq<ll> que_l_copy = que_l;
     pqg<ll> que_r_copy = que_r;
-    while (len(que_l_copy)) { left.eb(pick(que_l_copy) + add_l); }
-    while (len(que_r_copy)) { right.eb(pick(que_r_copy) + add_r); }
+    while (len(que_l_copy)) { left.eb(POP(que_l_copy) + add_l); }
+    while (len(que_r_copy)) { right.eb(POP(que_r_copy) + add_r); }
     sort(all(left));
     sort(all(right));
     print("min_f", min_f, "left", left, "right", right);

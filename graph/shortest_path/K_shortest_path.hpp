@@ -44,7 +44,7 @@ vc<tuple<T, vc<int>, vc<int>>> K_shortest_path(Graph<T, 1>& G, int s, int t,
       int s0 = (es.empty() ? s : G.edges[es.back()].to);
       add(s0, pref_cost, -1);
       while (len(que)) {
-        auto [dv, v] = pick(que);
+        auto [dv, v] = POP(que);
         if (dv != dist[v]) continue;
         if (v == t) break;
         for (auto&& e: G[v]) {
@@ -78,7 +78,7 @@ vc<tuple<T, vc<int>, vc<int>>> K_shortest_path(Graph<T, 1>& G, int s, int t,
     }
     int idx = best.fi;
     swap(paths[idx], paths[len(paths) - 1]);
-    auto [cost, es, ng_es, n] = pick(paths);
+    auto [cost, es, ng_es, n] = POP(paths);
     vc<int> vs = {s};
     for (auto&& x: es) vs.eb(G.edges[x].to);
     res.eb(cost, vs, es);

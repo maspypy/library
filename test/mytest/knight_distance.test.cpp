@@ -19,7 +19,7 @@ void test() {
   ll dx[] = {2, 1, -1, -2, -2, -1, 1, 2};
   ll dy[] = {1, 2, 2, 1, -1, -2, -2, -1};
   while (len(que)) {
-    auto [x, y] = pick(que);
+    auto [x, y] = POP(que);
     FOR(d, 8) {
       ll nx = x + dx[d], ny = y + dy[d];
       pi key = {x, y};

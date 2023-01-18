@@ -126,7 +126,7 @@ struct BipartiteMatching {
     FOR(v, N) if (match[v] == -1 && color[v] == 0) add(v, 0);
     FOR(v, N) if (match[v] == -1 && color[v] == 1) add(v, INF);
     while (len(que)) {
-      auto v = pick(que);
+      auto v = POP(que);
       if (match[v] != -1) add(match[v], W[v]);
       if (color[v] == 0 && W[v] == 0) {
         for (auto&& e: G[v]) { add(e.to, W[v]); }

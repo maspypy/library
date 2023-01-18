@@ -20,7 +20,7 @@ vc<T> K_shortest_walk(GT &G, int s, int t, int K, T INF) {
   vc<int> st = {t};
   vis[t] = 1;
   while (len(st)) {
-    int v = pick(st);
+    int v = POP(st);
     bool done = 0;
     for (auto &&e: G[v]) {
       if (dist[e.to] == INF) continue;
