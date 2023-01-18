@@ -10,7 +10,7 @@
 　・ただし、任意の集合は op(a,b) = b などによってモノイドにできるので、あまり意味がないかもしれない
 
 ・実用上、ActedMonoid においては X の可換性を仮定してよい気がする
-　・特に動的木の場合の整備の簡略化のために有効
+　→ うそで、https://codeforces.com/contest/1076/problem/G では MX が非可換だった
 
 ・Monoid への要請
 　・value_type
