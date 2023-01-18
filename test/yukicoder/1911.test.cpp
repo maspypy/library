@@ -43,7 +43,7 @@ void solve() {
       };
       add(Sc, S, loss[Sc][S]);
       while (len(que)) {
-        auto [d, c, v] = pick(que);
+        auto [d, c, v] = POP(que);
         if (d != dist[c][v]) continue;
         for (auto&& e: G[v]) {
           add(1 - c, e.to, dist[c][v] + loss[1 - c][e.to]);

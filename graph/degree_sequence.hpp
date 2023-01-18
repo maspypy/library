@@ -32,7 +32,7 @@ vc<pair<int, int>> construct_from_degree_sequence(vc<int> deg) {
   int mx = N - 1;
   FOR(N) {
     while (len(dat[mx]) == 0) --mx;
-    int v = pick(dat[mx]);
+    int v = POP(dat[mx]);
     vc<int> nbd;
     int k = mx;
     while (len(nbd) < deg[v]) {
@@ -41,7 +41,7 @@ vc<pair<int, int>> construct_from_degree_sequence(vc<int> deg) {
         --k;
         continue;
       }
-      int x = pick(dat[k]);
+      int x = POP(dat[k]);
       nbd.eb(x);
     }
     for (auto&& x: nbd) {

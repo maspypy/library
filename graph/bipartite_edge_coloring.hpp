@@ -105,7 +105,7 @@ struct RegularBipartiteColoring {
     }
     auto dfs = [&](auto& dfs, int v, int color) -> void {
       while (len(G[v])) {
-        auto [i, to] = pick(G[v]);
+        auto [i, to] = POP(G[v]);
         if (!rest[i]) continue;
         rest[i] = 0;
         if (color == 0) A0.eb(A[i]);
@@ -131,8 +131,8 @@ pair<int, vc<int>> bipartite_edge_coloring(GT& G) {
       if (vcolor[v] == c) que.emplace(deg[v], v);
     }
     while (len(que) > 1) {
-      auto [d1, v1] = pick(que);
-      auto [d2, v2] = pick(que);
+      auto [d1, v1] = POP(que);
+      auto [d2, v2] = POP(que);
       if (d1 + d2 > D) break;
       uf.merge(v1, v2);
       int r = uf[v1];

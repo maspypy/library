@@ -56,7 +56,7 @@ void solve() {
   dist[sx][sy] = 0;
   que.eb(sx, sy);
   while (len(que)) {
-    auto [x, y] = pick(que);
+    auto [x, y] = POP(que);
     FOR(d, 4) {
       int nx = x + dx[d], ny = y + dy[d];
       if (G[nx][ny] == '#') continue;

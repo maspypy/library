@@ -25,7 +25,7 @@ pair<vc<int>, vc<int>> find_odd_cycle(GT& G) {
     if (dist[2 * root] != INF || dist[2 * root + 1] != INF) continue;
     add(2 * root, 0, -1);
     while (len(que)) {
-      auto v = pick(que);
+      auto v = POP(que);
       auto [a, b] = divmod(v, 2);
       for (auto&& e: G[a]) {
         if (comp[e.frm] != comp[e.to]) continue;
