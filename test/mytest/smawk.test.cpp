@@ -9,7 +9,8 @@ void test() {
   A[1] = {0, 2, 4, 3, 1};
   A[2] = {1, 3, 4, 2, 0};
   A[3] = {4, 2, 3, 1, 0};
-  auto f = [&](int i, int j) -> int { return A[i][j]; };
+  auto f
+      = [&](int i, int j, int k) -> int { return (A[i][j] > A[i][k] ? k : j); };
 
   vc<int> I = SMAWK(4, 5, f);
   vc<int> J = {0, 0, 4, 4};

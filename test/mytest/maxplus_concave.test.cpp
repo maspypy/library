@@ -3,9 +3,9 @@
 #include "other/io.hpp"
 #include "random/base.hpp"
 
-#include "seq/maxplus_convolution_concave.hpp"
+#include "convex/maxplus_convolution_concave.hpp"
 
-const int INF = numeric_limits<int>::max();
+const int INF = numeric_limits<int>::max() / 2;
 
 vc<int> gen(int L, int N, int R) {
   vc<int> A(N);
