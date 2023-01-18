@@ -2,6 +2,7 @@
 #include <unistd.h>
 
 namespace fastio {
+#define FASTIO
 // クラスが read(), print() を持っているかを判定するメタ関数
 struct has_write_impl {
   template <class T>
