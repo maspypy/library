@@ -75,5 +75,8 @@
 "test/atcoder/abc249_ex.test.cpp": "2023-01-19 00:36:40 +0900",
 "test/atcoder/abc256d.test.cpp": "2023-01-19 00:35:26 +0900",
 "test/atcoder/abc266c.test.cpp": "2023-01-19 00:35:26 +0900",
-"test/atcoder/abc266f.test.cpp": "2023-01-19 00:37:59 +0900"
+"test/atcoder/abc266f.test.cpp": "2023-01-19 00:37:59 +0900",
+"test/atcoder/abc269ex.test.cpp": "2023-01-19 00:37:59 +0900",
+"test/atcoder/abc270_f.test.cpp": "2023-01-19 00:37:59 +0900",
+"test/atcoder/abc270_g.test.cpp": "2023-01-19 00:36:40 +0900"
 }
