@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: enumerate/multisets.hpp
     title: enumerate/multisets.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
