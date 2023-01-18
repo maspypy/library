@@ -10,10 +10,9 @@ struct TREE {
   using WT = typename GT::cost_type;
   int N;
   bool hld;
-  vector<int> LID, RID, head, V, parent, root;
+  vector<int> LID, RID, head, V, parent;
   vc<int> depth;
   vc<WT> depth_weighted;
-  vector<bool> in_tree;
 
   TREE(GT &G, int r = -1, bool hld = 1)
       : G(G),
@@ -24,10 +23,8 @@ struct TREE {
         head(G.N, r),
         V(G.N),
         parent(G.N, -1),
-        root(G.N, -1),
         depth(G.N, -1),
-        depth_weighted(G.N, 0),
-        in_tree(G.M, 0) {
+        depth_weighted(G.N, 0) {
     assert(G.is_prepared());
     int t1 = 0;
     if (r != -1) {
@@ -42,7 +39,6 @@ struct TREE {
         }
       }
     }
-    for (auto &&v: V) root[v] = (parent[v] == -1 ? v : root[parent[v]]);
   }
 
   void dfs_sz(int v, int p) {
@@ -60,7 +56,6 @@ struct TREE {
     for (int i = l; i < r; ++i) {
       auto e = csr[i];
       if (depth[e.to] != -1) continue;
-      in_tree[e.id] = 1;
       depth_weighted[e.to] = depth_weighted[v] + e.cost;
       dfs_sz(e.to, v);
       sz[v] += sz[e.to];
@@ -74,7 +69,7 @@ struct TREE {
     V[LID[v]] = v;
     bool heavy = true;
     for (auto &&e: G[v]) {
-      if (!in_tree[e.id] || depth[e.to] <= depth[v]) continue;
+      if (depth[e.to] <= depth[v]) continue;
       head[e.to] = (heavy ? head[v] : e.to);
       heavy = false;
       dfs_hld(e.to, times);
