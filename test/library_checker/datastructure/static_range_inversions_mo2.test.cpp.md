@@ -268,7 +268,7 @@ data:
     \    bit.add(x, +1);\n    history.eb(x);\n  };\n  auto add_r = [&](int i) -> void\
     \ {\n    int x = A[i];\n    inv += bit.sum_all() - bit.sum(x + 1);\n    bit.add(x,\
     \ +1);\n    history.eb(x);\n  };\n  auto rb = [&](int t) -> void {\n    while\
-    \ (len(history) > t) { bit.add(pick(history), -1); }\n  };\n  auto reset = [&]()\
+    \ (len(history) > t) { bit.add(POP(history), -1); }\n  };\n  auto reset = [&]()\
     \ -> void {\n    rb(0);\n    inv = 0;\n  };\n  auto save = [&]() -> void {\n \
     \   t = len(history);\n    tinv = inv;\n  };\n  auto rollback = [&]() -> void\
     \ {\n    rb(t);\n    inv = tinv;\n  };\n  auto calc = [&](int i) -> void { ANS[i]\
@@ -285,7 +285,7 @@ data:
     \ i) -> void {\n    int x = A[i];\n    inv += bit.sum(x);\n    bit.add(x, +1);\n\
     \    history.eb(x);\n  };\n  auto add_r = [&](int i) -> void {\n    int x = A[i];\n\
     \    inv += bit.sum_all() - bit.sum(x + 1);\n    bit.add(x, +1);\n    history.eb(x);\n\
-    \  };\n  auto rb = [&](int t) -> void {\n    while (len(history) > t) { bit.add(pick(history),\
+    \  };\n  auto rb = [&](int t) -> void {\n    while (len(history) > t) { bit.add(POP(history),\
     \ -1); }\n  };\n  auto reset = [&]() -> void {\n    rb(0);\n    inv = 0;\n  };\n\
     \  auto save = [&]() -> void {\n    t = len(history);\n    tinv = inv;\n  };\n\
     \  auto rollback = [&]() -> void {\n    rb(t);\n    inv = tinv;\n  };\n  auto\
@@ -302,7 +302,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 00:35:26+09:00'
+  timestamp: '2023-01-19 01:40:23+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp

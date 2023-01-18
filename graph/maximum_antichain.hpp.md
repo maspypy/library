@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
   - icon: ':question:'
@@ -18,12 +18,12 @@ data:
     title: graph/strongly_connected_component.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2251_2.test.cpp
     title: test/aoj/2251_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -155,7 +155,7 @@ data:
     \      if (W[v] == -1) {\r\n        W[v] = x;\r\n        que.eb(v);\r\n      }\r\
     \n    };\r\n    FOR(v, N) if (match[v] == -1 && color[v] == 0) add(v, 0);\r\n\
     \    FOR(v, N) if (match[v] == -1 && color[v] == 1) add(v, INF);\r\n    while\
-    \ (len(que)) {\r\n      auto v = pick(que);\r\n      if (match[v] != -1) add(match[v],\
+    \ (len(que)) {\r\n      auto v = POP(que);\r\n      if (match[v] != -1) add(match[v],\
     \ W[v]);\r\n      if (color[v] == 0 && W[v] == 0) {\r\n        for (auto&& e:\
     \ G[v]) { add(e.to, W[v]); }\r\n      }\r\n      if (color[v] == 1 && W[v] ==\
     \ INF) {\r\n        for (auto&& e: G[v]) { add(e.to, W[v]); }\r\n      }\r\n \
@@ -200,8 +200,8 @@ data:
   isVerificationFile: false
   path: graph/maximum_antichain.hpp
   requiredBy: []
-  timestamp: '2022-12-23 10:56:29+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-01-19 01:40:23+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/2251_2.test.cpp
 documentation_of: graph/maximum_antichain.hpp

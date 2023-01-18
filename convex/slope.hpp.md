@@ -6,10 +6,10 @@ data:
     path: flow/min_cost_matching_on_line.hpp
     title: flow/min_cost_matching_on_line.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc127f.test.cpp
     title: test/atcoder/abc127f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc217h.test.cpp
     title: test/atcoder/abc217h.test.cpp
   - icon: ':x:'
@@ -23,7 +23,7 @@ data:
     title: test/yukicoder/1077.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/slope.hpp\"\nstruct Slope_Trick {\r\n  static constexpr\
@@ -52,8 +52,8 @@ data:
     \ ll &a, const ll &b) {\r\n    add_l += a, add_r += b;\r\n  }\r\n\r\n  // O(size\
     \ log(size))\r\n  i128 eval(ll x) {\r\n    i128 y = min_f;\r\n    pq<ll> que_l_copy\
     \ = que_l;\r\n    pqg<ll> que_r_copy = que_r;\r\n    while (len(que_l_copy)) {\
-    \ y += max<ll>(0, (pick(que_l_copy) + add_l) - x); }\r\n    while (len(que_r_copy))\
-    \ { y += max<ll>(0, x - (pick(que_r_copy) + add_r)); }\r\n    return y;\r\n  }\r\
+    \ y += max<ll>(0, (POP(que_l_copy) + add_l) - x); }\r\n    while (len(que_r_copy))\
+    \ { y += max<ll>(0, x - (POP(que_r_copy) + add_r)); }\r\n    return y;\r\n  }\r\
     \n\r\n  void push_R(const ll &x) { que_r.emplace(x - add_r); }\r\n  void push_L(const\
     \ ll &x) { que_l.emplace(x - add_l); }\r\n  ll top_R() {\r\n    if (que_r.empty())\
     \ que_r.emplace(RMAX);\r\n    return que_r.top() + add_r;\r\n  }\r\n  ll top_L()\
@@ -62,8 +62,8 @@ data:
     \n    return res;\r\n  }\r\n  ll pop_L() {\r\n    ll res = top_L();\r\n    que_l.pop();\r\
     \n    return res;\r\n  }\r\n\r\n  void debug() {\r\n    vi left, right;\r\n  \
     \  pq<ll> que_l_copy = que_l;\r\n    pqg<ll> que_r_copy = que_r;\r\n    while\
-    \ (len(que_l_copy)) { left.eb(pick(que_l_copy) + add_l); }\r\n    while (len(que_r_copy))\
-    \ { right.eb(pick(que_r_copy) + add_r); }\r\n    sort(all(left));\r\n    sort(all(right));\r\
+    \ (len(que_l_copy)) { left.eb(POP(que_l_copy) + add_l); }\r\n    while (len(que_r_copy))\
+    \ { right.eb(POP(que_r_copy) + add_r); }\r\n    sort(all(left));\r\n    sort(all(right));\r\
     \n    print(\"min_f\", min_f, \"left\", left, \"right\", right);\r\n  }\r\n};\n"
   code: "struct Slope_Trick {\r\n  static constexpr ll LMIN = numeric_limits<ll>::lowest()\
     \ / 2;\r\n  static constexpr ll RMAX = numeric_limits<ll>::max() / 2;\r\n  pq<ll>\
@@ -90,8 +90,8 @@ data:
     \ y <= x-a} f(y)\r\n  void sliding_window_minimum(const ll &a, const ll &b) {\r\
     \n    add_l += a, add_r += b;\r\n  }\r\n\r\n  // O(size log(size))\r\n  i128 eval(ll\
     \ x) {\r\n    i128 y = min_f;\r\n    pq<ll> que_l_copy = que_l;\r\n    pqg<ll>\
-    \ que_r_copy = que_r;\r\n    while (len(que_l_copy)) { y += max<ll>(0, (pick(que_l_copy)\
-    \ + add_l) - x); }\r\n    while (len(que_r_copy)) { y += max<ll>(0, x - (pick(que_r_copy)\
+    \ que_r_copy = que_r;\r\n    while (len(que_l_copy)) { y += max<ll>(0, (POP(que_l_copy)\
+    \ + add_l) - x); }\r\n    while (len(que_r_copy)) { y += max<ll>(0, x - (POP(que_r_copy)\
     \ + add_r)); }\r\n    return y;\r\n  }\r\n\r\n  void push_R(const ll &x) { que_r.emplace(x\
     \ - add_r); }\r\n  void push_L(const ll &x) { que_l.emplace(x - add_l); }\r\n\
     \  ll top_R() {\r\n    if (que_r.empty()) que_r.emplace(RMAX);\r\n    return que_r.top()\
@@ -100,8 +100,8 @@ data:
     \n    que_r.pop();\r\n    return res;\r\n  }\r\n  ll pop_L() {\r\n    ll res =\
     \ top_L();\r\n    que_l.pop();\r\n    return res;\r\n  }\r\n\r\n  void debug()\
     \ {\r\n    vi left, right;\r\n    pq<ll> que_l_copy = que_l;\r\n    pqg<ll> que_r_copy\
-    \ = que_r;\r\n    while (len(que_l_copy)) { left.eb(pick(que_l_copy) + add_l);\
-    \ }\r\n    while (len(que_r_copy)) { right.eb(pick(que_r_copy) + add_r); }\r\n\
+    \ = que_r;\r\n    while (len(que_l_copy)) { left.eb(POP(que_l_copy) + add_l);\
+    \ }\r\n    while (len(que_r_copy)) { right.eb(POP(que_r_copy) + add_r); }\r\n\
     \    sort(all(left));\r\n    sort(all(right));\r\n    print(\"min_f\", min_f,\
     \ \"left\", left, \"right\", right);\r\n  }\r\n};"
   dependsOn: []
@@ -109,8 +109,8 @@ data:
   path: convex/slope.hpp
   requiredBy:
   - flow/min_cost_matching_on_line.hpp
-  timestamp: '2022-12-03 09:41:32+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-01-19 01:40:23+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1077.test.cpp
   - test/mytest/min_cost_matching_on_line.test.cpp

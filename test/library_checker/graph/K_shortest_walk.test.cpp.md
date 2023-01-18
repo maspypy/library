@@ -296,7 +296,7 @@ data:
     \ decltype(RG)>(RG, t, INF);\n  if (dist[s] == INF) { return vc<T>(K, INF); }\n\
     \n  using P = pair<T, int>;\n  Meldable_Heap<P, true, NODES> X;\n  using np =\
     \ typename decltype(X)::np;\n  vc<np> nodes(N, nullptr);\n\n  vc<bool> vis(N);\n\
-    \  vc<int> st = {t};\n  vis[t] = 1;\n  while (len(st)) {\n    int v = pick(st);\n\
+    \  vc<int> st = {t};\n  vis[t] = 1;\n  while (len(st)) {\n    int v = POP(st);\n\
     \    bool done = 0;\n    for (auto &&e: G[v]) {\n      if (dist[e.to] == INF)\
     \ continue;\n      if (!done && par[v] == e.to && dist[v] == dist[e.to] + e.cost)\
     \ {\n        done = 1;\n        continue;\n      }\n      T cost = -dist[v] +\
@@ -335,7 +335,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/K_shortest_walk.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 00:35:26+09:00'
+  timestamp: '2023-01-19 01:40:23+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/K_shortest_walk.test.cpp

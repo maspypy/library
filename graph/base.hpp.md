@@ -5,7 +5,7 @@ data:
   - icon: ':x:'
     path: enumerate/triangles.hpp
     title: enumerate/triangles.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
   - icon: ':warning:'
@@ -26,13 +26,13 @@ data:
   - icon: ':x:'
     path: graph/centroid.hpp
     title: graph/centroid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
   - icon: ':x:'
     path: graph/classify_subtree.hpp
     title: graph/classify_subtree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
   - icon: ':x:'
@@ -74,7 +74,7 @@ data:
   - icon: ':x:'
     path: graph/functional.hpp
     title: graph/functional.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
   - icon: ':x:'
@@ -131,7 +131,7 @@ data:
   - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
   - icon: ':question:'
@@ -168,13 +168,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/0275.test.cpp
     title: test/aoj/0275.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/1566.test.cpp
     title: test/aoj/1566.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2251_1.test.cpp
     title: test/aoj/2251_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2251_2.test.cpp
     title: test/aoj/2251_2.test.cpp
   - icon: ':heavy_check_mark:'

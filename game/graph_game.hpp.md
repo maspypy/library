@@ -73,7 +73,7 @@ data:
     \    auto [indeg, outdeg] = G.deg_array_inout();\n    int N = G.N;\n    win.resize(N);\n\
     \    lose.resize(N);\n    end_turn.resize(N, 1 << 30);\n    best_strategy.resize(N,\
     \ -1);\n    deque<int> que;\n    FOR(v, N) {\n      if (outdeg[v] == 0) que.eb(v);\n\
-    \    }\n\n    while (!que.empty()) {\n      auto v = pick(que);\n      if (win[v]\
+    \    }\n\n    while (!que.empty()) {\n      auto v = POP(que);\n      if (win[v]\
     \ || lose[v]) continue;\n      lose[v] = 1;\n      for (auto&& e: G[v]) {\n  \
     \      if (lose[e.to]) win[v] = 1;\n        if (!win[e.to]) lose[v] = 0;\n   \
     \   }\n      assert(win[v] ^ lose[v]);\n      if (win[v]) {\n        for (auto&&\
@@ -95,9 +95,9 @@ data:
     \  int N = G.N;\n    win.resize(N);\n    lose.resize(N);\n    end_turn.resize(N,\
     \ 1 << 30);\n    best_strategy.resize(N, -1);\n    deque<int> que;\n    FOR(v,\
     \ N) {\n      if (outdeg[v] == 0) que.eb(v);\n    }\n\n    while (!que.empty())\
-    \ {\n      auto v = pick(que);\n      if (win[v] || lose[v]) continue;\n     \
-    \ lose[v] = 1;\n      for (auto&& e: G[v]) {\n        if (lose[e.to]) win[v] =\
-    \ 1;\n        if (!win[e.to]) lose[v] = 0;\n      }\n      assert(win[v] ^ lose[v]);\n\
+    \ {\n      auto v = POP(que);\n      if (win[v] || lose[v]) continue;\n      lose[v]\
+    \ = 1;\n      for (auto&& e: G[v]) {\n        if (lose[e.to]) win[v] = 1;\n  \
+    \      if (!win[e.to]) lose[v] = 0;\n      }\n      assert(win[v] ^ lose[v]);\n\
     \      if (win[v]) {\n        for (auto&& e: G[v]) {\n          if (chmin(end_turn[v],\
     \ end_turn[e.to] + 1)) {\n            best_strategy[v] = e.to;\n          }\n\
     \        }\n      }\n      if (lose[v]) {\n        end_turn[v] = 0;\n        for\
@@ -111,7 +111,7 @@ data:
   isVerificationFile: false
   path: game/graph_game.hpp
   requiredBy: []
-  timestamp: '2022-12-05 10:41:25+09:00'
+  timestamp: '2023-01-19 01:40:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: game/graph_game.hpp

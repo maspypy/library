@@ -87,7 +87,7 @@ data:
     \ que;\n  auto add = [&](int v, int d, int p) -> void {\n    if (chmin(dist[v],\
     \ d)) {\n      que.eb(v);\n      par[v] = p;\n    }\n  };\n  FOR(root, N) {\n\
     \    if (dist[2 * root] != INF || dist[2 * root + 1] != INF) continue;\n    add(2\
-    \ * root, 0, -1);\n    while (len(que)) {\n      auto v = pick(que);\n      auto\
+    \ * root, 0, -1);\n    while (len(que)) {\n      auto v = POP(que);\n      auto\
     \ [a, b] = divmod(v, 2);\n      for (auto&& e: G[a]) {\n        if (comp[e.frm]\
     \ != comp[e.to]) continue;\n        int w = 2 * e.to + (b ^ 1);\n        add(w,\
     \ dist[v] + 1, e.id);\n      }\n    }\n    if (dist[2 * root + 1] == INF) continue;\n\
@@ -112,7 +112,7 @@ data:
     \ que;\n  auto add = [&](int v, int d, int p) -> void {\n    if (chmin(dist[v],\
     \ d)) {\n      que.eb(v);\n      par[v] = p;\n    }\n  };\n  FOR(root, N) {\n\
     \    if (dist[2 * root] != INF || dist[2 * root + 1] != INF) continue;\n    add(2\
-    \ * root, 0, -1);\n    while (len(que)) {\n      auto v = pick(que);\n      auto\
+    \ * root, 0, -1);\n    while (len(que)) {\n      auto v = POP(que);\n      auto\
     \ [a, b] = divmod(v, 2);\n      for (auto&& e: G[a]) {\n        if (comp[e.frm]\
     \ != comp[e.to]) continue;\n        int w = 2 * e.to + (b ^ 1);\n        add(w,\
     \ dist[v] + 1, e.id);\n      }\n    }\n    if (dist[2 * root + 1] == INF) continue;\n\
@@ -132,7 +132,7 @@ data:
   isVerificationFile: false
   path: graph/find_odd_cycle.hpp
   requiredBy: []
-  timestamp: '2022-12-05 10:41:25+09:00'
+  timestamp: '2023-01-19 01:40:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/find_odd_cycle.hpp

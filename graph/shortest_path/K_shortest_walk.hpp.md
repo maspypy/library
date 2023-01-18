@@ -112,7 +112,7 @@ data:
     \ decltype(RG)>(RG, t, INF);\n  if (dist[s] == INF) { return vc<T>(K, INF); }\n\
     \n  using P = pair<T, int>;\n  Meldable_Heap<P, true, NODES> X;\n  using np =\
     \ typename decltype(X)::np;\n  vc<np> nodes(N, nullptr);\n\n  vc<bool> vis(N);\n\
-    \  vc<int> st = {t};\n  vis[t] = 1;\n  while (len(st)) {\n    int v = pick(st);\n\
+    \  vc<int> st = {t};\n  vis[t] = 1;\n  while (len(st)) {\n    int v = POP(st);\n\
     \    bool done = 0;\n    for (auto &&e: G[v]) {\n      if (dist[e.to] == INF)\
     \ continue;\n      if (!done && par[v] == e.to && dist[v] == dist[e.to] + e.cost)\
     \ {\n        done = 1;\n        continue;\n      }\n      T cost = -dist[v] +\
@@ -137,7 +137,7 @@ data:
     \ t, INF);\n  if (dist[s] == INF) { return vc<T>(K, INF); }\n\n  using P = pair<T,\
     \ int>;\n  Meldable_Heap<P, true, NODES> X;\n  using np = typename decltype(X)::np;\n\
     \  vc<np> nodes(N, nullptr);\n\n  vc<bool> vis(N);\n  vc<int> st = {t};\n  vis[t]\
-    \ = 1;\n  while (len(st)) {\n    int v = pick(st);\n    bool done = 0;\n    for\
+    \ = 1;\n  while (len(st)) {\n    int v = POP(st);\n    bool done = 0;\n    for\
     \ (auto &&e: G[v]) {\n      if (dist[e.to] == INF) continue;\n      if (!done\
     \ && par[v] == e.to && dist[v] == dist[e.to] + e.cost) {\n        done = 1;\n\
     \        continue;\n      }\n      T cost = -dist[v] + e.cost + dist[e.to];\n\
@@ -161,7 +161,7 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/K_shortest_walk.hpp
   requiredBy: []
-  timestamp: '2022-12-05 10:41:25+09:00'
+  timestamp: '2023-01-19 01:40:23+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/graph/K_shortest_walk.test.cpp

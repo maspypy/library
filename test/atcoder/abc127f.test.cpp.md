@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: convex/slope.hpp
     title: convex/slope.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc127/tasks/abc127_f
@@ -220,8 +220,8 @@ data:
     \ ll &a, const ll &b) {\r\n    add_l += a, add_r += b;\r\n  }\r\n\r\n  // O(size\
     \ log(size))\r\n  i128 eval(ll x) {\r\n    i128 y = min_f;\r\n    pq<ll> que_l_copy\
     \ = que_l;\r\n    pqg<ll> que_r_copy = que_r;\r\n    while (len(que_l_copy)) {\
-    \ y += max<ll>(0, (pick(que_l_copy) + add_l) - x); }\r\n    while (len(que_r_copy))\
-    \ { y += max<ll>(0, x - (pick(que_r_copy) + add_r)); }\r\n    return y;\r\n  }\r\
+    \ y += max<ll>(0, (POP(que_l_copy) + add_l) - x); }\r\n    while (len(que_r_copy))\
+    \ { y += max<ll>(0, x - (POP(que_r_copy) + add_r)); }\r\n    return y;\r\n  }\r\
     \n\r\n  void push_R(const ll &x) { que_r.emplace(x - add_r); }\r\n  void push_L(const\
     \ ll &x) { que_l.emplace(x - add_l); }\r\n  ll top_R() {\r\n    if (que_r.empty())\
     \ que_r.emplace(RMAX);\r\n    return que_r.top() + add_r;\r\n  }\r\n  ll top_L()\
@@ -230,8 +230,8 @@ data:
     \n    return res;\r\n  }\r\n  ll pop_L() {\r\n    ll res = top_L();\r\n    que_l.pop();\r\
     \n    return res;\r\n  }\r\n\r\n  void debug() {\r\n    vi left, right;\r\n  \
     \  pq<ll> que_l_copy = que_l;\r\n    pqg<ll> que_r_copy = que_r;\r\n    while\
-    \ (len(que_l_copy)) { left.eb(pick(que_l_copy) + add_l); }\r\n    while (len(que_r_copy))\
-    \ { right.eb(pick(que_r_copy) + add_r); }\r\n    sort(all(left));\r\n    sort(all(right));\r\
+    \ (len(que_l_copy)) { left.eb(POP(que_l_copy) + add_l); }\r\n    while (len(que_r_copy))\
+    \ { right.eb(POP(que_r_copy) + add_r); }\r\n    sort(all(left));\r\n    sort(all(right));\r\
     \n    print(\"min_f\", min_f, \"left\", left, \"right\", right);\r\n  }\r\n};\n\
     #line 5 \"test/atcoder/abc127f.test.cpp\"\n\nvoid solve() {\n  LL(Q);\n  Slope_Trick\
     \ f;\n  FOR(Q) {\n    LL(t);\n    if (t == 1) {\n      LL(a, b);\n      f.add_const(b);\n\
@@ -254,8 +254,8 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc127f.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 00:35:26+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-01-19 01:40:23+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/atcoder/abc127f.test.cpp
 layout: document

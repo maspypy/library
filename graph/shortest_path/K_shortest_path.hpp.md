@@ -76,7 +76,7 @@ data:
     \    auto add = [&](int v, T d, int p) -> void {\n        if (chmin(dist[v], d))\
     \ {\n          que.emplace(d, v);\n          par[v] = p;\n        }\n      };\n\
     \      int s0 = (es.empty() ? s : G.edges[es.back()].to);\n      add(s0, pref_cost,\
-    \ -1);\n      while (len(que)) {\n        auto [dv, v] = pick(que);\n        if\
+    \ -1);\n      while (len(que)) {\n        auto [dv, v] = POP(que);\n        if\
     \ (dv != dist[v]) continue;\n        if (v == t) break;\n        for (auto&& e:\
     \ G[v]) {\n          if (ng_e[e.id] || ng_v[e.to]) continue;\n          add(e.to,\
     \ dv + e.cost, e.id);\n        }\n      }\n      // failed\n      if (par[t] ==\
@@ -88,9 +88,9 @@ data:
     \ (len(paths) == 0) break;\n    pair<int, T> best = {-1, INF};\n    FOR(i, len(paths))\
     \ {\n      T cost = get<0>(paths[i]);\n      if (chmin(best.se, cost)) best.fi\
     \ = i;\n    }\n    int idx = best.fi;\n    swap(paths[idx], paths[len(paths) -\
-    \ 1]);\n    auto [cost, es, ng_es, n] = pick(paths);\n    vc<int> vs = {s};\n\
-    \    for (auto&& x: es) vs.eb(G.edges[x].to);\n    res.eb(cost, vs, es);\n\n \
-    \   nodes.clear();\n    FOR(k, n, len(es)) {\n      // k \u756A\u76EE\u306E\u8FBA\
+    \ 1]);\n    auto [cost, es, ng_es, n] = POP(paths);\n    vc<int> vs = {s};\n \
+    \   for (auto&& x: es) vs.eb(G.edges[x].to);\n    res.eb(cost, vs, es);\n\n  \
+    \  nodes.clear();\n    FOR(k, n, len(es)) {\n      // k \u756A\u76EE\u306E\u8FBA\
     \u307E\u3067\u3092\u56FA\u5B9A\u3057\u3066\n      vc<int> new_es = {es.begin(),\
     \ es.begin() + k};\n      vc<int> new_ng = ng_es;\n      new_ng.eb(es[k]);\n \
     \     nodes.eb(new_es, new_ng);\n    }\n  }\n  return res;\n}\n"
@@ -112,7 +112,7 @@ data:
     \ v, T d, int p) -> void {\n        if (chmin(dist[v], d)) {\n          que.emplace(d,\
     \ v);\n          par[v] = p;\n        }\n      };\n      int s0 = (es.empty()\
     \ ? s : G.edges[es.back()].to);\n      add(s0, pref_cost, -1);\n      while (len(que))\
-    \ {\n        auto [dv, v] = pick(que);\n        if (dv != dist[v]) continue;\n\
+    \ {\n        auto [dv, v] = POP(que);\n        if (dv != dist[v]) continue;\n\
     \        if (v == t) break;\n        for (auto&& e: G[v]) {\n          if (ng_e[e.id]\
     \ || ng_v[e.to]) continue;\n          add(e.to, dv + e.cost, e.id);\n        }\n\
     \      }\n      // failed\n      if (par[t] == -1) continue;\n      // restore\
@@ -124,18 +124,18 @@ data:
     \    pair<int, T> best = {-1, INF};\n    FOR(i, len(paths)) {\n      T cost =\
     \ get<0>(paths[i]);\n      if (chmin(best.se, cost)) best.fi = i;\n    }\n   \
     \ int idx = best.fi;\n    swap(paths[idx], paths[len(paths) - 1]);\n    auto [cost,\
-    \ es, ng_es, n] = pick(paths);\n    vc<int> vs = {s};\n    for (auto&& x: es)\
-    \ vs.eb(G.edges[x].to);\n    res.eb(cost, vs, es);\n\n    nodes.clear();\n   \
-    \ FOR(k, n, len(es)) {\n      // k \u756A\u76EE\u306E\u8FBA\u307E\u3067\u3092\u56FA\
-    \u5B9A\u3057\u3066\n      vc<int> new_es = {es.begin(), es.begin() + k};\n   \
-    \   vc<int> new_ng = ng_es;\n      new_ng.eb(es[k]);\n      nodes.eb(new_es, new_ng);\n\
-    \    }\n  }\n  return res;\n}"
+    \ es, ng_es, n] = POP(paths);\n    vc<int> vs = {s};\n    for (auto&& x: es) vs.eb(G.edges[x].to);\n\
+    \    res.eb(cost, vs, es);\n\n    nodes.clear();\n    FOR(k, n, len(es)) {\n \
+    \     // k \u756A\u76EE\u306E\u8FBA\u307E\u3067\u3092\u56FA\u5B9A\u3057\u3066\n\
+    \      vc<int> new_es = {es.begin(), es.begin() + k};\n      vc<int> new_ng =\
+    \ ng_es;\n      new_ng.eb(es[k]);\n      nodes.eb(new_es, new_ng);\n    }\n  }\n\
+    \  return res;\n}"
   dependsOn:
   - graph/base.hpp
   isVerificationFile: false
   path: graph/shortest_path/K_shortest_path.hpp
   requiredBy: []
-  timestamp: '2022-12-05 10:41:25+09:00'
+  timestamp: '2023-01-19 01:40:23+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1069.test.cpp

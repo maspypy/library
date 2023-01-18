@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
   - icon: ':question:'
@@ -17,20 +17,20 @@ data:
   - icon: ':x:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/1566.test.cpp
     title: test/aoj/1566.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2251_1.test.cpp
     title: test/aoj/2251_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2251_2.test.cpp
     title: test/aoj/2251_2.test.cpp
   - icon: ':x:'
@@ -53,7 +53,7 @@ data:
     title: test/yukicoder/1745.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - http://www.misojiro.t.u-tokyo.ac.jp/~murota/lect-ouyousurigaku/dm050410.pdf
@@ -188,7 +188,7 @@ data:
     \      if (W[v] == -1) {\r\n        W[v] = x;\r\n        que.eb(v);\r\n      }\r\
     \n    };\r\n    FOR(v, N) if (match[v] == -1 && color[v] == 0) add(v, 0);\r\n\
     \    FOR(v, N) if (match[v] == -1 && color[v] == 1) add(v, INF);\r\n    while\
-    \ (len(que)) {\r\n      auto v = pick(que);\r\n      if (match[v] != -1) add(match[v],\
+    \ (len(que)) {\r\n      auto v = POP(que);\r\n      if (match[v] != -1) add(match[v],\
     \ W[v]);\r\n      if (color[v] == 0 && W[v] == 0) {\r\n        for (auto&& e:\
     \ G[v]) { add(e.to, W[v]); }\r\n      }\r\n      if (color[v] == 1 && W[v] ==\
     \ INF) {\r\n        for (auto&& e: G[v]) { add(e.to, W[v]); }\r\n      }\r\n \
@@ -255,7 +255,7 @@ data:
     \      if (W[v] == -1) {\r\n        W[v] = x;\r\n        que.eb(v);\r\n      }\r\
     \n    };\r\n    FOR(v, N) if (match[v] == -1 && color[v] == 0) add(v, 0);\r\n\
     \    FOR(v, N) if (match[v] == -1 && color[v] == 1) add(v, INF);\r\n    while\
-    \ (len(que)) {\r\n      auto v = pick(que);\r\n      if (match[v] != -1) add(match[v],\
+    \ (len(que)) {\r\n      auto v = POP(que);\r\n      if (match[v] != -1) add(match[v],\
     \ W[v]);\r\n      if (color[v] == 0 && W[v] == 0) {\r\n        for (auto&& e:\
     \ G[v]) { add(e.to, W[v]); }\r\n      }\r\n      if (color[v] == 1 && W[v] ==\
     \ INF) {\r\n        for (auto&& e: G[v]) { add(e.to, W[v]); }\r\n      }\r\n \
@@ -284,8 +284,8 @@ data:
   - graph/bipartite_edge_coloring.hpp
   - graph/dag_path_cover.hpp
   - graph/maximum_antichain.hpp
-  timestamp: '2022-12-23 10:56:29+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-01-19 01:40:23+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/graph/bipartite_edge_coloring.test.cpp

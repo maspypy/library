@@ -189,7 +189,7 @@ data:
     - icon: ':warning:'
       path: convex/persistent_dynamic_lichao.hpp
       title: convex/persistent_dynamic_lichao.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: convex/slope.hpp
       title: convex/slope.hpp
     - icon: ':x:'
@@ -456,7 +456,7 @@ data:
     - icon: ':x:'
       path: flow/binary_optimization.hpp
       title: flow/binary_optimization.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: flow/bipartite.hpp
       title: flow/bipartite.hpp
     - icon: ':warning:'
@@ -493,13 +493,13 @@ data:
       title: game/solve_partizan_game.hpp
   - name: geo
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: geo/angle_sort.hpp
       title: geo/angle_sort.hpp
     - icon: ':question:'
       path: geo/base.hpp
       title: geo/base.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: geo/count_points_in_triangles.hpp
       title: geo/count_points_in_triangles.hpp
     - icon: ':heavy_check_mark:'
@@ -555,7 +555,7 @@ data:
     - icon: ':x:'
       path: graph/centroid.hpp
       title: graph/centroid.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/check_bipartite.hpp
       title: graph/check_bipartite.hpp
     - icon: ':x:'
@@ -570,7 +570,7 @@ data:
     - icon: ':warning:'
       path: graph/count_independent_set.hpp
       title: graph/count_independent_set.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/dag_path_cover.hpp
       title: graph/dag_path_cover.hpp
     - icon: ':warning:'
@@ -600,7 +600,7 @@ data:
     - icon: ':x:'
       path: graph/max_matching_size.hpp
       title: graph/max_matching_size.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/maximum_antichain.hpp
       title: graph/maximum_antichain.hpp
     - icon: ':x:'
@@ -651,7 +651,7 @@ data:
     - icon: ':question:'
       path: graph/strongly_connected_component.hpp
       title: graph/strongly_connected_component.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/toposort.hpp
       title: graph/toposort.hpp
     - icon: ':x:'
@@ -884,7 +884,7 @@ data:
     - icon: ':x:'
       path: mod/modular_subset_sum.hpp
       title: mod/modular_subset_sum.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: mod/powertable.hpp
       title: mod/powertable.hpp
     - icon: ':x:'
@@ -1360,13 +1360,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/1508_2.test.cpp
       title: test/aoj/1508_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/1566.test.cpp
       title: test/aoj/1566.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/2251_1.test.cpp
       title: test/aoj/2251_1.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/2251_2.test.cpp
       title: test/aoj/2251_2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1536,7 +1536,7 @@ data:
       title: test/aoj/NTL_1_E.test.cpp
   - name: test/atcoder
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc127f.test.cpp
       title: test/atcoder/abc127f.test.cpp
     - icon: ':x:'
@@ -1554,13 +1554,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc198d.test.cpp
       title: test/atcoder/abc198d.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc200a.test.cpp
       title: test/atcoder/abc200a.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc202_f.test.cpp
       title: test/atcoder/abc202_f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc217h.test.cpp
       title: test/atcoder/abc217h.test.cpp
     - icon: ':x:'

@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
   - icon: ':question:'
@@ -13,7 +13,7 @@ data:
   - icon: ':x:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/check_bipartite.hpp
     title: graph/check_bipartite.hpp
   - icon: ':question:'
@@ -339,7 +339,7 @@ data:
     \      if (W[v] == -1) {\r\n        W[v] = x;\r\n        que.eb(v);\r\n      }\r\
     \n    };\r\n    FOR(v, N) if (match[v] == -1 && color[v] == 0) add(v, 0);\r\n\
     \    FOR(v, N) if (match[v] == -1 && color[v] == 1) add(v, INF);\r\n    while\
-    \ (len(que)) {\r\n      auto v = pick(que);\r\n      if (match[v] != -1) add(match[v],\
+    \ (len(que)) {\r\n      auto v = POP(que);\r\n      if (match[v] != -1) add(match[v],\
     \ W[v]);\r\n      if (color[v] == 0 && W[v] == 0) {\r\n        for (auto&& e:\
     \ G[v]) { add(e.to, W[v]); }\r\n      }\r\n      if (color[v] == 1 && W[v] ==\
     \ INF) {\r\n        for (auto&& e: G[v]) { add(e.to, W[v]); }\r\n      }\r\n \
@@ -388,7 +388,7 @@ data:
     \ / 2), A1.reserve(n / 2);\n    vvc<P> G(N + N);\n    FOR(i, n) {\n      rest[i]\
     \ = 1;\n      auto [a, b] = edges[A[i]];\n      G[a].eb(i, b);\n      G[b].eb(i,\
     \ a);\n    }\n    auto dfs = [&](auto& dfs, int v, int color) -> void {\n    \
-    \  while (len(G[v])) {\n        auto [i, to] = pick(G[v]);\n        if (!rest[i])\
+    \  while (len(G[v])) {\n        auto [i, to] = POP(G[v]);\n        if (!rest[i])\
     \ continue;\n        rest[i] = 0;\n        if (color == 0) A0.eb(A[i]);\n    \
     \    if (color == 1) A1.eb(A[i]);\n        dfs(dfs, to, 1 ^ color);\n      }\n\
     \    };\n    FOR(v, N) dfs(dfs, v, 0);\n    return {A0, A1};\n  }\n};\n\ntemplate\
@@ -396,7 +396,7 @@ data:
     \ = check_bipartite<decltype(G)>(G);\n  auto deg = G.deg_array();\n  int D = MAX(deg);\n\
     \n  UnionFind uf(G.N);\n  FOR(c, 2) {\n    pqg<pair<int, int>> que;\n    FOR(v,\
     \ G.N) {\n      if (vcolor[v] == c) que.emplace(deg[v], v);\n    }\n    while\
-    \ (len(que) > 1) {\n      auto [d1, v1] = pick(que);\n      auto [d2, v2] = pick(que);\n\
+    \ (len(que) > 1) {\n      auto [d1, v1] = POP(que);\n      auto [d2, v2] = POP(que);\n\
     \      if (d1 + d2 > D) break;\n      uf.merge(v1, v2);\n      int r = uf[v1];\n\
     \      que.emplace(d1 + d2, r);\n    }\n  }\n\n  vc<int> LV, RV;\n  FOR(v, G.N)\
     \ if (uf[v] == v) {\n    if (vcolor[v] == 0) LV.eb(v);\n    if (vcolor[v] == 1)\
@@ -432,7 +432,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/bipartite_edge_coloring.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 00:35:26+09:00'
+  timestamp: '2023-01-19 01:40:23+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/bipartite_edge_coloring.test.cpp

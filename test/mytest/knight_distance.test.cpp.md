@@ -205,7 +205,7 @@ data:
     \ > 2 * LIM) return;\n    pi key = {x, y};\n    if (dist.count(key)) return;\n\
     \    dist[key] = d;\n    que.eb(x, y);\n  };\n  add(0, 0, 0);\n  ll dx[] = {2,\
     \ 1, -1, -2, -2, -1, 1, 2};\n  ll dy[] = {1, 2, 2, 1, -1, -2, -2, -1};\n  while\
-    \ (len(que)) {\n    auto [x, y] = pick(que);\n    FOR(d, 8) {\n      ll nx = x\
+    \ (len(que)) {\n    auto [x, y] = POP(que);\n    FOR(d, 8) {\n      ll nx = x\
     \ + dx[d], ny = y + dy[d];\n      pi key = {x, y};\n      add(nx, ny, dist[key]\
     \ + 1);\n    }\n  }\n  for (auto&& [key, d]: dist) {\n    auto [x, y] = key;\n\
     \    assert(knight_distance(x, y) == d);\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n\
@@ -218,7 +218,7 @@ data:
     \ * LIM) return;\n    pi key = {x, y};\n    if (dist.count(key)) return;\n   \
     \ dist[key] = d;\n    que.eb(x, y);\n  };\n  add(0, 0, 0);\n  ll dx[] = {2, 1,\
     \ -1, -2, -2, -1, 1, 2};\n  ll dy[] = {1, 2, 2, 1, -1, -2, -2, -1};\n  while (len(que))\
-    \ {\n    auto [x, y] = pick(que);\n    FOR(d, 8) {\n      ll nx = x + dx[d], ny\
+    \ {\n    auto [x, y] = POP(que);\n    FOR(d, 8) {\n      ll nx = x + dx[d], ny\
     \ = y + dy[d];\n      pi key = {x, y};\n      add(nx, ny, dist[key] + 1);\n  \
     \  }\n  }\n  for (auto&& [key, d]: dist) {\n    auto [x, y] = key;\n    assert(knight_distance(x,\
     \ y) == d);\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned\
@@ -231,7 +231,7 @@ data:
   isVerificationFile: true
   path: test/mytest/knight_distance.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 00:35:26+09:00'
+  timestamp: '2023-01-19 01:40:23+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/knight_distance.test.cpp

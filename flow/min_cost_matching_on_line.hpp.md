@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: convex/slope.hpp
     title: convex/slope.hpp
   _extendedRequiredBy: []
@@ -40,8 +40,8 @@ data:
     \ ll &a, const ll &b) {\r\n    add_l += a, add_r += b;\r\n  }\r\n\r\n  // O(size\
     \ log(size))\r\n  i128 eval(ll x) {\r\n    i128 y = min_f;\r\n    pq<ll> que_l_copy\
     \ = que_l;\r\n    pqg<ll> que_r_copy = que_r;\r\n    while (len(que_l_copy)) {\
-    \ y += max<ll>(0, (pick(que_l_copy) + add_l) - x); }\r\n    while (len(que_r_copy))\
-    \ { y += max<ll>(0, x - (pick(que_r_copy) + add_r)); }\r\n    return y;\r\n  }\r\
+    \ y += max<ll>(0, (POP(que_l_copy) + add_l) - x); }\r\n    while (len(que_r_copy))\
+    \ { y += max<ll>(0, x - (POP(que_r_copy) + add_r)); }\r\n    return y;\r\n  }\r\
     \n\r\n  void push_R(const ll &x) { que_r.emplace(x - add_r); }\r\n  void push_L(const\
     \ ll &x) { que_l.emplace(x - add_l); }\r\n  ll top_R() {\r\n    if (que_r.empty())\
     \ que_r.emplace(RMAX);\r\n    return que_r.top() + add_r;\r\n  }\r\n  ll top_L()\
@@ -50,8 +50,8 @@ data:
     \n    return res;\r\n  }\r\n  ll pop_L() {\r\n    ll res = top_L();\r\n    que_l.pop();\r\
     \n    return res;\r\n  }\r\n\r\n  void debug() {\r\n    vi left, right;\r\n  \
     \  pq<ll> que_l_copy = que_l;\r\n    pqg<ll> que_r_copy = que_r;\r\n    while\
-    \ (len(que_l_copy)) { left.eb(pick(que_l_copy) + add_l); }\r\n    while (len(que_r_copy))\
-    \ { right.eb(pick(que_r_copy) + add_r); }\r\n    sort(all(left));\r\n    sort(all(right));\r\
+    \ (len(que_l_copy)) { left.eb(POP(que_l_copy) + add_l); }\r\n    while (len(que_r_copy))\
+    \ { right.eb(POP(que_r_copy) + add_r); }\r\n    sort(all(left));\r\n    sort(all(right));\r\
     \n    print(\"min_f\", min_f, \"left\", left, \"right\", right);\r\n  }\r\n};\n\
     #line 2 \"flow/min_cost_matching_on_line.hpp\"\n\n// \u5EA7\u6A19 0, ..., N-1\
     \ \u306B A_i \u500B\u3042\u308B\n// \u5EA7\u6A19 0, ..., N-1 \u3067 B_i \u500B\
@@ -71,7 +71,7 @@ data:
   isVerificationFile: false
   path: flow/min_cost_matching_on_line.hpp
   requiredBy: []
-  timestamp: '2022-12-04 01:39:31+09:00'
+  timestamp: '2023-01-19 01:40:23+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/min_cost_matching_on_line.test.cpp
