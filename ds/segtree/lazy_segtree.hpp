@@ -5,7 +5,6 @@ struct Lazy_SegTree {
   using AM = ActedMonoid;
   using MX = typename AM::Monoid_X;
   using MA = typename AM::Monoid_A;
-  static_assert(MX::commute);
   using X = typename MX::value_type;
   using A = typename MA::value_type;
   int n, log, size;
@@ -66,13 +65,14 @@ struct Lazy_SegTree {
       if (((l >> i) << i) != l) push(l >> i);
       if (((r >> i) << i) != r) push((r - 1) >> i);
     }
-    X x = MX::unit();
+    X xl = MX::unit();
+    X xr = MX::unit();
     while (l < r) {
-      if (l & 1) x = MX::op(x, dat[l++]);
-      if (r & 1) x = MX::op(x, dat[--r]);
+      if (l & 1) xl = MX::op(xl, dat[l++]);
+      if (r & 1) xr = MX::op(dat[--r], xr);
       l >>= 1, r >>= 1;
     }
-    return x;
+    return MX::op(xl, xr);
   }
 
   X prod_all() { return dat[1]; }
