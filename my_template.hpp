@@ -55,7 +55,8 @@ using pqg = priority_queue<T, vector<T>, greater<T>>;
 #define FOR_R(...) \
   overload4(__VA_ARGS__, FOR4_R, FOR3_R, FOR2_R, FOR1_R)(__VA_ARGS__)
 
-#define FOR_subset(t, s) for (ll t = s; t >= 0; t = (t == 0 ? -1 : (t - 1) & s))
+#define FOR_subset(t, s) \
+  for (ll t = (s); t >= 0; t = (t == 0 ? -1 : (t - 1) & (s)))
 #define all(x) x.begin(), x.end()
 #define len(x) ll(x.size())
 #define elif else if
