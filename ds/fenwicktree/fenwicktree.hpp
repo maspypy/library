@@ -45,12 +45,14 @@ struct FenwickTree {
   E prod(int k) { return prefix_prod(k); }
   E prefix_sum(int k) { return prefix_prod(k); }
   E prefix_prod(int k) {
+    chmin(k, n);
     E ret = G::unit();
     for (; k > 0; k -= k & -k) ret = G::op(ret, dat[k - 1]);
     return ret;
   }
   E sum(int L, int R) { return prod(L, R); }
   E prod(int L, int R) {
+    chmax(L, 0), chmin(R, n);
     if (L == 0) return prefix_prod(R);
     assert(0 <= L && L <= R && R <= n);
     E pos = G::unit(), neg = G::unit();
@@ -74,8 +76,10 @@ struct FenwickTree {
     int k = 1;
     while (2 * k <= n) k *= 2;
     while (k) {
-      E t = G::op(s, dat[i + k - 1]);
-      if (check(t)) { i += k, s = t; }
+      if (i + k - 1 < len(dat)) {
+        E t = G::op(s, dat[i + k - 1]);
+        if (check(t)) { i += k, s = t; }
+      }
       k >>= 1;
     }
     return i;
