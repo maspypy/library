@@ -169,33 +169,33 @@ data:
   requiredBy:
   - geo/incremental_convexhull.hpp
   - geo/outcircle.hpp
-  - geo/projection.hpp
-  - geo/reflection.hpp
   - geo/cross_point.hpp
-  - geo/incircle.hpp
-  - geo/dynamicupperhull.hpp
-  - geo/distance.hpp
-  - geo/angle_sort.hpp
+  - geo/reflection.hpp
+  - geo/projection.hpp
   - geo/count_points_in_triangles.hpp
+  - geo/incircle.hpp
+  - geo/distance.hpp
+  - geo/dynamicupperhull.hpp
+  - geo/angle_sort.hpp
   timestamp: '2022-12-11 11:11:22+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - test/library_checker/geometry/convex_layers.test.cpp
-  - test/library_checker/geometry/sort_points_by_argument.test.cpp
-  - test/aoj/CGL_1_A.test.cpp
   - test/aoj/CGL_7_B.test.cpp
-  - test/aoj/CGL_7_C.test.cpp
-  - test/aoj/CGL_2_A.test.cpp
   - test/aoj/CGL_1_B.test.cpp
+  - test/aoj/CGL_2_A.test.cpp
   - test/aoj/CGL_2_B.test.cpp
   - test/aoj/CGL_3_B.test.cpp
-  - test/aoj/CGL_2_C.test.cpp
   - test/aoj/CGL_2_D.test.cpp
+  - test/aoj/CGL_2_C.test.cpp
+  - test/aoj/CGL_7_C.test.cpp
+  - test/aoj/CGL_1_A.test.cpp
+  - test/library_checker/geometry/convex_layers.test.cpp
+  - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
+  - test/library_checker/geometry/sort_points_by_argument.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp
   - test/mytest/incremental_ch.test.cpp
-  - test/atcoder/abc202_f.test.cpp
   - test/atcoder/abc266c.test.cpp
+  - test/atcoder/abc202_f.test.cpp
 documentation_of: geo/base.hpp
 layout: document
 redirect_from:

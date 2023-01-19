@@ -531,17 +531,17 @@ data:
   timestamp: '2023-01-19 00:36:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/yukicoder/1392.test.cpp
+  - test/yukicoder/1939.test.cpp
+  - test/yukicoder/1321.test.cpp
+  - test/yukicoder/1533.test.cpp
+  - test/yukicoder/1549.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/polynomial/pow_of_fps.test.cpp
   - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-  - test/yukicoder/1533.test.cpp
-  - test/yukicoder/1939.test.cpp
-  - test/yukicoder/1549.test.cpp
-  - test/yukicoder/1321.test.cpp
-  - test/yukicoder/1392.test.cpp
+  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/mytest/bell.test.cpp
   - test/mytest/online_pow.test.cpp
 documentation_of: poly/fps_pow.hpp

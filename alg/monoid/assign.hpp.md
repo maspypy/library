@@ -81,28 +81,28 @@ data:
   path: alg/monoid/assign.hpp
   requiredBy:
   - alg/acted_monoid/summax_assign.hpp
-  - alg/acted_monoid/sum_assign.hpp
-  - alg/acted_monoid/max_assign.hpp
   - alg/acted_monoid/powersums_assign.hpp
   - alg/acted_monoid/summin_assign.hpp
   - alg/acted_monoid/min_assign.hpp
+  - alg/acted_monoid/max_assign.hpp
+  - alg/acted_monoid/sum_assign.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1548.test.cpp
-  - test/aoj/DSL_2_I.test.cpp
-  - test/aoj/DSL_2_F.test.cpp
   - test/aoj/DSL_2_D.test.cpp
-  - test/mytest/rbst_monoid.test.cpp
-  - test/mytest/max_assign.test.cpp
-  - test/mytest/rbst_am.test.cpp
-  - test/mytest/summin_assign.test.cpp
-  - test/mytest/rbst_monoid_persistent.test.cpp
-  - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
+  - test/aoj/DSL_2_F.test.cpp
+  - test/aoj/DSL_2_I.test.cpp
+  - test/yukicoder/1548.test.cpp
   - test/mytest/rbst_am_persistent.test.cpp
-  - test/mytest/dynamic_lazy_segtree.test.cpp
   - test/mytest/summax_assign.test.cpp
+  - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
+  - test/mytest/max_assign.test.cpp
+  - test/mytest/summin_assign.test.cpp
+  - test/mytest/dynamic_lazy_segtree.test.cpp
+  - test/mytest/rbst_monoid.test.cpp
   - test/mytest/splay_monoid.test.cpp
+  - test/mytest/rbst_am.test.cpp
+  - test/mytest/rbst_monoid_persistent.test.cpp
 documentation_of: alg/monoid/assign.hpp
 layout: document
 redirect_from:

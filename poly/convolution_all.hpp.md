@@ -346,12 +346,12 @@ data:
   timestamp: '2023-01-19 00:36:40+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/polynomial/product_of_polynomial_sequence.test.cpp
-  - test/yukicoder/1145.test.cpp
   - test/yukicoder/1392.test.cpp
+  - test/yukicoder/1145.test.cpp
   - test/yukicoder/1857.test.cpp
-  - test/atcoder/abc272_h.test.cpp
+  - test/library_checker/polynomial/product_of_polynomial_sequence.test.cpp
   - test/atcoder/abc269ex.test.cpp
+  - test/atcoder/abc272_h.test.cpp
 documentation_of: poly/convolution_all.hpp
 layout: document
 redirect_from:

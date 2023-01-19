@@ -186,40 +186,40 @@ data:
   isVerificationFile: false
   path: nt/factor.hpp
   requiredBy:
-  - poly/multivar_convolution_cyclic.hpp
-  - mod/primitive_root.hpp
   - mod/binomial.hpp
+  - mod/primitive_root.hpp
   - mod/mod_kth_root.hpp
   - mod/tetration.hpp
-  - nt/gaussian_integers.hpp
   - nt/euler_phi.hpp
-  - nt/four_square.hpp
-  - nt/function_on_divisors.hpp
   - nt/crt.hpp
+  - nt/four_square.hpp
   - nt/lcm.hpp
   - nt/divisors.hpp
+  - nt/gaussian_integers.hpp
+  - nt/function_on_divisors.hpp
+  - poly/multivar_convolution_cyclic.hpp
   timestamp: '2023-01-09 23:28:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/math/primitive_root.test.cpp
-  - test/library_checker/math/tetration.test.cpp
-  - test/library_checker/math/kth_root_mod.test.cpp
-  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - test/library_checker/math/factorize.test.cpp
-  - test/library_checker/math/binomial_coefficient.test.cpp
-  - test/yukicoder/1025.test.cpp
-  - test/yukicoder/187.test.cpp
-  - test/yukicoder/2119.test.cpp
-  - test/yukicoder/590.test.cpp
-  - test/yukicoder/1593.test.cpp
-  - test/yukicoder/1956.test.cpp
-  - test/yukicoder/1262.test.cpp
-  - test/yukicoder/1728.test.cpp
-  - test/yukicoder/1411.test.cpp
-  - test/yukicoder/2120.test.cpp
-  - test/yukicoder/1881.test.cpp
   - test/aoj/NTL_1_D.test.cpp
   - test/aoj/ITP1_D_D.test.cpp
+  - test/yukicoder/1728.test.cpp
+  - test/yukicoder/1593.test.cpp
+  - test/yukicoder/2119.test.cpp
+  - test/yukicoder/1956.test.cpp
+  - test/yukicoder/187.test.cpp
+  - test/yukicoder/1262.test.cpp
+  - test/yukicoder/1411.test.cpp
+  - test/yukicoder/2120.test.cpp
+  - test/yukicoder/1025.test.cpp
+  - test/yukicoder/590.test.cpp
+  - test/yukicoder/1881.test.cpp
+  - test/library_checker/math/primitive_root.test.cpp
+  - test/library_checker/math/kth_root_mod.test.cpp
+  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - test/library_checker/math/binomial_coefficient.test.cpp
+  - test/library_checker/math/factorize.test.cpp
+  - test/library_checker/math/tetration.test.cpp
   - test/mytest/four_square.test.cpp
 documentation_of: nt/factor.hpp
 layout: document

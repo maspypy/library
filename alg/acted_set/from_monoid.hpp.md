@@ -39,8 +39,8 @@ data:
   timestamp: '2022-11-28 21:09:42+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/yukicoder/1339.test.cpp
+  - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/atcoder/abc270_g.test.cpp
 documentation_of: alg/acted_set/from_monoid.hpp
 layout: document

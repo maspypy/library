@@ -456,10 +456,10 @@ data:
   timestamp: '2023-01-19 00:36:40+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/yukicoder/2166.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
+  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
+  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/mytest/chirp_z.test.cpp
   - test/atcoder/abc272_h.test.cpp
 documentation_of: poly/multipoint.hpp

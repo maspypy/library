@@ -55,14 +55,14 @@ data:
   isVerificationFile: false
   path: convex/smawk.hpp
   requiredBy:
-  - convex/minplus_convolution_convex.hpp
   - convex/maxplus_convolution_concave.hpp
+  - convex/minplus_convolution_convex.hpp
   timestamp: '2023-01-19 00:12:30+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/maxplus_concave.test.cpp
-  - test/mytest/smawk.test.cpp
   - test/mytest/minplus_convex.test.cpp
+  - test/mytest/smawk.test.cpp
 documentation_of: convex/smawk.hpp
 layout: document
 redirect_from:

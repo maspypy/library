@@ -488,9 +488,9 @@ data:
   timestamp: '2023-01-19 00:36:40+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/502_2.test.cpp
-  - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/2166.test.cpp
+  - test/yukicoder/1080_2.test.cpp
+  - test/yukicoder/502_2.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/atcoder/abc276_g.test.cpp
   - test/atcoder/abc276_g_2.test.cpp

@@ -59,19 +59,19 @@ data:
   isVerificationFile: false
   path: ds/bit_vector.hpp
   requiredBy:
-  - ds/wavelet_matrix.hpp
   - ds/wavelet_matrix_sum.hpp
+  - ds/wavelet_matrix.hpp
   timestamp: '2022-12-12 13:31:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
-  - test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
+  - test/yukicoder/919.test.cpp
   - test/yukicoder/924.test.cpp
   - test/yukicoder/1332.test.cpp
-  - test/yukicoder/919.test.cpp
   - test/yukicoder/2065.test.cpp
-  - test/mytest/wavelet_matrix_sum.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   - test/mytest/wavelet_matrix.test.cpp
+  - test/mytest/wavelet_matrix_sum.test.cpp
   - test/atcoder/abc127f_1.test.cpp
 documentation_of: ds/bit_vector.hpp
 layout: document

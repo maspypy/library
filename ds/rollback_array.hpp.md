@@ -44,13 +44,13 @@ data:
   isVerificationFile: false
   path: ds/rollback_array.hpp
   requiredBy:
-  - ds/unionfind/rollback_weighted_unionfind.hpp
   - ds/unionfind/rollback_unionfind.hpp
+  - ds/unionfind/rollback_weighted_unionfind.hpp
   timestamp: '2022-12-11 11:11:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
   - test/library_checker/datastructure/add_remove_query.test.cpp
+  - test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
 documentation_of: ds/rollback_array.hpp
 layout: document
 redirect_from:

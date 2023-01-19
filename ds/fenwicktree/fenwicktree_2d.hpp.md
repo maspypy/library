@@ -148,11 +148,11 @@ data:
   timestamp: '2022-12-23 10:55:16+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1216_2.test.cpp
+  - test/yukicoder/1919.test.cpp
+  - test/yukicoder/1216.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   - test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
-  - test/yukicoder/1216_2.test.cpp
-  - test/yukicoder/1216.test.cpp
-  - test/yukicoder/1919.test.cpp
   - test/atcoder/abc266h_2.test.cpp
 documentation_of: ds/fenwicktree/fenwicktree_2d.hpp
 layout: document

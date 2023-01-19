@@ -361,15 +361,15 @@ data:
   path: poly/sum_of_rationals.hpp
   requiredBy:
   - seq/sum_of_powers.hpp
-  - poly/product_of_pow_of_linear.hpp
   - poly/composition_f_ex.hpp
+  - poly/product_of_pow_of_linear.hpp
   - poly/sum_of_exp_bx.hpp
   timestamp: '2023-01-19 00:36:40+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1962.test.cpp
-  - test/yukicoder/1875.test.cpp
   - test/yukicoder/1145.test.cpp
+  - test/yukicoder/1875.test.cpp
+  - test/yukicoder/1962.test.cpp
   - test/atcoder/abc276_g.test.cpp
   - test/atcoder/abc276_g_2.test.cpp
 documentation_of: poly/sum_of_rationals.hpp

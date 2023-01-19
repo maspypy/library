@@ -447,33 +447,33 @@ data:
   isVerificationFile: false
   path: poly/fps_log.hpp
   requiredBy:
+  - seq/sum_of_powers.hpp
   - seq/famous/surjection.hpp
   - seq/famous/stirling_number_2.hpp
-  - seq/sum_of_powers.hpp
   - poly/fps_sqrt.hpp
-  - poly/fps_pow.hpp
   - poly/product_of_f_rk_x.hpp
+  - poly/fps_pow.hpp
   timestamp: '2023-01-19 00:36:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/pow_of_fps.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/log_of_fps.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-  - test/library_checker/polynomial/log_of_fps_sparse.test.cpp
-  - test/yukicoder/1533.test.cpp
-  - test/yukicoder/1939.test.cpp
-  - test/yukicoder/1549.test.cpp
-  - test/yukicoder/1145.test.cpp
-  - test/yukicoder/1321.test.cpp
-  - test/yukicoder/2097.test.cpp
   - test/yukicoder/1392.test.cpp
-  - test/mytest/online_log.test.cpp
+  - test/yukicoder/2097.test.cpp
+  - test/yukicoder/1939.test.cpp
+  - test/yukicoder/1321.test.cpp
+  - test/yukicoder/1145.test.cpp
+  - test/yukicoder/1533.test.cpp
+  - test/yukicoder/1549.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
+  - test/library_checker/polynomial/pow_of_fps.test.cpp
+  - test/library_checker/polynomial/log_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/log_of_fps.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
+  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/mytest/bell.test.cpp
   - test/mytest/online_pow.test.cpp
+  - test/mytest/online_log.test.cpp
 documentation_of: poly/fps_log.hpp
 layout: document
 redirect_from:
