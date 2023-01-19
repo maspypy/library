@@ -148,8 +148,8 @@ data:
   timestamp: '2022-12-03 10:20:23+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
   - test/yukicoder/1526.test.cpp
+  - test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
 documentation_of: ds/segtree/segtree_beats.hpp
 layout: document
 redirect_from:

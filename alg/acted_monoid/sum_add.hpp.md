@@ -53,9 +53,9 @@ data:
   timestamp: '2022-12-03 07:16:30+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/aoj/GRL_5_E.test.cpp
   - test/yukicoder/789_2.test.cpp
   - test/yukicoder/1197.test.cpp
-  - test/aoj/GRL_5_E.test.cpp
   - test/mytest/ARC30D.test.cpp
   - test/mytest/splay_am.test.cpp
   - test/mytest/rbst_am_2.test.cpp

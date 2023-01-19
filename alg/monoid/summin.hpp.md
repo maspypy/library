@@ -35,13 +35,13 @@ data:
   isVerificationFile: false
   path: alg/monoid/summin.hpp
   requiredBy:
-  - alg/acted_monoid/summin_add.hpp
   - alg/acted_monoid/summin_assign.hpp
+  - alg/acted_monoid/summin_add.hpp
   timestamp: '2022-12-04 15:54:38+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/summin_add.test.cpp
   - test/mytest/summin_assign.test.cpp
+  - test/mytest/summin_add.test.cpp
 documentation_of: alg/monoid/summin.hpp
 layout: document
 redirect_from:

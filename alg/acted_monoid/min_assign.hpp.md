@@ -52,8 +52,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DSL_2_F.test.cpp
-  - test/mytest/rbst_am.test.cpp
   - test/mytest/rbst_am_persistent.test.cpp
+  - test/mytest/rbst_am.test.cpp
 documentation_of: alg/acted_monoid/min_assign.hpp
 layout: document
 redirect_from:

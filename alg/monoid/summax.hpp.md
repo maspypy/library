@@ -47,17 +47,17 @@ data:
   isVerificationFile: false
   path: alg/monoid/summax.hpp
   requiredBy:
-  - alg/acted_monoid/summax_add.hpp
   - alg/acted_monoid/summax_assign.hpp
+  - alg/acted_monoid/summax_add.hpp
   timestamp: '2022-12-04 13:46:37+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/kdtree_am.test.cpp
-  - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
-  - test/mytest/kdtree_monoid.test.cpp
-  - test/mytest/dynamic_lazy_segtree.test.cpp
-  - test/mytest/summax_add.test.cpp
   - test/mytest/summax_assign.test.cpp
+  - test/mytest/kdtree_monoid.test.cpp
+  - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
+  - test/mytest/summax_add.test.cpp
+  - test/mytest/dynamic_lazy_segtree.test.cpp
+  - test/mytest/kdtree_am.test.cpp
 documentation_of: alg/monoid/summax.hpp
 layout: document
 redirect_from:

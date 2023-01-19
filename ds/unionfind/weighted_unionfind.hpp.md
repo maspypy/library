@@ -52,8 +52,8 @@ data:
   timestamp: '2022-12-05 09:44:15+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1502.test.cpp
   - test/aoj/DSL_1_B.test.cpp
+  - test/yukicoder/1502.test.cpp
 documentation_of: ds/unionfind/weighted_unionfind.hpp
 layout: document
 redirect_from:

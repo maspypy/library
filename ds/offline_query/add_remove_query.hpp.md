@@ -72,8 +72,8 @@ data:
   timestamp: '2022-12-11 12:37:25+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
   - test/library_checker/datastructure/add_remove_query.test.cpp
+  - test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
 documentation_of: ds/offline_query/add_remove_query.hpp
 layout: document
 redirect_from:

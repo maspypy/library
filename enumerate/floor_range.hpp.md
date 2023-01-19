@@ -39,10 +39,10 @@ data:
   timestamp: '2022-12-06 21:05:59+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/4954.test.cpp
-  - test/yukicoder/1276.test.cpp
   - test/yukicoder/1573.test.cpp
   - test/yukicoder/1260.test.cpp
+  - test/yukicoder/1276.test.cpp
+  - test/yukicoder/4954.test.cpp
   - test/mytest/floor_ceil_ranges.test.cpp
 documentation_of: enumerate/floor_range.hpp
 layout: document

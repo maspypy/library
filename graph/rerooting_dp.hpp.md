@@ -221,12 +221,12 @@ data:
   timestamp: '2023-01-19 00:37:59+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/graph/rerooting_classify_subtree.test.cpp
-  - test/yukicoder/1295.test.cpp
-  - test/yukicoder/1494.test.cpp
-  - test/yukicoder/1718.test.cpp
-  - test/yukicoder/1418.test.cpp
   - test/yukicoder/1976.test.cpp
+  - test/yukicoder/1718.test.cpp
+  - test/yukicoder/1494.test.cpp
+  - test/yukicoder/1295.test.cpp
+  - test/yukicoder/1418.test.cpp
+  - test/library_checker/graph/rerooting_classify_subtree.test.cpp
 documentation_of: graph/rerooting_dp.hpp
 layout: document
 redirect_from:

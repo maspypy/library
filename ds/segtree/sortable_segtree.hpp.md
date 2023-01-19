@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   - icon: ':question:'
@@ -231,8 +231,8 @@ data:
   timestamp: '2023-01-02 17:13:38+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/datastructure/sort_segtree_1.test.cpp
   - test/library_checker/datastructure/sort_segtree.test.cpp
+  - test/library_checker/datastructure/sort_segtree_1.test.cpp
 documentation_of: ds/segtree/sortable_segtree.hpp
 layout: document
 redirect_from:

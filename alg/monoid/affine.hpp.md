@@ -85,25 +85,25 @@ data:
   isVerificationFile: false
   path: alg/monoid/affine.hpp
   requiredBy:
-  - alg/acted_monoid/sum_affine.hpp
   - alg/acted_monoid/cntsum_affine.hpp
+  - alg/acted_monoid/sum_affine.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
-  - test/library_checker/datastructure/sort_segtree_1.test.cpp
-  - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
-  - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
-  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - test/library_checker/datastructure/range_affine_range_sum.test.cpp
-  - test/library_checker/datastructure/queue_operate_all_composite.test.cpp
-  - test/library_checker/datastructure/sort_segtree.test.cpp
-  - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - test/library_checker/datastructure/range_affine_point_add.test.cpp
   - test/yukicoder/255.test.cpp
-  - test/yukicoder/1891.test.cpp
   - test/yukicoder/1502.test.cpp
+  - test/yukicoder/1891.test.cpp
+  - test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
+  - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
+  - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
+  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+  - test/library_checker/datastructure/sort_segtree.test.cpp
+  - test/library_checker/datastructure/queue_operate_all_composite.test.cpp
+  - test/library_checker/datastructure/range_affine_point_add.test.cpp
+  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - test/library_checker/datastructure/sort_segtree_1.test.cpp
+  - test/library_checker/datastructure/range_affine_range_sum.test.cpp
+  - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/mytest/rbst_monoid_2.test.cpp
   - test/mytest/splay.test.cpp
   - test/atcoder/abc270_g.test.cpp

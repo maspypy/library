@@ -139,22 +139,22 @@ data:
   isVerificationFile: false
   path: graph/check_bipartite.hpp
   requiredBy:
-  - graph/bipartite_edge_coloring.hpp
   - graph/dag_path_cover.hpp
   - graph/maximum_antichain.hpp
+  - graph/bipartite_edge_coloring.hpp
   - flow/bipartite.hpp
   timestamp: '2022-12-23 10:56:29+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/graph/bipartitematching.test.cpp
-  - test/library_checker/graph/bipartite_edge_coloring.test.cpp
-  - test/yukicoder/1744.test.cpp
-  - test/yukicoder/1479.test.cpp
-  - test/yukicoder/1911.test.cpp
-  - test/yukicoder/1745.test.cpp
   - test/aoj/2251_1.test.cpp
   - test/aoj/1566.test.cpp
   - test/aoj/2251_2.test.cpp
+  - test/yukicoder/1479.test.cpp
+  - test/yukicoder/1744.test.cpp
+  - test/yukicoder/1911.test.cpp
+  - test/yukicoder/1745.test.cpp
+  - test/library_checker/graph/bipartite_edge_coloring.test.cpp
+  - test/library_checker/graph/bipartitematching.test.cpp
   - test/mytest/tutte.test.cpp
 documentation_of: graph/check_bipartite.hpp
 layout: document

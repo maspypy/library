@@ -75,8 +75,8 @@ data:
   timestamp: '2022-12-03 10:20:23+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/2003.test.cpp
   - test/aoj/2842.test.cpp
+  - test/yukicoder/2003.test.cpp
 documentation_of: ds/fenwicktree/fenwicktree_2d_dense.hpp
 layout: document
 redirect_from:

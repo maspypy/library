@@ -115,8 +115,8 @@ data:
   timestamp: '2022-12-05 02:37:00+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1625.test.cpp
   - test/aoj/DSL_2_C.test.cpp
+  - test/yukicoder/1625.test.cpp
   - test/mytest/kdtree_monoid.test.cpp
 documentation_of: ds/kdtree/kdtree_monoid.hpp
 layout: document

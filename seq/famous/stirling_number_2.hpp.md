@@ -553,9 +553,9 @@ data:
   timestamp: '2023-01-19 00:36:40+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - test/yukicoder/1321.test.cpp
   - test/yukicoder/1392.test.cpp
+  - test/yukicoder/1321.test.cpp
+  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/mytest/bell.test.cpp
 documentation_of: seq/famous/stirling_number_2.hpp
 layout: document

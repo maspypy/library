@@ -37,8 +37,8 @@ data:
   timestamp: '2022-08-27 23:26:12+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1311.test.cpp
   - test/aoj/0343.test.cpp
+  - test/yukicoder/1311.test.cpp
 documentation_of: ds/pbds.hpp
 layout: document
 redirect_from:
