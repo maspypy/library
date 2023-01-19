@@ -246,13 +246,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
     title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
     title: test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
   - icon: ':x:'
