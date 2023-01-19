@@ -66,5 +66,10 @@
 "test/atcoder/abc174f.test.cpp": "2023-01-19 03:43:58 +0900",
 "test/atcoder/abc190f.test.cpp": "2023-01-19 03:43:58 +0900",
 "test/atcoder/abc196_E.test.cpp": "2023-01-19 03:43:58 +0900",
-"test/atcoder/abc198d.test.cpp": "2023-01-19 03:43:58 +0900"
+"test/atcoder/abc198d.test.cpp": "2023-01-19 03:43:58 +0900",
+"test/library_checker/convolution/bitwise_and_convolution.test.cpp": "2023-01-19 03:43:58 +0900",
+"test/library_checker/convolution/bitwise_or_convolution.test.cpp": "2023-01-19 03:43:58 +0900",
+"test/library_checker/convolution/bitwise_xor_convolution.test.cpp": "2023-01-19 03:43:58 +0900",
+"test/library_checker/convolution/convolution_huge.test.cpp": "2023-01-19 03:43:58 +0900",
+"test/library_checker/convolution/convolution_mod.test.cpp": "2023-01-19 03:43:58 +0900"
 }
