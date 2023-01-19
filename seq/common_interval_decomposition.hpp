@@ -36,11 +36,11 @@ struct Common_Inverval_Decomposition {
     vc<int> mi = {-1}, ma = {-1};
     FOR(i, N) {
       while (mi.back() != -1 && P[i] < P[mi.back()]) {
-        int j = pick(mi);
+        int j = POP(mi);
         seg.apply(mi.back() + 1, j + 1, P[j] - P[i]);
       }
       while (ma.back() != -1 && P[i] > P[ma.back()]) {
-        int j = pick(ma);
+        int j = POP(ma);
         seg.apply(ma.back() + 1, j + 1, P[i] - P[j]);
       }
       mi.eb(i), ma.eb(i);
@@ -86,7 +86,7 @@ struct Common_Inverval_Decomposition {
         p->ch.eb(now);
         now = p;
         while (1) {
-          auto c = pick(st);
+          auto c = POP(st);
           now->l = c->l;
           chmin(now->lo, c->lo);
           chmax(now->hi, c->hi);
@@ -99,7 +99,7 @@ struct Common_Inverval_Decomposition {
       seg.apply(0, i + 1, -1);
     }
     assert(len(st) == 1);
-    root = pick(st);
+    root = POP(st);
     return;
   }
 
