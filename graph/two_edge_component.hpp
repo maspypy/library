@@ -1,28 +1,27 @@
-#include "graph/tree.hpp"
-
 // (成分数, 成分番号の vector)
-template <typename Graph>
-pair<int, vc<int>> two_edge_component(Graph& G) {
-  TREE tree(G);
-  int N = G.N;
-  vc<int> DP(N);
-  for (auto&& e: G.edges) {
-    if (!tree.in_tree[e.id]) {
-      int a = e.frm, b = e.to;
-      if (tree.depth[a] < tree.depth[b]) swap(a, b);
-      DP[a]++, DP[b]--;
+template <typename GT>
+pair<int, vc<int>> two_edge_component(GT& G) {
+  assert(!G.is_directed());
+  int N = G.N, M = G.M, n_comp = 0;
+  vc<int> V, par(N, -2), dp(N), comp(N);
+  V.reserve(N);
+  vc<bool> used(M);
+  auto dfs = [&](auto& dfs, int v) -> void {
+    V.eb(v);
+    for (auto&& e: G[v]) {
+      if (used[e.id]) continue;
+      if (par[e.to] != -2) dp[v]++, dp[e.to]--, used[e.id] = 1;
+      if (par[e.to] == -2) {
+        used[e.id] = 1;
+        par[e.to] = v;
+        dfs(dfs, e.to);
+      }
     }
+  };
+  FOR(v, N) if (par[v] == -2) { par[v] = -1, dfs(dfs, v); }
+  FOR_R(i, N) {
+    if (par[V[i]] != -1) dp[par[V[i]]] += dp[V[i]];
   }
-  auto& V = tree.V;
-  FOR_R(i, len(V)) {
-    int v = V[i];
-    int p = tree.parent[v];
-    if (p != -1) DP[p] += DP[v];
-  }
-  int C = 0;
-  vc<int> comp(N, -1);
-  FOR(v, N) if (DP[v] == 0) comp[v] = C++;
-  for (auto&& v: V)
-    if (comp[v] == -1) comp[v] = comp[tree.parent[v]];
-  return {C, comp};
+  for (auto&& v: V) comp[v] = (dp[v] == 0 ? n_comp++ : comp[par[v]]);
+  return {n_comp, comp};
 }
