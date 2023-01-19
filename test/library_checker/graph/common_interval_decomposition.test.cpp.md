@@ -19,14 +19,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/common_interval_decomposition_tree
@@ -284,9 +284,9 @@ data:
     \ = lo;\n    pool[pid].hi = hi;\n    return &(pool[pid++]);\n  }\n\n  void build(vc<int>&\
     \ P) {\n    int N = len(P);\n    Lazy_SegTree<ActedMonoid_Min_Add<int>> seg(vc<int>(N,\
     \ 0));\n\n    vc<Node*> st;\n    vc<int> mi = {-1}, ma = {-1};\n    FOR(i, N)\
-    \ {\n      while (mi.back() != -1 && P[i] < P[mi.back()]) {\n        int j = pick(mi);\n\
+    \ {\n      while (mi.back() != -1 && P[i] < P[mi.back()]) {\n        int j = POP(mi);\n\
     \        seg.apply(mi.back() + 1, j + 1, P[j] - P[i]);\n      }\n      while (ma.back()\
-    \ != -1 && P[i] > P[ma.back()]) {\n        int j = pick(ma);\n        seg.apply(ma.back()\
+    \ != -1 && P[i] > P[ma.back()]) {\n        int j = POP(ma);\n        seg.apply(ma.back()\
     \ + 1, j + 1, P[i] - P[j]);\n      }\n      mi.eb(i), ma.eb(i);\n\n      Node*\
     \ now = new_node(0, 0, i, i + 1, P[i], P[i] + 1);\n      while (len(st)) {\n \
     \       Node* n = st.back();\n        if (n->hi == now->lo) {\n          if (n->inc)\
@@ -303,11 +303,11 @@ data:
     \        }\n        // prime supernode creation\n        if (seg.prod(0, now->l)\
     \ != 0) break;\n        Node* p = new_node(0, 0, now->l, now->r, now->lo, now->hi);\n\
     \        p->ch.eb(now);\n        now = p;\n        while (1) {\n          auto\
-    \ c = pick(st);\n          now->l = c->l;\n          chmin(now->lo, c->lo);\n\
-    \          chmax(now->hi, c->hi);\n          now->ch.eb(c);\n          if (now->r\
+    \ c = POP(st);\n          now->l = c->l;\n          chmin(now->lo, c->lo);\n \
+    \         chmax(now->hi, c->hi);\n          now->ch.eb(c);\n          if (now->r\
     \ - now->l == now->hi - now->lo) break;\n        }\n        reverse(all(now->ch));\n\
     \      }\n      st.eb(now);\n      seg.apply(0, i + 1, -1);\n    }\n    assert(len(st)\
-    \ == 1);\n    root = pick(st);\n    return;\n  }\n\n  void debug() {\n    auto\
+    \ == 1);\n    root = POP(st);\n    return;\n  }\n\n  void debug() {\n    auto\
     \ dfs = [&](auto& dfs, Node* n) -> void {\n      print(\"l, r, lo, hi\", n->l,\
     \ n->r, n->lo, n->hi);\n      for (auto&& c: n->ch) dfs(dfs, c);\n    };\n   \
     \ dfs(dfs, root);\n  };\n};\n#line 6 \"test/library_checker/graph/common_interval_decomposition.test.cpp\"\
@@ -336,8 +336,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/common_interval_decomposition.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 03:43:58+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-01-19 16:13:01+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/common_interval_decomposition.test.cpp
 layout: document
