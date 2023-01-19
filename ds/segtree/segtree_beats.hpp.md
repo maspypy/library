@@ -5,14 +5,14 @@ data:
   - icon: ':warning:'
     path: ds/segtree/beats_summax_chmin.hpp
     title: ds/segtree/beats_summax_chmin.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/beats_summaxmin_chminchmax.hpp
     title: ds/segtree/beats_summaxmin_chminchmax.hpp
   - icon: ':x:'
     path: ds/segtree/beats_summin_chmax.hpp
     title: ds/segtree/beats_summin_chmax.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
     title: test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test/yukicoder/1526.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree_beats.hpp\"\n\ntemplate <typename Lazy>\n\
@@ -146,7 +146,7 @@ data:
   - ds/segtree/beats_summin_chmax.hpp
   - ds/segtree/beats_summax_chmin.hpp
   timestamp: '2022-12-03 10:20:23+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1526.test.cpp
   - test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
