@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
   - icon: ':question:'

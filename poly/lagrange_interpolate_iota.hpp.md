@@ -35,7 +35,7 @@ data:
   - icon: ':x:'
     path: poly/sparse_exp_of_div.hpp
     title: poly/sparse_exp_of_div.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
   - icon: ':x:'
@@ -48,7 +48,7 @@ data:
   - icon: ':x:'
     path: test/atcoder/abc276_g_2.test.cpp
     title: test/atcoder/abc276_g_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
     title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - icon: ':x:'
@@ -68,7 +68,7 @@ data:
     title: test/yukicoder/502_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Monoid_Mul\
@@ -447,7 +447,7 @@ data:
   - poly/from_log_differentiation.hpp
   - poly/prefix_product_of_poly.hpp
   timestamp: '2023-01-19 00:36:40+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
