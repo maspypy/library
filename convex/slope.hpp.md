@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc127f.test.cpp
     title: test/atcoder/abc127f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc217h.test.cpp
     title: test/atcoder/abc217h.test.cpp
   - icon: ':x:'
