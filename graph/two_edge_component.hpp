@@ -1,3 +1,5 @@
+#include "graph/base.hpp"
+
 // (成分数, 成分番号の vector)
 template <typename GT>
 pair<int, vc<int>> two_edge_component(GT& G) {
