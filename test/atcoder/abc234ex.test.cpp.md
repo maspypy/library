@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/kdtree/kdtree.hpp
     title: ds/kdtree/kdtree.hpp
   - icon: ':question:'
