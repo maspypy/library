@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/705"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "seq/monge.hpp"
+#include "convex/monge.hpp"
 
 void solve() {
   LL(N);
