@@ -9,7 +9,7 @@ data:
   - icon: ':x:'
     path: test/atcoder/abc229h.test.cpp
     title: test/atcoder/abc229h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/dyadic_rational.test.cpp
     title: test/mytest/dyadic_rational.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: test/mytest/partizan.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"game/dyadic_rational.hpp\"\n// a+b/2^M \u306E\u5F62\u3067\
@@ -97,7 +97,7 @@ data:
   requiredBy:
   - game/solve_partizan_game.hpp
   timestamp: '2022-09-29 20:05:16+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/partizan.test.cpp
   - test/mytest/dyadic_rational.test.cpp
