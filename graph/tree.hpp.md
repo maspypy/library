@@ -44,9 +44,6 @@ data:
   - icon: ':x:'
     path: graph/tree_dp.hpp
     title: graph/tree_dp.hpp
-  - icon: ':x:'
-    path: graph/two_edge_component.hpp
-    title: graph/two_edge_component.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2677.test.cpp
@@ -57,9 +54,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
-  - icon: ':x:'
-    path: test/aoj/GRL_3_B.test.cpp
-    title: test/aoj/GRL_3_B.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
@@ -99,9 +93,6 @@ data:
   - icon: ':x:'
     path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
     title: test/library_checker/graph/rerooting_classify_subtree.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/graph/two_edge_component.test.cpp
-    title: test/library_checker/graph/two_edge_component.test.cpp
   - icon: ':x:'
     path: test/library_checker/tree/lca.test.cpp
     title: test/library_checker/tree/lca.test.cpp
@@ -165,9 +156,6 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1976.test.cpp
     title: test/yukicoder/1976.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1983.test.cpp
-    title: test/yukicoder/1983.test.cpp
   - icon: ':x:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
@@ -383,11 +371,9 @@ data:
   - graph/ds/static_tree_monoid.hpp
   - graph/ds/dual_tree_monoid.hpp
   - graph/classify_subtree.hpp
-  - graph/two_edge_component.hpp
   timestamp: '2023-01-19 00:37:59+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/graph/two_edge_component.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp
   - test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
@@ -411,7 +397,6 @@ data:
   - test/yukicoder/1326.test.cpp
   - test/yukicoder/590.test.cpp
   - test/yukicoder/1242.test.cpp
-  - test/yukicoder/1983.test.cpp
   - test/yukicoder/1718.test.cpp
   - test/yukicoder/1216.test.cpp
   - test/yukicoder/2122.test.cpp
@@ -424,7 +409,6 @@ data:
   - test/yukicoder/1197.test.cpp
   - test/yukicoder/1211.test.cpp
   - test/aoj/GRL_2_A.test.cpp
-  - test/aoj/GRL_3_B.test.cpp
   - test/aoj/GRL_5_E.test.cpp
   - test/aoj/2677.test.cpp
   - test/aoj/2995.test.cpp

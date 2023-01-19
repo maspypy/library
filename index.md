@@ -97,7 +97,7 @@ data:
     - icon: ':x:'
       path: alg/monoid/add_chmin.hpp
       title: alg/monoid/add_chmin.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/monoid/add_chmin_chmax.hpp
       title: alg/monoid/add_chmin_chmax.hpp
     - icon: ':x:'
@@ -189,7 +189,7 @@ data:
     - icon: ':warning:'
       path: convex/persistent_dynamic_lichao.hpp
       title: convex/persistent_dynamic_lichao.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: convex/slope.hpp
       title: convex/slope.hpp
     - icon: ':x:'
@@ -205,7 +205,7 @@ data:
     - icon: ':x:'
       path: ds/binary_trie.hpp
       title: ds/binary_trie.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/bit_vector.hpp
       title: ds/bit_vector.hpp
     - icon: ':warning:'
@@ -253,7 +253,7 @@ data:
     - icon: ':x:'
       path: ds/wavelet_matrix.hpp
       title: ds/wavelet_matrix.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/wavelet_matrix_sum.hpp
       title: ds/wavelet_matrix_sum.hpp
   - name: ds/disjointsparse
@@ -327,7 +327,7 @@ data:
     - icon: ':x:'
       path: ds/offline_query/static_range_products.hpp
       title: ds/offline_query/static_range_products.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/offline_query/uniqueproductquery.hpp
       title: ds/offline_query/uniqueproductquery.hpp
   - name: ds/randomized_bst
@@ -1010,7 +1010,7 @@ data:
     - icon: ':question:'
       path: other/rectangle_union.hpp
       title: other/rectangle_union.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: other/solve_hukumenzan.hpp
       title: other/solve_hukumenzan.hpp
   - name: poly
@@ -1195,7 +1195,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/inversion.hpp
       title: seq/inversion.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: seq/inversion_rotate.hpp
       title: seq/inversion_rotate.hpp
     - icon: ':x:'
@@ -1536,25 +1536,25 @@ data:
       title: test/aoj/NTL_1_E.test.cpp
   - name: test/atcoder
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc127f.test.cpp
       title: test/atcoder/abc127f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc127f_1.test.cpp
       title: test/atcoder/abc127f_1.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc174f.test.cpp
       title: test/atcoder/abc174f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc190f.test.cpp
       title: test/atcoder/abc190f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc196_E.test.cpp
       title: test/atcoder/abc196_E.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc198d.test.cpp
       title: test/atcoder/abc198d.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc200a.test.cpp
       title: test/atcoder/abc200a.test.cpp
     - icon: ':x:'

@@ -150,9 +150,6 @@ data:
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
   - icon: ':x:'
-    path: graph/two_edge_component.hpp
-    title: graph/two_edge_component.hpp
-  - icon: ':x:'
     path: graph/twosat.hpp
     title: graph/twosat.hpp
   - icon: ':x:'
@@ -201,9 +198,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_A.test.cpp
     title: test/aoj/GRL_3_A.test.cpp
-  - icon: ':x:'
-    path: test/aoj/GRL_3_B.test.cpp
-    title: test/aoj/GRL_3_B.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
@@ -285,9 +279,6 @@ data:
   - icon: ':x:'
     path: test/library_checker/graph/shortest_path.test.cpp
     title: test/library_checker/graph/shortest_path.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/graph/two_edge_component.test.cpp
-    title: test/library_checker/graph/two_edge_component.test.cpp
   - icon: ':x:'
     path: test/library_checker/graph/verted_add_contour_sum.test.cpp
     title: test/library_checker/graph/verted_add_contour_sum.test.cpp
@@ -429,9 +420,6 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1976.test.cpp
     title: test/yukicoder/1976.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1983.test.cpp
-    title: test/yukicoder/1983.test.cpp
   - icon: ':x:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
@@ -588,7 +576,6 @@ data:
   - graph/steiner_tree.hpp
   - graph/eulerwalk.hpp
   - graph/twosat.hpp
-  - graph/two_edge_component.hpp
   - graph/maximum_antichain.hpp
   - graph/bracket_graph.hpp
   - graph/tree_diameter.hpp
@@ -603,7 +590,6 @@ data:
   timestamp: '2022-12-05 10:41:25+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/graph/two_edge_component.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
   - test/library_checker/graph/scc.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
@@ -654,7 +640,6 @@ data:
   - test/yukicoder/590.test.cpp
   - test/yukicoder/1069.test.cpp
   - test/yukicoder/1242.test.cpp
-  - test/yukicoder/1983.test.cpp
   - test/yukicoder/1718.test.cpp
   - test/yukicoder/1479.test.cpp
   - test/yukicoder/1216.test.cpp
@@ -679,7 +664,6 @@ data:
   - test/yukicoder/1745.test.cpp
   - test/aoj/0275.test.cpp
   - test/aoj/GRL_2_A.test.cpp
-  - test/aoj/GRL_3_B.test.cpp
   - test/aoj/GRL_5_E.test.cpp
   - test/aoj/2251_1.test.cpp
   - test/aoj/GRL_3_A.test.cpp
