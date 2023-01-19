@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: convex/minplus_convolution_convex.hpp
     title: convex/minplus_convolution_convex.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: convex/smawk.hpp
     title: convex/smawk.hpp
   - icon: ':question:'
@@ -21,11 +21,7 @@ data:
   _isVerificationFailed: true
   _pathExtension: cpp
   _verificationStatusIcon: ':x:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/aplusb
-    links:
-    - https://judge.yosupo.jp/problem/aplusb
+  attributes: {}
   bundledCode: "#line 1 \"test/mytest/minplus_convex.test.cpp\"\n#define PROBLEM \"\
     https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
     #include <my_template_compiled.hpp>\n#else\n#pragma GCC optimize(\"Ofast\")\n\
@@ -88,7 +84,7 @@ data:
     \ &a, const S &b) {\n  return (a < b ? a = b, 1 : 0);\n}\ntemplate <class T, class\
     \ S>\ninline bool chmin(T &a, const S &b) {\n  return (a > b ? a = b, 1 : 0);\n\
     }\n\n// ? \u306F -1\nvc<int> s_to_vi(const string &S, char first_char) {\n  vc<int>\
-    \ A(S.size());\n  FOR(i, S.size()) { A[i] = (S[i] == '?' ? S[i] - first_char :\
+    \ A(S.size());\n  FOR(i, S.size()) { A[i] = (S[i] != '?' ? S[i] - first_char :\
     \ -1); }\n  return A;\n}\n\ntemplate <typename T, typename U>\nvector<T> cumsum(vector<U>\
     \ &A, int off = 1) {\n  int N = A.size();\n  vector<T> B(N + 1);\n  FOR(i, N)\
     \ { B[i + 1] = B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n  return B;\n\
@@ -239,7 +235,7 @@ data:
     \ + j], A[i] + B[j]);\n  }\n  return C;\n}\n\nvoid test() {\n  FOR(a1, 5) FOR(b1,\
     \ 10) FOR(c1, 5) {\n    vc<int> A = gen(a1, b1, c1);\n    FOR(a2, 5) FOR(b2, 10)\
     \ FOR(c2, 5) {\n      vc<int> B = gen(a2, b2, c2);\n      assert(naive(A, B) ==\
-    \ minplus_convolution_convex<int>(A, B, INF));\n    }\n  }\n}\n\nvoid solve()\
+    \ minplus_convolution_convex<int, 1, 1>(A, B, INF));\n    }\n  }\n}\n\nvoid solve()\
     \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
     \n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
@@ -252,10 +248,10 @@ data:
     \ == INF || B[j] == INF) continue;\n    chmin(C[i + j], A[i] + B[j]);\n  }\n \
     \ return C;\n}\n\nvoid test() {\n  FOR(a1, 5) FOR(b1, 10) FOR(c1, 5) {\n    vc<int>\
     \ A = gen(a1, b1, c1);\n    FOR(a2, 5) FOR(b2, 10) FOR(c2, 5) {\n      vc<int>\
-    \ B = gen(a2, b2, c2);\n      assert(naive(A, B) == minplus_convolution_convex<int>(A,\
-    \ B, INF));\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\
-    \nsigned main() {\n  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\
-    \n  return 0;\n}\n"
+    \ B = gen(a2, b2, c2);\n      assert(naive(A, B) == minplus_convolution_convex<int,\
+    \ 1, 1>(A, B, INF));\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a\
+    \ + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  test();\n\
+    \  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -265,7 +261,7 @@ data:
   isVerificationFile: true
   path: test/mytest/minplus_convex.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 03:43:58+09:00'
+  timestamp: '2023-01-19 22:23:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/minplus_convex.test.cpp

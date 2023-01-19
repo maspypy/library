@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':heavy_check_mark:'
@@ -14,13 +14,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/distance.hpp
     title: geo/distance.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/dynamicupperhull.hpp
     title: geo/dynamicupperhull.hpp
   - icon: ':heavy_check_mark:'
     path: geo/incircle.hpp
     title: geo/incircle.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/incremental_convexhull.hpp
     title: geo/incremental_convexhull.hpp
   - icon: ':heavy_check_mark:'
@@ -66,19 +66,19 @@ data:
   - icon: ':x:'
     path: test/atcoder/abc266c.test.cpp
     title: test/atcoder/abc266c.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/geometry/convex_layers.test.cpp
     title: test/library_checker/geometry/convex_layers.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/geometry/sort_points_by_argument.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/count_points_in_triangles.test.cpp
     title: test/mytest/count_points_in_triangles.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/incremental_ch.test.cpp
     title: test/mytest/incremental_ch.test.cpp
   _isVerificationFailed: true
@@ -169,33 +169,33 @@ data:
   requiredBy:
   - geo/incremental_convexhull.hpp
   - geo/outcircle.hpp
-  - geo/cross_point.hpp
-  - geo/reflection.hpp
   - geo/projection.hpp
-  - geo/count_points_in_triangles.hpp
+  - geo/reflection.hpp
+  - geo/cross_point.hpp
   - geo/incircle.hpp
-  - geo/distance.hpp
   - geo/dynamicupperhull.hpp
+  - geo/distance.hpp
   - geo/angle_sort.hpp
+  - geo/count_points_in_triangles.hpp
   timestamp: '2022-12-11 11:11:22+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
+  - test/library_checker/geometry/convex_layers.test.cpp
+  - test/library_checker/geometry/sort_points_by_argument.test.cpp
+  - test/aoj/CGL_1_A.test.cpp
   - test/aoj/CGL_7_B.test.cpp
-  - test/aoj/CGL_1_B.test.cpp
+  - test/aoj/CGL_7_C.test.cpp
   - test/aoj/CGL_2_A.test.cpp
+  - test/aoj/CGL_1_B.test.cpp
   - test/aoj/CGL_2_B.test.cpp
   - test/aoj/CGL_3_B.test.cpp
-  - test/aoj/CGL_2_D.test.cpp
   - test/aoj/CGL_2_C.test.cpp
-  - test/aoj/CGL_7_C.test.cpp
-  - test/aoj/CGL_1_A.test.cpp
-  - test/library_checker/geometry/convex_layers.test.cpp
-  - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - test/library_checker/geometry/sort_points_by_argument.test.cpp
+  - test/aoj/CGL_2_D.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp
   - test/mytest/incremental_ch.test.cpp
-  - test/atcoder/abc266c.test.cpp
   - test/atcoder/abc202_f.test.cpp
+  - test/atcoder/abc266c.test.cpp
 documentation_of: geo/base.hpp
 layout: document
 redirect_from:

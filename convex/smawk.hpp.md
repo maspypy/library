@@ -15,12 +15,12 @@ data:
   - icon: ':x:'
     path: test/mytest/minplus_convex.test.cpp
     title: test/mytest/minplus_convex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/smawk.test.cpp
     title: test/mytest/smawk.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/smawk.hpp\"\n// select(i,j,k) \u306F (i,j) \u3068\
@@ -55,14 +55,14 @@ data:
   isVerificationFile: false
   path: convex/smawk.hpp
   requiredBy:
-  - convex/maxplus_convolution_concave.hpp
   - convex/minplus_convolution_convex.hpp
+  - convex/maxplus_convolution_concave.hpp
   timestamp: '2023-01-19 00:12:30+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/maxplus_concave.test.cpp
-  - test/mytest/minplus_convex.test.cpp
   - test/mytest/smawk.test.cpp
+  - test/mytest/minplus_convex.test.cpp
 documentation_of: convex/smawk.hpp
 layout: document
 redirect_from:

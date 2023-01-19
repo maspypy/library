@@ -167,10 +167,10 @@ data:
   timestamp: '2023-01-19 00:37:59+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/aoj/GRL_3_B.test.cpp
+  - test/library_checker/graph/two_edge_component.test.cpp
   - test/yukicoder/529.test.cpp
   - test/yukicoder/1983.test.cpp
-  - test/library_checker/graph/two_edge_component.test.cpp
+  - test/aoj/GRL_3_B.test.cpp
 documentation_of: graph/two_edge_component.hpp
 layout: document
 redirect_from:
