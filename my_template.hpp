@@ -167,7 +167,7 @@ inline bool chmin(T &a, const S &b) {
 // ? は -1
 vc<int> s_to_vi(const string &S, char first_char) {
   vc<int> A(S.size());
-  FOR(i, S.size()) { A[i] = (S[i] == '?' ? S[i] - first_char : -1); }
+  FOR(i, S.size()) { A[i] = (S[i] != '?' ? S[i] - first_char : -1); }
   return A;
 }
 
