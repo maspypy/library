@@ -48,7 +48,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc276_g_2.test.cpp
     title: test/atcoder/abc276_g_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
   - icon: ':x:'

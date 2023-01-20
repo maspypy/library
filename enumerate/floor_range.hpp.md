@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/floor_ceil_ranges.test.cpp
     title: test/mytest/floor_ceil_ranges.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test/yukicoder/4954.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"enumerate/floor_range.hpp\"\n// f(q, l, r)\uFF1A\u5546\u304C\
@@ -37,7 +37,7 @@ data:
   path: enumerate/floor_range.hpp
   requiredBy: []
   timestamp: '2022-12-06 21:05:59+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1573.test.cpp
   - test/yukicoder/1260.test.cpp

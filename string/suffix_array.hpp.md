@@ -24,7 +24,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/suffix_array.test.cpp
     title: test/library_checker/string/suffix_array.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/string/suffix_array_vec.test.cpp
     title: test/library_checker/string/suffix_array_vec.test.cpp
   - icon: ':x:'
