@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/maxplus_convolution_concave.hpp
     title: convex/maxplus_convolution_concave.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convex/smawk.hpp
     title: convex/smawk.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -240,10 +240,10 @@ data:
     \ || B[j] == -INF) continue;\n    chmax(C[i + j], A[i] + B[j]);\n  }\n  return\
     \ C;\n}\n\nvoid test() {\n  FOR(a1, 5) FOR(b1, 10) FOR(c1, 5) {\n    vc<int> A\
     \ = gen(a1, b1, c1);\n    FOR(a2, 5) FOR(b2, 10) FOR(c2, 5) {\n      vc<int> B\
-    \ = gen(a2, b2, c2);\n      assert(naive(A, B) == maxplus_convolution_concave<int>(A,\
-    \ B, INF));\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\
-    \nsigned main() {\n  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\
-    \n  return 0;\n}\n"
+    \ = gen(a2, b2, c2);\n      vc<int> C = maxplus_convolution_concave<int, true,\
+    \ true>(A, B, INF);\n      assert(naive(A, B) == C);\n    }\n  }\n}\n\nvoid solve()\
+    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"random/base.hpp\"\n\n#include \"convex/maxplus_convolution_concave.hpp\"\
     \n\nconst int INF = numeric_limits<int>::max() / 2;\n\nvc<int> gen(int L, int\
@@ -254,10 +254,11 @@ data:
     \  FOR(i, N) FOR(j, M) {\n    if (A[i] == -INF || B[j] == -INF) continue;\n  \
     \  chmax(C[i + j], A[i] + B[j]);\n  }\n  return C;\n}\n\nvoid test() {\n  FOR(a1,\
     \ 5) FOR(b1, 10) FOR(c1, 5) {\n    vc<int> A = gen(a1, b1, c1);\n    FOR(a2, 5)\
-    \ FOR(b2, 10) FOR(c2, 5) {\n      vc<int> B = gen(a2, b2, c2);\n      assert(naive(A,\
-    \ B) == maxplus_convolution_concave<int>(A, B, INF));\n    }\n  }\n}\n\nvoid solve()\
-    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  test();\n  solve();\n\n  return 0;\n}\n"
+    \ FOR(b2, 10) FOR(c2, 5) {\n      vc<int> B = gen(a2, b2, c2);\n      vc<int>\
+    \ C = maxplus_convolution_concave<int, true, true>(A, B, INF);\n      assert(naive(A,\
+    \ B) == C);\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\
+    \nsigned main() {\n  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -267,8 +268,8 @@ data:
   isVerificationFile: true
   path: test/mytest/maxplus_concave.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-01-20 22:01:07+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/maxplus_concave.test.cpp
 layout: document

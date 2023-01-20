@@ -216,7 +216,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/maxidx_add.test.cpp
     title: test/mytest/maxidx_add.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/maxplus_concave.test.cpp
     title: test/mytest/maxplus_concave.test.cpp
   - icon: ':heavy_check_mark:'
@@ -234,9 +234,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/minmax_add.test.cpp
     title: test/mytest/minmax_add.test.cpp
-  - icon: ':x:'
-    path: test/mytest/minplus_convex.test.cpp
-    title: test/mytest/minplus_convex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/mod_sum_of_linear.test.cpp
     title: test/mytest/mod_sum_of_linear.test.cpp
@@ -405,9 +402,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -452,7 +449,7 @@ data:
   - poly/multivar_convolution_cyclic.hpp
   - random/hash_vector.hpp
   timestamp: '2022-10-23 11:21:57+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_14_C.test.cpp
   - test/yukicoder/310.test.cpp
@@ -518,7 +515,6 @@ data:
   - test/mytest/tournament.test.cpp
   - test/mytest/online_log.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
-  - test/mytest/minplus_convex.test.cpp
   - test/mytest/rbst_test.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
   - test/mytest/segtree_xor_prod.test.cpp

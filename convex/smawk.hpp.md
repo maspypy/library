@@ -2,25 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/maxplus_convolution_concave.hpp
     title: convex/maxplus_convolution_concave.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: convex/minplus_convolution_convex.hpp
     title: convex/minplus_convolution_convex.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/maxplus_concave.test.cpp
     title: test/mytest/maxplus_concave.test.cpp
-  - icon: ':x:'
-    path: test/mytest/minplus_convex.test.cpp
-    title: test/mytest/minplus_convex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/smawk.test.cpp
     title: test/mytest/smawk.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/smawk.hpp\"\n// select(i,j,k) \u306F (i,j) \u3068\
@@ -58,10 +55,9 @@ data:
   - convex/maxplus_convolution_concave.hpp
   - convex/minplus_convolution_convex.hpp
   timestamp: '2023-01-19 00:12:30+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/maxplus_concave.test.cpp
-  - test/mytest/minplus_convex.test.cpp
   - test/mytest/smawk.test.cpp
 documentation_of: convex/smawk.hpp
 layout: document
