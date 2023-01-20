@@ -33,7 +33,8 @@ void test() {
     vc<int> A = gen(a1, b1, c1);
     FOR(a2, 5) FOR(b2, 10) FOR(c2, 5) {
       vc<int> B = gen(a2, b2, c2);
-      assert(naive(A, B) == maxplus_convolution_concave<int>(A, B, INF));
+      vc<int> C = maxplus_convolution_concave<int, true, true>(A, B, INF);
+      assert(naive(A, B) == C);
     }
   }
 }
