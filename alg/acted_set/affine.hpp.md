@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc270_g.test.cpp
-    title: test/atcoder/abc270_g.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/_atcoder/abc270_g.test.cpp
+    title: test/_atcoder/abc270_g.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/acted_set/affine.hpp\"\n// 1 \u6B21\u5143\u30D9\u30AF\
@@ -26,9 +26,9 @@ data:
   path: alg/acted_set/affine.hpp
   requiredBy: []
   timestamp: '2022-11-28 21:09:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/atcoder/abc270_g.test.cpp
+  - test/_atcoder/abc270_g.test.cpp
 documentation_of: alg/acted_set/affine.hpp
 layout: document
 redirect_from:

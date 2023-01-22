@@ -20,22 +20,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/range_mex_query.hpp
     title: ds/offline_query/range_mex_query.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':heavy_check_mark:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/_atcoder/abc270_f.test.cpp
+    title: test/_atcoder/abc270_f.test.cpp
+  - icon: ':x:'
+    path: test/_atcoder/arc151_e.test.cpp
+    title: test/_atcoder/arc151_e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508.test.cpp
     title: test/aoj/1508.test.cpp
@@ -51,12 +57,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc270_f.test.cpp
-    title: test/atcoder/abc270_f.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/arc151_e.test.cpp
-    title: test/atcoder/arc151_e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticrmq_seg.test.cpp
     title: test/library_checker/datastructure/staticrmq_seg.test.cpp
@@ -120,9 +120,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/913.test.cpp
     title: test/yukicoder/913.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <class X>\r\nstruct Monoid_Min\
@@ -149,7 +149,7 @@ data:
   - alg/acted_monoid/min_min.hpp
   - alg/acted_monoid/min_max.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/1508_2.test.cpp
   - test/aoj/DSL_2_F.test.cpp
@@ -162,6 +162,8 @@ data:
   - test/yukicoder/1212.test.cpp
   - test/yukicoder/913.test.cpp
   - test/yukicoder/1720.test.cpp
+  - test/_atcoder/abc270_f.test.cpp
+  - test/_atcoder/arc151_e.test.cpp
   - test/library_checker/graph/common_interval_decomposition.test.cpp
   - test/library_checker/datastructure/staticrmq_seg.test.cpp
   - test/library_checker/datastructure/staticrmq_sparse.test.cpp
@@ -177,8 +179,6 @@ data:
   - test/mytest/rbst_am.test.cpp
   - test/mytest/min_max.test.cpp
   - test/mytest/min_min.test.cpp
-  - test/atcoder/abc270_f.test.cpp
-  - test/atcoder/arc151_e.test.cpp
 documentation_of: alg/monoid/min.hpp
 layout: document
 redirect_from:

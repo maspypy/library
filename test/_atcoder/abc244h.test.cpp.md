@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: convex/slope.hpp
-    title: convex/slope.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: convex/cht.hpp
+    title: convex/cht.hpp
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/arc123/tasks/arc123_d
+    PROBLEM: https://atcoder.jp/contests/abc244/tasks/abc244_Ex
     links:
-    - https://atcoder.jp/contests/arc123/tasks/arc123_d
-  bundledCode: "#line 1 \"test/atcoder/arc123d.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/arc123/tasks/arc123_d\"\
+    - https://atcoder.jp/contests/abc244/tasks/abc244_Ex
+  bundledCode: "#line 1 \"test/_atcoder/abc244h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc244/tasks/abc244_Ex\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -194,74 +194,65 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 1 \"convex/slope.hpp\"\nstruct Slope_Trick {\r\n  static constexpr\
-    \ ll LMIN = numeric_limits<ll>::lowest() / 2;\r\n  static constexpr ll RMAX =\
-    \ numeric_limits<ll>::max() / 2;\r\n  pq<ll> que_l;\r\n  pqg<ll> que_r;\r\n\r\n\
-    \  ll add_l, add_r;\r\n  i128 min_f; // INF \u3092\u8DB3\u3057\u5F15\u304D\u3057\
-    \u3066\u3082\u58CA\u308C\u306A\u3044\u3088\u3046\u306B\u3059\u308B\r\n\r\n  Slope_Trick()\
-    \ : add_l(0), add_r(0), min_f(0) {}\r\n  Slope_Trick(vc<ll> left, vc<ll> right)\r\
-    \n      : que_l(all(left)), que_r(all(right)), add_l(0), add_r(0), min_f(0) {}\r\
-    \n\r\n  int size() { return len(que_l) + len(que_r); }\r\n  tuple<ll, ll, i128>\
-    \ get_min() { return {top_L(), top_R(), min_f}; }\r\n\r\n  void add_const(ll a)\
-    \ { min_f += a; }\r\n\r\n  // O(|a| log N)\r\n  void add_linear(ll a, ll b) {\r\
-    \n    min_f += b;\r\n    FOR(max<int>(a, 0)) {\r\n      ll x = pop_L();\r\n  \
-    \    min_f += x;\r\n      push_R(x);\r\n    }\r\n    FOR(max<int>(-a, 0)) {\r\n\
-    \      ll x = pop_R();\r\n      min_f -= x;\r\n      push_L(x);\r\n    }\r\n \
-    \ }\r\n\r\n  // (a-x)+\r\n  void add_a_minus_x(ll a) {\r\n    min_f += max<ll>(0,\
-    \ a - top_R());\r\n    push_R(a), push_L(pop_R());\r\n  }\r\n  // (x-a)+\r\n \
-    \ void add_x_minus_a(ll a) {\r\n    min_f += max<ll>(0, top_L() - a);\r\n    push_L(a),\
-    \ push_R(pop_L());\r\n  }\r\n\r\n  // |x-a|\r\n  void add_abs(ll a) {\r\n    add_a_minus_x(a);\r\
-    \n    add_x_minus_a(a);\r\n  }\r\n\r\n  // \u5897\u52A0\u5074\u3092\u6D88\u3057\
-    \u3066\u3001\u6E1B\u5C11\u5074\u306E\u307F\u306B\u3059\u308B\r\n  void clear_right()\
-    \ { que_r = pqg<ll>(); }\r\n  // \u6E1B\u5C11\u5074\u3092\u6D88\u3057\u3066\u3001\
-    \u5897\u52A0\u5074\u306E\u307F\u306B\u3059\u308B\r\n  void clear_left() { que_l\
-    \ = pq<ll>(); }\r\n  void shift(const ll &a) { add_l += a, add_r += a; }\r\n\r\
-    \n  // g(x) = min_{x-b <= y <= x-a} f(y)\r\n  void sliding_window_minimum(const\
-    \ ll &a, const ll &b) {\r\n    add_l += a, add_r += b;\r\n  }\r\n\r\n  // O(size\
-    \ log(size))\r\n  i128 eval(ll x) {\r\n    i128 y = min_f;\r\n    pq<ll> que_l_copy\
-    \ = que_l;\r\n    pqg<ll> que_r_copy = que_r;\r\n    while (len(que_l_copy)) {\
-    \ y += max<ll>(0, (POP(que_l_copy) + add_l) - x); }\r\n    while (len(que_r_copy))\
-    \ { y += max<ll>(0, x - (POP(que_r_copy) + add_r)); }\r\n    return y;\r\n  }\r\
-    \n\r\n  void push_R(const ll &x) { que_r.emplace(x - add_r); }\r\n  void push_L(const\
-    \ ll &x) { que_l.emplace(x - add_l); }\r\n  ll top_R() {\r\n    if (que_r.empty())\
-    \ que_r.emplace(RMAX);\r\n    return que_r.top() + add_r;\r\n  }\r\n  ll top_L()\
-    \ {\r\n    if (que_l.empty()) que_l.emplace(LMIN);\r\n    return que_l.top() +\
-    \ add_l;\r\n  }\r\n  ll pop_R() {\r\n    ll res = top_R();\r\n    que_r.pop();\r\
-    \n    return res;\r\n  }\r\n  ll pop_L() {\r\n    ll res = top_L();\r\n    que_l.pop();\r\
-    \n    return res;\r\n  }\r\n\r\n  void debug() {\r\n    vi left, right;\r\n  \
-    \  pq<ll> que_l_copy = que_l;\r\n    pqg<ll> que_r_copy = que_r;\r\n    while\
-    \ (len(que_l_copy)) { left.eb(POP(que_l_copy) + add_l); }\r\n    while (len(que_r_copy))\
-    \ { right.eb(POP(que_r_copy) + add_r); }\r\n    sort(all(left));\r\n    sort(all(right));\r\
-    \n    print(\"min_f\", min_f, \"left\", left, \"right\", right);\r\n  }\r\n};\n\
-    #line 5 \"test/atcoder/arc123d.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  VEC(ll,\
-    \ A, N);\n  Slope_Trick X;\n  FOR(i, N) {\n    if (i > 0) {\n      ll c = max<ll>(0,\
-    \ A[i] - A[i - 1]);\n      X.shift(c);\n      X.clear_right();\n    }\n    X.add_abs(0);\n\
-    \    X.add_abs(A[i]);\n  }\n  auto [xl, xr, min_f] = X.get_min();\n  print(min_f);\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
-    \ return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/arc123/tasks/arc123_d\"\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"convex/slope.hpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  Slope_Trick X;\n  FOR(i, N)\
-    \ {\n    if (i > 0) {\n      ll c = max<ll>(0, A[i] - A[i - 1]);\n      X.shift(c);\n\
-    \      X.clear_right();\n    }\n    X.add_abs(0);\n    X.add_abs(A[i]);\n  }\n\
-    \  auto [xl, xr, min_f] = X.get_min();\n  print(min_f);\n}\n\nsigned main() {\n\
-    \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \ yes(!t); }\n#line 4 \"test/_atcoder/abc244h.test.cpp\"\n\n#line 1 \"convex/cht.hpp\"\
+    \n\r\ntemplate <typename T>\r\nstruct Line {\r\n  mutable T k, m, p;\r\n  bool\
+    \ operator<(const Line& o) const { return k < o.k; }\r\n  bool operator<(T x)\
+    \ const { return p < x; }\r\n};\r\n\r\ntemplate <typename T>\r\nT lc_inf() {\r\
+    \n  return numeric_limits<T>::max();\r\n}\r\ntemplate <>\r\nlong double lc_inf<long\
+    \ double>() {\r\n  return 1 / .0;\r\n}\r\n\r\ntemplate <typename T>\r\nT lc_div(T\
+    \ a, T b) {\r\n  return a / b - ((a ^ b) < 0 and a % b);\r\n}\r\ntemplate <>\r\
+    \nlong double lc_div(long double a, long double b) {\r\n  return a / b;\r\n};\r\
+    \ntemplate <>\r\ndouble lc_div(double a, double b) {\r\n  return a / b;\r\n};\r\
+    \n\r\ntemplate <typename T, bool MINIMIZE = true>\r\nstruct LineContainer : multiset<Line<T>,\
+    \ less<>> {\r\n  using super = multiset<Line<T>, less<>>;\r\n  using super::begin,\
+    \ super::end, super::insert, super::erase;\r\n  using super::empty, super::lower_bound;\r\
+    \n  const T inf = lc_inf<T>();\r\n  bool insect(typename super::iterator x, typename\
+    \ super::iterator y) {\r\n    if (y == end()) return x->p = inf, false;\r\n  \
+    \  if (x->k == y->k)\r\n      x->p = (x->m > y->m ? inf : -inf);\r\n    else\r\
+    \n      x->p = lc_div(y->m - x->m, x->k - y->k);\r\n    return x->p >= y->p;\r\
+    \n  }\r\n  void add(T k, T m) {\r\n    if (MINIMIZE) { k = -k, m = -m; }\r\n \
+    \   auto z = insert({k, m, 0}), y = z++, x = y;\r\n    while (insect(y, z)) z\
+    \ = erase(z);\r\n    if (x != begin() and insect(--x, y)) insect(x, y = erase(y));\r\
+    \n    while ((y = x) != begin() and (--x)->p >= y->p) insect(x, erase(y));\r\n\
+    \  }\r\n  T query(T x) {\r\n    assert(!empty());\r\n    auto l = *lower_bound(x);\r\
+    \n    T v = (l.k * x + l.m);\r\n    return (MINIMIZE ? -v : v);\r\n  }\r\n};\r\
+    \n\r\ntemplate <typename T>\r\nusing CHT_min = LineContainer<T, true>;\r\ntemplate\
+    \ <typename T>\r\nusing CHT_max = LineContainer<T, false>;\r\n\r\n/*\r\nlong long\
+    \ / double \u3067\u52D5\u304F\u3068\u601D\u3046\u3002\u30AF\u30A8\u30EA\u3042\u305F\
+    \u308A O(log N)\r\n\u30FBadd(a, b)\uFF1Aax + by \u306E\u8FFD\u52A0\r\n\u30FBget_max(x,y)\uFF1A\
+    max_{a,b} (ax + by)\r\n\u30FBget_min(x,y)\uFF1Amax_{a,b} (ax + by)\r\n*/\r\ntemplate\
+    \ <typename T>\r\nstruct CHT_xy {\r\n  using ld = long double;\r\n  CHT_min<ld>\
+    \ cht_min;\r\n  CHT_max<ld> cht_max;\r\n  T amax = -1e18, amin = 1e18, bmax =\
+    \ -1e18, bmin = 1e18;\r\n  void add(T a, T b) {\r\n    cht_min.add(b, a);\r\n\
+    \    cht_max.add(b, a);\r\n    chmax(amax, a), chmin(amin, a), chmax(bmax, b),\
+    \ chmin(bmin, b);\r\n  }\r\n\r\n  T get_max(T x, T y) {\r\n    if (x == 0) { return\
+    \ max(bmax * y, bmin * y); }\r\n    ld z = ld(y) / x;\r\n    if (x > 0) {\r\n\
+    \      auto l = cht_max.lower_bound(z);\r\n      ll a = l->m, b = l->k;\r\n  \
+    \    return a * x + b * y;\r\n    }\r\n    auto l = cht_min.lower_bound(z);\r\n\
+    \    ll a = -(l->m), b = -(l->k);\r\n    return a * x + b * y;\r\n  }\r\n\r\n\
+    \  T get_min(T x, T y) { return -get_max(-x, -y); }\r\n};\r\n#line 6 \"test/_atcoder/abc244h.test.cpp\"\
+    \n\nvoid solve() {\n  LL(Q);\n  CHT_xy<ll> cht;\n  FOR(Q) {\n    LL(a, b, x, y);\n\
+    \    cht.add(a, b);\n    print(cht.get_max(x, y));\n  }\n}\n\nsigned main() {\n\
+    \  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc244/tasks/abc244_Ex\"\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"convex/cht.hpp\"\
+    \n\nvoid solve() {\n  LL(Q);\n  CHT_xy<ll> cht;\n  FOR(Q) {\n    LL(a, b, x, y);\n\
+    \    cht.add(a, b);\n    print(cht.get_max(x, y));\n  }\n}\n\nsigned main() {\n\
+    \  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - convex/slope.hpp
+  - convex/cht.hpp
   isVerificationFile: true
-  path: test/atcoder/arc123d.test.cpp
+  path: test/_atcoder/abc244h.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-01-23 03:29:31+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/atcoder/arc123d.test.cpp
+documentation_of: test/_atcoder/abc244h.test.cpp
 layout: document
 redirect_from:
-- /verify/test/atcoder/arc123d.test.cpp
-- /verify/test/atcoder/arc123d.test.cpp.html
-title: test/atcoder/arc123d.test.cpp
+- /verify/test/_atcoder/abc244h.test.cpp
+- /verify/test/_atcoder/abc244h.test.cpp.html
+title: test/_atcoder/abc244h.test.cpp
 ---

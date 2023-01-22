@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc234ex.test.cpp
-    title: test/atcoder/abc234ex.test.cpp
+  - icon: ':x:'
+    path: test/_atcoder/abc234ex.test.cpp
+    title: test/_atcoder/abc234ex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/kdtree_nns.test.cpp
     title: test/mytest/kdtree_nns.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/kdtree/kdtree.hpp\"\ntemplate <typename XY>\nstruct KDTree\
@@ -112,10 +112,10 @@ data:
   path: ds/kdtree/kdtree.hpp
   requiredBy: []
   timestamp: '2022-12-05 05:57:24+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/_atcoder/abc234ex.test.cpp
   - test/mytest/kdtree_nns.test.cpp
-  - test/atcoder/abc234ex.test.cpp
 documentation_of: ds/kdtree/kdtree.hpp
 layout: document
 redirect_from:

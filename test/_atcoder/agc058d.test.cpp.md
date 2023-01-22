@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/coef_of_rational_fps_2d.hpp
     title: poly/coef_of_rational_fps_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/agc058/tasks/agc058_d
     links:
     - https://atcoder.jp/contests/agc058/tasks/agc058_d
-  bundledCode: "#line 1 \"test/atcoder/agc058d.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/agc058/tasks/agc058_d\"\
+  bundledCode: "#line 1 \"test/_atcoder/agc058d.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/agc058/tasks/agc058_d\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -212,7 +212,7 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 4 \"test/atcoder/agc058d.test.cpp\"\n\n#line 2 \"mod/modint.hpp\"\
+    \ yes(!t); }\n#line 4 \"test/_atcoder/agc058d.test.cpp\"\n\n#line 2 \"mod/modint.hpp\"\
     \n\ntemplate <int mod>\nstruct modint {\n  int val;\n  constexpr modint(ll x =\
     \ 0) noexcept {\n    if (0 <= x && x < mod)\n      val = x;\n    else {\n    \
     \  x %= mod;\n      val = (x < 0 ? x + mod : x);\n    }\n  }\n  bool operator<(const\
@@ -513,7 +513,7 @@ data:
     \   int k = i - j;\n      poly tmp = convolution(A[k], G[j]);\n      FOR(t, len(tmp))\
     \ { add_at(A[i], t, -tmp[t]); }\n    }\n  }\n\n  vc<mint> res;\n  FOR(i, m) {\n\
     \    vc<mint> f = convolution(h[i], A[i]);\n    FOR(i, len(f)) add_at(res, i,\
-    \ f[i]);\n  }\n  return res;\n}\n#line 7 \"test/atcoder/agc058d.test.cpp\"\n\n\
+    \ f[i]);\n  }\n  return res;\n}\n#line 7 \"test/_atcoder/agc058d.test.cpp\"\n\n\
     using mint = modint998;\n\nvoid solve() {\n  LL(A, B, C);\n  ll N = A + B + C;\n\
     \n  using poly = vc<mint>;\n  vc<poly> F(2), G(4);\n  F[0] = {mint(3)};\n  F[1]\
     \ = {mint(-1)};\n  G[0] = {mint(1)};\n  G[1] = {mint(-1)};\n  G[3] = {mint(0),\
@@ -547,15 +547,15 @@ data:
   - poly/fft.hpp
   - poly/coef_of_rational_fps_2d.hpp
   isVerificationFile: true
-  path: test/atcoder/agc058d.test.cpp
+  path: test/_atcoder/agc058d.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-01-23 03:29:31+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/atcoder/agc058d.test.cpp
+documentation_of: test/_atcoder/agc058d.test.cpp
 layout: document
 redirect_from:
-- /verify/test/atcoder/agc058d.test.cpp
-- /verify/test/atcoder/agc058d.test.cpp.html
-title: test/atcoder/agc058d.test.cpp
+- /verify/test/_atcoder/agc058d.test.cpp
+- /verify/test/_atcoder/agc058d.test.cpp.html
+title: test/_atcoder/agc058d.test.cpp
 ---

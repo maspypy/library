@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: alg/monoid/add_chmin_chmax.hpp
-    title: alg/monoid/add_chmin_chmax.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: convex/slope.hpp
+    title: convex/slope.hpp
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc196/tasks/abc196_e
+    PROBLEM: https://atcoder.jp/contests/arc123/tasks/arc123_d
     links:
-    - https://atcoder.jp/contests/abc196/tasks/abc196_e
-  bundledCode: "#line 1 \"test/atcoder/abc196_E.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc196/tasks/abc196_e\"\
+    - https://atcoder.jp/contests/arc123/tasks/arc123_d
+  bundledCode: "#line 1 \"test/_atcoder/arc123d.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/arc123/tasks/arc123_d\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -194,47 +194,74 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 2 \"alg/monoid/add_chmin_chmax.hpp\"\n\n// max(min(x+a,b),c)\
-    \ \u3068\u8868\u305B\u308B\u95A2\u6570\u306E\u5408\u6210\ntemplate <typename E>\n\
-    struct Monoid_Add_Chmin_Chmax {\n  using value_type = tuple<E, E, E>;\n  using\
-    \ X = value_type;\n  static constexpr E L_INF = numeric_limits<E>::lowest();\n\
-    \  static constexpr E R_INF = numeric_limits<E>::max();\n\n  static X op(X x,\
-    \ X y) {\n    auto [a, b, c] = x;\n    auto [d, e, f] = y;\n    a = a + d;\n \
-    \   b = (b == R_INF ? b : b + d);\n    c = (c == L_INF ? c : c + d);\n    b =\
-    \ min(b, e);\n    c = max(min(c, e), f);\n    return {a, b, c};\n  }\n\n  static\
-    \ E eval(X f, E x) {\n    auto [a, b, c] = f;\n    return max(min(x + a, b), c);\n\
-    \  }\n\n  static X add(E a) { return {a, R_INF, L_INF}; }\n  static X chmin(E\
-    \ b) { return {0, b, L_INF}; }\n  static X chmax(E c) { return {0, R_INF, c};\
-    \ }\n\n  static constexpr X unit() { return {0, R_INF, L_INF}; }\n  static constexpr\
-    \ bool commute = 0;\n};\n#line 5 \"test/atcoder/abc196_E.test.cpp\"\n\nvoid solve()\
-    \ {\n  using Mono = Monoid_Add_Chmin_Chmax<ll>;\n  using F = typename Mono::value_type;\n\
-    \  F f = Mono::unit();\n\n  LL(N);\n  FOR(N) {\n    LL(a, t);\n    if (t == 1)\
-    \ f = Mono::op(f, Mono::add(a));\n    if (t == 2) f = Mono::op(f, Mono::chmax(a));\n\
-    \    if (t == 3) f = Mono::op(f, Mono::chmin(a));\n  }\n\n  LL(Q);\n  FOR(Q) {\n\
-    \    LL(x);\n    print(Mono::eval(f, x));\n  }\n}\n\nsigned main() {\n  solve();\n\
-    \n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc196/tasks/abc196_e\"\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/monoid/add_chmin_chmax.hpp\"\
-    \n\nvoid solve() {\n  using Mono = Monoid_Add_Chmin_Chmax<ll>;\n  using F = typename\
-    \ Mono::value_type;\n  F f = Mono::unit();\n\n  LL(N);\n  FOR(N) {\n    LL(a,\
-    \ t);\n    if (t == 1) f = Mono::op(f, Mono::add(a));\n    if (t == 2) f = Mono::op(f,\
-    \ Mono::chmax(a));\n    if (t == 3) f = Mono::op(f, Mono::chmin(a));\n  }\n\n\
-    \  LL(Q);\n  FOR(Q) {\n    LL(x);\n    print(Mono::eval(f, x));\n  }\n}\n\nsigned\
-    \ main() {\n  solve();\n\n  return 0;\n}"
+    \ yes(!t); }\n#line 1 \"convex/slope.hpp\"\nstruct Slope_Trick {\r\n  static constexpr\
+    \ ll LMIN = numeric_limits<ll>::lowest() / 2;\r\n  static constexpr ll RMAX =\
+    \ numeric_limits<ll>::max() / 2;\r\n  pq<ll> que_l;\r\n  pqg<ll> que_r;\r\n\r\n\
+    \  ll add_l, add_r;\r\n  i128 min_f; // INF \u3092\u8DB3\u3057\u5F15\u304D\u3057\
+    \u3066\u3082\u58CA\u308C\u306A\u3044\u3088\u3046\u306B\u3059\u308B\r\n\r\n  Slope_Trick()\
+    \ : add_l(0), add_r(0), min_f(0) {}\r\n  Slope_Trick(vc<ll> left, vc<ll> right)\r\
+    \n      : que_l(all(left)), que_r(all(right)), add_l(0), add_r(0), min_f(0) {}\r\
+    \n\r\n  int size() { return len(que_l) + len(que_r); }\r\n  tuple<ll, ll, i128>\
+    \ get_min() { return {top_L(), top_R(), min_f}; }\r\n\r\n  void add_const(ll a)\
+    \ { min_f += a; }\r\n\r\n  // O(|a| log N)\r\n  void add_linear(ll a, ll b) {\r\
+    \n    min_f += b;\r\n    FOR(max<int>(a, 0)) {\r\n      ll x = pop_L();\r\n  \
+    \    min_f += x;\r\n      push_R(x);\r\n    }\r\n    FOR(max<int>(-a, 0)) {\r\n\
+    \      ll x = pop_R();\r\n      min_f -= x;\r\n      push_L(x);\r\n    }\r\n \
+    \ }\r\n\r\n  // (a-x)+\r\n  void add_a_minus_x(ll a) {\r\n    min_f += max<ll>(0,\
+    \ a - top_R());\r\n    push_R(a), push_L(pop_R());\r\n  }\r\n  // (x-a)+\r\n \
+    \ void add_x_minus_a(ll a) {\r\n    min_f += max<ll>(0, top_L() - a);\r\n    push_L(a),\
+    \ push_R(pop_L());\r\n  }\r\n\r\n  // |x-a|\r\n  void add_abs(ll a) {\r\n    add_a_minus_x(a);\r\
+    \n    add_x_minus_a(a);\r\n  }\r\n\r\n  // \u5897\u52A0\u5074\u3092\u6D88\u3057\
+    \u3066\u3001\u6E1B\u5C11\u5074\u306E\u307F\u306B\u3059\u308B\r\n  void clear_right()\
+    \ { que_r = pqg<ll>(); }\r\n  // \u6E1B\u5C11\u5074\u3092\u6D88\u3057\u3066\u3001\
+    \u5897\u52A0\u5074\u306E\u307F\u306B\u3059\u308B\r\n  void clear_left() { que_l\
+    \ = pq<ll>(); }\r\n  void shift(const ll &a) { add_l += a, add_r += a; }\r\n\r\
+    \n  // g(x) = min_{x-b <= y <= x-a} f(y)\r\n  void sliding_window_minimum(const\
+    \ ll &a, const ll &b) {\r\n    add_l += a, add_r += b;\r\n  }\r\n\r\n  // O(size\
+    \ log(size))\r\n  i128 eval(ll x) {\r\n    i128 y = min_f;\r\n    pq<ll> que_l_copy\
+    \ = que_l;\r\n    pqg<ll> que_r_copy = que_r;\r\n    while (len(que_l_copy)) {\
+    \ y += max<ll>(0, (POP(que_l_copy) + add_l) - x); }\r\n    while (len(que_r_copy))\
+    \ { y += max<ll>(0, x - (POP(que_r_copy) + add_r)); }\r\n    return y;\r\n  }\r\
+    \n\r\n  void push_R(const ll &x) { que_r.emplace(x - add_r); }\r\n  void push_L(const\
+    \ ll &x) { que_l.emplace(x - add_l); }\r\n  ll top_R() {\r\n    if (que_r.empty())\
+    \ que_r.emplace(RMAX);\r\n    return que_r.top() + add_r;\r\n  }\r\n  ll top_L()\
+    \ {\r\n    if (que_l.empty()) que_l.emplace(LMIN);\r\n    return que_l.top() +\
+    \ add_l;\r\n  }\r\n  ll pop_R() {\r\n    ll res = top_R();\r\n    que_r.pop();\r\
+    \n    return res;\r\n  }\r\n  ll pop_L() {\r\n    ll res = top_L();\r\n    que_l.pop();\r\
+    \n    return res;\r\n  }\r\n\r\n  void debug() {\r\n    vi left, right;\r\n  \
+    \  pq<ll> que_l_copy = que_l;\r\n    pqg<ll> que_r_copy = que_r;\r\n    while\
+    \ (len(que_l_copy)) { left.eb(POP(que_l_copy) + add_l); }\r\n    while (len(que_r_copy))\
+    \ { right.eb(POP(que_r_copy) + add_r); }\r\n    sort(all(left));\r\n    sort(all(right));\r\
+    \n    print(\"min_f\", min_f, \"left\", left, \"right\", right);\r\n  }\r\n};\n\
+    #line 5 \"test/_atcoder/arc123d.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  VEC(ll,\
+    \ A, N);\n  Slope_Trick X;\n  FOR(i, N) {\n    if (i > 0) {\n      ll c = max<ll>(0,\
+    \ A[i] - A[i - 1]);\n      X.shift(c);\n      X.clear_right();\n    }\n    X.add_abs(0);\n\
+    \    X.add_abs(A[i]);\n  }\n  auto [xl, xr, min_f] = X.get_min();\n  print(min_f);\n\
+    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
+    \ return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/arc123/tasks/arc123_d\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"convex/slope.hpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  Slope_Trick X;\n  FOR(i, N)\
+    \ {\n    if (i > 0) {\n      ll c = max<ll>(0, A[i] - A[i - 1]);\n      X.shift(c);\n\
+    \      X.clear_right();\n    }\n    X.add_abs(0);\n    X.add_abs(A[i]);\n  }\n\
+    \  auto [xl, xr, min_f] = X.get_min();\n  print(min_f);\n}\n\nsigned main() {\n\
+    \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - alg/monoid/add_chmin_chmax.hpp
+  - convex/slope.hpp
   isVerificationFile: true
-  path: test/atcoder/abc196_E.test.cpp
+  path: test/_atcoder/arc123d.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-01-23 03:29:31+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/atcoder/abc196_E.test.cpp
+documentation_of: test/_atcoder/arc123d.test.cpp
 layout: document
 redirect_from:
-- /verify/test/atcoder/abc196_E.test.cpp
-- /verify/test/atcoder/abc196_E.test.cpp.html
-title: test/atcoder/abc196_E.test.cpp
+- /verify/test/_atcoder/arc123d.test.cpp
+- /verify/test/_atcoder/arc123d.test.cpp.html
+title: test/_atcoder/arc123d.test.cpp
 ---

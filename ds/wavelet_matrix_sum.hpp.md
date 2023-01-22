@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc127f_1.test.cpp
-    title: test/atcoder/abc127f_1.test.cpp
+  - icon: ':x:'
+    path: test/_atcoder/abc127f_1.test.cpp
+    title: test/_atcoder/abc127f_1.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/wavelet_matrix_sum.test.cpp
     title: test/mytest/wavelet_matrix_sum.test.cpp
@@ -21,9 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  vc<pair<u32,\
@@ -209,12 +209,12 @@ data:
   path: ds/wavelet_matrix_sum.hpp
   requiredBy: []
   timestamp: '2022-12-13 09:39:12+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/924.test.cpp
   - test/yukicoder/2065.test.cpp
+  - test/_atcoder/abc127f_1.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
-  - test/atcoder/abc127f_1.test.cpp
 documentation_of: ds/wavelet_matrix_sum.hpp
 layout: document
 redirect_from:

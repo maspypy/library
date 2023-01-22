@@ -3,12 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/_atcoder/arc153f.test.cpp
+    title: test/_atcoder/arc153f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/enumerate_products.test.cpp
     title: test/mytest/enumerate_products.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"enumerate/products.hpp\"\n// [0, K) ^ N\ntemplate <typename\
@@ -26,8 +29,9 @@ data:
   path: enumerate/products.hpp
   requiredBy: []
   timestamp: '2022-10-21 20:59:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/_atcoder/arc153f.test.cpp
   - test/mytest/enumerate_products.test.cpp
 documentation_of: enumerate/products.hpp
 layout: document

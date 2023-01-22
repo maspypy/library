@@ -23,19 +23,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/coef_of_rational_fps_2d.hpp
     title: poly/coef_of_rational_fps_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':heavy_check_mark:'
     path: poly/convolution2d.hpp
     title: poly/convolution2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
   - icon: ':heavy_check_mark:'
@@ -50,31 +50,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_composition.hpp
     title: poly/fps_composition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
   - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':heavy_check_mark:'
@@ -110,7 +110,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
   - icon: ':heavy_check_mark:'
@@ -128,13 +128,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/sparse_exp_of_div.hpp
     title: poly/sparse_exp_of_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/sum_of_prefix_suffix_products.hpp
     title: poly/sum_of_prefix_suffix_products.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
   - icon: ':heavy_check_mark:'
@@ -155,7 +155,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   - icon: ':heavy_check_mark:'
@@ -167,28 +167,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   - icon: ':heavy_check_mark:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc269ex.test.cpp
-    title: test/atcoder/abc269ex.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc272_h.test.cpp
-    title: test/atcoder/abc272_h.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc276_g.test.cpp
-    title: test/atcoder/abc276_g.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc276_g_2.test.cpp
-    title: test/atcoder/abc276_g_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/agc058d.test.cpp
-    title: test/atcoder/agc058d.test.cpp
+  - icon: ':x:'
+    path: test/_atcoder/abc269ex.test.cpp
+    title: test/_atcoder/abc269ex.test.cpp
+  - icon: ':x:'
+    path: test/_atcoder/abc272_h.test.cpp
+    title: test/_atcoder/abc272_h.test.cpp
+  - icon: ':x:'
+    path: test/_atcoder/abc276_g.test.cpp
+    title: test/_atcoder/abc276_g.test.cpp
+  - icon: ':x:'
+    path: test/_atcoder/abc276_g_2.test.cpp
+    title: test/_atcoder/abc276_g_2.test.cpp
+  - icon: ':x:'
+    path: test/_atcoder/agc058d.test.cpp
+    title: test/_atcoder/agc058d.test.cpp
+  - icon: ':x:'
+    path: test/_atcoder/arc153f.test.cpp
+    title: test/_atcoder/arc153f.test.cpp
+  - icon: ':x:'
+    path: test/_atcoder/arc154f.test.cpp
+    title: test/_atcoder/arc154f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_huge.test.cpp
     title: test/library_checker/convolution/convolution_huge.test.cpp
@@ -453,9 +459,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/fft.hpp\"\nnamespace CFFT {\r\nusing real = double;\r\
@@ -564,7 +570,7 @@ data:
   - poly/multipoint.hpp
   - poly/sum_of_rationals.hpp
   timestamp: '2022-05-02 12:36:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/2062.test.cpp
   - test/yukicoder/1516.test.cpp
@@ -600,6 +606,13 @@ data:
   - test/yukicoder/502_2.test.cpp
   - test/yukicoder/1755.test.cpp
   - test/yukicoder/1962.test.cpp
+  - test/_atcoder/abc269ex.test.cpp
+  - test/_atcoder/arc153f.test.cpp
+  - test/_atcoder/agc058d.test.cpp
+  - test/_atcoder/abc276_g.test.cpp
+  - test/_atcoder/abc272_h.test.cpp
+  - test/_atcoder/abc276_g_2.test.cpp
+  - test/_atcoder/arc154f.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/polynomial/inv_of_fps.test.cpp
@@ -654,11 +667,6 @@ data:
   - test/mytest/online_division.test.cpp
   - test/mytest/eulerian_number.test.cpp
   - test/mytest/conv_leq.test.cpp
-  - test/atcoder/abc269ex.test.cpp
-  - test/atcoder/agc058d.test.cpp
-  - test/atcoder/abc276_g.test.cpp
-  - test/atcoder/abc272_h.test.cpp
-  - test/atcoder/abc276_g_2.test.cpp
 documentation_of: poly/fft.hpp
 layout: document
 redirect_from:

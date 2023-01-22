@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: alg/monoid/add.hpp
-    title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
-    path: alg/monoid/max.hpp
-    title: alg/monoid/max.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/fenwicktree/fenwicktree_2d.hpp
-    title: ds/fenwicktree/fenwicktree_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: nt/GF2.hpp
+    title: nt/GF2.hpp
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
+  - icon: ':question:'
+    path: random/base.hpp
+    title: random/base.hpp
+  - icon: ':x:'
+    path: string/rollinghash_field.hpp
+    title: string/rollinghash_field.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc266/tasks/abc266_Ex
+    PROBLEM: https://atcoder.jp/contests/abc274/tasks/abc274_Ex
     links:
-    - https://atcoder.jp/contests/abc266/tasks/abc266_Ex
-  bundledCode: "#line 1 \"test/atcoder/abc266h_2.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc266/tasks/abc266_Ex\"\
+    - https://atcoder.jp/contests/abc274/tasks/abc274_Ex
+  bundledCode: "#line 1 \"test/_atcoder/abc274_h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc274/tasks/abc274_Ex\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -200,130 +200,111 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
-    \ Monoid_Add {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x,\
-    \ const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/fenwicktree/fenwicktree_2d.hpp\"\
-    \n\r\ntemplate <typename Monoid, typename XY, bool SMALL_X = false>\r\nstruct\
-    \ FenwickTree_2D {\r\n  using G = Monoid;\r\n  using E = typename G::value_type;\r\
-    \n  static_assert(G::commute);\r\n  int N;\r\n  vc<XY> keyX;\r\n  XY min_X;\r\n\
-    \  vc<int> indptr;\r\n  vc<XY> keyY;\r\n  vc<E> dat;\r\n\r\n  FenwickTree_2D(vc<XY>&\
-    \ X, vc<XY>& Y, vc<E> wt) { build(X, Y, wt); }\r\n  FenwickTree_2D(vc<XY>& X,\
-    \ vc<XY>& Y) {\r\n    vc<E> wt(len(X), G::unit());\r\n    build(X, Y, wt);\r\n\
-    \  }\r\n\r\n  inline int xtoi(XY x) {\r\n    return (SMALL_X ? clamp<int>(x -\
-    \ min_X, 0, N) : LB(keyX, x));\r\n  }\r\n  inline int nxt(int i) { return i +\
-    \ ((i + 1) & -(i + 1)); }\r\n  inline int prev(int i) { return i - ((i + 1) &\
-    \ -(i + 1)); }\r\n\r\n  void build(vc<XY>& X, vc<XY>& Y, vc<E> wt) {\r\n    assert(len(X)\
-    \ == len(Y) && len(X) == len(wt));\r\n    if (!SMALL_X) {\r\n      keyX = X;\r\
-    \n      UNIQUE(keyX);\r\n      N = len(keyX);\r\n    } else {\r\n      min_X =\
-    \ (len(X) == 0 ? 0 : MIN(X));\r\n      N = (len(X) == 0 ? 0 : MAX(X)) - min_X\
-    \ + 1;\r\n      keyX.resize(N);\r\n      FOR(i, N) keyX[i] = min_X + i;\r\n  \
-    \  }\r\n    vvc<XY> keyY_raw(N);\r\n    vvc<E> dat_raw(N);\r\n    for (auto&&\
-    \ i: argsort(Y)) {\r\n      int ix = xtoi(X[i]);\r\n      XY y = Y[i];\r\n   \
-    \   while (ix < N) {\r\n        auto& KY = keyY_raw[ix];\r\n        if (len(KY)\
-    \ == 0 || KY.back() < y) {\r\n          KY.eb(y);\r\n          dat_raw[ix].eb(wt[i]);\r\
-    \n        } else {\r\n          dat_raw[ix].back() = G::op(dat_raw[ix].back(),\
-    \ wt[i]);\r\n        }\r\n        ix = nxt(ix);\r\n      }\r\n    }\r\n\r\n  \
-    \  indptr.assign(N + 1, 0);\r\n    FOR(i, N) indptr[i + 1] = indptr[i] + len(keyY_raw[i]);\r\
-    \n    keyY.resize(indptr.back());\r\n    dat.resize(indptr.back());\r\n    FOR(i,\
-    \ N) FOR(j, indptr[i + 1] - indptr[i]) {\r\n      keyY[indptr[i] + j] = keyY_raw[i][j];\r\
-    \n      dat[indptr[i] + j] = dat_raw[i][j];\r\n    }\r\n    FOR(i, N) {\r\n  \
-    \    int n = indptr[i + 1] - indptr[i];\r\n      FOR(j, n - 1) {\r\n        int\
-    \ k = nxt(j);\r\n        if (k < n)\r\n          dat[indptr[i] + k] = G::op(dat[indptr[i]\
-    \ + k], dat[indptr[i] + j]);\r\n      }\r\n    }\r\n  }\r\n\r\n  void add(XY x,\
-    \ XY y, E val) { multiply(x, y, val); }\r\n  void multiply(XY x, XY y, E val)\
-    \ {\r\n    int i = xtoi(x);\r\n    assert(keyX[i] == x);\r\n    while (i < N)\
-    \ { multiply_i(i, y, val), i = nxt(i); }\r\n  }\r\n\r\n  E sum(XY lx, XY rx, XY\
-    \ ly, XY ry) { return prod(lx, rx, ly, ry); }\r\n  E prod(XY lx, XY rx, XY ly,\
-    \ XY ry) {\r\n    E pos = G::unit(), neg = G::unit();\r\n    int L = xtoi(lx)\
-    \ - 1, R = xtoi(rx) - 1;\r\n    while (L < R) { pos = G::op(pos, prod_i(R, ly,\
-    \ ry)), R = prev(R); }\r\n    while (R < L) { neg = G::op(neg, prod_i(L, ly, ry)),\
-    \ L = prev(L); }\r\n    return G::op(pos, G::inverse(neg));\r\n  }\r\n\r\n  E\
-    \ prefix_sum(XY rx, XY ry) { return prefix_prod(rx, ry); }\r\n  E prefix_prod(XY\
-    \ rx, XY ry) {\r\n    E pos = G::unit();\r\n    int R = xtoi(rx) - 1;\r\n    while\
-    \ (R >= 0) { pos = G::op(pos, prefix_prod_i(R, ry)), R = prev(R); }\r\n    return\
-    \ pos;\r\n  }\r\n\r\nprivate:\r\n  void multiply_i(int i, XY y, E val) {\r\n \
-    \   int LID = indptr[i], n = indptr[i + 1] - indptr[i];\r\n    auto it = keyY.begin()\
-    \ + LID;\r\n    int j = lower_bound(it, it + n, y) - it;\r\n    while (j < n)\
-    \ { dat[LID + j] = G::op(dat[LID + j], val), j = nxt(j); }\r\n  }\r\n\r\n  E prod_i(int\
-    \ i, XY ly, XY ry) {\r\n    E pos = G::unit(), neg = G::unit();\r\n    int LID\
-    \ = indptr[i], n = indptr[i + 1] - indptr[i];\r\n    auto it = keyY.begin() +\
-    \ LID;\r\n    int L = lower_bound(it, it + n, ly) - it - 1;\r\n    int R = lower_bound(it,\
-    \ it + n, ry) - it - 1;\r\n    while (L < R) { pos = G::op(pos, dat[LID + R]),\
-    \ R = prev(R); }\r\n    while (R < L) { neg = G::op(neg, dat[LID + L]), L = prev(L);\
-    \ }\r\n    return G::op(pos, G::inverse(neg));\r\n  }\r\n\r\n  E prefix_prod_i(int\
-    \ i, XY ry) {\r\n    E pos = G::unit();\r\n    int LID = indptr[i], n = indptr[i\
-    \ + 1] - indptr[i];\r\n    auto it = keyY.begin() + LID;\r\n    int R = lower_bound(it,\
-    \ it + n, ry) - it - 1;\r\n    while (R >= 0) { pos = G::op(pos, dat[LID + R]),\
-    \ R = prev(R); }\r\n    return pos;\r\n  }\r\n};\r\n#line 2 \"alg/monoid/max.hpp\"\
-    \n\r\ntemplate <class X>\r\nstruct Monoid_Max {\r\n  using value_type = X;\r\n\
-    \  static constexpr X op(const X &x, const X &y) noexcept { return max(x, y);\
-    \ }\r\n  static constexpr X unit() { return numeric_limits<X>::lowest(); }\r\n\
-    \  static constexpr bool commute = true;\r\n};\r\n#line 6 \"test/atcoder/abc266h_2.test.cpp\"\
-    \n\nusing Mono = Monoid_Max<ll>;\n\nvoid solve() {\n  LL(N);\n  using T = tuple<ll,\
-    \ ll, ll, ll>;\n\n  VEC(T, dat, N);\n  dat.eb(0, 0, 0, 0);\n  ++N;\n\n  sort(all(dat),\
-    \ [&](auto& a, auto& b) -> bool {\n    auto [at, ax, ay, aa] = a;\n    auto [bt,\
-    \ bx, by, bb] = b;\n    if (ay < by) return true;\n    if (ay > by) return false;\n\
-    \    return at < bt;\n  });\n\n  /*\n  \u53F3\u4E0A\u3078\u306E\u9077\u79FB\uFF1A\
-    \n  (x,y,t) \u304C\u60C5\u5831 (a,b,c,v) \u3092\u53D7\u3051\u53D6\u308B\u306E\u306F\
-    \n  a<=x, c-a-b<=t-x-y\n  \u30FB(a,c-a-b) \u306B\u60C5\u5831\u3092\u8FFD\u52A0\
-    \u3059\u308B\n  \u30FB[-INF,x] x [-INF, t-x-y] \u3067\u306E\u6700\u5927\u5024\u3092\
-    \u6C42\u3081\u308B\n\n  \u5DE6\u4E0A\u3078\u306E\u9077\u79FB\uFF1A\n  (a-x)+(y-b)<=t-c\n\
-    \  (-a)<=(-x), a-b+c<=x-y+t\n  */\n  vi X1(N), Y1(N), X2(N), Y2(N);\n  FOR(i,\
-    \ N) {\n    auto [t, x, y, v] = dat[i];\n    X1[i] = x;\n    X2[i] = -x;\n   \
-    \ Y1[i] = t - x - y;\n    Y2[i] = x - y + t;\n  }\n  FenwickTree_2D<Mono, ll,\
-    \ false> seg1(X1, Y1);\n  FenwickTree_2D<Mono, ll, false> seg2(X2, Y2);\n\n  const\
-    \ ll INF = 1LL << 60;\n\n  ll ANS = 0;\n  FOR(i, N) {\n    const auto [t, x, y,\
-    \ v] = dat[i];\n    const ll a = x, b = y, c = t;\n    if (i == 0) {\n      seg1.add(a,\
-    \ c - a - b, 0);\n      seg2.add(-a, a - b + c, 0);\n      continue;\n    }\n\
-    \    ll best = -INF;\n    chmax(best, seg1.prefix_sum(x + 1, t - x - y + 1));\n\
-    \    chmax(best, seg2.prefix_sum((-x) + 1, x - y + t + 1));\n    if (best < 0)\
-    \ continue;\n    best += v;\n    chmax(ANS, best);\n    seg1.add(a, c - a - b,\
-    \ best);\n    seg2.add(-a, a - b + c, best);\n  }\n  print(ANS);\n}\n\nsigned\
-    \ main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n\
-    \  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc266/tasks/abc266_Ex\"\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/fenwicktree/fenwicktree_2d.hpp\"\
-    \n#include \"alg/monoid/max.hpp\"\n\nusing Mono = Monoid_Max<ll>;\n\nvoid solve()\
-    \ {\n  LL(N);\n  using T = tuple<ll, ll, ll, ll>;\n\n  VEC(T, dat, N);\n  dat.eb(0,\
-    \ 0, 0, 0);\n  ++N;\n\n  sort(all(dat), [&](auto& a, auto& b) -> bool {\n    auto\
-    \ [at, ax, ay, aa] = a;\n    auto [bt, bx, by, bb] = b;\n    if (ay < by) return\
-    \ true;\n    if (ay > by) return false;\n    return at < bt;\n  });\n\n  /*\n\
-    \  \u53F3\u4E0A\u3078\u306E\u9077\u79FB\uFF1A\n  (x,y,t) \u304C\u60C5\u5831 (a,b,c,v)\
-    \ \u3092\u53D7\u3051\u53D6\u308B\u306E\u306F\n  a<=x, c-a-b<=t-x-y\n  \u30FB(a,c-a-b)\
-    \ \u306B\u60C5\u5831\u3092\u8FFD\u52A0\u3059\u308B\n  \u30FB[-INF,x] x [-INF,\
-    \ t-x-y] \u3067\u306E\u6700\u5927\u5024\u3092\u6C42\u3081\u308B\n\n  \u5DE6\u4E0A\
-    \u3078\u306E\u9077\u79FB\uFF1A\n  (a-x)+(y-b)<=t-c\n  (-a)<=(-x), a-b+c<=x-y+t\n\
-    \  */\n  vi X1(N), Y1(N), X2(N), Y2(N);\n  FOR(i, N) {\n    auto [t, x, y, v]\
-    \ = dat[i];\n    X1[i] = x;\n    X2[i] = -x;\n    Y1[i] = t - x - y;\n    Y2[i]\
-    \ = x - y + t;\n  }\n  FenwickTree_2D<Mono, ll, false> seg1(X1, Y1);\n  FenwickTree_2D<Mono,\
-    \ ll, false> seg2(X2, Y2);\n\n  const ll INF = 1LL << 60;\n\n  ll ANS = 0;\n \
-    \ FOR(i, N) {\n    const auto [t, x, y, v] = dat[i];\n    const ll a = x, b =\
-    \ y, c = t;\n    if (i == 0) {\n      seg1.add(a, c - a - b, 0);\n      seg2.add(-a,\
-    \ a - b + c, 0);\n      continue;\n    }\n    ll best = -INF;\n    chmax(best,\
-    \ seg1.prefix_sum(x + 1, t - x - y + 1));\n    chmax(best, seg2.prefix_sum((-x)\
-    \ + 1, x - y + t + 1));\n    if (best < 0) continue;\n    best += v;\n    chmax(ANS,\
-    \ best);\n    seg1.add(a, c - a - b, best);\n    seg2.add(-a, a - b + c, best);\n\
-    \  }\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ yes(!t); }\n#line 4 \"test/_atcoder/abc274_h.test.cpp\"\n\n#line 2 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 1 \"nt/GF2.hpp\"\
+    \n#include <emmintrin.h>\n#include <smmintrin.h>\n#include <wmmintrin.h>\n\n__attribute__((target(\"\
+    pclmul\"))) inline __m128i myclmul(const __m128i &a,\n                       \
+    \                                  const __m128i &b) {\n  return _mm_clmulepi64_si128(a,\
+    \ b, 0);\n}\n\n// 2^n \u5143\u4F53\ntemplate <int K>\nstruct GF2 {\n  // irreducible\
+    \ poly x^K + ...\n  static constexpr int POLY[65]\n      = {0,  0, 3,  3,   3,\
+    \  5,   3,  3,  27,  3,  9,  5,   9, 27, 33, 3,   43,\n         9,  9, 39, 9,\
+    \   5,  3,   33, 27, 9,   27, 39, 3,   5, 3,  9,  141, 75,\n         27, 5, 53,\
+    \ 63,  99, 17,  57, 9,  39,  89, 33, 27,  3, 33, 45, 113, 29,\n         75, 9,\
+    \ 71, 125, 71, 149, 17, 99, 123, 3,  39, 105, 3, 27};\n\n  static constexpr u64\
+    \ mask() { return u64(-1) >> (64 - K); }\n\n  __attribute__((target(\"sse4.2\"\
+    ))) static u64 mul(u64 a, u64 b) {\n    static bool prepared = 0;\n    static\
+    \ u64 MEMO[8][65536];\n    if (!prepared) {\n      prepared = 1;\n      vc<u64>\
+    \ tmp(128);\n      tmp[0] = 1;\n      FOR(i, 127) {\n        tmp[i + 1] = tmp[i]\
+    \ << 1;\n        if (tmp[i] >> (K - 1) & 1) {\n          tmp[i + 1] ^= POLY[K];\n\
+    \          tmp[i + 1] &= mask();\n        }\n      }\n      FOR(k, 8) {\n    \
+    \    MEMO[k][0] = 0;\n        FOR(i, 16) {\n          FOR(s, 1 << i) { MEMO[k][s\
+    \ | 1 << i] = MEMO[k][s] ^ tmp[16 * k + i]; }\n        }\n      }\n    }\n   \
+    \ const __m128i a_ = _mm_set_epi64x(0, a);\n    const __m128i b_ = _mm_set_epi64x(0,\
+    \ b);\n    const __m128i c_ = myclmul(a_, b_);\n    u64 lo = _mm_extract_epi64(c_,\
+    \ 0);\n    u64 hi = _mm_extract_epi64(c_, 1);\n    u64 x = 0;\n    x ^= MEMO[0][lo\
+    \ & 65535];\n    x ^= MEMO[1][(lo >> 16) & 65535];\n    x ^= MEMO[2][(lo >> 32)\
+    \ & 65535];\n    x ^= MEMO[3][(lo >> 48) & 65535];\n    x ^= MEMO[4][hi & 65535];\n\
+    \    x ^= MEMO[5][(hi >> 16) & 65535];\n    x ^= MEMO[6][(hi >> 32) & 65535];\n\
+    \    x ^= MEMO[7][(hi >> 48) & 65535];\n    return x;\n  }\n\n  u64 val;\n  constexpr\
+    \ GF2(const u64 val = 0) noexcept : val(val & mask()) {}\n  bool operator<(const\
+    \ GF2 &other) const {\n    return val < other.val;\n  } // To use std::map\n \
+    \ GF2 &operator+=(const GF2 &p) {\n    val ^= p.val;\n    return *this;\n  }\n\
+    \  GF2 &operator-=(const GF2 &p) {\n    val ^= p.val;\n    return *this;\n  }\n\
+    \  GF2 &operator*=(const GF2 &p) {\n    val = mul(val, p.val);\n    return *this;\n\
+    \  }\n\n  GF2 &operator/=(const GF2 &p) {\n    *this *= p.inverse();\n    return\
+    \ *this;\n  }\n  GF2 operator-() const { return GF2(-val); }\n  GF2 operator+(const\
+    \ GF2 &p) const { return GF2(*this) += p; }\n  GF2 operator-(const GF2 &p) const\
+    \ { return GF2(*this) -= p; }\n  GF2 operator*(const GF2 &p) const { return GF2(*this)\
+    \ *= p; }\n  GF2 operator/(const GF2 &p) const { return GF2(*this) /= p; }\n \
+    \ bool operator==(const GF2 &p) const { return val == p.val; }\n  bool operator!=(const\
+    \ GF2 &p) const { return val != p.val; }\n  GF2 inverse() const { return pow((u64(1)\
+    \ << K) - 2); }\n  GF2 pow(u64 n) const {\n    GF2 ret(1), mul(val);\n    while\
+    \ (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n\
+    \    }\n    return ret;\n  }\n};\n#line 1 \"string/rollinghash_field.hpp\"\n//\
+    \ +, -, * \u304C\u5B9A\u7FA9\u3055\u308C\u305F\u69CB\u9020\u4F53\u3092\u6E21\u3059\
+    \ntemplate <typename Field>\nstruct RollingHash_Field {\n  using F = Field;\n\
+    \  const F base;\n  vector<F> power;\n\n  static inline F generate_base() { return\
+    \ RNG(1LL << 60); }\n\n  inline void expand(int sz) {\n    if (int(power.size())\
+    \ < sz + 1) {\n      int pre_sz = (int)power.size();\n      power.resize(sz +\
+    \ 1);\n      for (int i = pre_sz - 1; i < sz; i++) { power[i + 1] = power[i] *\
+    \ base; }\n    }\n  }\n\n  explicit RollingHash_Field(F base = generate_base())\
+    \ : base(base), power{1} {}\n\n  template <typename STRING>\n  vector<F> build(const\
+    \ STRING &s) const {\n    int sz = s.size();\n    vector<F> hashed(sz + 1);\n\
+    \    for (int i = 0; i < sz; i++) {\n      hashed[i + 1] = (hashed[i] * base)\
+    \ + F(s[i]);\n    }\n    return hashed;\n  }\n\n  F query(const vector<F> &s,\
+    \ int l, int r) {\n    expand(r - l);\n    return s[r] - s[l] * power[r - l];\n\
+    \  }\n\n  F combine(F h1, F h2, size_t h2len) {\n    expand(h2len);\n    return\
+    \ add(mul(h1, power[h2len]), h2);\n  }\n\n  int lcp(const vector<F> &a, int l1,\
+    \ int r1, const vector<F> &b, int l2,\n          int r2) {\n    int len = min(r1\
+    \ - l1, r2 - l2);\n    int low = 0, high = len + 1;\n    while (high - low > 1)\
+    \ {\n      int mid = (low + high) / 2;\n      if (query(a, l1, l1 + mid) == query(b,\
+    \ l2, l2 + mid))\n        low = mid;\n      else\n        high = mid;\n    }\n\
+    \    return low;\n  }\n};\n#line 8 \"test/_atcoder/abc274_h.test.cpp\"\n\nvoid\
+    \ solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  using F = GF2<60>;\n  RollingHash_Field<F>\
+    \ X;\n  auto HA = X.build(A);\n\n  FOR(Q) {\n    LL(a, b, c, d, e, f);\n    --a,\
+    \ --c, --e;\n    ll n1 = b - a, n2 = f - e;\n\n    auto check = [&](int n) ->\
+    \ bool {\n      // lcp >= n\n      if (n1 < n || n2 < n) return false;\n     \
+    \ F x1 = X.query(HA, a, a + n);\n      F x2 = X.query(HA, c, c + n);\n      F\
+    \ x3 = X.query(HA, e, e + n);\n      return (x1 + x2) == x3;\n    };\n\n    ll\
+    \ n = binary_search(check, 0, N + 1);\n    if (n < min(n1, n2)) {\n      u64 x\
+    \ = A[a + n] ^ A[c + n];\n      u64 y = A[e + n];\n      Yes(x < y);\n    } else\
+    \ {\n      // prefix\n      Yes(n1 < n2);\n    }\n  }\n}\n\nsigned main() {\n\
+    \  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\
+    \n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc274/tasks/abc274_Ex\"\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"random/base.hpp\"\
+    \n#include \"nt/GF2.hpp\"\n#include \"string/rollinghash_field.hpp\"\n\nvoid solve()\
+    \ {\n  LL(N, Q);\n  VEC(ll, A, N);\n  using F = GF2<60>;\n  RollingHash_Field<F>\
+    \ X;\n  auto HA = X.build(A);\n\n  FOR(Q) {\n    LL(a, b, c, d, e, f);\n    --a,\
+    \ --c, --e;\n    ll n1 = b - a, n2 = f - e;\n\n    auto check = [&](int n) ->\
+    \ bool {\n      // lcp >= n\n      if (n1 < n || n2 < n) return false;\n     \
+    \ F x1 = X.query(HA, a, a + n);\n      F x2 = X.query(HA, c, c + n);\n      F\
+    \ x3 = X.query(HA, e, e + n);\n      return (x1 + x2) == x3;\n    };\n\n    ll\
+    \ n = binary_search(check, 0, N + 1);\n    if (n < min(n1, n2)) {\n      u64 x\
+    \ = A[a + n] ^ A[c + n];\n      u64 y = A[e + n];\n      Yes(x < y);\n    } else\
+    \ {\n      // prefix\n      Yes(n1 < n2);\n    }\n  }\n}\n\nsigned main() {\n\
+    \  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/fenwicktree/fenwicktree_2d.hpp
-  - alg/monoid/add.hpp
-  - alg/monoid/max.hpp
+  - random/base.hpp
+  - nt/GF2.hpp
+  - string/rollinghash_field.hpp
   isVerificationFile: true
-  path: test/atcoder/abc266h_2.test.cpp
+  path: test/_atcoder/abc274_h.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-01-23 03:29:31+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/atcoder/abc266h_2.test.cpp
+documentation_of: test/_atcoder/abc274_h.test.cpp
 layout: document
 redirect_from:
-- /verify/test/atcoder/abc266h_2.test.cpp
-- /verify/test/atcoder/abc266h_2.test.cpp.html
-title: test/atcoder/abc266h_2.test.cpp
+- /verify/test/_atcoder/abc274_h.test.cpp
+- /verify/test/_atcoder/abc274_h.test.cpp.html
+title: test/_atcoder/abc274_h.test.cpp
 ---

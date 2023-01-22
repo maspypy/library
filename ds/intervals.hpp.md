@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc256d.test.cpp
-    title: test/atcoder/abc256d.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/_atcoder/abc256d.test.cpp
+    title: test/_atcoder/abc256d.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/1638/problem/E
@@ -226,9 +226,9 @@ data:
   path: ds/intervals.hpp
   requiredBy: []
   timestamp: '2023-01-02 17:13:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/atcoder/abc256d.test.cpp
+  - test/_atcoder/abc256d.test.cpp
 documentation_of: ds/intervals.hpp
 layout: document
 redirect_from:

@@ -1,30 +1,36 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: game/dyadic_rational.hpp
-    title: game/dyadic_rational.hpp
-  - icon: ':heavy_check_mark:'
-    path: game/solve_partizan_game.hpp
-    title: game/solve_partizan_game.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: linalg/solve_linear_lower.hpp
+    title: linalg/solve_linear_lower.hpp
+  - icon: ':question:'
+    path: mod/modint.hpp
+    title: mod/modint.hpp
+  - icon: ':question:'
+    path: mod/powertable.hpp
+    title: mod/powertable.hpp
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: nt/primetable.hpp
+    title: nt/primetable.hpp
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc229/tasks/abc229_h
+    PROBLEM: https://atcoder.jp/contests/abc249/tasks/abc249_Ex
     links:
-    - https://atcoder.jp/contests/abc229/tasks/abc229_h
-  bundledCode: "#line 1 \"test/atcoder/abc229h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc229/tasks/abc229_h\"\
-    \n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    - https://atcoder.jp/contests/abc249/tasks/abc249_Ex
+  bundledCode: "#line 1 \"test/_atcoder/abc249_ex.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc249/tasks/abc249_Ex\"\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
     using pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\n\
@@ -197,108 +203,180 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 5 \"test/atcoder/abc229h.test.cpp\"\n\n#line 1 \"game/dyadic_rational.hpp\"\
-    \n// a+b/2^M \u306E\u5F62\u3067\u6301\u3064\ntemplate <typename INTEGER>\nstruct\
-    \ Dyadic_Rational {\n  using X = Dyadic_Rational;\n  INTEGER a, b;\n  static constexpr\
-    \ int M = std::numeric_limits<INTEGER>::digits - 2;\n\n  Dyadic_Rational(INTEGER\
-    \ a = 0) : a(a), b(0) {}\n\n  // x + y / z\n  Dyadic_Rational(INTEGER x, INTEGER\
-    \ y, INTEGER z) : a(x), b(y) {\n    auto [q, r] = divmod(b, z);\n    a += q;\n\
-    \    b = r;\n    b *= (INTEGER(1) << M) / z;\n  }\n\n  // x/y\n  Dyadic_Rational(INTEGER\
-    \ x, INTEGER y) : Dyadic_Rational(0, x, y) {}\n\n  static X from_ab(INTEGER a,\
-    \ INTEGER b) {\n    X x(a);\n    x.b = b;\n    return x;\n  }\n\n  // \u6BD4\u8F03\
-    \n  bool operator==(X const& rhs) const { return (a == rhs.a && b == rhs.b); }\n\
-    \  bool operator!=(X const& rhs) const { return !(*this == rhs); }\n  bool operator<(X\
-    \ const& rhs) const {\n    return (a < rhs.a) || (a == rhs.a && b < rhs.b);\n\
-    \  }\n  bool operator<=(X const& rhs) const {\n    return (a < rhs.a) || (a ==\
-    \ rhs.a && b <= rhs.b);\n  }\n  bool operator>(X const& rhs) const {\n    return\
-    \ (a > rhs.a) || (a == rhs.a && b > rhs.b);\n  }\n  bool operator>=(X const& rhs)\
-    \ const {\n    return (a > rhs.a) || (a == rhs.a && b >= rhs.b);\n  }\n\n  //\
-    \ \u52A0\u6CD5\n  friend X operator+(const X& x, const X& y) {\n    INTEGER a\
-    \ = x.a + y.a, b = x.b + y.b;\n    while (b >= INTEGER(1) << M) {\n      ++a;\n\
-    \      b -= INTEGER(1) << M;\n    }\n    return from_ab(a, b);\n  }\n  friend\
-    \ X operator-(const X& x, const X& y) {\n    INTEGER a = x.a - y.a, b = x.b -\
-    \ y.b;\n    while (b < 0) {\n      --a;\n      b += INTEGER(1) << M;\n    }\n\
-    \    return from_ab(a, b);\n  }\n  friend X operator-(const X& x) {\n    INTEGER\
-    \ a = -x.a, b = -x.b;\n    while (b < 0) {\n      --a;\n      b += INTEGER(1)\
-    \ << M;\n    }\n    return from_ab(a, b);\n  }\n  X& operator+=(const X& x) {\
-    \ return (*this) = (*this) + x; }\n  X& operator-=(const X& x) { return (*this)\
-    \ = (*this) - x; }\n\n  static X simplest(const X& x, const X& y) {\n    assert(x\
-    \ < y);\n    if (y.a < 0) return -simplest(-y, -x);\n    {\n      INTEGER l =\
-    \ x.a + 1;\n      INTEGER r = (y.b == 0 ? y.a - 1 : y.a);\n      if (l <= 0 &&\
-    \ 0 <= r) return X(0);\n      if (l <= r && 0 <= l) return X(l);\n      if (l\
-    \ <= r && r <= 0) return X(r);\n    }\n\n    INTEGER l = x.b + 1;\n    INTEGER\
-    \ r = (y.b == 0 ? (INTEGER(1) << M) - 1 : y.b - 1);\n    if (l == r) return from_ab(x.a,\
-    \ l);\n    int k = topbit(l ^ r);\n    r &= ~((INTEGER(1) << k) - 1);\n    return\
-    \ from_ab(x.a, r);\n  }\n\n  static constexpr X infinity() { return from_ab(INTEGER(1)\
-    \ << M, 0); }\n\n  string to_string() {\n    ll x = a, y = b, z = INTEGER(1) <<\
-    \ M;\n    while (y % 2 == 0 && z % 2 == 0) { y /= 2, z /= 2; }\n    y += x * z;\n\
-    \    return std::to_string(y) + \"/\" + std::to_string(z);\n  }\n};\n#line 2 \"\
-    game/solve_partizan_game.hpp\"\n\n// \u5168\u90E8 dyadic rational number \u306B\
-    \u306A\u308B\u3068\u304D\u3060\u3051\u89E3\u3051\u308B\n// \u5931\u6557\u3057\u305F\
-    \u3068\u304D\u306F\u3001empty map \u304C\u8FD4\u308B\n// \u30FBstates\uFF1A\u8208\
-    \u5473\u306E\u3042\u308B state \u5168\u4F53\n// \u30FBget_options\uFF1Apair<vc<STATE>,\
-    \ vc<STATE>>(STATE), left ops / right ops\ntemplate <typename STATE, typename\
-    \ INTEGER, typename F>\nunordered_map<STATE, Dyadic_Rational<INTEGER>> solve_partizan_game(\n\
-    \    const vector<STATE>& states, F get_options) {\n  using X = Dyadic_Rational<INTEGER>;\n\
-    \  unordered_map<STATE, X> MP;\n\n  bool success = 1;\n\n  auto dfs = [&](auto&\
-    \ dfs, const STATE& s) -> X {\n    if (!success) return X();\n    if (MP.count(s))\
-    \ return MP[s];\n    vc<X> left, right;\n    X xl = -X::infinity(), xr = X::infinity();\n\
-    \    auto [left_ops, right_ops] = get_options(s);\n    for (auto&& t: left_ops)\
-    \ chmax(xl, dfs(dfs, t));\n    for (auto&& t: right_ops) chmin(xr, dfs(dfs, t));\n\
-    \n    if (xl >= xr) {\n      // switch\n      success = 0;\n      MP.clear();\n\
-    \      return X();\n    }\n    return (MP[s] = X::simplest(xl, xr));\n  };\n\n\
-    \  for (auto&& s: states) dfs(dfs, s);\n  return MP;\n}\n#line 7 \"test/atcoder/abc229h.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(string, G, N);\n  vc<string> states(N);\n\
-    \  FOR(i, N) FOR(j, N) states[j] += G[i][j];\n\n  auto get_options = [&](string\
-    \ s) -> pair<vc<string>, vc<string>> {\n    int n = len(s);\n    vc<string> left,\
-    \ right;\n    FOR(i, 1, n) {\n      // \u9032\u3081\u308B\n      if (s[i - 1]\
-    \ == '.' && s[i] == 'W') {\n        swap(s[i - 1], s[i]);\n        left.eb(s);\n\
-    \        swap(s[i - 1], s[i]);\n      }\n      if (s[i - 1] == '.' && s[i] ==\
-    \ 'B') {\n        swap(s[i - 1], s[i]);\n        right.eb(s);\n        swap(s[i\
-    \ - 1], s[i]);\n      }\n    }\n    FOR(i, n) {\n      // \u98DF\u3079\u308B\n\
-    \      if (s[i] == 'B') {\n        s[i] = '.';\n        left.eb(s);\n        s[i]\
-    \ = 'B';\n      }\n      if (s[i] == 'W') {\n        s[i] = '.';\n        right.eb(s);\n\
-    \        s[i] = 'W';\n      }\n    }\n    return {left, right};\n  };\n\n  using\
-    \ X = Dyadic_Rational<int>;\n  auto MP = solve_partizan_game<string, int>(states,\
-    \ get_options);\n  X x(0);\n  // for (auto&& [k, x]: MP) { print(k, \",\", x.to_string());\
-    \ }\n  for (auto&& s: states) { x += MP[s]; }\n  print(x > X(0) ? \"Takahashi\"\
-    \ : \"Snuke\");\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
-    \  return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc229/tasks/abc229_h\"\n\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"game/solve_partizan_game.hpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(string, G, N);\n  vc<string> states(N);\n\
-    \  FOR(i, N) FOR(j, N) states[j] += G[i][j];\n\n  auto get_options = [&](string\
-    \ s) -> pair<vc<string>, vc<string>> {\n    int n = len(s);\n    vc<string> left,\
-    \ right;\n    FOR(i, 1, n) {\n      // \u9032\u3081\u308B\n      if (s[i - 1]\
-    \ == '.' && s[i] == 'W') {\n        swap(s[i - 1], s[i]);\n        left.eb(s);\n\
-    \        swap(s[i - 1], s[i]);\n      }\n      if (s[i - 1] == '.' && s[i] ==\
-    \ 'B') {\n        swap(s[i - 1], s[i]);\n        right.eb(s);\n        swap(s[i\
-    \ - 1], s[i]);\n      }\n    }\n    FOR(i, n) {\n      // \u98DF\u3079\u308B\n\
-    \      if (s[i] == 'B') {\n        s[i] = '.';\n        left.eb(s);\n        s[i]\
-    \ = 'B';\n      }\n      if (s[i] == 'W') {\n        s[i] = '.';\n        right.eb(s);\n\
-    \        s[i] = 'W';\n      }\n    }\n    return {left, right};\n  };\n\n  using\
-    \ X = Dyadic_Rational<int>;\n  auto MP = solve_partizan_game<string, int>(states,\
-    \ get_options);\n  X x(0);\n  // for (auto&& [k, x]: MP) { print(k, \",\", x.to_string());\
-    \ }\n  for (auto&& s: states) { x += MP[s]; }\n  print(x > X(0) ? \"Takahashi\"\
-    \ : \"Snuke\");\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
-    \  return 0;\n}\n"
+    \ yes(!t); }\n#line 4 \"test/_atcoder/abc249_ex.test.cpp\"\n\n#line 2 \"mod/modint.hpp\"\
+    \n\ntemplate <int mod>\nstruct modint {\n  int val;\n  constexpr modint(ll x =\
+    \ 0) noexcept {\n    if (0 <= x && x < mod)\n      val = x;\n    else {\n    \
+    \  x %= mod;\n      val = (x < 0 ? x + mod : x);\n    }\n  }\n  bool operator<(const\
+    \ modint &other) const {\n    return val < other.val;\n  } // To use std::map\n\
+    \  modint &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -=\
+    \ mod;\n    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if\
+    \ ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint\
+    \ &operator*=(const modint &p) {\n    val = (int)(1LL * val * p.val % mod);\n\
+    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
+    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint(-val);\
+    \ }\n  modint operator+(const modint &p) const { return modint(*this) += p; }\n\
+    \  modint operator-(const modint &p) const { return modint(*this) -= p; }\n  modint\
+    \ operator*(const modint &p) const { return modint(*this) *= p; }\n  modint operator/(const\
+    \ modint &p) const { return modint(*this) /= p; }\n  bool operator==(const modint\
+    \ &p) const { return val == p.val; }\n  bool operator!=(const modint &p) const\
+    \ { return val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod,\
+    \ u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t *\
+    \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
+    \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
+    \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
+    \  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val); }\n  void read()\
+    \ {\n    ll x;\n    fastio::scanner.read(x);\n    if (x < 0 || x >= mod) x %=\
+    \ mod;\n    if (x < 0) x += mod;\n    val += x;\n  }\n#endif\n  static constexpr\
+    \ int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr\
+    \ bool is_modint = true;\n  int val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t\
+    \ y)\n      : val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y)\
+    \ % get_mod()) % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other)\
+    \ const {\n    return val < other.val;\n  } // To use std::map<ArbitraryModInt,\
+    \ T>\n  static int &get_mod() {\n    static int mod = 0;\n    return mod;\n  }\n\
+    \  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const\
+    \ ArbitraryModInt &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n\
+    \    return *this;\n  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p)\
+    \ {\n    if ((val += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return\
+    \ *this;\n  }\n  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n   \
+    \ long long a = (long long)val * p.val;\n    int xh = (int)(a >> 32), xl = (int)a,\
+    \ d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"(m) : \"d\"(xh), \"a\"\
+    (xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n  }\n  ArbitraryModInt\
+    \ &operator/=(const ArbitraryModInt &p) {\n    *this *= p.inverse();\n    return\
+    \ *this;\n  }\n  ArbitraryModInt operator-() const { return ArbitraryModInt(get_mod()\
+    \ - val); }\n  ArbitraryModInt operator+(const ArbitraryModInt &p) const {\n \
+    \   return ArbitraryModInt(*this) += p;\n  }\n  ArbitraryModInt operator-(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) -= p;\n  }\n\
+    \  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
+    \ *= p;\n  }\n  ArbitraryModInt operator/(const ArbitraryModInt &p) const {\n\
+    \    return ArbitraryModInt(*this) /= p;\n  }\n  bool operator==(const ArbitraryModInt\
+    \ &p) const { return val == p.val; }\n  bool operator!=(const ArbitraryModInt\
+    \ &p) const { return val != p.val; }\n  ArbitraryModInt inverse() const {\n  \
+    \  int a = val, b = get_mod(), u = 1, v = 0, t;\n    while (b > 0) {\n      t\
+    \ = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return\
+    \ ArbitraryModInt(u);\n  }\n  ArbitraryModInt pow(int64_t n) const {\n    ArbitraryModInt\
+    \ ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n     \
+    \ mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void\
+    \ write() { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
+    \ }\n#endif\n};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const\
+    \ int mod = mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0\
+    \ <= n);\n  if (n >= mod) n %= mod;\n  while (int(dat.size()) <= n) {\n    int\
+    \ k = dat.size();\n    auto q = (mod + k - 1) / k;\n    int r = k * q - mod;\n\
+    \    dat.emplace_back(dat[r] * mint(q));\n  }\n  return dat[n];\n}\n\ntemplate\
+    \ <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  static vector<mint> dat = {1, 1};\n  assert(0 <= n);\n  if (n >= mod) return\
+    \ 0;\n  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
+    \ - 1] * mint(k));\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint\
+    \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
+    \ dat = {1, 1};\n  assert(-1 <= n && n < mod);\n  if (n == -1) return mint(0);\n\
+    \  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
+    \ - 1] * inv<mint>(k));\n  }\n  return dat[n];\n}\n\ntemplate <class mint, class...\
+    \ Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
+    }\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
+    \ &&head, Tail &&... tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  static vvc<mint>\
+    \ C;\n  static int H = 0, W = 0;\n\n  auto calc = [&](int i, int j) -> mint {\n\
+    \    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
+    \ + (j ? C[i - 1][j - 1] : 0);\n  };\n\n  if (W <= k) {\n    FOR(i, H) {\n   \
+    \   C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n  \
+    \  }\n    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H,\
+    \ n + 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n\
+    \    }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint,\
+    \ bool large = false, bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >=\
+    \ 0);\n  if (k < 0 || n < k) return 0;\n  if (dense) return C_dense<mint>(n, k);\n\
+    \  if (!large) return fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n\
+    \  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n  x *=\
+    \ fact_inv<mint>(k);\n  return x;\n}\n\ntemplate <typename mint, bool large =\
+    \ false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <=\
+    \ n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n -\
+    \ k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d] (1-x) ^ {-n} \u306E\
+    \u8A08\u7B97\ntemplate <typename mint, bool large = false, bool dense = false>\n\
+    mint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
+    \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
+    \ dense>(n + d - 1, d);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998\
+    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 2 \"nt/primetable.hpp\"\
+    \n\ntemplate <typename T = long long>\nvc<T> primetable(int LIM) {\n  ++LIM;\n\
+    \  const int S = 32768;\n  static int done = 2;\n  static vc<T> primes = {2},\
+    \ sieve(S + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S\
+    \ + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM)\
+    \ * 1.1));\n    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n\
+    \      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for (int j = i\
+    \ * i; j <= S; j += 2 * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1;\
+    \ L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p, idx]:\
+    \ cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n\
+    \      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n\
+    \  }\n  int k = LB(primes, LIM + 1);\n  return {primes.begin(), primes.begin()\
+    \ + k};\n}\n#line 3 \"mod/powertable.hpp\"\n\r\n// a^0, ..., a^N\r\ntemplate <typename\
+    \ mint>\r\nvc<mint> powertable_1(mint a, ll N) {\r\n  // table of a^i\r\n  vc<mint>\
+    \ f(N + 1, 1);\r\n  FOR(i, N) f[i + 1] = a * f[i];\r\n  return f;\r\n}\r\n\r\n\
+    // 0^e, ..., N^e\r\ntemplate <typename mint>\r\nvc<mint> powertable_2(ll e, ll\
+    \ N) {\r\n  auto primes = primetable(N);\r\n  vc<mint> f(N + 1, 1);\r\n  f[0]\
+    \ = mint(0).pow(e);\r\n  for (auto&& p: primes) {\r\n    if (p > N) break;\r\n\
+    \    mint xp = mint(p).pow(e);\r\n    ll pp = p;\r\n    while (pp <= N) {\r\n\
+    \      ll i = pp;\r\n      while (i <= N) {\r\n        f[i] *= xp;\r\n       \
+    \ i += pp;\r\n      }\r\n      pp *= p;\r\n    }\r\n  }\r\n  return f;\r\n}\r\n\
+    #line 1 \"linalg/solve_linear_lower.hpp\"\n// \u4E0B\u4E09\u89D2\u884C\u5217\u3092\
+    \u4EEE\u5B9A\u3002\u3068\u308A\u3042\u3048\u305A\u6B63\u5247\u3082\u4EEE\u5B9A\
+    \u3002\ntemplate <typename T>\nvc<T> solve_linear_lower(vc<vc<T>> a, vc<T> b)\
+    \ {\n  auto n = len(a);\n  FOR(i, n) assert(a[i][i] != T(0));\n  FOR(i, n) FOR(j,\
+    \ i + 1, n) assert(a[i][j] == T(0));\n  FOR(i, n) {\n    {\n      T c = T(1) /\
+    \ a[i][i];\n      a[i][i] *= c;\n      b[i] *= c;\n    }\n    FOR(j, i + 1, n)\
+    \ {\n      b[j] -= b[i] * a[j][i];\n      a[j][i] = T(0);\n    }\n  }\n  return\
+    \ b;\n}\n#line 8 \"test/_atcoder/abc249_ex.test.cpp\"\n\nusing mint = modint998;\n\
+    \nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  for (auto&& x: A) --x;\n  vi CNT(N);\n\
+    \  for (auto&& x: A) CNT[x]++;\n  vc<mint> iPOW = powertable_1<mint>(mint(2).inverse(),\
+    \ N);\n\n  auto f = [&]() -> vc<mint> {\n    // \u3044\u307E x \u500B\u3067\u3042\
+    \u308B\u3082\u306E\u3092\u30B3\u30F3\u30D7\u3059\u308B\u56DE\u6570\u671F\u5F85\
+    \u5024 f(x) \u3092\u6C42\u3081\u308B\n    vv(mint, mat, N + 1, N + 1);\n    vc<mint>\
+    \ rhs(N + 1, mint(1));\n    rhs[N] = mint(0);\n    mat[N][N] = mint(1);\n    FOR(x,\
+    \ N) {\n      mat[x][x] = 1;\n      mint p = mint(x) * inv<mint>(N);\n      FOR(y,\
+    \ x) { mat[x][y + 1] -= p * iPOW[x - 1] * C<mint, 0, 1>(x - 1, y); }\n      p\
+    \ = mint(N - x) * inv<mint>(N);\n      FOR(y, x + 1) {\n        mat[x][y] -= p\
+    \ * iPOW[x + 1] * C<mint, 0, 1>(x, y);\n        mat[x][y + 1] -= p * iPOW[x +\
+    \ 1] * C<mint, 0, 1>(x, y);\n      }\n    }\n    vv(mint, sub, N, N);\n    FOR(i,\
+    \ N) FOR(j, N) sub[i][j] = mat[i][j + 1];\n    vc<mint> x = solve_linear_lower(sub,\
+    \ vc<mint>(N, mint(1)));\n    x.insert(x.begin(), mint(0));\n    mint add = -mint(x.back());\n\
+    \    for (auto&& a: x) a += add;\n    return x;\n  }();\n  mint ANS = 0;\n  FOR(i,\
+    \ N) ANS += f[CNT[i]];\n  ANS -= mint(N - 1) * f[0];\n  ANS /= mint(N);\n  print(ANS);\n\
+    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  solve();\n\n \
+    \ return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc249/tasks/abc249_Ex\"\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
+    \n#include \"mod/powertable.hpp\"\n#include \"linalg/solve_linear_lower.hpp\"\n\
+    \nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  for\
+    \ (auto&& x: A) --x;\n  vi CNT(N);\n  for (auto&& x: A) CNT[x]++;\n  vc<mint>\
+    \ iPOW = powertable_1<mint>(mint(2).inverse(), N);\n\n  auto f = [&]() -> vc<mint>\
+    \ {\n    // \u3044\u307E x \u500B\u3067\u3042\u308B\u3082\u306E\u3092\u30B3\u30F3\
+    \u30D7\u3059\u308B\u56DE\u6570\u671F\u5F85\u5024 f(x) \u3092\u6C42\u3081\u308B\
+    \n    vv(mint, mat, N + 1, N + 1);\n    vc<mint> rhs(N + 1, mint(1));\n    rhs[N]\
+    \ = mint(0);\n    mat[N][N] = mint(1);\n    FOR(x, N) {\n      mat[x][x] = 1;\n\
+    \      mint p = mint(x) * inv<mint>(N);\n      FOR(y, x) { mat[x][y + 1] -= p\
+    \ * iPOW[x - 1] * C<mint, 0, 1>(x - 1, y); }\n      p = mint(N - x) * inv<mint>(N);\n\
+    \      FOR(y, x + 1) {\n        mat[x][y] -= p * iPOW[x + 1] * C<mint, 0, 1>(x,\
+    \ y);\n        mat[x][y + 1] -= p * iPOW[x + 1] * C<mint, 0, 1>(x, y);\n     \
+    \ }\n    }\n    vv(mint, sub, N, N);\n    FOR(i, N) FOR(j, N) sub[i][j] = mat[i][j\
+    \ + 1];\n    vc<mint> x = solve_linear_lower(sub, vc<mint>(N, mint(1)));\n   \
+    \ x.insert(x.begin(), mint(0));\n    mint add = -mint(x.back());\n    for (auto&&\
+    \ a: x) a += add;\n    return x;\n  }();\n  mint ANS = 0;\n  FOR(i, N) ANS +=\
+    \ f[CNT[i]];\n  ANS -= mint(N - 1) * f[0];\n  ANS /= mint(N);\n  print(ANS);\n\
+    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  solve();\n\n \
+    \ return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - game/solve_partizan_game.hpp
-  - game/dyadic_rational.hpp
+  - mod/modint.hpp
+  - mod/powertable.hpp
+  - nt/primetable.hpp
+  - linalg/solve_linear_lower.hpp
   isVerificationFile: true
-  path: test/atcoder/abc229h.test.cpp
+  path: test/_atcoder/abc249_ex.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-01-23 03:29:31+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/atcoder/abc229h.test.cpp
+documentation_of: test/_atcoder/abc249_ex.test.cpp
 layout: document
 redirect_from:
-- /verify/test/atcoder/abc229h.test.cpp
-- /verify/test/atcoder/abc229h.test.cpp.html
-title: test/atcoder/abc229h.test.cpp
+- /verify/test/_atcoder/abc249_ex.test.cpp
+- /verify/test/_atcoder/abc249_ex.test.cpp.html
+title: test/_atcoder/abc249_ex.test.cpp
 ---

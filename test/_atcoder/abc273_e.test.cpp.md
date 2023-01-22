@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: ds/dynamic_array.hpp
+    title: ds/dynamic_array.hpp
+  - icon: ':question:'
+    path: ds/hashmap.hpp
+    title: ds/hashmap.hpp
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
-    path: nt/GF2.hpp
-    title: nt/GF2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/rollinghash_field.hpp
-    title: string/rollinghash_field.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc274/tasks/abc274_Ex
+    PROBLEM: https://atcoder.jp/contests/abc273/tasks/abc273_e
     links:
-    - https://atcoder.jp/contests/abc274/tasks/abc274_Ex
-  bundledCode: "#line 1 \"test/atcoder/abc274_h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc274/tasks/abc274_Ex\"\
+    - https://atcoder.jp/contests/abc273/tasks/abc273_e
+  bundledCode: "#line 1 \"test/_atcoder/abc273_e.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc273/tasks/abc273_e\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -200,111 +200,85 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 4 \"test/atcoder/abc274_h.test.cpp\"\n\n#line 2 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \ yes(!t); }\n#line 2 \"ds/dynamic_array.hpp\"\n\r\ntemplate <typename T, bool\
+    \ PERSISTENT, int NODES>\r\nstruct Dynamic_Array {\r\n  struct Node {\r\n    T\
+    \ x;\r\n    Node* ch[16] = {};\r\n  };\r\n  Node* pool;\r\n  int pid;\r\n  using\
+    \ np = Node*;\r\n  const T x0;\r\n\r\n  Dynamic_Array(T default_value) : pid(0),\
+    \ x0(default_value) {\r\n    pool = new Node[NODES];\r\n  }\r\n\r\n  np new_node()\
+    \ {\r\n    pool[pid].x = x0;\r\n    fill(pool[pid].ch, pool[pid].ch + 16, nullptr);\r\
+    \n    return &(pool[pid++]);\r\n  }\r\n\r\n  np new_node(vc<T> dat) {\r\n    np\
+    \ root = new_node();\r\n    FOR(i, len(dat)) root = set(root, i, dat[i], false);\r\
+    \n    return root;\r\n  }\r\n\r\n  T get(np c, int idx) {\r\n    if (!c) return\
+    \ x0;\r\n    if (idx == 0) return c->x;\r\n    return get(c->ch[idx & 15], (idx\
+    \ - 1) >> 4);\r\n  }\r\n\r\n  np set(np c, int idx, T x, bool make_copy = true)\
+    \ {\r\n    c = (c ? copy_node(c, make_copy) : new_node());\r\n    if (idx == 0)\
+    \ {\r\n      c->x = x;\r\n      return c;\r\n    }\r\n    c->ch[idx & 15] = set(c->ch[idx\
+    \ & 15], (idx - 1) >> 4, x);\r\n    return c;\r\n  }\r\n\r\nprivate:\r\n  np copy_node(np\
+    \ c, bool make_copy) {\r\n    if (!make_copy || !PERSISTENT) return c;\r\n   \
+    \ pool[pid].x = c->x;\r\n    FOR(k, 16) pool[pid].ch[k] = c->ch[k];\r\n    return\
+    \ &(pool[pid++]);\r\n  }\r\n};\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
+    \ {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 1 \"nt/GF2.hpp\"\
-    \n#include <emmintrin.h>\n#include <smmintrin.h>\n#include <wmmintrin.h>\n\n__attribute__((target(\"\
-    pclmul\"))) inline __m128i myclmul(const __m128i &a,\n                       \
-    \                                  const __m128i &b) {\n  return _mm_clmulepi64_si128(a,\
-    \ b, 0);\n}\n\n// 2^n \u5143\u4F53\ntemplate <int K>\nstruct GF2 {\n  // irreducible\
-    \ poly x^K + ...\n  static constexpr int POLY[65]\n      = {0,  0, 3,  3,   3,\
-    \  5,   3,  3,  27,  3,  9,  5,   9, 27, 33, 3,   43,\n         9,  9, 39, 9,\
-    \   5,  3,   33, 27, 9,   27, 39, 3,   5, 3,  9,  141, 75,\n         27, 5, 53,\
-    \ 63,  99, 17,  57, 9,  39,  89, 33, 27,  3, 33, 45, 113, 29,\n         75, 9,\
-    \ 71, 125, 71, 149, 17, 99, 123, 3,  39, 105, 3, 27};\n\n  static constexpr u64\
-    \ mask() { return u64(-1) >> (64 - K); }\n\n  __attribute__((target(\"sse4.2\"\
-    ))) static u64 mul(u64 a, u64 b) {\n    static bool prepared = 0;\n    static\
-    \ u64 MEMO[8][65536];\n    if (!prepared) {\n      prepared = 1;\n      vc<u64>\
-    \ tmp(128);\n      tmp[0] = 1;\n      FOR(i, 127) {\n        tmp[i + 1] = tmp[i]\
-    \ << 1;\n        if (tmp[i] >> (K - 1) & 1) {\n          tmp[i + 1] ^= POLY[K];\n\
-    \          tmp[i + 1] &= mask();\n        }\n      }\n      FOR(k, 8) {\n    \
-    \    MEMO[k][0] = 0;\n        FOR(i, 16) {\n          FOR(s, 1 << i) { MEMO[k][s\
-    \ | 1 << i] = MEMO[k][s] ^ tmp[16 * k + i]; }\n        }\n      }\n    }\n   \
-    \ const __m128i a_ = _mm_set_epi64x(0, a);\n    const __m128i b_ = _mm_set_epi64x(0,\
-    \ b);\n    const __m128i c_ = myclmul(a_, b_);\n    u64 lo = _mm_extract_epi64(c_,\
-    \ 0);\n    u64 hi = _mm_extract_epi64(c_, 1);\n    u64 x = 0;\n    x ^= MEMO[0][lo\
-    \ & 65535];\n    x ^= MEMO[1][(lo >> 16) & 65535];\n    x ^= MEMO[2][(lo >> 32)\
-    \ & 65535];\n    x ^= MEMO[3][(lo >> 48) & 65535];\n    x ^= MEMO[4][hi & 65535];\n\
-    \    x ^= MEMO[5][(hi >> 16) & 65535];\n    x ^= MEMO[6][(hi >> 32) & 65535];\n\
-    \    x ^= MEMO[7][(hi >> 48) & 65535];\n    return x;\n  }\n\n  u64 val;\n  constexpr\
-    \ GF2(const u64 val = 0) noexcept : val(val & mask()) {}\n  bool operator<(const\
-    \ GF2 &other) const {\n    return val < other.val;\n  } // To use std::map\n \
-    \ GF2 &operator+=(const GF2 &p) {\n    val ^= p.val;\n    return *this;\n  }\n\
-    \  GF2 &operator-=(const GF2 &p) {\n    val ^= p.val;\n    return *this;\n  }\n\
-    \  GF2 &operator*=(const GF2 &p) {\n    val = mul(val, p.val);\n    return *this;\n\
-    \  }\n\n  GF2 &operator/=(const GF2 &p) {\n    *this *= p.inverse();\n    return\
-    \ *this;\n  }\n  GF2 operator-() const { return GF2(-val); }\n  GF2 operator+(const\
-    \ GF2 &p) const { return GF2(*this) += p; }\n  GF2 operator-(const GF2 &p) const\
-    \ { return GF2(*this) -= p; }\n  GF2 operator*(const GF2 &p) const { return GF2(*this)\
-    \ *= p; }\n  GF2 operator/(const GF2 &p) const { return GF2(*this) /= p; }\n \
-    \ bool operator==(const GF2 &p) const { return val == p.val; }\n  bool operator!=(const\
-    \ GF2 &p) const { return val != p.val; }\n  GF2 inverse() const { return pow((u64(1)\
-    \ << K) - 2); }\n  GF2 pow(u64 n) const {\n    GF2 ret(1), mul(val);\n    while\
-    \ (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n\
-    \    }\n    return ret;\n  }\n};\n#line 1 \"string/rollinghash_field.hpp\"\n//\
-    \ +, -, * \u304C\u5B9A\u7FA9\u3055\u308C\u305F\u69CB\u9020\u4F53\u3092\u6E21\u3059\
-    \ntemplate <typename Field>\nstruct RollingHash_Field {\n  using F = Field;\n\
-    \  const F base;\n  vector<F> power;\n\n  static inline F generate_base() { return\
-    \ RNG(1LL << 60); }\n\n  inline void expand(int sz) {\n    if (int(power.size())\
-    \ < sz + 1) {\n      int pre_sz = (int)power.size();\n      power.resize(sz +\
-    \ 1);\n      for (int i = pre_sz - 1; i < sz; i++) { power[i + 1] = power[i] *\
-    \ base; }\n    }\n  }\n\n  explicit RollingHash_Field(F base = generate_base())\
-    \ : base(base), power{1} {}\n\n  template <typename STRING>\n  vector<F> build(const\
-    \ STRING &s) const {\n    int sz = s.size();\n    vector<F> hashed(sz + 1);\n\
-    \    for (int i = 0; i < sz; i++) {\n      hashed[i + 1] = (hashed[i] * base)\
-    \ + F(s[i]);\n    }\n    return hashed;\n  }\n\n  F query(const vector<F> &s,\
-    \ int l, int r) {\n    expand(r - l);\n    return s[r] - s[l] * power[r - l];\n\
-    \  }\n\n  F combine(F h1, F h2, size_t h2len) {\n    expand(h2len);\n    return\
-    \ add(mul(h1, power[h2len]), h2);\n  }\n\n  int lcp(const vector<F> &a, int l1,\
-    \ int r1, const vector<F> &b, int l2,\n          int r2) {\n    int len = min(r1\
-    \ - l1, r2 - l2);\n    int low = 0, high = len + 1;\n    while (high - low > 1)\
-    \ {\n      int mid = (low + high) / 2;\n      if (query(a, l1, l1 + mid) == query(b,\
-    \ l2, l2 + mid))\n        low = mid;\n      else\n        high = mid;\n    }\n\
-    \    return low;\n  }\n};\n#line 8 \"test/atcoder/abc274_h.test.cpp\"\n\nvoid\
-    \ solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  using F = GF2<60>;\n  RollingHash_Field<F>\
-    \ X;\n  auto HA = X.build(A);\n\n  FOR(Q) {\n    LL(a, b, c, d, e, f);\n    --a,\
-    \ --c, --e;\n    ll n1 = b - a, n2 = f - e;\n\n    auto check = [&](int n) ->\
-    \ bool {\n      // lcp >= n\n      if (n1 < n || n2 < n) return false;\n     \
-    \ F x1 = X.query(HA, a, a + n);\n      F x2 = X.query(HA, c, c + n);\n      F\
-    \ x3 = X.query(HA, e, e + n);\n      return (x1 + x2) == x3;\n    };\n\n    ll\
-    \ n = binary_search(check, 0, N + 1);\n    if (n < min(n1, n2)) {\n      u64 x\
-    \ = A[a + n] ^ A[c + n];\n      u64 y = A[e + n];\n      Yes(x < y);\n    } else\
-    \ {\n      // prefix\n      Yes(n1 < n2);\n    }\n  }\n}\n\nsigned main() {\n\
-    \  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\
-    \n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc274/tasks/abc274_Ex\"\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"random/base.hpp\"\
-    \n#include \"nt/GF2.hpp\"\n#include \"string/rollinghash_field.hpp\"\n\nvoid solve()\
-    \ {\n  LL(N, Q);\n  VEC(ll, A, N);\n  using F = GF2<60>;\n  RollingHash_Field<F>\
-    \ X;\n  auto HA = X.build(A);\n\n  FOR(Q) {\n    LL(a, b, c, d, e, f);\n    --a,\
-    \ --c, --e;\n    ll n1 = b - a, n2 = f - e;\n\n    auto check = [&](int n) ->\
-    \ bool {\n      // lcp >= n\n      if (n1 < n || n2 < n) return false;\n     \
-    \ F x1 = X.query(HA, a, a + n);\n      F x2 = X.query(HA, c, c + n);\n      F\
-    \ x3 = X.query(HA, e, e + n);\n      return (x1 + x2) == x3;\n    };\n\n    ll\
-    \ n = binary_search(check, 0, N + 1);\n    if (n < min(n1, n2)) {\n      u64 x\
-    \ = A[a + n] ^ A[c + n];\n      u64 y = A[e + n];\n      Yes(x < y);\n    } else\
-    \ {\n      // prefix\n      Yes(n1 < n2);\n    }\n  }\n}\n\nsigned main() {\n\
-    \  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\
-    \n  return 0;\n}\n"
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 3 \"ds/hashmap.hpp\"\
+    \n\r\n// long long -> Val\r\ntemplate <typename Val, int LOG = 20>\r\nstruct HashMap\
+    \ {\r\n  int N;\r\n  ll* keys;\r\n  Val* vals;\r\n  vc<int> IDS;\r\n  bitset<1\
+    \ << LOG> used;\r\n  const int shift;\r\n  const uint64_t r = 11995408973635179863ULL;\r\
+    \n  HashMap()\r\n      : N(1 << LOG), keys(new ll[N]), vals(new Val[N]), shift(64\
+    \ - __lg(N)) {}\r\n  int hash(ll x) {\r\n    static const uint64_t FIXED_RANDOM\r\
+    \n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\n \
+    \   return (uint64_t(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
+    \ ll& key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && keys[i] !=\
+    \ key; (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
+    \ ll& key) {\r\n    int i = index(key);\r\n    if (!used[i]) IDS.eb(i), used[i]\
+    \ = 1, keys[i] = key, vals[i] = Val{};\r\n    return vals[i];\r\n  }\r\n\r\n \
+    \ Val get(const ll& key, Val default_value) {\r\n    int i = index(key);\r\n \
+    \   if (!used[i]) return default_value;\r\n    return vals[i];\r\n  }\r\n\r\n\
+    \  bool count(const ll& key) {\r\n    int i = index(key);\r\n    return used[i]\
+    \ && keys[i] == key;\r\n  }\r\n\r\n  void reset() {\r\n    for (auto&& i: IDS)\
+    \ used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  vc<pair<ll, Val>> items() {\r\
+    \n    vc<pair<ll, Val>> res;\r\n    res.reserve(len(IDS));\r\n    for (auto&&\
+    \ i: IDS) res.eb(keys[i], vals[i]);\r\n    return res;\r\n  }\r\n};\r\n#line 6\
+    \ \"test/_atcoder/abc273_e.test.cpp\"\n\nvoid solve() {\n  Dynamic_Array<int,\
+    \ true, 3'000'000> X(0);\n  using np = typename decltype(X)::np;\n\n  LL(Q);\n\
+    \  vi ANS;\n\n  np A = X.new_node();\n  int A_size = 0;\n  HashMap<pair<np, int>>\
+    \ note;\n\n  FOR(Q) {\n    STR(S);\n    if (S == \"ADD\") {\n      INT(x);\n \
+    \     A = X.set(A, A_size++, x);\n    }\n    if (S == \"DELETE\") {\n      if\
+    \ (A_size) --A_size;\n    }\n    if (S == \"SAVE\") {\n      INT(y);\n      note[y]\
+    \ = {A, A_size};\n    }\n    if (S == \"LOAD\") {\n      INT(z);\n      tie(A,\
+    \ A_size) = note[z];\n    }\n    ll x = -1;\n    if (A_size) x = X.get(A, A_size\
+    \ - 1);\n    ANS.eb(x);\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed\
+    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
+    \ 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc273/tasks/abc273_e\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/dynamic_array.hpp\"\
+    \n#include \"ds/hashmap.hpp\"\n\nvoid solve() {\n  Dynamic_Array<int, true, 3'000'000>\
+    \ X(0);\n  using np = typename decltype(X)::np;\n\n  LL(Q);\n  vi ANS;\n\n  np\
+    \ A = X.new_node();\n  int A_size = 0;\n  HashMap<pair<np, int>> note;\n\n  FOR(Q)\
+    \ {\n    STR(S);\n    if (S == \"ADD\") {\n      INT(x);\n      A = X.set(A, A_size++,\
+    \ x);\n    }\n    if (S == \"DELETE\") {\n      if (A_size) --A_size;\n    }\n\
+    \    if (S == \"SAVE\") {\n      INT(y);\n      note[y] = {A, A_size};\n    }\n\
+    \    if (S == \"LOAD\") {\n      INT(z);\n      tie(A, A_size) = note[z];\n  \
+    \  }\n    ll x = -1;\n    if (A_size) x = X.get(A, A_size - 1);\n    ANS.eb(x);\n\
+    \  }\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
+  - ds/dynamic_array.hpp
+  - ds/hashmap.hpp
   - random/base.hpp
-  - nt/GF2.hpp
-  - string/rollinghash_field.hpp
   isVerificationFile: true
-  path: test/atcoder/abc274_h.test.cpp
+  path: test/_atcoder/abc273_e.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-01-23 03:29:31+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/atcoder/abc274_h.test.cpp
+documentation_of: test/_atcoder/abc273_e.test.cpp
 layout: document
 redirect_from:
-- /verify/test/atcoder/abc274_h.test.cpp
-- /verify/test/atcoder/abc274_h.test.cpp.html
-title: test/atcoder/abc274_h.test.cpp
+- /verify/test/_atcoder/abc273_e.test.cpp
+- /verify/test/_atcoder/abc273_e.test.cpp.html
+title: test/_atcoder/abc273_e.test.cpp
 ---

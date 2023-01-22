@@ -50,10 +50,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/doubling.hpp
     title: ds/doubling.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree_2d.hpp
     title: ds/fenwicktree/fenwicktree_2d.hpp
   - icon: ':heavy_check_mark:'
@@ -77,7 +77,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/range_add_range_sum.hpp
     title: ds/range_add_range_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/wavelet_matrix_sum.hpp
     title: ds/wavelet_matrix_sum.hpp
   - icon: ':heavy_check_mark:'
@@ -95,13 +95,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/inversion_rotate.hpp
     title: seq/inversion_rotate.hpp
   - icon: ':heavy_check_mark:'
     path: string/trie.hpp
     title: string/trie.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/_atcoder/abc127f_1.test.cpp
+    title: test/_atcoder/abc127f_1.test.cpp
+  - icon: ':x:'
+    path: test/_atcoder/abc174f.test.cpp
+    title: test/_atcoder/abc174f.test.cpp
+  - icon: ':x:'
+    path: test/_atcoder/abc190f.test.cpp
+    title: test/_atcoder/abc190f.test.cpp
+  - icon: ':x:'
+    path: test/_atcoder/abc266h_2.test.cpp
+    title: test/_atcoder/abc266h_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/2842.test.cpp
     title: test/aoj/2842.test.cpp
@@ -135,18 +147,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc127f_1.test.cpp
-    title: test/atcoder/abc127f_1.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc174f.test.cpp
-    title: test/atcoder/abc174f.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc190f.test.cpp
-    title: test/atcoder/abc190f.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc266h_2.test.cpp
-    title: test/atcoder/abc266h_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
     title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
@@ -357,9 +357,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -412,7 +412,7 @@ data:
   - alg/acted_monoid/add_mul.hpp
   - other/rectangle_union.hpp
   timestamp: '2022-11-28 14:51:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/ALDS1_2_A.test.cpp
   - test/aoj/GRL_5_E.test.cpp
@@ -455,6 +455,10 @@ data:
   - test/yukicoder/1641.test.cpp
   - test/yukicoder/789.test.cpp
   - test/yukicoder/2161.test.cpp
+  - test/_atcoder/abc266h_2.test.cpp
+  - test/_atcoder/abc174f.test.cpp
+  - test/_atcoder/abc190f.test.cpp
+  - test/_atcoder/abc127f_1.test.cpp
   - test/library_checker/graph/verted_add_contour_sum.test.cpp
   - test/library_checker/graph/common_interval_decomposition.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
@@ -495,10 +499,6 @@ data:
   - test/mytest/minmax_add.test.cpp
   - test/mytest/rbst_am_2.test.cpp
   - test/mytest/splay_cm.test.cpp
-  - test/atcoder/abc266h_2.test.cpp
-  - test/atcoder/abc174f.test.cpp
-  - test/atcoder/abc190f.test.cpp
-  - test/atcoder/abc127f_1.test.cpp
 documentation_of: alg/monoid/add.hpp
 layout: document
 redirect_from:

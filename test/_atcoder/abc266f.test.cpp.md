@@ -1,29 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: alg/monoid/max.hpp
-    title: alg/monoid/max.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/segtree/segtree_2d.hpp
-    title: ds/segtree/segtree_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: graph/base.hpp
+    title: graph/base.hpp
+  - icon: ':question:'
+    path: graph/tree.hpp
+    title: graph/tree.hpp
+  - icon: ':question:'
+    path: graph/unicyclic.hpp
+    title: graph/unicyclic.hpp
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc266/tasks/abc266_Ex
+    PROBLEM: https://atcoder.jp/contests/abc266/tasks/abc266_f
     links:
-    - https://atcoder.jp/contests/abc266/tasks/abc266_Ex
-  bundledCode: "#line 1 \"test/atcoder/abc266h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc266/tasks/abc266_Ex\"\
+    - https://atcoder.jp/contests/abc266/tasks/abc266_f
+  bundledCode: "#line 1 \"test/_atcoder/abc266f.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc266/tasks/abc266_f\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -197,131 +200,168 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 1 \"ds/segtree/segtree_2d.hpp\"\ntemplate <typename Monoid,\
-    \ typename XY, bool SMALL = false>\r\nstruct SegTree_2D {\r\n  using MX = Monoid;\r\
-    \n  using S = typename MX::value_type;\r\n  static_assert(MX::commute);\r\n  int\
-    \ N, min_X;\r\n  vc<XY> keyX, keyY;\r\n  vc<int> indptr;\r\n  vc<S> dat;\r\n\r\
-    \n  SegTree_2D(vc<XY>& X, vc<XY>& Y, vc<S> wt = vc<S>()) {\r\n    if (len(wt)\
-    \ == 0) wt = vc<S>(len(X), MX::unit());\r\n    assert(len(X) == len(Y) && len(X)\
-    \ == len(wt));\r\n    if (!SMALL) {\r\n      keyX = X;\r\n      UNIQUE(keyX);\r\
-    \n      N = len(keyX);\r\n    } else {\r\n      min_X = (len(X) == 0 ? 0 : MIN(X));\r\
-    \n      N = (len(X) == 0 ? 0 : MAX(X)) - min_X + 1;\r\n      keyX.resize(N);\r\
-    \n      FOR(i, N) keyX[i] = min_X + i;\r\n    }\r\n\r\n    vvc<XY> keyY_raw(N\
-    \ + N);\r\n    vvc<S> dat_raw(N + N);\r\n    for (auto&& i: argsort(Y)) {\r\n\
-    \      int ix = xtoi(X[i]), y = Y[i];\r\n      ix += N;\r\n      while (ix) {\r\
-    \n        auto& KY = keyY_raw[ix];\r\n        if (len(KY) == 0 || KY.back() <\
-    \ y) {\r\n          KY.eb(y);\r\n          dat_raw[ix].eb(wt[i]);\r\n        }\
-    \ else {\r\n          dat_raw[ix].back() = MX::op(dat_raw[ix].back(), wt[i]);\r\
-    \n        }\r\n        ix >>= 1;\r\n      }\r\n    }\r\n\r\n    indptr.assign(N\
-    \ + N + 1, 0);\r\n    FOR(i, N + N) indptr[i + 1] = indptr[i] + len(keyY_raw[i]);\r\
-    \n    int full_N = indptr.back();\r\n    keyY.resize(full_N), dat.assign(2 * full_N,\
-    \ MX::unit());\r\n    FOR(i, N + N) {\r\n      int off = 2 * indptr[i], n = indptr[i\
-    \ + 1] - indptr[i];\r\n      FOR(j, n) {\r\n        keyY[indptr[i] + j] = keyY_raw[i][j];\r\
-    \n        dat[off + n + j] = dat_raw[i][j];\r\n      }\r\n      FOR_R(j, 1, n)\
-    \ {\r\n        dat[off + j] = MX::op(dat[off + 2 * j], dat[off + 2 * j + 1]);\r\
-    \n      }\r\n    }\r\n  }\r\n\r\n  void multiply(XY x, XY y, S val) {\r\n    int\
-    \ i = xtoi(x);\r\n    assert(keyX[i] == x);\r\n    i += N;\r\n    while (i) {\
-    \ multiply_i(i, y, val), i >>= 1; }\r\n  }\r\n\r\n  S prod(XY lx, XY rx, XY ly,\
-    \ XY ry) {\r\n    int L = xtoi(lx) + N, R = xtoi(rx) + N;\r\n    S val = MX::unit();\r\
-    \n    while (L < R) {\r\n      if (L & 1) val = MX::op(val, prod_i(L++, ly, ry));\r\
-    \n      if (R & 1) val = MX::op(prod_i(--R, ly, ry), val);\r\n      L >>= 1, R\
-    \ >>= 1;\r\n    }\r\n    return val;\r\n  }\r\n\r\nprivate:\r\n  inline int xtoi(XY\
-    \ x) {\r\n    return (SMALL ? clamp<XY>(x - min_X, 0, N) : LB(keyX, x));\r\n \
-    \ }\r\n  S prod_i(int i, XY ly, XY ry) {\r\n    int LID = indptr[i], n = indptr[i\
-    \ + 1] - indptr[i];\r\n    auto it = keyY.begin() + LID;\r\n    int L = lower_bound(it,\
-    \ it + n, ly) - it + n;\r\n    int R = lower_bound(it, it + n, ry) - it + n;\r\
-    \n    int off = 2 * LID;\r\n    S val = MX::unit();\r\n    while (L < R) {\r\n\
-    \      if (L & 1) val = MX::op(val, dat[off + (L++)]);\r\n      if (R & 1) val\
-    \ = MX::op(dat[off + (--R)], val);\r\n      L >>= 1, R >>= 1;\r\n    }\r\n   \
-    \ return val;\r\n  }\r\n  void multiply_i(int i, XY y, S val) {\r\n    int LID\
-    \ = indptr[i], n = indptr[i + 1] - indptr[i];\r\n    auto it = keyY.begin() +\
-    \ LID;\r\n    int j = lower_bound(it, it + n, y) - it;\r\n    assert(keyY[LID\
-    \ + j] == y);\r\n    int off = 2 * LID;\r\n    j += n;\r\n    while (j) {\r\n\
-    \      dat[off + j] = MX::op(dat[off + j], val);\r\n      j >>= 1;\r\n    }\r\n\
-    \  }\r\n};\n#line 2 \"alg/monoid/max.hpp\"\n\r\ntemplate <class X>\r\nstruct Monoid_Max\
-    \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
-    \ &y) noexcept { return max(x, y); }\r\n  static constexpr X unit() { return numeric_limits<X>::lowest();\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 6 \"test/atcoder/abc266h.test.cpp\"\
-    \n\nusing Mono = Monoid_Max<ll>;\n\nvoid naive() {\n  LL(N);\n  using T = tuple<ll,\
-    \ ll, ll, ll>;\n\n  VEC(T, dat, N);\n  dat.eb(0, 0, 0, 0);\n  ++N;\n\n  sort(all(dat),\
-    \ [&](auto& a, auto& b) -> bool {\n    auto [at, ax, ay, aa] = a;\n    auto [bt,\
-    \ bx, by, bb] = b;\n    if (ay < by) return true;\n    if (ay > by) return false;\n\
-    \    return at < bt;\n  });\n\n  const ll INF = 1LL << 60;\n  vi dp(N, -INF);\n\
-    \  dp[0] = 0;\n  FOR(j, N) {\n    auto [tj, xj, yj, vvj] = dat[j];\n    FOR(i,\
-    \ j) {\n      auto [ti, xi, yi, vvi] = dat[i];\n      ll d = abs(xi - xj) + abs(yi\
-    \ - yj);\n      if (yi > yj) continue;\n      if (ti + d > tj) continue;\n   \
-    \   chmax(dp[j], dp[i] + vvj);\n    }\n    print(tj, xj, yj, vvj, dp[j]);\n  }\n\
-    \  print(MAX(dp));\n}\n\nvoid solve() {\n  // return naive();\n\n  LL(N);\n  using\
-    \ T = tuple<ll, ll, ll, ll>;\n\n  VEC(T, dat, N);\n  dat.eb(0, 0, 0, 0);\n  ++N;\n\
-    \n  sort(all(dat), [&](auto& a, auto& b) -> bool {\n    auto [at, ax, ay, aa]\
-    \ = a;\n    auto [bt, bx, by, bb] = b;\n    if (ay < by) return true;\n    if\
-    \ (ay > by) return false;\n    return at < bt;\n  });\n\n  /*\n  \u53F3\u4E0A\u3078\
-    \u306E\u9077\u79FB\uFF1A\n  (x,y,t) \u304C\u60C5\u5831 (a,b,c,v) \u3092\u53D7\u3051\
-    \u53D6\u308B\u306E\u306F\n  a<=x, x+y-t<=a+b-c\n  \u30FB(a,a+b-c) \u306B\u60C5\
-    \u5831\u3092\u8FFD\u52A0\u3059\u308B\n  \u30FB[-INF,x] x [x+y-t, INF] \u3067\u306E\
-    \u6700\u5927\u5024\u3092\u6C42\u3081\u308B\n\n  \u5DE6\u4E0A\u3078\u306E\u9077\
-    \u79FB\uFF1A\n  (a-x)+(y-b)<=t-c\n  x<=a, a-b+c<=x-y+t\n  */\n  vi X1(N), Y1(N),\
-    \ X2(N), Y2(N);\n  FOR(i, N) {\n    auto [t, x, y, v] = dat[i];\n    X1[i] = x;\n\
-    \    X2[i] = x;\n    Y1[i] = x + y - t;\n    Y2[i] = x - y + t;\n  }\n  SegTree_2D<Mono,\
-    \ ll, false> seg1(X1, Y1);\n  SegTree_2D<Mono, ll, false> seg2(X2, Y2);\n\n  const\
-    \ ll INF = 1LL << 60;\n\n  ll ANS = 0;\n  FOR(i, N) {\n    const auto [t, x, y,\
-    \ v] = dat[i];\n    const ll a = x, b = y, c = t;\n    if (i == 0) {\n      seg1.multiply(a,\
-    \ a + b - c, 0);\n      seg2.multiply(a, a - b + c, 0);\n      continue;\n   \
-    \ }\n    ll best = -INF;\n    chmax(best, seg1.prod(-INF, x + 1, x + y - t, INF));\n\
-    \    chmax(best, seg2.prod(x, INF, -INF, x - y + t + 1));\n    if (best < 0) continue;\n\
-    \    best += v;\n    chmax(ANS, best);\n    seg1.multiply(a, a + b - c, best);\n\
-    \    seg2.multiply(a, a - b + c, best);\n  }\n  print(ANS);\n}\n\nsigned main()\
-    \ {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T)\
-    \ solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc266/tasks/abc266_Ex\"\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/segtree/segtree_2d.hpp\"\
-    \n#include \"alg/monoid/max.hpp\"\n\nusing Mono = Monoid_Max<ll>;\n\nvoid naive()\
-    \ {\n  LL(N);\n  using T = tuple<ll, ll, ll, ll>;\n\n  VEC(T, dat, N);\n  dat.eb(0,\
-    \ 0, 0, 0);\n  ++N;\n\n  sort(all(dat), [&](auto& a, auto& b) -> bool {\n    auto\
-    \ [at, ax, ay, aa] = a;\n    auto [bt, bx, by, bb] = b;\n    if (ay < by) return\
-    \ true;\n    if (ay > by) return false;\n    return at < bt;\n  });\n\n  const\
-    \ ll INF = 1LL << 60;\n  vi dp(N, -INF);\n  dp[0] = 0;\n  FOR(j, N) {\n    auto\
-    \ [tj, xj, yj, vvj] = dat[j];\n    FOR(i, j) {\n      auto [ti, xi, yi, vvi] =\
-    \ dat[i];\n      ll d = abs(xi - xj) + abs(yi - yj);\n      if (yi > yj) continue;\n\
-    \      if (ti + d > tj) continue;\n      chmax(dp[j], dp[i] + vvj);\n    }\n \
-    \   print(tj, xj, yj, vvj, dp[j]);\n  }\n  print(MAX(dp));\n}\n\nvoid solve()\
-    \ {\n  // return naive();\n\n  LL(N);\n  using T = tuple<ll, ll, ll, ll>;\n\n\
-    \  VEC(T, dat, N);\n  dat.eb(0, 0, 0, 0);\n  ++N;\n\n  sort(all(dat), [&](auto&\
-    \ a, auto& b) -> bool {\n    auto [at, ax, ay, aa] = a;\n    auto [bt, bx, by,\
-    \ bb] = b;\n    if (ay < by) return true;\n    if (ay > by) return false;\n  \
-    \  return at < bt;\n  });\n\n  /*\n  \u53F3\u4E0A\u3078\u306E\u9077\u79FB\uFF1A\
-    \n  (x,y,t) \u304C\u60C5\u5831 (a,b,c,v) \u3092\u53D7\u3051\u53D6\u308B\u306E\u306F\
-    \n  a<=x, x+y-t<=a+b-c\n  \u30FB(a,a+b-c) \u306B\u60C5\u5831\u3092\u8FFD\u52A0\
-    \u3059\u308B\n  \u30FB[-INF,x] x [x+y-t, INF] \u3067\u306E\u6700\u5927\u5024\u3092\
-    \u6C42\u3081\u308B\n\n  \u5DE6\u4E0A\u3078\u306E\u9077\u79FB\uFF1A\n  (a-x)+(y-b)<=t-c\n\
-    \  x<=a, a-b+c<=x-y+t\n  */\n  vi X1(N), Y1(N), X2(N), Y2(N);\n  FOR(i, N) {\n\
-    \    auto [t, x, y, v] = dat[i];\n    X1[i] = x;\n    X2[i] = x;\n    Y1[i] =\
-    \ x + y - t;\n    Y2[i] = x - y + t;\n  }\n  SegTree_2D<Mono, ll, false> seg1(X1,\
-    \ Y1);\n  SegTree_2D<Mono, ll, false> seg2(X2, Y2);\n\n  const ll INF = 1LL <<\
-    \ 60;\n\n  ll ANS = 0;\n  FOR(i, N) {\n    const auto [t, x, y, v] = dat[i];\n\
-    \    const ll a = x, b = y, c = t;\n    if (i == 0) {\n      seg1.multiply(a,\
-    \ a + b - c, 0);\n      seg2.multiply(a, a - b + c, 0);\n      continue;\n   \
-    \ }\n    ll best = -INF;\n    chmax(best, seg1.prod(-INF, x + 1, x + y - t, INF));\n\
-    \    chmax(best, seg2.prod(x, INF, -INF, x - y + t + 1));\n    if (best < 0) continue;\n\
-    \    best += v;\n    chmax(ANS, best);\n    seg1.multiply(a, a + b - c, best);\n\
-    \    seg2.multiply(a, a - b + c, best);\n  }\n  print(ANS);\n}\n\nsigned main()\
+    \ yes(!t); }\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge\
+    \ {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
+    \ directed = false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n  using\
+    \ edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n  vector<edge_type>\
+    \ csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class\
+    \ OutgoingEdges {\n  public:\n    OutgoingEdges(const Graph* G, int l, int r)\
+    \ : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n      if (l ==\
+    \ r) { return 0; }\n      return &G->csr_edges[l];\n    }\n\n    const edge_type*\
+    \ end() const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n\
+    \    }\n\n  private:\n    const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared()\
+    \ { return prepared; }\n  constexpr bool is_directed() { return directed; }\n\n\
+    \  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
+    \ {}\n\n  void resize(int n) { N = n; }\n\n  void add(int frm, int to, T cost\
+    \ = 1, int i = -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <= to &&\
+    \ to < N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost, i});\n\
+    \    edges.eb(e);\n    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool wt = false,\
+    \ int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int M, bool\
+    \ wt = false, int off = 1) {\n    for (int m = 0; m < M; ++m) {\n      INT(a,\
+    \ b);\n      a -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n     \
+    \ } else {\n        T c;\n        read(c);\n        add(a, b, c);\n      }\n \
+    \   }\n    build();\n  }\n\n  void read_parent(int off = 1) {\n    for (int v\
+    \ = 1; v < N; ++v) {\n      INT(p);\n      p -= off;\n      add(p, v);\n    }\n\
+    \    build();\n  }\n\n  void build() {\n    assert(!prepared);\n    prepared =\
+    \ true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm\
+    \ + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n    }\n    for (int v = 0;\
+    \ v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto counter = indptr;\n  \
+    \  csr_edges.resize(indptr.back() + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++]\
+    \ = e;\n      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to,\
+    \ e.frm, e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const\
+    \ {\n    assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\
+    \n  vc<int> deg_array() {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n\
+    \  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n    if (vc_indeg.empty())\
+    \ calc_deg_inout();\n    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v)\
+    \ {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n  int\
+    \ in_deg(int v) {\n    if (vc_indeg.empty()) calc_deg_inout();\n    return vc_indeg[v];\n\
+    \  }\n\n  int out_deg(int v) {\n    if (vc_outdeg.empty()) calc_deg_inout();\n\
+    \    return vc_outdeg[v];\n  }\n\n  void debug() {\n    print(\"Graph\");\n  \
+    \  if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e: edges)\
+    \ print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\", indptr);\n\
+    \      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\nprivate:\n  void calc_deg()\
+    \ {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
+    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
+    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/unicyclic.hpp\"\
+    \n\nstruct UnicyclicGraph {\n  int root;\n  Graph<int, 1> tree;\n  vc<int> TO;\n\
+    \  vc<int> cycle;     // \u6839\u306B\u5411\u304B\u3046\u3088\u3046\u306A\u9802\
+    \u70B9\u5217\n  vc<bool> in_cycle; // vertex id -> bool\n\n  template <typename\
+    \ Graph>\n  UnicyclicGraph(Graph& G) : tree(G.N) {\n    int N = G.N;\n    assert(N\
+    \ == G.M);\n    TO.assign(N, -1);\n    vc<bool> done(N);\n    vc<int> que;\n \
+    \   auto deg = G.deg_array();\n    FOR(v, N) if (deg[v] == 1) que.eb(v);\n   \
+    \ while (len(que)) {\n      auto v = que.back();\n      que.pop_back();\n    \
+    \  for (auto&& e: G[v]) {\n        if (done[e.id]) continue;\n        done[e.id]\
+    \ = 1;\n        int to = e.to;\n        TO[v] = to;\n        deg[to] -= 1;\n \
+    \       if (deg[to] == 1) que.eb(to);\n      }\n      deg[v] = 0;\n    }\n   \
+    \ root = -1;\n    FOR(v, N) if (deg[v] == 2) root = v;\n    assert(root != -1);\n\
+    \    vc<int> P = {root};\n    while (1) {\n      int v = P.back();\n      bool\
+    \ upd = 0;\n      for (auto&& e: G[v]) {\n        if (done[e.id]) continue;\n\
+    \        done[e.id] = 1;\n        P.eb(e.to);\n        upd = 1;\n        break;\n\
+    \      }\n      if (!upd) break;\n    }\n    FOR(i, len(P) - 1) TO[P[i]] = P[i\
+    \ + 1];\n    cycle = {P.begin() + 1, P.end()};\n    reverse(all(cycle));\n   \
+    \ in_cycle.assign(N, false);\n    for (auto&& v: cycle) in_cycle[v] = 1;\n   \
+    \ FOR(v, N) if (v != root) tree.add(TO[v], v);\n    tree.build();\n  }\n};\n#line\
+    \ 3 \"graph/tree.hpp\"\n\r\n// HLD euler tour \u3092\u3068\u3063\u3066\u3044\u308D\
+    \u3044\u308D\u3002\r\n// \u6728\u4EE5\u5916\u3001\u975E\u9023\u7D50\u3067\u3082\
+    \ dfs \u9806\u5E8F\u3084\u89AA\u304C\u3068\u308C\u308B\u3002\r\ntemplate <typename\
+    \ GT>\r\nstruct TREE {\r\n  using Graph_type = GT;\r\n  GT &G;\r\n  using WT =\
+    \ typename GT::cost_type;\r\n  int N;\r\n  bool hld;\r\n  vector<int> LID, RID,\
+    \ head, V, parent;\r\n  vc<int> depth;\r\n  vc<WT> depth_weighted;\r\n\r\n  TREE(GT\
+    \ &G, int r = -1, bool hld = 1)\r\n      : G(G),\r\n        N(G.N),\r\n      \
+    \  hld(hld),\r\n        LID(G.N),\r\n        RID(G.N),\r\n        head(G.N, r),\r\
+    \n        V(G.N),\r\n        parent(G.N, -1),\r\n        depth(G.N, -1),\r\n \
+    \       depth_weighted(G.N, 0) {\r\n    assert(G.is_prepared());\r\n    int t1\
+    \ = 0;\r\n    if (r != -1) {\r\n      dfs_sz(r, -1);\r\n      dfs_hld(r, t1);\r\
+    \n    } else {\r\n      for (int r = 0; r < N; ++r) {\r\n        if (parent[r]\
+    \ == -1) {\r\n          head[r] = r;\r\n          dfs_sz(r, -1);\r\n         \
+    \ dfs_hld(r, t1);\r\n        }\r\n      }\r\n    }\r\n  }\r\n\r\n  void dfs_sz(int\
+    \ v, int p) {\r\n    auto &sz = RID;\r\n    parent[v] = p;\r\n    depth[v] = (p\
+    \ == -1 ? 0 : depth[p] + 1);\r\n    sz[v] = 1;\r\n    int l = G.indptr[v], r =\
+    \ G.indptr[v + 1];\r\n    auto &csr = G.csr_edges;\r\n    // \u4F7F\u3046\u8FBA\
+    \u304C\u3042\u308C\u3070\u5148\u982D\u306B\u3059\u308B\r\n    for (int i = r -\
+    \ 2; i >= l; --i) {\r\n      if (hld && depth[csr[i + 1].to] == -1) swap(csr[i],\
+    \ csr[i + 1]);\r\n    }\r\n    int hld_sz = 0;\r\n    for (int i = l; i < r; ++i)\
+    \ {\r\n      auto e = csr[i];\r\n      if (depth[e.to] != -1) continue;\r\n  \
+    \    depth_weighted[e.to] = depth_weighted[v] + e.cost;\r\n      dfs_sz(e.to,\
+    \ v);\r\n      sz[v] += sz[e.to];\r\n      if (hld && chmax(hld_sz, sz[e.to])\
+    \ && l < i) { swap(csr[l], csr[i]); }\r\n    }\r\n  }\r\n\r\n  void dfs_hld(int\
+    \ v, int &times) {\r\n    LID[v] = times++;\r\n    RID[v] += LID[v];\r\n    V[LID[v]]\
+    \ = v;\r\n    bool heavy = true;\r\n    for (auto &&e: G[v]) {\r\n      if (depth[e.to]\
+    \ <= depth[v]) continue;\r\n      head[e.to] = (heavy ? head[v] : e.to);\r\n \
+    \     heavy = false;\r\n      dfs_hld(e.to, times);\r\n    }\r\n  }\r\n\r\n  vc<int>\
+    \ heavy_path_at(int v) {\r\n    vc<int> P = {v};\r\n    while (1) {\r\n      int\
+    \ a = P.back();\r\n      for (auto &&e: G[a]) {\r\n        if (e.to != parent[a]\
+    \ && head[e.to] == v) {\r\n          P.eb(e.to);\r\n          break;\r\n     \
+    \   }\r\n      }\r\n      if (P.back() == a) break;\r\n    }\r\n    return P;\r\
+    \n  }\r\n\r\n  int e_to_v(int eid) {\r\n    auto e = G.edges[eid];\r\n    return\
+    \ (parent[e.frm] == e.to ? e.frm : e.to);\r\n  }\r\n\r\n  int ELID(int v) { return\
+    \ 2 * LID[v] - depth[v]; }\r\n  int ERID(int v) { return 2 * RID[v] - depth[v]\
+    \ - 1; }\r\n\r\n  /* k: 0-indexed */\r\n  int LA(int v, int k) {\r\n    assert(k\
+    \ <= depth[v]);\r\n    while (1) {\r\n      int u = head[v];\r\n      if (LID[v]\
+    \ - k >= LID[u]) return V[LID[v] - k];\r\n      k -= LID[v] - LID[u] + 1;\r\n\
+    \      v = parent[u];\r\n    }\r\n  }\r\n\r\n  int LCA(int u, int v) {\r\n   \
+    \ for (;; v = parent[head[v]]) {\r\n      if (LID[u] > LID[v]) swap(u, v);\r\n\
+    \      if (head[u] == head[v]) return u;\r\n    }\r\n  }\r\n\r\n  int lca(int\
+    \ u, int v) { return LCA(u, v); }\r\n  int la(int u, int v) { return LA(u, v);\
+    \ }\r\n\r\n  int subtree_size(int v) { return RID[v] - LID[v]; }\r\n\r\n  int\
+    \ dist(int a, int b) {\r\n    int c = LCA(a, b);\r\n    return depth[a] + depth[b]\
+    \ - 2 * depth[c];\r\n  }\r\n\r\n  WT dist(int a, int b, bool weighted) {\r\n \
+    \   assert(weighted);\r\n    int c = LCA(a, b);\r\n    return depth_weighted[a]\
+    \ + depth_weighted[b] - WT(2) * depth_weighted[c];\r\n  }\r\n\r\n  // a is in\
+    \ b\r\n  bool in_subtree(int a, int b) { return LID[b] <= LID[a] && LID[a] < RID[b];\
+    \ }\r\n\r\n  int jump(int a, int b, ll k) {\r\n    if (k == 1) {\r\n      if (a\
+    \ == b) return -1;\r\n      return (in_subtree(b, a) ? LA(b, depth[b] - depth[a]\
+    \ - 1) : parent[a]);\r\n    }\r\n    int c = LCA(a, b);\r\n    int d_ac = depth[a]\
+    \ - depth[c];\r\n    int d_bc = depth[b] - depth[c];\r\n    if (k > d_ac + d_bc)\
+    \ return -1;\r\n    if (k <= d_ac) return LA(a, k);\r\n    return LA(b, d_ac +\
+    \ d_bc - k);\r\n  }\r\n\r\n  vc<int> collect_child(int v) {\r\n    vc<int> res;\r\
+    \n    for (auto &&e: G[v])\r\n      if (e.to != parent[v]) res.eb(e.to);\r\n \
+    \   return res;\r\n  }\r\n\r\n  vc<pair<int, int>> get_path_decomposition(int\
+    \ u, int v, bool edge) {\r\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\"\u9589\
+    \"\u533A\u9593\u5217\u3002\r\n    vc<pair<int, int>> up, down;\r\n    while (1)\
+    \ {\r\n      if (head[u] == head[v]) break;\r\n      if (LID[u] < LID[v]) {\r\n\
+    \        down.eb(LID[head[v]], LID[v]);\r\n        v = parent[head[v]];\r\n  \
+    \    } else {\r\n        up.eb(LID[u], LID[head[u]]);\r\n        u = parent[head[u]];\r\
+    \n      }\r\n    }\r\n    if (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\r\
+    \n    elif (LID[v] + edge <= LID[u]) up.eb(LID[u], LID[v] + edge);\r\n    reverse(all(down));\r\
+    \n    up.insert(up.end(), all(down));\r\n    return up;\r\n  }\r\n\r\n  vc<int>\
+    \ restore_path(int u, int v) {\r\n    vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u,\
+    \ v, 0)) {\r\n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n\
+    \      } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\
+    \n    return P;\r\n  }\r\n};\r\n#line 6 \"test/_atcoder/abc266f.test.cpp\"\n\n\
+    void solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n  G.read_graph(N);\n\n  UnicyclicGraph\
+    \ X(G);\n  auto T = X.tree;\n  TREE<decltype(T)> tree(T, X.root);\n\n  ll root\
+    \ = X.root;\n  ll bottom = X.TO[X.root];\n\n  LL(Q);\n  FOR(Q) {\n    LL(a, b);\n\
+    \    --a, --b;\n    ll ca = tree.lca(a, bottom);\n    ll cb = tree.lca(b, bottom);\n\
+    \    Yes(ca == cb);\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc266/tasks/abc266_f\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/unicyclic.hpp\"\
+    \n#include \"graph/tree.hpp\"\n\nvoid solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n\
+    \  G.read_graph(N);\n\n  UnicyclicGraph X(G);\n  auto T = X.tree;\n  TREE<decltype(T)>\
+    \ tree(T, X.root);\n\n  ll root = X.root;\n  ll bottom = X.TO[X.root];\n\n  LL(Q);\n\
+    \  FOR(Q) {\n    LL(a, b);\n    --a, --b;\n    ll ca = tree.lca(a, bottom);\n\
+    \    ll cb = tree.lca(b, bottom);\n    Yes(ca == cb);\n  }\n}\n\nsigned main()\
     \ {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T)\
     \ solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/segtree/segtree_2d.hpp
-  - alg/monoid/max.hpp
+  - graph/unicyclic.hpp
+  - graph/base.hpp
+  - graph/tree.hpp
   isVerificationFile: true
-  path: test/atcoder/abc266h.test.cpp
+  path: test/_atcoder/abc266f.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-01-23 03:29:31+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/atcoder/abc266h.test.cpp
+documentation_of: test/_atcoder/abc266f.test.cpp
 layout: document
 redirect_from:
-- /verify/test/atcoder/abc266h.test.cpp
-- /verify/test/atcoder/abc266h.test.cpp.html
-title: test/atcoder/abc266h.test.cpp
+- /verify/test/_atcoder/abc266f.test.cpp
+- /verify/test/_atcoder/abc266f.test.cpp.html
+title: test/_atcoder/abc266f.test.cpp
 ---

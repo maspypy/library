@@ -1,26 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: ds/kdtree/kdtree.hpp
-    title: ds/kdtree/kdtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: geo/base.hpp
+    title: geo/base.hpp
+  - icon: ':question:'
+    path: geo/incremental_convexhull.hpp
+    title: geo/incremental_convexhull.hpp
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc234/tasks/abc234_Ex
+    PROBLEM: https://atcoder.jp/contests/abc266/tasks/abc266_c
     links:
-    - https://atcoder.jp/contests/abc234/tasks/abc234_Ex
-  bundledCode: "#line 1 \"test/atcoder/abc234ex.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc234/tasks/abc234_Ex\"\
+    - https://atcoder.jp/contests/abc266/tasks/abc266_c
+  bundledCode: "#line 1 \"test/_atcoder/abc266c.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc266/tasks/abc266_c\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -194,91 +197,124 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 4 \"test/atcoder/abc234ex.test.cpp\"\n\n#line 1 \"ds/kdtree/kdtree.hpp\"\
-    \ntemplate <typename XY>\nstruct KDTree {\n  // \u5C0F\u6570\u3082\u8003\u616E\
-    \u3059\u308B\u3068\u3001\u9589\u3067\u6301\u3064\u8A2D\u8A08\u65B9\u91DD\u306B\
-    \u306A\u308B\u3002\u305F\u3060\u3057\u3001\u30AF\u30A8\u30EA\u306F\u3044\u3064\
-    \u3082\u306E\u534A\u958B\u3092\u4F7F\u3046\n  vc<tuple<XY, XY, XY, XY>> closed_range;\n\
-    \  // \u540C\u3058\u5EA7\u6A19\u306E\u70B9\u3082\u96C6\u7D04\u3057\u306A\u3044\
-    \u3088\u3046\u306B\u3057\u3066\u3001\u5EA7\u6A19\u3054\u3068\u306B unique \u306A\
-    \u30C7\u30FC\u30BF\u3092\u4F7F\u3046\n  vc<int> dat;\n  int n;\n\n  KDTree(vc<XY>\
-    \ xs, vc<XY> ys) : n(len(xs)) {\n    int log = 0;\n    while ((1 << log) < n)\
-    \ ++log;\n    dat.assign(1 << (log + 1), -1);\n    closed_range.resize(1 << (log\
-    \ + 1));\n    vc<int> vs(n);\n    iota(all(vs), 0);\n    build(1, xs, ys, vs);\n\
-    \  }\n\n  // [xl, xr) x [yl, yr)\n  vc<int> collect_rect(XY xl, XY xr, XY yl,\
-    \ XY yr, int max_size = -1) {\n    assert(xl <= xr && yl <= yr);\n    if (max_size\
-    \ == -1) max_size = n;\n    vc<int> res;\n    rect_rec(1, xl, xr, yl, yr, res,\
-    \ max_size);\n    return res;\n  }\n\n  // \u8A08\u7B97\u91CF\u4FDD\u8A3C\u306A\
-    \u3057\u3001\u70B9\u7FA4\u304C\u30E9\u30F3\u30C0\u30E0\u306A\u3089 O(logN)\n \
-    \ // N = Q = 10^5 \u3067\u3001\u7D04 1 \u79D2\n  int nearest_neighbor_search(XY\
-    \ x, XY y) {\n    pair<int, XY> res = {-1, numeric_limits<XY>::max()};\n    nns_rec(1,\
-    \ x, y, res);\n    assert(res.fi != -1);\n    return res.fi;\n  }\n\nprivate:\n\
-    \  void build(int idx, vc<XY> xs, vc<XY> ys, vc<int> vs, bool divx = true) {\n\
-    \    int n = len(xs);\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\n\
-    \    xmin = ymin = numeric_limits<XY>::max();\n    xmax = ymax = numeric_limits<XY>::lowest();\n\
-    \n    FOR(i, n) {\n      auto x = xs[i], y = ys[i];\n      chmin(xmin, x), chmax(xmax,\
-    \ x), chmin(ymin, y), chmax(ymax, y);\n    }\n    if (n == 1) {\n      dat[idx]\
-    \ = vs[0];\n      return;\n    }\n\n    int m = n / 2;\n    vc<int> I(n);\n  \
-    \  iota(all(I), 0);\n    if (divx) {\n      nth_element(I.begin(), I.begin() +\
-    \ m, I.end(),\n                  [xs](int i, int j) { return xs[i] < xs[j]; });\n\
-    \    } else {\n      nth_element(I.begin(), I.begin() + m, I.end(),\n        \
-    \          [ys](int i, int j) { return ys[i] < ys[j]; });\n    }\n    xs = rearrange(xs,\
-    \ I), ys = rearrange(ys, I), vs = rearrange(vs, I);\n    build(2 * idx + 0, {xs.begin(),\
-    \ xs.begin() + m},\n          {ys.begin(), ys.begin() + m}, {vs.begin(), vs.begin()\
-    \ + m}, !divx);\n    build(2 * idx + 1, {xs.begin() + m, xs.end()}, {ys.begin()\
-    \ + m, ys.end()},\n          {vs.begin() + m, vs.end()}, !divx);\n  }\n\n  void\
-    \ rect_rec(int i, XY x1, XY x2, XY y1, XY y2, vc<int>& res, int ms) {\n    if\
-    \ (len(res) == ms) return;\n    auto& [xmin, xmax, ymin, ymax] = closed_range[i];\n\
-    \    if (x2 <= xmin || xmax < x1) return;\n    if (y2 <= ymin || ymax < y1) return;\n\
-    \    if (dat[i] != -1) {\n      res.eb(dat[i]);\n      return;\n    }\n    rect_rec(2\
-    \ * i + 0, x1, x2, y1, y2, res, ms);\n    rect_rec(2 * i + 1, x1, x2, y1, y2,\
-    \ res, ms);\n  }\n\n  XY best_dist_squared(int i, XY x, XY y) {\n    auto& [xmin,\
-    \ xmax, ymin, ymax] = closed_range[i];\n    XY dx = x - clamp(x, xmin, xmax);\n\
-    \    XY dy = y - clamp(y, ymin, ymax);\n    return dx * dx + dy * dy;\n  }\n\n\
-    \  void nns_rec(int i, XY x, XY y, pair<int, XY>& res) {\n    XY d = best_dist_squared(i,\
-    \ x, y);\n    if (d >= res.se) return;\n    if (dat[i] != -1) {\n      res = {dat[i],\
-    \ d};\n      return;\n    }\n    XY d0 = best_dist_squared(2 * i + 0, x, y);\n\
-    \    XY d1 = best_dist_squared(2 * i + 1, x, y);\n    if (d0 < d1) {\n      nns_rec(2\
-    \ * i + 0, x, y, res), nns_rec(2 * i + 1, x, y, res);\n    } else {\n      nns_rec(2\
-    \ * i + 1, x, y, res), nns_rec(2 * i + 0, x, y, res);\n    }\n  }\n};\n#line 6\
-    \ \"test/atcoder/abc234ex.test.cpp\"\n\nvoid solve() {\n  LL(N, K);\n  vc<int>\
-    \ X(N), Y(N);\n  FOR(i, N) {\n    INT(a, b);\n    X[i] = a, Y[i] = b;\n  }\n \
-    \ KDTree<int> KDT(X, Y);\n\n  int x_min = MIN(X);\n  int x_max = MAX(X);\n  int\
-    \ y_min = MIN(Y);\n  int y_max = MAX(Y);\n\n  vc<pair<int, int>> ANS;\n  FOR(i,\
-    \ N) {\n    ll a = X[i] - K, b = X[i] + K + 1, c = Y[i] - K, d = Y[i] + K + 1;\n\
-    \    chmax(a, x_min), chmin(b, x_max + 1);\n    chmax(c, y_min), chmin(d, y_max\
-    \ + 1);\n    vc<int> I = KDT.collect_rect(a, b, c, d);\n    sort(all(I));\n  \
-    \  for (auto&& j: I) {\n      if (i >= j) continue;\n      ll dx = X[i] - X[j],\
-    \ dy = Y[i] - Y[j];\n      if (dx * dx + dy * dy <= K * K) { ANS.eb(i, j); }\n\
-    \    }\n  }\n  print(len(ANS));\n  for (auto&& [i, j]: ANS) print(1 + i, 1 + j);\n\
-    }\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc234/tasks/abc234_Ex\"\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/kdtree/kdtree.hpp\"\
-    \n\nvoid solve() {\n  LL(N, K);\n  vc<int> X(N), Y(N);\n  FOR(i, N) {\n    INT(a,\
-    \ b);\n    X[i] = a, Y[i] = b;\n  }\n  KDTree<int> KDT(X, Y);\n\n  int x_min =\
-    \ MIN(X);\n  int x_max = MAX(X);\n  int y_min = MIN(Y);\n  int y_max = MAX(Y);\n\
-    \n  vc<pair<int, int>> ANS;\n  FOR(i, N) {\n    ll a = X[i] - K, b = X[i] + K\
-    \ + 1, c = Y[i] - K, d = Y[i] + K + 1;\n    chmax(a, x_min), chmin(b, x_max +\
-    \ 1);\n    chmax(c, y_min), chmin(d, y_max + 1);\n    vc<int> I = KDT.collect_rect(a,\
-    \ b, c, d);\n    sort(all(I));\n    for (auto&& j: I) {\n      if (i >= j) continue;\n\
-    \      ll dx = X[i] - X[j], dy = Y[i] - Y[j];\n      if (dx * dx + dy * dy <=\
-    \ K * K) { ANS.eb(i, j); }\n    }\n  }\n  print(len(ANS));\n  for (auto&& [i,\
-    \ j]: ANS) print(1 + i, 1 + j);\n}\n\nsigned main() {\n  solve();\n\n  return\
-    \ 0;\n}\n"
+    \ yes(!t); }\n#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
+    \  T x, y;\n\n  Point() = default;\n\n  template <typename A, typename B>\n  Point(A\
+    \ x, B y) : x(x), y(y) {}\n\n  template <typename A, typename B>\n  Point(pair<A,\
+    \ B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+(Point p) const { return {x\
+    \ + p.x, y + p.y}; }\n  Point operator-(Point p) const { return {x - p.x, y -\
+    \ p.y}; }\n  bool operator==(Point p) const { return x == p.x && y == p.y; }\n\
+    \  Point operator-() const { return {-x, -y}; }\n\n  bool operator<(Point p) const\
+    \ {\n    if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n  T dot(Point\
+    \ other) { return x * other.x + y * other.y; }\n  T det(Point other) { return\
+    \ x * other.y - y * other.x; }\n\n  void read() { fastio::read(x), fastio::read(y);\
+    \ }\n  void write() { fastio::printer.write(pair<T, T>({x, y})); }\n};\n\ntemplate\
+    \ <typename REAL, typename T>\nREAL dist(Point<T> A, Point<T> B) {\n  A = A -\
+    \ B;\n  T p = A.dot(A);\n  return sqrt(REAL(p));\n}\n\ntemplate <typename T>\n\
+    struct Line {\n  T a, b, c;\n\n  Line(T a, T b, T c) : a(a), b(b), c(c) {}\n \
+    \ Line(Point<T> A, Point<T> B) {\n    a = A.y - B.y;\n    b = B.x - A.x;\n   \
+    \ c = A.x * B.y - A.y * B.x;\n  }\n  Line(T x1, T y1, T x2, T y2) : Line(Point<T>(x1,\
+    \ y1), Point<T>(x2, y2)) {}\n\n  template <typename U>\n  U eval(Point<U> P) {\n\
+    \    return a * P.x + b * P.y + c;\n  }\n\n  template <typename U>\n  T eval(U\
+    \ x, U y) {\n    return a * x + b * y + c;\n  }\n\n  bool is_parallel(Line other)\
+    \ { return a * other.b - b * other.a == 0; }\n\n  bool is_orthogonal(Line other)\
+    \ { return a * other.a + b * other.b == 0; }\n};\n\ntemplate <typename T>\nstruct\
+    \ Segment {\n  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B)\
+    \ {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2,\
+    \ y2)) {}\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate <typename\
+    \ T>\nstruct Circle {\n  Point<T> O;\n  T r;\n  Circle(Point<T> O, T r) : O(O),\
+    \ r(r) {}\n  Circle(T x, T y, T r) : O(Point<T>(x, y)), r(r) {}\n};\n\ntemplate\
+    \ <typename T>\nstruct Polygon {\n  vc<Point<T>> points;\n  T a;\n\n  template\
+    \ <typename A, typename B>\n  Polygon(vc<pair<A, B>> pairs) {\n    for (auto&&\
+    \ [a, b]: pairs) points.eb(Point<T>(a, b));\n    build();\n  }\n  Polygon(vc<Point<T>>\
+    \ points) : points(points) { build(); }\n\n  int size() { return len(points);\
+    \ }\n\n  template <typename REAL>\n  REAL area() {\n    return a * 0.5;\n  }\n\
+    \n  template <enable_if_t<is_integral<T>::value, int> = 0>\n  T area_2() {\n \
+    \   return a;\n  }\n\n  bool is_convex() {\n    FOR(j, len(points)) {\n      int\
+    \ i = (j == 0 ? len(points) - 1 : j - 1);\n      int k = (j == len(points) - 1\
+    \ ? 0 : j + 1);\n      if ((points[j] - points[i]).det(points[k] - points[j])\
+    \ < 0) return false;\n    }\n    return true;\n  }\n\nprivate:\n  void build()\
+    \ {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1 == len(points)\
+    \ ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n    if (a < 0) {\n\
+    \      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n#line 2 \"geo/incremental_convexhull.hpp\"\
+    \n\n// \u4E0B\u5074\u51F8\u5305\ntemplate <typename T, bool strict = true>\nstruct\
+    \ IncrementalConvexHull_Lower {\n  using P = Point<T>;\n  set<P> S;\n\n  IncrementalConvexHull_Lower()\
+    \ {}\n\n  int size() { return len(S); }\n\n  template <typename ADD_V, typename\
+    \ RM_V, typename ADD_E, typename RM_E>\n  void add(Point<T> p, ADD_V add_v, RM_V\
+    \ rm_v, ADD_E add_e, RM_E rm_e) {\n    int s = side(p);\n    if (strict && s >=\
+    \ 0) return;\n    if (!strict && s > 0) return;\n\n    // \u70B9\u8FFD\u52A0\n\
+    \    add_v(p);\n    S.insert(p);\n\n    vc<P> left;\n    {\n      auto it = S.find(p);\n\
+    \      while (it != S.begin()) {\n        --it;\n        if (left.empty()) {\n\
+    \          left.eb(*it);\n          continue;\n        }\n        auto a = *it;\n\
+    \        auto b = left.back();\n        T det = (b - a).det(p - a);\n        if\
+    \ (strict && det > 0) break;\n        if (!strict && det >= 0) break;\n      \
+    \  left.eb(a);\n      }\n    }\n\n    vc<P> right;\n    {\n      auto it = S.find(p);\n\
+    \      while (1) {\n        ++it;\n        if (it == S.end()) break;\n       \
+    \ if (right.empty()) {\n          right.eb(*it);\n          continue;\n      \
+    \  }\n        auto a = right.back();\n        auto b = *it;\n        T det = (a\
+    \ - p).det(b - p);\n        if (strict && det > 0) break;\n        if (!strict\
+    \ && det >= 0) break;\n        right.eb(b);\n      }\n    }\n\n    // \u70B9\u524A\
+    \u9664\n    if (len(left) > 1) { S.erase(next(S.find(left.back())), S.find(p));\
+    \ }\n    if (len(right) > 1) { S.erase(next(S.find(p)), S.find(right.back()));\
+    \ }\n    FOR(i, len(left) - 1) rm_v(left[i]);\n    FOR(i, len(right) - 1) rm_v(right[i]);\n\
+    \n    // \u8FBA\u524A\u9664\n    if (len(left) && len(right)) {\n      auto a\
+    \ = left[0], b = right[0];\n      rm_e(a, b);\n    }\n    FOR(i, len(left) - 1)\
+    \ {\n      auto a = left[i + 1], b = left[i];\n      rm_e(a, b);\n    }\n    FOR(i,\
+    \ len(right) - 1) {\n      auto a = right[i], b = right[i + 1];\n      rm_e(a,\
+    \ b);\n    }\n    // \u8FBA\u8FFD\u52A0\n    if (len(left)) { add_e(left.back(),\
+    \ p); }\n    if (len(right)) { add_e(p, right.back()); }\n  }\n\n  // \u4E2D\uFF1A\
+    1, \u5883\u754C\uFF1A0, \u5916\uFF1A-1\n  int side(Point<T> p) {\n    auto r =\
+    \ S.lower_bound(p);\n    if (r == S.begin()) {\n      // \u5168\u90E8 p \u4EE5\
+    \u4E0A\n      if (len(S) && (*r) == p) return 0;\n      return -1;\n    }\n  \
+    \  if (r == S.end()) {\n      // p \u306F max \u3088\u308A\u5927\u304D\u3044\n\
+    \      return -1;\n    }\n    auto l = prev(r);\n    auto p1 = *l, p2 = *r;\n\
+    \    T det = (p - p1).det(p2 - p1);\n    if (det == 0) return 0;\n    return (det\
+    \ > 0 ? -1 : 1);\n  }\n};\n\ntemplate <typename T, bool strict = true>\nstruct\
+    \ Incremental_ConvexHull {\n  using P = Point<T>;\n  IncrementalConvexHull_Lower<T,\
+    \ strict> LOWER, UPPER;\n  int cnt_E;\n  T det_sum;\n  bool is_empty;\n\n  Incremental_ConvexHull()\
+    \ : cnt_E(0), det_sum(0), is_empty(1) {}\n\n  int size() { return cnt_E; }\n\n\
+    \  bool empty() { return is_empty; }\n\n  template <typename REAL>\n  REAL area()\
+    \ {\n    return det_sum * 0.5;\n  }\n  T area_2() { return det_sum; }\n\n  template\
+    \ <typename ADD_V, typename RM_V, typename ADD_E, typename RM_E>\n  void add(Point<T>\
+    \ p, ADD_V add_v, RM_V rm_v, ADD_E add_e, RM_E rm_e) {\n    is_empty = 0;\n  \
+    \  LOWER.add(\n        p, add_v, rm_v,\n        [&](Point<T> a, Point<T> b) {\n\
+    \          add_e(a, b);\n          ++cnt_E;\n          det_sum += a.det(b);\n\
+    \        },\n        [&](Point<T> a, Point<T> b) {\n          rm_e(a, b);\n  \
+    \        --cnt_E;\n          det_sum -= a.det(b);\n        });\n    UPPER.add(\n\
+    \        -p, [&](Point<T> p) { add_v(-p); }, [&](Point<T> p) { rm_v(-p); },\n\
+    \        [&](Point<T> a, Point<T> b) {\n          add_e(-a, -b);\n          ++cnt_E;\n\
+    \          det_sum += a.det(b);\n        },\n        [&](Point<T> a, Point<T>\
+    \ b) {\n          rm_e(-a, -b);\n          --cnt_E;\n          det_sum -= a.det(b);\n\
+    \        });\n  }\n  void add(Point<T> p) {\n    add(\n        p, [](Point<T>\
+    \ p) {}, [](Point<T> p) {}, [](Point<T> s, Point<T> t) {},\n        [](Point<T>\
+    \ s, Point<T> t) {});\n  }\n\n  // \u4E2D\uFF1A1\u3001\u5883\u754C\uFF1A0\u3001\
+    \u5916\uFF1A-1\n  int side(Point<T> p) {\n    int a = LOWER.side(p);\n    int\
+    \ b = UPPER.side(-p);\n    if (a == 0 || b == 0) return 0;\n    return min(a,\
+    \ b);\n  }\n};\n#line 5 \"test/_atcoder/abc266c.test.cpp\"\n\nvoid solve() {\n\
+    \  Incremental_ConvexHull<ll, true> X;\n  FOR(4) {\n    LL(a, b);\n    Point<ll>\
+    \ P(a, b);\n    X.add(P);\n  }\n  Yes(len(X) == 4);\n}\n\nsigned main() {\n  cout\
+    \ << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\
+    \n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc266/tasks/abc266_c\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"geo/incremental_convexhull.hpp\"\
+    \n\nvoid solve() {\n  Incremental_ConvexHull<ll, true> X;\n  FOR(4) {\n    LL(a,\
+    \ b);\n    Point<ll> P(a, b);\n    X.add(P);\n  }\n  Yes(len(X) == 4);\n}\n\n\
+    signed main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n\
+    \  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/kdtree/kdtree.hpp
+  - geo/incremental_convexhull.hpp
+  - geo/base.hpp
   isVerificationFile: true
-  path: test/atcoder/abc234ex.test.cpp
+  path: test/_atcoder/abc266c.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-01-23 03:29:31+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/atcoder/abc234ex.test.cpp
+documentation_of: test/_atcoder/abc266c.test.cpp
 layout: document
 redirect_from:
-- /verify/test/atcoder/abc234ex.test.cpp
-- /verify/test/atcoder/abc234ex.test.cpp.html
-title: test/atcoder/abc234ex.test.cpp
+- /verify/test/_atcoder/abc266c.test.cpp
+- /verify/test/_atcoder/abc266c.test.cpp.html
+title: test/_atcoder/abc266c.test.cpp
 ---

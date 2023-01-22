@@ -1,56 +1,56 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dual_segtree.hpp
     title: ds/segtree/dual_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc270/tasks/abc270_f
     links:
     - https://atcoder.jp/contests/abc270/tasks/abc270_f
-  bundledCode: "#line 1 \"test/atcoder/abc270_f.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc270/tasks/abc270_f\"\
+  bundledCode: "#line 1 \"test/_atcoder/abc270_f.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc270/tasks/abc270_f\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -507,7 +507,7 @@ data:
     \n      TM2.apply_path(e.frm, e.to, e.cost);\r\n    }\r\n  }\r\n  vc<T> ANS(M);\r\
     \n  int m = 0;\r\n  FOR(i, M) {\r\n    auto& e = G.edges[i];\r\n    if (in_mst[i])\r\
     \n      ANS[i] = TM2.get(m++);\r\n    else\r\n      ANS[i] = TM1.prod_path(e.frm,\
-    \ e.to);\r\n  }\r\n  return {mst_cost, in_mst, MST, ANS};\r\n}\n#line 6 \"test/atcoder/abc270_f.test.cpp\"\
+    \ e.to);\r\n  }\r\n  return {mst_cost, in_mst, MST, ANS};\r\n}\n#line 6 \"test/_atcoder/abc270_f.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, M);\n  VEC(ll, X, N);\n  VEC(ll, Y, N);\n  using T\
     \ = tuple<int, int, int>;\n  VEC(T, dat, M);\n  for (auto&& [a, b, c]: dat) {\
     \ --a, --b; }\n\n  vi cand;\n\n  {\n    Graph<ll> G(N);\n    for (auto&& [a, b,\
@@ -560,15 +560,15 @@ data:
   - alg/monoid/min.hpp
   - alg/monoid/max.hpp
   isVerificationFile: true
-  path: test/atcoder/abc270_f.test.cpp
+  path: test/_atcoder/abc270_f.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-01-23 03:29:31+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/atcoder/abc270_f.test.cpp
+documentation_of: test/_atcoder/abc270_f.test.cpp
 layout: document
 redirect_from:
-- /verify/test/atcoder/abc270_f.test.cpp
-- /verify/test/atcoder/abc270_f.test.cpp.html
-title: test/atcoder/abc270_f.test.cpp
+- /verify/test/_atcoder/abc270_f.test.cpp
+- /verify/test/_atcoder/abc270_f.test.cpp.html
+title: test/_atcoder/abc270_f.test.cpp
 ---

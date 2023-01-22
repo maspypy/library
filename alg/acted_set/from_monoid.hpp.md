@@ -5,22 +5,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc270_g.test.cpp
-    title: test/atcoder/abc270_g.test.cpp
+  - icon: ':x:'
+    path: test/_atcoder/abc270_g.test.cpp
+    title: test/_atcoder/abc270_g.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/acted_set/from_monoid.hpp\"\ntemplate <typename Monoid>\n\
@@ -37,11 +37,11 @@ data:
   - mod/mod_log.hpp
   - nt/discrete_log.hpp
   timestamp: '2022-11-28 21:09:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1339.test.cpp
+  - test/_atcoder/abc270_g.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - test/atcoder/abc270_g.test.cpp
 documentation_of: alg/acted_set/from_monoid.hpp
 layout: document
 redirect_from:

@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/disjointsparse/disjointsparse.hpp
     title: ds/disjointsparse/disjointsparse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/arc151/tasks/arc151_e
     links:
     - https://atcoder.jp/contests/arc151/tasks/arc151_e
-  bundledCode: "#line 1 \"test/atcoder/arc151_e.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/arc151/tasks/arc151_e\"\
+  bundledCode: "#line 1 \"test/_atcoder/arc151_e.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/arc151/tasks/arc151_e\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -374,7 +374,7 @@ data:
     \  if (dv > dist[v]) continue;\n    for (auto&& e: G[v]) {\n      if (chmin(dist[e.to],\
     \ dist[e.frm] + e.cost)) {\n        root[e.to] = root[e.frm];\n        par[e.to]\
     \ = e.frm;\n        que.push(mp(dist[e.to], e.to));\n      }\n    }\n  }\n  return\
-    \ {dist, par, root};\n}\n#line 6 \"test/atcoder/arc151_e.test.cpp\"\n\nvoid solve()\
+    \ {dist, par, root};\n}\n#line 6 \"test/_atcoder/arc151_e.test.cpp\"\n\nvoid solve()\
     \ {\n  INT(N);\n  VEC(int, A, N);\n  INT(P);\n  VEC(int, B, P);\n  INT(Q);\n \
     \ VEC(int, C, Q);\n\n  int lcp = [&]() -> int {\n    auto [l1, r1, l2, r2] = longest_common_substring(B,\
     \ C);\n    return r1 - l1;\n  }();\n\n  if (lcp >= 1) { return print(P + Q - 2\
@@ -412,15 +412,15 @@ data:
   - graph/shortest_path/dijkstra.hpp
   - graph/base.hpp
   isVerificationFile: true
-  path: test/atcoder/arc151_e.test.cpp
+  path: test/_atcoder/arc151_e.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-01-23 03:29:31+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/atcoder/arc151_e.test.cpp
+documentation_of: test/_atcoder/arc151_e.test.cpp
 layout: document
 redirect_from:
-- /verify/test/atcoder/arc151_e.test.cpp
-- /verify/test/atcoder/arc151_e.test.cpp.html
-title: test/atcoder/arc151_e.test.cpp
+- /verify/test/_atcoder/arc151_e.test.cpp
+- /verify/test/_atcoder/arc151_e.test.cpp.html
+title: test/_atcoder/arc151_e.test.cpp
 ---

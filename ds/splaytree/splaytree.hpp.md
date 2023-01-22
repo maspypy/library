@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_acted_set.hpp
     title: ds/splaytree/splaytree_acted_set.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: ds/splaytree/splaytree_basic.hpp
     title: ds/splaytree/splaytree_basic.hpp
   - icon: ':heavy_check_mark:'
@@ -18,6 +18,9 @@ data:
     path: ds/splaytree/splaytree_monoid.hpp
     title: ds/splaytree/splaytree_monoid.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/_atcoder/arc153b.test.cpp
+    title: test/_atcoder/arc153b.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508.test.cpp
     title: test/aoj/1508.test.cpp
@@ -45,9 +48,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1441.test.cpp
     title: test/yukicoder/1441.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/splaytree/splaytree.hpp\"\n// Node \u578B\u3092\u5225\
@@ -103,7 +106,7 @@ data:
     \    root->apply(a);\n    splay(root);\n  }\n  void apply(np &root, const A &a)\
     \ {\n    if (!root) return;\n    root->apply(a);\n  }\n\n  void reverse(np &root,\
     \ u32 l, u32 r) {\n    assert(0 <= l && l < r && r <= root->size);\n    goto_between(root,\
-    \ l, r);\n    root->reverse();\n    splay(root);\n  }\n  void reverse(np &root)\
+    \ l, r);\n    root->reverse();\n    splay(root);\n  }\n  void reverse(np root)\
     \ {\n    if (!root) return;\n    root->reverse();\n  }\n\n  void rotate(Node *n)\
     \ {\n    // n \u3092\u6839\u306B\u8FD1\u3065\u3051\u308B\u3002prop, update \u306F\
     \ rotate \u306E\u5916\u3067\u884C\u3046\u3002\n    Node *pp, *p, *c;\n    p =\
@@ -207,8 +210,8 @@ data:
     \    splay(root);\n  }\n  void apply(np &root, const A &a) {\n    if (!root) return;\n\
     \    root->apply(a);\n  }\n\n  void reverse(np &root, u32 l, u32 r) {\n    assert(0\
     \ <= l && l < r && r <= root->size);\n    goto_between(root, l, r);\n    root->reverse();\n\
-    \    splay(root);\n  }\n  void reverse(np &root) {\n    if (!root) return;\n \
-    \   root->reverse();\n  }\n\n  void rotate(Node *n) {\n    // n \u3092\u6839\u306B\
+    \    splay(root);\n  }\n  void reverse(np root) {\n    if (!root) return;\n  \
+    \  root->reverse();\n  }\n\n  void rotate(Node *n) {\n    // n \u3092\u6839\u306B\
     \u8FD1\u3065\u3051\u308B\u3002prop, update \u306F rotate \u306E\u5916\u3067\u884C\
     \u3046\u3002\n    Node *pp, *p, *c;\n    p = n->p;\n    pp = p->p;\n    if (p->l\
     \ == n) {\n      c = n->r;\n      n->r = p;\n      p->l = c;\n    } else {\n \
@@ -267,11 +270,12 @@ data:
   - ds/splaytree/splaytree_commutative_monoid.hpp
   - ds/splaytree/splaytree_acted_monoid.hpp
   - ds/splaytree/splaytree_acted_set.hpp
-  timestamp: '2023-01-22 14:34:03+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-01-23 03:29:31+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/1508.test.cpp
   - test/yukicoder/1441.test.cpp
+  - test/_atcoder/arc153b.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/mytest/cf702_F_splay.test.cpp

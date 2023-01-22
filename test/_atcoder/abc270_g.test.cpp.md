@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_set/affine.hpp
     title: alg/acted_set/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_set/from_monoid.hpp
     title: alg/acted_set/from_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc270/tasks/abc270_g
     links:
     - https://atcoder.jp/contests/abc270/tasks/abc270_g
-  bundledCode: "#line 1 \"test/atcoder/abc270_g.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc270/tasks/abc270_g\"\
+  bundledCode: "#line 1 \"test/_atcoder/abc270_g.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc270/tasks/abc270_g\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -366,7 +366,7 @@ data:
     \ Group, typename F>\r\nll discrete_log_group(typename Group::X a, typename Group::X\
     \ b, F H, ll lb,\r\n                      ll ub) {\r\n  using AM = ActedSet_From_Monoid<Group>;\r\
     \n  return discrete_log_acted<AM>(a, Group::unit(), b, H, lb, ub);\r\n}\n#line\
-    \ 8 \"test/atcoder/abc270_g.test.cpp\"\n\nusing mint = amint;\n\nvoid solve()\
+    \ 8 \"test/_atcoder/abc270_g.test.cpp\"\n\nusing mint = amint;\n\nvoid solve()\
     \ {\n  LL(P, A, B, S, G);\n  mint::set_mod(P);\n  if (A == 0) {\n    if (S ==\
     \ G) return print(0);\n    if (B == G) return print(1);\n    return print(-1);\n\
     \  }\n\n  using AS = ActedSet_Affine<mint>;\n  typename AS::A g = {A, B};\n  typename\
@@ -396,15 +396,15 @@ data:
   - ds/hashmap.hpp
   - random/base.hpp
   isVerificationFile: true
-  path: test/atcoder/abc270_g.test.cpp
+  path: test/_atcoder/abc270_g.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-01-23 03:29:31+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/atcoder/abc270_g.test.cpp
+documentation_of: test/_atcoder/abc270_g.test.cpp
 layout: document
 redirect_from:
-- /verify/test/atcoder/abc270_g.test.cpp
-- /verify/test/atcoder/abc270_g.test.cpp.html
-title: test/atcoder/abc270_g.test.cpp
+- /verify/test/_atcoder/abc270_g.test.cpp
+- /verify/test/_atcoder/abc270_g.test.cpp.html
+title: test/_atcoder/abc270_g.test.cpp
 ---

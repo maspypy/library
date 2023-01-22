@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc200/tasks/abc200_a
     links:
     - https://atcoder.jp/contests/abc200/tasks/abc200_a
-  bundledCode: "#line 1 \"test/atcoder/abc200a.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc200/tasks/abc200_a\"\
+  bundledCode: "#line 1 \"test/_atcoder/abc200a.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc200/tasks/abc200_a\"\
     \n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -191,8 +191,8 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 5 \"test/atcoder/abc200a.test.cpp\"\n\nvoid solve() {\n  LL(N);\n\
-    \  print(ceil(N, 100));\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \ yes(!t); }\n#line 5 \"test/_atcoder/abc200a.test.cpp\"\n\nvoid solve() {\n \
+    \ LL(N);\n  print(ceil(N, 100));\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
     \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc200/tasks/abc200_a\"\n\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\nvoid solve() {\n  LL(N);\n\
@@ -202,15 +202,15 @@ data:
   - my_template.hpp
   - other/io.hpp
   isVerificationFile: true
-  path: test/atcoder/abc200a.test.cpp
+  path: test/_atcoder/abc200a.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-01-23 03:29:31+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/atcoder/abc200a.test.cpp
+documentation_of: test/_atcoder/abc200a.test.cpp
 layout: document
 redirect_from:
-- /verify/test/atcoder/abc200a.test.cpp
-- /verify/test/atcoder/abc200a.test.cpp.html
-title: test/atcoder/abc200a.test.cpp
+- /verify/test/_atcoder/abc200a.test.cpp
+- /verify/test/_atcoder/abc200a.test.cpp.html
+title: test/_atcoder/abc200a.test.cpp
 ---

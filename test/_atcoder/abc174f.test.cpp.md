@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/offline_query/uniqueproductquery.hpp
     title: ds/offline_query/uniqueproductquery.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc174/tasks/abc174_f
     links:
     - https://atcoder.jp/contests/abc174/tasks/abc174_f
-  bundledCode: "#line 1 \"test/atcoder/abc174f.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc174/tasks/abc174_f\"\
+  bundledCode: "#line 1 \"test/_atcoder/abc174f.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc174/tasks/abc174_f\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -264,7 +264,7 @@ data:
     \ &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept\
     \ { return -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return\
     \ X(n) * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 6 \"test/atcoder/abc174f.test.cpp\"\n\n\
+    \ bool commute = true;\r\n};\r\n#line 6 \"test/_atcoder/abc174f.test.cpp\"\n\n\
     void solve() {\n  LL(N, Q);\n  VEC(ll, C, N);\n  UniqueProductQuery<Monoid_Add<int>>\
     \ X(C);\n\n  FOR(Q) {\n    LL(l, r);\n    X.add(--l, r);\n  }\n  for (auto&& x:\
     \ X.calc()) print(x);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
@@ -282,15 +282,15 @@ data:
   - ds/segtree/segtree.hpp
   - alg/monoid/add.hpp
   isVerificationFile: true
-  path: test/atcoder/abc174f.test.cpp
+  path: test/_atcoder/abc174f.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-01-23 03:29:31+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/atcoder/abc174f.test.cpp
+documentation_of: test/_atcoder/abc174f.test.cpp
 layout: document
 redirect_from:
-- /verify/test/atcoder/abc174f.test.cpp
-- /verify/test/atcoder/abc174f.test.cpp.html
-title: test/atcoder/abc174f.test.cpp
+- /verify/test/_atcoder/abc174f.test.cpp
+- /verify/test/_atcoder/abc174f.test.cpp.html
+title: test/_atcoder/abc174f.test.cpp
 ---

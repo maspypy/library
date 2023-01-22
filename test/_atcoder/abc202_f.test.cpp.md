@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc202/tasks/abc202_f
     links:
     - https://atcoder.jp/contests/abc202/tasks/abc202_f
-  bundledCode: "#line 1 \"test/atcoder/abc202_f.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc202/tasks/abc202_f\"\
+  bundledCode: "#line 1 \"test/_atcoder/abc202_f.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc202/tasks/abc202_f\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -420,7 +420,7 @@ data:
     \    mint xp = mint(p).pow(e);\r\n    ll pp = p;\r\n    while (pp <= N) {\r\n\
     \      ll i = pp;\r\n      while (i <= N) {\r\n        f[i] *= xp;\r\n       \
     \ i += pp;\r\n      }\r\n      pp *= p;\r\n    }\r\n  }\r\n  return f;\r\n}\r\n\
-    #line 8 \"test/atcoder/abc202_f.test.cpp\"\n\nusing mint = modint107;\n\nvoid\
+    #line 8 \"test/_atcoder/abc202_f.test.cpp\"\n\nusing mint = modint107;\n\nvoid\
     \ solve() {\n  LL(N);\n  using P = Point<ll>;\n  VEC(P, A, N);\n  Count_Points_In_Triangles\
     \ X(A, A);\n\n  vc<P> vecs;\n  FOR(i, N) FOR(j, N) vecs.eb(A[j] - A[i]);\n  auto\
     \ I = angle_argsort(vecs);\n\n  vc<pair<int, int>> IJ;\n  for (auto&& k: I) {\n\
@@ -458,15 +458,15 @@ data:
   - mod/powertable.hpp
   - nt/primetable.hpp
   isVerificationFile: true
-  path: test/atcoder/abc202_f.test.cpp
+  path: test/_atcoder/abc202_f.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-01-23 03:29:31+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/atcoder/abc202_f.test.cpp
+documentation_of: test/_atcoder/abc202_f.test.cpp
 layout: document
 redirect_from:
-- /verify/test/atcoder/abc202_f.test.cpp
-- /verify/test/atcoder/abc202_f.test.cpp.html
-title: test/atcoder/abc202_f.test.cpp
+- /verify/test/_atcoder/abc202_f.test.cpp
+- /verify/test/_atcoder/abc202_f.test.cpp.html
+title: test/_atcoder/abc202_f.test.cpp
 ---

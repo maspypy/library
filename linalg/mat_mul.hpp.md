@@ -8,25 +8,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/mat_pow.hpp
     title: linalg/mat_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
   - icon: ':heavy_check_mark:'
     path: poly/sparse_exp_of_div.hpp
     title: poly/sparse_exp_of_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc276_g.test.cpp
-    title: test/atcoder/abc276_g.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc276_g_2.test.cpp
-    title: test/atcoder/abc276_g_2.test.cpp
+  - icon: ':x:'
+    path: test/_atcoder/abc276_g.test.cpp
+    title: test/_atcoder/abc276_g.test.cpp
+  - icon: ':x:'
+    path: test/_atcoder/abc276_g_2.test.cpp
+    title: test/_atcoder/abc276_g_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/matrix_product.test.cpp
     title: test/library_checker/matrix/matrix_product.test.cpp
@@ -57,9 +57,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_2.test.cpp
     title: test/yukicoder/502_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"linalg/mat_mul.hpp\"\n\r\nstruct has_mod_impl {\r\n  template\
@@ -101,7 +101,7 @@ data:
   - poly/from_log_differentiation.hpp
   - poly/prefix_product_of_poly.hpp
   timestamp: '2022-12-02 06:10:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/2166.test.cpp
   - test/yukicoder/1750.test.cpp
@@ -111,10 +111,10 @@ data:
   - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/426.test.cpp
   - test/yukicoder/502_2.test.cpp
+  - test/_atcoder/abc276_g.test.cpp
+  - test/_atcoder/abc276_g_2.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp
   - test/mytest/factorial_998.test.cpp
-  - test/atcoder/abc276_g.test.cpp
-  - test/atcoder/abc276_g_2.test.cpp
 documentation_of: linalg/mat_mul.hpp
 layout: document
 redirect_from:

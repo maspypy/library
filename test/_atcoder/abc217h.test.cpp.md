@@ -1,32 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: ds/dynamic_array.hpp
-    title: ds/dynamic_array.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/hashmap.hpp
-    title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: convex/slope.hpp
+    title: convex/slope.hpp
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
-    path: random/base.hpp
-    title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc273/tasks/abc273_e
+    PROBLEM: https://atcoder.jp/contests/abc217/tasks/abc217_h
     links:
-    - https://atcoder.jp/contests/abc273/tasks/abc273_e
-  bundledCode: "#line 1 \"test/atcoder/abc273_e.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc273/tasks/abc273_e\"\
+    - https://atcoder.jp/contests/abc217/tasks/abc217_h
+  bundledCode: "#line 1 \"test/_atcoder/abc217h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc217/tasks/abc217_h\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -200,84 +194,74 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 2 \"ds/dynamic_array.hpp\"\n\r\ntemplate <typename T, bool\
-    \ PERSISTENT, int NODES>\r\nstruct Dynamic_Array {\r\n  struct Node {\r\n    T\
-    \ x;\r\n    Node* ch[16] = {};\r\n  };\r\n  Node* pool;\r\n  int pid;\r\n  using\
-    \ np = Node*;\r\n  const T x0;\r\n\r\n  Dynamic_Array(T default_value) : pid(0),\
-    \ x0(default_value) {\r\n    pool = new Node[NODES];\r\n  }\r\n\r\n  np new_node()\
-    \ {\r\n    pool[pid].x = x0;\r\n    fill(pool[pid].ch, pool[pid].ch + 16, nullptr);\r\
-    \n    return &(pool[pid++]);\r\n  }\r\n\r\n  np new_node(vc<T> dat) {\r\n    np\
-    \ root = new_node();\r\n    FOR(i, len(dat)) root = set(root, i, dat[i], false);\r\
-    \n    return root;\r\n  }\r\n\r\n  T get(np c, int idx) {\r\n    if (!c) return\
-    \ x0;\r\n    if (idx == 0) return c->x;\r\n    return get(c->ch[idx & 15], (idx\
-    \ - 1) >> 4);\r\n  }\r\n\r\n  np set(np c, int idx, T x, bool make_copy = true)\
-    \ {\r\n    c = (c ? copy_node(c, make_copy) : new_node());\r\n    if (idx == 0)\
-    \ {\r\n      c->x = x;\r\n      return c;\r\n    }\r\n    c->ch[idx & 15] = set(c->ch[idx\
-    \ & 15], (idx - 1) >> 4, x);\r\n    return c;\r\n  }\r\n\r\nprivate:\r\n  np copy_node(np\
-    \ c, bool make_copy) {\r\n    if (!make_copy || !PERSISTENT) return c;\r\n   \
-    \ pool[pid].x = c->x;\r\n    FOR(k, 16) pool[pid].ch[k] = c->ch[k];\r\n    return\
-    \ &(pool[pid++]);\r\n  }\r\n};\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
-    \ {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 3 \"ds/hashmap.hpp\"\
-    \n\r\n// long long -> Val\r\ntemplate <typename Val, int LOG = 20>\r\nstruct HashMap\
-    \ {\r\n  int N;\r\n  ll* keys;\r\n  Val* vals;\r\n  vc<int> IDS;\r\n  bitset<1\
-    \ << LOG> used;\r\n  const int shift;\r\n  const uint64_t r = 11995408973635179863ULL;\r\
-    \n  HashMap()\r\n      : N(1 << LOG), keys(new ll[N]), vals(new Val[N]), shift(64\
-    \ - __lg(N)) {}\r\n  int hash(ll x) {\r\n    static const uint64_t FIXED_RANDOM\r\
-    \n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\n \
-    \   return (uint64_t(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
-    \ ll& key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && keys[i] !=\
-    \ key; (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
-    \ ll& key) {\r\n    int i = index(key);\r\n    if (!used[i]) IDS.eb(i), used[i]\
-    \ = 1, keys[i] = key, vals[i] = Val{};\r\n    return vals[i];\r\n  }\r\n\r\n \
-    \ Val get(const ll& key, Val default_value) {\r\n    int i = index(key);\r\n \
-    \   if (!used[i]) return default_value;\r\n    return vals[i];\r\n  }\r\n\r\n\
-    \  bool count(const ll& key) {\r\n    int i = index(key);\r\n    return used[i]\
-    \ && keys[i] == key;\r\n  }\r\n\r\n  void reset() {\r\n    for (auto&& i: IDS)\
-    \ used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  vc<pair<ll, Val>> items() {\r\
-    \n    vc<pair<ll, Val>> res;\r\n    res.reserve(len(IDS));\r\n    for (auto&&\
-    \ i: IDS) res.eb(keys[i], vals[i]);\r\n    return res;\r\n  }\r\n};\r\n#line 6\
-    \ \"test/atcoder/abc273_e.test.cpp\"\n\nvoid solve() {\n  Dynamic_Array<int, true,\
-    \ 3'000'000> X(0);\n  using np = typename decltype(X)::np;\n\n  LL(Q);\n  vi ANS;\n\
-    \n  np A = X.new_node();\n  int A_size = 0;\n  HashMap<pair<np, int>> note;\n\n\
-    \  FOR(Q) {\n    STR(S);\n    if (S == \"ADD\") {\n      INT(x);\n      A = X.set(A,\
-    \ A_size++, x);\n    }\n    if (S == \"DELETE\") {\n      if (A_size) --A_size;\n\
-    \    }\n    if (S == \"SAVE\") {\n      INT(y);\n      note[y] = {A, A_size};\n\
-    \    }\n    if (S == \"LOAD\") {\n      INT(z);\n      tie(A, A_size) = note[z];\n\
-    \    }\n    ll x = -1;\n    if (A_size) x = X.get(A, A_size - 1);\n    ANS.eb(x);\n\
-    \  }\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc273/tasks/abc273_e\"\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/dynamic_array.hpp\"\
-    \n#include \"ds/hashmap.hpp\"\n\nvoid solve() {\n  Dynamic_Array<int, true, 3'000'000>\
-    \ X(0);\n  using np = typename decltype(X)::np;\n\n  LL(Q);\n  vi ANS;\n\n  np\
-    \ A = X.new_node();\n  int A_size = 0;\n  HashMap<pair<np, int>> note;\n\n  FOR(Q)\
-    \ {\n    STR(S);\n    if (S == \"ADD\") {\n      INT(x);\n      A = X.set(A, A_size++,\
-    \ x);\n    }\n    if (S == \"DELETE\") {\n      if (A_size) --A_size;\n    }\n\
-    \    if (S == \"SAVE\") {\n      INT(y);\n      note[y] = {A, A_size};\n    }\n\
-    \    if (S == \"LOAD\") {\n      INT(z);\n      tie(A, A_size) = note[z];\n  \
-    \  }\n    ll x = -1;\n    if (A_size) x = X.get(A, A_size - 1);\n    ANS.eb(x);\n\
-    \  }\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ yes(!t); }\n#line 1 \"convex/slope.hpp\"\nstruct Slope_Trick {\r\n  static constexpr\
+    \ ll LMIN = numeric_limits<ll>::lowest() / 2;\r\n  static constexpr ll RMAX =\
+    \ numeric_limits<ll>::max() / 2;\r\n  pq<ll> que_l;\r\n  pqg<ll> que_r;\r\n\r\n\
+    \  ll add_l, add_r;\r\n  i128 min_f; // INF \u3092\u8DB3\u3057\u5F15\u304D\u3057\
+    \u3066\u3082\u58CA\u308C\u306A\u3044\u3088\u3046\u306B\u3059\u308B\r\n\r\n  Slope_Trick()\
+    \ : add_l(0), add_r(0), min_f(0) {}\r\n  Slope_Trick(vc<ll> left, vc<ll> right)\r\
+    \n      : que_l(all(left)), que_r(all(right)), add_l(0), add_r(0), min_f(0) {}\r\
+    \n\r\n  int size() { return len(que_l) + len(que_r); }\r\n  tuple<ll, ll, i128>\
+    \ get_min() { return {top_L(), top_R(), min_f}; }\r\n\r\n  void add_const(ll a)\
+    \ { min_f += a; }\r\n\r\n  // O(|a| log N)\r\n  void add_linear(ll a, ll b) {\r\
+    \n    min_f += b;\r\n    FOR(max<int>(a, 0)) {\r\n      ll x = pop_L();\r\n  \
+    \    min_f += x;\r\n      push_R(x);\r\n    }\r\n    FOR(max<int>(-a, 0)) {\r\n\
+    \      ll x = pop_R();\r\n      min_f -= x;\r\n      push_L(x);\r\n    }\r\n \
+    \ }\r\n\r\n  // (a-x)+\r\n  void add_a_minus_x(ll a) {\r\n    min_f += max<ll>(0,\
+    \ a - top_R());\r\n    push_R(a), push_L(pop_R());\r\n  }\r\n  // (x-a)+\r\n \
+    \ void add_x_minus_a(ll a) {\r\n    min_f += max<ll>(0, top_L() - a);\r\n    push_L(a),\
+    \ push_R(pop_L());\r\n  }\r\n\r\n  // |x-a|\r\n  void add_abs(ll a) {\r\n    add_a_minus_x(a);\r\
+    \n    add_x_minus_a(a);\r\n  }\r\n\r\n  // \u5897\u52A0\u5074\u3092\u6D88\u3057\
+    \u3066\u3001\u6E1B\u5C11\u5074\u306E\u307F\u306B\u3059\u308B\r\n  void clear_right()\
+    \ { que_r = pqg<ll>(); }\r\n  // \u6E1B\u5C11\u5074\u3092\u6D88\u3057\u3066\u3001\
+    \u5897\u52A0\u5074\u306E\u307F\u306B\u3059\u308B\r\n  void clear_left() { que_l\
+    \ = pq<ll>(); }\r\n  void shift(const ll &a) { add_l += a, add_r += a; }\r\n\r\
+    \n  // g(x) = min_{x-b <= y <= x-a} f(y)\r\n  void sliding_window_minimum(const\
+    \ ll &a, const ll &b) {\r\n    add_l += a, add_r += b;\r\n  }\r\n\r\n  // O(size\
+    \ log(size))\r\n  i128 eval(ll x) {\r\n    i128 y = min_f;\r\n    pq<ll> que_l_copy\
+    \ = que_l;\r\n    pqg<ll> que_r_copy = que_r;\r\n    while (len(que_l_copy)) {\
+    \ y += max<ll>(0, (POP(que_l_copy) + add_l) - x); }\r\n    while (len(que_r_copy))\
+    \ { y += max<ll>(0, x - (POP(que_r_copy) + add_r)); }\r\n    return y;\r\n  }\r\
+    \n\r\n  void push_R(const ll &x) { que_r.emplace(x - add_r); }\r\n  void push_L(const\
+    \ ll &x) { que_l.emplace(x - add_l); }\r\n  ll top_R() {\r\n    if (que_r.empty())\
+    \ que_r.emplace(RMAX);\r\n    return que_r.top() + add_r;\r\n  }\r\n  ll top_L()\
+    \ {\r\n    if (que_l.empty()) que_l.emplace(LMIN);\r\n    return que_l.top() +\
+    \ add_l;\r\n  }\r\n  ll pop_R() {\r\n    ll res = top_R();\r\n    que_r.pop();\r\
+    \n    return res;\r\n  }\r\n  ll pop_L() {\r\n    ll res = top_L();\r\n    que_l.pop();\r\
+    \n    return res;\r\n  }\r\n\r\n  void debug() {\r\n    vi left, right;\r\n  \
+    \  pq<ll> que_l_copy = que_l;\r\n    pqg<ll> que_r_copy = que_r;\r\n    while\
+    \ (len(que_l_copy)) { left.eb(POP(que_l_copy) + add_l); }\r\n    while (len(que_r_copy))\
+    \ { right.eb(POP(que_r_copy) + add_r); }\r\n    sort(all(left));\r\n    sort(all(right));\r\
+    \n    print(\"min_f\", min_f, \"left\", left, \"right\", right);\r\n  }\r\n};\n\
+    #line 5 \"test/_atcoder/abc217h.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  Slope_Trick\
+    \ f(vi(N, 0), vi(N, 0));\n\n  ll pt = 0;\n  FOR(N) {\n    LL(t, d, x);\n    ll\
+    \ dt = t - pt;\n    pt = t;\n    f.sliding_window_minimum(-dt, dt);\n    if (d\
+    \ == 0) f.add_a_minus_x(x);\n    if (d == 1) f.add_x_minus_a(x);\n  }\n  auto\
+    \ [xl, xr, min_f] = f.get_min();\n  print(min_f);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc217/tasks/abc217_h\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"convex/slope.hpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  Slope_Trick f(vi(N, 0), vi(N, 0));\n\n  ll pt\
+    \ = 0;\n  FOR(N) {\n    LL(t, d, x);\n    ll dt = t - pt;\n    pt = t;\n    f.sliding_window_minimum(-dt,\
+    \ dt);\n    if (d == 0) f.add_a_minus_x(x);\n    if (d == 1) f.add_x_minus_a(x);\n\
+    \  }\n  auto [xl, xr, min_f] = f.get_min();\n  print(min_f);\n}\n\nsigned main()\
+    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/dynamic_array.hpp
-  - ds/hashmap.hpp
-  - random/base.hpp
+  - convex/slope.hpp
   isVerificationFile: true
-  path: test/atcoder/abc273_e.test.cpp
+  path: test/_atcoder/abc217h.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-01-23 03:29:31+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/atcoder/abc273_e.test.cpp
+documentation_of: test/_atcoder/abc217h.test.cpp
 layout: document
 redirect_from:
-- /verify/test/atcoder/abc273_e.test.cpp
-- /verify/test/atcoder/abc273_e.test.cpp.html
-title: test/atcoder/abc273_e.test.cpp
+- /verify/test/_atcoder/abc217h.test.cpp
+- /verify/test/_atcoder/abc217h.test.cpp.html
+title: test/_atcoder/abc217h.test.cpp
 ---

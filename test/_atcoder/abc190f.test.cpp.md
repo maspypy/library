@@ -1,26 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: convex/cht.hpp
-    title: convex/cht.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: alg/monoid/add.hpp
+    title: alg/monoid/add.hpp
+  - icon: ':question:'
+    path: ds/fenwicktree/fenwicktree.hpp
+    title: ds/fenwicktree/fenwicktree.hpp
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
+  - icon: ':question:'
+    path: seq/inversion_rotate.hpp
+    title: seq/inversion_rotate.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc244/tasks/abc244_Ex
+    PROBLEM: https://atcoder.jp/contests/abc190/tasks/abc190_f
     links:
-    - https://atcoder.jp/contests/abc244/tasks/abc244_Ex
-  bundledCode: "#line 1 \"test/atcoder/abc244h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc244/tasks/abc244_Ex\"\
+    - https://atcoder.jp/contests/abc190/tasks/abc190_f
+  bundledCode: "#line 1 \"test/_atcoder/abc190f.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc190/tasks/abc190_f\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -194,65 +200,75 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 4 \"test/atcoder/abc244h.test.cpp\"\n\n#line 1 \"convex/cht.hpp\"\
-    \n\r\ntemplate <typename T>\r\nstruct Line {\r\n  mutable T k, m, p;\r\n  bool\
-    \ operator<(const Line& o) const { return k < o.k; }\r\n  bool operator<(T x)\
-    \ const { return p < x; }\r\n};\r\n\r\ntemplate <typename T>\r\nT lc_inf() {\r\
-    \n  return numeric_limits<T>::max();\r\n}\r\ntemplate <>\r\nlong double lc_inf<long\
-    \ double>() {\r\n  return 1 / .0;\r\n}\r\n\r\ntemplate <typename T>\r\nT lc_div(T\
-    \ a, T b) {\r\n  return a / b - ((a ^ b) < 0 and a % b);\r\n}\r\ntemplate <>\r\
-    \nlong double lc_div(long double a, long double b) {\r\n  return a / b;\r\n};\r\
-    \ntemplate <>\r\ndouble lc_div(double a, double b) {\r\n  return a / b;\r\n};\r\
-    \n\r\ntemplate <typename T, bool MINIMIZE = true>\r\nstruct LineContainer : multiset<Line<T>,\
-    \ less<>> {\r\n  using super = multiset<Line<T>, less<>>;\r\n  using super::begin,\
-    \ super::end, super::insert, super::erase;\r\n  using super::empty, super::lower_bound;\r\
-    \n  const T inf = lc_inf<T>();\r\n  bool insect(typename super::iterator x, typename\
-    \ super::iterator y) {\r\n    if (y == end()) return x->p = inf, false;\r\n  \
-    \  if (x->k == y->k)\r\n      x->p = (x->m > y->m ? inf : -inf);\r\n    else\r\
-    \n      x->p = lc_div(y->m - x->m, x->k - y->k);\r\n    return x->p >= y->p;\r\
-    \n  }\r\n  void add(T k, T m) {\r\n    if (MINIMIZE) { k = -k, m = -m; }\r\n \
-    \   auto z = insert({k, m, 0}), y = z++, x = y;\r\n    while (insect(y, z)) z\
-    \ = erase(z);\r\n    if (x != begin() and insect(--x, y)) insect(x, y = erase(y));\r\
-    \n    while ((y = x) != begin() and (--x)->p >= y->p) insect(x, erase(y));\r\n\
-    \  }\r\n  T query(T x) {\r\n    assert(!empty());\r\n    auto l = *lower_bound(x);\r\
-    \n    T v = (l.k * x + l.m);\r\n    return (MINIMIZE ? -v : v);\r\n  }\r\n};\r\
-    \n\r\ntemplate <typename T>\r\nusing CHT_min = LineContainer<T, true>;\r\ntemplate\
-    \ <typename T>\r\nusing CHT_max = LineContainer<T, false>;\r\n\r\n/*\r\nlong long\
-    \ / double \u3067\u52D5\u304F\u3068\u601D\u3046\u3002\u30AF\u30A8\u30EA\u3042\u305F\
-    \u308A O(log N)\r\n\u30FBadd(a, b)\uFF1Aax + by \u306E\u8FFD\u52A0\r\n\u30FBget_max(x,y)\uFF1A\
-    max_{a,b} (ax + by)\r\n\u30FBget_min(x,y)\uFF1Amax_{a,b} (ax + by)\r\n*/\r\ntemplate\
-    \ <typename T>\r\nstruct CHT_xy {\r\n  using ld = long double;\r\n  CHT_min<ld>\
-    \ cht_min;\r\n  CHT_max<ld> cht_max;\r\n  T amax = -1e18, amin = 1e18, bmax =\
-    \ -1e18, bmin = 1e18;\r\n  void add(T a, T b) {\r\n    cht_min.add(b, a);\r\n\
-    \    cht_max.add(b, a);\r\n    chmax(amax, a), chmin(amin, a), chmax(bmax, b),\
-    \ chmin(bmin, b);\r\n  }\r\n\r\n  T get_max(T x, T y) {\r\n    if (x == 0) { return\
-    \ max(bmax * y, bmin * y); }\r\n    ld z = ld(y) / x;\r\n    if (x > 0) {\r\n\
-    \      auto l = cht_max.lower_bound(z);\r\n      ll a = l->m, b = l->k;\r\n  \
-    \    return a * x + b * y;\r\n    }\r\n    auto l = cht_min.lower_bound(z);\r\n\
-    \    ll a = -(l->m), b = -(l->k);\r\n    return a * x + b * y;\r\n  }\r\n\r\n\
-    \  T get_min(T x, T y) { return -get_max(-x, -y); }\r\n};\r\n#line 6 \"test/atcoder/abc244h.test.cpp\"\
-    \n\nvoid solve() {\n  LL(Q);\n  CHT_xy<ll> cht;\n  FOR(Q) {\n    LL(a, b, x, y);\n\
-    \    cht.add(a, b);\n    print(cht.get_max(x, y));\n  }\n}\n\nsigned main() {\n\
-    \  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc244/tasks/abc244_Ex\"\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"convex/cht.hpp\"\
-    \n\nvoid solve() {\n  LL(Q);\n  CHT_xy<ll> cht;\n  FOR(Q) {\n    LL(a, b, x, y);\n\
-    \    cht.add(a, b);\n    print(cht.get_max(x, y));\n  }\n}\n\nsigned main() {\n\
-    \  solve();\n\n  return 0;\n}\n"
+    \ yes(!t); }\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
+    \ Monoid_Add {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x,\
+    \ const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
+    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
+    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\
+    \n\ntemplate <typename Monoid>\nstruct FenwickTree {\n  using G = Monoid;\n  using\
+    \ E = typename G::value_type;\n  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree()\
+    \ {}\n  FenwickTree(int n) { build(n); }\n  template <typename F>\n  FenwickTree(int\
+    \ n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const vc<E>& v) { build(v);\
+    \ }\n\n  void build(int m) {\n    n = m;\n    dat.assign(m, G::unit());\n    total\
+    \ = G::unit();\n  }\n  void build(const vc<E>& v) {\n    build(len(v), [&](int\
+    \ i) -> E { return v[i]; });\n  }\n  template <typename F>\n  void build(int m,\
+    \ F f) {\n    n = m;\n    dat.clear();\n    dat.reserve(n);\n    total = G::unit();\n\
+    \    FOR(i, n) { dat.eb(f(i)); }\n    for (int i = 1; i <= n; ++i) {\n      int\
+    \ j = i + (i & -i);\n      if (j <= n) dat[j - 1] = G::op(dat[i - 1], dat[j -\
+    \ 1]);\n    }\n    total = prefix_sum(m);\n  }\n\n  E prod_all() { return total;\
+    \ }\n  E sum_all() { return total; }\n  E sum(int k) { return prefix_sum(k); }\n\
+    \  E prod(int k) { return prefix_prod(k); }\n  E prefix_sum(int k) { return prefix_prod(k);\
+    \ }\n  E prefix_prod(int k) {\n    chmin(k, n);\n    E ret = G::unit();\n    for\
+    \ (; k > 0; k -= k & -k) ret = G::op(ret, dat[k - 1]);\n    return ret;\n  }\n\
+    \  E sum(int L, int R) { return prod(L, R); }\n  E prod(int L, int R) {\n    chmax(L,\
+    \ 0), chmin(R, n);\n    if (L == 0) return prefix_prod(R);\n    assert(0 <= L\
+    \ && L <= R && R <= n);\n    E pos = G::unit(), neg = G::unit();\n    while (L\
+    \ < R) { pos = G::op(pos, dat[R - 1]), R -= R & -R; }\n    while (R < L) { neg\
+    \ = G::op(neg, dat[L - 1]), L -= L & -L; }\n    return G::op(pos, G::inverse(neg));\n\
+    \  }\n\n  void add(int k, E x) { multiply(k, x); }\n  void multiply(int k, E x)\
+    \ {\n    static_assert(G::commute);\n    total = G::op(total, x);\n    for (++k;\
+    \ k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);\n  }\n\n  template <class\
+    \ F>\n  int max_right(const F check) {\n    assert(check(G::unit()));\n    int\
+    \ i = 0;\n    E s = G::unit();\n    int k = 1;\n    while (2 * k <= n) k *= 2;\n\
+    \    while (k) {\n      if (i + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i\
+    \ + k - 1]);\n        if (check(t)) { i += k, s = t; }\n      }\n      k >>= 1;\n\
+    \    }\n    return i;\n  }\n\n  int kth(E k) {\n    return max_right([&k](E x)\
+    \ -> bool { return x <= k; });\n  }\n};\n#line 2 \"seq/inversion_rotate.hpp\"\n\
+    \n// i \u756A\u76EE\uFF1AA_i \u304C\u5148\u982D\u306B\u306A\u308B\u3088\u3046\u306B\
+    \ rotate \u3057\u305F\u3068\u304D\u306E\u8EE2\u5012\u6570\ntemplate <typename\
+    \ T>\nvi inversion_rotate(vc<T>& A, bool SMALL = false) {\n  const int N = len(A);\n\
+    \  if (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n    for (auto&& x: A) x\
+    \ = LB(key, x);\n  }\n  ll K = MAX(A) + 1;\n  ll ANS = 0;\n  FenwickTree<Monoid_Add<int>>\
+    \ bit(K);\n  for (auto&& x: A) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x,\
+    \ 1);\n  }\n  vi res(N);\n  FOR(i, N) {\n    res[i] = ANS;\n    ll x = A[i];\n\
+    \    ANS = ANS + bit.sum(x + 1, K) - bit.prefix_sum(x);\n  }\n  return res;\n\
+    }\n#line 5 \"test/_atcoder/abc190f.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  VEC(int,\
+    \ A, N);\n  vi ANS = inversion_rotate(A, true);\n  for (auto&& x: ANS) print(x);\n\
+    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  //\
+    \ LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc190/tasks/abc190_f\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"seq/inversion_rotate.hpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n  vi ANS = inversion_rotate(A,\
+    \ true);\n  for (auto&& x: ANS) print(x);\n}\n\nsigned main() {\n  cout << fixed\
+    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
+    \ 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - convex/cht.hpp
+  - seq/inversion_rotate.hpp
+  - ds/fenwicktree/fenwicktree.hpp
+  - alg/monoid/add.hpp
   isVerificationFile: true
-  path: test/atcoder/abc244h.test.cpp
+  path: test/_atcoder/abc190f.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-01-23 03:29:31+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/atcoder/abc244h.test.cpp
+documentation_of: test/_atcoder/abc190f.test.cpp
 layout: document
 redirect_from:
-- /verify/test/atcoder/abc244h.test.cpp
-- /verify/test/atcoder/abc244h.test.cpp.html
-title: test/atcoder/abc244h.test.cpp
+- /verify/test/_atcoder/abc190f.test.cpp
+- /verify/test/_atcoder/abc190f.test.cpp.html
+title: test/_atcoder/abc190f.test.cpp
 ---

@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_commutative_monoid.hpp
     title: ds/splaytree/splaytree_commutative_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -355,8 +355,8 @@ data:
     \    splay(root);\n  }\n  void apply(np &root, const A &a) {\n    if (!root) return;\n\
     \    root->apply(a);\n  }\n\n  void reverse(np &root, u32 l, u32 r) {\n    assert(0\
     \ <= l && l < r && r <= root->size);\n    goto_between(root, l, r);\n    root->reverse();\n\
-    \    splay(root);\n  }\n  void reverse(np &root) {\n    if (!root) return;\n \
-    \   root->reverse();\n  }\n\n  void rotate(Node *n) {\n    // n \u3092\u6839\u306B\
+    \    splay(root);\n  }\n  void reverse(np root) {\n    if (!root) return;\n  \
+    \  root->reverse();\n  }\n\n  void rotate(Node *n) {\n    // n \u3092\u6839\u306B\
     \u8FD1\u3065\u3051\u308B\u3002prop, update \u306F rotate \u306E\u5916\u3067\u884C\
     \u3046\u3002\n    Node *pp, *p, *c;\n    p = n->p;\n    pp = p->p;\n    if (p->l\
     \ == n) {\n      c = n->r;\n      n->r = p;\n      p->l = c;\n    } else {\n \
@@ -484,7 +484,7 @@ data:
   isVerificationFile: true
   path: test/mytest/splay_cm.test.cpp
   requiredBy: []
-  timestamp: '2023-01-22 14:34:03+09:00'
+  timestamp: '2023-01-23 03:29:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/splay_cm.test.cpp

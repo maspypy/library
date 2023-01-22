@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
@@ -11,19 +11,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
   - icon: ':heavy_check_mark:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc270_g.test.cpp
-    title: test/atcoder/abc270_g.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc273_e.test.cpp
-    title: test/atcoder/abc273_e.test.cpp
+  - icon: ':x:'
+    path: test/_atcoder/abc270_g.test.cpp
+    title: test/_atcoder/abc270_g.test.cpp
+  - icon: ':x:'
+    path: test/_atcoder/abc273_e.test.cpp
+    title: test/_atcoder/abc273_e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
     title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
@@ -81,9 +81,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -139,7 +139,7 @@ data:
   - nt/discrete_log.hpp
   - other/connected_dp.hpp
   timestamp: '2022-12-23 11:10:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1769.test.cpp
   - test/yukicoder/541.test.cpp
@@ -155,13 +155,13 @@ data:
   - test/yukicoder/2102.test.cpp
   - test/yukicoder/1634.test.cpp
   - test/yukicoder/1881.test.cpp
+  - test/_atcoder/abc270_g.test.cpp
+  - test/_atcoder/abc273_e.test.cpp
   - test/library_checker/datastructure/associative_array_hashmap.test.cpp
   - test/library_checker/datastructure/set_xor_min.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
-  - test/atcoder/abc270_g.test.cpp
-  - test/atcoder/abc273_e.test.cpp
 documentation_of: ds/hashmap.hpp
 layout: document
 redirect_from:

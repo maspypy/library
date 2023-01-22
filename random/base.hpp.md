@@ -5,10 +5,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/rollinghash.hpp
     title: alg/monoid/rollinghash.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':heavy_check_mark:'
@@ -56,7 +56,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
   - icon: ':heavy_check_mark:'
@@ -81,21 +81,21 @@ data:
     path: string/rollinghash_2d.hpp
     title: string/rollinghash_2d.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/_atcoder/abc202_f.test.cpp
+    title: test/_atcoder/abc202_f.test.cpp
+  - icon: ':x:'
+    path: test/_atcoder/abc270_g.test.cpp
+    title: test/_atcoder/abc270_g.test.cpp
+  - icon: ':x:'
+    path: test/_atcoder/abc273_e.test.cpp
+    title: test/_atcoder/abc273_e.test.cpp
+  - icon: ':x:'
+    path: test/_atcoder/abc274_h.test.cpp
+    title: test/_atcoder/abc274_h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_14_C.test.cpp
     title: test/aoj/ALDS1_14_C.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc202_f.test.cpp
-    title: test/atcoder/abc202_f.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc270_g.test.cpp
-    title: test/atcoder/abc270_g.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc273_e.test.cpp
-    title: test/atcoder/abc273_e.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc274_h.test.cpp
-    title: test/atcoder/abc274_h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
     title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
@@ -414,9 +414,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -461,7 +461,7 @@ data:
   - poly/multivar_convolution_cyclic.hpp
   - random/hash_vector.hpp
   timestamp: '2022-10-23 11:21:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/ALDS1_14_C.test.cpp
   - test/yukicoder/310.test.cpp
@@ -486,6 +486,10 @@ data:
   - test/yukicoder/2102.test.cpp
   - test/yukicoder/1634.test.cpp
   - test/yukicoder/1881.test.cpp
+  - test/_atcoder/abc274_h.test.cpp
+  - test/_atcoder/abc270_g.test.cpp
+  - test/_atcoder/abc273_e.test.cpp
+  - test/_atcoder/abc202_f.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp
   - test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
@@ -570,10 +574,6 @@ data:
   - test/mytest/min_min.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
   - test/mytest/conv_leq.test.cpp
-  - test/atcoder/abc274_h.test.cpp
-  - test/atcoder/abc270_g.test.cpp
-  - test/atcoder/abc273_e.test.cpp
-  - test/atcoder/abc202_f.test.cpp
 documentation_of: random/base.hpp
 layout: document
 redirect_from:

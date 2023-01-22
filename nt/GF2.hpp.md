@@ -6,15 +6,15 @@ data:
     path: graph/minimum_cycle_length_through_specified.hpp
     title: graph/minimum_cycle_length_through_specified.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc274_h.test.cpp
-    title: test/atcoder/abc274_h.test.cpp
+  - icon: ':x:'
+    path: test/_atcoder/abc274_h.test.cpp
+    title: test/_atcoder/abc274_h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1775.test.cpp
     title: test/yukicoder/1775.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"nt/GF2.hpp\"\n#include <emmintrin.h>\n#include <smmintrin.h>\n\
@@ -102,10 +102,10 @@ data:
   requiredBy:
   - graph/minimum_cycle_length_through_specified.hpp
   timestamp: '2022-10-24 13:59:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1775.test.cpp
-  - test/atcoder/abc274_h.test.cpp
+  - test/_atcoder/abc274_h.test.cpp
 documentation_of: nt/GF2.hpp
 layout: document
 redirect_from:
