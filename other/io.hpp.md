@@ -409,6 +409,9 @@ data:
     path: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp
+    title: test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2121,6 +2124,7 @@ data:
   - test/library_checker/datastructure/staticrmq_seg.test.cpp
   - test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/library_checker/datastructure/sort_segtree_1.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp

@@ -13,6 +13,9 @@ data:
     title: ds/offline_query/rectangle_add_rectangle_sum.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp
+    title: test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - icon: ':x:'
@@ -146,6 +149,7 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1490.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
 documentation_of: ds/offline_query/coeffient_query_2d.hpp

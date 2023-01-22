@@ -1760,6 +1760,9 @@ data:
       path: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
       title: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp
+      title: test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
       title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
     - icon: ':heavy_check_mark:'
