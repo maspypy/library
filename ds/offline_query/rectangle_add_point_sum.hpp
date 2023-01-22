@@ -29,8 +29,6 @@ struct Rectangle_Add_Point_Sum {
       }
       for (auto &&[y, x1, x2, g]: rect) x1 = LB(keyX, x1), x2 = LB(keyX, x2);
       NX = len(keyX);
-      print("key", keyX);
-      print("po", point);
     }
     if (SMALL_X) {
       XY mx = numeric_limits<XY>::max();
@@ -53,14 +51,10 @@ struct Rectangle_Add_Point_Sum {
       auto [q, x, y] = point[i];
       while (j < N && get<0>(rect[j]) <= y) {
         auto [yy, x1, x2, g] = rect[j++];
-        print("add", yy, x1, x2);
         bit.add(x1, g), bit.add(x2, AbelGroup::inverse(g));
       }
-      print("get", q, x, y);
       res[q] = bit.sum(x + 1);
     }
-    print("LEN", len(rect), len(point));
-    flush();
     return res;
   }
 };
