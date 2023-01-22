@@ -946,6 +946,9 @@ data:
     path: test/mytest/partizan.test.cpp
     title: test/mytest/partizan.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/pascal.test.cpp
+    title: test/mytest/pascal.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/powerquery.test.cpp
     title: test/mytest/powerquery.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1504,9 +1507,6 @@ data:
     path: test/yukicoder/2102.test.cpp
     title: test/yukicoder/2102.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2108.test.cpp
-    title: test/yukicoder/2108.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2109.test.cpp
     title: test/yukicoder/2109.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1911,7 +1911,6 @@ data:
   - test/yukicoder/1857.test.cpp
   - test/yukicoder/1167.test.cpp
   - test/yukicoder/913.test.cpp
-  - test/yukicoder/2108.test.cpp
   - test/yukicoder/1678.test.cpp
   - test/yukicoder/1541.test.cpp
   - test/yukicoder/1643.test.cpp
@@ -2198,6 +2197,7 @@ data:
   - test/mytest/bell.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/run_length.test.cpp
+  - test/mytest/pascal.test.cpp
   - test/mytest/add_chmin.test.cpp
   - test/mytest/kdtree_nns.test.cpp
   - test/mytest/rbst_commutative_persistent.test.cpp

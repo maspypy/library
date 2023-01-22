@@ -820,7 +820,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/spmat_min_poly.hpp
       title: linalg/spmat_min_poly.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: linalg/transpose.hpp
       title: linalg/transpose.hpp
     - icon: ':warning:'
@@ -834,6 +834,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/implicit_matrix/min_poly.hpp
       title: linalg/implicit_matrix/min_poly.hpp
+    - icon: ':heavy_check_mark:'
+      path: linalg/implicit_matrix/pascal.hpp
+      title: linalg/implicit_matrix/pascal.hpp
   - name: mod
     pages:
     - icon: ':heavy_check_mark:'
@@ -1099,9 +1102,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/ntt.hpp
       title: poly/ntt.hpp
-    - icon: ':heavy_check_mark:'
-      path: poly/pascal.hpp
-      title: poly/pascal.hpp
     - icon: ':heavy_check_mark:'
       path: poly/poly_divmod.hpp
       title: poly/poly_divmod.hpp
@@ -2315,6 +2315,9 @@ data:
       path: test/mytest/partizan.test.cpp
       title: test/mytest/partizan.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/mytest/pascal.test.cpp
+      title: test/mytest/pascal.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/mytest/powerquery.test.cpp
       title: test/mytest/powerquery.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2874,7 +2877,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/2102.test.cpp
       title: test/yukicoder/2102.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/2108.test.cpp
       title: test/yukicoder/2108.test.cpp
     - icon: ':heavy_check_mark:'

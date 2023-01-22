@@ -12,6 +12,9 @@ data:
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
   - icon: ':heavy_check_mark:'
+    path: linalg/implicit_matrix/pascal.hpp
+    title: linalg/implicit_matrix/pascal.hpp
+  - icon: ':heavy_check_mark:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
   - icon: ':heavy_check_mark:'
@@ -98,9 +101,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/online/online_pow.hpp
     title: poly/online/online_pow.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/pascal.hpp
-    title: poly/pascal.hpp
   - icon: ':heavy_check_mark:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
@@ -343,6 +343,9 @@ data:
     path: test/mytest/online_pow.test.cpp
     title: test/mytest/online_pow.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/pascal.test.cpp
+    title: test/mytest/pascal.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/product_of_one_pm_xn.test.cpp
     title: test/mytest/product_of_one_pm_xn.test.cpp
   - icon: ':heavy_check_mark:'
@@ -436,9 +439,6 @@ data:
     path: test/yukicoder/2097.test.cpp
     title: test/yukicoder/2097.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2108.test.cpp
-    title: test/yukicoder/2108.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2119.test.cpp
     title: test/yukicoder/2119.test.cpp
   - icon: ':heavy_check_mark:'
@@ -498,6 +498,7 @@ data:
   - graph/count_independent_set.hpp
   - nt/multiplicative_convolution_mod2n.hpp
   - nt/crt.hpp
+  - linalg/implicit_matrix/pascal.hpp
   - linalg/det_A_plus_xB.hpp
   - poly/fps_sqrt.hpp
   - poly/fps_inv.hpp
@@ -517,7 +518,6 @@ data:
   - poly/online/online_log.hpp
   - poly/coef_of_rational_fps_2d.hpp
   - poly/convolution_all.hpp
-  - poly/pascal.hpp
   - poly/poly_gcd.hpp
   - poly/sum_of_prefix_suffix_products.hpp
   - poly/from_log_differentiation.hpp
@@ -558,7 +558,6 @@ data:
   - test/yukicoder/1145.test.cpp
   - test/yukicoder/1821.test.cpp
   - test/yukicoder/1857.test.cpp
-  - test/yukicoder/2108.test.cpp
   - test/yukicoder/1303.test.cpp
   - test/yukicoder/1685.test.cpp
   - test/yukicoder/2119.test.cpp
@@ -620,6 +619,7 @@ data:
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/bell.test.cpp
+  - test/mytest/pascal.test.cpp
   - test/mytest/simple_perm.test.cpp
   - test/mytest/online_pow.test.cpp
   - test/mytest/enum_partitions.test.cpp

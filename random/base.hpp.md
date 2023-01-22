@@ -256,6 +256,9 @@ data:
     path: test/mytest/online_pow.test.cpp
     title: test/mytest/online_pow.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/pascal.test.cpp
+    title: test/mytest/pascal.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/powerquery.test.cpp
     title: test/mytest/powerquery.test.cpp
   - icon: ':heavy_check_mark:'
@@ -506,6 +509,7 @@ data:
   - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/kdtree_monoid.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
+  - test/mytest/pascal.test.cpp
   - test/mytest/add_chmin.test.cpp
   - test/mytest/kdtree_nns.test.cpp
   - test/mytest/rbst_commutative_persistent.test.cpp

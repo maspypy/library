@@ -22,8 +22,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2108.test.cpp
-    title: test/yukicoder/2108.test.cpp
+    path: test/mytest/pascal.test.cpp
+    title: test/mytest/pascal.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -300,10 +300,10 @@ data:
     \ modint998>::value, vc<mint>> convolution(\r\n    const vc<mint>& a, const vc<mint>&\
     \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
     \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_garner(a,\
-    \ b);\r\n}\r\n#line 2 \"poly/pascal.hpp\"\n\n// g[i] = sum binom(i, j) f[j]\n\
-    template <typename mint>\nvc<mint> pascal_1(vc<mint> f, bool inverse) {\n  int\
-    \ n = len(f);\n  vc<mint> g(n);\n  FOR(i, n) g[i] = fact_inv<mint>(i);\n  if (inverse)\
-    \ FOR(i, n) if (i & 1) g[i] = -g[i];\n  FOR(i, n) f[i] *= fact_inv<mint>(i);\n\
+    \ b);\r\n}\r\n#line 2 \"linalg/implicit_matrix/pascal.hpp\"\n\n// g[i] = sum binom(i,\
+    \ j) f[j]\ntemplate <typename mint>\nvc<mint> pascal_1(vc<mint> f, bool inverse)\
+    \ {\n  int n = len(f);\n  vc<mint> g(n);\n  FOR(i, n) g[i] = fact_inv<mint>(i);\n\
+    \  if (inverse) FOR(i, n) if (i & 1) g[i] = -g[i];\n  FOR(i, n) f[i] *= fact_inv<mint>(i);\n\
     \  f = convolution(f, g);\n  f.resize(n);\n  FOR(i, n) f[i] *= fact<mint>(i);\n\
     \  return f;\n}\n\n// g[i] = sum binom(j, i) f[j]\ntemplate <typename mint>\n\
     vc<mint> pascal_2(vc<mint> f, bool inverse) {\n  int n = len(f);\n  FOR(i, n)\
@@ -330,16 +330,16 @@ data:
   - poly/ntt.hpp
   - poly/fft.hpp
   isVerificationFile: false
-  path: poly/pascal.hpp
+  path: linalg/implicit_matrix/pascal.hpp
   requiredBy: []
-  timestamp: '2023-01-19 00:36:40+09:00'
+  timestamp: '2023-01-22 20:51:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/2108.test.cpp
-documentation_of: poly/pascal.hpp
+  - test/mytest/pascal.test.cpp
+documentation_of: linalg/implicit_matrix/pascal.hpp
 layout: document
 redirect_from:
-- /library/poly/pascal.hpp
-- /library/poly/pascal.hpp.html
-title: poly/pascal.hpp
+- /library/linalg/implicit_matrix/pascal.hpp
+- /library/linalg/implicit_matrix/pascal.hpp.html
+title: linalg/implicit_matrix/pascal.hpp
 ---
