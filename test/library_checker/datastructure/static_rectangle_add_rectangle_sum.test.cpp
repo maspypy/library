@@ -11,7 +11,7 @@ using mint = modint998;
 
 void solve() {
   LL(N, Q);
-  Rectangle_Add_Rectangle_Sum<Monoid_Add<mint>, int, false> X;
+  Rectangle_Add_Rectangle_Sum<mint, int> X;
 
   FOR(N) {
     LL(l, d, r, u, w);
@@ -21,18 +21,10 @@ void solve() {
     LL(l, d, r, u);
     X.sum_query(l, r, d, u);
   }
-  auto ans = X.calc();
-  for (auto&& x: ans) print(x);
+  print(X.calc());
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }
