@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -64,21 +64,19 @@ data:
     \      vc<XY> keyX;\n      keyX.reserve(Q);\n      for (auto &&[i, a, b]: point)\
     \ {\n        if (len(keyX) == 0 || keyX.back() != a) { keyX.eb(a); }\n       \
     \ a = len(keyX) - 1;\n      }\n      for (auto &&[y, x1, x2, g]: rect) x1 = LB(keyX,\
-    \ x1), x2 = LB(keyX, x2);\n      NX = len(keyX);\n      print(\"key\", keyX);\n\
-    \      print(\"po\", point);\n    }\n    if (SMALL_X) {\n      XY mx = numeric_limits<XY>::max();\n\
-    \      for (auto &&[i, x, y]: point) chmin(mx, x);\n      for (auto &&[i, x, y]:\
-    \ point) x -= mx, chmax(NX, x + 1);\n      for (auto &&[y, x1, x2, g]: rect) {\n\
-    \        x1 -= mx, x2 -= mx;\n        x1 = max(0, min<int>(x1, NX)), x2 = max(0,\
-    \ min<int>(x2, NX));\n      }\n    }\n\n    sort(all(point),\n         [&](auto\
-    \ &x, auto &y) -> bool { return get<2>(x) < get<2>(y); });\n    sort(all(rect),\n\
-    \         [&](auto &x, auto &y) -> bool { return get<0>(x) < get<0>(y); });\n\
-    \    FenwickTree<AbelGroup> bit(NX);\n    vc<G> res(Q, AbelGroup::unit());\n \
-    \   int j = 0;\n    FOR(i, Q) {\n      auto [q, x, y] = point[i];\n      while\
-    \ (j < N && get<0>(rect[j]) <= y) {\n        auto [yy, x1, x2, g] = rect[j++];\n\
-    \        print(\"add\", yy, x1, x2);\n        bit.add(x1, g), bit.add(x2, AbelGroup::inverse(g));\n\
-    \      }\n      print(\"get\", q, x, y);\n      res[q] = bit.sum(x + 1);\n   \
-    \ }\n    print(\"LEN\", len(rect), len(point));\n    flush();\n    return res;\n\
-    \  }\n};\n"
+    \ x1), x2 = LB(keyX, x2);\n      NX = len(keyX);\n    }\n    if (SMALL_X) {\n\
+    \      XY mx = numeric_limits<XY>::max();\n      for (auto &&[i, x, y]: point)\
+    \ chmin(mx, x);\n      for (auto &&[i, x, y]: point) x -= mx, chmax(NX, x + 1);\n\
+    \      for (auto &&[y, x1, x2, g]: rect) {\n        x1 -= mx, x2 -= mx;\n    \
+    \    x1 = max(0, min<int>(x1, NX)), x2 = max(0, min<int>(x2, NX));\n      }\n\
+    \    }\n\n    sort(all(point),\n         [&](auto &x, auto &y) -> bool { return\
+    \ get<2>(x) < get<2>(y); });\n    sort(all(rect),\n         [&](auto &x, auto\
+    \ &y) -> bool { return get<0>(x) < get<0>(y); });\n    FenwickTree<AbelGroup>\
+    \ bit(NX);\n    vc<G> res(Q, AbelGroup::unit());\n    int j = 0;\n    FOR(i, Q)\
+    \ {\n      auto [q, x, y] = point[i];\n      while (j < N && get<0>(rect[j]) <=\
+    \ y) {\n        auto [yy, x1, x2, g] = rect[j++];\n        bit.add(x1, g), bit.add(x2,\
+    \ AbelGroup::inverse(g));\n      }\n      res[q] = bit.sum(x + 1);\n    }\n  \
+    \  return res;\n  }\n};\n"
   code: "#include \"ds/fenwicktree/fenwicktree.hpp\"\n\ntemplate <typename AbelGroup,\
     \ typename XY, bool SMALL_X = false>\nstruct Rectangle_Add_Point_Sum {\n  using\
     \ G = typename AbelGroup::value_type;\n  vector<tuple<XY, XY, XY, G>> rect;\n\
@@ -92,29 +90,27 @@ data:
     \      vc<XY> keyX;\n      keyX.reserve(Q);\n      for (auto &&[i, a, b]: point)\
     \ {\n        if (len(keyX) == 0 || keyX.back() != a) { keyX.eb(a); }\n       \
     \ a = len(keyX) - 1;\n      }\n      for (auto &&[y, x1, x2, g]: rect) x1 = LB(keyX,\
-    \ x1), x2 = LB(keyX, x2);\n      NX = len(keyX);\n      print(\"key\", keyX);\n\
-    \      print(\"po\", point);\n    }\n    if (SMALL_X) {\n      XY mx = numeric_limits<XY>::max();\n\
-    \      for (auto &&[i, x, y]: point) chmin(mx, x);\n      for (auto &&[i, x, y]:\
-    \ point) x -= mx, chmax(NX, x + 1);\n      for (auto &&[y, x1, x2, g]: rect) {\n\
-    \        x1 -= mx, x2 -= mx;\n        x1 = max(0, min<int>(x1, NX)), x2 = max(0,\
-    \ min<int>(x2, NX));\n      }\n    }\n\n    sort(all(point),\n         [&](auto\
-    \ &x, auto &y) -> bool { return get<2>(x) < get<2>(y); });\n    sort(all(rect),\n\
-    \         [&](auto &x, auto &y) -> bool { return get<0>(x) < get<0>(y); });\n\
-    \    FenwickTree<AbelGroup> bit(NX);\n    vc<G> res(Q, AbelGroup::unit());\n \
-    \   int j = 0;\n    FOR(i, Q) {\n      auto [q, x, y] = point[i];\n      while\
-    \ (j < N && get<0>(rect[j]) <= y) {\n        auto [yy, x1, x2, g] = rect[j++];\n\
-    \        print(\"add\", yy, x1, x2);\n        bit.add(x1, g), bit.add(x2, AbelGroup::inverse(g));\n\
-    \      }\n      print(\"get\", q, x, y);\n      res[q] = bit.sum(x + 1);\n   \
-    \ }\n    print(\"LEN\", len(rect), len(point));\n    flush();\n    return res;\n\
-    \  }\n};"
+    \ x1), x2 = LB(keyX, x2);\n      NX = len(keyX);\n    }\n    if (SMALL_X) {\n\
+    \      XY mx = numeric_limits<XY>::max();\n      for (auto &&[i, x, y]: point)\
+    \ chmin(mx, x);\n      for (auto &&[i, x, y]: point) x -= mx, chmax(NX, x + 1);\n\
+    \      for (auto &&[y, x1, x2, g]: rect) {\n        x1 -= mx, x2 -= mx;\n    \
+    \    x1 = max(0, min<int>(x1, NX)), x2 = max(0, min<int>(x2, NX));\n      }\n\
+    \    }\n\n    sort(all(point),\n         [&](auto &x, auto &y) -> bool { return\
+    \ get<2>(x) < get<2>(y); });\n    sort(all(rect),\n         [&](auto &x, auto\
+    \ &y) -> bool { return get<0>(x) < get<0>(y); });\n    FenwickTree<AbelGroup>\
+    \ bit(NX);\n    vc<G> res(Q, AbelGroup::unit());\n    int j = 0;\n    FOR(i, Q)\
+    \ {\n      auto [q, x, y] = point[i];\n      while (j < N && get<0>(rect[j]) <=\
+    \ y) {\n        auto [yy, x1, x2, g] = rect[j++];\n        bit.add(x1, g), bit.add(x2,\
+    \ AbelGroup::inverse(g));\n      }\n      res[q] = bit.sum(x + 1);\n    }\n  \
+    \  return res;\n  }\n};"
   dependsOn:
   - ds/fenwicktree/fenwicktree.hpp
   - alg/monoid/add.hpp
   isVerificationFile: false
   path: ds/offline_query/rectangle_add_point_sum.hpp
   requiredBy: []
-  timestamp: '2023-01-22 16:00:44+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-01-22 16:26:01+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/rect_add_pt_sum.test.cpp
 documentation_of: ds/offline_query/rectangle_add_point_sum.hpp
