@@ -135,6 +135,7 @@
 "test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp": "2023-01-19 22:23:16 +0900",
 "test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp": "2023-01-19 22:23:16 +0900",
 "test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp": "2023-01-19 22:23:16 +0900",
+"test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp": "2023-01-22 15:24:01 +0900",
 "test/library_checker/datastructure/rectangle_sum_sweep.test.cpp": "2023-01-19 22:23:16 +0900",
 "test/library_checker/datastructure/segment_add_get_min.test.cpp": "2023-01-19 22:23:16 +0900",
 "test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp": "2023-01-19 22:23:16 +0900",
