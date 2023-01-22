@@ -68,6 +68,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/point_add_rectangle_sum.hpp
     title: ds/offline_query/point_add_rectangle_sum.hpp
+  - icon: ':x:'
+    path: ds/offline_query/rectangle_add_point_sum.hpp
+    title: ds/offline_query/rectangle_add_point_sum.hpp
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/rectangle_add_rectangle_sum.hpp
     title: ds/offline_query/rectangle_add_rectangle_sum.hpp
@@ -246,6 +249,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_commutative_persistent.test.cpp
     title: test/mytest/rbst_commutative_persistent.test.cpp
+  - icon: ':x:'
+    path: test/mytest/rect_add_pt_sum.test.cpp
+    title: test/mytest/rect_add_pt_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/segtree_xor_prod.test.cpp
     title: test/mytest/segtree_xor_prod.test.cpp
@@ -390,6 +396,7 @@ data:
   - ds/offline_query/point_add_polygon_sum.hpp
   - ds/offline_query/rectangle_add_rectangle_sum.hpp
   - ds/offline_query/coeffient_query_2d.hpp
+  - ds/offline_query/rectangle_add_point_sum.hpp
   - ds/offline_query/point_add_rectangle_sum.hpp
   - ds/cumsum_2d.hpp
   - alg/acted_monoid/min_add.hpp
@@ -483,6 +490,7 @@ data:
   - test/mytest/maxidx_add.test.cpp
   - test/mytest/summax_add.test.cpp
   - test/mytest/ARC30D.test.cpp
+  - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/segtree_xor_prod.test.cpp
   - test/mytest/kdtree_am.test.cpp
   - test/mytest/minidx_add.test.cpp

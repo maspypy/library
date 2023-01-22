@@ -498,6 +498,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_monoid_persistent.test.cpp
     title: test/mytest/rbst_monoid_persistent.test.cpp
+  - icon: ':x:'
+    path: test/mytest/rect_add_pt_sum.test.cpp
+    title: test/mytest/rect_add_pt_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/simple_perm.test.cpp
     title: test/mytest/simple_perm.test.cpp
@@ -1128,6 +1131,7 @@ data:
   - test/mytest/prime_sum.test.cpp
   - test/mytest/online_log.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
+  - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/enumerate_multisets.test.cpp
   - test/mytest/multinomial.test.cpp
   - test/mytest/enumerate_products.test.cpp

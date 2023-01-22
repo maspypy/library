@@ -990,6 +990,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_test.test.cpp
     title: test/mytest/rbst_test.test.cpp
+  - icon: ':x:'
+    path: test/mytest/rect_add_pt_sum.test.cpp
+    title: test/mytest/rect_add_pt_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/run_length.test.cpp
     title: test/mytest/run_length.test.cpp
@@ -2271,6 +2274,7 @@ data:
   - test/mytest/primesum_mod4.test.cpp
   - test/mytest/ARC30D.test.cpp
   - test/mytest/rbst_test.test.cpp
+  - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/cf702_F_splay.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
   - test/mytest/segtree_xor_prod.test.cpp

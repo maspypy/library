@@ -14,6 +14,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/point_add_rectangle_sum.hpp
     title: ds/offline_query/point_add_rectangle_sum.hpp
+  - icon: ':x:'
+    path: ds/offline_query/rectangle_add_point_sum.hpp
+    title: ds/offline_query/rectangle_add_point_sum.hpp
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/rectangle_add_rectangle_sum.hpp
     title: ds/offline_query/rectangle_add_rectangle_sum.hpp
@@ -81,6 +84,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/verted_add_contour_sum.test.cpp
     title: test/library_checker/graph/verted_add_contour_sum.test.cpp
+  - icon: ':x:'
+    path: test/mytest/rect_add_pt_sum.test.cpp
+    title: test/mytest/rect_add_pt_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
@@ -191,6 +197,7 @@ data:
   - ds/offline_query/point_add_polygon_sum.hpp
   - ds/offline_query/rectangle_add_rectangle_sum.hpp
   - ds/offline_query/coeffient_query_2d.hpp
+  - ds/offline_query/rectangle_add_point_sum.hpp
   - ds/offline_query/point_add_rectangle_sum.hpp
   timestamp: '2023-01-19 00:13:06+09:00'
   verificationStatus: LIBRARY_SOME_WA
@@ -219,6 +226,7 @@ data:
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+  - test/mytest/rect_add_pt_sum.test.cpp
   - test/atcoder/abc190f.test.cpp
 documentation_of: ds/fenwicktree/fenwicktree.hpp
 layout: document
