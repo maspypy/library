@@ -1,20 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':question:'
+    path: ds/offline_query/rectangle_add_rectangle_sum.hpp
+    title: ds/offline_query/rectangle_add_rectangle_sum.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+    title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+  - icon: ':x:'
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/1490.test.cpp
+    title: test/yukicoder/1490.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -55,87 +64,90 @@ data:
     \n\n// A, B\uFF1A\u5B9A\u6570\n// Sparse Laurent Polynomial f(x,y) \u3092\u4E0E\
     \u3048\u308B\n// [x^py^q] f(x,y)/(1-x)^A(1-y)^B \u3092\u305F\u304F\u3055\u3093\
     \u6C42\u3081\u308B\n// O(AB N logN) \u6642\u9593\ntemplate <int A, int B, typename\
-    \ T>\nstruct Coefficient_Query_2D {\n  struct Mono {\n    using value_type = array<T,\
-    \ A * B>;\n    using X = value_type;\n    static X op(X x, X y) {\n      FOR(i,\
-    \ A * B) x[i] += y[i];\n      return x;\n    }\n    static constexpr X unit()\
-    \ { return X{}; }\n    static constexpr bool commute = 1;\n  };\n\n  vc<tuple<ll,\
-    \ ll, T>> F;\n  vc<pi> QUERY;\n\n  Coefficient_Query_2D() {}\n  void add(ll x,\
-    \ ll y, T c) { F.eb(x, y, c); }\n  void query(ll p, ll q) { QUERY.eb(p, q); }\n\
-    \n  // \u6700\u5F8C\u306B (A-1)!(B-1)! \u3067\u5272\u308B\u304B\u3069\u3046\u304B\
-    \u3002\u3075\u3064\u3046\u306F\u5272\u308B\u3002\n  vc<T> calc(bool div_fact =\
-    \ true) {\n    // \u52A0\u7B97\u3059\u308B\u70B9\u306E x \u306B\u3064\u3044\u3066\
-    \u5EA7\u5727\n    sort(all(F),\n         [&](auto& a, auto& b) -> bool { return\
-    \ get<0>(a) < get<0>(b); });\n    vi keyX;\n    keyX.reserve(len(F));\n    for\
-    \ (auto&& [a, b, c]: F) {\n      if (keyX.empty() || keyX.back() != a) keyX.eb(a);\n\
-    \      a = len(keyX) - 1;\n    }\n    keyX.shrink_to_fit();\n\n    // y \u6607\
-    \u9806\u306B\u30AF\u30A8\u30EA\u51E6\u7406\u3059\u308B\n    const int Q = len(QUERY);\n\
-    \    vc<int> I(Q);\n    iota(all(I), 0);\n    sort(all(I),\n         [&](auto&\
-    \ a, auto& b) -> bool { return QUERY[a].se < QUERY[b].se; });\n    sort(all(F),\n\
-    \         [&](auto& a, auto& b) -> bool { return get<1>(a) < get<1>(b); });\n\n\
-    \    FenwickTree<Mono> bit(len(keyX));\n\n    vc<T> res(Q);\n    int ptr = 0;\n\
-    \    for (auto&& qid: I) {\n      auto [p, q] = QUERY[qid];\n      // y <= q \u3068\
-    \u306A\u308B F \u306E\u52A0\u7B97\n      while (ptr < len(F) && get<1>(F[ptr])\
-    \ <= q) {\n        auto& [ia, b, w] = F[ptr++];\n        ll a = keyX[ia];\n  \
-    \      // w(p-a+1)...(p-a+A-1)(q-b+1)...(q-b+B-1) \u3092 p,q \u306E\u591A\u9805\
-    \u5F0F\u3068\u3057\u3066\n        vc<T> f(A), g(B);\n        f[0] = w, g[0] =\
-    \ 1;\n        FOR(i, A - 1) { FOR_R(j, i + 1) f[j + 1] += f[j] * T(-a + 1 + i);\
-    \ }\n        FOR(i, B - 1) { FOR_R(j, i + 1) g[j + 1] += g[j] * T(-b + 1 + i);\
-    \ }\n        reverse(all(f));\n        reverse(all(g));\n        array<T, A *\
-    \ B> G{};\n        FOR(i, A) FOR(j, B) G[B * i + j] = f[i] * g[j];\n        bit.add(ia,\
-    \ G);\n      }\n      auto SM = bit.sum(UB(keyX, p));\n      T sm = 0;\n     \
-    \ T pow_p = 1;\n      FOR(i, A) {\n        T prod = pow_p;\n        FOR(j, B)\
-    \ {\n          sm += prod * SM[B * i + j];\n          prod *= T(q);\n        }\n\
-    \        pow_p *= T(p);\n      }\n      res[qid] = sm;\n    }\n    if (div_fact)\
+    \ T, typename XY>\nstruct Coefficient_Query_2D {\n  struct Mono {\n    using value_type\
+    \ = array<T, A * B>;\n    using X = value_type;\n    static X op(X x, X y) {\n\
+    \      FOR(i, A * B) x[i] += y[i];\n      return x;\n    }\n    static constexpr\
+    \ X unit() { return X{}; }\n    static constexpr bool commute = 1;\n  };\n\n \
+    \ vc<tuple<XY, XY, T>> F;\n  vc<pair<XY, XY>> QUERY;\n\n  Coefficient_Query_2D()\
+    \ {}\n  void add_query(XY x, XY y, T c) { F.eb(x, y, c); }\n  void sum_query(XY\
+    \ p, XY q) { QUERY.eb(p, q); }\n\n  // div_fact\uFF1A\u6700\u5F8C\u306B (A-1)!(B-1)!\
+    \ \u3067\u5272\u308B\u304B\u3069\u3046\u304B\u3002\u3075\u3064\u3046\u306F\u5272\
+    \u308B\u3002\n  vc<T> calc(bool div_fact = true) {\n    // \u52A0\u7B97\u3059\u308B\
+    \u70B9\u306E x \u306B\u3064\u3044\u3066\u5EA7\u5727\n    sort(all(F),\n      \
+    \   [&](auto& a, auto& b) -> bool { return get<0>(a) < get<0>(b); });\n    vc<XY>\
+    \ keyX;\n    keyX.reserve(len(F));\n    for (auto&& [a, b, c]: F) {\n      if\
+    \ (keyX.empty() || keyX.back() != a) keyX.eb(a);\n      a = len(keyX) - 1;\n \
+    \   }\n    keyX.shrink_to_fit();\n    // y \u6607\u9806\u306B\u30AF\u30A8\u30EA\
+    \u51E6\u7406\u3059\u308B\n    const int Q = len(QUERY);\n    vc<int> I(Q);\n \
+    \   iota(all(I), 0);\n    sort(all(I),\n         [&](auto& a, auto& b) -> bool\
+    \ { return QUERY[a].se < QUERY[b].se; });\n    sort(all(F),\n         [&](auto&\
+    \ a, auto& b) -> bool { return get<1>(a) < get<1>(b); });\n    FenwickTree<Mono>\
+    \ bit(len(keyX));\n    vc<T> res(Q);\n    int ptr = 0;\n    for (auto&& qid: I)\
+    \ {\n      auto [p, q] = QUERY[qid];\n      // y <= q \u3068\u306A\u308B F \u306E\
+    \u52A0\u7B97\n      while (ptr < len(F) && get<1>(F[ptr]) <= q) {\n        auto&\
+    \ [ia, b, w] = F[ptr++];\n        XY a = keyX[ia];\n        // w(p-a+1)...(p-a+A-1)(q-b+1)...(q-b+B-1)\
+    \ \u3092 p,q \u306E\u591A\u9805\u5F0F\u3068\u3057\u3066\n        vc<T> f(A), g(B);\n\
+    \        f[0] = w, g[0] = 1;\n        FOR(i, A - 1) { FOR_R(j, i + 1) f[j + 1]\
+    \ += f[j] * T(-a + 1 + i); }\n        FOR(i, B - 1) { FOR_R(j, i + 1) g[j + 1]\
+    \ += g[j] * T(-b + 1 + i); }\n        reverse(all(f)), reverse(all(g));\n    \
+    \    array<T, A * B> G{};\n        FOR(i, A) FOR(j, B) G[B * i + j] = f[i] * g[j];\n\
+    \        bit.add(ia, G);\n      }\n      auto SM = bit.sum(UB(keyX, p));\n   \
+    \   T sm = 0, pow_p = 1;\n      FOR(i, A) {\n        T prod = pow_p;\n       \
+    \ FOR(j, B) { sm += prod * SM[B * i + j], prod *= T(q); }\n        pow_p *= T(p);\n\
+    \      }\n      res[qid] = sm;\n    }\n    if (div_fact && (A >= 3 || B >= 3))\
     \ {\n      T cf = T(1);\n      FOR(a, 1, A) cf *= T(a);\n      FOR(b, 1, B) cf\
     \ *= T(b);\n      for (auto&& x: res) x /= cf;\n    }\n    return res;\n  }\n\
     };\n"
   code: "#include \"ds/fenwicktree/fenwicktree.hpp\"\n\n// A, B\uFF1A\u5B9A\u6570\n\
     // Sparse Laurent Polynomial f(x,y) \u3092\u4E0E\u3048\u308B\n// [x^py^q] f(x,y)/(1-x)^A(1-y)^B\
     \ \u3092\u305F\u304F\u3055\u3093\u6C42\u3081\u308B\n// O(AB N logN) \u6642\u9593\
-    \ntemplate <int A, int B, typename T>\nstruct Coefficient_Query_2D {\n  struct\
-    \ Mono {\n    using value_type = array<T, A * B>;\n    using X = value_type;\n\
+    \ntemplate <int A, int B, typename T, typename XY>\nstruct Coefficient_Query_2D\
+    \ {\n  struct Mono {\n    using value_type = array<T, A * B>;\n    using X = value_type;\n\
     \    static X op(X x, X y) {\n      FOR(i, A * B) x[i] += y[i];\n      return\
     \ x;\n    }\n    static constexpr X unit() { return X{}; }\n    static constexpr\
-    \ bool commute = 1;\n  };\n\n  vc<tuple<ll, ll, T>> F;\n  vc<pi> QUERY;\n\n  Coefficient_Query_2D()\
-    \ {}\n  void add(ll x, ll y, T c) { F.eb(x, y, c); }\n  void query(ll p, ll q)\
-    \ { QUERY.eb(p, q); }\n\n  // \u6700\u5F8C\u306B (A-1)!(B-1)! \u3067\u5272\u308B\
-    \u304B\u3069\u3046\u304B\u3002\u3075\u3064\u3046\u306F\u5272\u308B\u3002\n  vc<T>\
-    \ calc(bool div_fact = true) {\n    // \u52A0\u7B97\u3059\u308B\u70B9\u306E x\
-    \ \u306B\u3064\u3044\u3066\u5EA7\u5727\n    sort(all(F),\n         [&](auto& a,\
-    \ auto& b) -> bool { return get<0>(a) < get<0>(b); });\n    vi keyX;\n    keyX.reserve(len(F));\n\
-    \    for (auto&& [a, b, c]: F) {\n      if (keyX.empty() || keyX.back() != a)\
-    \ keyX.eb(a);\n      a = len(keyX) - 1;\n    }\n    keyX.shrink_to_fit();\n\n\
-    \    // y \u6607\u9806\u306B\u30AF\u30A8\u30EA\u51E6\u7406\u3059\u308B\n    const\
-    \ int Q = len(QUERY);\n    vc<int> I(Q);\n    iota(all(I), 0);\n    sort(all(I),\n\
-    \         [&](auto& a, auto& b) -> bool { return QUERY[a].se < QUERY[b].se; });\n\
-    \    sort(all(F),\n         [&](auto& a, auto& b) -> bool { return get<1>(a) <\
-    \ get<1>(b); });\n\n    FenwickTree<Mono> bit(len(keyX));\n\n    vc<T> res(Q);\n\
-    \    int ptr = 0;\n    for (auto&& qid: I) {\n      auto [p, q] = QUERY[qid];\n\
-    \      // y <= q \u3068\u306A\u308B F \u306E\u52A0\u7B97\n      while (ptr < len(F)\
-    \ && get<1>(F[ptr]) <= q) {\n        auto& [ia, b, w] = F[ptr++];\n        ll\
-    \ a = keyX[ia];\n        // w(p-a+1)...(p-a+A-1)(q-b+1)...(q-b+B-1) \u3092 p,q\
-    \ \u306E\u591A\u9805\u5F0F\u3068\u3057\u3066\n        vc<T> f(A), g(B);\n    \
-    \    f[0] = w, g[0] = 1;\n        FOR(i, A - 1) { FOR_R(j, i + 1) f[j + 1] +=\
-    \ f[j] * T(-a + 1 + i); }\n        FOR(i, B - 1) { FOR_R(j, i + 1) g[j + 1] +=\
-    \ g[j] * T(-b + 1 + i); }\n        reverse(all(f));\n        reverse(all(g));\n\
-    \        array<T, A * B> G{};\n        FOR(i, A) FOR(j, B) G[B * i + j] = f[i]\
-    \ * g[j];\n        bit.add(ia, G);\n      }\n      auto SM = bit.sum(UB(keyX,\
-    \ p));\n      T sm = 0;\n      T pow_p = 1;\n      FOR(i, A) {\n        T prod\
-    \ = pow_p;\n        FOR(j, B) {\n          sm += prod * SM[B * i + j];\n     \
-    \     prod *= T(q);\n        }\n        pow_p *= T(p);\n      }\n      res[qid]\
-    \ = sm;\n    }\n    if (div_fact) {\n      T cf = T(1);\n      FOR(a, 1, A) cf\
-    \ *= T(a);\n      FOR(b, 1, B) cf *= T(b);\n      for (auto&& x: res) x /= cf;\n\
-    \    }\n    return res;\n  }\n};"
+    \ bool commute = 1;\n  };\n\n  vc<tuple<XY, XY, T>> F;\n  vc<pair<XY, XY>> QUERY;\n\
+    \n  Coefficient_Query_2D() {}\n  void add_query(XY x, XY y, T c) { F.eb(x, y,\
+    \ c); }\n  void sum_query(XY p, XY q) { QUERY.eb(p, q); }\n\n  // div_fact\uFF1A\
+    \u6700\u5F8C\u306B (A-1)!(B-1)! \u3067\u5272\u308B\u304B\u3069\u3046\u304B\u3002\
+    \u3075\u3064\u3046\u306F\u5272\u308B\u3002\n  vc<T> calc(bool div_fact = true)\
+    \ {\n    // \u52A0\u7B97\u3059\u308B\u70B9\u306E x \u306B\u3064\u3044\u3066\u5EA7\
+    \u5727\n    sort(all(F),\n         [&](auto& a, auto& b) -> bool { return get<0>(a)\
+    \ < get<0>(b); });\n    vc<XY> keyX;\n    keyX.reserve(len(F));\n    for (auto&&\
+    \ [a, b, c]: F) {\n      if (keyX.empty() || keyX.back() != a) keyX.eb(a);\n \
+    \     a = len(keyX) - 1;\n    }\n    keyX.shrink_to_fit();\n    // y \u6607\u9806\
+    \u306B\u30AF\u30A8\u30EA\u51E6\u7406\u3059\u308B\n    const int Q = len(QUERY);\n\
+    \    vc<int> I(Q);\n    iota(all(I), 0);\n    sort(all(I),\n         [&](auto&\
+    \ a, auto& b) -> bool { return QUERY[a].se < QUERY[b].se; });\n    sort(all(F),\n\
+    \         [&](auto& a, auto& b) -> bool { return get<1>(a) < get<1>(b); });\n\
+    \    FenwickTree<Mono> bit(len(keyX));\n    vc<T> res(Q);\n    int ptr = 0;\n\
+    \    for (auto&& qid: I) {\n      auto [p, q] = QUERY[qid];\n      // y <= q \u3068\
+    \u306A\u308B F \u306E\u52A0\u7B97\n      while (ptr < len(F) && get<1>(F[ptr])\
+    \ <= q) {\n        auto& [ia, b, w] = F[ptr++];\n        XY a = keyX[ia];\n  \
+    \      // w(p-a+1)...(p-a+A-1)(q-b+1)...(q-b+B-1) \u3092 p,q \u306E\u591A\u9805\
+    \u5F0F\u3068\u3057\u3066\n        vc<T> f(A), g(B);\n        f[0] = w, g[0] =\
+    \ 1;\n        FOR(i, A - 1) { FOR_R(j, i + 1) f[j + 1] += f[j] * T(-a + 1 + i);\
+    \ }\n        FOR(i, B - 1) { FOR_R(j, i + 1) g[j + 1] += g[j] * T(-b + 1 + i);\
+    \ }\n        reverse(all(f)), reverse(all(g));\n        array<T, A * B> G{};\n\
+    \        FOR(i, A) FOR(j, B) G[B * i + j] = f[i] * g[j];\n        bit.add(ia,\
+    \ G);\n      }\n      auto SM = bit.sum(UB(keyX, p));\n      T sm = 0, pow_p =\
+    \ 1;\n      FOR(i, A) {\n        T prod = pow_p;\n        FOR(j, B) { sm += prod\
+    \ * SM[B * i + j], prod *= T(q); }\n        pow_p *= T(p);\n      }\n      res[qid]\
+    \ = sm;\n    }\n    if (div_fact && (A >= 3 || B >= 3)) {\n      T cf = T(1);\n\
+    \      FOR(a, 1, A) cf *= T(a);\n      FOR(b, 1, B) cf *= T(b);\n      for (auto&&\
+    \ x: res) x /= cf;\n    }\n    return res;\n  }\n};"
   dependsOn:
   - ds/fenwicktree/fenwicktree.hpp
   - alg/monoid/add.hpp
   isVerificationFile: false
   path: ds/offline_query/coeffient_query_2d.hpp
-  requiredBy: []
-  timestamp: '2023-01-19 00:13:06+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  requiredBy:
+  - ds/offline_query/rectangle_add_rectangle_sum.hpp
+  timestamp: '2023-01-22 14:32:44+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1490.test.cpp
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
+  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
 documentation_of: ds/offline_query/coeffient_query_2d.hpp
 layout: document
 redirect_from:

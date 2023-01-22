@@ -5,13 +5,10 @@ data:
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/cf702_F_splay.test.cpp
-    title: test/mytest/cf702_F_splay.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/splaytree/splaytree.hpp\"\n// Node \u578B\u3092\u5225\
@@ -118,67 +115,46 @@ data:
     \ = Mono::op(lprod, root->x);\n      if (check(lprod)) {\n        prod = lprod;\n\
     \        last_ok = root;\n        root = root->r;\n      } else {\n        root\
     \ = root->l;\n      }\n    }\n    splay(last);\n    return last_ok;\n  }\n};\n\
-    #line 2 \"ds/splaytree/splaytree_acted_set.hpp\"\n\nnamespace SplayTreeNodes {\n\
-    template <typename ActedSet>\nstruct Node_AS {\n  using Monoid_A = typename ActedSet::Monoid_A;\n\
-    \  using A = typename ActedSet::A;\n  using S = typename ActedSet::S;\n  using\
-    \ value_type = S;\n  using operator_type = A;\n  using np = Node_AS *;\n\n  np\
-    \ p, l, r;\n  S x;\n  A lazy;\n  u32 size;\n  bool rev;\n\n  static void new_node(np\
-    \ n, const S &x) {\n    n->p = n->l = n->r = nullptr;\n    n->x = x;\n    n->lazy\
-    \ = Monoid_A::unit();\n    n->size = 1;\n    n->rev = 0;\n  }\n\n  void update()\
-    \ {\n    size = 1;\n    if (l) { size += l->size; }\n    if (r) { size += r->size;\
-    \ }\n  }\n\n  void prop() {\n    if (lazy != Monoid_A::unit()) {\n      if (l)\
-    \ {\n        l->x = ActedSet::act(l->x, lazy);\n        l->lazy = Monoid_A::op(l->lazy,\
-    \ lazy);\n      }\n      if (r) {\n        r->x = ActedSet::act(r->x, lazy);\n\
-    \        r->lazy = Monoid_A::op(r->lazy, lazy);\n      }\n      lazy = Monoid_A::unit();\n\
-    \    }\n    if (rev) {\n      if (l) {\n        l->rev ^= 1;\n        swap(l->l,\
-    \ l->r);\n      }\n      if (r) {\n        r->rev ^= 1;\n        swap(r->l, r->r);\n\
-    \      }\n      rev = 0;\n    }\n  }\n\n  // update, prop \u4EE5\u5916\u3067\u547C\
-    \u3070\u308C\u308B\u3082\u306E\u306F\u3001splay \u5F8C\u3067\u3042\u308B\u3053\
-    \u3068\u304C\u60F3\u5B9A\u3055\u308C\u3066\u3044\u308B\u3002\n  // \u3057\u305F\
-    \u304C\u3063\u3066\u305D\u306E\u6642\u70B9\u3067 update, prop \u6E08\u3067\u3042\
-    \u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3057\u3066\u3088\u3044\u3002\n  S get()\
-    \ { return x; }\n  void set(const S &xx) {\n    x = xx;\n    update();\n  }\n\
-    \  void apply(const A &a) {\n    x = ActedSet::act(x, a);\n    lazy = Monoid_A::op(lazy,\
-    \ a);\n  }\n  void reverse() {\n    swap(l, r);\n    rev ^= 1;\n  }\n};\ntemplate\
-    \ <typename ActedSet, int NODES>\nusing SplayTree_ActedSet = SplayTree<Node_AS<ActedSet>,\
-    \ NODES>;\n} // namespace SplayTreeNodes\n\nusing SplayTreeNodes::SplayTree_ActedSet;\n"
+    #line 2 \"ds/splaytree/splaytree_basic.hpp\"\n\nnamespace SplayTreeNodes {\ntemplate\
+    \ <typename S>\nstruct Node_Basic {\n  using value_type = S;\n  using operator_type\
+    \ = int;\n  using np = Node_Basic *;\n\n  np p, l, r;\n  S x;\n  u32 size;\n\n\
+    \  static void new_node(np n, const S &x) {\n    n->p = n->l = n->r = nullptr;\n\
+    \    n->x = x;\n    n->size = 1;\n  }\n\n  void update() {\n    size = 1;\n  \
+    \  if (l) { size += l->size; }\n    if (r) { size += r->size; }\n  }\n\n  void\
+    \ prop() {}\n\n  // update, prop \u4EE5\u5916\u3067\u547C\u3070\u308C\u308B\u3082\
+    \u306E\u306F\u3001splay \u5F8C\u3067\u3042\u308B\u3053\u3068\u304C\u60F3\u5B9A\
+    \u3055\u308C\u3066\u3044\u308B\u3002\n  // \u3057\u305F\u304C\u3063\u3066\u305D\
+    \u306E\u6642\u70B9\u3067 update, prop \u6E08\u3067\u3042\u308B\u3053\u3068\u3092\
+    \u4EEE\u5B9A\u3057\u3066\u3088\u3044\u3002\n  S get() { return x; }\n  void set(const\
+    \ S &xx) {\n    x = xx;\n    update();\n  }\n};\ntemplate <typename S, int NODES>\n\
+    using SplayTree_Basic = SplayTree<Node_Basic<S>, NODES>;\n} // namespace SplayTreeNodes\n\
+    \nusing SplayTreeNodes::SplayTree_Basic;\n"
   code: "#include \"ds/splaytree/splaytree.hpp\"\n\nnamespace SplayTreeNodes {\ntemplate\
-    \ <typename ActedSet>\nstruct Node_AS {\n  using Monoid_A = typename ActedSet::Monoid_A;\n\
-    \  using A = typename ActedSet::A;\n  using S = typename ActedSet::S;\n  using\
-    \ value_type = S;\n  using operator_type = A;\n  using np = Node_AS *;\n\n  np\
-    \ p, l, r;\n  S x;\n  A lazy;\n  u32 size;\n  bool rev;\n\n  static void new_node(np\
-    \ n, const S &x) {\n    n->p = n->l = n->r = nullptr;\n    n->x = x;\n    n->lazy\
-    \ = Monoid_A::unit();\n    n->size = 1;\n    n->rev = 0;\n  }\n\n  void update()\
-    \ {\n    size = 1;\n    if (l) { size += l->size; }\n    if (r) { size += r->size;\
-    \ }\n  }\n\n  void prop() {\n    if (lazy != Monoid_A::unit()) {\n      if (l)\
-    \ {\n        l->x = ActedSet::act(l->x, lazy);\n        l->lazy = Monoid_A::op(l->lazy,\
-    \ lazy);\n      }\n      if (r) {\n        r->x = ActedSet::act(r->x, lazy);\n\
-    \        r->lazy = Monoid_A::op(r->lazy, lazy);\n      }\n      lazy = Monoid_A::unit();\n\
-    \    }\n    if (rev) {\n      if (l) {\n        l->rev ^= 1;\n        swap(l->l,\
-    \ l->r);\n      }\n      if (r) {\n        r->rev ^= 1;\n        swap(r->l, r->r);\n\
-    \      }\n      rev = 0;\n    }\n  }\n\n  // update, prop \u4EE5\u5916\u3067\u547C\
-    \u3070\u308C\u308B\u3082\u306E\u306F\u3001splay \u5F8C\u3067\u3042\u308B\u3053\
-    \u3068\u304C\u60F3\u5B9A\u3055\u308C\u3066\u3044\u308B\u3002\n  // \u3057\u305F\
-    \u304C\u3063\u3066\u305D\u306E\u6642\u70B9\u3067 update, prop \u6E08\u3067\u3042\
-    \u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3057\u3066\u3088\u3044\u3002\n  S get()\
-    \ { return x; }\n  void set(const S &xx) {\n    x = xx;\n    update();\n  }\n\
-    \  void apply(const A &a) {\n    x = ActedSet::act(x, a);\n    lazy = Monoid_A::op(lazy,\
-    \ a);\n  }\n  void reverse() {\n    swap(l, r);\n    rev ^= 1;\n  }\n};\ntemplate\
-    \ <typename ActedSet, int NODES>\nusing SplayTree_ActedSet = SplayTree<Node_AS<ActedSet>,\
-    \ NODES>;\n} // namespace SplayTreeNodes\n\nusing SplayTreeNodes::SplayTree_ActedSet;"
+    \ <typename S>\nstruct Node_Basic {\n  using value_type = S;\n  using operator_type\
+    \ = int;\n  using np = Node_Basic *;\n\n  np p, l, r;\n  S x;\n  u32 size;\n\n\
+    \  static void new_node(np n, const S &x) {\n    n->p = n->l = n->r = nullptr;\n\
+    \    n->x = x;\n    n->size = 1;\n  }\n\n  void update() {\n    size = 1;\n  \
+    \  if (l) { size += l->size; }\n    if (r) { size += r->size; }\n  }\n\n  void\
+    \ prop() {}\n\n  // update, prop \u4EE5\u5916\u3067\u547C\u3070\u308C\u308B\u3082\
+    \u306E\u306F\u3001splay \u5F8C\u3067\u3042\u308B\u3053\u3068\u304C\u60F3\u5B9A\
+    \u3055\u308C\u3066\u3044\u308B\u3002\n  // \u3057\u305F\u304C\u3063\u3066\u305D\
+    \u306E\u6642\u70B9\u3067 update, prop \u6E08\u3067\u3042\u308B\u3053\u3068\u3092\
+    \u4EEE\u5B9A\u3057\u3066\u3088\u3044\u3002\n  S get() { return x; }\n  void set(const\
+    \ S &xx) {\n    x = xx;\n    update();\n  }\n};\ntemplate <typename S, int NODES>\n\
+    using SplayTree_Basic = SplayTree<Node_Basic<S>, NODES>;\n} // namespace SplayTreeNodes\n\
+    \nusing SplayTreeNodes::SplayTree_Basic;\n"
   dependsOn:
   - ds/splaytree/splaytree.hpp
   isVerificationFile: false
-  path: ds/splaytree/splaytree_acted_set.hpp
+  path: ds/splaytree/splaytree_basic.hpp
   requiredBy: []
-  timestamp: '2023-01-22 14:34:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/mytest/cf702_F_splay.test.cpp
-documentation_of: ds/splaytree/splaytree_acted_set.hpp
+  timestamp: '2023-01-22 14:34:03+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: ds/splaytree/splaytree_basic.hpp
 layout: document
 redirect_from:
-- /library/ds/splaytree/splaytree_acted_set.hpp
-- /library/ds/splaytree/splaytree_acted_set.hpp.html
-title: ds/splaytree/splaytree_acted_set.hpp
+- /library/ds/splaytree/splaytree_basic.hpp
+- /library/ds/splaytree/splaytree_basic.hpp.html
+title: ds/splaytree/splaytree_basic.hpp
 ---

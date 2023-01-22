@@ -1,26 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: ds/offline_query/rectangle_add_rectangle_sum.hpp
-    title: ds/offline_query/rectangle_add_rectangle_sum.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
-    title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1490.test.cpp
-    title: test/yukicoder/1490.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2161.test.cpp
     title: test/yukicoder/2161.test.cpp
@@ -131,15 +122,12 @@ data:
   - alg/monoid/add.hpp
   isVerificationFile: false
   path: ds/offline_query/point_add_rectangle_sum.hpp
-  requiredBy:
-  - ds/offline_query/rectangle_add_rectangle_sum.hpp
+  requiredBy: []
   timestamp: '2023-01-19 00:13:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1490.test.cpp
   - test/yukicoder/2161.test.cpp
   - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
-  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
 documentation_of: ds/offline_query/point_add_rectangle_sum.hpp
 layout: document
 redirect_from:

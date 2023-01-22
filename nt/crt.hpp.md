@@ -16,9 +16,6 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/187.test.cpp
-    title: test/yukicoder/187.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1956.test.cpp
     title: test/yukicoder/1956.test.cpp
   - icon: ':heavy_check_mark:'
@@ -148,7 +145,6 @@ data:
   verifiedWith:
   - test/yukicoder/2119.test.cpp
   - test/yukicoder/1956.test.cpp
-  - test/yukicoder/187.test.cpp
   - test/yukicoder/590.test.cpp
 documentation_of: nt/crt.hpp
 layout: document

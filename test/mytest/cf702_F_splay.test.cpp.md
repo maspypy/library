@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_acted_set.hpp
     title: ds/splaytree/splaytree_acted_set.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -280,17 +280,17 @@ data:
     \    assert(0 <= k && k < (root->size));\n    while (1) {\n      u32 sl = (root->l\
     \ ? root->l->size : 0);\n      if (k == sl) break;\n      root->prop();\n    \
     \  if (k < sl)\n        root = root->l;\n      else {\n        k -= sl + 1;\n\
-    \        root = root->r;\n      }\n    }\n    splay(root);\n  }\n\n  // \u5DE6\
-    \u5074\u306E\u30CE\u30FC\u30C9\u5168\u4F53\u304C check \u3092\u6E80\u305F\u3059\
-    \u3088\u3046\u306B\u5207\u308B\n  template <typename F>\n  pair<np, np> split_max_right(np\
-    \ root, F check) {\n    if (!root) return {nullptr, nullptr};\n    np c = find_max_right(root,\
-    \ check);\n    if (!c) {\n      splay(root);\n      return {nullptr, root};\n\
-    \    }\n    splay(c);\n    np right = c->r;\n    if (!right) return {c, nullptr};\n\
-    \    right->p = nullptr;\n    c->r = nullptr;\n    c->update();\n    return {c,\
-    \ right};\n  }\n\n  // \u5DE6\u5074\u306E\u30CE\u30FC\u30C9\u5168\u4F53\u306E\
-    \ prod \u304C check \u3092\u6E80\u305F\u3059\u3088\u3046\u306B\u5207\u308B\n \
-    \ template <typename F>\n  pair<np, np> split_max_right_prod(np root, F check)\
-    \ {\n    if (!root) return {nullptr, nullptr};\n    np c = find_max_right_prod(root,\
+    \        root = root->r;\n      }\n    }\n    splay(root);\n  }\n\n  // check(x),\
+    \ \u5DE6\u5074\u306E\u30CE\u30FC\u30C9\u5168\u4F53\u304C check \u3092\u6E80\u305F\
+    \u3059\u3088\u3046\u306B\u5207\u308B\n  template <typename F>\n  pair<np, np>\
+    \ split_max_right(np root, F check) {\n    if (!root) return {nullptr, nullptr};\n\
+    \    np c = find_max_right(root, check);\n    if (!c) {\n      splay(root);\n\
+    \      return {nullptr, root};\n    }\n    splay(c);\n    np right = c->r;\n \
+    \   if (!right) return {c, nullptr};\n    right->p = nullptr;\n    c->r = nullptr;\n\
+    \    c->update();\n    return {c, right};\n  }\n\n  // \u5DE6\u5074\u306E\u30CE\
+    \u30FC\u30C9\u5168\u4F53\u306E prod \u304C check \u3092\u6E80\u305F\u3059\u3088\
+    \u3046\u306B\u5207\u308B\n  template <typename F>\n  pair<np, np> split_max_right_prod(np\
+    \ root, F check) {\n    if (!root) return {nullptr, nullptr};\n    np c = find_max_right_prod(root,\
     \ check);\n    if (!c) {\n      splay(root);\n      return {nullptr, root};\n\
     \    }\n    splay(c);\n    np right = c->r;\n    if (!right) return {c, nullptr};\n\
     \    right->p = nullptr;\n    c->r = nullptr;\n    c->update();\n    return {c,\
@@ -310,10 +310,10 @@ data:
     \ = lprod;\n        last_ok = root;\n        root = root->r;\n      } else {\n\
     \        root = root->l;\n      }\n    }\n    splay(last);\n    return last_ok;\n\
     \  }\n};\n#line 2 \"ds/splaytree/splaytree_acted_set.hpp\"\n\nnamespace SplayTreeNodes\
-    \ {\ntemplate <typename ActedSet>\nstruct Node_AM {\n  using Monoid_A = typename\
+    \ {\ntemplate <typename ActedSet>\nstruct Node_AS {\n  using Monoid_A = typename\
     \ ActedSet::Monoid_A;\n  using A = typename ActedSet::A;\n  using S = typename\
     \ ActedSet::S;\n  using value_type = S;\n  using operator_type = A;\n  using np\
-    \ = Node_AM *;\n\n  np p, l, r;\n  S x;\n  A lazy;\n  u32 size;\n  bool rev;\n\
+    \ = Node_AS *;\n\n  np p, l, r;\n  S x;\n  A lazy;\n  u32 size;\n  bool rev;\n\
     \n  static void new_node(np n, const S &x) {\n    n->p = n->l = n->r = nullptr;\n\
     \    n->x = x;\n    n->lazy = Monoid_A::unit();\n    n->size = 1;\n    n->rev\
     \ = 0;\n  }\n\n  void update() {\n    size = 1;\n    if (l) { size += l->size;\
@@ -332,7 +332,7 @@ data:
     \ set(const S &xx) {\n    x = xx;\n    update();\n  }\n  void apply(const A &a)\
     \ {\n    x = ActedSet::act(x, a);\n    lazy = Monoid_A::op(lazy, a);\n  }\n  void\
     \ reverse() {\n    swap(l, r);\n    rev ^= 1;\n  }\n};\ntemplate <typename ActedSet,\
-    \ int NODES>\nusing SplayTree_ActedSet = SplayTree<Node_AM<ActedSet>, NODES>;\n\
+    \ int NODES>\nusing SplayTree_ActedSet = SplayTree<Node_AS<ActedSet>, NODES>;\n\
     } // namespace SplayTreeNodes\n\nusing SplayTreeNodes::SplayTree_ActedSet;\n#line\
     \ 6 \"test/mytest/cf702_F_splay.test.cpp\"\n\n// (\u6240\u6301\u91D1, \u64CD\u4F5C\
     \u56DE\u6570, query index)\nstruct AS {\n  using Monoid_A = Monoid_Add_Pair<int>;\n\
@@ -403,7 +403,7 @@ data:
   isVerificationFile: true
   path: test/mytest/cf702_F_splay.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
+  timestamp: '2023-01-22 14:34:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/cf702_F_splay.test.cpp

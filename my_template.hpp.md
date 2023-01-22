@@ -441,7 +441,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1239,7 +1239,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1479.test.cpp
     title: test/yukicoder/1479.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1490.test.cpp
     title: test/yukicoder/1490.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1423,9 +1423,6 @@ data:
     path: test/yukicoder/1868.test.cpp
     title: test/yukicoder/1868.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/187.test.cpp
-    title: test/yukicoder/187.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1874.test.cpp
     title: test/yukicoder/1874.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1605,9 +1602,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://trap.jp/post/1224/
@@ -1758,7 +1755,7 @@ data:
   path: my_template.hpp
   requiredBy: []
   timestamp: '2023-01-19 22:23:16+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/GRL_3_A.test.cpp
   - test/aoj/DSL_2_D.test.cpp
@@ -1940,7 +1937,6 @@ data:
   - test/yukicoder/1421.test.cpp
   - test/yukicoder/1269.test.cpp
   - test/yukicoder/1451.test.cpp
-  - test/yukicoder/187.test.cpp
   - test/yukicoder/1435_2.test.cpp
   - test/yukicoder/1400.test.cpp
   - test/yukicoder/1848.test.cpp

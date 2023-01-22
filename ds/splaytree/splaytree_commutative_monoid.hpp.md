@@ -89,56 +89,57 @@ data:
     \      u32 sl = (root->l ? root->l->size : 0);\n      if (k == sl) break;\n  \
     \    root->prop();\n      if (k < sl)\n        root = root->l;\n      else {\n\
     \        k -= sl + 1;\n        root = root->r;\n      }\n    }\n    splay(root);\n\
-    \  }\n\n  // \u5DE6\u5074\u306E\u30CE\u30FC\u30C9\u5168\u4F53\u304C check \u3092\
-    \u6E80\u305F\u3059\u3088\u3046\u306B\u5207\u308B\n  template <typename F>\n  pair<np,\
-    \ np> split_max_right(np root, F check) {\n    if (!root) return {nullptr, nullptr};\n\
-    \    np c = find_max_right(root, check);\n    if (!c) {\n      splay(root);\n\
-    \      return {nullptr, root};\n    }\n    splay(c);\n    np right = c->r;\n \
-    \   if (!right) return {c, nullptr};\n    right->p = nullptr;\n    c->r = nullptr;\n\
-    \    c->update();\n    return {c, right};\n  }\n\n  // \u5DE6\u5074\u306E\u30CE\
-    \u30FC\u30C9\u5168\u4F53\u306E prod \u304C check \u3092\u6E80\u305F\u3059\u3088\
-    \u3046\u306B\u5207\u308B\n  template <typename F>\n  pair<np, np> split_max_right_prod(np\
-    \ root, F check) {\n    if (!root) return {nullptr, nullptr};\n    np c = find_max_right_prod(root,\
-    \ check);\n    if (!c) {\n      splay(root);\n      return {nullptr, root};\n\
-    \    }\n    splay(c);\n    np right = c->r;\n    if (!right) return {c, nullptr};\n\
-    \    right->p = nullptr;\n    c->r = nullptr;\n    c->update();\n    return {c,\
-    \ right};\n  }\n\n  template <typename F>\n  np find_max_right(np root, const\
-    \ F &check) {\n    // \u6700\u5F8C\u306B\u898B\u3064\u3051\u305F ok \u306E\u70B9\
-    \u3001\u6700\u5F8C\u306B\u63A2\u7D22\u3057\u305F\u70B9\n    np last_ok = nullptr,\
-    \ last = nullptr;\n    while (root) {\n      last = root;\n      root->prop();\n\
-    \      if (check(root->x)) {\n        last_ok = root;\n        root = root->r;\n\
-    \      } else {\n        root = root->l;\n      }\n    }\n    splay(last);\n \
-    \   return last_ok;\n  }\n\n  template <typename F>\n  np find_max_right_prod(np\
-    \ root, const F &check) {\n    using Mono = typename Node::Monoid_X;\n    X prod\
-    \ = Mono::unit();\n    // \u6700\u5F8C\u306B\u898B\u3064\u3051\u305F ok \u306E\
-    \u70B9\u3001\u6700\u5F8C\u306B\u63A2\u7D22\u3057\u305F\u70B9\n    np last_ok =\
-    \ nullptr, last = nullptr;\n    while (root) {\n      last = root;\n      root->prop();\n\
-    \      X lprod = prod;\n      if (root->l) lprod = Mono::op(lprod, root->l->prod);\n\
-    \      lprod = Mono::op(lprod, root->x);\n      if (check(lprod)) {\n        prod\
-    \ = lprod;\n        last_ok = root;\n        root = root->r;\n      } else {\n\
-    \        root = root->l;\n      }\n    }\n    splay(last);\n    return last_ok;\n\
-    \  }\n};\n#line 2 \"ds/splaytree/splaytree_commutative_monoid.hpp\"\n\nnamespace\
-    \ SplayTreeNodes {\ntemplate <typename Monoid>\nstruct Node_CM {\n  using X =\
-    \ typename Monoid::value_type;\n  using value_type = X;\n  using operator_type\
-    \ = int; // \u5B9A\u7FA9\u3060\u3051\u3057\u3066\u304A\u304F\n  using np = Node_CM\
-    \ *;\n\n  np p, l, r;\n  X x, prod;\n  u32 size;\n  bool rev;\n\n  static void\
-    \ new_node(np n, const X &x) {\n    n->p = n->l = n->r = nullptr;\n    n->x =\
-    \ n->prod = x;\n    n->size = 1;\n    n->rev = 0;\n  }\n\n  void update() {\n\
-    \    size = 1;\n    prod = x;\n    if (l) {\n      size += l->size;\n      prod\
-    \ = Monoid::op(l->prod, prod);\n    }\n    if (r) {\n      size += r->size;\n\
-    \      prod = Monoid::op(prod, r->prod);\n    }\n  }\n\n  void prop() {\n    if\
-    \ (rev) {\n      if (l) {\n        l->rev ^= 1;\n        swap(l->l, l->r);\n \
-    \     }\n      if (r) {\n        r->rev ^= 1;\n        swap(r->l, r->r);\n   \
-    \   }\n      rev = 0;\n    }\n  }\n\n  // update, prop \u4EE5\u5916\u3067\u547C\
-    \u3070\u308C\u308B\u3082\u306E\u306F\u3001splay \u5F8C\u3067\u3042\u308B\u3053\
-    \u3068\u304C\u60F3\u5B9A\u3055\u308C\u3066\u3044\u308B\u3002\n  // \u3057\u305F\
-    \u304C\u3063\u3066\u305D\u306E\u6642\u70B9\u3067 update, prop \u6E08\u3067\u3042\
-    \u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3057\u3066\u3088\u3044\u3002\n  X get()\
-    \ { return x; }\n  void set(const X &xx) {\n    x = xx;\n    update();\n  }\n\
-    \  void multiply(const X &xx) {\n    x = Monoid::op(x, xx);\n    update();\n \
-    \ }\n  void reverse() {\n    swap(l, r);\n    rev ^= 1;\n  }\n};\ntemplate <typename\
-    \ Monoid, int NODES>\nusing SplayTree_Commutative_Monoid = SplayTree<Node_CM<Monoid>,\
-    \ NODES>;\n} // namespace SplayTreeNodes\n\nusing SplayTreeNodes::SplayTree_Commutative_Monoid;\n"
+    \  }\n\n  // check(x), \u5DE6\u5074\u306E\u30CE\u30FC\u30C9\u5168\u4F53\u304C\
+    \ check \u3092\u6E80\u305F\u3059\u3088\u3046\u306B\u5207\u308B\n  template <typename\
+    \ F>\n  pair<np, np> split_max_right(np root, F check) {\n    if (!root) return\
+    \ {nullptr, nullptr};\n    np c = find_max_right(root, check);\n    if (!c) {\n\
+    \      splay(root);\n      return {nullptr, root};\n    }\n    splay(c);\n   \
+    \ np right = c->r;\n    if (!right) return {c, nullptr};\n    right->p = nullptr;\n\
+    \    c->r = nullptr;\n    c->update();\n    return {c, right};\n  }\n\n  // \u5DE6\
+    \u5074\u306E\u30CE\u30FC\u30C9\u5168\u4F53\u306E prod \u304C check \u3092\u6E80\
+    \u305F\u3059\u3088\u3046\u306B\u5207\u308B\n  template <typename F>\n  pair<np,\
+    \ np> split_max_right_prod(np root, F check) {\n    if (!root) return {nullptr,\
+    \ nullptr};\n    np c = find_max_right_prod(root, check);\n    if (!c) {\n   \
+    \   splay(root);\n      return {nullptr, root};\n    }\n    splay(c);\n    np\
+    \ right = c->r;\n    if (!right) return {c, nullptr};\n    right->p = nullptr;\n\
+    \    c->r = nullptr;\n    c->update();\n    return {c, right};\n  }\n\n  template\
+    \ <typename F>\n  np find_max_right(np root, const F &check) {\n    // \u6700\u5F8C\
+    \u306B\u898B\u3064\u3051\u305F ok \u306E\u70B9\u3001\u6700\u5F8C\u306B\u63A2\u7D22\
+    \u3057\u305F\u70B9\n    np last_ok = nullptr, last = nullptr;\n    while (root)\
+    \ {\n      last = root;\n      root->prop();\n      if (check(root->x)) {\n  \
+    \      last_ok = root;\n        root = root->r;\n      } else {\n        root\
+    \ = root->l;\n      }\n    }\n    splay(last);\n    return last_ok;\n  }\n\n \
+    \ template <typename F>\n  np find_max_right_prod(np root, const F &check) {\n\
+    \    using Mono = typename Node::Monoid_X;\n    X prod = Mono::unit();\n    //\
+    \ \u6700\u5F8C\u306B\u898B\u3064\u3051\u305F ok \u306E\u70B9\u3001\u6700\u5F8C\
+    \u306B\u63A2\u7D22\u3057\u305F\u70B9\n    np last_ok = nullptr, last = nullptr;\n\
+    \    while (root) {\n      last = root;\n      root->prop();\n      X lprod =\
+    \ prod;\n      if (root->l) lprod = Mono::op(lprod, root->l->prod);\n      lprod\
+    \ = Mono::op(lprod, root->x);\n      if (check(lprod)) {\n        prod = lprod;\n\
+    \        last_ok = root;\n        root = root->r;\n      } else {\n        root\
+    \ = root->l;\n      }\n    }\n    splay(last);\n    return last_ok;\n  }\n};\n\
+    #line 2 \"ds/splaytree/splaytree_commutative_monoid.hpp\"\n\nnamespace SplayTreeNodes\
+    \ {\ntemplate <typename Monoid>\nstruct Node_CM {\n  using X = typename Monoid::value_type;\n\
+    \  using value_type = X;\n  using operator_type = int; // \u5B9A\u7FA9\u3060\u3051\
+    \u3057\u3066\u304A\u304F\n  using np = Node_CM *;\n\n  np p, l, r;\n  X x, prod;\n\
+    \  u32 size;\n  bool rev;\n\n  static void new_node(np n, const X &x) {\n    n->p\
+    \ = n->l = n->r = nullptr;\n    n->x = n->prod = x;\n    n->size = 1;\n    n->rev\
+    \ = 0;\n  }\n\n  void update() {\n    size = 1;\n    prod = x;\n    if (l) {\n\
+    \      size += l->size;\n      prod = Monoid::op(l->prod, prod);\n    }\n    if\
+    \ (r) {\n      size += r->size;\n      prod = Monoid::op(prod, r->prod);\n   \
+    \ }\n  }\n\n  void prop() {\n    if (rev) {\n      if (l) {\n        l->rev ^=\
+    \ 1;\n        swap(l->l, l->r);\n      }\n      if (r) {\n        r->rev ^= 1;\n\
+    \        swap(r->l, r->r);\n      }\n      rev = 0;\n    }\n  }\n\n  // update,\
+    \ prop \u4EE5\u5916\u3067\u547C\u3070\u308C\u308B\u3082\u306E\u306F\u3001splay\
+    \ \u5F8C\u3067\u3042\u308B\u3053\u3068\u304C\u60F3\u5B9A\u3055\u308C\u3066\u3044\
+    \u308B\u3002\n  // \u3057\u305F\u304C\u3063\u3066\u305D\u306E\u6642\u70B9\u3067\
+    \ update, prop \u6E08\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3057\u3066\
+    \u3088\u3044\u3002\n  X get() { return x; }\n  void set(const X &xx) {\n    x\
+    \ = xx;\n    update();\n  }\n  void multiply(const X &xx) {\n    x = Monoid::op(x,\
+    \ xx);\n    update();\n  }\n  void reverse() {\n    swap(l, r);\n    rev ^= 1;\n\
+    \  }\n};\ntemplate <typename Monoid, int NODES>\nusing SplayTree_Commutative_Monoid\
+    \ = SplayTree<Node_CM<Monoid>, NODES>;\n} // namespace SplayTreeNodes\n\nusing\
+    \ SplayTreeNodes::SplayTree_Commutative_Monoid;\n"
   code: "#include \"ds/splaytree/splaytree.hpp\"\n\nnamespace SplayTreeNodes {\ntemplate\
     \ <typename Monoid>\nstruct Node_CM {\n  using X = typename Monoid::value_type;\n\
     \  using value_type = X;\n  using operator_type = int; // \u5B9A\u7FA9\u3060\u3051\
@@ -166,7 +167,7 @@ data:
   isVerificationFile: false
   path: ds/splaytree/splaytree_commutative_monoid.hpp
   requiredBy: []
-  timestamp: '2022-12-04 01:39:31+09:00'
+  timestamp: '2023-01-22 14:34:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/splay_cm.test.cpp

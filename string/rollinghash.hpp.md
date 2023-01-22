@@ -71,10 +71,11 @@ data:
     \    return hashed;\n  }\n\n  mint query(const vc<mint>& s, int l, int r) {\n\
     \    expand(r - l);\n    return (s[r] - s[l] * power[r - l]).val;\n  }\n\n  mint\
     \ combine(mint h1, mint h2, int h2len) {\n    expand(h2len);\n    return h1 *\
-    \ power[h2len] + h2;\n  }\n\n  int lcp(const vc<mint>& a, int l1, int r1, const\
-    \ vc<mint>& b, int l2,\n          int r2) {\n    int len = min(r1 - l1, r2 - l2);\n\
-    \    int low = 0, high = len + 1;\n    while (high - low > 1) {\n      int mid\
-    \ = (low + high) / 2;\n      if (query(a, l1, l1 + mid) == query(b, l2, l2 + mid))\n\
+    \ power[h2len] + h2;\n  }\n\n  mint add_char(mint h, int x) { return h * base\
+    \ + mint(x); }\n\n  int lcp(const vc<mint>& a, int l1, int r1, const vc<mint>&\
+    \ b, int l2,\n          int r2) {\n    int len = min(r1 - l1, r2 - l2);\n    int\
+    \ low = 0, high = len + 1;\n    while (high - low > 1) {\n      int mid = (low\
+    \ + high) / 2;\n      if (query(a, l1, l1 + mid) == query(b, l2, l2 + mid))\n\
     \        low = mid;\n      else\n        high = mid;\n    }\n    return low;\n\
     \  }\n};\n"
   code: "#pragma once\n#include \"random/base.hpp\"\n#include \"mod/modint61.hpp\"\
@@ -90,10 +91,11 @@ data:
     \    return hashed;\n  }\n\n  mint query(const vc<mint>& s, int l, int r) {\n\
     \    expand(r - l);\n    return (s[r] - s[l] * power[r - l]).val;\n  }\n\n  mint\
     \ combine(mint h1, mint h2, int h2len) {\n    expand(h2len);\n    return h1 *\
-    \ power[h2len] + h2;\n  }\n\n  int lcp(const vc<mint>& a, int l1, int r1, const\
-    \ vc<mint>& b, int l2,\n          int r2) {\n    int len = min(r1 - l1, r2 - l2);\n\
-    \    int low = 0, high = len + 1;\n    while (high - low > 1) {\n      int mid\
-    \ = (low + high) / 2;\n      if (query(a, l1, l1 + mid) == query(b, l2, l2 + mid))\n\
+    \ power[h2len] + h2;\n  }\n\n  mint add_char(mint h, int x) { return h * base\
+    \ + mint(x); }\n\n  int lcp(const vc<mint>& a, int l1, int r1, const vc<mint>&\
+    \ b, int l2,\n          int r2) {\n    int len = min(r1 - l1, r2 - l2);\n    int\
+    \ low = 0, high = len + 1;\n    while (high - low > 1) {\n      int mid = (low\
+    \ + high) / 2;\n      if (query(a, l1, l1 + mid) == query(b, l2, l2 + mid))\n\
     \        low = mid;\n      else\n        high = mid;\n    }\n    return low;\n\
     \  }\n};\n"
   dependsOn:
@@ -102,7 +104,7 @@ data:
   isVerificationFile: false
   path: string/rollinghash.hpp
   requiredBy: []
-  timestamp: '2022-12-23 11:05:00+09:00'
+  timestamp: '2023-01-22 14:33:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/263.test.cpp

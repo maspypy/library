@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
@@ -250,10 +250,11 @@ data:
     \    return hashed;\n  }\n\n  mint query(const vc<mint>& s, int l, int r) {\n\
     \    expand(r - l);\n    return (s[r] - s[l] * power[r - l]).val;\n  }\n\n  mint\
     \ combine(mint h1, mint h2, int h2len) {\n    expand(h2len);\n    return h1 *\
-    \ power[h2len] + h2;\n  }\n\n  int lcp(const vc<mint>& a, int l1, int r1, const\
-    \ vc<mint>& b, int l2,\n          int r2) {\n    int len = min(r1 - l1, r2 - l2);\n\
-    \    int low = 0, high = len + 1;\n    while (high - low > 1) {\n      int mid\
-    \ = (low + high) / 2;\n      if (query(a, l1, l1 + mid) == query(b, l2, l2 + mid))\n\
+    \ power[h2len] + h2;\n  }\n\n  mint add_char(mint h, int x) { return h * base\
+    \ + mint(x); }\n\n  int lcp(const vc<mint>& a, int l1, int r1, const vc<mint>&\
+    \ b, int l2,\n          int r2) {\n    int len = min(r1 - l1, r2 - l2);\n    int\
+    \ low = 0, high = len + 1;\n    while (high - low > 1) {\n      int mid = (low\
+    \ + high) / 2;\n      if (query(a, l1, l1 + mid) == query(b, l2, l2 + mid))\n\
     \        low = mid;\n      else\n        high = mid;\n    }\n    return low;\n\
     \  }\n};\n#line 6 \"test/library_checker/string/zalgorithm_by_rollinghash.test.cpp\"\
     \n\r\nvoid solve() {\r\n  STR(S);\r\n  ll N = len(S);\r\n  RollingHash RH;\r\n\
@@ -277,7 +278,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
+  timestamp: '2023-01-22 14:33:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
