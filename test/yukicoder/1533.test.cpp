@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "poly/fps_pow.hpp"
-#include "poly/fps_div_sparse.hpp"
+#include "poly/fps_div.hpp"
 using mint = modint998;
 
 void solve() {
@@ -21,8 +21,8 @@ void solve() {
   vc<mint> F = fps_pow_1_sparse<mint>(g, N + 2);
   g[M] -= R;
   g.resize(M + M + 1);
-  F = fps_div_sparse(F, g);
-  F = fps_div_sparse(F, g);
+  F = fps_div<mint, 1>(F, g);
+  F = fps_div<mint, 1>(F, g);
   mint ANS = SUM<mint>(F);
   print(ANS);
 }
