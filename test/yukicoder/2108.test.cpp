@@ -36,7 +36,7 @@ void solve() {
   FOR(N, 1, LIM + 1) {
     vc<mint> A = {dp[N].begin() + 1, dp[N].begin() + N + 1};
     reverse(all(A));
-    A = pascal_2(A, true);
+    A = pascal(A, true, true);
     FOR(i, N) ANS[N][i] = A[i];
   }
 
