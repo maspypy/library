@@ -84,7 +84,7 @@ class LARSCH {
         }()) {
           cols.pop_back();
         }
-        if (cols.size() != n) { cols.push_back(j); }
+        if (int(cols.size()) != n) { cols.push_back(j); }
       }
       return cols[rec.get_argmin()];
     }
