@@ -8,6 +8,7 @@ struct Node_Basic {
   using np = Node_Basic *;
 
   np p, l, r;
+  bool rev;
   S x;
   u32 size;
 
@@ -15,6 +16,7 @@ struct Node_Basic {
     n->p = n->l = n->r = nullptr;
     n->x = x;
     n->size = 1;
+    n->rev = 0;
   }
 
   void update() {
@@ -23,7 +25,19 @@ struct Node_Basic {
     if (r) { size += r->size; }
   }
 
-  void prop() {}
+  void prop() {
+    if (rev) {
+      if (l) {
+        l->rev ^= 1;
+        swap(l->l, l->r);
+      }
+      if (r) {
+        r->rev ^= 1;
+        swap(r->l, r->r);
+      }
+      rev = 0;
+    }
+  }
 
   // update, prop 以外で呼ばれるものは、splay 後であることが想定されている。
   // したがってその時点で update, prop 済であることを仮定してよい。
@@ -31,6 +45,10 @@ struct Node_Basic {
   void set(const S &xx) {
     x = xx;
     update();
+  }
+  void reverse() {
+    swap(l, r);
+    rev ^= 1;
   }
 };
 template <typename S, int NODES>

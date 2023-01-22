@@ -150,7 +150,7 @@ struct SplayTree {
     root->reverse();
     splay(root);
   }
-  void reverse(np &root) {
+  void reverse(np root) {
     if (!root) return;
     root->reverse();
   }
