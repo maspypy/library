@@ -32,13 +32,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/inversion_rotate.hpp
     title: seq/inversion_rotate.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/abc190f.test.cpp
-    title: test/_atcoder/abc190f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_2_A.test.cpp
     title: test/aoj/ALDS1_2_A.test.cpp
@@ -111,9 +108,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2161.test.cpp
     title: test/yukicoder/2161.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc190f.test.cpp
+    title: test_atcoder/abc190f.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -197,7 +197,7 @@ data:
   - ds/offline_query/rectangle_add_point_sum.hpp
   - ds/offline_query/point_add_rectangle_sum.hpp
   timestamp: '2023-01-19 00:13:06+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_2_A.test.cpp
   - test/aoj/DSL_2_E.test.cpp
@@ -212,7 +212,6 @@ data:
   - test/yukicoder/1838.test.cpp
   - test/yukicoder/1641.test.cpp
   - test/yukicoder/2161.test.cpp
-  - test/_atcoder/abc190f.test.cpp
   - test/library_checker/graph/verted_add_contour_sum.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
@@ -224,6 +223,7 @@ data:
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
+  - test_atcoder/abc190f.test.cpp
 documentation_of: ds/fenwicktree/fenwicktree.hpp
 layout: document
 redirect_from:

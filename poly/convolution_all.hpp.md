@@ -24,15 +24,6 @@ data:
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/abc269ex.test.cpp
-    title: test/_atcoder/abc269ex.test.cpp
-  - icon: ':x:'
-    path: test/_atcoder/abc272_h.test.cpp
-    title: test/_atcoder/abc272_h.test.cpp
-  - icon: ':x:'
-    path: test/_atcoder/arc154f.test.cpp
-    title: test/_atcoder/arc154f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/product_of_polynomial_sequence.test.cpp
     title: test/library_checker/polynomial/product_of_polynomial_sequence.test.cpp
@@ -45,6 +36,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1857.test.cpp
     title: test/yukicoder/1857.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc269ex.test.cpp
+    title: test_atcoder/abc269ex.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc272_h.test.cpp
+    title: test_atcoder/abc272_h.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/arc154f.test.cpp
+    title: test_atcoder/arc154f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -352,10 +352,10 @@ data:
   - test/yukicoder/1392.test.cpp
   - test/yukicoder/1145.test.cpp
   - test/yukicoder/1857.test.cpp
-  - test/_atcoder/abc269ex.test.cpp
-  - test/_atcoder/abc272_h.test.cpp
-  - test/_atcoder/arc154f.test.cpp
   - test/library_checker/polynomial/product_of_polynomial_sequence.test.cpp
+  - test_atcoder/abc269ex.test.cpp
+  - test_atcoder/abc272_h.test.cpp
+  - test_atcoder/arc154f.test.cpp
 documentation_of: poly/convolution_all.hpp
 layout: document
 redirect_from:

@@ -36,9 +36,6 @@ data:
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/abc270_f.test.cpp
-    title: test/_atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/1566.test.cpp
     title: test/aoj/1566.test.cpp
@@ -114,6 +111,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc270_f.test.cpp
+    title: test_atcoder/abc270_f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -175,12 +175,12 @@ data:
   - test/yukicoder/114.test.cpp
   - test/yukicoder/590.test.cpp
   - test/yukicoder/1745.test.cpp
-  - test/_atcoder/abc270_f.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp
   - test/library_checker/graph/bipartite_edge_coloring.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/datastructure/unionfind.test.cpp
   - test/mytest/tutte.test.cpp
+  - test_atcoder/abc270_f.test.cpp
 documentation_of: ds/unionfind/unionfind.hpp
 layout: document
 redirect_from:

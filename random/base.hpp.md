@@ -8,7 +8,7 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':heavy_check_mark:'
@@ -81,18 +81,6 @@ data:
     path: string/rollinghash_2d.hpp
     title: string/rollinghash_2d.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/abc202_f.test.cpp
-    title: test/_atcoder/abc202_f.test.cpp
-  - icon: ':x:'
-    path: test/_atcoder/abc270_g.test.cpp
-    title: test/_atcoder/abc270_g.test.cpp
-  - icon: ':x:'
-    path: test/_atcoder/abc273_e.test.cpp
-    title: test/_atcoder/abc273_e.test.cpp
-  - icon: ':x:'
-    path: test/_atcoder/abc274_h.test.cpp
-    title: test/_atcoder/abc274_h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_14_C.test.cpp
     title: test/aoj/ALDS1_14_C.test.cpp
@@ -414,6 +402,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc202_f.test.cpp
+    title: test_atcoder/abc202_f.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc270_g.test.cpp
+    title: test_atcoder/abc270_g.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc273_e.test.cpp
+    title: test_atcoder/abc273_e.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc274_h.test.cpp
+    title: test_atcoder/abc274_h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -486,10 +486,6 @@ data:
   - test/yukicoder/2102.test.cpp
   - test/yukicoder/1634.test.cpp
   - test/yukicoder/1881.test.cpp
-  - test/_atcoder/abc274_h.test.cpp
-  - test/_atcoder/abc270_g.test.cpp
-  - test/_atcoder/abc273_e.test.cpp
-  - test/_atcoder/abc202_f.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp
   - test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
@@ -574,6 +570,10 @@ data:
   - test/mytest/min_min.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
   - test/mytest/conv_leq.test.cpp
+  - test_atcoder/abc274_h.test.cpp
+  - test_atcoder/abc270_g.test.cpp
+  - test_atcoder/abc273_e.test.cpp
+  - test_atcoder/abc202_f.test.cpp
 documentation_of: random/base.hpp
 layout: document
 redirect_from:

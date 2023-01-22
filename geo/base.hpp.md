@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':heavy_check_mark:'
@@ -33,12 +33,6 @@ data:
     path: geo/reflection.hpp
     title: geo/reflection.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/abc202_f.test.cpp
-    title: test/_atcoder/abc202_f.test.cpp
-  - icon: ':x:'
-    path: test/_atcoder/abc266c.test.cpp
-    title: test/_atcoder/abc266c.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_1_A.test.cpp
     title: test/aoj/CGL_1_A.test.cpp
@@ -81,6 +75,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/incremental_ch.test.cpp
     title: test/mytest/incremental_ch.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc202_f.test.cpp
+    title: test_atcoder/abc202_f.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc266c.test.cpp
+    title: test_atcoder/abc266c.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -189,13 +189,13 @@ data:
   - test/aoj/CGL_2_C.test.cpp
   - test/aoj/CGL_7_C.test.cpp
   - test/aoj/CGL_1_A.test.cpp
-  - test/_atcoder/abc266c.test.cpp
-  - test/_atcoder/abc202_f.test.cpp
   - test/library_checker/geometry/convex_layers.test.cpp
   - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp
   - test/mytest/incremental_ch.test.cpp
+  - test_atcoder/abc266c.test.cpp
+  - test_atcoder/abc202_f.test.cpp
 documentation_of: geo/base.hpp
 layout: document
 redirect_from:

@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/range_mex_query.hpp
     title: ds/offline_query/range_mex_query.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/offline_query/uniqueproductquery.hpp
     title: ds/offline_query/uniqueproductquery.hpp
   - icon: ':heavy_check_mark:'
@@ -27,12 +27,6 @@ data:
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/abc174f.test.cpp
-    title: test/_atcoder/abc174f.test.cpp
-  - icon: ':x:'
-    path: test/_atcoder/abc270_f.test.cpp
-    title: test/_atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
@@ -93,6 +87,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc174f.test.cpp
+    title: test_atcoder/abc174f.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc270_f.test.cpp
+    title: test_atcoder/abc270_f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -203,8 +203,6 @@ data:
   - test/yukicoder/1036_2.test.cpp
   - test/yukicoder/1549.test.cpp
   - test/yukicoder/426.test.cpp
-  - test/_atcoder/abc270_f.test.cpp
-  - test/_atcoder/abc174f.test.cpp
   - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
@@ -217,6 +215,8 @@ data:
   - test/mytest/range_mex.test.cpp
   - test/mytest/segtree_xor_prod.test.cpp
   - test/mytest/suffix_tree.test.cpp
+  - test_atcoder/abc270_f.test.cpp
+  - test_atcoder/abc174f.test.cpp
 documentation_of: ds/segtree/segtree.hpp
 layout: document
 redirect_from:

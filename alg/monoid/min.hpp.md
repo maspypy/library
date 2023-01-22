@@ -36,12 +36,6 @@ data:
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/abc270_f.test.cpp
-    title: test/_atcoder/abc270_f.test.cpp
-  - icon: ':x:'
-    path: test/_atcoder/arc151_e.test.cpp
-    title: test/_atcoder/arc151_e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508.test.cpp
     title: test/aoj/1508.test.cpp
@@ -120,6 +114,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/913.test.cpp
     title: test/yukicoder/913.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc270_f.test.cpp
+    title: test_atcoder/abc270_f.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/arc151_e.test.cpp
+    title: test_atcoder/arc151_e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -162,8 +162,6 @@ data:
   - test/yukicoder/1212.test.cpp
   - test/yukicoder/913.test.cpp
   - test/yukicoder/1720.test.cpp
-  - test/_atcoder/abc270_f.test.cpp
-  - test/_atcoder/arc151_e.test.cpp
   - test/library_checker/graph/common_interval_decomposition.test.cpp
   - test/library_checker/datastructure/staticrmq_seg.test.cpp
   - test/library_checker/datastructure/staticrmq_sparse.test.cpp
@@ -179,6 +177,8 @@ data:
   - test/mytest/rbst_am.test.cpp
   - test/mytest/min_max.test.cpp
   - test/mytest/min_min.test.cpp
+  - test_atcoder/abc270_f.test.cpp
+  - test_atcoder/arc151_e.test.cpp
 documentation_of: alg/monoid/min.hpp
 layout: document
 redirect_from:

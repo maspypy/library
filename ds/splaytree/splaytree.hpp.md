@@ -18,9 +18,6 @@ data:
     path: ds/splaytree/splaytree_monoid.hpp
     title: ds/splaytree/splaytree_monoid.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/arc153b.test.cpp
-    title: test/_atcoder/arc153b.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508.test.cpp
     title: test/aoj/1508.test.cpp
@@ -48,6 +45,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1441.test.cpp
     title: test/yukicoder/1441.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/arc153b.test.cpp
+    title: test_atcoder/arc153b.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -275,7 +275,6 @@ data:
   verifiedWith:
   - test/aoj/1508.test.cpp
   - test/yukicoder/1441.test.cpp
-  - test/_atcoder/arc153b.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/mytest/cf702_F_splay.test.cpp
@@ -283,6 +282,7 @@ data:
   - test/mytest/splay_am.test.cpp
   - test/mytest/splay.test.cpp
   - test/mytest/splay_cm.test.cpp
+  - test_atcoder/arc153b.test.cpp
 documentation_of: ds/splaytree/splaytree.hpp
 layout: document
 redirect_from:

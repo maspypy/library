@@ -48,9 +48,6 @@ data:
     path: seq/famous/surjection.hpp
     title: seq/famous/surjection.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/arc153f.test.cpp
-    title: test/_atcoder/arc153f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
@@ -90,6 +87,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1939.test.cpp
     title: test/yukicoder/1939.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/arc153f.test.cpp
+    title: test_atcoder/arc153f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -539,7 +539,6 @@ data:
   - test/yukicoder/1321.test.cpp
   - test/yukicoder/1533.test.cpp
   - test/yukicoder/1549.test.cpp
-  - test/_atcoder/arc153f.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/polynomial/pow_of_fps.test.cpp
   - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
@@ -548,6 +547,7 @@ data:
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/mytest/bell.test.cpp
   - test/mytest/online_pow.test.cpp
+  - test_atcoder/arc153f.test.cpp
 documentation_of: poly/fps_pow.hpp
 layout: document
 redirect_from:

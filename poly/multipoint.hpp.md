@@ -33,9 +33,6 @@ data:
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/abc272_h.test.cpp
-    title: test/_atcoder/abc272_h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
@@ -54,6 +51,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc272_h.test.cpp
+    title: test_atcoder/abc272_h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -464,12 +464,12 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/2166.test.cpp
-  - test/_atcoder/abc272_h.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/library_checker/polynomial/polynomial_interpolation.test.cpp
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/mytest/vandermonde.test.cpp
   - test/mytest/chirp_z.test.cpp
+  - test_atcoder/abc272_h.test.cpp
 documentation_of: poly/multipoint.hpp
 layout: document
 redirect_from:

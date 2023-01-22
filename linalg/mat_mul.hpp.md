@@ -21,12 +21,6 @@ data:
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/abc276_g.test.cpp
-    title: test/_atcoder/abc276_g.test.cpp
-  - icon: ':x:'
-    path: test/_atcoder/abc276_g_2.test.cpp
-    title: test/_atcoder/abc276_g_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/matrix_product.test.cpp
     title: test/library_checker/matrix/matrix_product.test.cpp
@@ -57,6 +51,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_2.test.cpp
     title: test/yukicoder/502_2.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc276_g.test.cpp
+    title: test_atcoder/abc276_g.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc276_g_2.test.cpp
+    title: test_atcoder/abc276_g_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -111,10 +111,10 @@ data:
   - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/426.test.cpp
   - test/yukicoder/502_2.test.cpp
-  - test/_atcoder/abc276_g.test.cpp
-  - test/_atcoder/abc276_g_2.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp
   - test/mytest/factorial_998.test.cpp
+  - test_atcoder/abc276_g.test.cpp
+  - test_atcoder/abc276_g_2.test.cpp
 documentation_of: linalg/mat_mul.hpp
 layout: document
 redirect_from:

@@ -33,12 +33,12 @@ data:
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/abc270_f.test.cpp
-    title: test/_atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc270_f.test.cpp
+    title: test_atcoder/abc270_f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -373,7 +373,7 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/GRL_2_A.test.cpp
-  - test/_atcoder/abc270_f.test.cpp
+  - test_atcoder/abc270_f.test.cpp
 documentation_of: graph/minimum_spanning_tree.hpp
 layout: document
 redirect_from:

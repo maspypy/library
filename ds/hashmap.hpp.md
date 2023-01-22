@@ -18,12 +18,6 @@ data:
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/abc270_g.test.cpp
-    title: test/_atcoder/abc270_g.test.cpp
-  - icon: ':x:'
-    path: test/_atcoder/abc273_e.test.cpp
-    title: test/_atcoder/abc273_e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
     title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
@@ -81,6 +75,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc270_g.test.cpp
+    title: test_atcoder/abc270_g.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc273_e.test.cpp
+    title: test_atcoder/abc273_e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -155,13 +155,13 @@ data:
   - test/yukicoder/2102.test.cpp
   - test/yukicoder/1634.test.cpp
   - test/yukicoder/1881.test.cpp
-  - test/_atcoder/abc270_g.test.cpp
-  - test/_atcoder/abc273_e.test.cpp
   - test/library_checker/datastructure/associative_array_hashmap.test.cpp
   - test/library_checker/datastructure/set_xor_min.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
+  - test_atcoder/abc270_g.test.cpp
+  - test_atcoder/abc273_e.test.cpp
 documentation_of: ds/hashmap.hpp
 layout: document
 redirect_from:

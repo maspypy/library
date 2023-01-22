@@ -57,15 +57,6 @@ data:
     path: seq/famous/surjection.hpp
     title: seq/famous/surjection.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/abc202_f.test.cpp
-    title: test/_atcoder/abc202_f.test.cpp
-  - icon: ':x:'
-    path: test/_atcoder/abc249_ex.test.cpp
-    title: test/_atcoder/abc249_ex.test.cpp
-  - icon: ':x:'
-    path: test/_atcoder/arc153f.test.cpp
-    title: test/_atcoder/arc153f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_1_D.test.cpp
     title: test/aoj/NTL_1_D.test.cpp
@@ -159,6 +150,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2005.test.cpp
     title: test/yukicoder/2005.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc202_f.test.cpp
+    title: test_atcoder/abc202_f.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc249_ex.test.cpp
+    title: test_atcoder/abc249_ex.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/arc153f.test.cpp
+    title: test_atcoder/arc153f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -228,9 +228,6 @@ data:
   - test/yukicoder/1262.test.cpp
   - test/yukicoder/1411.test.cpp
   - test/yukicoder/1881.test.cpp
-  - test/_atcoder/arc153f.test.cpp
-  - test/_atcoder/abc249_ex.test.cpp
-  - test/_atcoder/abc202_f.test.cpp
   - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
   - test/library_checker/math/enumerate_primes.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
@@ -247,6 +244,9 @@ data:
   - test/mytest/primesum_mod4.test.cpp
   - test/mytest/primesum_mod6.test.cpp
   - test/mytest/eulerian_number.test.cpp
+  - test_atcoder/arc153f.test.cpp
+  - test_atcoder/abc249_ex.test.cpp
+  - test_atcoder/abc202_f.test.cpp
 documentation_of: nt/primetable.hpp
 layout: document
 redirect_from:

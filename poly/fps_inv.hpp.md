@@ -78,15 +78,6 @@ data:
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/abc272_h.test.cpp
-    title: test/_atcoder/abc272_h.test.cpp
-  - icon: ':x:'
-    path: test/_atcoder/arc153f.test.cpp
-    title: test/_atcoder/arc153f.test.cpp
-  - icon: ':x:'
-    path: test/_atcoder/arc154f.test.cpp
-    title: test/_atcoder/arc154f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
@@ -198,6 +189,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc272_h.test.cpp
+    title: test_atcoder/abc272_h.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/arc153f.test.cpp
+    title: test_atcoder/arc153f.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/arc154f.test.cpp
+    title: test_atcoder/arc154f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -576,9 +576,6 @@ data:
   - test/yukicoder/1080.test.cpp
   - test/yukicoder/1549.test.cpp
   - test/yukicoder/1755.test.cpp
-  - test/_atcoder/arc153f.test.cpp
-  - test/_atcoder/abc272_h.test.cpp
-  - test/_atcoder/arc154f.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/polynomial/inv_of_fps.test.cpp
   - test/library_checker/polynomial/pow_of_fps.test.cpp
@@ -605,6 +602,9 @@ data:
   - test/mytest/chirp_z.test.cpp
   - test/mytest/online_inv.test.cpp
   - test/mytest/online_division.test.cpp
+  - test_atcoder/arc153f.test.cpp
+  - test_atcoder/abc272_h.test.cpp
+  - test_atcoder/arc154f.test.cpp
 documentation_of: poly/fps_inv.hpp
 layout: document
 redirect_from:

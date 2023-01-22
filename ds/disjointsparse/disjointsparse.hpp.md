@@ -15,9 +15,6 @@ data:
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/arc151_e.test.cpp
-    title: test/_atcoder/arc151_e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticrmq_sparse.test.cpp
     title: test/library_checker/datastructure/staticrmq_sparse.test.cpp
@@ -45,6 +42,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2005.test.cpp
     title: test/yukicoder/2005.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/arc151_e.test.cpp
+    title: test_atcoder/arc151_e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -118,13 +118,13 @@ data:
   - test/yukicoder/1216_2.test.cpp
   - test/yukicoder/1216.test.cpp
   - test/yukicoder/2005.test.cpp
-  - test/_atcoder/arc151_e.test.cpp
   - test/library_checker/datastructure/staticrmq_sparse.test.cpp
   - test/library_checker/string/suffix_array_vec.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - test/library_checker/string/number_of_substrings.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
   - test/mytest/suffix_tree.test.cpp
+  - test_atcoder/arc151_e.test.cpp
 documentation_of: ds/disjointsparse/disjointsparse.hpp
 layout: document
 redirect_from:

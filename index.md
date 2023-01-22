@@ -97,7 +97,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/add_chmin.hpp
       title: alg/monoid/add_chmin.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/add_chmin_chmax.hpp
       title: alg/monoid/add_chmin_chmax.hpp
     - icon: ':heavy_check_mark:'
@@ -205,7 +205,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/binary_trie.hpp
       title: ds/binary_trie.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/bit_vector.hpp
       title: ds/bit_vector.hpp
     - icon: ':warning:'
@@ -253,7 +253,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/wavelet_matrix.hpp
       title: ds/wavelet_matrix.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/wavelet_matrix_sum.hpp
       title: ds/wavelet_matrix_sum.hpp
   - name: ds/disjointsparse
@@ -266,7 +266,7 @@ data:
       title: ds/disjointsparse/xor_disjointsparse.hpp
   - name: ds/fenwicktree
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fenwicktree/fenwicktree.hpp
       title: ds/fenwicktree/fenwicktree.hpp
     - icon: ':question:'
@@ -327,7 +327,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/offline_query/static_range_products.hpp
       title: ds/offline_query/static_range_products.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/offline_query/uniqueproductquery.hpp
       title: ds/offline_query/uniqueproductquery.hpp
   - name: ds/randomized_bst
@@ -496,13 +496,13 @@ data:
       title: game/solve_partizan_game.hpp
   - name: geo
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/angle_sort.hpp
       title: geo/angle_sort.hpp
     - icon: ':question:'
       path: geo/base.hpp
       title: geo/base.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/count_points_in_triangles.hpp
       title: geo/count_points_in_triangles.hpp
     - icon: ':heavy_check_mark:'
@@ -1016,7 +1016,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/rectangle_union.hpp
       title: other/rectangle_union.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: other/solve_hukumenzan.hpp
       title: other/solve_hukumenzan.hpp
   - name: poly
@@ -1198,7 +1198,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/inversion.hpp
       title: seq/inversion.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: seq/inversion_rotate.hpp
       title: seq/inversion_rotate.hpp
     - icon: ':heavy_check_mark:'
@@ -1346,104 +1346,6 @@ data:
       path: string/zalgorithm.hpp
       title: string/zalgorithm.hpp
   verificationCategories:
-  - name: test/_atcoder
-    pages:
-    - icon: ':x:'
-      path: test/_atcoder/abc127f.test.cpp
-      title: test/_atcoder/abc127f.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/abc127f_1.test.cpp
-      title: test/_atcoder/abc127f_1.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/abc174f.test.cpp
-      title: test/_atcoder/abc174f.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/abc190f.test.cpp
-      title: test/_atcoder/abc190f.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/abc196_E.test.cpp
-      title: test/_atcoder/abc196_E.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/abc198d.test.cpp
-      title: test/_atcoder/abc198d.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/abc200a.test.cpp
-      title: test/_atcoder/abc200a.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/abc202_f.test.cpp
-      title: test/_atcoder/abc202_f.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/abc217h.test.cpp
-      title: test/_atcoder/abc217h.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/abc229h.test.cpp
-      title: test/_atcoder/abc229h.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/abc234ex.test.cpp
-      title: test/_atcoder/abc234ex.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/abc244h.test.cpp
-      title: test/_atcoder/abc244h.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/abc249_ex.test.cpp
-      title: test/_atcoder/abc249_ex.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/abc256d.test.cpp
-      title: test/_atcoder/abc256d.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/abc266c.test.cpp
-      title: test/_atcoder/abc266c.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/abc266f.test.cpp
-      title: test/_atcoder/abc266f.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/abc266h.test.cpp
-      title: test/_atcoder/abc266h.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/abc266h_2.test.cpp
-      title: test/_atcoder/abc266h_2.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/abc269ex.test.cpp
-      title: test/_atcoder/abc269ex.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/abc270_f.test.cpp
-      title: test/_atcoder/abc270_f.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/abc270_g.test.cpp
-      title: test/_atcoder/abc270_g.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/abc272_h.test.cpp
-      title: test/_atcoder/abc272_h.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/abc273_e.test.cpp
-      title: test/_atcoder/abc273_e.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/abc274_h.test.cpp
-      title: test/_atcoder/abc274_h.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/abc276_g.test.cpp
-      title: test/_atcoder/abc276_g.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/abc276_g_2.test.cpp
-      title: test/_atcoder/abc276_g_2.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/agc058d.test.cpp
-      title: test/_atcoder/agc058d.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/arc123d.test.cpp
-      title: test/_atcoder/arc123d.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/arc151_e.test.cpp
-      title: test/_atcoder/arc151_e.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/arc153b.test.cpp
-      title: test/_atcoder/arc153b.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/arc153f.test.cpp
-      title: test/_atcoder/arc153f.test.cpp
-    - icon: ':x:'
-      path: test/_atcoder/arc154f.test.cpp
-      title: test/_atcoder/arc154f.test.cpp
   - name: test/aoj
     pages:
     - icon: ':heavy_check_mark:'
@@ -3000,6 +2902,104 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/924.test.cpp
       title: test/yukicoder/924.test.cpp
+  - name: test_atcoder
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test_atcoder/abc127f.test.cpp
+      title: test_atcoder/abc127f.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_atcoder/abc127f_1.test.cpp
+      title: test_atcoder/abc127f_1.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_atcoder/abc174f.test.cpp
+      title: test_atcoder/abc174f.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_atcoder/abc190f.test.cpp
+      title: test_atcoder/abc190f.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_atcoder/abc196_E.test.cpp
+      title: test_atcoder/abc196_E.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_atcoder/abc198d.test.cpp
+      title: test_atcoder/abc198d.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_atcoder/abc200a.test.cpp
+      title: test_atcoder/abc200a.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_atcoder/abc202_f.test.cpp
+      title: test_atcoder/abc202_f.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/abc217h.test.cpp
+      title: test_atcoder/abc217h.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/abc229h.test.cpp
+      title: test_atcoder/abc229h.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/abc234ex.test.cpp
+      title: test_atcoder/abc234ex.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/abc244h.test.cpp
+      title: test_atcoder/abc244h.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/abc249_ex.test.cpp
+      title: test_atcoder/abc249_ex.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/abc256d.test.cpp
+      title: test_atcoder/abc256d.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/abc266c.test.cpp
+      title: test_atcoder/abc266c.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/abc266f.test.cpp
+      title: test_atcoder/abc266f.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/abc266h.test.cpp
+      title: test_atcoder/abc266h.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/abc266h_2.test.cpp
+      title: test_atcoder/abc266h_2.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/abc269ex.test.cpp
+      title: test_atcoder/abc269ex.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/abc270_f.test.cpp
+      title: test_atcoder/abc270_f.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/abc270_g.test.cpp
+      title: test_atcoder/abc270_g.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/abc272_h.test.cpp
+      title: test_atcoder/abc272_h.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/abc273_e.test.cpp
+      title: test_atcoder/abc273_e.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/abc274_h.test.cpp
+      title: test_atcoder/abc274_h.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/abc276_g.test.cpp
+      title: test_atcoder/abc276_g.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/abc276_g_2.test.cpp
+      title: test_atcoder/abc276_g_2.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/agc058d.test.cpp
+      title: test_atcoder/agc058d.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/arc123d.test.cpp
+      title: test_atcoder/arc123d.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/arc151_e.test.cpp
+      title: test_atcoder/arc151_e.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/arc153b.test.cpp
+      title: test_atcoder/arc153b.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/arc153f.test.cpp
+      title: test_atcoder/arc153f.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/arc154f.test.cpp
+      title: test_atcoder/arc154f.test.cpp
 layout: toppage
 ---
 ご自由にどうぞ。

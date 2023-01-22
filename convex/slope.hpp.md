@@ -6,21 +6,21 @@ data:
     path: flow/min_cost_matching_on_line.hpp
     title: flow/min_cost_matching_on_line.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/abc127f.test.cpp
-    title: test/_atcoder/abc127f.test.cpp
-  - icon: ':x:'
-    path: test/_atcoder/abc217h.test.cpp
-    title: test/_atcoder/abc217h.test.cpp
-  - icon: ':x:'
-    path: test/_atcoder/arc123d.test.cpp
-    title: test/_atcoder/arc123d.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/min_cost_matching_on_line.test.cpp
     title: test/mytest/min_cost_matching_on_line.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1077.test.cpp
     title: test/yukicoder/1077.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc127f.test.cpp
+    title: test_atcoder/abc127f.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc217h.test.cpp
+    title: test_atcoder/abc217h.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/arc123d.test.cpp
+    title: test_atcoder/arc123d.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -113,10 +113,10 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1077.test.cpp
-  - test/_atcoder/abc127f.test.cpp
-  - test/_atcoder/arc123d.test.cpp
-  - test/_atcoder/abc217h.test.cpp
   - test/mytest/min_cost_matching_on_line.test.cpp
+  - test_atcoder/abc127f.test.cpp
+  - test_atcoder/arc123d.test.cpp
+  - test_atcoder/abc217h.test.cpp
 documentation_of: convex/slope.hpp
 layout: document
 redirect_from:

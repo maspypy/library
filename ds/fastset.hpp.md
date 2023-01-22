@@ -9,9 +9,6 @@ data:
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/abc256d.test.cpp
-    title: test/_atcoder/abc256d.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/predecessor_problem.test.cpp
     title: test/library_checker/datastructure/predecessor_problem.test.cpp
@@ -21,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/sort_segtree_1.test.cpp
     title: test/library_checker/datastructure/sort_segtree_1.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc256d.test.cpp
+    title: test_atcoder/abc256d.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -104,10 +104,10 @@ data:
   timestamp: '2023-01-02 17:13:38+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/_atcoder/abc256d.test.cpp
   - test/library_checker/datastructure/sort_segtree.test.cpp
   - test/library_checker/datastructure/sort_segtree_1.test.cpp
   - test/library_checker/datastructure/predecessor_problem.test.cpp
+  - test_atcoder/abc256d.test.cpp
 documentation_of: ds/fastset.hpp
 layout: document
 redirect_from:

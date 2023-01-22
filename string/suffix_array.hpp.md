@@ -15,9 +15,6 @@ data:
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/arc151_e.test.cpp
-    title: test/_atcoder/arc151_e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/number_of_substrings.test.cpp
     title: test/library_checker/string/number_of_substrings.test.cpp
@@ -30,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/arc151_e.test.cpp
+    title: test_atcoder/arc151_e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -204,11 +204,11 @@ data:
   timestamp: '2022-12-15 05:40:16+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/_atcoder/arc151_e.test.cpp
   - test/library_checker/string/suffix_array_vec.test.cpp
   - test/library_checker/string/number_of_substrings.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
   - test/mytest/suffix_tree.test.cpp
+  - test_atcoder/arc151_e.test.cpp
 documentation_of: string/suffix_array.hpp
 layout: document
 redirect_from:

@@ -21,15 +21,6 @@ data:
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/abc266h.test.cpp
-    title: test/_atcoder/abc266h.test.cpp
-  - icon: ':x:'
-    path: test/_atcoder/abc266h_2.test.cpp
-    title: test/_atcoder/abc266h_2.test.cpp
-  - icon: ':x:'
-    path: test/_atcoder/abc270_f.test.cpp
-    title: test/_atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
@@ -69,6 +60,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/686.test.cpp
     title: test/yukicoder/686.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc266h.test.cpp
+    title: test_atcoder/abc266h.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc266h_2.test.cpp
+    title: test_atcoder/abc266h_2.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc270_f.test.cpp
+    title: test_atcoder/abc270_f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -104,13 +104,13 @@ data:
   - test/yukicoder/1826_2.test.cpp
   - test/yukicoder/1117.test.cpp
   - test/yukicoder/2026.test.cpp
-  - test/_atcoder/abc270_f.test.cpp
-  - test/_atcoder/abc266h.test.cpp
-  - test/_atcoder/abc266h_2.test.cpp
   - test/mytest/max_max.test.cpp
   - test/mytest/max_min.test.cpp
   - test/mytest/max_assign.test.cpp
   - test/mytest/min_max.test.cpp
+  - test_atcoder/abc270_f.test.cpp
+  - test_atcoder/abc266h.test.cpp
+  - test_atcoder/abc266h_2.test.cpp
 documentation_of: alg/monoid/max.hpp
 layout: document
 redirect_from:

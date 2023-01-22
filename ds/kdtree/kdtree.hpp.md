@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/abc234ex.test.cpp
-    title: test/_atcoder/abc234ex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/kdtree_nns.test.cpp
     title: test/mytest/kdtree_nns.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc234ex.test.cpp
+    title: test_atcoder/abc234ex.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -114,8 +114,8 @@ data:
   timestamp: '2022-12-05 05:57:24+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/_atcoder/abc234ex.test.cpp
   - test/mytest/kdtree_nns.test.cpp
+  - test_atcoder/abc234ex.test.cpp
 documentation_of: ds/kdtree/kdtree.hpp
 layout: document
 redirect_from:

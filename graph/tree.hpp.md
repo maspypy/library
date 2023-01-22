@@ -45,15 +45,6 @@ data:
     path: graph/tree_dp.hpp
     title: graph/tree_dp.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/abc266f.test.cpp
-    title: test/_atcoder/abc266f.test.cpp
-  - icon: ':x:'
-    path: test/_atcoder/abc269ex.test.cpp
-    title: test/_atcoder/abc269ex.test.cpp
-  - icon: ':x:'
-    path: test/_atcoder/abc270_f.test.cpp
-    title: test/_atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/2677.test.cpp
     title: test/aoj/2677.test.cpp
@@ -168,6 +159,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc266f.test.cpp
+    title: test_atcoder/abc266f.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc269ex.test.cpp
+    title: test_atcoder/abc269ex.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc270_f.test.cpp
+    title: test_atcoder/abc270_f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -401,9 +401,6 @@ data:
   - test/yukicoder/1418.test.cpp
   - test/yukicoder/590.test.cpp
   - test/yukicoder/1641.test.cpp
-  - test/_atcoder/abc269ex.test.cpp
-  - test/_atcoder/abc270_f.test.cpp
-  - test/_atcoder/abc266f.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp
   - test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - test/library_checker/tree/lca_directed.test.cpp
@@ -415,6 +412,9 @@ data:
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+  - test_atcoder/abc269ex.test.cpp
+  - test_atcoder/abc270_f.test.cpp
+  - test_atcoder/abc266f.test.cpp
 documentation_of: graph/tree.hpp
 layout: document
 redirect_from:

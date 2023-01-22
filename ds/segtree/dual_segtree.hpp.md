@@ -9,9 +9,6 @@ data:
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/abc270_f.test.cpp
-    title: test/_atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_D.test.cpp
     title: test/aoj/DSL_2_D.test.cpp
@@ -27,6 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/913.test.cpp
     title: test/yukicoder/913.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc270_f.test.cpp
+    title: test_atcoder/abc270_f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -80,8 +80,8 @@ data:
   - test/aoj/GRL_2_A.test.cpp
   - test/yukicoder/913.test.cpp
   - test/yukicoder/1524.test.cpp
-  - test/_atcoder/abc270_f.test.cpp
   - test/library_checker/datastructure/range_affine_point_add.test.cpp
+  - test_atcoder/abc270_f.test.cpp
 documentation_of: ds/segtree/dual_segtree.hpp
 layout: document
 redirect_from:

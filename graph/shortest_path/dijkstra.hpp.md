@@ -12,9 +12,6 @@ data:
     path: graph/shortest_path/K_shortest_walk.hpp
     title: graph/shortest_path/K_shortest_walk.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/arc151_e.test.cpp
-    title: test/_atcoder/arc151_e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/0275.test.cpp
     title: test/aoj/0275.test.cpp
@@ -36,6 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1601.test.cpp
     title: test/yukicoder/1601.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/arc151_e.test.cpp
+    title: test_atcoder/arc151_e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -138,9 +138,9 @@ data:
   - test/aoj/0275.test.cpp
   - test/yukicoder/1601.test.cpp
   - test/yukicoder/1320.test.cpp
-  - test/_atcoder/arc151_e.test.cpp
   - test/library_checker/graph/K_shortest_walk.test.cpp
   - test/library_checker/graph/shortest_path.test.cpp
+  - test_atcoder/arc151_e.test.cpp
 documentation_of: graph/shortest_path/dijkstra.hpp
 layout: document
 redirect_from:

@@ -30,15 +30,15 @@ data:
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/arc154f.test.cpp
-    title: test/_atcoder/arc154f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1533.test.cpp
     title: test/yukicoder/1533.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/arc154f.test.cpp
+    title: test_atcoder/arc154f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -384,8 +384,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1533.test.cpp
-  - test/_atcoder/arc154f.test.cpp
   - test/mytest/vandermonde.test.cpp
+  - test_atcoder/arc154f.test.cpp
 documentation_of: poly/fps_div.hpp
 layout: document
 redirect_from:

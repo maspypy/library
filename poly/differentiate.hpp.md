@@ -30,9 +30,6 @@ data:
     path: seq/famous/surjection.hpp
     title: seq/famous/surjection.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/arc153f.test.cpp
-    title: test/_atcoder/arc153f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sharp_p_subset_sum.test.cpp
     title: test/library_checker/math/sharp_p_subset_sum.test.cpp
@@ -102,6 +99,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2097.test.cpp
     title: test/yukicoder/2097.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/arc153f.test.cpp
+    title: test_atcoder/arc153f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -139,7 +139,6 @@ data:
   - test/yukicoder/1533.test.cpp
   - test/yukicoder/1080.test.cpp
   - test/yukicoder/1549.test.cpp
-  - test/_atcoder/arc153f.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
   - test/library_checker/polynomial/pow_of_fps.test.cpp
@@ -154,6 +153,7 @@ data:
   - test/mytest/bell.test.cpp
   - test/mytest/online_pow.test.cpp
   - test/mytest/online_exp.test.cpp
+  - test_atcoder/arc153f.test.cpp
 documentation_of: poly/differentiate.hpp
 layout: document
 redirect_from:

@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/arc153f.test.cpp
-    title: test/_atcoder/arc153f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/enumerate_products.test.cpp
     title: test/mytest/enumerate_products.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/arc153f.test.cpp
+    title: test_atcoder/arc153f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -31,8 +31,8 @@ data:
   timestamp: '2022-10-21 20:59:38+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/_atcoder/arc153f.test.cpp
   - test/mytest/enumerate_products.test.cpp
+  - test_atcoder/arc153f.test.cpp
 documentation_of: enumerate/products.hpp
 layout: document
 redirect_from:

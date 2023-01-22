@@ -42,18 +42,18 @@ data:
     path: poly/sparse_exp_of_div.hpp
     title: poly/sparse_exp_of_div.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/abc276_g.test.cpp
-    title: test/_atcoder/abc276_g.test.cpp
-  - icon: ':x:'
-    path: test/_atcoder/abc276_g_2.test.cpp
-    title: test/_atcoder/abc276_g_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080_2.test.cpp
     title: test/yukicoder/1080_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc276_g.test.cpp
+    title: test_atcoder/abc276_g.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc276_g_2.test.cpp
+    title: test_atcoder/abc276_g_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -505,8 +505,8 @@ data:
   verifiedWith:
   - test/yukicoder/2166.test.cpp
   - test/yukicoder/1080_2.test.cpp
-  - test/_atcoder/abc276_g.test.cpp
-  - test/_atcoder/abc276_g_2.test.cpp
+  - test_atcoder/abc276_g.test.cpp
+  - test_atcoder/abc276_g_2.test.cpp
 documentation_of: poly/from_log_differentiation.hpp
 layout: document
 redirect_from:

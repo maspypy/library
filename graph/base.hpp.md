@@ -165,21 +165,6 @@ data:
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/abc266f.test.cpp
-    title: test/_atcoder/abc266f.test.cpp
-  - icon: ':x:'
-    path: test/_atcoder/abc269ex.test.cpp
-    title: test/_atcoder/abc269ex.test.cpp
-  - icon: ':x:'
-    path: test/_atcoder/abc270_f.test.cpp
-    title: test/_atcoder/abc270_f.test.cpp
-  - icon: ':x:'
-    path: test/_atcoder/arc151_e.test.cpp
-    title: test/_atcoder/arc151_e.test.cpp
-  - icon: ':x:'
-    path: test/_atcoder/arc153f.test.cpp
-    title: test/_atcoder/arc153f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/0275.test.cpp
     title: test/aoj/0275.test.cpp
@@ -450,6 +435,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc266f.test.cpp
+    title: test_atcoder/abc266f.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc269ex.test.cpp
+    title: test_atcoder/abc269ex.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc270_f.test.cpp
+    title: test_atcoder/abc270_f.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/arc151_e.test.cpp
+    title: test_atcoder/arc151_e.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/arc153f.test.cpp
+    title: test_atcoder/arc153f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -664,11 +664,6 @@ data:
   - test/yukicoder/1641.test.cpp
   - test/yukicoder/1745.test.cpp
   - test/yukicoder/1813.test.cpp
-  - test/_atcoder/abc269ex.test.cpp
-  - test/_atcoder/arc153f.test.cpp
-  - test/_atcoder/abc270_f.test.cpp
-  - test/_atcoder/abc266f.test.cpp
-  - test/_atcoder/arc151_e.test.cpp
   - test/library_checker/graph/biconnected_component.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp
   - test/library_checker/graph/scc.test.cpp
@@ -701,6 +696,11 @@ data:
   - test/library_checker/math/twosat.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/tutte.test.cpp
+  - test_atcoder/abc269ex.test.cpp
+  - test_atcoder/arc153f.test.cpp
+  - test_atcoder/abc270_f.test.cpp
+  - test_atcoder/abc266f.test.cpp
+  - test_atcoder/arc151_e.test.cpp
 documentation_of: graph/base.hpp
 layout: document
 redirect_from:

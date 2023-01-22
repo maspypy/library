@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
   - icon: ':question:'
@@ -12,15 +12,15 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/abc202_f.test.cpp
-    title: test/_atcoder/abc202_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_points_in_triangles.test.cpp
     title: test/mytest/count_points_in_triangles.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc202_f.test.cpp
+    title: test_atcoder/abc202_f.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"geo/count_points_in_triangles.hpp\"\n\n#line 2 \"geo/angle_sort.hpp\"\
@@ -164,10 +164,10 @@ data:
   path: geo/count_points_in_triangles.hpp
   requiredBy: []
   timestamp: '2022-12-11 11:11:22+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/_atcoder/abc202_f.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp
+  - test_atcoder/abc202_f.test.cpp
 documentation_of: geo/count_points_in_triangles.hpp
 layout: document
 redirect_from:

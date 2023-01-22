@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
   _extendedRequiredBy: []

@@ -33,12 +33,12 @@ data:
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/arc154f.test.cpp
-    title: test/_atcoder/arc154f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1875.test.cpp
     title: test/yukicoder/1875.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/arc154f.test.cpp
+    title: test_atcoder/arc154f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -390,7 +390,7 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1875.test.cpp
-  - test/_atcoder/arc154f.test.cpp
+  - test_atcoder/arc154f.test.cpp
 documentation_of: poly/sum_of_exp_bx.hpp
 layout: document
 redirect_from:

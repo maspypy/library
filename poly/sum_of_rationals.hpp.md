@@ -36,15 +36,6 @@ data:
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/abc276_g.test.cpp
-    title: test/_atcoder/abc276_g.test.cpp
-  - icon: ':x:'
-    path: test/_atcoder/abc276_g_2.test.cpp
-    title: test/_atcoder/abc276_g_2.test.cpp
-  - icon: ':x:'
-    path: test/_atcoder/arc154f.test.cpp
-    title: test/_atcoder/arc154f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
@@ -57,6 +48,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1962.test.cpp
     title: test/yukicoder/1962.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc276_g.test.cpp
+    title: test_atcoder/abc276_g.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc276_g_2.test.cpp
+    title: test_atcoder/abc276_g_2.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/arc154f.test.cpp
+    title: test_atcoder/arc154f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -380,10 +380,10 @@ data:
   - test/yukicoder/1145.test.cpp
   - test/yukicoder/1875.test.cpp
   - test/yukicoder/1962.test.cpp
-  - test/_atcoder/abc276_g.test.cpp
-  - test/_atcoder/abc276_g_2.test.cpp
-  - test/_atcoder/arc154f.test.cpp
   - test/mytest/vandermonde.test.cpp
+  - test_atcoder/abc276_g.test.cpp
+  - test_atcoder/abc276_g_2.test.cpp
+  - test_atcoder/arc154f.test.cpp
 documentation_of: poly/sum_of_rationals.hpp
 layout: document
 redirect_from:

@@ -6,12 +6,12 @@ data:
     path: graph/minimum_cycle_length_through_specified.hpp
     title: graph/minimum_cycle_length_through_specified.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/_atcoder/abc274_h.test.cpp
-    title: test/_atcoder/abc274_h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1775.test.cpp
     title: test/yukicoder/1775.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc274_h.test.cpp
+    title: test_atcoder/abc274_h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -105,7 +105,7 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1775.test.cpp
-  - test/_atcoder/abc274_h.test.cpp
+  - test_atcoder/abc274_h.test.cpp
 documentation_of: nt/GF2.hpp
 layout: document
 redirect_from:

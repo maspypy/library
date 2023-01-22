@@ -13,8 +13,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/_atcoder/arc151_e.test.cpp
-    title: test/_atcoder/arc151_e.test.cpp
+    path: test_atcoder/arc151_e.test.cpp
+    title: test_atcoder/arc151_e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -143,7 +143,7 @@ data:
   timestamp: '2022-12-15 06:33:21+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/_atcoder/arc151_e.test.cpp
+  - test_atcoder/arc151_e.test.cpp
 documentation_of: string/longest_common_substring.hpp
 layout: document
 redirect_from:

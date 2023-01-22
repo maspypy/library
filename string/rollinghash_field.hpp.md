@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/_atcoder/abc274_h.test.cpp
-    title: test/_atcoder/abc274_h.test.cpp
+    path: test_atcoder/abc274_h.test.cpp
+    title: test_atcoder/abc274_h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -56,7 +56,7 @@ data:
   timestamp: '2022-10-23 02:20:34+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/_atcoder/abc274_h.test.cpp
+  - test_atcoder/abc274_h.test.cpp
 documentation_of: string/rollinghash_field.hpp
 layout: document
 redirect_from:
