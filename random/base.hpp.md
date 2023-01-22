@@ -235,6 +235,9 @@ data:
     path: test/mytest/minmax_add.test.cpp
     title: test/mytest/minmax_add.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/minplus_convex.test.cpp
+    title: test/mytest/minplus_convex.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/mod_sum_of_linear.test.cpp
     title: test/mytest/mod_sum_of_linear.test.cpp
   - icon: ':heavy_check_mark:'
@@ -518,6 +521,7 @@ data:
   - test/mytest/tournament.test.cpp
   - test/mytest/online_log.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
+  - test/mytest/minplus_convex.test.cpp
   - test/mytest/rbst_test.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
