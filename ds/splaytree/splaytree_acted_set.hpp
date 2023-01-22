@@ -2,13 +2,13 @@
 
 namespace SplayTreeNodes {
 template <typename ActedSet>
-struct Node_AM {
+struct Node_AS {
   using Monoid_A = typename ActedSet::Monoid_A;
   using A = typename ActedSet::A;
   using S = typename ActedSet::S;
   using value_type = S;
   using operator_type = A;
-  using np = Node_AM *;
+  using np = Node_AS *;
 
   np p, l, r;
   S x;
@@ -72,7 +72,7 @@ struct Node_AM {
   }
 };
 template <typename ActedSet, int NODES>
-using SplayTree_ActedSet = SplayTree<Node_AM<ActedSet>, NODES>;
+using SplayTree_ActedSet = SplayTree<Node_AS<ActedSet>, NODES>;
 } // namespace SplayTreeNodes
 
 using SplayTreeNodes::SplayTree_ActedSet;
