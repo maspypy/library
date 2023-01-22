@@ -213,7 +213,7 @@ struct SplayTree {
     splay(root);
   }
 
-  // 左側のノード全体が check を満たすように切る
+  // check(x), 左側のノード全体が check を満たすように切る
   template <typename F>
   pair<np, np> split_max_right(np root, F check) {
     if (!root) return {nullptr, nullptr};
