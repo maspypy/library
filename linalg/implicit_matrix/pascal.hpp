@@ -15,17 +15,15 @@ vc<mint> pascal(vc<mint> f, bool transpose, bool inverse) {
     FOR(i, n) f[i] *= fact<mint>(i);
     return f;
   }
-  if (transpose) {
-    int n = len(f);
-    FOR(i, n) f[i] *= fact<mint>(i);
-    reverse(all(f));
-    vc<mint> g(n);
-    FOR(i, n) g[i] = fact_inv<mint>(i);
-    if (inverse) FOR(i, n) if (i & 1) g[i] = -g[i];
-    f = convolution(f, g);
-    f.resize(n);
-    reverse(all(f));
-    FOR(i, n) f[i] *= fact_inv<mint>(i);
-    return f;
-  }
+  int n = len(f);
+  FOR(i, n) f[i] *= fact<mint>(i);
+  reverse(all(f));
+  vc<mint> g(n);
+  FOR(i, n) g[i] = fact_inv<mint>(i);
+  if (inverse) FOR(i, n) if (i & 1) g[i] = -g[i];
+  f = convolution(f, g);
+  f.resize(n);
+  reverse(all(f));
+  FOR(i, n) f[i] *= fact_inv<mint>(i);
+  return f;
 }
