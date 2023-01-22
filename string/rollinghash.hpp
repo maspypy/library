@@ -38,6 +38,8 @@ struct RollingHash {
     return h1 * power[h2len] + h2;
   }
 
+  mint add_char(mint h, int x) { return h * base + mint(x); }
+
   int lcp(const vc<mint>& a, int l1, int r1, const vc<mint>& b, int l2,
           int r2) {
     int len = min(r1 - l1, r2 - l2);
