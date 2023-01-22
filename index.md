@@ -291,9 +291,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/offline_query/add_remove_query.hpp
       title: ds/offline_query/add_remove_query.hpp
-    - icon: ':warning:'
-      path: ds/offline_query/coeffient_query_1d.hpp
-      title: ds/offline_query/coeffient_query_1d.hpp
     - icon: ':heavy_check_mark:'
       path: ds/offline_query/coeffient_query_2d.hpp
       title: ds/offline_query/coeffient_query_2d.hpp
