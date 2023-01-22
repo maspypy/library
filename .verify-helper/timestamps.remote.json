@@ -329,6 +329,7 @@
 "test/mytest/rbst_monoid_2.test.cpp": "2023-01-19 22:23:16 +0900",
 "test/mytest/rbst_monoid_persistent.test.cpp": "2023-01-19 22:23:16 +0900",
 "test/mytest/rbst_test.test.cpp": "2023-01-19 22:23:16 +0900",
+"test/mytest/rect_add_pt_sum.test.cpp": "2023-01-22 16:26:01 +0900",
 "test/mytest/run_length.test.cpp": "2023-01-19 22:23:16 +0900",
 "test/mytest/segtree_xor_prod.test.cpp": "2023-01-19 22:23:16 +0900",
 "test/mytest/simple_perm.test.cpp": "2023-01-19 22:23:16 +0900",
