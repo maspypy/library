@@ -1,11 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: convex/monge.hpp
+    title: convex/monge.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/705.test.cpp
+    title: test/yukicoder/705.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://noshi91.github.io/Library/algorithm/larsch.cpp.html
@@ -37,11 +43,11 @@ data:
     \ - 1, 2 * cur_row_}};\n        }\n      }();\n      for (const int j: cs) {\n\
     \        while ([&]() {\n          const int size = cols.size();\n          return\
     \ size != cur_row_ && f(size - 1, cols.back()) > f(size - 1, j);\n        }())\
-    \ {\n          cols.pop_back();\n        }\n        if (cols.size() != n) { cols.push_back(j);\
-    \ }\n      }\n      return cols[rec.get_argmin()];\n    }\n  };\n\n  std::unique_ptr<reduce_row>\
-    \ base;\n\npublic:\n  LARSCH(int n, std::function<T(int, int)> f)\n      : base(std::make_unique<reduce_row>(n))\
-    \ {\n    base->set_f(f);\n  }\n\n  int get_argmin() { return base->get_argmin();\
-    \ }\n};\n"
+    \ {\n          cols.pop_back();\n        }\n        if (int(cols.size()) != n)\
+    \ { cols.push_back(j); }\n      }\n      return cols[rec.get_argmin()];\n    }\n\
+    \  };\n\n  std::unique_ptr<reduce_row> base;\n\npublic:\n  LARSCH(int n, std::function<T(int,\
+    \ int)> f)\n      : base(std::make_unique<reduce_row>(n)) {\n    base->set_f(f);\n\
+    \  }\n\n  int get_argmin() { return base->get_argmin(); }\n};\n"
   code: "#pragma once\n\n// https://noshi91.github.io/Library/algorithm/larsch.cpp.html\n\
     template <class T>\nclass LARSCH {\n  struct reduce_row;\n  struct reduce_col;\n\
     \n  struct reduce_row {\n    int n;\n    std::function<T(int, int)> f;\n    int\
@@ -70,18 +76,20 @@ data:
     \ - 1, 2 * cur_row_}};\n        }\n      }();\n      for (const int j: cs) {\n\
     \        while ([&]() {\n          const int size = cols.size();\n          return\
     \ size != cur_row_ && f(size - 1, cols.back()) > f(size - 1, j);\n        }())\
-    \ {\n          cols.pop_back();\n        }\n        if (cols.size() != n) { cols.push_back(j);\
-    \ }\n      }\n      return cols[rec.get_argmin()];\n    }\n  };\n\n  std::unique_ptr<reduce_row>\
-    \ base;\n\npublic:\n  LARSCH(int n, std::function<T(int, int)> f)\n      : base(std::make_unique<reduce_row>(n))\
-    \ {\n    base->set_f(f);\n  }\n\n  int get_argmin() { return base->get_argmin();\
-    \ }\n};\n"
+    \ {\n          cols.pop_back();\n        }\n        if (int(cols.size()) != n)\
+    \ { cols.push_back(j); }\n      }\n      return cols[rec.get_argmin()];\n    }\n\
+    \  };\n\n  std::unique_ptr<reduce_row> base;\n\npublic:\n  LARSCH(int n, std::function<T(int,\
+    \ int)> f)\n      : base(std::make_unique<reduce_row>(n)) {\n    base->set_f(f);\n\
+    \  }\n\n  int get_argmin() { return base->get_argmin(); }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: convex/larsch.hpp
-  requiredBy: []
-  timestamp: '2022-12-03 09:41:32+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy:
+  - convex/monge.hpp
+  timestamp: '2023-01-22 16:43:58+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yukicoder/705.test.cpp
 documentation_of: convex/larsch.hpp
 layout: document
 redirect_from:

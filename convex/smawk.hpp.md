@@ -8,6 +8,9 @@ data:
   - icon: ':warning:'
     path: convex/minplus_convolution_convex.hpp
     title: convex/minplus_convolution_convex.hpp
+  - icon: ':heavy_check_mark:'
+    path: convex/monge.hpp
+    title: convex/monge.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/mytest/maxplus_concave.test.cpp
@@ -15,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/smawk.test.cpp
     title: test/mytest/smawk.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/705.test.cpp
+    title: test/yukicoder/705.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -54,9 +60,11 @@ data:
   requiredBy:
   - convex/maxplus_convolution_concave.hpp
   - convex/minplus_convolution_convex.hpp
+  - convex/monge.hpp
   timestamp: '2023-01-19 00:12:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/705.test.cpp
   - test/mytest/maxplus_concave.test.cpp
   - test/mytest/smawk.test.cpp
 documentation_of: convex/smawk.hpp
