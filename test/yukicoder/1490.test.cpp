@@ -14,7 +14,7 @@ void solve() {
     dat.eb(xl, xr, yl, yr, a);
   }
 
-  Rectangle_Add_Rectangle_Sum<Monoid_Add<ll>, ll, 1> X;
+  Rectangle_Add_Rectangle_Sum<ll, ll> X;
   FOR(M) {
     LL(x, y, b, c);
     --x, --y;
