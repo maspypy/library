@@ -4,9 +4,11 @@
 #include "other/io.hpp"
 #include "random/base.hpp"
 #include "mod/modint.hpp"
-#include "linalg/implicit_matrix/pascal.hpp"
+#include "linalg/implicit_matrix/vandermonde.hpp"
 
 using mint = modint998;
+
+#include "poly/convolution.hpp"
 
 vc<mint> gen(int N) {
   int mod = mint::get_mod();
@@ -15,15 +17,11 @@ vc<mint> gen(int N) {
   return f;
 }
 
-vc<mint> pascal_naive(vc<mint> f, bool transpose) {
+vc<mint> vandermonde_naive(vc<mint> f, bool transpose) {
   int N = len(f);
   vc<mint> g(N);
-  if (!transpose) {
-    FOR(i, N) FOR(j, N) if (i >= j) g[i] += C<mint>(i, j) * f[j];
-  }
-  if (transpose) {
-    FOR(i, N) FOR(j, N) if (i <= j) g[i] += C<mint>(j, i) * f[j];
-  }
+  if (!transpose) { FOR(i, N) FOR(j, N) g[i] += mint(i).pow(j) * f[j]; }
+  if (transpose) { FOR(i, N) FOR(j, N) g[i] += mint(j).pow(i) * f[j]; }
   return g;
 }
 
@@ -31,11 +29,13 @@ void test() {
   FOR(t, 2) {
     FOR(N, 1, 100) {
       vc<mint> f = gen(N);
-      vc<mint> g1 = pascal<mint>(f, t, 0);
-      vc<mint> g2 = pascal_naive(f, t);
+      vc<mint> g1 = vandermonde<mint>(f, t, 0);
+      vc<mint> g2 = vandermonde_naive(f, t);
       assert(g1 == g2);
-      vc<mint> h = pascal<mint>(g1, t, 1);
-      assert(f == h);
+      if (t == 0) {
+        vc<mint> h = vandermonde<mint>(g1, t, 1);
+        assert(f == h);
+      }
     }
   }
 }
