@@ -3,8 +3,14 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: linalg/implicit_matrix/vandermonde.hpp
+    title: linalg/implicit_matrix/vandermonde.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/fps_div.hpp
+    title: poly/fps_div.hpp
   - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
@@ -160,6 +166,9 @@ data:
     path: test/mytest/simple_perm.test.cpp
     title: test/mytest/simple_perm.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/vandermonde.test.cpp
+    title: test/mytest/vandermonde.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080.test.cpp
     title: test/yukicoder/1080.test.cpp
   - icon: ':heavy_check_mark:'
@@ -215,8 +224,10 @@ data:
   - seq/famous/partition_number.hpp
   - seq/famous/indecomposable_permutations.hpp
   - seq/famous/stirling_number_2.hpp
+  - linalg/implicit_matrix/vandermonde.hpp
   - poly/fps_sqrt.hpp
   - poly/fps_inv.hpp
+  - poly/fps_div.hpp
   - poly/product_of_one_minus_xn.hpp
   - poly/product_of_one_plus_xn.hpp
   - poly/fps_exp.hpp
@@ -266,6 +277,7 @@ data:
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
+  - test/mytest/vandermonde.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/bell.test.cpp
   - test/mytest/simple_perm.test.cpp

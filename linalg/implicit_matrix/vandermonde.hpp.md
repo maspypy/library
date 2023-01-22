@@ -20,178 +20,25 @@ data:
     path: poly/fft.hpp
     title: poly/fft.hpp
   - icon: ':heavy_check_mark:'
-    path: poly/ntt.hpp
-    title: poly/ntt.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: linalg/implicit_matrix/vandermonde.hpp
-    title: linalg/implicit_matrix/vandermonde.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/composition_f_ex.hpp
-    title: poly/composition_f_ex.hpp
-  - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
   - icon: ':heavy_check_mark:'
-    path: poly/fps_log.hpp
-    title: poly/fps_log.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/fps_pow.hpp
-    title: poly/fps_pow.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/fps_sqrt.hpp
-    title: poly/fps_sqrt.hpp
+    path: poly/fps_inv.hpp
+    title: poly/fps_inv.hpp
   - icon: ':heavy_check_mark:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':heavy_check_mark:'
-    path: poly/multivar_convolution_cyclic.hpp
-    title: poly/multivar_convolution_cyclic.hpp
+    path: poly/ntt.hpp
+    title: poly/ntt.hpp
   - icon: ':heavy_check_mark:'
-    path: poly/poly_divmod.hpp
-    title: poly/poly_divmod.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/poly_gcd.hpp
-    title: poly/poly_gcd.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/product_of_f_rk_x.hpp
-    title: poly/product_of_f_rk_x.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/product_of_pow_of_linear.hpp
-    title: poly/product_of_pow_of_linear.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/sum_of_exp_bx.hpp
-    title: poly/sum_of_exp_bx.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/famous/indecomposable_permutations.hpp
-    title: seq/famous/indecomposable_permutations.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/famous/partition_number.hpp
-    title: seq/famous/partition_number.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/famous/stirling_number_2.hpp
-    title: seq/famous/stirling_number_2.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/famous/surjection.hpp
-    title: seq/famous/surjection.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/sum_of_powers.hpp
-    title: seq/sum_of_powers.hpp
+    path: poly/sum_of_rationals.hpp
+    title: poly/sum_of_rationals.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc272_h.test.cpp
-    title: test/atcoder/abc272_h.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-    title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/partition.test.cpp
-    title: test/library_checker/math/partition.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-    title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/inv_of_fps.test.cpp
-    title: test/library_checker/polynomial/inv_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
-    title: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
-    title: test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/inv_of_polynomials.test.cpp
-    title: test/library_checker/polynomial/inv_of_polynomials.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/log_of_fps.test.cpp
-    title: test/library_checker/polynomial/log_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/log_of_fps_sparse.test.cpp
-    title: test/library_checker/polynomial/log_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/multipoint_evaluation.test.cpp
-    title: test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/polynomial_division.test.cpp
-    title: test/library_checker/polynomial/polynomial_division.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/polynomial_interpolation.test.cpp
-    title: test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/pow_of_fps.test.cpp
-    title: test/library_checker/polynomial/pow_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-    title: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
-    title: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
-    title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-    title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/bell.test.cpp
-    title: test/mytest/bell.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/chirp_z.test.cpp
-    title: test/mytest/chirp_z.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/enum_partitions.test.cpp
-    title: test/mytest/enum_partitions.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/online_division.test.cpp
-    title: test/mytest/online_division.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/online_inv.test.cpp
-    title: test/mytest/online_inv.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/online_log.test.cpp
-    title: test/mytest/online_log.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/online_pow.test.cpp
-    title: test/mytest/online_pow.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/simple_perm.test.cpp
-    title: test/mytest/simple_perm.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1080.test.cpp
-    title: test/yukicoder/1080.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1145.test.cpp
-    title: test/yukicoder/1145.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1321.test.cpp
-    title: test/yukicoder/1321.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1392.test.cpp
-    title: test/yukicoder/1392.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1533.test.cpp
-    title: test/yukicoder/1533.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1549.test.cpp
-    title: test/yukicoder/1549.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1755.test.cpp
-    title: test/yukicoder/1755.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1875.test.cpp
-    title: test/yukicoder/1875.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1939.test.cpp
-    title: test/yukicoder/1939.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2097.test.cpp
-    title: test/yukicoder/2097.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2166.test.cpp
-    title: test/yukicoder/2166.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -497,37 +344,100 @@ data:
     \ <= 200) return fps_inv_sparse<mint>(f);\r\n  return fps_inv_dense<mint>(f);\r\
     \n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<!is_same<mint, modint998>::value,\
     \ vc<mint>> fps_inv(\r\n    const vc<mint>& f) {\r\n  if (count_terms(f) <= 700)\
-    \ return fps_inv_sparse<mint>(f);\r\n  return fps_inv_dense<mint>(f);\r\n}\r\n"
-  code: "#pragma once\r\n#include \"poly/count_terms.hpp\"\r\n#include \"poly/convolution.hpp\"\
-    \r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv_sparse(const vc<mint>& f)\
-    \ {\r\n  assert(f[0] != mint(0));\r\n  int N = len(f);\r\n  vc<pair<int, mint>>\
-    \ dat;\r\n  FOR3(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint>\
-    \ g(N);\r\n  mint g0 = mint(1) / f[0];\r\n  g[0] = g0;\r\n  FOR3(n, 1, N) {\r\n\
-    \    mint rhs = 0;\r\n    for (auto&& [k, fk]: dat) {\r\n      if (k > n) break;\r\
-    \n      rhs -= fk * g[n - k];\r\n    }\r\n    g[n] = rhs * g0;\r\n  }\r\n  return\
-    \ g;\r\n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint, modint998>::value,\
-    \ vc<mint>> fps_inv_dense(\r\n    const vc<mint>& F) {\r\n  assert(F[0] != mint(0));\r\
-    \n  vc<mint> G = {mint(1) / F[0]};\r\n  G.reserve(len(F));\r\n  ll N = len(F),\
-    \ n = 1;\r\n  while (n < N) {\r\n    vc<mint> f(2 * n), g(2 * n);\r\n    FOR(i,\
-    \ min(N, 2 * n)) f[i] = F[i];\r\n    FOR(i, n) g[i] = G[i];\r\n    ntt(f, false);\r\
-    \n    ntt(g, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\
-    \n    FOR(i, n) f[i] = 0;\r\n    ntt(f, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\
-    \n    ntt(f, true);\r\n    FOR3(i, n, 2 * n) G.eb(f[i] * mint(-1));\r\n    n *=\
-    \ 2;\r\n  }\r\n  G.resize(N);\r\n  return G;\r\n}\r\n\r\ntemplate <typename mint>\r\
-    \nenable_if_t<!is_same<mint, modint998>::value, vc<mint>> fps_inv_dense(\r\n \
-    \   const vc<mint>& F) {\r\n  int N = len(F);\r\n  assert(F[0] != mint(0));\r\n\
-    \  vc<mint> R = {mint(1) / F[0]};\r\n  vc<mint> p;\r\n  int m = 1;\r\n  while\
-    \ (m < N) {\r\n    p = convolution(R, R);\r\n    p.resize(m + m);\r\n    vc<mint>\
-    \ f = {F.begin(), F.begin() + min(m + m, N)};\r\n    p = convolution(p, f);\r\n\
-    \    R.resize(m + m);\r\n    FOR(i, m + m) R[i] = R[i] + R[i] - p[i];\r\n    m\
-    \ += m;\r\n  }\r\n  R.resize(N);\r\n  return R;\r\n}\r\n\r\n\r\ntemplate <typename\
-    \ mint>\r\nenable_if_t<is_same<mint, modint998>::value, vc<mint>> fps_inv(\r\n\
-    \    const vc<mint>& f) {\r\n  if (count_terms(f) <= 200) return fps_inv_sparse<mint>(f);\r\
-    \n  return fps_inv_dense<mint>(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<!is_same<mint,\
-    \ modint998>::value, vc<mint>> fps_inv(\r\n    const vc<mint>& f) {\r\n  if (count_terms(f)\
-    \ <= 700) return fps_inv_sparse<mint>(f);\r\n  return fps_inv_dense<mint>(f);\r\
-    \n}\r\n"
+    \ return fps_inv_sparse<mint>(f);\r\n  return fps_inv_dense<mint>(f);\r\n}\r\n\
+    #line 2 \"poly/multipoint.hpp\"\n\r\ntemplate <typename mint>\r\nstruct SubproductTree\
+    \ {\r\n  int m;\r\n  int sz;\r\n  vc<vc<mint>> T;\r\n  SubproductTree(const vc<mint>&\
+    \ x) {\r\n    m = len(x);\r\n    sz = 1;\r\n    while (sz < m) sz *= 2;\r\n  \
+    \  T.resize(2 * sz);\r\n    FOR(i, sz) T[sz + i] = {1, (i < m ? -x[i] : 0)};\r\
+    \n    FOR3_R(i, 1, sz) T[i] = convolution(T[2 * i], T[2 * i + 1]);\r\n  }\r\n\r\
+    \n  vc<mint> mid_prod(vc<mint>& a, vc<mint>& b) {\r\n    assert(len(a) >= len(b)\
+    \ && !b.empty());\r\n    if (min(len(b), len(a) - len(b) + 1) <= 60) {\r\n   \
+    \   vc<mint> res(len(a) - len(b) + 1);\r\n      FOR(i, len(res)) FOR(j, len(b))\
+    \ res[i] += b[j] * a[i + j];\r\n      return res;\r\n    }\r\n    int n = 1 <<\
+    \ std::__lg(2 * len(a) - 1);\r\n    vc<mint> fa(n), fb(n);\r\n    std::copy(a.begin(),\
+    \ a.end(), fa.begin());\r\n    std::copy(b.rbegin(), b.rend(), fb.begin());\r\n\
+    \    ntt(fa, 0), ntt(fb, 0);\r\n    FOR(i, n) fa[i] *= fb[i];\r\n    ntt(fa, 1);\r\
+    \n    fa.resize(len(a));\r\n    fa.erase(fa.begin(), fa.begin() + len(b) - 1);\r\
+    \n    return fa;\r\n  }\r\n\r\n  vc<mint> evaluation(vc<mint> f) {\r\n    int\
+    \ n = len(f);\r\n    if (n == 0) return vc<mint>(m, mint(0));\r\n    f.resize(2\
+    \ * n - 1);\r\n    vc<vc<mint>> g(2 * sz);\r\n    g[1] = T[1];\r\n    g[1].resize(n);\r\
+    \n    g[1] = fps_inv(g[1]);\r\n    g[1] = mid_prod(f, g[1]);\r\n    g[1].resize(sz);\r\
+    \n\r\n    FOR3(i, 1, sz) {\r\n      g[2 * i] = mid_prod(g[i], T[2 * i + 1]);\r\
+    \n      g[2 * i + 1] = mid_prod(g[i], T[2 * i]);\r\n    }\r\n    vc<mint> vals(m);\r\
+    \n    FOR(i, m) vals[i] = g[sz + i][0];\r\n    return vals;\r\n  }\r\n\r\n  vc<mint>\
+    \ interpolation(vc<mint>& y) {\r\n    assert(len(y) == m);\r\n    vc<mint> a(m);\r\
+    \n    FOR(i, m) a[i] = T[1][m - i - 1] * (i + 1);\r\n\r\n    a = evaluation(a);\r\
+    \n    vc<vc<mint>> t(2 * sz);\r\n    FOR(i, sz) t[sz + i] = {(i < m ? y[i] / a[i]\
+    \ : 0)};\r\n    FOR3_R(i, 1, sz) {\r\n      t[i] = convolution(t[2 * i], T[2 *\
+    \ i + 1]);\r\n      auto tt = convolution(t[2 * i + 1], T[2 * i]);\r\n      FOR(k,\
+    \ len(t[i])) t[i][k] += tt[k];\r\n    }\r\n    t[1].resize(m);\r\n    reverse(all(t[1]));\r\
+    \n    return t[1];\r\n  }\r\n};\r\n\r\ntemplate <typename mint>\r\nvc<mint> multipoint_eval(vc<mint>&\
+    \ f, vc<mint>& x) {\r\n  if (x.empty()) return {};\r\n  SubproductTree<mint> F(x);\r\
+    \n  return F.evaluation(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> multipoint_interpolate(vc<mint>&\
+    \ x, vc<mint>& y) {\r\n  if (x.empty()) return {};\r\n  SubproductTree<mint> F(x);\r\
+    \n  return F.interpolation(y);\r\n}\r\n\r\n// calculate f(ar^k) for 0 <= k < m\r\
+    \n// https://noshi91.github.io/algorithm-encyclopedia/chirp-z-transform#noredirect\r\
+    \ntemplate <typename mint>\r\nvc<mint> multipoint_eval_on_geom_seq(vc<mint> f,\
+    \ mint a, mint r, int m) {\r\n  const int n = len(f);\r\n  assert(r != mint(0));\r\
+    \n  // a == 1 \u306B\u5E30\u7740\r\n  mint pow_a = 1;\r\n  FOR(i, n) f[i] *= pow_a,\
+    \ pow_a *= a;\r\n\r\n  auto calc = [&](mint r, int m) -> vc<mint> {\r\n    //\
+    \ r^{t_i} \u306E\u8A08\u7B97\r\n    vc<mint> res(m);\r\n    mint pow = 1;\r\n\
+    \    res[0] = 1;\r\n    FOR(i, m - 1) {\r\n      res[i + 1] = res[i] * pow;\r\n\
+    \      pow *= r;\r\n    }\r\n    return res;\r\n  };\r\n\r\n  vc<mint> A = calc(r,\
+    \ n + m - 1), B = calc(r.inverse(), max(n, m));\r\n  FOR(i, n) f[i] *= B[i];\r\
+    \n  reverse(all(f));\r\n  f = convolution(f, A);\r\n  f = {f.begin() + n - 1,\
+    \ f.end()};\r\n  f.resize(m);\r\n  FOR(i, m) f[i] *= B[i];\r\n  return f;\r\n\
+    }\n#line 2 \"poly/sum_of_rationals.hpp\"\n\n#line 4 \"poly/sum_of_rationals.hpp\"\
+    \n\n// \u6709\u7406\u5F0F\u306E\u548C\u3092\u8A08\u7B97\u3059\u308B\u3002\u5206\
+    \u5272\u7D71\u6CBB O(Nlog^2N)\u3002N \u306F\u6B21\u6570\u306E\u548C\u3002\ntemplate\
+    \ <typename mint>\npair<vc<mint>, vc<mint>> sum_of_rationals(vc<pair<vc<mint>,\
+    \ vc<mint>>> dat) {\n  using P = pair<vc<mint>, vc<mint>>;\n  auto add = [&](P&\
+    \ a, P& b) -> P {\n    int na = len(a.fi) - 1, da = len(a.se) - 1;\n    int nb\
+    \ = len(b.fi) - 1, db = len(b.se) - 1;\n    int n = max(na + db, da + nb);\n \
+    \   vc<mint> num(n + 1);\n    {\n      auto f = convolution(a.fi, b.se);\n   \
+    \   FOR(i, len(f)) num[i] += f[i];\n    }\n    {\n      auto f = convolution(a.se,\
+    \ b.fi);\n      FOR(i, len(f)) num[i] += f[i];\n    }\n    auto den = convolution(a.se,\
+    \ b.se);\n    return {num, den};\n  };\n\n  while (len(dat) > 1) {\n    int n\
+    \ = len(dat);\n    FOR(i, 1, n, 2) { dat[i - 1] = add(dat[i - 1], dat[i]); }\n\
+    \    FOR(i, ceil(n, 2)) dat[i] = dat[2 * i];\n    dat.resize(ceil(n, 2));\n  }\n\
+    \  return dat[0];\n}\n#line 3 \"poly/fps_div.hpp\"\n\n// f/g. f \u306E\u9577\u3055\
+    \u3067\u51FA\u529B\u3055\u308C\u308B.\ntemplate <typename mint, bool SPARSE =\
+    \ false>\nvc<mint> fps_div(vc<mint> f, vc<mint> g) {\n  if (SPARSE || count_terms(g)\
+    \ < 200) return fps_div_sparse(f, g);\n  int n = len(f);\n  g.resize(n);\n  g\
+    \ = fps_inv<mint>(g);\n  f = convolution(f, g);\n  f.resize(n);\n  return f;\n\
+    }\n\n// f/g \u305F\u3060\u3057 g \u306F sparse\ntemplate <typename mint>\nvc<mint>\
+    \ fps_div_sparse(vc<mint> f, vc<mint>& g) {\n  if (g[0] != mint(1)) {\n    mint\
+    \ cf = g[0].inverse();\n    for (auto&& x: f) x *= cf;\n    for (auto&& x: g)\
+    \ x *= cf;\n  }\n\n  vc<pair<int, mint>> dat;\n  FOR(i, 1, len(g)) if (g[i] !=\
+    \ mint(0)) dat.eb(i, -g[i]);\n  FOR(i, len(f)) {\n    for (auto&& [j, x]: dat)\
+    \ {\n      if (i >= j) f[i] += x * f[i - j];\n    }\n  }\n  return f;\n}\n#line\
+    \ 4 \"linalg/implicit_matrix/vandermonde.hpp\"\n\n// transpose = 0\uFF1Ag[i] =\
+    \ sum pow(i,j) f[j]\n// transpose = 1\uFF1Ag[i] = sum pow(j,i) f[j]\ntemplate\
+    \ <typename mint>\nvc<mint> vandermonde(vc<mint> f, bool transpose, bool inverse)\
+    \ {\n  int N = len(f);\n  using poly = vc<mint>;\n  if (!transpose) {\n    vc<mint>\
+    \ x(N);\n    FOR(i, N) x[i] = mint(i);\n    if (!inverse) { return multipoint_eval(f,\
+    \ x); }\n    if (inverse) { return multipoint_interpolate(x, f); }\n  }\n  if\
+    \ (!inverse) {\n    vc<pair<poly, poly>> dat(N);\n    FOR(j, N) {\n      poly\
+    \ a{f[j]}, b{mint(1), mint(-j)};\n      dat[j] = {a, b};\n    }\n    auto [num,\
+    \ den] = sum_of_rationals(dat);\n    num.resize(N);\n    return fps_div(num, den);\n\
+    \  }\n  // \u3053\u3063\u3061\u306F multipoint evalation \u3067\u3067\u304D\u308B\
+    \u3068\u601D\u308F\u308C\u308B\u304C\u3001\u672A\u5B9F\u88C5\n  assert(0);\n \
+    \ return poly{};\n}\n"
+  code: "#include \"poly/multipoint.hpp\"\n#include \"poly/sum_of_rationals.hpp\"\n\
+    #include \"poly/fps_div.hpp\"\n\n// transpose = 0\uFF1Ag[i] = sum pow(i,j) f[j]\n\
+    // transpose = 1\uFF1Ag[i] = sum pow(j,i) f[j]\ntemplate <typename mint>\nvc<mint>\
+    \ vandermonde(vc<mint> f, bool transpose, bool inverse) {\n  int N = len(f);\n\
+    \  using poly = vc<mint>;\n  if (!transpose) {\n    vc<mint> x(N);\n    FOR(i,\
+    \ N) x[i] = mint(i);\n    if (!inverse) { return multipoint_eval(f, x); }\n  \
+    \  if (inverse) { return multipoint_interpolate(x, f); }\n  }\n  if (!inverse)\
+    \ {\n    vc<pair<poly, poly>> dat(N);\n    FOR(j, N) {\n      poly a{f[j]}, b{mint(1),\
+    \ mint(-j)};\n      dat[j] = {a, b};\n    }\n    auto [num, den] = sum_of_rationals(dat);\n\
+    \    num.resize(N);\n    return fps_div(num, den);\n  }\n  // \u3053\u3063\u3061\
+    \u306F multipoint evalation \u3067\u3067\u304D\u308B\u3068\u601D\u308F\u308C\u308B\
+    \u304C\u3001\u672A\u5B9F\u88C5\n  assert(0);\n  return poly{};\n}"
   dependsOn:
+  - poly/multipoint.hpp
+  - poly/fps_inv.hpp
   - poly/count_terms.hpp
   - poly/convolution.hpp
   - mod/modint.hpp
@@ -535,72 +445,19 @@ data:
   - poly/convolution_naive.hpp
   - poly/ntt.hpp
   - poly/fft.hpp
-  isVerificationFile: false
-  path: poly/fps_inv.hpp
-  requiredBy:
-  - seq/sum_of_powers.hpp
-  - seq/famous/surjection.hpp
-  - seq/famous/partition_number.hpp
-  - seq/famous/indecomposable_permutations.hpp
-  - seq/famous/stirling_number_2.hpp
-  - linalg/implicit_matrix/vandermonde.hpp
-  - poly/fps_sqrt.hpp
+  - poly/sum_of_rationals.hpp
   - poly/fps_div.hpp
-  - poly/poly_gcd.hpp
-  - poly/product_of_f_rk_x.hpp
-  - poly/fps_pow.hpp
-  - poly/composition_f_ex.hpp
-  - poly/poly_divmod.hpp
-  - poly/product_of_pow_of_linear.hpp
-  - poly/multivar_convolution_cyclic.hpp
-  - poly/sum_of_exp_bx.hpp
-  - poly/fps_log.hpp
-  - poly/multipoint.hpp
-  timestamp: '2023-01-19 00:36:40+09:00'
+  isVerificationFile: false
+  path: linalg/implicit_matrix/vandermonde.hpp
+  requiredBy: []
+  timestamp: '2023-01-22 22:24:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1392.test.cpp
-  - test/yukicoder/2166.test.cpp
-  - test/yukicoder/2097.test.cpp
-  - test/yukicoder/1939.test.cpp
-  - test/yukicoder/1321.test.cpp
-  - test/yukicoder/1145.test.cpp
-  - test/yukicoder/1875.test.cpp
-  - test/yukicoder/1533.test.cpp
-  - test/yukicoder/1080.test.cpp
-  - test/yukicoder/1549.test.cpp
-  - test/yukicoder/1755.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - test/library_checker/polynomial/inv_of_fps.test.cpp
-  - test/library_checker/polynomial/pow_of_fps.test.cpp
-  - test/library_checker/polynomial/inv_of_polynomials.test.cpp
-  - test/library_checker/polynomial/inv_of_fps_amint.test.cpp
-  - test/library_checker/polynomial/log_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/log_of_fps.test.cpp
-  - test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/polynomial_division.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - test/library_checker/math/partition.test.cpp
-  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/mytest/vandermonde.test.cpp
-  - test/mytest/bell.test.cpp
-  - test/mytest/simple_perm.test.cpp
-  - test/mytest/online_pow.test.cpp
-  - test/mytest/enum_partitions.test.cpp
-  - test/mytest/online_log.test.cpp
-  - test/mytest/chirp_z.test.cpp
-  - test/mytest/online_inv.test.cpp
-  - test/mytest/online_division.test.cpp
-  - test/atcoder/abc272_h.test.cpp
-documentation_of: poly/fps_inv.hpp
+documentation_of: linalg/implicit_matrix/vandermonde.hpp
 layout: document
 redirect_from:
-- /library/poly/fps_inv.hpp
-- /library/poly/fps_inv.hpp.html
-title: poly/fps_inv.hpp
+- /library/linalg/implicit_matrix/vandermonde.hpp
+- /library/linalg/implicit_matrix/vandermonde.hpp.html
+title: linalg/implicit_matrix/vandermonde.hpp
 ---

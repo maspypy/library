@@ -30,6 +30,9 @@ data:
     path: linalg/implicit_matrix/pascal.hpp
     title: linalg/implicit_matrix/pascal.hpp
   - icon: ':heavy_check_mark:'
+    path: linalg/implicit_matrix/vandermonde.hpp
+    title: linalg/implicit_matrix/vandermonde.hpp
+  - icon: ':heavy_check_mark:'
     path: nt/multiplicative_convolution_mod2n.hpp
     title: nt/multiplicative_convolution_mod2n.hpp
   - icon: ':heavy_check_mark:'
@@ -59,6 +62,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_composition.hpp
     title: poly/fps_composition.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/fps_div.hpp
+    title: poly/fps_div.hpp
   - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
@@ -355,6 +361,9 @@ data:
     path: test/mytest/simple_perm.test.cpp
     title: test/mytest/simple_perm.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/vandermonde.test.cpp
+    title: test/mytest/vandermonde.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080.test.cpp
     title: test/yukicoder/1080.test.cpp
   - icon: ':heavy_check_mark:'
@@ -435,6 +444,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2097.test.cpp
     title: test/yukicoder/2097.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2108.test.cpp
+    title: test/yukicoder/2108.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
@@ -837,10 +849,12 @@ data:
   - graph/count_independent_set.hpp
   - nt/multiplicative_convolution_mod2n.hpp
   - linalg/implicit_matrix/pascal.hpp
+  - linalg/implicit_matrix/vandermonde.hpp
   - linalg/det_A_plus_xB.hpp
   - poly/fps_sqrt.hpp
   - poly/fps_inv.hpp
   - poly/sparse_exp_of_div.hpp
+  - poly/fps_div.hpp
   - poly/product_of_one_minus_xn.hpp
   - poly/lagrange_interpolate_iota.hpp
   - poly/product_of_one_plus_xn.hpp
@@ -895,6 +909,7 @@ data:
   - test/yukicoder/1145.test.cpp
   - test/yukicoder/1821.test.cpp
   - test/yukicoder/1857.test.cpp
+  - test/yukicoder/2108.test.cpp
   - test/yukicoder/1303.test.cpp
   - test/yukicoder/1685.test.cpp
   - test/yukicoder/1080_2.test.cpp
@@ -949,6 +964,7 @@ data:
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
+  - test/mytest/vandermonde.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/bell.test.cpp
   - test/mytest/pascal.test.cpp

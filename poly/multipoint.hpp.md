@@ -27,6 +27,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: linalg/implicit_matrix/vandermonde.hpp
+    title: linalg/implicit_matrix/vandermonde.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
   _extendedVerifiedWith:
@@ -45,6 +48,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/vandermonde.test.cpp
+    title: test/mytest/vandermonde.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
@@ -452,6 +458,7 @@ data:
   isVerificationFile: false
   path: poly/multipoint.hpp
   requiredBy:
+  - linalg/implicit_matrix/vandermonde.hpp
   - poly/multivar_convolution_cyclic.hpp
   timestamp: '2023-01-19 00:36:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -460,6 +467,7 @@ data:
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/library_checker/polynomial/polynomial_interpolation.test.cpp
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - test/mytest/vandermonde.test.cpp
   - test/mytest/chirp_z.test.cpp
   - test/atcoder/abc272_h.test.cpp
 documentation_of: poly/multipoint.hpp

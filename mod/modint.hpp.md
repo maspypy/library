@@ -15,6 +15,9 @@ data:
     path: linalg/implicit_matrix/pascal.hpp
     title: linalg/implicit_matrix/pascal.hpp
   - icon: ':heavy_check_mark:'
+    path: linalg/implicit_matrix/vandermonde.hpp
+    title: linalg/implicit_matrix/vandermonde.hpp
+  - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
   - icon: ':heavy_check_mark:'
@@ -56,6 +59,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_composition.hpp
     title: poly/fps_composition.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/fps_div.hpp
+    title: poly/fps_div.hpp
   - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
@@ -520,6 +526,9 @@ data:
     path: test/mytest/tdpc_grid_dp.test.cpp
     title: test/mytest/tdpc_grid_dp.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/vandermonde.test.cpp
+    title: test/mytest/vandermonde.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
   - icon: ':heavy_check_mark:'
@@ -690,6 +699,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2097.test.cpp
     title: test/yukicoder/2097.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2108.test.cpp
+    title: test/yukicoder/2108.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
@@ -937,10 +949,12 @@ data:
   - nt/multiplicative_convolution_mod2n.hpp
   - nt/four_square.hpp
   - linalg/implicit_matrix/pascal.hpp
+  - linalg/implicit_matrix/vandermonde.hpp
   - linalg/det_A_plus_xB.hpp
   - poly/fps_sqrt.hpp
   - poly/fps_inv.hpp
   - poly/sparse_exp_of_div.hpp
+  - poly/fps_div.hpp
   - poly/product_of_one_minus_xn.hpp
   - poly/lagrange_interpolate_iota.hpp
   - poly/product_of_one_plus_xn.hpp
@@ -1014,6 +1028,7 @@ data:
   - test/yukicoder/1141.test.cpp
   - test/yukicoder/1857.test.cpp
   - test/yukicoder/1167.test.cpp
+  - test/yukicoder/2108.test.cpp
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1303.test.cpp
   - test/yukicoder/1685.test.cpp
@@ -1120,6 +1135,7 @@ data:
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
   - test/library_checker/matrix/implicit_matrix.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp
+  - test/mytest/vandermonde.test.cpp
   - test/mytest/rbst_monoid_2.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/bell.test.cpp

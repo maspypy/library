@@ -1051,6 +1051,9 @@ data:
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/vandermonde.test.cpp
+    title: test/mytest/vandermonde.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/wavelet_matrix.test.cpp
     title: test/mytest/wavelet_matrix.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1507,6 +1510,9 @@ data:
     path: test/yukicoder/2102.test.cpp
     title: test/yukicoder/2102.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2108.test.cpp
+    title: test/yukicoder/2108.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2109.test.cpp
     title: test/yukicoder/2109.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1911,6 +1917,7 @@ data:
   - test/yukicoder/1857.test.cpp
   - test/yukicoder/1167.test.cpp
   - test/yukicoder/913.test.cpp
+  - test/yukicoder/2108.test.cpp
   - test/yukicoder/1678.test.cpp
   - test/yukicoder/1541.test.cpp
   - test/yukicoder/1643.test.cpp
@@ -2189,6 +2196,7 @@ data:
   - test/mytest/maxplus_concave.test.cpp
   - test/mytest/summax_assign.test.cpp
   - test/mytest/range_mex.test.cpp
+  - test/mytest/vandermonde.test.cpp
   - test/mytest/wavelet_matrix.test.cpp
   - test/mytest/binary_trie.test.cpp
   - test/mytest/rbst_monoid_2.test.cpp

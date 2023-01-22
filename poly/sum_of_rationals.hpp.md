@@ -21,6 +21,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: linalg/implicit_matrix/vandermonde.hpp
+    title: linalg/implicit_matrix/vandermonde.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
   - icon: ':heavy_check_mark:'
@@ -39,6 +42,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc276_g_2.test.cpp
     title: test/atcoder/abc276_g_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/vandermonde.test.cpp
+    title: test/mytest/vandermonde.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1145.test.cpp
     title: test/yukicoder/1145.test.cpp
@@ -361,6 +367,7 @@ data:
   path: poly/sum_of_rationals.hpp
   requiredBy:
   - seq/sum_of_powers.hpp
+  - linalg/implicit_matrix/vandermonde.hpp
   - poly/composition_f_ex.hpp
   - poly/product_of_pow_of_linear.hpp
   - poly/sum_of_exp_bx.hpp
@@ -370,6 +377,7 @@ data:
   - test/yukicoder/1145.test.cpp
   - test/yukicoder/1875.test.cpp
   - test/yukicoder/1962.test.cpp
+  - test/mytest/vandermonde.test.cpp
   - test/atcoder/abc276_g.test.cpp
   - test/atcoder/abc276_g_2.test.cpp
 documentation_of: poly/sum_of_rationals.hpp
