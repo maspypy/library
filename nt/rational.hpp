@@ -18,7 +18,7 @@ struct Rational {
 
   void reduce() {
     if (!REDUCE) return;
-    T g = gcd(num, den);
+    T g = gcd(abs(num), abs(den));
     num /= g, den /= g;
   }
 
