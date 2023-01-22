@@ -1,5 +1,5 @@
 #include "convex/larsch.hpp"
-#include "seq/monotone_minima.hpp"
+#include "convex/smawk.hpp"
 
 // 定義域 [0, N] の範囲で f の monge 性を確認
 template <typename T, typename F>
@@ -26,24 +26,6 @@ vi monge_shortest_path(int N, F f) {
     dp[r] = dp[l] + f(l, r);
   }
   return dp;
-}
-
-template <typename T, typename F>
-vc<vc<T>> monge_shortest_path_d_edge_dense(int N, F f, T INF, int d_max) {
-  vv(T, DP, d_max + 1, N + 1, INF);
-  DP[0][0] = 0;
-  FOR(d, d_max) {
-    auto& dp = DP[d];
-    auto& newdp = DP[d + 1];
-    auto g = [&](int r, int l) -> T {
-      //      print(l, r);
-      if (r <= l) return INF;
-      return dp[l] + f(l, r);
-    };
-    auto ret = monotone_minima<T>(N + 1, N + 1, g);
-    FOR(j, N + 1) newdp[j] = ret[j].se;
-  }
-  return DP;
 }
 
 /*

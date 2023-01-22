@@ -1,8 +1,8 @@
 #define PROBLEM "https://yukicoder.me/problems/no/187"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "nt/lcm.hpp"
 #include "nt/crt.hpp"
+#include "mod/modint.hpp"
 
 void solve() {
   LL(N);
@@ -13,7 +13,16 @@ void solve() {
     mods.eb(b);
   }
 
-  if (MAX(vals) == 0) { return print(LCM(mods, 1000000007)); }
+  if (MAX(vals) == 0) {
+    map<int, int> MP;
+    for (auto&& m: mods) {
+      for (auto&& [p, e]: factor(m)) { chmax(MP[p], e); }
+    }
+    using mint = modint107;
+    mint ANS = 1;
+    for (auto&& [p, e]: MP) ANS *= mint(p).pow(e);
+    return print(ANS);
+  }
   print(CRT(vals, mods, 1000000007, 0));
 }
 
