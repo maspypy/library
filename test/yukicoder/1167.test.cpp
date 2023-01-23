@@ -20,10 +20,10 @@ void solve() {
 
   Range_Xor_Basis_Query<u32, 32> X(A);
   FOR(q, Q) {
-    for (auto&& [l, r]: query[q]) { X.add(l, r); }
+    for (auto&& [l, r]: query[q]) { X.query(l, r); }
   }
 
-  vc<int> dims(len(X.query));
+  vc<int> dims(X.Q);
   auto CALC = [&](int q, vc<u32> basis) -> void { dims[q] = len(basis); };
 
   X.calc(CALC);
@@ -39,11 +39,6 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
