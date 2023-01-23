@@ -6,12 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_2.test.cpp
     title: test/yukicoder/4_2.test.cpp
-  - icon: ':x:'
-    path: test_atcoder/abc221g.test.cpp
-    title: test_atcoder/abc221g.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"knapsack/subset_sum.hpp\"\n// \u4F5C\u308C\u308B\u306A\u3089\
@@ -56,10 +53,9 @@ data:
   path: knapsack/subset_sum.hpp
   requiredBy: []
   timestamp: '2023-01-23 18:34:49+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/4_2.test.cpp
-  - test_atcoder/abc221g.test.cpp
 documentation_of: knapsack/subset_sum.hpp
 layout: document
 redirect_from:
