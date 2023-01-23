@@ -1,21 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: ds/meldable_heap.hpp
-    title: ds/meldable_heap.hpp
+  - icon: ':question:'
+    path: ds/fastset.hpp
+    title: ds/fastset.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/reverse_graph.hpp
-    title: graph/reverse_graph.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/shortest_path/K_shortest_walk.hpp
-    title: graph/shortest_path/K_shortest_walk.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/shortest_path/dijkstra.hpp
-    title: graph/shortest_path/dijkstra.hpp
+  - icon: ':question:'
+    path: graph/toposort.hpp
+    title: graph/toposort.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -24,23 +18,22 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/k_shortest_walk
+    PROBLEM: https://atcoder.jp/contests/abc223/tasks/abc223_d
     links:
-    - https://judge.yosupo.jp/problem/k_shortest_walk
-  bundledCode: "#line 1 \"test/library_checker/graph/K_shortest_walk.test.cpp\"\n\
-    #define PROBLEM \"https://judge.yosupo.jp/problem/k_shortest_walk\"\n#line 1 \"\
-    my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\
-    #pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include\
-    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing pi =\
-    \ pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64\
-    \ = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nusing vc\
-    \ = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    - https://atcoder.jp/contests/abc223/tasks/abc223_d
+  bundledCode: "#line 1 \"test_atcoder/abc223d.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc223/tasks/abc223_d\"\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
+    )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
+    using pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\n\
+    using u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\n\
+    using vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate\
+    \ <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
     template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
     \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
     \ greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h,\
@@ -251,97 +244,72 @@ data:
     \ {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
     \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
-    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 1 \"ds/meldable_heap.hpp\"\
-    \n\ntemplate <typename VAL, bool PERSISTENT, int NODES>\nstruct Meldable_Heap\
-    \ {\n  struct Node {\n    Node *l, *r;\n    VAL x;\n    int s;\n  };\n  Node *pool;\n\
-    \  int pid;\n  using np = Node *;\n\n  Meldable_Heap() : pid(0) { pool = new Node[NODES];\
-    \ }\n\n  np new_node(const VAL &x) {\n    pool[pid].l = pool[pid].r = nullptr;\n\
-    \    pool[pid].x = x;\n    pool[pid].s = 1;\n    return &(pool[pid++]);\n  }\n\
-    \  np copy_node(np a) {\n    if (!a || !PERSISTENT) return a;\n    np b = new_node(a->x);\n\
-    \    b->s = a->s;\n    b->l = a->l;\n    b->r = a->r;\n    return b;\n  }\n  np\
-    \ meld(np a, np b) {\n    if (!a) return b;\n    if (!b) return a;\n    a = copy_node(a);\n\
-    \    b = copy_node(b);\n    if ((a->x) > (b->x)) swap(a, b);\n    a->r = (a->r\
-    \ ? meld(a->r, b) : b);\n    if (!(a->l) || (a->l->s < a->r->s)) swap(a->l, a->r);\n\
-    \    a->s = (a->r ? a->r->s : 0) + 1;\n    return a;\n  }\n  np push(np a, VAL\
-    \ x) { return meld(a, new_node(x)); }\n  np pop(np a) { return meld(a->l, a->r);\
-    \ }\n  VAL top(np a) { return a->x; }\n  vc<VAL> get_all(np a) {\n    vc<VAL>\
-    \ A;\n    auto dfs = [&](auto &dfs, np a) -> void {\n      if (!a) return;\n \
-    \     A.eb(a->x);\n      dfs(dfs, a->l);\n      dfs(dfs, a->r);\n    };\n    dfs(dfs,\
-    \ a);\n    return A;\n  }\n};\n#line 3 \"graph/shortest_path/dijkstra.hpp\"\n\n\
-    template <typename T, typename Graph>\npair<vc<T>, vc<int>> dijkstra(Graph& G,\
-    \ int v, T INF) {\n  auto N = G.N;\n  vector<T> dist(N, INF);\n  vector<int> par(N,\
-    \ -1);\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>>\
-    \ que;\n\n  dist[v] = 0;\n  que.emplace(0, v);\n  while (!que.empty()) {\n   \
-    \ auto [dv, v] = que.top();\n    que.pop();\n    if (dv > dist[v]) continue;\n\
-    \    for (auto&& e: G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost))\
-    \ {\n        par[e.to] = e.frm;\n        que.emplace(dist[e.to], e.to);\n    \
-    \  }\n    }\n  }\n  return {dist, par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\
-    \u30C8\u3002[dist, par, root]\ntemplate <typename T, typename Graph>\ntuple<vc<T>,\
-    \ vc<int>, vc<int>> dijkstra(Graph& G, vc<int> vs, T INF) {\n  assert(G.is_prepared());\n\
-    \  int N = G.N;\n  vc<ll> dist(N, INF);\n  vc<int> par(N, -1);\n  vc<int> root(N,\
-    \ -1);\n\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>>\
-    \ que;\n\n  for (auto&& v: vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.emplace(T(0),\
-    \ v);\n  }\n\n  while (!que.empty()) {\n    auto [dv, v] = que.top();\n    que.pop();\n\
-    \    if (dv > dist[v]) continue;\n    for (auto&& e: G[v]) {\n      if (chmin(dist[e.to],\
-    \ dist[e.frm] + e.cost)) {\n        root[e.to] = root[e.frm];\n        par[e.to]\
-    \ = e.frm;\n        que.push(mp(dist[e.to], e.to));\n      }\n    }\n  }\n  return\
-    \ {dist, par, root};\n}\n#line 2 \"graph/reverse_graph.hpp\"\n\r\ntemplate <typename\
-    \ T>\r\nGraph<T, 1> reverse_graph(Graph<T, 1>& G) {\r\n  assert(G.is_directed());\r\
-    \n  Graph<T, 1> G1(G.N);\r\n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost,\
-    \ e.id); }\r\n  G1.build();\r\n  return G1;\r\n}\r\n#line 4 \"graph/shortest_path/K_shortest_walk.hpp\"\
-    \n\n// INF \u57CB\u3081\u3057\u3066\u5FC5\u305A\u9577\u3055 K \u306B\u3057\u305F\
-    \u3082\u306E\u3092\u304B\u3048\u3059\u3002\ntemplate <typename T, typename GT,\
-    \ int NODES>\nvc<T> K_shortest_walk(GT &G, int s, int t, int K, T INF) {\n  assert(G.is_directed());\n\
-    \  int N = G.N;\n  auto RG = reverse_graph(G);\n  auto [dist, par] = dijkstra<ll,\
-    \ decltype(RG)>(RG, t, INF);\n  if (dist[s] == INF) { return vc<T>(K, INF); }\n\
-    \n  using P = pair<T, int>;\n  Meldable_Heap<P, true, NODES> X;\n  using np =\
-    \ typename decltype(X)::np;\n  vc<np> nodes(N, nullptr);\n\n  vc<bool> vis(N);\n\
-    \  vc<int> st = {t};\n  vis[t] = 1;\n  while (len(st)) {\n    int v = POP(st);\n\
-    \    bool done = 0;\n    for (auto &&e: G[v]) {\n      if (dist[e.to] == INF)\
-    \ continue;\n      if (!done && par[v] == e.to && dist[v] == dist[e.to] + e.cost)\
-    \ {\n        done = 1;\n        continue;\n      }\n      T cost = -dist[v] +\
-    \ e.cost + dist[e.to];\n      nodes[v] = X.push(nodes[v], {cost, e.to});\n   \
-    \ }\n    for (auto &&e: RG[v]) {\n      if (vis[e.to]) continue;\n      if (par[e.to]\
-    \ == v) {\n        nodes[e.to] = X.meld(nodes[e.to], nodes[v]);\n        vis[e.to]\
-    \ = 1;\n        st.eb(e.to);\n      }\n    }\n  }\n\n  T base = dist[s];\n  vc<T>\
-    \ ANS = {base};\n  if (nodes[s]) {\n    using PAIR = pair<ll, np>;\n    auto comp\
-    \ = [](auto a, auto b) { return a.fi > b.fi; };\n    priority_queue<PAIR, vc<PAIR>,\
-    \ decltype(comp)> que(comp);\n    que.emplace(base + X.top(nodes[s]).fi, nodes[s]);\n\
-    \    while (len(ANS) < K && len(que)) {\n      auto [d, n] = que.top();\n    \
-    \  que.pop();\n      ANS.eb(d);\n      if (n->l) que.emplace(d + (n->l->x.fi)\
-    \ - (n->x.fi), n->l);\n      if (n->r) que.emplace(d + (n->r->x.fi) - (n->x.fi),\
-    \ n->r);\n      np m = nodes[n->x.se];\n      if (m) { que.emplace(d + m->x.fi,\
-    \ m); }\n    }\n  }\n  while (len(ANS) < K) ANS.eb(INF);\n  return ANS;\n}\n#line\
-    \ 6 \"test/library_checker/graph/K_shortest_walk.test.cpp\"\n\nvoid solve() {\n\
-    \  INT(N, M, s, t, K);\n  Graph<int, 1> G1(N);\n  G1.read_graph(M, 1, 0);\n  const\
-    \ ll INF = 1LL << 60;\n  auto ANS = K_shortest_walk<ll, decltype(G1), 5'000'000>(G1,\
-    \ s, t, K, INF);\n  for (auto &&x: ANS) {\n    if (x == INF) x = -1;\n    print(x);\n\
-    \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/k_shortest_walk\"\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/base.hpp\"\n\
-    #include \"graph/shortest_path/K_shortest_walk.hpp\"\n\nvoid solve() {\n  INT(N,\
-    \ M, s, t, K);\n  Graph<int, 1> G1(N);\n  G1.read_graph(M, 1, 0);\n  const ll\
-    \ INF = 1LL << 60;\n  auto ANS = K_shortest_walk<ll, decltype(G1), 5'000'000>(G1,\
-    \ s, t, K, INF);\n  for (auto &&x: ANS) {\n    if (x == INF) x = -1;\n    print(x);\n\
-    \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 1 \"ds/fastset.hpp\"\
+    \n/* 64\u5206\u6728\u3002\r\ninsert, erase\r\n[]\u3067\u306E\u5B58\u5728\u5224\
+    \u5B9A\r\nnext, prev\r\n*/\r\nstruct FastSet {\r\n  using uint = unsigned;\r\n\
+    \  using ull = unsigned long long;\r\n\r\n  int bsr(ull x) { return 63 - __builtin_clzll(x);\
+    \ }\r\n  int bsf(ull x) { return __builtin_ctzll(x); }\r\n\r\n  static constexpr\
+    \ uint B = 64;\r\n  int n, lg;\r\n  vector<vector<ull>> seg;\r\n  FastSet(int\
+    \ _n) : n(_n) {\r\n    do {\r\n      seg.push_back(vector<ull>((_n + B - 1) /\
+    \ B));\r\n      _n = (_n + B - 1) / B;\r\n    } while (_n > 1);\r\n    lg = int(seg.size());\r\
+    \n  }\r\n  bool operator[](int i) const { return (seg[0][i / B] >> (i % B) & 1)\
+    \ != 0; }\r\n  void insert(int i) {\r\n    for (int h = 0; h < lg; h++) {\r\n\
+    \      seg[h][i / B] |= 1ULL << (i % B);\r\n      i /= B;\r\n    }\r\n  }\r\n\
+    \  void erase(int i) {\r\n    for (int h = 0; h < lg; h++) {\r\n      seg[h][i\
+    \ / B] &= ~(1ULL << (i % B));\r\n      if (seg[h][i / B]) break;\r\n      i /=\
+    \ B;\r\n    }\r\n  }\r\n\r\n  // x\u4EE5\u4E0A\u6700\u5C0F\u306E\u8981\u7D20\u3092\
+    \u8FD4\u3059\u3002\u5B58\u5728\u3057\u306A\u3051\u308C\u3070 n\u3002\r\n  int\
+    \ next(int i) {\r\n    chmax(i, 0);\r\n    if (i >= n) return n;\r\n    for (int\
+    \ h = 0; h < lg; h++) {\r\n      if (i / B == seg[h].size()) break;\r\n      ull\
+    \ d = seg[h][i / B] >> (i % B);\r\n      if (!d) {\r\n        i = i / B + 1;\r\
+    \n        continue;\r\n      }\r\n      // find\r\n      i += bsf(d);\r\n    \
+    \  for (int g = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += bsf(seg[g][i\
+    \ / B]);\r\n      }\r\n      return i;\r\n    }\r\n    return n;\r\n  }\r\n\r\n\
+    \  // x\u4EE5\u4E0B\u6700\u5927\u306E\u8981\u7D20\u3092\u8FD4\u3059\u3002\u5B58\
+    \u5728\u3057\u306A\u3051\u308C\u3070 -1\u3002\r\n  int prev(int i) {\r\n    if\
+    \ (i < 0) return -1;\r\n    if (i >= n) i = n - 1;\r\n    for (int h = 0; h <\
+    \ lg; h++) {\r\n      if (i == -1) break;\r\n      ull d = seg[h][i / B] << (63\
+    \ - i % 64);\r\n      if (!d) {\r\n        i = i / B - 1;\r\n        continue;\r\
+    \n      }\r\n      // find\r\n      i += bsr(d) - (B - 1);\r\n      for (int g\
+    \ = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += bsr(seg[g][i / B]);\r\
+    \n      }\r\n      return i;\r\n    }\r\n    return -1;\r\n  }\r\n\r\n  // [l,\
+    \ r) \u5185\u306E\u8981\u7D20\u3092\u5168\u90E8\u96C6\u3081\u308B\r\n  vector<int>\
+    \ collect(int l, int r) {\r\n    vector<int> res;\r\n    int x = l - 1;\r\n  \
+    \  while (1) {\r\n      x = next(x + 1);\r\n      if (x >= r) break;\r\n     \
+    \ res.emplace_back(x);\r\n    }\r\n    return res;\r\n  }\r\n\r\n  void debug()\
+    \ {\r\n    string s;\r\n    for (int i = 0; i < n; ++i) s += ((*this)[i] ? '1'\
+    \ : '0');\r\n    print(s);\r\n  }\r\n};\r\n#line 3 \"graph/toposort.hpp\"\n\n\
+    // \u8F9E\u66F8\u9806\u6700\u5C0F\u306E toposort \u3092\u8FD4\u3059\ntemplate\
+    \ <typename GT>\nvc<int> toposort(GT& G) {\n  assert(G.is_prepared() && G.is_directed());\n\
+    \  const int N = G.N;\n  auto [indeg, outdeg] = G.deg_array_inout();\n  FastSet\
+    \ que(N);\n  vc<int> V;\n  FOR(v, N) if (indeg[v] == 0) que.insert(v);\n  while\
+    \ (1) {\n    int v = que.next(0);\n    if (v == N) break;\n    que.erase(v), V.eb(v);\n\
+    \    for (auto&& e: G[v]) {\n      if (--indeg[e.to] == 0) que.insert(e.to);\n\
+    \    }\n  }\n  return (len(V) < N ? vc<int>{} : V);\n}\n#line 5 \"test_atcoder/abc223d.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, M);\n  Graph<bool, 1> G(N);\n  G.read_graph(M);\n\
+    \  auto I = toposort(G);\n  if (I.empty()) return print(-1);\n  for (auto&& x:\
+    \ I) ++x;\n  print(I);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc223/tasks/abc223_d\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/toposort.hpp\"\
+    \n\nvoid solve() {\n  LL(N, M);\n  Graph<bool, 1> G(N);\n  G.read_graph(M);\n\
+    \  auto I = toposort(G);\n  if (I.empty()) return print(-1);\n  for (auto&& x:\
+    \ I) ++x;\n  print(I);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
+  - graph/toposort.hpp
   - graph/base.hpp
-  - graph/shortest_path/K_shortest_walk.hpp
-  - ds/meldable_heap.hpp
-  - graph/shortest_path/dijkstra.hpp
-  - graph/reverse_graph.hpp
+  - ds/fastset.hpp
   isVerificationFile: true
-  path: test/library_checker/graph/K_shortest_walk.test.cpp
+  path: test_atcoder/abc223d.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-01-23 16:27:51+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/graph/K_shortest_walk.test.cpp
+documentation_of: test_atcoder/abc223d.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/graph/K_shortest_walk.test.cpp
-- /verify/test/library_checker/graph/K_shortest_walk.test.cpp.html
-title: test/library_checker/graph/K_shortest_walk.test.cpp
+- /verify/test_atcoder/abc223d.test.cpp
+- /verify/test_atcoder/abc223d.test.cpp.html
+title: test_atcoder/abc223d.test.cpp
 ---

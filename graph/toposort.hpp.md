@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: ds/fastset.hpp
+    title: ds/fastset.hpp
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -12,12 +15,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2251_1.test.cpp
     title: test/aoj/2251_1.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test_atcoder/abc223d.test.cpp
+    title: test_atcoder/abc223d.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
-    links:
-    - https://codeforces.com/contest/798/problem/E
+    links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n  using\
@@ -62,68 +67,68 @@ data:
     \ {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
     \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
-    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/toposort.hpp\"\
-    \n\n// DAG \u3058\u3083\u306A\u304B\u3063\u305F\u3089\u7A7A\u914D\u5217\n// \u8F9E\
-    \u66F8\u9806\u6700\u5C0F\u3082\u3067\u304D\u308B\uFF1AO(NlogN) \u2192 abc223\n\
-    template <typename Graph>\nvc<int> toposort(Graph& G, bool lex_min = false) {\n\
-    \  assert(G.is_prepared());\n  assert(G.is_directed());\n  auto [indeg, outdeg]\
-    \ = G.deg_array_inout();\n  if (!lex_min) {\n    vc<int> V;\n    ll N = G.N;\n\
-    \    FOR(v, N) if (indeg[v] == 0) V.eb(v);\n    ll p = 0;\n    while (p < len(V))\
-    \ {\n      auto v = V[p++];\n      for (auto&& e: G[v]) {\n        if (--indeg[e.to]\
-    \ == 0) V.eb(e.to);\n      }\n    }\n    if (len(V) < N) { V.clear(); }\n    return\
-    \ V;\n  } else {\n    pqg<int> que;\n    vc<int> V;\n    ll N = G.N;\n    FOR(v,\
-    \ N) if (indeg[v] == 0) que.push(v);\n    while (len(que)) {\n      auto v = que.top();\n\
-    \      que.pop();\n      V.eb(v);\n      for (auto&& e: G[v]) {\n        if (--indeg[e.to]\
-    \ == 0) que.push(e.to);\n      }\n    }\n    if (len(V) < N) { V.clear(); }\n\
-    \    return V;\n  }\n}\n\n// https://codeforces.com/contest/798/problem/E\n//\
-    \ toposort \u306E\u5019\u88DC\u3092\u3072\u3068\u3064\u51FA\u529B\u3059\u308B\u3002\
-    \u30C1\u30A7\u30C3\u30AF\u306F\u3057\u306A\u3044\u3002\n// \u967D\u306B\u30B0\u30E9\
-    \u30D5\u3092\u4F5C\u3089\u305A\u3001\u4F55\u3089\u304B\u306E\u30C7\u30FC\u30BF\
-    \u69CB\u9020\u3067\u672A\u8A2A\u554F\u306E\u884C\u304D\u5148\u3092\u63A2\u3059\
-    \u60F3\u5B9A\u3002\n// set_used(v)\uFF1Av \u3092\u4F7F\u7528\u6E08\u306B\u5909\
-    \u66F4\u3059\u308B\n// find_unused(v)\uFF1Av \u306E\u884C\u304D\u5148\u3092\u63A2\
-    \u3059\u3002\u306A\u3051\u308C\u3070 -1 \u3092\u8FD4\u3059\u3053\u3068\u3002\n\
-    template <typename F1, typename F2>\nvc<int> toposort(int N, F1 set_used, F2 find_unused)\
-    \ {\n  vc<int> V;\n  vc<bool> done(N);\n  auto dfs = [&](auto self, ll v) -> void\
-    \ {\n    set_used(v);\n    done[v] = 1;\n    while (1) {\n      int to = find_unused(v);\n\
-    \      if (to == -1) break;\n      self(self, to);\n    }\n    V.eb(v);\n  };\n\
-    \  FOR(v, N) if (!done[v]) dfs(dfs, v);\n  return V;\n}\n"
-  code: "#include \"graph/base.hpp\"\n\n// DAG \u3058\u3083\u306A\u304B\u3063\u305F\
-    \u3089\u7A7A\u914D\u5217\n// \u8F9E\u66F8\u9806\u6700\u5C0F\u3082\u3067\u304D\u308B\
-    \uFF1AO(NlogN) \u2192 abc223\ntemplate <typename Graph>\nvc<int> toposort(Graph&\
-    \ G, bool lex_min = false) {\n  assert(G.is_prepared());\n  assert(G.is_directed());\n\
-    \  auto [indeg, outdeg] = G.deg_array_inout();\n  if (!lex_min) {\n    vc<int>\
-    \ V;\n    ll N = G.N;\n    FOR(v, N) if (indeg[v] == 0) V.eb(v);\n    ll p = 0;\n\
-    \    while (p < len(V)) {\n      auto v = V[p++];\n      for (auto&& e: G[v])\
-    \ {\n        if (--indeg[e.to] == 0) V.eb(e.to);\n      }\n    }\n    if (len(V)\
-    \ < N) { V.clear(); }\n    return V;\n  } else {\n    pqg<int> que;\n    vc<int>\
-    \ V;\n    ll N = G.N;\n    FOR(v, N) if (indeg[v] == 0) que.push(v);\n    while\
-    \ (len(que)) {\n      auto v = que.top();\n      que.pop();\n      V.eb(v);\n\
-    \      for (auto&& e: G[v]) {\n        if (--indeg[e.to] == 0) que.push(e.to);\n\
-    \      }\n    }\n    if (len(V) < N) { V.clear(); }\n    return V;\n  }\n}\n\n\
-    // https://codeforces.com/contest/798/problem/E\n// toposort \u306E\u5019\u88DC\
-    \u3092\u3072\u3068\u3064\u51FA\u529B\u3059\u308B\u3002\u30C1\u30A7\u30C3\u30AF\
-    \u306F\u3057\u306A\u3044\u3002\n// \u967D\u306B\u30B0\u30E9\u30D5\u3092\u4F5C\u3089\
-    \u305A\u3001\u4F55\u3089\u304B\u306E\u30C7\u30FC\u30BF\u69CB\u9020\u3067\u672A\
-    \u8A2A\u554F\u306E\u884C\u304D\u5148\u3092\u63A2\u3059\u60F3\u5B9A\u3002\n// set_used(v)\uFF1A\
-    v \u3092\u4F7F\u7528\u6E08\u306B\u5909\u66F4\u3059\u308B\n// find_unused(v)\uFF1A\
-    v \u306E\u884C\u304D\u5148\u3092\u63A2\u3059\u3002\u306A\u3051\u308C\u3070 -1\
-    \ \u3092\u8FD4\u3059\u3053\u3068\u3002\ntemplate <typename F1, typename F2>\n\
-    vc<int> toposort(int N, F1 set_used, F2 find_unused) {\n  vc<int> V;\n  vc<bool>\
-    \ done(N);\n  auto dfs = [&](auto self, ll v) -> void {\n    set_used(v);\n  \
-    \  done[v] = 1;\n    while (1) {\n      int to = find_unused(v);\n      if (to\
-    \ == -1) break;\n      self(self, to);\n    }\n    V.eb(v);\n  };\n  FOR(v, N)\
-    \ if (!done[v]) dfs(dfs, v);\n  return V;\n}\n"
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 1 \"ds/fastset.hpp\"\
+    \n/* 64\u5206\u6728\u3002\r\ninsert, erase\r\n[]\u3067\u306E\u5B58\u5728\u5224\
+    \u5B9A\r\nnext, prev\r\n*/\r\nstruct FastSet {\r\n  using uint = unsigned;\r\n\
+    \  using ull = unsigned long long;\r\n\r\n  int bsr(ull x) { return 63 - __builtin_clzll(x);\
+    \ }\r\n  int bsf(ull x) { return __builtin_ctzll(x); }\r\n\r\n  static constexpr\
+    \ uint B = 64;\r\n  int n, lg;\r\n  vector<vector<ull>> seg;\r\n  FastSet(int\
+    \ _n) : n(_n) {\r\n    do {\r\n      seg.push_back(vector<ull>((_n + B - 1) /\
+    \ B));\r\n      _n = (_n + B - 1) / B;\r\n    } while (_n > 1);\r\n    lg = int(seg.size());\r\
+    \n  }\r\n  bool operator[](int i) const { return (seg[0][i / B] >> (i % B) & 1)\
+    \ != 0; }\r\n  void insert(int i) {\r\n    for (int h = 0; h < lg; h++) {\r\n\
+    \      seg[h][i / B] |= 1ULL << (i % B);\r\n      i /= B;\r\n    }\r\n  }\r\n\
+    \  void erase(int i) {\r\n    for (int h = 0; h < lg; h++) {\r\n      seg[h][i\
+    \ / B] &= ~(1ULL << (i % B));\r\n      if (seg[h][i / B]) break;\r\n      i /=\
+    \ B;\r\n    }\r\n  }\r\n\r\n  // x\u4EE5\u4E0A\u6700\u5C0F\u306E\u8981\u7D20\u3092\
+    \u8FD4\u3059\u3002\u5B58\u5728\u3057\u306A\u3051\u308C\u3070 n\u3002\r\n  int\
+    \ next(int i) {\r\n    chmax(i, 0);\r\n    if (i >= n) return n;\r\n    for (int\
+    \ h = 0; h < lg; h++) {\r\n      if (i / B == seg[h].size()) break;\r\n      ull\
+    \ d = seg[h][i / B] >> (i % B);\r\n      if (!d) {\r\n        i = i / B + 1;\r\
+    \n        continue;\r\n      }\r\n      // find\r\n      i += bsf(d);\r\n    \
+    \  for (int g = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += bsf(seg[g][i\
+    \ / B]);\r\n      }\r\n      return i;\r\n    }\r\n    return n;\r\n  }\r\n\r\n\
+    \  // x\u4EE5\u4E0B\u6700\u5927\u306E\u8981\u7D20\u3092\u8FD4\u3059\u3002\u5B58\
+    \u5728\u3057\u306A\u3051\u308C\u3070 -1\u3002\r\n  int prev(int i) {\r\n    if\
+    \ (i < 0) return -1;\r\n    if (i >= n) i = n - 1;\r\n    for (int h = 0; h <\
+    \ lg; h++) {\r\n      if (i == -1) break;\r\n      ull d = seg[h][i / B] << (63\
+    \ - i % 64);\r\n      if (!d) {\r\n        i = i / B - 1;\r\n        continue;\r\
+    \n      }\r\n      // find\r\n      i += bsr(d) - (B - 1);\r\n      for (int g\
+    \ = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += bsr(seg[g][i / B]);\r\
+    \n      }\r\n      return i;\r\n    }\r\n    return -1;\r\n  }\r\n\r\n  // [l,\
+    \ r) \u5185\u306E\u8981\u7D20\u3092\u5168\u90E8\u96C6\u3081\u308B\r\n  vector<int>\
+    \ collect(int l, int r) {\r\n    vector<int> res;\r\n    int x = l - 1;\r\n  \
+    \  while (1) {\r\n      x = next(x + 1);\r\n      if (x >= r) break;\r\n     \
+    \ res.emplace_back(x);\r\n    }\r\n    return res;\r\n  }\r\n\r\n  void debug()\
+    \ {\r\n    string s;\r\n    for (int i = 0; i < n; ++i) s += ((*this)[i] ? '1'\
+    \ : '0');\r\n    print(s);\r\n  }\r\n};\r\n#line 3 \"graph/toposort.hpp\"\n\n\
+    // \u8F9E\u66F8\u9806\u6700\u5C0F\u306E toposort \u3092\u8FD4\u3059\ntemplate\
+    \ <typename GT>\nvc<int> toposort(GT& G) {\n  assert(G.is_prepared() && G.is_directed());\n\
+    \  const int N = G.N;\n  auto [indeg, outdeg] = G.deg_array_inout();\n  FastSet\
+    \ que(N);\n  vc<int> V;\n  FOR(v, N) if (indeg[v] == 0) que.insert(v);\n  while\
+    \ (1) {\n    int v = que.next(0);\n    if (v == N) break;\n    que.erase(v), V.eb(v);\n\
+    \    for (auto&& e: G[v]) {\n      if (--indeg[e.to] == 0) que.insert(e.to);\n\
+    \    }\n  }\n  return (len(V) < N ? vc<int>{} : V);\n}\n"
+  code: "#include \"graph/base.hpp\"\n#include \"ds/fastset.hpp\"\n\n// \u8F9E\u66F8\
+    \u9806\u6700\u5C0F\u306E toposort \u3092\u8FD4\u3059\ntemplate <typename GT>\n\
+    vc<int> toposort(GT& G) {\n  assert(G.is_prepared() && G.is_directed());\n  const\
+    \ int N = G.N;\n  auto [indeg, outdeg] = G.deg_array_inout();\n  FastSet que(N);\n\
+    \  vc<int> V;\n  FOR(v, N) if (indeg[v] == 0) que.insert(v);\n  while (1) {\n\
+    \    int v = que.next(0);\n    if (v == N) break;\n    que.erase(v), V.eb(v);\n\
+    \    for (auto&& e: G[v]) {\n      if (--indeg[e.to] == 0) que.insert(e.to);\n\
+    \    }\n  }\n  return (len(V) < N ? vc<int>{} : V);\n}\n"
   dependsOn:
   - graph/base.hpp
+  - ds/fastset.hpp
   isVerificationFile: false
   path: graph/toposort.hpp
   requiredBy:
   - graph/dag_path_cover.hpp
-  timestamp: '2022-12-05 10:41:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-01-23 16:27:51+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/2251_1.test.cpp
+  - test_atcoder/abc223d.test.cpp
 documentation_of: graph/toposort.hpp
 layout: document
 redirect_from:
