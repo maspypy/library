@@ -1,7 +1,7 @@
 #include "graph/base.hpp"
 
 template <typename Gr, typename F>
-void enumerate_triangles(Gr& G, F query) {
+void enumerate_triangle(Gr& G, F query) {
   int N = G.N;
   Graph<int, 1> H(N);
   for (auto&& e: G.edges) {
