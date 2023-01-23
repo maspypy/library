@@ -5,7 +5,7 @@
 #include "ds/hashmap.hpp"
 #include "nt/lpf_table.hpp"
 #include "nt/factor.hpp"
-#include "enumerate/partitions.hpp"
+#include "enumerate/partition.hpp"
 
 void solve() {
   LL(N);
@@ -44,7 +44,7 @@ void solve() {
       dfs(dfs, 0);
       A.pop_back();
     };
-    enumerate_partitions(x, f);
+    enumerate_partition(x, f);
   }
 
   // node の組
