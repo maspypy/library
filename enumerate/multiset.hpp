@@ -1,5 +1,6 @@
+// [0, K) 内の広義単調増加列
 template <typename F>
-void enumerate_multisets(int K, int N, F query) {
+void enumerate_multiset(int K, int N, F query) {
   vc<int> A(N);
   auto dfs = [&](auto& dfs, int p, int s) -> void {
     if (p == N) {
