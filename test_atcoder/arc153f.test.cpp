@@ -38,7 +38,7 @@ void naive(Graph<bool, 0> G) {
     } while (next_permutation(all(P)));
   };
 
-  enumerate_product(3, M, F);
+  enumerate_product(vc<int>(M, 3), F);
   print(ANS);
 }
 
