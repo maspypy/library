@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/block_cut.hpp
     title: graph/block_cut.hpp
   - icon: ':heavy_check_mark:'
@@ -453,9 +453,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc151_e.test.cpp
     title: test_atcoder/arc151_e.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test_atcoder/arc153f.test.cpp
+    title: test_atcoder/arc153f.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -607,7 +610,7 @@ data:
   - string/suffix_automaton.hpp
   - enumerate/triangle.hpp
   timestamp: '2022-12-05 10:41:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/GRL_3_A.test.cpp
   - test/aoj/ALDS1_12_B.test.cpp
@@ -700,6 +703,7 @@ data:
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/tutte.test.cpp
   - test_atcoder/abc269ex.test.cpp
+  - test_atcoder/arc153f.test.cpp
   - test_atcoder/abc270_f.test.cpp
   - test_atcoder/abc266f.test.cpp
   - test_atcoder/arc151_e.test.cpp
