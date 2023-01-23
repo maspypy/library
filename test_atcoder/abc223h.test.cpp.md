@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/offline_query/range_xor_basis_query.hpp
     title: ds/offline_query/range_xor_basis_query.hpp
   - icon: ':question:'
@@ -12,15 +12,15 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc212/tasks/abc223_h
+    PROBLEM: https://atcoder.jp/contests/abc223/tasks/abc223_h
     links:
-    - https://atcoder.jp/contests/abc212/tasks/abc223_h
-  bundledCode: "#line 1 \"test_atcoder/abc223h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc212/tasks/abc223_h\"\
+    - https://atcoder.jp/contests/abc223/tasks/abc223_h
+  bundledCode: "#line 1 \"test_atcoder/abc223h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc223/tasks/abc223_h\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -215,7 +215,7 @@ data:
     \    for (auto&& b: basis) x = min(x, x ^ b);\n    ANS[q] = x == 0;\n  });\n \
     \ for (auto&& a: ANS) Yes(a);\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
     }\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc212/tasks/abc223_h\"\n#include\
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc223/tasks/abc223_h\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/offline_query/range_xor_basis_query.hpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  Range_Xor_Basis_Query<ll,\
     \ 60> S(A);\n  vi X(Q);\n  FOR(q, Q) {\n    LL(L, R);\n    read(X[q]);\n    S.query(--L,\
@@ -230,8 +230,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc223h.test.cpp
   requiredBy: []
-  timestamp: '2023-01-23 16:19:24+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-01-23 17:17:21+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc223h.test.cpp
 layout: document

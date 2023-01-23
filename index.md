@@ -312,7 +312,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/offline_query/range_mex_query.hpp
       title: ds/offline_query/range_mex_query.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/offline_query/range_xor_basis_query.hpp
       title: ds/offline_query/range_xor_basis_query.hpp
     - icon: ':heavy_check_mark:'
@@ -2940,7 +2940,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc223d.test.cpp
       title: test_atcoder/abc223d.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc223h.test.cpp
       title: test_atcoder/abc223h.test.cpp
     - icon: ':heavy_check_mark:'

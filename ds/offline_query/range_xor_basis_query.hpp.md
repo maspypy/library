@@ -6,12 +6,12 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1167.test.cpp
     title: test/yukicoder/1167.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc223h.test.cpp
     title: test_atcoder/abc223h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/offline_query/range_xor_basis_query.hpp\"\n\n// \u5217\
@@ -48,7 +48,7 @@ data:
   path: ds/offline_query/range_xor_basis_query.hpp
   requiredBy: []
   timestamp: '2023-01-23 16:19:24+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1167.test.cpp
   - test_atcoder/abc223h.test.cpp
