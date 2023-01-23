@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "random/base.hpp"
 
-#include "enumerate/partitions.hpp"
+#include "enumerate/partition.hpp"
 #include "seq/famous/partition_number.hpp"
 
 using mint = modint998;
@@ -17,7 +17,7 @@ void test() {
       assert(!ss.count(P));
       ss.insert(P);
     };
-    enumerate_partitions<decltype(f)>(N, f);
+    enumerate_partition<decltype(f)>(N, f);
     assert(P[N] == len(ss));
   }
   FOR(N, 1, 10) {
@@ -31,8 +31,8 @@ void test() {
         assert(len(P) <= LIM_len && MAX(P) <= LIM_val);
         ++b;
       };
-      enumerate_partitions<decltype(f)>(N, f);
-      enumerate_partitions<decltype(g)>(N, g, LIM_len, LIM_val);
+      enumerate_partition<decltype(f)>(N, f);
+      enumerate_partition<decltype(g)>(N, g, LIM_len, LIM_val);
       assert(a == b);
     }
   }
