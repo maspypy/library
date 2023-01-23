@@ -15,15 +15,15 @@ data:
     title: setfunc/hadamard.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1753
+    PROBLEM: https://atcoder.jp/contests/abc212/tasks/abc212_h
     links:
-    - https://yukicoder.me/problems/no/1753
-  bundledCode: "#line 1 \"test/yukicoder/1753.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/1753\"\
+    - https://atcoder.jp/contests/abc212/tasks/abc212_h
+  bundledCode: "#line 1 \"test_atcoder/abc212h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc212/tasks/abc212_h\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -291,46 +291,37 @@ data:
     \n\r\ntemplate <typename T>\r\nvoid hadamard(vc<T>& A) {\r\n  int log = topbit(len(A));\r\
     \n  assert(1 << log == len(A));\r\n  FOR(n, log) FOR(s, 1 << log) {\r\n    int\
     \ t = s ^ (1 << n);\r\n    if (s < t) tie(A[s], A[t]) = mp(A[s] + A[t], A[s] -\
-    \ A[t]);  \r\n  }\r\n}\n#line 6 \"test/yukicoder/1753.test.cpp\"\n\nusing mint\
-    \ = modint998;\n// using mint = double;\n\nvoid solve() {\n  LL(N);\n  vc<mint>\
-    \ P(N + 1);\n  {\n    VEC(ll, A, N + 1);\n    mint den = mint(1) / mint(SUM<ll>(A));\n\
-    \    FOR(i, N + 1) P[i] = den * mint(A[i]);\n  }\n\n  const int K = 10;\n  auto\
-    \ calc = [&](int ng) -> vc<mint> {\n    vc<mint> X(1 << K);\n    FOR(i, 1, N +\
-    \ 1) {\n      if (i == ng) continue;\n      X[i] += P[i];\n    }\n    hadamard<mint>(X);\n\
-    \    // print(X);\n    for (auto&& x: X) { x = mint(1) / (mint(1) - x); }\n  \
-    \  hadamard<mint>(X);\n    return X;\n  };\n\n  mint ANS = 0;\n  auto A = calc(-1);\n\
-    \  ANS += A[0];\n  FOR(i, 1, N + 1) {\n    auto B = calc(i);\n    ANS += A[i]\
-    \ - B[i];\n  }\n  ANS *= P[0] / mint(1 << K);\n  ANS = mint(1) - ANS;\n  print(ANS);\n\
-    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  //\
-    \ LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1753\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n#include \"setfunc/hadamard.hpp\"\
-    \n\nusing mint = modint998;\n// using mint = double;\n\nvoid solve() {\n  LL(N);\n\
-    \  vc<mint> P(N + 1);\n  {\n    VEC(ll, A, N + 1);\n    mint den = mint(1) / mint(SUM<ll>(A));\n\
-    \    FOR(i, N + 1) P[i] = den * mint(A[i]);\n  }\n\n  const int K = 10;\n  auto\
-    \ calc = [&](int ng) -> vc<mint> {\n    vc<mint> X(1 << K);\n    FOR(i, 1, N +\
-    \ 1) {\n      if (i == ng) continue;\n      X[i] += P[i];\n    }\n    hadamard<mint>(X);\n\
-    \    // print(X);\n    for (auto&& x: X) { x = mint(1) / (mint(1) - x); }\n  \
-    \  hadamard<mint>(X);\n    return X;\n  };\n\n  mint ANS = 0;\n  auto A = calc(-1);\n\
-    \  ANS += A[0];\n  FOR(i, 1, N + 1) {\n    auto B = calc(i);\n    ANS += A[i]\
-    \ - B[i];\n  }\n  ANS *= P[0] / mint(1 << K);\n  ANS = mint(1) - ANS;\n  print(ANS);\n\
-    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  //\
-    \ LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ A[t]);  \r\n  }\r\n}\n#line 6 \"test_atcoder/abc212h.test.cpp\"\n\nvoid solve()\
+    \ {\n  LL(N, K);\n  using mint = modint998;\n  ll LIM = 1 << 16;\n  vc<mint> f(LIM);\n\
+    \  FOR(K) {\n    LL(a);\n    f[a] += mint(1);\n  }\n  hadamard(f);\n  for (auto&&\
+    \ x: f) {\n    if (x == mint(1)) {\n      x = mint(N);\n    } else {\n      mint\
+    \ a = x.pow(N) - mint(1);\n      a /= x - mint(1);\n      x *= a;\n    }\n  }\n\
+    \  hadamard(f);\n  mint ANS = 0;\n  FOR(i, 1, LIM) ANS += f[i];\n  ANS *= mint(LIM).inverse();\n\
+    \  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc212/tasks/abc212_h\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n\
+    #include \"setfunc/hadamard.hpp\"\n\nvoid solve() {\n  LL(N, K);\n  using mint\
+    \ = modint998;\n  ll LIM = 1 << 16;\n  vc<mint> f(LIM);\n  FOR(K) {\n    LL(a);\n\
+    \    f[a] += mint(1);\n  }\n  hadamard(f);\n  for (auto&& x: f) {\n    if (x ==\
+    \ mint(1)) {\n      x = mint(N);\n    } else {\n      mint a = x.pow(N) - mint(1);\n\
+    \      a /= x - mint(1);\n      x *= a;\n    }\n  }\n  hadamard(f);\n  mint ANS\
+    \ = 0;\n  FOR(i, 1, LIM) ANS += f[i];\n  ANS *= mint(LIM).inverse();\n  print(ANS);\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - mod/modint.hpp
   - setfunc/hadamard.hpp
   isVerificationFile: true
-  path: test/yukicoder/1753.test.cpp
+  path: test_atcoder/abc212h.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-01-23 16:19:24+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yukicoder/1753.test.cpp
+documentation_of: test_atcoder/abc212h.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/1753.test.cpp
-- /verify/test/yukicoder/1753.test.cpp.html
-title: test/yukicoder/1753.test.cpp
+- /verify/test_atcoder/abc212h.test.cpp
+- /verify/test_atcoder/abc212h.test.cpp.html
+title: test_atcoder/abc212h.test.cpp
 ---

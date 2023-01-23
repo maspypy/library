@@ -519,7 +519,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1145.test.cpp
     title: test/yukicoder/1145.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1167.test.cpp
     title: test/yukicoder/1167.test.cpp
   - icon: ':heavy_check_mark:'
@@ -717,6 +717,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc212h.test.cpp
+    title: test_atcoder/abc212h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc249_ex.test.cpp
     title: test_atcoder/abc249_ex.test.cpp
@@ -1179,6 +1182,7 @@ data:
   - test_atcoder/abc276_g.test.cpp
   - test_atcoder/abc249_ex.test.cpp
   - test_atcoder/abc272_h.test.cpp
+  - test_atcoder/abc212h.test.cpp
   - test_atcoder/abc276_g_2.test.cpp
   - test_atcoder/abc202_f.test.cpp
 documentation_of: mod/modint.hpp

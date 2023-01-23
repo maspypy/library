@@ -1,29 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: mod/modint.hpp
-    title: mod/modint.hpp
+  - icon: ':x:'
+    path: ds/offline_query/range_xor_basis_query.hpp
+    title: ds/offline_query/range_xor_basis_query.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
-    path: setfunc/hadamard.hpp
-    title: setfunc/hadamard.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1753
+    PROBLEM: https://atcoder.jp/contests/abc212/tasks/abc223_h
     links:
-    - https://yukicoder.me/problems/no/1753
-  bundledCode: "#line 1 \"test/yukicoder/1753.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/1753\"\
+    - https://atcoder.jp/contests/abc212/tasks/abc223_h
+  bundledCode: "#line 1 \"test_atcoder/abc223h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc212/tasks/abc223_h\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -197,140 +194,49 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
-    \ {\n  int val;\n  constexpr modint(ll x = 0) noexcept {\n    if (0 <= x && x\
-    \ < mod)\n      val = x;\n    else {\n      x %= mod;\n      val = (x < 0 ? x\
-    \ + mod : x);\n    }\n  }\n  bool operator<(const modint &other) const {\n   \
-    \ return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
-    \ modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n\
-    \  }\n  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >=\
-    \ mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint\
-    \ &p) {\n    val = (int)(1LL * val * p.val % mod);\n    return *this;\n  }\n \
-    \ modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return\
-    \ *this;\n  }\n  modint operator-() const { return modint(-val); }\n  modint operator+(const\
-    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
-    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
-    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
-    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
-    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
-    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
-    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
-    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t n) const {\n\
-    \    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
-    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n\
-    \  void write() { fastio::printer.write(val); }\n  void read() {\n    ll x;\n\
-    \    fastio::scanner.read(x);\n    if (x < 0 || x >= mod) x %= mod;\n    if (x\
-    \ < 0) x += mod;\n    val += x;\n  }\n#endif\n  static constexpr int get_mod()\
-    \ { return mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr bool is_modint\
-    \ = true;\n  int val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t\
-    \ y)\n      : val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y)\
-    \ % get_mod()) % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other)\
-    \ const {\n    return val < other.val;\n  } // To use std::map<ArbitraryModInt,\
-    \ T>\n  static int &get_mod() {\n    static int mod = 0;\n    return mod;\n  }\n\
-    \  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const\
-    \ ArbitraryModInt &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n\
-    \    return *this;\n  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p)\
-    \ {\n    if ((val += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return\
-    \ *this;\n  }\n  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n   \
-    \ long long a = (long long)val * p.val;\n    int xh = (int)(a >> 32), xl = (int)a,\
-    \ d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"(m) : \"d\"(xh), \"a\"\
-    (xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n  }\n  ArbitraryModInt\
-    \ &operator/=(const ArbitraryModInt &p) {\n    *this *= p.inverse();\n    return\
-    \ *this;\n  }\n  ArbitraryModInt operator-() const { return ArbitraryModInt(get_mod()\
-    \ - val); }\n  ArbitraryModInt operator+(const ArbitraryModInt &p) const {\n \
-    \   return ArbitraryModInt(*this) += p;\n  }\n  ArbitraryModInt operator-(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) -= p;\n  }\n\
-    \  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
-    \ *= p;\n  }\n  ArbitraryModInt operator/(const ArbitraryModInt &p) const {\n\
-    \    return ArbitraryModInt(*this) /= p;\n  }\n  bool operator==(const ArbitraryModInt\
-    \ &p) const { return val == p.val; }\n  bool operator!=(const ArbitraryModInt\
-    \ &p) const { return val != p.val; }\n  ArbitraryModInt inverse() const {\n  \
-    \  int a = val, b = get_mod(), u = 1, v = 0, t;\n    while (b > 0) {\n      t\
-    \ = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return\
-    \ ArbitraryModInt(u);\n  }\n  ArbitraryModInt pow(int64_t n) const {\n    ArbitraryModInt\
-    \ ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n     \
-    \ mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void\
-    \ write() { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
-    \ }\n#endif\n};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const\
-    \ int mod = mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0\
-    \ <= n);\n  if (n >= mod) n %= mod;\n  while (int(dat.size()) <= n) {\n    int\
-    \ k = dat.size();\n    auto q = (mod + k - 1) / k;\n    int r = k * q - mod;\n\
-    \    dat.emplace_back(dat[r] * mint(q));\n  }\n  return dat[n];\n}\n\ntemplate\
-    \ <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
-    \  static vector<mint> dat = {1, 1};\n  assert(0 <= n);\n  if (n >= mod) return\
-    \ 0;\n  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
-    \ - 1] * mint(k));\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint\
-    \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
-    \ dat = {1, 1};\n  assert(-1 <= n && n < mod);\n  if (n == -1) return mint(0);\n\
-    \  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
-    \ - 1] * inv<mint>(k));\n  }\n  return dat[n];\n}\n\ntemplate <class mint, class...\
-    \ Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
-    }\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
-    \ &&head, Tail &&... tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
-    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  static vvc<mint>\
-    \ C;\n  static int H = 0, W = 0;\n\n  auto calc = [&](int i, int j) -> mint {\n\
-    \    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
-    \ + (j ? C[i - 1][j - 1] : 0);\n  };\n\n  if (W <= k) {\n    FOR(i, H) {\n   \
-    \   C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n  \
-    \  }\n    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H,\
-    \ n + 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n\
-    \    }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint,\
-    \ bool large = false, bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >=\
-    \ 0);\n  if (k < 0 || n < k) return 0;\n  if (dense) return C_dense<mint>(n, k);\n\
-    \  if (!large) return fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n\
-    \  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n  x *=\
-    \ fact_inv<mint>(k);\n  return x;\n}\n\ntemplate <typename mint, bool large =\
-    \ false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <=\
-    \ n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n -\
-    \ k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d] (1-x) ^ {-n} \u306E\
-    \u8A08\u7B97\ntemplate <typename mint, bool large = false, bool dense = false>\n\
-    mint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
-    \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
-    \ dense>(n + d - 1, d);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998\
-    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 2 \"setfunc/hadamard.hpp\"\
-    \n\r\ntemplate <typename T>\r\nvoid hadamard(vc<T>& A) {\r\n  int log = topbit(len(A));\r\
-    \n  assert(1 << log == len(A));\r\n  FOR(n, log) FOR(s, 1 << log) {\r\n    int\
-    \ t = s ^ (1 << n);\r\n    if (s < t) tie(A[s], A[t]) = mp(A[s] + A[t], A[s] -\
-    \ A[t]);  \r\n  }\r\n}\n#line 6 \"test/yukicoder/1753.test.cpp\"\n\nusing mint\
-    \ = modint998;\n// using mint = double;\n\nvoid solve() {\n  LL(N);\n  vc<mint>\
-    \ P(N + 1);\n  {\n    VEC(ll, A, N + 1);\n    mint den = mint(1) / mint(SUM<ll>(A));\n\
-    \    FOR(i, N + 1) P[i] = den * mint(A[i]);\n  }\n\n  const int K = 10;\n  auto\
-    \ calc = [&](int ng) -> vc<mint> {\n    vc<mint> X(1 << K);\n    FOR(i, 1, N +\
-    \ 1) {\n      if (i == ng) continue;\n      X[i] += P[i];\n    }\n    hadamard<mint>(X);\n\
-    \    // print(X);\n    for (auto&& x: X) { x = mint(1) / (mint(1) - x); }\n  \
-    \  hadamard<mint>(X);\n    return X;\n  };\n\n  mint ANS = 0;\n  auto A = calc(-1);\n\
-    \  ANS += A[0];\n  FOR(i, 1, N + 1) {\n    auto B = calc(i);\n    ANS += A[i]\
-    \ - B[i];\n  }\n  ANS *= P[0] / mint(1 << K);\n  ANS = mint(1) - ANS;\n  print(ANS);\n\
-    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  //\
-    \ LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1753\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n#include \"setfunc/hadamard.hpp\"\
-    \n\nusing mint = modint998;\n// using mint = double;\n\nvoid solve() {\n  LL(N);\n\
-    \  vc<mint> P(N + 1);\n  {\n    VEC(ll, A, N + 1);\n    mint den = mint(1) / mint(SUM<ll>(A));\n\
-    \    FOR(i, N + 1) P[i] = den * mint(A[i]);\n  }\n\n  const int K = 10;\n  auto\
-    \ calc = [&](int ng) -> vc<mint> {\n    vc<mint> X(1 << K);\n    FOR(i, 1, N +\
-    \ 1) {\n      if (i == ng) continue;\n      X[i] += P[i];\n    }\n    hadamard<mint>(X);\n\
-    \    // print(X);\n    for (auto&& x: X) { x = mint(1) / (mint(1) - x); }\n  \
-    \  hadamard<mint>(X);\n    return X;\n  };\n\n  mint ANS = 0;\n  auto A = calc(-1);\n\
-    \  ANS += A[0];\n  FOR(i, 1, N + 1) {\n    auto B = calc(i);\n    ANS += A[i]\
-    \ - B[i];\n  }\n  ANS *= P[0] / mint(1 << K);\n  ANS = mint(1) - ANS;\n  print(ANS);\n\
-    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  //\
-    \ LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ yes(!t); }\n#line 2 \"ds/offline_query/range_xor_basis_query.hpp\"\n\n// \u5217\
+    \u3082\u30AF\u30A8\u30EA\u3082 static\ntemplate <typename INT_TYPE, int LOG>\n\
+    struct Range_Xor_Basis_Query {\n  int n;\n  int Q;\n  vc<INT_TYPE>& A;\n  vvc<pair<int,\
+    \ int>> QUERY;\n\n  Range_Xor_Basis_Query(vc<INT_TYPE>& A) : n(len(A)), Q(0),\
+    \ A(A) {\n    QUERY.resize(n + 1);\n  }\n\n  // \u30AF\u30A8\u30EA\u8FFD\u52A0\
+    \u3002\n  void query(int L, int R) {\n    assert(0 <= L && L <= R && R <= n);\n\
+    \    QUERY[R].eb(Q++, L);\n  }\n\n  // \u95A2\u6570 F(qid, basis) \u3092\u6E21\
+    \u3059\n  template <typename CALC>\n  void calc(CALC F) {\n    using P = pair<INT_TYPE,\
+    \ int>;\n    array<P, LOG> d;\n    FOR(k, LOG) d[k] = {INT_TYPE(1) << k, -1};\n\
+    \    vc<INT_TYPE> basis;\n    FOR(i, n + 1) {\n      for (auto&& [qid, L]: QUERY[i])\
+    \ {\n        basis.clear();\n        FOR_R(k, LOG) if (d[k].se >= L) basis.eb(d[k].fi);\n\
+    \        F(qid, basis);\n      }\n      if (i == n) break;\n      P p = {A[i],\
+    \ i};\n      FOR_R(k, LOG) {\n        if (!(p.fi >> k & 1)) continue;\n      \
+    \  if (p.se > d[k].se) swap(p, d[k]);\n        p.fi ^= d[k].fi;\n      }\n   \
+    \ }\n  }\n};\n#line 5 \"test_atcoder/abc223h.test.cpp\"\n\nvoid solve() {\n  LL(N,\
+    \ Q);\n  VEC(ll, A, N);\n  Range_Xor_Basis_Query<ll, 60> S(A);\n  vi X(Q);\n \
+    \ FOR(q, Q) {\n    LL(L, R);\n    read(X[q]);\n    S.query(--L, R);\n  }\n\n \
+    \ vc<bool> ANS(Q);\n\n  S.calc([&](int q, vi basis) -> void {\n    ll x = X[q];\n\
+    \    for (auto&& b: basis) x = min(x, x ^ b);\n    ANS[q] = x == 0;\n  });\n \
+    \ for (auto&& a: ANS) Yes(a);\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc212/tasks/abc223_h\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/offline_query/range_xor_basis_query.hpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  Range_Xor_Basis_Query<ll,\
+    \ 60> S(A);\n  vi X(Q);\n  FOR(q, Q) {\n    LL(L, R);\n    read(X[q]);\n    S.query(--L,\
+    \ R);\n  }\n\n  vc<bool> ANS(Q);\n\n  S.calc([&](int q, vi basis) -> void {\n\
+    \    ll x = X[q];\n    for (auto&& b: basis) x = min(x, x ^ b);\n    ANS[q] =\
+    \ x == 0;\n  });\n  for (auto&& a: ANS) Yes(a);\n}\n\nsigned main() {\n  solve();\n\
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - mod/modint.hpp
-  - setfunc/hadamard.hpp
+  - ds/offline_query/range_xor_basis_query.hpp
   isVerificationFile: true
-  path: test/yukicoder/1753.test.cpp
+  path: test_atcoder/abc223h.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-01-23 16:19:24+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yukicoder/1753.test.cpp
+documentation_of: test_atcoder/abc223h.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/1753.test.cpp
-- /verify/test/yukicoder/1753.test.cpp.html
-title: test/yukicoder/1753.test.cpp
+- /verify/test_atcoder/abc223h.test.cpp
+- /verify/test_atcoder/abc223h.test.cpp.html
+title: test_atcoder/abc223h.test.cpp
 ---
