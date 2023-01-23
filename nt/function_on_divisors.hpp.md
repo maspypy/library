@@ -1,20 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1728.test.cpp
     title: test/yukicoder/1728.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test_atcoder/abc212g.test.cpp
+    title: test_atcoder/abc212g.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetest.hpp\"\nstruct m64 {\r\n  using i64 = int64_t;\r\
@@ -94,7 +97,7 @@ data:
     \   ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll mod = k * (e + 1);\n  \
     \    FOR(i, len(divs) / mod) {\n        FOR_R(j, mod - k) { dat[mod * i + j +\
     \ k] -= dat[mod * i + j]; }\n      }\n      k *= (e + 1);\n    }\n  }\n\n  vc<pair<ll,\
-    \ T>> get() {\n    vc<pair<ll, T>> res;\n    FOR(i, len(divs)) { res.eb(divs[i],\
+    \ T>> get_all() {\n    vc<pair<ll, T>> res;\n    FOR(i, len(divs)) { res.eb(divs[i],\
     \ dat[i]); }\n    return res;\n  }\n};\n"
   code: "#include \"nt/factor.hpp\"\n\ntemplate <typename T>\nstruct Function_on_Divisors\
     \ {\n  vc<pair<ll, int>> pf;\n  vc<ll> divs;\n  vc<T> dat;\n\n  Function_on_Divisors(ll\
@@ -121,7 +124,7 @@ data:
     \ }\n\n  void divisor_mobius() {\n    ll k = 1;\n    for (auto&& [p, e]: pf) {\n\
     \      ll mod = k * (e + 1);\n      FOR(i, len(divs) / mod) {\n        FOR_R(j,\
     \ mod - k) { dat[mod * i + j + k] -= dat[mod * i + j]; }\n      }\n      k *=\
-    \ (e + 1);\n    }\n  }\n\n  vc<pair<ll, T>> get() {\n    vc<pair<ll, T>> res;\n\
+    \ (e + 1);\n    }\n  }\n\n  vc<pair<ll, T>> get_all() {\n    vc<pair<ll, T>> res;\n\
     \    FOR(i, len(divs)) { res.eb(divs[i], dat[i]); }\n    return res;\n  }\n};\n"
   dependsOn:
   - nt/factor.hpp
@@ -129,10 +132,11 @@ data:
   isVerificationFile: false
   path: nt/function_on_divisors.hpp
   requiredBy: []
-  timestamp: '2023-01-09 23:28:24+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-01-23 15:43:20+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1728.test.cpp
+  - test_atcoder/abc212g.test.cpp
 documentation_of: nt/function_on_divisors.hpp
 layout: document
 redirect_from:

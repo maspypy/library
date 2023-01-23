@@ -5,6 +5,12 @@ data:
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
+    path: nt/factor.hpp
+    title: nt/factor.hpp
+  - icon: ':x:'
+    path: nt/function_on_divisors.hpp
+    title: nt/function_on_divisors.hpp
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':question:'
@@ -12,17 +18,16 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_1_C
+    PROBLEM: https://atcoder.jp/contests/abc212/tasks/abc212_g
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_1_C
-  bundledCode: "#line 1 \"test/aoj/ALDS1_1_C.test.cpp\"\n#define PROBLEM \\\n  \"\
-    https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_1_C\"\n#line 1\
-    \ \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    - https://atcoder.jp/contests/abc212/tasks/abc212_g
+  bundledCode: "#line 1 \"test_atcoder/abc212g.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc212/tasks/abc212_g\"\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
     using pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\n\
@@ -225,31 +230,79 @@ data:
     \ (x < (1ull << 32)) {\r\n    for (u64 a: {2, 7, 61})\r\n      if (not ok(a))\
     \ return false;\r\n  } else {\r\n    for (u64 a: {2, 325, 9375, 28178, 450775,\
     \ 9780504, 1795265022}) {\r\n      if (x <= a) return true;\r\n      if (not ok(a))\
-    \ return false;\r\n    }\r\n  }\r\n  return true;\r\n}\n#line 6 \"test/aoj/ALDS1_1_C.test.cpp\"\
-    \n\nvoid solve() {\n  ll ANS = 0;\n  LL(N);\n  FOR(N) {\n    LL(p);\n    ANS +=\
-    \ primetest(p);\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_1_C\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/primetest.hpp\"\
-    \n\nvoid solve() {\n  ll ANS = 0;\n  LL(N);\n  FOR(N) {\n    LL(p);\n    ANS +=\
-    \ primetest(p);\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ return false;\r\n    }\r\n  }\r\n  return true;\r\n}\n#line 3 \"nt/factor.hpp\"\
+    \n\nmt19937_64 rng_mt{random_device{}()};\nll rnd(ll n) { return uniform_int_distribution<ll>(0,\
+    \ n - 1)(rng_mt); }\n\nll rho(ll n, ll c) {\n  m64::set_mod(n);\n  assert(n >\
+    \ 1);\n  const m64 cc(c);\n  auto f = [&](m64 x) { return x * x + cc; };\n  m64\
+    \ x = 1, y = 2, z = 1, q = 1;\n  ll g = 1;\n  const ll m = 1LL << (__lg(n) / 5);\
+    \ // ?\n  for (ll r = 1; g == 1; r <<= 1) {\n    x = y;\n    FOR(_, r) y = f(y);\n\
+    \    for (ll k = 0; k < r and g == 1; k += m) {\n      z = y;\n      FOR(_, min(m,\
+    \ r - k)) y = f(y), q *= x - y;\n      g = gcd(q.val(), n);\n    }\n  }\n  if\
+    \ (g == n) do {\n      z = f(z);\n      g = gcd((x - z).val(), n);\n    } while\
+    \ (g == 1);\n  return g;\n}\n\nll find_prime_factor(ll n) {\n  assert(n > 1);\n\
+    \  if (primetest(n)) return n;\n  FOR(_, 100) {\n    ll m = rho(n, rnd(n));\n\
+    \    if (primetest(m)) return m;\n    n = m;\n  }\n  cerr << \"failed\" << endl;\n\
+    \  assert(false);\n  return -1;\n}\n\n// \u30BD\u30FC\u30C8\u3057\u3066\u304F\u308C\
+    \u308B\nvc<pair<ll, int>> factor(ll n) {\n  assert(n >= 1);\n  vc<pair<ll, int>>\
+    \ pf;\n  FOR3(p, 2, 100) {\n    if (p * p > n) break;\n    if (n % p == 0) {\n\
+    \      ll e = 0;\n      do { n /= p, e += 1; } while (n % p == 0);\n      pf.eb(p,\
+    \ e);\n    }\n  }\n  while (n > 1) {\n    ll p = find_prime_factor(n);\n    ll\
+    \ e = 0;\n    do { n /= p, e += 1; } while (n % p == 0);\n    pf.eb(p, e);\n \
+    \ }\n  sort(all(pf));\n  return pf;\n}\n\nvc<pair<ll, int>> factor_by_lpf(ll n,\
+    \ vc<int>& lpf) {\n  vc<pair<ll, int>> res;\n  while (n > 1) {\n    int p = lpf[n];\n\
+    \    int e = 0;\n    while (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n\
+    \    res.eb(p, e);\n  }\n  return res;\n}\n#line 2 \"nt/function_on_divisors.hpp\"\
+    \n\ntemplate <typename T>\nstruct Function_on_Divisors {\n  vc<pair<ll, int>>\
+    \ pf;\n  vc<ll> divs;\n  vc<T> dat;\n\n  Function_on_Divisors(ll N) : Function_on_Divisors(factor(N))\
+    \ {}\n  Function_on_Divisors(vc<pair<ll, int>> pf) : pf(pf) {\n    ll n = 1;\n\
+    \    for (auto&& [p, e]: pf) n *= (e + 1);\n    divs.reserve(n);\n    divs = {1};\n\
+    \    for (auto&& [p, e]: pf) {\n      int n = len(divs);\n      ll q = p;\n  \
+    \    FOR(e) {\n        FOR(i, n) divs.eb(divs[i] * q);\n        q *= p;\n    \
+    \  }\n    }\n  }\n\n  // f(p, k) \u3092\u4E0E\u3048\u308B \u2192 \u4E57\u6CD5\u7684\
+    \u306B\u62E1\u5F35\n  template <typename F>\n  void set_multiplicative(F f) {\n\
+    \    dat.reserve(len(divs));\n    dat = {T(1)};\n    for (auto&& [p, e]: pf) {\n\
+    \      int n = len(divs);\n      FOR(k, 1, e + 1) { FOR(i, n) dat.eb(dat[i] *\
+    \ f(p, k)); }\n    }\n  }\n\n  void set_euler_phi() {\n    dat.resize(len(divs));\n\
+    \    FOR(i, len(divs)) dat[i] = T(divs[i]);\n    divisor_mobius();\n  }\n\n  void\
+    \ multiplier_zeta() {\n    ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll\
+    \ mod = k * (e + 1);\n      FOR(i, len(divs) / mod) {\n        FOR_R(j, mod -\
+    \ k) { dat[mod * i + j] += dat[mod * i + j + k]; }\n      }\n      k *= (e + 1);\n\
+    \    }\n  }\n\n  void multiplier_mobius() {\n    ll k = 1;\n    for (auto&& [p,\
+    \ e]: pf) {\n      ll mod = k * (e + 1);\n      FOR(i, len(divs) / mod) {\n  \
+    \      FOR(j, mod - k) { dat[mod * i + j] -= dat[mod * i + j + k]; }\n      }\n\
+    \      k *= (e + 1);\n    }\n  }\n\n  void divisor_zeta() {\n    ll k = 1;\n \
+    \   for (auto&& [p, e]: pf) {\n      ll mod = k * (e + 1);\n      FOR(i, len(divs)\
+    \ / mod) {\n        FOR(j, mod - k) { dat[mod * i + j + k] += dat[mod * i + j];\
+    \ }\n      }\n      k *= (e + 1);\n    }\n  }\n\n  void divisor_mobius() {\n \
+    \   ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll mod = k * (e + 1);\n  \
+    \    FOR(i, len(divs) / mod) {\n        FOR_R(j, mod - k) { dat[mod * i + j +\
+    \ k] -= dat[mod * i + j]; }\n      }\n      k *= (e + 1);\n    }\n  }\n\n  vc<pair<ll,\
+    \ T>> get_all() {\n    vc<pair<ll, T>> res;\n    FOR(i, len(divs)) { res.eb(divs[i],\
+    \ dat[i]); }\n    return res;\n  }\n};\n#line 5 \"test_atcoder/abc212g.test.cpp\"\
+    \n\nvoid solve() {\n  LL(P);\n  Function_on_Divisors<ll> X(P - 1);\n  X.set_euler_phi();\n\
+    \  i128 ANS = 1;\n  for (auto&& [a, b]: X.get_all()) { ANS += i128(a) * b; }\n\
+    \  print(ANS % 998244353);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc212/tasks/abc212_g\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/function_on_divisors.hpp\"\
+    \n\nvoid solve() {\n  LL(P);\n  Function_on_Divisors<ll> X(P - 1);\n  X.set_euler_phi();\n\
+    \  i128 ANS = 1;\n  for (auto&& [a, b]: X.get_all()) { ANS += i128(a) * b; }\n\
+    \  print(ANS % 998244353);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
+  - nt/function_on_divisors.hpp
+  - nt/factor.hpp
   - nt/primetest.hpp
   isVerificationFile: true
-  path: test/aoj/ALDS1_1_C.test.cpp
+  path: test_atcoder/abc212g.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-01-23 15:43:20+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/aoj/ALDS1_1_C.test.cpp
+documentation_of: test_atcoder/abc212g.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/ALDS1_1_C.test.cpp
-- /verify/test/aoj/ALDS1_1_C.test.cpp.html
-title: test/aoj/ALDS1_1_C.test.cpp
+- /verify/test_atcoder/abc212g.test.cpp
+- /verify/test_atcoder/abc212g.test.cpp.html
+title: test_atcoder/abc212g.test.cpp
 ---
