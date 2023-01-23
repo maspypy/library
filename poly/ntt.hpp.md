@@ -439,6 +439,12 @@ data:
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc267g.test.cpp
+    title: test_atcoder/abc267g.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc267h.test.cpp
+    title: test_atcoder/abc267h.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc269ex.test.cpp
     title: test_atcoder/abc269ex.test.cpp
   - icon: ':heavy_check_mark:'
@@ -755,11 +761,13 @@ data:
   - test/mytest/online_division.test.cpp
   - test/mytest/eulerian_number.test.cpp
   - test/mytest/conv_leq.test.cpp
+  - test_atcoder/abc267h.test.cpp
   - test_atcoder/abc269ex.test.cpp
   - test_atcoder/arc153f.test.cpp
   - test_atcoder/agc058d.test.cpp
   - test_atcoder/abc276_g.test.cpp
   - test_atcoder/abc272_h.test.cpp
+  - test_atcoder/abc267g.test.cpp
   - test_atcoder/abc276_g_2.test.cpp
 documentation_of: poly/ntt.hpp
 layout: document

@@ -100,6 +100,9 @@ data:
     path: test/yukicoder/2097.test.cpp
     title: test/yukicoder/2097.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc267h.test.cpp
+    title: test_atcoder/abc267h.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
   _isVerificationFailed: false
@@ -152,6 +155,7 @@ data:
   - test/mytest/bell.test.cpp
   - test/mytest/online_pow.test.cpp
   - test/mytest/online_exp.test.cpp
+  - test_atcoder/abc267h.test.cpp
   - test_atcoder/arc153f.test.cpp
 documentation_of: poly/integrate.hpp
 layout: document

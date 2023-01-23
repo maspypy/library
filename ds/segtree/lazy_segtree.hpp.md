@@ -102,6 +102,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc234g.test.cpp
+    title: test_atcoder/abc234g.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -255,6 +258,7 @@ data:
   - test/mytest/min_max.test.cpp
   - test/mytest/minmax_add.test.cpp
   - test/mytest/min_min.test.cpp
+  - test_atcoder/abc234g.test.cpp
 documentation_of: ds/segtree/lazy_segtree.hpp
 layout: document
 redirect_from:

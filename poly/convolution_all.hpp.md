@@ -37,6 +37,9 @@ data:
     path: test/yukicoder/1857.test.cpp
     title: test/yukicoder/1857.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc267g.test.cpp
+    title: test_atcoder/abc267g.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc269ex.test.cpp
     title: test_atcoder/abc269ex.test.cpp
   - icon: ':heavy_check_mark:'
@@ -352,6 +355,7 @@ data:
   - test/library_checker/polynomial/product_of_polynomial_sequence.test.cpp
   - test_atcoder/abc269ex.test.cpp
   - test_atcoder/abc272_h.test.cpp
+  - test_atcoder/abc267g.test.cpp
 documentation_of: poly/convolution_all.hpp
 layout: document
 redirect_from:

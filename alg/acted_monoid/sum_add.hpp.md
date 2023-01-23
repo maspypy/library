@@ -24,6 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/789_2.test.cpp
     title: test/yukicoder/789_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc234g.test.cpp
+    title: test_atcoder/abc234g.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -59,6 +62,7 @@ data:
   - test/mytest/ARC30D.test.cpp
   - test/mytest/splay_am.test.cpp
   - test/mytest/rbst_am_2.test.cpp
+  - test_atcoder/abc234g.test.cpp
 documentation_of: alg/acted_monoid/sum_add.hpp
 layout: document
 redirect_from:

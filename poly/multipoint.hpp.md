@@ -52,6 +52,9 @@ data:
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc267g.test.cpp
+    title: test_atcoder/abc267g.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc272_h.test.cpp
     title: test_atcoder/abc272_h.test.cpp
   _isVerificationFailed: false
@@ -470,6 +473,7 @@ data:
   - test/mytest/vandermonde.test.cpp
   - test/mytest/chirp_z.test.cpp
   - test_atcoder/abc272_h.test.cpp
+  - test_atcoder/abc267g.test.cpp
 documentation_of: poly/multipoint.hpp
 layout: document
 redirect_from:

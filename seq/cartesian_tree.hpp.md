@@ -12,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/cartesian_tree.test.cpp
     title: test/library_checker/tree/cartesian_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc234g.test.cpp
+    title: test_atcoder/abc234g.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -81,6 +84,7 @@ data:
   - test/aoj/DPL_3_C.test.cpp
   - test/aoj/DPL_3_B.test.cpp
   - test/library_checker/tree/cartesian_tree.test.cpp
+  - test_atcoder/abc234g.test.cpp
 documentation_of: seq/cartesian_tree.hpp
 layout: document
 redirect_from:

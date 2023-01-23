@@ -42,6 +42,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2062.test.cpp
     title: test/yukicoder/2062.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc267h.test.cpp
+    title: test_atcoder/abc267h.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -409,6 +412,7 @@ data:
   - test/yukicoder/2062.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp
+  - test_atcoder/abc267h.test.cpp
 documentation_of: poly/product_of_one_plus_xn.hpp
 layout: document
 redirect_from:

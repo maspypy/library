@@ -1576,6 +1576,9 @@ data:
     path: test_atcoder/abc234ex.test.cpp
     title: test_atcoder/abc234ex.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc234g.test.cpp
+    title: test_atcoder/abc234g.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc244h.test.cpp
     title: test_atcoder/abc244h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1599,6 +1602,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc266h_2.test.cpp
     title: test_atcoder/abc266h_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc267g.test.cpp
+    title: test_atcoder/abc267g.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc267h.test.cpp
+    title: test_atcoder/abc267h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc269ex.test.cpp
     title: test_atcoder/abc269ex.test.cpp
@@ -2373,6 +2382,7 @@ data:
   - test_atcoder/abc127f.test.cpp
   - test_atcoder/arc123d.test.cpp
   - test_atcoder/abc256d.test.cpp
+  - test_atcoder/abc267h.test.cpp
   - test_atcoder/abc234ex.test.cpp
   - test_atcoder/abc274_h.test.cpp
   - test_atcoder/abc269ex.test.cpp
@@ -2386,6 +2396,7 @@ data:
   - test_atcoder/abc249_ex.test.cpp
   - test_atcoder/abc272_h.test.cpp
   - test_atcoder/abc266h.test.cpp
+  - test_atcoder/abc267g.test.cpp
   - test_atcoder/abc223h.test.cpp
   - test_atcoder/abc259g.test.cpp
   - test_atcoder/abc266h_2.test.cpp
@@ -2400,6 +2411,7 @@ data:
   - test_atcoder/abc190f.test.cpp
   - test_atcoder/abc274g.test.cpp
   - test_atcoder/abc200a.test.cpp
+  - test_atcoder/abc234g.test.cpp
   - test_atcoder/abc273_e.test.cpp
   - test_atcoder/abc223d.test.cpp
   - test_atcoder/abc202_f.test.cpp

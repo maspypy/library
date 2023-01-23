@@ -202,6 +202,12 @@ data:
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc267g.test.cpp
+    title: test_atcoder/abc267g.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc267h.test.cpp
+    title: test_atcoder/abc267h.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc272_h.test.cpp
     title: test_atcoder/abc272_h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -291,8 +297,10 @@ data:
   - test/mytest/online_inv.test.cpp
   - test/mytest/online_exp.test.cpp
   - test/mytest/online_division.test.cpp
+  - test_atcoder/abc267h.test.cpp
   - test_atcoder/arc153f.test.cpp
   - test_atcoder/abc272_h.test.cpp
+  - test_atcoder/abc267g.test.cpp
 documentation_of: poly/count_terms.hpp
 layout: document
 redirect_from:
