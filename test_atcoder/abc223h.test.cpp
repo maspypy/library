@@ -1,4 +1,4 @@
-#define PROBLEM "https://atcoder.jp/contests/abc212/tasks/abc223_h"
+#define PROBLEM "https://atcoder.jp/contests/abc223/tasks/abc223_h"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/offline_query/range_xor_basis_query.hpp"
