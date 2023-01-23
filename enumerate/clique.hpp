@@ -1,8 +1,7 @@
-
 // N2^{sqrt(2m)}
 // https://www.slideshare.net/wata_orz/ss-12131479
 template <typename Gr, typename F>
-void enumerate_cliques(Gr& G, F query) {
+void enumerate_clique(Gr& G, F query) {
   int N = G.N;
   auto deg = G.deg_array();
   vc<bool> done(N);
