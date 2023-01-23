@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
@@ -21,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1881.test.cpp
+    title: test/yukicoder/1881.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2167.test.cpp
     title: test/yukicoder/2167.test.cpp
@@ -33,9 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/hash_vector.hpp\"\n\n#line 2 \"random/base.hpp\"\n\
@@ -95,7 +98,7 @@ data:
   requiredBy:
   - other/connected_dp.hpp
   timestamp: '2022-12-25 12:23:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/541.test.cpp
   - test/yukicoder/578.test.cpp
@@ -103,6 +106,7 @@ data:
   - test/yukicoder/1561.test.cpp
   - test/yukicoder/1397.test.cpp
   - test/yukicoder/2167.test.cpp
+  - test/yukicoder/1881.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
 documentation_of: random/hash_vector.hpp
 layout: document

@@ -223,7 +223,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
     - icon: ':heavy_check_mark:'
@@ -439,7 +439,7 @@ data:
     - icon: ':warning:'
       path: enumerate/multiset.hpp
       title: enumerate/multiset.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: enumerate/partition.hpp
       title: enumerate/partition.hpp
     - icon: ':x:'
@@ -892,7 +892,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/modint.hpp
       title: mod/modint.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: mod/modint61.hpp
       title: mod/modint61.hpp
     - icon: ':heavy_check_mark:'
@@ -935,7 +935,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/extgcd.hpp
       title: nt/extgcd.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: nt/factor.hpp
       title: nt/factor.hpp
     - icon: ':heavy_check_mark:'
@@ -956,7 +956,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/lcm_convolution.hpp
       title: nt/lcm_convolution.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: nt/lpf_table.hpp
       title: nt/lpf_table.hpp
     - icon: ':heavy_check_mark:'
@@ -980,10 +980,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/primesum_mod6.hpp
       title: nt/primesum_mod6.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: nt/primetable.hpp
       title: nt/primetable.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: nt/primetest.hpp
       title: nt/primetest.hpp
     - icon: ':heavy_check_mark:'
@@ -1165,10 +1165,10 @@ data:
       title: poly/online/online_pow.hpp
   - name: random
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: random/base.hpp
       title: random/base.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: random/hash_vector.hpp
       title: random/hash_vector.hpp
   - name: seq
