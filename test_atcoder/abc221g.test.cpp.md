@@ -1,33 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: mod/modint.hpp
-    title: mod/modint.hpp
+  - icon: ':question:'
+    path: knapsack/subset_sum.hpp
+    title: knapsack/subset_sum.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
-    path: setfunc/or_convolution.hpp
-    title: setfunc/or_convolution.hpp
-  - icon: ':heavy_check_mark:'
-    path: setfunc/zeta.hpp
-    title: setfunc/zeta.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/bitwise_and_convolution
+    PROBLEM: https://atcoder.jp/contests/abc221/tasks/abc221_g
     links:
-    - https://judge.yosupo.jp/problem/bitwise_and_convolution
-  bundledCode: "#line 1 \"test/library_checker/convolution/bitwise_or_convolution.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_and_convolution\"\r\
+    - https://atcoder.jp/contests/abc221/tasks/abc221_g
+  bundledCode: "#line 1 \"test_atcoder/abc221g.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc221/tasks/abc221_g\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -201,142 +194,59 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 4 \"test/library_checker/convolution/bitwise_or_convolution.test.cpp\"\
-    \n\r\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n  int\
-    \ val;\n  constexpr modint(ll x = 0) noexcept {\n    if (0 <= x && x < mod)\n\
-    \      val = x;\n    else {\n      x %= mod;\n      val = (x < 0 ? x + mod : x);\n\
-    \    }\n  }\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
-    \  } // To use std::map\n  modint &operator+=(const modint &p) {\n    if ((val\
-    \ += p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator-=(const\
-    \ modint &p) {\n    if ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n\
-    \  }\n  modint &operator*=(const modint &p) {\n    val = (int)(1LL * val * p.val\
-    \ % mod);\n    return *this;\n  }\n  modint &operator/=(const modint &p) {\n \
-    \   *this *= p.inverse();\n    return *this;\n  }\n  modint operator-() const\
-    \ { return modint(-val); }\n  modint operator+(const modint &p) const { return\
-    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
-    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
-    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
-    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
-    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
-    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
-    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
-    \ return modint(u);\n  }\n  modint pow(int64_t n) const {\n    modint ret(1),\
-    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
-    \      n >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() {\
-    \ fastio::printer.write(val); }\n  void read() {\n    ll x;\n    fastio::scanner.read(x);\n\
-    \    if (x < 0 || x >= mod) x %= mod;\n    if (x < 0) x += mod;\n    val += x;\n\
-    \  }\n#endif\n  static constexpr int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt\
-    \ {\n  static constexpr bool is_modint = true;\n  int val;\n  ArbitraryModInt()\
-    \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
-    \                   : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
-    \ ArbitraryModInt &other) const {\n    return val < other.val;\n  } // To use\
-    \ std::map<ArbitraryModInt, T>\n  static int &get_mod() {\n    static int mod\
-    \ = 0;\n    return mod;\n  }\n  static void set_mod(int md) { get_mod() = md;\
-    \ }\n  ArbitraryModInt &operator+=(const ArbitraryModInt &p) {\n    if ((val +=\
-    \ p.val) >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt\
-    \ &operator-=(const ArbitraryModInt &p) {\n    if ((val += get_mod() - p.val)\
-    \ >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt &operator*=(const\
-    \ ArbitraryModInt &p) {\n    long long a = (long long)val * p.val;\n    int xh\
-    \ = (int)(a >> 32), xl = (int)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d),\
-    \ \"=d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return\
-    \ *this;\n  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n   \
-    \ *this *= p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-()\
-    \ const { return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) += p;\n  }\n\
-    \  ArbitraryModInt operator-(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
-    \ -= p;\n  }\n  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n\
-    \    return ArbitraryModInt(*this) *= p;\n  }\n  ArbitraryModInt operator/(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) /= p;\n  }\n\
-    \  bool operator==(const ArbitraryModInt &p) const { return val == p.val; }\n\
-    \  bool operator!=(const ArbitraryModInt &p) const { return val != p.val; }\n\
-    \  ArbitraryModInt inverse() const {\n    int a = val, b = get_mod(), u = 1, v\
-    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
-    \ -= t * v, v);\n    }\n    return ArbitraryModInt(u);\n  }\n  ArbitraryModInt\
-    \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
-    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
-    \  }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
-    \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n};\n\ntemplate <typename\
-    \ mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n  static\
-    \ vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n \
-    \ while (int(dat.size()) <= n) {\n    int k = dat.size();\n    auto q = (mod +\
-    \ k - 1) / k;\n    int r = k * q - mod;\n    dat.emplace_back(dat[r] * mint(q));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
-    \ const int mod = mint::get_mod();\n  static vector<mint> dat = {1, 1};\n  assert(0\
-    \ <= n);\n  if (n >= mod) return 0;\n  while (int(dat.size()) <= n) {\n    int\
-    \ k = dat.size();\n    dat.emplace_back(dat[k - 1] * mint(k));\n  }\n  return\
-    \ dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static const\
-    \ int mod = mint::get_mod();\n  static vector<mint> dat = {1, 1};\n  assert(-1\
-    \ <= n && n < mod);\n  if (n == -1) return mint(0);\n  while (int(dat.size())\
-    \ <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <class mint, class... Ts>\nmint fact_invs(Ts...\
-    \ xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename\
-    \ mint, class Head, class... Tail>\nmint multinomial(Head &&head, Tail &&... tail)\
-    \ {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
-    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  static vvc<mint>\
-    \ C;\n  static int H = 0, W = 0;\n\n  auto calc = [&](int i, int j) -> mint {\n\
-    \    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
-    \ + (j ? C[i - 1][j - 1] : 0);\n  };\n\n  if (W <= k) {\n    FOR(i, H) {\n   \
-    \   C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n  \
-    \  }\n    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H,\
-    \ n + 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n\
-    \    }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint,\
-    \ bool large = false, bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >=\
-    \ 0);\n  if (k < 0 || n < k) return 0;\n  if (dense) return C_dense<mint>(n, k);\n\
-    \  if (!large) return fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);\n\
-    \  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) { x *= mint(n - i); }\n  x *=\
-    \ fact_inv<mint>(k);\n  return x;\n}\n\ntemplate <typename mint, bool large =\
-    \ false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <=\
-    \ n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n -\
-    \ k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d] (1-x) ^ {-n} \u306E\
-    \u8A08\u7B97\ntemplate <typename mint, bool large = false, bool dense = false>\n\
-    mint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
-    \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
-    \ dense>(n + d - 1, d);\n}\n\nusing modint107 = modint<1000000007>;\nusing modint998\
-    \ = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 2 \"setfunc/zeta.hpp\"\
-    \n\r\ntemplate <typename T>\r\nvoid superset_zeta(vc<T>& A) {\r\n  int log = topbit(len(A));\r\
-    \n  assert(1 << log == len(A));\r\n  FOR(n, log) FOR(s, 1 << log) {\r\n    int\
-    \ t = s ^ (1 << n);\r\n    if (s < t) A[s] += A[t];\r\n  }\r\n}\r\n\r\ntemplate\
-    \ <typename T>\r\nvoid superset_mobius(vc<T>& A) {\r\n  int log = topbit(len(A));\r\
-    \n  assert(1 << log == len(A));\r\n  FOR(n, log) FOR(s, 1 << log) {\r\n    int\
-    \ t = s ^ (1 << n);\r\n    if (s < t) A[s] -= A[t];\r\n  }\r\n}\r\n\r\ntemplate\
-    \ <typename T>\r\nvoid subset_zeta(vc<T>& A) {\r\n  int log = topbit(len(A));\r\
-    \n  assert(1 << log == len(A));\r\n  FOR(n, log) FOR(s, 1 << log) {\r\n    int\
-    \ t = s ^ (1 << n);\r\n    if (s > t) A[s] += A[t];\r\n  }\r\n}\r\n\r\ntemplate\
-    \ <typename T>\r\nvoid subset_mobius(vc<T>& A) {\r\n  int log = topbit(len(A));\r\
-    \n  assert(1 << log == len(A));\r\n  FOR(n, log) FOR(s, 1 << log) {\r\n    int\
-    \ t = s ^ (1 << n);\r\n    if (s > t) A[s] -= A[t];\r\n  }\r\n}\n#line 2 \"setfunc/or_convolution.hpp\"\
-    \ntemplate <typename T>\r\nvc<T> or_convolution(vc<T> A, vc<T> B) {\r\n  subset_zeta(A);\r\
-    \n  subset_zeta(B);\r\n  FOR(i, len(A)) A[i] *= B[i];\r\n  subset_mobius(A);\r\
-    \n  return A;\r\n}\r\n#line 7 \"test/library_checker/convolution/bitwise_or_convolution.test.cpp\"\
-    \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint,\
-    \ A, 1 << N);\r\n  VEC(mint, B, 1 << N);\r\n  reverse(all(A));\r\n  reverse(all(B));\r\
-    \n  auto ANS = or_convolution(A, B);\r\n  reverse(all(ANS));\r\n  print(ANS);\r\
-    \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_and_convolution\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
-    \ \"mod/modint.hpp\"\r\n#include \"setfunc/or_convolution.hpp\"\r\n\r\nusing mint\
-    \ = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint, A, 1 << N);\r\n\
-    \  VEC(mint, B, 1 << N);\r\n  reverse(all(A));\r\n  reverse(all(B));\r\n  auto\
-    \ ANS = or_convolution(A, B);\r\n  reverse(all(ANS));\r\n  print(ANS);\r\n}\r\n\
-    \r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ yes(!t); }\n#line 1 \"knapsack/subset_sum.hpp\"\n// \u4F5C\u308C\u308B\u306A\
+    \u3089\u3070\u5FA9\u5143\u3001\u305D\u3046\u3067\u306A\u3044\u306A\u3089\u3070\
+    \ {} \u3092\u8FD4\u3059\n// O(N max(vals)) \u6642\u9593\ntemplate <typename INT>\n\
+    vc<int> subset_sum(vc<INT>& vals, int target) {\n  if (target <= 0) return {};\n\
+    \  int n = len(vals);\n  int mx = MAX(vals);\n  int b = 0, sb = 0;\n  while (b\
+    \ < n && sb + vals[b] <= target) { sb += vals[b++]; }\n  if (b == n && sb != target)\
+    \ return {};\n\n  int off = target - mx + 1;\n  vc<int> dp(2 * mx, -1);\n  vv(int,\
+    \ PAR, n, 2 * mx, -1);\n  dp[sb - off] = b;\n  FOR3(i, b, n) {\n    auto newdp\
+    \ = dp;\n    auto& par = PAR[i];\n    int a = vals[i];\n    FOR(j, mx) {\n   \
+    \   if (chmax(newdp[j + a], dp[j])) { par[j + a] = -2; }\n    }\n    FOR3_R(j,\
+    \ mx, 2 * mx) {\n      FOR3_R(k, max(dp[j], 0), newdp[j]) {\n        if (chmax(newdp[j\
+    \ - vals[k]], k)) par[j - vals[k]] = k;\n      }\n    }\n    swap(dp, newdp);\n\
+    \  }\n  if (dp[mx - 1] == -1) return {};\n  vc<bool> use(n);\n  int i = n - 1,\
+    \ j = mx - 1;\n  while (i >= b) {\n    int p = PAR[i][j];\n    if (p == -2) {\n\
+    \      use[i] = !use[i];\n      j -= vals[i--];\n    }\n    elif (p == -1) { --i;\
+    \ }\n    else {\n      use[p] = !use[p];\n      j += vals[p];\n    }\n  }\n  while\
+    \ (i >= 0) {\n    use[i] = !use[i];\n    --i;\n  }\n  vc<int> I;\n  FOR(i, n)\
+    \ if (use[i]) I.eb(i);\n\n  ll sm = 0;\n  for (auto&& i: I) sm += vals[i];\n \
+    \ assert(sm == target);\n\n  return I;\n}\n#line 5 \"test_atcoder/abc221g.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, A, B);\n  VEC(int, D, N);\n  ll PLUS = A + B;\n  ll\
+    \ MINUS = A - B;\n  ll SM = SUM<int>(D);\n  if ((PLUS + SM) % 2 != 0) return No();\n\
+    \  PLUS = (PLUS + SM) / 2;\n  MINUS = (MINUS + SM) / 2;\n  if (PLUS < 0 || SM\
+    \ < PLUS) return No();\n  if (MINUS < 0 || SM < MINUS) return No();\n  auto X\
+    \ = subset_sum(D, PLUS);\n  auto Y = subset_sum(D, MINUS);\n  if (PLUS != 0 &&\
+    \ len(X) == 0) return No();\n  if (MINUS != 0 && len(Y) == 0) return No();\n \
+    \ Yes();\n  vi ANS(N);\n  for (auto&& x: X) ANS[x] |= 1;\n  for (auto&& y: Y)\
+    \ ANS[y] |= 2;\n  string S;\n  string cmd = \"LUDR\";\n  FOR(i, N) { S += cmd[ANS[i]];\
+    \ }\n  print(S);\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc221/tasks/abc221_g\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"knapsack/subset_sum.hpp\"\
+    \n\nvoid solve() {\n  LL(N, A, B);\n  VEC(int, D, N);\n  ll PLUS = A + B;\n  ll\
+    \ MINUS = A - B;\n  ll SM = SUM<int>(D);\n  if ((PLUS + SM) % 2 != 0) return No();\n\
+    \  PLUS = (PLUS + SM) / 2;\n  MINUS = (MINUS + SM) / 2;\n  if (PLUS < 0 || SM\
+    \ < PLUS) return No();\n  if (MINUS < 0 || SM < MINUS) return No();\n  auto X\
+    \ = subset_sum(D, PLUS);\n  auto Y = subset_sum(D, MINUS);\n  if (PLUS != 0 &&\
+    \ len(X) == 0) return No();\n  if (MINUS != 0 && len(Y) == 0) return No();\n \
+    \ Yes();\n  vi ANS(N);\n  for (auto&& x: X) ANS[x] |= 1;\n  for (auto&& y: Y)\
+    \ ANS[y] |= 2;\n  string S;\n  string cmd = \"LUDR\";\n  FOR(i, N) { S += cmd[ANS[i]];\
+    \ }\n  print(S);\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - mod/modint.hpp
-  - setfunc/or_convolution.hpp
-  - setfunc/zeta.hpp
+  - knapsack/subset_sum.hpp
   isVerificationFile: true
-  path: test/library_checker/convolution/bitwise_or_convolution.test.cpp
+  path: test_atcoder/abc221g.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-01-23 18:34:49+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/convolution/bitwise_or_convolution.test.cpp
+documentation_of: test_atcoder/abc221g.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/convolution/bitwise_or_convolution.test.cpp
-- /verify/test/library_checker/convolution/bitwise_or_convolution.test.cpp.html
-title: test/library_checker/convolution/bitwise_or_convolution.test.cpp
+- /verify/test_atcoder/abc221g.test.cpp
+- /verify/test_atcoder/abc221g.test.cpp.html
+title: test_atcoder/abc221g.test.cpp
 ---
