@@ -51,6 +51,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1745.test.cpp
     title: test/yukicoder/1745.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc274g.test.cpp
+    title: test_atcoder/abc274g.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -296,6 +299,7 @@ data:
   - test/library_checker/graph/bipartite_edge_coloring.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/mytest/tutte.test.cpp
+  - test_atcoder/abc274g.test.cpp
 documentation_of: flow/bipartite.hpp
 layout: document
 redirect_from:

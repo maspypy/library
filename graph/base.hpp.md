@@ -448,6 +448,9 @@ data:
     path: test_atcoder/abc270_f.test.cpp
     title: test_atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc274g.test.cpp
+    title: test_atcoder/abc274g.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc151_e.test.cpp
     title: test_atcoder/arc151_e.test.cpp
   - icon: ':heavy_check_mark:'
@@ -704,6 +707,7 @@ data:
   - test_atcoder/abc270_f.test.cpp
   - test_atcoder/abc266f.test.cpp
   - test_atcoder/arc151_e.test.cpp
+  - test_atcoder/abc274g.test.cpp
   - test_atcoder/abc223d.test.cpp
 documentation_of: graph/base.hpp
 layout: document

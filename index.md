@@ -719,6 +719,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/ds/tree_monoid.hpp
       title: graph/ds/tree_monoid.hpp
+  - name: graph/implicit_graph
+    pages:
+    - icon: ':warning:'
+      path: graph/implicit_graph/toposort.hpp
+      title: graph/implicit_graph/toposort.hpp
   - name: graph/shortest_path
     pages:
     - icon: ':heavy_check_mark:'
@@ -2959,6 +2964,9 @@ data:
       path: test_atcoder/abc256d.test.cpp
       title: test_atcoder/abc256d.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test_atcoder/abc259g.test.cpp
+      title: test_atcoder/abc259g.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc266c.test.cpp
       title: test_atcoder/abc266c.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2988,6 +2996,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc274_h.test.cpp
       title: test_atcoder/abc274_h.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_atcoder/abc274g.test.cpp
+      title: test_atcoder/abc274g.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc276_g.test.cpp
       title: test_atcoder/abc276_g.test.cpp

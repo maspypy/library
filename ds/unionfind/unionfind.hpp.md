@@ -114,6 +114,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc270_f.test.cpp
     title: test_atcoder/abc270_f.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc274g.test.cpp
+    title: test_atcoder/abc274g.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -181,6 +184,7 @@ data:
   - test/library_checker/datastructure/unionfind.test.cpp
   - test/mytest/tutte.test.cpp
   - test_atcoder/abc270_f.test.cpp
+  - test_atcoder/abc274g.test.cpp
 documentation_of: ds/unionfind/unionfind.hpp
 layout: document
 redirect_from:

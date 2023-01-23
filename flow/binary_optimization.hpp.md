@@ -9,6 +9,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1541.test.cpp
     title: test/yukicoder/1541.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc259g.test.cpp
+    title: test_atcoder/abc259g.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -178,6 +181,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1541.test.cpp
+  - test_atcoder/abc259g.test.cpp
 documentation_of: flow/binary_optimization.hpp
 layout: document
 redirect_from:
