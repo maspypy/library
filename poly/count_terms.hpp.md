@@ -139,6 +139,9 @@ data:
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/enum_partitions.test.cpp
+    title: test/mytest/enum_partitions.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/online_division.test.cpp
     title: test/mytest/online_division.test.cpp
   - icon: ':heavy_check_mark:'
@@ -285,6 +288,7 @@ data:
   - test/mytest/bell.test.cpp
   - test/mytest/simple_perm.test.cpp
   - test/mytest/online_pow.test.cpp
+  - test/mytest/enum_partitions.test.cpp
   - test/mytest/online_log.test.cpp
   - test/mytest/chirp_z.test.cpp
   - test/mytest/online_inv.test.cpp

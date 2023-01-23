@@ -430,6 +430,12 @@ data:
     path: test/library_checker/graph/cycle_detection_undirected.test.cpp
     title: test/library_checker/graph/cycle_detection_undirected.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/enumerate_cliques.test.cpp
+    title: test/library_checker/graph/enumerate_cliques.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/enumerate_triangles.test.cpp
+    title: test/library_checker/graph/enumerate_triangles.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/manhattan_mst.test.cpp
     title: test/library_checker/graph/manhattan_mst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -741,6 +747,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/dynamic_segtree_sparse.test.cpp
     title: test/mytest/dynamic_segtree_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/enum_partitions.test.cpp
+    title: test/mytest/enum_partitions.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/enumerate_multisets.test.cpp
+    title: test/mytest/enumerate_multisets.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/enumerate_products.test.cpp
+    title: test/mytest/enumerate_products.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/eulerian_number.test.cpp
     title: test/mytest/eulerian_number.test.cpp
@@ -2107,7 +2122,9 @@ data:
   - test/library_checker/graph/manhattan_mst.test.cpp
   - test/library_checker/graph/min_cost_b-flow.test.cpp
   - test/library_checker/graph/bipartite_edge_coloring.test.cpp
+  - test/library_checker/graph/enumerate_triangles.test.cpp
   - test/library_checker/graph/maximum_independent_set.test.cpp
+  - test/library_checker/graph/enumerate_cliques.test.cpp
   - test/library_checker/graph/cycle_detection.test.cpp
   - test/library_checker/graph/K_shortest_walk.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp
@@ -2287,6 +2304,7 @@ data:
   - test/mytest/gray_code.test.cpp
   - test/mytest/max_max.test.cpp
   - test/mytest/online_pow.test.cpp
+  - test/mytest/enum_partitions.test.cpp
   - test/mytest/max_min.test.cpp
   - test/mytest/maxidx_add.test.cpp
   - test/mytest/all_but_one_products.test.cpp
@@ -2308,11 +2326,13 @@ data:
   - test/mytest/is_substring.test.cpp
   - test/mytest/summin_assign.test.cpp
   - test/mytest/stern_brocot.test.cpp
+  - test/mytest/enumerate_multisets.test.cpp
   - test/mytest/partizan.test.cpp
   - test/mytest/dynamic_lazy_segtree.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/multinomial.test.cpp
   - test/mytest/dynamic_segtree_sparse.test.cpp
+  - test/mytest/enumerate_products.test.cpp
   - test/mytest/floor_ceil_ranges.test.cpp
   - test/mytest/cf702_F.test.cpp
   - test/mytest/factorial_998.test.cpp

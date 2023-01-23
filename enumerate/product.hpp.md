@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/mytest/enumerate_products.test.cpp
+    title: test/mytest/enumerate_products.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc233c.test.cpp
     title: test_atcoder/abc233c.test.cpp
   _isVerificationFailed: false
@@ -28,6 +31,7 @@ data:
   timestamp: '2023-01-23 21:04:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/enumerate_products.test.cpp
   - test_atcoder/abc233c.test.cpp
 documentation_of: enumerate/product.hpp
 layout: document

@@ -313,6 +313,9 @@ data:
     path: test/mytest/conv_leq.test.cpp
     title: test/mytest/conv_leq.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/enum_partitions.test.cpp
+    title: test/mytest/enum_partitions.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/eulerian_number.test.cpp
     title: test/mytest/eulerian_number.test.cpp
   - icon: ':heavy_check_mark:'
@@ -973,6 +976,7 @@ data:
   - test/mytest/pascal.test.cpp
   - test/mytest/simple_perm.test.cpp
   - test/mytest/online_pow.test.cpp
+  - test/mytest/enum_partitions.test.cpp
   - test/mytest/online_log.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/chirp_z.test.cpp

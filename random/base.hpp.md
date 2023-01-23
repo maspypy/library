@@ -169,6 +169,9 @@ data:
     path: test/mytest/dynamic_segtree_sparse.test.cpp
     title: test/mytest/dynamic_segtree_sparse.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/enum_partitions.test.cpp
+    title: test/mytest/enum_partitions.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
   - icon: ':heavy_check_mark:'
@@ -517,6 +520,7 @@ data:
   - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/max_max.test.cpp
   - test/mytest/online_pow.test.cpp
+  - test/mytest/enum_partitions.test.cpp
   - test/mytest/max_min.test.cpp
   - test/mytest/maxidx_add.test.cpp
   - test/mytest/dynamic_lazy_segtree_persistent.test.cpp

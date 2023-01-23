@@ -265,6 +265,9 @@ data:
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/enumerate_cliques.test.cpp
+    title: test/library_checker/graph/enumerate_cliques.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
   - icon: ':heavy_check_mark:'
@@ -417,6 +420,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/conv_leq.test.cpp
     title: test/mytest/conv_leq.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/enum_partitions.test.cpp
+    title: test/mytest/enum_partitions.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/enumerate_multisets.test.cpp
+    title: test/mytest/enumerate_multisets.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/enumerate_products.test.cpp
+    title: test/mytest/enumerate_products.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/eulerian_number.test.cpp
     title: test/mytest/eulerian_number.test.cpp
@@ -1060,6 +1072,7 @@ data:
   - test/yukicoder/1755.test.cpp
   - test/yukicoder/1891.test.cpp
   - test/yukicoder/1962.test.cpp
+  - test/library_checker/graph/enumerate_cliques.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
   - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
@@ -1138,11 +1151,14 @@ data:
   - test/mytest/rbst_commutative_persistent.test.cpp
   - test/mytest/simple_perm.test.cpp
   - test/mytest/online_pow.test.cpp
+  - test/mytest/enum_partitions.test.cpp
   - test/mytest/prime_sum.test.cpp
   - test/mytest/online_log.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
+  - test/mytest/enumerate_multisets.test.cpp
   - test/mytest/multinomial.test.cpp
+  - test/mytest/enumerate_products.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/binom.test.cpp
   - test/mytest/chirp_z.test.cpp
