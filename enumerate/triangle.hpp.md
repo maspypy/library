@@ -56,19 +56,19 @@ data:
     \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
     \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"enumerate/triangle.hpp\"\
-    \n\r\ntemplate <typename Gr, typename F>\r\nvoid enumerate_triangles(Gr& G, F\
-    \ query) {\r\n  int N = G.N;\r\n  Graph<int, 1> H(N);\r\n  for (auto&& e: G.edges)\
-    \ {\r\n    // \u6CE8\u610F\uFF1A\u6B21\u6570\u6BD4\u8F03\u3060\u3051\u3060\u3068\
-    \ DAG \u306B\u306A\u3089\u305A\u3001\u30B5\u30A4\u30AF\u30EB\u304C\u3067\u304D\
-    \u3066\u3057\u307E\u3046\r\n    if (mp(G.deg(e.frm), e.frm) < mp(G.deg(e.to),\
-    \ e.to))\r\n      H.add(e.frm, e.to);\r\n    else\r\n      H.add(e.to, e.frm);\r\
-    \n  }\r\n  H.build();\r\n\r\n  vc<bool> table(N);\r\n  FOR(a, N) {\r\n    for\
-    \ (auto&& e: H[a]) { table[e.to] = 1; }\r\n    for (auto&& e: H[a]) {\r\n    \
-    \  int b = e.to;\r\n      for (auto&& f: H[b]) {\r\n        int c = f.to;\r\n\
-    \        if (table[c]) query(a, b, c);\r\n      }\r\n    }\r\n    for (auto&&\
-    \ e: H[a]) { table[e.to] = 0; }\r\n  }\r\n}\r\n"
+    \n\r\ntemplate <typename Gr, typename F>\r\nvoid enumerate_triangle(Gr& G, F query)\
+    \ {\r\n  int N = G.N;\r\n  Graph<int, 1> H(N);\r\n  for (auto&& e: G.edges) {\r\
+    \n    // \u6CE8\u610F\uFF1A\u6B21\u6570\u6BD4\u8F03\u3060\u3051\u3060\u3068 DAG\
+    \ \u306B\u306A\u3089\u305A\u3001\u30B5\u30A4\u30AF\u30EB\u304C\u3067\u304D\u3066\
+    \u3057\u307E\u3046\r\n    if (mp(G.deg(e.frm), e.frm) < mp(G.deg(e.to), e.to))\r\
+    \n      H.add(e.frm, e.to);\r\n    else\r\n      H.add(e.to, e.frm);\r\n  }\r\n\
+    \  H.build();\r\n\r\n  vc<bool> table(N);\r\n  FOR(a, N) {\r\n    for (auto&&\
+    \ e: H[a]) { table[e.to] = 1; }\r\n    for (auto&& e: H[a]) {\r\n      int b =\
+    \ e.to;\r\n      for (auto&& f: H[b]) {\r\n        int c = f.to;\r\n        if\
+    \ (table[c]) query(a, b, c);\r\n      }\r\n    }\r\n    for (auto&& e: H[a]) {\
+    \ table[e.to] = 0; }\r\n  }\r\n}\r\n"
   code: "#include \"graph/base.hpp\"\r\n\r\ntemplate <typename Gr, typename F>\r\n\
-    void enumerate_triangles(Gr& G, F query) {\r\n  int N = G.N;\r\n  Graph<int, 1>\
+    void enumerate_triangle(Gr& G, F query) {\r\n  int N = G.N;\r\n  Graph<int, 1>\
     \ H(N);\r\n  for (auto&& e: G.edges) {\r\n    // \u6CE8\u610F\uFF1A\u6B21\u6570\
     \u6BD4\u8F03\u3060\u3051\u3060\u3068 DAG \u306B\u306A\u3089\u305A\u3001\u30B5\u30A4\
     \u30AF\u30EB\u304C\u3067\u304D\u3066\u3057\u307E\u3046\r\n    if (mp(G.deg(e.frm),\
@@ -83,7 +83,7 @@ data:
   isVerificationFile: false
   path: enumerate/triangle.hpp
   requiredBy: []
-  timestamp: '2023-01-23 21:04:48+09:00'
+  timestamp: '2023-01-23 21:39:27+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: enumerate/triangle.hpp
