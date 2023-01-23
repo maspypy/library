@@ -83,7 +83,7 @@ struct Function_on_Divisors {
     }
   }
 
-  vc<pair<ll, T>> get() {
+  vc<pair<ll, T>> get_all() {
     vc<pair<ll, T>> res;
     FOR(i, len(divs)) { res.eb(divs[i], dat[i]); }
     return res;
