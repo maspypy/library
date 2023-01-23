@@ -55,9 +55,6 @@ data:
     path: test/yukicoder/1769.test.cpp
     title: test/yukicoder/1769.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1881.test.cpp
-    title: test/yukicoder/1881.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2102.test.cpp
     title: test/yukicoder/2102.test.cpp
   - icon: ':heavy_check_mark:'
@@ -154,7 +151,6 @@ data:
   - test/yukicoder/2167.test.cpp
   - test/yukicoder/2102.test.cpp
   - test/yukicoder/1634.test.cpp
-  - test/yukicoder/1881.test.cpp
   - test/library_checker/datastructure/associative_array_hashmap.test.cpp
   - test/library_checker/datastructure/set_xor_min.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp

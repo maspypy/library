@@ -103,9 +103,6 @@ data:
     path: test/yukicoder/187.test.cpp
     title: test/yukicoder/187.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1881.test.cpp
-    title: test/yukicoder/1881.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1956.test.cpp
     title: test/yukicoder/1956.test.cpp
   - icon: ':heavy_check_mark:'
@@ -221,7 +218,6 @@ data:
   - test/yukicoder/2120.test.cpp
   - test/yukicoder/1025.test.cpp
   - test/yukicoder/590.test.cpp
-  - test/yukicoder/1881.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
   - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/stirling_mod_p_1.test.cpp

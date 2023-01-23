@@ -22,9 +22,6 @@ data:
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1881.test.cpp
-    title: test/yukicoder/1881.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2167.test.cpp
     title: test/yukicoder/2167.test.cpp
   - icon: ':heavy_check_mark:'
@@ -106,7 +103,6 @@ data:
   - test/yukicoder/1561.test.cpp
   - test/yukicoder/1397.test.cpp
   - test/yukicoder/2167.test.cpp
-  - test/yukicoder/1881.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
 documentation_of: random/hash_vector.hpp
 layout: document

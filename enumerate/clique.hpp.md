@@ -2,17 +2,14 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/enumerate_cliques.test.cpp
-    title: test/library_checker/graph/enumerate_cliques.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links:
     - https://www.slideshare.net/wata_orz/ss-12131479
-  bundledCode: "#line 1 \"enumerate/cliques.hpp\"\n\n// N2^{sqrt(2m)}\n// https://www.slideshare.net/wata_orz/ss-12131479\n\
+  bundledCode: "#line 1 \"enumerate/clique.hpp\"\n\n// N2^{sqrt(2m)}\n// https://www.slideshare.net/wata_orz/ss-12131479\n\
     template <typename Gr, typename F>\nvoid enumerate_cliques(Gr& G, F query) {\n\
     \  int N = G.N;\n  auto deg = G.deg_array();\n  vc<bool> done(N);\n  vv(int, can,\
     \ N, N);\n  for (auto&& e: G.edges) { can[e.frm][e.to] = can[e.to][e.frm] = 1;\
@@ -42,16 +39,15 @@ data:
     \ 0);\n    done[v] = 1;\n    for (auto&& x: nbd) deg[x]--;\n  }\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: enumerate/cliques.hpp
+  path: enumerate/clique.hpp
   requiredBy: []
-  timestamp: '2022-10-21 17:08:40+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/library_checker/graph/enumerate_cliques.test.cpp
-documentation_of: enumerate/cliques.hpp
+  timestamp: '2023-01-23 21:04:48+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: enumerate/clique.hpp
 layout: document
 redirect_from:
-- /library/enumerate/cliques.hpp
-- /library/enumerate/cliques.hpp.html
-title: enumerate/cliques.hpp
+- /library/enumerate/clique.hpp
+- /library/enumerate/clique.hpp.html
+title: enumerate/clique.hpp
 ---

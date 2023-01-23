@@ -87,9 +87,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1939.test.cpp
     title: test/yukicoder/1939.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test_atcoder/arc153f.test.cpp
-    title: test_atcoder/arc153f.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -547,7 +544,6 @@ data:
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/mytest/bell.test.cpp
   - test/mytest/online_pow.test.cpp
-  - test_atcoder/arc153f.test.cpp
 documentation_of: poly/fps_pow.hpp
 layout: document
 redirect_from:

@@ -430,24 +430,24 @@ data:
     - icon: ':heavy_check_mark:'
       path: enumerate/ceil_range.hpp
       title: enumerate/ceil_range.hpp
-    - icon: ':heavy_check_mark:'
-      path: enumerate/cliques.hpp
-      title: enumerate/cliques.hpp
+    - icon: ':warning:'
+      path: enumerate/clique.hpp
+      title: enumerate/clique.hpp
     - icon: ':heavy_check_mark:'
       path: enumerate/floor_range.hpp
       title: enumerate/floor_range.hpp
-    - icon: ':heavy_check_mark:'
-      path: enumerate/multisets.hpp
-      title: enumerate/multisets.hpp
-    - icon: ':heavy_check_mark:'
-      path: enumerate/partitions.hpp
-      title: enumerate/partitions.hpp
-    - icon: ':heavy_check_mark:'
-      path: enumerate/products.hpp
-      title: enumerate/products.hpp
-    - icon: ':heavy_check_mark:'
-      path: enumerate/triangles.hpp
-      title: enumerate/triangles.hpp
+    - icon: ':warning:'
+      path: enumerate/multiset.hpp
+      title: enumerate/multiset.hpp
+    - icon: ':warning:'
+      path: enumerate/partition.hpp
+      title: enumerate/partition.hpp
+    - icon: ':x:'
+      path: enumerate/product.hpp
+      title: enumerate/product.hpp
+    - icon: ':warning:'
+      path: enumerate/triangle.hpp
+      title: enumerate/triangle.hpp
     - icon: ':heavy_check_mark:'
       path: enumerate/xor_range.hpp
       title: enumerate/xor_range.hpp
@@ -912,7 +912,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -1006,7 +1006,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/dice.hpp
       title: other/dice.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -1790,10 +1790,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/cycle_detection_undirected.test.cpp
       title: test/library_checker/graph/cycle_detection_undirected.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/graph/enumerate_cliques.test.cpp
       title: test/library_checker/graph/enumerate_cliques.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/graph/enumerate_triangles.test.cpp
       title: test/library_checker/graph/enumerate_triangles.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2122,13 +2122,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/dynamic_segtree_sparse.test.cpp
       title: test/mytest/dynamic_segtree_sparse.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/mytest/enum_partitions.test.cpp
       title: test/mytest/enum_partitions.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/mytest/enumerate_multisets.test.cpp
       title: test/mytest/enumerate_multisets.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/mytest/enumerate_products.test.cpp
       title: test/mytest/enumerate_products.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2439,7 +2439,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1262.test.cpp
       title: test/yukicoder/1262.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/1263.test.cpp
       title: test/yukicoder/1263.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2730,7 +2730,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1875.test.cpp
       title: test/yukicoder/1875.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/1881.test.cpp
       title: test/yukicoder/1881.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2951,6 +2951,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc229h.test.cpp
       title: test_atcoder/abc229h.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/abc233c.test.cpp
+      title: test_atcoder/abc233c.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc234ex.test.cpp
       title: test_atcoder/abc234ex.test.cpp
@@ -3026,7 +3029,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/arc153b.test.cpp
       title: test_atcoder/arc153b.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_atcoder/arc153f.test.cpp
       title: test_atcoder/arc153f.test.cpp
 layout: toppage

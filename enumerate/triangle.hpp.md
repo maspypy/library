@@ -5,13 +5,10 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/enumerate_triangles.test.cpp
-    title: test/library_checker/graph/enumerate_triangles.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -58,7 +55,7 @@ data:
     \ {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
     \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
-    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"enumerate/triangles.hpp\"\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"enumerate/triangle.hpp\"\
     \n\r\ntemplate <typename Gr, typename F>\r\nvoid enumerate_triangles(Gr& G, F\
     \ query) {\r\n  int N = G.N;\r\n  Graph<int, 1> H(N);\r\n  for (auto&& e: G.edges)\
     \ {\r\n    // \u6CE8\u610F\uFF1A\u6B21\u6570\u6BD4\u8F03\u3060\u3051\u3060\u3068\
@@ -84,16 +81,15 @@ data:
   dependsOn:
   - graph/base.hpp
   isVerificationFile: false
-  path: enumerate/triangles.hpp
+  path: enumerate/triangle.hpp
   requiredBy: []
-  timestamp: '2022-12-05 10:41:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/library_checker/graph/enumerate_triangles.test.cpp
-documentation_of: enumerate/triangles.hpp
+  timestamp: '2023-01-23 21:04:48+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: enumerate/triangle.hpp
 layout: document
 redirect_from:
-- /library/enumerate/triangles.hpp
-- /library/enumerate/triangles.hpp.html
-title: enumerate/triangles.hpp
+- /library/enumerate/triangle.hpp
+- /library/enumerate/triangle.hpp.html
+title: enumerate/triangle.hpp
 ---

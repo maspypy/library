@@ -169,9 +169,6 @@ data:
     path: test/mytest/dynamic_segtree_sparse.test.cpp
     title: test/mytest/dynamic_segtree_sparse.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/enum_partitions.test.cpp
-    title: test/mytest/enum_partitions.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
   - icon: ':heavy_check_mark:'
@@ -373,9 +370,6 @@ data:
     path: test/yukicoder/1775.test.cpp
     title: test/yukicoder/1775.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1881.test.cpp
-    title: test/yukicoder/1881.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1907.test.cpp
     title: test/yukicoder/1907.test.cpp
   - icon: ':heavy_check_mark:'
@@ -485,7 +479,6 @@ data:
   - test/yukicoder/1025.test.cpp
   - test/yukicoder/2102.test.cpp
   - test/yukicoder/1634.test.cpp
-  - test/yukicoder/1881.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp
   - test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
@@ -520,7 +513,6 @@ data:
   - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/max_max.test.cpp
   - test/mytest/online_pow.test.cpp
-  - test/mytest/enum_partitions.test.cpp
   - test/mytest/max_min.test.cpp
   - test/mytest/maxidx_add.test.cpp
   - test/mytest/dynamic_lazy_segtree_persistent.test.cpp

@@ -75,9 +75,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc249_ex.test.cpp
     title: test_atcoder/abc249_ex.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test_atcoder/arc153f.test.cpp
-    title: test_atcoder/arc153f.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -142,7 +139,6 @@ data:
   - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
   - test/mytest/bell.test.cpp
   - test/mytest/eulerian_number.test.cpp
-  - test_atcoder/arc153f.test.cpp
   - test_atcoder/abc249_ex.test.cpp
   - test_atcoder/abc202_f.test.cpp
 documentation_of: mod/powertable.hpp

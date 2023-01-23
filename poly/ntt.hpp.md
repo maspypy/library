@@ -301,9 +301,6 @@ data:
     path: test/mytest/conv_leq.test.cpp
     title: test/mytest/conv_leq.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/enum_partitions.test.cpp
-    title: test/mytest/enum_partitions.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/eulerian_number.test.cpp
     title: test/mytest/eulerian_number.test.cpp
   - icon: ':heavy_check_mark:'
@@ -459,9 +456,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d.test.cpp
     title: test_atcoder/agc058d.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test_atcoder/arc153f.test.cpp
-    title: test_atcoder/arc153f.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -751,7 +745,6 @@ data:
   - test/mytest/pascal.test.cpp
   - test/mytest/simple_perm.test.cpp
   - test/mytest/online_pow.test.cpp
-  - test/mytest/enum_partitions.test.cpp
   - test/mytest/online_log.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/chirp_z.test.cpp
@@ -763,7 +756,6 @@ data:
   - test/mytest/conv_leq.test.cpp
   - test_atcoder/abc267h.test.cpp
   - test_atcoder/abc269ex.test.cpp
-  - test_atcoder/arc153f.test.cpp
   - test_atcoder/agc058d.test.cpp
   - test_atcoder/abc276_g.test.cpp
   - test_atcoder/abc272_h.test.cpp

@@ -136,9 +136,6 @@ data:
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/enum_partitions.test.cpp
-    title: test/mytest/enum_partitions.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/online_division.test.cpp
     title: test/mytest/online_division.test.cpp
   - icon: ':heavy_check_mark:'
@@ -195,9 +192,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc272_h.test.cpp
     title: test_atcoder/abc272_h.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test_atcoder/arc153f.test.cpp
-    title: test_atcoder/arc153f.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -597,12 +591,10 @@ data:
   - test/mytest/bell.test.cpp
   - test/mytest/simple_perm.test.cpp
   - test/mytest/online_pow.test.cpp
-  - test/mytest/enum_partitions.test.cpp
   - test/mytest/online_log.test.cpp
   - test/mytest/chirp_z.test.cpp
   - test/mytest/online_inv.test.cpp
   - test/mytest/online_division.test.cpp
-  - test_atcoder/arc153f.test.cpp
   - test_atcoder/abc272_h.test.cpp
   - test_atcoder/abc267g.test.cpp
 documentation_of: poly/fps_inv.hpp

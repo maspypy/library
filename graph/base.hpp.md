@@ -2,9 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: enumerate/triangles.hpp
-    title: enumerate/triangles.hpp
+  - icon: ':warning:'
+    path: enumerate/triangle.hpp
+    title: enumerate/triangle.hpp
   - icon: ':heavy_check_mark:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
@@ -253,12 +253,6 @@ data:
     path: test/library_checker/graph/cycle_detection_undirected.test.cpp
     title: test/library_checker/graph/cycle_detection_undirected.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/enumerate_cliques.test.cpp
-    title: test/library_checker/graph/enumerate_cliques.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/enumerate_triangles.test.cpp
-    title: test/library_checker/graph/enumerate_triangles.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/manhattan_mst.test.cpp
     title: test/library_checker/graph/manhattan_mst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -453,9 +447,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc151_e.test.cpp
     title: test_atcoder/arc151_e.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test_atcoder/arc153f.test.cpp
-    title: test_atcoder/arc153f.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -608,7 +599,7 @@ data:
   - flow/bipartite.hpp
   - string/suffix_tree.hpp
   - string/suffix_automaton.hpp
-  - enumerate/triangles.hpp
+  - enumerate/triangle.hpp
   timestamp: '2022-12-05 10:41:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -675,9 +666,7 @@ data:
   - test/library_checker/graph/scc.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp
   - test/library_checker/graph/bipartite_edge_coloring.test.cpp
-  - test/library_checker/graph/enumerate_triangles.test.cpp
   - test/library_checker/graph/maximum_independent_set.test.cpp
-  - test/library_checker/graph/enumerate_cliques.test.cpp
   - test/library_checker/graph/cycle_detection.test.cpp
   - test/library_checker/graph/K_shortest_walk.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp
@@ -703,7 +692,6 @@ data:
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/tutte.test.cpp
   - test_atcoder/abc269ex.test.cpp
-  - test_atcoder/arc153f.test.cpp
   - test_atcoder/abc270_f.test.cpp
   - test_atcoder/abc266f.test.cpp
   - test_atcoder/arc151_e.test.cpp

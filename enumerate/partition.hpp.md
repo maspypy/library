@@ -2,22 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/enum_partitions.test.cpp
-    title: test/mytest/enum_partitions.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1263.test.cpp
-    title: test/yukicoder/1263.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1881.test.cpp
-    title: test/yukicoder/1881.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"enumerate/partitions.hpp\"\n/*\nN \u306E partition \u306E\
+  bundledCode: "#line 1 \"enumerate/partition.hpp\"\n/*\nN \u306E partition \u306E\
     \u5217\u6319\u3057\u3066\u3001partition p \u3054\u3068\u306B query(p) \u3092\u884C\
     \u3046\npartition \u306F\u3001\u6E1B\u5C11\u5217\u3068\u3057\u3066\u8F9E\u66F8\
     \u5F0F\u306E\u964D\u9806\u306B\u5217\u6319\u3059\u308B\n\u751F\u6210\u306B\u304B\
@@ -47,18 +38,15 @@ data:
     \ dfs(dfs, p, 0);\n}"
   dependsOn: []
   isVerificationFile: false
-  path: enumerate/partitions.hpp
+  path: enumerate/partition.hpp
   requiredBy: []
-  timestamp: '2022-10-21 17:08:40+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yukicoder/1263.test.cpp
-  - test/yukicoder/1881.test.cpp
-  - test/mytest/enum_partitions.test.cpp
-documentation_of: enumerate/partitions.hpp
+  timestamp: '2023-01-23 21:04:48+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: enumerate/partition.hpp
 layout: document
 redirect_from:
-- /library/enumerate/partitions.hpp
-- /library/enumerate/partitions.hpp.html
-title: enumerate/partitions.hpp
+- /library/enumerate/partition.hpp
+- /library/enumerate/partition.hpp.html
+title: enumerate/partition.hpp
 ---

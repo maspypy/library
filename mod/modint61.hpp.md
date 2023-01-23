@@ -55,9 +55,6 @@ data:
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1881.test.cpp
-    title: test/yukicoder/1881.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2102.test.cpp
     title: test/yukicoder/2102.test.cpp
   - icon: ':heavy_check_mark:'
@@ -170,7 +167,6 @@ data:
   - test/yukicoder/4_1.test.cpp
   - test/yukicoder/2167.test.cpp
   - test/yukicoder/2102.test.cpp
-  - test/yukicoder/1881.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp
   - test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
