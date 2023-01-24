@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"
-#include "enumerate/partitions.hpp"
+#include "enumerate/partition.hpp"
 
 using mint = modint107;
 
@@ -17,7 +17,7 @@ void solve() {
     for (auto&& x: CNT) v *= fact_inv<mint>(x);
     ANS *= v;
   };
-  enumerate_partitions(N, f);
+  enumerate_partition(N, f);
   print(ANS);
 }
 
