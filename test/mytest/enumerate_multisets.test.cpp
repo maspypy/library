@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "enumerate/multisets.hpp"
+#include "enumerate/multiset.hpp"
 #include "mod/modint.hpp"
 
 using mint = modint998;
@@ -11,7 +11,7 @@ void test() {
   {
     vvc<int> res;
     auto f = [&](vc<int> A) -> void { res.eb(A); };
-    enumerate_multisets(3, 2, f);
+    enumerate_multiset(3, 2, f);
     assert(len(res) == 6);
     assert(res[0] == vc<int>({0, 0}));
     assert(res[1] == vc<int>({0, 1}));
@@ -23,7 +23,7 @@ void test() {
   {
     int cnt = 0;
     auto f = [&](vc<int> A) -> void { ++cnt; };
-    enumerate_multisets(3, 4, f);
+    enumerate_multiset(3, 4, f);
     assert(cnt == 15);
   }
 }

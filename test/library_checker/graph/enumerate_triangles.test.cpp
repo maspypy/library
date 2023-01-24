@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/enumerate_triangles"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "enumerate/triangles.hpp"
+#include "enumerate/triangle.hpp"
 
 void solve() {
   LL(N, M);
@@ -11,7 +11,7 @@ void solve() {
   i128 sum = 0;
   auto query
       = [&](int a, int b, int c) -> void { sum += i128(A[a]) * A[b] * A[c]; };
-  enumerate_triangles(G, query);
+  enumerate_triangle(G, query);
   int ANS = sum % 998244353;
   print(ANS);
 }

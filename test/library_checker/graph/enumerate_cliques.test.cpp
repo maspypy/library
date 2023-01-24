@@ -4,7 +4,7 @@
 
 #include "graph/base.hpp"
 #include "mod/modint.hpp"
-#include "enumerate/cliques.hpp"
+#include "enumerate/clique.hpp"
 
 using mint = modint998;
 
@@ -20,7 +20,7 @@ void solve() {
     for (auto&& i: C) p *= X[i];
     ANS += p;
   };
-  enumerate_cliques(G, f);
+  enumerate_clique(G, f);
   print(ANS);
 }
 

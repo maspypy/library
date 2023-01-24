@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "enumerate/products.hpp"
+#include "enumerate/product.hpp"
 #include "mod/modint.hpp"
 
 using mint = modint998;
@@ -11,7 +11,7 @@ void test() {
   {
     vvc<int> res;
     auto f = [&](vc<int> A) -> void { res.eb(A); };
-    enumerate_products(3, 2, f);
+    enumerate_product(vc<int>(2, 3), f);
     assert(len(res) == 9);
     assert(res[0] == vc<int>({0, 0}));
     assert(res[1] == vc<int>({0, 1}));
@@ -26,7 +26,7 @@ void test() {
   {
     int cnt = 0;
     auto f = [&](vc<int> A) -> void { ++cnt; };
-    enumerate_products(3, 4, f);
+    enumerate_product(vc<int>(4, 3), f);
     assert(cnt == 81);
   }
 }

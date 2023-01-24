@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "mod/modint.hpp"
 #include "graph/base.hpp"
-#include "enumerate/products.hpp"
+#include "enumerate/product.hpp"
 #include "seq/famous/stirling_number_2.hpp"
 #include "graph/block_cut.hpp"
 
@@ -38,7 +38,7 @@ void naive(Graph<bool, 0> G) {
     } while (next_permutation(all(P)));
   };
 
-  enumerate_products(3, M, F);
+  enumerate_product(vc<int>(M, 3), F);
   print(ANS);
 }
 
