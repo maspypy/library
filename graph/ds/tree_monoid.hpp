@@ -38,6 +38,13 @@ struct Tree_Monoid {
     if (!Monoid::commute) seg_r.set(i, x);
   }
 
+  void multiply(int i, X x) {
+    if (edge) i = tree.e_to_v(i);
+    i = tree.LID[i];
+    seg.multiply(i, x);
+    if (!Monoid::commute) seg_r.multiply(i, x);
+  }
+
   X prod_path(int u, int v) {
     auto pd = tree.get_path_decomposition(u, v, edge);
     X val = Monoid::unit();
