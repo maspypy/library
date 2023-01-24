@@ -4,25 +4,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -380,14 +380,16 @@ data:
     \      }\r\n    }\r\n    seg = SegTree<Monoid>(seg_raw);\r\n    if (!Monoid::commute)\
     \ seg_r = SegTree<RevMonoid>(seg_raw);\r\n  }\r\n\r\n  void set(int i, X x) {\r\
     \n    if (edge) i = tree.e_to_v(i);\r\n    i = tree.LID[i];\r\n    seg.set(i,\
-    \ x);\r\n    if (!Monoid::commute) seg_r.set(i, x);\r\n  }\r\n\r\n  X prod_path(int\
-    \ u, int v) {\r\n    auto pd = tree.get_path_decomposition(u, v, edge);\r\n  \
-    \  X val = Monoid::unit();\r\n    for (auto &&[a, b]: pd) {\r\n      X x = (a\
-    \ <= b ? seg.prod(a, b + 1)\r\n                    : (Monoid::commute ? seg.prod(b,\
-    \ a + 1)\r\n                                       : seg_r.prod(b, a + 1)));\r\
-    \n      val = Monoid::op(val, x);\r\n    }\r\n    return val;\r\n  }\r\n\r\n \
-    \ // uv path \u4E0A\u3067 prod_path(u, x) \u304C check \u3092\u6E80\u305F\u3059\
-    \u6700\u5F8C\u306E x\r\n  // \u306A\u3051\u308C\u3070 -1\r\n  // https://codeforces.com/contest/1059/problem/E\r\
+    \ x);\r\n    if (!Monoid::commute) seg_r.set(i, x);\r\n  }\r\n\r\n  void multiply(int\
+    \ i, X x) {\r\n    if (edge) i = tree.e_to_v(i);\r\n    i = tree.LID[i];\r\n \
+    \   seg.multiply(i, x);\r\n    if (!Monoid::commute) seg_r.multiply(i, x);\r\n\
+    \  }\r\n\r\n  X prod_path(int u, int v) {\r\n    auto pd = tree.get_path_decomposition(u,\
+    \ v, edge);\r\n    X val = Monoid::unit();\r\n    for (auto &&[a, b]: pd) {\r\n\
+    \      X x = (a <= b ? seg.prod(a, b + 1)\r\n                    : (Monoid::commute\
+    \ ? seg.prod(b, a + 1)\r\n                                       : seg_r.prod(b,\
+    \ a + 1)));\r\n      val = Monoid::op(val, x);\r\n    }\r\n    return val;\r\n\
+    \  }\r\n\r\n  // uv path \u4E0A\u3067 prod_path(u, x) \u304C check \u3092\u6E80\
+    \u305F\u3059\u6700\u5F8C\u306E x\r\n  // \u306A\u3051\u308C\u3070 -1\r\n  // https://codeforces.com/contest/1059/problem/E\r\
     \n  // https://codeforces.com/contest/1230/problem/E\r\n  // edge: https://atcoder.jp/contests/tkppc3/tasks/tkppc3_i\r\
     \n  // edge \u304C\u7279\u306B\u602A\u3057\u3044\u304B\u3082\r\n  template <class\
     \ F>\r\n  int max_path(F &check, int u, int v) {\r\n    if (edge) return max_path_edge(check,\
@@ -460,7 +462,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
+  timestamp: '2023-01-25 06:11:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
