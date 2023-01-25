@@ -442,6 +442,9 @@ data:
     path: test/library_checker/graph/maximum_independent_set.test.cpp
     title: test/library_checker/graph/maximum_independent_set.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/maximum_independent_set2.test.cpp
+    title: test/library_checker/graph/maximum_independent_set2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/min_cost_b-flow.test.cpp
     title: test/library_checker/graph/min_cost_b-flow.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1614,7 +1617,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc269ex.test.cpp
     title: test_atcoder/abc269ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc270_f.test.cpp
     title: test_atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1653,9 +1656,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\n#include\
@@ -1871,7 +1874,7 @@ data:
   path: other/io.hpp
   requiredBy: []
   timestamp: '2023-01-19 00:14:25+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_3_A.test.cpp
   - test/aoj/DSL_2_D.test.cpp
@@ -2126,6 +2129,7 @@ data:
   - test/library_checker/graph/biconnected_component.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp
   - test/library_checker/graph/scc.test.cpp
+  - test/library_checker/graph/maximum_independent_set2.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp
   - test/library_checker/graph/min_cost_b-flow.test.cpp
   - test/library_checker/graph/bipartite_edge_coloring.test.cpp

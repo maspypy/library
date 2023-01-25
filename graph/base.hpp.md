@@ -38,7 +38,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/bfs_numbering.hpp
     title: graph/ds/bfs_numbering.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -53,7 +53,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/tree_group.hpp
     title: graph/ds/tree_group.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -81,12 +81,15 @@ data:
     path: graph/maximum_independent_set.hpp
     title: graph/maximum_independent_set.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/maximum_independent_set_weighted.hpp
+    title: graph/maximum_independent_set_weighted.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/mincostcycle.hpp
     title: graph/mincostcycle.hpp
   - icon: ':heavy_check_mark:'
     path: graph/minimum_hamiltonian_cycle.hpp
     title: graph/minimum_hamiltonian_cycle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -134,7 +137,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
@@ -264,6 +267,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/maximum_independent_set.test.cpp
     title: test/library_checker/graph/maximum_independent_set.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/maximum_independent_set2.test.cpp
+    title: test/library_checker/graph/maximum_independent_set2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
     title: test/library_checker/graph/rerooting_classify_subtree.test.cpp
@@ -444,7 +450,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc269ex.test.cpp
     title: test_atcoder/abc269ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc270_f.test.cpp
     title: test_atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -456,9 +462,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -563,6 +569,7 @@ data:
   - graph/reachability.hpp
   - graph/find_nontransitive_triple.hpp
   - graph/check_bipartite.hpp
+  - graph/maximum_independent_set_weighted.hpp
   - graph/shortest_path/K_shortest_path.hpp
   - graph/shortest_path/warshall_floyd.hpp
   - graph/shortest_path/bellmanford.hpp
@@ -610,7 +617,7 @@ data:
   - string/suffix_automaton.hpp
   - enumerate/triangle.hpp
   timestamp: '2022-12-05 10:41:25+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_3_A.test.cpp
   - test/aoj/ALDS1_12_B.test.cpp
@@ -673,6 +680,7 @@ data:
   - test/library_checker/graph/biconnected_component.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp
   - test/library_checker/graph/scc.test.cpp
+  - test/library_checker/graph/maximum_independent_set2.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp
   - test/library_checker/graph/bipartite_edge_coloring.test.cpp
   - test/library_checker/graph/enumerate_triangles.test.cpp
