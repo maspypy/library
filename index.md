@@ -1241,9 +1241,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/famous/partition_number.hpp
       title: seq/famous/partition_number.hpp
-    - icon: ':warning:'
-      path: seq/famous/q_binomial.hpp
-      title: seq/famous/q_binomial.hpp
     - icon: ':heavy_check_mark:'
       path: seq/famous/simple_permutations.hpp
       title: seq/famous/simple_permutations.hpp
