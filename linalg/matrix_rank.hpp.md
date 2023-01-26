@@ -2,16 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: graph/max_matching_size.hpp
     title: graph/max_matching_size.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/solve_linear.test.cpp
     title: test/library_checker/matrix/solve_linear.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/tutte.test.cpp
-    title: test/mytest/tutte.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -40,7 +37,6 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/matrix/solve_linear.test.cpp
-  - test/mytest/tutte.test.cpp
 documentation_of: linalg/matrix_rank.hpp
 layout: document
 redirect_from:

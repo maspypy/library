@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   - icon: ':heavy_check_mark:'
     path: alg/monoid/min_idx.hpp
     title: alg/monoid/min_idx.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/disjointsparse/disjointsparse.hpp
     title: ds/disjointsparse/disjointsparse.hpp
   - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   _extendedRequiredBy: []
@@ -70,9 +70,10 @@ data:
     \ first, last);\n    calc_LCP(s);\n  }\n\n  Suffix_Array(vector<int>& s) : build_ds(0)\
     \ {\n    SA = calc_suffix_array(s);\n    calc_LCP(s);\n  }\n\n  // S[i:], S[j:]\
     \ \u306E lcp \u3092\u6C42\u3081\u308B\n  int lcp(int i, int j) {\n    int n =\
-    \ len(SA);\n    if (i == j) return n - i;\n    if (!build_ds) {\n      build_ds\
-    \ = 1;\n      seg.build(LCP);\n    }\n    i = ISA[i], j = ISA[j];\n    if (i >\
-    \ j) swap(i, j);\n    return seg.prod(i, j);\n  }\n\nprivate:\n  void induced_sort(const\
+    \ len(SA);\n    assert(i <= n && j <= n);\n    if (i == n || j == n) return 0;\n\
+    \    if (i == j) return n - i;\n    if (!build_ds) {\n      build_ds = 1;\n  \
+    \    seg.build(LCP);\n    }\n    i = ISA[i], j = ISA[j];\n    if (i > j) swap(i,\
+    \ j);\n    return seg.prod(i, j);\n  }\n\nprivate:\n  void induced_sort(const\
     \ std::vector<int>& vect, int val_range,\n                    std::vector<int>&\
     \ SA, const std::vector<bool>& sl,\n                    const std::vector<int>&\
     \ lms_idx) {\n    std::vector<int> l(val_range, 0), r(val_range, 0);\n    for\
@@ -263,7 +264,7 @@ data:
   isVerificationFile: false
   path: string/suffix_tree.hpp
   requiredBy: []
-  timestamp: '2022-12-23 10:58:40+09:00'
+  timestamp: '2023-01-26 19:04:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/suffix_tree.test.cpp

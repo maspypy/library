@@ -4,62 +4,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: flow/bipartite.hpp
-    title: flow/bipartite.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/bipartite_edge_coloring.hpp
-    title: graph/bipartite_edge_coloring.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/dag_path_cover.hpp
-    title: graph/dag_path_cover.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/maximum_antichain.hpp
-    title: graph/maximum_antichain.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/1566.test.cpp
-    title: test/aoj/1566.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/2251_1.test.cpp
-    title: test/aoj/2251_1.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/2251_2.test.cpp
-    title: test/aoj/2251_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/bipartite_edge_coloring.test.cpp
-    title: test/library_checker/graph/bipartite_edge_coloring.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/bipartitematching.test.cpp
-    title: test/library_checker/graph/bipartitematching.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/tutte.test.cpp
-    title: test/mytest/tutte.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1479.test.cpp
-    title: test/yukicoder/1479.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1744.test.cpp
-    title: test/yukicoder/1744.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1745.test.cpp
-    title: test/yukicoder/1745.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1911.test.cpp
-    title: test/yukicoder/1911.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test_atcoder/abc274g.test.cpp
-    title: test_atcoder/abc274g.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"graph/check_bipartite.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\
+  bundledCode: "#line 2 \"graph/bipartite_vertex_coloring.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\
     \n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n\
     };\n\ntemplate <typename T = int, bool directed = false>\nstruct Graph {\n  int\
     \ N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -113,57 +68,41 @@ data:
     \ assert(dat[x] < 0);\n    return -dat[x];\n  }\n\n  bool merge(int x, int y)\
     \ {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n    if\
     \ (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
-    \    return true;\n  }\n};\n#line 5 \"graph/check_bipartite.hpp\"\n\r\n// \u4E8C\
-    \u90E8\u30B0\u30E9\u30D5\u5224\u5B9A + \u5FA9\u5143\r\n// \u4E8C\u90E8\u30B0\u30E9\
-    \u30D5\u3067\u306A\u304B\u3063\u305F\u5834\u5408\u306B\u306F empty\r\ntemplate\
-    \ <typename Graph>\r\nvc<int> check_bipartite(Graph& G) {\r\n  assert(G.is_prepared());\r\
-    \n\r\n  int n = G.N;\r\n  UnionFind uf(2 * n);\r\n  for (auto&& e: G.edges) {\r\
-    \n    int u = e.frm, v = e.to;\r\n    if (e.cost == 0) uf.merge(u, v), uf.merge(u\
-    \ + n, v + n);\r\n    if (e.cost != 0) uf.merge(u + n, v), uf.merge(u, v + n);\r\
-    \n  }\r\n\r\n  vc<int> color(2 * n, -1);\r\n  FOR(v, n) if (uf[v] == v && color[uf[v]]\
-    \ < 0) {\r\n    color[uf[v]] = 0;\r\n    color[uf[v + n]] = 1;\r\n  }\r\n  FOR(v,\
-    \ n) color[v] = color[uf[v]];\r\n  color.resize(n);\r\n  FOR(v, n) if (uf[v] ==\
-    \ uf[v + n]) return {};\r\n  return color;\r\n}\r\n"
+    \    return true;\n  }\n};\n#line 5 \"graph/bipartite_vertex_coloring.hpp\"\n\r\
+    \n// \u4E8C\u90E8\u30B0\u30E9\u30D5\u3067\u306A\u304B\u3063\u305F\u5834\u5408\u306B\
+    \u306F empty\r\ntemplate <typename Graph>\r\nvc<int> bipartite_vertex_coloring(Graph&\
+    \ G) {\r\n  assert(G.is_prepared());\r\n\r\n  int n = G.N;\r\n  UnionFind uf(2\
+    \ * n);\r\n  for (auto&& e: G.edges) {\r\n    int u = e.frm, v = e.to;\r\n   \
+    \ if (e.cost == 0) uf.merge(u, v), uf.merge(u + n, v + n);\r\n    if (e.cost !=\
+    \ 0) uf.merge(u + n, v), uf.merge(u, v + n);\r\n  }\r\n\r\n  vc<int> color(2 *\
+    \ n, -1);\r\n  FOR(v, n) if (uf[v] == v && color[uf[v]] < 0) {\r\n    color[uf[v]]\
+    \ = 0;\r\n    color[uf[v + n]] = 1;\r\n  }\r\n  FOR(v, n) color[v] = color[uf[v]];\r\
+    \n  color.resize(n);\r\n  FOR(v, n) if (uf[v] == uf[v + n]) return {};\r\n  return\
+    \ color;\r\n}\r\n"
   code: "#pragma once\r\n\r\n#include \"graph/base.hpp\"\r\n#include \"ds/unionfind/unionfind.hpp\"\
-    \r\n\r\n// \u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A + \u5FA9\u5143\r\n// \u4E8C\
-    \u90E8\u30B0\u30E9\u30D5\u3067\u306A\u304B\u3063\u305F\u5834\u5408\u306B\u306F\
-    \ empty\r\ntemplate <typename Graph>\r\nvc<int> check_bipartite(Graph& G) {\r\n\
-    \  assert(G.is_prepared());\r\n\r\n  int n = G.N;\r\n  UnionFind uf(2 * n);\r\n\
-    \  for (auto&& e: G.edges) {\r\n    int u = e.frm, v = e.to;\r\n    if (e.cost\
-    \ == 0) uf.merge(u, v), uf.merge(u + n, v + n);\r\n    if (e.cost != 0) uf.merge(u\
-    \ + n, v), uf.merge(u, v + n);\r\n  }\r\n\r\n  vc<int> color(2 * n, -1);\r\n \
-    \ FOR(v, n) if (uf[v] == v && color[uf[v]] < 0) {\r\n    color[uf[v]] = 0;\r\n\
-    \    color[uf[v + n]] = 1;\r\n  }\r\n  FOR(v, n) color[v] = color[uf[v]];\r\n\
-    \  color.resize(n);\r\n  FOR(v, n) if (uf[v] == uf[v + n]) return {};\r\n  return\
+    \r\n\r\n// \u4E8C\u90E8\u30B0\u30E9\u30D5\u3067\u306A\u304B\u3063\u305F\u5834\u5408\
+    \u306B\u306F empty\r\ntemplate <typename Graph>\r\nvc<int> bipartite_vertex_coloring(Graph&\
+    \ G) {\r\n  assert(G.is_prepared());\r\n\r\n  int n = G.N;\r\n  UnionFind uf(2\
+    \ * n);\r\n  for (auto&& e: G.edges) {\r\n    int u = e.frm, v = e.to;\r\n   \
+    \ if (e.cost == 0) uf.merge(u, v), uf.merge(u + n, v + n);\r\n    if (e.cost !=\
+    \ 0) uf.merge(u + n, v), uf.merge(u, v + n);\r\n  }\r\n\r\n  vc<int> color(2 *\
+    \ n, -1);\r\n  FOR(v, n) if (uf[v] == v && color[uf[v]] < 0) {\r\n    color[uf[v]]\
+    \ = 0;\r\n    color[uf[v + n]] = 1;\r\n  }\r\n  FOR(v, n) color[v] = color[uf[v]];\r\
+    \n  color.resize(n);\r\n  FOR(v, n) if (uf[v] == uf[v + n]) return {};\r\n  return\
     \ color;\r\n}\r\n"
   dependsOn:
   - graph/base.hpp
   - ds/unionfind/unionfind.hpp
   isVerificationFile: false
-  path: graph/check_bipartite.hpp
-  requiredBy:
-  - graph/dag_path_cover.hpp
-  - graph/maximum_antichain.hpp
-  - graph/bipartite_edge_coloring.hpp
-  - flow/bipartite.hpp
-  timestamp: '2022-12-23 10:56:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/2251_1.test.cpp
-  - test/aoj/1566.test.cpp
-  - test/aoj/2251_2.test.cpp
-  - test/yukicoder/1479.test.cpp
-  - test/yukicoder/1744.test.cpp
-  - test/yukicoder/1911.test.cpp
-  - test/yukicoder/1745.test.cpp
-  - test/library_checker/graph/bipartite_edge_coloring.test.cpp
-  - test/library_checker/graph/bipartitematching.test.cpp
-  - test/mytest/tutte.test.cpp
-  - test_atcoder/abc274g.test.cpp
-documentation_of: graph/check_bipartite.hpp
+  path: graph/bipartite_vertex_coloring.hpp
+  requiredBy: []
+  timestamp: '2023-01-26 19:03:50+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: graph/bipartite_vertex_coloring.hpp
 layout: document
 redirect_from:
-- /library/graph/check_bipartite.hpp
-- /library/graph/check_bipartite.hpp.html
-title: graph/check_bipartite.hpp
+- /library/graph/bipartite_vertex_coloring.hpp
+- /library/graph/bipartite_vertex_coloring.hpp.html
+title: graph/bipartite_vertex_coloring.hpp
 ---

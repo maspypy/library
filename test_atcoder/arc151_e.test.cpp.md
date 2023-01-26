@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/disjointsparse/disjointsparse.hpp
     title: ds/disjointsparse/disjointsparse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/arc151/tasks/arc151_e
@@ -249,9 +249,10 @@ data:
     \ first, last);\n    calc_LCP(s);\n  }\n\n  Suffix_Array(vector<int>& s) : build_ds(0)\
     \ {\n    SA = calc_suffix_array(s);\n    calc_LCP(s);\n  }\n\n  // S[i:], S[j:]\
     \ \u306E lcp \u3092\u6C42\u3081\u308B\n  int lcp(int i, int j) {\n    int n =\
-    \ len(SA);\n    if (i == j) return n - i;\n    if (!build_ds) {\n      build_ds\
-    \ = 1;\n      seg.build(LCP);\n    }\n    i = ISA[i], j = ISA[j];\n    if (i >\
-    \ j) swap(i, j);\n    return seg.prod(i, j);\n  }\n\nprivate:\n  void induced_sort(const\
+    \ len(SA);\n    assert(i <= n && j <= n);\n    if (i == n || j == n) return 0;\n\
+    \    if (i == j) return n - i;\n    if (!build_ds) {\n      build_ds = 1;\n  \
+    \    seg.build(LCP);\n    }\n    i = ISA[i], j = ISA[j];\n    if (i > j) swap(i,\
+    \ j);\n    return seg.prod(i, j);\n  }\n\nprivate:\n  void induced_sort(const\
     \ std::vector<int>& vect, int val_range,\n                    std::vector<int>&\
     \ SA, const std::vector<bool>& sl,\n                    const std::vector<int>&\
     \ lms_idx) {\n    std::vector<int> l(val_range, 0), r(val_range, 0);\n    for\
@@ -414,8 +415,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/arc151_e.test.cpp
   requiredBy: []
-  timestamp: '2023-01-23 03:44:26+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-01-26 19:04:10+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/arc151_e.test.cpp
 layout: document

@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/disjointsparse/disjointsparse.hpp
     title: ds/disjointsparse/disjointsparse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   _extendedRequiredBy: []
@@ -242,9 +242,10 @@ data:
     \ first, last);\n    calc_LCP(s);\n  }\n\n  Suffix_Array(vector<int>& s) : build_ds(0)\
     \ {\n    SA = calc_suffix_array(s);\n    calc_LCP(s);\n  }\n\n  // S[i:], S[j:]\
     \ \u306E lcp \u3092\u6C42\u3081\u308B\n  int lcp(int i, int j) {\n    int n =\
-    \ len(SA);\n    if (i == j) return n - i;\n    if (!build_ds) {\n      build_ds\
-    \ = 1;\n      seg.build(LCP);\n    }\n    i = ISA[i], j = ISA[j];\n    if (i >\
-    \ j) swap(i, j);\n    return seg.prod(i, j);\n  }\n\nprivate:\n  void induced_sort(const\
+    \ len(SA);\n    assert(i <= n && j <= n);\n    if (i == n || j == n) return 0;\n\
+    \    if (i == j) return n - i;\n    if (!build_ds) {\n      build_ds = 1;\n  \
+    \    seg.build(LCP);\n    }\n    i = ISA[i], j = ISA[j];\n    if (i > j) swap(i,\
+    \ j);\n    return seg.prod(i, j);\n  }\n\nprivate:\n  void induced_sort(const\
     \ std::vector<int>& vect, int val_range,\n                    std::vector<int>&\
     \ SA, const std::vector<bool>& sl,\n                    const std::vector<int>&\
     \ lms_idx) {\n    std::vector<int> l(val_range, 0), r(val_range, 0);\n    for\
@@ -315,7 +316,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/number_of_substrings.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
+  timestamp: '2023-01-26 19:04:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/string/number_of_substrings.test.cpp
