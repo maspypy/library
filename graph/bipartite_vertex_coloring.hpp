@@ -3,10 +3,9 @@
 #include "graph/base.hpp"
 #include "ds/unionfind/unionfind.hpp"
 
-// 二部グラフ判定 + 復元
 // 二部グラフでなかった場合には empty
 template <typename Graph>
-vc<int> check_bipartite(Graph& G) {
+vc<int> bipartite_vertex_coloring(Graph& G) {
   assert(G.is_prepared());
 
   int n = G.N;

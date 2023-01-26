@@ -1,4 +1,4 @@
-#include "graph/check_bipartite.hpp"
+#include "graph/bipartite_vertex_coloring.hpp"
 #include "ds/unionfind/unionfind.hpp"
 #include "flow/bipartite.hpp"
 
@@ -120,7 +120,7 @@ struct RegularBipartiteColoring {
 
 template <typename GT>
 pair<int, vc<int>> bipartite_edge_coloring(GT& G) {
-  auto vcolor = check_bipartite<decltype(G)>(G);
+  auto vcolor = bipartite_vertex_coloring<decltype(G)>(G);
   auto deg = G.deg_array();
   int D = MAX(deg);
 
