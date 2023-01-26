@@ -30,6 +30,8 @@ struct Suffix_Array {
   // S[i:], S[j:] の lcp を求める
   int lcp(int i, int j) {
     int n = len(SA);
+    assert(i <= n && j <= n);
+    if (i == n || j == n) return 0;
     if (i == j) return n - i;
     if (!build_ds) {
       build_ds = 1;
