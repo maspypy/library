@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_path_sum
@@ -388,7 +388,7 @@ data:
     \    tree.debug();\r\n    bit.debug();\r\n    bit_subtree.debug();\r\n  }\r\n\
     };\r\n#line 7 \"test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  Graph G(N);\r\n \
-    \ G.read_tree(0, 0);\r\n\r\n  TREE tree(G);\r\n  Tree_AbelGroup<decltype(tree),\
+    \ G.read_tree(0, 0);\r\n\r\n  Tree tree(G);\r\n  Tree_AbelGroup<decltype(tree),\
     \ Monoid_Add<ll>, 0, 1, 0> TA(tree, A);\r\n\r\n  FOR(Q) {\r\n    LL(t);\r\n  \
     \  if (t == 0) {\r\n      LL(v, x);\r\n      TA.add(v, x);\r\n    } else {\r\n\
     \      LL(u, v);\r\n      print(TA.prod_path(u, v));\r\n    }\r\n  }\r\n}\r\n\r\
@@ -398,7 +398,7 @@ data:
     \n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"\
     graph/ds/tree_abelgroup.hpp\"\r\n#include \"alg/monoid/add.hpp\"\r\n\r\nvoid solve()\
     \ {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  Graph G(N);\r\n  G.read_tree(0, 0);\r\
-    \n\r\n  TREE tree(G);\r\n  Tree_AbelGroup<decltype(tree), Monoid_Add<ll>, 0, 1,\
+    \n\r\n  Tree tree(G);\r\n  Tree_AbelGroup<decltype(tree), Monoid_Add<ll>, 0, 1,\
     \ 0> TA(tree, A);\r\n\r\n  FOR(Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n   \
     \   LL(v, x);\r\n      TA.add(v, x);\r\n    } else {\r\n      LL(u, v);\r\n  \
     \    print(TA.prod_path(u, v));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n\
@@ -415,8 +415,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   requiredBy: []
-  timestamp: '2023-01-27 18:58:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-01-27 21:42:23+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
 layout: document
