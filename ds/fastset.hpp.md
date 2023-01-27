@@ -9,9 +9,15 @@ data:
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/dag_path_cover.hpp
+    title: graph/dag_path_cover.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/2251_1.test.cpp
+    title: test/aoj/2251_1.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/predecessor_problem.test.cpp
     title: test/library_checker/datastructure/predecessor_problem.test.cpp
@@ -105,12 +111,14 @@ data:
   isVerificationFile: false
   path: ds/fastset.hpp
   requiredBy:
+  - graph/dag_path_cover.hpp
   - graph/toposort.hpp
   - ds/intervals.hpp
   - ds/segtree/sortable_segtree.hpp
   timestamp: '2023-01-02 17:13:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/2251_1.test.cpp
   - test/library_checker/datastructure/sort_segtree.test.cpp
   - test/library_checker/datastructure/sort_segtree_1.test.cpp
   - test/library_checker/datastructure/predecessor_problem.test.cpp

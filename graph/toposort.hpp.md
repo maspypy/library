@@ -4,11 +4,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/dag_path_cover.hpp
+    title: graph/dag_path_cover.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/2251_1.test.cpp
+    title: test/aoj/2251_1.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc223d.test.cpp
     title: test_atcoder/abc223d.test.cpp
@@ -116,10 +122,12 @@ data:
   - ds/fastset.hpp
   isVerificationFile: false
   path: graph/toposort.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/dag_path_cover.hpp
   timestamp: '2023-01-23 16:27:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/2251_1.test.cpp
   - test_atcoder/abc223d.test.cpp
 documentation_of: graph/toposort.hpp
 layout: document

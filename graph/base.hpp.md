@@ -5,13 +5,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: enumerate/triangle.hpp
     title: enumerate/triangle.hpp
+  - icon: ':heavy_check_mark:'
+    path: flow/bipartite.hpp
+    title: flow/bipartite.hpp
   - icon: ':warning:'
     path: game/graph_game.hpp
     title: game/graph_game.hpp
   - icon: ':heavy_check_mark:'
     path: geo/manhattan_mst.hpp
     title: geo/manhattan_mst.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
+    path: graph/bipartite_edge_coloring.hpp
+    title: graph/bipartite_edge_coloring.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
   - icon: ':heavy_check_mark:'
@@ -26,6 +32,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/classify_subtree.hpp
     title: graph/classify_subtree.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/dag_path_cover.hpp
+    title: graph/dag_path_cover.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/bfs_numbering.hpp
     title: graph/ds/bfs_numbering.hpp
@@ -65,6 +74,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/functional.hpp
     title: graph/functional.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/maximum_antichain.hpp
+    title: graph/maximum_antichain.hpp
   - icon: ':heavy_check_mark:'
     path: graph/maximum_independent_set.hpp
     title: graph/maximum_independent_set.hpp
@@ -110,7 +122,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest_path/dial.hpp
     title: graph/shortest_path/dial.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
   - icon: ':heavy_check_mark:'
@@ -159,6 +171,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/0275.test.cpp
     title: test/aoj/0275.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/1566.test.cpp
+    title: test/aoj/1566.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/2251_1.test.cpp
+    title: test/aoj/2251_1.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/2251_2.test.cpp
+    title: test/aoj/2251_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/2677.test.cpp
     title: test/aoj/2677.test.cpp
@@ -216,6 +237,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/biconnected_component.test.cpp
     title: test/library_checker/graph/biconnected_component.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/bipartite_edge_coloring.test.cpp
+    title: test/library_checker/graph/bipartite_edge_coloring.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/bipartitematching.test.cpp
+    title: test/library_checker/graph/bipartitematching.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/chromatic_number.test.cpp
     title: test/library_checker/graph/chromatic_number.test.cpp
@@ -280,6 +307,9 @@ data:
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/tutte.test.cpp
+    title: test/mytest/tutte.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1002.test.cpp
     title: test/yukicoder/1002.test.cpp
   - icon: ':heavy_check_mark:'
@@ -337,6 +367,9 @@ data:
     path: test/yukicoder/1451.test.cpp
     title: test/yukicoder/1451.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1479.test.cpp
+    title: test/yukicoder/1479.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1494.test.cpp
     title: test/yukicoder/1494.test.cpp
   - icon: ':heavy_check_mark:'
@@ -357,6 +390,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1718.test.cpp
     title: test/yukicoder/1718.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1744.test.cpp
+    title: test/yukicoder/1744.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1745.test.cpp
+    title: test/yukicoder/1745.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1769.test.cpp
     title: test/yukicoder/1769.test.cpp
@@ -411,15 +450,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc270_f.test.cpp
     title: test_atcoder/abc270_f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc274g.test.cpp
+    title: test_atcoder/abc274g.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc151_e.test.cpp
     title: test_atcoder/arc151_e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -549,9 +591,12 @@ data:
   - graph/tree.hpp
   - graph/tree_diameter.hpp
   - graph/block_cut.hpp
+  - graph/dag_path_cover.hpp
   - graph/classify_subtree.hpp
   - graph/find_cycle.hpp
+  - graph/maximum_antichain.hpp
   - graph/range_to_range_graph.hpp
+  - graph/bipartite_edge_coloring.hpp
   - graph/unicyclic.hpp
   - graph/tree_of_unionfind.hpp
   - graph/maximum_independent_set.hpp
@@ -564,11 +609,12 @@ data:
   - graph/toposort.hpp
   - game/graph_game.hpp
   - geo/manhattan_mst.hpp
+  - flow/bipartite.hpp
   - string/suffix_tree.hpp
   - string/suffix_automaton.hpp
   - enumerate/triangle.hpp
   timestamp: '2022-12-05 10:41:25+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_3_A.test.cpp
   - test/aoj/ALDS1_12_B.test.cpp
@@ -576,11 +622,15 @@ data:
   - test/aoj/GRL_1_C.test.cpp
   - test/aoj/2995.test.cpp
   - test/aoj/GRL_1_B.test.cpp
+  - test/aoj/2251_1.test.cpp
+  - test/aoj/1566.test.cpp
   - test/aoj/GRL_2_A.test.cpp
   - test/aoj/GRL_3_B.test.cpp
+  - test/aoj/2251_2.test.cpp
   - test/aoj/0275.test.cpp
   - test/aoj/2677.test.cpp
   - test/aoj/DPL_2_A.test.cpp
+  - test/yukicoder/1479.test.cpp
   - test/yukicoder/529.test.cpp
   - test/yukicoder/1216_2.test.cpp
   - test/yukicoder/1600.test.cpp
@@ -599,6 +649,7 @@ data:
   - test/yukicoder/1212.test.cpp
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1344.test.cpp
+  - test/yukicoder/1744.test.cpp
   - test/yukicoder/1494.test.cpp
   - test/yukicoder/1778.test.cpp
   - test/yukicoder/1451.test.cpp
@@ -620,18 +671,21 @@ data:
   - test/yukicoder/1418.test.cpp
   - test/yukicoder/590.test.cpp
   - test/yukicoder/1641.test.cpp
+  - test/yukicoder/1745.test.cpp
   - test/yukicoder/1813.test.cpp
   - test/library_checker/graph/biconnected_component.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp
   - test/library_checker/graph/scc.test.cpp
   - test/library_checker/graph/maximum_independent_set2.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp
+  - test/library_checker/graph/bipartite_edge_coloring.test.cpp
   - test/library_checker/graph/enumerate_triangles.test.cpp
   - test/library_checker/graph/maximum_independent_set.test.cpp
   - test/library_checker/graph/enumerate_cliques.test.cpp
   - test/library_checker/graph/cycle_detection.test.cpp
   - test/library_checker/graph/K_shortest_walk.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp
+  - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - test/library_checker/graph/cycle_detection_undirected.test.cpp
   - test/library_checker/graph/shortest_path.test.cpp
@@ -651,11 +705,13 @@ data:
   - test/library_checker/string/number_of_substrings2.test.cpp
   - test/library_checker/math/twosat.test.cpp
   - test/mytest/suffix_tree.test.cpp
+  - test/mytest/tutte.test.cpp
   - test_atcoder/abc269ex.test.cpp
   - test_atcoder/arc153f.test.cpp
   - test_atcoder/abc270_f.test.cpp
   - test_atcoder/abc266f.test.cpp
   - test_atcoder/arc151_e.test.cpp
+  - test_atcoder/abc274g.test.cpp
   - test_atcoder/abc223d.test.cpp
 documentation_of: graph/base.hpp
 layout: document

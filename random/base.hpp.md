@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/classify_subtree.hpp
     title: graph/classify_subtree.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/max_matching_size.hpp
     title: graph/max_matching_size.hpp
   - icon: ':heavy_check_mark:'
@@ -325,6 +325,9 @@ data:
     path: test/mytest/tournament.test.cpp
     title: test/mytest/tournament.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/tutte.test.cpp
+    title: test/mytest/tutte.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
   - icon: ':heavy_check_mark:'
@@ -548,6 +551,7 @@ data:
   - test/mytest/online_inv.test.cpp
   - test/mytest/summin_add.test.cpp
   - test/mytest/rbst_monoid_persistent.test.cpp
+  - test/mytest/tutte.test.cpp
   - test/mytest/rbst.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/conv2d.test.cpp
