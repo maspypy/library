@@ -4,7 +4,7 @@
 // HLD euler tour をとっていろいろ。
 // 木以外、非連結でも dfs 順序や親がとれる。
 template <typename GT>
-struct TREE {
+struct Tree {
   using Graph_type = GT;
   GT &G;
   using WT = typename GT::cost_type;
@@ -14,7 +14,7 @@ struct TREE {
   vc<int> depth;
   vc<WT> depth_weighted;
 
-  TREE(GT &G, int r = -1, bool hld = 1)
+  Tree(GT &G, int r = -1, bool hld = 1)
       : G(G),
         N(G.N),
         hld(hld),
