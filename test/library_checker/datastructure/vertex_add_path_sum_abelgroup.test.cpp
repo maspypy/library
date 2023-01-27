@@ -11,7 +11,7 @@ void solve() {
   Graph G(N);
   G.read_tree(0, 0);
 
-  TREE tree(G);
+  Tree tree(G);
   Tree_AbelGroup<decltype(tree), Monoid_Add<ll>, 0, 1, 0> TA(tree, A);
 
   FOR(Q) {
