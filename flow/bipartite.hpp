@@ -1,5 +1,5 @@
 #include "graph/base.hpp"
-#include "graph/check_bipartite.hpp"
+#include "graph/bipartite_vertex_coloring.hpp"
 #include "graph/strongly_connected_component.hpp"
 
 template <typename GT>
@@ -11,7 +11,7 @@ struct BipartiteMatching {
   vc<int> vis;
 
   BipartiteMatching(GT& G) : N(G.N), G(G), dist(G.N, -1), match(G.N, -1) {
-    color = check_bipartite(G);
+    color = bipartite_vertex_coloring(G);
     assert(!color.empty());
     while (1) {
       bfs();
