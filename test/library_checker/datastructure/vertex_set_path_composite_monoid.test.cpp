@@ -22,7 +22,7 @@ void solve() {
   Graph<int> G(N);
   G.read_tree(0, 0);
 
-  TREE tree(G);
+  Tree tree(G);
   Tree_Monoid<decltype(tree), Mono, false> TM(tree, A);
 
   FOR(Q) {

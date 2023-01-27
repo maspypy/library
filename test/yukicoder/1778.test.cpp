@@ -14,7 +14,7 @@ void solve() {
     idx[L] = idx[R - 1] = i;
   }
 
-  TREE tree(G);
+  Tree tree(G);
 
   FOR(Q) {
     LL(a, b);

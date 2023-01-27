@@ -15,7 +15,7 @@ void solve() {
   VEC(ll, C, N);
   Graph<int, 0> G(N);
   G.read_tree();
-  TREE<decltype(G)> tree(G);
+  Tree<decltype(G)> tree(G);
   vc<pair<mint, mint>> dat;
   FOR(i, N) dat.eb(C[i], S[i]);
   Lazy_Tree_Monoid<decltype(tree), AM, false> TM(tree, dat);

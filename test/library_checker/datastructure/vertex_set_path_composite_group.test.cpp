@@ -21,7 +21,7 @@ void solve() {
   Graph<int> G(N);
   G.read_tree(0, 0);
 
-  TREE tree(G);
+  Tree tree(G);
   Tree_Group<decltype(tree), Mono, false, true, false> TG(tree, A);
 
   FOR(_, Q) {

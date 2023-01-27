@@ -10,7 +10,7 @@ void solve() {
   Graph<int> G(N);
   G.read_graph(M);
   auto BCT = block_cut<decltype(G)>(G);
-  TREE<decltype(BCT)> tree(BCT);
+  Tree<decltype(BCT)> tree(BCT);
 
   vc<int> dat(tree.N);
   FOR(v, N) if (BCT.deg(v) > 1) dat[v] = 1;

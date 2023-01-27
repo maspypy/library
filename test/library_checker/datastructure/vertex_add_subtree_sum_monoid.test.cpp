@@ -15,7 +15,7 @@ void solve() {
   }
   G.build();
 
-  TREE tree(G);
+  Tree tree(G);
   using Mono = Monoid_Add<ll>;
 
   Tree_Monoid<decltype(tree), Mono, false> TM(tree, A);

@@ -11,7 +11,7 @@ void solve() {
   Graph<int, 0> G(N);
 
   G.read_parent(0);
-  TREE<decltype(G)> tree(G, root);
+  Tree<decltype(G)> tree(G, root);
 
   Rerooting_classify_subtree<decltype(tree)> X(tree);
   vc<ll> dp(N);

@@ -13,7 +13,7 @@ void solve() {
     G.add(p, v);
   }
   G.build();
-  TREE tree(G);
+  Tree tree(G);
 
   vi ANS(Q, -1);
   vvc<pair<int, int>> query(N);

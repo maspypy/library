@@ -7,7 +7,7 @@ void solve() {
   LL(N);
   Graph<int, 0> G(N);
   G.read_tree();
-  TREE<decltype(G)> tree(G);
+  Tree<decltype(G)> tree(G);
 
   using Data = pair<int, int>;
   Data unit = {0, 0};

@@ -18,7 +18,7 @@ void solve() {
     G.add(p, v);
   }
   G.build();
-  TREE<decltype(G)> tree(G);
+  Tree<decltype(G)> tree(G);
 
   using poly = vc<mint>;
 

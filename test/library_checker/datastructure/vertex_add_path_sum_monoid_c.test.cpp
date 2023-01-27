@@ -11,7 +11,7 @@ void solve() {
   Graph G(N);
   G.read_tree(0, 0);
 
-  TREE tree(G);
+  Tree tree(G);
   const bool is_edge = false;
   using Mono = Monoid_Add<ll>;
   Tree_Monoid<decltype(tree), Mono, is_edge> TM(tree, A);

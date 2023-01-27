@@ -18,7 +18,7 @@ void solve() {
   // e は v から出る有向辺
   auto fve = [&](Data x, auto& e) -> Data { return x; };
 
-  TREE<decltype(G)> tree(G);
+  Tree<decltype(G)> tree(G);
   Rerooting_dp<decltype(tree), Data> dp(tree, fee, fev, fve, unit);
   ll ANS = 0;
   FOR(v, N) ANS += dp[v].se;

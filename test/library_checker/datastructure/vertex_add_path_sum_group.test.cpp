@@ -11,7 +11,7 @@ void solve() {
   Graph G(N);
   G.read_tree(0, 0);
 
-  TREE<Graph<int>> tree(G);
+  Tree<Graph<int>> tree(G);
   using Group = Monoid_Add<ll>;
   Tree_Group<decltype(tree), Group, false, true, false> TG(tree, A);
 

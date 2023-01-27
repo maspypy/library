@@ -24,7 +24,7 @@ void solve() {
     FOR(v, N) {
       for (auto&& e: G[v]) A[e.to] = A[v] ^ e.cost;
     }
-    TREE<decltype(G)> tree(G, 0, false);
+    Tree<decltype(G)> tree(G, 0, false);
 
     // 根以外の点に対して、dep=1 の LA
     vc<int> par_1(N, -1);

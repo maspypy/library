@@ -9,7 +9,7 @@ void solve() {
   Graph G(N);
   VEC(int, A, N);
   G.read_tree();
-  TREE tree(G);
+  Tree tree(G);
   Tree_AbelGroup<decltype(tree), Monoid_Xor<int>, 0, 0, 1> TA(tree, A);
   FOR(Q) {
     LL(t, x, y);

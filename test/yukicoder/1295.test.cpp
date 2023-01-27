@@ -62,7 +62,7 @@ void solve() {
   LL(N);
   Graph<bool, 0> G(N);
   G.read_tree();
-  TREE<decltype(G)> tree(G);
+  Tree<decltype(G)> tree(G);
   Rerooting_dp<decltype(tree), Data> dp(tree, fee, fev, fve, unit);
 
   FOR(v, N) {

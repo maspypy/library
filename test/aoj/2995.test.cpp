@@ -8,7 +8,7 @@ void solve() {
   LL(N, K);
   Graph G(N);
   G.read_tree();
-  TREE T(G);
+  Tree T(G);
   VEC(pi, CD, N);
   for (auto&& [c, d]: CD) --c, --d;
   /*

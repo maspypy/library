@@ -12,7 +12,7 @@ void solve() {
     G.add(p, v);
   }
   G.build();
-  TREE tree(G);
+  Tree tree(G);
 
   FOR(_, Q) {
     LL(a, b);

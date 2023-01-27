@@ -28,7 +28,7 @@ void solve() {
   }
   G.build();
 
-  TREE<decltype(G)> tree(G);
+  Tree<decltype(G)> tree(G);
   auto& par = tree.parent;
   vc<int> X, Y, W;
   FOR(e, M) {

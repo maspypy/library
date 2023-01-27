@@ -10,7 +10,7 @@ void solve() {
   STR(S);
   Graph<char, 0> G(N);
   G.read_tree(1);
-  TREE<decltype(G)> tree(G);
+  Tree<decltype(G)> tree(G);
 
   // 消費した S の文字数 → LCS
   using Data = vc<int>;
