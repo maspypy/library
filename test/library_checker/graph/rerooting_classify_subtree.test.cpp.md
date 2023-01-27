@@ -4,16 +4,16 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/rerooting_classify_subtree.hpp
     title: graph/rerooting_classify_subtree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/rerooting_dp.hpp
     title: graph/rerooting_dp.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification
@@ -408,7 +408,7 @@ data:
     \ (len(dat) <= k) dat.eb(RNG(mint::get_mod()));\n    return dat[k];\n  }\n};\n\
     #line 7 \"test/library_checker/graph/rerooting_classify_subtree.test.cpp\"\n\n\
     void solve() {\n  LL(N);\n  int root = RNG(0, N);\n  Graph<int, 0> G(N);\n\n \
-    \ G.read_parent(0);\n  TREE<decltype(G)> tree(G, root);\n\n  Rerooting_classify_subtree<decltype(tree)>\
+    \ G.read_parent(0);\n  Tree<decltype(G)> tree(G, root);\n\n  Rerooting_classify_subtree<decltype(tree)>\
     \ X(tree);\n  vc<ll> dp(N);\n  FOR(v, N) dp[v] = X.get(0, v);\n  auto key = dp;\n\
     \  UNIQUE(key);\n  for (auto&& x: dp) x = LB(key, x);\n  print(MAX(dp) + 1);\n\
     \  print(dp);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
@@ -417,7 +417,7 @@ data:
   code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification\"\
     \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/rerooting_classify_subtree.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  int root = RNG(0, N);\n  Graph<int, 0> G(N);\n\
-    \n  G.read_parent(0);\n  TREE<decltype(G)> tree(G, root);\n\n  Rerooting_classify_subtree<decltype(tree)>\
+    \n  G.read_parent(0);\n  Tree<decltype(G)> tree(G, root);\n\n  Rerooting_classify_subtree<decltype(tree)>\
     \ X(tree);\n  vc<ll> dp(N);\n  FOR(v, N) dp[v] = X.get(0, v);\n  auto key = dp;\n\
     \  UNIQUE(key);\n  for (auto&& x: dp) x = LB(key, x);\n  print(MAX(dp) + 1);\n\
     \  print(dp);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
@@ -435,8 +435,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
   requiredBy: []
-  timestamp: '2023-01-27 18:58:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-01-27 19:53:36+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/rerooting_classify_subtree.test.cpp
 layout: document

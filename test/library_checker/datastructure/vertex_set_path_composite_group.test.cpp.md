@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/group_reverse.hpp
     title: alg/monoid/group_reverse.hpp
   - icon: ':question:'
@@ -13,10 +13,10 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/tree_group.hpp
     title: graph/ds/tree_group.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
@@ -513,7 +513,7 @@ data:
     \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  using Mono = Monoid_Affine<mint>;\n\
     \  using E = Mono::value_type;\n  vc<E> A(N);\n  FOR(i, N) {\n    LL(a, b);\n\
     \    A[i] = mp(mint(a), mint(b));\n  }\n\n  Graph<int> G(N);\n  G.read_tree(0,\
-    \ 0);\n\n  TREE tree(G);\n  Tree_Group<decltype(tree), Mono, false, true, false>\
+    \ 0);\n\n  Tree tree(G);\n  Tree_Group<decltype(tree), Mono, false, true, false>\
     \ TG(tree, A);\n\n  FOR(_, Q) {\n    LL(t);\n    if (t == 0) {\n      LL(v, c,\
     \ d);\n      TG.set(v, E({mint(c), mint(d)}));\n    } else {\n      LL(u, v, x);\n\
     \      auto e = TG.prod_path(u, v);\n      print(e.fi * mint(x) + e.se);\n   \
@@ -525,7 +525,7 @@ data:
     using mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  using Mono = Monoid_Affine<mint>;\n\
     \  using E = Mono::value_type;\n  vc<E> A(N);\n  FOR(i, N) {\n    LL(a, b);\n\
     \    A[i] = mp(mint(a), mint(b));\n  }\n\n  Graph<int> G(N);\n  G.read_tree(0,\
-    \ 0);\n\n  TREE tree(G);\n  Tree_Group<decltype(tree), Mono, false, true, false>\
+    \ 0);\n\n  Tree tree(G);\n  Tree_Group<decltype(tree), Mono, false, true, false>\
     \ TG(tree, A);\n\n  FOR(_, Q) {\n    LL(t);\n    if (t == 0) {\n      LL(v, c,\
     \ d);\n      TG.set(v, E({mint(c), mint(d)}));\n    } else {\n      LL(u, v, x);\n\
     \      auto e = TG.prod_path(u, v);\n      print(e.fi * mint(x) + e.se);\n   \
@@ -544,8 +544,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
   requiredBy: []
-  timestamp: '2023-01-27 18:58:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-01-27 19:53:36+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
 layout: document

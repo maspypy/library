@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':question:'
@@ -332,7 +332,7 @@ data:
     \      } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\
     \n    return P;\r\n  }\r\n};\r\n#line 6 \"test_atcoder/abc266f.test.cpp\"\n\n\
     void solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n  G.read_graph(N);\n\n  UnicyclicGraph\
-    \ X(G);\n  auto T = X.tree;\n  TREE<decltype(T)> tree(T, X.root);\n\n  ll root\
+    \ X(G);\n  auto T = X.tree;\n  Tree<decltype(T)> tree(T, X.root);\n\n  ll root\
     \ = X.root;\n  ll bottom = X.TO[X.root];\n\n  LL(Q);\n  FOR(Q) {\n    LL(a, b);\n\
     \    --a, --b;\n    ll ca = tree.lca(a, bottom);\n    ll cb = tree.lca(b, bottom);\n\
     \    Yes(ca == cb);\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
@@ -340,7 +340,7 @@ data:
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc266/tasks/abc266_f\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/unicyclic.hpp\"\
     \n#include \"graph/tree.hpp\"\n\nvoid solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n\
-    \  G.read_graph(N);\n\n  UnicyclicGraph X(G);\n  auto T = X.tree;\n  TREE<decltype(T)>\
+    \  G.read_graph(N);\n\n  UnicyclicGraph X(G);\n  auto T = X.tree;\n  Tree<decltype(T)>\
     \ tree(T, X.root);\n\n  ll root = X.root;\n  ll bottom = X.TO[X.root];\n\n  LL(Q);\n\
     \  FOR(Q) {\n    LL(a, b);\n    --a, --b;\n    ll ca = tree.lca(a, bottom);\n\
     \    ll cb = tree.lca(b, bottom);\n    Yes(ca == cb);\n  }\n}\n\nsigned main()\
@@ -355,7 +355,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc266f.test.cpp
   requiredBy: []
-  timestamp: '2023-01-27 18:58:28+09:00'
+  timestamp: '2023-01-27 19:53:36+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc266f.test.cpp

@@ -10,10 +10,10 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
@@ -371,7 +371,7 @@ data:
     \    }\n    return i;\n  }\n\n  int kth(E k) {\n    return max_right([&k](E x)\
     \ -> bool { return x <= k; });\n  }\n};\n#line 6 \"test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  Graph<int, 1> G(N);\n  FOR(v,\
-    \ 1, N) {\n    LL(p);\n    G.add(p, v);\n  }\n  G.build();\n  TREE tree(G);\n\n\
+    \ 1, N) {\n    LL(p);\n    G.add(p, v);\n  }\n  G.build();\n  Tree tree(G);\n\n\
     \  vi ANS(Q, -1);\n  vvc<pair<int, int>> query(N);\n  FOR(q, Q) {\n    LL(t);\n\
     \    if (t == 0) {\n      LL(v, x);\n      query[v].eb(q, x);\n    }\n    if (t\
     \ == 1) {\n      LL(v);\n      query[v].eb(q, -1);\n    }\n  }\n\n  FenwickTree<Monoid_Add<ll>>\
@@ -388,7 +388,7 @@ data:
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/dsu_on_tree.hpp\"\
     \n#include \"ds/fenwicktree/fenwicktree.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n\
     \  VEC(ll, A, N);\n  Graph<int, 1> G(N);\n  FOR(v, 1, N) {\n    LL(p);\n    G.add(p,\
-    \ v);\n  }\n  G.build();\n  TREE tree(G);\n\n  vi ANS(Q, -1);\n  vvc<pair<int,\
+    \ v);\n  }\n  G.build();\n  Tree tree(G);\n\n  vi ANS(Q, -1);\n  vvc<pair<int,\
     \ int>> query(N);\n  FOR(q, Q) {\n    LL(t);\n    if (t == 0) {\n      LL(v, x);\n\
     \      query[v].eb(q, x);\n    }\n    if (t == 1) {\n      LL(v);\n      query[v].eb(q,\
     \ -1);\n    }\n  }\n\n  FenwickTree<Monoid_Add<ll>> bit(Q);\n  vc<pair<int, int>>\
@@ -412,8 +412,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   requiredBy: []
-  timestamp: '2023-01-27 18:58:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-01-27 19:53:36+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
 layout: document

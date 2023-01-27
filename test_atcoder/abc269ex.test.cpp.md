@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':question:'
@@ -628,7 +628,7 @@ data:
     \ gr)};\n  };\n  auto [p, f, g] = dfs(dfs, 0, n);\n  return p;\n}\n#line 9 \"\
     test_atcoder/abc269ex.test.cpp\"\n\nusing mint = modint998;\n\nvoid solve() {\n\
     \  LL(N);\n  Graph<int, 1> G(N);\n  FOR(v, 1, N) {\n    LL(p);\n    --p;\n   \
-    \ G.add(p, v);\n  }\n  G.build();\n  TREE<decltype(G)> tree(G);\n\n  using poly\
+    \ G.add(p, v);\n  }\n  G.build();\n  Tree<decltype(G)> tree(G);\n\n  using poly\
     \ = vc<mint>;\n\n  auto dfs = [&](auto& dfs, int v) -> vc<mint> {\n    auto P\
     \ = tree.heavy_path_at(v);\n    int n = len(P);\n    vc<poly> F(n);\n    FOR(i,\
     \ n) {\n      int a = P[i];\n      vc<poly> polys;\n      for (auto&& e: G[a])\
@@ -644,7 +644,7 @@ data:
     \n#include \"graph/tree.hpp\"\n#include \"poly/convolution_all.hpp\"\n#include\
     \ \"poly/sum_of_prefix_suffix_products.hpp\"\n\nusing mint = modint998;\n\nvoid\
     \ solve() {\n  LL(N);\n  Graph<int, 1> G(N);\n  FOR(v, 1, N) {\n    LL(p);\n \
-    \   --p;\n    G.add(p, v);\n  }\n  G.build();\n  TREE<decltype(G)> tree(G);\n\n\
+    \   --p;\n    G.add(p, v);\n  }\n  G.build();\n  Tree<decltype(G)> tree(G);\n\n\
     \  using poly = vc<mint>;\n\n  auto dfs = [&](auto& dfs, int v) -> vc<mint> {\n\
     \    auto P = tree.heavy_path_at(v);\n    int n = len(P);\n    vc<poly> F(n);\n\
     \    FOR(i, n) {\n      int a = P[i];\n      vc<poly> polys;\n      for (auto&&\
@@ -671,7 +671,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc269ex.test.cpp
   requiredBy: []
-  timestamp: '2023-01-27 18:58:28+09:00'
+  timestamp: '2023-01-27 19:53:36+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc269ex.test.cpp

@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
   - icon: ':question:'
@@ -22,18 +22,18 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
   - icon: ':x:'
@@ -41,7 +41,7 @@ data:
     title: test_atcoder/abc270_f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/contest/828/problem/F
@@ -324,8 +324,8 @@ data:
     \u306B MST \u8FBA\u306B\u306A\u308B\u6700\u5927\u91CD\u307F\r\ntemplate <typename\
     \ T>\r\ntuple<T, vc<bool>, Graph<T>, vc<T>> minimum_spanning_tree_cycle_data(\r\
     \n    Graph<T>& G) {\r\n  int N = G.N;\r\n  int M = len(G.edges);\r\n  auto [mst_cost,\
-    \ in_mst, MST] = minimum_spanning_tree(G);\r\n  TREE tree(MST);\r\n  vc<T> dat;\r\
-    \n  FOR(i, M) if (in_mst[i]) dat.eb(G.edges[i].cost);\r\n  Tree_Monoid<decltype(tree),\
+    \ in_mst, MST] = minimum_spanning_tree(G);\r\n  Tree<decltype(G)> tree(MST);\r\
+    \n  vc<T> dat;\r\n  FOR(i, M) if (in_mst[i]) dat.eb(G.edges[i].cost);\r\n  Tree_Monoid<decltype(tree),\
     \ Monoid_Max<T>, 1> TM1(tree, dat);\r\n  Dual_Tree_Monoid<decltype(tree), Monoid_Min<T>,\
     \ 1> TM2(tree);\r\n  FOR(i, M) {\r\n    if (!in_mst[i]) {\r\n      auto& e = G.edges[i];\r\
     \n      TM2.apply_path(e.frm, e.to, e.cost);\r\n    }\r\n  }\r\n  vc<T> ANS(M);\r\
@@ -350,8 +350,8 @@ data:
     \u304D\u306B MST \u8FBA\u306B\u306A\u308B\u6700\u5927\u91CD\u307F\r\ntemplate\
     \ <typename T>\r\ntuple<T, vc<bool>, Graph<T>, vc<T>> minimum_spanning_tree_cycle_data(\r\
     \n    Graph<T>& G) {\r\n  int N = G.N;\r\n  int M = len(G.edges);\r\n  auto [mst_cost,\
-    \ in_mst, MST] = minimum_spanning_tree(G);\r\n  TREE tree(MST);\r\n  vc<T> dat;\r\
-    \n  FOR(i, M) if (in_mst[i]) dat.eb(G.edges[i].cost);\r\n  Tree_Monoid<decltype(tree),\
+    \ in_mst, MST] = minimum_spanning_tree(G);\r\n  Tree<decltype(G)> tree(MST);\r\
+    \n  vc<T> dat;\r\n  FOR(i, M) if (in_mst[i]) dat.eb(G.edges[i].cost);\r\n  Tree_Monoid<decltype(tree),\
     \ Monoid_Max<T>, 1> TM1(tree, dat);\r\n  Dual_Tree_Monoid<decltype(tree), Monoid_Min<T>,\
     \ 1> TM2(tree);\r\n  FOR(i, M) {\r\n    if (!in_mst[i]) {\r\n      auto& e = G.edges[i];\r\
     \n      TM2.apply_path(e.frm, e.to, e.cost);\r\n    }\r\n  }\r\n  vc<T> ANS(M);\r\
@@ -372,8 +372,8 @@ data:
   isVerificationFile: false
   path: graph/minimum_spanning_tree.hpp
   requiredBy: []
-  timestamp: '2023-01-27 18:58:28+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-01-27 19:53:36+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/GRL_2_A.test.cpp
   - test_atcoder/abc270_f.test.cpp

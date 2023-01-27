@@ -4,16 +4,16 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/classify_subtree.hpp
     title: graph/classify_subtree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_dp.hpp
     title: graph/tree_dp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification
@@ -374,7 +374,7 @@ data:
     \ = [&](T A, const auto& e) -> T { return {A.fi, A.se + get(A.fi)}; };\n\n  auto\
     \ dp = tree_dp<decltype(tree), T>(tree, f_ee, f_ev, f_ve, unit);\n  vc<ll> res(N);\n\
     \  FOR(v, N) res[v] = dp[v].se.val;\n  return res;\n}\n#line 7 \"test/library_checker/graph/classify_tree.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n  G.read_parent(0);\n  TREE<decltype(G)>\
+    \n\nvoid solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n  G.read_parent(0);\n  Tree<decltype(G)>\
     \ tree(G);\n\n  auto ANS = classify_subtree(tree);\n  vi key = ANS;\n  UNIQUE(key);\n\
     \  for (auto&& x: ANS) x = LB(key, x);\n  print(MAX(ANS) + 1);\n  print(ANS);\n\
     }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
@@ -382,7 +382,7 @@ data:
     \ 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification\"\
     \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/classify_subtree.hpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n  G.read_parent(0);\n  TREE<decltype(G)>\
+    \n\nvoid solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n  G.read_parent(0);\n  Tree<decltype(G)>\
     \ tree(G);\n\n  auto ANS = classify_subtree(tree);\n  vi key = ANS;\n  UNIQUE(key);\n\
     \  for (auto&& x: ANS) x = LB(key, x);\n  print(MAX(ANS) + 1);\n  print(ANS);\n\
     }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
@@ -400,8 +400,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/classify_tree.test.cpp
   requiredBy: []
-  timestamp: '2023-01-27 18:58:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-01-27 19:53:36+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/classify_tree.test.cpp
 layout: document

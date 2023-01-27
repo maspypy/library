@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_add.hpp
     title: alg/acted_monoid/sum_add.hpp
   - icon: ':question:'
@@ -13,10 +13,10 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/lazy_tree_monoid.hpp
     title: graph/ds/lazy_tree_monoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_E
@@ -443,7 +443,7 @@ data:
     \ constexpr X act(const X &x, const A &a, const ll &size) {\r\n    return x +\
     \ a * E(size);\r\n  }\r\n};\r\n#line 8 \"test/aoj/GRL_5_E.test.cpp\"\n\nvoid solve()\
     \ {\n  LL(N);\n  Graph<int, 0> G(N);\n  FOR(v, N) {\n    LL(k);\n    FOR(k) {\n\
-    \      LL(to);\n      G.add(v, to);\n    }\n  }\n  G.build();\n  TREE<decltype(G)>\
+    \      LL(to);\n      G.add(v, to);\n    }\n  }\n  G.build();\n  Tree<decltype(G)>\
     \ tree(G);\n  vi seg_raw(N);\n  using AM = ActedMonoid_Sum_Add<ll>;\n  Lazy_Tree_Monoid<decltype(tree),\
     \ AM, 1> TM(tree, seg_raw);\n  LL(Q);\n  FOR(Q) {\n    LL(t);\n    if (t == 0)\
     \ {\n      LL(v, x);\n      TM.apply_path(0, v, x);\n      // TM.apply_path(tree.parent[v],\
@@ -456,7 +456,7 @@ data:
     \n#include \"graph/ds/lazy_tree_monoid.hpp\"\n#include \"alg/acted_monoid/sum_add.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n  FOR(v, N) {\n    LL(k);\n\
     \    FOR(k) {\n      LL(to);\n      G.add(v, to);\n    }\n  }\n  G.build();\n\
-    \  TREE<decltype(G)> tree(G);\n  vi seg_raw(N);\n  using AM = ActedMonoid_Sum_Add<ll>;\n\
+    \  Tree<decltype(G)> tree(G);\n  vi seg_raw(N);\n  using AM = ActedMonoid_Sum_Add<ll>;\n\
     \  Lazy_Tree_Monoid<decltype(tree), AM, 1> TM(tree, seg_raw);\n  LL(Q);\n  FOR(Q)\
     \ {\n    LL(t);\n    if (t == 0) {\n      LL(v, x);\n      TM.apply_path(0, v,\
     \ x);\n      // TM.apply_path(tree.parent[v], v, x);\n    } else {\n      LL(v);\n\
@@ -475,8 +475,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_5_E.test.cpp
   requiredBy: []
-  timestamp: '2023-01-27 18:58:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-01-27 19:53:36+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_5_E.test.cpp
 layout: document
