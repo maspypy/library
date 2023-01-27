@@ -27,7 +27,7 @@ void solve() {
     dat.eb(x);
   }
   G.build();
-  TREE<decltype(G)> tree(G);
+  Tree<decltype(G)> tree(G);
 
   Lazy_Tree_Monoid<decltype(tree), ActedMonoid, 1> X(tree, dat);
   LL(Q);

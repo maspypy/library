@@ -15,7 +15,7 @@ void solve() {
   Graph<int, 0> G(N);
   G.read_tree();
 
-  TREE<decltype(G)> tree(G);
+  Tree<decltype(G)> tree(G);
   using AM = ActedMonoid_Sum_Add<ll>;
 
   Lazy_Tree_Monoid<decltype(tree), AM> X(tree, vi(N, 0));

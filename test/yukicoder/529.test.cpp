@@ -23,7 +23,7 @@ void solve() {
 
   const ll INF = 1LL << 60;
 
-  TREE tree(G);
+  Tree tree(G);
   vc<pq<ll>> wts(C);
   vc<pair<ll, int>> dat(C);
   FOR(i, C) dat[i] = {-INF, i};

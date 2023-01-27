@@ -45,7 +45,7 @@ tuple<T, vc<bool>, Graph<T>, vc<T>> minimum_spanning_tree_cycle_data(
   int N = G.N;
   int M = len(G.edges);
   auto [mst_cost, in_mst, MST] = minimum_spanning_tree(G);
-  TREE tree(MST);
+  Tree<decltype(G)> tree(MST);
   vc<T> dat;
   FOR(i, M) if (in_mst[i]) dat.eb(G.edges[i].cost);
   Tree_Monoid<decltype(tree), Monoid_Max<T>, 1> TM1(tree, dat);

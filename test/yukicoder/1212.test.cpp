@@ -11,7 +11,7 @@ void solve() {
   Graph<ll, 0> G(N);
   G.read_tree(1);
 
-  TREE<decltype(G)> tree(G);
+  Tree<decltype(G)> tree(G);
 
   LL(Q);
   VEC(pi, query, Q);

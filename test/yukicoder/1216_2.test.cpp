@@ -9,7 +9,7 @@ void solve() {
   LL(N, Q);
   Graph<ll, 0> G(N);
   G.read_tree(1);
-  TREE<decltype(G)> tree(G);
+  Tree<decltype(G)> tree(G);
   vi dat(N - 1);
   FOR(i, N - 1) dat[i] = G.edges[i].cost;
   Static_Tree_Monoid<decltype(tree), Monoid_Add<ll>, 1> TM(tree, dat);

@@ -9,7 +9,7 @@ void solve() {
   LL(N);
   Graph<int, 0> G(N);
   G.read_parent(0);
-  TREE<decltype(G)> tree(G);
+  Tree<decltype(G)> tree(G);
 
   auto ANS = classify_subtree(tree);
   vi key = ANS;

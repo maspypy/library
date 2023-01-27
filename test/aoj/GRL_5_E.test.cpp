@@ -17,7 +17,7 @@ void solve() {
     }
   }
   G.build();
-  TREE<decltype(G)> tree(G);
+  Tree<decltype(G)> tree(G);
   vi seg_raw(N);
   using AM = ActedMonoid_Sum_Add<ll>;
   Lazy_Tree_Monoid<decltype(tree), AM, 1> TM(tree, seg_raw);

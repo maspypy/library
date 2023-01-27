@@ -13,7 +13,7 @@ void solve() {
   VEC(P, AB, M);
   for (auto&& [a, b]: AB) --a, --b;
   auto G = tree_of_unionfind(N, AB, true);
-  TREE<decltype(G)> tree(G, N + M);
+  Tree<decltype(G)> tree(G, N + M);
 
   vc<mint> ANS(N);
   vi SZ(N + M + 1);

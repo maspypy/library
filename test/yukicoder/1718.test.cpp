@@ -11,7 +11,7 @@ void solve() {
   VEC(ll, D, K);
   for (auto&& a: D) --a;
 
-  TREE<decltype(G)> tree(G);
+  Tree<decltype(G)> tree(G);
   sort(all(D), [&](auto& x, auto& y) { return tree.LID[x] < tree.LID[y]; });
 
   ll base = 0;

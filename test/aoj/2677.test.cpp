@@ -24,7 +24,7 @@ void solve() {
     sort(all(TO));
     for (auto&& x: TO) add(x);
   }
-  TREE<decltype(G)> tree(G);
+  Tree<decltype(G)> tree(G);
   ll ANS = 0;
   FOR(i, len(V) - 1) {
     int a = V[i], b = V[i + 1];

@@ -11,7 +11,7 @@ void solve() {
 
   UnicyclicGraph X(G);
   auto T = X.tree;
-  TREE<decltype(T)> tree(T, X.root);
+  Tree<decltype(T)> tree(T, X.root);
 
   ll root = X.root;
   ll bottom = X.TO[X.root];
