@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "graph/base.hpp"
-#include "graph/check_bipartite.hpp"
+#include "graph/bipartite_vertex_coloring.hpp"
 
 void solve() {
   LL(N, M);
@@ -13,7 +13,7 @@ void solve() {
   ll ANS = 0;
   const ll INF = 1LL << 60;
   {
-    auto C = check_bipartite(G);
+    auto C = bipartite_vertex_coloring(G);
     if (!C.empty()) {
       ll a = 0, b = 0;
       FOR(v, N) {
