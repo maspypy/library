@@ -7,7 +7,7 @@ vc<int> bipartite_vertex_coloring_ng1(GT& G) {
   const int N = G.N, M = G.M;
   vc<int> V, par(N, -1), color(N, -1);
   V.reserve(N);
-  vc<int> odd_s(N), ev_s(N), odd_e(N), ev_e(N);
+  vc<int> dp_0(N), dp_1(N);
   vc<bool> done(M);
   int odd = 0;
   auto dfs = [&](auto& dfs, int v) -> void {
@@ -19,8 +19,8 @@ vc<int> bipartite_vertex_coloring_ng1(GT& G) {
         par[e.to] = v, color[e.to] = color[v] ^ 1;
         dfs(dfs, e.to);
       } else {
-        if (color[v] != color[e.to]) ev_s[v]++, ev_e[e.to]++;
-        if (color[v] == color[e.to]) odd_s[v]++, odd_e[e.to]++, odd++;
+        if (color[v] != color[e.to]) dp_0[v]++, dp_0[e.to]--;
+        if (color[v] == color[e.to]) dp_1[v]++, dp_1[e.to]--, odd++;
       }
     }
   };
@@ -28,14 +28,11 @@ vc<int> bipartite_vertex_coloring_ng1(GT& G) {
   FOR_R(i, N) {
     int v = V[i], p = par[V[i]];
     if (p == -1) continue;
-    ev_s[p] += ev_s[v], odd_s[p] += odd_s[v];
-    ev_e[p] += ev_e[v], odd_e[p] += odd_e[v];
+    dp_0[p] += dp_0[v], dp_1[p] += dp_1[v];
   }
   if (odd <= 1) return color;
   FOR(v, N) {
-    int x = odd_s[v] - odd_e[v];
-    if (par[v] == -1 || x != odd) continue;
-    if (odd_s[v] - odd_e[v] > 0 && ev_s[v] - ev_e[v] > 0) continue;
+    if (par[v] == -1 || dp_1[v] != odd || (dp_0[v] && dp_1[v])) continue;
     for (auto&& w: V) {
       if (par[w] == -1) continue;
       color[w] = color[par[w]] ^ (w == v ? 0 : 1);
