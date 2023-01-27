@@ -99,6 +99,8 @@ struct Tree_Monoid {
     return seg.prod(l + edge, r);
   }
 
+  X prod_all() { return prod_subtree(tree.V[0]); }
+
 private:
   template <class F>
   int max_path_edge(F &check, int u, int v) {
