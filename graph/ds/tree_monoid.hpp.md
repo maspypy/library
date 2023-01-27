@@ -1,47 +1,47 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1212.test.cpp
     title: test/yukicoder/1212.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc270_f.test.cpp
     title: test_atcoder/abc270_f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://atcoder.jp/contests/tkppc3/tasks/tkppc3_i
@@ -136,9 +136,9 @@ data:
     \n\r\n// HLD euler tour \u3092\u3068\u3063\u3066\u3044\u308D\u3044\u308D\u3002\
     \r\n// \u6728\u4EE5\u5916\u3001\u975E\u9023\u7D50\u3067\u3082 dfs \u9806\u5E8F\
     \u3084\u89AA\u304C\u3068\u308C\u308B\u3002\r\ntemplate <typename GT>\r\nstruct\
-    \ TREE {\r\n  using Graph_type = GT;\r\n  GT &G;\r\n  using WT = typename GT::cost_type;\r\
+    \ Tree {\r\n  using Graph_type = GT;\r\n  GT &G;\r\n  using WT = typename GT::cost_type;\r\
     \n  int N;\r\n  bool hld;\r\n  vector<int> LID, RID, head, V, parent;\r\n  vc<int>\
-    \ depth;\r\n  vc<WT> depth_weighted;\r\n\r\n  TREE(GT &G, int r = -1, bool hld\
+    \ depth;\r\n  vc<WT> depth_weighted;\r\n\r\n  Tree(GT &G, int r = -1, bool hld\
     \ = 1)\r\n      : G(G),\r\n        N(G.N),\r\n        hld(hld),\r\n        LID(G.N),\r\
     \n        RID(G.N),\r\n        head(G.N, r),\r\n        V(G.N),\r\n        parent(G.N,\
     \ -1),\r\n        depth(G.N, -1),\r\n        depth_weighted(G.N, 0) {\r\n    assert(G.is_prepared());\r\
@@ -243,13 +243,14 @@ data:
     \ 1));\r\n        if (i == a + 1) return u;\r\n        return tree.V[i];\r\n \
     \     }\r\n    }\r\n    return v;\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\n\
     \    int l = tree.LID[u], r = tree.RID[u];\r\n    return seg.prod(l + edge, r);\r\
-    \n  }\r\n\r\nprivate:\r\n  template <class F>\r\n  int max_path_edge(F &check,\
-    \ int u, int v) {\r\n    assert(edge);\r\n    if (!check(Monoid::unit())) return\
-    \ -1;\r\n    int lca = tree.lca(u, v);\r\n    auto pd = tree.get_path_decomposition(u,\
-    \ lca, edge);\r\n    X val = Monoid::unit();\r\n\r\n    // climb\r\n    for (auto\
-    \ &&[a, b]: pd) {\r\n      assert(a >= b);\r\n      X x = (Monoid::commute ? seg.prod(b,\
-    \ a + 1) : seg_r.prod(b, a + 1));\r\n      if (check(Monoid::op(val, x))) {\r\n\
-    \        val = Monoid::op(val, x);\r\n        u = (tree.parent[tree.V[b]]);\r\n\
+    \n  }\r\n\r\n  X prod_all() { return prod_subtree(tree.V[0]); }\r\n\r\nprivate:\r\
+    \n  template <class F>\r\n  int max_path_edge(F &check, int u, int v) {\r\n  \
+    \  assert(edge);\r\n    if (!check(Monoid::unit())) return -1;\r\n    int lca\
+    \ = tree.lca(u, v);\r\n    auto pd = tree.get_path_decomposition(u, lca, edge);\r\
+    \n    X val = Monoid::unit();\r\n\r\n    // climb\r\n    for (auto &&[a, b]: pd)\
+    \ {\r\n      assert(a >= b);\r\n      X x = (Monoid::commute ? seg.prod(b, a +\
+    \ 1) : seg_r.prod(b, a + 1));\r\n      if (check(Monoid::op(val, x))) {\r\n  \
+    \      val = Monoid::op(val, x);\r\n        u = (tree.parent[tree.V[b]]);\r\n\
     \        continue;\r\n      }\r\n      auto check_tmp = [&](X x) -> bool { return\
     \ check(Monoid::op(val, x)); };\r\n      auto i = (Monoid::commute ? seg.min_left(check_tmp,\
     \ a + 1)\r\n                                : seg_r.min_left(check_tmp, a + 1));\r\
@@ -301,13 +302,14 @@ data:
     \ 1));\r\n        if (i == a + 1) return u;\r\n        return tree.V[i];\r\n \
     \     }\r\n    }\r\n    return v;\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\n\
     \    int l = tree.LID[u], r = tree.RID[u];\r\n    return seg.prod(l + edge, r);\r\
-    \n  }\r\n\r\nprivate:\r\n  template <class F>\r\n  int max_path_edge(F &check,\
-    \ int u, int v) {\r\n    assert(edge);\r\n    if (!check(Monoid::unit())) return\
-    \ -1;\r\n    int lca = tree.lca(u, v);\r\n    auto pd = tree.get_path_decomposition(u,\
-    \ lca, edge);\r\n    X val = Monoid::unit();\r\n\r\n    // climb\r\n    for (auto\
-    \ &&[a, b]: pd) {\r\n      assert(a >= b);\r\n      X x = (Monoid::commute ? seg.prod(b,\
-    \ a + 1) : seg_r.prod(b, a + 1));\r\n      if (check(Monoid::op(val, x))) {\r\n\
-    \        val = Monoid::op(val, x);\r\n        u = (tree.parent[tree.V[b]]);\r\n\
+    \n  }\r\n\r\n  X prod_all() { return prod_subtree(tree.V[0]); }\r\n\r\nprivate:\r\
+    \n  template <class F>\r\n  int max_path_edge(F &check, int u, int v) {\r\n  \
+    \  assert(edge);\r\n    if (!check(Monoid::unit())) return -1;\r\n    int lca\
+    \ = tree.lca(u, v);\r\n    auto pd = tree.get_path_decomposition(u, lca, edge);\r\
+    \n    X val = Monoid::unit();\r\n\r\n    // climb\r\n    for (auto &&[a, b]: pd)\
+    \ {\r\n      assert(a >= b);\r\n      X x = (Monoid::commute ? seg.prod(b, a +\
+    \ 1) : seg_r.prod(b, a + 1));\r\n      if (check(Monoid::op(val, x))) {\r\n  \
+    \      val = Monoid::op(val, x);\r\n        u = (tree.parent[tree.V[b]]);\r\n\
     \        continue;\r\n      }\r\n      auto check_tmp = [&](X x) -> bool { return\
     \ check(Monoid::op(val, x)); };\r\n      auto i = (Monoid::commute ? seg.min_left(check_tmp,\
     \ a + 1)\r\n                                : seg_r.min_left(check_tmp, a + 1));\r\
@@ -328,8 +330,8 @@ data:
   path: graph/ds/tree_monoid.hpp
   requiredBy:
   - graph/minimum_spanning_tree.hpp
-  timestamp: '2023-01-25 06:11:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-01-27 18:58:28+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/GRL_2_A.test.cpp
   - test/yukicoder/529.test.cpp

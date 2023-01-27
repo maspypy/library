@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/2995.test.cpp
     title: test/aoj/2995.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -68,9 +68,9 @@ data:
     \n\r\n// HLD euler tour \u3092\u3068\u3063\u3066\u3044\u308D\u3044\u308D\u3002\
     \r\n// \u6728\u4EE5\u5916\u3001\u975E\u9023\u7D50\u3067\u3082 dfs \u9806\u5E8F\
     \u3084\u89AA\u304C\u3068\u308C\u308B\u3002\r\ntemplate <typename GT>\r\nstruct\
-    \ TREE {\r\n  using Graph_type = GT;\r\n  GT &G;\r\n  using WT = typename GT::cost_type;\r\
+    \ Tree {\r\n  using Graph_type = GT;\r\n  GT &G;\r\n  using WT = typename GT::cost_type;\r\
     \n  int N;\r\n  bool hld;\r\n  vector<int> LID, RID, head, V, parent;\r\n  vc<int>\
-    \ depth;\r\n  vc<WT> depth_weighted;\r\n\r\n  TREE(GT &G, int r = -1, bool hld\
+    \ depth;\r\n  vc<WT> depth_weighted;\r\n\r\n  Tree(GT &G, int r = -1, bool hld\
     \ = 1)\r\n      : G(G),\r\n        N(G.N),\r\n        hld(hld),\r\n        LID(G.N),\r\
     \n        RID(G.N),\r\n        head(G.N, r),\r\n        V(G.N),\r\n        parent(G.N,\
     \ -1),\r\n        depth(G.N, -1),\r\n        depth_weighted(G.N, 0) {\r\n    assert(G.is_prepared());\r\
@@ -171,8 +171,8 @@ data:
   isVerificationFile: false
   path: graph/dsu_on_tree.hpp
   requiredBy: []
-  timestamp: '2023-01-19 00:37:59+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-01-27 18:58:28+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/2995.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
