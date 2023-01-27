@@ -49,6 +49,9 @@ data:
     path: test/yukicoder/1745.test.cpp
     title: test/yukicoder/1745.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1911.test.cpp
+    title: test/yukicoder/1911.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc274g.test.cpp
     title: test_atcoder/abc274g.test.cpp
   _isVerificationFailed: false
@@ -150,6 +153,7 @@ data:
   - test/aoj/2251_2.test.cpp
   - test/yukicoder/1479.test.cpp
   - test/yukicoder/1744.test.cpp
+  - test/yukicoder/1911.test.cpp
   - test/yukicoder/1745.test.cpp
   - test/library_checker/graph/bipartite_edge_coloring.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
