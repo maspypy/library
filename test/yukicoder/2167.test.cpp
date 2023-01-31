@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "ds/hashmap.hpp"
 #include "random/base.hpp"
-#include "random/hash_vector.hpp"
+#include "random/hash_pair.hpp"
 
 HashMap<ll> MP;
 
