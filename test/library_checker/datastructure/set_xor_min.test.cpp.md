@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/binary_trie.hpp
     title: ds/binary_trie.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/set_xor_min
@@ -286,7 +286,7 @@ data:
     \ && keys[i] == key;\r\n  }\r\n\r\n  void reset() {\r\n    for (auto&& i: IDS)\
     \ used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  // f(key, val)\r\n  template\
     \ <typename F>\r\n  void enumerate_all(F f) {\r\n    for (auto&& i: IDS) f(keys[i],\
-    \ vals[i]);\r\n    return res;\r\n  }\r\n};\r\n#line 6 \"test/library_checker/datastructure/set_xor_min.test.cpp\"\
+    \ vals[i]);\r\n  }\r\n};\r\n#line 6 \"test/library_checker/datastructure/set_xor_min.test.cpp\"\
     \n\nvoid solve() {\n  HashMap<bool, 20> MP;\n  Binary_Trie<30, false, 1'000'000,\
     \ int, int> X;\n  using np = decltype(X)::np;\n  np root = nullptr;\n\n  INT(Q);\n\
     \  FOR(Q) {\n    INT(t, x);\n    if (t == 0) {\n      if (MP[x] == 0) {\n    \
@@ -312,8 +312,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/set_xor_min.test.cpp
   requiredBy: []
-  timestamp: '2023-01-31 21:39:16+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-01-31 21:59:51+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/set_xor_min.test.cpp
 layout: document

@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':question:'
@@ -240,15 +240,15 @@ data:
     \ && keys[i] == key;\r\n  }\r\n\r\n  void reset() {\r\n    for (auto&& i: IDS)\
     \ used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  // f(key, val)\r\n  template\
     \ <typename F>\r\n  void enumerate_all(F f) {\r\n    for (auto&& i: IDS) f(keys[i],\
-    \ vals[i]);\r\n    return res;\r\n  }\r\n};\r\n#line 6 \"test_atcoder/abc273_e.test.cpp\"\
-    \n\nvoid solve() {\n  Dynamic_Array<int, true, 3'000'000> X(0);\n  using np =\
-    \ typename decltype(X)::np;\n\n  LL(Q);\n  vi ANS;\n\n  np A = X.new_node();\n\
-    \  int A_size = 0;\n  HashMap<pair<np, int>> note;\n\n  FOR(Q) {\n    STR(S);\n\
-    \    if (S == \"ADD\") {\n      INT(x);\n      A = X.set(A, A_size++, x);\n  \
-    \  }\n    if (S == \"DELETE\") {\n      if (A_size) --A_size;\n    }\n    if (S\
-    \ == \"SAVE\") {\n      INT(y);\n      note[y] = {A, A_size};\n    }\n    if (S\
-    \ == \"LOAD\") {\n      INT(z);\n      tie(A, A_size) = note[z];\n    }\n    ll\
-    \ x = -1;\n    if (A_size) x = X.get(A, A_size - 1);\n    ANS.eb(x);\n  }\n  print(ANS);\n\
+    \ vals[i]);\r\n  }\r\n};\r\n#line 6 \"test_atcoder/abc273_e.test.cpp\"\n\nvoid\
+    \ solve() {\n  Dynamic_Array<int, true, 3'000'000> X(0);\n  using np = typename\
+    \ decltype(X)::np;\n\n  LL(Q);\n  vi ANS;\n\n  np A = X.new_node();\n  int A_size\
+    \ = 0;\n  HashMap<pair<np, int>> note;\n\n  FOR(Q) {\n    STR(S);\n    if (S ==\
+    \ \"ADD\") {\n      INT(x);\n      A = X.set(A, A_size++, x);\n    }\n    if (S\
+    \ == \"DELETE\") {\n      if (A_size) --A_size;\n    }\n    if (S == \"SAVE\"\
+    ) {\n      INT(y);\n      note[y] = {A, A_size};\n    }\n    if (S == \"LOAD\"\
+    ) {\n      INT(z);\n      tie(A, A_size) = note[z];\n    }\n    ll x = -1;\n \
+    \   if (A_size) x = X.get(A, A_size - 1);\n    ANS.eb(x);\n  }\n  print(ANS);\n\
     }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  //\
     \ LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc273/tasks/abc273_e\"\n#include\
@@ -272,7 +272,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc273_e.test.cpp
   requiredBy: []
-  timestamp: '2023-01-31 21:39:16+09:00'
+  timestamp: '2023-01-31 21:59:51+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc273_e.test.cpp
