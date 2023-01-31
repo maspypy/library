@@ -65,8 +65,7 @@ struct Lazy_SegTree {
       if (((l >> i) << i) != l) push(l >> i);
       if (((r >> i) << i) != r) push((r - 1) >> i);
     }
-    X xl = MX::unit();
-    X xr = MX::unit();
+    X xl = MX::unit(), xr = MX::unit();
     while (l < r) {
       if (l & 1) xl = MX::op(xl, dat[l++]);
       if (r & 1) xr = MX::op(dat[--r], xr);
