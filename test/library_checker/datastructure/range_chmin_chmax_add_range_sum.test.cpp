@@ -3,12 +3,12 @@
 
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/segtree/beats_summaxmin_chminchmax.hpp"
+#include "ds/segtree/beats_summinmax_chminchmax.hpp"
 
 void solve() {
   LL(N, Q);
   VEC(ll, A, N);
-  Beats_SumMaxMin_ChminChmax<ll> seg(A);
+  Beats_SumMinMax_ChminChmax<ll> seg(A);
   FOR(_, Q) {
     LL(t, L, R);
     if (t == 0) {

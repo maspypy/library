@@ -1,24 +1,23 @@
 #include "ds/segtree/segtree_beats.hpp"
-
-constexpr ll Beats_INF = 1LL << 40;
-
+template <typename T>
 struct Beats_SumMax_Chmin {
-  struct CntSumMinMax {
+  static constexpr T INF = numeric_limits<T>::max() / 2 - 1;
+  struct SumMax {
     struct X {
-      ll cnt, sum, max, maxc, max2;
+      T sum, max, maxc, max2;
       bool fail;
     };
     using value_type = X;
     static X op(const X& x, const X& y) {
-      if (x.cnt == 0) return y;
-      if (y.cnt == 0) return x;
+      if (x.max == -INF) return y;
+      if (y.max == -INF) return x;
       X z;
-      z.cnt = x.cnt + y.cnt, z.sum = x.sum + y.sum;
+      z.sum = x.sum + y.sum;
 
       z.max = max(x.max, y.max);
       z.maxc = (x.max == z.max ? x.maxc : 0) + (y.max == z.max ? y.maxc : 0);
 
-      z.max2 = -Beats_INF;
+      z.max2 = -INF;
       if (z.max > x.max && x.max > z.max2) z.max2 = x.max;
       if (z.max > x.max2 && x.max2 > z.max2) z.max2 = x.max2;
       if (z.max > y.max && y.max > z.max2) z.max2 = y.max;
@@ -27,84 +26,63 @@ struct Beats_SumMax_Chmin {
       z.fail = 0;
       return z;
     }
-    static constexpr X unit() { return {0, 0, 0, 0, 0, 0}; }
+    static constexpr X unit() { return {0, -INF, 0, -INF, 0}; }
     bool commute = true;
   };
   struct AddChmin {
-    using X = pi;
+    using X = pair<T, T>;
     using value_type = X;
     static constexpr X op(const X& x, const X& y) {
       auto [a, b] = x;
       auto [d, e] = y;
-      a += d, b += d;
-      b = min(b, e);
+      a += d, b += d, b = min(b, e);
       return {a, b};
     }
-    static constexpr X unit() { return {0, Beats_INF}; }
+    static constexpr X unit() { return {0, INF}; }
     bool commute = false;
   };
-  struct Lazy {
-    using MX = CntSumMinMax;
-    using MA = AddChmin;
-    using X_structure = MX;
-    using A_structure = MA;
-    using X = MX::value_type;
-    using A = MA::value_type;
-    static X act(X& x, const A& a) {
-      if (x.cnt == 0) return x;
+  struct Beats {
+    using Monoid_X = SumMax;
+    using Monoid_A = AddChmin;
+    using X = typename Monoid_X::value_type;
+    using A = typename Monoid_A::value_type;
+    static X act(X& x, const A& a, int cnt) {
       assert(!x.fail);
+      if (x.max == -INF) return x;
       auto [add, mi] = a;
-      x.sum += x.cnt * add;
-      x.max += add;
-      x.max2 += add;
+      x.sum += cnt * add, x.max += add, x.max2 += add;
 
-      if (mi == Beats_INF) return x;
+      if (mi == INF) return x;
 
-      ll before_max = x.max;
+      T before_max = x.max;
       x.max = min(x.max, mi);
-      if (x.maxc == x.cnt) {
-        x.max2 = x.max;
-        x.sum = x.cnt * x.max;
-        return x;
-      }
-      if (x.max2 < x.max) {
-        x.sum += (x.max - before_max) * x.maxc;
-      } else {
+      if (x.maxc == cnt) { x.max2 = x.max, x.sum = cnt * x.max; }
+      elif (x.max2 < x.max) { x.sum += (x.max - before_max) * x.maxc; }
+      else {
         x.fail = 1;
       }
       return x;
     }
   };
-  LazySegTreeBeats<Lazy> seg;
-  Beats_SumMax_Chmin(vc<ll>& A) {
-    using X = Lazy::MX::value_type;
-    vc<X> seg_raw(len(A));
-    FOR(i, len(A)) {
-      ll x = A[i];
-      seg_raw[i] = {1, x, x, 1, x};
-    }
-    seg = LazySegTreeBeats<Lazy>(seg_raw);
+  using X = typename SumMax::X;
+  SegTree_Beats<Beats> seg;
+  Beats_SumMax_Chmin(vc<T>& A) {
+    seg.build(len(A), [&](int i) -> X { return from_element(A[i]); });
   }
-
   template <typename F>
-  Beats_SumMax_Chmin(int N, F f) {
-    using X = Lazy::MX::value_type;
-    vc<X> seg_raw(N);
-    FOR(i, N) {
-      ll x = f(i);
-      seg_raw[i] = {1, x, x, 1, x};
-    }
-    seg = LazySegTreeBeats<Lazy>(seg_raw);
+  Beats_SumMax_Chmin(int n, F f) {
+    seg.build(n, [&](int i) -> X { return from_element(f(i)); });
   }
 
-  void set(int i, ll x) { seg.set(i, {1, x, x, 1, x}); }
+  void set(int i, T x) { seg.set(i, from_element(x)); }
 
-  Lazy::MX::value_type prod(int l, int r) {
+  // (sum, max)
+  pair<T, T> prod(int l, int r) {
     auto e = seg.prod(l, r);
-    return e;
+    return {e.sum, e.max};
   }
+  static X from_element(T x) { return {x, x, 1, x}; }
 
   void chmin(int l, int r, ll x) { seg.apply(l, r, {0, x}); }
-
-  void add(int l, int r, ll x) { seg.apply(l, r, {x, Beats_INF}); }
+  void add(int l, int r, ll x) { seg.apply(l, r, {x, INF}); }
 };
