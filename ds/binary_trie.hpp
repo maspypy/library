@@ -20,22 +20,6 @@ struct Binary_Trie {
 
   np new_root() { return nullptr; }
 
-  np new_node(int width, UINT val) {
-    pool[pid].l = pool[pid].r = nullptr;
-    pool[pid].width = width;
-    pool[pid].val = val;
-    pool[pid].cnt = 0;
-    return &(pool[pid++]);
-  }
-
-  np copy_node(np c) {
-    if (!c || !PERSISTENT) return c;
-    np res = &(pool[pid++]);
-    res->width = c->width, res->val = c->val;
-    res->cnt = c->cnt, res->l = c->l, res->r = c->r;
-    return res;
-  }
-
   np add(np root, UINT val, T cnt = 1) {
     if (!root) root = new_node(0, 0);
     assert(0 <= val && val < (1LL << LOG));
@@ -58,32 +42,53 @@ struct Binary_Trie {
     return res;
   }
 
+  // xor_val したあとの値で昇順 k 番目
   UINT kth(np root, T k, UINT xor_val) {
     assert(root && 0 <= k && k < root->cnt);
     return kth_rec(root, 0, k, LOG, xor_val) ^ xor_val;
   }
 
+  // xor_val したあとの値で最小値
   UINT min(np root, UINT xor_val) {
     assert(root && root->cnt);
     return kth(root, 0, xor_val);
   }
 
+  // xor_val したあとの値で最大値
   UINT max(np root, UINT xor_val) {
     assert(root && root->cnt);
     return kth(root, (root->cnt) - 1, xor_val);
   }
 
+  // xor_val したあとの値で [0, upper) 内に入るものの個数
   T prefix_count(np root, UINT upper, UINT xor_val) {
     if (!root) return 0;
     return prefix_count_rec(root, LOG, upper, xor_val, 0);
   }
 
+  // xor_val したあとの値で [lo, hi) 内に入るものの個数
   T count(np root, UINT lo, UINT hi, UINT xor_val) {
     return prefix_count(root, hi, xor_val) - prefix_count(root, lo, xor_val);
   }
 
 private:
   inline UINT mask(int k) { return (UINT(1) << k) - 1; }
+
+  np new_node(int width, UINT val) {
+    pool[pid].l = pool[pid].r = nullptr;
+    pool[pid].width = width;
+    pool[pid].val = val;
+    pool[pid].cnt = 0;
+    return &(pool[pid++]);
+  }
+
+  np copy_node(np c) {
+    if (!c || !PERSISTENT) return c;
+    np res = &(pool[pid++]);
+    res->width = c->width, res->val = c->val;
+    res->cnt = c->cnt, res->l = c->l, res->r = c->r;
+    return res;
+  }
 
   np add_rec(np root, int ht, UINT val, T cnt) {
     root = copy_node(root);
