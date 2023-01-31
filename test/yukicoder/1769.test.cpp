@@ -41,8 +41,7 @@ void solve() {
     vc<int> CNT(N);
     FOR(v, N) if (par_1[v] == v) CNT[v] = tree.subtree_size(v);
 
-    for (auto&& [key, V]: MP.items()) {
-      // 根に到達できない点は V から除く
+    MP.enumerate_all([&](auto key, auto V) -> void {
       vc<int> W;
       for (auto&& x: V) {
         if (len(W) && tree.in_subtree(x, W.back())) { continue; }
@@ -62,7 +61,8 @@ void solve() {
         int x = tree.subtree_size(v);
         CNT[par_1[v]] += x;
       }
-    }
+    });
+
     // 根から進む場合
     vc<int> OK(N);
     OK[0] = 1;
@@ -79,11 +79,6 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
