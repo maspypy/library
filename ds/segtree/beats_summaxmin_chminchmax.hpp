@@ -3,7 +3,7 @@
 template <typename T>
 struct Beats_SumMaxMin_ChminChmax {
   static constexpr T INF = numeric_limits<T>::max() / 2 - 1;
-  struct CntSumMinMax {
+  struct SumMinMax {
     struct X {
       T sum, min, max, minc, maxc, min2, max2;
       bool fail;
@@ -51,7 +51,7 @@ struct Beats_SumMaxMin_ChminChmax {
     bool commute = false;
   };
   struct Beats {
-    using Monoid_X = CntSumMinMax;
+    using Monoid_X = SumMinMax;
     using Monoid_A = AddChminChmax;
     using X = typename Monoid_X::value_type;
     using A = typename Monoid_A::value_type;
@@ -60,8 +60,7 @@ struct Beats_SumMaxMin_ChminChmax {
       if (x.min > x.max) return x;
       auto [add, mi, ma] = a;
       x.sum += cnt * add;
-      x.min += add, x.max += add;
-      x.min2 += add, x.max2 += add;
+      x.min += add, x.max += add, x.min2 += add, x.max2 += add;
 
       if (mi == INF && ma == -INF) return x;
 
@@ -90,7 +89,7 @@ struct Beats_SumMaxMin_ChminChmax {
     }
   };
 
-  using X = typename CntSumMinMax::X;
+  using X = typename SumMinMax::X;
   SegTree_Beats<Beats> seg;
   Beats_SumMaxMin_ChminChmax(vc<T>& A) {
     seg.build(len(A), [&](int i) -> X { return from_element(A[i]); });
