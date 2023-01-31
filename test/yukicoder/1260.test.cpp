@@ -34,7 +34,7 @@ void solve() {
     ANS += mint(N) * mint(hi - lo)
            - mint(q) * mint(lo + hi - 1) * mint(hi - lo) * inv<mint>(2);
   };
-  floor_range(N, f);
+  floor_range<ll>(N, f);
   print(ANS);
 }
 
