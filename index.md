@@ -855,6 +855,9 @@ data:
     - icon: ':warning:'
       path: linalg/xor/solve_linear_xor.hpp
       title: linalg/xor/solve_linear_xor.hpp
+    - icon: ':heavy_check_mark:'
+      path: linalg/xor/transpose.hpp
+      title: linalg/xor/transpose.hpp
     - icon: ':warning:'
       path: linalg/xor/vector_space.hpp
       title: linalg/xor/vector_space.hpp
@@ -2372,6 +2375,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/wavelet_matrix_sum.test.cpp
       title: test/mytest/wavelet_matrix_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/xor_transpose.test.cpp
+      title: test/mytest/xor_transpose.test.cpp
   - name: test/yukicoder
     pages:
     - icon: ':heavy_check_mark:'

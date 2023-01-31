@@ -340,6 +340,9 @@ data:
     path: test/mytest/wavelet_matrix_sum.test.cpp
     title: test/mytest/wavelet_matrix_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/xor_transpose.test.cpp
+    title: test/mytest/xor_transpose.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
   - icon: ':heavy_check_mark:'
@@ -531,6 +534,7 @@ data:
   - test/mytest/max_assign.test.cpp
   - test/mytest/summax_add.test.cpp
   - test/mytest/tournament.test.cpp
+  - test/mytest/xor_transpose.test.cpp
   - test/mytest/online_log.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/minplus_convex.test.cpp

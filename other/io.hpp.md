@@ -979,6 +979,9 @@ data:
     path: test/mytest/wavelet_matrix_sum.test.cpp
     title: test/mytest/wavelet_matrix_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/xor_transpose.test.cpp
+    title: test/mytest/xor_transpose.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1002.test.cpp
     title: test/yukicoder/1002.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2334,6 +2337,7 @@ data:
   - test/mytest/cf940f.test.cpp
   - test/mytest/summax_add.test.cpp
   - test/mytest/tournament.test.cpp
+  - test/mytest/xor_transpose.test.cpp
   - test/mytest/prime_sum.test.cpp
   - test/mytest/online_log.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
