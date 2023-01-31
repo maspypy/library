@@ -32,14 +32,13 @@ void solve() {
   ll ANS = 0;
   // B = 1
   if (M == 1) ANS += find(N);
-  for (auto&& [k, v]: MP.items()) {
-    // k = x (x + K) と書けるか？
+  MP.enumerate_all([&](auto k, auto v) {
     ll x = find(k);
     bool can = (i128(x) * (x + K) == k);
     if (can && M == 1) --ANS;
     if (can) ++v;
     if (v == M) ++ANS;
-  }
+  });
   print(ANS);
 }
 
