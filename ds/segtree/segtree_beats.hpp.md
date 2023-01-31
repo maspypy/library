@@ -5,27 +5,27 @@ data:
   - icon: ':warning:'
     path: ds/segtree/beats_summax_chmin.hpp
     title: ds/segtree/beats_summax_chmin.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/beats_summaxmin_chminchmax.hpp
     title: ds/segtree/beats_summaxmin_chminchmax.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/beats_summin_chmax.hpp
     title: ds/segtree/beats_summin_chmax.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
     title: test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1526.test.cpp
     title: test/yukicoder/1526.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree_beats.hpp\"\n\ntemplate <typename Lazy>\n\
-    struct LazySegTreeBeats {\n  using Monoid_X = typename Lazy::X_structure;\n  using\
-    \ Monoid_A = typename Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n\
+    struct LazySegTreeBeats {\n  using Monoid_X = typename Lazy::Monoid_X;\n  using\
+    \ Monoid_A = typename Lazy::Monoid_A;\n  using X = typename Monoid_X::value_type;\n\
     \  using A = typename Monoid_A::value_type;\n  int n, log, size;\n  vc<X> dat;\n\
     \  vc<A> laz;\n\n  LazySegTreeBeats() : LazySegTreeBeats(0) {}\n  LazySegTreeBeats(int\
     \ n) : LazySegTreeBeats(vc<X>(n, Monoid_X::unit())) {}\n  LazySegTreeBeats(vc<X>\
@@ -82,7 +82,7 @@ data:
     \ while ((r & -r) != r);\n    return 0;\n  }\n\n  void debug() { print(\"lazysegtree\
     \ getall:\", get_all()); }\n};\n"
   code: "#pragma once\n\ntemplate <typename Lazy>\nstruct LazySegTreeBeats {\n  using\
-    \ Monoid_X = typename Lazy::X_structure;\n  using Monoid_A = typename Lazy::A_structure;\n\
+    \ Monoid_X = typename Lazy::Monoid_X;\n  using Monoid_A = typename Lazy::Monoid_A;\n\
     \  using X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
     \  int n, log, size;\n  vc<X> dat;\n  vc<A> laz;\n\n  LazySegTreeBeats() : LazySegTreeBeats(0)\
     \ {}\n  LazySegTreeBeats(int n) : LazySegTreeBeats(vc<X>(n, Monoid_X::unit()))\
@@ -145,8 +145,8 @@ data:
   - ds/segtree/beats_summaxmin_chminchmax.hpp
   - ds/segtree/beats_summin_chmax.hpp
   - ds/segtree/beats_summax_chmin.hpp
-  timestamp: '2022-12-03 10:20:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-01-31 22:37:20+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1526.test.cpp
   - test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp

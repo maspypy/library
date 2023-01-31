@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/segtree_beats.hpp
     title: ds/segtree/segtree_beats.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1526.test.cpp
     title: test/yukicoder/1526.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree_beats.hpp\"\n\ntemplate <typename Lazy>\n\
-    struct LazySegTreeBeats {\n  using Monoid_X = typename Lazy::X_structure;\n  using\
-    \ Monoid_A = typename Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n\
+    struct LazySegTreeBeats {\n  using Monoid_X = typename Lazy::Monoid_X;\n  using\
+    \ Monoid_A = typename Lazy::Monoid_A;\n  using X = typename Monoid_X::value_type;\n\
     \  using A = typename Monoid_A::value_type;\n  int n, log, size;\n  vc<X> dat;\n\
     \  vc<A> laz;\n\n  LazySegTreeBeats() : LazySegTreeBeats(0) {}\n  LazySegTreeBeats(int\
     \ n) : LazySegTreeBeats(vc<X>(n, Monoid_X::unit())) {}\n  LazySegTreeBeats(vc<X>\
@@ -145,8 +145,8 @@ data:
   isVerificationFile: false
   path: ds/segtree/beats_summin_chmax.hpp
   requiredBy: []
-  timestamp: '2022-12-04 11:32:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-01-31 22:37:20+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1526.test.cpp
 documentation_of: ds/segtree/beats_summin_chmax.hpp

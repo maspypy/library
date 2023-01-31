@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/segtree_beats.hpp
     title: ds/segtree/segtree_beats.hpp
   _extendedRequiredBy: []
@@ -12,8 +12,8 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree_beats.hpp\"\n\ntemplate <typename Lazy>\n\
-    struct LazySegTreeBeats {\n  using Monoid_X = typename Lazy::X_structure;\n  using\
-    \ Monoid_A = typename Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n\
+    struct LazySegTreeBeats {\n  using Monoid_X = typename Lazy::Monoid_X;\n  using\
+    \ Monoid_A = typename Lazy::Monoid_A;\n  using X = typename Monoid_X::value_type;\n\
     \  using A = typename Monoid_A::value_type;\n  int n, log, size;\n  vc<X> dat;\n\
     \  vc<A> laz;\n\n  LazySegTreeBeats() : LazySegTreeBeats(0) {}\n  LazySegTreeBeats(int\
     \ n) : LazySegTreeBeats(vc<X>(n, Monoid_X::unit())) {}\n  LazySegTreeBeats(vc<X>\
@@ -146,7 +146,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/beats_summax_chmin.hpp
   requiredBy: []
-  timestamp: '2022-12-11 13:51:03+09:00'
+  timestamp: '2023-01-31 22:37:20+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/segtree/beats_summax_chmin.hpp

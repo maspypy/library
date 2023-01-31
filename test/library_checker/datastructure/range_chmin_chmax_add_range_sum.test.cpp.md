@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/beats_summaxmin_chminchmax.hpp
     title: ds/segtree/beats_summaxmin_chminchmax.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/segtree_beats.hpp
     title: ds/segtree/segtree_beats.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum
@@ -199,8 +199,8 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\n#line 2 \"ds/segtree/segtree_beats.hpp\"\n\ntemplate <typename Lazy>\n\
-    struct LazySegTreeBeats {\n  using Monoid_X = typename Lazy::X_structure;\n  using\
-    \ Monoid_A = typename Lazy::A_structure;\n  using X = typename Monoid_X::value_type;\n\
+    struct LazySegTreeBeats {\n  using Monoid_X = typename Lazy::Monoid_X;\n  using\
+    \ Monoid_A = typename Lazy::Monoid_A;\n  using X = typename Monoid_X::value_type;\n\
     \  using A = typename Monoid_A::value_type;\n  int n, log, size;\n  vc<X> dat;\n\
     \  vc<A> laz;\n\n  LazySegTreeBeats() : LazySegTreeBeats(0) {}\n  LazySegTreeBeats(int\
     \ n) : LazySegTreeBeats(vc<X>(n, Monoid_X::unit())) {}\n  LazySegTreeBeats(vc<X>\
@@ -256,37 +256,36 @@ data:
     \  return r + 1 - size;\n      }\n      sm = Monoid_X::op(dat[r], sm);\n    }\
     \ while ((r & -r) != r);\n    return 0;\n  }\n\n  void debug() { print(\"lazysegtree\
     \ getall:\", get_all()); }\n};\n#line 2 \"ds/segtree/beats_summaxmin_chminchmax.hpp\"\
-    \n\r\nconstexpr ll Beats_INF = 1LL << 40;\r\n\r\nstruct Beats_SumMaxMin_ChminChmax\
-    \ {\r\n  struct CntSumMinMax {\r\n    struct X {\r\n      ll cnt, sum, min, max,\
-    \ minc, maxc, min2, max2;\r\n      bool fail;\r\n    };\r\n    using value_type\
-    \ = X;\r\n    static X op(const X& x, const X& y) {\r\n      if (x.min > x.max)\
-    \ return y;\r\n      if (y.min > y.max) return x;\r\n      X z;\r\n      z.cnt\
-    \ = x.cnt + y.cnt, z.sum = x.sum + y.sum;\r\n\r\n      z.min = min(x.min, y.min),\
-    \ z.max = max(x.max, y.max);\r\n      z.minc = (x.min == z.min ? x.minc : 0) +\
-    \ (y.min == z.min ? y.minc : 0);\r\n      z.maxc = (x.max == z.max ? x.maxc :\
-    \ 0) + (y.max == z.max ? y.maxc : 0);\r\n\r\n      z.min2 = z.max;\r\n      if\
-    \ (z.min < x.min && x.min < z.min2) z.min2 = x.min;\r\n      if (z.min < x.min2\
-    \ && x.min2 < z.min2) z.min2 = x.min2;\r\n      if (z.min < y.min && y.min < z.min2)\
-    \ z.min2 = y.min;\r\n      if (z.min < y.min2 && y.min2 < z.min2) z.min2 = y.min2;\r\
-    \n\r\n      z.max2 = z.min;\r\n      if (z.max > x.max && x.max > z.max2) z.max2\
-    \ = x.max;\r\n      if (z.max > x.max2 && x.max2 > z.max2) z.max2 = x.max2;\r\n\
-    \      if (z.max > y.max && y.max > z.max2) z.max2 = y.max;\r\n      if (z.max\
-    \ > y.max2 && y.max2 > z.max2) z.max2 = y.max2;\r\n\r\n      z.fail = 0;\r\n \
-    \     return z;\r\n    }\r\n    static constexpr X unit() {\r\n      return {0,\
-    \ 0, Beats_INF, -Beats_INF, 0, 0, Beats_INF, -Beats_INF, 0};\r\n    }\r\n    bool\
-    \ commute = true;\r\n  };\r\n  struct AddChminChmax {\r\n    using X = tuple<ll,\
-    \ ll, ll>;\r\n    using value_type = X;\r\n    static constexpr X op(const X&\
-    \ x, const X& y) {\r\n      auto [a, b, c] = x;\r\n      auto [d, e, f] = y;\r\
-    \n      a += d, b += d, c += d;\r\n      b = min(b, e), c = min(c, e);\r\n   \
-    \   c = max(c, f);\r\n      return {a, b, c};\r\n    }\r\n    static constexpr\
-    \ X unit() { return {0, Beats_INF, -Beats_INF}; }\r\n    bool commute = false;\r\
-    \n  };\r\n  struct Lazy {\r\n    using MX = CntSumMinMax;\r\n    using MA = AddChminChmax;\r\
-    \n    using X_structure = MX;\r\n    using A_structure = MA;\r\n    using X =\
-    \ MX::value_type;\r\n    using A = MA::value_type;\r\n    static X act(X& x, const\
-    \ A& a) {\r\n      assert(!x.fail);\r\n      if (x.cnt == 0) return x;\r\n   \
-    \   auto [add, mi, ma] = a;\r\n      x.sum += x.cnt * add;\r\n      x.min += add,\
-    \ x.max += add;\r\n      x.min2 += add, x.max2 += add;\r\n\r\n      if (mi ==\
-    \ Beats_INF && ma == -Beats_INF) return x;\r\n\r\n      ll before_min = x.min,\
+    \n\r\ntemplate <typename T>\r\nstruct Beats_SumMaxMin_ChminChmax {\r\n  static\
+    \ constexpr T INF = numeric_limits<T>::max() / 2 - 1;\r\n  struct CntSumMinMax\
+    \ {\r\n    struct X {\r\n      T cnt, sum, min, max, minc, maxc, min2, max2;\r\
+    \n      bool fail;\r\n    };\r\n    using value_type = X;\r\n    static X op(const\
+    \ X& x, const X& y) {\r\n      if (x.min > x.max) return y;\r\n      if (y.min\
+    \ > y.max) return x;\r\n      X z;\r\n      z.cnt = x.cnt + y.cnt, z.sum = x.sum\
+    \ + y.sum;\r\n\r\n      z.min = min(x.min, y.min), z.max = max(x.max, y.max);\r\
+    \n      z.minc = (x.min == z.min ? x.minc : 0) + (y.min == z.min ? y.minc : 0);\r\
+    \n      z.maxc = (x.max == z.max ? x.maxc : 0) + (y.max == z.max ? y.maxc : 0);\r\
+    \n\r\n      z.min2 = z.max;\r\n      if (z.min < x.min && x.min < z.min2) z.min2\
+    \ = x.min;\r\n      if (z.min < x.min2 && x.min2 < z.min2) z.min2 = x.min2;\r\n\
+    \      if (z.min < y.min && y.min < z.min2) z.min2 = y.min;\r\n      if (z.min\
+    \ < y.min2 && y.min2 < z.min2) z.min2 = y.min2;\r\n\r\n      z.max2 = z.min;\r\
+    \n      if (z.max > x.max && x.max > z.max2) z.max2 = x.max;\r\n      if (z.max\
+    \ > x.max2 && x.max2 > z.max2) z.max2 = x.max2;\r\n      if (z.max > y.max &&\
+    \ y.max > z.max2) z.max2 = y.max;\r\n      if (z.max > y.max2 && y.max2 > z.max2)\
+    \ z.max2 = y.max2;\r\n\r\n      z.fail = 0;\r\n      return z;\r\n    }\r\n  \
+    \  static constexpr X unit() { return {0, 0, INF, -INF, 0, 0, INF, -INF, 0}; }\r\
+    \n    bool commute = true;\r\n  };\r\n  struct AddChminChmax {\r\n    using X\
+    \ = tuple<T, T, T>;\r\n    using value_type = X;\r\n    static constexpr X op(const\
+    \ X& x, const X& y) {\r\n      auto [a, b, c] = x;\r\n      auto [d, e, f] = y;\r\
+    \n      a += d, b += d, c += d;\r\n      b = min(b, e), c = min(c, e), c = max(c,\
+    \ f);\r\n      return {a, b, c};\r\n    }\r\n    static constexpr X unit() { return\
+    \ {0, INF, -INF}; }\r\n    bool commute = false;\r\n  };\r\n  struct Lazy {\r\n\
+    \    using Monoid_X = CntSumMinMax;\r\n    using Monoid_A = AddChminChmax;\r\n\
+    \    using X = typename Monoid_X::value_type;\r\n    using A = typename Monoid_A::value_type;\r\
+    \n    static X act(X& x, const A& a) {\r\n      assert(!x.fail);\r\n      if (x.cnt\
+    \ == 0) return x;\r\n      auto [add, mi, ma] = a;\r\n      x.sum += x.cnt * add;\r\
+    \n      x.min += add, x.max += add;\r\n      x.min2 += add, x.max2 += add;\r\n\
+    \r\n      if (mi == INF && ma == -INF) return x;\r\n\r\n      T before_min = x.min,\
     \ before_max = x.max;\r\n      x.min = min(x.min, mi);\r\n      x.min = max(x.min,\
     \ ma);\r\n      x.max = min(x.max, mi);\r\n      x.max = max(x.max, ma);\r\n\r\
     \n      if (x.min == x.max) {\r\n        x.sum = x.max * x.cnt;\r\n        x.max2\
@@ -298,16 +297,16 @@ data:
     \ x.minc;\r\n      }\r\n      elif (x.min < x.min2 && x.max > x.max2) {\r\n  \
     \      x.sum += (x.min - before_min) * x.minc;\r\n        x.sum += (x.max - before_max)\
     \ * x.maxc;\r\n      }\r\n      else {\r\n        x.fail = 1;\r\n      }\r\n \
-    \     return x;\r\n    }\r\n  };\r\n  LazySegTreeBeats<Lazy> seg;\r\n  Beats_SumMaxMin_ChminChmax(vc<ll>&\
-    \ A) {\r\n    using X = Lazy::MX::value_type;\r\n    vc<X> seg_raw(len(A));\r\n\
-    \    FOR(i, len(A)) {\r\n      ll x = A[i];\r\n      seg_raw[i] = {1, x, x, x,\
+    \     return x;\r\n    }\r\n  };\r\n  LazySegTreeBeats<Lazy> seg;\r\n  Beats_SumMaxMin_ChminChmax(vc<T>&\
+    \ A) {\r\n    using X = typename Lazy::Monoid_X::value_type;\r\n    vc<X> seg_raw(len(A));\r\
+    \n    FOR(i, len(A)) {\r\n      T x = A[i];\r\n      seg_raw[i] = {1, x, x, x,\
     \ 1, 1, x, x, 0};\r\n    }\r\n    seg = LazySegTreeBeats<Lazy>(seg_raw);\r\n \
-    \ }\r\n\r\n  void set(int i, ll x) { seg.set(i, {1, x, x, x, 1, 1, x, x, 0});\
-    \ }\r\n\r\n  Lazy::MX::value_type prod(int l, int r) {\r\n    auto e = seg.prod(l,\
-    \ r);\r\n    return e;\r\n  }\r\n\r\n  void chmin(int l, int r, ll x) { seg.apply(l,\
-    \ r, {0, x, -Beats_INF}); }\r\n\r\n  void chmax(int l, int r, ll x) { seg.apply(l,\
-    \ r, {0, Beats_INF, x}); }\r\n\r\n  void add(int l, int r, ll x) { seg.apply(l,\
-    \ r, {x, Beats_INF, -Beats_INF}); }\r\n};\r\n#line 7 \"test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp\"\
+    \ }\r\n\r\n  void set(int i, T x) { seg.set(i, {1, x, x, x, 1, 1, x, x, 0}); }\r\
+    \n\r\n  // (sum, max, min)\r\n  tuple<T, T, T> prod(int l, int r) {\r\n    auto\
+    \ e = seg.prod(l, r);\r\n    return {e.sum, e.max, e.min};\r\n  }\r\n\r\n  void\
+    \ chmin(int l, int r, T x) { seg.apply(l, r, {0, x, -INF}); }\r\n\r\n  void chmax(int\
+    \ l, int r, T x) { seg.apply(l, r, {0, INF, x}); }\r\n\r\n  void add(int l, int\
+    \ r, T x) { seg.apply(l, r, {x, INF, -INF}); }\r\n};\r\n#line 7 \"test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  Beats_SumMaxMin_ChminChmax\
     \ seg(A);\r\n  FOR(_, Q) {\r\n    LL(t, L, R);\r\n    if (t == 0) {\r\n      LL(x);\r\
     \n      seg.chmin(L, R, x);\r\n    }\r\n    elif (t == 1) {\r\n      LL(x);\r\n\
@@ -335,8 +334,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-01-31 22:37:20+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
 layout: document
