@@ -1,7 +1,10 @@
 // 行ベクトルを整数型で表現
-ARR mat_inv_xor(ARR& A) {
+template <typename UINT>
+vc<UINT> mat_inv_xor(vc<UINT> &A, bool keep_A = 1) {
+  vc<UINT> tmp;
+  if (keep_A) tmp = A;
   const int N = len(A);
-  ARR B;
+  vc<UINT> B(N);
   FOR(i, N) B[i] = u64(1) << i;
   FOR(i, N) {
     FOR(k, i, N) if (A[k] >> i & 1) {
@@ -15,5 +18,6 @@ ARR mat_inv_xor(ARR& A) {
       B[k] ^= B[i];
     }
   }
+  if (keep_A) swap(A, tmp);
   return B;
 }
