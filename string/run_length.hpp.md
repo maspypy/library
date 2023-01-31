@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: string/substring_abundant_string.hpp
+    title: string/substring_abundant_string.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/mytest/run_length.test.cpp
@@ -22,7 +25,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: string/run_length.hpp
-  requiredBy: []
+  requiredBy:
+  - string/substring_abundant_string.hpp
   timestamp: '2022-07-20 17:24:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

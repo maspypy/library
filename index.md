@@ -474,6 +474,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: flow/maxflow.hpp
       title: flow/maxflow.hpp
+    - icon: ':warning:'
+      path: flow/maximum_matching_of_line_graph.hpp
+      title: flow/maximum_matching_of_line_graph.hpp
     - icon: ':heavy_check_mark:'
       path: flow/min_cost_matching_on_line.hpp
       title: flow/min_cost_matching_on_line.hpp
@@ -496,16 +499,16 @@ data:
       title: game/solve_partizan_game.hpp
   - name: geo
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geo/angle_sort.hpp
       title: geo/angle_sort.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geo/base.hpp
       title: geo/base.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geo/count_points_in_triangles.hpp
       title: geo/count_points_in_triangles.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geo/cross_point.hpp
       title: geo/cross_point.hpp
     - icon: ':heavy_check_mark:'
@@ -517,9 +520,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/incircle.hpp
       title: geo/incircle.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geo/incremental_convexhull.hpp
       title: geo/incremental_convexhull.hpp
+    - icon: ':warning:'
+      path: geo/inside_polygon.hpp
+      title: geo/inside_polygon.hpp
     - icon: ':heavy_check_mark:'
       path: geo/integral.hpp
       title: geo/integral.hpp
@@ -781,6 +787,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: knapsack/subset_sum_count.hpp
       title: knapsack/subset_sum_count.hpp
+  - name: linalg/bitset
+    pages:
+    - icon: ':warning:'
+      path: linalg/bitset/mat_inv_bitset.hpp
+      title: linalg/bitset/mat_inv_bitset.hpp
+    - icon: ':warning:'
+      path: linalg/bitset/solve_linear_F2.hpp
+      title: linalg/bitset/solve_linear_F2.hpp
   - name: linalg
     pages:
     - icon: ':heavy_check_mark:'
@@ -813,15 +827,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/solve_linear.hpp
       title: linalg/solve_linear.hpp
-    - icon: ':warning:'
-      path: linalg/solve_linear_F2.hpp
-      title: linalg/solve_linear_F2.hpp
     - icon: ':heavy_check_mark:'
       path: linalg/solve_linear_lower.hpp
       title: linalg/solve_linear_lower.hpp
-    - icon: ':heavy_check_mark:'
-      path: linalg/solve_linear_xor.hpp
-      title: linalg/solve_linear_xor.hpp
     - icon: ':heavy_check_mark:'
       path: linalg/spmat_det.hpp
       title: linalg/spmat_det.hpp
@@ -848,6 +856,17 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/implicit_matrix/vandermonde.hpp
       title: linalg/implicit_matrix/vandermonde.hpp
+  - name: linalg/xor
+    pages:
+    - icon: ':warning:'
+      path: linalg/xor/mat_inv_xor.hpp
+      title: linalg/xor/mat_inv_xor.hpp
+    - icon: ':warning:'
+      path: linalg/xor/solve_linear.hpp
+      title: linalg/xor/solve_linear.hpp
+    - icon: ':warning:'
+      path: linalg/xor/vector_space.hpp
+      title: linalg/xor/vector_space.hpp
   - name: mod
     pages:
     - icon: ':heavy_check_mark:'
@@ -895,7 +914,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_sum_of_linear.hpp
       title: mod/mod_sum_of_linear.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: mod/modint.hpp
       title: mod/modint.hpp
     - icon: ':heavy_check_mark:'
@@ -904,7 +923,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/modular_subset_sum.hpp
       title: mod/modular_subset_sum.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: mod/powertable.hpp
       title: mod/powertable.hpp
     - icon: ':heavy_check_mark:'
@@ -918,7 +937,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -986,7 +1005,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/primesum_mod6.hpp
       title: nt/primesum_mod6.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: nt/primetable.hpp
       title: nt/primetable.hpp
     - icon: ':heavy_check_mark:'
@@ -1012,7 +1031,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/dice.hpp
       title: other/dice.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -1171,7 +1190,7 @@ data:
       title: poly/online/online_pow.hpp
   - name: random
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -1335,6 +1354,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/split.hpp
       title: string/split.hpp
+    - icon: ':warning:'
+      path: string/substring_abundant_string.hpp
+      title: string/substring_abundant_string.hpp
     - icon: ':heavy_check_mark:'
       path: string/suffix_array.hpp
       title: string/suffix_array.hpp
@@ -1422,7 +1444,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_2_B.test.cpp
       title: test/aoj/CGL_2_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/CGL_2_C.test.cpp
       title: test/aoj/CGL_2_C.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2526,7 +2548,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1418.test.cpp
       title: test/yukicoder/1418.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/1421.test.cpp
       title: test/yukicoder/1421.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2936,7 +2958,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc200a.test.cpp
       title: test_atcoder/abc200a.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_atcoder/abc202_f.test.cpp
       title: test_atcoder/abc202_f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2978,7 +3000,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc259g.test.cpp
       title: test_atcoder/abc259g.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_atcoder/abc266c.test.cpp
       title: test_atcoder/abc266c.test.cpp
     - icon: ':heavy_check_mark:'

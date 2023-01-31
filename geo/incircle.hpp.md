@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':heavy_check_mark:'
@@ -28,6 +28,8 @@ data:
     \ other) { return x * other.x + y * other.y; }\n  T det(Point other) { return\
     \ x * other.y - y * other.x; }\n\n  void read() { fastio::read(x), fastio::read(y);\
     \ }\n  void write() { fastio::printer.write(pair<T, T>({x, y})); }\n};\n\ntemplate\
+    \ <typename T>\nint ccw(Point<T> A, Point<T> B, Point<T> C) {\n  T x = (B - A).det(C\
+    \ - A);\n  if (x > 0) return 1;\n  if (x < 0) return -1;\n  return 0;\n}\n\ntemplate\
     \ <typename REAL, typename T>\nREAL dist(Point<T> A, Point<T> B) {\n  A = A -\
     \ B;\n  T p = A.dot(A);\n  return sqrt(REAL(p));\n}\n\ntemplate <typename T>\n\
     struct Line {\n  T a, b, c;\n\n  Line(T a, T b, T c) : a(a), b(b), c(c) {}\n \
@@ -40,30 +42,33 @@ data:
     \ { return a * other.a + b * other.b == 0; }\n};\n\ntemplate <typename T>\nstruct\
     \ Segment {\n  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B)\
     \ {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2,\
-    \ y2)) {}\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate <typename\
-    \ T>\nstruct Circle {\n  Point<T> O;\n  T r;\n  Circle(Point<T> O, T r) : O(O),\
-    \ r(r) {}\n  Circle(T x, T y, T r) : O(Point<T>(x, y)), r(r) {}\n};\n\ntemplate\
-    \ <typename T>\nstruct Polygon {\n  vc<Point<T>> points;\n  T a;\n\n  template\
-    \ <typename A, typename B>\n  Polygon(vc<pair<A, B>> pairs) {\n    for (auto&&\
-    \ [a, b]: pairs) points.eb(Point<T>(a, b));\n    build();\n  }\n  Polygon(vc<Point<T>>\
-    \ points) : points(points) { build(); }\n\n  int size() { return len(points);\
-    \ }\n\n  template <typename REAL>\n  REAL area() {\n    return a * 0.5;\n  }\n\
-    \n  template <enable_if_t<is_integral<T>::value, int> = 0>\n  T area_2() {\n \
-    \   return a;\n  }\n\n  bool is_convex() {\n    FOR(j, len(points)) {\n      int\
-    \ i = (j == 0 ? len(points) - 1 : j - 1);\n      int k = (j == len(points) - 1\
-    \ ? 0 : j + 1);\n      if ((points[j] - points[i]).det(points[k] - points[j])\
-    \ < 0) return false;\n    }\n    return true;\n  }\n\nprivate:\n  void build()\
-    \ {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1 == len(points)\
-    \ ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n    if (a < 0) {\n\
-    \      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n#line 1 \"geo/triangle_area.hpp\"\
-    \ntemplate <typename REAL, typename T>\nREAL triangle_area(Point<T> A, Point<T>\
-    \ B, Point<T> C) {\n  return abs((B - A).det(C - A)) * 0.5;\n}\n#line 3 \"geo/incircle.hpp\"\
-    \n\ntemplate <typename REAL, typename T>\nCircle<REAL> incircle(Point<T> A, Point<T>\
-    \ B, Point<T> C) {\n  REAL a = distance<REAL, T, T>(B, C);\n  REAL b = distance<REAL,\
-    \ T, T>(C, A);\n  REAL c = distance<REAL, T, T>(A, B);\n  REAL x = (a * A.x +\
-    \ b * B.x + c * C.x) / (a + b + c);\n  REAL y = (a * A.y + b * B.y + c * C.y)\
-    \ / (a + b + c);\n  REAL r = 2 * triangle_area<REAL>(A, B, C) / (a + b + c);\n\
-    \  return Circle<REAL>(x, y, r);\n}\n"
+    \ y2)) {}\n\n  template <enable_if_t<is_integral<T>::value, int> = 0>\n  bool\
+    \ contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det != 0) return\
+    \ 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n  }\n\n\
+    \  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate <typename T>\nstruct\
+    \ Circle {\n  Point<T> O;\n  T r;\n  Circle(Point<T> O, T r) : O(O), r(r) {}\n\
+    \  Circle(T x, T y, T r) : O(Point<T>(x, y)), r(r) {}\n};\n\ntemplate <typename\
+    \ T>\nstruct Polygon {\n  vc<Point<T>> points;\n  T a;\n\n  template <typename\
+    \ A, typename B>\n  Polygon(vc<pair<A, B>> pairs) {\n    for (auto&& [a, b]: pairs)\
+    \ points.eb(Point<T>(a, b));\n    build();\n  }\n  Polygon(vc<Point<T>> points)\
+    \ : points(points) { build(); }\n\n  int size() { return len(points); }\n\n  template\
+    \ <typename REAL>\n  REAL area() {\n    return a * 0.5;\n  }\n\n  template <enable_if_t<is_integral<T>::value,\
+    \ int> = 0>\n  T area_2() {\n    return a;\n  }\n\n  bool is_convex() {\n    FOR(j,\
+    \ len(points)) {\n      int i = (j == 0 ? len(points) - 1 : j - 1);\n      int\
+    \ k = (j == len(points) - 1 ? 0 : j + 1);\n      if ((points[j] - points[i]).det(points[k]\
+    \ - points[j]) < 0) return false;\n    }\n    return true;\n  }\n\nprivate:\n\
+    \  void build() {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1\
+    \ == len(points) ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n\
+    \    if (a < 0) {\n      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n\
+    #line 1 \"geo/triangle_area.hpp\"\ntemplate <typename REAL, typename T>\nREAL\
+    \ triangle_area(Point<T> A, Point<T> B, Point<T> C) {\n  return abs((B - A).det(C\
+    \ - A)) * 0.5;\n}\n#line 3 \"geo/incircle.hpp\"\n\ntemplate <typename REAL, typename\
+    \ T>\nCircle<REAL> incircle(Point<T> A, Point<T> B, Point<T> C) {\n  REAL a =\
+    \ distance<REAL, T, T>(B, C);\n  REAL b = distance<REAL, T, T>(C, A);\n  REAL\
+    \ c = distance<REAL, T, T>(A, B);\n  REAL x = (a * A.x + b * B.x + c * C.x) /\
+    \ (a + b + c);\n  REAL y = (a * A.y + b * B.y + c * C.y) / (a + b + c);\n  REAL\
+    \ r = 2 * triangle_area<REAL>(A, B, C) / (a + b + c);\n  return Circle<REAL>(x,\
+    \ y, r);\n}\n"
   code: "#include \"geo/base.hpp\"\n#include \"geo/triangle_area.hpp\"\n\ntemplate\
     \ <typename REAL, typename T>\nCircle<REAL> incircle(Point<T> A, Point<T> B, Point<T>\
     \ C) {\n  REAL a = distance<REAL, T, T>(B, C);\n  REAL b = distance<REAL, T, T>(C,\
@@ -77,7 +82,7 @@ data:
   isVerificationFile: false
   path: geo/incircle.hpp
   requiredBy: []
-  timestamp: '2022-12-11 11:11:22+09:00'
+  timestamp: '2023-01-31 19:58:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL_7_B.test.cpp

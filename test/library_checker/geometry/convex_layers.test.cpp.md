@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':heavy_check_mark:'
     path: geo/dynamicupperhull.hpp
     title: geo/dynamicupperhull.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -209,6 +209,8 @@ data:
     \ other) { return x * other.x + y * other.y; }\n  T det(Point other) { return\
     \ x * other.y - y * other.x; }\n\n  void read() { fastio::read(x), fastio::read(y);\
     \ }\n  void write() { fastio::printer.write(pair<T, T>({x, y})); }\n};\n\ntemplate\
+    \ <typename T>\nint ccw(Point<T> A, Point<T> B, Point<T> C) {\n  T x = (B - A).det(C\
+    \ - A);\n  if (x > 0) return 1;\n  if (x < 0) return -1;\n  return 0;\n}\n\ntemplate\
     \ <typename REAL, typename T>\nREAL dist(Point<T> A, Point<T> B) {\n  A = A -\
     \ B;\n  T p = A.dot(A);\n  return sqrt(REAL(p));\n}\n\ntemplate <typename T>\n\
     struct Line {\n  T a, b, c;\n\n  Line(T a, T b, T c) : a(a), b(b), c(c) {}\n \
@@ -221,41 +223,44 @@ data:
     \ { return a * other.a + b * other.b == 0; }\n};\n\ntemplate <typename T>\nstruct\
     \ Segment {\n  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B)\
     \ {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2,\
-    \ y2)) {}\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate <typename\
-    \ T>\nstruct Circle {\n  Point<T> O;\n  T r;\n  Circle(Point<T> O, T r) : O(O),\
-    \ r(r) {}\n  Circle(T x, T y, T r) : O(Point<T>(x, y)), r(r) {}\n};\n\ntemplate\
-    \ <typename T>\nstruct Polygon {\n  vc<Point<T>> points;\n  T a;\n\n  template\
-    \ <typename A, typename B>\n  Polygon(vc<pair<A, B>> pairs) {\n    for (auto&&\
-    \ [a, b]: pairs) points.eb(Point<T>(a, b));\n    build();\n  }\n  Polygon(vc<Point<T>>\
-    \ points) : points(points) { build(); }\n\n  int size() { return len(points);\
-    \ }\n\n  template <typename REAL>\n  REAL area() {\n    return a * 0.5;\n  }\n\
-    \n  template <enable_if_t<is_integral<T>::value, int> = 0>\n  T area_2() {\n \
-    \   return a;\n  }\n\n  bool is_convex() {\n    FOR(j, len(points)) {\n      int\
-    \ i = (j == 0 ? len(points) - 1 : j - 1);\n      int k = (j == len(points) - 1\
-    \ ? 0 : j + 1);\n      if ((points[j] - points[i]).det(points[k] - points[j])\
-    \ < 0) return false;\n    }\n    return true;\n  }\n\nprivate:\n  void build()\
-    \ {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1 == len(points)\
-    \ ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n    if (a < 0) {\n\
-    \      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n#line 2 \"geo/dynamicupperhull.hpp\"\
-    \n\r\n/*\r\nhttps://codeforces.com/blog/entry/75929\r\n\u52D5\u7684\u51F8\u5305\
-    \u3002\r\nx \u5EA7\u6A19\u3067\u30BD\u30FC\u30C8\u3057\u3066\u5B8C\u5168\u4E8C\
-    \u5206\u6728\u306E\u30BB\u30B0\u6728\u306E\u5F62\u306B\u3057\u3066\u304A\u304F\
-    \u3002\r\n\u30BB\u30B0\u6728\u306E\u30DE\u30FC\u30B8\u90E8\u5206\uFF08\u6B21\u306E\
-    \ bridge \u3092\u6C42\u3081\u308B\uFF09\u3067\u4E8C\u5206\u63A2\u7D22\u3059\u308B\
-    \u3002\r\nbridge \u540C\u58EB\u306E 4 \u70B9\u3067\u306E\u4E0A\u5074\u51F8\u5305\
-    \u3092\u898B\u308C\u3070\u3001\u6B21\u306B\u63A2\u7D22\u3059\u308B\u3079\u304D\
-    \u533A\u9593\u5BFE\u304C\u5206\u304B\u308B\u3002\r\n\r\n\u69CB\u7BC9 O(NlogN)\u3001\
-    \u66F4\u65B0 O(Nlog^2N)\r\n\u5EA7\u6A19 10^9 \u4EE5\u4E0B\u306E\u6574\u6570\u3092\
-    \u4EEE\u5B9A\r\n*/\r\ntemplate<typename Point>\r\nstruct DynamicUpperHull {\r\n\
-    \  struct node {\r\n    int l, r;   // \u7BC4\u56F2 (-1 if no vertex)\r\n    int\
-    \ bl, br; // bridge idx\r\n  };\r\n  int N, sz;\r\n  vc<Point> P;\r\n  vc<node>\
-    \ seg;\r\n  // \u53D7\u3051\u53D6\u3063\u305F\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\
-    \u3068\u306E\u5BFE\u5FDC\r\n  vc<int> to_original_idx, to_seg_idx;\r\n\r\n  DynamicUpperHull(vc<Point>\
-    \ P) : DynamicUpperHull(P, 0) {}\r\n  DynamicUpperHull(vc<Point> P, bool b)\r\n\
-    \      : DynamicUpperHull(P, vc<bool>(len(P), b)) {}\r\n\r\n  DynamicUpperHull(vc<Point>\
-    \ _P, vc<bool> isin) : N(len(_P)), P(_P) {\r\n    to_original_idx = argsort(P);\r\
-    \n    sort(all(P));\r\n    sz = 1;\r\n    while (sz < N) sz *= 2;\r\n    to_seg_idx.resize(N);\r\
-    \n    seg.assign(sz + sz, {-1, -1, -1, -1});\r\n    for (int i = 0; i < N; ++i)\
+    \ y2)) {}\n\n  template <enable_if_t<is_integral<T>::value, int> = 0>\n  bool\
+    \ contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det != 0) return\
+    \ 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n  }\n\n\
+    \  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate <typename T>\nstruct\
+    \ Circle {\n  Point<T> O;\n  T r;\n  Circle(Point<T> O, T r) : O(O), r(r) {}\n\
+    \  Circle(T x, T y, T r) : O(Point<T>(x, y)), r(r) {}\n};\n\ntemplate <typename\
+    \ T>\nstruct Polygon {\n  vc<Point<T>> points;\n  T a;\n\n  template <typename\
+    \ A, typename B>\n  Polygon(vc<pair<A, B>> pairs) {\n    for (auto&& [a, b]: pairs)\
+    \ points.eb(Point<T>(a, b));\n    build();\n  }\n  Polygon(vc<Point<T>> points)\
+    \ : points(points) { build(); }\n\n  int size() { return len(points); }\n\n  template\
+    \ <typename REAL>\n  REAL area() {\n    return a * 0.5;\n  }\n\n  template <enable_if_t<is_integral<T>::value,\
+    \ int> = 0>\n  T area_2() {\n    return a;\n  }\n\n  bool is_convex() {\n    FOR(j,\
+    \ len(points)) {\n      int i = (j == 0 ? len(points) - 1 : j - 1);\n      int\
+    \ k = (j == len(points) - 1 ? 0 : j + 1);\n      if ((points[j] - points[i]).det(points[k]\
+    \ - points[j]) < 0) return false;\n    }\n    return true;\n  }\n\nprivate:\n\
+    \  void build() {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1\
+    \ == len(points) ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n\
+    \    if (a < 0) {\n      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n\
+    #line 2 \"geo/dynamicupperhull.hpp\"\n\r\n/*\r\nhttps://codeforces.com/blog/entry/75929\r\
+    \n\u52D5\u7684\u51F8\u5305\u3002\r\nx \u5EA7\u6A19\u3067\u30BD\u30FC\u30C8\u3057\
+    \u3066\u5B8C\u5168\u4E8C\u5206\u6728\u306E\u30BB\u30B0\u6728\u306E\u5F62\u306B\
+    \u3057\u3066\u304A\u304F\u3002\r\n\u30BB\u30B0\u6728\u306E\u30DE\u30FC\u30B8\u90E8\
+    \u5206\uFF08\u6B21\u306E bridge \u3092\u6C42\u3081\u308B\uFF09\u3067\u4E8C\u5206\
+    \u63A2\u7D22\u3059\u308B\u3002\r\nbridge \u540C\u58EB\u306E 4 \u70B9\u3067\u306E\
+    \u4E0A\u5074\u51F8\u5305\u3092\u898B\u308C\u3070\u3001\u6B21\u306B\u63A2\u7D22\
+    \u3059\u308B\u3079\u304D\u533A\u9593\u5BFE\u304C\u5206\u304B\u308B\u3002\r\n\r\
+    \n\u69CB\u7BC9 O(NlogN)\u3001\u66F4\u65B0 O(Nlog^2N)\r\n\u5EA7\u6A19 10^9 \u4EE5\
+    \u4E0B\u306E\u6574\u6570\u3092\u4EEE\u5B9A\r\n*/\r\ntemplate<typename Point>\r\
+    \nstruct DynamicUpperHull {\r\n  struct node {\r\n    int l, r;   // \u7BC4\u56F2\
+    \ (-1 if no vertex)\r\n    int bl, br; // bridge idx\r\n  };\r\n  int N, sz;\r\
+    \n  vc<Point> P;\r\n  vc<node> seg;\r\n  // \u53D7\u3051\u53D6\u3063\u305F\u30A4\
+    \u30F3\u30C7\u30C3\u30AF\u30B9\u3068\u306E\u5BFE\u5FDC\r\n  vc<int> to_original_idx,\
+    \ to_seg_idx;\r\n\r\n  DynamicUpperHull(vc<Point> P) : DynamicUpperHull(P, 0)\
+    \ {}\r\n  DynamicUpperHull(vc<Point> P, bool b)\r\n      : DynamicUpperHull(P,\
+    \ vc<bool>(len(P), b)) {}\r\n\r\n  DynamicUpperHull(vc<Point> _P, vc<bool> isin)\
+    \ : N(len(_P)), P(_P) {\r\n    to_original_idx = argsort(P);\r\n    sort(all(P));\r\
+    \n    sz = 1;\r\n    while (sz < N) sz *= 2;\r\n    to_seg_idx.resize(N);\r\n\
+    \    seg.assign(sz + sz, {-1, -1, -1, -1});\r\n    for (int i = 0; i < N; ++i)\
     \ to_seg_idx[to_original_idx[i]] = i;\r\n    for (int i = 0; i < N; ++i)\r\n \
     \     if (isin[to_original_idx[i]]) { seg[sz + i] = {i, i + 1, i, i}; }\r\n  \
     \  FOR3_R(i, 1, sz) update(i);\r\n  }\r\n\r\n  void insert(int i) {\r\n    i =\
@@ -325,7 +330,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/geometry/convex_layers.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
+  timestamp: '2023-01-31 19:58:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/geometry/convex_layers.test.cpp

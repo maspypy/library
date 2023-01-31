@@ -9,6 +9,9 @@ data:
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
   - icon: ':warning:'
+    path: flow/maximum_matching_of_line_graph.hpp
+    title: flow/maximum_matching_of_line_graph.hpp
+  - icon: ':warning:'
     path: game/graph_game.hpp
     title: game/graph_game.hpp
   - icon: ':heavy_check_mark:'
@@ -613,6 +616,7 @@ data:
   - game/graph_game.hpp
   - geo/manhattan_mst.hpp
   - flow/bipartite.hpp
+  - flow/maximum_matching_of_line_graph.hpp
   - string/suffix_tree.hpp
   - string/suffix_automaton.hpp
   - enumerate/triangle.hpp

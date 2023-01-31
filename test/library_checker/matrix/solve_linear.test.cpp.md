@@ -7,13 +7,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/solve_linear.hpp
     title: linalg/solve_linear.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -296,30 +296,31 @@ data:
     \u76EE\u306B\u89E3\u7A7A\u9593\u306E\u57FA\u5E95\u304C\u884C\u30D9\u30AF\u30C8\
     \u30EB\u3068\u3057\u3066\u5165\u308B\u3002\r\n\u89E3\u306A\u3057 = empty\r\n*/\r\
     \ntemplate <typename T>\r\nvc<vc<T>> solve_linear(const int n, const int m, vc<vc<T>>\
-    \ a, vc<T> b) {\r\n  int rk = 0;\r\n  FOR(j, m) {\r\n    if (a[rk][j] == 0) {\r\
-    \n      FOR3(i, rk + 1, n) if (a[i][j] != 0) {\r\n        swap(a[rk], a[i]);\r\
-    \n        swap(b[rk], b[i]);\r\n        break;\r\n      }\r\n    }\r\n    if (a[rk][j]\
-    \ == 0) continue;\r\n    T c = T(1) / a[rk][j];\r\n    for (auto&& x: a[rk]) x\
-    \ *= c;\r\n    b[rk] *= c;\r\n    FOR(i, n) if (i != rk) {\r\n      T c = a[i][j];\r\
-    \n      b[i] -= b[rk] * c;\r\n      FOR3(k, j, m) { a[i][k] -= a[rk][k] * c; }\r\
-    \n    }\r\n    ++rk;\r\n    if (rk == n) break;\r\n  }\r\n  FOR3(i, rk, n) if\
-    \ (b[i] != 0) return {};\r\n  vc<vc<T>> res(1, vc<T>(m));\r\n  vc<int> pivot(m,\
-    \ -1);\r\n  int p = 0;\r\n  FOR(i, rk) {\r\n    while (a[i][p] == 0) ++p;\r\n\
-    \    res[0][p] = b[i];\r\n    pivot[p] = i;\r\n  }\r\n  FOR(j, m) if (pivot[j]\
-    \ == -1) {\r\n    vc<T> x(m);\r\n    x[j] = -1;\r\n    FOR(k, j) if (pivot[k]\
-    \ != -1) x[k] = a[pivot[k]][j];\r\n    res.eb(x);\r\n  }\r\n  return res;\r\n\
-    }\r\n#line 1 \"linalg/matrix_rank.hpp\"\ntemplate <typename T>\nint matrix_rank(const\
-    \ int n, const int m, vc<vc<T>> a) {\n  int rk = 0;\n  FOR(j, m) {\n    if (a[rk][j]\
-    \ == 0) {\n      FOR3(i, rk + 1, n) if (a[i][j] != 0) {\n        swap(a[rk], a[i]);\n\
-    \        break;\n      }\n    }\n    if (a[rk][j] == 0) continue;\n    T c = T(1)\
-    \ / a[rk][j];\n    FOR(k, j, m) a[rk][k] *= c;\n    FOR(i, rk + 1, n) {\n    \
-    \  T c = a[i][j];\n      FOR3(k, j, m) { a[i][k] -= a[rk][k] * c; }\n    }\n \
-    \   ++rk;\n    if (rk == n) break;\n  }\n  return rk;\n}\n#line 7 \"test/library_checker/matrix/solve_linear.test.cpp\"\
-    \n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N, M);\r\n  VV(mint, A,\
-    \ N, M);\r\n  VEC(mint, b, N);\r\n  auto xs = solve_linear(N, M, A, b);\r\n  if\
-    \ (len(xs) == 0) return print(-1);\r\n\r\n  assert(len(xs) - 1 == M - matrix_rank(N,\
-    \ M, A));\r\n\r\n  print(len(xs) - 1);\r\n  FOR(r, len(xs)) print(xs[r]);\r\n\
-    }\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \ a, vc<T> b) {\r\n  int rk = 0;\r\n  FOR(j, m) {\r\n    if (rk == n) break;\r\
+    \n    if (a[rk][j] == 0) {\r\n      FOR3(i, rk + 1, n) if (a[i][j] != 0) {\r\n\
+    \        swap(a[rk], a[i]);\r\n        swap(b[rk], b[i]);\r\n        break;\r\n\
+    \      }\r\n    }\r\n    if (a[rk][j] == 0) continue;\r\n    T c = T(1) / a[rk][j];\r\
+    \n    for (auto&& x: a[rk]) x *= c;\r\n    b[rk] *= c;\r\n    FOR(i, n) if (i\
+    \ != rk) {\r\n      T c = a[i][j];\r\n      b[i] -= b[rk] * c;\r\n      FOR3(k,\
+    \ j, m) { a[i][k] -= a[rk][k] * c; }\r\n    }\r\n    ++rk;\r\n  }\r\n  FOR3(i,\
+    \ rk, n) if (b[i] != 0) return {};\r\n  vc<vc<T>> res(1, vc<T>(m));\r\n  vc<int>\
+    \ pivot(m, -1);\r\n  int p = 0;\r\n  FOR(i, rk) {\r\n    while (a[i][p] == 0)\
+    \ ++p;\r\n    res[0][p] = b[i];\r\n    pivot[p] = i;\r\n  }\r\n  FOR(j, m) if\
+    \ (pivot[j] == -1) {\r\n    vc<T> x(m);\r\n    x[j] = -1;\r\n    FOR(k, j) if\
+    \ (pivot[k] != -1) x[k] = a[pivot[k]][j];\r\n    res.eb(x);\r\n  }\r\n  return\
+    \ res;\r\n}\r\n#line 1 \"linalg/matrix_rank.hpp\"\ntemplate <typename T>\nint\
+    \ matrix_rank(const int n, const int m, vc<vc<T>> a) {\n  int rk = 0;\n  FOR(j,\
+    \ m) {\n    if (a[rk][j] == 0) {\n      FOR3(i, rk + 1, n) if (a[i][j] != 0) {\n\
+    \        swap(a[rk], a[i]);\n        break;\n      }\n    }\n    if (a[rk][j]\
+    \ == 0) continue;\n    T c = T(1) / a[rk][j];\n    FOR(k, j, m) a[rk][k] *= c;\n\
+    \    FOR(i, rk + 1, n) {\n      T c = a[i][j];\n      FOR3(k, j, m) { a[i][k]\
+    \ -= a[rk][k] * c; }\n    }\n    ++rk;\n    if (rk == n) break;\n  }\n  return\
+    \ rk;\n}\n#line 7 \"test/library_checker/matrix/solve_linear.test.cpp\"\n\r\n\
+    using mint = modint998;\r\nvoid solve() {\r\n  LL(N, M);\r\n  VV(mint, A, N, M);\r\
+    \n  VEC(mint, b, N);\r\n  auto xs = solve_linear(N, M, A, b);\r\n  if (len(xs)\
+    \ == 0) return print(-1);\r\n\r\n  assert(len(xs) - 1 == M - matrix_rank(N, M,\
+    \ A));\r\n\r\n  print(len(xs) - 1);\r\n  FOR(r, len(xs)) print(xs[r]);\r\n}\r\n\
+    \r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
     \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/system_of_linear_equations\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"mod/modint.hpp\"\
@@ -339,7 +340,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/solve_linear.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
+  timestamp: '2023-01-31 19:57:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/matrix/solve_linear.test.cpp
