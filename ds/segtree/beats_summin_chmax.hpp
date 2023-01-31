@@ -10,7 +10,7 @@ struct Beats_SumMin_Chmax {
     using value_type = X;
     static X op(const X& x, const X& y) {
       if (x.min == INF) return y;
-      if (y.min == -INF) return x;
+      if (y.min == INF) return x;
       X z;
       z.sum = x.sum + y.sum;
 
@@ -68,8 +68,11 @@ struct Beats_SumMin_Chmax {
   Beats_SumMin_Chmax(vc<T>& A) {
     seg.build(len(A), [&](int i) -> X { return from_element(A[i]); });
   }
-
-  void set(int i, ll x) { seg.set(i, from_element(x)); }
+  template <typename F>
+  Beats_SumMin_Chmax(int n, F f) {
+    seg.build(n, [&](int i) -> X { return from_element(f(i)); });
+  }
+  void set(int i, T x) { seg.set(i, from_element(x)); }
 
   // (sum, min)
   pair<T, T> prod(int l, int r) {

@@ -1,7 +1,7 @@
 #include "ds/segtree/segtree_beats.hpp"
 
 template <typename T>
-struct Beats_SumMaxMin_ChminChmax {
+struct Beats_SumMinMax_ChminChmax {
   static constexpr T INF = numeric_limits<T>::max() / 2 - 1;
   struct SumMinMax {
     struct X {
@@ -91,16 +91,19 @@ struct Beats_SumMaxMin_ChminChmax {
 
   using X = typename SumMinMax::X;
   SegTree_Beats<Beats> seg;
-  Beats_SumMaxMin_ChminChmax(vc<T>& A) {
+  Beats_SumMinMax_ChminChmax(vc<T>& A) {
     seg.build(len(A), [&](int i) -> X { return from_element(A[i]); });
   }
-
+  template <typename F>
+  Beats_SumMinMax_ChminChmax(int n, F f) {
+    seg.build(n, [&](int i) -> X { return from_element(f(i)); });
+  }
   void set(int i, T x) { seg.set(i, from_element(x)); }
 
   // (sum, max, min)
   tuple<T, T, T> prod(int l, int r) {
     auto e = seg.prod(l, r);
-    return {e.sum, e.max, e.min};
+    return {e.sum, e.min, e.max};
   }
   static X from_element(T x) { return {x, x, x, 1, 1, x, x, 0}; }
 
