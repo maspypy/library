@@ -7,6 +7,7 @@ template <typename T>
 vc<vc<T>> solve_linear(const int n, const int m, vc<vc<T>> a, vc<T> b) {
   int rk = 0;
   FOR(j, m) {
+    if (rk == n) break;
     if (a[rk][j] == 0) {
       FOR3(i, rk + 1, n) if (a[i][j] != 0) {
         swap(a[rk], a[i]);
@@ -24,7 +25,6 @@ vc<vc<T>> solve_linear(const int n, const int m, vc<vc<T>> a, vc<T> b) {
       FOR3(k, j, m) { a[i][k] -= a[rk][k] * c; }
     }
     ++rk;
-    if (rk == n) break;
   }
   FOR3(i, rk, n) if (b[i] != 0) return {};
   vc<vc<T>> res(1, vc<T>(m));
