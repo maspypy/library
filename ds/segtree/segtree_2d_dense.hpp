@@ -18,7 +18,7 @@ struct SegTree_2D_Dense {
     FOR(y, W, W + W) FOR_R(x, H) {
       dat[idx(x, y)] = MX::op(dat[idx(2 * x + 0, y)], dat[idx(2 * x + 1, y)]);
     }
-    FOR(x, H + H) FOR(y, W) {
+    FOR(x, H + H) FOR_R(y, W) {
       dat[idx(x, y)] = MX::op(dat[idx(x, 2 * y + 0)], dat[idx(x, 2 * y + 1)]);
     }
   }
