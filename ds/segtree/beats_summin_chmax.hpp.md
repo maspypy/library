@@ -59,7 +59,7 @@ data:
     struct Beats_SumMin_Chmax {\n  static constexpr T INF = numeric_limits<T>::max()\
     \ / 2 - 1;\n  struct SumMin {\n    struct X {\n      T sum, min, minc, min2;\n\
     \      bool fail;\n    };\n    using value_type = X;\n    static X op(const X&\
-    \ x, const X& y) {\n      if (x.min == INF) return y;\n      if (y.min == -INF)\
+    \ x, const X& y) {\n      if (x.min == INF) return y;\n      if (y.min == INF)\
     \ return x;\n      X z;\n      z.sum = x.sum + y.sum;\n\n      z.min = min(x.min,\
     \ y.min);\n      z.minc = (x.min == z.min ? x.minc : 0) + (y.min == z.min ? y.minc\
     \ : 0);\n\n      z.min2 = INF;\n      if (z.min < x.min && x.min < z.min2) z.min2\
@@ -82,16 +82,18 @@ data:
     \      else {\n        x.fail = 1;\n      }\n      return x;\n    }\n  };\n  using\
     \ X = typename SumMin::X;\n  SegTree_Beats<Beats> seg;\n  Beats_SumMin_Chmax(vc<T>&\
     \ A) {\n    seg.build(len(A), [&](int i) -> X { return from_element(A[i]); });\n\
-    \  }\n\n  void set(int i, ll x) { seg.set(i, from_element(x)); }\n\n  // (sum,\
-    \ min)\n  pair<T, T> prod(int l, int r) {\n    auto e = seg.prod(l, r);\n    return\
-    \ {e.sum, e.min};\n  }\n  static X from_element(T x) { return {x, x, 1, x}; }\n\
-    \n  void chmax(int l, int r, T x) { seg.apply(l, r, {0, x}); }\n  void add(int\
-    \ l, int r, T x) { seg.apply(l, r, {x, -INF}); }\n};\n"
+    \  }\n  template <typename F>\n  Beats_SumMin_Chmax(int n, F f) {\n    seg.build(n,\
+    \ [&](int i) -> X { return from_element(f(i)); });\n  }\n  void set(int i, T x)\
+    \ { seg.set(i, from_element(x)); }\n\n  // (sum, min)\n  pair<T, T> prod(int l,\
+    \ int r) {\n    auto e = seg.prod(l, r);\n    return {e.sum, e.min};\n  }\n  static\
+    \ X from_element(T x) { return {x, x, 1, x}; }\n\n  void chmax(int l, int r, T\
+    \ x) { seg.apply(l, r, {0, x}); }\n  void add(int l, int r, T x) { seg.apply(l,\
+    \ r, {x, -INF}); }\n};\n"
   code: "#include \"ds/segtree/segtree_beats.hpp\"\ntemplate <typename T>\nstruct\
     \ Beats_SumMin_Chmax {\n  static constexpr T INF = numeric_limits<T>::max() /\
     \ 2 - 1;\n  struct SumMin {\n    struct X {\n      T sum, min, minc, min2;\n \
     \     bool fail;\n    };\n    using value_type = X;\n    static X op(const X&\
-    \ x, const X& y) {\n      if (x.min == INF) return y;\n      if (y.min == -INF)\
+    \ x, const X& y) {\n      if (x.min == INF) return y;\n      if (y.min == INF)\
     \ return x;\n      X z;\n      z.sum = x.sum + y.sum;\n\n      z.min = min(x.min,\
     \ y.min);\n      z.minc = (x.min == z.min ? x.minc : 0) + (y.min == z.min ? y.minc\
     \ : 0);\n\n      z.min2 = INF;\n      if (z.min < x.min && x.min < z.min2) z.min2\
@@ -114,17 +116,19 @@ data:
     \      else {\n        x.fail = 1;\n      }\n      return x;\n    }\n  };\n  using\
     \ X = typename SumMin::X;\n  SegTree_Beats<Beats> seg;\n  Beats_SumMin_Chmax(vc<T>&\
     \ A) {\n    seg.build(len(A), [&](int i) -> X { return from_element(A[i]); });\n\
-    \  }\n\n  void set(int i, ll x) { seg.set(i, from_element(x)); }\n\n  // (sum,\
-    \ min)\n  pair<T, T> prod(int l, int r) {\n    auto e = seg.prod(l, r);\n    return\
-    \ {e.sum, e.min};\n  }\n  static X from_element(T x) { return {x, x, 1, x}; }\n\
-    \n  void chmax(int l, int r, T x) { seg.apply(l, r, {0, x}); }\n  void add(int\
-    \ l, int r, T x) { seg.apply(l, r, {x, -INF}); }\n};\n"
+    \  }\n  template <typename F>\n  Beats_SumMin_Chmax(int n, F f) {\n    seg.build(n,\
+    \ [&](int i) -> X { return from_element(f(i)); });\n  }\n  void set(int i, T x)\
+    \ { seg.set(i, from_element(x)); }\n\n  // (sum, min)\n  pair<T, T> prod(int l,\
+    \ int r) {\n    auto e = seg.prod(l, r);\n    return {e.sum, e.min};\n  }\n  static\
+    \ X from_element(T x) { return {x, x, 1, x}; }\n\n  void chmax(int l, int r, T\
+    \ x) { seg.apply(l, r, {0, x}); }\n  void add(int l, int r, T x) { seg.apply(l,\
+    \ r, {x, -INF}); }\n};\n"
   dependsOn:
   - ds/segtree/segtree_beats.hpp
   isVerificationFile: false
   path: ds/segtree/beats_summin_chmax.hpp
   requiredBy: []
-  timestamp: '2023-01-31 23:39:57+09:00'
+  timestamp: '2023-02-01 00:12:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1526.test.cpp

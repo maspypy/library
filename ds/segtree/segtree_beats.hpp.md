@@ -2,15 +2,15 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/beats_summax_chmin.hpp
     title: ds/segtree/beats_summax_chmin.hpp
   - icon: ':heavy_check_mark:'
-    path: ds/segtree/beats_summaxmin_chminchmax.hpp
-    title: ds/segtree/beats_summaxmin_chminchmax.hpp
-  - icon: ':heavy_check_mark:'
     path: ds/segtree/beats_summin_chmax.hpp
     title: ds/segtree/beats_summin_chmax.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/segtree/beats_summinmax_chminchmax.hpp
+    title: ds/segtree/beats_summinmax_chminchmax.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
@@ -18,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1526.test.cpp
     title: test/yukicoder/1526.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1526_2.test.cpp
+    title: test/yukicoder/1526_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -111,12 +114,13 @@ data:
   isVerificationFile: false
   path: ds/segtree/segtree_beats.hpp
   requiredBy:
-  - ds/segtree/beats_summaxmin_chminchmax.hpp
+  - ds/segtree/beats_summinmax_chminchmax.hpp
   - ds/segtree/beats_summin_chmax.hpp
   - ds/segtree/beats_summax_chmin.hpp
   timestamp: '2023-01-31 23:12:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1526_2.test.cpp
   - test/yukicoder/1526.test.cpp
   - test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
 documentation_of: ds/segtree/segtree_beats.hpp

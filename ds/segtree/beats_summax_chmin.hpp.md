@@ -5,10 +5,13 @@ data:
     path: ds/segtree/segtree_beats.hpp
     title: ds/segtree/segtree_beats.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1526_2.test.cpp
+    title: test/yukicoder/1526_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree_beats.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -52,86 +55,83 @@ data:
     \   laz[k] = MA::op(laz[k], a);\n      if (dat[k].fail) push(k), update(k);\n\
     \    }\n  }\n\n  void push(int k) {\n    if (laz[k] == MA::unit()) return;\n \
     \   apply_at(2 * k, laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k] = MA::unit();\n\
-    \  }\n};\n#line 2 \"ds/segtree/beats_summax_chmin.hpp\"\n\nconstexpr ll Beats_INF\
-    \ = 1LL << 40;\n\nstruct Beats_SumMax_Chmin {\n  struct CntSumMinMax {\n    struct\
-    \ X {\n      ll cnt, sum, max, maxc, max2;\n      bool fail;\n    };\n    using\
-    \ value_type = X;\n    static X op(const X& x, const X& y) {\n      if (x.cnt\
-    \ == 0) return y;\n      if (y.cnt == 0) return x;\n      X z;\n      z.cnt =\
-    \ x.cnt + y.cnt, z.sum = x.sum + y.sum;\n\n      z.max = max(x.max, y.max);\n\
-    \      z.maxc = (x.max == z.max ? x.maxc : 0) + (y.max == z.max ? y.maxc : 0);\n\
-    \n      z.max2 = -Beats_INF;\n      if (z.max > x.max && x.max > z.max2) z.max2\
+    \  }\n};\n#line 2 \"ds/segtree/beats_summax_chmin.hpp\"\ntemplate <typename T>\n\
+    struct Beats_SumMax_Chmin {\n  static constexpr T INF = numeric_limits<T>::max()\
+    \ / 2 - 1;\n  struct SumMax {\n    struct X {\n      T sum, max, maxc, max2;\n\
+    \      bool fail;\n    };\n    using value_type = X;\n    static X op(const X&\
+    \ x, const X& y) {\n      if (x.max == -INF) return y;\n      if (y.max == -INF)\
+    \ return x;\n      X z;\n      z.sum = x.sum + y.sum;\n\n      z.max = max(x.max,\
+    \ y.max);\n      z.maxc = (x.max == z.max ? x.maxc : 0) + (y.max == z.max ? y.maxc\
+    \ : 0);\n\n      z.max2 = -INF;\n      if (z.max > x.max && x.max > z.max2) z.max2\
     \ = x.max;\n      if (z.max > x.max2 && x.max2 > z.max2) z.max2 = x.max2;\n  \
     \    if (z.max > y.max && y.max > z.max2) z.max2 = y.max;\n      if (z.max > y.max2\
     \ && y.max2 > z.max2) z.max2 = y.max2;\n\n      z.fail = 0;\n      return z;\n\
-    \    }\n    static constexpr X unit() { return {0, 0, 0, 0, 0, 0}; }\n    bool\
-    \ commute = true;\n  };\n  struct AddChmin {\n    using X = pi;\n    using value_type\
-    \ = X;\n    static constexpr X op(const X& x, const X& y) {\n      auto [a, b]\
-    \ = x;\n      auto [d, e] = y;\n      a += d, b += d;\n      b = min(b, e);\n\
-    \      return {a, b};\n    }\n    static constexpr X unit() { return {0, Beats_INF};\
-    \ }\n    bool commute = false;\n  };\n  struct Lazy {\n    using MX = CntSumMinMax;\n\
-    \    using MA = AddChmin;\n    using X_structure = MX;\n    using A_structure\
-    \ = MA;\n    using X = MX::value_type;\n    using A = MA::value_type;\n    static\
-    \ X act(X& x, const A& a) {\n      if (x.cnt == 0) return x;\n      assert(!x.fail);\n\
-    \      auto [add, mi] = a;\n      x.sum += x.cnt * add;\n      x.max += add;\n\
-    \      x.max2 += add;\n\n      if (mi == Beats_INF) return x;\n\n      ll before_max\
-    \ = x.max;\n      x.max = min(x.max, mi);\n      if (x.maxc == x.cnt) {\n    \
-    \    x.max2 = x.max;\n        x.sum = x.cnt * x.max;\n        return x;\n    \
-    \  }\n      if (x.max2 < x.max) {\n        x.sum += (x.max - before_max) * x.maxc;\n\
-    \      } else {\n        x.fail = 1;\n      }\n      return x;\n    }\n  };\n\
-    \  LazySegTreeBeats<Lazy> seg;\n  Beats_SumMax_Chmin(vc<ll>& A) {\n    using X\
-    \ = Lazy::MX::value_type;\n    vc<X> seg_raw(len(A));\n    FOR(i, len(A)) {\n\
-    \      ll x = A[i];\n      seg_raw[i] = {1, x, x, 1, x};\n    }\n    seg = LazySegTreeBeats<Lazy>(seg_raw);\n\
-    \  }\n\n  template <typename F>\n  Beats_SumMax_Chmin(int N, F f) {\n    using\
-    \ X = Lazy::MX::value_type;\n    vc<X> seg_raw(N);\n    FOR(i, N) {\n      ll\
-    \ x = f(i);\n      seg_raw[i] = {1, x, x, 1, x};\n    }\n    seg = LazySegTreeBeats<Lazy>(seg_raw);\n\
-    \  }\n\n  void set(int i, ll x) { seg.set(i, {1, x, x, 1, x}); }\n\n  Lazy::MX::value_type\
-    \ prod(int l, int r) {\n    auto e = seg.prod(l, r);\n    return e;\n  }\n\n \
-    \ void chmin(int l, int r, ll x) { seg.apply(l, r, {0, x}); }\n\n  void add(int\
-    \ l, int r, ll x) { seg.apply(l, r, {x, Beats_INF}); }\n};\n"
-  code: "#include \"ds/segtree/segtree_beats.hpp\"\n\nconstexpr ll Beats_INF = 1LL\
-    \ << 40;\n\nstruct Beats_SumMax_Chmin {\n  struct CntSumMinMax {\n    struct X\
-    \ {\n      ll cnt, sum, max, maxc, max2;\n      bool fail;\n    };\n    using\
-    \ value_type = X;\n    static X op(const X& x, const X& y) {\n      if (x.cnt\
-    \ == 0) return y;\n      if (y.cnt == 0) return x;\n      X z;\n      z.cnt =\
-    \ x.cnt + y.cnt, z.sum = x.sum + y.sum;\n\n      z.max = max(x.max, y.max);\n\
-    \      z.maxc = (x.max == z.max ? x.maxc : 0) + (y.max == z.max ? y.maxc : 0);\n\
-    \n      z.max2 = -Beats_INF;\n      if (z.max > x.max && x.max > z.max2) z.max2\
+    \    }\n    static constexpr X unit() { return {0, -INF, 0, -INF, 0}; }\n    bool\
+    \ commute = true;\n  };\n  struct AddChmin {\n    using X = pair<T, T>;\n    using\
+    \ value_type = X;\n    static constexpr X op(const X& x, const X& y) {\n     \
+    \ auto [a, b] = x;\n      auto [d, e] = y;\n      a += d, b += d, b = min(b, e);\n\
+    \      return {a, b};\n    }\n    static constexpr X unit() { return {0, INF};\
+    \ }\n    bool commute = false;\n  };\n  struct Beats {\n    using Monoid_X = SumMax;\n\
+    \    using Monoid_A = AddChmin;\n    using X = typename Monoid_X::value_type;\n\
+    \    using A = typename Monoid_A::value_type;\n    static X act(X& x, const A&\
+    \ a, int cnt) {\n      assert(!x.fail);\n      if (x.max == -INF) return x;\n\
+    \      auto [add, mi] = a;\n      x.sum += cnt * add, x.max += add, x.max2 +=\
+    \ add;\n\n      if (mi == INF) return x;\n\n      T before_max = x.max;\n    \
+    \  x.max = min(x.max, mi);\n      if (x.maxc == cnt) { x.max2 = x.max, x.sum =\
+    \ cnt * x.max; }\n      elif (x.max2 < x.max) { x.sum += (x.max - before_max)\
+    \ * x.maxc; }\n      else {\n        x.fail = 1;\n      }\n      return x;\n \
+    \   }\n  };\n  using X = typename SumMax::X;\n  SegTree_Beats<Beats> seg;\n  Beats_SumMax_Chmin(vc<T>&\
+    \ A) {\n    seg.build(len(A), [&](int i) -> X { return from_element(A[i]); });\n\
+    \  }\n  template <typename F>\n  Beats_SumMax_Chmin(int n, F f) {\n    seg.build(n,\
+    \ [&](int i) -> X { return from_element(f(i)); });\n  }\n\n  void set(int i, T\
+    \ x) { seg.set(i, from_element(x)); }\n\n  // (sum, max)\n  pair<T, T> prod(int\
+    \ l, int r) {\n    auto e = seg.prod(l, r);\n    return {e.sum, e.max};\n  }\n\
+    \  static X from_element(T x) { return {x, x, 1, x}; }\n\n  void chmin(int l,\
+    \ int r, ll x) { seg.apply(l, r, {0, x}); }\n  void add(int l, int r, ll x) {\
+    \ seg.apply(l, r, {x, INF}); }\n};\n"
+  code: "#include \"ds/segtree/segtree_beats.hpp\"\ntemplate <typename T>\nstruct\
+    \ Beats_SumMax_Chmin {\n  static constexpr T INF = numeric_limits<T>::max() /\
+    \ 2 - 1;\n  struct SumMax {\n    struct X {\n      T sum, max, maxc, max2;\n \
+    \     bool fail;\n    };\n    using value_type = X;\n    static X op(const X&\
+    \ x, const X& y) {\n      if (x.max == -INF) return y;\n      if (y.max == -INF)\
+    \ return x;\n      X z;\n      z.sum = x.sum + y.sum;\n\n      z.max = max(x.max,\
+    \ y.max);\n      z.maxc = (x.max == z.max ? x.maxc : 0) + (y.max == z.max ? y.maxc\
+    \ : 0);\n\n      z.max2 = -INF;\n      if (z.max > x.max && x.max > z.max2) z.max2\
     \ = x.max;\n      if (z.max > x.max2 && x.max2 > z.max2) z.max2 = x.max2;\n  \
     \    if (z.max > y.max && y.max > z.max2) z.max2 = y.max;\n      if (z.max > y.max2\
     \ && y.max2 > z.max2) z.max2 = y.max2;\n\n      z.fail = 0;\n      return z;\n\
-    \    }\n    static constexpr X unit() { return {0, 0, 0, 0, 0, 0}; }\n    bool\
-    \ commute = true;\n  };\n  struct AddChmin {\n    using X = pi;\n    using value_type\
-    \ = X;\n    static constexpr X op(const X& x, const X& y) {\n      auto [a, b]\
-    \ = x;\n      auto [d, e] = y;\n      a += d, b += d;\n      b = min(b, e);\n\
-    \      return {a, b};\n    }\n    static constexpr X unit() { return {0, Beats_INF};\
-    \ }\n    bool commute = false;\n  };\n  struct Lazy {\n    using MX = CntSumMinMax;\n\
-    \    using MA = AddChmin;\n    using X_structure = MX;\n    using A_structure\
-    \ = MA;\n    using X = MX::value_type;\n    using A = MA::value_type;\n    static\
-    \ X act(X& x, const A& a) {\n      if (x.cnt == 0) return x;\n      assert(!x.fail);\n\
-    \      auto [add, mi] = a;\n      x.sum += x.cnt * add;\n      x.max += add;\n\
-    \      x.max2 += add;\n\n      if (mi == Beats_INF) return x;\n\n      ll before_max\
-    \ = x.max;\n      x.max = min(x.max, mi);\n      if (x.maxc == x.cnt) {\n    \
-    \    x.max2 = x.max;\n        x.sum = x.cnt * x.max;\n        return x;\n    \
-    \  }\n      if (x.max2 < x.max) {\n        x.sum += (x.max - before_max) * x.maxc;\n\
-    \      } else {\n        x.fail = 1;\n      }\n      return x;\n    }\n  };\n\
-    \  LazySegTreeBeats<Lazy> seg;\n  Beats_SumMax_Chmin(vc<ll>& A) {\n    using X\
-    \ = Lazy::MX::value_type;\n    vc<X> seg_raw(len(A));\n    FOR(i, len(A)) {\n\
-    \      ll x = A[i];\n      seg_raw[i] = {1, x, x, 1, x};\n    }\n    seg = LazySegTreeBeats<Lazy>(seg_raw);\n\
-    \  }\n\n  template <typename F>\n  Beats_SumMax_Chmin(int N, F f) {\n    using\
-    \ X = Lazy::MX::value_type;\n    vc<X> seg_raw(N);\n    FOR(i, N) {\n      ll\
-    \ x = f(i);\n      seg_raw[i] = {1, x, x, 1, x};\n    }\n    seg = LazySegTreeBeats<Lazy>(seg_raw);\n\
-    \  }\n\n  void set(int i, ll x) { seg.set(i, {1, x, x, 1, x}); }\n\n  Lazy::MX::value_type\
-    \ prod(int l, int r) {\n    auto e = seg.prod(l, r);\n    return e;\n  }\n\n \
-    \ void chmin(int l, int r, ll x) { seg.apply(l, r, {0, x}); }\n\n  void add(int\
-    \ l, int r, ll x) { seg.apply(l, r, {x, Beats_INF}); }\n};\n"
+    \    }\n    static constexpr X unit() { return {0, -INF, 0, -INF, 0}; }\n    bool\
+    \ commute = true;\n  };\n  struct AddChmin {\n    using X = pair<T, T>;\n    using\
+    \ value_type = X;\n    static constexpr X op(const X& x, const X& y) {\n     \
+    \ auto [a, b] = x;\n      auto [d, e] = y;\n      a += d, b += d, b = min(b, e);\n\
+    \      return {a, b};\n    }\n    static constexpr X unit() { return {0, INF};\
+    \ }\n    bool commute = false;\n  };\n  struct Beats {\n    using Monoid_X = SumMax;\n\
+    \    using Monoid_A = AddChmin;\n    using X = typename Monoid_X::value_type;\n\
+    \    using A = typename Monoid_A::value_type;\n    static X act(X& x, const A&\
+    \ a, int cnt) {\n      assert(!x.fail);\n      if (x.max == -INF) return x;\n\
+    \      auto [add, mi] = a;\n      x.sum += cnt * add, x.max += add, x.max2 +=\
+    \ add;\n\n      if (mi == INF) return x;\n\n      T before_max = x.max;\n    \
+    \  x.max = min(x.max, mi);\n      if (x.maxc == cnt) { x.max2 = x.max, x.sum =\
+    \ cnt * x.max; }\n      elif (x.max2 < x.max) { x.sum += (x.max - before_max)\
+    \ * x.maxc; }\n      else {\n        x.fail = 1;\n      }\n      return x;\n \
+    \   }\n  };\n  using X = typename SumMax::X;\n  SegTree_Beats<Beats> seg;\n  Beats_SumMax_Chmin(vc<T>&\
+    \ A) {\n    seg.build(len(A), [&](int i) -> X { return from_element(A[i]); });\n\
+    \  }\n  template <typename F>\n  Beats_SumMax_Chmin(int n, F f) {\n    seg.build(n,\
+    \ [&](int i) -> X { return from_element(f(i)); });\n  }\n\n  void set(int i, T\
+    \ x) { seg.set(i, from_element(x)); }\n\n  // (sum, max)\n  pair<T, T> prod(int\
+    \ l, int r) {\n    auto e = seg.prod(l, r);\n    return {e.sum, e.max};\n  }\n\
+    \  static X from_element(T x) { return {x, x, 1, x}; }\n\n  void chmin(int l,\
+    \ int r, ll x) { seg.apply(l, r, {0, x}); }\n  void add(int l, int r, ll x) {\
+    \ seg.apply(l, r, {x, INF}); }\n};\n"
   dependsOn:
   - ds/segtree/segtree_beats.hpp
   isVerificationFile: false
   path: ds/segtree/beats_summax_chmin.hpp
   requiredBy: []
-  timestamp: '2023-01-31 23:12:36+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2023-02-01 00:12:44+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yukicoder/1526_2.test.cpp
 documentation_of: ds/segtree/beats_summax_chmin.hpp
 layout: document
 redirect_from:

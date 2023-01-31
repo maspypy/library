@@ -55,8 +55,8 @@ data:
     \   laz[k] = MA::op(laz[k], a);\n      if (dat[k].fail) push(k), update(k);\n\
     \    }\n  }\n\n  void push(int k) {\n    if (laz[k] == MA::unit()) return;\n \
     \   apply_at(2 * k, laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k] = MA::unit();\n\
-    \  }\n};\n#line 2 \"ds/segtree/beats_summaxmin_chminchmax.hpp\"\n\r\ntemplate\
-    \ <typename T>\r\nstruct Beats_SumMaxMin_ChminChmax {\r\n  static constexpr T\
+    \  }\n};\n#line 2 \"ds/segtree/beats_summinmax_chminchmax.hpp\"\n\r\ntemplate\
+    \ <typename T>\r\nstruct Beats_SumMinMax_ChminChmax {\r\n  static constexpr T\
     \ INF = numeric_limits<T>::max() / 2 - 1;\r\n  struct SumMinMax {\r\n    struct\
     \ X {\r\n      T sum, min, max, minc, maxc, min2, max2;\r\n      bool fail;\r\n\
     \    };\r\n    using value_type = X;\r\n    static X op(const X& x, const X& y)\
@@ -97,17 +97,18 @@ data:
     \ += (x.min - before_min) * x.minc + (x.max - before_max) * x.maxc;\r\n      }\r\
     \n      else {\r\n        x.fail = 1;\r\n      }\r\n      return x;\r\n    }\r\
     \n  };\r\n\r\n  using X = typename SumMinMax::X;\r\n  SegTree_Beats<Beats> seg;\r\
-    \n  Beats_SumMaxMin_ChminChmax(vc<T>& A) {\r\n    seg.build(len(A), [&](int i)\
-    \ -> X { return from_element(A[i]); });\r\n  }\r\n\r\n  void set(int i, T x) {\
-    \ seg.set(i, from_element(x)); }\r\n\r\n  // (sum, max, min)\r\n  tuple<T, T,\
-    \ T> prod(int l, int r) {\r\n    auto e = seg.prod(l, r);\r\n    return {e.sum,\
-    \ e.max, e.min};\r\n  }\r\n  static X from_element(T x) { return {x, x, x, 1,\
-    \ 1, x, x, 0}; }\r\n\r\n  void chmin(int l, int r, T x) { seg.apply(l, r, {0,\
-    \ x, -INF}); }\r\n  void chmax(int l, int r, T x) { seg.apply(l, r, {0, INF, x});\
-    \ }\r\n  void add(int l, int r, T x) { seg.apply(l, r, {x, INF, -INF}); }\r\n\
-    };\r\n"
+    \n  Beats_SumMinMax_ChminChmax(vc<T>& A) {\r\n    seg.build(len(A), [&](int i)\
+    \ -> X { return from_element(A[i]); });\r\n  }\r\n  template <typename F>\r\n\
+    \  Beats_SumMinMax_ChminChmax(int n, F f) {\r\n    seg.build(n, [&](int i) ->\
+    \ X { return from_element(f(i)); });\r\n  }\r\n  void set(int i, T x) { seg.set(i,\
+    \ from_element(x)); }\r\n\r\n  // (sum, max, min)\r\n  tuple<T, T, T> prod(int\
+    \ l, int r) {\r\n    auto e = seg.prod(l, r);\r\n    return {e.sum, e.min, e.max};\r\
+    \n  }\r\n  static X from_element(T x) { return {x, x, x, 1, 1, x, x, 0}; }\r\n\
+    \r\n  void chmin(int l, int r, T x) { seg.apply(l, r, {0, x, -INF}); }\r\n  void\
+    \ chmax(int l, int r, T x) { seg.apply(l, r, {0, INF, x}); }\r\n  void add(int\
+    \ l, int r, T x) { seg.apply(l, r, {x, INF, -INF}); }\r\n};\r\n"
   code: "#include \"ds/segtree/segtree_beats.hpp\"\r\n\r\ntemplate <typename T>\r\n\
-    struct Beats_SumMaxMin_ChminChmax {\r\n  static constexpr T INF = numeric_limits<T>::max()\
+    struct Beats_SumMinMax_ChminChmax {\r\n  static constexpr T INF = numeric_limits<T>::max()\
     \ / 2 - 1;\r\n  struct SumMinMax {\r\n    struct X {\r\n      T sum, min, max,\
     \ minc, maxc, min2, max2;\r\n      bool fail;\r\n    };\r\n    using value_type\
     \ = X;\r\n    static X op(const X& x, const X& y) {\r\n      if (x.min > x.max)\
@@ -147,28 +148,30 @@ data:
     \ < x.min2 && x.max > x.max2) {\r\n        x.sum += (x.min - before_min) * x.minc\
     \ + (x.max - before_max) * x.maxc;\r\n      }\r\n      else {\r\n        x.fail\
     \ = 1;\r\n      }\r\n      return x;\r\n    }\r\n  };\r\n\r\n  using X = typename\
-    \ SumMinMax::X;\r\n  SegTree_Beats<Beats> seg;\r\n  Beats_SumMaxMin_ChminChmax(vc<T>&\
+    \ SumMinMax::X;\r\n  SegTree_Beats<Beats> seg;\r\n  Beats_SumMinMax_ChminChmax(vc<T>&\
     \ A) {\r\n    seg.build(len(A), [&](int i) -> X { return from_element(A[i]); });\r\
-    \n  }\r\n\r\n  void set(int i, T x) { seg.set(i, from_element(x)); }\r\n\r\n \
-    \ // (sum, max, min)\r\n  tuple<T, T, T> prod(int l, int r) {\r\n    auto e =\
-    \ seg.prod(l, r);\r\n    return {e.sum, e.max, e.min};\r\n  }\r\n  static X from_element(T\
-    \ x) { return {x, x, x, 1, 1, x, x, 0}; }\r\n\r\n  void chmin(int l, int r, T\
-    \ x) { seg.apply(l, r, {0, x, -INF}); }\r\n  void chmax(int l, int r, T x) { seg.apply(l,\
-    \ r, {0, INF, x}); }\r\n  void add(int l, int r, T x) { seg.apply(l, r, {x, INF,\
-    \ -INF}); }\r\n};\r\n"
+    \n  }\r\n  template <typename F>\r\n  Beats_SumMinMax_ChminChmax(int n, F f) {\r\
+    \n    seg.build(n, [&](int i) -> X { return from_element(f(i)); });\r\n  }\r\n\
+    \  void set(int i, T x) { seg.set(i, from_element(x)); }\r\n\r\n  // (sum, max,\
+    \ min)\r\n  tuple<T, T, T> prod(int l, int r) {\r\n    auto e = seg.prod(l, r);\r\
+    \n    return {e.sum, e.min, e.max};\r\n  }\r\n  static X from_element(T x) { return\
+    \ {x, x, x, 1, 1, x, x, 0}; }\r\n\r\n  void chmin(int l, int r, T x) { seg.apply(l,\
+    \ r, {0, x, -INF}); }\r\n  void chmax(int l, int r, T x) { seg.apply(l, r, {0,\
+    \ INF, x}); }\r\n  void add(int l, int r, T x) { seg.apply(l, r, {x, INF, -INF});\
+    \ }\r\n};\r\n"
   dependsOn:
   - ds/segtree/segtree_beats.hpp
   isVerificationFile: false
-  path: ds/segtree/beats_summaxmin_chminchmax.hpp
+  path: ds/segtree/beats_summinmax_chminchmax.hpp
   requiredBy: []
-  timestamp: '2023-01-31 23:39:57+09:00'
+  timestamp: '2023-02-01 00:12:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
-documentation_of: ds/segtree/beats_summaxmin_chminchmax.hpp
+documentation_of: ds/segtree/beats_summinmax_chminchmax.hpp
 layout: document
 redirect_from:
-- /library/ds/segtree/beats_summaxmin_chminchmax.hpp
-- /library/ds/segtree/beats_summaxmin_chminchmax.hpp.html
-title: ds/segtree/beats_summaxmin_chminchmax.hpp
+- /library/ds/segtree/beats_summinmax_chminchmax.hpp
+- /library/ds/segtree/beats_summinmax_chminchmax.hpp.html
+title: ds/segtree/beats_summinmax_chminchmax.hpp
 ---

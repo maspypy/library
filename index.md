@@ -343,15 +343,15 @@ data:
       title: ds/randomized_bst/rbst_monoid.hpp
   - name: ds/segtree
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/beats_summax_chmin.hpp
       title: ds/segtree/beats_summax_chmin.hpp
     - icon: ':heavy_check_mark:'
-      path: ds/segtree/beats_summaxmin_chminchmax.hpp
-      title: ds/segtree/beats_summaxmin_chminchmax.hpp
-    - icon: ':heavy_check_mark:'
       path: ds/segtree/beats_summin_chmax.hpp
       title: ds/segtree/beats_summin_chmax.hpp
+    - icon: ':heavy_check_mark:'
+      path: ds/segtree/beats_summinmax_chminchmax.hpp
+      title: ds/segtree/beats_summinmax_chminchmax.hpp
     - icon: ':heavy_check_mark:'
       path: ds/segtree/dual_segtree.hpp
       title: ds/segtree/dual_segtree.hpp
@@ -2593,6 +2593,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1526.test.cpp
       title: test/yukicoder/1526.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1526_2.test.cpp
+      title: test/yukicoder/1526_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1533.test.cpp
       title: test/yukicoder/1533.test.cpp
