@@ -297,9 +297,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/offline_query/parallel_binary_search.hpp
       title: ds/offline_query/parallel_binary_search.hpp
-    - icon: ':warning:'
-      path: ds/offline_query/point_add_polygon_sum.hpp
-      title: ds/offline_query/point_add_polygon_sum.hpp
     - icon: ':heavy_check_mark:'
       path: ds/offline_query/point_add_rectangle_sum.hpp
       title: ds/offline_query/point_add_rectangle_sum.hpp
@@ -786,9 +783,9 @@ data:
     - icon: ':warning:'
       path: linalg/bitset/mat_inv_bitset.hpp
       title: linalg/bitset/mat_inv_bitset.hpp
-    - icon: ':warning:'
-      path: linalg/bitset/solve_linear_F2.hpp
-      title: linalg/bitset/solve_linear_F2.hpp
+    - icon: ':heavy_check_mark:'
+      path: linalg/bitset/solve_linear_bitset.hpp
+      title: linalg/bitset/solve_linear_bitset.hpp
   - name: linalg
     pages:
     - icon: ':heavy_check_mark:'
@@ -856,8 +853,8 @@ data:
       path: linalg/xor/mat_inv_xor.hpp
       title: linalg/xor/mat_inv_xor.hpp
     - icon: ':warning:'
-      path: linalg/xor/solve_linear.hpp
-      title: linalg/xor/solve_linear.hpp
+      path: linalg/xor/solve_linear_xor.hpp
+      title: linalg/xor/solve_linear_xor.hpp
     - icon: ':warning:'
       path: linalg/xor/vector_space.hpp
       title: linalg/xor/vector_space.hpp
@@ -2551,7 +2548,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1418.test.cpp
       title: test/yukicoder/1418.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1421.test.cpp
       title: test/yukicoder/1421.test.cpp
     - icon: ':heavy_check_mark:'
