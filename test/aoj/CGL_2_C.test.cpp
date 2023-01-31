@@ -10,9 +10,9 @@ void solve() {
   LL(Q);
   FOR(Q) {
     LL(a, b, c, d, e, f, g, h);
-    Segment<ll> L1(a, b, c, d);
-    Segment<ll> L2(e, f, g, h);
-    Point<double> pt = cross_point<double>(L1, L2);
+    Segment<ll> S1(a, b, c, d);
+    Segment<ll> S2(e, f, g, h);
+    Point<double> pt = cross_point<double>(S1.to_Line(), S2.to_Line());
     print(pt.x, pt.y);
   }
 }
