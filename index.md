@@ -297,7 +297,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/offline_query/mo.hpp
       title: ds/offline_query/mo.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/offline_query/mo_3d.hpp
       title: ds/offline_query/mo_3d.hpp
     - icon: ':heavy_check_mark:'
@@ -2123,6 +2123,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/cf702_F_splay.test.cpp
       title: test/mytest/cf702_F_splay.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/cf940f.test.cpp
+      title: test/mytest/cf940f.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/chirp_z.test.cpp
       title: test/mytest/chirp_z.test.cpp

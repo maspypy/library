@@ -724,6 +724,9 @@ data:
     path: test/mytest/cf702_F_splay.test.cpp
     title: test/mytest/cf702_F_splay.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/cf940f.test.cpp
+    title: test/mytest/cf940f.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2317,6 +2320,7 @@ data:
   - test/mytest/all_but_one_products.test.cpp
   - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
   - test/mytest/max_assign.test.cpp
+  - test/mytest/cf940f.test.cpp
   - test/mytest/summax_add.test.cpp
   - test/mytest/tournament.test.cpp
   - test/mytest/prime_sum.test.cpp
