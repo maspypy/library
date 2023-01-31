@@ -27,13 +27,13 @@ struct Monoid_XorBasis {
     return v == 0;
   }
 
-  static E get_max(const VECT_SP& V, E xor_val) {
+  static E get_max(const VECT_SP& V, E xor_val = 0) {
     E res = xor_val;
     for (auto&& x: V) chmax(res, res ^ x);
     return res;
   }
 
-  static E get_min(const VECT_SP& V, E xor_val) {
+  static E get_min(const VECT_SP& V, E xor_val = 0) {
     E res = xor_val;
     for (auto&& x: V) chmin(res, res ^ x);
     return res;
