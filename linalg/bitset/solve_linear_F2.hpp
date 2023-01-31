@@ -7,8 +7,9 @@ vvc<T> solve_linear_F2(const int n, const int m, vvc<T> a, vc<T> b) {
   FOR(i, n) FOR(j, m) mat[i][j] = a[i][j];
   int rk = 0;
   FOR(j, m) {
+    if (rk == n) break;
     if (mat[rk][j] == 0) {
-      FOR3(i, rk + 1, n) if (mat[i][j] != 0) {
+      FOR(i, rk + 1, n) if (mat[i][j] != 0) {
         swap(mat[rk], mat[i]);
         swap(b[rk], b[i]);
         break;
@@ -23,10 +24,9 @@ vvc<T> solve_linear_F2(const int n, const int m, vvc<T> a, vc<T> b) {
       }
     }
     ++rk;
-    if (rk == n) break;
   }
   FOR3(i, rk, n) if (b[i] != 0) return {};
-  vc<vc<bool>> res(1, vc<bool>(m));
+  vv(T, res, 1, m);
   vc<int> pivot(m, -1);
   int p = 0;
   FOR(i, rk) {
@@ -35,8 +35,8 @@ vvc<T> solve_linear_F2(const int n, const int m, vvc<T> a, vc<T> b) {
     pivot[p] = i;
   }
   FOR(j, m) if (pivot[j] == -1) {
-    vc<bool> x(m);
-    x[j] = -1;
+    vc<T> x(m);
+    x[j] = 1;
     FOR(k, j) if (pivot[k] != -1) x[k] = mat[pivot[k]][j];
     res.eb(x);
   }
