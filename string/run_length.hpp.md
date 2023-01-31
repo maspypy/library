@@ -2,13 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: string/substring_abundant_string.hpp
     title: string/substring_abundant_string.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/mytest/run_length.test.cpp
     title: test/mytest/run_length.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/substring_abundant.test.cpp
+    title: test/mytest/substring_abundant.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -31,6 +34,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/run_length.test.cpp
+  - test/mytest/substring_abundant.test.cpp
 documentation_of: string/run_length.hpp
 layout: document
 redirect_from:

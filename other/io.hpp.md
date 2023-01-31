@@ -69,7 +69,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_2_B.test.cpp
     title: test/aoj/CGL_2_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_2_C.test.cpp
     title: test/aoj/CGL_2_C.test.cpp
   - icon: ':heavy_check_mark:'
@@ -942,6 +942,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/stern_brocot.test.cpp
     title: test/mytest/stern_brocot.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/substring_abundant.test.cpp
+    title: test/mytest/substring_abundant.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
@@ -2345,6 +2348,7 @@ data:
   - test/mytest/dynamic_segtree_sparse.test.cpp
   - test/mytest/enumerate_products.test.cpp
   - test/mytest/floor_ceil_ranges.test.cpp
+  - test/mytest/substring_abundant.test.cpp
   - test/mytest/cf702_F.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/kdtree_am.test.cpp

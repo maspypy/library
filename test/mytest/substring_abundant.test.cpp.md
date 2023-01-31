@@ -2,17 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: geo/base.hpp
-    title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: geo/cross_point.hpp
-    title: geo/cross_point.hpp
-  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
+  - icon: ':heavy_check_mark:'
+    path: string/run_length.hpp
+    title: string/run_length.hpp
+  - icon: ':heavy_check_mark:'
+    path: string/substring_abundant_string.hpp
+    title: string/substring_abundant_string.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -20,24 +20,25 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B
-  bundledCode: "#line 1 \"test/aoj/CGL_2_B.test.cpp\"\n#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B\"\
-    \n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
-    )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
-    using pi = pair<ll, ll>;\nusing vi = vector<ll>;\nusing u32 = unsigned int;\n\
-    using u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\n\
-    using vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate\
-    \ <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
-    \ greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h,\
-    \ vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>>\
-    \ name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define\
-    \ vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
-    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/mytest/substring_abundant.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if\
+    \ defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n#pragma GCC optimize(\"\
+    Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\
+    \nusing namespace std;\n\nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing\
+    \ vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64 = unsigned long long;\n\
+    using i128 = __int128;\n\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
+    \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
+    \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
+    template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
+    #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
+    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
+    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
+    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
+    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
@@ -197,99 +198,79 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 6 \"test/aoj/CGL_2_B.test.cpp\"\n\n#line 2 \"geo/base.hpp\"\
-    \ntemplate <typename T>\nstruct Point {\n  T x, y;\n\n  Point() = default;\n\n\
-    \  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template\
-    \ <typename A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  Point\
-    \ operator+(Point p) const { return {x + p.x, y + p.y}; }\n  Point operator-(Point\
-    \ p) const { return {x - p.x, y - p.y}; }\n  bool operator==(Point p) const {\
-    \ return x == p.x && y == p.y; }\n  Point operator-() const { return {-x, -y};\
-    \ }\n\n  bool operator<(Point p) const {\n    if (x != p.x) return x < p.x;\n\
-    \    return y < p.y;\n  }\n  T dot(Point other) { return x * other.x + y * other.y;\
-    \ }\n  T det(Point other) { return x * other.y - y * other.x; }\n\n  void read()\
-    \ { fastio::read(x), fastio::read(y); }\n  void write() { fastio::printer.write(pair<T,\
-    \ T>({x, y})); }\n};\n\ntemplate <typename T>\nint ccw(Point<T> A, Point<T> B,\
-    \ Point<T> C) {\n  T x = (B - A).det(C - A);\n  if (x > 0) return 1;\n  if (x\
-    \ < 0) return -1;\n  return 0;\n}\n\ntemplate <typename REAL, typename T>\nREAL\
-    \ dist(Point<T> A, Point<T> B) {\n  A = A - B;\n  T p = A.dot(A);\n  return sqrt(REAL(p));\n\
-    }\n\ntemplate <typename T>\nstruct Line {\n  T a, b, c;\n\n  Line(T a, T b, T\
-    \ c) : a(a), b(b), c(c) {}\n  Line(Point<T> A, Point<T> B) {\n    a = A.y - B.y;\n\
-    \    b = B.x - A.x;\n    c = A.x * B.y - A.y * B.x;\n  }\n  Line(T x1, T y1, T\
-    \ x2, T y2) : Line(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n  template <typename\
-    \ U>\n  U eval(Point<U> P) {\n    return a * P.x + b * P.y + c;\n  }\n\n  template\
-    \ <typename U>\n  T eval(U x, U y) {\n    return a * x + b * y + c;\n  }\n\n \
-    \ bool is_parallel(Line other) { return a * other.b - b * other.a == 0; }\n\n\
-    \  bool is_orthogonal(Line other) { return a * other.a + b * other.b == 0; }\n\
-    };\n\ntemplate <typename T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T>\
-    \ A, Point<T> B) : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
-    \ y1), Point<T>(x2, y2)) {}\n\n  template <enable_if_t<is_integral<T>::value,\
-    \ int> = 0>\n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n \
-    \   if (det != 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A\
-    \ - B) >= 0;\n  }\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate\
-    \ <typename T>\nstruct Circle {\n  Point<T> O;\n  T r;\n  Circle(Point<T> O, T\
-    \ r) : O(O), r(r) {}\n  Circle(T x, T y, T r) : O(Point<T>(x, y)), r(r) {}\n};\n\
-    \ntemplate <typename T>\nstruct Polygon {\n  vc<Point<T>> points;\n  T a;\n\n\
-    \  template <typename A, typename B>\n  Polygon(vc<pair<A, B>> pairs) {\n    for\
-    \ (auto&& [a, b]: pairs) points.eb(Point<T>(a, b));\n    build();\n  }\n  Polygon(vc<Point<T>>\
-    \ points) : points(points) { build(); }\n\n  int size() { return len(points);\
-    \ }\n\n  template <typename REAL>\n  REAL area() {\n    return a * 0.5;\n  }\n\
-    \n  template <enable_if_t<is_integral<T>::value, int> = 0>\n  T area_2() {\n \
-    \   return a;\n  }\n\n  bool is_convex() {\n    FOR(j, len(points)) {\n      int\
-    \ i = (j == 0 ? len(points) - 1 : j - 1);\n      int k = (j == len(points) - 1\
-    \ ? 0 : j + 1);\n      if ((points[j] - points[i]).det(points[k] - points[j])\
-    \ < 0) return false;\n    }\n    return true;\n  }\n\nprivate:\n  void build()\
-    \ {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1 == len(points)\
-    \ ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n    if (a < 0) {\n\
-    \      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n#line 2 \"geo/cross_point.hpp\"\
-    \n\n// \u5E73\u884C\u3067\u306A\u3044\u3053\u3068\u3092\u4EEE\u5B9A\ntemplate\
-    \ <typename REAL, typename T>\nPoint<REAL> cross_point(const Line<T> L1, const\
-    \ Line<T> L2) {\n  T det = L1.a * L2.b - L1.b * L2.a;\n  assert(det != 0);\n \
-    \ REAL x = -REAL(L1.c) * L2.b + REAL(L1.b) * L2.c;\n  REAL y = -REAL(L1.a) * L2.c\
-    \ + REAL(L1.c) * L2.a;\n  return Point<REAL>(x / det, y / det);\n}\n\n// 0: \u4EA4\
-    \u70B9\u306A\u3057\n// 1: \u4E00\u610F\u306A\u4EA4\u70B9\n// 2\uFF1A2 \u3064\u4EE5\
-    \u4E0A\u306E\u4EA4\u70B9\uFF08\u6574\u6570\u578B\u3092\u5229\u7528\u3057\u3066\
-    \u53B3\u5BC6\u306B\u3084\u308B\uFF09\ntemplate <typename T, enable_if_t<is_integral<T>::value,\
-    \ int> = 0>\nint count_cross(Segment<T> S1, Segment<T> S2, bool include_ends)\
-    \ {\n  Line<T> L1 = S1.to_Line();\n  Line<T> L2 = S2.to_Line();\n  if (L1.is_parallel(L2))\
-    \ {\n    if (L1.eval(S2.A) != 0) return 0;\n    // 4 \u70B9\u3068\u3082\u540C\u4E00\
-    \u76F4\u7DDA\u4E0A\u306B\u3042\u308B\n    T a1 = S1.A.x, b1 = S1.B.x;\n    T a2\
-    \ = S2.A.x, b2 = S2.B.x;\n    if (a1 == b1) {\n      a1 = S1.A.y, b1 = S1.B.y;\n\
-    \      a2 = S2.A.y, b2 = S2.B.y;\n    }\n    if (a1 > b1) swap(a1, b1);\n    if\
-    \ (a2 > b2) swap(a2, b2);\n    T a = max(a1, a2);\n    T b = min(b1, b2);\n  \
-    \  if (a < b) return 2;\n    if (a > b) return 0;\n    return (include_ends ?\
-    \ 1 : 0);\n  }\n  // \u5E73\u884C\u3067\u306A\u3044\u5834\u5408\n  T a1 = L2.eval(S1.A),\
-    \ b1 = L2.eval(S1.B);\n  T a2 = L1.eval(S2.A), b2 = L1.eval(S2.B);\n  if (a1 >\
-    \ b1) swap(a1, b1);\n  if (a2 > b2) swap(a2, b2);\n  bool ok1 = 0, ok2 = 0;\n\n\
-    \  if (include_ends) {\n    ok1 = (a1 <= 0) && (0 <= b1);\n    ok2 = (a2 <= 0)\
-    \ && (0 <= b2);\n  } else {\n    ok1 = (a1 < 0) && (0 < b1);\n    ok2 = (a2 <\
-    \ 0) && (0 < b2);\n  }\n  return (ok1 && ok2 ? 1 : 0);\n}\n#line 8 \"test/aoj/CGL_2_B.test.cpp\"\
-    \n\nvoid solve() {\n  LL(Q);\n  FOR(Q) {\n    LL(a, b, c, d, e, f, g, h);\n  \
-    \  Segment<ll> S1(a, b, c, d);\n    Segment<ll> S2(e, f, g, h);\n    int n = count_cross<ll>(S1,\
-    \ S2, true);\n    print(n ? 1 : 0);\n  }\n}\n\nsigned main() {\n  cout << fixed\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
-    \ 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B\"\
-    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/cross_point.hpp\"\
-    \n\nvoid solve() {\n  LL(Q);\n  FOR(Q) {\n    LL(a, b, c, d, e, f, g, h);\n  \
-    \  Segment<ll> S1(a, b, c, d);\n    Segment<ll> S2(e, f, g, h);\n    int n = count_cross<ll>(S1,\
-    \ S2, true);\n    print(n ? 1 : 0);\n  }\n}\n\nsigned main() {\n  cout << fixed\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
-    \ 0;\n}\n"
+    \ yes(!t); }\n#line 1 \"string/run_length.hpp\"\ntemplate <typename STRING = string,\
+    \ typename CHAR = char>\nvc<pair<CHAR, int>> run_length(STRING& S) {\n  vc<pair<CHAR,\
+    \ int>> res;\n  for (auto&& x: S) {\n    if (res.empty() || res.back().fi != x)\
+    \ { res.emplace_back(x, 0); }\n    res.back().se++;\n  }\n  return res;\n}\n#line\
+    \ 2 \"string/substring_abundant_string.hpp\"\n\n// \u90E8\u5206\u6587\u5B57\u5217\
+    \u306E\u7A2E\u985E\u6570\u304C\u6700\u5927\u3067\u3042\u308B\u3088\u3046\u306A\
+    \ 01 \u6587\u5B57\u5217\u306E\u69CB\u6210\n// https://qoj.ac/contest/1096/problem/5434?v=1\n\
+    // https://oeis.org/A094913\n// https://www.mimuw.edu.pl/~rytter/MYPAPERS/paper.pdf\n\
+    string substring_abundant_string(ll N) {\n  ll N0 = N;\n  N = 1;\n  while ((1\
+    \ << N) + (N - 1) < N0) ++N;\n\n  string S = [&]() -> string {\n    if (N == 1)\
+    \ return \"01\";\n    if (N == 2) return \"00110\";\n\n    auto SHIFT = [&](string\
+    \ x, string y) -> string {\n      int n = len(x);\n      x += x;\n      FOR(i,\
+    \ n, n + n) {\n        if (x.substr(i - len(y), len(y)) == y) { return x.substr(i\
+    \ - n, n); }\n      }\n      return \"\";\n    };\n    auto oplus = [&](string\
+    \ x, string y) -> string {\n      int n = topbit(len(y));\n      assert(len(x)\
+    \ == (1 << n) && len(y) == (1 << n));\n      return x + SHIFT(y, x.substr(len(x)\
+    \ - n, n));\n    };\n    auto NOT = [&](string x) -> string {\n      string y;\n\
+    \      for (auto&& s: x) y += (s == '0' ? '1' : '0');\n      return y;\n    };\n\
+    \    auto PSI = [&](string x) -> string {\n      int a = 0;\n      FOR(i, len(x))\
+    \ {\n        a ^= (x[i] - '0');\n        x[i] = ('0' + a);\n      }\n      return\
+    \ x;\n    };\n\n    auto NEXT = [&](string x) -> string {\n      x = PSI(x);\n\
+    \      return oplus(x, NOT(x));\n    };\n\n    auto otimes = [&](string x, string\
+    \ y) -> string {\n      string t;\n      FOR(topbit(len(x))) t += '0';\n     \
+    \ x = SHIFT(x, t);\n      y = SHIFT(y, t);\n      rotate(x.begin(), x.end() -\
+    \ len(t), x.end());\n      rotate(y.begin(), y.end() - len(t), y.end());\n\n \
+    \     int n = len(x);\n      int x0 = 0, x1 = 0, y0 = 0, y1 = 1;\n      for (auto&&\
+    \ [k, v]: run_length(x)) {\n        if (k == '0') chmax(x0, v);\n        if (k\
+    \ == '1') chmax(x1, v);\n      }\n      for (auto&& [k, v]: run_length(y)) {\n\
+    \        if (k == '0') chmax(y0, v);\n        if (k == '1') chmax(y1, v);\n  \
+    \    }\n      string X, Y;\n      for (auto&& [k, v]: run_length(x)) {\n     \
+    \   if (k == '0' && v < x0) { X += string(v, k); }\n        if (k == '0' && v\
+    \ == x0) { X += string(v - 1, k); }\n        if (k == '1' && v < x1) { X += string(v,\
+    \ k); }\n        if (k == '1' && v == x1) { X += string(v + 1, k); }\n      }\n\
+    \      for (auto&& [k, v]: run_length(y)) {\n        if (k == '0' && v < y0) {\
+    \ Y += string(v, k); }\n        if (k == '0' && v == y0) { Y += string(v + 1,\
+    \ k); }\n        if (k == '1' && v < y1) { Y += string(v, k); }\n        if (k\
+    \ == '1' && v == y1) { Y += string(v - 1, k); }\n      }\n      return X + Y;\n\
+    \    };\n\n    string x = \"0011\", y = \"0011\";\n    FOR(i, 2, N - 1) {\n  \
+    \    string t;\n      FOR(i) t += '1';\n      x = SHIFT(x, t);\n      x = NEXT(x);\n\
+    \      y = SHIFT(y, t);\n      y = NOT(NEXT(y));\n    }\n    x = otimes(x, y);\n\
+    \    FOR(i, N - 1) x += x[i];\n    return x;\n  }();\n  return S.substr(0, N0);\n\
+    }\n#line 5 \"test/mytest/substring_abundant.test.cpp\"\n\nvoid test() {\n  auto\
+    \ check = [&](ll N) -> bool {\n    string S = substring_abundant_string(N);\n\
+    \    assert(len(S) == N);\n    ll ub = 1;\n    FOR(k, 1, N + 1) {\n      ub =\
+    \ min(ub * 2, N);\n      ll n = min(ub, N - k + 1);\n      set<string> ss;\n \
+    \     FOR(i, N - k + 1) { ss.insert(S.substr(i, k)); }\n      if (len(ss) != n)\
+    \ return 0;\n    }\n    return 1;\n  };\n  FOR(n, 1, 100) { assert(check(n));\
+    \ }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n\
+    \  test();\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"string/substring_abundant_string.hpp\"\
+    \n\nvoid test() {\n  auto check = [&](ll N) -> bool {\n    string S = substring_abundant_string(N);\n\
+    \    assert(len(S) == N);\n    ll ub = 1;\n    FOR(k, 1, N + 1) {\n      ub =\
+    \ min(ub * 2, N);\n      ll n = min(ub, N - k + 1);\n      set<string> ss;\n \
+    \     FOR(i, N - k + 1) { ss.insert(S.substr(i, k)); }\n      if (len(ss) != n)\
+    \ return 0;\n    }\n    return 1;\n  };\n  FOR(n, 1, 100) { assert(check(n));\
+    \ }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n\
+    \  test();\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - geo/cross_point.hpp
-  - geo/base.hpp
+  - string/substring_abundant_string.hpp
+  - string/run_length.hpp
   isVerificationFile: true
-  path: test/aoj/CGL_2_B.test.cpp
+  path: test/mytest/substring_abundant.test.cpp
   requiredBy: []
-  timestamp: '2023-01-31 20:00:06+09:00'
+  timestamp: '2023-01-31 21:21:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/CGL_2_B.test.cpp
+documentation_of: test/mytest/substring_abundant.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/CGL_2_B.test.cpp
-- /verify/test/aoj/CGL_2_B.test.cpp.html
-title: test/aoj/CGL_2_B.test.cpp
+- /verify/test/mytest/substring_abundant.test.cpp
+- /verify/test/mytest/substring_abundant.test.cpp.html
+title: test/mytest/substring_abundant.test.cpp
 ---

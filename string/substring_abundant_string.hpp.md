@@ -5,10 +5,13 @@ data:
     path: string/run_length.hpp
     title: string/run_length.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/substring_abundant.test.cpp
+    title: test/mytest/substring_abundant.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://oeis.org/A094913
@@ -100,8 +103,9 @@ data:
   path: string/substring_abundant_string.hpp
   requiredBy: []
   timestamp: '2023-01-31 20:02:48+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/mytest/substring_abundant.test.cpp
 documentation_of: string/substring_abundant_string.hpp
 layout: document
 redirect_from:
