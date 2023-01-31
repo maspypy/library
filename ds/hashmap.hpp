@@ -52,6 +52,5 @@ struct HashMap {
   template <typename F>
   void enumerate_all(F f) {
     for (auto&& i: IDS) f(keys[i], vals[i]);
-    return res;
   }
 };
