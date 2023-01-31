@@ -1,34 +1,37 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1421"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "linalg/solve_linear_xor.hpp"
+#include "linalg/bitset/solve_linear_bitset.hpp"
+
+using BS = bitset<50>;
+const int K = 30;
 
 void solve() {
   LL(N, M);
-  vv(int, mat, M, N);
-  vc<int> rhs(M);
-
+  vc<BS> A(M);
+  vv(bool, rhs, K, M);
   FOR(i, M) {
-    LL(n);
-    VEC(int, B, n);
-    for (auto&& x: B) --x;
-    for (auto&& b: B) mat[i][b] = 1;
-
-    LL(Y);
-    rhs[i] = Y;
+    INT(n);
+    FOR(n) {
+      INT(j);
+      --j;
+      A[i][j] = 1;
+    }
+    INT(Y);
+    FOR(k, K) { rhs[k][i] = Y >> k & 1; }
   }
 
-  auto ANS = solve_linear_xor<int>(M, N, mat, rhs);
-  if (ANS.empty()) return print(-1);
+  vc<int> ANS(N);
+  FOR(k, K) {
+    auto b = rhs[k];
+    auto x = solve_linear_bitset<BS, bool>(M, N, A, b);
+    if (x.empty()) return print(-1);
+    FOR(i, N) if (x[0][i]) ANS[i] |= 1 << k;
+  }
   for (auto&& x: ANS) print(x);
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }

@@ -9,7 +9,8 @@ vc<vc<T>> solve_linear(const int n, const int m, vc<vc<T>> a, vc<T> b) {
   FOR(j, m) {
     if (rk == n) break;
     if (a[rk][j] == 0) {
-      FOR3(i, rk + 1, n) if (a[i][j] != 0) {
+      FOR(i, rk, n) if (a[i][j] != 0) {
+        if (i == rk) break;
         swap(a[rk], a[i]);
         swap(b[rk], b[i]);
         break;
@@ -21,12 +22,13 @@ vc<vc<T>> solve_linear(const int n, const int m, vc<vc<T>> a, vc<T> b) {
     b[rk] *= c;
     FOR(i, n) if (i != rk) {
       T c = a[i][j];
+      if (c == T(0)) continue;
       b[i] -= b[rk] * c;
-      FOR3(k, j, m) { a[i][k] -= a[rk][k] * c; }
+      FOR(k, j, m) { a[i][k] -= a[rk][k] * c; }
     }
     ++rk;
   }
-  FOR3(i, rk, n) if (b[i] != 0) return {};
+  FOR(i, rk, n) if (b[i] != 0) return {};
   vc<vc<T>> res(1, vc<T>(m));
   vc<int> pivot(m, -1);
   int p = 0;
