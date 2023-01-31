@@ -8,7 +8,7 @@
 void solve() {
   LL(N, Q);
   VEC(ll, A, N);
-  Beats_SumMaxMin_ChminChmax seg(A);
+  Beats_SumMaxMin_ChminChmax<ll> seg(A);
   FOR(_, Q) {
     LL(t, L, R);
     if (t == 0) {
@@ -23,19 +23,11 @@ void solve() {
       LL(x);
       seg.add(L, R, x);
     }
-    elif (t == 3) {
-      auto x = seg.prod(L, R);
-      print(x.sum);
-    }
+    elif (t == 3) { print(get<0>(seg.prod(L, R))); }
   }
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
   solve();
-
   return 0;
 }
