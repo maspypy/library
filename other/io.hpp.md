@@ -697,6 +697,9 @@ data:
     path: test/mytest/ARC30D.test.cpp
     title: test/mytest/ARC30D.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/QOJ5445.test.cpp
+    title: test/mytest/QOJ5445.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/add_chmin.test.cpp
     title: test/mytest/add_chmin.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2307,6 +2310,7 @@ data:
   - test/library_checker/matrix/implicit_matrix.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp
   - test/mytest/rbst_am_persistent.test.cpp
+  - test/mytest/QOJ5445.test.cpp
   - test/mytest/maxplus_concave.test.cpp
   - test/mytest/summax_assign.test.cpp
   - test/mytest/range_mex.test.cpp

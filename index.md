@@ -849,10 +849,10 @@ data:
       title: linalg/implicit_matrix/vandermonde.hpp
   - name: linalg/xor
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: linalg/xor/mat_inv_xor.hpp
       title: linalg/xor/mat_inv_xor.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: linalg/xor/solve_linear_xor.hpp
       title: linalg/xor/solve_linear_xor.hpp
     - icon: ':heavy_check_mark:'
@@ -2093,6 +2093,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/ARC30D.test.cpp
       title: test/mytest/ARC30D.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/QOJ5445.test.cpp
+      title: test/mytest/QOJ5445.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/add_chmin.test.cpp
       title: test/mytest/add_chmin.test.cpp

@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/mytest/QOJ5445.test.cpp
+    title: test/mytest/QOJ5445.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/xor_transpose.test.cpp
     title: test/mytest/xor_transpose.test.cpp
   _isVerificationFailed: false
@@ -45,6 +48,7 @@ data:
   timestamp: '2023-02-01 04:25:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/QOJ5445.test.cpp
   - test/mytest/xor_transpose.test.cpp
 documentation_of: linalg/xor/transpose.hpp
 layout: document
