@@ -231,6 +231,7 @@
 "test/library_checker/tree/lca_directed.test.cpp": "2023-01-27 19:53:36 +0900",
 "test/library_checker/tree/tree_diameter.test.cpp": "2023-01-19 22:23:16 +0900",
 "test/mytest/ARC30D.test.cpp": "2023-01-19 22:23:16 +0900",
+"test/mytest/QOJ5445.test.cpp": "2023-02-01 13:45:58 +0900",
 "test/mytest/add_chmin.test.cpp": "2023-01-19 22:23:16 +0900",
 "test/mytest/add_chmin_chmax.test.cpp": "2023-01-19 22:23:16 +0900",
 "test/mytest/all_but_one_products.test.cpp": "2023-01-19 22:23:16 +0900",
