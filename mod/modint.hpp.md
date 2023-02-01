@@ -186,9 +186,15 @@ data:
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: poly/partial_frac_decomposition.test.hpp
+    title: poly/partial_frac_decomposition.test.hpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_5_C.test.cpp
     title: test/aoj/DPL_5_C.test.cpp
+  - icon: ':x:'
+    path: test/aoj/GRL_6_A.test.cpp
+    title: test/aoj/GRL_6_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/bitwise_and_convolution.test.cpp
     title: test/library_checker/convolution/bitwise_and_convolution.test.cpp
@@ -258,10 +264,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - icon: ':x:'
@@ -456,6 +462,9 @@ data:
   - icon: ':x:'
     path: test/mytest/online_pow.test.cpp
     title: test/mytest/online_pow.test.cpp
+  - icon: ':x:'
+    path: test/mytest/partial_frac.test.cpp
+    title: test/mytest/partial_frac.test.cpp
   - icon: ':x:'
     path: test/mytest/pascal.test.cpp
     title: test/mytest/pascal.test.cpp
@@ -1011,6 +1020,7 @@ data:
   timestamp: '2023-01-19 00:36:40+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/aoj/GRL_6_A.test.cpp
   - test/aoj/DPL_5_C.test.cpp
   - test/yukicoder/2062.test.cpp
   - test/yukicoder/310.test.cpp
@@ -1184,10 +1194,12 @@ data:
   - test/mytest/splay.test.cpp
   - test/mytest/online_division.test.cpp
   - test/mytest/eulerian_number.test.cpp
+  - test/mytest/partial_frac.test.cpp
   - test/mytest/powerquery.test.cpp
   - test/mytest/four_square.test.cpp
   - test/mytest/splay_cm.test.cpp
   - test/mytest/conv_leq.test.cpp
+  - poly/partial_frac_decomposition.test.hpp
   - test_atcoder/abc267h.test.cpp
   - test_atcoder/abc269ex.test.cpp
   - test_atcoder/abc270_g.test.cpp

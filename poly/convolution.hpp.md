@@ -186,6 +186,12 @@ data:
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: poly/partial_frac_decomposition.test.hpp
+    title: poly/partial_frac_decomposition.test.hpp
+  - icon: ':x:'
+    path: test/aoj/GRL_6_A.test.cpp
+    title: test/aoj/GRL_6_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_huge.test.cpp
     title: test/library_checker/convolution/convolution_huge.test.cpp
@@ -336,6 +342,9 @@ data:
   - icon: ':x:'
     path: test/mytest/online_pow.test.cpp
     title: test/mytest/online_pow.test.cpp
+  - icon: ':x:'
+    path: test/mytest/partial_frac.test.cpp
+    title: test/mytest/partial_frac.test.cpp
   - icon: ':x:'
     path: test/mytest/pascal.test.cpp
     title: test/mytest/pascal.test.cpp
@@ -901,6 +910,7 @@ data:
   timestamp: '2023-01-19 00:36:40+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/aoj/GRL_6_A.test.cpp
   - test/yukicoder/2062.test.cpp
   - test/yukicoder/1516.test.cpp
   - test/yukicoder/1392.test.cpp
@@ -988,7 +998,9 @@ data:
   - test/mytest/online_exp.test.cpp
   - test/mytest/online_division.test.cpp
   - test/mytest/eulerian_number.test.cpp
+  - test/mytest/partial_frac.test.cpp
   - test/mytest/conv_leq.test.cpp
+  - poly/partial_frac_decomposition.test.hpp
   - test_atcoder/abc267h.test.cpp
   - test_atcoder/abc269ex.test.cpp
   - test_atcoder/arc153f.test.cpp

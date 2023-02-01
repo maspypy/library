@@ -37,6 +37,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: test/aoj/GRL_6_A.test.cpp
+    title: test/aoj/GRL_6_A.test.cpp
+  - icon: ':x:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
   _isVerificationFailed: true
@@ -391,11 +394,12 @@ data:
     \n\n// \u6709\u7406\u5F0F\u306E\u548C\u3092\u8A08\u7B97\u3059\u308B\u3002\u5206\
     \u5272\u7D71\u6CBB O(Nlog^2N)\u3002N \u306F\u6B21\u6570\u306E\u548C\u3002\ntemplate\
     \ <typename mint>\npair<vc<mint>, vc<mint>> sum_of_rationals(vc<pair<vc<mint>,\
-    \ vc<mint>>> dat) {\n  using P = pair<vc<mint>, vc<mint>>;\n  auto add = [&](P&\
-    \ a, P& b) -> P {\n    int na = len(a.fi) - 1, da = len(a.se) - 1;\n    int nb\
-    \ = len(b.fi) - 1, db = len(b.se) - 1;\n    int n = max(na + db, da + nb);\n \
-    \   vc<mint> num(n + 1);\n    {\n      auto f = convolution(a.fi, b.se);\n   \
-    \   FOR(i, len(f)) num[i] += f[i];\n    }\n    {\n      auto f = convolution(a.se,\
+    \ vc<mint>>> dat) {\n  if (len(dat) == 0) {\n    vc<mint> f = {0}, g = {1};\n\
+    \    return {f, g};\n  }\n  using P = pair<vc<mint>, vc<mint>>;\n  auto add =\
+    \ [&](P& a, P& b) -> P {\n    int na = len(a.fi) - 1, da = len(a.se) - 1;\n  \
+    \  int nb = len(b.fi) - 1, db = len(b.se) - 1;\n    int n = max(na + db, da +\
+    \ nb);\n    vc<mint> num(n + 1);\n    {\n      auto f = convolution(a.fi, b.se);\n\
+    \      FOR(i, len(f)) num[i] += f[i];\n    }\n    {\n      auto f = convolution(a.se,\
     \ b.fi);\n      FOR(i, len(f)) num[i] += f[i];\n    }\n    auto den = convolution(a.se,\
     \ b.se);\n    return {num, den};\n  };\n\n  while (len(dat) > 1) {\n    int n\
     \ = len(dat);\n    FOR(i, 1, n, 2) { dat[i - 1] = add(dat[i - 1], dat[i]); }\n\
@@ -450,9 +454,10 @@ data:
   isVerificationFile: false
   path: linalg/implicit_matrix/vandermonde.hpp
   requiredBy: []
-  timestamp: '2023-01-22 22:24:59+09:00'
+  timestamp: '2023-02-02 02:53:49+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/aoj/GRL_6_A.test.cpp
   - test/mytest/vandermonde.test.cpp
 documentation_of: linalg/implicit_matrix/vandermonde.hpp
 layout: document

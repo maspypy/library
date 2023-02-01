@@ -11,10 +11,10 @@ data:
   - icon: ':x:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/classify_subtree.hpp
     title: graph/classify_subtree.hpp
   - icon: ':x:'
@@ -93,10 +93,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/set_xor_min.test.cpp
     title: test/library_checker/datastructure/set_xor_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/chromatic_number.test.cpp
     title: test/library_checker/graph/chromatic_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/classify_tree.test.cpp
     title: test/library_checker/graph/classify_tree.test.cpp
   - icon: ':x:'
@@ -246,6 +246,9 @@ data:
   - icon: ':x:'
     path: test/mytest/online_pow.test.cpp
     title: test/mytest/online_pow.test.cpp
+  - icon: ':x:'
+    path: test/mytest/partial_frac.test.cpp
+    title: test/mytest/partial_frac.test.cpp
   - icon: ':x:'
     path: test/mytest/pascal.test.cpp
     title: test/mytest/pascal.test.cpp
@@ -570,6 +573,7 @@ data:
   - test/mytest/splay.test.cpp
   - test/mytest/add_chmin_chmax.test.cpp
   - test/mytest/online_division.test.cpp
+  - test/mytest/partial_frac.test.cpp
   - test/mytest/rbst_am_2.test.cpp
   - test/mytest/powerquery.test.cpp
   - test/mytest/four_square.test.cpp

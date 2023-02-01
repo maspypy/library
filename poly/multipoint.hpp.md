@@ -34,6 +34,12 @@ data:
     title: poly/multivar_convolution_cyclic.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: poly/partial_frac_decomposition.test.hpp
+    title: poly/partial_frac_decomposition.test.hpp
+  - icon: ':x:'
+    path: test/aoj/GRL_6_A.test.cpp
+    title: test/aoj/GRL_6_A.test.cpp
+  - icon: ':x:'
     path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - icon: ':x:'
@@ -45,6 +51,9 @@ data:
   - icon: ':x:'
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
+  - icon: ':x:'
+    path: test/mytest/partial_frac.test.cpp
+    title: test/mytest/partial_frac.test.cpp
   - icon: ':x:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
@@ -466,12 +475,15 @@ data:
   timestamp: '2023-01-19 00:36:40+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/aoj/GRL_6_A.test.cpp
   - test/yukicoder/2166.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/library_checker/polynomial/polynomial_interpolation.test.cpp
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/mytest/vandermonde.test.cpp
   - test/mytest/chirp_z.test.cpp
+  - test/mytest/partial_frac.test.cpp
+  - poly/partial_frac_decomposition.test.hpp
   - test_atcoder/abc272_h.test.cpp
   - test_atcoder/abc267g.test.cpp
 documentation_of: poly/multipoint.hpp

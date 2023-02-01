@@ -2,18 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: alg/acted_monoid/min_add.hpp
-    title: alg/acted_monoid/min_add.hpp
-  - icon: ':question:'
-    path: alg/monoid/add.hpp
-    title: alg/monoid/add.hpp
-  - icon: ':question:'
-    path: alg/monoid/min.hpp
-    title: alg/monoid/min.hpp
-  - icon: ':question:'
-    path: ds/segtree/lazy_segtree.hpp
-    title: ds/segtree/lazy_segtree.hpp
-  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -31,15 +19,30 @@ data:
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
+  - icon: ':x:'
+    path: poly/count_terms.hpp
+    title: poly/count_terms.hpp
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
+  - icon: ':x:'
+    path: poly/fps_inv.hpp
+    title: poly/fps_inv.hpp
+  - icon: ':x:'
+    path: poly/multipoint.hpp
+    title: poly/multipoint.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
+  - icon: ':x:'
+    path: poly/partial_frac_decomposition.test.hpp
+    title: poly/partial_frac_decomposition.test.hpp
+  - icon: ':x:'
+    path: poly/sum_of_rationals.hpp
+    title: poly/sum_of_rationals.hpp
   - icon: ':question:'
-    path: seq/common_interval_decomposition.hpp
-    title: seq/common_interval_decomposition.hpp
+    path: random/base.hpp
+    title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
@@ -47,22 +50,23 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1720
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://yukicoder.me/problems/no/1720
-  bundledCode: "#line 1 \"test/yukicoder/1720.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/1720\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
-    )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
-    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int>\
-    \ = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll> = ll(infty<int>) * infty<int>\
-    \ * 2;\ntemplate <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr\
-    \ u64 infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
-    \ * infty<ll>;\ntemplate <>\nconstexpr double infty<double> = infty<ll>;\ntemplate\
-    \ <>\nconstexpr long double infty<long double> = infty<ll>;\n\nusing pi = pair<ll,\
-    \ ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
-    \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/mytest/partial_frac.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
+    #include <my_template_compiled.hpp>\n#else\n#pragma GCC optimize(\"Ofast\")\n\
+    #pragma GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace\
+    \ std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing u64 = unsigned\
+    \ long long;\nusing i128 = __int128;\n\ntemplate <class T>\nconstexpr T infty\
+    \ = 0;\ntemplate <>\nconstexpr int infty<int> = 1'000'000'000;\ntemplate <>\n\
+    constexpr ll infty<ll> = ll(infty<int>) * infty<int> * 2;\ntemplate <>\nconstexpr\
+    \ u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
+    template <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\ntemplate\
+    \ <>\nconstexpr double infty<double> = infty<ll>;\ntemplate <>\nconstexpr long\
+    \ double infty<long double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing vi\
+    \ = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\n\
+    using vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
     template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
     \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
     template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
@@ -230,179 +234,82 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 4 \"test/yukicoder/1720.test.cpp\"\n\n#line 2 \"ds/segtree/lazy_segtree.hpp\"\
-    \n\ntemplate <typename ActedMonoid>\nstruct Lazy_SegTree {\n  using AM = ActedMonoid;\n\
-    \  using MX = typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using\
-    \ X = typename MX::value_type;\n  using A = typename MA::value_type;\n  int n,\
-    \ log, size;\n  vc<X> dat;\n  vc<A> laz;\n\n  Lazy_SegTree() {}\n  Lazy_SegTree(int\
-    \ n) { build(n); }\n  template <typename F>\n  Lazy_SegTree(int n, F f) {\n  \
-    \  build(n, f);\n  }\n  Lazy_SegTree(const vc<X>& v) { build(v); }\n\n  void build(int\
-    \ m) {\n    build(m, [](int i) -> X { return MX::unit(); });\n  }\n  void build(const\
-    \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
-    \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1\
-    \ << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, MX::unit());\n\
-    \    laz.assign(size, MA::unit());\n    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i,\
-    \ 1, size) update(i);\n  }\n\n  void update(int k) { dat[k] = MX::op(dat[2 * k],\
-    \ dat[2 * k + 1]); }\n  void set(int p, X x) {\n    assert(0 <= p && p < n);\n\
-    \    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    dat[p]\
-    \ = x;\n    for (int i = 1; i <= log; i++) update(p >> i);\n  }\n\n  X get(int\
-    \ p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i\
-    \ >= 1; i--) push(p >> i);\n    return dat[p];\n  }\n\n  vc<X> get_all() {\n \
-    \   FOR(k, 1, size) { push(k); }\n    return {dat.begin() + size, dat.begin()\
-    \ + size + n};\n  }\n\n  X prod(int l, int r) {\n    assert(0 <= l && l <= r &&\
-    \ r <= n);\n    if (l == r) return MX::unit();\n    l += size, r += size;\n  \
-    \  for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l >>\
-    \ i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n    }\n    X xl =\
-    \ MX::unit(), xr = MX::unit();\n    while (l < r) {\n      if (l & 1) xl = MX::op(xl,\
-    \ dat[l++]);\n      if (r & 1) xr = MX::op(dat[--r], xr);\n      l >>= 1, r >>=\
-    \ 1;\n    }\n    return MX::op(xl, xr);\n  }\n\n  X prod_all() { return dat[1];\
-    \ }\n\n  void apply(int l, int r, A a) {\n    assert(0 <= l && l <= r && r <=\
-    \ n);\n    if (l == r) return;\n    l += size, r += size;\n    for (int i = log;\
-    \ i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l >> i);\n      if (((r\
-    \ >> i) << i) != r) push((r - 1) >> i);\n    }\n    int l2 = l, r2 = r;\n    while\
-    \ (l < r) {\n      if (l & 1) apply_at(l++, a);\n      if (r & 1) apply_at(--r,\
-    \ a);\n      l >>= 1, r >>= 1;\n    }\n    l = l2, r = r2;\n    for (int i = 1;\
-    \ i <= log; i++) {\n      if (((l >> i) << i) != l) update(l >> i);\n      if\
-    \ (((r >> i) << i) != r) update((r - 1) >> i);\n    }\n  }\n\n  template <typename\
-    \ F>\n  int max_right(const F check, int l) {\n    assert(0 <= l && l <= n);\n\
-    \    assert(check(MX::unit()));\n    if (l == n) return n;\n    l += size;\n \
-    \   for (int i = log; i >= 1; i--) push(l >> i);\n    X sm = MX::unit();\n   \
-    \ do {\n      while (l % 2 == 0) l >>= 1;\n      if (!check(MX::op(sm, dat[l])))\
-    \ {\n        while (l < size) {\n          push(l);\n          l = (2 * l);\n\
-    \          if (check(MX::op(sm, dat[l]))) { sm = MX::op(sm, dat[l++]); }\n   \
-    \     }\n        return l - size;\n      }\n      sm = MX::op(sm, dat[l++]);\n\
-    \    } while ((l & -l) != l);\n    return n;\n  }\n\n  template <typename F>\n\
-    \  int min_left(const F check, int r) {\n    assert(0 <= r && r <= n);\n    assert(check(MX::unit()));\n\
-    \    if (r == 0) return 0;\n    r += size;\n    for (int i = log; i >= 1; i--)\
-    \ push((r - 1) >> i);\n    X sm = MX::unit();\n    do {\n      r--;\n      while\
-    \ (r > 1 && (r % 2)) r >>= 1;\n      if (!check(MX::op(dat[r], sm))) {\n     \
-    \   while (r < size) {\n          push(r);\n          r = (2 * r + 1);\n     \
-    \     if (check(MX::op(dat[r], sm))) { sm = MX::op(dat[r--], sm); }\n        }\n\
-    \        return r + 1 - size;\n      }\n      sm = MX::op(dat[r], sm);\n    }\
-    \ while ((r & -r) != r);\n    return 0;\n  }\n\nprivate:\n  void apply_at(int\
-    \ k, A a) {\n    ll sz = 1 << (log - topbit(k));\n    dat[k] = AM::act(dat[k],\
-    \ a, sz);\n    if (k < size) laz[k] = MA::op(laz[k], a);\n  }\n  void push(int\
-    \ k) {\n    if (laz[k] == MA::unit()) return;\n    apply_at(2 * k, laz[k]), apply_at(2\
-    \ * k + 1, laz[k]);\n    laz[k] = MA::unit();\n  }\n};\n#line 2 \"alg/monoid/add.hpp\"\
-    \n\r\ntemplate <typename X>\r\nstruct Monoid_Add {\r\n  using value_type = X;\r\
-    \n  static constexpr X op(const X &x, const X &y) noexcept { return x + y; }\r\
-    \n  static constexpr X inverse(const X &x) noexcept { return -x; }\r\n  static\
-    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\n  static\
-    \ constexpr X unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\
-    \n};\r\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Min\
-    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr X unit()\
-    \ { return infty<E>; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line\
-    \ 3 \"alg/acted_monoid/min_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct ActedMonoid_Min_Add\
-    \ {\r\n  using Monoid_X = Monoid_Min<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\
-    \n  using X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
-    \n  static constexpr X act(const X &x, const A &a, const ll &size) {\r\n    if\
-    \ (x == infty<E>) return x;\r\n    return x + a;\r\n  }\r\n};\r\n#line 3 \"seq/common_interval_decomposition.hpp\"\
-    \n\ntemplate <int NODES>\nstruct Common_Inverval_Decomposition {\n  struct Node\
-    \ {\n    vc<Node*> ch;\n    bool inc, dec;\n    int l, r, lo, hi;\n  };\n\n  Node*\
-    \ pool;\n  Node* root;\n  int pid;\n\n  Common_Inverval_Decomposition(vc<int>&\
-    \ P) : pid(0) {\n    pool = new Node[NODES];\n    build(P);\n  }\n\n  Node* new_node(bool\
-    \ inc, bool dec, int l, int r, int lo, int hi) {\n    pool[pid].inc = inc;\n \
-    \   pool[pid].dec = dec;\n    pool[pid].l = l;\n    pool[pid].r = r;\n    pool[pid].lo\
-    \ = lo;\n    pool[pid].hi = hi;\n    return &(pool[pid++]);\n  }\n\n  void build(vc<int>&\
-    \ P) {\n    int N = len(P);\n    Lazy_SegTree<ActedMonoid_Min_Add<int>> seg(vc<int>(N,\
-    \ 0));\n\n    vc<Node*> st;\n    vc<int> mi = {-1}, ma = {-1};\n    FOR(i, N)\
-    \ {\n      while (mi.back() != -1 && P[i] < P[mi.back()]) {\n        int j = POP(mi);\n\
-    \        seg.apply(mi.back() + 1, j + 1, P[j] - P[i]);\n      }\n      while (ma.back()\
-    \ != -1 && P[i] > P[ma.back()]) {\n        int j = POP(ma);\n        seg.apply(ma.back()\
-    \ + 1, j + 1, P[i] - P[j]);\n      }\n      mi.eb(i), ma.eb(i);\n\n      Node*\
-    \ now = new_node(0, 0, i, i + 1, P[i], P[i] + 1);\n      while (len(st)) {\n \
-    \       Node* n = st.back();\n        if (n->hi == now->lo) {\n          if (n->inc)\
-    \ {\n            n->ch.eb(now);\n            n->r = now->r;\n            n->hi\
-    \ = now->hi;\n            now = n;\n            st.pop_back();\n          } else\
-    \ {\n            Node* p = new_node(1, 0, n->l, now->r, n->lo, now->hi);\n   \
-    \         p->ch.eb(n);\n            p->ch.eb(now);\n            now = p;\n   \
-    \         st.pop_back();\n          }\n          continue;\n        }\n      \
-    \  if (n->lo == now->hi) {\n          if (n->dec) {\n            n->ch.eb(now);\n\
-    \            n->r = now->r;\n            n->lo = now->lo;\n            now = n;\n\
-    \            st.pop_back();\n          } else {\n            Node* p = new_node(0,\
-    \ 1, n->l, now->r, now->lo, n->hi);\n            p->ch.eb(n);\n            p->ch.eb(now);\n\
-    \            now = p;\n            st.pop_back();\n          }\n          continue;\n\
-    \        }\n        // prime supernode creation\n        if (seg.prod(0, now->l)\
-    \ != 0) break;\n        Node* p = new_node(0, 0, now->l, now->r, now->lo, now->hi);\n\
-    \        p->ch.eb(now);\n        now = p;\n        while (1) {\n          auto\
-    \ c = POP(st);\n          now->l = c->l;\n          chmin(now->lo, c->lo);\n \
-    \         chmax(now->hi, c->hi);\n          now->ch.eb(c);\n          if (now->r\
-    \ - now->l == now->hi - now->lo) break;\n        }\n        reverse(all(now->ch));\n\
-    \      }\n      st.eb(now);\n      seg.apply(0, i + 1, -1);\n    }\n    assert(len(st)\
-    \ == 1);\n    root = POP(st);\n    return;\n  }\n\n  void debug() {\n    auto\
-    \ dfs = [&](auto& dfs, Node* n) -> void {\n      print(\"l, r, lo, hi\", n->l,\
-    \ n->r, n->lo, n->hi);\n      for (auto&& c: n->ch) dfs(dfs, c);\n    };\n   \
-    \ dfs(dfs, root);\n  };\n};\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\n\
-    struct modint {\n  int val;\n  constexpr modint(ll x = 0) noexcept {\n    if (0\
-    \ <= x && x < mod)\n      val = x;\n    else {\n      x %= mod;\n      val = (x\
-    \ < 0 ? x + mod : x);\n    }\n  }\n  bool operator<(const modint &other) const\
-    \ {\n    return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
-    \ modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n\
-    \  }\n  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >=\
-    \ mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint\
-    \ &p) {\n    val = (int)(1LL * val * p.val % mod);\n    return *this;\n  }\n \
-    \ modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return\
-    \ *this;\n  }\n  modint operator-() const { return modint(-val); }\n  modint operator+(const\
-    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
-    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
-    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
-    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
-    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
-    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
-    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
-    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t n) const {\n\
-    \    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
-    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n\
-    \  void write() { fastio::printer.write(val); }\n  void read() {\n    ll x;\n\
-    \    fastio::scanner.read(x);\n    if (x < 0 || x >= mod) x %= mod;\n    if (x\
-    \ < 0) x += mod;\n    val += x;\n  }\n#endif\n  static constexpr int get_mod()\
-    \ { return mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr bool is_modint\
-    \ = true;\n  int val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t\
-    \ y)\n      : val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y)\
-    \ % get_mod()) % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other)\
-    \ const {\n    return val < other.val;\n  } // To use std::map<ArbitraryModInt,\
-    \ T>\n  static int &get_mod() {\n    static int mod = 0;\n    return mod;\n  }\n\
-    \  static void set_mod(int md) { get_mod() = md; }\n  ArbitraryModInt &operator+=(const\
-    \ ArbitraryModInt &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n\
-    \    return *this;\n  }\n  ArbitraryModInt &operator-=(const ArbitraryModInt &p)\
-    \ {\n    if ((val += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return\
-    \ *this;\n  }\n  ArbitraryModInt &operator*=(const ArbitraryModInt &p) {\n   \
-    \ long long a = (long long)val * p.val;\n    int xh = (int)(a >> 32), xl = (int)a,\
-    \ d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"(m) : \"d\"(xh), \"a\"\
-    (xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n  }\n  ArbitraryModInt\
-    \ &operator/=(const ArbitraryModInt &p) {\n    *this *= p.inverse();\n    return\
-    \ *this;\n  }\n  ArbitraryModInt operator-() const { return ArbitraryModInt(get_mod()\
-    \ - val); }\n  ArbitraryModInt operator+(const ArbitraryModInt &p) const {\n \
-    \   return ArbitraryModInt(*this) += p;\n  }\n  ArbitraryModInt operator-(const\
-    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) -= p;\n  }\n\
-    \  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
-    \ *= p;\n  }\n  ArbitraryModInt operator/(const ArbitraryModInt &p) const {\n\
-    \    return ArbitraryModInt(*this) /= p;\n  }\n  bool operator==(const ArbitraryModInt\
-    \ &p) const { return val == p.val; }\n  bool operator!=(const ArbitraryModInt\
-    \ &p) const { return val != p.val; }\n  ArbitraryModInt inverse() const {\n  \
-    \  int a = val, b = get_mod(), u = 1, v = 0, t;\n    while (b > 0) {\n      t\
-    \ = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return\
-    \ ArbitraryModInt(u);\n  }\n  ArbitraryModInt pow(int64_t n) const {\n    ArbitraryModInt\
-    \ ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n     \
-    \ mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void\
-    \ write() { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
-    \ }\n#endif\n};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const\
-    \ int mod = mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0\
-    \ <= n);\n  if (n >= mod) n %= mod;\n  while (int(dat.size()) <= n) {\n    int\
-    \ k = dat.size();\n    auto q = (mod + k - 1) / k;\n    int r = k * q - mod;\n\
-    \    dat.emplace_back(dat[r] * mint(q));\n  }\n  return dat[n];\n}\n\ntemplate\
-    \ <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
-    \  static vector<mint> dat = {1, 1};\n  assert(0 <= n);\n  if (n >= mod) return\
-    \ 0;\n  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
-    \ - 1] * mint(k));\n  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint\
-    \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  static vector<mint>\
-    \ dat = {1, 1};\n  assert(-1 <= n && n < mod);\n  if (n == -1) return mint(0);\n\
-    \  while (int(dat.size()) <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k\
-    \ - 1] * inv<mint>(k));\n  }\n  return dat[n];\n}\n\ntemplate <class mint, class...\
-    \ Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
-    }\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
-    \ &&head, Tail &&... tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    \ yes(!t); }\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t\
+    \ x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n         \
+    \            chrono::high_resolution_clock::now().time_since_epoch())\n      \
+    \               .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n\
+    \  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
+    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"poly/sum_of_rationals.hpp\"\
+    \n\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n  int val;\n\
+    \  constexpr modint(ll x = 0) noexcept {\n    if (0 <= x && x < mod)\n      val\
+    \ = x;\n    else {\n      x %= mod;\n      val = (x < 0 ? x + mod : x);\n    }\n\
+    \  }\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
+    \  } // To use std::map\n  modint &operator+=(const modint &p) {\n    if ((val\
+    \ += p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator-=(const\
+    \ modint &p) {\n    if ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n\
+    \  }\n  modint &operator*=(const modint &p) {\n    val = (int)(1LL * val * p.val\
+    \ % mod);\n    return *this;\n  }\n  modint &operator/=(const modint &p) {\n \
+    \   *this *= p.inverse();\n    return *this;\n  }\n  modint operator-() const\
+    \ { return modint(-val); }\n  modint operator+(const modint &p) const { return\
+    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
+    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
+    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
+    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
+    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
+    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
+    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
+    \ return modint(u);\n  }\n  modint pow(int64_t n) const {\n    modint ret(1),\
+    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
+    \      n >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() {\
+    \ fastio::printer.write(val); }\n  void read() {\n    ll x;\n    fastio::scanner.read(x);\n\
+    \    if (x < 0 || x >= mod) x %= mod;\n    if (x < 0) x += mod;\n    val += x;\n\
+    \  }\n#endif\n  static constexpr int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt\
+    \ {\n  static constexpr bool is_modint = true;\n  int val;\n  ArbitraryModInt()\
+    \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
+    \                   : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
+    \ ArbitraryModInt &other) const {\n    return val < other.val;\n  } // To use\
+    \ std::map<ArbitraryModInt, T>\n  static int &get_mod() {\n    static int mod\
+    \ = 0;\n    return mod;\n  }\n  static void set_mod(int md) { get_mod() = md;\
+    \ }\n  ArbitraryModInt &operator+=(const ArbitraryModInt &p) {\n    if ((val +=\
+    \ p.val) >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt\
+    \ &operator-=(const ArbitraryModInt &p) {\n    if ((val += get_mod() - p.val)\
+    \ >= get_mod()) val -= get_mod();\n    return *this;\n  }\n  ArbitraryModInt &operator*=(const\
+    \ ArbitraryModInt &p) {\n    long long a = (long long)val * p.val;\n    int xh\
+    \ = (int)(a >> 32), xl = (int)a, d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d),\
+    \ \"=d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n    val = m;\n    return\
+    \ *this;\n  }\n  ArbitraryModInt &operator/=(const ArbitraryModInt &p) {\n   \
+    \ *this *= p.inverse();\n    return *this;\n  }\n  ArbitraryModInt operator-()\
+    \ const { return ArbitraryModInt(get_mod() - val); }\n  ArbitraryModInt operator+(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) += p;\n  }\n\
+    \  ArbitraryModInt operator-(const ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this)\
+    \ -= p;\n  }\n  ArbitraryModInt operator*(const ArbitraryModInt &p) const {\n\
+    \    return ArbitraryModInt(*this) *= p;\n  }\n  ArbitraryModInt operator/(const\
+    \ ArbitraryModInt &p) const {\n    return ArbitraryModInt(*this) /= p;\n  }\n\
+    \  bool operator==(const ArbitraryModInt &p) const { return val == p.val; }\n\
+    \  bool operator!=(const ArbitraryModInt &p) const { return val != p.val; }\n\
+    \  ArbitraryModInt inverse() const {\n    int a = val, b = get_mod(), u = 1, v\
+    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
+    \ -= t * v, v);\n    }\n    return ArbitraryModInt(u);\n  }\n  ArbitraryModInt\
+    \ pow(int64_t n) const {\n    ArbitraryModInt ret(1), mul(val);\n    while (n\
+    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
+    \  }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
+    \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n};\n\ntemplate <typename\
+    \ mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n  static\
+    \ vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n \
+    \ while (int(dat.size()) <= n) {\n    int k = dat.size();\n    auto q = (mod +\
+    \ k - 1) / k;\n    int r = k * q - mod;\n    dat.emplace_back(dat[r] * mint(q));\n\
+    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
+    \ const int mod = mint::get_mod();\n  static vector<mint> dat = {1, 1};\n  assert(0\
+    \ <= n);\n  if (n >= mod) return 0;\n  while (int(dat.size()) <= n) {\n    int\
+    \ k = dat.size();\n    dat.emplace_back(dat[k - 1] * mint(k));\n  }\n  return\
+    \ dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static const\
+    \ int mod = mint::get_mod();\n  static vector<mint> dat = {1, 1};\n  assert(-1\
+    \ <= n && n < mod);\n  if (n == -1) return mint(0);\n  while (int(dat.size())\
+    \ <= n) {\n    int k = dat.size();\n    dat.emplace_back(dat[k - 1] * inv<mint>(k));\n\
+    \  }\n  return dat[n];\n}\n\ntemplate <class mint, class... Ts>\nmint fact_invs(Ts...\
+    \ xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename\
+    \ mint, class Head, class... Tail>\nmint multinomial(Head &&head, Tail &&... tail)\
+    \ {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
     }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  static vvc<mint>\
     \ C;\n  static int H = 0, W = 0;\n\n  auto calc = [&](int i, int j) -> mint {\n\
     \    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
@@ -604,66 +511,152 @@ data:
     \ modint998>::value, vc<mint>> convolution(\r\n    const vc<mint>& a, const vc<mint>&\
     \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
     \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_garner(a,\
-    \ b);\r\n}\r\n#line 8 \"test/yukicoder/1720.test.cpp\"\n\nusing mint = modint998;\n\
-    \nvoid solve() {\n  LL(N, K);\n  VEC(int, A, N);\n  for (auto&& x: A) --x;\n \
-    \ Common_Inverval_Decomposition<400000> X(A);\n\n  auto dfs = [&](auto& dfs, auto\
-    \ n) -> vc<mint> {\n    vc<mint> dp;\n    if (n->ch.empty()) {\n      dp.resize(K\
-    \ + 1);\n      dp[1] = 1;\n      return dp;\n    }\n    if (!n->inc && !n->dec)\
-    \ {\n      for (auto&& c: n->ch) {\n        auto dpc = dfs(dfs, c);\n        if\
-    \ (dp.empty())\n          dp = dpc;\n        else {\n          dp = convolution(dp,\
-    \ dpc);\n        }\n        dp.resize(K + 1);\n      }\n      dp[1] += mint(1);\n\
-    \      return dp;\n    }\n    vc<mint> dp1(K + 1);\n    for (auto&& c: n->ch)\
-    \ {\n      auto dpc = dfs(dfs, c);\n      if (dp.empty()) {\n        dp = dpc;\n\
-    \        dp1[1] = 1;\n      } else {\n        vc<mint> newdp(K + 1);\n       \
-    \ FOR(a, K + 1) FOR(b, K - a + 1) { newdp[a + b] += dp[a] * dpc[b]; }\n      \
-    \  FOR(k, K + 1) newdp[k] += dp1[k];\n        FOR(k, K) dp1[k + 1] += dp[k];\n\
-    \        dp = newdp;\n        assert(dp[1] == mint(1));\n      }\n    }\n    return\
-    \ dp;\n  };\n\n  auto dp = dfs(dfs, X.root);\n  FOR(k, 1, K + 1) print(dp[k]);\n\
-    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  //\
-    \ LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1720\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n\n#include \"seq/common_interval_decomposition.hpp\"\
-    \n#include \"mod/modint.hpp\"\n#include \"poly/convolution.hpp\"\n\nusing mint\
-    \ = modint998;\n\nvoid solve() {\n  LL(N, K);\n  VEC(int, A, N);\n  for (auto&&\
-    \ x: A) --x;\n  Common_Inverval_Decomposition<400000> X(A);\n\n  auto dfs = [&](auto&\
-    \ dfs, auto n) -> vc<mint> {\n    vc<mint> dp;\n    if (n->ch.empty()) {\n   \
-    \   dp.resize(K + 1);\n      dp[1] = 1;\n      return dp;\n    }\n    if (!n->inc\
-    \ && !n->dec) {\n      for (auto&& c: n->ch) {\n        auto dpc = dfs(dfs, c);\n\
-    \        if (dp.empty())\n          dp = dpc;\n        else {\n          dp =\
-    \ convolution(dp, dpc);\n        }\n        dp.resize(K + 1);\n      }\n     \
-    \ dp[1] += mint(1);\n      return dp;\n    }\n    vc<mint> dp1(K + 1);\n    for\
-    \ (auto&& c: n->ch) {\n      auto dpc = dfs(dfs, c);\n      if (dp.empty()) {\n\
-    \        dp = dpc;\n        dp1[1] = 1;\n      } else {\n        vc<mint> newdp(K\
-    \ + 1);\n        FOR(a, K + 1) FOR(b, K - a + 1) { newdp[a + b] += dp[a] * dpc[b];\
-    \ }\n        FOR(k, K + 1) newdp[k] += dp1[k];\n        FOR(k, K) dp1[k + 1] +=\
-    \ dp[k];\n        dp = newdp;\n        assert(dp[1] == mint(1));\n      }\n  \
-    \  }\n    return dp;\n  };\n\n  auto dp = dfs(dfs, X.root);\n  FOR(k, 1, K + 1)\
-    \ print(dp[k]);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n\
-    \  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ b);\r\n}\r\n#line 4 \"poly/sum_of_rationals.hpp\"\n\n// \u6709\u7406\u5F0F\u306E\
+    \u548C\u3092\u8A08\u7B97\u3059\u308B\u3002\u5206\u5272\u7D71\u6CBB O(Nlog^2N)\u3002\
+    N \u306F\u6B21\u6570\u306E\u548C\u3002\ntemplate <typename mint>\npair<vc<mint>,\
+    \ vc<mint>> sum_of_rationals(vc<pair<vc<mint>, vc<mint>>> dat) {\n  if (len(dat)\
+    \ == 0) {\n    vc<mint> f = {0}, g = {1};\n    return {f, g};\n  }\n  using P\
+    \ = pair<vc<mint>, vc<mint>>;\n  auto add = [&](P& a, P& b) -> P {\n    int na\
+    \ = len(a.fi) - 1, da = len(a.se) - 1;\n    int nb = len(b.fi) - 1, db = len(b.se)\
+    \ - 1;\n    int n = max(na + db, da + nb);\n    vc<mint> num(n + 1);\n    {\n\
+    \      auto f = convolution(a.fi, b.se);\n      FOR(i, len(f)) num[i] += f[i];\n\
+    \    }\n    {\n      auto f = convolution(a.se, b.fi);\n      FOR(i, len(f)) num[i]\
+    \ += f[i];\n    }\n    auto den = convolution(a.se, b.se);\n    return {num, den};\n\
+    \  };\n\n  while (len(dat) > 1) {\n    int n = len(dat);\n    FOR(i, 1, n, 2)\
+    \ { dat[i - 1] = add(dat[i - 1], dat[i]); }\n    FOR(i, ceil(n, 2)) dat[i] = dat[2\
+    \ * i];\n    dat.resize(ceil(n, 2));\n  }\n  return dat[0];\n}\n#line 2 \"poly/count_terms.hpp\"\
+    \ntemplate<typename mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t =\
+    \ 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 4\
+    \ \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv_sparse(const\
+    \ vc<mint>& f) {\r\n  assert(f[0] != mint(0));\r\n  int N = len(f);\r\n  vc<pair<int,\
+    \ mint>> dat;\r\n  FOR3(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint>\
+    \ g(N);\r\n  mint g0 = mint(1) / f[0];\r\n  g[0] = g0;\r\n  FOR3(n, 1, N) {\r\n\
+    \    mint rhs = 0;\r\n    for (auto&& [k, fk]: dat) {\r\n      if (k > n) break;\r\
+    \n      rhs -= fk * g[n - k];\r\n    }\r\n    g[n] = rhs * g0;\r\n  }\r\n  return\
+    \ g;\r\n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint, modint998>::value,\
+    \ vc<mint>> fps_inv_dense(\r\n    const vc<mint>& F) {\r\n  assert(F[0] != mint(0));\r\
+    \n  vc<mint> G = {mint(1) / F[0]};\r\n  G.reserve(len(F));\r\n  ll N = len(F),\
+    \ n = 1;\r\n  while (n < N) {\r\n    vc<mint> f(2 * n), g(2 * n);\r\n    FOR(i,\
+    \ min(N, 2 * n)) f[i] = F[i];\r\n    FOR(i, n) g[i] = G[i];\r\n    ntt(f, false);\r\
+    \n    ntt(g, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\
+    \n    FOR(i, n) f[i] = 0;\r\n    ntt(f, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\
+    \n    ntt(f, true);\r\n    FOR3(i, n, 2 * n) G.eb(f[i] * mint(-1));\r\n    n *=\
+    \ 2;\r\n  }\r\n  G.resize(N);\r\n  return G;\r\n}\r\n\r\ntemplate <typename mint>\r\
+    \nenable_if_t<!is_same<mint, modint998>::value, vc<mint>> fps_inv_dense(\r\n \
+    \   const vc<mint>& F) {\r\n  int N = len(F);\r\n  assert(F[0] != mint(0));\r\n\
+    \  vc<mint> R = {mint(1) / F[0]};\r\n  vc<mint> p;\r\n  int m = 1;\r\n  while\
+    \ (m < N) {\r\n    p = convolution(R, R);\r\n    p.resize(m + m);\r\n    vc<mint>\
+    \ f = {F.begin(), F.begin() + min(m + m, N)};\r\n    p = convolution(p, f);\r\n\
+    \    R.resize(m + m);\r\n    FOR(i, m + m) R[i] = R[i] + R[i] - p[i];\r\n    m\
+    \ += m;\r\n  }\r\n  R.resize(N);\r\n  return R;\r\n}\r\n\r\n\r\ntemplate <typename\
+    \ mint>\r\nenable_if_t<is_same<mint, modint998>::value, vc<mint>> fps_inv(\r\n\
+    \    const vc<mint>& f) {\r\n  if (count_terms(f) <= 200) return fps_inv_sparse<mint>(f);\r\
+    \n  return fps_inv_dense<mint>(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<!is_same<mint,\
+    \ modint998>::value, vc<mint>> fps_inv(\r\n    const vc<mint>& f) {\r\n  if (count_terms(f)\
+    \ <= 700) return fps_inv_sparse<mint>(f);\r\n  return fps_inv_dense<mint>(f);\r\
+    \n}\r\n#line 2 \"poly/multipoint.hpp\"\n\r\ntemplate <typename mint>\r\nstruct\
+    \ SubproductTree {\r\n  int m;\r\n  int sz;\r\n  vc<vc<mint>> T;\r\n  SubproductTree(const\
+    \ vc<mint>& x) {\r\n    m = len(x);\r\n    sz = 1;\r\n    while (sz < m) sz *=\
+    \ 2;\r\n    T.resize(2 * sz);\r\n    FOR(i, sz) T[sz + i] = {1, (i < m ? -x[i]\
+    \ : 0)};\r\n    FOR3_R(i, 1, sz) T[i] = convolution(T[2 * i], T[2 * i + 1]);\r\
+    \n  }\r\n\r\n  vc<mint> mid_prod(vc<mint>& a, vc<mint>& b) {\r\n    assert(len(a)\
+    \ >= len(b) && !b.empty());\r\n    if (min(len(b), len(a) - len(b) + 1) <= 60)\
+    \ {\r\n      vc<mint> res(len(a) - len(b) + 1);\r\n      FOR(i, len(res)) FOR(j,\
+    \ len(b)) res[i] += b[j] * a[i + j];\r\n      return res;\r\n    }\r\n    int\
+    \ n = 1 << std::__lg(2 * len(a) - 1);\r\n    vc<mint> fa(n), fb(n);\r\n    std::copy(a.begin(),\
+    \ a.end(), fa.begin());\r\n    std::copy(b.rbegin(), b.rend(), fb.begin());\r\n\
+    \    ntt(fa, 0), ntt(fb, 0);\r\n    FOR(i, n) fa[i] *= fb[i];\r\n    ntt(fa, 1);\r\
+    \n    fa.resize(len(a));\r\n    fa.erase(fa.begin(), fa.begin() + len(b) - 1);\r\
+    \n    return fa;\r\n  }\r\n\r\n  vc<mint> evaluation(vc<mint> f) {\r\n    int\
+    \ n = len(f);\r\n    if (n == 0) return vc<mint>(m, mint(0));\r\n    f.resize(2\
+    \ * n - 1);\r\n    vc<vc<mint>> g(2 * sz);\r\n    g[1] = T[1];\r\n    g[1].resize(n);\r\
+    \n    g[1] = fps_inv(g[1]);\r\n    g[1] = mid_prod(f, g[1]);\r\n    g[1].resize(sz);\r\
+    \n\r\n    FOR3(i, 1, sz) {\r\n      g[2 * i] = mid_prod(g[i], T[2 * i + 1]);\r\
+    \n      g[2 * i + 1] = mid_prod(g[i], T[2 * i]);\r\n    }\r\n    vc<mint> vals(m);\r\
+    \n    FOR(i, m) vals[i] = g[sz + i][0];\r\n    return vals;\r\n  }\r\n\r\n  vc<mint>\
+    \ interpolation(vc<mint>& y) {\r\n    assert(len(y) == m);\r\n    vc<mint> a(m);\r\
+    \n    FOR(i, m) a[i] = T[1][m - i - 1] * (i + 1);\r\n\r\n    a = evaluation(a);\r\
+    \n    vc<vc<mint>> t(2 * sz);\r\n    FOR(i, sz) t[sz + i] = {(i < m ? y[i] / a[i]\
+    \ : 0)};\r\n    FOR3_R(i, 1, sz) {\r\n      t[i] = convolution(t[2 * i], T[2 *\
+    \ i + 1]);\r\n      auto tt = convolution(t[2 * i + 1], T[2 * i]);\r\n      FOR(k,\
+    \ len(t[i])) t[i][k] += tt[k];\r\n    }\r\n    t[1].resize(m);\r\n    reverse(all(t[1]));\r\
+    \n    return t[1];\r\n  }\r\n};\r\n\r\ntemplate <typename mint>\r\nvc<mint> multipoint_eval(vc<mint>&\
+    \ f, vc<mint>& x) {\r\n  if (x.empty()) return {};\r\n  SubproductTree<mint> F(x);\r\
+    \n  return F.evaluation(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> multipoint_interpolate(vc<mint>&\
+    \ x, vc<mint>& y) {\r\n  if (x.empty()) return {};\r\n  SubproductTree<mint> F(x);\r\
+    \n  return F.interpolation(y);\r\n}\r\n\r\n// calculate f(ar^k) for 0 <= k < m\r\
+    \n// https://noshi91.github.io/algorithm-encyclopedia/chirp-z-transform#noredirect\r\
+    \ntemplate <typename mint>\r\nvc<mint> multipoint_eval_on_geom_seq(vc<mint> f,\
+    \ mint a, mint r, int m) {\r\n  const int n = len(f);\r\n  assert(r != mint(0));\r\
+    \n  // a == 1 \u306B\u5E30\u7740\r\n  mint pow_a = 1;\r\n  FOR(i, n) f[i] *= pow_a,\
+    \ pow_a *= a;\r\n\r\n  auto calc = [&](mint r, int m) -> vc<mint> {\r\n    //\
+    \ r^{t_i} \u306E\u8A08\u7B97\r\n    vc<mint> res(m);\r\n    mint pow = 1;\r\n\
+    \    res[0] = 1;\r\n    FOR(i, m - 1) {\r\n      res[i + 1] = res[i] * pow;\r\n\
+    \      pow *= r;\r\n    }\r\n    return res;\r\n  };\r\n\r\n  vc<mint> A = calc(r,\
+    \ n + m - 1), B = calc(r.inverse(), max(n, m));\r\n  FOR(i, n) f[i] *= B[i];\r\
+    \n  reverse(all(f));\r\n  f = convolution(f, A);\r\n  f = {f.begin() + n - 1,\
+    \ f.end()};\r\n  f.resize(m);\r\n  FOR(i, m) f[i] *= B[i];\r\n  return f;\r\n\
+    }\n#line 2 \"poly/partial_frac_decomposition.test.hpp\"\n// O(Nlog^2N)\n// f /\
+    \ prod(x-a) = sum b/(x-a) \u3068\u3044\u3046 B \u3092\u8FD4\u3059\ntemplate <typename\
+    \ mint>\nvc<mint> partial_frac_decomposition(vc<mint> f, vc<mint> A) {\n  assert(len(f)\
+    \ <= len(A));\n  if (len(f) == 0) return vc<mint>(len(A));\n  SubproductTree<mint>\
+    \ X(A);\n  vc<mint> g = X.T[1]; // prod(1-ax)\n  g.resize(len(A) + 1);\n  reverse(all(g));\n\
+    \  FOR(i, len(g) - 1) g[i] = g[i + 1] * mint(i + 1);\n  g.pop_back();\n\n  auto\
+    \ num = X.evaluation(f);\n  auto den = X.evaluation(g);\n  vc<mint> B(len(A));\n\
+    \  FOR(i, len(A)) B[i] = num[i] / den[i];\n  return B;\n}\n#line 7 \"test/mytest/partial_frac.test.cpp\"\
+    \n\nusing mint = modint998;\nusing poly = vc<mint>;\n\nvc<mint> gen(int n) {\n\
+    \  vc<mint> f(n);\n  set<mint> ss;\n  FOR(i, n) {\n    while (1) {\n      mint\
+    \ x = RNG(-100, 100);\n      if (ss.count(x)) continue;\n      ss.insert(x);\n\
+    \      f[i] = x;\n      break;\n    }\n  }\n  return f;\n}\n\nvoid check(poly\
+    \ f, vc<mint> A) {\n  int m = len(A);\n  auto B = partial_frac_decomposition<mint>(f,\
+    \ A);\n  assert(len(B) == m);\n  vc<pair<poly, poly>> dat;\n  FOR(i, m) {\n  \
+    \  poly F = {B[i]};\n    poly G = {-A[i], mint(1)};\n    dat.eb(F, G);\n  }\n\
+    \  auto [p, q] = sum_of_rationals<mint>(dat);\n  while (len(p) && p.back() ==\
+    \ mint(0)) p.pop_back();\n  while (len(f) && f.back() == mint(0)) f.pop_back();\n\
+    \  assert(p == f);\n}\n\nvoid test() {\n  FOR(n, 50) FOR(m, n, 50) {\n    poly\
+    \ f = gen(n), A = gen(m);\n    check(f, A);\n  }\n}\n\nvoid solve() {\n  LL(a,\
+    \ b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
+    \ 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"random/base.hpp\"\n#include \"poly/sum_of_rationals.hpp\"\
+    \n#include \"poly/partial_frac_decomposition.test.hpp\"\n\nusing mint = modint998;\n\
+    using poly = vc<mint>;\n\nvc<mint> gen(int n) {\n  vc<mint> f(n);\n  set<mint>\
+    \ ss;\n  FOR(i, n) {\n    while (1) {\n      mint x = RNG(-100, 100);\n      if\
+    \ (ss.count(x)) continue;\n      ss.insert(x);\n      f[i] = x;\n      break;\n\
+    \    }\n  }\n  return f;\n}\n\nvoid check(poly f, vc<mint> A) {\n  int m = len(A);\n\
+    \  auto B = partial_frac_decomposition<mint>(f, A);\n  assert(len(B) == m);\n\
+    \  vc<pair<poly, poly>> dat;\n  FOR(i, m) {\n    poly F = {B[i]};\n    poly G\
+    \ = {-A[i], mint(1)};\n    dat.eb(F, G);\n  }\n  auto [p, q] = sum_of_rationals<mint>(dat);\n\
+    \  while (len(p) && p.back() == mint(0)) p.pop_back();\n  while (len(f) && f.back()\
+    \ == mint(0)) f.pop_back();\n  assert(p == f);\n}\n\nvoid test() {\n  FOR(n, 50)\
+    \ FOR(m, n, 50) {\n    poly f = gen(n), A = gen(m);\n    check(f, A);\n  }\n}\n\
+    \nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n\
+    \  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - seq/common_interval_decomposition.hpp
-  - ds/segtree/lazy_segtree.hpp
-  - alg/acted_monoid/min_add.hpp
-  - alg/monoid/add.hpp
-  - alg/monoid/min.hpp
-  - mod/modint.hpp
+  - random/base.hpp
+  - poly/sum_of_rationals.hpp
   - poly/convolution.hpp
+  - mod/modint.hpp
   - mod/mod_inv.hpp
   - poly/convolution_naive.hpp
   - poly/ntt.hpp
   - poly/fft.hpp
+  - poly/partial_frac_decomposition.test.hpp
+  - poly/multipoint.hpp
+  - poly/fps_inv.hpp
+  - poly/count_terms.hpp
   isVerificationFile: true
-  path: test/yukicoder/1720.test.cpp
+  path: test/mytest/partial_frac.test.cpp
   requiredBy: []
-  timestamp: '2023-02-02 02:12:17+09:00'
+  timestamp: '2023-02-02 02:54:18+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yukicoder/1720.test.cpp
+documentation_of: test/mytest/partial_frac.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/1720.test.cpp
-- /verify/test/yukicoder/1720.test.cpp.html
-title: test/yukicoder/1720.test.cpp
+- /verify/test/mytest/partial_frac.test.cpp
+- /verify/test/mytest/partial_frac.test.cpp.html
+title: test/mytest/partial_frac.test.cpp
 ---

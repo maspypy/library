@@ -31,6 +31,9 @@ data:
     title: linalg/implicit_matrix/vandermonde.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: test/aoj/GRL_6_A.test.cpp
+    title: test/aoj/GRL_6_A.test.cpp
+  - icon: ':x:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
   - icon: ':x:'
@@ -380,6 +383,7 @@ data:
   timestamp: '2023-01-22 22:24:51+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/aoj/GRL_6_A.test.cpp
   - test/yukicoder/1533.test.cpp
   - test/mytest/vandermonde.test.cpp
 documentation_of: poly/fps_div.hpp

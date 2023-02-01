@@ -7,9 +7,6 @@ data:
     title: flow/binary_optimization.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/aoj/GRL_6_A.test.cpp
-    title: test/aoj/GRL_6_A.test.cpp
-  - icon: ':x:'
     path: test/yukicoder/1541.test.cpp
     title: test/yukicoder/1541.test.cpp
   - icon: ':x:'
@@ -97,7 +94,6 @@ data:
   timestamp: '2023-02-02 01:52:11+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/aoj/GRL_6_A.test.cpp
   - test/yukicoder/1541.test.cpp
   - test/yukicoder/177.test.cpp
   - test_atcoder/abc259g.test.cpp
