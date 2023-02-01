@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "random/base.hpp"
 #include "poly/sum_of_rationals.hpp"
-#include "poly/partial_frac_decomposition.test.hpp"
+#include "poly/partial_frac_decomposition.hpp"
 
 using mint = modint998;
 using poly = vc<mint>;
