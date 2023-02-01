@@ -2,9 +2,9 @@
 #include "graph/base.hpp"
 
 template <typename T, typename Graph>
-pair<vc<T>, vc<int>> dijkstra(Graph& G, int v, T INF) {
+pair<vc<T>, vc<int>> dijkstra(Graph& G, int v) {
   auto N = G.N;
-  vector<T> dist(N, INF);
+  vector<T> dist(N, INF<T>);
   vector<int> par(N, -1);
   using P = pair<T, int>;
 
@@ -28,10 +28,10 @@ pair<vc<T>, vc<int>> dijkstra(Graph& G, int v, T INF) {
 
 // 多点スタート。[dist, par, root]
 template <typename T, typename Graph>
-tuple<vc<T>, vc<int>, vc<int>> dijkstra(Graph& G, vc<int> vs, T INF) {
+tuple<vc<T>, vc<int>, vc<int>> dijkstra(Graph& G, vc<int> vs) {
   assert(G.is_prepared());
   int N = G.N;
-  vc<ll> dist(N, INF);
+  vc<ll> dist(N, INF<T>);
   vc<int> par(N, -1);
   vc<int> root(N, -1);
 
