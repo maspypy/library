@@ -10,8 +10,8 @@ struct Monoid_Add_Chmin_Chmax {
     auto [a, b, c] = x;
     auto [d, e, f] = y;
     a = a + d;
-    b = (b == R_INF ? b : b + d);
-    c = (c == L_INF ? c : c + d);
+    b = (b == infty<E> ? b : b + d);
+    c = (c == -infty<E> ? c : c + d);
     b = min(b, e);
     c = max(min(c, e), f);
     return {a, b, c};
@@ -22,10 +22,10 @@ struct Monoid_Add_Chmin_Chmax {
     return max(min(x + a, b), c);
   }
 
-  static X add(E a) { return {a, INF<E>, -INF<E>}; }
-  static X chmin(E b) { return {0, b, -INF<E>}; }
-  static X chmax(E c) { return {0, INF<E>, c}; }
+  static X add(E a) { return {a, infty<E>, -infty<E>}; }
+  static X chmin(E b) { return {0, b, -infty<E>}; }
+  static X chmax(E c) { return {0, infty<E>, c}; }
 
-  static constexpr X unit() { return {0, INF<E>, -INF<E>}; }
+  static constexpr X unit() { return {0, infty<E>, -infty<E>}; }
   static constexpr bool commute = 0;
 };

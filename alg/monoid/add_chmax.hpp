@@ -9,15 +9,15 @@ struct Monoid_Add_Chmax {
     auto [a, c] = x;
     auto [d, f] = y;
     a = a + d;
-    c = (c == -INF<E> ? c : c + d);
+    c = (c == -infty<E> ? c : c + d);
     c = max(c, f);
     return {a, c};
   }
 
   static E eval(X f, E x) { return max(x + f.fi, f.se); }
-  static X add(E a) { return {a, -INF<E>}; }
+  static X add(E a) { return {a, -infty<E>}; }
   static X chmax(E c) { return {0, c}; }
 
-  static constexpr X unit() { return {0, -INF<E>}; }
+  static constexpr X unit() { return {0, -infty<E>}; }
   static constexpr bool commute = 0;
 };

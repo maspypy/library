@@ -28,7 +28,7 @@ struct KDTree {
   // 計算量保証なし、点群がランダムなら O(logN)
   // N = Q = 10^5 で、約 1 秒
   int nearest_neighbor_search(XY x, XY y) {
-    pair<int, XY> res = {-1, INF<XY>};
+    pair<int, XY> res = {-1, infty<XY>};
     nns_rec(1, x, y, res);
     assert(res.fi != -1);
     return res.fi;
@@ -38,8 +38,8 @@ private:
   void build(int idx, vc<XY> xs, vc<XY> ys, vc<int> vs, bool divx = true) {
     int n = len(xs);
     auto& [xmin, xmax, ymin, ymax] = closed_range[idx];
-    xmin = ymin = INF<XY>;
-    xmax = ymax = -INF<XY>;
+    xmin = ymin = infty<XY>;
+    xmax = ymax = -infty<XY>;
 
     FOR(i, n) {
       auto x = xs[i], y = ys[i];

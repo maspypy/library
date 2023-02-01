@@ -10,16 +10,16 @@ struct Monoid_Add_Chmin {
     auto [a, b] = x;
     auto [d, e] = y;
     a = a + d;
-    b = (b == INF<E> ? b : b + d);
+    b = (b == infty<E> ? b : b + d);
     b = min(b, e);
     return {a, b};
   }
 
   static E eval(X f, E x) { return min(x + f.fi, f.se); }
 
-  static X add(E a) { return {a, INF<E>}; }
+  static X add(E a) { return {a, infty<E>}; }
   static X chmin(E b) { return {0, b}; }
 
-  static constexpr X unit() { return {0, INF<E>}; }
+  static constexpr X unit() { return {0, infty<E>}; }
   static constexpr bool commute = 0;
 };

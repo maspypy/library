@@ -6,6 +6,6 @@ struct Monoid_SumMax {
   using X = value_type;
   static X op(X x, X y) { return {x.fi + y.fi, max(x.se, y.se)}; }
   static X from_element(E e) { return {e, e}; }
-  static constexpr X unit() { return {E(0), -INF<E>}; }
+  static constexpr X unit() { return {E(0), -infty<E>}; }
   static constexpr bool commute = 1;
 };

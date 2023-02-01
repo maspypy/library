@@ -2,7 +2,7 @@
 template <typename T, bool strong = true>
 vc<int> longest_increasing_subsequence(vector<T> A) {
   const int N = A.size();
-  vc<T> dp(N, INF<T>);
+  vc<T> dp(N, infty<T>);
   vc<int> lis_rank(N);
   FOR(i, N) {
     int j = (strong ? LB(dp, A[i]) : UB(dp, A[i]));

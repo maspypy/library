@@ -1,16 +1,15 @@
 #include "convex/smawk.hpp"
 
 template <typename T, bool convA, bool convB>
-vc<T> minplus_convolution_convex(vc<T> A, vc<T> B, const T INF) {
+vc<T> minplus_convolution_convex(vc<T> A, vc<T> B) {
   static_assert(convA || convB);
-  assert(INF < INF + INF);
   if (!convB) swap(A, B);
   int NA = len(A), NB = len(B);
   int N = NA + NB - 1;
   int L = 0, R = NB;
-  while (L < R && B[L] == INF) ++L;
-  if (L == R) return vc<T>(N, INF);
-  while (B[R - 1] == INF) --R;
+  while (L < R && B[L] == infty<T>) ++L;
+  if (L == R) return vc<T>(N, infty<T>);
+  while (B[R - 1] == infty<T>) --R;
   B = {B.begin() + L, B.begin() + R};
   int nB = R - L;
   int n = NA + nB - 1;
@@ -22,7 +21,7 @@ vc<T> minplus_convolution_convex(vc<T> A, vc<T> B, const T INF) {
   };
 
   vc<int> J = SMAWK(n, NA, select);
-  vc<T> C(N, INF);
-  FOR(i, n) C[L + i] = (A[J[i]] == INF ? INF : A[J[i]] + B[i - J[i]]);
+  vc<T> C(N, infty<T>);
+  FOR(i, n) C[L + i] = (A[J[i]] == infty<T> ? infty<T> : A[J[i]] + B[i - J[i]]);
   return C;
 }
