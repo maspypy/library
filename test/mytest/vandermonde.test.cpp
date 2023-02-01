@@ -3,39 +3,43 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "random/base.hpp"
-#include "mod/modint.hpp"
 #include "linalg/implicit_matrix/vandermonde.hpp"
 
-using mint = modint998;
-
-#include "poly/convolution.hpp"
-
-vc<mint> gen(int N) {
-  int mod = mint::get_mod();
-  vc<mint> f(N);
-  FOR(i, N) f[i] = RNG(mod);
-  return f;
-}
-
-vc<mint> vandermonde_naive(vc<mint> f, bool transpose) {
+template <typename mint>
+vc<mint> naive(vc<mint> f, vc<mint> A, bool transpose) {
+  assert(len(f) == len(A));
   int N = len(f);
   vc<mint> g(N);
-  if (!transpose) { FOR(i, N) FOR(j, N) g[i] += mint(i).pow(j) * f[j]; }
-  if (transpose) { FOR(i, N) FOR(j, N) g[i] += mint(j).pow(i) * f[j]; }
+  if (!transpose) { FOR(i, N) FOR(j, N) g[i] += A[i].pow(j) * f[j]; }
+  if (transpose) { FOR(i, N) FOR(j, N) g[i] += A[j].pow(i) * f[j]; }
   return g;
+}
+
+using mint = modint998;
+vc<mint> gen(int n) {
+  vc<mint> f(n);
+  set<mint> ss;
+  FOR(i, n) {
+    while (1) {
+      mint x = RNG(-100, 100);
+      if (ss.count(x)) continue;
+      ss.insert(x);
+      f[i] = x;
+      break;
+    }
+  }
+  return f;
 }
 
 void test() {
   FOR(t, 2) {
-    FOR(N, 1, 100) {
-      vc<mint> f = gen(N);
-      vc<mint> g1 = vandermonde<mint>(f, t, 0);
-      vc<mint> g2 = vandermonde_naive(f, t);
-      assert(g1 == g2);
-      if (t == 0) {
-        vc<mint> h = vandermonde<mint>(g1, t, 1);
-        assert(f == h);
-      }
+    FOR(n, 100) {
+      auto f = gen(n), A = gen(n);
+      auto g = vandermonde<mint>(f, A, t, 0);
+      auto g1 = naive(f, A, t);
+      assert(g == g1);
+      auto f1 = vandermonde<mint>(g, A, t, 1);
+      assert(f == f1);
     }
   }
 }
@@ -48,6 +52,5 @@ void solve() {
 signed main() {
   test();
   solve();
-
   return 0;
 }
