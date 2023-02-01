@@ -9,6 +9,9 @@ data:
     path: convex/dynamic_lichao.hpp
     title: convex/dynamic_lichao.hpp
   - icon: ':warning:'
+    path: convex/lichao.hpp
+    title: convex/lichao.hpp
+  - icon: ':warning:'
     path: convex/persistent_dynamic_lichao.hpp
     title: convex/persistent_dynamic_lichao.hpp
   - icon: ':warning:'
@@ -55,6 +58,7 @@ data:
   path: alg/monoid/min_idx.hpp
   requiredBy:
   - convex/dynamic_lichao.hpp
+  - convex/lichao.hpp
   - convex/persistent_dynamic_lichao.hpp
   - geo/manhattan_nns.hpp
   - string/suffix_tree.hpp
