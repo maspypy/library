@@ -1,9 +1,9 @@
-#pragma once
 
 template <typename E>
 struct Monoid_XorBasis {
   using value_type = vector<E>;
   using VECT_SP = value_type;
+
   // 破壊的に変更する
   static bool add_element(VECT_SP& x, E v) {
     for (auto&& e: x) {
@@ -17,7 +17,7 @@ struct Monoid_XorBasis {
     return false;
   }
 
-  static VECT_SP op(const VECT_SP x, const VECT_SP y) {
+  static VECT_SP op(VECT_SP x, const VECT_SP& y) {
     for (auto v: y) { add_element(x, v); }
     return x;
   }

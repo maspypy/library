@@ -12,13 +12,13 @@ bool check_monge(int N, F f) {
   return true;
 }
 
-template <ll INF, typename F>
+template <typename F>
 vi monge_shortest_path(int N, F f) {
-  vi dp(N + 1, INF);
+  vi dp(N + 1, infty<ll>);
   dp[0] = 0;
   LARSCH<ll> larsch(N, [&](int i, int j) {
     ++i;
-    if (i <= j) return INF;
+    if (i <= j) return infty<ll>;
     return dp[j] + f(j, i);
   });
   FOR3(r, 1, N + 1) {
@@ -37,11 +37,11 @@ template <ll INF, typename F>
 ll monge_shortest_path_d_edge(ll N, F f, ll d, ll f_lim) {
   auto calc_L = [&](ll lambda) -> ll {
     auto cost = [&](int frm, int to) -> ll { return f(frm, to) + lambda; };
-    auto dp = monge_shortest_path<INF>(N, cost);
+    auto dp = monge_shortest_path(N, cost);
     return dp.back() - lambda * d;
   };
 
-  ll ANS = -INF;
+  ll ANS = -infty<ll>;
   ll L = -3 * f_lim - 10;
   ll R = 3 * f_lim + 10;
   ll x = binary_search([&](ll x) { return calc_L(x - 1) <= calc_L(x); }, L, R);

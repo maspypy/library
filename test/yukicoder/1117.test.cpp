@@ -8,12 +8,11 @@ void solve() {
   LL(N, K, M);
   VEC(ll, A, N);
   auto Ac = cumsum<ll>(A);
-  const ll INF = 1LL << 60;
-  vi DP(N + 1, -INF);
+  vi DP(N + 1, -infty<ll>);
   DP[0] = 0;
   FOR(K) {
     Sliding_Window_Aggregation<Monoid_Max<ll>> swag1, swag2;
-    vi newDP(N + 1, -INF);
+    vi newDP(N + 1, -infty<ll>);
     FOR(i, N + 1) {
       chmax(newDP[i], swag1.prod() - Ac[i]);
       chmax(newDP[i], swag2.prod() + Ac[i]);

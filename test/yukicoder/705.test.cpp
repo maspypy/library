@@ -15,8 +15,7 @@ void solve() {
     ll dy = abs(y);
     return dx * dx * dx + dy * dy * dy;
   };
-  const ll INF = 1LL << 60;
-  print(monge_shortest_path<INF>(N, f).back());
+  print(monge_shortest_path(N, f).back());
 }
 
 signed main() {

@@ -5,18 +5,17 @@
 
 void solve() {
   LL(T, N, M);
-  const ll INF = 1LL << 60;
   if (T == 0) {
     Graph<ll, 0> G(N);
     G.read_graph(M, true);
-    ll x = MinCostCycle<ll>(G, INF);
-    if (x == INF) x = -1;
+    ll x = MinCostCycle<ll>(G);
+    if (x == infty<ll>) x = -1;
     print(x);
   } else {
     Graph<ll, 1> G(N);
     G.read_graph(M, true);
-    ll x = MinCostCycle<ll>(G, INF);
-    if (x == INF) x = -1;
+    ll x = MinCostCycle<ll>(G);
+    if (x == infty<ll>) x = -1;
     print(x);
   }
 }
