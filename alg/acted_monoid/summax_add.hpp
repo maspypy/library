@@ -9,7 +9,7 @@ struct ActedMonoid_SumMax_Add {
   using A = typename Monoid_A::value_type;
   static constexpr X act(const X& x, const A& a, const ll& size) {
     auto [xs, xm] = x;
-    xm = (xm == numeric_limits<E>::lowest() ? xm : xm + a);
+    xm = (xm == -INF<E> ? xm : xm + a);
     return {xs + E(size) * a, xm};
   }
 };

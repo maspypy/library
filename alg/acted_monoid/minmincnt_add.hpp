@@ -9,7 +9,7 @@ struct ActedMonoid_MinMincnt_Add {
   using A = typename Monoid_A::value_type;
   static constexpr X act(const X &x, const A &a, const ll &size) {
     auto [xmin, xmincnt] = x;
-    if (xmin == numeric_limits<ll>::max()) return x;
+    if (xmin == INF<E>) return x;
     return {xmin + a, xmincnt};
   }
 };

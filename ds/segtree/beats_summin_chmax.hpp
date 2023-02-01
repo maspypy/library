@@ -1,7 +1,6 @@
 #include "ds/segtree/segtree_beats.hpp"
 template <typename T>
 struct Beats_SumMin_Chmax {
-  static constexpr T INF = numeric_limits<T>::max() / 2 - 1;
   struct SumMin {
     struct X {
       T sum, min, minc, min2;
@@ -9,15 +8,15 @@ struct Beats_SumMin_Chmax {
     };
     using value_type = X;
     static X op(const X& x, const X& y) {
-      if (x.min == INF) return y;
-      if (y.min == INF) return x;
+      if (x.min == INF<T>) return y;
+      if (y.min == INF<T>) return x;
       X z;
       z.sum = x.sum + y.sum;
 
       z.min = min(x.min, y.min);
       z.minc = (x.min == z.min ? x.minc : 0) + (y.min == z.min ? y.minc : 0);
 
-      z.min2 = INF;
+      z.min2 = INF<T>;
       if (z.min < x.min && x.min < z.min2) z.min2 = x.min;
       if (z.min < x.min2 && x.min2 < z.min2) z.min2 = x.min2;
       if (z.min < y.min && y.min < z.min2) z.min2 = y.min;
@@ -26,7 +25,7 @@ struct Beats_SumMin_Chmax {
       z.fail = 0;
       return z;
     }
-    static constexpr X unit() { return {0, INF, 0, INF, 0}; }
+    static constexpr X unit() { return {0, INF<T>, 0, INF<T>, 0}; }
     bool commute = true;
   };
   struct AddChmax {
@@ -38,7 +37,7 @@ struct Beats_SumMin_Chmax {
       a += d, c += d, c = max(c, f);
       return {a, c};
     }
-    static constexpr X unit() { return {0, -INF}; }
+    static constexpr X unit() { return {0, -INF<T>}; }
     bool commute = false;
   };
   struct Beats {
@@ -48,10 +47,10 @@ struct Beats_SumMin_Chmax {
     using A = typename Monoid_A::value_type;
     static X act(X& x, const A& a, int cnt) {
       assert(!x.fail);
-      if (x.min == INF) return x;
+      if (x.min == INF<T>) return x;
       auto [add, ma] = a;
       x.sum += cnt * add, x.min += add, x.min2 += add;
-      if (ma == -INF) return x;
+      if (ma == -INF<T>) return x;
 
       T before_min = x.min;
       x.min = max(x.min, ma);
@@ -82,5 +81,5 @@ struct Beats_SumMin_Chmax {
   static X from_element(T x) { return {x, x, 1, x}; }
 
   void chmax(int l, int r, T x) { seg.apply(l, r, {0, x}); }
-  void add(int l, int r, T x) { seg.apply(l, r, {x, -INF}); }
+  void add(int l, int r, T x) { seg.apply(l, r, {x, -INF<T>}); }
 };

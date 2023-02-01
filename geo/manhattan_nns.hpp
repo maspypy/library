@@ -14,8 +14,6 @@ pair<vc<X>, vc<int>> manhattan_nns(vc<pair<X, X>> FRM, vc<pair<X, X>>& TO) {
   FOR(i, M) Y[i] = TO[i].se;
   UNIQUE(Y);
 
-  const X INF = numeric_limits<X>::max();
-
   vc<int> nbd_idx(N, -1);
   vc<X> dist(N, INF);
 

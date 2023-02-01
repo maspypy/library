@@ -8,7 +8,7 @@ struct ActedMonoid_Min_Add {
   using X = typename Monoid_X::value_type;
   using A = typename Monoid_A::value_type;
   static constexpr X act(const X &x, const A &a, const ll &size) {
-    if (x == numeric_limits<E>::max()) return x;
+    if (x == INF<E>) return x;
     return x + a;
   }
 };

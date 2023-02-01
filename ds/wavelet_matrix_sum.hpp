@@ -11,7 +11,6 @@ struct Wavelet_Matrix_Sum {
   vector<int> mid;
   vector<Bit_Vector> bv;
   vc<T> key;
-  const T INF;
   const bool set_log;
   vvc<X> cumsum;
 
@@ -20,7 +19,7 @@ struct Wavelet_Matrix_Sum {
 
   template <typename FUNC>
   Wavelet_Matrix_Sum(FUNC F, vector<T> A, int log = -1)
-      : N(len(A)), lg(log), INF(numeric_limits<T>::max()), set_log(log != -1) {
+      : N(len(A)), lg(log), set_log(log != -1) {
     if (COMPRESS) {
       assert(!set_log);
       key.reserve(N);
@@ -94,10 +93,10 @@ struct Wavelet_Matrix_Sum {
   }
 
   // [L, R) の中で k 番目、および、下位 k 個の和
-  // k = R-L のときの first は、INF を返す
+  // k = R-L のときの first は、INF<T> を返す
   pair<T, X> kth(int L, int R, int k, T xor_val = 0) {
     if (xor_val != 0) assert(set_log);
-    if (k == R - L) return {INF, get(lg, L, R)};
+    if (k == R - L) return {INF<T>, get(lg, L, R)};
     assert(0 <= k && k < R - L);
     T ret = 0;
     X sm = 0;
@@ -123,12 +122,12 @@ struct Wavelet_Matrix_Sum {
     return {(COMPRESS ? key[ret] : ret), sm};
   }
 
-  // check(prefix sum) が true となる上限の最大値
+  // check(prefix sum) が true となる上限の最大値 (or INF<T>)
   template <typename F>
   T max_right_value(F check, int L, int R, T xor_val = 0) {
     assert(check(MX::unit()));
     if (xor_val != 0) assert(set_log);
-    if (check(get(lg, L, R))) return INF;
+    if (check(get(lg, L, R))) return INF<T>;
     T ret = 0;
     X sm = MX::unit();
     for (int d = lg - 1; d >= 0; --d) {
