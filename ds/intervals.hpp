@@ -4,8 +4,8 @@
 // コンストラクタでは T none_val を指定する
 template <typename T = ll, typename X = ll>
 struct Intervals {
-  static constexpr X LLIM = numeric_limits<X>::lowest();
-  static constexpr X RLIM = numeric_limits<X>::max();
+  static constexpr X LLIM = -INF<X>;
+  static constexpr X RLIM = INF<X>;
   const T none_val;
   // none_val でない区間の個数と長さ合計
   int total_num;
@@ -92,7 +92,7 @@ struct Intervals {
   vc<tuple<X, X, T>> get(X L, X R) {
     vc<tuple<X, X, T>> res;
     auto it = dat.lower_bound(L);
-    if(it != dat.begin()) it = prev(it);
+    if (it != dat.begin()) it = prev(it);
     while (1) {
       auto [l, t] = *it;
       if (R <= l) break;
@@ -105,9 +105,7 @@ struct Intervals {
     return res;
   }
 
-  vc<tuple<X, X, T>> get_all() {
-    return get(LLIM, RLIM);
-  }
+  vc<tuple<X, X, T>> get_all() { return get(LLIM, RLIM); }
 
   void debug() {
     auto it = dat.begin();
@@ -123,7 +121,6 @@ struct Intervals {
     }
   }
 };
-
 
 #include "ds/fastset.hpp"
 

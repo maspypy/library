@@ -18,7 +18,7 @@ constexpr T INF = 0;
 template <>
 constexpr int INF<int> = 1'000'000'000;
 template <>
-constexpr ll INF<ll> = ll(INF<int>) * INF<int>;
+constexpr ll INF<ll> = ll(INF<int>) * INF<int> * 2;
 template <>
 constexpr u32 INF<u32> = INF<int>;
 template <>

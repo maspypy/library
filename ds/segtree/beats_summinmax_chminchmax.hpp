@@ -2,7 +2,6 @@
 
 template <typename T>
 struct Beats_SumMinMax_ChminChmax {
-  static constexpr T INF = numeric_limits<T>::max() / 2 - 1;
   struct SumMinMax {
     struct X {
       T sum, min, max, minc, maxc, min2, max2;
@@ -34,7 +33,9 @@ struct Beats_SumMinMax_ChminChmax {
       z.fail = 0;
       return z;
     }
-    static constexpr X unit() { return {0, INF, -INF, 0, 0, INF, -INF, 0}; }
+    static constexpr X unit() {
+      return {0, INF<T>, -INF<T>, 0, 0, INF<T>, -INF<T>, 0};
+    }
     bool commute = true;
   };
   struct AddChminChmax {
@@ -47,7 +48,7 @@ struct Beats_SumMinMax_ChminChmax {
       b = min(b, e), c = min(c, e), c = max(c, f);
       return {a, b, c};
     }
-    static constexpr X unit() { return {0, INF, -INF}; }
+    static constexpr X unit() { return {0, INF<T>, -INF<T>}; }
     bool commute = false;
   };
   struct Beats {
@@ -62,7 +63,7 @@ struct Beats_SumMinMax_ChminChmax {
       x.sum += cnt * add;
       x.min += add, x.max += add, x.min2 += add, x.max2 += add;
 
-      if (mi == INF && ma == -INF) return x;
+      if (mi == INF<T> && ma == -INF<T>) return x;
 
       T before_min = x.min, before_max = x.max;
       x.min = min(x.min, mi), x.min = max(x.min, ma);
@@ -107,7 +108,7 @@ struct Beats_SumMinMax_ChminChmax {
   }
   static X from_element(T x) { return {x, x, x, 1, 1, x, x, 0}; }
 
-  void chmin(int l, int r, T x) { seg.apply(l, r, {0, x, -INF}); }
-  void chmax(int l, int r, T x) { seg.apply(l, r, {0, INF, x}); }
-  void add(int l, int r, T x) { seg.apply(l, r, {x, INF, -INF}); }
+  void chmin(int l, int r, T x) { seg.apply(l, r, {0, x, -INF<T>}); }
+  void chmax(int l, int r, T x) { seg.apply(l, r, {0, INF<T>, x}); }
+  void add(int l, int r, T x) { seg.apply(l, r, {x, INF<T>, -INF<T>}); }
 };

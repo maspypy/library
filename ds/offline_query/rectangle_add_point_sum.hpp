@@ -31,7 +31,7 @@ struct Rectangle_Add_Point_Sum {
       NX = len(keyX);
     }
     if (SMALL_X) {
-      XY mx = numeric_limits<XY>::max();
+      XY mx = INF<XY>;
       for (auto &&[i, x, y]: point) chmin(mx, x);
       for (auto &&[i, x, y]: point) x -= mx, chmax(NX, x + 1);
       for (auto &&[y, x1, x2, g]: rect) {
