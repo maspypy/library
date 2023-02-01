@@ -30,8 +30,8 @@ data:
     \ std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing u64 = unsigned\
     \ long long;\nusing i128 = __int128;\n\ntemplate <class T>\nconstexpr T INF =\
     \ 0;\ntemplate <>\nconstexpr int INF<int> = 1'000'000'000;\ntemplate <>\nconstexpr\
-    \ ll INF<ll> = ll(INF<int>) * INF<int>;\ntemplate <>\nconstexpr u32 INF<u32> =\
-    \ INF<int>;\ntemplate <>\nconstexpr u64 INF<u64> = INF<ll>;\ntemplate <>\nconstexpr\
+    \ ll INF<ll> = ll(INF<int>) * INF<int> * 2;\ntemplate <>\nconstexpr u32 INF<u32>\
+    \ = INF<int>;\ntemplate <>\nconstexpr u64 INF<u64> = INF<ll>;\ntemplate <>\nconstexpr\
     \ i128 INF<i128> = i128(INF<ll>) * INF<ll>;\ntemplate <>\nconstexpr double INF<double>\
     \ = INF<ll>;\ntemplate <>\nconstexpr long double INF<long double> = INF<ll>;\n\
     \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
@@ -286,7 +286,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/scc.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 22:25:49+09:00'
+  timestamp: '2023-02-01 22:47:27+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/scc.test.cpp

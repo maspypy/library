@@ -45,58 +45,58 @@ data:
     template <typename T, bool COMPRESS, typename Monoid = Monoid_Add<T>>\nstruct\
     \ Wavelet_Matrix_Sum {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
     \  int N, lg;\n  vector<int> mid;\n  vector<Bit_Vector> bv;\n  vc<T> key;\n  const\
-    \ T INF;\n  const bool set_log;\n  vvc<X> cumsum;\n\n  Wavelet_Matrix_Sum(vc<T>\
-    \ A, int log = -1)\n      : Wavelet_Matrix_Sum([](int a) -> X { return a; }, A,\
-    \ log) {}\n\n  template <typename FUNC>\n  Wavelet_Matrix_Sum(FUNC F, vector<T>\
-    \ A, int log = -1)\n      : N(len(A)), lg(log), INF(numeric_limits<T>::max()),\
-    \ set_log(log != -1) {\n    if (COMPRESS) {\n      assert(!set_log);\n      key.reserve(N);\n\
-    \      vc<int> I = argsort(A);\n      for (auto&& i: I) {\n        if (key.empty()\
-    \ || key.back() != A[i]) key.eb(A[i]);\n        A[i] = len(key) - 1;\n      }\n\
-    \      key.shrink_to_fit();\n    }\n    if (lg == -1) lg = __lg(max<ll>(MAX(A),\
-    \ 1)) + 1;\n    mid.resize(lg);\n    bv.assign(lg, Bit_Vector(N));\n    cumsum.assign(1\
-    \ + lg, vc<X>(N + 1, MX::unit()));\n    vc<T> A0(N), A1(N);\n    FOR_R(d, -1,\
-    \ lg) {\n      int p0 = 0, p1 = 0;\n      FOR(i, N) {\n        X x = F(COMPRESS\
-    \ ? key[A[i]] : A[i]);\n        cumsum[d + 1][i + 1] = MX::op(cumsum[d + 1][i],\
-    \ x);\n      }\n      if (d == -1) break;\n      FOR(i, N) {\n        bool f =\
-    \ (A[i] >> d & 1);\n        if (!f) A0[p0++] = A[i];\n        if (f) bv[d].set(i),\
-    \ A1[p1++] = A[i];\n      }\n      mid[d] = p0;\n      bv[d].build();\n      swap(A,\
-    \ A0);\n      FOR(i, p1) A[p0 + i] = A1[i];\n    }\n  }\n\n  // xor \u3057\u305F\
-    \u7D50\u679C\u304C [a, b) \u306B\u53CE\u307E\u308B\u3082\u306E\u3092\u6570\u3048\
-    \u308B\n  // \u500B\u6570\u304A\u3088\u3073\u548C\u3092\u8FD4\u3059\n  pair<int,\
-    \ X> count(int L, int R, T a, T b, T xor_val = 0) {\n    auto [c1, s1] = prefix_count(L,\
-    \ R, a, xor_val);\n    auto [c2, s2] = prefix_count(L, R, b, xor_val);\n    return\
-    \ {c2 - c1, MX::op(MX::inverse(s1), s2)};\n  }\n\n  // xor \u3057\u305F\u7D50\u679C\
-    \u304C [0, x) \u306B\u53CE\u307E\u308B\u3082\u306E\u3092\u6570\u3048\u308B\n \
-    \ // \u500B\u6570\u304A\u3088\u3073\u548C\u3092\u8FD4\u3059\n  pair<int, X> prefix_count(int\
-    \ L, int R, T x, T xor_val = 0) {\n    if (xor_val != 0) assert(set_log);\n  \
-    \  x = (COMPRESS ? LB(key, x) : x);\n    if (x >= (1 << lg)) return {R - L, get(lg,\
-    \ L, R)};\n    int cnt = 0;\n    X sm = MX::unit();\n    FOR_R(d, lg) {\n    \
-    \  bool add = (x >> d) & 1;\n      bool f = ((xor_val) >> d) & 1;\n      int l0\
-    \ = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n      int kf = (f ? (R - L) - (r0\
-    \ - l0) : (r0 - l0));\n      if (add) {\n        cnt += kf;\n        if (f) {\n\
-    \          sm = MX::op(sm, get(d, L + mid[d] - l0, R + mid[d] - r0));\n      \
-    \    L = l0, R = r0;\n        } else {\n          sm = MX::op(sm, get(d, l0, r0));\n\
-    \          L = L + mid[d] - l0, R = R + mid[d] - r0;\n        }\n      } else\
-    \ {\n        if (!f) L = l0, R = r0;\n        if (f) L += mid[d] - l0, R += mid[d]\
-    \ - r0;\n      }\n    }\n    return {cnt, sm};\n  }\n\n  // [L, R) \u306E\u4E2D\
-    \u3067 k \u756A\u76EE\u3001\u304A\u3088\u3073\u3001\u4E0B\u4F4D k \u500B\u306E\
-    \u548C\n  // k = R-L \u306E\u3068\u304D\u306E first \u306F\u3001INF \u3092\u8FD4\
-    \u3059\n  pair<T, X> kth(int L, int R, int k, T xor_val = 0) {\n    if (xor_val\
-    \ != 0) assert(set_log);\n    if (k == R - L) return {INF, get(lg, L, R)};\n \
-    \   assert(0 <= k && k < R - L);\n    T ret = 0;\n    X sm = 0;\n    for (int\
-    \ d = lg - 1; d >= 0; --d) {\n      bool f = (xor_val >> d) & 1;\n      int l0\
-    \ = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n      int kf = (f ? (R - L) - (r0\
-    \ - l0) : (r0 - l0));\n      if (k < kf) {\n        if (!f) L = l0, R = r0;\n\
-    \        if (f) L += mid[d] - l0, R += mid[d] - r0;\n      } else {\n        k\
-    \ -= kf, ret |= T(1) << d;\n        if (f) {\n          sm = MX::op(sm, get(d,\
-    \ L + mid[d] - l0, R + mid[d] - r0));\n          L = l0, R = r0;\n        } else\
-    \ {\n          sm = MX::op(sm, get(d, l0, r0));\n          L = L + mid[d] - l0,\
-    \ R = R + mid[d] - r0;\n        }\n      }\n    }\n    if (k) sm = MX::op(sm,\
-    \ get(0, L, L + k));\n    return {(COMPRESS ? key[ret] : ret), sm};\n  }\n\n \
-    \ // check(prefix sum) \u304C true \u3068\u306A\u308B\u4E0A\u9650\u306E\u6700\u5927\
-    \u5024\n  template <typename F>\n  T max_right_value(F check, int L, int R, T\
-    \ xor_val = 0) {\n    assert(check(MX::unit()));\n    if (xor_val != 0) assert(set_log);\n\
-    \    if (check(get(lg, L, R))) return INF;\n    T ret = 0;\n    X sm = MX::unit();\n\
+    \ bool set_log;\n  vvc<X> cumsum;\n\n  Wavelet_Matrix_Sum(vc<T> A, int log = -1)\n\
+    \      : Wavelet_Matrix_Sum([](int a) -> X { return a; }, A, log) {}\n\n  template\
+    \ <typename FUNC>\n  Wavelet_Matrix_Sum(FUNC F, vector<T> A, int log = -1)\n \
+    \     : N(len(A)), lg(log), set_log(log != -1) {\n    if (COMPRESS) {\n      assert(!set_log);\n\
+    \      key.reserve(N);\n      vc<int> I = argsort(A);\n      for (auto&& i: I)\
+    \ {\n        if (key.empty() || key.back() != A[i]) key.eb(A[i]);\n        A[i]\
+    \ = len(key) - 1;\n      }\n      key.shrink_to_fit();\n    }\n    if (lg == -1)\
+    \ lg = __lg(max<ll>(MAX(A), 1)) + 1;\n    mid.resize(lg);\n    bv.assign(lg, Bit_Vector(N));\n\
+    \    cumsum.assign(1 + lg, vc<X>(N + 1, MX::unit()));\n    vc<T> A0(N), A1(N);\n\
+    \    FOR_R(d, -1, lg) {\n      int p0 = 0, p1 = 0;\n      FOR(i, N) {\n      \
+    \  X x = F(COMPRESS ? key[A[i]] : A[i]);\n        cumsum[d + 1][i + 1] = MX::op(cumsum[d\
+    \ + 1][i], x);\n      }\n      if (d == -1) break;\n      FOR(i, N) {\n      \
+    \  bool f = (A[i] >> d & 1);\n        if (!f) A0[p0++] = A[i];\n        if (f)\
+    \ bv[d].set(i), A1[p1++] = A[i];\n      }\n      mid[d] = p0;\n      bv[d].build();\n\
+    \      swap(A, A0);\n      FOR(i, p1) A[p0 + i] = A1[i];\n    }\n  }\n\n  // xor\
+    \ \u3057\u305F\u7D50\u679C\u304C [a, b) \u306B\u53CE\u307E\u308B\u3082\u306E\u3092\
+    \u6570\u3048\u308B\n  // \u500B\u6570\u304A\u3088\u3073\u548C\u3092\u8FD4\u3059\
+    \n  pair<int, X> count(int L, int R, T a, T b, T xor_val = 0) {\n    auto [c1,\
+    \ s1] = prefix_count(L, R, a, xor_val);\n    auto [c2, s2] = prefix_count(L, R,\
+    \ b, xor_val);\n    return {c2 - c1, MX::op(MX::inverse(s1), s2)};\n  }\n\n  //\
+    \ xor \u3057\u305F\u7D50\u679C\u304C [0, x) \u306B\u53CE\u307E\u308B\u3082\u306E\
+    \u3092\u6570\u3048\u308B\n  // \u500B\u6570\u304A\u3088\u3073\u548C\u3092\u8FD4\
+    \u3059\n  pair<int, X> prefix_count(int L, int R, T x, T xor_val = 0) {\n    if\
+    \ (xor_val != 0) assert(set_log);\n    x = (COMPRESS ? LB(key, x) : x);\n    if\
+    \ (x >= (1 << lg)) return {R - L, get(lg, L, R)};\n    int cnt = 0;\n    X sm\
+    \ = MX::unit();\n    FOR_R(d, lg) {\n      bool add = (x >> d) & 1;\n      bool\
+    \ f = ((xor_val) >> d) & 1;\n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R,\
+    \ 0);\n      int kf = (f ? (R - L) - (r0 - l0) : (r0 - l0));\n      if (add) {\n\
+    \        cnt += kf;\n        if (f) {\n          sm = MX::op(sm, get(d, L + mid[d]\
+    \ - l0, R + mid[d] - r0));\n          L = l0, R = r0;\n        } else {\n    \
+    \      sm = MX::op(sm, get(d, l0, r0));\n          L = L + mid[d] - l0, R = R\
+    \ + mid[d] - r0;\n        }\n      } else {\n        if (!f) L = l0, R = r0;\n\
+    \        if (f) L += mid[d] - l0, R += mid[d] - r0;\n      }\n    }\n    return\
+    \ {cnt, sm};\n  }\n\n  // [L, R) \u306E\u4E2D\u3067 k \u756A\u76EE\u3001\u304A\
+    \u3088\u3073\u3001\u4E0B\u4F4D k \u500B\u306E\u548C\n  // k = R-L \u306E\u3068\
+    \u304D\u306E first \u306F\u3001INF<T> \u3092\u8FD4\u3059\n  pair<T, X> kth(int\
+    \ L, int R, int k, T xor_val = 0) {\n    if (xor_val != 0) assert(set_log);\n\
+    \    if (k == R - L) return {INF<T>, get(lg, L, R)};\n    assert(0 <= k && k <\
+    \ R - L);\n    T ret = 0;\n    X sm = 0;\n    for (int d = lg - 1; d >= 0; --d)\
+    \ {\n      bool f = (xor_val >> d) & 1;\n      int l0 = bv[d].rank(L, 0), r0 =\
+    \ bv[d].rank(R, 0);\n      int kf = (f ? (R - L) - (r0 - l0) : (r0 - l0));\n \
+    \     if (k < kf) {\n        if (!f) L = l0, R = r0;\n        if (f) L += mid[d]\
+    \ - l0, R += mid[d] - r0;\n      } else {\n        k -= kf, ret |= T(1) << d;\n\
+    \        if (f) {\n          sm = MX::op(sm, get(d, L + mid[d] - l0, R + mid[d]\
+    \ - r0));\n          L = l0, R = r0;\n        } else {\n          sm = MX::op(sm,\
+    \ get(d, l0, r0));\n          L = L + mid[d] - l0, R = R + mid[d] - r0;\n    \
+    \    }\n      }\n    }\n    if (k) sm = MX::op(sm, get(0, L, L + k));\n    return\
+    \ {(COMPRESS ? key[ret] : ret), sm};\n  }\n\n  // check(prefix sum) \u304C true\
+    \ \u3068\u306A\u308B\u4E0A\u9650\u306E\u6700\u5927\u5024 (or INF<T>)\n  template\
+    \ <typename F>\n  T max_right_value(F check, int L, int R, T xor_val = 0) {\n\
+    \    assert(check(MX::unit()));\n    if (xor_val != 0) assert(set_log);\n    if\
+    \ (check(get(lg, L, R))) return INF<T>;\n    T ret = 0;\n    X sm = MX::unit();\n\
     \    for (int d = lg - 1; d >= 0; --d) {\n      bool f = ((xor_val) >> d) & 1;\n\
     \      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n      X lo_sm = (f ?\
     \ get(d, L + mid[d] - l0, R + mid[d] - r0) : get(d, l0, r0));\n      if (check(MX::op(sm,\
@@ -127,58 +127,58 @@ data:
     \u3053\u3068\ntemplate <typename T, bool COMPRESS, typename Monoid = Monoid_Add<T>>\n\
     struct Wavelet_Matrix_Sum {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
     \  int N, lg;\n  vector<int> mid;\n  vector<Bit_Vector> bv;\n  vc<T> key;\n  const\
-    \ T INF;\n  const bool set_log;\n  vvc<X> cumsum;\n\n  Wavelet_Matrix_Sum(vc<T>\
-    \ A, int log = -1)\n      : Wavelet_Matrix_Sum([](int a) -> X { return a; }, A,\
-    \ log) {}\n\n  template <typename FUNC>\n  Wavelet_Matrix_Sum(FUNC F, vector<T>\
-    \ A, int log = -1)\n      : N(len(A)), lg(log), INF(numeric_limits<T>::max()),\
-    \ set_log(log != -1) {\n    if (COMPRESS) {\n      assert(!set_log);\n      key.reserve(N);\n\
-    \      vc<int> I = argsort(A);\n      for (auto&& i: I) {\n        if (key.empty()\
-    \ || key.back() != A[i]) key.eb(A[i]);\n        A[i] = len(key) - 1;\n      }\n\
-    \      key.shrink_to_fit();\n    }\n    if (lg == -1) lg = __lg(max<ll>(MAX(A),\
-    \ 1)) + 1;\n    mid.resize(lg);\n    bv.assign(lg, Bit_Vector(N));\n    cumsum.assign(1\
-    \ + lg, vc<X>(N + 1, MX::unit()));\n    vc<T> A0(N), A1(N);\n    FOR_R(d, -1,\
-    \ lg) {\n      int p0 = 0, p1 = 0;\n      FOR(i, N) {\n        X x = F(COMPRESS\
-    \ ? key[A[i]] : A[i]);\n        cumsum[d + 1][i + 1] = MX::op(cumsum[d + 1][i],\
-    \ x);\n      }\n      if (d == -1) break;\n      FOR(i, N) {\n        bool f =\
-    \ (A[i] >> d & 1);\n        if (!f) A0[p0++] = A[i];\n        if (f) bv[d].set(i),\
-    \ A1[p1++] = A[i];\n      }\n      mid[d] = p0;\n      bv[d].build();\n      swap(A,\
-    \ A0);\n      FOR(i, p1) A[p0 + i] = A1[i];\n    }\n  }\n\n  // xor \u3057\u305F\
-    \u7D50\u679C\u304C [a, b) \u306B\u53CE\u307E\u308B\u3082\u306E\u3092\u6570\u3048\
-    \u308B\n  // \u500B\u6570\u304A\u3088\u3073\u548C\u3092\u8FD4\u3059\n  pair<int,\
-    \ X> count(int L, int R, T a, T b, T xor_val = 0) {\n    auto [c1, s1] = prefix_count(L,\
-    \ R, a, xor_val);\n    auto [c2, s2] = prefix_count(L, R, b, xor_val);\n    return\
-    \ {c2 - c1, MX::op(MX::inverse(s1), s2)};\n  }\n\n  // xor \u3057\u305F\u7D50\u679C\
-    \u304C [0, x) \u306B\u53CE\u307E\u308B\u3082\u306E\u3092\u6570\u3048\u308B\n \
-    \ // \u500B\u6570\u304A\u3088\u3073\u548C\u3092\u8FD4\u3059\n  pair<int, X> prefix_count(int\
-    \ L, int R, T x, T xor_val = 0) {\n    if (xor_val != 0) assert(set_log);\n  \
-    \  x = (COMPRESS ? LB(key, x) : x);\n    if (x >= (1 << lg)) return {R - L, get(lg,\
-    \ L, R)};\n    int cnt = 0;\n    X sm = MX::unit();\n    FOR_R(d, lg) {\n    \
-    \  bool add = (x >> d) & 1;\n      bool f = ((xor_val) >> d) & 1;\n      int l0\
-    \ = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n      int kf = (f ? (R - L) - (r0\
-    \ - l0) : (r0 - l0));\n      if (add) {\n        cnt += kf;\n        if (f) {\n\
-    \          sm = MX::op(sm, get(d, L + mid[d] - l0, R + mid[d] - r0));\n      \
-    \    L = l0, R = r0;\n        } else {\n          sm = MX::op(sm, get(d, l0, r0));\n\
-    \          L = L + mid[d] - l0, R = R + mid[d] - r0;\n        }\n      } else\
-    \ {\n        if (!f) L = l0, R = r0;\n        if (f) L += mid[d] - l0, R += mid[d]\
-    \ - r0;\n      }\n    }\n    return {cnt, sm};\n  }\n\n  // [L, R) \u306E\u4E2D\
-    \u3067 k \u756A\u76EE\u3001\u304A\u3088\u3073\u3001\u4E0B\u4F4D k \u500B\u306E\
-    \u548C\n  // k = R-L \u306E\u3068\u304D\u306E first \u306F\u3001INF \u3092\u8FD4\
-    \u3059\n  pair<T, X> kth(int L, int R, int k, T xor_val = 0) {\n    if (xor_val\
-    \ != 0) assert(set_log);\n    if (k == R - L) return {INF, get(lg, L, R)};\n \
-    \   assert(0 <= k && k < R - L);\n    T ret = 0;\n    X sm = 0;\n    for (int\
-    \ d = lg - 1; d >= 0; --d) {\n      bool f = (xor_val >> d) & 1;\n      int l0\
-    \ = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n      int kf = (f ? (R - L) - (r0\
-    \ - l0) : (r0 - l0));\n      if (k < kf) {\n        if (!f) L = l0, R = r0;\n\
-    \        if (f) L += mid[d] - l0, R += mid[d] - r0;\n      } else {\n        k\
-    \ -= kf, ret |= T(1) << d;\n        if (f) {\n          sm = MX::op(sm, get(d,\
-    \ L + mid[d] - l0, R + mid[d] - r0));\n          L = l0, R = r0;\n        } else\
-    \ {\n          sm = MX::op(sm, get(d, l0, r0));\n          L = L + mid[d] - l0,\
-    \ R = R + mid[d] - r0;\n        }\n      }\n    }\n    if (k) sm = MX::op(sm,\
-    \ get(0, L, L + k));\n    return {(COMPRESS ? key[ret] : ret), sm};\n  }\n\n \
-    \ // check(prefix sum) \u304C true \u3068\u306A\u308B\u4E0A\u9650\u306E\u6700\u5927\
-    \u5024\n  template <typename F>\n  T max_right_value(F check, int L, int R, T\
-    \ xor_val = 0) {\n    assert(check(MX::unit()));\n    if (xor_val != 0) assert(set_log);\n\
-    \    if (check(get(lg, L, R))) return INF;\n    T ret = 0;\n    X sm = MX::unit();\n\
+    \ bool set_log;\n  vvc<X> cumsum;\n\n  Wavelet_Matrix_Sum(vc<T> A, int log = -1)\n\
+    \      : Wavelet_Matrix_Sum([](int a) -> X { return a; }, A, log) {}\n\n  template\
+    \ <typename FUNC>\n  Wavelet_Matrix_Sum(FUNC F, vector<T> A, int log = -1)\n \
+    \     : N(len(A)), lg(log), set_log(log != -1) {\n    if (COMPRESS) {\n      assert(!set_log);\n\
+    \      key.reserve(N);\n      vc<int> I = argsort(A);\n      for (auto&& i: I)\
+    \ {\n        if (key.empty() || key.back() != A[i]) key.eb(A[i]);\n        A[i]\
+    \ = len(key) - 1;\n      }\n      key.shrink_to_fit();\n    }\n    if (lg == -1)\
+    \ lg = __lg(max<ll>(MAX(A), 1)) + 1;\n    mid.resize(lg);\n    bv.assign(lg, Bit_Vector(N));\n\
+    \    cumsum.assign(1 + lg, vc<X>(N + 1, MX::unit()));\n    vc<T> A0(N), A1(N);\n\
+    \    FOR_R(d, -1, lg) {\n      int p0 = 0, p1 = 0;\n      FOR(i, N) {\n      \
+    \  X x = F(COMPRESS ? key[A[i]] : A[i]);\n        cumsum[d + 1][i + 1] = MX::op(cumsum[d\
+    \ + 1][i], x);\n      }\n      if (d == -1) break;\n      FOR(i, N) {\n      \
+    \  bool f = (A[i] >> d & 1);\n        if (!f) A0[p0++] = A[i];\n        if (f)\
+    \ bv[d].set(i), A1[p1++] = A[i];\n      }\n      mid[d] = p0;\n      bv[d].build();\n\
+    \      swap(A, A0);\n      FOR(i, p1) A[p0 + i] = A1[i];\n    }\n  }\n\n  // xor\
+    \ \u3057\u305F\u7D50\u679C\u304C [a, b) \u306B\u53CE\u307E\u308B\u3082\u306E\u3092\
+    \u6570\u3048\u308B\n  // \u500B\u6570\u304A\u3088\u3073\u548C\u3092\u8FD4\u3059\
+    \n  pair<int, X> count(int L, int R, T a, T b, T xor_val = 0) {\n    auto [c1,\
+    \ s1] = prefix_count(L, R, a, xor_val);\n    auto [c2, s2] = prefix_count(L, R,\
+    \ b, xor_val);\n    return {c2 - c1, MX::op(MX::inverse(s1), s2)};\n  }\n\n  //\
+    \ xor \u3057\u305F\u7D50\u679C\u304C [0, x) \u306B\u53CE\u307E\u308B\u3082\u306E\
+    \u3092\u6570\u3048\u308B\n  // \u500B\u6570\u304A\u3088\u3073\u548C\u3092\u8FD4\
+    \u3059\n  pair<int, X> prefix_count(int L, int R, T x, T xor_val = 0) {\n    if\
+    \ (xor_val != 0) assert(set_log);\n    x = (COMPRESS ? LB(key, x) : x);\n    if\
+    \ (x >= (1 << lg)) return {R - L, get(lg, L, R)};\n    int cnt = 0;\n    X sm\
+    \ = MX::unit();\n    FOR_R(d, lg) {\n      bool add = (x >> d) & 1;\n      bool\
+    \ f = ((xor_val) >> d) & 1;\n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R,\
+    \ 0);\n      int kf = (f ? (R - L) - (r0 - l0) : (r0 - l0));\n      if (add) {\n\
+    \        cnt += kf;\n        if (f) {\n          sm = MX::op(sm, get(d, L + mid[d]\
+    \ - l0, R + mid[d] - r0));\n          L = l0, R = r0;\n        } else {\n    \
+    \      sm = MX::op(sm, get(d, l0, r0));\n          L = L + mid[d] - l0, R = R\
+    \ + mid[d] - r0;\n        }\n      } else {\n        if (!f) L = l0, R = r0;\n\
+    \        if (f) L += mid[d] - l0, R += mid[d] - r0;\n      }\n    }\n    return\
+    \ {cnt, sm};\n  }\n\n  // [L, R) \u306E\u4E2D\u3067 k \u756A\u76EE\u3001\u304A\
+    \u3088\u3073\u3001\u4E0B\u4F4D k \u500B\u306E\u548C\n  // k = R-L \u306E\u3068\
+    \u304D\u306E first \u306F\u3001INF<T> \u3092\u8FD4\u3059\n  pair<T, X> kth(int\
+    \ L, int R, int k, T xor_val = 0) {\n    if (xor_val != 0) assert(set_log);\n\
+    \    if (k == R - L) return {INF<T>, get(lg, L, R)};\n    assert(0 <= k && k <\
+    \ R - L);\n    T ret = 0;\n    X sm = 0;\n    for (int d = lg - 1; d >= 0; --d)\
+    \ {\n      bool f = (xor_val >> d) & 1;\n      int l0 = bv[d].rank(L, 0), r0 =\
+    \ bv[d].rank(R, 0);\n      int kf = (f ? (R - L) - (r0 - l0) : (r0 - l0));\n \
+    \     if (k < kf) {\n        if (!f) L = l0, R = r0;\n        if (f) L += mid[d]\
+    \ - l0, R += mid[d] - r0;\n      } else {\n        k -= kf, ret |= T(1) << d;\n\
+    \        if (f) {\n          sm = MX::op(sm, get(d, L + mid[d] - l0, R + mid[d]\
+    \ - r0));\n          L = l0, R = r0;\n        } else {\n          sm = MX::op(sm,\
+    \ get(d, l0, r0));\n          L = L + mid[d] - l0, R = R + mid[d] - r0;\n    \
+    \    }\n      }\n    }\n    if (k) sm = MX::op(sm, get(0, L, L + k));\n    return\
+    \ {(COMPRESS ? key[ret] : ret), sm};\n  }\n\n  // check(prefix sum) \u304C true\
+    \ \u3068\u306A\u308B\u4E0A\u9650\u306E\u6700\u5927\u5024 (or INF<T>)\n  template\
+    \ <typename F>\n  T max_right_value(F check, int L, int R, T xor_val = 0) {\n\
+    \    assert(check(MX::unit()));\n    if (xor_val != 0) assert(set_log);\n    if\
+    \ (check(get(lg, L, R))) return INF<T>;\n    T ret = 0;\n    X sm = MX::unit();\n\
     \    for (int d = lg - 1; d >= 0; --d) {\n      bool f = ((xor_val) >> d) & 1;\n\
     \      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n      X lo_sm = (f ?\
     \ get(d, L + mid[d] - l0, R + mid[d] - r0) : get(d, l0, r0));\n      if (check(MX::op(sm,\
@@ -208,7 +208,7 @@ data:
   isVerificationFile: false
   path: ds/wavelet_matrix_sum.hpp
   requiredBy: []
-  timestamp: '2022-12-13 09:39:12+09:00'
+  timestamp: '2023-02-01 22:47:27+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/924.test.cpp

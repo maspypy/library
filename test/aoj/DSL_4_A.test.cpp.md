@@ -39,20 +39,21 @@ data:
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
     using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
     \ntemplate <class T>\nconstexpr T INF = 0;\ntemplate <>\nconstexpr int INF<int>\
-    \ = 1'000'000'000;\ntemplate <>\nconstexpr ll INF<ll> = ll(INF<int>) * INF<int>;\n\
-    template <>\nconstexpr u32 INF<u32> = INF<int>;\ntemplate <>\nconstexpr u64 INF<u64>\
-    \ = INF<ll>;\ntemplate <>\nconstexpr i128 INF<i128> = i128(INF<ll>) * INF<ll>;\n\
-    template <>\nconstexpr double INF<double> = INF<ll>;\ntemplate <>\nconstexpr long\
-    \ double INF<long double> = INF<ll>;\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\n\
-    template <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
-    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
-    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
-    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
-    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    \ = 1'000'000'000;\ntemplate <>\nconstexpr ll INF<ll> = ll(INF<int>) * INF<int>\
+    \ * 2;\ntemplate <>\nconstexpr u32 INF<u32> = INF<int>;\ntemplate <>\nconstexpr\
+    \ u64 INF<u64> = INF<ll>;\ntemplate <>\nconstexpr i128 INF<i128> = i128(INF<ll>)\
+    \ * INF<ll>;\ntemplate <>\nconstexpr double INF<double> = INF<ll>;\ntemplate <>\n\
+    constexpr long double INF<long double> = INF<ll>;\n\nusing pi = pair<ll, ll>;\n\
+    using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
+    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
+    \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
+    template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
+    #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
+    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
+    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
+    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
+    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
@@ -283,21 +284,21 @@ data:
     \n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\
     \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
     \ X &x, const A &a, const ll &size) {\r\n    auto [xmin, xmincnt] = x;\r\n   \
-    \ if (xmin == numeric_limits<ll>::max()) return x;\r\n    return {xmin + a, xmincnt};\r\
-    \n  }\r\n};\r\n#line 3 \"other/rectangle_union.hpp\"\n\r\ntemplate <typename XY\
-    \ = int>\r\nstruct Rectangle_Union {\r\n  using RECT = tuple<XY, XY, XY, XY>;\r\
-    \n  vc<RECT> rectangles;\r\n  vc<XY> X, Y;\r\n\r\n  void add_rect(int xl, int\
-    \ xr, int yl, int yr) {\r\n    assert(xl < xr && yl < yr);\r\n    X.eb(xl), X.eb(xr),\
-    \ Y.eb(yl), Y.eb(yr);\r\n    rectangles.eb(xl, xr, yl, yr);\r\n  }\r\n\r\n  template\
-    \ <typename ANS_TYPE = ll>\r\n  ANS_TYPE calc() {\r\n    UNIQUE(X), UNIQUE(Y);\r\
-    \n    int N = len(X);\r\n    vc<vc<pair<int, int>>> add(N), rm(N);\r\n    for\
-    \ (auto &&[xl, xr, yl, yr]: rectangles) {\r\n      xl = LB(X, xl), xr = LB(X,\
-    \ xr);\r\n      yl = LB(Y, yl), yr = LB(Y, yr);\r\n      add[xl].eb(yl, yr);\r\
-    \n      rm[xr].eb(yl, yr);\r\n    }\r\n\r\n    using AM = ActedMonoid_MinMincnt_Add<XY>;\r\
-    \n    using T = typename AM::Monoid_X::value_type;\r\n    Lazy_SegTree<AM> seg(len(Y)\
-    \ - 1, [&](int i) -> T {\r\n      return {0, Y[i + 1] - Y[i]};\r\n    });\r\n\
-    \    ANS_TYPE ANS = 0;\r\n    FOR(i, len(X) - 1) {\r\n      ANS_TYPE dx = X[i\
-    \ + 1] - X[i];\r\n      for (auto &&[yl, yr]: add[i]) seg.apply(yl, yr, 1);\r\n\
+    \ if (xmin == INF<E>) return x;\r\n    return {xmin + a, xmincnt};\r\n  }\r\n\
+    };\r\n#line 3 \"other/rectangle_union.hpp\"\n\r\ntemplate <typename XY = int>\r\
+    \nstruct Rectangle_Union {\r\n  using RECT = tuple<XY, XY, XY, XY>;\r\n  vc<RECT>\
+    \ rectangles;\r\n  vc<XY> X, Y;\r\n\r\n  void add_rect(int xl, int xr, int yl,\
+    \ int yr) {\r\n    assert(xl < xr && yl < yr);\r\n    X.eb(xl), X.eb(xr), Y.eb(yl),\
+    \ Y.eb(yr);\r\n    rectangles.eb(xl, xr, yl, yr);\r\n  }\r\n\r\n  template <typename\
+    \ ANS_TYPE = ll>\r\n  ANS_TYPE calc() {\r\n    UNIQUE(X), UNIQUE(Y);\r\n    int\
+    \ N = len(X);\r\n    vc<vc<pair<int, int>>> add(N), rm(N);\r\n    for (auto &&[xl,\
+    \ xr, yl, yr]: rectangles) {\r\n      xl = LB(X, xl), xr = LB(X, xr);\r\n    \
+    \  yl = LB(Y, yl), yr = LB(Y, yr);\r\n      add[xl].eb(yl, yr);\r\n      rm[xr].eb(yl,\
+    \ yr);\r\n    }\r\n\r\n    using AM = ActedMonoid_MinMincnt_Add<XY>;\r\n    using\
+    \ T = typename AM::Monoid_X::value_type;\r\n    Lazy_SegTree<AM> seg(len(Y) -\
+    \ 1, [&](int i) -> T {\r\n      return {0, Y[i + 1] - Y[i]};\r\n    });\r\n  \
+    \  ANS_TYPE ANS = 0;\r\n    FOR(i, len(X) - 1) {\r\n      ANS_TYPE dx = X[i +\
+    \ 1] - X[i];\r\n      for (auto &&[yl, yr]: add[i]) seg.apply(yl, yr, 1);\r\n\
     \      for (auto &&[yl, yr]: rm[i]) seg.apply(yl, yr, -1);\r\n      auto [min,\
     \ mincnt] = seg.prod_all();\r\n      ANS_TYPE n = Y.back() - Y[0];\r\n      if\
     \ (min == 0) n -= mincnt;\r\n      ANS += n * dx;\r\n    }\r\n    return ANS;\r\
@@ -325,7 +326,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_4_A.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 22:25:49+09:00'
+  timestamp: '2023-02-01 22:47:27+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DSL_4_A.test.cpp

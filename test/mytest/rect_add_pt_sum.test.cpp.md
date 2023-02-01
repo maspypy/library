@@ -39,19 +39,19 @@ data:
     \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
     \ u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nconstexpr\
     \ T INF = 0;\ntemplate <>\nconstexpr int INF<int> = 1'000'000'000;\ntemplate <>\n\
-    constexpr ll INF<ll> = ll(INF<int>) * INF<int>;\ntemplate <>\nconstexpr u32 INF<u32>\
-    \ = INF<int>;\ntemplate <>\nconstexpr u64 INF<u64> = INF<ll>;\ntemplate <>\nconstexpr\
-    \ i128 INF<i128> = i128(INF<ll>) * INF<ll>;\ntemplate <>\nconstexpr double INF<double>\
-    \ = INF<ll>;\ntemplate <>\nconstexpr long double INF<long double> = INF<ll>;\n\
-    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
-    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
-    \ greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h,\
-    \ vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>>\
-    \ name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define\
-    \ vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
+    constexpr ll INF<ll> = ll(INF<int>) * INF<int> * 2;\ntemplate <>\nconstexpr u32\
+    \ INF<u32> = INF<int>;\ntemplate <>\nconstexpr u64 INF<u64> = INF<ll>;\ntemplate\
+    \ <>\nconstexpr i128 INF<i128> = i128(INF<ll>) * INF<ll>;\ntemplate <>\nconstexpr\
+    \ double INF<double> = INF<ll>;\ntemplate <>\nconstexpr long double INF<long double>\
+    \ = INF<ll>;\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class\
+    \ T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
+    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
+    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
+    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
     \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
@@ -266,43 +266,42 @@ data:
     \ {\n        if (len(keyX) == 0 || keyX.back() != a) { keyX.eb(a); }\n       \
     \ a = len(keyX) - 1;\n      }\n      for (auto &&[y, x1, x2, g]: rect) x1 = LB(keyX,\
     \ x1), x2 = LB(keyX, x2);\n      NX = len(keyX);\n    }\n    if (SMALL_X) {\n\
-    \      XY mx = numeric_limits<XY>::max();\n      for (auto &&[i, x, y]: point)\
-    \ chmin(mx, x);\n      for (auto &&[i, x, y]: point) x -= mx, chmax(NX, x + 1);\n\
-    \      for (auto &&[y, x1, x2, g]: rect) {\n        x1 -= mx, x2 -= mx;\n    \
-    \    x1 = max(0, min<int>(x1, NX)), x2 = max(0, min<int>(x2, NX));\n      }\n\
-    \    }\n\n    sort(all(point),\n         [&](auto &x, auto &y) -> bool { return\
-    \ get<2>(x) < get<2>(y); });\n    sort(all(rect),\n         [&](auto &x, auto\
-    \ &y) -> bool { return get<0>(x) < get<0>(y); });\n    FenwickTree<AbelGroup>\
-    \ bit(NX);\n    vc<G> res(Q, AbelGroup::unit());\n    int j = 0;\n    FOR(i, Q)\
-    \ {\n      auto [q, x, y] = point[i];\n      while (j < N && get<0>(rect[j]) <=\
-    \ y) {\n        auto [yy, x1, x2, g] = rect[j++];\n        bit.add(x1, g), bit.add(x2,\
-    \ AbelGroup::inverse(g));\n      }\n      res[q] = bit.sum(x + 1);\n    }\n  \
-    \  return res;\n  }\n};\n#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct\
-    \ modint {\n  int val;\n  constexpr modint(ll x = 0) noexcept {\n    if (0 <=\
-    \ x && x < mod)\n      val = x;\n    else {\n      x %= mod;\n      val = (x <\
-    \ 0 ? x + mod : x);\n    }\n  }\n  bool operator<(const modint &other) const {\n\
-    \    return val < other.val;\n  } // To use std::map\n  modint &operator+=(const\
-    \ modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n\
-    \  }\n  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >=\
-    \ mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint\
-    \ &p) {\n    val = (int)(1LL * val * p.val % mod);\n    return *this;\n  }\n \
-    \ modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return\
-    \ *this;\n  }\n  modint operator-() const { return modint(-val); }\n  modint operator+(const\
-    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
-    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
-    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
-    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
-    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
-    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
-    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
-    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t n) const {\n\
-    \    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
-    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n\
-    \  void write() { fastio::printer.write(val); }\n  void read() {\n    ll x;\n\
-    \    fastio::scanner.read(x);\n    if (x < 0 || x >= mod) x %= mod;\n    if (x\
-    \ < 0) x += mod;\n    val += x;\n  }\n#endif\n  static constexpr int get_mod()\
-    \ { return mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr bool is_modint\
-    \ = true;\n  int val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t\
+    \      XY mx = INF<XY>;\n      for (auto &&[i, x, y]: point) chmin(mx, x);\n \
+    \     for (auto &&[i, x, y]: point) x -= mx, chmax(NX, x + 1);\n      for (auto\
+    \ &&[y, x1, x2, g]: rect) {\n        x1 -= mx, x2 -= mx;\n        x1 = max(0,\
+    \ min<int>(x1, NX)), x2 = max(0, min<int>(x2, NX));\n      }\n    }\n\n    sort(all(point),\n\
+    \         [&](auto &x, auto &y) -> bool { return get<2>(x) < get<2>(y); });\n\
+    \    sort(all(rect),\n         [&](auto &x, auto &y) -> bool { return get<0>(x)\
+    \ < get<0>(y); });\n    FenwickTree<AbelGroup> bit(NX);\n    vc<G> res(Q, AbelGroup::unit());\n\
+    \    int j = 0;\n    FOR(i, Q) {\n      auto [q, x, y] = point[i];\n      while\
+    \ (j < N && get<0>(rect[j]) <= y) {\n        auto [yy, x1, x2, g] = rect[j++];\n\
+    \        bit.add(x1, g), bit.add(x2, AbelGroup::inverse(g));\n      }\n      res[q]\
+    \ = bit.sum(x + 1);\n    }\n    return res;\n  }\n};\n#line 2 \"mod/modint.hpp\"\
+    \n\ntemplate <int mod>\nstruct modint {\n  int val;\n  constexpr modint(ll x =\
+    \ 0) noexcept {\n    if (0 <= x && x < mod)\n      val = x;\n    else {\n    \
+    \  x %= mod;\n      val = (x < 0 ? x + mod : x);\n    }\n  }\n  bool operator<(const\
+    \ modint &other) const {\n    return val < other.val;\n  } // To use std::map\n\
+    \  modint &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -=\
+    \ mod;\n    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if\
+    \ ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint\
+    \ &operator*=(const modint &p) {\n    val = (int)(1LL * val * p.val % mod);\n\
+    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
+    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint(-val);\
+    \ }\n  modint operator+(const modint &p) const { return modint(*this) += p; }\n\
+    \  modint operator-(const modint &p) const { return modint(*this) -= p; }\n  modint\
+    \ operator*(const modint &p) const { return modint(*this) *= p; }\n  modint operator/(const\
+    \ modint &p) const { return modint(*this) /= p; }\n  bool operator==(const modint\
+    \ &p) const { return val == p.val; }\n  bool operator!=(const modint &p) const\
+    \ { return val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod,\
+    \ u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t *\
+    \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(int64_t\
+    \ n) const {\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n &\
+    \ 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
+    \  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val); }\n  void read()\
+    \ {\n    ll x;\n    fastio::scanner.read(x);\n    if (x < 0 || x >= mod) x %=\
+    \ mod;\n    if (x < 0) x += mod;\n    val += x;\n  }\n#endif\n  static constexpr\
+    \ int get_mod() { return mod; }\n};\n\nstruct ArbitraryModInt {\n  static constexpr\
+    \ bool is_modint = true;\n  int val;\n  ArbitraryModInt() : val(0) {}\n  ArbitraryModInt(int64_t\
     \ y)\n      : val(y >= 0 ? y % get_mod()\n                   : (get_mod() - (-y)\
     \ % get_mod()) % get_mod()) {}\n  bool operator<(const ArbitraryModInt &other)\
     \ const {\n    return val < other.val;\n  } // To use std::map<ArbitraryModInt,\
@@ -440,7 +439,7 @@ data:
   isVerificationFile: true
   path: test/mytest/rect_add_pt_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 22:25:49+09:00'
+  timestamp: '2023-02-01 22:47:27+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/rect_add_pt_sum.test.cpp

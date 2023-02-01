@@ -33,8 +33,8 @@ data:
     \ std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing u64 = unsigned\
     \ long long;\nusing i128 = __int128;\n\ntemplate <class T>\nconstexpr T INF =\
     \ 0;\ntemplate <>\nconstexpr int INF<int> = 1'000'000'000;\ntemplate <>\nconstexpr\
-    \ ll INF<ll> = ll(INF<int>) * INF<int>;\ntemplate <>\nconstexpr u32 INF<u32> =\
-    \ INF<int>;\ntemplate <>\nconstexpr u64 INF<u64> = INF<ll>;\ntemplate <>\nconstexpr\
+    \ ll INF<ll> = ll(INF<int>) * INF<int> * 2;\ntemplate <>\nconstexpr u32 INF<u32>\
+    \ = INF<int>;\ntemplate <>\nconstexpr u64 INF<u64> = INF<ll>;\ntemplate <>\nconstexpr\
     \ i128 INF<i128> = i128(INF<ll>) * INF<ll>;\ntemplate <>\nconstexpr double INF<double>\
     \ = INF<ll>;\ntemplate <>\nconstexpr long double INF<long double> = INF<ll>;\n\
     \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
@@ -222,14 +222,14 @@ data:
     \ xr, yl, yr);\r\n  }\r\n\r\n  X prod_all() { return dat[1]; }\r\n\r\nprivate:\r\
     \n  void build(int idx, vc<XY> xs, vc<XY> ys, vc<X> vs, bool divx = true) {\r\n\
     \    int n = len(xs);\r\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\
-    \n    xmin = ymin = numeric_limits<XY>::max();\r\n    xmax = ymax = numeric_limits<XY>::lowest();\r\
-    \n\r\n    FOR(i, n) {\r\n      auto x = xs[i], y = ys[i];\r\n      chmin(xmin,\
-    \ x), chmax(xmax, x), chmin(ymin, y), chmax(ymax, y);\r\n    }\r\n    if (xmin\
-    \ == xmax && ymin == ymax) {\r\n      X x = MX::unit();\r\n      for (auto&& v:\
-    \ vs) x = MX::op(x, v);\r\n      dat[idx] = x;\r\n      return;\r\n    }\r\n\r\
-    \n    int m = n / 2;\r\n    vc<int> I(n);\r\n    iota(all(I), 0);\r\n    if (divx)\
-    \ {\r\n      nth_element(I.begin(), I.begin() + m, I.end(),\r\n              \
-    \    [xs](int i, int j) { return xs[i] < xs[j]; });\r\n    } else {\r\n      nth_element(I.begin(),\
+    \n    xmin = ymin = INF<XY>;\r\n    xmax = ymax = -INF<XY>;\r\n\r\n    FOR(i,\
+    \ n) {\r\n      auto x = xs[i], y = ys[i];\r\n      chmin(xmin, x), chmax(xmax,\
+    \ x), chmin(ymin, y), chmax(ymax, y);\r\n    }\r\n    if (xmin == xmax && ymin\
+    \ == ymax) {\r\n      X x = MX::unit();\r\n      for (auto&& v: vs) x = MX::op(x,\
+    \ v);\r\n      dat[idx] = x;\r\n      return;\r\n    }\r\n\r\n    int m = n /\
+    \ 2;\r\n    vc<int> I(n);\r\n    iota(all(I), 0);\r\n    if (divx) {\r\n     \
+    \ nth_element(I.begin(), I.begin() + m, I.end(),\r\n                  [xs](int\
+    \ i, int j) { return xs[i] < xs[j]; });\r\n    } else {\r\n      nth_element(I.begin(),\
     \ I.begin() + m, I.end(),\r\n                  [ys](int i, int j) { return ys[i]\
     \ < ys[j]; });\r\n    }\r\n    xs = rearrange(xs, I), ys = rearrange(ys, I), vs\
     \ = rearrange(vs, I);\r\n    build(2 * idx + 0, {xs.begin(), xs.begin() + m},\r\
@@ -311,7 +311,7 @@ data:
   isVerificationFile: true
   path: test/mytest/kdtree_monoid.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 22:25:49+09:00'
+  timestamp: '2023-02-01 22:47:27+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/kdtree_monoid.test.cpp

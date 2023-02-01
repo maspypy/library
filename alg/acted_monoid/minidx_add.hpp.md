@@ -28,28 +28,28 @@ data:
     \ constexpr bool is_small(const X& x, const X& y) {\r\n    if (x.fi < y.fi) return\
     \ true;\r\n    if (x.fi > y.fi) return false;\r\n    return (tie_is_left ? (x.se\
     \ < y.se) : (x.se >= y.se));\r\n  }\r\n  static X op(X x, X y) { return (is_small(x,\
-    \ y) ? x : y); }\r\n  static constexpr X unit() { return {numeric_limits<T>::max(),\
-    \ -1}; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/minidx_add.hpp\"\
+    \ y) ? x : y); }\r\n  static constexpr X unit() { return {INF<T>, -1}; }\r\n \
+    \ static constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/minidx_add.hpp\"\
     \n\r\ntemplate <typename E, bool tie_is_left = true>\r\nstruct ActedMonoid_MinIdx_Add\
     \ {\r\n  using Monoid_X = Monoid_Min_Idx<E, tie_is_left>;\r\n  using Monoid_A\
     \ = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A\
     \ = typename Monoid_A::value_type;\r\n  static constexpr X act(const X &x, const\
-    \ A &a, const ll &size) {\r\n    if (x.fi == numeric_limits<E>::max()) return\
-    \ x;\r\n    return {x.fi + a, x.se};\r\n  }\r\n};\r\n"
+    \ A &a, const ll &size) {\r\n    if (x.fi == INF<E>) return x;\r\n    return {x.fi\
+    \ + a, x.se};\r\n  }\r\n};\r\n"
   code: "#include \"alg/monoid/add.hpp\"\r\n#include \"alg/monoid/min_idx.hpp\"\r\n\
     \r\ntemplate <typename E, bool tie_is_left = true>\r\nstruct ActedMonoid_MinIdx_Add\
     \ {\r\n  using Monoid_X = Monoid_Min_Idx<E, tie_is_left>;\r\n  using Monoid_A\
     \ = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A\
     \ = typename Monoid_A::value_type;\r\n  static constexpr X act(const X &x, const\
-    \ A &a, const ll &size) {\r\n    if (x.fi == numeric_limits<E>::max()) return\
-    \ x;\r\n    return {x.fi + a, x.se};\r\n  }\r\n};\r\n"
+    \ A &a, const ll &size) {\r\n    if (x.fi == INF<E>) return x;\r\n    return {x.fi\
+    \ + a, x.se};\r\n  }\r\n};\r\n"
   dependsOn:
   - alg/monoid/add.hpp
   - alg/monoid/min_idx.hpp
   isVerificationFile: false
   path: alg/acted_monoid/minidx_add.hpp
   requiredBy: []
-  timestamp: '2022-12-03 08:35:02+09:00'
+  timestamp: '2023-02-01 22:47:27+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/minidx_add.test.cpp

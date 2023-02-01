@@ -41,14 +41,14 @@ data:
     \ x, const X& y) {\r\n    if (x.fi < y.fi) return true;\r\n    if (x.fi > y.fi)\
     \ return false;\r\n    return (tie_is_left ? (x.se < y.se) : (x.se >= y.se));\r\
     \n  }\r\n  static X op(X x, X y) { return (is_small(x, y) ? x : y); }\r\n  static\
-    \ constexpr X unit() { return {numeric_limits<T>::max(), -1}; }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n"
+    \ constexpr X unit() { return {INF<T>, -1}; }\r\n  static constexpr bool commute\
+    \ = true;\r\n};\r\n"
   code: "#pragma once\r\n\r\ntemplate <typename T, bool tie_is_left = true>\r\nstruct\
     \ Monoid_Min_Idx {\r\n  using value_type = pair<T, int>;\r\n  using X = value_type;\r\
     \n  static constexpr bool is_small(const X& x, const X& y) {\r\n    if (x.fi <\
     \ y.fi) return true;\r\n    if (x.fi > y.fi) return false;\r\n    return (tie_is_left\
     \ ? (x.se < y.se) : (x.se >= y.se));\r\n  }\r\n  static X op(X x, X y) { return\
-    \ (is_small(x, y) ? x : y); }\r\n  static constexpr X unit() { return {numeric_limits<T>::max(),\
+    \ (is_small(x, y) ? x : y); }\r\n  static constexpr X unit() { return {INF<T>,\
     \ -1}; }\r\n  static constexpr bool commute = true;\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
@@ -59,7 +59,7 @@ data:
   - geo/manhattan_nns.hpp
   - string/suffix_tree.hpp
   - alg/acted_monoid/minidx_add.hpp
-  timestamp: '2022-12-01 09:04:06+09:00'
+  timestamp: '2023-02-01 22:47:27+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp

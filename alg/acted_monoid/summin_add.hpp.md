@@ -32,22 +32,22 @@ data:
     \ = Monoid_SumMin<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename\
     \ Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\n  static\
     \ constexpr X act(const X& x, const A& a, const ll& size) {\r\n    auto [xs, xm]\
-    \ = x;\r\n    xm = (xm == numeric_limits<E>::max() ? xm : xm + a);\r\n    return\
-    \ {xs + E(size) * a, xm};\r\n  }\r\n};\r\n"
+    \ = x;\r\n    xm = (xm == INF<E> ? xm : xm + a);\r\n    return {xs + E(size) *\
+    \ a, xm};\r\n  }\r\n};\r\n"
   code: "#include \"alg/monoid/summin.hpp\"\r\n#include \"alg/monoid/add.hpp\"\r\n\
     \r\ntemplate <typename E>\r\nstruct ActedMonoid_SumMin_Add {\r\n  using Monoid_X\
     \ = Monoid_SumMin<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename\
     \ Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\n  static\
     \ constexpr X act(const X& x, const A& a, const ll& size) {\r\n    auto [xs, xm]\
-    \ = x;\r\n    xm = (xm == numeric_limits<E>::max() ? xm : xm + a);\r\n    return\
-    \ {xs + E(size) * a, xm};\r\n  }\r\n};\r\n"
+    \ = x;\r\n    xm = (xm == INF<E> ? xm : xm + a);\r\n    return {xs + E(size) *\
+    \ a, xm};\r\n  }\r\n};\r\n"
   dependsOn:
   - alg/monoid/summin.hpp
   - alg/monoid/add.hpp
   isVerificationFile: false
   path: alg/acted_monoid/summin_add.hpp
   requiredBy: []
-  timestamp: '2022-12-04 15:54:38+09:00'
+  timestamp: '2023-02-01 22:47:27+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/summin_add.test.cpp

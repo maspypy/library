@@ -30,20 +30,21 @@ data:
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
     using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
     \ntemplate <class T>\nconstexpr T INF = 0;\ntemplate <>\nconstexpr int INF<int>\
-    \ = 1'000'000'000;\ntemplate <>\nconstexpr ll INF<ll> = ll(INF<int>) * INF<int>;\n\
-    template <>\nconstexpr u32 INF<u32> = INF<int>;\ntemplate <>\nconstexpr u64 INF<u64>\
-    \ = INF<ll>;\ntemplate <>\nconstexpr i128 INF<i128> = i128(INF<ll>) * INF<ll>;\n\
-    template <>\nconstexpr double INF<double> = INF<ll>;\ntemplate <>\nconstexpr long\
-    \ double INF<long double> = INF<ll>;\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\n\
-    template <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
-    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
-    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
-    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
-    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    \ = 1'000'000'000;\ntemplate <>\nconstexpr ll INF<ll> = ll(INF<int>) * INF<int>\
+    \ * 2;\ntemplate <>\nconstexpr u32 INF<u32> = INF<int>;\ntemplate <>\nconstexpr\
+    \ u64 INF<u64> = INF<ll>;\ntemplate <>\nconstexpr i128 INF<i128> = i128(INF<ll>)\
+    \ * INF<ll>;\ntemplate <>\nconstexpr double INF<double> = INF<ll>;\ntemplate <>\n\
+    constexpr long double INF<long double> = INF<ll>;\n\nusing pi = pair<ll, ll>;\n\
+    using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
+    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
+    \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
+    template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
+    #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
+    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
+    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
+    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
+    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
@@ -210,18 +211,18 @@ data:
     \ X& y) {\r\n    if (x.fi < y.fi) return true;\r\n    if (x.fi > y.fi) return\
     \ false;\r\n    return (tie_is_left ? (x.se < y.se) : (x.se >= y.se));\r\n  }\r\
     \n  static X op(X x, X y) { return (is_small(x, y) ? x : y); }\r\n  static constexpr\
-    \ X unit() { return {numeric_limits<T>::max(), -1}; }\r\n  static constexpr bool\
-    \ commute = true;\r\n};\r\n#line 2 \"convex/dynamic_lichao.hpp\"\n\n// x \u5EA7\
-    \u6A19\u306F long long \u306B\u9650\u5B9A\u3057\u3066\u3044\u308B\u3002\n// \u76F4\
-    \u7DDA\u306E\u4FC2\u6570 T \u306F double \u3084 i128 \u3082\u53EF\u80FD\u3002\n\
-    template <typename T, int NODES>\nstruct Dynamic_LiChaoTree {\n  using Mono =\
-    \ Monoid_Min_Idx<T>;\n  struct Line {\n    int idx;\n    T a, b;\n    Line(int\
-    \ idx, T a, T b) : idx(idx), a(a), b(b) {}\n    Line() : Line(-1, 0, numeric_limits<T>::max())\
-    \ {}\n    pair<T, int> operator()(T x) const { return {a * x + b, idx}; }\n  };\n\
-    \n  struct Node {\n    Line f;\n    Node *l, *r;\n  };\n\n  Node *pool;\n  int\
-    \ pid;\n  ll L, R;\n  Node *root;\n\n  Dynamic_LiChaoTree(ll L, ll R) : pid(0),\
-    \ L(L), R(R), root(nullptr) {\n    pool = new Node[NODES];\n  }\n\n  Node *new_node()\
-    \ {\n    pool[pid].f = Line();\n    return &(pool[pid++]);\n  }\n\n  void add_segment(ll\
+    \ X unit() { return {INF<T>, -1}; }\r\n  static constexpr bool commute = true;\r\
+    \n};\r\n#line 2 \"convex/dynamic_lichao.hpp\"\n\n// x \u5EA7\u6A19\u306F long\
+    \ long \u306B\u9650\u5B9A\u3057\u3066\u3044\u308B\u3002\n// \u76F4\u7DDA\u306E\
+    \u4FC2\u6570 T \u306F double \u3084 i128 \u3082\u53EF\u80FD\u3002\ntemplate <typename\
+    \ T, int NODES>\nstruct Dynamic_LiChaoTree {\n  using Mono = Monoid_Min_Idx<T>;\n\
+    \  struct Line {\n    int idx;\n    T a, b;\n    Line(int idx, T a, T b) : idx(idx),\
+    \ a(a), b(b) {}\n    Line() : Line(-1, 0, numeric_limits<T>::max()) {}\n    pair<T,\
+    \ int> operator()(T x) const { return {a * x + b, idx}; }\n  };\n\n  struct Node\
+    \ {\n    Line f;\n    Node *l, *r;\n  };\n\n  Node *pool;\n  int pid;\n  ll L,\
+    \ R;\n  Node *root;\n\n  Dynamic_LiChaoTree(ll L, ll R) : pid(0), L(L), R(R),\
+    \ root(nullptr) {\n    pool = new Node[NODES];\n  }\n\n  Node *new_node() {\n\
+    \    pool[pid].f = Line();\n    return &(pool[pid++]);\n  }\n\n  void add_segment(ll\
     \ xl, ll xr, T a, T b, int idx = -1) {\n    constexpr T INF = numeric_limits<T>::max();\n\
     \    if (a != 0) {\n      ll xlim = (INF - abs(b)) / abs(a);\n      assert(abs(xl)\
     \ < xlim);\n      assert(abs(xr) < xlim);\n    }\n    assert(L <= xl && xl < xr\
@@ -277,7 +278,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 22:25:49+09:00'
+  timestamp: '2023-02-01 22:47:27+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp

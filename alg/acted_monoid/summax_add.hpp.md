@@ -34,13 +34,13 @@ data:
     template <typename E>\nstruct ActedMonoid_SumMax_Add {\n  using Monoid_X = Monoid_SumMax<E>;\n\
     \  using Monoid_A = Monoid_Add<E>;\n  using X = typename Monoid_X::value_type;\n\
     \  using A = typename Monoid_A::value_type;\n  static constexpr X act(const X&\
-    \ x, const A& a, const ll& size) {\n    auto [xs, xm] = x;\n    xm = (xm == numeric_limits<E>::lowest()\
+    \ x, const A& a, const ll& size) {\n    auto [xs, xm] = x;\n    xm = (xm == -INF<E>\
     \ ? xm : xm + a);\n    return {xs + E(size) * a, xm};\n  }\n};\n"
   code: "#include \"alg/monoid/summax.hpp\"\n#include \"alg/monoid/add.hpp\"\n\ntemplate\
     \ <typename E>\nstruct ActedMonoid_SumMax_Add {\n  using Monoid_X = Monoid_SumMax<E>;\n\
     \  using Monoid_A = Monoid_Add<E>;\n  using X = typename Monoid_X::value_type;\n\
     \  using A = typename Monoid_A::value_type;\n  static constexpr X act(const X&\
-    \ x, const A& a, const ll& size) {\n    auto [xs, xm] = x;\n    xm = (xm == numeric_limits<E>::lowest()\
+    \ x, const A& a, const ll& size) {\n    auto [xs, xm] = x;\n    xm = (xm == -INF<E>\
     \ ? xm : xm + a);\n    return {xs + E(size) * a, xm};\n  }\n};\n"
   dependsOn:
   - alg/monoid/summax.hpp
@@ -48,7 +48,7 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/summax_add.hpp
   requiredBy: []
-  timestamp: '2022-12-04 13:46:37+09:00'
+  timestamp: '2023-02-01 22:47:27+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/summax_add.test.cpp

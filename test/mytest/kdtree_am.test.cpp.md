@@ -38,20 +38,21 @@ data:
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
     using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
     \ntemplate <class T>\nconstexpr T INF = 0;\ntemplate <>\nconstexpr int INF<int>\
-    \ = 1'000'000'000;\ntemplate <>\nconstexpr ll INF<ll> = ll(INF<int>) * INF<int>;\n\
-    template <>\nconstexpr u32 INF<u32> = INF<int>;\ntemplate <>\nconstexpr u64 INF<u64>\
-    \ = INF<ll>;\ntemplate <>\nconstexpr i128 INF<i128> = i128(INF<ll>) * INF<ll>;\n\
-    template <>\nconstexpr double INF<double> = INF<ll>;\ntemplate <>\nconstexpr long\
-    \ double INF<long double> = INF<ll>;\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\n\
-    template <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
-    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
-    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
-    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
-    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    \ = 1'000'000'000;\ntemplate <>\nconstexpr ll INF<ll> = ll(INF<int>) * INF<int>\
+    \ * 2;\ntemplate <>\nconstexpr u32 INF<u32> = INF<int>;\ntemplate <>\nconstexpr\
+    \ u64 INF<u64> = INF<ll>;\ntemplate <>\nconstexpr i128 INF<i128> = i128(INF<ll>)\
+    \ * INF<ll>;\ntemplate <>\nconstexpr double INF<double> = INF<ll>;\ntemplate <>\n\
+    constexpr long double INF<long double> = INF<ll>;\n\nusing pi = pair<ll, ll>;\n\
+    using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
+    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
+    \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
+    template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
+    #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
+    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
+    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
+    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
+    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
@@ -233,63 +234,62 @@ data:
     \ yr, a);\r\n  }\r\n\r\nprivate:\r\n  void build(int idx, vc<XY> xs, vc<XY> ys,\
     \ vc<X> vs, bool divx = true) {\r\n    int n = len(xs);\r\n    size[idx] = n;\r\
     \n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\n    xmin = ymin =\
-    \ numeric_limits<XY>::max();\r\n    xmax = ymax = numeric_limits<XY>::lowest();\r\
-    \n\r\n    FOR(i, n) {\r\n      auto x = xs[i], y = ys[i];\r\n      chmin(xmin,\
-    \ x), chmax(xmax, x), chmin(ymin, y), chmax(ymax, y);\r\n    }\r\n    if (xmin\
-    \ == xmax && ymin == ymax) {\r\n      X x = MX::unit();\r\n      for (auto&& v:\
-    \ vs) x = MX::op(x, v);\r\n      dat[idx] = x;\r\n      return;\r\n    }\r\n\r\
-    \n    int m = n / 2;\r\n    vc<int> I(n);\r\n    iota(all(I), 0);\r\n    if (divx)\
-    \ {\r\n      nth_element(I.begin(), I.begin() + m, I.end(),\r\n              \
-    \    [xs](int i, int j) { return xs[i] < xs[j]; });\r\n    } else {\r\n      nth_element(I.begin(),\
-    \ I.begin() + m, I.end(),\r\n                  [ys](int i, int j) { return ys[i]\
-    \ < ys[j]; });\r\n    }\r\n    xs = rearrange(xs, I), ys = rearrange(ys, I), vs\
-    \ = rearrange(vs, I);\r\n    build(2 * idx + 0, {xs.begin(), xs.begin() + m},\r\
-    \n          {ys.begin(), ys.begin() + m}, {vs.begin(), vs.begin() + m}, !divx);\r\
-    \n    build(2 * idx + 1, {xs.begin() + m, xs.end()}, {ys.begin() + m, ys.end()},\r\
-    \n          {vs.begin() + m, vs.end()}, !divx);\r\n    dat[idx] = MX::op(dat[2\
-    \ * idx + 0], dat[2 * idx + 1]);\r\n  }\r\n\r\n  inline bool is_leaf(int idx)\
-    \ {\r\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\n    return xmin\
-    \ == xmax && ymin == ymax;\r\n  }\r\n\r\n  inline bool isin(XY x, XY y, int idx)\
-    \ {\r\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\n    return (xmin\
-    \ <= x && x <= xmax && ymin <= y && y <= ymax);\r\n  }\r\n\r\n  void apply_at(int\
-    \ idx, A a) {\r\n    dat[idx] = AM::act(dat[idx], a, size[idx]);\r\n    if (!is_leaf(idx))\
-    \ lazy[idx] = MA::op(lazy[idx], a);\r\n  }\r\n\r\n  void push(int idx) {\r\n \
-    \   if (lazy[idx] == MA::unit()) return;\r\n    apply_at(2 * idx + 0, lazy[idx]),\
-    \ apply_at(2 * idx + 1, lazy[idx]);\r\n    lazy[idx] = MA::unit();\r\n  }\r\n\r\
-    \n  bool multiply_rec(int idx, XY x, XY y, X v) {\r\n    if (!isin(x, y, idx))\
-    \ return false;\r\n    if (is_leaf(idx)) {\r\n      dat[idx] = MX::op(dat[idx],\
-    \ v);\r\n      size[idx] += 1;\r\n      return true;\r\n    }\r\n    push(idx);\r\
-    \n    bool done = 0;\r\n    if (multiply_rec(2 * idx + 0, x, y, v)) done = 1;\r\
-    \n    if (!done && multiply_rec(2 * idx + 1, x, y, v)) done = 1;\r\n    if (done)\
-    \ {\r\n      dat[idx] = MX::op(dat[2 * idx + 0], dat[2 * idx + 1]);\r\n      size[idx]\
-    \ = size[2 * idx + 0] + size[2 * idx + 1];\r\n    }\r\n    return done;\r\n  }\r\
-    \n\r\n  X prod_rec(int idx, XY x1, XY x2, XY y1, XY y2) {\r\n    auto& [xmin,\
-    \ xmax, ymin, ymax] = closed_range[idx];\r\n    if (x2 <= xmin || xmax < x1) return\
-    \ MX::unit();\r\n    if (y2 <= ymin || ymax < y1) return MX::unit();\r\n    if\
-    \ (x1 <= xmin && xmax < x2 && y1 <= ymin && ymax < y2) { return dat[idx]; }\r\n\
-    \    push(idx);\r\n    return MX::op(prod_rec(2 * idx + 0, x1, x2, y1, y2),\r\n\
-    \                  prod_rec(2 * idx + 1, x1, x2, y1, y2));\r\n  }\r\n\r\n  void\
-    \ apply_rec(int idx, XY x1, XY x2, XY y1, XY y2, A a) {\r\n    auto& [xmin, xmax,\
-    \ ymin, ymax] = closed_range[idx];\r\n    if (x2 <= xmin || xmax < x1) return;\r\
-    \n    if (y2 <= ymin || ymax < y1) return;\r\n    if (x1 <= xmin && xmax < x2\
-    \ && y1 <= ymin && ymax < y2) {\r\n      return apply_at(idx, a);\r\n    }\r\n\
-    \    push(idx);\r\n    apply_rec(2 * idx + 0, x1, x2, y1, y2, a);\r\n    apply_rec(2\
-    \ * idx + 1, x1, x2, y1, y2, a);\r\n    dat[idx] = MX::op(dat[2 * idx + 0], dat[2\
-    \ * idx + 1]);\r\n  }\r\n};\r\n#line 2 \"alg/monoid/summax.hpp\"\n\ntemplate <typename\
-    \ E>\nstruct Monoid_SumMax {\n  using value_type = pair<E, E>;\n  using X = value_type;\n\
-    \  static X op(X x, X y) { return {x.fi + y.fi, max(x.se, y.se)}; }\n  static\
-    \ X from_element(E e) { return {e, e}; }\n  static constexpr X unit() { return\
-    \ {E(0), numeric_limits<E>::lowest()}; }\n  static constexpr bool commute = 1;\n\
-    };\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct Monoid_Add\
-    \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
-    \ &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept\
-    \ { return -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return\
-    \ X(n) * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/summax_add.hpp\"\n\n\
-    template <typename E>\nstruct ActedMonoid_SumMax_Add {\n  using Monoid_X = Monoid_SumMax<E>;\n\
-    \  using Monoid_A = Monoid_Add<E>;\n  using X = typename Monoid_X::value_type;\n\
+    \ INF<XY>;\r\n    xmax = ymax = -INF<XY>;\r\n\r\n    FOR(i, n) {\r\n      auto\
+    \ x = xs[i], y = ys[i];\r\n      chmin(xmin, x), chmax(xmax, x), chmin(ymin, y),\
+    \ chmax(ymax, y);\r\n    }\r\n    if (xmin == xmax && ymin == ymax) {\r\n    \
+    \  X x = MX::unit();\r\n      for (auto&& v: vs) x = MX::op(x, v);\r\n      dat[idx]\
+    \ = x;\r\n      return;\r\n    }\r\n\r\n    int m = n / 2;\r\n    vc<int> I(n);\r\
+    \n    iota(all(I), 0);\r\n    if (divx) {\r\n      nth_element(I.begin(), I.begin()\
+    \ + m, I.end(),\r\n                  [xs](int i, int j) { return xs[i] < xs[j];\
+    \ });\r\n    } else {\r\n      nth_element(I.begin(), I.begin() + m, I.end(),\r\
+    \n                  [ys](int i, int j) { return ys[i] < ys[j]; });\r\n    }\r\n\
+    \    xs = rearrange(xs, I), ys = rearrange(ys, I), vs = rearrange(vs, I);\r\n\
+    \    build(2 * idx + 0, {xs.begin(), xs.begin() + m},\r\n          {ys.begin(),\
+    \ ys.begin() + m}, {vs.begin(), vs.begin() + m}, !divx);\r\n    build(2 * idx\
+    \ + 1, {xs.begin() + m, xs.end()}, {ys.begin() + m, ys.end()},\r\n          {vs.begin()\
+    \ + m, vs.end()}, !divx);\r\n    dat[idx] = MX::op(dat[2 * idx + 0], dat[2 * idx\
+    \ + 1]);\r\n  }\r\n\r\n  inline bool is_leaf(int idx) {\r\n    auto& [xmin, xmax,\
+    \ ymin, ymax] = closed_range[idx];\r\n    return xmin == xmax && ymin == ymax;\r\
+    \n  }\r\n\r\n  inline bool isin(XY x, XY y, int idx) {\r\n    auto& [xmin, xmax,\
+    \ ymin, ymax] = closed_range[idx];\r\n    return (xmin <= x && x <= xmax && ymin\
+    \ <= y && y <= ymax);\r\n  }\r\n\r\n  void apply_at(int idx, A a) {\r\n    dat[idx]\
+    \ = AM::act(dat[idx], a, size[idx]);\r\n    if (!is_leaf(idx)) lazy[idx] = MA::op(lazy[idx],\
+    \ a);\r\n  }\r\n\r\n  void push(int idx) {\r\n    if (lazy[idx] == MA::unit())\
+    \ return;\r\n    apply_at(2 * idx + 0, lazy[idx]), apply_at(2 * idx + 1, lazy[idx]);\r\
+    \n    lazy[idx] = MA::unit();\r\n  }\r\n\r\n  bool multiply_rec(int idx, XY x,\
+    \ XY y, X v) {\r\n    if (!isin(x, y, idx)) return false;\r\n    if (is_leaf(idx))\
+    \ {\r\n      dat[idx] = MX::op(dat[idx], v);\r\n      size[idx] += 1;\r\n    \
+    \  return true;\r\n    }\r\n    push(idx);\r\n    bool done = 0;\r\n    if (multiply_rec(2\
+    \ * idx + 0, x, y, v)) done = 1;\r\n    if (!done && multiply_rec(2 * idx + 1,\
+    \ x, y, v)) done = 1;\r\n    if (done) {\r\n      dat[idx] = MX::op(dat[2 * idx\
+    \ + 0], dat[2 * idx + 1]);\r\n      size[idx] = size[2 * idx + 0] + size[2 * idx\
+    \ + 1];\r\n    }\r\n    return done;\r\n  }\r\n\r\n  X prod_rec(int idx, XY x1,\
+    \ XY x2, XY y1, XY y2) {\r\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\
+    \n    if (x2 <= xmin || xmax < x1) return MX::unit();\r\n    if (y2 <= ymin ||\
+    \ ymax < y1) return MX::unit();\r\n    if (x1 <= xmin && xmax < x2 && y1 <= ymin\
+    \ && ymax < y2) { return dat[idx]; }\r\n    push(idx);\r\n    return MX::op(prod_rec(2\
+    \ * idx + 0, x1, x2, y1, y2),\r\n                  prod_rec(2 * idx + 1, x1, x2,\
+    \ y1, y2));\r\n  }\r\n\r\n  void apply_rec(int idx, XY x1, XY x2, XY y1, XY y2,\
+    \ A a) {\r\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\n    if\
+    \ (x2 <= xmin || xmax < x1) return;\r\n    if (y2 <= ymin || ymax < y1) return;\r\
+    \n    if (x1 <= xmin && xmax < x2 && y1 <= ymin && ymax < y2) {\r\n      return\
+    \ apply_at(idx, a);\r\n    }\r\n    push(idx);\r\n    apply_rec(2 * idx + 0, x1,\
+    \ x2, y1, y2, a);\r\n    apply_rec(2 * idx + 1, x1, x2, y1, y2, a);\r\n    dat[idx]\
+    \ = MX::op(dat[2 * idx + 0], dat[2 * idx + 1]);\r\n  }\r\n};\r\n#line 2 \"alg/monoid/summax.hpp\"\
+    \n\ntemplate <typename E>\nstruct Monoid_SumMax {\n  using value_type = pair<E,\
+    \ E>;\n  using X = value_type;\n  static X op(X x, X y) { return {x.fi + y.fi,\
+    \ max(x.se, y.se)}; }\n  static X from_element(E e) { return {e, e}; }\n  static\
+    \ constexpr X unit() { return {E(0), numeric_limits<E>::lowest()}; }\n  static\
+    \ constexpr bool commute = 1;\n};\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate\
+    \ <typename X>\r\nstruct Monoid_Add {\r\n  using value_type = X;\r\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
+    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
+    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
+    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/summax_add.hpp\"\
+    \n\ntemplate <typename E>\nstruct ActedMonoid_SumMax_Add {\n  using Monoid_X =\
+    \ Monoid_SumMax<E>;\n  using Monoid_A = Monoid_Add<E>;\n  using X = typename Monoid_X::value_type;\n\
     \  using A = typename Monoid_A::value_type;\n  static constexpr X act(const X&\
-    \ x, const A& a, const ll& size) {\n    auto [xs, xm] = x;\n    xm = (xm == numeric_limits<E>::lowest()\
+    \ x, const A& a, const ll& size) {\n    auto [xs, xm] = x;\n    xm = (xm == -INF<E>\
     \ ? xm : xm + a);\n    return {xs + E(size) * a, xm};\n  }\n};\n#line 2 \"random/base.hpp\"\
     \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
@@ -354,7 +354,7 @@ data:
   isVerificationFile: true
   path: test/mytest/kdtree_am.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 22:25:49+09:00'
+  timestamp: '2023-02-01 22:47:27+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/kdtree_am.test.cpp

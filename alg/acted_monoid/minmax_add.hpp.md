@@ -33,22 +33,22 @@ data:
     \ = Monoid_MinMax<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename\
     \ Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\n  static\
     \ constexpr X act(const X &x, const A &a, const ll &size) {\r\n    E lo = (x.fi\
-    \ == numeric_limits<E>::max() ? x.fi : x.fi + a);\r\n    E hi = (x.se == numeric_limits<E>::lowest()\
-    \ ? x.se : x.se + a);\r\n    return {lo, hi};\r\n  }\r\n};\r\n"
+    \ == INF<E> ? x.fi : x.fi + a);\r\n    E hi = (x.se == -INF<E> ? x.se : x.se +\
+    \ a);\r\n    return {lo, hi};\r\n  }\r\n};\r\n"
   code: "#include \"alg/monoid/add.hpp\"\r\n#include \"alg/monoid/minmax.hpp\"\r\n\
     \r\ntemplate <typename E>\r\nstruct ActedMonoid_MinMax_Add {\r\n  using Monoid_X\
     \ = Monoid_MinMax<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename\
     \ Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\n  static\
     \ constexpr X act(const X &x, const A &a, const ll &size) {\r\n    E lo = (x.fi\
-    \ == numeric_limits<E>::max() ? x.fi : x.fi + a);\r\n    E hi = (x.se == numeric_limits<E>::lowest()\
-    \ ? x.se : x.se + a);\r\n    return {lo, hi};\r\n  }\r\n};\r\n"
+    \ == INF<E> ? x.fi : x.fi + a);\r\n    E hi = (x.se == -INF<E> ? x.se : x.se +\
+    \ a);\r\n    return {lo, hi};\r\n  }\r\n};\r\n"
   dependsOn:
   - alg/monoid/add.hpp
   - alg/monoid/minmax.hpp
   isVerificationFile: false
   path: alg/acted_monoid/minmax_add.hpp
   requiredBy: []
-  timestamp: '2022-12-03 08:35:02+09:00'
+  timestamp: '2023-02-01 22:47:27+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/minmax_add.test.cpp

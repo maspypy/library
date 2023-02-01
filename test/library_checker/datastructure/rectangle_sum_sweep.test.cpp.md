@@ -33,20 +33,21 @@ data:
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
     using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
     \ntemplate <class T>\nconstexpr T INF = 0;\ntemplate <>\nconstexpr int INF<int>\
-    \ = 1'000'000'000;\ntemplate <>\nconstexpr ll INF<ll> = ll(INF<int>) * INF<int>;\n\
-    template <>\nconstexpr u32 INF<u32> = INF<int>;\ntemplate <>\nconstexpr u64 INF<u64>\
-    \ = INF<ll>;\ntemplate <>\nconstexpr i128 INF<i128> = i128(INF<ll>) * INF<ll>;\n\
-    template <>\nconstexpr double INF<double> = INF<ll>;\ntemplate <>\nconstexpr long\
-    \ double INF<long double> = INF<ll>;\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\n\
-    template <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
-    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
-    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
-    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
-    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    \ = 1'000'000'000;\ntemplate <>\nconstexpr ll INF<ll> = ll(INF<int>) * INF<int>\
+    \ * 2;\ntemplate <>\nconstexpr u32 INF<u32> = INF<int>;\ntemplate <>\nconstexpr\
+    \ u64 INF<u64> = INF<ll>;\ntemplate <>\nconstexpr i128 INF<i128> = i128(INF<ll>)\
+    \ * INF<ll>;\ntemplate <>\nconstexpr double INF<double> = INF<ll>;\ntemplate <>\n\
+    constexpr long double INF<long double> = INF<ll>;\n\nusing pi = pair<ll, ll>;\n\
+    using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
+    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
+    \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
+    template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
+    #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
+    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
+    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
+    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
+    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
@@ -256,26 +257,26 @@ data:
     \ (len(keyX) == 0 || keyX.back() != a) { keyX.eb(a); }\r\n        a = len(keyX)\
     \ - 1;\r\n      }\r\n      for (auto &&[xl, xr, yl, yr]: rect) {\r\n        xl\
     \ = LB(keyX, xl);\r\n        xr = LB(keyX, xr);\r\n      }\r\n      NX = len(keyX);\r\
-    \n    }\r\n    if (SMALL_X) {\r\n      XY mx = numeric_limits<XY>::max();\r\n\
-    \      for (auto &&[x, y, g]: point) chmin(mx, x);\r\n      for (auto &&[x, y,\
-    \ g]: point) x -= mx, chmax(NX, x + 1);\r\n      for (auto &&[xl, xr, yl, yr]:\
-    \ rect) {\r\n        xl -= mx, xr -= mx;\r\n        xl = max(0, min<int>(xl, NX));\r\
-    \n        xr = max(0, min<int>(xr, NX));\r\n      }\r\n    }\r\n\r\n    vc<tuple<XY,\
-    \ int, int, int>> event(Q + Q);\r\n    FOR(q, Q) {\r\n      auto &[xl, xr, yl,\
-    \ yr] = rect[q];\r\n      event[2 * q] = {yl, xl, xr, 2 * q};\r\n      event[2\
-    \ * q + 1] = {yr, xl, xr, 2 * q + 1};\r\n    }\r\n    sort(all(point),\r\n   \
-    \      [&](auto &x, auto &y) -> bool { return get<1>(x) < get<1>(y); });\r\n \
-    \   sort(all(event),\r\n         [&](auto &x, auto &y) -> bool { return get<0>(x)\
-    \ < get<0>(y); });\r\n\r\n    FenwickTree<AbelGroup> bit(NX);\r\n    vc<G> res(Q,\
-    \ AbelGroup::unit());\r\n    int j = 0;\r\n    for (auto &&[y, xl, xr, qq]: event)\
-    \ {\r\n      while (j < N && get<1>(point[j]) < y) {\r\n        bit.add(get<0>(point[j]),\
-    \ get<2>(point[j]));\r\n        ++j;\r\n      }\r\n      G g = bit.sum(xl, xr);\r\
-    \n      int q = qq / 2;\r\n      if (qq % 2 == 0) g = AbelGroup::inverse(g);\r\
-    \n      res[q] = AbelGroup::op(res[q], g);\r\n    }\r\n    return res;\r\n  }\r\
-    \n};\n#line 8 \"test/library_checker/datastructure/rectangle_sum_sweep.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  Point_Add_Rectangle_Sum<Monoid_Add<ll>, int>\
-    \ RS;\n  FOR(N) {\n    LL(x, y, w);\n    RS.add_query(x, y, w);\n  }\n  FOR(Q)\
-    \ {\n    LL(l, d, r, u);\n    RS.sum_query(l, r, d, u);\n  }\n  auto ANS = RS.calc();\n\
+    \n    }\r\n    if (SMALL_X) {\r\n      XY mx = INF<XY>;\r\n      for (auto &&[x,\
+    \ y, g]: point) chmin(mx, x);\r\n      for (auto &&[x, y, g]: point) x -= mx,\
+    \ chmax(NX, x + 1);\r\n      for (auto &&[xl, xr, yl, yr]: rect) {\r\n       \
+    \ xl -= mx, xr -= mx;\r\n        xl = max(0, min<int>(xl, NX));\r\n        xr\
+    \ = max(0, min<int>(xr, NX));\r\n      }\r\n    }\r\n\r\n    vc<tuple<XY, int,\
+    \ int, int>> event(Q + Q);\r\n    FOR(q, Q) {\r\n      auto &[xl, xr, yl, yr]\
+    \ = rect[q];\r\n      event[2 * q] = {yl, xl, xr, 2 * q};\r\n      event[2 * q\
+    \ + 1] = {yr, xl, xr, 2 * q + 1};\r\n    }\r\n    sort(all(point),\r\n       \
+    \  [&](auto &x, auto &y) -> bool { return get<1>(x) < get<1>(y); });\r\n    sort(all(event),\r\
+    \n         [&](auto &x, auto &y) -> bool { return get<0>(x) < get<0>(y); });\r\
+    \n\r\n    FenwickTree<AbelGroup> bit(NX);\r\n    vc<G> res(Q, AbelGroup::unit());\r\
+    \n    int j = 0;\r\n    for (auto &&[y, xl, xr, qq]: event) {\r\n      while (j\
+    \ < N && get<1>(point[j]) < y) {\r\n        bit.add(get<0>(point[j]), get<2>(point[j]));\r\
+    \n        ++j;\r\n      }\r\n      G g = bit.sum(xl, xr);\r\n      int q = qq\
+    \ / 2;\r\n      if (qq % 2 == 0) g = AbelGroup::inverse(g);\r\n      res[q] =\
+    \ AbelGroup::op(res[q], g);\r\n    }\r\n    return res;\r\n  }\r\n};\n#line 8\
+    \ \"test/library_checker/datastructure/rectangle_sum_sweep.test.cpp\"\n\nvoid\
+    \ solve() {\n  LL(N, Q);\n  Point_Add_Rectangle_Sum<Monoid_Add<ll>, int> RS;\n\
+    \  FOR(N) {\n    LL(x, y, w);\n    RS.add_query(x, y, w);\n  }\n  FOR(Q) {\n \
+    \   LL(l, d, r, u);\n    RS.sum_query(l, r, d, u);\n  }\n  auto ANS = RS.calc();\n\
     \  for (auto&& x: ANS) print(x);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
     \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  solve();\n\n\
     \  return 0;\n}\n"
@@ -296,7 +297,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 22:25:49+09:00'
+  timestamp: '2023-02-01 22:47:27+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp

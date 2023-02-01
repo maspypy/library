@@ -29,20 +29,21 @@ data:
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
     using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
     \ntemplate <class T>\nconstexpr T INF = 0;\ntemplate <>\nconstexpr int INF<int>\
-    \ = 1'000'000'000;\ntemplate <>\nconstexpr ll INF<ll> = ll(INF<int>) * INF<int>;\n\
-    template <>\nconstexpr u32 INF<u32> = INF<int>;\ntemplate <>\nconstexpr u64 INF<u64>\
-    \ = INF<ll>;\ntemplate <>\nconstexpr i128 INF<i128> = i128(INF<ll>) * INF<ll>;\n\
-    template <>\nconstexpr double INF<double> = INF<ll>;\ntemplate <>\nconstexpr long\
-    \ double INF<long double> = INF<ll>;\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\n\
-    template <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
-    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
-    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
-    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
-    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    \ = 1'000'000'000;\ntemplate <>\nconstexpr ll INF<ll> = ll(INF<int>) * INF<int>\
+    \ * 2;\ntemplate <>\nconstexpr u32 INF<u32> = INF<int>;\ntemplate <>\nconstexpr\
+    \ u64 INF<u64> = INF<ll>;\ntemplate <>\nconstexpr i128 INF<i128> = i128(INF<ll>)\
+    \ * INF<ll>;\ntemplate <>\nconstexpr double INF<double> = INF<ll>;\ntemplate <>\n\
+    constexpr long double INF<long double> = INF<ll>;\n\nusing pi = pair<ll, ll>;\n\
+    using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
+    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
+    \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
+    template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
+    #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
+    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
+    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
+    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
+    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
@@ -210,15 +211,14 @@ data:
     ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"alg/monoid/add_chmin.hpp\"\
     \n\n// min(x+a,b) \u3068\u8868\u305B\u308B\u95A2\u6570\u306E\u5408\u6210\ntemplate\
     \ <typename E>\nstruct Monoid_Add_Chmin {\n  using value_type = pair<E, E>;\n\
-    \  using X = value_type;\n  static constexpr E R_INF = numeric_limits<E>::max();\n\
-    \n  static X op(X x, X y) {\n    auto [a, b] = x;\n    auto [d, e] = y;\n    a\
-    \ = a + d;\n    b = (b == R_INF ? b : b + d);\n    b = min(b, e);\n    return\
-    \ {a, b};\n  }\n\n  static E eval(X f, E x) { return min(x + f.fi, f.se); }\n\n\
-    \  static X add(E a) { return {a, R_INF}; }\n  static X chmin(E b) { return {0,\
-    \ b}; }\n\n  static constexpr X unit() { return {0, R_INF}; }\n  static constexpr\
-    \ bool commute = 0;\n};\n#line 6 \"test/mytest/add_chmin.test.cpp\"\n\nvoid test()\
-    \ {\n  int N = RNG(1, 100);\n  vc<int> X(N);\n  FOR(i, N) X[i] = RNG(-100, 100);\n\
-    \  vc<int> Y = X;\n  int Q = RNG(0, 10);\n  using Mono = Monoid_Add_Chmin<int>;\n\
+    \  using X = value_type;\n\n  static X op(X x, X y) {\n    auto [a, b] = x;\n\
+    \    auto [d, e] = y;\n    a = a + d;\n    b = (b == INF<E> ? b : b + d);\n  \
+    \  b = min(b, e);\n    return {a, b};\n  }\n\n  static E eval(X f, E x) { return\
+    \ min(x + f.fi, f.se); }\n\n  static X add(E a) { return {a, INF<E>}; }\n  static\
+    \ X chmin(E b) { return {0, b}; }\n\n  static constexpr X unit() { return {0,\
+    \ INF<E>}; }\n  static constexpr bool commute = 0;\n};\n#line 6 \"test/mytest/add_chmin.test.cpp\"\
+    \n\nvoid test() {\n  int N = RNG(1, 100);\n  vc<int> X(N);\n  FOR(i, N) X[i] =\
+    \ RNG(-100, 100);\n  vc<int> Y = X;\n  int Q = RNG(0, 10);\n  using Mono = Monoid_Add_Chmin<int>;\n\
     \  using F = typename Mono::value_type;\n  F f = Mono::unit();\n\n  FOR(Q) {\n\
     \    int t = RNG(0, 3);\n    int a = RNG(-100, 100);\n    if (t == 0) {\n    \
     \  FOR(i, N) Y[i] += a;\n      f = Mono::op(f, Mono::add(a));\n    }\n    if (t\
@@ -247,7 +247,7 @@ data:
   isVerificationFile: true
   path: test/mytest/add_chmin.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 22:25:49+09:00'
+  timestamp: '2023-02-01 22:47:27+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/add_chmin.test.cpp

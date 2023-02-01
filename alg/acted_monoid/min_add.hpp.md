@@ -45,14 +45,14 @@ data:
     \n\r\ntemplate <typename E>\r\nstruct ActedMonoid_Min_Add {\r\n  using Monoid_X\
     \ = Monoid_Min<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename\
     \ Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\n  static\
-    \ constexpr X act(const X &x, const A &a, const ll &size) {\r\n    if (x == numeric_limits<E>::max())\
+    \ constexpr X act(const X &x, const A &a, const ll &size) {\r\n    if (x == INF<E>)\
     \ return x;\r\n    return x + a;\r\n  }\r\n};\r\n"
   code: "#include \"alg/monoid/add.hpp\"\r\n#include \"alg/monoid/min.hpp\"\r\n\r\n\
     template <typename E>\r\nstruct ActedMonoid_Min_Add {\r\n  using Monoid_X = Monoid_Min<E>;\r\
     \n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\
     \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
-    \ X &x, const A &a, const ll &size) {\r\n    if (x == numeric_limits<E>::max())\
-    \ return x;\r\n    return x + a;\r\n  }\r\n};\r\n"
+    \ X &x, const A &a, const ll &size) {\r\n    if (x == INF<E>) return x;\r\n  \
+    \  return x + a;\r\n  }\r\n};\r\n"
   dependsOn:
   - alg/monoid/add.hpp
   - alg/monoid/min.hpp
@@ -60,7 +60,7 @@ data:
   path: alg/acted_monoid/min_add.hpp
   requiredBy:
   - seq/common_interval_decomposition.hpp
-  timestamp: '2022-12-03 08:35:02+09:00'
+  timestamp: '2023-02-01 22:47:27+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/DSL_2_H.test.cpp
