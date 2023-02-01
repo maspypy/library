@@ -5,14 +5,13 @@ struct MaxFlowGraph {
     Cap cap;
   };
 
-  const Cap INF;
   int N;
   vvc<Edge> G;
   vc<int> prog, level;
   Cap flow_ans;
   bool calculated;
 
-  MaxFlowGraph(int N, Cap INF) : INF(INF), N(N), calculated(0) {}
+  MaxFlowGraph(int N) : N(N), calculated(0) {}
 
   void add(int frm, int to, Cap cap) {
     assert(0 <= frm && frm < N);
@@ -34,11 +33,11 @@ struct MaxFlowGraph {
       fill(all(prog), 0);
       prog.assign(N, 0);
       while (1) {
-        Cap x = flow_dfs(source, sink, INF);
+        Cap x = flow_dfs(source, sink, INF<Cap>);
         if (x == 0) break;
         flow_ans += x;
-        chmin(flow_ans, INF);
-        if (flow_ans == INF) return flow_ans;
+        chmin(flow_ans, INF<Cap>);
+        if (flow_ans == INF<Cap>) return flow_ans;
       }
     }
     return flow_ans;

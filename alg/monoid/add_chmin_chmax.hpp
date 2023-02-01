@@ -5,8 +5,6 @@ template <typename E>
 struct Monoid_Add_Chmin_Chmax {
   using value_type = tuple<E, E, E>;
   using X = value_type;
-  static constexpr E L_INF = numeric_limits<E>::lowest();
-  static constexpr E R_INF = numeric_limits<E>::max();
 
   static X op(X x, X y) {
     auto [a, b, c] = x;
@@ -24,10 +22,10 @@ struct Monoid_Add_Chmin_Chmax {
     return max(min(x + a, b), c);
   }
 
-  static X add(E a) { return {a, R_INF, L_INF}; }
-  static X chmin(E b) { return {0, b, L_INF}; }
-  static X chmax(E c) { return {0, R_INF, c}; }
+  static X add(E a) { return {a, INF<E>, -INF<E>}; }
+  static X chmin(E b) { return {0, b, -INF<E>}; }
+  static X chmax(E c) { return {0, INF<E>, c}; }
 
-  static constexpr X unit() { return {0, R_INF, L_INF}; }
+  static constexpr X unit() { return {0, INF<E>, -INF<E>}; }
   static constexpr bool commute = 0;
 };

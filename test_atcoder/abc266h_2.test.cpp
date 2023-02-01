@@ -44,8 +44,6 @@ void solve() {
   FenwickTree_2D<Mono, ll, false> seg1(X1, Y1);
   FenwickTree_2D<Mono, ll, false> seg2(X2, Y2);
 
-  const ll INF = 1LL << 60;
-
   ll ANS = 0;
   FOR(i, N) {
     const auto [t, x, y, v] = dat[i];
@@ -55,7 +53,7 @@ void solve() {
       seg2.add(-a, a - b + c, 0);
       continue;
     }
-    ll best = -INF;
+    ll best = -INF<ll>;
     chmax(best, seg1.prefix_sum(x + 1, t - x - y + 1));
     chmax(best, seg2.prefix_sum((-x) + 1, x - y + t + 1));
     if (best < 0) continue;

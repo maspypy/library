@@ -22,8 +22,7 @@ void naive() {
     return at < bt;
   });
 
-  const ll INF = 1LL << 60;
-  vi dp(N, -INF);
+  vi dp(N, -INF<ll>);
   dp[0] = 0;
   FOR(j, N) {
     auto [tj, xj, yj, vvj] = dat[j];
@@ -79,8 +78,6 @@ void solve() {
   SegTree_2D<Mono, ll, false> seg1(X1, Y1);
   SegTree_2D<Mono, ll, false> seg2(X2, Y2);
 
-  const ll INF = 1LL << 60;
-
   ll ANS = 0;
   FOR(i, N) {
     const auto [t, x, y, v] = dat[i];
@@ -90,9 +87,9 @@ void solve() {
       seg2.multiply(a, a - b + c, 0);
       continue;
     }
-    ll best = -INF;
-    chmax(best, seg1.prod(-INF, x + 1, x + y - t, INF));
-    chmax(best, seg2.prod(x, INF, -INF, x - y + t + 1));
+    ll best = -INF<ll>;
+    chmax(best, seg1.prod(-INF<ll>, x + 1, x + y - t, INF<ll>));
+    chmax(best, seg2.prod(x, INF<ll>, -INF<ll>, x - y + t + 1));
     if (best < 0) continue;
     best += v;
     chmax(ANS, best);
