@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/larsch.hpp
     title: convex/larsch.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/smawk.hpp
     title: convex/smawk.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/705.test.cpp
     title: test/yukicoder/705.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://dic.kimiyuki.net/d-edge-shortest-path-monge
@@ -110,7 +110,7 @@ data:
   path: convex/monge.hpp
   requiredBy: []
   timestamp: '2023-01-22 16:43:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/705.test.cpp
 documentation_of: convex/monge.hpp

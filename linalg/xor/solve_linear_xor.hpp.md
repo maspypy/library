@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/QOJ5445.test.cpp
     title: test/mytest/QOJ5445.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/xor/solve_linear_xor.hpp\"\n// solve Ax = b \u3092\
@@ -53,7 +53,7 @@ data:
   path: linalg/xor/solve_linear_xor.hpp
   requiredBy: []
   timestamp: '2023-02-01 04:25:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/QOJ5445.test.cpp
 documentation_of: linalg/xor/solve_linear_xor.hpp

@@ -2,31 +2,31 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/maxplus_convolution_concave.hpp
     title: convex/maxplus_convolution_concave.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/minplus_convolution_convex.hpp
     title: convex/minplus_convolution_convex.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/monge.hpp
     title: convex/monge.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/maxplus_concave.test.cpp
     title: test/mytest/maxplus_concave.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/minplus_convex.test.cpp
     title: test/mytest/minplus_convex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/smawk.test.cpp
     title: test/mytest/smawk.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/705.test.cpp
     title: test/yukicoder/705.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/smawk.hpp\"\n// select(i,j,k) \u306F (i,j) \u3068\
@@ -65,7 +65,7 @@ data:
   - convex/minplus_convolution_convex.hpp
   - convex/monge.hpp
   timestamp: '2023-01-19 00:12:30+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/705.test.cpp
   - test/mytest/maxplus_concave.test.cpp

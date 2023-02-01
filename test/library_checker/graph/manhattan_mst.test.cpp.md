@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/manhattan_mst.hpp
     title: geo/manhattan_mst.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/manhattanmst
@@ -30,18 +30,23 @@ data:
     \ PROBLEM \"https://judge.yosupo.jp/problem/manhattanmst\"\n#line 1 \"my_template.hpp\"\
     \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n#pragma GCC\
     \ optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\
-    \nusing namespace std;\n\nusing ll = long long;\nusing pi = pair<ll, ll>;\nusing\
-    \ vi = vector<ll>;\nusing u32 = unsigned int;\nusing u64 = unsigned long long;\n\
-    using i128 = __int128;\n\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
-    \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
-    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
-    \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
-    template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
-    #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
-    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
-    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
-    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
-    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
+    \ u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nconstexpr\
+    \ T INF = 0;\ntemplate <>\nconstexpr int INF<int> = 1'000'000'000;\ntemplate <>\n\
+    constexpr ll INF<ll> = ll(INF<int>) * INF<int>;\ntemplate <>\nconstexpr u32 INF<u32>\
+    \ = INF<int>;\ntemplate <>\nconstexpr u64 INF<u64> = INF<ll>;\ntemplate <>\nconstexpr\
+    \ i128 INF<i128> = i128(INF<ll>) * INF<ll>;\ntemplate <>\nconstexpr double INF<double>\
+    \ = INF<ll>;\ntemplate <>\nconstexpr long double INF<long double> = INF<ll>;\n\
+    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
+    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h,\
+    \ vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>>\
+    \ name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define\
+    \ vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
+    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
@@ -255,26 +260,28 @@ data:
     \ assert(dat[x] < 0);\n    return -dat[x];\n  }\n\n  bool merge(int x, int y)\
     \ {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n    if\
     \ (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
-    \    return true;\n  }\n};\n#line 3 \"geo/manhattan_mst.hpp\"\n\ntemplate <typename\
-    \ T>\nGraph<T, 0> Manhattan_MST(vc<pair<T, T>>& XY) {\n  int N = XY.size();\n\
-    \  vc<tuple<T, int, int>> dat;\n  dat.reserve(4 * N);\n  vc<int> idx(N);\n  iota(all(idx),\
-    \ 0);\n\n  FOR(a, 2) {\n    for (auto&& [x, y]: XY) x = -x;\n    FOR(b, 2) {\n\
-    \      for (auto&& [x, y]: XY) swap(x, y);\n      sort(all(idx), [&](const int&\
-    \ i, const int& j) -> bool {\n        return XY[i].fi + XY[i].se < XY[j].fi +\
-    \ XY[j].se;\n      });\n\n      map<T, int> MP;\n      for (const int i: idx)\
-    \ {\n        auto& [x, y] = XY[i];\n        for (auto it = MP.lower_bound(-y);\
-    \ it != MP.end(); it = MP.erase(it)) {\n          const int j = it->se;\n    \
-    \      auto& [xj, yj] = XY[j];\n          const int dx = x - xj;\n          const\
-    \ int dy = y - yj;\n          if (dy > dx) break;\n          dat.eb(dx + dy, i,\
-    \ j);\n        }\n        MP[-y] = i;\n      }\n    }\n  }\n\n  sort(all(dat));\n\
-    \  Graph<T, 0> G(N);\n  UnionFind uf(N);\n  for (auto&& [cost, i, j]: dat) {\n\
-    \    if (uf.merge(i, j)) G.add(i, j, cost);\n  }\n  G.build();\n  return G;\n\
-    }\n#line 6 \"test/library_checker/graph/manhattan_mst.test.cpp\"\n\nvoid solve()\
-    \ {\n  LL(N);\n  using P = pair<int, int>;\n  VEC(P, XY, N);\n  auto G = Manhattan_MST<int>(XY);\n\
-    \  ll ANS = 0;\n  for (auto&& e: G.edges) { ANS += e.cost; }\n  print(ANS);\n\
-    \  for (auto&& e: G.edges) { print(e.frm, e.to); }\n}\n\nsigned main() {\n  cout\
-    \ << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\
-    \n  return 0;\n}\n"
+    \    return true;\n  }\n};\n#line 3 \"geo/manhattan_mst.hpp\"\n\n// \u6700\u5C0F\
+    \u5168\u57DF\u6728\u3092\u4F5C\u308B\u306E\u3067\u3001\u7279\u306B\u5404\u70B9\
+    \u304B\u3089\u306E\u6700\u8FD1\u70B9\u3092\u3068\u308B\u76EE\u7684\u3067\u4F7F\
+    \u3046\u3053\u3068\u3082\u3067\u304D\u308B\ntemplate <typename T>\nGraph<T, 0>\
+    \ manhattan_mst(vc<pair<T, T>>& XY) {\n  int N = XY.size();\n  vc<tuple<T, int,\
+    \ int>> dat;\n  dat.reserve(4 * N);\n  vc<int> idx(N);\n  iota(all(idx), 0);\n\
+    \n  FOR(a, 2) {\n    for (auto&& [x, y]: XY) x = -x;\n    FOR(b, 2) {\n      for\
+    \ (auto&& [x, y]: XY) swap(x, y);\n      sort(all(idx), [&](const int& i, const\
+    \ int& j) -> bool {\n        return XY[i].fi + XY[i].se < XY[j].fi + XY[j].se;\n\
+    \      });\n\n      map<T, int> MP;\n      for (const int i: idx) {\n        auto&\
+    \ [x, y] = XY[i];\n        for (auto it = MP.lower_bound(-y); it != MP.end();\
+    \ it = MP.erase(it)) {\n          const int j = it->se;\n          auto& [xj,\
+    \ yj] = XY[j];\n          const int dx = x - xj;\n          const int dy = y -\
+    \ yj;\n          if (dy > dx) break;\n          dat.eb(dx + dy, i, j);\n     \
+    \   }\n        MP[-y] = i;\n      }\n    }\n  }\n\n  sort(all(dat));\n  Graph<T,\
+    \ 0> G(N);\n  UnionFind uf(N);\n  for (auto&& [cost, i, j]: dat) {\n    if (uf.merge(i,\
+    \ j)) G.add(i, j, cost);\n  }\n  G.build();\n  return G;\n}\n#line 6 \"test/library_checker/graph/manhattan_mst.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  using P = pair<int, int>;\n  VEC(P, XY, N);\n\
+    \  auto G = Manhattan_MST<int>(XY);\n  ll ANS = 0;\n  for (auto&& e: G.edges)\
+    \ { ANS += e.cost; }\n  print(ANS);\n  for (auto&& e: G.edges) { print(e.frm,\
+    \ e.to); }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll\
+    \ T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/manhattanmst\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/manhattan_mst.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  using P = pair<int, int>;\n  VEC(P, XY, N);\n\
@@ -291,8 +298,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/manhattan_mst.test.cpp
   requiredBy: []
-  timestamp: '2023-01-19 22:23:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-02-01 22:26:10+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/manhattan_mst.test.cpp
 layout: document
