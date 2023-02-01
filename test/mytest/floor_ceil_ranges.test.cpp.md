@@ -206,16 +206,15 @@ data:
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\n#line 1 \"enumerate/ceil_range.hpp\"\n// f(q, l, r)\uFF1Aceil \u304C\
     \ q \u306B\u306A\u308B\u7BC4\u56F2\u304C [l, r)\n// q == 1 \u306E\u3068\u304D\u306B\
-    \u306F r == INF \u304C\u5165\u308B\u3053\u3068\u306B\u6CE8\u610F\ntemplate <typename\
-    \ INT_TYPE, typename F>\nvoid ceil_range(INT_TYPE N, F f, INT_TYPE INF) {\n  INT_TYPE\
-    \ q = 1, l = N, r = INF;\n  while (1) {\n    f(q, l, r);\n    if (q == N) break;\n\
-    \    r = l, q = ceil(N, l - 1), l = ceil(N, q);\n  }\n}\n#line 1 \"enumerate/floor_range.hpp\"\
-    \n// f(q, l, r)\uFF1A\u5546\u304C q \u306B\u306A\u308B\u7BC4\u56F2\u304C [l, r)\r\
-    \ntemplate <typename INT_TYPE, typename F>\r\nvoid floor_range(INT_TYPE N, F f)\
-    \ {\r\n  INT_TYPE q = 1, r = N + 1;\r\n  while (1) {\r\n    INT_TYPE l = N / (q\
-    \ + 1) + 1;\r\n    f(q, l, r);\r\n    if (q == N) break;\r\n    r = l, q = N /\
-    \ (l - 1);\r\n  }\r\n}\r\n#line 6 \"test/mytest/floor_ceil_ranges.test.cpp\"\n\
-    \nvoid test_floor() {\n  ll LIM = 1000;\n  using T = tuple<ll, ll, ll>;\n  auto\
+    \u306F r == infty<T>\ntemplate <typename T, typename F>\nvoid ceil_range(T N,\
+    \ F f) {\n  T q = 1, l = N, r = infty<T>;\n  while (1) {\n    f(q, l, r);\n  \
+    \  if (q == N) break;\n    r = l, q = ceil(N, l - 1), l = ceil(N, q);\n  }\n}\n\
+    #line 1 \"enumerate/floor_range.hpp\"\n// f(q, l, r)\uFF1A\u5546\u304C q \u306B\
+    \u306A\u308B\u7BC4\u56F2\u304C [l, r)\r\ntemplate <typename T, typename F>\r\n\
+    void floor_range(T N, F f) {\r\n  T q = 1, r = N + 1;\r\n  while (1) {\r\n   \
+    \ T l = N / (q + 1) + 1;\r\n    f(q, l, r);\r\n    if (q == N) break;\r\n    r\
+    \ = l, q = N / (l - 1);\r\n  }\r\n}\r\n#line 6 \"test/mytest/floor_ceil_ranges.test.cpp\"\
+    \n\nvoid test_floor() {\n  ll LIM = 1000;\n  using T = tuple<ll, ll, ll>;\n  auto\
     \ F = [&](ll N) -> vc<T> {\n    vc<T> dat;\n    auto f = [&](ll q, ll l, ll r)\
     \ -> void { dat.eb(q, l, r); };\n    floor_range<ll>(N, f);\n    return dat;\n\
     \  };\n  auto G = [&](ll N) -> vc<T> {\n    vvc<ll> tmp(N + 1);\n    FOR(x, 1,\
@@ -259,7 +258,7 @@ data:
   isVerificationFile: true
   path: test/mytest/floor_ceil_ranges.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:31:55+09:00'
+  timestamp: '2023-02-02 01:33:15+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/floor_ceil_ranges.test.cpp

@@ -59,25 +59,24 @@ data:
     \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
     \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/steiner_tree.hpp\"\
-    \n\n/*\n(n,m): \u30B0\u30E9\u30D5\nk: terminal size\n\u30FBO(3^kn + 2^k(n+m)log\
-    \ n)\n*/\ntemplate <typename T, typename Graph>\nT steiner_tree(Graph& G, vc<int>\
-    \ terminal, T INF) {\n  int k = len(terminal);\n  if (k <= 1) return 0;\n  int\
-    \ n = G.N;\n  vv(T, DP, 1 << k, n, INF);\n  FOR(i, k) { DP[1 << i][terminal[i]]\
-    \ = 0; }\n  FOR3(s, 1, 1 << k) {\n    auto& dp = DP[s];\n    FOR_subset(t, s)\
-    \ { FOR(v, n) chmin(dp[v], DP[t][v] + DP[s ^ t][v]); }\n    pqg<pair<T, int>>\
-    \ que;\n    FOR(v, n) que.emplace(dp[v], v);\n    while (len(que)) {\n      auto\
-    \ [dv, v] = que.top();\n      que.pop();\n      if (dv > dp[v]) continue;\n  \
-    \    for (auto&& e: G[v]) {\n        if (chmin(dp[e.to], dv + e.cost)) que.emplace(dp[e.to],\
-    \ e.to);\n      }\n    }\n  }\n  return MIN(DP.back());\n}\n"
-  code: "#include \"graph/base.hpp\"\n\n/*\n(n,m): \u30B0\u30E9\u30D5\nk: terminal\
-    \ size\n\u30FBO(3^kn + 2^k(n+m)log n)\n*/\ntemplate <typename T, typename Graph>\n\
-    T steiner_tree(Graph& G, vc<int> terminal, T INF) {\n  int k = len(terminal);\n\
-    \  if (k <= 1) return 0;\n  int n = G.N;\n  vv(T, DP, 1 << k, n, INF);\n  FOR(i,\
-    \ k) { DP[1 << i][terminal[i]] = 0; }\n  FOR3(s, 1, 1 << k) {\n    auto& dp =\
-    \ DP[s];\n    FOR_subset(t, s) { FOR(v, n) chmin(dp[v], DP[t][v] + DP[s ^ t][v]);\
-    \ }\n    pqg<pair<T, int>> que;\n    FOR(v, n) que.emplace(dp[v], v);\n    while\
-    \ (len(que)) {\n      auto [dv, v] = que.top();\n      que.pop();\n      if (dv\
-    \ > dp[v]) continue;\n      for (auto&& e: G[v]) {\n        if (chmin(dp[e.to],\
+    \n\n// O(3^kn + 2^k(n+m)log n), k: terminal size\ntemplate <typename T, typename\
+    \ GT>\nT steiner_tree(GT& G, vc<int> terminal) {\n  int k = len(terminal);\n \
+    \ if (k <= 1) return 0;\n  int n = G.N;\n  vv(T, DP, 1 << k, n, infty<T>);\n \
+    \ FOR(i, k) { DP[1 << i][terminal[i]] = 0; }\n  FOR3(s, 1, 1 << k) {\n    auto&\
+    \ dp = DP[s];\n    FOR_subset(t, s) { FOR(v, n) chmin(dp[v], DP[t][v] + DP[s ^\
+    \ t][v]); }\n    pqg<pair<T, int>> que;\n    FOR(v, n) que.emplace(dp[v], v);\n\
+    \    while (len(que)) {\n      auto [dv, v] = que.top();\n      que.pop();\n \
+    \     if (dv > dp[v]) continue;\n      for (auto&& e: G[v]) {\n        if (chmin(dp[e.to],\
+    \ dv + e.cost)) que.emplace(dp[e.to], e.to);\n      }\n    }\n  }\n  return MIN(DP.back());\n\
+    }\n"
+  code: "#include \"graph/base.hpp\"\n\n// O(3^kn + 2^k(n+m)log n), k: terminal size\n\
+    template <typename T, typename GT>\nT steiner_tree(GT& G, vc<int> terminal) {\n\
+    \  int k = len(terminal);\n  if (k <= 1) return 0;\n  int n = G.N;\n  vv(T, DP,\
+    \ 1 << k, n, infty<T>);\n  FOR(i, k) { DP[1 << i][terminal[i]] = 0; }\n  FOR3(s,\
+    \ 1, 1 << k) {\n    auto& dp = DP[s];\n    FOR_subset(t, s) { FOR(v, n) chmin(dp[v],\
+    \ DP[t][v] + DP[s ^ t][v]); }\n    pqg<pair<T, int>> que;\n    FOR(v, n) que.emplace(dp[v],\
+    \ v);\n    while (len(que)) {\n      auto [dv, v] = que.top();\n      que.pop();\n\
+    \      if (dv > dp[v]) continue;\n      for (auto&& e: G[v]) {\n        if (chmin(dp[e.to],\
     \ dv + e.cost)) que.emplace(dp[e.to], e.to);\n      }\n    }\n  }\n  return MIN(DP.back());\n\
     }\n"
   dependsOn:
@@ -85,7 +84,7 @@ data:
   isVerificationFile: false
   path: graph/steiner_tree.hpp
   requiredBy: []
-  timestamp: '2022-12-05 10:41:25+09:00'
+  timestamp: '2023-02-02 01:33:15+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/114.test.cpp

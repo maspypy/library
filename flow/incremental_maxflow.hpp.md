@@ -8,19 +8,19 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"flow/incremental_maxflow.hpp\"\n\ntemplate <typename Cap>\n\
+  bundledCode: "#line 1 \"flow/incremental_maxflow.hpp\"\ntemplate <typename Cap>\n\
     struct Incremental_MaxFlow {\n  struct Edge {\n    int to, rev;\n    Cap cap;\n\
-    \  };\n\n  int N;\n  int source, sink;\n  const Cap INF;\n  Cap flow_ans;\n  vvc<Edge>\
-    \ G;\n  vc<int> prog, level;\n\n  Incremental_MaxFlow(int N, int source, int sink,\
-    \ Cap INF)\n      : N(N), source(source), sink(sink), INF(INF), flow_ans(0) {\n\
-    \    G.resize(N);\n  }\n\n  void add(int frm, int to, Cap cap) {\n    assert(0\
-    \ <= frm && frm < N);\n    assert(0 <= to && to < N);\n    assert(Cap(0) <= cap);\n\
-    \    if (len(G) < N) G.resize(N);\n    G[frm].eb(Edge{to, (int)G[to].size(), cap});\n\
-    \    G[to].eb(Edge{frm, (int)G[frm].size() - 1, 0});\n  }\n\n  Cap flow() {\n\
-    \    while (set_level(source, sink)) {\n      fill(all(prog), 0);\n      prog.assign(N,\
-    \ 0);\n      while (1) {\n        Cap x = flow_dfs(source, sink, INF);\n     \
-    \   if (x == 0) break;\n        flow_ans += x;\n        chmin(flow_ans, INF);\n\
-    \        if (flow_ans == INF) return flow_ans;\n      }\n    }\n    return flow_ans;\n\
+    \  };\n\n  int N;\n  int source, sink;\n  Cap flow_ans;\n  vvc<Edge> G;\n  vc<int>\
+    \ prog, level;\n\n  Incremental_MaxFlow(int N, int source, int sinkF)\n      :\
+    \ N(N), source(source), sink(sink), flow_ans(0) {\n    G.resize(N);\n  }\n\n \
+    \ void add(int frm, int to, Cap cap) {\n    assert(0 <= frm && frm < N);\n   \
+    \ assert(0 <= to && to < N);\n    assert(Cap(0) <= cap);\n    if (len(G) < N)\
+    \ G.resize(N);\n    G[frm].eb(Edge{to, (int)G[to].size(), cap});\n    G[to].eb(Edge{frm,\
+    \ (int)G[frm].size() - 1, 0});\n  }\n\n  Cap flow() {\n    while (set_level(source,\
+    \ sink)) {\n      fill(all(prog), 0);\n      prog.assign(N, 0);\n      while (1)\
+    \ {\n        Cap x = flow_dfs(source, sink, infty<Cap>);\n        if (x == 0)\
+    \ break;\n        flow_ans += x;\n        chmin(flow_ans, infty<Cap>);\n     \
+    \   if (flow_ans == infty<Cap>) return flow_ans;\n      }\n    }\n    return flow_ans;\n\
     \  }\n\n  // \u6B8B\u4F59\u30B0\u30E9\u30D5\u306E\u8FBA\n  vc<tuple<int, int,\
     \ Cap>> get_edges() {\n    vc<tuple<int, int, Cap>> edges;\n    FOR(v, N) for\
     \ (auto&& e: G[v]) { edges.eb(v, e.to, e.cap); }\n    return edges;\n  }\n\nprivate:\n\
@@ -37,18 +37,18 @@ data:
     \     G[e.to][e.rev].cap += a;\n          res += a;\n          lim -= a;\n   \
     \       if (lim == 0) break;\n        }\n      }\n    }\n    return res;\n  }\n\
     };\n"
-  code: "\ntemplate <typename Cap>\nstruct Incremental_MaxFlow {\n  struct Edge {\n\
-    \    int to, rev;\n    Cap cap;\n  };\n\n  int N;\n  int source, sink;\n  const\
-    \ Cap INF;\n  Cap flow_ans;\n  vvc<Edge> G;\n  vc<int> prog, level;\n\n  Incremental_MaxFlow(int\
-    \ N, int source, int sink, Cap INF)\n      : N(N), source(source), sink(sink),\
-    \ INF(INF), flow_ans(0) {\n    G.resize(N);\n  }\n\n  void add(int frm, int to,\
-    \ Cap cap) {\n    assert(0 <= frm && frm < N);\n    assert(0 <= to && to < N);\n\
-    \    assert(Cap(0) <= cap);\n    if (len(G) < N) G.resize(N);\n    G[frm].eb(Edge{to,\
-    \ (int)G[to].size(), cap});\n    G[to].eb(Edge{frm, (int)G[frm].size() - 1, 0});\n\
-    \  }\n\n  Cap flow() {\n    while (set_level(source, sink)) {\n      fill(all(prog),\
-    \ 0);\n      prog.assign(N, 0);\n      while (1) {\n        Cap x = flow_dfs(source,\
-    \ sink, INF);\n        if (x == 0) break;\n        flow_ans += x;\n        chmin(flow_ans,\
-    \ INF);\n        if (flow_ans == INF) return flow_ans;\n      }\n    }\n    return\
+  code: "template <typename Cap>\nstruct Incremental_MaxFlow {\n  struct Edge {\n\
+    \    int to, rev;\n    Cap cap;\n  };\n\n  int N;\n  int source, sink;\n  Cap\
+    \ flow_ans;\n  vvc<Edge> G;\n  vc<int> prog, level;\n\n  Incremental_MaxFlow(int\
+    \ N, int source, int sinkF)\n      : N(N), source(source), sink(sink), flow_ans(0)\
+    \ {\n    G.resize(N);\n  }\n\n  void add(int frm, int to, Cap cap) {\n    assert(0\
+    \ <= frm && frm < N);\n    assert(0 <= to && to < N);\n    assert(Cap(0) <= cap);\n\
+    \    if (len(G) < N) G.resize(N);\n    G[frm].eb(Edge{to, (int)G[to].size(), cap});\n\
+    \    G[to].eb(Edge{frm, (int)G[frm].size() - 1, 0});\n  }\n\n  Cap flow() {\n\
+    \    while (set_level(source, sink)) {\n      fill(all(prog), 0);\n      prog.assign(N,\
+    \ 0);\n      while (1) {\n        Cap x = flow_dfs(source, sink, infty<Cap>);\n\
+    \        if (x == 0) break;\n        flow_ans += x;\n        chmin(flow_ans, infty<Cap>);\n\
+    \        if (flow_ans == infty<Cap>) return flow_ans;\n      }\n    }\n    return\
     \ flow_ans;\n  }\n\n  // \u6B8B\u4F59\u30B0\u30E9\u30D5\u306E\u8FBA\n  vc<tuple<int,\
     \ int, Cap>> get_edges() {\n    vc<tuple<int, int, Cap>> edges;\n    FOR(v, N)\
     \ for (auto&& e: G[v]) { edges.eb(v, e.to, e.cap); }\n    return edges;\n  }\n\
@@ -69,7 +69,7 @@ data:
   isVerificationFile: false
   path: flow/incremental_maxflow.hpp
   requiredBy: []
-  timestamp: '2023-01-12 22:34:19+09:00'
+  timestamp: '2023-02-02 01:33:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: flow/incremental_maxflow.hpp

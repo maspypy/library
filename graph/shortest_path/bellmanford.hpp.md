@@ -61,36 +61,36 @@ data:
     \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 3 \"graph/shortest_path/bellmanford.hpp\"\
     \n\n// \u5358\u4E00\u59CB\u70B9\u6700\u77ED\u8DEF\u3002\u8CA0\u9589\u8DEF\u3042\
     \u308A\u3067\u3082\u3088\u3044\u3002O(NM) \u6642\u9593\u3002\n// \u5230\u9054\u4E0D\
-    \u53EF\u80FD\uFF1AINF\n// \u8CA0\u9589\u8DEF\u3092\u7D4C\u7531\u3057\u3066\u3044\
-    \u304F\u3089\u3067\u3082\u5C0F\u3055\u304F\u3067\u304D\u308B\uFF1A-INF\ntemplate\
-    \ <typename T, T INF, typename Graph>\npair<vc<T>, vc<int>> BellmanFord(Graph&\
-    \ G, int s) {\n  int N = G.N;\n  vc<T> dist(N, INF);\n  vc<int> par(N, -1);\n\
-    \  dist[s] = 0;\n  int loop = 0;\n  while (1) {\n    ++loop;\n    bool upd = 0;\n\
-    \    FOR(v, N) {\n      if (dist[v] == INF) continue;\n      for (auto&& e: G[v])\
-    \ {\n        T before = dist[e.to];\n        T after = dist[v] + e.cost;\n   \
-    \     chmax(after, -INF);\n        if (before > after) {\n          par[e.to]\
-    \ = v;\n          upd = 1;\n          if (loop >= N) after = -INF;\n         \
-    \ dist[e.to] = after;\n        }\n      }\n    }\n    if (!upd) break;\n  }\n\
-    \  return {dist, par};\n}\n"
+    \u53EF\u80FD\uFF1Ainfty<T>\n// \u8CA0\u9589\u8DEF\u3092\u7D4C\u7531\u3057\u3066\
+    \u3044\u304F\u3089\u3067\u3082\u5C0F\u3055\u304F\u3067\u304D\u308B\uFF1A-infty<T>\n\
+    template <typename T, typename GT>\npair<vc<T>, vc<int>> BellmanFord(GT& G, int\
+    \ s) {\n  int N = G.N;\n  vc<T> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  dist[s]\
+    \ = 0;\n  int loop = 0;\n  while (1) {\n    ++loop;\n    bool upd = 0;\n    FOR(v,\
+    \ N) {\n      if (dist[v] == infty<T>) continue;\n      for (auto&& e: G[v]) {\n\
+    \        T before = dist[e.to];\n        T after = dist[v] + e.cost;\n       \
+    \ chmax(after, -infty<T>);\n        if (before > after) {\n          par[e.to]\
+    \ = v;\n          upd = 1;\n          if (loop >= N) after = -infty<T>;\n    \
+    \      dist[e.to] = after;\n        }\n      }\n    }\n    if (!upd) break;\n\
+    \  }\n  return {dist, par};\n}\n"
   code: "#pragma once\n#include \"graph/base.hpp\"\n\n// \u5358\u4E00\u59CB\u70B9\u6700\
     \u77ED\u8DEF\u3002\u8CA0\u9589\u8DEF\u3042\u308A\u3067\u3082\u3088\u3044\u3002\
-    O(NM) \u6642\u9593\u3002\n// \u5230\u9054\u4E0D\u53EF\u80FD\uFF1AINF\n// \u8CA0\
-    \u9589\u8DEF\u3092\u7D4C\u7531\u3057\u3066\u3044\u304F\u3089\u3067\u3082\u5C0F\
-    \u3055\u304F\u3067\u304D\u308B\uFF1A-INF\ntemplate <typename T, T INF, typename\
-    \ Graph>\npair<vc<T>, vc<int>> BellmanFord(Graph& G, int s) {\n  int N = G.N;\n\
-    \  vc<T> dist(N, INF);\n  vc<int> par(N, -1);\n  dist[s] = 0;\n  int loop = 0;\n\
+    O(NM) \u6642\u9593\u3002\n// \u5230\u9054\u4E0D\u53EF\u80FD\uFF1Ainfty<T>\n//\
+    \ \u8CA0\u9589\u8DEF\u3092\u7D4C\u7531\u3057\u3066\u3044\u304F\u3089\u3067\u3082\
+    \u5C0F\u3055\u304F\u3067\u304D\u308B\uFF1A-infty<T>\ntemplate <typename T, typename\
+    \ GT>\npair<vc<T>, vc<int>> BellmanFord(GT& G, int s) {\n  int N = G.N;\n  vc<T>\
+    \ dist(N, infty<T>);\n  vc<int> par(N, -1);\n  dist[s] = 0;\n  int loop = 0;\n\
     \  while (1) {\n    ++loop;\n    bool upd = 0;\n    FOR(v, N) {\n      if (dist[v]\
-    \ == INF) continue;\n      for (auto&& e: G[v]) {\n        T before = dist[e.to];\n\
-    \        T after = dist[v] + e.cost;\n        chmax(after, -INF);\n        if\
-    \ (before > after) {\n          par[e.to] = v;\n          upd = 1;\n         \
-    \ if (loop >= N) after = -INF;\n          dist[e.to] = after;\n        }\n   \
-    \   }\n    }\n    if (!upd) break;\n  }\n  return {dist, par};\n}\n"
+    \ == infty<T>) continue;\n      for (auto&& e: G[v]) {\n        T before = dist[e.to];\n\
+    \        T after = dist[v] + e.cost;\n        chmax(after, -infty<T>);\n     \
+    \   if (before > after) {\n          par[e.to] = v;\n          upd = 1;\n    \
+    \      if (loop >= N) after = -infty<T>;\n          dist[e.to] = after;\n    \
+    \    }\n      }\n    }\n    if (!upd) break;\n  }\n  return {dist, par};\n}\n"
   dependsOn:
   - graph/base.hpp
   isVerificationFile: false
   path: graph/shortest_path/bellmanford.hpp
   requiredBy: []
-  timestamp: '2022-12-05 10:41:25+09:00'
+  timestamp: '2023-02-02 01:33:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_1_B.test.cpp

@@ -68,7 +68,7 @@ data:
     \n  assert(len(TO) >= 1);\r\n  int N = len(FRM), M = len(TO);\r\n  vc<pair<X,\
     \ X>> points(N + M);\r\n  FOR(i, N) points[i] = FRM[i];\r\n  FOR(i, M) points[N\
     \ + i] = TO[i];\r\n  vc<X> Y(M);\r\n  FOR(i, M) Y[i] = TO[i].se;\r\n  UNIQUE(Y);\r\
-    \n\r\n  vc<int> nbd_idx(N, -1);\r\n  vc<X> dist(N, INF);\r\n\r\n  auto add_ans\
+    \n\r\n  vc<int> nbd_idx(N, -1);\r\n  vc<X> dist(N, infty<X>);\r\n\r\n  auto add_ans\
     \ = [&](int i, int j) -> void {\r\n    if (j == -1) return;\r\n    X dx = points[i].fi\
     \ - points[j].fi;\r\n    X dy = points[i].se - points[j].se;\r\n    if (chmin(dist[i],\
     \ abs(dx) + abs(dy))) nbd_idx[i] = j - N;\r\n  };\r\n\r\n  vc<int> I(N + M);\r\
@@ -88,9 +88,9 @@ data:
     \ X>> FRM, vc<pair<X, X>>& TO) {\r\n  assert(len(TO) >= 1);\r\n  int N = len(FRM),\
     \ M = len(TO);\r\n  vc<pair<X, X>> points(N + M);\r\n  FOR(i, N) points[i] = FRM[i];\r\
     \n  FOR(i, M) points[N + i] = TO[i];\r\n  vc<X> Y(M);\r\n  FOR(i, M) Y[i] = TO[i].se;\r\
-    \n  UNIQUE(Y);\r\n\r\n  vc<int> nbd_idx(N, -1);\r\n  vc<X> dist(N, INF);\r\n\r\
-    \n  auto add_ans = [&](int i, int j) -> void {\r\n    if (j == -1) return;\r\n\
-    \    X dx = points[i].fi - points[j].fi;\r\n    X dy = points[i].se - points[j].se;\r\
+    \n  UNIQUE(Y);\r\n\r\n  vc<int> nbd_idx(N, -1);\r\n  vc<X> dist(N, infty<X>);\r\
+    \n\r\n  auto add_ans = [&](int i, int j) -> void {\r\n    if (j == -1) return;\r\
+    \n    X dx = points[i].fi - points[j].fi;\r\n    X dy = points[i].se - points[j].se;\r\
     \n    if (chmin(dist[i], abs(dx) + abs(dy))) nbd_idx[i] = j - N;\r\n  };\r\n\r\
     \n  vc<int> I(N + M);\r\n  iota(all(I), 0);\r\n  sort(all(I), [&](auto& i, auto&\
     \ j) { return (points[i].fi < points[j].fi); });\r\n  auto calc = [&]() -> void\
@@ -108,7 +108,7 @@ data:
   isVerificationFile: false
   path: geo/manhattan_nns.hpp
   requiredBy: []
-  timestamp: '2023-02-01 23:31:55+09:00'
+  timestamp: '2023-02-02 01:33:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/manhattan_nns.hpp

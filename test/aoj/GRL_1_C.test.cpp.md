@@ -248,32 +248,32 @@ data:
     \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
     \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 3 \"graph/shortest_path/warshall_floyd.hpp\"\
-    \n\n/*\n\u8CA0\u8FBA\u304C\u3042\u3063\u3066\u3082\u8CA0\u9589\u8DEF\u304C\u306A\
-    \u3051\u308C\u3070\u6B63\u3057\u304F\u52D5\u4F5C\u3059\u308B\u3002\n\u8CA0\u9589\
+    \n\n// \u8CA0\u8FBA\u304C\u3042\u3063\u3066\u3082\u8CA0\u9589\u8DEF\u304C\u306A\
+    \u3051\u308C\u3070\u6B63\u3057\u304F\u52D5\u4F5C\u3059\u308B\u3002\n// \u8CA0\u9589\
     \u8DEF\u304C\u3042\u308B\u304B\u3069\u3046\u304B\u306F\u3001dist[v][v] < 0 \u3068\
     \u306A\u308B v \u304C\u3042\u308B\u304B\u3069\u3046\u304B\u3067\u5224\u5B9A\u3002\
-    \n*/\ntemplate <typename T, typename Graph>\nvc<vc<T>> warshall_floyd(Graph& G,\
-    \ T INF) {\n  ll N = G.N;\n  vv(T, dist, N, N, INF);\n  FOR(v, N) {\n    dist[v][v]\
-    \ = 0;\n    for (auto&& e: G[v]) chmin(dist[v][e.to], e.cost);\n  }\n  FOR(k,\
-    \ N) FOR(i, N) {\n    if (dist[i][k] == INF) continue;\n    FOR(j, N) {\n    \
-    \  if (dist[k][j] == INF) continue;\n      chmin(dist[i][j], dist[i][k] + dist[k][j]);\n\
+    \ntemplate <typename T, typename GT>\nvc<vc<T>> warshall_floyd(GT& G) {\n  ll\
+    \ N = G.N;\n  vv(T, dist, N, N, infty<T>);\n  FOR(v, N) {\n    dist[v][v] = 0;\n\
+    \    for (auto&& e: G[v]) chmin(dist[v][e.to], e.cost);\n  }\n  FOR(k, N) FOR(i,\
+    \ N) {\n    if (dist[i][k] == infty<T>) continue;\n    FOR(j, N) {\n      if (dist[k][j]\
+    \ == infty<T>) continue;\n      chmin(dist[i][j], dist[i][k] + dist[k][j]);\n\
     \    }\n  }\n  return dist;\n}\n#line 6 \"test/aoj/GRL_1_C.test.cpp\"\n\nvoid\
-    \ solve() {\n  LL(N, M);\n  Graph<ll, 1> G(N);\n  G.read_graph(M, 1, 0);\n  const\
-    \ ll INF = 1LL << 60;\n  auto dist = warshall_floyd<ll>(G, INF);\n  FOR(v, N)\
-    \ if (dist[v][v] < 0) return print(\"NEGATIVE CYCLE\");\n  FOR(a, N) {\n    string\
-    \ S;\n    FOR(b, N) {\n      if (b) S += \" \";\n      ll x = dist[a][b];\n  \
-    \    if (x == INF)\n        S += \"INF\";\n      else\n        S += to_string(x);\n\
-    \    }\n    print(S);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \ solve() {\n  LL(N, M);\n  Graph<ll, 1> G(N);\n  G.read_graph(M, 1, 0);\n  auto\
+    \ dist = warshall_floyd<ll>(G);\n  FOR(v, N) if (dist[v][v] < 0) return print(\"\
+    NEGATIVE CYCLE\");\n  FOR(a, N) {\n    string S;\n    FOR(b, N) {\n      if (b)\
+    \ S += \" \";\n      ll x = dist[a][b];\n      if (x == infty<ll>)\n        S\
+    \ += \"INF\";\n      else\n        S += to_string(x);\n    }\n    print(S);\n\
+    \  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
     \n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/shortest_path/warshall_floyd.hpp\"\
     \n\nvoid solve() {\n  LL(N, M);\n  Graph<ll, 1> G(N);\n  G.read_graph(M, 1, 0);\n\
-    \  const ll INF = 1LL << 60;\n  auto dist = warshall_floyd<ll>(G, INF);\n  FOR(v,\
-    \ N) if (dist[v][v] < 0) return print(\"NEGATIVE CYCLE\");\n  FOR(a, N) {\n  \
-    \  string S;\n    FOR(b, N) {\n      if (b) S += \" \";\n      ll x = dist[a][b];\n\
-    \      if (x == INF)\n        S += \"INF\";\n      else\n        S += to_string(x);\n\
-    \    }\n    print(S);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  auto dist = warshall_floyd<ll>(G);\n  FOR(v, N) if (dist[v][v] < 0) return\
+    \ print(\"NEGATIVE CYCLE\");\n  FOR(a, N) {\n    string S;\n    FOR(b, N) {\n\
+    \      if (b) S += \" \";\n      ll x = dist[a][b];\n      if (x == infty<ll>)\n\
+    \        S += \"INF\";\n      else\n        S += to_string(x);\n    }\n    print(S);\n\
+    \  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
     \n  return 0;\n}\n"
   dependsOn:
@@ -284,7 +284,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_1_C.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:18:36+09:00'
+  timestamp: '2023-02-02 01:33:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_1_C.test.cpp

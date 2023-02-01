@@ -24,20 +24,20 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"enumerate/floor_range.hpp\"\n// f(q, l, r)\uFF1A\u5546\u304C\
-    \ q \u306B\u306A\u308B\u7BC4\u56F2\u304C [l, r)\r\ntemplate <typename INT_TYPE,\
-    \ typename F>\r\nvoid floor_range(INT_TYPE N, F f) {\r\n  INT_TYPE q = 1, r =\
-    \ N + 1;\r\n  while (1) {\r\n    INT_TYPE l = N / (q + 1) + 1;\r\n    f(q, l,\
-    \ r);\r\n    if (q == N) break;\r\n    r = l, q = N / (l - 1);\r\n  }\r\n}\r\n"
+    \ q \u306B\u306A\u308B\u7BC4\u56F2\u304C [l, r)\r\ntemplate <typename T, typename\
+    \ F>\r\nvoid floor_range(T N, F f) {\r\n  T q = 1, r = N + 1;\r\n  while (1) {\r\
+    \n    T l = N / (q + 1) + 1;\r\n    f(q, l, r);\r\n    if (q == N) break;\r\n\
+    \    r = l, q = N / (l - 1);\r\n  }\r\n}\r\n"
   code: "// f(q, l, r)\uFF1A\u5546\u304C q \u306B\u306A\u308B\u7BC4\u56F2\u304C [l,\
-    \ r)\r\ntemplate <typename INT_TYPE, typename F>\r\nvoid floor_range(INT_TYPE\
-    \ N, F f) {\r\n  INT_TYPE q = 1, r = N + 1;\r\n  while (1) {\r\n    INT_TYPE l\
-    \ = N / (q + 1) + 1;\r\n    f(q, l, r);\r\n    if (q == N) break;\r\n    r = l,\
-    \ q = N / (l - 1);\r\n  }\r\n}\r\n"
+    \ r)\r\ntemplate <typename T, typename F>\r\nvoid floor_range(T N, F f) {\r\n\
+    \  T q = 1, r = N + 1;\r\n  while (1) {\r\n    T l = N / (q + 1) + 1;\r\n    f(q,\
+    \ l, r);\r\n    if (q == N) break;\r\n    r = l, q = N / (l - 1);\r\n  }\r\n}\r\
+    \n"
   dependsOn: []
   isVerificationFile: false
   path: enumerate/floor_range.hpp
   requiredBy: []
-  timestamp: '2023-01-31 20:39:54+09:00'
+  timestamp: '2023-02-02 01:33:15+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1573.test.cpp
