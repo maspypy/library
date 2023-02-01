@@ -7,7 +7,7 @@ void solve() {
   LL(N);
   Graph<ll> G(N);
   G.read_tree(1, 0);
-  auto [diam, P] = tree_diameter(G);
+  auto [diam, P] = tree_diameter<ll>(G);
   print(diam, len(P));
   print(P);
 }
