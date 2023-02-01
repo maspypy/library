@@ -1,7 +1,6 @@
 #include "ds/segtree/segtree.hpp"
 #include "alg/monoid/min_idx.hpp"
 
-// https://codeforces.com/gym/103577/problem/K
 // 点群 FRM から点群 TO への最近点探索
 // vector の pair を返す：dist, nbd_idx
 template <typename X = ll>
@@ -31,7 +30,7 @@ pair<vc<X>, vc<int>> manhattan_nns(vc<pair<X, X>> FRM, vc<pair<X, X>>& TO) {
   iota(all(I), 0);
   sort(all(I), [&](auto& i, auto& j) { return (points[i].fi < points[j].fi); });
   auto calc = [&]() -> void {
-    SegTree<Monoid_Min_Idx<ll, INF>> seg1(len(Y)), seg2(len(Y));
+    SegTree<Monoid_Min_Idx<X>> seg1(len(Y)), seg2(len(Y));
     for (auto&& i: I) {
       auto [x, y] = points[i];
       int idx = LB(Y, y);
