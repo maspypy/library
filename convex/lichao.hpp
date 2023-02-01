@@ -1,20 +1,20 @@
 
 #include "alg/monoid/min_idx.hpp"
 
-// https://atcoder.jp/contests/kupc2019/tasks/kupc2019_l
-template <typename T, int NODES>
+// 関数は (long long) -> T
+// evaluate を書き変えると、totally monotone な関数群にも使える
+template <typename T, bool PERSISTENT, int NODES>
 struct Persistent_Dynamic_LiChaoTree {
-  using Mono = Monoid_Min_Idx<T>;
-  struct Line {
-    int idx;
-    T a, b;
-    Line(int idx, T a, T b) : idx(idx), a(a), b(b) {}
-    Line() : Line(-1, 0, infty<T>) {}
-    pair<T, int> operator()(T x) const { return {a * x + b, idx}; }
-  };
+  using FUNC = pair<T, T>;
+  vc<FUNC> funcs;
+
+  static inline T evaluate(int i, ll x) {
+    auto [a, b] = funcs[i];
+    return a * x + b;
+  }
 
   struct Node {
-    Line f;
+    int fid;
     Node *l, *r;
   };
 
@@ -29,13 +29,13 @@ struct Persistent_Dynamic_LiChaoTree {
   }
 
   Node *new_node() {
-    pool[pid].f = Line();
+    pool[pid].fid = -1;
     pool[pid].l = nullptr;
     pool[pid].r = nullptr;
     return &(pool[pid++]);
   }
 
-  np add_segment(np root, ll xl, ll xr, T a, T b, int idx = -1) {
+  np add_segment(np root, ll xl, ll xr, FUNC f) {
     if (a != 0) {
       ll xlim = (infty<T> - abs(b)) / abs(a);
       assert(abs(xl) < xlim);
