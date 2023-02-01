@@ -206,11 +206,11 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <class X>\r\nstruct\
-    \ Monoid_Min {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x,\
-    \ const X &y) noexcept { return min(x, y); }\r\n  static constexpr X unit() {\
-    \ return numeric_limits<X>::max(); }\r\n  static constexpr bool commute = true;\r\
-    \n};\r\n#line 2 \"ds/segtree/dynamic_segtree_sparse.hpp\"\n\n// \u5E38\u306B\u307B\
+    \ yes(!t); }\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
+    \ Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr\
+    \ X unit() { return -INF<E>; }\r\n  static constexpr bool commute = true;\r\n\
+    };\r\n#line 2 \"ds/segtree/dynamic_segtree_sparse.hpp\"\n\n// \u5E38\u306B\u307B\
     \u3068\u3093\u3069\u306E\u8981\u7D20\u304C unit \u3067\u3042\u308B\u3053\u3068\
     \u304C\u4FDD\u8A3C\u3055\u308C\u308B\u3088\u3046\u306A\u52D5\u7684\u30BB\u30B0\
     \u6728\n// \u3057\u305F\u304C\u3063\u3066\u3001default_prod \u306E\u985E\u306F\
@@ -334,7 +334,7 @@ data:
   isVerificationFile: true
   path: test/mytest/dynamic_segtree_sparse.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 22:47:27+09:00'
+  timestamp: '2023-02-01 23:04:20+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/dynamic_segtree_sparse.test.cpp

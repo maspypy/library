@@ -10,7 +10,7 @@ data:
   - icon: ':x:'
     path: ds/disjointsparse/disjointsparse.hpp
     title: ds/disjointsparse/disjointsparse.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   - icon: ':question:'
@@ -31,36 +31,37 @@ data:
     links:
     - https://twitter.com/maspy_stars/status/1565901414236205057?s=20&t=S2Tu6ayozHcakxai8dmh4g
   bundledCode: "#line 1 \"string/suffix_tree.hpp\"\n\n#line 2 \"string/suffix_array.hpp\"\
-    \n\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <class X>\r\nstruct Monoid_Min\
-    \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
-    \ &y) noexcept { return min(x, y); }\r\n  static constexpr X unit() { return numeric_limits<X>::max();\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/disjointsparse/disjointsparse.hpp\"\
-    \n\r\ntemplate <class Monoid>\r\nstruct DisjointSparse {\r\n  using MX = Monoid;\r\
-    \n  using X = typename MX::value_type;\r\n  int n, log;\r\n  vvc<X> dat;\r\n\r\
-    \n  DisjointSparse() {}\r\n  DisjointSparse(int n) { build(n); }\r\n  template\
-    \ <typename F>\r\n  DisjointSparse(int n, F f) {\r\n    build(n, f);\r\n  }\r\n\
-    \  DisjointSparse(const vc<X>& v) { build(v); }\r\n\r\n  void build(int m) {\r\
-    \n    build(m, [](int i) -> X { return MX::unit(); });\r\n  }\r\n  void build(const\
-    \ vc<X>& v) {\r\n    build(len(v), [&](int i) -> X { return v[i]; });\r\n  }\r\
-    \n  template <typename F>\r\n  void build(int m, F f) {\r\n    n = m, log = 1;\r\
-    \n    while ((1 << log) < n) ++log;\r\n    dat.resize(log);\r\n    dat[0].reserve(n);\r\
-    \n    FOR(i, n) dat[0].eb(f(i));\r\n    FOR(i, 1, log) {\r\n      auto& v = dat[i];\r\
-    \n      v = dat[0];\r\n      int b = 1 << i;\r\n      for (int m = b; m <= n;\
-    \ m += 2 * b) {\r\n        int L = m - b, R = min(n, m + b);\r\n        FOR3_R(j,\
-    \ L + 1, m) v[j - 1] = MX::op(v[j - 1], v[j]);\r\n        FOR3(j, m, R - 1) v[j\
-    \ + 1] = MX::op(v[j], v[j + 1]);\r\n      }\r\n    }\r\n  }\r\n\r\n  X prod(int\
-    \ L, int R) {\r\n    if (L == R) return MX::unit();\r\n    --R;\r\n    if (L ==\
-    \ R) return dat[0][L];\r\n    int k = 31 - __builtin_clz(L ^ R);\r\n    return\
-    \ MX::op(dat[k][L], dat[k][R]);\r\n  }\r\n\r\n  template <class F>\r\n  int max_right(const\
-    \ F check, int L) {\r\n    assert(0 <= L && L <= n && check(MX::unit()));\r\n\
-    \    if (L == n) return n;\r\n    int ok = L, ng = n + 1;\r\n    while (ok + 1\
-    \ < ng) {\r\n      int k = (ok + ng) / 2;\r\n      bool bl = check(prod(L, k));\r\
-    \n      if (bl) ok = k;\r\n      if (!bl) ng = k;\r\n    }\r\n    return ok;\r\
-    \n  }\r\n\r\n  template <class F>\r\n  int min_left(const F check, int R) {\r\n\
-    \    assert(0 <= R && R <= n && check(MX::unit()));\r\n    if (R == 0) return\
-    \ 0;\r\n    int ok = R, ng = -1;\r\n    while (ng + 1 < ok) {\r\n      int k =\
-    \ (ok + ng) / 2;\r\n      bool bl = check(prod(k, R));\r\n      if (bl) ok = k;\r\
-    \n      if (!bl) ng = k;\r\n    }\r\n    return ok;\r\n  }\r\n};\n#line 5 \"string/suffix_array.hpp\"\
+    \n\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Min\
+    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
+    \ X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr X unit()\
+    \ { return -INF<E>; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line\
+    \ 2 \"ds/disjointsparse/disjointsparse.hpp\"\n\r\ntemplate <class Monoid>\r\n\
+    struct DisjointSparse {\r\n  using MX = Monoid;\r\n  using X = typename MX::value_type;\r\
+    \n  int n, log;\r\n  vvc<X> dat;\r\n\r\n  DisjointSparse() {}\r\n  DisjointSparse(int\
+    \ n) { build(n); }\r\n  template <typename F>\r\n  DisjointSparse(int n, F f)\
+    \ {\r\n    build(n, f);\r\n  }\r\n  DisjointSparse(const vc<X>& v) { build(v);\
+    \ }\r\n\r\n  void build(int m) {\r\n    build(m, [](int i) -> X { return MX::unit();\
+    \ });\r\n  }\r\n  void build(const vc<X>& v) {\r\n    build(len(v), [&](int i)\
+    \ -> X { return v[i]; });\r\n  }\r\n  template <typename F>\r\n  void build(int\
+    \ m, F f) {\r\n    n = m, log = 1;\r\n    while ((1 << log) < n) ++log;\r\n  \
+    \  dat.resize(log);\r\n    dat[0].reserve(n);\r\n    FOR(i, n) dat[0].eb(f(i));\r\
+    \n    FOR(i, 1, log) {\r\n      auto& v = dat[i];\r\n      v = dat[0];\r\n   \
+    \   int b = 1 << i;\r\n      for (int m = b; m <= n; m += 2 * b) {\r\n       \
+    \ int L = m - b, R = min(n, m + b);\r\n        FOR3_R(j, L + 1, m) v[j - 1] =\
+    \ MX::op(v[j - 1], v[j]);\r\n        FOR3(j, m, R - 1) v[j + 1] = MX::op(v[j],\
+    \ v[j + 1]);\r\n      }\r\n    }\r\n  }\r\n\r\n  X prod(int L, int R) {\r\n  \
+    \  if (L == R) return MX::unit();\r\n    --R;\r\n    if (L == R) return dat[0][L];\r\
+    \n    int k = 31 - __builtin_clz(L ^ R);\r\n    return MX::op(dat[k][L], dat[k][R]);\r\
+    \n  }\r\n\r\n  template <class F>\r\n  int max_right(const F check, int L) {\r\
+    \n    assert(0 <= L && L <= n && check(MX::unit()));\r\n    if (L == n) return\
+    \ n;\r\n    int ok = L, ng = n + 1;\r\n    while (ok + 1 < ng) {\r\n      int\
+    \ k = (ok + ng) / 2;\r\n      bool bl = check(prod(L, k));\r\n      if (bl) ok\
+    \ = k;\r\n      if (!bl) ng = k;\r\n    }\r\n    return ok;\r\n  }\r\n\r\n  template\
+    \ <class F>\r\n  int min_left(const F check, int R) {\r\n    assert(0 <= R &&\
+    \ R <= n && check(MX::unit()));\r\n    if (R == 0) return 0;\r\n    int ok = R,\
+    \ ng = -1;\r\n    while (ng + 1 < ok) {\r\n      int k = (ok + ng) / 2;\r\n  \
+    \    bool bl = check(prod(k, R));\r\n      if (bl) ok = k;\r\n      if (!bl) ng\
+    \ = k;\r\n    }\r\n    return ok;\r\n  }\r\n};\n#line 5 \"string/suffix_array.hpp\"\
     \n\n// \u8F9E\u66F8\u9806 i \u756A\u76EE\u306E suffix \u304C j \u6587\u5B57\u76EE\
     \u59CB\u307E\u308A\u3067\u3042\u308B\u3068\u304D\u3001\n// SA[i] = j, ISA[j] =\
     \ i\nstruct Suffix_Array {\n  vector<int> SA;\n  vector<int> ISA;\n  vector<int>\
@@ -264,7 +265,7 @@ data:
   isVerificationFile: false
   path: string/suffix_tree.hpp
   requiredBy: []
-  timestamp: '2023-02-01 22:47:27+09:00'
+  timestamp: '2023-02-01 23:04:20+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/suffix_tree.test.cpp

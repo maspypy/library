@@ -27,9 +27,9 @@ data:
     \ {\r\n  using value_type = pair<T, int>;\r\n  using X = value_type;\r\n  static\
     \ X op(X x, X y) {\r\n    if (x.fi > y.fi) return x;\r\n    if (x.fi < y.fi) return\
     \ y;\r\n    if (x.se > y.se) swap(x, y);\r\n    return (tie_is_left ? x : y);\r\
-    \n  }\r\n  static constexpr X unit() { return {numeric_limits<T>::lowest(), -1};\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/maxidx_add.hpp\"\
-    \n\r\ntemplate <typename E, bool tie_is_left = true>\r\nstruct ActedMonoid_MaxIdx_Add\
+    \n  }\r\n  static constexpr X unit() { return {-INF, -1}; }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/maxidx_add.hpp\"\n\r\
+    \ntemplate <typename E, bool tie_is_left = true>\r\nstruct ActedMonoid_MaxIdx_Add\
     \ {\r\n  using Monoid_X = Monoid_Max_Idx<E, tie_is_left>;\r\n  using Monoid_A\
     \ = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A\
     \ = typename Monoid_A::value_type;\r\n  static constexpr X act(const X &x, const\
@@ -48,7 +48,7 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/maxidx_add.hpp
   requiredBy: []
-  timestamp: '2023-02-01 22:47:27+09:00'
+  timestamp: '2023-02-01 23:04:20+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/maxidx_add.test.cpp

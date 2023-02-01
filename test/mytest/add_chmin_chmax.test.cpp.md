@@ -211,18 +211,17 @@ data:
     ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"alg/monoid/add_chmin_chmax.hpp\"\
     \n\n// max(min(x+a,b),c) \u3068\u8868\u305B\u308B\u95A2\u6570\u306E\u5408\u6210\
     \ntemplate <typename E>\nstruct Monoid_Add_Chmin_Chmax {\n  using value_type =\
-    \ tuple<E, E, E>;\n  using X = value_type;\n  static constexpr E L_INF = numeric_limits<E>::lowest();\n\
-    \  static constexpr E R_INF = numeric_limits<E>::max();\n\n  static X op(X x,\
-    \ X y) {\n    auto [a, b, c] = x;\n    auto [d, e, f] = y;\n    a = a + d;\n \
-    \   b = (b == R_INF ? b : b + d);\n    c = (c == L_INF ? c : c + d);\n    b =\
-    \ min(b, e);\n    c = max(min(c, e), f);\n    return {a, b, c};\n  }\n\n  static\
-    \ E eval(X f, E x) {\n    auto [a, b, c] = f;\n    return max(min(x + a, b), c);\n\
-    \  }\n\n  static X add(E a) { return {a, R_INF, L_INF}; }\n  static X chmin(E\
-    \ b) { return {0, b, L_INF}; }\n  static X chmax(E c) { return {0, R_INF, c};\
-    \ }\n\n  static constexpr X unit() { return {0, R_INF, L_INF}; }\n  static constexpr\
-    \ bool commute = 0;\n};\n#line 6 \"test/mytest/add_chmin_chmax.test.cpp\"\n\n\
-    void test() {\n  int N = RNG(1, 100);\n  vc<int> X(N);\n  FOR(i, N) X[i] = RNG(-100,\
-    \ 100);\n  vc<int> Y = X;\n  int Q = RNG(0, 10);\n  using Mono = Monoid_Add_Chmin_Chmax<int>;\n\
+    \ tuple<E, E, E>;\n  using X = value_type;\n\n  static X op(X x, X y) {\n    auto\
+    \ [a, b, c] = x;\n    auto [d, e, f] = y;\n    a = a + d;\n    b = (b == R_INF\
+    \ ? b : b + d);\n    c = (c == L_INF ? c : c + d);\n    b = min(b, e);\n    c\
+    \ = max(min(c, e), f);\n    return {a, b, c};\n  }\n\n  static E eval(X f, E x)\
+    \ {\n    auto [a, b, c] = f;\n    return max(min(x + a, b), c);\n  }\n\n  static\
+    \ X add(E a) { return {a, INF<E>, -INF<E>}; }\n  static X chmin(E b) { return\
+    \ {0, b, -INF<E>}; }\n  static X chmax(E c) { return {0, INF<E>, c}; }\n\n  static\
+    \ constexpr X unit() { return {0, INF<E>, -INF<E>}; }\n  static constexpr bool\
+    \ commute = 0;\n};\n#line 6 \"test/mytest/add_chmin_chmax.test.cpp\"\n\nvoid test()\
+    \ {\n  int N = RNG(1, 100);\n  vc<int> X(N);\n  FOR(i, N) X[i] = RNG(-100, 100);\n\
+    \  vc<int> Y = X;\n  int Q = RNG(0, 10);\n  using Mono = Monoid_Add_Chmin_Chmax<int>;\n\
     \  using F = typename Mono::value_type;\n  F f = Mono::unit();\n\n  FOR(Q) {\n\
     \    int t = RNG(0, 3);\n    int a = RNG(-100, 100);\n    if (t == 0) {\n    \
     \  FOR(i, N) Y[i] += a;\n      f = Mono::op(f, Mono::add(a));\n    }\n    if (t\
@@ -253,7 +252,7 @@ data:
   isVerificationFile: true
   path: test/mytest/add_chmin_chmax.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 22:47:27+09:00'
+  timestamp: '2023-02-01 23:04:20+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/add_chmin_chmax.test.cpp

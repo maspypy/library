@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/acted_monoid/minmincnt_add.hpp
     title: alg/acted_monoid/minmincnt_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/rectangle_union.hpp
     title: other/rectangle_union.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_4_A.test.cpp
     title: test/aoj/DSL_4_A.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/minmincnt.hpp\"\n\r\n// \u6700\u5C0F\u5024\u3001\
@@ -26,24 +26,23 @@ data:
     \ X op(X x, X y) {\r\n    auto [xmin, xmincnt] = x;\r\n    auto [ymin, ymincnt]\
     \ = y;\r\n    if (xmin > ymin) return {ymin, ymincnt};\r\n    if (xmin == ymin)\
     \ return {xmin, xmincnt + ymincnt};\r\n    return {xmin, xmincnt};\r\n  }\r\n\
-    \  static constexpr X unit() { return {numeric_limits<E>::max(), 0}; }\r\n  static\
-    \ constexpr bool commute = true;\r\n};\n"
+    \  static constexpr X unit() { return {INF<E>, 0}; }\r\n  static constexpr bool\
+    \ commute = true;\r\n};\n"
   code: "#pragma once\r\n\r\n// \u6700\u5C0F\u5024\u3001\u6700\u5C0F\u5024\u306E\u500B\
     \u6570\r\ntemplate <typename E>\r\nstruct Monoid_MinMincnt {\r\n  using value_type\
     \ = pair<E, E>;\r\n  using X = value_type;\r\n  static X op(X x, X y) {\r\n  \
     \  auto [xmin, xmincnt] = x;\r\n    auto [ymin, ymincnt] = y;\r\n    if (xmin\
     \ > ymin) return {ymin, ymincnt};\r\n    if (xmin == ymin) return {xmin, xmincnt\
     \ + ymincnt};\r\n    return {xmin, xmincnt};\r\n  }\r\n  static constexpr X unit()\
-    \ { return {numeric_limits<E>::max(), 0}; }\r\n  static constexpr bool commute\
-    \ = true;\r\n};"
+    \ { return {INF<E>, 0}; }\r\n  static constexpr bool commute = true;\r\n};"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/minmincnt.hpp
   requiredBy:
   - alg/acted_monoid/minmincnt_add.hpp
   - other/rectangle_union.hpp
-  timestamp: '2022-12-04 11:32:38+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-02-01 23:04:20+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DSL_4_A.test.cpp
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp

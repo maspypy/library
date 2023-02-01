@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/1508_2.test.cpp
     title: test/aoj/1508_2.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test/mytest/rbst_test.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/randomized_bst/rbst_monoid.hpp\"\ntemplate <typename\
@@ -249,7 +249,7 @@ data:
   path: ds/randomized_bst/rbst_monoid.hpp
   requiredBy: []
   timestamp: '2022-12-04 00:54:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/1508_2.test.cpp
   - test/mytest/rbst_monoid_2.test.cpp

@@ -17,11 +17,11 @@ data:
   - icon: ':x:'
     path: alg/acted_monoid/min_max.hpp
     title: alg/acted_monoid/min_max.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
   - icon: ':x:'
@@ -71,17 +71,18 @@ data:
     title: test_atcoder/abc270_f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"alg/monoid/max.hpp\"\n\r\ntemplate <class X>\r\nstruct Monoid_Max\
-    \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
-    \ &y) noexcept { return max(x, y); }\r\n  static constexpr X unit() { return numeric_limits<X>::lowest();\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n"
-  code: "#pragma once\r\n\r\ntemplate <class X>\r\nstruct Monoid_Max {\r\n  using\
-    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
-    \ { return max(x, y); }\r\n  static constexpr X unit() { return numeric_limits<X>::lowest();\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n"
+  bundledCode: "#line 2 \"alg/monoid/max.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
+    \ Monoid_Max {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return max(x, y); }\r\n  static constexpr\
+    \ X unit() { return -INF<E>; }\r\n  static constexpr bool commute = true;\r\n\
+    };\r\n"
+  code: "#pragma once\r\n\r\ntemplate <typename E>\r\nstruct Monoid_Max {\r\n  using\
+    \ X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const\
+    \ X &y) noexcept { return max(x, y); }\r\n  static constexpr X unit() { return\
+    \ -INF<E>; }\r\n  static constexpr bool commute = true;\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/max.hpp
@@ -92,8 +93,8 @@ data:
   - alg/acted_monoid/max_add.hpp
   - alg/acted_monoid/max_max.hpp
   - alg/acted_monoid/min_max.hpp
-  timestamp: '2022-12-01 09:04:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-02-01 23:04:20+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/GRL_2_A.test.cpp
   - test/yukicoder/686.test.cpp

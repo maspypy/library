@@ -203,18 +203,18 @@ data:
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\n#line 5 \"test/aoj/GRL_6_A.test.cpp\"\n\r\n#line 1 \"flow/maxflow.hpp\"\
     \ntemplate <typename Cap>\nstruct MaxFlowGraph {\n  struct Edge {\n    int to,\
-    \ rev;\n    Cap cap;\n  };\n\n  const Cap INF;\n  int N;\n  vvc<Edge> G;\n  vc<int>\
-    \ prog, level;\n  Cap flow_ans;\n  bool calculated;\n\n  MaxFlowGraph(int N, Cap\
-    \ INF) : INF(INF), N(N), calculated(0) {}\n\n  void add(int frm, int to, Cap cap)\
-    \ {\n    assert(0 <= frm && frm < N);\n    assert(0 <= to && to < N);\n    assert(Cap(0)\
-    \ <= cap);\n    if (len(G) < N) G.resize(N);\n    G[frm].eb(Edge{to, (int)G[to].size(),\
-    \ cap});\n    G[to].eb(Edge{frm, (int)G[frm].size() - 1, 0});\n  }\n\n  Cap flow(int\
-    \ source, int sink) {\n    if (calculated) return flow_ans;\n    calculated =\
-    \ true;\n    chmax(N, source + 1);\n    chmax(N, sink + 1);\n    G.resize(N);\n\
-    \    flow_ans = 0;\n    while (set_level(source, sink)) {\n      fill(all(prog),\
-    \ 0);\n      prog.assign(N, 0);\n      while (1) {\n        Cap x = flow_dfs(source,\
-    \ sink, INF);\n        if (x == 0) break;\n        flow_ans += x;\n        chmin(flow_ans,\
-    \ INF);\n        if (flow_ans == INF) return flow_ans;\n      }\n    }\n    return\
+    \ rev;\n    Cap cap;\n  };\n\n  int N;\n  vvc<Edge> G;\n  vc<int> prog, level;\n\
+    \  Cap flow_ans;\n  bool calculated;\n\n  MaxFlowGraph(int N) : N(N), calculated(0)\
+    \ {}\n\n  void add(int frm, int to, Cap cap) {\n    assert(0 <= frm && frm < N);\n\
+    \    assert(0 <= to && to < N);\n    assert(Cap(0) <= cap);\n    if (len(G) <\
+    \ N) G.resize(N);\n    G[frm].eb(Edge{to, (int)G[to].size(), cap});\n    G[to].eb(Edge{frm,\
+    \ (int)G[frm].size() - 1, 0});\n  }\n\n  Cap flow(int source, int sink) {\n  \
+    \  if (calculated) return flow_ans;\n    calculated = true;\n    chmax(N, source\
+    \ + 1);\n    chmax(N, sink + 1);\n    G.resize(N);\n    flow_ans = 0;\n    while\
+    \ (set_level(source, sink)) {\n      fill(all(prog), 0);\n      prog.assign(N,\
+    \ 0);\n      while (1) {\n        Cap x = flow_dfs(source, sink, INF<Cap>);\n\
+    \        if (x == 0) break;\n        flow_ans += x;\n        chmin(flow_ans, INF<Cap>);\n\
+    \        if (flow_ans == INF<Cap>) return flow_ans;\n      }\n    }\n    return\
     \ flow_ans;\n  }\n\n  // \u6700\u5C0F\u30AB\u30C3\u30C8\u306E\u5024\u304A\u3088\
     \u3073\u3001\u30AB\u30C3\u30C8\u3092\u8868\u3059 01 \u5217\u3092\u8FD4\u3059\n\
     \  pair<Cap, vc<int>> cut(int source, int sink) {\n    Cap f = flow(source, sink);\n\
@@ -254,7 +254,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_6_A.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 22:47:27+09:00'
+  timestamp: '2023-02-01 23:04:20+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/GRL_6_A.test.cpp

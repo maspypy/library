@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/dual_segtree.hpp
     title: ds/segtree/dual_segtree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   - icon: ':question:'
@@ -22,13 +22,13 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':question:'
@@ -42,9 +42,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A
@@ -486,15 +486,15 @@ data:
     \ 1, x));\r\n    }\r\n    return;\r\n  }\r\n\r\n  void apply_subtree(int u, X\
     \ x) {\r\n    int l = tree.LID[u], r = tree.RID[u];\r\n    return seg.apply(l\
     \ + edge, r, x);\r\n  }\r\n};\r\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate\
-    \ <class X>\r\nstruct Monoid_Min {\r\n  using value_type = X;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr\
-    \ X unit() { return numeric_limits<X>::max(); }\r\n  static constexpr bool commute\
-    \ = true;\r\n};\r\n#line 2 \"alg/monoid/max.hpp\"\n\r\ntemplate <class X>\r\n\
-    struct Monoid_Max {\r\n  using value_type = X;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return max(x, y); }\r\n  static constexpr X unit()\
-    \ { return numeric_limits<X>::lowest(); }\r\n  static constexpr bool commute =\
-    \ true;\r\n};\r\n#line 8 \"graph/minimum_spanning_tree.hpp\"\n\r\n// return :\
-    \ {T mst_cost, vc<bool> in_mst, Graph MST}\r\ntemplate <typename T>\r\ntuple<T,\
+    \ <typename E>\r\nstruct Monoid_Min {\r\n  using X = E;\r\n  using value_type\
+    \ = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return min(x,\
+    \ y); }\r\n  static constexpr X unit() { return -INF<E>; }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 2 \"alg/monoid/max.hpp\"\n\r\ntemplate <typename\
+    \ E>\r\nstruct Monoid_Max {\r\n  using X = E;\r\n  using value_type = X;\r\n \
+    \ static constexpr X op(const X &x, const X &y) noexcept { return max(x, y); }\r\
+    \n  static constexpr X unit() { return -INF<E>; }\r\n  static constexpr bool commute\
+    \ = true;\r\n};\r\n#line 8 \"graph/minimum_spanning_tree.hpp\"\n\r\n// return\
+    \ : {T mst_cost, vc<bool> in_mst, Graph MST}\r\ntemplate <typename T>\r\ntuple<T,\
     \ vc<bool>, Graph<T>> minimum_spanning_tree(Graph<T>& G) {\r\n  int N = G.N;\r\
     \n  int M = len(G.edges);\r\n  vc<pair<T, int>> edges;\r\n  FOR(i, M) {\r\n  \
     \  auto& e = G.edges[i];\r\n    edges.eb(e.cost, i);\r\n  }\r\n  sort(all(edges));\r\
@@ -544,8 +544,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_2_A.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 22:47:27+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-02-01 23:04:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_2_A.test.cpp
 layout: document

@@ -4,13 +4,13 @@ data:
   - icon: ':x:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
   - icon: ':question:'
@@ -263,10 +263,10 @@ data:
     \ topbit(k));\n    dat[k] = AM::act(dat[k], a, sz);\n    if (k < size) laz[k]\
     \ = MA::op(laz[k], a);\n  }\n  void push(int k) {\n    if (laz[k] == MA::unit())\
     \ return;\n    apply_at(2 * k, laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k]\
-    \ = MA::unit();\n  }\n};\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <class\
-    \ X>\r\nstruct Monoid_Min {\r\n  using value_type = X;\r\n  static constexpr X\
-    \ op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr\
-    \ X unit() { return numeric_limits<X>::max(); }\r\n  static constexpr bool commute\
+    \ = MA::unit();\n  }\n};\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename\
+    \ E>\r\nstruct Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n \
+    \ static constexpr X op(const X &x, const X &y) noexcept { return min(x, y); }\r\
+    \n  static constexpr X unit() { return -INF<E>; }\r\n  static constexpr bool commute\
     \ = true;\r\n};\r\n#line 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename X,\
     \ X none_val>\r\nstruct Monoid_Assign {\r\n  using value_type = X;\r\n  static\
     \ X op(X x, X y) { return (y == none_val ? x : y); }\r\n  static constexpr X unit()\
@@ -304,7 +304,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_F.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 22:47:27+09:00'
+  timestamp: '2023-02-01 23:04:20+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_F.test.cpp

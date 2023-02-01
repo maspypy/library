@@ -10,7 +10,7 @@ data:
   - icon: ':x:'
     path: alg/monoid/summin.hpp
     title: alg/monoid/summin.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
   - icon: ':question:'
@@ -216,12 +216,12 @@ data:
     struct Monoid_SumMin {\r\n  using value_type = pair<E, E>;\r\n  using X = value_type;\r\
     \n  static X op(X x, X y) { return {x.fi + y.fi, min(x.se, y.se)}; }\r\n  static\
     \ X from_element(E x) { return {x, x}; }\r\n  static constexpr X unit() { return\
-    \ {E(0), numeric_limits<ll>::max()}; }\r\n  static constexpr bool commute = true;\r\
-    \n};\r\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct Monoid_Add\
-    \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
-    \ &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept\
-    \ { return -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return\
-    \ X(n) * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
+    \ {E(0), INF<E>}; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line\
+    \ 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct Monoid_Add {\r\
+    \n  using value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
+    \ { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
+    \ -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return X(n)\
+    \ * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
     \ bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/summin_add.hpp\"\n\r\
     \ntemplate <typename E>\r\nstruct ActedMonoid_SumMin_Add {\r\n  using Monoid_X\
     \ = Monoid_SumMin<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename\
@@ -325,7 +325,7 @@ data:
   isVerificationFile: true
   path: test/mytest/summin_add.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 22:47:27+09:00'
+  timestamp: '2023-02-01 23:04:20+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/summin_add.test.cpp

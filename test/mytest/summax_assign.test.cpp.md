@@ -4,13 +4,13 @@ data:
   - icon: ':x:'
     path: alg/acted_monoid/summax_assign.hpp
     title: alg/acted_monoid/summax_assign.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
   - icon: ':x:'
     path: alg/monoid/summax.hpp
     title: alg/monoid/summax.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
   - icon: ':question:'
@@ -216,22 +216,22 @@ data:
     \ Monoid_SumMax {\n  using value_type = pair<E, E>;\n  using X = value_type;\n\
     \  static X op(X x, X y) { return {x.fi + y.fi, max(x.se, y.se)}; }\n  static\
     \ X from_element(E e) { return {e, e}; }\n  static constexpr X unit() { return\
-    \ {E(0), numeric_limits<E>::lowest()}; }\n  static constexpr bool commute = 1;\n\
-    };\n#line 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, X none_val>\r\
-    \nstruct Monoid_Assign {\r\n  using value_type = X;\r\n  static X op(X x, X y)\
-    \ { return (y == none_val ? x : y); }\r\n  static constexpr X unit() { return\
-    \ none_val; }\r\n  static constexpr bool commute = false;\r\n};\r\n#line 3 \"\
-    alg/acted_monoid/summax_assign.hpp\"\n\r\ntemplate <typename E, E none_val>\r\n\
-    struct ActedMonoid_SumMax_Assign {\r\n  using Monoid_X = Monoid_SumMax<E>;\r\n\
-    \  using Monoid_A = Monoid_Assign<E, none_val>;\r\n  using X = typename Monoid_X::value_type;\r\
-    \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
-    \ X& x, const A& a, const ll& size) {\r\n    if (a == Monoid_A::unit()) return\
-    \ x;\r\n    return {E(size) * a, a};\r\n  }\r\n};\r\n#line 2 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"ds/segtree/lazy_segtree.hpp\"\
+    \ {E(0), -INF<E>}; }\n  static constexpr bool commute = 1;\n};\n#line 2 \"alg/monoid/assign.hpp\"\
+    \n\r\ntemplate <typename X, X none_val>\r\nstruct Monoid_Assign {\r\n  using value_type\
+    \ = X;\r\n  static X op(X x, X y) { return (y == none_val ? x : y); }\r\n  static\
+    \ constexpr X unit() { return none_val; }\r\n  static constexpr bool commute =\
+    \ false;\r\n};\r\n#line 3 \"alg/acted_monoid/summax_assign.hpp\"\n\r\ntemplate\
+    \ <typename E, E none_val>\r\nstruct ActedMonoid_SumMax_Assign {\r\n  using Monoid_X\
+    \ = Monoid_SumMax<E>;\r\n  using Monoid_A = Monoid_Assign<E, none_val>;\r\n  using\
+    \ X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
+    \n  static constexpr X act(const X& x, const A& a, const ll& size) {\r\n    if\
+    \ (a == Monoid_A::unit()) return x;\r\n    return {E(size) * a, a};\r\n  }\r\n\
+    };\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n  \
+    \    = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n                \
+    \     chrono::high_resolution_clock::now().time_since_epoch())\n             \
+    \        .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return\
+    \ x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll\
+    \ l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"ds/segtree/lazy_segtree.hpp\"\
     \n\ntemplate <typename ActedMonoid>\nstruct Lazy_SegTree {\n  using AM = ActedMonoid;\n\
     \  using MX = typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using\
     \ X = typename MX::value_type;\n  using A = typename MA::value_type;\n  int n,\
@@ -323,7 +323,7 @@ data:
   isVerificationFile: true
   path: test/mytest/summax_assign.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 22:47:27+09:00'
+  timestamp: '2023-02-01 23:04:20+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/summax_assign.test.cpp

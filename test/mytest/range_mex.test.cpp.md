@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: ds/offline_query/range_mex_query.hpp
     title: ds/offline_query/range_mex_query.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   - icon: ':question:'
@@ -256,39 +256,40 @@ data:
     \ (l >= r) break;\n      if (l & 1) { x = Monoid::op(x, dat[(size >> k) + ((l++)\
     \ ^ xor_val)]); }\n      if (r & 1) { x = Monoid::op(x, dat[(size >> k) + ((--r)\
     \ ^ xor_val)]); }\n      l /= 2, r /= 2, xor_val /= 2;\n    }\n    return x;\n\
-    \  }\n};\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <class X>\r\nstruct Monoid_Min\
-    \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
-    \ &y) noexcept { return min(x, y); }\r\n  static constexpr X unit() { return numeric_limits<X>::max();\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 4 \"ds/offline_query/range_mex_query.hpp\"\
-    \n\r\n// \u914D\u5217\u306F static\r\n// \u30AF\u30A8\u30EA\u3082\u5148\u8AAD\u307F\
-    \u3059\u308B\r\n// example: https://codeforces.com/contest/1436/problem/E\r\n\
-    template <int BEGIN, typename T = ll>\r\nstruct RangeMexQuery {\r\n  vc<T>& A;\r\
-    \n  vc<pair<int, int>> query;\r\n\r\n  RangeMexQuery(vc<T>& A) : A(A) {}\r\n \
-    \ void add(int l, int r) { query.eb(l, r); }\r\n\r\n  vc<T> calc() {\r\n    int\
-    \ N = len(A);\r\n    // segtree, value -> last idx\r\n    using Mono = Monoid_Min<int>;\r\
-    \n    vc<int> seg_raw(N + 2, -1);\r\n    SegTree<Mono> seg(seg_raw);\r\n\r\n \
-    \   int Q = len(query);\r\n    vc<T> ANS(Q);\r\n    vc<vc<int>> IDS(N + 1);\r\n\
-    \    FOR(q, Q) {\r\n      auto [L, R] = query[q];\r\n      IDS[R].eb(q);\r\n \
-    \   }\r\n\r\n    FOR(i, N + 1) {\r\n      // solve query\r\n      for (auto&&\
-    \ q: IDS[i]) {\r\n        int L = query[q].fi;\r\n        auto check = [&](int\
-    \ x) -> bool { return x >= L; };\r\n        int mex = seg.max_right(check, BEGIN);\r\
-    \n        ANS[q] = mex;\r\n      }\r\n      // update segtree\r\n      if (i <\
-    \ N && A[i] < N + 2) seg.set(A[i], i);\r\n    }\r\n    return ANS;\r\n  }\r\n\
-    };\r\n#line 7 \"test/mytest/range_mex.test.cpp\"\n\npair<vc<int>, vc<pi>> gen(int\
-    \ N, int LIM, int Q) {\n  vc<int> A(N);\n  FOR(i, N) { A[i] = RNG(0, LIM); }\n\
-    \  vc<pi> query;\n  FOR(q, Q) {\n    int l = RNG(0, N);\n    int r = RNG(l, N\
-    \ + 1);\n    query.eb(l, r);\n  }\n  return {A, query};\n}\n\nvc<int> naive(vc<int>\
-    \ A, vc<pi> query, int begin) {\n  vc<int> ANS;\n  for (auto&& [l, r]: query)\
-    \ {\n    int mex = begin;\n    while (1) {\n      bool ok = 1;\n      FOR(i, l,\
-    \ r) if (A[i] == mex) ok = 0;\n      if (ok) break;\n      ++mex;\n    }\n   \
-    \ ANS.eb(mex);\n  }\n  return ANS;\n}\n\nvoid test_0() {\n  FOR(N, 1, 10) FOR(LIM,\
-    \ 1, 20) FOR(Q, 1, 20) {\n    auto [A, query] = gen(N, LIM, Q);\n    RangeMexQuery<0,\
-    \ int> X(A);\n    for (auto&& [l, r]: query) X.add(l, r);\n    assert(naive(A,\
-    \ query, 0) == X.calc());\n  }\n}\n\nvoid test_1() {\n  FOR(N, 1, 10) FOR(LIM,\
-    \ 1, 20) FOR(Q, 1, 20) {\n    auto [A, query] = gen(N, LIM, Q);\n    for (auto&&\
-    \ x: A) ++x;\n    RangeMexQuery<1, int> X(A);\n    for (auto&& [l, r]: query)\
-    \ X.add(l, r);\n    assert(naive(A, query, 1) == X.calc());\n  }\n}\n\nvoid solve()\
-    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \  }\n};\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
+    \ Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr\
+    \ X unit() { return -INF<E>; }\r\n  static constexpr bool commute = true;\r\n\
+    };\r\n#line 4 \"ds/offline_query/range_mex_query.hpp\"\n\r\n// \u914D\u5217\u306F\
+    \ static\r\n// \u30AF\u30A8\u30EA\u3082\u5148\u8AAD\u307F\u3059\u308B\r\n// example:\
+    \ https://codeforces.com/contest/1436/problem/E\r\ntemplate <int BEGIN, typename\
+    \ T = ll>\r\nstruct RangeMexQuery {\r\n  vc<T>& A;\r\n  vc<pair<int, int>> query;\r\
+    \n\r\n  RangeMexQuery(vc<T>& A) : A(A) {}\r\n  void add(int l, int r) { query.eb(l,\
+    \ r); }\r\n\r\n  vc<T> calc() {\r\n    int N = len(A);\r\n    // segtree, value\
+    \ -> last idx\r\n    using Mono = Monoid_Min<int>;\r\n    vc<int> seg_raw(N +\
+    \ 2, -1);\r\n    SegTree<Mono> seg(seg_raw);\r\n\r\n    int Q = len(query);\r\n\
+    \    vc<T> ANS(Q);\r\n    vc<vc<int>> IDS(N + 1);\r\n    FOR(q, Q) {\r\n     \
+    \ auto [L, R] = query[q];\r\n      IDS[R].eb(q);\r\n    }\r\n\r\n    FOR(i, N\
+    \ + 1) {\r\n      // solve query\r\n      for (auto&& q: IDS[i]) {\r\n       \
+    \ int L = query[q].fi;\r\n        auto check = [&](int x) -> bool { return x >=\
+    \ L; };\r\n        int mex = seg.max_right(check, BEGIN);\r\n        ANS[q] =\
+    \ mex;\r\n      }\r\n      // update segtree\r\n      if (i < N && A[i] < N +\
+    \ 2) seg.set(A[i], i);\r\n    }\r\n    return ANS;\r\n  }\r\n};\r\n#line 7 \"\
+    test/mytest/range_mex.test.cpp\"\n\npair<vc<int>, vc<pi>> gen(int N, int LIM,\
+    \ int Q) {\n  vc<int> A(N);\n  FOR(i, N) { A[i] = RNG(0, LIM); }\n  vc<pi> query;\n\
+    \  FOR(q, Q) {\n    int l = RNG(0, N);\n    int r = RNG(l, N + 1);\n    query.eb(l,\
+    \ r);\n  }\n  return {A, query};\n}\n\nvc<int> naive(vc<int> A, vc<pi> query,\
+    \ int begin) {\n  vc<int> ANS;\n  for (auto&& [l, r]: query) {\n    int mex =\
+    \ begin;\n    while (1) {\n      bool ok = 1;\n      FOR(i, l, r) if (A[i] ==\
+    \ mex) ok = 0;\n      if (ok) break;\n      ++mex;\n    }\n    ANS.eb(mex);\n\
+    \  }\n  return ANS;\n}\n\nvoid test_0() {\n  FOR(N, 1, 10) FOR(LIM, 1, 20) FOR(Q,\
+    \ 1, 20) {\n    auto [A, query] = gen(N, LIM, Q);\n    RangeMexQuery<0, int> X(A);\n\
+    \    for (auto&& [l, r]: query) X.add(l, r);\n    assert(naive(A, query, 0) ==\
+    \ X.calc());\n  }\n}\n\nvoid test_1() {\n  FOR(N, 1, 10) FOR(LIM, 1, 20) FOR(Q,\
+    \ 1, 20) {\n    auto [A, query] = gen(N, LIM, Q);\n    for (auto&& x: A) ++x;\n\
+    \    RangeMexQuery<1, int> X(A);\n    for (auto&& [l, r]: query) X.add(l, r);\n\
+    \    assert(naive(A, query, 1) == X.calc());\n  }\n}\n\nvoid solve() {\n  LL(a,\
+    \ b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
     \n  test_0();\n  test_1();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"random/base.hpp\"\n\n#include \"ds/offline_query/range_mex_query.hpp\"\
@@ -318,7 +319,7 @@ data:
   isVerificationFile: true
   path: test/mytest/range_mex.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 22:47:27+09:00'
+  timestamp: '2023-02-01 23:04:20+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/range_mex.test.cpp

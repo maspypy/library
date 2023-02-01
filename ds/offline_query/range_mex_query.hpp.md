@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   _extendedRequiredBy: []
@@ -59,25 +59,25 @@ data:
     \ (l >= r) break;\n      if (l & 1) { x = Monoid::op(x, dat[(size >> k) + ((l++)\
     \ ^ xor_val)]); }\n      if (r & 1) { x = Monoid::op(x, dat[(size >> k) + ((--r)\
     \ ^ xor_val)]); }\n      l /= 2, r /= 2, xor_val /= 2;\n    }\n    return x;\n\
-    \  }\n};\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <class X>\r\nstruct Monoid_Min\
-    \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
-    \ &y) noexcept { return min(x, y); }\r\n  static constexpr X unit() { return numeric_limits<X>::max();\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 4 \"ds/offline_query/range_mex_query.hpp\"\
-    \n\r\n// \u914D\u5217\u306F static\r\n// \u30AF\u30A8\u30EA\u3082\u5148\u8AAD\u307F\
-    \u3059\u308B\r\n// example: https://codeforces.com/contest/1436/problem/E\r\n\
-    template <int BEGIN, typename T = ll>\r\nstruct RangeMexQuery {\r\n  vc<T>& A;\r\
-    \n  vc<pair<int, int>> query;\r\n\r\n  RangeMexQuery(vc<T>& A) : A(A) {}\r\n \
-    \ void add(int l, int r) { query.eb(l, r); }\r\n\r\n  vc<T> calc() {\r\n    int\
-    \ N = len(A);\r\n    // segtree, value -> last idx\r\n    using Mono = Monoid_Min<int>;\r\
-    \n    vc<int> seg_raw(N + 2, -1);\r\n    SegTree<Mono> seg(seg_raw);\r\n\r\n \
-    \   int Q = len(query);\r\n    vc<T> ANS(Q);\r\n    vc<vc<int>> IDS(N + 1);\r\n\
-    \    FOR(q, Q) {\r\n      auto [L, R] = query[q];\r\n      IDS[R].eb(q);\r\n \
-    \   }\r\n\r\n    FOR(i, N + 1) {\r\n      // solve query\r\n      for (auto&&\
-    \ q: IDS[i]) {\r\n        int L = query[q].fi;\r\n        auto check = [&](int\
-    \ x) -> bool { return x >= L; };\r\n        int mex = seg.max_right(check, BEGIN);\r\
-    \n        ANS[q] = mex;\r\n      }\r\n      // update segtree\r\n      if (i <\
-    \ N && A[i] < N + 2) seg.set(A[i], i);\r\n    }\r\n    return ANS;\r\n  }\r\n\
-    };\r\n"
+    \  }\n};\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
+    \ Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr\
+    \ X unit() { return -INF<E>; }\r\n  static constexpr bool commute = true;\r\n\
+    };\r\n#line 4 \"ds/offline_query/range_mex_query.hpp\"\n\r\n// \u914D\u5217\u306F\
+    \ static\r\n// \u30AF\u30A8\u30EA\u3082\u5148\u8AAD\u307F\u3059\u308B\r\n// example:\
+    \ https://codeforces.com/contest/1436/problem/E\r\ntemplate <int BEGIN, typename\
+    \ T = ll>\r\nstruct RangeMexQuery {\r\n  vc<T>& A;\r\n  vc<pair<int, int>> query;\r\
+    \n\r\n  RangeMexQuery(vc<T>& A) : A(A) {}\r\n  void add(int l, int r) { query.eb(l,\
+    \ r); }\r\n\r\n  vc<T> calc() {\r\n    int N = len(A);\r\n    // segtree, value\
+    \ -> last idx\r\n    using Mono = Monoid_Min<int>;\r\n    vc<int> seg_raw(N +\
+    \ 2, -1);\r\n    SegTree<Mono> seg(seg_raw);\r\n\r\n    int Q = len(query);\r\n\
+    \    vc<T> ANS(Q);\r\n    vc<vc<int>> IDS(N + 1);\r\n    FOR(q, Q) {\r\n     \
+    \ auto [L, R] = query[q];\r\n      IDS[R].eb(q);\r\n    }\r\n\r\n    FOR(i, N\
+    \ + 1) {\r\n      // solve query\r\n      for (auto&& q: IDS[i]) {\r\n       \
+    \ int L = query[q].fi;\r\n        auto check = [&](int x) -> bool { return x >=\
+    \ L; };\r\n        int mex = seg.max_right(check, BEGIN);\r\n        ANS[q] =\
+    \ mex;\r\n      }\r\n      // update segtree\r\n      if (i < N && A[i] < N +\
+    \ 2) seg.set(A[i], i);\r\n    }\r\n    return ANS;\r\n  }\r\n};\r\n"
   code: "\r\n#include \"ds/segtree/segtree.hpp\"\r\n#include \"alg/monoid/min.hpp\"\
     \r\n\r\n// \u914D\u5217\u306F static\r\n// \u30AF\u30A8\u30EA\u3082\u5148\u8AAD\
     \u307F\u3059\u308B\r\n// example: https://codeforces.com/contest/1436/problem/E\r\
@@ -100,7 +100,7 @@ data:
   isVerificationFile: false
   path: ds/offline_query/range_mex_query.hpp
   requiredBy: []
-  timestamp: '2022-12-23 10:58:40+09:00'
+  timestamp: '2023-02-01 23:04:20+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/range_mex.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
   - icon: ':question:'
@@ -17,18 +17,19 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"alg/monoid/max.hpp\"\n\r\ntemplate <class X>\r\nstruct Monoid_Max\
-    \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
-    \ &y) noexcept { return max(x, y); }\r\n  static constexpr X unit() { return numeric_limits<X>::lowest();\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"alg/monoid/min.hpp\"\
-    \n\r\ntemplate <class X>\r\nstruct Monoid_Min {\r\n  using value_type = X;\r\n\
-    \  static constexpr X op(const X &x, const X &y) noexcept { return min(x, y);\
-    \ }\r\n  static constexpr X unit() { return numeric_limits<X>::max(); }\r\n  static\
-    \ constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/min_max.hpp\"\
-    \n\ntemplate <typename E>\nstruct ActedMonoid_Min_Max {\n  using Monoid_X = Monoid_Min<E>;\n\
-    \  using Monoid_A = Monoid_Max<E>;\n  using X = typename Monoid_X::value_type;\n\
-    \  using A = typename Monoid_A::value_type;\n  static constexpr X act(const X\
-    \ &x, const A &a, const ll &size) {\n    return max(x, a);\n  }\n};\n"
+  bundledCode: "#line 2 \"alg/monoid/max.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
+    \ Monoid_Max {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return max(x, y); }\r\n  static constexpr\
+    \ X unit() { return -INF<E>; }\r\n  static constexpr bool commute = true;\r\n\
+    };\r\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Min\
+    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
+    \ X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr X unit()\
+    \ { return -INF<E>; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line\
+    \ 3 \"alg/acted_monoid/min_max.hpp\"\n\ntemplate <typename E>\nstruct ActedMonoid_Min_Max\
+    \ {\n  using Monoid_X = Monoid_Min<E>;\n  using Monoid_A = Monoid_Max<E>;\n  using\
+    \ X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
+    \  static constexpr X act(const X &x, const A &a, const ll &size) {\n    return\
+    \ max(x, a);\n  }\n};\n"
   code: "#include \"alg/monoid/max.hpp\"\n#include \"alg/monoid/min.hpp\"\n\ntemplate\
     \ <typename E>\nstruct ActedMonoid_Min_Max {\n  using Monoid_X = Monoid_Min<E>;\n\
     \  using Monoid_A = Monoid_Max<E>;\n  using X = typename Monoid_X::value_type;\n\
@@ -40,7 +41,7 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/min_max.hpp
   requiredBy: []
-  timestamp: '2022-12-04 12:10:48+09:00'
+  timestamp: '2023-02-01 23:04:20+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/min_max.test.cpp
