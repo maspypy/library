@@ -5,11 +5,11 @@ data:
   - icon: ':x:'
     path: mod/max_of_linear_segments.hpp
     title: mod/max_of_linear_segments.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/min_of_linear.hpp
     title: mod/min_of_linear.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/min_of_mod_of_linear.test.cpp
     title: test/library_checker/math/min_of_mod_of_linear.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test/mytest/min_of_linear_segments.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/min_of_linear_segments.hpp\"\n\n/*\nax + b (x>=0) \u304C\
@@ -69,7 +69,7 @@ data:
   - mod/min_of_linear.hpp
   - mod/max_of_linear_segments.hpp
   timestamp: '2022-08-16 06:06:14+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/math/min_of_mod_of_linear.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp

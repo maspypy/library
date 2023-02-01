@@ -37,9 +37,6 @@ data:
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/aoj/GRL_6_A.test.cpp
-    title: test/aoj/GRL_6_A.test.cpp
-  - icon: ':x:'
     path: test/mytest/partial_frac.test.cpp
     title: test/mytest/partial_frac.test.cpp
   - icon: ':x:'
@@ -382,7 +379,6 @@ data:
   timestamp: '2023-02-02 02:53:49+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/aoj/GRL_6_A.test.cpp
   - test/yukicoder/1145.test.cpp
   - test/yukicoder/1875.test.cpp
   - test/yukicoder/1962.test.cpp
