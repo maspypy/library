@@ -7,14 +7,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/longest_increasing_subsequence.hpp
     title: seq/longest_increasing_subsequence.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_D
@@ -203,7 +203,7 @@ data:
     \ yes(!t); }\n#line 1 \"seq/longest_increasing_subsequence.hpp\"\n// dp[i] :=\
     \ \u7B2C i \u9805\u3067\u7D42\u308F\u308B lis \u9577\u306E\u6700\u5927\u5024\uFF08\
     [1, LIS]\uFF09\ntemplate <typename T, bool strong = true>\nvc<int> longest_increasing_subsequence(vector<T>\
-    \ A) {\n  const int N = A.size();\n  vc<T> dp(N, INF<T>);\n  vc<int> lis_rank(N);\n\
+    \ A) {\n  const int N = A.size();\n  vc<T> dp(N, infty<T>);\n  vc<int> lis_rank(N);\n\
     \  FOR(i, N) {\n    int j = (strong ? LB(dp, A[i]) : UB(dp, A[i]));\n    dp[j]\
     \ = A[i];\n    lis_rank[i] = j + 1;\n  }\n  return lis_rank;\n}\n#line 6 \"test/aoj/DPL_1_D.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  auto dp = longest_increasing_subsequence(A);\n\
@@ -223,8 +223,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL_1_D.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:18:36+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-02-01 23:31:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL_1_D.test.cpp
 layout: document

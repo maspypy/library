@@ -215,18 +215,18 @@ data:
     \ {\r\n  INT_TYPE q = 1, r = N + 1;\r\n  while (1) {\r\n    INT_TYPE l = N / (q\
     \ + 1) + 1;\r\n    f(q, l, r);\r\n    if (q == N) break;\r\n    r = l, q = N /\
     \ (l - 1);\r\n  }\r\n}\r\n#line 6 \"test/mytest/floor_ceil_ranges.test.cpp\"\n\
-    \nvoid test_floor() {\n  ll INF = 1000;\n  using T = tuple<ll, ll, ll>;\n  auto\
+    \nvoid test_floor() {\n  ll LIM = 1000;\n  using T = tuple<ll, ll, ll>;\n  auto\
     \ F = [&](ll N) -> vc<T> {\n    vc<T> dat;\n    auto f = [&](ll q, ll l, ll r)\
     \ -> void { dat.eb(q, l, r); };\n    floor_range<ll>(N, f);\n    return dat;\n\
     \  };\n  auto G = [&](ll N) -> vc<T> {\n    vvc<ll> tmp(N + 1);\n    FOR(x, 1,\
-    \ INF) tmp[floor(N, x)].eb(x);\n    vc<T> dat;\n    FOR(x, 1, N + 1) {\n     \
+    \ LIM) tmp[floor(N, x)].eb(x);\n    vc<T> dat;\n    FOR(x, 1, N + 1) {\n     \
     \ if (len(tmp[x])) {\n        ll lo = tmp[x][0];\n        ll hi = tmp[x].back();\n\
     \        dat.eb(x, lo, hi + 1);\n      }\n    }\n    return dat;\n  };\n  FOR(N,\
-    \ 1, 100) { assert(F(N) == G(N)); }\n}\n\nvoid test_ceil() {\n  ll INF = 1000;\n\
+    \ 1, 100) { assert(F(N) == G(N)); }\n}\n\nvoid test_ceil() {\n  ll LIM = 1000;\n\
     \  using T = tuple<ll, ll, ll>;\n  auto F = [&](ll N) -> vc<T> {\n    vc<T> dat;\n\
     \    auto f = [&](ll q, ll l, ll r) -> void { dat.eb(q, l, r); };\n    ceil_range<ll>(N,\
-    \ f, INF);\n    return dat;\n  };\n  auto G = [&](ll N) -> vc<T> {\n    vvc<ll>\
-    \ tmp(N + 1);\n    FOR(x, 1, INF) tmp[ceil(N, x)].eb(x);\n    vc<T> dat;\n   \
+    \ f, LIM);\n    return dat;\n  };\n  auto G = [&](ll N) -> vc<T> {\n    vvc<ll>\
+    \ tmp(N + 1);\n    FOR(x, 1, LIM) tmp[ceil(N, x)].eb(x);\n    vc<T> dat;\n   \
     \ FOR(x, 1, N + 1) {\n      if (len(tmp[x])) {\n        ll lo = tmp[x][0];\n \
     \       ll hi = tmp[x].back();\n        dat.eb(x, lo, hi + 1);\n      }\n    }\n\
     \    return dat;\n  };\n  FOR(N, 1, 100) { assert(F(N) == G(N)); }\n}\n\nvoid\
@@ -234,18 +234,18 @@ data:
     \  test_ceil();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"enumerate/ceil_range.hpp\"\n#include \"\
-    enumerate/floor_range.hpp\"\n\nvoid test_floor() {\n  ll INF = 1000;\n  using\
+    enumerate/floor_range.hpp\"\n\nvoid test_floor() {\n  ll LIM = 1000;\n  using\
     \ T = tuple<ll, ll, ll>;\n  auto F = [&](ll N) -> vc<T> {\n    vc<T> dat;\n  \
     \  auto f = [&](ll q, ll l, ll r) -> void { dat.eb(q, l, r); };\n    floor_range<ll>(N,\
     \ f);\n    return dat;\n  };\n  auto G = [&](ll N) -> vc<T> {\n    vvc<ll> tmp(N\
-    \ + 1);\n    FOR(x, 1, INF) tmp[floor(N, x)].eb(x);\n    vc<T> dat;\n    FOR(x,\
+    \ + 1);\n    FOR(x, 1, LIM) tmp[floor(N, x)].eb(x);\n    vc<T> dat;\n    FOR(x,\
     \ 1, N + 1) {\n      if (len(tmp[x])) {\n        ll lo = tmp[x][0];\n        ll\
     \ hi = tmp[x].back();\n        dat.eb(x, lo, hi + 1);\n      }\n    }\n    return\
     \ dat;\n  };\n  FOR(N, 1, 100) { assert(F(N) == G(N)); }\n}\n\nvoid test_ceil()\
-    \ {\n  ll INF = 1000;\n  using T = tuple<ll, ll, ll>;\n  auto F = [&](ll N) ->\
+    \ {\n  ll LIM = 1000;\n  using T = tuple<ll, ll, ll>;\n  auto F = [&](ll N) ->\
     \ vc<T> {\n    vc<T> dat;\n    auto f = [&](ll q, ll l, ll r) -> void { dat.eb(q,\
-    \ l, r); };\n    ceil_range<ll>(N, f, INF);\n    return dat;\n  };\n  auto G =\
-    \ [&](ll N) -> vc<T> {\n    vvc<ll> tmp(N + 1);\n    FOR(x, 1, INF) tmp[ceil(N,\
+    \ l, r); };\n    ceil_range<ll>(N, f, LIM);\n    return dat;\n  };\n  auto G =\
+    \ [&](ll N) -> vc<T> {\n    vvc<ll> tmp(N + 1);\n    FOR(x, 1, LIM) tmp[ceil(N,\
     \ x)].eb(x);\n    vc<T> dat;\n    FOR(x, 1, N + 1) {\n      if (len(tmp[x])) {\n\
     \        ll lo = tmp[x][0];\n        ll hi = tmp[x].back();\n        dat.eb(x,\
     \ lo, hi + 1);\n      }\n    }\n    return dat;\n  };\n  FOR(N, 1, 100) { assert(F(N)\
@@ -259,7 +259,7 @@ data:
   isVerificationFile: true
   path: test/mytest/floor_ceil_ranges.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:18:36+09:00'
+  timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/floor_ceil_ranges.test.cpp

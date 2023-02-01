@@ -223,15 +223,15 @@ data:
     \ constexpr bool is_small(const X& x, const X& y) {\r\n    if (x.fi < y.fi) return\
     \ true;\r\n    if (x.fi > y.fi) return false;\r\n    return (tie_is_left ? (x.se\
     \ < y.se) : (x.se >= y.se));\r\n  }\r\n  static X op(X x, X y) { return (is_small(x,\
-    \ y) ? x : y); }\r\n  static constexpr X unit() { return {INF<T>, -1}; }\r\n \
-    \ static constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/minidx_add.hpp\"\
+    \ y) ? x : y); }\r\n  static constexpr X unit() { return {infty<T>, -1}; }\r\n\
+    \  static constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/minidx_add.hpp\"\
     \n\r\ntemplate <typename E, bool tie_is_left = true>\r\nstruct ActedMonoid_MinIdx_Add\
     \ {\r\n  using Monoid_X = Monoid_Min_Idx<E, tie_is_left>;\r\n  using Monoid_A\
     \ = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A\
     \ = typename Monoid_A::value_type;\r\n  static constexpr X act(const X &x, const\
-    \ A &a, const ll &size) {\r\n    if (x.fi == INF<E>) return x;\r\n    return {x.fi\
-    \ + a, x.se};\r\n  }\r\n};\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n\
-    \  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \ A &a, const ll &size) {\r\n    if (x.fi == infty<E>) return x;\r\n    return\
+    \ {x.fi + a, x.se};\r\n  }\r\n};\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
+    \ {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
@@ -328,7 +328,7 @@ data:
   isVerificationFile: true
   path: test/mytest/minidx_add.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:18:36+09:00'
+  timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/minidx_add.test.cpp

@@ -217,11 +217,11 @@ data:
     \ max_size);\n    return res;\n  }\n\n  // \u8A08\u7B97\u91CF\u4FDD\u8A3C\u306A\
     \u3057\u3001\u70B9\u7FA4\u304C\u30E9\u30F3\u30C0\u30E0\u306A\u3089 O(logN)\n \
     \ // N = Q = 10^5 \u3067\u3001\u7D04 1 \u79D2\n  int nearest_neighbor_search(XY\
-    \ x, XY y) {\n    pair<int, XY> res = {-1, INF<XY>};\n    nns_rec(1, x, y, res);\n\
+    \ x, XY y) {\n    pair<int, XY> res = {-1, infty<XY>};\n    nns_rec(1, x, y, res);\n\
     \    assert(res.fi != -1);\n    return res.fi;\n  }\n\nprivate:\n  void build(int\
     \ idx, vc<XY> xs, vc<XY> ys, vc<int> vs, bool divx = true) {\n    int n = len(xs);\n\
-    \    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\n    xmin = ymin = INF<XY>;\n\
-    \    xmax = ymax = -INF<XY>;\n\n    FOR(i, n) {\n      auto x = xs[i], y = ys[i];\n\
+    \    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\n    xmin = ymin = infty<XY>;\n\
+    \    xmax = ymax = -infty<XY>;\n\n    FOR(i, n) {\n      auto x = xs[i], y = ys[i];\n\
     \      chmin(xmin, x), chmax(xmax, x), chmin(ymin, y), chmax(ymax, y);\n    }\n\
     \    if (n == 1) {\n      dat[idx] = vs[0];\n      return;\n    }\n\n    int m\
     \ = n / 2;\n    vc<int> I(n);\n    iota(all(I), 0);\n    if (divx) {\n      nth_element(I.begin(),\
@@ -278,7 +278,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc234ex.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:18:36+09:00'
+  timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc234ex.test.cpp

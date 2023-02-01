@@ -216,7 +216,7 @@ data:
     struct Monoid_SumMin {\r\n  using value_type = pair<E, E>;\r\n  using X = value_type;\r\
     \n  static X op(X x, X y) { return {x.fi + y.fi, min(x.se, y.se)}; }\r\n  static\
     \ X from_element(E x) { return {x, x}; }\r\n  static constexpr X unit() { return\
-    \ {E(0), INF<E>}; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line\
+    \ {E(0), infty<E>}; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line\
     \ 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct Monoid_Add {\r\
     \n  using value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
     \ { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
@@ -227,8 +227,8 @@ data:
     \ = Monoid_SumMin<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename\
     \ Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\n  static\
     \ constexpr X act(const X& x, const A& a, const ll& size) {\r\n    auto [xs, xm]\
-    \ = x;\r\n    xm = (xm == INF<E> ? xm : xm + a);\r\n    return {xs + E(size) *\
-    \ a, xm};\r\n  }\r\n};\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
+    \ = x;\r\n    xm = (xm == infty<E> ? xm : xm + a);\r\n    return {xs + E(size)\
+    \ * a, xm};\r\n  }\r\n};\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
     \ uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
@@ -325,7 +325,7 @@ data:
   isVerificationFile: true
   path: test/mytest/summin_add.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:18:36+09:00'
+  timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/summin_add.test.cpp

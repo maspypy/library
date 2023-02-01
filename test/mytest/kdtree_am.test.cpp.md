@@ -234,17 +234,17 @@ data:
     \ yr, a);\r\n  }\r\n\r\nprivate:\r\n  void build(int idx, vc<XY> xs, vc<XY> ys,\
     \ vc<X> vs, bool divx = true) {\r\n    int n = len(xs);\r\n    size[idx] = n;\r\
     \n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\n    xmin = ymin =\
-    \ INF<XY>;\r\n    xmax = ymax = -INF<XY>;\r\n\r\n    FOR(i, n) {\r\n      auto\
-    \ x = xs[i], y = ys[i];\r\n      chmin(xmin, x), chmax(xmax, x), chmin(ymin, y),\
-    \ chmax(ymax, y);\r\n    }\r\n    if (xmin == xmax && ymin == ymax) {\r\n    \
-    \  X x = MX::unit();\r\n      for (auto&& v: vs) x = MX::op(x, v);\r\n      dat[idx]\
-    \ = x;\r\n      return;\r\n    }\r\n\r\n    int m = n / 2;\r\n    vc<int> I(n);\r\
-    \n    iota(all(I), 0);\r\n    if (divx) {\r\n      nth_element(I.begin(), I.begin()\
-    \ + m, I.end(),\r\n                  [xs](int i, int j) { return xs[i] < xs[j];\
-    \ });\r\n    } else {\r\n      nth_element(I.begin(), I.begin() + m, I.end(),\r\
-    \n                  [ys](int i, int j) { return ys[i] < ys[j]; });\r\n    }\r\n\
-    \    xs = rearrange(xs, I), ys = rearrange(ys, I), vs = rearrange(vs, I);\r\n\
-    \    build(2 * idx + 0, {xs.begin(), xs.begin() + m},\r\n          {ys.begin(),\
+    \ infty<XY>;\r\n    xmax = ymax = -infty<XY>;\r\n\r\n    FOR(i, n) {\r\n     \
+    \ auto x = xs[i], y = ys[i];\r\n      chmin(xmin, x), chmax(xmax, x), chmin(ymin,\
+    \ y), chmax(ymax, y);\r\n    }\r\n    if (xmin == xmax && ymin == ymax) {\r\n\
+    \      X x = MX::unit();\r\n      for (auto&& v: vs) x = MX::op(x, v);\r\n   \
+    \   dat[idx] = x;\r\n      return;\r\n    }\r\n\r\n    int m = n / 2;\r\n    vc<int>\
+    \ I(n);\r\n    iota(all(I), 0);\r\n    if (divx) {\r\n      nth_element(I.begin(),\
+    \ I.begin() + m, I.end(),\r\n                  [xs](int i, int j) { return xs[i]\
+    \ < xs[j]; });\r\n    } else {\r\n      nth_element(I.begin(), I.begin() + m,\
+    \ I.end(),\r\n                  [ys](int i, int j) { return ys[i] < ys[j]; });\r\
+    \n    }\r\n    xs = rearrange(xs, I), ys = rearrange(ys, I), vs = rearrange(vs,\
+    \ I);\r\n    build(2 * idx + 0, {xs.begin(), xs.begin() + m},\r\n          {ys.begin(),\
     \ ys.begin() + m}, {vs.begin(), vs.begin() + m}, !divx);\r\n    build(2 * idx\
     \ + 1, {xs.begin() + m, xs.end()}, {ys.begin() + m, ys.end()},\r\n          {vs.begin()\
     \ + m, vs.end()}, !divx);\r\n    dat[idx] = MX::op(dat[2 * idx + 0], dat[2 * idx\
@@ -279,7 +279,7 @@ data:
     \n\ntemplate <typename E>\nstruct Monoid_SumMax {\n  using value_type = pair<E,\
     \ E>;\n  using X = value_type;\n  static X op(X x, X y) { return {x.fi + y.fi,\
     \ max(x.se, y.se)}; }\n  static X from_element(E e) { return {e, e}; }\n  static\
-    \ constexpr X unit() { return {E(0), -INF<E>}; }\n  static constexpr bool commute\
+    \ constexpr X unit() { return {E(0), -infty<E>}; }\n  static constexpr bool commute\
     \ = 1;\n};\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
     \ Monoid_Add {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x,\
     \ const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
@@ -289,7 +289,7 @@ data:
     \n\ntemplate <typename E>\nstruct ActedMonoid_SumMax_Add {\n  using Monoid_X =\
     \ Monoid_SumMax<E>;\n  using Monoid_A = Monoid_Add<E>;\n  using X = typename Monoid_X::value_type;\n\
     \  using A = typename Monoid_A::value_type;\n  static constexpr X act(const X&\
-    \ x, const A& a, const ll& size) {\n    auto [xs, xm] = x;\n    xm = (xm == -INF<E>\
+    \ x, const A& a, const ll& size) {\n    auto [xs, xm] = x;\n    xm = (xm == -infty<E>\
     \ ? xm : xm + a);\n    return {xs + E(size) * a, xm};\n  }\n};\n#line 2 \"random/base.hpp\"\
     \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
@@ -354,7 +354,7 @@ data:
   isVerificationFile: true
   path: test/mytest/kdtree_am.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:18:36+09:00'
+  timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/kdtree_am.test.cpp

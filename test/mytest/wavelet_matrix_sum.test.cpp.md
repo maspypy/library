@@ -264,10 +264,10 @@ data:
     \        if (f) L += mid[d] - l0, R += mid[d] - r0;\n      }\n    }\n    return\
     \ {cnt, sm};\n  }\n\n  // [L, R) \u306E\u4E2D\u3067 k \u756A\u76EE\u3001\u304A\
     \u3088\u3073\u3001\u4E0B\u4F4D k \u500B\u306E\u548C\n  // k = R-L \u306E\u3068\
-    \u304D\u306E first \u306F\u3001INF<T> \u3092\u8FD4\u3059\n  pair<T, X> kth(int\
+    \u304D\u306E first \u306F\u3001infty<T> \u3092\u8FD4\u3059\n  pair<T, X> kth(int\
     \ L, int R, int k, T xor_val = 0) {\n    if (xor_val != 0) assert(set_log);\n\
-    \    if (k == R - L) return {INF<T>, get(lg, L, R)};\n    assert(0 <= k && k <\
-    \ R - L);\n    T ret = 0;\n    X sm = 0;\n    for (int d = lg - 1; d >= 0; --d)\
+    \    if (k == R - L) return {infty<T>, get(lg, L, R)};\n    assert(0 <= k && k\
+    \ < R - L);\n    T ret = 0;\n    X sm = 0;\n    for (int d = lg - 1; d >= 0; --d)\
     \ {\n      bool f = (xor_val >> d) & 1;\n      int l0 = bv[d].rank(L, 0), r0 =\
     \ bv[d].rank(R, 0);\n      int kf = (f ? (R - L) - (r0 - l0) : (r0 - l0));\n \
     \     if (k < kf) {\n        if (!f) L = l0, R = r0;\n        if (f) L += mid[d]\
@@ -277,10 +277,10 @@ data:
     \ get(d, l0, r0));\n          L = L + mid[d] - l0, R = R + mid[d] - r0;\n    \
     \    }\n      }\n    }\n    if (k) sm = MX::op(sm, get(0, L, L + k));\n    return\
     \ {(COMPRESS ? key[ret] : ret), sm};\n  }\n\n  // check(prefix sum) \u304C true\
-    \ \u3068\u306A\u308B\u4E0A\u9650\u306E\u6700\u5927\u5024 (or INF<T>)\n  template\
+    \ \u3068\u306A\u308B\u4E0A\u9650\u306E\u6700\u5927\u5024 (or infty<T>)\n  template\
     \ <typename F>\n  T max_right_value(F check, int L, int R, T xor_val = 0) {\n\
     \    assert(check(MX::unit()));\n    if (xor_val != 0) assert(set_log);\n    if\
-    \ (check(get(lg, L, R))) return INF<T>;\n    T ret = 0;\n    X sm = MX::unit();\n\
+    \ (check(get(lg, L, R))) return infty<T>;\n    T ret = 0;\n    X sm = MX::unit();\n\
     \    for (int d = lg - 1; d >= 0; --d) {\n      bool f = ((xor_val) >> d) & 1;\n\
     \      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n      X lo_sm = (f ?\
     \ get(d, L + mid[d] - l0, R + mid[d] - r0) : get(d, l0, r0));\n      if (check(MX::op(sm,\
@@ -316,27 +316,84 @@ data:
     \  FOR(Q) {\n    int L = RNG(0, N);\n    int R = RNG(0, N);\n    if (L > R) swap(L,\
     \ R);\n    ++R;\n    int lo = RNG(0, MAX);\n    int hi = RNG(0, MAX);\n    if\
     \ (lo > hi) swap(lo, hi);\n    ++hi;\n    vc<int> B = {A.begin() + L, A.begin()\
-    \ + R};\n\n    int t = RNG(0, 5);\n    if (t == 0) { // count\n      int cnt =\
-    \ 0, sm = 0;\n      for (auto&& x: B)\n        if (lo <= x && x < hi) cnt += 1,\
-    \ sm += add_val[x];\n      assert(WM.count(L, R, lo, hi) == P({cnt, sm}));\n \
-    \   }\n    if (t == 1) { // count_prefix\n      int cnt = 0, sm = 0;\n      for\
-    \ (auto&& x: B)\n        if (x < hi) ++cnt, sm += add_val[x];\n      assert(WM.prefix_count(L,\
-    \ R, hi) == P({cnt, sm}));\n    }\n    if (t == 2) { // kth\n      int k = RNG(R\
-    \ - L + 1);\n      sort(all(B));\n      B.eb(WM.INF);\n      int sm = 0;\n   \
-    \   FOR(i, k) sm += add_val[B[i]];\n      assert(WM.kth(L, R, k) == P({B[k], sm}));\n\
-    \    }\n    if (t == 3) { // max_right_value\n      int sm = RNG(0, MAX * (R -\
+    \ + R};\n    const int INF = infty<int>;\n\n    int t = RNG(0, 5);\n    if (t\
+    \ == 0) { // count\n      int cnt = 0, sm = 0;\n      for (auto&& x: B)\n    \
+    \    if (lo <= x && x < hi) cnt += 1, sm += add_val[x];\n      assert(WM.count(L,\
+    \ R, lo, hi) == P({cnt, sm}));\n    }\n    if (t == 1) { // count_prefix\n   \
+    \   int cnt = 0, sm = 0;\n      for (auto&& x: B)\n        if (x < hi) ++cnt,\
+    \ sm += add_val[x];\n      assert(WM.prefix_count(L, R, hi) == P({cnt, sm}));\n\
+    \    }\n    if (t == 2) { // kth\n      int k = RNG(R - L + 1);\n      sort(all(B));\n\
+    \      B.eb(INF);\n      int sm = 0;\n      FOR(i, k) sm += add_val[B[i]];\n \
+    \     assert(WM.kth(L, R, k) == P({B[k], sm}));\n    }\n    if (t == 3) { // max_right_value\n\
+    \      int sm = RNG(0, MAX * (R - L) + 1);\n      int val = WM.max_right_value([&](int\
+    \ e) { return e <= sm; }, L, R);\n      int val2 = binary_search(\n          [&](int\
+    \ val) -> bool { return WM.prefix_count(L, R, val).se <= sm; },\n          0,\
+    \ MAX + 1);\n      if (val2 == MAX) val2 = INF;\n      assert(val == val2);\n\
+    \    }\n\n    if (t == 4) { // max_right_count\n      int sm = RNG(0, MAX * (R\
+    \ - L) + 1);\n      int k = WM.max_right_count([&](int e) { return e <= sm; },\
+    \ L, R);\n      int k2 = binary_search(\n          [&](int k) -> bool { return\
+    \ WM.kth(L, R, k).se <= sm; }, 0,\n          R - L + 1);\n      assert(k == k2);\n\
+    \    }\n  }\n}\n\nvoid test_not_compress() {\n  int N = RNG(1, 64);\n  int log\
+    \ = RNG(1, 7);\n  int MAX = 1 << log;\n  vc<int> A(N);\n  vc<int> add_val(MAX);\n\
+    \  FOR(i, MAX) add_val[i] = RNG(0, MAX);\n  FOR(i, N) A[i] = RNG(MAX);\n  Wavelet_Matrix_Sum<int,\
+    \ false> WM([&](int x) { return add_val[x]; }, A, log);\n  using P = pair<int,\
+    \ int>;\n\n  const int INF = infty<int>;\n\n  int Q = 100;\n  FOR(Q) {\n    int\
+    \ L = RNG(0, N);\n    int R = RNG(0, N);\n    if (L > R) swap(L, R);\n    ++R;\n\
+    \    int lo = RNG(0, MAX);\n    int hi = RNG(0, MAX);\n    int xor_val = RNG(0,\
+    \ MAX);\n    if (lo > hi) swap(lo, hi);\n    ++hi;\n    vc<int> B = {A.begin()\
+    \ + L, A.begin() + R};\n\n    int t = RNG(0, 5);\n    if (t == 0) { // count\n\
+    \      int cnt = 0, sm = 0;\n      for (auto&& x: B) {\n        int y = x ^ xor_val;\n\
+    \        if (lo <= y && y < hi) cnt += 1, sm += add_val[x];\n      }\n      assert(WM.count(L,\
+    \ R, lo, hi, xor_val) == P({cnt, sm}));\n    }\n    if (t == 1) { // count_prefix\n\
+    \      int cnt = 0, sm = 0;\n      for (auto&& x: B) {\n        int y = x ^ xor_val;\n\
+    \        if (y < hi) cnt += 1, sm += add_val[x];\n      }\n      assert(WM.prefix_count(L,\
+    \ R, hi, xor_val) == P({cnt, sm}));\n    }\n    if (t == 2) { // kth\n      int\
+    \ k = RNG(R - L + 1);\n      for (auto&& x: B) x ^= xor_val;\n      sort(all(B));\n\
+    \      B.eb(INF);\n      int sm = 0;\n      FOR(i, k) sm += add_val[B[i] ^ xor_val];\n\
+    \      assert(WM.kth(L, R, k, xor_val) == P({B[k], sm}));\n    }\n    if (t ==\
+    \ 3) { // max_right_value\n      int sm = RNG(0, MAX * (R - L) + 1);\n      int\
+    \ val\n          = WM.max_right_value([&](int e) { return e <= sm; }, L, R, xor_val);\n\
+    \      int val2 = binary_search(\n          [&](int val) -> bool {\n         \
+    \   return WM.prefix_count(L, R, val, xor_val).se <= sm;\n          },\n     \
+    \     0, MAX + 1);\n      if (val2 == MAX) val2 = INF;\n      assert(val == val2);\n\
+    \    }\n    if (t == 4) { // max_right_count\n      int sm = RNG(0, MAX * (R -\
+    \ L) + 1);\n      int k = WM.max_right_count([&](int e) { return e <= sm; }, L,\
+    \ R, xor_val);\n      int k2 = binary_search(\n          [&](int k) -> bool {\
+    \ return WM.kth(L, R, k, xor_val).se <= sm; }, 0,\n          R - L + 1);\n   \
+    \   assert(k == k2);\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a\
+    \ + b);\n}\n\nsigned main() {\n  FOR(1000) test_compress();\n  FOR(1000) test_not_compress();\n\
+    \  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"ds/wavelet_matrix_sum.hpp\"\n#include\
+    \ \"random/base.hpp\"\n\nvoid test_compress() {\n  int N = RNG(1, 64);\n  int\
+    \ MAX = RNG(2, 1 << 10);\n  vc<int> A(N);\n  vc<int> add_val(MAX);\n  FOR(i, MAX)\
+    \ add_val[i] = RNG(0, MAX);\n  FOR(i, N) A[i] = RNG(MAX);\n  Wavelet_Matrix_Sum<int,\
+    \ true> WM([&](int x) -> int { return add_val[x]; }, A);\n  using P = pair<int,\
+    \ int>;\n\n  int Q = 100;\n  FOR(Q) {\n    int L = RNG(0, N);\n    int R = RNG(0,\
+    \ N);\n    if (L > R) swap(L, R);\n    ++R;\n    int lo = RNG(0, MAX);\n    int\
+    \ hi = RNG(0, MAX);\n    if (lo > hi) swap(lo, hi);\n    ++hi;\n    vc<int> B\
+    \ = {A.begin() + L, A.begin() + R};\n    const int INF = infty<int>;\n\n    int\
+    \ t = RNG(0, 5);\n    if (t == 0) { // count\n      int cnt = 0, sm = 0;\n   \
+    \   for (auto&& x: B)\n        if (lo <= x && x < hi) cnt += 1, sm += add_val[x];\n\
+    \      assert(WM.count(L, R, lo, hi) == P({cnt, sm}));\n    }\n    if (t == 1)\
+    \ { // count_prefix\n      int cnt = 0, sm = 0;\n      for (auto&& x: B)\n   \
+    \     if (x < hi) ++cnt, sm += add_val[x];\n      assert(WM.prefix_count(L, R,\
+    \ hi) == P({cnt, sm}));\n    }\n    if (t == 2) { // kth\n      int k = RNG(R\
+    \ - L + 1);\n      sort(all(B));\n      B.eb(INF);\n      int sm = 0;\n      FOR(i,\
+    \ k) sm += add_val[B[i]];\n      assert(WM.kth(L, R, k) == P({B[k], sm}));\n \
+    \   }\n    if (t == 3) { // max_right_value\n      int sm = RNG(0, MAX * (R -\
     \ L) + 1);\n      int val = WM.max_right_value([&](int e) { return e <= sm; },\
     \ L, R);\n      int val2 = binary_search(\n          [&](int val) -> bool { return\
     \ WM.prefix_count(L, R, val).se <= sm; },\n          0, MAX + 1);\n      if (val2\
-    \ == MAX) val2 = WM.INF;\n      assert(val == val2);\n    }\n\n    if (t == 4)\
-    \ { // max_right_count\n      int sm = RNG(0, MAX * (R - L) + 1);\n      int k\
-    \ = WM.max_right_count([&](int e) { return e <= sm; }, L, R);\n      int k2 =\
-    \ binary_search(\n          [&](int k) -> bool { return WM.kth(L, R, k).se <=\
-    \ sm; }, 0,\n          R - L + 1);\n      assert(k == k2);\n    }\n  }\n}\n\n\
-    void test_not_compress() {\n  int N = RNG(1, 64);\n  int log = RNG(1, 7);\n  int\
-    \ MAX = 1 << log;\n  vc<int> A(N);\n  vc<int> add_val(MAX);\n  FOR(i, MAX) add_val[i]\
-    \ = RNG(0, MAX);\n  FOR(i, N) A[i] = RNG(MAX);\n  Wavelet_Matrix_Sum<int, false>\
-    \ WM([&](int x) { return add_val[x]; }, A, log);\n  using P = pair<int, int>;\n\
+    \ == MAX) val2 = INF;\n      assert(val == val2);\n    }\n\n    if (t == 4) {\
+    \ // max_right_count\n      int sm = RNG(0, MAX * (R - L) + 1);\n      int k =\
+    \ WM.max_right_count([&](int e) { return e <= sm; }, L, R);\n      int k2 = binary_search(\n\
+    \          [&](int k) -> bool { return WM.kth(L, R, k).se <= sm; }, 0,\n     \
+    \     R - L + 1);\n      assert(k == k2);\n    }\n  }\n}\n\nvoid test_not_compress()\
+    \ {\n  int N = RNG(1, 64);\n  int log = RNG(1, 7);\n  int MAX = 1 << log;\n  vc<int>\
+    \ A(N);\n  vc<int> add_val(MAX);\n  FOR(i, MAX) add_val[i] = RNG(0, MAX);\n  FOR(i,\
+    \ N) A[i] = RNG(MAX);\n  Wavelet_Matrix_Sum<int, false> WM([&](int x) { return\
+    \ add_val[x]; }, A, log);\n  using P = pair<int, int>;\n\n  const int INF = infty<int>;\n\
     \n  int Q = 100;\n  FOR(Q) {\n    int L = RNG(0, N);\n    int R = RNG(0, N);\n\
     \    if (L > R) swap(L, R);\n    ++R;\n    int lo = RNG(0, MAX);\n    int hi =\
     \ RNG(0, MAX);\n    int xor_val = RNG(0, MAX);\n    if (lo > hi) swap(lo, hi);\n\
@@ -349,76 +406,20 @@ data:
     \  if (y < hi) cnt += 1, sm += add_val[x];\n      }\n      assert(WM.prefix_count(L,\
     \ R, hi, xor_val) == P({cnt, sm}));\n    }\n    if (t == 2) { // kth\n      int\
     \ k = RNG(R - L + 1);\n      for (auto&& x: B) x ^= xor_val;\n      sort(all(B));\n\
-    \      B.eb(WM.INF);\n      int sm = 0;\n      FOR(i, k) sm += add_val[B[i] ^\
-    \ xor_val];\n      assert(WM.kth(L, R, k, xor_val) == P({B[k], sm}));\n    }\n\
-    \    if (t == 3) { // max_right_value\n      int sm = RNG(0, MAX * (R - L) + 1);\n\
-    \      int val\n          = WM.max_right_value([&](int e) { return e <= sm; },\
-    \ L, R, xor_val);\n      int val2 = binary_search(\n          [&](int val) ->\
-    \ bool {\n            return WM.prefix_count(L, R, val, xor_val).se <= sm;\n \
-    \         },\n          0, MAX + 1);\n      if (val2 == MAX) val2 = WM.INF;\n\
-    \      assert(val == val2);\n    }\n    if (t == 4) { // max_right_count\n   \
-    \   int sm = RNG(0, MAX * (R - L) + 1);\n      int k = WM.max_right_count([&](int\
-    \ e) { return e <= sm; }, L, R, xor_val);\n      int k2 = binary_search(\n   \
-    \       [&](int k) -> bool { return WM.kth(L, R, k, xor_val).se <= sm; }, 0,\n\
-    \          R - L + 1);\n      assert(k == k2);\n    }\n  }\n}\n\nvoid solve()\
-    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  FOR(1000) test_compress();\n\
-    \  FOR(1000) test_not_compress();\n  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"ds/wavelet_matrix_sum.hpp\"\n#include\
-    \ \"random/base.hpp\"\n\nvoid test_compress() {\n  int N = RNG(1, 64);\n  int\
-    \ MAX = RNG(2, 1 << 10);\n  vc<int> A(N);\n  vc<int> add_val(MAX);\n  FOR(i, MAX)\
-    \ add_val[i] = RNG(0, MAX);\n  FOR(i, N) A[i] = RNG(MAX);\n  Wavelet_Matrix_Sum<int,\
-    \ true> WM([&](int x) -> int { return add_val[x]; }, A);\n  using P = pair<int,\
-    \ int>;\n\n  int Q = 100;\n  FOR(Q) {\n    int L = RNG(0, N);\n    int R = RNG(0,\
-    \ N);\n    if (L > R) swap(L, R);\n    ++R;\n    int lo = RNG(0, MAX);\n    int\
-    \ hi = RNG(0, MAX);\n    if (lo > hi) swap(lo, hi);\n    ++hi;\n    vc<int> B\
-    \ = {A.begin() + L, A.begin() + R};\n\n    int t = RNG(0, 5);\n    if (t == 0)\
-    \ { // count\n      int cnt = 0, sm = 0;\n      for (auto&& x: B)\n        if\
-    \ (lo <= x && x < hi) cnt += 1, sm += add_val[x];\n      assert(WM.count(L, R,\
-    \ lo, hi) == P({cnt, sm}));\n    }\n    if (t == 1) { // count_prefix\n      int\
-    \ cnt = 0, sm = 0;\n      for (auto&& x: B)\n        if (x < hi) ++cnt, sm +=\
-    \ add_val[x];\n      assert(WM.prefix_count(L, R, hi) == P({cnt, sm}));\n    }\n\
-    \    if (t == 2) { // kth\n      int k = RNG(R - L + 1);\n      sort(all(B));\n\
-    \      B.eb(WM.INF);\n      int sm = 0;\n      FOR(i, k) sm += add_val[B[i]];\n\
-    \      assert(WM.kth(L, R, k) == P({B[k], sm}));\n    }\n    if (t == 3) { //\
-    \ max_right_value\n      int sm = RNG(0, MAX * (R - L) + 1);\n      int val =\
-    \ WM.max_right_value([&](int e) { return e <= sm; }, L, R);\n      int val2 =\
-    \ binary_search(\n          [&](int val) -> bool { return WM.prefix_count(L, R,\
-    \ val).se <= sm; },\n          0, MAX + 1);\n      if (val2 == MAX) val2 = WM.INF;\n\
-    \      assert(val == val2);\n    }\n\n    if (t == 4) { // max_right_count\n \
-    \     int sm = RNG(0, MAX * (R - L) + 1);\n      int k = WM.max_right_count([&](int\
-    \ e) { return e <= sm; }, L, R);\n      int k2 = binary_search(\n          [&](int\
-    \ k) -> bool { return WM.kth(L, R, k).se <= sm; }, 0,\n          R - L + 1);\n\
-    \      assert(k == k2);\n    }\n  }\n}\n\nvoid test_not_compress() {\n  int N\
-    \ = RNG(1, 64);\n  int log = RNG(1, 7);\n  int MAX = 1 << log;\n  vc<int> A(N);\n\
-    \  vc<int> add_val(MAX);\n  FOR(i, MAX) add_val[i] = RNG(0, MAX);\n  FOR(i, N)\
-    \ A[i] = RNG(MAX);\n  Wavelet_Matrix_Sum<int, false> WM([&](int x) { return add_val[x];\
-    \ }, A, log);\n  using P = pair<int, int>;\n\n  int Q = 100;\n  FOR(Q) {\n   \
-    \ int L = RNG(0, N);\n    int R = RNG(0, N);\n    if (L > R) swap(L, R);\n   \
-    \ ++R;\n    int lo = RNG(0, MAX);\n    int hi = RNG(0, MAX);\n    int xor_val\
-    \ = RNG(0, MAX);\n    if (lo > hi) swap(lo, hi);\n    ++hi;\n    vc<int> B = {A.begin()\
-    \ + L, A.begin() + R};\n\n    int t = RNG(0, 5);\n    if (t == 0) { // count\n\
-    \      int cnt = 0, sm = 0;\n      for (auto&& x: B) {\n        int y = x ^ xor_val;\n\
-    \        if (lo <= y && y < hi) cnt += 1, sm += add_val[x];\n      }\n      assert(WM.count(L,\
-    \ R, lo, hi, xor_val) == P({cnt, sm}));\n    }\n    if (t == 1) { // count_prefix\n\
-    \      int cnt = 0, sm = 0;\n      for (auto&& x: B) {\n        int y = x ^ xor_val;\n\
-    \        if (y < hi) cnt += 1, sm += add_val[x];\n      }\n      assert(WM.prefix_count(L,\
-    \ R, hi, xor_val) == P({cnt, sm}));\n    }\n    if (t == 2) { // kth\n      int\
-    \ k = RNG(R - L + 1);\n      for (auto&& x: B) x ^= xor_val;\n      sort(all(B));\n\
-    \      B.eb(WM.INF);\n      int sm = 0;\n      FOR(i, k) sm += add_val[B[i] ^\
-    \ xor_val];\n      assert(WM.kth(L, R, k, xor_val) == P({B[k], sm}));\n    }\n\
-    \    if (t == 3) { // max_right_value\n      int sm = RNG(0, MAX * (R - L) + 1);\n\
-    \      int val\n          = WM.max_right_value([&](int e) { return e <= sm; },\
-    \ L, R, xor_val);\n      int val2 = binary_search(\n          [&](int val) ->\
-    \ bool {\n            return WM.prefix_count(L, R, val, xor_val).se <= sm;\n \
-    \         },\n          0, MAX + 1);\n      if (val2 == MAX) val2 = WM.INF;\n\
-    \      assert(val == val2);\n    }\n    if (t == 4) { // max_right_count\n   \
-    \   int sm = RNG(0, MAX * (R - L) + 1);\n      int k = WM.max_right_count([&](int\
-    \ e) { return e <= sm; }, L, R, xor_val);\n      int k2 = binary_search(\n   \
-    \       [&](int k) -> bool { return WM.kth(L, R, k, xor_val).se <= sm; }, 0,\n\
-    \          R - L + 1);\n      assert(k == k2);\n    }\n  }\n}\n\nvoid solve()\
-    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  FOR(1000) test_compress();\n\
-    \  FOR(1000) test_not_compress();\n  solve();\n\n  return 0;\n}\n"
+    \      B.eb(INF);\n      int sm = 0;\n      FOR(i, k) sm += add_val[B[i] ^ xor_val];\n\
+    \      assert(WM.kth(L, R, k, xor_val) == P({B[k], sm}));\n    }\n    if (t ==\
+    \ 3) { // max_right_value\n      int sm = RNG(0, MAX * (R - L) + 1);\n      int\
+    \ val\n          = WM.max_right_value([&](int e) { return e <= sm; }, L, R, xor_val);\n\
+    \      int val2 = binary_search(\n          [&](int val) -> bool {\n         \
+    \   return WM.prefix_count(L, R, val, xor_val).se <= sm;\n          },\n     \
+    \     0, MAX + 1);\n      if (val2 == MAX) val2 = INF;\n      assert(val == val2);\n\
+    \    }\n    if (t == 4) { // max_right_count\n      int sm = RNG(0, MAX * (R -\
+    \ L) + 1);\n      int k = WM.max_right_count([&](int e) { return e <= sm; }, L,\
+    \ R, xor_val);\n      int k2 = binary_search(\n          [&](int k) -> bool {\
+    \ return WM.kth(L, R, k, xor_val).se <= sm; }, 0,\n          R - L + 1);\n   \
+    \   assert(k == k2);\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a\
+    \ + b);\n}\n\nsigned main() {\n  FOR(1000) test_compress();\n  FOR(1000) test_not_compress();\n\
+    \  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -429,7 +430,7 @@ data:
   isVerificationFile: true
   path: test/mytest/wavelet_matrix_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:18:36+09:00'
+  timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/wavelet_matrix_sum.test.cpp

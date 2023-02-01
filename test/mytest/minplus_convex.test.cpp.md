@@ -227,42 +227,42 @@ data:
     \      }\n      I[i] = best;\n    }\n    return I;\n  };\n  vc<int> X(H), Y(W);\n\
     \  iota(all(X), 0), iota(all(Y), 0);\n  return dfs(dfs, X, Y);\n}\n#line 2 \"\
     convex/minplus_convolution_convex.hpp\"\n\ntemplate <typename T, bool convA, bool\
-    \ convB>\nvc<T> minplus_convolution_convex(vc<T> A, vc<T> B, const T INF) {\n\
-    \  static_assert(convA || convB);\n  assert(INF < INF + INF);\n  if (!convB) swap(A,\
-    \ B);\n  int NA = len(A), NB = len(B);\n  int N = NA + NB - 1;\n  int L = 0, R\
-    \ = NB;\n  while (L < R && B[L] == INF) ++L;\n  if (L == R) return vc<T>(N, INF);\n\
-    \  while (B[R - 1] == INF) --R;\n  B = {B.begin() + L, B.begin() + R};\n  int\
-    \ nB = R - L;\n  int n = NA + nB - 1;\n\n  auto select = [&](int i, int j, int\
-    \ k) -> int {\n    if (i < k) return j;\n    if (i - j >= nB) return k;\n    return\
-    \ (A[j] + B[i - j] > A[k] + B[i - k] ? k : j);\n  };\n\n  vc<int> J = SMAWK(n,\
-    \ NA, select);\n  vc<T> C(N, INF);\n  FOR(i, n) C[L + i] = (A[J[i]] == INF ? INF\
-    \ : A[J[i]] + B[i - J[i]]);\n  return C;\n}\n#line 6 \"test/mytest/minplus_convex.test.cpp\"\
-    \n\nconst int INF = numeric_limits<int>::max() / 2;\n\nvc<int> gen(int L, int\
-    \ N, int R) {\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(-100, 100);\n  sort(all(A));\n\
-    \  A = cumsum<int>(A);\n  FOR(L) A.insert(A.begin(), INF);\n  FOR(R) A.insert(A.end(),\
-    \ INF);\n  return A;\n}\n\nvc<int> naive(vc<int> A, vc<int> B) {\n  int N = len(A),\
-    \ M = len(B);\n  vc<int> C(N + M - 1, INF);\n  FOR(i, N) FOR(j, M) {\n    if (A[i]\
-    \ == INF || B[j] == INF) continue;\n    chmin(C[i + j], A[i] + B[j]);\n  }\n \
-    \ return C;\n}\n\nvoid test() {\n  FOR(a1, 5) FOR(b1, 10) FOR(c1, 5) {\n    vc<int>\
-    \ A = gen(a1, b1, c1);\n    FOR(a2, 5) FOR(b2, 10) FOR(c2, 5) {\n      vc<int>\
-    \ B = gen(a2, b2, c2);\n      vc<int> C = minplus_convolution_convex<int, 1, 1>(A,\
-    \ B, INF);\n      assert(naive(A, B) == C);\n    }\n  }\n}\n\nvoid solve() {\n\
-    \  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\n\
-    \  return 0;\n}\n"
+    \ convB>\nvc<T> minplus_convolution_convex(vc<T> A, vc<T> B) {\n  static_assert(convA\
+    \ || convB);\n  if (!convB) swap(A, B);\n  int NA = len(A), NB = len(B);\n  int\
+    \ N = NA + NB - 1;\n  int L = 0, R = NB;\n  while (L < R && B[L] == infty<T>)\
+    \ ++L;\n  if (L == R) return vc<T>(N, infty<T>);\n  while (B[R - 1] == infty<T>)\
+    \ --R;\n  B = {B.begin() + L, B.begin() + R};\n  int nB = R - L;\n  int n = NA\
+    \ + nB - 1;\n\n  auto select = [&](int i, int j, int k) -> int {\n    if (i <\
+    \ k) return j;\n    if (i - j >= nB) return k;\n    return (A[j] + B[i - j] >\
+    \ A[k] + B[i - k] ? k : j);\n  };\n\n  vc<int> J = SMAWK(n, NA, select);\n  vc<T>\
+    \ C(N, infty<T>);\n  FOR(i, n) C[L + i] = (A[J[i]] == infty<T> ? infty<T> : A[J[i]]\
+    \ + B[i - J[i]]);\n  return C;\n}\n#line 6 \"test/mytest/minplus_convex.test.cpp\"\
+    \n\nvc<int> gen(int L, int N, int R) {\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(-100,\
+    \ 100);\n  sort(all(A));\n  A = cumsum<int>(A);\n  FOR(L) A.insert(A.begin(),\
+    \ infty<int>);\n  FOR(R) A.insert(A.end(), infty<int>);\n  return A;\n}\n\nvc<int>\
+    \ naive(vc<int> A, vc<int> B) {\n  int N = len(A), M = len(B);\n  vc<int> C(N\
+    \ + M - 1, infty<int>);\n  FOR(i, N) FOR(j, M) {\n    if (A[i] == infty<int> ||\
+    \ B[j] == infty<int>) continue;\n    chmin(C[i + j], A[i] + B[j]);\n  }\n  return\
+    \ C;\n}\n\nvoid test() {\n  FOR(a1, 5) FOR(b1, 10) FOR(c1, 5) {\n    vc<int> A\
+    \ = gen(a1, b1, c1);\n    FOR(a2, 5) FOR(b2, 10) FOR(c2, 5) {\n      vc<int> B\
+    \ = gen(a2, b2, c2);\n      vc<int> C = minplus_convolution_convex<int, 1, 1>(A,\
+    \ B);\n      assert(naive(A, B) == C);\n    }\n  }\n}\n\nvoid solve() {\n  LL(a,\
+    \ b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"random/base.hpp\"\n#include \"convex/minplus_convolution_convex.hpp\"\
-    \n\nconst int INF = numeric_limits<int>::max() / 2;\n\nvc<int> gen(int L, int\
-    \ N, int R) {\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(-100, 100);\n  sort(all(A));\n\
-    \  A = cumsum<int>(A);\n  FOR(L) A.insert(A.begin(), INF);\n  FOR(R) A.insert(A.end(),\
-    \ INF);\n  return A;\n}\n\nvc<int> naive(vc<int> A, vc<int> B) {\n  int N = len(A),\
-    \ M = len(B);\n  vc<int> C(N + M - 1, INF);\n  FOR(i, N) FOR(j, M) {\n    if (A[i]\
-    \ == INF || B[j] == INF) continue;\n    chmin(C[i + j], A[i] + B[j]);\n  }\n \
-    \ return C;\n}\n\nvoid test() {\n  FOR(a1, 5) FOR(b1, 10) FOR(c1, 5) {\n    vc<int>\
-    \ A = gen(a1, b1, c1);\n    FOR(a2, 5) FOR(b2, 10) FOR(c2, 5) {\n      vc<int>\
-    \ B = gen(a2, b2, c2);\n      vc<int> C = minplus_convolution_convex<int, 1, 1>(A,\
-    \ B, INF);\n      assert(naive(A, B) == C);\n    }\n  }\n}\n\nvoid solve() {\n\
-    \  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\n\
-    \  return 0;\n}"
+    \n\nvc<int> gen(int L, int N, int R) {\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(-100,\
+    \ 100);\n  sort(all(A));\n  A = cumsum<int>(A);\n  FOR(L) A.insert(A.begin(),\
+    \ infty<int>);\n  FOR(R) A.insert(A.end(), infty<int>);\n  return A;\n}\n\nvc<int>\
+    \ naive(vc<int> A, vc<int> B) {\n  int N = len(A), M = len(B);\n  vc<int> C(N\
+    \ + M - 1, infty<int>);\n  FOR(i, N) FOR(j, M) {\n    if (A[i] == infty<int> ||\
+    \ B[j] == infty<int>) continue;\n    chmin(C[i + j], A[i] + B[j]);\n  }\n  return\
+    \ C;\n}\n\nvoid test() {\n  FOR(a1, 5) FOR(b1, 10) FOR(c1, 5) {\n    vc<int> A\
+    \ = gen(a1, b1, c1);\n    FOR(a2, 5) FOR(b2, 10) FOR(c2, 5) {\n      vc<int> B\
+    \ = gen(a2, b2, c2);\n      vc<int> C = minplus_convolution_convex<int, 1, 1>(A,\
+    \ B);\n      assert(naive(A, B) == C);\n    }\n  }\n}\n\nvoid solve() {\n  LL(a,\
+    \ b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return\
+    \ 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -272,7 +272,7 @@ data:
   isVerificationFile: true
   path: test/mytest/minplus_convex.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:18:36+09:00'
+  timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/minplus_convex.test.cpp

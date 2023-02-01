@@ -58,25 +58,25 @@ data:
     \  }\n};\n#line 2 \"ds/segtree/beats_summin_chmax.hpp\"\ntemplate <typename T>\n\
     struct Beats_SumMin_Chmax {\n  struct SumMin {\n    struct X {\n      T sum, min,\
     \ minc, min2;\n      bool fail;\n    };\n    using value_type = X;\n    static\
-    \ X op(const X& x, const X& y) {\n      if (x.min == INF<T>) return y;\n     \
-    \ if (y.min == INF<T>) return x;\n      X z;\n      z.sum = x.sum + y.sum;\n\n\
-    \      z.min = min(x.min, y.min);\n      z.minc = (x.min == z.min ? x.minc : 0)\
-    \ + (y.min == z.min ? y.minc : 0);\n\n      z.min2 = INF<T>;\n      if (z.min\
+    \ X op(const X& x, const X& y) {\n      if (x.min == infty<T>) return y;\n   \
+    \   if (y.min == infty<T>) return x;\n      X z;\n      z.sum = x.sum + y.sum;\n\
+    \n      z.min = min(x.min, y.min);\n      z.minc = (x.min == z.min ? x.minc :\
+    \ 0) + (y.min == z.min ? y.minc : 0);\n\n      z.min2 = infty<T>;\n      if (z.min\
     \ < x.min && x.min < z.min2) z.min2 = x.min;\n      if (z.min < x.min2 && x.min2\
     \ < z.min2) z.min2 = x.min2;\n      if (z.min < y.min && y.min < z.min2) z.min2\
     \ = y.min;\n      if (z.min < y.min2 && y.min2 < z.min2) z.min2 = y.min2;\n\n\
     \      z.fail = 0;\n      return z;\n    }\n    static constexpr X unit() { return\
-    \ {0, INF<T>, 0, INF<T>, 0}; }\n    bool commute = true;\n  };\n  struct AddChmax\
+    \ {0, infty<T>, 0, infty<T>, 0}; }\n    bool commute = true;\n  };\n  struct AddChmax\
     \ {\n    using X = pair<T, T>;\n    using value_type = X;\n    static constexpr\
     \ X op(const X& x, const X& y) {\n      auto [a, c] = x;\n      auto [d, f] =\
     \ y;\n      a += d, c += d, c = max(c, f);\n      return {a, c};\n    }\n    static\
-    \ constexpr X unit() { return {0, -INF<T>}; }\n    bool commute = false;\n  };\n\
-    \  struct Beats {\n    using Monoid_X = SumMin;\n    using Monoid_A = AddChmax;\n\
+    \ constexpr X unit() { return {0, -infty<T>}; }\n    bool commute = false;\n \
+    \ };\n  struct Beats {\n    using Monoid_X = SumMin;\n    using Monoid_A = AddChmax;\n\
     \    using X = typename Monoid_X::value_type;\n    using A = typename Monoid_A::value_type;\n\
     \    static X act(X& x, const A& a, int cnt) {\n      assert(!x.fail);\n     \
-    \ if (x.min == INF<T>) return x;\n      auto [add, ma] = a;\n      x.sum += cnt\
-    \ * add, x.min += add, x.min2 += add;\n      if (ma == -INF<T>) return x;\n\n\
-    \      T before_min = x.min;\n      x.min = max(x.min, ma);\n      if (x.minc\
+    \ if (x.min == infty<T>) return x;\n      auto [add, ma] = a;\n      x.sum +=\
+    \ cnt * add, x.min += add, x.min2 += add;\n      if (ma == -infty<T>) return x;\n\
+    \n      T before_min = x.min;\n      x.min = max(x.min, ma);\n      if (x.minc\
     \ == cnt) { x.min2 = x.min, x.sum = cnt * x.min; }\n      elif (x.min2 > x.min)\
     \ { x.sum += (x.min - before_min) * x.minc; }\n      else {\n        x.fail =\
     \ 1;\n      }\n      return x;\n    }\n  };\n  using X = typename SumMin::X;\n\
@@ -87,29 +87,29 @@ data:
     \ }\n\n  // (sum, min)\n  pair<T, T> prod(int l, int r) {\n    auto e = seg.prod(l,\
     \ r);\n    return {e.sum, e.min};\n  }\n  static X from_element(T x) { return\
     \ {x, x, 1, x}; }\n\n  void chmax(int l, int r, T x) { seg.apply(l, r, {0, x});\
-    \ }\n  void add(int l, int r, T x) { seg.apply(l, r, {x, -INF<T>}); }\n};\n"
+    \ }\n  void add(int l, int r, T x) { seg.apply(l, r, {x, -infty<T>}); }\n};\n"
   code: "#include \"ds/segtree/segtree_beats.hpp\"\ntemplate <typename T>\nstruct\
     \ Beats_SumMin_Chmax {\n  struct SumMin {\n    struct X {\n      T sum, min, minc,\
     \ min2;\n      bool fail;\n    };\n    using value_type = X;\n    static X op(const\
-    \ X& x, const X& y) {\n      if (x.min == INF<T>) return y;\n      if (y.min ==\
-    \ INF<T>) return x;\n      X z;\n      z.sum = x.sum + y.sum;\n\n      z.min =\
-    \ min(x.min, y.min);\n      z.minc = (x.min == z.min ? x.minc : 0) + (y.min ==\
-    \ z.min ? y.minc : 0);\n\n      z.min2 = INF<T>;\n      if (z.min < x.min && x.min\
-    \ < z.min2) z.min2 = x.min;\n      if (z.min < x.min2 && x.min2 < z.min2) z.min2\
-    \ = x.min2;\n      if (z.min < y.min && y.min < z.min2) z.min2 = y.min;\n    \
-    \  if (z.min < y.min2 && y.min2 < z.min2) z.min2 = y.min2;\n\n      z.fail = 0;\n\
-    \      return z;\n    }\n    static constexpr X unit() { return {0, INF<T>, 0,\
-    \ INF<T>, 0}; }\n    bool commute = true;\n  };\n  struct AddChmax {\n    using\
-    \ X = pair<T, T>;\n    using value_type = X;\n    static constexpr X op(const\
+    \ X& x, const X& y) {\n      if (x.min == infty<T>) return y;\n      if (y.min\
+    \ == infty<T>) return x;\n      X z;\n      z.sum = x.sum + y.sum;\n\n      z.min\
+    \ = min(x.min, y.min);\n      z.minc = (x.min == z.min ? x.minc : 0) + (y.min\
+    \ == z.min ? y.minc : 0);\n\n      z.min2 = infty<T>;\n      if (z.min < x.min\
+    \ && x.min < z.min2) z.min2 = x.min;\n      if (z.min < x.min2 && x.min2 < z.min2)\
+    \ z.min2 = x.min2;\n      if (z.min < y.min && y.min < z.min2) z.min2 = y.min;\n\
+    \      if (z.min < y.min2 && y.min2 < z.min2) z.min2 = y.min2;\n\n      z.fail\
+    \ = 0;\n      return z;\n    }\n    static constexpr X unit() { return {0, infty<T>,\
+    \ 0, infty<T>, 0}; }\n    bool commute = true;\n  };\n  struct AddChmax {\n  \
+    \  using X = pair<T, T>;\n    using value_type = X;\n    static constexpr X op(const\
     \ X& x, const X& y) {\n      auto [a, c] = x;\n      auto [d, f] = y;\n      a\
     \ += d, c += d, c = max(c, f);\n      return {a, c};\n    }\n    static constexpr\
-    \ X unit() { return {0, -INF<T>}; }\n    bool commute = false;\n  };\n  struct\
+    \ X unit() { return {0, -infty<T>}; }\n    bool commute = false;\n  };\n  struct\
     \ Beats {\n    using Monoid_X = SumMin;\n    using Monoid_A = AddChmax;\n    using\
     \ X = typename Monoid_X::value_type;\n    using A = typename Monoid_A::value_type;\n\
     \    static X act(X& x, const A& a, int cnt) {\n      assert(!x.fail);\n     \
-    \ if (x.min == INF<T>) return x;\n      auto [add, ma] = a;\n      x.sum += cnt\
-    \ * add, x.min += add, x.min2 += add;\n      if (ma == -INF<T>) return x;\n\n\
-    \      T before_min = x.min;\n      x.min = max(x.min, ma);\n      if (x.minc\
+    \ if (x.min == infty<T>) return x;\n      auto [add, ma] = a;\n      x.sum +=\
+    \ cnt * add, x.min += add, x.min2 += add;\n      if (ma == -infty<T>) return x;\n\
+    \n      T before_min = x.min;\n      x.min = max(x.min, ma);\n      if (x.minc\
     \ == cnt) { x.min2 = x.min, x.sum = cnt * x.min; }\n      elif (x.min2 > x.min)\
     \ { x.sum += (x.min - before_min) * x.minc; }\n      else {\n        x.fail =\
     \ 1;\n      }\n      return x;\n    }\n  };\n  using X = typename SumMin::X;\n\
@@ -120,13 +120,13 @@ data:
     \ }\n\n  // (sum, min)\n  pair<T, T> prod(int l, int r) {\n    auto e = seg.prod(l,\
     \ r);\n    return {e.sum, e.min};\n  }\n  static X from_element(T x) { return\
     \ {x, x, 1, x}; }\n\n  void chmax(int l, int r, T x) { seg.apply(l, r, {0, x});\
-    \ }\n  void add(int l, int r, T x) { seg.apply(l, r, {x, -INF<T>}); }\n};\n"
+    \ }\n  void add(int l, int r, T x) { seg.apply(l, r, {x, -infty<T>}); }\n};\n"
   dependsOn:
   - ds/segtree/segtree_beats.hpp
   isVerificationFile: false
   path: ds/segtree/beats_summin_chmax.hpp
   requiredBy: []
-  timestamp: '2023-02-01 22:47:27+09:00'
+  timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1526.test.cpp

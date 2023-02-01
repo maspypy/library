@@ -222,14 +222,14 @@ data:
     \n  using value_type = P;\r\n  static constexpr P op(const P x, const P y) noexcept\
     \ {\r\n    return {min(x.fi, y.fi), max(x.se, y.se)};\r\n  }\r\n  static constexpr\
     \ P from_element(const X x) { return {x, x}; }\r\n  static constexpr P unit()\
-    \ { return {INF<X>, -INF<X>}; }\r\n  static constexpr bool commute = true;\r\n\
-    };\r\n#line 3 \"alg/acted_monoid/minmax_add.hpp\"\n\r\ntemplate <typename E>\r\
+    \ { return {infty<X>, -infty<X>}; }\r\n  static constexpr bool commute = true;\r\
+    \n};\r\n#line 3 \"alg/acted_monoid/minmax_add.hpp\"\n\r\ntemplate <typename E>\r\
     \nstruct ActedMonoid_MinMax_Add {\r\n  using Monoid_X = Monoid_MinMax<E>;\r\n\
     \  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\
     \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
-    \ X &x, const A &a, const ll &size) {\r\n    E lo = (x.fi == INF<E> ? x.fi : x.fi\
-    \ + a);\r\n    E hi = (x.se == -INF<E> ? x.se : x.se + a);\r\n    return {lo,\
-    \ hi};\r\n  }\r\n};\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
+    \ X &x, const A &a, const ll &size) {\r\n    E lo = (x.fi == infty<E> ? x.fi :\
+    \ x.fi + a);\r\n    E hi = (x.se == -infty<E> ? x.se : x.se + a);\r\n    return\
+    \ {lo, hi};\r\n  }\r\n};\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
     \ uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
@@ -324,7 +324,7 @@ data:
   isVerificationFile: true
   path: test/mytest/minmax_add.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:18:36+09:00'
+  timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/minmax_add.test.cpp

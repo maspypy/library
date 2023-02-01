@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
   - icon: ':x:'
@@ -27,7 +27,7 @@ data:
     \ Monoid_SumMax {\n  using value_type = pair<E, E>;\n  using X = value_type;\n\
     \  static X op(X x, X y) { return {x.fi + y.fi, max(x.se, y.se)}; }\n  static\
     \ X from_element(E e) { return {e, e}; }\n  static constexpr X unit() { return\
-    \ {E(0), -INF<E>}; }\n  static constexpr bool commute = 1;\n};\n#line 2 \"alg/monoid/assign.hpp\"\
+    \ {E(0), -infty<E>}; }\n  static constexpr bool commute = 1;\n};\n#line 2 \"alg/monoid/assign.hpp\"\
     \n\r\ntemplate <typename X, X none_val>\r\nstruct Monoid_Assign {\r\n  using value_type\
     \ = X;\r\n  static X op(X x, X y) { return (y == none_val ? x : y); }\r\n  static\
     \ constexpr X unit() { return none_val; }\r\n  static constexpr bool commute =\
@@ -51,7 +51,7 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/summax_assign.hpp
   requiredBy: []
-  timestamp: '2023-02-01 23:04:20+09:00'
+  timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/summax_assign.test.cpp

@@ -27,28 +27,28 @@ data:
     \n  using value_type = P;\r\n  static constexpr P op(const P x, const P y) noexcept\
     \ {\r\n    return {min(x.fi, y.fi), max(x.se, y.se)};\r\n  }\r\n  static constexpr\
     \ P from_element(const X x) { return {x, x}; }\r\n  static constexpr P unit()\
-    \ { return {INF<X>, -INF<X>}; }\r\n  static constexpr bool commute = true;\r\n\
-    };\r\n#line 3 \"alg/acted_monoid/minmax_add.hpp\"\n\r\ntemplate <typename E>\r\
+    \ { return {infty<X>, -infty<X>}; }\r\n  static constexpr bool commute = true;\r\
+    \n};\r\n#line 3 \"alg/acted_monoid/minmax_add.hpp\"\n\r\ntemplate <typename E>\r\
     \nstruct ActedMonoid_MinMax_Add {\r\n  using Monoid_X = Monoid_MinMax<E>;\r\n\
     \  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\
     \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
-    \ X &x, const A &a, const ll &size) {\r\n    E lo = (x.fi == INF<E> ? x.fi : x.fi\
-    \ + a);\r\n    E hi = (x.se == -INF<E> ? x.se : x.se + a);\r\n    return {lo,\
-    \ hi};\r\n  }\r\n};\r\n"
+    \ X &x, const A &a, const ll &size) {\r\n    E lo = (x.fi == infty<E> ? x.fi :\
+    \ x.fi + a);\r\n    E hi = (x.se == -infty<E> ? x.se : x.se + a);\r\n    return\
+    \ {lo, hi};\r\n  }\r\n};\r\n"
   code: "#include \"alg/monoid/add.hpp\"\r\n#include \"alg/monoid/minmax.hpp\"\r\n\
     \r\ntemplate <typename E>\r\nstruct ActedMonoid_MinMax_Add {\r\n  using Monoid_X\
     \ = Monoid_MinMax<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename\
     \ Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\n  static\
     \ constexpr X act(const X &x, const A &a, const ll &size) {\r\n    E lo = (x.fi\
-    \ == INF<E> ? x.fi : x.fi + a);\r\n    E hi = (x.se == -INF<E> ? x.se : x.se +\
-    \ a);\r\n    return {lo, hi};\r\n  }\r\n};\r\n"
+    \ == infty<E> ? x.fi : x.fi + a);\r\n    E hi = (x.se == -infty<E> ? x.se : x.se\
+    \ + a);\r\n    return {lo, hi};\r\n  }\r\n};\r\n"
   dependsOn:
   - alg/monoid/add.hpp
   - alg/monoid/minmax.hpp
   isVerificationFile: false
   path: alg/acted_monoid/minmax_add.hpp
   requiredBy: []
-  timestamp: '2023-02-01 23:04:20+09:00'
+  timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/minmax_add.test.cpp

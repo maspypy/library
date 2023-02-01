@@ -21,20 +21,20 @@ data:
     \ Monoid_MinMax {\r\n  using P = pair<X, X>;\r\n  using value_type = P;\r\n  static\
     \ constexpr P op(const P x, const P y) noexcept {\r\n    return {min(x.fi, y.fi),\
     \ max(x.se, y.se)};\r\n  }\r\n  static constexpr P from_element(const X x) { return\
-    \ {x, x}; }\r\n  static constexpr P unit() { return {INF<X>, -INF<X>}; }\r\n \
-    \ static constexpr bool commute = true;\r\n};\r\n"
+    \ {x, x}; }\r\n  static constexpr P unit() { return {infty<X>, -infty<X>}; }\r\
+    \n  static constexpr bool commute = true;\r\n};\r\n"
   code: "#pragma once\r\n\r\ntemplate <class X>\r\nstruct Monoid_MinMax {\r\n  using\
     \ P = pair<X, X>;\r\n  using value_type = P;\r\n  static constexpr P op(const\
     \ P x, const P y) noexcept {\r\n    return {min(x.fi, y.fi), max(x.se, y.se)};\r\
     \n  }\r\n  static constexpr P from_element(const X x) { return {x, x}; }\r\n \
-    \ static constexpr P unit() { return {INF<X>, -INF<X>}; }\r\n  static constexpr\
+    \ static constexpr P unit() { return {infty<X>, -infty<X>}; }\r\n  static constexpr\
     \ bool commute = true;\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/minmax.hpp
   requiredBy:
   - alg/acted_monoid/minmax_add.hpp
-  timestamp: '2023-02-01 23:04:20+09:00'
+  timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/ITP2_3_B.test.cpp

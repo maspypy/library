@@ -248,8 +248,8 @@ data:
     \ Monoid_MinMax {\r\n  using P = pair<X, X>;\r\n  using value_type = P;\r\n  static\
     \ constexpr P op(const P x, const P y) noexcept {\r\n    return {min(x.fi, y.fi),\
     \ max(x.se, y.se)};\r\n  }\r\n  static constexpr P from_element(const X x) { return\
-    \ {x, x}; }\r\n  static constexpr P unit() { return {INF<X>, -INF<X>}; }\r\n \
-    \ static constexpr bool commute = true;\r\n};\r\n#line 7 \"test/aoj/ITP2_3_B.test.cpp\"\
+    \ {x, x}; }\r\n  static constexpr P unit() { return {infty<X>, -infty<X>}; }\r\
+    \n  static constexpr bool commute = true;\r\n};\r\n#line 7 \"test/aoj/ITP2_3_B.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n  using Mono = Monoid_MinMax<int>;\n\
     \  SegTree<Mono> seg(N, [&](int i) { return Mono::from_element(A[i]); });\n  LL(Q);\n\
     \  FOR(Q) {\n    LL(t, b, e);\n    if (t == 0) print(seg.prod(b, e).fi);\n   \
@@ -272,7 +272,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ITP2_3_B.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:18:36+09:00'
+  timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/ITP2_3_B.test.cpp

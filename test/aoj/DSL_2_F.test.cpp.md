@@ -4,10 +4,10 @@ data:
   - icon: ':x:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   - icon: ':x:'
@@ -266,9 +266,9 @@ data:
     \ = MA::unit();\n  }\n};\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename\
     \ E>\r\nstruct Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n \
     \ static constexpr X op(const X &x, const X &y) noexcept { return min(x, y); }\r\
-    \n  static constexpr X unit() { return -INF<E>; }\r\n  static constexpr bool commute\
-    \ = true;\r\n};\r\n#line 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename X,\
-    \ X none_val>\r\nstruct Monoid_Assign {\r\n  using value_type = X;\r\n  static\
+    \n  static constexpr X unit() { return -infty<E>; }\r\n  static constexpr bool\
+    \ commute = true;\r\n};\r\n#line 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename\
+    \ X, X none_val>\r\nstruct Monoid_Assign {\r\n  using value_type = X;\r\n  static\
     \ X op(X x, X y) { return (y == none_val ? x : y); }\r\n  static constexpr X unit()\
     \ { return none_val; }\r\n  static constexpr bool commute = false;\r\n};\r\n#line\
     \ 3 \"alg/acted_monoid/min_assign.hpp\"\n\r\ntemplate <typename E, E none_val>\r\
@@ -304,7 +304,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_F.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:18:36+09:00'
+  timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_F.test.cpp

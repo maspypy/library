@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   - icon: ':x:'
@@ -34,7 +34,7 @@ data:
     \n\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Min\
     \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
     \ X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr X unit()\
-    \ { return -INF<E>; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line\
+    \ { return -infty<E>; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line\
     \ 2 \"ds/disjointsparse/disjointsparse.hpp\"\n\r\ntemplate <class Monoid>\r\n\
     struct DisjointSparse {\r\n  using MX = Monoid;\r\n  using X = typename MX::value_type;\r\
     \n  int n, log;\r\n  vvc<X> dat;\r\n\r\n  DisjointSparse() {}\r\n  DisjointSparse(int\
@@ -131,8 +131,8 @@ data:
     \ constexpr bool is_small(const X& x, const X& y) {\r\n    if (x.fi < y.fi) return\
     \ true;\r\n    if (x.fi > y.fi) return false;\r\n    return (tie_is_left ? (x.se\
     \ < y.se) : (x.se >= y.se));\r\n  }\r\n  static X op(X x, X y) { return (is_small(x,\
-    \ y) ? x : y); }\r\n  static constexpr X unit() { return {INF<T>, -1}; }\r\n \
-    \ static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/segtree/segtree.hpp\"\
+    \ y) ? x : y); }\r\n  static constexpr X unit() { return {infty<T>, -1}; }\r\n\
+    \  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/segtree/segtree.hpp\"\
     \n\ntemplate <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X\
     \ = typename MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n,\
     \ log, size;\n\n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename\
@@ -265,7 +265,7 @@ data:
   isVerificationFile: false
   path: string/suffix_tree.hpp
   requiredBy: []
-  timestamp: '2023-02-01 23:04:20+09:00'
+  timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/suffix_tree.test.cpp

@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   - icon: ':x:'
@@ -215,11 +215,11 @@ data:
     \ yes(!t); }\n#line 2 \"alg/monoid/max.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
     \ Monoid_Max {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
     \ X op(const X &x, const X &y) noexcept { return max(x, y); }\r\n  static constexpr\
-    \ X unit() { return -INF<E>; }\r\n  static constexpr bool commute = true;\r\n\
+    \ X unit() { return -infty<E>; }\r\n  static constexpr bool commute = true;\r\n\
     };\r\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Min\
     \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
     \ X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr X unit()\
-    \ { return -INF<E>; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line\
+    \ { return -infty<E>; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line\
     \ 3 \"alg/acted_monoid/max_min.hpp\"\n\r\ntemplate <typename E>\r\nstruct ActedMonoid_Max_Min\
     \ {\r\n  using Monoid_X = Monoid_Max<E>;\r\n  using Monoid_A = Monoid_Min<E>;\r\
     \n  using X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
@@ -317,7 +317,7 @@ data:
   isVerificationFile: true
   path: test/mytest/max_min.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:18:36+09:00'
+  timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/max_min.test.cpp

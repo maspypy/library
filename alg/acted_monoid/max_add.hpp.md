@@ -25,26 +25,26 @@ data:
     \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"alg/monoid/max.hpp\"\
     \n\r\ntemplate <typename E>\r\nstruct Monoid_Max {\r\n  using X = E;\r\n  using\
     \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
-    \ { return max(x, y); }\r\n  static constexpr X unit() { return -INF<E>; }\r\n\
-    \  static constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/max_add.hpp\"\
+    \ { return max(x, y); }\r\n  static constexpr X unit() { return -infty<E>; }\r\
+    \n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/max_add.hpp\"\
     \n\r\ntemplate <typename E>\r\nstruct ActedMonoid_Max_Add {\r\n  using Monoid_X\
     \ = Monoid_Max<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename\
     \ Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\n  static\
-    \ constexpr X act(const X &x, const A &a, const ll &size) {\r\n    if (x == -INF<E>)\
+    \ constexpr X act(const X &x, const A &a, const ll &size) {\r\n    if (x == -infty<E>)\
     \ return x;\r\n    return x + a;\r\n  }\r\n};\r\n"
   code: "#include \"alg/monoid/add.hpp\"\r\n#include \"alg/monoid/max.hpp\"\r\n\r\n\
     template <typename E>\r\nstruct ActedMonoid_Max_Add {\r\n  using Monoid_X = Monoid_Max<E>;\r\
     \n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\
     \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
-    \ X &x, const A &a, const ll &size) {\r\n    if (x == -INF<E>) return x;\r\n \
-    \   return x + a;\r\n  }\r\n};\r\n"
+    \ X &x, const A &a, const ll &size) {\r\n    if (x == -infty<E>) return x;\r\n\
+    \    return x + a;\r\n  }\r\n};\r\n"
   dependsOn:
   - alg/monoid/add.hpp
   - alg/monoid/max.hpp
   isVerificationFile: false
   path: alg/acted_monoid/max_add.hpp
   requiredBy: []
-  timestamp: '2023-02-01 23:04:20+09:00'
+  timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/686.test.cpp

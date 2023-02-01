@@ -36,7 +36,7 @@ data:
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/1508.test.cpp
     title: test/aoj/1508.test.cpp
   - icon: ':x:'
@@ -122,18 +122,18 @@ data:
     title: test_atcoder/arc151_e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
     \ Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
     \ X op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr\
-    \ X unit() { return -INF<E>; }\r\n  static constexpr bool commute = true;\r\n\
+    \ X unit() { return -infty<E>; }\r\n  static constexpr bool commute = true;\r\n\
     };\r\n"
   code: "#pragma once\r\n\r\ntemplate <typename E>\r\nstruct Monoid_Min {\r\n  using\
     \ X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const\
     \ X &y) noexcept { return min(x, y); }\r\n  static constexpr X unit() { return\
-    \ -INF<E>; }\r\n  static constexpr bool commute = true;\r\n};\r\n"
+    \ -infty<E>; }\r\n  static constexpr bool commute = true;\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/min.hpp
@@ -149,8 +149,8 @@ data:
   - alg/acted_monoid/min_assign.hpp
   - alg/acted_monoid/min_min.hpp
   - alg/acted_monoid/min_max.hpp
-  timestamp: '2023-02-01 23:04:20+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-02-01 23:31:55+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/1508_2.test.cpp
   - test/aoj/DSL_2_F.test.cpp

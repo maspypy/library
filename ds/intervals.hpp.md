@@ -21,7 +21,7 @@ data:
     \u30A4\u30D7 T\u3001\u5EA7\u6A19\u30BF\u30A4\u30D7 X\n// \u30B3\u30F3\u30B9\u30C8\
     \u30E9\u30AF\u30BF\u3067\u306F T none_val \u3092\u6307\u5B9A\u3059\u308B\ntemplate\
     \ <typename T = ll, typename X = ll>\nstruct Intervals {\n  static constexpr X\
-    \ LLIM = -INF<X>;\n  static constexpr X RLIM = INF<X>;\n  const T none_val;\n\
+    \ LLIM = -infty<X>;\n  static constexpr X RLIM = infty<X>;\n  const T none_val;\n\
     \  // none_val \u3067\u306A\u3044\u533A\u9593\u306E\u500B\u6570\u3068\u9577\u3055\
     \u5408\u8A08\n  int total_num;\n  X total_len;\n  map<X, T> dat;\n\n  Intervals(T\
     \ none_val) : none_val(none_val), total_num(0), total_len(0) {\n    dat[LLIM]\
@@ -139,8 +139,8 @@ data:
     // \u6301\u3064\u5024\u306E\u30BF\u30A4\u30D7 T\u3001\u5EA7\u6A19\u30BF\u30A4\u30D7\
     \ X\n// \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u3067\u306F T none_val \u3092\
     \u6307\u5B9A\u3059\u308B\ntemplate <typename T = ll, typename X = ll>\nstruct\
-    \ Intervals {\n  static constexpr X LLIM = -INF<X>;\n  static constexpr X RLIM\
-    \ = INF<X>;\n  const T none_val;\n  // none_val \u3067\u306A\u3044\u533A\u9593\
+    \ Intervals {\n  static constexpr X LLIM = -infty<X>;\n  static constexpr X RLIM\
+    \ = infty<X>;\n  const T none_val;\n  // none_val \u3067\u306A\u3044\u533A\u9593\
     \u306E\u500B\u6570\u3068\u9577\u3055\u5408\u8A08\n  int total_num;\n  X total_len;\n\
     \  map<X, T> dat;\n\n  Intervals(T none_val) : none_val(none_val), total_num(0),\
     \ total_len(0) {\n    dat[LLIM] = none_val;\n    dat[RLIM] = none_val;\n  }\n\n\
@@ -224,7 +224,7 @@ data:
   isVerificationFile: false
   path: ds/intervals.hpp
   requiredBy: []
-  timestamp: '2023-02-01 22:47:27+09:00'
+  timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc256d.test.cpp

@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: alg/monoid/summax.hpp
     title: alg/monoid/summax.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/kdtree/kdtree_monoid.hpp
     title: ds/kdtree/kdtree_monoid.hpp
   - icon: ':question:'
@@ -223,7 +223,7 @@ data:
     \ xr, yl, yr);\r\n  }\r\n\r\n  X prod_all() { return dat[1]; }\r\n\r\nprivate:\r\
     \n  void build(int idx, vc<XY> xs, vc<XY> ys, vc<X> vs, bool divx = true) {\r\n\
     \    int n = len(xs);\r\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\
-    \n    xmin = ymin = INF<XY>;\r\n    xmax = ymax = -INF<XY>;\r\n\r\n    FOR(i,\
+    \n    xmin = ymin = infty<XY>;\r\n    xmax = ymax = -infty<XY>;\r\n\r\n    FOR(i,\
     \ n) {\r\n      auto x = xs[i], y = ys[i];\r\n      chmin(xmin, x), chmax(xmax,\
     \ x), chmin(ymin, y), chmax(ymax, y);\r\n    }\r\n    if (xmin == xmax && ymin\
     \ == ymax) {\r\n      X x = MX::unit();\r\n      for (auto&& v: vs) x = MX::op(x,\
@@ -256,9 +256,9 @@ data:
     \ 2 \"alg/monoid/summax.hpp\"\n\ntemplate <typename E>\nstruct Monoid_SumMax {\n\
     \  using value_type = pair<E, E>;\n  using X = value_type;\n  static X op(X x,\
     \ X y) { return {x.fi + y.fi, max(x.se, y.se)}; }\n  static X from_element(E e)\
-    \ { return {e, e}; }\n  static constexpr X unit() { return {E(0), -INF<E>}; }\n\
-    \  static constexpr bool commute = 1;\n};\n#line 2 \"random/base.hpp\"\n\nu64\
-    \ RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \ { return {e, e}; }\n  static constexpr X unit() { return {E(0), -infty<E>};\
+    \ }\n  static constexpr bool commute = 1;\n};\n#line 2 \"random/base.hpp\"\n\n\
+    u64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
@@ -312,7 +312,7 @@ data:
   isVerificationFile: true
   path: test/mytest/kdtree_monoid.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:18:36+09:00'
+  timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/kdtree_monoid.test.cpp

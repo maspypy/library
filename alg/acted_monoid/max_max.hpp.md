@@ -17,7 +17,7 @@ data:
   bundledCode: "#line 2 \"alg/monoid/max.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
     \ Monoid_Max {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
     \ X op(const X &x, const X &y) noexcept { return max(x, y); }\r\n  static constexpr\
-    \ X unit() { return -INF<E>; }\r\n  static constexpr bool commute = true;\r\n\
+    \ X unit() { return -infty<E>; }\r\n  static constexpr bool commute = true;\r\n\
     };\r\n#line 2 \"alg/acted_monoid/max_max.hpp\"\n\r\ntemplate <typename E>\r\n\
     struct ActedMonoid_Max_Max {\r\n  using Monoid_X = Monoid_Max<E>;\r\n  using Monoid_A\
     \ = Monoid_Max<E>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A\
@@ -33,7 +33,7 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/max_max.hpp
   requiredBy: []
-  timestamp: '2023-02-01 23:04:20+09:00'
+  timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/max_max.test.cpp

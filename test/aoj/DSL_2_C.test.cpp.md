@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/kdtree/kdtree_monoid.hpp
     title: ds/kdtree/kdtree_monoid.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C
@@ -216,17 +216,17 @@ data:
     \  }\r\n\r\n  X prod_all() { return dat[1]; }\r\n\r\nprivate:\r\n  void build(int\
     \ idx, vc<XY> xs, vc<XY> ys, vc<X> vs, bool divx = true) {\r\n    int n = len(xs);\r\
     \n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\n    xmin = ymin =\
-    \ INF<XY>;\r\n    xmax = ymax = -INF<XY>;\r\n\r\n    FOR(i, n) {\r\n      auto\
-    \ x = xs[i], y = ys[i];\r\n      chmin(xmin, x), chmax(xmax, x), chmin(ymin, y),\
-    \ chmax(ymax, y);\r\n    }\r\n    if (xmin == xmax && ymin == ymax) {\r\n    \
-    \  X x = MX::unit();\r\n      for (auto&& v: vs) x = MX::op(x, v);\r\n      dat[idx]\
-    \ = x;\r\n      return;\r\n    }\r\n\r\n    int m = n / 2;\r\n    vc<int> I(n);\r\
-    \n    iota(all(I), 0);\r\n    if (divx) {\r\n      nth_element(I.begin(), I.begin()\
-    \ + m, I.end(),\r\n                  [xs](int i, int j) { return xs[i] < xs[j];\
-    \ });\r\n    } else {\r\n      nth_element(I.begin(), I.begin() + m, I.end(),\r\
-    \n                  [ys](int i, int j) { return ys[i] < ys[j]; });\r\n    }\r\n\
-    \    xs = rearrange(xs, I), ys = rearrange(ys, I), vs = rearrange(vs, I);\r\n\
-    \    build(2 * idx + 0, {xs.begin(), xs.begin() + m},\r\n          {ys.begin(),\
+    \ infty<XY>;\r\n    xmax = ymax = -infty<XY>;\r\n\r\n    FOR(i, n) {\r\n     \
+    \ auto x = xs[i], y = ys[i];\r\n      chmin(xmin, x), chmax(xmax, x), chmin(ymin,\
+    \ y), chmax(ymax, y);\r\n    }\r\n    if (xmin == xmax && ymin == ymax) {\r\n\
+    \      X x = MX::unit();\r\n      for (auto&& v: vs) x = MX::op(x, v);\r\n   \
+    \   dat[idx] = x;\r\n      return;\r\n    }\r\n\r\n    int m = n / 2;\r\n    vc<int>\
+    \ I(n);\r\n    iota(all(I), 0);\r\n    if (divx) {\r\n      nth_element(I.begin(),\
+    \ I.begin() + m, I.end(),\r\n                  [xs](int i, int j) { return xs[i]\
+    \ < xs[j]; });\r\n    } else {\r\n      nth_element(I.begin(), I.begin() + m,\
+    \ I.end(),\r\n                  [ys](int i, int j) { return ys[i] < ys[j]; });\r\
+    \n    }\r\n    xs = rearrange(xs, I), ys = rearrange(ys, I), vs = rearrange(vs,\
+    \ I);\r\n    build(2 * idx + 0, {xs.begin(), xs.begin() + m},\r\n          {ys.begin(),\
     \ ys.begin() + m}, {vs.begin(), vs.begin() + m}, !divx);\r\n    build(2 * idx\
     \ + 1, {xs.begin() + m, xs.end()}, {ys.begin() + m, ys.end()},\r\n          {vs.begin()\
     \ + m, vs.end()}, !divx);\r\n    dat[idx] = MX::op(dat[2 * idx + 0], dat[2 * idx\
@@ -273,8 +273,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_C.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:18:36+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-02-01 23:31:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_C.test.cpp
 layout: document

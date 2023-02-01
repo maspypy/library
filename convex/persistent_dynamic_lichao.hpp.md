@@ -18,8 +18,8 @@ data:
     \ constexpr bool is_small(const X& x, const X& y) {\r\n    if (x.fi < y.fi) return\
     \ true;\r\n    if (x.fi > y.fi) return false;\r\n    return (tie_is_left ? (x.se\
     \ < y.se) : (x.se >= y.se));\r\n  }\r\n  static X op(X x, X y) { return (is_small(x,\
-    \ y) ? x : y); }\r\n  static constexpr X unit() { return {INF<T>, -1}; }\r\n \
-    \ static constexpr bool commute = true;\r\n};\r\n#line 3 \"convex/persistent_dynamic_lichao.hpp\"\
+    \ y) ? x : y); }\r\n  static constexpr X unit() { return {infty<T>, -1}; }\r\n\
+    \  static constexpr bool commute = true;\r\n};\r\n#line 3 \"convex/persistent_dynamic_lichao.hpp\"\
     \n\r\n// https://atcoder.jp/contests/kupc2019/tasks/kupc2019_l\r\ntemplate <typename\
     \ T, int NODES>\r\nstruct Persistent_Dynamic_LiChaoTree {\r\n  using Mono = Monoid_Min_Idx<T>;\r\
     \n  struct Line {\r\n    int idx;\r\n    T a, b;\r\n    Line(int idx, T a, T b)\
@@ -122,7 +122,7 @@ data:
   isVerificationFile: false
   path: convex/persistent_dynamic_lichao.hpp
   requiredBy: []
-  timestamp: '2023-02-01 22:47:27+09:00'
+  timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convex/persistent_dynamic_lichao.hpp

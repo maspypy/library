@@ -210,7 +210,7 @@ data:
     \ x, const X& y) {\r\n    if (x.fi < y.fi) return true;\r\n    if (x.fi > y.fi)\
     \ return false;\r\n    return (tie_is_left ? (x.se < y.se) : (x.se >= y.se));\r\
     \n  }\r\n  static X op(X x, X y) { return (is_small(x, y) ? x : y); }\r\n  static\
-    \ constexpr X unit() { return {INF<T>, -1}; }\r\n  static constexpr bool commute\
+    \ constexpr X unit() { return {infty<T>, -1}; }\r\n  static constexpr bool commute\
     \ = true;\r\n};\r\n#line 2 \"convex/dynamic_lichao.hpp\"\n\n// x \u5EA7\u6A19\u306F\
     \ long long \u306B\u9650\u5B9A\u3057\u3066\u3044\u308B\u3002\n// \u76F4\u7DDA\u306E\
     \u4FC2\u6570 T \u306F double \u3084 i128 \u3082\u53EF\u80FD\u3002\ntemplate <typename\
@@ -277,7 +277,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:18:36+09:00'
+  timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp

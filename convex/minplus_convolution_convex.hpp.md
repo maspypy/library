@@ -29,32 +29,32 @@ data:
     \    return I;\n  };\n  vc<int> X(H), Y(W);\n  iota(all(X), 0), iota(all(Y), 0);\n\
     \  return dfs(dfs, X, Y);\n}\n#line 2 \"convex/minplus_convolution_convex.hpp\"\
     \n\ntemplate <typename T, bool convA, bool convB>\nvc<T> minplus_convolution_convex(vc<T>\
-    \ A, vc<T> B, const T INF) {\n  static_assert(convA || convB);\n  assert(INF <\
-    \ INF + INF);\n  if (!convB) swap(A, B);\n  int NA = len(A), NB = len(B);\n  int\
-    \ N = NA + NB - 1;\n  int L = 0, R = NB;\n  while (L < R && B[L] == INF) ++L;\n\
-    \  if (L == R) return vc<T>(N, INF);\n  while (B[R - 1] == INF) --R;\n  B = {B.begin()\
-    \ + L, B.begin() + R};\n  int nB = R - L;\n  int n = NA + nB - 1;\n\n  auto select\
-    \ = [&](int i, int j, int k) -> int {\n    if (i < k) return j;\n    if (i - j\
-    \ >= nB) return k;\n    return (A[j] + B[i - j] > A[k] + B[i - k] ? k : j);\n\
-    \  };\n\n  vc<int> J = SMAWK(n, NA, select);\n  vc<T> C(N, INF);\n  FOR(i, n)\
-    \ C[L + i] = (A[J[i]] == INF ? INF : A[J[i]] + B[i - J[i]]);\n  return C;\n}\n"
+    \ A, vc<T> B) {\n  static_assert(convA || convB);\n  if (!convB) swap(A, B);\n\
+    \  int NA = len(A), NB = len(B);\n  int N = NA + NB - 1;\n  int L = 0, R = NB;\n\
+    \  while (L < R && B[L] == infty<T>) ++L;\n  if (L == R) return vc<T>(N, infty<T>);\n\
+    \  while (B[R - 1] == infty<T>) --R;\n  B = {B.begin() + L, B.begin() + R};\n\
+    \  int nB = R - L;\n  int n = NA + nB - 1;\n\n  auto select = [&](int i, int j,\
+    \ int k) -> int {\n    if (i < k) return j;\n    if (i - j >= nB) return k;\n\
+    \    return (A[j] + B[i - j] > A[k] + B[i - k] ? k : j);\n  };\n\n  vc<int> J\
+    \ = SMAWK(n, NA, select);\n  vc<T> C(N, infty<T>);\n  FOR(i, n) C[L + i] = (A[J[i]]\
+    \ == infty<T> ? infty<T> : A[J[i]] + B[i - J[i]]);\n  return C;\n}\n"
   code: "#include \"convex/smawk.hpp\"\n\ntemplate <typename T, bool convA, bool convB>\n\
-    vc<T> minplus_convolution_convex(vc<T> A, vc<T> B, const T INF) {\n  static_assert(convA\
-    \ || convB);\n  assert(INF < INF + INF);\n  if (!convB) swap(A, B);\n  int NA\
-    \ = len(A), NB = len(B);\n  int N = NA + NB - 1;\n  int L = 0, R = NB;\n  while\
-    \ (L < R && B[L] == INF) ++L;\n  if (L == R) return vc<T>(N, INF);\n  while (B[R\
-    \ - 1] == INF) --R;\n  B = {B.begin() + L, B.begin() + R};\n  int nB = R - L;\n\
-    \  int n = NA + nB - 1;\n\n  auto select = [&](int i, int j, int k) -> int {\n\
-    \    if (i < k) return j;\n    if (i - j >= nB) return k;\n    return (A[j] +\
-    \ B[i - j] > A[k] + B[i - k] ? k : j);\n  };\n\n  vc<int> J = SMAWK(n, NA, select);\n\
-    \  vc<T> C(N, INF);\n  FOR(i, n) C[L + i] = (A[J[i]] == INF ? INF : A[J[i]] +\
-    \ B[i - J[i]]);\n  return C;\n}\n"
+    vc<T> minplus_convolution_convex(vc<T> A, vc<T> B) {\n  static_assert(convA ||\
+    \ convB);\n  if (!convB) swap(A, B);\n  int NA = len(A), NB = len(B);\n  int N\
+    \ = NA + NB - 1;\n  int L = 0, R = NB;\n  while (L < R && B[L] == infty<T>) ++L;\n\
+    \  if (L == R) return vc<T>(N, infty<T>);\n  while (B[R - 1] == infty<T>) --R;\n\
+    \  B = {B.begin() + L, B.begin() + R};\n  int nB = R - L;\n  int n = NA + nB -\
+    \ 1;\n\n  auto select = [&](int i, int j, int k) -> int {\n    if (i < k) return\
+    \ j;\n    if (i - j >= nB) return k;\n    return (A[j] + B[i - j] > A[k] + B[i\
+    \ - k] ? k : j);\n  };\n\n  vc<int> J = SMAWK(n, NA, select);\n  vc<T> C(N, infty<T>);\n\
+    \  FOR(i, n) C[L + i] = (A[J[i]] == infty<T> ? infty<T> : A[J[i]] + B[i - J[i]]);\n\
+    \  return C;\n}\n"
   dependsOn:
   - convex/smawk.hpp
   isVerificationFile: false
   path: convex/minplus_convolution_convex.hpp
   requiredBy: []
-  timestamp: '2023-01-19 00:12:30+09:00'
+  timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/minplus_convex.test.cpp
