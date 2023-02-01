@@ -8,7 +8,7 @@ vc<T> K_shortest_walk(GT &G, int s, int t, int K) {
   assert(G.is_directed());
   int N = G.N;
   auto RG = reverse_graph(G);
-  auto [dist, par] = dijkstra<ll, decltype(RG)>(RG, t, infty<T>);
+  auto [dist, par] = dijkstra<T, decltype(RG)>(RG, t);
   if (dist[s] == infty<T>) { return vc<T>(K, infty<T>); }
 
   using P = pair<T, int>;
@@ -44,7 +44,7 @@ vc<T> K_shortest_walk(GT &G, int s, int t, int K) {
   T base = dist[s];
   vc<T> ANS = {base};
   if (nodes[s]) {
-    using PAIR = pair<ll, np>;
+    using PAIR = pair<T, np>;
     auto comp = [](auto a, auto b) { return a.fi > b.fi; };
     priority_queue<PAIR, vc<PAIR>, decltype(comp)> que(comp);
     que.emplace(base + X.top(nodes[s]).fi, nodes[s]);
