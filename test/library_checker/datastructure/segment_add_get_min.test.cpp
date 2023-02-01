@@ -24,15 +24,14 @@ void solve() {
     }
   }
 
-  const ll INF = 1LL << 60;
-  LiChaoTree<ll> seg(X, INF);
+  LiChaoTree<ll> seg(X);
   FOR(i, N + Q) {
     auto [t, l, r, a, b] = dat[i];
     if (t == 0) {
       seg.add(l, r, a, b);
     } else {
       ll y = seg.get_min(l);
-      if (y == INF)
+      if (y == infty<ll>)
         print("INFINITY");
       else
         print(y);

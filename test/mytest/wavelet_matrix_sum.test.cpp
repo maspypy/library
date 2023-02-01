@@ -25,7 +25,6 @@ void test_compress() {
     if (lo > hi) swap(lo, hi);
     ++hi;
     vc<int> B = {A.begin() + L, A.begin() + R};
-    const int INF = infty<int>;
 
     int t = RNG(0, 5);
     if (t == 0) { // count
@@ -43,7 +42,7 @@ void test_compress() {
     if (t == 2) { // kth
       int k = RNG(R - L + 1);
       sort(all(B));
-      B.eb(INF);
+      B.eb(infty<int>);
       int sm = 0;
       FOR(i, k) sm += add_val[B[i]];
       assert(WM.kth(L, R, k) == P({B[k], sm}));
@@ -54,7 +53,7 @@ void test_compress() {
       int val2 = binary_search(
           [&](int val) -> bool { return WM.prefix_count(L, R, val).se <= sm; },
           0, MAX + 1);
-      if (val2 == MAX) val2 = INF;
+      if (val2 == MAX) val2 = infty<int>;
       assert(val == val2);
     }
 
@@ -79,8 +78,6 @@ void test_not_compress() {
   FOR(i, N) A[i] = RNG(MAX);
   Wavelet_Matrix_Sum<int, false> WM([&](int x) { return add_val[x]; }, A, log);
   using P = pair<int, int>;
-
-  const int INF = infty<int>;
 
   int Q = 100;
   FOR(Q) {
@@ -116,7 +113,7 @@ void test_not_compress() {
       int k = RNG(R - L + 1);
       for (auto&& x: B) x ^= xor_val;
       sort(all(B));
-      B.eb(INF);
+      B.eb(infty<int>);
       int sm = 0;
       FOR(i, k) sm += add_val[B[i] ^ xor_val];
       assert(WM.kth(L, R, k, xor_val) == P({B[k], sm}));
@@ -130,7 +127,7 @@ void test_not_compress() {
             return WM.prefix_count(L, R, val, xor_val).se <= sm;
           },
           0, MAX + 1);
-      if (val2 == MAX) val2 = INF;
+      if (val2 == MAX) val2 = infty<int>;
       assert(val == val2);
     }
     if (t == 4) { // max_right_count

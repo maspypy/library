@@ -2,11 +2,11 @@
 #include "graph/shortest_path/bfs01.hpp"
 
 template <typename T, typename Graph>
-T MinCostCycle(Graph& G, T INF) {
+T MinCostCycle(Graph& G) {
   int M = G.M;
   int N = G.N;
   T mx = 0;
-  T res = INF;
+  T res = infty<T>;
 
   FOR(i, M) {
     auto& e = G.edges[i];
@@ -20,10 +20,10 @@ T MinCostCycle(Graph& G, T INF) {
     Gi.build();
 
     T x = (mx <= 1 ? bfs01<decltype(Gi), T>(Gi, frm).fi[to]
-                   : dijkstra<T>(Gi, frm, INF).fi[to]);
-    if (x == -1) x = INF;
+                   : dijkstra<T>(Gi, frm).fi[to]);
+    if (x == -1) x = infty<T>;
     chmin(res, cost + x);
   }
-  if (res == INF) res = -1;
+  if (res == infty<T>) res = -1;
   return res;
 }

@@ -8,10 +8,9 @@ void solve() {
   INT(N, M, s, t, K);
   Graph<int, 1> G1(N);
   G1.read_graph(M, 1, 0);
-  const ll INF = 1LL << 60;
-  auto ANS = K_shortest_walk<ll, decltype(G1), 5'000'000>(G1, s, t, K, INF);
+  auto ANS = K_shortest_walk<ll, decltype(G1), 5'000'000>(G1, s, t, K);
   for (auto &&x: ANS) {
-    if (x == INF) x = -1;
+    if (x == infty<ll>) x = -1;
     print(x);
   }
 }

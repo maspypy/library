@@ -21,12 +21,10 @@ void solve() {
 
   using Mono = Monoid_Max_Idx<ll>;
 
-  const ll INF = 1LL << 60;
-
   Tree tree(G);
   vc<pq<ll>> wts(C);
   vc<pair<ll, int>> dat(C);
-  FOR(i, C) dat[i] = {-INF, i};
+  FOR(i, C) dat[i] = {-infty<ll>, i};
   Tree_Monoid<decltype(tree), Mono> TM(tree, dat);
 
   FOR(Q) {
@@ -43,12 +41,12 @@ void solve() {
       --a, --b;
       a = comp[a], b = comp[b];
       auto [x, c] = TM.prod_path(a, b);
-      if (x == -INF) {
+      if (x == -infty<ll>) {
         print(-1);
       } else {
         print(x);
         wts[c].pop();
-        x = (wts[c].empty() ? -INF : wts[c].top());
+        x = (wts[c].empty() ? -infty<ll> : wts[c].top());
         TM.set(c, {x, c});
       }
     }

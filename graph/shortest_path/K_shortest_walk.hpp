@@ -2,14 +2,14 @@
 #include "graph/shortest_path/dijkstra.hpp"
 #include "graph/reverse_graph.hpp"
 
-// INF 埋めして必ず長さ K にしたものをかえす。
+// infty<T> 埋めして必ず長さ K にしたものをかえす。
 template <typename T, typename GT, int NODES>
-vc<T> K_shortest_walk(GT &G, int s, int t, int K, T INF) {
+vc<T> K_shortest_walk(GT &G, int s, int t, int K) {
   assert(G.is_directed());
   int N = G.N;
   auto RG = reverse_graph(G);
-  auto [dist, par] = dijkstra<ll, decltype(RG)>(RG, t, INF);
-  if (dist[s] == INF) { return vc<T>(K, INF); }
+  auto [dist, par] = dijkstra<ll, decltype(RG)>(RG, t, infty<T>);
+  if (dist[s] == infty<T>) { return vc<T>(K, infty<T>); }
 
   using P = pair<T, int>;
   Meldable_Heap<P, true, NODES> X;
@@ -23,7 +23,7 @@ vc<T> K_shortest_walk(GT &G, int s, int t, int K, T INF) {
     int v = POP(st);
     bool done = 0;
     for (auto &&e: G[v]) {
-      if (dist[e.to] == INF) continue;
+      if (dist[e.to] == infty<T>) continue;
       if (!done && par[v] == e.to && dist[v] == dist[e.to] + e.cost) {
         done = 1;
         continue;
@@ -58,6 +58,6 @@ vc<T> K_shortest_walk(GT &G, int s, int t, int K, T INF) {
       if (m) { que.emplace(d + m->x.fi, m); }
     }
   }
-  while (len(ANS) < K) ANS.eb(INF);
+  while (len(ANS) < K) ANS.eb(infty<T>);
   return ANS;
 }

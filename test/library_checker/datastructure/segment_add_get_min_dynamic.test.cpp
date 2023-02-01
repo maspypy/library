@@ -11,7 +11,6 @@ void solve() {
     LL(l, r, a, b);
     seg.add_segment(l, r, a, b);
   }
-  const ll INF = 1LL << 60;
   FOR(Q) {
     LL(t);
     if (t == 0) {
@@ -21,7 +20,7 @@ void solve() {
     if (t == 1) {
       LL(x);
       ll y = seg.query(x).fi;
-      if (y >= INF)
+      if (y >= infty<ll>)
         print("INFINITY");
       else
         print(y);

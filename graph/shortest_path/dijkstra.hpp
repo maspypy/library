@@ -1,10 +1,10 @@
 #pragma once
 #include "graph/base.hpp"
 
-template <typename T, typename Graph>
-pair<vc<T>, vc<int>> dijkstra(Graph& G, int v) {
+template <typename T, typename GT>
+pair<vc<T>, vc<int>> dijkstra(GT& G, int v) {
   auto N = G.N;
-  vector<T> dist(N, INF<T>);
+  vector<T> dist(N, infty<T>);
   vector<int> par(N, -1);
   using P = pair<T, int>;
 
@@ -27,11 +27,11 @@ pair<vc<T>, vc<int>> dijkstra(Graph& G, int v) {
 }
 
 // 多点スタート。[dist, par, root]
-template <typename T, typename Graph>
-tuple<vc<T>, vc<int>, vc<int>> dijkstra(Graph& G, vc<int> vs) {
+template <typename T, typename GT>
+tuple<vc<T>, vc<int>, vc<int>> dijkstra(GT& G, vc<int> vs) {
   assert(G.is_prepared());
   int N = G.N;
-  vc<ll> dist(N, INF<T>);
+  vc<ll> dist(N, infty<T>);
   vc<int> par(N, -1);
   vc<int> root(N, -1);
 
