@@ -12,9 +12,7 @@ void solve() {
   VEC(int, terminal, K);
   for (auto&& v: terminal) --v;
 
-  const int INF = 1LL << 29;
-
-  if (K <= 15) return print(steiner_tree<int>(G, terminal, INF));
+  if (K <= 15) return print(steiner_tree<int>(G, terminal));
 
   set<int> ss(all(terminal));
   vc<int> other;
@@ -39,10 +37,10 @@ void solve() {
       }
     }
     if (merge == popcnt(s) - 1) return mst;
-    return INF;
+    return infty<int>;
   };
 
-  int ANS = INF;
+  int ANS = infty<int>;
   ll t = 0;
   for (auto&& x: terminal) t |= 1LL << x;
 
@@ -55,13 +53,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }

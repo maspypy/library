@@ -11,13 +11,12 @@
 2：ok
 */
 void solve() {
-  const int INF = 1 << 30;
   struct Data {
     int x0, x1, x2;
     int x_mi, x_ma;
     int mi, ma;
   };
-  Data unit = {0, 0, 0, 2, 2, INF, -INF};
+  Data unit = {0, 0, 0, 2, 2, infty<int>, -infty<int>};
   auto fee = [&](Data x, Data y) -> Data {
     if (x.mi == INF) return y;
     if (y.mi == INF) return x;

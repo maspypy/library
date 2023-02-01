@@ -11,9 +11,8 @@ void solve() {
   VEC(pi, CV, N);
   CV.insert(CV.begin(), {0, 0});
 
-  const ll INF = 1LL << 60;
   // count, weight
-  vv(ll, dp, N + 1, N + 1, -INF);
+  vv(ll, dp, N + 1, N + 1, -infty<ll>);
   dp[0][0] = 0;
 
   FOR_R(wt, 1, N + 1) {

@@ -5,8 +5,7 @@
 
 void solve() {
   LL(N, M);
-  const ll INF = 1LL << 60;
-  Binary_Optimization<ll, false> X(N, INF);
+  Binary_Optimization<ll, false> X(N);
 
   FOR(i, N) {
     LL(k, C);

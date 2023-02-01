@@ -11,7 +11,6 @@ void solve() {
   VV(ll, A, 2, N);
 
   ll ANS = 0;
-  const ll INF = 1LL << 60;
   {
     auto C = bipartite_vertex_coloring(G);
     if (!C.empty()) {
@@ -36,7 +35,7 @@ void solve() {
   // ロス最小の交互サイクルを探す
   FOR(S, N) {
     FOR(Sc, 2) {
-      vv(ll, dist, 2, N, INF);
+      vv(ll, dist, 2, N, infty<ll>);
       pqg<tuple<ll, int, int>> que;
       auto add = [&](ll c, ll v, ll d) -> void {
         if (chmin(dist[c][v], d)) que.emplace(d, c, v);

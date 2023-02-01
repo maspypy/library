@@ -8,12 +8,11 @@ void solve() {
   LL(N, M, s);
   Graph<int, 1> G(N);
   G.read_graph(M, 1, 0);
-  const int INF = 1 << 30;
 
-  auto [dist, par] = BellmanFord<int, INF>(G, s);
-  if (MIN(dist) == -INF) { return print("NEGATIVE CYCLE"); }
+  auto [dist, par] = BellmanFord<int>(G, s);
+  if (MIN(dist) == -infty<int>) { return print("NEGATIVE CYCLE"); }
   for (auto&& x: dist) {
-    if (x == INF)
+    if (x == infty<int>)
       print("INF");
     else
       print(x);

@@ -10,10 +10,9 @@ void solve() {
   LL(M);
   G.read_graph(M, 1, 0);
 
-  const ll INF = 1LL << 60;
-  auto dist = warshall_floyd<ll>(G, INF);
+  auto dist = warshall_floyd<ll>(G);
 
-  ll ANS = INF;
+  ll ANS = infty<ll>;
   FOR3(i, 1, N - 1) FOR3(j, 1, N - 1) if (i != j) {
     chmin(ANS, dist[0][i] + dist[i][j] + dist[j][N - 1] + COST[i] + COST[j]);
   }

@@ -6,8 +6,7 @@
 void solve() {
   LL(H, W, T, Q);
   deque<tuple<ll, ll, ll>> que;
-  const ll INF = 1LL << 60;
-  vv(ll, time, H, W, INF);
+  vv(ll, time, H, W, infty<ll>);
 
   FenwickTree_2D_Dense<Monoid_Add<ll>> A(H, W);
   FenwickTree_2D_Dense<Monoid_Add<ll>> B(H, W);

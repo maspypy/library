@@ -7,11 +7,10 @@ void solve() {
   LL(N, M);
   Graph<ll, 1> G(N);
   G.read_graph(M, 1);
-  const ll INF = 1LL << 60;
-  auto dist = warshall_floyd<ll>(G, INF);
+  auto dist = warshall_floyd<ll>(G);
   FOR(v, N) {
     ll ANS = 0;
-    FOR(w, N) if (dist[v][w] != INF) ANS += dist[v][w];
+    FOR(w, N) if (dist[v][w] != infty<ll>) ANS += dist[v][w];
     print(ANS);
   }
 }

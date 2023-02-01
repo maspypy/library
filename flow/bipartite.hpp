@@ -115,7 +115,6 @@ struct BipartiteMatching {
   pair<int, vc<int>> DM_decomposition() {
     // 非飽和点からの探索
     vc<int> W(N, -1);
-    int INF = N + 10;
     vc<int> que;
     auto add = [&](int v, int x) -> void {
       if (W[v] == -1) {
@@ -124,14 +123,14 @@ struct BipartiteMatching {
       }
     };
     FOR(v, N) if (match[v] == -1 && color[v] == 0) add(v, 0);
-    FOR(v, N) if (match[v] == -1 && color[v] == 1) add(v, INF);
+    FOR(v, N) if (match[v] == -1 && color[v] == 1) add(v, infty<int>);
     while (len(que)) {
       auto v = POP(que);
       if (match[v] != -1) add(match[v], W[v]);
       if (color[v] == 0 && W[v] == 0) {
         for (auto&& e: G[v]) { add(e.to, W[v]); }
       }
-      if (color[v] == 1 && W[v] == INF) {
+      if (color[v] == 1 && W[v] == infty<int>) {
         for (auto&& e: G[v]) { add(e.to, W[v]); }
       }
     }
@@ -159,7 +158,7 @@ struct BipartiteMatching {
     K += 1;
     // 答
     FOR(i, n) { W[V[i]] = 1 + comp[i]; }
-    FOR(v, N) if (W[v] == INF) W[v] = K;
+    FOR(v, N) if (W[v] == infty<int>) W[v] = K;
     return {K, W};
   }
 

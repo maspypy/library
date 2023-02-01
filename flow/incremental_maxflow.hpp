@@ -1,4 +1,3 @@
-
 template <typename Cap>
 struct Incremental_MaxFlow {
   struct Edge {
@@ -8,13 +7,12 @@ struct Incremental_MaxFlow {
 
   int N;
   int source, sink;
-  const Cap INF;
   Cap flow_ans;
   vvc<Edge> G;
   vc<int> prog, level;
 
-  Incremental_MaxFlow(int N, int source, int sink, Cap INF)
-      : N(N), source(source), sink(sink), INF(INF), flow_ans(0) {
+  Incremental_MaxFlow(int N, int source, int sinkF)
+      : N(N), source(source), sink(sink), flow_ans(0) {
     G.resize(N);
   }
 
@@ -32,11 +30,11 @@ struct Incremental_MaxFlow {
       fill(all(prog), 0);
       prog.assign(N, 0);
       while (1) {
-        Cap x = flow_dfs(source, sink, INF);
+        Cap x = flow_dfs(source, sink, infty<Cap>);
         if (x == 0) break;
         flow_ans += x;
-        chmin(flow_ans, INF);
-        if (flow_ans == INF) return flow_ans;
+        chmin(flow_ans, infty<Cap>);
+        if (flow_ans == infty<Cap>) return flow_ans;
       }
     }
     return flow_ans;

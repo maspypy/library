@@ -27,17 +27,11 @@ void solve() {
 
   G = reverse_graph(G);
 
-  const ll INF = 1LL << 60;
-  auto [dist, par] = dijkstra(G, 2 * (N - 1) + 1, INF);
+  auto [dist, par] = dijkstra<ll>(G, 2 * (N - 1) + 1);
   FOR(v, N - 1) print(dist[2 * v + 0]);
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
