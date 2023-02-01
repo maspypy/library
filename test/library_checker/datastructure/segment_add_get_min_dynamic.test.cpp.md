@@ -255,20 +255,20 @@ data:
     \ query_rec(c->r, x, node_m, node_r));\n    return res;\n  }\n};\n#line 5 \"test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  ll max = 1'000'000'000;\n  Dynamic_LiChaoTree<ll,\
     \ 14'000'000> seg(-max, max + 1);\n  FOR(N) {\n    LL(l, r, a, b);\n    seg.add_segment(l,\
-    \ r, a, b);\n  }\n  const ll INF = 1LL << 60;\n  FOR(Q) {\n    LL(t);\n    if\
-    \ (t == 0) {\n      LL(l, r, a, b);\n      seg.add_segment(l, r, a, b);\n    }\n\
-    \    if (t == 1) {\n      LL(x);\n      ll y = seg.query(x).fi;\n      if (y >=\
-    \ INF)\n        print(\"INFINITY\");\n      else\n        print(y);\n    }\n \
-    \ }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+    \ r, a, b);\n  }\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(l, r, a,\
+    \ b);\n      seg.add_segment(l, r, a, b);\n    }\n    if (t == 1) {\n      LL(x);\n\
+    \      ll y = seg.query(x).fi;\n      if (y >= infty<ll>)\n        print(\"INFINITY\"\
+    );\n      else\n        print(y);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\
+    \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/segment_add_get_min\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"convex/dynamic_lichao.hpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  ll max = 1'000'000'000;\n  Dynamic_LiChaoTree<ll,\
     \ 14'000'000> seg(-max, max + 1);\n  FOR(N) {\n    LL(l, r, a, b);\n    seg.add_segment(l,\
-    \ r, a, b);\n  }\n  const ll INF = 1LL << 60;\n  FOR(Q) {\n    LL(t);\n    if\
-    \ (t == 0) {\n      LL(l, r, a, b);\n      seg.add_segment(l, r, a, b);\n    }\n\
-    \    if (t == 1) {\n      LL(x);\n      ll y = seg.query(x).fi;\n      if (y >=\
-    \ INF)\n        print(\"INFINITY\");\n      else\n        print(y);\n    }\n \
-    \ }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+    \ r, a, b);\n  }\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(l, r, a,\
+    \ b);\n      seg.add_segment(l, r, a, b);\n    }\n    if (t == 1) {\n      LL(x);\n\
+    \      ll y = seg.query(x).fi;\n      if (y >= infty<ll>)\n        print(\"INFINITY\"\
+    );\n      else\n        print(y);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -277,7 +277,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:31:55+09:00'
+  timestamp: '2023-02-02 01:09:35+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp

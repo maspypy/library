@@ -74,44 +74,45 @@ data:
     \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
     \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 3 \"graph/shortest_path/bfs01.hpp\"\
-    \n\ntemplate <typename Graph, typename INT = int>\npair<vc<INT>, vc<int>> bfs01(Graph&\
-    \ G, ll v) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<INT> dist(N, -1);\n\
+    \n\ntemplate <typename T, typename GT>\npair<vc<T>, vc<int>> bfs01(GT& G, int\
+    \ v) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<T> dist(N, infty<T>);\n\
     \  vc<int> par(N, -1);\n  deque<int> que;\n\n  dist[v] = 0;\n  que.push_front(v);\n\
     \  while (!que.empty()) {\n    auto v = que.front();\n    que.pop_front();\n \
-    \   for (auto&& e: G[v]) {\n      if (dist[e.to] == -1 || dist[e.to] > dist[e.frm]\
+    \   for (auto&& e: G[v]) {\n      if (dist[e.to] == infty<T> || dist[e.to] > dist[e.frm]\
     \ + e.cost) {\n        dist[e.to] = dist[e.frm] + e.cost;\n        par[e.to] =\
     \ e.frm;\n        if (e.cost == 0)\n          que.push_front(e.to);\n        else\n\
     \          que.push_back(e.to);\n      }\n    }\n  }\n  return {dist, par};\n\
     }\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\u30C8\u3002[dist, par, root]\ntemplate\
-    \ <typename Graph>\ntuple<vc<ll>, vc<int>, vc<int>> bfs01(Graph& G, vc<int> vs)\
-    \ {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<ll> dist(N, -1);\n  vc<int>\
-    \ par(N, -1);\n  vc<int> root(N, -1);\n  deque<int> que;\n\n  for (auto&& v: vs)\
-    \ {\n    dist[v] = 0;\n    root[v] = v;\n    que.push_front(v);\n  }\n\n  while\
-    \ (!que.empty()) {\n    auto v = que.front();\n    que.pop_front();\n    for (auto&&\
-    \ e: G[v]) {\n      if (dist[e.to] == -1 || dist[e.to] > dist[e.frm] + e.cost)\
-    \ {\n        dist[e.to] = dist[e.frm] + e.cost;\n        root[e.to] = root[e.frm];\n\
-    \        par[e.to] = e.frm;\n        if (e.cost == 0)\n          que.push_front(e.to);\n\
-    \        else\n          que.push_back(e.to);\n      }\n    }\n  }\n  return {dist,\
-    \ par, root};\n}\n"
-  code: "#pragma once\n#include \"graph/base.hpp\"\n\ntemplate <typename Graph, typename\
-    \ INT = int>\npair<vc<INT>, vc<int>> bfs01(Graph& G, ll v) {\n  assert(G.is_prepared());\n\
-    \  int N = G.N;\n  vc<INT> dist(N, -1);\n  vc<int> par(N, -1);\n  deque<int> que;\n\
-    \n  dist[v] = 0;\n  que.push_front(v);\n  while (!que.empty()) {\n    auto v =\
-    \ que.front();\n    que.pop_front();\n    for (auto&& e: G[v]) {\n      if (dist[e.to]\
-    \ == -1 || dist[e.to] > dist[e.frm] + e.cost) {\n        dist[e.to] = dist[e.frm]\
-    \ + e.cost;\n        par[e.to] = e.frm;\n        if (e.cost == 0)\n          que.push_front(e.to);\n\
-    \        else\n          que.push_back(e.to);\n      }\n    }\n  }\n  return {dist,\
-    \ par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\u30C8\u3002[dist, par, root]\n\
-    template <typename Graph>\ntuple<vc<ll>, vc<int>, vc<int>> bfs01(Graph& G, vc<int>\
-    \ vs) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<ll> dist(N, -1);\n \
-    \ vc<int> par(N, -1);\n  vc<int> root(N, -1);\n  deque<int> que;\n\n  for (auto&&\
+    \ <typename T, typename GT>\ntuple<vc<T>, vc<int>, vc<int>> bfs01(GT& G, vc<int>\
+    \ vs) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<T> dist(N, infty<T>);\n\
+    \  vc<int> par(N, -1);\n  vc<int> root(N, -1);\n  deque<int> que;\n\n  for (auto&&\
     \ v: vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.push_front(v);\n  }\n\n\
     \  while (!que.empty()) {\n    auto v = que.front();\n    que.pop_front();\n \
-    \   for (auto&& e: G[v]) {\n      if (dist[e.to] == -1 || dist[e.to] > dist[e.frm]\
+    \   for (auto&& e: G[v]) {\n      if (dist[e.to] == infty<T> || dist[e.to] > dist[e.frm]\
     \ + e.cost) {\n        dist[e.to] = dist[e.frm] + e.cost;\n        root[e.to]\
     \ = root[e.frm];\n        par[e.to] = e.frm;\n        if (e.cost == 0)\n     \
     \     que.push_front(e.to);\n        else\n          que.push_back(e.to);\n  \
     \    }\n    }\n  }\n  return {dist, par, root};\n}\n"
+  code: "#pragma once\n#include \"graph/base.hpp\"\n\ntemplate <typename T, typename\
+    \ GT>\npair<vc<T>, vc<int>> bfs01(GT& G, int v) {\n  assert(G.is_prepared());\n\
+    \  int N = G.N;\n  vc<T> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  deque<int>\
+    \ que;\n\n  dist[v] = 0;\n  que.push_front(v);\n  while (!que.empty()) {\n   \
+    \ auto v = que.front();\n    que.pop_front();\n    for (auto&& e: G[v]) {\n  \
+    \    if (dist[e.to] == infty<T> || dist[e.to] > dist[e.frm] + e.cost) {\n    \
+    \    dist[e.to] = dist[e.frm] + e.cost;\n        par[e.to] = e.frm;\n        if\
+    \ (e.cost == 0)\n          que.push_front(e.to);\n        else\n          que.push_back(e.to);\n\
+    \      }\n    }\n  }\n  return {dist, par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\
+    \u30C8\u3002[dist, par, root]\ntemplate <typename T, typename GT>\ntuple<vc<T>,\
+    \ vc<int>, vc<int>> bfs01(GT& G, vc<int> vs) {\n  assert(G.is_prepared());\n \
+    \ int N = G.N;\n  vc<T> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  vc<int> root(N,\
+    \ -1);\n  deque<int> que;\n\n  for (auto&& v: vs) {\n    dist[v] = 0;\n    root[v]\
+    \ = v;\n    que.push_front(v);\n  }\n\n  while (!que.empty()) {\n    auto v =\
+    \ que.front();\n    que.pop_front();\n    for (auto&& e: G[v]) {\n      if (dist[e.to]\
+    \ == infty<T> || dist[e.to] > dist[e.frm] + e.cost) {\n        dist[e.to] = dist[e.frm]\
+    \ + e.cost;\n        root[e.to] = root[e.frm];\n        par[e.to] = e.frm;\n \
+    \       if (e.cost == 0)\n          que.push_front(e.to);\n        else\n    \
+    \      que.push_back(e.to);\n      }\n    }\n  }\n  return {dist, par, root};\n\
+    }\n"
   dependsOn:
   - graph/base.hpp
   isVerificationFile: false
@@ -119,7 +120,7 @@ data:
   requiredBy:
   - graph/mincostcycle.hpp
   - graph/tree_diameter.hpp
-  timestamp: '2022-12-05 10:41:25+09:00'
+  timestamp: '2023-02-02 01:09:35+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1718.test.cpp

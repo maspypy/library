@@ -29,34 +29,34 @@ data:
     \    return I;\n  };\n  vc<int> X(H), Y(W);\n  iota(all(X), 0), iota(all(Y), 0);\n\
     \  return dfs(dfs, X, Y);\n}\n#line 2 \"convex/maxplus_convolution_concave.hpp\"\
     \n\ntemplate <typename T, bool concaveA, bool concaveB>\nvc<T> maxplus_convolution_concave(vc<T>\
-    \ A, vc<T> B, const T INF) {\n  static_assert(concaveA || concaveB);\n  assert(INF\
-    \ < INF + INF);\n  if (!concaveB) swap(A, B);\n  int NA = len(A), NB = len(B);\n\
-    \  int N = NA + NB - 1;\n  int L = 0, R = NB;\n  while (L < R && B[L] == -INF)\
-    \ ++L;\n  if (L == R) return vc<T>(N, -INF);\n  while (B[R - 1] == -INF) --R;\n\
-    \  B = {B.begin() + L, B.begin() + R};\n  int nB = R - L;\n  int n = NA + nB -\
-    \ 1;\n\n  auto select = [&](int i, int j, int k) -> int {\n    if (i < k) return\
-    \ j;\n    if (i - j >= nB) return k;\n    return (A[j] + B[i - j] < A[k] + B[i\
-    \ - k] ? k : j);\n  };\n\n  vc<int> J = SMAWK(n, NA, select);\n  vc<T> C(N, -INF);\n\
-    \  FOR(i, n) C[L + i] = (A[J[i]] == -INF ? -INF : A[J[i]] + B[i - J[i]]);\n  return\
-    \ C;\n}\n"
+    \ A, vc<T> B) {\n  static_assert(concaveA || concaveB);\n  assert(infty<int> <\
+    \ infty<int> + infty<int>);\n  if (!concaveB) swap(A, B);\n  int NA = len(A),\
+    \ NB = len(B);\n  int N = NA + NB - 1;\n  int L = 0, R = NB;\n  while (L < R &&\
+    \ B[L] == -infty<int>) ++L;\n  if (L == R) return vc<T>(N, -infty<int>);\n  while\
+    \ (B[R - 1] == -infty<int>) --R;\n  B = {B.begin() + L, B.begin() + R};\n  int\
+    \ nB = R - L;\n  int n = NA + nB - 1;\n\n  auto select = [&](int i, int j, int\
+    \ k) -> int {\n    if (i < k) return j;\n    if (i - j >= nB) return k;\n    return\
+    \ (A[j] + B[i - j] < A[k] + B[i - k] ? k : j);\n  };\n\n  vc<int> J = SMAWK(n,\
+    \ NA, select);\n  vc<T> C(N, -infty<int>);\n  FOR(i, n) C[L + i] = A[J[i]] + (A[J[i]]\
+    \ == -infty<int> ? 0 : B[i - J[i]]);\n  return C;\n}\n"
   code: "#include \"convex/smawk.hpp\"\n\ntemplate <typename T, bool concaveA, bool\
-    \ concaveB>\nvc<T> maxplus_convolution_concave(vc<T> A, vc<T> B, const T INF)\
-    \ {\n  static_assert(concaveA || concaveB);\n  assert(INF < INF + INF);\n  if\
-    \ (!concaveB) swap(A, B);\n  int NA = len(A), NB = len(B);\n  int N = NA + NB\
-    \ - 1;\n  int L = 0, R = NB;\n  while (L < R && B[L] == -INF) ++L;\n  if (L ==\
-    \ R) return vc<T>(N, -INF);\n  while (B[R - 1] == -INF) --R;\n  B = {B.begin()\
+    \ concaveB>\nvc<T> maxplus_convolution_concave(vc<T> A, vc<T> B) {\n  static_assert(concaveA\
+    \ || concaveB);\n  assert(infty<int> < infty<int> + infty<int>);\n  if (!concaveB)\
+    \ swap(A, B);\n  int NA = len(A), NB = len(B);\n  int N = NA + NB - 1;\n  int\
+    \ L = 0, R = NB;\n  while (L < R && B[L] == -infty<int>) ++L;\n  if (L == R) return\
+    \ vc<T>(N, -infty<int>);\n  while (B[R - 1] == -infty<int>) --R;\n  B = {B.begin()\
     \ + L, B.begin() + R};\n  int nB = R - L;\n  int n = NA + nB - 1;\n\n  auto select\
     \ = [&](int i, int j, int k) -> int {\n    if (i < k) return j;\n    if (i - j\
     \ >= nB) return k;\n    return (A[j] + B[i - j] < A[k] + B[i - k] ? k : j);\n\
-    \  };\n\n  vc<int> J = SMAWK(n, NA, select);\n  vc<T> C(N, -INF);\n  FOR(i, n)\
-    \ C[L + i] = (A[J[i]] == -INF ? -INF : A[J[i]] + B[i - J[i]]);\n  return C;\n\
-    }\n"
+    \  };\n\n  vc<int> J = SMAWK(n, NA, select);\n  vc<T> C(N, -infty<int>);\n  FOR(i,\
+    \ n) C[L + i] = A[J[i]] + (A[J[i]] == -infty<int> ? 0 : B[i - J[i]]);\n  return\
+    \ C;\n}\n"
   dependsOn:
   - convex/smawk.hpp
   isVerificationFile: false
   path: convex/maxplus_convolution_concave.hpp
   requiredBy: []
-  timestamp: '2023-01-19 00:12:30+09:00'
+  timestamp: '2023-02-02 01:09:35+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/maxplus_concave.test.cpp

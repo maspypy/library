@@ -10,7 +10,7 @@ data:
   - icon: ':x:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
   _extendedRequiredBy: []
@@ -84,40 +84,41 @@ data:
     \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
     \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 3 \"graph/shortest_path/dijkstra.hpp\"\
-    \n\ntemplate <typename T, typename Graph>\npair<vc<T>, vc<int>> dijkstra(Graph&\
-    \ G, int v) {\n  auto N = G.N;\n  vector<T> dist(N, INF<T>);\n  vector<int> par(N,\
+    \n\ntemplate <typename T, typename GT>\npair<vc<T>, vc<int>> dijkstra(GT& G, int\
+    \ v) {\n  auto N = G.N;\n  vector<T> dist(N, infty<T>);\n  vector<int> par(N,\
     \ -1);\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>>\
     \ que;\n\n  dist[v] = 0;\n  que.emplace(0, v);\n  while (!que.empty()) {\n   \
     \ auto [dv, v] = que.top();\n    que.pop();\n    if (dv > dist[v]) continue;\n\
     \    for (auto&& e: G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost))\
     \ {\n        par[e.to] = e.frm;\n        que.emplace(dist[e.to], e.to);\n    \
     \  }\n    }\n  }\n  return {dist, par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\
-    \u30C8\u3002[dist, par, root]\ntemplate <typename T, typename Graph>\ntuple<vc<T>,\
-    \ vc<int>, vc<int>> dijkstra(Graph& G, vc<int> vs) {\n  assert(G.is_prepared());\n\
-    \  int N = G.N;\n  vc<ll> dist(N, INF<T>);\n  vc<int> par(N, -1);\n  vc<int> root(N,\
-    \ -1);\n\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>>\
-    \ que;\n\n  for (auto&& v: vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.emplace(T(0),\
-    \ v);\n  }\n\n  while (!que.empty()) {\n    auto [dv, v] = que.top();\n    que.pop();\n\
-    \    if (dv > dist[v]) continue;\n    for (auto&& e: G[v]) {\n      if (chmin(dist[e.to],\
-    \ dist[e.frm] + e.cost)) {\n        root[e.to] = root[e.frm];\n        par[e.to]\
-    \ = e.frm;\n        que.push(mp(dist[e.to], e.to));\n      }\n    }\n  }\n  return\
-    \ {dist, par, root};\n}\n#line 2 \"graph/reverse_graph.hpp\"\n\r\ntemplate <typename\
-    \ T>\r\nGraph<T, 1> reverse_graph(Graph<T, 1>& G) {\r\n  assert(G.is_directed());\r\
-    \n  Graph<T, 1> G1(G.N);\r\n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost,\
-    \ e.id); }\r\n  G1.build();\r\n  return G1;\r\n}\r\n#line 4 \"graph/shortest_path/K_shortest_walk.hpp\"\
-    \n\n// INF \u57CB\u3081\u3057\u3066\u5FC5\u305A\u9577\u3055 K \u306B\u3057\u305F\
-    \u3082\u306E\u3092\u304B\u3048\u3059\u3002\ntemplate <typename T, typename GT,\
-    \ int NODES>\nvc<T> K_shortest_walk(GT &G, int s, int t, int K, T INF) {\n  assert(G.is_directed());\n\
+    \u30C8\u3002[dist, par, root]\ntemplate <typename T, typename GT>\ntuple<vc<T>,\
+    \ vc<int>, vc<int>> dijkstra(GT& G, vc<int> vs) {\n  assert(G.is_prepared());\n\
+    \  int N = G.N;\n  vc<ll> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  vc<int>\
+    \ root(N, -1);\n\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>,\
+    \ greater<P>> que;\n\n  for (auto&& v: vs) {\n    dist[v] = 0;\n    root[v] =\
+    \ v;\n    que.emplace(T(0), v);\n  }\n\n  while (!que.empty()) {\n    auto [dv,\
+    \ v] = que.top();\n    que.pop();\n    if (dv > dist[v]) continue;\n    for (auto&&\
+    \ e: G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost)) {\n        root[e.to]\
+    \ = root[e.frm];\n        par[e.to] = e.frm;\n        que.push(mp(dist[e.to],\
+    \ e.to));\n      }\n    }\n  }\n  return {dist, par, root};\n}\n#line 2 \"graph/reverse_graph.hpp\"\
+    \n\r\ntemplate <typename T>\r\nGraph<T, 1> reverse_graph(Graph<T, 1>& G) {\r\n\
+    \  assert(G.is_directed());\r\n  Graph<T, 1> G1(G.N);\r\n  for (auto&& e: G.edges)\
+    \ { G1.add(e.to, e.frm, e.cost, e.id); }\r\n  G1.build();\r\n  return G1;\r\n\
+    }\r\n#line 4 \"graph/shortest_path/K_shortest_walk.hpp\"\n\n// infty<T> \u57CB\
+    \u3081\u3057\u3066\u5FC5\u305A\u9577\u3055 K \u306B\u3057\u305F\u3082\u306E\u3092\
+    \u304B\u3048\u3059\u3002\ntemplate <typename T, typename GT, int NODES>\nvc<T>\
+    \ K_shortest_walk(GT &G, int s, int t, int K) {\n  assert(G.is_directed());\n\
     \  int N = G.N;\n  auto RG = reverse_graph(G);\n  auto [dist, par] = dijkstra<ll,\
-    \ decltype(RG)>(RG, t, INF);\n  if (dist[s] == INF) { return vc<T>(K, INF); }\n\
-    \n  using P = pair<T, int>;\n  Meldable_Heap<P, true, NODES> X;\n  using np =\
-    \ typename decltype(X)::np;\n  vc<np> nodes(N, nullptr);\n\n  vc<bool> vis(N);\n\
-    \  vc<int> st = {t};\n  vis[t] = 1;\n  while (len(st)) {\n    int v = POP(st);\n\
-    \    bool done = 0;\n    for (auto &&e: G[v]) {\n      if (dist[e.to] == INF)\
-    \ continue;\n      if (!done && par[v] == e.to && dist[v] == dist[e.to] + e.cost)\
-    \ {\n        done = 1;\n        continue;\n      }\n      T cost = -dist[v] +\
-    \ e.cost + dist[e.to];\n      nodes[v] = X.push(nodes[v], {cost, e.to});\n   \
-    \ }\n    for (auto &&e: RG[v]) {\n      if (vis[e.to]) continue;\n      if (par[e.to]\
+    \ decltype(RG)>(RG, t, infty<T>);\n  if (dist[s] == infty<T>) { return vc<T>(K,\
+    \ infty<T>); }\n\n  using P = pair<T, int>;\n  Meldable_Heap<P, true, NODES> X;\n\
+    \  using np = typename decltype(X)::np;\n  vc<np> nodes(N, nullptr);\n\n  vc<bool>\
+    \ vis(N);\n  vc<int> st = {t};\n  vis[t] = 1;\n  while (len(st)) {\n    int v\
+    \ = POP(st);\n    bool done = 0;\n    for (auto &&e: G[v]) {\n      if (dist[e.to]\
+    \ == infty<T>) continue;\n      if (!done && par[v] == e.to && dist[v] == dist[e.to]\
+    \ + e.cost) {\n        done = 1;\n        continue;\n      }\n      T cost = -dist[v]\
+    \ + e.cost + dist[e.to];\n      nodes[v] = X.push(nodes[v], {cost, e.to});\n \
+    \   }\n    for (auto &&e: RG[v]) {\n      if (vis[e.to]) continue;\n      if (par[e.to]\
     \ == v) {\n        nodes[e.to] = X.meld(nodes[e.to], nodes[v]);\n        vis[e.to]\
     \ = 1;\n        st.eb(e.to);\n      }\n    }\n  }\n\n  T base = dist[s];\n  vc<T>\
     \ ANS = {base};\n  if (nodes[s]) {\n    using PAIR = pair<ll, np>;\n    auto comp\
@@ -127,32 +128,34 @@ data:
     \  que.pop();\n      ANS.eb(d);\n      if (n->l) que.emplace(d + (n->l->x.fi)\
     \ - (n->x.fi), n->l);\n      if (n->r) que.emplace(d + (n->r->x.fi) - (n->x.fi),\
     \ n->r);\n      np m = nodes[n->x.se];\n      if (m) { que.emplace(d + m->x.fi,\
-    \ m); }\n    }\n  }\n  while (len(ANS) < K) ANS.eb(INF);\n  return ANS;\n}\n"
+    \ m); }\n    }\n  }\n  while (len(ANS) < K) ANS.eb(infty<T>);\n  return ANS;\n\
+    }\n"
   code: "#include \"ds/meldable_heap.hpp\"\n#include \"graph/shortest_path/dijkstra.hpp\"\
-    \n#include \"graph/reverse_graph.hpp\"\n\n// INF \u57CB\u3081\u3057\u3066\u5FC5\
-    \u305A\u9577\u3055 K \u306B\u3057\u305F\u3082\u306E\u3092\u304B\u3048\u3059\u3002\
-    \ntemplate <typename T, typename GT, int NODES>\nvc<T> K_shortest_walk(GT &G,\
-    \ int s, int t, int K, T INF) {\n  assert(G.is_directed());\n  int N = G.N;\n\
-    \  auto RG = reverse_graph(G);\n  auto [dist, par] = dijkstra<ll, decltype(RG)>(RG,\
-    \ t, INF);\n  if (dist[s] == INF) { return vc<T>(K, INF); }\n\n  using P = pair<T,\
-    \ int>;\n  Meldable_Heap<P, true, NODES> X;\n  using np = typename decltype(X)::np;\n\
-    \  vc<np> nodes(N, nullptr);\n\n  vc<bool> vis(N);\n  vc<int> st = {t};\n  vis[t]\
-    \ = 1;\n  while (len(st)) {\n    int v = POP(st);\n    bool done = 0;\n    for\
-    \ (auto &&e: G[v]) {\n      if (dist[e.to] == INF) continue;\n      if (!done\
-    \ && par[v] == e.to && dist[v] == dist[e.to] + e.cost) {\n        done = 1;\n\
-    \        continue;\n      }\n      T cost = -dist[v] + e.cost + dist[e.to];\n\
-    \      nodes[v] = X.push(nodes[v], {cost, e.to});\n    }\n    for (auto &&e: RG[v])\
-    \ {\n      if (vis[e.to]) continue;\n      if (par[e.to] == v) {\n        nodes[e.to]\
-    \ = X.meld(nodes[e.to], nodes[v]);\n        vis[e.to] = 1;\n        st.eb(e.to);\n\
-    \      }\n    }\n  }\n\n  T base = dist[s];\n  vc<T> ANS = {base};\n  if (nodes[s])\
-    \ {\n    using PAIR = pair<ll, np>;\n    auto comp = [](auto a, auto b) { return\
-    \ a.fi > b.fi; };\n    priority_queue<PAIR, vc<PAIR>, decltype(comp)> que(comp);\n\
-    \    que.emplace(base + X.top(nodes[s]).fi, nodes[s]);\n    while (len(ANS) <\
-    \ K && len(que)) {\n      auto [d, n] = que.top();\n      que.pop();\n      ANS.eb(d);\n\
-    \      if (n->l) que.emplace(d + (n->l->x.fi) - (n->x.fi), n->l);\n      if (n->r)\
-    \ que.emplace(d + (n->r->x.fi) - (n->x.fi), n->r);\n      np m = nodes[n->x.se];\n\
-    \      if (m) { que.emplace(d + m->x.fi, m); }\n    }\n  }\n  while (len(ANS)\
-    \ < K) ANS.eb(INF);\n  return ANS;\n}\n"
+    \n#include \"graph/reverse_graph.hpp\"\n\n// infty<T> \u57CB\u3081\u3057\u3066\
+    \u5FC5\u305A\u9577\u3055 K \u306B\u3057\u305F\u3082\u306E\u3092\u304B\u3048\u3059\
+    \u3002\ntemplate <typename T, typename GT, int NODES>\nvc<T> K_shortest_walk(GT\
+    \ &G, int s, int t, int K) {\n  assert(G.is_directed());\n  int N = G.N;\n  auto\
+    \ RG = reverse_graph(G);\n  auto [dist, par] = dijkstra<ll, decltype(RG)>(RG,\
+    \ t, infty<T>);\n  if (dist[s] == infty<T>) { return vc<T>(K, infty<T>); }\n\n\
+    \  using P = pair<T, int>;\n  Meldable_Heap<P, true, NODES> X;\n  using np = typename\
+    \ decltype(X)::np;\n  vc<np> nodes(N, nullptr);\n\n  vc<bool> vis(N);\n  vc<int>\
+    \ st = {t};\n  vis[t] = 1;\n  while (len(st)) {\n    int v = POP(st);\n    bool\
+    \ done = 0;\n    for (auto &&e: G[v]) {\n      if (dist[e.to] == infty<T>) continue;\n\
+    \      if (!done && par[v] == e.to && dist[v] == dist[e.to] + e.cost) {\n    \
+    \    done = 1;\n        continue;\n      }\n      T cost = -dist[v] + e.cost +\
+    \ dist[e.to];\n      nodes[v] = X.push(nodes[v], {cost, e.to});\n    }\n    for\
+    \ (auto &&e: RG[v]) {\n      if (vis[e.to]) continue;\n      if (par[e.to] ==\
+    \ v) {\n        nodes[e.to] = X.meld(nodes[e.to], nodes[v]);\n        vis[e.to]\
+    \ = 1;\n        st.eb(e.to);\n      }\n    }\n  }\n\n  T base = dist[s];\n  vc<T>\
+    \ ANS = {base};\n  if (nodes[s]) {\n    using PAIR = pair<ll, np>;\n    auto comp\
+    \ = [](auto a, auto b) { return a.fi > b.fi; };\n    priority_queue<PAIR, vc<PAIR>,\
+    \ decltype(comp)> que(comp);\n    que.emplace(base + X.top(nodes[s]).fi, nodes[s]);\n\
+    \    while (len(ANS) < K && len(que)) {\n      auto [d, n] = que.top();\n    \
+    \  que.pop();\n      ANS.eb(d);\n      if (n->l) que.emplace(d + (n->l->x.fi)\
+    \ - (n->x.fi), n->l);\n      if (n->r) que.emplace(d + (n->r->x.fi) - (n->x.fi),\
+    \ n->r);\n      np m = nodes[n->x.se];\n      if (m) { que.emplace(d + m->x.fi,\
+    \ m); }\n    }\n  }\n  while (len(ANS) < K) ANS.eb(infty<T>);\n  return ANS;\n\
+    }\n"
   dependsOn:
   - ds/meldable_heap.hpp
   - graph/shortest_path/dijkstra.hpp
@@ -161,7 +164,7 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/K_shortest_walk.hpp
   requiredBy: []
-  timestamp: '2023-02-01 23:18:36+09:00'
+  timestamp: '2023-02-02 01:09:35+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/graph/K_shortest_walk.test.cpp

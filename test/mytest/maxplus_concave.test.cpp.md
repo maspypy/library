@@ -228,43 +228,42 @@ data:
     \ X(H), Y(W);\n  iota(all(X), 0), iota(all(Y), 0);\n  return dfs(dfs, X, Y);\n\
     }\n#line 2 \"convex/maxplus_convolution_concave.hpp\"\n\ntemplate <typename T,\
     \ bool concaveA, bool concaveB>\nvc<T> maxplus_convolution_concave(vc<T> A, vc<T>\
-    \ B, const T INF) {\n  static_assert(concaveA || concaveB);\n  assert(INF < INF\
-    \ + INF);\n  if (!concaveB) swap(A, B);\n  int NA = len(A), NB = len(B);\n  int\
-    \ N = NA + NB - 1;\n  int L = 0, R = NB;\n  while (L < R && B[L] == -INF) ++L;\n\
-    \  if (L == R) return vc<T>(N, -INF);\n  while (B[R - 1] == -INF) --R;\n  B =\
-    \ {B.begin() + L, B.begin() + R};\n  int nB = R - L;\n  int n = NA + nB - 1;\n\
-    \n  auto select = [&](int i, int j, int k) -> int {\n    if (i < k) return j;\n\
-    \    if (i - j >= nB) return k;\n    return (A[j] + B[i - j] < A[k] + B[i - k]\
-    \ ? k : j);\n  };\n\n  vc<int> J = SMAWK(n, NA, select);\n  vc<T> C(N, -INF);\n\
-    \  FOR(i, n) C[L + i] = (A[J[i]] == -INF ? -INF : A[J[i]] + B[i - J[i]]);\n  return\
-    \ C;\n}\n#line 7 \"test/mytest/maxplus_concave.test.cpp\"\n\nconst int INF = numeric_limits<int>::max()\
-    \ / 2;\n\nvc<int> gen(int L, int N, int R) {\n  vc<int> A(N);\n  FOR(i, N) A[i]\
-    \ = RNG(-100, 100);\n  sort(all(A));\n  reverse(all(A));\n  A = cumsum<int>(A);\n\
-    \  FOR(L) A.insert(A.begin(), -INF);\n  FOR(R) A.insert(A.end(), -INF);\n  return\
-    \ A;\n}\n\nvc<int> naive(vc<int> A, vc<int> B) {\n  int N = len(A), M = len(B);\n\
-    \  vc<int> C(N + M - 1, -INF);\n  FOR(i, N) FOR(j, M) {\n    if (A[i] == -INF\
-    \ || B[j] == -INF) continue;\n    chmax(C[i + j], A[i] + B[j]);\n  }\n  return\
-    \ C;\n}\n\nvoid test() {\n  FOR(a1, 5) FOR(b1, 10) FOR(c1, 5) {\n    vc<int> A\
-    \ = gen(a1, b1, c1);\n    FOR(a2, 5) FOR(b2, 10) FOR(c2, 5) {\n      vc<int> B\
-    \ = gen(a2, b2, c2);\n      vc<int> C = maxplus_convolution_concave<int, true,\
-    \ true>(A, B, INF);\n      assert(naive(A, B) == C);\n    }\n  }\n}\n\nvoid solve()\
+    \ B) {\n  static_assert(concaveA || concaveB);\n  assert(infty<int> < infty<int>\
+    \ + infty<int>);\n  if (!concaveB) swap(A, B);\n  int NA = len(A), NB = len(B);\n\
+    \  int N = NA + NB - 1;\n  int L = 0, R = NB;\n  while (L < R && B[L] == -infty<int>)\
+    \ ++L;\n  if (L == R) return vc<T>(N, -infty<int>);\n  while (B[R - 1] == -infty<int>)\
+    \ --R;\n  B = {B.begin() + L, B.begin() + R};\n  int nB = R - L;\n  int n = NA\
+    \ + nB - 1;\n\n  auto select = [&](int i, int j, int k) -> int {\n    if (i <\
+    \ k) return j;\n    if (i - j >= nB) return k;\n    return (A[j] + B[i - j] <\
+    \ A[k] + B[i - k] ? k : j);\n  };\n\n  vc<int> J = SMAWK(n, NA, select);\n  vc<T>\
+    \ C(N, -infty<int>);\n  FOR(i, n) C[L + i] = A[J[i]] + (A[J[i]] == -infty<int>\
+    \ ? 0 : B[i - J[i]]);\n  return C;\n}\n#line 7 \"test/mytest/maxplus_concave.test.cpp\"\
+    \n\nvc<int> gen(int L, int N, int R) {\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(-100,\
+    \ 100);\n  sort(all(A));\n  reverse(all(A));\n  A = cumsum<int>(A);\n  FOR(L)\
+    \ A.insert(A.begin(), -infty<int>);\n  FOR(R) A.insert(A.end(), -infty<int>);\n\
+    \  return A;\n}\n\nvc<int> naive(vc<int> A, vc<int> B) {\n  int N = len(A), M\
+    \ = len(B);\n  vc<int> C(N + M - 1, -infty<int>);\n  FOR(i, N) FOR(j, M) {\n \
+    \   if (A[i] == -infty<int> || B[j] == -infty<int>) continue;\n    chmax(C[i +\
+    \ j], A[i] + B[j]);\n  }\n  return C;\n}\n\nvoid test() {\n  FOR(a1, 5) FOR(b1,\
+    \ 10) FOR(c1, 5) {\n    vc<int> A = gen(a1, b1, c1);\n    FOR(a2, 5) FOR(b2, 10)\
+    \ FOR(c2, 5) {\n      vc<int> B = gen(a2, b2, c2);\n      vc<int> C = maxplus_convolution_concave<int,\
+    \ true, true>(A, B);\n      assert(naive(A, B) == C);\n    }\n  }\n}\n\nvoid solve()\
     \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
     \n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"random/base.hpp\"\n\n#include \"convex/maxplus_convolution_concave.hpp\"\
-    \n\nconst int INF = numeric_limits<int>::max() / 2;\n\nvc<int> gen(int L, int\
-    \ N, int R) {\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(-100, 100);\n  sort(all(A));\n\
-    \  reverse(all(A));\n  A = cumsum<int>(A);\n  FOR(L) A.insert(A.begin(), -INF);\n\
-    \  FOR(R) A.insert(A.end(), -INF);\n  return A;\n}\n\nvc<int> naive(vc<int> A,\
-    \ vc<int> B) {\n  int N = len(A), M = len(B);\n  vc<int> C(N + M - 1, -INF);\n\
-    \  FOR(i, N) FOR(j, M) {\n    if (A[i] == -INF || B[j] == -INF) continue;\n  \
-    \  chmax(C[i + j], A[i] + B[j]);\n  }\n  return C;\n}\n\nvoid test() {\n  FOR(a1,\
-    \ 5) FOR(b1, 10) FOR(c1, 5) {\n    vc<int> A = gen(a1, b1, c1);\n    FOR(a2, 5)\
-    \ FOR(b2, 10) FOR(c2, 5) {\n      vc<int> B = gen(a2, b2, c2);\n      vc<int>\
-    \ C = maxplus_convolution_concave<int, true, true>(A, B, INF);\n      assert(naive(A,\
-    \ B) == C);\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\
-    \nsigned main() {\n  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\
-    \n  return 0;\n}\n"
+    \n\nvc<int> gen(int L, int N, int R) {\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(-100,\
+    \ 100);\n  sort(all(A));\n  reverse(all(A));\n  A = cumsum<int>(A);\n  FOR(L)\
+    \ A.insert(A.begin(), -infty<int>);\n  FOR(R) A.insert(A.end(), -infty<int>);\n\
+    \  return A;\n}\n\nvc<int> naive(vc<int> A, vc<int> B) {\n  int N = len(A), M\
+    \ = len(B);\n  vc<int> C(N + M - 1, -infty<int>);\n  FOR(i, N) FOR(j, M) {\n \
+    \   if (A[i] == -infty<int> || B[j] == -infty<int>) continue;\n    chmax(C[i +\
+    \ j], A[i] + B[j]);\n  }\n  return C;\n}\n\nvoid test() {\n  FOR(a1, 5) FOR(b1,\
+    \ 10) FOR(c1, 5) {\n    vc<int> A = gen(a1, b1, c1);\n    FOR(a2, 5) FOR(b2, 10)\
+    \ FOR(c2, 5) {\n      vc<int> B = gen(a2, b2, c2);\n      vc<int> C = maxplus_convolution_concave<int,\
+    \ true, true>(A, B);\n      assert(naive(A, B) == C);\n    }\n  }\n}\n\nvoid solve()\
+    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  test();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -274,7 +273,7 @@ data:
   isVerificationFile: true
   path: test/mytest/maxplus_concave.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:18:36+09:00'
+  timestamp: '2023-02-02 01:09:35+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/maxplus_concave.test.cpp
