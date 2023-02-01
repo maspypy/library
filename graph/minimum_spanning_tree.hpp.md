@@ -303,7 +303,7 @@ data:
     \ + edge, r, x);\r\n  }\r\n};\r\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate\
     \ <typename E>\r\nstruct Monoid_Min {\r\n  using X = E;\r\n  using value_type\
     \ = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return min(x,\
-    \ y); }\r\n  static constexpr X unit() { return -infty<E>; }\r\n  static constexpr\
+    \ y); }\r\n  static constexpr X unit() { return infty<E>; }\r\n  static constexpr\
     \ bool commute = true;\r\n};\r\n#line 2 \"alg/monoid/max.hpp\"\n\r\ntemplate <typename\
     \ E>\r\nstruct Monoid_Max {\r\n  using X = E;\r\n  using value_type = X;\r\n \
     \ static constexpr X op(const X &x, const X &y) noexcept { return max(x, y); }\r\
@@ -372,7 +372,7 @@ data:
   isVerificationFile: false
   path: graph/minimum_spanning_tree.hpp
   requiredBy: []
-  timestamp: '2023-02-01 23:31:55+09:00'
+  timestamp: '2023-02-02 02:12:17+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/GRL_2_A.test.cpp

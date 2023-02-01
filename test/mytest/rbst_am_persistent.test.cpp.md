@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
   - icon: ':question:'
@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/randomized_bst/rbst_acted_monoid.hpp
     title: ds/randomized_bst/rbst_acted_monoid.hpp
   - icon: ':question:'
@@ -216,7 +216,7 @@ data:
     \ yes(!t); }\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
     \ Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
     \ X op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr\
-    \ X unit() { return -infty<E>; }\r\n  static constexpr bool commute = true;\r\n\
+    \ X unit() { return infty<E>; }\r\n  static constexpr bool commute = true;\r\n\
     };\r\n#line 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, X none_val>\r\
     \nstruct Monoid_Assign {\r\n  using value_type = X;\r\n  static X op(X x, X y)\
     \ { return (y == none_val ? x : y); }\r\n  static constexpr X unit() { return\
@@ -425,7 +425,7 @@ data:
   isVerificationFile: true
   path: test/mytest/rbst_am_persistent.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:31:55+09:00'
+  timestamp: '2023-02-02 02:12:17+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/rbst_am_persistent.test.cpp

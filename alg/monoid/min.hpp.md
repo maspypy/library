@@ -5,10 +5,10 @@ data:
   - icon: ':x:'
     path: alg/acted_monoid/max_min.hpp
     title: alg/acted_monoid/max_min.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
   - icon: ':x:'
@@ -39,13 +39,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508.test.cpp
     title: test/aoj/1508.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/1508_2.test.cpp
     title: test/aoj/1508_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_F.test.cpp
     title: test/aoj/DSL_2_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_H.test.cpp
     title: test/aoj/DSL_2_H.test.cpp
   - icon: ':heavy_check_mark:'
@@ -128,12 +128,12 @@ data:
   bundledCode: "#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
     \ Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
     \ X op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr\
-    \ X unit() { return -infty<E>; }\r\n  static constexpr bool commute = true;\r\n\
+    \ X unit() { return infty<E>; }\r\n  static constexpr bool commute = true;\r\n\
     };\r\n"
   code: "#pragma once\r\n\r\ntemplate <typename E>\r\nstruct Monoid_Min {\r\n  using\
     \ X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const\
     \ X &y) noexcept { return min(x, y); }\r\n  static constexpr X unit() { return\
-    \ -infty<E>; }\r\n  static constexpr bool commute = true;\r\n};\r\n"
+    \ infty<E>; }\r\n  static constexpr bool commute = true;\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/min.hpp
@@ -149,7 +149,7 @@ data:
   - alg/acted_monoid/min_assign.hpp
   - alg/acted_monoid/min_min.hpp
   - alg/acted_monoid/min_max.hpp
-  timestamp: '2023-02-01 23:31:55+09:00'
+  timestamp: '2023-02-02 02:12:17+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/1508_2.test.cpp

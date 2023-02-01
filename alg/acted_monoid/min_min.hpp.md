@@ -17,7 +17,7 @@ data:
   bundledCode: "#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
     \ Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
     \ X op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr\
-    \ X unit() { return -infty<E>; }\r\n  static constexpr bool commute = true;\r\n\
+    \ X unit() { return infty<E>; }\r\n  static constexpr bool commute = true;\r\n\
     };\r\n#line 2 \"alg/acted_monoid/min_min.hpp\"\n\r\ntemplate <typename E>\r\n\
     struct ActedMonoid_Min_Min {\r\n  using Monoid_X = Monoid_Min<E>;\r\n  using Monoid_A\
     \ = Monoid_Min<E>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A\
@@ -33,7 +33,7 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/min_min.hpp
   requiredBy: []
-  timestamp: '2023-02-01 23:31:55+09:00'
+  timestamp: '2023-02-02 02:12:17+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/min_min.test.cpp

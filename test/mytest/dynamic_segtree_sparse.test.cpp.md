@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/dynamic_segtree_sparse.hpp
     title: ds/segtree/dynamic_segtree_sparse.hpp
   - icon: ':question:'
@@ -210,7 +210,7 @@ data:
     \ yes(!t); }\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
     \ Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
     \ X op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr\
-    \ X unit() { return -infty<E>; }\r\n  static constexpr bool commute = true;\r\n\
+    \ X unit() { return infty<E>; }\r\n  static constexpr bool commute = true;\r\n\
     };\r\n#line 2 \"ds/segtree/dynamic_segtree_sparse.hpp\"\n\n// \u5E38\u306B\u307B\
     \u3068\u3093\u3069\u306E\u8981\u7D20\u304C unit \u3067\u3042\u308B\u3053\u3068\
     \u304C\u4FDD\u8A3C\u3055\u308C\u308B\u3088\u3046\u306A\u52D5\u7684\u30BB\u30B0\
@@ -335,7 +335,7 @@ data:
   isVerificationFile: true
   path: test/mytest/dynamic_segtree_sparse.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:31:55+09:00'
+  timestamp: '2023-02-02 02:12:17+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/dynamic_segtree_sparse.test.cpp

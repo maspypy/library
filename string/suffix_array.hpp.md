@@ -38,8 +38,8 @@ data:
   bundledCode: "#line 2 \"string/suffix_array.hpp\"\n\n#line 2 \"alg/monoid/min.hpp\"\
     \n\r\ntemplate <typename E>\r\nstruct Monoid_Min {\r\n  using X = E;\r\n  using\
     \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
-    \ { return min(x, y); }\r\n  static constexpr X unit() { return -infty<E>; }\r\
-    \n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/disjointsparse/disjointsparse.hpp\"\
+    \ { return min(x, y); }\r\n  static constexpr X unit() { return infty<E>; }\r\n\
+    \  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/disjointsparse/disjointsparse.hpp\"\
     \n\r\ntemplate <class Monoid>\r\nstruct DisjointSparse {\r\n  using MX = Monoid;\r\
     \n  using X = typename MX::value_type;\r\n  int n, log;\r\n  vvc<X> dat;\r\n\r\
     \n  DisjointSparse() {}\r\n  DisjointSparse(int n) { build(n); }\r\n  template\
@@ -203,7 +203,7 @@ data:
   requiredBy:
   - string/longest_common_substring.hpp
   - string/suffix_tree.hpp
-  timestamp: '2023-02-01 23:31:55+09:00'
+  timestamp: '2023-02-02 02:12:17+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/string/suffix_array_vec.test.cpp

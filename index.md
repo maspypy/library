@@ -27,10 +27,10 @@ data:
     - icon: ':x:'
       path: alg/acted_monoid/maxidx_add.hpp
       title: alg/acted_monoid/maxidx_add.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/acted_monoid/min_add.hpp
       title: alg/acted_monoid/min_add.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/acted_monoid/min_assign.hpp
       title: alg/acted_monoid/min_assign.hpp
     - icon: ':x:'
@@ -45,7 +45,7 @@ data:
     - icon: ':x:'
       path: alg/acted_monoid/minmax_add.hpp
       title: alg/acted_monoid/minmax_add.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/minmincnt_add.hpp
       title: alg/acted_monoid/minmincnt_add.hpp
     - icon: ':warning:'
@@ -57,7 +57,7 @@ data:
     - icon: ':question:'
       path: alg/acted_monoid/sum_add.hpp
       title: alg/acted_monoid/sum_add.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/acted_monoid/sum_affine.hpp
       title: alg/acted_monoid/sum_affine.hpp
     - icon: ':heavy_check_mark:'
@@ -106,7 +106,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid/add_tuple_3.hpp
       title: alg/monoid/add_tuple_3.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/monoid/affine.hpp
       title: alg/monoid/affine.hpp
     - icon: ':question:'
@@ -133,7 +133,7 @@ data:
     - icon: ':question:'
       path: alg/monoid/minmax.hpp
       title: alg/monoid/minmax.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/minmincnt.hpp
       title: alg/monoid/minmincnt.hpp
     - icon: ':question:'
@@ -217,7 +217,7 @@ data:
     - icon: ':question:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
     - icon: ':x:'
@@ -235,7 +235,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/range_add_range_sum.hpp
       title: ds/range_add_range_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/rollback_array.hpp
       title: ds/rollback_array.hpp
     - icon: ':x:'
@@ -279,7 +279,7 @@ data:
       title: ds/kdtree/kdtree_monoid.hpp
   - name: ds/offline_query
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/offline_query/add_remove_query.hpp
       title: ds/offline_query/add_remove_query.hpp
     - icon: ':x:'
@@ -320,7 +320,7 @@ data:
     - icon: ':x:'
       path: ds/randomized_bst/rbst.hpp
       title: ds/randomized_bst/rbst.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/randomized_bst/rbst_acted_monoid.hpp
       title: ds/randomized_bst/rbst_acted_monoid.hpp
     - icon: ':x:'
@@ -329,7 +329,7 @@ data:
     - icon: ':x:'
       path: ds/randomized_bst/rbst_commutative_monoid.hpp
       title: ds/randomized_bst/rbst_commutative_monoid.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/randomized_bst/rbst_monoid.hpp
       title: ds/randomized_bst/rbst_monoid.hpp
   - name: ds/segtree
@@ -349,10 +349,10 @@ data:
     - icon: ':x:'
       path: ds/segtree/dynamic_lazy_segtree.hpp
       title: ds/segtree/dynamic_lazy_segtree.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/segtree/dynamic_segtree.hpp
       title: ds/segtree/dynamic_segtree.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/segtree/dynamic_segtree_sparse.hpp
       title: ds/segtree/dynamic_segtree_sparse.hpp
     - icon: ':question:'
@@ -378,7 +378,7 @@ data:
     - icon: ':question:'
       path: ds/splaytree/splaytree.hpp
       title: ds/splaytree/splaytree.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/splaytree/splaytree_acted_monoid.hpp
       title: ds/splaytree/splaytree_acted_monoid.hpp
     - icon: ':x:'
@@ -398,7 +398,7 @@ data:
     - icon: ':x:'
       path: ds/unionfind/dynamic_unionfind.hpp
       title: ds/unionfind/dynamic_unionfind.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/unionfind/rollback_unionfind.hpp
       title: ds/unionfind/rollback_unionfind.hpp
     - icon: ':warning:'
@@ -1031,7 +1031,7 @@ data:
     - icon: ':x:'
       path: other/magic_square.hpp
       title: other/magic_square.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/rectangle_union.hpp
       title: other/rectangle_union.hpp
     - icon: ':x:'
@@ -1381,7 +1381,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/1508.test.cpp
       title: test/aoj/1508.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/1508_2.test.cpp
       title: test/aoj/1508_2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1489,13 +1489,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_E.test.cpp
       title: test/aoj/DSL_2_E.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_F.test.cpp
       title: test/aoj/DSL_2_F.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_G.test.cpp
       title: test/aoj/DSL_2_G.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_H.test.cpp
       title: test/aoj/DSL_2_H.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1604,28 +1604,28 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/add_remove_query.test.cpp
       title: test/library_checker/datastructure/add_remove_query.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
       title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/associative_array.test.cpp
       title: test/library_checker/datastructure/associative_array.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
       title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/double_ended_pq.test.cpp
       title: test/library_checker/datastructure/double_ended_pq.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/double_ended_pq_2.test.cpp
       title: test/library_checker/datastructure/double_ended_pq_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
       title: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
       title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
       title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     - icon: ':x:'

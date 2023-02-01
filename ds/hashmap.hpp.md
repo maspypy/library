@@ -18,7 +18,7 @@ data:
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
     title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
   - icon: ':x:'
@@ -83,7 +83,7 @@ data:
     title: test_atcoder/abc273_e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -140,7 +140,7 @@ data:
   - nt/discrete_log.hpp
   - other/connected_dp.hpp
   timestamp: '2023-01-31 21:59:51+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1769.test.cpp
   - test/yukicoder/541.test.cpp

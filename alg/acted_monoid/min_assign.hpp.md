@@ -9,7 +9,7 @@ data:
     title: alg/monoid/min.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_F.test.cpp
     title: test/aoj/DSL_2_F.test.cpp
   - icon: ':x:'
@@ -20,13 +20,13 @@ data:
     title: test/mytest/rbst_am_persistent.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
     \ Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
     \ X op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr\
-    \ X unit() { return -infty<E>; }\r\n  static constexpr bool commute = true;\r\n\
+    \ X unit() { return infty<E>; }\r\n  static constexpr bool commute = true;\r\n\
     };\r\n#line 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, X none_val>\r\
     \nstruct Monoid_Assign {\r\n  using value_type = X;\r\n  static X op(X x, X y)\
     \ { return (y == none_val ? x : y); }\r\n  static constexpr X unit() { return\
@@ -49,8 +49,8 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/min_assign.hpp
   requiredBy: []
-  timestamp: '2023-02-01 23:31:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-02-02 02:12:17+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DSL_2_F.test.cpp
   - test/mytest/rbst_am_persistent.test.cpp

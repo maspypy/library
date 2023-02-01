@@ -259,7 +259,7 @@ data:
     \  }\n};\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
     \ Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
     \ X op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr\
-    \ X unit() { return -infty<E>; }\r\n  static constexpr bool commute = true;\r\n\
+    \ X unit() { return infty<E>; }\r\n  static constexpr bool commute = true;\r\n\
     };\r\n#line 4 \"ds/offline_query/range_mex_query.hpp\"\n\r\n// \u914D\u5217\u306F\
     \ static\r\n// \u30AF\u30A8\u30EA\u3082\u5148\u8AAD\u307F\u3059\u308B\r\n// example:\
     \ https://codeforces.com/contest/1436/problem/E\r\ntemplate <int BEGIN, typename\
@@ -319,7 +319,7 @@ data:
   isVerificationFile: true
   path: test/mytest/range_mex.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:31:55+09:00'
+  timestamp: '2023-02-02 02:12:17+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/range_mex.test.cpp

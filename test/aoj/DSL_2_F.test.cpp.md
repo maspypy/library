@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F
@@ -266,7 +266,7 @@ data:
     \ = MA::unit();\n  }\n};\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename\
     \ E>\r\nstruct Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n \
     \ static constexpr X op(const X &x, const X &y) noexcept { return min(x, y); }\r\
-    \n  static constexpr X unit() { return -infty<E>; }\r\n  static constexpr bool\
+    \n  static constexpr X unit() { return infty<E>; }\r\n  static constexpr bool\
     \ commute = true;\r\n};\r\n#line 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename\
     \ X, X none_val>\r\nstruct Monoid_Assign {\r\n  using value_type = X;\r\n  static\
     \ X op(X x, X y) { return (y == none_val ? x : y); }\r\n  static constexpr X unit()\
@@ -304,8 +304,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_F.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:31:55+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-02-02 02:12:17+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_F.test.cpp
 layout: document
