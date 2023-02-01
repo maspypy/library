@@ -8,7 +8,7 @@ void solve() {
   LL(N);
   using P = pair<int, int>;
   VEC(P, XY, N);
-  auto G = Manhattan_MST<int>(XY);
+  auto G = manhattan_mst<int>(XY);
   ll ANS = 0;
   for (auto&& e: G.edges) { ANS += e.cost; }
   print(ANS);
