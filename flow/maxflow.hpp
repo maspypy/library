@@ -33,11 +33,11 @@ struct MaxFlowGraph {
       fill(all(prog), 0);
       prog.assign(N, 0);
       while (1) {
-        Cap x = flow_dfs(source, sink, INF<Cap>);
+        Cap x = flow_dfs(source, sink, infty<Cap>);
         if (x == 0) break;
         flow_ans += x;
-        chmin(flow_ans, INF<Cap>);
-        if (flow_ans == INF<Cap>) return flow_ans;
+        chmin(flow_ans, infty<Cap>);
+        if (flow_ans == infty<Cap>) return flow_ans;
       }
     }
     return flow_ans;

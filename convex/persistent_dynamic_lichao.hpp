@@ -9,7 +9,7 @@ struct Persistent_Dynamic_LiChaoTree {
     int idx;
     T a, b;
     Line(int idx, T a, T b) : idx(idx), a(a), b(b) {}
-    Line() : Line(-1, 0, numeric_limits<T>::max()) {}
+    Line() : Line(-1, 0, infty<T>) {}
     pair<T, int> operator()(T x) const { return {a * x + b, idx}; }
   };
 
@@ -36,9 +36,8 @@ struct Persistent_Dynamic_LiChaoTree {
   }
 
   np add_segment(np root, ll xl, ll xr, T a, T b, int idx = -1) {
-    constexpr T INF = numeric_limits<T>::max();
     if (a != 0) {
-      ll xlim = (INF - abs(b)) / abs(a);
+      ll xlim = (infty<T> - abs(b)) / abs(a);
       assert(abs(xl) < xlim);
       assert(abs(xr) < xlim);
     }

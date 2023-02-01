@@ -7,8 +7,7 @@ void solve() {
   LL(N);
   VEC(ll, A, N);
   Wavelet_Matrix<ll, true> WM(A);
-  const ll INF = 1LL << 60;
-  ll ANS = -INF;
+  ll ANS = -infty<ll>;
 
   auto get = [&](ll L, ll R) -> ll {
     assert(L < R);

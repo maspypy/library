@@ -1,11 +1,11 @@
 struct Slope_Trick {
-  static constexpr ll LMIN = numeric_limits<ll>::lowest() / 2;
-  static constexpr ll RMAX = numeric_limits<ll>::max() / 2;
+  static constexpr ll LMIN = -infty<ll>;
+  static constexpr ll RMAX = infty<ll>;
   pq<ll> que_l;
   pqg<ll> que_r;
 
   ll add_l, add_r;
-  i128 min_f; // INF を足し引きしても壊れないようにする
+  i128 min_f; // infty を足し引きしても壊れないように i128 にする
 
   Slope_Trick() : add_l(0), add_r(0), min_f(0) {}
   Slope_Trick(vc<ll> left, vc<ll> right)

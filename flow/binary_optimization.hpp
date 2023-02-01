@@ -63,7 +63,7 @@ struct Binary_Optimization {
 
     auto [val, cut] = G.cut(source, sink);
     val += base_cost;
-    chmin(val, INF<T>);
+    chmin(val, infty<T>);
     cut.resize(n);
     if (!MINIMIZE) val = -val;
     return {val, cut};
@@ -81,7 +81,7 @@ private:
     if (t == 0) return;
     pair<int, int> key = mp(i, j);
     edges[key] += t;
-    chmin(edges[key], INF<T>);
+    chmin(edges[key], infty<T>);
   }
 
   void _add_1(int i, T x0, T x1) {

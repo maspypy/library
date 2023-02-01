@@ -7,12 +7,11 @@ void solve() {
   LL(N);
   VEC(ll, X, N);
   Wavelet_Matrix<ll, true> WM(X);
-  const ll INF = 1LL << 60;
   LL(Q);
   FOR(Q) {
     LL(l, r, x);
     --l;
-    ll ANS = INF;
+    ll ANS = infty<ll>;
     ll n = WM.prefix_count(l, r, x);
     if (n > 0) chmin(ANS, abs(x - WM.kth(l, r, n - 1)));
     if (n < r - l) chmin(ANS, abs(x - WM.kth(l, r, n)));

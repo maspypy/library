@@ -18,8 +18,8 @@ void solve() {
   };
   Data unit = {0, 0, 0, 2, 2, infty<int>, -infty<int>};
   auto fee = [&](Data x, Data y) -> Data {
-    if (x.mi == INF) return y;
-    if (y.mi == INF) return x;
+    if (x.mi == infty<int>) return y;
+    if (y.mi == infty<int>) return x;
     Data z;
     z.x0 = x.x0 + y.x0;
     z.x1 = x.x1 + y.x1;
