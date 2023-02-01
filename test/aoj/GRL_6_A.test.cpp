@@ -7,7 +7,7 @@
 
 void solve() {
   LL(N, M);
-  MaxFlowGraph<int> G(N, 1<<30);
+  MaxFlowGraph<int> G(N);
   FOR(M) {
     LL(a, b, c);
     G.add(a, b, c);
