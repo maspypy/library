@@ -19,7 +19,7 @@ tuple<T, vc<int>, vc<T>, vc<T>> hungarian(vvc<T>& C) {
 
   for (int i = 1; i < N; i++) {
     P[0] = i;
-    minV.assign(M, infty<T><T>);
+    minV.assign(M, infty<T>);
     used.assign(M, false);
     int j0 = 0;
     while (P[j0] != 0) {
