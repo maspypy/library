@@ -214,11 +214,11 @@ data:
     \    chmax(N, source + 1);\n    chmax(N, sink + 1);\n    G.resize(N);\n    flow_ans\
     \ = 0;\n    while (set_level(source, sink)) {\n      fill(all(prog), 0);\n   \
     \   prog.assign(N, 0);\n      while (1) {\n        Cap x = flow_dfs(source, sink,\
-    \ INF<Cap>);\n        if (x == 0) break;\n        flow_ans += x;\n        chmin(flow_ans,\
-    \ INF<Cap>);\n        if (flow_ans == INF<Cap>) return flow_ans;\n      }\n  \
-    \  }\n    return flow_ans;\n  }\n\n  // \u6700\u5C0F\u30AB\u30C3\u30C8\u306E\u5024\
-    \u304A\u3088\u3073\u3001\u30AB\u30C3\u30C8\u3092\u8868\u3059 01 \u5217\u3092\u8FD4\
-    \u3059\n  pair<Cap, vc<int>> cut(int source, int sink) {\n    Cap f = flow(source,\
+    \ infty<Cap>);\n        if (x == 0) break;\n        flow_ans += x;\n        chmin(flow_ans,\
+    \ infty<Cap>);\n        if (flow_ans == infty<Cap>) return flow_ans;\n      }\n\
+    \    }\n    return flow_ans;\n  }\n\n  // \u6700\u5C0F\u30AB\u30C3\u30C8\u306E\
+    \u5024\u304A\u3088\u3073\u3001\u30AB\u30C3\u30C8\u3092\u8868\u3059 01 \u5217\u3092\
+    \u8FD4\u3059\n  pair<Cap, vc<int>> cut(int source, int sink) {\n    Cap f = flow(source,\
     \ sink);\n    vc<int> res(N);\n    FOR(v, N) res[v] = (level[v] >= 0 ? 0 : 1);\n\
     \    return {f, res};\n  }\n\n  // \u6B8B\u4F59\u30B0\u30E9\u30D5\u306E\u8FBA\n\
     \  vc<tuple<int, int, Cap>> get_edges() {\n    vc<tuple<int, int, Cap>> edges;\n\
@@ -267,12 +267,12 @@ data:
     \  pair<T, vc<int>> calc() {\n    MaxFlowGraph<T> G(nxt);\n    for (auto&& [key,\
     \ cap]: edges) {\n      auto [frm, to] = key;\n      G.add(frm, to, cap);\n  \
     \  }\n\n    auto [val, cut] = G.cut(source, sink);\n    val += base_cost;\n  \
-    \  chmin(val, INF<T>);\n    cut.resize(n);\n    if (!MINIMIZE) val = -val;\n \
-    \   return {val, cut};\n  }\n\n  void debug() {\n    print(\"base_cost\", base_cost);\n\
+    \  chmin(val, infty<T>);\n    cut.resize(n);\n    if (!MINIMIZE) val = -val;\n\
+    \    return {val, cut};\n  }\n\n  void debug() {\n    print(\"base_cost\", base_cost);\n\
     \    print(\"source=\", source, \"sink=\", sink);\n    for (auto&& [key, cap]:\
     \ edges) print(key, cap);\n  }\n\nprivate:\n  void add_edge(int i, int j, T t)\
     \ {\n    assert(t >= 0);\n    if (t == 0) return;\n    pair<int, int> key = mp(i,\
-    \ j);\n    edges[key] += t;\n    chmin(edges[key], INF<T>);\n  }\n\n  void _add_1(int\
+    \ j);\n    edges[key] += t;\n    chmin(edges[key], infty<T>);\n  }\n\n  void _add_1(int\
     \ i, T x0, T x1) {\n    if (x0 <= x1) {\n      base_cost += x0;\n      add_edge(source,\
     \ i, x1 - x0);\n    } else {\n      base_cost += x1;\n      add_edge(i, sink,\
     \ x0 - x1);\n    }\n  }\n\n  void _add_2(int i, int j, T x00, T x01, T x10, T\
@@ -325,7 +325,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc259g.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:18:36+09:00'
+  timestamp: '2023-02-02 01:52:11+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc259g.test.cpp

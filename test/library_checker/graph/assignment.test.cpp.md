@@ -209,20 +209,19 @@ data:
     //   (ans, match, X, Y)\ntemplate <typename T>\ntuple<T, vc<int>, vc<T>, vc<T>>\
     \ hungarian(vvc<T>& C) {\n  int N = len(C);\n  int M = len(C[0]);\n  assert(N\
     \ <= M);\n  vv(T, A, N + 1, M + 1);\n  FOR(i, N) FOR(j, M) A[1 + i][1 + j] = C[i][j];\n\
-    \  ++N, ++M;\n  const T infty = INF<T>;\n\n  vector<int> P(M), way(M);\n  vector<T>\
-    \ X(N), Y(M);\n  vc<T> minV;\n  vc<bool> used;\n\n  for (int i = 1; i < N; i++)\
-    \ {\n    P[0] = i;\n    minV.assign(M, infty);\n    used.assign(M, false);\n \
-    \   int j0 = 0;\n    while (P[j0] != 0) {\n      int i0 = P[j0], j1 = 0;\n   \
-    \   used[j0] = true;\n      T delta = infty;\n      for (int j = 1; j < M; j++)\
-    \ {\n        if (used[j]) continue;\n        T curr = A[i0][j] - X[i0] - Y[j];\n\
-    \        if (curr < minV[j]) minV[j] = curr, way[j] = j0;\n        if (minV[j]\
-    \ < delta) delta = minV[j], j1 = j;\n      }\n      for (int j = 0; j < M; j++)\
-    \ {\n        if (used[j])\n          X[P[j]] += delta, Y[j] -= delta;\n      \
-    \  else\n          minV[j] -= delta;\n      }\n      j0 = j1;\n    }\n    do {\n\
-    \      P[j0] = P[way[j0]];\n      j0 = way[j0];\n    } while (j0 != 0);\n  }\n\
-    \  T res = -Y[0];\n  X.erase(X.begin());\n  Y.erase(Y.begin());\n  vc<int> match(N);\n\
-    \  FOR(i, N) match[P[i]] = i;\n  match.erase(match.begin());\n  for (auto&& i:\
-    \ match) --i;\n  return {res, match, X, Y};\n}\n#line 6 \"test/library_checker/graph/assignment.test.cpp\"\
+    \  ++N, ++M;\n\n  vector<int> P(M), way(M);\n  vector<T> X(N), Y(M);\n  vc<T>\
+    \ minV;\n  vc<bool> used;\n\n  for (int i = 1; i < N; i++) {\n    P[0] = i;\n\
+    \    minV.assign(M, infty<T><T>);\n    used.assign(M, false);\n    int j0 = 0;\n\
+    \    while (P[j0] != 0) {\n      int i0 = P[j0], j1 = 0;\n      used[j0] = true;\n\
+    \      T delta = infty<T>;\n      for (int j = 1; j < M; j++) {\n        if (used[j])\
+    \ continue;\n        T curr = A[i0][j] - X[i0] - Y[j];\n        if (curr < minV[j])\
+    \ minV[j] = curr, way[j] = j0;\n        if (minV[j] < delta) delta = minV[j],\
+    \ j1 = j;\n      }\n      for (int j = 0; j < M; j++) {\n        if (used[j])\n\
+    \          X[P[j]] += delta, Y[j] -= delta;\n        else\n          minV[j] -=\
+    \ delta;\n      }\n      j0 = j1;\n    }\n    do {\n      P[j0] = P[way[j0]];\n\
+    \      j0 = way[j0];\n    } while (j0 != 0);\n  }\n  T res = -Y[0];\n  X.erase(X.begin());\n\
+    \  Y.erase(Y.begin());\n  vc<int> match(N);\n  FOR(i, N) match[P[i]] = i;\n  match.erase(match.begin());\n\
+    \  for (auto&& i: match) --i;\n  return {res, match, X, Y};\n}\n#line 6 \"test/library_checker/graph/assignment.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VV(ll, A, N, N);\n  auto [ans, match, X, Y] =\
     \ hungarian(A);\n  print(ans);\n  print(match);\n\n  assert(SUM<ll>(X) + SUM<ll>(Y)\
     \ == ans);\n  FOR(i, N) FOR(j, N) assert(X[i] + Y[j] <= A[i][j]);\n}\n\nsigned\
@@ -242,7 +241,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/assignment.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:18:36+09:00'
+  timestamp: '2023-02-02 01:52:11+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/assignment.test.cpp

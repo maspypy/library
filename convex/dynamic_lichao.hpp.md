@@ -29,25 +29,24 @@ data:
     \u4FC2\u6570 T \u306F double \u3084 i128 \u3082\u53EF\u80FD\u3002\ntemplate <typename\
     \ T, int NODES>\nstruct Dynamic_LiChaoTree {\n  using Mono = Monoid_Min_Idx<T>;\n\
     \  struct Line {\n    int idx;\n    T a, b;\n    Line(int idx, T a, T b) : idx(idx),\
-    \ a(a), b(b) {}\n    Line() : Line(-1, 0, numeric_limits<T>::max()) {}\n    pair<T,\
-    \ int> operator()(T x) const { return {a * x + b, idx}; }\n  };\n\n  struct Node\
-    \ {\n    Line f;\n    Node *l, *r;\n  };\n\n  Node *pool;\n  int pid;\n  ll L,\
-    \ R;\n  Node *root;\n\n  Dynamic_LiChaoTree(ll L, ll R) : pid(0), L(L), R(R),\
-    \ root(nullptr) {\n    pool = new Node[NODES];\n  }\n\n  Node *new_node() {\n\
-    \    pool[pid].f = Line();\n    return &(pool[pid++]);\n  }\n\n  void add_segment(ll\
-    \ xl, ll xr, T a, T b, int idx = -1) {\n    constexpr T INF = numeric_limits<T>::max();\n\
-    \    if (a != 0) {\n      ll xlim = (INF - abs(b)) / abs(a);\n      assert(abs(xl)\
-    \ < xlim);\n      assert(abs(xr) < xlim);\n    }\n    assert(L <= xl && xl < xr\
-    \ && xr <= R);\n    Line f(idx, a, b);\n    if (!root) root = new_node();\n  \
-    \  add_segment_rec(root, xl, xr, f, L, R);\n  }\n\n  void add_line(T a, T b, int\
-    \ idx = -1) { add_segment(L, R, a, b, idx); }\n\n  pair<T, int> query(ll x) {\n\
-    \    assert(L <= x && x < R);\n    if (!root) return Mono::unit();\n    return\
-    \ query_rec(root, x, L, R);\n  }\n\nprivate:\n  void add_segment_rec(Node *c,\
-    \ ll xl, ll xr, const Line &f, ll node_l,\n                       ll node_r) {\n\
-    \    chmax(xl, node_l);\n    chmin(xr, node_r);\n    if (xl >= xr) return;\n \
-    \   if (node_l < xl || xr < node_r) {\n      ll node_m = (node_l + node_r) / 2;\n\
-    \      if (!c->l) c->l = new_node();\n      if (!c->r) c->r = new_node();\n  \
-    \    add_segment_rec(c->l, xl, xr, f, node_l, node_m);\n      add_segment_rec(c->r,\
+    \ a(a), b(b) {}\n    Line() : Line(-1, 0, infty<T>) {}\n    pair<T, int> operator()(T\
+    \ x) const { return {a * x + b, idx}; }\n  };\n\n  struct Node {\n    Line f;\n\
+    \    Node *l, *r;\n  };\n\n  Node *pool;\n  int pid;\n  ll L, R;\n  Node *root;\n\
+    \n  Dynamic_LiChaoTree(ll L, ll R) : pid(0), L(L), R(R), root(nullptr) {\n   \
+    \ pool = new Node[NODES];\n  }\n\n  Node *new_node() {\n    pool[pid].f = Line();\n\
+    \    return &(pool[pid++]);\n  }\n\n  void add_segment(ll xl, ll xr, T a, T b,\
+    \ int idx = -1) {\n    if (a != 0) {\n      ll xlim = (infty<T> - abs(b)) / abs(a);\n\
+    \      assert(abs(xl) < xlim);\n      assert(abs(xr) < xlim);\n    }\n    assert(L\
+    \ <= xl && xl < xr && xr <= R);\n    Line f(idx, a, b);\n    if (!root) root =\
+    \ new_node();\n    add_segment_rec(root, xl, xr, f, L, R);\n  }\n\n  void add_line(T\
+    \ a, T b, int idx = -1) { add_segment(L, R, a, b, idx); }\n\n  pair<T, int> query(ll\
+    \ x) {\n    assert(L <= x && x < R);\n    if (!root) return Mono::unit();\n  \
+    \  return query_rec(root, x, L, R);\n  }\n\nprivate:\n  void add_segment_rec(Node\
+    \ *c, ll xl, ll xr, const Line &f, ll node_l,\n                       ll node_r)\
+    \ {\n    chmax(xl, node_l);\n    chmin(xr, node_r);\n    if (xl >= xr) return;\n\
+    \    if (node_l < xl || xr < node_r) {\n      ll node_m = (node_l + node_r) /\
+    \ 2;\n      if (!c->l) c->l = new_node();\n      if (!c->r) c->r = new_node();\n\
+    \      add_segment_rec(c->l, xl, xr, f, node_l, node_m);\n      add_segment_rec(c->r,\
     \ xl, xr, f, node_m, node_r);\n      return;\n    }\n    add_line_rec(c, f, node_l,\
     \ node_r);\n  }\n\n  void add_line_rec(Node *c, const Line &f, ll node_l, ll node_r)\
     \ {\n    auto fl = f(node_l), fr = f(node_r - 1);\n    Line g = c->f;\n    auto\
@@ -71,25 +70,24 @@ data:
     \u6570 T \u306F double \u3084 i128 \u3082\u53EF\u80FD\u3002\ntemplate <typename\
     \ T, int NODES>\nstruct Dynamic_LiChaoTree {\n  using Mono = Monoid_Min_Idx<T>;\n\
     \  struct Line {\n    int idx;\n    T a, b;\n    Line(int idx, T a, T b) : idx(idx),\
-    \ a(a), b(b) {}\n    Line() : Line(-1, 0, numeric_limits<T>::max()) {}\n    pair<T,\
-    \ int> operator()(T x) const { return {a * x + b, idx}; }\n  };\n\n  struct Node\
-    \ {\n    Line f;\n    Node *l, *r;\n  };\n\n  Node *pool;\n  int pid;\n  ll L,\
-    \ R;\n  Node *root;\n\n  Dynamic_LiChaoTree(ll L, ll R) : pid(0), L(L), R(R),\
-    \ root(nullptr) {\n    pool = new Node[NODES];\n  }\n\n  Node *new_node() {\n\
-    \    pool[pid].f = Line();\n    return &(pool[pid++]);\n  }\n\n  void add_segment(ll\
-    \ xl, ll xr, T a, T b, int idx = -1) {\n    constexpr T INF = numeric_limits<T>::max();\n\
-    \    if (a != 0) {\n      ll xlim = (INF - abs(b)) / abs(a);\n      assert(abs(xl)\
-    \ < xlim);\n      assert(abs(xr) < xlim);\n    }\n    assert(L <= xl && xl < xr\
-    \ && xr <= R);\n    Line f(idx, a, b);\n    if (!root) root = new_node();\n  \
-    \  add_segment_rec(root, xl, xr, f, L, R);\n  }\n\n  void add_line(T a, T b, int\
-    \ idx = -1) { add_segment(L, R, a, b, idx); }\n\n  pair<T, int> query(ll x) {\n\
-    \    assert(L <= x && x < R);\n    if (!root) return Mono::unit();\n    return\
-    \ query_rec(root, x, L, R);\n  }\n\nprivate:\n  void add_segment_rec(Node *c,\
-    \ ll xl, ll xr, const Line &f, ll node_l,\n                       ll node_r) {\n\
-    \    chmax(xl, node_l);\n    chmin(xr, node_r);\n    if (xl >= xr) return;\n \
-    \   if (node_l < xl || xr < node_r) {\n      ll node_m = (node_l + node_r) / 2;\n\
-    \      if (!c->l) c->l = new_node();\n      if (!c->r) c->r = new_node();\n  \
-    \    add_segment_rec(c->l, xl, xr, f, node_l, node_m);\n      add_segment_rec(c->r,\
+    \ a(a), b(b) {}\n    Line() : Line(-1, 0, infty<T>) {}\n    pair<T, int> operator()(T\
+    \ x) const { return {a * x + b, idx}; }\n  };\n\n  struct Node {\n    Line f;\n\
+    \    Node *l, *r;\n  };\n\n  Node *pool;\n  int pid;\n  ll L, R;\n  Node *root;\n\
+    \n  Dynamic_LiChaoTree(ll L, ll R) : pid(0), L(L), R(R), root(nullptr) {\n   \
+    \ pool = new Node[NODES];\n  }\n\n  Node *new_node() {\n    pool[pid].f = Line();\n\
+    \    return &(pool[pid++]);\n  }\n\n  void add_segment(ll xl, ll xr, T a, T b,\
+    \ int idx = -1) {\n    if (a != 0) {\n      ll xlim = (infty<T> - abs(b)) / abs(a);\n\
+    \      assert(abs(xl) < xlim);\n      assert(abs(xr) < xlim);\n    }\n    assert(L\
+    \ <= xl && xl < xr && xr <= R);\n    Line f(idx, a, b);\n    if (!root) root =\
+    \ new_node();\n    add_segment_rec(root, xl, xr, f, L, R);\n  }\n\n  void add_line(T\
+    \ a, T b, int idx = -1) { add_segment(L, R, a, b, idx); }\n\n  pair<T, int> query(ll\
+    \ x) {\n    assert(L <= x && x < R);\n    if (!root) return Mono::unit();\n  \
+    \  return query_rec(root, x, L, R);\n  }\n\nprivate:\n  void add_segment_rec(Node\
+    \ *c, ll xl, ll xr, const Line &f, ll node_l,\n                       ll node_r)\
+    \ {\n    chmax(xl, node_l);\n    chmin(xr, node_r);\n    if (xl >= xr) return;\n\
+    \    if (node_l < xl || xr < node_r) {\n      ll node_m = (node_l + node_r) /\
+    \ 2;\n      if (!c->l) c->l = new_node();\n      if (!c->r) c->r = new_node();\n\
+    \      add_segment_rec(c->l, xl, xr, f, node_l, node_m);\n      add_segment_rec(c->r,\
     \ xl, xr, f, node_m, node_r);\n      return;\n    }\n    add_line_rec(c, f, node_l,\
     \ node_r);\n  }\n\n  void add_line_rec(Node *c, const Line &f, ll node_l, ll node_r)\
     \ {\n    auto fl = f(node_l), fr = f(node_r - 1);\n    Line g = c->f;\n    auto\
@@ -113,7 +111,7 @@ data:
   isVerificationFile: false
   path: convex/dynamic_lichao.hpp
   requiredBy: []
-  timestamp: '2023-02-01 23:31:55+09:00'
+  timestamp: '2023-02-02 01:52:11+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp

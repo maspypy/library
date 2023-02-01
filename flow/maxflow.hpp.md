@@ -34,11 +34,11 @@ data:
     \    chmax(N, source + 1);\n    chmax(N, sink + 1);\n    G.resize(N);\n    flow_ans\
     \ = 0;\n    while (set_level(source, sink)) {\n      fill(all(prog), 0);\n   \
     \   prog.assign(N, 0);\n      while (1) {\n        Cap x = flow_dfs(source, sink,\
-    \ INF<Cap>);\n        if (x == 0) break;\n        flow_ans += x;\n        chmin(flow_ans,\
-    \ INF<Cap>);\n        if (flow_ans == INF<Cap>) return flow_ans;\n      }\n  \
-    \  }\n    return flow_ans;\n  }\n\n  // \u6700\u5C0F\u30AB\u30C3\u30C8\u306E\u5024\
-    \u304A\u3088\u3073\u3001\u30AB\u30C3\u30C8\u3092\u8868\u3059 01 \u5217\u3092\u8FD4\
-    \u3059\n  pair<Cap, vc<int>> cut(int source, int sink) {\n    Cap f = flow(source,\
+    \ infty<Cap>);\n        if (x == 0) break;\n        flow_ans += x;\n        chmin(flow_ans,\
+    \ infty<Cap>);\n        if (flow_ans == infty<Cap>) return flow_ans;\n      }\n\
+    \    }\n    return flow_ans;\n  }\n\n  // \u6700\u5C0F\u30AB\u30C3\u30C8\u306E\
+    \u5024\u304A\u3088\u3073\u3001\u30AB\u30C3\u30C8\u3092\u8868\u3059 01 \u5217\u3092\
+    \u8FD4\u3059\n  pair<Cap, vc<int>> cut(int source, int sink) {\n    Cap f = flow(source,\
     \ sink);\n    vc<int> res(N);\n    FOR(v, N) res[v] = (level[v] >= 0 ? 0 : 1);\n\
     \    return {f, res};\n  }\n\n  // \u6B8B\u4F59\u30B0\u30E9\u30D5\u306E\u8FBA\n\
     \  vc<tuple<int, int, Cap>> get_edges() {\n    vc<tuple<int, int, Cap>> edges;\n\
@@ -66,9 +66,9 @@ data:
     \  if (calculated) return flow_ans;\n    calculated = true;\n    chmax(N, source\
     \ + 1);\n    chmax(N, sink + 1);\n    G.resize(N);\n    flow_ans = 0;\n    while\
     \ (set_level(source, sink)) {\n      fill(all(prog), 0);\n      prog.assign(N,\
-    \ 0);\n      while (1) {\n        Cap x = flow_dfs(source, sink, INF<Cap>);\n\
-    \        if (x == 0) break;\n        flow_ans += x;\n        chmin(flow_ans, INF<Cap>);\n\
-    \        if (flow_ans == INF<Cap>) return flow_ans;\n      }\n    }\n    return\
+    \ 0);\n      while (1) {\n        Cap x = flow_dfs(source, sink, infty<Cap>);\n\
+    \        if (x == 0) break;\n        flow_ans += x;\n        chmin(flow_ans, infty<Cap>);\n\
+    \        if (flow_ans == infty<Cap>) return flow_ans;\n      }\n    }\n    return\
     \ flow_ans;\n  }\n\n  // \u6700\u5C0F\u30AB\u30C3\u30C8\u306E\u5024\u304A\u3088\
     \u3073\u3001\u30AB\u30C3\u30C8\u3092\u8868\u3059 01 \u5217\u3092\u8FD4\u3059\n\
     \  pair<Cap, vc<int>> cut(int source, int sink) {\n    Cap f = flow(source, sink);\n\
@@ -94,7 +94,7 @@ data:
   path: flow/maxflow.hpp
   requiredBy:
   - flow/binary_optimization.hpp
-  timestamp: '2023-02-01 23:04:20+09:00'
+  timestamp: '2023-02-02 01:52:11+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/GRL_6_A.test.cpp

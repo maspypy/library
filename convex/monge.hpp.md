@@ -76,7 +76,7 @@ data:
     \ + f(l, r);\r\n  }\r\n  return dp;\r\n}\r\n\r\n/*\r\nhttps://dic.kimiyuki.net/d-edge-shortest-path-monge\r\
     \n\u4E0A\u51F8\u95A2\u6570 calc_L(lambda) \u306E\u6700\u5927\u5024\u3092\u6C42\
     \u3081\u308B\u554F\u984C\u306B\u5E30\u7740\r\n|f| \u306E\u4E0A\u9650 f_lim \u3082\
-    \u6E21\u3059\r\n*/\r\ntemplate <ll INF, typename F>\r\nll monge_shortest_path_d_edge(ll\
+    \u6E21\u3059\r\n*/\r\ntemplate <typename F>\r\nll monge_shortest_path_d_edge(ll\
     \ N, F f, ll d, ll f_lim) {\r\n  auto calc_L = [&](ll lambda) -> ll {\r\n    auto\
     \ cost = [&](int frm, int to) -> ll { return f(frm, to) + lambda; };\r\n    auto\
     \ dp = monge_shortest_path(N, cost);\r\n    return dp.back() - lambda * d;\r\n\
@@ -95,7 +95,7 @@ data:
     \n    dp[r] = dp[l] + f(l, r);\r\n  }\r\n  return dp;\r\n}\r\n\r\n/*\r\nhttps://dic.kimiyuki.net/d-edge-shortest-path-monge\r\
     \n\u4E0A\u51F8\u95A2\u6570 calc_L(lambda) \u306E\u6700\u5927\u5024\u3092\u6C42\
     \u3081\u308B\u554F\u984C\u306B\u5E30\u7740\r\n|f| \u306E\u4E0A\u9650 f_lim \u3082\
-    \u6E21\u3059\r\n*/\r\ntemplate <ll INF, typename F>\r\nll monge_shortest_path_d_edge(ll\
+    \u6E21\u3059\r\n*/\r\ntemplate <typename F>\r\nll monge_shortest_path_d_edge(ll\
     \ N, F f, ll d, ll f_lim) {\r\n  auto calc_L = [&](ll lambda) -> ll {\r\n    auto\
     \ cost = [&](int frm, int to) -> ll { return f(frm, to) + lambda; };\r\n    auto\
     \ dp = monge_shortest_path(N, cost);\r\n    return dp.back() - lambda * d;\r\n\
@@ -108,7 +108,7 @@ data:
   isVerificationFile: false
   path: convex/monge.hpp
   requiredBy: []
-  timestamp: '2023-02-02 01:09:35+09:00'
+  timestamp: '2023-02-02 01:52:11+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/705.test.cpp
