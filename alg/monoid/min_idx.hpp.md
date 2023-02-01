@@ -2,18 +2,12 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/minidx_add.hpp
     title: alg/acted_monoid/minidx_add.hpp
-  - icon: ':heavy_check_mark:'
-    path: convex/dynamic_lichao.hpp
-    title: convex/dynamic_lichao.hpp
   - icon: ':warning:'
     path: convex/lichao.hpp
     title: convex/lichao.hpp
-  - icon: ':warning:'
-    path: convex/persistent_dynamic_lichao.hpp
-    title: convex/persistent_dynamic_lichao.hpp
   - icon: ':warning:'
     path: geo/manhattan_nns.hpp
     title: geo/manhattan_nns.hpp
@@ -22,12 +16,6 @@ data:
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
-    title: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
-    title: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
-  - icon: ':x:'
     path: test/mytest/minidx_add.test.cpp
     title: test/mytest/minidx_add.test.cpp
   - icon: ':x:'
@@ -57,17 +45,13 @@ data:
   isVerificationFile: false
   path: alg/monoid/min_idx.hpp
   requiredBy:
-  - convex/dynamic_lichao.hpp
   - convex/lichao.hpp
-  - convex/persistent_dynamic_lichao.hpp
   - geo/manhattan_nns.hpp
   - string/suffix_tree.hpp
   - alg/acted_monoid/minidx_add.hpp
   timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
-  - test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/minidx_add.test.cpp
 documentation_of: alg/monoid/min_idx.hpp

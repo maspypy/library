@@ -32,10 +32,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/partial_frac_decomposition.hpp
+    title: poly/partial_frac_decomposition.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: poly/partial_frac_decomposition.test.hpp
-    title: poly/partial_frac_decomposition.test.hpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
@@ -48,7 +48,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/partial_frac.test.cpp
     title: test/mytest/partial_frac.test.cpp
   - icon: ':x:'
@@ -470,6 +470,7 @@ data:
   path: poly/multipoint.hpp
   requiredBy:
   - linalg/implicit_matrix/vandermonde.hpp
+  - poly/partial_frac_decomposition.hpp
   - poly/multivar_convolution_cyclic.hpp
   timestamp: '2023-02-02 03:51:39+09:00'
   verificationStatus: LIBRARY_SOME_WA
@@ -481,7 +482,6 @@ data:
   - test/mytest/vandermonde.test.cpp
   - test/mytest/chirp_z.test.cpp
   - test/mytest/partial_frac.test.cpp
-  - poly/partial_frac_decomposition.test.hpp
   - test_atcoder/abc272_h.test.cpp
   - test_atcoder/abc267g.test.cpp
 documentation_of: poly/multipoint.hpp

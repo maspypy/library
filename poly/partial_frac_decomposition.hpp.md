@@ -30,14 +30,13 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/partial_frac.test.cpp
     title: test/mytest/partial_frac.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 2 \"poly/multipoint.hpp\"\n\r\n#line 2 \"poly/count_terms.hpp\"\
     \ntemplate<typename mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t =\
@@ -383,9 +382,9 @@ data:
     \ n + m - 1), B = calc(r.inverse(), max(n, m));\r\n  FOR(i, n) f[i] *= B[i];\r\
     \n  reverse(all(f));\r\n  f = convolution(f, A);\r\n  f = {f.begin() + n - 1,\
     \ f.end()};\r\n  f.resize(m);\r\n  FOR(i, m) f[i] *= B[i];\r\n  return f;\r\n\
-    }\n#line 2 \"poly/partial_frac_decomposition.test.hpp\"\n// O(Nlog^2N)\n// f /\
-    \ prod(x-a) = sum b/(x-a) \u3068\u3044\u3046 B \u3092\u8FD4\u3059\ntemplate <typename\
-    \ mint>\nvc<mint> partial_frac_decomposition(vc<mint> f, vc<mint> A) {\n  assert(len(f)\
+    }\n#line 2 \"poly/partial_frac_decomposition.hpp\"\n// O(Nlog^2N)\n// f / prod(x-a)\
+    \ = sum b/(x-a) \u3068\u3044\u3046 B \u3092\u8FD4\u3059\ntemplate <typename mint>\n\
+    vc<mint> partial_frac_decomposition(vc<mint> f, vc<mint> A) {\n  assert(len(f)\
     \ <= len(A));\n  if (len(f) == 0) return vc<mint>(len(A));\n  SubproductTree<mint>\
     \ X(A);\n  vc<mint> g = X.T[1]; // prod(1-ax)\n  g.resize(len(A) + 1);\n  reverse(all(g));\n\
     \  FOR(i, len(g) - 1) g[i] = g[i + 1] * mint(i + 1);\n  g.pop_back();\n\n  auto\
@@ -409,17 +408,17 @@ data:
   - poly/convolution_naive.hpp
   - poly/ntt.hpp
   - poly/fft.hpp
-  isVerificationFile: true
-  path: poly/partial_frac_decomposition.test.hpp
+  isVerificationFile: false
+  path: poly/partial_frac_decomposition.hpp
   requiredBy: []
-  timestamp: '2023-02-02 03:51:39+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-02-02 05:07:15+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/partial_frac.test.cpp
-documentation_of: poly/partial_frac_decomposition.test.hpp
+documentation_of: poly/partial_frac_decomposition.hpp
 layout: document
 redirect_from:
-- /verify/poly/partial_frac_decomposition.test.hpp
-- /verify/poly/partial_frac_decomposition.test.hpp.html
-title: poly/partial_frac_decomposition.test.hpp
+- /library/poly/partial_frac_decomposition.hpp
+- /library/poly/partial_frac_decomposition.hpp.html
+title: poly/partial_frac_decomposition.hpp
 ---
