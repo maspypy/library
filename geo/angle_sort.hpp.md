@@ -19,6 +19,9 @@ data:
     path: test/mytest/count_points_in_triangles.test.cpp
     title: test/mytest/count_points_in_triangles.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/qoj5443.test.cpp
+    title: test/mytest/qoj5443.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
   _isVerificationFailed: false
@@ -119,6 +122,7 @@ data:
   verifiedWith:
   - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
+  - test/mytest/qoj5443.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp
   - test_atcoder/abc202_f.test.cpp
 documentation_of: geo/angle_sort.hpp

@@ -109,6 +109,9 @@ data:
     path: test/mytest/primesum_mod6.test.cpp
     title: test/mytest/primesum_mod6.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/qoj5443.test.cpp
+    title: test/mytest/qoj5443.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1262.test.cpp
     title: test/yukicoder/1262.test.cpp
   - icon: ':heavy_check_mark:'
@@ -240,6 +243,7 @@ data:
   - test/library_checker/math/tetration.test.cpp
   - test/library_checker/math/totient_sum.test.cpp
   - test/mytest/bell.test.cpp
+  - test/mytest/qoj5443.test.cpp
   - test/mytest/prime_sum.test.cpp
   - test/mytest/primesum_mod4.test.cpp
   - test/mytest/primesum_mod6.test.cpp

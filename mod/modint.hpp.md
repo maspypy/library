@@ -469,6 +469,9 @@ data:
     path: test/mytest/product_of_one_pm_xn.test.cpp
     title: test/mytest/product_of_one_pm_xn.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/qoj5443.test.cpp
+    title: test/mytest/qoj5443.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_commutative_persistent.test.cpp
     title: test/mytest/rbst_commutative_persistent.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1154,6 +1157,7 @@ data:
   - test/mytest/rbst_monoid_2.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/bell.test.cpp
+  - test/mytest/qoj5443.test.cpp
   - test/mytest/pascal.test.cpp
   - test/mytest/rbst_commutative_persistent.test.cpp
   - test/mytest/simple_perm.test.cpp
