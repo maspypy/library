@@ -16,8 +16,7 @@ void solve() {
   }
   X.build();
 
-  const ll INF = 1LL << 60;
-  ll ANS = -INF;
+  ll ANS = -infty<ll>;
 
   FOR(i, N) {
     ll s0 = i;

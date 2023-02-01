@@ -6,8 +6,6 @@
 
 void solve() {
   LL(N, C);
-  const ll INF = 1LL << 60;
-
   CHT_monotone<ll, true> X2;
   CHT_min<ll> X1;
 

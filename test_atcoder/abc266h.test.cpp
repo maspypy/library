@@ -22,7 +22,7 @@ void naive() {
     return at < bt;
   });
 
-  vi dp(N, -INF<ll>);
+  vi dp(N, -infty<ll>);
   dp[0] = 0;
   FOR(j, N) {
     auto [tj, xj, yj, vvj] = dat[j];
@@ -56,17 +56,6 @@ void solve() {
     return at < bt;
   });
 
-  /*
-  右上への遷移：
-  (x,y,t) が情報 (a,b,c,v) を受け取るのは
-  a<=x, x+y-t<=a+b-c
-  ・(a,a+b-c) に情報を追加する
-  ・[-INF,x] x [x+y-t, INF] での最大値を求める
-
-  左上への遷移：
-  (a-x)+(y-b)<=t-c
-  x<=a, a-b+c<=x-y+t
-  */
   vi X1(N), Y1(N), X2(N), Y2(N);
   FOR(i, N) {
     auto [t, x, y, v] = dat[i];
@@ -87,9 +76,9 @@ void solve() {
       seg2.multiply(a, a - b + c, 0);
       continue;
     }
-    ll best = -INF<ll>;
-    chmax(best, seg1.prod(-INF<ll>, x + 1, x + y - t, INF<ll>));
-    chmax(best, seg2.prod(x, INF<ll>, -INF<ll>, x - y + t + 1));
+    ll best = -infty<ll>;
+    chmax(best, seg1.prod(-infty<ll>, x + 1, x + y - t, infty<ll>));
+    chmax(best, seg2.prod(x, infty<ll>, -infty<ll>, x - y + t + 1));
     if (best < 0) continue;
     best += v;
     chmax(ANS, best);

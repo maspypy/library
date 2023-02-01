@@ -11,7 +11,6 @@ tuple<T, vc<int>, vc<T>, vc<T>> hungarian(vvc<T>& C) {
   vv(T, A, N + 1, M + 1);
   FOR(i, N) FOR(j, M) A[1 + i][1 + j] = C[i][j];
   ++N, ++M;
-  const T infty = INF<T>;
 
   vector<int> P(M), way(M);
   vector<T> X(N), Y(M);
@@ -20,13 +19,13 @@ tuple<T, vc<int>, vc<T>, vc<T>> hungarian(vvc<T>& C) {
 
   for (int i = 1; i < N; i++) {
     P[0] = i;
-    minV.assign(M, infty);
+    minV.assign(M, infty<T><T>);
     used.assign(M, false);
     int j0 = 0;
     while (P[j0] != 0) {
       int i0 = P[j0], j1 = 0;
       used[j0] = true;
-      T delta = infty;
+      T delta = infty<T>;
       for (int j = 1; j < M; j++) {
         if (used[j]) continue;
         T curr = A[i0][j] - X[i0] - Y[j];

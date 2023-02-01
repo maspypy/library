@@ -33,7 +33,7 @@ https://dic.kimiyuki.net/d-edge-shortest-path-monge
 上凸関数 calc_L(lambda) の最大値を求める問題に帰着
 |f| の上限 f_lim も渡す
 */
-template <ll INF, typename F>
+template <typename F>
 ll monge_shortest_path_d_edge(ll N, F f, ll d, ll f_lim) {
   auto calc_L = [&](ll lambda) -> ll {
     auto cost = [&](int frm, int to) -> ll { return f(frm, to) + lambda; };

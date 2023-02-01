@@ -23,7 +23,7 @@ void solve() {
     if (MP.count(key)) return MP[key];
     // 価値 -> n 個までで達成するための最小重さ
     if (val <= 0) return 0;
-    if (val > Ac[n]) return INF;
+    if (val > Ac[n]) return infty<ll>;
     ll v = F[n - 1], w = A[n - 1];
     ll x1 = dfs(dfs, n - 1, val);
     ll x2 = dfs(dfs, n - 1, val - v) + w;

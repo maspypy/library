@@ -22,17 +22,6 @@ void solve() {
     return at < bt;
   });
 
-  /*
-  右上への遷移：
-  (x,y,t) が情報 (a,b,c,v) を受け取るのは
-  a<=x, c-a-b<=t-x-y
-  ・(a,c-a-b) に情報を追加する
-  ・[-INF,x] x [-INF, t-x-y] での最大値を求める
-
-  左上への遷移：
-  (a-x)+(y-b)<=t-c
-  (-a)<=(-x), a-b+c<=x-y+t
-  */
   vi X1(N), Y1(N), X2(N), Y2(N);
   FOR(i, N) {
     auto [t, x, y, v] = dat[i];
@@ -53,7 +42,7 @@ void solve() {
       seg2.add(-a, a - b + c, 0);
       continue;
     }
-    ll best = -INF<ll>;
+    ll best = -infty<ll>;
     chmax(best, seg1.prefix_sum(x + 1, t - x - y + 1));
     chmax(best, seg2.prefix_sum((-x) + 1, x - y + t + 1));
     if (best < 0) continue;

@@ -35,9 +35,8 @@ void solve() {
 
   for (auto&& x: D) isin[x] = 1;
 
-  const ll INF = 1LL << 60;
   using Data = ll;
-  Data unit = -INF;
+  Data unit = -infty<ll>;
   auto fee = [&](Data x, Data y) -> Data { return max(x, y); };
   auto fev = [&](Data x, int v) -> Data {
     if (isin[v]) chmax(x, 0);
