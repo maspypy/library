@@ -414,29 +414,34 @@ data:
     \ mint(0)) dat.eb(i, -g[i]);\n  FOR(i, len(f)) {\n    for (auto&& [j, x]: dat)\
     \ {\n      if (i >= j) f[i] += x * f[i - j];\n    }\n  }\n  return f;\n}\n#line\
     \ 4 \"linalg/implicit_matrix/vandermonde.hpp\"\n\n// transpose = 0\uFF1Ag[i] =\
-    \ sum pow(i,j) f[j]\n// transpose = 1\uFF1Ag[i] = sum pow(j,i) f[j]\ntemplate\
-    \ <typename mint>\nvc<mint> vandermonde(vc<mint> f, bool transpose, bool inverse)\
-    \ {\n  int N = len(f);\n  using poly = vc<mint>;\n  if (!transpose) {\n    vc<mint>\
-    \ x(N);\n    FOR(i, N) x[i] = mint(i);\n    if (!inverse) { return multipoint_eval(f,\
-    \ x); }\n    if (inverse) { return multipoint_interpolate(x, f); }\n  }\n  if\
+    \ sum pow(ai,j) f[j]\n// transpose = 1\uFF1Ag[i] = sum pow(aj,i) f[j]\ntemplate\
+    \ <typename mint>\nvc<mint> vandermonde(vc<mint> f, vc<mint> A, bool transpose,\
+    \ bool inverse) {\n  if (len(f) == 0) return vc<mint>();\n  int N = len(f);\n\
+    \  using poly = vc<mint>;\n  if (!transpose) {\n    if (!inverse) { return multipoint_eval(f,\
+    \ A); }\n    if (inverse) { return multipoint_interpolate(A, f); }\n  }\n  if\
     \ (!inverse) {\n    vc<pair<poly, poly>> dat(N);\n    FOR(j, N) {\n      poly\
-    \ a{f[j]}, b{mint(1), mint(-j)};\n      dat[j] = {a, b};\n    }\n    auto [num,\
+    \ a{f[j]}, b{mint(1), mint(-A[j])};\n      dat[j] = {a, b};\n    }\n    auto [num,\
     \ den] = sum_of_rationals(dat);\n    num.resize(N);\n    return fps_div(num, den);\n\
-    \  }\n  // \u3053\u3063\u3061\u306F multipoint evalation \u3067\u3067\u304D\u308B\
-    \u3068\u601D\u308F\u308C\u308B\u304C\u3001\u672A\u5B9F\u88C5\n  assert(0);\n \
-    \ return poly{};\n}\n"
+    \  }\n  SubproductTree<mint> X(A);\n  vc<mint> g = X.T[1]; // prod(1-ax)\n  g.resize(N\
+    \ + 1);\n  f = convolution<mint>(f, g);\n  f.resize(N);\n  reverse(all(f));\n\
+    \  reverse(all(g));\n  FOR(i, len(g) - 1) g[i] = g[i + 1] * mint(i + 1);\n  g.pop_back();\n\
+    \  auto num = X.evaluation(f);\n  auto den = X.evaluation(g);\n  vc<mint> B(len(A));\n\
+    \  FOR(i, len(A)) B[i] = num[i] / den[i];\n  return B;\n}\n"
   code: "#include \"poly/multipoint.hpp\"\n#include \"poly/sum_of_rationals.hpp\"\n\
-    #include \"poly/fps_div.hpp\"\n\n// transpose = 0\uFF1Ag[i] = sum pow(i,j) f[j]\n\
-    // transpose = 1\uFF1Ag[i] = sum pow(j,i) f[j]\ntemplate <typename mint>\nvc<mint>\
-    \ vandermonde(vc<mint> f, bool transpose, bool inverse) {\n  int N = len(f);\n\
-    \  using poly = vc<mint>;\n  if (!transpose) {\n    vc<mint> x(N);\n    FOR(i,\
-    \ N) x[i] = mint(i);\n    if (!inverse) { return multipoint_eval(f, x); }\n  \
-    \  if (inverse) { return multipoint_interpolate(x, f); }\n  }\n  if (!inverse)\
-    \ {\n    vc<pair<poly, poly>> dat(N);\n    FOR(j, N) {\n      poly a{f[j]}, b{mint(1),\
-    \ mint(-j)};\n      dat[j] = {a, b};\n    }\n    auto [num, den] = sum_of_rationals(dat);\n\
-    \    num.resize(N);\n    return fps_div(num, den);\n  }\n  // \u3053\u3063\u3061\
-    \u306F multipoint evalation \u3067\u3067\u304D\u308B\u3068\u601D\u308F\u308C\u308B\
-    \u304C\u3001\u672A\u5B9F\u88C5\n  assert(0);\n  return poly{};\n}"
+    #include \"poly/fps_div.hpp\"\n\n// transpose = 0\uFF1Ag[i] = sum pow(ai,j) f[j]\n\
+    // transpose = 1\uFF1Ag[i] = sum pow(aj,i) f[j]\ntemplate <typename mint>\nvc<mint>\
+    \ vandermonde(vc<mint> f, vc<mint> A, bool transpose, bool inverse) {\n  if (len(f)\
+    \ == 0) return vc<mint>();\n  int N = len(f);\n  using poly = vc<mint>;\n  if\
+    \ (!transpose) {\n    if (!inverse) { return multipoint_eval(f, A); }\n    if\
+    \ (inverse) { return multipoint_interpolate(A, f); }\n  }\n  if (!inverse) {\n\
+    \    vc<pair<poly, poly>> dat(N);\n    FOR(j, N) {\n      poly a{f[j]}, b{mint(1),\
+    \ mint(-A[j])};\n      dat[j] = {a, b};\n    }\n    auto [num, den] = sum_of_rationals(dat);\n\
+    \    num.resize(N);\n    return fps_div(num, den);\n  }\n  SubproductTree<mint>\
+    \ X(A);\n  vc<mint> g = X.T[1]; // prod(1-ax)\n  g.resize(N + 1);\n  f = convolution<mint>(f,\
+    \ g);\n  f.resize(N);\n  reverse(all(f));\n  reverse(all(g));\n  FOR(i, len(g)\
+    \ - 1) g[i] = g[i + 1] * mint(i + 1);\n  g.pop_back();\n  auto num = X.evaluation(f);\n\
+    \  auto den = X.evaluation(g);\n  vc<mint> B(len(A));\n  FOR(i, len(A)) B[i] =\
+    \ num[i] / den[i];\n  return B;\n}"
   dependsOn:
   - poly/multipoint.hpp
   - poly/fps_inv.hpp
@@ -452,7 +457,7 @@ data:
   isVerificationFile: false
   path: linalg/implicit_matrix/vandermonde.hpp
   requiredBy: []
-  timestamp: '2023-02-02 03:51:39+09:00'
+  timestamp: '2023-02-02 04:02:04+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/vandermonde.test.cpp

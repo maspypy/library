@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: flow/hungarian.hpp
     title: flow/hungarian.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/assignment
@@ -211,7 +211,7 @@ data:
     \ <= M);\n  vv(T, A, N + 1, M + 1);\n  FOR(i, N) FOR(j, M) A[1 + i][1 + j] = C[i][j];\n\
     \  ++N, ++M;\n\n  vector<int> P(M), way(M);\n  vector<T> X(N), Y(M);\n  vc<T>\
     \ minV;\n  vc<bool> used;\n\n  for (int i = 1; i < N; i++) {\n    P[0] = i;\n\
-    \    minV.assign(M, infty<T><T>);\n    used.assign(M, false);\n    int j0 = 0;\n\
+    \    minV.assign(M, infty<T>);\n    used.assign(M, false);\n    int j0 = 0;\n\
     \    while (P[j0] != 0) {\n      int i0 = P[j0], j1 = 0;\n      used[j0] = true;\n\
     \      T delta = infty<T>;\n      for (int j = 1; j < M; j++) {\n        if (used[j])\
     \ continue;\n        T curr = A[i0][j] - X[i0] - Y[j];\n        if (curr < minV[j])\
@@ -241,8 +241,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/assignment.test.cpp
   requiredBy: []
-  timestamp: '2023-02-02 01:52:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-02-02 04:07:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/assignment.test.cpp
 layout: document

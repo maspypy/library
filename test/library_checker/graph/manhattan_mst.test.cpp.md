@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/manhattan_mst.hpp
     title: geo/manhattan_mst.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/manhattanmst
@@ -279,14 +279,14 @@ data:
     \ 0> G(N);\n  UnionFind uf(N);\n  for (auto&& [cost, i, j]: dat) {\n    if (uf.merge(i,\
     \ j)) G.add(i, j, cost);\n  }\n  G.build();\n  return G;\n}\n#line 6 \"test/library_checker/graph/manhattan_mst.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  using P = pair<int, int>;\n  VEC(P, XY, N);\n\
-    \  auto G = Manhattan_MST<int>(XY);\n  ll ANS = 0;\n  for (auto&& e: G.edges)\
+    \  auto G = manhattan_mst<int>(XY);\n  ll ANS = 0;\n  for (auto&& e: G.edges)\
     \ { ANS += e.cost; }\n  print(ANS);\n  for (auto&& e: G.edges) { print(e.frm,\
     \ e.to); }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll\
     \ T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/manhattanmst\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/manhattan_mst.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  using P = pair<int, int>;\n  VEC(P, XY, N);\n\
-    \  auto G = Manhattan_MST<int>(XY);\n  ll ANS = 0;\n  for (auto&& e: G.edges)\
+    \  auto G = manhattan_mst<int>(XY);\n  ll ANS = 0;\n  for (auto&& e: G.edges)\
     \ { ANS += e.cost; }\n  print(ANS);\n  for (auto&& e: G.edges) { print(e.frm,\
     \ e.to); }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll\
     \ T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
@@ -299,8 +299,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/manhattan_mst.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:18:36+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-02-02 04:07:34+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/manhattan_mst.test.cpp
 layout: document
