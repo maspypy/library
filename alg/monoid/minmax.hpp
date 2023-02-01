@@ -8,8 +8,6 @@ struct Monoid_MinMax {
     return {min(x.fi, y.fi), max(x.se, y.se)};
   }
   static constexpr P from_element(const X x) { return {x, x}; }
-  static constexpr P unit() {
-    return {numeric_limits<X>::max(), numeric_limits<X>::lowest()};
-  }
+  static constexpr P unit() { return {INF<X>, -INF<X>}; }
   static constexpr bool commute = true;
 };

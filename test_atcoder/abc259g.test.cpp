@@ -6,8 +6,7 @@
 void solve() {
   LL(H, W);
   VV(ll, dat, H, W);
-  const ll INF = 1LL << 60;
-  Binary_Optimization<ll, 1> X(H + W, INF);
+  Binary_Optimization<ll, 1> X(H + W);
   vi A(H), B(W);
   FOR(i, H) FOR(j, W) {
     A[i] += dat[i][j];
