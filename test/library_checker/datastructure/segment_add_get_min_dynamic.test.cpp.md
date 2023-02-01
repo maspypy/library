@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/min_idx.hpp
     title: alg/monoid/min_idx.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: convex/dynamic_lichao.hpp
     title: convex/dynamic_lichao.hpp
   - icon: ':question:'
