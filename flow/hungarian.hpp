@@ -11,7 +11,7 @@ tuple<T, vc<int>, vc<T>, vc<T>> hungarian(vvc<T>& C) {
   vv(T, A, N + 1, M + 1);
   FOR(i, N) FOR(j, M) A[1 + i][1 + j] = C[i][j];
   ++N, ++M;
-  const T infty = numeric_limits<T>::max();
+  const T infty = INF<T>;
 
   vector<int> P(M), way(M);
   vector<T> X(N), Y(M);

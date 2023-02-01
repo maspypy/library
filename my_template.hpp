@@ -14,21 +14,21 @@ using u64 = unsigned long long;
 using i128 = __int128;
 
 template <class T>
-constexpr T INF = 0;
+constexpr T infty = 0;
 template <>
-constexpr int INF<int> = 1'000'000'000;
+constexpr int infty<int> = 1'000'000'000;
 template <>
-constexpr ll INF<ll> = ll(INF<int>) * INF<int> * 2;
+constexpr ll infty<ll> = ll(infty<int>) * infty<int> * 2;
 template <>
-constexpr u32 INF<u32> = INF<int>;
+constexpr u32 infty<u32> = infty<int>;
 template <>
-constexpr u64 INF<u64> = INF<ll>;
+constexpr u64 infty<u64> = infty<ll>;
 template <>
-constexpr i128 INF<i128> = i128(INF<ll>) * INF<ll>;
+constexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;
 template <>
-constexpr double INF<double> = INF<ll>;
+constexpr double infty<double> = infty<ll>;
 template <>
-constexpr long double INF<long double> = INF<ll>;
+constexpr long double infty<long double> = infty<ll>;
 
 using pi = pair<ll, ll>;
 using vi = vector<ll>;
