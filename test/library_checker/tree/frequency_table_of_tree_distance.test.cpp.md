@@ -13,7 +13,7 @@ data:
   - icon: ':x:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -50,14 +50,14 @@ data:
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
     using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nconstexpr T INF = 0;\ntemplate <>\nconstexpr int INF<int>\
-    \ = 1'000'000'000;\ntemplate <>\nconstexpr ll INF<ll> = ll(INF<int>) * INF<int>\
-    \ * 2;\ntemplate <>\nconstexpr u32 INF<u32> = INF<int>;\ntemplate <>\nconstexpr\
-    \ u64 INF<u64> = INF<ll>;\ntemplate <>\nconstexpr i128 INF<i128> = i128(INF<ll>)\
-    \ * INF<ll>;\ntemplate <>\nconstexpr double INF<double> = INF<ll>;\ntemplate <>\n\
-    constexpr long double INF<long double> = INF<ll>;\n\nusing pi = pair<ll, ll>;\n\
-    using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
-    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    \ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int>\
+    \ = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll> = ll(infty<int>) * infty<int>\
+    \ * 2;\ntemplate <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr\
+    \ u64 infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
+    \ * infty<ll>;\ntemplate <>\nconstexpr double infty<double> = infty<ll>;\ntemplate\
+    \ <>\nconstexpr long double infty<long double> = infty<ll>;\n\nusing pi = pair<ll,\
+    \ ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
+    \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
     template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
     \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
     template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
@@ -636,7 +636,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 22:47:27+09:00'
+  timestamp: '2023-02-01 23:18:36+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp

@@ -8,14 +8,14 @@ data:
   - icon: ':x:'
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/2251_1.test.cpp
     title: test/aoj/2251_1.test.cpp
   - icon: ':x:'
@@ -35,7 +35,7 @@ data:
     title: test_atcoder/abc256d.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/fastset.hpp\"\n/* 64\u5206\u6728\u3002\r\ninsert, erase\r\
@@ -116,7 +116,7 @@ data:
   - ds/intervals.hpp
   - ds/segtree/sortable_segtree.hpp
   timestamp: '2023-01-02 17:13:38+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/2251_1.test.cpp
   - test/library_checker/datastructure/sort_segtree.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   - icon: ':x:'
@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
   - icon: ':question:'
@@ -40,14 +40,14 @@ data:
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
     using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nconstexpr T INF = 0;\ntemplate <>\nconstexpr int INF<int>\
-    \ = 1'000'000'000;\ntemplate <>\nconstexpr ll INF<ll> = ll(INF<int>) * INF<int>\
-    \ * 2;\ntemplate <>\nconstexpr u32 INF<u32> = INF<int>;\ntemplate <>\nconstexpr\
-    \ u64 INF<u64> = INF<ll>;\ntemplate <>\nconstexpr i128 INF<i128> = i128(INF<ll>)\
-    \ * INF<ll>;\ntemplate <>\nconstexpr double INF<double> = INF<ll>;\ntemplate <>\n\
-    constexpr long double INF<long double> = INF<ll>;\n\nusing pi = pair<ll, ll>;\n\
-    using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
-    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    \ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int>\
+    \ = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll> = ll(infty<int>) * infty<int>\
+    \ * 2;\ntemplate <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr\
+    \ u64 infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
+    \ * infty<ll>;\ntemplate <>\nconstexpr double infty<double> = infty<ll>;\ntemplate\
+    \ <>\nconstexpr long double infty<long double> = infty<ll>;\n\nusing pi = pair<ll,\
+    \ ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
+    \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
     template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
     \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
     template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
@@ -364,21 +364,21 @@ data:
     \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
     \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
     \ }\n  }\n};\n#line 3 \"graph/shortest_path/dijkstra.hpp\"\n\ntemplate <typename\
-    \ T, typename Graph>\npair<vc<T>, vc<int>> dijkstra(Graph& G, int v, T INF) {\n\
-    \  auto N = G.N;\n  vector<T> dist(N, INF);\n  vector<int> par(N, -1);\n  using\
-    \ P = pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>> que;\n\n  dist[v]\
+    \ T, typename Graph>\npair<vc<T>, vc<int>> dijkstra(Graph& G, int v) {\n  auto\
+    \ N = G.N;\n  vector<T> dist(N, INF<T>);\n  vector<int> par(N, -1);\n  using P\
+    \ = pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>> que;\n\n  dist[v]\
     \ = 0;\n  que.emplace(0, v);\n  while (!que.empty()) {\n    auto [dv, v] = que.top();\n\
     \    que.pop();\n    if (dv > dist[v]) continue;\n    for (auto&& e: G[v]) {\n\
     \      if (chmin(dist[e.to], dist[e.frm] + e.cost)) {\n        par[e.to] = e.frm;\n\
     \        que.emplace(dist[e.to], e.to);\n      }\n    }\n  }\n  return {dist,\
     \ par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\u30C8\u3002[dist, par, root]\n\
     template <typename T, typename Graph>\ntuple<vc<T>, vc<int>, vc<int>> dijkstra(Graph&\
-    \ G, vc<int> vs, T INF) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<ll>\
-    \ dist(N, INF);\n  vc<int> par(N, -1);\n  vc<int> root(N, -1);\n\n  using P =\
-    \ pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>> que;\n\n  for (auto&&\
-    \ v: vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.emplace(T(0), v);\n  }\n\
-    \n  while (!que.empty()) {\n    auto [dv, v] = que.top();\n    que.pop();\n  \
-    \  if (dv > dist[v]) continue;\n    for (auto&& e: G[v]) {\n      if (chmin(dist[e.to],\
+    \ G, vc<int> vs) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<ll> dist(N,\
+    \ INF<T>);\n  vc<int> par(N, -1);\n  vc<int> root(N, -1);\n\n  using P = pair<T,\
+    \ int>;\n\n  priority_queue<P, vector<P>, greater<P>> que;\n\n  for (auto&& v:\
+    \ vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.emplace(T(0), v);\n  }\n\n\
+    \  while (!que.empty()) {\n    auto [dv, v] = que.top();\n    que.pop();\n   \
+    \ if (dv > dist[v]) continue;\n    for (auto&& e: G[v]) {\n      if (chmin(dist[e.to],\
     \ dist[e.frm] + e.cost)) {\n        root[e.to] = root[e.frm];\n        par[e.to]\
     \ = e.frm;\n        que.push(mp(dist[e.to], e.to));\n      }\n    }\n  }\n  return\
     \ {dist, par, root};\n}\n#line 6 \"test_atcoder/arc151_e.test.cpp\"\n\nvoid solve()\
@@ -421,7 +421,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/arc151_e.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:04:20+09:00'
+  timestamp: '2023-02-01 23:18:36+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/arc151_e.test.cpp

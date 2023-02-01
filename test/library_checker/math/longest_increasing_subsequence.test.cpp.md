@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: seq/longest_increasing_subsequence.hpp
     title: seq/longest_increasing_subsequence.hpp
   _extendedRequiredBy: []
@@ -26,14 +26,14 @@ data:
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
     using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nconstexpr T INF = 0;\ntemplate <>\nconstexpr int INF<int>\
-    \ = 1'000'000'000;\ntemplate <>\nconstexpr ll INF<ll> = ll(INF<int>) * INF<int>\
-    \ * 2;\ntemplate <>\nconstexpr u32 INF<u32> = INF<int>;\ntemplate <>\nconstexpr\
-    \ u64 INF<u64> = INF<ll>;\ntemplate <>\nconstexpr i128 INF<i128> = i128(INF<ll>)\
-    \ * INF<ll>;\ntemplate <>\nconstexpr double INF<double> = INF<ll>;\ntemplate <>\n\
-    constexpr long double INF<long double> = INF<ll>;\n\nusing pi = pair<ll, ll>;\n\
-    using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
-    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    \ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int>\
+    \ = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll> = ll(infty<int>) * infty<int>\
+    \ * 2;\ntemplate <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr\
+    \ u64 infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
+    \ * infty<ll>;\ntemplate <>\nconstexpr double infty<double> = infty<ll>;\ntemplate\
+    \ <>\nconstexpr long double infty<long double> = infty<ll>;\n\nusing pi = pair<ll,\
+    \ ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
+    \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
     template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
     \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
     template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
@@ -202,16 +202,12 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\n#line 4 \"test/library_checker/math/longest_increasing_subsequence.test.cpp\"\
-    \n\n#line 1 \"seq/longest_increasing_subsequence.hpp\"\n/*\ndp[i] := \u7B2C i\
-    \ \u9805\u3067\u7D42\u308F\u308B lis \u9577\u306E\u6700\u5927\u5024\n\u3068\u306A\
-    \u308B dp \u30C6\u30FC\u30D6\u30EB\u3092\u8FD4\u3059\u3002O(Nlog N) \u6642\u9593\
-    \u3002\n\u72ED\u7FA9\u30FB\u5E83\u7FA9\u306F\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\
-    \u3067\u6307\u5B9A\u3002\u30C7\u30D5\u30A9\u30EB\u30C8\u306F strong\n*/\ntemplate\
-    \ <typename T, bool strong = true>\nvc<int> longest_increasing_subsequence(vector<T>\
-    \ A) {\n  ll N = A.size();\n\n  T INF = numeric_limits<T>::max();\n  vc<T> dp(N,\
-    \ INF);\n  vc<int> lis_rank(N);\n  FOR(i, N) {\n    int j = (strong ? LB(dp, A[i])\
-    \ : UB(dp, A[i]));\n    dp[j] = A[i];\n    lis_rank[i] = j + 1;\n  }\n  return\
-    \ lis_rank;\n}\n#line 6 \"test/library_checker/math/longest_increasing_subsequence.test.cpp\"\
+    \n\n#line 1 \"seq/longest_increasing_subsequence.hpp\"\n// dp[i] := \u7B2C i \u9805\
+    \u3067\u7D42\u308F\u308B lis \u9577\u306E\u6700\u5927\u5024\uFF08[1, LIS]\uFF09\
+    \ntemplate <typename T, bool strong = true>\nvc<int> longest_increasing_subsequence(vector<T>\
+    \ A) {\n  const int N = A.size();\n  vc<T> dp(N, INF<T>);\n  vc<int> lis_rank(N);\n\
+    \  FOR(i, N) {\n    int j = (strong ? LB(dp, A[i]) : UB(dp, A[i]));\n    dp[j]\
+    \ = A[i];\n    lis_rank[i] = j + 1;\n  }\n  return lis_rank;\n}\n#line 6 \"test/library_checker/math/longest_increasing_subsequence.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n  auto dp = longest_increasing_subsequence(A);\n\
     \  ll n = MAX(dp);\n  ll x = MAX(A) + 1;\n  vc<int> I;\n  FOR_R(i, N) {\n    if\
     \ (dp[i] == n && A[i] < x) {\n      I.eb(i);\n      --n;\n      x = A[i];\n  \
@@ -233,7 +229,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/longest_increasing_subsequence.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 22:47:27+09:00'
+  timestamp: '2023-02-01 23:18:36+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/longest_increasing_subsequence.test.cpp

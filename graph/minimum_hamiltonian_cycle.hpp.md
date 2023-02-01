@@ -6,12 +6,12 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DPL_2_A.test.cpp
     title: test/aoj/DPL_2_A.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -61,45 +61,46 @@ data:
     \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 3 \"graph/minimum_hamiltonian_cycle.hpp\"\
     \n\n/*\nreturn [cost, cycle]\ncycle \u306A\u3057\u306E\u5834\u5408\uFF1A{-1, {}}\n\
     */\ntemplate <typename T, typename GT>\npair<T, vc<int>> minimum_hamiltonian_cycle(GT&\
-    \ G) {\n  assert(G.is_prepared());\n  T INF = numeric_limits<T>::max();\n  int\
-    \ n = G.N;\n  vv(T, dist, n, n, INF);\n  FOR(v, n) {\n    for (auto&& e: G[v])\
-    \ chmin(dist[v][e.to], e.cost);\n  }\n  n -= 1;\n  vv(T, dp, 1 << n, n, INF);\n\
-    \  FOR(v, n) chmin(dp[1 << v][v], dist[n][v]);\n  FOR(s, 1 << n) FOR(frm, n) if\
-    \ (dp[s][frm] < INF) {\n    FOR(to, n) {\n      int t = s | 1 << to;\n      T\
-    \ cost = dist[frm][to];\n      if (s < t && cost < INF) chmin(dp[t][to], dp[s][frm]\
-    \ + cost);\n    }\n  }\n  int s = (1 << n) - 1;\n  T res = INF;\n  int best_v\
-    \ = -1;\n  FOR(v, n) if (dist[v][n] < INF && dp[s][v] < INF) {\n    if (chmin(res,\
-    \ dp[s][v] + dist[v][n])) best_v = v;\n  }\n  if (res == INF) return {-1, {}};\n\
-    \  vc<int> C = {n, best_v};\n  int t = s;\n  while (len(C) <= n) {\n    int to\
-    \ = C.back();\n    int frm = [&]() -> int {\n      FOR(frm, n) {\n        int\
-    \ s = t ^ (1 << to);\n        if (dp[s][frm] < INF && dist[frm][to] < INF\n  \
-    \          && dp[s][frm] + dist[frm][to] == dp[t][to])\n          return frm;\n\
+    \ G) {\n  assert(G.is_prepared());\n  int n = G.N;\n  vv(T, dist, n, n, INF<T>);\n\
+    \  FOR(v, n) {\n    for (auto&& e: G[v]) chmin(dist[v][e.to], e.cost);\n  }\n\
+    \  n -= 1;\n  vv(T, dp, 1 << n, n, INF<T>);\n  FOR(v, n) chmin(dp[1 << v][v],\
+    \ dist[n][v]);\n  FOR(s, 1 << n) FOR(frm, n) if (dp[s][frm] < INF<T>) {\n    FOR(to,\
+    \ n) {\n      int t = s | 1 << to;\n      T cost = dist[frm][to];\n      if (s\
+    \ < t && cost < INF<T>) chmin(dp[t][to], dp[s][frm] + cost);\n    }\n  }\n  int\
+    \ s = (1 << n) - 1;\n  T res = INF<T>;\n  int best_v = -1;\n  FOR(v, n) if (dist[v][n]\
+    \ < INF<T> && dp[s][v] < INF<T>) {\n    if (chmin(res, dp[s][v] + dist[v][n]))\
+    \ best_v = v;\n  }\n  if (res == INF<T>) return {-1, {}};\n  vc<int> C = {n, best_v};\n\
+    \  int t = s;\n  while (len(C) <= n) {\n    int to = C.back();\n    int frm =\
+    \ [&]() -> int {\n      FOR(frm, n) {\n        int s = t ^ (1 << to);\n      \
+    \  T inf = INF<T>;\n        if (dp[s][frm] < inf && dist[frm][to] < inf\n    \
+    \        && dp[s][frm] + dist[frm][to] == dp[t][to])\n          return frm;\n\
     \      }\n      return -1;\n    }();\n    C.eb(frm);\n    t ^= 1 << to;\n  }\n\
     \  reverse(all(C));\n  return {res, C};\n}\n"
   code: "#pragma once\n#include \"graph/base.hpp\"\n\n/*\nreturn [cost, cycle]\ncycle\
     \ \u306A\u3057\u306E\u5834\u5408\uFF1A{-1, {}}\n*/\ntemplate <typename T, typename\
     \ GT>\npair<T, vc<int>> minimum_hamiltonian_cycle(GT& G) {\n  assert(G.is_prepared());\n\
-    \  T INF = numeric_limits<T>::max();\n  int n = G.N;\n  vv(T, dist, n, n, INF);\n\
-    \  FOR(v, n) {\n    for (auto&& e: G[v]) chmin(dist[v][e.to], e.cost);\n  }\n\
-    \  n -= 1;\n  vv(T, dp, 1 << n, n, INF);\n  FOR(v, n) chmin(dp[1 << v][v], dist[n][v]);\n\
-    \  FOR(s, 1 << n) FOR(frm, n) if (dp[s][frm] < INF) {\n    FOR(to, n) {\n    \
-    \  int t = s | 1 << to;\n      T cost = dist[frm][to];\n      if (s < t && cost\
-    \ < INF) chmin(dp[t][to], dp[s][frm] + cost);\n    }\n  }\n  int s = (1 << n)\
-    \ - 1;\n  T res = INF;\n  int best_v = -1;\n  FOR(v, n) if (dist[v][n] < INF &&\
-    \ dp[s][v] < INF) {\n    if (chmin(res, dp[s][v] + dist[v][n])) best_v = v;\n\
-    \  }\n  if (res == INF) return {-1, {}};\n  vc<int> C = {n, best_v};\n  int t\
-    \ = s;\n  while (len(C) <= n) {\n    int to = C.back();\n    int frm = [&]() ->\
-    \ int {\n      FOR(frm, n) {\n        int s = t ^ (1 << to);\n        if (dp[s][frm]\
-    \ < INF && dist[frm][to] < INF\n            && dp[s][frm] + dist[frm][to] == dp[t][to])\n\
-    \          return frm;\n      }\n      return -1;\n    }();\n    C.eb(frm);\n\
-    \    t ^= 1 << to;\n  }\n  reverse(all(C));\n  return {res, C};\n}\n"
+    \  int n = G.N;\n  vv(T, dist, n, n, INF<T>);\n  FOR(v, n) {\n    for (auto&&\
+    \ e: G[v]) chmin(dist[v][e.to], e.cost);\n  }\n  n -= 1;\n  vv(T, dp, 1 << n,\
+    \ n, INF<T>);\n  FOR(v, n) chmin(dp[1 << v][v], dist[n][v]);\n  FOR(s, 1 << n)\
+    \ FOR(frm, n) if (dp[s][frm] < INF<T>) {\n    FOR(to, n) {\n      int t = s |\
+    \ 1 << to;\n      T cost = dist[frm][to];\n      if (s < t && cost < INF<T>) chmin(dp[t][to],\
+    \ dp[s][frm] + cost);\n    }\n  }\n  int s = (1 << n) - 1;\n  T res = INF<T>;\n\
+    \  int best_v = -1;\n  FOR(v, n) if (dist[v][n] < INF<T> && dp[s][v] < INF<T>)\
+    \ {\n    if (chmin(res, dp[s][v] + dist[v][n])) best_v = v;\n  }\n  if (res ==\
+    \ INF<T>) return {-1, {}};\n  vc<int> C = {n, best_v};\n  int t = s;\n  while\
+    \ (len(C) <= n) {\n    int to = C.back();\n    int frm = [&]() -> int {\n    \
+    \  FOR(frm, n) {\n        int s = t ^ (1 << to);\n        T inf = INF<T>;\n  \
+    \      if (dp[s][frm] < inf && dist[frm][to] < inf\n            && dp[s][frm]\
+    \ + dist[frm][to] == dp[t][to])\n          return frm;\n      }\n      return\
+    \ -1;\n    }();\n    C.eb(frm);\n    t ^= 1 << to;\n  }\n  reverse(all(C));\n\
+    \  return {res, C};\n}\n"
   dependsOn:
   - graph/base.hpp
   isVerificationFile: false
   path: graph/minimum_hamiltonian_cycle.hpp
   requiredBy: []
-  timestamp: '2022-12-05 10:41:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-02-01 23:18:36+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/DPL_2_A.test.cpp
 documentation_of: graph/minimum_hamiltonian_cycle.hpp

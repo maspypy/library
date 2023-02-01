@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/minimum_hamiltonian_cycle.hpp
     title: graph/minimum_hamiltonian_cycle.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_2_A
@@ -28,14 +28,14 @@ data:
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
     using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nconstexpr T INF = 0;\ntemplate <>\nconstexpr int INF<int>\
-    \ = 1'000'000'000;\ntemplate <>\nconstexpr ll INF<ll> = ll(INF<int>) * INF<int>\
-    \ * 2;\ntemplate <>\nconstexpr u32 INF<u32> = INF<int>;\ntemplate <>\nconstexpr\
-    \ u64 INF<u64> = INF<ll>;\ntemplate <>\nconstexpr i128 INF<i128> = i128(INF<ll>)\
-    \ * INF<ll>;\ntemplate <>\nconstexpr double INF<double> = INF<ll>;\ntemplate <>\n\
-    constexpr long double INF<long double> = INF<ll>;\n\nusing pi = pair<ll, ll>;\n\
-    using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
-    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    \ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int>\
+    \ = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll> = ll(infty<int>) * infty<int>\
+    \ * 2;\ntemplate <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr\
+    \ u64 infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
+    \ * infty<ll>;\ntemplate <>\nconstexpr double infty<double> = infty<ll>;\ntemplate\
+    \ <>\nconstexpr long double infty<long double> = infty<ll>;\n\nusing pi = pair<ll,\
+    \ ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
+    \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
     template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
     \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
     template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
@@ -250,19 +250,19 @@ data:
     \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 3 \"graph/minimum_hamiltonian_cycle.hpp\"\
     \n\n/*\nreturn [cost, cycle]\ncycle \u306A\u3057\u306E\u5834\u5408\uFF1A{-1, {}}\n\
     */\ntemplate <typename T, typename GT>\npair<T, vc<int>> minimum_hamiltonian_cycle(GT&\
-    \ G) {\n  assert(G.is_prepared());\n  T INF = numeric_limits<T>::max();\n  int\
-    \ n = G.N;\n  vv(T, dist, n, n, INF);\n  FOR(v, n) {\n    for (auto&& e: G[v])\
-    \ chmin(dist[v][e.to], e.cost);\n  }\n  n -= 1;\n  vv(T, dp, 1 << n, n, INF);\n\
-    \  FOR(v, n) chmin(dp[1 << v][v], dist[n][v]);\n  FOR(s, 1 << n) FOR(frm, n) if\
-    \ (dp[s][frm] < INF) {\n    FOR(to, n) {\n      int t = s | 1 << to;\n      T\
-    \ cost = dist[frm][to];\n      if (s < t && cost < INF) chmin(dp[t][to], dp[s][frm]\
-    \ + cost);\n    }\n  }\n  int s = (1 << n) - 1;\n  T res = INF;\n  int best_v\
-    \ = -1;\n  FOR(v, n) if (dist[v][n] < INF && dp[s][v] < INF) {\n    if (chmin(res,\
-    \ dp[s][v] + dist[v][n])) best_v = v;\n  }\n  if (res == INF) return {-1, {}};\n\
-    \  vc<int> C = {n, best_v};\n  int t = s;\n  while (len(C) <= n) {\n    int to\
-    \ = C.back();\n    int frm = [&]() -> int {\n      FOR(frm, n) {\n        int\
-    \ s = t ^ (1 << to);\n        if (dp[s][frm] < INF && dist[frm][to] < INF\n  \
-    \          && dp[s][frm] + dist[frm][to] == dp[t][to])\n          return frm;\n\
+    \ G) {\n  assert(G.is_prepared());\n  int n = G.N;\n  vv(T, dist, n, n, INF<T>);\n\
+    \  FOR(v, n) {\n    for (auto&& e: G[v]) chmin(dist[v][e.to], e.cost);\n  }\n\
+    \  n -= 1;\n  vv(T, dp, 1 << n, n, INF<T>);\n  FOR(v, n) chmin(dp[1 << v][v],\
+    \ dist[n][v]);\n  FOR(s, 1 << n) FOR(frm, n) if (dp[s][frm] < INF<T>) {\n    FOR(to,\
+    \ n) {\n      int t = s | 1 << to;\n      T cost = dist[frm][to];\n      if (s\
+    \ < t && cost < INF<T>) chmin(dp[t][to], dp[s][frm] + cost);\n    }\n  }\n  int\
+    \ s = (1 << n) - 1;\n  T res = INF<T>;\n  int best_v = -1;\n  FOR(v, n) if (dist[v][n]\
+    \ < INF<T> && dp[s][v] < INF<T>) {\n    if (chmin(res, dp[s][v] + dist[v][n]))\
+    \ best_v = v;\n  }\n  if (res == INF<T>) return {-1, {}};\n  vc<int> C = {n, best_v};\n\
+    \  int t = s;\n  while (len(C) <= n) {\n    int to = C.back();\n    int frm =\
+    \ [&]() -> int {\n      FOR(frm, n) {\n        int s = t ^ (1 << to);\n      \
+    \  T inf = INF<T>;\n        if (dp[s][frm] < inf && dist[frm][to] < inf\n    \
+    \        && dp[s][frm] + dist[frm][to] == dp[t][to])\n          return frm;\n\
     \      }\n      return -1;\n    }();\n    C.eb(frm);\n    t ^= 1 << to;\n  }\n\
     \  reverse(all(C));\n  return {res, C};\n}\n#line 7 \"test/aoj/DPL_2_A.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, M);\n  Graph<int, 1> G(N);\n  G.read_graph(M, 1, 0);\n\
@@ -284,8 +284,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL_2_A.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 22:47:27+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-02-01 23:18:36+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DPL_2_A.test.cpp
 layout: document

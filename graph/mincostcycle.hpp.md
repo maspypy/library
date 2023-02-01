@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
   _extendedRequiredBy: []
@@ -66,16 +66,16 @@ data:
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
     \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 3 \"graph/shortest_path/dijkstra.hpp\"\
     \n\ntemplate <typename T, typename Graph>\npair<vc<T>, vc<int>> dijkstra(Graph&\
-    \ G, int v, T INF) {\n  auto N = G.N;\n  vector<T> dist(N, INF);\n  vector<int>\
-    \ par(N, -1);\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>>\
+    \ G, int v) {\n  auto N = G.N;\n  vector<T> dist(N, INF<T>);\n  vector<int> par(N,\
+    \ -1);\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>>\
     \ que;\n\n  dist[v] = 0;\n  que.emplace(0, v);\n  while (!que.empty()) {\n   \
     \ auto [dv, v] = que.top();\n    que.pop();\n    if (dv > dist[v]) continue;\n\
     \    for (auto&& e: G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost))\
     \ {\n        par[e.to] = e.frm;\n        que.emplace(dist[e.to], e.to);\n    \
     \  }\n    }\n  }\n  return {dist, par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\
     \u30C8\u3002[dist, par, root]\ntemplate <typename T, typename Graph>\ntuple<vc<T>,\
-    \ vc<int>, vc<int>> dijkstra(Graph& G, vc<int> vs, T INF) {\n  assert(G.is_prepared());\n\
-    \  int N = G.N;\n  vc<ll> dist(N, INF);\n  vc<int> par(N, -1);\n  vc<int> root(N,\
+    \ vc<int>, vc<int>> dijkstra(Graph& G, vc<int> vs) {\n  assert(G.is_prepared());\n\
+    \  int N = G.N;\n  vc<ll> dist(N, INF<T>);\n  vc<int> par(N, -1);\n  vc<int> root(N,\
     \ -1);\n\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>>\
     \ que;\n\n  for (auto&& v: vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.emplace(T(0),\
     \ v);\n  }\n\n  while (!que.empty()) {\n    auto [dv, v] = que.top();\n    que.pop();\n\
@@ -127,7 +127,7 @@ data:
   isVerificationFile: false
   path: graph/mincostcycle.hpp
   requiredBy: []
-  timestamp: '2022-12-05 10:41:25+09:00'
+  timestamp: '2023-02-01 23:18:36+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1320.test.cpp

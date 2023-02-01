@@ -12,13 +12,13 @@ data:
     path: graph/shortest_path/K_shortest_walk.hpp
     title: graph/shortest_path/K_shortest_walk.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/0275.test.cpp
     title: test/aoj/0275.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/2251_1.test.cpp
     title: test/aoj/2251_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/2251_2.test.cpp
     title: test/aoj/2251_2.test.cpp
   - icon: ':x:'
@@ -38,7 +38,7 @@ data:
     title: test_atcoder/arc151_e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -87,16 +87,16 @@ data:
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
     \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 3 \"graph/shortest_path/dijkstra.hpp\"\
     \n\ntemplate <typename T, typename Graph>\npair<vc<T>, vc<int>> dijkstra(Graph&\
-    \ G, int v, T INF) {\n  auto N = G.N;\n  vector<T> dist(N, INF);\n  vector<int>\
-    \ par(N, -1);\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>>\
+    \ G, int v) {\n  auto N = G.N;\n  vector<T> dist(N, INF<T>);\n  vector<int> par(N,\
+    \ -1);\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>>\
     \ que;\n\n  dist[v] = 0;\n  que.emplace(0, v);\n  while (!que.empty()) {\n   \
     \ auto [dv, v] = que.top();\n    que.pop();\n    if (dv > dist[v]) continue;\n\
     \    for (auto&& e: G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost))\
     \ {\n        par[e.to] = e.frm;\n        que.emplace(dist[e.to], e.to);\n    \
     \  }\n    }\n  }\n  return {dist, par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\
     \u30C8\u3002[dist, par, root]\ntemplate <typename T, typename Graph>\ntuple<vc<T>,\
-    \ vc<int>, vc<int>> dijkstra(Graph& G, vc<int> vs, T INF) {\n  assert(G.is_prepared());\n\
-    \  int N = G.N;\n  vc<ll> dist(N, INF);\n  vc<int> par(N, -1);\n  vc<int> root(N,\
+    \ vc<int>, vc<int>> dijkstra(Graph& G, vc<int> vs) {\n  assert(G.is_prepared());\n\
+    \  int N = G.N;\n  vc<ll> dist(N, INF<T>);\n  vc<int> par(N, -1);\n  vc<int> root(N,\
     \ -1);\n\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>>\
     \ que;\n\n  for (auto&& v: vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.emplace(T(0),\
     \ v);\n  }\n\n  while (!que.empty()) {\n    auto [dv, v] = que.top();\n    que.pop();\n\
@@ -105,8 +105,8 @@ data:
     \ = e.frm;\n        que.push(mp(dist[e.to], e.to));\n      }\n    }\n  }\n  return\
     \ {dist, par, root};\n}\n"
   code: "#pragma once\n#include \"graph/base.hpp\"\n\ntemplate <typename T, typename\
-    \ Graph>\npair<vc<T>, vc<int>> dijkstra(Graph& G, int v, T INF) {\n  auto N =\
-    \ G.N;\n  vector<T> dist(N, INF);\n  vector<int> par(N, -1);\n  using P = pair<T,\
+    \ Graph>\npair<vc<T>, vc<int>> dijkstra(Graph& G, int v) {\n  auto N = G.N;\n\
+    \  vector<T> dist(N, INF<T>);\n  vector<int> par(N, -1);\n  using P = pair<T,\
     \ int>;\n\n  priority_queue<P, vector<P>, greater<P>> que;\n\n  dist[v] = 0;\n\
     \  que.emplace(0, v);\n  while (!que.empty()) {\n    auto [dv, v] = que.top();\n\
     \    que.pop();\n    if (dv > dist[v]) continue;\n    for (auto&& e: G[v]) {\n\
@@ -114,12 +114,12 @@ data:
     \        que.emplace(dist[e.to], e.to);\n      }\n    }\n  }\n  return {dist,\
     \ par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\u30C8\u3002[dist, par, root]\n\
     template <typename T, typename Graph>\ntuple<vc<T>, vc<int>, vc<int>> dijkstra(Graph&\
-    \ G, vc<int> vs, T INF) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<ll>\
-    \ dist(N, INF);\n  vc<int> par(N, -1);\n  vc<int> root(N, -1);\n\n  using P =\
-    \ pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>> que;\n\n  for (auto&&\
-    \ v: vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.emplace(T(0), v);\n  }\n\
-    \n  while (!que.empty()) {\n    auto [dv, v] = que.top();\n    que.pop();\n  \
-    \  if (dv > dist[v]) continue;\n    for (auto&& e: G[v]) {\n      if (chmin(dist[e.to],\
+    \ G, vc<int> vs) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<ll> dist(N,\
+    \ INF<T>);\n  vc<int> par(N, -1);\n  vc<int> root(N, -1);\n\n  using P = pair<T,\
+    \ int>;\n\n  priority_queue<P, vector<P>, greater<P>> que;\n\n  for (auto&& v:\
+    \ vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.emplace(T(0), v);\n  }\n\n\
+    \  while (!que.empty()) {\n    auto [dv, v] = que.top();\n    que.pop();\n   \
+    \ if (dv > dist[v]) continue;\n    for (auto&& e: G[v]) {\n      if (chmin(dist[e.to],\
     \ dist[e.frm] + e.cost)) {\n        root[e.to] = root[e.frm];\n        par[e.to]\
     \ = e.frm;\n        que.push(mp(dist[e.to], e.to));\n      }\n    }\n  }\n  return\
     \ {dist, par, root};\n}\n"
@@ -130,8 +130,8 @@ data:
   requiredBy:
   - graph/shortest_path/K_shortest_walk.hpp
   - graph/mincostcycle.hpp
-  timestamp: '2022-12-05 10:41:25+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-02-01 23:18:36+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/2251_1.test.cpp
   - test/aoj/2251_2.test.cpp
