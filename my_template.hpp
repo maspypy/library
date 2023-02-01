@@ -9,12 +9,29 @@
 using namespace std;
 
 using ll = long long;
-using pi = pair<ll, ll>;
-using vi = vector<ll>;
 using u32 = unsigned int;
 using u64 = unsigned long long;
 using i128 = __int128;
 
+template <class T>
+constexpr T INF = 0;
+template <>
+constexpr int INF<int> = 1'000'000'000;
+template <>
+constexpr ll INF<ll> = ll(INF<int>) * INF<int>;
+template <>
+constexpr u32 INF<u32> = INF<int>;
+template <>
+constexpr u64 INF<u64> = INF<ll>;
+template <>
+constexpr i128 INF<i128> = i128(INF<ll>) * INF<ll>;
+template <>
+constexpr double INF<double> = INF<ll>;
+template <>
+constexpr long double INF<long double> = INF<ll>;
+
+using pi = pair<ll, ll>;
+using vi = vector<ll>;
 template <class T>
 using vc = vector<T>;
 template <class T>
