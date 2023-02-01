@@ -1,8 +1,9 @@
 #include "graph/base.hpp"
 #include "ds/unionfind/unionfind.hpp"
 
+// 最小全域木を作るので、特に各点からの最近点をとる目的で使うこともできる
 template <typename T>
-Graph<T, 0> Manhattan_MST(vc<pair<T, T>>& XY) {
+Graph<T, 0> manhattan_mst(vc<pair<T, T>>& XY) {
   int N = XY.size();
   vc<tuple<T, int, int>> dat;
   dat.reserve(4 * N);
