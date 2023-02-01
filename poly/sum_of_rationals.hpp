@@ -5,6 +5,10 @@
 // 有理式の和を計算する。分割統治 O(Nlog^2N)。N は次数の和。
 template <typename mint>
 pair<vc<mint>, vc<mint>> sum_of_rationals(vc<pair<vc<mint>, vc<mint>>> dat) {
+  if (len(dat) == 0) {
+    vc<mint> f = {0}, g = {1};
+    return {f, g};
+  }
   using P = pair<vc<mint>, vc<mint>>;
   auto add = [&](P& a, P& b) -> P {
     int na = len(a.fi) - 1, da = len(a.se) - 1;
