@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "flow/maxflow.hpp"
+#include "linalg/implicit_matrix/vandermonde.hpp"
 
 void solve() {
   LL(N, M);
