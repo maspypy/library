@@ -5,7 +5,7 @@
 #include "enumerate/floor_range.hpp"
 
 void test_floor() {
-  ll INF = 1000;
+  ll LIM = 1000;
   using T = tuple<ll, ll, ll>;
   auto F = [&](ll N) -> vc<T> {
     vc<T> dat;
@@ -15,7 +15,7 @@ void test_floor() {
   };
   auto G = [&](ll N) -> vc<T> {
     vvc<ll> tmp(N + 1);
-    FOR(x, 1, INF) tmp[floor(N, x)].eb(x);
+    FOR(x, 1, LIM) tmp[floor(N, x)].eb(x);
     vc<T> dat;
     FOR(x, 1, N + 1) {
       if (len(tmp[x])) {
@@ -30,17 +30,17 @@ void test_floor() {
 }
 
 void test_ceil() {
-  ll INF = 1000;
+  ll LIM = 1000;
   using T = tuple<ll, ll, ll>;
   auto F = [&](ll N) -> vc<T> {
     vc<T> dat;
     auto f = [&](ll q, ll l, ll r) -> void { dat.eb(q, l, r); };
-    ceil_range<ll>(N, f, INF);
+    ceil_range<ll>(N, f, LIM);
     return dat;
   };
   auto G = [&](ll N) -> vc<T> {
     vvc<ll> tmp(N + 1);
-    FOR(x, 1, INF) tmp[ceil(N, x)].eb(x);
+    FOR(x, 1, LIM) tmp[ceil(N, x)].eb(x);
     vc<T> dat;
     FOR(x, 1, N + 1) {
       if (len(tmp[x])) {

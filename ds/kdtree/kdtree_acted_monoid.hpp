@@ -46,8 +46,8 @@ private:
     int n = len(xs);
     size[idx] = n;
     auto& [xmin, xmax, ymin, ymax] = closed_range[idx];
-    xmin = ymin = INF<XY>;
-    xmax = ymax = -INF<XY>;
+    xmin = ymin = infty<XY>;
+    xmax = ymax = -infty<XY>;
 
     FOR(i, n) {
       auto x = xs[i], y = ys[i];

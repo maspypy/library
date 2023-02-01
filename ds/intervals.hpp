@@ -4,8 +4,8 @@
 // コンストラクタでは T none_val を指定する
 template <typename T = ll, typename X = ll>
 struct Intervals {
-  static constexpr X LLIM = -INF<X>;
-  static constexpr X RLIM = INF<X>;
+  static constexpr X LLIM = -infty<X>;
+  static constexpr X RLIM = infty<X>;
   const T none_val;
   // none_val でない区間の個数と長さ合計
   int total_num;

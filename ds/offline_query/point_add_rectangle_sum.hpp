@@ -33,7 +33,7 @@ struct Point_Add_Rectangle_Sum {
       NX = len(keyX);
     }
     if (SMALL_X) {
-      XY mx = INF<XY>;
+      XY mx = infty<XY>;
       for (auto &&[x, y, g]: point) chmin(mx, x);
       for (auto &&[x, y, g]: point) x -= mx, chmax(NX, x + 1);
       for (auto &&[xl, xr, yl, yr]: rect) {

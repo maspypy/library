@@ -32,8 +32,8 @@ private:
   void build(int idx, vc<XY> xs, vc<XY> ys, vc<X> vs, bool divx = true) {
     int n = len(xs);
     auto& [xmin, xmax, ymin, ymax] = closed_range[idx];
-    xmin = ymin = INF<XY>;
-    xmax = ymax = -INF<XY>;
+    xmin = ymin = infty<XY>;
+    xmax = ymax = -infty<XY>;
 
     FOR(i, n) {
       auto x = xs[i], y = ys[i];

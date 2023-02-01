@@ -34,7 +34,7 @@ struct Beats_SumMinMax_ChminChmax {
       return z;
     }
     static constexpr X unit() {
-      return {0, INF<T>, -INF<T>, 0, 0, INF<T>, -INF<T>, 0};
+      return {0, infty<T>, -infty<T>, 0, 0, infty<T>, -infty<T>, 0};
     }
     bool commute = true;
   };
@@ -48,7 +48,7 @@ struct Beats_SumMinMax_ChminChmax {
       b = min(b, e), c = min(c, e), c = max(c, f);
       return {a, b, c};
     }
-    static constexpr X unit() { return {0, INF<T>, -INF<T>}; }
+    static constexpr X unit() { return {0, infty<T>, -infty<T>}; }
     bool commute = false;
   };
   struct Beats {
@@ -63,7 +63,7 @@ struct Beats_SumMinMax_ChminChmax {
       x.sum += cnt * add;
       x.min += add, x.max += add, x.min2 += add, x.max2 += add;
 
-      if (mi == INF<T> && ma == -INF<T>) return x;
+      if (mi == infty<T> && ma == -infty<T>) return x;
 
       T before_min = x.min, before_max = x.max;
       x.min = min(x.min, mi), x.min = max(x.min, ma);
@@ -108,7 +108,7 @@ struct Beats_SumMinMax_ChminChmax {
   }
   static X from_element(T x) { return {x, x, x, 1, 1, x, x, 0}; }
 
-  void chmin(int l, int r, T x) { seg.apply(l, r, {0, x, -INF<T>}); }
-  void chmax(int l, int r, T x) { seg.apply(l, r, {0, INF<T>, x}); }
-  void add(int l, int r, T x) { seg.apply(l, r, {x, INF<T>, -INF<T>}); }
+  void chmin(int l, int r, T x) { seg.apply(l, r, {0, x, -infty<T>}); }
+  void chmax(int l, int r, T x) { seg.apply(l, r, {0, infty<T>, x}); }
+  void add(int l, int r, T x) { seg.apply(l, r, {x, infty<T>, -infty<T>}); }
 };
