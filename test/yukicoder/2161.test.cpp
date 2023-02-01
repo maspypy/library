@@ -22,7 +22,6 @@ void solve() {
   };
   auto dp1 = calc(0, N / 2);
   auto dp2 = calc(N / 2, N);
-  const ll INF = 1LL << 60;
   ll ANS = 0;
   FOR(sz, N / 2 + 1) {
     // 左側の大きさが sz
@@ -32,7 +31,7 @@ void solve() {
       if (sz == a) X.add_query(b, c, 1);
     }
     for (auto&& [a, b, c]: dp2) {
-      if (sz + a <= K) X.sum_query(-INF, L - b + 1, P - c, INF);
+      if (sz + a <= K) X.sum_query(-infty<ll>, L - b + 1, P - c, infty<ll>);
     }
     ANS += SUM<ll>(X.calc());
   }

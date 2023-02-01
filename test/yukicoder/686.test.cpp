@@ -10,11 +10,12 @@ void solve() {
   RBST_ActedMonoid<AM, false, 100'010> X;
   using np = decltype(X)::np;
 
-  const int INF = 1 << 30;
-  np root = X.new_node(INF);
+  int unit = AM::Monoid_X::unit();
+  np root = X.new_node(unit);
 
   FOR(N) {
-    if (X.prod(root) != INF) root = X.merge(root, X.new_node(INF));
+    if (X.prod(root) != infty<int>)
+      root = X.merge(root, X.new_node(infty<int>));
     LL(L, R);
     // L未満 / R 未満
     np a, b, c, c1, c2;
@@ -27,20 +28,13 @@ void solve() {
     c1 = X.set(c1, 0, L);
     root = X.merge4(a, c1, b, c2);
   }
-  auto check = [&](int e) -> bool { return e < INF; };
+  auto check = [&](int e) -> bool { return e < infty<int>; };
   auto [n1, n2] = X.split_max_right(root, check);
   int ANS = (n1 ? n1->size : 0);
   print(ANS);
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }

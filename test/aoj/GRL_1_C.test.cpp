@@ -8,15 +8,14 @@ void solve() {
   LL(N, M);
   Graph<ll, 1> G(N);
   G.read_graph(M, 1, 0);
-  const ll INF = 1LL << 60;
-  auto dist = warshall_floyd<ll>(G, INF);
+  auto dist = warshall_floyd<ll>(G);
   FOR(v, N) if (dist[v][v] < 0) return print("NEGATIVE CYCLE");
   FOR(a, N) {
     string S;
     FOR(b, N) {
       if (b) S += " ";
       ll x = dist[a][b];
-      if (x == INF)
+      if (x == infty<ll>)
         S += "INF";
       else
         S += to_string(x);

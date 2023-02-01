@@ -6,14 +6,13 @@
 
 void solve() {
   LL(N, M);
-  Graph G(N);
+  Graph<int, 0> G(N);
   G.read_graph(M, 1);
   LL(a, b);
   --a, --b;
-  const ll INF = 1LL << 60;
 
-  auto [dist_a, par_a] = dijkstra(G, a, INF);
-  auto [dist_b, par_b] = dijkstra(G, b, INF);
+  auto [dist_a, par_a] = dijkstra<int>(G, a);
+  auto [dist_b, par_b] = dijkstra<int>(G, b);
 
   Graph<int, 1> DG(N);
   ll d = dist_a[b];
@@ -31,13 +30,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }

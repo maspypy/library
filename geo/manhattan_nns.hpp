@@ -15,7 +15,7 @@ pair<vc<X>, vc<int>> manhattan_nns(vc<pair<X, X>> FRM, vc<pair<X, X>>& TO) {
   UNIQUE(Y);
 
   vc<int> nbd_idx(N, -1);
-  vc<X> dist(N, INF);
+  vc<X> dist(N, infty<X>);
 
   auto add_ans = [&](int i, int j) -> void {
     if (j == -1) return;

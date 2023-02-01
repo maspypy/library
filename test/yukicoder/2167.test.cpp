@@ -17,10 +17,9 @@ void solve() {
   F.resize(N); // 価値
   auto Ac = cumsum<ll>(F);
 
-  const ll INF = 1LL << 60;
   auto dfs = [&](auto& dfs, int n, ll val) -> ll {
     ll key = hash_pair(pair<ll, ll>{n, val});
-    
+
     if (MP.count(key)) return MP[key];
     // 価値 -> n 個までで達成するための最小重さ
     if (val <= 0) return 0;
@@ -29,12 +28,12 @@ void solve() {
     ll x1 = dfs(dfs, n - 1, val);
     ll x2 = dfs(dfs, n - 1, val - v) + w;
     ll x = min(x1, x2);
-    chmin(x, INF);
+    chmin(x, infty<ll>);
     return (MP[key] = x);
   };
 
   ll ANS = binary_search(
-      [&](ll val) -> bool { return dfs(dfs, N, val) <= LIM; }, 0, INF);
+      [&](ll val) -> bool { return dfs(dfs, N, val) <= LIM; }, 0, infty<ll>);
   print(ANS);
 }
 

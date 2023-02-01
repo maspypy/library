@@ -1,9 +1,9 @@
 #include "graph/base.hpp"
 
 // (cost, vs, es)
-template <typename T>
-vc<tuple<T, vc<int>, vc<int>>> K_shortest_path(Graph<T, 1>& G, int s, int t,
-                                               int K) {
+template <typename T, typename GT>
+vc<tuple<T, vc<int>, vc<int>>> K_shortest_path(GT& G, int s, int t, int K) {
+  assert(G.is_directed());
   const int N = G.N;
 
   // (cost, vs, es)
@@ -14,9 +14,7 @@ vc<tuple<T, vc<int>, vc<int>>> K_shortest_path(Graph<T, 1>& G, int s, int t,
   vc<tuple<T, vc<int>, vc<int>, int>> paths;
 
   nodes.eb(vc<int>(), vc<int>());
-  const T INF = numeric_limits<T>::max();
-
-  vc<T> dist(N, INF);
+  vc<T> dist(N, infty<T>);
   vc<bool> ng_v(N);
   vc<bool> ng_e(G.M);
   vc<int> par(N, -1);
@@ -26,7 +24,7 @@ vc<tuple<T, vc<int>, vc<int>>> K_shortest_path(Graph<T, 1>& G, int s, int t,
       fill(all(par), -1);
       fill(all(ng_v), 0);
       fill(all(ng_e), 0);
-      fill(all(dist), INF);
+      fill(all(dist), infty<T>);
 
       T pref_cost = 0;
       for (auto&& x: es) pref_cost += G.edges[x].cost;
@@ -71,7 +69,7 @@ vc<tuple<T, vc<int>, vc<int>>> K_shortest_path(Graph<T, 1>& G, int s, int t,
     }
     // choose best path
     if (len(paths) == 0) break;
-    pair<int, T> best = {-1, INF};
+    pair<int, T> best = {-1, infty<T>};
     FOR(i, len(paths)) {
       T cost = get<0>(paths[i]);
       if (chmin(best.se, cost)) best.fi = i;

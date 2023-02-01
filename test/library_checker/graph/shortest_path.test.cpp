@@ -11,10 +11,8 @@ void solve() {
   Graph<ll, true> G(N);
   G.read_graph(M, 1, 0);
 
-  const ll INF = 1LL << 60;
-
-  auto [dist, par] = dijkstra<ll>(G, s, INF);
-  if (dist[t] == INF) return print(-1);
+  auto [dist, par] = dijkstra<ll>(G, s);
+  if (dist[t] == infty<ll>) return print(-1);
 
   vector<int> pth = restore_path(par, t);
   print(dist[t], len(pth) - 1);
@@ -22,11 +20,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
   solve();
-
   return 0;
 }

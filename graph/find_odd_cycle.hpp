@@ -11,18 +11,15 @@ pair<vc<int>, vc<int>> find_odd_cycle(GT& G) {
   }
   // 同じ強連結成分内の点しか探索しないようにして
   // とりあえず奇 walk を探す
-  const ll INF = 1 << 30;
-  vc<int> dist(2 * N, INF);
+  vc<int> dist(2 * N, infty<int>);
   vc<int> par(2 * N, -1); // edge index
   deque<int> que;
   auto add = [&](int v, int d, int p) -> void {
-    if (chmin(dist[v], d)) {
-      que.eb(v);
-      par[v] = p;
-    }
+    if (chmin(dist[v], d)) { que.eb(v), par[v] = p; }
   };
   FOR(root, N) {
-    if (dist[2 * root] != INF || dist[2 * root + 1] != INF) continue;
+    if (dist[2 * root + 0] < infty<int>) continue;
+    if (dist[2 * root + 1] < infty<int>) continue;
     add(2 * root, 0, -1);
     while (len(que)) {
       auto v = POP(que);
@@ -33,7 +30,7 @@ pair<vc<int>, vc<int>> find_odd_cycle(GT& G) {
         add(w, dist[v] + 1, e.id);
       }
     }
-    if (dist[2 * root + 1] == INF) continue;
+    if (dist[2 * root + 1] == infty<int>) continue;
     // found
     vc<int> edges;
     vc<int> vs;

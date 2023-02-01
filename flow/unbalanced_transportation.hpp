@@ -7,13 +7,12 @@ template <typename T>
 struct Unbalanced_Transportation_Problem {
   int K, N;
   vc<int> supply;
-  const T INF = numeric_limits<T>::max();
   vvc<T> cost;
   vc<int> FRM;
   Unbalanced_Transportation_Problem(int K, int N, vc<int>& supply)
       : K(K), N(N), supply(supply) {
     assert(SUM(supply) == N);
-    cost.assign(K, vc<T>(N, INF));
+    cost.assign(K, vc<T>(N, infty<T>));
     FRM.assign(N, -1);
   }
 
@@ -32,7 +31,7 @@ struct Unbalanced_Transportation_Problem {
     vc<Q> unused(K);
     FOR(a, K) FOR(b, N) {
       T c = cost[a][b];
-      if (c == INF) continue;
+      if (c == infty<T>) continue;
       unused[a].emplace(c, b);
     }
     while (1) {
@@ -55,14 +54,14 @@ struct Unbalanced_Transportation_Problem {
       }
 
       // グラフを作る
-      vv(T, dist_0, K, K, INF);
+      vv(T, dist_0, K, K, infty<T>);
       FOR(a, K) FOR(b, K) {
         if (len(edge[a][b]) == 0) continue;
         auto [c, idx] = edge[a][b].top();
         dist_0[a][b] = c;
       }
       // source からの最短路
-      vc<T> dist(K, INF);
+      vc<T> dist(K, infty<T>);
       vc<bool> in_que(K);
       queue<int> que;
       vc<int> par(K, -1);
@@ -73,7 +72,7 @@ struct Unbalanced_Transportation_Problem {
         int v = que.front();
         que.pop(), in_que[v] = 0;
         FOR(to, K) {
-          if (dist_0[v][to] == INF) continue;
+          if (dist_0[v][to] == infty<T>) continue;
           if (chmin(dist[to], dist[v] + dist_0[v][to])) {
             par[to] = v;
             if (!in_que[to]) {
@@ -84,9 +83,9 @@ struct Unbalanced_Transportation_Problem {
         }
       }
       int best = -1;
-      T best_c = INF;
+      T best_c = infty<T>;
       FOR(k, K) {
-        if (dist[k] == INF) continue;
+        if (dist[k] == infty<T>) continue;
         T x = dist[k] + unused[k].top().fi;
         if (chmin(best_c, x)) best = k;
       }
@@ -97,7 +96,7 @@ struct Unbalanced_Transportation_Problem {
         FRM[b] = a;
         MCF += cost[a][b];
         FOR(v, K) {
-          if (v == a || cost[v][b] == INF) continue;
+          if (v == a || cost[v][b] == infty<T>) continue;
           edge[v][a].emplace(cost[v][b] - cost[a][b], b);
         }
       };
