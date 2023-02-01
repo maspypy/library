@@ -17,7 +17,8 @@ struct Monoid_XorBasis {
     return false;
   }
 
-  static VECT_SP op(VECT_SP x, const VECT_SP& y) {
+  static VECT_SP op(VECT_SP x, VECT_SP y) {
+    if (len(x) < len(y)) swap(x, y);
     for (auto v: y) { add_element(x, v); }
     return x;
   }
