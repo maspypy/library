@@ -87,7 +87,7 @@ vc<u64> solve_QOJ_5445(int N, vc<int> par, vvc<u64> dat) {
     assert(len(event) == LOG);
     vc<u64> mat(LOG);
     FOR(i, LOG) mat[i] = event[i].se;
-    mat = mat_inv<u64>(mat, 0);
+    mat = mat_inv<u64>(mat);
     mat = transpose<u64>(LOG, LOG, mat);
     FOR(j, LOG) { event[j].se = mat[j]; }
     event.insert(event.begin(), {0, u64(0)});
@@ -106,19 +106,26 @@ vc<u64> solve_QOJ_5445(int N, vc<int> par, vvc<u64> dat) {
   return ANS;
 }
 
-void solve() {
-  INT(N);
-  VEC(int, par, N - 1);
+void test_QOJ_5445() {
+  int N = 5;
+  vc<int> par = {1, 2, 2, 3};
   vvc<u64> dat(N);
-  FOR(v, N) {
-    INT(n);
-    dat[v].resize(n);
-    FOR(i, n) { read(dat[v][i]); }
-  }
+  dat[0] = {83, 75, 58};
+  dat[1] = {125, 124, 58, 16};
+  dat[2] = {39, 125, 71, 112};
+  dat[3] = {69, 66, 5};
+  dat[4] = {48, 73, 69, 6};
   auto ANS = solve_QOJ_5445(N, par, dat);
-  for (auto&& x: ANS) print(x);
+  assert(ANS == vc<u64>({171, 125, 183, 142, 243}));
 }
+
+void solve() {
+  LL(a, b);
+  print(a + b);
+}
+
 signed main() {
+  test_QOJ_5445();
   solve();
   return 0;
 }
