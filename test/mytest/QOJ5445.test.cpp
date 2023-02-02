@@ -6,14 +6,14 @@
 #include "graph/tree.hpp"
 #include "graph/rerooting_dp.hpp"
 
-#include "linalg/xor/vector_space_xor.hpp"
-#include "linalg/xor/mat_inv_xor.hpp"
+#include "linalg/xor/vector_space.hpp"
+#include "linalg/xor/mat_inv.hpp"
 #include "linalg/xor/transpose.hpp"
 
 const int LOG = 64;
 
 vc<u64> solve_QOJ_5445(int N, vc<int> par, vvc<u64> dat) {
-  using SP = Vector_Space_Xor<u64>;
+  using SP = Vector_Space<u64>;
 
   Graph<bool, 0> G(N);
   FOR(v, 1, N) { G.add(par[v - 1] - 1, v); }
@@ -87,7 +87,7 @@ vc<u64> solve_QOJ_5445(int N, vc<int> par, vvc<u64> dat) {
     assert(len(event) == LOG);
     vc<u64> mat(LOG);
     FOR(i, LOG) mat[i] = event[i].se;
-    mat = mat_inv_xor<u64>(mat, 0);
+    mat = mat_inv<u64>(mat, 0);
     mat = transpose<u64>(LOG, LOG, mat);
     FOR(j, LOG) { event[j].se = mat[j]; }
     event.insert(event.begin(), {0, u64(0)});
