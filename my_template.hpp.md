@@ -699,9 +699,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/ARC30D.test.cpp
     title: test/mytest/ARC30D.test.cpp
-  - icon: ':x:'
-    path: test/mytest/QOJ5445.test.cpp
-    title: test/mytest/QOJ5445.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/add_chmin.test.cpp
     title: test/mytest/add_chmin.test.cpp
@@ -1168,9 +1165,6 @@ data:
     path: test/yukicoder/1418.test.cpp
     title: test/yukicoder/1418.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1421.test.cpp
-    title: test/yukicoder/1421.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1435.test.cpp
     title: test/yukicoder/1435.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1356,9 +1350,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1838.test.cpp
     title: test/yukicoder/1838.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/184.test.cpp
-    title: test/yukicoder/184.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1844.test.cpp
     title: test/yukicoder/1844.test.cpp
@@ -1972,7 +1963,6 @@ data:
   - test/yukicoder/1936.test.cpp
   - test/yukicoder/1907.test.cpp
   - test/yukicoder/1332.test.cpp
-  - test/yukicoder/184.test.cpp
   - test/yukicoder/1339.test.cpp
   - test/yukicoder/579.test.cpp
   - test/yukicoder/1561.test.cpp
@@ -2024,7 +2014,6 @@ data:
   - test/yukicoder/1502.test.cpp
   - test/yukicoder/1956.test.cpp
   - test/yukicoder/1778.test.cpp
-  - test/yukicoder/1421.test.cpp
   - test/yukicoder/1269.test.cpp
   - test/yukicoder/1451.test.cpp
   - test/yukicoder/187.test.cpp
@@ -2267,7 +2256,6 @@ data:
   - test/library_checker/matrix/implicit_matrix.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp
   - test/mytest/rbst_am_persistent.test.cpp
-  - test/mytest/QOJ5445.test.cpp
   - test/mytest/maxplus_concave.test.cpp
   - test/mytest/summax_assign.test.cpp
   - test/mytest/range_mex.test.cpp

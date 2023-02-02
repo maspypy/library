@@ -124,6 +124,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/max_idx.hpp
       title: alg/monoid/max_idx.hpp
+    - icon: ':warning:'
+      path: alg/monoid/merge_vect_sp.hpp
+      title: alg/monoid/merge_vect_sp.hpp
     - icon: ':question:'
       path: alg/monoid/min.hpp
       title: alg/monoid/min.hpp
@@ -157,9 +160,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/xor.hpp
       title: alg/monoid/xor.hpp
-    - icon: ':heavy_check_mark:'
-      path: alg/monoid/xor_basis.hpp
-      title: alg/monoid/xor_basis.hpp
   - name: convex
     pages:
     - icon: ':heavy_check_mark:'
@@ -639,7 +639,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/rerooting_classify_subtree.hpp
       title: graph/rerooting_classify_subtree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/rerooting_dp.hpp
       title: graph/rerooting_dp.hpp
     - icon: ':heavy_check_mark:'
@@ -657,7 +657,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tournament.hpp
       title: graph/tournament.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree.hpp
       title: graph/tree.hpp
     - icon: ':heavy_check_mark:'
@@ -775,11 +775,11 @@ data:
   - name: linalg/bitset
     pages:
     - icon: ':warning:'
-      path: linalg/bitset/mat_inv_bitset.hpp
-      title: linalg/bitset/mat_inv_bitset.hpp
-    - icon: ':heavy_check_mark:'
-      path: linalg/bitset/solve_linear_bitset.hpp
-      title: linalg/bitset/solve_linear_bitset.hpp
+      path: linalg/bitset/mat_inv.hpp
+      title: linalg/bitset/mat_inv.hpp
+    - icon: ':warning:'
+      path: linalg/bitset/solve_linear.hpp
+      title: linalg/bitset/solve_linear.hpp
   - name: linalg
     pages:
     - icon: ':heavy_check_mark:'
@@ -824,9 +824,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/transpose.hpp
       title: linalg/transpose.hpp
-    - icon: ':warning:'
-      path: linalg/vectorspace.hpp
-      title: linalg/vectorspace.hpp
   - name: linalg/implicit_matrix
     pages:
     - icon: ':heavy_check_mark:'
@@ -843,18 +840,18 @@ data:
       title: linalg/implicit_matrix/vandermonde.hpp
   - name: linalg/xor
     pages:
-    - icon: ':x:'
-      path: linalg/xor/mat_inv_xor.hpp
-      title: linalg/xor/mat_inv_xor.hpp
-    - icon: ':x:'
-      path: linalg/xor/solve_linear_xor.hpp
-      title: linalg/xor/solve_linear_xor.hpp
-    - icon: ':question:'
+    - icon: ':warning:'
+      path: linalg/xor/mat_inv.hpp
+      title: linalg/xor/mat_inv.hpp
+    - icon: ':warning:'
+      path: linalg/xor/solve_linear.hpp
+      title: linalg/xor/solve_linear.hpp
+    - icon: ':heavy_check_mark:'
       path: linalg/xor/transpose.hpp
       title: linalg/xor/transpose.hpp
-    - icon: ':x:'
-      path: linalg/xor/vector_space_xor.hpp
-      title: linalg/xor/vector_space_xor.hpp
+    - icon: ':warning:'
+      path: linalg/xor/vector_space.hpp
+      title: linalg/xor/vector_space.hpp
   - name: mod
     pages:
     - icon: ':heavy_check_mark:'
@@ -2560,7 +2557,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1418.test.cpp
       title: test/yukicoder/1418.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/1421.test.cpp
       title: test/yukicoder/1421.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2749,7 +2746,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1838.test.cpp
       title: test/yukicoder/1838.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/184.test.cpp
       title: test/yukicoder/184.test.cpp
     - icon: ':heavy_check_mark:'
