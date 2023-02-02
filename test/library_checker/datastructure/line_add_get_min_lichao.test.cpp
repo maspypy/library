@@ -6,7 +6,7 @@
 void solve() {
   LL(N, Q);
   const int LIM = 1'000'000'000;
-  Dynamic_LiChao_Tree<ll, 0, 0, 400'000, 1> X(-LIM, LIM + 1);
+  Dynamic_LiChao_Tree<ll, 0, 400'000, 1> X(-LIM, LIM + 1);
   using np = decltype(X)::np;
   np root = X.new_root();
   FOR(N) {
