@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1421.test.cpp
+    title: test/yukicoder/1421.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/bitset/solve_linear.hpp\"\n// \u884C\u30D9\u30AF\u30C8\
@@ -39,8 +42,9 @@ data:
   path: linalg/bitset/solve_linear.hpp
   requiredBy: []
   timestamp: '2023-02-03 02:31:06+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yukicoder/1421.test.cpp
 documentation_of: linalg/bitset/solve_linear.hpp
 layout: document
 redirect_from:
