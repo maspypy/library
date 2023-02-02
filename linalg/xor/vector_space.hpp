@@ -1,13 +1,13 @@
-#include "linalg/xor/solve_linear_xor.hpp"
+#include "linalg/xor/solve_linear.hpp"
 #include "linalg/xor/transpose.hpp"
 
 template <typename UINT>
-struct Vector_Space_Xor {
-#define SP Vector_Space_Xor
+struct Vector_Space {
+#define SP Vector_Space
   vc<UINT> dat;
 
-  Vector_Space_Xor() {}
-  Vector_Space_Xor(vc<UINT> dat, bool is_reduced = false) : dat(dat) {
+  Vector_Space() {}
+  Vector_Space(vc<UINT> dat, bool is_reduced = false) : dat(dat) {
     if (!is_reduced) reduce();
   }
 

@@ -1,12 +1,9 @@
 // solve Ax = b を解く。[0] に特殊解、[1]～ に Ker A の基底が入る。解なしは
 // empty。 A の行ベクトルを UINT で持たせる。
 template <typename UINT>
-vc<UINT> solve_linear_xor(int n, int m, vc<UINT>& A, UINT b, bool keep_A = 1) {
+vc<UINT> solve_linear_xor(int n, int m, vc<UINT>& A, UINT b) {
   assert(max(n, m) <= numeric_limits<UINT>::digits);
   assert(len(A) == n);
-  vc<UINT> tmp;
-  if (keep_A) tmp = A;
-
   int rk = 0;
   FOR(j, m) {
     if (rk == n) break;
@@ -45,6 +42,5 @@ vc<UINT> solve_linear_xor(int n, int m, vc<UINT>& A, UINT b, bool keep_A = 1) {
     }
     res.eb(x);
   }
-  if (keep_A) swap(A, tmp);
   return res;
 }
