@@ -1,7 +1,7 @@
 #include "linalg/xor/vector_space.hpp"
 
 template <typename UINT>
-struct Mono {
+struct Merge_Vector_Space {
   using value_type = Vector_Space<UINT>;
   using X = value_type;
   static X op(X x, X y) { return Vector_Space<UINT>::merge(x, y); }
