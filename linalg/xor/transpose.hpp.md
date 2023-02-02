@@ -5,16 +5,19 @@ data:
   - icon: ':warning:'
     path: alg/monoid/merge_vect_sp.hpp
     title: alg/monoid/merge_vect_sp.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: linalg/xor/vector_space.hpp
     title: linalg/xor/vector_space.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/mytest/QOJ5445.test.cpp
+    title: test/mytest/QOJ5445.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/xor_transpose.test.cpp
     title: test/mytest/xor_transpose.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/dsnet/matrix-transpose
@@ -51,8 +54,9 @@ data:
   - linalg/xor/vector_space.hpp
   - alg/monoid/merge_vect_sp.hpp
   timestamp: '2023-02-03 02:21:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/mytest/QOJ5445.test.cpp
   - test/mytest/xor_transpose.test.cpp
 documentation_of: linalg/xor/transpose.hpp
 layout: document
