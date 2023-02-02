@@ -12,12 +12,12 @@ data:
     title: graph/shortest_path/dijkstra.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1320.test.cpp
     title: test/yukicoder/1320.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -107,8 +107,8 @@ data:
     \  FOR(i, M) {\r\n    auto& e = G.edges[i];\r\n    T cost = e.cost;\r\n    int\
     \ frm = e.to, to = e.frm;\r\n    Graph Gi(N);\r\n    FOR(j, M) if (i != j) {\r\
     \n      auto& e = G.edges[j];\r\n      Gi.add(e.frm, e.to, e.cost);\r\n    }\r\
-    \n    Gi.build();\r\n\r\n    T x = (mx <= 1 ? bfs01<decltype(Gi), T>(Gi, frm).fi[to]\r\
-    \n                   : dijkstra<T>(Gi, frm).fi[to]);\r\n    if (x == -1) x = infty<T>;\r\
+    \n    Gi.build();\r\n\r\n    T x = (mx <= 1 ? bfs01<T>(Gi, frm).fi[to]\r\n   \
+    \                : dijkstra<T>(Gi, frm).fi[to]);\r\n    if (x == -1) x = infty<T>;\r\
     \n    chmin(res, cost + x);\r\n  }\r\n  if (res == infty<T>) res = -1;\r\n  return\
     \ res;\r\n}\r\n"
   code: "#include \"graph/shortest_path/dijkstra.hpp\"\r\n#include \"graph/shortest_path/bfs01.hpp\"\
@@ -117,8 +117,8 @@ data:
     \  FOR(i, M) {\r\n    auto& e = G.edges[i];\r\n    T cost = e.cost;\r\n    int\
     \ frm = e.to, to = e.frm;\r\n    Graph Gi(N);\r\n    FOR(j, M) if (i != j) {\r\
     \n      auto& e = G.edges[j];\r\n      Gi.add(e.frm, e.to, e.cost);\r\n    }\r\
-    \n    Gi.build();\r\n\r\n    T x = (mx <= 1 ? bfs01<decltype(Gi), T>(Gi, frm).fi[to]\r\
-    \n                   : dijkstra<T>(Gi, frm).fi[to]);\r\n    if (x == -1) x = infty<T>;\r\
+    \n    Gi.build();\r\n\r\n    T x = (mx <= 1 ? bfs01<T>(Gi, frm).fi[to]\r\n   \
+    \                : dijkstra<T>(Gi, frm).fi[to]);\r\n    if (x == -1) x = infty<T>;\r\
     \n    chmin(res, cost + x);\r\n  }\r\n  if (res == infty<T>) res = -1;\r\n  return\
     \ res;\r\n}\r\n"
   dependsOn:
@@ -128,8 +128,8 @@ data:
   isVerificationFile: false
   path: graph/mincostcycle.hpp
   requiredBy: []
-  timestamp: '2023-02-02 01:09:35+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-02-02 12:48:15+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1320.test.cpp
 documentation_of: graph/mincostcycle.hpp
