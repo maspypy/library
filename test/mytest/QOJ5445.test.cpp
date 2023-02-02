@@ -6,16 +6,15 @@
 #include "graph/tree.hpp"
 #include "graph/rerooting_dp.hpp"
 
-#include "alg/monoid/xor_basis.hpp"
+#include "linalg/xor/vector_space_xor.hpp"
 #include "linalg/xor/mat_inv_xor.hpp"
 #include "linalg/xor/transpose.hpp"
-#include "linalg/xor/solve_linear_xor.hpp"
 
 const int LOG = 64;
 
 vc<u64> solve_QOJ_5445(int N, vc<int> par, vvc<u64> dat) {
-  using Mono = Monoid_XorBasis<u64>;
-  using SP = Mono::value_type;
+  using SP = Vector_Space_Xor<u64>;
+
   Graph<bool, 0> G(N);
   FOR(v, 1, N) { G.add(par[v - 1] - 1, v); }
   G.build();
@@ -23,10 +22,9 @@ vc<u64> solve_QOJ_5445(int N, vc<int> par, vvc<u64> dat) {
 
   vc<SP> dual(N);
   FOR(v, N) {
-    SP X = Mono::unit();
-    for (auto&& e: dat[v]) { Mono::add_element(X, e); }
-    dual[v] = solve_linear_xor<u64>(len(X), LOG, X, 0, 0);
-    dual[v].erase(dual[v].begin());
+    SP x;
+    for (auto&& e: dat[v]) x.add_element(e);
+    dual[v] = x.orthogonal_space(LOG);
   }
 
   /*
@@ -41,10 +39,10 @@ vc<u64> solve_QOJ_5445(int N, vc<int> par, vvc<u64> dat) {
   auto fee = [&](Data& x, Data& y) -> Data {
     // merge sort
     Data z;
-    auto V = Mono::unit();
+    auto V = SP{};
     auto add = [&](P& dat) -> void {
       if (len(V) == LOG) return;
-      if (Mono::add_element(V, dat.se)) z.eb(dat.fi, V.back());
+      if (V.add_element(dat.se)) z.eb(dat.fi, V.dat.back());
     };
 
     int p = 0, q = 0;
@@ -64,11 +62,11 @@ vc<u64> solve_QOJ_5445(int N, vc<int> par, vvc<u64> dat) {
   };
   auto fev = [&](Data& x, int v) -> Data {
     Data y;
-    for (auto&& a: dual[v]) y.eb(0, a);
+    for (auto&& a: dual[v].dat) y.eb(0, a);
     auto V = dual[v];
     for (auto&& [d, a]: x) {
       if (len(V) == LOG) break;
-      if (Mono::add_element(V, a)) y.eb(d, V.back());
+      if (V.add_element(a)) y.eb(d, V.dat.back());
     }
     return y;
   };
@@ -94,13 +92,13 @@ vc<u64> solve_QOJ_5445(int N, vc<int> par, vvc<u64> dat) {
     FOR(j, LOG) { event[j].se = mat[j]; }
     event.insert(event.begin(), {0, u64(0)});
 
-    SP X = Mono::unit();
+    SP X{};
     FOR_R(i, 1, 1 + LOG) {
       u64 x = event[i].se;
-      Mono::add_element(X, x);
+      X.add_element(x);
       int t1 = event[i - 1].fi, t2 = event[i].fi;
       if (t1 < t2) {
-        u64 ans = Mono::get_max(X, 0);
+        u64 ans = X.get_max(0);
         ANS[v] += ans * u64(t2 - t1);
       }
     }
@@ -108,26 +106,19 @@ vc<u64> solve_QOJ_5445(int N, vc<int> par, vvc<u64> dat) {
   return ANS;
 }
 
-void test_QOJ_5445() {
-  int N = 5;
-  vc<int> par = {1, 2, 2, 3};
-  vvc<u64> dat(N);
-  dat[0] = {83, 75, 58};
-  dat[1] = {125, 124, 58, 16};
-  dat[2] = {39, 125, 71, 112};
-  dat[3] = {69, 66, 5};
-  dat[4] = {48, 73, 69, 6};
-  auto ANS = solve_QOJ_5445(N, par, dat);
-  assert(ANS == vc<u64>({171, 125, 183, 142, 243}));
-}
-
 void solve() {
-  LL(a, b);
-  print(a + b);
+  INT(N);
+  VEC(int, par, N - 1);
+  vvc<u64> dat(N);
+  FOR(v, N) {
+    INT(n);
+    dat[v].resize(n);
+    FOR(i, n) { read(dat[v][i]); }
+  }
+  auto ANS = solve_QOJ_5445(N, par, dat);
+  for (auto&& x: ANS) print(x);
 }
-
 signed main() {
-  test_QOJ_5445();
   solve();
   return 0;
 }
