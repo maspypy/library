@@ -24,12 +24,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1262.test.cpp
     title: test/yukicoder/1262.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = long long>\n\
@@ -124,7 +124,7 @@ data:
   requiredBy:
   - mod/tetration.hpp
   timestamp: '2023-01-09 23:28:24+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/NTL_1_D.test.cpp
   - test/yukicoder/1262.test.cpp
