@@ -25,12 +25,10 @@ void solve() {
       points.eb(x);
     }
   }
-  LiChao_Tree<ll, 1, 0, 400'000, 1> X(points);
-  using np = decltype(X)::np;
-  np root = X.new_root();
+  LiChao_Tree<ll1> X(points);
   for (auto&& [t, a, b]: query) {
-    if (t == 0) root = X.add_line(root, {a, b});
-    if (t == 1) print(X.query(root, a).fi);
+    if (t == 0) X.add_line({a, b});
+    if (t == 1) print(X.query(a).fi);
   }
 }
 
