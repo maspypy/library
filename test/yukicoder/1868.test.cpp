@@ -12,7 +12,7 @@ void solve() {
     RRG.add_to_range(i, i + 1, r, 1);
   }
   auto G = RRG.build();
-  auto [dist, par] = bfs01(G, 0);
+  auto [dist, par] = bfs01<int>(G, 0);
   print(dist[N - 1]);
 }
 
