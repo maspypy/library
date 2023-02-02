@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1421"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "linalg/bitset/solve_linear_bitset.hpp"
+#include "linalg/bitset/solve_linear.hpp"
 
 using BS = bitset<50>;
 const int K = 30;
@@ -24,7 +24,7 @@ void solve() {
   vc<int> ANS(N);
   FOR(k, K) {
     auto b = rhs[k];
-    auto x = solve_linear_bitset<BS, bool>(M, N, A, b);
+    auto x = solve_linear<BS, bool>(M, N, A, b);
     if (x.empty()) return print(-1);
     FOR(i, N) if (x[0][i]) ANS[i] |= 1 << k;
   }
