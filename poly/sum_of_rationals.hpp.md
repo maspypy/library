@@ -51,15 +51,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1962.test.cpp
     title: test/yukicoder/1962.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc276_g.test.cpp
     title: test_atcoder/abc276_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc276_g_2.test.cpp
     title: test_atcoder/abc276_g_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/sum_of_rationals.hpp\"\n\n#line 2 \"mod/modint.hpp\"\
@@ -377,7 +377,7 @@ data:
   - poly/product_of_pow_of_linear.hpp
   - poly/sum_of_exp_bx.hpp
   timestamp: '2023-02-02 02:53:49+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1145.test.cpp
   - test/yukicoder/1875.test.cpp

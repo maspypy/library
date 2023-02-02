@@ -267,6 +267,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/line_add_get_min_lichao.test.cpp
     title: test/library_checker/datastructure/line_add_get_min_lichao.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/line_add_get_min_lichao_2.test.cpp
+    title: test/library_checker/datastructure/line_add_get_min_lichao_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/persistent_queue.test.cpp
     title: test/library_checker/datastructure/persistent_queue.test.cpp
@@ -1644,25 +1647,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc272_h.test.cpp
     title: test_atcoder/abc272_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc273_e.test.cpp
     title: test_atcoder/abc273_e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc274_h.test.cpp
     title: test_atcoder/abc274_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc274g.test.cpp
     title: test_atcoder/abc274g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc276_g.test.cpp
     title: test_atcoder/abc276_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc276_g_2.test.cpp
     title: test_atcoder/abc276_g_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d.test.cpp
     title: test_atcoder/agc058d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc123d.test.cpp
     title: test_atcoder/arc123d.test.cpp
   - icon: ':x:'
@@ -2223,6 +2226,7 @@ data:
   - test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
   - test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - test/library_checker/datastructure/line_add_get_min_lichao_2.test.cpp
   - test/library_checker/datastructure/persistent_queue.test.cpp
   - test/library_checker/datastructure/staticrmq_sparse.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
