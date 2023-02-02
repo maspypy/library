@@ -6,9 +6,6 @@ data:
     path: alg/acted_monoid/minidx_add.hpp
     title: alg/acted_monoid/minidx_add.hpp
   - icon: ':warning:'
-    path: convex/lichao.hpp
-    title: convex/lichao.hpp
-  - icon: ':warning:'
     path: geo/manhattan_nns.hpp
     title: geo/manhattan_nns.hpp
   - icon: ':heavy_check_mark:'
@@ -45,7 +42,6 @@ data:
   isVerificationFile: false
   path: alg/monoid/min_idx.hpp
   requiredBy:
-  - convex/lichao.hpp
   - geo/manhattan_nns.hpp
   - string/suffix_tree.hpp
   - alg/acted_monoid/minidx_add.hpp

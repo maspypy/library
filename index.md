@@ -168,10 +168,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: convex/cht_monotone.hpp
       title: convex/cht_monotone.hpp
+    - icon: ':x:'
+      path: convex/dynamic_lichao.hpp
+      title: convex/dynamic_lichao.hpp
     - icon: ':heavy_check_mark:'
       path: convex/larsch.hpp
       title: convex/larsch.hpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: convex/lichao.hpp
       title: convex/lichao.hpp
     - icon: ':heavy_check_mark:'
@@ -1638,8 +1641,11 @@ data:
       path: test/library_checker/datastructure/line_add_get_min.test.cpp
       title: test/library_checker/datastructure/line_add_get_min.test.cpp
     - icon: ':x:'
-      path: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
-      title: test/library_checker/datastructure/line_add_get_min_dynamic.test.cpp
+      path: test/library_checker/datastructure/line_add_get_min_lichao.test.cpp
+      title: test/library_checker/datastructure/line_add_get_min_lichao.test.cpp
+    - icon: ':x:'
+      path: test/library_checker/datastructure/line_add_get_min_lichao_2.test.cpp
+      title: test/library_checker/datastructure/line_add_get_min_lichao_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/persistent_queue.test.cpp
       title: test/library_checker/datastructure/persistent_queue.test.cpp
@@ -1701,8 +1707,11 @@ data:
       path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
       title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
     - icon: ':x:'
-      path: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
-      title: test/library_checker/datastructure/segment_add_get_min_dynamic.test.cpp
+      path: test/library_checker/datastructure/segment_add_get_min.test.cpp
+      title: test/library_checker/datastructure/segment_add_get_min.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/datastructure/segment_add_get_min_2.test.cpp
+      title: test/library_checker/datastructure/segment_add_get_min_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/set_xor_min.test.cpp
       title: test/library_checker/datastructure/set_xor_min.test.cpp
