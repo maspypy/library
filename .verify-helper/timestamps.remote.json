@@ -107,6 +107,7 @@
 "test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp": "2023-02-01 23:18:36 +0900",
 "test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp": "2023-02-01 23:18:36 +0900",
 "test/library_checker/datastructure/rectangle_sum_sweep.test.cpp": "2023-02-01 23:31:55 +0900",
+"test/library_checker/datastructure/segment_add_get_min_2.test.cpp": "2023-02-02 19:27:13 +0900",
 "test/library_checker/datastructure/set_xor_min.test.cpp": "2023-02-01 23:18:36 +0900",
 "test/library_checker/datastructure/sort_segtree.test.cpp": "2023-02-01 23:18:36 +0900",
 "test/library_checker/datastructure/sort_segtree_1.test.cpp": "2023-02-01 23:18:36 +0900",
