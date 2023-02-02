@@ -53,7 +53,7 @@ struct Vector_Space {
 
   static SP merge(SP x, SP y) {
     if (len(x) < len(y)) swap(x, y);
-    for (auto v: y.dat) { add_element(x, v); }
+    for (auto v: y.dat) { x.add_element(v); }
     return x;
   }
 
