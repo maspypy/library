@@ -1,7 +1,7 @@
 // 行ベクトルを bitset にする
 // (2000, 8000) で 300ms 程度（ABC276H）
 template <typename BS, typename T>
-vc<BS> solve_linear_bitset(int n, int m, vc<BS> A, vc<T> b) {
+vc<BS> solve_linear(int n, int m, vc<BS> A, vc<T> b) {
   assert(len(b) == n);
   int rk = 0;
   FOR(j, m) {

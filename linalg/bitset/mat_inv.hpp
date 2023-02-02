@@ -1,5 +1,5 @@
 template <int MAX_N, typename T = bool>
-vvc<T> mat_inv_bitset(vvc<T> a) {
+vvc<T> mat_inv(vvc<T> a) {
   const int N = len(a);
   using BS = bitset<MAX_N>;
   vc<BS> A(N), B(N);

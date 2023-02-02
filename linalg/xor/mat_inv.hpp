@@ -1,8 +1,6 @@
 // 行ベクトルを整数型で表現
 template <typename UINT>
-vc<UINT> mat_inv_xor(vc<UINT> &A, bool keep_A = 1) {
-  vc<UINT> tmp;
-  if (keep_A) tmp = A;
+vc<UINT> mat_inv(vc<UINT> A) {
   const int N = len(A);
   vc<UINT> B(N);
   FOR(i, N) B[i] = u64(1) << i;
@@ -18,6 +16,5 @@ vc<UINT> mat_inv_xor(vc<UINT> &A, bool keep_A = 1) {
       B[k] ^= B[i];
     }
   }
-  if (keep_A) swap(A, tmp);
   return B;
 }
