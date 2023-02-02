@@ -34,7 +34,7 @@ void solve() {
   }
   G.build();
 
-  auto [dist, par] = dijkstra(G, S);
+  auto [dist, par] = dijkstra<int>(G, S);
   print(dist[T]);
 }
 
