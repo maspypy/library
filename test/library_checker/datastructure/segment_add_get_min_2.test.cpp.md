@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/lichao.hpp
     title: convex/lichao.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -238,8 +238,8 @@ data:
     \ i + 1, l = m; }\n      }\n      if (!bm) {\n        if (bl) { i = 2 * i + 0,\
     \ r = m; }\n        if (!bl) { i = 2 * i + 1, l = m; }\n      }\n    }\n  }\n\n\
     \  T evaluate_inner(int fid, ll x) {\n    if (fid == -1) return (MINIMIZE ? infty<T>\
-    \ : -infty<T>);\n    return evaluate(funcs[fid], (COMPRESS ? points[x] : x));\n\
-    \  }\n};\n#line 5 \"test/library_checker/datastructure/segment_add_get_min_2.test.cpp\"\
+    \ : -infty<T>);\n    return evaluate(funcs[fid], (COMPRESS ? points[min<int>(x,\
+    \ n - 1)] : x));\n  }\n};\n#line 5 \"test/library_checker/datastructure/segment_add_get_min_2.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  using T = tuple<int, int, int, int, ll>;\n\
     \  vc<T> query;\n  query.reserve(N + Q);\n  FOR(N) {\n    LL(l, r, a, b);\n  \
     \  query.eb(0, l, r, a, b);\n  }\n  vc<int> points;\n  FOR(Q) {\n    INT(t);\n\
@@ -269,7 +269,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/segment_add_get_min_2.test.cpp
   requiredBy: []
-  timestamp: '2023-02-02 19:27:13+09:00'
+  timestamp: '2023-02-03 03:37:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/segment_add_get_min_2.test.cpp

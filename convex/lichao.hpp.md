@@ -48,8 +48,8 @@ data:
     \ i + 1, l = m; }\n      }\n      if (!bm) {\n        if (bl) { i = 2 * i + 0,\
     \ r = m; }\n        if (!bl) { i = 2 * i + 1, l = m; }\n      }\n    }\n  }\n\n\
     \  T evaluate_inner(int fid, ll x) {\n    if (fid == -1) return (MINIMIZE ? infty<T>\
-    \ : -infty<T>);\n    return evaluate(funcs[fid], (COMPRESS ? points[x] : x));\n\
-    \  }\n};\n"
+    \ : -infty<T>);\n    return evaluate(funcs[fid], (COMPRESS ? points[min<int>(x,\
+    \ n - 1)] : x));\n  }\n};\n"
   code: "// evaluate \u3092\u66F8\u304D\u5909\u3048\u308B\u3068\u3001totally monotone\
     \ \u306A\u95A2\u6570\u7FA4\u306B\u3082\u4F7F\u3048\u308B\ntemplate <typename T,\
     \ bool COMPRESS, bool MINIMIZE>\nstruct LiChao_Tree {\n  using FUNC = pair<T,\
@@ -87,12 +87,12 @@ data:
     \        if (bl) { i = 2 * i + 0, r = m; }\n        if (!bl) { i = 2 * i + 1,\
     \ l = m; }\n      }\n    }\n  }\n\n  T evaluate_inner(int fid, ll x) {\n    if\
     \ (fid == -1) return (MINIMIZE ? infty<T> : -infty<T>);\n    return evaluate(funcs[fid],\
-    \ (COMPRESS ? points[x] : x));\n  }\n};\n"
+    \ (COMPRESS ? points[min<int>(x, n - 1)] : x));\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: convex/lichao.hpp
   requiredBy: []
-  timestamp: '2023-02-02 19:27:13+09:00'
+  timestamp: '2023-02-03 03:37:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/segment_add_get_min_2.test.cpp

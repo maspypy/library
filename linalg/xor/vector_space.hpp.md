@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/xor/solve_linear.hpp
     title: linalg/xor/solve_linear.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/xor/transpose.hpp
     title: linalg/xor/transpose.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/merge_vector_space.hpp
     title: alg/monoid/merge_vector_space.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/QOJ5445.test.cpp
     title: test/mytest/QOJ5445.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/184.test.cpp
     title: test/yukicoder/184.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/xor/solve_linear.hpp\"\n// solve Ax = b \u3092\u89E3\
@@ -66,7 +66,7 @@ data:
     \    return res;\n  }\n\n  UINT get_min(UINT xor_val) {\n    UINT res = xor_val;\n\
     \    for (auto&& x: dat) chmin(res, res ^ x);\n    return res;\n  }\n\n  static\
     \ SP merge(SP x, SP y) {\n    if (len(x) < len(y)) swap(x, y);\n    for (auto\
-    \ v: y.dat) { add_element(x, v); }\n    return x;\n  }\n\n  static SP intersection(SP&\
+    \ v: y.dat) { x.add_element(v); }\n    return x;\n  }\n\n  static SP intersection(SP&\
     \ x, SP& y, int max_dim) {\n    SP xx = x.orthogonal_space(max_dim);\n    SP yy\
     \ = y.orthogonal_space(max_dim);\n    xx = merge(xx, yy);\n    return xx.orthogonal_space(max_dim);\n\
     \  }\n\n  SP orthogonal_space(int max_dim) {\n    int n = len(dat);\n    // \u4E09\
@@ -90,7 +90,7 @@ data:
     \ x: dat) chmax(res, res ^ x);\n    return res;\n  }\n\n  UINT get_min(UINT xor_val)\
     \ {\n    UINT res = xor_val;\n    for (auto&& x: dat) chmin(res, res ^ x);\n \
     \   return res;\n  }\n\n  static SP merge(SP x, SP y) {\n    if (len(x) < len(y))\
-    \ swap(x, y);\n    for (auto v: y.dat) { add_element(x, v); }\n    return x;\n\
+    \ swap(x, y);\n    for (auto v: y.dat) { x.add_element(v); }\n    return x;\n\
     \  }\n\n  static SP intersection(SP& x, SP& y, int max_dim) {\n    SP xx = x.orthogonal_space(max_dim);\n\
     \    SP yy = y.orthogonal_space(max_dim);\n    xx = merge(xx, yy);\n    return\
     \ xx.orthogonal_space(max_dim);\n  }\n\n  SP orthogonal_space(int max_dim) {\n\
@@ -108,8 +108,8 @@ data:
   path: linalg/xor/vector_space.hpp
   requiredBy:
   - alg/monoid/merge_vector_space.hpp
-  timestamp: '2023-02-03 02:48:08+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-02-03 03:39:41+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/184.test.cpp
   - test/mytest/QOJ5445.test.cpp
