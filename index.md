@@ -639,7 +639,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/rerooting_classify_subtree.hpp
       title: graph/rerooting_classify_subtree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/rerooting_dp.hpp
       title: graph/rerooting_dp.hpp
     - icon: ':heavy_check_mark:'
@@ -657,7 +657,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tournament.hpp
       title: graph/tournament.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/tree.hpp
       title: graph/tree.hpp
     - icon: ':heavy_check_mark:'
@@ -843,18 +843,18 @@ data:
       title: linalg/implicit_matrix/vandermonde.hpp
   - name: linalg/xor
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: linalg/xor/mat_inv_xor.hpp
       title: linalg/xor/mat_inv_xor.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: linalg/xor/solve_linear_xor.hpp
       title: linalg/xor/solve_linear_xor.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: linalg/xor/transpose.hpp
       title: linalg/xor/transpose.hpp
-    - icon: ':warning:'
-      path: linalg/xor/vector_space.hpp
-      title: linalg/xor/vector_space.hpp
+    - icon: ':x:'
+      path: linalg/xor/vector_space_xor.hpp
+      title: linalg/xor/vector_space_xor.hpp
   - name: mod
     pages:
     - icon: ':heavy_check_mark:'
@@ -2090,7 +2090,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/ARC30D.test.cpp
       title: test/mytest/ARC30D.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/mytest/QOJ5445.test.cpp
       title: test/mytest/QOJ5445.test.cpp
     - icon: ':heavy_check_mark:'

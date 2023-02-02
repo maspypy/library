@@ -17,8 +17,12 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    links: []
-  bundledCode: "#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    PROBLEM: https://judge.yosupo.jp/problem/line_add_get_min
+    links:
+    - https://judge.yosupo.jp/problem/line_add_get_min
+  bundledCode: "#line 1 \"test/library_checker/datastructure/line_add_get_min_lichao_2.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/line_add_get_min\"\n#line\
+    \ 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
     using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
@@ -235,7 +239,7 @@ data:
     \ r = m; }\n        if (!bl) { i = 2 * i + 1, l = m; }\n      }\n    }\n  }\n\n\
     \  T evaluate_inner(int fid, ll x) {\n    if (fid == -1) return (MINIMIZE ? infty<T>\
     \ : -infty<T>);\n    return evaluate(funcs[fid], (COMPRESS ? points[x] : x));\n\
-    \  }\n};\n#line 4 \"test/library_checker/datastructure/line_add_get_min_lichao_2.test.cpp\"\
+    \  }\n};\n#line 5 \"test/library_checker/datastructure/line_add_get_min_lichao_2.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  using T = tuple<int, int, ll>;\n  vc<T> query;\n\
     \  query.reserve(N + Q);\n  FOR(N) {\n    LL(a, b);\n    query.eb(0, a, b);\n\
     \  }\n  vc<int> points;\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      LL(a,\
@@ -244,7 +248,8 @@ data:
     \ 1> X(points);\n  for (auto&& [t, a, b]: query) {\n    if (t == 0) X.add_line({a,\
     \ b});\n    if (t == 1) print(X.query(a).fi);\n  }\n}\n\nsigned main() {\n  solve();\n\
     \  return 0;\n}\n"
-  code: "#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"convex/lichao.hpp\"\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/line_add_get_min\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"convex/lichao.hpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  using T = tuple<int, int, ll>;\n  vc<T> query;\n\
     \  query.reserve(N + Q);\n  FOR(N) {\n    LL(a, b);\n    query.eb(0, a, b);\n\
     \  }\n  vc<int> points;\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      LL(a,\
@@ -260,7 +265,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/line_add_get_min_lichao_2.test.cpp
   requiredBy: []
-  timestamp: '2023-02-02 22:27:42+09:00'
+  timestamp: '2023-02-03 00:04:54+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/line_add_get_min_lichao_2.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/xor/transpose.hpp
     title: linalg/xor/transpose.hpp
   - icon: ':question:'
@@ -209,8 +209,8 @@ data:
     \            chrono::high_resolution_clock::now().time_since_epoch())\n      \
     \               .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n\
     \  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
-    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 1 \"linalg/xor/transpose.hpp\"\
-    \n// n x m \u884C\u5217\u306E transpose\u3002O((n+m)log(n+m)) \u6642\u9593\u3002\
+    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"linalg/xor/transpose.hpp\"\
+    \n\n// n x m \u884C\u5217\u306E transpose\u3002O((n+m)log(n+m)) \u6642\u9593\u3002\
     \n// https://github.com/dsnet/matrix-transpose\ntemplate <typename UINT>\nvc<UINT>\
     \ transpose(int n, int m, vc<UINT>& A, bool keep_A = 1) {\n  assert(max(n, m)\
     \ <= numeric_limits<UINT>::digits);\n  assert(len(A) == n);\n  vc<UINT> tmp;\n\
@@ -254,7 +254,7 @@ data:
   isVerificationFile: true
   path: test/mytest/xor_transpose.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:18:36+09:00'
+  timestamp: '2023-02-03 02:21:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/xor_transpose.test.cpp

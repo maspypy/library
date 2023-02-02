@@ -4,9 +4,6 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/mytest/QOJ5445.test.cpp
-    title: test/mytest/QOJ5445.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/184.test.cpp
     title: test/yukicoder/184.test.cpp
   _isVerificationFailed: false
@@ -53,7 +50,6 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/184.test.cpp
-  - test/mytest/QOJ5445.test.cpp
 documentation_of: alg/monoid/xor_basis.hpp
 layout: document
 redirect_from:
