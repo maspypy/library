@@ -5,7 +5,7 @@
 
 void solve() {
   LL(N, Q);
-  Dynamic_LiChao_Tree<ll, 0, 0, 15'000'000, 1> X(-infty<int>, infty<int>);
+  Dynamic_LiChao_Tree<ll, 0, 15'000'000, 1> X(-infty<int>, infty<int>);
   using np = decltype(X)::np;
   np root = X.new_root();
   FOR(N) {
