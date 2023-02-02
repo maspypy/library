@@ -97,6 +97,6 @@ struct LiChao_Tree {
 
   T evaluate_inner(int fid, ll x) {
     if (fid == -1) return (MINIMIZE ? infty<T> : -infty<T>);
-    return evaluate(funcs[fid], (COMPRESS ? points[x] : x));
+    return evaluate(funcs[fid], (COMPRESS ? points[min<int>(x, n - 1)] : x));
   }
 };
