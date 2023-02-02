@@ -4,9 +4,6 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/datastructure/line_add_get_min_lichao.test.cpp
-    title: test/library_checker/datastructure/line_add_get_min_lichao.test.cpp
-  - icon: ':x:'
     path: test/library_checker/datastructure/line_add_get_min_lichao_2.test.cpp
     title: test/library_checker/datastructure/line_add_get_min_lichao_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -101,7 +98,6 @@ data:
   timestamp: '2023-02-02 19:27:13+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/datastructure/line_add_get_min_lichao.test.cpp
   - test/library_checker/datastructure/segment_add_get_min_2.test.cpp
   - test/library_checker/datastructure/line_add_get_min_lichao_2.test.cpp
 documentation_of: convex/lichao.hpp

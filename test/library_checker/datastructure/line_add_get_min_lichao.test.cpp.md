@@ -1,9 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: convex/lichao.hpp
-    title: convex/lichao.hpp
+  - icon: ':x:'
+    path: convex/dynamic_lichao.hpp
+    title: convex/dynamic_lichao.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -201,46 +201,61 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 1 \"convex/lichao.hpp\"\n// evaluate \u3092\u66F8\u304D\u5909\
+    \ yes(!t); }\n#line 1 \"convex/dynamic_lichao.hpp\"\n// \u76F4\u7DDA\u8FFD\u52A0\
+    \u304B\u3064\u975E\u6C38\u7D9A\u306A\u3089\u7A7A\u9593 Q \u3067\u3088\u3044\u3002\
+    \n// \u95A2\u6570\u306F ll -> T\u3002[L, R) \u4E0A f \u304C overflow \u3057\u306A\
+    \u3044\u3088\u3046\u306B\u6CE8\u610F\u3002\n// evaluate \u3092\u66F8\u304D\u5909\
     \u3048\u308B\u3068\u3001totally monotone \u306A\u95A2\u6570\u7FA4\u306B\u3082\u4F7F\
-    \u3048\u308B\ntemplate <typename T, bool COMPRESS, bool MINIMIZE>\nstruct LiChao_Tree\
-    \ {\n  using FUNC = pair<T, T>;\n  vc<FUNC> funcs;\n\n  static inline T evaluate(FUNC&\
-    \ f, ll x) { return f.fi * x + f.se; }\n\n  vc<ll> points;\n  vc<int> FID;\n \
-    \ int n, log, size;\n\n  LiChao_Tree(int m) {\n    static_assert(!COMPRESS);\n\
-    \    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n\
-    \    FID.assign(size << 1, -1);\n  }\n  template <typename XY>\n  LiChao_Tree(const\
-    \ vc<XY> pts) {\n    static_assert(COMPRESS);\n    for (auto&& x: pts) points.eb(x);\n\
-    \    UNIQUE(points);\n    n = len(points), log = 1;\n    while ((1 << log) < n)\
-    \ ++log;\n    size = 1 << log;\n    FID.assign(size << 1, -1);\n  }\n\n  void\
-    \ add_line(FUNC f) {\n    int fid = len(funcs);\n    funcs.eb(f);\n    return\
-    \ add_line_at(1, fid);\n  }\n  void add_segment(ll xl, ll xr, FUNC f) {\n    int\
-    \ fid = len(funcs);\n    funcs.eb(f);\n    if (COMPRESS) xl = LB(points, xl),\
-    \ xr = LB(points, xr);\n    xl += size, xr += size;\n    while (xl < xr) {\n \
-    \     if (xl & 1) add_line_at(xl++, fid);\n      if (xr & 1) add_line_at(--xr,\
-    \ fid);\n      xl >>= 1, xr >>= 1;\n    }\n  }\n  pair<T, int> query(ll x) {\n\
-    \    if (COMPRESS) {\n      int ix = LB(points, x);\n      assert(points[ix] ==\
-    \ x);\n      x = ix;\n    }\n    int i = x + size;\n    pair<T, int> res;\n  \
-    \  if (!MINIMIZE) res = {-infty<T>, -1};\n    if (MINIMIZE) res = {infty<T>, -1};\n\
-    \    while (i) {\n      if (FID[i] != -1 && FID[i] != res.se) {\n        pair<T,\
-    \ int> res1 = {evaluate_inner(FID[i], x), FID[i]};\n        res = (MINIMIZE ?\
-    \ min(res, res1) : max(res, res1));\n      }\n      i >>= 1;\n    }\n    return\
-    \ res;\n  }\n\n  void add_line_at(int i, int fid) {\n    int upper_bit = 31 -\
-    \ __builtin_clz(i);\n    int l = (size >> upper_bit) * (i - (1 << upper_bit));\n\
-    \    int r = l + (size >> upper_bit);\n    while (l < r) {\n      int gid = FID[i];\n\
-    \      T fl = evaluate_inner(fid, l), fr = evaluate_inner(fid, r - 1);\n     \
-    \ T gl = evaluate_inner(gid, l), gr = evaluate_inner(gid, r - 1);\n      bool\
-    \ bl = (MINIMIZE ? fl < gl : fl > gl);\n      bool br = (MINIMIZE ? fr < gr :\
-    \ fr > gr);\n      if (bl && br) {\n        FID[i] = fid;\n        return;\n \
-    \     }\n      if (!bl && !br) return;\n      int m = (l + r) / 2;\n      T fm\
-    \ = evaluate_inner(fid, m), gm = evaluate_inner(gid, m);\n      bool bm = (MINIMIZE\
-    \ ? fm < gm : fm > gm);\n      if (bm) {\n        FID[i] = fid;\n        fid =\
-    \ gid;\n        if (!bl) { i = 2 * i + 0, r = m; }\n        if (bl) { i = 2 *\
-    \ i + 1, l = m; }\n      }\n      if (!bm) {\n        if (bl) { i = 2 * i + 0,\
-    \ r = m; }\n        if (!bl) { i = 2 * i + 1, l = m; }\n      }\n    }\n  }\n\n\
-    \  T evaluate_inner(int fid, ll x) {\n    if (fid == -1) return (MINIMIZE ? infty<T>\
-    \ : -infty<T>);\n    return evaluate(funcs[fid], (COMPRESS ? points[x] : x));\n\
-    \  }\n};\n#line 5 \"test/library_checker/datastructure/line_add_get_min_lichao.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  const int LIM = 1'000'000'000;\n  LiChao_Tree<ll,\
+    \u3048\u308B\ntemplate <typename T, bool PERSISTENT, int NODES, bool MINIMIZE>\n\
+    struct Dynamic_LiChao_Tree {\n  using FUNC = pair<T, T>;\n  vc<FUNC> funcs;\n\n\
+    \  static inline T evaluate(FUNC &f, ll x) { return f.fi * x + f.se; }\n\n  struct\
+    \ Node {\n    int fid;\n    Node *l, *r;\n  };\n\n  Node *pool;\n  int pid;\n\
+    \  ll L, R;\n\n  using np = Node *;\n\n  Dynamic_LiChao_Tree(ll L, ll R) : pid(0),\
+    \ L(L), R(R) {\n    pool = new Node[NODES];\n  }\n\n  void reset() {\n    funcs.clear();\n\
+    \    pid = 0;\n  }\n\n  np new_root() { return nullptr; }\n\n  np new_node() {\n\
+    \    pool[pid].fid = -1;\n    pool[pid].l = nullptr, pool[pid].r = nullptr;\n\
+    \    return &(pool[pid++]);\n  }\n\n  np add_line(np root, FUNC f) {\n    int\
+    \ fid = len(funcs);\n    funcs.eb(f);\n    if (!root) root = new_node();\n   \
+    \ return add_line_rec(root, fid, L, R);\n  }\n\n  // [xl, xr)\n  np add_segment(np\
+    \ root, ll xl, ll xr, FUNC f) {\n    int fid = len(funcs);\n    funcs.eb(f);\n\
+    \    if (!root) root = new_node();\n    return add_segment_rec(root, xl, xr, fid,\
+    \ L, R);\n  }\n\n  // (\u5024\u30FB\u95A2\u6570\u756A\u53F7)\n  pair<T, int> query(np\
+    \ root, ll x) {\n    assert(L <= x && x < R);\n    if (!root) {\n      if (MINIMIZE)\
+    \ return {infty<T>, -1};\n      if (!MINIMIZE) return {-infty<T>, -1};\n    }\n\
+    \    return query_rec(root, x, L, R);\n  }\n\nprivate:\n  np copy_node(Node *c)\
+    \ {\n    if (!c || !PERSISTENT) return c;\n    pool[pid].fid = c->fid;\n    pool[pid].l\
+    \ = c->l, pool[pid].r = c->r;\n    return &(pool[pid++]);\n  }\n\n  inline T evaluate_inner(int\
+    \ fid, ll x) {\n    if (fid == -1) { return (MINIMIZE ? infty<T> : -infty<T>);\
+    \ };\n    return evaluate(funcs[fid], x);\n  }\n\n  np add_segment_rec(np c, ll\
+    \ xl, ll xr, int fid, ll node_l, ll node_r) {\n    chmax(xl, node_l), chmin(xr,\
+    \ node_r);\n    if (xl >= xr) return c;\n    if (node_l < xl || xr < node_r) {\n\
+    \      c = copy_node(c);\n      ll node_m = (node_l + node_r) / 2;\n      if (!c->l)\
+    \ c->l = new_node();\n      if (!c->r) c->r = new_node();\n      c->l = add_segment_rec(c->l,\
+    \ xl, xr, fid, node_l, node_m);\n      c->r = add_segment_rec(c->r, xl, xr, fid,\
+    \ node_m, node_r);\n      return c;\n    }\n    return add_line_rec(c, fid, node_l,\
+    \ node_r);\n  }\n\n  np add_line_rec(np c, int fid, ll node_l, ll node_r) {\n\
+    \    int gid = c->fid;\n    T fl = evaluate_inner(fid, node_l), fr = evaluate_inner(fid,\
+    \ node_r - 1);\n    T gl = evaluate_inner(gid, node_l), gr = evaluate_inner(gid,\
+    \ node_r - 1);\n    bool bl = (MINIMIZE ? fl < gl : fl > gl);\n    bool br = (MINIMIZE\
+    \ ? fr < gr : fr > gr);\n    if (bl && br) {\n      c = copy_node(c);\n      c->fid\
+    \ = fid;\n      return c;\n    }\n    if (!bl && !br) { return c; }\n\n    c =\
+    \ copy_node(c);\n    ll node_m = (node_l + node_r) / 2;\n    auto fm = evaluate_inner(fid,\
+    \ node_m), gm = evaluate_inner(gid, node_m);\n    bool bm = (MINIMIZE ? fm < gm\
+    \ : fm > gm);\n    if (bm) {\n      c->fid = fid;\n      if (bl) {\n        if\
+    \ (!c->r) c->r = new_node();\n        c->r = add_line_rec(c->r, gid, node_m, node_r);\n\
+    \      } else {\n        if (!c->l) c->l = new_node();\n        c->l = add_line_rec(c->l,\
+    \ gid, node_l, node_m);\n      }\n    }\n    if (!bm) {\n      if (!bl) {\n  \
+    \      if (!c->r) c->r = new_node();\n        c->r = add_line_rec(c->r, fid, node_m,\
+    \ node_r);\n      } else {\n        if (!c->l) c->l = new_node();\n        c->l\
+    \ = add_line_rec(c->l, fid, node_l, node_m);\n      }\n    }\n    return c;\n\
+    \  }\n\n  pair<T, int> query_rec(np c, ll x, ll node_l, ll node_r) {\n    int\
+    \ fid = c->fid;\n    pair<T, int> res = {evaluate_inner(fid, x), fid};\n    ll\
+    \ node_m = (node_l + node_r) / 2;\n    if (x < node_m && c->l) {\n      pair<T,\
+    \ int> res1 = query_rec(c->l, x, node_l, node_m);\n      res = (MINIMIZE ? min(res,\
+    \ res1) : max(res, res1));\n    }\n    if (x >= node_m && c->r) {\n      pair<T,\
+    \ int> res1 = query_rec(c->r, x, node_m, node_r);\n      res = (MINIMIZE ? min(res,\
+    \ res1) : max(res, res1));\n    }\n    return res;\n  }\n};\n#line 5 \"test/library_checker/datastructure/line_add_get_min_lichao.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  const int LIM = 1'000'000'000;\n  Dynamic_LiChao_Tree<ll,\
     \ 0, 0, 400'000, 1> X(-LIM, LIM + 1);\n  using np = decltype(X)::np;\n  np root\
     \ = X.new_root();\n  FOR(N) {\n    LL(a, b);\n    root = X.add_line(root, {a,\
     \ b});\n  }\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      LL(a, b);\n   \
@@ -248,8 +263,8 @@ data:
     \      print(X.query(root, x).fi);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\
     \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/line_add_get_min\"\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"convex/lichao.hpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  const int LIM = 1'000'000'000;\n  LiChao_Tree<ll,\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"convex/dynamic_lichao.hpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  const int LIM = 1'000'000'000;\n  Dynamic_LiChao_Tree<ll,\
     \ 0, 0, 400'000, 1> X(-LIM, LIM + 1);\n  using np = decltype(X)::np;\n  np root\
     \ = X.new_root();\n  FOR(N) {\n    LL(a, b);\n    root = X.add_line(root, {a,\
     \ b});\n  }\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      LL(a, b);\n   \
@@ -259,11 +274,11 @@ data:
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - convex/lichao.hpp
+  - convex/dynamic_lichao.hpp
   isVerificationFile: true
   path: test/library_checker/datastructure/line_add_get_min_lichao.test.cpp
   requiredBy: []
-  timestamp: '2023-02-02 19:27:13+09:00'
+  timestamp: '2023-02-02 19:38:06+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/line_add_get_min_lichao.test.cpp
