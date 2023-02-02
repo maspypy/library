@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/dynamic_lichao.hpp
     title: convex/dynamic_lichao.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/segment_add_get_min
@@ -255,24 +255,24 @@ data:
     \ res1) : max(res, res1));\n    }\n    if (x >= node_m && c->r) {\n      pair<T,\
     \ int> res1 = query_rec(c->r, x, node_m, node_r);\n      res = (MINIMIZE ? min(res,\
     \ res1) : max(res, res1));\n    }\n    return res;\n  }\n};\n#line 5 \"test/library_checker/datastructure/segment_add_get_min.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  Dynamic_LiChao_Tree<ll, 0, 0, 15'000'000, 1>\
-    \ X(-infty<int>, infty<int>);\n  using np = decltype(X)::np;\n  np root = X.new_root();\n\
-    \  FOR(N) {\n    LL(l, r, a, b);\n    root = X.add_segment(root, l, r, {a, b});\n\
-    \  }\n  vc<int> points;\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      LL(l,\
-    \ r, a, b);\n      root = X.add_segment(root, l, r, {a, b});\n    }\n    if (t\
-    \ == 1) {\n      INT(x);\n      auto [fval, fid] = X.query(root, x);\n      if\
-    \ (fid == -1) print(\"INFINITY\");\n      if (fid != -1) print(fval);\n    }\n\
-    \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \n\nvoid solve() {\n  LL(N, Q);\n  Dynamic_LiChao_Tree<ll, 0, 15'000'000, 1> X(-infty<int>,\
+    \ infty<int>);\n  using np = decltype(X)::np;\n  np root = X.new_root();\n  FOR(N)\
+    \ {\n    LL(l, r, a, b);\n    root = X.add_segment(root, l, r, {a, b});\n  }\n\
+    \  vc<int> points;\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      LL(l, r,\
+    \ a, b);\n      root = X.add_segment(root, l, r, {a, b});\n    }\n    if (t ==\
+    \ 1) {\n      INT(x);\n      auto [fval, fid] = X.query(root, x);\n      if (fid\
+    \ == -1) print(\"INFINITY\");\n      if (fid != -1) print(fval);\n    }\n  }\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/segment_add_get_min\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"convex/dynamic_lichao.hpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  Dynamic_LiChao_Tree<ll, 0, 0, 15'000'000, 1>\
-    \ X(-infty<int>, infty<int>);\n  using np = decltype(X)::np;\n  np root = X.new_root();\n\
-    \  FOR(N) {\n    LL(l, r, a, b);\n    root = X.add_segment(root, l, r, {a, b});\n\
-    \  }\n  vc<int> points;\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      LL(l,\
-    \ r, a, b);\n      root = X.add_segment(root, l, r, {a, b});\n    }\n    if (t\
-    \ == 1) {\n      INT(x);\n      auto [fval, fid] = X.query(root, x);\n      if\
-    \ (fid == -1) print(\"INFINITY\");\n      if (fid != -1) print(fval);\n    }\n\
-    \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \n\nvoid solve() {\n  LL(N, Q);\n  Dynamic_LiChao_Tree<ll, 0, 15'000'000, 1> X(-infty<int>,\
+    \ infty<int>);\n  using np = decltype(X)::np;\n  np root = X.new_root();\n  FOR(N)\
+    \ {\n    LL(l, r, a, b);\n    root = X.add_segment(root, l, r, {a, b});\n  }\n\
+    \  vc<int> points;\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      LL(l, r,\
+    \ a, b);\n      root = X.add_segment(root, l, r, {a, b});\n    }\n    if (t ==\
+    \ 1) {\n      INT(x);\n      auto [fval, fid] = X.query(root, x);\n      if (fid\
+    \ == -1) print(\"INFINITY\");\n      if (fid != -1) print(fval);\n    }\n  }\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -280,8 +280,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/segment_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2023-02-02 19:27:13+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-02-02 19:58:41+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/segment_add_get_min.test.cpp
 layout: document

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/dynamic_lichao.hpp
     title: convex/dynamic_lichao.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/line_add_get_min
@@ -256,20 +256,20 @@ data:
     \ int> res1 = query_rec(c->r, x, node_m, node_r);\n      res = (MINIMIZE ? min(res,\
     \ res1) : max(res, res1));\n    }\n    return res;\n  }\n};\n#line 5 \"test/library_checker/datastructure/line_add_get_min_lichao.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  const int LIM = 1'000'000'000;\n  Dynamic_LiChao_Tree<ll,\
-    \ 0, 0, 400'000, 1> X(-LIM, LIM + 1);\n  using np = decltype(X)::np;\n  np root\
-    \ = X.new_root();\n  FOR(N) {\n    LL(a, b);\n    root = X.add_line(root, {a,\
-    \ b});\n  }\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      LL(a, b);\n   \
-    \   root = X.add_line(root, {a, b});\n    }\n    if (t == 1) {\n      INT(x);\n\
-    \      print(X.query(root, x).fi);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\
+    \ 0, 400'000, 1> X(-LIM, LIM + 1);\n  using np = decltype(X)::np;\n  np root =\
+    \ X.new_root();\n  FOR(N) {\n    LL(a, b);\n    root = X.add_line(root, {a, b});\n\
+    \  }\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      LL(a, b);\n      root\
+    \ = X.add_line(root, {a, b});\n    }\n    if (t == 1) {\n      INT(x);\n     \
+    \ print(X.query(root, x).fi);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\
     \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/line_add_get_min\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"convex/dynamic_lichao.hpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  const int LIM = 1'000'000'000;\n  Dynamic_LiChao_Tree<ll,\
-    \ 0, 0, 400'000, 1> X(-LIM, LIM + 1);\n  using np = decltype(X)::np;\n  np root\
-    \ = X.new_root();\n  FOR(N) {\n    LL(a, b);\n    root = X.add_line(root, {a,\
-    \ b});\n  }\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      LL(a, b);\n   \
-    \   root = X.add_line(root, {a, b});\n    }\n    if (t == 1) {\n      INT(x);\n\
-    \      print(X.query(root, x).fi);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\
+    \ 0, 400'000, 1> X(-LIM, LIM + 1);\n  using np = decltype(X)::np;\n  np root =\
+    \ X.new_root();\n  FOR(N) {\n    LL(a, b);\n    root = X.add_line(root, {a, b});\n\
+    \  }\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      LL(a, b);\n      root\
+    \ = X.add_line(root, {a, b});\n    }\n    if (t == 1) {\n      INT(x);\n     \
+    \ print(X.query(root, x).fi);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\
     \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
@@ -278,8 +278,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/line_add_get_min_lichao.test.cpp
   requiredBy: []
-  timestamp: '2023-02-02 19:38:06+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-02-02 19:56:46+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/line_add_get_min_lichao.test.cpp
 layout: document
