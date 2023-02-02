@@ -88,6 +88,7 @@
 "test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp": "2023-02-01 23:18:36 +0900",
 "test/library_checker/datastructure/line_add_get_min.test.cpp": "2023-02-01 23:18:36 +0900",
 "test/library_checker/datastructure/line_add_get_min_lichao.test.cpp": "2023-02-02 19:56:46 +0900",
+"test/library_checker/datastructure/line_add_get_min_lichao_2.test.cpp": "2023-02-03 03:57:04 +0900",
 "test/library_checker/datastructure/persistent_queue.test.cpp": "2023-02-01 23:18:36 +0900",
 "test/library_checker/datastructure/persistent_unionfind.test.cpp": "2023-02-01 23:18:36 +0900",
 "test/library_checker/datastructure/point_add_range_sum.test.cpp": "2023-02-01 23:18:36 +0900",
