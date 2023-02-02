@@ -1,133 +1,102 @@
-
-#include "alg/monoid/min_idx.hpp"
-
-// 関数は (long long) -> T
 // evaluate を書き変えると、totally monotone な関数群にも使える
-template <typename T, bool PERSISTENT, int NODES>
-struct Persistent_Dynamic_LiChaoTree {
+template <typename T, bool COMPRESS, bool MINIMIZE>
+struct LiChao_Tree {
   using FUNC = pair<T, T>;
   vc<FUNC> funcs;
 
-  static inline T evaluate(int i, ll x) {
-    auto [a, b] = funcs[i];
-    return a * x + b;
+  static inline T evaluate(FUNC& f, ll x) { return f.fi * x + f.se; }
+
+  vc<ll> points;
+  vc<int> FID;
+  int n, log, size;
+
+  LiChao_Tree(int m) {
+    static_assert(!COMPRESS);
+    n = m, log = 1;
+    while ((1 << log) < n) ++log;
+    size = 1 << log;
+    FID.assign(size << 1, -1);
+  }
+  template <typename XY>
+  LiChao_Tree(const vc<XY> pts) {
+    static_assert(COMPRESS);
+    for (auto&& x: pts) points.eb(x);
+    UNIQUE(points);
+    n = len(points), log = 1;
+    while ((1 << log) < n) ++log;
+    size = 1 << log;
+    FID.assign(size << 1, -1);
   }
 
-  struct Node {
-    int fid;
-    Node *l, *r;
-  };
-
-  Node *pool;
-  int pid;
-  ll L, R;
-
-  using np = Node *;
-
-  Persistent_Dynamic_LiChaoTree(ll L, ll R) : pid(0), L(L), R(R) {
-    pool = new Node[NODES];
+  void add_line(FUNC f) {
+    int fid = len(funcs);
+    funcs.eb(f);
+    return add_line_at(1, fid);
   }
-
-  Node *new_node() {
-    pool[pid].fid = -1;
-    pool[pid].l = nullptr;
-    pool[pid].r = nullptr;
-    return &(pool[pid++]);
-  }
-
-  np add_segment(np root, ll xl, ll xr, FUNC f) {
-    if (a != 0) {
-      ll xlim = (infty<T> - abs(b)) / abs(a);
-      assert(abs(xl) < xlim);
-      assert(abs(xr) < xlim);
+  void add_segment(ll xl, ll xr, FUNC f) {
+    int fid = len(funcs);
+    funcs.eb(f);
+    if (COMPRESS) xl = LB(points, xl), xr = LB(points, xr);
+    xl += size, xr += size;
+    while (xl < xr) {
+      if (xl & 1) add_line_at(xl++, fid);
+      if (xr & 1) add_line_at(--xr, fid);
+      xl >>= 1, xr >>= 1;
     }
-    assert(L <= xl && xl < xr && xr <= R);
-    Line f(idx, a, b);
-    if (!root) root = new_node();
-    return add_segment_rec(root, xl, xr, f, L, R);
   }
-
-  np add_line(np root, T a, T b, int idx = -1) {
-    return add_segment(root, L, R, a, b, idx);
-  }
-
-  pair<T, int> query(np root, ll x) {
-    assert(L <= x && x < R);
-    if (!root) return Mono::unit();
-    return query_rec(root, x, L, R);
-  }
-
-private:
-  np copy_node(Node *c) {
-    np nc = new_node();
-    nc->f = c->f;
-    nc->l = c->l;
-    nc->r = c->r;
-    return nc;
-  }
-
-  np add_segment_rec(Node *c, ll xl, ll xr, const Line &f, ll node_l,
-                     ll node_r) {
-    chmax(xl, node_l);
-    chmin(xr, node_r);
-    if (xl >= xr) return c;
-    if (node_l < xl || xr < node_r) {
-      c = copy_node(c);
-      ll node_m = (node_l + node_r) / 2;
-      if (!c->l) c->l = new_node();
-      if (!c->r) c->r = new_node();
-      c->l = add_segment_rec(c->l, xl, xr, f, node_l, node_m);
-      c->r = add_segment_rec(c->r, xl, xr, f, node_m, node_r);
-      return c;
+  pair<T, int> query(ll x) {
+    if (COMPRESS) {
+      int ix = LB(points, x);
+      assert(points[ix] == x);
+      x = ix;
     }
-    return add_line_rec(c, f, node_l, node_r);
-  }
-
-  np add_line_rec(Node *c, const Line &f, ll node_l, ll node_r) {
-    auto fl = f(node_l), fr = f(node_r - 1);
-    Line g = c->f;
-    auto gl = g(node_l), gr = g(node_r - 1);
-    bool bl = Mono::is_small(fl, gl);
-    bool br = Mono::is_small(fr, gr);
-    if (bl && br) {
-      c = copy_node(c);
-      c->f = f;
-      return c;
-    }
-    if (!bl && !br) { return c; }
-
-    c = copy_node(c);
-    ll node_m = (node_l + node_r) / 2;
-    auto fm = f(node_m), gm = g(node_m);
-    bool bm = Mono::is_small(fm, gm);
-    if (bm) {
-      c->f = f;
-      if (bl) {
-        if (!c->r) c->r = new_node();
-        c->r = add_line_rec(c->r, g, node_m, node_r);
-      } else {
-        if (!c->l) c->l = new_node();
-        c->l = add_line_rec(c->l, g, node_l, node_m);
+    int i = x + size;
+    pair<T, int> res;
+    if (!MINIMIZE) res = {-infty<T>, -1};
+    if (MINIMIZE) res = {infty<T>, -1};
+    while (i) {
+      if (FID[i] != -1 && FID[i] != res.se) {
+        pair<T, int> res1 = {evaluate_inner(FID[i], x), FID[i]};
+        res = (MINIMIZE ? min(res, res1) : max(res, res1));
       }
-    } else {
-      if (!bl) {
-        if (!c->r) c->r = new_node();
-        c->r = add_line_rec(c->r, f, node_m, node_r);
-      } else {
-        if (!c->l) c->l = new_node();
-        c->l = add_line_rec(c->l, f, node_l, node_m);
-      }
+      i >>= 1;
     }
-    return c;
-  }
-
-  pair<T, int> query_rec(Node *c, ll x, ll node_l, ll node_r) {
-    pair<T, int> res = c->f(x);
-    ll node_m = (node_l + node_r) / 2;
-    if (x < node_m && c->l)
-      res = Mono::op(res, query_rec(c->l, x, node_l, node_m));
-    if (x >= node_m && c->r)
-      res = Mono::op(res, query_rec(c->r, x, node_m, node_r));
     return res;
+  }
+
+  void add_line_at(int i, int fid) {
+    int upper_bit = 31 - __builtin_clz(i);
+    int l = (size >> upper_bit) * (i - (1 << upper_bit));
+    int r = l + (size >> upper_bit);
+    while (l < r) {
+      int gid = FID[i];
+      T fl = evaluate_inner(fid, l), fr = evaluate_inner(fid, r - 1);
+      T gl = evaluate_inner(gid, l), gr = evaluate_inner(gid, r - 1);
+      bool bl = (MINIMIZE ? fl < gl : fl > gl);
+      bool br = (MINIMIZE ? fr < gr : fr > gr);
+      if (bl && br) {
+        FID[i] = fid;
+        return;
+      }
+      if (!bl && !br) return;
+      int m = (l + r) / 2;
+      T fm = evaluate_inner(fid, m), gm = evaluate_inner(gid, m);
+      bool bm = (MINIMIZE ? fm < gm : fm > gm);
+      if (bm) {
+        FID[i] = fid;
+        fid = gid;
+        if (!bl) { i = 2 * i + 0, r = m; }
+        if (bl) { i = 2 * i + 1, l = m; }
+      }
+      if (!bm) {
+        if (bl) { i = 2 * i + 0, r = m; }
+        if (!bl) { i = 2 * i + 1, l = m; }
+      }
+    }
+  }
+
+  T evaluate_inner(int fid, ll x) {
+    if (fid == -1) return (MINIMIZE ? infty<T> : -infty<T>);
+    return evaluate(funcs[fid], (COMPRESS ? points[x] : x));
   }
 };
