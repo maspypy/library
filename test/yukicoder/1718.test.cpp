@@ -49,7 +49,7 @@ void solve() {
   // span される部分からの距離
   vc<int> V;
   FOR(v, N) if (isin[v]) V.eb(v);
-  auto [dist, par, root] = bfs01(G, V);
+  auto [dist, par, root] = bfs01<int>(G, V);
 
   FOR(v, N) {
     ll r = root[v];
