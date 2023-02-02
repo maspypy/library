@@ -10,8 +10,7 @@ void solve() {
   RBST_ActedMonoid<AM, false, 100'010> X;
   using np = decltype(X)::np;
 
-  int unit = AM::Monoid_X::unit();
-  np root = X.new_node(unit);
+  np root = X.new_node(infty<int>);
 
   FOR(N) {
     if (X.prod(root) != infty<int>)
