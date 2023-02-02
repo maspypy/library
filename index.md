@@ -124,9 +124,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/max_idx.hpp
       title: alg/monoid/max_idx.hpp
-    - icon: ':warning:'
-      path: alg/monoid/merge_vect_sp.hpp
-      title: alg/monoid/merge_vect_sp.hpp
+    - icon: ':x:'
+      path: alg/monoid/merge_vector_space.hpp
+      title: alg/monoid/merge_vector_space.hpp
     - icon: ':question:'
       path: alg/monoid/min.hpp
       title: alg/monoid/min.hpp

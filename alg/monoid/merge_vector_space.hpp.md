@@ -11,10 +11,13 @@ data:
     path: linalg/xor/vector_space.hpp
     title: linalg/xor/vector_space.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yukicoder/184.test.cpp
+    title: test/yukicoder/184.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/xor/solve_linear.hpp\"\n// solve Ax = b \u3092\u89E3\
@@ -69,29 +72,31 @@ data:
     \u306E\u9806\u756A\u3092\u5909\u3048\u308B\n    vc<u64> tmp(m);\n    FOR(i, len(dat))\
     \ tmp[topbit(dat[i])] = dat[i];\n    tmp = transpose(m, m, tmp, 0);\n    SP res;\n\
     \    FOR(j, m) {\n      if (tmp[j] >> j & 1) continue;\n      res.add_element(tmp[j]\
-    \ | UINT(1) << j);\n    }\n    return res;\n  }\n#undef SP\n};\n#line 2 \"alg/monoid/merge_vect_sp.hpp\"\
-    \n\ntemplate <typename UINT>\nstruct Mono {\n  using value_type = Vector_Space<UINT>;\n\
-    \  using X = value_type;\n  static X op(X x, X y) { return Vector_Space<UINT>::merge(x,\
-    \ y); }\n  static constexpr X unit() { return {}; }\n  static constexpr bool commute\
-    \ = 1;\n};\n"
+    \ | UINT(1) << j);\n    }\n    return res;\n  }\n#undef SP\n};\n#line 2 \"alg/monoid/merge_vector_space.hpp\"\
+    \n\ntemplate <typename UINT>\nstruct Merge_Vector_Space {\n  using value_type\
+    \ = Vector_Space<UINT>;\n  using X = value_type;\n  static X op(X x, X y) { return\
+    \ Vector_Space<UINT>::merge(x, y); }\n  static constexpr X unit() { return {};\
+    \ }\n  static constexpr bool commute = 1;\n};\n"
   code: "#include \"linalg/xor/vector_space.hpp\"\n\ntemplate <typename UINT>\nstruct\
-    \ Mono {\n  using value_type = Vector_Space<UINT>;\n  using X = value_type;\n\
-    \  static X op(X x, X y) { return Vector_Space<UINT>::merge(x, y); }\n  static\
-    \ constexpr X unit() { return {}; }\n  static constexpr bool commute = 1;\n};\n"
+    \ Merge_Vector_Space {\n  using value_type = Vector_Space<UINT>;\n  using X =\
+    \ value_type;\n  static X op(X x, X y) { return Vector_Space<UINT>::merge(x, y);\
+    \ }\n  static constexpr X unit() { return {}; }\n  static constexpr bool commute\
+    \ = 1;\n};\n"
   dependsOn:
   - linalg/xor/vector_space.hpp
   - linalg/xor/solve_linear.hpp
   - linalg/xor/transpose.hpp
   isVerificationFile: false
-  path: alg/monoid/merge_vect_sp.hpp
+  path: alg/monoid/merge_vector_space.hpp
   requiredBy: []
-  timestamp: '2023-02-03 02:48:08+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
-documentation_of: alg/monoid/merge_vect_sp.hpp
+  timestamp: '2023-02-03 02:55:53+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yukicoder/184.test.cpp
+documentation_of: alg/monoid/merge_vector_space.hpp
 layout: document
 redirect_from:
-- /library/alg/monoid/merge_vect_sp.hpp
-- /library/alg/monoid/merge_vect_sp.hpp.html
-title: alg/monoid/merge_vect_sp.hpp
+- /library/alg/monoid/merge_vector_space.hpp
+- /library/alg/monoid/merge_vector_space.hpp.html
+title: alg/monoid/merge_vector_space.hpp
 ---

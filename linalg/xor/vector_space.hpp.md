@@ -8,13 +8,16 @@ data:
     path: linalg/xor/transpose.hpp
     title: linalg/xor/transpose.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
-    path: alg/monoid/merge_vect_sp.hpp
-    title: alg/monoid/merge_vect_sp.hpp
+  - icon: ':x:'
+    path: alg/monoid/merge_vector_space.hpp
+    title: alg/monoid/merge_vector_space.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/mytest/QOJ5445.test.cpp
     title: test/mytest/QOJ5445.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/184.test.cpp
+    title: test/yukicoder/184.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -104,10 +107,11 @@ data:
   isVerificationFile: false
   path: linalg/xor/vector_space.hpp
   requiredBy:
-  - alg/monoid/merge_vect_sp.hpp
+  - alg/monoid/merge_vector_space.hpp
   timestamp: '2023-02-03 02:48:08+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/yukicoder/184.test.cpp
   - test/mytest/QOJ5445.test.cpp
 documentation_of: linalg/xor/vector_space.hpp
 layout: document
