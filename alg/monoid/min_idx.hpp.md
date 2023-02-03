@@ -5,13 +5,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/minidx_add.hpp
     title: alg/acted_monoid/minidx_add.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: geo/manhattan_nns.hpp
     title: geo/manhattan_nns.hpp
   - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/manhattan_nns.test.cpp
+    title: test/mytest/manhattan_nns.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/minidx_add.test.cpp
     title: test/mytest/minidx_add.test.cpp
@@ -50,6 +53,7 @@ data:
   verifiedWith:
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/minidx_add.test.cpp
+  - test/mytest/manhattan_nns.test.cpp
 documentation_of: alg/monoid/min_idx.hpp
 layout: document
 redirect_from:

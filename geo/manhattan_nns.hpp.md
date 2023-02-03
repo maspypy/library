@@ -8,10 +8,13 @@ data:
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/manhattan_nns.test.cpp
+    title: test/mytest/manhattan_nns.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
@@ -109,8 +112,9 @@ data:
   path: geo/manhattan_nns.hpp
   requiredBy: []
   timestamp: '2023-02-02 01:33:15+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/mytest/manhattan_nns.test.cpp
 documentation_of: geo/manhattan_nns.hpp
 layout: document
 redirect_from:

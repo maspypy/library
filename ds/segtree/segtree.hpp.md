@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: geo/manhattan_nns.hpp
     title: geo/manhattan_nns.hpp
   - icon: ':heavy_check_mark:'
@@ -60,6 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/manhattan_nns.test.cpp
+    title: test/mytest/manhattan_nns.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
@@ -215,6 +218,7 @@ data:
   - test/mytest/range_mex.test.cpp
   - test/mytest/segtree_xor_prod.test.cpp
   - test/mytest/suffix_tree.test.cpp
+  - test/mytest/manhattan_nns.test.cpp
   - test_atcoder/abc270_f.test.cpp
   - test_atcoder/abc174f.test.cpp
 documentation_of: ds/segtree/segtree.hpp

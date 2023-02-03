@@ -196,6 +196,9 @@ data:
     path: test/mytest/kdtree_nns.test.cpp
     title: test/mytest/kdtree_nns.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/manhattan_nns.test.cpp
+    title: test/mytest/manhattan_nns.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/matching_line_graph.test.cpp
     title: test/mytest/matching_line_graph.test.cpp
   - icon: ':heavy_check_mark:'
@@ -582,6 +585,7 @@ data:
   - test/mytest/add_chmin_chmax.test.cpp
   - test/mytest/online_division.test.cpp
   - test/mytest/partial_frac.test.cpp
+  - test/mytest/manhattan_nns.test.cpp
   - test/mytest/rbst_am_2.test.cpp
   - test/mytest/powerquery.test.cpp
   - test/mytest/four_square.test.cpp

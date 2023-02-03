@@ -514,7 +514,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/manhattan_mst.hpp
       title: geo/manhattan_mst.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: geo/manhattan_nns.hpp
       title: geo/manhattan_nns.hpp
     - icon: ':heavy_check_mark:'
@@ -2195,6 +2195,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/magic_square.test.cpp
       title: test/mytest/magic_square.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/manhattan_nns.test.cpp
+      title: test/mytest/manhattan_nns.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/matching_line_graph.test.cpp
       title: test/mytest/matching_line_graph.test.cpp
