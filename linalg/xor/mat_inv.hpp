@@ -4,17 +4,10 @@ vc<UINT> mat_inv(vc<UINT> A) {
   const int N = len(A);
   vc<UINT> B(N);
   FOR(i, N) B[i] = u64(1) << i;
-  FOR(i, N) {
-    FOR(k, i, N) if (A[k] >> i & 1) {
-      if (k != i) { swap(A[i], A[k]), swap(B[i], B[k]); }
-      break;
-    }
-    if (!(A[i] >> i & 1)) return {};
-    FOR(k, N) if (i != k) {
-      if (!(A[k] >> i & 1)) continue;
-      A[k] ^= A[i];
-      B[k] ^= B[i];
-    }
+  FOR(i, N) FOR(j, N) if (j != i) {
+    if (chmin(A[i], A[i] ^ A[j])) B[i] ^= B[j];
   }
-  return B;
+  vc<UINT> res(N);
+  FOR(i, N) res[topbit(A[i])] = B[i];
+  return res;
 }
