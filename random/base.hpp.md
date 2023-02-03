@@ -78,6 +78,9 @@ data:
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
   - icon: ':heavy_check_mark:'
+    path: random/random_graph.hpp
+    title: random/random_graph.hpp
+  - icon: ':heavy_check_mark:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
   - icon: ':heavy_check_mark:'
@@ -192,6 +195,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/kdtree_nns.test.cpp
     title: test/mytest/kdtree_nns.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/matching_line_graph.test.cpp
+    title: test/mytest/matching_line_graph.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/max_assign.test.cpp
     title: test/mytest/max_assign.test.cpp
@@ -469,6 +475,7 @@ data:
   - poly/fps_sqrt.hpp
   - poly/multivar_convolution_cyclic.hpp
   - random/hash_pair.hpp
+  - random/random_graph.hpp
   - random/hash_vector.hpp
   timestamp: '2022-10-23 11:21:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -527,6 +534,7 @@ data:
   - test/mytest/add_chmin.test.cpp
   - test/mytest/kdtree_nns.test.cpp
   - test/mytest/rbst_commutative_persistent.test.cpp
+  - test/mytest/matching_line_graph.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/max_max.test.cpp
   - test/mytest/online_pow.test.cpp

@@ -4,11 +4,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
+  - icon: ':heavy_check_mark:'
+    path: random/base.hpp
+    title: random/base.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/matching_line_graph.test.cpp
+    title: test/mytest/matching_line_graph.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -55,54 +61,41 @@ data:
     \ {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
     \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
-    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"flow/maximum_matching_of_line_graph.hpp\"\
-    \n\n// \u540C\u3058\u9802\u70B9\u306B\u63A5\u7D9A\u3059\u308B 2 \u8FBA\u3092\u30DE\
-    \u30C3\u30C1\u3067\u304D\u308B\ntemplate <typename GT>\nvc<pair<int, int>> maximum_matching_of_line_graph(GT&\
-    \ G) {\n  assert(!G.is_directed());\n  assert(G.is_prepared());\n  const int N\
-    \ = G.N, M = G.M;\n  vc<pair<int, int>> ANS;\n  vc<int> V;\n  vc<int> par(N, -1);\
-    \ // eid\n  {\n    vc<int> done(N);\n    FOR(v, N) {\n      if (done[v]) continue;\n\
-    \      int cnt = 0;\n      auto dfs = [&](auto& dfs, int v, int p) -> void {\n\
-    \        V.eb(v);\n        par[v] = p;\n        done[v] = 1;\n        for (auto&&\
-    \ e: G[v]) {\n          ++cnt;\n          if (done[e.to]) continue;\n        \
-    \  dfs(dfs, e.to, v);\n        }\n      };\n      dfs(dfs, v, -1);\n    }\n  }\n\
-    \  vc<int> ord(N);\n  FOR(i, N) ord[V[i]] = i;\n  vc<int> done(M);\n  FOR_R(i,\
-    \ N) {\n    int v = V[i];\n    vc<int> down;\n    int up = -1;\n    for (auto&&\
-    \ e: G[v]) {\n      if (done[e.id]) continue;\n      if (up == -1 && e.to == par[v])\
-    \ up = e.id;\n      if (ord[e.to] > ord[v]) down.eb(e.id);\n    }\n    while (len(down)\
-    \ >= 2) {\n      auto i = POP(down);\n      auto j = POP(down);\n      ANS.eb(i,\
-    \ j);\n      done[i] = done[j] = 1;\n    }\n    if (len(down) == 0) continue;\n\
-    \    if (up != -1) {\n      int x = up;\n      int y = down[0];\n      done[x]\
-    \ = done[y] = 1;\n      ANS.eb(x, y);\n    }\n  }\n  return ANS;\n}\n"
-  code: "#include \"graph/base.hpp\"\n\n// \u540C\u3058\u9802\u70B9\u306B\u63A5\u7D9A\
-    \u3059\u308B 2 \u8FBA\u3092\u30DE\u30C3\u30C1\u3067\u304D\u308B\ntemplate <typename\
-    \ GT>\nvc<pair<int, int>> maximum_matching_of_line_graph(GT& G) {\n  assert(!G.is_directed());\n\
-    \  assert(G.is_prepared());\n  const int N = G.N, M = G.M;\n  vc<pair<int, int>>\
-    \ ANS;\n  vc<int> V;\n  vc<int> par(N, -1); // eid\n  {\n    vc<int> done(N);\n\
-    \    FOR(v, N) {\n      if (done[v]) continue;\n      int cnt = 0;\n      auto\
-    \ dfs = [&](auto& dfs, int v, int p) -> void {\n        V.eb(v);\n        par[v]\
-    \ = p;\n        done[v] = 1;\n        for (auto&& e: G[v]) {\n          ++cnt;\n\
-    \          if (done[e.to]) continue;\n          dfs(dfs, e.to, v);\n        }\n\
-    \      };\n      dfs(dfs, v, -1);\n    }\n  }\n  vc<int> ord(N);\n  FOR(i, N)\
-    \ ord[V[i]] = i;\n  vc<int> done(M);\n  FOR_R(i, N) {\n    int v = V[i];\n   \
-    \ vc<int> down;\n    int up = -1;\n    for (auto&& e: G[v]) {\n      if (done[e.id])\
-    \ continue;\n      if (up == -1 && e.to == par[v]) up = e.id;\n      if (ord[e.to]\
-    \ > ord[v]) down.eb(e.id);\n    }\n    while (len(down) >= 2) {\n      auto i\
-    \ = POP(down);\n      auto j = POP(down);\n      ANS.eb(i, j);\n      done[i]\
-    \ = done[j] = 1;\n    }\n    if (len(down) == 0) continue;\n    if (up != -1)\
-    \ {\n      int x = up;\n      int y = down[0];\n      done[x] = done[y] = 1;\n\
-    \      ANS.eb(x, y);\n    }\n  }\n  return ANS;\n}\n"
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 3 \"random/random_graph.hpp\"\
+    \n\ntemplate <int DIRECTED>\nGraph<int, DIRECTED> random_graph(int n, bool simple)\
+    \ {\n  Graph<int, DIRECTED> G(n);\n  vc<pi> cand;\n  FOR(a, n) FOR(b, n) {\n \
+    \   if (simple && a == b) continue;\n    if (!DIRECTED && a > b) continue;\n \
+    \   cand.eb(a, b);\n  }\n  int m = RNG(0, len(cand) + 1);\n  set<int> ss;\n  FOR(m)\
+    \ {\n    while (1) {\n      int i = RNG(0, len(cand));\n      if (simple && ss.count(i))\
+    \ continue;\n      ss.insert(i);\n      auto [a, b] = cand[i];\n      G.add(a,\
+    \ b);\n      break;\n    }\n  }\n  G.build();\n  return G;\n}\n"
+  code: "#include \"graph/base.hpp\"\n#include \"random/base.hpp\"\n\ntemplate <int\
+    \ DIRECTED>\nGraph<int, DIRECTED> random_graph(int n, bool simple) {\n  Graph<int,\
+    \ DIRECTED> G(n);\n  vc<pi> cand;\n  FOR(a, n) FOR(b, n) {\n    if (simple &&\
+    \ a == b) continue;\n    if (!DIRECTED && a > b) continue;\n    cand.eb(a, b);\n\
+    \  }\n  int m = RNG(0, len(cand) + 1);\n  set<int> ss;\n  FOR(m) {\n    while\
+    \ (1) {\n      int i = RNG(0, len(cand));\n      if (simple && ss.count(i)) continue;\n\
+    \      ss.insert(i);\n      auto [a, b] = cand[i];\n      G.add(a, b);\n     \
+    \ break;\n    }\n  }\n  G.build();\n  return G;\n}"
   dependsOn:
   - graph/base.hpp
+  - random/base.hpp
   isVerificationFile: false
-  path: flow/maximum_matching_of_line_graph.hpp
+  path: random/random_graph.hpp
   requiredBy: []
-  timestamp: '2023-01-31 20:03:09+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
-documentation_of: flow/maximum_matching_of_line_graph.hpp
+  timestamp: '2023-02-03 10:10:45+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/mytest/matching_line_graph.test.cpp
+documentation_of: random/random_graph.hpp
 layout: document
 redirect_from:
-- /library/flow/maximum_matching_of_line_graph.hpp
-- /library/flow/maximum_matching_of_line_graph.hpp.html
-title: flow/maximum_matching_of_line_graph.hpp
+- /library/random/random_graph.hpp
+- /library/random/random_graph.hpp.html
+title: random/random_graph.hpp
 ---

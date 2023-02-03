@@ -10,6 +10,9 @@ data:
     path: test/library_checker/matrix/solve_linear.test.cpp
     title: test/library_checker/matrix/solve_linear.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/matching_line_graph.test.cpp
+    title: test/mytest/matching_line_graph.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
   _isVerificationFailed: false
@@ -40,6 +43,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/matrix/solve_linear.test.cpp
+  - test/mytest/matching_line_graph.test.cpp
   - test/mytest/tutte.test.cpp
 documentation_of: linalg/matrix_rank.hpp
 layout: document

@@ -13,6 +13,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/mytest/matching_line_graph.test.cpp
+    title: test/mytest/matching_line_graph.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
   _isVerificationFailed: false
@@ -84,6 +87,7 @@ data:
   timestamp: '2022-12-23 11:05:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/matching_line_graph.test.cpp
   - test/mytest/tutte.test.cpp
 documentation_of: graph/max_matching_size.hpp
 layout: document

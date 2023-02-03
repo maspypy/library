@@ -802,6 +802,9 @@ data:
     path: test/mytest/magic_square.test.cpp
     title: test/mytest/magic_square.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/matching_line_graph.test.cpp
+    title: test/mytest/matching_line_graph.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/max_assign.test.cpp
     title: test/mytest/max_assign.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2334,6 +2337,7 @@ data:
   - test/mytest/add_chmin.test.cpp
   - test/mytest/kdtree_nns.test.cpp
   - test/mytest/rbst_commutative_persistent.test.cpp
+  - test/mytest/matching_line_graph.test.cpp
   - test/mytest/simple_perm.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/gray_code.test.cpp
