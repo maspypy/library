@@ -120,5 +120,7 @@ vc<u64> count_independent_set_by_size(GT& G) {
     for (auto&& C: cycs) res = convolution_naive(res, dp_cyc[len(C)]);
     return res;
   };
-  return dfs(dfs, (U(1) << N) - 1);
+  auto res = dfs(dfs, (U(1) << N) - 1);
+  res.resize(N + 1);
+  return res;
 }
