@@ -62,6 +62,27 @@ struct Sortable_SegTree {
     seg.set(l, root[l]->rev_x);
   };
 
+  pair<vc<int>, vc<X>> get_all() {
+    vector<int> key;
+    vector<X> dat;
+    key.reserve(N);
+    dat.reserve(N);
+    auto dfs = [&](auto& dfs, np n, int l, int r, bool rev) -> void {
+      if (!n) return;
+      if (r == l + 1) {
+        key.eb(l), dat.eb(n->x);
+        return;
+      }
+      int m = (l + r) / 2;
+      if (!rev) { dfs(dfs, n->l, l, m, rev), dfs(dfs, n->r, m, r, rev); }
+      if (rev) { dfs(dfs, n->r, m, r, rev), dfs(dfs, n->l, l, m, rev); }
+    };
+    for (int i = 0; i < N; ++i) {
+      if (ss[i]) dfs(dfs, root[i], 0, KEY_MAX, rev[i]);
+    }
+    return {key, dat};
+  }
+
 private:
   void init(vector<int>& key, vector<X>& dat) {
     rev.assign(N, 0), root.clear(), root.reserve(N);
@@ -93,24 +114,7 @@ private:
   }
 
   void rebuild() {
-    vector<int> key;
-    vector<X> dat;
-    key.reserve(N);
-    dat.reserve(N);
-    auto dfs = [&](auto& dfs, np n, int l, int r, bool rev) -> void {
-      if (!n) return;
-      if (r == l + 1) {
-        key.eb(l), dat.eb(n->x);
-        return;
-      }
-      int m = (l + r) / 2;
-      if (!rev) { dfs(dfs, n->l, l, m, rev), dfs(dfs, n->r, m, r, rev); }
-      if (rev) { dfs(dfs, n->r, m, r, rev), dfs(dfs, n->l, l, m, rev); }
-    };
-    for (int i = 0; i < N; ++i) {
-      if (ss[i]) dfs(dfs, root[i], 0, KEY_MAX, rev[i]);
-    }
-    assert(int(key.size()) == N);
+    auto [key, dat] = get_all();
     pid = 0;
     init(key, dat);
   }
