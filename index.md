@@ -912,6 +912,9 @@ data:
       path: mod/powertable.hpp
       title: mod/powertable.hpp
     - icon: ':heavy_check_mark:'
+      path: mod/prefix_sum_of_binom.hpp
+      title: mod/prefix_sum_of_binom.hpp
+    - icon: ':heavy_check_mark:'
       path: mod/primitive_root.hpp
       title: mod/primitive_root.hpp
     - icon: ':heavy_check_mark:'
@@ -2875,6 +2878,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/2167.test.cpp
       title: test/yukicoder/2167.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/2206.test.cpp
+      title: test/yukicoder/2206.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/235.test.cpp
       title: test/yukicoder/235.test.cpp

@@ -154,6 +154,9 @@ data:
     path: test/yukicoder/2005.test.cpp
     title: test/yukicoder/2005.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2206.test.cpp
+    title: test/yukicoder/2206.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -230,6 +233,7 @@ data:
   - test/yukicoder/1666.test.cpp
   - test/yukicoder/1262.test.cpp
   - test/yukicoder/1411.test.cpp
+  - test/yukicoder/2206.test.cpp
   - test/yukicoder/1881.test.cpp
   - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
   - test/library_checker/math/enumerate_primes.test.cpp
