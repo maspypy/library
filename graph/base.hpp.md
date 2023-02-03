@@ -313,6 +313,9 @@ data:
     path: test/mytest/QOJ5445.test.cpp
     title: test/mytest/QOJ5445.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/count_indep_set.test.cpp
+    title: test/mytest/count_indep_set.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/matching_line_graph.test.cpp
     title: test/mytest/matching_line_graph.test.cpp
   - icon: ':heavy_check_mark:'
@@ -726,6 +729,7 @@ data:
   - test/mytest/matching_line_graph.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/tutte.test.cpp
+  - test/mytest/count_indep_set.test.cpp
   - test_atcoder/abc269ex.test.cpp
   - test_atcoder/arc153f.test.cpp
   - test_atcoder/abc270_f.test.cpp

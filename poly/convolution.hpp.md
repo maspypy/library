@@ -17,7 +17,7 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/count_independent_set.hpp
     title: graph/count_independent_set.hpp
   - icon: ':heavy_check_mark:'
@@ -315,6 +315,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/conv_leq.test.cpp
     title: test/mytest/conv_leq.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_indep_set.test.cpp
+    title: test/mytest/count_indep_set.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
@@ -996,6 +999,7 @@ data:
   - test/mytest/online_division.test.cpp
   - test/mytest/eulerian_number.test.cpp
   - test/mytest/partial_frac.test.cpp
+  - test/mytest/count_indep_set.test.cpp
   - test/mytest/conv_leq.test.cpp
   - test_atcoder/abc267h.test.cpp
   - test_atcoder/abc269ex.test.cpp

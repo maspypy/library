@@ -561,7 +561,7 @@ data:
     - icon: ':warning:'
       path: graph/compress_tree.hpp
       title: graph/compress_tree.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/count_independent_set.hpp
       title: graph/count_independent_set.hpp
     - icon: ':heavy_check_mark:'
@@ -627,7 +627,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/online_unionfind.hpp
       title: graph/online_unionfind.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/path_cycle.hpp
       title: graph/path_cycle.hpp
     - icon: ':heavy_check_mark:'
@@ -2132,6 +2132,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/conv_leq.test.cpp
       title: test/mytest/conv_leq.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/count_indep_set.test.cpp
+      title: test/mytest/count_indep_set.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/count_points_in_triangles.test.cpp
       title: test/mytest/count_points_in_triangles.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/path_cycle.hpp
     title: graph/path_cycle.hpp
   - icon: ':heavy_check_mark:'
@@ -23,10 +23,13 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_indep_set.test.cpp
+    title: test/mytest/count_indep_set.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/path_cycle.hpp\"\n// \u3069\u306E\u70B9\u306E\u6B21\
@@ -360,7 +363,8 @@ data:
     \ < j) G.add(i, j);\n      }\n    }\n    G.build();\n    auto [paths, cycs] =\
     \ path_cycle(G);\n    for (auto&& P: paths) res = convolution_naive(res, dp_path[len(P)]);\n\
     \    for (auto&& C: cycs) res = convolution_naive(res, dp_cyc[len(C)]);\n    return\
-    \ res;\n  };\n  return dfs(dfs, (U(1) << N) - 1);\n}\n"
+    \ res;\n  };\n  auto res = dfs(dfs, (U(1) << N) - 1);\n  res.resize(N + 1);\n\
+    \  return res;\n}\n"
   code: "#include \"graph/path_cycle.hpp\"\n#include \"poly/convolution.hpp\"\n\n\
     // \u72EC\u7ACB\u96C6\u5408\u6570\u3048\u4E0A\u3052\u3002\u7A7A\u96C6\u5408\u3082\
     \u8A8D\u3081\u308B\u3002N 1.381^N \u7A0B\u5EA6\u3002\ntemplate <typename GT>\n\
@@ -407,7 +411,8 @@ data:
     \ j = LB(V, v);\n        if (i < j) G.add(i, j);\n      }\n    }\n    G.build();\n\
     \    auto [paths, cycs] = path_cycle(G);\n    for (auto&& P: paths) res = convolution_naive(res,\
     \ dp_path[len(P)]);\n    for (auto&& C: cycs) res = convolution_naive(res, dp_cyc[len(C)]);\n\
-    \    return res;\n  };\n  return dfs(dfs, (U(1) << N) - 1);\n}"
+    \    return res;\n  };\n  auto res = dfs(dfs, (U(1) << N) - 1);\n  res.resize(N\
+    \ + 1);\n  return res;\n}"
   dependsOn:
   - graph/path_cycle.hpp
   - poly/convolution.hpp
@@ -419,9 +424,10 @@ data:
   isVerificationFile: false
   path: graph/count_independent_set.hpp
   requiredBy: []
-  timestamp: '2023-01-19 00:36:40+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2023-02-03 15:40:02+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/mytest/count_indep_set.test.cpp
 documentation_of: graph/count_independent_set.hpp
 layout: document
 redirect_from:

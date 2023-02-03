@@ -739,6 +739,9 @@ data:
     path: test/mytest/conv_leq.test.cpp
     title: test/mytest/conv_leq.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/count_indep_set.test.cpp
+    title: test/mytest/count_indep_set.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_points_in_triangles.test.cpp
     title: test/mytest/count_points_in_triangles.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2412,6 +2415,7 @@ data:
   - test/mytest/partial_frac.test.cpp
   - test/mytest/manhattan_nns.test.cpp
   - test/mytest/rbst_am_2.test.cpp
+  - test/mytest/count_indep_set.test.cpp
   - test/mytest/powerquery.test.cpp
   - test/mytest/four_square.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp

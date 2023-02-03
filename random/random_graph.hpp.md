@@ -10,6 +10,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/mytest/count_indep_set.test.cpp
+    title: test/mytest/count_indep_set.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/matching_line_graph.test.cpp
     title: test/mytest/matching_line_graph.test.cpp
   _isVerificationFailed: false
@@ -92,6 +95,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/matching_line_graph.test.cpp
+  - test/mytest/count_indep_set.test.cpp
 documentation_of: random/random_graph.hpp
 layout: document
 redirect_from:
