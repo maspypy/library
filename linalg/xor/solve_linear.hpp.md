@@ -1,23 +1,11 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: alg/monoid/merge_vector_space.hpp
-    title: alg/monoid/merge_vector_space.hpp
-  - icon: ':heavy_check_mark:'
-    path: linalg/xor/vector_space.hpp
-    title: linalg/xor/vector_space.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/QOJ5445.test.cpp
-    title: test/mytest/QOJ5445.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/184.test.cpp
-    title: test/yukicoder/184.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/xor/solve_linear.hpp\"\n// solve Ax = b \u3092\u89E3\
@@ -57,14 +45,10 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: linalg/xor/solve_linear.hpp
-  requiredBy:
-  - linalg/xor/vector_space.hpp
-  - alg/monoid/merge_vector_space.hpp
+  requiredBy: []
   timestamp: '2023-02-03 02:48:08+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yukicoder/184.test.cpp
-  - test/mytest/QOJ5445.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: linalg/xor/solve_linear.hpp
 layout: document
 redirect_from:
