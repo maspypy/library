@@ -774,9 +774,6 @@ data:
       title: knapsack/subset_sum_count.hpp
   - name: linalg/bitset
     pages:
-    - icon: ':warning:'
-      path: linalg/bitset/mat_inv.hpp
-      title: linalg/bitset/mat_inv.hpp
     - icon: ':heavy_check_mark:'
       path: linalg/bitset/solve_linear.hpp
       title: linalg/bitset/solve_linear.hpp
@@ -843,9 +840,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/xor/mat_inv.hpp
       title: linalg/xor/mat_inv.hpp
-    - icon: ':warning:'
-      path: linalg/xor/solve_linear.hpp
-      title: linalg/xor/solve_linear.hpp
     - icon: ':heavy_check_mark:'
       path: linalg/xor/transpose.hpp
       title: linalg/xor/transpose.hpp
