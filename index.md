@@ -171,7 +171,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convex/dynamic_lichao.hpp
       title: convex/dynamic_lichao.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: convex/larsch.hpp
       title: convex/larsch.hpp
     - icon: ':heavy_check_mark:'
@@ -183,13 +183,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: convex/minplus_convolution_convex.hpp
       title: convex/minplus_convolution_convex.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: convex/monge.hpp
       title: convex/monge.hpp
     - icon: ':heavy_check_mark:'
       path: convex/slope.hpp
       title: convex/slope.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: convex/smawk.hpp
       title: convex/smawk.hpp
   - name: datetime
@@ -2938,7 +2938,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/686.test.cpp
       title: test/yukicoder/686.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/705.test.cpp
       title: test/yukicoder/705.test.cpp
     - icon: ':heavy_check_mark:'

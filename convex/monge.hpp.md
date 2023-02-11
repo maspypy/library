@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/larsch.hpp
     title: convex/larsch.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/smawk.hpp
     title: convex/smawk.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/705.test.cpp
     title: test/yukicoder/705.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
-    - https://dic.kimiyuki.net/d-edge-shortest-path-monge
+    - https://noshi91.github.io/algorithm-encyclopedia/d-edge-shortest-path-monge
   bundledCode: "#line 2 \"convex/larsch.hpp\"\n\n// https://noshi91.github.io/Library/algorithm/larsch.cpp.html\n\
     template <class T>\nclass LARSCH {\n  struct reduce_row;\n  struct reduce_col;\n\
     \n  struct reduce_row {\n    int n;\n    std::function<T(int, int)> f;\n    int\
@@ -68,48 +68,63 @@ data:
     \ f \u306E monge \u6027\u3092\u78BA\u8A8D\r\ntemplate <typename T, typename F>\r\
     \nbool check_monge(int N, F f) {\r\n  FOR(l, N + 1) FOR(k, l) FOR(j, k) FOR(i,\
     \ j) {\r\n    T lhs = f(i, l) + f(j, k);\r\n    T rhs = f(i, k) + f(j, l);\r\n\
-    \    if (lhs < rhs) return false;\r\n  }\r\n  return true;\r\n}\r\n\r\ntemplate\
-    \ <typename F>\r\nvi monge_shortest_path(int N, F f) {\r\n  vi dp(N + 1, infty<ll>);\r\
-    \n  dp[0] = 0;\r\n  LARSCH<ll> larsch(N, [&](int i, int j) {\r\n    ++i;\r\n \
-    \   if (i <= j) return infty<ll>;\r\n    return dp[j] + f(j, i);\r\n  });\r\n\
-    \  FOR3(r, 1, N + 1) {\r\n    ll l = larsch.get_argmin();\r\n    dp[r] = dp[l]\
-    \ + f(l, r);\r\n  }\r\n  return dp;\r\n}\r\n\r\n/*\r\nhttps://dic.kimiyuki.net/d-edge-shortest-path-monge\r\
-    \n\u4E0A\u51F8\u95A2\u6570 calc_L(lambda) \u306E\u6700\u5927\u5024\u3092\u6C42\
-    \u3081\u308B\u554F\u984C\u306B\u5E30\u7740\r\n|f| \u306E\u4E0A\u9650 f_lim \u3082\
-    \u6E21\u3059\r\n*/\r\ntemplate <typename F>\r\nll monge_shortest_path_d_edge(ll\
-    \ N, F f, ll d, ll f_lim) {\r\n  auto calc_L = [&](ll lambda) -> ll {\r\n    auto\
-    \ cost = [&](int frm, int to) -> ll { return f(frm, to) + lambda; };\r\n    auto\
-    \ dp = monge_shortest_path(N, cost);\r\n    return dp.back() - lambda * d;\r\n\
-    \  };\r\n\r\n  ll ANS = -infty<ll>;\r\n  ll L = -3 * f_lim - 10;\r\n  ll R = 3\
-    \ * f_lim + 10;\r\n  ll x = binary_search([&](ll x) { return calc_L(x - 1) <=\
-    \ calc_L(x); }, L, R);\r\n  return calc_L(x);\r\n}\r\n"
+    \    if (lhs < rhs) return false;\r\n  }\r\n  return true;\r\n}\r\n\r\n// newdp[j]\
+    \ = min (dp[i] + f(i,j))\r\ntemplate <typename T, typename F>\r\nvc<T> monge_dp_update(int\
+    \ N, vc<T>& dp, F f) {\r\n  assert(len(dp) == N + 1);\r\n  auto select = [&](int\
+    \ i, int j, int k) -> int {\r\n    if (i <= k) return j;\r\n    return (dp[j]\
+    \ + f(j, i) > dp[k] + f(k, i) ? k : j);\r\n  };\r\n  vc<int> I = SMAWK(N + 1,\
+    \ N + 1, select);\r\n  vc<T> newdp(N + 1, infty<T>);\r\n  FOR(j, N + 1) {\r\n\
+    \    int i = I[j];\r\n    chmin(newdp[j], dp[i] + f(i, j));\r\n  }\r\n  return\
+    \ newdp;\r\n}\r\n\r\n// \u9077\u79FB\u56DE\u6570\u3092\u554F\u308F\u306A\u3044\
+    \u5834\u5408\r\ntemplate <typename T, typename F>\r\nvc<T> monge_shortest_path(int\
+    \ N, F f) {\r\n  vc<T> dp(N + 1, infty<T>);\r\n  dp[0] = 0;\r\n  LARSCH<T> larsch(N,\
+    \ [&](int i, int j) -> T {\r\n    ++i;\r\n    if (i <= j) return infty<T>;\r\n\
+    \    return dp[j] + f(j, i);\r\n  });\r\n  FOR(r, 1, N + 1) {\r\n    int l = larsch.get_argmin();\r\
+    \n    dp[r] = dp[l] + f(l, r);\r\n  }\r\n  return dp;\r\n}\r\n\r\n// https://noshi91.github.io/algorithm-encyclopedia/d-edge-shortest-path-monge\r\
+    \n// \u4E0A\u51F8\u95A2\u6570 calc_L(lambda) \u306E\u6700\u5927\u5024\u3092\u6C42\
+    \u3081\u308B\u554F\u984C\u306B\u5E30\u7740\r\n// |f| \u306E\u4E0A\u9650 f_lim\
+    \ \u3082\u6E21\u3059\r\ntemplate <typename T, typename F>\r\nT monge_shortest_path_d_edge(int\
+    \ N, int d, T f_lim, F f) {\r\n  assert(d <= N);\r\n  auto calc_L = [&](T lambda)\
+    \ -> T {\r\n    auto cost = [&](int frm, int to) -> T { return f(frm, to) + lambda;\
+    \ };\r\n    vc<T> dp = monge_shortest_path<T>(N, cost);\r\n    return dp[N] -\
+    \ lambda * d;\r\n  };\r\n\r\n  T L = -3 * f_lim - 10;\r\n  T R = 3 * f_lim + 10;\r\
+    \n  T x = binary_search([&](T x) -> bool { return calc_L(x - 1) <= calc_L(x);\
+    \ },\r\n                      L, R);\r\n  return calc_L(x);\r\n}\r\n"
   code: "#include \"convex/larsch.hpp\"\r\n#include \"convex/smawk.hpp\"\r\n\r\n//\
     \ \u5B9A\u7FA9\u57DF [0, N] \u306E\u7BC4\u56F2\u3067 f \u306E monge \u6027\u3092\
     \u78BA\u8A8D\r\ntemplate <typename T, typename F>\r\nbool check_monge(int N, F\
     \ f) {\r\n  FOR(l, N + 1) FOR(k, l) FOR(j, k) FOR(i, j) {\r\n    T lhs = f(i,\
     \ l) + f(j, k);\r\n    T rhs = f(i, k) + f(j, l);\r\n    if (lhs < rhs) return\
-    \ false;\r\n  }\r\n  return true;\r\n}\r\n\r\ntemplate <typename F>\r\nvi monge_shortest_path(int\
-    \ N, F f) {\r\n  vi dp(N + 1, infty<ll>);\r\n  dp[0] = 0;\r\n  LARSCH<ll> larsch(N,\
-    \ [&](int i, int j) {\r\n    ++i;\r\n    if (i <= j) return infty<ll>;\r\n   \
-    \ return dp[j] + f(j, i);\r\n  });\r\n  FOR3(r, 1, N + 1) {\r\n    ll l = larsch.get_argmin();\r\
-    \n    dp[r] = dp[l] + f(l, r);\r\n  }\r\n  return dp;\r\n}\r\n\r\n/*\r\nhttps://dic.kimiyuki.net/d-edge-shortest-path-monge\r\
-    \n\u4E0A\u51F8\u95A2\u6570 calc_L(lambda) \u306E\u6700\u5927\u5024\u3092\u6C42\
-    \u3081\u308B\u554F\u984C\u306B\u5E30\u7740\r\n|f| \u306E\u4E0A\u9650 f_lim \u3082\
-    \u6E21\u3059\r\n*/\r\ntemplate <typename F>\r\nll monge_shortest_path_d_edge(ll\
-    \ N, F f, ll d, ll f_lim) {\r\n  auto calc_L = [&](ll lambda) -> ll {\r\n    auto\
-    \ cost = [&](int frm, int to) -> ll { return f(frm, to) + lambda; };\r\n    auto\
-    \ dp = monge_shortest_path(N, cost);\r\n    return dp.back() - lambda * d;\r\n\
-    \  };\r\n\r\n  ll ANS = -infty<ll>;\r\n  ll L = -3 * f_lim - 10;\r\n  ll R = 3\
-    \ * f_lim + 10;\r\n  ll x = binary_search([&](ll x) { return calc_L(x - 1) <=\
-    \ calc_L(x); }, L, R);\r\n  return calc_L(x);\r\n}\r\n"
+    \ false;\r\n  }\r\n  return true;\r\n}\r\n\r\n// newdp[j] = min (dp[i] + f(i,j))\r\
+    \ntemplate <typename T, typename F>\r\nvc<T> monge_dp_update(int N, vc<T>& dp,\
+    \ F f) {\r\n  assert(len(dp) == N + 1);\r\n  auto select = [&](int i, int j, int\
+    \ k) -> int {\r\n    if (i <= k) return j;\r\n    return (dp[j] + f(j, i) > dp[k]\
+    \ + f(k, i) ? k : j);\r\n  };\r\n  vc<int> I = SMAWK(N + 1, N + 1, select);\r\n\
+    \  vc<T> newdp(N + 1, infty<T>);\r\n  FOR(j, N + 1) {\r\n    int i = I[j];\r\n\
+    \    chmin(newdp[j], dp[i] + f(i, j));\r\n  }\r\n  return newdp;\r\n}\r\n\r\n\
+    // \u9077\u79FB\u56DE\u6570\u3092\u554F\u308F\u306A\u3044\u5834\u5408\r\ntemplate\
+    \ <typename T, typename F>\r\nvc<T> monge_shortest_path(int N, F f) {\r\n  vc<T>\
+    \ dp(N + 1, infty<T>);\r\n  dp[0] = 0;\r\n  LARSCH<T> larsch(N, [&](int i, int\
+    \ j) -> T {\r\n    ++i;\r\n    if (i <= j) return infty<T>;\r\n    return dp[j]\
+    \ + f(j, i);\r\n  });\r\n  FOR(r, 1, N + 1) {\r\n    int l = larsch.get_argmin();\r\
+    \n    dp[r] = dp[l] + f(l, r);\r\n  }\r\n  return dp;\r\n}\r\n\r\n// https://noshi91.github.io/algorithm-encyclopedia/d-edge-shortest-path-monge\r\
+    \n// \u4E0A\u51F8\u95A2\u6570 calc_L(lambda) \u306E\u6700\u5927\u5024\u3092\u6C42\
+    \u3081\u308B\u554F\u984C\u306B\u5E30\u7740\r\n// |f| \u306E\u4E0A\u9650 f_lim\
+    \ \u3082\u6E21\u3059\r\ntemplate <typename T, typename F>\r\nT monge_shortest_path_d_edge(int\
+    \ N, int d, T f_lim, F f) {\r\n  assert(d <= N);\r\n  auto calc_L = [&](T lambda)\
+    \ -> T {\r\n    auto cost = [&](int frm, int to) -> T { return f(frm, to) + lambda;\
+    \ };\r\n    vc<T> dp = monge_shortest_path<T>(N, cost);\r\n    return dp[N] -\
+    \ lambda * d;\r\n  };\r\n\r\n  T L = -3 * f_lim - 10;\r\n  T R = 3 * f_lim + 10;\r\
+    \n  T x = binary_search([&](T x) -> bool { return calc_L(x - 1) <= calc_L(x);\
+    \ },\r\n                      L, R);\r\n  return calc_L(x);\r\n}\r\n"
   dependsOn:
   - convex/larsch.hpp
   - convex/smawk.hpp
   isVerificationFile: false
   path: convex/monge.hpp
   requiredBy: []
-  timestamp: '2023-02-12 02:05:24+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-02-12 02:32:01+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/705.test.cpp
 documentation_of: convex/monge.hpp

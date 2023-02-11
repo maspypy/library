@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/maxplus_convolution_concave.hpp
     title: convex/maxplus_convolution_concave.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/smawk.hpp
     title: convex/smawk.hpp
   - icon: ':question:'

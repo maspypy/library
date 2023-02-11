@@ -382,22 +382,26 @@ data:
     \ n + m - 1), B = calc(r.inverse(), max(n, m));\r\n  FOR(i, n) f[i] *= B[i];\r\
     \n  reverse(all(f));\r\n  f = convolution(f, A);\r\n  f = {f.begin() + n - 1,\
     \ f.end()};\r\n  f.resize(m);\r\n  FOR(i, m) f[i] *= B[i];\r\n  return f;\r\n\
-    }\n#line 2 \"poly/partial_frac_decomposition.hpp\"\n// O(Nlog^2N)\n// f / prod(x-a)\
-    \ = sum b/(x-a) \u3068\u3044\u3046 B \u3092\u8FD4\u3059\ntemplate <typename mint>\n\
-    vc<mint> partial_frac_decomposition(vc<mint> f, vc<mint> A) {\n  assert(len(f)\
-    \ <= len(A));\n  if (len(f) == 0) return vc<mint>(len(A));\n  SubproductTree<mint>\
-    \ X(A);\n  vc<mint> g = X.T[1]; // prod(1-ax)\n  g.resize(len(A) + 1);\n  reverse(all(g));\n\
-    \  FOR(i, len(g) - 1) g[i] = g[i + 1] * mint(i + 1);\n  g.pop_back();\n\n  auto\
-    \ num = X.evaluation(f);\n  auto den = X.evaluation(g);\n  vc<mint> B(len(A));\n\
-    \  FOR(i, len(A)) B[i] = num[i] / den[i];\n  return B;\n}\n"
-  code: "#include \"poly/multipoint.hpp\"\n// O(Nlog^2N)\n// f / prod(x-a) = sum b/(x-a)\
-    \ \u3068\u3044\u3046 B \u3092\u8FD4\u3059\ntemplate <typename mint>\nvc<mint>\
-    \ partial_frac_decomposition(vc<mint> f, vc<mint> A) {\n  assert(len(f) <= len(A));\n\
-    \  if (len(f) == 0) return vc<mint>(len(A));\n  SubproductTree<mint> X(A);\n \
-    \ vc<mint> g = X.T[1]; // prod(1-ax)\n  g.resize(len(A) + 1);\n  reverse(all(g));\n\
-    \  FOR(i, len(g) - 1) g[i] = g[i + 1] * mint(i + 1);\n  g.pop_back();\n\n  auto\
-    \ num = X.evaluation(f);\n  auto den = X.evaluation(g);\n  vc<mint> B(len(A));\n\
-    \  FOR(i, len(A)) B[i] = num[i] / den[i];\n  return B;\n}\n"
+    }\n#line 2 \"poly/partial_frac_decomposition.hpp\"\n// O(Nlog^2N)\n// \u5206\u6BCD\
+    \u306F\u76F8\u7570\u306A\u308B 1 \u6B21\u5F0F\u306E\u7A4D\u9650\u5B9A\u3068\u3059\
+    \u308B\n// f / prod(ax+b) = sum c/(ax+b) \u3068\u3044\u3046 C \u3092\u8FD4\u3059\
+    \ntemplate <typename mint>\nvc<mint> partial_frac_decomposition(vc<mint> f, vc<mint>\
+    \ A) {\n  assert(len(f) <= len(A));\n  if (len(f) == 0) return vc<mint>(len(A));\n\
+    \  SubproductTree<mint> X(A);\n  vc<mint> g = X.T[1]; // prod(1-ax)\n  g.resize(len(A)\
+    \ + 1);\n  reverse(all(g));\n  FOR(i, len(g) - 1) g[i] = g[i + 1] * mint(i + 1);\n\
+    \  g.pop_back();\n\n  auto num = X.evaluation(f);\n  auto den = X.evaluation(g);\n\
+    \  vc<mint> B(len(A));\n  FOR(i, len(A)) B[i] = num[i] / den[i];\n  return B;\n\
+    }\n"
+  code: "#include \"poly/multipoint.hpp\"\n// O(Nlog^2N)\n// \u5206\u6BCD\u306F\u76F8\
+    \u7570\u306A\u308B 1 \u6B21\u5F0F\u306E\u7A4D\u9650\u5B9A\u3068\u3059\u308B\n\
+    // f / prod(ax+b) = sum c/(ax+b) \u3068\u3044\u3046 C \u3092\u8FD4\u3059\ntemplate\
+    \ <typename mint>\nvc<mint> partial_frac_decomposition(vc<mint> f, vc<mint> A)\
+    \ {\n  assert(len(f) <= len(A));\n  if (len(f) == 0) return vc<mint>(len(A));\n\
+    \  SubproductTree<mint> X(A);\n  vc<mint> g = X.T[1]; // prod(1-ax)\n  g.resize(len(A)\
+    \ + 1);\n  reverse(all(g));\n  FOR(i, len(g) - 1) g[i] = g[i + 1] * mint(i + 1);\n\
+    \  g.pop_back();\n\n  auto num = X.evaluation(f);\n  auto den = X.evaluation(g);\n\
+    \  vc<mint> B(len(A));\n  FOR(i, len(A)) B[i] = num[i] / den[i];\n  return B;\n\
+    }\n"
   dependsOn:
   - poly/multipoint.hpp
   - poly/fps_inv.hpp
@@ -411,7 +415,7 @@ data:
   isVerificationFile: false
   path: poly/partial_frac_decomposition.hpp
   requiredBy: []
-  timestamp: '2023-02-02 05:07:15+09:00'
+  timestamp: '2023-02-12 02:32:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/partial_frac.test.cpp
