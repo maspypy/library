@@ -12,38 +12,55 @@ bool check_monge(int N, F f) {
   return true;
 }
 
-template <typename F>
-vi monge_shortest_path(int N, F f) {
-  vi dp(N + 1, infty<ll>);
+// newdp[j] = min (dp[i] + f(i,j))
+template <typename T, typename F>
+vc<T> monge_dp_update(int N, vc<T>& dp, F f) {
+  assert(len(dp) == N + 1);
+  auto select = [&](int i, int j, int k) -> int {
+    if (i <= k) return j;
+    return (dp[j] + f(j, i) > dp[k] + f(k, i) ? k : j);
+  };
+  vc<int> I = SMAWK(N + 1, N + 1, select);
+  vc<T> newdp(N + 1, infty<T>);
+  FOR(j, N + 1) {
+    int i = I[j];
+    chmin(newdp[j], dp[i] + f(i, j));
+  }
+  return newdp;
+}
+
+// 遷移回数を問わない場合
+template <typename T, typename F>
+vc<T> monge_shortest_path(int N, F f) {
+  vc<T> dp(N + 1, infty<T>);
   dp[0] = 0;
-  LARSCH<ll> larsch(N, [&](int i, int j) {
+  LARSCH<T> larsch(N, [&](int i, int j) -> T {
     ++i;
-    if (i <= j) return infty<ll>;
+    if (i <= j) return infty<T>;
     return dp[j] + f(j, i);
   });
-  FOR3(r, 1, N + 1) {
-    ll l = larsch.get_argmin();
+  FOR(r, 1, N + 1) {
+    int l = larsch.get_argmin();
     dp[r] = dp[l] + f(l, r);
   }
   return dp;
 }
 
-/*
-https://dic.kimiyuki.net/d-edge-shortest-path-monge
-上凸関数 calc_L(lambda) の最大値を求める問題に帰着
-|f| の上限 f_lim も渡す
-*/
-template <typename F>
-ll monge_shortest_path_d_edge(ll N, F f, ll d, ll f_lim) {
-  auto calc_L = [&](ll lambda) -> ll {
-    auto cost = [&](int frm, int to) -> ll { return f(frm, to) + lambda; };
-    auto dp = monge_shortest_path(N, cost);
-    return dp.back() - lambda * d;
+// https://noshi91.github.io/algorithm-encyclopedia/d-edge-shortest-path-monge
+// 上凸関数 calc_L(lambda) の最大値を求める問題に帰着
+// |f| の上限 f_lim も渡す
+template <typename T, typename F>
+T monge_shortest_path_d_edge(int N, int d, T f_lim, F f) {
+  assert(d <= N);
+  auto calc_L = [&](T lambda) -> T {
+    auto cost = [&](int frm, int to) -> T { return f(frm, to) + lambda; };
+    vc<T> dp = monge_shortest_path<T>(N, cost);
+    return dp[N] - lambda * d;
   };
 
-  ll ANS = -infty<ll>;
-  ll L = -3 * f_lim - 10;
-  ll R = 3 * f_lim + 10;
-  ll x = binary_search([&](ll x) { return calc_L(x - 1) <= calc_L(x); }, L, R);
+  T L = -3 * f_lim - 10;
+  T R = 3 * f_lim + 10;
+  T x = binary_search([&](T x) -> bool { return calc_L(x - 1) <= calc_L(x); },
+                      L, R);
   return calc_L(x);
 }
