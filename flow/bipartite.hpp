@@ -109,8 +109,8 @@ struct BipartiteMatching {
   - 最大マッチングとしてありうる iff 同じ W を持つ
   - 辺 uv が必ず使われる：同じ W を持つ辺が唯一
   - color=0 から 1 への辺：W[l] <= W[r]
-  - color=0 の点が必ず使われる：W=0,1,...,K-1
-  - color=1 の点が必ず使われる：W=1,2,...,K
+  - color=0 の点が必ず使われる：W=1,2,...,K
+  - color=1 の点が必ず使われる：W=0,1,...,K-1
   */
   pair<int, vc<int>> DM_decomposition() {
     // 非飽和点からの探索
