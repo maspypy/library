@@ -14,9 +14,7 @@ struct Node_Basic {
 
   static void new_node(np n, const S &x) {
     n->p = n->l = n->r = nullptr;
-    n->x = x;
-    n->size = 1;
-    n->rev = 0;
+    n->x = x, n->size = 1, n->rev = 0;
   }
 
   void update() {
@@ -27,14 +25,8 @@ struct Node_Basic {
 
   void prop() {
     if (rev) {
-      if (l) {
-        l->rev ^= 1;
-        swap(l->l, l->r);
-      }
-      if (r) {
-        r->rev ^= 1;
-        swap(r->l, r->r);
-      }
+      if (l) { l->rev ^= 1, swap(l->l, l->r); }
+      if (r) { r->rev ^= 1, swap(r->l, r->r); }
       rev = 0;
     }
   }
