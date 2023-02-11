@@ -1,3 +1,4 @@
+#pragma once
 // select(i,j,k) は (i,j) と (i,k) のうち選ぶ方（j or k）
 template <typename F>
 vc<int> SMAWK(int H, int W, F select) {
