@@ -1,6 +1,7 @@
 #include "poly/multipoint.hpp"
 // O(Nlog^2N)
-// f / prod(x-a) = sum b/(x-a) という B を返す
+// 分母は相異なる 1 次式の積限定とする
+// f / prod(ax+b) = sum c/(ax+b) という C を返す
 template <typename mint>
 vc<mint> partial_frac_decomposition(vc<mint> f, vc<mint> A) {
   assert(len(f) <= len(A));
