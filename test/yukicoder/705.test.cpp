@@ -15,17 +15,10 @@ void solve() {
     ll dy = abs(y);
     return dx * dx * dx + dy * dy * dy;
   };
-  print(monge_shortest_path(N, f).back());
+  print(monge_shortest_path<ll>(N, f).back());
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }
