@@ -12,6 +12,9 @@ data:
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':heavy_check_mark:'
+    path: geo/range_closest_pair_query.hpp
+    title: geo/range_closest_pair_query.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
   - icon: ':heavy_check_mark:'
@@ -271,6 +274,9 @@ data:
     path: test/mytest/product_of_one_pm_xn.test.cpp
     title: test/mytest/product_of_one_pm_xn.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/range_closest_pair.test.cpp
+    title: test/mytest/range_closest_pair.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/range_freq_of_linear.test.cpp
     title: test/mytest/range_freq_of_linear.test.cpp
   - icon: ':heavy_check_mark:'
@@ -472,6 +478,7 @@ data:
   - linalg/implicit_matrix/det.hpp
   - linalg/implicit_matrix/min_poly.hpp
   - linalg/det_A_plus_xB.hpp
+  - geo/range_closest_pair_query.hpp
   - geo/count_points_in_triangles.hpp
   - string/rollinghash.hpp
   - string/rollinghash_2d.hpp
@@ -541,6 +548,7 @@ data:
   - test/mytest/kdtree_nns.test.cpp
   - test/mytest/rbst_commutative_persistent.test.cpp
   - test/mytest/matching_line_graph.test.cpp
+  - test/mytest/range_closest_pair.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/max_max.test.cpp
   - test/mytest/online_pow.test.cpp

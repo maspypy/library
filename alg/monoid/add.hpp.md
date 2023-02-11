@@ -93,9 +93,6 @@ data:
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   - icon: ':heavy_check_mark:'
-    path: seq/inversion_rotate.hpp
-    title: seq/inversion_rotate.hpp
-  - icon: ':heavy_check_mark:'
     path: string/trie.hpp
     title: string/trie.hpp
   _extendedVerifiedWith:
@@ -298,9 +295,6 @@ data:
     path: test/yukicoder/1720.test.cpp
     title: test/yukicoder/1720.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1838.test.cpp
-    title: test/yukicoder/1838.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1874.test.cpp
     title: test/yukicoder/1874.test.cpp
   - icon: ':heavy_check_mark:'
@@ -349,9 +343,6 @@ data:
     path: test_atcoder/abc174f.test.cpp
     title: test_atcoder/abc174f.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test_atcoder/abc190f.test.cpp
-    title: test_atcoder/abc190f.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc234g.test.cpp
     title: test_atcoder/abc234g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -378,7 +369,6 @@ data:
   isVerificationFile: false
   path: alg/monoid/add.hpp
   requiredBy:
-  - seq/inversion_rotate.hpp
   - seq/inversion.hpp
   - seq/common_interval_decomposition.hpp
   - graph/ds/tree_abelgroup.hpp
@@ -449,7 +439,6 @@ data:
   - test/yukicoder/899.test.cpp
   - test/yukicoder/1874.test.cpp
   - test/yukicoder/2065.test.cpp
-  - test/yukicoder/1838.test.cpp
   - test/yukicoder/1977.test.cpp
   - test/yukicoder/1641.test.cpp
   - test/yukicoder/789.test.cpp
@@ -496,7 +485,6 @@ data:
   - test/mytest/splay_cm.test.cpp
   - test_atcoder/abc266h_2.test.cpp
   - test_atcoder/abc174f.test.cpp
-  - test_atcoder/abc190f.test.cpp
   - test_atcoder/abc234g.test.cpp
   - test_atcoder/abc127f_1.test.cpp
 documentation_of: alg/monoid/add.hpp

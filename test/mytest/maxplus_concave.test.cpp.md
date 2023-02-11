@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/smawk.hpp
     title: convex/smawk.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
@@ -213,7 +213,7 @@ data:
     \               .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n\
     \  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
     ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 5 \"test/mytest/maxplus_concave.test.cpp\"\
-    \n\n#line 1 \"convex/smawk.hpp\"\n// select(i,j,k) \u306F (i,j) \u3068 (i,k) \u306E\
+    \n\n#line 2 \"convex/smawk.hpp\"\n// select(i,j,k) \u306F (i,j) \u3068 (i,k) \u306E\
     \u3046\u3061\u9078\u3076\u65B9\uFF08j or k\uFF09\ntemplate <typename F>\nvc<int>\
     \ SMAWK(int H, int W, F select) {\n  auto dfs = [&](auto& dfs, vc<int> X, vc<int>\
     \ Y) -> vc<int> {\n    int N = len(X);\n    if (N == 0) return {};\n    vc<int>\
@@ -273,7 +273,7 @@ data:
   isVerificationFile: true
   path: test/mytest/maxplus_concave.test.cpp
   requiredBy: []
-  timestamp: '2023-02-02 01:09:35+09:00'
+  timestamp: '2023-02-12 02:05:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/maxplus_concave.test.cpp

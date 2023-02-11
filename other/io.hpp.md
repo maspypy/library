@@ -898,6 +898,9 @@ data:
     path: test/mytest/qoj5443.test.cpp
     title: test/mytest/qoj5443.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/range_closest_pair.test.cpp
+    title: test/mytest/range_closest_pair.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/range_freq_of_linear.test.cpp
     title: test/mytest/range_freq_of_linear.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1360,9 +1363,6 @@ data:
     path: test/yukicoder/1826_2.test.cpp
     title: test/yukicoder/1826_2.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1838.test.cpp
-    title: test/yukicoder/1838.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/184.test.cpp
     title: test/yukicoder/184.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1480,6 +1480,9 @@ data:
     path: test/yukicoder/2167.test.cpp
     title: test/yukicoder/2167.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2181.test.cpp
+    title: test/yukicoder/2181.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2206.test.cpp
     title: test/yukicoder/2206.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1576,9 +1579,6 @@ data:
     path: test_atcoder/abc174f.test.cpp
     title: test_atcoder/abc174f.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test_atcoder/abc190f.test.cpp
-    title: test_atcoder/abc190f.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc196_E.test.cpp
     title: test_atcoder/abc196_E.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1665,7 +1665,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc274_h.test.cpp
     title: test_atcoder/abc274_h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc274g.test.cpp
     title: test_atcoder/abc274g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1683,15 +1683,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc151_e.test.cpp
     title: test_atcoder/arc151_e.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc153b.test.cpp
     title: test_atcoder/arc153b.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\n#include\
@@ -1907,7 +1907,7 @@ data:
   path: other/io.hpp
   requiredBy: []
   timestamp: '2023-01-19 00:14:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/GRL_3_A.test.cpp
   - test/aoj/DSL_2_D.test.cpp
@@ -2108,6 +2108,7 @@ data:
   - test/yukicoder/1295.test.cpp
   - test/yukicoder/1989.test.cpp
   - test/yukicoder/17.test.cpp
+  - test/yukicoder/2181.test.cpp
   - test/yukicoder/1080.test.cpp
   - test/yukicoder/2003.test.cpp
   - test/yukicoder/1618.test.cpp
@@ -2145,7 +2146,6 @@ data:
   - test/yukicoder/1418.test.cpp
   - test/yukicoder/502_2.test.cpp
   - test/yukicoder/1025.test.cpp
-  - test/yukicoder/1838.test.cpp
   - test/yukicoder/590.test.cpp
   - test/yukicoder/1977.test.cpp
   - test/yukicoder/2102.test.cpp
@@ -2348,6 +2348,7 @@ data:
   - test/mytest/kdtree_nns.test.cpp
   - test/mytest/rbst_commutative_persistent.test.cpp
   - test/mytest/matching_line_graph.test.cpp
+  - test/mytest/range_closest_pair.test.cpp
   - test/mytest/simple_perm.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/gray_code.test.cpp
@@ -2459,7 +2460,6 @@ data:
   - test_atcoder/arc151_e.test.cpp
   - test_atcoder/abc174f.test.cpp
   - test_atcoder/arc153b.test.cpp
-  - test_atcoder/abc190f.test.cpp
   - test_atcoder/abc274g.test.cpp
   - test_atcoder/abc200a.test.cpp
   - test_atcoder/abc234g.test.cpp

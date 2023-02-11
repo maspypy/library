@@ -6,6 +6,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: geo/range_closest_pair_query.hpp
+    title: geo/range_closest_pair_query.hpp
+  - icon: ':heavy_check_mark:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
   - icon: ':heavy_check_mark:'
@@ -30,6 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/range_closest_pair.test.cpp
+    title: test/mytest/range_closest_pair.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/tdpc_grid_dp.test.cpp
     title: test/mytest/tdpc_grid_dp.test.cpp
@@ -138,6 +144,7 @@ data:
   - mod/mod_kth_root.hpp
   - mod/mod_log.hpp
   - nt/discrete_log.hpp
+  - geo/range_closest_pair_query.hpp
   - other/connected_dp.hpp
   timestamp: '2023-01-31 21:59:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -160,6 +167,7 @@ data:
   - test/library_checker/datastructure/set_xor_min.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
+  - test/mytest/range_closest_pair.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
   - test_atcoder/abc270_g.test.cpp
   - test_atcoder/abc273_e.test.cpp

@@ -29,7 +29,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"convex/smawk.hpp\"\n// select(i,j,k) \u306F (i,j) \u3068\
+  bundledCode: "#line 2 \"convex/smawk.hpp\"\n// select(i,j,k) \u306F (i,j) \u3068\
     \ (i,k) \u306E\u3046\u3061\u9078\u3076\u65B9\uFF08j or k\uFF09\ntemplate <typename\
     \ F>\nvc<int> SMAWK(int H, int W, F select) {\n  auto dfs = [&](auto& dfs, vc<int>\
     \ X, vc<int> Y) -> vc<int> {\n    int N = len(X);\n    if (N == 0) return {};\n\
@@ -43,12 +43,12 @@ data:
     \        best = select(X[i], best, Y[p]);\n      }\n      I[i] = best;\n    }\n\
     \    return I;\n  };\n  vc<int> X(H), Y(W);\n  iota(all(X), 0), iota(all(Y), 0);\n\
     \  return dfs(dfs, X, Y);\n}\n"
-  code: "// select(i,j,k) \u306F (i,j) \u3068 (i,k) \u306E\u3046\u3061\u9078\u3076\
-    \u65B9\uFF08j or k\uFF09\ntemplate <typename F>\nvc<int> SMAWK(int H, int W, F\
-    \ select) {\n  auto dfs = [&](auto& dfs, vc<int> X, vc<int> Y) -> vc<int> {\n\
-    \    int N = len(X);\n    if (N == 0) return {};\n    vc<int> YY;\n    for (auto&&\
-    \ y: Y) {\n      while (len(YY)) {\n        int py = YY.back(), x = X[len(YY)\
-    \ - 1];\n        if (select(x, py, y) == py) break;\n        YY.pop_back();\n\
+  code: "#pragma once\n// select(i,j,k) \u306F (i,j) \u3068 (i,k) \u306E\u3046\u3061\
+    \u9078\u3076\u65B9\uFF08j or k\uFF09\ntemplate <typename F>\nvc<int> SMAWK(int\
+    \ H, int W, F select) {\n  auto dfs = [&](auto& dfs, vc<int> X, vc<int> Y) ->\
+    \ vc<int> {\n    int N = len(X);\n    if (N == 0) return {};\n    vc<int> YY;\n\
+    \    for (auto&& y: Y) {\n      while (len(YY)) {\n        int py = YY.back(),\
+    \ x = X[len(YY) - 1];\n        if (select(x, py, y) == py) break;\n        YY.pop_back();\n\
     \      }\n      if (len(YY) < len(X)) YY.eb(y);\n    }\n    vc<int> XX;\n    FOR(i,\
     \ 1, len(X), 2) XX.eb(X[i]);\n    vc<int> II = dfs(dfs, XX, YY);\n    vc<int>\
     \ I(N);\n    FOR(i, len(II)) I[i + i + 1] = II[i];\n    int p = 0;\n    FOR(i,\
@@ -64,7 +64,7 @@ data:
   - convex/maxplus_convolution_concave.hpp
   - convex/minplus_convolution_convex.hpp
   - convex/monge.hpp
-  timestamp: '2023-01-19 00:12:30+09:00'
+  timestamp: '2023-02-12 02:05:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/705.test.cpp

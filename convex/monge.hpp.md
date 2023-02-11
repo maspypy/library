@@ -50,7 +50,7 @@ data:
     \ { cols.push_back(j); }\n      }\n      return cols[rec.get_argmin()];\n    }\n\
     \  };\n\n  std::unique_ptr<reduce_row> base;\n\npublic:\n  LARSCH(int n, std::function<T(int,\
     \ int)> f)\n      : base(std::make_unique<reduce_row>(n)) {\n    base->set_f(f);\n\
-    \  }\n\n  int get_argmin() { return base->get_argmin(); }\n};\n#line 1 \"convex/smawk.hpp\"\
+    \  }\n\n  int get_argmin() { return base->get_argmin(); }\n};\n#line 2 \"convex/smawk.hpp\"\
     \n// select(i,j,k) \u306F (i,j) \u3068 (i,k) \u306E\u3046\u3061\u9078\u3076\u65B9\
     \uFF08j or k\uFF09\ntemplate <typename F>\nvc<int> SMAWK(int H, int W, F select)\
     \ {\n  auto dfs = [&](auto& dfs, vc<int> X, vc<int> Y) -> vc<int> {\n    int N\
@@ -108,7 +108,7 @@ data:
   isVerificationFile: false
   path: convex/monge.hpp
   requiredBy: []
-  timestamp: '2023-02-02 01:52:11+09:00'
+  timestamp: '2023-02-12 02:05:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/705.test.cpp

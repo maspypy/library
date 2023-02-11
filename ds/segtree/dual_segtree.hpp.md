@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: geo/range_closest_pair_query.hpp
+    title: geo/range_closest_pair_query.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -18,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_point_add.test.cpp
     title: test/library_checker/datastructure/range_affine_point_add.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/range_closest_pair.test.cpp
+    title: test/mytest/range_closest_pair.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1524.test.cpp
     title: test/yukicoder/1524.test.cpp
@@ -73,6 +79,7 @@ data:
   requiredBy:
   - graph/minimum_spanning_tree.hpp
   - graph/ds/dual_tree_monoid.hpp
+  - geo/range_closest_pair_query.hpp
   timestamp: '2022-12-04 02:25:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -81,6 +88,7 @@ data:
   - test/yukicoder/913.test.cpp
   - test/yukicoder/1524.test.cpp
   - test/library_checker/datastructure/range_affine_point_add.test.cpp
+  - test/mytest/range_closest_pair.test.cpp
   - test_atcoder/abc270_f.test.cpp
 documentation_of: ds/segtree/dual_segtree.hpp
 layout: document

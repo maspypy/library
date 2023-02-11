@@ -29,9 +29,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/inversion_rotate.hpp
-    title: seq/inversion_rotate.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_2_A.test.cpp
@@ -97,17 +94,11 @@ data:
     path: test/yukicoder/1641.test.cpp
     title: test/yukicoder/1641.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1838.test.cpp
-    title: test/yukicoder/1838.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1874.test.cpp
     title: test/yukicoder/1874.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2161.test.cpp
     title: test/yukicoder/2161.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test_atcoder/abc190f.test.cpp
-    title: test_atcoder/abc190f.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -183,7 +174,6 @@ data:
   isVerificationFile: false
   path: ds/fenwicktree/fenwicktree.hpp
   requiredBy:
-  - seq/inversion_rotate.hpp
   - seq/inversion.hpp
   - graph/ds/tree_abelgroup.hpp
   - graph/ds/contour_sum.hpp
@@ -205,7 +195,6 @@ data:
   - test/yukicoder/1311.test.cpp
   - test/yukicoder/1326.test.cpp
   - test/yukicoder/1874.test.cpp
-  - test/yukicoder/1838.test.cpp
   - test/yukicoder/1641.test.cpp
   - test/yukicoder/2161.test.cpp
   - test/library_checker/graph/verted_add_contour_sum.test.cpp
@@ -219,7 +208,6 @@ data:
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
-  - test_atcoder/abc190f.test.cpp
 documentation_of: ds/fenwicktree/fenwicktree.hpp
 layout: document
 redirect_from:

@@ -21,6 +21,9 @@ data:
     path: ds/offline_query/range_mex_query.hpp
     title: ds/offline_query/range_mex_query.hpp
   - icon: ':heavy_check_mark:'
+    path: geo/range_closest_pair_query.hpp
+    title: geo/range_closest_pair_query.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -82,6 +85,9 @@ data:
     path: test/mytest/min_min.test.cpp
     title: test/mytest/min_min.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/range_closest_pair.test.cpp
+    title: test/mytest/range_closest_pair.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
   - icon: ':heavy_check_mark:'
@@ -140,6 +146,7 @@ data:
   requiredBy:
   - seq/common_interval_decomposition.hpp
   - graph/minimum_spanning_tree.hpp
+  - geo/range_closest_pair_query.hpp
   - string/longest_common_substring.hpp
   - string/suffix_array.hpp
   - string/suffix_tree.hpp
@@ -171,6 +178,7 @@ data:
   - test/library_checker/string/suffix_array.test.cpp
   - test/mytest/rbst_am_persistent.test.cpp
   - test/mytest/range_mex.test.cpp
+  - test/mytest/range_closest_pair.test.cpp
   - test/mytest/max_min.test.cpp
   - test/mytest/rbst_test.test.cpp
   - test/mytest/suffix_tree.test.cpp
