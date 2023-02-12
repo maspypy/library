@@ -18,6 +18,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1838.test.cpp
     title: test/yukicoder/1838.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc190f.test.cpp
+    title: test_atcoder/abc190f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -106,6 +109,7 @@ data:
   - test/aoj/ALDS1_2_A.test.cpp
   - test/aoj/ALDS1_5.test.cpp
   - test/yukicoder/1838.test.cpp
+  - test_atcoder/abc190f.test.cpp
 documentation_of: seq/inversion.hpp
 layout: document
 redirect_from:
