@@ -85,7 +85,7 @@ data:
       title: alg/acted_set/from_monoid.hpp
   - name: alg/monoid
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/add.hpp
       title: alg/monoid/add.hpp
     - icon: ':heavy_check_mark:'
@@ -257,7 +257,7 @@ data:
       title: ds/disjointsparse/xor_disjointsparse.hpp
   - name: ds/fenwicktree
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fenwicktree/fenwicktree.hpp
       title: ds/fenwicktree/fenwicktree.hpp
     - icon: ':heavy_check_mark:'
@@ -922,7 +922,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -1019,7 +1019,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/dice.hpp
       title: other/dice.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -1222,7 +1222,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/interpolate_poly_exp_sum.hpp
       title: seq/interpolate_poly_exp_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: seq/inversion.hpp
       title: seq/inversion.hpp
     - icon: ':heavy_check_mark:'
@@ -2758,7 +2758,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1826_2.test.cpp
       title: test/yukicoder/1826_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1838.test.cpp
       title: test/yukicoder/1838.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2979,7 +2979,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc174f.test.cpp
       title: test_atcoder/abc174f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc190f.test.cpp
       title: test_atcoder/abc190f.test.cpp
     - icon: ':heavy_check_mark:'

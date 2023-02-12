@@ -50,7 +50,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/doubling.hpp
     title: ds/doubling.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':heavy_check_mark:'
@@ -89,7 +89,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   - icon: ':heavy_check_mark:'
@@ -294,7 +294,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1720.test.cpp
     title: test/yukicoder/1720.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1838.test.cpp
     title: test/yukicoder/1838.test.cpp
   - icon: ':heavy_check_mark:'
@@ -345,7 +345,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc174f.test.cpp
     title: test_atcoder/abc174f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc190f.test.cpp
     title: test_atcoder/abc190f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -354,9 +354,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc266h_2.test.cpp
     title: test_atcoder/abc266h_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -407,7 +407,7 @@ data:
   - alg/acted_monoid/add_mul.hpp
   - other/rectangle_union.hpp
   timestamp: '2022-11-28 14:51:10+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_2_A.test.cpp
   - test/aoj/GRL_5_E.test.cpp

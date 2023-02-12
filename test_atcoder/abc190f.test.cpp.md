@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc190/tasks/abc190_f
@@ -259,13 +259,13 @@ data:
     \ 1);\n  FOR_R(L, N + 1) FOR(R, L + 2, N + 1) {\n    dp[L][R] = dp[L][R - 1] +\
     \ dp[L + 1][R] - dp[L + 1][R - 1];\n    if (A[L] > A[R - 1]) ++dp[L][R];\n  }\n\
     \  return dp;\n}\n#line 5 \"test_atcoder/abc190f.test.cpp\"\n\nvoid solve() {\n\
-    \  LL(N);\n  VEC(int, A, N);\n  vi ANS = inversion_rotate(A, true);\n  for (auto&&\
+    \  LL(N);\n  VEC(int, A, N);\n  vi ANS = inversion_rotate<int, 1>(A);\n  for (auto&&\
     \ x: ANS) print(x);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
     \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc190/tasks/abc190_f\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"seq/inversion.hpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n  vi ANS = inversion_rotate(A,\
-    \ true);\n  for (auto&& x: ANS) print(x);\n}\n\nsigned main() {\n  cout << fixed\
+    \n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n  vi ANS = inversion_rotate<int,\
+    \ 1>(A);\n  for (auto&& x: ANS) print(x);\n}\n\nsigned main() {\n  cout << fixed\
     \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
     \ 0;\n}\n"
   dependsOn:
@@ -277,8 +277,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc190f.test.cpp
   requiredBy: []
-  timestamp: '2023-02-12 03:49:13+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-02-12 12:33:51+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc190f.test.cpp
 layout: document
