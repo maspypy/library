@@ -6,7 +6,7 @@
 void solve() {
   LL(N);
   VEC(int, A, N);
-  vi ANS = inversion_rotate(A, true);
+  vi ANS = inversion_rotate<int, 1>(A);
   for (auto&& x: ANS) print(x);
 }
 
