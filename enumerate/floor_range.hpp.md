@@ -23,21 +23,29 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"enumerate/floor_range.hpp\"\n// f(q, l, r)\uFF1A\u5546\u304C\
-    \ q \u306B\u306A\u308B\u7BC4\u56F2\u304C [l, r)\r\ntemplate <typename T, typename\
-    \ F>\r\nvoid floor_range(T N, F f) {\r\n  T q = 1, r = N + 1;\r\n  while (1) {\r\
-    \n    T l = N / (q + 1) + 1;\r\n    f(q, l, r);\r\n    if (q == N) break;\r\n\
-    \    r = l, q = N / (l - 1);\r\n  }\r\n}\r\n"
-  code: "// f(q, l, r)\uFF1A\u5546\u304C q \u306B\u306A\u308B\u7BC4\u56F2\u304C [l,\
-    \ r)\r\ntemplate <typename T, typename F>\r\nvoid floor_range(T N, F f) {\r\n\
-    \  T q = 1, r = N + 1;\r\n  while (1) {\r\n    T l = N / (q + 1) + 1;\r\n    f(q,\
-    \ l, r);\r\n    if (q == N) break;\r\n    r = l, q = N / (l - 1);\r\n  }\r\n}\r\
-    \n"
+  bundledCode: "#line 1 \"enumerate/floor_range.hpp\"\ntemplate <typename T, typename\
+    \ F>\r\nvoid floor_range(T N, F f) {\r\n  ll thresh = 1'000'000'000'000;\r\n \
+    \ ll sq = sqrtl(N);\r\n  int n = (sq * sq + sq <= N ? sq : sq - 1);\r\n  if (N\
+    \ <= thresh) {\r\n    ll prev = N + 1;\r\n    for (int q = 1; q <= n; ++q) {\r\
+    \n      ll x = double(N) / (q + 1) + 1;\r\n      f(q, x, prev), prev = x;\r\n\
+    \    }\r\n    for (int l = sq; l >= 1; --l) { f(double(N) / l, l, l + 1); }\r\n\
+    \  } else {\r\n    ll prev = N + 1;\r\n    for (int q = 1; q <= n; ++q) {\r\n\
+    \      ll x = N / (q + 1) + 1;\r\n      f(q, x, prev), prev = x;\r\n    }\r\n\
+    \    for (int l = sq; l >= 1; --l) { f(N / l, l, l + 1); }\r\n  }\r\n}\r\n"
+  code: "template <typename T, typename F>\r\nvoid floor_range(T N, F f) {\r\n  ll\
+    \ thresh = 1'000'000'000'000;\r\n  ll sq = sqrtl(N);\r\n  int n = (sq * sq + sq\
+    \ <= N ? sq : sq - 1);\r\n  if (N <= thresh) {\r\n    ll prev = N + 1;\r\n   \
+    \ for (int q = 1; q <= n; ++q) {\r\n      ll x = double(N) / (q + 1) + 1;\r\n\
+    \      f(q, x, prev), prev = x;\r\n    }\r\n    for (int l = sq; l >= 1; --l)\
+    \ { f(double(N) / l, l, l + 1); }\r\n  } else {\r\n    ll prev = N + 1;\r\n  \
+    \  for (int q = 1; q <= n; ++q) {\r\n      ll x = N / (q + 1) + 1;\r\n      f(q,\
+    \ x, prev), prev = x;\r\n    }\r\n    for (int l = sq; l >= 1; --l) { f(N / l,\
+    \ l, l + 1); }\r\n  }\r\n}\r\n"
   dependsOn: []
   isVerificationFile: false
   path: enumerate/floor_range.hpp
   requiredBy: []
-  timestamp: '2023-02-02 01:33:15+09:00'
+  timestamp: '2023-02-12 20:18:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1573.test.cpp
