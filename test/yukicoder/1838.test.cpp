@@ -25,7 +25,7 @@ void solve() {
   FOR(j, K) {
     vc<int> P(M);
     FOR(i, M) P[i] = pos[i][j];
-    auto tmp = inversion_rotate(P, false);
+    auto tmp = inversion_rotate<int, 0>(P);
     FOR(i, M) ANS[i] += tmp[i];
   }
   print(MIN(ANS));
