@@ -4,7 +4,7 @@ struct Mo {
 
   vc<int> get_mo_order() {
     int N = 1;
-    for (auto &&[l, r]: LR) chmax(N, r);
+    for (auto &&[l, r]: LR) chmax(N, l), chmax(N, r);
     int Q = len(LR);
     int bs = N / min<int>(N, sqrt(Q));
     vc<int> I(Q);
