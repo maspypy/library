@@ -24,12 +24,6 @@ struct Vector_Space {
     return false;
   }
 
-  void reduce() {
-    SP y;
-    for (auto&& e: dat) y.add_element(e);
-    (*this) = y;
-  }
-
   bool contain(UINT v) {
     for (auto&& w: dat) {
       if (v == 0) break;
@@ -64,9 +58,7 @@ struct Vector_Space {
   }
 
   SP orthogonal_space(int max_dim) {
-    int n = len(dat);
-    // 三角化
-    FOR(j, n) FOR(i, j) chmin(dat[i], dat[i] ^ dat[j]);
+    normalize();
     int m = max_dim;
     // pivot[k] == k となるように行の順番を変える
     vc<u64> tmp(m);
@@ -78,6 +70,21 @@ struct Vector_Space {
       res.add_element(tmp[j] | UINT(1) << j);
     }
     return res;
+  }
+
+  void normalize(bool dec = true) {
+    int n = len(dat);
+    // 三角化
+    FOR(j, n) FOR(i, j) chmin(dat[i], dat[i] ^ dat[j]);
+    sort(all(dat));
+    if (dec) reverse(all(dat));
+  }
+
+private:
+  void reduce() {
+    SP y;
+    for (auto&& e: dat) y.add_element(e);
+    (*this) = y;
   }
 #undef SP
 };
