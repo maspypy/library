@@ -1,17 +1,9 @@
 #pragma once
-enum Objective {
-  MINIMIZE = 1,
-  MAXIMIZE = -1,
-};
-enum class Status {
-  OPTIMAL,
-  INFEASIBLE,
-};
-
-template <class Flow = ll, class Cost = ll,
-          Objective objective = Objective::MINIMIZE, Flow SCALING_FACTOR = 2>
+template <class Flow = ll, class Cost = ll, bool MINIMIZE = 1>
 struct MinCostFlow {
 private:
+  static constexpr int objective = (MINIMIZE ? 1 : -1);
+  static constexpr int SCALING_FACTOR = 2;
   using V_id = uint32_t;
   using E_id = uint32_t;
 
@@ -207,7 +199,7 @@ private:
   }
 
 public:
-  std::pair<Status, i128> solve() {
+  std::pair<bool, i128> solve() {
     potential.resize(n);
     for (auto &es: g)
       for (auto &e: es) {
@@ -236,9 +228,9 @@ public:
     value /= 2;
 
     if (excess_vs.empty() && deficit_vs.empty()) {
-      return {Status::OPTIMAL, value / objective};
+      return {true, value / objective};
     } else {
-      return {Status::INFEASIBLE, value / objective};
+      return {false, value / objective};
     }
   }
 
