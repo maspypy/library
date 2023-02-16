@@ -3028,6 +3028,9 @@ data:
       path: test_atcoder/abc217h.test.cpp
       title: test_atcoder/abc217h.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test_atcoder/abc222g.test.cpp
+      title: test_atcoder/abc222g.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc222h.test.cpp
       title: test_atcoder/abc222h.test.cpp
     - icon: ':heavy_check_mark:'

@@ -8,6 +8,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_affine.hpp
     title: alg/acted_monoid/sum_affine.hpp
+  - icon: ':heavy_check_mark:'
+    path: alg/acted_set/affine.hpp
+    title: alg/acted_set/affine.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
@@ -58,6 +61,9 @@ data:
     path: test/yukicoder/255.test.cpp
     title: test/yukicoder/255.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc222g.test.cpp
+    title: test_atcoder/abc222g.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc270_g.test.cpp
     title: test_atcoder/abc270_g.test.cpp
   _isVerificationFailed: false
@@ -85,6 +91,7 @@ data:
   isVerificationFile: false
   path: alg/monoid/affine.hpp
   requiredBy:
+  - alg/acted_set/affine.hpp
   - alg/acted_monoid/cntsum_affine.hpp
   - alg/acted_monoid/sum_affine.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
@@ -107,6 +114,7 @@ data:
   - test/mytest/rbst_monoid_2.test.cpp
   - test/mytest/splay.test.cpp
   - test_atcoder/abc270_g.test.cpp
+  - test_atcoder/abc222g.test.cpp
 documentation_of: alg/monoid/affine.hpp
 layout: document
 redirect_from:

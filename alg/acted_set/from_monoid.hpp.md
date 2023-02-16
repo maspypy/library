@@ -16,6 +16,9 @@ data:
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc222g.test.cpp
+    title: test_atcoder/abc222g.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc270_g.test.cpp
     title: test_atcoder/abc270_g.test.cpp
   _isVerificationFailed: false
@@ -42,6 +45,7 @@ data:
   - test/yukicoder/1339.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test_atcoder/abc270_g.test.cpp
+  - test_atcoder/abc222g.test.cpp
 documentation_of: alg/acted_set/from_monoid.hpp
 layout: document
 redirect_from:

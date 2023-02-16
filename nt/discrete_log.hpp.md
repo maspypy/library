@@ -22,6 +22,9 @@ data:
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc222g.test.cpp
+    title: test_atcoder/abc222g.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc270_g.test.cpp
     title: test_atcoder/abc270_g.test.cpp
   _isVerificationFailed: false
@@ -65,6 +68,7 @@ data:
     \ x, typename ActedSet::S s,\r\n                      typename ActedSet::S t,\
     \ F H, ll lb, ll ub) {\r\n  static HashMap<int, MP_SIZE> MP;\r\n  MP.reset();\r\
     \n  using Group = typename ActedSet::Monoid_A;\r\n  using G = typename Group::value_type;\r\
+    \n  G xinv = Group::inverse(x);\r\n  assert(Group::op(x, xinv) == Group::unit());\r\
     \n  if (lb >= ub) return -1;\r\n  auto xpow = [&](ll n) -> G {\r\n    G p = x;\r\
     \n    G res = Group::unit();\r\n    while (n) {\r\n      if (n & 1) res = Group::op(res,\
     \ p);\r\n      p = Group::op(p, p);\r\n      n /= 2;\r\n    }\r\n    return res;\r\
@@ -90,6 +94,7 @@ data:
     \ ActedSet::A x, typename ActedSet::S s,\r\n                      typename ActedSet::S\
     \ t, F H, ll lb, ll ub) {\r\n  static HashMap<int, MP_SIZE> MP;\r\n  MP.reset();\r\
     \n  using Group = typename ActedSet::Monoid_A;\r\n  using G = typename Group::value_type;\r\
+    \n  G xinv = Group::inverse(x);\r\n  assert(Group::op(x, xinv) == Group::unit());\r\
     \n  if (lb >= ub) return -1;\r\n  auto xpow = [&](ll n) -> G {\r\n    G p = x;\r\
     \n    G res = Group::unit();\r\n    while (n) {\r\n      if (n & 1) res = Group::op(res,\
     \ p);\r\n      p = Group::op(p, p);\r\n      n /= 2;\r\n    }\r\n    return res;\r\
@@ -114,12 +119,13 @@ data:
   path: nt/discrete_log.hpp
   requiredBy:
   - mod/mod_log.hpp
-  timestamp: '2023-01-31 21:59:51+09:00'
+  timestamp: '2023-02-16 23:29:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1339.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test_atcoder/abc270_g.test.cpp
+  - test_atcoder/abc222g.test.cpp
 documentation_of: nt/discrete_log.hpp
 layout: document
 redirect_from:
