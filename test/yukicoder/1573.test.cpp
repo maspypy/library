@@ -14,7 +14,7 @@ void solve() {
     i128 y = (lo + hi) * (hi - lo + 1) / 2;
     ANS += x * y;
   };
-  floor_range<int>(N, f);
+  floor_range(N, f);
   print(ANS % 998244353);
 }
 
