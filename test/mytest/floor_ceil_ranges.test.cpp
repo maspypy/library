@@ -9,7 +9,7 @@ void test_floor() {
   auto F = [&](ll N) -> vc<T> {
     vc<T> dat;
     auto f = [&](ll q, ll l, ll r) -> void { dat.eb(q, l, r); };
-    floor_range<int>(N, f);
+    floor_range(N, f);
     return dat;
   };
   auto G = [&](ll N) -> vc<T> {
