@@ -1,12 +1,9 @@
 #include "graph/base.hpp"
 
-/*
-頂点番号の列を返す。有向・無向両対応。
-存在しない場合には、空を返す。
-辺が 0 個の場合には {s} を返す。
-*/
-template <typename T>
-vc<int> euler_walk(Graph<T>& G, int s = -1) {
+// 頂点番号の列を返す。有向・無向両対応。存在しない場合には、空を返す。
+// 辺が 0 個の場合には {s} を返す。
+template <typename GT>
+vc<int> euler_walk(GT& G, int s = -1) {
   assert(G.is_prepared());
   ll N = G.N, M = G.M;
   if (M == 0 && s != -1) return {s};
