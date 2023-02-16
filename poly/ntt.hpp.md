@@ -448,6 +448,12 @@ data:
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc222h.test.cpp
+    title: test_atcoder/abc222h.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc222h_2.test.cpp
+    title: test_atcoder/abc222h_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc267g.test.cpp
     title: test_atcoder/abc267g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -783,7 +789,9 @@ data:
   - test_atcoder/abc276_g.test.cpp
   - test_atcoder/abc272_h.test.cpp
   - test_atcoder/abc267g.test.cpp
+  - test_atcoder/abc222h_2.test.cpp
   - test_atcoder/abc276_g_2.test.cpp
+  - test_atcoder/abc222h.test.cpp
   - test_atcoder/arc154f.test.cpp
 documentation_of: poly/ntt.hpp
 layout: document

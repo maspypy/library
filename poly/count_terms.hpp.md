@@ -208,6 +208,9 @@ data:
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc222h.test.cpp
+    title: test_atcoder/abc222h.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc267g.test.cpp
     title: test_atcoder/abc267g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -312,6 +315,7 @@ data:
   - test_atcoder/arc153f.test.cpp
   - test_atcoder/abc272_h.test.cpp
   - test_atcoder/abc267g.test.cpp
+  - test_atcoder/abc222h.test.cpp
   - test_atcoder/arc154f.test.cpp
 documentation_of: poly/count_terms.hpp
 layout: document

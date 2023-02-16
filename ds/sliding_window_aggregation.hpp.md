@@ -54,6 +54,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_2.test.cpp
     title: test/yukicoder/502_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc222h_2.test.cpp
+    title: test_atcoder/abc222h_2.test.cpp
   - icon: ':x:'
     path: test_atcoder/abc276_g.test.cpp
     title: test_atcoder/abc276_g.test.cpp
@@ -160,6 +163,7 @@ data:
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test_atcoder/abc276_g.test.cpp
+  - test_atcoder/abc222h_2.test.cpp
   - test_atcoder/abc276_g_2.test.cpp
 documentation_of: ds/sliding_window_aggregation.hpp
 layout: document

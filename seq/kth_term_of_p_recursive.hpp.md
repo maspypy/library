@@ -51,6 +51,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_2.test.cpp
     title: test/yukicoder/502_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc222h_2.test.cpp
+    title: test_atcoder/abc222h_2.test.cpp
   - icon: ':x:'
     path: test_atcoder/abc276_g.test.cpp
     title: test_atcoder/abc276_g.test.cpp
@@ -480,6 +483,7 @@ data:
   - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/502_2.test.cpp
   - test_atcoder/abc276_g.test.cpp
+  - test_atcoder/abc222h_2.test.cpp
   - test_atcoder/abc276_g_2.test.cpp
 documentation_of: seq/kth_term_of_p_recursive.hpp
 layout: document
