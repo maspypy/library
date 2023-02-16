@@ -7,7 +7,7 @@ void solve() {
   LL(N);
   ll ANS = 0;
   auto f = [&](ll q, ll l, ll r) -> void { ++ANS; };
-  floor_range<int>(N, f);
+  floor_range(N, f);
   print(ANS);
 }
 
