@@ -4,6 +4,7 @@
 
 // 対数微分 F'/F = a(x)/b(x) から F を復元する。
 // a, b が sparse であれば、O(N(K1+K2)) 時間でできる
+// [0, N] を計算
 template <typename mint>
 vc<mint> from_log_differentiation(int N, const vc<mint>& a, const vc<mint>& b) {
   assert(b[0] == mint(1));
