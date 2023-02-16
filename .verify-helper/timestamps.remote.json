@@ -266,6 +266,7 @@
 "test/mytest/kdtree_monoid.test.cpp": "2023-02-01 23:31:55 +0900",
 "test/mytest/kdtree_nns.test.cpp": "2023-02-01 23:31:55 +0900",
 "test/mytest/knight_distance.test.cpp": "2023-02-01 23:18:36 +0900",
+"test/mytest/longest_common_substr.test.cpp": "2023-02-16 20:16:05 +0900",
 "test/mytest/magic_square.test.cpp": "2023-02-01 23:18:36 +0900",
 "test/mytest/manhattan_nns.test.cpp": "2023-02-03 10:17:39 +0900",
 "test/mytest/matching_line_graph.test.cpp": "2023-02-03 10:10:45 +0900",
@@ -561,7 +562,6 @@
 "test_atcoder/abc276_g_2.test.cpp": "2023-02-02 02:53:49 +0900",
 "test_atcoder/agc058d.test.cpp": "2023-02-01 23:18:36 +0900",
 "test_atcoder/arc123d.test.cpp": "2023-02-02 01:52:11 +0900",
-"test_atcoder/arc151_e.test.cpp": "2023-02-03 00:03:29 +0900",
 "test_atcoder/arc153b.test.cpp": "2023-02-12 02:15:18 +0900",
 "test_atcoder/arc153f.test.cpp": "2023-02-01 23:18:36 +0900"
 }
