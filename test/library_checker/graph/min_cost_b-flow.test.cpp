@@ -14,8 +14,8 @@ void solve() {
     LL(frm, to, lo, hi, cost);
     G.add(frm, to, lo, hi, cost);
   }
-  auto [status, cost] = G.solve();
-  if (status == Status::INFEASIBLE) return print("infeasible");
+  auto [ok, cost] = G.solve();
+  if (!ok) return print("infeasible");
   print(cost);
   for (auto &&p: G.get_potential()) print(p);
   for (auto &&e: G.get_edges()) { print(e.flow()); }
