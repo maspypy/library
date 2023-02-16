@@ -92,7 +92,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/trie.hpp
     title: string/trie.hpp
   _extendedVerifiedWith:
@@ -351,12 +351,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc234g.test.cpp
     title: test_atcoder/abc234g.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc237g.test.cpp
+    title: test_atcoder/abc237g.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc266h_2.test.cpp
     title: test_atcoder/abc266h_2.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test_atcoder/abc268_ex.test.cpp
+    title: test_atcoder/abc268_ex.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -407,7 +413,7 @@ data:
   - alg/acted_monoid/add_mul.hpp
   - other/rectangle_union.hpp
   timestamp: '2022-11-28 14:51:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/ALDS1_2_A.test.cpp
   - test/aoj/GRL_5_E.test.cpp
@@ -490,7 +496,9 @@ data:
   - test/mytest/minmax_add.test.cpp
   - test/mytest/rbst_am_2.test.cpp
   - test/mytest/splay_cm.test.cpp
+  - test_atcoder/abc237g.test.cpp
   - test_atcoder/abc266h_2.test.cpp
+  - test_atcoder/abc268_ex.test.cpp
   - test_atcoder/abc174f.test.cpp
   - test_atcoder/abc190f.test.cpp
   - test_atcoder/abc234g.test.cpp

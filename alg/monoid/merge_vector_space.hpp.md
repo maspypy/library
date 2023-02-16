@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/xor/transpose.hpp
     title: linalg/xor/transpose.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/xor/vector_space.hpp
     title: linalg/xor/vector_space.hpp
   _extendedRequiredBy: []
@@ -36,26 +36,28 @@ data:
     \ return dat.size(); }\n\n  bool add_element(UINT v) {\n    for (auto&& e: dat)\
     \ {\n      if (e == 0 || v == 0) break;\n      chmin(v, v ^ e);\n    }\n    if\
     \ (v) {\n      dat.eb(v);\n      return true;\n    }\n    return false;\n  }\n\
-    \n  void reduce() {\n    SP y;\n    for (auto&& e: dat) y.add_element(e);\n  \
-    \  (*this) = y;\n  }\n\n  bool contain(UINT v) {\n    for (auto&& w: dat) {\n\
-    \      if (v == 0) break;\n      chmin(v, v ^ w);\n    }\n    return v == 0;\n\
-    \  }\n\n  UINT get_max(UINT xor_val = 0) {\n    UINT res = xor_val;\n    for (auto&&\
-    \ x: dat) chmax(res, res ^ x);\n    return res;\n  }\n\n  UINT get_min(UINT xor_val)\
-    \ {\n    UINT res = xor_val;\n    for (auto&& x: dat) chmin(res, res ^ x);\n \
-    \   return res;\n  }\n\n  static SP merge(SP x, SP y) {\n    if (len(x) < len(y))\
-    \ swap(x, y);\n    for (auto v: y.dat) { x.add_element(v); }\n    return x;\n\
-    \  }\n\n  static SP intersection(SP& x, SP& y, int max_dim) {\n    SP xx = x.orthogonal_space(max_dim);\n\
+    \n  bool contain(UINT v) {\n    for (auto&& w: dat) {\n      if (v == 0) break;\n\
+    \      chmin(v, v ^ w);\n    }\n    return v == 0;\n  }\n\n  UINT get_max(UINT\
+    \ xor_val = 0) {\n    UINT res = xor_val;\n    for (auto&& x: dat) chmax(res,\
+    \ res ^ x);\n    return res;\n  }\n\n  UINT get_min(UINT xor_val) {\n    UINT\
+    \ res = xor_val;\n    for (auto&& x: dat) chmin(res, res ^ x);\n    return res;\n\
+    \  }\n\n  static SP merge(SP x, SP y) {\n    if (len(x) < len(y)) swap(x, y);\n\
+    \    for (auto v: y.dat) { x.add_element(v); }\n    return x;\n  }\n\n  static\
+    \ SP intersection(SP& x, SP& y, int max_dim) {\n    SP xx = x.orthogonal_space(max_dim);\n\
     \    SP yy = y.orthogonal_space(max_dim);\n    xx = merge(xx, yy);\n    return\
     \ xx.orthogonal_space(max_dim);\n  }\n\n  SP orthogonal_space(int max_dim) {\n\
-    \    int n = len(dat);\n    // \u4E09\u89D2\u5316\n    FOR(j, n) FOR(i, j) chmin(dat[i],\
-    \ dat[i] ^ dat[j]);\n    int m = max_dim;\n    // pivot[k] == k \u3068\u306A\u308B\
+    \    normalize();\n    int m = max_dim;\n    // pivot[k] == k \u3068\u306A\u308B\
     \u3088\u3046\u306B\u884C\u306E\u9806\u756A\u3092\u5909\u3048\u308B\n    vc<u64>\
     \ tmp(m);\n    FOR(i, len(dat)) tmp[topbit(dat[i])] = dat[i];\n    tmp = transpose(m,\
     \ m, tmp, 0);\n    SP res;\n    FOR(j, m) {\n      if (tmp[j] >> j & 1) continue;\n\
-    \      res.add_element(tmp[j] | UINT(1) << j);\n    }\n    return res;\n  }\n\
-    #undef SP\n};\n#line 2 \"alg/monoid/merge_vector_space.hpp\"\n\ntemplate <typename\
-    \ UINT>\nstruct Merge_Vector_Space {\n  using value_type = Vector_Space<UINT>;\n\
-    \  using X = value_type;\n  static X op(X x, X y) { return Vector_Space<UINT>::merge(x,\
+    \      res.add_element(tmp[j] | UINT(1) << j);\n    }\n    return res;\n  }\n\n\
+    \  void normalize(bool dec = true) {\n    int n = len(dat);\n    // \u4E09\u89D2\
+    \u5316\n    FOR(j, n) FOR(i, j) chmin(dat[i], dat[i] ^ dat[j]);\n    sort(all(dat));\n\
+    \    if (dec) reverse(all(dat));\n  }\n\nprivate:\n  void reduce() {\n    SP y;\n\
+    \    for (auto&& e: dat) y.add_element(e);\n    (*this) = y;\n  }\n#undef SP\n\
+    };\n#line 2 \"alg/monoid/merge_vector_space.hpp\"\n\ntemplate <typename UINT>\n\
+    struct Merge_Vector_Space {\n  using value_type = Vector_Space<UINT>;\n  using\
+    \ X = value_type;\n  static X op(X x, X y) { return Vector_Space<UINT>::merge(x,\
     \ y); }\n  static constexpr X unit() { return {}; }\n  static constexpr bool commute\
     \ = 1;\n};\n"
   code: "#include \"linalg/xor/vector_space.hpp\"\n\ntemplate <typename UINT>\nstruct\
@@ -69,7 +71,7 @@ data:
   isVerificationFile: false
   path: alg/monoid/merge_vector_space.hpp
   requiredBy: []
-  timestamp: '2023-02-03 10:57:00+09:00'
+  timestamp: '2023-02-16 20:34:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/184.test.cpp

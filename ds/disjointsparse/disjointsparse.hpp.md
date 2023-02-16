@@ -8,6 +8,9 @@ data:
   - icon: ':question:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
+  - icon: ':x:'
+    path: string/sort_substrings.hpp
+    title: string/sort_substrings.hpp
   - icon: ':question:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
@@ -45,6 +48,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2005.test.cpp
     title: test/yukicoder/2005.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc240ex.test.cpp
+    title: test_atcoder/abc240ex.test.cpp
   - icon: ':x:'
     path: test_atcoder/arc151_e.test.cpp
     title: test_atcoder/arc151_e.test.cpp
@@ -113,6 +119,7 @@ data:
   requiredBy:
   - graph/ds/static_tree_monoid.hpp
   - string/longest_common_substring.hpp
+  - string/sort_substrings.hpp
   - string/suffix_array.hpp
   - string/suffix_tree.hpp
   timestamp: '2022-12-04 23:06:09+09:00'
@@ -128,6 +135,7 @@ data:
   - test/library_checker/string/suffix_array.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/longest_common_substr.test.cpp
+  - test_atcoder/abc240ex.test.cpp
   - test_atcoder/arc151_e.test.cpp
 documentation_of: ds/disjointsparse/disjointsparse.hpp
 layout: document

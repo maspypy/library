@@ -1,40 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sliding_window_aggregation.hpp
     title: ds/sliding_window_aggregation.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   _extendedRequiredBy:
@@ -48,15 +48,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc276_g.test.cpp
     title: test_atcoder/abc276_g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc276_g_2.test.cpp
     title: test_atcoder/abc276_g_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/from_log_differentiation.hpp\"\n\n#line 2 \"linalg/mat_mul.hpp\"\
@@ -446,43 +446,45 @@ data:
     \ /= prefix_product_of_poly(den, k - r + 1);\n  return ANS;\n}\n#line 4 \"poly/from_log_differentiation.hpp\"\
     \n\n// \u5BFE\u6570\u5FAE\u5206 F'/F = a(x)/b(x) \u304B\u3089 F \u3092\u5FA9\u5143\
     \u3059\u308B\u3002\n// a, b \u304C sparse \u3067\u3042\u308C\u3070\u3001O(N(K1+K2))\
-    \ \u6642\u9593\u3067\u3067\u304D\u308B\ntemplate <typename mint>\nvc<mint> from_log_differentiation(int\
-    \ N, const vc<mint>& a, const vc<mint>& b) {\n  assert(b[0] == mint(1));\n  using\
-    \ P = pair<int, mint>;\n\n  vc<P> dat_a, dat_b;\n  FOR(i, len(a)) if (a[i] !=\
-    \ mint(0)) dat_a.eb(i, a[i]);\n  FOR(i, 1, len(b)) if (b[i] != mint(0)) dat_b.eb(i,\
-    \ b[i]);\n\n  vc<mint> f(N + 1);\n  vc<mint> df(N);\n  f[0] = mint(1);\n  FOR(n,\
-    \ N) {\n    mint v = 0;\n    for (auto&& [i, bi]: dat_b) {\n      if (i > n) break;\n\
-    \      v -= bi * df[n - i];\n    }\n    for (auto&& [i, ai]: dat_a) {\n      if\
-    \ (i > n) break;\n      v += ai * f[n - i];\n    }\n    df[n] = v;\n    f[n +\
-    \ 1] = df[n] * inv<mint>(n + 1);\n  }\n  return f;\n}\n\n// F'/F = a/b \u306E\u89E3\
-    \u306E\u3001[x^K]F \u3092\u6C42\u3081\u308B\u3002\u53F3\u8FBA\u306F\u4F4E\u6B21\
-    \u306E\u6709\u7406\u5F0F\u3002\ntemplate <typename mint>\nmint from_log_differentiation_kth(int\
-    \ K, vc<mint>& a, vc<mint>& b) {\n  assert(b[0] == mint(1));\n  int r = max(len(a),\
-    \ len(b) - 1);\n  vvc<mint> c(r + 1);\n  FOR(i, r + 1) {\n    mint c0 = 0, c1\
-    \ = 0;\n    if (i < len(b)) c0 += mint(r - i) * b[i];\n    if (i < len(b)) c1\
-    \ += b[i];\n    if (0 <= i - 1 && i - 1 < len(b)) c0 -= a[i - 1];\n    c[i] =\
-    \ {c0, c1};\n  }\n  auto f = from_log_differentiation(r - 1, a, b);\n  mint ANS\
-    \ = kth_term_of_p_recursive(f, c, K);\n  return ANS;\n}\n"
+    \ \u6642\u9593\u3067\u3067\u304D\u308B\n// [0, N] \u3092\u8A08\u7B97\ntemplate\
+    \ <typename mint>\nvc<mint> from_log_differentiation(int N, const vc<mint>& a,\
+    \ const vc<mint>& b) {\n  assert(b[0] == mint(1));\n  using P = pair<int, mint>;\n\
+    \n  vc<P> dat_a, dat_b;\n  FOR(i, len(a)) if (a[i] != mint(0)) dat_a.eb(i, a[i]);\n\
+    \  FOR(i, 1, len(b)) if (b[i] != mint(0)) dat_b.eb(i, b[i]);\n\n  vc<mint> f(N\
+    \ + 1);\n  vc<mint> df(N);\n  f[0] = mint(1);\n  FOR(n, N) {\n    mint v = 0;\n\
+    \    for (auto&& [i, bi]: dat_b) {\n      if (i > n) break;\n      v -= bi * df[n\
+    \ - i];\n    }\n    for (auto&& [i, ai]: dat_a) {\n      if (i > n) break;\n \
+    \     v += ai * f[n - i];\n    }\n    df[n] = v;\n    f[n + 1] = df[n] * inv<mint>(n\
+    \ + 1);\n  }\n  return f;\n}\n\n// F'/F = a/b \u306E\u89E3\u306E\u3001[x^K]F \u3092\
+    \u6C42\u3081\u308B\u3002\u53F3\u8FBA\u306F\u4F4E\u6B21\u306E\u6709\u7406\u5F0F\
+    \u3002\ntemplate <typename mint>\nmint from_log_differentiation_kth(int K, vc<mint>&\
+    \ a, vc<mint>& b) {\n  assert(b[0] == mint(1));\n  int r = max(len(a), len(b)\
+    \ - 1);\n  vvc<mint> c(r + 1);\n  FOR(i, r + 1) {\n    mint c0 = 0, c1 = 0;\n\
+    \    if (i < len(b)) c0 += mint(r - i) * b[i];\n    if (i < len(b)) c1 += b[i];\n\
+    \    if (0 <= i - 1 && i - 1 < len(b)) c0 -= a[i - 1];\n    c[i] = {c0, c1};\n\
+    \  }\n  auto f = from_log_differentiation(r - 1, a, b);\n  mint ANS = kth_term_of_p_recursive(f,\
+    \ c, K);\n  return ANS;\n}\n"
   code: "#pragma once\n\n#include \"seq/kth_term_of_p_recursive.hpp\"\n\n// \u5BFE\
     \u6570\u5FAE\u5206 F'/F = a(x)/b(x) \u304B\u3089 F \u3092\u5FA9\u5143\u3059\u308B\
     \u3002\n// a, b \u304C sparse \u3067\u3042\u308C\u3070\u3001O(N(K1+K2)) \u6642\
-    \u9593\u3067\u3067\u304D\u308B\ntemplate <typename mint>\nvc<mint> from_log_differentiation(int\
-    \ N, const vc<mint>& a, const vc<mint>& b) {\n  assert(b[0] == mint(1));\n  using\
-    \ P = pair<int, mint>;\n\n  vc<P> dat_a, dat_b;\n  FOR(i, len(a)) if (a[i] !=\
-    \ mint(0)) dat_a.eb(i, a[i]);\n  FOR(i, 1, len(b)) if (b[i] != mint(0)) dat_b.eb(i,\
-    \ b[i]);\n\n  vc<mint> f(N + 1);\n  vc<mint> df(N);\n  f[0] = mint(1);\n  FOR(n,\
-    \ N) {\n    mint v = 0;\n    for (auto&& [i, bi]: dat_b) {\n      if (i > n) break;\n\
-    \      v -= bi * df[n - i];\n    }\n    for (auto&& [i, ai]: dat_a) {\n      if\
-    \ (i > n) break;\n      v += ai * f[n - i];\n    }\n    df[n] = v;\n    f[n +\
-    \ 1] = df[n] * inv<mint>(n + 1);\n  }\n  return f;\n}\n\n// F'/F = a/b \u306E\u89E3\
-    \u306E\u3001[x^K]F \u3092\u6C42\u3081\u308B\u3002\u53F3\u8FBA\u306F\u4F4E\u6B21\
-    \u306E\u6709\u7406\u5F0F\u3002\ntemplate <typename mint>\nmint from_log_differentiation_kth(int\
-    \ K, vc<mint>& a, vc<mint>& b) {\n  assert(b[0] == mint(1));\n  int r = max(len(a),\
-    \ len(b) - 1);\n  vvc<mint> c(r + 1);\n  FOR(i, r + 1) {\n    mint c0 = 0, c1\
-    \ = 0;\n    if (i < len(b)) c0 += mint(r - i) * b[i];\n    if (i < len(b)) c1\
-    \ += b[i];\n    if (0 <= i - 1 && i - 1 < len(b)) c0 -= a[i - 1];\n    c[i] =\
-    \ {c0, c1};\n  }\n  auto f = from_log_differentiation(r - 1, a, b);\n  mint ANS\
-    \ = kth_term_of_p_recursive(f, c, K);\n  return ANS;\n}"
+    \u9593\u3067\u3067\u304D\u308B\n// [0, N] \u3092\u8A08\u7B97\ntemplate <typename\
+    \ mint>\nvc<mint> from_log_differentiation(int N, const vc<mint>& a, const vc<mint>&\
+    \ b) {\n  assert(b[0] == mint(1));\n  using P = pair<int, mint>;\n\n  vc<P> dat_a,\
+    \ dat_b;\n  FOR(i, len(a)) if (a[i] != mint(0)) dat_a.eb(i, a[i]);\n  FOR(i, 1,\
+    \ len(b)) if (b[i] != mint(0)) dat_b.eb(i, b[i]);\n\n  vc<mint> f(N + 1);\n  vc<mint>\
+    \ df(N);\n  f[0] = mint(1);\n  FOR(n, N) {\n    mint v = 0;\n    for (auto&& [i,\
+    \ bi]: dat_b) {\n      if (i > n) break;\n      v -= bi * df[n - i];\n    }\n\
+    \    for (auto&& [i, ai]: dat_a) {\n      if (i > n) break;\n      v += ai * f[n\
+    \ - i];\n    }\n    df[n] = v;\n    f[n + 1] = df[n] * inv<mint>(n + 1);\n  }\n\
+    \  return f;\n}\n\n// F'/F = a/b \u306E\u89E3\u306E\u3001[x^K]F \u3092\u6C42\u3081\
+    \u308B\u3002\u53F3\u8FBA\u306F\u4F4E\u6B21\u306E\u6709\u7406\u5F0F\u3002\ntemplate\
+    \ <typename mint>\nmint from_log_differentiation_kth(int K, vc<mint>& a, vc<mint>&\
+    \ b) {\n  assert(b[0] == mint(1));\n  int r = max(len(a), len(b) - 1);\n  vvc<mint>\
+    \ c(r + 1);\n  FOR(i, r + 1) {\n    mint c0 = 0, c1 = 0;\n    if (i < len(b))\
+    \ c0 += mint(r - i) * b[i];\n    if (i < len(b)) c1 += b[i];\n    if (0 <= i -\
+    \ 1 && i - 1 < len(b)) c0 -= a[i - 1];\n    c[i] = {c0, c1};\n  }\n  auto f =\
+    \ from_log_differentiation(r - 1, a, b);\n  mint ANS = kth_term_of_p_recursive(f,\
+    \ c, K);\n  return ANS;\n}"
   dependsOn:
   - seq/kth_term_of_p_recursive.hpp
   - poly/prefix_product_of_poly.hpp
@@ -500,8 +502,8 @@ data:
   path: poly/from_log_differentiation.hpp
   requiredBy:
   - poly/sparse_exp_of_div.hpp
-  timestamp: '2023-01-19 00:36:40+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-02-16 20:34:34+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/2166.test.cpp
   - test/yukicoder/1080_2.test.cpp

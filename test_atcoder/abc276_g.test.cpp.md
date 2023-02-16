@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sliding_window_aggregation.hpp
     title: ds/sliding_window_aggregation.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -22,38 +22,38 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc276/tasks/abc276_g
@@ -625,47 +625,48 @@ data:
     \ /= prefix_product_of_poly(den, k - r + 1);\n  return ANS;\n}\n#line 4 \"poly/from_log_differentiation.hpp\"\
     \n\n// \u5BFE\u6570\u5FAE\u5206 F'/F = a(x)/b(x) \u304B\u3089 F \u3092\u5FA9\u5143\
     \u3059\u308B\u3002\n// a, b \u304C sparse \u3067\u3042\u308C\u3070\u3001O(N(K1+K2))\
-    \ \u6642\u9593\u3067\u3067\u304D\u308B\ntemplate <typename mint>\nvc<mint> from_log_differentiation(int\
-    \ N, const vc<mint>& a, const vc<mint>& b) {\n  assert(b[0] == mint(1));\n  using\
-    \ P = pair<int, mint>;\n\n  vc<P> dat_a, dat_b;\n  FOR(i, len(a)) if (a[i] !=\
-    \ mint(0)) dat_a.eb(i, a[i]);\n  FOR(i, 1, len(b)) if (b[i] != mint(0)) dat_b.eb(i,\
-    \ b[i]);\n\n  vc<mint> f(N + 1);\n  vc<mint> df(N);\n  f[0] = mint(1);\n  FOR(n,\
-    \ N) {\n    mint v = 0;\n    for (auto&& [i, bi]: dat_b) {\n      if (i > n) break;\n\
-    \      v -= bi * df[n - i];\n    }\n    for (auto&& [i, ai]: dat_a) {\n      if\
-    \ (i > n) break;\n      v += ai * f[n - i];\n    }\n    df[n] = v;\n    f[n +\
-    \ 1] = df[n] * inv<mint>(n + 1);\n  }\n  return f;\n}\n\n// F'/F = a/b \u306E\u89E3\
-    \u306E\u3001[x^K]F \u3092\u6C42\u3081\u308B\u3002\u53F3\u8FBA\u306F\u4F4E\u6B21\
-    \u306E\u6709\u7406\u5F0F\u3002\ntemplate <typename mint>\nmint from_log_differentiation_kth(int\
-    \ K, vc<mint>& a, vc<mint>& b) {\n  assert(b[0] == mint(1));\n  int r = max(len(a),\
-    \ len(b) - 1);\n  vvc<mint> c(r + 1);\n  FOR(i, r + 1) {\n    mint c0 = 0, c1\
-    \ = 0;\n    if (i < len(b)) c0 += mint(r - i) * b[i];\n    if (i < len(b)) c1\
-    \ += b[i];\n    if (0 <= i - 1 && i - 1 < len(b)) c0 -= a[i - 1];\n    c[i] =\
-    \ {c0, c1};\n  }\n  auto f = from_log_differentiation(r - 1, a, b);\n  mint ANS\
-    \ = kth_term_of_p_recursive(f, c, K);\n  return ANS;\n}\n#line 2 \"poly/sum_of_rationals.hpp\"\
-    \n\n#line 4 \"poly/sum_of_rationals.hpp\"\n\n// \u6709\u7406\u5F0F\u306E\u548C\
-    \u3092\u8A08\u7B97\u3059\u308B\u3002\u5206\u5272\u7D71\u6CBB O(Nlog^2N)\u3002\
-    N \u306F\u6B21\u6570\u306E\u548C\u3002\ntemplate <typename mint>\npair<vc<mint>,\
-    \ vc<mint>> sum_of_rationals(vc<pair<vc<mint>, vc<mint>>> dat) {\n  if (len(dat)\
-    \ == 0) {\n    vc<mint> f = {0}, g = {1};\n    return {f, g};\n  }\n  using P\
-    \ = pair<vc<mint>, vc<mint>>;\n  auto add = [&](P& a, P& b) -> P {\n    int na\
-    \ = len(a.fi) - 1, da = len(a.se) - 1;\n    int nb = len(b.fi) - 1, db = len(b.se)\
-    \ - 1;\n    int n = max(na + db, da + nb);\n    vc<mint> num(n + 1);\n    {\n\
-    \      auto f = convolution(a.fi, b.se);\n      FOR(i, len(f)) num[i] += f[i];\n\
-    \    }\n    {\n      auto f = convolution(a.se, b.fi);\n      FOR(i, len(f)) num[i]\
-    \ += f[i];\n    }\n    auto den = convolution(a.se, b.se);\n    return {num, den};\n\
-    \  };\n\n  while (len(dat) > 1) {\n    int n = len(dat);\n    FOR(i, 1, n, 2)\
-    \ { dat[i - 1] = add(dat[i - 1], dat[i]); }\n    FOR(i, ceil(n, 2)) dat[i] = dat[2\
-    \ * i];\n    dat.resize(ceil(n, 2));\n  }\n  return dat[0];\n}\n#line 8 \"test_atcoder/abc276_g.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, M);\n  --N;\n  M -= N;\n\
-    \  if (M < 0) return print(0);\n  using poly = vc<mint>;\n  vc<pair<poly, poly>>\
-    \ rationals;\n  rationals.eb(poly{N}, poly{1, 1});\n  rationals.eb(poly{2, 2,\
-    \ 3 * N + 2}, poly{1, 0, 0, -1});\n  auto [a, b] = sum_of_rationals(rationals);\n\
-    \  /*\n  vvc<mint> c(5);\n  int r = 4;\n  FOR(i, r + 1) {\n    mint c0 = 0, c1\
-    \ = 0;\n    if (i < len(a)) c0 += mint(r - i) * a[i];\n    if (i < len(a)) c1\
-    \ += a[i];\n    if (0 <= i - 1 && i - 1 < len(b)) c0 += b[i - 1];\n    c[i] =\
-    \ {c0, c1};\n  }\n  mint ANS = kth_term_of_p_recursive(f, c, M);\n  print(ANS);\n\
-    \  */\n  auto f = from_log_differentiation(M, a, b);\n  print(f[M]);\n}\n\nsigned\
-    \ main() { solve(); }\n"
+    \ \u6642\u9593\u3067\u3067\u304D\u308B\n// [0, N] \u3092\u8A08\u7B97\ntemplate\
+    \ <typename mint>\nvc<mint> from_log_differentiation(int N, const vc<mint>& a,\
+    \ const vc<mint>& b) {\n  assert(b[0] == mint(1));\n  using P = pair<int, mint>;\n\
+    \n  vc<P> dat_a, dat_b;\n  FOR(i, len(a)) if (a[i] != mint(0)) dat_a.eb(i, a[i]);\n\
+    \  FOR(i, 1, len(b)) if (b[i] != mint(0)) dat_b.eb(i, b[i]);\n\n  vc<mint> f(N\
+    \ + 1);\n  vc<mint> df(N);\n  f[0] = mint(1);\n  FOR(n, N) {\n    mint v = 0;\n\
+    \    for (auto&& [i, bi]: dat_b) {\n      if (i > n) break;\n      v -= bi * df[n\
+    \ - i];\n    }\n    for (auto&& [i, ai]: dat_a) {\n      if (i > n) break;\n \
+    \     v += ai * f[n - i];\n    }\n    df[n] = v;\n    f[n + 1] = df[n] * inv<mint>(n\
+    \ + 1);\n  }\n  return f;\n}\n\n// F'/F = a/b \u306E\u89E3\u306E\u3001[x^K]F \u3092\
+    \u6C42\u3081\u308B\u3002\u53F3\u8FBA\u306F\u4F4E\u6B21\u306E\u6709\u7406\u5F0F\
+    \u3002\ntemplate <typename mint>\nmint from_log_differentiation_kth(int K, vc<mint>&\
+    \ a, vc<mint>& b) {\n  assert(b[0] == mint(1));\n  int r = max(len(a), len(b)\
+    \ - 1);\n  vvc<mint> c(r + 1);\n  FOR(i, r + 1) {\n    mint c0 = 0, c1 = 0;\n\
+    \    if (i < len(b)) c0 += mint(r - i) * b[i];\n    if (i < len(b)) c1 += b[i];\n\
+    \    if (0 <= i - 1 && i - 1 < len(b)) c0 -= a[i - 1];\n    c[i] = {c0, c1};\n\
+    \  }\n  auto f = from_log_differentiation(r - 1, a, b);\n  mint ANS = kth_term_of_p_recursive(f,\
+    \ c, K);\n  return ANS;\n}\n#line 2 \"poly/sum_of_rationals.hpp\"\n\n#line 4 \"\
+    poly/sum_of_rationals.hpp\"\n\n// \u6709\u7406\u5F0F\u306E\u548C\u3092\u8A08\u7B97\
+    \u3059\u308B\u3002\u5206\u5272\u7D71\u6CBB O(Nlog^2N)\u3002N \u306F\u6B21\u6570\
+    \u306E\u548C\u3002\ntemplate <typename mint>\npair<vc<mint>, vc<mint>> sum_of_rationals(vc<pair<vc<mint>,\
+    \ vc<mint>>> dat) {\n  if (len(dat) == 0) {\n    vc<mint> f = {0}, g = {1};\n\
+    \    return {f, g};\n  }\n  using P = pair<vc<mint>, vc<mint>>;\n  auto add =\
+    \ [&](P& a, P& b) -> P {\n    int na = len(a.fi) - 1, da = len(a.se) - 1;\n  \
+    \  int nb = len(b.fi) - 1, db = len(b.se) - 1;\n    int n = max(na + db, da +\
+    \ nb);\n    vc<mint> num(n + 1);\n    {\n      auto f = convolution(a.fi, b.se);\n\
+    \      FOR(i, len(f)) num[i] += f[i];\n    }\n    {\n      auto f = convolution(a.se,\
+    \ b.fi);\n      FOR(i, len(f)) num[i] += f[i];\n    }\n    auto den = convolution(a.se,\
+    \ b.se);\n    return {num, den};\n  };\n\n  while (len(dat) > 1) {\n    int n\
+    \ = len(dat);\n    FOR(i, 1, n, 2) { dat[i - 1] = add(dat[i - 1], dat[i]); }\n\
+    \    FOR(i, ceil(n, 2)) dat[i] = dat[2 * i];\n    dat.resize(ceil(n, 2));\n  }\n\
+    \  return dat[0];\n}\n#line 8 \"test_atcoder/abc276_g.test.cpp\"\n\nusing mint\
+    \ = modint998;\n\nvoid solve() {\n  LL(N, M);\n  --N;\n  M -= N;\n  if (M < 0)\
+    \ return print(0);\n  using poly = vc<mint>;\n  vc<pair<poly, poly>> rationals;\n\
+    \  rationals.eb(poly{N}, poly{1, 1});\n  rationals.eb(poly{2, 2, 3 * N + 2}, poly{1,\
+    \ 0, 0, -1});\n  auto [a, b] = sum_of_rationals(rationals);\n  /*\n  vvc<mint>\
+    \ c(5);\n  int r = 4;\n  FOR(i, r + 1) {\n    mint c0 = 0, c1 = 0;\n    if (i\
+    \ < len(a)) c0 += mint(r - i) * a[i];\n    if (i < len(a)) c1 += a[i];\n    if\
+    \ (0 <= i - 1 && i - 1 < len(b)) c0 += b[i - 1];\n    c[i] = {c0, c1};\n  }\n\
+    \  mint ANS = kth_term_of_p_recursive(f, c, M);\n  print(ANS);\n  */\n  auto f\
+    \ = from_log_differentiation(M, a, b);\n  print(f[M]);\n}\n\nsigned main() { solve();\
+    \ }\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc276/tasks/abc276_g\"\n\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\
     \n#include \"poly/from_log_differentiation.hpp\"\n#include \"poly/sum_of_rationals.hpp\"\
@@ -699,8 +700,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc276_g.test.cpp
   requiredBy: []
-  timestamp: '2023-02-02 02:53:49+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-02-16 20:34:34+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc276_g.test.cpp
 layout: document

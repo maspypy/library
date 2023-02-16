@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/floor_ceil_ranges.test.cpp
     title: test/mytest/floor_ceil_ranges.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"enumerate/ceil_range.hpp\"\n// f(q, l, r)\uFF1Aceil \u304C\
@@ -26,7 +26,7 @@ data:
   path: enumerate/ceil_range.hpp
   requiredBy: []
   timestamp: '2023-02-02 01:33:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/floor_ceil_ranges.test.cpp
 documentation_of: enumerate/ceil_range.hpp

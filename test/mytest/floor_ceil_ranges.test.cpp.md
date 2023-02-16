@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/ceil_range.hpp
     title: enumerate/ceil_range.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/floor_range.hpp
     title: enumerate/floor_range.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -209,15 +209,13 @@ data:
     \u306F r == infty<T>\ntemplate <typename T, typename F>\nvoid ceil_range(T N,\
     \ F f) {\n  T q = 1, l = N, r = infty<T>;\n  while (1) {\n    f(q, l, r);\n  \
     \  if (q == N) break;\n    r = l, q = ceil(N, l - 1), l = ceil(N, q);\n  }\n}\n\
-    #line 1 \"enumerate/floor_range.hpp\"\ntemplate <typename T, typename F>\r\nvoid\
-    \ floor_range(T N, F f) {\r\n  ll thresh = 1'000'000'000'000;\r\n  ll sq = sqrtl(N);\r\
-    \n  int n = (sq * sq + sq <= N ? sq : sq - 1);\r\n  if (N <= thresh) {\r\n   \
-    \ ll prev = N + 1;\r\n    for (int q = 1; q <= n; ++q) {\r\n      ll x = double(N)\
-    \ / (q + 1) + 1;\r\n      f(q, x, prev), prev = x;\r\n    }\r\n    for (int l\
-    \ = sq; l >= 1; --l) { f(double(N) / l, l, l + 1); }\r\n  } else {\r\n    ll prev\
-    \ = N + 1;\r\n    for (int q = 1; q <= n; ++q) {\r\n      ll x = N / (q + 1) +\
-    \ 1;\r\n      f(q, x, prev), prev = x;\r\n    }\r\n    for (int l = sq; l >= 1;\
-    \ --l) { f(N / l, l, l + 1); }\r\n  }\r\n}\r\n#line 6 \"test/mytest/floor_ceil_ranges.test.cpp\"\
+    #line 1 \"enumerate/floor_range.hpp\"\n// \u5546\u304C q \u306E\u533A\u9593 [l,r)\
+    \ \u3092 q \u306B\u3064\u3044\u3066\u6607\u9806\r\ntemplate <typename F>\r\nvoid\
+    \ floor_range(ll N, F f) {\r\n  assert(N <= (1LL << 50));\r\n  ll sq = sqrtl(N);\r\
+    \n  int n = (sq * sq + sq <= N ? sq : sq - 1);\r\n  ll prev = N + 1;\r\n  for\
+    \ (int q = 1; q <= n; ++q) {\r\n    ll x = double(N) / (q + 1) + 1;\r\n    f(q,\
+    \ x, prev), prev = x;\r\n  }\r\n  for (int l = sq; l >= 1; --l) { f(double(N)\
+    \ / l, l, l + 1); }\r\n}\r\n#line 6 \"test/mytest/floor_ceil_ranges.test.cpp\"\
     \n\nvoid test_floor() {\n  using T = tuple<ll, ll, ll>;\n  auto F = [&](ll N)\
     \ -> vc<T> {\n    vc<T> dat;\n    auto f = [&](ll q, ll l, ll r) -> void { dat.eb(q,\
     \ l, r); };\n    floor_range<int>(N, f);\n    return dat;\n  };\n  auto G = [&](ll\
@@ -264,8 +262,8 @@ data:
   isVerificationFile: true
   path: test/mytest/floor_ceil_ranges.test.cpp
   requiredBy: []
-  timestamp: '2023-02-12 20:18:55+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-02-16 20:33:02+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/floor_ceil_ranges.test.cpp
 layout: document

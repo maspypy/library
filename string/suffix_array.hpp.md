@@ -11,6 +11,9 @@ data:
   - icon: ':question:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
+  - icon: ':x:'
+    path: string/sort_substrings.hpp
+    title: string/sort_substrings.hpp
   - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
@@ -30,6 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc240ex.test.cpp
+    title: test_atcoder/abc240ex.test.cpp
   - icon: ':x:'
     path: test_atcoder/arc151_e.test.cpp
     title: test_atcoder/arc151_e.test.cpp
@@ -205,6 +211,7 @@ data:
   path: string/suffix_array.hpp
   requiredBy:
   - string/longest_common_substring.hpp
+  - string/sort_substrings.hpp
   - string/suffix_tree.hpp
   timestamp: '2023-02-02 02:12:17+09:00'
   verificationStatus: LIBRARY_SOME_WA
@@ -214,6 +221,7 @@ data:
   - test/library_checker/string/suffix_array.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/longest_common_substr.test.cpp
+  - test_atcoder/abc240ex.test.cpp
   - test_atcoder/arc151_e.test.cpp
 documentation_of: string/suffix_array.hpp
 layout: document

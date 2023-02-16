@@ -32,6 +32,9 @@ data:
   - icon: ':question:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
+  - icon: ':x:'
+    path: string/sort_substrings.hpp
+    title: string/sort_substrings.hpp
   - icon: ':question:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
@@ -123,6 +126,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/913.test.cpp
     title: test/yukicoder/913.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc240ex.test.cpp
+    title: test_atcoder/abc240ex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc270_f.test.cpp
     title: test_atcoder/abc270_f.test.cpp
@@ -151,6 +157,7 @@ data:
   - graph/minimum_spanning_tree.hpp
   - geo/range_closest_pair_query.hpp
   - string/longest_common_substring.hpp
+  - string/sort_substrings.hpp
   - string/suffix_array.hpp
   - string/suffix_tree.hpp
   - ds/offline_query/range_mex_query.hpp
@@ -191,6 +198,7 @@ data:
   - test/mytest/min_min.test.cpp
   - test/mytest/longest_common_substr.test.cpp
   - test_atcoder/abc270_f.test.cpp
+  - test_atcoder/abc240ex.test.cpp
   - test_atcoder/arc151_e.test.cpp
 documentation_of: alg/monoid/min.hpp
 layout: document
