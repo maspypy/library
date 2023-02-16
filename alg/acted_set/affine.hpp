@@ -1,3 +1,5 @@
+#include "alg/monoid/affine.hpp"
+
 // 1 次元ベクトル空間に、アフィン変換が作用
 template <typename T>
 struct ActedSet_Affine {

@@ -11,6 +11,8 @@ ll discrete_log_acted(typename ActedSet::A x, typename ActedSet::S s,
   MP.reset();
   using Group = typename ActedSet::Monoid_A;
   using G = typename Group::value_type;
+  G xinv = Group::inverse(x);
+  assert(Group::op(x, xinv) == Group::unit());
   if (lb >= ub) return -1;
   auto xpow = [&](ll n) -> G {
     G p = x;
