@@ -14,12 +14,11 @@ tuple<int, int, int, int> longest_common_substring(STRING& S, STRING& T) {
   tuple<int, int, int, int> res = {0, 0, 0, 0};
   int n = 0;
   FOR(i, len(ST) - 1) {
-    if ((SA[i] < len(S)) != (SA[i + 1] < len(S))) {
-      if (chmax(n, LCP[i])) {
-        int a = SA[i];
-        int b = SA[i + 1] - len(S) - 1;
-        res = {a, a + n, b, b + n};
-      }
+    int i1 = SA[i], i2 = SA[i + 1];
+    if (i1 > i2) swap(i1, i2);
+    if (i1 < len(S) && len(S) < i2 && chmax(n, LCP[i])) {
+      int a = i1, b = i2 - len(S) - 1;
+      res = {a, a + n, b, b + n};
     }
   }
   return res;
