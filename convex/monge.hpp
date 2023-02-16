@@ -1,5 +1,6 @@
 #include "convex/larsch.hpp"
 #include "convex/smawk.hpp"
+#include "other/fibonacci_search.hpp"
 
 // 定義域 [0, N] の範囲で f の monge 性を確認
 template <typename T, typename F>
@@ -47,8 +48,8 @@ vc<T> monge_shortest_path(int N, F f) {
 }
 
 // https://noshi91.github.io/algorithm-encyclopedia/d-edge-shortest-path-monge
-// 上凸関数 calc_L(lambda) の最大値を求める問題に帰着
 // |f| の上限 f_lim も渡す
+// larsch が結構重いので、自前で dp できるならその方がよい
 template <typename T, typename F>
 T monge_shortest_path_d_edge(int N, int d, T f_lim, F f) {
   assert(d <= N);
@@ -58,9 +59,6 @@ T monge_shortest_path_d_edge(int N, int d, T f_lim, F f) {
     return dp[N] - lambda * d;
   };
 
-  T L = -3 * f_lim - 10;
-  T R = 3 * f_lim + 10;
-  T x = binary_search([&](T x) -> bool { return calc_L(x - 1) <= calc_L(x); },
-                      L, R);
-  return calc_L(x);
+  auto [x, fx] = fibonacci_search<T, false>(calc_L, -3 * f_lim, 3 * f_lim);
+  return fx;
 }
