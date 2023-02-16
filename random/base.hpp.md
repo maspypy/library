@@ -202,6 +202,9 @@ data:
     path: test/mytest/kdtree_nns.test.cpp
     title: test/mytest/kdtree_nns.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/longest_common_substr.test.cpp
+    title: test/mytest/longest_common_substr.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/manhattan_nns.test.cpp
     title: test/mytest/manhattan_nns.test.cpp
   - icon: ':heavy_check_mark:'
@@ -606,6 +609,7 @@ data:
   - test/mytest/min_min.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
   - test/mytest/conv_leq.test.cpp
+  - test/mytest/longest_common_substr.test.cpp
   - test_atcoder/abc274_h.test.cpp
   - test_atcoder/abc270_g.test.cpp
   - test_atcoder/abc273_e.test.cpp

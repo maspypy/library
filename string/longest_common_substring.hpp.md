@@ -1,23 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/disjointsparse/disjointsparse.hpp
     title: ds/disjointsparse/disjointsparse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/mytest/longest_common_substr.test.cpp
+    title: test/mytest/longest_common_substr.test.cpp
+  - icon: ':x:'
     path: test_atcoder/arc151_e.test.cpp
     title: test_atcoder/arc151_e.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"string/suffix_array.hpp\"\n\n#line 2 \"alg/monoid/min.hpp\"\
@@ -120,20 +123,20 @@ data:
     \ + 1;\n  STRING ST;\n  for (auto&& x: S) ST.push_back(x);\n  ST.push_back(dummy);\n\
     \  for (auto&& x: T) ST.push_back(x);\n  Suffix_Array X(ST);\n  auto& SA = X.SA;\n\
     \  auto& LCP = X.LCP;\n\n  tuple<int, int, int, int> res = {0, 0, 0, 0};\n  int\
-    \ n = 0;\n  FOR(i, len(ST) - 1) {\n    if ((SA[i] < len(S)) != (SA[i + 1] < len(S)))\
-    \ {\n      if (chmax(n, LCP[i])) {\n        int a = SA[i];\n        int b = SA[i\
-    \ + 1] - len(S) - 1;\n        res = {a, a + n, b, b + n};\n      }\n    }\n  }\n\
-    \  return res;\n}\n"
+    \ n = 0;\n  FOR(i, len(ST) - 1) {\n    int i1 = SA[i], i2 = SA[i + 1];\n    if\
+    \ (i1 > i2) swap(i1, i2);\n    if (i1 < len(S) && len(S) < i2 && chmax(n, LCP[i]))\
+    \ {\n      int a = i1, b = i2 - len(S) - 1;\n      res = {a, a + n, b, b + n};\n\
+    \    }\n  }\n  return res;\n}\n"
   code: "#include \"string/suffix_array.hpp\"\n\ntemplate <typename STRING>\ntuple<int,\
     \ int, int, int> longest_common_substring(STRING& S, STRING& T) {\n  int dummy\
     \ = max<int>(*max_element(all(S)), *max_element(all(T))) + 1;\n  STRING ST;\n\
     \  for (auto&& x: S) ST.push_back(x);\n  ST.push_back(dummy);\n  for (auto&& x:\
     \ T) ST.push_back(x);\n  Suffix_Array X(ST);\n  auto& SA = X.SA;\n  auto& LCP\
     \ = X.LCP;\n\n  tuple<int, int, int, int> res = {0, 0, 0, 0};\n  int n = 0;\n\
-    \  FOR(i, len(ST) - 1) {\n    if ((SA[i] < len(S)) != (SA[i + 1] < len(S))) {\n\
-    \      if (chmax(n, LCP[i])) {\n        int a = SA[i];\n        int b = SA[i +\
-    \ 1] - len(S) - 1;\n        res = {a, a + n, b, b + n};\n      }\n    }\n  }\n\
-    \  return res;\n}"
+    \  FOR(i, len(ST) - 1) {\n    int i1 = SA[i], i2 = SA[i + 1];\n    if (i1 > i2)\
+    \ swap(i1, i2);\n    if (i1 < len(S) && len(S) < i2 && chmax(n, LCP[i])) {\n \
+    \     int a = i1, b = i2 - len(S) - 1;\n      res = {a, a + n, b, b + n};\n  \
+    \  }\n  }\n  return res;\n}"
   dependsOn:
   - string/suffix_array.hpp
   - alg/monoid/min.hpp
@@ -141,9 +144,10 @@ data:
   isVerificationFile: false
   path: string/longest_common_substring.hpp
   requiredBy: []
-  timestamp: '2023-02-02 02:12:17+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-02-16 20:16:05+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/mytest/longest_common_substr.test.cpp
   - test_atcoder/arc151_e.test.cpp
 documentation_of: string/longest_common_substring.hpp
 layout: document
