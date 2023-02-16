@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: flow/bflow.hpp
     title: flow/bflow.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/min_cost_b_flow
@@ -295,19 +295,18 @@ data:
     \ get_edges() { return edges; }\n};\n#line 5 \"test/library_checker/graph/min_cost_b-flow.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, M);\n  MinCostFlow<ll, ll> G(N);\n  FOR(i, N) {\n\
     \    LL(b);\n    G.add_source(i, b);\n  }\n  FOR(i, M) {\n    LL(frm, to, lo,\
-    \ hi, cost);\n    G.add(frm, to, lo, hi, cost);\n  }\n  auto [status, cost] =\
-    \ G.solve();\n  if (status == Status::INFEASIBLE) return print(\"infeasible\"\
-    );\n  print(cost);\n  for (auto &&p: G.get_potential()) print(p);\n  for (auto\
-    \ &&e: G.get_edges()) { print(e.flow()); }\n}\n\nsigned main() {\n  solve();\n\
-    \n  return 0;\n}\n"
+    \ hi, cost);\n    G.add(frm, to, lo, hi, cost);\n  }\n  auto [ok, cost] = G.solve();\n\
+    \  if (!ok) return print(\"infeasible\");\n  print(cost);\n  for (auto &&p: G.get_potential())\
+    \ print(p);\n  for (auto &&e: G.get_edges()) { print(e.flow()); }\n}\n\nsigned\
+    \ main() {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/min_cost_b_flow\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"flow/bflow.hpp\"\n\
     \nvoid solve() {\n  LL(N, M);\n  MinCostFlow<ll, ll> G(N);\n  FOR(i, N) {\n  \
     \  LL(b);\n    G.add_source(i, b);\n  }\n  FOR(i, M) {\n    LL(frm, to, lo, hi,\
-    \ cost);\n    G.add(frm, to, lo, hi, cost);\n  }\n  auto [status, cost] = G.solve();\n\
-    \  if (status == Status::INFEASIBLE) return print(\"infeasible\");\n  print(cost);\n\
-    \  for (auto &&p: G.get_potential()) print(p);\n  for (auto &&e: G.get_edges())\
-    \ { print(e.flow()); }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+    \ cost);\n    G.add(frm, to, lo, hi, cost);\n  }\n  auto [ok, cost] = G.solve();\n\
+    \  if (!ok) return print(\"infeasible\");\n  print(cost);\n  for (auto &&p: G.get_potential())\
+    \ print(p);\n  for (auto &&e: G.get_edges()) { print(e.flow()); }\n}\n\nsigned\
+    \ main() {\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -315,8 +314,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/min_cost_b-flow.test.cpp
   requiredBy: []
-  timestamp: '2023-02-16 20:33:44+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-02-16 22:13:49+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/min_cost_b-flow.test.cpp
 layout: document
