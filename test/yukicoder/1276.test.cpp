@@ -28,7 +28,7 @@ void solve() {
     // b|a,c かつ distinct
     ANS -= mint(r - l) * mint((q - 1) * (q - 2));
   };
-  floor_range<int>(N, f);
+  floor_range(N, f);
 
   // a|b|c
   mint y = multiplicative_sum<mint>(N, f_pe, f_psum);
