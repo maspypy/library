@@ -26,7 +26,7 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
   - icon: ':heavy_check_mark:'
@@ -36,7 +36,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/slice_rational_fps.test.cpp
     title: test/mytest/slice_rational_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
   - icon: ':heavy_check_mark:'
@@ -45,9 +45,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc154f.test.cpp
     title: test_atcoder/arc154f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
@@ -388,7 +388,7 @@ data:
   - linalg/implicit_matrix/vandermonde.hpp
   - poly/slice_rational_fps.hpp
   timestamp: '2023-01-22 22:24:51+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1533.test.cpp
   - test/mytest/vandermonde.test.cpp

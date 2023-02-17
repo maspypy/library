@@ -33,12 +33,12 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/partial_frac.test.cpp
     title: test/mytest/partial_frac.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/multipoint.hpp\"\n\r\n#line 2 \"poly/count_terms.hpp\"\
@@ -361,19 +361,20 @@ data:
     \n  }\r\n\r\n  vc<mint> evaluation(vc<mint> f) {\r\n    int n = len(f);\r\n  \
     \  if (n == 0) return vc<mint>(m, mint(0));\r\n    f.resize(2 * n - 1);\r\n  \
     \  vc<vc<mint>> g(2 * sz);\r\n    g[1] = T[1];\r\n    g[1].resize(n);\r\n    g[1]\
-    \ = fps_inv(g[1]);\r\n    g[1] = mid_prod(f, g[1]);\r\n    g[1].resize(sz);\r\n\
-    \r\n    FOR3(i, 1, sz) {\r\n      g[2 * i] = mid_prod(g[i], T[2 * i + 1]);\r\n\
-    \      g[2 * i + 1] = mid_prod(g[i], T[2 * i]);\r\n    }\r\n    vc<mint> vals(m);\r\
-    \n    FOR(i, m) vals[i] = g[sz + i][0];\r\n    return vals;\r\n  }\r\n\r\n  vc<mint>\
-    \ interpolation(vc<mint>& y) {\r\n    assert(len(y) == m);\r\n    vc<mint> a(m);\r\
-    \n    FOR(i, m) a[i] = T[1][m - i - 1] * (i + 1);\r\n\r\n    a = evaluation(a);\r\
-    \n    vc<vc<mint>> t(2 * sz);\r\n    FOR(i, sz) t[sz + i] = {(i < m ? y[i] / a[i]\
-    \ : 0)};\r\n    FOR3_R(i, 1, sz) {\r\n      t[i] = convolution(t[2 * i], T[2 *\
-    \ i + 1]);\r\n      auto tt = convolution(t[2 * i + 1], T[2 * i]);\r\n      FOR(k,\
-    \ len(t[i])) t[i][k] += tt[k];\r\n    }\r\n    t[1].resize(m);\r\n    reverse(all(t[1]));\r\
-    \n    return t[1];\r\n  }\r\n};\r\n\r\ntemplate <typename mint>\r\nvc<mint> multipoint_eval(vc<mint>&\
-    \ f, vc<mint>& x) {\r\n  if (x.empty()) return {};\r\n  SubproductTree<mint> F(x);\r\
-    \n  return F.evaluation(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> multipoint_interpolate(vc<mint>&\
+    \ = fps_inv(g[1]);\r\n    g[1] = middle_product(f, g[1]);\r\n    g[1].resize(sz);\r\
+    \n\r\n    FOR3(i, 1, sz) {\r\n      g[2 * i] = middle_product(g[i], T[2 * i +\
+    \ 1]);\r\n      g[2 * i + 1] = middle_product(g[i], T[2 * i]);\r\n    }\r\n  \
+    \  vc<mint> vals(m);\r\n    FOR(i, m) vals[i] = g[sz + i][0];\r\n    return vals;\r\
+    \n  }\r\n\r\n  vc<mint> interpolation(vc<mint>& y) {\r\n    assert(len(y) == m);\r\
+    \n    vc<mint> a(m);\r\n    FOR(i, m) a[i] = T[1][m - i - 1] * (i + 1);\r\n\r\n\
+    \    a = evaluation(a);\r\n    vc<vc<mint>> t(2 * sz);\r\n    FOR(i, sz) t[sz\
+    \ + i] = {(i < m ? y[i] / a[i] : 0)};\r\n    FOR3_R(i, 1, sz) {\r\n      t[i]\
+    \ = convolution(t[2 * i], T[2 * i + 1]);\r\n      auto tt = convolution(t[2 *\
+    \ i + 1], T[2 * i]);\r\n      FOR(k, len(t[i])) t[i][k] += tt[k];\r\n    }\r\n\
+    \    t[1].resize(m);\r\n    reverse(all(t[1]));\r\n    return t[1];\r\n  }\r\n\
+    };\r\n\r\ntemplate <typename mint>\r\nvc<mint> multipoint_eval(vc<mint>& f, vc<mint>&\
+    \ x) {\r\n  if (x.empty()) return {};\r\n  SubproductTree<mint> F(x);\r\n  return\
+    \ F.evaluation(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> multipoint_interpolate(vc<mint>&\
     \ x, vc<mint>& y) {\r\n  if (x.empty()) return {};\r\n  SubproductTree<mint> F(x);\r\
     \n  return F.interpolation(y);\r\n}\r\n\r\n// calculate f(ar^k) for 0 <= k < m\r\
     \n// https://noshi91.github.io/algorithm-encyclopedia/chirp-z-transform#noredirect\r\
@@ -421,8 +422,8 @@ data:
   isVerificationFile: false
   path: poly/partial_frac_decomposition.hpp
   requiredBy: []
-  timestamp: '2023-02-17 21:16:08+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-02-17 23:37:06+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/partial_frac.test.cpp
 documentation_of: poly/partial_frac_decomposition.hpp

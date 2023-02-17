@@ -273,7 +273,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/online_pow.test.cpp
     title: test/mytest/online_pow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/partial_frac.test.cpp
     title: test/mytest/partial_frac.test.cpp
   - icon: ':heavy_check_mark:'
@@ -366,7 +366,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
   - icon: ':heavy_check_mark:'
@@ -459,9 +459,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc274_h.test.cpp
     title: test_atcoder/abc274_h.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -511,7 +511,7 @@ data:
   - random/random_graph.hpp
   - random/hash_vector.hpp
   timestamp: '2022-10-23 11:21:57+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL_5_A.test.cpp
   - test/aoj/ALDS1_14_C.test.cpp
