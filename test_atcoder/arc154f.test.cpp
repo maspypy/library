@@ -29,7 +29,7 @@ void solve() {
   }
   g = composition_f_ex(M, g);
   f = fps_div(f, g);
-  // FOR(i, 1, M + 1) print(f[i] * fact<mint>(i) * cf);
+  FOR(i, 1, M + 1) print(f[i] * fact<mint>(i) * cf);
 }
 
 signed main() {
