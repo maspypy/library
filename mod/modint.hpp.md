@@ -138,6 +138,9 @@ data:
     path: poly/product_of_pow_of_linear.hpp
     title: poly/product_of_pow_of_linear.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/slice_rational_fps.hpp
+    title: poly/slice_rational_fps.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/sparse_exp_of_div.hpp
     title: poly/sparse_exp_of_div.hpp
   - icon: ':heavy_check_mark:'
@@ -498,6 +501,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/simple_perm.test.cpp
     title: test/mytest/simple_perm.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/slice_rational_fps.test.cpp
+    title: test/mytest/slice_rational_fps.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/splay.test.cpp
     title: test/mytest/splay.test.cpp
@@ -1026,6 +1032,7 @@ data:
   - poly/composition_f_ex.hpp
   - poly/poly_divmod.hpp
   - poly/convolution_huge.hpp
+  - poly/slice_rational_fps.hpp
   - poly/product_of_pow_of_linear.hpp
   - poly/multivar_convolution_cyclic.hpp
   - poly/sum_of_exp_bx.hpp
@@ -1209,6 +1216,7 @@ data:
   - test/mytest/all_inverse.test.cpp
   - test/mytest/conv2d.test.cpp
   - test/mytest/splay_am.test.cpp
+  - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/online_exp.test.cpp
   - test/mytest/splay.test.cpp
   - test/mytest/online_division.test.cpp

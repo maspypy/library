@@ -328,6 +328,9 @@ data:
     path: test/mytest/segtree_xor_prod.test.cpp
     title: test/mytest/segtree_xor_prod.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/slice_rational_fps.test.cpp
+    title: test/mytest/slice_rational_fps.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/splay.test.cpp
     title: test/mytest/splay.test.cpp
   - icon: ':heavy_check_mark:'
@@ -607,6 +610,7 @@ data:
   - test/mytest/all_inverse.test.cpp
   - test/mytest/conv2d.test.cpp
   - test/mytest/splay_am.test.cpp
+  - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/min_max.test.cpp
   - test/mytest/minmax_add.test.cpp
   - test/mytest/online_exp.test.cpp

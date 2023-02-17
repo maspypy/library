@@ -952,6 +952,9 @@ data:
     path: test/mytest/simple_perm.test.cpp
     title: test/mytest/simple_perm.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/slice_rational_fps.test.cpp
+    title: test/mytest/slice_rational_fps.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/smawk.test.cpp
     title: test/mytest/smawk.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2460,6 +2463,7 @@ data:
   - test/mytest/all_inverse.test.cpp
   - test/mytest/conv2d.test.cpp
   - test/mytest/splay_am.test.cpp
+  - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/min_max.test.cpp
   - test/mytest/minmax_add.test.cpp
   - test/mytest/primesum_mod6.test.cpp

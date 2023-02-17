@@ -20,6 +20,9 @@ data:
     path: poly/fft.hpp
     title: poly/fft.hpp
   - icon: ':question:'
+    path: poly/fps_div.hpp
+    title: poly/fps_div.hpp
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':question:'
@@ -28,58 +31,22 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  _extendedRequiredBy:
-  - icon: ':x:'
-    path: linalg/implicit_matrix/vandermonde.hpp
-    title: linalg/implicit_matrix/vandermonde.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/multivar_convolution_cyclic.hpp
-    title: poly/multivar_convolution_cyclic.hpp
-  - icon: ':x:'
-    path: poly/partial_frac_decomposition.hpp
-    title: poly/partial_frac_decomposition.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-    title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/polynomial/multipoint_evaluation.test.cpp
-    title: test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/polynomial/polynomial_interpolation.test.cpp
-    title: test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/chirp_z.test.cpp
-    title: test/mytest/chirp_z.test.cpp
-  - icon: ':x:'
-    path: test/mytest/partial_frac.test.cpp
-    title: test/mytest/partial_frac.test.cpp
-  - icon: ':x:'
-    path: test/mytest/vandermonde.test.cpp
-    title: test/mytest/vandermonde.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/2166.test.cpp
-    title: test/yukicoder/2166.test.cpp
-  - icon: ':x:'
-    path: test_atcoder/abc267g.test.cpp
-    title: test_atcoder/abc267g.test.cpp
-  - icon: ':x:'
-    path: test_atcoder/abc272_h.test.cpp
-    title: test_atcoder/abc272_h.test.cpp
-  _isVerificationFailed: true
+    path: test/mytest/slice_rational_fps.test.cpp
+    title: test/mytest/slice_rational_fps.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
-    - https://noshi91.github.io/algorithm-encyclopedia/chirp-z-transform#noredirect
-  bundledCode: "#line 2 \"poly/multipoint.hpp\"\n\r\n#line 2 \"poly/count_terms.hpp\"\
-    \ntemplate<typename mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t =\
-    \ 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 2\
-    \ \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n  int val;\n  constexpr\
-    \ modint(ll x = 0) noexcept {\n    if (0 <= x && x < mod)\n      val = x;\n  \
-    \  else {\n      x %= mod;\n      val = (x < 0 ? x + mod : x);\n    }\n  }\n \
-    \ bool operator<(const modint &other) const {\n    return val < other.val;\n \
-    \ } // To use std::map\n  modint &operator+=(const modint &p) {\n    if ((val\
+    - https://qiita.com/ryuhe1/items/c18ddbb834eed724a42b
+  bundledCode: "#line 2 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n\
+    \  int val;\n  constexpr modint(ll x = 0) noexcept {\n    if (0 <= x && x < mod)\n\
+    \      val = x;\n    else {\n      x %= mod;\n      val = (x < 0 ? x + mod : x);\n\
+    \    }\n  }\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
+    \  } // To use std::map\n  modint &operator+=(const modint &p) {\n    if ((val\
     \ += p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator-=(const\
     \ modint &p) {\n    if ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n\
     \  }\n  modint &operator*=(const modint &p) {\n    val = (int)(1LL * val * p.val\
@@ -346,37 +313,9 @@ data:
     \ modint998>::value, vc<mint>> convolution(\r\n    const vc<mint>& a, const vc<mint>&\
     \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
     \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_garner(a,\
-    \ b);\r\n}\r\n#line 4 \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\nvc<mint>\
-    \ fps_inv_sparse(const vc<mint>& f) {\r\n  assert(f[0] != mint(0));\r\n  int N\
-    \ = len(f);\r\n  vc<pair<int, mint>> dat;\r\n  FOR3(i, 1, N) if (f[i] != mint(0))\
-    \ dat.eb(i, f[i]);\r\n  vc<mint> g(N);\r\n  mint g0 = mint(1) / f[0];\r\n  g[0]\
-    \ = g0;\r\n  FOR3(n, 1, N) {\r\n    mint rhs = 0;\r\n    for (auto&& [k, fk]:\
-    \ dat) {\r\n      if (k > n) break;\r\n      rhs -= fk * g[n - k];\r\n    }\r\n\
-    \    g[n] = rhs * g0;\r\n  }\r\n  return g;\r\n}\r\n\r\ntemplate <typename mint>\r\
-    \nenable_if_t<is_same<mint, modint998>::value, vc<mint>> fps_inv_dense(\r\n  \
-    \  const vc<mint>& F) {\r\n  assert(F[0] != mint(0));\r\n  vc<mint> G = {mint(1)\
-    \ / F[0]};\r\n  G.reserve(len(F));\r\n  ll N = len(F), n = 1;\r\n  while (n <\
-    \ N) {\r\n    vc<mint> f(2 * n), g(2 * n);\r\n    FOR(i, min(N, 2 * n)) f[i] =\
-    \ F[i];\r\n    FOR(i, n) g[i] = G[i];\r\n    ntt(f, false);\r\n    ntt(g, false);\r\
-    \n    FOR(i, 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\n    FOR(i, n) f[i] =\
-    \ 0;\r\n    ntt(f, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\
-    \n    FOR3(i, n, 2 * n) G.eb(f[i] * mint(-1));\r\n    n *= 2;\r\n  }\r\n  G.resize(N);\r\
-    \n  return G;\r\n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<!is_same<mint,\
-    \ modint998>::value, vc<mint>> fps_inv_dense(\r\n    const vc<mint>& F) {\r\n\
-    \  int N = len(F);\r\n  assert(F[0] != mint(0));\r\n  vc<mint> R = {mint(1) /\
-    \ F[0]};\r\n  vc<mint> p;\r\n  int m = 1;\r\n  while (m < N) {\r\n    p = convolution(R,\
-    \ R);\r\n    p.resize(m + m);\r\n    vc<mint> f = {F.begin(), F.begin() + min(m\
-    \ + m, N)};\r\n    p = convolution(p, f);\r\n    R.resize(m + m);\r\n    FOR(i,\
-    \ m + m) R[i] = R[i] + R[i] - p[i];\r\n    m += m;\r\n  }\r\n  R.resize(N);\r\n\
-    \  return R;\r\n}\r\n\r\n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint,\
-    \ modint998>::value, vc<mint>> fps_inv(\r\n    const vc<mint>& f) {\r\n  if (count_terms(f)\
-    \ <= 200) return fps_inv_sparse<mint>(f);\r\n  return fps_inv_dense<mint>(f);\r\
-    \n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<!is_same<mint, modint998>::value,\
-    \ vc<mint>> fps_inv(\r\n    const vc<mint>& f) {\r\n  if (count_terms(f) <= 700)\
-    \ return fps_inv_sparse<mint>(f);\r\n  return fps_inv_dense<mint>(f);\r\n}\r\n\
-    #line 2 \"poly/middle_product.hpp\"\n\n#line 4 \"poly/middle_product.hpp\"\n\n\
-    // n, m \u6B21\u591A\u9805\u5F0F (n>=m) a, b \u2192 n-m \u6B21\u591A\u9805\u5F0F\
-    \ c\n// c[i] = sum_j b[j]a[i+j]\ntemplate <typename mint>\nvc<mint> middle_product(vc<mint>&\
+    \ b);\r\n}\r\n#line 2 \"poly/middle_product.hpp\"\n\n#line 4 \"poly/middle_product.hpp\"\
+    \n\n// n, m \u6B21\u591A\u9805\u5F0F (n>=m) a, b \u2192 n-m \u6B21\u591A\u9805\
+    \u5F0F c\n// c[i] = sum_j b[j]a[i+j]\ntemplate <typename mint>\nvc<mint> middle_product(vc<mint>&\
     \ a, vc<mint>& b) {\n  assert(len(a) >= len(b));\n  if (b.empty()) return vc<mint>(len(a)\
     \ - len(b) + 1);\n  if (min(len(b), len(a) - len(b) + 1) <= 60) {\n    vc<mint>\
     \ res(len(a) - len(b) + 1);\n    FOR(i, len(res)) FOR(j, len(b)) res[i] += b[j]\
@@ -384,79 +323,80 @@ data:
     \ fa(n), fb(n);\n  copy(a.begin(), a.end(), fa.begin());\n  copy(b.rbegin(), b.rend(),\
     \ fb.begin());\n  ntt(fa, 0), ntt(fb, 0);\n  FOR(i, n) fa[i] *= fb[i];\n  ntt(fa,\
     \ 1);\n  fa.resize(len(a));\n  fa.erase(fa.begin(), fa.begin() + len(b) - 1);\n\
-    \  return fa;\n}\n#line 5 \"poly/multipoint.hpp\"\n\r\ntemplate <typename mint>\r\
-    \nstruct SubproductTree {\r\n  int m;\r\n  int sz;\r\n  vc<vc<mint>> T;\r\n  SubproductTree(const\
-    \ vc<mint>& x) {\r\n    m = len(x);\r\n    sz = 1;\r\n    while (sz < m) sz *=\
-    \ 2;\r\n    T.resize(2 * sz);\r\n    FOR(i, sz) T[sz + i] = {1, (i < m ? -x[i]\
-    \ : 0)};\r\n    FOR3_R(i, 1, sz) T[i] = convolution(T[2 * i], T[2 * i + 1]);\r\
-    \n  }\r\n\r\n  vc<mint> evaluation(vc<mint> f) {\r\n    int n = len(f);\r\n  \
-    \  if (n == 0) return vc<mint>(m, mint(0));\r\n    f.resize(2 * n - 1);\r\n  \
-    \  vc<vc<mint>> g(2 * sz);\r\n    g[1] = T[1];\r\n    g[1].resize(n);\r\n    g[1]\
-    \ = fps_inv(g[1]);\r\n    g[1] = mid_prod(f, g[1]);\r\n    g[1].resize(sz);\r\n\
-    \r\n    FOR3(i, 1, sz) {\r\n      g[2 * i] = mid_prod(g[i], T[2 * i + 1]);\r\n\
-    \      g[2 * i + 1] = mid_prod(g[i], T[2 * i]);\r\n    }\r\n    vc<mint> vals(m);\r\
-    \n    FOR(i, m) vals[i] = g[sz + i][0];\r\n    return vals;\r\n  }\r\n\r\n  vc<mint>\
-    \ interpolation(vc<mint>& y) {\r\n    assert(len(y) == m);\r\n    vc<mint> a(m);\r\
-    \n    FOR(i, m) a[i] = T[1][m - i - 1] * (i + 1);\r\n\r\n    a = evaluation(a);\r\
-    \n    vc<vc<mint>> t(2 * sz);\r\n    FOR(i, sz) t[sz + i] = {(i < m ? y[i] / a[i]\
-    \ : 0)};\r\n    FOR3_R(i, 1, sz) {\r\n      t[i] = convolution(t[2 * i], T[2 *\
-    \ i + 1]);\r\n      auto tt = convolution(t[2 * i + 1], T[2 * i]);\r\n      FOR(k,\
-    \ len(t[i])) t[i][k] += tt[k];\r\n    }\r\n    t[1].resize(m);\r\n    reverse(all(t[1]));\r\
-    \n    return t[1];\r\n  }\r\n};\r\n\r\ntemplate <typename mint>\r\nvc<mint> multipoint_eval(vc<mint>&\
-    \ f, vc<mint>& x) {\r\n  if (x.empty()) return {};\r\n  SubproductTree<mint> F(x);\r\
-    \n  return F.evaluation(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> multipoint_interpolate(vc<mint>&\
-    \ x, vc<mint>& y) {\r\n  if (x.empty()) return {};\r\n  SubproductTree<mint> F(x);\r\
-    \n  return F.interpolation(y);\r\n}\r\n\r\n// calculate f(ar^k) for 0 <= k < m\r\
-    \n// https://noshi91.github.io/algorithm-encyclopedia/chirp-z-transform#noredirect\r\
-    \ntemplate <typename mint>\r\nvc<mint> multipoint_eval_on_geom_seq(vc<mint> f,\
-    \ mint a, mint r, int m) {\r\n  const int n = len(f);\r\n  assert(r != mint(0));\r\
-    \n  // a == 1 \u306B\u5E30\u7740\r\n  mint pow_a = 1;\r\n  FOR(i, n) f[i] *= pow_a,\
-    \ pow_a *= a;\r\n\r\n  auto calc = [&](mint r, int m) -> vc<mint> {\r\n    //\
-    \ r^{t_i} \u306E\u8A08\u7B97\r\n    vc<mint> res(m);\r\n    mint pow = 1;\r\n\
-    \    res[0] = 1;\r\n    FOR(i, m - 1) {\r\n      res[i + 1] = res[i] * pow;\r\n\
-    \      pow *= r;\r\n    }\r\n    return res;\r\n  };\r\n\r\n  vc<mint> A = calc(r,\
-    \ n + m - 1), B = calc(r.inverse(), max(n, m));\r\n  FOR(i, n) f[i] *= B[i];\r\
-    \n  reverse(all(f));\r\n  f = convolution(f, A);\r\n  f = {f.begin() + n - 1,\
-    \ f.end()};\r\n  f.resize(m);\r\n  FOR(i, m) f[i] *= B[i];\r\n  return f;\r\n\
-    }\n"
-  code: "#pragma once\r\n\r\n#include \"poly/fps_inv.hpp\"\r\n#include \"poly/middle_product.hpp\"\
-    \r\n\r\ntemplate <typename mint>\r\nstruct SubproductTree {\r\n  int m;\r\n  int\
-    \ sz;\r\n  vc<vc<mint>> T;\r\n  SubproductTree(const vc<mint>& x) {\r\n    m =\
-    \ len(x);\r\n    sz = 1;\r\n    while (sz < m) sz *= 2;\r\n    T.resize(2 * sz);\r\
-    \n    FOR(i, sz) T[sz + i] = {1, (i < m ? -x[i] : 0)};\r\n    FOR3_R(i, 1, sz)\
-    \ T[i] = convolution(T[2 * i], T[2 * i + 1]);\r\n  }\r\n\r\n  vc<mint> evaluation(vc<mint>\
-    \ f) {\r\n    int n = len(f);\r\n    if (n == 0) return vc<mint>(m, mint(0));\r\
-    \n    f.resize(2 * n - 1);\r\n    vc<vc<mint>> g(2 * sz);\r\n    g[1] = T[1];\r\
-    \n    g[1].resize(n);\r\n    g[1] = fps_inv(g[1]);\r\n    g[1] = mid_prod(f, g[1]);\r\
-    \n    g[1].resize(sz);\r\n\r\n    FOR3(i, 1, sz) {\r\n      g[2 * i] = mid_prod(g[i],\
-    \ T[2 * i + 1]);\r\n      g[2 * i + 1] = mid_prod(g[i], T[2 * i]);\r\n    }\r\n\
-    \    vc<mint> vals(m);\r\n    FOR(i, m) vals[i] = g[sz + i][0];\r\n    return\
-    \ vals;\r\n  }\r\n\r\n  vc<mint> interpolation(vc<mint>& y) {\r\n    assert(len(y)\
-    \ == m);\r\n    vc<mint> a(m);\r\n    FOR(i, m) a[i] = T[1][m - i - 1] * (i +\
-    \ 1);\r\n\r\n    a = evaluation(a);\r\n    vc<vc<mint>> t(2 * sz);\r\n    FOR(i,\
-    \ sz) t[sz + i] = {(i < m ? y[i] / a[i] : 0)};\r\n    FOR3_R(i, 1, sz) {\r\n \
-    \     t[i] = convolution(t[2 * i], T[2 * i + 1]);\r\n      auto tt = convolution(t[2\
-    \ * i + 1], T[2 * i]);\r\n      FOR(k, len(t[i])) t[i][k] += tt[k];\r\n    }\r\
-    \n    t[1].resize(m);\r\n    reverse(all(t[1]));\r\n    return t[1];\r\n  }\r\n\
-    };\r\n\r\ntemplate <typename mint>\r\nvc<mint> multipoint_eval(vc<mint>& f, vc<mint>&\
-    \ x) {\r\n  if (x.empty()) return {};\r\n  SubproductTree<mint> F(x);\r\n  return\
-    \ F.evaluation(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> multipoint_interpolate(vc<mint>&\
-    \ x, vc<mint>& y) {\r\n  if (x.empty()) return {};\r\n  SubproductTree<mint> F(x);\r\
-    \n  return F.interpolation(y);\r\n}\r\n\r\n// calculate f(ar^k) for 0 <= k < m\r\
-    \n// https://noshi91.github.io/algorithm-encyclopedia/chirp-z-transform#noredirect\r\
-    \ntemplate <typename mint>\r\nvc<mint> multipoint_eval_on_geom_seq(vc<mint> f,\
-    \ mint a, mint r, int m) {\r\n  const int n = len(f);\r\n  assert(r != mint(0));\r\
-    \n  // a == 1 \u306B\u5E30\u7740\r\n  mint pow_a = 1;\r\n  FOR(i, n) f[i] *= pow_a,\
-    \ pow_a *= a;\r\n\r\n  auto calc = [&](mint r, int m) -> vc<mint> {\r\n    //\
-    \ r^{t_i} \u306E\u8A08\u7B97\r\n    vc<mint> res(m);\r\n    mint pow = 1;\r\n\
-    \    res[0] = 1;\r\n    FOR(i, m - 1) {\r\n      res[i + 1] = res[i] * pow;\r\n\
-    \      pow *= r;\r\n    }\r\n    return res;\r\n  };\r\n\r\n  vc<mint> A = calc(r,\
-    \ n + m - 1), B = calc(r.inverse(), max(n, m));\r\n  FOR(i, n) f[i] *= B[i];\r\
-    \n  reverse(all(f));\r\n  f = convolution(f, A);\r\n  f = {f.begin() + n - 1,\
-    \ f.end()};\r\n  f.resize(m);\r\n  FOR(i, m) f[i] *= B[i];\r\n  return f;\r\n}"
+    \  return fa;\n}\n#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\n\
+    int count_terms(const vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i]\
+    \ != mint(0)) ++t;\r\n  return t;\r\n}\n#line 4 \"poly/fps_inv.hpp\"\n\r\ntemplate\
+    \ <typename mint>\r\nvc<mint> fps_inv_sparse(const vc<mint>& f) {\r\n  assert(f[0]\
+    \ != mint(0));\r\n  int N = len(f);\r\n  vc<pair<int, mint>> dat;\r\n  FOR3(i,\
+    \ 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint> g(N);\r\n  mint g0\
+    \ = mint(1) / f[0];\r\n  g[0] = g0;\r\n  FOR3(n, 1, N) {\r\n    mint rhs = 0;\r\
+    \n    for (auto&& [k, fk]: dat) {\r\n      if (k > n) break;\r\n      rhs -= fk\
+    \ * g[n - k];\r\n    }\r\n    g[n] = rhs * g0;\r\n  }\r\n  return g;\r\n}\r\n\r\
+    \ntemplate <typename mint>\r\nenable_if_t<is_same<mint, modint998>::value, vc<mint>>\
+    \ fps_inv_dense(\r\n    const vc<mint>& F) {\r\n  assert(F[0] != mint(0));\r\n\
+    \  vc<mint> G = {mint(1) / F[0]};\r\n  G.reserve(len(F));\r\n  ll N = len(F),\
+    \ n = 1;\r\n  while (n < N) {\r\n    vc<mint> f(2 * n), g(2 * n);\r\n    FOR(i,\
+    \ min(N, 2 * n)) f[i] = F[i];\r\n    FOR(i, n) g[i] = G[i];\r\n    ntt(f, false);\r\
+    \n    ntt(g, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\
+    \n    FOR(i, n) f[i] = 0;\r\n    ntt(f, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\
+    \n    ntt(f, true);\r\n    FOR3(i, n, 2 * n) G.eb(f[i] * mint(-1));\r\n    n *=\
+    \ 2;\r\n  }\r\n  G.resize(N);\r\n  return G;\r\n}\r\n\r\ntemplate <typename mint>\r\
+    \nenable_if_t<!is_same<mint, modint998>::value, vc<mint>> fps_inv_dense(\r\n \
+    \   const vc<mint>& F) {\r\n  int N = len(F);\r\n  assert(F[0] != mint(0));\r\n\
+    \  vc<mint> R = {mint(1) / F[0]};\r\n  vc<mint> p;\r\n  int m = 1;\r\n  while\
+    \ (m < N) {\r\n    p = convolution(R, R);\r\n    p.resize(m + m);\r\n    vc<mint>\
+    \ f = {F.begin(), F.begin() + min(m + m, N)};\r\n    p = convolution(p, f);\r\n\
+    \    R.resize(m + m);\r\n    FOR(i, m + m) R[i] = R[i] + R[i] - p[i];\r\n    m\
+    \ += m;\r\n  }\r\n  R.resize(N);\r\n  return R;\r\n}\r\n\r\n\r\ntemplate <typename\
+    \ mint>\r\nenable_if_t<is_same<mint, modint998>::value, vc<mint>> fps_inv(\r\n\
+    \    const vc<mint>& f) {\r\n  if (count_terms(f) <= 200) return fps_inv_sparse<mint>(f);\r\
+    \n  return fps_inv_dense<mint>(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<!is_same<mint,\
+    \ modint998>::value, vc<mint>> fps_inv(\r\n    const vc<mint>& f) {\r\n  if (count_terms(f)\
+    \ <= 700) return fps_inv_sparse<mint>(f);\r\n  return fps_inv_dense<mint>(f);\r\
+    \n}\r\n#line 3 \"poly/fps_div.hpp\"\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\
+    \u529B\u3055\u308C\u308B.\ntemplate <typename mint, bool SPARSE = false>\nvc<mint>\
+    \ fps_div(vc<mint> f, vc<mint> g) {\n  if (SPARSE || count_terms(g) < 200) return\
+    \ fps_div_sparse(f, g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n\
+    \  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n\n// f/g \u305F\u3060\
+    \u3057 g \u306F sparse\ntemplate <typename mint>\nvc<mint> fps_div_sparse(vc<mint>\
+    \ f, vc<mint>& g) {\n  if (g[0] != mint(1)) {\n    mint cf = g[0].inverse();\n\
+    \    for (auto&& x: f) x *= cf;\n    for (auto&& x: g) x *= cf;\n  }\n\n  vc<pair<int,\
+    \ mint>> dat;\n  FOR(i, 1, len(g)) if (g[i] != mint(0)) dat.eb(i, -g[i]);\n  FOR(i,\
+    \ len(f)) {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i\
+    \ - j];\n    }\n  }\n  return f;\n}\n#line 4 \"poly/slice_rational_fps.hpp\"\n\
+    \n// P(x)/Q(x) \u306E [N, N+d] \u90E8\u5206\u3092\u8A08\u7B97\n// https://qiita.com/ryuhe1/items/c18ddbb834eed724a42b\n\
+    template <typename mint>\nvc<mint> slice_rational_fps(vc<mint> P, vc<mint> Q,\
+    \ ll N) {\n  assert(N >= 0 && Q[0] == mint(1) && len(P) < len(Q));\n  const int\
+    \ d = len(Q) - 1;\n  if (d == 0) { return vc<mint>(); }\n  P.resize(len(Q) - 1);\n\
+    \n  auto dfs = [&](auto& dfs, ll N, vc<mint> Q) -> vc<mint> {\n    // 1/Q \u306E\
+    \ [N-d+1, N]\n    if (N == 0) {\n      vc<mint> f(d);\n      f[d - 1] = 1;\n \
+    \     return f;\n    }\n    vc<mint> R = Q;\n    FOR(i, d + 1) if (i & 1) R[i]\
+    \ = -R[i];\n    vc<mint> V = convolution(Q, R);\n    FOR(i, d + 1) V[i] = V[2\
+    \ * i];\n    V.resize(d + 1);\n    vc<mint> W = dfs(dfs, N / 2, V);\n    vc<mint>\
+    \ S(d + d);\n    if (N % 2 == 0) FOR(i, d) S[2 * i + 1] = W[i];\n    if (N % 2\
+    \ == 1) FOR(i, d) S[2 * i] = W[i];\n    reverse(all(R));\n    return middle_product(S,\
+    \ R);\n  };\n  vc<mint> A = dfs(dfs, N, Q);\n  vc<mint> f = convolution(A, Q);\n\
+    \  f = {f.begin() + d, f.end() - 1};\n  f = fps_div(f, Q);\n  for (auto&& x: f)\
+    \ x = -x;\n  A.insert(A.end(), all(f));\n  reverse(all(P));\n  return middle_product(A,\
+    \ P);\n}\n"
+  code: "#include \"poly/convolution.hpp\"\n#include \"poly/middle_product.hpp\"\n\
+    #include \"poly/fps_div.hpp\"\n\n// P(x)/Q(x) \u306E [N, N+d] \u90E8\u5206\u3092\
+    \u8A08\u7B97\n// https://qiita.com/ryuhe1/items/c18ddbb834eed724a42b\ntemplate\
+    \ <typename mint>\nvc<mint> slice_rational_fps(vc<mint> P, vc<mint> Q, ll N) {\n\
+    \  assert(N >= 0 && Q[0] == mint(1) && len(P) < len(Q));\n  const int d = len(Q)\
+    \ - 1;\n  if (d == 0) { return vc<mint>(); }\n  P.resize(len(Q) - 1);\n\n  auto\
+    \ dfs = [&](auto& dfs, ll N, vc<mint> Q) -> vc<mint> {\n    // 1/Q \u306E [N-d+1,\
+    \ N]\n    if (N == 0) {\n      vc<mint> f(d);\n      f[d - 1] = 1;\n      return\
+    \ f;\n    }\n    vc<mint> R = Q;\n    FOR(i, d + 1) if (i & 1) R[i] = -R[i];\n\
+    \    vc<mint> V = convolution(Q, R);\n    FOR(i, d + 1) V[i] = V[2 * i];\n   \
+    \ V.resize(d + 1);\n    vc<mint> W = dfs(dfs, N / 2, V);\n    vc<mint> S(d + d);\n\
+    \    if (N % 2 == 0) FOR(i, d) S[2 * i + 1] = W[i];\n    if (N % 2 == 1) FOR(i,\
+    \ d) S[2 * i] = W[i];\n    reverse(all(R));\n    return middle_product(S, R);\n\
+    \  };\n  vc<mint> A = dfs(dfs, N, Q);\n  vc<mint> f = convolution(A, Q);\n  f\
+    \ = {f.begin() + d, f.end() - 1};\n  f = fps_div(f, Q);\n  for (auto&& x: f) x\
+    \ = -x;\n  A.insert(A.end(), all(f));\n  reverse(all(P));\n  return middle_product(A,\
+    \ P);\n}"
   dependsOn:
-  - poly/fps_inv.hpp
-  - poly/count_terms.hpp
   - poly/convolution.hpp
   - mod/modint.hpp
   - mod/mod_inv.hpp
@@ -464,28 +404,20 @@ data:
   - poly/ntt.hpp
   - poly/fft.hpp
   - poly/middle_product.hpp
+  - poly/fps_div.hpp
+  - poly/count_terms.hpp
+  - poly/fps_inv.hpp
   isVerificationFile: false
-  path: poly/multipoint.hpp
-  requiredBy:
-  - linalg/implicit_matrix/vandermonde.hpp
-  - poly/partial_frac_decomposition.hpp
-  - poly/multivar_convolution_cyclic.hpp
+  path: poly/slice_rational_fps.hpp
+  requiredBy: []
   timestamp: '2023-02-17 21:16:08+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/2166.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - test/mytest/vandermonde.test.cpp
-  - test/mytest/chirp_z.test.cpp
-  - test/mytest/partial_frac.test.cpp
-  - test_atcoder/abc272_h.test.cpp
-  - test_atcoder/abc267g.test.cpp
-documentation_of: poly/multipoint.hpp
+  - test/mytest/slice_rational_fps.test.cpp
+documentation_of: poly/slice_rational_fps.hpp
 layout: document
 redirect_from:
-- /library/poly/multipoint.hpp
-- /library/poly/multipoint.hpp.html
-title: poly/multipoint.hpp
+- /library/poly/slice_rational_fps.hpp
+- /library/poly/slice_rational_fps.hpp.html
+title: poly/slice_rational_fps.hpp
 ---

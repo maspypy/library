@@ -63,6 +63,9 @@ data:
     path: poly/product_of_pow_of_linear.hpp
     title: poly/product_of_pow_of_linear.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/slice_rational_fps.hpp
+    title: poly/slice_rational_fps.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
   - icon: ':heavy_check_mark:'
@@ -159,6 +162,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/simple_perm.test.cpp
     title: test/mytest/simple_perm.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/slice_rational_fps.test.cpp
+    title: test/mytest/slice_rational_fps.test.cpp
   - icon: ':x:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
@@ -570,6 +576,7 @@ data:
   - poly/fps_pow.hpp
   - poly/composition_f_ex.hpp
   - poly/poly_divmod.hpp
+  - poly/slice_rational_fps.hpp
   - poly/product_of_pow_of_linear.hpp
   - poly/multivar_convolution_cyclic.hpp
   - poly/sum_of_exp_bx.hpp
@@ -614,6 +621,7 @@ data:
   - test/mytest/online_log.test.cpp
   - test/mytest/chirp_z.test.cpp
   - test/mytest/online_inv.test.cpp
+  - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/online_division.test.cpp
   - test/mytest/partial_frac.test.cpp
   - test_atcoder/arc153f.test.cpp

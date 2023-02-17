@@ -29,7 +29,13 @@ data:
   - icon: ':x:'
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/slice_rational_fps.hpp
+    title: poly/slice_rational_fps.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/slice_rational_fps.test.cpp
+    title: test/mytest/slice_rational_fps.test.cpp
   - icon: ':x:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
@@ -380,11 +386,13 @@ data:
   path: poly/fps_div.hpp
   requiredBy:
   - linalg/implicit_matrix/vandermonde.hpp
+  - poly/slice_rational_fps.hpp
   timestamp: '2023-01-22 22:24:51+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1533.test.cpp
   - test/mytest/vandermonde.test.cpp
+  - test/mytest/slice_rational_fps.test.cpp
   - test_atcoder/arc154f.test.cpp
 documentation_of: poly/fps_div.hpp
 layout: document
