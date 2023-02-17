@@ -42,7 +42,7 @@ void test_ceil() {
     vc<T> dat;
     FOR(x, 1, N + 1) {
       if (x == 1) {
-        dat.eb(x, N, infty<int>);
+        dat.eb(x, N, infty<ll>);
         continue;
       }
       if (len(tmp[x])) {
