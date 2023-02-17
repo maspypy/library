@@ -17,7 +17,7 @@ void solve() {
     chmin(ANS[e.frm], e.cost);
     chmin(ANS[e.to], e.cost);
   }
-  print(ANS);
+  print(ANS, "");
 }
 
 signed main() {
