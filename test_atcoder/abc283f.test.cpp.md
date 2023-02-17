@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/manhattan_mst.hpp
     title: geo/manhattan_mst.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc283/tasks/abc283_f
@@ -279,15 +279,15 @@ data:
     \n\nvoid solve() {\n  LL(N);\n  vc<pair<int, int>> dat(N);\n  FOR(i, N) {\n  \
     \  INT(p);\n    dat[i] = {i, p};\n  }\n  auto G = manhattan_mst(dat);\n  const\
     \ int INF = 1 << 30;\n  vc<int> ANS(N, INF);\n  for (auto&& e: G.edges) {\n  \
-    \  chmin(ANS[e.frm], e.cost);\n    chmin(ANS[e.to], e.cost);\n  }\n  print(ANS);\n\
-    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \  chmin(ANS[e.frm], e.cost);\n    chmin(ANS[e.to], e.cost);\n  }\n  print(ANS,\
+    \ \"\");\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc283/tasks/abc283_f\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"geo/manhattan_mst.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  vc<pair<int, int>> dat(N);\n  FOR(i, N) {\n  \
     \  INT(p);\n    dat[i] = {i, p};\n  }\n  auto G = manhattan_mst(dat);\n  const\
     \ int INF = 1 << 30;\n  vc<int> ANS(N, INF);\n  for (auto&& e: G.edges) {\n  \
-    \  chmin(ANS[e.frm], e.cost);\n    chmin(ANS[e.to], e.cost);\n  }\n  print(ANS);\n\
-    }\n\nsigned main() {\n  solve();\n  return 0;\n}"
+    \  chmin(ANS[e.frm], e.cost);\n    chmin(ANS[e.to], e.cost);\n  }\n  print(ANS,\
+    \ \"\");\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -297,8 +297,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc283f.test.cpp
   requiredBy: []
-  timestamp: '2023-02-16 20:26:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-02-17 10:01:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc283f.test.cpp
 layout: document

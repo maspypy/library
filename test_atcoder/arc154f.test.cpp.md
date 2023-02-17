@@ -1,56 +1,56 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/arc154/tasks/arc154_f
@@ -585,7 +585,7 @@ data:
     \ = mint(1) - p;\n    cf *= p;\n    DEN.eb(poly{mint(1), -q});\n  }\n  poly g\
     \ = convolution_all(DEN);\n  // e^{Nx}\n  poly f(M + 1);\n  mint pow = 1;\n  FOR(i,\
     \ M + 1) {\n    f[i] = fact_inv<mint>(i) * pow;\n    pow *= mint(N);\n  }\n  g\
-    \ = composition_f_ex(M, g);\n  f = fps_div(f, g);\n  // FOR(i, 1, M + 1) print(f[i]\
+    \ = composition_f_ex(M, g);\n  f = fps_div(f, g);\n  FOR(i, 1, M + 1) print(f[i]\
     \ * fact<mint>(i) * cf);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/arc154/tasks/arc154_f\"\n#include\
@@ -597,9 +597,9 @@ data:
     \ p;\n    DEN.eb(poly{mint(1), -q});\n  }\n  poly g = convolution_all(DEN);\n\
     \  // e^{Nx}\n  poly f(M + 1);\n  mint pow = 1;\n  FOR(i, M + 1) {\n    f[i] =\
     \ fact_inv<mint>(i) * pow;\n    pow *= mint(N);\n  }\n  g = composition_f_ex(M,\
-    \ g);\n  f = fps_div(f, g);\n  // FOR(i, 1, M + 1) print(f[i] * fact<mint>(i)\
-    \ * cf);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
+    \ g);\n  f = fps_div(f, g);\n  FOR(i, 1, M + 1) print(f[i] * fact<mint>(i) * cf);\n\
+    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -619,8 +619,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/arc154f.test.cpp
   requiredBy: []
-  timestamp: '2023-02-16 20:26:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-02-17 10:03:28+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/arc154f.test.cpp
 layout: document
