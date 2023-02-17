@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/ceil_range.hpp
     title: enumerate/ceil_range.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/floor_range.hpp
     title: enumerate/floor_range.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -204,18 +204,19 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 1 \"enumerate/ceil_range.hpp\"\n// f(q, l, r)\uFF1Aceil \u304C\
-    \ q \u306B\u306A\u308B\u7BC4\u56F2\u304C [l, r)\n// q == 1 \u306E\u3068\u304D\u306B\
-    \u306F r == infty<T>\ntemplate <typename T, typename F>\nvoid ceil_range(T N,\
-    \ F f) {\n  T q = 1, l = N, r = infty<T>;\n  while (1) {\n    f(q, l, r);\n  \
-    \  if (q == N) break;\n    r = l, q = ceil(N, l - 1), l = ceil(N, q);\n  }\n}\n\
-    #line 1 \"enumerate/floor_range.hpp\"\n// \u5546\u304C q \u306E\u533A\u9593 [l,r)\
-    \ \u3092 q \u306B\u3064\u3044\u3066\u6607\u9806\r\ntemplate <typename F>\r\nvoid\
-    \ floor_range(ll N, F f) {\r\n  assert(N <= (1LL << 50));\r\n  ll sq = sqrtl(N);\r\
-    \n  int n = (sq * sq + sq <= N ? sq : sq - 1);\r\n  ll prev = N + 1;\r\n  for\
-    \ (int q = 1; q <= n; ++q) {\r\n    ll x = double(N) / (q + 1) + 1;\r\n    f(q,\
-    \ x, prev), prev = x;\r\n  }\r\n  for (int l = sq; l >= 1; --l) { f(double(N)\
-    \ / l, l, l + 1); }\r\n}\r\n#line 6 \"test/mytest/floor_ceil_ranges.test.cpp\"\
+    \ yes(!t); }\n#line 1 \"enumerate/ceil_range.hpp\"\n// \u5546\u304C q \u306E\u533A\
+    \u9593 [l,r) \u3092 q \u306B\u3064\u3044\u3066\u6607\u9806\ntemplate <typename\
+    \ F>\nvoid ceil_range(ll N, F f) {\n  assert(N <= (1LL << 50));\n  ll sq = sqrtl(N\
+    \ - 1);\n  int n = (N <= sq * sq + sq ? sq : sq + 1);\n  ll prev = infty<ll>;\n\
+    \  for (int q = 1; q <= sq + 1; ++q) {\n    ll x = double(N + q - 1) / q;\n  \
+    \  f(q, x, prev), prev = x;\n  }\n  for (int l = n; l >= 1; --l) { f(double(N\
+    \ + l - 1) / l, l, l + 1); }\n}\n#line 1 \"enumerate/floor_range.hpp\"\n// \u5546\
+    \u304C q \u306E\u533A\u9593 [l,r) \u3092 q \u306B\u3064\u3044\u3066\u6607\u9806\
+    \r\ntemplate <typename F>\r\nvoid floor_range(ll N, F f) {\r\n  assert(N <= (1LL\
+    \ << 50));\r\n  ll sq = sqrtl(N);\r\n  int n = (sq * sq + sq <= N ? sq : sq -\
+    \ 1);\r\n  ll prev = N + 1;\r\n  for (int q = 1; q <= n; ++q) {\r\n    ll x =\
+    \ double(N) / (q + 1) + 1;\r\n    f(q, x, prev), prev = x;\r\n  }\r\n  for (int\
+    \ l = sq; l >= 1; --l) { f(double(N) / l, l, l + 1); }\r\n}\r\n#line 6 \"test/mytest/floor_ceil_ranges.test.cpp\"\
     \n\nvoid test_floor() {\n  using T = tuple<ll, ll, ll>;\n  auto F = [&](ll N)\
     \ -> vc<T> {\n    vc<T> dat;\n    auto f = [&](ll q, ll l, ll r) -> void { dat.eb(q,\
     \ l, r); };\n    floor_range(N, f);\n    return dat;\n  };\n  auto G = [&](ll\
@@ -262,8 +263,8 @@ data:
   isVerificationFile: true
   path: test/mytest/floor_ceil_ranges.test.cpp
   requiredBy: []
-  timestamp: '2023-02-16 22:08:04+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-02-17 10:21:36+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/floor_ceil_ranges.test.cpp
 layout: document
