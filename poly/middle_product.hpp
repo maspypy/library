@@ -1,3 +1,5 @@
+#pragma once
+
 #include "poly/ntt.hpp"
 
 // n, m 次多項式 (n>=m) a, b → n-m 次多項式 c
