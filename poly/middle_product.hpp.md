@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/partial_frac_decomposition.hpp
     title: poly/partial_frac_decomposition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
   _extendedVerifiedWith:
@@ -51,6 +51,9 @@ data:
   - icon: ':x:'
     path: test_atcoder/abc272_h.test.cpp
     title: test_atcoder/abc272_h.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/agc013e.test.cpp
+    title: test_atcoder/agc013e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -169,6 +172,7 @@ data:
   - test/mytest/chirp_z.test.cpp
   - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/partial_frac.test.cpp
+  - test_atcoder/agc013e.test.cpp
   - test_atcoder/abc272_h.test.cpp
   - test_atcoder/abc267g.test.cpp
 documentation_of: poly/middle_product.hpp

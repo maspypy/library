@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
   - icon: ':question:'
@@ -36,9 +36,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/slice_rational_fps.test.cpp
     title: test/mytest/slice_rational_fps.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test_atcoder/agc013e.test.cpp
+    title: test_atcoder/agc013e.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://qiita.com/ryuhe1/items/c18ddbb834eed724a42b
@@ -411,9 +414,10 @@ data:
   path: poly/slice_rational_fps.hpp
   requiredBy: []
   timestamp: '2023-02-17 21:16:08+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/slice_rational_fps.test.cpp
+  - test_atcoder/agc013e.test.cpp
 documentation_of: poly/slice_rational_fps.hpp
 layout: document
 redirect_from:

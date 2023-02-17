@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
   - icon: ':heavy_check_mark:'
@@ -53,7 +53,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/product_of_pow_of_linear.hpp
     title: poly/product_of_pow_of_linear.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
   - icon: ':heavy_check_mark:'
@@ -225,6 +225,9 @@ data:
   - icon: ':x:'
     path: test_atcoder/abc272_h.test.cpp
     title: test_atcoder/abc272_h.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/agc013e.test.cpp
+    title: test_atcoder/agc013e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
@@ -321,6 +324,7 @@ data:
   - test/mytest/partial_frac.test.cpp
   - test_atcoder/abc267h.test.cpp
   - test_atcoder/arc153f.test.cpp
+  - test_atcoder/agc013e.test.cpp
   - test_atcoder/abc272_h.test.cpp
   - test_atcoder/abc267g.test.cpp
   - test_atcoder/abc222h.test.cpp

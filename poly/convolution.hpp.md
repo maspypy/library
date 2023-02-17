@@ -62,7 +62,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_composition.hpp
     title: poly/fps_composition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
   - icon: ':heavy_check_mark:'
@@ -140,7 +140,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/product_of_pow_of_linear.hpp
     title: poly/product_of_pow_of_linear.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
   - icon: ':heavy_check_mark:'
@@ -489,6 +489,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc276_g_2.test.cpp
     title: test_atcoder/abc276_g_2.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/agc013e.test.cpp
+    title: test_atcoder/agc013e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d.test.cpp
     title: test_atcoder/agc058d.test.cpp
@@ -1021,6 +1024,7 @@ data:
   - test_atcoder/abc267h.test.cpp
   - test_atcoder/abc269ex.test.cpp
   - test_atcoder/arc153f.test.cpp
+  - test_atcoder/agc013e.test.cpp
   - test_atcoder/agc058d.test.cpp
   - test_atcoder/abc276_g.test.cpp
   - test_atcoder/abc272_h.test.cpp
