@@ -33,7 +33,7 @@ void test_ceil() {
   auto F = [&](ll N) -> vc<T> {
     vc<T> dat;
     auto f = [&](ll q, ll l, ll r) -> void { dat.eb(q, l, r); };
-    ceil_range<int>(N, f);
+    ceil_range(N, f);
     return dat;
   };
   auto G = [&](ll N) -> vc<T> {
