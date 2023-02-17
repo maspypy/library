@@ -25,12 +25,12 @@ struct SubproductTree {
     g[1] = T[1];
     g[1].resize(n);
     g[1] = fps_inv(g[1]);
-    g[1] = mid_prod(f, g[1]);
+    g[1] = middle_product(f, g[1]);
     g[1].resize(sz);
 
     FOR3(i, 1, sz) {
-      g[2 * i] = mid_prod(g[i], T[2 * i + 1]);
-      g[2 * i + 1] = mid_prod(g[i], T[2 * i]);
+      g[2 * i] = middle_product(g[i], T[2 * i + 1]);
+      g[2 * i + 1] = middle_product(g[i], T[2 * i]);
     }
     vc<mint> vals(m);
     FOR(i, m) vals[i] = g[sz + i][0];
