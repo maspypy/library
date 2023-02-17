@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/ceil_range.hpp
     title: enumerate/ceil_range.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/floor_range.hpp
     title: enumerate/floor_range.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -229,7 +229,7 @@ data:
     \ dat;\n    auto f = [&](ll q, ll l, ll r) -> void { dat.eb(q, l, r); };\n   \
     \ ceil_range(N, f);\n    return dat;\n  };\n  auto G = [&](ll N) -> vc<T> {\n\
     \    vvc<ll> tmp(N + 1);\n    FOR(x, 1, N + 1) tmp[ceil(N, x)].eb(x);\n    vc<T>\
-    \ dat;\n    FOR(x, 1, N + 1) {\n      if (x == 1) {\n        dat.eb(x, N, infty<int>);\n\
+    \ dat;\n    FOR(x, 1, N + 1) {\n      if (x == 1) {\n        dat.eb(x, N, infty<ll>);\n\
     \        continue;\n      }\n      if (len(tmp[x])) {\n        ll lo = tmp[x][0];\n\
     \        ll hi = tmp[x].back();\n        dat.eb(x, lo, hi + 1);\n      }\n   \
     \ }\n    return dat;\n  };\n  FOR(N, 1, 100) { assert(F(N) == G(N)); }\n}\n\n\
@@ -249,12 +249,12 @@ data:
     \ q, ll l, ll r) -> void { dat.eb(q, l, r); };\n    ceil_range(N, f);\n    return\
     \ dat;\n  };\n  auto G = [&](ll N) -> vc<T> {\n    vvc<ll> tmp(N + 1);\n    FOR(x,\
     \ 1, N + 1) tmp[ceil(N, x)].eb(x);\n    vc<T> dat;\n    FOR(x, 1, N + 1) {\n \
-    \     if (x == 1) {\n        dat.eb(x, N, infty<int>);\n        continue;\n  \
-    \    }\n      if (len(tmp[x])) {\n        ll lo = tmp[x][0];\n        ll hi =\
-    \ tmp[x].back();\n        dat.eb(x, lo, hi + 1);\n      }\n    }\n    return dat;\n\
-    \  };\n  FOR(N, 1, 100) { assert(F(N) == G(N)); }\n}\n\nvoid solve() {\n  LL(a,\
-    \ b);\n  print(a + b);\n}\n\nsigned main() {\n  test_floor();\n  test_ceil();\n\
-    \  solve();\n\n  return 0;\n}\n"
+    \     if (x == 1) {\n        dat.eb(x, N, infty<ll>);\n        continue;\n   \
+    \   }\n      if (len(tmp[x])) {\n        ll lo = tmp[x][0];\n        ll hi = tmp[x].back();\n\
+    \        dat.eb(x, lo, hi + 1);\n      }\n    }\n    return dat;\n  };\n  FOR(N,\
+    \ 1, 100) { assert(F(N) == G(N)); }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a\
+    \ + b);\n}\n\nsigned main() {\n  test_floor();\n  test_ceil();\n  solve();\n\n\
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -263,8 +263,8 @@ data:
   isVerificationFile: true
   path: test/mytest/floor_ceil_ranges.test.cpp
   requiredBy: []
-  timestamp: '2023-02-17 11:47:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-02-17 11:58:42+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/floor_ceil_ranges.test.cpp
 layout: document
