@@ -9,6 +9,9 @@ data:
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':heavy_check_mark:'
+    path: geo/closest_pair.hpp
+    title: geo/closest_pair.hpp
+  - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':heavy_check_mark:'
@@ -84,6 +87,9 @@ data:
     path: random/random_graph.hpp
     title: random/random_graph.hpp
   - icon: ':heavy_check_mark:'
+    path: random/shuffle.hpp
+    title: random/shuffle.hpp
+  - icon: ':heavy_check_mark:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
   - icon: ':heavy_check_mark:'
@@ -93,6 +99,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_14_C.test.cpp
     title: test/aoj/ALDS1_14_C.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL_5_A.test.cpp
+    title: test/aoj/CGL_5_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
     title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
@@ -486,6 +495,7 @@ data:
   - linalg/det_A_plus_xB.hpp
   - geo/range_closest_pair_query.hpp
   - geo/count_points_in_triangles.hpp
+  - geo/closest_pair.hpp
   - string/rollinghash.hpp
   - string/rollinghash_2d.hpp
   - ds/hashmap.hpp
@@ -494,11 +504,13 @@ data:
   - poly/fps_sqrt.hpp
   - poly/multivar_convolution_cyclic.hpp
   - random/hash_pair.hpp
+  - random/shuffle.hpp
   - random/random_graph.hpp
   - random/hash_vector.hpp
   timestamp: '2022-10-23 11:21:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/CGL_5_A.test.cpp
   - test/aoj/ALDS1_14_C.test.cpp
   - test/yukicoder/310.test.cpp
   - test/yukicoder/1769.test.cpp

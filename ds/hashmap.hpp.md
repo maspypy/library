@@ -6,6 +6,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: geo/closest_pair.hpp
+    title: geo/closest_pair.hpp
+  - icon: ':heavy_check_mark:'
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
   - icon: ':heavy_check_mark:'
@@ -21,6 +24,9 @@ data:
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL_5_A.test.cpp
+    title: test/aoj/CGL_5_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
     title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
@@ -148,10 +154,12 @@ data:
   - mod/mod_log.hpp
   - nt/discrete_log.hpp
   - geo/range_closest_pair_query.hpp
+  - geo/closest_pair.hpp
   - other/connected_dp.hpp
   timestamp: '2023-01-31 21:59:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/CGL_5_A.test.cpp
   - test/yukicoder/1769.test.cpp
   - test/yukicoder/541.test.cpp
   - test/yukicoder/578.test.cpp

@@ -6,6 +6,9 @@ data:
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
   - icon: ':heavy_check_mark:'
+    path: geo/closest_pair.hpp
+    title: geo/closest_pair.hpp
+  - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':heavy_check_mark:'
@@ -54,6 +57,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_3_B.test.cpp
     title: test/aoj/CGL_3_B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL_5_A.test.cpp
+    title: test/aoj/CGL_5_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_B.test.cpp
     title: test/aoj/CGL_7_B.test.cpp
@@ -188,11 +194,13 @@ data:
   - geo/incircle.hpp
   - geo/distance.hpp
   - geo/dynamicupperhull.hpp
+  - geo/closest_pair.hpp
   - geo/angle_sort.hpp
   timestamp: '2023-01-31 19:58:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL_7_B.test.cpp
+  - test/aoj/CGL_5_A.test.cpp
   - test/aoj/CGL_1_B.test.cpp
   - test/aoj/CGL_2_A.test.cpp
   - test/aoj/CGL_2_B.test.cpp

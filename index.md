@@ -491,6 +491,9 @@ data:
       path: geo/base.hpp
       title: geo/base.hpp
     - icon: ':heavy_check_mark:'
+      path: geo/closest_pair.hpp
+      title: geo/closest_pair.hpp
+    - icon: ':heavy_check_mark:'
       path: geo/count_points_in_triangles.hpp
       title: geo/count_points_in_triangles.hpp
     - icon: ':heavy_check_mark:'
@@ -1202,6 +1205,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: random/random_graph.hpp
       title: random/random_graph.hpp
+    - icon: ':heavy_check_mark:'
+      path: random/shuffle.hpp
+      title: random/shuffle.hpp
   - name: seq
     pages:
     - icon: ':heavy_check_mark:'
@@ -1462,6 +1468,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_3_B.test.cpp
       title: test/aoj/CGL_3_B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/CGL_5_A.test.cpp
+      title: test/aoj/CGL_5_A.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_7_B.test.cpp
       title: test/aoj/CGL_7_B.test.cpp
