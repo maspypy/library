@@ -387,10 +387,10 @@ data:
   timestamp: '2023-01-19 00:36:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/online_pow.test.cpp
-  - test/mytest/online_log.test.cpp
-  - test/mytest/online_inv.test.cpp
   - test/mytest/online_division.test.cpp
+  - test/mytest/online_pow.test.cpp
+  - test/mytest/online_inv.test.cpp
+  - test/mytest/online_log.test.cpp
 documentation_of: poly/online/online_division.hpp
 layout: document
 redirect_from:

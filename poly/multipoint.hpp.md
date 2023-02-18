@@ -60,7 +60,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc267g.test.cpp
     title: test_atcoder/abc267g.test.cpp
   - icon: ':x:'
@@ -474,15 +474,15 @@ data:
   timestamp: '2023-02-17 23:37:06+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/2166.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - test/mytest/vandermonde.test.cpp
-  - test/mytest/chirp_z.test.cpp
-  - test/mytest/partial_frac.test.cpp
   - test_atcoder/abc272_h.test.cpp
   - test_atcoder/abc267g.test.cpp
+  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
+  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
+  - test/yukicoder/2166.test.cpp
+  - test/mytest/partial_frac.test.cpp
+  - test/mytest/vandermonde.test.cpp
+  - test/mytest/chirp_z.test.cpp
 documentation_of: poly/multipoint.hpp
 layout: document
 redirect_from:

@@ -130,8 +130,8 @@ data:
   timestamp: '2022-12-05 10:41:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/graph/cycle_detection.test.cpp
   - test/library_checker/graph/cycle_detection_undirected.test.cpp
+  - test/library_checker/graph/cycle_detection.test.cpp
 documentation_of: graph/find_cycle.hpp
 layout: document
 redirect_from:

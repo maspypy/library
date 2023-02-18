@@ -77,19 +77,19 @@ data:
   isVerificationFile: false
   path: ds/segtree/dual_segtree.hpp
   requiredBy:
-  - graph/minimum_spanning_tree.hpp
-  - graph/ds/dual_tree_monoid.hpp
   - geo/range_closest_pair_query.hpp
+  - graph/ds/dual_tree_monoid.hpp
+  - graph/minimum_spanning_tree.hpp
   timestamp: '2022-12-04 02:25:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test_atcoder/abc270_f.test.cpp
+  - test/library_checker/datastructure/range_affine_point_add.test.cpp
+  - test/yukicoder/1524.test.cpp
+  - test/yukicoder/913.test.cpp
+  - test/mytest/range_closest_pair.test.cpp
   - test/aoj/DSL_2_D.test.cpp
   - test/aoj/GRL_2_A.test.cpp
-  - test/yukicoder/913.test.cpp
-  - test/yukicoder/1524.test.cpp
-  - test/library_checker/datastructure/range_affine_point_add.test.cpp
-  - test/mytest/range_closest_pair.test.cpp
-  - test_atcoder/abc270_f.test.cpp
 documentation_of: ds/segtree/dual_segtree.hpp
 layout: document
 redirect_from:

@@ -44,8 +44,8 @@ data:
   timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL_4_A.test.cpp
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+  - test/aoj/DSL_4_A.test.cpp
 documentation_of: alg/monoid/minmincnt.hpp
 layout: document
 redirect_from:

@@ -185,10 +185,10 @@ data:
   timestamp: '2023-01-23 03:29:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/1508.test.cpp
   - test/yukicoder/1441.test.cpp
   - test/mytest/splay_monoid.test.cpp
   - test/mytest/splay.test.cpp
+  - test/aoj/1508.test.cpp
 documentation_of: ds/splaytree/splaytree_monoid.hpp
 layout: document
 redirect_from:

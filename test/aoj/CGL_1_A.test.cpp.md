@@ -222,10 +222,10 @@ data:
     \ REAL, typename T>\nREAL dist(Point<T> A, Point<T> B) {\n  A = A - B;\n  T p\
     \ = A.dot(A);\n  return sqrt(REAL(p));\n}\n\ntemplate <typename T>\nstruct Line\
     \ {\n  T a, b, c;\n\n  Line(T a, T b, T c) : a(a), b(b), c(c) {}\n  Line(Point<T>\
-    \ A, Point<T> B) {\n    a = A.y - B.y;\n    b = B.x - A.x;\n    c = A.x * B.y\
-    \ - A.y * B.x;\n  }\n  Line(T x1, T y1, T x2, T y2) : Line(Point<T>(x1, y1), Point<T>(x2,\
-    \ y2)) {}\n\n  template <typename U>\n  U eval(Point<U> P) {\n    return a * P.x\
-    \ + b * P.y + c;\n  }\n\n  template <typename U>\n  T eval(U x, U y) {\n    return\
+    \ A, Point<T> B) {\n    a = A.y - B.y, b = B.x - A.x, c = A.x * B.y - A.y * B.x;\n\
+    \  }\n  Line(T x1, T y1, T x2, T y2) : Line(Point<T>(x1, y1), Point<T>(x2, y2))\
+    \ {}\n\n  template <typename U>\n  U eval(Point<U> P) {\n    return a * P.x +\
+    \ b * P.y + c;\n  }\n\n  template <typename U>\n  T eval(U x, U y) {\n    return\
     \ a * x + b * y + c;\n  }\n\n  bool is_parallel(Line other) { return a * other.b\
     \ - b * other.a == 0; }\n\n  bool is_orthogonal(Line other) { return a * other.a\
     \ + b * other.b == 0; }\n};\n\ntemplate <typename T>\nstruct Segment {\n  Point<T>\
@@ -234,14 +234,16 @@ data:
     \  template <enable_if_t<is_integral<T>::value, int> = 0>\n  bool contain(Point<T>\
     \ C) {\n    T det = (C - A).det(B - A);\n    if (det != 0) return 0;\n    return\
     \ (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_Line()\
-    \ { return Line(A, B); }\n};\n\ntemplate <typename T>\nstruct Circle {\n  Point<T>\
-    \ O;\n  T r;\n  Circle(Point<T> O, T r) : O(O), r(r) {}\n  Circle(T x, T y, T\
-    \ r) : O(Point<T>(x, y)), r(r) {}\n};\n\ntemplate <typename T>\nstruct Polygon\
-    \ {\n  vc<Point<T>> points;\n  T a;\n\n  template <typename A, typename B>\n \
-    \ Polygon(vc<pair<A, B>> pairs) {\n    for (auto&& [a, b]: pairs) points.eb(Point<T>(a,\
-    \ b));\n    build();\n  }\n  Polygon(vc<Point<T>> points) : points(points) { build();\
-    \ }\n\n  int size() { return len(points); }\n\n  template <typename REAL>\n  REAL\
-    \ area() {\n    return a * 0.5;\n  }\n\n  template <enable_if_t<is_integral<T>::value,\
+    \ { return Line(A, B); }\n};\n\ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL>\
+    \ O;\n  REAL r;\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL\
+    \ x, REAL y, REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
+    \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
+    \ <= r * r;\n  }\n};\n\ntemplate <typename T>\nstruct Polygon {\n  vc<Point<T>>\
+    \ points;\n  T a;\n\n  template <typename A, typename B>\n  Polygon(vc<pair<A,\
+    \ B>> pairs) {\n    for (auto&& [a, b]: pairs) points.eb(Point<T>(a, b));\n  \
+    \  build();\n  }\n  Polygon(vc<Point<T>> points) : points(points) { build(); }\n\
+    \n  int size() { return len(points); }\n\n  template <typename REAL>\n  REAL area()\
+    \ {\n    return a * 0.5;\n  }\n\n  template <enable_if_t<is_integral<T>::value,\
     \ int> = 0>\n  T area_2() {\n    return a;\n  }\n\n  bool is_convex() {\n    FOR(j,\
     \ len(points)) {\n      int i = (j == 0 ? len(points) - 1 : j - 1);\n      int\
     \ k = (j == len(points) - 1 ? 0 : j + 1);\n      if ((points[j] - points[i]).det(points[k]\
@@ -273,7 +275,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_1_A.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:18:36+09:00'
+  timestamp: '2023-02-18 09:57:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_1_A.test.cpp

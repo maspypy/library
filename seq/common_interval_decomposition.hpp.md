@@ -178,8 +178,8 @@ data:
   timestamp: '2023-02-02 02:12:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1720.test.cpp
   - test/library_checker/graph/common_interval_decomposition.test.cpp
+  - test/yukicoder/1720.test.cpp
 documentation_of: seq/common_interval_decomposition.hpp
 layout: document
 redirect_from:

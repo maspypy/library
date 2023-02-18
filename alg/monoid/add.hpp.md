@@ -381,128 +381,128 @@ data:
   isVerificationFile: false
   path: alg/monoid/add.hpp
   requiredBy:
-  - seq/inversion.hpp
-  - seq/common_interval_decomposition.hpp
-  - graph/ds/tree_abelgroup.hpp
   - graph/ds/contour_sum.hpp
+  - graph/ds/tree_abelgroup.hpp
+  - seq/common_interval_decomposition.hpp
+  - seq/inversion.hpp
   - string/trie.hpp
-  - ds/doubling.hpp
-  - ds/range_add_range_sum.hpp
-  - ds/fenwicktree/fenwicktree.hpp
-  - ds/fenwicktree/fenwicktree_2d.hpp
-  - ds/fenwicktree/fenwicktree_2d_dense.hpp
-  - ds/wavelet_matrix_sum.hpp
+  - alg/acted_monoid/summin_add.hpp
+  - alg/acted_monoid/sum_add.hpp
+  - alg/acted_monoid/powersums_add_3.hpp
+  - alg/acted_monoid/summax_add.hpp
+  - alg/acted_monoid/sum_assign.hpp
+  - alg/acted_monoid/minidx_add.hpp
+  - alg/acted_monoid/max_add.hpp
+  - alg/acted_monoid/cntsum_add.hpp
+  - alg/acted_monoid/minmax_add.hpp
+  - alg/acted_monoid/add_mul.hpp
+  - alg/acted_monoid/minmincnt_add.hpp
+  - alg/acted_monoid/min_add.hpp
+  - alg/acted_monoid/sum_affine.hpp
+  - alg/acted_monoid/maxidx_add.hpp
   - ds/offline_query/rectangle_add_rectangle_sum.hpp
   - ds/offline_query/coeffient_query_2d.hpp
-  - ds/offline_query/rectangle_add_point_sum.hpp
   - ds/offline_query/point_add_rectangle_sum.hpp
+  - ds/offline_query/rectangle_add_point_sum.hpp
+  - ds/fenwicktree/fenwicktree_2d_dense.hpp
+  - ds/fenwicktree/fenwicktree.hpp
+  - ds/fenwicktree/fenwicktree_2d.hpp
+  - ds/range_add_range_sum.hpp
   - ds/cumsum_2d.hpp
-  - alg/acted_monoid/min_add.hpp
-  - alg/acted_monoid/minidx_add.hpp
-  - alg/acted_monoid/minmax_add.hpp
-  - alg/acted_monoid/sum_add.hpp
-  - alg/acted_monoid/minmincnt_add.hpp
-  - alg/acted_monoid/maxidx_add.hpp
-  - alg/acted_monoid/summax_add.hpp
-  - alg/acted_monoid/sum_affine.hpp
-  - alg/acted_monoid/max_add.hpp
-  - alg/acted_monoid/sum_assign.hpp
-  - alg/acted_monoid/powersums_add_3.hpp
-  - alg/acted_monoid/summin_add.hpp
-  - alg/acted_monoid/cntsum_add.hpp
-  - alg/acted_monoid/add_mul.hpp
+  - ds/wavelet_matrix_sum.hpp
+  - ds/doubling.hpp
   - other/rectangle_union.hpp
   timestamp: '2022-11-28 14:51:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/ALDS1_2_A.test.cpp
-  - test/aoj/GRL_5_E.test.cpp
-  - test/aoj/DSL_2_E.test.cpp
-  - test/aoj/DSL_2_G.test.cpp
-  - test/aoj/DSL_1_B.test.cpp
-  - test/aoj/DSL_2_I.test.cpp
-  - test/aoj/2842.test.cpp
-  - test/aoj/DSL_4_A.test.cpp
-  - test/aoj/2842_2.test.cpp
-  - test/aoj/DSL_2_H.test.cpp
-  - test/aoj/ALDS1_5.test.cpp
-  - test/yukicoder/1216_2.test.cpp
-  - test/yukicoder/789_2.test.cpp
-  - test/yukicoder/1919.test.cpp
-  - test/yukicoder/1216.test.cpp
-  - test/yukicoder/1490.test.cpp
-  - test/yukicoder/1270.test.cpp
-  - test/yukicoder/686.test.cpp
-  - test/yukicoder/1097.test.cpp
-  - test/yukicoder/1038.test.cpp
+  - test_atcoder/abc190f.test.cpp
+  - test_atcoder/abc266h_2.test.cpp
+  - test_atcoder/abc234g.test.cpp
+  - test_atcoder/abc237g.test.cpp
+  - test_atcoder/abc174f.test.cpp
+  - test_atcoder/abc127f_1.test.cpp
+  - test_atcoder/abc268_ex.test.cpp
+  - test/library_checker/graph/common_interval_decomposition.test.cpp
+  - test/library_checker/graph/verted_add_contour_sum.test.cpp
+  - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+  - test/library_checker/datastructure/double_ended_pq_2.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+  - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
+  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
+  - test/library_checker/datastructure/point_add_range_sum.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
+  - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+  - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
+  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - test/library_checker/datastructure/double_ended_pq.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp
+  - test/library_checker/datastructure/static_range_inversions_mo.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - test/yukicoder/1197.test.cpp
-  - test/yukicoder/924.test.cpp
-  - test/yukicoder/1234.test.cpp
-  - test/yukicoder/1141.test.cpp
-  - test/yukicoder/235.test.cpp
-  - test/yukicoder/1311.test.cpp
+  - test/yukicoder/2161.test.cpp
+  - test/yukicoder/1919.test.cpp
+  - test/yukicoder/789_3.test.cpp
+  - test/yukicoder/1977.test.cpp
+  - test/yukicoder/1326.test.cpp
   - test/yukicoder/1269.test.cpp
-  - test/yukicoder/1441.test.cpp
-  - test/yukicoder/655.test.cpp
+  - test/yukicoder/1838.test.cpp
+  - test/yukicoder/1490.test.cpp
+  - test/yukicoder/899.test.cpp
+  - test/yukicoder/1038.test.cpp
+  - test/yukicoder/789_2.test.cpp
+  - test/yukicoder/1874.test.cpp
+  - test/yukicoder/924.test.cpp
   - test/yukicoder/1720.test.cpp
   - test/yukicoder/2003.test.cpp
-  - test/yukicoder/1326.test.cpp
-  - test/yukicoder/789_3.test.cpp
-  - test/yukicoder/899.test.cpp
-  - test/yukicoder/1874.test.cpp
-  - test/yukicoder/2065.test.cpp
-  - test/yukicoder/1838.test.cpp
-  - test/yukicoder/1977.test.cpp
+  - test/yukicoder/1097.test.cpp
   - test/yukicoder/1641.test.cpp
+  - test/yukicoder/1234.test.cpp
+  - test/yukicoder/235.test.cpp
+  - test/yukicoder/2065.test.cpp
+  - test/yukicoder/1270.test.cpp
+  - test/yukicoder/1311.test.cpp
+  - test/yukicoder/1216_2.test.cpp
+  - test/yukicoder/1141.test.cpp
+  - test/yukicoder/1216.test.cpp
   - test/yukicoder/789.test.cpp
-  - test/yukicoder/2161.test.cpp
-  - test/library_checker/graph/verted_add_contour_sum.test.cpp
-  - test/library_checker/graph/common_interval_decomposition.test.cpp
-  - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
-  - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
-  - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
-  - test/library_checker/datastructure/point_add_range_sum.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-  - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
-  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
-  - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
-  - test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp
-  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
-  - test/library_checker/datastructure/static_range_inversions_mo.test.cpp
-  - test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
-  - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
-  - test/library_checker/datastructure/double_ended_pq_2.test.cpp
-  - test/library_checker/datastructure/double_ended_pq.test.cpp
-  - test/library_checker/datastructure/range_affine_range_sum.test.cpp
-  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
-  - test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
-  - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-  - test/mytest/wavelet_matrix_sum.test.cpp
-  - test/mytest/rbst_commutative_persistent.test.cpp
+  - test/yukicoder/686.test.cpp
+  - test/yukicoder/1441.test.cpp
+  - test/yukicoder/655.test.cpp
+  - test/mytest/splay_cm.test.cpp
+  - test/mytest/rbst_am_2.test.cpp
+  - test/mytest/segtree_xor_prod.test.cpp
   - test/mytest/maxidx_add.test.cpp
-  - test/mytest/summax_add.test.cpp
+  - test/mytest/splay_am.test.cpp
   - test/mytest/ARC30D.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
-  - test/mytest/segtree_xor_prod.test.cpp
-  - test/mytest/kdtree_am.test.cpp
-  - test/mytest/minidx_add.test.cpp
+  - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/summin_add.test.cpp
-  - test/mytest/splay_am.test.cpp
+  - test/mytest/kdtree_am.test.cpp
+  - test/mytest/rbst_commutative_persistent.test.cpp
+  - test/mytest/minidx_add.test.cpp
   - test/mytest/minmax_add.test.cpp
-  - test/mytest/rbst_am_2.test.cpp
-  - test/mytest/splay_cm.test.cpp
-  - test_atcoder/abc237g.test.cpp
-  - test_atcoder/abc266h_2.test.cpp
-  - test_atcoder/abc268_ex.test.cpp
-  - test_atcoder/abc174f.test.cpp
-  - test_atcoder/abc190f.test.cpp
-  - test_atcoder/abc234g.test.cpp
-  - test_atcoder/abc127f_1.test.cpp
+  - test/mytest/summax_add.test.cpp
+  - test/aoj/2842_2.test.cpp
+  - test/aoj/2842.test.cpp
+  - test/aoj/DSL_2_I.test.cpp
+  - test/aoj/GRL_5_E.test.cpp
+  - test/aoj/ALDS1_5.test.cpp
+  - test/aoj/DSL_2_G.test.cpp
+  - test/aoj/DSL_4_A.test.cpp
+  - test/aoj/DSL_1_B.test.cpp
+  - test/aoj/ALDS1_2_A.test.cpp
+  - test/aoj/DSL_2_H.test.cpp
+  - test/aoj/DSL_2_E.test.cpp
 documentation_of: alg/monoid/add.hpp
 layout: document
 redirect_from:

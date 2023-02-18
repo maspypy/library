@@ -95,8 +95,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DPL_1_H.test.cpp
-  - test/aoj/DPL_1_B.test.cpp
   - test/aoj/DPL_1_F.test.cpp
+  - test/aoj/DPL_1_B.test.cpp
 documentation_of: knapsack/knapsack01.hpp
 layout: document
 redirect_from:

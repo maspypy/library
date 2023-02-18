@@ -114,15 +114,15 @@ data:
   isVerificationFile: false
   path: ds/segtree/segtree_beats.hpp
   requiredBy:
-  - ds/segtree/beats_summinmax_chminchmax.hpp
-  - ds/segtree/beats_summin_chmax.hpp
   - ds/segtree/beats_summax_chmin.hpp
+  - ds/segtree/beats_summin_chmax.hpp
+  - ds/segtree/beats_summinmax_chminchmax.hpp
   timestamp: '2023-01-31 23:12:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1526_2.test.cpp
-  - test/yukicoder/1526.test.cpp
   - test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
+  - test/yukicoder/1526.test.cpp
+  - test/yukicoder/1526_2.test.cpp
 documentation_of: ds/segtree/segtree_beats.hpp
 layout: document
 redirect_from:

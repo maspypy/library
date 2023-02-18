@@ -91,31 +91,31 @@ data:
   path: alg/monoid/max.hpp
   requiredBy:
   - graph/minimum_spanning_tree.hpp
-  - alg/acted_monoid/max_min.hpp
-  - alg/acted_monoid/max_assign.hpp
   - alg/acted_monoid/max_add.hpp
   - alg/acted_monoid/max_max.hpp
+  - alg/acted_monoid/max_min.hpp
   - alg/acted_monoid/min_max.hpp
+  - alg/acted_monoid/max_assign.hpp
   timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL_2_A.test.cpp
-  - test/yukicoder/686.test.cpp
+  - test_atcoder/abc240ex.test.cpp
+  - test_atcoder/abc266h_2.test.cpp
+  - test_atcoder/abc266h.test.cpp
+  - test_atcoder/abc270_f.test.cpp
+  - test/yukicoder/2026.test.cpp
   - test/yukicoder/1625.test.cpp
-  - test/yukicoder/1790.test.cpp
-  - test/yukicoder/1625_2.test.cpp
+  - test/yukicoder/1117.test.cpp
   - test/yukicoder/1826.test.cpp
   - test/yukicoder/1826_2.test.cpp
-  - test/yukicoder/1117.test.cpp
-  - test/yukicoder/2026.test.cpp
+  - test/yukicoder/1625_2.test.cpp
+  - test/yukicoder/686.test.cpp
+  - test/yukicoder/1790.test.cpp
   - test/mytest/max_max.test.cpp
   - test/mytest/max_min.test.cpp
   - test/mytest/max_assign.test.cpp
   - test/mytest/min_max.test.cpp
-  - test_atcoder/abc270_f.test.cpp
-  - test_atcoder/abc240ex.test.cpp
-  - test_atcoder/abc266h.test.cpp
-  - test_atcoder/abc266h_2.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
 documentation_of: alg/monoid/max.hpp
 layout: document
 redirect_from:

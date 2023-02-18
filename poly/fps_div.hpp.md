@@ -393,11 +393,11 @@ data:
   timestamp: '2023-01-22 22:24:51+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1533.test.cpp
-  - test/mytest/vandermonde.test.cpp
-  - test/mytest/slice_rational_fps.test.cpp
-  - test_atcoder/agc013e.test.cpp
   - test_atcoder/arc154f.test.cpp
+  - test_atcoder/agc013e.test.cpp
+  - test/yukicoder/1533.test.cpp
+  - test/mytest/slice_rational_fps.test.cpp
+  - test/mytest/vandermonde.test.cpp
 documentation_of: poly/fps_div.hpp
 layout: document
 redirect_from:

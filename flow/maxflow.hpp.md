@@ -97,10 +97,10 @@ data:
   timestamp: '2023-02-02 01:52:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL_6_A.test.cpp
+  - test_atcoder/abc259g.test.cpp
   - test/yukicoder/1541.test.cpp
   - test/yukicoder/177.test.cpp
-  - test_atcoder/abc259g.test.cpp
+  - test/aoj/GRL_6_A.test.cpp
 documentation_of: flow/maxflow.hpp
 layout: document
 redirect_from:

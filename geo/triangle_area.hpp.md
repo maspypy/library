@@ -6,6 +6,9 @@ data:
     path: geo/incircle.hpp
     title: geo/incircle.hpp
   - icon: ':heavy_check_mark:'
+    path: geo/minimum_enclosing_circle.hpp
+    title: geo/minimum_enclosing_circle.hpp
+  - icon: ':heavy_check_mark:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
   _extendedVerifiedWith:
@@ -15,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_C.test.cpp
     title: test/aoj/CGL_7_C.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc151f.test.cpp
+    title: test_atcoder/abc151f.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -29,13 +35,15 @@ data:
   isVerificationFile: false
   path: geo/triangle_area.hpp
   requiredBy:
-  - geo/outcircle.hpp
   - geo/incircle.hpp
+  - geo/outcircle.hpp
+  - geo/minimum_enclosing_circle.hpp
   timestamp: '2022-08-20 20:06:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/CGL_7_B.test.cpp
+  - test_atcoder/abc151f.test.cpp
   - test/aoj/CGL_7_C.test.cpp
+  - test/aoj/CGL_7_B.test.cpp
 documentation_of: geo/triangle_area.hpp
 layout: document
 redirect_from:

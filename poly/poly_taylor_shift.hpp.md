@@ -373,11 +373,11 @@ data:
   timestamp: '2023-01-19 00:36:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1907.test.cpp
-  - test/yukicoder/1303.test.cpp
-  - test/yukicoder/1875.test.cpp
-  - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
+  - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
+  - test/yukicoder/1303.test.cpp
+  - test/yukicoder/1907.test.cpp
+  - test/yukicoder/1875.test.cpp
 documentation_of: poly/poly_taylor_shift.hpp
 layout: document
 redirect_from:

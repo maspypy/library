@@ -135,8 +135,8 @@ data:
   timestamp: '2023-01-23 15:43:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1728.test.cpp
   - test_atcoder/abc212g.test.cpp
+  - test/yukicoder/1728.test.cpp
 documentation_of: nt/function_on_divisors.hpp
 layout: document
 redirect_from:

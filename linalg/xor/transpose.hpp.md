@@ -62,10 +62,10 @@ data:
   timestamp: '2023-02-03 02:21:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/184.test.cpp
-  - test/mytest/QOJ5445.test.cpp
-  - test/mytest/xor_transpose.test.cpp
   - test_atcoder/abc141f.test.cpp
+  - test/yukicoder/184.test.cpp
+  - test/mytest/xor_transpose.test.cpp
+  - test/mytest/QOJ5445.test.cpp
 documentation_of: linalg/xor/transpose.hpp
 layout: document
 redirect_from:

@@ -211,10 +211,10 @@ data:
   timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test_atcoder/abc127f_1.test.cpp
   - test/yukicoder/924.test.cpp
   - test/yukicoder/2065.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
-  - test_atcoder/abc127f_1.test.cpp
 documentation_of: ds/wavelet_matrix_sum.hpp
 layout: document
 redirect_from:

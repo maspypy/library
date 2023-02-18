@@ -15,6 +15,9 @@ data:
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':heavy_check_mark:'
+    path: geo/minimum_enclosing_circle.hpp
+    title: geo/minimum_enclosing_circle.hpp
+  - icon: ':heavy_check_mark:'
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
   - icon: ':heavy_check_mark:'
@@ -445,6 +448,9 @@ data:
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc151f.test.cpp
+    title: test_atcoder/abc151f.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -479,161 +485,163 @@ data:
   isVerificationFile: false
   path: random/base.hpp
   requiredBy:
-  - mod/modular_subset_sum.hpp
-  - mod/primitive_root.hpp
-  - mod/mod_kth_root.hpp
-  - mod/mod_log.hpp
-  - mod/mod_sqrt.hpp
-  - graph/minimum_cycle_length_through_specified.hpp
-  - graph/max_matching_size.hpp
-  - graph/chromatic.hpp
-  - graph/rerooting_classify_subtree.hpp
-  - graph/classify_subtree.hpp
   - nt/four_square.hpp
   - nt/discrete_log.hpp
-  - linalg/spmat_det.hpp
-  - linalg/spmat_min_poly.hpp
-  - linalg/implicit_matrix/det.hpp
-  - linalg/implicit_matrix/min_poly.hpp
-  - linalg/det_A_plus_xB.hpp
-  - geo/range_closest_pair_query.hpp
+  - geo/minimum_enclosing_circle.hpp
   - geo/count_points_in_triangles.hpp
   - geo/closest_pair.hpp
+  - geo/range_closest_pair_query.hpp
+  - graph/rerooting_classify_subtree.hpp
+  - graph/classify_subtree.hpp
+  - graph/chromatic.hpp
+  - graph/minimum_cycle_length_through_specified.hpp
+  - graph/max_matching_size.hpp
+  - mod/mod_log.hpp
+  - mod/modular_subset_sum.hpp
+  - mod/mod_kth_root.hpp
+  - mod/mod_sqrt.hpp
+  - mod/primitive_root.hpp
+  - linalg/implicit_matrix/min_poly.hpp
+  - linalg/implicit_matrix/det.hpp
+  - linalg/spmat_min_poly.hpp
+  - linalg/det_A_plus_xB.hpp
+  - linalg/spmat_det.hpp
   - string/rollinghash.hpp
   - string/rollinghash_2d.hpp
-  - ds/hashmap.hpp
   - alg/monoid/rollinghash.hpp
-  - other/connected_dp.hpp
   - poly/fps_sqrt.hpp
   - poly/multivar_convolution_cyclic.hpp
-  - random/hash_pair.hpp
+  - ds/hashmap.hpp
+  - random/hash_vector.hpp
   - random/shuffle.hpp
   - random/random_graph.hpp
-  - random/hash_vector.hpp
+  - random/hash_pair.hpp
+  - other/connected_dp.hpp
   timestamp: '2022-10-23 11:21:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/CGL_5_A.test.cpp
-  - test/aoj/ALDS1_14_C.test.cpp
-  - test/yukicoder/310.test.cpp
-  - test/yukicoder/1769.test.cpp
-  - test/yukicoder/541.test.cpp
-  - test/yukicoder/578.test.cpp
-  - test/yukicoder/1907.test.cpp
-  - test/yukicoder/1339.test.cpp
-  - test/yukicoder/579.test.cpp
-  - test/yukicoder/1561.test.cpp
-  - test/yukicoder/1397.test.cpp
-  - test/yukicoder/1303.test.cpp
-  - test/yukicoder/263.test.cpp
-  - test/yukicoder/1383.test.cpp
-  - test/yukicoder/1080_2.test.cpp
-  - test/yukicoder/1726.test.cpp
-  - test/yukicoder/4_1.test.cpp
-  - test/yukicoder/1775.test.cpp
-  - test/yukicoder/1080.test.cpp
-  - test/yukicoder/2167.test.cpp
-  - test/yukicoder/1025.test.cpp
-  - test/yukicoder/2102.test.cpp
-  - test/yukicoder/1634.test.cpp
-  - test/yukicoder/1881.test.cpp
-  - test/library_checker/graph/classify_tree.test.cpp
-  - test/library_checker/graph/rerooting_classify_subtree.test.cpp
-  - test/library_checker/graph/chromatic_number.test.cpp
-  - test/library_checker/datastructure/associative_array_hashmap.test.cpp
-  - test/library_checker/datastructure/set_xor_min.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
-  - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
-  - test/library_checker/math/primitive_root.test.cpp
+  - test_atcoder/abc151f.test.cpp
+  - test_atcoder/abc270_g.test.cpp
+  - test_atcoder/abc222g.test.cpp
+  - test_atcoder/abc274_h.test.cpp
+  - test_atcoder/abc202_f.test.cpp
+  - test_atcoder/abc273_e.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - test/library_checker/matrix/sparse_matrix_det.test.cpp
+  - test/library_checker/math/primitive_root.test.cpp
+  - test/library_checker/graph/classify_tree.test.cpp
+  - test/library_checker/graph/chromatic_number.test.cpp
+  - test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - test/library_checker/matrix/implicit_matrix.test.cpp
-  - test/mytest/rbst_am_persistent.test.cpp
-  - test/mytest/maxplus_concave.test.cpp
-  - test/mytest/summax_assign.test.cpp
-  - test/mytest/range_mex.test.cpp
-  - test/mytest/vandermonde.test.cpp
-  - test/mytest/wavelet_matrix.test.cpp
-  - test/mytest/binary_trie.test.cpp
-  - test/mytest/rbst_monoid_2.test.cpp
-  - test/mytest/product_of_one_pm_xn.test.cpp
-  - test/mytest/kdtree_monoid.test.cpp
-  - test/mytest/wavelet_matrix_sum.test.cpp
-  - test/mytest/pascal.test.cpp
-  - test/mytest/add_chmin.test.cpp
-  - test/mytest/kdtree_nns.test.cpp
-  - test/mytest/rbst_commutative_persistent.test.cpp
-  - test/mytest/matching_line_graph.test.cpp
-  - test/mytest/range_closest_pair.test.cpp
-  - test/mytest/min_of_linear_segments.test.cpp
-  - test/mytest/max_max.test.cpp
-  - test/mytest/online_pow.test.cpp
-  - test/mytest/enum_partitions.test.cpp
-  - test/mytest/max_min.test.cpp
-  - test/mytest/maxidx_add.test.cpp
-  - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
-  - test/mytest/max_assign.test.cpp
-  - test/mytest/summax_add.test.cpp
-  - test/mytest/tournament.test.cpp
-  - test/mytest/xor_transpose.test.cpp
-  - test/mytest/online_log.test.cpp
-  - test/mytest/tdpc_grid_dp.test.cpp
+  - test/library_checker/matrix/sparse_matrix_det.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
+  - test/library_checker/datastructure/associative_array_hashmap.test.cpp
+  - test/library_checker/datastructure/set_xor_min.test.cpp
+  - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
+  - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
+  - test/yukicoder/1025.test.cpp
+  - test/yukicoder/1303.test.cpp
+  - test/yukicoder/1726.test.cpp
+  - test/yukicoder/2102.test.cpp
+  - test/yukicoder/1339.test.cpp
+  - test/yukicoder/1634.test.cpp
+  - test/yukicoder/1775.test.cpp
+  - test/yukicoder/1397.test.cpp
+  - test/yukicoder/263.test.cpp
+  - test/yukicoder/1907.test.cpp
+  - test/yukicoder/541.test.cpp
+  - test/yukicoder/1881.test.cpp
+  - test/yukicoder/1561.test.cpp
+  - test/yukicoder/310.test.cpp
+  - test/yukicoder/1769.test.cpp
+  - test/yukicoder/579.test.cpp
+  - test/yukicoder/1080_2.test.cpp
+  - test/yukicoder/1383.test.cpp
+  - test/yukicoder/578.test.cpp
+  - test/yukicoder/4_1.test.cpp
+  - test/yukicoder/1080.test.cpp
+  - test/yukicoder/2167.test.cpp
   - test/mytest/minplus_convex.test.cpp
-  - test/mytest/rbst_test.test.cpp
-  - test/mytest/rect_add_pt_sum.test.cpp
-  - test/mytest/max_of_linear_segments.test.cpp
-  - test/mytest/segtree_xor_prod.test.cpp
-  - test/mytest/is_substring.test.cpp
-  - test/mytest/summin_assign.test.cpp
-  - test/mytest/stern_brocot.test.cpp
-  - test/mytest/dynamic_lazy_segtree.test.cpp
-  - test/mytest/dynamic_segtree_sparse.test.cpp
-  - test/mytest/factorial_998.test.cpp
-  - test/mytest/kdtree_am.test.cpp
-  - test/mytest/binom.test.cpp
-  - test/mytest/minidx_add.test.cpp
-  - test/mytest/chirp_z.test.cpp
-  - test/mytest/rbst_monoid.test.cpp
+  - test/mytest/tdpc_grid_dp.test.cpp
+  - test/mytest/max_max.test.cpp
   - test/mytest/splay_monoid.test.cpp
-  - test/mytest/rbst_am.test.cpp
-  - test/mytest/count_points_in_triangles.test.cpp
-  - test/mytest/online_inv.test.cpp
-  - test/mytest/summin_add.test.cpp
-  - test/mytest/rbst_monoid_persistent.test.cpp
-  - test/mytest/tutte.test.cpp
-  - test/mytest/rbst.test.cpp
-  - test/mytest/all_inverse.test.cpp
-  - test/mytest/conv2d.test.cpp
-  - test/mytest/splay_am.test.cpp
-  - test/mytest/slice_rational_fps.test.cpp
-  - test/mytest/min_max.test.cpp
-  - test/mytest/minmax_add.test.cpp
-  - test/mytest/online_exp.test.cpp
-  - test/mytest/splay.test.cpp
-  - test/mytest/add_chmin_chmax.test.cpp
-  - test/mytest/online_division.test.cpp
+  - test/mytest/summax_assign.test.cpp
+  - test/mytest/matching_line_graph.test.cpp
+  - test/mytest/min_of_linear_segments.test.cpp
+  - test/mytest/summin_assign.test.cpp
+  - test/mytest/xor_transpose.test.cpp
+  - test/mytest/rbst_monoid.test.cpp
   - test/mytest/partial_frac.test.cpp
-  - test/mytest/manhattan_nns.test.cpp
-  - test/mytest/rbst_am_2.test.cpp
-  - test/mytest/count_indep_set.test.cpp
-  - test/mytest/powerquery.test.cpp
-  - test/mytest/four_square.test.cpp
-  - test/mytest/mod_sum_of_linear.test.cpp
   - test/mytest/splay_cm.test.cpp
-  - test/mytest/min_min.test.cpp
+  - test/mytest/binom.test.cpp
+  - test/mytest/enum_partitions.test.cpp
+  - test/mytest/max_of_linear_segments.test.cpp
+  - test/mytest/is_substring.test.cpp
+  - test/mytest/rbst_am_2.test.cpp
+  - test/mytest/maxplus_concave.test.cpp
+  - test/mytest/conv2d.test.cpp
+  - test/mytest/dynamic_lazy_segtree.test.cpp
+  - test/mytest/mod_sum_of_linear.test.cpp
+  - test/mytest/product_of_one_pm_xn.test.cpp
+  - test/mytest/rbst.test.cpp
+  - test/mytest/four_square.test.cpp
+  - test/mytest/max_min.test.cpp
+  - test/mytest/wavelet_matrix.test.cpp
+  - test/mytest/factorial_998.test.cpp
+  - test/mytest/tournament.test.cpp
+  - test/mytest/segtree_xor_prod.test.cpp
+  - test/mytest/slice_rational_fps.test.cpp
+  - test/mytest/count_points_in_triangles.test.cpp
+  - test/mytest/tutte.test.cpp
+  - test/mytest/rbst_am_persistent.test.cpp
+  - test/mytest/vandermonde.test.cpp
+  - test/mytest/add_chmin.test.cpp
+  - test/mytest/max_assign.test.cpp
+  - test/mytest/kdtree_monoid.test.cpp
+  - test/mytest/range_mex.test.cpp
+  - test/mytest/manhattan_nns.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
-  - test/mytest/conv_leq.test.cpp
+  - test/mytest/maxidx_add.test.cpp
+  - test/mytest/splay_am.test.cpp
+  - test/mytest/online_exp.test.cpp
+  - test/mytest/dynamic_segtree_sparse.test.cpp
+  - test/mytest/online_division.test.cpp
+  - test/mytest/rbst_monoid_persistent.test.cpp
+  - test/mytest/count_indep_set.test.cpp
+  - test/mytest/online_pow.test.cpp
+  - test/mytest/rect_add_pt_sum.test.cpp
+  - test/mytest/wavelet_matrix_sum.test.cpp
+  - test/mytest/chirp_z.test.cpp
   - test/mytest/longest_common_substr.test.cpp
-  - test_atcoder/abc274_h.test.cpp
-  - test_atcoder/abc270_g.test.cpp
-  - test_atcoder/abc222g.test.cpp
-  - test_atcoder/abc273_e.test.cpp
-  - test_atcoder/abc202_f.test.cpp
+  - test/mytest/pascal.test.cpp
+  - test/mytest/summin_add.test.cpp
+  - test/mytest/online_inv.test.cpp
+  - test/mytest/splay.test.cpp
+  - test/mytest/kdtree_am.test.cpp
+  - test/mytest/rbst_monoid_2.test.cpp
+  - test/mytest/stern_brocot.test.cpp
+  - test/mytest/all_inverse.test.cpp
+  - test/mytest/kdtree_nns.test.cpp
+  - test/mytest/binary_trie.test.cpp
+  - test/mytest/min_min.test.cpp
+  - test/mytest/rbst_commutative_persistent.test.cpp
+  - test/mytest/rbst_test.test.cpp
+  - test/mytest/conv_leq.test.cpp
+  - test/mytest/range_closest_pair.test.cpp
+  - test/mytest/minidx_add.test.cpp
+  - test/mytest/add_chmin_chmax.test.cpp
+  - test/mytest/rbst_am.test.cpp
+  - test/mytest/minmax_add.test.cpp
+  - test/mytest/min_max.test.cpp
+  - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
+  - test/mytest/summax_add.test.cpp
+  - test/mytest/online_log.test.cpp
+  - test/mytest/powerquery.test.cpp
+  - test/aoj/CGL_5_A.test.cpp
+  - test/aoj/ALDS1_14_C.test.cpp
 documentation_of: random/base.hpp
 layout: document
 redirect_from:

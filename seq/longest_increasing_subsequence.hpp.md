@@ -33,8 +33,8 @@ data:
   timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DPL_1_D.test.cpp
   - test/library_checker/math/longest_increasing_subsequence.test.cpp
+  - test/aoj/DPL_1_D.test.cpp
 documentation_of: seq/longest_increasing_subsequence.hpp
 layout: document
 redirect_from:

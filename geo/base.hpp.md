@@ -27,6 +27,9 @@ data:
     path: geo/incremental_convexhull.hpp
     title: geo/incremental_convexhull.hpp
   - icon: ':heavy_check_mark:'
+    path: geo/minimum_enclosing_circle.hpp
+    title: geo/minimum_enclosing_circle.hpp
+  - icon: ':heavy_check_mark:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
   - icon: ':heavy_check_mark:'
@@ -85,6 +88,9 @@ data:
     path: test/mytest/qoj5443.test.cpp
     title: test/mytest/qoj5443.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc151f.test.cpp
+    title: test_atcoder/abc151f.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -111,11 +117,11 @@ data:
     \ <typename REAL, typename T>\nREAL dist(Point<T> A, Point<T> B) {\n  A = A -\
     \ B;\n  T p = A.dot(A);\n  return sqrt(REAL(p));\n}\n\ntemplate <typename T>\n\
     struct Line {\n  T a, b, c;\n\n  Line(T a, T b, T c) : a(a), b(b), c(c) {}\n \
-    \ Line(Point<T> A, Point<T> B) {\n    a = A.y - B.y;\n    b = B.x - A.x;\n   \
-    \ c = A.x * B.y - A.y * B.x;\n  }\n  Line(T x1, T y1, T x2, T y2) : Line(Point<T>(x1,\
-    \ y1), Point<T>(x2, y2)) {}\n\n  template <typename U>\n  U eval(Point<U> P) {\n\
-    \    return a * P.x + b * P.y + c;\n  }\n\n  template <typename U>\n  T eval(U\
-    \ x, U y) {\n    return a * x + b * y + c;\n  }\n\n  bool is_parallel(Line other)\
+    \ Line(Point<T> A, Point<T> B) {\n    a = A.y - B.y, b = B.x - A.x, c = A.x *\
+    \ B.y - A.y * B.x;\n  }\n  Line(T x1, T y1, T x2, T y2) : Line(Point<T>(x1, y1),\
+    \ Point<T>(x2, y2)) {}\n\n  template <typename U>\n  U eval(Point<U> P) {\n  \
+    \  return a * P.x + b * P.y + c;\n  }\n\n  template <typename U>\n  T eval(U x,\
+    \ U y) {\n    return a * x + b * y + c;\n  }\n\n  bool is_parallel(Line other)\
     \ { return a * other.b - b * other.a == 0; }\n\n  bool is_orthogonal(Line other)\
     \ { return a * other.a + b * other.b == 0; }\n};\n\ntemplate <typename T>\nstruct\
     \ Segment {\n  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B)\
@@ -123,9 +129,11 @@ data:
     \ y2)) {}\n\n  template <enable_if_t<is_integral<T>::value, int> = 0>\n  bool\
     \ contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det != 0) return\
     \ 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n  }\n\n\
-    \  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate <typename T>\nstruct\
-    \ Circle {\n  Point<T> O;\n  T r;\n  Circle(Point<T> O, T r) : O(O), r(r) {}\n\
-    \  Circle(T x, T y, T r) : O(Point<T>(x, y)), r(r) {}\n};\n\ntemplate <typename\
+    \  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
+    struct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle(Point<REAL> O, REAL r)\
+    \ : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r) {}\n  template\
+    \ <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x - O.x, dy = p.y\
+    \ - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n\ntemplate <typename\
     \ T>\nstruct Polygon {\n  vc<Point<T>> points;\n  T a;\n\n  template <typename\
     \ A, typename B>\n  Polygon(vc<pair<A, B>> pairs) {\n    for (auto&& [a, b]: pairs)\
     \ points.eb(Point<T>(a, b));\n    build();\n  }\n  Polygon(vc<Point<T>> points)\
@@ -153,24 +161,26 @@ data:
     \ < 0) return -1;\n  return 0;\n}\n\ntemplate <typename REAL, typename T>\nREAL\
     \ dist(Point<T> A, Point<T> B) {\n  A = A - B;\n  T p = A.dot(A);\n  return sqrt(REAL(p));\n\
     }\n\ntemplate <typename T>\nstruct Line {\n  T a, b, c;\n\n  Line(T a, T b, T\
-    \ c) : a(a), b(b), c(c) {}\n  Line(Point<T> A, Point<T> B) {\n    a = A.y - B.y;\n\
-    \    b = B.x - A.x;\n    c = A.x * B.y - A.y * B.x;\n  }\n  Line(T x1, T y1, T\
-    \ x2, T y2) : Line(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n  template <typename\
-    \ U>\n  U eval(Point<U> P) {\n    return a * P.x + b * P.y + c;\n  }\n\n  template\
-    \ <typename U>\n  T eval(U x, U y) {\n    return a * x + b * y + c;\n  }\n\n \
-    \ bool is_parallel(Line other) { return a * other.b - b * other.a == 0; }\n\n\
-    \  bool is_orthogonal(Line other) { return a * other.a + b * other.b == 0; }\n\
-    };\n\ntemplate <typename T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T>\
-    \ A, Point<T> B) : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
+    \ c) : a(a), b(b), c(c) {}\n  Line(Point<T> A, Point<T> B) {\n    a = A.y - B.y,\
+    \ b = B.x - A.x, c = A.x * B.y - A.y * B.x;\n  }\n  Line(T x1, T y1, T x2, T y2)\
+    \ : Line(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n  template <typename U>\n \
+    \ U eval(Point<U> P) {\n    return a * P.x + b * P.y + c;\n  }\n\n  template <typename\
+    \ U>\n  T eval(U x, U y) {\n    return a * x + b * y + c;\n  }\n\n  bool is_parallel(Line\
+    \ other) { return a * other.b - b * other.a == 0; }\n\n  bool is_orthogonal(Line\
+    \ other) { return a * other.a + b * other.b == 0; }\n};\n\ntemplate <typename\
+    \ T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B)\
+    \ : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
     \ y1), Point<T>(x2, y2)) {}\n\n  template <enable_if_t<is_integral<T>::value,\
     \ int> = 0>\n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n \
     \   if (det != 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A\
     \ - B) >= 0;\n  }\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate\
-    \ <typename T>\nstruct Circle {\n  Point<T> O;\n  T r;\n  Circle(Point<T> O, T\
-    \ r) : O(O), r(r) {}\n  Circle(T x, T y, T r) : O(Point<T>(x, y)), r(r) {}\n};\n\
-    \ntemplate <typename T>\nstruct Polygon {\n  vc<Point<T>> points;\n  T a;\n\n\
-    \  template <typename A, typename B>\n  Polygon(vc<pair<A, B>> pairs) {\n    for\
-    \ (auto&& [a, b]: pairs) points.eb(Point<T>(a, b));\n    build();\n  }\n  Polygon(vc<Point<T>>\
+    \ <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle(Point<REAL>\
+    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
+    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
+    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n\n\
+    template <typename T>\nstruct Polygon {\n  vc<Point<T>> points;\n  T a;\n\n  template\
+    \ <typename A, typename B>\n  Polygon(vc<pair<A, B>> pairs) {\n    for (auto&&\
+    \ [a, b]: pairs) points.eb(Point<T>(a, b));\n    build();\n  }\n  Polygon(vc<Point<T>>\
     \ points) : points(points) { build(); }\n\n  int size() { return len(points);\
     \ }\n\n  template <typename REAL>\n  REAL area() {\n    return a * 0.5;\n  }\n\
     \n  template <enable_if_t<is_integral<T>::value, int> = 0>\n  T area_2() {\n \
@@ -185,38 +195,40 @@ data:
   isVerificationFile: false
   path: geo/base.hpp
   requiredBy:
+  - geo/incircle.hpp
+  - geo/dynamicupperhull.hpp
   - geo/incremental_convexhull.hpp
   - geo/outcircle.hpp
-  - geo/cross_point.hpp
-  - geo/reflection.hpp
   - geo/projection.hpp
-  - geo/count_points_in_triangles.hpp
-  - geo/incircle.hpp
+  - geo/minimum_enclosing_circle.hpp
+  - geo/cross_point.hpp
   - geo/distance.hpp
-  - geo/dynamicupperhull.hpp
-  - geo/closest_pair.hpp
   - geo/angle_sort.hpp
-  timestamp: '2023-01-31 19:58:08+09:00'
+  - geo/count_points_in_triangles.hpp
+  - geo/reflection.hpp
+  - geo/closest_pair.hpp
+  timestamp: '2023-02-18 09:57:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/CGL_7_B.test.cpp
-  - test/aoj/CGL_5_A.test.cpp
-  - test/aoj/CGL_1_B.test.cpp
-  - test/aoj/CGL_2_A.test.cpp
-  - test/aoj/CGL_2_B.test.cpp
-  - test/aoj/CGL_3_B.test.cpp
-  - test/aoj/CGL_2_D.test.cpp
-  - test/aoj/CGL_2_C.test.cpp
-  - test/aoj/CGL_7_C.test.cpp
-  - test/aoj/CGL_1_A.test.cpp
+  - test_atcoder/abc151f.test.cpp
+  - test_atcoder/abc266c.test.cpp
+  - test_atcoder/abc202_f.test.cpp
   - test/library_checker/geometry/convex_layers.test.cpp
   - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
-  - test/mytest/qoj5443.test.cpp
-  - test/mytest/count_points_in_triangles.test.cpp
   - test/mytest/incremental_ch.test.cpp
-  - test_atcoder/abc266c.test.cpp
-  - test_atcoder/abc202_f.test.cpp
+  - test/mytest/count_points_in_triangles.test.cpp
+  - test/mytest/qoj5443.test.cpp
+  - test/aoj/CGL_2_C.test.cpp
+  - test/aoj/CGL_5_A.test.cpp
+  - test/aoj/CGL_2_B.test.cpp
+  - test/aoj/CGL_1_A.test.cpp
+  - test/aoj/CGL_7_C.test.cpp
+  - test/aoj/CGL_2_A.test.cpp
+  - test/aoj/CGL_1_B.test.cpp
+  - test/aoj/CGL_3_B.test.cpp
+  - test/aoj/CGL_7_B.test.cpp
+  - test/aoj/CGL_2_D.test.cpp
 documentation_of: geo/base.hpp
 layout: document
 redirect_from:

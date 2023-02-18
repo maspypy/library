@@ -375,8 +375,8 @@ data:
   timestamp: '2023-02-02 02:12:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL_2_A.test.cpp
   - test_atcoder/abc270_f.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
 documentation_of: graph/minimum_spanning_tree.hpp
 layout: document
 redirect_from:

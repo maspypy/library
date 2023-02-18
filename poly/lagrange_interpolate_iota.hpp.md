@@ -446,21 +446,21 @@ data:
   requiredBy:
   - seq/interpolate_poly_exp_sum.hpp
   - seq/kth_term_of_p_recursive.hpp
-  - poly/sparse_exp_of_div.hpp
-  - poly/from_log_differentiation.hpp
   - poly/prefix_product_of_poly.hpp
+  - poly/from_log_differentiation.hpp
+  - poly/sparse_exp_of_div.hpp
   timestamp: '2023-01-19 00:36:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test_atcoder/abc276_g.test.cpp
+  - test_atcoder/abc276_g_2.test.cpp
+  - test_atcoder/abc222h_2.test.cpp
+  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
+  - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/yukicoder/2166.test.cpp
   - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/502_2.test.cpp
-  - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/mytest/factorial_998.test.cpp
-  - test_atcoder/abc276_g.test.cpp
-  - test_atcoder/abc222h_2.test.cpp
-  - test_atcoder/abc276_g_2.test.cpp
 documentation_of: poly/lagrange_interpolate_iota.hpp
 layout: document
 redirect_from:

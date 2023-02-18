@@ -524,6 +524,9 @@ data:
       path: geo/manhattan_nns.hpp
       title: geo/manhattan_nns.hpp
     - icon: ':heavy_check_mark:'
+      path: geo/minimum_enclosing_circle.hpp
+      title: geo/minimum_enclosing_circle.hpp
+    - icon: ':heavy_check_mark:'
       path: geo/outcircle.hpp
       title: geo/outcircle.hpp
     - icon: ':heavy_check_mark:'
@@ -838,7 +841,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/implicit_matrix/min_poly.hpp
       title: linalg/implicit_matrix/min_poly.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: linalg/implicit_matrix/pascal.hpp
       title: linalg/implicit_matrix/pascal.hpp
     - icon: ':heavy_check_mark:'
@@ -3019,6 +3022,9 @@ data:
       path: test_atcoder/abc141f.test.cpp
       title: test_atcoder/abc141f.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test_atcoder/abc151f.test.cpp
+      title: test_atcoder/abc151f.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc174f.test.cpp
       title: test_atcoder/abc174f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3111,7 +3117,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc266h_2.test.cpp
       title: test_atcoder/abc266h_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc267g.test.cpp
       title: test_atcoder/abc267g.test.cpp
     - icon: ':heavy_check_mark:'
