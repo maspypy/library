@@ -48,9 +48,7 @@ struct Line {
 
   Line(T a, T b, T c) : a(a), b(b), c(c) {}
   Line(Point<T> A, Point<T> B) {
-    a = A.y - B.y;
-    b = B.x - A.x;
-    c = A.x * B.y - A.y * B.x;
+    a = A.y - B.y, b = B.x - A.x, c = A.x * B.y - A.y * B.x;
   }
   Line(T x1, T y1, T x2, T y2) : Line(Point<T>(x1, y1), Point<T>(x2, y2)) {}
 
@@ -87,12 +85,17 @@ struct Segment {
   Line<T> to_Line() { return Line(A, B); }
 };
 
-template <typename T>
+template <typename REAL>
 struct Circle {
-  Point<T> O;
-  T r;
-  Circle(Point<T> O, T r) : O(O), r(r) {}
-  Circle(T x, T y, T r) : O(Point<T>(x, y)), r(r) {}
+  Point<REAL> O;
+  REAL r;
+  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}
+  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r) {}
+  template <typename T>
+  bool contain(Point<T> p) {
+    REAL dx = p.x - O.x, dy = p.y - O.y;
+    return dx * dx + dy * dy <= r * r;
+  }
 };
 
 template <typename T>
