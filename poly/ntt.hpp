@@ -18,6 +18,7 @@ struct ntt_info {
 
   ntt_info() {
     int g = primitive_root(mint::get_mod());
+    assert(g != -1);
     root[rank2] = mint(g).pow((mint::get_mod() - 1) >> rank2);
     iroot[rank2] = mint(1) / root[rank2];
     FOR_R(i, rank2) {
@@ -51,7 +52,9 @@ struct ntt_info {
     if (m == 754974721) return 11;
     if (m == 880803841) return 26;
     if (m == 998244353) return 3;
-    if (m == 924844053) return 5;
+    if (m == 1045430273) return 3;
+    if (m == 1051721729) return 6;
+    if (m == 1053818881) return 7;
     return -1;
   }
 };
