@@ -284,12 +284,12 @@ data:
     \ }\n  void read() {\n    ll x;\n    fastio::scanner.read(x);\n    if (x < 0 ||\
     \ x >= mod) x %= mod;\n    if (x < 0) x += mod;\n    val += x;\n  }\n#endif\n\
     \  static constexpr int get_mod() { return mod; }\n\n  // (n, r), r \u306F 1 \u306E\
-    \ 2^n \u4E57\u6839\n  static pair<int, int> ntt_info() {\n    if (mod == 167772161)\
-    \ return {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod ==\
-    \ 754974721) return {24, 362};\n    if (mod == 880803841) return {23, 211};\n\
-    \    if (mod == 998244353) return {23, 31};\n    if (mod == 1045430273) return\
-    \ {20, 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881)\
-    \ return {20, 2789};\n    return {-1, -1};\n  }\n};\n\nstruct ArbitraryModInt\
+    \ 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n    if (mod\
+    \ == 167772161) return {25, 17};\n    if (mod == 469762049) return {26, 30};\n\
+    \    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841) return\
+    \ {23, 211};\n    if (mod == 998244353) return {23, 31};\n    if (mod == 1045430273)\
+    \ return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod\
+    \ == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n};\n\nstruct ArbitraryModInt\
     \ {\n  static constexpr bool is_modint = true;\n  int val;\n  ArbitraryModInt()\
     \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
     \                   : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
@@ -319,25 +319,26 @@ data:
     \ pow(int64_t n) const {\n    assert(n >= 0);\n    ArbitraryModInt ret(1), mul(val);\n\
     \    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n\
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
-    \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n};\n\nusing modint107\
-    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\
-    #line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
-    \ vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\
-    \n  return t;\r\n}\n#line 2 \"mod/mod_inv.hpp\"\n// long \u3067\u3082\u5927\u4E08\
-    \u592B\r\nll mod_inv(ll val, ll mod) {\r\n  val %= mod;\r\n  if (val < 0) val\
-    \ += mod;\r\n  ll a = val, b = mod, u = 1, v = 0, t;\r\n  while (b > 0) {\r\n\
-    \    t = a / b;\r\n    swap(a -= t * b, b), swap(u -= t * v, v);\r\n  }\r\n  if\
-    \ (u < 0) u += mod;\r\n  return u;\r\n}\r\n#line 1 \"poly/convolution_naive.hpp\"\
-    \ntemplate <class T>\r\nvector<T> convolution_naive(const vector<T>& a, const\
-    \ vector<T>& b) {\r\n  int n = int(a.size()), m = int(b.size());\r\n  vector<T>\
-    \ ans(n + m - 1);\r\n  if (n < m) {\r\n    FOR(j, m) FOR(i, n) ans[i + j] += a[i]\
-    \ * b[j];\r\n  } else {\r\n    FOR(i, n) FOR(j, m) ans[i + j] += a[i] * b[j];\r\
-    \n  }\r\n  return ans;\r\n}\r\n#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\
-    \nstruct ntt_info {\r\n  static constexpr int bsf_constexpr(unsigned int n) {\r\
-    \n    int x = 0;\r\n    while (!(n & (1 << x))) x++;\r\n    return x;\r\n  }\r\
-    \n\r\n  static constexpr int rank2 = bsf_constexpr(mint::get_mod() - 1);\r\n \
-    \ array<mint, rank2 + 1> root;\r\n  array<mint, rank2 + 1> iroot;\r\n  array<mint,\
-    \ max(0, rank2 - 1)> rate2;\r\n  array<mint, max(0, rank2 - 1)> irate2;\r\n  array<mint,\
+    \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
+    \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 2\
+    \ \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const vc<mint>&\
+    \ f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\n  return\
+    \ t;\r\n}\n#line 2 \"mod/mod_inv.hpp\"\n// long \u3067\u3082\u5927\u4E08\u592B\
+    \r\nll mod_inv(ll val, ll mod) {\r\n  val %= mod;\r\n  if (val < 0) val += mod;\r\
+    \n  ll a = val, b = mod, u = 1, v = 0, t;\r\n  while (b > 0) {\r\n    t = a /\
+    \ b;\r\n    swap(a -= t * b, b), swap(u -= t * v, v);\r\n  }\r\n  if (u < 0) u\
+    \ += mod;\r\n  return u;\r\n}\r\n#line 1 \"poly/convolution_naive.hpp\"\ntemplate\
+    \ <class T>\r\nvector<T> convolution_naive(const vector<T>& a, const vector<T>&\
+    \ b) {\r\n  int n = int(a.size()), m = int(b.size());\r\n  vector<T> ans(n + m\
+    \ - 1);\r\n  if (n < m) {\r\n    FOR(j, m) FOR(i, n) ans[i + j] += a[i] * b[j];\r\
+    \n  } else {\r\n    FOR(i, n) FOR(j, m) ans[i + j] += a[i] * b[j];\r\n  }\r\n\
+    \  return ans;\r\n}\r\n#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\n\
+    struct ntt_info {\r\n  static constexpr int bsf_constexpr(unsigned int n) {\r\n\
+    \    int x = 0;\r\n    while (!(n & (1 << x))) x++;\r\n    return x;\r\n  }\r\n\
+    \r\n  static constexpr int rank2 = bsf_constexpr(mint::get_mod() - 1);\r\n  array<mint,\
+    \ rank2 + 1> root;\r\n  array<mint, rank2 + 1> iroot;\r\n  array<mint, max(0,\
+    \ rank2 - 1)> rate2;\r\n  array<mint, max(0, rank2 - 1)> irate2;\r\n  array<mint,\
     \ max(0, rank2 - 2)> rate3;\r\n  array<mint, max(0, rank2 - 2)> irate3;\r\n\r\n\
     \  ntt_info() {\r\n    int g = primitive_root(mint::get_mod());\r\n    assert(g\
     \ != -1);\r\n    root[rank2] = mint(g).pow((mint::get_mod() - 1) >> rank2);\r\n\
@@ -560,7 +561,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
   requiredBy: []
-  timestamp: '2023-02-21 23:56:19+09:00'
+  timestamp: '2023-02-22 01:01:01+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/polynomial/inv_of_fps_amint.test.cpp

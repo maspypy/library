@@ -315,12 +315,12 @@ data:
     \ }\n  void read() {\n    ll x;\n    fastio::scanner.read(x);\n    if (x < 0 ||\
     \ x >= mod) x %= mod;\n    if (x < 0) x += mod;\n    val += x;\n  }\n#endif\n\
     \  static constexpr int get_mod() { return mod; }\n\n  // (n, r), r \u306F 1 \u306E\
-    \ 2^n \u4E57\u6839\n  static pair<int, int> ntt_info() {\n    if (mod == 167772161)\
-    \ return {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod ==\
-    \ 754974721) return {24, 362};\n    if (mod == 880803841) return {23, 211};\n\
-    \    if (mod == 998244353) return {23, 31};\n    if (mod == 1045430273) return\
-    \ {20, 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881)\
-    \ return {20, 2789};\n    return {-1, -1};\n  }\n};\n\nstruct ArbitraryModInt\
+    \ 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n    if (mod\
+    \ == 167772161) return {25, 17};\n    if (mod == 469762049) return {26, 30};\n\
+    \    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841) return\
+    \ {23, 211};\n    if (mod == 998244353) return {23, 31};\n    if (mod == 1045430273)\
+    \ return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod\
+    \ == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n};\n\nstruct ArbitraryModInt\
     \ {\n  static constexpr bool is_modint = true;\n  int val;\n  ArbitraryModInt()\
     \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
     \                   : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
@@ -350,18 +350,19 @@ data:
     \ pow(int64_t n) const {\n    assert(n >= 0);\n    ArbitraryModInt ret(1), mul(val);\n\
     \    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n\
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
-    \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n};\n\nusing modint107\
-    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\
-    #line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int frm,\
-    \ to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool directed =\
-    \ false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n  using edge_type\
-    \ = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n  vector<edge_type>\
-    \ csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class\
-    \ OutgoingEdges {\n  public:\n    OutgoingEdges(const Graph* G, int l, int r)\
-    \ : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n      if (l ==\
-    \ r) { return 0; }\n      return &G->csr_edges[l];\n    }\n\n    const edge_type*\
-    \ end() const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n\
-    \    }\n\n  private:\n    const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared()\
+    \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
+    \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 2\
+    \ \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n\
+    \  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool directed = false>\n\
+    struct Graph {\n  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n\
+    \  vector<edge_type> edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n\
+    \  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class OutgoingEdges\
+    \ {\n  public:\n    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l),\
+    \ r(r) {}\n\n    const edge_type* begin() const {\n      if (l == r) { return\
+    \ 0; }\n      return &G->csr_edges[l];\n    }\n\n    const edge_type* end() const\
+    \ {\n      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n\
+    \  private:\n    const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared()\
     \ { return prepared; }\n  constexpr bool is_directed() { return directed; }\n\n\
     \  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
     \ {}\n\n  void resize(int n) { N = n; }\n\n  void add(int frm, int to, T cost\
@@ -842,7 +843,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/arc153f.test.cpp
   requiredBy: []
-  timestamp: '2023-02-21 23:56:19+09:00'
+  timestamp: '2023-02-22 01:01:01+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/arc153f.test.cpp

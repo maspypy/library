@@ -288,12 +288,12 @@ data:
     \ }\n  void read() {\n    ll x;\n    fastio::scanner.read(x);\n    if (x < 0 ||\
     \ x >= mod) x %= mod;\n    if (x < 0) x += mod;\n    val += x;\n  }\n#endif\n\
     \  static constexpr int get_mod() { return mod; }\n\n  // (n, r), r \u306F 1 \u306E\
-    \ 2^n \u4E57\u6839\n  static pair<int, int> ntt_info() {\n    if (mod == 167772161)\
-    \ return {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod ==\
-    \ 754974721) return {24, 362};\n    if (mod == 880803841) return {23, 211};\n\
-    \    if (mod == 998244353) return {23, 31};\n    if (mod == 1045430273) return\
-    \ {20, 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881)\
-    \ return {20, 2789};\n    return {-1, -1};\n  }\n};\n\nstruct ArbitraryModInt\
+    \ 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n    if (mod\
+    \ == 167772161) return {25, 17};\n    if (mod == 469762049) return {26, 30};\n\
+    \    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841) return\
+    \ {23, 211};\n    if (mod == 998244353) return {23, 31};\n    if (mod == 1045430273)\
+    \ return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod\
+    \ == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n};\n\nstruct ArbitraryModInt\
     \ {\n  static constexpr bool is_modint = true;\n  int val;\n  ArbitraryModInt()\
     \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
     \                   : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
@@ -323,39 +323,40 @@ data:
     \ pow(int64_t n) const {\n    assert(n >= 0);\n    ArbitraryModInt ret(1), mul(val);\n\
     \    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n\
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
-    \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n};\n\nusing modint107\
-    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\
-    #line 2 \"graph/ds/tree_monoid.hpp\"\n\r\n#line 2 \"ds/segtree/segtree.hpp\"\n\
-    \ntemplate <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X =\
-    \ typename MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n, log,\
-    \ size;\n\n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename\
-    \ F>\n  SegTree(int n, F f) {\n    build(n, f);\n  }\n  SegTree(const vc<X>& v)\
-    \ { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return\
-    \ MX::unit(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int\
-    \ i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int m,\
-    \ F f) {\n    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1\
-    \ << log;\n    dat.assign(size << 1, MX::unit());\n    FOR(i, n) dat[size + i]\
-    \ = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n  X get(int i) { return dat[size\
-    \ + i]; }\n  vc<X> get_all() { return {dat.begin() + size, dat.begin() + size\
-    \ + n}; }\n\n  void update(int i) { dat[i] = Monoid::op(dat[2 * i], dat[2 * i\
-    \ + 1]); }\n  void set(int i, const X& x) {\n    assert(i < n);\n    dat[i +=\
-    \ size] = x;\n    while (i >>= 1) update(i);\n  }\n\n  void multiply(int i, const\
-    \ X& x) {\n    assert(i < n);\n    i += size;\n    dat[i] = Monoid::op(dat[i],\
-    \ x);\n    while (i >>= 1) update(i);\n  }\n\n  X prod(int L, int R) {\n    assert(0\
-    \ <= L && L <= R && R <= n);\n    X vl = Monoid::unit(), vr = Monoid::unit();\n\
-    \    L += size, R += size;\n    while (L < R) {\n      if (L & 1) vl = Monoid::op(vl,\
-    \ dat[L++]);\n      if (R & 1) vr = Monoid::op(dat[--R], vr);\n      L >>= 1,\
-    \ R >>= 1;\n    }\n    return Monoid::op(vl, vr);\n  }\n\n  X prod_all() { return\
-    \ dat[1]; }\n\n  template <class F>\n  int max_right(F check, int L) {\n    assert(0\
-    \ <= L && L <= n && check(Monoid::unit()));\n    if (L == n) return n;\n    L\
-    \ += size;\n    X sm = Monoid::unit();\n    do {\n      while (L % 2 == 0) L >>=\
-    \ 1;\n      if (!check(Monoid::op(sm, dat[L]))) {\n        while (L < size) {\n\
-    \          L = 2 * L;\n          if (check(Monoid::op(sm, dat[L]))) { sm = Monoid::op(sm,\
-    \ dat[L++]); }\n        }\n        return L - size;\n      }\n      sm = Monoid::op(sm,\
-    \ dat[L++]);\n    } while ((L & -L) != L);\n    return n;\n  }\n\n  template <class\
-    \ F>\n  int min_left(F check, int R) {\n    assert(0 <= R && R <= n && check(Monoid::unit()));\n\
-    \    if (R == 0) return 0;\n    R += size;\n    X sm = Monoid::unit();\n    do\
-    \ {\n      --R;\n      while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R],\
+    \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
+    \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 2\
+    \ \"graph/ds/tree_monoid.hpp\"\n\r\n#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate\
+    \ <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X = typename\
+    \ MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\
+    \n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename F>\n  SegTree(int\
+    \ n, F f) {\n    build(n, f);\n  }\n  SegTree(const vc<X>& v) { build(v); }\n\n\
+    \  void build(int m) {\n    build(m, [](int i) -> X { return MX::unit(); });\n\
+    \  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X { return\
+    \ v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n =\
+    \ m, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
+    \ << 1, MX::unit());\n    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size)\
+    \ update(i);\n  }\n\n  X get(int i) { return dat[size + i]; }\n  vc<X> get_all()\
+    \ { return {dat.begin() + size, dat.begin() + size + n}; }\n\n  void update(int\
+    \ i) { dat[i] = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n  void set(int i, const\
+    \ X& x) {\n    assert(i < n);\n    dat[i += size] = x;\n    while (i >>= 1) update(i);\n\
+    \  }\n\n  void multiply(int i, const X& x) {\n    assert(i < n);\n    i += size;\n\
+    \    dat[i] = Monoid::op(dat[i], x);\n    while (i >>= 1) update(i);\n  }\n\n\
+    \  X prod(int L, int R) {\n    assert(0 <= L && L <= R && R <= n);\n    X vl =\
+    \ Monoid::unit(), vr = Monoid::unit();\n    L += size, R += size;\n    while (L\
+    \ < R) {\n      if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R & 1) vr\
+    \ = Monoid::op(dat[--R], vr);\n      L >>= 1, R >>= 1;\n    }\n    return Monoid::op(vl,\
+    \ vr);\n  }\n\n  X prod_all() { return dat[1]; }\n\n  template <class F>\n  int\
+    \ max_right(F check, int L) {\n    assert(0 <= L && L <= n && check(Monoid::unit()));\n\
+    \    if (L == n) return n;\n    L += size;\n    X sm = Monoid::unit();\n    do\
+    \ {\n      while (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm, dat[L])))\
+    \ {\n        while (L < size) {\n          L = 2 * L;\n          if (check(Monoid::op(sm,\
+    \ dat[L]))) { sm = Monoid::op(sm, dat[L++]); }\n        }\n        return L -\
+    \ size;\n      }\n      sm = Monoid::op(sm, dat[L++]);\n    } while ((L & -L)\
+    \ != L);\n    return n;\n  }\n\n  template <class F>\n  int min_left(F check,\
+    \ int R) {\n    assert(0 <= R && R <= n && check(Monoid::unit()));\n    if (R\
+    \ == 0) return 0;\n    R += size;\n    X sm = Monoid::unit();\n    do {\n    \
+    \  --R;\n      while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R],\
     \ sm))) {\n        while (R < size) {\n          R = 2 * R + 1;\n          if\
     \ (check(Monoid::op(dat[R], sm))) { sm = Monoid::op(dat[R--], sm); }\n       \
     \ }\n        return R + 1 - size;\n      }\n      sm = Monoid::op(dat[R], sm);\n\
@@ -575,7 +576,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   requiredBy: []
-  timestamp: '2023-02-21 23:56:19+09:00'
+  timestamp: '2023-02-22 01:01:01+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp

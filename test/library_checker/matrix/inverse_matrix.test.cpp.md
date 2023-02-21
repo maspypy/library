@@ -265,12 +265,12 @@ data:
     \ }\n  void read() {\n    ll x;\n    fastio::scanner.read(x);\n    if (x < 0 ||\
     \ x >= mod) x %= mod;\n    if (x < 0) x += mod;\n    val += x;\n  }\n#endif\n\
     \  static constexpr int get_mod() { return mod; }\n\n  // (n, r), r \u306F 1 \u306E\
-    \ 2^n \u4E57\u6839\n  static pair<int, int> ntt_info() {\n    if (mod == 167772161)\
-    \ return {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod ==\
-    \ 754974721) return {24, 362};\n    if (mod == 880803841) return {23, 211};\n\
-    \    if (mod == 998244353) return {23, 31};\n    if (mod == 1045430273) return\
-    \ {20, 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881)\
-    \ return {20, 2789};\n    return {-1, -1};\n  }\n};\n\nstruct ArbitraryModInt\
+    \ 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n    if (mod\
+    \ == 167772161) return {25, 17};\n    if (mod == 469762049) return {26, 30};\n\
+    \    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841) return\
+    \ {23, 211};\n    if (mod == 998244353) return {23, 31};\n    if (mod == 1045430273)\
+    \ return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod\
+    \ == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n};\n\nstruct ArbitraryModInt\
     \ {\n  static constexpr bool is_modint = true;\n  int val;\n  ArbitraryModInt()\
     \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
     \                   : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
@@ -300,9 +300,10 @@ data:
     \ pow(int64_t n) const {\n    assert(n >= 0);\n    ArbitraryModInt ret(1), mul(val);\n\
     \    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n\
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
-    \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n};\n\nusing modint107\
-    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\
-    #line 1 \"linalg/mat_inv.hpp\"\n// (det, invA) \u3092\u304B\u3048\u3059\r\ntemplate\
+    \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
+    \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 1\
+    \ \"linalg/mat_inv.hpp\"\n// (det, invA) \u3092\u304B\u3048\u3059\r\ntemplate\
     \ <typename T>\r\npair<T, vc<vc<T>>> mat_inv(vc<vc<T>> A) {\r\n  T det = 1;\r\n\
     \  int N = len(A);\r\n  vv(T, B, N, N);\r\n  FOR(n, N) B[n][n] = 1;\r\n  FOR(i,\
     \ N) {\r\n    FOR(k, i, N) if (A[k][i] != 0) {\r\n      if (k != i) {\r\n    \
@@ -333,7 +334,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/inverse_matrix.test.cpp
   requiredBy: []
-  timestamp: '2023-02-21 23:56:19+09:00'
+  timestamp: '2023-02-22 01:01:01+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/matrix/inverse_matrix.test.cpp

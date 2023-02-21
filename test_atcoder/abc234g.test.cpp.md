@@ -363,8 +363,8 @@ data:
     \ {\n    ll x;\n    fastio::scanner.read(x);\n    if (x < 0 || x >= mod) x %=\
     \ mod;\n    if (x < 0) x += mod;\n    val += x;\n  }\n#endif\n  static constexpr\
     \ int get_mod() { return mod; }\n\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\
-    \n  static pair<int, int> ntt_info() {\n    if (mod == 167772161) return {25,\
-    \ 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
+    \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 167772161) return\
+    \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
     \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
     \ == 998244353) return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n\
     \    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881) return\
@@ -398,9 +398,10 @@ data:
     \ pow(int64_t n) const {\n    assert(n >= 0);\n    ArbitraryModInt ret(1), mul(val);\n\
     \    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n\
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
-    \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n};\n\nusing modint107\
-    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\
-    #line 8 \"test_atcoder/abc234g.test.cpp\"\n\nusing mint = modint998;\n\nvoid solve()\
+    \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
+    \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 8\
+    \ \"test_atcoder/abc234g.test.cpp\"\n\nusing mint = modint998;\n\nvoid solve()\
     \ {\n  LL(N);\n  VEC(int, A, N);\n  CartesianTree<int, 1> X1(A);\n  CartesianTree<int,\
     \ 0> X2(A);\n  Lazy_SegTree<ActedMonoid_Sum_Add<mint>> seg(N + 1);\n  seg.set(0,\
     \ mint(1));\n\n  FOR(i, N) {\n    auto [L1, R1] = X1.range[i];\n    mint x1 =\
@@ -431,7 +432,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc234g.test.cpp
   requiredBy: []
-  timestamp: '2023-02-21 23:56:19+09:00'
+  timestamp: '2023-02-22 01:01:01+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc234g.test.cpp

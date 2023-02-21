@@ -143,12 +143,12 @@ data:
     \ }\n  void read() {\n    ll x;\n    fastio::scanner.read(x);\n    if (x < 0 ||\
     \ x >= mod) x %= mod;\n    if (x < 0) x += mod;\n    val += x;\n  }\n#endif\n\
     \  static constexpr int get_mod() { return mod; }\n\n  // (n, r), r \u306F 1 \u306E\
-    \ 2^n \u4E57\u6839\n  static pair<int, int> ntt_info() {\n    if (mod == 167772161)\
-    \ return {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod ==\
-    \ 754974721) return {24, 362};\n    if (mod == 880803841) return {23, 211};\n\
-    \    if (mod == 998244353) return {23, 31};\n    if (mod == 1045430273) return\
-    \ {20, 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881)\
-    \ return {20, 2789};\n    return {-1, -1};\n  }\n};\n\nstruct ArbitraryModInt\
+    \ 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n    if (mod\
+    \ == 167772161) return {25, 17};\n    if (mod == 469762049) return {26, 30};\n\
+    \    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841) return\
+    \ {23, 211};\n    if (mod == 998244353) return {23, 31};\n    if (mod == 1045430273)\
+    \ return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod\
+    \ == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n};\n\nstruct ArbitraryModInt\
     \ {\n  static constexpr bool is_modint = true;\n  int val;\n  ArbitraryModInt()\
     \ : val(0) {}\n  ArbitraryModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
     \                   : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
@@ -178,16 +178,17 @@ data:
     \ pow(int64_t n) const {\n    assert(n >= 0);\n    ArbitraryModInt ret(1), mul(val);\n\
     \    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n\
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
-    \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n};\n\nusing modint107\
-    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\
-    #line 3 \"mod/mod_sqrt.hpp\"\n\r\ntemplate <typename mint>\r\nmint mod_sqrt(mint\
-    \ a) {\r\n  int p = mint::get_mod();\r\n  if (p == 2) return a;\r\n  if (a ==\
-    \ 0) return 0;\r\n  int k = (p - 1) / 2;\r\n  if (a.pow(k) != 1) return 0;\r\n\
-    \  auto find = [&]() -> pair<mint, mint> {\r\n    while (1) {\r\n      mint b\
-    \ = RNG(2, p);\r\n      mint D = b * b - a;\r\n      if (D == 0) return {b, D};\r\
-    \n      if (D.pow(k) != mint(1)) return {b, D};\r\n    }\r\n  };\r\n  auto [b,\
-    \ D] = find();\r\n  if (D == 0) return b;\r\n  ++k;\r\n  // (b + sqrt(D))^k\r\n\
-    \  mint f0 = b, f1 = 1;\r\n  mint g0 = 1, g1 = 0;\r\n  while (k) {\r\n    if (k\
+    \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
+    \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 3\
+    \ \"mod/mod_sqrt.hpp\"\n\r\ntemplate <typename mint>\r\nmint mod_sqrt(mint a)\
+    \ {\r\n  int p = mint::get_mod();\r\n  if (p == 2) return a;\r\n  if (a == 0)\
+    \ return 0;\r\n  int k = (p - 1) / 2;\r\n  if (a.pow(k) != 1) return 0;\r\n  auto\
+    \ find = [&]() -> pair<mint, mint> {\r\n    while (1) {\r\n      mint b = RNG(2,\
+    \ p);\r\n      mint D = b * b - a;\r\n      if (D == 0) return {b, D};\r\n   \
+    \   if (D.pow(k) != mint(1)) return {b, D};\r\n    }\r\n  };\r\n  auto [b, D]\
+    \ = find();\r\n  if (D == 0) return b;\r\n  ++k;\r\n  // (b + sqrt(D))^k\r\n \
+    \ mint f0 = b, f1 = 1;\r\n  mint g0 = 1, g1 = 0;\r\n  while (k) {\r\n    if (k\
     \ & 1) { tie(g0, g1) = mp(f0 * g0 + D * f1 * g1, f1 * g0 + f0 * g1); }\r\n   \
     \ tie(f0, f1) = mp(f0 * f0 + D * f1 * f1, mint(2) * f0 * f1);\r\n    k >>= 1;\r\
     \n  }\r\n  return g0;\r\n}\r\n#line 5 \"nt/four_square.hpp\"\n\n// N = a^2+b^2+c^2+d^2\
@@ -247,7 +248,7 @@ data:
   isVerificationFile: false
   path: nt/four_square.hpp
   requiredBy: []
-  timestamp: '2023-02-21 23:56:19+09:00'
+  timestamp: '2023-02-22 01:01:01+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/four_square.test.cpp
