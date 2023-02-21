@@ -159,3 +159,13 @@ struct ArbitraryModInt {
 using modint107 = modint<1000000007>;
 using modint998 = modint<998244353>;
 using amint = ArbitraryModInt;
+
+struct has_mod_impl {
+  template <class T>
+  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});
+  template <class T>
+  static auto check(...) -> std::false_type;
+};
+
+template <class T>
+class has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>())) {};
