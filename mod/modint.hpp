@@ -69,7 +69,7 @@ struct modint {
   static constexpr int get_mod() { return mod; }
 
   // (n, r), r は 1 の 2^n 乗根
-  static pair<int, int> ntt_info() {
+  static constexpr pair<int, int> ntt_info() {
     if (mod == 167772161) return {25, 17};
     if (mod == 469762049) return {26, 30};
     if (mod == 754974721) return {24, 362};
@@ -153,6 +153,7 @@ struct ArbitraryModInt {
   void write() { fastio::printer.write(val); }
   void read() { fastio::scanner.read(val); }
 #endif
+  static constexpr pair<int, int> ntt_info() { return {-1, -1}; }
 };
 
 using modint107 = modint<1000000007>;
