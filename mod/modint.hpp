@@ -1,4 +1,5 @@
 #pragma once
+#include "mod/factorial.hpp"
 
 template <int mod>
 struct modint {
@@ -45,7 +46,8 @@ struct modint {
     }
     return modint(u);
   }
-  modint pow(int64_t n) const {
+  modint pow(ll n) const {
+    assert(n >= 0);
     modint ret(1), mul(val);
     while (n > 0) {
       if (n & 1) ret *= mul;
@@ -65,6 +67,19 @@ struct modint {
   }
 #endif
   static constexpr int get_mod() { return mod; }
+
+  // (n, r), r は 1 の 2^n 乗根
+  static pair<int, int> ntt_info() {
+    if (mod == 167772161) return {25, 17};
+    if (mod == 469762049) return {26, 30};
+    if (mod == 754974721) return {24, 362};
+    if (mod == 880803841) return {23, 211};
+    if (mod == 998244353) return {23, 31};
+    if (mod == 1045430273) return {20, 363};
+    if (mod == 1051721729) return {20, 330};
+    if (mod == 1053818881) return {20, 2789};
+    return {-1, -1};
+  }
 };
 
 struct ArbitraryModInt {
@@ -125,6 +140,7 @@ struct ArbitraryModInt {
     return ArbitraryModInt(u);
   }
   ArbitraryModInt pow(int64_t n) const {
+    assert(n >= 0);
     ArbitraryModInt ret(1), mul(val);
     while (n > 0) {
       if (n & 1) ret *= mul;
@@ -138,115 +154,6 @@ struct ArbitraryModInt {
   void read() { fastio::scanner.read(val); }
 #endif
 };
-
-template <typename mint>
-mint inv(int n) {
-  static const int mod = mint::get_mod();
-  static vector<mint> dat = {0, 1};
-  assert(0 <= n);
-  if (n >= mod) n %= mod;
-  while (int(dat.size()) <= n) {
-    int k = dat.size();
-    auto q = (mod + k - 1) / k;
-    int r = k * q - mod;
-    dat.emplace_back(dat[r] * mint(q));
-  }
-  return dat[n];
-}
-
-template <typename mint>
-mint fact(int n) {
-  static const int mod = mint::get_mod();
-  static vector<mint> dat = {1, 1};
-  assert(0 <= n);
-  if (n >= mod) return 0;
-  while (int(dat.size()) <= n) {
-    int k = dat.size();
-    dat.emplace_back(dat[k - 1] * mint(k));
-  }
-  return dat[n];
-}
-
-template <typename mint>
-mint fact_inv(int n) {
-  static const int mod = mint::get_mod();
-  static vector<mint> dat = {1, 1};
-  assert(-1 <= n && n < mod);
-  if (n == -1) return mint(0);
-  while (int(dat.size()) <= n) {
-    int k = dat.size();
-    dat.emplace_back(dat[k - 1] * inv<mint>(k));
-  }
-  return dat[n];
-}
-
-template <class mint, class... Ts>
-mint fact_invs(Ts... xs) {
-  return (mint(1) * ... * fact_inv<mint>(xs));
-}
-
-template <typename mint, class Head, class... Tail>
-mint multinomial(Head &&head, Tail &&... tail) {
-  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);
-}
-
-template <typename mint>
-mint C_dense(int n, int k) {
-  static vvc<mint> C;
-  static int H = 0, W = 0;
-
-  auto calc = [&](int i, int j) -> mint {
-    if (i == 0) return (j == 0 ? mint(1) : mint(0));
-    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);
-  };
-
-  if (W <= k) {
-    FOR(i, H) {
-      C[i].resize(k + 1);
-      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }
-    }
-    W = k + 1;
-  }
-  if (H <= n) {
-    C.resize(n + 1);
-    FOR(i, H, n + 1) {
-      C[i].resize(W);
-      FOR(j, W) { C[i][j] = calc(i, j); }
-    }
-    H = n + 1;
-  }
-  return C[n][k];
-}
-
-template <typename mint, bool large = false, bool dense = false>
-mint C(ll n, ll k) {
-  assert(n >= 0);
-  if (k < 0 || n < k) return 0;
-  if (dense) return C_dense<mint>(n, k);
-  if (!large) return fact<mint>(n) * fact_inv<mint>(k) * fact_inv<mint>(n - k);
-  k = min(k, n - k);
-  mint x(1);
-  FOR(i, k) { x *= mint(n - i); }
-  x *= fact_inv<mint>(k);
-  return x;
-}
-
-template <typename mint, bool large = false>
-mint C_inv(ll n, ll k) {
-  assert(n >= 0);
-  assert(0 <= k && k <= n);
-  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);
-  return mint(1) / C<mint, 1>(n, k);
-}
-
-// [x^d] (1-x) ^ {-n} の計算
-template <typename mint, bool large = false, bool dense = false>
-mint C_negative(ll n, ll d) {
-  assert(n >= 0);
-  if (d < 0) return mint(0);
-  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }
-  return C<mint, large, dense>(n + d - 1, d);
-}
 
 using modint107 = modint<1000000007>;
 using modint998 = modint<998244353>;
