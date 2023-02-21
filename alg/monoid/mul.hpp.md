@@ -8,7 +8,7 @@ data:
   - icon: ':x:'
     path: ds/power_query.hpp
     title: ds/power_query.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
   - icon: ':x:'
@@ -30,7 +30,7 @@ data:
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
   - icon: ':x:'

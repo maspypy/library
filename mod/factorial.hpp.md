@@ -17,7 +17,7 @@ data:
   - icon: ':x:'
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
   - icon: ':x:'
@@ -32,7 +32,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/multiplicative_convolution_mod2n.hpp
     title: nt/multiplicative_convolution_mod2n.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
   - icon: ':x:'
@@ -68,7 +68,7 @@ data:
   - icon: ':x:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':x:'
@@ -86,13 +86,13 @@ data:
   - icon: ':x:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution.hpp
     title: poly/multivar_convolution.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
   - icon: ':question:'
@@ -164,7 +164,7 @@ data:
   - icon: ':x:'
     path: seq/famous/indecomposable_permutations.hpp
     title: seq/famous/indecomposable_permutations.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/famous/partition_number.hpp
     title: seq/famous/partition_number.hpp
   - icon: ':x:'
@@ -261,40 +261,40 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/sort_segtree.test.cpp
     title: test/library_checker/datastructure/sort_segtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/sort_segtree_1.test.cpp
     title: test/library_checker/datastructure/sort_segtree_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/enumerate_cliques.test.cpp
     title: test/library_checker/graph/enumerate_cliques.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/find_linear_recurrence.test.cpp
     title: test/library_checker/math/find_linear_recurrence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/gcd_convolution.test.cpp
     title: test/library_checker/math/gcd_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/lcm_convolution.test.cpp
     title: test/library_checker/math/lcm_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/partition.test.cpp
     title: test/library_checker/math/partition.test.cpp
   - icon: ':x:'
