@@ -375,17 +375,20 @@ data:
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
     \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 8\
-    \ \"test/mytest/rect_add_pt_sum.test.cpp\"\n\nusing mint = modint998;\nusing QT\
-    \ = tuple<ll, ll, ll, ll, ll>;\n\npair<vc<QT>, vc<pi>> gen(int H, int W, int Q)\
-    \ {\n  vc<tuple<ll, ll, ll, ll, ll>> add_query;\n  FOR(Q) {\n    ll a = RNG(0,\
-    \ H);\n    ll b = RNG(a + 1, H + 1);\n    ll c = RNG(0, W);\n    ll d = RNG(c\
-    \ + 1, W + 1);\n    ll x = RNG(0, mint::get_mod());\n    add_query.eb(a, b, c,\
-    \ d, x);\n  }\n\n  vc<pi> sum_query;\n  FOR(Q) {\n    ll x = RNG(0, H), y = RNG(0,\
-    \ W);\n    sum_query.eb(x, y);\n  }\n  return {add_query, sum_query};\n}\n\nvc<mint>\
-    \ sol_1(int H, int W, vc<QT> add_query, vc<pi> sum_query) {\n  vv(mint, A, H,\
-    \ W);\n  for (auto&& [a, b, c, d, x]: add_query) {\n    FOR(i, a, b) FOR(j, c,\
-    \ d) { A[i][j] += mint(x); }\n  }\n  vc<mint> ANS;\n  for (auto&& [x, y]: sum_query)\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n#line 8 \"test/mytest/rect_add_pt_sum.test.cpp\"\n\nusing mint = modint998;\n\
+    using QT = tuple<ll, ll, ll, ll, ll>;\n\npair<vc<QT>, vc<pi>> gen(int H, int W,\
+    \ int Q) {\n  vc<tuple<ll, ll, ll, ll, ll>> add_query;\n  FOR(Q) {\n    ll a =\
+    \ RNG(0, H);\n    ll b = RNG(a + 1, H + 1);\n    ll c = RNG(0, W);\n    ll d =\
+    \ RNG(c + 1, W + 1);\n    ll x = RNG(0, mint::get_mod());\n    add_query.eb(a,\
+    \ b, c, d, x);\n  }\n\n  vc<pi> sum_query;\n  FOR(Q) {\n    ll x = RNG(0, H),\
+    \ y = RNG(0, W);\n    sum_query.eb(x, y);\n  }\n  return {add_query, sum_query};\n\
+    }\n\nvc<mint> sol_1(int H, int W, vc<QT> add_query, vc<pi> sum_query) {\n  vv(mint,\
+    \ A, H, W);\n  for (auto&& [a, b, c, d, x]: add_query) {\n    FOR(i, a, b) FOR(j,\
+    \ c, d) { A[i][j] += mint(x); }\n  }\n  vc<mint> ANS;\n  for (auto&& [x, y]: sum_query)\
     \ ANS.eb(A[x][y]);\n  return ANS;\n}\n\nvc<mint> sol_2(int H, int W, vc<QT> add_query,\
     \ vc<pi> sum_query) {\n  vc<mint> ANS;\n  for (auto&& [x, y]: sum_query) {\n \
     \   mint ans = 0;\n    for (auto&& [a, b, c, d, v]: add_query) {\n      if (a\
@@ -450,7 +453,7 @@ data:
   isVerificationFile: true
   path: test/mytest/rect_add_pt_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-02-22 01:01:01+09:00'
+  timestamp: '2023-02-22 03:23:22+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/rect_add_pt_sum.test.cpp

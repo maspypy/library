@@ -350,8 +350,11 @@ data:
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
     \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 1\
-    \ \"enumerate/clique.hpp\"\n// N2^{sqrt(2m)}\n// https://www.slideshare.net/wata_orz/ss-12131479\n\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n#line 1 \"enumerate/clique.hpp\"\n// N2^{sqrt(2m)}\n// https://www.slideshare.net/wata_orz/ss-12131479\n\
     template <typename Gr, typename F>\nvoid enumerate_clique(Gr& G, F query) {\n\
     \  int N = G.N;\n  auto deg = G.deg_array();\n  vc<bool> done(N);\n  vv(int, can,\
     \ N, N);\n  for (auto&& e: G.edges) { can[e.frm][e.to] = can[e.to][e.frm] = 1;\
@@ -390,7 +393,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/enumerate_cliques.test.cpp
   requiredBy: []
-  timestamp: '2023-02-22 01:01:01+09:00'
+  timestamp: '2023-02-22 03:23:22+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/enumerate_cliques.test.cpp

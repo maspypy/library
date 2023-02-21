@@ -323,10 +323,13 @@ data:
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
     \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 2\
-    \ \"alg/acted_set/affine.hpp\"\n\n// 1 \u6B21\u5143\u30D9\u30AF\u30C8\u30EB\u7A7A\
-    \u9593\u306B\u3001\u30A2\u30D5\u30A3\u30F3\u5909\u63DB\u304C\u4F5C\u7528\ntemplate\
-    \ <typename T>\nstruct ActedSet_Affine {\n  using Monoid_A = Monoid_Affine<T>;\n\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n#line 2 \"alg/acted_set/affine.hpp\"\n\n// 1 \u6B21\u5143\u30D9\u30AF\u30C8\
+    \u30EB\u7A7A\u9593\u306B\u3001\u30A2\u30D5\u30A3\u30F3\u5909\u63DB\u304C\u4F5C\
+    \u7528\ntemplate <typename T>\nstruct ActedSet_Affine {\n  using Monoid_A = Monoid_Affine<T>;\n\
     \  using A = typename Monoid_A::value_type;\n  using S = T;\n  static S act(const\
     \ S &x, const A &g) { return g.fi * x + g.se; }\n};\n#line 1 \"alg/acted_set/from_monoid.hpp\"\
     \ntemplate <typename Monoid>\nstruct ActedSet_From_Monoid {\n  using Monoid_A\
@@ -414,7 +417,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc270_g.test.cpp
   requiredBy: []
-  timestamp: '2023-02-22 01:01:01+09:00'
+  timestamp: '2023-02-22 03:23:22+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc270_g.test.cpp

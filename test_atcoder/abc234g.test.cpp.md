@@ -400,13 +400,16 @@ data:
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
     \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 8\
-    \ \"test_atcoder/abc234g.test.cpp\"\n\nusing mint = modint998;\n\nvoid solve()\
-    \ {\n  LL(N);\n  VEC(int, A, N);\n  CartesianTree<int, 1> X1(A);\n  CartesianTree<int,\
-    \ 0> X2(A);\n  Lazy_SegTree<ActedMonoid_Sum_Add<mint>> seg(N + 1);\n  seg.set(0,\
-    \ mint(1));\n\n  FOR(i, N) {\n    auto [L1, R1] = X1.range[i];\n    mint x1 =\
-    \ seg.prod(L1, i + 1);\n    seg.apply(i + 1, R1 + 1, -x1 * mint(A[i]));\n\n  \
-    \  auto [L2, R2] = X2.range[i];\n    mint x2 = seg.prod(L2, i + 1);\n    seg.apply(i\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n#line 8 \"test_atcoder/abc234g.test.cpp\"\n\nusing mint = modint998;\n\n\
+    void solve() {\n  LL(N);\n  VEC(int, A, N);\n  CartesianTree<int, 1> X1(A);\n\
+    \  CartesianTree<int, 0> X2(A);\n  Lazy_SegTree<ActedMonoid_Sum_Add<mint>> seg(N\
+    \ + 1);\n  seg.set(0, mint(1));\n\n  FOR(i, N) {\n    auto [L1, R1] = X1.range[i];\n\
+    \    mint x1 = seg.prod(L1, i + 1);\n    seg.apply(i + 1, R1 + 1, -x1 * mint(A[i]));\n\
+    \n    auto [L2, R2] = X2.range[i];\n    mint x2 = seg.prod(L2, i + 1);\n    seg.apply(i\
     \ + 1, R2 + 1, x2 * mint(A[i]));\n  }\n  print(seg.get(N));\n}\n\nsigned main()\
     \ {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc234/tasks/abc234_g\"\n#include\
@@ -432,7 +435,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc234g.test.cpp
   requiredBy: []
-  timestamp: '2023-02-22 01:01:01+09:00'
+  timestamp: '2023-02-22 03:23:22+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc234g.test.cpp

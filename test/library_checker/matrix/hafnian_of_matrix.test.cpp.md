@@ -302,20 +302,23 @@ data:
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
     \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 1\
-    \ \"linalg/hafnian.hpp\"\ntemplate <typename mint, int LIM = 50>\r\nmint Hufnian(vc<vc<mint>>&\
-    \ B0) {\r\n  // \u96A3\u63A5\u884C\u5217\u306B\u5BFE\u3057\u3066\u5B8C\u5168\u30DE\
-    \u30C3\u30C1\u30F3\u30B0\u3092\u6570\u3048\u308B\u3002\r\n  int n = len(B0) /\
-    \ 2;\r\n  using poly = array<mint, LIM / 2>;\r\n  auto add_mul = [&](poly& p,\
-    \ poly& f, poly& g) -> void {\r\n    FOR(i, n) FOR(j, n - i) p[i + j + 1] += f[i]\
-    \ * g[j];\r\n  };\r\n  auto dfs = [&](auto self, vc<vc<poly>> B) -> poly {\r\n\
-    \    poly res;\r\n    if (len(B) == 0) {\r\n      res[0] = 1;\r\n      return\
-    \ res;\r\n    }\r\n    auto a = B.back();\r\n    B.pop_back();\r\n    auto b =\
-    \ B.back();\r\n    B.pop_back();\r\n    int m = len(B);\r\n    poly p0 = self(self,\
-    \ B);\r\n    FOR(i, m) FOR(j, i) {\r\n      add_mul(B[i][j], a[i], b[j]);\r\n\
-    \      add_mul(B[i][j], a[j], b[i]);\r\n    }\r\n    poly p1 = self(self, B);\r\
-    \n    add_mul(res, a[m], p1);\r\n    FOR(i, n + 1) res[i] += p1[i] - p0[i];\r\n\
-    \    return res;\r\n  };\r\n  vv(poly, B, n + n, n + n);\r\n  FOR(i, n + n) FOR(j,\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n#line 1 \"linalg/hafnian.hpp\"\ntemplate <typename mint, int LIM = 50>\r\
+    \nmint Hufnian(vc<vc<mint>>& B0) {\r\n  // \u96A3\u63A5\u884C\u5217\u306B\u5BFE\
+    \u3057\u3066\u5B8C\u5168\u30DE\u30C3\u30C1\u30F3\u30B0\u3092\u6570\u3048\u308B\
+    \u3002\r\n  int n = len(B0) / 2;\r\n  using poly = array<mint, LIM / 2>;\r\n \
+    \ auto add_mul = [&](poly& p, poly& f, poly& g) -> void {\r\n    FOR(i, n) FOR(j,\
+    \ n - i) p[i + j + 1] += f[i] * g[j];\r\n  };\r\n  auto dfs = [&](auto self, vc<vc<poly>>\
+    \ B) -> poly {\r\n    poly res;\r\n    if (len(B) == 0) {\r\n      res[0] = 1;\r\
+    \n      return res;\r\n    }\r\n    auto a = B.back();\r\n    B.pop_back();\r\n\
+    \    auto b = B.back();\r\n    B.pop_back();\r\n    int m = len(B);\r\n    poly\
+    \ p0 = self(self, B);\r\n    FOR(i, m) FOR(j, i) {\r\n      add_mul(B[i][j], a[i],\
+    \ b[j]);\r\n      add_mul(B[i][j], a[j], b[i]);\r\n    }\r\n    poly p1 = self(self,\
+    \ B);\r\n    add_mul(res, a[m], p1);\r\n    FOR(i, n + 1) res[i] += p1[i] - p0[i];\r\
+    \n    return res;\r\n  };\r\n  vv(poly, B, n + n, n + n);\r\n  FOR(i, n + n) FOR(j,\
     \ n + n) B[i][j][0] = B0[i][j];\r\n  return dfs(dfs, B)[n];\r\n}\r\n#line 6 \"\
     test/library_checker/matrix/hafnian_of_matrix.test.cpp\"\n\r\nusing mint = modint998;\r\
     \nvoid solve() {\r\n  LL(N);\r\n  VV(mint, B, N, N);\r\n  auto ANS = Hufnian(B);\r\
@@ -336,7 +339,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/hafnian_of_matrix.test.cpp
   requiredBy: []
-  timestamp: '2023-02-22 01:01:01+09:00'
+  timestamp: '2023-02-22 03:23:22+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/matrix/hafnian_of_matrix.test.cpp

@@ -306,8 +306,11 @@ data:
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
     \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 2\
-    \ \"setfunc/hadamard.hpp\"\n\r\ntemplate <typename T>\r\nvoid hadamard(vc<T>&\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n#line 2 \"setfunc/hadamard.hpp\"\n\r\ntemplate <typename T>\r\nvoid hadamard(vc<T>&\
     \ A) {\r\n  int log = topbit(len(A));\r\n  assert(1 << log == len(A));\r\n  FOR(n,\
     \ log) FOR(s, 1 << log) {\r\n    int t = s ^ (1 << n);\r\n    if (s < t) tie(A[s],\
     \ A[t]) = mp(A[s] + A[t], A[s] - A[t]);  \r\n  }\r\n}\n#line 2 \"setfunc/xor_convolution.hpp\"\
@@ -337,7 +340,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/convolution/bitwise_xor_convolution.test.cpp
   requiredBy: []
-  timestamp: '2023-02-22 01:01:01+09:00'
+  timestamp: '2023-02-22 03:23:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/convolution/bitwise_xor_convolution.test.cpp

@@ -336,12 +336,15 @@ data:
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
     \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 7\
-    \ \"test/library_checker/matrix/sparse_matrix_det.test.cpp\"\nusing mint = modint998;\r\
-    \n\r\nvoid solve() {\r\n  LL(N, K);\r\n  using T = tuple<int, int, mint>;\r\n\
-    \  VEC(T, dat, K);\r\n  print(spmat_det(N, dat));\r\n}\r\n\r\nsigned main() {\r\
-    \n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
-    \n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n#line 7 \"test/library_checker/matrix/sparse_matrix_det.test.cpp\"\nusing\
+    \ mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N, K);\r\n  using T = tuple<int,\
+    \ int, mint>;\r\n  VEC(T, dat, K);\r\n  print(spmat_det(N, dat));\r\n}\r\n\r\n\
+    signed main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n \
+    \ cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sparse_matrix_det\"\r\n\
     #include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"linalg/spmat_det.hpp\"\
     \r\n\r\n#include \"mod/modint.hpp\"\r\nusing mint = modint998;\r\n\r\nvoid solve()\
@@ -361,7 +364,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/sparse_matrix_det.test.cpp
   requiredBy: []
-  timestamp: '2023-02-22 01:01:01+09:00'
+  timestamp: '2023-02-22 03:23:22+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/matrix/sparse_matrix_det.test.cpp

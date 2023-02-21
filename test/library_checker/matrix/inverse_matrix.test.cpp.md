@@ -302,22 +302,25 @@ data:
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
     \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 1\
-    \ \"linalg/mat_inv.hpp\"\n// (det, invA) \u3092\u304B\u3048\u3059\r\ntemplate\
-    \ <typename T>\r\npair<T, vc<vc<T>>> mat_inv(vc<vc<T>> A) {\r\n  T det = 1;\r\n\
-    \  int N = len(A);\r\n  vv(T, B, N, N);\r\n  FOR(n, N) B[n][n] = 1;\r\n  FOR(i,\
-    \ N) {\r\n    FOR(k, i, N) if (A[k][i] != 0) {\r\n      if (k != i) {\r\n    \
-    \    swap(A[i], A[k]), swap(B[i], B[k]);\r\n        det = -det;\r\n      }\r\n\
-    \      break;\r\n    }\r\n    if (A[i][i] == 0) return {T(0), {}};\r\n    T c\
-    \ = T(1) / A[i][i];\r\n    det *= A[i][i];\r\n    FOR(j, i, N) A[i][j] *= c;\r\
-    \n    FOR(j, N) B[i][j] *= c;\r\n    FOR(k, N) if (i != k) {\r\n      T c = A[k][i];\r\
-    \n      FOR(j, i, N) A[k][j] -= A[i][j] * c;\r\n      FOR(j, N) B[k][j] -= B[i][j]\
-    \ * c;\r\n    }\r\n  }\r\n  return {det, B};\r\n}\r\n#line 6 \"test/library_checker/matrix/inverse_matrix.test.cpp\"\
-    \n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N);\r\n  VV(mint, A, N,\
-    \ N);\r\n  auto [det, inv] = mat_inv(A);\r\n  if (inv.empty()) return print(-1);\r\
-    \n  FOR(n, N) print(inv[n]);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
-    \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
-    \n\r\n  return 0;\r\n}\r\n"
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n#line 1 \"linalg/mat_inv.hpp\"\n// (det, invA) \u3092\u304B\u3048\u3059\
+    \r\ntemplate <typename T>\r\npair<T, vc<vc<T>>> mat_inv(vc<vc<T>> A) {\r\n  T\
+    \ det = 1;\r\n  int N = len(A);\r\n  vv(T, B, N, N);\r\n  FOR(n, N) B[n][n] =\
+    \ 1;\r\n  FOR(i, N) {\r\n    FOR(k, i, N) if (A[k][i] != 0) {\r\n      if (k !=\
+    \ i) {\r\n        swap(A[i], A[k]), swap(B[i], B[k]);\r\n        det = -det;\r\
+    \n      }\r\n      break;\r\n    }\r\n    if (A[i][i] == 0) return {T(0), {}};\r\
+    \n    T c = T(1) / A[i][i];\r\n    det *= A[i][i];\r\n    FOR(j, i, N) A[i][j]\
+    \ *= c;\r\n    FOR(j, N) B[i][j] *= c;\r\n    FOR(k, N) if (i != k) {\r\n    \
+    \  T c = A[k][i];\r\n      FOR(j, i, N) A[k][j] -= A[i][j] * c;\r\n      FOR(j,\
+    \ N) B[k][j] -= B[i][j] * c;\r\n    }\r\n  }\r\n  return {det, B};\r\n}\r\n#line\
+    \ 6 \"test/library_checker/matrix/inverse_matrix.test.cpp\"\n\r\nusing mint =\
+    \ modint998;\r\nvoid solve() {\r\n  LL(N);\r\n  VV(mint, A, N, N);\r\n  auto [det,\
+    \ inv] = mat_inv(A);\r\n  if (inv.empty()) return print(-1);\r\n  FOR(n, N) print(inv[n]);\r\
+    \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inverse_matrix\"\r\n#include\
     \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"mod/modint.hpp\"\
     \r\n#include \"linalg/mat_inv.hpp\"\r\n\r\nusing mint = modint998;\r\nvoid solve()\
@@ -334,7 +337,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/inverse_matrix.test.cpp
   requiredBy: []
-  timestamp: '2023-02-22 01:01:01+09:00'
+  timestamp: '2023-02-22 03:23:22+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/matrix/inverse_matrix.test.cpp

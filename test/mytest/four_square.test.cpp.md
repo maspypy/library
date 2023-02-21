@@ -369,15 +369,18 @@ data:
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
     \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 3\
-    \ \"mod/mod_sqrt.hpp\"\n\r\ntemplate <typename mint>\r\nmint mod_sqrt(mint a)\
-    \ {\r\n  int p = mint::get_mod();\r\n  if (p == 2) return a;\r\n  if (a == 0)\
-    \ return 0;\r\n  int k = (p - 1) / 2;\r\n  if (a.pow(k) != 1) return 0;\r\n  auto\
-    \ find = [&]() -> pair<mint, mint> {\r\n    while (1) {\r\n      mint b = RNG(2,\
-    \ p);\r\n      mint D = b * b - a;\r\n      if (D == 0) return {b, D};\r\n   \
-    \   if (D.pow(k) != mint(1)) return {b, D};\r\n    }\r\n  };\r\n  auto [b, D]\
-    \ = find();\r\n  if (D == 0) return b;\r\n  ++k;\r\n  // (b + sqrt(D))^k\r\n \
-    \ mint f0 = b, f1 = 1;\r\n  mint g0 = 1, g1 = 0;\r\n  while (k) {\r\n    if (k\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n#line 3 \"mod/mod_sqrt.hpp\"\n\r\ntemplate <typename mint>\r\nmint mod_sqrt(mint\
+    \ a) {\r\n  int p = mint::get_mod();\r\n  if (p == 2) return a;\r\n  if (a ==\
+    \ 0) return 0;\r\n  int k = (p - 1) / 2;\r\n  if (a.pow(k) != 1) return 0;\r\n\
+    \  auto find = [&]() -> pair<mint, mint> {\r\n    while (1) {\r\n      mint b\
+    \ = RNG(2, p);\r\n      mint D = b * b - a;\r\n      if (D == 0) return {b, D};\r\
+    \n      if (D.pow(k) != mint(1)) return {b, D};\r\n    }\r\n  };\r\n  auto [b,\
+    \ D] = find();\r\n  if (D == 0) return b;\r\n  ++k;\r\n  // (b + sqrt(D))^k\r\n\
+    \  mint f0 = b, f1 = 1;\r\n  mint g0 = 1, g1 = 0;\r\n  while (k) {\r\n    if (k\
     \ & 1) { tie(g0, g1) = mp(f0 * g0 + D * f1 * g1, f1 * g0 + f0 * g1); }\r\n   \
     \ tie(f0, f1) = mp(f0 * f0 + D * f1 * f1, mint(2) * f0 * f1);\r\n    k >>= 1;\r\
     \n  }\r\n  return g0;\r\n}\r\n#line 5 \"nt/four_square.hpp\"\n\n// N = a^2+b^2+c^2+d^2\
@@ -428,7 +431,7 @@ data:
   isVerificationFile: true
   path: test/mytest/four_square.test.cpp
   requiredBy: []
-  timestamp: '2023-02-22 01:01:01+09:00'
+  timestamp: '2023-02-22 03:23:22+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/four_square.test.cpp

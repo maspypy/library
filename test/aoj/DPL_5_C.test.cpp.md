@@ -301,11 +301,14 @@ data:
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
     \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 1\
-    \ \"setfunc/count_surjection.hpp\"\ntemplate<typename mint>\r\nmint count_surjection(ll\
-    \ n, ll m) {\r\n  if (n < m) return 0;\r\n  mint res = 0;\r\n  FOR(i, m + 1) {\r\
-    \n    mint sgn = ((m - i) & 1 ? -1 : 1);\r\n    res += mint(i).pow(n) * C<mint>(m,\
-    \ i) * sgn;\r\n  }\r\n  return res;\r\n}\n#line 7 \"test/aoj/DPL_5_C.test.cpp\"\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n#line 1 \"setfunc/count_surjection.hpp\"\ntemplate<typename mint>\r\nmint\
+    \ count_surjection(ll n, ll m) {\r\n  if (n < m) return 0;\r\n  mint res = 0;\r\
+    \n  FOR(i, m + 1) {\r\n    mint sgn = ((m - i) & 1 ? -1 : 1);\r\n    res += mint(i).pow(n)\
+    \ * C<mint>(m, i) * sgn;\r\n  }\r\n  return res;\r\n}\n#line 7 \"test/aoj/DPL_5_C.test.cpp\"\
     \n\nusing mint = modint107;\n\nvoid solve() {\n  LL(N, K);\n  print(count_surjection<mint>(N,\
     \ K));\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
@@ -325,7 +328,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL_5_C.test.cpp
   requiredBy: []
-  timestamp: '2023-02-22 01:01:01+09:00'
+  timestamp: '2023-02-22 03:23:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL_5_C.test.cpp

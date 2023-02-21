@@ -308,17 +308,20 @@ data:
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
     \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 7\
-    \ \"test/mytest/enumerate_multisets.test.cpp\"\n\nusing mint = modint998;\n\n\
-    void test() {\n  {\n    vvc<int> res;\n    auto f = [&](vc<int> A) -> void { res.eb(A);\
-    \ };\n    enumerate_multiset(3, 2, f);\n    assert(len(res) == 6);\n    assert(res[0]\
-    \ == vc<int>({0, 0}));\n    assert(res[1] == vc<int>({0, 1}));\n    assert(res[2]\
-    \ == vc<int>({0, 2}));\n    assert(res[3] == vc<int>({1, 1}));\n    assert(res[4]\
-    \ == vc<int>({1, 2}));\n    assert(res[5] == vc<int>({2, 2}));\n  }\n  {\n   \
-    \ int cnt = 0;\n    auto f = [&](vc<int> A) -> void { ++cnt; };\n    enumerate_multiset(3,\
-    \ 4, f);\n    assert(cnt == 15);\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a\
-    \ + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  test();\n\
-    \  solve();\n\n  return 0;\n}\n"
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n#line 7 \"test/mytest/enumerate_multisets.test.cpp\"\n\nusing mint = modint998;\n\
+    \nvoid test() {\n  {\n    vvc<int> res;\n    auto f = [&](vc<int> A) -> void {\
+    \ res.eb(A); };\n    enumerate_multiset(3, 2, f);\n    assert(len(res) == 6);\n\
+    \    assert(res[0] == vc<int>({0, 0}));\n    assert(res[1] == vc<int>({0, 1}));\n\
+    \    assert(res[2] == vc<int>({0, 2}));\n    assert(res[3] == vc<int>({1, 1}));\n\
+    \    assert(res[4] == vc<int>({1, 2}));\n    assert(res[5] == vc<int>({2, 2}));\n\
+    \  }\n  {\n    int cnt = 0;\n    auto f = [&](vc<int> A) -> void { ++cnt; };\n\
+    \    enumerate_multiset(3, 4, f);\n    assert(cnt == 15);\n  }\n}\n\nvoid solve()\
+    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"enumerate/multiset.hpp\"\n#include \"\
     mod/modint.hpp\"\n\nusing mint = modint998;\n\nvoid test() {\n  {\n    vvc<int>\
@@ -340,7 +343,7 @@ data:
   isVerificationFile: true
   path: test/mytest/enumerate_multisets.test.cpp
   requiredBy: []
-  timestamp: '2023-02-22 01:01:01+09:00'
+  timestamp: '2023-02-22 03:23:22+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/enumerate_multisets.test.cpp

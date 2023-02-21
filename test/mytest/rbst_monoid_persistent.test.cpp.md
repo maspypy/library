@@ -312,9 +312,12 @@ data:
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
     \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 1\
-    \ \"ds/randomized_bst/rbst_monoid.hpp\"\ntemplate <typename Monoid, bool PERSISTENT,\
-    \ int NODES>\nstruct RBST_Monoid {\n  using X = typename Monoid::value_type;\n\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n#line 1 \"ds/randomized_bst/rbst_monoid.hpp\"\ntemplate <typename Monoid,\
+    \ bool PERSISTENT, int NODES>\nstruct RBST_Monoid {\n  using X = typename Monoid::value_type;\n\
     \n  struct Node {\n    Node *l, *r;\n    X x, prod, rev_prod; // rev \u53CD\u6620\
     \u6E08\n    u32 size;\n    bool rev;\n  };\n\n  Node *pool;\n  int pid;\n  using\
     \ np = Node *;\n\n  RBST_Monoid() : pid(0) { pool = new Node[NODES]; }\n\n  void\
@@ -487,7 +490,7 @@ data:
   isVerificationFile: true
   path: test/mytest/rbst_monoid_persistent.test.cpp
   requiredBy: []
-  timestamp: '2023-02-22 01:01:01+09:00'
+  timestamp: '2023-02-22 03:23:22+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/rbst_monoid_persistent.test.cpp

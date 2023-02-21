@@ -387,8 +387,11 @@ data:
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
     \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 8\
-    \ \"test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp\"\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n#line 8 \"test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid solve() {\n  using Mono = Monoid_Affine<mint>;\n\
     \  using X = Mono::value_type;\n  LL(N, Q);\n  VEC(X, dat, N);\n\n  Dynamic_SegTree<Mono,\
     \ false, 1000000> seg(0, N);\n  auto root = seg.new_node(dat);\n\n  FOR(Q) {\n\
@@ -414,7 +417,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
   requiredBy: []
-  timestamp: '2023-02-22 01:01:01+09:00'
+  timestamp: '2023-02-22 03:23:22+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp

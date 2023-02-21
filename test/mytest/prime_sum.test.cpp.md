@@ -340,11 +340,14 @@ data:
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
     \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 8\
-    \ \"test/mytest/prime_sum.test.cpp\"\n\nvoid test_count() {\n  vc<int> A(1000);\n\
-    \  for (auto&& p: primetable(1000)) { A[p]++; }\n  A = cumsum<int>(A, 0);\n\n\
-    \  FOR(N, 1000) {\n    PrimeSum<int> X(N);\n    X.calc_count();\n    FOR(K, 1,\
-    \ N + 10) { assert(X[N / K] == A[N / K]); }\n  }\n\n  vc<ll> TEN(13);\n  TEN[0]\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n#line 8 \"test/mytest/prime_sum.test.cpp\"\n\nvoid test_count() {\n  vc<int>\
+    \ A(1000);\n  for (auto&& p: primetable(1000)) { A[p]++; }\n  A = cumsum<int>(A,\
+    \ 0);\n\n  FOR(N, 1000) {\n    PrimeSum<int> X(N);\n    X.calc_count();\n    FOR(K,\
+    \ 1, N + 10) { assert(X[N / K] == A[N / K]); }\n  }\n\n  vc<ll> TEN(13);\n  TEN[0]\
     \ = 1;\n  FOR(i, 12) TEN[i + 1] = TEN[i] * 10;\n\n  ll N = TEN[12];\n  PrimeSum<ll>\
     \ X(N);\n  X.calc_count();\n  assert(X[TEN[0]] == 0);\n  assert(X[TEN[1]] == 4);\n\
     \  assert(X[TEN[2]] == 25);\n  assert(X[TEN[3]] == 168);\n  assert(X[TEN[4]] ==\
@@ -407,7 +410,7 @@ data:
   isVerificationFile: true
   path: test/mytest/prime_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-02-22 01:01:01+09:00'
+  timestamp: '2023-02-22 03:23:22+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/prime_sum.test.cpp

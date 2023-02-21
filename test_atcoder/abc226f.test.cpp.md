@@ -313,14 +313,17 @@ data:
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
     \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 6\
-    \ \"test_atcoder/abc226f.test.cpp\"\n\nusing mint = modint998;\n\nvoid solve()\
-    \ {\n  LL(N, K);\n  mint ANS = 0;\n  enumerate_partition(N, [&](vc<int> P) {\n\
-    \    mint x = fact<mint>(N);\n    for (auto&& a: P) x *= inv<mint>(a);\n    map<int,\
-    \ int> MP;\n    for (auto&& a: P) MP[a]++;\n    for (auto&& [a, b]: MP) x *= fact_inv<mint>(b);\n\
-    \n    ll lcm = 1;\n    for (auto&& [a, b]: MP) { lcm = lcm / gcd<ll>(a, lcm) *\
-    \ a; }\n    ANS += mint(lcm).pow(K) * x;\n  });\n  print(ANS);\n}\n\nsigned main()\
-    \ {\n  solve();\n  return 0;\n}\n"
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n#line 6 \"test_atcoder/abc226f.test.cpp\"\n\nusing mint = modint998;\n\n\
+    void solve() {\n  LL(N, K);\n  mint ANS = 0;\n  enumerate_partition(N, [&](vc<int>\
+    \ P) {\n    mint x = fact<mint>(N);\n    for (auto&& a: P) x *= inv<mint>(a);\n\
+    \    map<int, int> MP;\n    for (auto&& a: P) MP[a]++;\n    for (auto&& [a, b]:\
+    \ MP) x *= fact_inv<mint>(b);\n\n    ll lcm = 1;\n    for (auto&& [a, b]: MP)\
+    \ { lcm = lcm / gcd<ll>(a, lcm) * a; }\n    ANS += mint(lcm).pow(K) * x;\n  });\n\
+    \  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc226/tasks/abc226_f\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"enumerate/partition.hpp\"\
     \n#include \"mod/modint.hpp\"\n\nusing mint = modint998;\n\nvoid solve() {\n \
@@ -339,7 +342,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc226f.test.cpp
   requiredBy: []
-  timestamp: '2023-02-22 01:01:01+09:00'
+  timestamp: '2023-02-22 03:23:22+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc226f.test.cpp

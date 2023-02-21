@@ -298,14 +298,18 @@ data:
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
     \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 6\
-    \ \"test/mytest/multinomial.test.cpp\"\nusing mint = modint998;\n\nvoid test()\
-    \ {\n  assert(fact_invs<mint>() == mint(1));\n  assert(fact_invs<mint>(3) == mint(6).inverse());\n\
-    \  assert(fact_invs<mint>(3, 4, 5) == mint(6 * 24 * 120).inverse());\n\n  assert(multinomial<mint>(10,\
-    \ 10) == mint(1));\n  assert(multinomial<mint>(10, 2, 8) == mint(45));\n  assert(multinomial<mint>(10,\
-    \ 2, 3, 5) == mint(2520));\n  assert(multinomial<mint>(10, 1, 2, 3, 4) == mint(12600));\n\
-    }\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout\
-    \ << fixed << setprecision(15);\n\n  test();\n  solve();\n\n  return 0;\n}\n"
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n#line 6 \"test/mytest/multinomial.test.cpp\"\nusing mint = modint998;\n\
+    \nvoid test() {\n  assert(fact_invs<mint>() == mint(1));\n  assert(fact_invs<mint>(3)\
+    \ == mint(6).inverse());\n  assert(fact_invs<mint>(3, 4, 5) == mint(6 * 24 * 120).inverse());\n\
+    \n  assert(multinomial<mint>(10, 10) == mint(1));\n  assert(multinomial<mint>(10,\
+    \ 2, 8) == mint(45));\n  assert(multinomial<mint>(10, 2, 3, 5) == mint(2520));\n\
+    \  assert(multinomial<mint>(10, 1, 2, 3, 4) == mint(12600));\n}\n\nvoid solve()\
+    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\nusing mint = modint998;\n\
     \nvoid test() {\n  assert(fact_invs<mint>() == mint(1));\n  assert(fact_invs<mint>(3)\
@@ -323,7 +327,7 @@ data:
   isVerificationFile: true
   path: test/mytest/multinomial.test.cpp
   requiredBy: []
-  timestamp: '2023-02-22 01:01:01+09:00'
+  timestamp: '2023-02-22 03:23:22+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/multinomial.test.cpp

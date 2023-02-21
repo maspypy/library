@@ -348,9 +348,12 @@ data:
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
     \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 8\
-    \ \"test/library_checker/datastructure/queue_operate_all_composite.test.cpp\"\n\
-    \r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(Q);\r\n  using Mono\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n#line 8 \"test/library_checker/datastructure/queue_operate_all_composite.test.cpp\"\
+    \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(Q);\r\n  using Mono\
     \ = Monoid_Affine<mint>;\r\n  using F = Mono::value_type;\r\n\r\n  Sliding_Window_Aggregation<Mono>\
     \ swag;\r\n\r\n  FOR(_, Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n      LL(a,\
     \ b);\r\n      swag.push(F({a, b}));\r\n    }\r\n    elif (t == 1) { swag.pop();\
@@ -379,7 +382,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2023-02-22 01:01:01+09:00'
+  timestamp: '2023-02-22 03:23:22+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/queue_operate_all_composite.test.cpp

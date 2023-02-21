@@ -307,12 +307,15 @@ data:
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
     \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 7\
-    \ \"test/mytest/binom.test.cpp\"\n\nusing mint = modint998;\n\nvoid test() {\n\
-    \  FOR(100000) {\n    int n = RNG(0, 1000);\n    int k = RNG(0, 1000);\n    mint\
-    \ a = C<mint>(n, k);\n    mint b = C<mint, 0, 1>(n, k);\n    mint c = C<mint,\
-    \ 1, 0>(n, k);\n    assert(a == b && b == c);\n  }\n}\n\nvoid solve() {\n  LL(a,\
-    \ b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n#line 7 \"test/mytest/binom.test.cpp\"\n\nusing mint = modint998;\n\nvoid\
+    \ test() {\n  FOR(100000) {\n    int n = RNG(0, 1000);\n    int k = RNG(0, 1000);\n\
+    \    mint a = C<mint>(n, k);\n    mint b = C<mint, 0, 1>(n, k);\n    mint c =\
+    \ C<mint, 1, 0>(n, k);\n    assert(a == b && b == c);\n  }\n}\n\nvoid solve()\
+    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
     \n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"random/base.hpp\"\n\n#include \"mod/modint.hpp\"\
@@ -331,7 +334,7 @@ data:
   isVerificationFile: true
   path: test/mytest/binom.test.cpp
   requiredBy: []
-  timestamp: '2023-02-22 01:01:01+09:00'
+  timestamp: '2023-02-22 03:23:22+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/binom.test.cpp

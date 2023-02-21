@@ -330,15 +330,18 @@ data:
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
     \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 8\
-    \ \"test/library_checker/datastructure/range_affine_point_add.test.cpp\"\n\nusing\
-    \ mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  VEC(mint, A, N);\n  Dual_SegTree<Monoid_Affine<mint>>\
-    \ seg(N);\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(l, r, b, c);\n\
-    \      seg.apply(l, r, {mint(b), mint(c)});\n    }\n    if (t == 1) {\n      LL(idx);\n\
-    \      mint x = A[idx];\n      auto [a, b] = seg.get(idx);\n      print(a * x\
-    \ + b);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n#line 8 \"test/library_checker/datastructure/range_affine_point_add.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  VEC(mint, A, N);\n\
+    \  Dual_SegTree<Monoid_Affine<mint>> seg(N);\n  FOR(Q) {\n    LL(t);\n    if (t\
+    \ == 0) {\n      LL(l, r, b, c);\n      seg.apply(l, r, {mint(b), mint(c)});\n\
+    \    }\n    if (t == 1) {\n      LL(idx);\n      mint x = A[idx];\n      auto\
+    \ [a, b] = seg.get(idx);\n      print(a * x + b);\n    }\n  }\n}\n\nsigned main()\
+    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_point_get\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/segtree/dual_segtree.hpp\"\
     \n#include \"alg/monoid/affine.hpp\"\n#include \"mod/modint.hpp\"\n\nusing mint\
@@ -359,7 +362,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/range_affine_point_add.test.cpp
   requiredBy: []
-  timestamp: '2023-02-22 01:01:01+09:00'
+  timestamp: '2023-02-22 03:23:22+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_affine_point_add.test.cpp

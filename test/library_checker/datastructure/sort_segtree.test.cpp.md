@@ -457,17 +457,20 @@ data:
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
     \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 8\
-    \ \"test/library_checker/datastructure/sort_segtree.test.cpp\"\n\nusing mint =\
-    \ modint998;\n\nvoid solve() {\n  // \u30AF\u30A8\u30EA\u5148\u8AAD\u307F\u3059\
-    \u308B\u65B9\n\n  using AFF = Monoid_Affine<mint>;\n  LL(N, Q);\n  vc<int> key(N);\n\
-    \  vc<pair<mint, mint>> seg_raw(N);\n  FOR(i, N) { read(key[i]), read(seg_raw[i]);\
-    \ }\n\n  vc<int> all_key = key;\n  using QT = tuple<int, int, int, int, int>;\n\
-    \  vc<QT> query(Q);\n  FOR(q, Q) {\n    LL(t);\n    if (t == 0) {\n      LL(i,\
-    \ p, a, b);\n      query[q] = {t, i, p, a, b};\n      all_key.eb(p);\n    }\n\
-    \    if (t == 1) {\n      LL(l, r, x);\n      query[q] = {t, l, r, x, 0};\n  \
-    \  }\n    if (t == 2 || t == 3) {\n      LL(l, r);\n      query[q] = {t, l, r,\
-    \ 0, 0};\n    }\n  }\n\n  UNIQUE(all_key);\n  for (auto&& k: key) k = LB(all_key,\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n#line 8 \"test/library_checker/datastructure/sort_segtree.test.cpp\"\n\n\
+    using mint = modint998;\n\nvoid solve() {\n  // \u30AF\u30A8\u30EA\u5148\u8AAD\
+    \u307F\u3059\u308B\u65B9\n\n  using AFF = Monoid_Affine<mint>;\n  LL(N, Q);\n\
+    \  vc<int> key(N);\n  vc<pair<mint, mint>> seg_raw(N);\n  FOR(i, N) { read(key[i]),\
+    \ read(seg_raw[i]); }\n\n  vc<int> all_key = key;\n  using QT = tuple<int, int,\
+    \ int, int, int>;\n  vc<QT> query(Q);\n  FOR(q, Q) {\n    LL(t);\n    if (t ==\
+    \ 0) {\n      LL(i, p, a, b);\n      query[q] = {t, i, p, a, b};\n      all_key.eb(p);\n\
+    \    }\n    if (t == 1) {\n      LL(l, r, x);\n      query[q] = {t, l, r, x, 0};\n\
+    \    }\n    if (t == 2 || t == 3) {\n      LL(l, r);\n      query[q] = {t, l,\
+    \ r, 0, 0};\n    }\n  }\n\n  UNIQUE(all_key);\n  for (auto&& k: key) k = LB(all_key,\
     \ k);\n\n  Sortable_SegTree<AFF, 4000000> seg(len(all_key), key, seg_raw);\n\n\
     \  for (auto&& [t, a, b, c, d]: query) {\n    if (t == 0) {\n      b = LB(all_key,\
     \ b);\n      seg.set(a, b, {mint(c), mint(d)});\n    }\n    if (t == 1) {\n  \
@@ -506,7 +509,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/sort_segtree.test.cpp
   requiredBy: []
-  timestamp: '2023-02-22 01:01:01+09:00'
+  timestamp: '2023-02-22 03:23:22+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/sort_segtree.test.cpp

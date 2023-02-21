@@ -302,10 +302,13 @@ data:
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
     \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 1\
-    \ \"string/count_subseq.hpp\"\ntemplate <typename mint, typename CHAR, typename\
-    \ STRING>\nmint count_subseq(STRING S) {\n  auto key = S;\n  UNIQUE(key);\n  for\
-    \ (auto&& x: S) x = LB(key, x);\n  vc<int> IDX(len(key), -1);\n  ll N = len(S);\n\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n#line 1 \"string/count_subseq.hpp\"\ntemplate <typename mint, typename\
+    \ CHAR, typename STRING>\nmint count_subseq(STRING S) {\n  auto key = S;\n  UNIQUE(key);\n\
+    \  for (auto&& x: S) x = LB(key, x);\n  vc<int> IDX(len(key), -1);\n  ll N = len(S);\n\
     \  vc<mint> DP(N + 1);\n  DP[0] = 1;\n  FOR(i, N) {\n    CHAR c = S[i];\n    DP[i\
     \ + 1] = DP[i] + DP[i];\n    if (IDX[c] != -1) { DP[i + 1] -= DP[IDX[c]]; }\n\
     \    IDX[c] = i;\n  }\n  return DP.back();\n}\n#line 6 \"test/library_checker/string/number_of_subsequences.test.cpp\"\
@@ -328,7 +331,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/number_of_subsequences.test.cpp
   requiredBy: []
-  timestamp: '2023-02-22 01:01:01+09:00'
+  timestamp: '2023-02-22 03:23:22+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/string/number_of_subsequences.test.cpp

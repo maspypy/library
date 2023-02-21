@@ -381,13 +381,16 @@ data:
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
     \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 8\
-    \ \"test_atcoder/abc222g.test.cpp\"\n\nusing mint = amint;\nusing AS = ActedSet_Affine<mint>;\n\
-    \nvoid solve() {\n  LL(mod);\n  // repunit \u306B\u5E30\u7740 \u2192 10 \u304C\
-    \u53EF\u9006\u5143\u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\n  if (mod\
-    \ % 4 == 0 || mod % 5 == 0) return print(-1);\n  if (mod % 2 == 0) mod /= 2;\n\
-    \  mint::set_mod(mod);\n  pair<mint, mint> a = {mint(10), mint(1)};\n  auto H\
-    \ = [&](mint x) -> int { return x.val; };\n  ll ANS = discrete_log_acted<AS>(a,\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n#line 8 \"test_atcoder/abc222g.test.cpp\"\n\nusing mint = amint;\nusing\
+    \ AS = ActedSet_Affine<mint>;\n\nvoid solve() {\n  LL(mod);\n  // repunit \u306B\
+    \u5E30\u7740 \u2192 10 \u304C\u53EF\u9006\u5143\u306B\u306A\u308B\u3088\u3046\u306B\
+    \u3059\u308B\n  if (mod % 4 == 0 || mod % 5 == 0) return print(-1);\n  if (mod\
+    \ % 2 == 0) mod /= 2;\n  mint::set_mod(mod);\n  pair<mint, mint> a = {mint(10),\
+    \ mint(1)};\n  auto H = [&](mint x) -> int { return x.val; };\n  ll ANS = discrete_log_acted<AS>(a,\
     \ 0, 0, H, 1, mod + 100);\n  print(ANS);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T)\
     \ solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc222/tasks/abc222_g\"\n#include\
@@ -414,7 +417,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc222g.test.cpp
   requiredBy: []
-  timestamp: '2023-02-22 01:01:01+09:00'
+  timestamp: '2023-02-22 03:23:22+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc222g.test.cpp

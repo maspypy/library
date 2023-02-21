@@ -324,12 +324,15 @@ data:
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
     \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 2\
-    \ \"alg/monoid/mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Monoid_Mul {\r\n  using\
-    \ value_type = T;\r\n  using X = T;\r\n  static constexpr X op(const X &x, const\
-    \ X &y) noexcept { return x * y; }\r\n  static constexpr X inverse(const X &x)\
-    \ noexcept { return X(1) / x; }\r\n  static constexpr X unit() { return X(1);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"ds/sliding_window_aggregation.hpp\"\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n#line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Monoid_Mul\
+    \ {\r\n  using value_type = T;\r\n  using X = T;\r\n  static constexpr X op(const\
+    \ X &x, const X &y) noexcept { return x * y; }\r\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return X(1) / x; }\r\n  static constexpr X unit() { return\
+    \ X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"ds/sliding_window_aggregation.hpp\"\
     \ntemplate <class Monoid>\nstruct Sliding_Window_Aggregation {\n  using X = typename\
     \ Monoid::value_type;\n  using value_type = X;\n  int sz = 0;\n  vc<X> dat;\n\
     \  vc<X> cum_l;\n  X cum_r;\n\n  Sliding_Window_Aggregation()\n      : cum_l({Monoid::unit()}),\
@@ -597,7 +600,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   requiredBy: []
-  timestamp: '2023-02-22 01:01:01+09:00'
+  timestamp: '2023-02-22 03:23:22+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp

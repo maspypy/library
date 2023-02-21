@@ -305,11 +305,14 @@ data:
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
     \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 1\
-    \ \"linalg/solve_linear.hpp\"\n/*\r\n0 \u884C\u76EE\u306B\u89E3\u306E\u3072\u3068\
-    \u3064\u3002\r\n1\uFF5E\u884C\u76EE\u306B\u89E3\u7A7A\u9593\u306E\u57FA\u5E95\u304C\
-    \u884C\u30D9\u30AF\u30C8\u30EB\u3068\u3057\u3066\u5165\u308B\u3002\r\n\u89E3\u306A\
-    \u3057 = empty\r\n*/\r\ntemplate <typename T>\r\nvc<vc<T>> solve_linear(const\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n#line 1 \"linalg/solve_linear.hpp\"\n/*\r\n0 \u884C\u76EE\u306B\u89E3\u306E\
+    \u3072\u3068\u3064\u3002\r\n1\uFF5E\u884C\u76EE\u306B\u89E3\u7A7A\u9593\u306E\u57FA\
+    \u5E95\u304C\u884C\u30D9\u30AF\u30C8\u30EB\u3068\u3057\u3066\u5165\u308B\u3002\
+    \r\n\u89E3\u306A\u3057 = empty\r\n*/\r\ntemplate <typename T>\r\nvc<vc<T>> solve_linear(const\
     \ int n, const int m, vc<vc<T>> a, vc<T> b) {\r\n  int rk = 0;\r\n  FOR(j, m)\
     \ {\r\n    if (rk == n) break;\r\n    if (a[rk][j] == 0) {\r\n      FOR(i, rk,\
     \ n) if (a[i][j] != 0) {\r\n        if (i == rk) break;\r\n        swap(a[rk],\
@@ -356,7 +359,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/solve_linear.test.cpp
   requiredBy: []
-  timestamp: '2023-02-22 01:01:01+09:00'
+  timestamp: '2023-02-22 03:23:22+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/matrix/solve_linear.test.cpp

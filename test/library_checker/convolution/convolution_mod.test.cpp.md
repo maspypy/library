@@ -315,83 +315,86 @@ data:
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
     \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n#line 2\
-    \ \"mod/mod_inv.hpp\"\n// long \u3067\u3082\u5927\u4E08\u592B\r\nll mod_inv(ll\
-    \ val, ll mod) {\r\n  val %= mod;\r\n  if (val < 0) val += mod;\r\n  ll a = val,\
-    \ b = mod, u = 1, v = 0, t;\r\n  while (b > 0) {\r\n    t = a / b;\r\n    swap(a\
-    \ -= t * b, b), swap(u -= t * v, v);\r\n  }\r\n  if (u < 0) u += mod;\r\n  return\
-    \ u;\r\n}\r\n#line 1 \"poly/convolution_naive.hpp\"\ntemplate <class T>\r\nvector<T>\
-    \ convolution_naive(const vector<T>& a, const vector<T>& b) {\r\n  int n = int(a.size()),\
-    \ m = int(b.size());\r\n  vector<T> ans(n + m - 1);\r\n  if (n < m) {\r\n    FOR(j,\
-    \ m) FOR(i, n) ans[i + j] += a[i] * b[j];\r\n  } else {\r\n    FOR(i, n) FOR(j,\
-    \ m) ans[i + j] += a[i] * b[j];\r\n  }\r\n  return ans;\r\n}\r\n#line 2 \"poly/ntt.hpp\"\
-    \n\r\ntemplate <class mint>\r\nstruct ntt_info {\r\n  static constexpr int bsf_constexpr(unsigned\
-    \ int n) {\r\n    int x = 0;\r\n    while (!(n & (1 << x))) x++;\r\n    return\
-    \ x;\r\n  }\r\n\r\n  static constexpr int rank2 = bsf_constexpr(mint::get_mod()\
-    \ - 1);\r\n  array<mint, rank2 + 1> root;\r\n  array<mint, rank2 + 1> iroot;\r\
-    \n  array<mint, max(0, rank2 - 1)> rate2;\r\n  array<mint, max(0, rank2 - 1)>\
-    \ irate2;\r\n  array<mint, max(0, rank2 - 2)> rate3;\r\n  array<mint, max(0, rank2\
-    \ - 2)> irate3;\r\n\r\n  ntt_info() {\r\n    int g = primitive_root(mint::get_mod());\r\
-    \n    assert(g != -1);\r\n    root[rank2] = mint(g).pow((mint::get_mod() - 1)\
-    \ >> rank2);\r\n    iroot[rank2] = mint(1) / root[rank2];\r\n    FOR_R(i, rank2)\
-    \ {\r\n      root[i] = root[i + 1] * root[i + 1];\r\n      iroot[i] = iroot[i\
-    \ + 1] * iroot[i + 1];\r\n    }\r\n\r\n    {\r\n      mint prod = 1, iprod = 1;\r\
-    \n      for (int i = 0; i <= rank2 - 2; i++) {\r\n        rate2[i] = root[i +\
-    \ 2] * prod;\r\n        irate2[i] = iroot[i + 2] * iprod;\r\n        prod *= iroot[i\
-    \ + 2];\r\n        iprod *= root[i + 2];\r\n      }\r\n    }\r\n    {\r\n    \
-    \  mint prod = 1, iprod = 1;\r\n      for (int i = 0; i <= rank2 - 3; i++) {\r\
-    \n        rate3[i] = root[i + 3] * prod;\r\n        irate3[i] = iroot[i + 3] *\
-    \ iprod;\r\n        prod *= iroot[i + 3];\r\n        iprod *= root[i + 3];\r\n\
-    \      }\r\n    }\r\n  }\r\n\r\n  constexpr int primitive_root(int m) {\r\n  \
-    \  if (m == 167772161) return 3;\r\n    if (m == 469762049) return 3;\r\n    if\
-    \ (m == 754974721) return 11;\r\n    if (m == 880803841) return 26;\r\n    if\
-    \ (m == 998244353) return 3;\r\n    if (m == 1045430273) return 3;\r\n    if (m\
-    \ == 1051721729) return 6;\r\n    if (m == 1053818881) return 7;\r\n    return\
-    \ -1;\r\n  }\r\n};\r\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>& a, bool\
-    \ inverse) {\r\n  int n = int(a.size());\r\n  int h = topbit(n);\r\n  assert(n\
-    \ == 1 << h);\r\n  static const ntt_info<mint> info;\r\n  if (!inverse) {\r\n\
-    \    int len = 0; // a[i, i+(n>>len), i+2*(n>>len), ..] is transformed\r\n   \
-    \ while (len < h) {\r\n      if (h - len == 1) {\r\n        int p = 1 << (h -\
-    \ len - 1);\r\n        mint rot = 1;\r\n        FOR(s, 1 << len) {\r\n       \
-    \   int offset = s << (h - len);\r\n          FOR(i, p) {\r\n            auto\
-    \ l = a[i + offset];\r\n            auto r = a[i + offset + p] * rot;\r\n    \
-    \        a[i + offset] = l + r;\r\n            a[i + offset + p] = l - r;\r\n\
-    \          }\r\n          rot *= info.rate2[topbit(~s & -~s)];\r\n        }\r\n\
-    \        len++;\r\n      } else {\r\n        int p = 1 << (h - len - 2);\r\n \
-    \       mint rot = 1, imag = info.root[2];\r\n        for (int s = 0; s < (1 <<\
-    \ len); s++) {\r\n          mint rot2 = rot * rot;\r\n          mint rot3 = rot2\
-    \ * rot;\r\n          int offset = s << (h - len);\r\n          for (int i = 0;\
-    \ i < p; i++) {\r\n            auto mod2 = 1ULL * mint::get_mod() * mint::get_mod();\r\
-    \n            auto a0 = 1ULL * a[i + offset].val;\r\n            auto a1 = 1ULL\
-    \ * a[i + offset + p].val * rot.val;\r\n            auto a2 = 1ULL * a[i + offset\
-    \ + 2 * p].val * rot2.val;\r\n            auto a3 = 1ULL * a[i + offset + 3 *\
-    \ p].val * rot3.val;\r\n            auto a1na3imag = 1ULL * mint(a1 + mod2 - a3).val\
-    \ * imag.val;\r\n            auto na2 = mod2 - a2;\r\n            a[i + offset]\
-    \ = a0 + a2 + a1 + a3;\r\n            a[i + offset + 1 * p] = a0 + a2 + (2 * mod2\
-    \ - (a1 + a3));\r\n            a[i + offset + 2 * p] = a0 + na2 + a1na3imag;\r\
-    \n            a[i + offset + 3 * p] = a0 + na2 + (mod2 - a1na3imag);\r\n     \
-    \     }\r\n          rot *= info.rate3[topbit(~s & -~s)];\r\n        }\r\n   \
-    \     len += 2;\r\n      }\r\n    }\r\n  } else {\r\n    mint coef = mint(1) /\
-    \ mint(len(a));\r\n    FOR(i, len(a)) a[i] *= coef;\r\n    int len = h;\r\n  \
-    \  while (len) {\r\n      if (len == 1) {\r\n        int p = 1 << (h - len);\r\
-    \n        mint irot = 1;\r\n        FOR(s, 1 << (len - 1)) {\r\n          int\
-    \ offset = s << (h - len + 1);\r\n          FOR(i, p) {\r\n            auto l\
-    \ = a[i + offset];\r\n            auto r = a[i + offset + p];\r\n            a[i\
-    \ + offset] = l + r;\r\n            a[i + offset + p]\r\n                = (unsigned\
-    \ long long)(mint::get_mod() + l.val - r.val)\r\n                  * irot.val;\r\
-    \n            ;\r\n          }\r\n          irot *= info.irate2[topbit(~s & -~s)];\r\
-    \n        }\r\n        len--;\r\n      } else {\r\n        int p = 1 << (h - len);\r\
-    \n        mint irot = 1, iimag = info.iroot[2];\r\n        FOR(s, (1 << (len -\
-    \ 2))) {\r\n          mint irot2 = irot * irot;\r\n          mint irot3 = irot2\
-    \ * irot;\r\n          int offset = s << (h - len + 2);\r\n          for (int\
-    \ i = 0; i < p; i++) {\r\n            auto a0 = 1ULL * a[i + offset + 0 * p].val;\r\
-    \n            auto a1 = 1ULL * a[i + offset + 1 * p].val;\r\n            auto\
-    \ a2 = 1ULL * a[i + offset + 2 * p].val;\r\n            auto a3 = 1ULL * a[i +\
-    \ offset + 3 * p].val;\r\n\r\n            auto a2na3iimag\r\n                =\
-    \ 1ULL * mint((mint::get_mod() + a2 - a3) * iimag.val).val;\r\n\r\n          \
-    \  a[i + offset] = a0 + a1 + a2 + a3;\r\n            a[i + offset + 1 * p]\r\n\
-    \                = (a0 + (mint::get_mod() - a1) + a2na3iimag) * irot.val;\r\n\
-    \            a[i + offset + 2 * p]\r\n                = (a0 + a1 + (mint::get_mod()\
+    using modint998 = modint<998244353>;\nusing amint = ArbitraryModInt;\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n#line 2 \"mod/mod_inv.hpp\"\n// long \u3067\u3082\u5927\u4E08\u592B\r\n\
+    ll mod_inv(ll val, ll mod) {\r\n  val %= mod;\r\n  if (val < 0) val += mod;\r\n\
+    \  ll a = val, b = mod, u = 1, v = 0, t;\r\n  while (b > 0) {\r\n    t = a / b;\r\
+    \n    swap(a -= t * b, b), swap(u -= t * v, v);\r\n  }\r\n  if (u < 0) u += mod;\r\
+    \n  return u;\r\n}\r\n#line 1 \"poly/convolution_naive.hpp\"\ntemplate <class\
+    \ T>\r\nvector<T> convolution_naive(const vector<T>& a, const vector<T>& b) {\r\
+    \n  int n = int(a.size()), m = int(b.size());\r\n  vector<T> ans(n + m - 1);\r\
+    \n  if (n < m) {\r\n    FOR(j, m) FOR(i, n) ans[i + j] += a[i] * b[j];\r\n  }\
+    \ else {\r\n    FOR(i, n) FOR(j, m) ans[i + j] += a[i] * b[j];\r\n  }\r\n  return\
+    \ ans;\r\n}\r\n#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\nstruct ntt_info\
+    \ {\r\n  static constexpr int bsf_constexpr(unsigned int n) {\r\n    int x = 0;\r\
+    \n    while (!(n & (1 << x))) x++;\r\n    return x;\r\n  }\r\n\r\n  static constexpr\
+    \ int rank2 = bsf_constexpr(mint::get_mod() - 1);\r\n  array<mint, rank2 + 1>\
+    \ root;\r\n  array<mint, rank2 + 1> iroot;\r\n  array<mint, max(0, rank2 - 1)>\
+    \ rate2;\r\n  array<mint, max(0, rank2 - 1)> irate2;\r\n  array<mint, max(0, rank2\
+    \ - 2)> rate3;\r\n  array<mint, max(0, rank2 - 2)> irate3;\r\n\r\n  ntt_info()\
+    \ {\r\n    int g = primitive_root(mint::get_mod());\r\n    assert(g != -1);\r\n\
+    \    root[rank2] = mint(g).pow((mint::get_mod() - 1) >> rank2);\r\n    iroot[rank2]\
+    \ = mint(1) / root[rank2];\r\n    FOR_R(i, rank2) {\r\n      root[i] = root[i\
+    \ + 1] * root[i + 1];\r\n      iroot[i] = iroot[i + 1] * iroot[i + 1];\r\n   \
+    \ }\r\n\r\n    {\r\n      mint prod = 1, iprod = 1;\r\n      for (int i = 0; i\
+    \ <= rank2 - 2; i++) {\r\n        rate2[i] = root[i + 2] * prod;\r\n        irate2[i]\
+    \ = iroot[i + 2] * iprod;\r\n        prod *= iroot[i + 2];\r\n        iprod *=\
+    \ root[i + 2];\r\n      }\r\n    }\r\n    {\r\n      mint prod = 1, iprod = 1;\r\
+    \n      for (int i = 0; i <= rank2 - 3; i++) {\r\n        rate3[i] = root[i +\
+    \ 3] * prod;\r\n        irate3[i] = iroot[i + 3] * iprod;\r\n        prod *= iroot[i\
+    \ + 3];\r\n        iprod *= root[i + 3];\r\n      }\r\n    }\r\n  }\r\n\r\n  constexpr\
+    \ int primitive_root(int m) {\r\n    if (m == 167772161) return 3;\r\n    if (m\
+    \ == 469762049) return 3;\r\n    if (m == 754974721) return 11;\r\n    if (m ==\
+    \ 880803841) return 26;\r\n    if (m == 998244353) return 3;\r\n    if (m == 1045430273)\
+    \ return 3;\r\n    if (m == 1051721729) return 6;\r\n    if (m == 1053818881)\
+    \ return 7;\r\n    return -1;\r\n  }\r\n};\r\n\r\ntemplate <class mint>\r\nvoid\
+    \ ntt(vector<mint>& a, bool inverse) {\r\n  int n = int(a.size());\r\n  int h\
+    \ = topbit(n);\r\n  assert(n == 1 << h);\r\n  static const ntt_info<mint> info;\r\
+    \n  if (!inverse) {\r\n    int len = 0; // a[i, i+(n>>len), i+2*(n>>len), ..]\
+    \ is transformed\r\n    while (len < h) {\r\n      if (h - len == 1) {\r\n   \
+    \     int p = 1 << (h - len - 1);\r\n        mint rot = 1;\r\n        FOR(s, 1\
+    \ << len) {\r\n          int offset = s << (h - len);\r\n          FOR(i, p) {\r\
+    \n            auto l = a[i + offset];\r\n            auto r = a[i + offset + p]\
+    \ * rot;\r\n            a[i + offset] = l + r;\r\n            a[i + offset + p]\
+    \ = l - r;\r\n          }\r\n          rot *= info.rate2[topbit(~s & -~s)];\r\n\
+    \        }\r\n        len++;\r\n      } else {\r\n        int p = 1 << (h - len\
+    \ - 2);\r\n        mint rot = 1, imag = info.root[2];\r\n        for (int s =\
+    \ 0; s < (1 << len); s++) {\r\n          mint rot2 = rot * rot;\r\n          mint\
+    \ rot3 = rot2 * rot;\r\n          int offset = s << (h - len);\r\n          for\
+    \ (int i = 0; i < p; i++) {\r\n            auto mod2 = 1ULL * mint::get_mod()\
+    \ * mint::get_mod();\r\n            auto a0 = 1ULL * a[i + offset].val;\r\n  \
+    \          auto a1 = 1ULL * a[i + offset + p].val * rot.val;\r\n            auto\
+    \ a2 = 1ULL * a[i + offset + 2 * p].val * rot2.val;\r\n            auto a3 = 1ULL\
+    \ * a[i + offset + 3 * p].val * rot3.val;\r\n            auto a1na3imag = 1ULL\
+    \ * mint(a1 + mod2 - a3).val * imag.val;\r\n            auto na2 = mod2 - a2;\r\
+    \n            a[i + offset] = a0 + a2 + a1 + a3;\r\n            a[i + offset +\
+    \ 1 * p] = a0 + a2 + (2 * mod2 - (a1 + a3));\r\n            a[i + offset + 2 *\
+    \ p] = a0 + na2 + a1na3imag;\r\n            a[i + offset + 3 * p] = a0 + na2 +\
+    \ (mod2 - a1na3imag);\r\n          }\r\n          rot *= info.rate3[topbit(~s\
+    \ & -~s)];\r\n        }\r\n        len += 2;\r\n      }\r\n    }\r\n  } else {\r\
+    \n    mint coef = mint(1) / mint(len(a));\r\n    FOR(i, len(a)) a[i] *= coef;\r\
+    \n    int len = h;\r\n    while (len) {\r\n      if (len == 1) {\r\n        int\
+    \ p = 1 << (h - len);\r\n        mint irot = 1;\r\n        FOR(s, 1 << (len -\
+    \ 1)) {\r\n          int offset = s << (h - len + 1);\r\n          FOR(i, p) {\r\
+    \n            auto l = a[i + offset];\r\n            auto r = a[i + offset + p];\r\
+    \n            a[i + offset] = l + r;\r\n            a[i + offset + p]\r\n    \
+    \            = (unsigned long long)(mint::get_mod() + l.val - r.val)\r\n     \
+    \             * irot.val;\r\n            ;\r\n          }\r\n          irot *=\
+    \ info.irate2[topbit(~s & -~s)];\r\n        }\r\n        len--;\r\n      } else\
+    \ {\r\n        int p = 1 << (h - len);\r\n        mint irot = 1, iimag = info.iroot[2];\r\
+    \n        FOR(s, (1 << (len - 2))) {\r\n          mint irot2 = irot * irot;\r\n\
+    \          mint irot3 = irot2 * irot;\r\n          int offset = s << (h - len\
+    \ + 2);\r\n          for (int i = 0; i < p; i++) {\r\n            auto a0 = 1ULL\
+    \ * a[i + offset + 0 * p].val;\r\n            auto a1 = 1ULL * a[i + offset +\
+    \ 1 * p].val;\r\n            auto a2 = 1ULL * a[i + offset + 2 * p].val;\r\n \
+    \           auto a3 = 1ULL * a[i + offset + 3 * p].val;\r\n\r\n            auto\
+    \ a2na3iimag\r\n                = 1ULL * mint((mint::get_mod() + a2 - a3) * iimag.val).val;\r\
+    \n\r\n            a[i + offset] = a0 + a1 + a2 + a3;\r\n            a[i + offset\
+    \ + 1 * p]\r\n                = (a0 + (mint::get_mod() - a1) + a2na3iimag) * irot.val;\r\
+    \n            a[i + offset + 2 * p]\r\n                = (a0 + a1 + (mint::get_mod()\
     \ - a2) + (mint::get_mod() - a3))\r\n                  * irot2.val;\r\n      \
     \      a[i + offset + 3 * p]\r\n                = (a0 + (mint::get_mod() - a1)\
     \ + (mint::get_mod() - a2na3iimag))\r\n                  * irot3.val;\r\n    \
@@ -522,7 +525,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/convolution/convolution_mod.test.cpp
   requiredBy: []
-  timestamp: '2023-02-22 01:01:01+09:00'
+  timestamp: '2023-02-22 03:23:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/convolution/convolution_mod.test.cpp
