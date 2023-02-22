@@ -3,8 +3,8 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: seq/interpolate_periodic_sequence_query.hpp
-    title: seq/interpolate_periodic_sequence_query.hpp
+    path: seq/interpolate_periodic_sequence.hpp
+    title: seq/interpolate_periodic_sequence.hpp
   - icon: ':heavy_check_mark:'
     path: string/is_substring.hpp
     title: string/is_substring.hpp
@@ -52,7 +52,7 @@ data:
   isVerificationFile: false
   path: string/zalgorithm.hpp
   requiredBy:
-  - seq/interpolate_periodic_sequence_query.hpp
+  - seq/interpolate_periodic_sequence.hpp
   - string/run_enumerate.hpp
   - string/is_substring.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
