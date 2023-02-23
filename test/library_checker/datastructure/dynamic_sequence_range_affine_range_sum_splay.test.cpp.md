@@ -16,10 +16,10 @@ data:
   - icon: ':x:'
     path: ds/splaytree/splaytree_acted_monoid.hpp
     title: ds/splaytree/splaytree_acted_monoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/factorial.hpp
     title: mod/factorial.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'

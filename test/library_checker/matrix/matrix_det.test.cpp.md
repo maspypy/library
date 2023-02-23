@@ -7,13 +7,13 @@ data:
   - icon: ':x:'
     path: linalg/det_mod.hpp
     title: linalg/det_mod.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/factorial.hpp
     title: mod/factorial.hpp
   - icon: ':x:'
     path: mod/fast_div.hpp
     title: mod/fast_div.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
