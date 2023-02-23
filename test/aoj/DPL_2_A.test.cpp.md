@@ -1,10 +1,13 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':x:'
+    path: enumerate/bits.hpp
+    title: enumerate/bits.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/minimum_hamiltonian_cycle.hpp
     title: graph/minimum_hamiltonian_cycle.hpp
   - icon: ':question:'
@@ -15,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_2_A
@@ -247,29 +250,34 @@ data:
     \ {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
     \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
-    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 3 \"graph/minimum_hamiltonian_cycle.hpp\"\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 1 \"enumerate/bits.hpp\"\
+    \ntemplate <typename F>\nvoid enumerate_bits(int s, F f) {\n  while (s) {\n  \
+    \  int i = __builtin_ctz(s);\n    f(i);\n    s ^= 1 << i;\n  }\n}\n\ntemplate\
+    \ <typename BS, typename F>\nvoid enumerate_bits_bitset(BS& b, int L, int R, F\
+    \ f) {\n  int p = (b[L] ? L : b._Find_next(L));\n  while (p < R) {\n    f(p);\n\
+    \    p = b._Find_next(p);\n  }\n}\n#line 4 \"graph/minimum_hamiltonian_cycle.hpp\"\
     \n\n/*\nreturn [cost, cycle]\ncycle \u306A\u3057\u306E\u5834\u5408\uFF1A{-1, {}}\n\
     */\ntemplate <typename T, typename GT>\npair<T, vc<int>> minimum_hamiltonian_cycle(GT&\
-    \ G) {\n  assert(G.is_prepared());\n  int n = G.N;\n  vv(T, dist, n, n, infty<T>);\n\
-    \  FOR(v, n) {\n    for (auto&& e: G[v]) chmin(dist[v][e.to], e.cost);\n  }\n\
-    \  n -= 1;\n  vv(T, dp, 1 << n, n, infty<T>);\n  FOR(v, n) chmin(dp[1 << v][v],\
-    \ dist[n][v]);\n  FOR(s, 1 << n) FOR(frm, n) if (dp[s][frm] < infty<T>) {\n  \
-    \  FOR(to, n) {\n      int t = s | 1 << to;\n      T cost = dist[frm][to];\n \
-    \     if (s < t && cost < infty<T>) chmin(dp[t][to], dp[s][frm] + cost);\n   \
-    \ }\n  }\n  int s = (1 << n) - 1;\n  T res = infty<T>;\n  int best_v = -1;\n \
-    \ FOR(v, n) if (dist[v][n] < infty<T> && dp[s][v] < infty<T>) {\n    if (chmin(res,\
-    \ dp[s][v] + dist[v][n])) best_v = v;\n  }\n  if (res == infty<T>) return {-1,\
-    \ {}};\n  vc<int> C = {n, best_v};\n  int t = s;\n  while (len(C) <= n) {\n  \
-    \  int to = C.back();\n    int frm = [&]() -> int {\n      FOR(frm, n) {\n   \
-    \     int s = t ^ (1 << to);\n        T inf = infty<T>;\n        if (dp[s][frm]\
-    \ < inf && dist[frm][to] < inf\n            && dp[s][frm] + dist[frm][to] == dp[t][to])\n\
-    \          return frm;\n      }\n      return -1;\n    }();\n    C.eb(frm);\n\
-    \    t ^= 1 << to;\n  }\n  reverse(all(C));\n  return {res, C};\n}\n#line 7 \"\
-    test/aoj/DPL_2_A.test.cpp\"\n\nvoid solve() {\n  LL(N, M);\n  Graph<int, 1> G(N);\n\
-    \  G.read_graph(M, 1, 0);\n  print(minimum_hamiltonian_cycle<int>(G).fi);\n}\n\
-    \nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
-    \ return 0;\n}\n"
+    \ G) {\n  assert(G.is_prepared());\n  int n = G.N;\n  const int full = (1 << n)\
+    \ - 1;\n  vv(T, dist, n, n, infty<T>);\n  FOR(v, n) {\n    for (auto&& e: G[v])\
+    \ chmin(dist[v][e.to], e.cost);\n  }\n  n -= 1;\n  vv(T, dp, 1 << n, n, infty<T>);\n\
+    \  FOR(v, n) chmin(dp[1 << v][v], dist[n][v]);\n  FOR(s, 1 << n) FOR(frm, n) if\
+    \ (dp[s][frm] < infty<T>) {\n    enumerate_bits(full - s, [&](int to) -> void\
+    \ {\n      int t = s | 1 << to;\n      T cost = dist[frm][to];\n      if (cost\
+    \ < infty<T>) chmin(dp[t][to], dp[s][frm] + cost);\n    });\n  }\n  int s = (1\
+    \ << n) - 1;\n  T res = infty<T>;\n  int best_v = -1;\n  FOR(v, n) if (dist[v][n]\
+    \ < infty<T> && dp[s][v] < infty<T>) {\n    if (chmin(res, dp[s][v] + dist[v][n]))\
+    \ best_v = v;\n  }\n  if (res == infty<T>) return {-1, {}};\n  vc<int> C = {n,\
+    \ best_v};\n  int t = s;\n  while (len(C) <= n) {\n    int to = C.back();\n  \
+    \  int frm = [&]() -> int {\n      FOR(frm, n) {\n        int s = t ^ (1 << to);\n\
+    \        T inf = infty<T>;\n        if (dp[s][frm] < inf && dist[frm][to] < inf\n\
+    \            && dp[s][frm] + dist[frm][to] == dp[t][to])\n          return frm;\n\
+    \      }\n      return -1;\n    }();\n    C.eb(frm);\n    t ^= 1 << to;\n  }\n\
+    \  reverse(all(C));\n  return {res, C};\n}\n#line 7 \"test/aoj/DPL_2_A.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, M);\n  Graph<int, 1> G(N);\n  G.read_graph(M, 1, 0);\n\
+    \  print(minimum_hamiltonian_cycle<int>(G).fi);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_2_A\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/base.hpp\"\
     \n#include \"graph/minimum_hamiltonian_cycle.hpp\"\n\nvoid solve() {\n  LL(N,\
@@ -282,11 +290,12 @@ data:
   - other/io.hpp
   - graph/base.hpp
   - graph/minimum_hamiltonian_cycle.hpp
+  - enumerate/bits.hpp
   isVerificationFile: true
   path: test/aoj/DPL_2_A.test.cpp
   requiredBy: []
-  timestamp: '2023-02-02 01:52:11+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-02-23 17:04:14+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DPL_2_A.test.cpp
 layout: document

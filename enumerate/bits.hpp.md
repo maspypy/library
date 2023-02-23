@@ -1,11 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: graph/minimum_hamiltonian_cycle.hpp
+    title: graph/minimum_hamiltonian_cycle.hpp
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/DPL_2_A.test.cpp
+    title: test/aoj/DPL_2_A.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"enumerate/bits.hpp\"\ntemplate <typename F>\nvoid enumerate_bits(int\
@@ -21,10 +27,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: enumerate/bits.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/minimum_hamiltonian_cycle.hpp
   timestamp: '2023-02-23 16:42:59+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/aoj/DPL_2_A.test.cpp
 documentation_of: enumerate/bits.hpp
 layout: document
 redirect_from:
