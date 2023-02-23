@@ -4,14 +4,8 @@
 template <int mod>
 struct modint {
   int val;
-  constexpr modint(ll x = 0) noexcept {
-    if (0 <= x && x < mod)
-      val = x;
-    else {
-      x %= mod;
-      val = (x < 0 ? x + mod : x);
-    }
-  }
+  constexpr modint(const ll val = 0) noexcept
+      : val(val >= 0 ? val % mod : (mod - (-val) % mod) % mod) {}
   bool operator<(const modint &other) const {
     return val < other.val;
   } // To use std::map
