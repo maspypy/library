@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/acted_set/affine.hpp
     title: alg/acted_set/affine.hpp
   - icon: ':question:'
