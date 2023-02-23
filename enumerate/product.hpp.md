@@ -3,10 +3,10 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/enumerate_products.test.cpp
     title: test/mytest/enumerate_products.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc233c.test.cpp
     title: test_atcoder/abc233c.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test_atcoder/arc153f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"enumerate/product.hpp\"\n// [0, A0) x [0, A1) x ...\ntemplate\
@@ -32,7 +32,7 @@ data:
   path: enumerate/product.hpp
   requiredBy: []
   timestamp: '2023-01-23 21:04:48+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/arc153f.test.cpp
   - test_atcoder/abc233c.test.cpp

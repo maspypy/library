@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/triangle_area.hpp
     title: geo/triangle_area.hpp
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc151f.test.cpp
     title: test_atcoder/abc151f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -129,7 +129,7 @@ data:
   path: geo/minimum_enclosing_circle.hpp
   requiredBy: []
   timestamp: '2023-02-18 09:57:30+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc151f.test.cpp
 documentation_of: geo/minimum_enclosing_circle.hpp

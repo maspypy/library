@@ -5,10 +5,10 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/mincostcycle.hpp
     title: graph/mincostcycle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest_path/K_shortest_walk.hpp
     title: graph/shortest_path/K_shortest_walk.hpp
   _extendedVerifiedWith:
@@ -21,24 +21,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2251_2.test.cpp
     title: test/aoj/2251_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/K_shortest_walk.test.cpp
     title: test/library_checker/graph/K_shortest_walk.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/shortest_path.test.cpp
     title: test/library_checker/graph/shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1320.test.cpp
     title: test/yukicoder/1320.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1601.test.cpp
     title: test/yukicoder/1601.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc151_e.test.cpp
     title: test_atcoder/arc151_e.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -130,7 +130,7 @@ data:
   - graph/shortest_path/K_shortest_walk.hpp
   - graph/mincostcycle.hpp
   timestamp: '2023-02-02 01:09:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/arc151_e.test.cpp
   - test/library_checker/graph/shortest_path.test.cpp

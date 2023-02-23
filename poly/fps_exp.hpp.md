@@ -1,132 +1,132 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/factorial.hpp
     title: mod/factorial.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/product_of_f_rk_x.hpp
     title: poly/product_of_f_rk_x.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/product_of_one_minus_xn.hpp
     title: poly/product_of_one_minus_xn.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/product_of_one_plus_xn.hpp
     title: poly/product_of_one_plus_xn.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/product_of_pow_of_linear.hpp
     title: poly/product_of_pow_of_linear.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/famous/surjection.hpp
     title: seq/famous/surjection.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/sharp_p_subset_sum.test.cpp
     title: test/library_checker/math/sharp_p_subset_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/exp_of_fps.test.cpp
     title: test/library_checker/polynomial/exp_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
     title: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/pow_of_fps.test.cpp
     title: test/library_checker/polynomial/pow_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/bell.test.cpp
     title: test/mytest/bell.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/online_exp.test.cpp
     title: test/mytest/online_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/online_pow.test.cpp
     title: test/mytest/online_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/product_of_one_pm_xn.test.cpp
     title: test/mytest/product_of_one_pm_xn.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1080.test.cpp
     title: test/yukicoder/1080.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1321.test.cpp
     title: test/yukicoder/1321.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1392.test.cpp
     title: test/yukicoder/1392.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1533.test.cpp
     title: test/yukicoder/1533.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1549.test.cpp
     title: test/yukicoder/1549.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1875.test.cpp
     title: test/yukicoder/1875.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1939.test.cpp
     title: test/yukicoder/1939.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2062.test.cpp
     title: test/yukicoder/2062.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2097.test.cpp
     title: test/yukicoder/2097.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc222h.test.cpp
     title: test_atcoder/abc222h.test.cpp
   - icon: ':x:'
@@ -137,7 +137,7 @@ data:
     title: test_atcoder/arc153f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"mod/factorial.hpp\"\n\ntemplate <typename mint>\nmint inv(int\
@@ -530,7 +530,7 @@ data:
   - poly/product_of_pow_of_linear.hpp
   - poly/fps_pow.hpp
   timestamp: '2023-02-23 14:02:30+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/arc153f.test.cpp
   - test_atcoder/abc222h.test.cpp

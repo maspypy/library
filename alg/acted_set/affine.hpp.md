@@ -1,12 +1,12 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc222g.test.cpp
     title: test_atcoder/abc222g.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test_atcoder/abc270_g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/affine.hpp\"\n\ntemplate <typename K>\nstruct\
@@ -41,7 +41,7 @@ data:
   path: alg/acted_set/affine.hpp
   requiredBy: []
   timestamp: '2023-02-16 23:29:46+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc270_g.test.cpp
   - test_atcoder/abc222g.test.cpp

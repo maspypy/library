@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/factorial.hpp
     title: mod/factorial.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -16,34 +16,34 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/product_of_one_minus_xn.hpp
     title: poly/product_of_one_minus_xn.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/product_of_one_plus_xn.hpp
     title: poly/product_of_one_plus_xn.hpp
   - icon: ':question:'
@@ -51,9 +51,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -119,31 +119,32 @@ data:
     \ assert(!que.empty());\n  T a = que.top();\n  que.pop();\n  return a;\n}\ntemplate\
     \ <typename T>\nT POP(vc<T> &que) {\n  assert(!que.empty());\n  T a = que.back();\n\
     \  que.pop_back();\n  return a;\n}\n\ntemplate <typename F>\nll binary_search(F\
-    \ check, ll ok, ll ng) {\n  assert(check(ok));\n  while (abs(ok - ng) > 1) {\n\
-    \    auto x = (ng + ok) / 2;\n    tie(ok, ng) = (check(x) ? mp(x, ng) : mp(ok,\
-    \ x));\n  }\n  return ok;\n}\ntemplate <typename F>\ndouble binary_search_real(F\
-    \ check, double ok, double ng, int iter = 100) {\n  FOR(iter) {\n    double x\
-    \ = (ok + ng) / 2;\n    tie(ok, ng) = (check(x) ? mp(x, ng) : mp(ok, x));\n  }\n\
-    \  return (ok + ng) / 2;\n}\n\ntemplate <class T, class S>\ninline bool chmax(T\
-    \ &a, const S &b) {\n  return (a < b ? a = b, 1 : 0);\n}\ntemplate <class T, class\
-    \ S>\ninline bool chmin(T &a, const S &b) {\n  return (a > b ? a = b, 1 : 0);\n\
-    }\n\n// ? \u306F -1\nvc<int> s_to_vi(const string &S, char first_char) {\n  vc<int>\
-    \ A(S.size());\n  FOR(i, S.size()) { A[i] = (S[i] != '?' ? S[i] - first_char :\
-    \ -1); }\n  return A;\n}\n\ntemplate <typename T, typename U>\nvector<T> cumsum(vector<U>\
-    \ &A, int off = 1) {\n  int N = A.size();\n  vector<T> B(N + 1);\n  FOR(i, N)\
-    \ { B[i + 1] = B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n  return B;\n\
-    }\n\n// stable sort\ntemplate <typename T>\nvector<int> argsort(const vector<T>\
-    \ &A) {\n  vector<int> ids(len(A));\n  iota(all(ids), 0);\n  sort(all(ids),\n\
-    \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
-    \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
-    \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\
-    \n#include <unistd.h>\r\n\r\nnamespace fastio {\r\n#define FASTIO\r\n// \u30AF\
-    \u30E9\u30B9\u304C read(), print() \u3092\u6301\u3063\u3066\u3044\u308B\u304B\u3092\
-    \u5224\u5B9A\u3059\u308B\u30E1\u30BF\u95A2\u6570\r\nstruct has_write_impl {\r\n\
-    \  template <class T>\r\n  static auto check(T &&x) -> decltype(x.write(), std::true_type{});\r\
-    \n\r\n  template <class T>\r\n  static auto check(...) -> std::false_type;\r\n\
-    };\r\n\r\ntemplate <class T>\r\nclass has_write : public decltype(has_write_impl::check<T>(std::declval<T>()))\
+    \ check, ll ok, ll ng, bool check_ok = true) {\n  if (check_ok) assert(check(ok));\n\
+    \  while (abs(ok - ng) > 1) {\n    auto x = (ng + ok) / 2;\n    tie(ok, ng) =\
+    \ (check(x) ? mp(x, ng) : mp(ok, x));\n  }\n  return ok;\n}\ntemplate <typename\
+    \ F>\ndouble binary_search_real(F check, double ok, double ng, int iter = 100)\
+    \ {\n  FOR(iter) {\n    double x = (ok + ng) / 2;\n    tie(ok, ng) = (check(x)\
+    \ ? mp(x, ng) : mp(ok, x));\n  }\n  return (ok + ng) / 2;\n}\n\ntemplate <class\
+    \ T, class S>\ninline bool chmax(T &a, const S &b) {\n  return (a < b ? a = b,\
+    \ 1 : 0);\n}\ntemplate <class T, class S>\ninline bool chmin(T &a, const S &b)\
+    \ {\n  return (a > b ? a = b, 1 : 0);\n}\n\n// ? \u306F -1\nvc<int> s_to_vi(const\
+    \ string &S, char first_char) {\n  vc<int> A(S.size());\n  FOR(i, S.size()) {\
+    \ A[i] = (S[i] != '?' ? S[i] - first_char : -1); }\n  return A;\n}\n\ntemplate\
+    \ <typename T, typename U>\nvector<T> cumsum(vector<U> &A, int off = 1) {\n  int\
+    \ N = A.size();\n  vector<T> B(N + 1);\n  FOR(i, N) { B[i + 1] = B[i] + A[i];\
+    \ }\n  if (off == 0) B.erase(B.begin());\n  return B;\n}\n\n// stable sort\ntemplate\
+    \ <typename T>\nvector<int> argsort(const vector<T> &A) {\n  vector<int> ids(len(A));\n\
+    \  iota(all(ids), 0);\n  sort(all(ids),\n       [&](int i, int j) { return (A[i]\
+    \ == A[j] ? i < j : A[i] < A[j]); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]],\
+    \ ...\ntemplate <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I)\
+    \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n#endif\n\
+    #line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\n#include <unistd.h>\r\
+    \n\r\nnamespace fastio {\r\n#define FASTIO\r\n// \u30AF\u30E9\u30B9\u304C read(),\
+    \ print() \u3092\u6301\u3063\u3066\u3044\u308B\u304B\u3092\u5224\u5B9A\u3059\u308B\
+    \u30E1\u30BF\u95A2\u6570\r\nstruct has_write_impl {\r\n  template <class T>\r\n\
+    \  static auto check(T &&x) -> decltype(x.write(), std::true_type{});\r\n\r\n\
+    \  template <class T>\r\n  static auto check(...) -> std::false_type;\r\n};\r\n\
+    \r\ntemplate <class T>\r\nclass has_write : public decltype(has_write_impl::check<T>(std::declval<T>()))\
     \ {\r\n};\r\n\r\nstruct has_read_impl {\r\n  template <class T>\r\n  static auto\
     \ check(T &&x) -> decltype(x.read(), std::true_type{});\r\n\r\n  template <class\
     \ T>\r\n  static auto check(...) -> std::false_type;\r\n};\r\n\r\ntemplate <class\
@@ -621,8 +622,8 @@ data:
   isVerificationFile: true
   path: test/mytest/product_of_one_pm_xn.test.cpp
   requiredBy: []
-  timestamp: '2023-02-23 14:02:30+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-02-24 07:14:18+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/product_of_one_pm_xn.test.cpp
 layout: document

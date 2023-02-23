@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1541.test.cpp
     title: test/yukicoder/1541.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc259g.test.cpp
     title: test_atcoder/abc259g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"flow/maxflow.hpp\"\ntemplate <typename Cap>\nstruct MaxFlowGraph\
@@ -178,7 +178,7 @@ data:
   path: flow/binary_optimization.hpp
   requiredBy: []
   timestamp: '2023-02-02 01:52:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc259g.test.cpp
   - test/yukicoder/1541.test.cpp

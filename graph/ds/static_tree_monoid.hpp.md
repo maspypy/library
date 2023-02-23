@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/disjointsparse/disjointsparse.hpp
     title: ds/disjointsparse/disjointsparse.hpp
   - icon: ':question:'
@@ -15,15 +15,15 @@ data:
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1216.test.cpp
     title: test/yukicoder/1216.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1216_2.test.cpp
     title: test/yukicoder/1216_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://atcoder.jp/contests/tkppc3/tasks/tkppc3_i
@@ -290,7 +290,7 @@ data:
   path: graph/ds/static_tree_monoid.hpp
   requiredBy: []
   timestamp: '2023-01-27 18:58:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1216_2.test.cpp
   - test/yukicoder/1216.test.cpp

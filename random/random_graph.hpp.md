@@ -9,15 +9,15 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/count_indep_set.test.cpp
     title: test/mytest/count_indep_set.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/matching_line_graph.test.cpp
     title: test/mytest/matching_line_graph.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -92,7 +92,7 @@ data:
   path: random/random_graph.hpp
   requiredBy: []
   timestamp: '2023-02-03 10:10:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/matching_line_graph.test.cpp
   - test/mytest/count_indep_set.test.cpp

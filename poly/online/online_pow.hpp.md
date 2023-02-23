@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/factorial.hpp
     title: mod/factorial.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/online/online_division.hpp
     title: poly/online/online_division.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/online_pow.test.cpp
     title: test/mytest/online_pow.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"mod/factorial.hpp\"\n\ntemplate <typename mint>\nmint inv(int\
@@ -375,7 +375,7 @@ data:
   path: poly/online/online_pow.hpp
   requiredBy: []
   timestamp: '2023-02-23 14:02:30+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/online_pow.test.cpp
 documentation_of: poly/online/online_pow.hpp

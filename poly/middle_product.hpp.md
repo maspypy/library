@@ -1,48 +1,48 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/partial_frac_decomposition.hpp
     title: poly/partial_frac_decomposition.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/multipoint_evaluation.test.cpp
     title: test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/polynomial_interpolation.test.cpp
     title: test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/partial_frac.test.cpp
     title: test/mytest/partial_frac.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/slice_rational_fps.test.cpp
     title: test/mytest/slice_rational_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
   - icon: ':x:'
@@ -56,7 +56,7 @@ data:
     title: test_atcoder/agc013e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/middle_product.hpp\"\n\n#line 2 \"poly/ntt.hpp\"\n\r\
@@ -155,7 +155,7 @@ data:
   - poly/partial_frac_decomposition.hpp
   - poly/multivar_convolution_cyclic.hpp
   timestamp: '2023-02-23 09:15:05+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc272_h.test.cpp
   - test_atcoder/abc267g.test.cpp

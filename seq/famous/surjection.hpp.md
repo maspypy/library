@@ -1,65 +1,65 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/factorial.hpp
     title: mod/factorial.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1321.test.cpp
     title: test/yukicoder/1321.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"mod/factorial.hpp\"\n\ntemplate <typename mint>\nmint inv(int\
@@ -529,7 +529,7 @@ data:
   path: seq/famous/surjection.hpp
   requiredBy: []
   timestamp: '2023-02-23 14:02:30+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1321.test.cpp
 documentation_of: seq/famous/surjection.hpp

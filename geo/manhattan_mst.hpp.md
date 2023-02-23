@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':question:'
@@ -9,15 +9,15 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/manhattan_mst.test.cpp
     title: test/library_checker/graph/manhattan_mst.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc283f.test.cpp
     title: test_atcoder/abc283f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -115,7 +115,7 @@ data:
   path: geo/manhattan_mst.hpp
   requiredBy: []
   timestamp: '2023-02-01 22:26:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc283f.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp

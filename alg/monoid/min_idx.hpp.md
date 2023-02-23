@@ -2,28 +2,28 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/minidx_add.hpp
     title: alg/acted_monoid/minidx_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/manhattan_nns.hpp
     title: geo/manhattan_nns.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/manhattan_nns.test.cpp
     title: test/mytest/manhattan_nns.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/minidx_add.test.cpp
     title: test/mytest/minidx_add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/min_idx.hpp\"\n\r\ntemplate <typename T, bool\
@@ -49,7 +49,7 @@ data:
   - string/suffix_tree.hpp
   - alg/acted_monoid/minidx_add.hpp
   timestamp: '2023-02-01 23:31:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/manhattan_nns.test.cpp
   - test/mytest/minidx_add.test.cpp

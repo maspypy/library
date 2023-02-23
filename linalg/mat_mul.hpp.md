@@ -1,63 +1,63 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/factorial.hpp
     title: mod/factorial.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/mat_pow.hpp
     title: linalg/mat_pow.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/sparse_exp_of_div.hpp
     title: poly/sparse_exp_of_div.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/matrix/matrix_product.test.cpp
     title: test/library_checker/matrix/matrix_product.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1080_2.test.cpp
     title: test/yukicoder/1080_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1750.test.cpp
     title: test/yukicoder/1750.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1810.test.cpp
     title: test/yukicoder/1810.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1907.test.cpp
     title: test/yukicoder/1907.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/502_2.test.cpp
     title: test/yukicoder/502_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc222h_2.test.cpp
     title: test_atcoder/abc222h_2.test.cpp
   - icon: ':x:'
@@ -68,7 +68,7 @@ data:
     title: test_atcoder/abc276_g_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"mod/factorial.hpp\"\n\ntemplate <typename mint>\nmint inv(int\
@@ -210,7 +210,7 @@ data:
   - poly/from_log_differentiation.hpp
   - poly/sparse_exp_of_div.hpp
   timestamp: '2023-02-23 14:02:30+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc276_g.test.cpp
   - test_atcoder/abc276_g_2.test.cpp

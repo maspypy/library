@@ -1,47 +1,47 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/disjointsparse/disjointsparse.hpp
     title: ds/disjointsparse/disjointsparse.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/sort_substrings.hpp
     title: string/sort_substrings.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/string/number_of_substrings.test.cpp
     title: test/library_checker/string/number_of_substrings.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/string/suffix_array.test.cpp
     title: test/library_checker/string/suffix_array.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/string/suffix_array_vec.test.cpp
     title: test/library_checker/string/suffix_array_vec.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/longest_common_substr.test.cpp
     title: test/mytest/longest_common_substr.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc240ex.test.cpp
     title: test_atcoder/abc240ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc151_e.test.cpp
     title: test_atcoder/arc151_e.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"string/suffix_array.hpp\"\n\n#line 2 \"alg/monoid/min.hpp\"\
@@ -214,7 +214,7 @@ data:
   - string/sort_substrings.hpp
   - string/longest_common_substring.hpp
   timestamp: '2023-02-02 02:12:17+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc240ex.test.cpp
   - test_atcoder/arc151_e.test.cpp

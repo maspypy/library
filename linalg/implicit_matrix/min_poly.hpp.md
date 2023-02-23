@@ -4,23 +4,23 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/implicit_matrix/det.hpp
     title: linalg/implicit_matrix/det.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/matrix/implicit_matrix.test.cpp
     title: test/library_checker/matrix/implicit_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/310.test.cpp
     title: test/yukicoder/310.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"seq/find_linear_rec.hpp\"\n\r\ntemplate <typename mint>\r\
@@ -60,7 +60,7 @@ data:
   requiredBy:
   - linalg/implicit_matrix/det.hpp
   timestamp: '2022-10-23 11:21:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/matrix/implicit_matrix.test.cpp
   - test/yukicoder/310.test.cpp

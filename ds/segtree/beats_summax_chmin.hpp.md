@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/segtree_beats.hpp
     title: ds/segtree/segtree_beats.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1526_2.test.cpp
     title: test/yukicoder/1526_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree_beats.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -128,7 +128,7 @@ data:
   path: ds/segtree/beats_summax_chmin.hpp
   requiredBy: []
   timestamp: '2023-02-01 23:31:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1526_2.test.cpp
 documentation_of: ds/segtree/beats_summax_chmin.hpp

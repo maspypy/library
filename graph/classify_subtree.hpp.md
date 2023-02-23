@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_dp.hpp
     title: graph/tree_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -18,12 +18,12 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/classify_tree.test.cpp
     title: test/library_checker/graph/classify_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint61.hpp\"\nstruct modint61 {\r\n  static constexpr\
@@ -211,7 +211,7 @@ data:
   path: graph/classify_subtree.hpp
   requiredBy: []
   timestamp: '2023-01-27 18:58:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/graph/classify_tree.test.cpp
 documentation_of: graph/classify_subtree.hpp

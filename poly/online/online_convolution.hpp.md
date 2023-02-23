@@ -1,71 +1,71 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/factorial.hpp
     title: mod/factorial.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/online/online_division.hpp
     title: poly/online/online_division.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/online/online_exp.hpp
     title: poly/online/online_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/online/online_inv.hpp
     title: poly/online/online_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/online/online_log.hpp
     title: poly/online/online_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/online/online_pow.hpp
     title: poly/online/online_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/famous/simple_permutations.hpp
     title: seq/famous/simple_permutations.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/online_convolution.test.cpp
     title: test/library_checker/convolution/online_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/online_division.test.cpp
     title: test/mytest/online_division.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/online_exp.test.cpp
     title: test/mytest/online_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/online_inv.test.cpp
     title: test/mytest/online_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/online_log.test.cpp
     title: test/mytest/online_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/online_pow.test.cpp
     title: test/mytest/online_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/simple_perm.test.cpp
     title: test/mytest/simple_perm.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"mod/factorial.hpp\"\n\ntemplate <typename mint>\nmint inv(int\
@@ -419,7 +419,7 @@ data:
   - poly/online/online_log.hpp
   - poly/online/online_exp.hpp
   timestamp: '2023-02-23 14:02:30+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/convolution/online_convolution.test.cpp
   - test/mytest/simple_perm.test.cpp

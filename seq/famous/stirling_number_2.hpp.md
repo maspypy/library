@@ -1,69 +1,69 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/factorial.hpp
     title: mod/factorial.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/famous/surjection.hpp
     title: seq/famous/surjection.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/bell.test.cpp
     title: test/mytest/bell.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1321.test.cpp
     title: test/yukicoder/1321.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1392.test.cpp
     title: test/yukicoder/1392.test.cpp
   - icon: ':x:'
@@ -71,7 +71,7 @@ data:
     title: test_atcoder/arc153f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"mod/factorial.hpp\"\n\ntemplate <typename mint>\nmint inv(int\
@@ -552,7 +552,7 @@ data:
   requiredBy:
   - seq/famous/surjection.hpp
   timestamp: '2023-02-23 14:02:30+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/arc153f.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp

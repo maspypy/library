@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/min_cost_b-flow.test.cpp
     title: test/library_checker/graph/min_cost_b-flow.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"flow/bflow.hpp\"\ntemplate <class Flow = ll, class Cost\
@@ -199,7 +199,7 @@ data:
   path: flow/bflow.hpp
   requiredBy: []
   timestamp: '2023-02-16 20:33:44+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/graph/min_cost_b-flow.test.cpp
 documentation_of: flow/bflow.hpp

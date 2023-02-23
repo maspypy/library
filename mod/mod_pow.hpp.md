@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/fast_div.hpp
     title: mod/fast_div.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/primitive_root.test.cpp
     title: test/library_checker/math/primitive_root.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1593.test.cpp
     title: test/yukicoder/1593.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/fast_div.hpp\"\nstruct fast_div {\r\n  // Min25 https://judge.yosupo.jp/submission/46090\r\
@@ -72,7 +72,7 @@ data:
   - mod/primitive_root.hpp
   - poly/multivar_convolution_cyclic.hpp
   timestamp: '2022-05-19 23:05:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp

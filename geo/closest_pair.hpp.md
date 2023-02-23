@@ -4,16 +4,16 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/hash_pair.hpp
     title: random/hash_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []

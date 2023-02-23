@@ -8,92 +8,92 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_5_A.test.cpp
     title: test/aoj/CGL_5_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
     title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/set_xor_min.test.cpp
     title: test/library_checker/datastructure/set_xor_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/range_closest_pair.test.cpp
     title: test/mytest/range_closest_pair.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/tdpc_grid_dp.test.cpp
     title: test/mytest/tdpc_grid_dp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1383.test.cpp
     title: test/yukicoder/1383.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1397.test.cpp
     title: test/yukicoder/1397.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1634.test.cpp
     title: test/yukicoder/1634.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1726.test.cpp
     title: test/yukicoder/1726.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1769.test.cpp
     title: test/yukicoder/1769.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1881.test.cpp
     title: test/yukicoder/1881.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2102.test.cpp
     title: test/yukicoder/2102.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2167.test.cpp
     title: test/yukicoder/2167.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/263.test.cpp
     title: test/yukicoder/263.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/541.test.cpp
     title: test/yukicoder/541.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/578.test.cpp
     title: test/yukicoder/578.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc222g.test.cpp
     title: test_atcoder/abc222g.test.cpp
   - icon: ':x:'
     path: test_atcoder/abc270_g.test.cpp
     title: test_atcoder/abc270_g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc273_e.test.cpp
     title: test_atcoder/abc273_e.test.cpp
   _isVerificationFailed: true

@@ -2,20 +2,20 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc222g.test.cpp
     title: test_atcoder/abc222g.test.cpp
   - icon: ':x:'
@@ -23,7 +23,7 @@ data:
     title: test_atcoder/abc270_g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"alg/acted_set/from_monoid.hpp\"\ntemplate <typename Monoid>\n\
@@ -40,7 +40,7 @@ data:
   - nt/discrete_log.hpp
   - mod/mod_log.hpp
   timestamp: '2022-11-28 21:09:42+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc270_g.test.cpp
   - test_atcoder/abc222g.test.cpp

@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc153b.test.cpp
     title: test_atcoder/arc153b.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/splaytree/splaytree.hpp\"\n// Node \u578B\u3092\u5225\
@@ -156,7 +156,7 @@ data:
   path: ds/splaytree/splaytree_basic.hpp
   requiredBy: []
   timestamp: '2023-02-12 02:15:18+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/arc153b.test.cpp
 documentation_of: ds/splaytree/splaytree_basic.hpp

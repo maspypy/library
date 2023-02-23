@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/larsch.hpp
     title: convex/larsch.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/smawk.hpp
     title: convex/smawk.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/fibonacci_search.hpp
     title: other/fibonacci_search.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/705.test.cpp
     title: test/yukicoder/705.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://noshi91.github.io/algorithm-encyclopedia/d-edge-shortest-path-monge
@@ -138,7 +138,7 @@ data:
   path: convex/monge.hpp
   requiredBy: []
   timestamp: '2023-02-16 20:34:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/705.test.cpp
 documentation_of: convex/monge.hpp

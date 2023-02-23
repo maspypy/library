@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/slope.hpp
     title: convex/slope.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/min_cost_matching_on_line.test.cpp
     title: test/mytest/min_cost_matching_on_line.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/slope.hpp\"\nstruct Slope_Trick {\r\n  static constexpr\
@@ -71,7 +71,7 @@ data:
   path: flow/min_cost_matching_on_line.hpp
   requiredBy: []
   timestamp: '2023-02-02 01:52:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/min_cost_matching_on_line.test.cpp
 documentation_of: flow/min_cost_matching_on_line.hpp

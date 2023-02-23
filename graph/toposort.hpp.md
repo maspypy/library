@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   - icon: ':question:'
@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2251_1.test.cpp
     title: test/aoj/2251_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc223d.test.cpp
     title: test_atcoder/abc223d.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -125,7 +125,7 @@ data:
   requiredBy:
   - graph/dag_path_cover.hpp
   timestamp: '2023-01-23 16:27:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc223d.test.cpp
   - test/aoj/2251_1.test.cpp

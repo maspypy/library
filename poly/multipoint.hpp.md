@@ -1,66 +1,66 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/factorial.hpp
     title: mod/factorial.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/partial_frac_decomposition.hpp
     title: poly/partial_frac_decomposition.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/multipoint_evaluation.test.cpp
     title: test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/polynomial_interpolation.test.cpp
     title: test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/partial_frac.test.cpp
     title: test/mytest/partial_frac.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
   - icon: ':x:'
@@ -71,7 +71,7 @@ data:
     title: test_atcoder/abc272_h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://noshi91.github.io/algorithm-encyclopedia/chirp-z-transform#noredirect
@@ -472,7 +472,7 @@ data:
   - poly/partial_frac_decomposition.hpp
   - poly/multivar_convolution_cyclic.hpp
   timestamp: '2023-02-23 14:02:30+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc272_h.test.cpp
   - test_atcoder/abc267g.test.cpp
