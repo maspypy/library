@@ -52,16 +52,9 @@ struct modint {
   }
 #ifdef FASTIO
   void write() { fastio::printer.write(val); }
-  void read() {
-    ll x;
-    fastio::scanner.read(x);
-    if (x < 0 || x >= mod) x %= mod;
-    if (x < 0) x += mod;
-    val += x;
-  }
+  void read() { fastio::scanner.read(val); }
 #endif
   static constexpr int get_mod() { return mod; }
-
   // (n, r), r は 1 の 2^n 乗根
   static constexpr pair<int, int> ntt_info() {
     if (mod == 167772161) return {25, 17};
