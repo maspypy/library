@@ -10,12 +10,12 @@ template <typename T, typename GT>
 pair<T, vc<int>> minimum_hamiltonian_cycle(GT& G) {
   assert(G.is_prepared());
   int n = G.N;
-  const int full = (1 << n) - 1;
   vv(T, dist, n, n, infty<T>);
   FOR(v, n) {
     for (auto&& e: G[v]) chmin(dist[v][e.to], e.cost);
   }
   n -= 1;
+  const int full = (1 << n) - 1;
   vv(T, dp, 1 << n, n, infty<T>);
   FOR(v, n) chmin(dp[1 << v][v], dist[n][v]);
   FOR(s, 1 << n) FOR(frm, n) if (dp[s][frm] < infty<T>) {
