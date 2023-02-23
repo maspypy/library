@@ -155,8 +155,8 @@ T POP(vc<T> &que) {
 }
 
 template <typename F>
-ll binary_search(F check, ll ok, ll ng) {
-  assert(check(ok));
+ll binary_search(F check, ll ok, ll ng, bool check_ok = true) {
+  if (check_ok) assert(check(ok));
   while (abs(ok - ng) > 1) {
     auto x = (ng + ok) / 2;
     tie(ok, ng) = (check(x) ? mp(x, ng) : mp(ok, x));
