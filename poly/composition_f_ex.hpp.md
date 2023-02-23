@@ -28,7 +28,7 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
   - icon: ':question:'
@@ -36,7 +36,7 @@ data:
     title: poly/sum_of_rationals.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1875.test.cpp
     title: test/yukicoder/1875.test.cpp
   - icon: ':x:'
@@ -44,7 +44,7 @@ data:
     title: test_atcoder/arc154f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/sum_of_rationals.hpp\"\n\n#line 1 \"mod/factorial.hpp\"\
@@ -387,7 +387,7 @@ data:
   path: poly/composition_f_ex.hpp
   requiredBy: []
   timestamp: '2023-02-23 14:02:30+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/arc154f.test.cpp
   - test/yukicoder/1875.test.cpp

@@ -21,12 +21,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1769.test.cpp
     title: test/yukicoder/1769.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1796.test.cpp
     title: test/yukicoder/1796.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -198,7 +198,7 @@ data:
   requiredBy:
   - graph/tree_all_distances.hpp
   timestamp: '2022-12-23 11:05:24+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/yukicoder/1796.test.cpp
