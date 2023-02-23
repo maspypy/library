@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
   - icon: ':question:'
@@ -37,7 +37,7 @@ data:
   - icon: ':question:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':question:'
@@ -45,9 +45,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc272/tasks/abc272_Ex
@@ -540,14 +540,17 @@ data:
     \n\n// n, m \u6B21\u591A\u9805\u5F0F (n>=m) a, b \u2192 n-m \u6B21\u591A\u9805\
     \u5F0F c\n// c[i] = sum_j b[j]a[i+j]\ntemplate <typename mint>\nvc<mint> middle_product(vc<mint>&\
     \ a, vc<mint>& b) {\n  assert(len(a) >= len(b));\n  if (b.empty()) return vc<mint>(len(a)\
-    \ - len(b) + 1);\n  if (min(len(b), len(a) - len(b) + 1) <= 60) {\n    vc<mint>\
-    \ res(len(a) - len(b) + 1);\n    FOR(i, len(res)) FOR(j, len(b)) res[i] += b[j]\
-    \ * a[i + j];\n    return res;\n  }\n  int n = 1 << __lg(2 * len(a) - 1);\n  vc<mint>\
-    \ fa(n), fb(n);\n  copy(a.begin(), a.end(), fa.begin());\n  copy(b.rbegin(), b.rend(),\
-    \ fb.begin());\n  ntt(fa, 0), ntt(fb, 0);\n  FOR(i, n) fa[i] *= fb[i];\n  ntt(fa,\
-    \ 1);\n  fa.resize(len(a));\n  fa.erase(fa.begin(), fa.begin() + len(b) - 1);\n\
-    \  return fa;\n}\n#line 5 \"poly/multipoint.hpp\"\n\r\ntemplate <typename mint>\r\
-    \nstruct SubproductTree {\r\n  int m;\r\n  int sz;\r\n  vc<vc<mint>> T;\r\n  SubproductTree(const\
+    \ - len(b) + 1);\n  if constexpr (mint::ntt_info().fi == -1) {\n    return middle_product_naive(a,\
+    \ b);\n  } else {\n    if (min(len(b), len(a) - len(b) + 1) <= 60) {\n      return\
+    \ middle_product_naive(a, b);\n    }\n    int n = 1 << __lg(2 * len(a) - 1);\n\
+    \    vc<mint> fa(n), fb(n);\n    copy(a.begin(), a.end(), fa.begin());\n    copy(b.rbegin(),\
+    \ b.rend(), fb.begin());\n    ntt(fa, 0), ntt(fb, 0);\n    FOR(i, n) fa[i] *=\
+    \ fb[i];\n    ntt(fa, 1);\n    fa.resize(len(a));\n    fa.erase(fa.begin(), fa.begin()\
+    \ + len(b) - 1);\n    return fa;\n  }\n}\n\ntemplate <typename mint>\nvc<mint>\
+    \ middle_product_naive(vc<mint>& a, vc<mint>& b) {\n  vc<mint> res(len(a) - len(b)\
+    \ + 1);\n  FOR(i, len(res)) FOR(j, len(b)) res[i] += b[j] * a[i + j];\n  return\
+    \ res;\n}\n#line 5 \"poly/multipoint.hpp\"\n\r\ntemplate <typename mint>\r\nstruct\
+    \ SubproductTree {\r\n  int m;\r\n  int sz;\r\n  vc<vc<mint>> T;\r\n  SubproductTree(const\
     \ vc<mint>& x) {\r\n    m = len(x);\r\n    sz = 1;\r\n    while (sz < m) sz *=\
     \ 2;\r\n    T.resize(2 * sz);\r\n    FOR(i, sz) T[sz + i] = {1, (i < m ? -x[i]\
     \ : 0)};\r\n    FOR3_R(i, 1, sz) T[i] = convolution(T[2 * i], T[2 * i + 1]);\r\
@@ -632,8 +635,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc272_h.test.cpp
   requiredBy: []
-  timestamp: '2023-02-23 05:24:25+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-02-23 09:15:05+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc272_h.test.cpp
 layout: document
