@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
   - icon: ':question:'
@@ -9,12 +9,12 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_2_A.test.cpp
     title: test/aoj/DPL_2_A.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -69,9 +69,9 @@ data:
     \    p = b._Find_next(p);\n  }\n}\n#line 4 \"graph/minimum_hamiltonian_cycle.hpp\"\
     \n\n/*\nreturn [cost, cycle]\ncycle \u306A\u3057\u306E\u5834\u5408\uFF1A{-1, {}}\n\
     */\ntemplate <typename T, typename GT>\npair<T, vc<int>> minimum_hamiltonian_cycle(GT&\
-    \ G) {\n  assert(G.is_prepared());\n  int n = G.N;\n  const int full = (1 << n)\
-    \ - 1;\n  vv(T, dist, n, n, infty<T>);\n  FOR(v, n) {\n    for (auto&& e: G[v])\
-    \ chmin(dist[v][e.to], e.cost);\n  }\n  n -= 1;\n  vv(T, dp, 1 << n, n, infty<T>);\n\
+    \ G) {\n  assert(G.is_prepared());\n  int n = G.N;\n  vv(T, dist, n, n, infty<T>);\n\
+    \  FOR(v, n) {\n    for (auto&& e: G[v]) chmin(dist[v][e.to], e.cost);\n  }\n\
+    \  n -= 1;\n  const int full = (1 << n) - 1;\n  vv(T, dp, 1 << n, n, infty<T>);\n\
     \  FOR(v, n) chmin(dp[1 << v][v], dist[n][v]);\n  FOR(s, 1 << n) FOR(frm, n) if\
     \ (dp[s][frm] < infty<T>) {\n    enumerate_bits(full - s, [&](int to) -> void\
     \ {\n      int t = s | 1 << to;\n      T cost = dist[frm][to];\n      if (cost\
@@ -88,9 +88,9 @@ data:
   code: "#pragma once\n#include \"graph/base.hpp\"\n#include \"enumerate/bits.hpp\"\
     \n\n/*\nreturn [cost, cycle]\ncycle \u306A\u3057\u306E\u5834\u5408\uFF1A{-1, {}}\n\
     */\ntemplate <typename T, typename GT>\npair<T, vc<int>> minimum_hamiltonian_cycle(GT&\
-    \ G) {\n  assert(G.is_prepared());\n  int n = G.N;\n  const int full = (1 << n)\
-    \ - 1;\n  vv(T, dist, n, n, infty<T>);\n  FOR(v, n) {\n    for (auto&& e: G[v])\
-    \ chmin(dist[v][e.to], e.cost);\n  }\n  n -= 1;\n  vv(T, dp, 1 << n, n, infty<T>);\n\
+    \ G) {\n  assert(G.is_prepared());\n  int n = G.N;\n  vv(T, dist, n, n, infty<T>);\n\
+    \  FOR(v, n) {\n    for (auto&& e: G[v]) chmin(dist[v][e.to], e.cost);\n  }\n\
+    \  n -= 1;\n  const int full = (1 << n) - 1;\n  vv(T, dp, 1 << n, n, infty<T>);\n\
     \  FOR(v, n) chmin(dp[1 << v][v], dist[n][v]);\n  FOR(s, 1 << n) FOR(frm, n) if\
     \ (dp[s][frm] < infty<T>) {\n    enumerate_bits(full - s, [&](int to) -> void\
     \ {\n      int t = s | 1 << to;\n      T cost = dist[frm][to];\n      if (cost\
@@ -110,8 +110,8 @@ data:
   isVerificationFile: false
   path: graph/minimum_hamiltonian_cycle.hpp
   requiredBy: []
-  timestamp: '2023-02-23 17:04:14+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-02-23 17:34:41+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DPL_2_A.test.cpp
 documentation_of: graph/minimum_hamiltonian_cycle.hpp

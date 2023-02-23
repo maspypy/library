@@ -41,7 +41,7 @@ data:
   - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
   - icon: ':question:'
@@ -50,7 +50,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/partial_frac_decomposition.hpp
     title: poly/partial_frac_decomposition.hpp
   - icon: ':heavy_check_mark:'
@@ -74,7 +74,7 @@ data:
   - icon: ':x:'
     path: seq/famous/indecomposable_permutations.hpp
     title: seq/famous/indecomposable_permutations.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/partition_number.hpp
     title: seq/famous/partition_number.hpp
   - icon: ':question:'
@@ -132,34 +132,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/bell.test.cpp
     title: test/mytest/bell.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/online_division.test.cpp
     title: test/mytest/online_division.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/online_inv.test.cpp
     title: test/mytest/online_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/online_log.test.cpp
     title: test/mytest/online_log.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/online_pow.test.cpp
     title: test/mytest/online_pow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/partial_frac.test.cpp
     title: test/mytest/partial_frac.test.cpp
   - icon: ':x:'

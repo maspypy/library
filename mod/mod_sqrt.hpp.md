@@ -11,28 +11,28 @@ data:
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/four_square.hpp
     title: nt/four_square.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sqrt_mod.test.cpp
     title: test/library_checker/math/sqrt_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"mod/factorial.hpp\"\n\ntemplate <typename mint>\nmint inv(int\
@@ -170,7 +170,7 @@ data:
   - nt/four_square.hpp
   - poly/fps_sqrt.hpp
   timestamp: '2023-02-23 14:02:30+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/sqrt_mod.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
