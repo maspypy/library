@@ -9,7 +9,7 @@ data:
     title: nt/zeta.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/lcm_convolution.test.cpp
     title: test/library_checker/math/lcm_convolution.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: test/yukicoder/1760.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = long long>\n\
@@ -56,7 +56,7 @@ data:
   path: nt/lcm_convolution.hpp
   requiredBy: []
   timestamp: '2022-12-12 09:21:17+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/math/lcm_convolution.test.cpp
   - test/yukicoder/1760.test.cpp
