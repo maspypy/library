@@ -1,5 +1,6 @@
 #pragma once
 #include "graph/base.hpp"
+#include "enumerate/bits.hpp"
 
 /*
 return [cost, cycle]
@@ -9,6 +10,7 @@ template <typename T, typename GT>
 pair<T, vc<int>> minimum_hamiltonian_cycle(GT& G) {
   assert(G.is_prepared());
   int n = G.N;
+  const int full = (1 << n) - 1;
   vv(T, dist, n, n, infty<T>);
   FOR(v, n) {
     for (auto&& e: G[v]) chmin(dist[v][e.to], e.cost);
@@ -17,11 +19,11 @@ pair<T, vc<int>> minimum_hamiltonian_cycle(GT& G) {
   vv(T, dp, 1 << n, n, infty<T>);
   FOR(v, n) chmin(dp[1 << v][v], dist[n][v]);
   FOR(s, 1 << n) FOR(frm, n) if (dp[s][frm] < infty<T>) {
-    FOR(to, n) {
+    enumerate_bits(full - s, [&](int to) -> void {
       int t = s | 1 << to;
       T cost = dist[frm][to];
-      if (s < t && cost < infty<T>) chmin(dp[t][to], dp[s][frm] + cost);
-    }
+      if (cost < infty<T>) chmin(dp[t][to], dp[s][frm] + cost);
+    });
   }
   int s = (1 << n) - 1;
   T res = infty<T>;
