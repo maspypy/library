@@ -7,14 +7,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/longest_increasing_subsequence.hpp
     title: seq/longest_increasing_subsequence.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/longest_increasing_subsequence
@@ -205,10 +205,11 @@ data:
     \ yes(!t); }\n#line 4 \"test/library_checker/math/longest_increasing_subsequence.test.cpp\"\
     \n\n#line 1 \"seq/longest_increasing_subsequence.hpp\"\n// dp[i] := \u7B2C i \u9805\
     \u3067\u7D42\u308F\u308B lis \u9577\u306E\u6700\u5927\u5024\uFF08[1, LIS]\uFF09\
-    \ntemplate <typename T, bool strong = true>\nvc<int> longest_increasing_subsequence(vector<T>\
-    \ A) {\n  const int N = A.size();\n  vc<T> dp(N, infty<T>);\n  vc<int> lis_rank(N);\n\
-    \  FOR(i, N) {\n    int j = (strong ? LB(dp, A[i]) : UB(dp, A[i]));\n    dp[j]\
-    \ = A[i];\n    lis_rank[i] = j + 1;\n  }\n  return lis_rank;\n}\n#line 6 \"test/library_checker/math/longest_increasing_subsequence.test.cpp\"\
+    \ntemplate <typename T, bool strong = true>\npair<int, vc<int>> longest_increasing_subsequence(vector<T>\
+    \ A) {\n  const int N = A.size();\n  vc<T> dp(N, infty<T>);\n  int lis = 0;\n\
+    \  vc<int> lis_rank(N);\n  FOR(i, N) {\n    int j = (strong ? LB(dp, A[i]) : UB(dp,\
+    \ A[i]));\n    dp[j] = A[i];\n    lis_rank[i] = j + 1;\n    chmax(lis, j + 1);\n\
+    \  }\n  return {lis, lis_rank};\n}\n#line 6 \"test/library_checker/math/longest_increasing_subsequence.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n  auto dp = longest_increasing_subsequence(A);\n\
     \  ll n = MAX(dp);\n  ll x = MAX(A) + 1;\n  vc<int> I;\n  FOR_R(i, N) {\n    if\
     \ (dp[i] == n && A[i] < x) {\n      I.eb(i);\n      --n;\n      x = A[i];\n  \
@@ -230,8 +231,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/longest_increasing_subsequence.test.cpp
   requiredBy: []
-  timestamp: '2023-02-24 07:14:18+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-02-25 00:04:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/longest_increasing_subsequence.test.cpp
 layout: document
