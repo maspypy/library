@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/line_add_get_min_lichao_2.test.cpp
     title: test/library_checker/datastructure/line_add_get_min_lichao_2.test.cpp
   - icon: ':x:'
@@ -11,7 +11,7 @@ data:
     title: test/library_checker/datastructure/segment_add_get_min_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/lichao.hpp\"\n// evaluate \u3092\u66F8\u304D\u5909\
@@ -96,7 +96,7 @@ data:
   path: convex/lichao.hpp
   requiredBy: []
   timestamp: '2023-02-03 03:37:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/datastructure/line_add_get_min_lichao_2.test.cpp
   - test/library_checker/datastructure/segment_add_get_min_2.test.cpp
