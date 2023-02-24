@@ -7,18 +7,10 @@
 void solve() {
   LL(N);
   VEC(ll, A, N);
-  auto dp = longest_increasing_subsequence(A);
-  print(MAX(dp));
+  print(longest_increasing_subsequence(A).fi);
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }
