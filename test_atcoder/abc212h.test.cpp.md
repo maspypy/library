@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: setfunc/hadamard.hpp
     title: setfunc/hadamard.hpp
   _extendedRequiredBy: []
