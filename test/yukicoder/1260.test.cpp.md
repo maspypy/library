@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/floor_range.hpp
     title: enumerate/floor_range.hpp
   - icon: ':question:'

@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1573.test.cpp
     title: test/yukicoder/1573.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/4954.test.cpp
     title: test/yukicoder/4954.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"enumerate/floor_range.hpp\"\n// \u5546\u304C q \u306E\u533A\
@@ -41,7 +41,7 @@ data:
   path: enumerate/floor_range.hpp
   requiredBy: []
   timestamp: '2023-02-16 20:33:02+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1276.test.cpp
   - test/yukicoder/1573.test.cpp
