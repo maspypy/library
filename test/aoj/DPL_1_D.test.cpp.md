@@ -7,14 +7,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/longest_increasing_subsequence.hpp
     title: seq/longest_increasing_subsequence.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_D
@@ -209,16 +209,12 @@ data:
     \ {\n    int j = (strong ? LB(dp, A[i]) : UB(dp, A[i]));\n    dp[j] = A[i];\n\
     \    lis_rank[i] = j + 1;\n    chmax(lis, j + 1);\n  }\n  return {lis, lis_rank};\n\
     }\n#line 6 \"test/aoj/DPL_1_D.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  VEC(ll,\
-    \ A, N);\n  auto dp = longest_increasing_subsequence(A);\n  print(MAX(dp));\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
-    \ return 0;\n}\n"
+    \ A, N);\n  print(longest_increasing_subsequence(A).fi);\n}\n\nsigned main() {\n\
+    \  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_D\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"seq/longest_increasing_subsequence.hpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  auto dp = longest_increasing_subsequence(A);\n\
-    \  print(MAX(dp));\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
+    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  print(longest_increasing_subsequence(A).fi);\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -226,8 +222,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL_1_D.test.cpp
   requiredBy: []
-  timestamp: '2023-02-25 00:04:38+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-02-25 00:44:27+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL_1_D.test.cpp
 layout: document
