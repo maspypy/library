@@ -20,6 +20,9 @@ data:
   - icon: ':x:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
+  - icon: ':x:'
+    path: string/wildcard_pattern_matching.hpp
+    title: string/wildcard_pattern_matching.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
@@ -30,7 +33,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/polynomial_interpolation.test.cpp
     title: test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
   - icon: ':x:'
@@ -45,6 +48,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2231.test.cpp
+    title: test/yukicoder/2231.test.cpp
   - icon: ':x:'
     path: test_atcoder/abc267g.test.cpp
     title: test_atcoder/abc267g.test.cpp
@@ -150,6 +156,7 @@ data:
   path: poly/middle_product.hpp
   requiredBy:
   - linalg/implicit_matrix/vandermonde.hpp
+  - string/wildcard_pattern_matching.hpp
   - poly/multipoint.hpp
   - poly/slice_rational_fps.hpp
   - poly/partial_frac_decomposition.hpp
@@ -164,6 +171,7 @@ data:
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/library_checker/polynomial/polynomial_interpolation.test.cpp
   - test/yukicoder/2166.test.cpp
+  - test/yukicoder/2231.test.cpp
   - test/mytest/partial_frac.test.cpp
   - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/vandermonde.test.cpp
