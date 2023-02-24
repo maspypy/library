@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/set_xor_min.test.cpp
     title: test/library_checker/datastructure/set_xor_min.test.cpp
   - icon: ':x:'
@@ -11,7 +11,7 @@ data:
     title: test/mytest/binary_trie.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/binary_trie.hpp\"\n// \u975E\u6C38\u7D9A\u306A\u3089\u3070\
@@ -142,7 +142,7 @@ data:
   path: ds/binary_trie.hpp
   requiredBy: []
   timestamp: '2023-01-31 21:30:28+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/datastructure/set_xor_min.test.cpp
   - test/mytest/binary_trie.test.cpp

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/wavelet_matrix.hpp
     title: ds/wavelet_matrix.hpp
   - icon: ':question:'
