@@ -6,7 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/enumerate_products.test.cpp
     title: test/mytest/enumerate_products.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc233c.test.cpp
     title: test_atcoder/abc233c.test.cpp
   - icon: ':x:'
