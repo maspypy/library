@@ -24,7 +24,13 @@ void solve() {
   auto check = [&](int i, int j) -> bool {
     assert(i < j);
     // 「i 選んだ方がよい」
-    if (i + M <= j) return false;
+    if (i + M <= j) {
+      int n = RH.lcp(RS2, 0, M, RA, i, i + M);
+      if (n < M) return S2[n] < A[i + n];
+      n = RH.lcp(RA, j, j + M, RS2, 0, M);
+      if (n < M) return A[j + n] < S2[n];
+      return true;
+    }
     int n = RH.lcp(RS2, 0, j - i, RA, i, j);
     if (n < j - i) { return S2[n] < A[i + n]; };
     n = RH.lcp(RS2, j - i, M, RS2, 0, M + i - j);
