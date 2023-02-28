@@ -79,16 +79,15 @@ struct FastSet {
     return -1;
   }
 
-  // [l, r) 内の要素を全部集める
-  vector<int> collect(int l, int r) {
-    vector<int> res;
+  // [l, r)
+  template <typename F>
+  void enumerate(int l, int r, F f) {
     int x = l - 1;
     while (1) {
       x = next(x + 1);
       if (x >= r) break;
-      res.emplace_back(x);
+      f(x);
     }
-    return res;
   }
 
   void debug() {
