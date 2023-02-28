@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   _extendedRequiredBy: []
@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/sort_segtree_1.test.cpp
     title: test/library_checker/datastructure/sort_segtree_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc237g.test.cpp
     title: test_atcoder/abc237g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/fastset.hpp\"\n/* 64\u5206\u6728\u3002\r\ninsert, erase\r\
@@ -51,14 +51,13 @@ data:
     \      if (!d) {\r\n        i = i / B - 1;\r\n        continue;\r\n      }\r\n\
     \      // find\r\n      i += bsr(d) - (B - 1);\r\n      for (int g = h - 1; g\
     \ >= 0; g--) {\r\n        i *= B;\r\n        i += bsr(seg[g][i / B]);\r\n    \
-    \  }\r\n      return i;\r\n    }\r\n    return -1;\r\n  }\r\n\r\n  // [l, r) \u5185\
-    \u306E\u8981\u7D20\u3092\u5168\u90E8\u96C6\u3081\u308B\r\n  vector<int> collect(int\
-    \ l, int r) {\r\n    vector<int> res;\r\n    int x = l - 1;\r\n    while (1) {\r\
-    \n      x = next(x + 1);\r\n      if (x >= r) break;\r\n      res.emplace_back(x);\r\
-    \n    }\r\n    return res;\r\n  }\r\n\r\n  void debug() {\r\n    string s;\r\n\
-    \    for (int i = 0; i < n; ++i) s += ((*this)[i] ? '1' : '0');\r\n    print(s);\r\
-    \n  }\r\n};\r\n#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\n\
-    struct SegTree {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
+    \  }\r\n      return i;\r\n    }\r\n    return -1;\r\n  }\r\n\r\n  // [l, r)\r\
+    \n  template <typename F>\r\n  void enumerate(int l, int r, F f) {\r\n    int\
+    \ x = l - 1;\r\n    while (1) {\r\n      x = next(x + 1);\r\n      if (x >= r)\
+    \ break;\r\n      f(x);\r\n    }\r\n  }\r\n\r\n  void debug() {\r\n    string\
+    \ s;\r\n    for (int i = 0; i < n; ++i) s += ((*this)[i] ? '1' : '0');\r\n   \
+    \ print(s);\r\n  }\r\n};\r\n#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class\
+    \ Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
     \  using value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() {}\n\
     \  SegTree(int n) { build(n); }\n  template <typename F>\n  SegTree(int n, F f)\
     \ {\n    build(n, f);\n  }\n  SegTree(const vc<X>& v) { build(v); }\n\n  void\
@@ -235,8 +234,8 @@ data:
   isVerificationFile: false
   path: ds/segtree/sortable_segtree.hpp
   requiredBy: []
-  timestamp: '2023-02-04 01:43:05+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-02-28 19:13:41+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc237g.test.cpp
   - test/library_checker/datastructure/sort_segtree.test.cpp

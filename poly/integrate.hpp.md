@@ -2,6 +2,12 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: poly/composed_product.hpp
+    title: poly/composed_product.hpp
+  - icon: ':warning:'
+    path: poly/composed_sum.hpp
+    title: poly/composed_sum.hpp
   - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
@@ -128,9 +134,11 @@ data:
   - poly/product_of_one_minus_xn.hpp
   - poly/product_of_one_plus_xn.hpp
   - poly/product_of_f_rk_x.hpp
+  - poly/composed_sum.hpp
   - poly/fps_sqrt.hpp
   - poly/product_of_pow_of_linear.hpp
   - poly/fps_pow.hpp
+  - poly/composed_product.hpp
   - poly/fps_exp.hpp
   timestamp: '2022-05-02 13:06:43+09:00'
   verificationStatus: LIBRARY_ALL_AC

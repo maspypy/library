@@ -21,25 +21,25 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/matrix_rank.hpp\"\ntemplate <typename T>\nint matrix_rank(const\
-    \ int n, const int m, vc<vc<T>> a) {\n  int rk = 0;\n  FOR(j, m) {\n    if (a[rk][j]\
+    \ int n, const int m, vc<vc<T>> a) {\n  int rk = 0;\n  FOR(j, m) {\n    if (rk\
+    \ == n) break;\n    if (a[rk][j] == 0) {\n      FOR3(i, rk + 1, n) if (a[i][j]\
+    \ != 0) {\n        swap(a[rk], a[i]);\n        break;\n      }\n    }\n    if\
+    \ (a[rk][j] == 0) continue;\n    T c = T(1) / a[rk][j];\n    FOR(k, j, m) a[rk][k]\
+    \ *= c;\n    FOR(i, rk + 1, n) {\n      T c = a[i][j];\n      FOR3(k, j, m) {\
+    \ a[i][k] -= a[rk][k] * c; }\n    }\n    ++rk;\n  }\n  return rk;\n}\n"
+  code: "template <typename T>\nint matrix_rank(const int n, const int m, vc<vc<T>>\
+    \ a) {\n  int rk = 0;\n  FOR(j, m) {\n    if (rk == n) break;\n    if (a[rk][j]\
     \ == 0) {\n      FOR3(i, rk + 1, n) if (a[i][j] != 0) {\n        swap(a[rk], a[i]);\n\
     \        break;\n      }\n    }\n    if (a[rk][j] == 0) continue;\n    T c = T(1)\
     \ / a[rk][j];\n    FOR(k, j, m) a[rk][k] *= c;\n    FOR(i, rk + 1, n) {\n    \
     \  T c = a[i][j];\n      FOR3(k, j, m) { a[i][k] -= a[rk][k] * c; }\n    }\n \
-    \   ++rk;\n    if (rk == n) break;\n  }\n  return rk;\n}\n"
-  code: "template <typename T>\nint matrix_rank(const int n, const int m, vc<vc<T>>\
-    \ a) {\n  int rk = 0;\n  FOR(j, m) {\n    if (a[rk][j] == 0) {\n      FOR3(i,\
-    \ rk + 1, n) if (a[i][j] != 0) {\n        swap(a[rk], a[i]);\n        break;\n\
-    \      }\n    }\n    if (a[rk][j] == 0) continue;\n    T c = T(1) / a[rk][j];\n\
-    \    FOR(k, j, m) a[rk][k] *= c;\n    FOR(i, rk + 1, n) {\n      T c = a[i][j];\n\
-    \      FOR3(k, j, m) { a[i][k] -= a[rk][k] * c; }\n    }\n    ++rk;\n    if (rk\
-    \ == n) break;\n  }\n  return rk;\n}\n"
+    \   ++rk;\n  }\n  return rk;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: linalg/matrix_rank.hpp
   requiredBy:
   - graph/max_matching_size.hpp
-  timestamp: '2022-11-06 01:50:09+09:00'
+  timestamp: '2023-02-28 19:14:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/matrix/solve_linear.test.cpp

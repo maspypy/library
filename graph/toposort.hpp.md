@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2251_1.test.cpp
     title: test/aoj/2251_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc223d.test.cpp
     title: test_atcoder/abc223d.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -96,17 +96,16 @@ data:
     \n      }\r\n      // find\r\n      i += bsr(d) - (B - 1);\r\n      for (int g\
     \ = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += bsr(seg[g][i / B]);\r\
     \n      }\r\n      return i;\r\n    }\r\n    return -1;\r\n  }\r\n\r\n  // [l,\
-    \ r) \u5185\u306E\u8981\u7D20\u3092\u5168\u90E8\u96C6\u3081\u308B\r\n  vector<int>\
-    \ collect(int l, int r) {\r\n    vector<int> res;\r\n    int x = l - 1;\r\n  \
-    \  while (1) {\r\n      x = next(x + 1);\r\n      if (x >= r) break;\r\n     \
-    \ res.emplace_back(x);\r\n    }\r\n    return res;\r\n  }\r\n\r\n  void debug()\
-    \ {\r\n    string s;\r\n    for (int i = 0; i < n; ++i) s += ((*this)[i] ? '1'\
-    \ : '0');\r\n    print(s);\r\n  }\r\n};\r\n#line 3 \"graph/toposort.hpp\"\n\n\
-    // \u8F9E\u66F8\u9806\u6700\u5C0F\u306E toposort \u3092\u8FD4\u3059\ntemplate\
-    \ <typename GT>\nvc<int> toposort(GT& G) {\n  assert(G.is_prepared() && G.is_directed());\n\
-    \  const int N = G.N;\n  auto [indeg, outdeg] = G.deg_array_inout();\n  FastSet\
-    \ que(N);\n  vc<int> V;\n  FOR(v, N) if (indeg[v] == 0) que.insert(v);\n  while\
-    \ (1) {\n    int v = que.next(0);\n    if (v == N) break;\n    que.erase(v), V.eb(v);\n\
+    \ r)\r\n  template <typename F>\r\n  void enumerate(int l, int r, F f) {\r\n \
+    \   int x = l - 1;\r\n    while (1) {\r\n      x = next(x + 1);\r\n      if (x\
+    \ >= r) break;\r\n      f(x);\r\n    }\r\n  }\r\n\r\n  void debug() {\r\n    string\
+    \ s;\r\n    for (int i = 0; i < n; ++i) s += ((*this)[i] ? '1' : '0');\r\n   \
+    \ print(s);\r\n  }\r\n};\r\n#line 3 \"graph/toposort.hpp\"\n\n// \u8F9E\u66F8\u9806\
+    \u6700\u5C0F\u306E toposort \u3092\u8FD4\u3059\ntemplate <typename GT>\nvc<int>\
+    \ toposort(GT& G) {\n  assert(G.is_prepared() && G.is_directed());\n  const int\
+    \ N = G.N;\n  auto [indeg, outdeg] = G.deg_array_inout();\n  FastSet que(N);\n\
+    \  vc<int> V;\n  FOR(v, N) if (indeg[v] == 0) que.insert(v);\n  while (1) {\n\
+    \    int v = que.next(0);\n    if (v == N) break;\n    que.erase(v), V.eb(v);\n\
     \    for (auto&& e: G[v]) {\n      if (--indeg[e.to] == 0) que.insert(e.to);\n\
     \    }\n  }\n  return (len(V) < N ? vc<int>{} : V);\n}\n"
   code: "#include \"graph/base.hpp\"\n#include \"ds/fastset.hpp\"\n\n// \u8F9E\u66F8\
@@ -124,8 +123,8 @@ data:
   path: graph/toposort.hpp
   requiredBy:
   - graph/dag_path_cover.hpp
-  timestamp: '2023-01-23 16:27:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-02-28 19:13:41+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc223d.test.cpp
   - test/aoj/2251_1.test.cpp

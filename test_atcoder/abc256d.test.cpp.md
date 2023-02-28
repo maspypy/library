@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/intervals.hpp
     title: ds/intervals.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc256/tasks/abc256_d
@@ -275,21 +275,19 @@ data:
     \n      }\r\n      // find\r\n      i += bsr(d) - (B - 1);\r\n      for (int g\
     \ = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += bsr(seg[g][i / B]);\r\
     \n      }\r\n      return i;\r\n    }\r\n    return -1;\r\n  }\r\n\r\n  // [l,\
-    \ r) \u5185\u306E\u8981\u7D20\u3092\u5168\u90E8\u96C6\u3081\u308B\r\n  vector<int>\
-    \ collect(int l, int r) {\r\n    vector<int> res;\r\n    int x = l - 1;\r\n  \
-    \  while (1) {\r\n      x = next(x + 1);\r\n      if (x >= r) break;\r\n     \
-    \ res.emplace_back(x);\r\n    }\r\n    return res;\r\n  }\r\n\r\n  void debug()\
-    \ {\r\n    string s;\r\n    for (int i = 0; i < n; ++i) s += ((*this)[i] ? '1'\
-    \ : '0');\r\n    print(s);\r\n  }\r\n};\r\n#line 126 \"ds/intervals.hpp\"\n\n\
-    // FastSet \u3067\u9AD8\u901F\u5316\u3057\u305F\u3082\u306E\ntemplate <typename\
-    \ T>\nstruct Intervals_Fast {\n  const int LLIM, RLIM;\n  const T none_val;\n\
-    \  // none_val \u3067\u306A\u3044\u533A\u9593\u306E\u500B\u6570\u3068\u9577\u3055\
-    \u5408\u8A08\n  int total_num;\n  int total_len;\n  vc<T> dat;\n  FastSet ss;\n\
-    \n  Intervals_Fast(int N, T none_val)\n      : LLIM(0),\n        RLIM(N),\n  \
-    \      none_val(none_val),\n        total_num(0),\n        total_len(0),\n   \
-    \     dat(N, none_val),\n        ss(N + 1) {\n    ss.insert(0);\n    ss.insert(N);\n\
-    \  }\n\n  tuple<int, int, T> get(int x) {\n    auto l = ss.prev(x);\n    auto\
-    \ r = ss.next(x + 1);\n    return {l, r, dat[l]};\n  }\n\n  template <typename\
+    \ r)\r\n  template <typename F>\r\n  void enumerate(int l, int r, F f) {\r\n \
+    \   int x = l - 1;\r\n    while (1) {\r\n      x = next(x + 1);\r\n      if (x\
+    \ >= r) break;\r\n      f(x);\r\n    }\r\n  }\r\n\r\n  void debug() {\r\n    string\
+    \ s;\r\n    for (int i = 0; i < n; ++i) s += ((*this)[i] ? '1' : '0');\r\n   \
+    \ print(s);\r\n  }\r\n};\r\n#line 126 \"ds/intervals.hpp\"\n\n// FastSet \u3067\
+    \u9AD8\u901F\u5316\u3057\u305F\u3082\u306E\ntemplate <typename T>\nstruct Intervals_Fast\
+    \ {\n  const int LLIM, RLIM;\n  const T none_val;\n  // none_val \u3067\u306A\u3044\
+    \u533A\u9593\u306E\u500B\u6570\u3068\u9577\u3055\u5408\u8A08\n  int total_num;\n\
+    \  int total_len;\n  vc<T> dat;\n  FastSet ss;\n\n  Intervals_Fast(int N, T none_val)\n\
+    \      : LLIM(0),\n        RLIM(N),\n        none_val(none_val),\n        total_num(0),\n\
+    \        total_len(0),\n        dat(N, none_val),\n        ss(N + 1) {\n    ss.insert(0);\n\
+    \    ss.insert(N);\n  }\n\n  tuple<int, int, T> get(int x) {\n    auto l = ss.prev(x);\n\
+    \    auto r = ss.next(x + 1);\n    return {l, r, dat[l]};\n  }\n\n  template <typename\
     \ ADD, typename RM>\n  void set(int L, int R, T t, ADD& add_f, RM& rm_f) {\n \
     \   assert(LLIM <= L && L <= R && R <= RLIM);\n    if (L == R) return;\n    assert(L\
     \ < R);\n    // \u533A\u9593 [l, r) \u3092 t \u306B\u5909\u66F4\u3059\u308B\n\
@@ -341,8 +339,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc256d.test.cpp
   requiredBy: []
-  timestamp: '2023-02-24 07:14:18+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-02-28 19:13:41+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc256d.test.cpp
 layout: document

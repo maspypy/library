@@ -1,43 +1,43 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/factorial.hpp
     title: mod/factorial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
   - icon: ':heavy_check_mark:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
   _extendedRequiredBy: []
@@ -407,31 +407,32 @@ data:
     \ b.se);\n    return {num, den};\n  };\n\n  while (len(dat) > 1) {\n    int n\
     \ = len(dat);\n    FOR(i, 1, n, 2) { dat[i - 1] = add(dat[i - 1], dat[i]); }\n\
     \    FOR(i, ceil(n, 2)) dat[i] = dat[2 * i];\n    dat.resize(ceil(n, 2));\n  }\n\
-    \  return dat[0];\n}\n#line 3 \"poly/fps_div.hpp\"\n\n// f/g. f \u306E\u9577\u3055\
-    \u3067\u51FA\u529B\u3055\u308C\u308B.\ntemplate <typename mint, bool SPARSE =\
-    \ false>\nvc<mint> fps_div(vc<mint> f, vc<mint> g) {\n  if (SPARSE || count_terms(g)\
-    \ < 200) return fps_div_sparse(f, g);\n  int n = len(f);\n  g.resize(n);\n  g\
-    \ = fps_inv<mint>(g);\n  f = convolution(f, g);\n  f.resize(n);\n  return f;\n\
-    }\n\n// f/g \u305F\u3060\u3057 g \u306F sparse\ntemplate <typename mint>\nvc<mint>\
-    \ fps_div_sparse(vc<mint> f, vc<mint>& g) {\n  if (g[0] != mint(1)) {\n    mint\
-    \ cf = g[0].inverse();\n    for (auto&& x: f) x *= cf;\n    for (auto&& x: g)\
-    \ x *= cf;\n  }\n\n  vc<pair<int, mint>> dat;\n  FOR(i, 1, len(g)) if (g[i] !=\
-    \ mint(0)) dat.eb(i, -g[i]);\n  FOR(i, len(f)) {\n    for (auto&& [j, x]: dat)\
-    \ {\n      if (i >= j) f[i] += x * f[i - j];\n    }\n  }\n  return f;\n}\n#line\
-    \ 4 \"linalg/implicit_matrix/vandermonde.hpp\"\n\n// transpose = 0\uFF1Ag[i] =\
-    \ sum pow(ai,j) f[j]\n// transpose = 1\uFF1Ag[i] = sum pow(aj,i) f[j]\ntemplate\
-    \ <typename mint>\nvc<mint> vandermonde(vc<mint> f, vc<mint> A, bool transpose,\
-    \ bool inverse) {\n  if (len(f) == 0) return vc<mint>();\n  int N = len(f);\n\
-    \  using poly = vc<mint>;\n  if (!transpose) {\n    if (!inverse) { return multipoint_eval(f,\
-    \ A); }\n    if (inverse) { return multipoint_interpolate(A, f); }\n  }\n  if\
-    \ (!inverse) {\n    vc<pair<poly, poly>> dat(N);\n    FOR(j, N) {\n      poly\
-    \ a{f[j]}, b{mint(1), mint(-A[j])};\n      dat[j] = {a, b};\n    }\n    auto [num,\
-    \ den] = sum_of_rationals(dat);\n    num.resize(N);\n    return fps_div(num, den);\n\
-    \  }\n  SubproductTree<mint> X(A);\n  vc<mint> g = X.T[1]; // prod(1-ax)\n  g.resize(N\
-    \ + 1);\n  f = convolution<mint>(f, g);\n  f.resize(N);\n  reverse(all(f));\n\
-    \  reverse(all(g));\n  FOR(i, len(g) - 1) g[i] = g[i + 1] * mint(i + 1);\n  g.pop_back();\n\
-    \  auto num = X.evaluation(f);\n  auto den = X.evaluation(g);\n  vc<mint> B(len(A));\n\
-    \  FOR(i, len(A)) B[i] = num[i] / den[i];\n  return B;\n}\n"
+    \  return dat[0];\n}\n#line 2 \"poly/fps_div.hpp\"\n\n#line 5 \"poly/fps_div.hpp\"\
+    \n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\u529B\u3055\u308C\u308B.\ntemplate\
+    \ <typename mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint> f, vc<mint>\
+    \ g) {\n  if (SPARSE || count_terms(g) < 200) return fps_div_sparse(f, g);\n \
+    \ int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n  f = convolution(f,\
+    \ g);\n  f.resize(n);\n  return f;\n}\n\n// f/g \u305F\u3060\u3057 g \u306F sparse\n\
+    template <typename mint>\nvc<mint> fps_div_sparse(vc<mint> f, vc<mint>& g) {\n\
+    \  if (g[0] != mint(1)) {\n    mint cf = g[0].inverse();\n    for (auto&& x: f)\
+    \ x *= cf;\n    for (auto&& x: g) x *= cf;\n  }\n\n  vc<pair<int, mint>> dat;\n\
+    \  FOR(i, 1, len(g)) if (g[i] != mint(0)) dat.eb(i, -g[i]);\n  FOR(i, len(f))\
+    \ {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i - j];\n\
+    \    }\n  }\n  return f;\n}\n#line 4 \"linalg/implicit_matrix/vandermonde.hpp\"\
+    \n\n// transpose = 0\uFF1Ag[i] = sum pow(ai,j) f[j]\n// transpose = 1\uFF1Ag[i]\
+    \ = sum pow(aj,i) f[j]\ntemplate <typename mint>\nvc<mint> vandermonde(vc<mint>\
+    \ f, vc<mint> A, bool transpose, bool inverse) {\n  if (len(f) == 0) return vc<mint>();\n\
+    \  int N = len(f);\n  using poly = vc<mint>;\n  if (!transpose) {\n    if (!inverse)\
+    \ { return multipoint_eval(f, A); }\n    if (inverse) { return multipoint_interpolate(A,\
+    \ f); }\n  }\n  if (!inverse) {\n    vc<pair<poly, poly>> dat(N);\n    FOR(j,\
+    \ N) {\n      poly a{f[j]}, b{mint(1), mint(-A[j])};\n      dat[j] = {a, b};\n\
+    \    }\n    auto [num, den] = sum_of_rationals(dat);\n    num.resize(N);\n   \
+    \ return fps_div(num, den);\n  }\n  SubproductTree<mint> X(A);\n  vc<mint> g =\
+    \ X.T[1]; // prod(1-ax)\n  g.resize(N + 1);\n  f = convolution<mint>(f, g);\n\
+    \  f.resize(N);\n  reverse(all(f));\n  reverse(all(g));\n  FOR(i, len(g) - 1)\
+    \ g[i] = g[i + 1] * mint(i + 1);\n  g.pop_back();\n  auto num = X.evaluation(f);\n\
+    \  auto den = X.evaluation(g);\n  vc<mint> B(len(A));\n  FOR(i, len(A)) B[i] =\
+    \ num[i] / den[i];\n  return B;\n}\n"
   code: "#include \"poly/multipoint.hpp\"\n#include \"poly/sum_of_rationals.hpp\"\n\
     #include \"poly/fps_div.hpp\"\n\n// transpose = 0\uFF1Ag[i] = sum pow(ai,j) f[j]\n\
     // transpose = 1\uFF1Ag[i] = sum pow(aj,i) f[j]\ntemplate <typename mint>\nvc<mint>\
@@ -464,7 +465,7 @@ data:
   isVerificationFile: false
   path: linalg/implicit_matrix/vandermonde.hpp
   requiredBy: []
-  timestamp: '2023-02-23 14:02:30+09:00'
+  timestamp: '2023-02-28 19:14:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/vandermonde.test.cpp

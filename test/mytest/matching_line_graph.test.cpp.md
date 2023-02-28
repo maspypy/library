@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -16,10 +16,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
@@ -308,19 +308,19 @@ data:
     \n  static constexpr ll get_mod() { return mod; }\r\n  void write() { fastio::printer.write(val);\
     \ }\r\n  void read() { fastio::scanner.read(val); }\r\n};\r\n#line 1 \"linalg/matrix_rank.hpp\"\
     \ntemplate <typename T>\nint matrix_rank(const int n, const int m, vc<vc<T>> a)\
-    \ {\n  int rk = 0;\n  FOR(j, m) {\n    if (a[rk][j] == 0) {\n      FOR3(i, rk\
-    \ + 1, n) if (a[i][j] != 0) {\n        swap(a[rk], a[i]);\n        break;\n  \
-    \    }\n    }\n    if (a[rk][j] == 0) continue;\n    T c = T(1) / a[rk][j];\n\
-    \    FOR(k, j, m) a[rk][k] *= c;\n    FOR(i, rk + 1, n) {\n      T c = a[i][j];\n\
-    \      FOR3(k, j, m) { a[i][k] -= a[rk][k] * c; }\n    }\n    ++rk;\n    if (rk\
-    \ == n) break;\n  }\n  return rk;\n}\n#line 4 \"graph/max_matching_size.hpp\"\n\
-    \ntemplate <typename GT>\nint max_matching_size(GT& G) {\n  using mint = modint61;\n\
-    \  assert(!G.is_directed());\n  int N = G.N;\n  vv(mint, tutte, N, N);\n  for\
-    \ (auto&& e: G.edges) {\n    mint x = RNG(mint::get_mod());\n    int i = e.frm,\
-    \ j = e.to;\n    tutte[i][j] += x;\n    tutte[j][i] -= x;\n  }\n  return matrix_rank(N,\
-    \ N, tutte) / 2;\n}\n#line 2 \"graph/maximum_matching_of_line_graph.hpp\"\n\n\
-    // \u540C\u3058\u9802\u70B9\u306B\u63A5\u7D9A\u3059\u308B 2 \u8FBA\u3092\u30DE\
-    \u30C3\u30C1\u3067\u304D\u308B\ntemplate <typename GT>\nvc<pair<int, int>> maximum_matching_of_line_graph(GT&\
+    \ {\n  int rk = 0;\n  FOR(j, m) {\n    if (rk == n) break;\n    if (a[rk][j] ==\
+    \ 0) {\n      FOR3(i, rk + 1, n) if (a[i][j] != 0) {\n        swap(a[rk], a[i]);\n\
+    \        break;\n      }\n    }\n    if (a[rk][j] == 0) continue;\n    T c = T(1)\
+    \ / a[rk][j];\n    FOR(k, j, m) a[rk][k] *= c;\n    FOR(i, rk + 1, n) {\n    \
+    \  T c = a[i][j];\n      FOR3(k, j, m) { a[i][k] -= a[rk][k] * c; }\n    }\n \
+    \   ++rk;\n  }\n  return rk;\n}\n#line 4 \"graph/max_matching_size.hpp\"\n\ntemplate\
+    \ <typename GT>\nint max_matching_size(GT& G) {\n  using mint = modint61;\n  assert(!G.is_directed());\n\
+    \  int N = G.N;\n  vv(mint, tutte, N, N);\n  for (auto&& e: G.edges) {\n    mint\
+    \ x = RNG(mint::get_mod());\n    int i = e.frm, j = e.to;\n    tutte[i][j] +=\
+    \ x;\n    tutte[j][i] -= x;\n  }\n  return matrix_rank(N, N, tutte) / 2;\n}\n\
+    #line 2 \"graph/maximum_matching_of_line_graph.hpp\"\n\n// \u540C\u3058\u9802\u70B9\
+    \u306B\u63A5\u7D9A\u3059\u308B 2 \u8FBA\u3092\u30DE\u30C3\u30C1\u3067\u304D\u308B\
+    \ntemplate <typename GT>\nvc<pair<int, int>> maximum_matching_of_line_graph(GT&\
     \ G) {\n  assert(!G.is_directed());\n  assert(G.is_prepared());\n  const int N\
     \ = G.N, M = G.M;\n  vc<pair<int, int>> ANS;\n  vc<int> V;\n  vc<int> par(N, -1);\
     \ // eid\n  {\n    vc<int> done(N);\n    FOR(v, N) {\n      if (done[v]) continue;\n\
@@ -382,7 +382,7 @@ data:
   isVerificationFile: true
   path: test/mytest/matching_line_graph.test.cpp
   requiredBy: []
-  timestamp: '2023-02-24 07:14:18+09:00'
+  timestamp: '2023-02-28 19:14:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/matching_line_graph.test.cpp
