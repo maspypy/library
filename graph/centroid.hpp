@@ -1,7 +1,7 @@
 #include "graph/base.hpp"
 
 template <typename GT>
-vc<int> find_centroids(GT& G) {
+pair<int, int> find_centroids(GT& G) {
   int N = G.N;
   vc<int> par(N, -1);
   vc<int> V(N);
@@ -31,8 +31,14 @@ vc<int> find_centroids(GT& G) {
     }
     return true;
   };
-  vc<int> ANS;
-  FOR(v, N) if (check(v)) ANS.eb(v);
+  pair<int, int> ANS = {-1, -1};
+  FOR(v, N) if (check(v)) {
+    if (ANS.fi != -1) {
+      ANS.se = v;
+    } else {
+      ANS.fi = v;
+    }
+  }
   return ANS;
 }
 
