@@ -2,7 +2,30 @@
 // 高次元版：https://codeforces.com/contest/863/submission/194294053
 vc<pair<int, int>> grid_hamiltonian_path(int H, int W, int sx = 0, int sy = 0) {
   using P = pair<int, int>;
-  assert(H >= 2 && W >= 2); //とりあえず
+  if (H == 1) {
+    vc<P> path;
+    if (sy == 0) {
+      FOR(y, W) path.eb(0, y);
+      return path;
+    }
+    if (sy == W - 1) {
+      FOR_R(y, W) path.eb(0, y);
+      return path;
+    }
+    return {};
+  }
+  if (W == 1) {
+    vc<P> path;
+    if (sx == 0) {
+      FOR(x, H) path.eb(x, 0);
+      return path;
+    }
+    if (sx == H - 1) {
+      FOR_R(x, H) path.eb(x, 0);
+      return path;
+    }
+    return {};
+  }
   if (H % 2 == 0 && W % 2 == 1) {
     vc<P> path = grid_hamiltonian_path(W, H, sy, sx);
     for (auto&& x: path) swap(x.fi, x.se);
