@@ -59,6 +59,6 @@ T monge_shortest_path_d_edge(int N, int d, T f_lim, F f) {
     return dp[N] - lambda * d;
   };
 
-  auto [x, fx] = fibonacci_search<T, false>(calc_L, -3 * f_lim, 3 * f_lim);
+  auto [x, fx] = fibonacci_search<T, false>(calc_L, -3 * f_lim, 3 * f_lim + 1);
   return fx;
 }
