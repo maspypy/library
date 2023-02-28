@@ -1,7 +1,8 @@
-// 閉区間 [L, R] での凸関数の最小化
-// L, R は long long、T は i128 可
+// [L, R) での極小値をひとつ求める、単峰は不要
 template <typename T, bool MINIMIZE, typename F>
 pair<ll, T> fibonacci_search(F f, ll L, ll R) {
+  assert(L < R);
+  --R;
   ll a = L, b = L + 1, c = L + 2, d = L + 3;
   int n = 0;
   while (d < R) { b = c, c = d, d = b + c - a, ++n; }
@@ -10,6 +11,7 @@ pair<ll, T> fibonacci_search(F f, ll L, ll R) {
     return (MINIMIZE ? f(x) : -f(x));
   };
   T ya = get(a), yb = get(b), yc = get(c), yd = get(d);
+  // この中で極小ならば全体でも極小、を維持する
   FOR(n) {
     if (yb < yc) {
       d = c, c = b, b = a + d - c;
