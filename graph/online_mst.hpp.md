@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   _extendedRequiredBy: []
@@ -14,20 +14,21 @@ data:
   bundledCode: "#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int\
     \ n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n);\
     \ }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n\
-    \  }\n\n  int operator[](int x) {\n    while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n\
-    \      if (pp < 0) { return dat[x]; }\n      x = dat[x] = pp;\n    }\n    return\
-    \ x;\n  }\n\n  ll size(int x) {\n    assert(dat[x] < 0);\n    return -dat[x];\n\
-    \  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x], y = (*this)[y];\n  \
-    \  if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x]\
-    \ += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n};\n#line 2 \"graph/online_mst.hpp\"\
-    \n\n// Brouvka\n// \u967D\u306B\u30B0\u30E9\u30D5\u3092\u4F5C\u3089\u305A\u3001\
-    \u4F55\u3089\u304B\u306E\u30C7\u30FC\u30BF\u69CB\u9020\u3067\u672A\u8A2A\u554F\
-    \u306E\u884C\u304D\u5148\u3092\u63A2\u3059\u60F3\u5B9A\u3002\n// find_unused(v)\uFF1A\
-    unused \u306A\u3046\u3061\u3067\u3001v \u3068\u6700\u5C0F\u30B3\u30B9\u30C8\u3067\
-    \u7D50\u3079\u308B\u70B9\u3092\u63A2\u3059\u3002\n// pair<int,COST> \u306A\u3051\
-    \u308C\u3070 {-1,*} \u3092\u8FD4\u3059\u3053\u3068\u3002\ntemplate <typename COST,\
-    \ typename F0, typename F1, typename F2>\nvc<tuple<int, int, COST>> online_mst(int\
-    \ N, F0 set_used, F1 set_unused,\n                                     F2 find_unused)\
+    \  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x]\
+    \ >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n\
+    \      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n   \
+    \ assert(dat[x] < 0);\n    return -dat[x];\n  }\n\n  bool merge(int x, int y)\
+    \ {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n    if\
+    \ (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
+    \    return true;\n  }\n};\n#line 2 \"graph/online_mst.hpp\"\n\n// Brouvka\n//\
+    \ \u967D\u306B\u30B0\u30E9\u30D5\u3092\u4F5C\u3089\u305A\u3001\u4F55\u3089\u304B\
+    \u306E\u30C7\u30FC\u30BF\u69CB\u9020\u3067\u672A\u8A2A\u554F\u306E\u884C\u304D\
+    \u5148\u3092\u63A2\u3059\u60F3\u5B9A\u3002\n// find_unused(v)\uFF1Aunused \u306A\
+    \u3046\u3061\u3067\u3001v \u3068\u6700\u5C0F\u30B3\u30B9\u30C8\u3067\u7D50\u3079\
+    \u308B\u70B9\u3092\u63A2\u3059\u3002\n// pair<int,COST> \u306A\u3051\u308C\u3070\
+    \ {-1,*} \u3092\u8FD4\u3059\u3053\u3068\u3002\ntemplate <typename COST, typename\
+    \ F0, typename F1, typename F2>\nvc<tuple<int, int, COST>> online_mst(int N, F0\
+    \ set_used, F1 set_unused,\n                                     F2 find_unused)\
     \ {\n  using edge = tuple<int, int, COST>;\n  UnionFind uf(N);\n  vc<edge> res;\n\
     \  while (1) {\n    bool upd = 0;\n    vvc<int> comp(N);\n    vc<edge> cand(N,\
     \ {-1, -1, -1});\n    FOR(v, N) comp[uf[v]].eb(v);\n    FOR(v, N) if (uf[v] ==\
@@ -62,7 +63,7 @@ data:
   isVerificationFile: false
   path: graph/online_mst.hpp
   requiredBy: []
-  timestamp: '2022-12-23 10:56:29+09:00'
+  timestamp: '2023-03-02 23:03:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/online_mst.hpp

@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: mod/factorial.hpp
     title: mod/factorial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/fast_div.hpp
     title: mod/fast_div.hpp
   - icon: ':question:'

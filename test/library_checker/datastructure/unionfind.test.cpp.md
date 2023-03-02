@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':question:'
@@ -205,17 +205,17 @@ data:
     \ yes(!t); }\n#line 4 \"test/library_checker/datastructure/unionfind.test.cpp\"\
     \n\n#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int n, n_comp;\n\
     \  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n); }\n\n  void\
-    \ build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  int\
-    \ operator[](int x) {\n    while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n\
-    \      if (pp < 0) { return dat[x]; }\n      x = dat[x] = pp;\n    }\n    return\
-    \ x;\n  }\n\n  ll size(int x) {\n    assert(dat[x] < 0);\n    return -dat[x];\n\
-    \  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x], y = (*this)[y];\n  \
-    \  if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x]\
-    \ += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n};\n#line 6 \"test/library_checker/datastructure/unionfind.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  UnionFind uf(N);\n  FOR(Q) {\n    LL(t, a,\
-    \ b);\n    if (t == 0) {\n      uf.merge(a, b);\n    } else {\n      print(uf[a]\
-    \ == uf[b] ? 1 : 0);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
-    }\n"
+    \ build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  void\
+    \ reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x] >= 0)\
+    \ {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n     \
+    \ x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    assert(dat[x]\
+    \ < 0);\n    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x],\
+    \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
+    \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n};\n\
+    #line 6 \"test/library_checker/datastructure/unionfind.test.cpp\"\n\nvoid solve()\
+    \ {\n  LL(N, Q);\n  UnionFind uf(N);\n  FOR(Q) {\n    LL(t, a, b);\n    if (t\
+    \ == 0) {\n      uf.merge(a, b);\n    } else {\n      print(uf[a] == uf[b] ? 1\
+    \ : 0);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\n#include \"\
     my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/unionfind/unionfind.hpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  UnionFind uf(N);\n  FOR(Q) {\n    LL(t, a,\
@@ -229,7 +229,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/unionfind.test.cpp
   requiredBy: []
-  timestamp: '2023-02-24 07:14:18+09:00'
+  timestamp: '2023-03-02 23:03:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/unionfind.test.cpp

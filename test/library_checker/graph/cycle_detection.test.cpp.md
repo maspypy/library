@@ -263,22 +263,33 @@ data:
     \   return;\r\n      }\r\n    }\r\n    used[v] = 2;\r\n  };\r\n  FOR(v, N) if\
     \ (!used[v]) dfs(dfs, v);\r\n  if (es.empty()) return {vs, es};\r\n\r\n  vs.resize(len(es));\r\
     \n  FOR(i, len(es)) { vs[i] = G.edges[es[i]].frm; }\r\n  return {vs, es};\r\n\
-    }\r\n\r\ntemplate <typename GT>\r\npair<vc<int>, vc<int>> find_cycle_undirected(GT&\
-    \ G) {\r\n  const int N = G.N;\r\n  const int M = G.M;\r\n  vc<int> dep(N, -1);\r\
-    \n  vc<bool> used_e(M);\r\n  vc<int> par(N, -1);\r\n\r\n  auto dfs = [&](auto&\
-    \ dfs, int v, int d) -> int {\r\n    dep[v] = d;\r\n    for (auto&& e: G[v]) {\r\
-    \n      if (used_e[e.id]) continue;\r\n      if (dep[e.to] != -1) return e.id;\r\
-    \n      used_e[e.id] = 1;\r\n      par[e.to] = e.id;\r\n      int res = dfs(dfs,\
+    }\r\n\r\n// {vs, es}\u3001\u5B58\u5728\u3057\u306A\u3051\u308C\u3070 empty\r\n\
+    // \u6975\u5C0F\u306A\u3082\u306E\u3092\u8FD4\u3059\r\ntemplate <typename GT>\r\
+    \npair<vc<int>, vc<int>> find_cycle_undirected(GT& G) {\r\n  const int N = G.N;\r\
+    \n  const int M = G.M;\r\n  vc<int> dep(N, -1);\r\n  vc<bool> used_e(M);\r\n \
+    \ vc<int> par(N, -1); // \u8FBA\u756A\u53F7\r\n\r\n  auto dfs = [&](auto& dfs,\
+    \ int v, int d) -> int {\r\n    dep[v] = d;\r\n    for (auto&& e: G[v]) {\r\n\
+    \      if (used_e[e.id]) continue;\r\n      if (dep[e.to] != -1) return v;\r\n\
+    \      used_e[e.id] = 1;\r\n      par[e.to] = e.id;\r\n      int res = dfs(dfs,\
     \ e.to, d + 1);\r\n      if (res != -1) return res;\r\n    }\r\n    return -1;\r\
     \n  };\r\n\r\n  vc<int> vs, es;\r\n  FOR(v, N) {\r\n    if (dep[v] != -1) continue;\r\
-    \n    int e0 = dfs(dfs, v, 0);\r\n    if (e0 == -1) continue;\r\n    int a = G.edges[e0].frm,\
-    \ b = G.edges[e0].to;\r\n    if (dep[a] > dep[b]) swap(a, b);\r\n    es.eb(e0);\r\
-    \n    vs.eb(a);\r\n    while (1) {\r\n      int x = vs.back();\r\n      auto&\
-    \ e = G.edges[es.back()];\r\n      int y = e.frm + e.to - x;\r\n      if (y ==\
-    \ a) break;\r\n      vs.eb(y);\r\n      es.eb(par[y]);\r\n    }\r\n    return\
-    \ {vs, es};\r\n  }\r\n  return {vs, es};\r\n}\r\n\r\n// {vs, es} \uFF1A\u8FBA\u306E\
+    \n    // v \u304B\u3089\u306E dfs \u6728\u306B\u304A\u3044\u3066\u3001w \u304C\
+    \u5F8C\u9000\u8FBA\u3092\u6301\u3064\r\n    int w = dfs(dfs, v, 0);\r\n    if\
+    \ (w == -1) continue;\r\n    int b = -1, back_e = -1;\r\n    while (1) {\r\n \
+    \     for (auto&& e: G[w]) {\r\n        if (used_e[e.id]) continue;\r\n      \
+    \  if (dep[e.to] > dep[w] || dep[e.to] == -1) continue;\r\n        b = w, back_e\
+    \ = e.id;\r\n      }\r\n      if (w == v) break;\r\n      auto& e = G.edges[par[w]];\r\
+    \n      w = e.frm + e.to - w;\r\n    }\r\n    // b \u304B\u3089\u306E\u5F8C\u9000\
+    \u8FBA back_e \u3092\u4F7F\u3063\u3066\u30B5\u30A4\u30AF\u30EB\u3092\u4F5C\u308B\
+    \r\n    int a = G.edges[back_e].frm + G.edges[back_e].to - b;\r\n    es.eb(back_e),\
+    \ vs.eb(a);\r\n    while (1) {\r\n      int x = vs.back();\r\n      auto& e =\
+    \ G.edges[es.back()];\r\n      int y = e.frm + e.to - x;\r\n      if (y == a)\
+    \ break;\r\n      vs.eb(y);\r\n      es.eb(par[y]);\r\n    }\r\n    return {vs,\
+    \ es};\r\n  }\r\n  return {vs, es};\r\n}\r\n\r\n// {vs, es} \uFF1A\u8FBA\u306E\
     \u5217\u3068\u9802\u70B9\u306E\u5217\u3092\u8FD4\u3059\u3002es[i] \u306F vs[i]\
-    \ \u304B\u3089 vs[i+1]\u3002\r\ntemplate <typename GT>\r\npair<vc<int>, vc<int>>\
+    \ \u304B\u3089 vs[i+1]\u3002\r\n// \u3068\u308A\u3042\u3048\u305A\u7121\u5411\u306E\
+    \u3068\u304D\u306B\u306F\u6975\u5C0F\u306A\u3082\u306E\u3092\u8FD4\u3059\u3053\
+    \u3068\u306B\u3057\u305F\u3002\r\ntemplate <typename GT>\r\npair<vc<int>, vc<int>>\
     \ find_cycle(GT& G) {\r\n  if (G.is_directed()) return find_cycle_directed(G);\r\
     \n  return find_cycle_undirected(G);\r\n}\r\n#line 7 \"test/library_checker/graph/cycle_detection.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, M);\r\n  Graph<bool, 1> G(N);\r\n  G.read_graph(M,\
@@ -301,7 +312,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/cycle_detection.test.cpp
   requiredBy: []
-  timestamp: '2023-02-24 07:14:18+09:00'
+  timestamp: '2023-03-02 23:03:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/cycle_detection.test.cpp

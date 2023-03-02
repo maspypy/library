@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
@@ -18,15 +18,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1242.test.cpp
     title: test/yukicoder/1242.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -143,24 +143,24 @@ data:
     \n    return P;\r\n  }\r\n};\r\n#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct\
     \ UnionFind {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int\
     \ n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
-    \ -1);\n  }\n\n  int operator[](int x) {\n    while (dat[x] >= 0) {\n      int\
-    \ pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n      x = dat[x] =\
-    \ pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    assert(dat[x] < 0);\n\
-    \    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x],\
-    \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
-    \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n};\n\
-    #line 3 \"graph/functional.hpp\"\n\r\n// N \u304C\u6839\u3068\u306A\u308B\u6728\
-    \u3092\u65B0\u305F\u306B\u4F5C\u308B\r\ntemplate <typename T = int>\r\nstruct\
-    \ FunctionalGraph {\r\n  int N, M;\r\n  vc<int> TO;\r\n  vc<T> wt;\r\n  vc<int>\
-    \ root;\r\n  Graph<T, 1> G;\r\n\r\n  FunctionalGraph() {}\r\n  FunctionalGraph(int\
-    \ N) : N(N), M(0), TO(N, -1), wt(N), root(N, -1) {}\r\n\r\n  void add(int a, int\
-    \ b, T c = 1) {\r\n    assert(0 <= a && a < N);\r\n    assert(TO[a] == -1);\r\n\
-    \    ++M;\r\n    TO[a] = b;\r\n    wt[a] = c;\r\n  }\r\n\r\n  Tree<Graph<T, 1>>\
-    \ build() {\r\n    assert(N == M);\r\n    UnionFind uf(N);\r\n    FOR(v, N) if\
-    \ (!uf.merge(v, TO[v])) { root[v] = v; }\r\n    FOR(v, N) if (root[v] == v) root[uf[v]]\
-    \ = v;\r\n    FOR(v, N) root[v] = root[uf[v]];\r\n\r\n    G.resize(N + 1);\r\n\
-    \    FOR(v, N) {\r\n      if (root[v] == v)\r\n        G.add(N, v, wt[v]);\r\n\
-    \      else\r\n        G.add(TO[v], v, wt[v]);\r\n    }\r\n    G.build();\r\n\
+    \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n   \
+    \ while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return\
+    \ dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int\
+    \ x) {\n    assert(dat[x] < 0);\n    return -dat[x];\n  }\n\n  bool merge(int\
+    \ x, int y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n\
+    \    if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
+    \    return true;\n  }\n};\n#line 3 \"graph/functional.hpp\"\n\r\n// N \u304C\u6839\
+    \u3068\u306A\u308B\u6728\u3092\u65B0\u305F\u306B\u4F5C\u308B\r\ntemplate <typename\
+    \ T = int>\r\nstruct FunctionalGraph {\r\n  int N, M;\r\n  vc<int> TO;\r\n  vc<T>\
+    \ wt;\r\n  vc<int> root;\r\n  Graph<T, 1> G;\r\n\r\n  FunctionalGraph() {}\r\n\
+    \  FunctionalGraph(int N) : N(N), M(0), TO(N, -1), wt(N), root(N, -1) {}\r\n\r\
+    \n  void add(int a, int b, T c = 1) {\r\n    assert(0 <= a && a < N);\r\n    assert(TO[a]\
+    \ == -1);\r\n    ++M;\r\n    TO[a] = b;\r\n    wt[a] = c;\r\n  }\r\n\r\n  Tree<Graph<T,\
+    \ 1>> build() {\r\n    assert(N == M);\r\n    UnionFind uf(N);\r\n    FOR(v, N)\
+    \ if (!uf.merge(v, TO[v])) { root[v] = v; }\r\n    FOR(v, N) if (root[v] == v)\
+    \ root[uf[v]] = v;\r\n    FOR(v, N) root[v] = root[uf[v]];\r\n\r\n    G.resize(N\
+    \ + 1);\r\n    FOR(v, N) {\r\n      if (root[v] == v)\r\n        G.add(N, v, wt[v]);\r\
+    \n      else\r\n        G.add(TO[v], v, wt[v]);\r\n    }\r\n    G.build();\r\n\
     \    Tree<Graph<T, 1>> tree(G, N);\r\n    return tree;\r\n  }\r\n\r\n  // functional\
     \ graph \u306B\u5411\u304B\u3063\u3066\u9032\u3080\r\n  template <typename TREE>\r\
     \n  int jump(TREE& tree, int v, ll step) {\r\n    int d = tree.depth[v];\r\n \
@@ -229,8 +229,8 @@ data:
   isVerificationFile: false
   path: graph/functional.hpp
   requiredBy: []
-  timestamp: '2023-01-27 19:53:36+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-03-02 23:03:38+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/2122.test.cpp
   - test/yukicoder/1211.test.cpp

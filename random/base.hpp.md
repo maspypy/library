@@ -184,6 +184,9 @@ data:
     path: test/mytest/count_points_in_triangles.test.cpp
     title: test/mytest/count_points_in_triangles.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/digit_sum.test.cpp
+    title: test/mytest/digit_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/dynamic_lazy_segtree.test.cpp
     title: test/mytest/dynamic_lazy_segtree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -598,6 +601,7 @@ data:
   - test/mytest/tournament.test.cpp
   - test/mytest/segtree_xor_prod.test.cpp
   - test/mytest/slice_rational_fps.test.cpp
+  - test/mytest/digit_sum.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp
   - test/mytest/tutte.test.cpp
   - test/mytest/rbst_am_persistent.test.cpp

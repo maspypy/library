@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   _extendedRequiredBy:
@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
   _extendedVerifiedWith:
@@ -42,24 +42,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1479.test.cpp
     title: test/yukicoder/1479.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1744.test.cpp
     title: test/yukicoder/1744.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1745.test.cpp
     title: test/yukicoder/1745.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc237ex.test.cpp
     title: test_atcoder/abc237ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc274g.test.cpp
     title: test_atcoder/abc274g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - http://www.misojiro.t.u-tokyo.ac.jp/~murota/lect-ouyousurigaku/dm050410.pdf
@@ -112,25 +112,25 @@ data:
     \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/bipartite_vertex_coloring.hpp\"\
     \n\r\n#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int n, n_comp;\n\
     \  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n); }\n\n  void\
-    \ build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  int\
-    \ operator[](int x) {\n    while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n\
-    \      if (pp < 0) { return dat[x]; }\n      x = dat[x] = pp;\n    }\n    return\
-    \ x;\n  }\n\n  ll size(int x) {\n    assert(dat[x] < 0);\n    return -dat[x];\n\
-    \  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x], y = (*this)[y];\n  \
-    \  if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x]\
-    \ += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n};\n#line 5 \"graph/bipartite_vertex_coloring.hpp\"\
-    \n\r\n// \u4E8C\u90E8\u30B0\u30E9\u30D5\u3067\u306A\u304B\u3063\u305F\u5834\u5408\
-    \u306B\u306F empty\r\ntemplate <typename Graph>\r\nvc<int> bipartite_vertex_coloring(Graph&\
-    \ G) {\r\n  assert(G.is_prepared());\r\n\r\n  int n = G.N;\r\n  UnionFind uf(2\
-    \ * n);\r\n  for (auto&& e: G.edges) {\r\n    int u = e.frm, v = e.to;\r\n   \
-    \ if (e.cost == 0) uf.merge(u, v), uf.merge(u + n, v + n);\r\n    if (e.cost !=\
-    \ 0) uf.merge(u + n, v), uf.merge(u, v + n);\r\n  }\r\n\r\n  vc<int> color(2 *\
-    \ n, -1);\r\n  FOR(v, n) if (uf[v] == v && color[uf[v]] < 0) {\r\n    color[uf[v]]\
-    \ = 0;\r\n    color[uf[v + n]] = 1;\r\n  }\r\n  FOR(v, n) color[v] = color[uf[v]];\r\
-    \n  color.resize(n);\r\n  FOR(v, n) if (uf[v] == uf[v + n]) return {};\r\n  return\
-    \ color;\r\n}\r\n#line 3 \"graph/strongly_connected_component.hpp\"\n\ntemplate\
-    \ <typename Graph>\npair<int, vc<int>> strongly_connected_component(Graph& G)\
-    \ {\n  assert(G.is_directed());\n  assert(G.is_prepared());\n  int N = G.N;\n\
+    \ build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  void\
+    \ reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x] >= 0)\
+    \ {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n     \
+    \ x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    assert(dat[x]\
+    \ < 0);\n    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x],\
+    \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
+    \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n};\n\
+    #line 5 \"graph/bipartite_vertex_coloring.hpp\"\n\r\n// \u4E8C\u90E8\u30B0\u30E9\
+    \u30D5\u3067\u306A\u304B\u3063\u305F\u5834\u5408\u306B\u306F empty\r\ntemplate\
+    \ <typename Graph>\r\nvc<int> bipartite_vertex_coloring(Graph& G) {\r\n  assert(G.is_prepared());\r\
+    \n\r\n  int n = G.N;\r\n  UnionFind uf(2 * n);\r\n  for (auto&& e: G.edges) {\r\
+    \n    int u = e.frm, v = e.to;\r\n    if (e.cost == 0) uf.merge(u, v), uf.merge(u\
+    \ + n, v + n);\r\n    if (e.cost != 0) uf.merge(u + n, v), uf.merge(u, v + n);\r\
+    \n  }\r\n\r\n  vc<int> color(2 * n, -1);\r\n  FOR(v, n) if (uf[v] == v && color[uf[v]]\
+    \ < 0) {\r\n    color[uf[v]] = 0;\r\n    color[uf[v + n]] = 1;\r\n  }\r\n  FOR(v,\
+    \ n) color[v] = color[uf[v]];\r\n  color.resize(n);\r\n  FOR(v, n) if (uf[v] ==\
+    \ uf[v + n]) return {};\r\n  return color;\r\n}\r\n#line 3 \"graph/strongly_connected_component.hpp\"\
+    \n\ntemplate <typename Graph>\npair<int, vc<int>> strongly_connected_component(Graph&\
+    \ G) {\n  assert(G.is_directed());\n  assert(G.is_prepared());\n  int N = G.N;\n\
     \  int C = 0;\n  vc<int> comp(N);\n  vc<int> low(N);\n  vc<int> ord(N, -1);\n\
     \  vc<int> visited;\n  int now = 0;\n\n  auto dfs = [&](auto self, int v) -> void\
     \ {\n    low[v] = now;\n    ord[v] = now;\n    ++now;\n    visited.eb(v);\n  \
@@ -289,8 +289,8 @@ data:
   - graph/maximum_antichain.hpp
   - graph/dag_path_cover.hpp
   - graph/bipartite_edge_coloring.hpp
-  timestamp: '2023-02-12 02:06:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-03-02 23:03:38+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc237ex.test.cpp
   - test_atcoder/abc274g.test.cpp
