@@ -12,6 +12,8 @@ struct SplayTree {
 
   void reset() { pid = 0; }
 
+  np new_root() { return nullptr; }
+
   np new_node(const X &x) {
     np n = &(pool[pid++]);
     Node::new_node(n, x);
@@ -131,6 +133,11 @@ struct SplayTree {
     X res = root->prod;
     splay(root);
     return res;
+  }
+
+  X prod(np &root) {
+    using Mono = typename Node::Monoid_X;
+    return (root ? root->prod : Mono::unit());
   }
 
   void apply(np &root, u32 l, u32 r, const A &a) {
