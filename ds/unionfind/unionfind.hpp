@@ -10,6 +10,8 @@ struct UnionFind {
     dat.assign(n, -1);
   }
 
+  void reset() { build(n); }
+
   int operator[](int x) {
     while (dat[x] >= 0) {
       int pp = dat[dat[x]];
