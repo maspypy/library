@@ -20,6 +20,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/functional.hpp
     title: graph/functional.hpp
+  - icon: ':warning:'
+    path: graph/implicit_graph/mst.hpp
+    title: graph/implicit_graph/mst.hpp
+  - icon: ':warning:'
+    path: graph/implicit_graph/unionfind.hpp
+    title: graph/implicit_graph/unionfind.hpp
   - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
@@ -161,6 +167,8 @@ data:
   - graph/bipartite_vertex_coloring.hpp
   - graph/minimum_spanning_tree.hpp
   - graph/bipartite_edge_coloring.hpp
+  - graph/implicit_graph/unionfind.hpp
+  - graph/implicit_graph/mst.hpp
   - flow/bipartite.hpp
   timestamp: '2023-03-02 23:03:38+09:00'
   verificationStatus: LIBRARY_ALL_AC

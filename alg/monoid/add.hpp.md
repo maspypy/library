@@ -90,6 +90,9 @@ data:
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
   - icon: ':heavy_check_mark:'
+    path: seq/factorial_digit_system.hpp
+    title: seq/factorial_digit_system.hpp
+  - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   - icon: ':heavy_check_mark:'
@@ -210,6 +213,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/ARC30D.test.cpp
     title: test/mytest/ARC30D.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/factorial_digit.test.cpp
+    title: test/mytest/factorial_digit.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/kdtree_am.test.cpp
     title: test/mytest/kdtree_am.test.cpp
@@ -383,6 +389,7 @@ data:
   requiredBy:
   - graph/ds/contour_sum.hpp
   - graph/ds/tree_abelgroup.hpp
+  - seq/factorial_digit_system.hpp
   - seq/common_interval_decomposition.hpp
   - seq/inversion.hpp
   - string/trie.hpp
@@ -484,6 +491,7 @@ data:
   - test/mytest/maxidx_add.test.cpp
   - test/mytest/splay_am.test.cpp
   - test/mytest/ARC30D.test.cpp
+  - test/mytest/factorial_digit.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/summin_add.test.cpp

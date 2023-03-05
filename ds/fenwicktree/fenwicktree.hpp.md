@@ -27,6 +27,9 @@ data:
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
   - icon: ':heavy_check_mark:'
+    path: seq/factorial_digit_system.hpp
+    title: seq/factorial_digit_system.hpp
+  - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   _extendedVerifiedWith:
@@ -72,6 +75,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/verted_add_contour_sum.test.cpp
     title: test/library_checker/graph/verted_add_contour_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/factorial_digit.test.cpp
+    title: test/mytest/factorial_digit.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
@@ -182,6 +188,7 @@ data:
   requiredBy:
   - graph/ds/contour_sum.hpp
   - graph/ds/tree_abelgroup.hpp
+  - seq/factorial_digit_system.hpp
   - seq/inversion.hpp
   - ds/offline_query/rectangle_add_rectangle_sum.hpp
   - ds/offline_query/coeffient_query_2d.hpp
@@ -211,6 +218,7 @@ data:
   - test/yukicoder/1641.test.cpp
   - test/yukicoder/1270.test.cpp
   - test/yukicoder/1311.test.cpp
+  - test/mytest/factorial_digit.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/aoj/ALDS1_5.test.cpp
   - test/aoj/DSL_2_G.test.cpp

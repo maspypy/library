@@ -784,6 +784,9 @@ data:
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/factorial_digit.test.cpp
+    title: test/mytest/factorial_digit.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/floor_ceil_ranges.test.cpp
     title: test/mytest/floor_ceil_ranges.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1608,6 +1611,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc151f.test.cpp
     title: test_atcoder/abc151f.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc152e.test.cpp
+    title: test_atcoder/abc152e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc174f.test.cpp
     title: test_atcoder/abc174f.test.cpp
@@ -1764,9 +1770,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc157a.test.cpp
     title: test_atcoder/arc157a.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://trap.jp/post/1224/
@@ -1929,7 +1935,7 @@ data:
   path: my_template.hpp
   requiredBy: []
   timestamp: '2023-02-24 07:14:18+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc240ex.test.cpp
   - test_atcoder/abc244h.test.cpp
@@ -1957,6 +1963,7 @@ data:
   - test_atcoder/abc237ex.test.cpp
   - test_atcoder/abc234ex.test.cpp
   - test_atcoder/abc234g.test.cpp
+  - test_atcoder/abc152e.test.cpp
   - test_atcoder/abc259g.test.cpp
   - test_atcoder/abc230e.test.cpp
   - test_atcoder/abc237g.test.cpp
@@ -2414,6 +2421,7 @@ data:
   - test/mytest/rbst_monoid_persistent.test.cpp
   - test/mytest/count_indep_set.test.cpp
   - test/mytest/online_pow.test.cpp
+  - test/mytest/factorial_digit.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/cf702_F.test.cpp

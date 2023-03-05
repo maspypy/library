@@ -734,8 +734,14 @@ data:
   - name: graph/implicit_graph
     pages:
     - icon: ':warning:'
+      path: graph/implicit_graph/mst.hpp
+      title: graph/implicit_graph/mst.hpp
+    - icon: ':warning:'
       path: graph/implicit_graph/toposort.hpp
       title: graph/implicit_graph/toposort.hpp
+    - icon: ':warning:'
+      path: graph/implicit_graph/unionfind.hpp
+      title: graph/implicit_graph/unionfind.hpp
   - name: graph/shortest_path
     pages:
     - icon: ':heavy_check_mark:'
@@ -869,7 +875,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/binomial.hpp
       title: mod/binomial.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: mod/factorial.hpp
       title: mod/factorial.hpp
     - icon: ':heavy_check_mark:'
@@ -911,7 +917,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_sum_of_linear.hpp
       title: mod/mod_sum_of_linear.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: mod/modint.hpp
       title: mod/modint.hpp
     - icon: ':heavy_check_mark:'
@@ -937,7 +943,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -945,6 +951,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/GF2.hpp
       title: nt/GF2.hpp
+    - icon: ':x:'
+      path: nt/all_lcm.hpp
+      title: nt/all_lcm.hpp
     - icon: ':heavy_check_mark:'
       path: nt/crt.hpp
       title: nt/crt.hpp
@@ -963,7 +972,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/extgcd.hpp
       title: nt/extgcd.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: nt/factor.hpp
       title: nt/factor.hpp
     - icon: ':heavy_check_mark:'
@@ -984,7 +993,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/lcm_convolution.hpp
       title: nt/lcm_convolution.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: nt/lpf_table.hpp
       title: nt/lpf_table.hpp
     - icon: ':heavy_check_mark:'
@@ -1008,10 +1017,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/primesum_mod6.hpp
       title: nt/primesum_mod6.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: nt/primetable.hpp
       title: nt/primetable.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: nt/primetest.hpp
       title: nt/primetest.hpp
     - icon: ':heavy_check_mark:'
@@ -1043,7 +1052,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/fibonacci_search.hpp
       title: other/fibonacci_search.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -1246,6 +1255,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/domino_standard_tableaux.hpp
       title: seq/domino_standard_tableaux.hpp
+    - icon: ':heavy_check_mark:'
+      path: seq/factorial_digit_system.hpp
+      title: seq/factorial_digit_system.hpp
     - icon: ':heavy_check_mark:'
       path: seq/find_linear_rec.hpp
       title: seq/find_linear_rec.hpp
@@ -2229,6 +2241,9 @@ data:
       path: test/mytest/factorial_998.test.cpp
       title: test/mytest/factorial_998.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/mytest/factorial_digit.test.cpp
+      title: test/mytest/factorial_digit.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/mytest/floor_ceil_ranges.test.cpp
       title: test/mytest/floor_ceil_ranges.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3057,6 +3072,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc151f.test.cpp
       title: test_atcoder/abc151f.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/abc152e.test.cpp
+      title: test_atcoder/abc152e.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc174f.test.cpp
       title: test_atcoder/abc174f.test.cpp
