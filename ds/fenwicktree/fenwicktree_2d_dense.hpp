@@ -16,7 +16,7 @@ struct FenwickTree_2D_Dense {
     while (x <= H) { add_x(x, y, val), x += x & -x; }
   }
 
-  E sum(int lx, int rx, int ly, int ry) { return prod(lx, ly, rx, ry); }
+  E sum(int lx, int rx, int ly, int ry) { return prod(lx, rx, ly, ry); }
   E prod(int lx, int rx, int ly, int ry) {
     E pos = G::unit(), neg = G::unit();
     while (lx < rx) { pos = G::op(pos, sum_x(rx, ly, ry)), rx -= rx & -rx; }
