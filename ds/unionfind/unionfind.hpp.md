@@ -32,12 +32,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':warning:'
-    path: graph/online_mst.hpp
-    title: graph/online_mst.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/online_unionfind.hpp
-    title: graph/online_unionfind.hpp
   - icon: ':heavy_check_mark:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
@@ -75,9 +69,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/114.test.cpp
     title: test/yukicoder/114.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1170_2.test.cpp
-    title: test/yukicoder/1170_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1211.test.cpp
     title: test/yukicoder/1211.test.cpp
@@ -159,8 +150,6 @@ data:
   requiredBy:
   - geo/manhattan_mst.hpp
   - graph/functional.hpp
-  - graph/online_mst.hpp
-  - graph/online_unionfind.hpp
   - graph/maximum_antichain.hpp
   - graph/dag_path_cover.hpp
   - graph/tree_of_unionfind.hpp
@@ -185,7 +174,6 @@ data:
   - test/yukicoder/2122.test.cpp
   - test/yukicoder/1303.test.cpp
   - test/yukicoder/1211.test.cpp
-  - test/yukicoder/1170_2.test.cpp
   - test/yukicoder/114.test.cpp
   - test/yukicoder/1911.test.cpp
   - test/yukicoder/1600.test.cpp

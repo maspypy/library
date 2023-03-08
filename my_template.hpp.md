@@ -30,7 +30,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2677.test.cpp
     title: test/aoj/2677.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/2842.test.cpp
     title: test/aoj/2842.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1075,9 +1075,6 @@ data:
     path: test/yukicoder/1170.test.cpp
     title: test/yukicoder/1170.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1170_2.test.cpp
-    title: test/yukicoder/1170_2.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1689,7 +1686,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc249_ex.test.cpp
     title: test_atcoder/abc249_ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc256d.test.cpp
     title: test_atcoder/abc256d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2197,7 +2194,6 @@ data:
   - test/yukicoder/2102.test.cpp
   - test/yukicoder/1339.test.cpp
   - test/yukicoder/1326.test.cpp
-  - test/yukicoder/1170_2.test.cpp
   - test/yukicoder/1649_2.test.cpp
   - test/yukicoder/1288.test.cpp
   - test/yukicoder/1269.test.cpp

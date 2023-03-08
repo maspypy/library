@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/2842.test.cpp
     title: test/aoj/2842.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2003.test.cpp
     title: test/yukicoder/2003.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -28,7 +28,7 @@ data:
     \n  int H, W;\r\n  vc<E> dat;\r\n\r\n  FenwickTree_2D_Dense() {}\r\n  FenwickTree_2D_Dense(int\
     \ H, int W) : H(H), W(W), dat(H * W) {}\r\n\r\n  void add(int x, int y, E val)\
     \ {\r\n    ++x;\r\n    while (x <= H) { add_x(x, y, val), x += x & -x; }\r\n \
-    \ }\r\n\r\n  E sum(int lx, int rx, int ly, int ry) { return prod(lx, ly, rx, ry);\
+    \ }\r\n\r\n  E sum(int lx, int rx, int ly, int ry) { return prod(lx, rx, ly, ry);\
     \ }\r\n  E prod(int lx, int rx, int ly, int ry) {\r\n    E pos = G::unit(), neg\
     \ = G::unit();\r\n    while (lx < rx) { pos = G::op(pos, sum_x(rx, ly, ry)), rx\
     \ -= rx & -rx; }\r\n    while (rx < lx) { neg = G::op(neg, sum_x(lx, ly, ry)),\
@@ -51,7 +51,7 @@ data:
     \ {}\r\n  FenwickTree_2D_Dense(int H, int W) : H(H), W(W), dat(H * W) {}\r\n\r\
     \n  void add(int x, int y, E val) {\r\n    ++x;\r\n    while (x <= H) { add_x(x,\
     \ y, val), x += x & -x; }\r\n  }\r\n\r\n  E sum(int lx, int rx, int ly, int ry)\
-    \ { return prod(lx, ly, rx, ry); }\r\n  E prod(int lx, int rx, int ly, int ry)\
+    \ { return prod(lx, rx, ly, ry); }\r\n  E prod(int lx, int rx, int ly, int ry)\
     \ {\r\n    E pos = G::unit(), neg = G::unit();\r\n    while (lx < rx) { pos =\
     \ G::op(pos, sum_x(rx, ly, ry)), rx -= rx & -rx; }\r\n    while (rx < lx) { neg\
     \ = G::op(neg, sum_x(lx, ly, ry)), lx -= lx & -lx; }\r\n    return G::op(pos,\
@@ -72,8 +72,8 @@ data:
   isVerificationFile: false
   path: ds/fenwicktree/fenwicktree_2d_dense.hpp
   requiredBy: []
-  timestamp: '2022-12-03 10:20:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-03-09 02:49:26+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/2003.test.cpp
   - test/aoj/2842.test.cpp
