@@ -78,10 +78,9 @@ struct Intervals_Fast {
   void set(int L, int R, T t) {
     enumerate_range(
         L, R, [](int l, int r, T x) -> void {}, true);
-    if (t == none_val) return;
     ss.insert(L);
     dat[L] = t;
-    total_num++, total_len += R - L;
+    if (t != none_val) total_num++, total_len += R - L;
     merge_at(L);
     merge_at(R);
   }
@@ -174,9 +173,8 @@ struct Intervals {
   void set(X L, X R, T t) {
     enumerate_range(
         L, R, [](int l, int r, T x) -> void {}, true);
-    if (t == none_val) return;
     dat[L] = t;
-    total_num++, total_len += R - L;
+    if (t != none_val) total_num++, total_len += R - L;
     merge_at(L);
     merge_at(R);
   }
