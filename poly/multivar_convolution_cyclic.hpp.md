@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/factorial.hpp
     title: mod/factorial.hpp
   - icon: ':heavy_check_mark:'
@@ -13,16 +13,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':heavy_check_mark:'

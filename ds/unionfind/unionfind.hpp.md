@@ -23,7 +23,7 @@ data:
   - icon: ':warning:'
     path: graph/implicit_graph/mst.hpp
     title: graph/implicit_graph/mst.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/implicit_graph/unionfind.hpp
     title: graph/implicit_graph/unionfind.hpp
   - icon: ':heavy_check_mark:'
@@ -69,6 +69,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/114.test.cpp
     title: test/yukicoder/114.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1170_2.test.cpp
+    title: test/yukicoder/1170_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1211.test.cpp
     title: test/yukicoder/1211.test.cpp
@@ -181,6 +184,7 @@ data:
   - test/yukicoder/1242.test.cpp
   - test/yukicoder/1600.test.cpp
   - test/yukicoder/1911.test.cpp
+  - test/yukicoder/1170_2.test.cpp
   - test/yukicoder/1303.test.cpp
   - test/yukicoder/1211.test.cpp
   - test/yukicoder/1745.test.cpp

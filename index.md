@@ -85,7 +85,7 @@ data:
       title: alg/acted_set/from_monoid.hpp
   - name: alg/monoid
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/add.hpp
       title: alg/monoid/add.hpp
     - icon: ':heavy_check_mark:'
@@ -263,7 +263,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fenwicktree/fenwicktree_2d.hpp
       title: ds/fenwicktree/fenwicktree_2d.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fenwicktree/fenwicktree_2d_dense.hpp
       title: ds/fenwicktree/fenwicktree_2d_dense.hpp
   - name: ds/kdtree
@@ -736,7 +736,7 @@ data:
     - icon: ':warning:'
       path: graph/implicit_graph/toposort.hpp
       title: graph/implicit_graph/toposort.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/implicit_graph/unionfind.hpp
       title: graph/implicit_graph/unionfind.hpp
   - name: graph/shortest_path
@@ -872,7 +872,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/binomial.hpp
       title: mod/binomial.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/factorial.hpp
       title: mod/factorial.hpp
     - icon: ':heavy_check_mark:'
@@ -914,7 +914,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_sum_of_linear.hpp
       title: mod/mod_sum_of_linear.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint.hpp
       title: mod/modint.hpp
     - icon: ':heavy_check_mark:'
@@ -948,7 +948,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/GF2.hpp
       title: nt/GF2.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: nt/all_lcm.hpp
       title: nt/all_lcm.hpp
     - icon: ':heavy_check_mark:'
@@ -969,7 +969,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/extgcd.hpp
       title: nt/extgcd.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/factor.hpp
       title: nt/factor.hpp
     - icon: ':heavy_check_mark:'
@@ -990,7 +990,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/lcm_convolution.hpp
       title: nt/lcm_convolution.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/lpf_table.hpp
       title: nt/lpf_table.hpp
     - icon: ':heavy_check_mark:'
@@ -1014,10 +1014,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/primesum_mod6.hpp
       title: nt/primesum_mod6.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/primetable.hpp
       title: nt/primetable.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/primetest.hpp
       title: nt/primetest.hpp
     - icon: ':heavy_check_mark:'
@@ -1462,7 +1462,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/2677.test.cpp
       title: test/aoj/2677.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/2842.test.cpp
       title: test/aoj/2842.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2530,7 +2530,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1170.test.cpp
       title: test/yukicoder/1170.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1170_2.test.cpp
       title: test/yukicoder/1170_2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3069,7 +3069,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc151f.test.cpp
       title: test_atcoder/abc151f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc152e.test.cpp
       title: test_atcoder/abc152e.test.cpp
     - icon: ':heavy_check_mark:'

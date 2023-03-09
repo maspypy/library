@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/power_query.hpp
     title: ds/power_query.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/factorial.hpp
     title: mod/factorial.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'

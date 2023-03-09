@@ -7,13 +7,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/det_mod.hpp
     title: linalg/det_mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/factorial.hpp
     title: mod/factorial.hpp
   - icon: ':heavy_check_mark:'
     path: mod/fast_div.hpp
     title: mod/fast_div.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
