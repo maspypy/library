@@ -361,6 +361,12 @@ data:
     path: test_atcoder/abc237g.test.cpp
     title: test_atcoder/abc237g.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc256ex.test.cpp
+    title: test_atcoder/abc256ex.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc256ex2.test.cpp
+    title: test_atcoder/abc256ex2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc266h_2.test.cpp
     title: test_atcoder/abc266h_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -423,9 +429,11 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc190f.test.cpp
+  - test_atcoder/abc256ex2.test.cpp
   - test_atcoder/abc174f.test.cpp
   - test_atcoder/abc234g.test.cpp
   - test_atcoder/abc127f_1.test.cpp
+  - test_atcoder/abc256ex.test.cpp
   - test_atcoder/abc266h_2.test.cpp
   - test_atcoder/abc237g.test.cpp
   - test_atcoder/abc268_ex.test.cpp

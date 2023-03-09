@@ -9,6 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc256d.test.cpp
     title: test_atcoder/abc256d.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc256ex.test.cpp
+    title: test_atcoder/abc256ex.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc256ex2.test.cpp
+    title: test_atcoder/abc256ex2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -73,47 +79,47 @@ data:
     \   f(p, q, x);\n      if (dat[p] != none_val) --total_num, total_len -= q - p;\n\
     \      ss.erase(p);\n      p = q;\n    }\n    ss.insert(L);\n    dat[L] = none_val;\n\
     \  }\n\n  void set(int L, int R, T t) {\n    enumerate_range(\n        L, R, [](int\
-    \ l, int r, T x) -> void {}, true);\n    if (t == none_val) return;\n    ss.insert(L);\n\
-    \    dat[L] = t;\n    total_num++, total_len += R - L;\n    merge_at(L);\n   \
-    \ merge_at(R);\n  }\n\n  template <typename F>\n  void enumerate_all(F f) {\n\
-    \    enumerate_range(0, RLIM, f, false);\n  }\n\n  void merge_at(int p) {\n  \
-    \  if (p <= 0 || RLIM <= p) return;\n    int q = ss.prev(p - 1);\n    if (dat[p]\
-    \ == dat[q]) {\n      if (dat[p] != none_val) --total_num;\n      ss.erase(p);\n\
-    \    }\n  }\n};\n\n// https://codeforces.com/contest/1638/problem/E\n// \u6301\
-    \u3064\u5024\u306E\u30BF\u30A4\u30D7 T\u3001\u5EA7\u6A19\u30BF\u30A4\u30D7 X\n\
-    // \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u3067\u306F T none_val \u3092\u6307\
-    \u5B9A\u3059\u308B\ntemplate <typename T, typename X = ll>\nstruct Intervals {\n\
-    \  static constexpr X LLIM = -infty<X>;\n  static constexpr X RLIM = infty<X>;\n\
-    \  const T none_val;\n  // none_val \u3067\u306A\u3044\u533A\u9593\u306E\u500B\
-    \u6570\u3068\u9577\u3055\u5408\u8A08\n  int total_num;\n  X total_len;\n  map<X,\
-    \ T> dat;\n\n  Intervals(T none_val) : none_val(none_val), total_num(0), total_len(0)\
-    \ {\n    dat[LLIM] = none_val;\n    dat[RLIM] = none_val;\n  }\n\n  // x \u3092\
-    \u542B\u3080\u533A\u9593\u306E\u60C5\u5831\u306E\u53D6\u5F97\n  tuple<X, X, T>\
-    \ get(X x, bool ERASE) {\n    auto it2 = dat.upper_bound(x);\n    auto it1 = prev(it2);\n\
-    \    auto [l, tl] = *it1;\n    auto [r, tr] = *it2;\n    if (x != none_val &&\
-    \ ERASE) {\n      --total_num, total_len -= r - l;\n      dat[l] = none_val;\n\
-    \      merge_at(l);\n      merge_at(r);\n    }\n    return {l, r, tl};\n  }\n\n\
-    \  // [L, R) \u5185\u306E\u5168\u30C7\u30FC\u30BF\u306E\u53D6\u5F97\n  template\
-    \ <typename F>\n  void enumerate_range(X L, X R, F f, bool ERASE) {\n    assert(LLIM\
-    \ <= L && L <= R && R <= RLIM);\n    if (!ERASE) {\n      auto it = prev(dat.upper_bound(L));\n\
-    \      while ((*it).fi < R) {\n        auto it2 = next(it);\n        f(max((*it).fi,\
-    \ L), min((*it2).fi, R), (*it).se);\n        it = it2;\n      }\n      return;\n\
-    \    }\n    // \u534A\u7AEF\u306A\u3068\u3053\u308D\u306E\u5206\u5272\n    auto\
-    \ p = prev(dat.upper_bound(L));\n    if ((*p).fi < L) {\n      dat[L] = (*p).se;\n\
-    \      if (dat[L] != none_val) ++total_num;\n    }\n    p = dat.lower_bound(R);\n\
-    \    if (R < (*p).fi) {\n      T t = (*prev(p)).se;\n      dat[R] = t;\n     \
-    \ if (t != none_val) ++total_num;\n    }\n    while (1) {\n      auto p = dat.lower_bound(L);\n\
-    \      if ((*p).fi >= R) break;\n      auto q = next(p);\n      T t = (*p).se;\n\
-    \      f((*p).fi, (*q).fi, t);\n      if (t != none_val) --total_num, total_len\
-    \ -= (*q).fi - (*p).fi;\n      dat.erase(p);\n    }\n    dat[L] = none_val;\n\
-    \  }\n\n  void set(X L, X R, T t) {\n    enumerate_range(\n        L, R, [](int\
-    \ l, int r, T x) -> void {}, true);\n    if (t == none_val) return;\n    dat[L]\
-    \ = t;\n    total_num++, total_len += R - L;\n    merge_at(L);\n    merge_at(R);\n\
-    \  }\n\n  template <typename F>\n  void enumerate_all(F f) {\n    enumerate_range(LLIM,\
-    \ RLIM, f, false);\n  }\n\n  void merge_at(X p) {\n    if (p == LLIM || RLIM ==\
-    \ p) return;\n    auto itp = dat.lower_bound(p);\n    assert((*itp).fi == p);\n\
-    \    auto itq = prev(itp);\n    if ((*itp).se == (*itq).se) {\n      if ((*itp).se\
-    \ != none_val) --total_num;\n      dat.erase(itp);\n    }\n  }\n};\n"
+    \ l, int r, T x) -> void {}, true);\n    ss.insert(L);\n    dat[L] = t;\n    if\
+    \ (t != none_val) total_num++, total_len += R - L;\n    merge_at(L);\n    merge_at(R);\n\
+    \  }\n\n  template <typename F>\n  void enumerate_all(F f) {\n    enumerate_range(0,\
+    \ RLIM, f, false);\n  }\n\n  void merge_at(int p) {\n    if (p <= 0 || RLIM <=\
+    \ p) return;\n    int q = ss.prev(p - 1);\n    if (dat[p] == dat[q]) {\n     \
+    \ if (dat[p] != none_val) --total_num;\n      ss.erase(p);\n    }\n  }\n};\n\n\
+    // https://codeforces.com/contest/1638/problem/E\n// \u6301\u3064\u5024\u306E\u30BF\
+    \u30A4\u30D7 T\u3001\u5EA7\u6A19\u30BF\u30A4\u30D7 X\n// \u30B3\u30F3\u30B9\u30C8\
+    \u30E9\u30AF\u30BF\u3067\u306F T none_val \u3092\u6307\u5B9A\u3059\u308B\ntemplate\
+    \ <typename T, typename X = ll>\nstruct Intervals {\n  static constexpr X LLIM\
+    \ = -infty<X>;\n  static constexpr X RLIM = infty<X>;\n  const T none_val;\n \
+    \ // none_val \u3067\u306A\u3044\u533A\u9593\u306E\u500B\u6570\u3068\u9577\u3055\
+    \u5408\u8A08\n  int total_num;\n  X total_len;\n  map<X, T> dat;\n\n  Intervals(T\
+    \ none_val) : none_val(none_val), total_num(0), total_len(0) {\n    dat[LLIM]\
+    \ = none_val;\n    dat[RLIM] = none_val;\n  }\n\n  // x \u3092\u542B\u3080\u533A\
+    \u9593\u306E\u60C5\u5831\u306E\u53D6\u5F97\n  tuple<X, X, T> get(X x, bool ERASE)\
+    \ {\n    auto it2 = dat.upper_bound(x);\n    auto it1 = prev(it2);\n    auto [l,\
+    \ tl] = *it1;\n    auto [r, tr] = *it2;\n    if (x != none_val && ERASE) {\n \
+    \     --total_num, total_len -= r - l;\n      dat[l] = none_val;\n      merge_at(l);\n\
+    \      merge_at(r);\n    }\n    return {l, r, tl};\n  }\n\n  // [L, R) \u5185\u306E\
+    \u5168\u30C7\u30FC\u30BF\u306E\u53D6\u5F97\n  template <typename F>\n  void enumerate_range(X\
+    \ L, X R, F f, bool ERASE) {\n    assert(LLIM <= L && L <= R && R <= RLIM);\n\
+    \    if (!ERASE) {\n      auto it = prev(dat.upper_bound(L));\n      while ((*it).fi\
+    \ < R) {\n        auto it2 = next(it);\n        f(max((*it).fi, L), min((*it2).fi,\
+    \ R), (*it).se);\n        it = it2;\n      }\n      return;\n    }\n    // \u534A\
+    \u7AEF\u306A\u3068\u3053\u308D\u306E\u5206\u5272\n    auto p = prev(dat.upper_bound(L));\n\
+    \    if ((*p).fi < L) {\n      dat[L] = (*p).se;\n      if (dat[L] != none_val)\
+    \ ++total_num;\n    }\n    p = dat.lower_bound(R);\n    if (R < (*p).fi) {\n \
+    \     T t = (*prev(p)).se;\n      dat[R] = t;\n      if (t != none_val) ++total_num;\n\
+    \    }\n    while (1) {\n      auto p = dat.lower_bound(L);\n      if ((*p).fi\
+    \ >= R) break;\n      auto q = next(p);\n      T t = (*p).se;\n      f((*p).fi,\
+    \ (*q).fi, t);\n      if (t != none_val) --total_num, total_len -= (*q).fi - (*p).fi;\n\
+    \      dat.erase(p);\n    }\n    dat[L] = none_val;\n  }\n\n  void set(X L, X\
+    \ R, T t) {\n    enumerate_range(\n        L, R, [](int l, int r, T x) -> void\
+    \ {}, true);\n    dat[L] = t;\n    if (t != none_val) total_num++, total_len +=\
+    \ R - L;\n    merge_at(L);\n    merge_at(R);\n  }\n\n  template <typename F>\n\
+    \  void enumerate_all(F f) {\n    enumerate_range(LLIM, RLIM, f, false);\n  }\n\
+    \n  void merge_at(X p) {\n    if (p == LLIM || RLIM == p) return;\n    auto itp\
+    \ = dat.lower_bound(p);\n    assert((*itp).fi == p);\n    auto itq = prev(itp);\n\
+    \    if ((*itp).se == (*itq).se) {\n      if ((*itp).se != none_val) --total_num;\n\
+    \      dat.erase(itp);\n    }\n  }\n};\n"
   code: "#include \"ds/fastset.hpp\"\n\n// FastSet \u3067\u9AD8\u901F\u5316\u3057\u305F\
     \u3082\u306E\ntemplate <typename T>\nstruct Intervals_Fast {\n  const int LLIM,\
     \ RLIM;\n  const T none_val;\n  // none_val \u3067\u306A\u3044\u533A\u9593\u306E\
@@ -139,56 +145,58 @@ data:
     \   f(p, q, x);\n      if (dat[p] != none_val) --total_num, total_len -= q - p;\n\
     \      ss.erase(p);\n      p = q;\n    }\n    ss.insert(L);\n    dat[L] = none_val;\n\
     \  }\n\n  void set(int L, int R, T t) {\n    enumerate_range(\n        L, R, [](int\
-    \ l, int r, T x) -> void {}, true);\n    if (t == none_val) return;\n    ss.insert(L);\n\
-    \    dat[L] = t;\n    total_num++, total_len += R - L;\n    merge_at(L);\n   \
-    \ merge_at(R);\n  }\n\n  template <typename F>\n  void enumerate_all(F f) {\n\
-    \    enumerate_range(0, RLIM, f, false);\n  }\n\n  void merge_at(int p) {\n  \
-    \  if (p <= 0 || RLIM <= p) return;\n    int q = ss.prev(p - 1);\n    if (dat[p]\
-    \ == dat[q]) {\n      if (dat[p] != none_val) --total_num;\n      ss.erase(p);\n\
-    \    }\n  }\n};\n\n// https://codeforces.com/contest/1638/problem/E\n// \u6301\
-    \u3064\u5024\u306E\u30BF\u30A4\u30D7 T\u3001\u5EA7\u6A19\u30BF\u30A4\u30D7 X\n\
-    // \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u3067\u306F T none_val \u3092\u6307\
-    \u5B9A\u3059\u308B\ntemplate <typename T, typename X = ll>\nstruct Intervals {\n\
-    \  static constexpr X LLIM = -infty<X>;\n  static constexpr X RLIM = infty<X>;\n\
-    \  const T none_val;\n  // none_val \u3067\u306A\u3044\u533A\u9593\u306E\u500B\
-    \u6570\u3068\u9577\u3055\u5408\u8A08\n  int total_num;\n  X total_len;\n  map<X,\
-    \ T> dat;\n\n  Intervals(T none_val) : none_val(none_val), total_num(0), total_len(0)\
-    \ {\n    dat[LLIM] = none_val;\n    dat[RLIM] = none_val;\n  }\n\n  // x \u3092\
-    \u542B\u3080\u533A\u9593\u306E\u60C5\u5831\u306E\u53D6\u5F97\n  tuple<X, X, T>\
-    \ get(X x, bool ERASE) {\n    auto it2 = dat.upper_bound(x);\n    auto it1 = prev(it2);\n\
-    \    auto [l, tl] = *it1;\n    auto [r, tr] = *it2;\n    if (x != none_val &&\
-    \ ERASE) {\n      --total_num, total_len -= r - l;\n      dat[l] = none_val;\n\
-    \      merge_at(l);\n      merge_at(r);\n    }\n    return {l, r, tl};\n  }\n\n\
-    \  // [L, R) \u5185\u306E\u5168\u30C7\u30FC\u30BF\u306E\u53D6\u5F97\n  template\
-    \ <typename F>\n  void enumerate_range(X L, X R, F f, bool ERASE) {\n    assert(LLIM\
-    \ <= L && L <= R && R <= RLIM);\n    if (!ERASE) {\n      auto it = prev(dat.upper_bound(L));\n\
-    \      while ((*it).fi < R) {\n        auto it2 = next(it);\n        f(max((*it).fi,\
-    \ L), min((*it2).fi, R), (*it).se);\n        it = it2;\n      }\n      return;\n\
-    \    }\n    // \u534A\u7AEF\u306A\u3068\u3053\u308D\u306E\u5206\u5272\n    auto\
-    \ p = prev(dat.upper_bound(L));\n    if ((*p).fi < L) {\n      dat[L] = (*p).se;\n\
-    \      if (dat[L] != none_val) ++total_num;\n    }\n    p = dat.lower_bound(R);\n\
-    \    if (R < (*p).fi) {\n      T t = (*prev(p)).se;\n      dat[R] = t;\n     \
-    \ if (t != none_val) ++total_num;\n    }\n    while (1) {\n      auto p = dat.lower_bound(L);\n\
-    \      if ((*p).fi >= R) break;\n      auto q = next(p);\n      T t = (*p).se;\n\
-    \      f((*p).fi, (*q).fi, t);\n      if (t != none_val) --total_num, total_len\
-    \ -= (*q).fi - (*p).fi;\n      dat.erase(p);\n    }\n    dat[L] = none_val;\n\
-    \  }\n\n  void set(X L, X R, T t) {\n    enumerate_range(\n        L, R, [](int\
-    \ l, int r, T x) -> void {}, true);\n    if (t == none_val) return;\n    dat[L]\
-    \ = t;\n    total_num++, total_len += R - L;\n    merge_at(L);\n    merge_at(R);\n\
-    \  }\n\n  template <typename F>\n  void enumerate_all(F f) {\n    enumerate_range(LLIM,\
-    \ RLIM, f, false);\n  }\n\n  void merge_at(X p) {\n    if (p == LLIM || RLIM ==\
-    \ p) return;\n    auto itp = dat.lower_bound(p);\n    assert((*itp).fi == p);\n\
-    \    auto itq = prev(itp);\n    if ((*itp).se == (*itq).se) {\n      if ((*itp).se\
-    \ != none_val) --total_num;\n      dat.erase(itp);\n    }\n  }\n};\n"
+    \ l, int r, T x) -> void {}, true);\n    ss.insert(L);\n    dat[L] = t;\n    if\
+    \ (t != none_val) total_num++, total_len += R - L;\n    merge_at(L);\n    merge_at(R);\n\
+    \  }\n\n  template <typename F>\n  void enumerate_all(F f) {\n    enumerate_range(0,\
+    \ RLIM, f, false);\n  }\n\n  void merge_at(int p) {\n    if (p <= 0 || RLIM <=\
+    \ p) return;\n    int q = ss.prev(p - 1);\n    if (dat[p] == dat[q]) {\n     \
+    \ if (dat[p] != none_val) --total_num;\n      ss.erase(p);\n    }\n  }\n};\n\n\
+    // https://codeforces.com/contest/1638/problem/E\n// \u6301\u3064\u5024\u306E\u30BF\
+    \u30A4\u30D7 T\u3001\u5EA7\u6A19\u30BF\u30A4\u30D7 X\n// \u30B3\u30F3\u30B9\u30C8\
+    \u30E9\u30AF\u30BF\u3067\u306F T none_val \u3092\u6307\u5B9A\u3059\u308B\ntemplate\
+    \ <typename T, typename X = ll>\nstruct Intervals {\n  static constexpr X LLIM\
+    \ = -infty<X>;\n  static constexpr X RLIM = infty<X>;\n  const T none_val;\n \
+    \ // none_val \u3067\u306A\u3044\u533A\u9593\u306E\u500B\u6570\u3068\u9577\u3055\
+    \u5408\u8A08\n  int total_num;\n  X total_len;\n  map<X, T> dat;\n\n  Intervals(T\
+    \ none_val) : none_val(none_val), total_num(0), total_len(0) {\n    dat[LLIM]\
+    \ = none_val;\n    dat[RLIM] = none_val;\n  }\n\n  // x \u3092\u542B\u3080\u533A\
+    \u9593\u306E\u60C5\u5831\u306E\u53D6\u5F97\n  tuple<X, X, T> get(X x, bool ERASE)\
+    \ {\n    auto it2 = dat.upper_bound(x);\n    auto it1 = prev(it2);\n    auto [l,\
+    \ tl] = *it1;\n    auto [r, tr] = *it2;\n    if (x != none_val && ERASE) {\n \
+    \     --total_num, total_len -= r - l;\n      dat[l] = none_val;\n      merge_at(l);\n\
+    \      merge_at(r);\n    }\n    return {l, r, tl};\n  }\n\n  // [L, R) \u5185\u306E\
+    \u5168\u30C7\u30FC\u30BF\u306E\u53D6\u5F97\n  template <typename F>\n  void enumerate_range(X\
+    \ L, X R, F f, bool ERASE) {\n    assert(LLIM <= L && L <= R && R <= RLIM);\n\
+    \    if (!ERASE) {\n      auto it = prev(dat.upper_bound(L));\n      while ((*it).fi\
+    \ < R) {\n        auto it2 = next(it);\n        f(max((*it).fi, L), min((*it2).fi,\
+    \ R), (*it).se);\n        it = it2;\n      }\n      return;\n    }\n    // \u534A\
+    \u7AEF\u306A\u3068\u3053\u308D\u306E\u5206\u5272\n    auto p = prev(dat.upper_bound(L));\n\
+    \    if ((*p).fi < L) {\n      dat[L] = (*p).se;\n      if (dat[L] != none_val)\
+    \ ++total_num;\n    }\n    p = dat.lower_bound(R);\n    if (R < (*p).fi) {\n \
+    \     T t = (*prev(p)).se;\n      dat[R] = t;\n      if (t != none_val) ++total_num;\n\
+    \    }\n    while (1) {\n      auto p = dat.lower_bound(L);\n      if ((*p).fi\
+    \ >= R) break;\n      auto q = next(p);\n      T t = (*p).se;\n      f((*p).fi,\
+    \ (*q).fi, t);\n      if (t != none_val) --total_num, total_len -= (*q).fi - (*p).fi;\n\
+    \      dat.erase(p);\n    }\n    dat[L] = none_val;\n  }\n\n  void set(X L, X\
+    \ R, T t) {\n    enumerate_range(\n        L, R, [](int l, int r, T x) -> void\
+    \ {}, true);\n    dat[L] = t;\n    if (t != none_val) total_num++, total_len +=\
+    \ R - L;\n    merge_at(L);\n    merge_at(R);\n  }\n\n  template <typename F>\n\
+    \  void enumerate_all(F f) {\n    enumerate_range(LLIM, RLIM, f, false);\n  }\n\
+    \n  void merge_at(X p) {\n    if (p == LLIM || RLIM == p) return;\n    auto itp\
+    \ = dat.lower_bound(p);\n    assert((*itp).fi == p);\n    auto itq = prev(itp);\n\
+    \    if ((*itp).se == (*itq).se) {\n      if ((*itp).se != none_val) --total_num;\n\
+    \      dat.erase(itp);\n    }\n  }\n};\n"
   dependsOn:
   - ds/fastset.hpp
   isVerificationFile: false
   path: ds/intervals.hpp
   requiredBy: []
-  timestamp: '2023-03-09 02:49:40+09:00'
+  timestamp: '2023-03-10 01:15:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test_atcoder/abc256ex2.test.cpp
   - test_atcoder/abc256d.test.cpp
+  - test_atcoder/abc256ex.test.cpp
 documentation_of: ds/intervals.hpp
 layout: document
 redirect_from:

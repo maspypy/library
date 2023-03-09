@@ -36,6 +36,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc256d.test.cpp
     title: test_atcoder/abc256d.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc256ex.test.cpp
+    title: test_atcoder/abc256ex.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc256ex2.test.cpp
+    title: test_atcoder/abc256ex2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -119,8 +125,10 @@ data:
   timestamp: '2023-02-28 19:13:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test_atcoder/abc256ex2.test.cpp
   - test_atcoder/abc256d.test.cpp
   - test_atcoder/abc223d.test.cpp
+  - test_atcoder/abc256ex.test.cpp
   - test_atcoder/abc237g.test.cpp
   - test/aoj/2251_1.test.cpp
   - test/library_checker/datastructure/sort_segtree.test.cpp

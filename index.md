@@ -3151,6 +3151,12 @@ data:
       path: test_atcoder/abc256d.test.cpp
       title: test_atcoder/abc256d.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test_atcoder/abc256ex.test.cpp
+      title: test_atcoder/abc256ex.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_atcoder/abc256ex2.test.cpp
+      title: test_atcoder/abc256ex2.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc259g.test.cpp
       title: test_atcoder/abc259g.test.cpp
     - icon: ':heavy_check_mark:'

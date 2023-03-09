@@ -2,11 +2,23 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: alg/acted_monoid/sum_assign.hpp
+    title: alg/acted_monoid/sum_assign.hpp
+  - icon: ':heavy_check_mark:'
+    path: alg/monoid/add.hpp
+    title: alg/monoid/add.hpp
+  - icon: ':heavy_check_mark:'
+    path: alg/monoid/assign.hpp
+    title: alg/monoid/assign.hpp
+  - icon: ':heavy_check_mark:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   - icon: ':heavy_check_mark:'
     path: ds/intervals.hpp
     title: ds/intervals.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/segtree/lazy_segtree.hpp
+    title: ds/segtree/lazy_segtree.hpp
   - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
@@ -20,10 +32,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc256/tasks/abc256_d
+    PROBLEM: https://atcoder.jp/contests/abc256/tasks/abc256_Ex
     links:
-    - https://atcoder.jp/contests/abc256/tasks/abc256_d
-  bundledCode: "#line 1 \"test_atcoder/abc256d.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc256/tasks/abc256_d\"\
+    - https://atcoder.jp/contests/abc256/tasks/abc256_Ex
+  bundledCode: "#line 1 \"test_atcoder/abc256ex2.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc256/tasks/abc256_Ex\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -204,38 +216,38 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 1 \"ds/fastset.hpp\"\n/* 64\u5206\u6728\u3002\r\ninsert, erase\r\
-    \n[]\u3067\u306E\u5B58\u5728\u5224\u5B9A\r\nnext, prev\r\n*/\r\nstruct FastSet\
-    \ {\r\n  using uint = unsigned;\r\n  using ull = unsigned long long;\r\n\r\n \
-    \ int bsr(ull x) { return 63 - __builtin_clzll(x); }\r\n  int bsf(ull x) { return\
-    \ __builtin_ctzll(x); }\r\n\r\n  static constexpr uint B = 64;\r\n  int n, lg;\r\
-    \n  vector<vector<ull>> seg;\r\n  FastSet(int _n) : n(_n) {\r\n    do {\r\n  \
-    \    seg.push_back(vector<ull>((_n + B - 1) / B));\r\n      _n = (_n + B - 1)\
-    \ / B;\r\n    } while (_n > 1);\r\n    lg = int(seg.size());\r\n  }\r\n  bool\
-    \ operator[](int i) const { return (seg[0][i / B] >> (i % B) & 1) != 0; }\r\n\
-    \  void insert(int i) {\r\n    for (int h = 0; h < lg; h++) {\r\n      seg[h][i\
-    \ / B] |= 1ULL << (i % B);\r\n      i /= B;\r\n    }\r\n  }\r\n  void erase(int\
-    \ i) {\r\n    for (int h = 0; h < lg; h++) {\r\n      seg[h][i / B] &= ~(1ULL\
-    \ << (i % B));\r\n      if (seg[h][i / B]) break;\r\n      i /= B;\r\n    }\r\n\
-    \  }\r\n\r\n  // x\u4EE5\u4E0A\u6700\u5C0F\u306E\u8981\u7D20\u3092\u8FD4\u3059\
-    \u3002\u5B58\u5728\u3057\u306A\u3051\u308C\u3070 n\u3002\r\n  int next(int i)\
-    \ {\r\n    chmax(i, 0);\r\n    if (i >= n) return n;\r\n    for (int h = 0; h\
-    \ < lg; h++) {\r\n      if (i / B == seg[h].size()) break;\r\n      ull d = seg[h][i\
-    \ / B] >> (i % B);\r\n      if (!d) {\r\n        i = i / B + 1;\r\n        continue;\r\
-    \n      }\r\n      // find\r\n      i += bsf(d);\r\n      for (int g = h - 1;\
-    \ g >= 0; g--) {\r\n        i *= B;\r\n        i += bsf(seg[g][i / B]);\r\n  \
-    \    }\r\n      return i;\r\n    }\r\n    return n;\r\n  }\r\n\r\n  // x\u4EE5\
-    \u4E0B\u6700\u5927\u306E\u8981\u7D20\u3092\u8FD4\u3059\u3002\u5B58\u5728\u3057\
-    \u306A\u3051\u308C\u3070 -1\u3002\r\n  int prev(int i) {\r\n    if (i < 0) return\
-    \ -1;\r\n    if (i >= n) i = n - 1;\r\n    for (int h = 0; h < lg; h++) {\r\n\
-    \      if (i == -1) break;\r\n      ull d = seg[h][i / B] << (63 - i % 64);\r\n\
-    \      if (!d) {\r\n        i = i / B - 1;\r\n        continue;\r\n      }\r\n\
-    \      // find\r\n      i += bsr(d) - (B - 1);\r\n      for (int g = h - 1; g\
-    \ >= 0; g--) {\r\n        i *= B;\r\n        i += bsr(seg[g][i / B]);\r\n    \
-    \  }\r\n      return i;\r\n    }\r\n    return -1;\r\n  }\r\n\r\n  // [l, r)\r\
-    \n  template <typename F>\r\n  void enumerate(int l, int r, F f) {\r\n    int\
-    \ x = l - 1;\r\n    while (1) {\r\n      x = next(x + 1);\r\n      if (x >= r)\
-    \ break;\r\n      f(x);\r\n    }\r\n  }\r\n\r\n  void debug() {\r\n    string\
+    \ yes(!t); }\n#line 4 \"test_atcoder/abc256ex2.test.cpp\"\n\n#line 1 \"ds/fastset.hpp\"\
+    \n/* 64\u5206\u6728\u3002\r\ninsert, erase\r\n[]\u3067\u306E\u5B58\u5728\u5224\
+    \u5B9A\r\nnext, prev\r\n*/\r\nstruct FastSet {\r\n  using uint = unsigned;\r\n\
+    \  using ull = unsigned long long;\r\n\r\n  int bsr(ull x) { return 63 - __builtin_clzll(x);\
+    \ }\r\n  int bsf(ull x) { return __builtin_ctzll(x); }\r\n\r\n  static constexpr\
+    \ uint B = 64;\r\n  int n, lg;\r\n  vector<vector<ull>> seg;\r\n  FastSet(int\
+    \ _n) : n(_n) {\r\n    do {\r\n      seg.push_back(vector<ull>((_n + B - 1) /\
+    \ B));\r\n      _n = (_n + B - 1) / B;\r\n    } while (_n > 1);\r\n    lg = int(seg.size());\r\
+    \n  }\r\n  bool operator[](int i) const { return (seg[0][i / B] >> (i % B) & 1)\
+    \ != 0; }\r\n  void insert(int i) {\r\n    for (int h = 0; h < lg; h++) {\r\n\
+    \      seg[h][i / B] |= 1ULL << (i % B);\r\n      i /= B;\r\n    }\r\n  }\r\n\
+    \  void erase(int i) {\r\n    for (int h = 0; h < lg; h++) {\r\n      seg[h][i\
+    \ / B] &= ~(1ULL << (i % B));\r\n      if (seg[h][i / B]) break;\r\n      i /=\
+    \ B;\r\n    }\r\n  }\r\n\r\n  // x\u4EE5\u4E0A\u6700\u5C0F\u306E\u8981\u7D20\u3092\
+    \u8FD4\u3059\u3002\u5B58\u5728\u3057\u306A\u3051\u308C\u3070 n\u3002\r\n  int\
+    \ next(int i) {\r\n    chmax(i, 0);\r\n    if (i >= n) return n;\r\n    for (int\
+    \ h = 0; h < lg; h++) {\r\n      if (i / B == seg[h].size()) break;\r\n      ull\
+    \ d = seg[h][i / B] >> (i % B);\r\n      if (!d) {\r\n        i = i / B + 1;\r\
+    \n        continue;\r\n      }\r\n      // find\r\n      i += bsf(d);\r\n    \
+    \  for (int g = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += bsf(seg[g][i\
+    \ / B]);\r\n      }\r\n      return i;\r\n    }\r\n    return n;\r\n  }\r\n\r\n\
+    \  // x\u4EE5\u4E0B\u6700\u5927\u306E\u8981\u7D20\u3092\u8FD4\u3059\u3002\u5B58\
+    \u5728\u3057\u306A\u3051\u308C\u3070 -1\u3002\r\n  int prev(int i) {\r\n    if\
+    \ (i < 0) return -1;\r\n    if (i >= n) i = n - 1;\r\n    for (int h = 0; h <\
+    \ lg; h++) {\r\n      if (i == -1) break;\r\n      ull d = seg[h][i / B] << (63\
+    \ - i % 64);\r\n      if (!d) {\r\n        i = i / B - 1;\r\n        continue;\r\
+    \n      }\r\n      // find\r\n      i += bsr(d) - (B - 1);\r\n      for (int g\
+    \ = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += bsr(seg[g][i / B]);\r\
+    \n      }\r\n      return i;\r\n    }\r\n    return -1;\r\n  }\r\n\r\n  // [l,\
+    \ r)\r\n  template <typename F>\r\n  void enumerate(int l, int r, F f) {\r\n \
+    \   int x = l - 1;\r\n    while (1) {\r\n      x = next(x + 1);\r\n      if (x\
+    \ >= r) break;\r\n      f(x);\r\n    }\r\n  }\r\n\r\n  void debug() {\r\n    string\
     \ s;\r\n    for (int i = 0; i < n; ++i) s += ((*this)[i] ? '1' : '0');\r\n   \
     \ print(s);\r\n  }\r\n};\r\n#line 2 \"ds/intervals.hpp\"\n\n// FastSet \u3067\u9AD8\
     \u901F\u5316\u3057\u305F\u3082\u306E\ntemplate <typename T>\nstruct Intervals_Fast\
@@ -302,32 +314,117 @@ data:
     \n  void merge_at(X p) {\n    if (p == LLIM || RLIM == p) return;\n    auto itp\
     \ = dat.lower_bound(p);\n    assert((*itp).fi == p);\n    auto itq = prev(itp);\n\
     \    if ((*itp).se == (*itq).se) {\n      if ((*itp).se != none_val) --total_num;\n\
-    \      dat.erase(itp);\n    }\n  }\n};\n#line 5 \"test_atcoder/abc256d.test.cpp\"\
-    \n\nvoid solve() {\n  Intervals<ll, int> I(0);\n  LL(N);\n  FOR(N) {\n    LL(l,\
-    \ r);\n    I.set(l, r, 1);\n  }\n  I.enumerate_all([&](ll l, ll r, int x) -> void\
-    \ {\n    if (x) print(l, r);\n  });\n}\n\nsigned main() {\n  solve();\n\n  return\
-    \ 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc256/tasks/abc256_d\"\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/intervals.hpp\"\
-    \n\nvoid solve() {\n  Intervals<ll, int> I(0);\n  LL(N);\n  FOR(N) {\n    LL(l,\
-    \ r);\n    I.set(l, r, 1);\n  }\n  I.enumerate_all([&](ll l, ll r, int x) -> void\
-    \ {\n    if (x) print(l, r);\n  });\n}\n\nsigned main() {\n  solve();\n\n  return\
-    \ 0;\n}\n"
+    \      dat.erase(itp);\n    }\n  }\n};\n#line 2 \"ds/segtree/lazy_segtree.hpp\"\
+    \n\ntemplate <typename ActedMonoid>\nstruct Lazy_SegTree {\n  using AM = ActedMonoid;\n\
+    \  using MX = typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using\
+    \ X = typename MX::value_type;\n  using A = typename MA::value_type;\n  int n,\
+    \ log, size;\n  vc<X> dat;\n  vc<A> laz;\n\n  Lazy_SegTree() {}\n  Lazy_SegTree(int\
+    \ n) { build(n); }\n  template <typename F>\n  Lazy_SegTree(int n, F f) {\n  \
+    \  build(n, f);\n  }\n  Lazy_SegTree(const vc<X>& v) { build(v); }\n\n  void build(int\
+    \ m) {\n    build(m, [](int i) -> X { return MX::unit(); });\n  }\n  void build(const\
+    \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
+    \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1\
+    \ << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, MX::unit());\n\
+    \    laz.assign(size, MA::unit());\n    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i,\
+    \ 1, size) update(i);\n  }\n\n  void update(int k) { dat[k] = MX::op(dat[2 * k],\
+    \ dat[2 * k + 1]); }\n  void set(int p, X x) {\n    assert(0 <= p && p < n);\n\
+    \    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    dat[p]\
+    \ = x;\n    for (int i = 1; i <= log; i++) update(p >> i);\n  }\n\n  X get(int\
+    \ p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i\
+    \ >= 1; i--) push(p >> i);\n    return dat[p];\n  }\n\n  vc<X> get_all() {\n \
+    \   FOR(k, 1, size) { push(k); }\n    return {dat.begin() + size, dat.begin()\
+    \ + size + n};\n  }\n\n  X prod(int l, int r) {\n    assert(0 <= l && l <= r &&\
+    \ r <= n);\n    if (l == r) return MX::unit();\n    l += size, r += size;\n  \
+    \  for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l >>\
+    \ i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n    }\n    X xl =\
+    \ MX::unit(), xr = MX::unit();\n    while (l < r) {\n      if (l & 1) xl = MX::op(xl,\
+    \ dat[l++]);\n      if (r & 1) xr = MX::op(dat[--r], xr);\n      l >>= 1, r >>=\
+    \ 1;\n    }\n    return MX::op(xl, xr);\n  }\n\n  X prod_all() { return dat[1];\
+    \ }\n\n  void apply(int l, int r, A a) {\n    assert(0 <= l && l <= r && r <=\
+    \ n);\n    if (l == r) return;\n    l += size, r += size;\n    for (int i = log;\
+    \ i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l >> i);\n      if (((r\
+    \ >> i) << i) != r) push((r - 1) >> i);\n    }\n    int l2 = l, r2 = r;\n    while\
+    \ (l < r) {\n      if (l & 1) apply_at(l++, a);\n      if (r & 1) apply_at(--r,\
+    \ a);\n      l >>= 1, r >>= 1;\n    }\n    l = l2, r = r2;\n    for (int i = 1;\
+    \ i <= log; i++) {\n      if (((l >> i) << i) != l) update(l >> i);\n      if\
+    \ (((r >> i) << i) != r) update((r - 1) >> i);\n    }\n  }\n\n  template <typename\
+    \ F>\n  int max_right(const F check, int l) {\n    assert(0 <= l && l <= n);\n\
+    \    assert(check(MX::unit()));\n    if (l == n) return n;\n    l += size;\n \
+    \   for (int i = log; i >= 1; i--) push(l >> i);\n    X sm = MX::unit();\n   \
+    \ do {\n      while (l % 2 == 0) l >>= 1;\n      if (!check(MX::op(sm, dat[l])))\
+    \ {\n        while (l < size) {\n          push(l);\n          l = (2 * l);\n\
+    \          if (check(MX::op(sm, dat[l]))) { sm = MX::op(sm, dat[l++]); }\n   \
+    \     }\n        return l - size;\n      }\n      sm = MX::op(sm, dat[l++]);\n\
+    \    } while ((l & -l) != l);\n    return n;\n  }\n\n  template <typename F>\n\
+    \  int min_left(const F check, int r) {\n    assert(0 <= r && r <= n);\n    assert(check(MX::unit()));\n\
+    \    if (r == 0) return 0;\n    r += size;\n    for (int i = log; i >= 1; i--)\
+    \ push((r - 1) >> i);\n    X sm = MX::unit();\n    do {\n      r--;\n      while\
+    \ (r > 1 && (r % 2)) r >>= 1;\n      if (!check(MX::op(dat[r], sm))) {\n     \
+    \   while (r < size) {\n          push(r);\n          r = (2 * r + 1);\n     \
+    \     if (check(MX::op(dat[r], sm))) { sm = MX::op(dat[r--], sm); }\n        }\n\
+    \        return r + 1 - size;\n      }\n      sm = MX::op(dat[r], sm);\n    }\
+    \ while ((r & -r) != r);\n    return 0;\n  }\n\nprivate:\n  void apply_at(int\
+    \ k, A a) {\n    ll sz = 1 << (log - topbit(k));\n    dat[k] = AM::act(dat[k],\
+    \ a, sz);\n    if (k < size) laz[k] = MA::op(laz[k], a);\n  }\n  void push(int\
+    \ k) {\n    if (laz[k] == MA::unit()) return;\n    apply_at(2 * k, laz[k]), apply_at(2\
+    \ * k + 1, laz[k]);\n    laz[k] = MA::unit();\n  }\n};\n#line 2 \"alg/monoid/add.hpp\"\
+    \n\r\ntemplate <typename X>\r\nstruct Monoid_Add {\r\n  using value_type = X;\r\
+    \n  static constexpr X op(const X &x, const X &y) noexcept { return x + y; }\r\
+    \n  static constexpr X inverse(const X &x) noexcept { return -x; }\r\n  static\
+    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\n  static\
+    \ constexpr X unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\
+    \n};\r\n#line 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, X none_val>\r\
+    \nstruct Monoid_Assign {\r\n  using value_type = X;\r\n  static X op(X x, X y)\
+    \ { return (y == none_val ? x : y); }\r\n  static constexpr X unit() { return\
+    \ none_val; }\r\n  static constexpr bool commute = false;\r\n};\r\n#line 3 \"\
+    alg/acted_monoid/sum_assign.hpp\"\n\r\ntemplate <typename E, E none_val>\r\nstruct\
+    \ ActedMonoid_Sum_Assign {\r\n  using Monoid_X = Monoid_Add<E>;\r\n  using Monoid_A\
+    \ = Monoid_Assign<E, none_val>;\r\n  using X = typename Monoid_X::value_type;\r\
+    \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
+    \ X &x, const A &a, const ll &size) {\r\n    if (a == Monoid_A::unit()) return\
+    \ x;\r\n    return a * E(size);\r\n  }\r\n};\r\n#line 8 \"test_atcoder/abc256ex2.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  Intervals<int, int> I(0);\n\
+    \  FOR(i, N) I.set(i, i + 1, A[i]);\n  Lazy_SegTree<ActedMonoid_Sum_Assign<ll,\
+    \ -1>> seg(A);\n  FOR(Q) {\n    INT(t, L, R);\n    --L;\n    if (t == 2) {\n \
+    \     LL(y);\n      I.set(L, R, y);\n      seg.apply(L, R, y);\n    }\n    if\
+    \ (t == 3) { print(seg.prod(L, R)); }\n    if (t == 1) {\n      INT(d);\n    \
+    \  vc<tuple<int, int, int>> tmp;\n      I.enumerate_range(\n          L, R, [&](int\
+    \ l, int r, int x) -> void { tmp.eb(l, r, x / d); },\n          true);\n     \
+    \ for (auto&& [l, r, x]: tmp) {\n        seg.apply(l, r, x);\n        I.set(l,\
+    \ r, x);\n      }\n    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc256/tasks/abc256_Ex\"\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/intervals.hpp\"\
+    \n#include \"ds/segtree/lazy_segtree.hpp\"\n#include \"alg/acted_monoid/sum_assign.hpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  Intervals<int, int> I(0);\n\
+    \  FOR(i, N) I.set(i, i + 1, A[i]);\n  Lazy_SegTree<ActedMonoid_Sum_Assign<ll,\
+    \ -1>> seg(A);\n  FOR(Q) {\n    INT(t, L, R);\n    --L;\n    if (t == 2) {\n \
+    \     LL(y);\n      I.set(L, R, y);\n      seg.apply(L, R, y);\n    }\n    if\
+    \ (t == 3) { print(seg.prod(L, R)); }\n    if (t == 1) {\n      INT(d);\n    \
+    \  vc<tuple<int, int, int>> tmp;\n      I.enumerate_range(\n          L, R, [&](int\
+    \ l, int r, int x) -> void { tmp.eb(l, r, x / d); },\n          true);\n     \
+    \ for (auto&& [l, r, x]: tmp) {\n        seg.apply(l, r, x);\n        I.set(l,\
+    \ r, x);\n      }\n    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - ds/intervals.hpp
   - ds/fastset.hpp
+  - ds/segtree/lazy_segtree.hpp
+  - alg/acted_monoid/sum_assign.hpp
+  - alg/monoid/add.hpp
+  - alg/monoid/assign.hpp
   isVerificationFile: true
-  path: test_atcoder/abc256d.test.cpp
+  path: test_atcoder/abc256ex2.test.cpp
   requiredBy: []
   timestamp: '2023-03-10 01:15:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test_atcoder/abc256d.test.cpp
+documentation_of: test_atcoder/abc256ex2.test.cpp
 layout: document
 redirect_from:
-- /verify/test_atcoder/abc256d.test.cpp
-- /verify/test_atcoder/abc256d.test.cpp.html
-title: test_atcoder/abc256d.test.cpp
+- /verify/test_atcoder/abc256ex2.test.cpp
+- /verify/test_atcoder/abc256ex2.test.cpp.html
+title: test_atcoder/abc256ex2.test.cpp
 ---

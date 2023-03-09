@@ -12,6 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_I.test.cpp
     title: test/aoj/DSL_2_I.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc256ex.test.cpp
+    title: test_atcoder/abc256ex.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc256ex2.test.cpp
+    title: test_atcoder/abc256ex2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -47,6 +53,8 @@ data:
   timestamp: '2022-12-04 02:49:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test_atcoder/abc256ex2.test.cpp
+  - test_atcoder/abc256ex.test.cpp
   - test/aoj/DSL_2_I.test.cpp
 documentation_of: alg/acted_monoid/sum_assign.hpp
 layout: document
