@@ -10,17 +10,13 @@ void solve() {
     LL(l, r);
     I.set(l, r, 1);
   }
-  for (auto [l, r, x]: I.get_all()) {
+  I.enumerate_all([&](ll l, ll r, int x) -> void {
     if (x) print(l, r);
-  };
+  });
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
+  solve();
 
   return 0;
 }
