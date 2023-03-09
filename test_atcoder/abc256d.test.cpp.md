@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/intervals.hpp
     title: ds/intervals.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc256/tasks/abc256_d
@@ -304,16 +304,15 @@ data:
     \    auto itq = prev(itp);\n    if ((*itp).se == (*itq).se) {\n      if ((*itp).se\
     \ != none_val) --total_num;\n      dat.erase(itp);\n    }\n  }\n};\n#line 5 \"\
     test_atcoder/abc256d.test.cpp\"\n\nvoid solve() {\n  Intervals<ll, int> I(0);\n\
-    \  LL(N);\n  FOR(N) {\n    LL(l, r);\n    I.set(l, r, 1);\n  }\n  for (auto [l,\
-    \ r, x]: I.get_all()) {\n    if (x) print(l, r);\n  };\n}\n\nsigned main() {\n\
-    \  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\
-    \n  return 0;\n}\n"
+    \  LL(N);\n  FOR(N) {\n    LL(l, r);\n    I.set(l, r, 1);\n  }\n  I.enumerate_all([&](ll\
+    \ l, ll r, int x) -> void {\n    if (x) print(l, r);\n  });\n}\n\nsigned main()\
+    \ {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc256/tasks/abc256_d\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/intervals.hpp\"\
     \n\nvoid solve() {\n  Intervals<ll, int> I(0);\n  LL(N);\n  FOR(N) {\n    LL(l,\
-    \ r);\n    I.set(l, r, 1);\n  }\n  for (auto [l, r, x]: I.get_all()) {\n    if\
-    \ (x) print(l, r);\n  };\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ r);\n    I.set(l, r, 1);\n  }\n  I.enumerate_all([&](ll l, ll r, int x) -> void\
+    \ {\n    if (x) print(l, r);\n  });\n}\n\nsigned main() {\n  solve();\n\n  return\
+    \ 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -322,8 +321,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc256d.test.cpp
   requiredBy: []
-  timestamp: '2023-03-09 02:49:40+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-03-09 21:36:07+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc256d.test.cpp
 layout: document
