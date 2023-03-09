@@ -27,23 +27,16 @@ void solve() {
       end.eb(x, y, t + T);
     }
     elif (c == 1) {
-      if (A.sum(x, y, x + 1, y + 1)) A.add(x, y, -1);
+      if (A.sum(x, x + 1, y, y + 1)) A.add(x, y, -1);
     }
     elif (c == 2) {
       LL(x2, y2);
-      print(A.sum(x, y, x2, y2), B.sum(x, y, x2, y2));
+      print(A.sum(x, x2, y, y2), B.sum(x, x2, y, y2));
     }
   }
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
