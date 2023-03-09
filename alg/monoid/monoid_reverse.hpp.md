@@ -58,21 +58,21 @@ data:
   isVerificationFile: false
   path: alg/monoid/monoid_reverse.hpp
   requiredBy:
+  - graph/minimum_spanning_tree.hpp
   - graph/ds/tree_monoid.hpp
   - graph/ds/static_tree_monoid.hpp
-  - graph/minimum_spanning_tree.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc270_f.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
+  - test/yukicoder/1212.test.cpp
+  - test/yukicoder/529.test.cpp
+  - test/yukicoder/1216.test.cpp
+  - test/yukicoder/1216_2.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - test/yukicoder/529.test.cpp
-  - test/yukicoder/1212.test.cpp
-  - test/yukicoder/1216_2.test.cpp
-  - test/yukicoder/1216.test.cpp
-  - test/aoj/GRL_2_A.test.cpp
 documentation_of: alg/monoid/monoid_reverse.hpp
 layout: document
 redirect_from:

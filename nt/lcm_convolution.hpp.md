@@ -58,8 +58,8 @@ data:
   timestamp: '2022-12-12 09:21:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/math/lcm_convolution.test.cpp
   - test/yukicoder/1760.test.cpp
+  - test/library_checker/math/lcm_convolution.test.cpp
 documentation_of: nt/lcm_convolution.hpp
 layout: document
 redirect_from:

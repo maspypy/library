@@ -505,9 +505,9 @@ data:
   timestamp: '2023-02-23 14:02:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc276_g.test.cpp
-  - test_atcoder/abc276_g_2.test.cpp
   - test_atcoder/abc222h_2.test.cpp
+  - test_atcoder/abc276_g_2.test.cpp
+  - test_atcoder/abc276_g.test.cpp
   - test/yukicoder/2166.test.cpp
   - test/yukicoder/1080_2.test.cpp
 documentation_of: poly/from_log_differentiation.hpp

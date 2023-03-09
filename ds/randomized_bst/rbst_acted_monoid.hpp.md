@@ -297,12 +297,12 @@ data:
   timestamp: '2022-12-04 13:46:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-  - test/yukicoder/686.test.cpp
-  - test/mytest/rbst_am_2.test.cpp
-  - test/mytest/rbst_am_persistent.test.cpp
-  - test/mytest/ARC30D.test.cpp
   - test/mytest/rbst_am.test.cpp
+  - test/mytest/ARC30D.test.cpp
+  - test/mytest/rbst_am_persistent.test.cpp
+  - test/mytest/rbst_am_2.test.cpp
+  - test/yukicoder/686.test.cpp
+  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
 documentation_of: ds/randomized_bst/rbst_acted_monoid.hpp
 layout: document
 redirect_from:

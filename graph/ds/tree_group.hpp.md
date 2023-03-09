@@ -277,8 +277,8 @@ data:
   timestamp: '2023-01-27 18:58:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
 documentation_of: graph/ds/tree_group.hpp
 layout: document
 redirect_from:

@@ -62,8 +62,8 @@ data:
   timestamp: '2023-02-16 20:24:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/datastructure/static_range_inversions_mo.test.cpp
   - test/yukicoder/1270.test.cpp
+  - test/library_checker/datastructure/static_range_inversions_mo.test.cpp
 documentation_of: ds/offline_query/mo.hpp
 layout: document
 redirect_from:

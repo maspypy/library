@@ -340,8 +340,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc267g.test.cpp
-  - test/yukicoder/2108.test.cpp
   - test/mytest/pascal.test.cpp
+  - test/yukicoder/2108.test.cpp
 documentation_of: linalg/implicit_matrix/pascal.hpp
 layout: document
 redirect_from:

@@ -212,9 +212,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc127f_1.test.cpp
-  - test/yukicoder/924.test.cpp
-  - test/yukicoder/2065.test.cpp
   - test/mytest/wavelet_matrix_sum.test.cpp
+  - test/yukicoder/2065.test.cpp
+  - test/yukicoder/924.test.cpp
 documentation_of: ds/wavelet_matrix_sum.hpp
 layout: document
 redirect_from:

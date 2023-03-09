@@ -100,8 +100,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc229h.test.cpp
-  - test/mytest/partizan.test.cpp
   - test/mytest/dyadic_rational.test.cpp
+  - test/mytest/partizan.test.cpp
 documentation_of: game/dyadic_rational.hpp
 layout: document
 redirect_from:

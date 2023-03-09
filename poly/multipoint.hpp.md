@@ -468,21 +468,21 @@ data:
   isVerificationFile: false
   path: poly/multipoint.hpp
   requiredBy:
-  - linalg/implicit_matrix/vandermonde.hpp
   - poly/partial_frac_decomposition.hpp
   - poly/multivar_convolution_cyclic.hpp
+  - linalg/implicit_matrix/vandermonde.hpp
   timestamp: '2023-02-23 14:02:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc272_h.test.cpp
   - test_atcoder/abc267g.test.cpp
-  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - test/yukicoder/2166.test.cpp
   - test/mytest/partial_frac.test.cpp
-  - test/mytest/vandermonde.test.cpp
   - test/mytest/chirp_z.test.cpp
+  - test/mytest/vandermonde.test.cpp
+  - test/yukicoder/2166.test.cpp
+  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
 documentation_of: poly/multipoint.hpp
 layout: document
 redirect_from:

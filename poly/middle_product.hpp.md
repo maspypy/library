@@ -155,27 +155,27 @@ data:
   isVerificationFile: false
   path: poly/middle_product.hpp
   requiredBy:
-  - linalg/implicit_matrix/vandermonde.hpp
-  - string/wildcard_pattern_matching.hpp
-  - poly/multipoint.hpp
-  - poly/slice_rational_fps.hpp
   - poly/partial_frac_decomposition.hpp
+  - poly/multipoint.hpp
   - poly/multivar_convolution_cyclic.hpp
+  - poly/slice_rational_fps.hpp
+  - string/wildcard_pattern_matching.hpp
+  - linalg/implicit_matrix/vandermonde.hpp
   timestamp: '2023-02-23 09:15:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc272_h.test.cpp
   - test_atcoder/abc267g.test.cpp
   - test_atcoder/agc013e.test.cpp
-  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
+  - test/mytest/partial_frac.test.cpp
+  - test/mytest/chirp_z.test.cpp
+  - test/mytest/vandermonde.test.cpp
+  - test/mytest/slice_rational_fps.test.cpp
   - test/yukicoder/2166.test.cpp
   - test/yukicoder/2231.test.cpp
-  - test/mytest/partial_frac.test.cpp
-  - test/mytest/slice_rational_fps.test.cpp
-  - test/mytest/vandermonde.test.cpp
-  - test/mytest/chirp_z.test.cpp
+  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
 documentation_of: poly/middle_product.hpp
 layout: document
 redirect_from:

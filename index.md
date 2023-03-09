@@ -573,6 +573,12 @@ data:
     - icon: ':warning:'
       path: graph/compress_tree.hpp
       title: graph/compress_tree.hpp
+    - icon: ':warning:'
+      path: graph/count_C3_C4.hpp
+      title: graph/count_C3_C4.hpp
+    - icon: ':warning:'
+      path: graph/count_P3_P4.hpp
+      title: graph/count_P3_P4.hpp
     - icon: ':heavy_check_mark:'
       path: graph/count_independent_set.hpp
       title: graph/count_independent_set.hpp

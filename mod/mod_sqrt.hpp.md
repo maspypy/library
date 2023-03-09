@@ -167,15 +167,15 @@ data:
   isVerificationFile: false
   path: mod/mod_sqrt.hpp
   requiredBy:
-  - nt/four_square.hpp
   - poly/fps_sqrt.hpp
+  - nt/four_square.hpp
   timestamp: '2023-02-23 14:02:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/four_square.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - test/mytest/four_square.test.cpp
 documentation_of: mod/mod_sqrt.hpp
 layout: document
 redirect_from:

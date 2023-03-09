@@ -43,11 +43,11 @@ data:
   timestamp: '2023-02-16 20:33:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1276.test.cpp
-  - test/yukicoder/1573.test.cpp
+  - test/mytest/floor_ceil_ranges.test.cpp
   - test/yukicoder/1260.test.cpp
   - test/yukicoder/4954.test.cpp
-  - test/mytest/floor_ceil_ranges.test.cpp
+  - test/yukicoder/1573.test.cpp
+  - test/yukicoder/1276.test.cpp
 documentation_of: enumerate/floor_range.hpp
 layout: document
 redirect_from:
