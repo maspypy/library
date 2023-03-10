@@ -158,14 +158,14 @@ struct Intervals {
       dat[R] = t;
       if (t != none_val) ++total_num;
     }
+    p = dat.lower_bound(L);
     while (1) {
-      auto p = dat.lower_bound(L);
       if ((*p).fi >= R) break;
       auto q = next(p);
       T t = (*p).se;
       f((*p).fi, (*q).fi, t);
       if (t != none_val) --total_num, total_len -= (*q).fi - (*p).fi;
-      dat.erase(p);
+      p = dat.erase(p);
     }
     dat[L] = none_val;
   }
