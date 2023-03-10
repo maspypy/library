@@ -7,8 +7,8 @@ struct UnicyclicGraph {
   vc<int> cycle;     // 根に向かうような頂点列
   vc<bool> in_cycle; // vertex id -> bool
 
-  template <typename Graph>
-  UnicyclicGraph(Graph& G) : tree(G.N) {
+  template <typename GT>
+  UnicyclicGraph(GT& G) : tree(G.N) {
     int N = G.N;
     assert(N == G.M);
     TO.assign(N, -1);
