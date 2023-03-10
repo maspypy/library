@@ -255,33 +255,32 @@ data:
     \n\nstruct UnicyclicGraph {\n  int root;\n  Graph<int, 1> tree;\n  vc<int> TO;\n\
     \  vc<int> cycle;     // \u6839\u306B\u5411\u304B\u3046\u3088\u3046\u306A\u9802\
     \u70B9\u5217\n  vc<bool> in_cycle; // vertex id -> bool\n\n  template <typename\
-    \ Graph>\n  UnicyclicGraph(Graph& G) : tree(G.N) {\n    int N = G.N;\n    assert(N\
-    \ == G.M);\n    TO.assign(N, -1);\n    vc<bool> done(N);\n    vc<int> que;\n \
-    \   auto deg = G.deg_array();\n    FOR(v, N) if (deg[v] == 1) que.eb(v);\n   \
-    \ while (len(que)) {\n      auto v = que.back();\n      que.pop_back();\n    \
-    \  for (auto&& e: G[v]) {\n        if (done[e.id]) continue;\n        done[e.id]\
-    \ = 1;\n        int to = e.to;\n        TO[v] = to;\n        deg[to] -= 1;\n \
-    \       if (deg[to] == 1) que.eb(to);\n      }\n      deg[v] = 0;\n    }\n   \
-    \ root = -1;\n    FOR(v, N) if (deg[v] == 2) root = v;\n    assert(root != -1);\n\
-    \    vc<int> P = {root};\n    while (1) {\n      int v = P.back();\n      bool\
-    \ upd = 0;\n      for (auto&& e: G[v]) {\n        if (done[e.id]) continue;\n\
-    \        done[e.id] = 1;\n        P.eb(e.to);\n        upd = 1;\n        break;\n\
-    \      }\n      if (!upd) break;\n    }\n    FOR(i, len(P) - 1) TO[P[i]] = P[i\
-    \ + 1];\n    cycle = {P.begin() + 1, P.end()};\n    reverse(all(cycle));\n   \
-    \ in_cycle.assign(N, false);\n    for (auto&& v: cycle) in_cycle[v] = 1;\n   \
-    \ FOR(v, N) if (v != root) tree.add(TO[v], v);\n    tree.build();\n  }\n};\n#line\
-    \ 3 \"graph/tree.hpp\"\n\r\n// HLD euler tour \u3092\u3068\u3063\u3066\u3044\u308D\
-    \u3044\u308D\u3002\r\n// \u6728\u4EE5\u5916\u3001\u975E\u9023\u7D50\u3067\u3082\
-    \ dfs \u9806\u5E8F\u3084\u89AA\u304C\u3068\u308C\u308B\u3002\r\ntemplate <typename\
-    \ GT>\r\nstruct Tree {\r\n  using Graph_type = GT;\r\n  GT &G;\r\n  using WT =\
-    \ typename GT::cost_type;\r\n  int N;\r\n  bool hld;\r\n  vector<int> LID, RID,\
-    \ head, V, parent;\r\n  vc<int> depth;\r\n  vc<WT> depth_weighted;\r\n\r\n  Tree(GT\
-    \ &G, int r = -1, bool hld = 1)\r\n      : G(G),\r\n        N(G.N),\r\n      \
-    \  hld(hld),\r\n        LID(G.N),\r\n        RID(G.N),\r\n        head(G.N, r),\r\
-    \n        V(G.N),\r\n        parent(G.N, -1),\r\n        depth(G.N, -1),\r\n \
-    \       depth_weighted(G.N, 0) {\r\n    assert(G.is_prepared());\r\n    int t1\
-    \ = 0;\r\n    if (r != -1) {\r\n      dfs_sz(r, -1);\r\n      dfs_hld(r, t1);\r\
-    \n    } else {\r\n      for (int r = 0; r < N; ++r) {\r\n        if (parent[r]\
+    \ GT>\n  UnicyclicGraph(GT& G) : tree(G.N) {\n    int N = G.N;\n    assert(N ==\
+    \ G.M);\n    TO.assign(N, -1);\n    vc<bool> done(N);\n    vc<int> que;\n    auto\
+    \ deg = G.deg_array();\n    FOR(v, N) if (deg[v] == 1) que.eb(v);\n    while (len(que))\
+    \ {\n      auto v = que.back();\n      que.pop_back();\n      for (auto&& e: G[v])\
+    \ {\n        if (done[e.id]) continue;\n        done[e.id] = 1;\n        int to\
+    \ = e.to;\n        TO[v] = to;\n        deg[to] -= 1;\n        if (deg[to] ==\
+    \ 1) que.eb(to);\n      }\n      deg[v] = 0;\n    }\n    root = -1;\n    FOR(v,\
+    \ N) if (deg[v] == 2) root = v;\n    assert(root != -1);\n    vc<int> P = {root};\n\
+    \    while (1) {\n      int v = P.back();\n      bool upd = 0;\n      for (auto&&\
+    \ e: G[v]) {\n        if (done[e.id]) continue;\n        done[e.id] = 1;\n   \
+    \     P.eb(e.to);\n        upd = 1;\n        break;\n      }\n      if (!upd)\
+    \ break;\n    }\n    FOR(i, len(P) - 1) TO[P[i]] = P[i + 1];\n    cycle = {P.begin()\
+    \ + 1, P.end()};\n    reverse(all(cycle));\n    in_cycle.assign(N, false);\n \
+    \   for (auto&& v: cycle) in_cycle[v] = 1;\n    FOR(v, N) if (v != root) tree.add(TO[v],\
+    \ v);\n    tree.build();\n  }\n};\n#line 3 \"graph/tree.hpp\"\n\r\n// HLD euler\
+    \ tour \u3092\u3068\u3063\u3066\u3044\u308D\u3044\u308D\u3002\r\n// \u6728\u4EE5\
+    \u5916\u3001\u975E\u9023\u7D50\u3067\u3082 dfs \u9806\u5E8F\u3084\u89AA\u304C\u3068\
+    \u308C\u308B\u3002\r\ntemplate <typename GT>\r\nstruct Tree {\r\n  using Graph_type\
+    \ = GT;\r\n  GT &G;\r\n  using WT = typename GT::cost_type;\r\n  int N;\r\n  bool\
+    \ hld;\r\n  vector<int> LID, RID, head, V, parent;\r\n  vc<int> depth;\r\n  vc<WT>\
+    \ depth_weighted;\r\n\r\n  Tree(GT &G, int r = -1, bool hld = 1)\r\n      : G(G),\r\
+    \n        N(G.N),\r\n        hld(hld),\r\n        LID(G.N),\r\n        RID(G.N),\r\
+    \n        head(G.N, r),\r\n        V(G.N),\r\n        parent(G.N, -1),\r\n   \
+    \     depth(G.N, -1),\r\n        depth_weighted(G.N, 0) {\r\n    assert(G.is_prepared());\r\
+    \n    int t1 = 0;\r\n    if (r != -1) {\r\n      dfs_sz(r, -1);\r\n      dfs_hld(r,\
+    \ t1);\r\n    } else {\r\n      for (int r = 0; r < N; ++r) {\r\n        if (parent[r]\
     \ == -1) {\r\n          head[r] = r;\r\n          dfs_sz(r, -1);\r\n         \
     \ dfs_hld(r, t1);\r\n        }\r\n      }\r\n    }\r\n  }\r\n\r\n  void dfs_sz(int\
     \ v, int p) {\r\n    auto &sz = RID;\r\n    parent[v] = p;\r\n    depth[v] = (p\
@@ -362,7 +361,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc266f.test.cpp
   requiredBy: []
-  timestamp: '2023-02-24 07:14:18+09:00'
+  timestamp: '2023-03-11 03:26:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc266f.test.cpp

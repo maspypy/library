@@ -19,6 +19,9 @@ data:
     path: test/yukicoder/1826_2.test.cpp
     title: test/yukicoder/1826_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2242.test.cpp
+    title: test/yukicoder/2242.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/789_3.test.cpp
     title: test/yukicoder/789_3.test.cpp
   _isVerificationFailed: false
@@ -178,6 +181,7 @@ data:
   verifiedWith:
   - test/mytest/dynamic_segtree_sparse.test.cpp
   - test/yukicoder/789_3.test.cpp
+  - test/yukicoder/2242.test.cpp
   - test/yukicoder/1826_2.test.cpp
   - test/yukicoder/1649_2.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp

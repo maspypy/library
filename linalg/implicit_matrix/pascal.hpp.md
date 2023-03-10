@@ -31,6 +31,9 @@ data:
     path: test/yukicoder/2108.test.cpp
     title: test/yukicoder/2108.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2243.test.cpp
+    title: test/yukicoder/2243.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc267g.test.cpp
     title: test_atcoder/abc267g.test.cpp
   _isVerificationFailed: false
@@ -341,6 +344,7 @@ data:
   verifiedWith:
   - test_atcoder/abc267g.test.cpp
   - test/mytest/pascal.test.cpp
+  - test/yukicoder/2243.test.cpp
   - test/yukicoder/2108.test.cpp
 documentation_of: linalg/implicit_matrix/pascal.hpp
 layout: document

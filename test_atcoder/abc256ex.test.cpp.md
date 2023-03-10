@@ -303,11 +303,11 @@ data:
     \    if ((*p).fi < L) {\n      dat[L] = (*p).se;\n      if (dat[L] != none_val)\
     \ ++total_num;\n    }\n    p = dat.lower_bound(R);\n    if (R < (*p).fi) {\n \
     \     T t = (*prev(p)).se;\n      dat[R] = t;\n      if (t != none_val) ++total_num;\n\
-    \    }\n    while (1) {\n      auto p = dat.lower_bound(L);\n      if ((*p).fi\
-    \ >= R) break;\n      auto q = next(p);\n      T t = (*p).se;\n      f((*p).fi,\
-    \ (*q).fi, t);\n      if (t != none_val) --total_num, total_len -= (*q).fi - (*p).fi;\n\
-    \      dat.erase(p);\n    }\n    dat[L] = none_val;\n  }\n\n  void set(X L, X\
-    \ R, T t) {\n    enumerate_range(\n        L, R, [](int l, int r, T x) -> void\
+    \    }\n    p = dat.lower_bound(L);\n    while (1) {\n      if ((*p).fi >= R)\
+    \ break;\n      auto q = next(p);\n      T t = (*p).se;\n      f((*p).fi, (*q).fi,\
+    \ t);\n      if (t != none_val) --total_num, total_len -= (*q).fi - (*p).fi;\n\
+    \      p = dat.erase(p);\n    }\n    dat[L] = none_val;\n  }\n\n  void set(X L,\
+    \ X R, T t) {\n    enumerate_range(\n        L, R, [](int l, int r, T x) -> void\
     \ {}, true);\n    dat[L] = t;\n    if (t != none_val) total_num++, total_len +=\
     \ R - L;\n    merge_at(L);\n    merge_at(R);\n  }\n\n  template <typename F>\n\
     \  void enumerate_all(F f) {\n    enumerate_range(LLIM, RLIM, f, false);\n  }\n\
@@ -418,7 +418,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc256ex.test.cpp
   requiredBy: []
-  timestamp: '2023-03-10 01:15:36+09:00'
+  timestamp: '2023-03-11 03:26:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc256ex.test.cpp

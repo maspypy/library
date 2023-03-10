@@ -52,6 +52,9 @@ data:
     path: test/yukicoder/2231.test.cpp
     title: test/yukicoder/2231.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2243.test.cpp
+    title: test/yukicoder/2243.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc267g.test.cpp
     title: test_atcoder/abc267g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -172,6 +175,7 @@ data:
   - test/mytest/vandermonde.test.cpp
   - test/mytest/slice_rational_fps.test.cpp
   - test/yukicoder/2166.test.cpp
+  - test/yukicoder/2243.test.cpp
   - test/yukicoder/2231.test.cpp
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/library_checker/polynomial/polynomial_interpolation.test.cpp
