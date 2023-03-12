@@ -1,7 +1,7 @@
 #include "nt/factor.hpp"
 #include "random/base.hpp"
 #include "mod/mod_sqrt.hpp"
-#include "mod/modint.hpp"
+#include "mod/dynamic_modint.hpp"
 
 // N = a^2+b^2+c^2+d^2 となる (a,b,c,d) をひとつ返す
 tuple<ll, ll, ll, ll> four_square(ll N) {
