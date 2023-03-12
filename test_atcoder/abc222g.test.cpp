@@ -4,9 +4,9 @@
 
 #include "nt/discrete_log.hpp"
 #include "alg/acted_set/affine.hpp"
-#include "mod/modint.hpp"
+#include "mod/dynamic_modint.hpp"
 
-using mint = amint;
+using mint = dmint;
 using AS = ActedSet_Affine<mint>;
 
 void solve() {
