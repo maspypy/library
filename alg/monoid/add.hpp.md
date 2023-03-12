@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/maxidx_add.hpp
     title: alg/acted_monoid/maxidx_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
   - icon: ':heavy_check_mark:'
@@ -53,7 +53,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_2d.hpp
     title: ds/fenwicktree/fenwicktree_2d.hpp
   - icon: ':question:'
@@ -86,7 +86,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/rectangle_union.hpp
     title: other/rectangle_union.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
   - icon: ':heavy_check_mark:'
@@ -297,7 +297,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1641.test.cpp
     title: test/yukicoder/1641.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1720.test.cpp
     title: test/yukicoder/1720.test.cpp
   - icon: ':heavy_check_mark:'
@@ -306,7 +306,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1874.test.cpp
     title: test/yukicoder/1874.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1919.test.cpp
     title: test/yukicoder/1919.test.cpp
   - icon: ':heavy_check_mark:'

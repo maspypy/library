@@ -36,6 +36,9 @@ data:
   - icon: ':x:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1339.test.cpp
+    title: test/yukicoder/1339.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -151,6 +154,7 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/four_square.test.cpp
+  - test/yukicoder/1339.test.cpp
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
