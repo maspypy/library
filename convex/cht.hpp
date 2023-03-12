@@ -73,14 +73,18 @@ struct CHT_xy {
   using ld = long double;
   CHT_min<ld> cht_min;
   CHT_max<ld> cht_max;
-  T amax = -1e18, amin = 1e18, bmax = -1e18, bmin = 1e18;
+  T amax = -infty<T>, amin = infty<T>;
+  T bmax = -infty<T>, bmin = infty<T>;
+  bool empty = true;
   void add(T a, T b) {
+    empty = false;
     cht_min.add(b, a);
     cht_max.add(b, a);
     chmax(amax, a), chmin(amin, a), chmax(bmax, b), chmin(bmin, b);
   }
 
   T get_max(T x, T y) {
+    if (cht_min.empty()) return -infty<T>;
     if (x == 0) { return max(bmax * y, bmin * y); }
     ld z = ld(y) / x;
     if (x > 0) {
