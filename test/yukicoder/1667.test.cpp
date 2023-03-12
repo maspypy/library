@@ -1,9 +1,9 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1667"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "mod/modint.hpp"
+#include "mod/dynamic_modint.hpp"
 
-using mint = amint;
+using mint = dmint;
 
 void solve() {
   LL(N, mod);
