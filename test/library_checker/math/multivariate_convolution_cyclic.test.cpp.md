@@ -2,12 +2,15 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: mod/dynamic_modint.hpp
+    title: mod/dynamic_modint.hpp
+  - icon: ':question:'
     path: mod/fast_div.hpp
     title: mod/fast_div.hpp
   - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
   - icon: ':question:'
@@ -16,7 +19,7 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':question:'
@@ -52,7 +55,7 @@ data:
   - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
   - icon: ':question:'
@@ -63,9 +66,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/multivariate_convolution_cyclic
@@ -673,17 +676,48 @@ data:
     \ == H);\n  assert(len(g[0]) == W);\n  vc<mint> F(H * W), G(H * W);\n  FOR(x,\
     \ H) FOR(y, W) F[x + H * y] = f[x][y];\n  FOR(x, H) FOR(y, W) G[x + H * y] = g[x][y];\n\
     \  F = multivar_convolution_cyclic(vc<int>({H, W}), F, G);\n  vv(mint, h, H, W);\n\
-    \  FOR(x, H) FOR(y, W) h[x][y] = F[x + H * y];\n  return h;\n}\n#line 7 \"test/library_checker/math/multivariate_convolution_cyclic.test.cpp\"\
+    \  FOR(x, H) FOR(y, W) h[x][y] = F[x + H * y];\n  return h;\n}\n#line 3 \"mod/dynamic_modint.hpp\"\
+    \n\nstruct Dynamic_ModInt {\n  static constexpr bool is_modint = true;\n  int\
+    \ val;\n  Dynamic_ModInt() : val(0) {}\n  Dynamic_ModInt(int64_t y)\n      : val(y\
+    \ >= 0 ? y % get_mod()\n                   : (get_mod() - (-y) % get_mod()) %\
+    \ get_mod()) {}\n  bool operator<(const Dynamic_ModInt &other) const {\n    return\
+    \ val < other.val;\n  } // To use std::map<Dynamic_ModInt, T>\n  static int &get_mod()\
+    \ {\n    static int mod = 0;\n    return mod;\n  }\n  static void set_mod(int\
+    \ md) { get_mod() = md; }\n  Dynamic_ModInt &operator+=(const Dynamic_ModInt &p)\
+    \ {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n    return *this;\n\
+    \  }\n  Dynamic_ModInt &operator-=(const Dynamic_ModInt &p) {\n    if ((val +=\
+    \ get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return *this;\n  }\n\
+    \  Dynamic_ModInt &operator*=(const Dynamic_ModInt &p) {\n    long long a = (long\
+    \ long)val * p.val;\n    int xh = (int)(a >> 32), xl = (int)a, d, m;\n    asm(\"\
+    divl %4; \\n\\t\" : \"=a\"(d), \"=d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n\
+    \    val = m;\n    return *this;\n  }\n  Dynamic_ModInt &operator/=(const Dynamic_ModInt\
+    \ &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n  Dynamic_ModInt operator-()\
+    \ const { return Dynamic_ModInt(get_mod() - val); }\n  Dynamic_ModInt operator+(const\
+    \ Dynamic_ModInt &p) const {\n    return Dynamic_ModInt(*this) += p;\n  }\n  Dynamic_ModInt\
+    \ operator-(const Dynamic_ModInt &p) const {\n    return Dynamic_ModInt(*this)\
+    \ -= p;\n  }\n  Dynamic_ModInt operator*(const Dynamic_ModInt &p) const {\n  \
+    \  return Dynamic_ModInt(*this) *= p;\n  }\n  Dynamic_ModInt operator/(const Dynamic_ModInt\
+    \ &p) const {\n    return Dynamic_ModInt(*this) /= p;\n  }\n  bool operator==(const\
+    \ Dynamic_ModInt &p) const { return val == p.val; }\n  bool operator!=(const Dynamic_ModInt\
+    \ &p) const { return val != p.val; }\n  Dynamic_ModInt inverse() const {\n   \
+    \ int a = val, b = get_mod(), u = 1, v = 0, t;\n    while (b > 0) {\n      t =\
+    \ a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return Dynamic_ModInt(u);\n\
+    \  }\n  Dynamic_ModInt pow(int64_t n) const {\n    assert(n >= 0);\n    Dynamic_ModInt\
+    \ ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n     \
+    \ mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void\
+    \ write() { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
+    \ }\n#endif\n  static constexpr pair<int, int> ntt_info() { return {-1, -1}; }\n\
+    };\n\nusing dmint = Dynamic_ModInt;\n#line 7 \"test/library_checker/math/multivariate_convolution_cyclic.test.cpp\"\
     \n\nusing mint = dmint;\n\nvoid solve() {\n  INT(p, K);\n  mint::set_mod(p);\n\
     \  VEC(int, ns, K);\n  int N = 1;\n  for (auto&& n: ns) N *= n;\n  VEC(mint, f,\
     \ N);\n  VEC(mint, g, N);\n  print(multivar_convolution_cyclic(ns, f, g));\n}\n\
     \nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/multivariate_convolution_cyclic\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"poly/multivar_convolution_cyclic.hpp\"\
-    \n#include \"mod/modint.hpp\"\n\nusing mint = dmint;\n\nvoid solve() {\n  INT(p,\
-    \ K);\n  mint::set_mod(p);\n  VEC(int, ns, K);\n  int N = 1;\n  for (auto&& n:\
-    \ ns) N *= n;\n  VEC(mint, f, N);\n  VEC(mint, g, N);\n  print(multivar_convolution_cyclic(ns,\
-    \ f, g));\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
+    \n#include \"mod/dynamic_modint.hpp\"\n\nusing mint = dmint;\n\nvoid solve() {\n\
+    \  INT(p, K);\n  mint::set_mod(p);\n  VEC(int, ns, K);\n  int N = 1;\n  for (auto&&\
+    \ n: ns) N *= n;\n  VEC(mint, f, N);\n  VEC(mint, g, N);\n  print(multivar_convolution_cyclic(ns,\
+    \ f, g));\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -705,11 +739,12 @@ data:
   - mod/mod_pow.hpp
   - mod/fast_div.hpp
   - random/base.hpp
+  - mod/dynamic_modint.hpp
   isVerificationFile: true
   path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   requiredBy: []
-  timestamp: '2023-03-12 12:40:06+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-03-12 13:20:57+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
 layout: document
