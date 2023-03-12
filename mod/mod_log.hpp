@@ -1,4 +1,4 @@
-#include "mod/modint.hpp"
+#include "mod/dynamic_modint.hpp"
 #include "nt/discrete_log.hpp"
 #include "alg/monoid/mul.hpp"
 
@@ -18,7 +18,7 @@ int mod_log(int mod, ll a, ll b) {
   a %= mod, b %= mod;
   if (gcd(b, mod) > 1) return -1;
   // 群に帰着された
-  amint::set_mod(mod);
-  return discrete_log_group<Monoid_Mul<amint>>(
-      amint(a), amint(b), [](auto x) { return x.val; }, 32, mod);
+  dmint::set_mod(mod);
+  return discrete_log_group<Monoid_Mul<dmint>>(
+      dmint(a), dmint(b), [](auto x) { return x.val; }, 32, mod);
 }
