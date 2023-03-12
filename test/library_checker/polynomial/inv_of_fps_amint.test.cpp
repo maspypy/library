@@ -2,13 +2,12 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "mod/modint.hpp"
+#include "mod/dynamic_modint.hpp"
 #include "poly/fps_inv.hpp"
-
 
 void solve() {
   LL(N);
-  using mint = amint;
+  using mint = dmint;
   mint::set_mod(998244353);
   VEC(mint, F, N);
   print(fps_inv(F));
