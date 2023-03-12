@@ -19,7 +19,7 @@ tuple<ll, ll, ll, ll> four_square(ll N) {
 
   auto solve_p = [&](ll p) -> T4 {
     if (p == 2) return {1, 1, 0, 0};
-    using mint = amint;
+    using mint = dmint;
     mint::set_mod(p);
     auto [a, b] = [&]() -> pair<ll, ll> {
       while (1) {
