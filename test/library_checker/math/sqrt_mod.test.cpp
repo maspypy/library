@@ -1,9 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/sqrt_mod"
 #include "my_template.hpp"
 #include "other/io.hpp"
+#include "mod/dynamic_modint.hpp"
 #include "mod/mod_sqrt.hpp"
 
-using mint = amint;
+using mint = dmint;
 
 void solve() {
   LL(T);
@@ -20,11 +21,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
   solve();
-
   return 0;
 }
