@@ -42,6 +42,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1667.test.cpp
     title: test/yukicoder/1667.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc222g.test.cpp
+    title: test_atcoder/abc222g.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -156,6 +159,7 @@ data:
   timestamp: '2023-03-12 10:53:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test_atcoder/abc222g.test.cpp
   - test/mytest/four_square.test.cpp
   - test/yukicoder/1339.test.cpp
   - test/yukicoder/1667.test.cpp
