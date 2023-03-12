@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/cht.hpp
     title: convex/cht.hpp
   - icon: ':question:'
@@ -230,14 +230,15 @@ data:
     \ O(log N)\r\n\u30FBadd(a, b)\uFF1Aax + by \u306E\u8FFD\u52A0\r\n\u30FBget_max(x,y)\uFF1A\
     max_{a,b} (ax + by)\r\n\u30FBget_min(x,y)\uFF1Amax_{a,b} (ax + by)\r\n*/\r\ntemplate\
     \ <typename T>\r\nstruct CHT_xy {\r\n  using ld = long double;\r\n  CHT_min<ld>\
-    \ cht_min;\r\n  CHT_max<ld> cht_max;\r\n  T amax = -1e18, amin = 1e18, bmax =\
-    \ -1e18, bmin = 1e18;\r\n  void add(T a, T b) {\r\n    cht_min.add(b, a);\r\n\
-    \    cht_max.add(b, a);\r\n    chmax(amax, a), chmin(amin, a), chmax(bmax, b),\
-    \ chmin(bmin, b);\r\n  }\r\n\r\n  T get_max(T x, T y) {\r\n    if (x == 0) { return\
-    \ max(bmax * y, bmin * y); }\r\n    ld z = ld(y) / x;\r\n    if (x > 0) {\r\n\
-    \      auto l = cht_max.lower_bound(z);\r\n      ll a = l->m, b = l->k;\r\n  \
-    \    return a * x + b * y;\r\n    }\r\n    auto l = cht_min.lower_bound(z);\r\n\
-    \    ll a = -(l->m), b = -(l->k);\r\n    return a * x + b * y;\r\n  }\r\n\r\n\
+    \ cht_min;\r\n  CHT_max<ld> cht_max;\r\n  T amax = -infty<T>, amin = infty<T>;\r\
+    \n  T bmax = -infty<T>, bmin = infty<T>;\r\n  bool empty = true;\r\n  void add(T\
+    \ a, T b) {\r\n    empty = false;\r\n    cht_min.add(b, a);\r\n    cht_max.add(b,\
+    \ a);\r\n    chmax(amax, a), chmin(amin, a), chmax(bmax, b), chmin(bmin, b);\r\
+    \n  }\r\n\r\n  T get_max(T x, T y) {\r\n    if (cht_min.empty()) return -infty<T>;\r\
+    \n    if (x == 0) { return max(bmax * y, bmin * y); }\r\n    ld z = ld(y) / x;\r\
+    \n    if (x > 0) {\r\n      auto l = cht_max.lower_bound(z);\r\n      ll a = l->m,\
+    \ b = l->k;\r\n      return a * x + b * y;\r\n    }\r\n    auto l = cht_min.lower_bound(z);\r\
+    \n    ll a = -(l->m), b = -(l->k);\r\n    return a * x + b * y;\r\n  }\r\n\r\n\
     \  T get_min(T x, T y) { return -get_max(-x, -y); }\r\n};\r\n#line 5 \"test/library_checker/datastructure/line_add_get_min.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  CHT_min<ll> cht_min;\n  CHT_max<ll> cht_max;\n\
     \  FOR(N) {\n    LL(a, b);\n    cht_min.add(a, b);\n    cht_max.add(-a, -b);\n\
@@ -260,7 +261,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/line_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2023-02-24 07:14:18+09:00'
+  timestamp: '2023-03-12 21:41:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/line_add_get_min.test.cpp

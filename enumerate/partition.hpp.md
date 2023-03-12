@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1881.test.cpp
     title: test/yukicoder/1881.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc226f.test.cpp
     title: test_atcoder/abc226f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"enumerate/partition.hpp\"\n/*\npartition \u306F\u3001\u300C\
@@ -49,7 +49,7 @@ data:
   path: enumerate/partition.hpp
   requiredBy: []
   timestamp: '2023-01-23 21:38:53+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc226f.test.cpp
   - test/mytest/enum_partitions.test.cpp

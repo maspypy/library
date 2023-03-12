@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2012.test.cpp
     title: test/yukicoder/2012.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc244h.test.cpp
     title: test_atcoder/abc244h.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/cht.hpp\"\n\r\ntemplate <typename T>\r\nstruct Line\
@@ -48,14 +48,15 @@ data:
     \ O(log N)\r\n\u30FBadd(a, b)\uFF1Aax + by \u306E\u8FFD\u52A0\r\n\u30FBget_max(x,y)\uFF1A\
     max_{a,b} (ax + by)\r\n\u30FBget_min(x,y)\uFF1Amax_{a,b} (ax + by)\r\n*/\r\ntemplate\
     \ <typename T>\r\nstruct CHT_xy {\r\n  using ld = long double;\r\n  CHT_min<ld>\
-    \ cht_min;\r\n  CHT_max<ld> cht_max;\r\n  T amax = -1e18, amin = 1e18, bmax =\
-    \ -1e18, bmin = 1e18;\r\n  void add(T a, T b) {\r\n    cht_min.add(b, a);\r\n\
-    \    cht_max.add(b, a);\r\n    chmax(amax, a), chmin(amin, a), chmax(bmax, b),\
-    \ chmin(bmin, b);\r\n  }\r\n\r\n  T get_max(T x, T y) {\r\n    if (x == 0) { return\
-    \ max(bmax * y, bmin * y); }\r\n    ld z = ld(y) / x;\r\n    if (x > 0) {\r\n\
-    \      auto l = cht_max.lower_bound(z);\r\n      ll a = l->m, b = l->k;\r\n  \
-    \    return a * x + b * y;\r\n    }\r\n    auto l = cht_min.lower_bound(z);\r\n\
-    \    ll a = -(l->m), b = -(l->k);\r\n    return a * x + b * y;\r\n  }\r\n\r\n\
+    \ cht_min;\r\n  CHT_max<ld> cht_max;\r\n  T amax = -infty<T>, amin = infty<T>;\r\
+    \n  T bmax = -infty<T>, bmin = infty<T>;\r\n  bool empty = true;\r\n  void add(T\
+    \ a, T b) {\r\n    empty = false;\r\n    cht_min.add(b, a);\r\n    cht_max.add(b,\
+    \ a);\r\n    chmax(amax, a), chmin(amin, a), chmax(bmax, b), chmin(bmin, b);\r\
+    \n  }\r\n\r\n  T get_max(T x, T y) {\r\n    if (cht_min.empty()) return -infty<T>;\r\
+    \n    if (x == 0) { return max(bmax * y, bmin * y); }\r\n    ld z = ld(y) / x;\r\
+    \n    if (x > 0) {\r\n      auto l = cht_max.lower_bound(z);\r\n      ll a = l->m,\
+    \ b = l->k;\r\n      return a * x + b * y;\r\n    }\r\n    auto l = cht_min.lower_bound(z);\r\
+    \n    ll a = -(l->m), b = -(l->k);\r\n    return a * x + b * y;\r\n  }\r\n\r\n\
     \  T get_min(T x, T y) { return -get_max(-x, -y); }\r\n};\r\n"
   code: "\r\ntemplate <typename T>\r\nstruct Line {\r\n  mutable T k, m, p;\r\n  bool\
     \ operator<(const Line& o) const { return k < o.k; }\r\n  bool operator<(T x)\
@@ -84,21 +85,22 @@ data:
     \u308A O(log N)\r\n\u30FBadd(a, b)\uFF1Aax + by \u306E\u8FFD\u52A0\r\n\u30FBget_max(x,y)\uFF1A\
     max_{a,b} (ax + by)\r\n\u30FBget_min(x,y)\uFF1Amax_{a,b} (ax + by)\r\n*/\r\ntemplate\
     \ <typename T>\r\nstruct CHT_xy {\r\n  using ld = long double;\r\n  CHT_min<ld>\
-    \ cht_min;\r\n  CHT_max<ld> cht_max;\r\n  T amax = -1e18, amin = 1e18, bmax =\
-    \ -1e18, bmin = 1e18;\r\n  void add(T a, T b) {\r\n    cht_min.add(b, a);\r\n\
-    \    cht_max.add(b, a);\r\n    chmax(amax, a), chmin(amin, a), chmax(bmax, b),\
-    \ chmin(bmin, b);\r\n  }\r\n\r\n  T get_max(T x, T y) {\r\n    if (x == 0) { return\
-    \ max(bmax * y, bmin * y); }\r\n    ld z = ld(y) / x;\r\n    if (x > 0) {\r\n\
-    \      auto l = cht_max.lower_bound(z);\r\n      ll a = l->m, b = l->k;\r\n  \
-    \    return a * x + b * y;\r\n    }\r\n    auto l = cht_min.lower_bound(z);\r\n\
-    \    ll a = -(l->m), b = -(l->k);\r\n    return a * x + b * y;\r\n  }\r\n\r\n\
+    \ cht_min;\r\n  CHT_max<ld> cht_max;\r\n  T amax = -infty<T>, amin = infty<T>;\r\
+    \n  T bmax = -infty<T>, bmin = infty<T>;\r\n  bool empty = true;\r\n  void add(T\
+    \ a, T b) {\r\n    empty = false;\r\n    cht_min.add(b, a);\r\n    cht_max.add(b,\
+    \ a);\r\n    chmax(amax, a), chmin(amin, a), chmax(bmax, b), chmin(bmin, b);\r\
+    \n  }\r\n\r\n  T get_max(T x, T y) {\r\n    if (cht_min.empty()) return -infty<T>;\r\
+    \n    if (x == 0) { return max(bmax * y, bmin * y); }\r\n    ld z = ld(y) / x;\r\
+    \n    if (x > 0) {\r\n      auto l = cht_max.lower_bound(z);\r\n      ll a = l->m,\
+    \ b = l->k;\r\n      return a * x + b * y;\r\n    }\r\n    auto l = cht_min.lower_bound(z);\r\
+    \n    ll a = -(l->m), b = -(l->k);\r\n    return a * x + b * y;\r\n  }\r\n\r\n\
     \  T get_min(T x, T y) { return -get_max(-x, -y); }\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
   path: convex/cht.hpp
   requiredBy: []
-  timestamp: '2022-12-03 09:41:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-03-12 21:41:08+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc244h.test.cpp
   - test/yukicoder/1297.test.cpp

@@ -96,13 +96,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/255.test.cpp
     title: test/yukicoder/255.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/749.test.cpp
     title: test/yukicoder/749.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc234g.test.cpp
     title: test_atcoder/abc234g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -111,9 +111,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc256ex2.test.cpp
     title: test_atcoder/abc256ex2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -232,7 +232,7 @@ data:
   - graph/ds/lazy_tree_monoid.hpp
   - other/rectangle_union.hpp
   timestamp: '2023-01-31 23:11:49+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc256ex2.test.cpp
   - test_atcoder/abc234g.test.cpp
