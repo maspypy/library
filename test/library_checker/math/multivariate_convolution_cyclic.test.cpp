@@ -5,7 +5,7 @@
 #include "poly/multivar_convolution_cyclic.hpp"
 #include "mod/modint.hpp"
 
-using mint = amint;
+using mint = dmint;
 
 void solve() {
   INT(p, K);
