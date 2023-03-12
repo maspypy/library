@@ -2,15 +2,9 @@
 #include "mod/primitive_root.hpp"
 
 /*
-(n0, n1, n2, ...) 進法での繰り上がりのない足し算に関する畳み込み
-
-example : ns = (2, 3) → 1 の位から順に 2, 3 進法
+example : ns = (2, 3)
 [a0, a1, a2, a3, a4, a5] = [a(0,0), a(1,0), a(0,1), a(1,1), a(0,2), a(1,2)]
 [b0, b1, b2, b3, b4, b5] = [b(0,0), b(1,0), b(0,1), b(1,1), b(0,2), b(1,2)]
-c(0,2) = a(0,0)b(0,2) + a(0,1)b(0,1) + a(0,2)b(1,1)
-c4 = a0b4 + a2b2 + a4b0
-
-example : ns = (2, 2, ..., 2, 2) → subset convolution
 */
 template <typename mint>
 vc<mint> multivar_convolution_cyclic(vc<int> ns, vc<mint> f, vc<mint>& g) {
