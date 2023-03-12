@@ -1,6 +1,9 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: mod/dynamic_modint.hpp
+    title: mod/dynamic_modint.hpp
   - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
@@ -30,9 +33,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/convolution_mod_1000000007
@@ -454,18 +457,49 @@ data:
     \ modint998>::value, vc<mint>> convolution(\r\n    const vc<mint>& a, const vc<mint>&\
     \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
     \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_garner(a,\
-    \ b);\r\n}\r\n#line 7 \"test/library_checker/convolution/convolution_mod_107_amint.test.cpp\"\
-    \nusing mint = amint;\r\n\r\nvoid solve() {\r\n  LL(N, M);\r\n  mint::set_mod(1'000'000'007);\r\
+    \ b);\r\n}\r\n#line 3 \"mod/dynamic_modint.hpp\"\n\nstruct Dynamic_ModInt {\n\
+    \  static constexpr bool is_modint = true;\n  int val;\n  Dynamic_ModInt() : val(0)\
+    \ {}\n  Dynamic_ModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n      \
+    \             : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
+    \ Dynamic_ModInt &other) const {\n    return val < other.val;\n  } // To use std::map<Dynamic_ModInt,\
+    \ T>\n  static int &get_mod() {\n    static int mod = 0;\n    return mod;\n  }\n\
+    \  static void set_mod(int md) { get_mod() = md; }\n  Dynamic_ModInt &operator+=(const\
+    \ Dynamic_ModInt &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n\
+    \    return *this;\n  }\n  Dynamic_ModInt &operator-=(const Dynamic_ModInt &p)\
+    \ {\n    if ((val += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return\
+    \ *this;\n  }\n  Dynamic_ModInt &operator*=(const Dynamic_ModInt &p) {\n    long\
+    \ long a = (long long)val * p.val;\n    int xh = (int)(a >> 32), xl = (int)a,\
+    \ d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"(m) : \"d\"(xh), \"a\"\
+    (xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n  }\n  Dynamic_ModInt\
+    \ &operator/=(const Dynamic_ModInt &p) {\n    *this *= p.inverse();\n    return\
+    \ *this;\n  }\n  Dynamic_ModInt operator-() const { return Dynamic_ModInt(get_mod()\
+    \ - val); }\n  Dynamic_ModInt operator+(const Dynamic_ModInt &p) const {\n   \
+    \ return Dynamic_ModInt(*this) += p;\n  }\n  Dynamic_ModInt operator-(const Dynamic_ModInt\
+    \ &p) const {\n    return Dynamic_ModInt(*this) -= p;\n  }\n  Dynamic_ModInt operator*(const\
+    \ Dynamic_ModInt &p) const {\n    return Dynamic_ModInt(*this) *= p;\n  }\n  Dynamic_ModInt\
+    \ operator/(const Dynamic_ModInt &p) const {\n    return Dynamic_ModInt(*this)\
+    \ /= p;\n  }\n  bool operator==(const Dynamic_ModInt &p) const { return val ==\
+    \ p.val; }\n  bool operator!=(const Dynamic_ModInt &p) const { return val != p.val;\
+    \ }\n  Dynamic_ModInt inverse() const {\n    int a = val, b = get_mod(), u = 1,\
+    \ v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b),\
+    \ swap(u -= t * v, v);\n    }\n    return Dynamic_ModInt(u);\n  }\n  Dynamic_ModInt\
+    \ pow(int64_t n) const {\n    assert(n >= 0);\n    Dynamic_ModInt ret(1), mul(val);\n\
+    \    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n\
+    \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
+    \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
+    \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing dmint = Dynamic_ModInt;\n\
+    #line 7 \"test/library_checker/convolution/convolution_mod_107_amint.test.cpp\"\
+    \nusing mint = dmint;\r\n\r\nvoid solve() {\r\n  LL(N, M);\r\n  mint::set_mod(1'000'000'007);\r\
     \n  VEC(mint, A, N);\r\n  VEC(mint, B, M);\r\n  auto ANS = convolution(A, B);\r\
-    \n  print(ANS);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \n  print(ANS);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\
+    \n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod_1000000007\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
-    \ \"poly/convolution.hpp\"\r\n#include \"mod/modint.hpp\"\r\nusing mint = amint;\r\
-    \n\r\nvoid solve() {\r\n  LL(N, M);\r\n  mint::set_mod(1'000'000'007);\r\n  VEC(mint,\
-    \ A, N);\r\n  VEC(mint, B, M);\r\n  auto ANS = convolution(A, B);\r\n  print(ANS);\r\
-    \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ \"poly/convolution.hpp\"\r\n#include \"mod/dynamic_modint.hpp\"\r\nusing mint\
+    \ = dmint;\r\n\r\nvoid solve() {\r\n  LL(N, M);\r\n  mint::set_mod(1'000'000'007);\r\
+    \n  VEC(mint, A, N);\r\n  VEC(mint, B, M);\r\n  auto ANS = convolution(A, B);\r\
+    \n  print(ANS);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\
+    \n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -476,11 +510,12 @@ data:
   - poly/convolution_naive.hpp
   - poly/ntt.hpp
   - poly/fft.hpp
+  - mod/dynamic_modint.hpp
   isVerificationFile: true
   path: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
   requiredBy: []
-  timestamp: '2023-03-12 10:53:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-03-12 12:01:29+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
 layout: document
