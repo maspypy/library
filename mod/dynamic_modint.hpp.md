@@ -15,6 +15,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/sqrt_mod.test.cpp
+    title: test/library_checker/math/sqrt_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
+    title: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
+    title: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
+    title: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -128,7 +140,11 @@ data:
   timestamp: '2023-03-12 10:53:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/library_checker/math/sqrt_mod.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
+  - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
+  - test/library_checker/polynomial/inv_of_fps_amint.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
   - test/library_checker/convolution/convolution_mod_107_amint.test.cpp
 documentation_of: mod/dynamic_modint.hpp
 layout: document

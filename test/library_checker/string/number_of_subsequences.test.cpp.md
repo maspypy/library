@@ -13,14 +13,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/count_subseq.hpp
     title: string/count_subseq.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/number_of_subsequences
@@ -283,14 +283,13 @@ data:
     }\n#line 6 \"test/library_checker/string/number_of_subsequences.test.cpp\"\n\n\
     using mint = modint998;\n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n  mint\
     \ ANS = count_subseq<mint, int>(A);\n  ANS -= mint(1);\n  print(ANS);\n}\n\nsigned\
-    \ main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n\
-    \  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/number_of_subsequences\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\
     \n#include \"string/count_subseq.hpp\"\n\nusing mint = modint998;\n\nvoid solve()\
     \ {\n  LL(N);\n  VEC(int, A, N);\n  mint ANS = count_subseq<mint, int>(A);\n \
-    \ ANS -= mint(1);\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ ANS -= mint(1);\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -300,8 +299,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/number_of_subsequences.test.cpp
   requiredBy: []
-  timestamp: '2023-03-12 10:53:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-03-12 13:01:48+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/string/number_of_subsequences.test.cpp
 layout: document

@@ -1,12 +1,12 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: mod/dynamic_modint.hpp
+    title: mod/dynamic_modint.hpp
   - icon: ':question:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
-  - icon: ':question:'
-    path: mod/modint.hpp
-    title: mod/modint.hpp
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
@@ -21,9 +21,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sqrt_mod
@@ -248,41 +248,42 @@ data:
     \u8A08\u7B97\ntemplate <typename mint, bool large = false, bool dense = false>\n\
     mint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
     \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
-    \ dense>(n + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\n\
-    struct modint {\n  int val;\n  constexpr modint(const ll val = 0) noexcept\n \
-    \     : val(val >= 0 ? val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const\
-    \ modint &other) const {\n    return val < other.val;\n  } // To use std::map\n\
-    \  modint &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -=\
-    \ mod;\n    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if\
-    \ ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint\
-    \ &operator*=(const modint &p) {\n    val = (int)(1LL * val * p.val % mod);\n\
-    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
-    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint(-val);\
-    \ }\n  modint operator+(const modint &p) const { return modint(*this) += p; }\n\
-    \  modint operator-(const modint &p) const { return modint(*this) -= p; }\n  modint\
-    \ operator*(const modint &p) const { return modint(*this) *= p; }\n  modint operator/(const\
-    \ modint &p) const { return modint(*this) /= p; }\n  bool operator==(const modint\
-    \ &p) const { return val == p.val; }\n  bool operator!=(const modint &p) const\
-    \ { return val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod,\
-    \ u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t *\
-    \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll\
-    \ n) const {\n    assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n\
-    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
-    \  }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
+    \ dense>(n + d - 1, d);\n}\n#line 3 \"mod/dynamic_modint.hpp\"\n\nstruct Dynamic_ModInt\
+    \ {\n  static constexpr bool is_modint = true;\n  int val;\n  Dynamic_ModInt()\
+    \ : val(0) {}\n  Dynamic_ModInt(int64_t y)\n      : val(y >= 0 ? y % get_mod()\n\
+    \                   : (get_mod() - (-y) % get_mod()) % get_mod()) {}\n  bool operator<(const\
+    \ Dynamic_ModInt &other) const {\n    return val < other.val;\n  } // To use std::map<Dynamic_ModInt,\
+    \ T>\n  static int &get_mod() {\n    static int mod = 0;\n    return mod;\n  }\n\
+    \  static void set_mod(int md) { get_mod() = md; }\n  Dynamic_ModInt &operator+=(const\
+    \ Dynamic_ModInt &p) {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n\
+    \    return *this;\n  }\n  Dynamic_ModInt &operator-=(const Dynamic_ModInt &p)\
+    \ {\n    if ((val += get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return\
+    \ *this;\n  }\n  Dynamic_ModInt &operator*=(const Dynamic_ModInt &p) {\n    long\
+    \ long a = (long long)val * p.val;\n    int xh = (int)(a >> 32), xl = (int)a,\
+    \ d, m;\n    asm(\"divl %4; \\n\\t\" : \"=a\"(d), \"=d\"(m) : \"d\"(xh), \"a\"\
+    (xl), \"r\"(get_mod()));\n    val = m;\n    return *this;\n  }\n  Dynamic_ModInt\
+    \ &operator/=(const Dynamic_ModInt &p) {\n    *this *= p.inverse();\n    return\
+    \ *this;\n  }\n  Dynamic_ModInt operator-() const { return Dynamic_ModInt(get_mod()\
+    \ - val); }\n  Dynamic_ModInt operator+(const Dynamic_ModInt &p) const {\n   \
+    \ return Dynamic_ModInt(*this) += p;\n  }\n  Dynamic_ModInt operator-(const Dynamic_ModInt\
+    \ &p) const {\n    return Dynamic_ModInt(*this) -= p;\n  }\n  Dynamic_ModInt operator*(const\
+    \ Dynamic_ModInt &p) const {\n    return Dynamic_ModInt(*this) *= p;\n  }\n  Dynamic_ModInt\
+    \ operator/(const Dynamic_ModInt &p) const {\n    return Dynamic_ModInt(*this)\
+    \ /= p;\n  }\n  bool operator==(const Dynamic_ModInt &p) const { return val ==\
+    \ p.val; }\n  bool operator!=(const Dynamic_ModInt &p) const { return val != p.val;\
+    \ }\n  Dynamic_ModInt inverse() const {\n    int a = val, b = get_mod(), u = 1,\
+    \ v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b),\
+    \ swap(u -= t * v, v);\n    }\n    return Dynamic_ModInt(u);\n  }\n  Dynamic_ModInt\
+    \ pow(int64_t n) const {\n    assert(n >= 0);\n    Dynamic_ModInt ret(1), mul(val);\n\
+    \    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n\
+    \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
-    \ int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\
-    \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 167772161) return\
-    \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
-    \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
-    \ == 998244353) return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n\
-    \    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881) return\
-    \ {20, 2789};\n    return {-1, -1};\n  }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
-    \ {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \ pair<int, int> ntt_info() { return {-1, -1}; }\n};\n\nusing dmint = Dynamic_ModInt;\n\
+    #line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 3 \"mod/mod_sqrt.hpp\"\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/mod_sqrt.hpp\"\
     \n\r\ntemplate <typename mint>\r\nmint mod_sqrt(mint a) {\r\n  int p = mint::get_mod();\r\
     \n  if (p == 2) return a;\r\n  if (a == 0) return 0;\r\n  int k = (p - 1) / 2;\r\
     \n  if (a.pow(k) != 1) return 0;\r\n  auto find = [&]() -> pair<mint, mint> {\r\
@@ -292,31 +293,30 @@ data:
     \n  ++k;\r\n  // (b + sqrt(D))^k\r\n  mint f0 = b, f1 = 1;\r\n  mint g0 = 1, g1\
     \ = 0;\r\n  while (k) {\r\n    if (k & 1) { tie(g0, g1) = mp(f0 * g0 + D * f1\
     \ * g1, f1 * g0 + f0 * g1); }\r\n    tie(f0, f1) = mp(f0 * f0 + D * f1 * f1, mint(2)\
-    \ * f0 * f1);\r\n    k >>= 1;\r\n  }\r\n  return g0;\r\n}\r\n#line 5 \"test/library_checker/math/sqrt_mod.test.cpp\"\
-    \n\r\nusing mint = amint;\r\n\r\nvoid solve() {\r\n  LL(T);\r\n  FOR(T) {\r\n\
+    \ * f0 * f1);\r\n    k >>= 1;\r\n  }\r\n  return g0;\r\n}\r\n#line 6 \"test/library_checker/math/sqrt_mod.test.cpp\"\
+    \n\r\nusing mint = dmint;\r\n\r\nvoid solve() {\r\n  LL(T);\r\n  FOR(T) {\r\n\
     \    LL(y0, p);\r\n    mint::set_mod(p);\r\n    mint y = y0;\r\n    mint r = mod_sqrt(y);\r\
     \n    if (r * r == y)\r\n      print(r);\r\n    else\r\n      print(-1);\r\n \
-    \ }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ }\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sqrt_mod\"\r\n#include\
-    \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"mod/mod_sqrt.hpp\"\
-    \r\n\r\nusing mint = amint;\r\n\r\nvoid solve() {\r\n  LL(T);\r\n  FOR(T) {\r\n\
-    \    LL(y0, p);\r\n    mint::set_mod(p);\r\n    mint y = y0;\r\n    mint r = mod_sqrt(y);\r\
-    \n    if (r * r == y)\r\n      print(r);\r\n    else\r\n      print(-1);\r\n \
-    \ }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"mod/dynamic_modint.hpp\"\
+    \r\n#include \"mod/mod_sqrt.hpp\"\r\n\r\nusing mint = dmint;\r\n\r\nvoid solve()\
+    \ {\r\n  LL(T);\r\n  FOR(T) {\r\n    LL(y0, p);\r\n    mint::set_mod(p);\r\n \
+    \   mint y = y0;\r\n    mint r = mod_sqrt(y);\r\n    if (r * r == y)\r\n     \
+    \ print(r);\r\n    else\r\n      print(-1);\r\n  }\r\n}\r\n\r\nsigned main() {\r\
+    \n  solve();\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - mod/mod_sqrt.hpp
-  - mod/modint.hpp
+  - mod/dynamic_modint.hpp
   - mod/modint_common.hpp
+  - mod/mod_sqrt.hpp
   - random/base.hpp
   isVerificationFile: true
   path: test/library_checker/math/sqrt_mod.test.cpp
   requiredBy: []
-  timestamp: '2023-03-12 10:53:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-03-12 12:41:23+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/sqrt_mod.test.cpp
 layout: document

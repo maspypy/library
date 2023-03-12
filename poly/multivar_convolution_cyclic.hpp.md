@@ -457,64 +457,54 @@ data:
     \ is_ok = [&](ll g) -> bool {\r\n    for (auto&& [q, e]: pf)\r\n      if (mod_pow_long(g,\
     \ (p - 1) / q, p) == 1) return false;\r\n    return true;\r\n  };\r\n  while (1)\
     \ {\r\n    ll x = RNG(1, p);\r\n    if (is_ok(x)) return x;\r\n  }\r\n  return\
-    \ -1;\r\n}\r\n#line 3 \"poly/multivar_convolution_cyclic.hpp\"\n\n/*\n(n0, n1,\
-    \ n2, ...) \u9032\u6CD5\u3067\u306E\u7E70\u308A\u4E0A\u304C\u308A\u306E\u306A\u3044\
-    \u8DB3\u3057\u7B97\u306B\u95A2\u3059\u308B\u7573\u307F\u8FBC\u307F\n\nexample\
-    \ : ns = (2, 3) \u2192 1 \u306E\u4F4D\u304B\u3089\u9806\u306B 2, 3 \u9032\u6CD5\
-    \n[a0, a1, a2, a3, a4, a5] = [a(0,0), a(1,0), a(0,1), a(1,1), a(0,2), a(1,2)]\n\
-    [b0, b1, b2, b3, b4, b5] = [b(0,0), b(1,0), b(0,1), b(1,1), b(0,2), b(1,2)]\n\
-    c(0,2) = a(0,0)b(0,2) + a(0,1)b(0,1) + a(0,2)b(1,1)\nc4 = a0b4 + a2b2 + a4b0\n\
-    \nexample : ns = (2, 2, ..., 2, 2) \u2192 subset convolution\n*/\ntemplate <typename\
-    \ mint>\nvc<mint> multivar_convolution_cyclic(vc<int> ns, vc<mint> f, vc<mint>&\
-    \ g) {\n  int p = mint::get_mod();\n  for (auto&& n: ns) assert((p - 1) % n ==\
-    \ 0);\n  mint r = primitive_root(p);\n  mint ir = r.inverse();\n\n  int K = len(ns);\n\
-    \  int N = 1;\n  for (auto&& n: ns) N *= n;\n  assert(len(f) == N);\n  assert(len(g)\
-    \ == N);\n  vc<mint> root(K), iroot(K);\n\n  FOR(k, K) { root[k] = r.pow((p -\
-    \ 1) / ns[k]); }\n  FOR(k, K) { iroot[k] = ir.pow((p - 1) / ns[k]); }\n\n  int\
-    \ step = 1;\n  FOR(k, K) {\n    int n = ns[k];\n    FOR(i, N) if (i % (step *\
-    \ n) < step) {\n      vc<mint> a(n), b(n);\n      FOR(j, n) {\n        a[j] =\
-    \ f[i + step * j];\n        b[j] = g[i + step * j];\n      }\n      a = multipoint_eval_on_geom_seq(a,\
-    \ mint(1), root[k], n);\n      b = multipoint_eval_on_geom_seq(b, mint(1), root[k],\
-    \ n);\n      FOR(j, n) {\n        f[i + step * j] = a[j];\n        g[i + step\
-    \ * j] = b[j];\n      }\n    }\n    step *= n;\n  }\n\n  FOR(i, N) f[i] *= g[i];\n\
-    \n  step = 1;\n  FOR(k, K) {\n    int n = ns[k];\n    FOR(i, N) if (i % (step\
-    \ * n) < step) {\n      vc<mint> a(n);\n      FOR(j, n) { a[j] = f[i + step *\
-    \ j]; }\n      a = multipoint_eval_on_geom_seq(a, mint(1), iroot[k], n);\n   \
-    \   FOR(j, n) { f[i + step * j] = a[j]; }\n    }\n    step *= n;\n  }\n\n  mint\
-    \ cf = mint(N).inverse();\n  for (auto&& x: f) x *= cf;\n  return f;\n}\n\ntemplate\
-    \ <typename mint>\nvc<vc<mint>> multivar_convolution_cyclic_2d(vc<vc<mint>>& f,\
-    \ vc<vc<mint>>& g) {\n  int H = len(f);\n  int W = len(f[0]);\n  assert(len(g)\
+    \ -1;\r\n}\r\n#line 3 \"poly/multivar_convolution_cyclic.hpp\"\n\n/*\nexample\
+    \ : ns = (2, 3)\n[a0, a1, a2, a3, a4, a5] = [a(0,0), a(1,0), a(0,1), a(1,1), a(0,2),\
+    \ a(1,2)]\n[b0, b1, b2, b3, b4, b5] = [b(0,0), b(1,0), b(0,1), b(1,1), b(0,2),\
+    \ b(1,2)]\n*/\ntemplate <typename mint>\nvc<mint> multivar_convolution_cyclic(vc<int>\
+    \ ns, vc<mint> f, vc<mint>& g) {\n  int p = mint::get_mod();\n  for (auto&& n:\
+    \ ns) assert((p - 1) % n == 0);\n  mint r = primitive_root(p);\n  mint ir = r.inverse();\n\
+    \n  int K = len(ns);\n  int N = 1;\n  for (auto&& n: ns) N *= n;\n  assert(len(f)\
+    \ == N);\n  assert(len(g) == N);\n  vc<mint> root(K), iroot(K);\n\n  FOR(k, K)\
+    \ { root[k] = r.pow((p - 1) / ns[k]); }\n  FOR(k, K) { iroot[k] = ir.pow((p -\
+    \ 1) / ns[k]); }\n\n  int step = 1;\n  FOR(k, K) {\n    int n = ns[k];\n    FOR(i,\
+    \ N) if (i % (step * n) < step) {\n      vc<mint> a(n), b(n);\n      FOR(j, n)\
+    \ {\n        a[j] = f[i + step * j];\n        b[j] = g[i + step * j];\n      }\n\
+    \      a = multipoint_eval_on_geom_seq(a, mint(1), root[k], n);\n      b = multipoint_eval_on_geom_seq(b,\
+    \ mint(1), root[k], n);\n      FOR(j, n) {\n        f[i + step * j] = a[j];\n\
+    \        g[i + step * j] = b[j];\n      }\n    }\n    step *= n;\n  }\n\n  FOR(i,\
+    \ N) f[i] *= g[i];\n\n  step = 1;\n  FOR(k, K) {\n    int n = ns[k];\n    FOR(i,\
+    \ N) if (i % (step * n) < step) {\n      vc<mint> a(n);\n      FOR(j, n) { a[j]\
+    \ = f[i + step * j]; }\n      a = multipoint_eval_on_geom_seq(a, mint(1), iroot[k],\
+    \ n);\n      FOR(j, n) { f[i + step * j] = a[j]; }\n    }\n    step *= n;\n  }\n\
+    \n  mint cf = mint(N).inverse();\n  for (auto&& x: f) x *= cf;\n  return f;\n\
+    }\n\ntemplate <typename mint>\nvc<vc<mint>> multivar_convolution_cyclic_2d(vc<vc<mint>>&\
+    \ f, vc<vc<mint>>& g) {\n  int H = len(f);\n  int W = len(f[0]);\n  assert(len(g)\
     \ == H);\n  assert(len(g[0]) == W);\n  vc<mint> F(H * W), G(H * W);\n  FOR(x,\
     \ H) FOR(y, W) F[x + H * y] = f[x][y];\n  FOR(x, H) FOR(y, W) G[x + H * y] = g[x][y];\n\
     \  F = multivar_convolution_cyclic(vc<int>({H, W}), F, G);\n  vv(mint, h, H, W);\n\
     \  FOR(x, H) FOR(y, W) h[x][y] = F[x + H * y];\n  return h;\n}\n"
   code: "#include \"poly/multipoint.hpp\"\n#include \"mod/primitive_root.hpp\"\n\n\
-    /*\n(n0, n1, n2, ...) \u9032\u6CD5\u3067\u306E\u7E70\u308A\u4E0A\u304C\u308A\u306E\
-    \u306A\u3044\u8DB3\u3057\u7B97\u306B\u95A2\u3059\u308B\u7573\u307F\u8FBC\u307F\
-    \n\nexample : ns = (2, 3) \u2192 1 \u306E\u4F4D\u304B\u3089\u9806\u306B 2, 3 \u9032\
-    \u6CD5\n[a0, a1, a2, a3, a4, a5] = [a(0,0), a(1,0), a(0,1), a(1,1), a(0,2), a(1,2)]\n\
-    [b0, b1, b2, b3, b4, b5] = [b(0,0), b(1,0), b(0,1), b(1,1), b(0,2), b(1,2)]\n\
-    c(0,2) = a(0,0)b(0,2) + a(0,1)b(0,1) + a(0,2)b(1,1)\nc4 = a0b4 + a2b2 + a4b0\n\
-    \nexample : ns = (2, 2, ..., 2, 2) \u2192 subset convolution\n*/\ntemplate <typename\
-    \ mint>\nvc<mint> multivar_convolution_cyclic(vc<int> ns, vc<mint> f, vc<mint>&\
-    \ g) {\n  int p = mint::get_mod();\n  for (auto&& n: ns) assert((p - 1) % n ==\
-    \ 0);\n  mint r = primitive_root(p);\n  mint ir = r.inverse();\n\n  int K = len(ns);\n\
-    \  int N = 1;\n  for (auto&& n: ns) N *= n;\n  assert(len(f) == N);\n  assert(len(g)\
-    \ == N);\n  vc<mint> root(K), iroot(K);\n\n  FOR(k, K) { root[k] = r.pow((p -\
-    \ 1) / ns[k]); }\n  FOR(k, K) { iroot[k] = ir.pow((p - 1) / ns[k]); }\n\n  int\
-    \ step = 1;\n  FOR(k, K) {\n    int n = ns[k];\n    FOR(i, N) if (i % (step *\
-    \ n) < step) {\n      vc<mint> a(n), b(n);\n      FOR(j, n) {\n        a[j] =\
-    \ f[i + step * j];\n        b[j] = g[i + step * j];\n      }\n      a = multipoint_eval_on_geom_seq(a,\
-    \ mint(1), root[k], n);\n      b = multipoint_eval_on_geom_seq(b, mint(1), root[k],\
-    \ n);\n      FOR(j, n) {\n        f[i + step * j] = a[j];\n        g[i + step\
-    \ * j] = b[j];\n      }\n    }\n    step *= n;\n  }\n\n  FOR(i, N) f[i] *= g[i];\n\
-    \n  step = 1;\n  FOR(k, K) {\n    int n = ns[k];\n    FOR(i, N) if (i % (step\
-    \ * n) < step) {\n      vc<mint> a(n);\n      FOR(j, n) { a[j] = f[i + step *\
-    \ j]; }\n      a = multipoint_eval_on_geom_seq(a, mint(1), iroot[k], n);\n   \
-    \   FOR(j, n) { f[i + step * j] = a[j]; }\n    }\n    step *= n;\n  }\n\n  mint\
-    \ cf = mint(N).inverse();\n  for (auto&& x: f) x *= cf;\n  return f;\n}\n\ntemplate\
-    \ <typename mint>\nvc<vc<mint>> multivar_convolution_cyclic_2d(vc<vc<mint>>& f,\
-    \ vc<vc<mint>>& g) {\n  int H = len(f);\n  int W = len(f[0]);\n  assert(len(g)\
+    /*\nexample : ns = (2, 3)\n[a0, a1, a2, a3, a4, a5] = [a(0,0), a(1,0), a(0,1),\
+    \ a(1,1), a(0,2), a(1,2)]\n[b0, b1, b2, b3, b4, b5] = [b(0,0), b(1,0), b(0,1),\
+    \ b(1,1), b(0,2), b(1,2)]\n*/\ntemplate <typename mint>\nvc<mint> multivar_convolution_cyclic(vc<int>\
+    \ ns, vc<mint> f, vc<mint>& g) {\n  int p = mint::get_mod();\n  for (auto&& n:\
+    \ ns) assert((p - 1) % n == 0);\n  mint r = primitive_root(p);\n  mint ir = r.inverse();\n\
+    \n  int K = len(ns);\n  int N = 1;\n  for (auto&& n: ns) N *= n;\n  assert(len(f)\
+    \ == N);\n  assert(len(g) == N);\n  vc<mint> root(K), iroot(K);\n\n  FOR(k, K)\
+    \ { root[k] = r.pow((p - 1) / ns[k]); }\n  FOR(k, K) { iroot[k] = ir.pow((p -\
+    \ 1) / ns[k]); }\n\n  int step = 1;\n  FOR(k, K) {\n    int n = ns[k];\n    FOR(i,\
+    \ N) if (i % (step * n) < step) {\n      vc<mint> a(n), b(n);\n      FOR(j, n)\
+    \ {\n        a[j] = f[i + step * j];\n        b[j] = g[i + step * j];\n      }\n\
+    \      a = multipoint_eval_on_geom_seq(a, mint(1), root[k], n);\n      b = multipoint_eval_on_geom_seq(b,\
+    \ mint(1), root[k], n);\n      FOR(j, n) {\n        f[i + step * j] = a[j];\n\
+    \        g[i + step * j] = b[j];\n      }\n    }\n    step *= n;\n  }\n\n  FOR(i,\
+    \ N) f[i] *= g[i];\n\n  step = 1;\n  FOR(k, K) {\n    int n = ns[k];\n    FOR(i,\
+    \ N) if (i % (step * n) < step) {\n      vc<mint> a(n);\n      FOR(j, n) { a[j]\
+    \ = f[i + step * j]; }\n      a = multipoint_eval_on_geom_seq(a, mint(1), iroot[k],\
+    \ n);\n      FOR(j, n) { f[i + step * j] = a[j]; }\n    }\n    step *= n;\n  }\n\
+    \n  mint cf = mint(N).inverse();\n  for (auto&& x: f) x *= cf;\n  return f;\n\
+    }\n\ntemplate <typename mint>\nvc<vc<mint>> multivar_convolution_cyclic_2d(vc<vc<mint>>&\
+    \ f, vc<vc<mint>>& g) {\n  int H = len(f);\n  int W = len(f[0]);\n  assert(len(g)\
     \ == H);\n  assert(len(g[0]) == W);\n  vc<mint> F(H * W), G(H * W);\n  FOR(x,\
     \ H) FOR(y, W) F[x + H * y] = f[x][y];\n  FOR(x, H) FOR(y, W) G[x + H * y] = g[x][y];\n\
     \  F = multivar_convolution_cyclic(vc<int>({H, W}), F, G);\n  vv(mint, h, H, W);\n\
@@ -540,7 +530,7 @@ data:
   isVerificationFile: false
   path: poly/multivar_convolution_cyclic.hpp
   requiredBy: []
-  timestamp: '2023-03-12 10:53:54+09:00'
+  timestamp: '2023-03-12 12:40:06+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
