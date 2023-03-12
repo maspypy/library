@@ -20,7 +20,7 @@ data:
   - icon: ':x:'
     path: nt/all_lcm.hpp
     title: nt/all_lcm.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/crt.hpp
     title: nt/crt.hpp
   - icon: ':heavy_check_mark:'
@@ -32,7 +32,7 @@ data:
   - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/four_square.hpp
     title: nt/four_square.hpp
   - icon: ':heavy_check_mark:'
@@ -84,7 +84,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
   - icon: ':heavy_check_mark:'
@@ -120,7 +120,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2181.test.cpp
     title: test/yukicoder/2181.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
   - icon: ':x:'

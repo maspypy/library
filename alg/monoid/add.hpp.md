@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/add_mul.hpp
     title: alg/acted_monoid/add_mul.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/cntsum_add.hpp
     title: alg/acted_monoid/cntsum_add.hpp
   - icon: ':heavy_check_mark:'
@@ -56,7 +56,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_2d.hpp
     title: ds/fenwicktree/fenwicktree_2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_2d_dense.hpp
     title: ds/fenwicktree/fenwicktree_2d_dense.hpp
   - icon: ':heavy_check_mark:'
@@ -312,7 +312,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1977.test.cpp
     title: test/yukicoder/1977.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2003.test.cpp
     title: test/yukicoder/2003.test.cpp
   - icon: ':heavy_check_mark:'
@@ -324,7 +324,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2242.test.cpp
     title: test/yukicoder/2242.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
   - icon: ':heavy_check_mark:'

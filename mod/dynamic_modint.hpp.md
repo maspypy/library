@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/four_square.hpp
     title: nt/four_square.hpp
   _extendedVerifiedWith:
@@ -33,15 +33,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1667.test.cpp
+    title: test/yukicoder/1667.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -151,10 +154,11 @@ data:
   - nt/four_square.hpp
   - mod/mod_log.hpp
   timestamp: '2023-03-12 10:53:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/four_square.test.cpp
   - test/yukicoder/1339.test.cpp
+  - test/yukicoder/1667.test.cpp
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp

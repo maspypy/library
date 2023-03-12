@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
   - icon: ':question:'
@@ -21,12 +21,12 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetest.hpp\"\nstruct m64 {\r\n  using i64 = int64_t;\r\
@@ -172,7 +172,7 @@ data:
     \ * y4 - x4 * y3);\n    ll z3 = abs(x1 * y3 - x2 * y4 - x3 * y1 + x4 * y2);\n\
     \    ll z4 = abs(x1 * y4 + x2 * y3 - x3 * y2 - x4 * y1);\n    return {z1, z2,\
     \ z3, z4};\n  };\n\n  auto solve_p = [&](ll p) -> T4 {\n    if (p == 2) return\
-    \ {1, 1, 0, 0};\n    using mint = amint;\n    mint::set_mod(p);\n    auto [a,\
+    \ {1, 1, 0, 0};\n    using mint = dmint;\n    mint::set_mod(p);\n    auto [a,\
     \ b] = [&]() -> pair<ll, ll> {\n      while (1) {\n        ll a = RNG(0, p);\n\
     \        ll bb = (p - 1 - a * a) % p;\n        if (bb < 0) bb += p;\n        ll\
     \ b = mod_sqrt<mint>(bb).val;\n        if ((a * a + b * b + 1) % p == 0) return\
@@ -195,7 +195,7 @@ data:
     \    ll z2 = abs(x1 * y2 - x2 * y1 + x3 * y4 - x4 * y3);\n    ll z3 = abs(x1 *\
     \ y3 - x2 * y4 - x3 * y1 + x4 * y2);\n    ll z4 = abs(x1 * y4 + x2 * y3 - x3 *\
     \ y2 - x4 * y1);\n    return {z1, z2, z3, z4};\n  };\n\n  auto solve_p = [&](ll\
-    \ p) -> T4 {\n    if (p == 2) return {1, 1, 0, 0};\n    using mint = amint;\n\
+    \ p) -> T4 {\n    if (p == 2) return {1, 1, 0, 0};\n    using mint = dmint;\n\
     \    mint::set_mod(p);\n    auto [a, b] = [&]() -> pair<ll, ll> {\n      while\
     \ (1) {\n        ll a = RNG(0, p);\n        ll bb = (p - 1 - a * a) % p;\n   \
     \     if (bb < 0) bb += p;\n        ll b = mod_sqrt<mint>(bb).val;\n        if\
@@ -209,7 +209,7 @@ data:
     \     auto [z1, z2, z3, z4] = mul(x, {y1, y2, y3, y4});\n      x = mt(z1 / m,\
     \ z2 / m, z3 / m, z4 / m);\n    }\n    return x;\n  };\n  T4 x = {1, 0, 0, 0};\n\
     \  for (auto&& [p, e]: factor(N)) { FOR(e) x = mul(x, solve_p(p)); }\n  return\
-    \ x;\n}"
+    \ x;\n}\n"
   dependsOn:
   - nt/factor.hpp
   - nt/primetest.hpp
@@ -220,8 +220,8 @@ data:
   isVerificationFile: false
   path: nt/four_square.hpp
   requiredBy: []
-  timestamp: '2023-03-12 13:32:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-03-12 20:42:08+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/four_square.test.cpp
 documentation_of: nt/four_square.hpp
