@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "poly/multivar_convolution_cyclic.hpp"
-#include "mod/modint.hpp"
+#include "mod/dynamic_modint.hpp"
 
 using mint = dmint;
 
