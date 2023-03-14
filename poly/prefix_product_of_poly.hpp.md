@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -463,18 +463,18 @@ data:
   isVerificationFile: false
   path: poly/prefix_product_of_poly.hpp
   requiredBy:
-  - poly/sparse_exp_of_div.hpp
-  - poly/from_log_differentiation.hpp
   - seq/kth_term_of_p_recursive.hpp
+  - poly/from_log_differentiation.hpp
+  - poly/sparse_exp_of_div.hpp
   timestamp: '2023-03-12 10:53:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc222h_2.test.cpp
-  - test_atcoder/abc276_g_2.test.cpp
   - test_atcoder/abc276_g.test.cpp
+  - test_atcoder/abc276_g_2.test.cpp
   - test/mytest/factorial_998.test.cpp
-  - test/yukicoder/502_2.test.cpp
   - test/yukicoder/2166.test.cpp
+  - test/yukicoder/502_2.test.cpp
   - test/yukicoder/1080_2.test.cpp
 documentation_of: poly/prefix_product_of_poly.hpp
 layout: document

@@ -127,8 +127,8 @@ data:
   verifiedWith:
   - test_atcoder/abc256ex2.test.cpp
   - test_atcoder/abc256d.test.cpp
-  - test_atcoder/abc223d.test.cpp
   - test_atcoder/abc256ex.test.cpp
+  - test_atcoder/abc223d.test.cpp
   - test_atcoder/abc237g.test.cpp
   - test/aoj/2251_1.test.cpp
   - test/library_checker/datastructure/sort_segtree.test.cpp

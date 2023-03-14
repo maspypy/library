@@ -86,8 +86,8 @@ data:
   timestamp: '2023-02-28 19:14:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/tutte.test.cpp
   - test/mytest/matching_line_graph.test.cpp
+  - test/mytest/tutte.test.cpp
 documentation_of: graph/max_matching_size.hpp
 layout: document
 redirect_from:

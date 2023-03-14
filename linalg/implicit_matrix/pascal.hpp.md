@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -312,8 +312,8 @@ data:
   verifiedWith:
   - test_atcoder/abc267g.test.cpp
   - test/mytest/pascal.test.cpp
-  - test/yukicoder/2243.test.cpp
   - test/yukicoder/2108.test.cpp
+  - test/yukicoder/2243.test.cpp
 documentation_of: linalg/implicit_matrix/pascal.hpp
 layout: document
 redirect_from:

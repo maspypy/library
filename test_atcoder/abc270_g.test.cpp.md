@@ -14,8 +14,8 @@ data:
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':question:'
-    path: mod/modint.hpp
-    title: mod/modint.hpp
+    path: mod/dynamic_modint.hpp
+    title: mod/dynamic_modint.hpp
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
@@ -266,45 +266,47 @@ data:
     }\n\n// [x^d] (1-x) ^ {-n} \u306E\u8A08\u7B97\ntemplate <typename mint, bool large\
     \ = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n\
     \  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1) : mint(0));\
-    \ }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\
-    \n\ntemplate <int mod>\nstruct modint {\n  int val;\n  constexpr modint(const\
-    \ ll val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val) % mod)\
-    \ % mod) {}\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
-    \  } // To use std::map\n  modint &operator+=(const modint &p) {\n    if ((val\
-    \ += p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator-=(const\
-    \ modint &p) {\n    if ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n\
-    \  }\n  modint &operator*=(const modint &p) {\n    val = (int)(1LL * val * p.val\
-    \ % mod);\n    return *this;\n  }\n  modint &operator/=(const modint &p) {\n \
-    \   *this *= p.inverse();\n    return *this;\n  }\n  modint operator-() const\
-    \ { return modint(-val); }\n  modint operator+(const modint &p) const { return\
-    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
-    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
-    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
-    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
-    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
-    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
-    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
-    \ return modint(u);\n  }\n  modint pow(ll n) const {\n    assert(n >= 0);\n  \
-    \  modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
-    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n\
-    \  void write() { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
-    \ }\n#endif\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r\
-    \ \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info()\
-    \ {\n    if (mod == 167772161) return {25, 17};\n    if (mod == 469762049) return\
-    \ {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841)\
-    \ return {23, 211};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
-    \ 1045430273) return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n\
-    \    if (mod == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n};\n\
-    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 2 \"alg/acted_set/affine.hpp\"\n\n// 1 \u6B21\u5143\u30D9\u30AF\u30C8\u30EB\
-    \u7A7A\u9593\u306B\u3001\u30A2\u30D5\u30A3\u30F3\u5909\u63DB\u304C\u4F5C\u7528\
-    \ntemplate <typename T>\nstruct ActedSet_Affine {\n  using Monoid_A = Monoid_Affine<T>;\n\
-    \  using A = typename Monoid_A::value_type;\n  using S = T;\n  static S act(const\
-    \ S &x, const A &g) { return g.fi * x + g.se; }\n};\n#line 1 \"alg/acted_set/from_monoid.hpp\"\
-    \ntemplate <typename Monoid>\nstruct ActedSet_From_Monoid {\n  using Monoid_A\
-    \ = Monoid;\n  using A = typename Monoid::value_type;\n  using S = A;\n  static\
-    \ S act(const S &x, const A &g) { return Monoid::op(x, g); }\n};\n#line 2 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \ }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 3 \"mod/dynamic_modint.hpp\"\
+    \n\nstruct Dynamic_ModInt {\n  static constexpr bool is_modint = true;\n  int\
+    \ val;\n  Dynamic_ModInt() : val(0) {}\n  Dynamic_ModInt(int64_t y)\n      : val(y\
+    \ >= 0 ? y % get_mod()\n                   : (get_mod() - (-y) % get_mod()) %\
+    \ get_mod()) {}\n  bool operator<(const Dynamic_ModInt &other) const {\n    return\
+    \ val < other.val;\n  } // To use std::map<Dynamic_ModInt, T>\n  static int &get_mod()\
+    \ {\n    static int mod = 0;\n    return mod;\n  }\n  static void set_mod(int\
+    \ md) { get_mod() = md; }\n  Dynamic_ModInt &operator+=(const Dynamic_ModInt &p)\
+    \ {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n    return *this;\n\
+    \  }\n  Dynamic_ModInt &operator-=(const Dynamic_ModInt &p) {\n    if ((val +=\
+    \ get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return *this;\n  }\n\
+    \  Dynamic_ModInt &operator*=(const Dynamic_ModInt &p) {\n    long long a = (long\
+    \ long)val * p.val;\n    int xh = (int)(a >> 32), xl = (int)a, d, m;\n    asm(\"\
+    divl %4; \\n\\t\" : \"=a\"(d), \"=d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n\
+    \    val = m;\n    return *this;\n  }\n  Dynamic_ModInt &operator/=(const Dynamic_ModInt\
+    \ &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n  Dynamic_ModInt operator-()\
+    \ const { return Dynamic_ModInt(get_mod() - val); }\n  Dynamic_ModInt operator+(const\
+    \ Dynamic_ModInt &p) const {\n    return Dynamic_ModInt(*this) += p;\n  }\n  Dynamic_ModInt\
+    \ operator-(const Dynamic_ModInt &p) const {\n    return Dynamic_ModInt(*this)\
+    \ -= p;\n  }\n  Dynamic_ModInt operator*(const Dynamic_ModInt &p) const {\n  \
+    \  return Dynamic_ModInt(*this) *= p;\n  }\n  Dynamic_ModInt operator/(const Dynamic_ModInt\
+    \ &p) const {\n    return Dynamic_ModInt(*this) /= p;\n  }\n  bool operator==(const\
+    \ Dynamic_ModInt &p) const { return val == p.val; }\n  bool operator!=(const Dynamic_ModInt\
+    \ &p) const { return val != p.val; }\n  Dynamic_ModInt inverse() const {\n   \
+    \ int a = val, b = get_mod(), u = 1, v = 0, t;\n    while (b > 0) {\n      t =\
+    \ a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return Dynamic_ModInt(u);\n\
+    \  }\n  Dynamic_ModInt pow(int64_t n) const {\n    assert(n >= 0);\n    Dynamic_ModInt\
+    \ ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n     \
+    \ mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void\
+    \ write() { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
+    \ }\n#endif\n  static constexpr pair<int, int> ntt_info() { return {-1, -1}; }\n\
+    };\n\nusing dmint = Dynamic_ModInt;\n#line 2 \"alg/acted_set/affine.hpp\"\n\n\
+    // 1 \u6B21\u5143\u30D9\u30AF\u30C8\u30EB\u7A7A\u9593\u306B\u3001\u30A2\u30D5\u30A3\
+    \u30F3\u5909\u63DB\u304C\u4F5C\u7528\ntemplate <typename T>\nstruct ActedSet_Affine\
+    \ {\n  using Monoid_A = Monoid_Affine<T>;\n  using A = typename Monoid_A::value_type;\n\
+    \  using S = T;\n  static S act(const S &x, const A &g) { return g.fi * x + g.se;\
+    \ }\n};\n#line 1 \"alg/acted_set/from_monoid.hpp\"\ntemplate <typename Monoid>\n\
+    struct ActedSet_From_Monoid {\n  using Monoid_A = Monoid;\n  using A = typename\
+    \ Monoid::value_type;\n  using S = A;\n  static S act(const S &x, const A &g)\
+    \ { return Monoid::op(x, g); }\n};\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
+    \ {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
@@ -353,7 +355,7 @@ data:
     \ Group, typename F>\r\nll discrete_log_group(typename Group::X a, typename Group::X\
     \ b, F H, ll lb,\r\n                      ll ub) {\r\n  using AM = ActedSet_From_Monoid<Group>;\r\
     \n  return discrete_log_acted<AM>(a, Group::unit(), b, H, lb, ub);\r\n}\n#line\
-    \ 8 \"test_atcoder/abc270_g.test.cpp\"\n\nusing mint = amint;\n\nvoid solve()\
+    \ 8 \"test_atcoder/abc270_g.test.cpp\"\n\nusing mint = dmint;\n\nvoid solve()\
     \ {\n  LL(P, A, B, S, G);\n  mint::set_mod(P);\n  if (A == 0) {\n    if (S ==\
     \ G) return print(0);\n    if (B == G) return print(1);\n    return print(-1);\n\
     \  }\n\n  using AS = ActedSet_Affine<mint>;\n  typename AS::A g = {A, B};\n  typename\
@@ -363,9 +365,9 @@ data:
     \n  LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc270/tasks/abc270_g\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/monoid/affine.hpp\"\
-    \n#include \"mod/modint.hpp\"\n#include \"alg/acted_set/affine.hpp\"\n#include\
-    \ \"nt/discrete_log.hpp\"\n\nusing mint = amint;\n\nvoid solve() {\n  LL(P, A,\
-    \ B, S, G);\n  mint::set_mod(P);\n  if (A == 0) {\n    if (S == G) return print(0);\n\
+    \n#include \"mod/dynamic_modint.hpp\"\n#include \"alg/acted_set/affine.hpp\"\n\
+    #include \"nt/discrete_log.hpp\"\n\nusing mint = dmint;\n\nvoid solve() {\n  LL(P,\
+    \ A, B, S, G);\n  mint::set_mod(P);\n  if (A == 0) {\n    if (S == G) return print(0);\n\
     \    if (B == G) return print(1);\n    return print(-1);\n  }\n\n  using AS =\
     \ ActedSet_Affine<mint>;\n  typename AS::A g = {A, B};\n  typename AS::S s = S;\n\
     \  typename AS::S t = G;\n  auto h = [&](mint x) -> ll { return x.val; };\n\n\
@@ -376,7 +378,7 @@ data:
   - my_template.hpp
   - other/io.hpp
   - alg/monoid/affine.hpp
-  - mod/modint.hpp
+  - mod/dynamic_modint.hpp
   - mod/modint_common.hpp
   - alg/acted_set/affine.hpp
   - nt/discrete_log.hpp
@@ -386,7 +388,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc270_g.test.cpp
   requiredBy: []
-  timestamp: '2023-03-12 10:53:54+09:00'
+  timestamp: '2023-03-15 05:03:14+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc270_g.test.cpp
