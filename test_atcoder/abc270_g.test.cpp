@@ -2,11 +2,11 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "alg/monoid/affine.hpp"
-#include "mod/modint.hpp"
+#include "mod/dynamic_modint.hpp"
 #include "alg/acted_set/affine.hpp"
 #include "nt/discrete_log.hpp"
 
-using mint = amint;
+using mint = dmint;
 
 void solve() {
   LL(P, A, B, S, G);
