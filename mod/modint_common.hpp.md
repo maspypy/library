@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/mat_pow.hpp
     title: linalg/mat_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
   - icon: ':heavy_check_mark:'
@@ -801,7 +801,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc269ex.test.cpp
     title: test_atcoder/abc269ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc270_g.test.cpp
     title: test_atcoder/abc270_g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -825,9 +825,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc154f.test.cpp
     title: test_atcoder/arc154f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -980,7 +980,7 @@ data:
   - linalg/implicit_matrix/pascal.hpp
   - linalg/implicit_matrix/vandermonde.hpp
   timestamp: '2023-03-12 10:53:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc222h_2.test.cpp
   - test_atcoder/abc234g.test.cpp

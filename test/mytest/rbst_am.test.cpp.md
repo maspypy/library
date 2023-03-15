@@ -7,19 +7,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   - icon: ':heavy_check_mark:'
     path: ds/randomized_bst/rbst_acted_monoid.hpp
     title: ds/randomized_bst/rbst_acted_monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

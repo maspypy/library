@@ -7,16 +7,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
