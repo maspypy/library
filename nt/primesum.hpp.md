@@ -105,18 +105,18 @@ data:
   isVerificationFile: false
   path: nt/primesum.hpp
   requiredBy:
-  - nt/primesum_mod6.hpp
   - nt/primesum_mod4.hpp
+  - nt/primesum_mod6.hpp
   timestamp: '2022-12-12 09:21:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/primesum_mod4.test.cpp
   - test/mytest/prime_sum.test.cpp
   - test/mytest/primesum_mod6.test.cpp
-  - test/yukicoder/1276.test.cpp
   - test/yukicoder/1781.test.cpp
-  - test/library_checker/math/counting_primes.test.cpp
+  - test/yukicoder/1276.test.cpp
   - test/library_checker/math/totient_sum.test.cpp
+  - test/library_checker/math/counting_primes.test.cpp
 documentation_of: nt/primesum.hpp
 layout: document
 redirect_from:

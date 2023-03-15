@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -81,8 +81,8 @@ data:
   isVerificationFile: false
   path: graph/reverse_graph.hpp
   requiredBy:
-  - game/graph_game.hpp
   - graph/shortest_path/K_shortest_walk.hpp
+  - game/graph_game.hpp
   timestamp: '2022-12-05 10:41:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

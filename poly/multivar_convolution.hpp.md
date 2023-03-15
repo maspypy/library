@@ -334,8 +334,8 @@ data:
   timestamp: '2023-03-12 10:53:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/convolution/subset_convolution_multivar.test.cpp
   - test/library_checker/convolution/multivariate_convolution.test.cpp
+  - test/library_checker/convolution/subset_convolution_multivar.test.cpp
 documentation_of: poly/multivar_convolution.hpp
 layout: document
 redirect_from:

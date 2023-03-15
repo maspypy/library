@@ -17,10 +17,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/tree_group.hpp
     title: graph/ds/tree_group.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -99,12 +99,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc240ex.test.cpp
     title: test_atcoder/abc240ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc270_f.test.cpp
     title: test_atcoder/abc270_f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
@@ -193,42 +193,42 @@ data:
   isVerificationFile: false
   path: ds/segtree/segtree.hpp
   requiredBy:
-  - string/suffix_tree.hpp
-  - graph/ds/tree_group.hpp
-  - graph/ds/tree_monoid.hpp
-  - graph/minimum_spanning_tree.hpp
-  - ds/offline_query/uniqueproductquery.hpp
-  - ds/offline_query/range_mex_query.hpp
-  - ds/segtree/sortable_segtree.hpp
   - geo/manhattan_nns.hpp
+  - string/suffix_tree.hpp
+  - graph/minimum_spanning_tree.hpp
+  - graph/ds/tree_monoid.hpp
+  - graph/ds/tree_group.hpp
+  - ds/offline_query/range_mex_query.hpp
+  - ds/offline_query/uniqueproductquery.hpp
+  - ds/segtree/sortable_segtree.hpp
   timestamp: '2022-12-23 10:58:40+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc174f.test.cpp
+  - test_atcoder/abc240ex.test.cpp
   - test_atcoder/abc270_f.test.cpp
   - test_atcoder/abc237g.test.cpp
-  - test_atcoder/abc240ex.test.cpp
-  - test/mytest/segtree_xor_prod.test.cpp
-  - test/mytest/manhattan_nns.test.cpp
-  - test/mytest/range_mex.test.cpp
   - test/mytest/suffix_tree.test.cpp
-  - test/aoj/ITP2_3_B.test.cpp
+  - test/mytest/manhattan_nns.test.cpp
+  - test/mytest/segtree_xor_prod.test.cpp
+  - test/mytest/range_mex.test.cpp
   - test/aoj/GRL_2_A.test.cpp
-  - test/yukicoder/529.test.cpp
-  - test/yukicoder/1036_2.test.cpp
-  - test/yukicoder/426.test.cpp
+  - test/aoj/ITP2_3_B.test.cpp
   - test/yukicoder/1212.test.cpp
-  - test/yukicoder/1435.test.cpp
+  - test/yukicoder/529.test.cpp
+  - test/yukicoder/426.test.cpp
   - test/yukicoder/1549.test.cpp
-  - test/library_checker/datastructure/staticrmq_seg.test.cpp
-  - test/library_checker/datastructure/sort_segtree.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
-  - test/library_checker/datastructure/sort_segtree_1.test.cpp
-  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
+  - test/yukicoder/1435.test.cpp
+  - test/yukicoder/1036_2.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_group.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
+  - test/library_checker/datastructure/sort_segtree.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - test/library_checker/datastructure/sort_segtree_1.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
+  - test/library_checker/datastructure/staticrmq_seg.test.cpp
 documentation_of: ds/segtree/segtree.hpp
 layout: document
 redirect_from:

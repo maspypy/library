@@ -37,13 +37,13 @@ data:
   isVerificationFile: false
   path: alg/acted_set/from_monoid.hpp
   requiredBy:
-  - mod/mod_log.hpp
   - nt/discrete_log.hpp
+  - mod/mod_log.hpp
   timestamp: '2022-11-28 21:09:42+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc222g.test.cpp
   - test_atcoder/abc270_g.test.cpp
+  - test_atcoder/abc222g.test.cpp
   - test/yukicoder/1339.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
 documentation_of: alg/acted_set/from_monoid.hpp

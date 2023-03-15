@@ -186,10 +186,10 @@ data:
   timestamp: '2022-12-12 00:25:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1649.test.cpp
+  - test/yukicoder/789.test.cpp
   - test/yukicoder/1826.test.cpp
   - test/yukicoder/1036.test.cpp
-  - test/yukicoder/789.test.cpp
-  - test/yukicoder/1649.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
   - test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
   - test/library_checker/datastructure/double_ended_pq.test.cpp

@@ -43,8 +43,8 @@ data:
   timestamp: '2023-02-16 23:29:46+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc222g.test.cpp
   - test_atcoder/abc270_g.test.cpp
+  - test_atcoder/abc222g.test.cpp
 documentation_of: alg/acted_set/affine.hpp
 layout: document
 redirect_from:

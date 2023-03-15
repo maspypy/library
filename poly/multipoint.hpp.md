@@ -449,8 +449,8 @@ data:
   - test_atcoder/abc272_h.test.cpp
   - test_atcoder/abc267g.test.cpp
   - test/mytest/partial_frac.test.cpp
-  - test/mytest/vandermonde.test.cpp
   - test/mytest/chirp_z.test.cpp
+  - test/mytest/vandermonde.test.cpp
   - test/yukicoder/2166.test.cpp
   - test/yukicoder/2243.test.cpp
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
