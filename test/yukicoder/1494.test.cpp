@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "graph/base.hpp"
 #include "graph/tree.hpp"
-#include "graph/rerooting_dp.hpp"
+#include "graph/tree_dp/rerooting_dp.hpp"
 
 void solve() {
   LL(N);
