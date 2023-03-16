@@ -76,6 +76,12 @@ struct CHT_xy {
   T amax = -infty<T>, amin = infty<T>;
   T bmax = -infty<T>, bmin = infty<T>;
   bool empty = true;
+
+  void clear() {
+    empty = true;
+    cht_min.clear();
+    cht_max.clear();
+  }
   void add(T a, T b) {
     empty = false;
     cht_min.add(b, a);
