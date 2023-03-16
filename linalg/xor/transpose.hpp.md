@@ -10,6 +10,9 @@ data:
     title: linalg/xor/vector_space.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/mytest/QOJ5445.test.cpp
+    title: test/mytest/QOJ5445.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/xor_transpose.test.cpp
     title: test/mytest/xor_transpose.test.cpp
   - icon: ':heavy_check_mark:'
@@ -61,6 +64,7 @@ data:
   verifiedWith:
   - test_atcoder/abc141f.test.cpp
   - test/mytest/xor_transpose.test.cpp
+  - test/mytest/QOJ5445.test.cpp
   - test/yukicoder/184.test.cpp
 documentation_of: linalg/xor/transpose.hpp
 layout: document

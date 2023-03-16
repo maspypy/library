@@ -19,6 +19,9 @@ data:
     path: test/yukicoder/1320.test.cpp
     title: test/yukicoder/1320.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1718.test.cpp
+    title: test/yukicoder/1718.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1868.test.cpp
     title: test/yukicoder/1868.test.cpp
   _isVerificationFailed: false
@@ -120,6 +123,7 @@ data:
   timestamp: '2023-02-02 01:09:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1718.test.cpp
   - test/yukicoder/1868.test.cpp
   - test/yukicoder/1320.test.cpp
   - test/library_checker/tree/tree_diameter.test.cpp

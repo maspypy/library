@@ -140,13 +140,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_diameter.hpp
     title: graph/tree_diameter.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
   - icon: ':warning:'
     path: graph/tree_dp/subtree_diameter.hpp
     title: graph/tree_dp/subtree_diameter.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
   - icon: ':warning:'
@@ -253,6 +253,9 @@ data:
     path: test/library_checker/graph/chromatic_number.test.cpp
     title: test/library_checker/graph/chromatic_number.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/classify_tree.test.cpp
+    title: test/library_checker/graph/classify_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/cycle_detection.test.cpp
     title: test/library_checker/graph/cycle_detection.test.cpp
   - icon: ':heavy_check_mark:'
@@ -303,6 +306,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/tree_diameter.test.cpp
     title: test/library_checker/tree/tree_diameter.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/QOJ5445.test.cpp
+    title: test/mytest/QOJ5445.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_indep_set.test.cpp
     title: test/mytest/count_indep_set.test.cpp
@@ -355,6 +361,9 @@ data:
     path: test/yukicoder/1293.test.cpp
     title: test/yukicoder/1293.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1295.test.cpp
+    title: test/yukicoder/1295.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1320.test.cpp
     title: test/yukicoder/1320.test.cpp
   - icon: ':heavy_check_mark:'
@@ -364,11 +373,17 @@ data:
     path: test/yukicoder/1344.test.cpp
     title: test/yukicoder/1344.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1418.test.cpp
+    title: test/yukicoder/1418.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1451.test.cpp
     title: test/yukicoder/1451.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1479.test.cpp
     title: test/yukicoder/1479.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1494.test.cpp
+    title: test/yukicoder/1494.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1524.test.cpp
     title: test/yukicoder/1524.test.cpp
@@ -384,6 +399,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/17.test.cpp
     title: test/yukicoder/17.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1718.test.cpp
+    title: test/yukicoder/1718.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1744.test.cpp
     title: test/yukicoder/1744.test.cpp
@@ -414,6 +432,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1911.test.cpp
     title: test/yukicoder/1911.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1976.test.cpp
+    title: test/yukicoder/1976.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1983.test.cpp
     title: test/yukicoder/1983.test.cpp
@@ -634,6 +655,7 @@ data:
   - test/mytest/matching_line_graph.test.cpp
   - test/mytest/count_indep_set.test.cpp
   - test/mytest/tutte.test.cpp
+  - test/mytest/QOJ5445.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/aoj/DPL_2_A.test.cpp
   - test/aoj/2251_1.test.cpp
@@ -649,6 +671,7 @@ data:
   - test/aoj/2251_2.test.cpp
   - test/aoj/GRL_3_A.test.cpp
   - test/aoj/2995.test.cpp
+  - test/yukicoder/1494.test.cpp
   - test/yukicoder/1524.test.cpp
   - test/yukicoder/529.test.cpp
   - test/yukicoder/1211.test.cpp
@@ -662,9 +685,11 @@ data:
   - test/yukicoder/1170.test.cpp
   - test/yukicoder/1254.test.cpp
   - test/yukicoder/1744.test.cpp
+  - test/yukicoder/1718.test.cpp
   - test/yukicoder/899.test.cpp
   - test/yukicoder/1796.test.cpp
   - test/yukicoder/114.test.cpp
+  - test/yukicoder/1418.test.cpp
   - test/yukicoder/1293.test.cpp
   - test/yukicoder/1069.test.cpp
   - test/yukicoder/1813.test.cpp
@@ -685,9 +710,11 @@ data:
   - test/yukicoder/1216_2.test.cpp
   - test/yukicoder/1641.test.cpp
   - test/yukicoder/1745.test.cpp
+  - test/yukicoder/1976.test.cpp
   - test/yukicoder/1326.test.cpp
   - test/yukicoder/1197.test.cpp
   - test/yukicoder/1601.test.cpp
+  - test/yukicoder/1295.test.cpp
   - test/library_checker/string/number_of_substrings2.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/tree/lca_directed.test.cpp
@@ -703,6 +730,7 @@ data:
   - test/library_checker/graph/verted_add_contour_sum.test.cpp
   - test/library_checker/graph/cycle_detection.test.cpp
   - test/library_checker/graph/shortest_path.test.cpp
+  - test/library_checker/graph/classify_tree.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
   - test/library_checker/graph/maximum_independent_set2.test.cpp
