@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/cht.hpp
     title: convex/cht.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc244/tasks/abc244_Ex
@@ -230,18 +230,20 @@ data:
     max_{a,b} (ax + by)\r\n\u30FBget_min(x,y)\uFF1Amax_{a,b} (ax + by)\r\n*/\r\ntemplate\
     \ <typename T>\r\nstruct CHT_xy {\r\n  using ld = long double;\r\n  CHT_min<ld>\
     \ cht_min;\r\n  CHT_max<ld> cht_max;\r\n  T amax = -infty<T>, amin = infty<T>;\r\
-    \n  T bmax = -infty<T>, bmin = infty<T>;\r\n  bool empty = true;\r\n  void add(T\
-    \ a, T b) {\r\n    empty = false;\r\n    cht_min.add(b, a);\r\n    cht_max.add(b,\
-    \ a);\r\n    chmax(amax, a), chmin(amin, a), chmax(bmax, b), chmin(bmin, b);\r\
-    \n  }\r\n\r\n  T get_max(T x, T y) {\r\n    if (cht_min.empty()) return -infty<T>;\r\
-    \n    if (x == 0) { return max(bmax * y, bmin * y); }\r\n    ld z = ld(y) / x;\r\
-    \n    if (x > 0) {\r\n      auto l = cht_max.lower_bound(z);\r\n      ll a = l->m,\
-    \ b = l->k;\r\n      return a * x + b * y;\r\n    }\r\n    auto l = cht_min.lower_bound(z);\r\
-    \n    ll a = -(l->m), b = -(l->k);\r\n    return a * x + b * y;\r\n  }\r\n\r\n\
-    \  T get_min(T x, T y) { return -get_max(-x, -y); }\r\n};\r\n#line 6 \"test_atcoder/abc244h.test.cpp\"\
-    \n\nvoid solve() {\n  LL(Q);\n  CHT_xy<ll> cht;\n  FOR(Q) {\n    LL(a, b, x, y);\n\
-    \    cht.add(a, b);\n    print(cht.get_max(x, y));\n  }\n}\n\nsigned main() {\n\
-    \  solve();\n\n  return 0;\n}\n"
+    \n  T bmax = -infty<T>, bmin = infty<T>;\r\n  bool empty = true;\r\n\r\n  void\
+    \ clear() {\r\n    empty = true;\r\n    cht_min.clear();\r\n    cht_max.clear();\r\
+    \n  }\r\n  void add(T a, T b) {\r\n    empty = false;\r\n    cht_min.add(b, a);\r\
+    \n    cht_max.add(b, a);\r\n    chmax(amax, a), chmin(amin, a), chmax(bmax, b),\
+    \ chmin(bmin, b);\r\n  }\r\n\r\n  T get_max(T x, T y) {\r\n    if (cht_min.empty())\
+    \ return -infty<T>;\r\n    if (x == 0) { return max(bmax * y, bmin * y); }\r\n\
+    \    ld z = ld(y) / x;\r\n    if (x > 0) {\r\n      auto l = cht_max.lower_bound(z);\r\
+    \n      ll a = l->m, b = l->k;\r\n      return a * x + b * y;\r\n    }\r\n   \
+    \ auto l = cht_min.lower_bound(z);\r\n    ll a = -(l->m), b = -(l->k);\r\n   \
+    \ return a * x + b * y;\r\n  }\r\n\r\n  T get_min(T x, T y) { return -get_max(-x,\
+    \ -y); }\r\n};\r\n#line 6 \"test_atcoder/abc244h.test.cpp\"\n\nvoid solve() {\n\
+    \  LL(Q);\n  CHT_xy<ll> cht;\n  FOR(Q) {\n    LL(a, b, x, y);\n    cht.add(a,\
+    \ b);\n    print(cht.get_max(x, y));\n  }\n}\n\nsigned main() {\n  solve();\n\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc244/tasks/abc244_Ex\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"convex/cht.hpp\"\
     \n\nvoid solve() {\n  LL(Q);\n  CHT_xy<ll> cht;\n  FOR(Q) {\n    LL(a, b, x, y);\n\
@@ -254,8 +256,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc244h.test.cpp
   requiredBy: []
-  timestamp: '2023-03-12 21:41:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-03-17 00:39:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc244h.test.cpp
 layout: document

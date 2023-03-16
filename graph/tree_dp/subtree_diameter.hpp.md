@@ -7,23 +7,20 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: graph/classify_subtree.hpp
-    title: graph/classify_subtree.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/classify_tree.test.cpp
-    title: test/library_checker/graph/classify_tree.test.cpp
+  - icon: ':warning:'
+    path: graph/tree_dp/rerooting_dp.hpp
+    title: graph/tree_dp/rerooting_dp.hpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"graph/tree_dp.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\n\
-    template <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\
-    \ntemplate <typename T = int, bool directed = false>\nstruct Graph {\n  int N,\
-    \ M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
+  bundledCode: "#line 1 \"graph/tree_dp/rerooting_dp.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\
+    \n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n\
+    };\n\ntemplate <typename T = int, bool directed = false>\nstruct Graph {\n  int\
+    \ N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
     \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg,\
     \ vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class OutgoingEdges {\n  public:\n\
     \    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n   \
@@ -132,35 +129,104 @@ data:
     \ restore_path(int u, int v) {\r\n    vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u,\
     \ v, 0)) {\r\n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n\
     \      } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\
-    \n    return P;\r\n  }\r\n};\r\n#line 4 \"graph/tree_dp.hpp\"\n\r\ntemplate <typename\
-    \ TREE, typename Data, typename F1, typename F2, typename F3>\r\nvc<Data> tree_dp(TREE&\
-    \ tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data unit) {\r\n  assert(!tree.G.is_directed());\r\
-    \n\r\n  int N = tree.G.N;\r\n  vc<Data> dp(N, unit);\r\n  FOR_R(i, 1, N) {\r\n\
-    \    int v = tree.V[i];\r\n    dp[v] = f_ev(dp[v], v);\r\n    for (auto&& e: tree.G[v])\r\
-    \n      if (e.to == tree.parent[v]) { dp[e.to] = f_ee(dp[e.to], f_ve(dp[v], e));\
-    \ }\r\n  }\r\n  return dp;\r\n};\n"
-  code: "\r\n#include \"graph/base.hpp\"\r\n#include \"graph/tree.hpp\"\r\n\r\ntemplate\
-    \ <typename TREE, typename Data, typename F1, typename F2, typename F3>\r\nvc<Data>\
-    \ tree_dp(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data unit) {\r\n  assert(!tree.G.is_directed());\r\
-    \n\r\n  int N = tree.G.N;\r\n  vc<Data> dp(N, unit);\r\n  FOR_R(i, 1, N) {\r\n\
-    \    int v = tree.V[i];\r\n    dp[v] = f_ev(dp[v], v);\r\n    for (auto&& e: tree.G[v])\r\
-    \n      if (e.to == tree.parent[v]) { dp[e.to] = f_ee(dp[e.to], f_ve(dp[v], e));\
-    \ }\r\n  }\r\n  return dp;\r\n};"
+    \n    return P;\r\n  }\r\n};\r\n#line 4 \"graph/tree_dp/rerooting_dp.hpp\"\n\r\
+    \ntemplate <typename TREE, typename Data>\r\nstruct Rerooting_dp {\r\n  TREE&\
+    \ tree;\r\n  vc<Data> dp_1; // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\u5206\
+    \u6728 v\r\n  vc<Data> dp_2; // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\
+    \u5206\u6728 p\r\n  vc<Data> dp;   // \u3059\u3079\u3066\u306E v \u306B\u5BFE\u3057\
+    \u3066\u3001v \u3092\u6839\u3068\u3059\u308B\u90E8\u5206\u6728\r\n\r\n  template\
+    \ <typename F1, typename F2, typename F3>\r\n  Rerooting_dp(TREE& tree, F1 f_ee,\
+    \ F2 f_ev, F3 f_ve, const Data unit)\r\n      : tree(tree) {\r\n    assert(!tree.G.is_directed());\r\
+    \n    build(f_ee, f_ev, f_ve, unit);\r\n  }\r\n\r\n  // v \u3092\u6839\u3068\u3057\
+    \u305F\u3068\u304D\u306E full tree\r\n  Data operator[](int v) { return dp[v];\
+    \ }\r\n\r\n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\
+    \u6728 v\r\n  Data get(int root, int v) {\r\n    if (root == v) return dp[v];\r\
+    \n    if (!tree.in_subtree(root, v)) { return dp_1[v]; }\r\n    int w = tree.jump(v,\
+    \ root, 1);\r\n    return dp_2[w];\r\n  }\r\n\r\n  template <typename F1, typename\
+    \ F2, typename F3>\r\n  void build(F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)\
+    \ {\r\n    int N = tree.G.N;\r\n    dp_1.assign(N, unit);\r\n    dp_2.assign(N,\
+    \ unit);\r\n    dp.assign(N, unit);\r\n    auto& V = tree.V;\r\n    auto& par\
+    \ = tree.parent;\r\n\r\n    FOR_R(i, N) {\r\n      int v = V[i];\r\n      auto\
+    \ ch = tree.collect_child(v);\r\n      int n = len(ch);\r\n      vc<Data> Xl(n\
+    \ + 1, unit), Xr(n + 1, unit);\r\n      FOR(i, n) Xl[i + 1] = f_ee(Xl[i], dp_2[ch[i]]);\r\
+    \n      FOR_R(i, n) Xr[i] = f_ee(dp_2[ch[i]], Xr[i + 1]);\r\n      FOR(i, n) dp_2[ch[i]]\
+    \ = f_ee(Xl[i], Xr[i + 1]);\r\n      dp[v] = Xr[0];\r\n      dp_1[v] = f_ev(dp[v],\
+    \ v);\r\n      for (auto&& e: tree.G[v]) {\r\n        if (e.to == par[v]) { dp_2[v]\
+    \ = f_ve(dp_1[v], e); }\r\n      }\r\n    }\r\n    {\r\n      int v = V[0];\r\n\
+    \      dp[v] = f_ev(dp[v], v);\r\n      for (auto&& e: tree.G[v]) dp_2[e.to] =\
+    \ f_ev(dp_2[e.to], v);\r\n    }\r\n    FOR(i, N) {\r\n      int v = V[i];\r\n\
+    \      for (auto&& e: tree.G[v]) {\r\n        if (e.to == par[v]) continue;\r\n\
+    \        Data x = f_ve(dp_2[e.to], e);\r\n        for (auto&& f: tree.G[e.to])\
+    \ {\r\n          if (f.to == par[e.to]) continue;\r\n          dp_2[f.to] = f_ee(dp_2[f.to],\
+    \ x);\r\n          dp_2[f.to] = f_ev(dp_2[f.to], e.to);\r\n        }\r\n     \
+    \   x = f_ee(dp[e.to], x);\r\n        dp[e.to] = f_ev(x, e.to);\r\n      }\r\n\
+    \    }\r\n  }\r\n};\r\n#line 2 \"graph/tree_dp/subtree_diameter.hpp\"\ntemplate\
+    \ <typename TREE, typename WT>\nstruct SubTree_Diameter {\n  struct Data {\n \
+    \   // \u4ECA\u307E\u3067\u898B\u3064\u3051\u305F\u76F4\u5F84\u8DDD\u96E2\u3001\
+    \u7AEF\u70B9\n    WT diam;\n    int left, right;\n    // \u6839\u304B\u3089\u51FA\
+    \u3066\u3044\u308B\u6700\u5927\u30D1\u30B9\u306E\u3001\u9577\u3055\u3001\u7AEF\
+    \u70B9\n    WT path;\n    int end;\n  };\n\n  TREE& tree;\n  vc<tuple<int, int,\
+    \ WT>> dp, dp_1, dp_2;\n\n  SubTree_Diameter(TREE& tree) : tree(tree) {\n    int\
+    \ N = tree.G.N;\n    Data unit = {-1, -1, -1, -1, -1};\n    auto f_ee = [&](Data\
+    \ A, Data B) -> Data {\n      if (A.diam == -1) return B;\n      if (B.diam ==\
+    \ -1) return A;\n      if (A.diam < B.diam) swap(A, B);\n      if (chmax(A.diam,\
+    \ A.path + B.path)) { A.left = A.end, A.right = B.end; }\n      if (chmax(A.path,\
+    \ B.path)) A.end = B.end;\n      return A;\n    };\n    auto f_ev = [&](Data A,\
+    \ int v) -> Data {\n      if (A.diam == -1) {\n        A.diam = 0, A.left = v,\
+    \ A.right = v, A.path = 0, A.end = v;\n      }\n      return A;\n    };\n    auto\
+    \ f_ve = [&](Data A, const auto& e) -> Data {\n      A.path += e.cost;\n     \
+    \ if (chmax(A.diam, A.path)) { A.left = e.to, A.right = A.end; }\n      return\
+    \ A;\n    };\n\n    Rerooting_dp<decltype(tree), Data> DP(tree, f_ee, f_ev, f_ve,\
+    \ unit);\n    dp.resize(N), dp_1.resize(N), dp_2.resize(N);\n    FOR(v, N) {\n\
+    \      dp[v] = {DP.dp[v].left, DP.dp[v].right, DP.dp[v].diam};\n      dp_1[v]\
+    \ = {DP.dp_1[v].left, DP.dp_1[v].right, DP.dp_1[v].diam};\n      dp_2[v] = {DP.dp_2[v].left,\
+    \ DP.dp_2[v].right, DP.dp_2[v].diam};\n    }\n  }\n\n  // (u, v, diam)\n  // v\
+    \ \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E full tree\n  tuple<int, int,\
+    \ WT> operator[](int v) { return dp[v]; }\n\n  // (u, v, diam)\n  // root \u3092\
+    \u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\u6728 v\n  tuple<int, int,\
+    \ WT> get(int root, int v) {\n    if (root == v) return dp[v];\n    if (!tree.in_subtree(root,\
+    \ v)) { return dp_1[v]; }\n    int w = tree.jump(v, root, 1);\n    return dp_2[w];\n\
+    \  }\n};\n"
+  code: "#include \"graph/tree_dp/rerooting_dp.hpp\"\ntemplate <typename TREE, typename\
+    \ WT>\nstruct SubTree_Diameter {\n  struct Data {\n    // \u4ECA\u307E\u3067\u898B\
+    \u3064\u3051\u305F\u76F4\u5F84\u8DDD\u96E2\u3001\u7AEF\u70B9\n    WT diam;\n \
+    \   int left, right;\n    // \u6839\u304B\u3089\u51FA\u3066\u3044\u308B\u6700\u5927\
+    \u30D1\u30B9\u306E\u3001\u9577\u3055\u3001\u7AEF\u70B9\n    WT path;\n    int\
+    \ end;\n  };\n\n  TREE& tree;\n  vc<tuple<int, int, WT>> dp, dp_1, dp_2;\n\n \
+    \ SubTree_Diameter(TREE& tree) : tree(tree) {\n    int N = tree.G.N;\n    Data\
+    \ unit = {-1, -1, -1, -1, -1};\n    auto f_ee = [&](Data A, Data B) -> Data {\n\
+    \      if (A.diam == -1) return B;\n      if (B.diam == -1) return A;\n      if\
+    \ (A.diam < B.diam) swap(A, B);\n      if (chmax(A.diam, A.path + B.path)) { A.left\
+    \ = A.end, A.right = B.end; }\n      if (chmax(A.path, B.path)) A.end = B.end;\n\
+    \      return A;\n    };\n    auto f_ev = [&](Data A, int v) -> Data {\n     \
+    \ if (A.diam == -1) {\n        A.diam = 0, A.left = v, A.right = v, A.path = 0,\
+    \ A.end = v;\n      }\n      return A;\n    };\n    auto f_ve = [&](Data A, const\
+    \ auto& e) -> Data {\n      A.path += e.cost;\n      if (chmax(A.diam, A.path))\
+    \ { A.left = e.to, A.right = A.end; }\n      return A;\n    };\n\n    Rerooting_dp<decltype(tree),\
+    \ Data> DP(tree, f_ee, f_ev, f_ve, unit);\n    dp.resize(N), dp_1.resize(N), dp_2.resize(N);\n\
+    \    FOR(v, N) {\n      dp[v] = {DP.dp[v].left, DP.dp[v].right, DP.dp[v].diam};\n\
+    \      dp_1[v] = {DP.dp_1[v].left, DP.dp_1[v].right, DP.dp_1[v].diam};\n     \
+    \ dp_2[v] = {DP.dp_2[v].left, DP.dp_2[v].right, DP.dp_2[v].diam};\n    }\n  }\n\
+    \n  // (u, v, diam)\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E full\
+    \ tree\n  tuple<int, int, WT> operator[](int v) { return dp[v]; }\n\n  // (u,\
+    \ v, diam)\n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\
+    \u6728 v\n  tuple<int, int, WT> get(int root, int v) {\n    if (root == v) return\
+    \ dp[v];\n    if (!tree.in_subtree(root, v)) { return dp_1[v]; }\n    int w =\
+    \ tree.jump(v, root, 1);\n    return dp_2[w];\n  }\n};"
   dependsOn:
+  - graph/tree_dp/rerooting_dp.hpp
   - graph/base.hpp
   - graph/tree.hpp
   isVerificationFile: false
-  path: graph/tree_dp.hpp
-  requiredBy:
-  - graph/classify_subtree.hpp
-  timestamp: '2023-01-27 18:58:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/library_checker/graph/classify_tree.test.cpp
-documentation_of: graph/tree_dp.hpp
+  path: graph/tree_dp/subtree_diameter.hpp
+  requiredBy: []
+  timestamp: '2023-03-17 00:39:02+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: graph/tree_dp/subtree_diameter.hpp
 layout: document
 redirect_from:
-- /library/graph/tree_dp.hpp
-- /library/graph/tree_dp.hpp.html
-title: graph/tree_dp.hpp
+- /library/graph/tree_dp/subtree_diameter.hpp
+- /library/graph/tree_dp/subtree_diameter.hpp.html
+title: graph/tree_dp/subtree_diameter.hpp
 ---

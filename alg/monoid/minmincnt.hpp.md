@@ -39,8 +39,8 @@ data:
   isVerificationFile: false
   path: alg/monoid/minmincnt.hpp
   requiredBy:
-  - other/rectangle_union.hpp
   - alg/acted_monoid/minmincnt_add.hpp
+  - other/rectangle_union.hpp
   timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

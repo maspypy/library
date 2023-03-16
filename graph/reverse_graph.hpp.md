@@ -81,8 +81,8 @@ data:
   isVerificationFile: false
   path: graph/reverse_graph.hpp
   requiredBy:
-  - graph/shortest_path/K_shortest_walk.hpp
   - game/graph_game.hpp
+  - graph/shortest_path/K_shortest_walk.hpp
   timestamp: '2022-12-05 10:41:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -10,9 +10,6 @@ data:
     title: alg/monoid/merge_vector_space.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/mytest/QOJ5445.test.cpp
-    title: test/mytest/QOJ5445.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/184.test.cpp
     title: test/yukicoder/184.test.cpp
   - icon: ':heavy_check_mark:'
@@ -98,7 +95,6 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc141f.test.cpp
-  - test/mytest/QOJ5445.test.cpp
   - test/yukicoder/184.test.cpp
 documentation_of: linalg/xor/vector_space.hpp
 layout: document

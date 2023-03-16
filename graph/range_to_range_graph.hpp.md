@@ -108,8 +108,8 @@ data:
   timestamp: '2022-12-05 10:41:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1868.test.cpp
   - test/yukicoder/1170.test.cpp
+  - test/yukicoder/1868.test.cpp
 documentation_of: graph/range_to_range_graph.hpp
 layout: document
 redirect_from:

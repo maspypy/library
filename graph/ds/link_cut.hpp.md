@@ -127,8 +127,8 @@ data:
   isVerificationFile: false
   path: graph/ds/link_cut.hpp
   requiredBy:
-  - graph/ds/link_cut_subtree.hpp
   - graph/ds/link_cut_path.hpp
+  - graph/ds/link_cut_subtree.hpp
   timestamp: '2022-10-21 17:08:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

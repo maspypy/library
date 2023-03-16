@@ -162,7 +162,7 @@ data:
       title: alg/monoid/xor.hpp
   - name: convex
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: convex/cht.hpp
       title: convex/cht.hpp
     - icon: ':heavy_check_mark:'
@@ -567,7 +567,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/chromatic.hpp
       title: graph/chromatic.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: graph/classify_subtree.hpp
       title: graph/classify_subtree.hpp
     - icon: ':warning:'
@@ -649,12 +649,6 @@ data:
       path: graph/reachability.hpp
       title: graph/reachability.hpp
     - icon: ':heavy_check_mark:'
-      path: graph/rerooting_classify_subtree.hpp
-      title: graph/rerooting_classify_subtree.hpp
-    - icon: ':heavy_check_mark:'
-      path: graph/rerooting_dp.hpp
-      title: graph/rerooting_dp.hpp
-    - icon: ':heavy_check_mark:'
       path: graph/reverse_graph.hpp
       title: graph/reverse_graph.hpp
     - icon: ':warning:'
@@ -682,9 +676,6 @@ data:
       path: graph/tree_diameter.hpp
       title: graph/tree_diameter.hpp
     - icon: ':heavy_check_mark:'
-      path: graph/tree_dp.hpp
-      title: graph/tree_dp.hpp
-    - icon: ':heavy_check_mark:'
       path: graph/tree_of_unionfind.hpp
       title: graph/tree_of_unionfind.hpp
     - icon: ':heavy_check_mark:'
@@ -696,6 +687,17 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/unicyclic.hpp
       title: graph/unicyclic.hpp
+  - name: graph/count
+    pages:
+    - icon: ':warning:'
+      path: graph/count/count_forest.hpp
+      title: graph/count/count_forest.hpp
+    - icon: ':warning:'
+      path: graph/count/count_tree.hpp
+      title: graph/count/count_tree.hpp
+    - icon: ':warning:'
+      path: graph/count/count_unicyclic.hpp
+      title: graph/count/count_unicyclic.hpp
   - name: graph/ds
     pages:
     - icon: ':heavy_check_mark:'
@@ -777,6 +779,20 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/shortest_path/warshall_floyd.hpp
       title: graph/shortest_path/warshall_floyd.hpp
+  - name: graph/tree_dp
+    pages:
+    - icon: ':warning:'
+      path: graph/tree_dp/rerooting_dp.hpp
+      title: graph/tree_dp/rerooting_dp.hpp
+    - icon: ':warning:'
+      path: graph/tree_dp/subtree_diameter.hpp
+      title: graph/tree_dp/subtree_diameter.hpp
+    - icon: ':warning:'
+      path: graph/tree_dp/subtree_hash.hpp
+      title: graph/tree_dp/subtree_hash.hpp
+    - icon: ':warning:'
+      path: graph/tree_dp/tree_dp.hpp
+      title: graph/tree_dp/tree_dp.hpp
   - name: graph_count
     pages:
     - icon: ':warning:'
@@ -861,7 +877,7 @@ data:
       title: linalg/implicit_matrix/vandermonde.hpp
   - name: linalg/xor
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: linalg/xor/mat_inv.hpp
       title: linalg/xor/mat_inv.hpp
     - icon: ':heavy_check_mark:'
@@ -949,7 +965,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -1058,7 +1074,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/fibonacci_search.hpp
       title: other/fibonacci_search.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -1872,7 +1888,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/chromatic_number.test.cpp
       title: test/library_checker/graph/chromatic_number.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/graph/classify_tree.test.cpp
       title: test/library_checker/graph/classify_tree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1902,7 +1918,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/min_cost_b-flow.test.cpp
       title: test/library_checker/graph/min_cost_b-flow.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
       title: test/library_checker/graph/rerooting_classify_subtree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2165,7 +2181,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/ARC30D.test.cpp
       title: test/mytest/ARC30D.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/mytest/QOJ5445.test.cpp
       title: test/mytest/QOJ5445.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2596,7 +2612,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1293.test.cpp
       title: test/yukicoder/1293.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/1295.test.cpp
       title: test/yukicoder/1295.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2656,7 +2672,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1411.test.cpp
       title: test/yukicoder/1411.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/1418.test.cpp
       title: test/yukicoder/1418.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2683,7 +2699,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1493.test.cpp
       title: test/yukicoder/1493.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/1494.test.cpp
       title: test/yukicoder/1494.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2776,7 +2792,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/17.test.cpp
       title: test/yukicoder/17.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/1718.test.cpp
       title: test/yukicoder/1718.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2899,7 +2915,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1962.test.cpp
       title: test/yukicoder/1962.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/1976.test.cpp
       title: test/yukicoder/1976.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3156,7 +3172,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc240ex.test.cpp
       title: test_atcoder/abc240ex.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_atcoder/abc244h.test.cpp
       title: test_atcoder/abc244h.test.cpp
     - icon: ':heavy_check_mark:'

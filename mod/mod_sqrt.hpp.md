@@ -68,8 +68,8 @@ data:
   verifiedWith:
   - test/mytest/four_square.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
 documentation_of: mod/mod_sqrt.hpp
 layout: document
 redirect_from:

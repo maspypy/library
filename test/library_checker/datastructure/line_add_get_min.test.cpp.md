@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/cht.hpp
     title: convex/cht.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -231,15 +231,17 @@ data:
     max_{a,b} (ax + by)\r\n\u30FBget_min(x,y)\uFF1Amax_{a,b} (ax + by)\r\n*/\r\ntemplate\
     \ <typename T>\r\nstruct CHT_xy {\r\n  using ld = long double;\r\n  CHT_min<ld>\
     \ cht_min;\r\n  CHT_max<ld> cht_max;\r\n  T amax = -infty<T>, amin = infty<T>;\r\
-    \n  T bmax = -infty<T>, bmin = infty<T>;\r\n  bool empty = true;\r\n  void add(T\
-    \ a, T b) {\r\n    empty = false;\r\n    cht_min.add(b, a);\r\n    cht_max.add(b,\
-    \ a);\r\n    chmax(amax, a), chmin(amin, a), chmax(bmax, b), chmin(bmin, b);\r\
-    \n  }\r\n\r\n  T get_max(T x, T y) {\r\n    if (cht_min.empty()) return -infty<T>;\r\
-    \n    if (x == 0) { return max(bmax * y, bmin * y); }\r\n    ld z = ld(y) / x;\r\
-    \n    if (x > 0) {\r\n      auto l = cht_max.lower_bound(z);\r\n      ll a = l->m,\
-    \ b = l->k;\r\n      return a * x + b * y;\r\n    }\r\n    auto l = cht_min.lower_bound(z);\r\
-    \n    ll a = -(l->m), b = -(l->k);\r\n    return a * x + b * y;\r\n  }\r\n\r\n\
-    \  T get_min(T x, T y) { return -get_max(-x, -y); }\r\n};\r\n#line 5 \"test/library_checker/datastructure/line_add_get_min.test.cpp\"\
+    \n  T bmax = -infty<T>, bmin = infty<T>;\r\n  bool empty = true;\r\n\r\n  void\
+    \ clear() {\r\n    empty = true;\r\n    cht_min.clear();\r\n    cht_max.clear();\r\
+    \n  }\r\n  void add(T a, T b) {\r\n    empty = false;\r\n    cht_min.add(b, a);\r\
+    \n    cht_max.add(b, a);\r\n    chmax(amax, a), chmin(amin, a), chmax(bmax, b),\
+    \ chmin(bmin, b);\r\n  }\r\n\r\n  T get_max(T x, T y) {\r\n    if (cht_min.empty())\
+    \ return -infty<T>;\r\n    if (x == 0) { return max(bmax * y, bmin * y); }\r\n\
+    \    ld z = ld(y) / x;\r\n    if (x > 0) {\r\n      auto l = cht_max.lower_bound(z);\r\
+    \n      ll a = l->m, b = l->k;\r\n      return a * x + b * y;\r\n    }\r\n   \
+    \ auto l = cht_min.lower_bound(z);\r\n    ll a = -(l->m), b = -(l->k);\r\n   \
+    \ return a * x + b * y;\r\n  }\r\n\r\n  T get_min(T x, T y) { return -get_max(-x,\
+    \ -y); }\r\n};\r\n#line 5 \"test/library_checker/datastructure/line_add_get_min.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  CHT_min<ll> cht_min;\n  CHT_max<ll> cht_max;\n\
     \  FOR(N) {\n    LL(a, b);\n    cht_min.add(a, b);\n    cht_max.add(-a, -b);\n\
     \  }\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(a, b);\n      cht_min.add(a,\
@@ -261,7 +263,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/line_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2023-03-12 21:41:08+09:00'
+  timestamp: '2023-03-17 00:39:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/line_add_get_min.test.cpp

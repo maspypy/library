@@ -33,8 +33,8 @@ data:
   timestamp: '2022-07-20 17:24:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/run_length.test.cpp
   - test/mytest/substring_abundant.test.cpp
+  - test/mytest/run_length.test.cpp
 documentation_of: string/run_length.hpp
 layout: document
 redirect_from:

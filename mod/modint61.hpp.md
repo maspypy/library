@@ -6,14 +6,11 @@ data:
     path: alg/monoid/rollinghash.hpp
     title: alg/monoid/rollinghash.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/classify_subtree.hpp
-    title: graph/classify_subtree.hpp
-  - icon: ':heavy_check_mark:'
     path: graph/max_matching_size.hpp
     title: graph/max_matching_size.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/rerooting_classify_subtree.hpp
-    title: graph/rerooting_classify_subtree.hpp
+  - icon: ':warning:'
+    path: graph/tree_dp/subtree_hash.hpp
+    title: graph/tree_dp/subtree_hash.hpp
   - icon: ':heavy_check_mark:'
     path: mod/modular_subset_sum.hpp
     title: mod/modular_subset_sum.hpp
@@ -30,12 +27,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_14_C.test.cpp
     title: test/aoj/ALDS1_14_C.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/classify_tree.test.cpp
-    title: test/library_checker/graph/classify_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/rerooting_classify_subtree.test.cpp
-    title: test/library_checker/graph/rerooting_classify_subtree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
     title: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
@@ -152,35 +143,32 @@ data:
   isVerificationFile: false
   path: mod/modint61.hpp
   requiredBy:
-  - string/rollinghash.hpp
-  - graph/classify_subtree.hpp
-  - graph/max_matching_size.hpp
-  - graph/rerooting_classify_subtree.hpp
-  - other/connected_dp.hpp
-  - mod/modular_subset_sum.hpp
-  - random/hash_vector.hpp
   - alg/monoid/rollinghash.hpp
+  - string/rollinghash.hpp
+  - other/connected_dp.hpp
+  - graph/tree_dp/subtree_hash.hpp
+  - graph/max_matching_size.hpp
+  - random/hash_vector.hpp
+  - mod/modular_subset_sum.hpp
   timestamp: '2022-12-23 11:05:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/tutte.test.cpp
-  - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/matching_line_graph.test.cpp
+  - test/mytest/tdpc_grid_dp.test.cpp
+  - test/mytest/tutte.test.cpp
   - test/aoj/ALDS1_14_C.test.cpp
-  - test/yukicoder/578.test.cpp
-  - test/yukicoder/1397.test.cpp
-  - test/yukicoder/263.test.cpp
   - test/yukicoder/2231.test.cpp
-  - test/yukicoder/1881.test.cpp
+  - test/yukicoder/578.test.cpp
+  - test/yukicoder/263.test.cpp
   - test/yukicoder/2102.test.cpp
+  - test/yukicoder/1881.test.cpp
   - test/yukicoder/1561.test.cpp
+  - test/yukicoder/1397.test.cpp
   - test/yukicoder/4_1.test.cpp
   - test/yukicoder/541.test.cpp
   - test/yukicoder/579.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
-  - test/library_checker/graph/rerooting_classify_subtree.test.cpp
-  - test/library_checker/graph/classify_tree.test.cpp
 documentation_of: mod/modint61.hpp
 layout: document
 redirect_from:
