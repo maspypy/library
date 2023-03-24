@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/segtree_2d.hpp
     title: ds/segtree/segtree_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc266/tasks/abc266_Ex
@@ -205,7 +205,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\n#line 1 \"ds/segtree/segtree_2d.hpp\"\ntemplate <typename Monoid,\
-    \ typename XY, bool SMALL = false>\r\nstruct SegTree_2D {\r\n  using MX = Monoid;\r\
+    \ typename XY, bool SMALL_X = false>\r\nstruct SegTree_2D {\r\n  using MX = Monoid;\r\
     \n  using S = typename MX::value_type;\r\n  static_assert(MX::commute);\r\n  int\
     \ N, min_X;\r\n  vc<XY> keyX, keyY;\r\n  vc<int> indptr;\r\n  vc<S> dat;\r\n\r\
     \n  SegTree_2D(vc<XY>& X, vc<XY>& Y, vc<S> wt = vc<S>()) {\r\n    if (len(wt)\
@@ -312,8 +312,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc266h.test.cpp
   requiredBy: []
-  timestamp: '2023-02-24 07:14:18+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-03-24 19:28:53+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc266h.test.cpp
 layout: document

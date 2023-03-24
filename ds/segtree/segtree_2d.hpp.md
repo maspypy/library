@@ -3,25 +3,25 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
     title: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1600.test.cpp
     title: test/yukicoder/1600.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1625_2.test.cpp
     title: test/yukicoder/1625_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc266h.test.cpp
     title: test_atcoder/abc266h.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/segtree/segtree_2d.hpp\"\ntemplate <typename Monoid,\
-    \ typename XY, bool SMALL = false>\r\nstruct SegTree_2D {\r\n  using MX = Monoid;\r\
+    \ typename XY, bool SMALL_X = false>\r\nstruct SegTree_2D {\r\n  using MX = Monoid;\r\
     \n  using S = typename MX::value_type;\r\n  static_assert(MX::commute);\r\n  int\
     \ N, min_X;\r\n  vc<XY> keyX, keyY;\r\n  vc<int> indptr;\r\n  vc<S> dat;\r\n\r\
     \n  SegTree_2D(vc<XY>& X, vc<XY>& Y, vc<S> wt = vc<S>()) {\r\n    if (len(wt)\
@@ -62,7 +62,7 @@ data:
     \ + j] == y);\r\n    int off = 2 * LID;\r\n    j += n;\r\n    while (j) {\r\n\
     \      dat[off + j] = MX::op(dat[off + j], val);\r\n      j >>= 1;\r\n    }\r\n\
     \  }\r\n};\n"
-  code: "template <typename Monoid, typename XY, bool SMALL = false>\r\nstruct SegTree_2D\
+  code: "template <typename Monoid, typename XY, bool SMALL_X = false>\r\nstruct SegTree_2D\
     \ {\r\n  using MX = Monoid;\r\n  using S = typename MX::value_type;\r\n  static_assert(MX::commute);\r\
     \n  int N, min_X;\r\n  vc<XY> keyX, keyY;\r\n  vc<int> indptr;\r\n  vc<S> dat;\r\
     \n\r\n  SegTree_2D(vc<XY>& X, vc<XY>& Y, vc<S> wt = vc<S>()) {\r\n    if (len(wt)\
@@ -107,8 +107,8 @@ data:
   isVerificationFile: false
   path: ds/segtree/segtree_2d.hpp
   requiredBy: []
-  timestamp: '2022-12-07 00:33:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-03-24 19:28:53+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc266h.test.cpp
   - test/yukicoder/1625_2.test.cpp
