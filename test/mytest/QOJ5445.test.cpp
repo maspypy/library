@@ -4,7 +4,7 @@
 
 #include "graph/base.hpp"
 #include "graph/tree.hpp"
-#include "graph/rerooting_dp.hpp"
+#include "graph/tree_dp/rerooting_dp.hpp"
 
 #include "linalg/xor/vector_space.hpp"
 #include "linalg/xor/mat_inv.hpp"

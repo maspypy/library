@@ -3,15 +3,17 @@
 
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "graph/classify_subtree.hpp"
+#include "graph/tree_dp/subtree_hash.hpp"
 
 void solve() {
   LL(N);
   Graph<int, 0> G(N);
   G.read_parent(0);
   Tree<decltype(G)> tree(G);
+  SubTree_Hash<decltype(tree)> X(tree);
 
-  auto ANS = classify_subtree(tree);
+  vi ANS(N);
+  FOR(v, N) ANS[v] = X.get(0, v);
   vi key = ANS;
   UNIQUE(key);
   for (auto&& x: ANS) x = LB(key, x);
