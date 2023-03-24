@@ -124,7 +124,7 @@ struct Intervals {
     auto it1 = prev(it2);
     auto [l, tl] = *it1;
     auto [r, tr] = *it2;
-    if (t != none_val && ERASE) {
+    if (tl != none_val && ERASE) {
       --total_num, total_len -= r - l;
       dat[l] = none_val;
       merge_at(l);
