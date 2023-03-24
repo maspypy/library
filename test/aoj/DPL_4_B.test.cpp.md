@@ -205,8 +205,8 @@ data:
     \ sum 2^N \u901A\u308A\u306E\u3046\u3061\u3001[lo, hi) \u306B\u5165\u308B\u3082\
     \u306E\u306E\u500B\u6570\n*/\ntemplate <typename T = ll>\nll subset_sum_count(vc<T>\
     \ A, T lo, T hi) {\n  int n = len(A);\n  auto gen = [&](vc<T> A) -> vc<T> {\n\
-    \    vc<T> dp = {0};\n    for (auto&& a: A) {\n      vc<T> dp1(len(dp));\n   \
-    \   for (auto&& t: dp1) t += a;\n      vc<T> newdp;\n      merge(all(dp), all(dp1),\
+    \    vc<T> dp = {0};\n    for (auto&& a: A) {\n      vc<T> dp1 = dp;\n      for\
+    \ (auto&& t: dp1) t += a;\n      vc<T> newdp;\n      merge(all(dp), all(dp1),\
     \ back_inserter(newdp));\n      swap(dp, newdp);\n    }\n    return dp;\n  };\n\
     \  vc<T> AL = {A.begin(), A.begin() + n / 2};\n  vc<T> AR = {A.begin() + n / 2,\
     \ A.end()};\n  auto dp1 = gen(AL);\n  auto dp2 = gen(AR);\n  auto f = [&](T lim)\
@@ -246,7 +246,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL_4_B.test.cpp
   requiredBy: []
-  timestamp: '2023-02-24 07:14:18+09:00'
+  timestamp: '2023-03-24 19:49:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL_4_B.test.cpp

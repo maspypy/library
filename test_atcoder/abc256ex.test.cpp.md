@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/sum_assign.hpp
     title: alg/acted_monoid/sum_assign.hpp
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/intervals.hpp
     title: ds/intervals.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc256/tasks/abc256_Ex
@@ -258,7 +258,7 @@ data:
     \        total_len(0),\n        dat(N, none_val),\n        ss(N) {\n    ss.insert(0);\n\
     \  }\n\n  // x \u3092\u542B\u3080\u533A\u9593\u306E\u60C5\u5831\u306E\u53D6\u5F97\
     \n  tuple<int, int, T> get(int x, bool ERASE) {\n    int l = ss.prev(x);\n   \
-    \ int r = ss.next(x + 1);\n    T t = dat[l];\n    if (x != none_val && ERASE)\
+    \ int r = ss.next(x + 1);\n    T t = dat[l];\n    if (t != none_val && ERASE)\
     \ {\n      --total_num, total_len -= r - l;\n      dat[l] = none_val;\n      merge_at(l);\n\
     \      merge_at(r);\n    }\n    return {l, r, t};\n  }\n\n  // [L, R) \u5185\u306E\
     \u5168\u30C7\u30FC\u30BF\u306E\u53D6\u5F97\n  template <typename F>\n  void enumerate_range(int\
@@ -291,7 +291,7 @@ data:
     \ = none_val;\n    dat[RLIM] = none_val;\n  }\n\n  // x \u3092\u542B\u3080\u533A\
     \u9593\u306E\u60C5\u5831\u306E\u53D6\u5F97\n  tuple<X, X, T> get(X x, bool ERASE)\
     \ {\n    auto it2 = dat.upper_bound(x);\n    auto it1 = prev(it2);\n    auto [l,\
-    \ tl] = *it1;\n    auto [r, tr] = *it2;\n    if (x != none_val && ERASE) {\n \
+    \ tl] = *it1;\n    auto [r, tr] = *it2;\n    if (t != none_val && ERASE) {\n \
     \     --total_num, total_len -= r - l;\n      dat[l] = none_val;\n      merge_at(l);\n\
     \      merge_at(r);\n    }\n    return {l, r, tl};\n  }\n\n  // [L, R) \u5185\u306E\
     \u5168\u30C7\u30FC\u30BF\u306E\u53D6\u5F97\n  template <typename F>\n  void enumerate_range(X\
@@ -418,8 +418,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc256ex.test.cpp
   requiredBy: []
-  timestamp: '2023-03-11 03:26:25+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-03-24 19:52:17+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc256ex.test.cpp
 layout: document

@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/segtree_2d.hpp
     title: ds/segtree/segtree_2d.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_rectangle_sum
@@ -217,7 +217,7 @@ data:
     \n  int N, min_X;\r\n  vc<XY> keyX, keyY;\r\n  vc<int> indptr;\r\n  vc<S> dat;\r\
     \n\r\n  SegTree_2D(vc<XY>& X, vc<XY>& Y, vc<S> wt = vc<S>()) {\r\n    if (len(wt)\
     \ == 0) wt = vc<S>(len(X), MX::unit());\r\n    assert(len(X) == len(Y) && len(X)\
-    \ == len(wt));\r\n    if (!SMALL) {\r\n      keyX = X;\r\n      UNIQUE(keyX);\r\
+    \ == len(wt));\r\n    if (!SMALL_X) {\r\n      keyX = X;\r\n      UNIQUE(keyX);\r\
     \n      N = len(keyX);\r\n    } else {\r\n      min_X = (len(X) == 0 ? 0 : MIN(X));\r\
     \n      N = (len(X) == 0 ? 0 : MAX(X)) - min_X + 1;\r\n      keyX.resize(N);\r\
     \n      FOR(i, N) keyX[i] = min_X + i;\r\n    }\r\n\r\n    vvc<XY> keyY_raw(N\
@@ -240,8 +240,8 @@ data:
     \n    while (L < R) {\r\n      if (L & 1) val = MX::op(val, prod_i(L++, ly, ry));\r\
     \n      if (R & 1) val = MX::op(prod_i(--R, ly, ry), val);\r\n      L >>= 1, R\
     \ >>= 1;\r\n    }\r\n    return val;\r\n  }\r\n\r\nprivate:\r\n  inline int xtoi(XY\
-    \ x) {\r\n    return (SMALL ? clamp<XY>(x - min_X, 0, N) : LB(keyX, x));\r\n \
-    \ }\r\n  S prod_i(int i, XY ly, XY ry) {\r\n    int LID = indptr[i], n = indptr[i\
+    \ x) {\r\n    return (SMALL_X ? clamp<XY>(x - min_X, 0, N) : LB(keyX, x));\r\n\
+    \  }\r\n  S prod_i(int i, XY ly, XY ry) {\r\n    int LID = indptr[i], n = indptr[i\
     \ + 1] - indptr[i];\r\n    auto it = keyY.begin() + LID;\r\n    int L = lower_bound(it,\
     \ it + n, ly) - it + n;\r\n    int R = lower_bound(it, it + n, ry) - it + n;\r\
     \n    int off = 2 * LID;\r\n    S val = MX::unit();\r\n    while (L < R) {\r\n\
@@ -252,7 +252,7 @@ data:
     \ LID;\r\n    int j = lower_bound(it, it + n, y) - it;\r\n    assert(keyY[LID\
     \ + j] == y);\r\n    int off = 2 * LID;\r\n    j += n;\r\n    while (j) {\r\n\
     \      dat[off + j] = MX::op(dat[off + j], val);\r\n      j >>= 1;\r\n    }\r\n\
-    \  }\r\n};\n#line 8 \"test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp\"\
+    \  }\r\n};\r\n#line 8 \"test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  vc<int> X(N), Y(N);\r\n  vi W(N);\r\n\
     \  FOR(i, N) {\r\n    LL(x, y, w);\r\n    X[i] = x, Y[i] = y, W[i] = w;\r\n  }\r\
     \n  using QQ = tuple<ll, ll, ll, ll>;\r\n  vc<QQ> query(Q);\r\n  FOR(q, Q) {\r\
@@ -288,8 +288,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
   requiredBy: []
-  timestamp: '2023-03-24 19:28:53+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-03-24 19:53:06+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
 layout: document
