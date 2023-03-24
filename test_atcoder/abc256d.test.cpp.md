@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/intervals.hpp
     title: ds/intervals.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc256/tasks/abc256_d
@@ -279,8 +279,8 @@ data:
     \ = none_val;\n    dat[RLIM] = none_val;\n  }\n\n  // x \u3092\u542B\u3080\u533A\
     \u9593\u306E\u60C5\u5831\u306E\u53D6\u5F97\n  tuple<X, X, T> get(X x, bool ERASE)\
     \ {\n    auto it2 = dat.upper_bound(x);\n    auto it1 = prev(it2);\n    auto [l,\
-    \ tl] = *it1;\n    auto [r, tr] = *it2;\n    if (t != none_val && ERASE) {\n \
-    \     --total_num, total_len -= r - l;\n      dat[l] = none_val;\n      merge_at(l);\n\
+    \ tl] = *it1;\n    auto [r, tr] = *it2;\n    if (tl != none_val && ERASE) {\n\
+    \      --total_num, total_len -= r - l;\n      dat[l] = none_val;\n      merge_at(l);\n\
     \      merge_at(r);\n    }\n    return {l, r, tl};\n  }\n\n  // [L, R) \u5185\u306E\
     \u5168\u30C7\u30FC\u30BF\u306E\u53D6\u5F97\n  template <typename F>\n  void enumerate_range(X\
     \ L, X R, F f, bool ERASE) {\n    assert(LLIM <= L && L <= R && R <= RLIM);\n\
@@ -321,8 +321,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc256d.test.cpp
   requiredBy: []
-  timestamp: '2023-03-24 19:52:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-03-24 20:22:45+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc256d.test.cpp
 layout: document
