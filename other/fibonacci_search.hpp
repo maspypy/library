@@ -13,7 +13,7 @@ pair<ll, T> fibonacci_search(F f, ll L, ll R) {
   T ya = get(a), yb = get(b), yc = get(c), yd = get(d);
   // この中で極小ならば全体でも極小、を維持する
   FOR(n) {
-    if (yb < yc) {
+    if (yb <= yc) {
       d = c, c = b, b = a + d - c;
       yd = yc, yc = yb, yb = get(b);
     } else {
