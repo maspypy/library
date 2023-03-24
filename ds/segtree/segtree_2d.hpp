@@ -1,4 +1,4 @@
-template <typename Monoid, typename XY, bool SMALL = false>
+template <typename Monoid, typename XY, bool SMALL_X = false>
 struct SegTree_2D {
   using MX = Monoid;
   using S = typename MX::value_type;
