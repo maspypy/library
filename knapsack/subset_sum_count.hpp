@@ -10,7 +10,7 @@ ll subset_sum_count(vc<T> A, T lo, T hi) {
   auto gen = [&](vc<T> A) -> vc<T> {
     vc<T> dp = {0};
     for (auto&& a: A) {
-      vc<T> dp1(len(dp));
+      vc<T> dp1 = dp;
       for (auto&& t: dp1) t += a;
       vc<T> newdp;
       merge(all(dp), all(dp1), back_inserter(newdp));
