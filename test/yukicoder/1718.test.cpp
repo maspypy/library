@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1718"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "graph/rerooting_dp.hpp"
+#include "graph/tree_dp/rerooting_dp.hpp"
 #include "graph/shortest_path/bfs01.hpp"
 
 void solve() {
@@ -59,13 +59,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
