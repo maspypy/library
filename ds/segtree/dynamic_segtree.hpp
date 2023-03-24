@@ -51,7 +51,8 @@ struct Dynamic_SegTree {
   }
 
   X prod(np root, ll l, ll r) {
-    assert(pid && root && L0 <= l && l < r && r <= R0);
+    assert(pid && root && L0 <= l && l <= r && r <= R0);
+    if (l == r) return MX::unit();
     X x = MX::unit();
     prod_rec(root, L0, R0, l, r, x);
     return x;
@@ -81,14 +82,14 @@ struct Dynamic_SegTree {
     return min_left_rec(root, check, L0, R0, R, x);
   }
 
-  vc<X> get_all(np root) {
+  vc<pair<ll, X>> get_all(np root) {
     assert(root);
     vc<X> res;
     res.reserve(R0 - L0);
     auto dfs = [&](auto &dfs, np c, ll l, ll r) -> void {
-      if (!c) c = new_node(l, r);
+      if (!c) return;
       if (r - l == 1) {
-        res.eb(c->x);
+        res.eb(l, c->x);
         return;
       }
       ll m = (l + r) / 2;

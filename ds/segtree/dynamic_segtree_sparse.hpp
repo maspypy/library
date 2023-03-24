@@ -34,7 +34,8 @@ struct Dynamic_SegTree_Sparse {
   }
 
   X prod(np root, ll l, ll r) {
-    assert(L0 <= l && l < r && r <= R0);
+    assert(L0 <= l && l <= r && r <= R0);
+    if (l == r) return MX::unit();
     X x = MX::unit();
     prod_rec(root, L0, R0, l, r, x);
     return x;
