@@ -27,7 +27,7 @@ struct Intervals_Fast {
     int l = ss.prev(x);
     int r = ss.next(x + 1);
     T t = dat[l];
-    if (x != none_val && ERASE) {
+    if (t != none_val && ERASE) {
       --total_num, total_len -= r - l;
       dat[l] = none_val;
       merge_at(l);
@@ -124,7 +124,7 @@ struct Intervals {
     auto it1 = prev(it2);
     auto [l, tl] = *it1;
     auto [r, tr] = *it2;
-    if (x != none_val && ERASE) {
+    if (t != none_val && ERASE) {
       --total_num, total_len -= r - l;
       dat[l] = none_val;
       merge_at(l);
