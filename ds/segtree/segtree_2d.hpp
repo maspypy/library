@@ -11,7 +11,7 @@ struct SegTree_2D {
   SegTree_2D(vc<XY>& X, vc<XY>& Y, vc<S> wt = vc<S>()) {
     if (len(wt) == 0) wt = vc<S>(len(X), MX::unit());
     assert(len(X) == len(Y) && len(X) == len(wt));
-    if (!SMALL) {
+    if (!SMALL_X) {
       keyX = X;
       UNIQUE(keyX);
       N = len(keyX);
@@ -75,7 +75,7 @@ struct SegTree_2D {
 
 private:
   inline int xtoi(XY x) {
-    return (SMALL ? clamp<XY>(x - min_X, 0, N) : LB(keyX, x));
+    return (SMALL_X ? clamp<XY>(x - min_X, 0, N) : LB(keyX, x));
   }
   S prod_i(int i, XY ly, XY ry) {
     int LID = indptr[i], n = indptr[i + 1] - indptr[i];
