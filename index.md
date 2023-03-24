@@ -2263,6 +2263,9 @@ data:
       path: test/mytest/factorial_digit.test.cpp
       title: test/mytest/factorial_digit.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/mytest/fibonacci_search.test.cpp
+      title: test/mytest/fibonacci_search.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/mytest/floor_ceil_ranges.test.cpp
       title: test/mytest/floor_ceil_ranges.test.cpp
     - icon: ':heavy_check_mark:'

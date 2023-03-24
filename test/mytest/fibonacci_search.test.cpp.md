@@ -2,14 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: convex/larsch.hpp
-    title: convex/larsch.hpp
-  - icon: ':heavy_check_mark:'
-    path: convex/monge.hpp
-    title: convex/monge.hpp
-  - icon: ':heavy_check_mark:'
-    path: convex/smawk.hpp
-    title: convex/smawk.hpp
+    path: enumerate/product.hpp
+    title: enumerate/product.hpp
   - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
@@ -26,22 +20,23 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/705
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://yukicoder.me/problems/no/705
-  bundledCode: "#line 1 \"test/yukicoder/705.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/705\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
-    )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
-    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int>\
-    \ = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll> = ll(infty<int>) * infty<int>\
-    \ * 2;\ntemplate <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr\
-    \ u64 infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
-    \ * infty<ll>;\ntemplate <>\nconstexpr double infty<double> = infty<ll>;\ntemplate\
-    \ <>\nconstexpr long double infty<long double> = infty<ll>;\n\nusing pi = pair<ll,\
-    \ ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
-    \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/mytest/fibonacci_search.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if\
+    \ defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n#pragma GCC optimize(\"\
+    Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\
+    \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
+    \ u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nconstexpr\
+    \ T infty = 0;\ntemplate <>\nconstexpr int infty<int> = 1'000'000'000;\ntemplate\
+    \ <>\nconstexpr ll infty<ll> = ll(infty<int>) * infty<int> * 2;\ntemplate <>\n\
+    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
+    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\n\
+    template <>\nconstexpr double infty<double> = infty<ll>;\ntemplate <>\nconstexpr\
+    \ long double infty<long double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing\
+    \ vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
+    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
     template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
     \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
     template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
@@ -210,119 +205,73 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 2 \"convex/larsch.hpp\"\n\n// https://noshi91.github.io/Library/algorithm/larsch.cpp.html\n\
-    template <class T>\nclass LARSCH {\n  struct reduce_row;\n  struct reduce_col;\n\
-    \n  struct reduce_row {\n    int n;\n    std::function<T(int, int)> f;\n    int\
-    \ cur_row;\n    int state;\n    std::unique_ptr<reduce_col> rec;\n\n    reduce_row(int\
-    \ n_) : n(n_), f(), cur_row(0), state(0), rec() {\n      const int m = n / 2;\n\
-    \      if (m != 0) { rec = std::make_unique<reduce_col>(m); }\n    }\n\n    void\
-    \ set_f(std::function<T(int, int)> f_) {\n      f = f_;\n      if (rec) {\n  \
-    \      rec->set_f([&](int i, int j) -> T { return f(2 * i + 1, j); });\n     \
-    \ }\n    }\n\n    int get_argmin() {\n      const int cur_row_ = cur_row;\n  \
-    \    cur_row += 1;\n      if (cur_row_ % 2 == 0) {\n        const int prev_argmin\
-    \ = state;\n        const int next_argmin = [&]() {\n          if (cur_row_ +\
-    \ 1 == n) {\n            return n - 1;\n          } else {\n            return\
-    \ rec->get_argmin();\n          }\n        }();\n        state = next_argmin;\n\
-    \        int ret = prev_argmin;\n        for (int j = prev_argmin + 1; j <= next_argmin;\
-    \ j += 1) {\n          if (f(cur_row_, ret) > f(cur_row_, j)) { ret = j; }\n \
-    \       }\n        return ret;\n      } else {\n        if (f(cur_row_, state)\
-    \ <= f(cur_row_, cur_row_)) {\n          return state;\n        } else {\n   \
-    \       return cur_row_;\n        }\n      }\n    }\n  };\n\n  struct reduce_col\
-    \ {\n    int n;\n    std::function<T(int, int)> f;\n    int cur_row;\n    std::vector<int>\
-    \ cols;\n    reduce_row rec;\n\n    reduce_col(int n_) : n(n_), f(), cur_row(0),\
-    \ cols(), rec(n) {}\n\n    void set_f(std::function<T(int, int)> f_) {\n     \
-    \ f = f_;\n      rec.set_f([&](int i, int j) -> T { return f(i, cols[j]); });\n\
-    \    }\n\n    int get_argmin() {\n      const int cur_row_ = cur_row;\n      cur_row\
-    \ += 1;\n      const auto cs = [&]() -> std::vector<int> {\n        if (cur_row_\
-    \ == 0) {\n          return {{0}};\n        } else {\n          return {{2 * cur_row_\
-    \ - 1, 2 * cur_row_}};\n        }\n      }();\n      for (const int j: cs) {\n\
-    \        while ([&]() {\n          const int size = cols.size();\n          return\
-    \ size != cur_row_ && f(size - 1, cols.back()) > f(size - 1, j);\n        }())\
-    \ {\n          cols.pop_back();\n        }\n        if (int(cols.size()) != n)\
-    \ { cols.push_back(j); }\n      }\n      return cols[rec.get_argmin()];\n    }\n\
-    \  };\n\n  std::unique_ptr<reduce_row> base;\n\npublic:\n  LARSCH(int n, std::function<T(int,\
-    \ int)> f)\n      : base(std::make_unique<reduce_row>(n)) {\n    base->set_f(f);\n\
-    \  }\n\n  int get_argmin() { return base->get_argmin(); }\n};\n#line 2 \"convex/smawk.hpp\"\
-    \n// select(i,j,k) \u306F (i,j) \u3068 (i,k) \u306E\u3046\u3061\u9078\u3076\u65B9\
-    \uFF08j or k\uFF09\ntemplate <typename F>\nvc<int> SMAWK(int H, int W, F select)\
-    \ {\n  auto dfs = [&](auto& dfs, vc<int> X, vc<int> Y) -> vc<int> {\n    int N\
-    \ = len(X);\n    if (N == 0) return {};\n    vc<int> YY;\n    for (auto&& y: Y)\
-    \ {\n      while (len(YY)) {\n        int py = YY.back(), x = X[len(YY) - 1];\n\
-    \        if (select(x, py, y) == py) break;\n        YY.pop_back();\n      }\n\
-    \      if (len(YY) < len(X)) YY.eb(y);\n    }\n    vc<int> XX;\n    FOR(i, 1,\
-    \ len(X), 2) XX.eb(X[i]);\n    vc<int> II = dfs(dfs, XX, YY);\n    vc<int> I(N);\n\
-    \    FOR(i, len(II)) I[i + i + 1] = II[i];\n    int p = 0;\n    FOR(i, 0, N, 2)\
-    \ {\n      int LIM = (i + 1 == N ? Y.back() : I[i + 1]);\n      int best = Y[p];\n\
-    \      while (Y[p] < LIM) {\n        ++p;\n        best = select(X[i], best, Y[p]);\n\
-    \      }\n      I[i] = best;\n    }\n    return I;\n  };\n  vc<int> X(H), Y(W);\n\
-    \  iota(all(X), 0), iota(all(Y), 0);\n  return dfs(dfs, X, Y);\n}\n#line 1 \"\
-    other/fibonacci_search.hpp\"\n// [L, R) \u3067\u306E\u6975\u5C0F\u5024\u3092\u3072\
-    \u3068\u3064\u6C42\u3081\u308B\u3001\u5358\u5CF0\u306F\u4E0D\u8981\ntemplate <typename\
-    \ T, bool MINIMIZE, typename F>\npair<ll, T> fibonacci_search(F f, ll L, ll R)\
-    \ {\n  assert(L < R);\n  --R;\n  ll a = L, b = L + 1, c = L + 2, d = L + 3;\n\
-    \  int n = 0;\n  while (d < R) { b = c, c = d, d = b + c - a, ++n; }\n  auto get\
-    \ = [&](ll x) -> T {\n    if (R < x) return infty<T>;\n    return (MINIMIZE ?\
-    \ f(x) : -f(x));\n  };\n  T ya = get(a), yb = get(b), yc = get(c), yd = get(d);\n\
-    \  // \u3053\u306E\u4E2D\u3067\u6975\u5C0F\u306A\u3089\u3070\u5168\u4F53\u3067\
-    \u3082\u6975\u5C0F\u3001\u3092\u7DAD\u6301\u3059\u308B\n  FOR(n) {\n    if (yb\
-    \ <= yc) {\n      d = c, c = b, b = a + d - c;\n      yd = yc, yc = yb, yb = get(b);\n\
-    \    } else {\n      a = b, b = c, c = a + d - b;\n      ya = yb, yb = yc, yc\
-    \ = get(c);\n    }\n  }\n  ll x = a;\n  T y = ya;\n  if (chmin(y, yb)) x = b;\n\
-    \  if (chmin(y, yc)) x = c;\n  if (chmin(y, yd)) x = d;\n  if (MINIMIZE) return\
-    \ {x, y};\n  return {x, -y};\n}\n#line 4 \"convex/monge.hpp\"\n\r\n// \u5B9A\u7FA9\
-    \u57DF [0, N] \u306E\u7BC4\u56F2\u3067 f \u306E monge \u6027\u3092\u78BA\u8A8D\
-    \r\ntemplate <typename T, typename F>\r\nbool check_monge(int N, F f) {\r\n  FOR(l,\
-    \ N + 1) FOR(k, l) FOR(j, k) FOR(i, j) {\r\n    T lhs = f(i, l) + f(j, k);\r\n\
-    \    T rhs = f(i, k) + f(j, l);\r\n    if (lhs < rhs) return false;\r\n  }\r\n\
-    \  return true;\r\n}\r\n\r\n// newdp[j] = min (dp[i] + f(i,j))\r\ntemplate <typename\
-    \ T, typename F>\r\nvc<T> monge_dp_update(int N, vc<T>& dp, F f) {\r\n  assert(len(dp)\
-    \ == N + 1);\r\n  auto select = [&](int i, int j, int k) -> int {\r\n    if (i\
-    \ <= k) return j;\r\n    return (dp[j] + f(j, i) > dp[k] + f(k, i) ? k : j);\r\
-    \n  };\r\n  vc<int> I = SMAWK(N + 1, N + 1, select);\r\n  vc<T> newdp(N + 1, infty<T>);\r\
-    \n  FOR(j, N + 1) {\r\n    int i = I[j];\r\n    chmin(newdp[j], dp[i] + f(i, j));\r\
-    \n  }\r\n  return newdp;\r\n}\r\n\r\n// \u9077\u79FB\u56DE\u6570\u3092\u554F\u308F\
-    \u306A\u3044\u5834\u5408\r\ntemplate <typename T, typename F>\r\nvc<T> monge_shortest_path(int\
-    \ N, F f) {\r\n  vc<T> dp(N + 1, infty<T>);\r\n  dp[0] = 0;\r\n  LARSCH<T> larsch(N,\
-    \ [&](int i, int j) -> T {\r\n    ++i;\r\n    if (i <= j) return infty<T>;\r\n\
-    \    return dp[j] + f(j, i);\r\n  });\r\n  FOR(r, 1, N + 1) {\r\n    int l = larsch.get_argmin();\r\
-    \n    dp[r] = dp[l] + f(l, r);\r\n  }\r\n  return dp;\r\n}\r\n\r\n// https://noshi91.github.io/algorithm-encyclopedia/d-edge-shortest-path-monge\r\
-    \n// |f| \u306E\u4E0A\u9650 f_lim \u3082\u6E21\u3059\r\n// larsch \u304C\u7D50\
-    \u69CB\u91CD\u3044\u306E\u3067\u3001\u81EA\u524D\u3067 dp \u3067\u304D\u308B\u306A\
-    \u3089\u305D\u306E\u65B9\u304C\u3088\u3044\r\ntemplate <typename T, typename F>\r\
-    \nT monge_shortest_path_d_edge(int N, int d, T f_lim, F f) {\r\n  assert(d <=\
-    \ N);\r\n  auto calc_L = [&](T lambda) -> T {\r\n    auto cost = [&](int frm,\
-    \ int to) -> T { return f(frm, to) + lambda; };\r\n    vc<T> dp = monge_shortest_path<T>(N,\
-    \ cost);\r\n    return dp[N] - lambda * d;\r\n  };\r\n\r\n  auto [x, fx] = fibonacci_search<T,\
-    \ false>(calc_L, -3 * f_lim, 3 * f_lim + 1);\r\n  return fx;\r\n}\r\n#line 5 \"\
-    test/yukicoder/705.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n\
-    \  VEC(ll, X, N);\n  VEC(ll, Y, N);\n  auto f = [&](ll i, ll j) -> ll {\n    ll\
-    \ a = A[j - 1];\n    ll x = X[i], y = Y[i];\n    ll dx = abs(a - x);\n    ll dy\
-    \ = abs(y);\n    return dx * dx * dx + dy * dy * dy;\n  };\n  print(monge_shortest_path<ll>(N,\
-    \ f).back());\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/705\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"convex/monge.hpp\"\n\nvoid solve() {\n\
-    \  LL(N);\n  VEC(ll, A, N);\n  VEC(ll, X, N);\n  VEC(ll, Y, N);\n  auto f = [&](ll\
-    \ i, ll j) -> ll {\n    ll a = A[j - 1];\n    ll x = X[i], y = Y[i];\n    ll dx\
-    \ = abs(a - x);\n    ll dy = abs(y);\n    return dx * dx * dx + dy * dy * dy;\n\
-    \  };\n  print(monge_shortest_path<ll>(N, f).back());\n}\n\nsigned main() {\n\
+    \ yes(!t); }\n#line 1 \"other/fibonacci_search.hpp\"\n// [L, R) \u3067\u306E\u6975\
+    \u5C0F\u5024\u3092\u3072\u3068\u3064\u6C42\u3081\u308B\u3001\u5358\u5CF0\u306F\
+    \u4E0D\u8981\ntemplate <typename T, bool MINIMIZE, typename F>\npair<ll, T> fibonacci_search(F\
+    \ f, ll L, ll R) {\n  assert(L < R);\n  --R;\n  ll a = L, b = L + 1, c = L + 2,\
+    \ d = L + 3;\n  int n = 0;\n  while (d < R) { b = c, c = d, d = b + c - a, ++n;\
+    \ }\n  auto get = [&](ll x) -> T {\n    if (R < x) return infty<T>;\n    return\
+    \ (MINIMIZE ? f(x) : -f(x));\n  };\n  T ya = get(a), yb = get(b), yc = get(c),\
+    \ yd = get(d);\n  // \u3053\u306E\u4E2D\u3067\u6975\u5C0F\u306A\u3089\u3070\u5168\
+    \u4F53\u3067\u3082\u6975\u5C0F\u3001\u3092\u7DAD\u6301\u3059\u308B\n  FOR(n) {\n\
+    \    if (yb <= yc) {\n      d = c, c = b, b = a + d - c;\n      yd = yc, yc =\
+    \ yb, yb = get(b);\n    } else {\n      a = b, b = c, c = a + d - b;\n      ya\
+    \ = yb, yb = yc, yc = get(c);\n    }\n  }\n  ll x = a;\n  T y = ya;\n  if (chmin(y,\
+    \ yb)) x = b;\n  if (chmin(y, yc)) x = c;\n  if (chmin(y, yd)) x = d;\n  if (MINIMIZE)\
+    \ return {x, y};\n  return {x, -y};\n}\n#line 1 \"enumerate/product.hpp\"\n//\
+    \ [0, A0) x [0, A1) x ...\ntemplate <typename F>\nvoid enumerate_product(vc<int>\
+    \ A, F query) {\n  int N = len(A);\n  auto dfs = [&](auto& dfs, vc<int>& p) ->\
+    \ void {\n    int n = len(p);\n    if (n == N) return query(p);\n    FOR(x, A[n])\
+    \ {\n      p.eb(x);\n      dfs(dfs, p);\n      p.pop_back();\n    }\n  };\n  vc<int>\
+    \ p;\n  dfs(dfs, p);\n}\n#line 6 \"test/mytest/fibonacci_search.test.cpp\"\n\n\
+    void test() {\n  // permutation\n  FOR(N, 1, 10) {\n    vc<int> A(N);\n    iota(all(A),\
+    \ 0);\n    do {\n      auto f = [&](int i) -> int { return A[i]; };\n      auto\
+    \ [i, y] = fibonacci_search<int, true>(f, 0, N);\n      assert(0 <= i && i < N);\n\
+    \      if (0 < i) assert(A[i] < A[i - 1]);\n      if (i + 1 < N) assert(A[i] <\
+    \ A[i + 1]);\n    } while (next_permutation(all(A)));\n  }\n  // [0,1]\n  FOR(N,\
+    \ 1, 18) {\n    FOR(s, 1 << N) {\n      vc<int> A(N);\n      FOR(i, N) A[i] =\
+    \ s >> i & 1;\n      auto f = [&](int i) -> int { return A[i]; };\n      auto\
+    \ [i, y] = fibonacci_search<int, true>(f, 0, N);\n      assert(0 <= i && i < N);\n\
+    \      if (0 < i) assert(A[i] <= A[i - 1]);\n      if (i + 1 < N) assert(A[i]\
+    \ <= A[i + 1]);\n    }\n  }\n  // [0,1,2]\n  FOR(N, 1, 13) {\n    enumerate_product(vc<int>(N,\
+    \ 3), [&](vc<int> A) -> void {\n      auto f = [&](int i) -> int { return A[i];\
+    \ };\n      auto [i, y] = fibonacci_search<int, true>(f, 0, N);\n      assert(0\
+    \ <= i && i < N);\n      if (0 < i) assert(A[i] <= A[i - 1]);\n      if (i + 1\
+    \ < N) assert(A[i] <= A[i + 1]);\n    });\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n\
+    \  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"other/fibonacci_search.hpp\"\n#include\
+    \ \"enumerate/product.hpp\"\n\nvoid test() {\n  // permutation\n  FOR(N, 1, 10)\
+    \ {\n    vc<int> A(N);\n    iota(all(A), 0);\n    do {\n      auto f = [&](int\
+    \ i) -> int { return A[i]; };\n      auto [i, y] = fibonacci_search<int, true>(f,\
+    \ 0, N);\n      assert(0 <= i && i < N);\n      if (0 < i) assert(A[i] < A[i -\
+    \ 1]);\n      if (i + 1 < N) assert(A[i] < A[i + 1]);\n    } while (next_permutation(all(A)));\n\
+    \  }\n  // [0,1]\n  FOR(N, 1, 18) {\n    FOR(s, 1 << N) {\n      vc<int> A(N);\n\
+    \      FOR(i, N) A[i] = s >> i & 1;\n      auto f = [&](int i) -> int { return\
+    \ A[i]; };\n      auto [i, y] = fibonacci_search<int, true>(f, 0, N);\n      assert(0\
+    \ <= i && i < N);\n      if (0 < i) assert(A[i] <= A[i - 1]);\n      if (i + 1\
+    \ < N) assert(A[i] <= A[i + 1]);\n    }\n  }\n  // [0,1,2]\n  FOR(N, 1, 13) {\n\
+    \    enumerate_product(vc<int>(N, 3), [&](vc<int> A) -> void {\n      auto f =\
+    \ [&](int i) -> int { return A[i]; };\n      auto [i, y] = fibonacci_search<int,\
+    \ true>(f, 0, N);\n      assert(0 <= i && i < N);\n      if (0 < i) assert(A[i]\
+    \ <= A[i - 1]);\n      if (i + 1 < N) assert(A[i] <= A[i + 1]);\n    });\n  }\n\
+    }\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n\
     \  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - convex/monge.hpp
-  - convex/larsch.hpp
-  - convex/smawk.hpp
   - other/fibonacci_search.hpp
+  - enumerate/product.hpp
   isVerificationFile: true
-  path: test/yukicoder/705.test.cpp
+  path: test/mytest/fibonacci_search.test.cpp
   requiredBy: []
   timestamp: '2023-03-24 19:14:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yukicoder/705.test.cpp
+documentation_of: test/mytest/fibonacci_search.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/705.test.cpp
-- /verify/test/yukicoder/705.test.cpp.html
-title: test/yukicoder/705.test.cpp
+- /verify/test/mytest/fibonacci_search.test.cpp
+- /verify/test/mytest/fibonacci_search.test.cpp.html
+title: test/mytest/fibonacci_search.test.cpp
 ---

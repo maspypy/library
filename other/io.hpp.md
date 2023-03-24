@@ -781,6 +781,9 @@ data:
     path: test/mytest/factorial_digit.test.cpp
     title: test/mytest/factorial_digit.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/fibonacci_search.test.cpp
+    title: test/mytest/fibonacci_search.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/floor_ceil_ranges.test.cpp
     title: test/mytest/floor_ceil_ranges.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2123,6 +2126,7 @@ data:
   - test/mytest/minplus_convex.test.cpp
   - test/mytest/tournament.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
+  - test/mytest/fibonacci_search.test.cpp
   - test/mytest/online_pow.test.cpp
   - test/mytest/vandermonde.test.cpp
   - test/mytest/splay_monoid.test.cpp
