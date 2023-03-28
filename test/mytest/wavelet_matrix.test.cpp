@@ -27,7 +27,7 @@ void test_compress() {
     vc<int> B = {A.begin() + L, A.begin() + R};
     vc<int> Y = {X.begin() + L, X.begin() + R};
 
-    int t = RNG(0, 4);
+    int t = RNG(0, 5);
     if (t == 0) { // count
       int cnt = 0;
       for (auto&& x: B)
@@ -63,6 +63,16 @@ void test_compress() {
           0, R - L + 1);
       assert(k == k2);
     }
+    if (t == 4) { // k-th value and sum
+      int k = RNG(0, R - L + 1);
+      B.eb(infty<int>);
+      auto I = argsort(B);
+      int val = B[I[k]];
+      int sm = 0;
+      FOR(i, k) sm += Y[I[i]];
+      auto p = WM.kth_value_and_sum(L, R, k);
+      assert(p.fi == val && p.se == sm);
+    }
   }
 }
 
@@ -91,7 +101,7 @@ void test_not_compress() {
     vc<int> Y = {X.begin() + L, X.begin() + R};
     for (auto&& x: B) x ^= xor_val;
 
-    int t = RNG(0, 3);
+    int t = RNG(0, 5);
     if (t == 0) { // count
       int cnt = 0;
       for (auto&& x: B) {
@@ -127,6 +137,16 @@ void test_not_compress() {
           },
           0, R - L + 1);
       assert(k == k2);
+    }
+    if (t == 4) { // k-th value and sum
+      int k = RNG(0, R - L + 1);
+      B.eb(infty<int>);
+      auto I = argsort(B);
+      int val = B[I[k]];
+      int sm = 0;
+      FOR(i, k) sm += Y[I[i]];
+      auto p = WM.kth_value_and_sum(L, R, k, xor_val);
+      assert(p.fi == val && p.se == sm);
     }
   }
 }
