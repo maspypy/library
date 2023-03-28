@@ -11,19 +11,10 @@ using mint = dmint;
 void solve() {
   LL(P, A, B, S, G);
   mint::set_mod(P);
-  if (A == 0) {
-    if (S == G) return print(0);
-    if (B == G) return print(1);
-    return print(-1);
-  }
-
   using AS = ActedSet_Affine<mint>;
-  typename AS::A g = {A, B};
-  typename AS::S s = S;
-  typename AS::S t = G;
   auto h = [&](mint x) -> ll { return x.val; };
 
-  ll ANS = discrete_log_acted<AS, decltype(h), 18>(g, s, t, h, 0, P);
+  ll ANS = discrete_log_acted<AS, decltype(h), 18>({A, B}, S, G, h, 0, P);
   print(ANS);
 }
 

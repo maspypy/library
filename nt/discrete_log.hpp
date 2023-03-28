@@ -1,48 +1,57 @@
 #include "alg/acted_set/from_monoid.hpp"
 #include "ds/hashmap.hpp"
 
-// 群 X の作用する集合 S、ハッシュ関数 H：S -> Z
-// x in G, s, t in S に対して x^ns = t を解く
+// モノイド X の作用する集合 S、ハッシュ関数 H：S -> Z
+// x in X, s, t in S に対して x^ns = t を解く
 // [lb, ub) の最初の解をかえす。なければ -1 をかえす。
 template <typename ActedSet, typename F, int MP_SIZE = 20>
 ll discrete_log_acted(typename ActedSet::A x, typename ActedSet::S s,
                       typename ActedSet::S t, F H, ll lb, ll ub) {
-  static HashMap<int, MP_SIZE> MP;
+  static HashMap<bool, MP_SIZE> MP;
   MP.reset();
-  using Group = typename ActedSet::Monoid_A;
-  using G = typename Group::value_type;
-  G xinv = Group::inverse(x);
-  assert(Group::op(x, xinv) == Group::unit());
+  using Mono = typename ActedSet::Monoid_A;
+  using X = typename Mono::value_type;
+  using S = typename ActedSet::S;
+
   if (lb >= ub) return -1;
-  auto xpow = [&](ll n) -> G {
-    G p = x;
-    G res = Group::unit();
+  auto xpow = [&](ll n) -> X {
+    X p = x;
+    X res = Mono::unit();
     while (n) {
-      if (n & 1) res = Group::op(res, p);
-      p = Group::op(p, p);
+      if (n & 1) res = Mono::op(res, p);
+      p = Mono::op(p, p);
       n /= 2;
     }
     return res;
   };
+
+  auto Ht = H(t);
   s = ActedSet::act(s, xpow(lb));
   u64 LIM = ub - lb;
 
   ll K = sqrt(LIM) + 1;
 
-  FOR(k, K + 1) {
-    ll key = H(s);
-    if (!MP.count(key)) MP[key] = k;
-    if (k != K) s = ActedSet::act(s, x);
+  FOR(k, K) {
+    t = ActedSet::act(t, x);
+    MP[H(t)] = 1;
   }
 
-  x = Group::inverse(xpow(K));
+  X y = xpow(K);
+  int failed = 0;
   FOR(k, K + 1) {
-    ll key = H(t);
-    if (MP.count(key)) {
-      ll res = k * K + MP[key] + lb;
-      return (res >= ub ? -1 : res);
+    S s1 = ActedSet::act(s, y);
+    if (MP.count(H(s1))) {
+      FOR(i, K) {
+        if (H(s) == Ht) {
+          ll ans = k * K + i + lb;
+          return (ans >= ub ? -1 : ans);
+        }
+        s = ActedSet::act(s, x);
+      }
+      if (failed) return -1;
+      failed = 1;
     }
-    t = ActedSet::act(t, x);
+    s = s1;
   }
   return -1;
 }
@@ -50,9 +59,9 @@ ll discrete_log_acted(typename ActedSet::A x, typename ActedSet::S s,
 // 群 X における log_a b の計算
 // ハッシュ関数 H : X -> long long を持たせる
 // [lb, ub) の最初の解をかえす、なければ -1
-template <typename Group, typename F>
-ll discrete_log_group(typename Group::X a, typename Group::X b, F H, ll lb,
-                      ll ub) {
-  using AM = ActedSet_From_Monoid<Group>;
-  return discrete_log_acted<AM>(a, Group::unit(), b, H, lb, ub);
+template <typename Monoid, typename F>
+ll discrete_log_monoid(typename Monoid::X a, typename Monoid::X b, F H, ll lb,
+                       ll ub) {
+  using AM = ActedSet_From_Monoid<Monoid>;
+  return discrete_log_acted<AM>(a, Monoid::unit(), b, H, lb, ub);
 }
