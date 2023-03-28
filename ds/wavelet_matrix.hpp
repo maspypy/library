@@ -131,9 +131,9 @@ struct Wavelet_Matrix {
     return MX::op(MX::inverse(cumsum[lg][L]), cumsum[lg][R]);
   }
 
-  // check(cnt, prefix sum) が true となるような最大個数
+  // check(cnt, prefix sum) が true となるような最大の (cnt, sum)
   template <typename F>
-  int max_right(F check, int L, int R, T xor_val = 0) {
+  pair<int, X> max_right(F check, int L, int R, T xor_val = 0) {
     assert(check(0, MX::unit()));
     if (xor_val != 0) assert(set_log);
     if (check(R - L, get(lg, L, R))) return R - L;
@@ -153,12 +153,14 @@ struct Wavelet_Matrix {
         if (f) L += mid[d] - l0, R += mid[d] - r0;
       }
     }
-    cnt += binary_search(
+    int k = binary_search(
         [&](int k) -> bool {
           return check(cnt + k, MX::op(sm, get(0, L, L + k)));
         },
         0, R - L);
-    return cnt;
+    cnt += k;
+    sm = MX::op(sm, get(0, L, L + k));
+    return {cnt, sm};
   }
 
 private:
