@@ -99,6 +99,50 @@ struct Wavelet_Matrix {
     return {ret, sm};
   }
 
+  // xor した結果で、[L, R) の中で k>=0 番目と prefix sum
+  pair<T, X> kth_value_and_sum(vc<pair<int, int>> segments, int k,
+                               T xor_val = 0) {
+    if (xor_val != 0) assert(set_log);
+    int total_len = 0;
+    for (auto&& [L, R]: segments) total_len += R - L;
+    assert(0 <= k && k <= total_len);
+    if (k == total_len) { return {infty<T>, sum_all(segments)}; }
+    int cnt = 0;
+    X sm = MX::unit();
+    T ret = 0;
+    for (int d = lg - 1; d >= 0; --d) {
+      bool f = (xor_val >> d) & 1;
+      int c = 0;
+      for (auto&& [L, R]: segments) {
+        int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
+        c += (f ? (R - L) - (r0 - l0) : (r0 - l0));
+      }
+      if (cnt + c > k) {
+        for (auto&& [L, R]: segments) {
+          int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
+          if (!f) L = l0, R = r0;
+          if (f) L += mid[d] - l0, R += mid[d] - r0;
+        }
+      } else {
+        cnt += c, ret |= T(1) << d;
+        for (auto&& [L, R]: segments) {
+          int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
+          X s = (f ? get(d, L + mid[d] - l0, R + mid[d] - r0) : get(d, l0, r0));
+          sm = MX::op(sm, s);
+          if (!f) L += mid[d] - l0, R += mid[d] - r0;
+          if (f) L = l0, R = r0;
+        }
+      }
+    }
+    for (auto&& [L, R]: segments) {
+      int t = min(R - L, k - cnt);
+      sm = MX::op(sm, get(0, L, L + t));
+      cnt += t;
+    }
+    if (COMPRESS) ret = key[ret];
+    return {ret, sm};
+  }
+
   // xor した結果で、[L, R) の中で k>=0 番目
   T kth(int L, int R, int k, T xor_val = 0) {
     if (xor_val != 0) assert(set_log);
@@ -126,6 +170,32 @@ struct Wavelet_Matrix {
     int total_len = 0;
     for (auto&& [L, R]: segments) total_len += R - L;
     assert(0 <= k && k < total_len);
+    int cnt = 0;
+    T ret = 0;
+    for (int d = lg - 1; d >= 0; --d) {
+      bool f = (xor_val >> d) & 1;
+      int c = 0;
+      for (auto&& [L, R]: segments) {
+        int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
+        c += (f ? (R - L) - (r0 - l0) : (r0 - l0));
+      }
+      if (cnt + c > k) {
+        for (auto&& [L, R]: segments) {
+          int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
+          if (!f) L = l0, R = r0;
+          if (f) L += mid[d] - l0, R += mid[d] - r0;
+        }
+      } else {
+        cnt += c, ret |= T(1) << d;
+        for (auto&& [L, R]: segments) {
+          int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
+          if (!f) L += mid[d] - l0, R += mid[d] - r0;
+          if (f) L = l0, R = r0;
+        }
+      }
+    }
+    if (COMPRESS) ret = key[ret];
+    return ret;
   }
 
   // xor した結果で、[L, R) の中で中央値。
@@ -219,31 +289,11 @@ private:
 
   // xor した結果で [0, k) 番目のものの和
   X prefix_sum(int L, int R, int k, T xor_val = 0) {
-    if (xor_val != 0) assert(set_log);
-    assert(0 <= k && k <= R - L);
-    if (k == 0) return MX::unit();
-    if (k == R - L) return sum_all(L, R);
-    assert(!cumsum.empty());
-
-    X sm = MX::unit();
-    for (int d = lg - 1; d >= 0; --d) {
-      bool f = (xor_val >> d) & 1;
-      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
-      int c = (f ? (R - L) - (r0 - l0) : (r0 - l0));
-      X s = (f ? get(d, L + mid[d] - l0, R + mid[d] - r0) : get(d, l0, r0));
-      if (k < c) {
-        if (!f) L = l0, R = r0;
-        if (f) L += mid[d] - l0, R += mid[d] - r0;
-      } else {
-        k -= c, sm = MX::op(sm, s);
-        if (f) { L = l0, R = r0; }
-        if (!f) { L += mid[d] - l0, R += mid[d] - r0; }
-      }
-    }
-    if (k) sm = MX::op(sm, get(0, L, L + k));
-    return sm;
+    return kth_value_and_sum(L, R, k, xor_val).se;
   }
 
   // xor した結果で [0, k) 番目のものの和
-  X prefix_sum(vc<pair<int, int>> segments, int k, T xor_val = 0) {}
+  X prefix_sum(vc<pair<int, int>> segments, int k, T xor_val = 0) {
+    return kth_value_and_sum(segments, k, xor_val).se;
+  }
 };
