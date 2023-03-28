@@ -34,6 +34,7 @@ struct Wavelet_Matrix {
     mid.resize(lg);
     bv.assign(lg, Bit_Vector(N));
     if (MAKE_SUM) cumsum.assign(1 + lg, vc<X>(N + 1, MX::unit()));
+    S.resize(N);
     vc<T> A0(N), A1(N);
     vc<X> S0(N), S1(N);
     FOR_R(d, -1, lg) {
