@@ -54,14 +54,15 @@ void test_compress() {
       int c = RNG(0, a * (R - L) + b * MAX * (R - L) + 1);
       auto check
           = [&](int cnt, int sm) -> bool { return a * cnt + b * sm <= c; };
-      int k = WM.max_right(check, L, R);
-      int k2 = binary_search(
+      auto p = WM.max_right(check, L, R);
+      int k = binary_search(
           [&](int k) -> bool {
             int sm = WM.sum(L, R, 0, k);
             return check(k, sm);
           },
           0, R - L + 1);
-      assert(k == k2);
+      int sm = WM.sum(L, R, 0, k);
+      assert(p.fi == k && p.se == sm);
     }
     if (t == 4) { // k-th value and sum
       int k = RNG(0, R - L + 1);
@@ -129,14 +130,15 @@ void test_not_compress() {
       int c = RNG(0, a * (R - L) + b * MAX * (R - L) + 1);
       auto check
           = [&](int cnt, int sm) -> bool { return a * cnt + b * sm <= c; };
-      int k = WM.max_right(check, L, R, xor_val);
-      int k2 = binary_search(
+      auto p = WM.max_right(check, L, R, xor_val);
+      int k = binary_search(
           [&](int k) -> bool {
             int sm = WM.sum(L, R, 0, k, xor_val);
             return check(k, sm);
           },
           0, R - L + 1);
-      assert(k == k2);
+      int sm = WM.sum(L, R, 0, k, xor_val);
+      assert(k == p.fi && sm == p.se);
     }
     if (t == 4) { // k-th value and sum
       int k = RNG(0, R - L + 1);
