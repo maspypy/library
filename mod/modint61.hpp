@@ -64,6 +64,8 @@ struct modint61 {
     return ret;
   }
   static constexpr ll get_mod() { return mod; }
+#ifdef FASTIO
   void write() { fastio::printer.write(val); }
   void read() { fastio::scanner.read(val); }
+#endif
 };
