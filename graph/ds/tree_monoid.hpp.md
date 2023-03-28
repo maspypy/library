@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy:
@@ -33,15 +33,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1212.test.cpp
     title: test/yukicoder/1212.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc270_f.test.cpp
     title: test_atcoder/abc270_f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://atcoder.jp/contests/tkppc3/tasks/tkppc3_i
@@ -205,7 +205,7 @@ data:
     \ X &x, const X &y) { return Monoid::op(y, x); }\r\n  static constexpr X unit()\
     \ { return Monoid::unit(); }\r\n  static const bool commute = Monoid::commute;\r\
     \n};\r\n#line 6 \"graph/ds/tree_monoid.hpp\"\n\r\ntemplate <typename TREE, typename\
-    \ Monoid, bool edge = false>\r\nstruct Tree_Monoid {\r\n  using RevMonoid = Monoid_Reverse<Monoid>;\r\
+    \ Monoid, bool edge>\r\nstruct Tree_Monoid {\r\n  using RevMonoid = Monoid_Reverse<Monoid>;\r\
     \n  using X = typename Monoid::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  SegTree<Monoid>\
     \ seg;\r\n  SegTree<RevMonoid> seg_r;\r\n\r\n  Tree_Monoid(TREE &tree) : tree(tree),\
     \ N(tree.N), seg(tree.N) {\r\n    if (!Monoid::commute) seg_r = SegTree<RevMonoid>(tree.N);\r\
@@ -264,21 +264,21 @@ data:
     \ - 1]);\r\n    }\r\n    return v;\r\n  }\r\n};\r\n"
   code: "#pragma once\r\n\r\n#include \"ds/segtree/segtree.hpp\"\r\n#include \"graph/tree.hpp\"\
     \r\n#include \"alg/monoid/monoid_reverse.hpp\"\r\n\r\ntemplate <typename TREE,\
-    \ typename Monoid, bool edge = false>\r\nstruct Tree_Monoid {\r\n  using RevMonoid\
-    \ = Monoid_Reverse<Monoid>;\r\n  using X = typename Monoid::value_type;\r\n  TREE\
-    \ &tree;\r\n  int N;\r\n  SegTree<Monoid> seg;\r\n  SegTree<RevMonoid> seg_r;\r\
-    \n\r\n  Tree_Monoid(TREE &tree) : tree(tree), N(tree.N), seg(tree.N) {\r\n   \
-    \ if (!Monoid::commute) seg_r = SegTree<RevMonoid>(tree.N);\r\n  }\r\n\r\n  Tree_Monoid(TREE\
-    \ &tree, vc<X> &dat) : tree(tree), N(tree.N) {\r\n    vc<X> seg_raw(N, Monoid::unit());\r\
-    \n    if (!edge) {\r\n      FOR(v, N) seg_raw[tree.LID[v]] = dat[v];\r\n    }\
-    \ else {\r\n      FOR(e, N - 1) {\r\n        int v = tree.e_to_v(e);\r\n     \
-    \   seg_raw[tree.LID[v]] = dat[e];\r\n      }\r\n    }\r\n    seg = SegTree<Monoid>(seg_raw);\r\
-    \n    if (!Monoid::commute) seg_r = SegTree<RevMonoid>(seg_raw);\r\n  }\r\n\r\n\
-    \  void set(int i, X x) {\r\n    if (edge) i = tree.e_to_v(i);\r\n    i = tree.LID[i];\r\
-    \n    seg.set(i, x);\r\n    if (!Monoid::commute) seg_r.set(i, x);\r\n  }\r\n\r\
-    \n  void multiply(int i, X x) {\r\n    if (edge) i = tree.e_to_v(i);\r\n    i\
-    \ = tree.LID[i];\r\n    seg.multiply(i, x);\r\n    if (!Monoid::commute) seg_r.multiply(i,\
-    \ x);\r\n  }\r\n\r\n  X prod_path(int u, int v) {\r\n    auto pd = tree.get_path_decomposition(u,\
+    \ typename Monoid, bool edge>\r\nstruct Tree_Monoid {\r\n  using RevMonoid = Monoid_Reverse<Monoid>;\r\
+    \n  using X = typename Monoid::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  SegTree<Monoid>\
+    \ seg;\r\n  SegTree<RevMonoid> seg_r;\r\n\r\n  Tree_Monoid(TREE &tree) : tree(tree),\
+    \ N(tree.N), seg(tree.N) {\r\n    if (!Monoid::commute) seg_r = SegTree<RevMonoid>(tree.N);\r\
+    \n  }\r\n\r\n  Tree_Monoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {\r\
+    \n    vc<X> seg_raw(N, Monoid::unit());\r\n    if (!edge) {\r\n      FOR(v, N)\
+    \ seg_raw[tree.LID[v]] = dat[v];\r\n    } else {\r\n      FOR(e, N - 1) {\r\n\
+    \        int v = tree.e_to_v(e);\r\n        seg_raw[tree.LID[v]] = dat[e];\r\n\
+    \      }\r\n    }\r\n    seg = SegTree<Monoid>(seg_raw);\r\n    if (!Monoid::commute)\
+    \ seg_r = SegTree<RevMonoid>(seg_raw);\r\n  }\r\n\r\n  void set(int i, X x) {\r\
+    \n    if (edge) i = tree.e_to_v(i);\r\n    i = tree.LID[i];\r\n    seg.set(i,\
+    \ x);\r\n    if (!Monoid::commute) seg_r.set(i, x);\r\n  }\r\n\r\n  void multiply(int\
+    \ i, X x) {\r\n    if (edge) i = tree.e_to_v(i);\r\n    i = tree.LID[i];\r\n \
+    \   seg.multiply(i, x);\r\n    if (!Monoid::commute) seg_r.multiply(i, x);\r\n\
+    \  }\r\n\r\n  X prod_path(int u, int v) {\r\n    auto pd = tree.get_path_decomposition(u,\
     \ v, edge);\r\n    X val = Monoid::unit();\r\n    for (auto &&[a, b]: pd) {\r\n\
     \      X x = (a <= b ? seg.prod(a, b + 1)\r\n                    : (Monoid::commute\
     \ ? seg.prod(b, a + 1)\r\n                                       : seg_r.prod(b,\
@@ -330,8 +330,8 @@ data:
   path: graph/ds/tree_monoid.hpp
   requiredBy:
   - graph/minimum_spanning_tree.hpp
-  timestamp: '2023-03-15 22:02:24+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-03-29 03:38:20+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc270_f.test.cpp
   - test/aoj/GRL_2_A.test.cpp

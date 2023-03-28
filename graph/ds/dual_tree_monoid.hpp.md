@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/dual_segtree.hpp
     title: ds/segtree/dual_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy:
@@ -156,7 +156,7 @@ data:
     \ * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n    laz[k] = MA::unit();\n  }\n\
     \  void all_apply(int k, A a) { laz[k] = MA::op(laz[k], a); }\n};\n#line 3 \"\
     graph/ds/dual_tree_monoid.hpp\"\n\r\ntemplate <typename TREE, typename Monoid,\
-    \ bool edge = false>\r\nstruct Dual_Tree_Monoid {\r\n  using X = typename Monoid::value_type;\r\
+    \ bool edge>\r\nstruct Dual_Tree_Monoid {\r\n  using X = typename Monoid::value_type;\r\
     \n  TREE &tree;\r\n  int N;\r\n  Dual_SegTree<Monoid> seg;\r\n\r\n  Dual_Tree_Monoid(TREE\
     \ &tree) : tree(tree), N(tree.N), seg(tree.N) {}\r\n\r\n  X get(int i) {\r\n \
     \   int v = i;\r\n    if (edge) {\r\n      auto &&e = tree.G.edges[i];\r\n   \
@@ -172,7 +172,7 @@ data:
     \ x) {\r\n    int l = tree.LID[u], r = tree.RID[u];\r\n    return seg.apply(l\
     \ + edge, r, x);\r\n  }\r\n};\r\n"
   code: "#include \"graph/tree.hpp\"\r\n#include \"ds/segtree/dual_segtree.hpp\"\r\
-    \n\r\ntemplate <typename TREE, typename Monoid, bool edge = false>\r\nstruct Dual_Tree_Monoid\
+    \n\r\ntemplate <typename TREE, typename Monoid, bool edge>\r\nstruct Dual_Tree_Monoid\
     \ {\r\n  using X = typename Monoid::value_type;\r\n  TREE &tree;\r\n  int N;\r\
     \n  Dual_SegTree<Monoid> seg;\r\n\r\n  Dual_Tree_Monoid(TREE &tree) : tree(tree),\
     \ N(tree.N), seg(tree.N) {}\r\n\r\n  X get(int i) {\r\n    int v = i;\r\n    if\
@@ -196,7 +196,7 @@ data:
   path: graph/ds/dual_tree_monoid.hpp
   requiredBy:
   - graph/minimum_spanning_tree.hpp
-  timestamp: '2023-01-27 18:58:28+09:00'
+  timestamp: '2023-03-29 03:38:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc270_f.test.cpp

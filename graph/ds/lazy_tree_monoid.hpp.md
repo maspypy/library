@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
   - icon: ':heavy_check_mark:'
@@ -24,9 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -195,7 +195,7 @@ data:
     \ v, 0)) {\r\n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n\
     \      } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\
     \n    return P;\r\n  }\r\n};\r\n#line 3 \"graph/ds/lazy_tree_monoid.hpp\"\n\r\n\
-    template <typename TREE, typename ActedMonoid, bool edge = false>\r\nstruct Lazy_Tree_Monoid\
+    template <typename TREE, typename ActedMonoid, bool edge>\r\nstruct Lazy_Tree_Monoid\
     \ {\r\n  using MonoX = typename ActedMonoid::Monoid_X;\r\n  using MonoA = typename\
     \ ActedMonoid::Monoid_A;\r\n  static_assert(MonoX::commute);\r\n  using X = typename\
     \ MonoX::value_type;\r\n  using A = typename MonoA::value_type;\r\n  TREE &tree;\r\
@@ -253,11 +253,11 @@ data:
     \ auto i = seg.max_right(check_tmp, a);\r\n      return (i == a ? u : tree.V[i\
     \ - 1]);\r\n    }\r\n    return v;\r\n  }\r\n};\r\n"
   code: "#include \"ds/segtree/lazy_segtree.hpp\"\r\n#include \"graph/tree.hpp\"\r\
-    \n\r\ntemplate <typename TREE, typename ActedMonoid, bool edge = false>\r\nstruct\
-    \ Lazy_Tree_Monoid {\r\n  using MonoX = typename ActedMonoid::Monoid_X;\r\n  using\
-    \ MonoA = typename ActedMonoid::Monoid_A;\r\n  static_assert(MonoX::commute);\r\
-    \n  using X = typename MonoX::value_type;\r\n  using A = typename MonoA::value_type;\r\
-    \n  TREE &tree;\r\n  int N;\r\n  Lazy_SegTree<ActedMonoid> seg;\r\n\r\n  Lazy_Tree_Monoid(TREE\
+    \n\r\ntemplate <typename TREE, typename ActedMonoid, bool edge>\r\nstruct Lazy_Tree_Monoid\
+    \ {\r\n  using MonoX = typename ActedMonoid::Monoid_X;\r\n  using MonoA = typename\
+    \ ActedMonoid::Monoid_A;\r\n  static_assert(MonoX::commute);\r\n  using X = typename\
+    \ MonoX::value_type;\r\n  using A = typename MonoA::value_type;\r\n  TREE &tree;\r\
+    \n  int N;\r\n  Lazy_SegTree<ActedMonoid> seg;\r\n\r\n  Lazy_Tree_Monoid(TREE\
     \ &tree) : tree(tree), N(tree.N), seg(tree.N) {}\r\n\r\n  Lazy_Tree_Monoid(TREE\
     \ &tree, vc<X> dat) : tree(tree), N(tree.N) {\r\n    vc<X> seg_raw(N, MonoX::unit());\r\
     \n    if (!edge) {\r\n      FOR(v, N) seg_raw[tree.LID[v]] = dat[v];\r\n    }\
@@ -317,8 +317,8 @@ data:
   isVerificationFile: false
   path: graph/ds/lazy_tree_monoid.hpp
   requiredBy: []
-  timestamp: '2023-01-31 23:11:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-03-29 03:38:20+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/GRL_5_E.test.cpp
   - test/yukicoder/1790.test.cpp

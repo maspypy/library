@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':heavy_check_mark:'
@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix.hpp
     title: ds/wavelet_matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
@@ -230,79 +230,80 @@ data:
     \ntemplate <typename T, bool COMPRESS, typename Monoid = Monoid_Add<T>>\r\nstruct\
     \ Wavelet_Matrix {\r\n  using MX = Monoid;\r\n  using X = typename MX::value_type;\r\
     \n  static_assert(MX::commute);\r\n  int N, lg;\r\n  vector<int> mid;\r\n  vector<Bit_Vector>\
-    \ bv;\r\n  vc<T> key;\r\n  const bool set_log;\r\n  vvc<X> cumsum;\r\n\r\n  //\
-    \ \u548C\u3092\u4F7F\u308F\u306A\u3044\u306A\u3089\u3001SUM_data \u306F\u7A7A\u3067\
-    \u3088\u3044\r\n  Wavelet_Matrix(vc<T> A, vc<X> SUM_data = {}, int log = -1)\r\
-    \n      : N(len(A)), lg(log), set_log(log != -1) {\r\n    bool MAKE_SUM = !(SUM_data.empty());\r\
-    \n    vc<X>& S = SUM_data;\r\n    if (COMPRESS) {\r\n      assert(!set_log);\r\
-    \n      key.reserve(N);\r\n      vc<int> I = argsort(A);\r\n      for (auto&&\
-    \ i: I) {\r\n        if (key.empty() || key.back() != A[i]) key.eb(A[i]);\r\n\
-    \        A[i] = len(key) - 1;\r\n      }\r\n      key.shrink_to_fit();\r\n   \
-    \ }\r\n    if (lg == -1) lg = __lg(max<ll>(MAX(A), 1)) + 1;\r\n    mid.resize(lg);\r\
-    \n    bv.assign(lg, Bit_Vector(N));\r\n    if (MAKE_SUM) cumsum.assign(1 + lg,\
-    \ vc<X>(N + 1, MX::unit()));\r\n    S.resize(N);\r\n    vc<T> A0(N), A1(N);\r\n\
-    \    vc<X> S0(N), S1(N);\r\n    FOR_R(d, -1, lg) {\r\n      int p0 = 0, p1 = 0;\r\
-    \n      if (MAKE_SUM) {\r\n        FOR(i, N) { cumsum[d + 1][i + 1] = MX::op(cumsum[d\
-    \ + 1][i], S[i]); }\r\n      }\r\n      if (d == -1) break;\r\n      FOR(i, N)\
-    \ {\r\n        bool f = (A[i] >> d & 1);\r\n        if (!f) {\r\n          if\
-    \ (MAKE_SUM) S0[p0] = S[i];\r\n          A0[p0++] = A[i];\r\n        }\r\n   \
-    \     if (f) {\r\n          if (MAKE_SUM) S1[p1] = S[i];\r\n          bv[d].set(i),\
-    \ A1[p1++] = A[i];\r\n        }\r\n      }\r\n      mid[d] = p0;\r\n      bv[d].build();\r\
-    \n      swap(A, A0), swap(S, S0);\r\n      FOR(i, p1) A[p0 + i] = A1[i], S[p0\
-    \ + i] = S1[i];\r\n    }\r\n  }\r\n\r\n  // xor \u3057\u305F\u7D50\u679C\u3067\
-    \ [a, b) \u306B\u53CE\u307E\u308B\u3082\u306E\u3092\u6570\u3048\u308B\r\n  int\
-    \ count(int L, int R, T a, T b, T xor_val = 0) {\r\n    return prefix_count(L,\
-    \ R, b, xor_val) - prefix_count(L, R, a, xor_val);\r\n  }\r\n\r\n  int count(vc<pair<int,\
-    \ int>> segments, T a, T b, T xor_val = 0) {\r\n    int res = 0;\r\n    for (auto&&\
-    \ [L, R]: segments) res += count(L, R, a, b, xor_val);\r\n    return res;\r\n\
-    \  }\r\n\r\n  // xor \u3057\u305F\u7D50\u679C\u3067\u3001[L, R) \u306E\u4E2D\u3067\
-    \ k>=0 \u756A\u76EE\u3068 prefix sum\r\n  pair<T, X> kth_value_and_sum(int L,\
-    \ int R, int k, T xor_val = 0) {\r\n    if (xor_val != 0) assert(set_log);\r\n\
-    \    assert(0 <= k && k <= R - L);\r\n    if (k == R - L) { return {infty<T>,\
-    \ sum_all(L, R)}; }\r\n    int cnt = 0;\r\n    X sm = MX::unit();\r\n    T ret\
-    \ = 0;\r\n    for (int d = lg - 1; d >= 0; --d) {\r\n      bool f = (xor_val >>\
-    \ d) & 1;\r\n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\n     \
-    \ int c = (f ? (R - L) - (r0 - l0) : (r0 - l0));\r\n      if (cnt + c > k) {\r\
-    \n        if (!f) L = l0, R = r0;\r\n        if (f) L += mid[d] - l0, R += mid[d]\
-    \ - r0;\r\n      } else {\r\n        X s = (f ? get(d, L + mid[d] - l0, R + mid[d]\
-    \ - r0) : get(d, l0, r0));\r\n        cnt += c, ret |= T(1) << d, sm = MX::op(sm,\
-    \ s);\r\n        if (!f) L += mid[d] - l0, R += mid[d] - r0;\r\n        if (f)\
-    \ L = l0, R = r0;\r\n      }\r\n    }\r\n    sm = MX::op(sm, get(0, L, L + k -\
-    \ cnt));\r\n    if (COMPRESS) ret = key[ret];\r\n    return {ret, sm};\r\n  }\r\
-    \n\r\n  // xor \u3057\u305F\u7D50\u679C\u3067\u3001[L, R) \u306E\u4E2D\u3067 k>=0\
-    \ \u756A\u76EE\u3068 prefix sum\r\n  pair<T, X> kth_value_and_sum(vc<pair<int,\
-    \ int>> segments, int k,\r\n                               T xor_val = 0) {\r\n\
-    \    if (xor_val != 0) assert(set_log);\r\n    int total_len = 0;\r\n    for (auto&&\
-    \ [L, R]: segments) total_len += R - L;\r\n    assert(0 <= k && k <= total_len);\r\
-    \n    if (k == total_len) { return {infty<T>, sum_all(segments)}; }\r\n    int\
-    \ cnt = 0;\r\n    X sm = MX::unit();\r\n    T ret = 0;\r\n    for (int d = lg\
-    \ - 1; d >= 0; --d) {\r\n      bool f = (xor_val >> d) & 1;\r\n      int c = 0;\r\
-    \n      for (auto&& [L, R]: segments) {\r\n        int l0 = bv[d].rank(L, 0),\
-    \ r0 = bv[d].rank(R, 0);\r\n        c += (f ? (R - L) - (r0 - l0) : (r0 - l0));\r\
-    \n      }\r\n      if (cnt + c > k) {\r\n        for (auto&& [L, R]: segments)\
-    \ {\r\n          int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\n       \
-    \   if (!f) L = l0, R = r0;\r\n          if (f) L += mid[d] - l0, R += mid[d]\
-    \ - r0;\r\n        }\r\n      } else {\r\n        cnt += c, ret |= T(1) << d;\r\
-    \n        for (auto&& [L, R]: segments) {\r\n          int l0 = bv[d].rank(L,\
-    \ 0), r0 = bv[d].rank(R, 0);\r\n          X s = (f ? get(d, L + mid[d] - l0, R\
-    \ + mid[d] - r0) : get(d, l0, r0));\r\n          sm = MX::op(sm, s);\r\n     \
-    \     if (!f) L += mid[d] - l0, R += mid[d] - r0;\r\n          if (f) L = l0,\
-    \ R = r0;\r\n        }\r\n      }\r\n    }\r\n    for (auto&& [L, R]: segments)\
-    \ {\r\n      int t = min(R - L, k - cnt);\r\n      sm = MX::op(sm, get(0, L, L\
-    \ + t));\r\n      cnt += t;\r\n    }\r\n    if (COMPRESS) ret = key[ret];\r\n\
-    \    return {ret, sm};\r\n  }\r\n\r\n  // xor \u3057\u305F\u7D50\u679C\u3067\u3001\
-    [L, R) \u306E\u4E2D\u3067 k>=0 \u756A\u76EE\r\n  T kth(int L, int R, int k, T\
-    \ xor_val = 0) {\r\n    if (xor_val != 0) assert(set_log);\r\n    assert(0 <=\
-    \ k && k < R - L);\r\n    int cnt = 0;\r\n    T ret = 0;\r\n    for (int d = lg\
-    \ - 1; d >= 0; --d) {\r\n      bool f = (xor_val >> d) & 1;\r\n      int l0 =\
-    \ bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\n      int c = (f ? (R - L) - (r0\
+    \ bv;\r\n  vc<T> key;\r\n  bool set_log;\r\n  vvc<X> cumsum;\r\n\r\n  Wavelet_Matrix()\
+    \ {}\r\n\r\n  // \u548C\u3092\u4F7F\u308F\u306A\u3044\u306A\u3089\u3001SUM_data\
+    \ \u306F\u7A7A\u3067\u3088\u3044\r\n  Wavelet_Matrix(vc<T> A, vc<X> SUM_data =\
+    \ {}, int log = -1) {\r\n    build(A, SUM_data, log);\r\n  }\r\n\r\n  void build(vc<T>\
+    \ A, vc<X> SUM_data = {}, int log = -1) {\r\n    N = len(A), lg = log, set_log\
+    \ = (log != -1);\r\n    bool MAKE_SUM = !(SUM_data.empty());\r\n    vc<X>& S =\
+    \ SUM_data;\r\n    if (COMPRESS) {\r\n      assert(!set_log);\r\n      key.reserve(N);\r\
+    \n      vc<int> I = argsort(A);\r\n      for (auto&& i: I) {\r\n        if (key.empty()\
+    \ || key.back() != A[i]) key.eb(A[i]);\r\n        A[i] = len(key) - 1;\r\n   \
+    \   }\r\n      key.shrink_to_fit();\r\n    }\r\n    if (lg == -1) lg = __lg(max<ll>(MAX(A),\
+    \ 1)) + 1;\r\n    mid.resize(lg);\r\n    bv.assign(lg, Bit_Vector(N));\r\n   \
+    \ if (MAKE_SUM) cumsum.assign(1 + lg, vc<X>(N + 1, MX::unit()));\r\n    S.resize(N);\r\
+    \n    vc<T> A0(N), A1(N);\r\n    vc<X> S0(N), S1(N);\r\n    FOR_R(d, -1, lg) {\r\
+    \n      int p0 = 0, p1 = 0;\r\n      if (MAKE_SUM) {\r\n        FOR(i, N) { cumsum[d\
+    \ + 1][i + 1] = MX::op(cumsum[d + 1][i], S[i]); }\r\n      }\r\n      if (d ==\
+    \ -1) break;\r\n      FOR(i, N) {\r\n        bool f = (A[i] >> d & 1);\r\n   \
+    \     if (!f) {\r\n          if (MAKE_SUM) S0[p0] = S[i];\r\n          A0[p0++]\
+    \ = A[i];\r\n        }\r\n        if (f) {\r\n          if (MAKE_SUM) S1[p1] =\
+    \ S[i];\r\n          bv[d].set(i), A1[p1++] = A[i];\r\n        }\r\n      }\r\n\
+    \      mid[d] = p0;\r\n      bv[d].build();\r\n      swap(A, A0), swap(S, S0);\r\
+    \n      FOR(i, p1) A[p0 + i] = A1[i], S[p0 + i] = S1[i];\r\n    }\r\n  }\r\n\r\
+    \n  // xor \u3057\u305F\u7D50\u679C\u3067 [a, b) \u306B\u53CE\u307E\u308B\u3082\
+    \u306E\u3092\u6570\u3048\u308B\r\n  int count(int L, int R, T a, T b, T xor_val\
+    \ = 0) {\r\n    return prefix_count(L, R, b, xor_val) - prefix_count(L, R, a,\
+    \ xor_val);\r\n  }\r\n\r\n  int count(vc<pair<int, int>> segments, T a, T b, T\
+    \ xor_val = 0) {\r\n    int res = 0;\r\n    for (auto&& [L, R]: segments) res\
+    \ += count(L, R, a, b, xor_val);\r\n    return res;\r\n  }\r\n\r\n  // xor \u3057\
+    \u305F\u7D50\u679C\u3067\u3001[L, R) \u306E\u4E2D\u3067 k>=0 \u756A\u76EE\u3068\
+    \ prefix sum\r\n  pair<T, X> kth_value_and_sum(int L, int R, int k, T xor_val\
+    \ = 0) {\r\n    if (xor_val != 0) assert(set_log);\r\n    assert(0 <= k && k <=\
+    \ R - L);\r\n    if (k == R - L) { return {infty<T>, sum_all(L, R)}; }\r\n   \
+    \ int cnt = 0;\r\n    X sm = MX::unit();\r\n    T ret = 0;\r\n    for (int d =\
+    \ lg - 1; d >= 0; --d) {\r\n      bool f = (xor_val >> d) & 1;\r\n      int l0\
+    \ = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\n      int c = (f ? (R - L) - (r0\
     \ - l0) : (r0 - l0));\r\n      if (cnt + c > k) {\r\n        if (!f) L = l0, R\
     \ = r0;\r\n        if (f) L += mid[d] - l0, R += mid[d] - r0;\r\n      } else\
-    \ {\r\n        cnt += c, ret |= T(1) << d;\r\n        if (!f) L += mid[d] - l0,\
-    \ R += mid[d] - r0;\r\n        if (f) L = l0, R = r0;\r\n      }\r\n    }\r\n\
-    \    if (COMPRESS) ret = key[ret];\r\n    return ret;\r\n  }\r\n\r\n  T kth(vc<pair<int,\
-    \ int>> segments, int L, int R, int k, T xor_val = 0) {\r\n    int total_len =\
-    \ 0;\r\n    for (auto&& [L, R]: segments) total_len += R - L;\r\n    assert(0\
+    \ {\r\n        X s = (f ? get(d, L + mid[d] - l0, R + mid[d] - r0) : get(d, l0,\
+    \ r0));\r\n        cnt += c, ret |= T(1) << d, sm = MX::op(sm, s);\r\n       \
+    \ if (!f) L += mid[d] - l0, R += mid[d] - r0;\r\n        if (f) L = l0, R = r0;\r\
+    \n      }\r\n    }\r\n    sm = MX::op(sm, get(0, L, L + k - cnt));\r\n    if (COMPRESS)\
+    \ ret = key[ret];\r\n    return {ret, sm};\r\n  }\r\n\r\n  // xor \u3057\u305F\
+    \u7D50\u679C\u3067\u3001[L, R) \u306E\u4E2D\u3067 k>=0 \u756A\u76EE\u3068 prefix\
+    \ sum\r\n  pair<T, X> kth_value_and_sum(vc<pair<int, int>> segments, int k,\r\n\
+    \                               T xor_val = 0) {\r\n    if (xor_val != 0) assert(set_log);\r\
+    \n    int total_len = 0;\r\n    for (auto&& [L, R]: segments) total_len += R -\
+    \ L;\r\n    assert(0 <= k && k <= total_len);\r\n    if (k == total_len) { return\
+    \ {infty<T>, sum_all(segments)}; }\r\n    int cnt = 0;\r\n    X sm = MX::unit();\r\
+    \n    T ret = 0;\r\n    for (int d = lg - 1; d >= 0; --d) {\r\n      bool f =\
+    \ (xor_val >> d) & 1;\r\n      int c = 0;\r\n      for (auto&& [L, R]: segments)\
+    \ {\r\n        int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\n        c\
+    \ += (f ? (R - L) - (r0 - l0) : (r0 - l0));\r\n      }\r\n      if (cnt + c >\
+    \ k) {\r\n        for (auto&& [L, R]: segments) {\r\n          int l0 = bv[d].rank(L,\
+    \ 0), r0 = bv[d].rank(R, 0);\r\n          if (!f) L = l0, R = r0;\r\n        \
+    \  if (f) L += mid[d] - l0, R += mid[d] - r0;\r\n        }\r\n      } else {\r\
+    \n        cnt += c, ret |= T(1) << d;\r\n        for (auto&& [L, R]: segments)\
+    \ {\r\n          int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\n       \
+    \   X s = (f ? get(d, L + mid[d] - l0, R + mid[d] - r0) : get(d, l0, r0));\r\n\
+    \          sm = MX::op(sm, s);\r\n          if (!f) L += mid[d] - l0, R += mid[d]\
+    \ - r0;\r\n          if (f) L = l0, R = r0;\r\n        }\r\n      }\r\n    }\r\
+    \n    for (auto&& [L, R]: segments) {\r\n      int t = min(R - L, k - cnt);\r\n\
+    \      sm = MX::op(sm, get(0, L, L + t));\r\n      cnt += t;\r\n    }\r\n    if\
+    \ (COMPRESS) ret = key[ret];\r\n    return {ret, sm};\r\n  }\r\n\r\n  // xor \u3057\
+    \u305F\u7D50\u679C\u3067\u3001[L, R) \u306E\u4E2D\u3067 k>=0 \u756A\u76EE\r\n\
+    \  T kth(int L, int R, int k, T xor_val = 0) {\r\n    if (xor_val != 0) assert(set_log);\r\
+    \n    assert(0 <= k && k < R - L);\r\n    int cnt = 0;\r\n    T ret = 0;\r\n \
+    \   for (int d = lg - 1; d >= 0; --d) {\r\n      bool f = (xor_val >> d) & 1;\r\
+    \n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\n      int c = (f\
+    \ ? (R - L) - (r0 - l0) : (r0 - l0));\r\n      if (cnt + c > k) {\r\n        if\
+    \ (!f) L = l0, R = r0;\r\n        if (f) L += mid[d] - l0, R += mid[d] - r0;\r\
+    \n      } else {\r\n        cnt += c, ret |= T(1) << d;\r\n        if (!f) L +=\
+    \ mid[d] - l0, R += mid[d] - r0;\r\n        if (f) L = l0, R = r0;\r\n      }\r\
+    \n    }\r\n    if (COMPRESS) ret = key[ret];\r\n    return ret;\r\n  }\r\n\r\n\
+    \  T kth(vc<pair<int, int>> segments, int k, T xor_val = 0) {\r\n    int total_len\
+    \ = 0;\r\n    for (auto&& [L, R]: segments) total_len += R - L;\r\n    assert(0\
     \ <= k && k < total_len);\r\n    int cnt = 0;\r\n    T ret = 0;\r\n    for (int\
     \ d = lg - 1; d >= 0; --d) {\r\n      bool f = (xor_val >> d) & 1;\r\n      int\
     \ c = 0;\r\n      for (auto&& [L, R]: segments) {\r\n        int l0 = bv[d].rank(L,\
@@ -488,7 +489,7 @@ data:
   isVerificationFile: true
   path: test/mytest/wavelet_matrix.test.cpp
   requiredBy: []
-  timestamp: '2023-03-29 02:31:27+09:00'
+  timestamp: '2023-03-29 03:38:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/wavelet_matrix.test.cpp
