@@ -115,6 +115,7 @@ struct Wavelet_Matrix {
         if (f) L = l0, R = r0;
       }
     }
+    if (k) sm = MX::op(sm, get(0, L, L + k));
     if (COMPRESS) ret = key[ret];
     return {ret, sm};
   }
