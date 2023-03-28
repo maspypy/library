@@ -12,7 +12,7 @@ void solve() {
   auto get = [&](ll L, ll R) -> ll {
     assert(L < R);
     ll n = R - L;
-    return WM.median(0, L, R, (n - 1) / 2);
+    return WM.median(0, L, R);
   };
 
   FOR3(K, 1, N + 1) {
