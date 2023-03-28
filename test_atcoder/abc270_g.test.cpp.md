@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_set/affine.hpp
     title: alg/acted_set/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_set/from_monoid.hpp
     title: alg/acted_set/from_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc270/tasks/abc270_g
@@ -329,51 +329,48 @@ data:
     \ && keys[i] == key;\r\n  }\r\n\r\n  void reset() {\r\n    for (auto&& i: IDS)\
     \ used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  // f(key, val)\r\n  template\
     \ <typename F>\r\n  void enumerate_all(F f) {\r\n    for (auto&& i: IDS) f(keys[i],\
-    \ vals[i]);\r\n  }\r\n};\r\n#line 3 \"nt/discrete_log.hpp\"\n\r\n// \u7FA4 X \u306E\
-    \u4F5C\u7528\u3059\u308B\u96C6\u5408 S\u3001\u30CF\u30C3\u30B7\u30E5\u95A2\u6570\
-    \ H\uFF1AS -> Z\r\n// x in G, s, t in S \u306B\u5BFE\u3057\u3066 x^ns = t \u3092\
-    \u89E3\u304F\r\n// [lb, ub) \u306E\u6700\u521D\u306E\u89E3\u3092\u304B\u3048\u3059\
-    \u3002\u306A\u3051\u308C\u3070 -1 \u3092\u304B\u3048\u3059\u3002\r\ntemplate <typename\
-    \ ActedSet, typename F, int MP_SIZE = 20>\r\nll discrete_log_acted(typename ActedSet::A\
-    \ x, typename ActedSet::S s,\r\n                      typename ActedSet::S t,\
-    \ F H, ll lb, ll ub) {\r\n  static HashMap<int, MP_SIZE> MP;\r\n  MP.reset();\r\
-    \n  using Group = typename ActedSet::Monoid_A;\r\n  using G = typename Group::value_type;\r\
-    \n  G xinv = Group::inverse(x);\r\n  assert(Group::op(x, xinv) == Group::unit());\r\
-    \n  if (lb >= ub) return -1;\r\n  auto xpow = [&](ll n) -> G {\r\n    G p = x;\r\
-    \n    G res = Group::unit();\r\n    while (n) {\r\n      if (n & 1) res = Group::op(res,\
-    \ p);\r\n      p = Group::op(p, p);\r\n      n /= 2;\r\n    }\r\n    return res;\r\
-    \n  };\r\n  s = ActedSet::act(s, xpow(lb));\r\n  u64 LIM = ub - lb;\r\n\r\n  ll\
-    \ K = sqrt(LIM) + 1;\r\n\r\n  FOR(k, K + 1) {\r\n    ll key = H(s);\r\n    if\
-    \ (!MP.count(key)) MP[key] = k;\r\n    if (k != K) s = ActedSet::act(s, x);\r\n\
-    \  }\r\n\r\n  x = Group::inverse(xpow(K));\r\n  FOR(k, K + 1) {\r\n    ll key\
-    \ = H(t);\r\n    if (MP.count(key)) {\r\n      ll res = k * K + MP[key] + lb;\r\
-    \n      return (res >= ub ? -1 : res);\r\n    }\r\n    t = ActedSet::act(t, x);\r\
-    \n  }\r\n  return -1;\r\n}\r\n\r\n// \u7FA4 X \u306B\u304A\u3051\u308B log_a b\
-    \ \u306E\u8A08\u7B97\r\n// \u30CF\u30C3\u30B7\u30E5\u95A2\u6570 H : X -> long\
-    \ long \u3092\u6301\u305F\u305B\u308B\r\n// [lb, ub) \u306E\u6700\u521D\u306E\u89E3\
-    \u3092\u304B\u3048\u3059\u3001\u306A\u3051\u308C\u3070 -1\r\ntemplate <typename\
-    \ Group, typename F>\r\nll discrete_log_group(typename Group::X a, typename Group::X\
-    \ b, F H, ll lb,\r\n                      ll ub) {\r\n  using AM = ActedSet_From_Monoid<Group>;\r\
-    \n  return discrete_log_acted<AM>(a, Group::unit(), b, H, lb, ub);\r\n}\n#line\
-    \ 8 \"test_atcoder/abc270_g.test.cpp\"\n\nusing mint = dmint;\n\nvoid solve()\
-    \ {\n  LL(P, A, B, S, G);\n  mint::set_mod(P);\n  if (A == 0) {\n    if (S ==\
-    \ G) return print(0);\n    if (B == G) return print(1);\n    return print(-1);\n\
-    \  }\n\n  using AS = ActedSet_Affine<mint>;\n  typename AS::A g = {A, B};\n  typename\
-    \ AS::S s = S;\n  typename AS::S t = G;\n  auto h = [&](mint x) -> ll { return\
-    \ x.val; };\n\n  ll ANS = discrete_log_acted<AS, decltype(h), 18>(g, s, t, h,\
-    \ 0, P);\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \ vals[i]);\r\n  }\r\n};\r\n#line 3 \"nt/discrete_log.hpp\"\n\r\n// \u30E2\u30CE\
+    \u30A4\u30C9 X \u306E\u4F5C\u7528\u3059\u308B\u96C6\u5408 S\u3001\u30CF\u30C3\u30B7\
+    \u30E5\u95A2\u6570 H\uFF1AS -> Z\r\n// x in X, s, t in S \u306B\u5BFE\u3057\u3066\
+    \ x^ns = t \u3092\u89E3\u304F\r\n// [lb, ub) \u306E\u6700\u521D\u306E\u89E3\u3092\
+    \u304B\u3048\u3059\u3002\u306A\u3051\u308C\u3070 -1 \u3092\u304B\u3048\u3059\u3002\
+    \r\ntemplate <typename ActedSet, typename F, int MP_SIZE = 20>\r\nll discrete_log_acted(typename\
+    \ ActedSet::A x, typename ActedSet::S s,\r\n                      typename ActedSet::S\
+    \ t, F H, ll lb, ll ub) {\r\n  static HashMap<bool, MP_SIZE> MP;\r\n  MP.reset();\r\
+    \n  using Mono = typename ActedSet::Monoid_A;\r\n  using X = typename Mono::value_type;\r\
+    \n  using S = typename ActedSet::S;\r\n\r\n  if (lb >= ub) return -1;\r\n  auto\
+    \ xpow = [&](ll n) -> X {\r\n    X p = x;\r\n    X res = Mono::unit();\r\n   \
+    \ while (n) {\r\n      if (n & 1) res = Mono::op(res, p);\r\n      p = Mono::op(p,\
+    \ p);\r\n      n /= 2;\r\n    }\r\n    return res;\r\n  };\r\n\r\n  auto Ht =\
+    \ H(t);\r\n  s = ActedSet::act(s, xpow(lb));\r\n  u64 LIM = ub - lb;\r\n\r\n \
+    \ ll K = sqrt(LIM) + 1;\r\n\r\n  FOR(k, K) {\r\n    t = ActedSet::act(t, x);\r\
+    \n    MP[H(t)] = 1;\r\n  }\r\n\r\n  X y = xpow(K);\r\n  int failed = 0;\r\n  FOR(k,\
+    \ K + 1) {\r\n    S s1 = ActedSet::act(s, y);\r\n    if (MP.count(H(s1))) {\r\n\
+    \      FOR(i, K) {\r\n        if (H(s) == Ht) {\r\n          ll ans = k * K +\
+    \ i + lb;\r\n          return (ans >= ub ? -1 : ans);\r\n        }\r\n       \
+    \ s = ActedSet::act(s, x);\r\n      }\r\n      if (failed) return -1;\r\n    \
+    \  failed = 1;\r\n    }\r\n    s = s1;\r\n  }\r\n  return -1;\r\n}\r\n\r\n// \u7FA4\
+    \ X \u306B\u304A\u3051\u308B log_a b \u306E\u8A08\u7B97\r\n// \u30CF\u30C3\u30B7\
+    \u30E5\u95A2\u6570 H : X -> long long \u3092\u6301\u305F\u305B\u308B\r\n// [lb,\
+    \ ub) \u306E\u6700\u521D\u306E\u89E3\u3092\u304B\u3048\u3059\u3001\u306A\u3051\
+    \u308C\u3070 -1\r\ntemplate <typename Monoid, typename F>\r\nll discrete_log_monoid(typename\
+    \ Monoid::X a, typename Monoid::X b, F H, ll lb,\r\n                       ll\
+    \ ub) {\r\n  using AM = ActedSet_From_Monoid<Monoid>;\r\n  return discrete_log_acted<AM>(a,\
+    \ Monoid::unit(), b, H, lb, ub);\r\n}\n#line 8 \"test_atcoder/abc270_g.test.cpp\"\
+    \n\nusing mint = dmint;\n\nvoid solve() {\n  LL(P, A, B, S, G);\n  mint::set_mod(P);\n\
+    \  using AS = ActedSet_Affine<mint>;\n  auto h = [&](mint x) -> ll { return x.val;\
+    \ };\n\n  ll ANS = discrete_log_acted<AS, decltype(h), 18>({A, B}, S, G, h, 0,\
+    \ P);\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
     \n  LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc270/tasks/abc270_g\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/monoid/affine.hpp\"\
     \n#include \"mod/dynamic_modint.hpp\"\n#include \"alg/acted_set/affine.hpp\"\n\
     #include \"nt/discrete_log.hpp\"\n\nusing mint = dmint;\n\nvoid solve() {\n  LL(P,\
-    \ A, B, S, G);\n  mint::set_mod(P);\n  if (A == 0) {\n    if (S == G) return print(0);\n\
-    \    if (B == G) return print(1);\n    return print(-1);\n  }\n\n  using AS =\
-    \ ActedSet_Affine<mint>;\n  typename AS::A g = {A, B};\n  typename AS::S s = S;\n\
-    \  typename AS::S t = G;\n  auto h = [&](mint x) -> ll { return x.val; };\n\n\
-    \  ll ANS = discrete_log_acted<AS, decltype(h), 18>(g, s, t, h, 0, P);\n  print(ANS);\n\
-    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  LL(T);\n  FOR(T)\
-    \ solve();\n\n  return 0;\n}\n"
+    \ A, B, S, G);\n  mint::set_mod(P);\n  using AS = ActedSet_Affine<mint>;\n  auto\
+    \ h = [&](mint x) -> ll { return x.val; };\n\n  ll ANS = discrete_log_acted<AS,\
+    \ decltype(h), 18>({A, B}, S, G, h, 0, P);\n  print(ANS);\n}\n\nsigned main()\
+    \ {\n  cout << fixed << setprecision(15);\n\n  LL(T);\n  FOR(T) solve();\n\n \
+    \ return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -388,8 +385,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc270_g.test.cpp
   requiredBy: []
-  timestamp: '2023-03-15 05:03:14+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-03-28 11:16:12+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc270_g.test.cpp
 layout: document
