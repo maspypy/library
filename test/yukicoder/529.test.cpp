@@ -25,7 +25,7 @@ void solve() {
   vc<pq<ll>> wts(C);
   vc<pair<ll, int>> dat(C);
   FOR(i, C) dat[i] = {-infty<ll>, i};
-  Tree_Monoid<decltype(tree), Mono> TM(tree, dat);
+  Tree_Monoid<decltype(tree), Mono, 0> TM(tree, dat);
 
   FOR(Q) {
     LL(t);
