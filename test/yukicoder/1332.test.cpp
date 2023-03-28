@@ -12,7 +12,7 @@ void solve() {
     LL(l, r, x);
     --l;
     ll ANS = infty<ll>;
-    ll n = WM.prefix_count(l, r, x);
+    ll n = WM.count(l, r, 0, x);
     if (n > 0) chmin(ANS, abs(x - WM.kth(l, r, n - 1)));
     if (n < r - l) chmin(ANS, abs(x - WM.kth(l, r, n)));
     print(ANS);
@@ -20,13 +20,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }

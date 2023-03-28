@@ -1,27 +1,23 @@
 #define PROBLEM "https://yukicoder.me/problems/no/2065"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/wavelet_matrix_sum.hpp"
+#include "ds/wavelet_matrix.hpp"
 
 void solve() {
   LL(N, Q);
-  VEC(int, A, N);
-  Wavelet_Matrix_Sum<int, true, Monoid_Add<ll>> X(A);
+  VEC(ll, A, N);
+  Wavelet_Matrix<ll, true, Monoid_Add<ll>> X(A, A);
   FOR(Q) {
     LL(l, r, x);
     --l;
-    auto [cnt, sm] = X.prefix_count(l, r, x);
-    ll ANS = (r - l - cnt) * x + sm;
+    int k = X.count(l, r, 0, x);
+    ll sm = X.sum(l, r, 0, k);
+    ll ANS = (r - l - k) * x + sm;
     print(ANS);
   }
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
