@@ -11,7 +11,7 @@ void solve() {
   while (N % 5 == 0) N /= 5;
   dmint::set_mod(N);
   auto H = [&](dmint x) -> ll { return x.val; };
-  ll k = discrete_log_group<Monoid_Mul<dmint>>(dmint(10), dmint(1), H, 1, N + 10);
+  ll k = discrete_log_monoid<Monoid_Mul<dmint>>(dmint(10), dmint(1), H, 1, N + 10);
   print(k);
 }
 
