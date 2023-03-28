@@ -109,8 +109,8 @@ data:
     \  modint61 pow(int64_t n) const {\r\n    modint61 ret(1), mul(val);\r\n    while\
     \ (n > 0) {\r\n      if (n & 1) ret = ret * mul;\r\n      mul = mul * mul;\r\n\
     \      n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n  static constexpr ll get_mod()\
-    \ { return mod; }\r\n  void write() { fastio::printer.write(val); }\r\n  void\
-    \ read() { fastio::scanner.read(val); }\r\n};\r\n"
+    \ { return mod; }\r\n#ifdef FASTIO\r\n  void write() { fastio::printer.write(val);\
+    \ }\r\n  void read() { fastio::scanner.read(val); }\r\n#endif\r\n};\r\n"
   code: "#pragma once\r\nstruct modint61 {\r\n  static constexpr bool is_modint =\
     \ true;\r\n  static constexpr ll mod = (1LL << 61) - 1;\r\n  ll val;\r\n  constexpr\
     \ modint61(const ll x = 0) : val(x) {\r\n    while (val < 0) val += mod;\r\n \
@@ -140,8 +140,8 @@ data:
     \  modint61 pow(int64_t n) const {\r\n    modint61 ret(1), mul(val);\r\n    while\
     \ (n > 0) {\r\n      if (n & 1) ret = ret * mul;\r\n      mul = mul * mul;\r\n\
     \      n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n  static constexpr ll get_mod()\
-    \ { return mod; }\r\n  void write() { fastio::printer.write(val); }\r\n  void\
-    \ read() { fastio::scanner.read(val); }\r\n};\r\n"
+    \ { return mod; }\r\n#ifdef FASTIO\r\n  void write() { fastio::printer.write(val);\
+    \ }\r\n  void read() { fastio::scanner.read(val); }\r\n#endif\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
   path: mod/modint61.hpp
@@ -153,7 +153,7 @@ data:
   - graph/max_matching_size.hpp
   - random/hash_vector.hpp
   - mod/modular_subset_sum.hpp
-  timestamp: '2022-12-23 11:05:00+09:00'
+  timestamp: '2023-03-28 23:05:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/matching_line_graph.test.cpp

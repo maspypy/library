@@ -51,52 +51,53 @@ data:
     \n    return modint61(u);\r\n  }\r\n  modint61 pow(int64_t n) const {\r\n    modint61\
     \ ret(1), mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret = ret * mul;\r\
     \n      mul = mul * mul;\r\n      n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\
-    \n  static constexpr ll get_mod() { return mod; }\r\n  void write() { fastio::printer.write(val);\
-    \ }\r\n  void read() { fastio::scanner.read(val); }\r\n};\r\n#line 3 \"mod/modular_subset_sum.hpp\"\
-    \n\r\n// Faster Deterministic Modular Subset Sum. arXiv preprint arXiv:2012.06062.\r\
-    \n// modular subset sum \u306E\u305F\u3081\u306E\u3001\u30B7\u30D5\u30C8\u4ED8\
-    \u304D\u30BB\u30B0\u6728\r\n// shift \u306B\u306F 2^(N-k) \u6642\u9593\u304B\u304B\
-    \u308B\r\nstruct ShiftTree {\r\n  using M61 = modint61;\r\n  int delta;\r\n  int\
-    \ N, n;\r\n  M61 base;\r\n  vc<M61> dat;\r\n  vc<M61> base_pow;\r\n\r\n  ShiftTree(int\
-    \ N, ll base) : delta(0), N(N), n(topbit(N)), base(base) {\r\n    assert(N ==\
-    \ (1 << n));\r\n    dat.assign(2 * N, 0);\r\n\r\n    base_pow.assign(n, 1);\r\n\
-    \    base_pow[n - 1] = base;\r\n    FOR_R(i, n - 1) base_pow[i] = base_pow[i +\
-    \ 1] * base_pow[i + 1];\r\n  }\r\n\r\n  inline int skew(int k) { return (delta\
-    \ >> (n - k)) & 1; }\r\n\r\n  inline int left(int k, int i) {\r\n    int mask\
-    \ = (1 << (k + 1)) - 1;\r\n    return ((2 * i + 0 - skew(k + 1)) & mask) + (1\
-    \ << (k + 1));\r\n  }\r\n\r\n  inline int right(int k, int i) {\r\n    int mask\
-    \ = (1 << (k + 1)) - 1;\r\n    return ((2 * i + 1 - skew(k + 1)) & mask) + (1\
-    \ << (k + 1));\r\n  }\r\n\r\n  inline int parent(int k, int i) {\r\n    int mask\
-    \ = (1 << k) - 1;\r\n    return (((i + skew(k)) & mask) + (1 << k)) / 2;\r\n \
-    \ }\r\n\r\n  inline void update(int k, int i) {\r\n    M61 b = base_pow[k];\r\n\
-    \    dat[i] = b * dat[left(k, i)] + dat[right(k, i)];\r\n  }\r\n\r\n  inline void\
-    \ set(int i, ll x) {\r\n    i = (i + N - delta) % N + N;\r\n    dat[i] = x;\r\n\
-    \    int k = n;\r\n    while (i != 1) {\r\n      i = parent(k, i);\r\n      --k;\r\
-    \n      update(k, i);\r\n    }\r\n  }\r\n\r\n  void shift(int k) {\r\n    k %=\
-    \ N;\r\n    if (k < 0) k += N;\r\n    if (k == 0) return;\r\n    int j = lowbit(k);\r\
-    \n    delta = (delta + k) % N;\r\n    FOR_R(k, n - j) { FOR3(i, 1 << k, 2 << k)\
-    \ update(k, i); }\r\n  }\r\n\r\n  // [a,b) \u306B\u304A\u3051\u308B difference\
-    \ \u306E\u5217\u6319\u3002output sensitive\u3002\r\n  // T \u306E\u30CE\u30FC\u30C9\
-    \ i\u3001Q \u306E\u30CE\u30FC\u30C9 j \u304C (x,y) \u3092\u6307\u3059\u3068\u3059\
-    \u308B\u3002\r\n  static void find_differences(vc<int>& res, ShiftTree& T, ShiftTree&\
-    \ Q, int a,\r\n                               int b, int k, int i, int j, int\
-    \ x, int y) {\r\n    if (T.dat[i] == Q.dat[j]) return;\r\n    if (max(a, x) >=\
-    \ min(b, y)) return;\r\n    if (y == x + 1) {\r\n      res.eb(x);\r\n      return;\r\
-    \n    }\r\n    int z = (x + y) / 2;\r\n    find_differences(res, T, Q, a, b, k\
-    \ + 1, T.left(k, i), Q.left(k, j), x, z);\r\n    find_differences(res, T, Q, a,\
-    \ b, k + 1, T.right(k, i), Q.right(k, j), z,\r\n                     y);\r\n \
-    \ }\r\n\r\n  static vc<int> diff(ShiftTree& T, ShiftTree& Q, int a, int b) {\r\
-    \n    assert(T.N == Q.N);\r\n    vc<int> res;\r\n    find_differences(res, T,\
-    \ Q, a, b, 0, 1, 1, 0, T.N);\r\n    return res;\r\n  }\r\n};\r\n\r\n/*\r\n\u8A08\
-    \u7B97\u91CF\uFF1A(|vals| + mod) * log(mod)\r\n\u30FBcan(x) \u307E\u305F\u306F\
-    \ [x] \u3067 bool \u3092\u8FD4\u3059\u3002\r\n\u30FBrestore(x) \u3067\u5FA9\u5143\
-    \u3002\r\n\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u306B\u306F\u3001(mod, vals)\
-    \ \u3092\u308F\u305F\u3059\r\n*/\r\ntemplate <typename INT>\r\nstruct Modular_Subset_Sum\
-    \ {\r\n  int mod;\r\n  vc<INT>& vals;\r\n  vc<int> par;\r\n\r\n  Modular_Subset_Sum(int\
-    \ mod, vc<INT>& vals) : mod(mod), vals(vals) {\r\n    for (auto&& x: vals) assert(0\
-    \ <= x && x < mod);\r\n    par.assign(mod, -1);\r\n\r\n    const ll base = RNG(0,\
-    \ (1LL << 61) - 1);\r\n\r\n    int k = 1;\r\n    while ((1 << k) < 2 * mod) ++k;\r\
-    \n\r\n    int L = 1 << k;\r\n    assert(L >= 2 * mod);\r\n\r\n    ShiftTree T1(L,\
+    \n  static constexpr ll get_mod() { return mod; }\r\n#ifdef FASTIO\r\n  void write()\
+    \ { fastio::printer.write(val); }\r\n  void read() { fastio::scanner.read(val);\
+    \ }\r\n#endif\r\n};\r\n#line 3 \"mod/modular_subset_sum.hpp\"\n\r\n// Faster Deterministic\
+    \ Modular Subset Sum. arXiv preprint arXiv:2012.06062.\r\n// modular subset sum\
+    \ \u306E\u305F\u3081\u306E\u3001\u30B7\u30D5\u30C8\u4ED8\u304D\u30BB\u30B0\u6728\
+    \r\n// shift \u306B\u306F 2^(N-k) \u6642\u9593\u304B\u304B\u308B\r\nstruct ShiftTree\
+    \ {\r\n  using M61 = modint61;\r\n  int delta;\r\n  int N, n;\r\n  M61 base;\r\
+    \n  vc<M61> dat;\r\n  vc<M61> base_pow;\r\n\r\n  ShiftTree(int N, ll base) : delta(0),\
+    \ N(N), n(topbit(N)), base(base) {\r\n    assert(N == (1 << n));\r\n    dat.assign(2\
+    \ * N, 0);\r\n\r\n    base_pow.assign(n, 1);\r\n    base_pow[n - 1] = base;\r\n\
+    \    FOR_R(i, n - 1) base_pow[i] = base_pow[i + 1] * base_pow[i + 1];\r\n  }\r\
+    \n\r\n  inline int skew(int k) { return (delta >> (n - k)) & 1; }\r\n\r\n  inline\
+    \ int left(int k, int i) {\r\n    int mask = (1 << (k + 1)) - 1;\r\n    return\
+    \ ((2 * i + 0 - skew(k + 1)) & mask) + (1 << (k + 1));\r\n  }\r\n\r\n  inline\
+    \ int right(int k, int i) {\r\n    int mask = (1 << (k + 1)) - 1;\r\n    return\
+    \ ((2 * i + 1 - skew(k + 1)) & mask) + (1 << (k + 1));\r\n  }\r\n\r\n  inline\
+    \ int parent(int k, int i) {\r\n    int mask = (1 << k) - 1;\r\n    return (((i\
+    \ + skew(k)) & mask) + (1 << k)) / 2;\r\n  }\r\n\r\n  inline void update(int k,\
+    \ int i) {\r\n    M61 b = base_pow[k];\r\n    dat[i] = b * dat[left(k, i)] + dat[right(k,\
+    \ i)];\r\n  }\r\n\r\n  inline void set(int i, ll x) {\r\n    i = (i + N - delta)\
+    \ % N + N;\r\n    dat[i] = x;\r\n    int k = n;\r\n    while (i != 1) {\r\n  \
+    \    i = parent(k, i);\r\n      --k;\r\n      update(k, i);\r\n    }\r\n  }\r\n\
+    \r\n  void shift(int k) {\r\n    k %= N;\r\n    if (k < 0) k += N;\r\n    if (k\
+    \ == 0) return;\r\n    int j = lowbit(k);\r\n    delta = (delta + k) % N;\r\n\
+    \    FOR_R(k, n - j) { FOR3(i, 1 << k, 2 << k) update(k, i); }\r\n  }\r\n\r\n\
+    \  // [a,b) \u306B\u304A\u3051\u308B difference \u306E\u5217\u6319\u3002output\
+    \ sensitive\u3002\r\n  // T \u306E\u30CE\u30FC\u30C9 i\u3001Q \u306E\u30CE\u30FC\
+    \u30C9 j \u304C (x,y) \u3092\u6307\u3059\u3068\u3059\u308B\u3002\r\n  static void\
+    \ find_differences(vc<int>& res, ShiftTree& T, ShiftTree& Q, int a,\r\n      \
+    \                         int b, int k, int i, int j, int x, int y) {\r\n    if\
+    \ (T.dat[i] == Q.dat[j]) return;\r\n    if (max(a, x) >= min(b, y)) return;\r\n\
+    \    if (y == x + 1) {\r\n      res.eb(x);\r\n      return;\r\n    }\r\n    int\
+    \ z = (x + y) / 2;\r\n    find_differences(res, T, Q, a, b, k + 1, T.left(k, i),\
+    \ Q.left(k, j), x, z);\r\n    find_differences(res, T, Q, a, b, k + 1, T.right(k,\
+    \ i), Q.right(k, j), z,\r\n                     y);\r\n  }\r\n\r\n  static vc<int>\
+    \ diff(ShiftTree& T, ShiftTree& Q, int a, int b) {\r\n    assert(T.N == Q.N);\r\
+    \n    vc<int> res;\r\n    find_differences(res, T, Q, a, b, 0, 1, 1, 0, T.N);\r\
+    \n    return res;\r\n  }\r\n};\r\n\r\n/*\r\n\u8A08\u7B97\u91CF\uFF1A(|vals| +\
+    \ mod) * log(mod)\r\n\u30FBcan(x) \u307E\u305F\u306F [x] \u3067 bool \u3092\u8FD4\
+    \u3059\u3002\r\n\u30FBrestore(x) \u3067\u5FA9\u5143\u3002\r\n\u30B3\u30F3\u30B9\
+    \u30C8\u30E9\u30AF\u30BF\u306B\u306F\u3001(mod, vals) \u3092\u308F\u305F\u3059\
+    \r\n*/\r\ntemplate <typename INT>\r\nstruct Modular_Subset_Sum {\r\n  int mod;\r\
+    \n  vc<INT>& vals;\r\n  vc<int> par;\r\n\r\n  Modular_Subset_Sum(int mod, vc<INT>&\
+    \ vals) : mod(mod), vals(vals) {\r\n    for (auto&& x: vals) assert(0 <= x &&\
+    \ x < mod);\r\n    par.assign(mod, -1);\r\n\r\n    const ll base = RNG(0, (1LL\
+    \ << 61) - 1);\r\n\r\n    int k = 1;\r\n    while ((1 << k) < 2 * mod) ++k;\r\n\
+    \r\n    int L = 1 << k;\r\n    assert(L >= 2 * mod);\r\n\r\n    ShiftTree T1(L,\
     \ base);\r\n    ShiftTree T2(L, base);\r\n    T1.set(0, 1);\r\n    T2.set(0, 1);\r\
     \n    T2.set(L - mod, 1);\r\n\r\n    auto bit_rev = [&](int i) -> int {\r\n  \
     \    int x = 0;\r\n      FOR(k) {\r\n        x = 2 * x + (i & 1);\r\n        i\
@@ -178,7 +179,7 @@ data:
   isVerificationFile: false
   path: mod/modular_subset_sum.hpp
   requiredBy: []
-  timestamp: '2022-12-23 11:05:00+09:00'
+  timestamp: '2023-03-28 23:05:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/4_1.test.cpp

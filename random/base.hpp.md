@@ -373,9 +373,6 @@ data:
     path: test/mytest/wavelet_matrix.test.cpp
     title: test/mytest/wavelet_matrix.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/wavelet_matrix_sum.test.cpp
-    title: test/mytest/wavelet_matrix_sum.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/xor_transpose.test.cpp
     title: test/mytest/xor_transpose.test.cpp
   - icon: ':heavy_check_mark:'
@@ -575,7 +572,6 @@ data:
   - test/mytest/vandermonde.test.cpp
   - test/mytest/splay_monoid.test.cpp
   - test/mytest/online_inv.test.cpp
-  - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/pascal.test.cpp
   - test/mytest/max_assign.test.cpp
   - test/mytest/splay.test.cpp

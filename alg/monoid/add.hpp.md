@@ -74,9 +74,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/range_add_range_sum.hpp
     title: ds/range_add_range_sum.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/wavelet_matrix_sum.hpp
-    title: ds/wavelet_matrix_sum.hpp
+  - icon: ':question:'
+    path: ds/wavelet_matrix.hpp
+    title: ds/wavelet_matrix.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/contour_sum.hpp
     title: graph/ds/contour_sum.hpp
@@ -171,6 +171,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
+    title: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
+    title: test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
@@ -253,8 +259,8 @@ data:
     path: test/mytest/summin_add.test.cpp
     title: test/mytest/summin_add.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/wavelet_matrix_sum.test.cpp
-    title: test/mytest/wavelet_matrix_sum.test.cpp
+    path: test/mytest/wavelet_matrix.test.cpp
+    title: test/mytest/wavelet_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
@@ -288,6 +294,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1326.test.cpp
     title: test/yukicoder/1326.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1332.test.cpp
+    title: test/yukicoder/1332.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1441.test.cpp
     title: test/yukicoder/1441.test.cpp
@@ -316,9 +325,6 @@ data:
     path: test/yukicoder/2003.test.cpp
     title: test/yukicoder/2003.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2065.test.cpp
-    title: test/yukicoder/2065.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2161.test.cpp
     title: test/yukicoder/2161.test.cpp
   - icon: ':heavy_check_mark:'
@@ -345,12 +351,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/924.test.cpp
-    title: test/yukicoder/924.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test_atcoder/abc127f_1.test.cpp
-    title: test_atcoder/abc127f_1.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/919.test.cpp
+    title: test/yukicoder/919.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc174f.test.cpp
     title: test_atcoder/abc174f.test.cpp
@@ -375,9 +378,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc268_ex.test.cpp
     title: test_atcoder/abc268_ex.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -419,8 +422,8 @@ data:
   - graph/ds/contour_sum.hpp
   - ds/range_add_range_sum.hpp
   - ds/doubling.hpp
+  - ds/wavelet_matrix.hpp
   - ds/cumsum_2d.hpp
-  - ds/wavelet_matrix_sum.hpp
   - ds/fenwicktree/fenwicktree.hpp
   - ds/fenwicktree/fenwicktree_2d_dense.hpp
   - ds/fenwicktree/fenwicktree_2d.hpp
@@ -429,11 +432,10 @@ data:
   - ds/offline_query/point_add_rectangle_sum.hpp
   - ds/offline_query/rectangle_add_rectangle_sum.hpp
   timestamp: '2022-11-28 14:51:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc266h_2.test.cpp
   - test_atcoder/abc256ex2.test.cpp
-  - test_atcoder/abc127f_1.test.cpp
   - test_atcoder/abc174f.test.cpp
   - test_atcoder/abc234g.test.cpp
   - test_atcoder/abc268_ex.test.cpp
@@ -451,8 +453,8 @@ data:
   - test/mytest/splay_am.test.cpp
   - test/mytest/maxidx_add.test.cpp
   - test/mytest/kdtree_am.test.cpp
-  - test/mytest/wavelet_matrix_sum.test.cpp
   - test/mytest/rbst_commutative_persistent.test.cpp
+  - test/mytest/wavelet_matrix.test.cpp
   - test/mytest/splay_cm.test.cpp
   - test/mytest/minidx_add.test.cpp
   - test/aoj/ALDS1_5.test.cpp
@@ -471,6 +473,7 @@ data:
   - test/yukicoder/789_3.test.cpp
   - test/yukicoder/1490.test.cpp
   - test/yukicoder/1838.test.cpp
+  - test/yukicoder/1332.test.cpp
   - test/yukicoder/655.test.cpp
   - test/yukicoder/1234.test.cpp
   - test/yukicoder/899.test.cpp
@@ -486,14 +489,13 @@ data:
   - test/yukicoder/789.test.cpp
   - test/yukicoder/1269.test.cpp
   - test/yukicoder/1097.test.cpp
-  - test/yukicoder/2065.test.cpp
   - test/yukicoder/1720.test.cpp
-  - test/yukicoder/924.test.cpp
   - test/yukicoder/789_2.test.cpp
   - test/yukicoder/1038.test.cpp
   - test/yukicoder/1216_2.test.cpp
   - test/yukicoder/1641.test.cpp
   - test/yukicoder/1919.test.cpp
+  - test/yukicoder/919.test.cpp
   - test/yukicoder/1326.test.cpp
   - test/yukicoder/1197.test.cpp
   - test/yukicoder/1270.test.cpp
@@ -503,6 +505,7 @@ data:
   - test/library_checker/datastructure/point_add_range_sum.test.cpp
   - test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_group.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
@@ -517,6 +520,7 @@ data:
   - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp

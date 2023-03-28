@@ -72,12 +72,13 @@ data:
     \n    return modint61(u);\r\n  }\r\n  modint61 pow(int64_t n) const {\r\n    modint61\
     \ ret(1), mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret = ret * mul;\r\
     \n      mul = mul * mul;\r\n      n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\
-    \n  static constexpr ll get_mod() { return mod; }\r\n  void write() { fastio::printer.write(val);\
-    \ }\r\n  void read() { fastio::scanner.read(val); }\r\n};\r\n#line 5 \"random/hash_vector.hpp\"\
-    \n\ntemplate <typename T>\nu64 hash_vector(vc<T> X) {\n  using mint = modint61;\n\
-    \  static vc<mint> hash_base;\n  int n = len(X);\n  while (len(hash_base) <= n)\
-    \ { hash_base.eb(RNG(mint::get_mod())); }\n  mint H = 0;\n  FOR(i, n) H += hash_base[i]\
-    \ * mint(X[i]);\n  H += hash_base[n];\n  return H.val;\n}\n"
+    \n  static constexpr ll get_mod() { return mod; }\r\n#ifdef FASTIO\r\n  void write()\
+    \ { fastio::printer.write(val); }\r\n  void read() { fastio::scanner.read(val);\
+    \ }\r\n#endif\r\n};\r\n#line 5 \"random/hash_vector.hpp\"\n\ntemplate <typename\
+    \ T>\nu64 hash_vector(vc<T> X) {\n  using mint = modint61;\n  static vc<mint>\
+    \ hash_base;\n  int n = len(X);\n  while (len(hash_base) <= n) { hash_base.eb(RNG(mint::get_mod()));\
+    \ }\n  mint H = 0;\n  FOR(i, n) H += hash_base[i] * mint(X[i]);\n  H += hash_base[n];\n\
+    \  return H.val;\n}\n"
   code: "#pragma once\n\n#include \"random/base.hpp\"\n#include \"mod/modint61.hpp\"\
     \n\ntemplate <typename T>\nu64 hash_vector(vc<T> X) {\n  using mint = modint61;\n\
     \  static vc<mint> hash_base;\n  int n = len(X);\n  while (len(hash_base) <= n)\
@@ -90,7 +91,7 @@ data:
   path: random/hash_vector.hpp
   requiredBy:
   - other/connected_dp.hpp
-  timestamp: '2023-01-31 21:39:16+09:00'
+  timestamp: '2023-03-28 23:05:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/tdpc_grid_dp.test.cpp
