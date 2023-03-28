@@ -1,7 +1,7 @@
 #include "graph/tree.hpp"
 #include "ds/segtree/dual_segtree.hpp"
 
-template <typename TREE, typename Monoid, bool edge = false>
+template <typename TREE, typename Monoid, bool edge>
 struct Dual_Tree_Monoid {
   using X = typename Monoid::value_type;
   TREE &tree;
