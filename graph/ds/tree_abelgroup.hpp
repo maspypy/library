@@ -1,8 +1,8 @@
 #include "ds/fenwicktree/fenwicktree.hpp"
 #include "graph/tree.hpp"
 
-template <typename TREE, typename AbelGroup, bool edge = false,
-          bool path_query = true, bool subtree_query = false>
+template <typename TREE, typename AbelGroup, bool edge, bool path_query,
+          bool subtree_query>
 struct Tree_AbelGroup {
   using X = typename AbelGroup::value_type;
   TREE &tree;

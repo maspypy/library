@@ -1,7 +1,7 @@
 #include "ds/segtree/lazy_segtree.hpp"
 #include "graph/tree.hpp"
 
-template <typename TREE, typename ActedMonoid, bool edge = false>
+template <typename TREE, typename ActedMonoid, bool edge>
 struct Lazy_Tree_Monoid {
   using MonoX = typename ActedMonoid::Monoid_X;
   using MonoA = typename ActedMonoid::Monoid_A;

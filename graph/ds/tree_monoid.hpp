@@ -4,7 +4,7 @@
 #include "graph/tree.hpp"
 #include "alg/monoid/monoid_reverse.hpp"
 
-template <typename TREE, typename Monoid, bool edge = false>
+template <typename TREE, typename Monoid, bool edge>
 struct Tree_Monoid {
   using RevMonoid = Monoid_Reverse<Monoid>;
   using X = typename Monoid::value_type;
