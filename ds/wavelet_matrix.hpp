@@ -12,12 +12,18 @@ struct Wavelet_Matrix {
   vector<int> mid;
   vector<Bit_Vector> bv;
   vc<T> key;
-  const bool set_log;
+  bool set_log;
   vvc<X> cumsum;
 
+  Wavelet_Matrix() {}
+
   // 和を使わないなら、SUM_data は空でよい
-  Wavelet_Matrix(vc<T> A, vc<X> SUM_data = {}, int log = -1)
-      : N(len(A)), lg(log), set_log(log != -1) {
+  Wavelet_Matrix(vc<T> A, vc<X> SUM_data = {}, int log = -1) {
+    build(A, SUM_data, log);
+  }
+
+  void build(vc<T> A, vc<X> SUM_data = {}, int log = -1) {
+    N = len(A), lg = log, set_log = (log != -1);
     bool MAKE_SUM = !(SUM_data.empty());
     vc<X>& S = SUM_data;
     if (COMPRESS) {
@@ -166,7 +172,7 @@ struct Wavelet_Matrix {
     return ret;
   }
 
-  T kth(vc<pair<int, int>> segments, int L, int R, int k, T xor_val = 0) {
+  T kth(vc<pair<int, int>> segments, int k, T xor_val = 0) {
     int total_len = 0;
     for (auto&& [L, R]: segments) total_len += R - L;
     assert(0 <= k && k < total_len);
