@@ -97,76 +97,99 @@ data:
     \ L = l0, R = r0;\r\n      }\r\n    }\r\n    sm = MX::op(sm, get(0, L, L + k -\
     \ cnt));\r\n    if (COMPRESS) ret = key[ret];\r\n    return {ret, sm};\r\n  }\r\
     \n\r\n  // xor \u3057\u305F\u7D50\u679C\u3067\u3001[L, R) \u306E\u4E2D\u3067 k>=0\
-    \ \u756A\u76EE\r\n  T kth(int L, int R, int k, T xor_val = 0) {\r\n    if (xor_val\
-    \ != 0) assert(set_log);\r\n    assert(0 <= k && k < R - L);\r\n    int cnt =\
-    \ 0;\r\n    T ret = 0;\r\n    for (int d = lg - 1; d >= 0; --d) {\r\n      bool\
-    \ f = (xor_val >> d) & 1;\r\n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R,\
-    \ 0);\r\n      int c = (f ? (R - L) - (r0 - l0) : (r0 - l0));\r\n      if (cnt\
-    \ + c > k) {\r\n        if (!f) L = l0, R = r0;\r\n        if (f) L += mid[d]\
-    \ - l0, R += mid[d] - r0;\r\n      } else {\r\n        cnt += c, ret |= T(1) <<\
-    \ d;\r\n        if (!f) L += mid[d] - l0, R += mid[d] - r0;\r\n        if (f)\
-    \ L = l0, R = r0;\r\n      }\r\n    }\r\n    if (COMPRESS) ret = key[ret];\r\n\
-    \    return ret;\r\n  }\r\n\r\n  T kth(vc<pair<int, int>> segments, int L, int\
-    \ R, int k, T xor_val = 0) {\r\n    int total_len = 0;\r\n    for (auto&& [L,\
-    \ R]: segments) total_len += R - L;\r\n    assert(0 <= k && k < total_len);\r\n\
-    \  }\r\n\r\n  // xor \u3057\u305F\u7D50\u679C\u3067\u3001[L, R) \u306E\u4E2D\u3067\
-    \u4E2D\u592E\u5024\u3002\r\n  // LOWER = true\uFF1A\u4E0B\u5074\u4E2D\u592E\u5024\
-    \u3001false\uFF1A\u4E0A\u5074\u4E2D\u592E\u5024\r\n  T median(bool UPPER, int\
-    \ L, int R, T xor_val = 0) {\r\n    int n = R - L;\r\n    int k = (UPPER ? n /\
-    \ 2 : (n - 1) / 2);\r\n    return kth(L, R, k, xor_val);\r\n  }\r\n\r\n  T median(bool\
-    \ UPPER, vc<pair<int, int>> segments, T xor_val = 0) {\r\n    int n = 0;\r\n \
-    \   for (auto&& [L, R]: segments) n += R - L;\r\n    int k = (UPPER ? n / 2 :\
-    \ (n - 1) / 2);\r\n    return kth(segments, k, xor_val);\r\n  }\r\n\r\n  // xor\
-    \ \u3057\u305F\u7D50\u679C\u3067 [k1, k2) \u756A\u76EE\u3067\u3042\u308B\u3068\
-    \u3053\u308D\u306E SUM_data \u306E\u548C\r\n  X sum(int L, int R, int k1, int\
-    \ k2, T xor_val = 0) {\r\n    return prefix_sum(L, R, k2, xor_val) - prefix_sum(L,\
-    \ R, k1, xor_val);\r\n  }\r\n\r\n  X sum_all(int L, int R) { return get(lg, L,\
-    \ R); }\r\n\r\n  X sum_all(vc<pair<int, int>> segments) {\r\n    X sm = MX::unit();\r\
-    \n    for (auto&& [L, R]: segments) { sm = MX::op(sm, get(lg, L, R)); }\r\n  \
-    \  return sm;\r\n  }\r\n\r\n  // check(cnt, prefix sum) \u304C true \u3068\u306A\
-    \u308B\u3088\u3046\u306A\u6700\u5927\u306E (cnt, sum)\r\n  template <typename\
-    \ F>\r\n  pair<int, X> max_right(F check, int L, int R, T xor_val = 0) {\r\n \
-    \   assert(check(0, MX::unit()));\r\n    if (xor_val != 0) assert(set_log);\r\n\
-    \    if (check(R - L, get(lg, L, R))) return {R - L, get(lg, L, R)};\r\n    int\
-    \ cnt = 0;\r\n    X sm = MX::unit();\r\n    for (int d = lg - 1; d >= 0; --d)\
-    \ {\r\n      bool f = (xor_val >> d) & 1;\r\n      int l0 = bv[d].rank(L, 0),\
-    \ r0 = bv[d].rank(R, 0);\r\n      int c = (f ? (R - L) - (r0 - l0) : (r0 - l0));\r\
-    \n      X s = (f ? get(d, L + mid[d] - l0, R + mid[d] - r0) : get(d, l0, r0));\r\
-    \n      if (check(cnt + c, MX::op(sm, s))) {\r\n        cnt += c, sm = MX::op(sm,\
-    \ s);\r\n        if (f) L = l0, R = r0;\r\n        if (!f) L += mid[d] - l0, R\
-    \ += mid[d] - r0;\r\n      } else {\r\n        if (!f) L = l0, R = r0;\r\n   \
-    \     if (f) L += mid[d] - l0, R += mid[d] - r0;\r\n      }\r\n    }\r\n    int\
-    \ k = binary_search(\r\n        [&](int k) -> bool {\r\n          return check(cnt\
-    \ + k, MX::op(sm, get(0, L, L + k)));\r\n        },\r\n        0, R - L);\r\n\
-    \    cnt += k;\r\n    sm = MX::op(sm, get(0, L, L + k));\r\n    return {cnt, sm};\r\
-    \n  }\r\n\r\nprivate:\r\n  inline X get(int d, int L, int R) {\r\n    return MX::op(MX::inverse(cumsum[d][L]),\
-    \ cumsum[d][R]);\r\n  }\r\n\r\n  // xor \u3057\u305F\u7D50\u679C\u3067 [0, x)\
-    \ \u306B\u53CE\u307E\u308B\u3082\u306E\u3092\u6570\u3048\u308B\r\n  int prefix_count(int\
-    \ L, int R, T x, T xor_val = 0) {\r\n    if (xor_val != 0) assert(set_log);\r\n\
-    \    x = (COMPRESS ? LB(key, x) : x);\r\n    if (x == 0) return 0;\r\n    if (x\
-    \ >= (1 << lg)) return R - L;\r\n    int cnt = 0;\r\n    FOR_R(d, lg) {\r\n  \
-    \    bool add = (x >> d) & 1;\r\n      bool f = ((xor_val) >> d) & 1;\r\n    \
-    \  int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\n      int kf = (f ? (R\
-    \ - L) - (r0 - l0) : (r0 - l0));\r\n      if (add) {\r\n        cnt += kf;\r\n\
-    \        if (f) { L = l0, R = r0; }\r\n        if (!f) { L += mid[d] - l0, R +=\
-    \ mid[d] - r0; }\r\n      } else {\r\n        if (!f) L = l0, R = r0;\r\n    \
-    \    if (f) L += mid[d] - l0, R += mid[d] - r0;\r\n      }\r\n    }\r\n    return\
-    \ cnt;\r\n  }\r\n\r\n  // xor \u3057\u305F\u7D50\u679C\u3067 [0, k) \u756A\u76EE\
-    \u306E\u3082\u306E\u306E\u548C\r\n  X prefix_sum(int L, int R, int k, T xor_val\
-    \ = 0) {\r\n    if (xor_val != 0) assert(set_log);\r\n    assert(0 <= k && k <=\
-    \ R - L);\r\n    if (k == 0) return MX::unit();\r\n    if (k == R - L) return\
-    \ sum_all(L, R);\r\n    assert(!cumsum.empty());\r\n\r\n    X sm = MX::unit();\r\
-    \n    for (int d = lg - 1; d >= 0; --d) {\r\n      bool f = (xor_val >> d) & 1;\r\
-    \n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\n      int c = (f\
-    \ ? (R - L) - (r0 - l0) : (r0 - l0));\r\n      X s = (f ? get(d, L + mid[d] -\
-    \ l0, R + mid[d] - r0) : get(d, l0, r0));\r\n      if (k < c) {\r\n        if\
-    \ (!f) L = l0, R = r0;\r\n        if (f) L += mid[d] - l0, R += mid[d] - r0;\r\
-    \n      } else {\r\n        k -= c, sm = MX::op(sm, s);\r\n        if (f) { L\
-    \ = l0, R = r0; }\r\n        if (!f) { L += mid[d] - l0, R += mid[d] - r0; }\r\
-    \n      }\r\n    }\r\n    if (k) sm = MX::op(sm, get(0, L, L + k));\r\n    return\
-    \ sm;\r\n  }\r\n\r\n  // xor \u3057\u305F\u7D50\u679C\u3067 [0, k) \u756A\u76EE\
-    \u306E\u3082\u306E\u306E\u548C\r\n  X prefix_sum(vc<pair<int, int>> segments,\
-    \ int k, T xor_val = 0) {}\r\n};\n"
+    \ \u756A\u76EE\u3068 prefix sum\r\n  pair<T, X> kth_value_and_sum(vc<pair<int,\
+    \ int>> segments, int k,\r\n                               T xor_val = 0) {\r\n\
+    \    if (xor_val != 0) assert(set_log);\r\n    int total_len = 0;\r\n    for (auto&&\
+    \ [L, R]: segments) total_len += R - L;\r\n    assert(0 <= k && k <= total_len);\r\
+    \n    if (k == total_len) { return {infty<T>, sum_all(segments)}; }\r\n    int\
+    \ cnt = 0;\r\n    X sm = MX::unit();\r\n    T ret = 0;\r\n    for (int d = lg\
+    \ - 1; d >= 0; --d) {\r\n      bool f = (xor_val >> d) & 1;\r\n      int c = 0;\r\
+    \n      for (auto&& [L, R]: segments) {\r\n        int l0 = bv[d].rank(L, 0),\
+    \ r0 = bv[d].rank(R, 0);\r\n        c += (f ? (R - L) - (r0 - l0) : (r0 - l0));\r\
+    \n      }\r\n      if (cnt + c > k) {\r\n        for (auto&& [L, R]: segments)\
+    \ {\r\n          int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\n       \
+    \   if (!f) L = l0, R = r0;\r\n          if (f) L += mid[d] - l0, R += mid[d]\
+    \ - r0;\r\n        }\r\n      } else {\r\n        cnt += c, ret |= T(1) << d;\r\
+    \n        for (auto&& [L, R]: segments) {\r\n          int l0 = bv[d].rank(L,\
+    \ 0), r0 = bv[d].rank(R, 0);\r\n          X s = (f ? get(d, L + mid[d] - l0, R\
+    \ + mid[d] - r0) : get(d, l0, r0));\r\n          sm = MX::op(sm, s);\r\n     \
+    \     if (!f) L += mid[d] - l0, R += mid[d] - r0;\r\n          if (f) L = l0,\
+    \ R = r0;\r\n        }\r\n      }\r\n    }\r\n    for (auto&& [L, R]: segments)\
+    \ {\r\n      int t = min(R - L, k - cnt);\r\n      sm = MX::op(sm, get(0, L, L\
+    \ + t));\r\n      cnt += t;\r\n    }\r\n    if (COMPRESS) ret = key[ret];\r\n\
+    \    return {ret, sm};\r\n  }\r\n\r\n  // xor \u3057\u305F\u7D50\u679C\u3067\u3001\
+    [L, R) \u306E\u4E2D\u3067 k>=0 \u756A\u76EE\r\n  T kth(int L, int R, int k, T\
+    \ xor_val = 0) {\r\n    if (xor_val != 0) assert(set_log);\r\n    assert(0 <=\
+    \ k && k < R - L);\r\n    int cnt = 0;\r\n    T ret = 0;\r\n    for (int d = lg\
+    \ - 1; d >= 0; --d) {\r\n      bool f = (xor_val >> d) & 1;\r\n      int l0 =\
+    \ bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\n      int c = (f ? (R - L) - (r0\
+    \ - l0) : (r0 - l0));\r\n      if (cnt + c > k) {\r\n        if (!f) L = l0, R\
+    \ = r0;\r\n        if (f) L += mid[d] - l0, R += mid[d] - r0;\r\n      } else\
+    \ {\r\n        cnt += c, ret |= T(1) << d;\r\n        if (!f) L += mid[d] - l0,\
+    \ R += mid[d] - r0;\r\n        if (f) L = l0, R = r0;\r\n      }\r\n    }\r\n\
+    \    if (COMPRESS) ret = key[ret];\r\n    return ret;\r\n  }\r\n\r\n  T kth(vc<pair<int,\
+    \ int>> segments, int L, int R, int k, T xor_val = 0) {\r\n    int total_len =\
+    \ 0;\r\n    for (auto&& [L, R]: segments) total_len += R - L;\r\n    assert(0\
+    \ <= k && k < total_len);\r\n    int cnt = 0;\r\n    T ret = 0;\r\n    for (int\
+    \ d = lg - 1; d >= 0; --d) {\r\n      bool f = (xor_val >> d) & 1;\r\n      int\
+    \ c = 0;\r\n      for (auto&& [L, R]: segments) {\r\n        int l0 = bv[d].rank(L,\
+    \ 0), r0 = bv[d].rank(R, 0);\r\n        c += (f ? (R - L) - (r0 - l0) : (r0 -\
+    \ l0));\r\n      }\r\n      if (cnt + c > k) {\r\n        for (auto&& [L, R]:\
+    \ segments) {\r\n          int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\
+    \n          if (!f) L = l0, R = r0;\r\n          if (f) L += mid[d] - l0, R +=\
+    \ mid[d] - r0;\r\n        }\r\n      } else {\r\n        cnt += c, ret |= T(1)\
+    \ << d;\r\n        for (auto&& [L, R]: segments) {\r\n          int l0 = bv[d].rank(L,\
+    \ 0), r0 = bv[d].rank(R, 0);\r\n          if (!f) L += mid[d] - l0, R += mid[d]\
+    \ - r0;\r\n          if (f) L = l0, R = r0;\r\n        }\r\n      }\r\n    }\r\
+    \n    if (COMPRESS) ret = key[ret];\r\n    return ret;\r\n  }\r\n\r\n  // xor\
+    \ \u3057\u305F\u7D50\u679C\u3067\u3001[L, R) \u306E\u4E2D\u3067\u4E2D\u592E\u5024\
+    \u3002\r\n  // LOWER = true\uFF1A\u4E0B\u5074\u4E2D\u592E\u5024\u3001false\uFF1A\
+    \u4E0A\u5074\u4E2D\u592E\u5024\r\n  T median(bool UPPER, int L, int R, T xor_val\
+    \ = 0) {\r\n    int n = R - L;\r\n    int k = (UPPER ? n / 2 : (n - 1) / 2);\r\
+    \n    return kth(L, R, k, xor_val);\r\n  }\r\n\r\n  T median(bool UPPER, vc<pair<int,\
+    \ int>> segments, T xor_val = 0) {\r\n    int n = 0;\r\n    for (auto&& [L, R]:\
+    \ segments) n += R - L;\r\n    int k = (UPPER ? n / 2 : (n - 1) / 2);\r\n    return\
+    \ kth(segments, k, xor_val);\r\n  }\r\n\r\n  // xor \u3057\u305F\u7D50\u679C\u3067\
+    \ [k1, k2) \u756A\u76EE\u3067\u3042\u308B\u3068\u3053\u308D\u306E SUM_data \u306E\
+    \u548C\r\n  X sum(int L, int R, int k1, int k2, T xor_val = 0) {\r\n    return\
+    \ prefix_sum(L, R, k2, xor_val) - prefix_sum(L, R, k1, xor_val);\r\n  }\r\n\r\n\
+    \  X sum_all(int L, int R) { return get(lg, L, R); }\r\n\r\n  X sum_all(vc<pair<int,\
+    \ int>> segments) {\r\n    X sm = MX::unit();\r\n    for (auto&& [L, R]: segments)\
+    \ { sm = MX::op(sm, get(lg, L, R)); }\r\n    return sm;\r\n  }\r\n\r\n  // check(cnt,\
+    \ prefix sum) \u304C true \u3068\u306A\u308B\u3088\u3046\u306A\u6700\u5927\u306E\
+    \ (cnt, sum)\r\n  template <typename F>\r\n  pair<int, X> max_right(F check, int\
+    \ L, int R, T xor_val = 0) {\r\n    assert(check(0, MX::unit()));\r\n    if (xor_val\
+    \ != 0) assert(set_log);\r\n    if (check(R - L, get(lg, L, R))) return {R - L,\
+    \ get(lg, L, R)};\r\n    int cnt = 0;\r\n    X sm = MX::unit();\r\n    for (int\
+    \ d = lg - 1; d >= 0; --d) {\r\n      bool f = (xor_val >> d) & 1;\r\n      int\
+    \ l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\n      int c = (f ? (R - L)\
+    \ - (r0 - l0) : (r0 - l0));\r\n      X s = (f ? get(d, L + mid[d] - l0, R + mid[d]\
+    \ - r0) : get(d, l0, r0));\r\n      if (check(cnt + c, MX::op(sm, s))) {\r\n \
+    \       cnt += c, sm = MX::op(sm, s);\r\n        if (f) L = l0, R = r0;\r\n  \
+    \      if (!f) L += mid[d] - l0, R += mid[d] - r0;\r\n      } else {\r\n     \
+    \   if (!f) L = l0, R = r0;\r\n        if (f) L += mid[d] - l0, R += mid[d] -\
+    \ r0;\r\n      }\r\n    }\r\n    int k = binary_search(\r\n        [&](int k)\
+    \ -> bool {\r\n          return check(cnt + k, MX::op(sm, get(0, L, L + k)));\r\
+    \n        },\r\n        0, R - L);\r\n    cnt += k;\r\n    sm = MX::op(sm, get(0,\
+    \ L, L + k));\r\n    return {cnt, sm};\r\n  }\r\n\r\nprivate:\r\n  inline X get(int\
+    \ d, int L, int R) {\r\n    return MX::op(MX::inverse(cumsum[d][L]), cumsum[d][R]);\r\
+    \n  }\r\n\r\n  // xor \u3057\u305F\u7D50\u679C\u3067 [0, x) \u306B\u53CE\u307E\
+    \u308B\u3082\u306E\u3092\u6570\u3048\u308B\r\n  int prefix_count(int L, int R,\
+    \ T x, T xor_val = 0) {\r\n    if (xor_val != 0) assert(set_log);\r\n    x = (COMPRESS\
+    \ ? LB(key, x) : x);\r\n    if (x == 0) return 0;\r\n    if (x >= (1 << lg)) return\
+    \ R - L;\r\n    int cnt = 0;\r\n    FOR_R(d, lg) {\r\n      bool add = (x >> d)\
+    \ & 1;\r\n      bool f = ((xor_val) >> d) & 1;\r\n      int l0 = bv[d].rank(L,\
+    \ 0), r0 = bv[d].rank(R, 0);\r\n      int kf = (f ? (R - L) - (r0 - l0) : (r0\
+    \ - l0));\r\n      if (add) {\r\n        cnt += kf;\r\n        if (f) { L = l0,\
+    \ R = r0; }\r\n        if (!f) { L += mid[d] - l0, R += mid[d] - r0; }\r\n   \
+    \   } else {\r\n        if (!f) L = l0, R = r0;\r\n        if (f) L += mid[d]\
+    \ - l0, R += mid[d] - r0;\r\n      }\r\n    }\r\n    return cnt;\r\n  }\r\n\r\n\
+    \  // xor \u3057\u305F\u7D50\u679C\u3067 [0, k) \u756A\u76EE\u306E\u3082\u306E\
+    \u306E\u548C\r\n  X prefix_sum(int L, int R, int k, T xor_val = 0) {\r\n    return\
+    \ kth_value_and_sum(L, R, k, xor_val).se;\r\n  }\r\n\r\n  // xor \u3057\u305F\u7D50\
+    \u679C\u3067 [0, k) \u756A\u76EE\u306E\u3082\u306E\u306E\u548C\r\n  X prefix_sum(vc<pair<int,\
+    \ int>> segments, int k, T xor_val = 0) {\r\n    return kth_value_and_sum(segments,\
+    \ k, xor_val).se;\r\n  }\r\n};\n"
   code: "#include \"ds/bit_vector.hpp\"\r\n#include \"alg/monoid/add.hpp\"\r\n\r\n\
     // \u5EA7\u5727\u3059\u308B\u304B\u3069\u3046\u304B\u3092 COMPRESS \u3067\u6307\
     \u5B9A\u3059\u308B\r\n// xor \u7684\u306A\u4F7F\u3044\u65B9\u3092\u3059\u308B\u5834\
@@ -214,8 +237,29 @@ data:
     \ if (!f) L += mid[d] - l0, R += mid[d] - r0;\r\n        if (f) L = l0, R = r0;\r\
     \n      }\r\n    }\r\n    sm = MX::op(sm, get(0, L, L + k - cnt));\r\n    if (COMPRESS)\
     \ ret = key[ret];\r\n    return {ret, sm};\r\n  }\r\n\r\n  // xor \u3057\u305F\
-    \u7D50\u679C\u3067\u3001[L, R) \u306E\u4E2D\u3067 k>=0 \u756A\u76EE\r\n  T kth(int\
-    \ L, int R, int k, T xor_val = 0) {\r\n    if (xor_val != 0) assert(set_log);\r\
+    \u7D50\u679C\u3067\u3001[L, R) \u306E\u4E2D\u3067 k>=0 \u756A\u76EE\u3068 prefix\
+    \ sum\r\n  pair<T, X> kth_value_and_sum(vc<pair<int, int>> segments, int k,\r\n\
+    \                               T xor_val = 0) {\r\n    if (xor_val != 0) assert(set_log);\r\
+    \n    int total_len = 0;\r\n    for (auto&& [L, R]: segments) total_len += R -\
+    \ L;\r\n    assert(0 <= k && k <= total_len);\r\n    if (k == total_len) { return\
+    \ {infty<T>, sum_all(segments)}; }\r\n    int cnt = 0;\r\n    X sm = MX::unit();\r\
+    \n    T ret = 0;\r\n    for (int d = lg - 1; d >= 0; --d) {\r\n      bool f =\
+    \ (xor_val >> d) & 1;\r\n      int c = 0;\r\n      for (auto&& [L, R]: segments)\
+    \ {\r\n        int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\n        c\
+    \ += (f ? (R - L) - (r0 - l0) : (r0 - l0));\r\n      }\r\n      if (cnt + c >\
+    \ k) {\r\n        for (auto&& [L, R]: segments) {\r\n          int l0 = bv[d].rank(L,\
+    \ 0), r0 = bv[d].rank(R, 0);\r\n          if (!f) L = l0, R = r0;\r\n        \
+    \  if (f) L += mid[d] - l0, R += mid[d] - r0;\r\n        }\r\n      } else {\r\
+    \n        cnt += c, ret |= T(1) << d;\r\n        for (auto&& [L, R]: segments)\
+    \ {\r\n          int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\n       \
+    \   X s = (f ? get(d, L + mid[d] - l0, R + mid[d] - r0) : get(d, l0, r0));\r\n\
+    \          sm = MX::op(sm, s);\r\n          if (!f) L += mid[d] - l0, R += mid[d]\
+    \ - r0;\r\n          if (f) L = l0, R = r0;\r\n        }\r\n      }\r\n    }\r\
+    \n    for (auto&& [L, R]: segments) {\r\n      int t = min(R - L, k - cnt);\r\n\
+    \      sm = MX::op(sm, get(0, L, L + t));\r\n      cnt += t;\r\n    }\r\n    if\
+    \ (COMPRESS) ret = key[ret];\r\n    return {ret, sm};\r\n  }\r\n\r\n  // xor \u3057\
+    \u305F\u7D50\u679C\u3067\u3001[L, R) \u306E\u4E2D\u3067 k>=0 \u756A\u76EE\r\n\
+    \  T kth(int L, int R, int k, T xor_val = 0) {\r\n    if (xor_val != 0) assert(set_log);\r\
     \n    assert(0 <= k && k < R - L);\r\n    int cnt = 0;\r\n    T ret = 0;\r\n \
     \   for (int d = lg - 1; d >= 0; --d) {\r\n      bool f = (xor_val >> d) & 1;\r\
     \n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\n      int c = (f\
@@ -226,72 +270,73 @@ data:
     \n    }\r\n    if (COMPRESS) ret = key[ret];\r\n    return ret;\r\n  }\r\n\r\n\
     \  T kth(vc<pair<int, int>> segments, int L, int R, int k, T xor_val = 0) {\r\n\
     \    int total_len = 0;\r\n    for (auto&& [L, R]: segments) total_len += R -\
-    \ L;\r\n    assert(0 <= k && k < total_len);\r\n  }\r\n\r\n  // xor \u3057\u305F\
-    \u7D50\u679C\u3067\u3001[L, R) \u306E\u4E2D\u3067\u4E2D\u592E\u5024\u3002\r\n\
-    \  // LOWER = true\uFF1A\u4E0B\u5074\u4E2D\u592E\u5024\u3001false\uFF1A\u4E0A\u5074\
-    \u4E2D\u592E\u5024\r\n  T median(bool UPPER, int L, int R, T xor_val = 0) {\r\n\
-    \    int n = R - L;\r\n    int k = (UPPER ? n / 2 : (n - 1) / 2);\r\n    return\
-    \ kth(L, R, k, xor_val);\r\n  }\r\n\r\n  T median(bool UPPER, vc<pair<int, int>>\
-    \ segments, T xor_val = 0) {\r\n    int n = 0;\r\n    for (auto&& [L, R]: segments)\
-    \ n += R - L;\r\n    int k = (UPPER ? n / 2 : (n - 1) / 2);\r\n    return kth(segments,\
-    \ k, xor_val);\r\n  }\r\n\r\n  // xor \u3057\u305F\u7D50\u679C\u3067 [k1, k2)\
-    \ \u756A\u76EE\u3067\u3042\u308B\u3068\u3053\u308D\u306E SUM_data \u306E\u548C\
-    \r\n  X sum(int L, int R, int k1, int k2, T xor_val = 0) {\r\n    return prefix_sum(L,\
-    \ R, k2, xor_val) - prefix_sum(L, R, k1, xor_val);\r\n  }\r\n\r\n  X sum_all(int\
-    \ L, int R) { return get(lg, L, R); }\r\n\r\n  X sum_all(vc<pair<int, int>> segments)\
-    \ {\r\n    X sm = MX::unit();\r\n    for (auto&& [L, R]: segments) { sm = MX::op(sm,\
-    \ get(lg, L, R)); }\r\n    return sm;\r\n  }\r\n\r\n  // check(cnt, prefix sum)\
-    \ \u304C true \u3068\u306A\u308B\u3088\u3046\u306A\u6700\u5927\u306E (cnt, sum)\r\
-    \n  template <typename F>\r\n  pair<int, X> max_right(F check, int L, int R, T\
-    \ xor_val = 0) {\r\n    assert(check(0, MX::unit()));\r\n    if (xor_val != 0)\
-    \ assert(set_log);\r\n    if (check(R - L, get(lg, L, R))) return {R - L, get(lg,\
-    \ L, R)};\r\n    int cnt = 0;\r\n    X sm = MX::unit();\r\n    for (int d = lg\
-    \ - 1; d >= 0; --d) {\r\n      bool f = (xor_val >> d) & 1;\r\n      int l0 =\
-    \ bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\n      int c = (f ? (R - L) - (r0\
-    \ - l0) : (r0 - l0));\r\n      X s = (f ? get(d, L + mid[d] - l0, R + mid[d] -\
-    \ r0) : get(d, l0, r0));\r\n      if (check(cnt + c, MX::op(sm, s))) {\r\n   \
-    \     cnt += c, sm = MX::op(sm, s);\r\n        if (f) L = l0, R = r0;\r\n    \
-    \    if (!f) L += mid[d] - l0, R += mid[d] - r0;\r\n      } else {\r\n       \
-    \ if (!f) L = l0, R = r0;\r\n        if (f) L += mid[d] - l0, R += mid[d] - r0;\r\
-    \n      }\r\n    }\r\n    int k = binary_search(\r\n        [&](int k) -> bool\
-    \ {\r\n          return check(cnt + k, MX::op(sm, get(0, L, L + k)));\r\n    \
-    \    },\r\n        0, R - L);\r\n    cnt += k;\r\n    sm = MX::op(sm, get(0, L,\
-    \ L + k));\r\n    return {cnt, sm};\r\n  }\r\n\r\nprivate:\r\n  inline X get(int\
-    \ d, int L, int R) {\r\n    return MX::op(MX::inverse(cumsum[d][L]), cumsum[d][R]);\r\
-    \n  }\r\n\r\n  // xor \u3057\u305F\u7D50\u679C\u3067 [0, x) \u306B\u53CE\u307E\
-    \u308B\u3082\u306E\u3092\u6570\u3048\u308B\r\n  int prefix_count(int L, int R,\
-    \ T x, T xor_val = 0) {\r\n    if (xor_val != 0) assert(set_log);\r\n    x = (COMPRESS\
-    \ ? LB(key, x) : x);\r\n    if (x == 0) return 0;\r\n    if (x >= (1 << lg)) return\
-    \ R - L;\r\n    int cnt = 0;\r\n    FOR_R(d, lg) {\r\n      bool add = (x >> d)\
-    \ & 1;\r\n      bool f = ((xor_val) >> d) & 1;\r\n      int l0 = bv[d].rank(L,\
-    \ 0), r0 = bv[d].rank(R, 0);\r\n      int kf = (f ? (R - L) - (r0 - l0) : (r0\
-    \ - l0));\r\n      if (add) {\r\n        cnt += kf;\r\n        if (f) { L = l0,\
-    \ R = r0; }\r\n        if (!f) { L += mid[d] - l0, R += mid[d] - r0; }\r\n   \
-    \   } else {\r\n        if (!f) L = l0, R = r0;\r\n        if (f) L += mid[d]\
-    \ - l0, R += mid[d] - r0;\r\n      }\r\n    }\r\n    return cnt;\r\n  }\r\n\r\n\
+    \ L;\r\n    assert(0 <= k && k < total_len);\r\n    int cnt = 0;\r\n    T ret\
+    \ = 0;\r\n    for (int d = lg - 1; d >= 0; --d) {\r\n      bool f = (xor_val >>\
+    \ d) & 1;\r\n      int c = 0;\r\n      for (auto&& [L, R]: segments) {\r\n   \
+    \     int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\n        c += (f ? (R\
+    \ - L) - (r0 - l0) : (r0 - l0));\r\n      }\r\n      if (cnt + c > k) {\r\n  \
+    \      for (auto&& [L, R]: segments) {\r\n          int l0 = bv[d].rank(L, 0),\
+    \ r0 = bv[d].rank(R, 0);\r\n          if (!f) L = l0, R = r0;\r\n          if\
+    \ (f) L += mid[d] - l0, R += mid[d] - r0;\r\n        }\r\n      } else {\r\n \
+    \       cnt += c, ret |= T(1) << d;\r\n        for (auto&& [L, R]: segments) {\r\
+    \n          int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\n          if\
+    \ (!f) L += mid[d] - l0, R += mid[d] - r0;\r\n          if (f) L = l0, R = r0;\r\
+    \n        }\r\n      }\r\n    }\r\n    if (COMPRESS) ret = key[ret];\r\n    return\
+    \ ret;\r\n  }\r\n\r\n  // xor \u3057\u305F\u7D50\u679C\u3067\u3001[L, R) \u306E\
+    \u4E2D\u3067\u4E2D\u592E\u5024\u3002\r\n  // LOWER = true\uFF1A\u4E0B\u5074\u4E2D\
+    \u592E\u5024\u3001false\uFF1A\u4E0A\u5074\u4E2D\u592E\u5024\r\n  T median(bool\
+    \ UPPER, int L, int R, T xor_val = 0) {\r\n    int n = R - L;\r\n    int k = (UPPER\
+    \ ? n / 2 : (n - 1) / 2);\r\n    return kth(L, R, k, xor_val);\r\n  }\r\n\r\n\
+    \  T median(bool UPPER, vc<pair<int, int>> segments, T xor_val = 0) {\r\n    int\
+    \ n = 0;\r\n    for (auto&& [L, R]: segments) n += R - L;\r\n    int k = (UPPER\
+    \ ? n / 2 : (n - 1) / 2);\r\n    return kth(segments, k, xor_val);\r\n  }\r\n\r\
+    \n  // xor \u3057\u305F\u7D50\u679C\u3067 [k1, k2) \u756A\u76EE\u3067\u3042\u308B\
+    \u3068\u3053\u308D\u306E SUM_data \u306E\u548C\r\n  X sum(int L, int R, int k1,\
+    \ int k2, T xor_val = 0) {\r\n    return prefix_sum(L, R, k2, xor_val) - prefix_sum(L,\
+    \ R, k1, xor_val);\r\n  }\r\n\r\n  X sum_all(int L, int R) { return get(lg, L,\
+    \ R); }\r\n\r\n  X sum_all(vc<pair<int, int>> segments) {\r\n    X sm = MX::unit();\r\
+    \n    for (auto&& [L, R]: segments) { sm = MX::op(sm, get(lg, L, R)); }\r\n  \
+    \  return sm;\r\n  }\r\n\r\n  // check(cnt, prefix sum) \u304C true \u3068\u306A\
+    \u308B\u3088\u3046\u306A\u6700\u5927\u306E (cnt, sum)\r\n  template <typename\
+    \ F>\r\n  pair<int, X> max_right(F check, int L, int R, T xor_val = 0) {\r\n \
+    \   assert(check(0, MX::unit()));\r\n    if (xor_val != 0) assert(set_log);\r\n\
+    \    if (check(R - L, get(lg, L, R))) return {R - L, get(lg, L, R)};\r\n    int\
+    \ cnt = 0;\r\n    X sm = MX::unit();\r\n    for (int d = lg - 1; d >= 0; --d)\
+    \ {\r\n      bool f = (xor_val >> d) & 1;\r\n      int l0 = bv[d].rank(L, 0),\
+    \ r0 = bv[d].rank(R, 0);\r\n      int c = (f ? (R - L) - (r0 - l0) : (r0 - l0));\r\
+    \n      X s = (f ? get(d, L + mid[d] - l0, R + mid[d] - r0) : get(d, l0, r0));\r\
+    \n      if (check(cnt + c, MX::op(sm, s))) {\r\n        cnt += c, sm = MX::op(sm,\
+    \ s);\r\n        if (f) L = l0, R = r0;\r\n        if (!f) L += mid[d] - l0, R\
+    \ += mid[d] - r0;\r\n      } else {\r\n        if (!f) L = l0, R = r0;\r\n   \
+    \     if (f) L += mid[d] - l0, R += mid[d] - r0;\r\n      }\r\n    }\r\n    int\
+    \ k = binary_search(\r\n        [&](int k) -> bool {\r\n          return check(cnt\
+    \ + k, MX::op(sm, get(0, L, L + k)));\r\n        },\r\n        0, R - L);\r\n\
+    \    cnt += k;\r\n    sm = MX::op(sm, get(0, L, L + k));\r\n    return {cnt, sm};\r\
+    \n  }\r\n\r\nprivate:\r\n  inline X get(int d, int L, int R) {\r\n    return MX::op(MX::inverse(cumsum[d][L]),\
+    \ cumsum[d][R]);\r\n  }\r\n\r\n  // xor \u3057\u305F\u7D50\u679C\u3067 [0, x)\
+    \ \u306B\u53CE\u307E\u308B\u3082\u306E\u3092\u6570\u3048\u308B\r\n  int prefix_count(int\
+    \ L, int R, T x, T xor_val = 0) {\r\n    if (xor_val != 0) assert(set_log);\r\n\
+    \    x = (COMPRESS ? LB(key, x) : x);\r\n    if (x == 0) return 0;\r\n    if (x\
+    \ >= (1 << lg)) return R - L;\r\n    int cnt = 0;\r\n    FOR_R(d, lg) {\r\n  \
+    \    bool add = (x >> d) & 1;\r\n      bool f = ((xor_val) >> d) & 1;\r\n    \
+    \  int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\n      int kf = (f ? (R\
+    \ - L) - (r0 - l0) : (r0 - l0));\r\n      if (add) {\r\n        cnt += kf;\r\n\
+    \        if (f) { L = l0, R = r0; }\r\n        if (!f) { L += mid[d] - l0, R +=\
+    \ mid[d] - r0; }\r\n      } else {\r\n        if (!f) L = l0, R = r0;\r\n    \
+    \    if (f) L += mid[d] - l0, R += mid[d] - r0;\r\n      }\r\n    }\r\n    return\
+    \ cnt;\r\n  }\r\n\r\n  // xor \u3057\u305F\u7D50\u679C\u3067 [0, k) \u756A\u76EE\
+    \u306E\u3082\u306E\u306E\u548C\r\n  X prefix_sum(int L, int R, int k, T xor_val\
+    \ = 0) {\r\n    return kth_value_and_sum(L, R, k, xor_val).se;\r\n  }\r\n\r\n\
     \  // xor \u3057\u305F\u7D50\u679C\u3067 [0, k) \u756A\u76EE\u306E\u3082\u306E\
-    \u306E\u548C\r\n  X prefix_sum(int L, int R, int k, T xor_val = 0) {\r\n    if\
-    \ (xor_val != 0) assert(set_log);\r\n    assert(0 <= k && k <= R - L);\r\n   \
-    \ if (k == 0) return MX::unit();\r\n    if (k == R - L) return sum_all(L, R);\r\
-    \n    assert(!cumsum.empty());\r\n\r\n    X sm = MX::unit();\r\n    for (int d\
-    \ = lg - 1; d >= 0; --d) {\r\n      bool f = (xor_val >> d) & 1;\r\n      int\
-    \ l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\n      int c = (f ? (R - L)\
-    \ - (r0 - l0) : (r0 - l0));\r\n      X s = (f ? get(d, L + mid[d] - l0, R + mid[d]\
-    \ - r0) : get(d, l0, r0));\r\n      if (k < c) {\r\n        if (!f) L = l0, R\
-    \ = r0;\r\n        if (f) L += mid[d] - l0, R += mid[d] - r0;\r\n      } else\
-    \ {\r\n        k -= c, sm = MX::op(sm, s);\r\n        if (f) { L = l0, R = r0;\
-    \ }\r\n        if (!f) { L += mid[d] - l0, R += mid[d] - r0; }\r\n      }\r\n\
-    \    }\r\n    if (k) sm = MX::op(sm, get(0, L, L + k));\r\n    return sm;\r\n\
-    \  }\r\n\r\n  // xor \u3057\u305F\u7D50\u679C\u3067 [0, k) \u756A\u76EE\u306E\u3082\
-    \u306E\u306E\u548C\r\n  X prefix_sum(vc<pair<int, int>> segments, int k, T xor_val\
-    \ = 0) {}\r\n};"
+    \u306E\u548C\r\n  X prefix_sum(vc<pair<int, int>> segments, int k, T xor_val =\
+    \ 0) {\r\n    return kth_value_and_sum(segments, k, xor_val).se;\r\n  }\r\n};"
   dependsOn:
   - ds/bit_vector.hpp
   - alg/monoid/add.hpp
   isVerificationFile: false
   path: ds/wavelet_matrix.hpp
   requiredBy: []
-  timestamp: '2023-03-29 02:23:42+09:00'
+  timestamp: '2023-03-29 02:31:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc127f_1.test.cpp
