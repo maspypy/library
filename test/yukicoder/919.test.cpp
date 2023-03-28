@@ -12,7 +12,7 @@ void solve() {
   auto get = [&](ll L, ll R) -> ll {
     assert(L < R);
     ll n = R - L;
-    return WM.kth(L, R, (n - 1) / 2);
+    return WM.median(0, L, R, (n - 1) / 2);
   };
 
   FOR3(K, 1, N + 1) {
@@ -33,13 +33,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }

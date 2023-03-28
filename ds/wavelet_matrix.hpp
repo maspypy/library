@@ -7,11 +7,13 @@ template <typename T, bool COMPRESS, typename Monoid = Monoid_Add<T>>
 struct Wavelet_Matrix {
   using MX = Monoid;
   using X = typename MX::value_type;
+  static_assert(MX::commute);
   int N, lg;
   vector<int> mid;
   vector<Bit_Vector> bv;
   vc<T> key;
   const bool set_log;
+  vc<X> cumsum_0;
   vvc<X> cumsum;
 
   // 和を使わないなら、SUM_data は空でよい
@@ -32,6 +34,10 @@ struct Wavelet_Matrix {
     if (lg == -1) lg = __lg(max<ll>(MAX(A), 1)) + 1;
     mid.resize(lg);
     bv.assign(lg, Bit_Vector(N));
+    if (MAKE_SUM) {
+      cumsum_0.assign(N + 1, MX::unit());
+      FOR(i, N) cumsum_0[i + 1] = MX::op(cumsum_0[i], SUM_data[i]);
+    }
     if (MAKE_SUM) cumsum.assign(1 + lg, vc<X>(N + 1, MX::unit()));
     vc<T> A0(N), A1(N);
     vc<X> S0(N), S1(N);
@@ -84,6 +90,41 @@ struct Wavelet_Matrix {
     }
     if (COMPRESS) ret = key[ret];
     return ret;
+  }
+
+  // xor した結果で、[L, R) の中で k>=0 番目と prefix sum
+  pair<int, T> kth_value_and_sum(int L, int R, int k, T xor_val = 0) {
+    if (xor_val != 0) assert(set_log);
+    assert(0 <= k && k <= R - L);
+    if (k == R - L) {
+      return {infty<T>, MX::op(MX::inverse(cumsum_0[L]), cumsum_0[R])};
+    }
+    T ret = 0;
+    X sm = MX::unit();
+    for (int d = lg - 1; d >= 0; --d) {
+      bool f = (xor_val >> d) & 1;
+      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
+      int kf = (f ? (R - L) - (r0 - l0) : (r0 - l0));
+      X s = (f ? get(d, L + mid[d] - l0, R + mid[d] - r0) : get(d, l0, r0));
+      if (k < kf) {
+        if (!f) L = l0, R = r0;
+        if (f) L += mid[d] - l0, R += mid[d] - r0;
+      } else {
+        k -= kf, ret |= T(1) << d, sm = MX::op(sm, s);
+        if (!f) L += mid[d] - l0, R += mid[d] - r0;
+        if (f) L = l0, R = r0;
+      }
+    }
+    if (COMPRESS) ret = key[ret];
+    return {ret, sm};
+  }
+
+  // xor した結果で、[L, R) の中で中央値。
+  // LOWER = true：下側中央値、false：上側中央値
+  T median(bool UPPER, int L, int R, T xor_val = 0) {
+    int n = R - L;
+    int k = (UPPER ? n / 2 : (n - 1) / 2);
+    return kth(L, R, k, xor_val);
   }
 
   // xor した結果で [k1, k2) 番目であるところの SUM_data の和
