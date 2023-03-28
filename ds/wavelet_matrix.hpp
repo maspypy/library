@@ -66,45 +66,30 @@ struct Wavelet_Matrix {
     return prefix_count(L, R, b, xor_val) - prefix_count(L, R, a, xor_val);
   }
 
-  // xor した結果で、[L, R) の中で k>=0 番目
-  T kth(int L, int R, int k, T xor_val = 0) {
-    if (xor_val != 0) assert(set_log);
-    assert(0 <= k && k < R - L);
-    T ret = 0;
-    for (int d = lg - 1; d >= 0; --d) {
-      bool f = (xor_val >> d) & 1;
-      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
-      int kf = (f ? (R - L) - (r0 - l0) : (r0 - l0));
-      if (k < kf) {
-        if (!f) L = l0, R = r0;
-        if (f) L += mid[d] - l0, R += mid[d] - r0;
-      } else {
-        k -= kf, ret |= T(1) << d;
-        if (!f) L += mid[d] - l0, R += mid[d] - r0;
-        if (f) L = l0, R = r0;
-      }
-    }
-    if (COMPRESS) ret = key[ret];
-    return ret;
+  int count(vc<pair<int, int>> segments, T a, T b, T xor_val = 0) {
+    int res = 0;
+    for (auto&& [L, R]: segments) res += count(L, R, a, b, xor_val);
+    return res;
   }
 
   // xor した結果で、[L, R) の中で k>=0 番目と prefix sum
-  pair<int, T> kth_value_and_sum(int L, int R, int k, T xor_val = 0) {
+  pair<T, X> kth_value_and_sum(int L, int R, int k, T xor_val = 0) {
     if (xor_val != 0) assert(set_log);
     assert(0 <= k && k <= R - L);
     if (k == R - L) { return {infty<T>, sum_all(L, R)}; }
-    T ret = 0;
+    int cnt = 0;
     X sm = MX::unit();
+    T ret = 0;
     for (int d = lg - 1; d >= 0; --d) {
       bool f = (xor_val >> d) & 1;
       int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
-      int kf = (f ? (R - L) - (r0 - l0) : (r0 - l0));
-      if (k < kf) {
+      int c = (f ? (R - L) - (r0 - l0) : (r0 - l0));
+      if (cnt + c >= k) {
         if (!f) L = l0, R = r0;
         if (f) L += mid[d] - l0, R += mid[d] - r0;
       } else {
         X s = (f ? get(d, L + mid[d] - l0, R + mid[d] - r0) : get(d, l0, r0));
-        k -= kf, ret |= T(1) << d, sm = MX::op(sm, s);
+        cnt += c, ret |= T(1) << d, sm = MX::op(sm, s);
         if (!f) L += mid[d] - l0, R += mid[d] - r0;
         if (f) L = l0, R = r0;
       }
@@ -112,6 +97,67 @@ struct Wavelet_Matrix {
     if (k) sm = MX::op(sm, get(0, L, L + k));
     if (COMPRESS) ret = key[ret];
     return {ret, sm};
+  }
+
+  // xor した結果で、[L, R) の中で k>=0 番目と prefix sum
+  pair<T, X> kth_value_and_sum(vc<pair<int, int>> segments, int k,
+                               T xor_val = 0) {
+    if (xor_val != 0) assert(set_log);
+    int total_len = 0;
+    for (auto&& [L, R]: segments) total_len += R - L;
+    assert(0 <= k && k <= total_len);
+    if (k == total_len) {
+      X sm = MX::unit();
+      for (auto&& [L, R]: segments) sm = MX::op(sm, sum_all(L, R));
+      return {infty<T>, sm};
+    }
+    int cnt = 0;
+    X sm = MX::unit();
+    T ret = 0;
+    for (int d = lg - 1; d >= 0; --d) {
+      bool f = (xor_val >> d) & 1;
+      int c = 0;
+      for (auto&& [L, R]: segments) {
+        int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
+        c += (f ? (R - L) - (r0 - l0) : (r0 - l0));
+      }
+      if (cnt + c >= k) {
+        for (auto&& [L, R]: segments) {
+          int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
+          if (!f) L = l0, R = r0;
+          if (f) L += mid[d] - l0, R += mid[d] - r0;
+        }
+      } else {
+        cnt += c, ret |= T(1) << d;
+        for (auto&& [L, R]: segments) {
+          int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
+          X s = (f ? get(d, L + mid[d] - l0, R + mid[d] - r0) : get(d, l0, r0));
+          sm = MX::op(sm, s);
+          if (!f) L += mid[d] - l0, R += mid[d] - r0;
+          if (f) L = l0, R = r0;
+        }
+      }
+    }
+    for (auto&& [L, R]: segments) {
+      int t = min(R - L, k - cnt);
+      k -= t;
+      sm = MX::op(sm, get(0, L, L + k));
+    }
+    if (COMPRESS) ret = key[ret];
+    return {ret, sm};
+  }
+
+  // xor した結果で、[L, R) の中で k>=0 番目
+  T kth(int L, int R, int k, T xor_val = 0) {
+    assert(0 <= k && k < R - L);
+    return kth_value_and_sum(L, R, k, xor_val).fi;
+  }
+
+  T kth(vc<pair<int, int>> segments, int L, int R, int k, T xor_val = 0) {
+    int total_len = 0;
+    for (auto&& [L, R]: segments) total_len += R - L;
+    assert(0 <= k && k < total_len);
+    return kth_value_and_sum(segments, k, xor_val).fi;
   }
 
   // xor した結果で、[L, R) の中で中央値。
@@ -122,13 +168,24 @@ struct Wavelet_Matrix {
     return kth(L, R, k, xor_val);
   }
 
+  T median(bool UPPER, vc<pair<int, int>> segments, T xor_val = 0) {
+    int n = 0;
+    for (auto&& [L, R]: segments) n += R - L;
+    int k = (UPPER ? n / 2 : (n - 1) / 2);
+    return kth(segments, k, xor_val);
+  }
+
   // xor した結果で [k1, k2) 番目であるところの SUM_data の和
   X sum(int L, int R, int k1, int k2, T xor_val = 0) {
     return prefix_sum(L, R, k2, xor_val) - prefix_sum(L, R, k1, xor_val);
   }
 
-  X sum_all(int L, int R) {
-    return MX::op(MX::inverse(cumsum[lg][L]), cumsum[lg][R]);
+  X sum_all(int L, int R) { return get(lg, L, R); }
+
+  X sum_all(vc<pair<int, int>> segments) {
+    X sm = MX::unit();
+    for (auto&& [L, R]: segments) { sm = MX::op(sm, get(lg, L, R)); }
+    return sm;
   }
 
   // check(cnt, prefix sum) が true となるような最大の (cnt, sum)
@@ -194,28 +251,11 @@ private:
 
   // xor した結果で [0, k) 番目のものの和
   X prefix_sum(int L, int R, int k, T xor_val = 0) {
-    if (xor_val != 0) assert(set_log);
-    assert(0 <= k && k <= R - L);
-    if (k == 0) return MX::unit();
-    if (k == R - L) return sum_all(L, R);
-    assert(!cumsum.empty());
+    return kth_value_and_sum(L, R, k, xor_val).se;
+  }
 
-    X sm = MX::unit();
-    for (int d = lg - 1; d >= 0; --d) {
-      bool f = (xor_val >> d) & 1;
-      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
-      int c = (f ? (R - L) - (r0 - l0) : (r0 - l0));
-      X s = (f ? get(d, L + mid[d] - l0, R + mid[d] - r0) : get(d, l0, r0));
-      if (k < c) {
-        if (!f) L = l0, R = r0;
-        if (f) L += mid[d] - l0, R += mid[d] - r0;
-      } else {
-        k -= c, sm = MX::op(sm, s);
-        if (f) { L = l0, R = r0; }
-        if (!f) { L += mid[d] - l0, R += mid[d] - r0; }
-      }
-    }
-    if (k) sm = MX::op(sm, get(0, L, L + k));
-    return sm;
+  // xor した結果で [0, k) 番目のものの和
+  X prefix_sum(vc<pair<int, int>> segments, int k, T xor_val = 0) {
+    return kth_value_and_sum(segments, k, xor_val).se;
   }
 };
