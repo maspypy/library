@@ -172,9 +172,6 @@ data:
     path: test/mytest/conv_leq.test.cpp
     title: test/mytest/conv_leq.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/count_indep_set.test.cpp
-    title: test/mytest/count_indep_set.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/count_points_in_triangles.test.cpp
     title: test/mytest/count_points_in_triangles.test.cpp
   - icon: ':heavy_check_mark:'
@@ -557,7 +554,6 @@ data:
   - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/splay_am.test.cpp
   - test/mytest/maxidx_add.test.cpp
-  - test/mytest/count_indep_set.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
   - test/mytest/dynamic_segtree_sparse.test.cpp
   - test/mytest/conv_leq.test.cpp

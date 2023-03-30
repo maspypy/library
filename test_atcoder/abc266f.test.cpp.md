@@ -1,26 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: ds/unionfind/unionfind.hpp
+    title: ds/unionfind/unionfind.hpp
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/unicyclic.hpp
     title: graph/unicyclic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc266/tasks/abc266_f
@@ -251,34 +254,16 @@ data:
     \ {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
     \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
-    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/unicyclic.hpp\"\
-    \n\nstruct UnicyclicGraph {\n  int root;\n  Graph<int, 1> tree;\n  vc<int> TO;\n\
-    \  vc<int> cycle;     // \u6839\u306B\u5411\u304B\u3046\u3088\u3046\u306A\u9802\
-    \u70B9\u5217\n  vc<bool> in_cycle; // vertex id -> bool\n\n  template <typename\
-    \ GT>\n  UnicyclicGraph(GT& G) : tree(G.N) {\n    int N = G.N;\n    assert(N ==\
-    \ G.M);\n    TO.assign(N, -1);\n    vc<bool> done(N);\n    vc<int> que;\n    auto\
-    \ deg = G.deg_array();\n    FOR(v, N) if (deg[v] == 1) que.eb(v);\n    while (len(que))\
-    \ {\n      auto v = que.back();\n      que.pop_back();\n      for (auto&& e: G[v])\
-    \ {\n        if (done[e.id]) continue;\n        done[e.id] = 1;\n        int to\
-    \ = e.to;\n        TO[v] = to;\n        deg[to] -= 1;\n        if (deg[to] ==\
-    \ 1) que.eb(to);\n      }\n      deg[v] = 0;\n    }\n    root = -1;\n    FOR(v,\
-    \ N) if (deg[v] == 2) root = v;\n    assert(root != -1);\n    vc<int> P = {root};\n\
-    \    while (1) {\n      int v = P.back();\n      bool upd = 0;\n      for (auto&&\
-    \ e: G[v]) {\n        if (done[e.id]) continue;\n        done[e.id] = 1;\n   \
-    \     P.eb(e.to);\n        upd = 1;\n        break;\n      }\n      if (!upd)\
-    \ break;\n    }\n    FOR(i, len(P) - 1) TO[P[i]] = P[i + 1];\n    cycle = {P.begin()\
-    \ + 1, P.end()};\n    reverse(all(cycle));\n    in_cycle.assign(N, false);\n \
-    \   for (auto&& v: cycle) in_cycle[v] = 1;\n    FOR(v, N) if (v != root) tree.add(TO[v],\
-    \ v);\n    tree.build();\n  }\n};\n#line 3 \"graph/tree.hpp\"\n\r\n// HLD euler\
-    \ tour \u3092\u3068\u3063\u3066\u3044\u308D\u3044\u308D\u3002\r\n// \u6728\u4EE5\
-    \u5916\u3001\u975E\u9023\u7D50\u3067\u3082 dfs \u9806\u5E8F\u3084\u89AA\u304C\u3068\
-    \u308C\u308B\u3002\r\ntemplate <typename GT>\r\nstruct Tree {\r\n  using Graph_type\
-    \ = GT;\r\n  GT &G;\r\n  using WT = typename GT::cost_type;\r\n  int N;\r\n  bool\
-    \ hld;\r\n  vector<int> LID, RID, head, V, parent;\r\n  vc<int> depth;\r\n  vc<WT>\
-    \ depth_weighted;\r\n\r\n  Tree(GT &G, int r = -1, bool hld = 1)\r\n      : G(G),\r\
-    \n        N(G.N),\r\n        hld(hld),\r\n        LID(G.N),\r\n        RID(G.N),\r\
-    \n        head(G.N, r),\r\n        V(G.N),\r\n        parent(G.N, -1),\r\n   \
-    \     depth(G.N, -1),\r\n        depth_weighted(G.N, 0) {\r\n    assert(G.is_prepared());\r\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 3 \"graph/tree.hpp\"\
+    \n\r\n// HLD euler tour \u3092\u3068\u3063\u3066\u3044\u308D\u3044\u308D\u3002\
+    \r\n// \u6728\u4EE5\u5916\u3001\u975E\u9023\u7D50\u3067\u3082 dfs \u9806\u5E8F\
+    \u3084\u89AA\u304C\u3068\u308C\u308B\u3002\r\ntemplate <typename GT>\r\nstruct\
+    \ Tree {\r\n  using Graph_type = GT;\r\n  GT &G;\r\n  using WT = typename GT::cost_type;\r\
+    \n  int N;\r\n  bool hld;\r\n  vector<int> LID, RID, head, V, parent;\r\n  vc<int>\
+    \ depth;\r\n  vc<WT> depth_weighted;\r\n\r\n  Tree(GT &G, int r = -1, bool hld\
+    \ = 1)\r\n      : G(G),\r\n        N(G.N),\r\n        hld(hld),\r\n        LID(G.N),\r\
+    \n        RID(G.N),\r\n        head(G.N, r),\r\n        V(G.N),\r\n        parent(G.N,\
+    \ -1),\r\n        depth(G.N, -1),\r\n        depth_weighted(G.N, 0) {\r\n    assert(G.is_prepared());\r\
     \n    int t1 = 0;\r\n    if (r != -1) {\r\n      dfs_sz(r, -1);\r\n      dfs_hld(r,\
     \ t1);\r\n    } else {\r\n      for (int r = 0; r < N; ++r) {\r\n        if (parent[r]\
     \ == -1) {\r\n          head[r] = r;\r\n          dfs_sz(r, -1);\r\n         \
@@ -336,12 +321,40 @@ data:
     \ restore_path(int u, int v) {\r\n    vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u,\
     \ v, 0)) {\r\n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n\
     \      } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\
-    \n    return P;\r\n  }\r\n};\r\n#line 6 \"test_atcoder/abc266f.test.cpp\"\n\n\
-    void solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n  G.read_graph(N);\n\n  UnicyclicGraph\
-    \ X(G);\n  auto T = X.tree;\n  Tree<decltype(T)> tree(T, X.root);\n\n  ll root\
-    \ = X.root;\n  ll bottom = X.TO[X.root];\n\n  LL(Q);\n  FOR(Q) {\n    LL(a, b);\n\
-    \    --a, --b;\n    ll ca = tree.lca(a, bottom);\n    ll cb = tree.lca(b, bottom);\n\
-    \    Yes(ca == cb);\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n    return P;\r\n  }\r\n};\r\n#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct\
+    \ UnionFind {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int\
+    \ n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
+    \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n   \
+    \ while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return\
+    \ dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int\
+    \ x) {\n    assert(dat[x] < 0);\n    return -dat[x];\n  }\n\n  bool merge(int\
+    \ x, int y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n\
+    \    if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
+    \    return true;\n  }\n};\n#line 4 \"graph/unicyclic.hpp\"\n\ntemplate <typename\
+    \ GT, bool DIRECTED = true>\nstruct UnicyclicGraph {\n  using T = typename GT::cost_type;\n\
+    \  GT& G0;\n  Graph<T, DIRECTED> G;\n  int N;\n  int root;\n  int out_eid;\n \
+    \ vc<int> TO;\n  vc<int> cycle;     // \u6839\u306B\u5411\u304B\u3046\u3088\u3046\
+    \u306A\u9802\u70B9\u5217\n  vc<bool> in_cycle; // vertex id -> bool\n\n  UnicyclicGraph(GT&\
+    \ G) : G0(G), N(G.N) {\n    assert(!G.is_directed() && N == G.M);\n    UnionFind\
+    \ uf(N);\n    TO.assign(N, -1);\n    FOR(eid, N) {\n      auto& e = G.edges[eid];\n\
+    \      if (uf.merge(e.frm, e.to)) continue;\n      out_eid = eid;\n      root\
+    \ = e.frm;\n      TO[root] = e.to;\n      break;\n    }\n    vc<bool> done(N);\n\
+    \    vc<int> que = {root};\n    while (len(que)) {\n      int v = POP(que);\n\
+    \      done[v] = 1;\n      for (auto&& e: G[v]) {\n        if (done[e.to] || e.id\
+    \ == out_eid) continue;\n        TO[e.to] = v;\n        que.eb(e.to);\n      }\n\
+    \    }\n    cycle = {TO[root]};\n    while (cycle.back() != root) cycle.eb(TO[cycle.back()]);\n\
+    \    in_cycle.assign(N, 0);\n    for (auto&& v: cycle) in_cycle[v] = 1;\n  }\n\
+    \n  // tree \u3092\u4F5C\u308B\n  Tree<decltype(G)> build(bool keep_eid = false)\
+    \ {\n    G.resize(N);\n    FOR(eid, N) {\n      if (eid == out_eid) continue;\n\
+    \      auto& e = G0.edges[eid];\n      int a = e.frm, b = e.to;\n      if (TO[a]\
+    \ == b) swap(a, b);\n      assert(TO[b] == a);\n      int k = (keep_eid ? eid\
+    \ : -1);\n      G.add(a, b, e.cost, k);\n    }\n    G.build();\n    return Tree<decltype(G)>(G,\
+    \ root);\n  };\n};\n#line 6 \"test_atcoder/abc266f.test.cpp\"\n\nvoid solve()\
+    \ {\n  LL(N);\n  Graph<int, 0> G(N);\n  G.read_graph(N);\n\n  UnicyclicGraph X(G);\n\
+    \  auto T = X.tree;\n  Tree<decltype(T)> tree(T, X.root);\n\n  ll root = X.root;\n\
+    \  ll bottom = X.TO[X.root];\n\n  LL(Q);\n  FOR(Q) {\n    LL(a, b);\n    --a,\
+    \ --b;\n    ll ca = tree.lca(a, bottom);\n    ll cb = tree.lca(b, bottom);\n \
+    \   Yes(ca == cb);\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
     \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc266/tasks/abc266_f\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/unicyclic.hpp\"\
@@ -358,11 +371,12 @@ data:
   - graph/unicyclic.hpp
   - graph/base.hpp
   - graph/tree.hpp
+  - ds/unionfind/unionfind.hpp
   isVerificationFile: true
   path: test_atcoder/abc266f.test.cpp
   requiredBy: []
-  timestamp: '2023-03-11 03:26:43+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-03-30 23:49:33+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc266f.test.cpp
 layout: document

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/cht.hpp
     title: convex/cht.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -213,10 +213,10 @@ data:
     \ a, double b) {\r\n  return a / b;\r\n};\r\n\r\ntemplate <typename T, bool MINIMIZE\
     \ = true>\r\nstruct LineContainer : multiset<Line<T>, less<>> {\r\n  using super\
     \ = multiset<Line<T>, less<>>;\r\n  using super::begin, super::end, super::insert,\
-    \ super::erase;\r\n  using super::empty, super::lower_bound;\r\n  const T inf\
-    \ = lc_inf<T>();\r\n  bool insect(typename super::iterator x, typename super::iterator\
-    \ y) {\r\n    if (y == end()) return x->p = inf, false;\r\n    if (x->k == y->k)\r\
-    \n      x->p = (x->m > y->m ? inf : -inf);\r\n    else\r\n      x->p = lc_div(y->m\
+    \ super::erase;\r\n  using super::empty, super::lower_bound;\r\n  T inf = lc_inf<T>();\r\
+    \n  bool insect(typename super::iterator x, typename super::iterator y) {\r\n\
+    \    if (y == end()) return x->p = inf, false;\r\n    if (x->k == y->k)\r\n  \
+    \    x->p = (x->m > y->m ? inf : -inf);\r\n    else\r\n      x->p = lc_div(y->m\
     \ - x->m, x->k - y->k);\r\n    return x->p >= y->p;\r\n  }\r\n  void add(T k,\
     \ T m) {\r\n    if (MINIMIZE) { k = -k, m = -m; }\r\n    auto z = insert({k, m,\
     \ 0}), y = z++, x = y;\r\n    while (insect(y, z)) z = erase(z);\r\n    if (x\
@@ -263,7 +263,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/line_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2023-03-17 00:39:38+09:00'
+  timestamp: '2023-03-30 23:49:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/line_add_get_min.test.cpp

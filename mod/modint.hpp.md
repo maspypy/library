@@ -9,11 +9,11 @@ data:
     path: graph/count/count_forest.hpp
     title: graph/count/count_forest.hpp
   - icon: ':warning:'
+    path: graph/count/count_independent_set.hpp
+    title: graph/count/count_independent_set.hpp
+  - icon: ':warning:'
     path: graph/count/count_unicyclic.hpp
     title: graph/count/count_unicyclic.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/count_independent_set.hpp
-    title: graph/count_independent_set.hpp
   - icon: ':heavy_check_mark:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
@@ -435,9 +435,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/conv_leq.test.cpp
     title: test/mytest/conv_leq.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/count_indep_set.test.cpp
-    title: test/mytest/count_indep_set.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
@@ -963,9 +960,9 @@ data:
   - poly/convolution_all.hpp
   - poly/sum_of_prefix_suffix_products.hpp
   - poly/poly_gcd.hpp
-  - graph/count_independent_set.hpp
   - graph/tree_all_distances.hpp
   - graph/count/count_forest.hpp
+  - graph/count/count_independent_set.hpp
   - graph/count/count_unicyclic.hpp
   - linalg/mat_pow.hpp
   - linalg/mat_mul.hpp
@@ -1012,7 +1009,6 @@ data:
   - test/mytest/all_inverse.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/splay_am.test.cpp
-  - test/mytest/count_indep_set.test.cpp
   - test/mytest/conv_leq.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/online_pow.test.cpp

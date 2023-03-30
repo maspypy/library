@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -44,6 +44,9 @@ data:
   - icon: ':warning:'
     path: graph/tree_dp/tree_dp.hpp
     title: graph/tree_dp/tree_dp.hpp
+  - icon: ':question:'
+    path: graph/unicyclic.hpp
+    title: graph/unicyclic.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2677.test.cpp
@@ -103,6 +106,9 @@ data:
     path: test/yukicoder/1242.test.cpp
     title: test/yukicoder/1242.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1254.test.cpp
+    title: test/yukicoder/1254.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1295.test.cpp
     title: test/yukicoder/1295.test.cpp
   - icon: ':heavy_check_mark:'
@@ -153,7 +159,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc266f.test.cpp
     title: test_atcoder/abc266f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -162,9 +168,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc270_f.test.cpp
     title: test_atcoder/abc270_f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -352,6 +358,7 @@ data:
   isVerificationFile: false
   path: graph/tree.hpp
   requiredBy:
+  - graph/unicyclic.hpp
   - graph/tree_dp/subtree_hash.hpp
   - graph/tree_dp/subtree_diameter.hpp
   - graph/tree_dp/tree_dp.hpp
@@ -366,7 +373,7 @@ data:
   - graph/dsu_on_tree.hpp
   - graph/minimum_spanning_tree.hpp
   timestamp: '2023-01-27 18:58:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc270_f.test.cpp
   - test_atcoder/abc269ex.test.cpp
@@ -384,6 +391,7 @@ data:
   - test/yukicoder/1451.test.cpp
   - test/yukicoder/590.test.cpp
   - test/yukicoder/1790.test.cpp
+  - test/yukicoder/1254.test.cpp
   - test/yukicoder/1718.test.cpp
   - test/yukicoder/1418.test.cpp
   - test/yukicoder/235.test.cpp

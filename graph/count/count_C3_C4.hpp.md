@@ -1,10 +1,7 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: graph/count_P3_P4.hpp
-    title: graph/count_P3_P4.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -12,10 +9,10 @@ data:
   attributes:
     links:
     - https://codeforces.com/gym/104053/problem/K
-  bundledCode: "#line 1 \"graph/count_C3_C4.hpp\"\n\n// \u5404\u70B9\u306B\u5BFE\u3057\
-    \u3066\u3001\u305D\u306E\u70B9\u3092\u542B\u3080 C3, C4 \u3092\u6570\u3048\u308B\
-    \ntemplate <typename GT>\npair<vi, vi> count_C3_C4_pointwise(GT &G) {\n  int N\
-    \ = G.N;\n  auto deg = G.deg_array();\n  auto I = argsort(deg);\n  reverse(all(I));\n\
+  bundledCode: "#line 1 \"graph/count/count_C3_C4.hpp\"\n\n// \u5404\u70B9\u306B\u5BFE\
+    \u3057\u3066\u3001\u305D\u306E\u70B9\u3092\u542B\u3080 C3, C4 \u3092\u6570\u3048\
+    \u308B\ntemplate <typename GT>\npair<vi, vi> count_C3_C4_pointwise(GT &G) {\n\
+    \  int N = G.N;\n  auto deg = G.deg_array();\n  auto I = argsort(deg);\n  reverse(all(I));\n\
     \  vc<int> rk(N);\n  FOR(i, N) rk[I[i]] = i;\n\n  // \u9077\u79FB\u5148\u3092\u964D\
     \u9806\u306B\u4E26\u3079\u308B\n  vvc<int> TO(N);\n  for (auto &&e: G.edges) {\n\
     \    int a = rk[e.frm], b = rk[e.to];\n    TO[a].eb(b);\n    TO[b].eb(a);\n  }\n\
@@ -64,16 +61,15 @@ data:
     \ &&c: TO[b]) { A[c] = 0; }\n    }\n  }\n  x3 /= 2;\n  return {x3, x4};\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: graph/count_C3_C4.hpp
-  requiredBy:
-  - graph/count_P3_P4.hpp
-  timestamp: '2023-03-09 21:08:47+09:00'
+  path: graph/count/count_C3_C4.hpp
+  requiredBy: []
+  timestamp: '2023-03-30 23:49:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: graph/count_C3_C4.hpp
+documentation_of: graph/count/count_C3_C4.hpp
 layout: document
 redirect_from:
-- /library/graph/count_C3_C4.hpp
-- /library/graph/count_C3_C4.hpp.html
-title: graph/count_C3_C4.hpp
+- /library/graph/count/count_C3_C4.hpp
+- /library/graph/count/count_C3_C4.hpp.html
+title: graph/count/count_C3_C4.hpp
 ---

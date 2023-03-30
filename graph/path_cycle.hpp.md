@@ -2,16 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: graph/count_independent_set.hpp
-    title: graph/count_independent_set.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/count_indep_set.test.cpp
-    title: test/mytest/count_indep_set.test.cpp
+  - icon: ':warning:'
+    path: graph/count/count_independent_set.hpp
+    title: graph/count/count_independent_set.hpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/path_cycle.hpp\"\n// \u3069\u306E\u70B9\u306E\u6B21\
@@ -47,11 +44,10 @@ data:
   isVerificationFile: false
   path: graph/path_cycle.hpp
   requiredBy:
-  - graph/count_independent_set.hpp
+  - graph/count/count_independent_set.hpp
   timestamp: '2023-01-16 02:07:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/mytest/count_indep_set.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: graph/path_cycle.hpp
 layout: document
 redirect_from:

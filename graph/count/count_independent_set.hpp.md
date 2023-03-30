@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: graph/path_cycle.hpp
     title: graph/path_cycle.hpp
   - icon: ':heavy_check_mark:'
@@ -26,13 +26,10 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/count_indep_set.test.cpp
-    title: test/mytest/count_indep_set.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/path_cycle.hpp\"\n// \u3069\u306E\u70B9\u306E\u6B21\
@@ -282,9 +279,9 @@ data:
     \ modint998>::value, vc<mint>> convolution(\r\n    const vc<mint>& a, const vc<mint>&\
     \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
     \ (min(n, m) <= 60) return convolution_naive(a, b);\r\n  return convolution_garner(a,\
-    \ b);\r\n}\r\n#line 3 \"graph/count_independent_set.hpp\"\n\n// \u72EC\u7ACB\u96C6\
-    \u5408\u6570\u3048\u4E0A\u3052\u3002\u7A7A\u96C6\u5408\u3082\u8A8D\u3081\u308B\
-    \u3002N 1.381^N \u7A0B\u5EA6\u3002\ntemplate <typename GT>\nu64 count_independent_set(GT&\
+    \ b);\r\n}\r\n#line 3 \"graph/count/count_independent_set.hpp\"\n\n// \u72EC\u7ACB\
+    \u96C6\u5408\u6570\u3048\u4E0A\u3052\u3002\u7A7A\u96C6\u5408\u3082\u8A8D\u3081\
+    \u308B\u3002N 1.381^N \u7A0B\u5EA6\u3002\ntemplate <typename GT>\nu64 count_independent_set(GT&\
     \ G) {\n  using U = u64;\n  const int N = G.N;\n  assert(N < 64);\n  if (N ==\
     \ 0) return 1;\n  vc<U> nbd(N);\n  FOR(v, N) for (auto&& e: G[v]) nbd[v] |= U(1)\
     \ << e.to;\n\n  vc<U> dp_path(N + 1), dp_cyc(N + 1);\n  dp_path[0] = 1, dp_path[1]\
@@ -388,16 +385,15 @@ data:
   - poly/ntt.hpp
   - poly/fft.hpp
   isVerificationFile: false
-  path: graph/count_independent_set.hpp
+  path: graph/count/count_independent_set.hpp
   requiredBy: []
-  timestamp: '2023-03-12 10:53:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/mytest/count_indep_set.test.cpp
-documentation_of: graph/count_independent_set.hpp
+  timestamp: '2023-03-30 23:49:05+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: graph/count/count_independent_set.hpp
 layout: document
 redirect_from:
-- /library/graph/count_independent_set.hpp
-- /library/graph/count_independent_set.hpp.html
-title: graph/count_independent_set.hpp
+- /library/graph/count/count_independent_set.hpp
+- /library/graph/count/count_independent_set.hpp.html
+title: graph/count/count_independent_set.hpp
 ---

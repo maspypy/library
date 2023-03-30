@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2012.test.cpp
     title: test/yukicoder/2012.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc244h.test.cpp
     title: test_atcoder/abc244h.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/cht.hpp\"\n\r\ntemplate <typename T>\r\nstruct Line\
@@ -31,10 +31,10 @@ data:
     \ a, double b) {\r\n  return a / b;\r\n};\r\n\r\ntemplate <typename T, bool MINIMIZE\
     \ = true>\r\nstruct LineContainer : multiset<Line<T>, less<>> {\r\n  using super\
     \ = multiset<Line<T>, less<>>;\r\n  using super::begin, super::end, super::insert,\
-    \ super::erase;\r\n  using super::empty, super::lower_bound;\r\n  const T inf\
-    \ = lc_inf<T>();\r\n  bool insect(typename super::iterator x, typename super::iterator\
-    \ y) {\r\n    if (y == end()) return x->p = inf, false;\r\n    if (x->k == y->k)\r\
-    \n      x->p = (x->m > y->m ? inf : -inf);\r\n    else\r\n      x->p = lc_div(y->m\
+    \ super::erase;\r\n  using super::empty, super::lower_bound;\r\n  T inf = lc_inf<T>();\r\
+    \n  bool insect(typename super::iterator x, typename super::iterator y) {\r\n\
+    \    if (y == end()) return x->p = inf, false;\r\n    if (x->k == y->k)\r\n  \
+    \    x->p = (x->m > y->m ? inf : -inf);\r\n    else\r\n      x->p = lc_div(y->m\
     \ - x->m, x->k - y->k);\r\n    return x->p >= y->p;\r\n  }\r\n  void add(T k,\
     \ T m) {\r\n    if (MINIMIZE) { k = -k, m = -m; }\r\n    auto z = insert({k, m,\
     \ 0}), y = z++, x = y;\r\n    while (insect(y, z)) z = erase(z);\r\n    if (x\
@@ -71,7 +71,7 @@ data:
     \n\r\ntemplate <typename T, bool MINIMIZE = true>\r\nstruct LineContainer : multiset<Line<T>,\
     \ less<>> {\r\n  using super = multiset<Line<T>, less<>>;\r\n  using super::begin,\
     \ super::end, super::insert, super::erase;\r\n  using super::empty, super::lower_bound;\r\
-    \n  const T inf = lc_inf<T>();\r\n  bool insect(typename super::iterator x, typename\
+    \n  T inf = lc_inf<T>();\r\n  bool insect(typename super::iterator x, typename\
     \ super::iterator y) {\r\n    if (y == end()) return x->p = inf, false;\r\n  \
     \  if (x->k == y->k)\r\n      x->p = (x->m > y->m ? inf : -inf);\r\n    else\r\
     \n      x->p = lc_div(y->m - x->m, x->k - y->k);\r\n    return x->p >= y->p;\r\
@@ -103,8 +103,8 @@ data:
   isVerificationFile: false
   path: convex/cht.hpp
   requiredBy: []
-  timestamp: '2023-03-17 00:39:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-03-30 23:49:23+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc244h.test.cpp
   - test/yukicoder/2012.test.cpp

@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/cht.hpp
     title: convex/cht.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc244/tasks/abc244_Ex
@@ -213,7 +213,7 @@ data:
     \n\r\ntemplate <typename T, bool MINIMIZE = true>\r\nstruct LineContainer : multiset<Line<T>,\
     \ less<>> {\r\n  using super = multiset<Line<T>, less<>>;\r\n  using super::begin,\
     \ super::end, super::insert, super::erase;\r\n  using super::empty, super::lower_bound;\r\
-    \n  const T inf = lc_inf<T>();\r\n  bool insect(typename super::iterator x, typename\
+    \n  T inf = lc_inf<T>();\r\n  bool insect(typename super::iterator x, typename\
     \ super::iterator y) {\r\n    if (y == end()) return x->p = inf, false;\r\n  \
     \  if (x->k == y->k)\r\n      x->p = (x->m > y->m ? inf : -inf);\r\n    else\r\
     \n      x->p = lc_div(y->m - x->m, x->k - y->k);\r\n    return x->p >= y->p;\r\
@@ -256,8 +256,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc244h.test.cpp
   requiredBy: []
-  timestamp: '2023-03-17 00:39:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-03-30 23:49:23+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc244h.test.cpp
 layout: document
