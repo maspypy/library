@@ -33,7 +33,7 @@ struct LineContainer : multiset<Line<T>, less<>> {
   using super = multiset<Line<T>, less<>>;
   using super::begin, super::end, super::insert, super::erase;
   using super::empty, super::lower_bound;
-  const T inf = lc_inf<T>();
+  T inf = lc_inf<T>();
   bool insect(typename super::iterator x, typename super::iterator y) {
     if (y == end()) return x->p = inf, false;
     if (x->k == y->k)
