@@ -25,7 +25,7 @@ void solve() {
   vc<pq<ll>> wts(C);
   vc<pair<ll, int>> dat(C);
   FOR(i, C) dat[i] = {-infty<ll>, i};
-  Tree_Monoid<decltype(tree), Mono> TM(tree, dat);
+  Tree_Monoid<decltype(tree), Mono, 0> TM(tree, dat);
 
   FOR(Q) {
     LL(t);
@@ -54,13 +54,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }
