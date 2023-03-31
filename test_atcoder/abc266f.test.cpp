@@ -9,9 +9,8 @@ void solve() {
   Graph<int, 0> G(N);
   G.read_graph(N);
 
-  UnicyclicGraph X(G);
-  auto T = X.tree;
-  Tree<decltype(T)> tree(T, X.root);
+  UnicyclicGraph<decltype(G), true> X(G);
+  auto tree = X.build();
 
   ll root = X.root;
   ll bottom = X.TO[X.root];
@@ -27,11 +26,6 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }

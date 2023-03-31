@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "random/random_graph.hpp"
 #include "graph/base.hpp"
-#include "graph/count_independent_set.hpp"
+#include "graph/count/count_independent_set.hpp"
 
 void test() {
   FOR(100) {
