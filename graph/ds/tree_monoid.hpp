@@ -13,22 +13,35 @@ struct Tree_Monoid {
   SegTree<Monoid> seg;
   SegTree<RevMonoid> seg_r;
 
-  Tree_Monoid(TREE &tree) : tree(tree), N(tree.N), seg(tree.N) {
-    if (!Monoid::commute) seg_r = SegTree<RevMonoid>(tree.N);
+  Tree_Monoid(TREE &tree) : tree(tree), N(tree.N) {
+    build([](int i) -> X { return MX::unit(); });
   }
 
   Tree_Monoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {
+    build([](int i) -> X { return dat[i]; });
+  }
+
+  template <typename F>
+  Tree_Monoid(TREE &tree, F f) : tree(tree), N(tree.N) {
+    build(f);
+  }
+
+  template <typename F>
+  void build(int m, F f) {
     vc<X> seg_raw(N, Monoid::unit());
     if (!edge) {
-      FOR(v, N) seg_raw[tree.LID[v]] = dat[v];
+      seg.build(N, [&](int i) -> X { return f(tree.V[i]); });
+      if (!Monoid::commute) {
+        seg_r.build(N, [&](int i) -> X { return f(tree.V[i]); });
+      }
     } else {
-      FOR(e, N - 1) {
-        int v = tree.e_to_v(e);
-        seg_raw[tree.LID[v]] = dat[e];
+      seg.build(
+          N, [&](int i) -> X { return (i == 0 ? f(tree.v_to_e(tree.V[i]))); });
+      if (!Monoid::commute) {
+        seg_r.build(N, [&](int i) -> X { return (i == 0 ? f(tree.v_to_e(tree.V[i])));
+        });
       }
     }
-    seg = SegTree<Monoid>(seg_raw);
-    if (!Monoid::commute) seg_r = SegTree<RevMonoid>(seg_raw);
   }
 
   void set(int i, X x) {
