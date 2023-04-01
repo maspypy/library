@@ -9,12 +9,21 @@ struct Tree_AbelGroup {
   int N;
   FenwickTree<AbelGroup> bit, bit_subtree;
 
-  Tree_AbelGroup(TREE &tree) : tree(tree), N(tree.N) {
-    if (path_query) { bit = FenwickTree<AbelGroup>(2 * N); }
-    if (subtree_query) { bit_subtree = FenwickTree<AbelGroup>(N); }
+  Tree_AbelGroup(TREE &tree) : tree(tree), N(tree.N), seg(tree.N) {
+    build([](int i) -> X { return MX::unit(); });
   }
 
-  Tree_AbelGroup(TREE &tree, vc<X> dat) : tree(tree), N(tree.N) {
+  Tree_AbelGroup(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {
+    build([](int i) -> X { return dat[i]; });
+  }
+
+  template <typename F>
+  Tree_AbelGroup(TREE &tree, F f) : tree(tree), N(tree.N) {
+    build(f);
+  }
+
+  template <typename F>
+  void build(F f) {
     if (path_query) {
       vc<X> bit_raw(2 * N);
       if (!edge) {
@@ -31,7 +40,7 @@ struct Tree_AbelGroup {
           bit_raw[tree.ERID(v)] = AbelGroup::inverse(dat[e]);
         }
       }
-      bit = FenwickTree<AbelGroup>(bit_raw);
+      bit.build(bit_raw);
     }
     if (subtree_query) {
       vc<X> bit_raw(N);
@@ -45,7 +54,7 @@ struct Tree_AbelGroup {
           bit_raw[tree.LID[v]] = dat[e];
         }
       }
-      bit_subtree = FenwickTree<AbelGroup>(bit_raw);
+      bit_subtree.build(bit_raw);
     }
   }
 
@@ -73,11 +82,5 @@ struct Tree_AbelGroup {
     assert(subtree_query);
     int l = tree.LID[u], r = tree.RID[u];
     return bit_subtree.prod(l + edge, r);
-  }
-
-  void debug() {
-    tree.debug();
-    bit.debug();
-    bit_subtree.debug();
   }
 };
