@@ -8,9 +8,9 @@ struct Monoid_MinMincnt {
   static X op(X x, X y) {
     auto [xmin, xmincnt] = x;
     auto [ymin, ymincnt] = y;
-    if (xmin > ymin) return {ymin, ymincnt};
-    if (xmin == ymin) return {xmin, xmincnt + ymincnt};
-    return {xmin, xmincnt};
+    if (xmin > ymin) return y;
+    if (xmin < ymin) return x;
+    return {xmin, xmincnt + ymincnt};
   }
   static constexpr X unit() { return {infty<E>, 0}; }
   static constexpr bool commute = true;
