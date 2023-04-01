@@ -1,4 +1,5 @@
 #include "ds/unionfind/unionfind.hpp"
+#include "ds/fastset.hpp"
 
 template <typename GT>
 UnionFind cograph_unionfind(GT& G) {
