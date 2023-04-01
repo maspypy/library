@@ -10,7 +10,7 @@ struct Tree {
   using WT = typename GT::cost_type;
   int N;
   bool hld;
-  vector<int> LID, RID, head, V, parent;
+  vector<int> LID, RID, head, V, parent, VtoE;
   vc<int> depth;
   vc<WT> depth_weighted;
 
@@ -23,6 +23,7 @@ struct Tree {
         head(G.N, r),
         V(G.N),
         parent(G.N, -1),
+        VtoE(G.N, -1),
         depth(G.N, -1),
         depth_weighted(G.N, 0) {
     assert(G.is_prepared());
@@ -57,6 +58,7 @@ struct Tree {
       auto e = csr[i];
       if (depth[e.to] != -1) continue;
       depth_weighted[e.to] = depth_weighted[v] + e.cost;
+      VtoE[e.to] = e.id;
       dfs_sz(e.to, v);
       sz[v] += sz[e.to];
       if (hld && chmax(hld_sz, sz[e.to]) && l < i) { swap(csr[l], csr[i]); }
@@ -95,6 +97,7 @@ struct Tree {
     auto e = G.edges[eid];
     return (parent[e.frm] == e.to ? e.frm : e.to);
   }
+  int v_to_e(int v) { return VtoE[v]; }
 
   int ELID(int v) { return 2 * LID[v] - depth[v]; }
   int ERID(int v) { return 2 * RID[v] - depth[v] - 1; }
