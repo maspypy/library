@@ -45,7 +45,9 @@ vc<int> reverse_state(const vc<int>& now) {
 }
 
 // 0, 1 ：空の列、領域の手前、後ろ
-// 連結領域をひとつ作る。多角形とは限らない。
+// 連結領域をひとつ作る。
+// 状態：-1 が選んでいない。0,1,2,3 等は同じ成分には同じ値が入る。
+// [states, edges]
 pair<vvc<int>, vc<pair<int, int>>> connedted_dp_graph(int N,
                                                       bool merge_reverse) {
   static HashMap<int> MP;
@@ -91,6 +93,10 @@ pair<vvc<int>, vc<pair<int, int>>> connedted_dp_graph(int N,
   return {states, edges};
 }
 
+// 0, 1 ：空の列、領域の手前、後ろ
+// 多角形（空洞なし）をひとつ作る。
+// 状態：-1 が選んでいない。0,1,2,3 等は同じ成分には同じ値が入る。
+// [states, edges]
 pair<vvc<int>, vc<pair<int, int>>> polygon_dp_graph(int N) {
   static HashMap<int> MP;
   MP.reset();
