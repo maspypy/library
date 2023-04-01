@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
   - icon: ':x:'
@@ -29,7 +29,7 @@ data:
   - icon: ':x:'
     path: graph/minimum_cycle_length_through_specified.hpp
     title: graph/minimum_cycle_length_through_specified.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
   - icon: ':heavy_check_mark:'
@@ -111,10 +111,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/set_xor_min.test.cpp
     title: test/library_checker/datastructure/set_xor_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/chromatic_number.test.cpp
     title: test/library_checker/graph/chromatic_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/classify_tree.test.cpp
     title: test/library_checker/graph/classify_tree.test.cpp
   - icon: ':heavy_check_mark:'

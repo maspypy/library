@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
   - icon: ':question:'
@@ -22,13 +22,13 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':question:'
@@ -296,23 +296,24 @@ data:
     \u7D50\u3067\u3082 dfs \u9806\u5E8F\u3084\u89AA\u304C\u3068\u308C\u308B\u3002\r\
     \ntemplate <typename GT>\r\nstruct Tree {\r\n  using Graph_type = GT;\r\n  GT\
     \ &G;\r\n  using WT = typename GT::cost_type;\r\n  int N;\r\n  bool hld;\r\n \
-    \ vector<int> LID, RID, head, V, parent;\r\n  vc<int> depth;\r\n  vc<WT> depth_weighted;\r\
-    \n\r\n  Tree(GT &G, int r = -1, bool hld = 1)\r\n      : G(G),\r\n        N(G.N),\r\
-    \n        hld(hld),\r\n        LID(G.N),\r\n        RID(G.N),\r\n        head(G.N,\
-    \ r),\r\n        V(G.N),\r\n        parent(G.N, -1),\r\n        depth(G.N, -1),\r\
-    \n        depth_weighted(G.N, 0) {\r\n    assert(G.is_prepared());\r\n    int\
-    \ t1 = 0;\r\n    if (r != -1) {\r\n      dfs_sz(r, -1);\r\n      dfs_hld(r, t1);\r\
-    \n    } else {\r\n      for (int r = 0; r < N; ++r) {\r\n        if (parent[r]\
-    \ == -1) {\r\n          head[r] = r;\r\n          dfs_sz(r, -1);\r\n         \
-    \ dfs_hld(r, t1);\r\n        }\r\n      }\r\n    }\r\n  }\r\n\r\n  void dfs_sz(int\
-    \ v, int p) {\r\n    auto &sz = RID;\r\n    parent[v] = p;\r\n    depth[v] = (p\
-    \ == -1 ? 0 : depth[p] + 1);\r\n    sz[v] = 1;\r\n    int l = G.indptr[v], r =\
-    \ G.indptr[v + 1];\r\n    auto &csr = G.csr_edges;\r\n    // \u4F7F\u3046\u8FBA\
-    \u304C\u3042\u308C\u3070\u5148\u982D\u306B\u3059\u308B\r\n    for (int i = r -\
-    \ 2; i >= l; --i) {\r\n      if (hld && depth[csr[i + 1].to] == -1) swap(csr[i],\
-    \ csr[i + 1]);\r\n    }\r\n    int hld_sz = 0;\r\n    for (int i = l; i < r; ++i)\
-    \ {\r\n      auto e = csr[i];\r\n      if (depth[e.to] != -1) continue;\r\n  \
-    \    depth_weighted[e.to] = depth_weighted[v] + e.cost;\r\n      dfs_sz(e.to,\
+    \ vector<int> LID, RID, head, V, parent, VtoE;\r\n  vc<int> depth;\r\n  vc<WT>\
+    \ depth_weighted;\r\n\r\n  Tree(GT &G, int r = -1, bool hld = 1)\r\n      : G(G),\r\
+    \n        N(G.N),\r\n        hld(hld),\r\n        LID(G.N),\r\n        RID(G.N),\r\
+    \n        head(G.N, r),\r\n        V(G.N),\r\n        parent(G.N, -1),\r\n   \
+    \     VtoE(G.N, -1),\r\n        depth(G.N, -1),\r\n        depth_weighted(G.N,\
+    \ 0) {\r\n    assert(G.is_prepared());\r\n    int t1 = 0;\r\n    if (r != -1)\
+    \ {\r\n      dfs_sz(r, -1);\r\n      dfs_hld(r, t1);\r\n    } else {\r\n     \
+    \ for (int r = 0; r < N; ++r) {\r\n        if (parent[r] == -1) {\r\n        \
+    \  head[r] = r;\r\n          dfs_sz(r, -1);\r\n          dfs_hld(r, t1);\r\n \
+    \       }\r\n      }\r\n    }\r\n  }\r\n\r\n  void dfs_sz(int v, int p) {\r\n\
+    \    auto &sz = RID;\r\n    parent[v] = p;\r\n    depth[v] = (p == -1 ? 0 : depth[p]\
+    \ + 1);\r\n    sz[v] = 1;\r\n    int l = G.indptr[v], r = G.indptr[v + 1];\r\n\
+    \    auto &csr = G.csr_edges;\r\n    // \u4F7F\u3046\u8FBA\u304C\u3042\u308C\u3070\
+    \u5148\u982D\u306B\u3059\u308B\r\n    for (int i = r - 2; i >= l; --i) {\r\n \
+    \     if (hld && depth[csr[i + 1].to] == -1) swap(csr[i], csr[i + 1]);\r\n   \
+    \ }\r\n    int hld_sz = 0;\r\n    for (int i = l; i < r; ++i) {\r\n      auto\
+    \ e = csr[i];\r\n      if (depth[e.to] != -1) continue;\r\n      depth_weighted[e.to]\
+    \ = depth_weighted[v] + e.cost;\r\n      VtoE[e.to] = e.id;\r\n      dfs_sz(e.to,\
     \ v);\r\n      sz[v] += sz[e.to];\r\n      if (hld && chmax(hld_sz, sz[e.to])\
     \ && l < i) { swap(csr[l], csr[i]); }\r\n    }\r\n  }\r\n\r\n  void dfs_hld(int\
     \ v, int &times) {\r\n    LID[v] = times++;\r\n    RID[v] += LID[v];\r\n    V[LID[v]]\
@@ -324,29 +325,29 @@ data:
     \ && head[e.to] == v) {\r\n          P.eb(e.to);\r\n          break;\r\n     \
     \   }\r\n      }\r\n      if (P.back() == a) break;\r\n    }\r\n    return P;\r\
     \n  }\r\n\r\n  int e_to_v(int eid) {\r\n    auto e = G.edges[eid];\r\n    return\
-    \ (parent[e.frm] == e.to ? e.frm : e.to);\r\n  }\r\n\r\n  int ELID(int v) { return\
-    \ 2 * LID[v] - depth[v]; }\r\n  int ERID(int v) { return 2 * RID[v] - depth[v]\
-    \ - 1; }\r\n\r\n  /* k: 0-indexed */\r\n  int LA(int v, int k) {\r\n    assert(k\
-    \ <= depth[v]);\r\n    while (1) {\r\n      int u = head[v];\r\n      if (LID[v]\
-    \ - k >= LID[u]) return V[LID[v] - k];\r\n      k -= LID[v] - LID[u] + 1;\r\n\
-    \      v = parent[u];\r\n    }\r\n  }\r\n\r\n  int LCA(int u, int v) {\r\n   \
-    \ for (;; v = parent[head[v]]) {\r\n      if (LID[u] > LID[v]) swap(u, v);\r\n\
-    \      if (head[u] == head[v]) return u;\r\n    }\r\n  }\r\n\r\n  int lca(int\
-    \ u, int v) { return LCA(u, v); }\r\n  int la(int u, int v) { return LA(u, v);\
-    \ }\r\n\r\n  int subtree_size(int v) { return RID[v] - LID[v]; }\r\n\r\n  int\
-    \ dist(int a, int b) {\r\n    int c = LCA(a, b);\r\n    return depth[a] + depth[b]\
-    \ - 2 * depth[c];\r\n  }\r\n\r\n  WT dist(int a, int b, bool weighted) {\r\n \
-    \   assert(weighted);\r\n    int c = LCA(a, b);\r\n    return depth_weighted[a]\
-    \ + depth_weighted[b] - WT(2) * depth_weighted[c];\r\n  }\r\n\r\n  // a is in\
-    \ b\r\n  bool in_subtree(int a, int b) { return LID[b] <= LID[a] && LID[a] < RID[b];\
-    \ }\r\n\r\n  int jump(int a, int b, ll k) {\r\n    if (k == 1) {\r\n      if (a\
-    \ == b) return -1;\r\n      return (in_subtree(b, a) ? LA(b, depth[b] - depth[a]\
-    \ - 1) : parent[a]);\r\n    }\r\n    int c = LCA(a, b);\r\n    int d_ac = depth[a]\
-    \ - depth[c];\r\n    int d_bc = depth[b] - depth[c];\r\n    if (k > d_ac + d_bc)\
-    \ return -1;\r\n    if (k <= d_ac) return LA(a, k);\r\n    return LA(b, d_ac +\
-    \ d_bc - k);\r\n  }\r\n\r\n  vc<int> collect_child(int v) {\r\n    vc<int> res;\r\
-    \n    for (auto &&e: G[v])\r\n      if (e.to != parent[v]) res.eb(e.to);\r\n \
-    \   return res;\r\n  }\r\n\r\n  vc<pair<int, int>> get_path_decomposition(int\
+    \ (parent[e.frm] == e.to ? e.frm : e.to);\r\n  }\r\n  int v_to_e(int v) { return\
+    \ VtoE[v]; }\r\n\r\n  int ELID(int v) { return 2 * LID[v] - depth[v]; }\r\n  int\
+    \ ERID(int v) { return 2 * RID[v] - depth[v] - 1; }\r\n\r\n  /* k: 0-indexed */\r\
+    \n  int LA(int v, int k) {\r\n    assert(k <= depth[v]);\r\n    while (1) {\r\n\
+    \      int u = head[v];\r\n      if (LID[v] - k >= LID[u]) return V[LID[v] - k];\r\
+    \n      k -= LID[v] - LID[u] + 1;\r\n      v = parent[u];\r\n    }\r\n  }\r\n\r\
+    \n  int LCA(int u, int v) {\r\n    for (;; v = parent[head[v]]) {\r\n      if\
+    \ (LID[u] > LID[v]) swap(u, v);\r\n      if (head[u] == head[v]) return u;\r\n\
+    \    }\r\n  }\r\n\r\n  int lca(int u, int v) { return LCA(u, v); }\r\n  int la(int\
+    \ u, int v) { return LA(u, v); }\r\n\r\n  int subtree_size(int v) { return RID[v]\
+    \ - LID[v]; }\r\n\r\n  int dist(int a, int b) {\r\n    int c = LCA(a, b);\r\n\
+    \    return depth[a] + depth[b] - 2 * depth[c];\r\n  }\r\n\r\n  WT dist(int a,\
+    \ int b, bool weighted) {\r\n    assert(weighted);\r\n    int c = LCA(a, b);\r\
+    \n    return depth_weighted[a] + depth_weighted[b] - WT(2) * depth_weighted[c];\r\
+    \n  }\r\n\r\n  // a is in b\r\n  bool in_subtree(int a, int b) { return LID[b]\
+    \ <= LID[a] && LID[a] < RID[b]; }\r\n\r\n  int jump(int a, int b, ll k) {\r\n\
+    \    if (k == 1) {\r\n      if (a == b) return -1;\r\n      return (in_subtree(b,\
+    \ a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);\r\n    }\r\n    int c = LCA(a,\
+    \ b);\r\n    int d_ac = depth[a] - depth[c];\r\n    int d_bc = depth[b] - depth[c];\r\
+    \n    if (k > d_ac + d_bc) return -1;\r\n    if (k <= d_ac) return LA(a, k);\r\
+    \n    return LA(b, d_ac + d_bc - k);\r\n  }\r\n\r\n  vc<int> collect_child(int\
+    \ v) {\r\n    vc<int> res;\r\n    for (auto &&e: G[v])\r\n      if (e.to != parent[v])\
+    \ res.eb(e.to);\r\n    return res;\r\n  }\r\n\r\n  vc<pair<int, int>> get_path_decomposition(int\
     \ u, int v, bool edge) {\r\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\"\u9589\
     \"\u533A\u9593\u5217\u3002\r\n    vc<pair<int, int>> up, down;\r\n    while (1)\
     \ {\r\n      if (head[u] == head[v]) break;\r\n      if (LID[u] < LID[v]) {\r\n\
@@ -407,25 +408,31 @@ data:
     \n\r\ntemplate <typename TREE, typename Monoid, bool edge>\r\nstruct Tree_Monoid\
     \ {\r\n  using RevMonoid = Monoid_Reverse<Monoid>;\r\n  using X = typename Monoid::value_type;\r\
     \n  TREE &tree;\r\n  int N;\r\n  SegTree<Monoid> seg;\r\n  SegTree<RevMonoid>\
-    \ seg_r;\r\n\r\n  Tree_Monoid(TREE &tree) : tree(tree), N(tree.N), seg(tree.N)\
-    \ {\r\n    if (!Monoid::commute) seg_r = SegTree<RevMonoid>(tree.N);\r\n  }\r\n\
-    \r\n  Tree_Monoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {\r\n    vc<X>\
-    \ seg_raw(N, Monoid::unit());\r\n    if (!edge) {\r\n      FOR(v, N) seg_raw[tree.LID[v]]\
-    \ = dat[v];\r\n    } else {\r\n      FOR(e, N - 1) {\r\n        int v = tree.e_to_v(e);\r\
-    \n        seg_raw[tree.LID[v]] = dat[e];\r\n      }\r\n    }\r\n    seg = SegTree<Monoid>(seg_raw);\r\
-    \n    if (!Monoid::commute) seg_r = SegTree<RevMonoid>(seg_raw);\r\n  }\r\n\r\n\
-    \  void set(int i, X x) {\r\n    if (edge) i = tree.e_to_v(i);\r\n    i = tree.LID[i];\r\
-    \n    seg.set(i, x);\r\n    if (!Monoid::commute) seg_r.set(i, x);\r\n  }\r\n\r\
-    \n  void multiply(int i, X x) {\r\n    if (edge) i = tree.e_to_v(i);\r\n    i\
-    \ = tree.LID[i];\r\n    seg.multiply(i, x);\r\n    if (!Monoid::commute) seg_r.multiply(i,\
-    \ x);\r\n  }\r\n\r\n  X prod_path(int u, int v) {\r\n    auto pd = tree.get_path_decomposition(u,\
-    \ v, edge);\r\n    X val = Monoid::unit();\r\n    for (auto &&[a, b]: pd) {\r\n\
-    \      X x = (a <= b ? seg.prod(a, b + 1)\r\n                    : (Monoid::commute\
-    \ ? seg.prod(b, a + 1)\r\n                                       : seg_r.prod(b,\
-    \ a + 1)));\r\n      val = Monoid::op(val, x);\r\n    }\r\n    return val;\r\n\
-    \  }\r\n\r\n  // uv path \u4E0A\u3067 prod_path(u, x) \u304C check \u3092\u6E80\
-    \u305F\u3059\u6700\u5F8C\u306E x\r\n  // \u306A\u3051\u308C\u3070 -1\r\n  // https://codeforces.com/contest/1059/problem/E\r\
-    \n  // https://codeforces.com/contest/1230/problem/E\r\n  // edge: https://atcoder.jp/contests/tkppc3/tasks/tkppc3_i\r\
+    \ seg_r;\r\n\r\n  Tree_Monoid(TREE &tree) : tree(tree), N(tree.N) {\r\n    build([](int\
+    \ i) -> X { return MX::unit(); });\r\n  }\r\n\r\n  Tree_Monoid(TREE &tree, vc<X>\
+    \ &dat) : tree(tree), N(tree.N) {\r\n    build([](int i) -> X { return dat[i];\
+    \ });\r\n  }\r\n\r\n  template <typename F>\r\n  Tree_Monoid(TREE &tree, F f)\
+    \ : tree(tree), N(tree.N) {\r\n    build(f);\r\n  }\r\n\r\n  template <typename\
+    \ F>\r\n  void build(int m, F f) {\r\n    vc<X> seg_raw(N, Monoid::unit());\r\n\
+    \    if (!edge) {\r\n      seg.build(N, [&](int i) -> X { return f(tree.V[i]);\
+    \ });\r\n      if (!Monoid::commute) {\r\n        seg_r.build(N, [&](int i) ->\
+    \ X { return f(tree.V[i]); });\r\n      }\r\n    } else {\r\n      seg.build(\r\
+    \n          N, [&](int i) -> X { return (i == 0 ? f(tree.v_to_e(tree.V[i])));\
+    \ });\r\n      if (!Monoid::commute) {\r\n        seg_r.build(N, [&](int i) ->\
+    \ X { return (i == 0 ? f(tree.v_to_e(tree.V[i])));\r\n        });\r\n      }\r\
+    \n    }\r\n  }\r\n\r\n  void set(int i, X x) {\r\n    if (edge) i = tree.e_to_v(i);\r\
+    \n    i = tree.LID[i];\r\n    seg.set(i, x);\r\n    if (!Monoid::commute) seg_r.set(i,\
+    \ x);\r\n  }\r\n\r\n  void multiply(int i, X x) {\r\n    if (edge) i = tree.e_to_v(i);\r\
+    \n    i = tree.LID[i];\r\n    seg.multiply(i, x);\r\n    if (!Monoid::commute)\
+    \ seg_r.multiply(i, x);\r\n  }\r\n\r\n  X prod_path(int u, int v) {\r\n    auto\
+    \ pd = tree.get_path_decomposition(u, v, edge);\r\n    X val = Monoid::unit();\r\
+    \n    for (auto &&[a, b]: pd) {\r\n      X x = (a <= b ? seg.prod(a, b + 1)\r\n\
+    \                    : (Monoid::commute ? seg.prod(b, a + 1)\r\n             \
+    \                          : seg_r.prod(b, a + 1)));\r\n      val = Monoid::op(val,\
+    \ x);\r\n    }\r\n    return val;\r\n  }\r\n\r\n  // uv path \u4E0A\u3067 prod_path(u,\
+    \ x) \u304C check \u3092\u6E80\u305F\u3059\u6700\u5F8C\u306E x\r\n  // \u306A\u3051\
+    \u308C\u3070 -1\r\n  // https://codeforces.com/contest/1059/problem/E\r\n  //\
+    \ https://codeforces.com/contest/1230/problem/E\r\n  // edge: https://atcoder.jp/contests/tkppc3/tasks/tkppc3_i\r\
     \n  // edge \u304C\u7279\u306B\u602A\u3057\u3044\u304B\u3082\r\n  template <class\
     \ F>\r\n  int max_path(F check, int u, int v) {\r\n    if (edge) return max_path_edge(check,\
     \ u, v);\r\n    if (!check(prod_path(u, u))) return -1;\r\n    auto pd = tree.get_path_decomposition(u,\
@@ -579,7 +586,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc270_f.test.cpp
   requiredBy: []
-  timestamp: '2023-04-02 04:25:25+09:00'
+  timestamp: '2023-04-02 05:22:24+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc270_f.test.cpp

@@ -23,7 +23,7 @@ data:
   - icon: ':x:'
     path: graph/ds/contour_sum.hpp
     title: graph/ds/contour_sum.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
   - icon: ':heavy_check_mark:'
@@ -66,7 +66,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - icon: ':heavy_check_mark:'

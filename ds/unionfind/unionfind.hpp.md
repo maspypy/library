@@ -5,7 +5,7 @@ data:
   - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/manhattan_mst.hpp
     title: geo/manhattan_mst.hpp
   - icon: ':heavy_check_mark:'
@@ -32,7 +32,7 @@ data:
   - icon: ':question:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':x:'
@@ -54,7 +54,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2995.test.cpp
     title: test/aoj/2995.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -66,7 +66,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/manhattan_mst.test.cpp
     title: test/library_checker/graph/manhattan_mst.test.cpp
   - icon: ':x:'

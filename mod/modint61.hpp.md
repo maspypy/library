@@ -8,7 +8,7 @@ data:
   - icon: ':x:'
     path: graph/max_matching_size.hpp
     title: graph/max_matching_size.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
   - icon: ':heavy_check_mark:'
@@ -27,7 +27,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_14_C.test.cpp
     title: test/aoj/ALDS1_14_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/classify_tree.test.cpp
     title: test/library_checker/graph/classify_tree.test.cpp
   - icon: ':heavy_check_mark:'

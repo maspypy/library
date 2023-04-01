@@ -2,17 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: ds/unionfind/unionfind.hpp
-    title: ds/unionfind/unionfind.hpp
+    path: flow/binary_optimization.hpp
+    title: flow/binary_optimization.hpp
   - icon: ':question:'
-    path: graph/base.hpp
-    title: graph/base.hpp
-  - icon: ':question:'
-    path: graph/tree.hpp
-    title: graph/tree.hpp
-  - icon: ':x:'
-    path: graph/unicyclic.hpp
-    title: graph/unicyclic.hpp
+    path: flow/maxflow.hpp
+    title: flow/maxflow.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -26,10 +20,10 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc266/tasks/abc266_f
+    PROBLEM: https://atcoder.jp/contests/abc193/tasks/abc193_f
     links:
-    - https://atcoder.jp/contests/abc266/tasks/abc266_f
-  bundledCode: "#line 1 \"test_atcoder/abc266f.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc266/tasks/abc266_f\"\
+    - https://atcoder.jp/contests/abc193/tasks/abc193_f
+  bundledCode: "#line 1 \"test_atcoder/abc193f.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc193/tasks/abc193_f\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -210,184 +204,140 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge\
-    \ {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
-    \ directed = false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n  using\
-    \ edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n  vector<edge_type>\
-    \ csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class\
-    \ OutgoingEdges {\n  public:\n    OutgoingEdges(const Graph* G, int l, int r)\
-    \ : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n      if (l ==\
-    \ r) { return 0; }\n      return &G->csr_edges[l];\n    }\n\n    const edge_type*\
-    \ end() const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n\
-    \    }\n\n  private:\n    const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared()\
-    \ { return prepared; }\n  constexpr bool is_directed() { return directed; }\n\n\
-    \  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
-    \ {}\n\n  void resize(int n) { N = n; }\n\n  void add(int frm, int to, T cost\
-    \ = 1, int i = -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <= to &&\
-    \ to < N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost, i});\n\
-    \    edges.eb(e);\n    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool wt = false,\
-    \ int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int M, bool\
-    \ wt = false, int off = 1) {\n    for (int m = 0; m < M; ++m) {\n      INT(a,\
-    \ b);\n      a -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n     \
-    \ } else {\n        T c;\n        read(c);\n        add(a, b, c);\n      }\n \
-    \   }\n    build();\n  }\n\n  void read_parent(int off = 1) {\n    for (int v\
-    \ = 1; v < N; ++v) {\n      INT(p);\n      p -= off;\n      add(p, v);\n    }\n\
-    \    build();\n  }\n\n  void build() {\n    assert(!prepared);\n    prepared =\
-    \ true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm\
-    \ + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n    }\n    for (int v = 0;\
-    \ v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto counter = indptr;\n  \
-    \  csr_edges.resize(indptr.back() + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++]\
-    \ = e;\n      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to,\
-    \ e.frm, e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const\
-    \ {\n    assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\
-    \n  vc<int> deg_array() {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n\
-    \  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n    if (vc_indeg.empty())\
-    \ calc_deg_inout();\n    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v)\
-    \ {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n  int\
-    \ in_deg(int v) {\n    if (vc_indeg.empty()) calc_deg_inout();\n    return vc_indeg[v];\n\
-    \  }\n\n  int out_deg(int v) {\n    if (vc_outdeg.empty()) calc_deg_inout();\n\
-    \    return vc_outdeg[v];\n  }\n\n  void debug() {\n    print(\"Graph\");\n  \
-    \  if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e: edges)\
-    \ print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\", indptr);\n\
-    \      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
-    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\n  // G \u306B\u304A\u3051\u308B\
-    \u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\
-    \u306A\u308B\u3088\u3046\u306B\u3059\u308B\n  Graph<T, directed> rearrange(vc<int>\
-    \ V) {\n    int n = len(V);\n    map<int, int> MP;\n    FOR(i, n) MP[V[i]] = i;\n\
-    \    Graph<T, directed> G(n);\n    for (auto&& e: edges) {\n      if (MP.count(e.frm)\
-    \ && MP.count(e.to)) {\n        G.add(MP[e.frm], MP[e.to], e.cost);\n      }\n\
-    \    }\n    G.build();\n    return G;\n  }\n\nprivate:\n  void calc_deg() {\n\
-    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
-    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
-    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
-    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 3 \"graph/tree.hpp\"\
-    \n\r\n// HLD euler tour \u3092\u3068\u3063\u3066\u3044\u308D\u3044\u308D\u3002\
-    \r\n// \u6728\u4EE5\u5916\u3001\u975E\u9023\u7D50\u3067\u3082 dfs \u9806\u5E8F\
-    \u3084\u89AA\u304C\u3068\u308C\u308B\u3002\r\ntemplate <typename GT>\r\nstruct\
-    \ Tree {\r\n  using Graph_type = GT;\r\n  GT &G;\r\n  using WT = typename GT::cost_type;\r\
-    \n  int N;\r\n  bool hld;\r\n  vector<int> LID, RID, head, V, parent, VtoE;\r\n\
-    \  vc<int> depth;\r\n  vc<WT> depth_weighted;\r\n\r\n  Tree(GT &G, int r = -1,\
-    \ bool hld = 1)\r\n      : G(G),\r\n        N(G.N),\r\n        hld(hld),\r\n \
-    \       LID(G.N),\r\n        RID(G.N),\r\n        head(G.N, r),\r\n        V(G.N),\r\
-    \n        parent(G.N, -1),\r\n        VtoE(G.N, -1),\r\n        depth(G.N, -1),\r\
-    \n        depth_weighted(G.N, 0) {\r\n    assert(G.is_prepared());\r\n    int\
-    \ t1 = 0;\r\n    if (r != -1) {\r\n      dfs_sz(r, -1);\r\n      dfs_hld(r, t1);\r\
-    \n    } else {\r\n      for (int r = 0; r < N; ++r) {\r\n        if (parent[r]\
-    \ == -1) {\r\n          head[r] = r;\r\n          dfs_sz(r, -1);\r\n         \
-    \ dfs_hld(r, t1);\r\n        }\r\n      }\r\n    }\r\n  }\r\n\r\n  void dfs_sz(int\
-    \ v, int p) {\r\n    auto &sz = RID;\r\n    parent[v] = p;\r\n    depth[v] = (p\
-    \ == -1 ? 0 : depth[p] + 1);\r\n    sz[v] = 1;\r\n    int l = G.indptr[v], r =\
-    \ G.indptr[v + 1];\r\n    auto &csr = G.csr_edges;\r\n    // \u4F7F\u3046\u8FBA\
-    \u304C\u3042\u308C\u3070\u5148\u982D\u306B\u3059\u308B\r\n    for (int i = r -\
-    \ 2; i >= l; --i) {\r\n      if (hld && depth[csr[i + 1].to] == -1) swap(csr[i],\
-    \ csr[i + 1]);\r\n    }\r\n    int hld_sz = 0;\r\n    for (int i = l; i < r; ++i)\
-    \ {\r\n      auto e = csr[i];\r\n      if (depth[e.to] != -1) continue;\r\n  \
-    \    depth_weighted[e.to] = depth_weighted[v] + e.cost;\r\n      VtoE[e.to] =\
-    \ e.id;\r\n      dfs_sz(e.to, v);\r\n      sz[v] += sz[e.to];\r\n      if (hld\
-    \ && chmax(hld_sz, sz[e.to]) && l < i) { swap(csr[l], csr[i]); }\r\n    }\r\n\
-    \  }\r\n\r\n  void dfs_hld(int v, int &times) {\r\n    LID[v] = times++;\r\n \
-    \   RID[v] += LID[v];\r\n    V[LID[v]] = v;\r\n    bool heavy = true;\r\n    for\
-    \ (auto &&e: G[v]) {\r\n      if (depth[e.to] <= depth[v]) continue;\r\n     \
-    \ head[e.to] = (heavy ? head[v] : e.to);\r\n      heavy = false;\r\n      dfs_hld(e.to,\
-    \ times);\r\n    }\r\n  }\r\n\r\n  vc<int> heavy_path_at(int v) {\r\n    vc<int>\
-    \ P = {v};\r\n    while (1) {\r\n      int a = P.back();\r\n      for (auto &&e:\
-    \ G[a]) {\r\n        if (e.to != parent[a] && head[e.to] == v) {\r\n         \
-    \ P.eb(e.to);\r\n          break;\r\n        }\r\n      }\r\n      if (P.back()\
-    \ == a) break;\r\n    }\r\n    return P;\r\n  }\r\n\r\n  int e_to_v(int eid) {\r\
-    \n    auto e = G.edges[eid];\r\n    return (parent[e.frm] == e.to ? e.frm : e.to);\r\
-    \n  }\r\n  int v_to_e(int v) { return VtoE[v]; }\r\n\r\n  int ELID(int v) { return\
-    \ 2 * LID[v] - depth[v]; }\r\n  int ERID(int v) { return 2 * RID[v] - depth[v]\
-    \ - 1; }\r\n\r\n  /* k: 0-indexed */\r\n  int LA(int v, int k) {\r\n    assert(k\
-    \ <= depth[v]);\r\n    while (1) {\r\n      int u = head[v];\r\n      if (LID[v]\
-    \ - k >= LID[u]) return V[LID[v] - k];\r\n      k -= LID[v] - LID[u] + 1;\r\n\
-    \      v = parent[u];\r\n    }\r\n  }\r\n\r\n  int LCA(int u, int v) {\r\n   \
-    \ for (;; v = parent[head[v]]) {\r\n      if (LID[u] > LID[v]) swap(u, v);\r\n\
-    \      if (head[u] == head[v]) return u;\r\n    }\r\n  }\r\n\r\n  int lca(int\
-    \ u, int v) { return LCA(u, v); }\r\n  int la(int u, int v) { return LA(u, v);\
-    \ }\r\n\r\n  int subtree_size(int v) { return RID[v] - LID[v]; }\r\n\r\n  int\
-    \ dist(int a, int b) {\r\n    int c = LCA(a, b);\r\n    return depth[a] + depth[b]\
-    \ - 2 * depth[c];\r\n  }\r\n\r\n  WT dist(int a, int b, bool weighted) {\r\n \
-    \   assert(weighted);\r\n    int c = LCA(a, b);\r\n    return depth_weighted[a]\
-    \ + depth_weighted[b] - WT(2) * depth_weighted[c];\r\n  }\r\n\r\n  // a is in\
-    \ b\r\n  bool in_subtree(int a, int b) { return LID[b] <= LID[a] && LID[a] < RID[b];\
-    \ }\r\n\r\n  int jump(int a, int b, ll k) {\r\n    if (k == 1) {\r\n      if (a\
-    \ == b) return -1;\r\n      return (in_subtree(b, a) ? LA(b, depth[b] - depth[a]\
-    \ - 1) : parent[a]);\r\n    }\r\n    int c = LCA(a, b);\r\n    int d_ac = depth[a]\
-    \ - depth[c];\r\n    int d_bc = depth[b] - depth[c];\r\n    if (k > d_ac + d_bc)\
-    \ return -1;\r\n    if (k <= d_ac) return LA(a, k);\r\n    return LA(b, d_ac +\
-    \ d_bc - k);\r\n  }\r\n\r\n  vc<int> collect_child(int v) {\r\n    vc<int> res;\r\
-    \n    for (auto &&e: G[v])\r\n      if (e.to != parent[v]) res.eb(e.to);\r\n \
-    \   return res;\r\n  }\r\n\r\n  vc<pair<int, int>> get_path_decomposition(int\
-    \ u, int v, bool edge) {\r\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\"\u9589\
-    \"\u533A\u9593\u5217\u3002\r\n    vc<pair<int, int>> up, down;\r\n    while (1)\
-    \ {\r\n      if (head[u] == head[v]) break;\r\n      if (LID[u] < LID[v]) {\r\n\
-    \        down.eb(LID[head[v]], LID[v]);\r\n        v = parent[head[v]];\r\n  \
-    \    } else {\r\n        up.eb(LID[u], LID[head[u]]);\r\n        u = parent[head[u]];\r\
-    \n      }\r\n    }\r\n    if (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\r\
-    \n    elif (LID[v] + edge <= LID[u]) up.eb(LID[u], LID[v] + edge);\r\n    reverse(all(down));\r\
-    \n    up.insert(up.end(), all(down));\r\n    return up;\r\n  }\r\n\r\n  vc<int>\
-    \ restore_path(int u, int v) {\r\n    vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u,\
-    \ v, 0)) {\r\n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n\
-    \      } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\
-    \n    return P;\r\n  }\r\n};\r\n#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct\
-    \ UnionFind {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int\
-    \ n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
-    \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n   \
-    \ while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return\
-    \ dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int\
-    \ x) {\n    assert(dat[x] < 0);\n    return -dat[x];\n  }\n\n  bool merge(int\
-    \ x, int y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n\
-    \    if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
-    \    return true;\n  }\n};\n#line 4 \"graph/unicyclic.hpp\"\n\ntemplate <typename\
-    \ GT, bool DIRECTED = true>\nstruct UnicyclicGraph {\n  using T = typename GT::cost_type;\n\
-    \  GT& G0;\n  Graph<T, DIRECTED> G;\n  int N;\n  int root;\n  int out_eid;\n \
-    \ vc<int> TO;\n  vc<int> cycle;     // \u6839\u306B\u5411\u304B\u3046\u3088\u3046\
-    \u306A\u9802\u70B9\u5217\n  vc<bool> in_cycle; // vertex id -> bool\n\n  UnicyclicGraph(GT&\
-    \ G) : G0(G), N(G.N) {\n    assert(!G.is_directed() && N == G.M);\n    UnionFind\
-    \ uf(N);\n    TO.assign(N, -1);\n    FOR(eid, N) {\n      auto& e = G.edges[eid];\n\
-    \      if (uf.merge(e.frm, e.to)) continue;\n      out_eid = eid;\n      root\
-    \ = e.frm;\n      TO[root] = e.to;\n      break;\n    }\n    vc<bool> done(N);\n\
-    \    vc<int> que = {root};\n    while (len(que)) {\n      int v = POP(que);\n\
-    \      done[v] = 1;\n      for (auto&& e: G[v]) {\n        if (done[e.to] || e.id\
-    \ == out_eid) continue;\n        TO[e.to] = v;\n        que.eb(e.to);\n      }\n\
-    \    }\n    cycle = {TO[root]};\n    while (cycle.back() != root) cycle.eb(TO[cycle.back()]);\n\
-    \    in_cycle.assign(N, 0);\n    for (auto&& v: cycle) in_cycle[v] = 1;\n  }\n\
-    \n  // tree \u3092\u4F5C\u308B\n  Tree<decltype(G)> build(bool keep_eid = false)\
-    \ {\n    G.resize(N);\n    FOR(eid, N) {\n      if (eid == out_eid) continue;\n\
-    \      auto& e = G0.edges[eid];\n      int a = e.frm, b = e.to;\n      if (TO[a]\
-    \ == b) swap(a, b);\n      assert(TO[b] == a);\n      int k = (keep_eid ? eid\
-    \ : -1);\n      G.add(a, b, e.cost, k);\n    }\n    G.build();\n    return Tree<decltype(G)>(G,\
-    \ root);\n  };\n};\n#line 6 \"test_atcoder/abc266f.test.cpp\"\n\nvoid solve()\
-    \ {\n  LL(N);\n  Graph<int, 0> G(N);\n  G.read_graph(N);\n\n  UnicyclicGraph<decltype(G),\
-    \ true> X(G);\n  auto tree = X.build();\n\n  ll root = X.root;\n  ll bottom =\
-    \ X.TO[X.root];\n\n  LL(Q);\n  FOR(Q) {\n    LL(a, b);\n    --a, --b;\n    ll\
-    \ ca = tree.lca(a, bottom);\n    ll cb = tree.lca(b, bottom);\n    Yes(ca == cb);\n\
-    \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc266/tasks/abc266_f\"\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/unicyclic.hpp\"\
-    \n#include \"graph/tree.hpp\"\n\nvoid solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n\
-    \  G.read_graph(N);\n\n  UnicyclicGraph<decltype(G), true> X(G);\n  auto tree\
-    \ = X.build();\n\n  ll root = X.root;\n  ll bottom = X.TO[X.root];\n\n  LL(Q);\n\
-    \  FOR(Q) {\n    LL(a, b);\n    --a, --b;\n    ll ca = tree.lca(a, bottom);\n\
-    \    ll cb = tree.lca(b, bottom);\n    Yes(ca == cb);\n  }\n}\n\nsigned main()\
-    \ {\n  solve();\n  return 0;\n}\n"
+    \ yes(!t); }\n#line 1 \"flow/maxflow.hpp\"\ntemplate <typename Cap>\nstruct MaxFlowGraph\
+    \ {\n  struct Edge {\n    int to, rev;\n    Cap cap;\n  };\n\n  int N;\n  vvc<Edge>\
+    \ G;\n  vc<int> prog, level;\n  Cap flow_ans;\n  bool calculated;\n\n  MaxFlowGraph(int\
+    \ N) : N(N), calculated(0) {}\n\n  void add(int frm, int to, Cap cap) {\n    assert(0\
+    \ <= frm && frm < N);\n    assert(0 <= to && to < N);\n    assert(Cap(0) <= cap);\n\
+    \    if (len(G) < N) G.resize(N);\n    G[frm].eb(Edge{to, (int)G[to].size(), cap});\n\
+    \    G[to].eb(Edge{frm, (int)G[frm].size() - 1, 0});\n  }\n\n  Cap flow(int source,\
+    \ int sink) {\n    if (calculated) return flow_ans;\n    calculated = true;\n\
+    \    chmax(N, source + 1);\n    chmax(N, sink + 1);\n    G.resize(N);\n    flow_ans\
+    \ = 0;\n    while (set_level(source, sink)) {\n      fill(all(prog), 0);\n   \
+    \   prog.assign(N, 0);\n      while (1) {\n        Cap x = flow_dfs(source, sink,\
+    \ infty<Cap>);\n        if (x == 0) break;\n        flow_ans += x;\n        chmin(flow_ans,\
+    \ infty<Cap>);\n        if (flow_ans == infty<Cap>) return flow_ans;\n      }\n\
+    \    }\n    return flow_ans;\n  }\n\n  // \u6700\u5C0F\u30AB\u30C3\u30C8\u306E\
+    \u5024\u304A\u3088\u3073\u3001\u30AB\u30C3\u30C8\u3092\u8868\u3059 01 \u5217\u3092\
+    \u8FD4\u3059\n  pair<Cap, vc<int>> cut(int source, int sink) {\n    Cap f = flow(source,\
+    \ sink);\n    vc<int> res(N);\n    FOR(v, N) res[v] = (level[v] >= 0 ? 0 : 1);\n\
+    \    return {f, res};\n  }\n\n  // \u6B8B\u4F59\u30B0\u30E9\u30D5\u306E\u8FBA\n\
+    \  vc<tuple<int, int, Cap>> get_edges() {\n    vc<tuple<int, int, Cap>> edges;\n\
+    \    FOR(v, N) for (auto&& e: G[v]) { edges.eb(v, e.to, e.cap); }\n    return\
+    \ edges;\n  }\n\nprivate:\n  bool set_level(int source, int sink) {\n    level.assign(N,\
+    \ -1);\n    level[source] = 0;\n    queue<int> que;\n    que.push(source);\n \
+    \   while (!que.empty()) {\n      int v = que.front();\n      que.pop();\n   \
+    \   for (auto&& e: G[v]) {\n        if (e.cap > 0 && level[e.to] == -1) {\n  \
+    \        level[e.to] = level[v] + 1;\n          if (e.to == sink) return true;\n\
+    \          que.push(e.to);\n        }\n      }\n    }\n    return false;\n  }\n\
+    \n  Cap flow_dfs(int v, int sink, Cap lim) {\n    if (v == sink) return lim;\n\
+    \    Cap res = 0;\n    for (int& i = prog[v]; i < (int)G[v].size(); ++i) {\n \
+    \     auto& e = G[v][i];\n      if (e.cap > 0 && level[e.to] == level[v] + 1)\
+    \ {\n        Cap a = flow_dfs(e.to, sink, min(lim, e.cap));\n        if (a > 0)\
+    \ {\n          e.cap -= a;\n          G[e.to][e.rev].cap += a;\n          res\
+    \ += a;\n          lim -= a;\n          if (lim == 0) break;\n        }\n    \
+    \  }\n    }\n    return res;\n  }\n};\n#line 2 \"flow/binary_optimization.hpp\"\
+    \n\ntemplate <typename T, bool MINIMIZE>\nstruct Binary_Optimization {\n  int\
+    \ n;\n  int nxt;\n  int source, sink;\n  T base_cost;\n  map<pair<int, int>, T>\
+    \ edges;\n\n  Binary_Optimization(int n) : n(n), base_cost(0) {\n    source =\
+    \ n;\n    sink = n + 1;\n    nxt = n + 2;\n  }\n\n  // xi \u3092 0, 1 \u306B\u3059\
+    \u308B\u3068\u304D\u306B\u304B\u304B\u308B\u30B3\u30B9\u30C8\u3092\u8FFD\u52A0\
+    \u3059\u308B\u3002\n  void add_1(int i, T x0, T x1) {\n    assert(0 <= i && i\
+    \ < n);\n    if (!MINIMIZE) { x0 = -x0, x1 = -x1; }\n    _add_1(i, x0, x1);\n\
+    \  }\n\n  // (xi,xj) = (00,01,10,11) \u3068\u3059\u308B\u3068\u304D\u306B\u304B\
+    \u304B\u308B\u30B3\u30B9\u30C8\u3092\u8FFD\u52A0\u3059\u308B\u3002\n  // \u30B3\
+    \u30B9\u30C8\u304C\u52A3\u30E2 x00 + x11 <= x10 + x10 \u306B\u306A\u3063\u3066\
+    \u3044\u308B\u5FC5\u8981\u304C\u3042\u308B\u3002\n  // \u7279\u306B\u3001\u5BFE\
+    \u89D2\u6210\u5206\u306B\u5229\u5F97\u3092\u4E0E\u3048\u308B\u3053\u3068\u304C\
+    \u3067\u304D\u308B\u3002\n  void add_2(int i, int j, T x00, T x01, T x10, T x11)\
+    \ {\n    assert(i != j);\n    assert(0 <= i && i < n);\n    assert(0 <= j && j\
+    \ < n);\n    if (!MINIMIZE) {\n      x00 = -x00, x01 = -x01;\n      x10 = -x10,\
+    \ x11 = -x11;\n    }\n    _add_2(i, j, x00, x01, x10, x11);\n  }\n\n  // (xi,xj,xk)\
+    \ = (000,001,010,011,100,101,110,111)\n  // \u3068\u3059\u308B\u3068\u304D\u306B\
+    \u304B\u304B\u308B\u30B3\u30B9\u30C8\u3092\u8FFD\u52A0\u3059\u308B\u3002\u52A3\
+    \u30E2\u306B\u306A\u3063\u3066\u3044\u308B\u5FC5\u8981\u304C\u3042\u308B\u3002\
+    \n  // \u7279\u306B\u3001000 \u3084 111 \u306B\u5229\u5F97\u3092\u4E0E\u3048\u308B\
+    \u3053\u3068\u304C\u3067\u304D\u308B\u3002\n  void add_3(int i, int j, int k,\
+    \ T x000, T x001, T x010, T x011, T x100,\n             T x101, T x110, T x111)\
+    \ {\n    assert(i != j && i != k && j != k);\n    assert(0 <= i && i < n);\n \
+    \   assert(0 <= j && j < n);\n    assert(0 <= k && k < n);\n    if (!MINIMIZE)\
+    \ {\n      x000 = -x000, x001 = -x001;\n      x010 = -x010, x011 = -x011;\n  \
+    \    x100 = -x100, x101 = -x101;\n      x110 = -x110, x111 = -x111;\n    }\n \
+    \   _add_3(i, j, k, x000, x001, x010, x011, x100, x101, x110, x111);\n  }\n\n\
+    \  // \u6700\u5C0F\u5024\u304A\u3088\u3073\u300101 \u5217\u3092\u8FD4\u3059\n\
+    \  pair<T, vc<int>> calc() {\n    MaxFlowGraph<T> G(nxt);\n    for (auto&& [key,\
+    \ cap]: edges) {\n      auto [frm, to] = key;\n      G.add(frm, to, cap);\n  \
+    \  }\n\n    auto [val, cut] = G.cut(source, sink);\n    val += base_cost;\n  \
+    \  chmin(val, infty<T>);\n    cut.resize(n);\n    if (!MINIMIZE) val = -val;\n\
+    \    return {val, cut};\n  }\n\n  void debug() {\n    print(\"base_cost\", base_cost);\n\
+    \    print(\"source=\", source, \"sink=\", sink);\n    for (auto&& [key, cap]:\
+    \ edges) print(key, cap);\n  }\n\nprivate:\n  void add_edge(int i, int j, T t)\
+    \ {\n    assert(t >= 0);\n    if (t == 0) return;\n    pair<int, int> key = mp(i,\
+    \ j);\n    edges[key] += t;\n    chmin(edges[key], infty<T>);\n  }\n\n  void _add_1(int\
+    \ i, T x0, T x1) {\n    if (x0 <= x1) {\n      base_cost += x0;\n      add_edge(source,\
+    \ i, x1 - x0);\n    } else {\n      base_cost += x1;\n      add_edge(i, sink,\
+    \ x0 - x1);\n    }\n  }\n\n  void _add_2(int i, int j, T x00, T x01, T x10, T\
+    \ x11) {\n    assert(x00 + x11 <= x01 + x10);\n    _add_1(i, x00, x10);\n    _add_1(j,\
+    \ 0, x11 - x10);\n    add_edge(i, j, x01 + x10 - x00 - x11);\n  }\n\n  void _add_3(int\
+    \ i, int j, int k, T x000, T x001, T x010, T x011, T x100,\n              T x101,\
+    \ T x110, T x111) {\n    T p = x000 - x100 - x010 - x001 + x110 + x101 + x011\
+    \ - x111;\n    if (p > 0) {\n      base_cost += x000;\n      _add_1(i, 0, x100\
+    \ - x000);\n      _add_1(j, 0, x010 - x000);\n      _add_1(k, 0, x001 - x000);\n\
+    \      _add_2(i, j, 0, 0, 0, x000 + x110 - x100 - x010);\n      _add_2(i, k, 0,\
+    \ 0, 0, x000 + x101 - x100 - x001);\n      _add_2(j, k, 0, 0, 0, x000 + x011 -\
+    \ x010 - x001);\n      // \u3042\u3068\u306F\u3001111 \u306E\u3068\u304D\u306B\
+    \u5229\u5F97 p \u3092\u8FFD\u52A0\u3059\u308B\n      base_cost -= p;\n      //\
+    \ 111 \u4EE5\u5916\u3060\u3068\u30B3\u30B9\u30C8 p\n      add_edge(i, nxt, p);\n\
+    \      add_edge(j, nxt, p);\n      add_edge(k, nxt, p);\n      add_edge(nxt, sink,\
+    \ p);\n      ++nxt;\n    } else {\n      p = -p;\n      base_cost += x111;\n \
+    \     _add_1(i, x011 - x111, 0);\n      _add_1(i, x101 - x111, 0);\n      _add_1(i,\
+    \ x110 - x111, 0);\n      _add_2(i, j, x111 + x001 - x011 - x101, 0, 0, 0);\n\
+    \      _add_2(i, k, x111 + x010 - x011 - x110, 0, 0, 0);\n      _add_2(j, k, x111\
+    \ + x100 - x101 - x110, 0, 0, 0);\n      // 000 \u306E\u3068\u304D\u306B\u5229\
+    \u5F97 p \u3092\u8FFD\u52A0\u3059\u308B\n      base_cost -= p;\n      // 000 \u4EE5\
+    \u5916\u3060\u3068\u30B3\u30B9\u30C8 p\n      add_edge(nxt, i, p);\n      add_edge(nxt,\
+    \ j, p);\n      add_edge(nxt, k, p);\n      add_edge(source, nxt, p);\n      ++nxt;\n\
+    \    }\n  }\n};\n#line 5 \"test_atcoder/abc193f.test.cpp\"\n\nvoid solve() {\n\
+    \  LL(N);\n  VEC(string, G, N);\n  const int INF = infty<int>;\n  Binary_Optimization<ll,\
+    \ 0> X(N * N);\n  auto idx = [&](int i, int j) -> int { return N * i + j; };\n\
+    \n  FOR(i, N) FOR(j, N) {\n    int sgn = (i + j) % 2;\n    if (G[i][j] == 'B'\
+    \ && sgn == 0) X.add_1(idx(i, j), -INF, 0);\n    if (G[i][j] == 'W' && sgn ==\
+    \ 1) X.add_1(idx(i, j), -INF, 0);\n    if (G[i][j] == 'B' && sgn == 1) X.add_1(idx(i,\
+    \ j), 0, -INF);\n    if (G[i][j] == 'W' && sgn == 0) X.add_1(idx(i, j), 0, -INF);\n\
+    \  }\n\n  int dx[] = {0, 1};\n  int dy[] = {1, 0};\n\n  FOR(x, N) FOR(y, N) {\n\
+    \    FOR(d, 2) {\n      int nx = x + dx[d], ny = y + dy[d];\n      if (nx >= N\
+    \ || ny >= N) continue;\n      int a = idx(x, y), b = idx(nx, ny);\n      X.add_2(a,\
+    \ b, 1, 0, 0, 1);\n    }\n  }\n\n  ll ANS = X.calc().fi;\n  print(ANS);\n}\n\n\
+    signed main() {\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc193/tasks/abc193_f\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"flow/binary_optimization.hpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  VEC(string, G, N);\n  const int INF = infty<int>;\n\
+    \  Binary_Optimization<ll, 0> X(N * N);\n  auto idx = [&](int i, int j) -> int\
+    \ { return N * i + j; };\n\n  FOR(i, N) FOR(j, N) {\n    int sgn = (i + j) % 2;\n\
+    \    if (G[i][j] == 'B' && sgn == 0) X.add_1(idx(i, j), -INF, 0);\n    if (G[i][j]\
+    \ == 'W' && sgn == 1) X.add_1(idx(i, j), -INF, 0);\n    if (G[i][j] == 'B' &&\
+    \ sgn == 1) X.add_1(idx(i, j), 0, -INF);\n    if (G[i][j] == 'W' && sgn == 0)\
+    \ X.add_1(idx(i, j), 0, -INF);\n  }\n\n  int dx[] = {0, 1};\n  int dy[] = {1,\
+    \ 0};\n\n  FOR(x, N) FOR(y, N) {\n    FOR(d, 2) {\n      int nx = x + dx[d], ny\
+    \ = y + dy[d];\n      if (nx >= N || ny >= N) continue;\n      int a = idx(x,\
+    \ y), b = idx(nx, ny);\n      X.add_2(a, b, 1, 0, 0, 1);\n    }\n  }\n\n  ll ANS\
+    \ = X.calc().fi;\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - graph/unicyclic.hpp
-  - graph/base.hpp
-  - graph/tree.hpp
-  - ds/unionfind/unionfind.hpp
+  - flow/binary_optimization.hpp
+  - flow/maxflow.hpp
   isVerificationFile: true
-  path: test_atcoder/abc266f.test.cpp
+  path: test_atcoder/abc193f.test.cpp
   requiredBy: []
-  timestamp: '2023-04-02 05:22:15+09:00'
+  timestamp: '2023-04-02 05:20:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test_atcoder/abc266f.test.cpp
+documentation_of: test_atcoder/abc193f.test.cpp
 layout: document
 redirect_from:
-- /verify/test_atcoder/abc266f.test.cpp
-- /verify/test_atcoder/abc266f.test.cpp.html
-title: test_atcoder/abc266f.test.cpp
+- /verify/test_atcoder/abc193f.test.cpp
+- /verify/test_atcoder/abc193f.test.cpp.html
+title: test_atcoder/abc193f.test.cpp
 ---

@@ -17,11 +17,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_max.hpp
     title: alg/acted_monoid/min_max.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
