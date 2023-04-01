@@ -40,6 +40,7 @@ struct Intervals_Fast {
   template <typename F>
   void enumerate_range(int L, int R, F f, bool ERASE) {
     assert(LLIM <= L && L <= R && R <= RLIM);
+    if (L == R) return;
     if (!ERASE) {
       int l = ss.prev(L);
       while (l < R) {
@@ -76,6 +77,7 @@ struct Intervals_Fast {
   }
 
   void set(int L, int R, T t) {
+    if (L == R) return;
     enumerate_range(
         L, R, [](int l, int r, T x) -> void {}, true);
     ss.insert(L);
