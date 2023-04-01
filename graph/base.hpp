@@ -141,6 +141,21 @@ struct Graph {
     }
   }
 
+  // G における頂点 V[i] が、新しいグラフで i になるようにする
+  Graph<T, directed> rearrange(vc<int> V) {
+    int n = len(V);
+    map<int, int> MP;
+    FOR(i, n) MP[V[i]] = i;
+    Graph<T, directed> G(n);
+    for (auto&& e: edges) {
+      if (MP.count(e.frm) && MP.count(e.to)) {
+        G.add(MP[e.frm], MP[e.to], e.cost);
+      }
+    }
+    G.build();
+    return G;
+  }
+
 private:
   void calc_deg() {
     assert(vc_deg.empty());
