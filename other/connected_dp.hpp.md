@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/tdpc_grid_dp.test.cpp
     title: test/mytest/tdpc_grid_dp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1397.test.cpp
     title: test/yukicoder/1397.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/541.test.cpp
     title: test/yukicoder/541.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/578.test.cpp
     title: test/yukicoder/578.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -116,29 +116,36 @@ data:
     \ vc<int> rev(N, -1);\n  FOR(i, N) {\n    if (now[i] == -1) continue;\n    int\
     \ x = max_i[now[i]];\n    rev[N - 1 - i] = N - 1 - x;\n  }\n  return rev;\n}\n\
     \n// 0, 1 \uFF1A\u7A7A\u306E\u5217\u3001\u9818\u57DF\u306E\u624B\u524D\u3001\u5F8C\
-    \u308D\n// \u9023\u7D50\u9818\u57DF\u3092\u3072\u3068\u3064\u4F5C\u308B\u3002\u591A\
-    \u89D2\u5F62\u3068\u306F\u9650\u3089\u306A\u3044\u3002\npair<vvc<int>, vc<pair<int,\
-    \ int>>> connedted_dp_graph(int N,\n                                         \
-    \             bool merge_reverse) {\n  static HashMap<int> MP;\n  MP.reset();\n\
+    \u308D\n// \u9023\u7D50\u9818\u57DF\u3092\u3072\u3068\u3064\u4F5C\u308B\u3002\n\
+    // \u72B6\u614B\uFF1A-1 \u304C\u9078\u3093\u3067\u3044\u306A\u3044\u30020,1,2,3\
+    \ \u7B49\u306F\u540C\u3058\u6210\u5206\u306B\u306F\u540C\u3058\u5024\u304C\u5165\
+    \u308B\u3002\n// [states, edges]\npair<vvc<int>, vc<pair<int, int>>> connedted_dp_graph(int\
+    \ N,\n                                                      bool merge_reverse)\
+    \ {\n  static HashMap<int> MP;\n  MP.reset();\n  vvc<int> states;\n  vc<pair<int,\
+    \ int>> edges;\n\n  states.eb(vc<int>(N, -1));\n  states.eb(vc<int>(N, -1));\n\
+    \  MP[hash_vector<int>(states[0])] = 0;\n\n  int p = -1;\n  while (1) {\n    if\
+    \ (++p == len(states)) break;\n    if (p == 1) {\n      edges.eb(1, 1);\n    \
+    \  continue;\n    }\n    vc<int> now = states[p];\n    for (auto&& [nxt, convert]:\
+    \ next_states(now)) {\n      // \u4ECA\u306E\u6210\u5206\u6570\u3001\u6D88\u3048\
+    \u308B\u6210\u5206\u6570\n      int a = 0, b = 0;\n      FOR(v, N) if (now[v]\
+    \ == v) {\n        ++a;\n        if (convert[v] == -1) ++b;\n      }\n      //\
+    \ \u6D88\u3048\u308B\u6210\u5206\u304C\u3042\u3063\u3066\u3088\u3044\u306E\u306F\
+    \u3001\u7D42\u72B6\u614B\u306B\u3044\u304F\u3068\u304D\u306E\u307F\n      if (b\
+    \ >= 2) continue;\n      if (b == 1) {\n        if (MAX(nxt) != -1) continue;\n\
+    \        edges.eb(p, 1);\n        continue;\n      }\n      ll h = hash_vector<int>(nxt);\n\
+    \      if (merge_reverse) { chmin(h, hash_vector<int>(reverse_state(nxt))); }\n\
+    \      if (!MP.count(h)) {\n        MP[h] = len(states);\n        states.eb(nxt);\n\
+    \      }\n      edges.eb(p, MP[h]);\n    }\n  }\n  return {states, edges};\n}\n\
+    \n// 0, 1 \uFF1A\u7A7A\u306E\u5217\u3001\u9818\u57DF\u306E\u624B\u524D\u3001\u5F8C\
+    \u308D\n// \u591A\u89D2\u5F62\uFF08\u7A7A\u6D1E\u306A\u3057\uFF09\u3092\u3072\u3068\
+    \u3064\u4F5C\u308B\u3002\n// \u72B6\u614B\uFF1A-1 \u304C\u9078\u3093\u3067\u3044\
+    \u306A\u3044\u30020,1,2,3 \u7B49\u306F\u540C\u3058\u6210\u5206\u306B\u306F\u540C\
+    \u3058\u5024\u304C\u5165\u308B\u3002\n// [states, edges]\npair<vvc<int>, vc<pair<int,\
+    \ int>>> polygon_dp_graph(int N) {\n  static HashMap<int> MP;\n  MP.reset();\n\
     \  vvc<int> states;\n  vc<pair<int, int>> edges;\n\n  states.eb(vc<int>(N, -1));\n\
     \  states.eb(vc<int>(N, -1));\n  MP[hash_vector<int>(states[0])] = 0;\n\n  int\
     \ p = -1;\n  while (1) {\n    if (++p == len(states)) break;\n    if (p == 1)\
     \ {\n      edges.eb(1, 1);\n      continue;\n    }\n    vc<int> now = states[p];\n\
-    \    for (auto&& [nxt, convert]: next_states(now)) {\n      // \u4ECA\u306E\u6210\
-    \u5206\u6570\u3001\u6D88\u3048\u308B\u6210\u5206\u6570\n      int a = 0, b = 0;\n\
-    \      FOR(v, N) if (now[v] == v) {\n        ++a;\n        if (convert[v] == -1)\
-    \ ++b;\n      }\n      // \u6D88\u3048\u308B\u6210\u5206\u304C\u3042\u3063\u3066\
-    \u3088\u3044\u306E\u306F\u3001\u7D42\u72B6\u614B\u306B\u3044\u304F\u3068\u304D\
-    \u306E\u307F\n      if (b >= 2) continue;\n      if (b == 1) {\n        if (MAX(nxt)\
-    \ != -1) continue;\n        edges.eb(p, 1);\n        continue;\n      }\n    \
-    \  ll h = hash_vector<int>(nxt);\n      if (merge_reverse) { chmin(h, hash_vector<int>(reverse_state(nxt)));\
-    \ }\n      if (!MP.count(h)) {\n        MP[h] = len(states);\n        states.eb(nxt);\n\
-    \      }\n      edges.eb(p, MP[h]);\n    }\n  }\n  return {states, edges};\n}\n\
-    \npair<vvc<int>, vc<pair<int, int>>> polygon_dp_graph(int N) {\n  static HashMap<int>\
-    \ MP;\n  MP.reset();\n  vvc<int> states;\n  vc<pair<int, int>> edges;\n\n  states.eb(vc<int>(N,\
-    \ -1));\n  states.eb(vc<int>(N, -1));\n  MP[hash_vector<int>(states[0])] = 0;\n\
-    \n  int p = -1;\n  while (1) {\n    if (++p == len(states)) break;\n    if (p\
-    \ == 1) {\n      edges.eb(1, 1);\n      continue;\n    }\n    vc<int> now = states[p];\n\
     \    for (auto&& [nxt, convert]: next_states(now)) {\n      // \u4ECA\u306E\u6210\
     \u5206\u6570\u3001\u6D88\u3048\u308B\u6210\u5206\u6570\n      int a = 0, b = 0;\n\
     \      FOR(v, N) if (now[v] == v) {\n        ++a;\n        if (convert[v] == -1)\
@@ -184,13 +191,15 @@ data:
     \ == -1) continue;\n    int x = max_i[now[i]];\n    rev[N - 1 - i] = N - 1 - x;\n\
     \  }\n  return rev;\n}\n\n// 0, 1 \uFF1A\u7A7A\u306E\u5217\u3001\u9818\u57DF\u306E\
     \u624B\u524D\u3001\u5F8C\u308D\n// \u9023\u7D50\u9818\u57DF\u3092\u3072\u3068\u3064\
-    \u4F5C\u308B\u3002\u591A\u89D2\u5F62\u3068\u306F\u9650\u3089\u306A\u3044\u3002\
-    \npair<vvc<int>, vc<pair<int, int>>> connedted_dp_graph(int N,\n             \
-    \                                         bool merge_reverse) {\n  static HashMap<int>\
-    \ MP;\n  MP.reset();\n  vvc<int> states;\n  vc<pair<int, int>> edges;\n\n  states.eb(vc<int>(N,\
-    \ -1));\n  states.eb(vc<int>(N, -1));\n  MP[hash_vector<int>(states[0])] = 0;\n\
-    \n  int p = -1;\n  while (1) {\n    if (++p == len(states)) break;\n    if (p\
-    \ == 1) {\n      edges.eb(1, 1);\n      continue;\n    }\n    vc<int> now = states[p];\n\
+    \u4F5C\u308B\u3002\n// \u72B6\u614B\uFF1A-1 \u304C\u9078\u3093\u3067\u3044\u306A\
+    \u3044\u30020,1,2,3 \u7B49\u306F\u540C\u3058\u6210\u5206\u306B\u306F\u540C\u3058\
+    \u5024\u304C\u5165\u308B\u3002\n// [states, edges]\npair<vvc<int>, vc<pair<int,\
+    \ int>>> connedted_dp_graph(int N,\n                                         \
+    \             bool merge_reverse) {\n  static HashMap<int> MP;\n  MP.reset();\n\
+    \  vvc<int> states;\n  vc<pair<int, int>> edges;\n\n  states.eb(vc<int>(N, -1));\n\
+    \  states.eb(vc<int>(N, -1));\n  MP[hash_vector<int>(states[0])] = 0;\n\n  int\
+    \ p = -1;\n  while (1) {\n    if (++p == len(states)) break;\n    if (p == 1)\
+    \ {\n      edges.eb(1, 1);\n      continue;\n    }\n    vc<int> now = states[p];\n\
     \    for (auto&& [nxt, convert]: next_states(now)) {\n      // \u4ECA\u306E\u6210\
     \u5206\u6570\u3001\u6D88\u3048\u308B\u6210\u5206\u6570\n      int a = 0, b = 0;\n\
     \      FOR(v, N) if (now[v] == v) {\n        ++a;\n        if (convert[v] == -1)\
@@ -201,11 +210,16 @@ data:
     \  ll h = hash_vector<int>(nxt);\n      if (merge_reverse) { chmin(h, hash_vector<int>(reverse_state(nxt)));\
     \ }\n      if (!MP.count(h)) {\n        MP[h] = len(states);\n        states.eb(nxt);\n\
     \      }\n      edges.eb(p, MP[h]);\n    }\n  }\n  return {states, edges};\n}\n\
-    \npair<vvc<int>, vc<pair<int, int>>> polygon_dp_graph(int N) {\n  static HashMap<int>\
-    \ MP;\n  MP.reset();\n  vvc<int> states;\n  vc<pair<int, int>> edges;\n\n  states.eb(vc<int>(N,\
-    \ -1));\n  states.eb(vc<int>(N, -1));\n  MP[hash_vector<int>(states[0])] = 0;\n\
-    \n  int p = -1;\n  while (1) {\n    if (++p == len(states)) break;\n    if (p\
-    \ == 1) {\n      edges.eb(1, 1);\n      continue;\n    }\n    vc<int> now = states[p];\n\
+    \n// 0, 1 \uFF1A\u7A7A\u306E\u5217\u3001\u9818\u57DF\u306E\u624B\u524D\u3001\u5F8C\
+    \u308D\n// \u591A\u89D2\u5F62\uFF08\u7A7A\u6D1E\u306A\u3057\uFF09\u3092\u3072\u3068\
+    \u3064\u4F5C\u308B\u3002\n// \u72B6\u614B\uFF1A-1 \u304C\u9078\u3093\u3067\u3044\
+    \u306A\u3044\u30020,1,2,3 \u7B49\u306F\u540C\u3058\u6210\u5206\u306B\u306F\u540C\
+    \u3058\u5024\u304C\u5165\u308B\u3002\n// [states, edges]\npair<vvc<int>, vc<pair<int,\
+    \ int>>> polygon_dp_graph(int N) {\n  static HashMap<int> MP;\n  MP.reset();\n\
+    \  vvc<int> states;\n  vc<pair<int, int>> edges;\n\n  states.eb(vc<int>(N, -1));\n\
+    \  states.eb(vc<int>(N, -1));\n  MP[hash_vector<int>(states[0])] = 0;\n\n  int\
+    \ p = -1;\n  while (1) {\n    if (++p == len(states)) break;\n    if (p == 1)\
+    \ {\n      edges.eb(1, 1);\n      continue;\n    }\n    vc<int> now = states[p];\n\
     \    for (auto&& [nxt, convert]: next_states(now)) {\n      // \u4ECA\u306E\u6210\
     \u5206\u6570\u3001\u6D88\u3048\u308B\u6210\u5206\u6570\n      int a = 0, b = 0;\n\
     \      FOR(v, N) if (now[v] == v) {\n        ++a;\n        if (convert[v] == -1)\
@@ -239,8 +253,8 @@ data:
   isVerificationFile: false
   path: other/connected_dp.hpp
   requiredBy: []
-  timestamp: '2023-03-28 23:05:08+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-04-02 04:26:11+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/yukicoder/578.test.cpp
