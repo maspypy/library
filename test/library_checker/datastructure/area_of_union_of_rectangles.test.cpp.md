@@ -272,15 +272,15 @@ data:
     \u5024\u3001\u6700\u5C0F\u5024\u306E\u500B\u6570\r\ntemplate <typename E>\r\n\
     struct Monoid_MinMincnt {\r\n  using value_type = pair<E, E>;\r\n  using X = value_type;\r\
     \n  static X op(X x, X y) {\r\n    auto [xmin, xmincnt] = x;\r\n    auto [ymin,\
-    \ ymincnt] = y;\r\n    if (xmin > ymin) return {ymin, ymincnt};\r\n    if (xmin\
-    \ == ymin) return {xmin, xmincnt + ymincnt};\r\n    return {xmin, xmincnt};\r\n\
-    \  }\r\n  static constexpr X unit() { return {infty<E>, 0}; }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename\
-    \ X>\r\nstruct Monoid_Add {\r\n  using value_type = X;\r\n  static constexpr X\
-    \ op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/minmincnt_add.hpp\"\
+    \ ymincnt] = y;\r\n    if (xmin > ymin) return y;\r\n    if (xmin < ymin) return\
+    \ x;\r\n    return {xmin, xmincnt + ymincnt};\r\n  }\r\n  static constexpr X unit()\
+    \ { return {infty<E>, 0}; }\r\n  static constexpr bool commute = true;\r\n};\n\
+    #line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct Monoid_Add\
+    \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
+    \ &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept\
+    \ { return -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return\
+    \ X(n) * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/minmincnt_add.hpp\"\
     \n\r\ntemplate <typename E>\r\nstruct ActedMonoid_MinMincnt_Add {\r\n  using Monoid_X\
     \ = Monoid_MinMincnt<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename\
     \ Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\n  static\
@@ -288,24 +288,23 @@ data:
     \ xmincnt] = x;\r\n    if (xmin == infty<E>) return x;\r\n    return {xmin + a,\
     \ xmincnt};\r\n  }\r\n};\r\n#line 3 \"other/rectangle_union.hpp\"\n\r\ntemplate\
     \ <typename XY = int>\r\nstruct Rectangle_Union {\r\n  using RECT = tuple<XY,\
-    \ XY, XY, XY>;\r\n  vc<RECT> rectangles;\r\n  vc<XY> X, Y;\r\n\r\n  void add_rect(int\
-    \ xl, int xr, int yl, int yr) {\r\n    assert(xl < xr && yl < yr);\r\n    X.eb(xl),\
+    \ XY, XY, XY>;\r\n  vc<RECT> rectangles;\r\n  vc<XY> X, Y;\r\n\r\n  void add_rect(XY\
+    \ xl, XY xr, XY yl, XY yr) {\r\n    assert(xl < xr && yl < yr);\r\n    X.eb(xl),\
     \ X.eb(xr), Y.eb(yl), Y.eb(yr);\r\n    rectangles.eb(xl, xr, yl, yr);\r\n  }\r\
-    \n\r\n  template <typename ANS_TYPE = ll>\r\n  ANS_TYPE calc() {\r\n    UNIQUE(X),\
-    \ UNIQUE(Y);\r\n    int N = len(X);\r\n    vc<vc<pair<int, int>>> add(N), rm(N);\r\
-    \n    for (auto &&[xl, xr, yl, yr]: rectangles) {\r\n      xl = LB(X, xl), xr\
-    \ = LB(X, xr);\r\n      yl = LB(Y, yl), yr = LB(Y, yr);\r\n      add[xl].eb(yl,\
-    \ yr);\r\n      rm[xr].eb(yl, yr);\r\n    }\r\n\r\n    using AM = ActedMonoid_MinMincnt_Add<XY>;\r\
-    \n    using T = typename AM::Monoid_X::value_type;\r\n    Lazy_SegTree<AM> seg(len(Y)\
-    \ - 1, [&](int i) -> T {\r\n      return {0, Y[i + 1] - Y[i]};\r\n    });\r\n\
-    \    ANS_TYPE ANS = 0;\r\n    FOR(i, len(X) - 1) {\r\n      ANS_TYPE dx = X[i\
-    \ + 1] - X[i];\r\n      for (auto &&[yl, yr]: add[i]) seg.apply(yl, yr, 1);\r\n\
-    \      for (auto &&[yl, yr]: rm[i]) seg.apply(yl, yr, -1);\r\n      auto [min,\
-    \ mincnt] = seg.prod_all();\r\n      ANS_TYPE n = Y.back() - Y[0];\r\n      if\
-    \ (min == 0) n -= mincnt;\r\n      ANS += n * dx;\r\n    }\r\n    return ANS;\r\
-    \n  }\r\n};\r\n#line 6 \"test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  Rectangle_Union<int> X;\n  FOR(N) {\n    LL(a,\
-    \ b, c, d);\n    X.add_rect(a, c, b, d);\n  }\n  print(X.calc<ll>());\n}\n\nsigned\
+    \n\r\n  template <typename ANS_TYPE = ll>\r\n  ANS_TYPE calc() {\r\n    int N\
+    \ = len(X);\r\n    vc<int> ord_x = argsort(X);\r\n    vc<int> ord_y = argsort(Y);\r\
+    \n    vc<int> rk_y(N);\r\n    FOR(i, N) rk_y[ord_y[i]] = i;\r\n    X = rearrange(X,\
+    \ ord_x);\r\n    Y = rearrange(Y, ord_y);\r\n\r\n    using AM = ActedMonoid_MinMincnt_Add<XY>;\r\
+    \n    Lazy_SegTree<AM> seg(N - 1, [&](int i) -> pair<XY, XY> {\r\n      return\
+    \ {0, Y[i + 1] - Y[i]};\r\n    });\r\n\r\n    ANS_TYPE ANS = 0;\r\n    XY total\
+    \ = Y.back() - Y[0];\r\n    FOR(i, N - 1) {\r\n      int k = ord_x[i] / 2;\r\n\
+    \      int a = (ord_x[i] & 1 ? -1 : 1);\r\n      seg.apply(rk_y[2 * k], rk_y[2\
+    \ * k + 1], a);\r\n      auto [min, mincnt] = seg.prod_all();\r\n      ANS_TYPE\
+    \ dy = total - (min == 0 ? mincnt : 0);\r\n      ANS_TYPE dx = X[i + 1] - X[i];\r\
+    \n      ANS += dx * dy;\r\n    }\r\n    return ANS;\r\n  }\r\n};\r\n#line 6 \"\
+    test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp\"\n\n\
+    void solve() {\n  LL(N);\n  Rectangle_Union<int> X;\n  FOR(N) {\n    LL(a, b,\
+    \ c, d);\n    X.add_rect(a, c, b, d);\n  }\n  print(X.calc<ll>());\n}\n\nsigned\
     \ main() {\n  cout << fixed << setprecision(15);\n\n  solve();\n\n  return 0;\n\
     }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/area_of_union_of_rectangles\"\
@@ -325,7 +324,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   requiredBy: []
-  timestamp: '2023-02-24 07:14:18+09:00'
+  timestamp: '2023-04-02 02:09:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp

@@ -27,15 +27,15 @@ data:
     \u6700\u5C0F\u5024\u306E\u500B\u6570\r\ntemplate <typename E>\r\nstruct Monoid_MinMincnt\
     \ {\r\n  using value_type = pair<E, E>;\r\n  using X = value_type;\r\n  static\
     \ X op(X x, X y) {\r\n    auto [xmin, xmincnt] = x;\r\n    auto [ymin, ymincnt]\
-    \ = y;\r\n    if (xmin > ymin) return {ymin, ymincnt};\r\n    if (xmin == ymin)\
-    \ return {xmin, xmincnt + ymincnt};\r\n    return {xmin, xmincnt};\r\n  }\r\n\
-    \  static constexpr X unit() { return {infty<E>, 0}; }\r\n  static constexpr bool\
-    \ commute = true;\r\n};\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename\
-    \ X>\r\nstruct Monoid_Add {\r\n  using value_type = X;\r\n  static constexpr X\
-    \ op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/minmincnt_add.hpp\"\
+    \ = y;\r\n    if (xmin > ymin) return y;\r\n    if (xmin < ymin) return x;\r\n\
+    \    return {xmin, xmincnt + ymincnt};\r\n  }\r\n  static constexpr X unit() {\
+    \ return {infty<E>, 0}; }\r\n  static constexpr bool commute = true;\r\n};\n#line\
+    \ 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct Monoid_Add {\r\
+    \n  using value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
+    \ { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
+    \ -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return X(n)\
+    \ * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/minmincnt_add.hpp\"\
     \n\r\ntemplate <typename E>\r\nstruct ActedMonoid_MinMincnt_Add {\r\n  using Monoid_X\
     \ = Monoid_MinMincnt<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename\
     \ Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\n  static\
@@ -56,7 +56,7 @@ data:
   path: alg/acted_monoid/minmincnt_add.hpp
   requiredBy:
   - other/rectangle_union.hpp
-  timestamp: '2023-02-01 23:31:55+09:00'
+  timestamp: '2023-04-02 02:09:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_4_A.test.cpp
