@@ -9,12 +9,12 @@ struct Tree_AbelGroup {
   int N;
   FenwickTree<AbelGroup> bit, bit_subtree;
 
-  Tree_AbelGroup(TREE &tree) : tree(tree), N(tree.N), seg(tree.N) {
-    build([](int i) -> X { return MX::unit(); });
+  Tree_AbelGroup(TREE &tree) : tree(tree), N(tree.N) {
+    build([](int i) -> X { return AbelGroup::unit(); });
   }
 
   Tree_AbelGroup(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {
-    build([](int i) -> X { return dat[i]; });
+    build([&](int i) -> X { return dat[i]; });
   }
 
   template <typename F>
@@ -24,38 +24,26 @@ struct Tree_AbelGroup {
 
   template <typename F>
   void build(F f) {
-    if (path_query) {
-      vc<X> bit_raw(2 * N);
-      if (!edge) {
-        assert(len(dat) == N);
-        FOR(v, N) {
-          bit_raw[tree.ELID(v)] = dat[v];
-          bit_raw[tree.ERID(v)] = AbelGroup::inverse(dat[v]);
-        }
-      } else {
-        assert(len(dat) == N - 1);
-        FOR(e, N - 1) {
-          int v = tree.e_to_v(e);
-          bit_raw[tree.ELID(v)] = dat[e];
-          bit_raw[tree.ERID(v)] = AbelGroup::inverse(dat[e]);
-        }
+    vc<X> bit_raw_1(2 * N);
+    vc<X> bit_raw_2(N);
+    if (!edge) {
+      FOR(v, N) {
+        X x = f(v);
+        bit_raw_1[tree.ELID(v)] = x;
+        bit_raw_1[tree.ERID(v)] = AbelGroup::inverse(x);
+        bit_raw_2[tree.LID[v]] = x;
       }
-      bit.build(bit_raw);
-    }
-    if (subtree_query) {
-      vc<X> bit_raw(N);
-      if (!edge) {
-        assert(len(dat) == N);
-        FOR(v, N) bit_raw[tree.LID[v]] = dat[v];
-      } else {
-        assert(len(dat) == N - 1);
-        FOR(e, N - 1) {
-          int v = tree.e_to_v(e);
-          bit_raw[tree.LID[v]] = dat[e];
-        }
+    } else {
+      FOR(e, N - 1) {
+        int v = tree.e_to_v(e);
+        X x = f(v);
+        bit_raw_1[tree.ELID(v)] = x;
+        bit_raw_1[tree.ERID(v)] = AbelGroup::inverse(x);
+        bit_raw_2[tree.LID[v]] = x;
       }
-      bit_subtree.build(bit_raw);
     }
+    bit.build(bit_raw_1);
+    bit_subtree.build(bit_raw_2);
   }
 
   void add(int i, X x) {
