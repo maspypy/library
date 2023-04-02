@@ -3,17 +3,17 @@
 
 template <typename TREE, typename ActedMonoid, bool edge>
 struct Lazy_Tree_Monoid {
-  using MonoX = typename ActedMonoid::Monoid_X;
-  using MonoA = typename ActedMonoid::Monoid_A;
-  static_assert(MonoX::commute);
-  using X = typename MonoX::value_type;
-  using A = typename MonoA::value_type;
+  using MX = typename ActedMonoid::Monoid_X;
+  using MA = typename ActedMonoid::Monoid_A;
+  static_assert(MX::commute);
+  using X = typename MX::value_type;
+  using A = typename MA::value_type;
   TREE &tree;
   int N;
   Lazy_SegTree<ActedMonoid> seg;
 
   Lazy_Tree_Monoid(TREE &tree) : tree(tree), N(tree.N) {
-    build([](int i) -> X { return Monoid::unit(); });
+    build([](int i) -> X { return MX::unit(); });
   }
 
   Lazy_Tree_Monoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {
@@ -27,12 +27,12 @@ struct Lazy_Tree_Monoid {
 
   template <typename F>
   void build(F f) {
-    vc<X> seg_raw(N, Monoid::unit());
+    vc<X> seg_raw(N, MX::unit());
     if (!edge) {
       seg.build(N, [&](int i) -> X { return f(tree.V[i]); });
     } else {
       seg.build(N, [&](int i) -> X {
-        return (i == 0 ? Monoid::unit() : f(tree.v_to_e(tree.V[i])));
+        return (i == 0 ? MX::unit() : f(tree.v_to_e(tree.V[i])));
       });
     }
   }
@@ -53,10 +53,10 @@ struct Lazy_Tree_Monoid {
 
   X prod_path(int u, int v) {
     auto pd = tree.get_path_decomposition(u, v, edge);
-    X val = MonoX::unit();
+    X val = MX::unit();
     for (auto &&[a, b]: pd) {
       X x = (a <= b ? seg.prod(a, b + 1) : seg.prod(b, a + 1));
-      val = MonoX::op(val, x);
+      val = MX::op(val, x);
     }
     return val;
   }
@@ -86,15 +86,15 @@ struct Lazy_Tree_Monoid {
     if (edge) return max_path_edge(check, u, v);
     if (!check(prod_path(u, u))) return -1;
     auto pd = tree.get_path_decomposition(u, v, edge);
-    X val = MonoX::unit();
+    X val = MX::unit();
     for (auto &&[a, b]: pd) {
       X x = (a <= b ? seg.prod(a, b + 1) : seg.prod(b, a + 1));
-      if (check(MonoX::op(val, x))) {
-        val = MonoX::op(val, x);
+      if (check(MX::op(val, x))) {
+        val = MX::op(val, x);
         u = (tree.V[b]);
         continue;
       }
-      auto check_tmp = [&](X x) -> bool { return check(MonoX::op(val, x)); };
+      auto check_tmp = [&](X x) -> bool { return check(MX::op(val, x)); };
       if (a <= b) {
         // 下り
         auto i = seg.max_right(check_tmp, a);
@@ -113,21 +113,21 @@ private:
   template <class F>
   int max_path_edge(F &check, int u, int v) {
     assert(edge);
-    if (!check(MonoX::unit())) return -1;
+    if (!check(MX::unit())) return -1;
     int lca = tree.lca(u, v);
     auto pd = tree.get_path_decomposition(u, lca, edge);
-    X val = MonoX::unit();
+    X val = MX::unit();
 
     // climb
     for (auto &&[a, b]: pd) {
       assert(a >= b);
       X x = seg.prod(b, a + 1);
-      if (check(MonoX::op(val, x))) {
-        val = MonoX::op(val, x);
+      if (check(MX::op(val, x))) {
+        val = MX::op(val, x);
         u = (tree.parent[tree.V[b]]);
         continue;
       }
-      auto check_tmp = [&](X x) -> bool { return check(MonoX::op(val, x)); };
+      auto check_tmp = [&](X x) -> bool { return check(MX::op(val, x)); };
       auto i = seg.min_left(check_tmp, a + 1);
       if (i == a + 1) return u;
       return tree.parent[tree.V[i]];
@@ -137,12 +137,12 @@ private:
     for (auto &&[a, b]: pd) {
       assert(a <= b);
       X x = seg.prod(a, b + 1);
-      if (check(MonoX::op(val, x))) {
-        val = MonoX::op(val, x);
+      if (check(MX::op(val, x))) {
+        val = MX::op(val, x);
         u = (tree.V[b]);
         continue;
       }
-      auto check_tmp = [&](X x) -> bool { return check(MonoX::op(val, x)); };
+      auto check_tmp = [&](X x) -> bool { return check(MX::op(val, x)); };
       auto i = seg.max_right(check_tmp, a);
       return (i == a ? u : tree.V[i - 1]);
     }
