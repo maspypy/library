@@ -14,11 +14,11 @@ struct Tree_Monoid {
   SegTree<RevMonoid> seg_r;
 
   Tree_Monoid(TREE &tree) : tree(tree), N(tree.N) {
-    build([](int i) -> X { return MX::unit(); });
+    build([](int i) -> X { return Monoid::unit(); });
   }
 
   Tree_Monoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {
-    build([](int i) -> X { return dat[i]; });
+    build([&](int i) -> X { return dat[i]; });
   }
 
   template <typename F>
@@ -27,7 +27,7 @@ struct Tree_Monoid {
   }
 
   template <typename F>
-  void build(int m, F f) {
+  void build(F f) {
     vc<X> seg_raw(N, Monoid::unit());
     if (!edge) {
       seg.build(N, [&](int i) -> X { return f(tree.V[i]); });
@@ -35,10 +35,12 @@ struct Tree_Monoid {
         seg_r.build(N, [&](int i) -> X { return f(tree.V[i]); });
       }
     } else {
-      seg.build(
-          N, [&](int i) -> X { return (i == 0 ? f(tree.v_to_e(tree.V[i]))); });
+      seg.build(N, [&](int i) -> X {
+        return (i == 0 ? Monoid::unit() : f(tree.v_to_e(tree.V[i])));
+      });
       if (!Monoid::commute) {
-        seg_r.build(N, [&](int i) -> X { return (i == 0 ? f(tree.v_to_e(tree.V[i])));
+        seg_r.build(N, [&](int i) -> X {
+          return (i == 0 ? Monoid::unit() : f(tree.v_to_e(tree.V[i])));
         });
       }
     }
