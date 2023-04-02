@@ -18,7 +18,7 @@ void solve() {
   Tree<decltype(G)> tree(G);
   using AM = ActedMonoid_Sum_Add<ll>;
 
-  Lazy_Tree_Monoid<decltype(tree), AM, 0> X(tree, vi(N, 0));
+  Lazy_Tree_Monoid<decltype(tree), AM, 0> X(tree);
 
   FOR(i, K) { X.apply_path(0, C[i], 1); }
 
