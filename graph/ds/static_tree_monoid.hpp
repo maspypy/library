@@ -11,9 +11,18 @@ struct Static_Tree_Monoid {
   DisjointSparse<Monoid> seg;
   DisjointSparse<RevMonoid> seg_r;
 
-  Static_Tree_Monoid(TREE &tree) : tree(tree), N(tree.N) {}
+  Static_Tree_Monoid(TREE &tree) : tree(tree), N(tree.N) {
+    build([](int i) -> X { return Monoid::unit(); });
+  }
 
-  Static_Tree_Monoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {}
+  Static_Tree_Monoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {
+    build([&](int i) -> X { return dat[i]; });
+  }
+
+  template <typename F>
+  Static_Tree_Monoid(TREE &tree, F f) : tree(tree), N(tree.N) {
+    build(f);
+  }
 
   template <typename F>
   void build(F f) {
