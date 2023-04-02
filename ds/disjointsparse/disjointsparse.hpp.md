@@ -5,13 +5,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/static_tree_monoid.hpp
     title: graph/ds/static_tree_monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
   - icon: ':heavy_check_mark:'
     path: string/sort_substrings.hpp
     title: string/sort_substrings.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   - icon: ':heavy_check_mark:'
@@ -51,12 +51,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc240ex.test.cpp
     title: test_atcoder/abc240ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc151_e.test.cpp
     title: test_atcoder/arc151_e.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/disjointsparse/disjointsparse.hpp\"\n\r\ntemplate <class\
@@ -123,7 +123,7 @@ data:
   - string/suffix_array.hpp
   - graph/ds/static_tree_monoid.hpp
   timestamp: '2022-12-04 23:06:09+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc240ex.test.cpp
   - test_atcoder/arc151_e.test.cpp
