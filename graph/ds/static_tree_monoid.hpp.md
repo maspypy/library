@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/disjointsparse/disjointsparse.hpp
     title: ds/disjointsparse/disjointsparse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1216.test.cpp
     title: test/yukicoder/1216.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1216_2.test.cpp
     title: test/yukicoder/1216_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://atcoder.jp/contests/tkppc3/tasks/tkppc3_i
@@ -184,10 +184,13 @@ data:
     \ typename Monoid, bool edge>\nstruct Static_Tree_Monoid {\n  using RevMonoid\
     \ = Monoid_Reverse<Monoid>;\n  using X = typename Monoid::value_type;\n  TREE\
     \ &tree;\n  int N;\n  DisjointSparse<Monoid> seg;\n  DisjointSparse<RevMonoid>\
-    \ seg_r;\n\n  Static_Tree_Monoid(TREE &tree) : tree(tree), N(tree.N) {}\n\n  Static_Tree_Monoid(TREE\
-    \ &tree, vc<X> &dat) : tree(tree), N(tree.N) {}\n\n  template <typename F>\n \
-    \ void build(F f) {\n    vc<X> seg_raw(N, Monoid::unit());\n    if (!edge) {\n\
-    \      seg.build(N, [&](int i) -> X { return f(tree.V[i]); });\n      if (!Monoid::commute)\
+    \ seg_r;\n\n  Static_Tree_Monoid(TREE &tree) : tree(tree), N(tree.N) {\n    build([](int\
+    \ i) -> X { return Monoid::unit(); });\n  }\n\n  Static_Tree_Monoid(TREE &tree,\
+    \ vc<X> &dat) : tree(tree), N(tree.N) {\n    build([&](int i) -> X { return dat[i];\
+    \ });\n  }\n\n  template <typename F>\n  Static_Tree_Monoid(TREE &tree, F f) :\
+    \ tree(tree), N(tree.N) {\n    build(f);\n  }\n\n  template <typename F>\n  void\
+    \ build(F f) {\n    vc<X> seg_raw(N, Monoid::unit());\n    if (!edge) {\n    \
+    \  seg.build(N, [&](int i) -> X { return f(tree.V[i]); });\n      if (!Monoid::commute)\
     \ {\n        seg_r.build(N, [&](int i) -> X { return f(tree.V[i]); });\n     \
     \ }\n    } else {\n      seg.build(N, [&](int i) -> X {\n        return (i ==\
     \ 0 ? Monoid::unit() : f(tree.v_to_e(tree.V[i])));\n      });\n      if (!Monoid::commute)\
@@ -241,13 +244,16 @@ data:
     \ Monoid, bool edge>\nstruct Static_Tree_Monoid {\n  using RevMonoid = Monoid_Reverse<Monoid>;\n\
     \  using X = typename Monoid::value_type;\n  TREE &tree;\n  int N;\n  DisjointSparse<Monoid>\
     \ seg;\n  DisjointSparse<RevMonoid> seg_r;\n\n  Static_Tree_Monoid(TREE &tree)\
-    \ : tree(tree), N(tree.N) {}\n\n  Static_Tree_Monoid(TREE &tree, vc<X> &dat) :\
-    \ tree(tree), N(tree.N) {}\n\n  template <typename F>\n  void build(F f) {\n \
-    \   vc<X> seg_raw(N, Monoid::unit());\n    if (!edge) {\n      seg.build(N, [&](int\
-    \ i) -> X { return f(tree.V[i]); });\n      if (!Monoid::commute) {\n        seg_r.build(N,\
-    \ [&](int i) -> X { return f(tree.V[i]); });\n      }\n    } else {\n      seg.build(N,\
-    \ [&](int i) -> X {\n        return (i == 0 ? Monoid::unit() : f(tree.v_to_e(tree.V[i])));\n\
-    \      });\n      if (!Monoid::commute) {\n        seg_r.build(N, [&](int i) ->\
+    \ : tree(tree), N(tree.N) {\n    build([](int i) -> X { return Monoid::unit();\
+    \ });\n  }\n\n  Static_Tree_Monoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N)\
+    \ {\n    build([&](int i) -> X { return dat[i]; });\n  }\n\n  template <typename\
+    \ F>\n  Static_Tree_Monoid(TREE &tree, F f) : tree(tree), N(tree.N) {\n    build(f);\n\
+    \  }\n\n  template <typename F>\n  void build(F f) {\n    vc<X> seg_raw(N, Monoid::unit());\n\
+    \    if (!edge) {\n      seg.build(N, [&](int i) -> X { return f(tree.V[i]); });\n\
+    \      if (!Monoid::commute) {\n        seg_r.build(N, [&](int i) -> X { return\
+    \ f(tree.V[i]); });\n      }\n    } else {\n      seg.build(N, [&](int i) -> X\
+    \ {\n        return (i == 0 ? Monoid::unit() : f(tree.v_to_e(tree.V[i])));\n \
+    \     });\n      if (!Monoid::commute) {\n        seg_r.build(N, [&](int i) ->\
     \ X {\n          return (i == 0 ? Monoid::unit() : f(tree.v_to_e(tree.V[i])));\n\
     \        });\n      }\n    }\n  }\n\n  X prod_path(int u, int v) {\n    auto pd\
     \ = tree.get_path_decomposition(u, v, edge);\n    X val = Monoid::unit();\n  \
@@ -301,8 +307,8 @@ data:
   isVerificationFile: false
   path: graph/ds/static_tree_monoid.hpp
   requiredBy: []
-  timestamp: '2023-04-02 16:11:43+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-04-02 16:46:13+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1216.test.cpp
   - test/yukicoder/1216_2.test.cpp
