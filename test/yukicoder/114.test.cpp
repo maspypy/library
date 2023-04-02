@@ -12,7 +12,7 @@ void solve() {
   VEC(int, terminal, K);
   for (auto&& v: terminal) --v;
 
-  if (K <= 15) return print(steiner_tree<int>(G, terminal));
+  if (K <= 15) return print(get<0>(steiner_tree<int>(G, terminal)));
 
   set<int> ss(all(terminal));
   vc<int> other;
