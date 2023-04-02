@@ -11,22 +11,28 @@ struct Static_Tree_Monoid {
   DisjointSparse<Monoid> seg;
   DisjointSparse<RevMonoid> seg_r;
 
-  Static_Tree_Monoid(TREE &tree) : tree(tree), N(tree.N), seg(tree.N) {
-    if (!Monoid::commute) seg_r = DisjointSparse<RevMonoid>(tree.N);
-  }
+  Static_Tree_Monoid(TREE &tree) : tree(tree), N(tree.N) {}
 
-  Static_Tree_Monoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {
+  Static_Tree_Monoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {}
+
+  template <typename F>
+  void build(F f) {
     vc<X> seg_raw(N, Monoid::unit());
     if (!edge) {
-      FOR(v, N) seg_raw[tree.LID[v]] = dat[v];
+      seg.build(N, [&](int i) -> X { return f(tree.V[i]); });
+      if (!Monoid::commute) {
+        seg_r.build(N, [&](int i) -> X { return f(tree.V[i]); });
+      }
     } else {
-      FOR(e, N - 1) {
-        int v = tree.e_to_v(e);
-        seg_raw[tree.LID[v]] = dat[e];
+      seg.build(N, [&](int i) -> X {
+        return (i == 0 ? Monoid::unit() : f(tree.v_to_e(tree.V[i])));
+      });
+      if (!Monoid::commute) {
+        seg_r.build(N, [&](int i) -> X {
+          return (i == 0 ? Monoid::unit() : f(tree.v_to_e(tree.V[i])));
+        });
       }
     }
-    seg = DisjointSparse<Monoid>(seg_raw);
-    if (!Monoid::commute) seg_r = DisjointSparse<RevMonoid>(seg_raw);
   }
 
   X prod_path(int u, int v) {
