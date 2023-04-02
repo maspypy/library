@@ -14,26 +14,26 @@ data:
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1212.test.cpp
     title: test/yukicoder/1212.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
   - icon: ':x:'
@@ -41,7 +41,7 @@ data:
     title: test_atcoder/abc270_f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://atcoder.jp/contests/tkppc3/tasks/tkppc3_i
@@ -216,30 +216,30 @@ data:
     \ Monoid, bool edge>\r\nstruct Tree_Monoid {\r\n  using RevMonoid = Monoid_Reverse<Monoid>;\r\
     \n  using X = typename Monoid::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  SegTree<Monoid>\
     \ seg;\r\n  SegTree<RevMonoid> seg_r;\r\n\r\n  Tree_Monoid(TREE &tree) : tree(tree),\
-    \ N(tree.N) {\r\n    build([](int i) -> X { return MX::unit(); });\r\n  }\r\n\r\
-    \n  Tree_Monoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {\r\n    build([](int\
+    \ N(tree.N) {\r\n    build([](int i) -> X { return Monoid::unit(); });\r\n  }\r\
+    \n\r\n  Tree_Monoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {\r\n    build([&](int\
     \ i) -> X { return dat[i]; });\r\n  }\r\n\r\n  template <typename F>\r\n  Tree_Monoid(TREE\
     \ &tree, F f) : tree(tree), N(tree.N) {\r\n    build(f);\r\n  }\r\n\r\n  template\
-    \ <typename F>\r\n  void build(int m, F f) {\r\n    vc<X> seg_raw(N, Monoid::unit());\r\
+    \ <typename F>\r\n  void build(F f) {\r\n    vc<X> seg_raw(N, Monoid::unit());\r\
     \n    if (!edge) {\r\n      seg.build(N, [&](int i) -> X { return f(tree.V[i]);\
     \ });\r\n      if (!Monoid::commute) {\r\n        seg_r.build(N, [&](int i) ->\
-    \ X { return f(tree.V[i]); });\r\n      }\r\n    } else {\r\n      seg.build(\r\
-    \n          N, [&](int i) -> X { return (i == 0 ? f(tree.v_to_e(tree.V[i])));\
-    \ });\r\n      if (!Monoid::commute) {\r\n        seg_r.build(N, [&](int i) ->\
-    \ X { return (i == 0 ? f(tree.v_to_e(tree.V[i])));\r\n        });\r\n      }\r\
-    \n    }\r\n  }\r\n\r\n  void set(int i, X x) {\r\n    if (edge) i = tree.e_to_v(i);\r\
-    \n    i = tree.LID[i];\r\n    seg.set(i, x);\r\n    if (!Monoid::commute) seg_r.set(i,\
-    \ x);\r\n  }\r\n\r\n  void multiply(int i, X x) {\r\n    if (edge) i = tree.e_to_v(i);\r\
-    \n    i = tree.LID[i];\r\n    seg.multiply(i, x);\r\n    if (!Monoid::commute)\
-    \ seg_r.multiply(i, x);\r\n  }\r\n\r\n  X prod_path(int u, int v) {\r\n    auto\
-    \ pd = tree.get_path_decomposition(u, v, edge);\r\n    X val = Monoid::unit();\r\
-    \n    for (auto &&[a, b]: pd) {\r\n      X x = (a <= b ? seg.prod(a, b + 1)\r\n\
-    \                    : (Monoid::commute ? seg.prod(b, a + 1)\r\n             \
-    \                          : seg_r.prod(b, a + 1)));\r\n      val = Monoid::op(val,\
-    \ x);\r\n    }\r\n    return val;\r\n  }\r\n\r\n  // uv path \u4E0A\u3067 prod_path(u,\
-    \ x) \u304C check \u3092\u6E80\u305F\u3059\u6700\u5F8C\u306E x\r\n  // \u306A\u3051\
-    \u308C\u3070 -1\r\n  // https://codeforces.com/contest/1059/problem/E\r\n  //\
-    \ https://codeforces.com/contest/1230/problem/E\r\n  // edge: https://atcoder.jp/contests/tkppc3/tasks/tkppc3_i\r\
+    \ X { return f(tree.V[i]); });\r\n      }\r\n    } else {\r\n      seg.build(N,\
+    \ [&](int i) -> X {\r\n        return (i == 0 ? Monoid::unit() : f(tree.v_to_e(tree.V[i])));\r\
+    \n      });\r\n      if (!Monoid::commute) {\r\n        seg_r.build(N, [&](int\
+    \ i) -> X {\r\n          return (i == 0 ? Monoid::unit() : f(tree.v_to_e(tree.V[i])));\r\
+    \n        });\r\n      }\r\n    }\r\n  }\r\n\r\n  void set(int i, X x) {\r\n \
+    \   if (edge) i = tree.e_to_v(i);\r\n    i = tree.LID[i];\r\n    seg.set(i, x);\r\
+    \n    if (!Monoid::commute) seg_r.set(i, x);\r\n  }\r\n\r\n  void multiply(int\
+    \ i, X x) {\r\n    if (edge) i = tree.e_to_v(i);\r\n    i = tree.LID[i];\r\n \
+    \   seg.multiply(i, x);\r\n    if (!Monoid::commute) seg_r.multiply(i, x);\r\n\
+    \  }\r\n\r\n  X prod_path(int u, int v) {\r\n    auto pd = tree.get_path_decomposition(u,\
+    \ v, edge);\r\n    X val = Monoid::unit();\r\n    for (auto &&[a, b]: pd) {\r\n\
+    \      X x = (a <= b ? seg.prod(a, b + 1)\r\n                    : (Monoid::commute\
+    \ ? seg.prod(b, a + 1)\r\n                                       : seg_r.prod(b,\
+    \ a + 1)));\r\n      val = Monoid::op(val, x);\r\n    }\r\n    return val;\r\n\
+    \  }\r\n\r\n  // uv path \u4E0A\u3067 prod_path(u, x) \u304C check \u3092\u6E80\
+    \u305F\u3059\u6700\u5F8C\u306E x\r\n  // \u306A\u3051\u308C\u3070 -1\r\n  // https://codeforces.com/contest/1059/problem/E\r\
+    \n  // https://codeforces.com/contest/1230/problem/E\r\n  // edge: https://atcoder.jp/contests/tkppc3/tasks/tkppc3_i\r\
     \n  // edge \u304C\u7279\u306B\u602A\u3057\u3044\u304B\u3082\r\n  template <class\
     \ F>\r\n  int max_path(F check, int u, int v) {\r\n    if (edge) return max_path_edge(check,\
     \ u, v);\r\n    if (!check(prod_path(u, u))) return -1;\r\n    auto pd = tree.get_path_decomposition(u,\
@@ -280,30 +280,30 @@ data:
     \ typename Monoid, bool edge>\r\nstruct Tree_Monoid {\r\n  using RevMonoid = Monoid_Reverse<Monoid>;\r\
     \n  using X = typename Monoid::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  SegTree<Monoid>\
     \ seg;\r\n  SegTree<RevMonoid> seg_r;\r\n\r\n  Tree_Monoid(TREE &tree) : tree(tree),\
-    \ N(tree.N) {\r\n    build([](int i) -> X { return MX::unit(); });\r\n  }\r\n\r\
-    \n  Tree_Monoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {\r\n    build([](int\
+    \ N(tree.N) {\r\n    build([](int i) -> X { return Monoid::unit(); });\r\n  }\r\
+    \n\r\n  Tree_Monoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {\r\n    build([&](int\
     \ i) -> X { return dat[i]; });\r\n  }\r\n\r\n  template <typename F>\r\n  Tree_Monoid(TREE\
     \ &tree, F f) : tree(tree), N(tree.N) {\r\n    build(f);\r\n  }\r\n\r\n  template\
-    \ <typename F>\r\n  void build(int m, F f) {\r\n    vc<X> seg_raw(N, Monoid::unit());\r\
+    \ <typename F>\r\n  void build(F f) {\r\n    vc<X> seg_raw(N, Monoid::unit());\r\
     \n    if (!edge) {\r\n      seg.build(N, [&](int i) -> X { return f(tree.V[i]);\
     \ });\r\n      if (!Monoid::commute) {\r\n        seg_r.build(N, [&](int i) ->\
-    \ X { return f(tree.V[i]); });\r\n      }\r\n    } else {\r\n      seg.build(\r\
-    \n          N, [&](int i) -> X { return (i == 0 ? f(tree.v_to_e(tree.V[i])));\
-    \ });\r\n      if (!Monoid::commute) {\r\n        seg_r.build(N, [&](int i) ->\
-    \ X { return (i == 0 ? f(tree.v_to_e(tree.V[i])));\r\n        });\r\n      }\r\
-    \n    }\r\n  }\r\n\r\n  void set(int i, X x) {\r\n    if (edge) i = tree.e_to_v(i);\r\
-    \n    i = tree.LID[i];\r\n    seg.set(i, x);\r\n    if (!Monoid::commute) seg_r.set(i,\
-    \ x);\r\n  }\r\n\r\n  void multiply(int i, X x) {\r\n    if (edge) i = tree.e_to_v(i);\r\
-    \n    i = tree.LID[i];\r\n    seg.multiply(i, x);\r\n    if (!Monoid::commute)\
-    \ seg_r.multiply(i, x);\r\n  }\r\n\r\n  X prod_path(int u, int v) {\r\n    auto\
-    \ pd = tree.get_path_decomposition(u, v, edge);\r\n    X val = Monoid::unit();\r\
-    \n    for (auto &&[a, b]: pd) {\r\n      X x = (a <= b ? seg.prod(a, b + 1)\r\n\
-    \                    : (Monoid::commute ? seg.prod(b, a + 1)\r\n             \
-    \                          : seg_r.prod(b, a + 1)));\r\n      val = Monoid::op(val,\
-    \ x);\r\n    }\r\n    return val;\r\n  }\r\n\r\n  // uv path \u4E0A\u3067 prod_path(u,\
-    \ x) \u304C check \u3092\u6E80\u305F\u3059\u6700\u5F8C\u306E x\r\n  // \u306A\u3051\
-    \u308C\u3070 -1\r\n  // https://codeforces.com/contest/1059/problem/E\r\n  //\
-    \ https://codeforces.com/contest/1230/problem/E\r\n  // edge: https://atcoder.jp/contests/tkppc3/tasks/tkppc3_i\r\
+    \ X { return f(tree.V[i]); });\r\n      }\r\n    } else {\r\n      seg.build(N,\
+    \ [&](int i) -> X {\r\n        return (i == 0 ? Monoid::unit() : f(tree.v_to_e(tree.V[i])));\r\
+    \n      });\r\n      if (!Monoid::commute) {\r\n        seg_r.build(N, [&](int\
+    \ i) -> X {\r\n          return (i == 0 ? Monoid::unit() : f(tree.v_to_e(tree.V[i])));\r\
+    \n        });\r\n      }\r\n    }\r\n  }\r\n\r\n  void set(int i, X x) {\r\n \
+    \   if (edge) i = tree.e_to_v(i);\r\n    i = tree.LID[i];\r\n    seg.set(i, x);\r\
+    \n    if (!Monoid::commute) seg_r.set(i, x);\r\n  }\r\n\r\n  void multiply(int\
+    \ i, X x) {\r\n    if (edge) i = tree.e_to_v(i);\r\n    i = tree.LID[i];\r\n \
+    \   seg.multiply(i, x);\r\n    if (!Monoid::commute) seg_r.multiply(i, x);\r\n\
+    \  }\r\n\r\n  X prod_path(int u, int v) {\r\n    auto pd = tree.get_path_decomposition(u,\
+    \ v, edge);\r\n    X val = Monoid::unit();\r\n    for (auto &&[a, b]: pd) {\r\n\
+    \      X x = (a <= b ? seg.prod(a, b + 1)\r\n                    : (Monoid::commute\
+    \ ? seg.prod(b, a + 1)\r\n                                       : seg_r.prod(b,\
+    \ a + 1)));\r\n      val = Monoid::op(val, x);\r\n    }\r\n    return val;\r\n\
+    \  }\r\n\r\n  // uv path \u4E0A\u3067 prod_path(u, x) \u304C check \u3092\u6E80\
+    \u305F\u3059\u6700\u5F8C\u306E x\r\n  // \u306A\u3051\u308C\u3070 -1\r\n  // https://codeforces.com/contest/1059/problem/E\r\
+    \n  // https://codeforces.com/contest/1230/problem/E\r\n  // edge: https://atcoder.jp/contests/tkppc3/tasks/tkppc3_i\r\
     \n  // edge \u304C\u7279\u306B\u602A\u3057\u3044\u304B\u3082\r\n  template <class\
     \ F>\r\n  int max_path(F check, int u, int v) {\r\n    if (edge) return max_path_edge(check,\
     \ u, v);\r\n    if (!check(prod_path(u, u))) return -1;\r\n    auto pd = tree.get_path_decomposition(u,\
@@ -348,8 +348,8 @@ data:
   path: graph/ds/tree_monoid.hpp
   requiredBy:
   - graph/minimum_spanning_tree.hpp
-  timestamp: '2023-04-02 05:22:24+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-04-02 12:12:39+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc270_f.test.cpp
   - test/aoj/GRL_2_A.test.cpp

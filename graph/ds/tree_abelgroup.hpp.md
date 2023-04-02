@@ -244,7 +244,7 @@ data:
   isVerificationFile: false
   path: graph/ds/tree_abelgroup.hpp
   requiredBy: []
-  timestamp: '2023-04-02 11:49:11+09:00'
+  timestamp: '2023-04-02 12:12:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1641.test.cpp
