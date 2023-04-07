@@ -2,6 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"
+#include "ds/segtree/xor_segtree.hpp"
 
 using mint = modint998;
 
