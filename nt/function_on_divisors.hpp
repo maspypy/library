@@ -83,9 +83,9 @@ struct Function_on_Divisors {
     }
   }
 
-  vc<pair<ll, T>> get_all() {
-    vc<pair<ll, T>> res;
-    FOR(i, len(divs)) { res.eb(divs[i], dat[i]); }
-    return res;
+  // (d, fd)
+  template <typename F>
+  void enumerate(F f) {
+    FOR(i, len(divs)) { f(divs[i], dat[i]); }
   }
 };
