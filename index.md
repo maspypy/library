@@ -106,7 +106,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid/add_tuple_3.hpp
       title: alg/monoid/add_tuple_3.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/affine.hpp
       title: alg/monoid/affine.hpp
     - icon: ':heavy_check_mark:'
@@ -373,7 +373,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/sparse_table/sparse_table.hpp
       title: ds/sparse_table/sparse_table.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/sparse_table/xor_disjoint_sparse_table.hpp
       title: ds/sparse_table/xor_disjoint_sparse_table.hpp
   - name: ds/splaytree
@@ -936,13 +936,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_sum_of_linear.hpp
       title: mod/mod_sum_of_linear.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint.hpp
       title: mod/modint.hpp
     - icon: ':heavy_check_mark:'
       path: mod/modint61.hpp
       title: mod/modint61.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint_common.hpp
       title: mod/modint_common.hpp
     - icon: ':heavy_check_mark:'
@@ -2891,7 +2891,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1881.test.cpp
       title: test/yukicoder/1881.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1891.test.cpp
       title: test/yukicoder/1891.test.cpp
     - icon: ':heavy_check_mark:'

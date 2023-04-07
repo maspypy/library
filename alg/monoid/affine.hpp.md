@@ -51,7 +51,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1502.test.cpp
     title: test/yukicoder/1502.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1891.test.cpp
     title: test/yukicoder/1891.test.cpp
   - icon: ':heavy_check_mark:'
@@ -63,9 +63,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc270_g.test.cpp
     title: test_atcoder/abc270_g.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/affine.hpp\"\n\ntemplate <typename K>\nstruct\
@@ -92,7 +92,7 @@ data:
   - alg/acted_monoid/sum_affine.hpp
   - alg/acted_monoid/cntsum_affine.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/sort_segtree_1.test.cpp
   - test/library_checker/datastructure/sort_segtree.test.cpp
