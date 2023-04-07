@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yukicoder/1891.test.cpp
+    title: test/yukicoder/1891.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/sparse_table/xor_disjoint_sparse_table.hpp\"\ntemplate\
@@ -53,8 +56,9 @@ data:
   path: ds/sparse_table/xor_disjoint_sparse_table.hpp
   requiredBy: []
   timestamp: '2023-04-08 01:03:35+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yukicoder/1891.test.cpp
 documentation_of: ds/sparse_table/xor_disjoint_sparse_table.hpp
 layout: document
 redirect_from:

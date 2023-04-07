@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -459,6 +459,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1962.test.cpp
     title: test/yukicoder/1962.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2005.test.cpp
+    title: test/yukicoder/2005.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2062.test.cpp
     title: test/yukicoder/2062.test.cpp
@@ -990,6 +993,7 @@ data:
   - test/yukicoder/1875.test.cpp
   - test/yukicoder/1561.test.cpp
   - test/yukicoder/2097.test.cpp
+  - test/yukicoder/2005.test.cpp
   - test/yukicoder/1547.test.cpp
   - test/yukicoder/1321.test.cpp
   - test/yukicoder/2243.test.cpp

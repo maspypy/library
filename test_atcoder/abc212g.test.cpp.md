@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/function_on_divisors.hpp
     title: nt/function_on_divisors.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc212/tasks/abc212_g
@@ -287,13 +287,15 @@ data:
     \ (d, fd)\n  template <typename F>\n  void enumerate(F f) {\n    FOR(i, len(divs))\
     \ { f(divs[i], dat[i]); }\n  }\n};\n#line 5 \"test_atcoder/abc212g.test.cpp\"\n\
     \nvoid solve() {\n  LL(P);\n  Function_on_Divisors<ll> X(P - 1);\n  X.set_euler_phi();\n\
-    \  i128 ANS = 1;\n  for (auto&& [a, b]: X.get_all()) { ANS += i128(a) * b; }\n\
-    \  print(ANS % 998244353);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \  i128 ANS = 1;\n  X.enumerate([&](ll a, ll b) -> void { ANS += i128(a) * b;\
+    \ });\n  print(ANS % 998244353);\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc212/tasks/abc212_g\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/function_on_divisors.hpp\"\
     \n\nvoid solve() {\n  LL(P);\n  Function_on_Divisors<ll> X(P - 1);\n  X.set_euler_phi();\n\
-    \  i128 ANS = 1;\n  for (auto&& [a, b]: X.get_all()) { ANS += i128(a) * b; }\n\
-    \  print(ANS % 998244353);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \  i128 ANS = 1;\n  X.enumerate([&](ll a, ll b) -> void { ANS += i128(a) * b;\
+    \ });\n  print(ANS % 998244353);\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -303,8 +305,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc212g.test.cpp
   requiredBy: []
-  timestamp: '2023-04-08 02:18:53+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-04-08 04:37:08+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc212g.test.cpp
 layout: document

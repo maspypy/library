@@ -25,7 +25,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -36,6 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1821.test.cpp
     title: test/yukicoder/1821.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2005.test.cpp
+    title: test/yukicoder/2005.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -330,6 +333,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/eulerian_number.test.cpp
+  - test/yukicoder/2005.test.cpp
   - test/yukicoder/1821.test.cpp
 documentation_of: seq/famous/eulerian_number.hpp
 layout: document

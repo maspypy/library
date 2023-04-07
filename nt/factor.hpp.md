@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   _extendedRequiredBy:
@@ -32,7 +32,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/four_square.hpp
     title: nt/four_square.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/function_on_divisors.hpp
     title: nt/function_on_divisors.hpp
   - icon: ':heavy_check_mark:'
@@ -103,17 +103,20 @@ data:
     path: test/yukicoder/2181.test.cpp
     title: test/yukicoder/2181.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2264.test.cpp
+    title: test/yukicoder/2264.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc152e.test.cpp
     title: test_atcoder/abc152e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc212g.test.cpp
     title: test_atcoder/abc212g.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetest.hpp\"\nstruct m64 {\r\n  using i64 = int64_t;\r\
@@ -208,7 +211,7 @@ data:
   - mod/binomial.hpp
   - mod/tetration.hpp
   timestamp: '2023-01-09 23:28:24+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/factorize.test.cpp
   - test/library_checker/math/binomial_coefficient.test.cpp
@@ -219,6 +222,7 @@ data:
   - test/mytest/four_square.test.cpp
   - test/aoj/NTL_1_D.test.cpp
   - test/aoj/ITP1_D_D.test.cpp
+  - test/yukicoder/2264.test.cpp
   - test/yukicoder/1411.test.cpp
   - test/yukicoder/1956.test.cpp
   - test/yukicoder/1025.test.cpp

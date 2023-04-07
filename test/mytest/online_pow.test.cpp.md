@@ -46,7 +46,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':heavy_check_mark:'
@@ -58,7 +58,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/online/online_pow.hpp
     title: poly/online/online_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

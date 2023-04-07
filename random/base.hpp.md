@@ -92,7 +92,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/count_subseq.hpp
     title: string/count_subseq.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
   - icon: ':heavy_check_mark:'
@@ -432,7 +432,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2167.test.cpp
     title: test/yukicoder/2167.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2231.test.cpp
     title: test/yukicoder/2231.test.cpp
   - icon: ':heavy_check_mark:'
@@ -471,9 +471,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc274_h.test.cpp
     title: test_atcoder/abc274_h.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -524,7 +524,7 @@ data:
   - geo/count_points_in_triangles.hpp
   - geo/range_closest_pair_query.hpp
   timestamp: '2022-10-23 11:21:57+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp

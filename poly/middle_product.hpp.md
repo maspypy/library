@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/wildcard_pattern_matching.hpp
     title: string/wildcard_pattern_matching.hpp
   _extendedVerifiedWith:
@@ -54,7 +54,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2231.test.cpp
     title: test/yukicoder/2231.test.cpp
   - icon: ':heavy_check_mark:'
@@ -69,9 +69,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc013e.test.cpp
     title: test_atcoder/agc013e.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/middle_product.hpp\"\n\n#line 2 \"poly/ntt.hpp\"\n\r\
@@ -203,7 +203,7 @@ data:
   - poly/partial_frac_decomposition.hpp
   - linalg/implicit_matrix/vandermonde.hpp
   timestamp: '2023-04-08 02:04:46+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/library_checker/polynomial/polynomial_interpolation.test.cpp

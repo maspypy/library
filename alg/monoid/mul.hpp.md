@@ -52,6 +52,9 @@ data:
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2005.test.cpp
+    title: test/yukicoder/2005.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
   - icon: ':heavy_check_mark:'
@@ -106,6 +109,7 @@ data:
   - test/mytest/powerquery.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/yukicoder/1339.test.cpp
+  - test/yukicoder/2005.test.cpp
   - test/yukicoder/2166.test.cpp
   - test/yukicoder/899.test.cpp
   - test/yukicoder/502_2.test.cpp

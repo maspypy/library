@@ -86,7 +86,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
   - icon: ':heavy_check_mark:'
@@ -197,7 +197,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/wildcard_pattern_matching.hpp
     title: string/wildcard_pattern_matching.hpp
   _extendedVerifiedWith:
@@ -451,6 +451,9 @@ data:
     path: test/yukicoder/1962.test.cpp
     title: test/yukicoder/1962.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2005.test.cpp
+    title: test/yukicoder/2005.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2062.test.cpp
     title: test/yukicoder/2062.test.cpp
   - icon: ':heavy_check_mark:'
@@ -465,7 +468,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2231.test.cpp
     title: test/yukicoder/2231.test.cpp
   - icon: ':heavy_check_mark:'
@@ -519,9 +522,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc154f.test.cpp
     title: test_atcoder/arc154f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>&\
@@ -709,7 +712,7 @@ data:
   - linalg/implicit_matrix/pascal.hpp
   - linalg/implicit_matrix/vandermonde.hpp
   timestamp: '2023-02-23 05:24:25+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
@@ -779,6 +782,7 @@ data:
   - test/yukicoder/1875.test.cpp
   - test/yukicoder/1561.test.cpp
   - test/yukicoder/2097.test.cpp
+  - test/yukicoder/2005.test.cpp
   - test/yukicoder/1547.test.cpp
   - test/yukicoder/1321.test.cpp
   - test/yukicoder/2243.test.cpp
