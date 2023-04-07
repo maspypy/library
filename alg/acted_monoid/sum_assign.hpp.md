@@ -53,9 +53,9 @@ data:
   timestamp: '2022-12-04 02:49:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/DSL_2_I.test.cpp
   - test_atcoder/abc256ex2.test.cpp
   - test_atcoder/abc256ex.test.cpp
-  - test/aoj/DSL_2_I.test.cpp
 documentation_of: alg/acted_monoid/sum_assign.hpp
 layout: document
 redirect_from:

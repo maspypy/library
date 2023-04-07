@@ -70,27 +70,28 @@ data:
     \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 1 \"enumerate/bits.hpp\"\
     \ntemplate <typename F>\nvoid enumerate_bits(int s, F f) {\n  while (s) {\n  \
     \  int i = __builtin_ctz(s);\n    f(i);\n    s ^= 1 << i;\n  }\n}\n\ntemplate\
-    \ <typename BS, typename F>\nvoid enumerate_bits_bitset(BS& b, int L, int R, F\
-    \ f) {\n  int p = (b[L] ? L : b._Find_next(L));\n  while (p < R) {\n    f(p);\n\
-    \    p = b._Find_next(p);\n  }\n}\n#line 3 \"graph/steiner_tree.hpp\"\n\n// \u8FBA\
-    \u91CD\u307F\u306F e.cost\u3001\u9802\u70B9\u91CD\u307F\u306F vector \u3067\u6E21\
-    \u3059\u3002\u8FD4\u308A\u5024\uFF1A{cost, vs, es}\n// O(3^kn + 2^k(n+m)log n),\
-    \ k: terminal size\ntemplate <typename T, typename GT>\ntuple<T, vc<int>, vc<int>>\
-    \ steiner_tree(GT& G, vc<int> S, vc<T> v_wt = {}) {\n  assert(!S.empty() && !G.is_directed());\n\
-    \  const int N = G.N, M = G.M, K = len(S);\n  if (v_wt.empty()) v_wt.assign(N,\
-    \ 0);\n\n  // \u30BF\u30FC\u30DF\u30CA\u30EB\u96C6\u5408, root -> cost\n  vv(T,\
-    \ DP, 1 << K, N, infty<T>);\n  FOR(v, N) DP[0][v] = v_wt[v];\n\n  // 2 * t or\
-    \ 2 * eid + 1\n  vv(int, par, 1 << K, N, -1);\n\n  FOR(s, 1, 1 << K) {\n    auto&\
-    \ dp = DP[s];\n    enumerate_bits(s, [&](int k) -> void {\n      int v = S[k];\n\
-    \      chmin(dp[v], DP[s ^ 1 << k][v]);\n    });\n    FOR_subset(t, s) {\n   \
-    \   if (t == 0 || t == s) continue;\n      FOR(v, N) {\n        if (chmin(dp[v],\
-    \ DP[t][v] + DP[s ^ t][v] - v_wt[v])) par[s][v] = 2 * t;\n      }\n    }\n   \
-    \ // \u6839\u306E\u79FB\u52D5\u3092 dijkstra \u3067\n    pqg<pair<T, int>> que;\n\
-    \    FOR(v, N) que.emplace(dp[v], v);\n    while (!que.empty()) {\n      auto\
-    \ [dv, v] = POP(que);\n      if (dv != dp[v]) continue;\n      for (auto&& e:\
-    \ G[v]) {\n        if (chmin(dp[e.to], dv + e.cost + v_wt[e.to])) {\n        \
-    \  par[s][e.to] = 2 * e.id + 1;\n          que.emplace(dp[e.to], e.to);\n    \
-    \    }\n      }\n    }\n  }\n\n  // \u5FA9\u5143\u3059\u308B\n  vc<bool> used_v(N),\
+    \ <typename F>\nvoid enumerate_bits(u64 s, F f) {\n  while (s) {\n    int i =\
+    \ __builtin_ctzll(s);\n    f(i);\n    s ^= 1 << i;\n  }\n}\n\ntemplate <typename\
+    \ BS, typename F>\nvoid enumerate_bits_bitset(BS& b, int L, int R, F f) {\n  int\
+    \ p = (b[L] ? L : b._Find_next(L));\n  while (p < R) {\n    f(p);\n    p = b._Find_next(p);\n\
+    \  }\n}\n#line 3 \"graph/steiner_tree.hpp\"\n\n// \u8FBA\u91CD\u307F\u306F e.cost\u3001\
+    \u9802\u70B9\u91CD\u307F\u306F vector \u3067\u6E21\u3059\u3002\u8FD4\u308A\u5024\
+    \uFF1A{cost, vs, es}\n// O(3^kn + 2^k(n+m)log n), k: terminal size\ntemplate <typename\
+    \ T, typename GT>\ntuple<T, vc<int>, vc<int>> steiner_tree(GT& G, vc<int> S, vc<T>\
+    \ v_wt = {}) {\n  assert(!S.empty() && !G.is_directed());\n  const int N = G.N,\
+    \ M = G.M, K = len(S);\n  if (v_wt.empty()) v_wt.assign(N, 0);\n\n  // \u30BF\u30FC\
+    \u30DF\u30CA\u30EB\u96C6\u5408, root -> cost\n  vv(T, DP, 1 << K, N, infty<T>);\n\
+    \  FOR(v, N) DP[0][v] = v_wt[v];\n\n  // 2 * t or 2 * eid + 1\n  vv(int, par,\
+    \ 1 << K, N, -1);\n\n  FOR(s, 1, 1 << K) {\n    auto& dp = DP[s];\n    enumerate_bits(s,\
+    \ [&](int k) -> void {\n      int v = S[k];\n      chmin(dp[v], DP[s ^ 1 << k][v]);\n\
+    \    });\n    FOR_subset(t, s) {\n      if (t == 0 || t == s) continue;\n    \
+    \  FOR(v, N) {\n        if (chmin(dp[v], DP[t][v] + DP[s ^ t][v] - v_wt[v])) par[s][v]\
+    \ = 2 * t;\n      }\n    }\n    // \u6839\u306E\u79FB\u52D5\u3092 dijkstra \u3067\
+    \n    pqg<pair<T, int>> que;\n    FOR(v, N) que.emplace(dp[v], v);\n    while\
+    \ (!que.empty()) {\n      auto [dv, v] = POP(que);\n      if (dv != dp[v]) continue;\n\
+    \      for (auto&& e: G[v]) {\n        if (chmin(dp[e.to], dv + e.cost + v_wt[e.to]))\
+    \ {\n          par[s][e.to] = 2 * e.id + 1;\n          que.emplace(dp[e.to], e.to);\n\
+    \        }\n      }\n    }\n  }\n\n  // \u5FA9\u5143\u3059\u308B\n  vc<bool> used_v(N),\
     \ used_e(M);\n  vc<int> v_to_k(N, -1);\n  FOR(k, K) v_to_k[S[k]] = k;\n\n  vc<pair<int,\
     \ int>> que;\n  int root = min_element(all(DP.back())) - DP.back().begin();\n\
     \  que.eb((1 << K) - 1, root);\n  used_v[root] = 1;\n\n  while (len(que)) {\n\
@@ -142,7 +143,7 @@ data:
   isVerificationFile: false
   path: graph/steiner_tree.hpp
   requiredBy: []
-  timestamp: '2023-04-02 18:02:21+09:00'
+  timestamp: '2023-04-08 00:43:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/114.test.cpp

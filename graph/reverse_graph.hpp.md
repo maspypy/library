@@ -87,13 +87,13 @@ data:
   isVerificationFile: false
   path: graph/reverse_graph.hpp
   requiredBy:
-  - game/graph_game.hpp
   - graph/shortest_path/K_shortest_walk.hpp
+  - game/graph_game.hpp
   timestamp: '2023-04-02 04:25:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1601.test.cpp
   - test/library_checker/graph/K_shortest_walk.test.cpp
+  - test/yukicoder/1601.test.cpp
 documentation_of: graph/reverse_graph.hpp
 layout: document
 redirect_from:

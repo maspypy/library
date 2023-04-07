@@ -71,9 +71,9 @@ data:
   timestamp: '2022-08-16 06:06:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/max_of_linear_segments.test.cpp
-  - test/mytest/min_of_linear_segments.test.cpp
   - test/library_checker/math/min_of_mod_of_linear.test.cpp
+  - test/mytest/min_of_linear_segments.test.cpp
+  - test/mytest/max_of_linear_segments.test.cpp
 documentation_of: mod/min_of_linear_segments.hpp
 layout: document
 redirect_from:

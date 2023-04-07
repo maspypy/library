@@ -252,9 +252,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/rbst_monoid_2.test.cpp
+  - test/mytest/rbst_monoid.test.cpp
   - test/mytest/rbst_monoid_persistent.test.cpp
   - test/mytest/rbst_test.test.cpp
-  - test/mytest/rbst_monoid.test.cpp
   - test/aoj/1508_2.test.cpp
 documentation_of: ds/randomized_bst/rbst_monoid.hpp
 layout: document

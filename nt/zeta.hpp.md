@@ -87,21 +87,21 @@ data:
   isVerificationFile: false
   path: nt/zeta.hpp
   requiredBy:
-  - mod/tetration.hpp
-  - nt/euler_phi.hpp
   - nt/lcm_convolution.hpp
   - nt/mobius_table.hpp
+  - nt/euler_phi.hpp
   - nt/gcd_convolution.hpp
+  - mod/tetration.hpp
   timestamp: '2022-12-12 09:21:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/NTL_1_D.test.cpp
-  - test/yukicoder/1262.test.cpp
-  - test/yukicoder/1666.test.cpp
-  - test/yukicoder/1760.test.cpp
   - test/library_checker/math/lcm_convolution.test.cpp
-  - test/library_checker/math/tetration.test.cpp
   - test/library_checker/math/gcd_convolution.test.cpp
+  - test/library_checker/math/tetration.test.cpp
+  - test/aoj/NTL_1_D.test.cpp
+  - test/yukicoder/1666.test.cpp
+  - test/yukicoder/1262.test.cpp
+  - test/yukicoder/1760.test.cpp
 documentation_of: nt/zeta.hpp
 layout: document
 redirect_from:

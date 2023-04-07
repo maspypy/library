@@ -37,10 +37,10 @@ data:
   timestamp: '2023-01-23 21:04:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/arc153f.test.cpp
-  - test_atcoder/abc233c.test.cpp
   - test/mytest/enumerate_products.test.cpp
   - test/mytest/fibonacci_search.test.cpp
+  - test_atcoder/abc233c.test.cpp
+  - test_atcoder/arc153f.test.cpp
 documentation_of: enumerate/product.hpp
 layout: document
 redirect_from:

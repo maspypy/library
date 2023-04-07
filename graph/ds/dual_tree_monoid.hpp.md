@@ -207,8 +207,8 @@ data:
   timestamp: '2023-04-02 05:22:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc270_f.test.cpp
   - test/aoj/GRL_2_A.test.cpp
+  - test_atcoder/abc270_f.test.cpp
 documentation_of: graph/ds/dual_tree_monoid.hpp
 layout: document
 redirect_from:

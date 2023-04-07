@@ -180,13 +180,13 @@ data:
   timestamp: '2023-03-24 19:28:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
+  - test/library_checker/datastructure/double_ended_pq_2.test.cpp
   - test/mytest/dynamic_segtree_sparse.test.cpp
   - test/yukicoder/789_3.test.cpp
+  - test/yukicoder/1826_2.test.cpp
   - test/yukicoder/1649_2.test.cpp
   - test/yukicoder/2242.test.cpp
-  - test/yukicoder/1826_2.test.cpp
-  - test/library_checker/datastructure/double_ended_pq_2.test.cpp
-  - test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
 documentation_of: ds/segtree/dynamic_segtree_sparse.hpp
 layout: document
 redirect_from:

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   _extendedRequiredBy:
@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':heavy_check_mark:'
@@ -38,7 +38,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
   _extendedVerifiedWith:
@@ -57,7 +57,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - icon: ':heavy_check_mark:'
@@ -111,9 +111,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc212g.test.cpp
     title: test_atcoder/abc212g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetest.hpp\"\nstruct m64 {\r\n  using i64 = int64_t;\r\
@@ -196,43 +196,43 @@ data:
   path: nt/factor.hpp
   requiredBy:
   - poly/multivar_convolution_cyclic.hpp
-  - mod/mod_kth_root.hpp
-  - mod/primitive_root.hpp
-  - mod/tetration.hpp
-  - mod/binomial.hpp
+  - nt/all_lcm.hpp
+  - nt/gaussian_integers.hpp
   - nt/function_on_divisors.hpp
+  - nt/four_square.hpp
+  - nt/crt.hpp
   - nt/euler_phi.hpp
   - nt/divisors.hpp
-  - nt/all_lcm.hpp
-  - nt/crt.hpp
-  - nt/gaussian_integers.hpp
-  - nt/four_square.hpp
+  - mod/mod_kth_root.hpp
+  - mod/primitive_root.hpp
+  - mod/binomial.hpp
+  - mod/tetration.hpp
   timestamp: '2023-01-09 23:28:24+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc152e.test.cpp
-  - test_atcoder/abc212g.test.cpp
-  - test/mytest/four_square.test.cpp
-  - test/aoj/ITP1_D_D.test.cpp
-  - test/aoj/NTL_1_D.test.cpp
-  - test/yukicoder/1262.test.cpp
-  - test/yukicoder/187.test.cpp
-  - test/yukicoder/590.test.cpp
-  - test/yukicoder/1411.test.cpp
-  - test/yukicoder/1881.test.cpp
-  - test/yukicoder/2181.test.cpp
-  - test/yukicoder/1593.test.cpp
-  - test/yukicoder/1728.test.cpp
-  - test/yukicoder/1956.test.cpp
-  - test/yukicoder/1025.test.cpp
-  - test/yukicoder/2120.test.cpp
-  - test/yukicoder/2119.test.cpp
   - test/library_checker/math/factorize.test.cpp
+  - test/library_checker/math/binomial_coefficient.test.cpp
+  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/tetration.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
-  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - test/library_checker/math/binomial_coefficient.test.cpp
-  - test/library_checker/math/primitive_root.test.cpp
+  - test/mytest/four_square.test.cpp
+  - test/aoj/NTL_1_D.test.cpp
+  - test/aoj/ITP1_D_D.test.cpp
+  - test/yukicoder/1411.test.cpp
+  - test/yukicoder/1956.test.cpp
+  - test/yukicoder/1025.test.cpp
+  - test/yukicoder/1262.test.cpp
+  - test/yukicoder/2120.test.cpp
+  - test/yukicoder/2181.test.cpp
+  - test/yukicoder/590.test.cpp
+  - test/yukicoder/1593.test.cpp
+  - test/yukicoder/1881.test.cpp
+  - test/yukicoder/187.test.cpp
+  - test/yukicoder/2119.test.cpp
+  - test/yukicoder/1728.test.cpp
+  - test_atcoder/abc152e.test.cpp
+  - test_atcoder/abc212g.test.cpp
 documentation_of: nt/factor.hpp
 layout: document
 redirect_from:

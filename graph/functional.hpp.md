@@ -241,8 +241,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1211.test.cpp
-  - test/yukicoder/590.test.cpp
   - test/yukicoder/2122.test.cpp
+  - test/yukicoder/590.test.cpp
   - test/yukicoder/1242.test.cpp
 documentation_of: graph/functional.hpp
 layout: document

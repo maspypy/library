@@ -62,9 +62,9 @@ data:
   timestamp: '2022-12-05 10:24:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc273_e.test.cpp
   - test/library_checker/datastructure/persistent_queue.test.cpp
   - test/library_checker/datastructure/persistent_unionfind.test.cpp
+  - test_atcoder/abc273_e.test.cpp
 documentation_of: ds/dynamic_array.hpp
 layout: document
 redirect_from:

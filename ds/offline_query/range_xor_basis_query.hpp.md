@@ -50,8 +50,8 @@ data:
   timestamp: '2023-01-23 16:19:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc223h.test.cpp
   - test/yukicoder/1167.test.cpp
+  - test_atcoder/abc223h.test.cpp
 documentation_of: ds/offline_query/range_xor_basis_query.hpp
 layout: document
 redirect_from:

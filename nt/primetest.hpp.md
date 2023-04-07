@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':heavy_check_mark:'
@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':heavy_check_mark:'
@@ -41,7 +41,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
   - icon: ':heavy_check_mark:'
@@ -69,7 +69,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - icon: ':heavy_check_mark:'
@@ -129,9 +129,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc212g.test.cpp
     title: test_atcoder/abc212g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetest.hpp\"\nstruct m64 {\r\n  using i64 = int64_t;\r\
@@ -201,50 +201,50 @@ data:
   path: nt/primetest.hpp
   requiredBy:
   - seq/famous/stirling_number_query.hpp
-  - poly/multivar_convolution_cyclic.hpp
   - graph/chromatic.hpp
+  - poly/multivar_convolution_cyclic.hpp
+  - nt/all_lcm.hpp
+  - nt/gaussian_integers.hpp
+  - nt/function_on_divisors.hpp
+  - nt/four_square.hpp
+  - nt/crt.hpp
+  - nt/euler_phi.hpp
+  - nt/factor.hpp
+  - nt/divisors.hpp
   - mod/mod_kth_root.hpp
   - mod/primitive_root.hpp
-  - mod/tetration.hpp
   - mod/binomial.hpp
-  - nt/function_on_divisors.hpp
-  - nt/euler_phi.hpp
-  - nt/divisors.hpp
-  - nt/all_lcm.hpp
-  - nt/factor.hpp
-  - nt/crt.hpp
-  - nt/gaussian_integers.hpp
-  - nt/four_square.hpp
+  - mod/tetration.hpp
   timestamp: '2023-01-09 23:28:24+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc152e.test.cpp
-  - test_atcoder/abc212g.test.cpp
-  - test/mytest/four_square.test.cpp
-  - test/aoj/ITP1_D_D.test.cpp
-  - test/aoj/NTL_1_D.test.cpp
-  - test/aoj/ALDS1_1_C.test.cpp
-  - test/yukicoder/1262.test.cpp
-  - test/yukicoder/187.test.cpp
-  - test/yukicoder/590.test.cpp
-  - test/yukicoder/1411.test.cpp
-  - test/yukicoder/1881.test.cpp
-  - test/yukicoder/2181.test.cpp
-  - test/yukicoder/1593.test.cpp
-  - test/yukicoder/1728.test.cpp
-  - test/yukicoder/1956.test.cpp
-  - test/yukicoder/1025.test.cpp
-  - test/yukicoder/2120.test.cpp
-  - test/yukicoder/2119.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
+  - test/library_checker/math/stirling_mod_p_2.test.cpp
   - test/library_checker/math/factorize.test.cpp
+  - test/library_checker/math/stirling_mod_p_1.test.cpp
+  - test/library_checker/math/binomial_coefficient.test.cpp
+  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/tetration.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
-  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - test/library_checker/math/binomial_coefficient.test.cpp
-  - test/library_checker/math/stirling_mod_p_2.test.cpp
-  - test/library_checker/math/primitive_root.test.cpp
-  - test/library_checker/math/stirling_mod_p_1.test.cpp
+  - test/mytest/four_square.test.cpp
+  - test/aoj/NTL_1_D.test.cpp
+  - test/aoj/ITP1_D_D.test.cpp
+  - test/aoj/ALDS1_1_C.test.cpp
+  - test/yukicoder/1411.test.cpp
+  - test/yukicoder/1956.test.cpp
+  - test/yukicoder/1025.test.cpp
+  - test/yukicoder/1262.test.cpp
+  - test/yukicoder/2120.test.cpp
+  - test/yukicoder/2181.test.cpp
+  - test/yukicoder/590.test.cpp
+  - test/yukicoder/1593.test.cpp
+  - test/yukicoder/1881.test.cpp
+  - test/yukicoder/187.test.cpp
+  - test/yukicoder/2119.test.cpp
+  - test/yukicoder/1728.test.cpp
+  - test_atcoder/abc152e.test.cpp
+  - test_atcoder/abc212g.test.cpp
 documentation_of: nt/primetest.hpp
 layout: document
 redirect_from:

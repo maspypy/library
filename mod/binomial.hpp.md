@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/fast_div.hpp
     title: mod/fast_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   _extendedRequiredBy: []
@@ -158,9 +158,9 @@ data:
   timestamp: '2023-01-09 23:28:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/2181.test.cpp
-  - test/yukicoder/2120.test.cpp
   - test/library_checker/math/binomial_coefficient.test.cpp
+  - test/yukicoder/2120.test.cpp
+  - test/yukicoder/2181.test.cpp
 documentation_of: mod/binomial.hpp
 layout: document
 redirect_from:

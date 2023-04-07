@@ -52,17 +52,17 @@ data:
   isVerificationFile: false
   path: mod/floor_sum_of_linear.hpp
   requiredBy:
-  - mod/mod_sum_of_linear.hpp
   - mod/range_freq_of_linear.hpp
+  - mod/mod_sum_of_linear.hpp
   timestamp: '2022-09-19 03:25:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/library_checker/math/min_of_mod_of_linear_2.test.cpp
+  - test/library_checker/math/sum_of_floor_of_linear.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
   - test/yukicoder/1201.test.cpp
   - test/yukicoder/2066.test.cpp
-  - test/library_checker/math/min_of_mod_of_linear_2.test.cpp
-  - test/library_checker/math/sum_of_floor_of_linear.test.cpp
 documentation_of: mod/floor_sum_of_linear.hpp
 layout: document
 redirect_from:

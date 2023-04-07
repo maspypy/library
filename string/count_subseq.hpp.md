@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -65,8 +65,8 @@ data:
   timestamp: '2023-04-02 04:26:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1493.test.cpp
   - test/library_checker/string/number_of_subsequences.test.cpp
+  - test/yukicoder/1493.test.cpp
 documentation_of: string/count_subseq.hpp
 layout: document
 redirect_from:

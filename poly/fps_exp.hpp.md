@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
   - icon: ':heavy_check_mark:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
   - icon: ':heavy_check_mark:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -498,46 +498,46 @@ data:
   isVerificationFile: false
   path: poly/fps_exp.hpp
   requiredBy:
-  - seq/famous/stirling_number_2.hpp
   - seq/famous/surjection.hpp
-  - poly/fps_sqrt.hpp
+  - seq/famous/stirling_number_2.hpp
+  - graph/count/count_forest.hpp
+  - poly/fps_pow.hpp
+  - poly/composed_sum.hpp
   - poly/composed_product.hpp
   - poly/product_of_one_plus_xn.hpp
   - poly/product_of_pow_of_linear.hpp
-  - poly/composed_sum.hpp
-  - poly/product_of_one_minus_xn.hpp
-  - poly/fps_pow.hpp
   - poly/product_of_f_rk_x.hpp
-  - graph/count/count_forest.hpp
+  - poly/fps_sqrt.hpp
+  - poly/product_of_one_minus_xn.hpp
   timestamp: '2023-03-12 10:53:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc267h.test.cpp
-  - test_atcoder/arc153f.test.cpp
-  - test_atcoder/abc222h.test.cpp
-  - test/mytest/online_exp.test.cpp
-  - test/mytest/bell.test.cpp
-  - test/mytest/product_of_one_pm_xn.test.cpp
-  - test/mytest/online_pow.test.cpp
-  - test/yukicoder/1080.test.cpp
-  - test/yukicoder/1321.test.cpp
-  - test/yukicoder/2062.test.cpp
-  - test/yukicoder/1533.test.cpp
-  - test/yukicoder/1939.test.cpp
-  - test/yukicoder/1392.test.cpp
-  - test/yukicoder/2097.test.cpp
-  - test/yukicoder/1549.test.cpp
-  - test/yukicoder/1875.test.cpp
-  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
+  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/polynomial/exp_of_fps.test.cpp
   - test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/pow_of_fps.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
+  - test/library_checker/polynomial/pow_of_fps.test.cpp
+  - test/mytest/product_of_one_pm_xn.test.cpp
+  - test/mytest/online_exp.test.cpp
+  - test/mytest/online_pow.test.cpp
+  - test/mytest/bell.test.cpp
+  - test/yukicoder/1392.test.cpp
+  - test/yukicoder/1549.test.cpp
+  - test/yukicoder/1875.test.cpp
+  - test/yukicoder/2097.test.cpp
+  - test/yukicoder/1321.test.cpp
+  - test/yukicoder/1939.test.cpp
+  - test/yukicoder/1080.test.cpp
+  - test/yukicoder/2062.test.cpp
+  - test/yukicoder/1533.test.cpp
+  - test_atcoder/abc222h.test.cpp
+  - test_atcoder/arc153f.test.cpp
+  - test_atcoder/abc267h.test.cpp
 documentation_of: poly/fps_exp.hpp
 layout: document
 redirect_from:

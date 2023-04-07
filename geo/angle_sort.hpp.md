@@ -122,11 +122,11 @@ data:
   timestamp: '2023-02-18 09:57:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc202_f.test.cpp
-  - test/mytest/qoj5443.test.cpp
-  - test/mytest/count_points_in_triangles.test.cpp
-  - test/library_checker/geometry/sort_points_by_argument.test.cpp
   - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
+  - test/library_checker/geometry/sort_points_by_argument.test.cpp
+  - test/mytest/count_points_in_triangles.test.cpp
+  - test/mytest/qoj5443.test.cpp
+  - test_atcoder/abc202_f.test.cpp
 documentation_of: geo/angle_sort.hpp
 layout: document
 redirect_from:

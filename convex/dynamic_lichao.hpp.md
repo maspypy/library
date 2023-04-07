@@ -129,8 +129,8 @@ data:
   timestamp: '2023-02-02 19:27:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/datastructure/segment_add_get_min.test.cpp
   - test/library_checker/datastructure/line_add_get_min_lichao.test.cpp
+  - test/library_checker/datastructure/segment_add_get_min.test.cpp
 documentation_of: convex/dynamic_lichao.hpp
 layout: document
 redirect_from:
