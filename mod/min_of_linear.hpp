@@ -2,6 +2,8 @@
 
 // min_{x in [L, R)} (ax+b mod)
 pair<ll, int> min_of_linear(ll L, ll R, int a, int b, int mod) {
+  a %= mod;
+  if (a < 0) a += mod;
   ll n = R - L;
   b = (b + a * L) % mod;
   if (b < 0) b += mod;
