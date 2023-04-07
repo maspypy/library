@@ -1,11 +1,23 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/ds/static_tree_monoid.hpp
+    title: graph/ds/static_tree_monoid.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticrmq_dst.test.cpp
     title: test/library_checker/datastructure/staticrmq_dst.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
+    title: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1216.test.cpp
+    title: test/yukicoder/1216.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1216_2.test.cpp
+    title: test/yukicoder/1216_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -69,11 +81,15 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: ds/sparse_table/disjoint_sparse_table.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/ds/static_tree_monoid.hpp
   timestamp: '2023-04-08 01:03:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - test/library_checker/datastructure/staticrmq_dst.test.cpp
+  - test/yukicoder/1216.test.cpp
+  - test/yukicoder/1216_2.test.cpp
 documentation_of: ds/sparse_table/disjoint_sparse_table.hpp
 layout: document
 redirect_from:

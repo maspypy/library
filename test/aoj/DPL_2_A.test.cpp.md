@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/minimum_hamiltonian_cycle.hpp
     title: graph/minimum_hamiltonian_cycle.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_2_A
@@ -258,10 +258,10 @@ data:
     \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
     \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 1 \"enumerate/bits.hpp\"\
-    \ntemplate <typename F>\nvoid enumerate_bits(int s, F f) {\n  while (s) {\n  \
-    \  int i = __builtin_ctz(s);\n    f(i);\n    s ^= 1 << i;\n  }\n}\n\ntemplate\
-    \ <typename F>\nvoid enumerate_bits(u64 s, F f) {\n  while (s) {\n    int i =\
-    \ __builtin_ctzll(s);\n    f(i);\n    s ^= 1 << i;\n  }\n}\n\ntemplate <typename\
+    \ntemplate <typename F>\nvoid enumerate_bits_32(u32 s, F f) {\n  while (s) {\n\
+    \    int i = __builtin_ctz(s);\n    f(i);\n    s ^= 1 << i;\n  }\n}\n\ntemplate\
+    \ <typename F>\nvoid enumerate_bits_64(u64 s, F f) {\n  while (s) {\n    int i\
+    \ = __builtin_ctzll(s);\n    f(i);\n    s ^= 1 << i;\n  }\n}\n\ntemplate <typename\
     \ BS, typename F>\nvoid enumerate_bits_bitset(BS& b, int L, int R, F f) {\n  int\
     \ p = (b[L] ? L : b._Find_next(L));\n  while (p < R) {\n    f(p);\n    p = b._Find_next(p);\n\
     \  }\n}\n#line 4 \"graph/minimum_hamiltonian_cycle.hpp\"\n\n/*\nreturn [cost,\
@@ -300,8 +300,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL_2_A.test.cpp
   requiredBy: []
-  timestamp: '2023-04-08 01:30:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-04-08 02:44:51+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DPL_2_A.test.cpp
 layout: document
