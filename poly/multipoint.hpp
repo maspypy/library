@@ -71,10 +71,20 @@ vc<mint> multipoint_interpolate(vc<mint>& x, vc<mint>& y) {
 }
 
 // calculate f(ar^k) for 0 <= k < m
-// https://noshi91.github.io/algorithm-encyclopedia/chirp-z-transform#noredirect
 template <typename mint>
 vc<mint> multipoint_eval_on_geom_seq(vc<mint> f, mint a, mint r, int m) {
   const int n = len(f);
+  if (m == 0) return {};
+  if (r == mint(0)) {
+    vc<mint> res(m);
+    FOR(i, 1, m) res[i] = f[0];
+    mint pow = 1;
+    FOR(i, n) {
+      res[0] += pow * f[i];
+      pow *= a;
+    }
+    return res;
+  }
   assert(r != mint(0));
   // a == 1 に帰着
   mint pow_a = 1;
@@ -94,10 +104,7 @@ vc<mint> multipoint_eval_on_geom_seq(vc<mint> f, mint a, mint r, int m) {
 
   vc<mint> A = calc(r, n + m - 1), B = calc(r.inverse(), max(n, m));
   FOR(i, n) f[i] *= B[i];
-  reverse(all(f));
-  f = convolution(f, A);
-  f = {f.begin() + n - 1, f.end()};
-  f.resize(m);
+  f = middle_product(A, f);
   FOR(i, m) f[i] *= B[i];
   return f;
 }
