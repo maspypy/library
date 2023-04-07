@@ -75,14 +75,23 @@ template <typename mint>
 vc<mint> multipoint_eval_on_geom_seq(vc<mint> f, mint a, mint r, int m) {
   const int n = len(f);
   if (m == 0) return {};
+
+  auto eval = [&](mint x) -> mint {
+    mint fx = 0;
+    mint pow = 1;
+    FOR(i, n) fx += f[i] * pow, pow *= x;
+    return fx;
+  };
+
   if (r == mint(0)) {
     vc<mint> res(m);
     FOR(i, 1, m) res[i] = f[0];
-    mint pow = 1;
-    FOR(i, n) {
-      res[0] += pow * f[i];
-      pow *= a;
-    }
+    res[0] = eval(a);
+    return res;
+  }
+  if (n < 60 || m < 60) {
+    vc<mint> res(m);
+    FOR(i, m) res[i] = eval(a), a *= r;
     return res;
   }
   assert(r != mint(0));
