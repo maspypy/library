@@ -12,7 +12,7 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_points_in_triangles.test.cpp
     title: test/mytest/count_points_in_triangles.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test_atcoder/abc202_f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"geo/count_points_in_triangles.hpp\"\n\n#line 2 \"geo/angle_sort.hpp\"\
@@ -173,7 +173,7 @@ data:
   path: geo/count_points_in_triangles.hpp
   requiredBy: []
   timestamp: '2023-04-08 00:43:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/count_points_in_triangles.test.cpp
   - test_atcoder/abc202_f.test.cpp

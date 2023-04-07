@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
   - icon: ':question:'
@@ -9,12 +9,12 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_2_A.test.cpp
     title: test/aoj/DPL_2_A.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -80,30 +80,11 @@ data:
     \  int n = G.N;\n  vv(T, dist, n, n, infty<T>);\n  FOR(v, n) {\n    for (auto&&\
     \ e: G[v]) chmin(dist[v][e.to], e.cost);\n  }\n  n -= 1;\n  const int full = (1\
     \ << n) - 1;\n  vv(T, dp, 1 << n, n, infty<T>);\n  FOR(v, n) chmin(dp[1 << v][v],\
-    \ dist[n][v]);\n  FOR(s, 1 << n) FOR(frm, n) if (dp[s][frm] < infty<T>) {\n  \
-    \  enumerate_bits(full - s, [&](int to) -> void {\n      int t = s | 1 << to;\n\
-    \      T cost = dist[frm][to];\n      if (cost < infty<T>) chmin(dp[t][to], dp[s][frm]\
-    \ + cost);\n    });\n  }\n  int s = (1 << n) - 1;\n  T res = infty<T>;\n  int\
-    \ best_v = -1;\n  FOR(v, n) if (dist[v][n] < infty<T> && dp[s][v] < infty<T>)\
-    \ {\n    if (chmin(res, dp[s][v] + dist[v][n])) best_v = v;\n  }\n  if (res ==\
-    \ infty<T>) return {-1, {}};\n  vc<int> C = {n, best_v};\n  int t = s;\n  while\
-    \ (len(C) <= n) {\n    int to = C.back();\n    int frm = [&]() -> int {\n    \
-    \  FOR(frm, n) {\n        int s = t ^ (1 << to);\n        T inf = infty<T>;\n\
-    \        if (dp[s][frm] < inf && dist[frm][to] < inf\n            && dp[s][frm]\
-    \ + dist[frm][to] == dp[t][to])\n          return frm;\n      }\n      return\
-    \ -1;\n    }();\n    C.eb(frm);\n    t ^= 1 << to;\n  }\n  reverse(all(C));\n\
-    \  return {res, C};\n}\n"
-  code: "#pragma once\n#include \"graph/base.hpp\"\n#include \"enumerate/bits.hpp\"\
-    \n\n/*\nreturn [cost, cycle]\ncycle \u306A\u3057\u306E\u5834\u5408\uFF1A{-1, {}}\n\
-    */\ntemplate <typename T, typename GT>\npair<T, vc<int>> minimum_hamiltonian_cycle(GT&\
-    \ G) {\n  assert(G.is_prepared());\n  int n = G.N;\n  vv(T, dist, n, n, infty<T>);\n\
-    \  FOR(v, n) {\n    for (auto&& e: G[v]) chmin(dist[v][e.to], e.cost);\n  }\n\
-    \  n -= 1;\n  const int full = (1 << n) - 1;\n  vv(T, dp, 1 << n, n, infty<T>);\n\
-    \  FOR(v, n) chmin(dp[1 << v][v], dist[n][v]);\n  FOR(s, 1 << n) FOR(frm, n) if\
-    \ (dp[s][frm] < infty<T>) {\n    enumerate_bits(full - s, [&](int to) -> void\
-    \ {\n      int t = s | 1 << to;\n      T cost = dist[frm][to];\n      if (cost\
-    \ < infty<T>) chmin(dp[t][to], dp[s][frm] + cost);\n    });\n  }\n  int s = (1\
-    \ << n) - 1;\n  T res = infty<T>;\n  int best_v = -1;\n  FOR(v, n) if (dist[v][n]\
+    \ dist[n][v]);\n  for (int s = 0; s < (1 << n); ++s) {\n    FOR(frm, n) if (dp[s][frm]\
+    \ < infty<T>) {\n      enumerate_bits(full - s, [&](int to) -> void {\n      \
+    \  int t = s | 1 << to;\n        T cost = dist[frm][to];\n        if (cost < infty<T>)\
+    \ chmin(dp[t][to], dp[s][frm] + cost);\n      });\n    }\n  }\n  int s = (1 <<\
+    \ n) - 1;\n  T res = infty<T>;\n  int best_v = -1;\n  FOR(v, n) if (dist[v][n]\
     \ < infty<T> && dp[s][v] < infty<T>) {\n    if (chmin(res, dp[s][v] + dist[v][n]))\
     \ best_v = v;\n  }\n  if (res == infty<T>) return {-1, {}};\n  vc<int> C = {n,\
     \ best_v};\n  int t = s;\n  while (len(C) <= n) {\n    int to = C.back();\n  \
@@ -112,14 +93,33 @@ data:
     \            && dp[s][frm] + dist[frm][to] == dp[t][to])\n          return frm;\n\
     \      }\n      return -1;\n    }();\n    C.eb(frm);\n    t ^= 1 << to;\n  }\n\
     \  reverse(all(C));\n  return {res, C};\n}\n"
+  code: "#pragma once\n#include \"graph/base.hpp\"\n#include \"enumerate/bits.hpp\"\
+    \n\n/*\nreturn [cost, cycle]\ncycle \u306A\u3057\u306E\u5834\u5408\uFF1A{-1, {}}\n\
+    */\ntemplate <typename T, typename GT>\npair<T, vc<int>> minimum_hamiltonian_cycle(GT&\
+    \ G) {\n  assert(G.is_prepared());\n  int n = G.N;\n  vv(T, dist, n, n, infty<T>);\n\
+    \  FOR(v, n) {\n    for (auto&& e: G[v]) chmin(dist[v][e.to], e.cost);\n  }\n\
+    \  n -= 1;\n  const int full = (1 << n) - 1;\n  vv(T, dp, 1 << n, n, infty<T>);\n\
+    \  FOR(v, n) chmin(dp[1 << v][v], dist[n][v]);\n  for (int s = 0; s < (1 << n);\
+    \ ++s) {\n    FOR(frm, n) if (dp[s][frm] < infty<T>) {\n      enumerate_bits(full\
+    \ - s, [&](int to) -> void {\n        int t = s | 1 << to;\n        T cost = dist[frm][to];\n\
+    \        if (cost < infty<T>) chmin(dp[t][to], dp[s][frm] + cost);\n      });\n\
+    \    }\n  }\n  int s = (1 << n) - 1;\n  T res = infty<T>;\n  int best_v = -1;\n\
+    \  FOR(v, n) if (dist[v][n] < infty<T> && dp[s][v] < infty<T>) {\n    if (chmin(res,\
+    \ dp[s][v] + dist[v][n])) best_v = v;\n  }\n  if (res == infty<T>) return {-1,\
+    \ {}};\n  vc<int> C = {n, best_v};\n  int t = s;\n  while (len(C) <= n) {\n  \
+    \  int to = C.back();\n    int frm = [&]() -> int {\n      FOR(frm, n) {\n   \
+    \     int s = t ^ (1 << to);\n        T inf = infty<T>;\n        if (dp[s][frm]\
+    \ < inf && dist[frm][to] < inf\n            && dp[s][frm] + dist[frm][to] == dp[t][to])\n\
+    \          return frm;\n      }\n      return -1;\n    }();\n    C.eb(frm);\n\
+    \    t ^= 1 << to;\n  }\n  reverse(all(C));\n  return {res, C};\n}\n"
   dependsOn:
   - graph/base.hpp
   - enumerate/bits.hpp
   isVerificationFile: false
   path: graph/minimum_hamiltonian_cycle.hpp
   requiredBy: []
-  timestamp: '2023-04-08 00:43:35+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-04-08 01:30:07+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DPL_2_A.test.cpp
 documentation_of: graph/minimum_hamiltonian_cycle.hpp

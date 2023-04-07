@@ -111,7 +111,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/primesum_mod6.test.cpp
     title: test/mytest/primesum_mod6.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/qoj5443.test.cpp
     title: test/mytest/qoj5443.test.cpp
   - icon: ':heavy_check_mark:'

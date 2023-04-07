@@ -99,7 +99,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_1_H.test.cpp
     title: test/aoj/DPL_1_H.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_2_A.test.cpp
     title: test/aoj/DPL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -657,7 +657,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/number_of_subsequences.test.cpp
     title: test/library_checker/string/number_of_subsequences.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/string/number_of_substrings.test.cpp
     title: test/library_checker/string/number_of_substrings.test.cpp
   - icon: ':heavy_check_mark:'
@@ -669,10 +669,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/run_enumerate_vec.test.cpp
     title: test/library_checker/string/run_enumerate_vec.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/string/suffix_array.test.cpp
     title: test/library_checker/string/suffix_array.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/string/suffix_array_vec.test.cpp
     title: test/library_checker/string/suffix_array_vec.test.cpp
   - icon: ':heavy_check_mark:'
@@ -744,7 +744,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_indep_set.test.cpp
     title: test/mytest/count_indep_set.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_points_in_triangles.test.cpp
     title: test/mytest/count_points_in_triangles.test.cpp
   - icon: ':heavy_check_mark:'
@@ -795,7 +795,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/gray_code.test.cpp
     title: test/mytest/gray_code.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/incremental_ch.test.cpp
     title: test/mytest/incremental_ch.test.cpp
   - icon: ':heavy_check_mark:'
@@ -813,7 +813,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/knight_distance.test.cpp
     title: test/mytest/knight_distance.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/longest_common_substr.test.cpp
     title: test/mytest/longest_common_substr.test.cpp
   - icon: ':heavy_check_mark:'
@@ -909,7 +909,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/product_of_one_pm_xn.test.cpp
     title: test/mytest/product_of_one_pm_xn.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/qoj5443.test.cpp
     title: test/mytest/qoj5443.test.cpp
   - icon: ':heavy_check_mark:'
@@ -984,7 +984,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/substring_abundant.test.cpp
     title: test/mytest/substring_abundant.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1008,7 +1008,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1479,7 +1479,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2161.test.cpp
     title: test/yukicoder/2161.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
   - icon: ':heavy_check_mark:'
