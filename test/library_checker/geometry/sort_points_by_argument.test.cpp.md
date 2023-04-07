@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':question:'
@@ -216,8 +216,10 @@ data:
     \ < p.y;\n  }\n  T dot(Point other) { return x * other.x + y * other.y; }\n  T\
     \ det(Point other) { return x * other.y - y * other.x; }\n\n  void read() { fastio::read(x),\
     \ fastio::read(y); }\n  void write() { fastio::printer.write(pair<T, T>({x, y}));\
-    \ }\n};\n\ntemplate <typename T>\nint ccw(Point<T> A, Point<T> B, Point<T> C)\
-    \ {\n  T x = (B - A).det(C - A);\n  if (x > 0) return 1;\n  if (x < 0) return\
+    \ }\n};\n\n// A -> B -> C \u3068\u9032\u3080\u3068\u304D\u306B\u3001\u5DE6\u306B\
+    \u66F2\u304C\u308B\u306A\u3089\u3070 +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\
+    \u3089\u3070 -1\ntemplate <typename T>\nint ccw(Point<T> A, Point<T> B, Point<T>\
+    \ C) {\n  T x = (B - A).det(C - A);\n  if (x > 0) return 1;\n  if (x < 0) return\
     \ -1;\n  return 0;\n}\n\ntemplate <typename REAL, typename T>\nREAL dist(Point<T>\
     \ A, Point<T> B) {\n  A = A - B;\n  T p = A.dot(A);\n  return sqrt(REAL(p));\n\
     }\n\ntemplate <typename T>\nstruct Line {\n  T a, b, c;\n\n  Line(T a, T b, T\
@@ -286,7 +288,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/geometry/sort_points_by_argument.test.cpp
   requiredBy: []
-  timestamp: '2023-02-24 07:14:18+09:00'
+  timestamp: '2023-04-08 00:43:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/geometry/sort_points_by_argument.test.cpp

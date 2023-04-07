@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -11,9 +11,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/lazy_tree_monoid.hpp
     title: graph/ds/lazy_tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/ds/static_tree_monoid.hpp
-    title: graph/ds/static_tree_monoid.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
@@ -96,12 +93,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1212.test.cpp
     title: test/yukicoder/1212.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1216.test.cpp
-    title: test/yukicoder/1216.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1216_2.test.cpp
-    title: test/yukicoder/1216_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1242.test.cpp
     title: test/yukicoder/1242.test.cpp
@@ -371,7 +362,6 @@ data:
   - graph/ds/lazy_tree_monoid.hpp
   - graph/ds/tree_wavelet_matrix.hpp
   - graph/ds/tree_monoid.hpp
-  - graph/ds/static_tree_monoid.hpp
   - graph/ds/dual_tree_monoid.hpp
   - graph/dsu_on_tree.hpp
   - graph/functional.hpp
@@ -404,7 +394,6 @@ data:
   - test/yukicoder/1418.test.cpp
   - test/yukicoder/2122.test.cpp
   - test/yukicoder/1718.test.cpp
-  - test/yukicoder/1216.test.cpp
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1976.test.cpp
   - test/yukicoder/1790.test.cpp
@@ -412,7 +401,6 @@ data:
   - test/yukicoder/1600.test.cpp
   - test/yukicoder/1524.test.cpp
   - test/yukicoder/1326.test.cpp
-  - test/yukicoder/1216_2.test.cpp
   - test/yukicoder/590.test.cpp
   - test/yukicoder/1242.test.cpp
   - test/yukicoder/1778.test.cpp

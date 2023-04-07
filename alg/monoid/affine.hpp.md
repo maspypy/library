@@ -52,9 +52,6 @@ data:
     path: test/yukicoder/1502.test.cpp
     title: test/yukicoder/1502.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1891.test.cpp
-    title: test/yukicoder/1891.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/255.test.cpp
     title: test/yukicoder/255.test.cpp
   - icon: ':heavy_check_mark:'
@@ -108,7 +105,6 @@ data:
   - test/mytest/splay.test.cpp
   - test/yukicoder/1502.test.cpp
   - test/yukicoder/255.test.cpp
-  - test/yukicoder/1891.test.cpp
   - test_atcoder/abc270_g.test.cpp
   - test_atcoder/abc222g.test.cpp
 documentation_of: alg/monoid/affine.hpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -291,8 +291,8 @@ data:
     \ vs.eb(a);\r\n    while (1) {\r\n      int x = vs.back();\r\n      auto& e =\
     \ G.edges[es.back()];\r\n      int y = e.frm + e.to - x;\r\n      if (y == a)\
     \ break;\r\n      vs.eb(y);\r\n      es.eb(par[y]);\r\n    }\r\n    return {vs,\
-    \ es};\r\n  }\r\n  return {vs, es};\r\n}\r\n\r\n// {vs, es} \uFF1A\u8FBA\u306E\
-    \u5217\u3068\u9802\u70B9\u306E\u5217\u3092\u8FD4\u3059\u3002es[i] \u306F vs[i]\
+    \ es};\r\n  }\r\n  return {vs, es};\r\n}\r\n\r\n// {vs, es} \uFF1A\u9802\u70B9\
+    \u306E\u5217\u3068\u8FBA\u306E\u5217\u3092\u8FD4\u3059\u3002es[i] \u306F vs[i]\
     \ \u304B\u3089 vs[i+1]\u3002\r\n// \u3068\u308A\u3042\u3048\u305A\u7121\u5411\u306E\
     \u3068\u304D\u306B\u306F\u6975\u5C0F\u306A\u3082\u306E\u3092\u8FD4\u3059\u3053\
     \u3068\u306B\u3057\u305F\u3002\r\ntemplate <typename GT>\r\npair<vc<int>, vc<int>>\
@@ -317,7 +317,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/cycle_detection_undirected.test.cpp
   requiredBy: []
-  timestamp: '2023-04-02 04:25:25+09:00'
+  timestamp: '2023-04-08 00:44:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/cycle_detection_undirected.test.cpp

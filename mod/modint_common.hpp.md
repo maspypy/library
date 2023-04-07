@@ -510,7 +510,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/product_of_one_pm_xn.test.cpp
     title: test/mytest/product_of_one_pm_xn.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/qoj5443.test.cpp
     title: test/mytest/qoj5443.test.cpp
   - icon: ':heavy_check_mark:'
@@ -694,9 +694,6 @@ data:
     path: test/yukicoder/1875.test.cpp
     title: test/yukicoder/1875.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1891.test.cpp
-    title: test/yukicoder/1891.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1907.test.cpp
     title: test/yukicoder/1907.test.cpp
   - icon: ':heavy_check_mark:'
@@ -714,9 +711,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2003.test.cpp
     title: test/yukicoder/2003.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2005.test.cpp
-    title: test/yukicoder/2005.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2062.test.cpp
     title: test/yukicoder/2062.test.cpp
@@ -777,7 +771,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc152e.test.cpp
     title: test_atcoder/abc152e.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1123,14 +1117,12 @@ data:
   - test/yukicoder/1502.test.cpp
   - test/yukicoder/1750.test.cpp
   - test/yukicoder/2097.test.cpp
-  - test/yukicoder/2005.test.cpp
   - test/yukicoder/1547.test.cpp
   - test/yukicoder/1321.test.cpp
   - test/yukicoder/2243.test.cpp
   - test/yukicoder/2149.test.cpp
   - test/yukicoder/2122.test.cpp
   - test/yukicoder/1939.test.cpp
-  - test/yukicoder/1891.test.cpp
   - test/yukicoder/1303.test.cpp
   - test/yukicoder/1411.test.cpp
   - test/yukicoder/2166.test.cpp

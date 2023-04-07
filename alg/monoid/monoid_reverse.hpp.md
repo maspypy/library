@@ -3,9 +3,6 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: graph/ds/static_tree_monoid.hpp
-    title: graph/ds/static_tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -27,12 +24,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1212.test.cpp
     title: test/yukicoder/1212.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1216.test.cpp
-    title: test/yukicoder/1216.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1216_2.test.cpp
-    title: test/yukicoder/1216_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
@@ -59,7 +50,6 @@ data:
   path: alg/monoid/monoid_reverse.hpp
   requiredBy:
   - graph/ds/tree_monoid.hpp
-  - graph/ds/static_tree_monoid.hpp
   - graph/minimum_spanning_tree.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -69,8 +59,6 @@ data:
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/aoj/GRL_2_A.test.cpp
   - test/yukicoder/1212.test.cpp
-  - test/yukicoder/1216.test.cpp
-  - test/yukicoder/1216_2.test.cpp
   - test/yukicoder/529.test.cpp
   - test_atcoder/abc270_f.test.cpp
 documentation_of: alg/monoid/monoid_reverse.hpp
