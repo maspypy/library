@@ -362,7 +362,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/segtree/sortable_segtree.hpp
       title: ds/segtree/sortable_segtree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/xor_segtree.hpp
       title: ds/segtree/xor_segtree.hpp
   - name: ds/sparse_table
@@ -3005,7 +3005,7 @@ data:
     - icon: ':x:'
       path: test/yukicoder/2264.test.cpp
       title: test/yukicoder/2264.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/2265.test.cpp
       title: test/yukicoder/2265.test.cpp
     - icon: ':heavy_check_mark:'
