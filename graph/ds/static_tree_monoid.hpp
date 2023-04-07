@@ -1,4 +1,4 @@
-#include "ds/disjointsparse/disjointsparse.hpp"
+#include "ds/sparse_table/disjoint_sparse_table.hpp"
 #include "graph/tree.hpp"
 #include "alg/monoid/monoid_reverse.hpp"
 
@@ -8,8 +8,8 @@ struct Static_Tree_Monoid {
   using X = typename Monoid::value_type;
   TREE &tree;
   int N;
-  DisjointSparse<Monoid> seg;
-  DisjointSparse<RevMonoid> seg_r;
+  Disjoint_Sparse_Table<Monoid> seg;
+  Disjoint_Sparse_Table<RevMonoid> seg_r;
 
   Static_Tree_Monoid(TREE &tree) : tree(tree), N(tree.N) {
     build([](int i) -> X { return Monoid::unit(); });
@@ -96,13 +96,6 @@ struct Static_Tree_Monoid {
   X prod_subtree(int u) {
     int l = tree.LID[u], r = tree.RID[u];
     return seg.prod(l + edge, r);
-  }
-
-  void debug() {
-    print("tree_monoid");
-    tree.debug();
-    seg.debug();
-    seg_r.debug();
   }
 
 private:

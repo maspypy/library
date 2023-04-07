@@ -13,7 +13,8 @@ void solve() {
   // 回転
   Function_on_Divisors<mint> f(N);
   f.set_euler_phi();
-  for (auto&& [d, phi]: f.get_all()) { ANS += phi * mint(C).pow(2 * N / d); }
+  f.enumerate(
+      [&](ll d, mint phi) -> void { ANS += phi * mint(C).pow(2 * N / d); });
   ANS += mint(C).pow(N) * mint(N);
   ANS /= mint(N + N);
   print(ANS);
