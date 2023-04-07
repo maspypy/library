@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/function_on_divisors.hpp
     title: nt/function_on_divisors.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc212/tasks/abc212_g
@@ -283,10 +283,10 @@ data:
     \ }\n      }\n      k *= (e + 1);\n    }\n  }\n\n  void divisor_mobius() {\n \
     \   ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll mod = k * (e + 1);\n  \
     \    FOR(i, len(divs) / mod) {\n        FOR_R(j, mod - k) { dat[mod * i + j +\
-    \ k] -= dat[mod * i + j]; }\n      }\n      k *= (e + 1);\n    }\n  }\n\n  vc<pair<ll,\
-    \ T>> get_all() {\n    vc<pair<ll, T>> res;\n    FOR(i, len(divs)) { res.eb(divs[i],\
-    \ dat[i]); }\n    return res;\n  }\n};\n#line 5 \"test_atcoder/abc212g.test.cpp\"\
-    \n\nvoid solve() {\n  LL(P);\n  Function_on_Divisors<ll> X(P - 1);\n  X.set_euler_phi();\n\
+    \ k] -= dat[mod * i + j]; }\n      }\n      k *= (e + 1);\n    }\n  }\n\n  //\
+    \ (d, fd)\n  template <typename F>\n  void enumerate(F f) {\n    FOR(i, len(divs))\
+    \ { f(divs[i], dat[i]); }\n  }\n};\n#line 5 \"test_atcoder/abc212g.test.cpp\"\n\
+    \nvoid solve() {\n  LL(P);\n  Function_on_Divisors<ll> X(P - 1);\n  X.set_euler_phi();\n\
     \  i128 ANS = 1;\n  for (auto&& [a, b]: X.get_all()) { ANS += i128(a) * b; }\n\
     \  print(ANS % 998244353);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc212/tasks/abc212_g\"\n#include\
@@ -303,8 +303,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc212g.test.cpp
   requiredBy: []
-  timestamp: '2023-02-24 07:14:18+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-04-08 02:18:53+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc212g.test.cpp
 layout: document
