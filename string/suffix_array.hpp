@@ -1,7 +1,7 @@
 #pragma once
 
 #include "alg/monoid/min.hpp"
-#include "ds/disjointsparse/disjointsparse.hpp"
+#include "ds/sparse_table/sparse_table.hpp"
 
 // 辞書順 i 番目の suffix が j 文字目始まりであるとき、
 // SA[i] = j, ISA[j] = i
@@ -9,10 +9,10 @@ struct Suffix_Array {
   vector<int> SA;
   vector<int> ISA;
   vector<int> LCP;
-  bool build_ds;
-  DisjointSparse<Monoid_Min<int>> seg;
+  Sparse_Table<Monoid_Min<int>> seg;
+  // DisjointSparse<Monoid_Min<int>> seg;
 
-  Suffix_Array(string& s) : build_ds(0) {
+  Suffix_Array(string& s, bool lcp_query = false) {
     char first = 127, last = 0;
     for (auto&& c: s) {
       chmin(first, c);
@@ -20,23 +20,20 @@ struct Suffix_Array {
     }
     SA = calc_suffix_array(s, first, last);
     calc_LCP(s);
+    if (lcp_query) seg.build(LCP);
   }
 
-  Suffix_Array(vector<int>& s) : build_ds(0) {
+  Suffix_Array(vector<int>& s, bool lcp_query = false) {
     SA = calc_suffix_array(s);
     calc_LCP(s);
+    if (lcp_query) seg.build(LCP);
   }
 
-  // S[i:], S[j:] の lcp を求める
+  // lcp(S[i:], S[j:])
   int lcp(int i, int j) {
     int n = len(SA);
-    assert(i <= n && j <= n);
     if (i == n || j == n) return 0;
     if (i == j) return n - i;
-    if (!build_ds) {
-      build_ds = 1;
-      seg.build(LCP);
-    }
     i = ISA[i], j = ISA[j];
     if (i > j) swap(i, j);
     return seg.prod(i, j);
