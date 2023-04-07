@@ -1,5 +1,5 @@
 template <typename F>
-void enumerate_bits(int s, F f) {
+void enumerate_bits_32(u32 s, F f) {
   while (s) {
     int i = __builtin_ctz(s);
     f(i);
@@ -8,7 +8,7 @@ void enumerate_bits(int s, F f) {
 }
 
 template <typename F>
-void enumerate_bits(u64 s, F f) {
+void enumerate_bits_64(u64 s, F f) {
   while (s) {
     int i = __builtin_ctzll(s);
     f(i);

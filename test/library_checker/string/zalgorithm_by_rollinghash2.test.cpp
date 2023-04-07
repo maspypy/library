@@ -3,13 +3,14 @@
 #include "other/io.hpp"
 
 #include "alg/monoid/rollinghash.hpp"
-#include "ds/disjointsparse/disjointsparse.hpp"
+#include "ds/sparse_table/disjoint_sparse_table.hpp"
 
 void solve() {
   STR(S);
   ll N = len(S);
   using Mono = Monoid_Rolling_Hash;
-  DisjointSparse<Mono> seg(N, [&](int i) { return Mono::from_element(S[i]); });
+  Disjoint_Sparse_Table<Mono> seg(
+      N, [&](int i) { return Mono::from_element(S[i]); });
   vi Z(N);
   FOR(i, N) {
     auto check = [&](int n) -> bool {

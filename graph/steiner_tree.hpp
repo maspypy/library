@@ -16,9 +16,9 @@ tuple<T, vc<int>, vc<int>> steiner_tree(GT& G, vc<int> S, vc<T> v_wt = {}) {
   // 2 * t or 2 * eid + 1
   vv(int, par, 1 << K, N, -1);
 
-  FOR(s, 1, 1 << K) {
+  for (int s = 1; s < (1 << K); ++s) {
     auto& dp = DP[s];
-    enumerate_bits(s, [&](int k) -> void {
+    enumerate_bits_32(s, [&](int k) -> void {
       int v = S[k];
       chmin(dp[v], DP[s ^ 1 << k][v]);
     });
