@@ -6,10 +6,10 @@
 #include "alg/monoid/affine.hpp"
 
 using mint = modint998;
+using Mono = Monoid_Affine<mint>;
 using DST = Xor_Disjoint_Sparse_Table<Mono>;
 void solve() {
   INT(N, Q);
-  using Mono = Monoid_Affine<mint>;
   DST seg(N, [](int i) -> typename Mono::value_type {
     INT(a, b);
     return {a, b};
