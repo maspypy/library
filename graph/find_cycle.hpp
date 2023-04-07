@@ -95,7 +95,7 @@ pair<vc<int>, vc<int>> find_cycle_undirected(GT& G) {
   return {vs, es};
 }
 
-// {vs, es} ：辺の列と頂点の列を返す。es[i] は vs[i] から vs[i+1]。
+// {vs, es} ：頂点の列と辺の列を返す。es[i] は vs[i] から vs[i+1]。
 // とりあえず無向のときには極小なものを返すことにした。
 template <typename GT>
 pair<vc<int>, vc<int>> find_cycle(GT& G) {
