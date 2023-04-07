@@ -1,6 +1,4 @@
-
-// prod_i(A_{i xor x}) のできるセグメント木。
-// set / prod どちらも O(sqrt(N)) 時間。
+// set,prod どちらも O(sqrt(N)) 時間。
 // モノイドが可換なら普通のセグ木を使うこと。
 template <class Monoid>
 struct Xor_SegTree {
@@ -71,18 +69,22 @@ struct Xor_SegTree {
   }
 
   X prod(int L, int R, int xor_val) {
-    X x = MX::unit();
-    for (int b = 0; b < (n >> H); ++b) {
-      int l = b << H, r = (b + 1) << H;
-      if (R <= l) break;
-      if (r <= L) continue;
-      if (L <= l && r <= R) {
-        x = MX::op(x, dat[H][l ^ xor_val]);
-        continue;
+    X x1 = MX::unit(), x2 = MX::unit();
+    FOR(h, H) {
+      if (L >= R) break;
+      if (L & (1 << h)) {
+        x1 = MX::op(x1, dat[h][L ^ xor_val]);
+        L += 1 << h;
       }
-      chmax(l, L), chmin(r, R);
-      FOR(i, l, r) x = MX::op(x, dat[0][i ^ xor_val]);
+      if (R & (1 << h)) {
+        R -= 1 << h;
+        x2 = MX::op(dat[h][R ^ xor_val], x2);
+      }
     }
-    return x;
+    while (L < R) {
+      x1 = MX::op(x1, dat[H][L ^ xor_val]);
+      L += 1 << H;
+    }
+    return MX::op(x1, x2);
   }
 };
