@@ -1,10 +1,9 @@
+#include "mod/modint.hpp"
 #include "poly/ntt.hpp"
 #include "poly/middle_product.hpp"
 
-#include "mod/modint.hpp"
-using mint = modint998;
-
 vc<bool> wildcard_pattern_matching(string S, string T, char WILD = '?') {
+  using mint = modint998;
   int N = len(S), M = len(T);
   int mi = 1024;
   for (auto&& x: S)

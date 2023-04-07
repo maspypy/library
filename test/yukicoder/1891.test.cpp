@@ -1,16 +1,16 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1891"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/disjointsparse/xor_disjointsparse.hpp"
+#include "ds/sparse_table/xor_disjoint_sparse_table.hpp"
 #include "mod/modint.hpp"
 #include "alg/monoid/affine.hpp"
 
 using mint = modint998;
-
+using DST = Xor_Disjoint_Sparse_Table<Mono>;
 void solve() {
   INT(N, Q);
   using Mono = Monoid_Affine<mint>;
-  Xor_DisjointSparse<Mono> seg(N, [](int i) -> typename Mono::value_type {
+  DST seg(N, [](int i) -> typename Mono::value_type {
     INT(a, b);
     return {a, b};
   });
