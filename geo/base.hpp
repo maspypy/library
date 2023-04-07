@@ -27,6 +27,7 @@ struct Point {
   void write() { fastio::printer.write(pair<T, T>({x, y})); }
 };
 
+// A -> B -> C と進むときに、左に曲がるならば +1、右に曲がるならば -1
 template <typename T>
 int ccw(Point<T> A, Point<T> B, Point<T> C) {
   T x = (B - A).det(C - A);
