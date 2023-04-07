@@ -8,7 +8,7 @@ void solve() {
   Function_on_Divisors<ll> X(P - 1);
   X.set_euler_phi();
   i128 ANS = 1;
-  for (auto&& [a, b]: X.get_all()) { ANS += i128(a) * b; }
+  X.enumerate([&](ll a, ll b) -> void { ANS += i128(a) * b; });
   print(ANS % 998244353);
 }
 

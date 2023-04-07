@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 
 #include "mod/modint.hpp"
-#include "ds/disjointsparse/disjointsparse.hpp"
+#include "ds/sparse_table/disjoint_sparse_table.hpp"
 #include "alg/monoid/mul.hpp"
 #include "seq/famous/eulerian_number.hpp"
 
@@ -15,7 +15,7 @@ void solve() {
   vvc<mint> A = eulerian_number_2d<mint>(LIM, LIM);
 
   // M - LIM, ... の積をとりたい
-  DisjointSparse<Monoid_Mul<mint>> seg(
+  Disjoint_Sparse_Table<Monoid_Mul<mint>> seg(
       N + LIM + LIM + 100, [&](int i) { return mint(M - LIM + i); });
 
   auto prod = [&](ll l, ll r) -> mint {
@@ -43,11 +43,6 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
