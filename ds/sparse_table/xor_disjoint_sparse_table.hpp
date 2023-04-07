@@ -1,17 +1,17 @@
 template <typename Monoid>
-struct Xor_DisjointSparse {
+struct Xor_Disjoint_Sparse_Table {
   using MX = Monoid;
   using X = typename Monoid::value_type;
   int log;
   vvc<X> dat;
 
-  Xor_DisjointSparse() {}
-  Xor_DisjointSparse(int n) { build(n); }
+  Xor_Disjoint_Sparse_Table() {}
+  Xor_Disjoint_Sparse_Table(int n) { build(n); }
   template <typename F>
-  Xor_DisjointSparse(int n, F f) {
+  Xor_Disjoint_Sparse_Table(int n, F f) {
     build(n, f);
   }
-  Xor_DisjointSparse(const vc<X>& v) { build(v); }
+  Xor_Disjoint_Sparse_Table(const vc<X>& v) { build(v); }
 
   void build(int m) {
     build(m, [](int i) -> X { return MX::unit(); });

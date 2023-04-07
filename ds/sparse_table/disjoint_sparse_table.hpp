@@ -1,19 +1,19 @@
 #pragma once
 
 template <class Monoid>
-struct DisjointSparse {
+struct Disjoint_Sparse_Table {
   using MX = Monoid;
   using X = typename MX::value_type;
   int n, log;
   vvc<X> dat;
 
-  DisjointSparse() {}
-  DisjointSparse(int n) { build(n); }
+  Disjoint_Sparse_Table() {}
+  Disjoint_Sparse_Table(int n) { build(n); }
   template <typename F>
-  DisjointSparse(int n, F f) {
+  Disjoint_Sparse_Table(int n, F f) {
     build(n, f);
   }
-  DisjointSparse(const vc<X>& v) { build(v); }
+  Disjoint_Sparse_Table(const vc<X>& v) { build(v); }
 
   void build(int m) {
     build(m, [](int i) -> X { return MX::unit(); });
@@ -34,8 +34,8 @@ struct DisjointSparse {
       int b = 1 << i;
       for (int m = b; m <= n; m += 2 * b) {
         int L = m - b, R = min(n, m + b);
-        FOR3_R(j, L + 1, m) v[j - 1] = MX::op(v[j - 1], v[j]);
-        FOR3(j, m, R - 1) v[j + 1] = MX::op(v[j], v[j + 1]);
+        FOR_R(j, L + 1, m) v[j - 1] = MX::op(v[j - 1], v[j]);
+        FOR(j, m, R - 1) v[j + 1] = MX::op(v[j], v[j + 1]);
       }
     }
   }
