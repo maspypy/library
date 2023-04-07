@@ -18,12 +18,14 @@ pair<T, vc<int>> minimum_hamiltonian_cycle(GT& G) {
   const int full = (1 << n) - 1;
   vv(T, dp, 1 << n, n, infty<T>);
   FOR(v, n) chmin(dp[1 << v][v], dist[n][v]);
-  FOR(s, 1 << n) FOR(frm, n) if (dp[s][frm] < infty<T>) {
-    enumerate_bits(full - s, [&](int to) -> void {
-      int t = s | 1 << to;
-      T cost = dist[frm][to];
-      if (cost < infty<T>) chmin(dp[t][to], dp[s][frm] + cost);
-    });
+  for (int s = 0; s < (1 << n); ++s) {
+    FOR(frm, n) if (dp[s][frm] < infty<T>) {
+      enumerate_bits(full - s, [&](int to) -> void {
+        int t = s | 1 << to;
+        T cost = dist[frm][to];
+        if (cost < infty<T>) chmin(dp[t][to], dp[s][frm] + cost);
+      });
+    }
   }
   int s = (1 << n) - 1;
   T res = infty<T>;
