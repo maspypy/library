@@ -1,3 +1,7 @@
+#pragma once
+
+#include "graph/base.hpp"
+
 // HLD euler tour をとっていろいろ。
 // 木以外、非連結でも dfs 順序や親がとれる。
 template <typename GT>
@@ -106,7 +110,13 @@ struct Tree {
   int lca(int u, int v) { return LCA(u, v); }
   int la(int u, int v) { return LA(u, v); }
 
-  int subtree_size(int v) { return RID[v] - LID[v]; }
+  int subtree_size(int v, int root = -1) {
+    if (root == -1) return RID[v] - LID[v];
+    if (v == root) return N;
+    int x = jump(v, root, 1);
+    if (in_subtree(v, x)) return RID[v] - LID[v];
+    return N - RID[x] + LID[x];
+  }
 
   int dist(int a, int b) {
     int c = LCA(a, b);
