@@ -43,7 +43,16 @@ struct Graph {
   Graph() : N(0), M(0), prepared(0) {}
   Graph(int N) : N(N), M(0), prepared(0) {}
 
-  void resize(int n) { N = n; }
+  void build(int n) {
+    N = n, M = 0;
+    prepared = 0;
+    edges.clear();
+    indptr.clear();
+    csr_edges.clear();
+    vc_deg.clear();
+    vc_indeg.clear();
+    vc_outdeg.clear();
+  }
 
   void add(int frm, int to, T cost = 1, int i = -1) {
     assert(!prepared);
