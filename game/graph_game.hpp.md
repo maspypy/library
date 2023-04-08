@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
   _extendedRequiredBy: []
@@ -27,8 +27,10 @@ data:
     \   const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared;\
     \ }\n  constexpr bool is_directed() { return directed; }\n\n  Graph() : N(0),\
     \ M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void\
-    \ resize(int n) { N = n; }\n\n  void add(int frm, int to, T cost = 1, int i =\
-    \ -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <= to && to < N);\n\
+    \ build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n \
+    \   indptr.clear();\n    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n\
+    \    vc_outdeg.clear();\n  }\n\n  void add(int frm, int to, T cost = 1, int i\
+    \ = -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <= to && to < N);\n\
     \    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n\
     \    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool wt = false, int off = 1)\
     \ { read_graph(N - 1, wt, off); }\n\n  void read_graph(int M, bool wt = false,\
@@ -117,7 +119,7 @@ data:
   isVerificationFile: false
   path: game/graph_game.hpp
   requiredBy: []
-  timestamp: '2023-04-02 04:25:25+09:00'
+  timestamp: '2023-04-09 03:51:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: game/graph_game.hpp
