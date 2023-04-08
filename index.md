@@ -415,7 +415,7 @@ data:
       title: ds/unionfind/weighted_unionfind.hpp
   - name: enumerate
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: enumerate/bits.hpp
       title: enumerate/bits.hpp
     - icon: ':heavy_check_mark:'
@@ -546,7 +546,7 @@ data:
       title: geo/triangle_area.hpp
   - name: graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/base.hpp
       title: graph/base.hpp
     - icon: ':heavy_check_mark:'
@@ -624,7 +624,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/minimum_cycle_length_through_specified.hpp
       title: graph/minimum_cycle_length_through_specified.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/minimum_hamiltonian_cycle.hpp
       title: graph/minimum_hamiltonian_cycle.hpp
     - icon: ':heavy_check_mark:'
@@ -965,7 +965,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
   - name: nt
@@ -1074,7 +1074,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/fibonacci_search.hpp
       title: other/fibonacci_search.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -1556,7 +1556,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DPL_1_H.test.cpp
       title: test/aoj/DPL_1_H.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DPL_2_A.test.cpp
       title: test/aoj/DPL_2_A.test.cpp
     - icon: ':heavy_check_mark:'

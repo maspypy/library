@@ -2,22 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_hamiltonian_cycle.hpp
     title: graph/minimum_hamiltonian_cycle.hpp
   - icon: ':heavy_check_mark:'
     path: graph/steiner_tree.hpp
     title: graph/steiner_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_2_A.test.cpp
     title: test/aoj/DPL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/114.test.cpp
     title: test/yukicoder/114.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"enumerate/bits.hpp\"\ntemplate <typename F>\nvoid enumerate_bits_32(u32\
@@ -41,7 +41,7 @@ data:
   - graph/minimum_hamiltonian_cycle.hpp
   - graph/steiner_tree.hpp
   timestamp: '2023-04-08 02:44:51+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DPL_2_A.test.cpp
   - test/yukicoder/114.test.cpp

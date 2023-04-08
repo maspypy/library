@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_hamiltonian_cycle.hpp
     title: graph/minimum_hamiltonian_cycle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_2_A
@@ -271,10 +271,10 @@ data:
     \ e: G[v]) chmin(dist[v][e.to], e.cost);\n  }\n  n -= 1;\n  const int full = (1\
     \ << n) - 1;\n  vv(T, dp, 1 << n, n, infty<T>);\n  FOR(v, n) chmin(dp[1 << v][v],\
     \ dist[n][v]);\n  for (int s = 0; s < (1 << n); ++s) {\n    FOR(frm, n) if (dp[s][frm]\
-    \ < infty<T>) {\n      enumerate_bits(full - s, [&](int to) -> void {\n      \
-    \  int t = s | 1 << to;\n        T cost = dist[frm][to];\n        if (cost < infty<T>)\
-    \ chmin(dp[t][to], dp[s][frm] + cost);\n      });\n    }\n  }\n  int s = (1 <<\
-    \ n) - 1;\n  T res = infty<T>;\n  int best_v = -1;\n  FOR(v, n) if (dist[v][n]\
+    \ < infty<T>) {\n      enumerate_bits_32(full - s, [&](int to) -> void {\n   \
+    \     int t = s | 1 << to;\n        T cost = dist[frm][to];\n        if (cost\
+    \ < infty<T>) chmin(dp[t][to], dp[s][frm] + cost);\n      });\n    }\n  }\n  int\
+    \ s = (1 << n) - 1;\n  T res = infty<T>;\n  int best_v = -1;\n  FOR(v, n) if (dist[v][n]\
     \ < infty<T> && dp[s][v] < infty<T>) {\n    if (chmin(res, dp[s][v] + dist[v][n]))\
     \ best_v = v;\n  }\n  if (res == infty<T>) return {-1, {}};\n  vc<int> C = {n,\
     \ best_v};\n  int t = s;\n  while (len(C) <= n) {\n    int to = C.back();\n  \
@@ -300,8 +300,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL_2_A.test.cpp
   requiredBy: []
-  timestamp: '2023-04-08 02:44:51+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-04-08 11:41:03+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL_2_A.test.cpp
 layout: document
