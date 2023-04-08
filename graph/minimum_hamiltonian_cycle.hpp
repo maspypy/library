@@ -20,7 +20,7 @@ pair<T, vc<int>> minimum_hamiltonian_cycle(GT& G) {
   FOR(v, n) chmin(dp[1 << v][v], dist[n][v]);
   for (int s = 0; s < (1 << n); ++s) {
     FOR(frm, n) if (dp[s][frm] < infty<T>) {
-      enumerate_bits(full - s, [&](int to) -> void {
+      enumerate_bits_32(full - s, [&](int to) -> void {
         int t = s | 1 << to;
         T cost = dist[frm][to];
         if (cost < infty<T>) chmin(dp[t][to], dp[s][frm] + cost);
