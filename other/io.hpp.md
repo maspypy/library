@@ -417,7 +417,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/chromatic_number.test.cpp
     title: test/library_checker/graph/chromatic_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/classify_tree.test.cpp
     title: test/library_checker/graph/classify_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -699,7 +699,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/ARC30D.test.cpp
     title: test/mytest/ARC30D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/QOJ5445.test.cpp
     title: test/mytest/QOJ5445.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1128,7 +1128,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1293.test.cpp
     title: test/yukicoder/1293.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1295.test.cpp
     title: test/yukicoder/1295.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1188,7 +1188,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1411.test.cpp
     title: test/yukicoder/1411.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1418.test.cpp
     title: test/yukicoder/1418.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1215,7 +1215,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1493.test.cpp
     title: test/yukicoder/1493.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1494.test.cpp
     title: test/yukicoder/1494.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1308,7 +1308,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/17.test.cpp
     title: test/yukicoder/17.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1718.test.cpp
     title: test/yukicoder/1718.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1431,7 +1431,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1962.test.cpp
     title: test/yukicoder/1962.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1976.test.cpp
     title: test/yukicoder/1976.test.cpp
   - icon: ':heavy_check_mark:'

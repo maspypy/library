@@ -7,13 +7,13 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -22,14 +22,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification
@@ -383,37 +383,37 @@ data:
     \ dp;   // \u3059\u3079\u3066\u306E v \u306B\u5BFE\u3057\u3066\u3001v \u3092\u6839\
     \u3068\u3059\u308B\u90E8\u5206\u6728\r\n\r\n  template <typename F1, typename\
     \ F2, typename F3>\r\n  Rerooting_dp(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const\
-    \ Data unit)\r\n      : tree(tree) {\r\n    assert(!tree.G.is_directed());\r\n\
-    \    build(f_ee, f_ev, f_ve, unit);\r\n  }\r\n\r\n  // v \u3092\u6839\u3068\u3057\
+    \ Data unit)\r\n      : tree(tree) {\r\n    assert(!(*tree.G_ptr).is_directed());\r\
+    \n    build(f_ee, f_ev, f_ve, unit);\r\n  }\r\n\r\n  // v \u3092\u6839\u3068\u3057\
     \u305F\u3068\u304D\u306E full tree\r\n  Data operator[](int v) { return dp[v];\
     \ }\r\n\r\n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\
     \u6728 v\r\n  Data get(int root, int v) {\r\n    if (root == v) return dp[v];\r\
     \n    if (!tree.in_subtree(root, v)) { return dp_1[v]; }\r\n    int w = tree.jump(v,\
     \ root, 1);\r\n    return dp_2[w];\r\n  }\r\n\r\n  template <typename F1, typename\
     \ F2, typename F3>\r\n  void build(F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)\
-    \ {\r\n    int N = tree.G.N;\r\n    dp_1.assign(N, unit);\r\n    dp_2.assign(N,\
+    \ {\r\n    int N = tree.N;\r\n    dp_1.assign(N, unit);\r\n    dp_2.assign(N,\
     \ unit);\r\n    dp.assign(N, unit);\r\n    auto& V = tree.V;\r\n    auto& par\
     \ = tree.parent;\r\n\r\n    FOR_R(i, N) {\r\n      int v = V[i];\r\n      auto\
     \ ch = tree.collect_child(v);\r\n      int n = len(ch);\r\n      vc<Data> Xl(n\
     \ + 1, unit), Xr(n + 1, unit);\r\n      FOR(i, n) Xl[i + 1] = f_ee(Xl[i], dp_2[ch[i]]);\r\
     \n      FOR_R(i, n) Xr[i] = f_ee(dp_2[ch[i]], Xr[i + 1]);\r\n      FOR(i, n) dp_2[ch[i]]\
     \ = f_ee(Xl[i], Xr[i + 1]);\r\n      dp[v] = Xr[0];\r\n      dp_1[v] = f_ev(dp[v],\
-    \ v);\r\n      for (auto&& e: tree.G[v]) {\r\n        if (e.to == par[v]) { dp_2[v]\
-    \ = f_ve(dp_1[v], e); }\r\n      }\r\n    }\r\n    {\r\n      int v = V[0];\r\n\
-    \      dp[v] = f_ev(dp[v], v);\r\n      for (auto&& e: tree.G[v]) dp_2[e.to] =\
-    \ f_ev(dp_2[e.to], v);\r\n    }\r\n    FOR(i, N) {\r\n      int v = V[i];\r\n\
-    \      for (auto&& e: tree.G[v]) {\r\n        if (e.to == par[v]) continue;\r\n\
-    \        Data x = f_ve(dp_2[e.to], e);\r\n        for (auto&& f: tree.G[e.to])\
-    \ {\r\n          if (f.to == par[e.to]) continue;\r\n          dp_2[f.to] = f_ee(dp_2[f.to],\
-    \ x);\r\n          dp_2[f.to] = f_ev(dp_2[f.to], e.to);\r\n        }\r\n     \
-    \   x = f_ee(dp[e.to], x);\r\n        dp[e.to] = f_ev(x, e.to);\r\n      }\r\n\
-    \    }\r\n  }\r\n};\r\n#line 6 \"graph/tree_dp/subtree_hash.hpp\"\n\ntemplate\
-    \ <typename TREE>\nstruct SubTree_Hash {\n  using mint = modint61;\n  TREE& tree;\n\
-    \  vc<ll> dp, dp_1, dp_2;\n\n  SubTree_Hash(TREE& tree) : tree(tree) {\n    int\
-    \ N = tree.G.N;\n    using T = pair<int, mint>;\n    T unit = {0, mint(1)};\n\n\
-    \    auto f_ee = [&](T A, T B) -> T { return {max(A.fi, B.fi), A.se * B.se}; };\n\
-    \    auto f_ev = [&](T A, int v) -> T { return {A.fi + 1, A.se}; };\n    auto\
-    \ f_ve = [&](T A, const auto& e) -> T {\n      return {A.fi, A.se + hash_base(A.fi)};\n\
+    \ v);\r\n      for (auto&& e: (*tree.G_ptr)[v]) {\r\n        if (e.to == par[v])\
+    \ { dp_2[v] = f_ve(dp_1[v], e); }\r\n      }\r\n    }\r\n    {\r\n      int v\
+    \ = V[0];\r\n      dp[v] = f_ev(dp[v], v);\r\n      for (auto&& e: (*tree.G_ptr)[v])\
+    \ dp_2[e.to] = f_ev(dp_2[e.to], v);\r\n    }\r\n    FOR(i, N) {\r\n      int v\
+    \ = V[i];\r\n      for (auto&& e: (*tree.G_ptr)[v]) {\r\n        if (e.to == par[v])\
+    \ continue;\r\n        Data x = f_ve(dp_2[e.to], e);\r\n        for (auto&& f:\
+    \ (*tree.G_ptr)[e.to]) {\r\n          if (f.to == par[e.to]) continue;\r\n   \
+    \       dp_2[f.to] = f_ee(dp_2[f.to], x);\r\n          dp_2[f.to] = f_ev(dp_2[f.to],\
+    \ e.to);\r\n        }\r\n        x = f_ee(dp[e.to], x);\r\n        dp[e.to] =\
+    \ f_ev(x, e.to);\r\n      }\r\n    }\r\n  }\r\n};\r\n#line 6 \"graph/tree_dp/subtree_hash.hpp\"\
+    \n\ntemplate <typename TREE>\nstruct SubTree_Hash {\n  using mint = modint61;\n\
+    \  TREE& tree;\n  vc<ll> dp, dp_1, dp_2;\n\n  SubTree_Hash(TREE& tree) : tree(tree)\
+    \ {\n    int N = tree.N;\n    using T = pair<int, mint>;\n    T unit = {0, mint(1)};\n\
+    \n    auto f_ee = [&](T A, T B) -> T { return {max(A.fi, B.fi), A.se * B.se};\
+    \ };\n    auto f_ev = [&](T A, int v) -> T { return {A.fi + 1, A.se}; };\n   \
+    \ auto f_ve = [&](T A, const auto& e) -> T {\n      return {A.fi, A.se + hash_base(A.fi)};\n\
     \    };\n\n    Rerooting_dp<decltype(tree), T> DP(tree, f_ee, f_ev, f_ve, unit);\n\
     \    dp.resize(N), dp_1.resize(N), dp_2.resize(N);\n    FOR(v, N) dp[v] = DP.dp[v].se.val;\n\
     \    FOR(v, N) dp_1[v] = DP.dp_1[v].se.val;\n    FOR(v, N) dp_2[v] = DP.dp_2[v].se.val;\n\
@@ -450,8 +450,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/classify_tree.test.cpp
   requiredBy: []
-  timestamp: '2023-04-09 04:15:48+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-04-09 11:34:33+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/classify_tree.test.cpp
 layout: document

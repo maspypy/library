@@ -5,11 +5,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/merge_vector_space.hpp
     title: alg/monoid/merge_vector_space.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/xor/vector_space.hpp
     title: linalg/xor/vector_space.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/QOJ5445.test.cpp
     title: test/mytest/QOJ5445.test.cpp
   - icon: ':heavy_check_mark:'
@@ -21,9 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc141f.test.cpp
     title: test_atcoder/abc141f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/dsnet/matrix-transpose
@@ -60,7 +60,7 @@ data:
   - linalg/xor/vector_space.hpp
   - alg/monoid/merge_vector_space.hpp
   timestamp: '2023-02-03 02:21:10+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/QOJ5445.test.cpp
   - test/mytest/xor_transpose.test.cpp

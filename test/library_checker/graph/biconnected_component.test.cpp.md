@@ -260,30 +260,30 @@ data:
     \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/block_cut.hpp\"\
     \n\n/*\nblock-cut tree \u3092\u3001block \u306B\u901A\u5E38\u306E\u9802\u70B9\u3092\
     \u96A3\u63A5\u3055\u305B\u3066\u62E1\u5F35\u3057\u3066\u304A\u304F\nhttps://twitter.com/noshi91/status/1529858538650374144?s=20&t=eznpFbuD9BDhfTb4PplFUg\n\
-    [0, n)\uFF1A\u3082\u3068\u306E\u9802\u70B9\n[n, n + n_block)\uFF1Ablock\n\u95A2\
+    [0, n)\uFF1A\u3082\u3068\u306E\u9802\u70B9 [n, n + n_block)\uFF1Ablock\n\u95A2\
     \u7BC0\u70B9\uFF1A[0, n) \u306E\u3046\u3061\u3067\u3001degree >= 2 \u3092\u6E80\
     \u305F\u3059\u3082\u306E\n\n\u5B64\u7ACB\u70B9\u306F\u30011 \u70B9\u3060\u3051\
-    \u304B\u3089\u306A\u308B block\n*/\ntemplate <typename GRAPH>\nGraph<int, 0> block_cut(GRAPH&\
+    \u304B\u3089\u306A\u308B block\n*/\ntemplate <typename GT>\nGraph<int, 0> block_cut(GT&\
     \ G) {\n  int n = G.N;\n  vc<int> low(n), ord(n), st;\n  vc<bool> used(n);\n \
-    \ st.reserve(n);\n  Graph<int, 0> BCT;\n  int nxt = n;\n  int k = 0;\n\n  auto\
-    \ dfs = [&](auto& dfs, int v, int p) -> void {\n    st.eb(v);\n    used[v] = 1;\n\
-    \    low[v] = ord[v] = k++;\n    int child = 0;\n    for (auto&& e: G[v]) {\n\
-    \      if (e.to == p) continue;\n      if (!used[e.to]) {\n        ++child;\n\
+    \ st.reserve(n);\n  int nxt = n;\n  int k = 0;\n  vc<pair<int, int>> edges;\n\n\
+    \  auto dfs = [&](auto& dfs, int v, int p) -> void {\n    st.eb(v);\n    used[v]\
+    \ = 1;\n    low[v] = ord[v] = k++;\n    int child = 0;\n    for (auto&& e: G[v])\
+    \ {\n      if (e.to == p) continue;\n      if (!used[e.to]) {\n        ++child;\n\
     \        int s = len(st);\n        dfs(dfs, e.to, v);\n        chmin(low[v], low[e.to]);\n\
     \        if ((p == -1 && child > 1) || (p != -1 && low[e.to] >= ord[v])) {\n \
-    \         BCT.resize(nxt + 1);\n          BCT.add(nxt, v);\n          while (len(st)\
-    \ > s) {\n            BCT.add(nxt, st.back());\n            st.pop_back();\n \
-    \         }\n          ++nxt;\n        }\n      } else {\n        chmin(low[v],\
-    \ ord[e.to]);\n      }\n    }\n  };\n  FOR(v, n) if (!used[v]) {\n    dfs(dfs,\
-    \ v, -1);\n    BCT.resize(nxt + 1);\n    for (auto&& x: st) { BCT.add(nxt, x);\
-    \ }\n    ++nxt;\n    st.clear();\n  }\n  BCT.build();\n  return BCT;\n}\n#line\
-    \ 6 \"test/library_checker/graph/biconnected_component.test.cpp\"\n\nvoid solve()\
-    \ {\n  LL(N, M);\n  Graph<int, 0> G(N);\n  G.read_graph(M, 0, 0);\n\n  auto T\
-    \ = block_cut<decltype(G)>(G);\n\n  print(T.N - N);\n  FOR(k, N, T.N) {\n    vc<int>\
-    \ ANS;\n    for (auto&& e: T[k]) ANS.eb(e.to);\n    print(len(ANS), ANS);\n  }\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
-    \ 0;\n}\n"
+    \         edges.eb(nxt, v);\n          while (len(st) > s) {\n            edges.eb(nxt,\
+    \ st.back());\n            st.pop_back();\n          }\n          ++nxt;\n   \
+    \     }\n      } else {\n        chmin(low[v], ord[e.to]);\n      }\n    }\n \
+    \ };\n  FOR(v, n) if (!used[v]) {\n    dfs(dfs, v, -1);\n    for (auto&& x: st)\
+    \ { edges.eb(nxt, v); }\n    ++nxt;\n    st.clear();\n  }\n  Graph<int, 0> BCT(nxt);\n\
+    \  for (auto&& [a, b]: edges) BCT.add(a, b);\n  BCT.build();\n  return BCT;\n\
+    }\n#line 6 \"test/library_checker/graph/biconnected_component.test.cpp\"\n\nvoid\
+    \ solve() {\n  LL(N, M);\n  Graph<int, 0> G(N);\n  G.read_graph(M, 0, 0);\n\n\
+    \  auto T = block_cut<decltype(G)>(G);\n\n  print(T.N - N);\n  FOR(k, N, T.N)\
+    \ {\n    vc<int> ANS;\n    for (auto&& e: T[k]) ANS.eb(e.to);\n    print(len(ANS),\
+    \ ANS);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/biconnected_components\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/base.hpp\"\
     \n#include \"graph/block_cut.hpp\"\n\nvoid solve() {\n  LL(N, M);\n  Graph<int,\
@@ -300,7 +300,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/biconnected_component.test.cpp
   requiredBy: []
-  timestamp: '2023-04-09 03:51:17+09:00'
+  timestamp: '2023-04-09 11:30:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/biconnected_component.test.cpp
