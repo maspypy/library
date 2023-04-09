@@ -45,7 +45,7 @@ struct UnicyclicGraph {
 
   // tree を作る
   Tree<decltype(G)> build(bool keep_eid = false) {
-    G.resize(N);
+    G.build(N);
     FOR(eid, N) {
       if (eid == out_eid) continue;
       auto& e = G0.edges[eid];
