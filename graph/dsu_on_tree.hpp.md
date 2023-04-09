@@ -9,15 +9,15 @@ data:
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2995.test.cpp
     title: test/aoj/2995.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate\
@@ -155,7 +155,7 @@ data:
     \      if (tree.head[e.to] == e.to) {\n        dfs(dfs, e.to);\n      } else {\n\
     \        heavy = e.to;\n      }\n    }\n    // solve heavy edge (keep subtree\
     \ data)\n    if (heavy != -1) { dfs(dfs, heavy); }\n\n    // collect data in light\
-    \ subtree\n    for (auto&& e: (*(tree.G_ptr)[v]) {\n      if (e.to == tree.parent[v])\
+    \ subtree\n    for (auto&& e: (*tree.G_ptr)[v]) {\n      if (e.to == tree.parent[v])\
     \ continue;\n      if (e.to == heavy) continue;\n      FOR(idx, tree.LID[e.to],\
     \ tree.RID[e.to]) { add(tree.V[idx]); }\n    }\n    add(v);\n    query(v);\n\n\
     \    if (tree.head[v] == v) reset();\n  };\n\n  int root = tree.V[0];\n  dfs(dfs,\
@@ -172,7 +172,7 @@ data:
     \   if (e.to == tree.parent[v]) continue;\n      if (tree.head[e.to] == e.to)\
     \ {\n        dfs(dfs, e.to);\n      } else {\n        heavy = e.to;\n      }\n\
     \    }\n    // solve heavy edge (keep subtree data)\n    if (heavy != -1) { dfs(dfs,\
-    \ heavy); }\n\n    // collect data in light subtree\n    for (auto&& e: (*(tree.G_ptr)[v])\
+    \ heavy); }\n\n    // collect data in light subtree\n    for (auto&& e: (*tree.G_ptr)[v])\
     \ {\n      if (e.to == tree.parent[v]) continue;\n      if (e.to == heavy) continue;\n\
     \      FOR(idx, tree.LID[e.to], tree.RID[e.to]) { add(tree.V[idx]); }\n    }\n\
     \    add(v);\n    query(v);\n\n    if (tree.head[v] == v) reset();\n  };\n\n \
@@ -183,8 +183,8 @@ data:
   isVerificationFile: false
   path: graph/dsu_on_tree.hpp
   requiredBy: []
-  timestamp: '2023-04-09 11:30:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-04-09 13:24:35+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - test/aoj/2995.test.cpp

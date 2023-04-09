@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
@@ -349,7 +349,7 @@ data:
     \      if (tree.head[e.to] == e.to) {\n        dfs(dfs, e.to);\n      } else {\n\
     \        heavy = e.to;\n      }\n    }\n    // solve heavy edge (keep subtree\
     \ data)\n    if (heavy != -1) { dfs(dfs, heavy); }\n\n    // collect data in light\
-    \ subtree\n    for (auto&& e: (*(tree.G_ptr)[v]) {\n      if (e.to == tree.parent[v])\
+    \ subtree\n    for (auto&& e: (*tree.G_ptr)[v]) {\n      if (e.to == tree.parent[v])\
     \ continue;\n      if (e.to == heavy) continue;\n      FOR(idx, tree.LID[e.to],\
     \ tree.RID[e.to]) { add(tree.V[idx]); }\n    }\n    add(v);\n    query(v);\n\n\
     \    if (tree.head[v] == v) reset();\n  };\n\n  int root = tree.V[0];\n  dfs(dfs,\
@@ -430,8 +430,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   requiredBy: []
-  timestamp: '2023-04-09 11:30:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-04-09 13:24:35+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
 layout: document
