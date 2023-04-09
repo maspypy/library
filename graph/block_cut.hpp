@@ -45,7 +45,7 @@ Graph<int, 0> block_cut(GT& G) {
   };
   FOR(v, n) if (!used[v]) {
     dfs(dfs, v, -1);
-    for (auto&& x: st) { edges.eb(nxt, v); }
+    for (auto&& x: st) { edges.eb(nxt, x); }
     ++nxt;
     st.clear();
   }
