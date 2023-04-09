@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min_idx.hpp
     title: alg/monoid/min_idx.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -422,39 +422,40 @@ data:
     \ int>>> suffix_tree(\n    Suffix_Array& X) {\n  auto SA = X.SA;\n  auto ISA =\
     \ X.ISA;\n  auto LCP = X.LCP;\n\n  int N = len(SA);\n\n  using Mono = Monoid_Min_Idx<int,\
     \ 1>;\n\n  SegTree<Mono> seg(N - 1, [&](int i) -> Mono::X { return {LCP[i], i};\
-    \ });\n\n  using T = tuple<int, int, int, int>;\n  vc<T> dat;\n  Graph<int, 1>\
-    \ G;\n  dat.eb(0, N, 0, 0);\n\n  auto dfs = [&](auto& dfs, int p, int l, int r,\
-    \ int h) -> void {\n    if (r == l + 1) {\n      int i = SA[l];\n      int sz\
-    \ = N - i;\n      if (h == sz) return;\n      int k = len(dat);\n      dat.eb(l,\
-    \ l + 1, h, sz);\n      G.resize(k + 1);\n      G.add(p, k);\n      return;\n\
-    \    }\n    auto [lcp, i] = seg.prod(l, r - 1);\n    if (lcp == h) {\n      dfs(dfs,\
-    \ p, l, i + 1, h);\n      dfs(dfs, p, i + 1, r, h);\n      return;\n    }\n  \
-    \  int k = len(dat);\n    dat.eb(l, r, h, lcp);\n    G.resize(k + 1);\n    G.add(p,\
-    \ k);\n    dfs(dfs, k, l, r, lcp);\n  };\n  dfs(dfs, 0, 0, N, 0);\n  G.build();\n\
-    \  return {G, dat};\n}\n#line 7 \"test/mytest/suffix_tree.test.cpp\"\n\n/*\nS\
-    \ = aabbabbaa\n\nsuffix array\na--------\naa-------\naabbabbaa\nabbaa----\nabbabbaa-\n\
-    baa------\nbabbaa---\nbbaa-----\nbbabbaa--\n\nsuffix tree \u306E node \u306F\u3053\
-    \u306E\u9577\u65B9\u5F62\u9818\u57DF\u3092\u8868\u3059\n1--------\n12-------\n\
-    123333333\n14445----\n14446666-\n789------\n780000---\n7112-----\n7113-----\n\
-    */\nvoid test() {\n  string S = \"aabbabbaa\";\n  Suffix_Array X(S);\n  auto [G,\
-    \ dat] = suffix_tree(X);\n  using T = tuple<int, int, int, int>;\n  auto check_dat\
-    \ = [&](T t, int xl, int xr, int yl, int yr) -> void {\n    auto [a, b, c, d]\
-    \ = t;\n    assert(a == xl && b == yl && c == xr && d == yr);\n  };\n  auto check_edge\
-    \ = [&](auto e, int frm, int to) -> void {\n    assert(e.frm == frm && e.to ==\
-    \ to);\n  };\n  check_dat(dat[0], 0, 0, 9, 0);\n  check_dat(dat[1], 0, 0, 5, 1);\n\
-    \  check_dat(dat[2], 1, 1, 3, 2);\n  check_dat(dat[3], 2, 2, 3, 9);\n  check_dat(dat[4],\
-    \ 3, 1, 5, 4);\n  check_dat(dat[5], 3, 4, 4, 5);\n  check_dat(dat[6], 4, 4, 5,\
-    \ 8);\n  check_dat(dat[7], 5, 0, 9, 1);\n  check_dat(dat[8], 5, 1, 7, 2);\n  check_dat(dat[9],\
-    \ 5, 2, 6, 3);\n  check_dat(dat[10], 6, 2, 7, 6);\n  check_dat(dat[11], 7, 1,\
-    \ 9, 3);\n  check_dat(dat[12], 7, 3, 8, 4);\n  check_dat(dat[13], 8, 3, 9, 7);\n\
-    \  check_edge(G.edges[0], 0, 1);\n  check_edge(G.edges[1], 1, 2);\n  check_edge(G.edges[2],\
-    \ 2, 3);\n  check_edge(G.edges[3], 1, 4);\n  check_edge(G.edges[4], 4, 5);\n \
-    \ check_edge(G.edges[5], 4, 6);\n  check_edge(G.edges[6], 0, 7);\n  check_edge(G.edges[7],\
-    \ 7, 8);\n  check_edge(G.edges[8], 8, 9);\n  check_edge(G.edges[9], 8, 10);\n\
-    \  check_edge(G.edges[10], 7, 11);\n  check_edge(G.edges[11], 11, 12);\n  check_edge(G.edges[12],\
-    \ 11, 13);\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main()\
-    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  test();\n\n  ll T = 1;\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ });\n\n  using T = tuple<int, int, int, int>;\n  vc<T> dat;\n  dat.eb(0, N,\
+    \ 0, 0);\n  vc<pair<int, int>> edges;\n\n  auto dfs = [&](auto& dfs, int p, int\
+    \ l, int r, int h) -> void {\n    if (r == l + 1) {\n      int i = SA[l];\n  \
+    \    int sz = N - i;\n      if (h == sz) return;\n      int k = len(dat);\n  \
+    \    dat.eb(l, l + 1, h, sz);\n      edges.eb(p, k);\n      return;\n    }\n \
+    \   auto [lcp, i] = seg.prod(l, r - 1);\n    if (lcp == h) {\n      dfs(dfs, p,\
+    \ l, i + 1, h);\n      dfs(dfs, p, i + 1, r, h);\n      return;\n    }\n    int\
+    \ k = len(dat);\n    dat.eb(l, r, h, lcp);\n    edges.eb(p, k);\n    dfs(dfs,\
+    \ k, l, r, lcp);\n  };\n  dfs(dfs, 0, 0, N, 0);\n\n  Graph<int, 1> G(len(dat));\n\
+    \  for (auto&& [a, b]: edges) G.add(a, b);\n  G.build();\n  return {G, dat};\n\
+    }\n#line 7 \"test/mytest/suffix_tree.test.cpp\"\n\n/*\nS = aabbabbaa\n\nsuffix\
+    \ array\na--------\naa-------\naabbabbaa\nabbaa----\nabbabbaa-\nbaa------\nbabbaa---\n\
+    bbaa-----\nbbabbaa--\n\nsuffix tree \u306E node \u306F\u3053\u306E\u9577\u65B9\
+    \u5F62\u9818\u57DF\u3092\u8868\u3059\n1--------\n12-------\n123333333\n14445----\n\
+    14446666-\n789------\n780000---\n7112-----\n7113-----\n*/\nvoid test() {\n  string\
+    \ S = \"aabbabbaa\";\n  Suffix_Array X(S);\n  auto [G, dat] = suffix_tree(X);\n\
+    \  using T = tuple<int, int, int, int>;\n  auto check_dat = [&](T t, int xl, int\
+    \ xr, int yl, int yr) -> void {\n    auto [a, b, c, d] = t;\n    assert(a == xl\
+    \ && b == yl && c == xr && d == yr);\n  };\n  auto check_edge = [&](auto e, int\
+    \ frm, int to) -> void {\n    assert(e.frm == frm && e.to == to);\n  };\n  check_dat(dat[0],\
+    \ 0, 0, 9, 0);\n  check_dat(dat[1], 0, 0, 5, 1);\n  check_dat(dat[2], 1, 1, 3,\
+    \ 2);\n  check_dat(dat[3], 2, 2, 3, 9);\n  check_dat(dat[4], 3, 1, 5, 4);\n  check_dat(dat[5],\
+    \ 3, 4, 4, 5);\n  check_dat(dat[6], 4, 4, 5, 8);\n  check_dat(dat[7], 5, 0, 9,\
+    \ 1);\n  check_dat(dat[8], 5, 1, 7, 2);\n  check_dat(dat[9], 5, 2, 6, 3);\n  check_dat(dat[10],\
+    \ 6, 2, 7, 6);\n  check_dat(dat[11], 7, 1, 9, 3);\n  check_dat(dat[12], 7, 3,\
+    \ 8, 4);\n  check_dat(dat[13], 8, 3, 9, 7);\n  check_edge(G.edges[0], 0, 1);\n\
+    \  check_edge(G.edges[1], 1, 2);\n  check_edge(G.edges[2], 2, 3);\n  check_edge(G.edges[3],\
+    \ 1, 4);\n  check_edge(G.edges[4], 4, 5);\n  check_edge(G.edges[5], 4, 6);\n \
+    \ check_edge(G.edges[6], 0, 7);\n  check_edge(G.edges[7], 7, 8);\n  check_edge(G.edges[8],\
+    \ 8, 9);\n  check_edge(G.edges[9], 8, 10);\n  check_edge(G.edges[10], 7, 11);\n\
+    \  check_edge(G.edges[11], 11, 12);\n  check_edge(G.edges[12], 11, 13);\n}\n\n\
+    void solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  test();\n\n\
+    \  ll T = 1;\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"string/suffix_tree.hpp\"\
     \n\n/*\nS = aabbabbaa\n\nsuffix array\na--------\naa-------\naabbabbaa\nabbaa----\n\
@@ -494,8 +495,8 @@ data:
   isVerificationFile: true
   path: test/mytest/suffix_tree.test.cpp
   requiredBy: []
-  timestamp: '2023-04-09 03:51:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-04-09 17:47:32+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/suffix_tree.test.cpp
 layout: document

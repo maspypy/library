@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min_idx.hpp
     title: alg/monoid/min_idx.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://twitter.com/maspy_stars/status/1565901414236205057?s=20&t=S2Tu6ayozHcakxai8dmh4g
@@ -232,16 +232,17 @@ data:
     \ int>>> suffix_tree(\n    Suffix_Array& X) {\n  auto SA = X.SA;\n  auto ISA =\
     \ X.ISA;\n  auto LCP = X.LCP;\n\n  int N = len(SA);\n\n  using Mono = Monoid_Min_Idx<int,\
     \ 1>;\n\n  SegTree<Mono> seg(N - 1, [&](int i) -> Mono::X { return {LCP[i], i};\
-    \ });\n\n  using T = tuple<int, int, int, int>;\n  vc<T> dat;\n  Graph<int, 1>\
-    \ G;\n  dat.eb(0, N, 0, 0);\n\n  auto dfs = [&](auto& dfs, int p, int l, int r,\
-    \ int h) -> void {\n    if (r == l + 1) {\n      int i = SA[l];\n      int sz\
-    \ = N - i;\n      if (h == sz) return;\n      int k = len(dat);\n      dat.eb(l,\
-    \ l + 1, h, sz);\n      G.resize(k + 1);\n      G.add(p, k);\n      return;\n\
-    \    }\n    auto [lcp, i] = seg.prod(l, r - 1);\n    if (lcp == h) {\n      dfs(dfs,\
-    \ p, l, i + 1, h);\n      dfs(dfs, p, i + 1, r, h);\n      return;\n    }\n  \
-    \  int k = len(dat);\n    dat.eb(l, r, h, lcp);\n    G.resize(k + 1);\n    G.add(p,\
-    \ k);\n    dfs(dfs, k, l, r, lcp);\n  };\n  dfs(dfs, 0, 0, N, 0);\n  G.build();\n\
-    \  return {G, dat};\n}\n"
+    \ });\n\n  using T = tuple<int, int, int, int>;\n  vc<T> dat;\n  dat.eb(0, N,\
+    \ 0, 0);\n  vc<pair<int, int>> edges;\n\n  auto dfs = [&](auto& dfs, int p, int\
+    \ l, int r, int h) -> void {\n    if (r == l + 1) {\n      int i = SA[l];\n  \
+    \    int sz = N - i;\n      if (h == sz) return;\n      int k = len(dat);\n  \
+    \    dat.eb(l, l + 1, h, sz);\n      edges.eb(p, k);\n      return;\n    }\n \
+    \   auto [lcp, i] = seg.prod(l, r - 1);\n    if (lcp == h) {\n      dfs(dfs, p,\
+    \ l, i + 1, h);\n      dfs(dfs, p, i + 1, r, h);\n      return;\n    }\n    int\
+    \ k = len(dat);\n    dat.eb(l, r, h, lcp);\n    edges.eb(p, k);\n    dfs(dfs,\
+    \ k, l, r, lcp);\n  };\n  dfs(dfs, 0, 0, N, 0);\n\n  Graph<int, 1> G(len(dat));\n\
+    \  for (auto&& [a, b]: edges) G.add(a, b);\n  G.build();\n  return {G, dat};\n\
+    }\n"
   code: "\n#include \"string/suffix_array.hpp\"\n#include \"alg/monoid/min_idx.hpp\"\
     \n#include \"ds/segtree/segtree.hpp\"\n#include \"graph/base.hpp\"\n\n// https://twitter.com/maspy_stars/status/1565901414236205057?s=20&t=S2Tu6ayozHcakxai8dmh4g\n\
     // \u5404\u30CE\u30FC\u30C9\u306F\u3001suffix array \u3067\u306E\u9577\u65B9\u5F62\
@@ -251,16 +252,17 @@ data:
     \ int>>> suffix_tree(\n    Suffix_Array& X) {\n  auto SA = X.SA;\n  auto ISA =\
     \ X.ISA;\n  auto LCP = X.LCP;\n\n  int N = len(SA);\n\n  using Mono = Monoid_Min_Idx<int,\
     \ 1>;\n\n  SegTree<Mono> seg(N - 1, [&](int i) -> Mono::X { return {LCP[i], i};\
-    \ });\n\n  using T = tuple<int, int, int, int>;\n  vc<T> dat;\n  Graph<int, 1>\
-    \ G;\n  dat.eb(0, N, 0, 0);\n\n  auto dfs = [&](auto& dfs, int p, int l, int r,\
-    \ int h) -> void {\n    if (r == l + 1) {\n      int i = SA[l];\n      int sz\
-    \ = N - i;\n      if (h == sz) return;\n      int k = len(dat);\n      dat.eb(l,\
-    \ l + 1, h, sz);\n      G.resize(k + 1);\n      G.add(p, k);\n      return;\n\
-    \    }\n    auto [lcp, i] = seg.prod(l, r - 1);\n    if (lcp == h) {\n      dfs(dfs,\
-    \ p, l, i + 1, h);\n      dfs(dfs, p, i + 1, r, h);\n      return;\n    }\n  \
-    \  int k = len(dat);\n    dat.eb(l, r, h, lcp);\n    G.resize(k + 1);\n    G.add(p,\
-    \ k);\n    dfs(dfs, k, l, r, lcp);\n  };\n  dfs(dfs, 0, 0, N, 0);\n  G.build();\n\
-    \  return {G, dat};\n}"
+    \ });\n\n  using T = tuple<int, int, int, int>;\n  vc<T> dat;\n  dat.eb(0, N,\
+    \ 0, 0);\n  vc<pair<int, int>> edges;\n\n  auto dfs = [&](auto& dfs, int p, int\
+    \ l, int r, int h) -> void {\n    if (r == l + 1) {\n      int i = SA[l];\n  \
+    \    int sz = N - i;\n      if (h == sz) return;\n      int k = len(dat);\n  \
+    \    dat.eb(l, l + 1, h, sz);\n      edges.eb(p, k);\n      return;\n    }\n \
+    \   auto [lcp, i] = seg.prod(l, r - 1);\n    if (lcp == h) {\n      dfs(dfs, p,\
+    \ l, i + 1, h);\n      dfs(dfs, p, i + 1, r, h);\n      return;\n    }\n    int\
+    \ k = len(dat);\n    dat.eb(l, r, h, lcp);\n    edges.eb(p, k);\n    dfs(dfs,\
+    \ k, l, r, lcp);\n  };\n  dfs(dfs, 0, 0, N, 0);\n\n  Graph<int, 1> G(len(dat));\n\
+    \  for (auto&& [a, b]: edges) G.add(a, b);\n  G.build();\n  return {G, dat};\n\
+    }"
   dependsOn:
   - string/suffix_array.hpp
   - alg/monoid/min.hpp
@@ -271,8 +273,8 @@ data:
   isVerificationFile: false
   path: string/suffix_tree.hpp
   requiredBy: []
-  timestamp: '2023-04-09 03:51:17+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-04-09 17:47:32+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/suffix_tree.test.cpp
 documentation_of: string/suffix_tree.hpp
