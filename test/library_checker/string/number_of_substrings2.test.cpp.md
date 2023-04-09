@@ -10,14 +10,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_automaton.hpp
     title: string/suffix_automaton.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/number_of_substrings
@@ -279,17 +279,16 @@ data:
     \ len(nodes);\n    Graph<int, 1> G(n);\n    FOR(v, n) {\n      for (auto&& to:\
     \ nodes[v].next)\n        if (to != -1) { G.add(v, to); }\n    }\n    G.build();\n\
     \    return G;\n  }\n\n  Graph<int, 1> calc_tree() {\n    int n = len(nodes);\n\
-    \    Graph<int, 1> G(n);\n    G.resize(n);\n    FOR(v, 1, n) {\n      int p =\
-    \ nodes[v].link;\n      G.add(p, v);\n    }\n    G.build();\n    return G;\n \
-    \ }\n\n  int count_substring_at(int p) {\n    // \u3042\u308B\u30CE\u30FC\u30C9\
-    \u306B\u3064\u3044\u3066\u3001\u6700\u77ED\u3068\u6700\u9577\u306E\u6587\u5B57\
-    \u5217\u9577\u304C\u5206\u304B\u308C\u3070\u3088\u3044\u3002\n    // \u6700\u9577\
-    \u306F size \u304C\u6301\u3063\u3066\u3044\u308B\n    // \u6700\u77ED\u306F\u3001\
-    suffix link \u5148\u306E\u6700\u9577\u306B 1 \u3092\u52A0\u3048\u305F\u3082\u306E\
-    \u3067\u3042\u308B\u3002\n    if (p == 0) return 0;\n    return nodes[p].size\
-    \ - nodes[nodes[p].link].size;\n  }\n\n  ll count_substring() {\n    ll ANS =\
-    \ 0;\n    FOR(i, len(nodes)) ANS += count_substring_at(i);\n    return ANS;\n\
-    \  }\n};\n#line 5 \"test/library_checker/string/number_of_substrings2.test.cpp\"\
+    \    Graph<int, 1> G(n);\n    FOR(v, 1, n) {\n      int p = nodes[v].link;\n \
+    \     G.add(p, v);\n    }\n    G.build();\n    return G;\n  }\n\n  int count_substring_at(int\
+    \ p) {\n    // \u3042\u308B\u30CE\u30FC\u30C9\u306B\u3064\u3044\u3066\u3001\u6700\
+    \u77ED\u3068\u6700\u9577\u306E\u6587\u5B57\u5217\u9577\u304C\u5206\u304B\u308C\
+    \u3070\u3088\u3044\u3002\n    // \u6700\u9577\u306F size \u304C\u6301\u3063\u3066\
+    \u3044\u308B\n    // \u6700\u77ED\u306F\u3001suffix link \u5148\u306E\u6700\u9577\
+    \u306B 1 \u3092\u52A0\u3048\u305F\u3082\u306E\u3067\u3042\u308B\u3002\n    if\
+    \ (p == 0) return 0;\n    return nodes[p].size - nodes[nodes[p].link].size;\n\
+    \  }\n\n  ll count_substring() {\n    ll ANS = 0;\n    FOR(i, len(nodes)) ANS\
+    \ += count_substring_at(i);\n    return ANS;\n  }\n};\n#line 5 \"test/library_checker/string/number_of_substrings2.test.cpp\"\
     \n\nvoid solve() {\n  STR(S);\n  Suffix_Automaton<26> X;\n  for (auto&& s: S)\
     \ X.add(s, 'a');\n  print(X.count_substring());\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
     \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
@@ -308,8 +307,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/number_of_substrings2.test.cpp
   requiredBy: []
-  timestamp: '2023-04-09 03:51:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-04-09 13:48:33+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/string/number_of_substrings2.test.cpp
 layout: document
