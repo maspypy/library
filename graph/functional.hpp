@@ -28,7 +28,7 @@ struct FunctionalGraph {
     FOR(v, N) if (root[v] == v) root[uf[v]] = v;
     FOR(v, N) root[v] = root[uf[v]];
 
-    G.resize(N + 1);
+    G.build(N + 1);
     FOR(v, N) {
       if (root[v] == v)
         G.add(N, v, wt[v]);
@@ -57,7 +57,6 @@ struct FunctionalGraph {
   // functional graph に step 回進む
   template <typename TREE>
   vc<int> jump_all(TREE& tree, ll step) {
-    auto& G = tree.G;
     vc<int> res(N, -1);
     // v の k 個先を res[w] に入れる
     vvc<pair<int, int>> query(N);

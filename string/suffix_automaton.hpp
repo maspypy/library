@@ -57,7 +57,6 @@ struct Suffix_Automaton {
   Graph<int, 1> calc_tree() {
     int n = len(nodes);
     Graph<int, 1> G(n);
-    G.resize(n);
     FOR(v, 1, n) {
       int p = nodes[v].link;
       G.add(p, v);
