@@ -12,7 +12,7 @@ struct Rerooting_dp {
   template <typename F1, typename F2, typename F3>
   Rerooting_dp(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)
       : tree(tree) {
-    assert(!tree.G.is_directed());
+    assert(!(*tree.G_ptr).is_directed());
     build(f_ee, f_ev, f_ve, unit);
   }
 
@@ -29,7 +29,7 @@ struct Rerooting_dp {
 
   template <typename F1, typename F2, typename F3>
   void build(F1 f_ee, F2 f_ev, F3 f_ve, const Data unit) {
-    int N = tree.G.N;
+    int N = tree.N;
     dp_1.assign(N, unit);
     dp_2.assign(N, unit);
     dp.assign(N, unit);
@@ -46,21 +46,21 @@ struct Rerooting_dp {
       FOR(i, n) dp_2[ch[i]] = f_ee(Xl[i], Xr[i + 1]);
       dp[v] = Xr[0];
       dp_1[v] = f_ev(dp[v], v);
-      for (auto&& e: tree.G[v]) {
+      for (auto&& e: (*tree.G_ptr)[v]) {
         if (e.to == par[v]) { dp_2[v] = f_ve(dp_1[v], e); }
       }
     }
     {
       int v = V[0];
       dp[v] = f_ev(dp[v], v);
-      for (auto&& e: tree.G[v]) dp_2[e.to] = f_ev(dp_2[e.to], v);
+      for (auto&& e: (*tree.G_ptr)[v]) dp_2[e.to] = f_ev(dp_2[e.to], v);
     }
     FOR(i, N) {
       int v = V[i];
-      for (auto&& e: tree.G[v]) {
+      for (auto&& e: (*tree.G_ptr)[v]) {
         if (e.to == par[v]) continue;
         Data x = f_ve(dp_2[e.to], e);
-        for (auto&& f: tree.G[e.to]) {
+        for (auto&& f: (*tree.G_ptr)[e.to]) {
           if (f.to == par[e.to]) continue;
           dp_2[f.to] = f_ee(dp_2[f.to], x);
           dp_2[f.to] = f_ev(dp_2[f.to], e.to);

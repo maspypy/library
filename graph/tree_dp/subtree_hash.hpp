@@ -11,7 +11,7 @@ struct SubTree_Hash {
   vc<ll> dp, dp_1, dp_2;
 
   SubTree_Hash(TREE& tree) : tree(tree) {
-    int N = tree.G.N;
+    int N = tree.N;
     using T = pair<int, mint>;
     T unit = {0, mint(1)};
 
