@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1254.test.cpp
     title: test/yukicoder/1254.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc266f.test.cpp
     title: test_atcoder/abc266f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -169,7 +169,7 @@ data:
     \    }\n    cycle = {TO[root]};\n    while (cycle.back() != root) cycle.eb(TO[cycle.back()]);\n\
     \    in_cycle.assign(N, 0);\n    for (auto&& v: cycle) in_cycle[v] = 1;\n  }\n\
     \n  // tree \u3092\u4F5C\u308B\n  Tree<decltype(G)> build(bool keep_eid = false)\
-    \ {\n    G.resize(N);\n    FOR(eid, N) {\n      if (eid == out_eid) continue;\n\
+    \ {\n    G.build(N);\n    FOR(eid, N) {\n      if (eid == out_eid) continue;\n\
     \      auto& e = G0.edges[eid];\n      int a = e.frm, b = e.to;\n      if (TO[a]\
     \ == b) swap(a, b);\n      assert(TO[b] == a);\n      int k = (keep_eid ? eid\
     \ : -1);\n      G.add(a, b, e.cost, k);\n    }\n    G.build();\n    return Tree<decltype(G)>(G,\
@@ -189,7 +189,7 @@ data:
     \        que.eb(e.to);\n      }\n    }\n    cycle = {TO[root]};\n    while (cycle.back()\
     \ != root) cycle.eb(TO[cycle.back()]);\n    in_cycle.assign(N, 0);\n    for (auto&&\
     \ v: cycle) in_cycle[v] = 1;\n  }\n\n  // tree \u3092\u4F5C\u308B\n  Tree<decltype(G)>\
-    \ build(bool keep_eid = false) {\n    G.resize(N);\n    FOR(eid, N) {\n      if\
+    \ build(bool keep_eid = false) {\n    G.build(N);\n    FOR(eid, N) {\n      if\
     \ (eid == out_eid) continue;\n      auto& e = G0.edges[eid];\n      int a = e.frm,\
     \ b = e.to;\n      if (TO[a] == b) swap(a, b);\n      assert(TO[b] == a);\n  \
     \    int k = (keep_eid ? eid : -1);\n      G.add(a, b, e.cost, k);\n    }\n  \
@@ -201,8 +201,8 @@ data:
   isVerificationFile: false
   path: graph/unicyclic.hpp
   requiredBy: []
-  timestamp: '2023-04-09 04:15:48+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-04-09 17:30:27+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1254.test.cpp
   - test_atcoder/abc266f.test.cpp
