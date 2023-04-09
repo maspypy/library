@@ -22,8 +22,8 @@ pair<Graph<int, 1>, vc<tuple<int, int, int, int>>> suffix_tree(
 
   using T = tuple<int, int, int, int>;
   vc<T> dat;
-  Graph<int, 1> G;
   dat.eb(0, N, 0, 0);
+  vc<pair<int, int>> edges;
 
   auto dfs = [&](auto& dfs, int p, int l, int r, int h) -> void {
     if (r == l + 1) {
@@ -32,8 +32,7 @@ pair<Graph<int, 1>, vc<tuple<int, int, int, int>>> suffix_tree(
       if (h == sz) return;
       int k = len(dat);
       dat.eb(l, l + 1, h, sz);
-      G.resize(k + 1);
-      G.add(p, k);
+      edges.eb(p, k);
       return;
     }
     auto [lcp, i] = seg.prod(l, r - 1);
@@ -44,11 +43,13 @@ pair<Graph<int, 1>, vc<tuple<int, int, int, int>>> suffix_tree(
     }
     int k = len(dat);
     dat.eb(l, r, h, lcp);
-    G.resize(k + 1);
-    G.add(p, k);
+    edges.eb(p, k);
     dfs(dfs, k, l, r, lcp);
   };
   dfs(dfs, 0, 0, N, 0);
+
+  Graph<int, 1> G(len(dat));
+  for (auto&& [a, b]: edges) G.add(a, b);
   G.build();
   return {G, dat};
 }
