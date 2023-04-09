@@ -6,13 +6,13 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_A.test.cpp
     title: test/aoj/GRL_3_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/biconnected_component.test.cpp
     title: test/library_checker/graph/biconnected_component.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1326.test.cpp
     title: test/yukicoder/1326.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test_atcoder/arc153f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://twitter.com/noshi91/status/1529858538650374144?s=20&t=eznpFbuD9BDhfTb4PplFUg
@@ -94,7 +94,7 @@ data:
     \ st.back());\n            st.pop_back();\n          }\n          ++nxt;\n   \
     \     }\n      } else {\n        chmin(low[v], ord[e.to]);\n      }\n    }\n \
     \ };\n  FOR(v, n) if (!used[v]) {\n    dfs(dfs, v, -1);\n    for (auto&& x: st)\
-    \ { edges.eb(nxt, v); }\n    ++nxt;\n    st.clear();\n  }\n  Graph<int, 0> BCT(nxt);\n\
+    \ { edges.eb(nxt, x); }\n    ++nxt;\n    st.clear();\n  }\n  Graph<int, 0> BCT(nxt);\n\
     \  for (auto&& [a, b]: edges) BCT.add(a, b);\n  BCT.build();\n  return BCT;\n\
     }\n"
   code: "#include \"graph/base.hpp\"\n\n/*\nblock-cut tree \u3092\u3001block \u306B\
@@ -115,15 +115,15 @@ data:
     \ st.back());\n            st.pop_back();\n          }\n          ++nxt;\n   \
     \     }\n      } else {\n        chmin(low[v], ord[e.to]);\n      }\n    }\n \
     \ };\n  FOR(v, n) if (!used[v]) {\n    dfs(dfs, v, -1);\n    for (auto&& x: st)\
-    \ { edges.eb(nxt, v); }\n    ++nxt;\n    st.clear();\n  }\n  Graph<int, 0> BCT(nxt);\n\
+    \ { edges.eb(nxt, x); }\n    ++nxt;\n    st.clear();\n  }\n  Graph<int, 0> BCT(nxt);\n\
     \  for (auto&& [a, b]: edges) BCT.add(a, b);\n  BCT.build();\n  return BCT;\n}"
   dependsOn:
   - graph/base.hpp
   isVerificationFile: false
   path: graph/block_cut.hpp
   requiredBy: []
-  timestamp: '2023-04-09 11:30:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-04-09 12:41:25+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/graph/biconnected_component.test.cpp
   - test/aoj/GRL_3_A.test.cpp

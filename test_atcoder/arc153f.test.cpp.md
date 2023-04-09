@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/block_cut.hpp
     title: graph/block_cut.hpp
   - icon: ':question:'
@@ -731,7 +731,7 @@ data:
     \ st.back());\n            st.pop_back();\n          }\n          ++nxt;\n   \
     \     }\n      } else {\n        chmin(low[v], ord[e.to]);\n      }\n    }\n \
     \ };\n  FOR(v, n) if (!used[v]) {\n    dfs(dfs, v, -1);\n    for (auto&& x: st)\
-    \ { edges.eb(nxt, v); }\n    ++nxt;\n    st.clear();\n  }\n  Graph<int, 0> BCT(nxt);\n\
+    \ { edges.eb(nxt, x); }\n    ++nxt;\n    st.clear();\n  }\n  Graph<int, 0> BCT(nxt);\n\
     \  for (auto&& [a, b]: edges) BCT.add(a, b);\n  BCT.build();\n  return BCT;\n\
     }\n#line 9 \"test_atcoder/arc153f.test.cpp\"\n\nusing mint = modint998;\n\nvoid\
     \ naive(Graph<bool, 0> G) {\n  const int N = G.N;\n  const int M = G.M;\n\n  int\
@@ -808,7 +808,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/arc153f.test.cpp
   requiredBy: []
-  timestamp: '2023-04-09 11:30:46+09:00'
+  timestamp: '2023-04-09 12:41:25+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/arc153f.test.cpp
