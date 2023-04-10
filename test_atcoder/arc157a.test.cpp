@@ -12,7 +12,7 @@ void solve() {
   FOR(C) G.add(1, 0);
   FOR(D) G.add(1, 1);
   G.build();
-  auto vs = euler_walk(G);
+  auto vs = euler_walk(G).fi;
   Yes(!vs.empty());
 }
 
