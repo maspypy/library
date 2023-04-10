@@ -1,5 +1,6 @@
 #include "graph/base.hpp"
 
+// (v,w) or (v,-1)
 template <typename GT>
 pair<int, int> find_centroids(GT& G) {
   int N = G.N;
@@ -101,12 +102,7 @@ private:
   }
 
 public:
-  /*
-  root を重心とする木において、(v, path data v) の vector
-  を、方向ごとに集めて返す ・0 番目：root からのパスすべて（root を含む）
-  ・i番目：i 番目の方向
-  f: E x edge -> E
-  */
+  // vector of pairs (v, path data v)
   template <typename E, typename F>
   vc<vc<pair<int, E>>> collect(int root, E root_val, F f) {
     vc<vc<pair<int, E>>> res = {{{root, root_val}}};
@@ -137,8 +133,8 @@ public:
     return collect(root, 0, f);
   }
 
-  // (V, H), V[i] は、H における頂点 i の G における番号
-  // 頂点は EulerTour 順に並ぶ、V は sort されているとは限らない
+  // (V, H), (V[i] in G) = (i in H).
+  // 0,1,2... is a dfs order in H.
   pair<vc<int>, Graph<typename GT::cost_type, true>> get_subgraph(int root) {
     static vc<int> conv;
     while (len(conv) < N) conv.eb(-1);
