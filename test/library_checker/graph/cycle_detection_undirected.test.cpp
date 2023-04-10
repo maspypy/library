@@ -9,7 +9,7 @@ void solve() {
   LL(N, M);
   Graph<bool, 0> G(N);
   G.read_graph(M, 0, 0);
-  auto [vs, es] = find_cycle(G);
+  auto [vs, es] = find_cycle_undirected(G);
   int L = len(vs);
   if (L == 0) return print(-1);
   print(L);
