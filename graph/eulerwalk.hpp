@@ -1,13 +1,12 @@
 #include "graph/base.hpp"
+#include "graph/vs_to_es.hpp"
 
-// 頂点番号の列を返す。有向・無向両対応。存在しない場合には、空を返す。
-// 辺が 0 個の場合には {s} を返す。
+// (vs, es) or empty
 template <typename GT>
-vc<int> euler_walk(GT& G, int s = -1) {
+pair<vc<int>, vc<int>> euler_walk(GT& G, int s = -1) {
+  const int N = G.N, M = G.M;
   assert(G.is_prepared());
-  ll N = G.N, M = G.M;
-  if (M == 0 && s != -1) return {s};
-  if (M == 0 && s == -1) return {0};
+  assert(N > 0);
 
   if (s == -1) {
     vc<int> deg(N);
@@ -29,14 +28,14 @@ vc<int> euler_walk(GT& G, int s = -1) {
     }
   }
 
-  if (M == 0) return {s};
-  vc<int> D(N), its(N), eu(M), ret, st = {s};
+  if (M == 0) return {{s}, {}};
+  vc<int> D(N), its(N), eu(M), vs, st = {s};
   FOR(v, N) its[v] = G.indptr[v];
   ++D[s];
   while (!st.empty()) {
     int x = st.back(), y, e, &it = its[x], end = G.indptr[x + 1];
     if (it == end) {
-      ret.eb(x);
+      vs.eb(x);
       st.pop_back();
       continue;
     }
@@ -49,8 +48,9 @@ vc<int> euler_walk(GT& G, int s = -1) {
     }
   }
   for (auto&& x: D)
-    if (x < 0) return {};
-  if (len(ret) != M + 1) return {};
-  reverse(all(ret));
-  return ret;
+    if (x < 0) return {{}, {}};
+  if (len(vs) != M + 1) return {{}, {}};
+  reverse(all(vs));
+  auto es = vs_to_es(G, vs, false);
+  return {vs, es};
 }
