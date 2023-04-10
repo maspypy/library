@@ -61,6 +61,8 @@ struct Dynamic_Lazy_SegTree {
     return x;
   }
 
+  X prod_all(np root) { return prod(root, L0, R0); }
+
   np set(np root, ll i, const X &x) {
     assert(pid && L0 <= i && i < R0);
     return set_rec(root, L0, R0, i, x);
@@ -72,6 +74,7 @@ struct Dynamic_Lazy_SegTree {
   }
 
   np apply(np root, ll l, ll r, const A &a) {
+    if (l == r) return root;
     assert(pid && L0 <= l && l < r && r <= R0);
     return apply_rec(root, L0, R0, l, r, a);
   }
@@ -100,7 +103,7 @@ struct Dynamic_Lazy_SegTree {
         return;
       }
       ll m = (l + r) / 2;
-      a = MA::op(c->a, a);
+      a = MA::op(c->lazy, a);
       dfs(dfs, c->l, l, m, a);
       dfs(dfs, c->r, m, r, a);
     };
