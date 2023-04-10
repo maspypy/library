@@ -1,6 +1,6 @@
 #include "graph/strongly_connected_component.hpp"
 
-// (頂点番号列, 辺番号列)
+// (vs, es)
 // https://yukicoder.me/problems/no/1436
 template <typename GT>
 pair<vc<int>, vc<int>> find_odd_cycle(GT& G) {
@@ -9,8 +9,6 @@ pair<vc<int>, vc<int>> find_odd_cycle(GT& G) {
   if (G.is_directed()) {
     comp = strongly_connected_component<decltype(G)>(G).se;
   }
-  // 同じ強連結成分内の点しか探索しないようにして
-  // とりあえず奇 walk を探す
   vc<int> dist(2 * N, infty<int>);
   vc<int> par(2 * N, -1); // edge index
   deque<int> que;
