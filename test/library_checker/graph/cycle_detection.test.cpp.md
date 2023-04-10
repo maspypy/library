@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/find_cycle.hpp
     title: graph/find_cycle.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/cycle_detection
@@ -292,14 +292,14 @@ data:
     \n      es.eb(par[y]);\r\n    }\r\n    return {vs, es};\r\n  }\r\n  return {vs,\
     \ es};\r\n}\r\n#line 7 \"test/library_checker/graph/cycle_detection.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, M);\r\n  Graph<bool, 1> G(N);\r\n  G.read_graph(M,\
-    \ 0, 0);\r\n  auto [vs, es] = find_cycle(G);\r\n  int L = len(vs);\r\n  if (L\
-    \ == 0) return print(-1);\r\n  print(L);\r\n  for (auto&& x: es) print(x);\r\n\
-    }\r\n\r\nsigned main() {\r\n  cout << fixed << setprecision(15);\r\n\r\n  solve();\r\
+    \ 0, 0);\r\n  auto [vs, es] = find_cycle_directed(G);\r\n  int L = len(vs);\r\n\
+    \  if (L == 0) return print(-1);\r\n  print(L);\r\n  for (auto&& x: es) print(x);\r\
+    \n}\r\n\r\nsigned main() {\r\n  cout << fixed << setprecision(15);\r\n\r\n  solve();\r\
     \n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/cycle_detection\"\r\n#include\
     \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"graph/base.hpp\"\
     \r\n#include \"graph/find_cycle.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N, M);\r\n\
-    \  Graph<bool, 1> G(N);\r\n  G.read_graph(M, 0, 0);\r\n  auto [vs, es] = find_cycle(G);\r\
+    \  Graph<bool, 1> G(N);\r\n  G.read_graph(M, 0, 0);\r\n  auto [vs, es] = find_cycle_directed(G);\r\
     \n  int L = len(vs);\r\n  if (L == 0) return print(-1);\r\n  print(L);\r\n  for\
     \ (auto&& x: es) print(x);\r\n}\r\n\r\nsigned main() {\r\n  cout << fixed << setprecision(15);\r\
     \n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
@@ -311,8 +311,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/cycle_detection.test.cpp
   requiredBy: []
-  timestamp: '2023-04-10 18:24:53+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-04-10 18:49:35+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/cycle_detection.test.cpp
 layout: document

@@ -320,14 +320,14 @@ data:
     \n  auto es = vs_to_es(G, vs, false);\r\n  return {vs, es};\r\n}\r\n#line 6 \"\
     test_atcoder/arc157a.test.cpp\"\n\nvoid solve() {\n  LL(N, A, B, C, D);\n  Graph<bool,\
     \ 1> G(2);\n  FOR(A) G.add(0, 0);\n  FOR(B) G.add(0, 1);\n  FOR(C) G.add(1, 0);\n\
-    \  FOR(D) G.add(1, 1);\n  G.build();\n  auto vs = euler_walk(G);\n  Yes(!vs.empty());\n\
+    \  FOR(D) G.add(1, 1);\n  G.build();\n  auto vs = euler_walk(G).fi;\n  Yes(!vs.empty());\n\
     }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/arc157/tasks/arc157_a\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/eulerwalk.hpp\"\
     \n\nvoid solve() {\n  LL(N, A, B, C, D);\n  Graph<bool, 1> G(2);\n  FOR(A) G.add(0,\
     \ 0);\n  FOR(B) G.add(0, 1);\n  FOR(C) G.add(1, 0);\n  FOR(D) G.add(1, 1);\n \
-    \ G.build();\n  auto vs = euler_walk(G);\n  Yes(!vs.empty());\n}\n\nsigned main()\
-    \ {\n  solve();\n  return 0;\n}\n"
+    \ G.build();\n  auto vs = euler_walk(G).fi;\n  Yes(!vs.empty());\n}\n\nsigned\
+    \ main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -339,7 +339,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/arc157a.test.cpp
   requiredBy: []
-  timestamp: '2023-04-10 18:23:48+09:00'
+  timestamp: '2023-04-10 18:50:22+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/arc157a.test.cpp

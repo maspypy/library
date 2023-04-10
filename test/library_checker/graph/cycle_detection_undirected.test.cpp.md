@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/find_cycle.hpp
     title: graph/find_cycle.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/cycle_detection_undirected
@@ -292,16 +292,17 @@ data:
     \n      es.eb(par[y]);\r\n    }\r\n    return {vs, es};\r\n  }\r\n  return {vs,\
     \ es};\r\n}\r\n#line 7 \"test/library_checker/graph/cycle_detection_undirected.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, M);\n  Graph<bool, 0> G(N);\n  G.read_graph(M, 0,\
-    \ 0);\n  auto [vs, es] = find_cycle(G);\n  int L = len(vs);\n  if (L == 0) return\
-    \ print(-1);\n  print(L);\n  print(vs);\n  print(es);\n}\n\nsigned main() {\n\
-    \  cout << fixed << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
+    \ 0);\n  auto [vs, es] = find_cycle_undirected(G);\n  int L = len(vs);\n  if (L\
+    \ == 0) return print(-1);\n  print(L);\n  print(vs);\n  print(es);\n}\n\nsigned\
+    \ main() {\n  cout << fixed << setprecision(15);\n\n  solve();\n\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/cycle_detection_undirected\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/base.hpp\"\
     \n#include \"graph/find_cycle.hpp\"\n\nvoid solve() {\n  LL(N, M);\n  Graph<bool,\
-    \ 0> G(N);\n  G.read_graph(M, 0, 0);\n  auto [vs, es] = find_cycle(G);\n  int\
-    \ L = len(vs);\n  if (L == 0) return print(-1);\n  print(L);\n  print(vs);\n \
-    \ print(es);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n \
-    \ solve();\n\n  return 0;\n}\n"
+    \ 0> G(N);\n  G.read_graph(M, 0, 0);\n  auto [vs, es] = find_cycle_undirected(G);\n\
+    \  int L = len(vs);\n  if (L == 0) return print(-1);\n  print(L);\n  print(vs);\n\
+    \  print(es);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n\
+    \  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -310,8 +311,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/cycle_detection_undirected.test.cpp
   requiredBy: []
-  timestamp: '2023-04-10 18:24:53+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-04-10 18:49:53+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/cycle_detection_undirected.test.cpp
 layout: document
