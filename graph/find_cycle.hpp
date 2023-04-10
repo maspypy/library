@@ -1,5 +1,6 @@
 #include "graph/base.hpp"
 
+// {vs, es} or empty.
 template <typename GT>
 pair<vc<int>, vc<int>> find_cycle_directed(GT& G) {
   assert(G.is_directed());
@@ -39,15 +40,16 @@ pair<vc<int>, vc<int>> find_cycle_directed(GT& G) {
   return {vs, es};
 }
 
-// {vs, es}、存在しなければ empty
-// 極小なものを返す
+// {vs, es} or empty. minimal.
 template <typename GT>
 pair<vc<int>, vc<int>> find_cycle_undirected(GT& G) {
+  assert(!G.is_directed());
+  assert(G.is_prepared());
   const int N = G.N;
   const int M = G.M;
   vc<int> dep(N, -1);
   vc<bool> used_e(M);
-  vc<int> par(N, -1); // 辺番号
+  vc<int> par(N, -1); // edge idx
 
   auto dfs = [&](auto& dfs, int v, int d) -> int {
     dep[v] = d;
@@ -65,7 +67,7 @@ pair<vc<int>, vc<int>> find_cycle_undirected(GT& G) {
   vc<int> vs, es;
   FOR(v, N) {
     if (dep[v] != -1) continue;
-    // v からの dfs 木において、w が後退辺を持つ
+    // w has back edge
     int w = dfs(dfs, v, 0);
     if (w == -1) continue;
     int b = -1, back_e = -1;
@@ -79,7 +81,6 @@ pair<vc<int>, vc<int>> find_cycle_undirected(GT& G) {
       auto& e = G.edges[par[w]];
       w = e.frm + e.to - w;
     }
-    // b からの後退辺 back_e を使ってサイクルを作る
     int a = G.edges[back_e].frm + G.edges[back_e].to - b;
     es.eb(back_e), vs.eb(a);
     while (1) {
@@ -93,12 +94,4 @@ pair<vc<int>, vc<int>> find_cycle_undirected(GT& G) {
     return {vs, es};
   }
   return {vs, es};
-}
-
-// {vs, es} ：頂点の列と辺の列を返す。es[i] は vs[i] から vs[i+1]。
-// とりあえず無向のときには極小なものを返すことにした。
-template <typename GT>
-pair<vc<int>, vc<int>> find_cycle(GT& G) {
-  if (G.is_directed()) return find_cycle_directed(G);
-  return find_cycle_undirected(G);
 }
