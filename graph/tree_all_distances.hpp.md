@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -91,19 +91,19 @@ data:
     \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
     \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/centroid.hpp\"\
-    \n\r\ntemplate <typename GT>\r\npair<int, int> find_centroids(GT& G) {\r\n  int\
-    \ N = G.N;\r\n  vc<int> par(N, -1);\r\n  vc<int> V(N);\r\n  vc<int> sz(N);\r\n\
-    \  int l = 0, r = 0;\r\n  V[r++] = 0;\r\n  while (l < r) {\r\n    int v = V[l++];\r\
-    \n    for (auto&& e: G[v])\r\n      if (e.to != par[v]) {\r\n        par[e.to]\
-    \ = v;\r\n        V[r++] = e.to;\r\n      }\r\n  }\r\n  FOR_R(i, N) {\r\n    int\
-    \ v = V[i];\r\n    sz[v] += 1;\r\n    int p = par[v];\r\n    if (p != -1) sz[p]\
-    \ += sz[v];\r\n  }\r\n\r\n  int M = N / 2;\r\n  auto check = [&](int v) -> bool\
-    \ {\r\n    if (N - sz[v] > M) return false;\r\n    for (auto&& e: G[v]) {\r\n\
-    \      if (e.to != par[v] && sz[e.to] > M) return false;\r\n    }\r\n    return\
-    \ true;\r\n  };\r\n  pair<int, int> ANS = {-1, -1};\r\n  FOR(v, N) if (check(v))\
-    \ {\r\n    if (ANS.fi != -1) {\r\n      ANS.se = v;\r\n    } else {\r\n      ANS.fi\
-    \ = v;\r\n    }\r\n  }\r\n  return ANS;\r\n}\r\n\r\ntemplate <typename GT>\r\n\
-    struct Centroid_Decomposition {\r\n  using edge_type = typename GT::edge_type;\r\
+    \n\r\n// (v,w) or (v,-1)\r\ntemplate <typename GT>\r\npair<int, int> find_centroids(GT&\
+    \ G) {\r\n  int N = G.N;\r\n  vc<int> par(N, -1);\r\n  vc<int> V(N);\r\n  vc<int>\
+    \ sz(N);\r\n  int l = 0, r = 0;\r\n  V[r++] = 0;\r\n  while (l < r) {\r\n    int\
+    \ v = V[l++];\r\n    for (auto&& e: G[v])\r\n      if (e.to != par[v]) {\r\n \
+    \       par[e.to] = v;\r\n        V[r++] = e.to;\r\n      }\r\n  }\r\n  FOR_R(i,\
+    \ N) {\r\n    int v = V[i];\r\n    sz[v] += 1;\r\n    int p = par[v];\r\n    if\
+    \ (p != -1) sz[p] += sz[v];\r\n  }\r\n\r\n  int M = N / 2;\r\n  auto check = [&](int\
+    \ v) -> bool {\r\n    if (N - sz[v] > M) return false;\r\n    for (auto&& e: G[v])\
+    \ {\r\n      if (e.to != par[v] && sz[e.to] > M) return false;\r\n    }\r\n  \
+    \  return true;\r\n  };\r\n  pair<int, int> ANS = {-1, -1};\r\n  FOR(v, N) if\
+    \ (check(v)) {\r\n    if (ANS.fi != -1) {\r\n      ANS.se = v;\r\n    } else {\r\
+    \n      ANS.fi = v;\r\n    }\r\n  }\r\n  return ANS;\r\n}\r\n\r\ntemplate <typename\
+    \ GT>\r\nstruct Centroid_Decomposition {\r\n  using edge_type = typename GT::edge_type;\r\
     \n  GT& G;\r\n  int N;\r\n  vc<int> sz;\r\n  vc<int> par;\r\n  vector<int> cdep;\
     \ // depth in centroid tree\r\n  bool calculated;\r\n\r\n  Centroid_Decomposition(GT&\
     \ G)\r\n      : G(G), N(G.N), sz(G.N), par(G.N), cdep(G.N, -1) {\r\n    calculated\
@@ -120,41 +120,34 @@ data:
     \ {\r\n      auto [lv, v] = st.back();\r\n      st.pop_back();\r\n      auto c\
     \ = find(v);\r\n      cdep[c] = lv;\r\n      for (auto&& e: G[c]) {\r\n      \
     \  if (cdep[e.to] == -1) { st.eb(lv + 1, e.to); }\r\n      }\r\n    }\r\n  }\r\
-    \n\r\npublic:\r\n  /*\r\n  root \u3092\u91CD\u5FC3\u3068\u3059\u308B\u6728\u306B\
-    \u304A\u3044\u3066\u3001(v, path data v) \u306E vector\r\n  \u3092\u3001\u65B9\
-    \u5411\u3054\u3068\u306B\u96C6\u3081\u3066\u8FD4\u3059 \u30FB0 \u756A\u76EE\uFF1A\
-    root \u304B\u3089\u306E\u30D1\u30B9\u3059\u3079\u3066\uFF08root \u3092\u542B\u3080\
-    \uFF09\r\n  \u30FBi\u756A\u76EE\uFF1Ai \u756A\u76EE\u306E\u65B9\u5411\r\n  f:\
-    \ E x edge -> E\r\n  */\r\n  template <typename E, typename F>\r\n  vc<vc<pair<int,\
-    \ E>>> collect(int root, E root_val, F f) {\r\n    vc<vc<pair<int, E>>> res =\
-    \ {{{root, root_val}}};\r\n    for (auto&& e: G[root]) {\r\n      int nxt = e.to;\r\
-    \n      if (cdep[nxt] < cdep[root]) continue;\r\n      vc<pair<int, E>> dat;\r\
-    \n      int p = 0;\r\n      dat.eb(nxt, f(root_val, e));\r\n      par[nxt] = root;\r\
-    \n      while (p < len(dat)) {\r\n        auto [v, val] = dat[p++];\r\n      \
-    \  for (auto&& e: G[v]) {\r\n          if (e.to == par[v]) continue;\r\n     \
-    \     if (cdep[e.to] < cdep[root]) continue;\r\n          par[e.to] = v;\r\n \
-    \         dat.eb(e.to, f(val, e));\r\n        }\r\n      }\r\n      res.eb(dat);\r\
-    \n      res[0].insert(res[0].end(), all(dat));\r\n    }\r\n    return res;\r\n\
-    \  }\r\n\r\n  vc<vc<pair<int, int>>> collect_dist(int root) {\r\n    auto f =\
-    \ [&](int x, auto e) -> int { return x + 1; };\r\n    return collect(root, 0,\
-    \ f);\r\n  }\r\n\r\n  // (V, H), V[i] \u306F\u3001H \u306B\u304A\u3051\u308B\u9802\
-    \u70B9 i \u306E G \u306B\u304A\u3051\u308B\u756A\u53F7\r\n  // \u9802\u70B9\u306F\
-    \ EulerTour \u9806\u306B\u4E26\u3076\u3001V \u306F sort \u3055\u308C\u3066\u3044\
-    \u308B\u3068\u306F\u9650\u3089\u306A\u3044\r\n  pair<vc<int>, Graph<typename GT::cost_type,\
-    \ true>> get_subgraph(int root) {\r\n    static vc<int> conv;\r\n    while (len(conv)\
-    \ < N) conv.eb(-1);\r\n\r\n    vc<int> V;\r\n    using cost_type = typename GT::cost_type;\r\
-    \n    vc<tuple<int, int, cost_type>> edges;\r\n\r\n    auto dfs = [&](auto& dfs,\
-    \ int v, int p) -> void {\r\n      conv[v] = len(V);\r\n      V.eb(v);\r\n   \
-    \   for (auto&& e: G[v]) {\r\n        int to = e.to;\r\n        if (to == p) continue;\r\
-    \n        if (cdep[to] < cdep[root]) continue;\r\n        dfs(dfs, to, v);\r\n\
-    \        edges.eb(conv[v], conv[to], e.cost);\r\n      }\r\n    };\r\n    dfs(dfs,\
-    \ root, -1);\r\n    int n = len(V);\r\n    Graph<typename GT::cost_type, true>\
-    \ H(n);\r\n    for (auto&& [a, b, c]: edges) H.add(a, b, c);\r\n    H.build();\r\
-    \n    for (auto&& v: V) conv[v] = -1;\r\n    return {V, H};\r\n  }\r\n};\r\n#line\
-    \ 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class T>\n\
-    \  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n  template\
-    \ <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate <class\
-    \ T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \n\r\npublic:\r\n  // vector of pairs (v, path data v)\r\n  template <typename\
+    \ E, typename F>\r\n  vc<vc<pair<int, E>>> collect(int root, E root_val, F f)\
+    \ {\r\n    vc<vc<pair<int, E>>> res = {{{root, root_val}}};\r\n    for (auto&&\
+    \ e: G[root]) {\r\n      int nxt = e.to;\r\n      if (cdep[nxt] < cdep[root])\
+    \ continue;\r\n      vc<pair<int, E>> dat;\r\n      int p = 0;\r\n      dat.eb(nxt,\
+    \ f(root_val, e));\r\n      par[nxt] = root;\r\n      while (p < len(dat)) {\r\
+    \n        auto [v, val] = dat[p++];\r\n        for (auto&& e: G[v]) {\r\n    \
+    \      if (e.to == par[v]) continue;\r\n          if (cdep[e.to] < cdep[root])\
+    \ continue;\r\n          par[e.to] = v;\r\n          dat.eb(e.to, f(val, e));\r\
+    \n        }\r\n      }\r\n      res.eb(dat);\r\n      res[0].insert(res[0].end(),\
+    \ all(dat));\r\n    }\r\n    return res;\r\n  }\r\n\r\n  vc<vc<pair<int, int>>>\
+    \ collect_dist(int root) {\r\n    auto f = [&](int x, auto e) -> int { return\
+    \ x + 1; };\r\n    return collect(root, 0, f);\r\n  }\r\n\r\n  // (V, H), (V[i]\
+    \ in G) = (i in H).\r\n  // 0,1,2... is a dfs order in H.\r\n  pair<vc<int>, Graph<typename\
+    \ GT::cost_type, true>> get_subgraph(int root) {\r\n    static vc<int> conv;\r\
+    \n    while (len(conv) < N) conv.eb(-1);\r\n\r\n    vc<int> V;\r\n    using cost_type\
+    \ = typename GT::cost_type;\r\n    vc<tuple<int, int, cost_type>> edges;\r\n\r\
+    \n    auto dfs = [&](auto& dfs, int v, int p) -> void {\r\n      conv[v] = len(V);\r\
+    \n      V.eb(v);\r\n      for (auto&& e: G[v]) {\r\n        int to = e.to;\r\n\
+    \        if (to == p) continue;\r\n        if (cdep[to] < cdep[root]) continue;\r\
+    \n        dfs(dfs, to, v);\r\n        edges.eb(conv[v], conv[to], e.cost);\r\n\
+    \      }\r\n    };\r\n    dfs(dfs, root, -1);\r\n    int n = len(V);\r\n    Graph<typename\
+    \ GT::cost_type, true> H(n);\r\n    for (auto&& [a, b, c]: edges) H.add(a, b,\
+    \ c);\r\n    H.build();\r\n    for (auto&& v: V) conv[v] = -1;\r\n    return {V,\
+    \ H};\r\n  }\r\n};\r\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod\
     \ = mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n\
     \  if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
@@ -416,7 +409,7 @@ data:
   isVerificationFile: false
   path: graph/tree_all_distances.hpp
   requiredBy: []
-  timestamp: '2023-04-09 03:51:17+09:00'
+  timestamp: '2023-04-10 18:24:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp

@@ -13,13 +13,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/dynamic_lazy_segtree.hpp
     title: ds/segtree/dynamic_lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -249,13 +249,14 @@ data:
     \   return root;\n    };\n    return dfs(dfs, 0, len(dat));\n  }\n\n  X prod(np\
     \ root, ll l, ll r) {\n    assert(pid && L0 <= l && l < r && r <= R0);\n    X\
     \ x = MX::unit();\n    prod_rec(root, L0, R0, l, r, x, MA::unit());\n    return\
-    \ x;\n  }\n\n  np set(np root, ll i, const X &x) {\n    assert(pid && L0 <= i\
-    \ && i < R0);\n    return set_rec(root, L0, R0, i, x);\n  }\n\n  np multiply(np\
+    \ x;\n  }\n\n  X prod_all(np root) { return prod(root, L0, R0); }\n\n  np set(np\
     \ root, ll i, const X &x) {\n    assert(pid && L0 <= i && i < R0);\n    return\
-    \ multiply_rec(root, L0, R0, i, x);\n  }\n\n  np apply(np root, ll l, ll r, const\
-    \ A &a) {\n    assert(pid && L0 <= l && l < r && r <= R0);\n    return apply_rec(root,\
-    \ L0, R0, l, r, a);\n  }\n\n  template <typename F>\n  ll max_right(np root, F\
-    \ check, ll L) {\n    assert(pid && L0 <= L && L <= R0 && check(MX::unit()));\n\
+    \ set_rec(root, L0, R0, i, x);\n  }\n\n  np multiply(np root, ll i, const X &x)\
+    \ {\n    assert(pid && L0 <= i && i < R0);\n    return multiply_rec(root, L0,\
+    \ R0, i, x);\n  }\n\n  np apply(np root, ll l, ll r, const A &a) {\n    if (l\
+    \ == r) return root;\n    assert(pid && L0 <= l && l < r && r <= R0);\n    return\
+    \ apply_rec(root, L0, R0, l, r, a);\n  }\n\n  template <typename F>\n  ll max_right(np\
+    \ root, F check, ll L) {\n    assert(pid && L0 <= L && L <= R0 && check(MX::unit()));\n\
     \    X x = MX::unit();\n    return max_right_rec(root, check, L0, R0, L, x);\n\
     \  }\n\n  template <typename F>\n  ll min_left(np root, F check, ll R) {\n   \
     \ assert(pid && L0 <= R && R <= R0 && check(MX::unit()));\n    X x = MX::unit();\n\
@@ -263,7 +264,7 @@ data:
     \ root) {\n    vc<X> res;\n    res.reserve(R0 - L0);\n    auto dfs = [&](auto\
     \ &dfs, np c, ll l, ll r, A a) -> void {\n      if (!c) c = new_node(l, r);\n\
     \      if (r - l == 1) {\n        res.eb(AM::act(c->x, a, 1));\n        return;\n\
-    \      }\n      ll m = (l + r) / 2;\n      a = MA::op(c->a, a);\n      dfs(dfs,\
+    \      }\n      ll m = (l + r) / 2;\n      a = MA::op(c->lazy, a);\n      dfs(dfs,\
     \ c->l, l, m, a);\n      dfs(dfs, c->r, m, r, a);\n    };\n    dfs(dfs, root,\
     \ L0, R0, MA::unit());\n    return res;\n  }\n\n  void reset() { pid = 0; }\n\n\
     private:\n  np copy_node(np c) {\n    if (!c || !PERSISTENT) return c;\n    pool[pid].l\
@@ -370,7 +371,7 @@ data:
   isVerificationFile: true
   path: test/mytest/dynamic_lazy_segtree.test.cpp
   requiredBy: []
-  timestamp: '2023-02-24 07:14:18+09:00'
+  timestamp: '2023-04-10 18:24:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/dynamic_lazy_segtree.test.cpp
