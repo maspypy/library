@@ -8,6 +8,7 @@ struct CartesianTree {
   vc<T>& A;
   vc<pair<int, int>> range;
   vc<int> lch, rch, par;
+  int root;
 
   CartesianTree(vc<T>& A) : n(len(A)), A(A) {
     range.assign(n, {-1, -1});
@@ -16,6 +17,7 @@ struct CartesianTree {
     par.assign(n, -1);
     if (n == 1) {
       range[0] = {0, 1};
+      root = 0;
       return;
     }
     auto is_sm = [&](int i, int j) -> bool {
@@ -42,6 +44,7 @@ struct CartesianTree {
     }
     FOR(i, n) if (lch[i] != -1) par[lch[i]] = i;
     FOR(i, n) if (rch[i] != -1) par[rch[i]] = i;
+    FOR(i, n) if (par[i] == -1) root = i;
   }
 
   // (l, r, h)
