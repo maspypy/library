@@ -104,7 +104,7 @@ struct SegTree {
     return 0;
   }
 
-  // モノイドが可換なら、prod_{l<=i<r} A[i xor x] が計算可能
+  // prod_{l<=i<r} A[i xor x]
   X xor_prod(int l, int r, int xor_val) {
     static_assert(Monoid::commute);
     X x = Monoid::unit();
