@@ -15,10 +15,10 @@ struct Graph_Game {
     auto RG = reverse_graph(G);
     auto [indeg, outdeg] = G.deg_array_inout();
     int N = G.N;
-    win.resize(N);
-    lose.resize(N);
-    end_turn.resize(N, 1 << 30);
-    best_strategy.resize(N, -1);
+    win.assign(N, 0);
+    lose.assign(N, 0);
+    end_turn.assign(N, infty<int>);
+    best_strategy.assign(N, -1);
     deque<int> que;
     FOR(v, N) {
       if (outdeg[v] == 0) que.eb(v);
