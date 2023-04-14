@@ -14,9 +14,6 @@ mincostcycle：毎回グラフ作り直してて無駄、復元をつけるか�
 
 ・sparse linear rec
 
-・頂点属性の steiner 木
-・steiner 木の復元
-
 辞書順最小 Euler 路
 
 ベクトル空間：k番目の取得（abc283）
