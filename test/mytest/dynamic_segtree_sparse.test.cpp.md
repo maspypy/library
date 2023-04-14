@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dynamic_segtree_sparse.hpp
     title: ds/segtree/dynamic_segtree_sparse.hpp
   - icon: ':question:'
@@ -219,10 +219,8 @@ data:
     \u6301\u305F\u305B\u3089\u308C\u305A\u3001acted monoid \u3082\u4E00\u822C\u306B\
     \u306F\u6271\u3048\u306A\u3044\n// \u6C38\u7D9A\u5316\u3057\u306A\u3044\u5834\u5408\
     \u306E\u30CE\u30FC\u30C9\u6570\u3092 O(N) \u306B\u6291\u3048\u308B\u3053\u3068\
-    \u304C\u3067\u304D\u308B\u306E\u304C\u5229\u70B9\n// \u5BC6\u306A\u3082\u306E\u3092\
-    \u6C38\u7D9A\u5316\u3059\u308B\u3068\u304D\u306F\u304B\u3048\u3063\u3066\u9045\
-    \u304F\u306A\u308B\u53EF\u80FD\u6027\u304C\u3042\u308B\ntemplate <typename Monoid,\
-    \ bool PERSISTENT, int NODES>\nstruct Dynamic_SegTree_Sparse {\n  using MX = Monoid;\n\
+    \u304C\u3067\u304D\u308B\u306E\u304C\u5229\u70B9\ntemplate <typename Monoid, bool\
+    \ PERSISTENT, int NODES>\nstruct Dynamic_SegTree_Sparse {\n  using MX = Monoid;\n\
     \  using X = typename MX::value_type;\n\n  struct Node {\n    ll idx;\n    Node\
     \ *l, *r;\n    X prod, x;\n  };\n\n  const ll L0, R0;\n  Node *pool;\n  int pid;\n\
     \  using np = Node *;\n\n  Dynamic_SegTree_Sparse(ll L0, ll R0) : L0(L0), R0(R0),\
@@ -336,7 +334,7 @@ data:
   isVerificationFile: true
   path: test/mytest/dynamic_segtree_sparse.test.cpp
   requiredBy: []
-  timestamp: '2023-03-24 19:28:19+09:00'
+  timestamp: '2023-04-14 22:06:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/dynamic_segtree_sparse.test.cpp

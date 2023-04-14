@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/binary_trie.hpp
     title: ds/binary_trie.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -213,10 +213,10 @@ data:
     \ }\n\n  void reset() { pid = 0; }\n\n  np new_root() { return nullptr; }\n\n\
     \  np add(np root, UINT val, T cnt = 1) {\n    if (!root) root = new_node(0, 0);\n\
     \    assert(0 <= val && val < (1LL << LOG));\n    return add_rec(root, LOG, val,\
-    \ cnt);\n  }\n\n  vc<pair<UINT, T>> get_all(np root) {\n    vc<pair<UINT, T>>\
-    \ res;\n    auto dfs = [&](auto &dfs, np root, UINT val, int ht) -> void {\n \
-    \     if (ht == 0) {\n        res.eb(val, root->cnt);\n        return;\n     \
-    \ }\n      np c = root->l;\n      if (c) { dfs(dfs, c, val << (c->width) | (c->val),\
+    \ cnt);\n  }\n\n  // f(val, cnt)\n  template <typename F>\n  enumerate(np root,\
+    \ F f) {\n    auto dfs = [&](auto &dfs, np root, UINT val, int ht) -> void {\n\
+    \      if (ht == 0) {\n        f(val, root->cnt);\n        return;\n      }\n\
+    \      np c = root->l;\n      if (c) { dfs(dfs, c, val << (c->width) | (c->val),\
     \ ht - (c->width)); }\n      c = root->r;\n      if (c) { dfs(dfs, c, val << (c->width)\
     \ | (c->val), ht - (c->width)); }\n    };\n    if (root) dfs(dfs, root, 0, LOG);\n\
     \    return res;\n  }\n\n  // xor_val \u3057\u305F\u3042\u3068\u306E\u5024\u3067\
@@ -319,8 +319,8 @@ data:
   isVerificationFile: true
   path: test/mytest/binary_trie.test.cpp
   requiredBy: []
-  timestamp: '2023-02-24 07:14:18+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-04-14 22:08:01+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/binary_trie.test.cpp
 layout: document

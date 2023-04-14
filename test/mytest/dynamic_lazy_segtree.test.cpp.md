@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/summax.hpp
     title: alg/monoid/summax.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dynamic_lazy_segtree.hpp
     title: ds/segtree/dynamic_lazy_segtree.hpp
   - icon: ':question:'
@@ -260,18 +260,18 @@ data:
     \    X x = MX::unit();\n    return max_right_rec(root, check, L0, R0, L, x);\n\
     \  }\n\n  template <typename F>\n  ll min_left(np root, F check, ll R) {\n   \
     \ assert(pid && L0 <= R && R <= R0 && check(MX::unit()));\n    X x = MX::unit();\n\
-    \    return min_left_rec(root, check, L0, R0, R, x);\n  }\n\n  vc<X> get_all(np\
-    \ root) {\n    vc<X> res;\n    res.reserve(R0 - L0);\n    auto dfs = [&](auto\
-    \ &dfs, np c, ll l, ll r, A a) -> void {\n      if (!c) c = new_node(l, r);\n\
-    \      if (r - l == 1) {\n        res.eb(AM::act(c->x, a, 1));\n        return;\n\
-    \      }\n      ll m = (l + r) / 2;\n      a = MA::op(c->lazy, a);\n      dfs(dfs,\
-    \ c->l, l, m, a);\n      dfs(dfs, c->r, m, r, a);\n    };\n    dfs(dfs, root,\
-    \ L0, R0, MA::unit());\n    return res;\n  }\n\n  void reset() { pid = 0; }\n\n\
-    private:\n  np copy_node(np c) {\n    if (!c || !PERSISTENT) return c;\n    pool[pid].l\
-    \ = c->l, pool[pid].r = c->r;\n    pool[pid].x = c->x;\n    pool[pid].lazy = c->lazy;\n\
-    \    return &(pool[pid++]);\n  }\n\n  void prop(np c, ll l, ll r) {\n    assert(r\
-    \ - l >= 2);\n    ll m = (l + r) / 2;\n    if (c->lazy == MA::unit()) return;\n\
-    \    c->l = (c->l ? copy_node(c->l) : new_node(l, m));\n    c->l->x = AM::act(c->l->x,\
+    \    return min_left_rec(root, check, L0, R0, R, x);\n  }\n\n  // f(idx, val)\n\
+    \  template <typename F>\n  void enumerate(np root, F f) {\n    auto dfs = [&](auto\
+    \ &dfs, np c, ll l, ll r, A a) -> void {\n      if (!c) return;\n      if (r -\
+    \ l == 1) {\n        f(l, AM::act(c->x, a, 1));\n        return;\n      }\n  \
+    \    ll m = (l + r) / 2;\n      a = MA::op(c->lazy, a);\n      dfs(dfs, c->l,\
+    \ l, m, a);\n      dfs(dfs, c->r, m, r, a);\n    };\n    dfs(dfs, root, L0, R0,\
+    \ MA::unit());\n  }\n\n  void reset() { pid = 0; }\n\nprivate:\n  np copy_node(np\
+    \ c) {\n    if (!c || !PERSISTENT) return c;\n    pool[pid].l = c->l, pool[pid].r\
+    \ = c->r;\n    pool[pid].x = c->x;\n    pool[pid].lazy = c->lazy;\n    return\
+    \ &(pool[pid++]);\n  }\n\n  void prop(np c, ll l, ll r) {\n    assert(r - l >=\
+    \ 2);\n    ll m = (l + r) / 2;\n    if (c->lazy == MA::unit()) return;\n    c->l\
+    \ = (c->l ? copy_node(c->l) : new_node(l, m));\n    c->l->x = AM::act(c->l->x,\
     \ c->lazy, m - l);\n    c->l->lazy = MA::op(c->l->lazy, c->lazy);\n    c->r =\
     \ (c->r ? copy_node(c->r) : new_node(m, r));\n    c->r->x = AM::act(c->r->x, c->lazy,\
     \ r - m);\n    c->r->lazy = MA::op(c->r->lazy, c->lazy);\n    c->lazy = MA::unit();\n\
@@ -371,7 +371,7 @@ data:
   isVerificationFile: true
   path: test/mytest/dynamic_lazy_segtree.test.cpp
   requiredBy: []
-  timestamp: '2023-04-10 18:24:23+09:00'
+  timestamp: '2023-04-14 22:06:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/dynamic_lazy_segtree.test.cpp

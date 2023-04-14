@@ -4,14 +4,17 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test_atcoder/abc209e.test.cpp
+    title: test_atcoder/abc209e.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"game/graph_game.hpp\"\n\n#line 2 \"graph/base.hpp\"\n\n\
@@ -78,8 +81,8 @@ data:
     \u6557\u8005\u306F\u6700\u9577\u624B\u6570\u3092\u76EE\u6307\u3059\nstruct Graph_Game\
     \ {\n  vc<bool> win;\n  vc<bool> lose;\n  vc<int> end_turn;\n  vc<int> best_strategy;\n\
     \n  template <typename GT>\n  Graph_Game(GT& G) {\n    auto RG = reverse_graph(G);\n\
-    \    auto [indeg, outdeg] = G.deg_array_inout();\n    int N = G.N;\n    win.resize(N);\n\
-    \    lose.resize(N);\n    end_turn.resize(N, 1 << 30);\n    best_strategy.resize(N,\
+    \    auto [indeg, outdeg] = G.deg_array_inout();\n    int N = G.N;\n    win.assign(N,\
+    \ 0);\n    lose.assign(N, 0);\n    end_turn.assign(N, infty<int>);\n    best_strategy.assign(N,\
     \ -1);\n    deque<int> que;\n    FOR(v, N) {\n      if (outdeg[v] == 0) que.eb(v);\n\
     \    }\n\n    while (!que.empty()) {\n      auto v = POP(que);\n      if (win[v]\
     \ || lose[v]) continue;\n      lose[v] = 1;\n      for (auto&& e: G[v]) {\n  \
@@ -100,8 +103,8 @@ data:
     \ Graph_Game {\n  vc<bool> win;\n  vc<bool> lose;\n  vc<int> end_turn;\n  vc<int>\
     \ best_strategy;\n\n  template <typename GT>\n  Graph_Game(GT& G) {\n    auto\
     \ RG = reverse_graph(G);\n    auto [indeg, outdeg] = G.deg_array_inout();\n  \
-    \  int N = G.N;\n    win.resize(N);\n    lose.resize(N);\n    end_turn.resize(N,\
-    \ 1 << 30);\n    best_strategy.resize(N, -1);\n    deque<int> que;\n    FOR(v,\
+    \  int N = G.N;\n    win.assign(N, 0);\n    lose.assign(N, 0);\n    end_turn.assign(N,\
+    \ infty<int>);\n    best_strategy.assign(N, -1);\n    deque<int> que;\n    FOR(v,\
     \ N) {\n      if (outdeg[v] == 0) que.eb(v);\n    }\n\n    while (!que.empty())\
     \ {\n      auto v = POP(que);\n      if (win[v] || lose[v]) continue;\n      lose[v]\
     \ = 1;\n      for (auto&& e: G[v]) {\n        if (lose[e.to]) win[v] = 1;\n  \
@@ -119,9 +122,10 @@ data:
   isVerificationFile: false
   path: game/graph_game.hpp
   requiredBy: []
-  timestamp: '2023-04-09 03:51:17+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2023-04-14 22:07:29+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test_atcoder/abc209e.test.cpp
 documentation_of: game/graph_game.hpp
 layout: document
 redirect_from:

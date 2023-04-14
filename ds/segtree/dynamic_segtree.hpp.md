@@ -12,21 +12,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1036.test.cpp
     title: test/yukicoder/1036.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1649.test.cpp
     title: test/yukicoder/1649.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1826.test.cpp
     title: test/yukicoder/1826.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/789.test.cpp
     title: test/yukicoder/789.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/dynamic_segtree.hpp\"\n\r\n// sparse \u3082\u3042\
@@ -61,17 +61,17 @@ data:
     \n  }\r\n\r\n  template <typename F>\r\n  ll min_left(np root, F check, ll R)\
     \ {\r\n    assert(pid && L0 <= R && R <= R0 && check(MX::unit()));\r\n    X x\
     \ = MX::unit();\r\n    return min_left_rec(root, check, L0, R0, R, x);\r\n  }\r\
-    \n\r\n  vc<pair<ll, X>> get_all(np root) {\r\n    assert(root);\r\n    vc<X> res;\r\
-    \n    res.reserve(R0 - L0);\r\n    auto dfs = [&](auto &dfs, np c, ll l, ll r)\
-    \ -> void {\r\n      if (!c) return;\r\n      if (r - l == 1) {\r\n        res.eb(l,\
-    \ c->x);\r\n        return;\r\n      }\r\n      ll m = (l + r) / 2;\r\n      dfs(dfs,\
-    \ c->l, l, m);\r\n      dfs(dfs, c->r, m, r);\r\n    };\r\n    dfs(dfs, root,\
-    \ L0, R0);\r\n    return res;\r\n  }\r\n\r\n  void reset() { pid = 0; }\r\n\r\n\
-    private:\r\n  np copy_node(np c) {\r\n    if (!c || !PERSISTENT) return c;\r\n\
-    \    pool[pid].l = c->l, pool[pid].r = c->r;\r\n    pool[pid].x = c->x;\r\n  \
-    \  return &(pool[pid++]);\r\n  }\r\n\r\n  np set_rec(np c, ll l, ll r, ll i, const\
-    \ X &x) {\r\n    if (r == l + 1) {\r\n      c = copy_node(c);\r\n      c->x =\
-    \ x;\r\n      return c;\r\n    }\r\n    ll m = (l + r) / 2;\r\n\r\n    c = copy_node(c);\r\
+    \n\r\n  // (idx, val)\r\n  template <typename F>\r\n  void enumerate(np root,\
+    \ F f) {\r\n    if (!root) return;\r\n    auto dfs = [&](auto &dfs, np c, ll l,\
+    \ ll r) -> void {\r\n      if (!c) return;\r\n      if (r - l == 1) {\r\n    \
+    \    f(l, c->x);\r\n        return;\r\n      }\r\n      ll m = (l + r) / 2;\r\n\
+    \      dfs(dfs, c->l, l, m);\r\n      dfs(dfs, c->r, m, r);\r\n    };\r\n    dfs(dfs,\
+    \ root, L0, R0);\r\n    return;\r\n  }\r\n\r\n  void reset() { pid = 0; }\r\n\r\
+    \nprivate:\r\n  np copy_node(np c) {\r\n    if (!c || !PERSISTENT) return c;\r\
+    \n    pool[pid].l = c->l, pool[pid].r = c->r;\r\n    pool[pid].x = c->x;\r\n \
+    \   return &(pool[pid++]);\r\n  }\r\n\r\n  np set_rec(np c, ll l, ll r, ll i,\
+    \ const X &x) {\r\n    if (r == l + 1) {\r\n      c = copy_node(c);\r\n      c->x\
+    \ = x;\r\n      return c;\r\n    }\r\n    ll m = (l + r) / 2;\r\n\r\n    c = copy_node(c);\r\
     \n    if (i < m) {\r\n      if (!c->l) c->l = new_node(l, m);\r\n      c->l =\
     \ set_rec(c->l, l, m, i, x);\r\n    } else {\r\n      if (!c->r) c->r = new_node(m,\
     \ r);\r\n      c->r = set_rec(c->r, m, r, i, x);\r\n    }\r\n    X xl = (c->l\
@@ -135,30 +135,30 @@ data:
     \n    return max_right_rec(root, check, L0, R0, L, x);\r\n  }\r\n\r\n  template\
     \ <typename F>\r\n  ll min_left(np root, F check, ll R) {\r\n    assert(pid &&\
     \ L0 <= R && R <= R0 && check(MX::unit()));\r\n    X x = MX::unit();\r\n    return\
-    \ min_left_rec(root, check, L0, R0, R, x);\r\n  }\r\n\r\n  vc<pair<ll, X>> get_all(np\
-    \ root) {\r\n    assert(root);\r\n    vc<X> res;\r\n    res.reserve(R0 - L0);\r\
-    \n    auto dfs = [&](auto &dfs, np c, ll l, ll r) -> void {\r\n      if (!c) return;\r\
-    \n      if (r - l == 1) {\r\n        res.eb(l, c->x);\r\n        return;\r\n \
-    \     }\r\n      ll m = (l + r) / 2;\r\n      dfs(dfs, c->l, l, m);\r\n      dfs(dfs,\
-    \ c->r, m, r);\r\n    };\r\n    dfs(dfs, root, L0, R0);\r\n    return res;\r\n\
-    \  }\r\n\r\n  void reset() { pid = 0; }\r\n\r\nprivate:\r\n  np copy_node(np c)\
-    \ {\r\n    if (!c || !PERSISTENT) return c;\r\n    pool[pid].l = c->l, pool[pid].r\
-    \ = c->r;\r\n    pool[pid].x = c->x;\r\n    return &(pool[pid++]);\r\n  }\r\n\r\
-    \n  np set_rec(np c, ll l, ll r, ll i, const X &x) {\r\n    if (r == l + 1) {\r\
-    \n      c = copy_node(c);\r\n      c->x = x;\r\n      return c;\r\n    }\r\n \
-    \   ll m = (l + r) / 2;\r\n\r\n    c = copy_node(c);\r\n    if (i < m) {\r\n \
-    \     if (!c->l) c->l = new_node(l, m);\r\n      c->l = set_rec(c->l, l, m, i,\
-    \ x);\r\n    } else {\r\n      if (!c->r) c->r = new_node(m, r);\r\n      c->r\
-    \ = set_rec(c->r, m, r, i, x);\r\n    }\r\n    X xl = (c->l ? c->l->x : default_prod(l,\
-    \ m));\r\n    X xr = (c->r ? c->r->x : default_prod(m, r));\r\n    c->x = MX::op(xl,\
-    \ xr);\r\n    return c;\r\n  }\r\n\r\n  np multiply_rec(np c, ll l, ll r, ll i,\
-    \ const X &x) {\r\n    if (r == l + 1) {\r\n      c = copy_node(c);\r\n      c->x\
-    \ = MX::op(c->x, x);\r\n      return c;\r\n    }\r\n    ll m = (l + r) / 2;\r\n\
-    \    c = copy_node(c);\r\n\r\n    if (i < m) {\r\n      if (!c->l) c->l = new_node(l,\
-    \ m);\r\n      c->l = multiply_rec(c->l, l, m, i, x);\r\n    } else {\r\n    \
-    \  if (!c->r) c->r = new_node(m, r);\r\n      c->r = multiply_rec(c->r, m, r,\
-    \ i, x);\r\n    }\r\n    X xl = (c->l ? c->l->x : default_prod(l, m));\r\n   \
-    \ X xr = (c->r ? c->r->x : default_prod(m, r));\r\n    c->x = MX::op(xl, xr);\r\
+    \ min_left_rec(root, check, L0, R0, R, x);\r\n  }\r\n\r\n  // (idx, val)\r\n \
+    \ template <typename F>\r\n  void enumerate(np root, F f) {\r\n    if (!root)\
+    \ return;\r\n    auto dfs = [&](auto &dfs, np c, ll l, ll r) -> void {\r\n   \
+    \   if (!c) return;\r\n      if (r - l == 1) {\r\n        f(l, c->x);\r\n    \
+    \    return;\r\n      }\r\n      ll m = (l + r) / 2;\r\n      dfs(dfs, c->l, l,\
+    \ m);\r\n      dfs(dfs, c->r, m, r);\r\n    };\r\n    dfs(dfs, root, L0, R0);\r\
+    \n    return;\r\n  }\r\n\r\n  void reset() { pid = 0; }\r\n\r\nprivate:\r\n  np\
+    \ copy_node(np c) {\r\n    if (!c || !PERSISTENT) return c;\r\n    pool[pid].l\
+    \ = c->l, pool[pid].r = c->r;\r\n    pool[pid].x = c->x;\r\n    return &(pool[pid++]);\r\
+    \n  }\r\n\r\n  np set_rec(np c, ll l, ll r, ll i, const X &x) {\r\n    if (r ==\
+    \ l + 1) {\r\n      c = copy_node(c);\r\n      c->x = x;\r\n      return c;\r\n\
+    \    }\r\n    ll m = (l + r) / 2;\r\n\r\n    c = copy_node(c);\r\n    if (i <\
+    \ m) {\r\n      if (!c->l) c->l = new_node(l, m);\r\n      c->l = set_rec(c->l,\
+    \ l, m, i, x);\r\n    } else {\r\n      if (!c->r) c->r = new_node(m, r);\r\n\
+    \      c->r = set_rec(c->r, m, r, i, x);\r\n    }\r\n    X xl = (c->l ? c->l->x\
+    \ : default_prod(l, m));\r\n    X xr = (c->r ? c->r->x : default_prod(m, r));\r\
+    \n    c->x = MX::op(xl, xr);\r\n    return c;\r\n  }\r\n\r\n  np multiply_rec(np\
+    \ c, ll l, ll r, ll i, const X &x) {\r\n    if (r == l + 1) {\r\n      c = copy_node(c);\r\
+    \n      c->x = MX::op(c->x, x);\r\n      return c;\r\n    }\r\n    ll m = (l +\
+    \ r) / 2;\r\n    c = copy_node(c);\r\n\r\n    if (i < m) {\r\n      if (!c->l)\
+    \ c->l = new_node(l, m);\r\n      c->l = multiply_rec(c->l, l, m, i, x);\r\n \
+    \   } else {\r\n      if (!c->r) c->r = new_node(m, r);\r\n      c->r = multiply_rec(c->r,\
+    \ m, r, i, x);\r\n    }\r\n    X xl = (c->l ? c->l->x : default_prod(l, m));\r\
+    \n    X xr = (c->r ? c->r->x : default_prod(m, r));\r\n    c->x = MX::op(xl, xr);\r\
     \n    return c;\r\n  }\r\n\r\n  void prod_rec(np c, ll l, ll r, ll ql, ll qr,\
     \ X &x) {\r\n    chmax(ql, l);\r\n    chmin(qr, r);\r\n    if (ql >= qr) return;\r\
     \n    if (!c) {\r\n      x = MX::op(x, default_prod(ql, qr));\r\n      return;\r\
@@ -183,8 +183,8 @@ data:
   isVerificationFile: false
   path: ds/segtree/dynamic_segtree.hpp
   requiredBy: []
-  timestamp: '2023-03-24 19:28:19+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-04-14 22:06:08+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp

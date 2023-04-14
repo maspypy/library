@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/rollinghash.hpp
     title: alg/monoid/rollinghash.hpp
+  - icon: ':warning:'
+    path: ds/unionfind/parallel_unionfind.hpp
+    title: ds/unionfind/parallel_unionfind.hpp
   - icon: ':heavy_check_mark:'
     path: graph/max_matching_size.hpp
     title: graph/max_matching_size.hpp
@@ -150,6 +153,7 @@ data:
   - graph/max_matching_size.hpp
   - graph/tree_dp/subtree_hash.hpp
   - random/hash_vector.hpp
+  - ds/unionfind/parallel_unionfind.hpp
   - mod/modular_subset_sum.hpp
   - other/connected_dp.hpp
   - alg/monoid/rollinghash.hpp

@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/sum_add.hpp
     title: alg/acted_monoid/sum_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -22,14 +22,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/cartesian_tree.hpp
     title: seq/cartesian_tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc234/tasks/abc234_g
@@ -221,28 +221,29 @@ data:
     \u3002\r\n\u6975\u5927\u9577\u65B9\u5F62\u30A2\u30EB\u30B4\u30EA\u30BA\u30E0\u3067\
     \u7DDA\u5F62\u6642\u9593\u69CB\u7BC9\u3002\r\n*/\r\ntemplate <typename T, bool\
     \ IS_MIN>\r\nstruct CartesianTree {\r\n  int n;\r\n  vc<T>& A;\r\n  vc<pair<int,\
-    \ int>> range;\r\n  vc<int> lch, rch, par;\r\n\r\n  CartesianTree(vc<T>& A) :\
-    \ n(len(A)), A(A) {\r\n    range.assign(n, {-1, -1});\r\n    lch.assign(n, -1);\r\
-    \n    rch.assign(n, -1);\r\n    par.assign(n, -1);\r\n    if (n == 1) {\r\n  \
-    \    range[0] = {0, 1};\r\n      return;\r\n    }\r\n    auto is_sm = [&](int\
-    \ i, int j) -> bool {\r\n      if (IS_MIN) return (A[i] < A[j]) || (A[i] == A[j]\
-    \ && i < j);\r\n      return (A[i] > A[j]) || (A[i] == A[j] && i < j);\r\n   \
-    \ };\r\n    vc<int> st;\r\n    FOR(i, n) {\r\n      while (!st.empty() && is_sm(i,\
-    \ st.back())) {\r\n        lch[i] = st.back();\r\n        st.pop_back();\r\n \
-    \     }\r\n      range[i].fi = (st.empty() ? 0 : st.back() + 1);\r\n      st.eb(i);\r\
-    \n    }\r\n    st.clear();\r\n    FOR_R(i, n) {\r\n      while (!st.empty() &&\
-    \ is_sm(i, st.back())) {\r\n        rch[i] = st.back();\r\n        st.pop_back();\r\
-    \n      }\r\n      range[i].se = (st.empty() ? n : st.back());\r\n      st.eb(i);\r\
-    \n    }\r\n    FOR(i, n) if (lch[i] != -1) par[lch[i]] = i;\r\n    FOR(i, n) if\
-    \ (rch[i] != -1) par[rch[i]] = i;\r\n  }\r\n\r\n  // (l, r, h)\r\n  tuple<int,\
-    \ int, T> maximum_rectangle(int i) {\r\n    auto [l, r] = range[i];\r\n    return\
-    \ {l, r, A[i]};\r\n  }\r\n\r\n  // (l, r, h)\r\n  T max_rectangle_area() {\r\n\
-    \    assert(IS_MIN);\r\n    T res = 0;\r\n    FOR(i, n) {\r\n      auto [l, r,\
-    \ h] = maximum_rectangle(i);\r\n      chmax(res, (r - l) * h);\r\n    }\r\n  \
-    \  return res;\r\n  }\r\n\r\n  ll count_subrectangle(bool baseline) {\r\n    assert(IS_MIN);\r\
-    \n    ll res = 0;\r\n    FOR(i, n) {\r\n      auto [l, r, h] = maximum_rectangle(i);\r\
-    \n      ll x = (baseline ? h : h * (h + 1) / 2);\r\n      res += x * (i - l +\
-    \ 1) * (r - i);\r\n    }\r\n    return res;\r\n  }\r\n};\r\n#line 2 \"ds/segtree/lazy_segtree.hpp\"\
+    \ int>> range;\r\n  vc<int> lch, rch, par;\r\n  int root;\r\n\r\n  CartesianTree(vc<T>&\
+    \ A) : n(len(A)), A(A) {\r\n    range.assign(n, {-1, -1});\r\n    lch.assign(n,\
+    \ -1);\r\n    rch.assign(n, -1);\r\n    par.assign(n, -1);\r\n    if (n == 1)\
+    \ {\r\n      range[0] = {0, 1};\r\n      root = 0;\r\n      return;\r\n    }\r\
+    \n    auto is_sm = [&](int i, int j) -> bool {\r\n      if (IS_MIN) return (A[i]\
+    \ < A[j]) || (A[i] == A[j] && i < j);\r\n      return (A[i] > A[j]) || (A[i] ==\
+    \ A[j] && i < j);\r\n    };\r\n    vc<int> st;\r\n    FOR(i, n) {\r\n      while\
+    \ (!st.empty() && is_sm(i, st.back())) {\r\n        lch[i] = st.back();\r\n  \
+    \      st.pop_back();\r\n      }\r\n      range[i].fi = (st.empty() ? 0 : st.back()\
+    \ + 1);\r\n      st.eb(i);\r\n    }\r\n    st.clear();\r\n    FOR_R(i, n) {\r\n\
+    \      while (!st.empty() && is_sm(i, st.back())) {\r\n        rch[i] = st.back();\r\
+    \n        st.pop_back();\r\n      }\r\n      range[i].se = (st.empty() ? n : st.back());\r\
+    \n      st.eb(i);\r\n    }\r\n    FOR(i, n) if (lch[i] != -1) par[lch[i]] = i;\r\
+    \n    FOR(i, n) if (rch[i] != -1) par[rch[i]] = i;\r\n    FOR(i, n) if (par[i]\
+    \ == -1) root = i;\r\n  }\r\n\r\n  // (l, r, h)\r\n  tuple<int, int, T> maximum_rectangle(int\
+    \ i) {\r\n    auto [l, r] = range[i];\r\n    return {l, r, A[i]};\r\n  }\r\n\r\
+    \n  // (l, r, h)\r\n  T max_rectangle_area() {\r\n    assert(IS_MIN);\r\n    T\
+    \ res = 0;\r\n    FOR(i, n) {\r\n      auto [l, r, h] = maximum_rectangle(i);\r\
+    \n      chmax(res, (r - l) * h);\r\n    }\r\n    return res;\r\n  }\r\n\r\n  ll\
+    \ count_subrectangle(bool baseline) {\r\n    assert(IS_MIN);\r\n    ll res = 0;\r\
+    \n    FOR(i, n) {\r\n      auto [l, r, h] = maximum_rectangle(i);\r\n      ll\
+    \ x = (baseline ? h : h * (h + 1) / 2);\r\n      res += x * (i - l + 1) * (r -\
+    \ i);\r\n    }\r\n    return res;\r\n  }\r\n};\r\n#line 2 \"ds/segtree/lazy_segtree.hpp\"\
     \n\ntemplate <typename ActedMonoid>\nstruct Lazy_SegTree {\n  using AM = ActedMonoid;\n\
     \  using MX = typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using\
     \ X = typename MX::value_type;\n  using A = typename MA::value_type;\n  int n,\
@@ -403,8 +404,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc234g.test.cpp
   requiredBy: []
-  timestamp: '2023-03-12 10:53:54+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-04-14 22:08:47+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc234g.test.cpp
 layout: document
