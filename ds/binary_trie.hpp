@@ -26,11 +26,12 @@ struct Binary_Trie {
     return add_rec(root, LOG, val, cnt);
   }
 
-  vc<pair<UINT, T>> get_all(np root) {
-    vc<pair<UINT, T>> res;
+  // f(val, cnt)
+  template <typename F>
+  enumerate(np root, F f) {
     auto dfs = [&](auto &dfs, np root, UINT val, int ht) -> void {
       if (ht == 0) {
-        res.eb(val, root->cnt);
+        f(val, root->cnt);
         return;
       }
       np c = root->l;
