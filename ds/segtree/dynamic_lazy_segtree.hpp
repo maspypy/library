@@ -93,13 +93,13 @@ struct Dynamic_Lazy_SegTree {
     return min_left_rec(root, check, L0, R0, R, x);
   }
 
-  vc<X> get_all(np root) {
-    vc<X> res;
-    res.reserve(R0 - L0);
+  // f(idx, val)
+  template <typename F>
+  void enumerate(np root, F f) {
     auto dfs = [&](auto &dfs, np c, ll l, ll r, A a) -> void {
-      if (!c) c = new_node(l, r);
+      if (!c) return;
       if (r - l == 1) {
-        res.eb(AM::act(c->x, a, 1));
+        f(l, AM::act(c->x, a, 1));
         return;
       }
       ll m = (l + r) / 2;
@@ -108,7 +108,6 @@ struct Dynamic_Lazy_SegTree {
       dfs(dfs, c->r, m, r, a);
     };
     dfs(dfs, root, L0, R0, MA::unit());
-    return res;
   }
 
   void reset() { pid = 0; }

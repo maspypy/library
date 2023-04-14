@@ -82,14 +82,14 @@ struct Dynamic_SegTree {
     return min_left_rec(root, check, L0, R0, R, x);
   }
 
-  vc<pair<ll, X>> get_all(np root) {
-    assert(root);
-    vc<X> res;
-    res.reserve(R0 - L0);
+  // (idx, val)
+  template <typename F>
+  void enumerate(np root, F f) {
+    if (!root) return;
     auto dfs = [&](auto &dfs, np c, ll l, ll r) -> void {
       if (!c) return;
       if (r - l == 1) {
-        res.eb(l, c->x);
+        f(l, c->x);
         return;
       }
       ll m = (l + r) / 2;
@@ -97,7 +97,7 @@ struct Dynamic_SegTree {
       dfs(dfs, c->r, m, r);
     };
     dfs(dfs, root, L0, R0);
-    return res;
+    return;
   }
 
   void reset() { pid = 0; }

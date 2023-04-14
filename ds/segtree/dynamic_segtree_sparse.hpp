@@ -3,7 +3,6 @@
 // 常にほとんどの要素が unit であることが保証されるような動的セグ木
 // したがって、default_prod の類は持たせられず、acted monoid も一般には扱えない
 // 永続化しない場合のノード数を O(N) に抑えることができるのが利点
-// 密なものを永続化するときはかえって遅くなる可能性がある
 template <typename Monoid, bool PERSISTENT, int NODES>
 struct Dynamic_SegTree_Sparse {
   using MX = Monoid;
