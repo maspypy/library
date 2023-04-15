@@ -238,6 +238,7 @@
 "test/mytest/all_but_one_products.test.cpp": "2023-02-24 07:14:18 +0900",
 "test/mytest/all_inverse.test.cpp": "2023-03-12 10:53:54 +0900",
 "test/mytest/bell.test.cpp": "2023-03-12 10:53:54 +0900",
+"test/mytest/binary_trie.test.cpp": "2023-04-15 20:38:04 +0900",
 "test/mytest/binom.test.cpp": "2023-03-12 10:53:54 +0900",
 "test/mytest/cf702_F.test.cpp": "2023-02-24 07:14:18 +0900",
 "test/mytest/cf702_F_splay.test.cpp": "2023-03-02 23:02:18 +0900",
