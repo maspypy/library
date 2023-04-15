@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/vs_to_es.hpp
     title: graph/vs_to_es.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc157a.test.cpp
     title: test_atcoder/arc157a.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -116,17 +116,18 @@ data:
     \ e: G.edges) {\r\n      if (G.is_directed()) {\r\n        deg[e.frm]++, deg[e.to]--;\r\
     \n      } else {\r\n        deg[e.frm]++, deg[e.to]++;\r\n      }\r\n    }\r\n\
     \    if (G.is_directed()) {\r\n      s = max_element(all(deg)) - deg.begin();\r\
-    \n      if (deg[s] == 0) s = G.edges[0].frm;\r\n    } else {\r\n      s = [&]()\
-    \ -> int {\r\n        FOR(v, N) if (deg[v] & 1) return v;\r\n        return G.edges[0].frm;\r\
-    \n      }();\r\n    }\r\n  }\r\n\r\n  if (M == 0) return {{s}, {}};\r\n  vc<int>\
-    \ D(N), its(N), eu(M), vs, st = {s};\r\n  FOR(v, N) its[v] = G.indptr[v];\r\n\
-    \  ++D[s];\r\n  while (!st.empty()) {\r\n    int x = st.back(), y, e, &it = its[x],\
-    \ end = G.indptr[x + 1];\r\n    if (it == end) {\r\n      vs.eb(x);\r\n      st.pop_back();\r\
-    \n      continue;\r\n    }\r\n    auto& ee = G.csr_edges[it++];\r\n    y = ee.to,\
-    \ e = ee.id;\r\n    if (!eu[e]) {\r\n      D[x]--, D[y]++;\r\n      eu[e] = 1;\r\
-    \n      st.eb(y);\r\n    }\r\n  }\r\n  for (auto&& x: D)\r\n    if (x < 0) return\
-    \ {{}, {}};\r\n  if (len(vs) != M + 1) return {{}, {}};\r\n  reverse(all(vs));\r\
-    \n  auto es = vs_to_es(G, vs, false);\r\n  return {vs, es};\r\n}\r\n"
+    \n      if (deg[s] == 0) s = (M == 0 ? 0 : G.edges[0].frm);\r\n    } else {\r\n\
+    \      s = [&]() -> int {\r\n        FOR(v, N) if (deg[v] & 1) return v;\r\n \
+    \       return (M == 0 ? 0 : G.edges[0].frm);\r\n      }();\r\n    }\r\n  }\r\n\
+    \r\n  if (M == 0) return {{s}, {}};\r\n  vc<int> D(N), its(N), eu(M), vs, st =\
+    \ {s};\r\n  FOR(v, N) its[v] = G.indptr[v];\r\n  ++D[s];\r\n  while (!st.empty())\
+    \ {\r\n    int x = st.back(), y, e, &it = its[x], end = G.indptr[x + 1];\r\n \
+    \   if (it == end) {\r\n      vs.eb(x);\r\n      st.pop_back();\r\n      continue;\r\
+    \n    }\r\n    auto& ee = G.csr_edges[it++];\r\n    y = ee.to, e = ee.id;\r\n\
+    \    if (!eu[e]) {\r\n      D[x]--, D[y]++;\r\n      eu[e] = 1;\r\n      st.eb(y);\r\
+    \n    }\r\n  }\r\n  for (auto&& x: D)\r\n    if (x < 0) return {{}, {}};\r\n \
+    \ if (len(vs) != M + 1) return {{}, {}};\r\n  reverse(all(vs));\r\n  auto es =\
+    \ vs_to_es(G, vs, false);\r\n  return {vs, es};\r\n}\r\n"
   code: "#include \"graph/base.hpp\"\r\n#include \"graph/vs_to_es.hpp\"\r\n\r\n//\
     \ (vs, es) or empty\r\ntemplate <typename GT>\r\npair<vc<int>, vc<int>> euler_walk(GT&\
     \ G, int s = -1) {\r\n  const int N = G.N, M = G.M;\r\n  assert(G.is_prepared());\r\
@@ -134,17 +135,18 @@ data:
     \ e: G.edges) {\r\n      if (G.is_directed()) {\r\n        deg[e.frm]++, deg[e.to]--;\r\
     \n      } else {\r\n        deg[e.frm]++, deg[e.to]++;\r\n      }\r\n    }\r\n\
     \    if (G.is_directed()) {\r\n      s = max_element(all(deg)) - deg.begin();\r\
-    \n      if (deg[s] == 0) s = G.edges[0].frm;\r\n    } else {\r\n      s = [&]()\
-    \ -> int {\r\n        FOR(v, N) if (deg[v] & 1) return v;\r\n        return G.edges[0].frm;\r\
-    \n      }();\r\n    }\r\n  }\r\n\r\n  if (M == 0) return {{s}, {}};\r\n  vc<int>\
-    \ D(N), its(N), eu(M), vs, st = {s};\r\n  FOR(v, N) its[v] = G.indptr[v];\r\n\
-    \  ++D[s];\r\n  while (!st.empty()) {\r\n    int x = st.back(), y, e, &it = its[x],\
-    \ end = G.indptr[x + 1];\r\n    if (it == end) {\r\n      vs.eb(x);\r\n      st.pop_back();\r\
-    \n      continue;\r\n    }\r\n    auto& ee = G.csr_edges[it++];\r\n    y = ee.to,\
-    \ e = ee.id;\r\n    if (!eu[e]) {\r\n      D[x]--, D[y]++;\r\n      eu[e] = 1;\r\
-    \n      st.eb(y);\r\n    }\r\n  }\r\n  for (auto&& x: D)\r\n    if (x < 0) return\
-    \ {{}, {}};\r\n  if (len(vs) != M + 1) return {{}, {}};\r\n  reverse(all(vs));\r\
-    \n  auto es = vs_to_es(G, vs, false);\r\n  return {vs, es};\r\n}\r\n"
+    \n      if (deg[s] == 0) s = (M == 0 ? 0 : G.edges[0].frm);\r\n    } else {\r\n\
+    \      s = [&]() -> int {\r\n        FOR(v, N) if (deg[v] & 1) return v;\r\n \
+    \       return (M == 0 ? 0 : G.edges[0].frm);\r\n      }();\r\n    }\r\n  }\r\n\
+    \r\n  if (M == 0) return {{s}, {}};\r\n  vc<int> D(N), its(N), eu(M), vs, st =\
+    \ {s};\r\n  FOR(v, N) its[v] = G.indptr[v];\r\n  ++D[s];\r\n  while (!st.empty())\
+    \ {\r\n    int x = st.back(), y, e, &it = its[x], end = G.indptr[x + 1];\r\n \
+    \   if (it == end) {\r\n      vs.eb(x);\r\n      st.pop_back();\r\n      continue;\r\
+    \n    }\r\n    auto& ee = G.csr_edges[it++];\r\n    y = ee.to, e = ee.id;\r\n\
+    \    if (!eu[e]) {\r\n      D[x]--, D[y]++;\r\n      eu[e] = 1;\r\n      st.eb(y);\r\
+    \n    }\r\n  }\r\n  for (auto&& x: D)\r\n    if (x < 0) return {{}, {}};\r\n \
+    \ if (len(vs) != M + 1) return {{}, {}};\r\n  reverse(all(vs));\r\n  auto es =\
+    \ vs_to_es(G, vs, false);\r\n  return {vs, es};\r\n}\r\n"
   dependsOn:
   - graph/base.hpp
   - graph/vs_to_es.hpp
@@ -153,8 +155,8 @@ data:
   isVerificationFile: false
   path: graph/eulerwalk.hpp
   requiredBy: []
-  timestamp: '2023-04-10 18:23:48+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-04-16 01:00:18+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/arc157a.test.cpp
 documentation_of: graph/eulerwalk.hpp
