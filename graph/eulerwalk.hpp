@@ -19,11 +19,11 @@ pair<vc<int>, vc<int>> euler_walk(GT& G, int s = -1) {
     }
     if (G.is_directed()) {
       s = max_element(all(deg)) - deg.begin();
-      if (deg[s] == 0) s = G.edges[0].frm;
+      if (deg[s] == 0) s = (M == 0 ? 0 : G.edges[0].frm);
     } else {
       s = [&]() -> int {
         FOR(v, N) if (deg[v] & 1) return v;
-        return G.edges[0].frm;
+        return (M == 0 ? 0 : G.edges[0].frm);
       }();
     }
   }
