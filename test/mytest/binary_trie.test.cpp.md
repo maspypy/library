@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/binary_trie.hpp
     title: ds/binary_trie.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -276,9 +276,9 @@ data:
     \    FOR(1000) {\n      int t = RNG(0, 5);\n      if (t == 0) { // add\n     \
     \   int x = RNG(0, 1 << LOG);\n        A.eb(x);\n        root = X.add(root, x);\n\
     \      }\n      if (t == 1) { // get all\n        sort(all(A));\n        vc<int>\
-    \ B;\n        for (auto&& [k, cnt]: X.get_all(root)) { FOR(cnt) B.eb(k); }\n \
-    \       assert(A == B);\n      }\n      if (t == 2 && len(A)) { // erase\n   \
-    \     int k = RNG(len(A));\n        int x = A[k];\n        swap(A[k], A.back());\n\
+    \ B;\n        X.enumerate(root, [&](int k, int cnt) -> void { FOR(cnt) B.eb(k);\
+    \ });\n        assert(A == B);\n      }\n      if (t == 2 && len(A)) { // erase\n\
+    \        int k = RNG(len(A));\n        int x = A[k];\n        swap(A[k], A.back());\n\
     \        A.pop_back();\n        X.add(root, x, -1);\n      }\n      if (t == 3\
     \ && len(A)) { // kth\n        int k = RNG(len(A));\n        int xor_val = RNG(0,\
     \ 1 << LOG);\n        vc<int> B;\n        for (auto&& x: A) B.eb(x ^ xor_val);\n\
@@ -297,9 +297,9 @@ data:
     \    FOR(1000) {\n      int t = RNG(0, 5);\n      if (t == 0) { // add\n     \
     \   int x = RNG(0, 1 << LOG);\n        A.eb(x);\n        root = X.add(root, x);\n\
     \      }\n      if (t == 1) { // get all\n        sort(all(A));\n        vc<int>\
-    \ B;\n        for (auto&& [k, cnt]: X.get_all(root)) { FOR(cnt) B.eb(k); }\n \
-    \       assert(A == B);\n      }\n      if (t == 2 && len(A)) { // erase\n   \
-    \     int k = RNG(len(A));\n        int x = A[k];\n        swap(A[k], A.back());\n\
+    \ B;\n        X.enumerate(root, [&](int k, int cnt) -> void { FOR(cnt) B.eb(k);\
+    \ });\n        assert(A == B);\n      }\n      if (t == 2 && len(A)) { // erase\n\
+    \        int k = RNG(len(A));\n        int x = A[k];\n        swap(A[k], A.back());\n\
     \        A.pop_back();\n        X.add(root, x, -1);\n      }\n      if (t == 3\
     \ && len(A)) { // kth\n        int k = RNG(len(A));\n        int xor_val = RNG(0,\
     \ 1 << LOG);\n        vc<int> B;\n        for (auto&& x: A) B.eb(x ^ xor_val);\n\
@@ -319,8 +319,8 @@ data:
   isVerificationFile: true
   path: test/mytest/binary_trie.test.cpp
   requiredBy: []
-  timestamp: '2023-04-15 19:50:30+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-04-15 20:38:04+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/binary_trie.test.cpp
 layout: document
