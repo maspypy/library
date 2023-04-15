@@ -22,7 +22,7 @@ void test() {
       if (t == 1) { // get all
         sort(all(A));
         vc<int> B;
-        for (auto&& [k, cnt]: X.get_all(root)) { FOR(cnt) B.eb(k); }
+        X.enumerate(root, [&](int k, int cnt) -> void { FOR(cnt) B.eb(k); });
         assert(A == B);
       }
       if (t == 2 && len(A)) { // erase
