@@ -28,7 +28,7 @@ struct Binary_Trie {
 
   // f(val, cnt)
   template <typename F>
-  enumerate(np root, F f) {
+  void enumerate(np root, F f) {
     auto dfs = [&](auto &dfs, np root, UINT val, int ht) -> void {
       if (ht == 0) {
         f(val, root->cnt);
@@ -40,7 +40,6 @@ struct Binary_Trie {
       if (c) { dfs(dfs, c, val << (c->width) | (c->val), ht - (c->width)); }
     };
     if (root) dfs(dfs, root, 0, LOG);
-    return res;
   }
 
   // xor_val したあとの値で昇順 k 番目
