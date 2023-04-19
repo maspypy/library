@@ -6,7 +6,8 @@ struct Mo {
     int N = 1;
     for (auto &&[l, r]: LR) chmax(N, l), chmax(N, r);
     int Q = len(LR);
-    int bs = N / min<int>(N, sqrt(Q));
+    if (Q == 0) return {};
+    int bs = sqrt(3) * N / sqrt(2 * Q);
     vc<int> I(Q);
     iota(all(I), 0);
     sort(all(I), [&](int a, int b) {
