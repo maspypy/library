@@ -8,6 +8,7 @@ struct Mo {
     int Q = len(LR);
     if (Q == 0) return {};
     int bs = sqrt(3) * N / sqrt(2 * Q);
+    chmax(bs, 1);
     vc<int> I(Q);
     iota(all(I), 0);
     sort(all(I), [&](int a, int b) {
