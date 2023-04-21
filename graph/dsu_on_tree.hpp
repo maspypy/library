@@ -6,7 +6,9 @@
 // データ構造によっては、履歴を使って高速に reset する。
 template <typename TREE, typename F1, typename F2, typename F3>
 void DSU_on_Tree(TREE& tree, F1& add, F2& query, F3& reset) {
-  auto dfs = [&](auto& dfs, int v) -> void {
+  int N = tree.N;
+  FOR_R(i, N) {
+    int v = tree.V[i];
     int heavy = -1;
     // solve light edge
     for (auto&& e: (*(tree.G_ptr))[v]) {
@@ -30,8 +32,5 @@ void DSU_on_Tree(TREE& tree, F1& add, F2& query, F3& reset) {
     query(v);
 
     if (tree.head[v] == v) reset();
-  };
-
-  int root = tree.V[0];
-  dfs(dfs, root);
+  }
 }
