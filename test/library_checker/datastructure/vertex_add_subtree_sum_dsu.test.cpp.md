@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
@@ -343,38 +343,38 @@ data:
     \u623B\u3059\u3002\n// \u30C7\u30FC\u30BF\u69CB\u9020\u306B\u3088\u3063\u3066\u306F\
     \u3001\u5C65\u6B74\u3092\u4F7F\u3063\u3066\u9AD8\u901F\u306B reset \u3059\u308B\
     \u3002\ntemplate <typename TREE, typename F1, typename F2, typename F3>\nvoid\
-    \ DSU_on_Tree(TREE& tree, F1& add, F2& query, F3& reset) {\n  auto dfs = [&](auto&\
-    \ dfs, int v) -> void {\n    int heavy = -1;\n    // solve light edge\n    for\
-    \ (auto&& e: (*(tree.G_ptr))[v]) {\n      if (e.to == tree.parent[v]) continue;\n\
-    \      if (tree.head[e.to] == e.to) {\n        dfs(dfs, e.to);\n      } else {\n\
-    \        heavy = e.to;\n      }\n    }\n    // solve heavy edge (keep subtree\
-    \ data)\n    if (heavy != -1) { dfs(dfs, heavy); }\n\n    // collect data in light\
-    \ subtree\n    for (auto&& e: (*tree.G_ptr)[v]) {\n      if (e.to == tree.parent[v])\
-    \ continue;\n      if (e.to == heavy) continue;\n      FOR(idx, tree.LID[e.to],\
-    \ tree.RID[e.to]) { add(tree.V[idx]); }\n    }\n    add(v);\n    query(v);\n\n\
-    \    if (tree.head[v] == v) reset();\n  };\n\n  int root = tree.V[0];\n  dfs(dfs,\
-    \ root);\n}\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
-    \ Monoid_Add {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x,\
-    \ const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\
-    \n\ntemplate <typename Monoid>\nstruct FenwickTree {\n  using G = Monoid;\n  using\
-    \ E = typename G::value_type;\n  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree()\
-    \ {}\n  FenwickTree(int n) { build(n); }\n  template <typename F>\n  FenwickTree(int\
-    \ n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const vc<E>& v) { build(v);\
-    \ }\n\n  void build(int m) {\n    n = m;\n    dat.assign(m, G::unit());\n    total\
-    \ = G::unit();\n  }\n  void build(const vc<E>& v) {\n    build(len(v), [&](int\
-    \ i) -> E { return v[i]; });\n  }\n  template <typename F>\n  void build(int m,\
-    \ F f) {\n    n = m;\n    dat.clear();\n    dat.reserve(n);\n    total = G::unit();\n\
-    \    FOR(i, n) { dat.eb(f(i)); }\n    for (int i = 1; i <= n; ++i) {\n      int\
-    \ j = i + (i & -i);\n      if (j <= n) dat[j - 1] = G::op(dat[i - 1], dat[j -\
-    \ 1]);\n    }\n    total = prefix_sum(m);\n  }\n\n  E prod_all() { return total;\
-    \ }\n  E sum_all() { return total; }\n  E sum(int k) { return prefix_sum(k); }\n\
-    \  E prod(int k) { return prefix_prod(k); }\n  E prefix_sum(int k) { return prefix_prod(k);\
-    \ }\n  E prefix_prod(int k) {\n    chmin(k, n);\n    E ret = G::unit();\n    for\
-    \ (; k > 0; k -= k & -k) ret = G::op(ret, dat[k - 1]);\n    return ret;\n  }\n\
-    \  E sum(int L, int R) { return prod(L, R); }\n  E prod(int L, int R) {\n    chmax(L,\
+    \ DSU_on_Tree(TREE& tree, F1& add, F2& query, F3& reset) {\n  int N = tree.N;\n\
+    \  FOR_R(i, N) {\n    int v = tree.V[i];\n    int heavy = -1;\n    // solve light\
+    \ edge\n    for (auto&& e: (*(tree.G_ptr))[v]) {\n      if (e.to == tree.parent[v])\
+    \ continue;\n      if (tree.head[e.to] == e.to) {\n        dfs(dfs, e.to);\n \
+    \     } else {\n        heavy = e.to;\n      }\n    }\n    // solve heavy edge\
+    \ (keep subtree data)\n    if (heavy != -1) { dfs(dfs, heavy); }\n\n    // collect\
+    \ data in light subtree\n    for (auto&& e: (*tree.G_ptr)[v]) {\n      if (e.to\
+    \ == tree.parent[v]) continue;\n      if (e.to == heavy) continue;\n      FOR(idx,\
+    \ tree.LID[e.to], tree.RID[e.to]) { add(tree.V[idx]); }\n    }\n    add(v);\n\
+    \    query(v);\n\n    if (tree.head[v] == v) reset();\n  }\n}\n#line 2 \"alg/monoid/add.hpp\"\
+    \n\r\ntemplate <typename X>\r\nstruct Monoid_Add {\r\n  using value_type = X;\r\
+    \n  static constexpr X op(const X &x, const X &y) noexcept { return x + y; }\r\
+    \n  static constexpr X inverse(const X &x) noexcept { return -x; }\r\n  static\
+    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\n  static\
+    \ constexpr X unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\
+    \n};\r\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\n\ntemplate <typename Monoid>\n\
+    struct FenwickTree {\n  using G = Monoid;\n  using E = typename G::value_type;\n\
+    \  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree() {}\n  FenwickTree(int\
+    \ n) { build(n); }\n  template <typename F>\n  FenwickTree(int n, F f) {\n   \
+    \ build(n, f);\n  }\n  FenwickTree(const vc<E>& v) { build(v); }\n\n  void build(int\
+    \ m) {\n    n = m;\n    dat.assign(m, G::unit());\n    total = G::unit();\n  }\n\
+    \  void build(const vc<E>& v) {\n    build(len(v), [&](int i) -> E { return v[i];\
+    \ });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n = m;\n\
+    \    dat.clear();\n    dat.reserve(n);\n    total = G::unit();\n    FOR(i, n)\
+    \ { dat.eb(f(i)); }\n    for (int i = 1; i <= n; ++i) {\n      int j = i + (i\
+    \ & -i);\n      if (j <= n) dat[j - 1] = G::op(dat[i - 1], dat[j - 1]);\n    }\n\
+    \    total = prefix_sum(m);\n  }\n\n  E prod_all() { return total; }\n  E sum_all()\
+    \ { return total; }\n  E sum(int k) { return prefix_sum(k); }\n  E prod(int k)\
+    \ { return prefix_prod(k); }\n  E prefix_sum(int k) { return prefix_prod(k); }\n\
+    \  E prefix_prod(int k) {\n    chmin(k, n);\n    E ret = G::unit();\n    for (;\
+    \ k > 0; k -= k & -k) ret = G::op(ret, dat[k - 1]);\n    return ret;\n  }\n  E\
+    \ sum(int L, int R) { return prod(L, R); }\n  E prod(int L, int R) {\n    chmax(L,\
     \ 0), chmin(R, n);\n    if (L == 0) return prefix_prod(R);\n    assert(0 <= L\
     \ && L <= R && R <= n);\n    E pos = G::unit(), neg = G::unit();\n    while (L\
     \ < R) { pos = G::op(pos, dat[R - 1]), R -= R & -R; }\n    while (R < L) { neg\
@@ -430,8 +430,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   requiredBy: []
-  timestamp: '2023-04-09 13:24:35+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-04-21 12:42:44+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
 layout: document

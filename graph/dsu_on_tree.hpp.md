@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/2995.test.cpp
     title: test/aoj/2995.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate\
@@ -149,17 +149,16 @@ data:
     \u623B\u3059\u3002\n// \u30C7\u30FC\u30BF\u69CB\u9020\u306B\u3088\u3063\u3066\u306F\
     \u3001\u5C65\u6B74\u3092\u4F7F\u3063\u3066\u9AD8\u901F\u306B reset \u3059\u308B\
     \u3002\ntemplate <typename TREE, typename F1, typename F2, typename F3>\nvoid\
-    \ DSU_on_Tree(TREE& tree, F1& add, F2& query, F3& reset) {\n  auto dfs = [&](auto&\
-    \ dfs, int v) -> void {\n    int heavy = -1;\n    // solve light edge\n    for\
-    \ (auto&& e: (*(tree.G_ptr))[v]) {\n      if (e.to == tree.parent[v]) continue;\n\
-    \      if (tree.head[e.to] == e.to) {\n        dfs(dfs, e.to);\n      } else {\n\
-    \        heavy = e.to;\n      }\n    }\n    // solve heavy edge (keep subtree\
-    \ data)\n    if (heavy != -1) { dfs(dfs, heavy); }\n\n    // collect data in light\
-    \ subtree\n    for (auto&& e: (*tree.G_ptr)[v]) {\n      if (e.to == tree.parent[v])\
-    \ continue;\n      if (e.to == heavy) continue;\n      FOR(idx, tree.LID[e.to],\
-    \ tree.RID[e.to]) { add(tree.V[idx]); }\n    }\n    add(v);\n    query(v);\n\n\
-    \    if (tree.head[v] == v) reset();\n  };\n\n  int root = tree.V[0];\n  dfs(dfs,\
-    \ root);\n}\n"
+    \ DSU_on_Tree(TREE& tree, F1& add, F2& query, F3& reset) {\n  int N = tree.N;\n\
+    \  FOR_R(i, N) {\n    int v = tree.V[i];\n    int heavy = -1;\n    // solve light\
+    \ edge\n    for (auto&& e: (*(tree.G_ptr))[v]) {\n      if (e.to == tree.parent[v])\
+    \ continue;\n      if (tree.head[e.to] == e.to) {\n        dfs(dfs, e.to);\n \
+    \     } else {\n        heavy = e.to;\n      }\n    }\n    // solve heavy edge\
+    \ (keep subtree data)\n    if (heavy != -1) { dfs(dfs, heavy); }\n\n    // collect\
+    \ data in light subtree\n    for (auto&& e: (*tree.G_ptr)[v]) {\n      if (e.to\
+    \ == tree.parent[v]) continue;\n      if (e.to == heavy) continue;\n      FOR(idx,\
+    \ tree.LID[e.to], tree.RID[e.to]) { add(tree.V[idx]); }\n    }\n    add(v);\n\
+    \    query(v);\n\n    if (tree.head[v] == v) reset();\n  }\n}\n"
   code: "#include \"graph/tree.hpp\"\n\n// add(v) : \u9802\u70B9 v \u306E\u30C7\u30FC\
     \u30BF\u3092\u8FFD\u52A0\u3059\u308B\n// query(v) : \u9802\u70B9 v \u306B\u304A\
     \u3051\u308B\u30AF\u30A8\u30EA\u306B\u7B54\u3048\u308B\n// reset() : \u30C7\u30FC\
@@ -167,24 +166,24 @@ data:
     \u69CB\u9020\u306B\u3088\u3063\u3066\u306F\u3001\u5C65\u6B74\u3092\u4F7F\u3063\
     \u3066\u9AD8\u901F\u306B reset \u3059\u308B\u3002\ntemplate <typename TREE, typename\
     \ F1, typename F2, typename F3>\nvoid DSU_on_Tree(TREE& tree, F1& add, F2& query,\
-    \ F3& reset) {\n  auto dfs = [&](auto& dfs, int v) -> void {\n    int heavy =\
-    \ -1;\n    // solve light edge\n    for (auto&& e: (*(tree.G_ptr))[v]) {\n   \
-    \   if (e.to == tree.parent[v]) continue;\n      if (tree.head[e.to] == e.to)\
-    \ {\n        dfs(dfs, e.to);\n      } else {\n        heavy = e.to;\n      }\n\
-    \    }\n    // solve heavy edge (keep subtree data)\n    if (heavy != -1) { dfs(dfs,\
-    \ heavy); }\n\n    // collect data in light subtree\n    for (auto&& e: (*tree.G_ptr)[v])\
-    \ {\n      if (e.to == tree.parent[v]) continue;\n      if (e.to == heavy) continue;\n\
-    \      FOR(idx, tree.LID[e.to], tree.RID[e.to]) { add(tree.V[idx]); }\n    }\n\
-    \    add(v);\n    query(v);\n\n    if (tree.head[v] == v) reset();\n  };\n\n \
-    \ int root = tree.V[0];\n  dfs(dfs, root);\n}\n"
+    \ F3& reset) {\n  int N = tree.N;\n  FOR_R(i, N) {\n    int v = tree.V[i];\n \
+    \   int heavy = -1;\n    // solve light edge\n    for (auto&& e: (*(tree.G_ptr))[v])\
+    \ {\n      if (e.to == tree.parent[v]) continue;\n      if (tree.head[e.to] ==\
+    \ e.to) {\n        dfs(dfs, e.to);\n      } else {\n        heavy = e.to;\n  \
+    \    }\n    }\n    // solve heavy edge (keep subtree data)\n    if (heavy != -1)\
+    \ { dfs(dfs, heavy); }\n\n    // collect data in light subtree\n    for (auto&&\
+    \ e: (*tree.G_ptr)[v]) {\n      if (e.to == tree.parent[v]) continue;\n      if\
+    \ (e.to == heavy) continue;\n      FOR(idx, tree.LID[e.to], tree.RID[e.to]) {\
+    \ add(tree.V[idx]); }\n    }\n    add(v);\n    query(v);\n\n    if (tree.head[v]\
+    \ == v) reset();\n  }\n}\n"
   dependsOn:
   - graph/tree.hpp
   - graph/base.hpp
   isVerificationFile: false
   path: graph/dsu_on_tree.hpp
   requiredBy: []
-  timestamp: '2023-04-09 13:24:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-04-21 12:42:44+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - test/aoj/2995.test.cpp
