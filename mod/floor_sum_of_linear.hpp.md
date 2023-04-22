@@ -27,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2066.test.cpp
     title: test/yukicoder/2066.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2280.test.cpp
+    title: test/yukicoder/2280.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -61,6 +64,7 @@ data:
   - test/library_checker/math/sum_of_floor_of_linear.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
+  - test/yukicoder/2280.test.cpp
   - test/yukicoder/1201.test.cpp
   - test/yukicoder/2066.test.cpp
 documentation_of: mod/floor_sum_of_linear.hpp

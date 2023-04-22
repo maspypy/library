@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
@@ -344,15 +344,11 @@ data:
     \u3001\u5C65\u6B74\u3092\u4F7F\u3063\u3066\u9AD8\u901F\u306B reset \u3059\u308B\
     \u3002\ntemplate <typename TREE, typename F1, typename F2, typename F3>\nvoid\
     \ DSU_on_Tree(TREE& tree, F1& add, F2& query, F3& reset) {\n  int N = tree.N;\n\
-    \  FOR_R(i, N) {\n    int v = tree.V[i];\n    int heavy = -1;\n    // solve light\
-    \ edge\n    for (auto&& e: (*(tree.G_ptr))[v]) {\n      if (e.to == tree.parent[v])\
-    \ continue;\n      if (tree.head[e.to] == e.to) {\n        dfs(dfs, e.to);\n \
-    \     } else {\n        heavy = e.to;\n      }\n    }\n    // solve heavy edge\
-    \ (keep subtree data)\n    if (heavy != -1) { dfs(dfs, heavy); }\n\n    // collect\
-    \ data in light subtree\n    for (auto&& e: (*tree.G_ptr)[v]) {\n      if (e.to\
-    \ == tree.parent[v]) continue;\n      if (e.to == heavy) continue;\n      FOR(idx,\
-    \ tree.LID[e.to], tree.RID[e.to]) { add(tree.V[idx]); }\n    }\n    add(v);\n\
-    \    query(v);\n\n    if (tree.head[v] == v) reset();\n  }\n}\n#line 2 \"alg/monoid/add.hpp\"\
+    \  FOR_R(vid, N) {\n    int v = tree.V[vid];\n    add(v);\n    // collect data\
+    \ in light subtree\n    for (auto&& e: (*tree.G_ptr)[v]) {\n      if (e.to ==\
+    \ tree.parent[v]) continue;\n      if (tree.head[e.to] != e.to) continue;\n  \
+    \    FOR(idx, tree.LID[e.to], tree.RID[e.to]) { add(tree.V[idx]); }\n    }\n \
+    \   query(v);\n\n    if (tree.head[v] == v) reset();\n  }\n}\n#line 2 \"alg/monoid/add.hpp\"\
     \n\r\ntemplate <typename X>\r\nstruct Monoid_Add {\r\n  using value_type = X;\r\
     \n  static constexpr X op(const X &x, const X &y) noexcept { return x + y; }\r\
     \n  static constexpr X inverse(const X &x) noexcept { return -x; }\r\n  static\
@@ -430,8 +426,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   requiredBy: []
-  timestamp: '2023-04-21 12:42:44+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-04-22 11:32:48+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
 layout: document

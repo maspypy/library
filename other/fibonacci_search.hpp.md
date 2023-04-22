@@ -10,6 +10,9 @@ data:
     path: test/mytest/fibonacci_search.test.cpp
     title: test/mytest/fibonacci_search.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2276.test.cpp
+    title: test/yukicoder/2276.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/705.test.cpp
     title: test/yukicoder/705.test.cpp
   _isVerificationFailed: false
@@ -54,6 +57,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/fibonacci_search.test.cpp
+  - test/yukicoder/2276.test.cpp
   - test/yukicoder/705.test.cpp
 documentation_of: other/fibonacci_search.hpp
 layout: document
