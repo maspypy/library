@@ -1,4 +1,3 @@
-#include "mod/barret.hpp"
 #pragma once
 
 template <class mint>
