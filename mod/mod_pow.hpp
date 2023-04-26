@@ -1,15 +1,15 @@
 #pragma once
-#include "mod/barret.hpp"
+#include "mod/barrett.hpp"
 
 // int
 ll mod_pow(ll a, ll n, int mod) {
-  Barret_Reduction BR(mod);
-  a = a % BR;
+  a %= mod;
+  Barrett bt(mod);
   ll p = a;
   ll v = 1;
   while (n) {
-    if (n & 1) v = v * p % BR;
-    p = p * p % BR;
+    if (n & 1) v = bt.mul(v, p);
+    p = bt.mul(p, p);
     n >>= 1;
   }
   return v;
