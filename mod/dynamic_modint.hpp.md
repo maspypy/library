@@ -29,13 +29,34 @@ data:
   - icon: ':x:'
     path: nt/four_square.hpp
     title: nt/four_square.hpp
+  - icon: ':warning:'
+    path: test/library_checker/convolution/convolution_mod_dmint.cpp
+    title: test/library_checker/convolution/convolution_mod_dmint.cpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
+    title: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/convolution/convolution_mod_setntt.test.cpp
+    title: test/library_checker/convolution/convolution_mod_setntt.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
   - icon: ':x:'
+    path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+    title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - icon: ':x:'
     path: test/library_checker/math/sqrt_mod.test.cpp
     title: test/library_checker/math/sqrt_mod.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
+    title: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
+    title: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
+    title: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
   - icon: ':x:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
@@ -269,6 +290,7 @@ data:
   requiredBy:
   - mod/mod_log.hpp
   - nt/four_square.hpp
+  - test/library_checker/convolution/convolution_mod_dmint.cpp
   timestamp: '2023-04-27 04:53:33+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -276,8 +298,14 @@ data:
   - test_atcoder/abc270_g.test.cpp
   - test/yukicoder/1339.test.cpp
   - test/yukicoder/1667.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
+  - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
+  - test/library_checker/polynomial/inv_of_fps_amint.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
+  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - test/library_checker/convolution/convolution_mod_107_amint.test.cpp
+  - test/library_checker/convolution/convolution_mod_setntt.test.cpp
   - test/mytest/four_square.test.cpp
 documentation_of: mod/dynamic_modint.hpp
 layout: document

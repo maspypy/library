@@ -42,6 +42,9 @@ data:
     path: graph/vs_to_es.hpp
     title: graph/vs_to_es.hpp
   - icon: ':x:'
+    path: linalg/det_A_plus_xB.hpp
+    title: linalg/det_A_plus_xB.hpp
+  - icon: ':x:'
     path: linalg/implicit_matrix/det.hpp
     title: linalg/implicit_matrix/det.hpp
   - icon: ':x:'
@@ -80,13 +83,19 @@ data:
   - icon: ':x:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
+  - icon: ':x:'
+    path: poly/fps_sqrt.hpp
+    title: poly/fps_sqrt.hpp
+  - icon: ':x:'
+    path: poly/multivar_convolution_cyclic.hpp
+    title: poly/multivar_convolution_cyclic.hpp
   - icon: ':heavy_check_mark:'
     path: random/hash_pair.hpp
     title: random/hash_pair.hpp
   - icon: ':question:'
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -95,12 +104,15 @@ data:
   - icon: ':x:'
     path: string/count_subseq.hpp
     title: string/count_subseq.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
   - icon: ':heavy_check_mark:'
     path: string/rollinghash_2d.hpp
     title: string/rollinghash_2d.hpp
+  - icon: ':warning:'
+    path: test/library_checker/convolution/convolution_mod_dmint.cpp
+    title: test/library_checker/convolution/convolution_mod_dmint.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_14_C.test.cpp
@@ -108,6 +120,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_5_A.test.cpp
     title: test/aoj/CGL_5_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
+    title: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/convolution/convolution_mod_setntt.test.cpp
+    title: test/library_checker/convolution/convolution_mod_setntt.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
     title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
@@ -127,6 +145,9 @@ data:
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
   - icon: ':x:'
+    path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+    title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - icon: ':x:'
     path: test/library_checker/math/primitive_root.test.cpp
     title: test/library_checker/math/primitive_root.test.cpp
   - icon: ':x:'
@@ -138,6 +159,21 @@ data:
   - icon: ':x:'
     path: test/library_checker/matrix/sparse_matrix_det.test.cpp
     title: test/library_checker/matrix/sparse_matrix_det.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
+    title: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
+    title: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
+    title: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
+    title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+    title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - icon: ':x:'
     path: test/library_checker/string/number_of_subsequences.test.cpp
     title: test/library_checker/string/number_of_subsequences.test.cpp
@@ -162,6 +198,18 @@ data:
   - icon: ':x:'
     path: test/mytest/binom.test.cpp
     title: test/mytest/binom.test.cpp
+  - icon: ':x:'
+    path: test/mytest/chirp_z.test.cpp
+    title: test/mytest/chirp_z.test.cpp
+  - icon: ':x:'
+    path: test/mytest/conv2d.test.cpp
+    title: test/mytest/conv2d.test.cpp
+  - icon: ':x:'
+    path: test/mytest/conv_leq.test.cpp
+    title: test/mytest/conv_leq.test.cpp
+  - icon: ':x:'
+    path: test/mytest/count_indep_set.test.cpp
+    title: test/mytest/count_indep_set.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_points_in_triangles.test.cpp
     title: test/mytest/count_points_in_triangles.test.cpp
@@ -177,6 +225,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/dynamic_segtree_sparse.test.cpp
     title: test/mytest/dynamic_segtree_sparse.test.cpp
+  - icon: ':x:'
+    path: test/mytest/enum_partitions.test.cpp
+    title: test/mytest/enum_partitions.test.cpp
+  - icon: ':x:'
+    path: test/mytest/factorial_998.test.cpp
+    title: test/mytest/factorial_998.test.cpp
   - icon: ':x:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
@@ -241,8 +295,32 @@ data:
     path: test/mytest/mod_sum_of_linear.test.cpp
     title: test/mytest/mod_sum_of_linear.test.cpp
   - icon: ':x:'
+    path: test/mytest/online_division.test.cpp
+    title: test/mytest/online_division.test.cpp
+  - icon: ':x:'
+    path: test/mytest/online_exp.test.cpp
+    title: test/mytest/online_exp.test.cpp
+  - icon: ':x:'
+    path: test/mytest/online_inv.test.cpp
+    title: test/mytest/online_inv.test.cpp
+  - icon: ':x:'
+    path: test/mytest/online_log.test.cpp
+    title: test/mytest/online_log.test.cpp
+  - icon: ':x:'
+    path: test/mytest/online_pow.test.cpp
+    title: test/mytest/online_pow.test.cpp
+  - icon: ':x:'
+    path: test/mytest/partial_frac.test.cpp
+    title: test/mytest/partial_frac.test.cpp
+  - icon: ':x:'
+    path: test/mytest/pascal.test.cpp
+    title: test/mytest/pascal.test.cpp
+  - icon: ':x:'
     path: test/mytest/powerquery.test.cpp
     title: test/mytest/powerquery.test.cpp
+  - icon: ':x:'
+    path: test/mytest/product_of_one_pm_xn.test.cpp
+    title: test/mytest/product_of_one_pm_xn.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_closest_pair.test.cpp
     title: test/mytest/range_closest_pair.test.cpp
@@ -286,6 +364,9 @@ data:
     path: test/mytest/segtree_xor_prod.test.cpp
     title: test/mytest/segtree_xor_prod.test.cpp
   - icon: ':x:'
+    path: test/mytest/slice_rational_fps.test.cpp
+    title: test/mytest/slice_rational_fps.test.cpp
+  - icon: ':x:'
     path: test/mytest/splay.test.cpp
     title: test/mytest/splay.test.cpp
   - icon: ':x:'
@@ -321,6 +402,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
+  - icon: ':x:'
+    path: test/mytest/vandermonde.test.cpp
+    title: test/mytest/vandermonde.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/wavelet_matrix.test.cpp
     title: test/mytest/wavelet_matrix.test.cpp
@@ -330,6 +414,12 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1080.test.cpp
+    title: test/yukicoder/1080.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1080_2.test.cpp
+    title: test/yukicoder/1080_2.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
@@ -342,6 +432,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1493.test.cpp
     title: test/yukicoder/1493.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1561.test.cpp
+    title: test/yukicoder/1561.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1634.test.cpp
     title: test/yukicoder/1634.test.cpp
@@ -360,12 +453,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1881.test.cpp
     title: test/yukicoder/1881.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1907.test.cpp
+    title: test/yukicoder/1907.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2102.test.cpp
     title: test/yukicoder/2102.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2167.test.cpp
     title: test/yukicoder/2167.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2231.test.cpp
+    title: test/yukicoder/2231.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/263.test.cpp
     title: test/yukicoder/263.test.cpp
@@ -375,6 +474,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_1.test.cpp
     title: test/yukicoder/4_1.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/541.test.cpp
+    title: test/yukicoder/541.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/578.test.cpp
+    title: test/yukicoder/578.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/579.test.cpp
+    title: test/yukicoder/579.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc151f.test.cpp
     title: test_atcoder/abc151f.test.cpp
@@ -433,6 +541,7 @@ data:
   - nt/discrete_log.hpp
   - nt/four_square.hpp
   - linalg/spmat_min_poly.hpp
+  - linalg/det_A_plus_xB.hpp
   - linalg/implicit_matrix/min_poly.hpp
   - linalg/implicit_matrix/det.hpp
   - linalg/spmat_det.hpp
@@ -449,6 +558,9 @@ data:
   - random/random_graph.hpp
   - ds/hashmap.hpp
   - ds/unionfind/parallel_unionfind.hpp
+  - test/library_checker/convolution/convolution_mod_dmint.cpp
+  - poly/multivar_convolution_cyclic.hpp
+  - poly/fps_sqrt.hpp
   timestamp: '2022-10-23 11:21:57+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -460,15 +572,23 @@ data:
   - test_atcoder/abc151f.test.cpp
   - test_atcoder/abc274_h.test.cpp
   - test/yukicoder/1493.test.cpp
+  - test/yukicoder/2231.test.cpp
   - test/yukicoder/310.test.cpp
+  - test/yukicoder/578.test.cpp
   - test/yukicoder/1397.test.cpp
   - test/yukicoder/1339.test.cpp
+  - test/yukicoder/1561.test.cpp
   - test/yukicoder/2167.test.cpp
+  - test/yukicoder/1907.test.cpp
+  - test/yukicoder/1080.test.cpp
+  - test/yukicoder/579.test.cpp
   - test/yukicoder/1025.test.cpp
   - test/yukicoder/1881.test.cpp
+  - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/1667.test.cpp
   - test/yukicoder/2102.test.cpp
   - test/yukicoder/1726.test.cpp
+  - test/yukicoder/541.test.cpp
   - test/yukicoder/1634.test.cpp
   - test/yukicoder/263.test.cpp
   - test/yukicoder/4_1.test.cpp
@@ -479,6 +599,11 @@ data:
   - test/aoj/CGL_5_A.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
+  - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
+  - test/library_checker/polynomial/inv_of_fps_amint.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - test/library_checker/string/number_of_subsequences.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
@@ -488,6 +613,9 @@ data:
   - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
+  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - test/library_checker/convolution/convolution_mod_107_amint.test.cpp
+  - test/library_checker/convolution/convolution_mod_setntt.test.cpp
   - test/library_checker/datastructure/associative_array_hashmap.test.cpp
   - test/library_checker/datastructure/set_xor_min.test.cpp
   - test/mytest/rbst_am.test.cpp
@@ -495,8 +623,14 @@ data:
   - test/mytest/matching_line_graph.test.cpp
   - test/mytest/rbst.test.cpp
   - test/mytest/minidx_add.test.cpp
+  - test/mytest/partial_frac.test.cpp
+  - test/mytest/factorial_998.test.cpp
+  - test/mytest/conv2d.test.cpp
+  - test/mytest/enum_partitions.test.cpp
   - test/mytest/dynamic_lazy_segtree.test.cpp
+  - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/max_min.test.cpp
+  - test/mytest/online_log.test.cpp
   - test/mytest/splay_am.test.cpp
   - test/mytest/tournament.test.cpp
   - test/mytest/rbst_am_2.test.cpp
@@ -505,23 +639,31 @@ data:
   - test/mytest/four_square.test.cpp
   - test/mytest/longest_common_substr.test.cpp
   - test/mytest/rbst_monoid_persistent.test.cpp
+  - test/mytest/vandermonde.test.cpp
+  - test/mytest/count_indep_set.test.cpp
   - test/mytest/tutte.test.cpp
   - test/mytest/summin_add.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
+  - test/mytest/online_exp.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/all_inverse.test.cpp
+  - test/mytest/chirp_z.test.cpp
+  - test/mytest/conv_leq.test.cpp
   - test/mytest/summax_assign.test.cpp
+  - test/mytest/online_pow.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
   - test/mytest/minplus_convex.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/is_substring.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp
+  - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/summax_add.test.cpp
   - test/mytest/rbst_monoid_2.test.cpp
   - test/mytest/manhattan_nns.test.cpp
   - test/mytest/max_max.test.cpp
   - test/mytest/splay_cm.test.cpp
+  - test/mytest/online_division.test.cpp
   - test/mytest/min_min.test.cpp
   - test/mytest/maxplus_concave.test.cpp
   - test/mytest/splay.test.cpp
@@ -549,7 +691,9 @@ data:
   - test/mytest/range_closest_pair.test.cpp
   - test/mytest/wavelet_matrix.test.cpp
   - test/mytest/min_max.test.cpp
+  - test/mytest/pascal.test.cpp
   - test/mytest/rbst_monoid.test.cpp
+  - test/mytest/online_inv.test.cpp
 documentation_of: random/base.hpp
 layout: document
 redirect_from:

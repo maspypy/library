@@ -73,6 +73,9 @@ data:
     path: test/yukicoder/1435.test.cpp
     title: test/yukicoder/1435.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1549.test.cpp
+    title: test/yukicoder/1549.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
   - icon: ':heavy_check_mark:'
@@ -194,6 +197,7 @@ data:
   - test_atcoder/abc270_f.test.cpp
   - test_atcoder/abc240ex.test.cpp
   - test/yukicoder/1435.test.cpp
+  - test/yukicoder/1549.test.cpp
   - test/yukicoder/426.test.cpp
   - test/yukicoder/1036_2.test.cpp
   - test/yukicoder/529.test.cpp

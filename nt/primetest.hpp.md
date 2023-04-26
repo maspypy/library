@@ -38,9 +38,15 @@ data:
   - icon: ':x:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
+  - icon: ':x:'
+    path: poly/multivar_convolution_cyclic.hpp
+    title: poly/multivar_convolution_cyclic.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_query.hpp
     title: seq/famous/stirling_number_query.hpp
+  - icon: ':warning:'
+    path: test/library_checker/convolution/convolution_mod_dmint.cpp
+    title: test/library_checker/convolution/convolution_mod_dmint.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_1_C.test.cpp
@@ -51,6 +57,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_1_D.test.cpp
     title: test/aoj/NTL_1_D.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
+    title: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/convolution/convolution_mod_setntt.test.cpp
+    title: test/library_checker/convolution/convolution_mod_setntt.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/chromatic_number.test.cpp
     title: test/library_checker/graph/chromatic_number.test.cpp
@@ -64,6 +76,9 @@ data:
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
   - icon: ':x:'
+    path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+    title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - icon: ':x:'
     path: test/library_checker/math/primitive_root.test.cpp
     title: test/library_checker/math/primitive_root.test.cpp
   - icon: ':x:'
@@ -75,6 +90,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_mod_p_2.test.cpp
     title: test/library_checker/math/stirling_mod_p_2.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
+    title: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
+    title: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
+    title: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
   - icon: ':x:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
@@ -201,6 +225,8 @@ data:
   - nt/factor.hpp
   - nt/four_square.hpp
   - seq/famous/stirling_number_query.hpp
+  - test/library_checker/convolution/convolution_mod_dmint.cpp
+  - poly/multivar_convolution_cyclic.hpp
   timestamp: '2023-01-09 23:28:24+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -221,6 +247,9 @@ data:
   - test/aoj/ALDS1_1_C.test.cpp
   - test/aoj/ITP1_D_D.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
+  - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
+  - test/library_checker/polynomial/inv_of_fps_amint.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/factorize.test.cpp
   - test/library_checker/math/primitive_root.test.cpp
@@ -228,6 +257,9 @@ data:
   - test/library_checker/math/sqrt_mod.test.cpp
   - test/library_checker/math/stirling_mod_p_1.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
+  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - test/library_checker/convolution/convolution_mod_107_amint.test.cpp
+  - test/library_checker/convolution/convolution_mod_setntt.test.cpp
   - test/mytest/four_square.test.cpp
 documentation_of: nt/primetest.hpp
 layout: document

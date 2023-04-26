@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: test/mytest/enum_partitions.test.cpp
+    title: test/mytest/enum_partitions.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1263.test.cpp
     title: test/yukicoder/1263.test.cpp
   - icon: ':heavy_check_mark:'
@@ -51,6 +54,7 @@ data:
   - test_atcoder/abc226f.test.cpp
   - test/yukicoder/1263.test.cpp
   - test/yukicoder/1881.test.cpp
+  - test/mytest/enum_partitions.test.cpp
 documentation_of: enumerate/partition.hpp
 layout: document
 redirect_from:

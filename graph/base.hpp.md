@@ -20,13 +20,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/block_cut.hpp
     title: graph/block_cut.hpp
   - icon: ':heavy_check_mark:'
     path: graph/bracket_graph.hpp
     title: graph/bracket_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/centroid.hpp
     title: graph/centroid.hpp
   - icon: ':heavy_check_mark:'
@@ -68,7 +68,7 @@ data:
   - icon: ':warning:'
     path: graph/find_odd_cycle.hpp
     title: graph/find_odd_cycle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/functional.hpp
     title: graph/functional.hpp
   - icon: ':heavy_check_mark:'
@@ -134,6 +134,9 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
+  - icon: ':x:'
+    path: graph/tree_all_distances.hpp
+    title: graph/tree_all_distances.hpp
   - icon: ':heavy_check_mark:'
     path: graph/tree_diameter.hpp
     title: graph/tree_diameter.hpp
@@ -161,7 +164,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/unicyclic.hpp
     title: graph/unicyclic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -285,6 +288,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/number_of_substrings2.test.cpp
     title: test/library_checker/string/number_of_substrings2.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
+    title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/lca.test.cpp
     title: test/library_checker/tree/lca.test.cpp
@@ -297,6 +303,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/QOJ5445.test.cpp
     title: test/mytest/QOJ5445.test.cpp
+  - icon: ':x:'
+    path: test/mytest/count_indep_set.test.cpp
+    title: test/mytest/count_indep_set.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/matching_line_graph.test.cpp
     title: test/mytest/matching_line_graph.test.cpp
@@ -405,6 +414,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1790.test.cpp
     title: test/yukicoder/1790.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1796.test.cpp
+    title: test/yukicoder/1796.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1813.test.cpp
     title: test/yukicoder/1813.test.cpp
@@ -420,6 +432,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1983.test.cpp
     title: test/yukicoder/1983.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2122.test.cpp
+    title: test/yukicoder/2122.test.cpp
   - icon: ':x:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
@@ -447,6 +462,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc266f.test.cpp
     title: test_atcoder/abc266f.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc269ex.test.cpp
+    title: test_atcoder/abc269ex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc270_f.test.cpp
     title: test_atcoder/abc270_f.test.cpp
@@ -459,6 +477,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc151_e.test.cpp
     title: test_atcoder/arc151_e.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/arc153f.test.cpp
+    title: test_atcoder/arc153f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc157a.test.cpp
     title: test_atcoder/arc157a.test.cpp
@@ -601,6 +622,7 @@ data:
   - graph/find_odd_cycle.hpp
   - graph/maximum_matching_of_line_graph.hpp
   - graph/steiner_tree.hpp
+  - graph/tree_all_distances.hpp
   - graph/reverse_graph.hpp
   - graph/twosat.hpp
   - graph/dag_path_cover.hpp
@@ -643,9 +665,11 @@ data:
   - test_atcoder/abc274g.test.cpp
   - test_atcoder/abc237ex.test.cpp
   - test_atcoder/abc270_f.test.cpp
+  - test_atcoder/abc269ex.test.cpp
   - test_atcoder/arc151_e.test.cpp
   - test_atcoder/abc266f.test.cpp
   - test_atcoder/arc157a.test.cpp
+  - test_atcoder/arc153f.test.cpp
   - test_atcoder/abc209e.test.cpp
   - test/yukicoder/1038.test.cpp
   - test/yukicoder/1911.test.cpp
@@ -665,6 +689,7 @@ data:
   - test/yukicoder/1451.test.cpp
   - test/yukicoder/899.test.cpp
   - test/yukicoder/1601.test.cpp
+  - test/yukicoder/2122.test.cpp
   - test/yukicoder/1069.test.cpp
   - test/yukicoder/1344.test.cpp
   - test/yukicoder/1216.test.cpp
@@ -674,6 +699,7 @@ data:
   - test/yukicoder/1254.test.cpp
   - test/yukicoder/1320.test.cpp
   - test/yukicoder/1326.test.cpp
+  - test/yukicoder/1796.test.cpp
   - test/yukicoder/1976.test.cpp
   - test/yukicoder/1211.test.cpp
   - test/yukicoder/1718.test.cpp
@@ -722,6 +748,7 @@ data:
   - test/library_checker/string/number_of_substrings2.test.cpp
   - test/library_checker/tree/lca.test.cpp
   - test/library_checker/tree/tree_diameter.test.cpp
+  - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/tree/lca_directed.test.cpp
   - test/library_checker/math/twosat.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
@@ -731,6 +758,7 @@ data:
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/mytest/matching_line_graph.test.cpp
   - test/mytest/suffix_tree.test.cpp
+  - test/mytest/count_indep_set.test.cpp
   - test/mytest/tutte.test.cpp
   - test/mytest/QOJ5445.test.cpp
 documentation_of: graph/base.hpp

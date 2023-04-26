@@ -18,9 +18,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1216_2.test.cpp
     title: test/yukicoder/1216_2.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/2005.test.cpp
+    title: test/yukicoder/2005.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/sparse_table/disjoint_sparse_table.hpp\"\n\r\ntemplate\
@@ -84,8 +87,9 @@ data:
   requiredBy:
   - graph/ds/static_tree_monoid.hpp
   timestamp: '2023-04-08 01:03:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/2005.test.cpp
   - test/yukicoder/1216.test.cpp
   - test/yukicoder/1216_2.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp

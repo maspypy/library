@@ -8,10 +8,19 @@ data:
   - icon: ':x:'
     path: nt/four_square.hpp
     title: nt/four_square.hpp
+  - icon: ':x:'
+    path: poly/fps_sqrt.hpp
+    title: poly/fps_sqrt.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/library_checker/math/sqrt_mod.test.cpp
     title: test/library_checker/math/sqrt_mod.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
+    title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+    title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - icon: ':x:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
@@ -53,9 +62,12 @@ data:
   path: mod/mod_sqrt.hpp
   requiredBy:
   - nt/four_square.hpp
+  - poly/fps_sqrt.hpp
   timestamp: '2023-03-12 12:41:23+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
   - test/mytest/four_square.test.cpp
 documentation_of: mod/mod_sqrt.hpp

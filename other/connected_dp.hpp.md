@@ -21,6 +21,18 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1397.test.cpp
     title: test/yukicoder/1397.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1561.test.cpp
+    title: test/yukicoder/1561.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/541.test.cpp
+    title: test/yukicoder/541.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/578.test.cpp
+    title: test/yukicoder/578.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/579.test.cpp
+    title: test/yukicoder/579.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -244,7 +256,11 @@ data:
   timestamp: '2023-04-02 04:26:11+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/yukicoder/578.test.cpp
   - test/yukicoder/1397.test.cpp
+  - test/yukicoder/1561.test.cpp
+  - test/yukicoder/579.test.cpp
+  - test/yukicoder/541.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
 documentation_of: other/connected_dp.hpp
 layout: document
