@@ -2,9 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: mod/barret.hpp
-    title: mod/barret.hpp
-  - icon: ':x:'
+    path: mod/barrett.hpp
+    title: mod/barrett.hpp
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
   - icon: ':question:'
@@ -74,76 +74,72 @@ data:
     \ }\n  sort(all(pf));\n  return pf;\n}\n\nvc<pair<ll, int>> factor_by_lpf(ll n,\
     \ vc<int>& lpf) {\n  vc<pair<ll, int>> res;\n  while (n > 1) {\n    int p = lpf[n];\n\
     \    int e = 0;\n    while (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n\
-    \    res.eb(p, e);\n  }\n  return res;\n}\n#line 2 \"mod/barret.hpp\"\n\nstruct\
-    \ Barret_Reduction {\n  using i64 = long long;\n  using u64 = unsigned long long;\n\
-    \  using u128 = __uint128_t;\n  int m, s;\n  u64 x;\n  constexpr Barret_Reduction()\
-    \ : m(), s(), x() {}\n  constexpr Barret_Reduction(int n)\n      : m(n), s(std::__lg(n\
-    \ - 1)), x(((u128(1) << (s + 64)) + n - 1) / n) {}\n  constexpr friend u64 operator/(u64\
-    \ n, const Barret_Reduction& d) {\n    return (u128(n) * d.x >> d.s) >> 64;\n\
-    \  }\n  constexpr friend int operator%(u64 n, const Barret_Reduction& d) {\n \
-    \   return n - n / d * d.m;\n  }\n  constexpr pair<i64, int> divmod(u64 n) const\
-    \ {\n    u64 q = n / *this;\n    return {q, n - q * m};\n  }\n};\n#line 3 \"mod/mod_pow.hpp\"\
-    \n\r\n// int\r\nll mod_pow(ll a, ll n, int mod) {\r\n  Barret_Reduction BR(mod);\r\
-    \n  a = a % BR;\r\n  ll p = a;\r\n  ll v = 1;\r\n  while (n) {\r\n    if (n &\
-    \ 1) v = v * p % BR;\r\n    p = p * p % BR;\r\n    n >>= 1;\r\n  }\r\n  return\
-    \ v;\r\n}\r\n\r\nll mod_pow_long(ll a, ll n, ll mod) {\r\n  a %= mod;\r\n  ll\
-    \ p = a;\r\n  ll v = 1;\r\n  while (n) {\r\n    if (n & 1) v = i128(v) * p % mod;\r\
-    \n    p = i128(p) * p % mod;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n#line\
-    \ 3 \"nt/gaussian_integers.hpp\"\n\r\ntemplate <typename INT>\r\nstruct Gaussian_Integer\
-    \ {\r\n  INT x, y;\r\n  using G = Gaussian_Integer;\r\n\r\n  Gaussian_Integer(INT\
-    \ x = 0, INT y = 0) : x(x), y(y) {}\r\n  Gaussian_Integer(pair<INT, INT> p) :\
-    \ x(p.fi), y(p.se) {}\r\n\r\n  INT norm() const { return x * x + y * y; }\r\n\
-    \  G conjugate() const { return G(x, -y); }\r\n\r\n  G &operator+=(const G &g)\
-    \ {\r\n    x += g.x, y += g.y;\r\n    return *this;\r\n  }\r\n  G &operator-=(const\
-    \ G &g) {\r\n    x -= g.x, y -= g.y;\r\n    return *this;\r\n  }\r\n  G &operator*=(const\
-    \ G &g) {\r\n    tie(x, y) = mp(x * g.x - y * g.y, x * g.y + y * g.x);\r\n   \
-    \ return *this;\r\n  }\r\n  G &operator/=(const G &g) {\r\n    *this *= g.conjugate();\r\
-    \n    INT n = g.norm();\r\n    x = floor(x + n / 2, n);\r\n    y = floor(y + n\
-    \ / 2, n);\r\n    return *this;\r\n  }\r\n  G &operator%=(const G &g) {\r\n  \
-    \  auto q = G(*this) / g;\r\n    q *= g;\r\n    (*this) -= q;\r\n    return *this;\r\
-    \n  }\r\n  G operator-() { return G(-x, -y); }\r\n  G operator+(const G &g) {\
-    \ return G(*this) += g; }\r\n  G operator-(const G &g) { return G(*this) -= g;\
-    \ }\r\n  G operator*(const G &g) { return G(*this) *= g; }\r\n  G operator/(const\
-    \ G &g) { return G(*this) /= g; }\r\n  G operator%(const G &g) { return G(*this)\
-    \ %= g; }\r\n  bool operator==(const G &g) { return (x == g.x && y == g.y); }\r\
-    \n\r\n  static G gcd(G a, G b) {\r\n    while (b.x != 0 || b.y != 0) {\r\n   \
-    \   a %= b;\r\n      swap(a, b);\r\n    }\r\n    return a;\r\n  }\r\n};\r\n\r\n\
-    template <typename INT>\r\nvc<Gaussian_Integer<INT>> solve_norm_equation_factor(vc<pair<ll,\
-    \ int>> pfs) {\r\n  using G = Gaussian_Integer<INT>;\r\n  vc<G> res;\r\n  for\
-    \ (auto &&[p, e]: pfs) {\r\n    if (p % 4 == 3 && e % 2 == 1) return {};\r\n \
-    \ }\r\n  auto find = [&](INT p) -> G {\r\n    // p \u306F\u7D20\u6570. \u30CE\u30EB\
-    \u30E0 p \u306E\u30AC\u30A6\u30B9\u6574\u6570\u3092\u3072\u3068\u3064\u898B\u3064\
-    \u3051\u308B\r\n    if (p == 2) return G(1, 1);\r\n    // x^2 = -1 mod p \u3092\
-    \u3072\u3068\u3064\u898B\u3064\u3051\u308B\r\n    INT x = [&]() -> INT {\r\n \
-    \     INT x = 1;\r\n      while (1) {\r\n        ++x;\r\n        INT pow_x = 1;\r\
-    \n        if (p < (1 << 30)) {\r\n          pow_x = mod_pow(x, (p - 1) / 4, p);\r\
-    \n          if (pow_x * pow_x % p == p - 1) return pow_x;\r\n        } else {\r\
-    \n          pow_x = mod_pow_long(x, (p - 1) / 4, p);\r\n          if (i128(pow_x)\
-    \ * pow_x % p == p - 1) return pow_x;\r\n        }\r\n      }\r\n      return\
-    \ -1;\r\n    }();\r\n    assert(x != -1);\r\n    // x \u306F\u975E\u5270\u4F59\
-    \r\n    G a(p, 0), b(x, 1);\r\n    a = G::gcd(a, b);\r\n    assert(a.norm() ==\
-    \ p);\r\n    return a;\r\n  };\r\n\r\n  res.eb(G(1, 0));\r\n  for (auto &&[p,\
-    \ e]: pfs) {\r\n    if (p % 4 == 3) {\r\n      INT pp = 1;\r\n      FOR(e / 2)\
-    \ pp *= p;\r\n      for (auto &&g: res) {\r\n        g.x *= pp;\r\n        g.y\
-    \ *= pp;\r\n      }\r\n      continue;\r\n    }\r\n    auto pi = find(p);\r\n\
-    \    vc<G> pows(e + 1);\r\n    pows[0] = G(1, 0);\r\n    FOR(i, e) pows[i + 1]\
-    \ = pows[i] * pi;\r\n    if (p == 2) {\r\n      for (auto &&g: res) g *= pows[e];\r\
-    \n      continue;\r\n    }\r\n    vc<G> pis(e + 1);\r\n    FOR(j, e + 1) { pis[j]\
-    \ = pows[j] * (pows[e - j].conjugate()); }\r\n    vc<G> new_res;\r\n    new_res.reserve(len(res)\
-    \ * (e + 1));\r\n    for (auto &&g: res) {\r\n      for (auto &&a: pis) { new_res.eb(g\
-    \ * a); }\r\n    }\r\n    swap(res, new_res);\r\n  }\r\n\r\n  for (auto &&g: res)\
-    \ {\r\n    while (g.x <= 0 || g.y < 0) { g = G(-g.y, g.x); }\r\n  }\r\n  return\
-    \ res;\r\n}\r\n\r\n// i128 \u3092\u4F7F\u3046\u3068 N <= 10^{18} \u3082\u3067\u304D\
-    \u308B\r\n// \u30CE\u30EB\u30E0\u304C\u3068\u308C\u308B\u3088\u3046\u306B\u3001\
-    2 \u4E57\u3057\u3066\u3082\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\
-    \u3044\u578B\u3092\u4F7F\u304A\u3046\r\n// 0 <= arg < 90 \u3068\u306A\u308B\u3082\
-    \u306E\u306E\u307F\u8FD4\u3059\u3002\r\n// \u5358\u6570\u500D\u306F\u4F5C\u3089\
-    \u306A\u3044\u306E\u3067\u3001\u4F7F\u3046\u3068\u304D\u306B\u6C17\u3092\u4ED8\
-    \u3051\u308B\u3002\r\ntemplate <typename INT>\r\nvc<Gaussian_Integer<INT>> solve_norm_equation(INT\
-    \ N) {\r\n  using G = Gaussian_Integer<INT>;\r\n  vc<G> res;\r\n  if (N < 0) return\
-    \ {};\r\n  if (N == 0) {\r\n    res.eb(G(0, 0));\r\n    return res;\r\n  }\r\n\
-    \  auto pfs = factor(N);\r\n  return solve_norm_equation_factor<INT>(pfs);\r\n\
-    }\r\n"
+    \    res.eb(p, e);\n  }\n  return res;\n}\n#line 2 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
+    struct Barrett {\n  u32 m;\n  u64 im;\n  explicit Barrett(u32 m) : m(m), im((unsigned\
+    \ long long)(-1) / m + 1) {}\n  u32 umod() const { return m; }\n  u32 modulo(u64\
+    \ z) {\n    u64 x = (u64)(((unsigned __int128)(z)*im) >> 64);\n    u64 y = x *\
+    \ m;\n    return (u32)(z - y + (z < y ? m : 0));\n  }\n  u32 mul(u32 a, u32 b)\
+    \ { return modulo(u64(a) * b); }\n};\n#line 3 \"mod/mod_pow.hpp\"\n\r\n// int\r\
+    \nll mod_pow(ll a, ll n, int mod) {\r\n  a %= mod;\r\n  Barrett bt(mod);\r\n \
+    \ ll p = a;\r\n  ll v = 1;\r\n  while (n) {\r\n    if (n & 1) v = bt.mul(v, p);\r\
+    \n    p = bt.mul(p, p);\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n\r\nll mod_pow_long(ll\
+    \ a, ll n, ll mod) {\r\n  a %= mod;\r\n  ll p = a;\r\n  ll v = 1;\r\n  while (n)\
+    \ {\r\n    if (n & 1) v = i128(v) * p % mod;\r\n    p = i128(p) * p % mod;\r\n\
+    \    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n#line 3 \"nt/gaussian_integers.hpp\"\
+    \n\r\ntemplate <typename INT>\r\nstruct Gaussian_Integer {\r\n  INT x, y;\r\n\
+    \  using G = Gaussian_Integer;\r\n\r\n  Gaussian_Integer(INT x = 0, INT y = 0)\
+    \ : x(x), y(y) {}\r\n  Gaussian_Integer(pair<INT, INT> p) : x(p.fi), y(p.se) {}\r\
+    \n\r\n  INT norm() const { return x * x + y * y; }\r\n  G conjugate() const {\
+    \ return G(x, -y); }\r\n\r\n  G &operator+=(const G &g) {\r\n    x += g.x, y +=\
+    \ g.y;\r\n    return *this;\r\n  }\r\n  G &operator-=(const G &g) {\r\n    x -=\
+    \ g.x, y -= g.y;\r\n    return *this;\r\n  }\r\n  G &operator*=(const G &g) {\r\
+    \n    tie(x, y) = mp(x * g.x - y * g.y, x * g.y + y * g.x);\r\n    return *this;\r\
+    \n  }\r\n  G &operator/=(const G &g) {\r\n    *this *= g.conjugate();\r\n    INT\
+    \ n = g.norm();\r\n    x = floor(x + n / 2, n);\r\n    y = floor(y + n / 2, n);\r\
+    \n    return *this;\r\n  }\r\n  G &operator%=(const G &g) {\r\n    auto q = G(*this)\
+    \ / g;\r\n    q *= g;\r\n    (*this) -= q;\r\n    return *this;\r\n  }\r\n  G\
+    \ operator-() { return G(-x, -y); }\r\n  G operator+(const G &g) { return G(*this)\
+    \ += g; }\r\n  G operator-(const G &g) { return G(*this) -= g; }\r\n  G operator*(const\
+    \ G &g) { return G(*this) *= g; }\r\n  G operator/(const G &g) { return G(*this)\
+    \ /= g; }\r\n  G operator%(const G &g) { return G(*this) %= g; }\r\n  bool operator==(const\
+    \ G &g) { return (x == g.x && y == g.y); }\r\n\r\n  static G gcd(G a, G b) {\r\
+    \n    while (b.x != 0 || b.y != 0) {\r\n      a %= b;\r\n      swap(a, b);\r\n\
+    \    }\r\n    return a;\r\n  }\r\n};\r\n\r\ntemplate <typename INT>\r\nvc<Gaussian_Integer<INT>>\
+    \ solve_norm_equation_factor(vc<pair<ll, int>> pfs) {\r\n  using G = Gaussian_Integer<INT>;\r\
+    \n  vc<G> res;\r\n  for (auto &&[p, e]: pfs) {\r\n    if (p % 4 == 3 && e % 2\
+    \ == 1) return {};\r\n  }\r\n  auto find = [&](INT p) -> G {\r\n    // p \u306F\
+    \u7D20\u6570. \u30CE\u30EB\u30E0 p \u306E\u30AC\u30A6\u30B9\u6574\u6570\u3092\u3072\
+    \u3068\u3064\u898B\u3064\u3051\u308B\r\n    if (p == 2) return G(1, 1);\r\n  \
+    \  // x^2 = -1 mod p \u3092\u3072\u3068\u3064\u898B\u3064\u3051\u308B\r\n    INT\
+    \ x = [&]() -> INT {\r\n      INT x = 1;\r\n      while (1) {\r\n        ++x;\r\
+    \n        INT pow_x = 1;\r\n        if (p < (1 << 30)) {\r\n          pow_x =\
+    \ mod_pow(x, (p - 1) / 4, p);\r\n          if (pow_x * pow_x % p == p - 1) return\
+    \ pow_x;\r\n        } else {\r\n          pow_x = mod_pow_long(x, (p - 1) / 4,\
+    \ p);\r\n          if (i128(pow_x) * pow_x % p == p - 1) return pow_x;\r\n   \
+    \     }\r\n      }\r\n      return -1;\r\n    }();\r\n    assert(x != -1);\r\n\
+    \    // x \u306F\u975E\u5270\u4F59\r\n    G a(p, 0), b(x, 1);\r\n    a = G::gcd(a,\
+    \ b);\r\n    assert(a.norm() == p);\r\n    return a;\r\n  };\r\n\r\n  res.eb(G(1,\
+    \ 0));\r\n  for (auto &&[p, e]: pfs) {\r\n    if (p % 4 == 3) {\r\n      INT pp\
+    \ = 1;\r\n      FOR(e / 2) pp *= p;\r\n      for (auto &&g: res) {\r\n       \
+    \ g.x *= pp;\r\n        g.y *= pp;\r\n      }\r\n      continue;\r\n    }\r\n\
+    \    auto pi = find(p);\r\n    vc<G> pows(e + 1);\r\n    pows[0] = G(1, 0);\r\n\
+    \    FOR(i, e) pows[i + 1] = pows[i] * pi;\r\n    if (p == 2) {\r\n      for (auto\
+    \ &&g: res) g *= pows[e];\r\n      continue;\r\n    }\r\n    vc<G> pis(e + 1);\r\
+    \n    FOR(j, e + 1) { pis[j] = pows[j] * (pows[e - j].conjugate()); }\r\n    vc<G>\
+    \ new_res;\r\n    new_res.reserve(len(res) * (e + 1));\r\n    for (auto &&g: res)\
+    \ {\r\n      for (auto &&a: pis) { new_res.eb(g * a); }\r\n    }\r\n    swap(res,\
+    \ new_res);\r\n  }\r\n\r\n  for (auto &&g: res) {\r\n    while (g.x <= 0 || g.y\
+    \ < 0) { g = G(-g.y, g.x); }\r\n  }\r\n  return res;\r\n}\r\n\r\n// i128 \u3092\
+    \u4F7F\u3046\u3068 N <= 10^{18} \u3082\u3067\u304D\u308B\r\n// \u30CE\u30EB\u30E0\
+    \u304C\u3068\u308C\u308B\u3088\u3046\u306B\u30012 \u4E57\u3057\u3066\u3082\u30AA\
+    \u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u578B\u3092\u4F7F\u304A\
+    \u3046\r\n// 0 <= arg < 90 \u3068\u306A\u308B\u3082\u306E\u306E\u307F\u8FD4\u3059\
+    \u3002\r\n// \u5358\u6570\u500D\u306F\u4F5C\u3089\u306A\u3044\u306E\u3067\u3001\
+    \u4F7F\u3046\u3068\u304D\u306B\u6C17\u3092\u4ED8\u3051\u308B\u3002\r\ntemplate\
+    \ <typename INT>\r\nvc<Gaussian_Integer<INT>> solve_norm_equation(INT N) {\r\n\
+    \  using G = Gaussian_Integer<INT>;\r\n  vc<G> res;\r\n  if (N < 0) return {};\r\
+    \n  if (N == 0) {\r\n    res.eb(G(0, 0));\r\n    return res;\r\n  }\r\n  auto\
+    \ pfs = factor(N);\r\n  return solve_norm_equation_factor<INT>(pfs);\r\n}\r\n"
   code: "#include \"nt/factor.hpp\"\r\n#include \"mod/mod_pow.hpp\"\r\n\r\ntemplate\
     \ <typename INT>\r\nstruct Gaussian_Integer {\r\n  INT x, y;\r\n  using G = Gaussian_Integer;\r\
     \n\r\n  Gaussian_Integer(INT x = 0, INT y = 0) : x(x), y(y) {}\r\n  Gaussian_Integer(pair<INT,\
@@ -203,11 +199,11 @@ data:
   - nt/factor.hpp
   - nt/primetest.hpp
   - mod/mod_pow.hpp
-  - mod/barret.hpp
+  - mod/barrett.hpp
   isVerificationFile: false
   path: nt/gaussian_integers.hpp
   requiredBy: []
-  timestamp: '2023-04-27 03:47:30+09:00'
+  timestamp: '2023-04-27 04:52:23+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1593.test.cpp

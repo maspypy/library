@@ -1,38 +1,11 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: mod/barret.hpp
-    title: mod/barret.hpp
-  - icon: ':question:'
-    path: mod/mod_inv.hpp
-    title: mod/mod_inv.hpp
-  - icon: ':question:'
-    path: mod/modint.hpp
-    title: mod/modint.hpp
-  - icon: ':question:'
-    path: mod/modint_common.hpp
-    title: mod/modint_common.hpp
-  - icon: ':question:'
-    path: poly/convolution.hpp
-    title: poly/convolution.hpp
-  - icon: ':question:'
-    path: poly/convolution_naive.hpp
-    title: poly/convolution_naive.hpp
-  - icon: ':question:'
-    path: poly/fft.hpp
-    title: poly/fft.hpp
-  - icon: ':question:'
-    path: poly/ntt.hpp
-    title: poly/ntt.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
-    title: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -45,9 +18,12 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
-    \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ poly/ntt.hpp: line 2: #pragma once found in a non-first line\n"
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
+    \ File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: mod/barret.hpp:\
+    \ line -1: no such header\n"
   code: "#include \"poly/convolution.hpp\"\r\n\r\ntemplate <typename mint>\r\nvc<mint>\
     \ multiplicative_convolution_mod2n(vc<mint>& A, vc<mint>& B){\r\n  int N = 0;\r\
     \n  while((1<<N) < len(A)) ++N;\r\n  assert((1<<N) == len(A) && (1<<N) == len(B));\r\
@@ -81,22 +57,13 @@ data:
     \ &c = CC[n];\r\n    FOR(j, W) {\r\n      C[x] = c[0][j];\r\n      if (H == 2)\
     \ { C[(1 << N) - x] = c[1][j]; }\r\n      x = (5 * x) & mask;\r\n    }\r\n  }\r\
     \n  return C;\r\n}"
-  dependsOn:
-  - poly/convolution.hpp
-  - mod/modint.hpp
-  - mod/modint_common.hpp
-  - mod/mod_inv.hpp
-  - poly/convolution_naive.hpp
-  - poly/ntt.hpp
-  - mod/barret.hpp
-  - poly/fft.hpp
+  dependsOn: []
   isVerificationFile: false
   path: nt/multiplicative_convolution_mod2n.hpp
   requiredBy: []
-  timestamp: '2023-04-27 03:47:30+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/library_checker/convolution/mul_mod2n_convolution.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: nt/multiplicative_convolution_mod2n.hpp
 layout: document
 redirect_from:

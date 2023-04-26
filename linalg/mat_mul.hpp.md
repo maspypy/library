@@ -9,33 +9,12 @@ data:
     title: mod/modint_common.hpp
   _extendedRequiredBy:
   - icon: ':x:'
-    path: linalg/det_A_plus_xB.hpp
-    title: linalg/det_A_plus_xB.hpp
-  - icon: ':x:'
     path: linalg/mat_pow.hpp
     title: linalg/mat_pow.hpp
-  - icon: ':x:'
-    path: poly/from_log_differentiation.hpp
-    title: poly/from_log_differentiation.hpp
-  - icon: ':x:'
-    path: poly/prefix_product_of_poly.hpp
-    title: poly/prefix_product_of_poly.hpp
-  - icon: ':x:'
-    path: poly/sparse_exp_of_div.hpp
-    title: poly/sparse_exp_of_div.hpp
-  - icon: ':x:'
-    path: seq/kth_term_of_p_recursive.hpp
-    title: seq/kth_term_of_p_recursive.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/library_checker/matrix/matrix_product.test.cpp
     title: test/library_checker/matrix/matrix_product.test.cpp
-  - icon: ':x:'
-    path: test/mytest/factorial_998.test.cpp
-    title: test/mytest/factorial_998.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1080_2.test.cpp
-    title: test/yukicoder/1080_2.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1750.test.cpp
     title: test/yukicoder/1750.test.cpp
@@ -43,26 +22,8 @@ data:
     path: test/yukicoder/1810.test.cpp
     title: test/yukicoder/1810.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1907.test.cpp
-    title: test/yukicoder/1907.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/2166.test.cpp
-    title: test/yukicoder/2166.test.cpp
-  - icon: ':x:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/502_2.test.cpp
-    title: test/yukicoder/502_2.test.cpp
-  - icon: ':x:'
-    path: test_atcoder/abc222h_2.test.cpp
-    title: test_atcoder/abc222h_2.test.cpp
-  - icon: ':x:'
-    path: test_atcoder/abc276_g.test.cpp
-    title: test_atcoder/abc276_g.test.cpp
-  - icon: ':x:'
-    path: test_atcoder/abc276_g_2.test.cpp
-    title: test_atcoder/abc276_g_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -169,27 +130,14 @@ data:
   isVerificationFile: false
   path: linalg/mat_mul.hpp
   requiredBy:
-  - linalg/det_A_plus_xB.hpp
   - linalg/mat_pow.hpp
-  - seq/kth_term_of_p_recursive.hpp
-  - poly/sparse_exp_of_div.hpp
-  - poly/prefix_product_of_poly.hpp
-  - poly/from_log_differentiation.hpp
   timestamp: '2023-04-27 03:47:30+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/abc276_g.test.cpp
-  - test_atcoder/abc222h_2.test.cpp
-  - test_atcoder/abc276_g_2.test.cpp
-  - test/yukicoder/1907.test.cpp
-  - test/yukicoder/502_2.test.cpp
   - test/yukicoder/1810.test.cpp
-  - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/426.test.cpp
   - test/yukicoder/1750.test.cpp
-  - test/yukicoder/2166.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp
-  - test/mytest/factorial_998.test.cpp
 documentation_of: linalg/mat_mul.hpp
 layout: document
 redirect_from:

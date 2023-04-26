@@ -23,7 +23,7 @@ data:
   - icon: ':question:'
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
   _extendedVerifiedWith:
@@ -51,33 +51,18 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1397.test.cpp
     title: test/yukicoder/1397.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1561.test.cpp
-    title: test/yukicoder/1561.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1881.test.cpp
     title: test/yukicoder/1881.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2102.test.cpp
     title: test/yukicoder/2102.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/2231.test.cpp
-    title: test/yukicoder/2231.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/263.test.cpp
     title: test/yukicoder/263.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_1.test.cpp
     title: test/yukicoder/4_1.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/541.test.cpp
-    title: test/yukicoder/541.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/578.test.cpp
-    title: test/yukicoder/578.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/579.test.cpp
-    title: test/yukicoder/579.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -160,14 +145,9 @@ data:
   timestamp: '2023-03-28 23:05:08+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/2231.test.cpp
-  - test/yukicoder/578.test.cpp
   - test/yukicoder/1397.test.cpp
-  - test/yukicoder/1561.test.cpp
-  - test/yukicoder/579.test.cpp
   - test/yukicoder/1881.test.cpp
   - test/yukicoder/2102.test.cpp
-  - test/yukicoder/541.test.cpp
   - test/yukicoder/263.test.cpp
   - test/yukicoder/4_1.test.cpp
   - test/aoj/ALDS1_14_C.test.cpp

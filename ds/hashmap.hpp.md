@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
   - icon: ':x:'
@@ -57,7 +57,7 @@ data:
   - icon: ':x:'
     path: test/mytest/tdpc_grid_dp.test.cpp
     title: test/mytest/tdpc_grid_dp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
   - icon: ':heavy_check_mark:'
@@ -69,9 +69,6 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1493.test.cpp
     title: test/yukicoder/1493.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1561.test.cpp
-    title: test/yukicoder/1561.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1634.test.cpp
     title: test/yukicoder/1634.test.cpp
@@ -94,18 +91,9 @@ data:
     path: test/yukicoder/263.test.cpp
     title: test/yukicoder/263.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/541.test.cpp
-    title: test/yukicoder/541.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/578.test.cpp
-    title: test/yukicoder/578.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/579.test.cpp
-    title: test/yukicoder/579.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc222g.test.cpp
     title: test_atcoder/abc222g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc270_g.test.cpp
     title: test_atcoder/abc270_g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -185,16 +173,12 @@ data:
   - test_atcoder/abc270_g.test.cpp
   - test_atcoder/arc157a.test.cpp
   - test/yukicoder/1493.test.cpp
-  - test/yukicoder/578.test.cpp
   - test/yukicoder/1397.test.cpp
   - test/yukicoder/1339.test.cpp
-  - test/yukicoder/1561.test.cpp
   - test/yukicoder/2167.test.cpp
-  - test/yukicoder/579.test.cpp
   - test/yukicoder/1881.test.cpp
   - test/yukicoder/2102.test.cpp
   - test/yukicoder/1726.test.cpp
-  - test/yukicoder/541.test.cpp
   - test/yukicoder/1634.test.cpp
   - test/yukicoder/263.test.cpp
   - test/yukicoder/1383.test.cpp

@@ -1,53 +1,11 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: mod/barret.hpp
-    title: mod/barret.hpp
-  - icon: ':question:'
-    path: mod/mod_inv.hpp
-    title: mod/mod_inv.hpp
-  - icon: ':question:'
-    path: mod/modint.hpp
-    title: mod/modint.hpp
-  - icon: ':question:'
-    path: mod/modint_common.hpp
-    title: mod/modint_common.hpp
-  - icon: ':question:'
-    path: poly/convolution.hpp
-    title: poly/convolution.hpp
-  - icon: ':x:'
-    path: poly/convolution_all.hpp
-    title: poly/convolution_all.hpp
-  - icon: ':question:'
-    path: poly/convolution_naive.hpp
-    title: poly/convolution_naive.hpp
-  - icon: ':x:'
-    path: poly/count_terms.hpp
-    title: poly/count_terms.hpp
-  - icon: ':question:'
-    path: poly/fft.hpp
-    title: poly/fft.hpp
-  - icon: ':x:'
-    path: poly/fps_inv.hpp
-    title: poly/fps_inv.hpp
-  - icon: ':x:'
-    path: poly/fps_log.hpp
-    title: poly/fps_log.hpp
-  - icon: ':question:'
-    path: poly/ntt.hpp
-    title: poly/ntt.hpp
-  - icon: ':x:'
-    path: poly/sum_of_rationals.hpp
-    title: poly/sum_of_rationals.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/yukicoder/1145.test.cpp
-    title: test/yukicoder/1145.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -61,10 +19,10 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
-    \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ poly/ntt.hpp: line 2: #pragma once found in a non-first line\n"
+    \  [Previous line repeated 1 more time]\n  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: mod/barret.hpp:\
+    \ line -1: no such header\n"
   code: "#include \"poly/convolution_all.hpp\"\n#include \"poly/fps_log.hpp\"\n#include\
     \ \"poly/sum_of_rationals.hpp\"\n\n// sum_{a in A} a^n \u3092\u3001n = 0, 1, ...,\
     \ N \u3067\u5217\u6319\ntemplate <typename T>\nvc<T> sum_of_powers(const vc<T>&\
@@ -77,27 +35,13 @@ data:
     \ vc<T>({1, -A[i]})); }\n  auto [num, den] = sum_of_rationals(dat);\n  num.resize(N\
     \ + 1);\n  den.resize(N + 1);\n  auto f = fps_inv(den);\n  f = convolution(f,\
     \ num);\n  f.resize(N + 1);\n  return f;\n}"
-  dependsOn:
-  - poly/convolution_all.hpp
-  - poly/convolution.hpp
-  - mod/modint.hpp
-  - mod/modint_common.hpp
-  - mod/mod_inv.hpp
-  - poly/convolution_naive.hpp
-  - poly/ntt.hpp
-  - mod/barret.hpp
-  - poly/fft.hpp
-  - poly/fps_log.hpp
-  - poly/fps_inv.hpp
-  - poly/count_terms.hpp
-  - poly/sum_of_rationals.hpp
+  dependsOn: []
   isVerificationFile: false
   path: seq/sum_of_powers.hpp
   requiredBy: []
-  timestamp: '2023-04-27 03:47:30+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/yukicoder/1145.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: seq/sum_of_powers.hpp
 layout: document
 redirect_from:

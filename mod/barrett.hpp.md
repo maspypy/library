@@ -1,9 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: mod/barrett.hpp
-    title: mod/barrett.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':question:'
     path: mod/dynamic_modint.hpp
@@ -14,6 +11,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
+  - icon: ':question:'
+    path: mod/mod_pow.hpp
+    title: mod/mod_pow.hpp
   - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
@@ -61,38 +61,32 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
+    links:
+    - https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp
   bundledCode: "#line 2 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
     struct Barrett {\n  u32 m;\n  u64 im;\n  explicit Barrett(u32 m) : m(m), im((unsigned\
     \ long long)(-1) / m + 1) {}\n  u32 umod() const { return m; }\n  u32 modulo(u64\
     \ z) {\n    u64 x = (u64)(((unsigned __int128)(z)*im) >> 64);\n    u64 y = x *\
     \ m;\n    return (u32)(z - y + (z < y ? m : 0));\n  }\n  u32 mul(u32 a, u32 b)\
-    \ { return modulo(u64(a) * b); }\n};\n#line 3 \"mod/mod_pow.hpp\"\n\r\n// int\r\
-    \nll mod_pow(ll a, ll n, int mod) {\r\n  a %= mod;\r\n  Barrett bt(mod);\r\n \
-    \ ll p = a;\r\n  ll v = 1;\r\n  while (n) {\r\n    if (n & 1) v = bt.mul(v, p);\r\
-    \n    p = bt.mul(p, p);\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n\r\nll mod_pow_long(ll\
-    \ a, ll n, ll mod) {\r\n  a %= mod;\r\n  ll p = a;\r\n  ll v = 1;\r\n  while (n)\
-    \ {\r\n    if (n & 1) v = i128(v) * p % mod;\r\n    p = i128(p) * p % mod;\r\n\
-    \    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n"
-  code: "#pragma once\r\n#include \"mod/barrett.hpp\"\r\n\r\n// int\r\nll mod_pow(ll\
-    \ a, ll n, int mod) {\r\n  a %= mod;\r\n  Barrett bt(mod);\r\n  ll p = a;\r\n\
-    \  ll v = 1;\r\n  while (n) {\r\n    if (n & 1) v = bt.mul(v, p);\r\n    p = bt.mul(p,\
-    \ p);\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n\r\nll mod_pow_long(ll a,\
-    \ ll n, ll mod) {\r\n  a %= mod;\r\n  ll p = a;\r\n  ll v = 1;\r\n  while (n)\
-    \ {\r\n    if (n & 1) v = i128(v) * p % mod;\r\n    p = i128(p) * p % mod;\r\n\
-    \    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n"
-  dependsOn:
-  - mod/barrett.hpp
+    \ { return modulo(u64(a) * b); }\n};\n"
+  code: "#pragma once\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
+    struct Barrett {\n  u32 m;\n  u64 im;\n  explicit Barrett(u32 m) : m(m), im((unsigned\
+    \ long long)(-1) / m + 1) {}\n  u32 umod() const { return m; }\n  u32 modulo(u64\
+    \ z) {\n    u64 x = (u64)(((unsigned __int128)(z)*im) >> 64);\n    u64 y = x *\
+    \ m;\n    return (u32)(z - y + (z < y ? m : 0));\n  }\n  u32 mul(u32 a, u32 b)\
+    \ { return modulo(u64(a) * b); }\n};"
+  dependsOn: []
   isVerificationFile: false
-  path: mod/mod_pow.hpp
+  path: mod/barrett.hpp
   requiredBy:
   - mod/primitive_root.hpp
+  - mod/mod_pow.hpp
   - mod/mod_log.hpp
   - mod/dynamic_modint.hpp
   - mod/mod_kth_root.hpp
   - nt/gaussian_integers.hpp
   - nt/four_square.hpp
-  timestamp: '2023-04-27 04:52:23+09:00'
+  timestamp: '2023-04-27 04:51:44+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc222g.test.cpp
@@ -106,10 +100,10 @@ data:
   - test/library_checker/math/sqrt_mod.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/mytest/four_square.test.cpp
-documentation_of: mod/mod_pow.hpp
+documentation_of: mod/barrett.hpp
 layout: document
 redirect_from:
-- /library/mod/mod_pow.hpp
-- /library/mod/mod_pow.hpp.html
-title: mod/mod_pow.hpp
+- /library/mod/barrett.hpp
+- /library/mod/barrett.hpp.html
+title: mod/barrett.hpp
 ---

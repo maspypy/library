@@ -18,12 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1242.test.cpp
     title: test/yukicoder/1242.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/2122.test.cpp
-    title: test/yukicoder/2122.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate\
@@ -238,10 +235,9 @@ data:
   path: graph/functional.hpp
   requiredBy: []
   timestamp: '2023-04-09 13:48:33+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1242.test.cpp
-  - test/yukicoder/2122.test.cpp
   - test/yukicoder/1211.test.cpp
 documentation_of: graph/functional.hpp
 layout: document

@@ -1,155 +1,11 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: mod/barret.hpp
-    title: mod/barret.hpp
-  - icon: ':question:'
-    path: mod/mod_inv.hpp
-    title: mod/mod_inv.hpp
-  - icon: ':question:'
-    path: mod/modint.hpp
-    title: mod/modint.hpp
-  - icon: ':question:'
-    path: mod/modint_common.hpp
-    title: mod/modint_common.hpp
-  - icon: ':question:'
-    path: poly/convolution.hpp
-    title: poly/convolution.hpp
-  - icon: ':question:'
-    path: poly/convolution_naive.hpp
-    title: poly/convolution_naive.hpp
-  - icon: ':x:'
-    path: poly/count_terms.hpp
-    title: poly/count_terms.hpp
-  - icon: ':x:'
-    path: poly/differentiate.hpp
-    title: poly/differentiate.hpp
-  - icon: ':question:'
-    path: poly/fft.hpp
-    title: poly/fft.hpp
-  - icon: ':x:'
-    path: poly/integrate.hpp
-    title: poly/integrate.hpp
-  - icon: ':question:'
-    path: poly/ntt.hpp
-    title: poly/ntt.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: graph/count/count_forest.hpp
-    title: graph/count/count_forest.hpp
-  - icon: ':warning:'
-    path: poly/composed_product.hpp
-    title: poly/composed_product.hpp
-  - icon: ':warning:'
-    path: poly/composed_sum.hpp
-    title: poly/composed_sum.hpp
-  - icon: ':x:'
-    path: poly/fps_pow.hpp
-    title: poly/fps_pow.hpp
-  - icon: ':x:'
-    path: poly/fps_sqrt.hpp
-    title: poly/fps_sqrt.hpp
-  - icon: ':x:'
-    path: poly/product_of_f_rk_x.hpp
-    title: poly/product_of_f_rk_x.hpp
-  - icon: ':x:'
-    path: poly/product_of_one_minus_xn.hpp
-    title: poly/product_of_one_minus_xn.hpp
-  - icon: ':x:'
-    path: poly/product_of_one_plus_xn.hpp
-    title: poly/product_of_one_plus_xn.hpp
-  - icon: ':x:'
-    path: poly/product_of_pow_of_linear.hpp
-    title: poly/product_of_pow_of_linear.hpp
-  - icon: ':x:'
-    path: seq/famous/stirling_number_2.hpp
-    title: seq/famous/stirling_number_2.hpp
-  - icon: ':x:'
-    path: seq/famous/surjection.hpp
-    title: seq/famous/surjection.hpp
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/library_checker/math/sharp_p_subset_sum.test.cpp
-    title: test/library_checker/math/sharp_p_subset_sum.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-    title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/polynomial/exp_of_fps.test.cpp
-    title: test/library_checker/polynomial/exp_of_fps.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
-    title: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
-    title: test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/polynomial/pow_of_fps.test.cpp
-    title: test/library_checker/polynomial/pow_of_fps.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-    title: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
-    title: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
-    title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-    title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - icon: ':x:'
-    path: test/mytest/bell.test.cpp
-    title: test/mytest/bell.test.cpp
-  - icon: ':x:'
-    path: test/mytest/online_exp.test.cpp
-    title: test/mytest/online_exp.test.cpp
-  - icon: ':x:'
-    path: test/mytest/online_pow.test.cpp
-    title: test/mytest/online_pow.test.cpp
-  - icon: ':x:'
-    path: test/mytest/product_of_one_pm_xn.test.cpp
-    title: test/mytest/product_of_one_pm_xn.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1080.test.cpp
-    title: test/yukicoder/1080.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1321.test.cpp
-    title: test/yukicoder/1321.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1392.test.cpp
-    title: test/yukicoder/1392.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1533.test.cpp
-    title: test/yukicoder/1533.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1549.test.cpp
-    title: test/yukicoder/1549.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1875.test.cpp
-    title: test/yukicoder/1875.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1939.test.cpp
-    title: test/yukicoder/1939.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/2062.test.cpp
-    title: test/yukicoder/2062.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/2097.test.cpp
-    title: test/yukicoder/2097.test.cpp
-  - icon: ':x:'
-    path: test_atcoder/abc222h.test.cpp
-    title: test_atcoder/abc222h.test.cpp
-  - icon: ':x:'
-    path: test_atcoder/abc267h.test.cpp
-    title: test_atcoder/abc267h.test.cpp
-  - icon: ':x:'
-    path: test_atcoder/arc153f.test.cpp
-    title: test_atcoder/arc153f.test.cpp
-  _isVerificationFailed: true
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -162,9 +18,12 @@ data:
     \  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
-    \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ poly/ntt.hpp: line 2: #pragma once found in a non-first line\n"
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
+    \ File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: mod/barret.hpp:\
+    \ line -1: no such header\n"
   code: "#pragma once\r\n#include \"poly/convolution.hpp\"\r\n#include \"poly/integrate.hpp\"\
     \r\n#include \"poly/differentiate.hpp\"\r\n#include \"poly/count_terms.hpp\"\r\
     \n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint, modint998>::value,\
@@ -213,61 +72,13 @@ data:
     \ m) x[i] = 0;\r\n    ntt(x, 0);\r\n    FOR(i, m + m) x[i] *= y[i];\r\n    ntt(x,\
     \ 1);\r\n    b.insert(b.end(), x.begin() + m, x.end());\r\n  }\r\n  b.resize(n);\r\
     \n  return b;\r\n}\r\n"
-  dependsOn:
-  - poly/convolution.hpp
-  - mod/modint.hpp
-  - mod/modint_common.hpp
-  - mod/mod_inv.hpp
-  - poly/convolution_naive.hpp
-  - poly/ntt.hpp
-  - mod/barret.hpp
-  - poly/fft.hpp
-  - poly/integrate.hpp
-  - poly/differentiate.hpp
-  - poly/count_terms.hpp
+  dependsOn: []
   isVerificationFile: false
   path: poly/fps_exp.hpp
-  requiredBy:
-  - graph/count/count_forest.hpp
-  - seq/famous/surjection.hpp
-  - seq/famous/stirling_number_2.hpp
-  - poly/fps_sqrt.hpp
-  - poly/product_of_pow_of_linear.hpp
-  - poly/product_of_one_minus_xn.hpp
-  - poly/composed_sum.hpp
-  - poly/product_of_f_rk_x.hpp
-  - poly/product_of_one_plus_xn.hpp
-  - poly/composed_product.hpp
-  - poly/fps_pow.hpp
-  timestamp: '2023-04-27 03:47:30+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test_atcoder/abc222h.test.cpp
-  - test_atcoder/abc267h.test.cpp
-  - test_atcoder/arc153f.test.cpp
-  - test/yukicoder/1392.test.cpp
-  - test/yukicoder/1549.test.cpp
-  - test/yukicoder/1080.test.cpp
-  - test/yukicoder/2062.test.cpp
-  - test/yukicoder/1321.test.cpp
-  - test/yukicoder/2097.test.cpp
-  - test/yukicoder/1875.test.cpp
-  - test/yukicoder/1533.test.cpp
-  - test/yukicoder/1939.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-  - test/library_checker/polynomial/pow_of_fps.test.cpp
-  - test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
-  - test/library_checker/polynomial/exp_of_fps.test.cpp
-  - test/library_checker/math/sharp_p_subset_sum.test.cpp
-  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - test/mytest/product_of_one_pm_xn.test.cpp
-  - test/mytest/online_exp.test.cpp
-  - test/mytest/online_pow.test.cpp
-  - test/mytest/bell.test.cpp
+  requiredBy: []
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: poly/fps_exp.hpp
 layout: document
 redirect_from:

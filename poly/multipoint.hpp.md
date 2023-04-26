@@ -1,89 +1,11 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: mod/barret.hpp
-    title: mod/barret.hpp
-  - icon: ':question:'
-    path: mod/mod_inv.hpp
-    title: mod/mod_inv.hpp
-  - icon: ':question:'
-    path: mod/modint.hpp
-    title: mod/modint.hpp
-  - icon: ':question:'
-    path: mod/modint_common.hpp
-    title: mod/modint_common.hpp
-  - icon: ':question:'
-    path: poly/convolution.hpp
-    title: poly/convolution.hpp
-  - icon: ':question:'
-    path: poly/convolution_naive.hpp
-    title: poly/convolution_naive.hpp
-  - icon: ':x:'
-    path: poly/count_terms.hpp
-    title: poly/count_terms.hpp
-  - icon: ':question:'
-    path: poly/fft.hpp
-    title: poly/fft.hpp
-  - icon: ':x:'
-    path: poly/fps_inv.hpp
-    title: poly/fps_inv.hpp
-  - icon: ':x:'
-    path: poly/middle_product.hpp
-    title: poly/middle_product.hpp
-  - icon: ':question:'
-    path: poly/ntt.hpp
-    title: poly/ntt.hpp
-  _extendedRequiredBy:
-  - icon: ':x:'
-    path: linalg/implicit_matrix/vandermonde.hpp
-    title: linalg/implicit_matrix/vandermonde.hpp
-  - icon: ':x:'
-    path: poly/multivar_convolution_cyclic.hpp
-    title: poly/multivar_convolution_cyclic.hpp
-  - icon: ':x:'
-    path: poly/partial_frac_decomposition.hpp
-    title: poly/partial_frac_decomposition.hpp
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-    title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/polynomial/multipoint_evaluation.test.cpp
-    title: test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
-    title: test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
-    title: test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/polynomial/polynomial_interpolation.test.cpp
-    title: test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - icon: ':x:'
-    path: test/mytest/chirp_z.test.cpp
-    title: test/mytest/chirp_z.test.cpp
-  - icon: ':x:'
-    path: test/mytest/partial_frac.test.cpp
-    title: test/mytest/partial_frac.test.cpp
-  - icon: ':x:'
-    path: test/mytest/vandermonde.test.cpp
-    title: test/mytest/vandermonde.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/2166.test.cpp
-    title: test/yukicoder/2166.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/2243.test.cpp
-    title: test/yukicoder/2243.test.cpp
-  - icon: ':x:'
-    path: test_atcoder/abc267g.test.cpp
-    title: test_atcoder/abc267g.test.cpp
-  - icon: ':x:'
-    path: test_atcoder/abc272_h.test.cpp
-    title: test_atcoder/abc272_h.test.cpp
-  _isVerificationFailed: true
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -97,10 +19,10 @@ data:
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
-    \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ poly/ntt.hpp: line 2: #pragma once found in a non-first line\n"
+    \  [Previous line repeated 1 more time]\n  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: mod/barret.hpp:\
+    \ line -1: no such header\n"
   code: "#pragma once\r\n\r\n#include \"poly/fps_inv.hpp\"\r\n#include \"poly/middle_product.hpp\"\
     \r\n\r\ntemplate <typename mint>\r\nstruct SubproductTree {\r\n  int m;\r\n  int\
     \ sz;\r\n  vc<vc<mint>> T;\r\n  SubproductTree(const vc<mint>& x) {\r\n    m =\
@@ -140,39 +62,13 @@ data:
     \ *= r;\r\n    }\r\n    return res;\r\n  };\r\n\r\n  vc<mint> A = calc(r, n +\
     \ m - 1), B = calc(r.inverse(), max(n, m));\r\n  FOR(i, n) f[i] *= B[i];\r\n \
     \ f = middle_product(A, f);\r\n  FOR(i, m) f[i] *= B[i];\r\n  return f;\r\n}"
-  dependsOn:
-  - poly/fps_inv.hpp
-  - poly/count_terms.hpp
-  - poly/convolution.hpp
-  - mod/modint.hpp
-  - mod/modint_common.hpp
-  - mod/mod_inv.hpp
-  - poly/convolution_naive.hpp
-  - poly/ntt.hpp
-  - mod/barret.hpp
-  - poly/fft.hpp
-  - poly/middle_product.hpp
+  dependsOn: []
   isVerificationFile: false
   path: poly/multipoint.hpp
-  requiredBy:
-  - linalg/implicit_matrix/vandermonde.hpp
-  - poly/partial_frac_decomposition.hpp
-  - poly/multivar_convolution_cyclic.hpp
-  timestamp: '2023-04-27 03:47:30+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test_atcoder/abc272_h.test.cpp
-  - test_atcoder/abc267g.test.cpp
-  - test/yukicoder/2243.test.cpp
-  - test/yukicoder/2166.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
-  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - test/mytest/partial_frac.test.cpp
-  - test/mytest/vandermonde.test.cpp
-  - test/mytest/chirp_z.test.cpp
+  requiredBy: []
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: poly/multipoint.hpp
 layout: document
 redirect_from:

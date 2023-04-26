@@ -12,9 +12,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc233c.test.cpp
     title: test_atcoder/abc233c.test.cpp
-  - icon: ':x:'
-    path: test_atcoder/arc153f.test.cpp
-    title: test_atcoder/arc153f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -38,7 +35,6 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc233c.test.cpp
-  - test_atcoder/arc153f.test.cpp
   - test/mytest/enumerate_products.test.cpp
   - test/mytest/fibonacci_search.test.cpp
 documentation_of: enumerate/product.hpp

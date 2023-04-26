@@ -2,14 +2,23 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: mod/barrett.hpp
+    title: mod/barrett.hpp
+  - icon: ':question:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
   - icon: ':question:'
+    path: mod/mod_pow.hpp
+    title: mod/mod_pow.hpp
+  - icon: ':x:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
+  - icon: ':question:'
+    path: mod/primitive_root.hpp
+    title: mod/primitive_root.hpp
   - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
@@ -21,12 +30,12 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetest.hpp\"\nstruct m64 {\r\n  using i64 = int64_t;\r\
@@ -132,60 +141,93 @@ data:
     }\n\n// [x^d] (1-x) ^ {-n} \u306E\u8A08\u7B97\ntemplate <typename mint, bool large\
     \ = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n\
     \  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1) : mint(0));\
-    \ }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 3 \"mod/dynamic_modint.hpp\"\
-    \n\nstruct Dynamic_ModInt {\n  static constexpr bool is_modint = true;\n  int\
-    \ val;\n  Dynamic_ModInt() : val(0) {}\n  Dynamic_ModInt(int64_t y)\n      : val(y\
-    \ >= 0 ? y % get_mod()\n                   : (get_mod() - (-y) % get_mod()) %\
-    \ get_mod()) {}\n  bool operator<(const Dynamic_ModInt &other) const {\n    return\
-    \ val < other.val;\n  } // To use std::map<Dynamic_ModInt, T>\n  static int &get_mod()\
-    \ {\n    static int mod = 0;\n    return mod;\n  }\n  static void set_mod(int\
-    \ md) { get_mod() = md; }\n  Dynamic_ModInt &operator+=(const Dynamic_ModInt &p)\
-    \ {\n    if ((val += p.val) >= get_mod()) val -= get_mod();\n    return *this;\n\
-    \  }\n  Dynamic_ModInt &operator-=(const Dynamic_ModInt &p) {\n    if ((val +=\
-    \ get_mod() - p.val) >= get_mod()) val -= get_mod();\n    return *this;\n  }\n\
-    \  Dynamic_ModInt &operator*=(const Dynamic_ModInt &p) {\n    long long a = (long\
-    \ long)val * p.val;\n    int xh = (int)(a >> 32), xl = (int)a, d, m;\n    asm(\"\
-    divl %4; \\n\\t\" : \"=a\"(d), \"=d\"(m) : \"d\"(xh), \"a\"(xl), \"r\"(get_mod()));\n\
-    \    val = m;\n    return *this;\n  }\n  Dynamic_ModInt &operator/=(const Dynamic_ModInt\
-    \ &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n  Dynamic_ModInt operator-()\
-    \ const { return Dynamic_ModInt(get_mod() - val); }\n  Dynamic_ModInt operator+(const\
-    \ Dynamic_ModInt &p) const {\n    return Dynamic_ModInt(*this) += p;\n  }\n  Dynamic_ModInt\
-    \ operator-(const Dynamic_ModInt &p) const {\n    return Dynamic_ModInt(*this)\
-    \ -= p;\n  }\n  Dynamic_ModInt operator*(const Dynamic_ModInt &p) const {\n  \
-    \  return Dynamic_ModInt(*this) *= p;\n  }\n  Dynamic_ModInt operator/(const Dynamic_ModInt\
-    \ &p) const {\n    return Dynamic_ModInt(*this) /= p;\n  }\n  bool operator==(const\
-    \ Dynamic_ModInt &p) const { return val == p.val; }\n  bool operator!=(const Dynamic_ModInt\
-    \ &p) const { return val != p.val; }\n  Dynamic_ModInt inverse() const {\n   \
-    \ int a = val, b = get_mod(), u = 1, v = 0, t;\n    while (b > 0) {\n      t =\
-    \ a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return Dynamic_ModInt(u);\n\
-    \  }\n  Dynamic_ModInt pow(int64_t n) const {\n    assert(n >= 0);\n    Dynamic_ModInt\
-    \ ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n     \
-    \ mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void\
-    \ write() { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
-    \ }\n#endif\n  static constexpr pair<int, int> ntt_info() { return {-1, -1}; }\n\
-    };\n\nusing dmint = Dynamic_ModInt;\n#line 5 \"nt/four_square.hpp\"\n\n// N =\
-    \ a^2+b^2+c^2+d^2 \u3068\u306A\u308B (a,b,c,d) \u3092\u3072\u3068\u3064\u8FD4\u3059\
-    \ntuple<ll, ll, ll, ll> four_square(ll N) {\n  if (N == 0) return {0, 0, 0, 0};\n\
-    \  using T4 = tuple<ll, ll, ll, ll>;\n  auto mul = [&](T4 x, T4 y) -> T4 {\n \
-    \   auto [x1, x2, x3, x4] = x;\n    auto [y1, y2, y3, y4] = y;\n    ll z1 = abs(x1\
-    \ * y1 + x2 * y2 + x3 * y3 + x4 * y4);\n    ll z2 = abs(x1 * y2 - x2 * y1 + x3\
-    \ * y4 - x4 * y3);\n    ll z3 = abs(x1 * y3 - x2 * y4 - x3 * y1 + x4 * y2);\n\
-    \    ll z4 = abs(x1 * y4 + x2 * y3 - x3 * y2 - x4 * y1);\n    return {z1, z2,\
-    \ z3, z4};\n  };\n\n  auto solve_p = [&](ll p) -> T4 {\n    if (p == 2) return\
-    \ {1, 1, 0, 0};\n    using mint = dmint;\n    mint::set_mod(p);\n    auto [a,\
-    \ b] = [&]() -> pair<ll, ll> {\n      while (1) {\n        ll a = RNG(0, p);\n\
-    \        ll bb = (p - 1 - a * a) % p;\n        if (bb < 0) bb += p;\n        ll\
-    \ b = mod_sqrt<mint>(bb).val;\n        if ((a * a + b * b + 1) % p == 0) return\
-    \ {a, b};\n      }\n      return {0, 0};\n    }();\n    T4 x = {a, b, 1, 0};\n\
-    \    while (1) {\n      auto& [x1, x2, x3, x4] = x;\n      chmin(x1, p - x1),\
-    \ chmin(x2, p - x2), chmin(x3, p - x3),\n          chmin(x4, p - x4);\n      ll\
-    \ m = (x1 * x1 + x2 * x2 + x3 * x3 + x4 * x4) / p;\n      if (m == 1) break;\n\
-    \      ll y1 = x1 % m, y2 = x2 % m, y3 = x3 % m, y4 = x4 % m;\n      if (y1 >\
-    \ m / 2) y1 -= m;\n      if (y2 > m / 2) y2 -= m;\n      if (y3 > m / 2) y3 -=\
-    \ m;\n      if (y4 > m / 2) y4 -= m;\n      auto [z1, z2, z3, z4] = mul(x, {y1,\
-    \ y2, y3, y4});\n      x = mt(z1 / m, z2 / m, z3 / m, z4 / m);\n    }\n    return\
-    \ x;\n  };\n  T4 x = {1, 0, 0, 0};\n  for (auto&& [p, e]: factor(N)) { FOR(e)\
-    \ x = mul(x, solve_p(p)); }\n  return x;\n}\n"
+    \ }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 2 \"mod/primitive_root.hpp\"\
+    \n\r\n#line 2 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
+    struct Barrett {\n  u32 m;\n  u64 im;\n  explicit Barrett(u32 m) : m(m), im((unsigned\
+    \ long long)(-1) / m + 1) {}\n  u32 umod() const { return m; }\n  u32 modulo(u64\
+    \ z) {\n    u64 x = (u64)(((unsigned __int128)(z)*im) >> 64);\n    u64 y = x *\
+    \ m;\n    return (u32)(z - y + (z < y ? m : 0));\n  }\n  u32 mul(u32 a, u32 b)\
+    \ { return modulo(u64(a) * b); }\n};\n#line 3 \"mod/mod_pow.hpp\"\n\r\n// int\r\
+    \nll mod_pow(ll a, ll n, int mod) {\r\n  a %= mod;\r\n  Barrett bt(mod);\r\n \
+    \ ll p = a;\r\n  ll v = 1;\r\n  while (n) {\r\n    if (n & 1) v = bt.mul(v, p);\r\
+    \n    p = bt.mul(p, p);\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n\r\nll mod_pow_long(ll\
+    \ a, ll n, ll mod) {\r\n  a %= mod;\r\n  ll p = a;\r\n  ll v = 1;\r\n  while (n)\
+    \ {\r\n    if (n & 1) v = i128(v) * p % mod;\r\n    p = i128(p) * p % mod;\r\n\
+    \    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n#line 6 \"mod/primitive_root.hpp\"\
+    \n\r\n// int\r\nint primitive_root(int p) {\r\n  auto pf = factor(p - 1);\r\n\
+    \  auto is_ok = [&](int g) -> bool {\r\n    for (auto&& [q, e]: pf)\r\n      if\
+    \ (mod_pow(g, (p - 1) / q, p) == 1) return false;\r\n    return true;\r\n  };\r\
+    \n  while (1) {\r\n    int x = RNG(1, p);\r\n    if (is_ok(x)) return x;\r\n \
+    \ }\r\n  return -1;\r\n}\r\n\r\nll primitive_root_long(ll p) {\r\n  auto pf =\
+    \ factor(p - 1);\r\n  auto is_ok = [&](ll g) -> bool {\r\n    for (auto&& [q,\
+    \ e]: pf)\r\n      if (mod_pow_long(g, (p - 1) / q, p) == 1) return false;\r\n\
+    \    return true;\r\n  };\r\n  while (1) {\r\n    ll x = RNG(1, p);\r\n    if\
+    \ (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n#line 5 \"mod/dynamic_modint.hpp\"\
+    \n\ntemplate <class T>\nusing is_signed_int =\n    typename std::conditional<(is_integral<T>::value\n\
+    \                               && std::is_signed<T>::value),\n              \
+    \                std::true_type, std::false_type>::type;\n\ntemplate <class T>\n\
+    using is_unsigned_int =\n    typename std::conditional<(is_integral<T>::value\n\
+    \                               && std::is_unsigned<T>::value),\n            \
+    \                  std::true_type, std::false_type>::type;\ntemplate <class T>\n\
+    using is_signed_int_t = std::enable_if_t<is_signed_int<T>::value>;\n\ntemplate\
+    \ <class T>\nusing is_unsigned_int_t = std::enable_if_t<is_unsigned_int<T>::value>;\n\
+    \nstruct Dynamic_Modint {\n  static constexpr bool is_modint = true;\n  using\
+    \ mint = Dynamic_Modint;\n  u32 val;\n  static Barrett bt;\n  static u32 umod()\
+    \ { return bt.umod(); }\n\n  static int get_mod() { return (int)(bt.umod()); }\n\
+    \  static void set_mod(int m) {\n    assert(1 <= m);\n    bt = Barrett(m);\n \
+    \ }\n\n  Dynamic_Modint() : val(0) {}\n  template <class T, is_signed_int_t<T>*\
+    \ = nullptr>\n  Dynamic_Modint(T v) {\n    int x = v % get_mod();\n    if (x <\
+    \ 0) x += get_mod();\n    val = u32(x);\n  }\n  template <class T, is_unsigned_int_t<T>*\
+    \ = nullptr>\n  Dynamic_Modint(T v) {\n    val = bt.modulo(v);\n  }\n\n  mint&\
+    \ operator+=(const mint& rhs) {\n    val += rhs.val;\n    if (val >= umod()) val\
+    \ -= umod();\n    return *this;\n  }\n  mint& operator-=(const mint& rhs) {\n\
+    \    val += umod() - rhs.val;\n    if (val >= umod()) val -= umod();\n    return\
+    \ *this;\n  }\n  mint& operator*=(const mint& rhs) {\n    val = bt.mul(val, rhs.val);\n\
+    \    return *this;\n  }\n  mint& operator/=(const mint& rhs) { return *this =\
+    \ *this * rhs.inverse(); }\n  mint operator-() const { return mint() - *this;\
+    \ }\n  mint pow(ll n) const {\n    assert(0 <= n);\n    mint x = *this, r = 1;\n\
+    \    while (n) {\n      if (n & 1) r *= x;\n      x *= x;\n      n >>= 1;\n  \
+    \  }\n    return r;\n  }\n  mint inverse() const {\n    int x = val;\n    int\
+    \ mod = get_mod();\n    ll a = x, b = mod, u = 1, v = 0, t;\n    while (b > 0)\
+    \ {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n\
+    \    if (u < 0) u += mod;\n    return u;\n  }\n\n  friend mint operator+(const\
+    \ mint& lhs, const mint& rhs) {\n    return mint(lhs) += rhs;\n  }\n  friend mint\
+    \ operator-(const mint& lhs, const mint& rhs) {\n    return mint(lhs) -= rhs;\n\
+    \  }\n  friend mint operator*(const mint& lhs, const mint& rhs) {\n    return\
+    \ mint(lhs) *= rhs;\n  }\n  friend mint operator/(const mint& lhs, const mint&\
+    \ rhs) {\n    return mint(lhs) /= rhs;\n  }\n  friend bool operator==(const mint&\
+    \ lhs, const mint& rhs) {\n    return lhs.val == rhs.val;\n  }\n  friend bool\
+    \ operator!=(const mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n\
+    \  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val); }\n  void read()\
+    \ { fastio::scanner.read(val); }\n#endif\n  static pair<int, int>& get_ntt() {\n\
+    \    static pair<int, int> p = {-1, -1};\n    return p;\n  }\n  static void set_ntt_info()\
+    \ {\n    int mod = get_mod();\n    int k = lowbit(mod - 1);\n    int r = primitive_root(mod);\n\
+    \    r = mod_pow(r, (mod - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static\
+    \ pair<int, int> ntt_info() { return get_ntt(); }\n  static bool can_ntt() { return\
+    \ ntt_info().fi != -1; }\n};\n\nusing dmint = Dynamic_Modint;\nBarrett dmint::bt(1);\n\
+    #line 5 \"nt/four_square.hpp\"\n\n// N = a^2+b^2+c^2+d^2 \u3068\u306A\u308B (a,b,c,d)\
+    \ \u3092\u3072\u3068\u3064\u8FD4\u3059\ntuple<ll, ll, ll, ll> four_square(ll N)\
+    \ {\n  if (N == 0) return {0, 0, 0, 0};\n  using T4 = tuple<ll, ll, ll, ll>;\n\
+    \  auto mul = [&](T4 x, T4 y) -> T4 {\n    auto [x1, x2, x3, x4] = x;\n    auto\
+    \ [y1, y2, y3, y4] = y;\n    ll z1 = abs(x1 * y1 + x2 * y2 + x3 * y3 + x4 * y4);\n\
+    \    ll z2 = abs(x1 * y2 - x2 * y1 + x3 * y4 - x4 * y3);\n    ll z3 = abs(x1 *\
+    \ y3 - x2 * y4 - x3 * y1 + x4 * y2);\n    ll z4 = abs(x1 * y4 + x2 * y3 - x3 *\
+    \ y2 - x4 * y1);\n    return {z1, z2, z3, z4};\n  };\n\n  auto solve_p = [&](ll\
+    \ p) -> T4 {\n    if (p == 2) return {1, 1, 0, 0};\n    using mint = dmint;\n\
+    \    mint::set_mod(p);\n    auto [a, b] = [&]() -> pair<ll, ll> {\n      while\
+    \ (1) {\n        ll a = RNG(0, p);\n        ll bb = (p - 1 - a * a) % p;\n   \
+    \     if (bb < 0) bb += p;\n        ll b = mod_sqrt<mint>(bb).val;\n        if\
+    \ ((a * a + b * b + 1) % p == 0) return {a, b};\n      }\n      return {0, 0};\n\
+    \    }();\n    T4 x = {a, b, 1, 0};\n    while (1) {\n      auto& [x1, x2, x3,\
+    \ x4] = x;\n      chmin(x1, p - x1), chmin(x2, p - x2), chmin(x3, p - x3),\n \
+    \         chmin(x4, p - x4);\n      ll m = (x1 * x1 + x2 * x2 + x3 * x3 + x4 *\
+    \ x4) / p;\n      if (m == 1) break;\n      ll y1 = x1 % m, y2 = x2 % m, y3 =\
+    \ x3 % m, y4 = x4 % m;\n      if (y1 > m / 2) y1 -= m;\n      if (y2 > m / 2)\
+    \ y2 -= m;\n      if (y3 > m / 2) y3 -= m;\n      if (y4 > m / 2) y4 -= m;\n \
+    \     auto [z1, z2, z3, z4] = mul(x, {y1, y2, y3, y4});\n      x = mt(z1 / m,\
+    \ z2 / m, z3 / m, z4 / m);\n    }\n    return x;\n  };\n  T4 x = {1, 0, 0, 0};\n\
+    \  for (auto&& [p, e]: factor(N)) { FOR(e) x = mul(x, solve_p(p)); }\n  return\
+    \ x;\n}\n"
   code: "#include \"nt/factor.hpp\"\n#include \"random/base.hpp\"\n#include \"mod/mod_sqrt.hpp\"\
     \n#include \"mod/dynamic_modint.hpp\"\n\n// N = a^2+b^2+c^2+d^2 \u3068\u306A\u308B\
     \ (a,b,c,d) \u3092\u3072\u3068\u3064\u8FD4\u3059\ntuple<ll, ll, ll, ll> four_square(ll\
@@ -217,11 +259,14 @@ data:
   - mod/mod_sqrt.hpp
   - mod/dynamic_modint.hpp
   - mod/modint_common.hpp
+  - mod/primitive_root.hpp
+  - mod/mod_pow.hpp
+  - mod/barrett.hpp
   isVerificationFile: false
   path: nt/four_square.hpp
   requiredBy: []
-  timestamp: '2023-03-12 20:42:08+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-04-27 04:53:33+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/four_square.test.cpp
 documentation_of: nt/four_square.hpp

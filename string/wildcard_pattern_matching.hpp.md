@@ -1,29 +1,11 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: mod/barret.hpp
-    title: mod/barret.hpp
-  - icon: ':question:'
-    path: mod/modint.hpp
-    title: mod/modint.hpp
-  - icon: ':question:'
-    path: mod/modint_common.hpp
-    title: mod/modint_common.hpp
-  - icon: ':x:'
-    path: poly/middle_product.hpp
-    title: poly/middle_product.hpp
-  - icon: ':question:'
-    path: poly/ntt.hpp
-    title: poly/ntt.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/yukicoder/2231.test.cpp
-    title: test/yukicoder/2231.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -34,9 +16,12 @@ data:
     , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
     \  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
-    \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ poly/ntt.hpp: line 2: #pragma once found in a non-first line\n"
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
+    \ File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: mod/barret.hpp:\
+    \ line -1: no such header\n"
   code: "#include \"mod/modint.hpp\"\n#include \"poly/ntt.hpp\"\n#include \"poly/middle_product.hpp\"\
     \n\nvc<bool> wildcard_pattern_matching(string S, string T, char WILD = '?') {\n\
     \  using mint = modint998;\n  int N = len(S), M = len(T);\n  int mi = 1024;\n\
@@ -49,19 +34,13 @@ data:
     \ g2);\n  vc<mint> C = middle_product(f3, g1);\n  FOR(i, len(A)) A[i] = A[i] -\
     \ B[i] - B[i] + C[i];\n  vc<bool> res(len(A));\n  FOR(i, len(res)) res[i] = A[i]\
     \ == mint(0);\n  return res;\n}"
-  dependsOn:
-  - mod/modint.hpp
-  - mod/modint_common.hpp
-  - poly/ntt.hpp
-  - mod/barret.hpp
-  - poly/middle_product.hpp
+  dependsOn: []
   isVerificationFile: false
   path: string/wildcard_pattern_matching.hpp
   requiredBy: []
-  timestamp: '2023-04-27 03:47:30+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/yukicoder/2231.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: string/wildcard_pattern_matching.hpp
 layout: document
 redirect_from:

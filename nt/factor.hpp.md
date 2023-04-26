@@ -5,10 +5,16 @@ data:
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   _extendedRequiredBy:
+  - icon: ':question:'
+    path: mod/dynamic_modint.hpp
+    title: mod/dynamic_modint.hpp
   - icon: ':x:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: mod/mod_log.hpp
+    title: mod/mod_log.hpp
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':x:'
@@ -20,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/four_square.hpp
     title: nt/four_square.hpp
   - icon: ':question:'
@@ -29,9 +35,6 @@ data:
   - icon: ':x:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
-  - icon: ':x:'
-    path: poly/multivar_convolution_cyclic.hpp
-    title: poly/multivar_convolution_cyclic.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ITP1_D_D.test.cpp
@@ -40,18 +43,21 @@ data:
     path: test/aoj/NTL_1_D.test.cpp
     title: test/aoj/NTL_1_D.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/discrete_logarithm_mod.test.cpp
+    title: test/library_checker/math/discrete_logarithm_mod.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/factorize.test.cpp
     title: test/library_checker/math/factorize.test.cpp
   - icon: ':x:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
   - icon: ':x:'
-    path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-    title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - icon: ':x:'
     path: test/library_checker/math/primitive_root.test.cpp
     title: test/library_checker/math/primitive_root.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/library_checker/math/sqrt_mod.test.cpp
+    title: test/library_checker/math/sqrt_mod.test.cpp
+  - icon: ':x:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
   - icon: ':x:'
@@ -61,11 +67,17 @@ data:
     path: test/yukicoder/1262.test.cpp
     title: test/yukicoder/1262.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1339.test.cpp
+    title: test/yukicoder/1339.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1411.test.cpp
     title: test/yukicoder/1411.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1593.test.cpp
     title: test/yukicoder/1593.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1667.test.cpp
+    title: test/yukicoder/1667.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1728.test.cpp
     title: test/yukicoder/1728.test.cpp
@@ -81,6 +93,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc212g.test.cpp
     title: test_atcoder/abc212g.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc222g.test.cpp
+    title: test_atcoder/abc222g.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc270_g.test.cpp
+    title: test_atcoder/abc270_g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -166,6 +184,8 @@ data:
   path: nt/factor.hpp
   requiredBy:
   - mod/primitive_root.hpp
+  - mod/mod_log.hpp
+  - mod/dynamic_modint.hpp
   - mod/mod_kth_root.hpp
   - nt/all_lcm.hpp
   - nt/divisors.hpp
@@ -173,25 +193,29 @@ data:
   - nt/gaussian_integers.hpp
   - nt/euler_phi.hpp
   - nt/four_square.hpp
-  - poly/multivar_convolution_cyclic.hpp
   timestamp: '2023-01-09 23:28:24+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test_atcoder/abc222g.test.cpp
   - test_atcoder/abc152e.test.cpp
+  - test_atcoder/abc270_g.test.cpp
   - test_atcoder/abc212g.test.cpp
   - test/yukicoder/1728.test.cpp
   - test/yukicoder/1411.test.cpp
   - test/yukicoder/2264.test.cpp
+  - test/yukicoder/1339.test.cpp
   - test/yukicoder/1262.test.cpp
   - test/yukicoder/1025.test.cpp
   - test/yukicoder/1881.test.cpp
   - test/yukicoder/1593.test.cpp
+  - test/yukicoder/1667.test.cpp
   - test/aoj/NTL_1_D.test.cpp
   - test/aoj/ITP1_D_D.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/factorize.test.cpp
   - test/library_checker/math/primitive_root.test.cpp
-  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - test/library_checker/math/sqrt_mod.test.cpp
+  - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/mytest/four_square.test.cpp
 documentation_of: nt/factor.hpp
 layout: document
