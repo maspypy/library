@@ -195,9 +195,9 @@ data:
   timestamp: '2023-04-14 22:06:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/789_2.test.cpp
   - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
   - test/mytest/dynamic_lazy_segtree.test.cpp
-  - test/yukicoder/789_2.test.cpp
 documentation_of: ds/segtree/dynamic_lazy_segtree.hpp
 layout: document
 redirect_from:

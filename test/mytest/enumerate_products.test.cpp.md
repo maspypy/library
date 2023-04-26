@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/product.hpp
     title: enumerate/product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -278,20 +278,20 @@ data:
     \ {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841)\
     \ return {23, 211};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
     \ 1045430273) return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n\
-    \    if (mod == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n};\n\
-    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 7 \"test/mytest/enumerate_products.test.cpp\"\n\nusing mint = modint998;\n\
-    \nvoid test() {\n  {\n    vvc<int> res;\n    auto f = [&](vc<int> A) -> void {\
-    \ res.eb(A); };\n    enumerate_product(vc<int>(2, 3), f);\n    assert(len(res)\
-    \ == 9);\n    assert(res[0] == vc<int>({0, 0}));\n    assert(res[1] == vc<int>({0,\
-    \ 1}));\n    assert(res[2] == vc<int>({0, 2}));\n    assert(res[3] == vc<int>({1,\
-    \ 0}));\n    assert(res[4] == vc<int>({1, 1}));\n    assert(res[5] == vc<int>({1,\
-    \ 2}));\n    assert(res[6] == vc<int>({2, 0}));\n    assert(res[7] == vc<int>({2,\
-    \ 1}));\n    assert(res[8] == vc<int>({2, 2}));\n  }\n  {\n    int cnt = 0;\n\
-    \    auto f = [&](vc<int> A) -> void { ++cnt; };\n    enumerate_product(vc<int>(4,\
-    \ 3), f);\n    assert(cnt == 81);\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a\
-    \ + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  test();\n\
-    \  solve();\n\n  return 0;\n}\n"
+    \    if (mod == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static\
+    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\nusing modint107\
+    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 7 \"test/mytest/enumerate_products.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid test() {\n  {\n    vvc<int> res;\n    auto\
+    \ f = [&](vc<int> A) -> void { res.eb(A); };\n    enumerate_product(vc<int>(2,\
+    \ 3), f);\n    assert(len(res) == 9);\n    assert(res[0] == vc<int>({0, 0}));\n\
+    \    assert(res[1] == vc<int>({0, 1}));\n    assert(res[2] == vc<int>({0, 2}));\n\
+    \    assert(res[3] == vc<int>({1, 0}));\n    assert(res[4] == vc<int>({1, 1}));\n\
+    \    assert(res[5] == vc<int>({1, 2}));\n    assert(res[6] == vc<int>({2, 0}));\n\
+    \    assert(res[7] == vc<int>({2, 1}));\n    assert(res[8] == vc<int>({2, 2}));\n\
+    \  }\n  {\n    int cnt = 0;\n    auto f = [&](vc<int> A) -> void { ++cnt; };\n\
+    \    enumerate_product(vc<int>(4, 3), f);\n    assert(cnt == 81);\n  }\n}\n\n\
+    void solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout <<\
+    \ fixed << setprecision(15);\n\n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"enumerate/product.hpp\"\n#include \"\
     mod/modint.hpp\"\n\nusing mint = modint998;\n\nvoid test() {\n  {\n    vvc<int>\
@@ -314,8 +314,8 @@ data:
   isVerificationFile: true
   path: test/mytest/enumerate_products.test.cpp
   requiredBy: []
-  timestamp: '2023-03-12 10:53:54+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-04-27 03:47:30+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/enumerate_products.test.cpp
 layout: document

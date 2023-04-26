@@ -1,47 +1,25 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: mod/fast_div.hpp
-    title: mod/fast_div.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: linalg/det.hpp
-    title: linalg/det.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/matrix/det_mod.test.cpp
-    title: test/library_checker/matrix/det_mod.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/matrix/matrix_det.test.cpp
-    title: test/library_checker/matrix/matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1303.test.cpp
-    title: test/yukicoder/1303.test.cpp
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"mod/fast_div.hpp\"\nstruct fast_div {\r\n  // Min25 https://judge.yosupo.jp/submission/46090\r\
-    \n  // \u540C\u3058\u5B9A\u6570\u3067\u4F55\u5EA6\u3082\u9664\u7B97\u3059\u308B\
-    \u3068\u304D\u306E\u9AD8\u901F\u5316\u306B\u4F7F\u3048\u308B\r\n  using i64 =\
-    \ long long;\r\n  using u64 = unsigned long long;\r\n  using u128 = __uint128_t;\r\
-    \n  constexpr fast_div() : m(), s(), x() {}\r\n  constexpr fast_div(int n)\r\n\
-    \      : m(n), s(std::__lg(n - 1)), x(((u128(1) << (s + 64)) + n - 1) / n) {}\r\
-    \n  constexpr friend u64 operator/(u64 n, const fast_div& d) {\r\n    return (u128(n)\
-    \ * d.x >> d.s) >> 64;\r\n  }\r\n  constexpr friend int operator%(u64 n, const\
-    \ fast_div& d) {\r\n    return n - n / d * d.m;\r\n  }\r\n  constexpr std::pair<i64,\
-    \ int> divmod(u64 n) const {\r\n    u64 q = n / *this;\r\n    return {q, n - q\
-    \ * m};\r\n  }\r\n\r\n  int m;\r\n  int s;\r\n  u64 x;\r\n};\r\n#line 2 \"linalg/det_mod.hpp\"\
-    \n\nint det_mod(vvc<int> A, int m) {\n  fast_div mod(m);\n  const int n = len(A);\n\
-    \  ll det = 1;\n  FOR(i, n) {\n    FOR(j, i, n) {\n      if (A[j][i] == 0) continue;\n\
-    \      if (i != j) { swap(A[i], A[j]), det = m - det; }\n      break;\n    }\n\
-    \    FOR(j, i + 1, n) {\n      while (A[i][i] != 0) {\n        ll c = m - A[j][i]\
-    \ / A[i][i];\n        FOR_R(k, i, n) { A[j][k] = (A[j][k] + A[i][k] * c) % mod;\
-    \ }\n        swap(A[i], A[j]), det = m - det;\n      }\n      swap(A[i], A[j]),\
-    \ det = m - det;\n    }\n  }\n  FOR(i, n) det = det * A[i][i] % mod;\n  return\
-    \ det;\n}\n"
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
+    \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
+    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
+    \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
+    \ File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: mod/fast_div.hpp:\
+    \ line -1: no such header\n"
   code: "#include \"mod/fast_div.hpp\"\n\nint det_mod(vvc<int> A, int m) {\n  fast_div\
     \ mod(m);\n  const int n = len(A);\n  ll det = 1;\n  FOR(i, n) {\n    FOR(j, i,\
     \ n) {\n      if (A[j][i] == 0) continue;\n      if (i != j) { swap(A[i], A[j]),\
@@ -50,18 +28,13 @@ data:
     \ = (A[j][k] + A[i][k] * c) % mod; }\n        swap(A[i], A[j]), det = m - det;\n\
     \      }\n      swap(A[i], A[j]), det = m - det;\n    }\n  }\n  FOR(i, n) det\
     \ = det * A[i][i] % mod;\n  return det;\n}"
-  dependsOn:
-  - mod/fast_div.hpp
+  dependsOn: []
   isVerificationFile: false
   path: linalg/det_mod.hpp
-  requiredBy:
-  - linalg/det.hpp
-  timestamp: '2022-10-23 15:28:30+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/library_checker/matrix/matrix_det.test.cpp
-  - test/library_checker/matrix/det_mod.test.cpp
-  - test/yukicoder/1303.test.cpp
+  requiredBy: []
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: linalg/det_mod.hpp
 layout: document
 redirect_from:

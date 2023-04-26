@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/clique.hpp
     title: enumerate/clique.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/enumerate_cliques
@@ -329,28 +329,29 @@ data:
     \ {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841)\
     \ return {23, 211};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
     \ 1045430273) return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n\
-    \    if (mod == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n};\n\
-    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 1 \"enumerate/clique.hpp\"\n// N2^{sqrt(2m)}\n// https://www.slideshare.net/wata_orz/ss-12131479\n\
-    template <typename Gr, typename F>\nvoid enumerate_clique(Gr& G, F query) {\n\
-    \  int N = G.N;\n  auto deg = G.deg_array();\n  vc<bool> done(N);\n  vv(int, can,\
-    \ N, N);\n  for (auto&& e: G.edges) { can[e.frm][e.to] = can[e.to][e.frm] = 1;\
-    \ }\n\n  FOR(N) {\n    // \u6B21\u6570\u6700\u5C0F\u306E\u9802\u70B9\u306E\u8FD1\
-    \u508D\u3092\u8ABF\u3079\u308B\n    int v = -1;\n    int min_d = N;\n    FOR(i,\
-    \ N) if (!done[i] && chmin(min_d, deg[i])) v = i;\n\n    vc<int> nbd;\n    for\
-    \ (auto&& e: G[v])\n      if (!done[e.to]) nbd.eb(e.to);\n    vc<int> C = {v};\n\
-    \n    auto dfs = [&](auto& dfs, int k) -> void {\n      query(C);\n      FOR(i,\
-    \ k, len(nbd)) {\n        bool ok = 1;\n        for (auto&& x: C) {\n        \
-    \  if (!can[x][nbd[i]]) {\n            ok = 0;\n            break;\n         \
-    \ }\n        }\n        if (ok) {\n          C.eb(nbd[i]);\n          dfs(dfs,\
-    \ i + 1);\n          C.pop_back();\n        }\n      }\n    };\n\n    dfs(dfs,\
-    \ 0);\n    done[v] = 1;\n    for (auto&& x: nbd) deg[x]--;\n  }\n}\n#line 8 \"\
-    test/library_checker/graph/enumerate_cliques.test.cpp\"\n\nusing mint = modint998;\n\
-    \nvoid solve() {\n  LL(N, M);\n  VEC(mint, X, N);\n  mint ANS = 0;\n  Graph<int,\
-    \ 0> G(N);\n  G.read_graph(M, 0, 0);\n\n  auto f = [&](vc<int> C) -> void {\n\
-    \    mint p = 1;\n    for (auto&& i: C) p *= X[i];\n    ANS += p;\n  };\n  enumerate_clique(G,\
-    \ f);\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \    if (mod == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static\
+    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\nusing modint107\
+    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 1 \"enumerate/clique.hpp\"\
+    \n// N2^{sqrt(2m)}\n// https://www.slideshare.net/wata_orz/ss-12131479\ntemplate\
+    \ <typename Gr, typename F>\nvoid enumerate_clique(Gr& G, F query) {\n  int N\
+    \ = G.N;\n  auto deg = G.deg_array();\n  vc<bool> done(N);\n  vv(int, can, N,\
+    \ N);\n  for (auto&& e: G.edges) { can[e.frm][e.to] = can[e.to][e.frm] = 1; }\n\
+    \n  FOR(N) {\n    // \u6B21\u6570\u6700\u5C0F\u306E\u9802\u70B9\u306E\u8FD1\u508D\
+    \u3092\u8ABF\u3079\u308B\n    int v = -1;\n    int min_d = N;\n    FOR(i, N) if\
+    \ (!done[i] && chmin(min_d, deg[i])) v = i;\n\n    vc<int> nbd;\n    for (auto&&\
+    \ e: G[v])\n      if (!done[e.to]) nbd.eb(e.to);\n    vc<int> C = {v};\n\n   \
+    \ auto dfs = [&](auto& dfs, int k) -> void {\n      query(C);\n      FOR(i, k,\
+    \ len(nbd)) {\n        bool ok = 1;\n        for (auto&& x: C) {\n          if\
+    \ (!can[x][nbd[i]]) {\n            ok = 0;\n            break;\n          }\n\
+    \        }\n        if (ok) {\n          C.eb(nbd[i]);\n          dfs(dfs, i +\
+    \ 1);\n          C.pop_back();\n        }\n      }\n    };\n\n    dfs(dfs, 0);\n\
+    \    done[v] = 1;\n    for (auto&& x: nbd) deg[x]--;\n  }\n}\n#line 8 \"test/library_checker/graph/enumerate_cliques.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, M);\n  VEC(mint, X, N);\n\
+    \  mint ANS = 0;\n  Graph<int, 0> G(N);\n  G.read_graph(M, 0, 0);\n\n  auto f\
+    \ = [&](vc<int> C) -> void {\n    mint p = 1;\n    for (auto&& i: C) p *= X[i];\n\
+    \    ANS += p;\n  };\n  enumerate_clique(G, f);\n  print(ANS);\n}\n\nsigned main()\
+    \ {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T)\
+    \ solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_cliques\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/base.hpp\"\
     \n#include \"mod/modint.hpp\"\n#include \"enumerate/clique.hpp\"\n\nusing mint\
@@ -370,8 +371,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/enumerate_cliques.test.cpp
   requiredBy: []
-  timestamp: '2023-04-09 03:51:17+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-04-27 03:47:30+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/enumerate_cliques.test.cpp
 layout: document

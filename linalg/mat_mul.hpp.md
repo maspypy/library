@@ -1,74 +1,71 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/mat_pow.hpp
     title: linalg/mat_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/sparse_exp_of_div.hpp
     title: poly/sparse_exp_of_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/matrix/matrix_product.test.cpp
     title: test/library_checker/matrix/matrix_product.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1080_2.test.cpp
     title: test/yukicoder/1080_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1303.test.cpp
-    title: test/yukicoder/1303.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1750.test.cpp
     title: test/yukicoder/1750.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1810.test.cpp
     title: test/yukicoder/1810.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1907.test.cpp
     title: test/yukicoder/1907.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/502_2.test.cpp
     title: test/yukicoder/502_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc222h_2.test.cpp
     title: test_atcoder/abc222h_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc276_g.test.cpp
     title: test_atcoder/abc276_g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc276_g_2.test.cpp
     title: test_atcoder/abc276_g_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -136,7 +133,8 @@ data:
     \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
     \ == 998244353) return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n\
     \    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881) return\
-    \ {20, 2789};\n    return {-1, -1};\n  }\n};\n\nusing modint107 = modint<1000000007>;\n\
+    \ {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
+    \ return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
     using modint998 = modint<998244353>;\n#line 3 \"linalg/mat_mul.hpp\"\n\r\ntemplate\
     \ <class T, typename enable_if<has_mod<T>::value>::type* = nullptr>\r\nvc<vc<T>>\
     \ mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n  constexpr int mod = T::get_mod();\r\
@@ -171,28 +169,27 @@ data:
   isVerificationFile: false
   path: linalg/mat_mul.hpp
   requiredBy:
-  - seq/kth_term_of_p_recursive.hpp
-  - poly/from_log_differentiation.hpp
-  - poly/sparse_exp_of_div.hpp
-  - poly/prefix_product_of_poly.hpp
   - linalg/det_A_plus_xB.hpp
   - linalg/mat_pow.hpp
-  timestamp: '2023-03-12 10:53:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - seq/kth_term_of_p_recursive.hpp
+  - poly/sparse_exp_of_div.hpp
+  - poly/prefix_product_of_poly.hpp
+  - poly/from_log_differentiation.hpp
+  timestamp: '2023-04-27 03:47:30+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test_atcoder/abc276_g.test.cpp
+  - test_atcoder/abc222h_2.test.cpp
+  - test_atcoder/abc276_g_2.test.cpp
+  - test/yukicoder/1907.test.cpp
+  - test/yukicoder/502_2.test.cpp
+  - test/yukicoder/1810.test.cpp
+  - test/yukicoder/1080_2.test.cpp
+  - test/yukicoder/426.test.cpp
+  - test/yukicoder/1750.test.cpp
+  - test/yukicoder/2166.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp
   - test/mytest/factorial_998.test.cpp
-  - test/yukicoder/1810.test.cpp
-  - test/yukicoder/1907.test.cpp
-  - test/yukicoder/1750.test.cpp
-  - test/yukicoder/1303.test.cpp
-  - test/yukicoder/2166.test.cpp
-  - test/yukicoder/502_2.test.cpp
-  - test/yukicoder/426.test.cpp
-  - test/yukicoder/1080_2.test.cpp
-  - test_atcoder/abc222h_2.test.cpp
-  - test_atcoder/abc276_g.test.cpp
-  - test_atcoder/abc276_g_2.test.cpp
 documentation_of: linalg/mat_mul.hpp
 layout: document
 redirect_from:

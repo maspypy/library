@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
@@ -41,8 +41,8 @@ data:
   timestamp: '2023-01-31 21:39:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/CGL_5_A.test.cpp
   - test/yukicoder/2167.test.cpp
+  - test/aoj/CGL_5_A.test.cpp
 documentation_of: random/hash_pair.hpp
 layout: document
 redirect_from:

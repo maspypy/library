@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
@@ -43,8 +43,8 @@ data:
   timestamp: '2023-02-17 09:47:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/CGL_5_A.test.cpp
   - test_atcoder/abc151f.test.cpp
+  - test/aoj/CGL_5_A.test.cpp
 documentation_of: random/shuffle.hpp
 layout: document
 redirect_from:

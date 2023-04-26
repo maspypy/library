@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/offline_query/coeffient_query_2d.hpp
     title: ds/offline_query/coeffient_query_2d.hpp
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/point_add_rectangle_sum.hpp
     title: ds/offline_query/point_add_rectangle_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/offline_query/rectangle_add_point_sum.hpp
     title: ds/offline_query/rectangle_add_point_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/offline_query/rectangle_add_rectangle_sum.hpp
     title: ds/offline_query/rectangle_add_rectangle_sum.hpp
   - icon: ':heavy_check_mark:'
@@ -63,7 +63,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
     title: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -78,7 +78,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_digit.test.cpp
     title: test/mytest/factorial_digit.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -111,9 +111,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc190f.test.cpp
     title: test_atcoder/abc190f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -186,44 +186,44 @@ data:
   isVerificationFile: false
   path: ds/fenwicktree/fenwicktree.hpp
   requiredBy:
-  - seq/factorial_digit_system.hpp
-  - seq/inversion.hpp
   - graph/ds/contour_sum.hpp
   - graph/ds/tree_abelgroup.hpp
-  - ds/offline_query/coeffient_query_2d.hpp
-  - ds/offline_query/point_add_rectangle_sum.hpp
-  - ds/offline_query/rectangle_add_rectangle_sum.hpp
+  - seq/factorial_digit_system.hpp
+  - seq/inversion.hpp
   - ds/offline_query/rectangle_add_point_sum.hpp
+  - ds/offline_query/point_add_rectangle_sum.hpp
+  - ds/offline_query/coeffient_query_2d.hpp
+  - ds/offline_query/rectangle_add_rectangle_sum.hpp
   - ds/range_add_range_sum.hpp
   timestamp: '2023-01-19 00:13:06+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/graph/verted_add_contour_sum.test.cpp
-  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
-  - test/library_checker/datastructure/point_add_range_sum.test.cpp
-  - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
-  - test/library_checker/datastructure/static_range_inversions_mo.test.cpp
-  - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-  - test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp
-  - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
-  - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-  - test/mytest/rect_add_pt_sum.test.cpp
-  - test/mytest/factorial_digit.test.cpp
+  - test_atcoder/abc190f.test.cpp
+  - test/yukicoder/1038.test.cpp
+  - test/yukicoder/2161.test.cpp
+  - test/yukicoder/1270.test.cpp
+  - test/yukicoder/1490.test.cpp
+  - test/yukicoder/1874.test.cpp
+  - test/yukicoder/1641.test.cpp
+  - test/yukicoder/1838.test.cpp
+  - test/yukicoder/1326.test.cpp
+  - test/yukicoder/1311.test.cpp
   - test/aoj/DSL_2_E.test.cpp
   - test/aoj/ALDS1_5.test.cpp
   - test/aoj/DSL_2_G.test.cpp
   - test/aoj/ALDS1_2_A.test.cpp
-  - test/yukicoder/1641.test.cpp
-  - test/yukicoder/1038.test.cpp
-  - test/yukicoder/1874.test.cpp
-  - test/yukicoder/1490.test.cpp
-  - test/yukicoder/1326.test.cpp
-  - test/yukicoder/1311.test.cpp
-  - test/yukicoder/1270.test.cpp
-  - test/yukicoder/1838.test.cpp
-  - test/yukicoder/2161.test.cpp
-  - test_atcoder/abc190f.test.cpp
+  - test/library_checker/graph/verted_add_contour_sum.test.cpp
+  - test/library_checker/datastructure/static_range_inversions_mo.test.cpp
+  - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
+  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+  - test/library_checker/datastructure/point_add_range_sum.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp
+  - test/mytest/factorial_digit.test.cpp
+  - test/mytest/rect_add_pt_sum.test.cpp
 documentation_of: ds/fenwicktree/fenwicktree.hpp
 layout: document
 redirect_from:

@@ -46,8 +46,8 @@ data:
   isVerificationFile: false
   path: ds/rollback_array.hpp
   requiredBy:
-  - ds/unionfind/rollback_unionfind.hpp
   - ds/unionfind/rollback_weighted_unionfind.hpp
+  - ds/unionfind/rollback_unionfind.hpp
   timestamp: '2023-01-31 21:17:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

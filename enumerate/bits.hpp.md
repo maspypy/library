@@ -46,9 +46,9 @@ data:
   timestamp: '2023-04-08 02:44:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DPL_2_A.test.cpp
-  - test/yukicoder/114.test.cpp
   - test_atcoder/abc180e.test.cpp
+  - test/yukicoder/114.test.cpp
+  - test/aoj/DPL_2_A.test.cpp
 documentation_of: enumerate/bits.hpp
 layout: document
 redirect_from:

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/zalgorithm.hpp
     title: string/zalgorithm.hpp
   _extendedRequiredBy: []
@@ -45,8 +45,8 @@ data:
   timestamp: '2022-10-12 08:06:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/is_substring.test.cpp
   - test_atcoder/abc237ex.test.cpp
+  - test/mytest/is_substring.test.cpp
 documentation_of: string/is_substring.hpp
 layout: document
 redirect_from:

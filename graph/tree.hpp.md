@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/lazy_tree_monoid.hpp
     title: graph/ds/lazy_tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
   - icon: ':warning:'
@@ -26,13 +26,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/functional.hpp
     title: graph/functional.hpp
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
   - icon: ':warning:'
@@ -72,7 +72,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -117,7 +117,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1418.test.cpp
     title: test/yukicoder/1418.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1451.test.cpp
     title: test/yukicoder/1451.test.cpp
   - icon: ':heavy_check_mark:'
@@ -126,7 +126,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1524.test.cpp
     title: test/yukicoder/1524.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1600.test.cpp
     title: test/yukicoder/1600.test.cpp
   - icon: ':heavy_check_mark:'
@@ -147,33 +147,30 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1976.test.cpp
     title: test/yukicoder/1976.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/590.test.cpp
-    title: test/yukicoder/590.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc160f.test.cpp
     title: test_atcoder/abc160f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc266f.test.cpp
     title: test_atcoder/abc266f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc269ex.test.cpp
     title: test_atcoder/abc269ex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc270_f.test.cpp
     title: test_atcoder/abc270_f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate\
@@ -374,64 +371,63 @@ data:
   isVerificationFile: false
   path: graph/tree.hpp
   requiredBy:
-  - graph/ds/tree_abelgroup.hpp
-  - graph/ds/lazy_tree_monoid.hpp
-  - graph/ds/tree_wavelet_matrix.hpp
-  - graph/ds/tree_monoid.hpp
-  - graph/ds/static_tree_monoid.hpp
-  - graph/ds/dual_tree_monoid.hpp
-  - graph/dsu_on_tree.hpp
-  - graph/functional.hpp
   - graph/unicyclic.hpp
+  - graph/functional.hpp
   - graph/minimum_spanning_tree.hpp
+  - graph/dsu_on_tree.hpp
+  - graph/ds/static_tree_monoid.hpp
+  - graph/ds/tree_monoid.hpp
+  - graph/ds/lazy_tree_monoid.hpp
+  - graph/ds/dual_tree_monoid.hpp
+  - graph/ds/tree_wavelet_matrix.hpp
+  - graph/ds/tree_abelgroup.hpp
+  - graph/tree_dp/subtree_diameter.hpp
   - graph/tree_dp/tree_dp.hpp
   - graph/tree_dp/rerooting_dp.hpp
-  - graph/tree_dp/subtree_diameter.hpp
   - graph/tree_dp/subtree_hash.hpp
   timestamp: '2023-04-09 04:15:48+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/graph/classify_tree.test.cpp
-  - test/library_checker/tree/lca_directed.test.cpp
-  - test/library_checker/tree/lca.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-  - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - test/mytest/QOJ5445.test.cpp
-  - test/aoj/2995.test.cpp
-  - test/aoj/2677.test.cpp
-  - test/aoj/GRL_2_A.test.cpp
-  - test/aoj/GRL_5_E.test.cpp
-  - test/yukicoder/1641.test.cpp
-  - test/yukicoder/1451.test.cpp
-  - test/yukicoder/1211.test.cpp
-  - test/yukicoder/1212.test.cpp
-  - test/yukicoder/1418.test.cpp
-  - test/yukicoder/2122.test.cpp
-  - test/yukicoder/1718.test.cpp
-  - test/yukicoder/1216.test.cpp
-  - test/yukicoder/235.test.cpp
-  - test/yukicoder/1976.test.cpp
-  - test/yukicoder/1790.test.cpp
-  - test/yukicoder/1295.test.cpp
-  - test/yukicoder/1600.test.cpp
-  - test/yukicoder/1524.test.cpp
-  - test/yukicoder/1326.test.cpp
-  - test/yukicoder/1216_2.test.cpp
-  - test/yukicoder/590.test.cpp
-  - test/yukicoder/1242.test.cpp
-  - test/yukicoder/1778.test.cpp
-  - test/yukicoder/1769.test.cpp
-  - test/yukicoder/1254.test.cpp
-  - test/yukicoder/1494.test.cpp
-  - test/yukicoder/1197.test.cpp
-  - test/yukicoder/529.test.cpp
   - test_atcoder/abc160f.test.cpp
-  - test_atcoder/abc266f.test.cpp
   - test_atcoder/abc270_f.test.cpp
   - test_atcoder/abc269ex.test.cpp
+  - test_atcoder/abc266f.test.cpp
+  - test/yukicoder/1295.test.cpp
+  - test/yukicoder/1524.test.cpp
+  - test/yukicoder/1418.test.cpp
+  - test/yukicoder/1494.test.cpp
+  - test/yukicoder/1778.test.cpp
+  - test/yukicoder/1242.test.cpp
+  - test/yukicoder/1600.test.cpp
+  - test/yukicoder/1451.test.cpp
+  - test/yukicoder/2122.test.cpp
+  - test/yukicoder/1216.test.cpp
+  - test/yukicoder/1641.test.cpp
+  - test/yukicoder/1254.test.cpp
+  - test/yukicoder/1326.test.cpp
+  - test/yukicoder/1976.test.cpp
+  - test/yukicoder/1211.test.cpp
+  - test/yukicoder/1718.test.cpp
+  - test/yukicoder/235.test.cpp
+  - test/yukicoder/1790.test.cpp
+  - test/yukicoder/529.test.cpp
+  - test/yukicoder/1216_2.test.cpp
+  - test/yukicoder/1197.test.cpp
+  - test/yukicoder/1769.test.cpp
+  - test/yukicoder/1212.test.cpp
+  - test/aoj/2995.test.cpp
+  - test/aoj/GRL_5_E.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
+  - test/aoj/2677.test.cpp
+  - test/library_checker/graph/classify_tree.test.cpp
+  - test/library_checker/tree/lca.test.cpp
+  - test/library_checker/tree/lca_directed.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - test/mytest/QOJ5445.test.cpp
 documentation_of: graph/tree.hpp
 layout: document
 redirect_from:

@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: mod/fast_div.hpp
-    title: mod/fast_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: mod/barret.hpp
+    title: mod/barret.hpp
+  - icon: ':x:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/primitive_root
@@ -269,25 +269,22 @@ data:
     \  return pf;\n}\n\nvc<pair<ll, int>> factor_by_lpf(ll n, vc<int>& lpf) {\n  vc<pair<ll,\
     \ int>> res;\n  while (n > 1) {\n    int p = lpf[n];\n    int e = 0;\n    while\
     \ (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n \
-    \ return res;\n}\n#line 2 \"mod/fast_div.hpp\"\nstruct fast_div {\r\n  // Min25\
-    \ https://judge.yosupo.jp/submission/46090\r\n  // \u540C\u3058\u5B9A\u6570\u3067\
-    \u4F55\u5EA6\u3082\u9664\u7B97\u3059\u308B\u3068\u304D\u306E\u9AD8\u901F\u5316\
-    \u306B\u4F7F\u3048\u308B\r\n  using i64 = long long;\r\n  using u64 = unsigned\
-    \ long long;\r\n  using u128 = __uint128_t;\r\n  constexpr fast_div() : m(), s(),\
-    \ x() {}\r\n  constexpr fast_div(int n)\r\n      : m(n), s(std::__lg(n - 1)),\
-    \ x(((u128(1) << (s + 64)) + n - 1) / n) {}\r\n  constexpr friend u64 operator/(u64\
-    \ n, const fast_div& d) {\r\n    return (u128(n) * d.x >> d.s) >> 64;\r\n  }\r\
-    \n  constexpr friend int operator%(u64 n, const fast_div& d) {\r\n    return n\
-    \ - n / d * d.m;\r\n  }\r\n  constexpr std::pair<i64, int> divmod(u64 n) const\
-    \ {\r\n    u64 q = n / *this;\r\n    return {q, n - q * m};\r\n  }\r\n\r\n  int\
-    \ m;\r\n  int s;\r\n  u64 x;\r\n};\r\n#line 3 \"mod/mod_pow.hpp\"\n// int\r\n\
-    ll mod_pow(ll a, ll n, int mod){\r\n  fast_div fd(mod);\r\n  a = a % fd;\r\n \
-    \ ll p = a;\r\n  ll v = 1;\r\n  while(n){\r\n    if(n & 1) v = v * p % fd;\r\n\
-    \    p = p * p % fd;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n\r\nll mod_pow_long(ll\
-    \ a, ll n, ll mod){\r\n  a %= mod;\r\n  ll p = a;\r\n  ll v = 1;\r\n  while(n){\r\
-    \n    if(n & 1) v = i128(v) * p % mod;\r\n    p = i128(p) * p % mod;\r\n    n\
-    \ >>= 1;\r\n  }\r\n  return v;\r\n}\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
-    \ {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \ return res;\n}\n#line 2 \"mod/barret.hpp\"\n\nstruct Barret_Reduction {\n  using\
+    \ i64 = long long;\n  using u64 = unsigned long long;\n  using u128 = __uint128_t;\n\
+    \  int m, s;\n  u64 x;\n  constexpr Barret_Reduction() : m(), s(), x() {}\n  constexpr\
+    \ Barret_Reduction(int n)\n      : m(n), s(std::__lg(n - 1)), x(((u128(1) << (s\
+    \ + 64)) + n - 1) / n) {}\n  constexpr friend u64 operator/(u64 n, const Barret_Reduction&\
+    \ d) {\n    return (u128(n) * d.x >> d.s) >> 64;\n  }\n  constexpr friend int\
+    \ operator%(u64 n, const Barret_Reduction& d) {\n    return n - n / d * d.m;\n\
+    \  }\n  constexpr pair<i64, int> divmod(u64 n) const {\n    u64 q = n / *this;\n\
+    \    return {q, n - q * m};\n  }\n};\n#line 3 \"mod/mod_pow.hpp\"\n\r\n// int\r\
+    \nll mod_pow(ll a, ll n, int mod) {\r\n  Barret_Reduction BR(mod);\r\n  a = a\
+    \ % BR;\r\n  ll p = a;\r\n  ll v = 1;\r\n  while (n) {\r\n    if (n & 1) v = v\
+    \ * p % BR;\r\n    p = p * p % BR;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\
+    \n\r\nll mod_pow_long(ll a, ll n, ll mod) {\r\n  a %= mod;\r\n  ll p = a;\r\n\
+    \  ll v = 1;\r\n  while (n) {\r\n    if (n & 1) v = i128(v) * p % mod;\r\n   \
+    \ p = i128(p) * p % mod;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n#line 2\
+    \ \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
@@ -316,13 +313,13 @@ data:
   - nt/factor.hpp
   - nt/primetest.hpp
   - mod/mod_pow.hpp
-  - mod/fast_div.hpp
+  - mod/barret.hpp
   - random/base.hpp
   isVerificationFile: true
   path: test/library_checker/math/primitive_root.test.cpp
   requiredBy: []
-  timestamp: '2023-02-24 07:14:18+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-04-27 03:47:30+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/primitive_root.test.cpp
 layout: document

@@ -1,9 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: mod/barret.hpp
-    title: mod/barret.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
     path: graph/count/count_forest.hpp
@@ -26,6 +23,18 @@ data:
   - icon: ':x:'
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
+  - icon: ':x:'
+    path: mod/mod_kth_root.hpp
+    title: mod/mod_kth_root.hpp
+  - icon: ':x:'
+    path: mod/mod_pow.hpp
+    title: mod/mod_pow.hpp
+  - icon: ':x:'
+    path: mod/primitive_root.hpp
+    title: mod/primitive_root.hpp
+  - icon: ':x:'
+    path: nt/gaussian_integers.hpp
+    title: nt/gaussian_integers.hpp
   - icon: ':x:'
     path: nt/multiplicative_convolution_mod2n.hpp
     title: nt/multiplicative_convolution_mod2n.hpp
@@ -101,6 +110,9 @@ data:
   - icon: ':x:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
+  - icon: ':question:'
+    path: poly/ntt.hpp
+    title: poly/ntt.hpp
   - icon: ':x:'
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
@@ -232,6 +244,9 @@ data:
     path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
     title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
   - icon: ':x:'
+    path: test/library_checker/math/kth_root_mod.test.cpp
+    title: test/library_checker/math/kth_root_mod.test.cpp
+  - icon: ':x:'
     path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - icon: ':x:'
@@ -240,6 +255,9 @@ data:
   - icon: ':x:'
     path: test/library_checker/math/partition.test.cpp
     title: test/library_checker/math/partition.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/math/primitive_root.test.cpp
+    title: test/library_checker/math/primitive_root.test.cpp
   - icon: ':x:'
     path: test/library_checker/math/sharp_p_subset_sum.test.cpp
     title: test/library_checker/math/sharp_p_subset_sum.test.cpp
@@ -382,6 +400,9 @@ data:
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1025.test.cpp
+    title: test/yukicoder/1025.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1080.test.cpp
     title: test/yukicoder/1080.test.cpp
   - icon: ':x:'
@@ -414,6 +435,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1593.test.cpp
+    title: test/yukicoder/1593.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1618.test.cpp
     title: test/yukicoder/1618.test.cpp
@@ -527,81 +551,36 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
-    \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
-    \  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
-    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 312, in update\n    raise BundleErrorAt(path, i + 1, \"#pragma once found\
-    \ in a non-first line\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ poly/ntt.hpp: line 2: #pragma once found in a non-first line\n"
-  code: "#include \"mod/barret.hpp\"\r\n#pragma once\r\n\r\ntemplate <class mint>\r\
-    \nvoid ntt(vector<mint>& a, bool inverse) {\r\n  assert(mint::can_ntt());\r\n\
-    \  const int rank2 = mint::ntt_info().fi;\r\n  const int mod = mint::get_mod();\r\
-    \n  static array<mint, 30> root;\r\n  static array<mint, 30> iroot;\r\n  static\
-    \ array<mint, 30> rate2, irate2;\r\n  static array<mint, 30> rate3, irate3;\r\n\
-    \r\n  static bool prepared = 0;\r\n  if (!prepared) {\r\n    prepared = 1;\r\n\
-    \    root[rank2] = mint::ntt_info().se;\r\n    iroot[rank2] = mint(1) / root[rank2];\r\
-    \n    FOR_R(i, rank2) {\r\n      root[i] = root[i + 1] * root[i + 1];\r\n    \
-    \  iroot[i] = iroot[i + 1] * iroot[i + 1];\r\n    }\r\n    mint prod = 1, iprod\
-    \ = 1;\r\n    for (int i = 0; i <= rank2 - 2; i++) {\r\n      rate2[i] = root[i\
-    \ + 2] * prod;\r\n      irate2[i] = iroot[i + 2] * iprod;\r\n      prod *= iroot[i\
-    \ + 2];\r\n      iprod *= root[i + 2];\r\n    }\r\n    prod = 1, iprod = 1;\r\n\
-    \    for (int i = 0; i <= rank2 - 3; i++) {\r\n      rate3[i] = root[i + 3] *\
-    \ prod;\r\n      irate3[i] = iroot[i + 3] * iprod;\r\n      prod *= iroot[i +\
-    \ 3];\r\n      iprod *= root[i + 3];\r\n    }\r\n  }\r\n\r\n  int n = int(a.size());\r\
-    \n  int h = topbit(n);\r\n  assert(n == 1 << h);\r\n  if (!inverse) {\r\n    int\
-    \ len = 0;\r\n    while (len < h) {\r\n      if (h - len == 1) {\r\n        int\
-    \ p = 1 << (h - len - 1);\r\n        mint rot = 1;\r\n        FOR(s, 1 << len)\
-    \ {\r\n          int offset = s << (h - len);\r\n          FOR(i, p) {\r\n   \
-    \         auto l = a[i + offset];\r\n            auto r = a[i + offset + p] *\
-    \ rot;\r\n            a[i + offset] = l + r;\r\n            a[i + offset + p]\
-    \ = l - r;\r\n          }\r\n          rot *= rate2[topbit(~s & -~s)];\r\n   \
-    \     }\r\n        len++;\r\n      } else {\r\n        int p = 1 << (h - len -\
-    \ 2);\r\n        mint rot = 1, imag = root[2];\r\n        for (int s = 0; s <\
-    \ (1 << len); s++) {\r\n          mint rot2 = rot * rot;\r\n          mint rot3\
-    \ = rot2 * rot;\r\n          int offset = s << (h - len);\r\n          for (int\
-    \ i = 0; i < p; i++) {\r\n            u64 mod2 = u64(mod) * mod;\r\n         \
-    \   u64 a0 = a[i + offset].val;\r\n            u64 a1 = u64(a[i + offset + p].val)\
-    \ * rot.val;\r\n            u64 a2 = u64(a[i + offset + 2 * p].val) * rot2.val;\r\
-    \n            u64 a3 = u64(a[i + offset + 3 * p].val) * rot3.val;\r\n        \
-    \    u64 a1na3imag = (a1 + mod2 - a3) % mod * imag.val;\r\n            u64 na2\
-    \ = mod2 - a2;\r\n            a[i + offset] = a0 + a2 + a1 + a3;\r\n         \
-    \   a[i + offset + 1 * p] = a0 + a2 + (2 * mod2 - (a1 + a3));\r\n            a[i\
-    \ + offset + 2 * p] = a0 + na2 + a1na3imag;\r\n            a[i + offset + 3 *\
-    \ p] = a0 + na2 + (mod2 - a1na3imag);\r\n          }\r\n          rot *= rate3[topbit(~s\
-    \ & -~s)];\r\n        }\r\n        len += 2;\r\n      }\r\n    }\r\n  } else {\r\
-    \n    mint coef = mint(1) / mint(len(a));\r\n    FOR(i, len(a)) a[i] *= coef;\r\
-    \n    int len = h;\r\n    while (len) {\r\n      if (len == 1) {\r\n        int\
-    \ p = 1 << (h - len);\r\n        mint irot = 1;\r\n        FOR(s, 1 << (len -\
-    \ 1)) {\r\n          int offset = s << (h - len + 1);\r\n          FOR(i, p) {\r\
-    \n            u64 l = a[i + offset].val;\r\n            u64 r = a[i + offset +\
-    \ p].val;\r\n            a[i + offset] = l + r;\r\n            a[i + offset +\
-    \ p] = (mod + l - r) * irot.val;\r\n          }\r\n          irot *= irate2[topbit(~s\
-    \ & -~s)];\r\n        }\r\n        len--;\r\n      } else {\r\n        int p =\
-    \ 1 << (h - len);\r\n        mint irot = 1, iimag = iroot[2];\r\n        FOR(s,\
-    \ (1 << (len - 2))) {\r\n          mint irot2 = irot * irot;\r\n          mint\
-    \ irot3 = irot2 * irot;\r\n          int offset = s << (h - len + 2);\r\n    \
-    \      for (int i = 0; i < p; i++) {\r\n            u64 a0 = a[i + offset + 0\
-    \ * p].val;\r\n            u64 a1 = a[i + offset + 1 * p].val;\r\n           \
-    \ u64 a2 = a[i + offset + 2 * p].val;\r\n            u64 a3 = a[i + offset + 3\
-    \ * p].val;\r\n            u64 x = (mod + a2 - a3) * iimag.val % mod;\r\n    \
-    \        a[i + offset] = a0 + a1 + a2 + a3;\r\n            a[i + offset + 1 *\
-    \ p] = (a0 + mod - a1 + x) * irot.val;\r\n            a[i + offset + 2 * p] =\
-    \ (a0 + a1 + 2 * mod - a2 - a3) * irot2.val;\r\n            a[i + offset + 3 *\
-    \ p] = (a0 + 2 * mod - a1 - x) * irot3.val;\r\n          }\r\n          irot *=\
-    \ irate3[topbit(~s & -~s)];\r\n        }\r\n        len -= 2;\r\n      }\r\n \
-    \   }\r\n  }\r\n}\r\n"
-  dependsOn:
-  - mod/barret.hpp
+  bundledCode: "#line 2 \"mod/barret.hpp\"\n\nstruct Barret_Reduction {\n  using i64\
+    \ = long long;\n  using u64 = unsigned long long;\n  using u128 = __uint128_t;\n\
+    \  int m, s;\n  u64 x;\n  constexpr Barret_Reduction() : m(), s(), x() {}\n  constexpr\
+    \ Barret_Reduction(int n)\n      : m(n), s(std::__lg(n - 1)), x(((u128(1) << (s\
+    \ + 64)) + n - 1) / n) {}\n  constexpr friend u64 operator/(u64 n, const Barret_Reduction&\
+    \ d) {\n    return (u128(n) * d.x >> d.s) >> 64;\n  }\n  constexpr friend int\
+    \ operator%(u64 n, const Barret_Reduction& d) {\n    return n - n / d * d.m;\n\
+    \  }\n  constexpr pair<i64, int> divmod(u64 n) const {\n    u64 q = n / *this;\n\
+    \    return {q, n - q * m};\n  }\n};\n"
+  code: "#pragma once\n\nstruct Barret_Reduction {\n  using i64 = long long;\n  using\
+    \ u64 = unsigned long long;\n  using u128 = __uint128_t;\n  int m, s;\n  u64 x;\n\
+    \  constexpr Barret_Reduction() : m(), s(), x() {}\n  constexpr Barret_Reduction(int\
+    \ n)\n      : m(n), s(std::__lg(n - 1)), x(((u128(1) << (s + 64)) + n - 1) / n)\
+    \ {}\n  constexpr friend u64 operator/(u64 n, const Barret_Reduction& d) {\n \
+    \   return (u128(n) * d.x >> d.s) >> 64;\n  }\n  constexpr friend int operator%(u64\
+    \ n, const Barret_Reduction& d) {\n    return n - n / d * d.m;\n  }\n  constexpr\
+    \ pair<i64, int> divmod(u64 n) const {\n    u64 q = n / *this;\n    return {q,\
+    \ n - q * m};\n  }\n};\n"
+  dependsOn: []
   isVerificationFile: false
-  path: poly/ntt.hpp
+  path: mod/barret.hpp
   requiredBy:
+  - mod/primitive_root.hpp
+  - mod/mod_pow.hpp
+  - mod/mod_kth_root.hpp
   - graph/count/count_unicyclic.hpp
   - graph/count/count_independent_set.hpp
   - graph/count/count_forest.hpp
   - graph/tree_all_distances.hpp
+  - nt/gaussian_integers.hpp
   - nt/multiplicative_convolution_mod2n.hpp
   - linalg/det_A_plus_xB.hpp
   - linalg/implicit_matrix/vandermonde.hpp
@@ -636,6 +615,7 @@ data:
   - poly/convolution_mod_2_64.hpp
   - poly/coef_of_rational_fps.hpp
   - poly/convolution_all.hpp
+  - poly/ntt.hpp
   - poly/sum_of_exp_bx.hpp
   - poly/coef_of_rational_fps_2d.hpp
   - poly/fps_exp.hpp
@@ -664,7 +644,7 @@ data:
   - poly/product_of_one_plus_xn.hpp
   - poly/composed_product.hpp
   - poly/fps_pow.hpp
-  timestamp: '2023-04-27 03:47:04+09:00'
+  timestamp: '2023-04-27 03:46:24+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc272_h.test.cpp
@@ -702,9 +682,11 @@ data:
   - test/yukicoder/2062.test.cpp
   - test/yukicoder/2122.test.cpp
   - test/yukicoder/1321.test.cpp
+  - test/yukicoder/1025.test.cpp
   - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/1618.test.cpp
   - test/yukicoder/1145.test.cpp
+  - test/yukicoder/1593.test.cpp
   - test/yukicoder/2097.test.cpp
   - test/yukicoder/1796.test.cpp
   - test/yukicoder/1821.test.cpp
@@ -738,10 +720,12 @@ data:
   - test/library_checker/polynomial/log_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/composition_of_fps.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
+  - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/library_checker/math/partition.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
+  - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
@@ -773,10 +757,10 @@ data:
   - test/mytest/online_division.test.cpp
   - test/mytest/pascal.test.cpp
   - test/mytest/online_inv.test.cpp
-documentation_of: poly/ntt.hpp
+documentation_of: mod/barret.hpp
 layout: document
 redirect_from:
-- /library/poly/ntt.hpp
-- /library/poly/ntt.hpp.html
-title: poly/ntt.hpp
+- /library/mod/barret.hpp
+- /library/mod/barret.hpp.html
+title: mod/barret.hpp
 ---

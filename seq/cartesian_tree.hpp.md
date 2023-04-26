@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/cartesian_tree.test.cpp
     title: test/library_checker/tree/cartesian_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc234g.test.cpp
     title: test_atcoder/abc234g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"seq/cartesian_tree.hpp\"\n/*\r\n\u8F9E\u66F8\u9806\u3067\
@@ -81,12 +81,12 @@ data:
   path: seq/cartesian_tree.hpp
   requiredBy: []
   timestamp: '2023-04-14 22:08:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/tree/cartesian_tree.test.cpp
-  - test/aoj/DPL_3_C.test.cpp
-  - test/aoj/DPL_3_B.test.cpp
   - test_atcoder/abc234g.test.cpp
+  - test/aoj/DPL_3_B.test.cpp
+  - test/aoj/DPL_3_C.test.cpp
+  - test/library_checker/tree/cartesian_tree.test.cpp
 documentation_of: seq/cartesian_tree.hpp
 layout: document
 redirect_from:

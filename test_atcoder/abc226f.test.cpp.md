@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/partition.hpp
     title: enumerate/partition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc226/tasks/abc226_f
@@ -283,15 +283,16 @@ data:
     \ {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841)\
     \ return {23, 211};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
     \ 1045430273) return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n\
-    \    if (mod == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n};\n\
-    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 6 \"test_atcoder/abc226f.test.cpp\"\n\nusing mint = modint998;\n\nvoid solve()\
-    \ {\n  LL(N, K);\n  mint ANS = 0;\n  enumerate_partition(N, [&](vc<int> P) {\n\
-    \    mint x = fact<mint>(N);\n    for (auto&& a: P) x *= inv<mint>(a);\n    map<int,\
-    \ int> MP;\n    for (auto&& a: P) MP[a]++;\n    for (auto&& [a, b]: MP) x *= fact_inv<mint>(b);\n\
-    \n    ll lcm = 1;\n    for (auto&& [a, b]: MP) { lcm = lcm / gcd<ll>(a, lcm) *\
-    \ a; }\n    ANS += mint(lcm).pow(K) * x;\n  });\n  print(ANS);\n}\n\nsigned main()\
-    \ {\n  solve();\n  return 0;\n}\n"
+    \    if (mod == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static\
+    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\nusing modint107\
+    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 6 \"test_atcoder/abc226f.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, K);\n  mint ANS = 0;\n\
+    \  enumerate_partition(N, [&](vc<int> P) {\n    mint x = fact<mint>(N);\n    for\
+    \ (auto&& a: P) x *= inv<mint>(a);\n    map<int, int> MP;\n    for (auto&& a:\
+    \ P) MP[a]++;\n    for (auto&& [a, b]: MP) x *= fact_inv<mint>(b);\n\n    ll lcm\
+    \ = 1;\n    for (auto&& [a, b]: MP) { lcm = lcm / gcd<ll>(a, lcm) * a; }\n   \
+    \ ANS += mint(lcm).pow(K) * x;\n  });\n  print(ANS);\n}\n\nsigned main() {\n \
+    \ solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc226/tasks/abc226_f\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"enumerate/partition.hpp\"\
     \n#include \"mod/modint.hpp\"\n\nusing mint = modint998;\n\nvoid solve() {\n \
@@ -310,8 +311,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc226f.test.cpp
   requiredBy: []
-  timestamp: '2023-03-12 10:53:54+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-04-27 03:47:30+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc226f.test.cpp
 layout: document

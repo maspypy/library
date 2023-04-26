@@ -1,84 +1,82 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: mod/fast_div.hpp
-    title: mod/fast_div.hpp
+  - icon: ':question:'
+    path: mod/barret.hpp
+    title: mod/barret.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/primitive_root.test.cpp
     title: test/library_checker/math/primitive_root.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1593.test.cpp
     title: test/yukicoder/1593.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"mod/fast_div.hpp\"\nstruct fast_div {\r\n  // Min25 https://judge.yosupo.jp/submission/46090\r\
-    \n  // \u540C\u3058\u5B9A\u6570\u3067\u4F55\u5EA6\u3082\u9664\u7B97\u3059\u308B\
-    \u3068\u304D\u306E\u9AD8\u901F\u5316\u306B\u4F7F\u3048\u308B\r\n  using i64 =\
-    \ long long;\r\n  using u64 = unsigned long long;\r\n  using u128 = __uint128_t;\r\
-    \n  constexpr fast_div() : m(), s(), x() {}\r\n  constexpr fast_div(int n)\r\n\
-    \      : m(n), s(std::__lg(n - 1)), x(((u128(1) << (s + 64)) + n - 1) / n) {}\r\
-    \n  constexpr friend u64 operator/(u64 n, const fast_div& d) {\r\n    return (u128(n)\
-    \ * d.x >> d.s) >> 64;\r\n  }\r\n  constexpr friend int operator%(u64 n, const\
-    \ fast_div& d) {\r\n    return n - n / d * d.m;\r\n  }\r\n  constexpr std::pair<i64,\
-    \ int> divmod(u64 n) const {\r\n    u64 q = n / *this;\r\n    return {q, n - q\
-    \ * m};\r\n  }\r\n\r\n  int m;\r\n  int s;\r\n  u64 x;\r\n};\r\n#line 3 \"mod/mod_pow.hpp\"\
-    \n// int\r\nll mod_pow(ll a, ll n, int mod){\r\n  fast_div fd(mod);\r\n  a = a\
-    \ % fd;\r\n  ll p = a;\r\n  ll v = 1;\r\n  while(n){\r\n    if(n & 1) v = v *\
-    \ p % fd;\r\n    p = p * p % fd;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n\
-    \r\nll mod_pow_long(ll a, ll n, ll mod){\r\n  a %= mod;\r\n  ll p = a;\r\n  ll\
-    \ v = 1;\r\n  while(n){\r\n    if(n & 1) v = i128(v) * p % mod;\r\n    p = i128(p)\
-    \ * p % mod;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n"
-  code: "#pragma once\r\n#include \"mod/fast_div.hpp\"\r\n// int\r\nll mod_pow(ll\
-    \ a, ll n, int mod){\r\n  fast_div fd(mod);\r\n  a = a % fd;\r\n  ll p = a;\r\n\
-    \  ll v = 1;\r\n  while(n){\r\n    if(n & 1) v = v * p % fd;\r\n    p = p * p\
-    \ % fd;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n\r\nll mod_pow_long(ll a,\
-    \ ll n, ll mod){\r\n  a %= mod;\r\n  ll p = a;\r\n  ll v = 1;\r\n  while(n){\r\
-    \n    if(n & 1) v = i128(v) * p % mod;\r\n    p = i128(p) * p % mod;\r\n    n\
-    \ >>= 1;\r\n  }\r\n  return v;\r\n}\r\n"
+  bundledCode: "#line 2 \"mod/barret.hpp\"\n\nstruct Barret_Reduction {\n  using i64\
+    \ = long long;\n  using u64 = unsigned long long;\n  using u128 = __uint128_t;\n\
+    \  int m, s;\n  u64 x;\n  constexpr Barret_Reduction() : m(), s(), x() {}\n  constexpr\
+    \ Barret_Reduction(int n)\n      : m(n), s(std::__lg(n - 1)), x(((u128(1) << (s\
+    \ + 64)) + n - 1) / n) {}\n  constexpr friend u64 operator/(u64 n, const Barret_Reduction&\
+    \ d) {\n    return (u128(n) * d.x >> d.s) >> 64;\n  }\n  constexpr friend int\
+    \ operator%(u64 n, const Barret_Reduction& d) {\n    return n - n / d * d.m;\n\
+    \  }\n  constexpr pair<i64, int> divmod(u64 n) const {\n    u64 q = n / *this;\n\
+    \    return {q, n - q * m};\n  }\n};\n#line 3 \"mod/mod_pow.hpp\"\n\r\n// int\r\
+    \nll mod_pow(ll a, ll n, int mod) {\r\n  Barret_Reduction BR(mod);\r\n  a = a\
+    \ % BR;\r\n  ll p = a;\r\n  ll v = 1;\r\n  while (n) {\r\n    if (n & 1) v = v\
+    \ * p % BR;\r\n    p = p * p % BR;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\
+    \n\r\nll mod_pow_long(ll a, ll n, ll mod) {\r\n  a %= mod;\r\n  ll p = a;\r\n\
+    \  ll v = 1;\r\n  while (n) {\r\n    if (n & 1) v = i128(v) * p % mod;\r\n   \
+    \ p = i128(p) * p % mod;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n"
+  code: "#pragma once\r\n#include \"mod/barret.hpp\"\r\n\r\n// int\r\nll mod_pow(ll\
+    \ a, ll n, int mod) {\r\n  Barret_Reduction BR(mod);\r\n  a = a % BR;\r\n  ll\
+    \ p = a;\r\n  ll v = 1;\r\n  while (n) {\r\n    if (n & 1) v = v * p % BR;\r\n\
+    \    p = p * p % BR;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n\r\nll mod_pow_long(ll\
+    \ a, ll n, ll mod) {\r\n  a %= mod;\r\n  ll p = a;\r\n  ll v = 1;\r\n  while (n)\
+    \ {\r\n    if (n & 1) v = i128(v) * p % mod;\r\n    p = i128(p) * p % mod;\r\n\
+    \    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n"
   dependsOn:
-  - mod/fast_div.hpp
+  - mod/barret.hpp
   isVerificationFile: false
   path: mod/mod_pow.hpp
   requiredBy:
-  - poly/multivar_convolution_cyclic.hpp
-  - nt/gaussian_integers.hpp
-  - mod/mod_kth_root.hpp
   - mod/primitive_root.hpp
-  timestamp: '2022-05-19 23:05:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - mod/mod_kth_root.hpp
+  - nt/gaussian_integers.hpp
+  - poly/multivar_convolution_cyclic.hpp
+  timestamp: '2023-04-27 03:47:30+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - test/library_checker/math/primitive_root.test.cpp
-  - test/library_checker/math/kth_root_mod.test.cpp
   - test/yukicoder/1025.test.cpp
   - test/yukicoder/1593.test.cpp
+  - test/library_checker/math/kth_root_mod.test.cpp
+  - test/library_checker/math/primitive_root.test.cpp
+  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
 documentation_of: mod/mod_pow.hpp
 layout: document
 redirect_from:

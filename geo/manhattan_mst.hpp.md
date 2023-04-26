@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
@@ -126,8 +126,8 @@ data:
   timestamp: '2023-04-09 03:51:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/graph/manhattan_mst.test.cpp
   - test_atcoder/abc283f.test.cpp
+  - test/library_checker/graph/manhattan_mst.test.cpp
 documentation_of: geo/manhattan_mst.hpp
 layout: document
 redirect_from:
