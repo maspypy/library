@@ -1,14 +1,16 @@
+#include "mod/barret.hpp"
 #pragma once
 
 template <class mint>
 void ntt(vector<mint>& a, bool inverse) {
-  static constexpr int rank2 = mint::ntt_info().fi;
-  static constexpr int mod = mint::get_mod();
-  static_assert(rank2 != -1);
-  static array<mint, rank2 + 1> root;
-  static array<mint, rank2 + 1> iroot;
-  static array<mint, max(0, rank2 - 1)> rate2, irate2;
-  static array<mint, max(0, rank2 - 2)> rate3, irate3;
+  assert(mint::can_ntt());
+  const int rank2 = mint::ntt_info().fi;
+  const int mod = mint::get_mod();
+  static array<mint, 30> root;
+  static array<mint, 30> iroot;
+  static array<mint, 30> rate2, irate2;
+  static array<mint, 30> rate3, irate3;
+
   static bool prepared = 0;
   if (!prepared) {
     prepared = 1;

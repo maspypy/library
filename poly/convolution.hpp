@@ -7,6 +7,7 @@
 
 template <class mint>
 vector<mint> convolution_ntt(vector<mint> a, vector<mint> b) {
+  if (a.empty() || b.empty()) return {};
   int n = int(a.size()), m = int(b.size());
   int sz = 1;
   while (sz < n + m - 1) sz *= 2;
@@ -161,19 +162,13 @@ vector<ll> convolution(const vector<ll>& a, const vector<ll>& b) {
 }
 
 template <typename mint>
-enable_if_t<is_same<mint, modint998>::value, vc<mint>> convolution(
-    const vc<mint>& a, const vc<mint>& b) {
+vc<mint> convolution(const vc<mint>& a, const vc<mint>& b) {
   int n = len(a), m = len(b);
   if (!n || !m) return {};
-  if (min(n, m) <= 60) return convolution_naive(a, b);
-  return convolution_ntt(a, b);
-}
-
-template <typename mint>
-enable_if_t<!is_same<mint, modint998>::value, vc<mint>> convolution(
-    const vc<mint>& a, const vc<mint>& b) {
-  int n = len(a), m = len(b);
-  if (!n || !m) return {};
-  if (min(n, m) <= 60) return convolution_naive(a, b);
+  if (mint::can_ntt()) {
+    if (min(n, m) <= 50) return convolution_naive(a, b);
+    return convolution_ntt(a, b);
+  }
+  if (min(n, m) <= 200) return convolution_naive(a, b);
   return convolution_garner(a, b);
 }
