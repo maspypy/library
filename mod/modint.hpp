@@ -67,6 +67,7 @@ struct modint {
     if (mod == 1053818881) return {20, 2789};
     return {-1, -1};
   }
+  static constexpr bool can_ntt() { return ntt_info().fi != -1; }
 };
 
 using modint107 = modint<1000000007>;
