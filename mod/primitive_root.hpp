@@ -12,7 +12,8 @@ int primitive_root(int p) {
       if (mod_pow(g, (p - 1) / q, p) == 1) return false;
     return true;
   };
-  FOR3(x, 1, p) {
+  while (1) {
+    int x = RNG(1, p);
     if (is_ok(x)) return x;
   }
   return -1;
