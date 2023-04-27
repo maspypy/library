@@ -54,19 +54,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sqrt_mod.test.cpp
     title: test/library_checker/math/sqrt_mod.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
-    title: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
+    title: test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
+    title: test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/inv_of_fps.test.cpp
     title: test/library_checker/polynomial/inv_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/log_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/log_of_fps_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
     title: test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
   - icon: ':x:'
@@ -134,10 +137,11 @@ data:
   - test/yukicoder/1025.test.cpp
   - test/yukicoder/1593.test.cpp
   - test/yukicoder/1667.test.cpp
+  - test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
+  - test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
   - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
   - test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
   - test/library_checker/polynomial/log_of_fps_dmint.test.cpp
-  - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
   - test/library_checker/polynomial/inv_of_fps.test.cpp
   - test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
