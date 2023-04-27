@@ -25,13 +25,13 @@ data:
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':question:'
@@ -40,7 +40,7 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/famous/partition_number.hpp
     title: seq/famous/partition_number.hpp
   _extendedRequiredBy: []
@@ -507,19 +507,19 @@ data:
     \n    vc<mint> f = {F.begin(), F.begin() + min(m + m, N)};\r\n    p = convolution(p,\
     \ f);\r\n    R.resize(m + m);\r\n    FOR(i, m + m) R[i] = R[i] + R[i] - p[i];\r\
     \n    m += m;\r\n  }\r\n  R.resize(N);\r\n  return R;\r\n}\r\n\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  int N = len(f);\r\n  assert(f[0]\
-    \ != mint(0));\r\n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160\
-    \ : 820);\r\n  return (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\
-    \n}\r\n#line 2 \"seq/famous/partition_number.hpp\"\n\r\ntemplate <typename T>\r\
-    \nvc<T> partition_number(int N) {\r\n  ll M = sqrt(N) + 10;\r\n  vc<T> f(N + 1);\r\
-    \n  FOR3(x, -M, M) {\r\n    ll d = x * (3 * x - 1) / 2;\r\n    if (d > N) continue;\r\
-    \n    f[d] += (x % 2 == 0 ? 1 : -1);\r\n  }\r\n  return fps_inv<T>(f);\r\n}\r\n\
-    \r\n// n \u3092 k \u500B\u306B\u5206\u5272\u3059\u308B\u65B9\u6CD5 P[n][k] \u306E\
-    \u30C6\u30FC\u30D6\u30EB\r\ntemplate <typename T>\r\nvvc<T> partition_number_2d(int\
-    \ n_max, int k_max) {\r\n  vv(T, dp, n_max + 1, k_max + 1);\r\n  dp[0][0] = 1;\r\
-    \n  FOR3(n, 1, n_max + 1) FOR3(k, 1, k_max + 1) {\r\n    // min = 1\r\n    dp[n][k]\
-    \ += dp[n - 1][k - 1];\r\n    // min >= 2\r\n    if (n >= k) dp[n][k] += dp[n\
-    \ - k][k];\r\n  }\r\n  return dp;\r\n}\r\n#line 8 \"test/mytest/enum_partitions.test.cpp\"\
+    \ mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  assert(f[0] != mint(0));\r\
+    \n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160 : 820);\r\n  return\
+    \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\n}\r\n#line 2\
+    \ \"seq/famous/partition_number.hpp\"\n\r\ntemplate <typename T>\r\nvc<T> partition_number(int\
+    \ N) {\r\n  ll M = sqrt(N) + 10;\r\n  vc<T> f(N + 1);\r\n  FOR3(x, -M, M) {\r\n\
+    \    ll d = x * (3 * x - 1) / 2;\r\n    if (d > N) continue;\r\n    f[d] += (x\
+    \ % 2 == 0 ? 1 : -1);\r\n  }\r\n  return fps_inv<T>(f);\r\n}\r\n\r\n// n \u3092\
+    \ k \u500B\u306B\u5206\u5272\u3059\u308B\u65B9\u6CD5 P[n][k] \u306E\u30C6\u30FC\
+    \u30D6\u30EB\r\ntemplate <typename T>\r\nvvc<T> partition_number_2d(int n_max,\
+    \ int k_max) {\r\n  vv(T, dp, n_max + 1, k_max + 1);\r\n  dp[0][0] = 1;\r\n  FOR3(n,\
+    \ 1, n_max + 1) FOR3(k, 1, k_max + 1) {\r\n    // min = 1\r\n    dp[n][k] += dp[n\
+    \ - 1][k - 1];\r\n    // min >= 2\r\n    if (n >= k) dp[n][k] += dp[n - k][k];\r\
+    \n  }\r\n  return dp;\r\n}\r\n#line 8 \"test/mytest/enum_partitions.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid test() {\n  FOR(N, 1, 10) {\n    vc<mint>\
     \ P = partition_number<mint>(N);\n    set<vc<int>> ss;\n    auto f = [&](vc<int>&\
     \ P) -> void {\n      assert(SUM<int>(P) == N);\n      assert(!ss.count(P));\n\
@@ -566,7 +566,7 @@ data:
   isVerificationFile: true
   path: test/mytest/enum_partitions.test.cpp
   requiredBy: []
-  timestamp: '2023-04-27 16:27:36+09:00'
+  timestamp: '2023-04-27 16:43:41+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/enum_partitions.test.cpp

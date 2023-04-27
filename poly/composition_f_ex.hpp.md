@@ -16,13 +16,13 @@ data:
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':question:'
@@ -315,14 +315,14 @@ data:
     \n    vc<mint> f = {F.begin(), F.begin() + min(m + m, N)};\r\n    p = convolution(p,\
     \ f);\r\n    R.resize(m + m);\r\n    FOR(i, m + m) R[i] = R[i] + R[i] - p[i];\r\
     \n    m += m;\r\n  }\r\n  R.resize(N);\r\n  return R;\r\n}\r\n\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  int N = len(f);\r\n  assert(f[0]\
-    \ != mint(0));\r\n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160\
-    \ : 820);\r\n  return (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\
-    \n}\r\n#line 3 \"poly/sum_of_exp_bx.hpp\"\n\n// sum a e^{bx} \u3092 N \u6B21\u307E\
-    \u3067\u3002O(Mlog^2M + NlogN)\ntemplate <typename mint>\nvc<mint> sum_of_exp_bx(int\
-    \ N, vc<pair<mint, mint>> AB) {\n  using poly = vc<mint>;\n  vc<pair<poly, poly>>\
-    \ fracs;\n  for (auto&& [a, b]: AB) {\n    poly num = {a};\n    poly den = {mint(1),\
-    \ -b};\n    fracs.eb(num, den);\n  }\n  auto [f, g] = sum_of_rationals<mint>(fracs);\n\
+    \ mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  assert(f[0] != mint(0));\r\
+    \n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160 : 820);\r\n  return\
+    \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\n}\r\n#line 3\
+    \ \"poly/sum_of_exp_bx.hpp\"\n\n// sum a e^{bx} \u3092 N \u6B21\u307E\u3067\u3002\
+    O(Mlog^2M + NlogN)\ntemplate <typename mint>\nvc<mint> sum_of_exp_bx(int N, vc<pair<mint,\
+    \ mint>> AB) {\n  using poly = vc<mint>;\n  vc<pair<poly, poly>> fracs;\n  for\
+    \ (auto&& [a, b]: AB) {\n    poly num = {a};\n    poly den = {mint(1), -b};\n\
+    \    fracs.eb(num, den);\n  }\n  auto [f, g] = sum_of_rationals<mint>(fracs);\n\
     \  g.resize(N + 1);\n  f = convolution(f, fps_inv(g));\n  f.resize(N + 1);\n \
     \ FOR(n, N + 1) f[n] *= fact_inv<mint>(n);\n  return f;\n}\n#line 2 \"poly/composition_f_ex.hpp\"\
     \n\n// N \u6B21\u591A\u9805\u5F0F f \u306B\u5BFE\u3057\u3066\u3001f(e^x) \u3092\
@@ -349,7 +349,7 @@ data:
   isVerificationFile: false
   path: poly/composition_f_ex.hpp
   requiredBy: []
-  timestamp: '2023-04-27 16:27:36+09:00'
+  timestamp: '2023-04-27 16:43:41+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/arc154f.test.cpp

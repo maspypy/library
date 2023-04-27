@@ -85,6 +85,12 @@ data:
     path: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
   - icon: ':x:'
+    path: test/library_checker/polynomial/log_of_fps_dmint.test.cpp
+    title: test/library_checker/polynomial/log_of_fps_dmint.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
+    title: test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
+  - icon: ':x:'
     path: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
   - icon: ':x:'
@@ -246,8 +252,10 @@ data:
   - test/aoj/ITP1_D_D.test.cpp
   - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
   - test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
+  - test/library_checker/polynomial/log_of_fps_dmint.test.cpp
   - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
   - test/library_checker/polynomial/inv_of_fps.test.cpp
+  - test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/factorize.test.cpp
   - test/library_checker/math/primitive_root.test.cpp

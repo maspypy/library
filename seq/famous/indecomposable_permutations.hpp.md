@@ -16,13 +16,13 @@ data:
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':question:'
@@ -293,13 +293,13 @@ data:
     \n    vc<mint> f = {F.begin(), F.begin() + min(m + m, N)};\r\n    p = convolution(p,\
     \ f);\r\n    R.resize(m + m);\r\n    FOR(i, m + m) R[i] = R[i] + R[i] - p[i];\r\
     \n    m += m;\r\n  }\r\n  R.resize(N);\r\n  return R;\r\n}\r\n\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  int N = len(f);\r\n  assert(f[0]\
-    \ != mint(0));\r\n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160\
-    \ : 820);\r\n  return (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\
-    \n}\r\n#line 2 \"seq/famous/indecomposable_permutations.hpp\"\n\n// \u975E\u7A7A\
-    \u306A prefix < suffix \u306B\u5206\u5272\u3067\u304D\u306A\u3044\u3082\u306E\n\
-    // ng: [1][2][3], [1][32], [21][3]\n// ok: [231], [312], [321]\n// https://oeis.org/A003319\
-    \  0, 1, 1, 3, 13, 71\ntemplate <typename mint>\nvc<mint> indecomposable_permutations(const\
+    \ mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  assert(f[0] != mint(0));\r\
+    \n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160 : 820);\r\n  return\
+    \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\n}\r\n#line 2\
+    \ \"seq/famous/indecomposable_permutations.hpp\"\n\n// \u975E\u7A7A\u306A prefix\
+    \ < suffix \u306B\u5206\u5272\u3067\u304D\u306A\u3044\u3082\u306E\n// ng: [1][2][3],\
+    \ [1][32], [21][3]\n// ok: [231], [312], [321]\n// https://oeis.org/A003319  0,\
+    \ 1, 1, 3, 13, 71\ntemplate <typename mint>\nvc<mint> indecomposable_permutations(const\
     \ int N) {\n  vc<mint> f(N + 1);\n  FOR(i, N + 1) f[i] = fact<mint>(i);\n  f =\
     \ fps_inv(f);\n  for (auto&& x: f) x = -x;\n  f[0] += mint(1);\n  return f;\n\
     }\n"
@@ -322,7 +322,7 @@ data:
   isVerificationFile: false
   path: seq/famous/indecomposable_permutations.hpp
   requiredBy: []
-  timestamp: '2023-04-27 16:27:36+09:00'
+  timestamp: '2023-04-27 16:43:41+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/simple_perm.test.cpp

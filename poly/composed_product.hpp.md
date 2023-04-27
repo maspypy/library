@@ -16,10 +16,10 @@ data:
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
   - icon: ':question:'
@@ -28,13 +28,13 @@ data:
   - icon: ':x:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
   - icon: ':question:'
@@ -305,84 +305,84 @@ data:
     \n    vc<mint> f = {F.begin(), F.begin() + min(m + m, N)};\r\n    p = convolution(p,\
     \ f);\r\n    R.resize(m + m);\r\n    FOR(i, m + m) R[i] = R[i] + R[i] - p[i];\r\
     \n    m += m;\r\n  }\r\n  R.resize(N);\r\n  return R;\r\n}\r\n\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  int N = len(f);\r\n  assert(f[0]\
-    \ != mint(0));\r\n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160\
-    \ : 820);\r\n  return (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\
-    \n}\r\n#line 5 \"poly/fps_div.hpp\"\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\
-    \u529B\u3055\u308C\u308B.\ntemplate <typename mint, bool SPARSE = false>\nvc<mint>\
-    \ fps_div(vc<mint> f, vc<mint> g) {\n  if (SPARSE || count_terms(g) < 200) return\
-    \ fps_div_sparse(f, g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n\
-    \  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n\n// f/g \u305F\u3060\
-    \u3057 g \u306F sparse\ntemplate <typename mint>\nvc<mint> fps_div_sparse(vc<mint>\
-    \ f, vc<mint>& g) {\n  if (g[0] != mint(1)) {\n    mint cf = g[0].inverse();\n\
-    \    for (auto&& x: f) x *= cf;\n    for (auto&& x: g) x *= cf;\n  }\n\n  vc<pair<int,\
-    \ mint>> dat;\n  FOR(i, 1, len(g)) if (g[i] != mint(0)) dat.eb(i, -g[i]);\n  FOR(i,\
-    \ len(f)) {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i\
-    \ - j];\n    }\n  }\n  return f;\n}\n#line 2 \"poly/sum_of_power_of_roots.hpp\"\
-    \n\n// f = prod(1-a_ix) \u306E\u3068\u304D\u3001g[k] = sum_i a_i^k \u3068\u306A\
-    \u308B g \u306E [0, LIM] \u3092\u8FD4\u3059\ntemplate <typename mint>\nvc<mint>\
-    \ sum_of_power_of_roots(vc<mint>& f, int LIM) {\n  const int n = len(f) - 1;\n\
-    \  // n - xf'/f\n  vc<mint> g(n + 1);\n  FOR(i, n + 1) g[i] = mint(n - i) * f[i];\n\
-    \  g.resize(LIM + 1);\n  return fps_div(g, f);\n}\n#line 2 \"poly/integrate.hpp\"\
-    \n\ntemplate <typename mint>\nvc<mint> integrate(const vc<mint>& f) {\n  vc<mint>\
-    \ g(len(f) + 1);\n  FOR3(i, 1, len(g)) g[i] = f[i - 1] * inv<mint>(i);\n  return\
-    \ g;\n}\n#line 2 \"poly/differentiate.hpp\"\n\ntemplate <typename mint>\nvc<mint>\
-    \ differentiate(const vc<mint>& f) {\n  if (len(f) <= 1) return {};\n  vc<mint>\
-    \ g(len(f) - 1);\n  FOR(i, len(g)) g[i] = f[i + 1] * mint(i + 1);\n  return g;\n\
-    }\n#line 6 \"poly/fps_exp.hpp\"\n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint,\
+    \ mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  assert(f[0] != mint(0));\r\
+    \n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160 : 820);\r\n  return\
+    \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\n}\r\n#line 5\
+    \ \"poly/fps_div.hpp\"\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\u529B\u3055\
+    \u308C\u308B.\ntemplate <typename mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint>\
+    \ f, vc<mint> g) {\n  if (SPARSE || count_terms(g) < 200) return fps_div_sparse(f,\
+    \ g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n  f = convolution(f,\
+    \ g);\n  f.resize(n);\n  return f;\n}\n\n// f/g \u305F\u3060\u3057 g \u306F sparse\n\
+    template <typename mint>\nvc<mint> fps_div_sparse(vc<mint> f, vc<mint>& g) {\n\
+    \  if (g[0] != mint(1)) {\n    mint cf = g[0].inverse();\n    for (auto&& x: f)\
+    \ x *= cf;\n    for (auto&& x: g) x *= cf;\n  }\n\n  vc<pair<int, mint>> dat;\n\
+    \  FOR(i, 1, len(g)) if (g[i] != mint(0)) dat.eb(i, -g[i]);\n  FOR(i, len(f))\
+    \ {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i - j];\n\
+    \    }\n  }\n  return f;\n}\n#line 2 \"poly/sum_of_power_of_roots.hpp\"\n\n//\
+    \ f = prod(1-a_ix) \u306E\u3068\u304D\u3001g[k] = sum_i a_i^k \u3068\u306A\u308B\
+    \ g \u306E [0, LIM] \u3092\u8FD4\u3059\ntemplate <typename mint>\nvc<mint> sum_of_power_of_roots(vc<mint>&\
+    \ f, int LIM) {\n  const int n = len(f) - 1;\n  // n - xf'/f\n  vc<mint> g(n +\
+    \ 1);\n  FOR(i, n + 1) g[i] = mint(n - i) * f[i];\n  g.resize(LIM + 1);\n  return\
+    \ fps_div(g, f);\n}\n#line 2 \"poly/integrate.hpp\"\n\ntemplate <typename mint>\n\
+    vc<mint> integrate(const vc<mint>& f) {\n  vc<mint> g(len(f) + 1);\n  FOR3(i,\
+    \ 1, len(g)) g[i] = f[i - 1] * inv<mint>(i);\n  return g;\n}\n#line 2 \"poly/differentiate.hpp\"\
+    \n\ntemplate <typename mint>\nvc<mint> differentiate(const vc<mint>& f) {\n  if\
+    \ (len(f) <= 1) return {};\n  vc<mint> g(len(f) - 1);\n  FOR(i, len(g)) g[i] =\
+    \ f[i + 1] * mint(i + 1);\n  return g;\n}\n#line 6 \"poly/fps_exp.hpp\"\n\r\n\
+    template <typename mint>\r\nenable_if_t<is_same<mint, modint998>::value, vc<mint>>\
+    \ fps_exp(vc<mint>& f) {\r\n  if (count_terms(f) <= 300) return fps_exp_sparse(f);\r\
+    \n  return fps_exp_dense(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<!is_same<mint,\
     \ modint998>::value, vc<mint>> fps_exp(vc<mint>& f) {\r\n  if (count_terms(f)\
-    \ <= 300) return fps_exp_sparse(f);\r\n  return fps_exp_dense(f);\r\n}\r\n\r\n\
-    template <typename mint>\r\nenable_if_t<!is_same<mint, modint998>::value, vc<mint>>\
-    \ fps_exp(vc<mint>& f) {\r\n  if (count_terms(f) <= 1000) return fps_exp_sparse(f);\r\
-    \n  return fps_exp_dense(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint>\
-    \ fps_exp_sparse(vc<mint>& f) {\r\n  if (len(f) == 0) return {mint(1)};\r\n  assert(f[0]\
-    \ == 0);\r\n  int N = len(f);\r\n  // df \u3092\u6301\u305F\u305B\u308B\r\n  vc<pair<int,\
-    \ mint>> dat;\r\n  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i - 1, mint(i) * f[i]);\r\
-    \n  vc<mint> F(N);\r\n  F[0] = 1;\r\n  FOR(n, 1, N) {\r\n    mint rhs = 0;\r\n\
-    \    for (auto&& [k, fk]: dat) {\r\n      if (k > n - 1) break;\r\n      rhs +=\
-    \ fk * F[n - 1 - k];\r\n    }\r\n    F[n] = rhs * inv<mint>(n);\r\n  }\r\n  return\
-    \ F;\r\n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<!is_same<mint, modint998>::value,\
-    \ vc<mint>> fps_exp_dense(\r\n    vc<mint> h) {\r\n  const int L = len(h);\r\n\
-    \  assert(L > 0 && h[0] == mint(0));\r\n  int LOG = 0;\r\n  while (1 << LOG <\
-    \ L) ++LOG;\r\n  h.resize(1 << LOG);\r\n  auto dh = differentiate(h);\r\n  vc<mint>\
-    \ f = {1}, g = {1};\r\n  int m = 1;\r\n\r\n  vc<mint> p;\r\n\r\n  FOR(LOG) {\r\
-    \n    p = convolution(f, g);\r\n    p.resize(m);\r\n    p = convolution(p, g);\r\
-    \n    p.resize(m);\r\n    g.resize(m);\r\n    FOR(i, m) g[i] += g[i] - p[i];\r\
-    \n    p = {dh.begin(), dh.begin() + m - 1};\r\n    p = convolution(f, p);\r\n\
-    \    p.resize(m + m - 1);\r\n    FOR(i, m + m - 1) p[i] = -p[i];\r\n    FOR(i,\
-    \ m - 1) p[i] += mint(i + 1) * f[i + 1];\r\n    p = convolution(p, g);\r\n\r\n\
-    \    p.resize(m + m - 1);\r\n    FOR(i, m - 1) p[i] += dh[i];\r\n    p = integrate(p);\r\
-    \n    FOR(i, m + m) p[i] = h[i] - p[i];\r\n    p[0] += mint(1);\r\n    f = convolution(f,\
-    \ p);\r\n    f.resize(m + m);\r\n    m += m;\r\n  }\r\n  f.resize(L);\r\n  return\
-    \ f;\r\n}\r\n\r\n// ntt \u7D20\u6570\u5C02\u7528\u5B9F\u88C5\u3002\u9577\u3055\
-    \ n \u306E FFT \u3092\u5229\u7528\u3057\u3066 2n \u306E FFT\r\n// \u3092\u884C\
-    \u3046\u306A\u3069\u306E\u9AD8\u901F\u5316\u3092\u3057\u3066\u3044\u308B\u3002\
-    \r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint, modint998>::value, vc<mint>>\
-    \ fps_exp_dense(\r\n    vc<mint>& f) {\r\n  const int n = len(f);\r\n  assert(n\
-    \ > 0 && f[0] == mint(0));\r\n  vc<mint> b = {1, (1 < n ? f[1] : 0)};\r\n  vc<mint>\
-    \ c = {1}, z1, z2 = {1, 1};\r\n  while (len(b) < n) {\r\n    int m = len(b);\r\
-    \n    auto y = b;\r\n    y.resize(2 * m);\r\n    ntt(y, 0);\r\n    z1 = z2;\r\n\
-    \    vc<mint> z(m);\r\n    FOR(i, m) z[i] = y[i] * z1[i];\r\n    ntt(z, 1);\r\n\
-    \    FOR(i, m / 2) z[i] = 0;\r\n    ntt(z, 0);\r\n    FOR(i, m) z[i] *= -z1[i];\r\
-    \n    ntt(z, 1);\r\n    c.insert(c.end(), z.begin() + m / 2, z.end());\r\n   \
-    \ z2 = c;\r\n    z2.resize(2 * m);\r\n    ntt(z2, 0);\r\n\r\n    vc<mint> x(f.begin(),\
-    \ f.begin() + m);\r\n    FOR(i, len(x) - 1) x[i] = x[i + 1] * mint(i + 1);\r\n\
-    \    x.back() = 0;\r\n    ntt(x, 0);\r\n    FOR(i, m) x[i] *= y[i];\r\n    ntt(x,\
-    \ 1);\r\n\r\n    FOR(i, m - 1) x[i] -= b[i + 1] * mint(i + 1);\r\n\r\n    x.resize(m\
-    \ + m);\r\n    FOR(i, m - 1) x[m + i] = x[i], x[i] = 0;\r\n    ntt(x, 0);\r\n\
-    \    FOR(i, m + m) x[i] *= z2[i];\r\n    ntt(x, 1);\r\n    FOR_R(i, len(x) - 1)\
-    \ x[i + 1] = x[i] * inv<mint>(i + 1);\r\n    x[0] = 0;\r\n\r\n    FOR3(i, m, min(n,\
-    \ m + m)) x[i] += f[i];\r\n    FOR(i, m) x[i] = 0;\r\n    ntt(x, 0);\r\n    FOR(i,\
-    \ m + m) x[i] *= y[i];\r\n    ntt(x, 1);\r\n    b.insert(b.end(), x.begin() +\
-    \ m, x.end());\r\n  }\r\n  b.resize(n);\r\n  return b;\r\n}\r\n#line 3 \"poly/composed_product.hpp\"\
-    \n\n// https://codeforces.com/blog/entry/103136\n// f(x) = prod(1-a_i x), g(x)\
-    \ = prod(1-b_j x) \u306E\u3068\u304D\n// prod_{i,j} (1-(a_ib_j)x) \u3092\u8A08\
-    \u7B97\u3059\u308B\u3002\ntemplate <typename mint>\nvc<mint> composed_product(vc<mint>\
-    \ f, vc<mint> g) {\n  int n = len(f) - 1, m = len(g) - 1;\n  vc<mint> A = sum_of_power_of_roots(f,\
-    \ n * m);\n  vc<mint> B = sum_of_power_of_roots(g, n * m);\n  A = convolution(A,\
-    \ B);\n  A.resize(n * m + 1);\n  FOR(i, len(A)) A[i] = -A[i];\n  A[0] += mint(n\
-    \ * m);\n  // A.erase(A.begin()); -> f'/f = (log f)'\n  FOR(i, 1, n * m + 1) A[i]\
-    \ *= inv<mint>(i);\n  return fps_exp(A);\n}\n"
+    \ <= 1000) return fps_exp_sparse(f);\r\n  return fps_exp_dense(f);\r\n}\r\n\r\n\
+    template <typename mint>\r\nvc<mint> fps_exp_sparse(vc<mint>& f) {\r\n  if (len(f)\
+    \ == 0) return {mint(1)};\r\n  assert(f[0] == 0);\r\n  int N = len(f);\r\n  //\
+    \ df \u3092\u6301\u305F\u305B\u308B\r\n  vc<pair<int, mint>> dat;\r\n  FOR(i,\
+    \ 1, N) if (f[i] != mint(0)) dat.eb(i - 1, mint(i) * f[i]);\r\n  vc<mint> F(N);\r\
+    \n  F[0] = 1;\r\n  FOR(n, 1, N) {\r\n    mint rhs = 0;\r\n    for (auto&& [k,\
+    \ fk]: dat) {\r\n      if (k > n - 1) break;\r\n      rhs += fk * F[n - 1 - k];\r\
+    \n    }\r\n    F[n] = rhs * inv<mint>(n);\r\n  }\r\n  return F;\r\n}\r\n\r\ntemplate\
+    \ <typename mint>\r\nenable_if_t<!is_same<mint, modint998>::value, vc<mint>> fps_exp_dense(\r\
+    \n    vc<mint> h) {\r\n  const int L = len(h);\r\n  assert(L > 0 && h[0] == mint(0));\r\
+    \n  int LOG = 0;\r\n  while (1 << LOG < L) ++LOG;\r\n  h.resize(1 << LOG);\r\n\
+    \  auto dh = differentiate(h);\r\n  vc<mint> f = {1}, g = {1};\r\n  int m = 1;\r\
+    \n\r\n  vc<mint> p;\r\n\r\n  FOR(LOG) {\r\n    p = convolution(f, g);\r\n    p.resize(m);\r\
+    \n    p = convolution(p, g);\r\n    p.resize(m);\r\n    g.resize(m);\r\n    FOR(i,\
+    \ m) g[i] += g[i] - p[i];\r\n    p = {dh.begin(), dh.begin() + m - 1};\r\n   \
+    \ p = convolution(f, p);\r\n    p.resize(m + m - 1);\r\n    FOR(i, m + m - 1)\
+    \ p[i] = -p[i];\r\n    FOR(i, m - 1) p[i] += mint(i + 1) * f[i + 1];\r\n    p\
+    \ = convolution(p, g);\r\n\r\n    p.resize(m + m - 1);\r\n    FOR(i, m - 1) p[i]\
+    \ += dh[i];\r\n    p = integrate(p);\r\n    FOR(i, m + m) p[i] = h[i] - p[i];\r\
+    \n    p[0] += mint(1);\r\n    f = convolution(f, p);\r\n    f.resize(m + m);\r\
+    \n    m += m;\r\n  }\r\n  f.resize(L);\r\n  return f;\r\n}\r\n\r\n// ntt \u7D20\
+    \u6570\u5C02\u7528\u5B9F\u88C5\u3002\u9577\u3055 n \u306E FFT \u3092\u5229\u7528\
+    \u3057\u3066 2n \u306E FFT\r\n// \u3092\u884C\u3046\u306A\u3069\u306E\u9AD8\u901F\
+    \u5316\u3092\u3057\u3066\u3044\u308B\u3002\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint,\
+    \ modint998>::value, vc<mint>> fps_exp_dense(\r\n    vc<mint>& f) {\r\n  const\
+    \ int n = len(f);\r\n  assert(n > 0 && f[0] == mint(0));\r\n  vc<mint> b = {1,\
+    \ (1 < n ? f[1] : 0)};\r\n  vc<mint> c = {1}, z1, z2 = {1, 1};\r\n  while (len(b)\
+    \ < n) {\r\n    int m = len(b);\r\n    auto y = b;\r\n    y.resize(2 * m);\r\n\
+    \    ntt(y, 0);\r\n    z1 = z2;\r\n    vc<mint> z(m);\r\n    FOR(i, m) z[i] =\
+    \ y[i] * z1[i];\r\n    ntt(z, 1);\r\n    FOR(i, m / 2) z[i] = 0;\r\n    ntt(z,\
+    \ 0);\r\n    FOR(i, m) z[i] *= -z1[i];\r\n    ntt(z, 1);\r\n    c.insert(c.end(),\
+    \ z.begin() + m / 2, z.end());\r\n    z2 = c;\r\n    z2.resize(2 * m);\r\n   \
+    \ ntt(z2, 0);\r\n\r\n    vc<mint> x(f.begin(), f.begin() + m);\r\n    FOR(i, len(x)\
+    \ - 1) x[i] = x[i + 1] * mint(i + 1);\r\n    x.back() = 0;\r\n    ntt(x, 0);\r\
+    \n    FOR(i, m) x[i] *= y[i];\r\n    ntt(x, 1);\r\n\r\n    FOR(i, m - 1) x[i]\
+    \ -= b[i + 1] * mint(i + 1);\r\n\r\n    x.resize(m + m);\r\n    FOR(i, m - 1)\
+    \ x[m + i] = x[i], x[i] = 0;\r\n    ntt(x, 0);\r\n    FOR(i, m + m) x[i] *= z2[i];\r\
+    \n    ntt(x, 1);\r\n    FOR_R(i, len(x) - 1) x[i + 1] = x[i] * inv<mint>(i + 1);\r\
+    \n    x[0] = 0;\r\n\r\n    FOR3(i, m, min(n, m + m)) x[i] += f[i];\r\n    FOR(i,\
+    \ m) x[i] = 0;\r\n    ntt(x, 0);\r\n    FOR(i, m + m) x[i] *= y[i];\r\n    ntt(x,\
+    \ 1);\r\n    b.insert(b.end(), x.begin() + m, x.end());\r\n  }\r\n  b.resize(n);\r\
+    \n  return b;\r\n}\r\n#line 3 \"poly/composed_product.hpp\"\n\n// https://codeforces.com/blog/entry/103136\n\
+    // f(x) = prod(1-a_i x), g(x) = prod(1-b_j x) \u306E\u3068\u304D\n// prod_{i,j}\
+    \ (1-(a_ib_j)x) \u3092\u8A08\u7B97\u3059\u308B\u3002\ntemplate <typename mint>\n\
+    vc<mint> composed_product(vc<mint> f, vc<mint> g) {\n  int n = len(f) - 1, m =\
+    \ len(g) - 1;\n  vc<mint> A = sum_of_power_of_roots(f, n * m);\n  vc<mint> B =\
+    \ sum_of_power_of_roots(g, n * m);\n  A = convolution(A, B);\n  A.resize(n * m\
+    \ + 1);\n  FOR(i, len(A)) A[i] = -A[i];\n  A[0] += mint(n * m);\n  // A.erase(A.begin());\
+    \ -> f'/f = (log f)'\n  FOR(i, 1, n * m + 1) A[i] *= inv<mint>(i);\n  return fps_exp(A);\n\
+    }\n"
   code: "#include \"poly/sum_of_power_of_roots.hpp\"\n#include \"poly/fps_exp.hpp\"\
     \n\n// https://codeforces.com/blog/entry/103136\n// f(x) = prod(1-a_i x), g(x)\
     \ = prod(1-b_j x) \u306E\u3068\u304D\n// prod_{i,j} (1-(a_ib_j)x) \u3092\u8A08\
@@ -410,7 +410,7 @@ data:
   isVerificationFile: false
   path: poly/composed_product.hpp
   requiredBy: []
-  timestamp: '2023-04-27 16:27:36+09:00'
+  timestamp: '2023-04-27 16:43:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: poly/composed_product.hpp

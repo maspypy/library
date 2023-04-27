@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
   - icon: ':question:'
@@ -31,7 +31,7 @@ data:
   - icon: ':x:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':x:'
@@ -518,35 +518,34 @@ data:
     \ + m);\r\n    vc<mint> f = {F.begin(), F.begin() + min(m + m, N)};\r\n    p =\
     \ convolution(p, f);\r\n    R.resize(m + m);\r\n    FOR(i, m + m) R[i] = R[i]\
     \ + R[i] - p[i];\r\n    m += m;\r\n  }\r\n  R.resize(N);\r\n  return R;\r\n}\r\
-    \n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  int\
-    \ N = len(f);\r\n  assert(f[0] != mint(0));\r\n  int n = count_terms(f);\r\n \
-    \ int t = (mint::can_ntt() ? 160 : 820);\r\n  return (n <= t ? fps_inv_sparse<mint>(f)\
-    \ : fps_inv_dense<mint>(f));\r\n}\r\n#line 5 \"poly/fps_div.hpp\"\n\n// f/g. f\
-    \ \u306E\u9577\u3055\u3067\u51FA\u529B\u3055\u308C\u308B.\ntemplate <typename\
-    \ mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint> f, vc<mint> g) {\n  if\
-    \ (SPARSE || count_terms(g) < 200) return fps_div_sparse(f, g);\n  int n = len(f);\n\
-    \  g.resize(n);\n  g = fps_inv<mint>(g);\n  f = convolution(f, g);\n  f.resize(n);\n\
-    \  return f;\n}\n\n// f/g \u305F\u3060\u3057 g \u306F sparse\ntemplate <typename\
-    \ mint>\nvc<mint> fps_div_sparse(vc<mint> f, vc<mint>& g) {\n  if (g[0] != mint(1))\
-    \ {\n    mint cf = g[0].inverse();\n    for (auto&& x: f) x *= cf;\n    for (auto&&\
-    \ x: g) x *= cf;\n  }\n\n  vc<pair<int, mint>> dat;\n  FOR(i, 1, len(g)) if (g[i]\
-    \ != mint(0)) dat.eb(i, -g[i]);\n  FOR(i, len(f)) {\n    for (auto&& [j, x]: dat)\
-    \ {\n      if (i >= j) f[i] += x * f[i - j];\n    }\n  }\n  return f;\n}\n#line\
-    \ 4 \"poly/slice_rational_fps.hpp\"\n\n// P(x)/Q(x) \u306E [N, N+d] \u90E8\u5206\
-    \u3092\u8A08\u7B97\n// https://qiita.com/ryuhe1/items/c18ddbb834eed724a42b\ntemplate\
-    \ <typename mint>\nvc<mint> slice_rational_fps(vc<mint> P, vc<mint> Q, ll N) {\n\
-    \  assert(N >= 0 && Q[0] == mint(1) && len(P) < len(Q));\n  const int d = len(Q)\
-    \ - 1;\n  if (d == 0) { return vc<mint>(); }\n  P.resize(len(Q) - 1);\n\n  auto\
-    \ dfs = [&](auto& dfs, ll N, vc<mint> Q) -> vc<mint> {\n    // 1/Q \u306E [N-d+1,\
-    \ N]\n    if (N == 0) {\n      vc<mint> f(d);\n      f[d - 1] = 1;\n      return\
-    \ f;\n    }\n    vc<mint> R = Q;\n    FOR(i, d + 1) if (i & 1) R[i] = -R[i];\n\
-    \    vc<mint> V = convolution(Q, R);\n    FOR(i, d + 1) V[i] = V[2 * i];\n   \
-    \ V.resize(d + 1);\n    vc<mint> W = dfs(dfs, N / 2, V);\n    vc<mint> S(d + d);\n\
-    \    if (N % 2 == 0) FOR(i, d) S[2 * i + 1] = W[i];\n    if (N % 2 == 1) FOR(i,\
-    \ d) S[2 * i] = W[i];\n    reverse(all(R));\n    return middle_product(S, R);\n\
-    \  };\n  vc<mint> A = dfs(dfs, N, Q);\n  vc<mint> f = convolution(A, Q);\n  f\
-    \ = {f.begin() + d, f.end() - 1};\n  f = fps_div(f, Q);\n  for (auto&& x: f) x\
-    \ = -x;\n  A.insert(A.end(), all(f));\n  reverse(all(P));\n  return middle_product(A,\
+    \n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  assert(f[0]\
+    \ != mint(0));\r\n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160\
+    \ : 820);\r\n  return (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\
+    \n}\r\n#line 5 \"poly/fps_div.hpp\"\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\
+    \u529B\u3055\u308C\u308B.\ntemplate <typename mint, bool SPARSE = false>\nvc<mint>\
+    \ fps_div(vc<mint> f, vc<mint> g) {\n  if (SPARSE || count_terms(g) < 200) return\
+    \ fps_div_sparse(f, g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n\
+    \  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n\n// f/g \u305F\u3060\
+    \u3057 g \u306F sparse\ntemplate <typename mint>\nvc<mint> fps_div_sparse(vc<mint>\
+    \ f, vc<mint>& g) {\n  if (g[0] != mint(1)) {\n    mint cf = g[0].inverse();\n\
+    \    for (auto&& x: f) x *= cf;\n    for (auto&& x: g) x *= cf;\n  }\n\n  vc<pair<int,\
+    \ mint>> dat;\n  FOR(i, 1, len(g)) if (g[i] != mint(0)) dat.eb(i, -g[i]);\n  FOR(i,\
+    \ len(f)) {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i\
+    \ - j];\n    }\n  }\n  return f;\n}\n#line 4 \"poly/slice_rational_fps.hpp\"\n\
+    \n// P(x)/Q(x) \u306E [N, N+d] \u90E8\u5206\u3092\u8A08\u7B97\n// https://qiita.com/ryuhe1/items/c18ddbb834eed724a42b\n\
+    template <typename mint>\nvc<mint> slice_rational_fps(vc<mint> P, vc<mint> Q,\
+    \ ll N) {\n  assert(N >= 0 && Q[0] == mint(1) && len(P) < len(Q));\n  const int\
+    \ d = len(Q) - 1;\n  if (d == 0) { return vc<mint>(); }\n  P.resize(len(Q) - 1);\n\
+    \n  auto dfs = [&](auto& dfs, ll N, vc<mint> Q) -> vc<mint> {\n    // 1/Q \u306E\
+    \ [N-d+1, N]\n    if (N == 0) {\n      vc<mint> f(d);\n      f[d - 1] = 1;\n \
+    \     return f;\n    }\n    vc<mint> R = Q;\n    FOR(i, d + 1) if (i & 1) R[i]\
+    \ = -R[i];\n    vc<mint> V = convolution(Q, R);\n    FOR(i, d + 1) V[i] = V[2\
+    \ * i];\n    V.resize(d + 1);\n    vc<mint> W = dfs(dfs, N / 2, V);\n    vc<mint>\
+    \ S(d + d);\n    if (N % 2 == 0) FOR(i, d) S[2 * i + 1] = W[i];\n    if (N % 2\
+    \ == 1) FOR(i, d) S[2 * i] = W[i];\n    reverse(all(R));\n    return middle_product(S,\
+    \ R);\n  };\n  vc<mint> A = dfs(dfs, N, Q);\n  vc<mint> f = convolution(A, Q);\n\
+    \  f = {f.begin() + d, f.end() - 1};\n  f = fps_div(f, Q);\n  for (auto&& x: f)\
+    \ x = -x;\n  A.insert(A.end(), all(f));\n  reverse(all(P));\n  return middle_product(A,\
     \ P);\n}\n#line 6 \"test_atcoder/agc013e.test.cpp\"\n\nusing mint = modint107;\n\
     \nvoid solve() {\n  LL(N, M);\n  using poly = vc<mint>;\n  poly f = {0, 1, 1};\n\
     \  poly Q = {1, -4, 2, -1};\n  int now = 0;\n  FOR(M) {\n    INT(x);\n    f =\
@@ -581,7 +580,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/agc013e.test.cpp
   requiredBy: []
-  timestamp: '2023-04-27 16:27:36+09:00'
+  timestamp: '2023-04-27 16:43:41+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/agc013e.test.cpp

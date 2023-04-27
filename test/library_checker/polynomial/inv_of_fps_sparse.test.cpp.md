@@ -22,13 +22,13 @@ data:
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':question:'
@@ -481,13 +481,13 @@ data:
     \n    vc<mint> f = {F.begin(), F.begin() + min(m + m, N)};\r\n    p = convolution(p,\
     \ f);\r\n    R.resize(m + m);\r\n    FOR(i, m + m) R[i] = R[i] + R[i] - p[i];\r\
     \n    m += m;\r\n  }\r\n  R.resize(N);\r\n  return R;\r\n}\r\n\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  int N = len(f);\r\n  assert(f[0]\
-    \ != mint(0));\r\n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160\
-    \ : 820);\r\n  return (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\
-    \n}\r\n#line 7 \"test/library_checker/polynomial/inv_of_fps_sparse.test.cpp\"\n\
-    \r\nvoid solve() {\r\n  using mint = modint998;\r\n  LL(N, K);\r\n  vc<mint> f(N);\r\
-    \n  FOR(K) {\r\n    LL(i, a);\r\n    f[i] = a;\r\n  }\r\n  print(fps_inv(f));\r\
-    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
+    \ mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  assert(f[0] != mint(0));\r\
+    \n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160 : 820);\r\n  return\
+    \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\n}\r\n#line 7\
+    \ \"test/library_checker/polynomial/inv_of_fps_sparse.test.cpp\"\n\r\nvoid solve()\
+    \ {\r\n  using mint = modint998;\r\n  LL(N, K);\r\n  vc<mint> f(N);\r\n  FOR(K)\
+    \ {\r\n    LL(i, a);\r\n    f[i] = a;\r\n  }\r\n  print(fps_inv(f));\r\n}\r\n\r\
+    \nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.yosupo.jp/problem/inv_of_formal_power_series_sparse\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
     \ \"poly/fps_inv.hpp\"\r\n\r\nvoid solve() {\r\n  using mint = modint998;\r\n\
@@ -509,7 +509,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
   requiredBy: []
-  timestamp: '2023-04-27 16:27:36+09:00'
+  timestamp: '2023-04-27 16:43:41+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
