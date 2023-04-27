@@ -61,8 +61,8 @@ data:
     path: test/aoj/NTL_1_D.test.cpp
     title: test/aoj/NTL_1_D.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
-    title: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
+    path: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
+    title: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_setntt.test.cpp
     title: test/library_checker/convolution/convolution_mod_setntt.test.cpp
@@ -93,13 +93,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_mod_p_2.test.cpp
     title: test/library_checker/math/stirling_mod_p_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
     title: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/inv_of_fps.test.cpp
     title: test/library_checker/polynomial/inv_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
   - icon: ':x:'
@@ -266,8 +266,8 @@ data:
   - test/library_checker/math/stirling_mod_p_1.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - test/library_checker/convolution/convolution_mod_107_amint.test.cpp
   - test/library_checker/convolution/convolution_mod_setntt.test.cpp
+  - test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
   - test/mytest/four_square.test.cpp
 documentation_of: nt/primetest.hpp
 layout: document
