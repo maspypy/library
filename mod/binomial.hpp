@@ -1,82 +1,112 @@
-#include "nt/factor.hpp"
-#include "mod/barrett.hpp"
+#include "mod/primitive_root.hpp"
+#include "mod/mod_inv.hpp"
 
-// mod を素因数分解して階乗を前計算 → 二項係数クエリ
-// O(mod) 時間前計算
-struct Binomial {
-  int mod;
-  vc<pair<ll, int>> pf;
-  vc<int> pp;
-  vc<vc<int>> fact;
-  vc<int> crt_coef;
+struct Binomial_PrimePower {
+  int p, e;
+  int pp;
+  int root;
+  int ord;
+  vc<int> exp;
+  vc<int> log_fact;
+  vc<int> power;
+  Barrett bt_p, bt_pp;
 
-  Binomial(int mod) : mod(mod) {
-    pf = factor(mod);
-    int S = len(pf);
-    pp.resize(S);
-    fact.resize(S);
-    crt_coef.resize(S);
-    FOR(s, S) {
-      auto [p, e] = pf[s];
-      pp[s] = 1;
-      FOR(e) pp[s] *= p;
-      auto& F = fact[s];
-      // mod pp での fact の周期
-      F.resize(pp[s] * 2);
-      F[0] = 1;
-      Barrett bt_p(p);
-      Barrett bt_pp(pp[s]);
-      FOR(x, 1, len(F)) {
-        if (bt_p.modulo(x) == 0)
-          F[x] = F[x - 1];
-        else
-          F[x] = bt_p.mul(F[x - 1], x);
-      }
-      int other = bt_pp.floor(mod);
-      while (bt_pp.modulo(crt_coef[s]) != 1) crt_coef[s] += other;
+  Binomial_PrimePower(int p, int e) : p(p), e(e), power(e + 1, 1) {
+    FOR(i, e) power[i + 1] = power[i] * p;
+    pp = power[e];
+    bt_p = Barrett(p), bt_pp = Barrett(pp);
+    vc<int> log;
+    if (p == 2) {
+      if (e <= 1) { return; }
+      root = 5;
+      ord = pp / 4;
+      exp.assign(ord, 1);
+      log.assign(pp, 0);
+      FOR(i, ord - 1) { exp[i + 1] = (exp[i] * root) & (pp - 1); }
+      FOR(i, ord) log[exp[i]] = log[pp - exp[i]] = i;
+    } else {
+      root = primitive_root(p);
+      ord = pp / p * (p - 1);
+      exp.assign(ord, 1);
+      log.assign(pp, 0);
+      FOR(i, ord - 1) { exp[i + 1] = bt_pp.mul(exp[i], root); }
+      FOR(i, ord) log[exp[i]] = i;
+    }
+    log_fact.assign(pp, 0);
+    FOR(i, 1, pp) {
+      log_fact[i] = log_fact[i - 1] + log[i];
+      if (log_fact[i] >= ord) log_fact[i] -= ord;
     }
   }
 
-  int mod_pow(int a, int n, Barrett& bt) {
-    ll x = 1, p = a;
-    while (n) {
-      if (n & 1) x = bt.mul(x, p);
-      p = bt.mul(p, p);
-      n >>= 1;
+  int C(ll n, ll i) {
+    assert(n >= 0);
+    if (i < 0 || i > n) return 0;
+    ll a = i, b = n - i;
+    if (pp == 2) { return ((a & b) == 0 ? 1 : 0); }
+    int log = 0, cnt_p = 0, sgn = 0;
+    if (e > 1) {
+      while (n && cnt_p < e) {
+        auto [n1, nr1] = bt_pp.divmod(n);
+        auto [a1, ar1] = bt_pp.divmod(a);
+        auto [b1, br1] = bt_pp.divmod(b);
+        log += log_fact[nr1] - log_fact[ar1] - log_fact[br1];
+        if (p > 2) {
+          sgn += (n1 & 1) + (a1 & 1) + (b1 & 1);
+        } else {
+          sgn += (((nr1 + 1) & 4) + ((ar1 + 1) & 4) + ((br1 + 1) & 4)) / 4;
+        }
+        n = bt_p.floor(n), a = bt_p.floor(a), b = bt_p.floor(b);
+        cnt_p += n - a - b;
+      }
+    } else {
+      while (n && cnt_p < e) {
+        auto [n1, nr1] = bt_pp.divmod(n);
+        auto [a1, ar1] = bt_pp.divmod(a);
+        auto [b1, br1] = bt_pp.divmod(b);
+        log += log_fact[nr1] - log_fact[ar1] - log_fact[br1];
+        if (p > 2) {
+          sgn += (n1 & 1) + (a1 & 1) + (b1 & 1);
+        } else {
+          sgn += ((nr1 + 1) >> 2 & 1) + ((ar1 + 1) >> 2 & 1)
+                 + ((br1 + 1) >> 2 & 1);
+        }
+        n = n1, a = a1, b = b1;
+        cnt_p += n - a - b;
+      }
     }
-    return x;
+    if (cnt_p >= e) return 0;
+    log %= ord;
+    if (log < 0) log += ord;
+    int res = exp[log];
+    if (sgn & 1) res = pp - res;
+    return bt_pp.mul(power[cnt_p], res);
+  }
+};
+
+struct Binomial {
+  int mod;
+  vc<Binomial_PrimePower> BPP;
+  vc<int> crt_coef;
+  Barrett bt;
+
+  Binomial(int mod) : mod(mod), bt(mod) {
+    for (auto&& [p, e]: factor(mod)) {
+      int pp = 1;
+      FOR(e) pp *= p;
+      BPP.eb(Binomial_PrimePower(p, e));
+      int other = mod / pp;
+      crt_coef.eb(ll(other) * mod_inv(other, pp) % mod);
+    }
   }
 
   int C(ll n, ll k) {
     assert(n >= 0);
     if (k < 0 || k > n) return 0;
-    ll ANS = 0;
-    FOR(s, len(pf)) {
-      int p = pf[s].fi;
-      Barrett bt_p(p);
-      Barrett bt_pp(pp[s]);
-      Barrett bt_len(len(fact[s]));
-      auto get_fact = [&](ll n) -> pi {
-        // p^e * x として、(e, x mod pp) を返す
-        ll x = 1, e = 0;
-        while (n) {
-          x = bt_pp.mul(x, fact[s][bt_len.modulo(n)]);
-          n = bt_p.floor(n);
-          e += n;
-        }
-        return {e, x};
-      };
-      auto a = get_fact(n);
-      auto b = get_fact(k);
-      auto c = get_fact(n - k);
-      ll e = a.fi - b.fi - c.fi;
-      ll x = a.se;
-      ll y = bt_pp.mul(b.se, c.se);
-      int phi = pp[s] - pp[s] / pf[s].fi;
-      x = bt_pp.mul(x, mod_pow(y, phi - 1, bt_pp));
-      FOR(min<int>(e, pf[s].se)) x *= p;
-      ANS += bt_pp.modulo(x) * crt_coef[s];
+    int ANS = 0;
+    FOR(s, len(crt_coef)) {
+      ANS = bt.modulo(ANS + u64(BPP[s].C(n, k)) * crt_coef[s]);
     }
-    return ANS % mod;
+    return ANS;
   }
 };
