@@ -1,14 +1,15 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/binomial_coefficient"
 #include "my_template.hpp"
 #include "other/io.hpp"
+
 #include "mod/binomial.hpp"
 
 void solve() {
-  LL(Q, mod);
-  Binomial Bi(mod);
-  FOR(Q) {
+  INT(T, mod);
+  Binomial X(mod);
+  FOR(T) {
     LL(n, k);
-    print(Bi.C(n, k));
+    print(X.C(n, k));
   }
 }
 
