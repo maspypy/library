@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/functional.hpp
     title: graph/functional.hpp
   - icon: ':warning:'
@@ -88,6 +88,9 @@ data:
     path: test/yukicoder/1254.test.cpp
     title: test/yukicoder/1254.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1303.test.cpp
+    title: test/yukicoder/1303.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1392.test.cpp
     title: test/yukicoder/1392.test.cpp
   - icon: ':heavy_check_mark:'
@@ -114,7 +117,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
   - icon: ':heavy_check_mark:'
@@ -132,9 +135,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc283f.test.cpp
     title: test_atcoder/abc283f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int\
@@ -174,7 +177,7 @@ data:
   - flow/bipartite.hpp
   - geo/manhattan_mst.hpp
   timestamp: '2023-03-02 23:03:38+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc283f.test.cpp
   - test_atcoder/abc274g.test.cpp
@@ -195,6 +198,7 @@ data:
   - test/yukicoder/1479.test.cpp
   - test/yukicoder/1254.test.cpp
   - test/yukicoder/1211.test.cpp
+  - test/yukicoder/1303.test.cpp
   - test/yukicoder/1983.test.cpp
   - test/aoj/1566.test.cpp
   - test/aoj/2995.test.cpp

@@ -10,6 +10,9 @@ data:
     path: test/library_checker/matrix/charactereistic_poly.test.cpp
     title: test/library_checker/matrix/charactereistic_poly.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1303.test.cpp
+    title: test/yukicoder/1303.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1907.test.cpp
     title: test/yukicoder/1907.test.cpp
   _isVerificationFailed: false
@@ -76,6 +79,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1907.test.cpp
+  - test/yukicoder/1303.test.cpp
   - test/library_checker/matrix/charactereistic_poly.test.cpp
 documentation_of: linalg/characteristic_poly.hpp
 layout: document

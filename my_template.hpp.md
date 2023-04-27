@@ -562,6 +562,9 @@ data:
     path: test/library_checker/matrix/charactereistic_poly.test.cpp
     title: test/library_checker/matrix/charactereistic_poly.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/matrix/det_mod.test.cpp
+    title: test/library_checker/matrix/det_mod.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/hafnian_of_matrix.test.cpp
     title: test/library_checker/matrix/hafnian_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
@@ -570,6 +573,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/inverse_matrix.test.cpp
     title: test/library_checker/matrix/inverse_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/matrix/matrix_det.test.cpp
+    title: test/library_checker/matrix/matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/matrix_product.test.cpp
     title: test/library_checker/matrix/matrix_product.test.cpp
@@ -1153,6 +1159,9 @@ data:
     path: test/yukicoder/1301.test.cpp
     title: test/yukicoder/1301.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1303.test.cpp
+    title: test/yukicoder/1303.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1311.test.cpp
     title: test/yukicoder/1311.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1518,13 +1527,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2230.test.cpp
     title: test/yukicoder/2230.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2231.test.cpp
     title: test/yukicoder/2231.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2242.test.cpp
     title: test/yukicoder/2242.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2243.test.cpp
     title: test/yukicoder/2243.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1584,7 +1593,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2234,6 +2243,7 @@ data:
   - test/yukicoder/1643.test.cpp
   - test/yukicoder/1097.test.cpp
   - test/yukicoder/1875.test.cpp
+  - test/yukicoder/1303.test.cpp
   - test/yukicoder/1983.test.cpp
   - test/yukicoder/1170.test.cpp
   - test/yukicoder/1753.test.cpp
@@ -2394,6 +2404,8 @@ data:
   - test/library_checker/tree/cartesian_tree.test.cpp
   - test/library_checker/tree/lca_directed.test.cpp
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
+  - test/library_checker/matrix/matrix_det.test.cpp
+  - test/library_checker/matrix/det_mod.test.cpp
   - test/library_checker/matrix/inverse_matrix.test.cpp
   - test/library_checker/matrix/implicit_matrix.test.cpp
   - test/library_checker/matrix/charactereistic_poly.test.cpp

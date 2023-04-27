@@ -215,7 +215,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/wildcard_pattern_matching.hpp
     title: string/wildcard_pattern_matching.hpp
   - icon: ':warning:'
@@ -360,6 +360,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/inverse_matrix.test.cpp
     title: test/library_checker/matrix/inverse_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/matrix/matrix_det.test.cpp
+    title: test/library_checker/matrix/matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/matrix_product.test.cpp
     title: test/library_checker/matrix/matrix_product.test.cpp
@@ -601,6 +604,9 @@ data:
     path: test/yukicoder/1276.test.cpp
     title: test/yukicoder/1276.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1303.test.cpp
+    title: test/yukicoder/1303.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1321.test.cpp
     title: test/yukicoder/1321.test.cpp
   - icon: ':heavy_check_mark:'
@@ -756,10 +762,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2230.test.cpp
     title: test/yukicoder/2230.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2231.test.cpp
     title: test/yukicoder/2231.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2243.test.cpp
     title: test/yukicoder/2243.test.cpp
   - icon: ':heavy_check_mark:'
@@ -789,7 +795,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1113,6 +1119,7 @@ data:
   - test/yukicoder/235.test.cpp
   - test/yukicoder/2003.test.cpp
   - test/yukicoder/1875.test.cpp
+  - test/yukicoder/1303.test.cpp
   - test/yukicoder/1753.test.cpp
   - test/yukicoder/2166.test.cpp
   - test/yukicoder/1533.test.cpp
@@ -1151,6 +1158,7 @@ data:
   - test/library_checker/string/number_of_subsequences.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
+  - test/library_checker/matrix/matrix_det.test.cpp
   - test/library_checker/matrix/inverse_matrix.test.cpp
   - test/library_checker/matrix/implicit_matrix.test.cpp
   - test/library_checker/matrix/charactereistic_poly.test.cpp

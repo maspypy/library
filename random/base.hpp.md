@@ -107,7 +107,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/count_subseq.hpp
     title: string/count_subseq.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
   - icon: ':heavy_check_mark:'
@@ -445,6 +445,9 @@ data:
     path: test/yukicoder/1080_2.test.cpp
     title: test/yukicoder/1080_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1303.test.cpp
+    title: test/yukicoder/1303.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
   - icon: ':heavy_check_mark:'
@@ -492,7 +495,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2181.test.cpp
     title: test/yukicoder/2181.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2231.test.cpp
     title: test/yukicoder/2231.test.cpp
   - icon: ':heavy_check_mark:'
@@ -625,6 +628,7 @@ data:
   - test/yukicoder/541.test.cpp
   - test/yukicoder/1634.test.cpp
   - test/yukicoder/263.test.cpp
+  - test/yukicoder/1303.test.cpp
   - test/yukicoder/4_1.test.cpp
   - test/yukicoder/1775.test.cpp
   - test/yukicoder/1383.test.cpp

@@ -43,6 +43,9 @@ data:
     path: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
     title: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1303.test.cpp
+    title: test/yukicoder/1303.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1875.test.cpp
     title: test/yukicoder/1875.test.cpp
   - icon: ':heavy_check_mark:'
@@ -336,6 +339,7 @@ data:
   verifiedWith:
   - test/yukicoder/1907.test.cpp
   - test/yukicoder/1875.test.cpp
+  - test/yukicoder/1303.test.cpp
   - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
 documentation_of: poly/poly_taylor_shift.hpp

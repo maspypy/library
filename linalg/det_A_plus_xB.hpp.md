@@ -46,6 +46,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1303.test.cpp
+    title: test/yukicoder/1303.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1907.test.cpp
     title: test/yukicoder/1907.test.cpp
   _isVerificationFailed: false
@@ -407,6 +410,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1907.test.cpp
+  - test/yukicoder/1303.test.cpp
 documentation_of: linalg/det_A_plus_xB.hpp
 layout: document
 redirect_from:
