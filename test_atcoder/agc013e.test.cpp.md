@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
   - icon: ':question:'
@@ -31,7 +31,7 @@ data:
   - icon: ':x:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':x:'

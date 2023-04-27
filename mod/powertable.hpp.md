@@ -8,26 +8,26 @@ data:
   - icon: ':x:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   - icon: ':x:'
     path: seq/famous/eulerian_number.hpp
     title: seq/famous/eulerian_number.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   - icon: ':x:'
     path: seq/famous/surjection.hpp
     title: seq/famous/surjection.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - icon: ':x:'
@@ -83,7 +83,7 @@ data:
     title: test_atcoder/arc153f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = long long>\n\
@@ -128,7 +128,7 @@ data:
   - seq/famous/eulerian_number.hpp
   - poly/poly_taylor_shift.hpp
   timestamp: '2022-12-12 09:21:17+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc249_ex.test.cpp
   - test_atcoder/abc202_f.test.cpp

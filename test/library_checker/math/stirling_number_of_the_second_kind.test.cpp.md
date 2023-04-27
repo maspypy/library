@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':question:'
@@ -28,41 +28,41 @@ data:
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind
@@ -679,7 +679,7 @@ data:
   path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   requiredBy: []
   timestamp: '2023-04-27 05:11:08+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
 layout: document
