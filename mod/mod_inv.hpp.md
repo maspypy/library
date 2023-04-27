@@ -23,6 +23,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
+  - icon: ':question:'
+    path: mod/binomial.hpp
+    title: mod/binomial.hpp
   - icon: ':x:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
@@ -234,6 +237,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
     title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/binomial_coefficient.test.cpp
+    title: test/library_checker/math/binomial_coefficient.test.cpp
   - icon: ':x:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
@@ -481,11 +487,17 @@ data:
     path: test/yukicoder/2108.test.cpp
     title: test/yukicoder/2108.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/2120.test.cpp
+    title: test/yukicoder/2120.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
   - icon: ':x:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2181.test.cpp
+    title: test/yukicoder/2181.test.cpp
   - icon: ':x:'
     path: test/yukicoder/2243.test.cpp
     title: test/yukicoder/2243.test.cpp
@@ -557,6 +569,7 @@ data:
   path: mod/mod_inv.hpp
   requiredBy:
   - mod/mod_kth_root.hpp
+  - mod/binomial.hpp
   - graph/count/count_unicyclic.hpp
   - graph/count/count_independent_set.hpp
   - graph/count/count_forest.hpp
@@ -657,10 +670,12 @@ data:
   - test/yukicoder/1080.test.cpp
   - test/yukicoder/579.test.cpp
   - test/yukicoder/1685.test.cpp
+  - test/yukicoder/2120.test.cpp
   - test/yukicoder/2062.test.cpp
   - test/yukicoder/2122.test.cpp
   - test/yukicoder/1321.test.cpp
   - test/yukicoder/1080_2.test.cpp
+  - test/yukicoder/2181.test.cpp
   - test/yukicoder/1618.test.cpp
   - test/yukicoder/1145.test.cpp
   - test/yukicoder/2097.test.cpp
@@ -702,6 +717,7 @@ data:
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/library_checker/math/binomial_coefficient.test.cpp
   - test/library_checker/math/partition.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp

@@ -57,6 +57,9 @@ data:
     path: linalg/spmat_min_poly.hpp
     title: linalg/spmat_min_poly.hpp
   - icon: ':question:'
+    path: mod/binomial.hpp
+    title: mod/binomial.hpp
+  - icon: ':question:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
   - icon: ':x:'
@@ -141,6 +144,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/classify_tree.test.cpp
     title: test/library_checker/graph/classify_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/binomial_coefficient.test.cpp
+    title: test/library_checker/math/binomial_coefficient.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
@@ -477,9 +483,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2102.test.cpp
     title: test/yukicoder/2102.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2120.test.cpp
+    title: test/yukicoder/2120.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2167.test.cpp
     title: test/yukicoder/2167.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2181.test.cpp
+    title: test/yukicoder/2181.test.cpp
   - icon: ':x:'
     path: test/yukicoder/2231.test.cpp
     title: test/yukicoder/2231.test.cpp
@@ -549,6 +561,7 @@ data:
   - mod/mod_sqrt.hpp
   - mod/dynamic_modint.hpp
   - mod/mod_kth_root.hpp
+  - mod/binomial.hpp
   - graph/eulerwalk.hpp
   - graph/vs_to_es.hpp
   - graph/max_matching_size.hpp
@@ -601,9 +614,11 @@ data:
   - test/yukicoder/1907.test.cpp
   - test/yukicoder/1080.test.cpp
   - test/yukicoder/579.test.cpp
+  - test/yukicoder/2120.test.cpp
   - test/yukicoder/1025.test.cpp
   - test/yukicoder/1881.test.cpp
   - test/yukicoder/1080_2.test.cpp
+  - test/yukicoder/2181.test.cpp
   - test/yukicoder/1667.test.cpp
   - test/yukicoder/2102.test.cpp
   - test/yukicoder/1726.test.cpp
@@ -634,6 +649,7 @@ data:
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
   - test/library_checker/matrix/implicit_matrix.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
+  - test/library_checker/math/binomial_coefficient.test.cpp
   - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
