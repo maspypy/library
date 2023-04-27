@@ -1,5 +1,5 @@
 #pragma once
-#include "mod/fast_div.hpp"
+#include "mod/barrett.hpp"
 #include "mod/mod_inv.hpp"
 #include "nt/factor.hpp"
 
@@ -38,14 +38,14 @@ i128 CRT(vc<int> vals, vc<int> mods, ll new_mod = -1, bool coprime = false) {
 
   vc<int> cfs(n);
   FOR(i, n) {
-    auto mod = fast_div(mods[i]);
+    Barrett bt(mods[i]);
     ll a = vals[i];
     ll prod = 1;
     FOR(j, i) {
-      a = (a + cfs[j] * (mods[i] - prod)) % mod;
-      prod = prod * mods[j] % mod;
+      a = bt.modulo(a + cfs[j] * (mods[i] - prod));
+      prod = bt.mul(prod, mods[j]);
     }
-    cfs[i] = mod_inv(prod, mods[i]) * a % mod;
+    cfs[i] = bt.mul(mod_inv(prod, mods[i]), a);
   }
   i128 ret = 0;
   i128 prod = 1;
