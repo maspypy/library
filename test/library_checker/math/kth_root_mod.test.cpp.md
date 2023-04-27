@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
   - icon: ':question:'
@@ -36,9 +36,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/kth_root_mod
@@ -334,7 +334,7 @@ data:
     \ vals[i]);\r\n  }\r\n};\r\n#line 5 \"mod/mod_kth_root.hpp\"\n\r\n// mod \u306F\
     \ int\r\nint mod_kth_root(ll k, ll a, int mod) {\r\n  assert(primetest(mod) &&\
     \ 0 <= a && a < mod);\r\n  if (k == 0) return (a == 1 ? 1 : -1);\r\n  if (a ==\
-    \ 0) return 0;\r\n  if (mod == 2) return a;\r\n  k %= mod - 1;\r\n  fast_div fd(mod);\r\
+    \ 0) return 0;\r\n  if (mod == 2) return a;\r\n  k %= mod - 1;\r\n  Barrett bt(mod);\r\
     \n\r\n  ll g = gcd(k, mod - 1);\r\n  if (mod_pow(a, (mod - 1) / g, mod) != 1)\
     \ return -1;\r\n\r\n  ll c = mod_inv(k / g, (mod - 1) / g);\r\n  a = mod_pow(a,\
     \ c, mod);\r\n  k = (k * c) % (mod - 1);\r\n  if (k == 0) return 1;\r\n\r\n  g\
@@ -353,20 +353,20 @@ data:
     \ / p, mod);\r\n    int M = 0;\r\n    unordered_map<ll, int> MP;\r\n    ll GM_inv\
     \ = -1;\r\n    if (c) {\r\n      while (M * M < p) ++M;\r\n      MP.reserve(M\
     \ + 1);\r\n      ll Gpow = 1;\r\n      FOR(m, M) {\r\n        MP[Gpow] = m;\r\n\
-    \        Gpow = Gpow * G % fd;\r\n      }\r\n      GM_inv = mod_pow(Gpow, mod\
+    \        Gpow = bt.mul(Gpow, G);\r\n      }\r\n      GM_inv = mod_pow(Gpow, mod\
     \ - 2, mod);\r\n    }\r\n\r\n    while (c) {\r\n      /*\r\n      b^{mp^c} = 1\
     \ \u304C\u5206\u304B\u3063\u3066\u3044\u308B\u3002(b/x^{p^e}})^{mp^{c-1}} = 1\
     \ \u306B\u3057\u305F\u3044\u3002\r\n      x = g^{p^{f-c-e}*k} \u3068\u3057\u3066\
     \u63A2\u3059\u3002\u539F\u59CB p \u4E57\u6839 B, G \u306B\u5BFE\u3059\u308B B\
     \ = G^k \u306B\u5E30\u7740\u3002\r\n      */\r\n      ll B = mod_pow(b, m * pc\
     \ / p, mod);\r\n      int k = [&](ll B) -> int {\r\n        FOR(m, M + 1) {\r\n\
-    \          if (MP.count(B)) return m * M + MP[B];\r\n          B = B * GM_inv\
-    \ % fd;\r\n        }\r\n        return -1;\r\n      }(B);\r\n      x = x * mod_pow(g,\
-    \ pf / pc / pe * k, mod) % fd;\r\n      ll exp = pf / pc * k % (mod - 1);\r\n\
-    \      b = b * mod_pow(g, mod - 1 - exp, mod) % fd;\r\n      --c;\r\n      pc\
-    \ /= p;\r\n    }\r\n    int k = pe - mod_inv(m, pe);\r\n    k = (k * m + 1) /\
-    \ pe;\r\n    ll y = mod_pow(b, k, mod);\r\n    x = x * y % fd;\r\n    return x;\r\
-    \n  };\r\n\r\n  auto pf = factor(k);\r\n  for (auto&& [p, e]: pf) a = solve_pp(p,\
+    \          if (MP.count(B)) return m * M + MP[B];\r\n          B = bt.mul(B, GM_inv);\r\
+    \n        }\r\n        return -1;\r\n      }(B);\r\n      x = bt.mul(x, mod_pow(g,\
+    \ pf / pc / pe * k, mod));\r\n      ll exp = pf / pc * k % (mod - 1);\r\n    \
+    \  b = bt.mul(b, mod_pow(g, mod - 1 - exp, mod));\r\n      --c;\r\n      pc /=\
+    \ p;\r\n    }\r\n    int k = pe - mod_inv(m, pe);\r\n    k = (k * m + 1) / pe;\r\
+    \n    ll y = mod_pow(b, k, mod);\r\n    x = bt.mul(x, y);\r\n    return x;\r\n\
+    \  };\r\n\r\n  auto pf = factor(k);\r\n  for (auto&& [p, e]: pf) a = solve_pp(p,\
     \ e, a);\r\n  return a;\r\n}\r\n\r\nll mod_kth_root_long(ll k, ll a, ll mod) {\r\
     \n  static HashMap<ll, 20> MP;\r\n\r\n  assert(primetest(mod) && 0 <= a && a <\
     \ mod);\r\n  if (k == 0) return (a == 1 ? 1 : -1);\r\n  if (a == 0) return 0;\r\
@@ -427,8 +427,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/kth_root_mod.test.cpp
   requiredBy: []
-  timestamp: '2023-04-27 21:29:47+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-04-27 22:01:01+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/kth_root_mod.test.cpp
 layout: document
