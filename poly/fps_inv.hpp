@@ -65,7 +65,6 @@ vc<mint> fps_inv_dense(const vc<mint>& F) {
 
 template <typename mint>
 vc<mint> fps_inv(const vc<mint>& f) {
-  int N = len(f);
   assert(f[0] != mint(0));
   int n = count_terms(f);
   int t = (mint::can_ntt() ? 160 : 820);
