@@ -54,7 +54,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/powersums_assign.hpp
       title: alg/acted_monoid/powersums_assign.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/sum_add.hpp
       title: alg/acted_monoid/sum_add.hpp
     - icon: ':heavy_check_mark:'
@@ -77,7 +77,7 @@ data:
       title: alg/acted_monoid/summin_assign.hpp
   - name: alg/acted_set
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/acted_set/affine.hpp
       title: alg/acted_set/affine.hpp
     - icon: ':question:'
@@ -85,7 +85,7 @@ data:
       title: alg/acted_set/from_monoid.hpp
   - name: alg/monoid
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/add.hpp
       title: alg/monoid/add.hpp
     - icon: ':heavy_check_mark:'
@@ -352,7 +352,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/segtree/dynamic_segtree_sparse.hpp
       title: ds/segtree/dynamic_segtree_sparse.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/lazy_segtree.hpp
       title: ds/segtree/lazy_segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -441,7 +441,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: enumerate/multiset.hpp
       title: enumerate/multiset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: enumerate/partition.hpp
       title: enumerate/partition.hpp
     - icon: ':question:'
@@ -863,7 +863,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/solve_linear.hpp
       title: linalg/solve_linear.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: linalg/solve_linear_lower.hpp
       title: linalg/solve_linear_lower.hpp
     - icon: ':heavy_check_mark:'
@@ -883,7 +883,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/implicit_matrix/min_poly.hpp
       title: linalg/implicit_matrix/min_poly.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: linalg/implicit_matrix/pascal.hpp
       title: linalg/implicit_matrix/pascal.hpp
     - icon: ':heavy_check_mark:'
@@ -1282,7 +1282,7 @@ data:
       title: random/shuffle.hpp
   - name: seq
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: seq/cartesian_tree.hpp
       title: seq/cartesian_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -3199,13 +3199,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc217h.test.cpp
       title: test_atcoder/abc217h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc222g.test.cpp
       title: test_atcoder/abc222g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc222h.test.cpp
       title: test_atcoder/abc222h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc222h_2.test.cpp
       title: test_atcoder/abc222h_2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3214,7 +3214,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc223h.test.cpp
       title: test_atcoder/abc223h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc226f.test.cpp
       title: test_atcoder/abc226f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3229,7 +3229,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc234ex.test.cpp
       title: test_atcoder/abc234ex.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc234g.test.cpp
       title: test_atcoder/abc234g.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3250,7 +3250,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc244h.test.cpp
       title: test_atcoder/abc244h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc249_ex.test.cpp
       title: test_atcoder/abc249_ex.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3277,7 +3277,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc266h_2.test.cpp
       title: test_atcoder/abc266h_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc267g.test.cpp
       title: test_atcoder/abc267g.test.cpp
     - icon: ':x:'
