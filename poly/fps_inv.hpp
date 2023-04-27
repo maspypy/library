@@ -4,14 +4,13 @@
 
 template <typename mint>
 vc<mint> fps_inv_sparse(const vc<mint>& f) {
-  assert(f[0] != mint(0));
   int N = len(f);
   vc<pair<int, mint>> dat;
-  FOR3(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);
+  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);
   vc<mint> g(N);
   mint g0 = mint(1) / f[0];
   g[0] = g0;
-  FOR3(n, 1, N) {
+  FOR(n, 1, N) {
     mint rhs = 0;
     for (auto&& [k, fk]: dat) {
       if (k > n) break;
@@ -23,36 +22,31 @@ vc<mint> fps_inv_sparse(const vc<mint>& f) {
 }
 
 template <typename mint>
-enable_if_t<is_same<mint, modint998>::value, vc<mint>> fps_inv_dense(
-    const vc<mint>& F) {
-  assert(F[0] != mint(0));
+vc<mint> fps_inv_dense_ntt(const vc<mint>& F) {
   vc<mint> G = {mint(1) / F[0]};
-  G.reserve(len(F));
   ll N = len(F), n = 1;
+  G.reserve(N);
   while (n < N) {
     vc<mint> f(2 * n), g(2 * n);
     FOR(i, min(N, 2 * n)) f[i] = F[i];
     FOR(i, n) g[i] = G[i];
-    ntt(f, false);
-    ntt(g, false);
+    ntt(f, false), ntt(g, false);
     FOR(i, 2 * n) f[i] *= g[i];
     ntt(f, true);
     FOR(i, n) f[i] = 0;
     ntt(f, false);
     FOR(i, 2 * n) f[i] *= g[i];
     ntt(f, true);
-    FOR3(i, n, 2 * n) G.eb(f[i] * mint(-1));
+    FOR(i, n, min(N, 2 * n)) G.eb(-f[i]);
     n *= 2;
   }
-  G.resize(N);
   return G;
 }
 
 template <typename mint>
-enable_if_t<!is_same<mint, modint998>::value, vc<mint>> fps_inv_dense(
-    const vc<mint>& F) {
-  int N = len(F);
-  assert(F[0] != mint(0));
+vc<mint> fps_inv_dense(const vc<mint>& F) {
+  if (mint::can_ntt()) return fps_inv_dense_ntt(F);
+  const int N = len(F);
   vc<mint> R = {mint(1) / F[0]};
   vc<mint> p;
   int m = 1;
@@ -69,17 +63,11 @@ enable_if_t<!is_same<mint, modint998>::value, vc<mint>> fps_inv_dense(
   return R;
 }
 
-
 template <typename mint>
-enable_if_t<is_same<mint, modint998>::value, vc<mint>> fps_inv(
-    const vc<mint>& f) {
-  if (count_terms(f) <= 200) return fps_inv_sparse<mint>(f);
-  return fps_inv_dense<mint>(f);
-}
-
-template <typename mint>
-enable_if_t<!is_same<mint, modint998>::value, vc<mint>> fps_inv(
-    const vc<mint>& f) {
-  if (count_terms(f) <= 700) return fps_inv_sparse<mint>(f);
-  return fps_inv_dense<mint>(f);
+vc<mint> fps_inv(const vc<mint>& f) {
+  int N = len(f);
+  assert(f[0] != mint(0));
+  int n = count_terms(f);
+  int t = (mint::can_ntt() ? 160 : 820);
+  return (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));
 }
