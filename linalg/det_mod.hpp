@@ -1,7 +1,7 @@
-#include "mod/fast_div.hpp"
+#include "mod/barrett.hpp"
 
 int det_mod(vvc<int> A, int m) {
-  fast_div mod(m);
+  Barrett bt(m);
   const int n = len(A);
   ll det = 1;
   FOR(i, n) {
@@ -13,12 +13,12 @@ int det_mod(vvc<int> A, int m) {
     FOR(j, i + 1, n) {
       while (A[i][i] != 0) {
         ll c = m - A[j][i] / A[i][i];
-        FOR_R(k, i, n) { A[j][k] = (A[j][k] + A[i][k] * c) % mod; }
+        FOR_R(k, i, n) { A[j][k] = bt.modulo(A[j][k] + A[i][k] * c); }
         swap(A[i], A[j]), det = m - det;
       }
       swap(A[i], A[j]), det = m - det;
     }
   }
-  FOR(i, n) det = det * A[i][i] % mod;
+  FOR(i, n) det = bt.mul(det, A[i][i]);
   return det;
 }
