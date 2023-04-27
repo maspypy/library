@@ -10,7 +10,7 @@ int mod_kth_root(ll k, ll a, int mod) {
   if (a == 0) return 0;
   if (mod == 2) return a;
   k %= mod - 1;
-  fast_div fd(mod);
+  Barrett bt(mod);
 
   ll g = gcd(k, mod - 1);
   if (mod_pow(a, (mod - 1) / g, mod) != 1) return -1;
@@ -48,7 +48,7 @@ int mod_kth_root(ll k, ll a, int mod) {
       ll Gpow = 1;
       FOR(m, M) {
         MP[Gpow] = m;
-        Gpow = Gpow * G % fd;
+        Gpow = bt.mul(Gpow, G);
       }
       GM_inv = mod_pow(Gpow, mod - 2, mod);
     }
@@ -62,20 +62,20 @@ int mod_kth_root(ll k, ll a, int mod) {
       int k = [&](ll B) -> int {
         FOR(m, M + 1) {
           if (MP.count(B)) return m * M + MP[B];
-          B = B * GM_inv % fd;
+          B = bt.mul(B, GM_inv);
         }
         return -1;
       }(B);
-      x = x * mod_pow(g, pf / pc / pe * k, mod) % fd;
+      x = bt.mul(x, mod_pow(g, pf / pc / pe * k, mod));
       ll exp = pf / pc * k % (mod - 1);
-      b = b * mod_pow(g, mod - 1 - exp, mod) % fd;
+      b = bt.mul(b, mod_pow(g, mod - 1 - exp, mod));
       --c;
       pc /= p;
     }
     int k = pe - mod_inv(m, pe);
     k = (k * m + 1) / pe;
     ll y = mod_pow(b, k, mod);
-    x = x * y % fd;
+    x = bt.mul(x, y);
     return x;
   };
 
