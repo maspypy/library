@@ -11,7 +11,7 @@ vc<mint> middle_product(vc<mint>& a, vc<mint>& b) {
   if (min(len(b), len(a) - len(b) + 1) <= 60) {
     return middle_product_naive(a, b);
   }
-  if constexpr (mint::ntt_info().fi == -1) {
+  if (!(mint::can_ntt())) {
     return middle_product_garner(a, b);
   } else {
     int n = 1 << __lg(2 * len(a) - 1);
