@@ -5,8 +5,7 @@ void ntt(vector<mint>& a, bool inverse) {
   assert(mint::can_ntt());
   const int rank2 = mint::ntt_info().fi;
   const int mod = mint::get_mod();
-  static array<mint, 30> root;
-  static array<mint, 30> iroot;
+  static array<mint, 30> root, iroot;
   static array<mint, 30> rate2, irate2;
   static array<mint, 30> rate3, irate3;
 
