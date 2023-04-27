@@ -522,10 +522,9 @@ data:
     \ += dh[i];\r\n    p = integrate(p);\r\n    FOR(i, m + m) p[i] = h[i] - p[i];\r\
     \n    p[0] += mint(1);\r\n    f = convolution(f, p);\r\n    f.resize(m + m);\r\
     \n    m += m;\r\n  }\r\n  f.resize(L);\r\n  return f;\r\n}\r\n\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> fps_exp(vc<mint>& f) {\r\n  int n = count_terms(f);\r\n  if\
-    \ (mint::can_ntt()) {\r\n    if (n <= 320) return fps_exp_sparse<mint>(f);\r\n\
-    \    return fps_exp_dense<mint>(f);\r\n  }\r\n  if (n <= 3000) return fps_exp_sparse<mint>(f);\r\
-    \n  return fps_exp_dense<mint>(f);\r\n}\r\n#line 3 \"poly/online/online_convolution.hpp\"\
+    \ mint>\r\nvc<mint> fps_exp(vc<mint>& f) {\r\n  int n = count_terms(f);\r\n  int\
+    \ t = (mint::can_ntt() ? 320 : 3000);\r\n  return (n <= t ? fps_exp_sparse<mint>(f)\
+    \ : fps_exp_dense<mint>(f));\r\n}\r\n#line 3 \"poly/online/online_convolution.hpp\"\
     \n\n/*\nquery(i)\uFF1Aa[i], b[i] \u3092\u4E0E\u3048\u3066 ab[i] \u3092\u5F97\u308B\
     \u3002\n2^{17}\uFF1A176ms\n2^{18}\uFF1A370ms\n2^{19}\uFF1A800ms\n2^{20}\uFF1A\
     1680ms\n*/\ntemplate <typename mint>\nstruct Online_Convolution {\n  const int\
@@ -601,7 +600,7 @@ data:
   isVerificationFile: true
   path: test/mytest/online_exp.test.cpp
   requiredBy: []
-  timestamp: '2023-04-27 17:05:11+09:00'
+  timestamp: '2023-04-27 17:33:19+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/online_exp.test.cpp

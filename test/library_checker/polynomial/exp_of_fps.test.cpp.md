@@ -510,10 +510,9 @@ data:
     \ += dh[i];\r\n    p = integrate(p);\r\n    FOR(i, m + m) p[i] = h[i] - p[i];\r\
     \n    p[0] += mint(1);\r\n    f = convolution(f, p);\r\n    f.resize(m + m);\r\
     \n    m += m;\r\n  }\r\n  f.resize(L);\r\n  return f;\r\n}\r\n\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> fps_exp(vc<mint>& f) {\r\n  int n = count_terms(f);\r\n  if\
-    \ (mint::can_ntt()) {\r\n    if (n <= 320) return fps_exp_sparse<mint>(f);\r\n\
-    \    return fps_exp_dense<mint>(f);\r\n  }\r\n  if (n <= 3000) return fps_exp_sparse<mint>(f);\r\
-    \n  return fps_exp_dense<mint>(f);\r\n}\r\n#line 6 \"test/library_checker/polynomial/exp_of_fps.test.cpp\"\
+    \ mint>\r\nvc<mint> fps_exp(vc<mint>& f) {\r\n  int n = count_terms(f);\r\n  int\
+    \ t = (mint::can_ntt() ? 320 : 3000);\r\n  return (n <= t ? fps_exp_sparse<mint>(f)\
+    \ : fps_exp_dense<mint>(f));\r\n}\r\n#line 6 \"test/library_checker/polynomial/exp_of_fps.test.cpp\"\
     \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint,\
     \ A, N);\r\n  print(fps_exp(A));\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\
     \  return 0;\r\n}\r\n"
@@ -539,7 +538,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/polynomial/exp_of_fps.test.cpp
   requiredBy: []
-  timestamp: '2023-04-27 17:05:11+09:00'
+  timestamp: '2023-04-27 17:33:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/polynomial/exp_of_fps.test.cpp

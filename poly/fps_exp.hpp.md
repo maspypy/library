@@ -84,15 +84,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
     title: test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/pow_of_fps.test.cpp
     title: test/library_checker/polynomial/pow_of_fps.test.cpp
   - icon: ':x:'
-    path: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
-    title: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
+    path: test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
+    title: test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
   - icon: ':x:'
     path: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
+    title: test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
   - icon: ':x:'
     path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
@@ -429,10 +432,9 @@ data:
     \ += dh[i];\r\n    p = integrate(p);\r\n    FOR(i, m + m) p[i] = h[i] - p[i];\r\
     \n    p[0] += mint(1);\r\n    f = convolution(f, p);\r\n    f.resize(m + m);\r\
     \n    m += m;\r\n  }\r\n  f.resize(L);\r\n  return f;\r\n}\r\n\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> fps_exp(vc<mint>& f) {\r\n  int n = count_terms(f);\r\n  if\
-    \ (mint::can_ntt()) {\r\n    if (n <= 320) return fps_exp_sparse<mint>(f);\r\n\
-    \    return fps_exp_dense<mint>(f);\r\n  }\r\n  if (n <= 3000) return fps_exp_sparse<mint>(f);\r\
-    \n  return fps_exp_dense<mint>(f);\r\n}\r\n"
+    \ mint>\r\nvc<mint> fps_exp(vc<mint>& f) {\r\n  int n = count_terms(f);\r\n  int\
+    \ t = (mint::can_ntt() ? 320 : 3000);\r\n  return (n <= t ? fps_exp_sparse<mint>(f)\
+    \ : fps_exp_dense<mint>(f));\r\n}\r\n"
   code: "#pragma once\r\n#include \"poly/convolution.hpp\"\r\n#include \"poly/integrate.hpp\"\
     \r\n#include \"poly/differentiate.hpp\"\r\n#include \"poly/count_terms.hpp\"\r\
     \n\r\ntemplate <typename mint>\r\nvc<mint> fps_exp_sparse(vc<mint>& f) {\r\n \
@@ -473,10 +475,9 @@ data:
     \ += dh[i];\r\n    p = integrate(p);\r\n    FOR(i, m + m) p[i] = h[i] - p[i];\r\
     \n    p[0] += mint(1);\r\n    f = convolution(f, p);\r\n    f.resize(m + m);\r\
     \n    m += m;\r\n  }\r\n  f.resize(L);\r\n  return f;\r\n}\r\n\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> fps_exp(vc<mint>& f) {\r\n  int n = count_terms(f);\r\n  if\
-    \ (mint::can_ntt()) {\r\n    if (n <= 320) return fps_exp_sparse<mint>(f);\r\n\
-    \    return fps_exp_dense<mint>(f);\r\n  }\r\n  if (n <= 3000) return fps_exp_sparse<mint>(f);\r\
-    \n  return fps_exp_dense<mint>(f);\r\n}\r\n"
+    \ mint>\r\nvc<mint> fps_exp(vc<mint>& f) {\r\n  int n = count_terms(f);\r\n  int\
+    \ t = (mint::can_ntt() ? 320 : 3000);\r\n  return (n <= t ? fps_exp_sparse<mint>(f)\
+    \ : fps_exp_dense<mint>(f));\r\n}\r\n"
   dependsOn:
   - poly/convolution.hpp
   - mod/modint.hpp
@@ -502,7 +503,7 @@ data:
   - poly/product_of_one_plus_xn.hpp
   - poly/composed_product.hpp
   - poly/fps_pow.hpp
-  timestamp: '2023-04-27 17:05:11+09:00'
+  timestamp: '2023-04-27 17:33:19+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc222h.test.cpp
@@ -521,10 +522,11 @@ data:
   - test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
   - test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
   - test/library_checker/polynomial/pow_of_fps.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
   - test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
   - test/library_checker/polynomial/exp_of_fps.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp

@@ -319,11 +319,10 @@ data:
     \ += dh[i];\r\n    p = integrate(p);\r\n    FOR(i, m + m) p[i] = h[i] - p[i];\r\
     \n    p[0] += mint(1);\r\n    f = convolution(f, p);\r\n    f.resize(m + m);\r\
     \n    m += m;\r\n  }\r\n  f.resize(L);\r\n  return f;\r\n}\r\n\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> fps_exp(vc<mint>& f) {\r\n  int n = count_terms(f);\r\n  if\
-    \ (mint::can_ntt()) {\r\n    if (n <= 320) return fps_exp_sparse<mint>(f);\r\n\
-    \    return fps_exp_dense<mint>(f);\r\n  }\r\n  if (n <= 3000) return fps_exp_sparse<mint>(f);\r\
-    \n  return fps_exp_dense<mint>(f);\r\n}\r\n#line 2 \"graph/count/count_forest.hpp\"\
-    \n\n// https://oeis.org/A001858\ntemplate <typename mint>\nvc<mint> count_forest(ll\
+    \ mint>\r\nvc<mint> fps_exp(vc<mint>& f) {\r\n  int n = count_terms(f);\r\n  int\
+    \ t = (mint::can_ntt() ? 320 : 3000);\r\n  return (n <= t ? fps_exp_sparse<mint>(f)\
+    \ : fps_exp_dense<mint>(f));\r\n}\r\n#line 2 \"graph/count/count_forest.hpp\"\n\
+    \n// https://oeis.org/A001858\ntemplate <typename mint>\nvc<mint> count_forest(ll\
     \ nmax) {\n  vc<mint> f = count_tree<mint>(nmax);\n  FOR(i, nmax) f[i] *= fact_inv<mint>(i);\n\
     \  f = fps_exp(f);\n  FOR(i, nmax) f[i] *= fact<mint>(i);\n  return f;\n}\n"
   code: "#include \"poly/fps_exp.hpp\"\n\n// https://oeis.org/A001858\ntemplate <typename\
@@ -345,7 +344,7 @@ data:
   isVerificationFile: false
   path: graph/count/count_forest.hpp
   requiredBy: []
-  timestamp: '2023-04-27 17:05:11+09:00'
+  timestamp: '2023-04-27 17:33:19+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/count/count_forest.hpp

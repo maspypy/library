@@ -367,20 +367,18 @@ data:
     \ += dh[i];\r\n    p = integrate(p);\r\n    FOR(i, m + m) p[i] = h[i] - p[i];\r\
     \n    p[0] += mint(1);\r\n    f = convolution(f, p);\r\n    f.resize(m + m);\r\
     \n    m += m;\r\n  }\r\n  f.resize(L);\r\n  return f;\r\n}\r\n\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> fps_exp(vc<mint>& f) {\r\n  int n = count_terms(f);\r\n  if\
-    \ (mint::can_ntt()) {\r\n    if (n <= 320) return fps_exp_sparse<mint>(f);\r\n\
-    \    return fps_exp_dense<mint>(f);\r\n  }\r\n  if (n <= 3000) return fps_exp_sparse<mint>(f);\r\
-    \n  return fps_exp_dense<mint>(f);\r\n}\r\n#line 3 \"poly/composed_sum.hpp\"\n\
-    \n// https://codeforces.com/blog/entry/103136\n// f(x) = prod(1-a_i x), g(x) =\
-    \ prod(1-b_j x) \u306E\u3068\u304D\n// prod_{i,j} (1-(a_i+b_j)x) \u3092\u8A08\u7B97\
-    \u3059\u308B\u3002\ntemplate <typename mint>\nvc<mint> composed_sum(vc<mint> f,\
-    \ vc<mint> g) {\n  int n = len(f) - 1, m = len(g) - 1;\n  vc<mint> A = sum_of_power_of_roots(f,\
-    \ n * m);\n  vc<mint> B = sum_of_power_of_roots(g, n * m);\n  FOR(i, n * m + 1)\
-    \ A[i] *= fact_inv<mint>(i), B[i] *= fact_inv<mint>(i);\n  A = convolution(A,\
-    \ B);\n  A.resize(n * m + 1);\n  FOR(i, n * m + 1) A[i] *= fact<mint>(i);\n  FOR(i,\
-    \ len(A)) A[i] = -A[i];\n  A[0] += mint(n * m);\n  // A.erase(A.begin()); -> f'/f\
-    \ = (log f)'\n  FOR(i, 1, n * m + 1) A[i] *= inv<mint>(i);\n  return fps_exp(A);\n\
-    }\n"
+    \ mint>\r\nvc<mint> fps_exp(vc<mint>& f) {\r\n  int n = count_terms(f);\r\n  int\
+    \ t = (mint::can_ntt() ? 320 : 3000);\r\n  return (n <= t ? fps_exp_sparse<mint>(f)\
+    \ : fps_exp_dense<mint>(f));\r\n}\r\n#line 3 \"poly/composed_sum.hpp\"\n\n// https://codeforces.com/blog/entry/103136\n\
+    // f(x) = prod(1-a_i x), g(x) = prod(1-b_j x) \u306E\u3068\u304D\n// prod_{i,j}\
+    \ (1-(a_i+b_j)x) \u3092\u8A08\u7B97\u3059\u308B\u3002\ntemplate <typename mint>\n\
+    vc<mint> composed_sum(vc<mint> f, vc<mint> g) {\n  int n = len(f) - 1, m = len(g)\
+    \ - 1;\n  vc<mint> A = sum_of_power_of_roots(f, n * m);\n  vc<mint> B = sum_of_power_of_roots(g,\
+    \ n * m);\n  FOR(i, n * m + 1) A[i] *= fact_inv<mint>(i), B[i] *= fact_inv<mint>(i);\n\
+    \  A = convolution(A, B);\n  A.resize(n * m + 1);\n  FOR(i, n * m + 1) A[i] *=\
+    \ fact<mint>(i);\n  FOR(i, len(A)) A[i] = -A[i];\n  A[0] += mint(n * m);\n  //\
+    \ A.erase(A.begin()); -> f'/f = (log f)'\n  FOR(i, 1, n * m + 1) A[i] *= inv<mint>(i);\n\
+    \  return fps_exp(A);\n}\n"
   code: "#include \"poly/sum_of_power_of_roots.hpp\"\n#include \"poly/fps_exp.hpp\"\
     \n\n// https://codeforces.com/blog/entry/103136\n// f(x) = prod(1-a_i x), g(x)\
     \ = prod(1-b_j x) \u306E\u3068\u304D\n// prod_{i,j} (1-(a_i+b_j)x) \u3092\u8A08\
@@ -410,7 +408,7 @@ data:
   isVerificationFile: false
   path: poly/composed_sum.hpp
   requiredBy: []
-  timestamp: '2023-04-27 17:05:11+09:00'
+  timestamp: '2023-04-27 17:33:19+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: poly/composed_sum.hpp
