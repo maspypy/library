@@ -974,7 +974,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/range_freq_of_linear.hpp
       title: mod/range_freq_of_linear.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: mod/tetration.hpp
       title: mod/tetration.hpp
   - name: .
@@ -2037,7 +2037,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/sum_of_floor_of_linear.test.cpp
       title: test/library_checker/math/sum_of_floor_of_linear.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/tetration.test.cpp
       title: test/library_checker/math/tetration.test.cpp
     - icon: ':heavy_check_mark:'

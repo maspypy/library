@@ -20,6 +20,9 @@ data:
   - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/tetration.hpp
+    title: mod/tetration.hpp
   - icon: ':x:'
     path: nt/all_lcm.hpp
     title: nt/all_lcm.hpp
@@ -84,6 +87,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sqrt_mod.test.cpp
     title: test/library_checker/math/sqrt_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/tetration.test.cpp
+    title: test/library_checker/math/tetration.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
@@ -257,6 +263,7 @@ data:
   - mod/dynamic_modint.hpp
   - mod/mod_kth_root.hpp
   - mod/binomial.hpp
+  - mod/tetration.hpp
   - nt/all_lcm.hpp
   - nt/divisors.hpp
   - nt/function_on_divisors.hpp
@@ -305,6 +312,7 @@ data:
   - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
+  - test/library_checker/math/tetration.test.cpp
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/library_checker/convolution/convolution_mod_setntt.test.cpp
   - test/library_checker/convolution/convolution_mod_107_dmint.test.cpp

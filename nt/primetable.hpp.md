@@ -8,6 +8,9 @@ data:
   - icon: ':question:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/tetration.hpp
+    title: mod/tetration.hpp
   - icon: ':x:'
     path: nt/all_lcm.hpp
     title: nt/all_lcm.hpp
@@ -84,6 +87,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
     title: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/tetration.test.cpp
+    title: test/library_checker/math/tetration.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/totient_sum.test.cpp
     title: test/library_checker/math/totient_sum.test.cpp
@@ -199,6 +205,7 @@ data:
   path: nt/primetable.hpp
   requiredBy:
   - mod/powertable.hpp
+  - mod/tetration.hpp
   - nt/all_lcm.hpp
   - nt/multiplicative_sum.hpp
   - nt/primesum_mod4.hpp
@@ -247,6 +254,7 @@ data:
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/enumerate_primes.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
+  - test/library_checker/math/tetration.test.cpp
   - test/library_checker/math/counting_primes.test.cpp
   - test/library_checker/math/gcd_convolution.test.cpp
   - test/mytest/eulerian_number.test.cpp

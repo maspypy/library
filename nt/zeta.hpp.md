@@ -6,6 +6,9 @@ data:
     title: nt/primetable.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: mod/tetration.hpp
+    title: mod/tetration.hpp
+  - icon: ':heavy_check_mark:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
   - icon: ':heavy_check_mark:'
@@ -27,6 +30,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/lcm_convolution.test.cpp
     title: test/library_checker/math/lcm_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/tetration.test.cpp
+    title: test/library_checker/math/tetration.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1262.test.cpp
     title: test/yukicoder/1262.test.cpp
@@ -81,6 +87,7 @@ data:
   isVerificationFile: false
   path: nt/zeta.hpp
   requiredBy:
+  - mod/tetration.hpp
   - nt/euler_phi.hpp
   - nt/lcm_convolution.hpp
   - nt/mobius_table.hpp
@@ -93,6 +100,7 @@ data:
   - test/yukicoder/1760.test.cpp
   - test/aoj/NTL_1_D.test.cpp
   - test/library_checker/math/lcm_convolution.test.cpp
+  - test/library_checker/math/tetration.test.cpp
   - test/library_checker/math/gcd_convolution.test.cpp
 documentation_of: nt/zeta.hpp
 layout: document

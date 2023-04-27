@@ -13,11 +13,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: mod/tetration.hpp
+    title: mod/tetration.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_1_D.test.cpp
     title: test/aoj/NTL_1_D.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/tetration.test.cpp
+    title: test/library_checker/math/tetration.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1262.test.cpp
     title: test/yukicoder/1262.test.cpp
@@ -115,12 +121,14 @@ data:
   - nt/primetest.hpp
   isVerificationFile: false
   path: nt/euler_phi.hpp
-  requiredBy: []
+  requiredBy:
+  - mod/tetration.hpp
   timestamp: '2023-01-09 23:28:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1262.test.cpp
   - test/aoj/NTL_1_D.test.cpp
+  - test/library_checker/math/tetration.test.cpp
 documentation_of: nt/euler_phi.hpp
 layout: document
 redirect_from:

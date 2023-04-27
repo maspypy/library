@@ -553,6 +553,9 @@ data:
     path: test/library_checker/math/sum_of_floor_of_linear.test.cpp
     title: test/library_checker/math/sum_of_floor_of_linear.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/tetration.test.cpp
+    title: test/library_checker/math/tetration.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/totient_sum.test.cpp
     title: test/library_checker/math/totient_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2437,6 +2440,7 @@ data:
   - test/library_checker/math/stirling_mod_p_1.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
+  - test/library_checker/math/tetration.test.cpp
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/library_checker/math/counting_primes.test.cpp
   - test/library_checker/math/twosat.test.cpp
