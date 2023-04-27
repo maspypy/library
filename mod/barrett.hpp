@@ -11,5 +11,10 @@ struct Barrett {
     u64 y = x * m;
     return (u32)(z - y + (z < y ? m : 0));
   }
+  u32 floor(u64 z) {
+    u64 x = (u64)(((unsigned __int128)(z)*im) >> 64);
+    u64 y = x * m;
+    return (u32)(z < y ? x - 1 : x);
+  }
   u32 mul(u32 a, u32 b) { return modulo(u64(a) * b); }
 };
