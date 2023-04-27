@@ -68,7 +68,7 @@ data:
   - icon: ':warning:'
     path: graph/find_odd_cycle.hpp
     title: graph/find_odd_cycle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/functional.hpp
     title: graph/functional.hpp
   - icon: ':heavy_check_mark:'
@@ -441,6 +441,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/590.test.cpp
+    title: test/yukicoder/590.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
@@ -682,6 +685,7 @@ data:
   - test/yukicoder/1744.test.cpp
   - test/yukicoder/1813.test.cpp
   - test/yukicoder/1002.test.cpp
+  - test/yukicoder/590.test.cpp
   - test/yukicoder/1778.test.cpp
   - test/yukicoder/1242.test.cpp
   - test/yukicoder/1745.test.cpp

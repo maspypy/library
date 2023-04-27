@@ -26,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/functional.hpp
     title: graph/functional.hpp
   - icon: ':heavy_check_mark:'
@@ -156,6 +156,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/590.test.cpp
+    title: test/yukicoder/590.test.cpp
   - icon: ':x:'
     path: test_atcoder/abc160f.test.cpp
     title: test_atcoder/abc160f.test.cpp
@@ -396,6 +399,7 @@ data:
   - test/yukicoder/1524.test.cpp
   - test/yukicoder/1418.test.cpp
   - test/yukicoder/1494.test.cpp
+  - test/yukicoder/590.test.cpp
   - test/yukicoder/1778.test.cpp
   - test/yukicoder/1242.test.cpp
   - test/yukicoder/1600.test.cpp
