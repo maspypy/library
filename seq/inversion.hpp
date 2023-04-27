@@ -1,7 +1,7 @@
 #pragma once
 #include "ds/fenwicktree/fenwicktree.hpp"
 
-template <typename T, bool SMALL>
+template <typename T, bool SMALL = false>
 ll inversion(vc<T> A) {
   if (A.empty()) return 0;
   if (!SMALL) {
@@ -20,7 +20,7 @@ ll inversion(vc<T> A) {
 }
 
 // i 番目：A_i が先頭になるように rotate したときの転倒数
-template <typename T, bool SMALL>
+template <typename T, bool SMALL = false>
 vi inversion_rotate(vc<T>& A) {
   const int N = len(A);
   if (!SMALL) {
