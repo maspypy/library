@@ -113,6 +113,9 @@ data:
   - icon: ':warning:'
     path: test/library_checker/convolution/convolution_mod_dmint.cpp
     title: test/library_checker/convolution/convolution_mod_dmint.cpp
+  - icon: ':warning:'
+    path: test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp
+    title: test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_14_C.test.cpp
@@ -163,8 +166,11 @@ data:
     path: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
     title: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
-    title: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
+    path: test/library_checker/polynomial/inv_of_fps.test.cpp
+    title: test/library_checker/polynomial/inv_of_fps.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
+    title: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
   - icon: ':x:'
     path: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
@@ -558,6 +564,7 @@ data:
   - random/random_graph.hpp
   - ds/hashmap.hpp
   - ds/unionfind/parallel_unionfind.hpp
+  - test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp
   - test/library_checker/convolution/convolution_mod_dmint.cpp
   - poly/multivar_convolution_cyclic.hpp
   - poly/fps_sqrt.hpp
@@ -602,8 +609,9 @@ data:
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
+  - test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
   - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
-  - test/library_checker/polynomial/inv_of_fps_amint.test.cpp
+  - test/library_checker/polynomial/inv_of_fps.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - test/library_checker/string/number_of_subsequences.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp

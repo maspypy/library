@@ -29,6 +29,9 @@ data:
   - icon: ':warning:'
     path: test/library_checker/convolution/convolution_mod_dmint.cpp
     title: test/library_checker/convolution/convolution_mod_dmint.cpp
+  - icon: ':warning:'
+    path: test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp
+    title: test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_107_amint.test.cpp
@@ -55,8 +58,11 @@ data:
     path: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
     title: test/library_checker/polynomial/exp_of_fps_amint.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
-    title: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
+    path: test/library_checker/polynomial/inv_of_fps.test.cpp
+    title: test/library_checker/polynomial/inv_of_fps.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
+    title: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
   - icon: ':x:'
     path: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_mint.test.cpp
@@ -110,6 +116,7 @@ data:
   - mod/mod_kth_root.hpp
   - nt/gaussian_integers.hpp
   - nt/four_square.hpp
+  - test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp
   - test/library_checker/convolution/convolution_mod_dmint.cpp
   - poly/multivar_convolution_cyclic.hpp
   timestamp: '2023-04-27 04:51:44+09:00'
@@ -122,8 +129,9 @@ data:
   - test/yukicoder/1593.test.cpp
   - test/yukicoder/1667.test.cpp
   - test/library_checker/polynomial/pow_of_fps_mint.test.cpp
+  - test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
   - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
-  - test/library_checker/polynomial/inv_of_fps_amint.test.cpp
+  - test/library_checker/polynomial/inv_of_fps.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp

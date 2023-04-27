@@ -510,57 +510,54 @@ data:
     \ntemplate<typename mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t =\
     \ 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 4\
     \ \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv_sparse(const\
-    \ vc<mint>& f) {\r\n  assert(f[0] != mint(0));\r\n  int N = len(f);\r\n  vc<pair<int,\
-    \ mint>> dat;\r\n  FOR3(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint>\
-    \ g(N);\r\n  mint g0 = mint(1) / f[0];\r\n  g[0] = g0;\r\n  FOR3(n, 1, N) {\r\n\
-    \    mint rhs = 0;\r\n    for (auto&& [k, fk]: dat) {\r\n      if (k > n) break;\r\
-    \n      rhs -= fk * g[n - k];\r\n    }\r\n    g[n] = rhs * g0;\r\n  }\r\n  return\
-    \ g;\r\n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<is_same<mint, modint998>::value,\
-    \ vc<mint>> fps_inv_dense(\r\n    const vc<mint>& F) {\r\n  assert(F[0] != mint(0));\r\
-    \n  vc<mint> G = {mint(1) / F[0]};\r\n  G.reserve(len(F));\r\n  ll N = len(F),\
-    \ n = 1;\r\n  while (n < N) {\r\n    vc<mint> f(2 * n), g(2 * n);\r\n    FOR(i,\
-    \ min(N, 2 * n)) f[i] = F[i];\r\n    FOR(i, n) g[i] = G[i];\r\n    ntt(f, false);\r\
-    \n    ntt(g, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\
-    \n    FOR(i, n) f[i] = 0;\r\n    ntt(f, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\
-    \n    ntt(f, true);\r\n    FOR3(i, n, 2 * n) G.eb(f[i] * mint(-1));\r\n    n *=\
-    \ 2;\r\n  }\r\n  G.resize(N);\r\n  return G;\r\n}\r\n\r\ntemplate <typename mint>\r\
-    \nenable_if_t<!is_same<mint, modint998>::value, vc<mint>> fps_inv_dense(\r\n \
-    \   const vc<mint>& F) {\r\n  int N = len(F);\r\n  assert(F[0] != mint(0));\r\n\
-    \  vc<mint> R = {mint(1) / F[0]};\r\n  vc<mint> p;\r\n  int m = 1;\r\n  while\
-    \ (m < N) {\r\n    p = convolution(R, R);\r\n    p.resize(m + m);\r\n    vc<mint>\
-    \ f = {F.begin(), F.begin() + min(m + m, N)};\r\n    p = convolution(p, f);\r\n\
-    \    R.resize(m + m);\r\n    FOR(i, m + m) R[i] = R[i] + R[i] - p[i];\r\n    m\
-    \ += m;\r\n  }\r\n  R.resize(N);\r\n  return R;\r\n}\r\n\r\n\r\ntemplate <typename\
-    \ mint>\r\nenable_if_t<is_same<mint, modint998>::value, vc<mint>> fps_inv(\r\n\
-    \    const vc<mint>& f) {\r\n  if (count_terms(f) <= 200) return fps_inv_sparse<mint>(f);\r\
-    \n  return fps_inv_dense<mint>(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nenable_if_t<!is_same<mint,\
-    \ modint998>::value, vc<mint>> fps_inv(\r\n    const vc<mint>& f) {\r\n  if (count_terms(f)\
-    \ <= 700) return fps_inv_sparse<mint>(f);\r\n  return fps_inv_dense<mint>(f);\r\
-    \n}\r\n#line 5 \"poly/fps_div.hpp\"\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\
-    \u529B\u3055\u308C\u308B.\ntemplate <typename mint, bool SPARSE = false>\nvc<mint>\
-    \ fps_div(vc<mint> f, vc<mint> g) {\n  if (SPARSE || count_terms(g) < 200) return\
-    \ fps_div_sparse(f, g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n\
-    \  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n\n// f/g \u305F\u3060\
-    \u3057 g \u306F sparse\ntemplate <typename mint>\nvc<mint> fps_div_sparse(vc<mint>\
-    \ f, vc<mint>& g) {\n  if (g[0] != mint(1)) {\n    mint cf = g[0].inverse();\n\
-    \    for (auto&& x: f) x *= cf;\n    for (auto&& x: g) x *= cf;\n  }\n\n  vc<pair<int,\
-    \ mint>> dat;\n  FOR(i, 1, len(g)) if (g[i] != mint(0)) dat.eb(i, -g[i]);\n  FOR(i,\
-    \ len(f)) {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i\
-    \ - j];\n    }\n  }\n  return f;\n}\n#line 4 \"poly/slice_rational_fps.hpp\"\n\
-    \n// P(x)/Q(x) \u306E [N, N+d] \u90E8\u5206\u3092\u8A08\u7B97\n// https://qiita.com/ryuhe1/items/c18ddbb834eed724a42b\n\
-    template <typename mint>\nvc<mint> slice_rational_fps(vc<mint> P, vc<mint> Q,\
-    \ ll N) {\n  assert(N >= 0 && Q[0] == mint(1) && len(P) < len(Q));\n  const int\
-    \ d = len(Q) - 1;\n  if (d == 0) { return vc<mint>(); }\n  P.resize(len(Q) - 1);\n\
-    \n  auto dfs = [&](auto& dfs, ll N, vc<mint> Q) -> vc<mint> {\n    // 1/Q \u306E\
-    \ [N-d+1, N]\n    if (N == 0) {\n      vc<mint> f(d);\n      f[d - 1] = 1;\n \
-    \     return f;\n    }\n    vc<mint> R = Q;\n    FOR(i, d + 1) if (i & 1) R[i]\
-    \ = -R[i];\n    vc<mint> V = convolution(Q, R);\n    FOR(i, d + 1) V[i] = V[2\
-    \ * i];\n    V.resize(d + 1);\n    vc<mint> W = dfs(dfs, N / 2, V);\n    vc<mint>\
-    \ S(d + d);\n    if (N % 2 == 0) FOR(i, d) S[2 * i + 1] = W[i];\n    if (N % 2\
-    \ == 1) FOR(i, d) S[2 * i] = W[i];\n    reverse(all(R));\n    return middle_product(S,\
-    \ R);\n  };\n  vc<mint> A = dfs(dfs, N, Q);\n  vc<mint> f = convolution(A, Q);\n\
-    \  f = {f.begin() + d, f.end() - 1};\n  f = fps_div(f, Q);\n  for (auto&& x: f)\
-    \ x = -x;\n  A.insert(A.end(), all(f));\n  reverse(all(P));\n  return middle_product(A,\
+    \ vc<mint>& f) {\r\n  int N = len(f);\r\n  vc<pair<int, mint>> dat;\r\n  FOR(i,\
+    \ 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint> g(N);\r\n  mint g0\
+    \ = mint(1) / f[0];\r\n  g[0] = g0;\r\n  FOR(n, 1, N) {\r\n    mint rhs = 0;\r\
+    \n    for (auto&& [k, fk]: dat) {\r\n      if (k > n) break;\r\n      rhs -= fk\
+    \ * g[n - k];\r\n    }\r\n    g[n] = rhs * g0;\r\n  }\r\n  return g;\r\n}\r\n\r\
+    \ntemplate <typename mint>\r\nvc<mint> fps_inv_dense_ntt(const vc<mint>& F) {\r\
+    \n  vc<mint> G = {mint(1) / F[0]};\r\n  ll N = len(F), n = 1;\r\n  G.reserve(N);\r\
+    \n  while (n < N) {\r\n    vc<mint> f(2 * n), g(2 * n);\r\n    FOR(i, min(N, 2\
+    \ * n)) f[i] = F[i];\r\n    FOR(i, n) g[i] = G[i];\r\n    ntt(f, false), ntt(g,\
+    \ false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\n    FOR(i,\
+    \ n) f[i] = 0;\r\n    ntt(f, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\n  \
+    \  ntt(f, true);\r\n    FOR(i, n, min(N, 2 * n)) G.eb(-f[i]);\r\n    n *= 2;\r\
+    \n  }\r\n  return G;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv_dense(const\
+    \ vc<mint>& F) {\r\n  if (mint::can_ntt()) return fps_inv_dense_ntt(F);\r\n  const\
+    \ int N = len(F);\r\n  vc<mint> R = {mint(1) / F[0]};\r\n  vc<mint> p;\r\n  int\
+    \ m = 1;\r\n  while (m < N) {\r\n    p = convolution(R, R);\r\n    p.resize(m\
+    \ + m);\r\n    vc<mint> f = {F.begin(), F.begin() + min(m + m, N)};\r\n    p =\
+    \ convolution(p, f);\r\n    R.resize(m + m);\r\n    FOR(i, m + m) R[i] = R[i]\
+    \ + R[i] - p[i];\r\n    m += m;\r\n  }\r\n  R.resize(N);\r\n  return R;\r\n}\r\
+    \n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  int\
+    \ N = len(f);\r\n  assert(f[0] != mint(0));\r\n  int n = count_terms(f);\r\n \
+    \ int t = (mint::can_ntt() ? 160 : 820);\r\n  return (n <= t ? fps_inv_sparse<mint>(f)\
+    \ : fps_inv_dense<mint>(f));\r\n}\r\n#line 5 \"poly/fps_div.hpp\"\n\n// f/g. f\
+    \ \u306E\u9577\u3055\u3067\u51FA\u529B\u3055\u308C\u308B.\ntemplate <typename\
+    \ mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint> f, vc<mint> g) {\n  if\
+    \ (SPARSE || count_terms(g) < 200) return fps_div_sparse(f, g);\n  int n = len(f);\n\
+    \  g.resize(n);\n  g = fps_inv<mint>(g);\n  f = convolution(f, g);\n  f.resize(n);\n\
+    \  return f;\n}\n\n// f/g \u305F\u3060\u3057 g \u306F sparse\ntemplate <typename\
+    \ mint>\nvc<mint> fps_div_sparse(vc<mint> f, vc<mint>& g) {\n  if (g[0] != mint(1))\
+    \ {\n    mint cf = g[0].inverse();\n    for (auto&& x: f) x *= cf;\n    for (auto&&\
+    \ x: g) x *= cf;\n  }\n\n  vc<pair<int, mint>> dat;\n  FOR(i, 1, len(g)) if (g[i]\
+    \ != mint(0)) dat.eb(i, -g[i]);\n  FOR(i, len(f)) {\n    for (auto&& [j, x]: dat)\
+    \ {\n      if (i >= j) f[i] += x * f[i - j];\n    }\n  }\n  return f;\n}\n#line\
+    \ 4 \"poly/slice_rational_fps.hpp\"\n\n// P(x)/Q(x) \u306E [N, N+d] \u90E8\u5206\
+    \u3092\u8A08\u7B97\n// https://qiita.com/ryuhe1/items/c18ddbb834eed724a42b\ntemplate\
+    \ <typename mint>\nvc<mint> slice_rational_fps(vc<mint> P, vc<mint> Q, ll N) {\n\
+    \  assert(N >= 0 && Q[0] == mint(1) && len(P) < len(Q));\n  const int d = len(Q)\
+    \ - 1;\n  if (d == 0) { return vc<mint>(); }\n  P.resize(len(Q) - 1);\n\n  auto\
+    \ dfs = [&](auto& dfs, ll N, vc<mint> Q) -> vc<mint> {\n    // 1/Q \u306E [N-d+1,\
+    \ N]\n    if (N == 0) {\n      vc<mint> f(d);\n      f[d - 1] = 1;\n      return\
+    \ f;\n    }\n    vc<mint> R = Q;\n    FOR(i, d + 1) if (i & 1) R[i] = -R[i];\n\
+    \    vc<mint> V = convolution(Q, R);\n    FOR(i, d + 1) V[i] = V[2 * i];\n   \
+    \ V.resize(d + 1);\n    vc<mint> W = dfs(dfs, N / 2, V);\n    vc<mint> S(d + d);\n\
+    \    if (N % 2 == 0) FOR(i, d) S[2 * i + 1] = W[i];\n    if (N % 2 == 1) FOR(i,\
+    \ d) S[2 * i] = W[i];\n    reverse(all(R));\n    return middle_product(S, R);\n\
+    \  };\n  vc<mint> A = dfs(dfs, N, Q);\n  vc<mint> f = convolution(A, Q);\n  f\
+    \ = {f.begin() + d, f.end() - 1};\n  f = fps_div(f, Q);\n  for (auto&& x: f) x\
+    \ = -x;\n  A.insert(A.end(), all(f));\n  reverse(all(P));\n  return middle_product(A,\
     \ P);\n}\n#line 8 \"test/mytest/slice_rational_fps.test.cpp\"\n\nusing mint =\
     \ modint998;\n\nvc<mint> gen(int n) {\n  vc<mint> f(n);\n  FOR(i, n) f[i] = RNG(0,\
     \ 100);\n  return f;\n}\n\nvoid test() {\n  using poly = vc<mint>;\n  FOR(n, 1,\
@@ -608,7 +605,7 @@ data:
   isVerificationFile: true
   path: test/mytest/slice_rational_fps.test.cpp
   requiredBy: []
-  timestamp: '2023-04-27 05:11:08+09:00'
+  timestamp: '2023-04-27 16:03:03+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/slice_rational_fps.test.cpp

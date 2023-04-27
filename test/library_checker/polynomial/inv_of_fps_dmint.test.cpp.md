@@ -2,8 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: mod/barrett.hpp
+    title: mod/barrett.hpp
+  - icon: ':question:'
+    path: mod/dynamic_modint.hpp
+    title: mod/dynamic_modint.hpp
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
+  - icon: ':question:'
+    path: mod/mod_pow.hpp
+    title: mod/mod_pow.hpp
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
@@ -11,17 +20,23 @@ data:
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
+    path: mod/primitive_root.hpp
+    title: mod/primitive_root.hpp
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
+  - icon: ':question:'
+    path: nt/factor.hpp
+    title: nt/factor.hpp
+  - icon: ':question:'
+    path: nt/primetest.hpp
+    title: nt/primetest.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':x:'
-    path: poly/convolution_all.hpp
-    title: poly/convolution_all.hpp
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
@@ -35,28 +50,23 @@ data:
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':question:'
-    path: poly/fps_log.hpp
-    title: poly/fps_log.hpp
-  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
-    path: poly/sum_of_rationals.hpp
-    title: poly/sum_of_rationals.hpp
-  - icon: ':x:'
-    path: seq/sum_of_powers.hpp
-    title: seq/sum_of_powers.hpp
+  - icon: ':question:'
+    path: random/base.hpp
+    title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1145
+    PROBLEM: https://judge.yosupo.jp/problem/inv_of_formal_power_series
     links:
-    - https://yukicoder.me/problems/no/1145
-  bundledCode: "#line 1 \"test/yukicoder/1145.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/1145\"\
+    - https://judge.yosupo.jp/problem/inv_of_formal_power_series
+  bundledCode: "#line 1 \"test/library_checker/polynomial/inv_of_fps_dmint.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -237,8 +247,9 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
-    \ <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
+    \ yes(!t); }\n#line 4 \"test/library_checker/polynomial/inv_of_fps_dmint.test.cpp\"\
+    \n\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
+    \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
     \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
     \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod\
@@ -304,95 +315,218 @@ data:
     \    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881) return\
     \ {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
     \ return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 2 \"poly/convolution_all.hpp\"\n\r\
-    \n#line 2 \"mod/mod_inv.hpp\"\n// long \u3067\u3082\u5927\u4E08\u592B\r\nll mod_inv(ll\
-    \ val, ll mod) {\r\n  val %= mod;\r\n  if (val < 0) val += mod;\r\n  ll a = val,\
-    \ b = mod, u = 1, v = 0, t;\r\n  while (b > 0) {\r\n    t = a / b;\r\n    swap(a\
-    \ -= t * b, b), swap(u -= t * v, v);\r\n  }\r\n  if (u < 0) u += mod;\r\n  return\
-    \ u;\r\n}\r\n#line 1 \"poly/convolution_naive.hpp\"\ntemplate <class T>\r\nvector<T>\
-    \ convolution_naive(const vector<T>& a, const vector<T>& b) {\r\n  int n = int(a.size()),\
-    \ m = int(b.size());\r\n  vector<T> ans(n + m - 1);\r\n  if (n < m) {\r\n    FOR(j,\
-    \ m) FOR(i, n) ans[i + j] += a[i] * b[j];\r\n  } else {\r\n    FOR(i, n) FOR(j,\
-    \ m) ans[i + j] += a[i] * b[j];\r\n  }\r\n  return ans;\r\n}\r\n#line 2 \"poly/ntt.hpp\"\
-    \n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>& a, bool inverse) {\r\n \
-    \ assert(mint::can_ntt());\r\n  const int rank2 = mint::ntt_info().fi;\r\n  const\
-    \ int mod = mint::get_mod();\r\n  static array<mint, 30> root;\r\n  static array<mint,\
-    \ 30> iroot;\r\n  static array<mint, 30> rate2, irate2;\r\n  static array<mint,\
-    \ 30> rate3, irate3;\r\n\r\n  static bool prepared = 0;\r\n  if (!prepared) {\r\
-    \n    prepared = 1;\r\n    root[rank2] = mint::ntt_info().se;\r\n    iroot[rank2]\
-    \ = mint(1) / root[rank2];\r\n    FOR_R(i, rank2) {\r\n      root[i] = root[i\
-    \ + 1] * root[i + 1];\r\n      iroot[i] = iroot[i + 1] * iroot[i + 1];\r\n   \
-    \ }\r\n    mint prod = 1, iprod = 1;\r\n    for (int i = 0; i <= rank2 - 2; i++)\
-    \ {\r\n      rate2[i] = root[i + 2] * prod;\r\n      irate2[i] = iroot[i + 2]\
-    \ * iprod;\r\n      prod *= iroot[i + 2];\r\n      iprod *= root[i + 2];\r\n \
-    \   }\r\n    prod = 1, iprod = 1;\r\n    for (int i = 0; i <= rank2 - 3; i++)\
-    \ {\r\n      rate3[i] = root[i + 3] * prod;\r\n      irate3[i] = iroot[i + 3]\
-    \ * iprod;\r\n      prod *= iroot[i + 3];\r\n      iprod *= root[i + 3];\r\n \
-    \   }\r\n  }\r\n\r\n  int n = int(a.size());\r\n  int h = topbit(n);\r\n  assert(n\
-    \ == 1 << h);\r\n  if (!inverse) {\r\n    int len = 0;\r\n    while (len < h)\
-    \ {\r\n      if (h - len == 1) {\r\n        int p = 1 << (h - len - 1);\r\n  \
-    \      mint rot = 1;\r\n        FOR(s, 1 << len) {\r\n          int offset = s\
-    \ << (h - len);\r\n          FOR(i, p) {\r\n            auto l = a[i + offset];\r\
-    \n            auto r = a[i + offset + p] * rot;\r\n            a[i + offset] =\
-    \ l + r;\r\n            a[i + offset + p] = l - r;\r\n          }\r\n        \
-    \  rot *= rate2[topbit(~s & -~s)];\r\n        }\r\n        len++;\r\n      } else\
-    \ {\r\n        int p = 1 << (h - len - 2);\r\n        mint rot = 1, imag = root[2];\r\
-    \n        for (int s = 0; s < (1 << len); s++) {\r\n          mint rot2 = rot\
-    \ * rot;\r\n          mint rot3 = rot2 * rot;\r\n          int offset = s << (h\
-    \ - len);\r\n          for (int i = 0; i < p; i++) {\r\n            u64 mod2 =\
-    \ u64(mod) * mod;\r\n            u64 a0 = a[i + offset].val;\r\n            u64\
-    \ a1 = u64(a[i + offset + p].val) * rot.val;\r\n            u64 a2 = u64(a[i +\
-    \ offset + 2 * p].val) * rot2.val;\r\n            u64 a3 = u64(a[i + offset +\
-    \ 3 * p].val) * rot3.val;\r\n            u64 a1na3imag = (a1 + mod2 - a3) % mod\
-    \ * imag.val;\r\n            u64 na2 = mod2 - a2;\r\n            a[i + offset]\
-    \ = a0 + a2 + a1 + a3;\r\n            a[i + offset + 1 * p] = a0 + a2 + (2 * mod2\
-    \ - (a1 + a3));\r\n            a[i + offset + 2 * p] = a0 + na2 + a1na3imag;\r\
-    \n            a[i + offset + 3 * p] = a0 + na2 + (mod2 - a1na3imag);\r\n     \
-    \     }\r\n          rot *= rate3[topbit(~s & -~s)];\r\n        }\r\n        len\
-    \ += 2;\r\n      }\r\n    }\r\n  } else {\r\n    mint coef = mint(1) / mint(len(a));\r\
-    \n    FOR(i, len(a)) a[i] *= coef;\r\n    int len = h;\r\n    while (len) {\r\n\
-    \      if (len == 1) {\r\n        int p = 1 << (h - len);\r\n        mint irot\
-    \ = 1;\r\n        FOR(s, 1 << (len - 1)) {\r\n          int offset = s << (h -\
-    \ len + 1);\r\n          FOR(i, p) {\r\n            u64 l = a[i + offset].val;\r\
-    \n            u64 r = a[i + offset + p].val;\r\n            a[i + offset] = l\
-    \ + r;\r\n            a[i + offset + p] = (mod + l - r) * irot.val;\r\n      \
-    \    }\r\n          irot *= irate2[topbit(~s & -~s)];\r\n        }\r\n       \
-    \ len--;\r\n      } else {\r\n        int p = 1 << (h - len);\r\n        mint\
-    \ irot = 1, iimag = iroot[2];\r\n        FOR(s, (1 << (len - 2))) {\r\n      \
-    \    mint irot2 = irot * irot;\r\n          mint irot3 = irot2 * irot;\r\n   \
-    \       int offset = s << (h - len + 2);\r\n          for (int i = 0; i < p; i++)\
-    \ {\r\n            u64 a0 = a[i + offset + 0 * p].val;\r\n            u64 a1 =\
-    \ a[i + offset + 1 * p].val;\r\n            u64 a2 = a[i + offset + 2 * p].val;\r\
-    \n            u64 a3 = a[i + offset + 3 * p].val;\r\n            u64 x = (mod\
-    \ + a2 - a3) * iimag.val % mod;\r\n            a[i + offset] = a0 + a1 + a2 +\
-    \ a3;\r\n            a[i + offset + 1 * p] = (a0 + mod - a1 + x) * irot.val;\r\
-    \n            a[i + offset + 2 * p] = (a0 + a1 + 2 * mod - a2 - a3) * irot2.val;\r\
-    \n            a[i + offset + 3 * p] = (a0 + 2 * mod - a1 - x) * irot3.val;\r\n\
-    \          }\r\n          irot *= irate3[topbit(~s & -~s)];\r\n        }\r\n \
-    \       len -= 2;\r\n      }\r\n    }\r\n  }\r\n}\r\n#line 1 \"poly/fft.hpp\"\n\
-    namespace CFFT {\r\nusing real = double;\r\n\r\nstruct C {\r\n  real x, y;\r\n\
-    \r\n  C() : x(0), y(0) {}\r\n\r\n  C(real x, real y) : x(x), y(y) {}\r\n  inline\
-    \ C operator+(const C& c) const { return C(x + c.x, y + c.y); }\r\n  inline C\
-    \ operator-(const C& c) const { return C(x - c.x, y - c.y); }\r\n  inline C operator*(const\
-    \ C& c) const {\r\n    return C(x * c.x - y * c.y, x * c.y + y * c.x);\r\n  }\r\
-    \n\r\n  inline C conj() const { return C(x, -y); }\r\n};\r\n\r\nconst real PI\
-    \ = acosl(-1);\r\nint base = 1;\r\nvector<C> rts = {{0, 0}, {1, 0}};\r\nvector<int>\
-    \ rev = {0, 1};\r\n\r\nvoid ensure_base(int nbase) {\r\n  if (nbase <= base) return;\r\
-    \n  rev.resize(1 << nbase);\r\n  rts.resize(1 << nbase);\r\n  for (int i = 0;\
-    \ i < (1 << nbase); i++) {\r\n    rev[i] = (rev[i >> 1] >> 1) + ((i & 1) << (nbase\
-    \ - 1));\r\n  }\r\n  while (base < nbase) {\r\n    real angle = PI * 2.0 / (1\
-    \ << (base + 1));\r\n    for (int i = 1 << (base - 1); i < (1 << base); i++) {\r\
-    \n      rts[i << 1] = rts[i];\r\n      real angle_i = angle * (2 * i + 1 - (1\
-    \ << base));\r\n      rts[(i << 1) + 1] = C(cos(angle_i), sin(angle_i));\r\n \
-    \   }\r\n    ++base;\r\n  }\r\n}\r\n\r\nvoid fft(vector<C>& a, int n) {\r\n  assert((n\
-    \ & (n - 1)) == 0);\r\n  int zeros = __builtin_ctz(n);\r\n  ensure_base(zeros);\r\
-    \n  int shift = base - zeros;\r\n  for (int i = 0; i < n; i++) {\r\n    if (i\
-    \ < (rev[i] >> shift)) { swap(a[i], a[rev[i] >> shift]); }\r\n  }\r\n  for (int\
-    \ k = 1; k < n; k <<= 1) {\r\n    for (int i = 0; i < n; i += 2 * k) {\r\n   \
-    \   for (int j = 0; j < k; j++) {\r\n        C z = a[i + j + k] * rts[j + k];\r\
-    \n        a[i + j + k] = a[i + j] - z;\r\n        a[i + j] = a[i + j] + z;\r\n\
-    \      }\r\n    }\r\n  }\r\n}\r\n} // namespace CFFT\n#line 7 \"poly/convolution.hpp\"\
-    \n\r\ntemplate <class mint>\r\nvector<mint> convolution_ntt(vector<mint> a, vector<mint>\
+    using modint998 = modint<998244353>;\n#line 2 \"mod/primitive_root.hpp\"\n\r\n\
+    #line 2 \"nt/primetest.hpp\"\nstruct m64 {\r\n  using i64 = int64_t;\r\n  using\
+    \ u64 = uint64_t;\r\n  using u128 = __uint128_t;\r\n\r\n  inline static u64 m,\
+    \ r, n2; // r * m = -1 (mod 1<<64), n2 = 1<<128 (mod m)\r\n  static void set_mod(u64\
+    \ m) {\r\n    assert((m & 1) == 1);\r\n    m64::m = m;\r\n    n2 = -u128(m) %\
+    \ m;\r\n    r = m;\r\n    FOR(_, 5) r *= 2 - m * r;\r\n    r = -r;\r\n    assert(r\
+    \ * m == -1ull);\r\n  }\r\n  static u64 reduce(u128 b) { return (b + u128(u64(b)\
+    \ * r) * m) >> 64; }\r\n\r\n  u64 x;\r\n  m64() : x(0) {}\r\n  m64(u64 x) : x(reduce(u128(x)\
+    \ * n2)){};\r\n  u64 val() const {\r\n    u64 y = reduce(x);\r\n    return y >=\
+    \ m ? y - m : y;\r\n  }\r\n  m64 &operator+=(m64 y) {\r\n    x += y.x - (m <<\
+    \ 1);\r\n    x = (i64(x) < 0 ? x + (m << 1) : x);\r\n    return *this;\r\n  }\r\
+    \n  m64 &operator-=(m64 y) {\r\n    x -= y.x;\r\n    x = (i64(x) < 0 ? x + (m\
+    \ << 1) : x);\r\n    return *this;\r\n  }\r\n  m64 &operator*=(m64 y) {\r\n  \
+    \  x = reduce(u128(x) * y.x);\r\n    return *this;\r\n  }\r\n  m64 operator+(m64\
+    \ y) const { return m64(*this) += y; }\r\n  m64 operator-(m64 y) const { return\
+    \ m64(*this) -= y; }\r\n  m64 operator*(m64 y) const { return m64(*this) *= y;\
+    \ }\r\n  bool operator==(m64 y) const {\r\n    return (x >= m ? x - m : x) ==\
+    \ (y.x >= m ? y.x - m : y.x);\r\n  }\r\n  bool operator!=(m64 y) const { return\
+    \ not operator==(y); }\r\n  m64 pow(u64 n) const {\r\n    m64 y = 1, z = *this;\r\
+    \n    for (; n; n >>= 1, z *= z)\r\n      if (n & 1) y *= z;\r\n    return y;\r\
+    \n  }\r\n};\r\n\r\nbool primetest(const uint64_t x) {\r\n  using u64 = uint64_t;\r\
+    \n  if (x == 2 or x == 3 or x == 5 or x == 7) return true;\r\n  if (x % 2 == 0\
+    \ or x % 3 == 0 or x % 5 == 0 or x % 7 == 0) return false;\r\n  if (x < 121) return\
+    \ x > 1;\r\n  const u64 d = (x - 1) >> __builtin_ctzll(x - 1);\r\n  m64::set_mod(x);\r\
+    \n  const m64 one(1), minus_one(x - 1);\r\n  auto ok = [&](u64 a) {\r\n    auto\
+    \ y = m64(a).pow(d);\r\n    u64 t = d;\r\n    while (y != one and y != minus_one\
+    \ and t != x - 1) y *= y, t <<= 1;\r\n    if (y != minus_one and t % 2 == 0) return\
+    \ false;\r\n    return true;\r\n  };\r\n  if (x < (1ull << 32)) {\r\n    for (u64\
+    \ a: {2, 7, 61})\r\n      if (not ok(a)) return false;\r\n  } else {\r\n    for\
+    \ (u64 a: {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\r\n      if (x\
+    \ <= a) return true;\r\n      if (not ok(a)) return false;\r\n    }\r\n  }\r\n\
+    \  return true;\r\n}\n#line 3 \"nt/factor.hpp\"\n\nmt19937_64 rng_mt{random_device{}()};\n\
+    ll rnd(ll n) { return uniform_int_distribution<ll>(0, n - 1)(rng_mt); }\n\nll\
+    \ rho(ll n, ll c) {\n  m64::set_mod(n);\n  assert(n > 1);\n  const m64 cc(c);\n\
+    \  auto f = [&](m64 x) { return x * x + cc; };\n  m64 x = 1, y = 2, z = 1, q =\
+    \ 1;\n  ll g = 1;\n  const ll m = 1LL << (__lg(n) / 5); // ?\n  for (ll r = 1;\
+    \ g == 1; r <<= 1) {\n    x = y;\n    FOR(_, r) y = f(y);\n    for (ll k = 0;\
+    \ k < r and g == 1; k += m) {\n      z = y;\n      FOR(_, min(m, r - k)) y = f(y),\
+    \ q *= x - y;\n      g = gcd(q.val(), n);\n    }\n  }\n  if (g == n) do {\n  \
+    \    z = f(z);\n      g = gcd((x - z).val(), n);\n    } while (g == 1);\n  return\
+    \ g;\n}\n\nll find_prime_factor(ll n) {\n  assert(n > 1);\n  if (primetest(n))\
+    \ return n;\n  FOR(_, 100) {\n    ll m = rho(n, rnd(n));\n    if (primetest(m))\
+    \ return m;\n    n = m;\n  }\n  cerr << \"failed\" << endl;\n  assert(false);\n\
+    \  return -1;\n}\n\n// \u30BD\u30FC\u30C8\u3057\u3066\u304F\u308C\u308B\nvc<pair<ll,\
+    \ int>> factor(ll n) {\n  assert(n >= 1);\n  vc<pair<ll, int>> pf;\n  FOR3(p,\
+    \ 2, 100) {\n    if (p * p > n) break;\n    if (n % p == 0) {\n      ll e = 0;\n\
+    \      do { n /= p, e += 1; } while (n % p == 0);\n      pf.eb(p, e);\n    }\n\
+    \  }\n  while (n > 1) {\n    ll p = find_prime_factor(n);\n    ll e = 0;\n   \
+    \ do { n /= p, e += 1; } while (n % p == 0);\n    pf.eb(p, e);\n  }\n  sort(all(pf));\n\
+    \  return pf;\n}\n\nvc<pair<ll, int>> factor_by_lpf(ll n, vc<int>& lpf) {\n  vc<pair<ll,\
+    \ int>> res;\n  while (n > 1) {\n    int p = lpf[n];\n    int e = 0;\n    while\
+    \ (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n \
+    \ return res;\n}\n#line 2 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
+    struct Barrett {\n  u32 m;\n  u64 im;\n  explicit Barrett(u32 m) : m(m), im((unsigned\
+    \ long long)(-1) / m + 1) {}\n  u32 umod() const { return m; }\n  u32 modulo(u64\
+    \ z) {\n    u64 x = (u64)(((unsigned __int128)(z)*im) >> 64);\n    u64 y = x *\
+    \ m;\n    return (u32)(z - y + (z < y ? m : 0));\n  }\n  u32 mul(u32 a, u32 b)\
+    \ { return modulo(u64(a) * b); }\n};\n#line 3 \"mod/mod_pow.hpp\"\n\r\n// int\r\
+    \nll mod_pow(ll a, ll n, int mod) {\r\n  a %= mod;\r\n  Barrett bt(mod);\r\n \
+    \ ll p = a;\r\n  ll v = 1;\r\n  while (n) {\r\n    if (n & 1) v = bt.mul(v, p);\r\
+    \n    p = bt.mul(p, p);\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n\r\nll mod_pow_long(ll\
+    \ a, ll n, ll mod) {\r\n  a %= mod;\r\n  ll p = a;\r\n  ll v = 1;\r\n  while (n)\
+    \ {\r\n    if (n & 1) v = i128(v) * p % mod;\r\n    p = i128(p) * p % mod;\r\n\
+    \    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n#line 2 \"random/base.hpp\"\n\nu64\
+    \ RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 6 \"mod/primitive_root.hpp\"\
+    \n\r\n// int\r\nint primitive_root(int p) {\r\n  auto pf = factor(p - 1);\r\n\
+    \  auto is_ok = [&](int g) -> bool {\r\n    for (auto&& [q, e]: pf)\r\n      if\
+    \ (mod_pow(g, (p - 1) / q, p) == 1) return false;\r\n    return true;\r\n  };\r\
+    \n  while (1) {\r\n    int x = RNG(1, p);\r\n    if (is_ok(x)) return x;\r\n \
+    \ }\r\n  return -1;\r\n}\r\n\r\nll primitive_root_long(ll p) {\r\n  auto pf =\
+    \ factor(p - 1);\r\n  auto is_ok = [&](ll g) -> bool {\r\n    for (auto&& [q,\
+    \ e]: pf)\r\n      if (mod_pow_long(g, (p - 1) / q, p) == 1) return false;\r\n\
+    \    return true;\r\n  };\r\n  while (1) {\r\n    ll x = RNG(1, p);\r\n    if\
+    \ (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n#line 5 \"mod/dynamic_modint.hpp\"\
+    \n\ntemplate <class T>\nusing is_signed_int =\n    typename std::conditional<(is_integral<T>::value\n\
+    \                               && std::is_signed<T>::value),\n              \
+    \                std::true_type, std::false_type>::type;\n\ntemplate <class T>\n\
+    using is_unsigned_int =\n    typename std::conditional<(is_integral<T>::value\n\
+    \                               && std::is_unsigned<T>::value),\n            \
+    \                  std::true_type, std::false_type>::type;\ntemplate <class T>\n\
+    using is_signed_int_t = std::enable_if_t<is_signed_int<T>::value>;\n\ntemplate\
+    \ <class T>\nusing is_unsigned_int_t = std::enable_if_t<is_unsigned_int<T>::value>;\n\
+    \nstruct Dynamic_Modint {\n  static constexpr bool is_modint = true;\n  using\
+    \ mint = Dynamic_Modint;\n  u32 val;\n  static Barrett bt;\n  static u32 umod()\
+    \ { return bt.umod(); }\n\n  static int get_mod() { return (int)(bt.umod()); }\n\
+    \  static void set_mod(int m) {\n    assert(1 <= m);\n    bt = Barrett(m);\n \
+    \ }\n\n  Dynamic_Modint() : val(0) {}\n  template <class T, is_signed_int_t<T>*\
+    \ = nullptr>\n  Dynamic_Modint(T v) {\n    int x = v % get_mod();\n    if (x <\
+    \ 0) x += get_mod();\n    val = u32(x);\n  }\n  template <class T, is_unsigned_int_t<T>*\
+    \ = nullptr>\n  Dynamic_Modint(T v) {\n    val = bt.modulo(v);\n  }\n\n  mint&\
+    \ operator+=(const mint& rhs) {\n    val += rhs.val;\n    if (val >= umod()) val\
+    \ -= umod();\n    return *this;\n  }\n  mint& operator-=(const mint& rhs) {\n\
+    \    val += umod() - rhs.val;\n    if (val >= umod()) val -= umod();\n    return\
+    \ *this;\n  }\n  mint& operator*=(const mint& rhs) {\n    val = bt.mul(val, rhs.val);\n\
+    \    return *this;\n  }\n  mint& operator/=(const mint& rhs) { return *this =\
+    \ *this * rhs.inverse(); }\n  mint operator-() const { return mint() - *this;\
+    \ }\n  mint pow(ll n) const {\n    assert(0 <= n);\n    mint x = *this, r = 1;\n\
+    \    while (n) {\n      if (n & 1) r *= x;\n      x *= x;\n      n >>= 1;\n  \
+    \  }\n    return r;\n  }\n  mint inverse() const {\n    int x = val;\n    int\
+    \ mod = get_mod();\n    ll a = x, b = mod, u = 1, v = 0, t;\n    while (b > 0)\
+    \ {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n\
+    \    if (u < 0) u += mod;\n    return u;\n  }\n\n  friend mint operator+(const\
+    \ mint& lhs, const mint& rhs) {\n    return mint(lhs) += rhs;\n  }\n  friend mint\
+    \ operator-(const mint& lhs, const mint& rhs) {\n    return mint(lhs) -= rhs;\n\
+    \  }\n  friend mint operator*(const mint& lhs, const mint& rhs) {\n    return\
+    \ mint(lhs) *= rhs;\n  }\n  friend mint operator/(const mint& lhs, const mint&\
+    \ rhs) {\n    return mint(lhs) /= rhs;\n  }\n  friend bool operator==(const mint&\
+    \ lhs, const mint& rhs) {\n    return lhs.val == rhs.val;\n  }\n  friend bool\
+    \ operator!=(const mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n\
+    \  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val); }\n  void read()\
+    \ { fastio::scanner.read(val); }\n#endif\n  static pair<int, int>& get_ntt() {\n\
+    \    static pair<int, int> p = {-1, -1};\n    return p;\n  }\n  static void set_ntt_info()\
+    \ {\n    int mod = get_mod();\n    int k = lowbit(mod - 1);\n    int r = primitive_root(mod);\n\
+    \    r = mod_pow(r, (mod - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static\
+    \ pair<int, int> ntt_info() { return get_ntt(); }\n  static bool can_ntt() { return\
+    \ ntt_info().fi != -1; }\n};\n\nusing dmint = Dynamic_Modint;\nBarrett dmint::bt(1);\n\
+    #line 7 \"test/library_checker/polynomial/inv_of_fps_dmint.test.cpp\"\n\n#line\
+    \ 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
+    \ vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\
+    \n  return t;\r\n}\n#line 2 \"mod/mod_inv.hpp\"\n// long \u3067\u3082\u5927\u4E08\
+    \u592B\r\nll mod_inv(ll val, ll mod) {\r\n  val %= mod;\r\n  if (val < 0) val\
+    \ += mod;\r\n  ll a = val, b = mod, u = 1, v = 0, t;\r\n  while (b > 0) {\r\n\
+    \    t = a / b;\r\n    swap(a -= t * b, b), swap(u -= t * v, v);\r\n  }\r\n  if\
+    \ (u < 0) u += mod;\r\n  return u;\r\n}\r\n#line 1 \"poly/convolution_naive.hpp\"\
+    \ntemplate <class T>\r\nvector<T> convolution_naive(const vector<T>& a, const\
+    \ vector<T>& b) {\r\n  int n = int(a.size()), m = int(b.size());\r\n  vector<T>\
+    \ ans(n + m - 1);\r\n  if (n < m) {\r\n    FOR(j, m) FOR(i, n) ans[i + j] += a[i]\
+    \ * b[j];\r\n  } else {\r\n    FOR(i, n) FOR(j, m) ans[i + j] += a[i] * b[j];\r\
+    \n  }\r\n  return ans;\r\n}\r\n#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\
+    \nvoid ntt(vector<mint>& a, bool inverse) {\r\n  assert(mint::can_ntt());\r\n\
+    \  const int rank2 = mint::ntt_info().fi;\r\n  const int mod = mint::get_mod();\r\
+    \n  static array<mint, 30> root;\r\n  static array<mint, 30> iroot;\r\n  static\
+    \ array<mint, 30> rate2, irate2;\r\n  static array<mint, 30> rate3, irate3;\r\n\
+    \r\n  static bool prepared = 0;\r\n  if (!prepared) {\r\n    prepared = 1;\r\n\
+    \    root[rank2] = mint::ntt_info().se;\r\n    iroot[rank2] = mint(1) / root[rank2];\r\
+    \n    FOR_R(i, rank2) {\r\n      root[i] = root[i + 1] * root[i + 1];\r\n    \
+    \  iroot[i] = iroot[i + 1] * iroot[i + 1];\r\n    }\r\n    mint prod = 1, iprod\
+    \ = 1;\r\n    for (int i = 0; i <= rank2 - 2; i++) {\r\n      rate2[i] = root[i\
+    \ + 2] * prod;\r\n      irate2[i] = iroot[i + 2] * iprod;\r\n      prod *= iroot[i\
+    \ + 2];\r\n      iprod *= root[i + 2];\r\n    }\r\n    prod = 1, iprod = 1;\r\n\
+    \    for (int i = 0; i <= rank2 - 3; i++) {\r\n      rate3[i] = root[i + 3] *\
+    \ prod;\r\n      irate3[i] = iroot[i + 3] * iprod;\r\n      prod *= iroot[i +\
+    \ 3];\r\n      iprod *= root[i + 3];\r\n    }\r\n  }\r\n\r\n  int n = int(a.size());\r\
+    \n  int h = topbit(n);\r\n  assert(n == 1 << h);\r\n  if (!inverse) {\r\n    int\
+    \ len = 0;\r\n    while (len < h) {\r\n      if (h - len == 1) {\r\n        int\
+    \ p = 1 << (h - len - 1);\r\n        mint rot = 1;\r\n        FOR(s, 1 << len)\
+    \ {\r\n          int offset = s << (h - len);\r\n          FOR(i, p) {\r\n   \
+    \         auto l = a[i + offset];\r\n            auto r = a[i + offset + p] *\
+    \ rot;\r\n            a[i + offset] = l + r;\r\n            a[i + offset + p]\
+    \ = l - r;\r\n          }\r\n          rot *= rate2[topbit(~s & -~s)];\r\n   \
+    \     }\r\n        len++;\r\n      } else {\r\n        int p = 1 << (h - len -\
+    \ 2);\r\n        mint rot = 1, imag = root[2];\r\n        for (int s = 0; s <\
+    \ (1 << len); s++) {\r\n          mint rot2 = rot * rot;\r\n          mint rot3\
+    \ = rot2 * rot;\r\n          int offset = s << (h - len);\r\n          for (int\
+    \ i = 0; i < p; i++) {\r\n            u64 mod2 = u64(mod) * mod;\r\n         \
+    \   u64 a0 = a[i + offset].val;\r\n            u64 a1 = u64(a[i + offset + p].val)\
+    \ * rot.val;\r\n            u64 a2 = u64(a[i + offset + 2 * p].val) * rot2.val;\r\
+    \n            u64 a3 = u64(a[i + offset + 3 * p].val) * rot3.val;\r\n        \
+    \    u64 a1na3imag = (a1 + mod2 - a3) % mod * imag.val;\r\n            u64 na2\
+    \ = mod2 - a2;\r\n            a[i + offset] = a0 + a2 + a1 + a3;\r\n         \
+    \   a[i + offset + 1 * p] = a0 + a2 + (2 * mod2 - (a1 + a3));\r\n            a[i\
+    \ + offset + 2 * p] = a0 + na2 + a1na3imag;\r\n            a[i + offset + 3 *\
+    \ p] = a0 + na2 + (mod2 - a1na3imag);\r\n          }\r\n          rot *= rate3[topbit(~s\
+    \ & -~s)];\r\n        }\r\n        len += 2;\r\n      }\r\n    }\r\n  } else {\r\
+    \n    mint coef = mint(1) / mint(len(a));\r\n    FOR(i, len(a)) a[i] *= coef;\r\
+    \n    int len = h;\r\n    while (len) {\r\n      if (len == 1) {\r\n        int\
+    \ p = 1 << (h - len);\r\n        mint irot = 1;\r\n        FOR(s, 1 << (len -\
+    \ 1)) {\r\n          int offset = s << (h - len + 1);\r\n          FOR(i, p) {\r\
+    \n            u64 l = a[i + offset].val;\r\n            u64 r = a[i + offset +\
+    \ p].val;\r\n            a[i + offset] = l + r;\r\n            a[i + offset +\
+    \ p] = (mod + l - r) * irot.val;\r\n          }\r\n          irot *= irate2[topbit(~s\
+    \ & -~s)];\r\n        }\r\n        len--;\r\n      } else {\r\n        int p =\
+    \ 1 << (h - len);\r\n        mint irot = 1, iimag = iroot[2];\r\n        FOR(s,\
+    \ (1 << (len - 2))) {\r\n          mint irot2 = irot * irot;\r\n          mint\
+    \ irot3 = irot2 * irot;\r\n          int offset = s << (h - len + 2);\r\n    \
+    \      for (int i = 0; i < p; i++) {\r\n            u64 a0 = a[i + offset + 0\
+    \ * p].val;\r\n            u64 a1 = a[i + offset + 1 * p].val;\r\n           \
+    \ u64 a2 = a[i + offset + 2 * p].val;\r\n            u64 a3 = a[i + offset + 3\
+    \ * p].val;\r\n            u64 x = (mod + a2 - a3) * iimag.val % mod;\r\n    \
+    \        a[i + offset] = a0 + a1 + a2 + a3;\r\n            a[i + offset + 1 *\
+    \ p] = (a0 + mod - a1 + x) * irot.val;\r\n            a[i + offset + 2 * p] =\
+    \ (a0 + a1 + 2 * mod - a2 - a3) * irot2.val;\r\n            a[i + offset + 3 *\
+    \ p] = (a0 + 2 * mod - a1 - x) * irot3.val;\r\n          }\r\n          irot *=\
+    \ irate3[topbit(~s & -~s)];\r\n        }\r\n        len -= 2;\r\n      }\r\n \
+    \   }\r\n  }\r\n}\r\n#line 1 \"poly/fft.hpp\"\nnamespace CFFT {\r\nusing real\
+    \ = double;\r\n\r\nstruct C {\r\n  real x, y;\r\n\r\n  C() : x(0), y(0) {}\r\n\
+    \r\n  C(real x, real y) : x(x), y(y) {}\r\n  inline C operator+(const C& c) const\
+    \ { return C(x + c.x, y + c.y); }\r\n  inline C operator-(const C& c) const {\
+    \ return C(x - c.x, y - c.y); }\r\n  inline C operator*(const C& c) const {\r\n\
+    \    return C(x * c.x - y * c.y, x * c.y + y * c.x);\r\n  }\r\n\r\n  inline C\
+    \ conj() const { return C(x, -y); }\r\n};\r\n\r\nconst real PI = acosl(-1);\r\n\
+    int base = 1;\r\nvector<C> rts = {{0, 0}, {1, 0}};\r\nvector<int> rev = {0, 1};\r\
+    \n\r\nvoid ensure_base(int nbase) {\r\n  if (nbase <= base) return;\r\n  rev.resize(1\
+    \ << nbase);\r\n  rts.resize(1 << nbase);\r\n  for (int i = 0; i < (1 << nbase);\
+    \ i++) {\r\n    rev[i] = (rev[i >> 1] >> 1) + ((i & 1) << (nbase - 1));\r\n  }\r\
+    \n  while (base < nbase) {\r\n    real angle = PI * 2.0 / (1 << (base + 1));\r\
+    \n    for (int i = 1 << (base - 1); i < (1 << base); i++) {\r\n      rts[i <<\
+    \ 1] = rts[i];\r\n      real angle_i = angle * (2 * i + 1 - (1 << base));\r\n\
+    \      rts[(i << 1) + 1] = C(cos(angle_i), sin(angle_i));\r\n    }\r\n    ++base;\r\
+    \n  }\r\n}\r\n\r\nvoid fft(vector<C>& a, int n) {\r\n  assert((n & (n - 1)) ==\
+    \ 0);\r\n  int zeros = __builtin_ctz(n);\r\n  ensure_base(zeros);\r\n  int shift\
+    \ = base - zeros;\r\n  for (int i = 0; i < n; i++) {\r\n    if (i < (rev[i] >>\
+    \ shift)) { swap(a[i], a[rev[i] >> shift]); }\r\n  }\r\n  for (int k = 1; k <\
+    \ n; k <<= 1) {\r\n    for (int i = 0; i < n; i += 2 * k) {\r\n      for (int\
+    \ j = 0; j < k; j++) {\r\n        C z = a[i + j + k] * rts[j + k];\r\n       \
+    \ a[i + j + k] = a[i + j] - z;\r\n        a[i + j] = a[i + j] + z;\r\n      }\r\
+    \n    }\r\n  }\r\n}\r\n} // namespace CFFT\n#line 7 \"poly/convolution.hpp\"\n\
+    \r\ntemplate <class mint>\r\nvector<mint> convolution_ntt(vector<mint> a, vector<mint>\
     \ b) {\r\n  if (a.empty() || b.empty()) return {};\r\n  int n = int(a.size()),\
     \ m = int(b.size());\r\n  int sz = 1;\r\n  while (sz < n + m - 1) sz *= 2;\r\n\
     \r\n  // sz = 2^k \u306E\u3068\u304D\u306E\u9AD8\u901F\u5316\u3002\u5206\u5272\
@@ -469,113 +603,69 @@ data:
     \ m = len(b);\r\n  if (!n || !m) return {};\r\n  if (mint::can_ntt()) {\r\n  \
     \  if (min(n, m) <= 50) return convolution_naive(a, b);\r\n    return convolution_ntt(a,\
     \ b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_naive(a, b);\r\n  return\
-    \ convolution_garner(a, b);\r\n}\r\n#line 4 \"poly/convolution_all.hpp\"\n\r\n\
-    template <typename T>\r\nvc<T> convolution_all(vc<vc<T>>& polys) {\r\n  if (len(polys)\
-    \ == 0) return {T(1)};\r\n  while (1) {\r\n    int n = len(polys);\r\n    if (n\
-    \ == 1) break;\r\n    int m = ceil(n, 2);\r\n    FOR(i, m) {\r\n      if (2 *\
-    \ i + 1 == n) {\r\n        polys[i] = polys[2 * i];\r\n      } else {\r\n    \
-    \    polys[i] = convolution(polys[2 * i], polys[2 * i + 1]);\r\n      }\r\n  \
-    \  }\r\n    polys.resize(m);\r\n  }\r\n  return polys[0];\r\n}\r\n#line 2 \"poly/fps_log.hpp\"\
-    \n\r\n#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
-    \ vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\
-    \n  return t;\r\n}\n#line 4 \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\
-    \nvc<mint> fps_inv_sparse(const vc<mint>& f) {\r\n  int N = len(f);\r\n  vc<pair<int,\
-    \ mint>> dat;\r\n  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint>\
-    \ g(N);\r\n  mint g0 = mint(1) / f[0];\r\n  g[0] = g0;\r\n  FOR(n, 1, N) {\r\n\
-    \    mint rhs = 0;\r\n    for (auto&& [k, fk]: dat) {\r\n      if (k > n) break;\r\
-    \n      rhs -= fk * g[n - k];\r\n    }\r\n    g[n] = rhs * g0;\r\n  }\r\n  return\
-    \ g;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv_dense_ntt(const\
-    \ vc<mint>& F) {\r\n  vc<mint> G = {mint(1) / F[0]};\r\n  ll N = len(F), n = 1;\r\
-    \n  G.reserve(N);\r\n  while (n < N) {\r\n    vc<mint> f(2 * n), g(2 * n);\r\n\
-    \    FOR(i, min(N, 2 * n)) f[i] = F[i];\r\n    FOR(i, n) g[i] = G[i];\r\n    ntt(f,\
-    \ false), ntt(g, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\
-    \n    FOR(i, n) f[i] = 0;\r\n    ntt(f, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\
-    \n    ntt(f, true);\r\n    FOR(i, n, min(N, 2 * n)) G.eb(-f[i]);\r\n    n *= 2;\r\
-    \n  }\r\n  return G;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv_dense(const\
-    \ vc<mint>& F) {\r\n  if (mint::can_ntt()) return fps_inv_dense_ntt(F);\r\n  const\
-    \ int N = len(F);\r\n  vc<mint> R = {mint(1) / F[0]};\r\n  vc<mint> p;\r\n  int\
-    \ m = 1;\r\n  while (m < N) {\r\n    p = convolution(R, R);\r\n    p.resize(m\
-    \ + m);\r\n    vc<mint> f = {F.begin(), F.begin() + min(m + m, N)};\r\n    p =\
-    \ convolution(p, f);\r\n    R.resize(m + m);\r\n    FOR(i, m + m) R[i] = R[i]\
-    \ + R[i] - p[i];\r\n    m += m;\r\n  }\r\n  R.resize(N);\r\n  return R;\r\n}\r\
-    \n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  int\
-    \ N = len(f);\r\n  assert(f[0] != mint(0));\r\n  int n = count_terms(f);\r\n \
-    \ int t = (mint::can_ntt() ? 160 : 820);\r\n  return (n <= t ? fps_inv_sparse<mint>(f)\
-    \ : fps_inv_dense<mint>(f));\r\n}\r\n#line 5 \"poly/fps_log.hpp\"\n\r\ntemplate\
-    \ <typename mint>\r\nvc<mint> fps_log_dense(const vc<mint>& f) {\r\n  assert(f[0]\
-    \ == mint(1));\r\n  ll N = len(f);\r\n  vc<mint> df = f;\r\n  FOR(i, N) df[i]\
-    \ *= mint(i);\r\n  df.erase(df.begin());\r\n  auto f_inv = fps_inv(f);\r\n  auto\
-    \ g = convolution(df, f_inv);\r\n  g.resize(N - 1);\r\n  g.insert(g.begin(), 0);\r\
-    \n  FOR(i, N) g[i] *= inv<mint>(i);\r\n  return g;\r\n}\r\n\r\ntemplate<typename\
-    \ mint>\r\nvc<mint> fps_log_sparse(const vc<mint>& f){\r\n  int N = f.size();\r\
-    \n  vc<pair<int, mint>> dat;\r\n  FOR(i, 1, N) if(f[i] != mint(0)) dat.eb(i, f[i]);\r\
-    \n\r\n  vc<mint> F(N);\r\n  vc<mint> g(N - 1);\r\n  for (int n = 0; n < N - 1;\
-    \ ++n) {\r\n    mint rhs = mint(n + 1) * f[n + 1];\r\n    for (auto &&[i, fi]:\
-    \ dat) {\r\n      if (i > n) break;\r\n      rhs -= fi * g[n - i];\r\n    }\r\n\
-    \    g[n] = rhs;\r\n    F[n + 1] = rhs * inv<mint>(n + 1);\r\n  }\r\n  return\
-    \ F;\r\n}\r\n\r\ntemplate<typename mint>\r\nvc<mint> fps_log(const vc<mint>& f){\r\
-    \n  assert(f[0] == mint(1));\r\n  if(count_terms(f) <= 200) return fps_log_sparse(f);\r\
-    \n  return fps_log_dense(f);\r\n}\r\n#line 2 \"poly/sum_of_rationals.hpp\"\n\n\
-    #line 4 \"poly/sum_of_rationals.hpp\"\n\n// \u6709\u7406\u5F0F\u306E\u548C\u3092\
-    \u8A08\u7B97\u3059\u308B\u3002\u5206\u5272\u7D71\u6CBB O(Nlog^2N)\u3002N \u306F\
-    \u6B21\u6570\u306E\u548C\u3002\ntemplate <typename mint>\npair<vc<mint>, vc<mint>>\
-    \ sum_of_rationals(vc<pair<vc<mint>, vc<mint>>> dat) {\n  if (len(dat) == 0) {\n\
-    \    vc<mint> f = {0}, g = {1};\n    return {f, g};\n  }\n  using P = pair<vc<mint>,\
-    \ vc<mint>>;\n  auto add = [&](P& a, P& b) -> P {\n    int na = len(a.fi) - 1,\
-    \ da = len(a.se) - 1;\n    int nb = len(b.fi) - 1, db = len(b.se) - 1;\n    int\
-    \ n = max(na + db, da + nb);\n    vc<mint> num(n + 1);\n    {\n      auto f =\
-    \ convolution(a.fi, b.se);\n      FOR(i, len(f)) num[i] += f[i];\n    }\n    {\n\
-    \      auto f = convolution(a.se, b.fi);\n      FOR(i, len(f)) num[i] += f[i];\n\
-    \    }\n    auto den = convolution(a.se, b.se);\n    return {num, den};\n  };\n\
-    \n  while (len(dat) > 1) {\n    int n = len(dat);\n    FOR(i, 1, n, 2) { dat[i\
-    \ - 1] = add(dat[i - 1], dat[i]); }\n    FOR(i, ceil(n, 2)) dat[i] = dat[2 * i];\n\
-    \    dat.resize(ceil(n, 2));\n  }\n  return dat[0];\n}\n#line 4 \"seq/sum_of_powers.hpp\"\
-    \n\n// sum_{a in A} a^n \u3092\u3001n = 0, 1, ..., N \u3067\u5217\u6319\ntemplate\
-    \ <typename T>\nvc<T> sum_of_powers(const vc<T>& A, ll N) {\n  vvc<T> polys;\n\
-    \  for (auto&& a: A) polys.eb(vc<T>({T(1), -a}));\n  auto f = convolution_all(polys);\n\
-    \  f.resize(N + 1);\n  f = fps_log(f);\n  FOR(i, len(f)) f[i] = -f[i] * T(i);\n\
-    \  f[0] = len(A);\n  return f;\n}\n\n// sum ca^n \u3092 n=0,1,...,N \u3067\u5217\
-    \u6319\ntemplate <typename T>\nvc<T> sum_of_powers_with_coef(const vc<T>& A, const\
-    \ vc<T>& C, int N) {\n  using P = pair<vc<T>, vc<T>>;\n  vc<P> dat;\n  FOR(i,\
-    \ len(A)) { dat.eb(vc<T>({C[i]}), vc<T>({1, -A[i]})); }\n  auto [num, den] = sum_of_rationals(dat);\n\
-    \  num.resize(N + 1);\n  den.resize(N + 1);\n  auto f = fps_inv(den);\n  f = convolution(f,\
-    \ num);\n  f.resize(N + 1);\n  return f;\n}\n#line 6 \"test/yukicoder/1145.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, M);\n  VEC(mint, A, N);\n\
-    \  auto f = sum_of_powers(A, M);\n  f.erase(f.begin());\n  print(f);\n}\n\nsigned\
-    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1145\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n#include \"seq/sum_of_powers.hpp\"\
-    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, M);\n  VEC(mint, A, N);\n\
-    \  auto f = sum_of_powers(A, M);\n  f.erase(f.begin());\n  print(f);\n}\n\nsigned\
-    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \ convolution_garner(a, b);\r\n}\r\n#line 4 \"poly/fps_inv.hpp\"\n\r\ntemplate\
+    \ <typename mint>\r\nvc<mint> fps_inv_sparse(const vc<mint>& f) {\r\n  int N =\
+    \ len(f);\r\n  vc<pair<int, mint>> dat;\r\n  FOR(i, 1, N) if (f[i] != mint(0))\
+    \ dat.eb(i, f[i]);\r\n  vc<mint> g(N);\r\n  mint g0 = mint(1) / f[0];\r\n  g[0]\
+    \ = g0;\r\n  FOR(n, 1, N) {\r\n    mint rhs = 0;\r\n    for (auto&& [k, fk]: dat)\
+    \ {\r\n      if (k > n) break;\r\n      rhs -= fk * g[n - k];\r\n    }\r\n   \
+    \ g[n] = rhs * g0;\r\n  }\r\n  return g;\r\n}\r\n\r\ntemplate <typename mint>\r\
+    \nvc<mint> fps_inv_dense_ntt(const vc<mint>& F) {\r\n  vc<mint> G = {mint(1) /\
+    \ F[0]};\r\n  ll N = len(F), n = 1;\r\n  G.reserve(N);\r\n  while (n < N) {\r\n\
+    \    vc<mint> f(2 * n), g(2 * n);\r\n    FOR(i, min(N, 2 * n)) f[i] = F[i];\r\n\
+    \    FOR(i, n) g[i] = G[i];\r\n    ntt(f, false), ntt(g, false);\r\n    FOR(i,\
+    \ 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\n    FOR(i, n) f[i] = 0;\r\n   \
+    \ ntt(f, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\n \
+    \   FOR(i, n, min(N, 2 * n)) G.eb(-f[i]);\r\n    n *= 2;\r\n  }\r\n  return G;\r\
+    \n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv_dense(const vc<mint>&\
+    \ F) {\r\n  if (mint::can_ntt()) return fps_inv_dense_ntt(F);\r\n  const int N\
+    \ = len(F);\r\n  vc<mint> R = {mint(1) / F[0]};\r\n  vc<mint> p;\r\n  int m =\
+    \ 1;\r\n  while (m < N) {\r\n    p = convolution(R, R);\r\n    p.resize(m + m);\r\
+    \n    vc<mint> f = {F.begin(), F.begin() + min(m + m, N)};\r\n    p = convolution(p,\
+    \ f);\r\n    R.resize(m + m);\r\n    FOR(i, m + m) R[i] = R[i] + R[i] - p[i];\r\
+    \n    m += m;\r\n  }\r\n  R.resize(N);\r\n  return R;\r\n}\r\n\r\ntemplate <typename\
+    \ mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  int N = len(f);\r\n  assert(f[0]\
+    \ != mint(0));\r\n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160\
+    \ : 820);\r\n  return (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\
+    \n}\r\n#line 9 \"test/library_checker/polynomial/inv_of_fps_dmint.test.cpp\"\n\
+    \nvoid solve() {\n  using mint = dmint;\n  mint::set_mod(998244353);\n\n  LL(N);\n\
+    \  VEC(mint, F, N);\n  print(fps_inv(F));\n}\n\nsigned main() {\n  solve();\n\n\
+    \  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
+    \n#include \"mod/dynamic_modint.hpp\"\n\n#include \"poly/fps_inv.hpp\"\n\nvoid\
+    \ solve() {\n  using mint = dmint;\n  mint::set_mod(998244353);\n\n  LL(N);\n\
+    \  VEC(mint, F, N);\n  print(fps_inv(F));\n}\n\nsigned main() {\n  solve();\n\n\
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
-  - seq/sum_of_powers.hpp
-  - poly/convolution_all.hpp
+  - mod/dynamic_modint.hpp
+  - mod/primitive_root.hpp
+  - nt/factor.hpp
+  - nt/primetest.hpp
+  - mod/mod_pow.hpp
+  - mod/barrett.hpp
+  - random/base.hpp
+  - poly/fps_inv.hpp
+  - poly/count_terms.hpp
   - poly/convolution.hpp
   - mod/mod_inv.hpp
   - poly/convolution_naive.hpp
   - poly/ntt.hpp
   - poly/fft.hpp
-  - poly/fps_log.hpp
-  - poly/fps_inv.hpp
-  - poly/count_terms.hpp
-  - poly/sum_of_rationals.hpp
   isVerificationFile: true
-  path: test/yukicoder/1145.test.cpp
+  path: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
   requiredBy: []
   timestamp: '2023-04-27 16:03:03+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yukicoder/1145.test.cpp
+documentation_of: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/1145.test.cpp
-- /verify/test/yukicoder/1145.test.cpp.html
-title: test/yukicoder/1145.test.cpp
+- /verify/test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
+- /verify/test/library_checker/polynomial/inv_of_fps_dmint.test.cpp.html
+title: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
 ---

@@ -5,6 +5,9 @@ data:
   - icon: ':warning:'
     path: test/library_checker/convolution/convolution_mod_dmint.cpp
     title: test/library_checker/convolution/convolution_mod_dmint.cpp
+  - icon: ':warning:'
+    path: test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp
+    title: test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/0275.test.cpp
@@ -589,8 +592,8 @@ data:
     path: test/library_checker/polynomial/inv_of_fps.test.cpp
     title: test/library_checker/polynomial/inv_of_fps.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
-    title: test/library_checker/polynomial/inv_of_fps_amint.test.cpp
+    path: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
+    title: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
@@ -618,10 +621,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/polynomial_interpolation.test.cpp
     title: test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
     title: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/pow_of_fps.test.cpp
     title: test/library_checker/polynomial/pow_of_fps.test.cpp
   - icon: ':x:'
@@ -1955,6 +1958,7 @@ data:
   isVerificationFile: false
   path: my_template.hpp
   requiredBy:
+  - test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp
   - test/library_checker/convolution/convolution_mod_dmint.cpp
   timestamp: '2023-02-24 07:14:18+09:00'
   verificationStatus: LIBRARY_SOME_WA
@@ -2314,6 +2318,7 @@ data:
   - test/library_checker/polynomial/pow_of_fps.test.cpp
   - test/library_checker/polynomial/inv_of_polynomials.test.cpp
   - test/library_checker/polynomial/polynomial_interpolation.test.cpp
+  - test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
   - test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
@@ -2322,7 +2327,6 @@ data:
   - test/library_checker/polynomial/exp_of_fps_amint.test.cpp
   - test/library_checker/polynomial/polynomial_division.test.cpp
   - test/library_checker/polynomial/inv_of_fps.test.cpp
-  - test/library_checker/polynomial/inv_of_fps_amint.test.cpp
   - test/library_checker/polynomial/exp_of_fps.test.cpp
   - test/library_checker/polynomial/log_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/composition_of_fps.test.cpp
