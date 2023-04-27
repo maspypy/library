@@ -1,15 +1,16 @@
 #include "graph/strongly_connected_component.hpp"
 
 struct TwoSat {
-  Graph<int, 1> G;
+  Graph<bool, 1> G;
   vc<int> values;
+  vc<pair<int, int>> edges;
 
   TwoSat(ll n) : G(n + n), values(n, -1) {}
   void add(int a, int b) {
     a = (a >= 0 ? 2 * a + 1 : 2 * (~a));
     b = (b >= 0 ? 2 * b + 1 : 2 * (~b));
-    G.add(a ^ 1, b);
-    G.add(b ^ 1, a);
+    edges.eb(a ^ 1, b);
+    edges.eb(b ^ 1, a);
   }
   void set(int a) {
     if (a >= 0)
@@ -17,11 +18,13 @@ struct TwoSat {
     else
       values[~a] = 0;
     a = (a >= 0 ? 2 * a + 1 : 2 * (~a));
-    G.add(a ^ 1, a);
+    edges.eb(a ^ 1, a);
   }
   void implies(int a, int b) { add(~a, b); }
 
   pair<bool, vc<int>> calc() {
+    UNIQUE(edges);
+    for (auto&& [a, b]: edges) G.add(a, b);
     G.build();
     ll n = len(values);
     auto [C, comp] = strongly_connected_component(G);
