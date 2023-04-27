@@ -87,26 +87,29 @@ data:
     \ y = comp[e.to];\n    if (x == y) continue;\n    edges[x].eb(y);\n  }\n  FOR(c,\
     \ C) {\n    UNIQUE(edges[c]);\n    for (auto&& to: edges[c]) DAG.add(c, to);\n\
     \  }\n  DAG.build();\n  return DAG;\n}\n#line 2 \"graph/twosat.hpp\"\n\r\nstruct\
-    \ TwoSat {\r\n  Graph<int, 1> G;\r\n  vc<int> values;\r\n\r\n  TwoSat(ll n) :\
-    \ G(n + n), values(n, -1) {}\r\n  void add(int a, int b) {\r\n    a = (a >= 0\
-    \ ? 2 * a + 1 : 2 * (~a));\r\n    b = (b >= 0 ? 2 * b + 1 : 2 * (~b));\r\n   \
-    \ G.add(a ^ 1, b);\r\n    G.add(b ^ 1, a);\r\n  }\r\n  void set(int a) {\r\n \
-    \   if (a >= 0)\r\n      values[a] = 1;\r\n    else\r\n      values[~a] = 0;\r\
-    \n    a = (a >= 0 ? 2 * a + 1 : 2 * (~a));\r\n    G.add(a ^ 1, a);\r\n  }\r\n\
-    \  void implies(int a, int b) { add(~a, b); }\r\n\r\n  pair<bool, vc<int>> calc()\
-    \ {\r\n    G.build();\r\n    ll n = len(values);\r\n    auto [C, comp] = strongly_connected_component(G);\r\
-    \n    FOR(i, n) {\r\n      if (comp[2 * i] == comp[2 * i + 1]) return {false,\
-    \ values};\r\n      values[i] = comp[2 * i] < comp[2 * i + 1];\r\n    }\r\n  \
-    \  return {true, values};\r\n  }\r\n};\n"
+    \ TwoSat {\r\n  Graph<bool, 1> G;\r\n  vc<int> values;\r\n  vc<pair<int, int>>\
+    \ edges;\r\n\r\n  TwoSat(ll n) : G(n + n), values(n, -1) {}\r\n  void add(int\
+    \ a, int b) {\r\n    a = (a >= 0 ? 2 * a + 1 : 2 * (~a));\r\n    b = (b >= 0 ?\
+    \ 2 * b + 1 : 2 * (~b));\r\n    edges.eb(a ^ 1, b);\r\n    edges.eb(b ^ 1, a);\r\
+    \n  }\r\n  void set(int a) {\r\n    if (a >= 0)\r\n      values[a] = 1;\r\n  \
+    \  else\r\n      values[~a] = 0;\r\n    a = (a >= 0 ? 2 * a + 1 : 2 * (~a));\r\
+    \n    edges.eb(a ^ 1, a);\r\n  }\r\n  void implies(int a, int b) { add(~a, b);\
+    \ }\r\n\r\n  pair<bool, vc<int>> calc() {\r\n    UNIQUE(edges);\r\n    for (auto&&\
+    \ [a, b]: edges) G.add(a, b);\r\n    G.build();\r\n    ll n = len(values);\r\n\
+    \    auto [C, comp] = strongly_connected_component(G);\r\n    FOR(i, n) {\r\n\
+    \      if (comp[2 * i] == comp[2 * i + 1]) return {false, values};\r\n      values[i]\
+    \ = comp[2 * i] < comp[2 * i + 1];\r\n    }\r\n    return {true, values};\r\n\
+    \  }\r\n};\n"
   code: "#include \"graph/strongly_connected_component.hpp\"\r\n\r\nstruct TwoSat\
-    \ {\r\n  Graph<int, 1> G;\r\n  vc<int> values;\r\n\r\n  TwoSat(ll n) : G(n + n),\
-    \ values(n, -1) {}\r\n  void add(int a, int b) {\r\n    a = (a >= 0 ? 2 * a +\
-    \ 1 : 2 * (~a));\r\n    b = (b >= 0 ? 2 * b + 1 : 2 * (~b));\r\n    G.add(a ^\
-    \ 1, b);\r\n    G.add(b ^ 1, a);\r\n  }\r\n  void set(int a) {\r\n    if (a >=\
-    \ 0)\r\n      values[a] = 1;\r\n    else\r\n      values[~a] = 0;\r\n    a = (a\
-    \ >= 0 ? 2 * a + 1 : 2 * (~a));\r\n    G.add(a ^ 1, a);\r\n  }\r\n  void implies(int\
-    \ a, int b) { add(~a, b); }\r\n\r\n  pair<bool, vc<int>> calc() {\r\n    G.build();\r\
-    \n    ll n = len(values);\r\n    auto [C, comp] = strongly_connected_component(G);\r\
+    \ {\r\n  Graph<bool, 1> G;\r\n  vc<int> values;\r\n  vc<pair<int, int>> edges;\r\
+    \n\r\n  TwoSat(ll n) : G(n + n), values(n, -1) {}\r\n  void add(int a, int b)\
+    \ {\r\n    a = (a >= 0 ? 2 * a + 1 : 2 * (~a));\r\n    b = (b >= 0 ? 2 * b + 1\
+    \ : 2 * (~b));\r\n    edges.eb(a ^ 1, b);\r\n    edges.eb(b ^ 1, a);\r\n  }\r\n\
+    \  void set(int a) {\r\n    if (a >= 0)\r\n      values[a] = 1;\r\n    else\r\n\
+    \      values[~a] = 0;\r\n    a = (a >= 0 ? 2 * a + 1 : 2 * (~a));\r\n    edges.eb(a\
+    \ ^ 1, a);\r\n  }\r\n  void implies(int a, int b) { add(~a, b); }\r\n\r\n  pair<bool,\
+    \ vc<int>> calc() {\r\n    UNIQUE(edges);\r\n    for (auto&& [a, b]: edges) G.add(a,\
+    \ b);\r\n    G.build();\r\n    ll n = len(values);\r\n    auto [C, comp] = strongly_connected_component(G);\r\
     \n    FOR(i, n) {\r\n      if (comp[2 * i] == comp[2 * i + 1]) return {false,\
     \ values};\r\n      values[i] = comp[2 * i] < comp[2 * i + 1];\r\n    }\r\n  \
     \  return {true, values};\r\n  }\r\n};"
@@ -116,7 +119,7 @@ data:
   isVerificationFile: false
   path: graph/twosat.hpp
   requiredBy: []
-  timestamp: '2023-04-09 03:51:17+09:00'
+  timestamp: '2023-04-27 22:57:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/twosat.test.cpp
