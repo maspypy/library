@@ -120,10 +120,6 @@ vc<mint> fps_exp_dense(vc<mint>& h) {
 template <typename mint>
 vc<mint> fps_exp(vc<mint>& f) {
   int n = count_terms(f);
-  if (mint::can_ntt()) {
-    if (n <= 320) return fps_exp_sparse<mint>(f);
-    return fps_exp_dense<mint>(f);
-  }
-  if (n <= 3000) return fps_exp_sparse<mint>(f);
-  return fps_exp_dense<mint>(f);
+  int t = (mint::can_ntt() ? 320 : 3000);
+  return (n <= t ? fps_exp_sparse<mint>(f) : fps_exp_dense<mint>(f));
 }

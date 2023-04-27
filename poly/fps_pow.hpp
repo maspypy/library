@@ -11,7 +11,7 @@ template <typename mint>
 vc<mint> fps_pow(const vc<mint>& f, ll k) {
   assert(0 <= k);
   int n = len(f);
-  if(k==0){
+  if (k == 0) {
     vc<mint> g(n);
     g[0] = mint(1);
     return g;
@@ -19,7 +19,7 @@ vc<mint> fps_pow(const vc<mint>& f, ll k) {
   int d = n;
   FOR_R(i, n) if (f[i] != 0) d = i;
   // d * k >= n
-  if(d >= ceil(n,k)){
+  if (d >= ceil(n, k)) {
     vc<mint> g(n);
     return g;
   }
@@ -39,7 +39,7 @@ template <typename mint>
 vc<mint> fps_pow_1_sparse(const vc<mint>& f, mint K) {
   int N = len(f);
   vc<pair<int, mint>> dat;
-  FOR3(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);
+  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);
   vc<mint> g(N);
   g[0] = 1;
   FOR(n, N - 1) {
@@ -59,11 +59,12 @@ vc<mint> fps_pow_1_dense(const vc<mint>& f, mint K) {
   assert(f[0] == mint(1));
   auto log_f = fps_log(f);
   FOR(i, len(f)) log_f[i] *= K;
-  return fps_exp(log_f);
+  return fps_exp_dense(log_f);
 }
 
 template <typename mint>
 vc<mint> fps_pow_1(const vc<mint>& f, mint K) {
-  if (count_terms(f) <= 100) return fps_pow_1_sparse(f, K);
-  return fps_pow_1_dense(f, K);
+  int n = count_terms(f);
+  int t = (mint::can_ntt() ? 100 : 1300);
+  return (n <= t ? fps_pow_1_sparse(f, K) : fps_pow_1_dense(f, K));
 }
