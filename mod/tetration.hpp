@@ -1,4 +1,4 @@
-#include "mod/fast_div.hpp"
+#include "mod/barrett.hpp"
 #include "nt/euler_phi.hpp"
 
 int tetration(vc<ll> a, int mod) {
@@ -11,16 +11,16 @@ int tetration(vc<ll> a, int mod) {
   while (len(mod_chain) > len(a)) mod_chain.pop_back();
 
   auto pow = [&](ll x, int n, int mod) -> int {
-    fast_div fd(mod);
-    if (x >= mod) x = x % fd + mod;
+    Barrett bt(mod);
+    if (x >= mod) x = bt.modulo(x) + mod;
     ll v = 1;
     do {
       if (n & 1) {
         v *= x;
-        if (v >= mod) v = v % fd + mod;
+        if (v >= mod) v = bt.modulo(v) + mod;
       }
       x *= x;
-      if (x >= mod) x = x % fd + mod;
+      if (x >= mod) x = bt.modulo(x) + mod;
       n /= 2;
     } while (n);
     return v;
