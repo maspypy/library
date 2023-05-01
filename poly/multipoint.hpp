@@ -2,6 +2,7 @@
 
 #include "poly/fps_inv.hpp"
 #include "poly/middle_product.hpp"
+#include "mod/all_inverse.hpp"
 
 template <typename mint>
 struct SubproductTree {
@@ -115,5 +116,54 @@ vc<mint> multipoint_eval_on_geom_seq(vc<mint> f, mint a, mint r, int m) {
   FOR(i, n) f[i] *= B[i];
   f = middle_product(A, f);
   FOR(i, m) f[i] *= B[i];
+  return f;
+}
+
+// Y[i] = f(ar^i)
+template <typename mint>
+vc<mint> multipoint_interpolate_on_geom_seq(vc<mint> Y, mint a, mint r) {
+  const int n = len(Y);
+  if (n == 0) return {};
+  if (n == 1) return {Y[0]};
+  assert(r != mint(0));
+  mint ir = r.inverse();
+
+  vc<mint> POW(n + n - 1), tPOW(n + n - 1);
+  POW[0] = tPOW[0] = mint(1);
+  FOR(i, n + n - 2) POW[i + 1] = POW[i] * r, tPOW[i + 1] = tPOW[i] * POW[i];
+
+  vc<mint> iPOW(n + n - 1), itPOW(n + n - 1);
+  iPOW[0] = itPOW[0] = mint(1);
+  FOR(i, n) iPOW[i + 1] = iPOW[i] * ir, itPOW[i + 1] = itPOW[i] * iPOW[i];
+
+  // prod_[1,i] 1-r^k
+  vc<mint> S(n + 1);
+  S[0] = mint(1);
+  FOR(i, 1, n + 1) S[i] = S[i - 1] * (mint(1) - POW[i]);
+  vc<mint> iS = all_inverse<mint>(S);
+
+  FOR(i, n) {
+    Y[i] = Y[i] * tPOW[n - 1 - i] * itPOW[n - 1] * iS[i] * iS[n - 1 - i];
+    if (i % 2 == 1) Y[i] = -Y[i];
+  }
+
+  // sum_i Y[i] / 1-r^ix
+  FOR(i, n) Y[i] *= itPOW[i];
+  vc<mint> f = middle_product(tPOW, Y);
+  FOR(i, n) f[i] *= itPOW[i];
+
+  // prod 1-r^ix
+  vc<mint> g(n);
+  FOR(i, n) {
+    g[i] = tPOW[i] * S[n] * iS[i] * iS[n - i];
+    if (i % 2 == 1) g[i] = -g[i];
+  }
+  f = convolution<mint>(f, g);
+  f.resize(n);
+
+  reverse(all(f));
+  mint ia = a.inverse();
+  mint pow = 1;
+  FOR(i, n) f[i] *= pow, pow *= ia;
   return f;
 }
