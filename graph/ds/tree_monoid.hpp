@@ -74,10 +74,6 @@ struct Tree_Monoid {
 
   // uv path 上で prod_path(u, x) が check を満たす最後の x
   // なければ -1
-  // https://codeforces.com/contest/1059/problem/E
-  // https://codeforces.com/contest/1230/problem/E
-  // edge: https://atcoder.jp/contests/tkppc3/tasks/tkppc3_i
-  // edge が特に怪しいかも
   template <class F>
   int max_path(F check, int u, int v) {
     if (edge) return max_path_edge(check, u, v);
