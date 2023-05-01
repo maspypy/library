@@ -113,12 +113,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/rollinghash_2d.hpp
     title: string/rollinghash_2d.hpp
-  - icon: ':warning:'
-    path: test/library_checker/convolution/convolution_mod_dmint.cpp
-    title: test/library_checker/convolution/convolution_mod_dmint.cpp
-  - icon: ':warning:'
-    path: test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp
-    title: test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_14_C.test.cpp
@@ -129,6 +123,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
     title: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/convolution/convolution_mod_dmint.test.cpp
+    title: test/library_checker/convolution/convolution_mod_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_setntt.test.cpp
     title: test/library_checker/convolution/convolution_mod_setntt.test.cpp
@@ -180,6 +177,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
+    title: test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/log_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/log_of_fps_dmint.test.cpp
@@ -592,8 +592,6 @@ data:
   - random/random_graph.hpp
   - ds/hashmap.hpp
   - ds/unionfind/parallel_unionfind.hpp
-  - test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp
-  - test/library_checker/convolution/convolution_mod_dmint.cpp
   - poly/multivar_convolution_cyclic.hpp
   - poly/fps_sqrt.hpp
   timestamp: '2022-10-23 11:21:57+09:00'
@@ -644,6 +642,7 @@ data:
   - test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
   - test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
   - test/library_checker/polynomial/log_of_fps_dmint.test.cpp
+  - test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
   - test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
   - test/library_checker/polynomial/inv_of_fps.test.cpp
   - test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
@@ -660,6 +659,7 @@ data:
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/library_checker/convolution/convolution_mod_setntt.test.cpp
   - test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
+  - test/library_checker/convolution/convolution_mod_dmint.test.cpp
   - test/library_checker/datastructure/associative_array_hashmap.test.cpp
   - test/library_checker/datastructure/set_xor_min.test.cpp
   - test/mytest/rbst_am.test.cpp

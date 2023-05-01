@@ -53,12 +53,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_query.hpp
     title: seq/famous/stirling_number_query.hpp
-  - icon: ':warning:'
-    path: test/library_checker/convolution/convolution_mod_dmint.cpp
-    title: test/library_checker/convolution/convolution_mod_dmint.cpp
-  - icon: ':warning:'
-    path: test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp
-    title: test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_1_C.test.cpp
@@ -72,6 +66,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
     title: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/convolution/convolution_mod_dmint.test.cpp
+    title: test/library_checker/convolution/convolution_mod_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_setntt.test.cpp
     title: test/library_checker/convolution/convolution_mod_setntt.test.cpp
@@ -120,6 +117,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
+    title: test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/log_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/log_of_fps_dmint.test.cpp
@@ -279,8 +279,6 @@ data:
   - nt/factor.hpp
   - nt/four_square.hpp
   - seq/famous/stirling_number_query.hpp
-  - test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp
-  - test/library_checker/convolution/convolution_mod_dmint.cpp
   - poly/multivar_convolution_cyclic.hpp
   timestamp: '2023-01-09 23:28:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -313,6 +311,7 @@ data:
   - test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
   - test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
   - test/library_checker/polynomial/log_of_fps_dmint.test.cpp
+  - test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
   - test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
   - test/library_checker/polynomial/inv_of_fps.test.cpp
   - test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
@@ -328,6 +327,7 @@ data:
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/library_checker/convolution/convolution_mod_setntt.test.cpp
   - test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
+  - test/library_checker/convolution/convolution_mod_dmint.test.cpp
   - test/mytest/four_square.test.cpp
 documentation_of: nt/primetest.hpp
 layout: document

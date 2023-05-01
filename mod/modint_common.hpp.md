@@ -218,12 +218,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/wildcard_pattern_matching.hpp
     title: string/wildcard_pattern_matching.hpp
-  - icon: ':warning:'
-    path: test/library_checker/convolution/convolution_mod_dmint.cpp
-    title: test/library_checker/convolution/convolution_mod_dmint.cpp
-  - icon: ':warning:'
-    path: test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp
-    title: test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_5_C.test.cpp
@@ -252,6 +246,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_2_64.test.cpp
     title: test/library_checker/convolution/convolution_mod_2_64.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/convolution/convolution_mod_dmint.test.cpp
+    title: test/library_checker/convolution/convolution_mod_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_setntt.test.cpp
     title: test/library_checker/convolution/convolution_mod_setntt.test.cpp
@@ -396,6 +393,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
+    title: test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/inv_of_polynomials.test.cpp
     title: test/library_checker/polynomial/inv_of_polynomials.test.cpp
@@ -979,8 +979,6 @@ data:
   - seq/famous/eulerian_number.hpp
   - seq/interpolate_poly_exp_sum.hpp
   - seq/sum_of_powers.hpp
-  - test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp
-  - test/library_checker/convolution/convolution_mod_dmint.cpp
   - poly/fps_composition.hpp
   - poly/multipoint.hpp
   - poly/sum_of_prefix_suffix_products.hpp
@@ -1149,6 +1147,7 @@ data:
   - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/library_checker/polynomial/polynomial_division.test.cpp
+  - test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
   - test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
   - test/library_checker/polynomial/inv_of_fps.test.cpp
   - test/library_checker/polynomial/exp_of_fps.test.cpp
@@ -1190,6 +1189,7 @@ data:
   - test/library_checker/convolution/subset_convolution_multivar.test.cpp
   - test/library_checker/convolution/bitwise_and_convolution.test.cpp
   - test/library_checker/convolution/convolution_mod.test.cpp
+  - test/library_checker/convolution/convolution_mod_dmint.test.cpp
   - test/library_checker/convolution/bitwise_or_convolution.test.cpp
   - test/library_checker/convolution/online_convolution.test.cpp
   - test/library_checker/convolution/mul_mod2n_convolution.test.cpp

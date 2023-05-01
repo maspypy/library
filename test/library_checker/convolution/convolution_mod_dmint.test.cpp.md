@@ -53,11 +53,13 @@ data:
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/convolution_mod
     links:
     - https://judge.yosupo.jp/problem/convolution_mod
-  bundledCode: "#line 1 \"test/library_checker/convolution/convolution_mod_dmint.cpp\"\
+  bundledCode: "#line 1 \"test/library_checker/convolution/convolution_mod_dmint.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod\"\n#line 1\
     \ \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
@@ -595,7 +597,7 @@ data:
     \ m = len(b);\r\n  if (!n || !m) return {};\r\n  if (mint::can_ntt()) {\r\n  \
     \  if (min(n, m) <= 50) return convolution_naive(a, b);\r\n    return convolution_ntt(a,\
     \ b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_naive(a, b);\r\n  return\
-    \ convolution_garner(a, b);\r\n}\r\n#line 6 \"test/library_checker/convolution/convolution_mod_dmint.cpp\"\
+    \ convolution_garner(a, b);\r\n}\r\n#line 6 \"test/library_checker/convolution/convolution_mod_dmint.test.cpp\"\
     \n\nusing mint = dmint;\n\nvoid solve() {\n  mint::set_mod(998244353);\n  // mint::set_ntt_info();\n\
     \n  LL(N, M);\n  VEC(mint, A, N);\n  VEC(mint, B, M);\n  auto ANS = convolution(A,\
     \ B);\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
@@ -622,16 +624,16 @@ data:
   - poly/convolution_naive.hpp
   - poly/ntt.hpp
   - poly/fft.hpp
-  isVerificationFile: false
-  path: test/library_checker/convolution/convolution_mod_dmint.cpp
+  isVerificationFile: true
+  path: test/library_checker/convolution/convolution_mod_dmint.test.cpp
   requiredBy: []
-  timestamp: '2023-04-27 21:29:47+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2023-05-01 17:56:33+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library_checker/convolution/convolution_mod_dmint.cpp
+documentation_of: test/library_checker/convolution/convolution_mod_dmint.test.cpp
 layout: document
 redirect_from:
-- /library/test/library_checker/convolution/convolution_mod_dmint.cpp
-- /library/test/library_checker/convolution/convolution_mod_dmint.cpp.html
-title: test/library_checker/convolution/convolution_mod_dmint.cpp
+- /verify/test/library_checker/convolution/convolution_mod_dmint.test.cpp
+- /verify/test/library_checker/convolution/convolution_mod_dmint.test.cpp.html
+title: test/library_checker/convolution/convolution_mod_dmint.test.cpp
 ---

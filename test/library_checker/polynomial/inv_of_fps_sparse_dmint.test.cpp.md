@@ -59,11 +59,13 @@ data:
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/inv_of_formal_power_series_sparse
     links:
     - https://judge.yosupo.jp/problem/inv_of_formal_power_series_sparse
-  bundledCode: "#line 1 \"test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp\"\
+  bundledCode: "#line 1 \"test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp\"\
     \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/inv_of_formal_power_series_sparse\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
@@ -245,7 +247,7 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 5 \"test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp\"\
+    \ yes(!t); }\n#line 5 \"test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp\"\
     \n\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
     \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
     \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
@@ -628,9 +630,9 @@ data:
     \ mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  assert(f[0] != mint(0));\r\
     \n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160 : 820);\r\n  return\
     \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\n}\r\n#line 8\
-    \ \"test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp\"\n\nvoid solve()\
-    \ {\n  using mint = dmint;\n  mint::set_mod(998244353);\n  LL(N, K);\n  vc<mint>\
-    \ f(N);\n  FOR(K) {\n    LL(i, a);\n    f[i] = a;\n  }\n  print(fps_inv(f));\n\
+    \ \"test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp\"\n\nvoid\
+    \ solve() {\n  using mint = dmint;\n  mint::set_mod(998244353);\n  LL(N, K);\n\
+    \  vc<mint> f(N);\n  FOR(K) {\n    LL(i, a);\n    f[i] = a;\n  }\n  print(fps_inv(f));\n\
     }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/inv_of_formal_power_series_sparse\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/dynamic_modint.hpp\"\
@@ -656,16 +658,16 @@ data:
   - poly/convolution_naive.hpp
   - poly/ntt.hpp
   - poly/fft.hpp
-  isVerificationFile: false
-  path: test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp
+  isVerificationFile: true
+  path: test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
   requiredBy: []
-  timestamp: '2023-04-27 21:29:47+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2023-05-01 17:57:12+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp
+documentation_of: test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
 layout: document
 redirect_from:
-- /library/test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp
-- /library/test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp.html
-title: test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp
+- /verify/test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
+- /verify/test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp.html
+title: test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
 ---

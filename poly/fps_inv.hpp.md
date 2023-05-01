@@ -98,9 +98,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
-  - icon: ':warning:'
-    path: test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp
-    title: test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
@@ -120,6 +117,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
+    title: test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/inv_of_polynomials.test.cpp
     title: test/library_checker/polynomial/inv_of_polynomials.test.cpp
@@ -560,7 +560,6 @@ data:
   - seq/famous/indecomposable_permutations.hpp
   - seq/famous/stirling_number_2.hpp
   - seq/sum_of_powers.hpp
-  - test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp
   - poly/multipoint.hpp
   - poly/partial_frac_decomposition.hpp
   - poly/multivar_convolution_cyclic.hpp
@@ -614,6 +613,7 @@ data:
   - test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
   - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/polynomial_division.test.cpp
+  - test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
   - test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
   - test/library_checker/polynomial/inv_of_fps.test.cpp
   - test/library_checker/polynomial/log_of_fps_sparse.test.cpp

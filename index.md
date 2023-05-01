@@ -1471,16 +1471,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/zalgorithm.hpp
       title: string/zalgorithm.hpp
-  - name: test/library_checker/convolution
-    pages:
-    - icon: ':warning:'
-      path: test/library_checker/convolution/convolution_mod_dmint.cpp
-      title: test/library_checker/convolution/convolution_mod_dmint.cpp
-  - name: test/library_checker/polynomial
-    pages:
-    - icon: ':warning:'
-      path: test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp
-      title: test/library_checker/polynomial/inv_of_fps_sparse_dmint.cpp
   verificationCategories:
   - name: test/aoj
     pages:
@@ -1702,6 +1692,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/convolution_mod_2_64.test.cpp
       title: test/library_checker/convolution/convolution_mod_2_64.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/convolution/convolution_mod_dmint.test.cpp
+      title: test/library_checker/convolution/convolution_mod_dmint.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/convolution_mod_setntt.test.cpp
       title: test/library_checker/convolution/convolution_mod_setntt.test.cpp
@@ -2104,6 +2097,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
       title: test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
+      title: test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/inv_of_polynomials.test.cpp
       title: test/library_checker/polynomial/inv_of_polynomials.test.cpp
