@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree_monoid.hpp
     title: ds/splaytree/splaytree_monoid.hpp
   - icon: ':question:'
@@ -404,48 +404,48 @@ data:
     \        last_ok = root;\n        root = root->r;\n      } else {\n        root\
     \ = root->l;\n      }\n    }\n    splay(last);\n    return last_ok;\n  }\n};\n\
     #line 2 \"ds/splaytree/splaytree_monoid.hpp\"\n\nnamespace SplayTreeNodes {\n\
-    template <typename Monoid>\nstruct Node_Monoid {\n  using X = typename Monoid::value_type;\n\
-    \  using value_type = X;\n  using operator_type = int; // \u5B9A\u7FA9\u3060\u3051\
-    \u3057\u3066\u304A\u304F\n  using np = Node_Monoid *;\n\n  np p, l, r;\n  X x,\
-    \ prod, rev_prod;\n  u32 size;\n  bool rev;\n\n  static void new_node(np n, const\
-    \ X &x) {\n    n->p = n->l = n->r = nullptr;\n    n->x = n->prod = n->rev_prod\
-    \ = x;\n    n->size = 1;\n    n->rev = 0;\n  }\n\n  void update() {\n    size\
-    \ = 1;\n    prod = rev_prod = x;\n    if (l) {\n      size += l->size;\n     \
-    \ prod = Monoid::op(l->prod, prod);\n      rev_prod = Monoid::op(rev_prod, l->rev_prod);\n\
-    \    }\n    if (r) {\n      size += r->size;\n      prod = Monoid::op(prod, r->prod);\n\
-    \      rev_prod = Monoid::op(r->rev_prod, rev_prod);\n    }\n  }\n\n  void prop()\
-    \ {\n    if (rev) {\n      if (l) {\n        l->rev ^= 1;\n        swap(l->l,\
-    \ l->r);\n        swap(l->prod, l->rev_prod);\n      }\n      if (r) {\n     \
-    \   r->rev ^= 1;\n        swap(r->l, r->r);\n        swap(r->prod, r->rev_prod);\n\
-    \      }\n      rev = 0;\n    }\n  }\n\n  // update, prop \u4EE5\u5916\u3067\u547C\
-    \u3070\u308C\u308B\u3082\u306E\u306F\u3001splay \u5F8C\u3067\u3042\u308B\u3053\
-    \u3068\u304C\u60F3\u5B9A\u3055\u308C\u3066\u3044\u308B\u3002\n  // \u3057\u305F\
-    \u304C\u3063\u3066\u305D\u306E\u6642\u70B9\u3067 update, prop \u6E08\u3067\u3042\
-    \u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3057\u3066\u3088\u3044\u3002\n  X get()\
-    \ { return x; }\n  void set(const X &xx) {\n    x = xx;\n    update();\n  }\n\
-    \  void multiply(const X &xx) {\n    x = Monoid::op(x, xx);\n    update();\n \
-    \ }\n  void reverse() {\n    swap(prod, rev_prod);\n    swap(l, r);\n    rev ^=\
-    \ 1;\n  }\n};\ntemplate <typename Monoid, int NODES>\nusing SplayTree_Monoid =\
-    \ SplayTree<Node_Monoid<Monoid>, NODES>;\n} // namespace SplayTreeNodes\n\nusing\
-    \ SplayTreeNodes::SplayTree_Monoid;\n#line 8 \"test/mytest/splay.test.cpp\"\n\n\
-    void test() {\n  // reverse, set, prod \u306E\u52D5\u4F5C\u3092\u78BA\u8A8D\n\
-    \  using mint = modint998;\n  using Mono = Monoid_Affine<mint>;\n  using X = Mono::value_type;\n\
-    \  SplayTree_Monoid<Mono, 1000> ST;\n\n  auto rnd_X = [&]() -> X {\n    ll a =\
-    \ RNG(0, 1 << 30);\n    ll b = RNG(0, 1 << 30);\n    return {mint(a), mint(b)};\n\
-    \  };\n  auto get_lr = [&](int N) -> pi {\n    int l = RNG(0, N);\n    int r =\
-    \ RNG(0, N);\n    if (l > r) swap(l, r);\n    ++r;\n    return {l, r};\n  };\n\
-    \n  FOR(N, 1, 10) {\n    ST.reset();\n\n    vc<X> A(N);\n    FOR(i, N) { A[i]\
-    \ = rnd_X(); }\n\n    auto root = ST.new_node(A);\n    FOR(100) {\n      int t\
-    \ = RNG(0, 3);\n      if (t == 0) {\n        // set\n        int i = RNG(0, N);\n\
-    \        X x = rnd_X();\n        A[i] = x;\n        ST.set(root, i, x);\n    \
-    \  }\n      if (t == 1) {\n        // reverse\n        auto [l, r] = get_lr(N);\n\
-    \        reverse(A.begin() + l, A.begin() + r);\n        ST.reverse(root, l, r);\n\
-    \      }\n      if (t == 2) {\n        // prod\n        auto [l, r] = get_lr(N);\n\
-    \        X a = Mono::unit();\n        FOR(i, l, r) a = Mono::op(a, A[i]);\n  \
-    \      X b = ST.prod(root, l, r);\n        assert(a == b);\n      }\n    }\n \
-    \ }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n\
-    \  cout << fixed << setprecision(15);\n\n  test();\n\n  ll T = 1;\n  FOR(T) solve();\n\
-    \n  return 0;\n}\n"
+    template <typename Monoid>\nstruct Node_Monoid {\n  using Monoid_X = Monoid;\n\
+    \  using X = typename Monoid::value_type;\n  using value_type = X;\n  using operator_type\
+    \ = int; // \u5B9A\u7FA9\u3060\u3051\u3057\u3066\u304A\u304F\n  using np = Node_Monoid\
+    \ *;\n\n  np p, l, r;\n  X x, prod, rev_prod;\n  u32 size;\n  bool rev;\n\n  static\
+    \ void new_node(np n, const X &x) {\n    n->p = n->l = n->r = nullptr;\n    n->x\
+    \ = n->prod = n->rev_prod = x;\n    n->size = 1;\n    n->rev = 0;\n  }\n\n  void\
+    \ update() {\n    size = 1;\n    prod = rev_prod = x;\n    if (l) {\n      size\
+    \ += l->size;\n      prod = Monoid::op(l->prod, prod);\n      rev_prod = Monoid::op(rev_prod,\
+    \ l->rev_prod);\n    }\n    if (r) {\n      size += r->size;\n      prod = Monoid::op(prod,\
+    \ r->prod);\n      rev_prod = Monoid::op(r->rev_prod, rev_prod);\n    }\n  }\n\
+    \n  void prop() {\n    if (rev) {\n      if (l) {\n        l->rev ^= 1;\n    \
+    \    swap(l->l, l->r);\n        swap(l->prod, l->rev_prod);\n      }\n      if\
+    \ (r) {\n        r->rev ^= 1;\n        swap(r->l, r->r);\n        swap(r->prod,\
+    \ r->rev_prod);\n      }\n      rev = 0;\n    }\n  }\n\n  // update, prop \u4EE5\
+    \u5916\u3067\u547C\u3070\u308C\u308B\u3082\u306E\u306F\u3001splay \u5F8C\u3067\
+    \u3042\u308B\u3053\u3068\u304C\u60F3\u5B9A\u3055\u308C\u3066\u3044\u308B\u3002\
+    \n  // \u3057\u305F\u304C\u3063\u3066\u305D\u306E\u6642\u70B9\u3067 update, prop\
+    \ \u6E08\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3057\u3066\u3088\u3044\
+    \u3002\n  X get() { return x; }\n  void set(const X &xx) {\n    x = xx;\n    update();\n\
+    \  }\n  void multiply(const X &xx) {\n    x = Monoid::op(x, xx);\n    update();\n\
+    \  }\n  void reverse() {\n    swap(prod, rev_prod);\n    swap(l, r);\n    rev\
+    \ ^= 1;\n  }\n};\ntemplate <typename Monoid, int NODES>\nusing SplayTree_Monoid\
+    \ = SplayTree<Node_Monoid<Monoid>, NODES>;\n} // namespace SplayTreeNodes\n\n\
+    using SplayTreeNodes::SplayTree_Monoid;\n#line 8 \"test/mytest/splay.test.cpp\"\
+    \n\nvoid test() {\n  // reverse, set, prod \u306E\u52D5\u4F5C\u3092\u78BA\u8A8D\
+    \n  using mint = modint998;\n  using Mono = Monoid_Affine<mint>;\n  using X =\
+    \ Mono::value_type;\n  SplayTree_Monoid<Mono, 1000> ST;\n\n  auto rnd_X = [&]()\
+    \ -> X {\n    ll a = RNG(0, 1 << 30);\n    ll b = RNG(0, 1 << 30);\n    return\
+    \ {mint(a), mint(b)};\n  };\n  auto get_lr = [&](int N) -> pi {\n    int l = RNG(0,\
+    \ N);\n    int r = RNG(0, N);\n    if (l > r) swap(l, r);\n    ++r;\n    return\
+    \ {l, r};\n  };\n\n  FOR(N, 1, 10) {\n    ST.reset();\n\n    vc<X> A(N);\n   \
+    \ FOR(i, N) { A[i] = rnd_X(); }\n\n    auto root = ST.new_node(A);\n    FOR(100)\
+    \ {\n      int t = RNG(0, 3);\n      if (t == 0) {\n        // set\n        int\
+    \ i = RNG(0, N);\n        X x = rnd_X();\n        A[i] = x;\n        ST.set(root,\
+    \ i, x);\n      }\n      if (t == 1) {\n        // reverse\n        auto [l, r]\
+    \ = get_lr(N);\n        reverse(A.begin() + l, A.begin() + r);\n        ST.reverse(root,\
+    \ l, r);\n      }\n      if (t == 2) {\n        // prod\n        auto [l, r] =\
+    \ get_lr(N);\n        X a = Mono::unit();\n        FOR(i, l, r) a = Mono::op(a,\
+    \ A[i]);\n        X b = ST.prod(root, l, r);\n        assert(a == b);\n      }\n\
+    \    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main()\
+    \ {\n  cout << fixed << setprecision(15);\n\n  test();\n\n  ll T = 1;\n  FOR(T)\
+    \ solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"alg/monoid/affine.hpp\"\n#include \"mod/modint.hpp\"\
     \n#include \"random/base.hpp\"\n#include \"ds/splaytree/splaytree_monoid.hpp\"\
@@ -479,7 +479,7 @@ data:
   isVerificationFile: true
   path: test/mytest/splay.test.cpp
   requiredBy: []
-  timestamp: '2023-05-01 17:26:41+09:00'
+  timestamp: '2023-05-01 18:56:35+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/splay.test.cpp

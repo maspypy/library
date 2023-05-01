@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: mod/all_inverse.hpp
+    title: mod/all_inverse.hpp
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -16,28 +19,28 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':question:'
@@ -526,28 +529,32 @@ data:
     \ c[i] = garner(c0[i], c1[i], c2[i]);\n  return c;\n}\n\ntemplate <typename mint>\n\
     vc<mint> middle_product_naive(vc<mint>& a, vc<mint>& b) {\n  vc<mint> res(len(a)\
     \ - len(b) + 1);\n  FOR(i, len(res)) FOR(j, len(b)) res[i] += b[j] * a[i + j];\n\
-    \  return res;\n}\n#line 5 \"poly/multipoint.hpp\"\n\r\ntemplate <typename mint>\r\
-    \nstruct SubproductTree {\r\n  int m;\r\n  int sz;\r\n  vc<vc<mint>> T;\r\n  SubproductTree(const\
-    \ vc<mint>& x) {\r\n    m = len(x);\r\n    sz = 1;\r\n    while (sz < m) sz *=\
-    \ 2;\r\n    T.resize(2 * sz);\r\n    FOR(i, sz) T[sz + i] = {1, (i < m ? -x[i]\
-    \ : 0)};\r\n    FOR3_R(i, 1, sz) T[i] = convolution(T[2 * i], T[2 * i + 1]);\r\
-    \n  }\r\n\r\n  vc<mint> evaluation(vc<mint> f) {\r\n    int n = len(f);\r\n  \
-    \  if (n == 0) return vc<mint>(m, mint(0));\r\n    f.resize(2 * n - 1);\r\n  \
-    \  vc<vc<mint>> g(2 * sz);\r\n    g[1] = T[1];\r\n    g[1].resize(n);\r\n    g[1]\
-    \ = fps_inv(g[1]);\r\n    g[1] = middle_product(f, g[1]);\r\n    g[1].resize(sz);\r\
-    \n\r\n    FOR3(i, 1, sz) {\r\n      g[2 * i] = middle_product(g[i], T[2 * i +\
-    \ 1]);\r\n      g[2 * i + 1] = middle_product(g[i], T[2 * i]);\r\n    }\r\n  \
-    \  vc<mint> vals(m);\r\n    FOR(i, m) vals[i] = g[sz + i][0];\r\n    return vals;\r\
-    \n  }\r\n\r\n  vc<mint> interpolation(vc<mint>& y) {\r\n    assert(len(y) == m);\r\
-    \n    vc<mint> a(m);\r\n    FOR(i, m) a[i] = T[1][m - i - 1] * (i + 1);\r\n\r\n\
-    \    a = evaluation(a);\r\n    vc<vc<mint>> t(2 * sz);\r\n    FOR(i, sz) t[sz\
-    \ + i] = {(i < m ? y[i] / a[i] : 0)};\r\n    FOR3_R(i, 1, sz) {\r\n      t[i]\
-    \ = convolution(t[2 * i], T[2 * i + 1]);\r\n      auto tt = convolution(t[2 *\
-    \ i + 1], T[2 * i]);\r\n      FOR(k, len(t[i])) t[i][k] += tt[k];\r\n    }\r\n\
-    \    t[1].resize(m);\r\n    reverse(all(t[1]));\r\n    return t[1];\r\n  }\r\n\
-    };\r\n\r\ntemplate <typename mint>\r\nvc<mint> multipoint_eval(vc<mint>& f, vc<mint>&\
-    \ x) {\r\n  if (x.empty()) return {};\r\n  SubproductTree<mint> F(x);\r\n  return\
-    \ F.evaluation(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> multipoint_interpolate(vc<mint>&\
+    \  return res;\n}\n#line 2 \"mod/all_inverse.hpp\"\ntemplate <typename mint>\n\
+    vc<mint> all_inverse(vc<mint>& X) {\n  for (auto&& x: X) assert(x != mint(0));\n\
+    \  int N = len(X);\n  vc<mint> res(N + 1);\n  res[0] = mint(1);\n  FOR(i, N) res[i\
+    \ + 1] = res[i] * X[i];\n  mint t = res.back().inverse();\n  res.pop_back();\n\
+    \  FOR_R(i, N) {\n    res[i] *= t;\n    t *= X[i];\n  }\n  return res;\n}\n#line\
+    \ 6 \"poly/multipoint.hpp\"\n\r\ntemplate <typename mint>\r\nstruct SubproductTree\
+    \ {\r\n  int m;\r\n  int sz;\r\n  vc<vc<mint>> T;\r\n  SubproductTree(const vc<mint>&\
+    \ x) {\r\n    m = len(x);\r\n    sz = 1;\r\n    while (sz < m) sz *= 2;\r\n  \
+    \  T.resize(2 * sz);\r\n    FOR(i, sz) T[sz + i] = {1, (i < m ? -x[i] : 0)};\r\
+    \n    FOR3_R(i, 1, sz) T[i] = convolution(T[2 * i], T[2 * i + 1]);\r\n  }\r\n\r\
+    \n  vc<mint> evaluation(vc<mint> f) {\r\n    int n = len(f);\r\n    if (n == 0)\
+    \ return vc<mint>(m, mint(0));\r\n    f.resize(2 * n - 1);\r\n    vc<vc<mint>>\
+    \ g(2 * sz);\r\n    g[1] = T[1];\r\n    g[1].resize(n);\r\n    g[1] = fps_inv(g[1]);\r\
+    \n    g[1] = middle_product(f, g[1]);\r\n    g[1].resize(sz);\r\n\r\n    FOR3(i,\
+    \ 1, sz) {\r\n      g[2 * i] = middle_product(g[i], T[2 * i + 1]);\r\n      g[2\
+    \ * i + 1] = middle_product(g[i], T[2 * i]);\r\n    }\r\n    vc<mint> vals(m);\r\
+    \n    FOR(i, m) vals[i] = g[sz + i][0];\r\n    return vals;\r\n  }\r\n\r\n  vc<mint>\
+    \ interpolation(vc<mint>& y) {\r\n    assert(len(y) == m);\r\n    vc<mint> a(m);\r\
+    \n    FOR(i, m) a[i] = T[1][m - i - 1] * (i + 1);\r\n\r\n    a = evaluation(a);\r\
+    \n    vc<vc<mint>> t(2 * sz);\r\n    FOR(i, sz) t[sz + i] = {(i < m ? y[i] / a[i]\
+    \ : 0)};\r\n    FOR3_R(i, 1, sz) {\r\n      t[i] = convolution(t[2 * i], T[2 *\
+    \ i + 1]);\r\n      auto tt = convolution(t[2 * i + 1], T[2 * i]);\r\n      FOR(k,\
+    \ len(t[i])) t[i][k] += tt[k];\r\n    }\r\n    t[1].resize(m);\r\n    reverse(all(t[1]));\r\
+    \n    return t[1];\r\n  }\r\n};\r\n\r\ntemplate <typename mint>\r\nvc<mint> multipoint_eval(vc<mint>&\
+    \ f, vc<mint>& x) {\r\n  if (x.empty()) return {};\r\n  SubproductTree<mint> F(x);\r\
+    \n  return F.evaluation(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> multipoint_interpolate(vc<mint>&\
     \ x, vc<mint>& y) {\r\n  if (x.empty()) return {};\r\n  SubproductTree<mint> F(x);\r\
     \n  return F.interpolation(y);\r\n}\r\n\r\n// calculate f(ar^k) for 0 <= k < m\r\
     \ntemplate <typename mint>\r\nvc<mint> multipoint_eval_on_geom_seq(vc<mint> f,\
@@ -564,21 +571,39 @@ data:
     \ = 1;\r\n    FOR(i, m - 1) {\r\n      res[i + 1] = res[i] * pow;\r\n      pow\
     \ *= r;\r\n    }\r\n    return res;\r\n  };\r\n\r\n  vc<mint> A = calc(r, n +\
     \ m - 1), B = calc(r.inverse(), max(n, m));\r\n  FOR(i, n) f[i] *= B[i];\r\n \
-    \ f = middle_product(A, f);\r\n  FOR(i, m) f[i] *= B[i];\r\n  return f;\r\n}\n\
-    #line 7 \"test/mytest/chirp_z.test.cpp\"\n\nvoid test() {\n  using mint = modint998;\n\
-    \  const int mod = mint::get_mod();\n  auto gen = [&](int n) -> vc<mint> {\n \
-    \   vc<mint> f(n);\n    FOR(i, n) f[i] = RNG(0, mod);\n    return f;\n  };\n \
-    \ auto naive = [&](vc<mint> f, mint a, mint r, int m) -> vc<mint> {\n    vc<mint>\
-    \ g(m);\n    FOR(j, m) {\n      mint pow = 1;\n      FOR(i, len(f)) g[j] += f[i]\
-    \ * pow, pow *= a;\n      a *= r;\n    }\n    return g;\n  };\n  FOR(n, 1, 100)\
-    \ FOR(m, 1, 100) {\n    vc<mint> f = gen(n);\n    mint a = RNG(1, mod);\n    mint\
+    \ f = middle_product(A, f);\r\n  FOR(i, m) f[i] *= B[i];\r\n  return f;\r\n}\r\
+    \n\r\n// Y[i] = f(ar^i)\r\ntemplate <typename mint>\r\nvc<mint> multipoint_interpolate_on_geom_seq(vc<mint>\
+    \ Y, mint a, mint r) {\r\n  const int n = len(Y);\r\n  if (n == 0) return {};\r\
+    \n  if (n == 1) return {Y[0]};\r\n  assert(r != mint(0));\r\n  mint ir = r.inverse();\r\
+    \n\r\n  vc<mint> POW(n + n - 1), tPOW(n + n - 1);\r\n  POW[0] = tPOW[0] = mint(1);\r\
+    \n  FOR(i, n + n - 2) POW[i + 1] = POW[i] * r, tPOW[i + 1] = tPOW[i] * POW[i];\r\
+    \n\r\n  vc<mint> iPOW(n + n - 1), itPOW(n + n - 1);\r\n  iPOW[0] = itPOW[0] =\
+    \ mint(1);\r\n  FOR(i, n) iPOW[i + 1] = iPOW[i] * ir, itPOW[i + 1] = itPOW[i]\
+    \ * iPOW[i];\r\n\r\n  // prod_[1,i] 1-r^k\r\n  vc<mint> S(n + 1);\r\n  S[0] =\
+    \ mint(1);\r\n  FOR(i, 1, n + 1) S[i] = S[i - 1] * (mint(1) - POW[i]);\r\n  vc<mint>\
+    \ iS = all_inverse<mint>(S);\r\n\r\n  FOR(i, n) {\r\n    Y[i] = Y[i] * tPOW[n\
+    \ - 1 - i] * itPOW[n - 1] * iS[i] * iS[n - 1 - i];\r\n    if (i % 2 == 1) Y[i]\
+    \ = -Y[i];\r\n  }\r\n\r\n  // sum_i Y[i] / 1-r^ix\r\n  FOR(i, n) Y[i] *= itPOW[i];\r\
+    \n  vc<mint> f = middle_product(tPOW, Y);\r\n  FOR(i, n) f[i] *= itPOW[i];\r\n\
+    \r\n  // prod 1-r^ix\r\n  vc<mint> g(n);\r\n  FOR(i, n) {\r\n    g[i] = tPOW[i]\
+    \ * S[n] * iS[i] * iS[n - i];\r\n    if (i % 2 == 1) g[i] = -g[i];\r\n  }\r\n\
+    \  f = convolution<mint>(f, g);\r\n  f.resize(n);\r\n\r\n  reverse(all(f));\r\n\
+    \  mint ia = a.inverse();\r\n  mint pow = 1;\r\n  FOR(i, n) f[i] *= pow, pow *=\
+    \ ia;\r\n  return f;\r\n}\r\n#line 7 \"test/mytest/chirp_z.test.cpp\"\n\nvoid\
+    \ test() {\n  using mint = modint998;\n  const int mod = mint::get_mod();\n  auto\
+    \ gen = [&](int n) -> vc<mint> {\n    vc<mint> f(n);\n    FOR(i, n) f[i] = RNG(0,\
+    \ mod);\n    return f;\n  };\n  auto naive = [&](vc<mint> f, mint a, mint r, int\
+    \ m) -> vc<mint> {\n    vc<mint> g(m);\n    FOR(j, m) {\n      mint pow = 1;\n\
+    \      FOR(i, len(f)) g[j] += f[i] * pow, pow *= a;\n      a *= r;\n    }\n  \
+    \  return g;\n  };\n  FOR(n, 1, 100) FOR(m, 1, 100) {\n    vc<mint> f = gen(n);\n\
+    \    mint a = RNG(1, mod);\n    mint r = RNG(1, mod);\n    auto A = multipoint_eval_on_geom_seq(f,\
+    \ a, r, m);\n    auto B = naive(f, a, r, m);\n    assert(A == B);\n  }\n  FOR(n,\
+    \ 1, 100) FOR(m, 1, 100) {\n    vc<mint> f = gen(n);\n    mint a = 0;\n    mint\
     \ r = RNG(1, mod);\n    auto A = multipoint_eval_on_geom_seq(f, a, r, m);\n  \
-    \  auto B = naive(f, a, r, m);\n    assert(A == B);\n  }\n  FOR(n, 1, 100) FOR(m,\
-    \ 1, 100) {\n    vc<mint> f = gen(n);\n    mint a = 0;\n    mint r = RNG(1, mod);\n\
-    \    auto A = multipoint_eval_on_geom_seq(f, a, r, m);\n    auto B = naive(f,\
-    \ a, r, m);\n    assert(A == B);\n  }\n}\n\nvoid solve() {\n  test();\n  LL(a,\
-    \ b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
+    \  auto B = naive(f, a, r, m);\n    assert(A == B);\n  }\n}\n\nvoid solve() {\n\
+    \  test();\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  solve();\n\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n#include \"random/base.hpp\"\
     \n#include \"poly/multipoint.hpp\"\n\nvoid test() {\n  using mint = modint998;\n\
@@ -610,10 +635,11 @@ data:
   - poly/ntt.hpp
   - poly/fft.hpp
   - poly/middle_product.hpp
+  - mod/all_inverse.hpp
   isVerificationFile: true
   path: test/mytest/chirp_z.test.cpp
   requiredBy: []
-  timestamp: '2023-04-27 23:29:14+09:00'
+  timestamp: '2023-05-01 17:29:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/chirp_z.test.cpp

@@ -1,37 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dual_segtree.hpp
     title: ds/segtree/dual_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':question:'
@@ -42,9 +42,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc270/tasks/abc270_f
@@ -433,32 +433,30 @@ data:
     \ ? seg.prod(b, a + 1)\r\n                                       : seg_r.prod(b,\
     \ a + 1)));\r\n      val = Monoid::op(val, x);\r\n    }\r\n    return val;\r\n\
     \  }\r\n\r\n  // uv path \u4E0A\u3067 prod_path(u, x) \u304C check \u3092\u6E80\
-    \u305F\u3059\u6700\u5F8C\u306E x\r\n  // \u306A\u3051\u308C\u3070 -1\r\n  // https://codeforces.com/contest/1059/problem/E\r\
-    \n  // https://codeforces.com/contest/1230/problem/E\r\n  // edge: https://atcoder.jp/contests/tkppc3/tasks/tkppc3_i\r\
-    \n  // edge \u304C\u7279\u306B\u602A\u3057\u3044\u304B\u3082\r\n  template <class\
-    \ F>\r\n  int max_path(F check, int u, int v) {\r\n    if (edge) return max_path_edge(check,\
-    \ u, v);\r\n    if (!check(prod_path(u, u))) return -1;\r\n    auto pd = tree.get_path_decomposition(u,\
-    \ v, edge);\r\n    X val = Monoid::unit();\r\n    for (auto &&[a, b]: pd) {\r\n\
-    \      X x = (a <= b ? seg.prod(a, b + 1)\r\n                    : (Monoid::commute\
-    \ ? seg.prod(b, a + 1)\r\n                                       : seg_r.prod(b,\
-    \ a + 1)));\r\n      if (check(Monoid::op(val, x))) {\r\n        val = Monoid::op(val,\
-    \ x);\r\n        u = (tree.V[b]);\r\n        continue;\r\n      }\r\n      auto\
-    \ check_tmp = [&](X x) -> bool { return check(Monoid::op(val, x)); };\r\n    \
-    \  if (a <= b) {\r\n        // \u4E0B\u308A\r\n        auto i = seg.max_right(check_tmp,\
-    \ a);\r\n        return (i == a ? u : tree.V[i - 1]);\r\n      } else {\r\n  \
-    \      // \u4E0A\u308A\r\n        auto i = (Monoid::commute ? seg.min_left(check_tmp,\
-    \ a + 1)\r\n                                  : seg_r.min_left(check_tmp, a +\
-    \ 1));\r\n        if (i == a + 1) return u;\r\n        return tree.V[i];\r\n \
-    \     }\r\n    }\r\n    return v;\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\n\
-    \    int l = tree.LID[u], r = tree.RID[u];\r\n    return seg.prod(l + edge, r);\r\
-    \n  }\r\n\r\n  X prod_all() { return prod_subtree(tree.V[0]); }\r\n\r\nprivate:\r\
-    \n  template <class F>\r\n  int max_path_edge(F check, int u, int v) {\r\n   \
-    \ assert(edge);\r\n    if (!check(Monoid::unit())) return -1;\r\n    int lca =\
-    \ tree.lca(u, v);\r\n    auto pd = tree.get_path_decomposition(u, lca, edge);\r\
-    \n    X val = Monoid::unit();\r\n\r\n    // climb\r\n    for (auto &&[a, b]: pd)\
-    \ {\r\n      assert(a >= b);\r\n      X x = (Monoid::commute ? seg.prod(b, a +\
-    \ 1) : seg_r.prod(b, a + 1));\r\n      if (check(Monoid::op(val, x))) {\r\n  \
-    \      val = Monoid::op(val, x);\r\n        u = (tree.parent[tree.V[b]]);\r\n\
+    \u305F\u3059\u6700\u5F8C\u306E x\r\n  // \u306A\u3051\u308C\u3070 -1\r\n  template\
+    \ <class F>\r\n  int max_path(F check, int u, int v) {\r\n    if (edge) return\
+    \ max_path_edge(check, u, v);\r\n    if (!check(prod_path(u, u))) return -1;\r\
+    \n    auto pd = tree.get_path_decomposition(u, v, edge);\r\n    X val = Monoid::unit();\r\
+    \n    for (auto &&[a, b]: pd) {\r\n      X x = (a <= b ? seg.prod(a, b + 1)\r\n\
+    \                    : (Monoid::commute ? seg.prod(b, a + 1)\r\n             \
+    \                          : seg_r.prod(b, a + 1)));\r\n      if (check(Monoid::op(val,\
+    \ x))) {\r\n        val = Monoid::op(val, x);\r\n        u = (tree.V[b]);\r\n\
+    \        continue;\r\n      }\r\n      auto check_tmp = [&](X x) -> bool { return\
+    \ check(Monoid::op(val, x)); };\r\n      if (a <= b) {\r\n        // \u4E0B\u308A\
+    \r\n        auto i = seg.max_right(check_tmp, a);\r\n        return (i == a ?\
+    \ u : tree.V[i - 1]);\r\n      } else {\r\n        // \u4E0A\u308A\r\n       \
+    \ auto i = (Monoid::commute ? seg.min_left(check_tmp, a + 1)\r\n             \
+    \                     : seg_r.min_left(check_tmp, a + 1));\r\n        if (i ==\
+    \ a + 1) return u;\r\n        return tree.V[i];\r\n      }\r\n    }\r\n    return\
+    \ v;\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\n    int l = tree.LID[u], r = tree.RID[u];\r\
+    \n    return seg.prod(l + edge, r);\r\n  }\r\n\r\n  X prod_all() { return prod_subtree(tree.V[0]);\
+    \ }\r\n\r\nprivate:\r\n  template <class F>\r\n  int max_path_edge(F check, int\
+    \ u, int v) {\r\n    assert(edge);\r\n    if (!check(Monoid::unit())) return -1;\r\
+    \n    int lca = tree.lca(u, v);\r\n    auto pd = tree.get_path_decomposition(u,\
+    \ lca, edge);\r\n    X val = Monoid::unit();\r\n\r\n    // climb\r\n    for (auto\
+    \ &&[a, b]: pd) {\r\n      assert(a >= b);\r\n      X x = (Monoid::commute ? seg.prod(b,\
+    \ a + 1) : seg_r.prod(b, a + 1));\r\n      if (check(Monoid::op(val, x))) {\r\n\
+    \        val = Monoid::op(val, x);\r\n        u = (tree.parent[tree.V[b]]);\r\n\
     \        continue;\r\n      }\r\n      auto check_tmp = [&](X x) -> bool { return\
     \ check(Monoid::op(val, x)); };\r\n      auto i = (Monoid::commute ? seg.min_left(check_tmp,\
     \ a + 1)\r\n                                : seg_r.min_left(check_tmp, a + 1));\r\
@@ -588,8 +586,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc270_f.test.cpp
   requiredBy: []
-  timestamp: '2023-04-14 22:06:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-01 17:27:42+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc270_f.test.cpp
 layout: document
