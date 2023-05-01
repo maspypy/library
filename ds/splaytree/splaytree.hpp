@@ -128,6 +128,8 @@ struct SplayTree {
   }
 
   X prod(np &root, u32 l, u32 r) {
+    using Mono = typename Node::Monoid_X;
+    if (l == r) return Mono::unit();
     assert(0 <= l && l < r && r <= root->size);
     goto_between(root, l, r);
     X res = root->prod;
@@ -141,6 +143,7 @@ struct SplayTree {
   }
 
   void apply(np &root, u32 l, u32 r, const A &a) {
+    if (l == r) return;
     assert(0 <= l && l < r && r <= root->size);
     goto_between(root, l, r);
     root->apply(a);
@@ -152,6 +155,7 @@ struct SplayTree {
   }
 
   void reverse(np &root, u32 l, u32 r) {
+    if (l == r) return;
     assert(0 <= l && l < r && r <= root->size);
     goto_between(root, l, r);
     root->reverse();
