@@ -2,17 +2,20 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: alg/monoid/add.hpp
-    title: alg/monoid/add.hpp
+    path: ds/fastset.hpp
+    title: ds/fastset.hpp
   - icon: ':heavy_check_mark:'
-    path: ds/unionfind/weighted_unionfind.hpp
-    title: ds/unionfind/weighted_unionfind.hpp
+    path: ds/sortable_array.hpp
+    title: ds/sortable_array.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
+  - icon: ':heavy_check_mark:'
+    path: random/base.hpp
+    title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -20,22 +23,23 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B
-  bundledCode: "#line 1 \"test/aoj/DSL_1_B.test.cpp\"\n#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
-    )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
-    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int>\
-    \ = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll> = ll(infty<int>) * infty<int>\
-    \ * 2;\ntemplate <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr\
-    \ u64 infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
-    \ * infty<ll>;\ntemplate <>\nconstexpr double infty<double> = infty<ll>;\ntemplate\
-    \ <>\nconstexpr long double infty<long double> = infty<ll>;\n\nusing pi = pair<ll,\
-    \ ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
-    \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/mytest/sortable_array.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/aplusb\"\n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
+    #include <my_template_compiled.hpp>\n#else\n#pragma GCC optimize(\"Ofast\")\n\
+    #pragma GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace\
+    \ std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing u64 = unsigned\
+    \ long long;\nusing i128 = __int128;\n\ntemplate <class T>\nconstexpr T infty\
+    \ = 0;\ntemplate <>\nconstexpr int infty<int> = 1'000'000'000;\ntemplate <>\n\
+    constexpr ll infty<ll> = ll(infty<int>) * infty<int> * 2;\ntemplate <>\nconstexpr\
+    \ u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
+    template <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\ntemplate\
+    \ <>\nconstexpr double infty<double> = infty<ll>;\ntemplate <>\nconstexpr long\
+    \ double infty<long double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing vi\
+    \ = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\n\
+    using vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
     template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
     \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
     template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
@@ -204,59 +208,153 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
-    \ Monoid_Add {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x,\
-    \ const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"ds/unionfind/weighted_unionfind.hpp\"\
-    \ntemplate <typename Group>\r\nstruct Weighted_UnionFind {\r\n  using E = typename\
-    \ Group::value_type;\r\n  int N;\r\n  vc<E> vals;\r\n  vc<int> par;\r\n  vc<int>\
-    \ size;\r\n\r\n  Weighted_UnionFind(int N) : N(N), vals(N, Group::unit()), size(N,\
-    \ 1) {\r\n    par.resize(N);\r\n    iota(all(par), 0);\r\n  }\r\n\r\n  // (root,\
-    \ root=0 \u3068\u3057\u305F\u3068\u304D\u306E val)\r\n  pair<int, E> get(int v)\
-    \ {\r\n    E res = Group::unit();\r\n    while (v != par[v]) {\r\n      res =\
-    \ Group::op(vals[v], res);\r\n      res = Group::op(vals[par[v]], res);\r\n  \
-    \    vals[v] = Group::op(vals[par[v]], vals[v]);\r\n      v = par[v] = par[par[v]];\r\
-    \n    }\r\n    return {v, res};\r\n  }\r\n\r\n  pair<int, E> operator[](int v)\
-    \ { return get(v); }\r\n\r\n  bool merge(int frm, int to, E x) {\r\n    auto [v1,\
-    \ x1] = get(frm);\r\n    auto [v2, x2] = get(to);\r\n    if (v1 == v2) return\
-    \ false;\r\n    if (size[v1] < size[v2]) {\r\n      swap(v1, v2);\r\n      swap(x1,\
-    \ x2);\r\n      x = Group::inverse(x);\r\n    }\r\n    x = Group::op(x1, x);\r\
-    \n    x = Group::op(x, Group::inverse(x2));\r\n    vals[v2] = x;\r\n    par[v2]\
-    \ = v1;\r\n    size[v1] += size[v2];\r\n    return true;\r\n  }\r\n};\n#line 7\
-    \ \"test/aoj/DSL_1_B.test.cpp\"\n\nvoid solve() {\n  LL(N, Q);\n  Weighted_UnionFind<Monoid_Add<ll>>\
-    \ uf(N);\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(a, b, c);\n    \
-    \  uf.merge(a, b, c);\n    } else {\n      LL(a, b);\n      auto [ra, xa] = uf.get(a);\n\
-    \      auto [rb, xb] = uf.get(b);\n      if (ra != rb)\n        print(\"?\");\n\
-    \      else\n        print(xb - xa);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/monoid/add.hpp\"\
-    \n#include \"ds/unionfind/weighted_unionfind.hpp\"\n\nvoid solve() {\n  LL(N,\
-    \ Q);\n  Weighted_UnionFind<Monoid_Add<ll>> uf(N);\n  FOR(Q) {\n    LL(t);\n \
-    \   if (t == 0) {\n      LL(a, b, c);\n      uf.merge(a, b, c);\n    } else {\n\
-    \      LL(a, b);\n      auto [ra, xa] = uf.get(a);\n      auto [rb, xb] = uf.get(b);\n\
-    \      if (ra != rb)\n        print(\"?\");\n      else\n        print(xb - xa);\n\
-    \    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
+    \ yes(!t); }\n#line 5 \"test/mytest/sortable_array.test.cpp\"\n\n#line 1 \"ds/fastset.hpp\"\
+    \n/* 64\u5206\u6728\u3002\r\ninsert, erase\r\n[]\u3067\u306E\u5B58\u5728\u5224\
+    \u5B9A\r\nnext, prev\r\n*/\r\nstruct FastSet {\r\n  using uint = unsigned;\r\n\
+    \  using ull = unsigned long long;\r\n\r\n  int bsr(ull x) { return 63 - __builtin_clzll(x);\
+    \ }\r\n  int bsf(ull x) { return __builtin_ctzll(x); }\r\n\r\n  static constexpr\
+    \ uint B = 64;\r\n  int n, lg;\r\n  vector<vector<ull>> seg;\r\n  FastSet(int\
+    \ _n) : n(_n) {\r\n    do {\r\n      seg.push_back(vector<ull>((_n + B - 1) /\
+    \ B));\r\n      _n = (_n + B - 1) / B;\r\n    } while (_n > 1);\r\n    lg = int(seg.size());\r\
+    \n  }\r\n  bool operator[](int i) const { return (seg[0][i / B] >> (i % B) & 1)\
+    \ != 0; }\r\n  void insert(int i) {\r\n    for (int h = 0; h < lg; h++) {\r\n\
+    \      seg[h][i / B] |= 1ULL << (i % B);\r\n      i /= B;\r\n    }\r\n  }\r\n\
+    \  void erase(int i) {\r\n    for (int h = 0; h < lg; h++) {\r\n      seg[h][i\
+    \ / B] &= ~(1ULL << (i % B));\r\n      if (seg[h][i / B]) break;\r\n      i /=\
+    \ B;\r\n    }\r\n  }\r\n\r\n  // x\u4EE5\u4E0A\u6700\u5C0F\u306E\u8981\u7D20\u3092\
+    \u8FD4\u3059\u3002\u5B58\u5728\u3057\u306A\u3051\u308C\u3070 n\u3002\r\n  int\
+    \ next(int i) {\r\n    chmax(i, 0);\r\n    if (i >= n) return n;\r\n    for (int\
+    \ h = 0; h < lg; h++) {\r\n      if (i / B == seg[h].size()) break;\r\n      ull\
+    \ d = seg[h][i / B] >> (i % B);\r\n      if (!d) {\r\n        i = i / B + 1;\r\
+    \n        continue;\r\n      }\r\n      // find\r\n      i += bsf(d);\r\n    \
+    \  for (int g = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += bsf(seg[g][i\
+    \ / B]);\r\n      }\r\n      return i;\r\n    }\r\n    return n;\r\n  }\r\n\r\n\
+    \  // x\u4EE5\u4E0B\u6700\u5927\u306E\u8981\u7D20\u3092\u8FD4\u3059\u3002\u5B58\
+    \u5728\u3057\u306A\u3051\u308C\u3070 -1\u3002\r\n  int prev(int i) {\r\n    if\
+    \ (i < 0) return -1;\r\n    if (i >= n) i = n - 1;\r\n    for (int h = 0; h <\
+    \ lg; h++) {\r\n      if (i == -1) break;\r\n      ull d = seg[h][i / B] << (63\
+    \ - i % 64);\r\n      if (!d) {\r\n        i = i / B - 1;\r\n        continue;\r\
+    \n      }\r\n      // find\r\n      i += bsr(d) - (B - 1);\r\n      for (int g\
+    \ = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += bsr(seg[g][i / B]);\r\
+    \n      }\r\n      return i;\r\n    }\r\n    return -1;\r\n  }\r\n\r\n  // [l,\
+    \ r)\r\n  template <typename F>\r\n  void enumerate(int l, int r, F f) {\r\n \
+    \   int x = l - 1;\r\n    while (1) {\r\n      x = next(x + 1);\r\n      if (x\
+    \ >= r) break;\r\n      f(x);\r\n    }\r\n  }\r\n\r\n  void debug() {\r\n    string\
+    \ s;\r\n    for (int i = 0; i < n; ++i) s += ((*this)[i] ? '1' : '0');\r\n   \
+    \ print(s);\r\n  }\r\n};\r\n#line 2 \"ds/sortable_array.hpp\"\n\n// int \u5217\
+    \u3092\u6271\u3046. key \u306E\u91CD\u8907\u53EF.\ntemplate <int NODES>\nstruct\
+    \ Sortable_Array {\n  const int N, KEY_MAX;\n\n  struct Node {\n    int size;\n\
+    \    Node *l, *r;\n  };\n  Node* pool;\n  int pid;\n  using np = Node*;\n\n  FastSet\
+    \ ss;      // \u533A\u9593\u306E\u5DE6\u7AEF\u5168\u4F53\u3092\u8868\u3059 fastset\n\
+    \  vector<np> root; // \u533A\u9593\u306E\u5DE6\u7AEF\u306B\u3001dynamic segtree\
+    \ \u306E node \u3092\u4E57\u305B\u308B\n  vector<bool> rev;\n\n  Sortable_Array(int\
+    \ KEY_MAX, vector<int> key)\n      : N(key.size()), KEY_MAX(KEY_MAX), pid(0),\
+    \ ss(key.size()) {\n    pool = new Node[NODES];\n    init(key);\n  }\n\n  void\
+    \ set(int i, int key) {\n    assert(0 <= key && key < KEY_MAX);\n    split_at(i),\
+    \ split_at(i + 1);\n    rev[i] = 0, root[i] = new_node(0);\n    set_rec(root[i],\
+    \ 0, KEY_MAX, key);\n  }\n\n  void sort_inc(int l, int r) {\n    split_at(l),\
+    \ split_at(r);\n    while (1) {\n      if (pid > NODES * 0.9) rebuild();\n   \
+    \   np c = root[l];\n      int i = ss.next(l + 1);\n      if (i == r) break;\n\
+    \      root[l] = merge(0, KEY_MAX, c, root[i]);\n      ss.erase(i);\n    }\n \
+    \   rev[l] = 0;\n  };\n\n  void sort_dec(int l, int r) {\n    if (pid > NODES\
+    \ * 0.9) rebuild();\n    sort_inc(l, r), rev[l] = 1;\n  };\n\n  vc<int> get_all()\
+    \ {\n    vector<int> key;\n    key.reserve(N);\n    auto dfs = [&](auto& dfs,\
+    \ np n, int l, int r, bool rev) -> void {\n      if (!n || !n->size) return;\n\
+    \      if (r == l + 1) {\n        FOR(n->size) key.eb(l);\n        return;\n \
+    \     }\n      int m = (l + r) / 2;\n      if (!rev) { dfs(dfs, n->l, l, m, rev),\
+    \ dfs(dfs, n->r, m, r, rev); }\n      if (rev) { dfs(dfs, n->r, m, r, rev), dfs(dfs,\
+    \ n->l, l, m, rev); }\n    };\n    for (int i = 0; i < N; ++i) {\n      if (ss[i])\
+    \ dfs(dfs, root[i], 0, KEY_MAX, rev[i]);\n    }\n    return key;\n  }\n\n  int\
+    \ get(int idx) {\n    auto dfs = [&](auto& dfs, np n, int l, int r, int k) ->\
+    \ int {\n      if (r == l + 1) { return l; }\n      int m = (l + r) / 2;\n   \
+    \   int s = (n->l ? n->l->size : 0);\n      if (k < s) return dfs(dfs, n->l, l,\
+    \ m, k);\n      return dfs(dfs, n->r, m, r, k - s);\n    };\n    int i = ss.prev(idx);\n\
+    \    int k = idx - i;\n    int s = root[i]->size;\n    if (rev[i]) k = s - 1 -\
+    \ k;\n    return dfs(dfs, root[i], 0, KEY_MAX, k);\n  }\n\nprivate:\n  void init(vector<int>&\
+    \ key) {\n    rev.assign(N, 0), root.clear(), root.reserve(N);\n    for (int i\
+    \ = 0; i < N; ++i) {\n      ss.insert(i);\n      root.eb(new_node(0));\n     \
+    \ assert(key[i] < KEY_MAX);\n      set_rec(root[i], 0, KEY_MAX, key[i]);\n   \
+    \ }\n  }\n\n  // x \u304C\u5DE6\u7AEF\u306B\u306A\u308B\u3088\u3046\u306B\u3059\
+    \u308B\n  void split_at(int x) {\n    if (x == N || ss[x]) return;\n    int a\
+    \ = ss.prev(x), b = ss.next(a + 1);\n    ss.insert(x);\n    if (!rev[a]) {\n \
+    \     auto [nl, nr] = split(root[a], 0, KEY_MAX, x - a);\n      root[a] = nl,\
+    \ root[x] = nr;\n      rev[a] = rev[x] = 0;\n    } else {\n      auto [nl, nr]\
+    \ = split(root[a], 0, KEY_MAX, b - x);\n      root[a] = nr, root[x] = nl;\n  \
+    \    rev[a] = rev[x] = 1;\n    }\n  }\n\n  void rebuild() {\n    auto key = get_all();\n\
+    \    pid = 0;\n    init(key);\n  }\n\n  np new_node(int size) {\n    assert(pid\
+    \ < NODES);\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].size = size;\n\
+    \    return &(pool[pid++]);\n  }\n\n  pair<np, np> split(np n, int l, int r, int\
+    \ k) {\n    if (k == 0) { return {nullptr, n}; }\n    if (k == n->size) { return\
+    \ {n, nullptr}; }\n    if (r == l + 1) {\n      int s = n->size;\n      n->size\
+    \ = k;\n      Node* b = new_node(s - k);\n      return {n, b};\n    }\n    int\
+    \ s = (n->l ? n->l->size : 0);\n    Node* b = new_node(0);\n    int m = (l + r)\
+    \ / 2;\n    if (k <= s) {\n      auto [nl, nr] = split(n->l, l, m, k);\n     \
+    \ b->l = nr, b->r = n->r, n->l = nl, n->r = nullptr;\n    }\n    if (k > s) {\n\
+    \      auto [nl, nr] = split(n->r, m, r, k - s);\n      n->l = n->l, n->r = nl,\
+    \ b->l = nullptr, b->r = nr;\n    }\n    update(n), update(b);\n    return {n,\
+    \ b};\n  }\n\n  np merge(int l, int r, np a, np b) {\n    if (!a) return b;\n\
+    \    if (!b) return a;\n    if (r == l + 1) {\n      a->size += b->size;\n   \
+    \   return a;\n    }\n    int m = (l + r) / 2;\n    a->l = merge(l, m, a->l, b->l),\
+    \ a->r = merge(m, r, a->r, b->r);\n    update(a);\n    return a;\n  }\n\n  void\
+    \ update(np n) {\n    if (!(n->l) && !(n->r)) { return; }\n    if (!(n->l)) {\n\
+    \      n->size = n->r->size;\n      return;\n    }\n    if (!(n->r)) {\n     \
+    \ n->size = n->l->size;\n      return;\n    }\n    n->size = n->l->size + n->r->size;\n\
+    \  }\n\n  void set_rec(np n, int l, int r, int k) {\n    if (r == l + 1) {\n \
+    \     n->size = 1;\n      return;\n    }\n    int m = (l + r) / 2;\n    if (k\
+    \ < m) {\n      if (!(n->l)) n->l = new_node(0);\n      set_rec(n->l, l, m, k);\n\
+    \    }\n    if (m <= k) {\n      if (!(n->r)) n->r = new_node(0);\n      set_rec(n->r,\
+    \ m, r, k);\n    }\n    update(n);\n  }\n};\n#line 2 \"random/base.hpp\"\n\nu64\
+    \ RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 8 \"test/mytest/sortable_array.test.cpp\"\
+    \n\nvoid test() {\n  int N = RNG(1, 64);\n  int MAX = RNG(2, 20);\n  vc<int> A(N);\n\
+    \  FOR(i, N) A[i] = RNG(MAX);\n  Sortable_Array<1000> X(MAX, A);\n\n  int Q =\
+    \ 1000;\n  FOR(Q) {\n    int t = RNG(0, 5);\n    if (t == 0) {\n      vc<int>\
+    \ B = X.get_all();\n      assert(A == B);\n    }\n    if (t == 0) {\n      int\
+    \ idx = RNG(0, N);\n      assert(A[idx] == X.get(idx));\n    }\n    if (t == 2)\
+    \ {\n      int idx = RNG(0, N);\n      int x = RNG(MAX);\n      A[idx] = x;\n\
+    \      X.set(idx, x);\n    }\n    if (t == 3) {\n      int L = RNG(0, N);\n  \
+    \    int R = RNG(0, N);\n      if (L > R) swap(L, R);\n      ++R;\n      X.sort_inc(L,\
+    \ R);\n      sort(A.begin() + L, A.begin() + R);\n    }\n    if (t == 4) {\n \
+    \     int L = RNG(0, N);\n      int R = RNG(0, N);\n      if (L > R) swap(L, R);\n\
+    \      ++R;\n      X.sort_dec(L, R);\n      sort(A.begin() + L, A.begin() + R);\n\
+    \      reverse(A.begin() + L, A.begin() + R);\n    }\n  }\n}\n\nvoid solve() {\n\
+    \  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  FOR(100) test();\n  solve();\n\
     \  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
+    my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/sortable_array.hpp\"\
+    \n#include \"random/base.hpp\"\n\nvoid test() {\n  int N = RNG(1, 64);\n  int\
+    \ MAX = RNG(2, 20);\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(MAX);\n  Sortable_Array<1000>\
+    \ X(MAX, A);\n\n  int Q = 1000;\n  FOR(Q) {\n    int t = RNG(0, 5);\n    if (t\
+    \ == 0) {\n      vc<int> B = X.get_all();\n      assert(A == B);\n    }\n    if\
+    \ (t == 0) {\n      int idx = RNG(0, N);\n      assert(A[idx] == X.get(idx));\n\
+    \    }\n    if (t == 2) {\n      int idx = RNG(0, N);\n      int x = RNG(MAX);\n\
+    \      A[idx] = x;\n      X.set(idx, x);\n    }\n    if (t == 3) {\n      int\
+    \ L = RNG(0, N);\n      int R = RNG(0, N);\n      if (L > R) swap(L, R);\n   \
+    \   ++R;\n      X.sort_inc(L, R);\n      sort(A.begin() + L, A.begin() + R);\n\
+    \    }\n    if (t == 4) {\n      int L = RNG(0, N);\n      int R = RNG(0, N);\n\
+    \      if (L > R) swap(L, R);\n      ++R;\n      X.sort_dec(L, R);\n      sort(A.begin()\
+    \ + L, A.begin() + R);\n      reverse(A.begin() + L, A.begin() + R);\n    }\n\
+    \  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n\
+    \  FOR(100) test();\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - alg/monoid/add.hpp
-  - ds/unionfind/weighted_unionfind.hpp
+  - ds/sortable_array.hpp
+  - ds/fastset.hpp
+  - random/base.hpp
   isVerificationFile: true
-  path: test/aoj/DSL_1_B.test.cpp
+  path: test/mytest/sortable_array.test.cpp
   requiredBy: []
-  timestamp: '2023-02-24 07:14:18+09:00'
+  timestamp: '2023-05-01 19:48:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/DSL_1_B.test.cpp
+documentation_of: test/mytest/sortable_array.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/DSL_1_B.test.cpp
-- /verify/test/aoj/DSL_1_B.test.cpp.html
-title: test/aoj/DSL_1_B.test.cpp
+- /verify/test/mytest/sortable_array.test.cpp
+- /verify/test/mytest/sortable_array.test.cpp.html
+title: test/mytest/sortable_array.test.cpp
 ---

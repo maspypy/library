@@ -9,6 +9,9 @@ data:
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
   - icon: ':heavy_check_mark:'
+    path: ds/sortable_array.hpp
+    title: ds/sortable_array.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
   - icon: ':warning:'
@@ -30,6 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/sort_segtree_1.test.cpp
     title: test/library_checker/datastructure/sort_segtree_1.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/sortable_array.test.cpp
+    title: test/mytest/sortable_array.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc223d.test.cpp
     title: test_atcoder/abc223d.test.cpp
@@ -124,6 +130,7 @@ data:
   - graph/toposort.hpp
   - graph/implicit_graph/cograph_unionfind.hpp
   - graph/dag_path_cover.hpp
+  - ds/sortable_array.hpp
   - ds/intervals.hpp
   - ds/segtree/sortable_segtree.hpp
   timestamp: '2023-02-28 19:13:41+09:00'
@@ -138,6 +145,7 @@ data:
   - test/library_checker/datastructure/predecessor_problem.test.cpp
   - test/library_checker/datastructure/sort_segtree_1.test.cpp
   - test/library_checker/datastructure/sort_segtree.test.cpp
+  - test/mytest/sortable_array.test.cpp
 documentation_of: ds/fastset.hpp
 layout: document
 redirect_from:
