@@ -3,6 +3,7 @@
 namespace SplayTreeNodes {
 template <typename Monoid>
 struct Node_Monoid {
+  using Monoid_X = Monoid;
   using X = typename Monoid::value_type;
   using value_type = X;
   using operator_type = int; // 定義だけしておく
