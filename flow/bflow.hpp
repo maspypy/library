@@ -1,8 +1,7 @@
 #pragma once
-template <class Flow = ll, class Cost = ll, bool MINIMIZE = 1>
+template <class Flow = ll, class Cost = ll>
 struct MinCostFlow {
 private:
-  static constexpr int objective = (MINIMIZE ? 1 : -1);
   static constexpr int SCALING_FACTOR = 2;
   using V_id = uint32_t;
   using E_id = uint32_t;
@@ -39,7 +38,6 @@ public:
         : instance(instance), v(v), e(e) {}
 
     [[nodiscard]] const Edge &edge() const { return instance->g[v][e]; }
-
     [[nodiscard]] const Edge &rev() const {
       const Edge &e = edge();
       return instance->g[e.to][e.rev];
@@ -47,17 +45,11 @@ public:
 
   public:
     [[nodiscard]] V_id frm() const { return rev().to; }
-
     [[nodiscard]] V_id to() const { return edge().to; }
-
     [[nodiscard]] Flow flow() const { return edge().flow; }
-
     [[nodiscard]] Flow lower() const { return -rev().cap; }
-
     [[nodiscard]] Flow upper() const { return edge().cap; }
-
     [[nodiscard]] Cost cost() const { return edge().cost; }
-
     [[nodiscard]] Cost gain() const { return -edge().cost; }
   };
 
@@ -92,26 +84,22 @@ public:
            const Cost cost) {
     const E_id e = g[frm].size(), re = frm == to ? e + 1 : g[to].size();
     assert(lo <= hi);
-    g[frm].emplace_back(Edge{frm, to, hi, cost * objective, re});
-    g[to].emplace_back(Edge{to, frm, -lo, -cost * objective, e});
+    g[frm].emplace_back(Edge{frm, to, hi, cost, re});
+    g[to].emplace_back(Edge{to, frm, -lo, -cost, e});
     edges.eb(EdgePtr{this, frm, e});
   }
 
   void add_source(const V_id v, const Flow amount) { b[v] += amount; }
-
   void add_sink(const V_id v, const Flow amount) { b[v] -= amount; }
 
 private:
   static Cost constexpr unreachable = std::numeric_limits<Cost>::max();
   Cost farthest;
-  std::vector<Cost> potential;
-  std::vector<Cost> dist;
-  std::vector<Edge *> parent;
-  std::priority_queue<std::pair<Cost, int>, std::vector<std::pair<Cost, int>>,
-                      std::greater<>>
-      pq;
-  std::vector<V_id> excess_vs, deficit_vs;
-  std::vector<EdgePtr> edges;
+  vc<Cost> potential, dist;
+  vc<Edge *> parent;
+  pqg<pair<Cost, int>> pq;
+  vc<V_id> excess_vs, deficit_vs;
+  vc<EdgePtr> edges;
   Edge &rev(const Edge &e) { return g[e.to][e.rev]; }
 
   void push(Edge &e, const Flow amount) {
@@ -126,16 +114,15 @@ private:
   bool dual(const Flow delta) {
     dist.assign(n, unreachable);
     parent.assign(n, nullptr);
-    excess_vs.erase(std::remove_if(std::begin(excess_vs), std::end(excess_vs),
-                                   [&](const V_id v) { return b[v] < delta; }),
-                    std::end(excess_vs));
+    excess_vs.erase(
+        remove_if(all(excess_vs), [&](const V_id v) { return b[v] < delta; }),
+        end(excess_vs));
     deficit_vs.erase(
-        std::remove_if(std::begin(deficit_vs), std::end(deficit_vs),
-                       [&](const V_id v) { return b[v] > -delta; }),
-        std::end(deficit_vs));
+        remove_if(all(deficit_vs), [&](const V_id v) { return b[v] > -delta; }),
+        end(deficit_vs));
     for (const auto v: excess_vs) pq.emplace(dist[v] = 0, v);
     farthest = 0;
-    std::size_t deficit_count = 0;
+    size_t deficit_count = 0;
     while (!pq.empty()) {
       const auto [d, u] = pq.top();
       pq.pop();
@@ -210,7 +197,6 @@ public:
           b[e.to] += rcap;
         }
       }
-
     Flow inf_flow = 1;
     for (const auto &es: g)
       for (const auto &e: es) inf_flow = std::max(inf_flow, e.residual_cap());
@@ -224,13 +210,13 @@ public:
 
     i128 value = 0;
     for (const auto &es: g)
-      for (const auto &e: es) { value += e.flow * e.cost; }
+      for (const auto &e: es) { value += i128(e.flow) * e.cost; }
     value /= 2;
 
     if (excess_vs.empty() && deficit_vs.empty()) {
-      return {true, value / objective};
+      return {true, value};
     } else {
-      return {false, value / objective};
+      return {false, value};
     }
   }
 
@@ -240,7 +226,7 @@ public:
     for (const auto &es: g)
       for (const auto &e: es) { value += (T)(e.flow) * (T)(e.cost); }
     value /= (T)2;
-    return value / objective;
+    return value;
   }
 
   std::vector<Cost> get_potential() {
