@@ -4,6 +4,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: flow/bflow.hpp
     title: flow/bflow.hpp
+  - icon: ':heavy_check_mark:'
+    path: flow/dual_mcf.hpp
+    title: flow/dual_mcf.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -17,16 +20,15 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/min_cost_b_flow
+    PROBLEM: https://atcoder.jp/contests/abc224/tasks/abc224_h
     links:
-    - https://judge.yosupo.jp/problem/min_cost_b_flow
-  bundledCode: "#line 1 \"test/library_checker/graph/min_cost_b-flow.test.cpp\"\n\
-    #define PROBLEM \"https://judge.yosupo.jp/problem/min_cost_b_flow\"\n#line 1 \"\
-    my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\
-    #pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include\
-    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing u32\
-    \ = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\n\
-    template <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int>\
+    - https://atcoder.jp/contests/abc224/tasks/abc224_h
+  bundledCode: "#line 1 \"test_atcoder/abc224h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc224/tasks/abc224_h\"\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
+    )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
+    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
+    \ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int>\
     \ = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll> = ll(infty<int>) * infty<int>\
     \ * 2;\ntemplate <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr\
     \ u64 infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
@@ -202,21 +204,21 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 2 \"flow/bflow.hpp\"\ntemplate <class Flow = ll, class Cost\
-    \ = ll>\nstruct MinCostFlow {\nprivate:\n  static constexpr int SCALING_FACTOR\
-    \ = 2;\n  using V_id = uint32_t;\n  using E_id = uint32_t;\n\n  struct Edge {\n\
-    \    friend struct MinCostFlow;\n\n  private:\n    V_id frm, to;\n    Flow flow,\
-    \ cap;\n    Cost cost;\n    E_id rev;\n\n  public:\n    Edge() = default;\n\n\
-    \    Edge(const V_id frm, const V_id to, const Flow cap, const Cost cost,\n  \
-    \       const E_id rev)\n        : frm(frm), to(to), flow(0), cap(cap), cost(cost),\
-    \ rev(rev) {}\n\n    [[nodiscard]] Flow residual_cap() const { return cap - flow;\
-    \ }\n  };\n\npublic:\n  struct EdgePtr {\n    friend struct MinCostFlow;\n\n \
-    \ private:\n    const MinCostFlow *instance;\n    const V_id v;\n    const E_id\
-    \ e;\n\n    EdgePtr(const MinCostFlow *instance, const V_id v, const E_id e)\n\
-    \        : instance(instance), v(v), e(e) {}\n\n    [[nodiscard]] const Edge &edge()\
-    \ const { return instance->g[v][e]; }\n    [[nodiscard]] const Edge &rev() const\
-    \ {\n      const Edge &e = edge();\n      return instance->g[e.to][e.rev];\n \
-    \   }\n\n  public:\n    [[nodiscard]] V_id frm() const { return rev().to; }\n\
+    \ yes(!t); }\n#line 4 \"test_atcoder/abc224h.test.cpp\"\n\n#line 2 \"flow/bflow.hpp\"\
+    \ntemplate <class Flow = ll, class Cost = ll>\nstruct MinCostFlow {\nprivate:\n\
+    \  static constexpr int SCALING_FACTOR = 2;\n  using V_id = uint32_t;\n  using\
+    \ E_id = uint32_t;\n\n  struct Edge {\n    friend struct MinCostFlow;\n\n  private:\n\
+    \    V_id frm, to;\n    Flow flow, cap;\n    Cost cost;\n    E_id rev;\n\n  public:\n\
+    \    Edge() = default;\n\n    Edge(const V_id frm, const V_id to, const Flow cap,\
+    \ const Cost cost,\n         const E_id rev)\n        : frm(frm), to(to), flow(0),\
+    \ cap(cap), cost(cost), rev(rev) {}\n\n    [[nodiscard]] Flow residual_cap() const\
+    \ { return cap - flow; }\n  };\n\npublic:\n  struct EdgePtr {\n    friend struct\
+    \ MinCostFlow;\n\n  private:\n    const MinCostFlow *instance;\n    const V_id\
+    \ v;\n    const E_id e;\n\n    EdgePtr(const MinCostFlow *instance, const V_id\
+    \ v, const E_id e)\n        : instance(instance), v(v), e(e) {}\n\n    [[nodiscard]]\
+    \ const Edge &edge() const { return instance->g[v][e]; }\n    [[nodiscard]] const\
+    \ Edge &rev() const {\n      const Edge &e = edge();\n      return instance->g[e.to][e.rev];\n\
+    \    }\n\n  public:\n    [[nodiscard]] V_id frm() const { return rev().to; }\n\
     \    [[nodiscard]] V_id to() const { return edge().to; }\n    [[nodiscard]] Flow\
     \ flow() const { return edge().flow; }\n    [[nodiscard]] Flow lower() const {\
     \ return -rev().cap; }\n    [[nodiscard]] Flow upper() const { return edge().cap;\
@@ -288,35 +290,50 @@ data:
     \ (const auto &e: es)\n          if (e.residual_cap() > 0)\n            potential[e.to]\n\
     \                = std::min(potential[e.to], potential[e.frm] + e.cost);\n   \
     \ return potential;\n  }\n\n  std::vector<EdgePtr> get_edges() { return edges;\
-    \ }\n};\n#line 5 \"test/library_checker/graph/min_cost_b-flow.test.cpp\"\n\nvoid\
-    \ solve() {\n  LL(N, M);\n  MinCostFlow<ll, ll> G(N);\n  FOR(i, N) {\n    LL(b);\n\
-    \    G.add_source(i, b);\n  }\n  FOR(i, M) {\n    LL(frm, to, lo, hi, cost);\n\
-    \    G.add(frm, to, lo, hi, cost);\n  }\n  auto [ok, cost] = G.solve();\n  if\
-    \ (!ok) return print(\"infeasible\");\n  print(cost);\n  for (auto &&p: G.get_potential())\
-    \ print(p);\n  for (auto &&e: G.get_edges()) { print(e.flow()); }\n}\n\nsigned\
-    \ main() {\n  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/min_cost_b_flow\"\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"flow/bflow.hpp\"\n\
-    \nvoid solve() {\n  LL(N, M);\n  MinCostFlow<ll, ll> G(N);\n  FOR(i, N) {\n  \
-    \  LL(b);\n    G.add_source(i, b);\n  }\n  FOR(i, M) {\n    LL(frm, to, lo, hi,\
-    \ cost);\n    G.add(frm, to, lo, hi, cost);\n  }\n  auto [ok, cost] = G.solve();\n\
-    \  if (!ok) return print(\"infeasible\");\n  print(cost);\n  for (auto &&p: G.get_potential())\
-    \ print(p);\n  for (auto &&e: G.get_edges()) { print(e.flow()); }\n}\n\nsigned\
-    \ main() {\n  solve();\n\n  return 0;\n}\n"
+    \ }\n};\n#line 2 \"flow/dual_mcf.hpp\"\n\n// INF \u8FBA\u306E\u30AA\u30FC\u30D0\
+    \u30FC\u30D5\u30ED\u30FC\u95A2\u9023\u304C\u672A\u8003\u5BDF\n// minimize sum\
+    \ b[v]p[v] + sum_{uv}c[uv]max(0, -p[u]+p[v]-w[uv]))\n// sum_v b[v] = 0, c[uv]\
+    \ >= 0\nstruct Dual_MCF {\n  MinCostFlow<ll, ll> G;\n  Dual_MCF(int N) : G(N)\
+    \ {}\n\n  // b[v]p[v]\n  void add_b(int v, ll b) { G.add_source(v, b); }\n\n \
+    \ // c[uv]max(0, -p[u]+p[v]-w)\n  void add_c(int u, int v, ll w, ll c) { G.add(u,\
+    \ v, 0, c, w); }\n\n  // -p[u]+p[v]<=w\n  void add_constraint(int u, int v, int\
+    \ w, ll inf = infty<int>) {\n    add_c(u, v, w, inf);\n  }\n\n  // min_val, p\n\
+    \  // if ng: {infty<i128>, {}}\n  pair<i128, vc<ll>> solve() {\n    auto [ok,\
+    \ val] = G.solve();\n    if (!ok) return {infty<i128>, {}};\n    auto P = G.get_potential();\n\
+    \    return {-val, P};\n  }\n};\n#line 6 \"test_atcoder/abc224h.test.cpp\"\n\n\
+    void solve() {\n  LL(N, M);\n  VEC(ll, A, N);\n  VEC(ll, B, M);\n  VV(ll, C, N,\
+    \ M);\n  auto left = [&](int i) -> int { return i; };\n  auto right = [&](int\
+    \ i) -> int { return N + i; };\n  int z = N + M;\n  Dual_MCF X(N + M + 1);\n \
+    \ FOR(i, N) FOR(j, M) X.add_constraint(left(i), right(j), -C[i][j]);\n  FOR(i,\
+    \ N) X.add_constraint(left(i), z, 0);\n  FOR(j, M) X.add_constraint(z, right(j),\
+    \ 0);\n  FOR(i, N) X.add_b(left(i), A[i]), X.add_b(z, -A[i]);\n  FOR(i, M) X.add_b(right(i),\
+    \ -B[i]), X.add_b(z, B[i]);\n  auto [val, P] = X.solve();\n  print(val);\n}\n\n\
+    signed main() {\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc224/tasks/abc224_h\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"flow/dual_mcf.hpp\"\
+    \n\nvoid solve() {\n  LL(N, M);\n  VEC(ll, A, N);\n  VEC(ll, B, M);\n  VV(ll,\
+    \ C, N, M);\n  auto left = [&](int i) -> int { return i; };\n  auto right = [&](int\
+    \ i) -> int { return N + i; };\n  int z = N + M;\n  Dual_MCF X(N + M + 1);\n \
+    \ FOR(i, N) FOR(j, M) X.add_constraint(left(i), right(j), -C[i][j]);\n  FOR(i,\
+    \ N) X.add_constraint(left(i), z, 0);\n  FOR(j, M) X.add_constraint(z, right(j),\
+    \ 0);\n  FOR(i, N) X.add_b(left(i), A[i]), X.add_b(z, -A[i]);\n  FOR(i, M) X.add_b(right(i),\
+    \ -B[i]), X.add_b(z, B[i]);\n  auto [val, P] = X.solve();\n  print(val);\n}\n\n\
+    signed main() {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
+  - flow/dual_mcf.hpp
   - flow/bflow.hpp
   isVerificationFile: true
-  path: test/library_checker/graph/min_cost_b-flow.test.cpp
+  path: test_atcoder/abc224h.test.cpp
   requiredBy: []
   timestamp: '2023-05-03 04:52:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library_checker/graph/min_cost_b-flow.test.cpp
+documentation_of: test_atcoder/abc224h.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/graph/min_cost_b-flow.test.cpp
-- /verify/test/library_checker/graph/min_cost_b-flow.test.cpp.html
-title: test/library_checker/graph/min_cost_b-flow.test.cpp
+- /verify/test_atcoder/abc224h.test.cpp
+- /verify/test_atcoder/abc224h.test.cpp.html
+title: test_atcoder/abc224h.test.cpp
 ---

@@ -471,6 +471,9 @@ data:
       path: flow/cyclic_bflow.hpp
       title: flow/cyclic_bflow.hpp
     - icon: ':heavy_check_mark:'
+      path: flow/dual_mcf.hpp
+      title: flow/dual_mcf.hpp
+    - icon: ':heavy_check_mark:'
       path: flow/hungarian.hpp
       title: flow/hungarian.hpp
     - icon: ':warning:'
@@ -1102,7 +1105,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/connected_dp.hpp
       title: other/connected_dp.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: other/count_seq_with_fixed_xor_value.hpp
       title: other/count_seq_with_fixed_xor_value.hpp
     - icon: ':heavy_check_mark:'
@@ -3255,6 +3258,9 @@ data:
       path: test_atcoder/abc223h.test.cpp
       title: test_atcoder/abc223h.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test_atcoder/abc224h.test.cpp
+      title: test_atcoder/abc224h.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc226f.test.cpp
       title: test_atcoder/abc226f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3371,7 +3377,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc283f.test.cpp
       title: test_atcoder/abc283f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc288ex.test.cpp
       title: test_atcoder/abc288ex.test.cpp
     - icon: ':heavy_check_mark:'
