@@ -19,19 +19,22 @@ data:
   - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/count/count_bipartite.hpp
+    title: graph/count/count_bipartite.hpp
   - icon: ':warning:'
     path: graph/count/count_forest.hpp
     title: graph/count/count_forest.hpp
@@ -41,7 +44,7 @@ data:
   - icon: ':warning:'
     path: poly/composed_sum.hpp
     title: poly/composed_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -59,7 +62,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/product_of_pow_of_linear.hpp
     title: poly/product_of_pow_of_linear.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   - icon: ':heavy_check_mark:'
@@ -106,6 +109,9 @@ data:
     path: test/mytest/bell.test.cpp
     title: test/mytest/bell.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/count_bipartite.test.cpp
+    title: test/mytest/count_bipartite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/online_exp.test.cpp
     title: test/mytest/online_exp.test.cpp
   - icon: ':heavy_check_mark:'
@@ -114,6 +120,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/product_of_one_pm_xn.test.cpp
     title: test/mytest/product_of_one_pm_xn.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/sparse_pow_2d.test.cpp
+    title: test/mytest/sparse_pow_2d.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080.test.cpp
     title: test/yukicoder/1080.test.cpp
@@ -141,18 +150,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2097.test.cpp
     title: test/yukicoder/2097.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc222h.test.cpp
     title: test_atcoder/abc222h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc267h.test.cpp
     title: test_atcoder/abc267h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test_atcoder/abc288ex.test.cpp
+    title: test_atcoder/abc288ex.test.cpp
+  - icon: ':x:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -492,6 +504,7 @@ data:
   isVerificationFile: false
   path: poly/fps_exp.hpp
   requiredBy:
+  - graph/count/count_bipartite.hpp
   - graph/count/count_forest.hpp
   - seq/famous/surjection.hpp
   - seq/famous/stirling_number_2.hpp
@@ -504,10 +517,11 @@ data:
   - poly/composed_product.hpp
   - poly/fps_pow.hpp
   timestamp: '2023-04-27 17:33:19+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc222h.test.cpp
   - test_atcoder/abc267h.test.cpp
+  - test_atcoder/abc288ex.test.cpp
   - test_atcoder/arc153f.test.cpp
   - test/yukicoder/1392.test.cpp
   - test/yukicoder/1549.test.cpp
@@ -534,6 +548,8 @@ data:
   - test/mytest/online_exp.test.cpp
   - test/mytest/online_pow.test.cpp
   - test/mytest/bell.test.cpp
+  - test/mytest/count_bipartite.test.cpp
+  - test/mytest/sparse_pow_2d.test.cpp
 documentation_of: poly/fps_exp.hpp
 layout: document
 redirect_from:

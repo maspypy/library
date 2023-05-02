@@ -4,8 +4,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/count/count_bipartite.hpp
+    title: graph/count/count_bipartite.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_bipartite.test.cpp
+    title: test/mytest/count_bipartite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/powerquery.test.cpp
     title: test/mytest/powerquery.test.cpp
@@ -43,10 +49,12 @@ data:
   - alg/monoid/mul.hpp
   isVerificationFile: false
   path: ds/power_query.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/count/count_bipartite.hpp
   timestamp: '2022-12-05 18:15:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/count_bipartite.test.cpp
   - test/mytest/powerquery.test.cpp
 documentation_of: ds/power_query.hpp
 layout: document

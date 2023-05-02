@@ -9,6 +9,9 @@ data:
     path: ds/power_query.hpp
     title: ds/power_query.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/count/count_bipartite.hpp
+    title: graph/count/count_bipartite.hpp
+  - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
   - icon: ':heavy_check_mark:'
@@ -39,6 +42,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_bipartite.test.cpp
+    title: test/mytest/count_bipartite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
@@ -93,6 +99,7 @@ data:
   requiredBy:
   - alg/acted_monoid/add_mul.hpp
   - mod/mod_log.hpp
+  - graph/count/count_bipartite.hpp
   - seq/kth_term_of_p_recursive.hpp
   - seq/interpolate_poly_exp_sum.hpp
   - ds/power_query.hpp
@@ -116,6 +123,7 @@ data:
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/mytest/factorial_998.test.cpp
+  - test/mytest/count_bipartite.test.cpp
   - test/mytest/powerquery.test.cpp
 documentation_of: alg/monoid/mul.hpp
 layout: document

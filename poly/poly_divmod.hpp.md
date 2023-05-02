@@ -39,9 +39,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/polynomial_division.test.cpp
     title: test/library_checker/polynomial/polynomial_division.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test_atcoder/agc058d2.test.cpp
+    title: test_atcoder/agc058d2.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
@@ -332,8 +335,9 @@ data:
   requiredBy:
   - poly/poly_gcd.hpp
   timestamp: '2023-04-27 16:43:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test_atcoder/agc058d2.test.cpp
   - test/library_checker/polynomial/inv_of_polynomials.test.cpp
   - test/library_checker/polynomial/polynomial_division.test.cpp
 documentation_of: poly/poly_divmod.hpp

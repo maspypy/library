@@ -26,6 +26,9 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/count/count_bipartite.hpp
+    title: graph/count/count_bipartite.hpp
   - icon: ':warning:'
     path: graph/count/count_unicyclic.hpp
     title: graph/count/count_unicyclic.hpp
@@ -41,13 +44,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -62,7 +65,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/partial_frac_decomposition.hpp
     title: poly/partial_frac_decomposition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
   - icon: ':heavy_check_mark:'
@@ -89,7 +92,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/partition_number.hpp
     title: seq/famous/partition_number.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   - icon: ':heavy_check_mark:'
@@ -175,6 +178,9 @@ data:
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/count_bipartite.test.cpp
+    title: test/mytest/count_bipartite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
   - icon: ':heavy_check_mark:'
@@ -198,6 +204,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/slice_rational_fps.test.cpp
     title: test/mytest/slice_rational_fps.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/sparse_pow_2d.test.cpp
+    title: test/mytest/sparse_pow_2d.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
@@ -237,7 +246,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2243.test.cpp
     title: test/yukicoder/2243.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc222h.test.cpp
     title: test_atcoder/abc222h.test.cpp
   - icon: ':x:'
@@ -246,10 +255,16 @@ data:
   - icon: ':x:'
     path: test_atcoder/abc272_h.test.cpp
     title: test_atcoder/abc272_h.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc288ex.test.cpp
+    title: test_atcoder/abc288ex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc013e.test.cpp
     title: test_atcoder/agc013e.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test_atcoder/agc058d2.test.cpp
+    title: test_atcoder/agc058d2.test.cpp
+  - icon: ':x:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -553,6 +568,7 @@ data:
   isVerificationFile: false
   path: poly/fps_inv.hpp
   requiredBy:
+  - graph/count/count_bipartite.hpp
   - graph/count/count_unicyclic.hpp
   - linalg/implicit_matrix/vandermonde.hpp
   - seq/famous/partition_number.hpp
@@ -583,7 +599,9 @@ data:
   - test_atcoder/abc272_h.test.cpp
   - test_atcoder/abc222h.test.cpp
   - test_atcoder/arc154f.test.cpp
+  - test_atcoder/agc058d2.test.cpp
   - test_atcoder/agc013e.test.cpp
+  - test_atcoder/abc288ex.test.cpp
   - test_atcoder/abc267g.test.cpp
   - test_atcoder/arc153f.test.cpp
   - test/yukicoder/1392.test.cpp
@@ -630,7 +648,9 @@ data:
   - test/mytest/online_pow.test.cpp
   - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/bell.test.cpp
+  - test/mytest/count_bipartite.test.cpp
   - test/mytest/online_division.test.cpp
+  - test/mytest/sparse_pow_2d.test.cpp
   - test/mytest/online_inv.test.cpp
 documentation_of: poly/fps_inv.hpp
 layout: document

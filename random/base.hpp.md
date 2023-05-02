@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/rollinghash.hpp
     title: alg/monoid/rollinghash.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':warning:'
@@ -26,6 +26,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/count/count_bipartite.hpp
+    title: graph/count/count_bipartite.hpp
   - icon: ':heavy_check_mark:'
     path: graph/eulerwalk.hpp
     title: graph/eulerwalk.hpp
@@ -71,10 +74,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modular_subset_sum.hpp
     title: mod/modular_subset_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':heavy_check_mark:'
@@ -231,6 +234,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/conv_leq.test.cpp
     title: test/mytest/conv_leq.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_bipartite.test.cpp
+    title: test/mytest/count_bipartite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_indep_set.test.cpp
     title: test/mytest/count_indep_set.test.cpp
@@ -528,21 +534,30 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc222g.test.cpp
     title: test_atcoder/abc222g.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc227g.test.cpp
+    title: test_atcoder/abc227g.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc270_g.test.cpp
     title: test_atcoder/abc270_g.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc271d.test.cpp
+    title: test_atcoder/abc271d.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc273_e.test.cpp
     title: test_atcoder/abc273_e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc274_h.test.cpp
     title: test_atcoder/abc274_h.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/agc058d2.test.cpp
+    title: test_atcoder/agc058d2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc157a.test.cpp
     title: test_atcoder/arc157a.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -568,6 +583,7 @@ data:
   - mod/dynamic_modint.hpp
   - mod/mod_kth_root.hpp
   - mod/binomial.hpp
+  - graph/count/count_bipartite.hpp
   - graph/eulerwalk.hpp
   - graph/vs_to_es.hpp
   - graph/max_matching_size.hpp
@@ -598,11 +614,14 @@ data:
   - poly/multivar_convolution_cyclic.hpp
   - poly/fps_sqrt.hpp
   timestamp: '2022-10-23 11:21:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test_atcoder/abc271d.test.cpp
   - test_atcoder/abc273_e.test.cpp
+  - test_atcoder/agc058d2.test.cpp
   - test_atcoder/abc222g.test.cpp
   - test_atcoder/abc202_f.test.cpp
+  - test_atcoder/abc227g.test.cpp
   - test_atcoder/abc270_g.test.cpp
   - test_atcoder/arc157a.test.cpp
   - test_atcoder/abc151f.test.cpp
@@ -710,6 +729,7 @@ data:
   - test/mytest/rbst_monoid_2.test.cpp
   - test/mytest/manhattan_nns.test.cpp
   - test/mytest/max_max.test.cpp
+  - test/mytest/count_bipartite.test.cpp
   - test/mytest/splay_cm.test.cpp
   - test/mytest/online_division.test.cpp
   - test/mytest/min_min.test.cpp

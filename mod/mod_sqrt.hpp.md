@@ -1,10 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/count/count_bipartite.hpp
+    title: graph/count/count_bipartite.hpp
   - icon: ':heavy_check_mark:'
     path: nt/four_square.hpp
     title: nt/four_square.hpp
@@ -21,6 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_bipartite.test.cpp
+    title: test/mytest/count_bipartite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
@@ -61,6 +67,7 @@ data:
   isVerificationFile: false
   path: mod/mod_sqrt.hpp
   requiredBy:
+  - graph/count/count_bipartite.hpp
   - nt/four_square.hpp
   - poly/fps_sqrt.hpp
   timestamp: '2023-03-12 12:41:23+09:00'
@@ -70,6 +77,7 @@ data:
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
   - test/mytest/four_square.test.cpp
+  - test/mytest/count_bipartite.test.cpp
 documentation_of: mod/mod_sqrt.hpp
 layout: document
 redirect_from:

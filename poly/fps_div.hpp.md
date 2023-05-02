@@ -57,12 +57,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc013e.test.cpp
     title: test_atcoder/agc013e.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/agc058d2.test.cpp
+    title: test_atcoder/agc058d2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc154f.test.cpp
     title: test_atcoder/arc154f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/fps_div.hpp\"\n\n#line 2 \"poly/count_terms.hpp\"\n\
@@ -364,9 +367,10 @@ data:
   - poly/sum_of_power_of_roots.hpp
   - poly/composed_product.hpp
   timestamp: '2023-04-27 16:43:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/arc154f.test.cpp
+  - test_atcoder/agc058d2.test.cpp
   - test_atcoder/agc013e.test.cpp
   - test/yukicoder/1533.test.cpp
   - test/mytest/vandermonde.test.cpp

@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modular_subset_sum.hpp
     title: mod/modular_subset_sum.hpp
   - icon: ':heavy_check_mark:'
@@ -78,9 +78,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test_atcoder/abc271d.test.cpp
+    title: test_atcoder/abc271d.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint61.hpp\"\nstruct modint61 {\r\n  static constexpr\
@@ -158,8 +161,9 @@ data:
   - random/hash_vector.hpp
   - ds/unionfind/parallel_unionfind.hpp
   timestamp: '2023-03-28 23:05:08+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test_atcoder/abc271d.test.cpp
   - test/yukicoder/2231.test.cpp
   - test/yukicoder/578.test.cpp
   - test/yukicoder/1397.test.cpp

@@ -66,9 +66,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test_atcoder/agc058d2.test.cpp
+    title: test_atcoder/agc058d2.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -336,8 +339,9 @@ data:
   - seq/interpolate_linear_rec.hpp
   - seq/famous/bell_number_large.hpp
   timestamp: '2023-04-27 16:27:36+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test_atcoder/agc058d2.test.cpp
   - test/yukicoder/1844.test.cpp
   - test/yukicoder/578.test.cpp
   - test/yukicoder/1561.test.cpp

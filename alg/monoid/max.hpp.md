@@ -63,6 +63,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/686.test.cpp
     title: test/yukicoder/686.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc228f.test.cpp
+    title: test_atcoder/abc228f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc240ex.test.cpp
     title: test_atcoder/abc240ex.test.cpp
@@ -102,6 +105,7 @@ data:
   timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test_atcoder/abc228f.test.cpp
   - test_atcoder/abc270_f.test.cpp
   - test_atcoder/abc266h_2.test.cpp
   - test_atcoder/abc240ex.test.cpp

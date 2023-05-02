@@ -44,7 +44,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/summin_add.hpp
     title: alg/acted_monoid/summin_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/cumsum_2d.hpp
     title: ds/cumsum_2d.hpp
   - icon: ':heavy_check_mark:'
@@ -372,6 +372,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc190f.test.cpp
     title: test_atcoder/abc190f.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc228f.test.cpp
+    title: test_atcoder/abc228f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc234g.test.cpp
     title: test_atcoder/abc234g.test.cpp
@@ -393,9 +396,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc268_ex.test.cpp
     title: test_atcoder/abc268_ex.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test_atcoder/abc280f.test.cpp
+    title: test_atcoder/abc280f.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -448,17 +454,19 @@ data:
   - ds/doubling.hpp
   - ds/cumsum_2d.hpp
   timestamp: '2022-11-28 14:51:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc237g.test.cpp
   - test_atcoder/abc234g.test.cpp
   - test_atcoder/abc256ex2.test.cpp
+  - test_atcoder/abc228f.test.cpp
   - test_atcoder/abc174f.test.cpp
   - test_atcoder/abc190f.test.cpp
   - test_atcoder/abc127f_1.test.cpp
   - test_atcoder/abc266h_2.test.cpp
   - test_atcoder/abc256ex.test.cpp
   - test_atcoder/abc268_ex.test.cpp
+  - test_atcoder/abc280f.test.cpp
   - test_atcoder/abc241e.test.cpp
   - test/yukicoder/1038.test.cpp
   - test/yukicoder/789_2.test.cpp

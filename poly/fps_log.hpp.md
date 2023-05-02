@@ -29,10 +29,13 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/count/count_bipartite.hpp
+    title: graph/count/count_bipartite.hpp
   - icon: ':warning:'
     path: graph/count/count_unicyclic.hpp
     title: graph/count/count_unicyclic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -41,7 +44,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/product_of_f_rk_x.hpp
     title: poly/product_of_f_rk_x.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   - icon: ':heavy_check_mark:'
@@ -88,11 +91,17 @@ data:
     path: test/mytest/bell.test.cpp
     title: test/mytest/bell.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/count_bipartite.test.cpp
+    title: test/mytest/count_bipartite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/online_log.test.cpp
     title: test/mytest/online_log.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/online_pow.test.cpp
     title: test/mytest/online_pow.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/sparse_pow_2d.test.cpp
+    title: test/mytest/sparse_pow_2d.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1145.test.cpp
     title: test/yukicoder/1145.test.cpp
@@ -114,15 +123,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2097.test.cpp
     title: test/yukicoder/2097.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc222h.test.cpp
     title: test_atcoder/abc222h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test_atcoder/abc288ex.test.cpp
+    title: test_atcoder/abc288ex.test.cpp
+  - icon: ':x:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/fps_log.hpp\"\n\r\n#line 2 \"poly/count_terms.hpp\"\
@@ -427,6 +439,7 @@ data:
   isVerificationFile: false
   path: poly/fps_log.hpp
   requiredBy:
+  - graph/count/count_bipartite.hpp
   - graph/count/count_unicyclic.hpp
   - seq/famous/surjection.hpp
   - seq/famous/stirling_number_2.hpp
@@ -435,9 +448,10 @@ data:
   - poly/product_of_f_rk_x.hpp
   - poly/fps_pow.hpp
   timestamp: '2023-04-27 16:43:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc222h.test.cpp
+  - test_atcoder/abc288ex.test.cpp
   - test_atcoder/arc153f.test.cpp
   - test/yukicoder/1392.test.cpp
   - test/yukicoder/1549.test.cpp
@@ -460,6 +474,8 @@ data:
   - test/mytest/online_log.test.cpp
   - test/mytest/online_pow.test.cpp
   - test/mytest/bell.test.cpp
+  - test/mytest/count_bipartite.test.cpp
+  - test/mytest/sparse_pow_2d.test.cpp
 documentation_of: poly/fps_log.hpp
 layout: document
 redirect_from:

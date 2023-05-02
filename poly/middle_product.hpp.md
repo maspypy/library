@@ -69,6 +69,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc013e.test.cpp
     title: test_atcoder/agc013e.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/agc058d2.test.cpp
+    title: test_atcoder/agc058d2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -204,6 +207,7 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc272_h.test.cpp
+  - test_atcoder/agc058d2.test.cpp
   - test_atcoder/agc013e.test.cpp
   - test_atcoder/abc267g.test.cpp
   - test/yukicoder/2231.test.cpp

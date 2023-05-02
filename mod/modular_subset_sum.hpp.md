@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -12,9 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_1.test.cpp
     title: test/yukicoder/4_1.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test_atcoder/abc271d.test.cpp
+    title: test_atcoder/abc271d.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -108,11 +111,12 @@ data:
     \ T2, 0, mod);\r\n        for (auto&& d: diff) {\r\n          if (can(d)) continue;\r\
     \n          par[d] = idx;\r\n          T1.set(d, 1);\r\n          T2.set((d +\
     \ x) % L, 1);\r\n          T2.set((L + d + x - mod) % L, 1);\r\n        }\r\n\
-    \      }\r\n    }\r\n  }\r\n\r\n  bool can(int x) { return (x == 0 || par[x] !=\
-    \ -1); }\r\n  bool operator[](int x) { return can(x); }\r\n  vc<int> restore(int\
-    \ x) {\r\n    vc<int> res;\r\n    while (x) {\r\n      int i = par[x];\r\n   \
-    \   res.eb(i);\r\n      x -= vals[i];\r\n      if (x < 0) x += mod;\r\n    }\r\
-    \n    reverse(all(res));\r\n    return res;\r\n  }\r\n};\r\n"
+    \      }\r\n    }\r\n  }\r\n\r\n  bool can(int x) {\r\n    if (x >= mod) return\
+    \ false;\r\n    return (x == 0 || par[x] != -1);\r\n  }\r\n\r\n  bool operator[](int\
+    \ x) { return can(x); }\r\n  vc<int> restore(int x) {\r\n    assert(can(x));\r\
+    \n    vc<int> res;\r\n    while (x) {\r\n      int i = par[x];\r\n      res.eb(i);\r\
+    \n      x -= vals[i];\r\n      if (x < 0) x += mod;\r\n    }\r\n    reverse(all(res));\r\
+    \n    return res;\r\n  }\r\n};\r\n"
   code: "#include \"random/base.hpp\"\r\n#include \"mod/modint61.hpp\"\r\n\r\n// Faster\
     \ Deterministic Modular Subset Sum. arXiv preprint arXiv:2012.06062.\r\n// modular\
     \ subset sum \u306E\u305F\u3081\u306E\u3001\u30B7\u30D5\u30C8\u4ED8\u304D\u30BB\
@@ -168,20 +172,22 @@ data:
     \ T2, 0, mod);\r\n        for (auto&& d: diff) {\r\n          if (can(d)) continue;\r\
     \n          par[d] = idx;\r\n          T1.set(d, 1);\r\n          T2.set((d +\
     \ x) % L, 1);\r\n          T2.set((L + d + x - mod) % L, 1);\r\n        }\r\n\
-    \      }\r\n    }\r\n  }\r\n\r\n  bool can(int x) { return (x == 0 || par[x] !=\
-    \ -1); }\r\n  bool operator[](int x) { return can(x); }\r\n  vc<int> restore(int\
-    \ x) {\r\n    vc<int> res;\r\n    while (x) {\r\n      int i = par[x];\r\n   \
-    \   res.eb(i);\r\n      x -= vals[i];\r\n      if (x < 0) x += mod;\r\n    }\r\
-    \n    reverse(all(res));\r\n    return res;\r\n  }\r\n};\r\n"
+    \      }\r\n    }\r\n  }\r\n\r\n  bool can(int x) {\r\n    if (x >= mod) return\
+    \ false;\r\n    return (x == 0 || par[x] != -1);\r\n  }\r\n\r\n  bool operator[](int\
+    \ x) { return can(x); }\r\n  vc<int> restore(int x) {\r\n    assert(can(x));\r\
+    \n    vc<int> res;\r\n    while (x) {\r\n      int i = par[x];\r\n      res.eb(i);\r\
+    \n      x -= vals[i];\r\n      if (x < 0) x += mod;\r\n    }\r\n    reverse(all(res));\r\
+    \n    return res;\r\n  }\r\n};\r\n"
   dependsOn:
   - random/base.hpp
   - mod/modint61.hpp
   isVerificationFile: false
   path: mod/modular_subset_sum.hpp
   requiredBy: []
-  timestamp: '2023-03-28 23:05:08+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-05-02 17:52:29+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test_atcoder/abc271d.test.cpp
   - test/yukicoder/4_1.test.cpp
 documentation_of: mod/modular_subset_sum.hpp
 layout: document

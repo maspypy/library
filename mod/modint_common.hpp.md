@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/count/count_bipartite.hpp
+    title: graph/count/count_bipartite.hpp
   - icon: ':warning:'
     path: graph/count/count_forest.hpp
     title: graph/count/count_forest.hpp
@@ -38,13 +41,16 @@ data:
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
+  - icon: ':warning:'
+    path: new_poly/base.hpp
+    title: new_poly/base.hpp
   - icon: ':heavy_check_mark:'
     path: nt/four_square.hpp
     title: nt/four_square.hpp
   - icon: ':heavy_check_mark:'
     path: nt/multiplicative_convolution_mod2n.hpp
     title: nt/multiplicative_convolution_mod2n.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
   - icon: ':heavy_check_mark:'
@@ -80,19 +86,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_composition.hpp
     title: poly/fps_composition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
   - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -134,7 +140,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/partial_frac_decomposition.hpp
     title: poly/partial_frac_decomposition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
   - icon: ':heavy_check_mark:'
@@ -194,7 +200,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   - icon: ':heavy_check_mark:'
@@ -478,6 +484,9 @@ data:
     path: test/mytest/conv_leq.test.cpp
     title: test/mytest/conv_leq.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/count_bipartite.test.cpp
+    title: test/mytest/count_bipartite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_indep_set.test.cpp
     title: test/mytest/count_indep_set.test.cpp
   - icon: ':heavy_check_mark:'
@@ -555,6 +564,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/slice_rational_fps.test.cpp
     title: test/mytest/slice_rational_fps.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/sparse_pow_2d.test.cpp
+    title: test/mytest/sparse_pow_2d.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/splay.test.cpp
     title: test/mytest/splay.test.cpp
@@ -819,7 +831,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc222g.test.cpp
     title: test_atcoder/abc222g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc222h.test.cpp
     title: test_atcoder/abc222h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -828,6 +840,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc226f.test.cpp
     title: test_atcoder/abc226f.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc227g.test.cpp
+    title: test_atcoder/abc227g.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc234g.test.cpp
     title: test_atcoder/abc234g.test.cpp
@@ -855,13 +870,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc276_g_2.test.cpp
     title: test_atcoder/abc276_g_2.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc288ex.test.cpp
+    title: test_atcoder/abc288ex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc013e.test.cpp
     title: test_atcoder/agc013e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d.test.cpp
     title: test_atcoder/agc058d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test_atcoder/agc058d2.test.cpp
+    title: test_atcoder/agc058d2.test.cpp
+  - icon: ':x:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -954,6 +975,7 @@ data:
   - mod/modint.hpp
   - mod/mod_log.hpp
   - mod/dynamic_modint.hpp
+  - graph/count/count_bipartite.hpp
   - graph/count/count_unicyclic.hpp
   - graph/count/count_independent_set.hpp
   - graph/count/count_forest.hpp
@@ -965,6 +987,7 @@ data:
   - linalg/implicit_matrix/vandermonde.hpp
   - linalg/implicit_matrix/pascal.hpp
   - linalg/mat_pow.hpp
+  - new_poly/base.hpp
   - string/wildcard_pattern_matching.hpp
   - seq/interpolate_linear_rec.hpp
   - seq/kth_term_of_p_recursive.hpp
@@ -1034,11 +1057,13 @@ data:
   - test_atcoder/arc154f.test.cpp
   - test_atcoder/agc058d.test.cpp
   - test_atcoder/abc269ex.test.cpp
+  - test_atcoder/agc058d2.test.cpp
   - test_atcoder/abc200f.test.cpp
   - test_atcoder/abc249_ex.test.cpp
   - test_atcoder/abc222g.test.cpp
   - test_atcoder/abc152e.test.cpp
   - test_atcoder/abc202_f.test.cpp
+  - test_atcoder/abc227g.test.cpp
   - test_atcoder/abc212h.test.cpp
   - test_atcoder/abc276_g.test.cpp
   - test_atcoder/abc270_g.test.cpp
@@ -1046,6 +1071,7 @@ data:
   - test_atcoder/abc222h_2.test.cpp
   - test_atcoder/abc276_g_2.test.cpp
   - test_atcoder/abc267h.test.cpp
+  - test_atcoder/abc288ex.test.cpp
   - test_atcoder/abc267g.test.cpp
   - test_atcoder/arc153f.test.cpp
   - test/yukicoder/1493.test.cpp
@@ -1231,8 +1257,10 @@ data:
   - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/rbst_monoid_2.test.cpp
   - test/mytest/bell.test.cpp
+  - test/mytest/count_bipartite.test.cpp
   - test/mytest/splay_cm.test.cpp
   - test/mytest/online_division.test.cpp
+  - test/mytest/sparse_pow_2d.test.cpp
   - test/mytest/splay.test.cpp
   - test/mytest/multinomial.test.cpp
   - test/mytest/enumerate_products.test.cpp
