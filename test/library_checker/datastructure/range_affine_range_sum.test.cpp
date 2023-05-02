@@ -2,33 +2,32 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
+#include "mod/modint.hpp"
 #include "alg/acted_monoid/sum_affine.hpp"
 #include "ds/segtree/lazy_segtree.hpp"
-#include "mod/modint.hpp"
 
 using mint = modint998;
 using AM = ActedMonoid_Sum_Affine<mint>;
 
 void solve() {
   LL(N, Q);
-  VEC(mint, A, N);
-  Lazy_SegTree<AM> seg(A);
-
+  Lazy_SegTree<AM> seg(N, [&](int i) -> mint {
+    INT(a);
+    return a;
+  });
   FOR(Q) {
-    LL(t);
+    INT(t);
     if (t == 0) {
-      LL(l, r, a, b);
-      seg.apply(l, r, {a, b});
-    }
-    elif (t == 1) {
-      LL(l, r);
-      print(seg.prod(l, r));
+      INT(L, R, b, c);
+      seg.apply(L, R, {b, c});
+    } else {
+      INT(L, R);
+      print(seg.prod(L, R));
     }
   }
 }
 
 signed main() {
   solve();
-
   return 0;
 }
