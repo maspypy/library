@@ -146,9 +146,14 @@ struct Modular_Subset_Sum {
     }
   }
 
-  bool can(int x) { return (x == 0 || par[x] != -1); }
+  bool can(int x) {
+    if (x >= mod) return false;
+    return (x == 0 || par[x] != -1);
+  }
+
   bool operator[](int x) { return can(x); }
   vc<int> restore(int x) {
+    assert(can(x));
     vc<int> res;
     while (x) {
       int i = par[x];
