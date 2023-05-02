@@ -14,7 +14,7 @@ struct SubTree_Diameter {
   vc<tuple<int, int, WT>> dp, dp_1, dp_2;
 
   SubTree_Diameter(TREE& tree) : tree(tree) {
-    int N = tree.G.N;
+    int N = tree.N;
     Data unit = {-1, -1, -1, -1, -1};
     auto f_ee = [&](Data A, Data B) -> Data {
       if (A.diam == -1) return B;
