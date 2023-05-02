@@ -24,9 +24,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
-    title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_reverse_range_sum.test.cpp
     title: test/library_checker/datastructure/range_reverse_range_sum.test.cpp
@@ -286,7 +283,6 @@ data:
   - test_atcoder/arc153b.test.cpp
   - test/yukicoder/1441.test.cpp
   - test/aoj/1508.test.cpp
-  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
   - test/library_checker/datastructure/range_reverse_range_sum.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/mytest/cf702_F_splay.test.cpp

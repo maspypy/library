@@ -1762,9 +1762,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
       title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-    - icon: ':x:'
-      path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
-      title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay_fast.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
       title: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
