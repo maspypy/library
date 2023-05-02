@@ -106,7 +106,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid/add_tuple_3.hpp
       title: alg/monoid/add_tuple_3.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/affine.hpp
       title: alg/monoid/affine.hpp
     - icon: ':heavy_check_mark:'
@@ -210,7 +210,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/bit_vector.hpp
       title: ds/bit_vector.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/cumsum_2d.hpp
       title: ds/cumsum_2d.hpp
     - icon: ':heavy_check_mark:'
@@ -222,7 +222,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
     - icon: ':heavy_check_mark:'
@@ -364,7 +364,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/segtree/segtree_2d.hpp
       title: ds/segtree/segtree_2d.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/segtree_2d_dense.hpp
       title: ds/segtree/segtree_2d_dense.hpp
     - icon: ':heavy_check_mark:'
@@ -895,7 +895,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/implicit_matrix/min_poly.hpp
       title: linalg/implicit_matrix/min_poly.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: linalg/implicit_matrix/pascal.hpp
       title: linalg/implicit_matrix/pascal.hpp
     - icon: ':heavy_check_mark:'
@@ -1031,7 +1031,7 @@ data:
     - icon: ':question:'
       path: nt/factor.hpp
       title: nt/factor.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: nt/factor_interval.hpp
       title: nt/factor_interval.hpp
     - icon: ':heavy_check_mark:'
@@ -1798,7 +1798,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
       title: test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
       title: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3242,7 +3242,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc222g.test.cpp
       title: test_atcoder/abc222g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc222h.test.cpp
       title: test_atcoder/abc222h.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3257,10 +3257,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc226f.test.cpp
       title: test_atcoder/abc226f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc227g.test.cpp
       title: test_atcoder/abc227g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc228f.test.cpp
       title: test_atcoder/abc228f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3323,7 +3323,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc266h_2.test.cpp
       title: test_atcoder/abc266h_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc267g.test.cpp
       title: test_atcoder/abc267g.test.cpp
     - icon: ':heavy_check_mark:'

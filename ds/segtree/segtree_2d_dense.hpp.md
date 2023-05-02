@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2842_2.test.cpp
     title: test/aoj/2842_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc228f.test.cpp
     title: test_atcoder/abc228f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree_2d_dense.hpp\"\n\ntemplate <class Monoid>\n\
@@ -69,7 +69,7 @@ data:
   path: ds/segtree/segtree_2d_dense.hpp
   requiredBy: []
   timestamp: '2023-01-31 19:51:20+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc228f.test.cpp
   - test/aoj/2842_2.test.cpp
