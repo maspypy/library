@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
+  - icon: ':warning:'
+    path: mod/q_analogue.hpp
+    title: mod/q_analogue.hpp
   - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
@@ -76,6 +79,7 @@ data:
   isVerificationFile: false
   path: mod/all_inverse.hpp
   requiredBy:
+  - mod/q_analogue.hpp
   - linalg/implicit_matrix/vandermonde.hpp
   - poly/multipoint.hpp
   - poly/partial_frac_decomposition.hpp

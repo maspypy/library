@@ -140,9 +140,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_diameter.hpp
     title: graph/tree_diameter.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
+  - icon: ':warning:'
+    path: graph/tree_dp/subtree_depth_sum.hpp
+    title: graph/tree_dp/subtree_depth_sum.hpp
   - icon: ':warning:'
     path: graph/tree_dp/subtree_diameter.hpp
     title: graph/tree_dp/subtree_diameter.hpp
@@ -456,6 +459,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc209e.test.cpp
     title: test_atcoder/abc209e.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc220f.test.cpp
+    title: test_atcoder/abc220f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc223d.test.cpp
     title: test_atcoder/abc223d.test.cpp
@@ -647,6 +653,7 @@ data:
   - graph/maximum_independent_set_weighted.hpp
   - graph/two_edge_component.hpp
   - graph/tree_dp/subtree_diameter.hpp
+  - graph/tree_dp/subtree_depth_sum.hpp
   - graph/tree_dp/tree_dp.hpp
   - graph/tree_dp/rerooting_dp.hpp
   - graph/tree_dp/subtree_hash.hpp
@@ -661,6 +668,7 @@ data:
   timestamp: '2023-04-09 03:51:17+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test_atcoder/abc220f.test.cpp
   - test_atcoder/abc283f.test.cpp
   - test_atcoder/abc160f.test.cpp
   - test_atcoder/abc223d.test.cpp

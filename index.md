@@ -804,9 +804,12 @@ data:
       title: graph/shortest_path/warshall_floyd.hpp
   - name: graph/tree_dp
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/tree_dp/rerooting_dp.hpp
       title: graph/tree_dp/rerooting_dp.hpp
+    - icon: ':warning:'
+      path: graph/tree_dp/subtree_depth_sum.hpp
+      title: graph/tree_dp/subtree_depth_sum.hpp
     - icon: ':warning:'
       path: graph/tree_dp/subtree_diameter.hpp
       title: graph/tree_dp/subtree_diameter.hpp
@@ -980,6 +983,9 @@ data:
     - icon: ':question:'
       path: mod/primitive_root.hpp
       title: mod/primitive_root.hpp
+    - icon: ':warning:'
+      path: mod/q_analogue.hpp
+      title: mod/q_analogue.hpp
     - icon: ':heavy_check_mark:'
       path: mod/range_freq_of_linear.hpp
       title: mod/range_freq_of_linear.hpp
@@ -2453,6 +2459,9 @@ data:
       path: test/mytest/product_of_one_pm_xn.test.cpp
       title: test/mytest/product_of_one_pm_xn.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/mytest/qbinom.test.cpp
+      title: test/mytest/qbinom.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/mytest/qoj5443.test.cpp
       title: test/mytest/qoj5443.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3227,6 +3236,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc217h.test.cpp
       title: test_atcoder/abc217h.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/abc220f.test.cpp
+      title: test_atcoder/abc220f.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc222g.test.cpp
       title: test_atcoder/abc222g.test.cpp

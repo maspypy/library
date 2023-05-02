@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
   _extendedRequiredBy: []
@@ -178,9 +178,9 @@ data:
     \u51FA\u3066\u3044\u308B\u6700\u5927\u30D1\u30B9\u306E\u3001\u9577\u3055\u3001\
     \u7AEF\u70B9\n    WT path;\n    int end;\n  };\n\n  TREE& tree;\n  vc<tuple<int,\
     \ int, WT>> dp, dp_1, dp_2;\n\n  SubTree_Diameter(TREE& tree) : tree(tree) {\n\
-    \    int N = tree.G.N;\n    Data unit = {-1, -1, -1, -1, -1};\n    auto f_ee =\
-    \ [&](Data A, Data B) -> Data {\n      if (A.diam == -1) return B;\n      if (B.diam\
-    \ == -1) return A;\n      if (A.diam < B.diam) swap(A, B);\n      if (chmax(A.diam,\
+    \    int N = tree.N;\n    Data unit = {-1, -1, -1, -1, -1};\n    auto f_ee = [&](Data\
+    \ A, Data B) -> Data {\n      if (A.diam == -1) return B;\n      if (B.diam ==\
+    \ -1) return A;\n      if (A.diam < B.diam) swap(A, B);\n      if (chmax(A.diam,\
     \ A.path + B.path)) { A.left = A.end, A.right = B.end; }\n      if (chmax(A.path,\
     \ B.path)) A.end = B.end;\n      return A;\n    };\n    auto f_ev = [&](Data A,\
     \ int v) -> Data {\n      if (A.diam == -1) {\n        A.diam = 0, A.left = v,\
@@ -204,11 +204,11 @@ data:
     \   int left, right;\n    // \u6839\u304B\u3089\u51FA\u3066\u3044\u308B\u6700\u5927\
     \u30D1\u30B9\u306E\u3001\u9577\u3055\u3001\u7AEF\u70B9\n    WT path;\n    int\
     \ end;\n  };\n\n  TREE& tree;\n  vc<tuple<int, int, WT>> dp, dp_1, dp_2;\n\n \
-    \ SubTree_Diameter(TREE& tree) : tree(tree) {\n    int N = tree.G.N;\n    Data\
-    \ unit = {-1, -1, -1, -1, -1};\n    auto f_ee = [&](Data A, Data B) -> Data {\n\
-    \      if (A.diam == -1) return B;\n      if (B.diam == -1) return A;\n      if\
-    \ (A.diam < B.diam) swap(A, B);\n      if (chmax(A.diam, A.path + B.path)) { A.left\
-    \ = A.end, A.right = B.end; }\n      if (chmax(A.path, B.path)) A.end = B.end;\n\
+    \ SubTree_Diameter(TREE& tree) : tree(tree) {\n    int N = tree.N;\n    Data unit\
+    \ = {-1, -1, -1, -1, -1};\n    auto f_ee = [&](Data A, Data B) -> Data {\n   \
+    \   if (A.diam == -1) return B;\n      if (B.diam == -1) return A;\n      if (A.diam\
+    \ < B.diam) swap(A, B);\n      if (chmax(A.diam, A.path + B.path)) { A.left =\
+    \ A.end, A.right = B.end; }\n      if (chmax(A.path, B.path)) A.end = B.end;\n\
     \      return A;\n    };\n    auto f_ev = [&](Data A, int v) -> Data {\n     \
     \ if (A.diam == -1) {\n        A.diam = 0, A.left = v, A.right = v, A.path = 0,\
     \ A.end = v;\n      }\n      return A;\n    };\n    auto f_ve = [&](Data A, const\
@@ -231,7 +231,7 @@ data:
   isVerificationFile: false
   path: graph/tree_dp/subtree_diameter.hpp
   requiredBy: []
-  timestamp: '2023-04-09 11:34:33+09:00'
+  timestamp: '2023-05-02 23:43:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree_dp/subtree_diameter.hpp

@@ -7,64 +7,32 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: graph/tree_dp/subtree_depth_sum.hpp
-    title: graph/tree_dp/subtree_depth_sum.hpp
-  - icon: ':warning:'
-    path: graph/tree_dp/subtree_diameter.hpp
-    title: graph/tree_dp/subtree_diameter.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/tree_dp/subtree_hash.hpp
-    title: graph/tree_dp/subtree_hash.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/classify_tree.test.cpp
-    title: test/library_checker/graph/classify_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/QOJ5445.test.cpp
-    title: test/mytest/QOJ5445.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1295.test.cpp
-    title: test/yukicoder/1295.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1418.test.cpp
-    title: test/yukicoder/1418.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1494.test.cpp
-    title: test/yukicoder/1494.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1718.test.cpp
-    title: test/yukicoder/1718.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1976.test.cpp
-    title: test/yukicoder/1976.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test_atcoder/abc160f.test.cpp
-    title: test_atcoder/abc160f.test.cpp
-  - icon: ':x:'
-    path: test_atcoder/abc220f.test.cpp
-    title: test_atcoder/abc220f.test.cpp
+  - icon: ':question:'
+    path: graph/tree_dp/rerooting_dp.hpp
+    title: graph/tree_dp/rerooting_dp.hpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: true
-  _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _pathExtension: cpp
+  _verificationStatusIcon: ':x:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
-  bundledCode: "#line 1 \"graph/tree_dp/rerooting_dp.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\
-    \n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n\
-    };\n\ntemplate <typename T = int, bool directed = false>\nstruct Graph {\n  int\
-    \ N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
-    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg,\
-    \ vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class OutgoingEdges {\n  public:\n\
-    \    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n   \
-    \ const edge_type* begin() const {\n      if (l == r) { return 0; }\n      return\
-    \ &G->csr_edges[l];\n    }\n\n    const edge_type* end() const {\n      if (l\
-    \ == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n  private:\n \
-    \   const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared;\
-    \ }\n  constexpr bool is_directed() { return directed; }\n\n  Graph() : N(0),\
-    \ M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void\
-    \ build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n \
-    \   indptr.clear();\n    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n\
+  bundledCode: "#line 1 \"test_atcoder/abc220f.test.cpp\"\n\n#line 1 \"graph/tree_dp/rerooting_dp.hpp\"\
+    \n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int\
+    \ frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool directed\
+    \ = false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n  using edge_type\
+    \ = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n  vector<edge_type>\
+    \ csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class\
+    \ OutgoingEdges {\n  public:\n    OutgoingEdges(const Graph* G, int l, int r)\
+    \ : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n      if (l ==\
+    \ r) { return 0; }\n      return &G->csr_edges[l];\n    }\n\n    const edge_type*\
+    \ end() const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n\
+    \    }\n\n  private:\n    const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared()\
+    \ { return prepared; }\n  constexpr bool is_directed() { return directed; }\n\n\
+    \  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
+    \ {}\n\n  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
+    \    indptr.clear();\n    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n\
     \    vc_outdeg.clear();\n  }\n\n  void add(int frm, int to, T cost = 1, int i\
     \ = -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <= to && to < N);\n\
     \    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n\
@@ -204,64 +172,52 @@ data:
     \ (*tree.G_ptr)[e.to]) {\r\n          if (f.to == par[e.to]) continue;\r\n   \
     \       dp_2[f.to] = f_ee(dp_2[f.to], x);\r\n          dp_2[f.to] = f_ev(dp_2[f.to],\
     \ e.to);\r\n        }\r\n        x = f_ee(dp[e.to], x);\r\n        dp[e.to] =\
-    \ f_ev(x, e.to);\r\n      }\r\n    }\r\n  }\r\n};\r\n"
-  code: "\r\n#include \"graph/base.hpp\"\r\n#include \"graph/tree.hpp\"\r\n\r\ntemplate\
-    \ <typename TREE, typename Data>\r\nstruct Rerooting_dp {\r\n  TREE& tree;\r\n\
-    \  vc<Data> dp_1; // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\u5206\u6728\
-    \ v\r\n  vc<Data> dp_2; // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\u5206\
-    \u6728 p\r\n  vc<Data> dp;   // \u3059\u3079\u3066\u306E v \u306B\u5BFE\u3057\u3066\
-    \u3001v \u3092\u6839\u3068\u3059\u308B\u90E8\u5206\u6728\r\n\r\n  template <typename\
-    \ F1, typename F2, typename F3>\r\n  Rerooting_dp(TREE& tree, F1 f_ee, F2 f_ev,\
-    \ F3 f_ve, const Data unit)\r\n      : tree(tree) {\r\n    assert(!(*tree.G_ptr).is_directed());\r\
-    \n    build(f_ee, f_ev, f_ve, unit);\r\n  }\r\n\r\n  // v \u3092\u6839\u3068\u3057\
-    \u305F\u3068\u304D\u306E full tree\r\n  Data operator[](int v) { return dp[v];\
-    \ }\r\n\r\n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\
-    \u6728 v\r\n  Data get(int root, int v) {\r\n    if (root == v) return dp[v];\r\
-    \n    if (!tree.in_subtree(root, v)) { return dp_1[v]; }\r\n    int w = tree.jump(v,\
-    \ root, 1);\r\n    return dp_2[w];\r\n  }\r\n\r\n  template <typename F1, typename\
-    \ F2, typename F3>\r\n  void build(F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)\
-    \ {\r\n    int N = tree.N;\r\n    dp_1.assign(N, unit);\r\n    dp_2.assign(N,\
-    \ unit);\r\n    dp.assign(N, unit);\r\n    auto& V = tree.V;\r\n    auto& par\
-    \ = tree.parent;\r\n\r\n    FOR_R(i, N) {\r\n      int v = V[i];\r\n      auto\
-    \ ch = tree.collect_child(v);\r\n      int n = len(ch);\r\n      vc<Data> Xl(n\
-    \ + 1, unit), Xr(n + 1, unit);\r\n      FOR(i, n) Xl[i + 1] = f_ee(Xl[i], dp_2[ch[i]]);\r\
-    \n      FOR_R(i, n) Xr[i] = f_ee(dp_2[ch[i]], Xr[i + 1]);\r\n      FOR(i, n) dp_2[ch[i]]\
-    \ = f_ee(Xl[i], Xr[i + 1]);\r\n      dp[v] = Xr[0];\r\n      dp_1[v] = f_ev(dp[v],\
-    \ v);\r\n      for (auto&& e: (*tree.G_ptr)[v]) {\r\n        if (e.to == par[v])\
-    \ { dp_2[v] = f_ve(dp_1[v], e); }\r\n      }\r\n    }\r\n    {\r\n      int v\
-    \ = V[0];\r\n      dp[v] = f_ev(dp[v], v);\r\n      for (auto&& e: (*tree.G_ptr)[v])\
-    \ dp_2[e.to] = f_ev(dp_2[e.to], v);\r\n    }\r\n    FOR(i, N) {\r\n      int v\
-    \ = V[i];\r\n      for (auto&& e: (*tree.G_ptr)[v]) {\r\n        if (e.to == par[v])\
-    \ continue;\r\n        Data x = f_ve(dp_2[e.to], e);\r\n        for (auto&& f:\
-    \ (*tree.G_ptr)[e.to]) {\r\n          if (f.to == par[e.to]) continue;\r\n   \
-    \       dp_2[f.to] = f_ee(dp_2[f.to], x);\r\n          dp_2[f.to] = f_ev(dp_2[f.to],\
-    \ e.to);\r\n        }\r\n        x = f_ee(dp[e.to], x);\r\n        dp[e.to] =\
-    \ f_ev(x, e.to);\r\n      }\r\n    }\r\n  }\r\n};\r\n"
+    \ f_ev(x, e.to);\r\n      }\r\n    }\r\n  }\r\n};\r\n#line 3 \"test_atcoder/abc220f.test.cpp\"\
+    \n\n// sum_v dist(root, v)\ntemplate <typename TREE, typename WT = ll>\nstruct\
+    \ SubTree_DepthSum {\n  // num_point, dist_sum\n  using Data = pair<int, WT>;\n\
+    \  TREE& tree;\n  vc<Data> dp, dp_1, dp_2;\n\n  SubTree_DepthSum(TREE& tree) :\
+    \ tree(tree) {\n    int N = tree.N;\n    Data unit = {0, 0};\n    auto f_ee =\
+    \ [&](Data A, Data B) -> Data {\n      return {A.fi + B.fi, A.se + B.se};\n  \
+    \  };\n    auto f_ev = [&](Data A, int v) -> Data { return {A.fi + 1, A.se}; };\n\
+    \    auto f_ve = [&](Data A, const auto& e) -> Data {\n      return {A.fi, A.se\
+    \ + A.fi * e.cost};\n    };\n\n    Rerooting_dp<decltype(tree), Data> DP(tree,\
+    \ f_ee, f_ev, f_ve, unit);\n    dp = DP.dp, dp_1 = DP.dp_1, dp_2 = DP.dp_2;\n\
+    \  }\n\n  // (cnt, sum)\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\
+    \ full tree\n  pair<int, WT> operator[](int v) { return dp[v]; }\n\n  // (cnt,\
+    \ sum)\n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\
+    \u6728 v\n  pair<int, WT> get(int root, int v) {\n    if (root == v) return dp[v];\n\
+    \    if (!tree.in_subtree(root, v)) { return dp_1[v]; }\n    int w = tree.jump(v,\
+    \ root, 1);\n    return dp_2[w];\n  }\n};\n"
+  code: "\n#include \"graph/tree_dp/rerooting_dp.hpp\"\n\n// sum_v dist(root, v)\n\
+    template <typename TREE, typename WT = ll>\nstruct SubTree_DepthSum {\n  // num_point,\
+    \ dist_sum\n  using Data = pair<int, WT>;\n  TREE& tree;\n  vc<Data> dp, dp_1,\
+    \ dp_2;\n\n  SubTree_DepthSum(TREE& tree) : tree(tree) {\n    int N = tree.N;\n\
+    \    Data unit = {0, 0};\n    auto f_ee = [&](Data A, Data B) -> Data {\n    \
+    \  return {A.fi + B.fi, A.se + B.se};\n    };\n    auto f_ev = [&](Data A, int\
+    \ v) -> Data { return {A.fi + 1, A.se}; };\n    auto f_ve = [&](Data A, const\
+    \ auto& e) -> Data {\n      return {A.fi, A.se + A.fi * e.cost};\n    };\n\n \
+    \   Rerooting_dp<decltype(tree), Data> DP(tree, f_ee, f_ev, f_ve, unit);\n   \
+    \ dp = DP.dp, dp_1 = DP.dp_1, dp_2 = DP.dp_2;\n  }\n\n  // (cnt, sum)\n  // v\
+    \ \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E full tree\n  pair<int, WT>\
+    \ operator[](int v) { return dp[v]; }\n\n  // (cnt, sum)\n  // root \u3092\u6839\
+    \u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\u6728 v\n  pair<int, WT> get(int\
+    \ root, int v) {\n    if (root == v) return dp[v];\n    if (!tree.in_subtree(root,\
+    \ v)) { return dp_1[v]; }\n    int w = tree.jump(v, root, 1);\n    return dp_2[w];\n\
+    \  }\n};"
   dependsOn:
+  - graph/tree_dp/rerooting_dp.hpp
   - graph/base.hpp
   - graph/tree.hpp
-  isVerificationFile: false
-  path: graph/tree_dp/rerooting_dp.hpp
-  requiredBy:
-  - graph/tree_dp/subtree_diameter.hpp
-  - graph/tree_dp/subtree_depth_sum.hpp
-  - graph/tree_dp/subtree_hash.hpp
-  timestamp: '2023-04-09 11:34:33+09:00'
-  verificationStatus: LIBRARY_SOME_WA
-  verifiedWith:
-  - test_atcoder/abc220f.test.cpp
-  - test_atcoder/abc160f.test.cpp
-  - test/yukicoder/1295.test.cpp
-  - test/yukicoder/1418.test.cpp
-  - test/yukicoder/1494.test.cpp
-  - test/yukicoder/1976.test.cpp
-  - test/yukicoder/1718.test.cpp
-  - test/library_checker/graph/classify_tree.test.cpp
-  - test/mytest/QOJ5445.test.cpp
-documentation_of: graph/tree_dp/rerooting_dp.hpp
+  isVerificationFile: true
+  path: test_atcoder/abc220f.test.cpp
+  requiredBy: []
+  timestamp: '2023-05-02 23:43:35+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
+  verifiedWith: []
+documentation_of: test_atcoder/abc220f.test.cpp
 layout: document
 redirect_from:
-- /library/graph/tree_dp/rerooting_dp.hpp
-- /library/graph/tree_dp/rerooting_dp.hpp.html
-title: graph/tree_dp/rerooting_dp.hpp
+- /verify/test_atcoder/abc220f.test.cpp
+- /verify/test_atcoder/abc220f.test.cpp.html
+title: test_atcoder/abc220f.test.cpp
 ---
