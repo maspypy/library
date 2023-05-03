@@ -96,6 +96,7 @@ struct My_Multiset {
 
   // [lo, hi) で {cnt, sm}
   pair<int, SM> get_range(T lo, T hi) {
+    if (sz == 0) return {0, 0};
     int cnt = 0;
     SM s = 0;
     FOR(idx, len(dat)) {

@@ -6,31 +6,30 @@
 
 void solve() {
   LL(Q);
-  My_Multiset<ll, int, int, false, 200'000> X;
-  auto root = X.new_root();
-
+  My_Multiset<ll, int> X;
   FOR(Q) {
     LL(t, x);
     if (t == 1) {
-      root = X.add(root, x, 1);
+      X.insert(x);
       continue;
     }
     LL(k);
-    --k;
     if (t == 2) {
-      ll n = X.get_range(root, -infty<ll>, x + 1).fi;
-      if (k >= n) {
-        print(-1);
+      int n = X.get_range(-infty<int>, x + 1).fi - 1;
+      n -= k - 1;
+      if (0 <= n && n < len(X)) {
+        print(X.get_kth(n).fi);
       } else {
-        print(X.prefix_kth(root, n - 1 - k).fi);
+        print(-1);
       }
     }
     if (t == 3) {
-      ll n = X.get_range(root, x, infty<ll>).fi;
-      if (k >= n) {
-        print(-1);
+      int n = X.get_range(-infty<int>, x).fi;
+      n += k - 1;
+      if (0 <= n && n < len(X)) {
+        print(X.get_kth(n).fi);
       } else {
-        print(X.suffix_kth(root, n - 1 - k).fi);
+        print(-1);
       }
     }
   };
