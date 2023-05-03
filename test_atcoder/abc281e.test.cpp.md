@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/my_multiset.hpp
     title: ds/my_multiset.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc281/tasks/abc281_e
@@ -233,16 +233,16 @@ data:
     \ -= len(dat[idx]);\n        s += sm[idx];\n        continue;\n      }\n     \
     \ FOR(j, k) s += dat[idx][j];\n      return {dat[idx][k], s};\n    }\n    return\
     \ {infty<VAL>, s};\n  }\n\n  // [lo, hi) \u3067 {cnt, sm}\n  pair<int, SM> get_range(T\
-    \ lo, T hi) {\n    int cnt = 0;\n    SM s = 0;\n    FOR(idx, len(dat)) {\n   \
-    \   if (dat[idx].back() < lo) continue;\n      if (hi <= dat[idx][0]) break;\n\
-    \      if (lo <= dat[idx][0] && dat[idx].back() < hi) {\n        cnt += len(dat[idx]),\
-    \ s += sm[idx];\n        continue;\n      }\n      for (auto&& x: dat[idx])\n\
-    \        if (lo <= x && x < hi) ++cnt, s += x;\n    }\n    return {cnt, s};\n\
-    \  }\n};\n#line 6 \"test_atcoder/abc281e.test.cpp\"\n\nvoid solve() {\n  LL(N,\
-    \ M, K);\n  My_Multiset<int, ll> X;\n  VEC(ll, A, N);\n  FOR(i, M) X.insert(A[i]);\n\
-    \  vi ANS;\n  FOR(i, M, N + 1) {\n    ANS.eb(X.get_kth(K).se);\n    if (i == N)\
-    \ break;\n    X.insert(A[i]), X.erase(A[i - M]);\n  }\n  print(ANS);\n}\n\nsigned\
-    \ main() {\n  solve();\n  return 0;\n}\n"
+    \ lo, T hi) {\n    if (sz == 0) return {0, 0};\n    int cnt = 0;\n    SM s = 0;\n\
+    \    FOR(idx, len(dat)) {\n      if (dat[idx].back() < lo) continue;\n      if\
+    \ (hi <= dat[idx][0]) break;\n      if (lo <= dat[idx][0] && dat[idx].back() <\
+    \ hi) {\n        cnt += len(dat[idx]), s += sm[idx];\n        continue;\n    \
+    \  }\n      for (auto&& x: dat[idx])\n        if (lo <= x && x < hi) ++cnt, s\
+    \ += x;\n    }\n    return {cnt, s};\n  }\n};\n#line 6 \"test_atcoder/abc281e.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, M, K);\n  My_Multiset<int, ll> X;\n  VEC(ll, A, N);\n\
+    \  FOR(i, M) X.insert(A[i]);\n  vi ANS;\n  FOR(i, M, N + 1) {\n    ANS.eb(X.get_kth(K).se);\n\
+    \    if (i == N) break;\n    X.insert(A[i]), X.erase(A[i - M]);\n  }\n  print(ANS);\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc281/tasks/abc281_e\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/my_multiset.hpp\"\
     \n\nvoid solve() {\n  LL(N, M, K);\n  My_Multiset<int, ll> X;\n  VEC(ll, A, N);\n\
@@ -256,8 +256,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc281e.test.cpp
   requiredBy: []
-  timestamp: '2023-05-03 12:45:42+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-03 18:48:11+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc281e.test.cpp
 layout: document

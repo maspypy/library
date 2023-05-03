@@ -6,12 +6,12 @@ data:
   - icon: ':x:'
     path: test_atcoder/abc241d.test.cpp
     title: test_atcoder/abc241d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc281e.test.cpp
     title: test_atcoder/abc281e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/my_multiset.hpp\"\ntemplate <typename VAL, typename SM>\n\
@@ -46,12 +46,12 @@ data:
     \ -= len(dat[idx]);\n        s += sm[idx];\n        continue;\n      }\n     \
     \ FOR(j, k) s += dat[idx][j];\n      return {dat[idx][k], s};\n    }\n    return\
     \ {infty<VAL>, s};\n  }\n\n  // [lo, hi) \u3067 {cnt, sm}\n  pair<int, SM> get_range(T\
-    \ lo, T hi) {\n    int cnt = 0;\n    SM s = 0;\n    FOR(idx, len(dat)) {\n   \
-    \   if (dat[idx].back() < lo) continue;\n      if (hi <= dat[idx][0]) break;\n\
-    \      if (lo <= dat[idx][0] && dat[idx].back() < hi) {\n        cnt += len(dat[idx]),\
-    \ s += sm[idx];\n        continue;\n      }\n      for (auto&& x: dat[idx])\n\
-    \        if (lo <= x && x < hi) ++cnt, s += x;\n    }\n    return {cnt, s};\n\
-    \  }\n};\n"
+    \ lo, T hi) {\n    if (sz == 0) return {0, 0};\n    int cnt = 0;\n    SM s = 0;\n\
+    \    FOR(idx, len(dat)) {\n      if (dat[idx].back() < lo) continue;\n      if\
+    \ (hi <= dat[idx][0]) break;\n      if (lo <= dat[idx][0] && dat[idx].back() <\
+    \ hi) {\n        cnt += len(dat[idx]), s += sm[idx];\n        continue;\n    \
+    \  }\n      for (auto&& x: dat[idx])\n        if (lo <= x && x < hi) ++cnt, s\
+    \ += x;\n    }\n    return {cnt, s};\n  }\n};\n"
   code: "template <typename VAL, typename SM>\nstruct My_Multiset {\n  using T = VAL;\n\
     \  int sz;\n  SM sm_all;\n  vvc<T> dat;\n  vc<SM> sm;\n  static const int BUCKET_RATIO\
     \ = 50, REBUILD_RATIO = 170;\n\n  My_Multiset() : sz(0), sm_all(0), dat(1), sm(1)\
@@ -83,18 +83,18 @@ data:
     \ -= len(dat[idx]);\n        s += sm[idx];\n        continue;\n      }\n     \
     \ FOR(j, k) s += dat[idx][j];\n      return {dat[idx][k], s};\n    }\n    return\
     \ {infty<VAL>, s};\n  }\n\n  // [lo, hi) \u3067 {cnt, sm}\n  pair<int, SM> get_range(T\
-    \ lo, T hi) {\n    int cnt = 0;\n    SM s = 0;\n    FOR(idx, len(dat)) {\n   \
-    \   if (dat[idx].back() < lo) continue;\n      if (hi <= dat[idx][0]) break;\n\
-    \      if (lo <= dat[idx][0] && dat[idx].back() < hi) {\n        cnt += len(dat[idx]),\
-    \ s += sm[idx];\n        continue;\n      }\n      for (auto&& x: dat[idx])\n\
-    \        if (lo <= x && x < hi) ++cnt, s += x;\n    }\n    return {cnt, s};\n\
-    \  }\n};\n"
+    \ lo, T hi) {\n    if (sz == 0) return {0, 0};\n    int cnt = 0;\n    SM s = 0;\n\
+    \    FOR(idx, len(dat)) {\n      if (dat[idx].back() < lo) continue;\n      if\
+    \ (hi <= dat[idx][0]) break;\n      if (lo <= dat[idx][0] && dat[idx].back() <\
+    \ hi) {\n        cnt += len(dat[idx]), s += sm[idx];\n        continue;\n    \
+    \  }\n      for (auto&& x: dat[idx])\n        if (lo <= x && x < hi) ++cnt, s\
+    \ += x;\n    }\n    return {cnt, s};\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/my_multiset.hpp
   requiredBy: []
-  timestamp: '2023-05-03 12:45:42+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-05-03 18:48:11+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc281e.test.cpp
   - test_atcoder/abc241d.test.cpp

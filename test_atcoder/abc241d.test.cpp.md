@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/my_multiset.hpp
     title: ds/my_multiset.hpp
   - icon: ':question:'
@@ -233,32 +233,30 @@ data:
     \ -= len(dat[idx]);\n        s += sm[idx];\n        continue;\n      }\n     \
     \ FOR(j, k) s += dat[idx][j];\n      return {dat[idx][k], s};\n    }\n    return\
     \ {infty<VAL>, s};\n  }\n\n  // [lo, hi) \u3067 {cnt, sm}\n  pair<int, SM> get_range(T\
-    \ lo, T hi) {\n    int cnt = 0;\n    SM s = 0;\n    FOR(idx, len(dat)) {\n   \
-    \   if (dat[idx].back() < lo) continue;\n      if (hi <= dat[idx][0]) break;\n\
-    \      if (lo <= dat[idx][0] && dat[idx].back() < hi) {\n        cnt += len(dat[idx]),\
-    \ s += sm[idx];\n        continue;\n      }\n      for (auto&& x: dat[idx])\n\
-    \        if (lo <= x && x < hi) ++cnt, s += x;\n    }\n    return {cnt, s};\n\
-    \  }\n};\n#line 6 \"test_atcoder/abc241d.test.cpp\"\n\nvoid solve() {\n  LL(Q);\n\
-    \  My_Multiset<ll, int, int, false, 200'000> X;\n  auto root = X.new_root();\n\
-    \n  FOR(Q) {\n    LL(t, x);\n    if (t == 1) {\n      root = X.add(root, x, 1);\n\
-    \      continue;\n    }\n    LL(k);\n    --k;\n    if (t == 2) {\n      ll n =\
-    \ X.get_range(root, -infty<ll>, x + 1).fi;\n      if (k >= n) {\n        print(-1);\n\
-    \      } else {\n        print(X.prefix_kth(root, n - 1 - k).fi);\n      }\n \
-    \   }\n    if (t == 3) {\n      ll n = X.get_range(root, x, infty<ll>).fi;\n \
-    \     if (k >= n) {\n        print(-1);\n      } else {\n        print(X.suffix_kth(root,\
-    \ n - 1 - k).fi);\n      }\n    }\n  };\n}\n\nsigned main() {\n  solve();\n  return\
-    \ 0;\n}\n"
+    \ lo, T hi) {\n    if (sz == 0) return {0, 0};\n    int cnt = 0;\n    SM s = 0;\n\
+    \    FOR(idx, len(dat)) {\n      if (dat[idx].back() < lo) continue;\n      if\
+    \ (hi <= dat[idx][0]) break;\n      if (lo <= dat[idx][0] && dat[idx].back() <\
+    \ hi) {\n        cnt += len(dat[idx]), s += sm[idx];\n        continue;\n    \
+    \  }\n      for (auto&& x: dat[idx])\n        if (lo <= x && x < hi) ++cnt, s\
+    \ += x;\n    }\n    return {cnt, s};\n  }\n};\n#line 6 \"test_atcoder/abc241d.test.cpp\"\
+    \n\nvoid solve() {\n  LL(Q);\n  My_Multiset<ll, int> X;\n  FOR(Q) {\n    LL(t,\
+    \ x);\n    if (t == 1) {\n      X.insert(x);\n      continue;\n    }\n    LL(k);\n\
+    \    if (t == 2) {\n      int n = X.get_range(-infty<int>, x + 1).fi - 1;\n  \
+    \    n -= k - 1;\n      if (0 <= n && n < len(X)) {\n        print(X.get_kth(n).fi);\n\
+    \      } else {\n        print(-1);\n      }\n    }\n    if (t == 3) {\n     \
+    \ int n = X.get_range(-infty<int>, x).fi;\n      n += k - 1;\n      if (0 <= n\
+    \ && n < len(X)) {\n        print(X.get_kth(n).fi);\n      } else {\n        print(-1);\n\
+    \      }\n    }\n  };\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc241/tasks/abc241_d\"\n\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/my_multiset.hpp\"\
-    \n\nvoid solve() {\n  LL(Q);\n  My_Multiset<ll, int, int, false, 200'000> X;\n\
-    \  auto root = X.new_root();\n\n  FOR(Q) {\n    LL(t, x);\n    if (t == 1) {\n\
-    \      root = X.add(root, x, 1);\n      continue;\n    }\n    LL(k);\n    --k;\n\
-    \    if (t == 2) {\n      ll n = X.get_range(root, -infty<ll>, x + 1).fi;\n  \
-    \    if (k >= n) {\n        print(-1);\n      } else {\n        print(X.prefix_kth(root,\
-    \ n - 1 - k).fi);\n      }\n    }\n    if (t == 3) {\n      ll n = X.get_range(root,\
-    \ x, infty<ll>).fi;\n      if (k >= n) {\n        print(-1);\n      } else {\n\
-    \        print(X.suffix_kth(root, n - 1 - k).fi);\n      }\n    }\n  };\n}\n\n\
-    signed main() {\n  solve();\n  return 0;\n}"
+    \n\nvoid solve() {\n  LL(Q);\n  My_Multiset<ll, int> X;\n  FOR(Q) {\n    LL(t,\
+    \ x);\n    if (t == 1) {\n      X.insert(x);\n      continue;\n    }\n    LL(k);\n\
+    \    if (t == 2) {\n      int n = X.get_range(-infty<int>, x + 1).fi - 1;\n  \
+    \    n -= k - 1;\n      if (0 <= n && n < len(X)) {\n        print(X.get_kth(n).fi);\n\
+    \      } else {\n        print(-1);\n      }\n    }\n    if (t == 3) {\n     \
+    \ int n = X.get_range(-infty<int>, x).fi;\n      n += k - 1;\n      if (0 <= n\
+    \ && n < len(X)) {\n        print(X.get_kth(n).fi);\n      } else {\n        print(-1);\n\
+    \      }\n    }\n  };\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -266,7 +264,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc241d.test.cpp
   requiredBy: []
-  timestamp: '2023-05-03 12:45:42+09:00'
+  timestamp: '2023-05-03 18:48:11+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc241d.test.cpp
