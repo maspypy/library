@@ -4,6 +4,7 @@
 template <typename mint>
 mint coef_of_rational_fps_small(vector<mint> P, vector<mint> Q, ll N) {
   int m = len(Q) - 1;
+  assert(len(P) == m);
   using poly = vc<mint>;
   auto dfs = [&](auto& dfs, ll N) -> poly {
     // x^N mod G
@@ -16,7 +17,7 @@ mint coef_of_rational_fps_small(vector<mint> P, vector<mint> Q, ll N) {
     return f;
   };
   poly f = dfs(dfs, N);
-  FOR(i, m) { FOR(j, 1, len(Q)) P[i] -= Q[j] * P[i - j]; }
+  FOR(i, m) { FOR(j, 1, i + 1) P[i] -= Q[j] * P[i - j]; }
   mint res = 0;
   FOR(i, m) res += f[i] * P[i];
   return res;
