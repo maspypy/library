@@ -526,6 +526,9 @@ data:
     path: test/library_checker/math/sharp_p_subset_sum.test.cpp
     title: test/library_checker/math/sharp_p_subset_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/sps_exp.test.cpp
+    title: test/library_checker/math/sps_exp.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sqrt_mod.test.cpp
     title: test/library_checker/math/sqrt_mod.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2553,6 +2556,7 @@ data:
   - test/library_checker/math/stirling_mod_p_1.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
+  - test/library_checker/math/sps_exp.test.cpp
   - test/library_checker/math/tetration.test.cpp
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/library_checker/math/counting_primes.test.cpp

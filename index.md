@@ -1417,6 +1417,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: setfunc/ranked_zeta.hpp
       title: setfunc/ranked_zeta.hpp
+    - icon: ':warning:'
+      path: setfunc/sps_composition.hpp
+      title: setfunc/sps_composition.hpp
+    - icon: ':heavy_check_mark:'
+      path: setfunc/sps_exp.hpp
+      title: setfunc/sps_exp.hpp
     - icon: ':heavy_check_mark:'
       path: setfunc/subset_convolution.hpp
       title: setfunc/subset_convolution.hpp
@@ -1981,6 +1987,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/binomial_coefficient.test.cpp
       title: test/library_checker/math/binomial_coefficient.test.cpp
+    - icon: ':x:'
+      path: test/library_checker/math/composition_sps.test.cpp
+      title: test/library_checker/math/composition_sps.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/counting_primes.test.cpp
       title: test/library_checker/math/counting_primes.test.cpp
@@ -2038,6 +2047,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/sharp_p_subset_sum.test.cpp
       title: test/library_checker/math/sharp_p_subset_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/math/sps_exp.test.cpp
+      title: test/library_checker/math/sps_exp.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/sqrt_mod.test.cpp
       title: test/library_checker/math/sqrt_mod.test.cpp

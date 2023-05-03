@@ -3,12 +3,18 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: setfunc/sps_exp.hpp
+    title: setfunc/sps_exp.hpp
+  - icon: ':heavy_check_mark:'
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution.test.cpp
     title: test/library_checker/convolution/subset_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/sps_exp.test.cpp
+    title: test/library_checker/math/sps_exp.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -18,37 +24,42 @@ data:
     \ LIM = 20>\r\nvc<array<T, LIM + 1>> ranked_zeta(const vc<T>& f) {\r\n  int n\
     \ = topbit(len(f));\r\n  assert(n <= LIM);\r\n  assert(len(f) == 1 << n);\r\n\
     \  vc<array<T, LIM + 1>> Rf(1 << n);\r\n  for (int s = 0; s < (1 << n); ++s) Rf[s][popcnt(s)]\
-    \ = f[s];\r\n  for (int i = 0; i < n; ++i) {\r\n    for (int s = 0; s < (1 <<\
-    \ n); ++s) {\r\n      int t = s | 1 << i;\r\n      if (s == t) continue;\r\n \
-    \     for (int d = 0; d <= n; ++d) Rf[t][d] += Rf[s][d];\r\n    }\r\n  }\r\n \
-    \ return Rf;\r\n}\r\n\r\ntemplate <typename T, int LIM = 20>\r\nvc<T> ranked_mobius(vc<array<T,\
-    \ LIM + 1>>& Rf) {\r\n  int n = topbit(len(Rf));\r\n  assert(len(Rf) == 1 << n);\r\
-    \n  for (int i = 0; i < n; ++i) {\r\n    for (int s = 0; s < (1 << n); ++s) {\r\
-    \n      int t = s | 1 << i;\r\n      if (s == t) continue;\r\n      for (int d\
-    \ = 0; d <= n; ++d) Rf[t][d] -= Rf[s][d];\r\n    }\r\n  }\r\n  vc<T> f(1 << n);\r\
-    \n  for (int s = 0; s < (1 << n); ++s) f[s] = Rf[s][popcnt(s)];\r\n  return f;\r\
-    \n}\n"
+    \ = f[s];\r\n  for (int i = 0; i < n; ++i) {\r\n    int w = 1 << i;\r\n    for\
+    \ (int p = 0; p < (1 << n); p += 2 * w) {\r\n      for (int s = p; s < p + w;\
+    \ ++s) {\r\n        int t = s | 1 << i;\r\n        for (int d = 0; d <= n; ++d)\
+    \ Rf[t][d] += Rf[s][d];\r\n      }\r\n    }\r\n  }\r\n  return Rf;\r\n}\r\n\r\n\
+    template <typename T, int LIM = 20>\r\nvc<T> ranked_mobius(vc<array<T, LIM + 1>>&\
+    \ Rf) {\r\n  int n = topbit(len(Rf));\r\n  assert(len(Rf) == 1 << n);\r\n  for\
+    \ (int i = 0; i < n; ++i) {\r\n    int w = 1 << i;\r\n    for (int p = 0; p <\
+    \ (1 << n); p += 2 * w) {\r\n      for (int s = p; s < p + w; ++s) {\r\n     \
+    \   int t = s | 1 << i;\r\n        for (int d = 0; d <= n; ++d) Rf[t][d] -= Rf[s][d];\r\
+    \n      }\r\n    }\r\n  }\r\n  vc<T> f(1 << n);\r\n  for (int s = 0; s < (1 <<\
+    \ n); ++s) f[s] = Rf[s][popcnt(s)];\r\n  return f;\r\n}\n"
   code: "#pragma once\r\n\r\ntemplate <typename T, int LIM = 20>\r\nvc<array<T, LIM\
     \ + 1>> ranked_zeta(const vc<T>& f) {\r\n  int n = topbit(len(f));\r\n  assert(n\
     \ <= LIM);\r\n  assert(len(f) == 1 << n);\r\n  vc<array<T, LIM + 1>> Rf(1 << n);\r\
     \n  for (int s = 0; s < (1 << n); ++s) Rf[s][popcnt(s)] = f[s];\r\n  for (int\
-    \ i = 0; i < n; ++i) {\r\n    for (int s = 0; s < (1 << n); ++s) {\r\n      int\
-    \ t = s | 1 << i;\r\n      if (s == t) continue;\r\n      for (int d = 0; d <=\
-    \ n; ++d) Rf[t][d] += Rf[s][d];\r\n    }\r\n  }\r\n  return Rf;\r\n}\r\n\r\ntemplate\
-    \ <typename T, int LIM = 20>\r\nvc<T> ranked_mobius(vc<array<T, LIM + 1>>& Rf)\
-    \ {\r\n  int n = topbit(len(Rf));\r\n  assert(len(Rf) == 1 << n);\r\n  for (int\
-    \ i = 0; i < n; ++i) {\r\n    for (int s = 0; s < (1 << n); ++s) {\r\n      int\
-    \ t = s | 1 << i;\r\n      if (s == t) continue;\r\n      for (int d = 0; d <=\
-    \ n; ++d) Rf[t][d] -= Rf[s][d];\r\n    }\r\n  }\r\n  vc<T> f(1 << n);\r\n  for\
-    \ (int s = 0; s < (1 << n); ++s) f[s] = Rf[s][popcnt(s)];\r\n  return f;\r\n}"
+    \ i = 0; i < n; ++i) {\r\n    int w = 1 << i;\r\n    for (int p = 0; p < (1 <<\
+    \ n); p += 2 * w) {\r\n      for (int s = p; s < p + w; ++s) {\r\n        int\
+    \ t = s | 1 << i;\r\n        for (int d = 0; d <= n; ++d) Rf[t][d] += Rf[s][d];\r\
+    \n      }\r\n    }\r\n  }\r\n  return Rf;\r\n}\r\n\r\ntemplate <typename T, int\
+    \ LIM = 20>\r\nvc<T> ranked_mobius(vc<array<T, LIM + 1>>& Rf) {\r\n  int n = topbit(len(Rf));\r\
+    \n  assert(len(Rf) == 1 << n);\r\n  for (int i = 0; i < n; ++i) {\r\n    int w\
+    \ = 1 << i;\r\n    for (int p = 0; p < (1 << n); p += 2 * w) {\r\n      for (int\
+    \ s = p; s < p + w; ++s) {\r\n        int t = s | 1 << i;\r\n        for (int\
+    \ d = 0; d <= n; ++d) Rf[t][d] -= Rf[s][d];\r\n      }\r\n    }\r\n  }\r\n  vc<T>\
+    \ f(1 << n);\r\n  for (int s = 0; s < (1 << n); ++s) f[s] = Rf[s][popcnt(s)];\r\
+    \n  return f;\r\n}"
   dependsOn: []
   isVerificationFile: false
   path: setfunc/ranked_zeta.hpp
   requiredBy:
   - setfunc/subset_convolution.hpp
-  timestamp: '2022-08-19 05:33:28+09:00'
+  - setfunc/sps_exp.hpp
+  timestamp: '2023-05-04 02:23:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/library_checker/math/sps_exp.test.cpp
   - test/library_checker/convolution/subset_convolution.test.cpp
 documentation_of: setfunc/ranked_zeta.hpp
 layout: document
