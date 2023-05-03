@@ -34,6 +34,9 @@ data:
     path: test/yukicoder/2243.test.cpp
     title: test/yukicoder/2243.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc260h.test.cpp
+    title: test_atcoder/abc260h.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc267g.test.cpp
     title: test_atcoder/abc267g.test.cpp
   _isVerificationFailed: false
@@ -310,6 +313,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc267g.test.cpp
+  - test_atcoder/abc260h.test.cpp
   - test/yukicoder/2108.test.cpp
   - test/yukicoder/2243.test.cpp
   - test/mytest/pascal.test.cpp

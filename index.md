@@ -3318,6 +3318,9 @@ data:
       path: test_atcoder/abc259g.test.cpp
       title: test_atcoder/abc259g.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test_atcoder/abc260h.test.cpp
+      title: test_atcoder/abc260h.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc266c.test.cpp
       title: test_atcoder/abc266c.test.cpp
     - icon: ':heavy_check_mark:'

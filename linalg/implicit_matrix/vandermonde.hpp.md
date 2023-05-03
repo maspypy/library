@@ -48,6 +48,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc260h.test.cpp
+    title: test_atcoder/abc260h.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -476,6 +479,7 @@ data:
   timestamp: '2023-05-01 17:29:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test_atcoder/abc260h.test.cpp
   - test/mytest/vandermonde.test.cpp
 documentation_of: linalg/implicit_matrix/vandermonde.hpp
 layout: document

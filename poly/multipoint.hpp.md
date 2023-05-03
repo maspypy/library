@@ -76,6 +76,9 @@ data:
     path: test/yukicoder/2243.test.cpp
     title: test/yukicoder/2243.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc260h.test.cpp
+    title: test_atcoder/abc260h.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc267g.test.cpp
     title: test_atcoder/abc267g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -519,6 +522,7 @@ data:
   - test_atcoder/abc272_h.test.cpp
   - test_atcoder/agc058d2.test.cpp
   - test_atcoder/abc267g.test.cpp
+  - test_atcoder/abc260h.test.cpp
   - test/yukicoder/2243.test.cpp
   - test/yukicoder/2166.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp
