@@ -12,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc217e.test.cpp
     title: test_atcoder/abc217e.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc237g1.test.cpp
+    title: test_atcoder/abc237g1.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -186,6 +189,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc217e.test.cpp
+  - test_atcoder/abc237g1.test.cpp
   - test/mytest/sortable_array.test.cpp
 documentation_of: ds/sortable_array.hpp
 layout: document
