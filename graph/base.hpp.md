@@ -125,7 +125,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/steiner_tree.hpp
     title: graph/steiner_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   - icon: ':heavy_check_mark:'
@@ -459,6 +459,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc209e.test.cpp
     title: test_atcoder/abc209e.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc214h.test.cpp
+    title: test_atcoder/abc214h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc220f.test.cpp
     title: test_atcoder/abc220f.test.cpp
@@ -677,6 +680,7 @@ data:
   - test_atcoder/abc237ex.test.cpp
   - test_atcoder/abc270_f.test.cpp
   - test_atcoder/abc269ex.test.cpp
+  - test_atcoder/abc214h.test.cpp
   - test_atcoder/arc151_e.test.cpp
   - test_atcoder/abc266f.test.cpp
   - test_atcoder/arc157a.test.cpp

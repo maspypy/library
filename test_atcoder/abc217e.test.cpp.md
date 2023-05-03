@@ -2,8 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: flow/mincostflow.hpp
-    title: flow/mincostflow.hpp
+    path: ds/fastset.hpp
+    title: ds/fastset.hpp
+  - icon: ':x:'
+    path: ds/sortable_array.hpp
+    title: ds/sortable_array.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -12,16 +15,16 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1288
+    PROBLEM: https://atcoder.jp/contests/abc217/tasks/abc217_e
     links:
-    - https://yukicoder.me/problems/no/1288
-  bundledCode: "#line 1 \"test/yukicoder/1288.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/1288\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    - https://atcoder.jp/contests/abc217/tasks/abc217_e
+  bundledCode: "#line 1 \"test_atcoder/abc217e.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc217/tasks/abc217_e\"\
+    \n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
     using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
@@ -201,167 +204,130 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 2 \"flow/mincostflow.hpp\"\n\n// atcoder library \u306E\u3082\
-    \u306E\u3092\u6539\u5909\n\nnamespace internal {\n\ntemplate <class E>\nstruct\
-    \ csr {\n  std::vector<int> start;\n  std::vector<E> elist;\n  explicit csr(int\
-    \ n, const std::vector<std::pair<int, E>>& edges)\n      : start(n + 1), elist(edges.size())\
-    \ {\n    for (auto e: edges) { start[e.first + 1]++; }\n    for (int i = 1; i\
-    \ <= n; i++) { start[i] += start[i - 1]; }\n    auto counter = start;\n    for\
-    \ (auto e: edges) { elist[counter[e.first]++] = e.second; }\n  }\n};\n\ntemplate\
-    \ <class T>\nstruct simple_queue {\n  std::vector<T> payload;\n  int pos = 0;\n\
-    \  void reserve(int n) { payload.reserve(n); }\n  int size() const { return int(payload.size())\
-    \ - pos; }\n  bool empty() const { return pos == int(payload.size()); }\n  void\
-    \ push(const T& t) { payload.push_back(t); }\n  T& front() { return payload[pos];\
-    \ }\n  void clear() {\n    payload.clear();\n    pos = 0;\n  }\n  void pop() {\
-    \ pos++; }\n};\n\n} // namespace internal\n\n/*\n\u30FBatcoder library \u3092\u3059\
-    \u3053\u3057\u6539\u5909\u3057\u305F\u3082\u306E\n\u30FBDAG = true \u3067\u3042\
-    \u308C\u3070\u3001\u8CA0\u8FBA OK \uFF081 \u56DE\u76EE\u306E\u6700\u77ED\u8DEF\
-    \u3092 dp \u3067\u884C\u3046\uFF09\n\u305F\u3060\u3057\u3001\u9802\u70B9\u756A\
-    \u53F7\u306F toposort \u3055\u308C\u3066\u3044\u308B\u3053\u3068\u3092\u4EEE\u5B9A\
-    \u3057\u3066\u3044\u308B\u3002\n*/\ntemplate <class Cap = int, class Cost = ll,\
-    \ bool DAG = false>\nstruct mcf_graph {\npublic:\n  mcf_graph() {}\n  explicit\
-    \ mcf_graph(int n) : _n(n) {}\n\n  // frm, to, cap, cost\n  int add(int frm, int\
-    \ to, Cap cap, Cost cost) {\n    assert(0 <= frm && frm < _n);\n    assert(0 <=\
-    \ to && to < _n);\n    assert(0 <= cap);\n    assert(DAG || 0 <= cost);\n    if\
-    \ (DAG) assert(frm < to);\n    int m = int(_edges.size());\n    _edges.push_back({frm,\
-    \ to, cap, 0, cost});\n    return m;\n  }\n\n  void debug() {\n    print(\"flow\
-    \ graph\");\n    print(\"frm, to, cap, cost\");\n    for (auto&& [frm, to, cap,\
-    \ flow, cost]: _edges) {\n      print(frm, to, cap, cost);\n    }\n  }\n\n  struct\
-    \ edge {\n    int frm, to;\n    Cap cap, flow;\n    Cost cost;\n  };\n\n  edge\
-    \ get_edge(int i) {\n    int m = int(_edges.size());\n    assert(0 <= i && i <\
-    \ m);\n    return _edges[i];\n  }\n  std::vector<edge> edges() { return _edges;\
-    \ }\n\n  // (\u6D41\u91CF, \u8CBB\u7528)\n  std::pair<Cap, Cost> flow(int s, int\
-    \ t) {\n    return flow(s, t, std::numeric_limits<Cap>::max());\n  }\n  // (\u6D41\
-    \u91CF, \u8CBB\u7528)\n  std::pair<Cap, Cost> flow(int s, int t, Cap flow_limit)\
-    \ {\n    return slope(s, t, flow_limit).back();\n  }\n  std::vector<std::pair<Cap,\
-    \ Cost>> slope(int s, int t) {\n    return slope(s, t, std::numeric_limits<Cap>::max());\n\
-    \  }\n  std::vector<std::pair<Cap, Cost>> slope(int s, int t, Cap flow_limit)\
-    \ {\n    assert(0 <= s && s < _n);\n    assert(0 <= t && t < _n);\n    assert(s\
-    \ != t);\n\n    int m = int(_edges.size());\n    std::vector<int> edge_idx(m);\n\
-    \n    auto g = [&]() {\n      std::vector<int> degree(_n), redge_idx(m);\n   \
-    \   std::vector<std::pair<int, _edge>> elist;\n      elist.reserve(2 * m);\n \
-    \     for (int i = 0; i < m; i++) {\n        auto e = _edges[i];\n        edge_idx[i]\
-    \ = degree[e.frm]++;\n        redge_idx[i] = degree[e.to]++;\n        elist.push_back({e.frm,\
-    \ {e.to, -1, e.cap - e.flow, e.cost}});\n        elist.push_back({e.to, {e.frm,\
-    \ -1, e.flow, -e.cost}});\n      }\n      auto _g = internal::csr<_edge>(_n, elist);\n\
-    \      for (int i = 0; i < m; i++) {\n        auto e = _edges[i];\n        edge_idx[i]\
-    \ += _g.start[e.frm];\n        redge_idx[i] += _g.start[e.to];\n        _g.elist[edge_idx[i]].rev\
-    \ = redge_idx[i];\n        _g.elist[redge_idx[i]].rev = edge_idx[i];\n      }\n\
-    \      return _g;\n    }();\n\n    auto result = slope(g, s, t, flow_limit);\n\
-    \n    for (int i = 0; i < m; i++) {\n      auto e = g.elist[edge_idx[i]];\n  \
-    \    _edges[i].flow = _edges[i].cap - e.cap;\n    }\n\n    return result;\n  }\n\
-    \nprivate:\n  int _n;\n  std::vector<edge> _edges;\n\n  // inside edge\n  struct\
-    \ _edge {\n    int to, rev;\n    Cap cap;\n    Cost cost;\n  };\n\n  std::vector<std::pair<Cap,\
-    \ Cost>> slope(internal::csr<_edge>& g, int s, int t,\n                      \
-    \                    Cap flow_limit) {\n    // variants (C = maxcost):\n    //\
-    \ -(n-1)C <= dual[s] <= dual[i] <= dual[t] = 0\n    // reduced cost (= e.cost\
-    \ + dual[e.frm] - dual[e.to]) >= 0 for all edge\n\n    // dual_dist[i] = (dual[i],\
-    \ dist[i])\n    if (DAG) assert(s == 0 && t == _n - 1);\n    std::vector<std::pair<Cost,\
-    \ Cost>> dual_dist(_n);\n    std::vector<int> prev_e(_n);\n    std::vector<bool>\
-    \ vis(_n);\n    struct Q {\n      Cost key;\n      int to;\n      bool operator<(Q\
-    \ r) const { return key > r.key; }\n    };\n    std::vector<int> que_min;\n  \
-    \  std::vector<Q> que;\n    auto dual_ref = [&]() {\n      for (int i = 0; i <\
-    \ _n; i++) {\n        dual_dist[i].second = std::numeric_limits<Cost>::max();\n\
-    \      }\n      std::fill(vis.begin(), vis.end(), false);\n      que_min.clear();\n\
-    \      que.clear();\n\n      // que[0..heap_r) was heapified\n      size_t heap_r\
-    \ = 0;\n\n      dual_dist[s].second = 0;\n      que_min.push_back(s);\n      while\
-    \ (!que_min.empty() || !que.empty()) {\n        int v;\n        if (!que_min.empty())\
-    \ {\n          v = que_min.back();\n          que_min.pop_back();\n        } else\
-    \ {\n          while (heap_r < que.size()) {\n            heap_r++;\n        \
-    \    std::push_heap(que.begin(), que.begin() + heap_r);\n          }\n       \
-    \   v = que.front().to;\n          std::pop_heap(que.begin(), que.end());\n  \
-    \        que.pop_back();\n          heap_r--;\n        }\n        if (vis[v])\
-    \ continue;\n        vis[v] = true;\n        if (v == t) break;\n        // dist[v]\
-    \ = shortest(s, v) + dual[s] - dual[v]\n        // dist[v] >= 0 (all reduced cost\
-    \ are positive)\n        // dist[v] <= (n-1)C\n        Cost dual_v = dual_dist[v].first,\
-    \ dist_v = dual_dist[v].second;\n        for (int i = g.start[v]; i < g.start[v\
-    \ + 1]; i++) {\n          auto e = g.elist[i];\n          if (!e.cap) continue;\n\
-    \          // |-dual[e.to] + dual[v]| <= (n-1)C\n          // cost <= C - -(n-1)C\
-    \ + 0 = nC\n          Cost cost = e.cost - dual_dist[e.to].first + dual_v;\n \
-    \         if (dual_dist[e.to].second > dist_v + cost) {\n            Cost dist_to\
-    \ = dist_v + cost;\n            dual_dist[e.to].second = dist_to;\n          \
-    \  prev_e[e.to] = e.rev;\n            if (dist_to == dist_v) {\n             \
-    \ que_min.push_back(e.to);\n            } else {\n              que.push_back(Q{dist_to,\
-    \ e.to});\n            }\n          }\n        }\n      }\n      if (!vis[t])\
-    \ { return false; }\n\n      for (int v = 0; v < _n; v++) {\n        if (!vis[v])\
-    \ continue;\n        // dual[v] = dual[v] - dist[t] + dist[v]\n        //    \
-    \     = dual[v] - (shortest(s, t) + dual[s] - dual[t]) +\n        //         (shortest(s,\
-    \ v) + dual[s] - dual[v]) = - shortest(s,\n        //         t) + dual[t] + shortest(s,\
-    \ v) = shortest(s, v) -\n        //         shortest(s, t) >= 0 - (n-1)C\n   \
-    \     dual_dist[v].first -= dual_dist[t].second - dual_dist[v].second;\n     \
-    \ }\n      return true;\n    };\n\n    auto dual_ref_dag = [&]() {\n      for\
-    \ (int i = 0; i < _n; i++) {\n        dual_dist[i].second = std::numeric_limits<Cost>::max();\n\
-    \      }\n      dual_dist[s].second = 0;\n      std::fill(vis.begin(), vis.end(),\
-    \ false);\n      vis[0] = true;\n\n      for (int v = 0; v < _n; ++v) {\n    \
-    \    if (!vis[v]) continue;\n        Cost dual_v = dual_dist[v].first, dist_v\
-    \ = dual_dist[v].second;\n        for (int i = g.start[v]; i < g.start[v + 1];\
-    \ i++) {\n          auto e = g.elist[i];\n          if (!e.cap) continue;\n  \
-    \        Cost cost = e.cost - dual_dist[e.to].first + dual_v;\n          if (dual_dist[e.to].second\
-    \ > dist_v + cost) {\n            vis[e.to] = true;\n            Cost dist_to\
-    \ = dist_v + cost;\n            dual_dist[e.to].second = dist_to;\n          \
-    \  prev_e[e.to] = e.rev;\n          }\n        }\n      }\n      if (!vis[t])\
-    \ { return false; }\n\n      for (int v = 0; v < _n; v++) {\n        if (!vis[v])\
-    \ continue;\n        // dual[v] = dual[v] - dist[t] + dist[v]\n        //    \
-    \     = dual[v] - (shortest(s, t) + dual[s] - dual[t]) +\n        //         (shortest(s,\
-    \ v) + dual[s] - dual[v]) = - shortest(s,\n        //         t) + dual[t] + shortest(s,\
-    \ v) = shortest(s, v) -\n        //         shortest(s, t) >= 0 - (n-1)C\n   \
-    \     dual_dist[v].first -= dual_dist[t].second - dual_dist[v].second;\n     \
-    \ }\n      return true;\n    };\n\n    Cap flow = 0;\n    Cost cost = 0, prev_cost_per_flow\
-    \ = -1;\n    std::vector<std::pair<Cap, Cost>> result = {{Cap(0), Cost(0)}};\n\
-    \    while (flow < flow_limit) {\n      if (DAG && flow == 0) {\n        if (!dual_ref_dag())\
-    \ break;\n      } else {\n        if (!dual_ref()) break;\n      }\n      Cap\
-    \ c = flow_limit - flow;\n      for (int v = t; v != s; v = g.elist[prev_e[v]].to)\
-    \ {\n        c = std::min(c, g.elist[g.elist[prev_e[v]].rev].cap);\n      }\n\
-    \      for (int v = t; v != s; v = g.elist[prev_e[v]].to) {\n        auto& e =\
-    \ g.elist[prev_e[v]];\n        e.cap += c;\n        g.elist[e.rev].cap -= c;\n\
-    \      }\n      Cost d = -dual_dist[s].first;\n      flow += c;\n      cost +=\
-    \ c * d;\n      if (prev_cost_per_flow == d) { result.pop_back(); }\n      result.push_back({flow,\
-    \ cost});\n      prev_cost_per_flow = d;\n    }\n    return result;\n  }\n};\n\
-    #line 5 \"test/yukicoder/1288.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  STR(S);\n\
-    \  VEC(ll, X, N);\n  auto A = [&](int i) -> int { return i; };\n  auto B = [&](int\
-    \ i) -> int { return N + 1 + i; };\n  auto C = [&](int i) -> int { return 2 *\
-    \ (N + 1) + i; };\n  auto D = [&](int i) -> int { return 3 * (N + 1) + i; };\n\
-    \  auto E = [&](int i) -> int { return 4 * (N + 1) + i; };\n  mcf_graph<int, ll,\
-    \ true> G(5 * N + 5);\n  FOR(i, N) G.add(A(i), A(i + 1), N, 0);\n  FOR(i, N) G.add(B(i),\
-    \ B(i + 1), N, 0);\n  FOR(i, N) G.add(C(i), C(i + 1), N, 0);\n  FOR(i, N) G.add(D(i),\
-    \ D(i + 1), N, 0);\n  FOR(i, N) G.add(E(i), E(i + 1), N, 0);\n  FOR(i, N) {\n\
-    \    if (S[i] == 'y') G.add(A(i), B(i + 1), 1, -X[i]);\n    if (S[i] == 'u') G.add(B(i),\
-    \ C(i + 1), 1, -X[i]);\n    if (S[i] == 'k') G.add(C(i), D(i + 1), 1, -X[i]);\n\
-    \    if (S[i] == 'i') G.add(D(i), E(i + 1), 1, -X[i]);\n  }\n  ll ANS = 0;\n \
-    \ for (auto&& [x, y]: G.slope(A(0), E(N))) chmax(ANS, -y);\n  print(ANS);\n}\n\
-    \nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
-    \ return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1288\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"flow/mincostflow.hpp\"\n\nvoid solve()\
-    \ {\n  LL(N);\n  STR(S);\n  VEC(ll, X, N);\n  auto A = [&](int i) -> int { return\
-    \ i; };\n  auto B = [&](int i) -> int { return N + 1 + i; };\n  auto C = [&](int\
-    \ i) -> int { return 2 * (N + 1) + i; };\n  auto D = [&](int i) -> int { return\
-    \ 3 * (N + 1) + i; };\n  auto E = [&](int i) -> int { return 4 * (N + 1) + i;\
-    \ };\n  mcf_graph<int, ll, true> G(5 * N + 5);\n  FOR(i, N) G.add(A(i), A(i +\
-    \ 1), N, 0);\n  FOR(i, N) G.add(B(i), B(i + 1), N, 0);\n  FOR(i, N) G.add(C(i),\
-    \ C(i + 1), N, 0);\n  FOR(i, N) G.add(D(i), D(i + 1), N, 0);\n  FOR(i, N) G.add(E(i),\
-    \ E(i + 1), N, 0);\n  FOR(i, N) {\n    if (S[i] == 'y') G.add(A(i), B(i + 1),\
-    \ 1, -X[i]);\n    if (S[i] == 'u') G.add(B(i), C(i + 1), 1, -X[i]);\n    if (S[i]\
-    \ == 'k') G.add(C(i), D(i + 1), 1, -X[i]);\n    if (S[i] == 'i') G.add(D(i), E(i\
-    \ + 1), 1, -X[i]);\n  }\n  ll ANS = 0;\n  for (auto&& [x, y]: G.slope(A(0), E(N)))\
-    \ chmax(ANS, -y);\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \ yes(!t); }\n#line 5 \"test_atcoder/abc217e.test.cpp\"\n\n#line 1 \"ds/fastset.hpp\"\
+    \n/* 64\u5206\u6728\u3002\r\ninsert, erase\r\n[]\u3067\u306E\u5B58\u5728\u5224\
+    \u5B9A\r\nnext, prev\r\n*/\r\nstruct FastSet {\r\n  using uint = unsigned;\r\n\
+    \  using ull = unsigned long long;\r\n\r\n  int bsr(ull x) { return 63 - __builtin_clzll(x);\
+    \ }\r\n  int bsf(ull x) { return __builtin_ctzll(x); }\r\n\r\n  static constexpr\
+    \ uint B = 64;\r\n  int n, lg;\r\n  vector<vector<ull>> seg;\r\n  FastSet(int\
+    \ _n) : n(_n) {\r\n    do {\r\n      seg.push_back(vector<ull>((_n + B - 1) /\
+    \ B));\r\n      _n = (_n + B - 1) / B;\r\n    } while (_n > 1);\r\n    lg = int(seg.size());\r\
+    \n  }\r\n  bool operator[](int i) const { return (seg[0][i / B] >> (i % B) & 1)\
+    \ != 0; }\r\n  void insert(int i) {\r\n    for (int h = 0; h < lg; h++) {\r\n\
+    \      seg[h][i / B] |= 1ULL << (i % B);\r\n      i /= B;\r\n    }\r\n  }\r\n\
+    \  void erase(int i) {\r\n    for (int h = 0; h < lg; h++) {\r\n      seg[h][i\
+    \ / B] &= ~(1ULL << (i % B));\r\n      if (seg[h][i / B]) break;\r\n      i /=\
+    \ B;\r\n    }\r\n  }\r\n\r\n  // x\u4EE5\u4E0A\u6700\u5C0F\u306E\u8981\u7D20\u3092\
+    \u8FD4\u3059\u3002\u5B58\u5728\u3057\u306A\u3051\u308C\u3070 n\u3002\r\n  int\
+    \ next(int i) {\r\n    chmax(i, 0);\r\n    if (i >= n) return n;\r\n    for (int\
+    \ h = 0; h < lg; h++) {\r\n      if (i / B == seg[h].size()) break;\r\n      ull\
+    \ d = seg[h][i / B] >> (i % B);\r\n      if (!d) {\r\n        i = i / B + 1;\r\
+    \n        continue;\r\n      }\r\n      // find\r\n      i += bsf(d);\r\n    \
+    \  for (int g = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += bsf(seg[g][i\
+    \ / B]);\r\n      }\r\n      return i;\r\n    }\r\n    return n;\r\n  }\r\n\r\n\
+    \  // x\u4EE5\u4E0B\u6700\u5927\u306E\u8981\u7D20\u3092\u8FD4\u3059\u3002\u5B58\
+    \u5728\u3057\u306A\u3051\u308C\u3070 -1\u3002\r\n  int prev(int i) {\r\n    if\
+    \ (i < 0) return -1;\r\n    if (i >= n) i = n - 1;\r\n    for (int h = 0; h <\
+    \ lg; h++) {\r\n      if (i == -1) break;\r\n      ull d = seg[h][i / B] << (63\
+    \ - i % 64);\r\n      if (!d) {\r\n        i = i / B - 1;\r\n        continue;\r\
+    \n      }\r\n      // find\r\n      i += bsr(d) - (B - 1);\r\n      for (int g\
+    \ = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += bsr(seg[g][i / B]);\r\
+    \n      }\r\n      return i;\r\n    }\r\n    return -1;\r\n  }\r\n\r\n  // [l,\
+    \ r)\r\n  template <typename F>\r\n  void enumerate(int l, int r, F f) {\r\n \
+    \   int x = l - 1;\r\n    while (1) {\r\n      x = next(x + 1);\r\n      if (x\
+    \ >= r) break;\r\n      f(x);\r\n    }\r\n  }\r\n\r\n  void debug() {\r\n    string\
+    \ s;\r\n    for (int i = 0; i < n; ++i) s += ((*this)[i] ? '1' : '0');\r\n   \
+    \ print(s);\r\n  }\r\n};\r\n#line 2 \"ds/sortable_array.hpp\"\n\n// int \u5217\
+    \u3092\u6271\u3046. key \u306E\u91CD\u8907\u53EF.\ntemplate <int NODES>\nstruct\
+    \ Sortable_Array {\n  const int N, KEY_MAX;\n\n  struct Node {\n    int size;\n\
+    \    Node *l, *r;\n  };\n  Node* pool;\n  int pid;\n  using np = Node*;\n\n  FastSet\
+    \ ss;      // \u533A\u9593\u306E\u5DE6\u7AEF\u5168\u4F53\u3092\u8868\u3059 fastset\n\
+    \  vector<np> root; // \u533A\u9593\u306E\u5DE6\u7AEF\u306B\u3001dynamic segtree\
+    \ \u306E node \u3092\u4E57\u305B\u308B\n  vector<bool> rev;\n\n  Sortable_Array(int\
+    \ KEY_MAX, vector<int> key)\n      : N(key.size()), KEY_MAX(KEY_MAX), pid(0),\
+    \ ss(key.size()) {\n    pool = new Node[NODES];\n    init(key);\n  }\n\n  void\
+    \ set(int i, int key) {\n    assert(0 <= key && key < KEY_MAX);\n    split_at(i),\
+    \ split_at(i + 1);\n    rev[i] = 0, root[i] = new_node(0);\n    set_rec(root[i],\
+    \ 0, KEY_MAX, key);\n  }\n\n  void sort_inc(int l, int r) {\n    if (l == r) return;\n\
+    \    split_at(l), split_at(r);\n    while (1) {\n      if (pid > NODES * 0.9)\
+    \ rebuild();\n      np c = root[l];\n      int i = ss.next(l + 1);\n      if (i\
+    \ == r) break;\n      root[l] = merge(0, KEY_MAX, c, root[i]);\n      ss.erase(i);\n\
+    \    }\n    rev[l] = 0;\n  };\n\n  void sort_dec(int l, int r) {\n    if (l ==\
+    \ r) return;\n    if (pid > NODES * 0.9) rebuild();\n    sort_inc(l, r), rev[l]\
+    \ = 1;\n  };\n\n  vc<int> get_all() {\n    vector<int> key;\n    key.reserve(N);\n\
+    \    auto dfs = [&](auto& dfs, np n, int l, int r, bool rev) -> void {\n     \
+    \ if (!n || !n->size) return;\n      if (r == l + 1) {\n        FOR(n->size) key.eb(l);\n\
+    \        return;\n      }\n      int m = (l + r) / 2;\n      if (!rev) { dfs(dfs,\
+    \ n->l, l, m, rev), dfs(dfs, n->r, m, r, rev); }\n      if (rev) { dfs(dfs, n->r,\
+    \ m, r, rev), dfs(dfs, n->l, l, m, rev); }\n    };\n    for (int i = 0; i < N;\
+    \ ++i) {\n      if (ss[i]) dfs(dfs, root[i], 0, KEY_MAX, rev[i]);\n    }\n   \
+    \ return key;\n  }\n\n  int get(int idx) {\n    auto dfs = [&](auto& dfs, np n,\
+    \ int l, int r, int k) -> int {\n      if (r == l + 1) { return l; }\n      int\
+    \ m = (l + r) / 2;\n      int s = (n->l ? n->l->size : 0);\n      if (k < s) return\
+    \ dfs(dfs, n->l, l, m, k);\n      return dfs(dfs, n->r, m, r, k - s);\n    };\n\
+    \    int i = ss.prev(idx);\n    int k = idx - i;\n    int s = root[i]->size;\n\
+    \    if (rev[i]) k = s - 1 - k;\n    return dfs(dfs, root[i], 0, KEY_MAX, k);\n\
+    \  }\n\nprivate:\n  void init(vector<int>& key) {\n    rev.assign(N, 0), root.clear(),\
+    \ root.reserve(N);\n    for (int i = 0; i < N; ++i) {\n      ss.insert(i);\n \
+    \     root.eb(new_node(0));\n      assert(key[i] < KEY_MAX);\n      set_rec(root[i],\
+    \ 0, KEY_MAX, key[i]);\n    }\n  }\n\n  // x \u304C\u5DE6\u7AEF\u306B\u306A\u308B\
+    \u3088\u3046\u306B\u3059\u308B\n  void split_at(int x) {\n    if (x == N || ss[x])\
+    \ return;\n    int a = ss.prev(x), b = ss.next(a + 1);\n    ss.insert(x);\n  \
+    \  if (!rev[a]) {\n      auto [nl, nr] = split(root[a], 0, KEY_MAX, x - a);\n\
+    \      root[a] = nl, root[x] = nr;\n      rev[a] = rev[x] = 0;\n    } else {\n\
+    \      auto [nl, nr] = split(root[a], 0, KEY_MAX, b - x);\n      root[a] = nr,\
+    \ root[x] = nl;\n      rev[a] = rev[x] = 1;\n    }\n  }\n\n  void rebuild() {\n\
+    \    auto key = get_all();\n    pid = 0;\n    init(key);\n  }\n\n  np new_node(int\
+    \ size) {\n    assert(pid < NODES);\n    pool[pid].l = pool[pid].r = nullptr;\n\
+    \    pool[pid].size = size;\n    return &(pool[pid++]);\n  }\n\n  pair<np, np>\
+    \ split(np n, int l, int r, int k) {\n    if (k == 0) { return {nullptr, n}; }\n\
+    \    if (k == n->size) { return {n, nullptr}; }\n    if (r == l + 1) {\n     \
+    \ int s = n->size;\n      n->size = k;\n      Node* b = new_node(s - k);\n   \
+    \   return {n, b};\n    }\n    int s = (n->l ? n->l->size : 0);\n    Node* b =\
+    \ new_node(0);\n    int m = (l + r) / 2;\n    if (k <= s) {\n      auto [nl, nr]\
+    \ = split(n->l, l, m, k);\n      b->l = nr, b->r = n->r, n->l = nl, n->r = nullptr;\n\
+    \    }\n    if (k > s) {\n      auto [nl, nr] = split(n->r, m, r, k - s);\n  \
+    \    n->l = n->l, n->r = nl, b->l = nullptr, b->r = nr;\n    }\n    update(n),\
+    \ update(b);\n    return {n, b};\n  }\n\n  np merge(int l, int r, np a, np b)\
+    \ {\n    if (!a) return b;\n    if (!b) return a;\n    if (r == l + 1) {\n   \
+    \   a->size += b->size;\n      return a;\n    }\n    int m = (l + r) / 2;\n  \
+    \  a->l = merge(l, m, a->l, b->l), a->r = merge(m, r, a->r, b->r);\n    update(a);\n\
+    \    return a;\n  }\n\n  void update(np n) {\n    if (!(n->l) && !(n->r)) { return;\
+    \ }\n    if (!(n->l)) {\n      n->size = n->r->size;\n      return;\n    }\n \
+    \   if (!(n->r)) {\n      n->size = n->l->size;\n      return;\n    }\n    n->size\
+    \ = n->l->size + n->r->size;\n  }\n\n  void set_rec(np n, int l, int r, int k)\
+    \ {\n    if (r == l + 1) {\n      n->size = 1;\n      return;\n    }\n    int\
+    \ m = (l + r) / 2;\n    if (k < m) {\n      if (!(n->l)) n->l = new_node(0);\n\
+    \      set_rec(n->l, l, m, k);\n    }\n    if (m <= k) {\n      if (!(n->r)) n->r\
+    \ = new_node(0);\n      set_rec(n->r, m, r, k);\n    }\n    update(n);\n  }\n\
+    };\n#line 7 \"test_atcoder/abc217e.test.cpp\"\n\nvoid solve() {\n  LL(Q);\n  int\
+    \ L = 0, R = 0;\n  Sortable_Array<15'000'000> X(infty<int> + 1, vc<int>(Q));\n\
+    \  FOR(Q) {\n    INT(t);\n    if (t == 1) {\n      INT(x);\n      X.set(R++, x);\n\
+    \    }\n    if (t == 2) {\n      print(X.get(L));\n      L++;\n    }\n    if (t\
+    \ == 3) {\n      if (L < R) X.sort_inc(L, R);\n    }\n  }\n}\n\nsigned main()\
+    \ {\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc217/tasks/abc217_e\"\n\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/sortable_array.hpp\"\
+    \n\nvoid solve() {\n  LL(Q);\n  int L = 0, R = 0;\n  Sortable_Array<15'000'000>\
+    \ X(infty<int> + 1, vc<int>(Q));\n  FOR(Q) {\n    INT(t);\n    if (t == 1) {\n\
+    \      INT(x);\n      X.set(R++, x);\n    }\n    if (t == 2) {\n      print(X.get(L));\n\
+    \      L++;\n    }\n    if (t == 3) {\n      if (L < R) X.sort_inc(L, R);\n  \
+    \  }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - flow/mincostflow.hpp
+  - ds/sortable_array.hpp
+  - ds/fastset.hpp
   isVerificationFile: true
-  path: test/yukicoder/1288.test.cpp
+  path: test_atcoder/abc217e.test.cpp
   requiredBy: []
-  timestamp: '2023-02-24 07:14:18+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-03 18:27:32+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yukicoder/1288.test.cpp
+documentation_of: test_atcoder/abc217e.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/1288.test.cpp
-- /verify/test/yukicoder/1288.test.cpp.html
-title: test/yukicoder/1288.test.cpp
+- /verify/test_atcoder/abc217e.test.cpp
+- /verify/test_atcoder/abc217e.test.cpp.html
+title: test_atcoder/abc217e.test.cpp
 ---

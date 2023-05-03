@@ -5,6 +5,12 @@ data:
     path: flow/mincostflow.hpp
     title: flow/mincostflow.hpp
   - icon: ':question:'
+    path: graph/base.hpp
+    title: graph/base.hpp
+  - icon: ':question:'
+    path: graph/strongly_connected_component.hpp
+    title: graph/strongly_connected_component.hpp
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
@@ -12,15 +18,15 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1288
+    PROBLEM: https://atcoder.jp/contests/abc214/tasks/abc214_h
     links:
-    - https://yukicoder.me/problems/no/1288
-  bundledCode: "#line 1 \"test/yukicoder/1288.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/1288\"\
+    - https://atcoder.jp/contests/abc214/tasks/abc214_h
+  bundledCode: "#line 1 \"test_atcoder/abc214h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc214/tasks/abc214_h\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -201,39 +207,108 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 2 \"flow/mincostflow.hpp\"\n\n// atcoder library \u306E\u3082\
-    \u306E\u3092\u6539\u5909\n\nnamespace internal {\n\ntemplate <class E>\nstruct\
-    \ csr {\n  std::vector<int> start;\n  std::vector<E> elist;\n  explicit csr(int\
-    \ n, const std::vector<std::pair<int, E>>& edges)\n      : start(n + 1), elist(edges.size())\
-    \ {\n    for (auto e: edges) { start[e.first + 1]++; }\n    for (int i = 1; i\
-    \ <= n; i++) { start[i] += start[i - 1]; }\n    auto counter = start;\n    for\
-    \ (auto e: edges) { elist[counter[e.first]++] = e.second; }\n  }\n};\n\ntemplate\
-    \ <class T>\nstruct simple_queue {\n  std::vector<T> payload;\n  int pos = 0;\n\
-    \  void reserve(int n) { payload.reserve(n); }\n  int size() const { return int(payload.size())\
-    \ - pos; }\n  bool empty() const { return pos == int(payload.size()); }\n  void\
-    \ push(const T& t) { payload.push_back(t); }\n  T& front() { return payload[pos];\
-    \ }\n  void clear() {\n    payload.clear();\n    pos = 0;\n  }\n  void pop() {\
-    \ pos++; }\n};\n\n} // namespace internal\n\n/*\n\u30FBatcoder library \u3092\u3059\
-    \u3053\u3057\u6539\u5909\u3057\u305F\u3082\u306E\n\u30FBDAG = true \u3067\u3042\
-    \u308C\u3070\u3001\u8CA0\u8FBA OK \uFF081 \u56DE\u76EE\u306E\u6700\u77ED\u8DEF\
-    \u3092 dp \u3067\u884C\u3046\uFF09\n\u305F\u3060\u3057\u3001\u9802\u70B9\u756A\
-    \u53F7\u306F toposort \u3055\u308C\u3066\u3044\u308B\u3053\u3068\u3092\u4EEE\u5B9A\
-    \u3057\u3066\u3044\u308B\u3002\n*/\ntemplate <class Cap = int, class Cost = ll,\
-    \ bool DAG = false>\nstruct mcf_graph {\npublic:\n  mcf_graph() {}\n  explicit\
-    \ mcf_graph(int n) : _n(n) {}\n\n  // frm, to, cap, cost\n  int add(int frm, int\
-    \ to, Cap cap, Cost cost) {\n    assert(0 <= frm && frm < _n);\n    assert(0 <=\
-    \ to && to < _n);\n    assert(0 <= cap);\n    assert(DAG || 0 <= cost);\n    if\
-    \ (DAG) assert(frm < to);\n    int m = int(_edges.size());\n    _edges.push_back({frm,\
-    \ to, cap, 0, cost});\n    return m;\n  }\n\n  void debug() {\n    print(\"flow\
-    \ graph\");\n    print(\"frm, to, cap, cost\");\n    for (auto&& [frm, to, cap,\
-    \ flow, cost]: _edges) {\n      print(frm, to, cap, cost);\n    }\n  }\n\n  struct\
-    \ edge {\n    int frm, to;\n    Cap cap, flow;\n    Cost cost;\n  };\n\n  edge\
-    \ get_edge(int i) {\n    int m = int(_edges.size());\n    assert(0 <= i && i <\
-    \ m);\n    return _edges[i];\n  }\n  std::vector<edge> edges() { return _edges;\
-    \ }\n\n  // (\u6D41\u91CF, \u8CBB\u7528)\n  std::pair<Cap, Cost> flow(int s, int\
-    \ t) {\n    return flow(s, t, std::numeric_limits<Cap>::max());\n  }\n  // (\u6D41\
-    \u91CF, \u8CBB\u7528)\n  std::pair<Cap, Cost> flow(int s, int t, Cap flow_limit)\
-    \ {\n    return slope(s, t, flow_limit).back();\n  }\n  std::vector<std::pair<Cap,\
+    \ yes(!t); }\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge\
+    \ {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
+    \ directed = false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n  using\
+    \ edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n  vector<edge_type>\
+    \ csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class\
+    \ OutgoingEdges {\n  public:\n    OutgoingEdges(const Graph* G, int l, int r)\
+    \ : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n      if (l ==\
+    \ r) { return 0; }\n      return &G->csr_edges[l];\n    }\n\n    const edge_type*\
+    \ end() const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n\
+    \    }\n\n  private:\n    const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared()\
+    \ { return prepared; }\n  constexpr bool is_directed() { return directed; }\n\n\
+    \  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
+    \ {}\n\n  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
+    \    indptr.clear();\n    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n\
+    \    vc_outdeg.clear();\n  }\n\n  void add(int frm, int to, T cost = 1, int i\
+    \ = -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <= to && to < N);\n\
+    \    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n\
+    \    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool wt = false, int off = 1)\
+    \ { read_graph(N - 1, wt, off); }\n\n  void read_graph(int M, bool wt = false,\
+    \ int off = 1) {\n    for (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a\
+    \ -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n  \
+    \      T c;\n        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n\
+    \  }\n\n  void read_parent(int off = 1) {\n    for (int v = 1; v < N; ++v) {\n\
+    \      INT(p);\n      p -= off;\n      add(p, v);\n    }\n    build();\n  }\n\n\
+    \  void build() {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N\
+    \ + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if\
+    \ (!directed) indptr[e.to + 1]++;\n    }\n    for (int v = 0; v < N; ++v) { indptr[v\
+    \ + 1] += indptr[v]; }\n    auto counter = indptr;\n    csr_edges.resize(indptr.back()\
+    \ + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n\
+    \      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm,\
+    \ e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n \
+    \   assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\n \
+    \ vc<int> deg_array() {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n\
+    \  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n    if (vc_indeg.empty())\
+    \ calc_deg_inout();\n    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v)\
+    \ {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n  int\
+    \ in_deg(int v) {\n    if (vc_indeg.empty()) calc_deg_inout();\n    return vc_indeg[v];\n\
+    \  }\n\n  int out_deg(int v) {\n    if (vc_outdeg.empty()) calc_deg_inout();\n\
+    \    return vc_outdeg[v];\n  }\n\n  void debug() {\n    print(\"Graph\");\n  \
+    \  if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e: edges)\
+    \ print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\", indptr);\n\
+    \      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\n  // G \u306B\u304A\u3051\u308B\
+    \u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\
+    \u306A\u308B\u3088\u3046\u306B\u3059\u308B\n  Graph<T, directed> rearrange(vc<int>\
+    \ V) {\n    int n = len(V);\n    map<int, int> MP;\n    FOR(i, n) MP[V[i]] = i;\n\
+    \    Graph<T, directed> G(n);\n    for (auto&& e: edges) {\n      if (MP.count(e.frm)\
+    \ && MP.count(e.to)) {\n        G.add(MP[e.frm], MP[e.to], e.cost);\n      }\n\
+    \    }\n    G.build();\n    return G;\n  }\n\nprivate:\n  void calc_deg() {\n\
+    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
+    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
+    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 3 \"graph/strongly_connected_component.hpp\"\
+    \n\ntemplate <typename Graph>\npair<int, vc<int>> strongly_connected_component(Graph&\
+    \ G) {\n  assert(G.is_directed());\n  assert(G.is_prepared());\n  int N = G.N;\n\
+    \  int C = 0;\n  vc<int> comp(N);\n  vc<int> low(N);\n  vc<int> ord(N, -1);\n\
+    \  vc<int> visited;\n  int now = 0;\n\n  auto dfs = [&](auto self, int v) -> void\
+    \ {\n    low[v] = now;\n    ord[v] = now;\n    ++now;\n    visited.eb(v);\n  \
+    \  for (auto&& [frm, to, cost, id]: G[v]) {\n      if (ord[to] == -1) {\n    \
+    \    self(self, to);\n        chmin(low[v], low[to]);\n      } else {\n      \
+    \  chmin(low[v], ord[to]);\n      }\n    }\n    if (low[v] == ord[v]) {\n    \
+    \  while (1) {\n        int u = visited.back();\n        visited.pop_back();\n\
+    \        ord[u] = N;\n        comp[u] = C;\n        if (u == v) break;\n     \
+    \ }\n      ++C;\n    }\n  };\n  FOR(v, N) {\n    if (ord[v] == -1) dfs(dfs, v);\n\
+    \  }\n  FOR(v, N) comp[v] = C - 1 - comp[v];\n  return {C, comp};\n}\n\ntemplate\
+    \ <typename GT>\nGraph<int, 1> scc_dag(GT& G, int C, vc<int>& comp) {\n  Graph<int,\
+    \ 1> DAG(C);\n  vvc<int> edges(C);\n  for (auto&& e: G.edges) {\n    int x = comp[e.frm],\
+    \ y = comp[e.to];\n    if (x == y) continue;\n    edges[x].eb(y);\n  }\n  FOR(c,\
+    \ C) {\n    UNIQUE(edges[c]);\n    for (auto&& to: edges[c]) DAG.add(c, to);\n\
+    \  }\n  DAG.build();\n  return DAG;\n}\n#line 2 \"flow/mincostflow.hpp\"\n\n//\
+    \ atcoder library \u306E\u3082\u306E\u3092\u6539\u5909\n\nnamespace internal {\n\
+    \ntemplate <class E>\nstruct csr {\n  std::vector<int> start;\n  std::vector<E>\
+    \ elist;\n  explicit csr(int n, const std::vector<std::pair<int, E>>& edges)\n\
+    \      : start(n + 1), elist(edges.size()) {\n    for (auto e: edges) { start[e.first\
+    \ + 1]++; }\n    for (int i = 1; i <= n; i++) { start[i] += start[i - 1]; }\n\
+    \    auto counter = start;\n    for (auto e: edges) { elist[counter[e.first]++]\
+    \ = e.second; }\n  }\n};\n\ntemplate <class T>\nstruct simple_queue {\n  std::vector<T>\
+    \ payload;\n  int pos = 0;\n  void reserve(int n) { payload.reserve(n); }\n  int\
+    \ size() const { return int(payload.size()) - pos; }\n  bool empty() const { return\
+    \ pos == int(payload.size()); }\n  void push(const T& t) { payload.push_back(t);\
+    \ }\n  T& front() { return payload[pos]; }\n  void clear() {\n    payload.clear();\n\
+    \    pos = 0;\n  }\n  void pop() { pos++; }\n};\n\n} // namespace internal\n\n\
+    /*\n\u30FBatcoder library \u3092\u3059\u3053\u3057\u6539\u5909\u3057\u305F\u3082\
+    \u306E\n\u30FBDAG = true \u3067\u3042\u308C\u3070\u3001\u8CA0\u8FBA OK \uFF08\
+    1 \u56DE\u76EE\u306E\u6700\u77ED\u8DEF\u3092 dp \u3067\u884C\u3046\uFF09\n\u305F\
+    \u3060\u3057\u3001\u9802\u70B9\u756A\u53F7\u306F toposort \u3055\u308C\u3066\u3044\
+    \u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\u3002\n*/\ntemplate\
+    \ <class Cap = int, class Cost = ll, bool DAG = false>\nstruct mcf_graph {\npublic:\n\
+    \  mcf_graph() {}\n  explicit mcf_graph(int n) : _n(n) {}\n\n  // frm, to, cap,\
+    \ cost\n  int add(int frm, int to, Cap cap, Cost cost) {\n    assert(0 <= frm\
+    \ && frm < _n);\n    assert(0 <= to && to < _n);\n    assert(0 <= cap);\n    assert(DAG\
+    \ || 0 <= cost);\n    if (DAG) assert(frm < to);\n    int m = int(_edges.size());\n\
+    \    _edges.push_back({frm, to, cap, 0, cost});\n    return m;\n  }\n\n  void\
+    \ debug() {\n    print(\"flow graph\");\n    print(\"frm, to, cap, cost\");\n\
+    \    for (auto&& [frm, to, cap, flow, cost]: _edges) {\n      print(frm, to, cap,\
+    \ cost);\n    }\n  }\n\n  struct edge {\n    int frm, to;\n    Cap cap, flow;\n\
+    \    Cost cost;\n  };\n\n  edge get_edge(int i) {\n    int m = int(_edges.size());\n\
+    \    assert(0 <= i && i < m);\n    return _edges[i];\n  }\n  std::vector<edge>\
+    \ edges() { return _edges; }\n\n  // (\u6D41\u91CF, \u8CBB\u7528)\n  std::pair<Cap,\
+    \ Cost> flow(int s, int t) {\n    return flow(s, t, std::numeric_limits<Cap>::max());\n\
+    \  }\n  // (\u6D41\u91CF, \u8CBB\u7528)\n  std::pair<Cap, Cost> flow(int s, int\
+    \ t, Cap flow_limit) {\n    return slope(s, t, flow_limit).back();\n  }\n  std::vector<std::pair<Cap,\
     \ Cost>> slope(int s, int t) {\n    return slope(s, t, std::numeric_limits<Cap>::max());\n\
     \  }\n  std::vector<std::pair<Cap, Cost>> slope(int s, int t, Cap flow_limit)\
     \ {\n    assert(0 <= s && s < _n);\n    assert(0 <= t && t < _n);\n    assert(s\
@@ -317,51 +392,46 @@ data:
     \      }\n      Cost d = -dual_dist[s].first;\n      flow += c;\n      cost +=\
     \ c * d;\n      if (prev_cost_per_flow == d) { result.pop_back(); }\n      result.push_back({flow,\
     \ cost});\n      prev_cost_per_flow = d;\n    }\n    return result;\n  }\n};\n\
-    #line 5 \"test/yukicoder/1288.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  STR(S);\n\
-    \  VEC(ll, X, N);\n  auto A = [&](int i) -> int { return i; };\n  auto B = [&](int\
-    \ i) -> int { return N + 1 + i; };\n  auto C = [&](int i) -> int { return 2 *\
-    \ (N + 1) + i; };\n  auto D = [&](int i) -> int { return 3 * (N + 1) + i; };\n\
-    \  auto E = [&](int i) -> int { return 4 * (N + 1) + i; };\n  mcf_graph<int, ll,\
-    \ true> G(5 * N + 5);\n  FOR(i, N) G.add(A(i), A(i + 1), N, 0);\n  FOR(i, N) G.add(B(i),\
-    \ B(i + 1), N, 0);\n  FOR(i, N) G.add(C(i), C(i + 1), N, 0);\n  FOR(i, N) G.add(D(i),\
-    \ D(i + 1), N, 0);\n  FOR(i, N) G.add(E(i), E(i + 1), N, 0);\n  FOR(i, N) {\n\
-    \    if (S[i] == 'y') G.add(A(i), B(i + 1), 1, -X[i]);\n    if (S[i] == 'u') G.add(B(i),\
-    \ C(i + 1), 1, -X[i]);\n    if (S[i] == 'k') G.add(C(i), D(i + 1), 1, -X[i]);\n\
-    \    if (S[i] == 'i') G.add(D(i), E(i + 1), 1, -X[i]);\n  }\n  ll ANS = 0;\n \
-    \ for (auto&& [x, y]: G.slope(A(0), E(N))) chmax(ANS, -y);\n  print(ANS);\n}\n\
-    \nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
-    \ return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1288\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"flow/mincostflow.hpp\"\n\nvoid solve()\
-    \ {\n  LL(N);\n  STR(S);\n  VEC(ll, X, N);\n  auto A = [&](int i) -> int { return\
-    \ i; };\n  auto B = [&](int i) -> int { return N + 1 + i; };\n  auto C = [&](int\
-    \ i) -> int { return 2 * (N + 1) + i; };\n  auto D = [&](int i) -> int { return\
-    \ 3 * (N + 1) + i; };\n  auto E = [&](int i) -> int { return 4 * (N + 1) + i;\
-    \ };\n  mcf_graph<int, ll, true> G(5 * N + 5);\n  FOR(i, N) G.add(A(i), A(i +\
-    \ 1), N, 0);\n  FOR(i, N) G.add(B(i), B(i + 1), N, 0);\n  FOR(i, N) G.add(C(i),\
-    \ C(i + 1), N, 0);\n  FOR(i, N) G.add(D(i), D(i + 1), N, 0);\n  FOR(i, N) G.add(E(i),\
-    \ E(i + 1), N, 0);\n  FOR(i, N) {\n    if (S[i] == 'y') G.add(A(i), B(i + 1),\
-    \ 1, -X[i]);\n    if (S[i] == 'u') G.add(B(i), C(i + 1), 1, -X[i]);\n    if (S[i]\
-    \ == 'k') G.add(C(i), D(i + 1), 1, -X[i]);\n    if (S[i] == 'i') G.add(D(i), E(i\
-    \ + 1), 1, -X[i]);\n  }\n  ll ANS = 0;\n  for (auto&& [x, y]: G.slope(A(0), E(N)))\
-    \ chmax(ANS, -y);\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    #line 6 \"test_atcoder/abc214h.test.cpp\"\n\nvoid solve() {\n  LL(N, M, K);\n\
+    \  Graph<bool, 1> G0(N);\n  G0.read_graph(M);\n\n  auto [nc, comp] = strongly_connected_component(G0);\n\
+    \  auto DAG = scc_dag(G0, nc, comp);\n  vi X(nc);\n  FOR(v, N) {\n    INT(x);\n\
+    \    X[comp[v]] += x;\n  }\n\n  auto idx1 = [&](int i) -> int { return 1 + 2 *\
+    \ i + 0; };\n  auto idx2 = [&](int i) -> int { return 1 + 2 * i + 1; };\n  int\
+    \ source = 0, sink = 1 + nc + nc;\n\n  mcf_graph<int, ll, true> G(2 * nc + 2);\n\
+    \  G.add(source, idx1(comp[0]), K, 0);\n  FOR(v, nc) {\n    G.add(idx1(v), idx2(v),\
+    \ 1, -X[v]);\n    G.add(idx1(v), idx2(v), K, 0);\n    G.add(idx2(v), sink, K,\
+    \ 0);\n  }\n  for (auto&& e: DAG.edges) { G.add(idx2(e.frm), idx1(e.to), K, 0);\
+    \ }\n\n  auto [a, b] = G.flow(source, sink);\n  assert(a == K);\n  print(-b);\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc214/tasks/abc214_h\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/strongly_connected_component.hpp\"\
+    \n#include \"flow/mincostflow.hpp\"\n\nvoid solve() {\n  LL(N, M, K);\n  Graph<bool,\
+    \ 1> G0(N);\n  G0.read_graph(M);\n\n  auto [nc, comp] = strongly_connected_component(G0);\n\
+    \  auto DAG = scc_dag(G0, nc, comp);\n  vi X(nc);\n  FOR(v, N) {\n    INT(x);\n\
+    \    X[comp[v]] += x;\n  }\n\n  auto idx1 = [&](int i) -> int { return 1 + 2 *\
+    \ i + 0; };\n  auto idx2 = [&](int i) -> int { return 1 + 2 * i + 1; };\n  int\
+    \ source = 0, sink = 1 + nc + nc;\n\n  mcf_graph<int, ll, true> G(2 * nc + 2);\n\
+    \  G.add(source, idx1(comp[0]), K, 0);\n  FOR(v, nc) {\n    G.add(idx1(v), idx2(v),\
+    \ 1, -X[v]);\n    G.add(idx1(v), idx2(v), K, 0);\n    G.add(idx2(v), sink, K,\
+    \ 0);\n  }\n  for (auto&& e: DAG.edges) { G.add(idx2(e.frm), idx1(e.to), K, 0);\
+    \ }\n\n  auto [a, b] = G.flow(source, sink);\n  assert(a == K);\n  print(-b);\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
+  - graph/strongly_connected_component.hpp
+  - graph/base.hpp
   - flow/mincostflow.hpp
   isVerificationFile: true
-  path: test/yukicoder/1288.test.cpp
+  path: test_atcoder/abc214h.test.cpp
   requiredBy: []
-  timestamp: '2023-02-24 07:14:18+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-03 18:27:32+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yukicoder/1288.test.cpp
+documentation_of: test_atcoder/abc214h.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/1288.test.cpp
-- /verify/test/yukicoder/1288.test.cpp.html
-title: test/yukicoder/1288.test.cpp
+- /verify/test_atcoder/abc214h.test.cpp
+- /verify/test_atcoder/abc214h.test.cpp.html
+title: test_atcoder/abc214h.test.cpp
 ---
