@@ -31,6 +31,7 @@ struct Sortable_Array {
   }
 
   void sort_inc(int l, int r) {
+    if (l == r) return;
     split_at(l), split_at(r);
     while (1) {
       if (pid > NODES * 0.9) rebuild();
@@ -44,6 +45,7 @@ struct Sortable_Array {
   };
 
   void sort_dec(int l, int r) {
+    if (l == r) return;
     if (pid > NODES * 0.9) rebuild();
     sort_inc(l, r), rev[l] = 1;
   };
