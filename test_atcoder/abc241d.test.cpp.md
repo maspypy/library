@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/my_multiset.hpp
     title: ds/my_multiset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc241/tasks/abc241_d
@@ -201,66 +201,45 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 1 \"ds/my_multiset.hpp\"\n// \u52D5\u7684\u30BB\u30B0\u30E1\
-    \u30F3\u30C8\u6728\u3068\u3057\u3066\u4F5C\u3063\u3066\u304A\u304F\ntemplate <typename\
-    \ T, typename CNT, typename SM, bool PERSISTENT, int NODES>\nstruct My_Multiset\
-    \ {\n  struct Node {\n    T idx;\n    Node *l, *r;\n    CNT cnt, sub_cnt;\n  \
-    \  SM sub_sm;\n    SM node_sum() { return SM(idx) * SM(cnt); }\n  };\n\n  const\
-    \ T L0, R0;\n  Node *pool;\n  int pid;\n  using np = Node *;\n\n  My_Multiset(T\
-    \ L0 = -2 * infty<T>, T R0 = 2 * infty<T>)\n      : L0(L0), R0(R0), pid(0) {\n\
-    \    pool = new Node[NODES];\n  }\n\n  np new_root() { return nullptr; }\n\n \
-    \ np new_node(T idx, const CNT cnt) {\n    pool[pid].idx = idx;\n    pool[pid].l\
-    \ = pool[pid].r = nullptr;\n    pool[pid].cnt = cnt, pool[pid].sub_cnt = cnt;\n\
-    \    pool[pid].sub_sm = pool[pid].node_sum();\n    return &(pool[pid++]);\n  }\n\
-    \n  // (cnt, sm)\n  pair<CNT, SM> get_range(np root, T l, T r) {\n    assert(L0\
-    \ <= l && l <= r && r <= R0);\n    if (l == r) return {CNT(0), SM(0)};\n    CNT\
-    \ cnt = 0;\n    SM sm = 0;\n    get_range_rec(root, L0, R0, l, r, cnt, sm);\n\
-    \    return {cnt, sm};\n  }\n\n  // (cnt, sm)\n  pair<CNT, SM> get_all_range(np\
-    \ root) {\n    if (!root) return {CNT(0), SM(0)};\n    return {root->sub_cnt,\
-    \ root->sub_sm};\n  }\n\n  np add(np root, T x, CNT cnt) {\n    assert(L0 <= x\
-    \ && x < R0);\n    return add_rec(root, L0, R0, x, cnt);\n  }\n\n  // k>=0 \u756A\
-    \u76EE\u3068\u3001\u305D\u3053\u307E\u3067\u306E prefix sum\n  pair<T, SM> prefix_kth(np\
-    \ root, CNT k) {\n    auto [cnt, sm] = get_all_range(root);\n    assert(k <= cnt);\n\
-    \    return prefix_kth_rec(root, L0, R0, k);\n  }\n\n  // \u5927\u304D\u3044\u65B9\
-    \u304B\u3089 k>=0 \u756A\u76EE\u3068\u3001\u305D\u3053\u307E\u3067\u306E suffix\
-    \ sum\n  pair<T, SM> suffix_kth(np root, CNT k) {\n    auto [cnt, sm] = get_all_range(root);\n\
-    \    assert(k <= cnt);\n    return suffix_kth_rec(root, L0, R0, k);\n  }\n\n \
-    \ void reset() { pid = 0; }\n\n  // f(idx, cnt)\n  template <typename F>\n  void\
-    \ enumerate(np root, F f, T l, T r) {\n    auto dfs = [&](auto &dfs, np c) ->\
-    \ void {\n      if (!c) return;\n      dfs(dfs, c->l);\n      f(c->idx, c->cnt);\n\
-    \      dfs(dfs, c->r);\n    };\n    dfs(dfs, root);\n  }\n\nprivate:\n  void update(np\
-    \ c) {\n    c->sub_cnt = c->cnt, c->sub_sm = c->node_sum();\n    if (c->l) c->sub_cnt\
-    \ += c->l->sub_cnt, c->sub_sm += c->l->sub_sm;\n    if (c->r) c->sub_cnt += c->r->sub_cnt,\
-    \ c->sub_sm += c->r->sub_sm;\n  }\n\n  np copy_node(np c) {\n    if (!c || !PERSISTENT)\
-    \ return c;\n    pool[pid].idx = c->idx;\n    pool[pid].l = c->l, pool[pid].r\
-    \ = c->r;\n    pool[pid].cnt = c->cnt, pool[pid].sub_cnt = c->sub_cnt;\n    pool[pid].sub_sm\
-    \ = c->sub_sm;\n    return &(pool[pid++]);\n  }\n\n  np add_rec(np c, T l, T r,\
-    \ T i, CNT cnt) {\n    if (!c) {\n      c = new_node(i, cnt);\n      return c;\n\
-    \    }\n    c = copy_node(c);\n    if (c->idx == i) {\n      c->cnt += cnt;\n\
-    \      update(c);\n      return (c->sub_cnt == 0 ? nullptr : c);\n    }\n    T\
-    \ m = (l + r) / 2;\n    if (i < m) {\n      if (c->idx < i) swap(c->idx, i), swap(c->cnt,\
-    \ cnt);\n      c->l = add_rec(c->l, l, m, i, cnt);\n    }\n    if (m <= i) {\n\
-    \      if (i < c->idx) swap(c->idx, i), swap(c->cnt, cnt);\n      c->r = add_rec(c->r,\
-    \ m, r, i, cnt);\n    }\n    update(c);\n    return c;\n  }\n\n  void get_range_rec(np\
-    \ c, T l, T r, T ql, T qr, CNT &cnt, SM &sm) {\n    chmax(ql, l), chmin(qr, r);\n\
-    \    if (ql >= qr || !c) return;\n    if (l == ql && r == qr) {\n      cnt +=\
-    \ c->sub_cnt, sm += c->sub_sm;\n      return;\n    }\n    T m = (l + r) / 2;\n\
-    \    get_range_rec(c->l, l, m, ql, qr, cnt, sm);\n    if (ql <= (c->idx) && (c->idx)\
-    \ < qr) cnt += c->cnt, sm += c->node_sum();\n    get_range_rec(c->r, m, r, ql,\
-    \ qr, cnt, sm);\n  }\n\n  pair<T, SM> prefix_kth_rec(np c, T l, T r, CNT k) {\n\
-    \    if (!c) { return {R0, 0}; }\n    T m = (l + r) / 2;\n    CNT l_cnt = (c->l\
-    \ ? c->l->sub_cnt : 0);\n    SM l_sm = (c->l ? c->l->sub_sm : 0);\n    if (k <\
-    \ l_cnt) { return prefix_kth_rec(c->l, l, m, k); }\n    if (k < l_cnt + c->cnt)\
-    \ {\n      return {c->idx, l_sm + SM(c->idx) * SM(k - l_cnt)};\n    }\n    pair<T,\
-    \ SM> p = prefix_kth_rec(c->r, m, r, k - l_cnt - c->cnt);\n    return {p.fi, l_sm\
-    \ + p.se};\n  }\n\n  pair<T, SM> suffix_kth_rec(np c, T l, T r, CNT k) {\n   \
-    \ if (!c) { return {L0, 0}; }\n    T m = (l + r) / 2;\n    CNT r_cnt = (c->r ?\
-    \ c->r->sub_cnt : 0);\n    SM r_sm = (c->r ? c->r->sub_sm : 0);\n    if (k < r_cnt)\
-    \ { return suffix_kth_rec(c->r, m, r, k); }\n    if (k < r_cnt + c->cnt) {\n \
-    \     return {c->idx, r_sm + SM(c->idx) * SM(k - r_cnt)};\n    }\n    pair<T,\
-    \ SM> p = suffix_kth_rec(c->l, l, m, k - r_cnt - c->cnt);\n    return {p.fi, r_sm\
-    \ + p.se};\n  }\n};\n#line 6 \"test_atcoder/abc241d.test.cpp\"\n\nvoid solve()\
-    \ {\n  LL(Q);\n  My_Multiset<ll, int, int, false, 200'000> X;\n  auto root = X.new_root();\n\
+    \ yes(!t); }\n#line 1 \"ds/my_multiset.hpp\"\ntemplate <typename VAL, typename\
+    \ SM>\nstruct My_Multiset {\n  using T = VAL;\n  int sz;\n  SM sm_all;\n  vvc<T>\
+    \ dat;\n  vc<SM> sm;\n  static const int BUCKET_RATIO = 50, REBUILD_RATIO = 170;\n\
+    \n  My_Multiset() : sz(0), sm_all(0), dat(1), sm(1) {}\n\n  void build(vc<T> vals)\
+    \ {\n    sort(all(vals));\n    sz = len(vals);\n    int b_cnt = sqrt(sz / BUCKET_RATIO)\
+    \ + 1;\n    dat.resize(b_cnt);\n    FOR(i, b_cnt) {\n      int l = sz * i / b_cnt,\
+    \ r = sz * (i + 1) / b_cnt;\n      dat[i] = {vals.begin() + l, vals.begin() +\
+    \ r};\n    }\n    sm.resize(b_cnt);\n    FOR(i, b_cnt) sm[i] = SUM<SM>(dat[i]);\n\
+    \    sm_all = SUM<SM>(sm);\n  }\n\n  int size() { return sz; }\n  vc<T> get_all()\
+    \ {\n    vc<T> res;\n    for (auto&& x: dat) res.insert(res.end(), all(x));\n\
+    \    return res;\n  }\n\n  void rebuild() { build(get_all()); }\n\n  void insert(T\
+    \ x) {\n    if (sz == 0) {\n      dat[0].eb(x);\n      ++sz, sm[0] += x, sm_all\
+    \ += x;\n      return;\n    }\n    FOR(idx, len(dat)) {\n      if (dat[idx].back()\
+    \ < x && idx < len(dat) - 1) continue;\n      dat[idx].insert(lower_bound(all(dat[idx]),\
+    \ x), x);\n      ++sz, sm[idx] += x, sm_all += x;\n      if (len(dat[idx]) > len(dat)\
+    \ * REBUILD_RATIO) rebuild();\n      break;\n    }\n  }\n\n  void erase(T x) {\n\
+    \    FOR(idx, len(dat)) {\n      if (dat[idx].back() < x && idx < len(dat) - 1)\
+    \ continue;\n      dat[idx].erase(lower_bound(all(dat[idx]), x));\n      --sz,\
+    \ sm[idx] -= x, sm_all -= x;\n      if (len(dat[idx]) == 0 && len(dat) > 0) {\n\
+    \        dat.erase(dat.begin() + idx);\n        sm.erase(sm.begin() + idx);\n\
+    \      }\n      break;\n    }\n  }\n\n  int count(T x) {\n    int cnt = 0;\n \
+    \   FOR(idx, len(dat)) {\n      if (dat[idx].back() < x) continue;\n      if (dat[idx][0]\
+    \ > x) break;\n      if (dat[idx][0] == dat[idx].back())\n        cnt += len(dat[idx]);\n\
+    \      else\n        cnt += upper_bound(all(dat[idx]), x) - lower_bound(all(dat[idx]),\
+    \ x);\n    }\n    return cnt;\n  }\n\n  // {value[k], sum[0:k]}\n  pair<VAL, SM>\
+    \ get_kth(int k, bool suffix = false) {\n    assert(0 <= k && k <= sz);\n    if\
+    \ (suffix) {\n      if (k == sz) return {-infty<VAL>, sm_all};\n      auto [x,\
+    \ s] = get_kth(sz - k - 1);\n      return {x, sm_all - s - x};\n    }\n    SM\
+    \ s = 0;\n    FOR(idx, len(dat)) {\n      if (k >= len(dat[idx])) {\n        k\
+    \ -= len(dat[idx]);\n        s += sm[idx];\n        continue;\n      }\n     \
+    \ FOR(j, k) s += dat[idx][j];\n      return {dat[idx][k], s};\n    }\n    return\
+    \ {infty<VAL>, s};\n  }\n\n  // [lo, hi) \u3067 {cnt, sm}\n  pair<int, SM> get_range(T\
+    \ lo, T hi) {\n    int cnt = 0;\n    SM s = 0;\n    FOR(idx, len(dat)) {\n   \
+    \   if (dat[idx].back() < lo) continue;\n      if (hi <= dat[idx][0]) break;\n\
+    \      if (lo <= dat[idx][0] && dat[idx].back() < hi) {\n        cnt += len(dat[idx]),\
+    \ s += sm[idx];\n        continue;\n      }\n      for (auto&& x: dat[idx])\n\
+    \        if (lo <= x && x < hi) ++cnt, s += x;\n    }\n    return {cnt, s};\n\
+    \  }\n};\n#line 6 \"test_atcoder/abc241d.test.cpp\"\n\nvoid solve() {\n  LL(Q);\n\
+    \  My_Multiset<ll, int, int, false, 200'000> X;\n  auto root = X.new_root();\n\
     \n  FOR(Q) {\n    LL(t, x);\n    if (t == 1) {\n      root = X.add(root, x, 1);\n\
     \      continue;\n    }\n    LL(k);\n    --k;\n    if (t == 2) {\n      ll n =\
     \ X.get_range(root, -infty<ll>, x + 1).fi;\n      if (k >= n) {\n        print(-1);\n\
@@ -287,8 +266,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc241d.test.cpp
   requiredBy: []
-  timestamp: '2023-04-14 22:05:25+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-03 12:45:42+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc241d.test.cpp
 layout: document

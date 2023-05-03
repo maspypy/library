@@ -1,37 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
+  - icon: ':x:'
+    path: poly/coef_of_rational_fps.hpp
+    title: poly/coef_of_rational_fps.hpp
   - icon: ':warning:'
     path: poly/composed_product.hpp
     title: poly/composed_product.hpp
@@ -44,28 +47,70 @@ data:
   - icon: ':warning:'
     path: poly/sum_of_power_of_roots.hpp
     title: poly/sum_of_power_of_roots.hpp
+  - icon: ':x:'
+    path: seq/famous/bell_number_large.hpp
+    title: seq/famous/bell_number_large.hpp
+  - icon: ':x:'
+    path: seq/interpolate_linear_rec.hpp
+    title: seq/interpolate_linear_rec.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
+    title: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - icon: ':x:'
+    path: test/mytest/bell.test.cpp
+    title: test/mytest/bell.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/slice_rational_fps.test.cpp
     title: test/mytest/slice_rational_fps.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1500.test.cpp
+    title: test/yukicoder/1500.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1516.test.cpp
+    title: test/yukicoder/1516.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1533.test.cpp
     title: test/yukicoder/1533.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1547.test.cpp
+    title: test/yukicoder/1547.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1561.test.cpp
+    title: test/yukicoder/1561.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1844.test.cpp
+    title: test/yukicoder/1844.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1962.test.cpp
+    title: test/yukicoder/1962.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2122.test.cpp
+    title: test/yukicoder/2122.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/541.test.cpp
+    title: test/yukicoder/541.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/578.test.cpp
+    title: test/yukicoder/578.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/579.test.cpp
+    title: test/yukicoder/579.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc013e.test.cpp
     title: test_atcoder/agc013e.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc154f.test.cpp
     title: test_atcoder/arc154f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/fps_div.hpp\"\n\n#line 2 \"poly/count_terms.hpp\"\n\
@@ -362,19 +407,34 @@ data:
   path: poly/fps_div.hpp
   requiredBy:
   - linalg/implicit_matrix/vandermonde.hpp
+  - seq/interpolate_linear_rec.hpp
+  - seq/famous/bell_number_large.hpp
   - poly/slice_rational_fps.hpp
+  - poly/coef_of_rational_fps.hpp
   - poly/composed_sum.hpp
   - poly/sum_of_power_of_roots.hpp
   - poly/composed_product.hpp
   timestamp: '2023-04-27 16:43:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/arc154f.test.cpp
   - test_atcoder/agc058d2.test.cpp
   - test_atcoder/agc013e.test.cpp
+  - test/yukicoder/1844.test.cpp
+  - test/yukicoder/578.test.cpp
+  - test/yukicoder/1561.test.cpp
+  - test/yukicoder/1962.test.cpp
+  - test/yukicoder/1516.test.cpp
+  - test/yukicoder/1547.test.cpp
+  - test/yukicoder/579.test.cpp
+  - test/yukicoder/2122.test.cpp
+  - test/yukicoder/541.test.cpp
   - test/yukicoder/1533.test.cpp
+  - test/yukicoder/1500.test.cpp
+  - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/mytest/vandermonde.test.cpp
   - test/mytest/slice_rational_fps.test.cpp
+  - test/mytest/bell.test.cpp
 documentation_of: poly/fps_div.hpp
 layout: document
 redirect_from:
