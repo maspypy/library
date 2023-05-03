@@ -10,19 +10,19 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
   - icon: ':question:'
@@ -34,7 +34,7 @@ data:
   - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
   - icon: ':question:'
@@ -43,38 +43,38 @@ data:
   - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
   - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -678,48 +678,51 @@ data:
     \  mint r = 1, zeta = root[topbit(2 * M)];\n  FOR(i, M) b[i] *= r, r *= zeta;\n\
     \  ntt(b, 0);\n  copy(begin(b), end(b), back_inserter(a));\n}\n#line 3 \"poly/coef_of_rational_fps.hpp\"\
     \n\r\ntemplate <typename mint>\r\nmint coef_of_rational_fps_small(vector<mint>\
-    \ P, vector<mint> Q, ll N) {\r\n  int m = len(Q) - 1;\r\n  using poly = vc<mint>;\r\
-    \n  auto dfs = [&](auto& dfs, ll N) -> poly {\r\n    // x^N mod G\r\n    if (N\
-    \ == 0) return {1};\r\n    poly f = dfs(dfs, N / 2);\r\n    f = convolution(f,\
-    \ f);\r\n    if (N & 1) f.insert(f.begin(), mint(0));\r\n    FOR_R(i, m, len(f))\
-    \ { FOR(j, 1, len(Q)) f[i - j] -= Q[j] * f[i]; }\r\n    f.resize(m);\r\n    return\
-    \ f;\r\n  };\r\n  poly f = dfs(dfs, N);\r\n  FOR(i, m) { FOR(j, 1, len(Q)) P[i]\
-    \ -= Q[j] * P[i - j]; }\r\n  mint res = 0;\r\n  FOR(i, m) res += f[i] * P[i];\r\
-    \n  return res;\r\n}\r\n\r\ntemplate <typename mint>\r\nmint coef_of_rational_fps_ntt(vector<mint>\
-    \ P, vector<mint> Q, ll N) {\r\n  int log = 0;\r\n  while ((1 << log) < len(Q))\
-    \ ++log;\r\n  int n = 1 << log;\r\n  P.resize(2 * n), Q.resize(2 * n);\r\n  ntt(P,\
-    \ 0), ntt(Q, 0);\r\n  vc<int> btr(n);\r\n  FOR(i, n) { btr[i] = (btr[i >> 1] >>\
-    \ 1) + ((i & 1) << (log - 1)); }\r\n\r\n  int t = mint::ntt_info().fi;\r\n  mint\
-    \ r = mint::ntt_info().se;\r\n  mint dw = r.inverse().pow((1 << t) / (2 * n));\r\
-    \n\r\n  vc<mint> S, T;\r\n  while (N >= n) {\r\n    mint w = inv<mint>(2);\r\n\
-    \    T.resize(n);\r\n    FOR(i, n) T[i] = Q[2 * i + 0] * Q[2 * i + 1];\r\n   \
-    \ S.resize(n);\r\n    if (N & 1) {\r\n      for (auto& i: btr) {\r\n        S[i]\
-    \ = (P[2 * i] * Q[2 * i + 1] - P[2 * i + 1] * Q[2 * i]) * w;\r\n        w *= dw;\r\
-    \n      }\r\n    } else {\r\n      FOR(i, n) {\r\n        S[i] = (P[2 * i] * Q[2\
-    \ * i + 1] + P[2 * i + 1] * Q[2 * i]) * w;\r\n      }\r\n    }\r\n    swap(P,\
-    \ S), swap(Q, T);\r\n    N >>= 1;\r\n    if (N < n) break;\r\n    ntt_doubling(P);\r\
-    \n    ntt_doubling(Q);\r\n  }\r\n  ntt(P, 1), ntt(Q, 1);\r\n  return fps_div(P,\
-    \ Q)[N];\r\n}\r\n\r\ntemplate <typename mint>\r\nmint coef_of_rational_fps_convolution(vector<mint>\
-    \ P, vector<mint> Q, ll N) {\r\n  P.resize(len(Q) - 1);\r\n  if (len(P) == 0)\
-    \ return 0;\r\n  while (N >= len(P)) {\r\n    vc<mint> Q1 = Q;\r\n    FOR(i, len(Q1))\
-    \ if (i & 1) Q1[i] = -Q1[i];\r\n    P = convolution(P, Q1);\r\n    Q = convolution(Q,\
-    \ Q1);\r\n    FOR(i, len(Q1)) Q[i] = Q[2 * i];\r\n    FOR(i, len(Q1) - 1) P[i]\
-    \ = P[2 * i | (N & 1)];\r\n    P.resize(len(Q1) - 1);\r\n    Q.resize(len(Q1));\r\
-    \n    N /= 2;\r\n  }\r\n  return fps_div(P, Q)[N];\r\n}\r\n\r\ntemplate <typename\
+    \ P, vector<mint> Q, ll N) {\r\n  int m = len(Q) - 1;\r\n  assert(len(P) == m);\r\
+    \n  using poly = vc<mint>;\r\n  auto dfs = [&](auto& dfs, ll N) -> poly {\r\n\
+    \    // x^N mod G\r\n    if (N == 0) return {1};\r\n    poly f = dfs(dfs, N /\
+    \ 2);\r\n    f = convolution(f, f);\r\n    if (N & 1) f.insert(f.begin(), mint(0));\r\
+    \n    FOR_R(i, m, len(f)) { FOR(j, 1, len(Q)) f[i - j] -= Q[j] * f[i]; }\r\n \
+    \   f.resize(m);\r\n    return f;\r\n  };\r\n  poly f = dfs(dfs, N);\r\n  FOR(i,\
+    \ m) { FOR(j, 1, i + 1) P[i] -= Q[j] * P[i - j]; }\r\n  mint res = 0;\r\n  FOR(i,\
+    \ m) res += f[i] * P[i];\r\n  return res;\r\n}\r\n\r\ntemplate <typename mint>\r\
+    \nmint coef_of_rational_fps_ntt(vector<mint> P, vector<mint> Q, ll N) {\r\n  int\
+    \ log = 0;\r\n  while ((1 << log) < len(Q)) ++log;\r\n  int n = 1 << log;\r\n\
+    \  P.resize(2 * n), Q.resize(2 * n);\r\n  ntt(P, 0), ntt(Q, 0);\r\n  vc<int> btr(n);\r\
+    \n  FOR(i, n) { btr[i] = (btr[i >> 1] >> 1) + ((i & 1) << (log - 1)); }\r\n\r\n\
+    \  int t = mint::ntt_info().fi;\r\n  mint r = mint::ntt_info().se;\r\n  mint dw\
+    \ = r.inverse().pow((1 << t) / (2 * n));\r\n\r\n  vc<mint> S, T;\r\n  while (N\
+    \ >= n) {\r\n    mint w = inv<mint>(2);\r\n    T.resize(n);\r\n    FOR(i, n) T[i]\
+    \ = Q[2 * i + 0] * Q[2 * i + 1];\r\n    S.resize(n);\r\n    if (N & 1) {\r\n \
+    \     for (auto& i: btr) {\r\n        S[i] = (P[2 * i] * Q[2 * i + 1] - P[2 *\
+    \ i + 1] * Q[2 * i]) * w;\r\n        w *= dw;\r\n      }\r\n    } else {\r\n \
+    \     FOR(i, n) {\r\n        S[i] = (P[2 * i] * Q[2 * i + 1] + P[2 * i + 1] *\
+    \ Q[2 * i]) * w;\r\n      }\r\n    }\r\n    swap(P, S), swap(Q, T);\r\n    N >>=\
+    \ 1;\r\n    if (N < n) break;\r\n    ntt_doubling(P);\r\n    ntt_doubling(Q);\r\
+    \n  }\r\n  ntt(P, 1), ntt(Q, 1);\r\n  return fps_div(P, Q)[N];\r\n}\r\n\r\ntemplate\
+    \ <typename mint>\r\nmint coef_of_rational_fps_convolution(vector<mint> P, vector<mint>\
+    \ Q, ll N) {\r\n  P.resize(len(Q) - 1);\r\n  if (len(P) == 0) return 0;\r\n  while\
+    \ (N >= len(P)) {\r\n    vc<mint> Q1 = Q;\r\n    FOR(i, len(Q1)) if (i & 1) Q1[i]\
+    \ = -Q1[i];\r\n    P = convolution(P, Q1);\r\n    Q = convolution(Q, Q1);\r\n\
+    \    FOR(i, len(Q1)) Q[i] = Q[2 * i];\r\n    FOR(i, len(Q1) - 1) P[i] = P[2 *\
+    \ i | (N & 1)];\r\n    P.resize(len(Q1) - 1);\r\n    Q.resize(len(Q1));\r\n  \
+    \  N /= 2;\r\n  }\r\n  return fps_div(P, Q)[N];\r\n}\r\n\r\ntemplate <typename\
     \ mint>\r\nmint coef_of_rational_fps(vector<mint> P, vector<mint> Q, ll N) {\r\
     \n  assert(len(P) < len(Q) && Q[0] == mint(1));\r\n  if (N == 0) return (P.empty()\
     \ ? mint(0) : P[0]);\r\n  int n = len(Q);\r\n  if (mint::ntt_info().fi != -1)\
-    \ {\r\n    if (n <= 20) {\r\n      return coef_of_rational_fps_small(P, Q, N);\r\
+    \ {\r\n    if (n <= 10) {\r\n      return coef_of_rational_fps_small(P, Q, N);\r\
     \n    } else {\r\n      return coef_of_rational_fps_ntt(P, Q, N);\r\n    }\r\n\
-    \  }\r\n}\n#line 2 \"seq/famous/bell_number_large.hpp\"\n\n// Bell \u6570 B_n\
-    \ \u306E\u8A08\u7B97\u3002O(p logp logn)\ntemplate <typename mint>\nmint Bell_Number_large(ll\
-    \ n) {\n  int p = mint::get_mod();\n  vc<mint> f(p);\n  FOR(i, p) f[i] = fact_inv<mint>(i);\n\
-    \  f[0] = 0;\n  f = fps_exp(f);\n  FOR(i, p) f[i] *= fact<mint>(i);\n  vc<mint>\
-    \ g(p + 1);\n  g[0] = 1;\n  g[p - 1] = -1;\n  g[p] = -1;\n  f = convolution(f,\
-    \ g);\n  f.resize(p);\n  return coef_of_rational_fps<mint>(f, g, n);\n}\n#line\
-    \ 8 \"test/mytest/bell.test.cpp\"\n\nvoid test() {\n  const int P = 13, N = 100;\n\
-    \  using mint = modint<P>;\n  auto S = stirling_number_2_2d<mint>(N, N);\n  vc<mint>\
-    \ B(N);\n  FOR(i, N) B[i] = SUM<mint>(S[i]);\n  FOR(i, N) { assert(B[i] == Bell_Number_large<mint>(i));\
+    \  }\r\n  return (n <= 15 ? coef_of_rational_fps_small(P, Q, N)\r\n          \
+    \        : coef_of_rational_fps_convolution(P, Q, N));\r\n}\n#line 2 \"seq/famous/bell_number_large.hpp\"\
+    \n\n// Bell \u6570 B_n \u306E\u8A08\u7B97\u3002O(p logp logn)\ntemplate <typename\
+    \ mint>\nmint Bell_Number_large(ll n) {\n  int p = mint::get_mod();\n  vc<mint>\
+    \ f(p);\n  FOR(i, p) f[i] = fact_inv<mint>(i);\n  f[0] = 0;\n  f = fps_exp(f);\n\
+    \  FOR(i, p) f[i] *= fact<mint>(i);\n  vc<mint> g(p + 1);\n  g[0] = 1;\n  g[p\
+    \ - 1] = -1;\n  g[p] = -1;\n  f = convolution(f, g);\n  f.resize(p);\n  return\
+    \ coef_of_rational_fps<mint>(f, g, n);\n}\n#line 8 \"test/mytest/bell.test.cpp\"\
+    \n\nvoid test() {\n  const int P = 13, N = 100;\n  using mint = modint<P>;\n \
+    \ auto S = stirling_number_2_2d<mint>(N, N);\n  vc<mint> B(N);\n  FOR(i, N) B[i]\
+    \ = SUM<mint>(S[i]);\n  FOR(i, N) { assert(B[i] == Bell_Number_large<mint>(i));\
     \ }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n\
     \  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\n  return 0;\n\
     }\n"
@@ -758,8 +761,8 @@ data:
   isVerificationFile: true
   path: test/mytest/bell.test.cpp
   requiredBy: []
-  timestamp: '2023-05-03 12:45:42+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-05-03 19:36:15+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/bell.test.cpp
 layout: document
