@@ -87,10 +87,12 @@ mint coef_of_rational_fps(vector<mint> P, vector<mint> Q, ll N) {
   if (N == 0) return (P.empty() ? mint(0) : P[0]);
   int n = len(Q);
   if (mint::ntt_info().fi != -1) {
-    if (n <= 20) {
+    if (n <= 10) {
       return coef_of_rational_fps_small(P, Q, N);
     } else {
       return coef_of_rational_fps_ntt(P, Q, N);
     }
   }
+  return (n <= 15 ? coef_of_rational_fps_small(P, Q, N)
+                  : coef_of_rational_fps_convolution(P, Q, N));
 }
