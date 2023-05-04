@@ -3,9 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: setfunc/sps_composition.hpp
+    title: setfunc/sps_composition.hpp
+  - icon: ':question:'
     path: setfunc/sps_exp.hpp
     title: setfunc/sps_exp.hpp
   - icon: ':heavy_check_mark:'
+    path: setfunc/sps_log.hpp
+    title: setfunc/sps_log.hpp
+  - icon: ':question:'
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
   _extendedVerifiedWith:
@@ -15,9 +21,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sps_exp.test.cpp
     title: test/library_checker/math/sps_exp.test.cpp
-  _isVerificationFailed: false
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc213g.test.cpp
+    title: test_atcoder/abc213g.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc236h.test.cpp
+    title: test_atcoder/abc236h.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"setfunc/ranked_zeta.hpp\"\n\r\ntemplate <typename T, int\
@@ -54,11 +66,15 @@ data:
   isVerificationFile: false
   path: setfunc/ranked_zeta.hpp
   requiredBy:
+  - setfunc/sps_composition.hpp
+  - setfunc/sps_log.hpp
   - setfunc/subset_convolution.hpp
   - setfunc/sps_exp.hpp
   timestamp: '2023-05-04 02:23:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test_atcoder/abc213g.test.cpp
+  - test_atcoder/abc236h.test.cpp
   - test/library_checker/math/sps_exp.test.cpp
   - test/library_checker/convolution/subset_convolution.test.cpp
 documentation_of: setfunc/ranked_zeta.hpp

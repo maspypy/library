@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
   _extendedVerifiedWith:
@@ -54,7 +54,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1516.test.cpp
     title: test/yukicoder/1516.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1547.test.cpp
     title: test/yukicoder/1547.test.cpp
   - icon: ':heavy_check_mark:'
@@ -81,9 +81,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/fps_div.hpp\"\n\n#line 2 \"poly/count_terms.hpp\"\n\
@@ -361,15 +361,18 @@ data:
     \  auto b = a;\n  ntt(b, 1);\n  mint r = 1, zeta = root[topbit(2 * M)];\n  FOR(i,\
     \ M) b[i] *= r, r *= zeta;\n  ntt(b, 0);\n  copy(begin(b), end(b), back_inserter(a));\n\
     }\n#line 3 \"poly/coef_of_rational_fps.hpp\"\n\r\ntemplate <typename mint>\r\n\
-    mint coef_of_rational_fps_small(vector<mint> P, vector<mint> Q, ll N) {\r\n  int\
-    \ m = len(Q) - 1;\r\n  assert(len(P) == m);\r\n  using poly = vc<mint>;\r\n  auto\
-    \ dfs = [&](auto& dfs, ll N) -> poly {\r\n    // x^N mod G\r\n    if (N == 0)\
-    \ return {1};\r\n    poly f = dfs(dfs, N / 2);\r\n    f = convolution(f, f);\r\
-    \n    if (N & 1) f.insert(f.begin(), mint(0));\r\n    FOR_R(i, m, len(f)) { FOR(j,\
-    \ 1, len(Q)) f[i - j] -= Q[j] * f[i]; }\r\n    f.resize(m);\r\n    return f;\r\
-    \n  };\r\n  poly f = dfs(dfs, N);\r\n  FOR(i, m) { FOR(j, 1, i + 1) P[i] -= Q[j]\
-    \ * P[i - j]; }\r\n  mint res = 0;\r\n  FOR(i, m) res += f[i] * P[i];\r\n  return\
-    \ res;\r\n}\r\n\r\ntemplate <typename mint>\r\nmint coef_of_rational_fps_ntt(vector<mint>\
+    mint coef_of_rational_fps_small(vector<mint> P, vector<mint> Q, ll N) {\r\n  assert(len(Q)\
+    \ <= 16);\r\n  int m = len(Q) - 1;\r\n  assert(len(P) == m);\r\n  vc<u32> Q32(m\
+    \ + 1);\r\n  FOR(i, m + 1) Q32[i] = (-Q[i]).val;\r\n\r\n  using poly = vc<u64>;\r\
+    \n  auto dfs = [&](auto& dfs, const ll N) -> poly {\r\n    // x^N mod G\r\n  \
+    \  if (N == 0) return {1};\r\n    poly f = dfs(dfs, N / 2);\r\n    poly g(len(f)\
+    \ * 2 - 1 + (N & 1));\r\n    FOR(i, len(f)) FOR(j, len(f)) { g[i + j + (N & 1)]\
+    \ += f[i] * f[j]; }\r\n    FOR(i, len(g)) g[i] = mint(g[i]).val;\r\n    FOR_R(i,\
+    \ len(g)) {\r\n      g[i] = mint(g[i]).val;\r\n      if (i >= m) FOR(j, 1, len(Q))\
+    \ g[i - j] += Q32[j] * g[i];\r\n    }\r\n    g.resize(m);\r\n    return g;\r\n\
+    \  };\r\n  poly f = dfs(dfs, N);\r\n  FOR(i, m) { FOR(j, 1, i + 1) P[i] -= Q[j]\
+    \ * P[i - j]; }\r\n  u64 res = 0;\r\n  FOR(i, m) res += f[i] * P[i].val;\r\n \
+    \ return res;\r\n}\r\n\r\ntemplate <typename mint>\r\nmint coef_of_rational_fps_ntt(vector<mint>\
     \ P, vector<mint> Q, ll N) {\r\n  int log = 0;\r\n  while ((1 << log) < len(Q))\
     \ ++log;\r\n  int n = 1 << log;\r\n  P.resize(2 * n), Q.resize(2 * n);\r\n  ntt(P,\
     \ 0), ntt(Q, 0);\r\n  vc<int> btr(n);\r\n  FOR(i, n) { btr[i] = (btr[i >> 1] >>\
@@ -395,18 +398,21 @@ data:
     \ ? mint(0) : P[0]);\r\n  int n = len(Q);\r\n  if (mint::ntt_info().fi != -1)\
     \ {\r\n    if (n <= 10) {\r\n      return coef_of_rational_fps_small(P, Q, N);\r\
     \n    } else {\r\n      return coef_of_rational_fps_ntt(P, Q, N);\r\n    }\r\n\
-    \  }\r\n  return (n <= 15 ? coef_of_rational_fps_small(P, Q, N)\r\n          \
+    \  }\r\n  return (n <= 16 ? coef_of_rational_fps_small(P, Q, N)\r\n          \
     \        : coef_of_rational_fps_convolution(P, Q, N));\r\n}\n"
   code: "#include \"poly/fps_div.hpp\"\r\n#include \"poly/ntt_doubling.hpp\"\r\n\r\
     \ntemplate <typename mint>\r\nmint coef_of_rational_fps_small(vector<mint> P,\
-    \ vector<mint> Q, ll N) {\r\n  int m = len(Q) - 1;\r\n  assert(len(P) == m);\r\
-    \n  using poly = vc<mint>;\r\n  auto dfs = [&](auto& dfs, ll N) -> poly {\r\n\
-    \    // x^N mod G\r\n    if (N == 0) return {1};\r\n    poly f = dfs(dfs, N /\
-    \ 2);\r\n    f = convolution(f, f);\r\n    if (N & 1) f.insert(f.begin(), mint(0));\r\
-    \n    FOR_R(i, m, len(f)) { FOR(j, 1, len(Q)) f[i - j] -= Q[j] * f[i]; }\r\n \
-    \   f.resize(m);\r\n    return f;\r\n  };\r\n  poly f = dfs(dfs, N);\r\n  FOR(i,\
-    \ m) { FOR(j, 1, i + 1) P[i] -= Q[j] * P[i - j]; }\r\n  mint res = 0;\r\n  FOR(i,\
-    \ m) res += f[i] * P[i];\r\n  return res;\r\n}\r\n\r\ntemplate <typename mint>\r\
+    \ vector<mint> Q, ll N) {\r\n  assert(len(Q) <= 16);\r\n  int m = len(Q) - 1;\r\
+    \n  assert(len(P) == m);\r\n  vc<u32> Q32(m + 1);\r\n  FOR(i, m + 1) Q32[i] =\
+    \ (-Q[i]).val;\r\n\r\n  using poly = vc<u64>;\r\n  auto dfs = [&](auto& dfs, const\
+    \ ll N) -> poly {\r\n    // x^N mod G\r\n    if (N == 0) return {1};\r\n    poly\
+    \ f = dfs(dfs, N / 2);\r\n    poly g(len(f) * 2 - 1 + (N & 1));\r\n    FOR(i,\
+    \ len(f)) FOR(j, len(f)) { g[i + j + (N & 1)] += f[i] * f[j]; }\r\n    FOR(i,\
+    \ len(g)) g[i] = mint(g[i]).val;\r\n    FOR_R(i, len(g)) {\r\n      g[i] = mint(g[i]).val;\r\
+    \n      if (i >= m) FOR(j, 1, len(Q)) g[i - j] += Q32[j] * g[i];\r\n    }\r\n\
+    \    g.resize(m);\r\n    return g;\r\n  };\r\n  poly f = dfs(dfs, N);\r\n  FOR(i,\
+    \ m) { FOR(j, 1, i + 1) P[i] -= Q[j] * P[i - j]; }\r\n  u64 res = 0;\r\n  FOR(i,\
+    \ m) res += f[i] * P[i].val;\r\n  return res;\r\n}\r\n\r\ntemplate <typename mint>\r\
     \nmint coef_of_rational_fps_ntt(vector<mint> P, vector<mint> Q, ll N) {\r\n  int\
     \ log = 0;\r\n  while ((1 << log) < len(Q)) ++log;\r\n  int n = 1 << log;\r\n\
     \  P.resize(2 * n), Q.resize(2 * n);\r\n  ntt(P, 0), ntt(Q, 0);\r\n  vc<int> btr(n);\r\
@@ -433,7 +439,7 @@ data:
     \ ? mint(0) : P[0]);\r\n  int n = len(Q);\r\n  if (mint::ntt_info().fi != -1)\
     \ {\r\n    if (n <= 10) {\r\n      return coef_of_rational_fps_small(P, Q, N);\r\
     \n    } else {\r\n      return coef_of_rational_fps_ntt(P, Q, N);\r\n    }\r\n\
-    \  }\r\n  return (n <= 15 ? coef_of_rational_fps_small(P, Q, N)\r\n          \
+    \  }\r\n  return (n <= 16 ? coef_of_rational_fps_small(P, Q, N)\r\n          \
     \        : coef_of_rational_fps_convolution(P, Q, N));\r\n}"
   dependsOn:
   - poly/fps_div.hpp
@@ -452,8 +458,8 @@ data:
   requiredBy:
   - seq/interpolate_linear_rec.hpp
   - seq/famous/bell_number_large.hpp
-  timestamp: '2023-05-03 19:36:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-05-04 13:28:49+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/agc058d2.test.cpp
   - test/yukicoder/1844.test.cpp
