@@ -12,7 +12,7 @@ void enumerate_bits_64(u64 s, F f) {
   while (s) {
     int i = __builtin_ctzll(s);
     f(i);
-    s ^= 1 << i;
+    s ^= u64(1) << i;
   }
 }
 
