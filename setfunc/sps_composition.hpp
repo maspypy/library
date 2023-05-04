@@ -1,3 +1,5 @@
+#include "setfunc/ranked_zeta.hpp"
+
 // sum_i f_i/i! s^i, s^i is subset-convolution
 template <typename mint, int LIM>
 vc<mint> sps_composition_egf(int N, vc<mint>& f, vc<mint>& s) {
@@ -47,5 +49,5 @@ vc<mint> sps_composition_poly(int N, vc<mint> f, vc<mint> s) {
     mint pow_a = 1;
     FOR(i, j, len(f)) { g[j] += f[i] * pow_a, pow_a *= a, f[i] *= mint(i - j); }
   }
-  return composition_egf_sps<mint, LIM>(N, g, s);
+  return sps_composition_egf<mint, LIM>(N, g, s);
 }
