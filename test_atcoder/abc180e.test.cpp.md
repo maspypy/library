@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/minimum_hamiltonian_cycle.hpp
     title: graph/minimum_hamiltonian_cycle.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc180/tasks/abc180_e
@@ -263,34 +263,34 @@ data:
     \ntemplate <typename F>\nvoid enumerate_bits_32(u32 s, F f) {\n  while (s) {\n\
     \    int i = __builtin_ctz(s);\n    f(i);\n    s ^= 1 << i;\n  }\n}\n\ntemplate\
     \ <typename F>\nvoid enumerate_bits_64(u64 s, F f) {\n  while (s) {\n    int i\
-    \ = __builtin_ctzll(s);\n    f(i);\n    s ^= 1 << i;\n  }\n}\n\ntemplate <typename\
-    \ BS, typename F>\nvoid enumerate_bits_bitset(BS& b, int L, int R, F f) {\n  int\
-    \ p = (b[L] ? L : b._Find_next(L));\n  while (p < R) {\n    f(p);\n    p = b._Find_next(p);\n\
-    \  }\n}\n#line 4 \"graph/minimum_hamiltonian_cycle.hpp\"\n\n/*\nreturn [cost,\
-    \ cycle]\ncycle \u306A\u3057\u306E\u5834\u5408\uFF1A{-1, {}}\n*/\ntemplate <typename\
-    \ T, typename GT>\npair<T, vc<int>> minimum_hamiltonian_cycle(GT& G) {\n  assert(G.is_prepared());\n\
-    \  int n = G.N;\n  vv(T, dist, n, n, infty<T>);\n  FOR(v, n) {\n    for (auto&&\
-    \ e: G[v]) chmin(dist[v][e.to], e.cost);\n  }\n  n -= 1;\n  const int full = (1\
-    \ << n) - 1;\n  vv(T, dp, 1 << n, n, infty<T>);\n  FOR(v, n) chmin(dp[1 << v][v],\
-    \ dist[n][v]);\n  for (int s = 0; s < (1 << n); ++s) {\n    FOR(frm, n) if (dp[s][frm]\
-    \ < infty<T>) {\n      enumerate_bits_32(full - s, [&](int to) -> void {\n   \
-    \     int t = s | 1 << to;\n        T cost = dist[frm][to];\n        if (cost\
-    \ < infty<T>) chmin(dp[t][to], dp[s][frm] + cost);\n      });\n    }\n  }\n  int\
-    \ s = (1 << n) - 1;\n  T res = infty<T>;\n  int best_v = -1;\n  FOR(v, n) if (dist[v][n]\
-    \ < infty<T> && dp[s][v] < infty<T>) {\n    if (chmin(res, dp[s][v] + dist[v][n]))\
-    \ best_v = v;\n  }\n  if (res == infty<T>) return {-1, {}};\n  vc<int> C = {n,\
-    \ best_v};\n  int t = s;\n  while (len(C) <= n) {\n    int to = C.back();\n  \
-    \  int frm = [&]() -> int {\n      FOR(frm, n) {\n        int s = t ^ (1 << to);\n\
-    \        T inf = infty<T>;\n        if (dp[s][frm] < inf && dist[frm][to] < inf\n\
-    \            && dp[s][frm] + dist[frm][to] == dp[t][to])\n          return frm;\n\
-    \      }\n      return -1;\n    }();\n    C.eb(frm);\n    t ^= 1 << to;\n  }\n\
-    \  reverse(all(C));\n  return {res, C};\n}\n#line 6 \"test_atcoder/abc180e.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  using T = tuple<int, int, int>;\n  VEC(T, dat,\
-    \ N);\n  Graph<int, 1> G(N);\n  FOR(i, N) FOR(j, N) {\n    if (i == j) continue;\n\
-    \    auto [a, b, c] = dat[i];\n    auto [p, q, r] = dat[j];\n    G.add(i, j, abs(p\
-    \ - a) + abs(q - b) + max(0, r - c));\n  }\n  G.build();\n\n  auto [cost, P] =\
-    \ minimum_hamiltonian_cycle<int>(G);\n  print(cost);\n}\n\nsigned main() {\n \
-    \ solve();\n  return 0;\n}\n"
+    \ = __builtin_ctzll(s);\n    f(i);\n    s ^= u64(1) << i;\n  }\n}\n\ntemplate\
+    \ <typename BS, typename F>\nvoid enumerate_bits_bitset(BS& b, int L, int R, F\
+    \ f) {\n  int p = (b[L] ? L : b._Find_next(L));\n  while (p < R) {\n    f(p);\n\
+    \    p = b._Find_next(p);\n  }\n}\n#line 4 \"graph/minimum_hamiltonian_cycle.hpp\"\
+    \n\n/*\nreturn [cost, cycle]\ncycle \u306A\u3057\u306E\u5834\u5408\uFF1A{-1, {}}\n\
+    */\ntemplate <typename T, typename GT>\npair<T, vc<int>> minimum_hamiltonian_cycle(GT&\
+    \ G) {\n  assert(G.is_prepared());\n  int n = G.N;\n  vv(T, dist, n, n, infty<T>);\n\
+    \  FOR(v, n) {\n    for (auto&& e: G[v]) chmin(dist[v][e.to], e.cost);\n  }\n\
+    \  n -= 1;\n  const int full = (1 << n) - 1;\n  vv(T, dp, 1 << n, n, infty<T>);\n\
+    \  FOR(v, n) chmin(dp[1 << v][v], dist[n][v]);\n  for (int s = 0; s < (1 << n);\
+    \ ++s) {\n    FOR(frm, n) if (dp[s][frm] < infty<T>) {\n      enumerate_bits_32(full\
+    \ - s, [&](int to) -> void {\n        int t = s | 1 << to;\n        T cost = dist[frm][to];\n\
+    \        if (cost < infty<T>) chmin(dp[t][to], dp[s][frm] + cost);\n      });\n\
+    \    }\n  }\n  int s = (1 << n) - 1;\n  T res = infty<T>;\n  int best_v = -1;\n\
+    \  FOR(v, n) if (dist[v][n] < infty<T> && dp[s][v] < infty<T>) {\n    if (chmin(res,\
+    \ dp[s][v] + dist[v][n])) best_v = v;\n  }\n  if (res == infty<T>) return {-1,\
+    \ {}};\n  vc<int> C = {n, best_v};\n  int t = s;\n  while (len(C) <= n) {\n  \
+    \  int to = C.back();\n    int frm = [&]() -> int {\n      FOR(frm, n) {\n   \
+    \     int s = t ^ (1 << to);\n        T inf = infty<T>;\n        if (dp[s][frm]\
+    \ < inf && dist[frm][to] < inf\n            && dp[s][frm] + dist[frm][to] == dp[t][to])\n\
+    \          return frm;\n      }\n      return -1;\n    }();\n    C.eb(frm);\n\
+    \    t ^= 1 << to;\n  }\n  reverse(all(C));\n  return {res, C};\n}\n#line 6 \"\
+    test_atcoder/abc180e.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  using T = tuple<int,\
+    \ int, int>;\n  VEC(T, dat, N);\n  Graph<int, 1> G(N);\n  FOR(i, N) FOR(j, N)\
+    \ {\n    if (i == j) continue;\n    auto [a, b, c] = dat[i];\n    auto [p, q,\
+    \ r] = dat[j];\n    G.add(i, j, abs(p - a) + abs(q - b) + max(0, r - c));\n  }\n\
+    \  G.build();\n\n  auto [cost, P] = minimum_hamiltonian_cycle<int>(G);\n  print(cost);\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc180/tasks/abc180_e\"\n\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/minimum_hamiltonian_cycle.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  using T = tuple<int, int, int>;\n  VEC(T, dat,\
@@ -308,8 +308,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc180e.test.cpp
   requiredBy: []
-  timestamp: '2023-04-14 22:05:18+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-04 20:25:23+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc180e.test.cpp
 layout: document
