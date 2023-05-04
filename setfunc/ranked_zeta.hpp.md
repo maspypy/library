@@ -2,18 +2,21 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/sps_composition.hpp
     title: setfunc/sps_composition.hpp
   - icon: ':question:'
     path: setfunc/sps_exp.hpp
     title: setfunc/sps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/sps_log.hpp
     title: setfunc/sps_log.hpp
   - icon: ':question:'
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
+  - icon: ':warning:'
+    path: setfunc/transposed_sps_composition.hpp
+    title: setfunc/transposed_sps_composition.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution.test.cpp
@@ -21,7 +24,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sps_exp.test.cpp
     title: test/library_checker/math/sps_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc213g.test.cpp
     title: test_atcoder/abc213g.test.cpp
   - icon: ':x:'
@@ -68,6 +71,7 @@ data:
   requiredBy:
   - setfunc/sps_composition.hpp
   - setfunc/sps_log.hpp
+  - setfunc/transposed_sps_composition.hpp
   - setfunc/subset_convolution.hpp
   - setfunc/sps_exp.hpp
   timestamp: '2023-05-04 02:23:10+09:00'

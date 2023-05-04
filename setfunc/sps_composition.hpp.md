@@ -5,16 +5,16 @@ data:
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/sps_log.hpp
     title: setfunc/sps_log.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc213g.test.cpp
     title: test_atcoder/abc213g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"setfunc/ranked_zeta.hpp\"\n\r\ntemplate <typename T, int\
@@ -45,12 +45,14 @@ data:
     \          znewdp[k][p + q] += zdp[k][p] * zs[i][k][q];\n        }\n      }\n\
     \      auto x = ranked_mobius<mint, LIM>(znewdp);\n      copy(all(x), newdp.begin()\
     \ + (1 << i));\n    }\n    swap(dp, newdp);\n  }\n  return dp;\n}\n\n// sum_i\
-    \ f_i/i! s^i, s^i is subset-convolution\ntemplate <typename mint, int LIM>\nvc<mint>\
+    \ f_i s^i, s^i is subset-convolution\ntemplate <typename mint, int LIM>\nvc<mint>\
     \ sps_composition_poly(int N, vc<mint> f, vc<mint> s) {\n  if (f.empty()) return\
-    \ vc<mint>(1 << N, mint(0));\n  // convert to egf problem\n  mint a = s[0];\n\
-    \  s[0] = 0;\n  int D = min<int>(len(f) - 1, N);\n  vc<mint> g(D + 1);\n  FOR(j,\
-    \ D + 1) {\n    mint pow_a = 1;\n    FOR(i, j, len(f)) { g[j] += f[i] * pow_a,\
-    \ pow_a *= a, f[i] *= mint(i - j); }\n  }\n  return sps_composition_egf<mint,\
+    \ vc<mint>(1 << N, mint(0));\n  // convert to egf problem\n  int D = min<int>(len(f)\
+    \ - 1, N);\n  vc<mint> g(D + 1);\n  mint c = s[0];\n  s[0] = 0;\n  // (x+c)^i\n\
+    \  vc<mint> pow(D + 1);\n  pow[0] = 1;\n  FOR(i, len(f)) {\n    FOR(j, D + 1)\
+    \ g[j] += f[i] * pow[j];\n    FOR_R(j, D + 1) pow[j] = pow[j] * c + (j == 0 ?\
+    \ mint(0) : pow[j - 1]);\n  }\n  // to egf\n  mint factorial = 1;\n  FOR(j, D\
+    \ + 1) g[j] *= factorial, factorial *= mint(j + 1);\n  return sps_composition_egf<mint,\
     \ LIM>(N, g, s);\n}\n"
   code: "#include \"setfunc/ranked_zeta.hpp\"\n\n// sum_i f_i/i! s^i, s^i is subset-convolution\n\
     template <typename mint, int LIM>\nvc<mint> sps_composition_egf(int N, vc<mint>&\
@@ -65,21 +67,23 @@ data:
     \ FOR(p, i + 1) FOR(q, i - p + 1) {\n          znewdp[k][p + q] += zdp[k][p] *\
     \ zs[i][k][q];\n        }\n      }\n      auto x = ranked_mobius<mint, LIM>(znewdp);\n\
     \      copy(all(x), newdp.begin() + (1 << i));\n    }\n    swap(dp, newdp);\n\
-    \  }\n  return dp;\n}\n\n// sum_i f_i/i! s^i, s^i is subset-convolution\ntemplate\
+    \  }\n  return dp;\n}\n\n// sum_i f_i s^i, s^i is subset-convolution\ntemplate\
     \ <typename mint, int LIM>\nvc<mint> sps_composition_poly(int N, vc<mint> f, vc<mint>\
     \ s) {\n  if (f.empty()) return vc<mint>(1 << N, mint(0));\n  // convert to egf\
-    \ problem\n  mint a = s[0];\n  s[0] = 0;\n  int D = min<int>(len(f) - 1, N);\n\
-    \  vc<mint> g(D + 1);\n  FOR(j, D + 1) {\n    mint pow_a = 1;\n    FOR(i, j, len(f))\
-    \ { g[j] += f[i] * pow_a, pow_a *= a, f[i] *= mint(i - j); }\n  }\n  return sps_composition_egf<mint,\
-    \ LIM>(N, g, s);\n}\n"
+    \ problem\n  int D = min<int>(len(f) - 1, N);\n  vc<mint> g(D + 1);\n  mint c\
+    \ = s[0];\n  s[0] = 0;\n  // (x+c)^i\n  vc<mint> pow(D + 1);\n  pow[0] = 1;\n\
+    \  FOR(i, len(f)) {\n    FOR(j, D + 1) g[j] += f[i] * pow[j];\n    FOR_R(j, D\
+    \ + 1) pow[j] = pow[j] * c + (j == 0 ? mint(0) : pow[j - 1]);\n  }\n  // to egf\n\
+    \  mint factorial = 1;\n  FOR(j, D + 1) g[j] *= factorial, factorial *= mint(j\
+    \ + 1);\n  return sps_composition_egf<mint, LIM>(N, g, s);\n}\n"
   dependsOn:
   - setfunc/ranked_zeta.hpp
   isVerificationFile: false
   path: setfunc/sps_composition.hpp
   requiredBy:
   - setfunc/sps_log.hpp
-  timestamp: '2023-05-04 13:29:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-05-05 05:27:13+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc213g.test.cpp
 documentation_of: setfunc/sps_composition.hpp

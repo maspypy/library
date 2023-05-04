@@ -16,17 +16,17 @@ data:
   - icon: ':question:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/sps_composition.hpp
     title: setfunc/sps_composition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/sps_log.hpp
     title: setfunc/sps_log.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc213/tasks/abc213_g
@@ -309,12 +309,14 @@ data:
     \          znewdp[k][p + q] += zdp[k][p] * zs[i][k][q];\n        }\n      }\n\
     \      auto x = ranked_mobius<mint, LIM>(znewdp);\n      copy(all(x), newdp.begin()\
     \ + (1 << i));\n    }\n    swap(dp, newdp);\n  }\n  return dp;\n}\n\n// sum_i\
-    \ f_i/i! s^i, s^i is subset-convolution\ntemplate <typename mint, int LIM>\nvc<mint>\
+    \ f_i s^i, s^i is subset-convolution\ntemplate <typename mint, int LIM>\nvc<mint>\
     \ sps_composition_poly(int N, vc<mint> f, vc<mint> s) {\n  if (f.empty()) return\
-    \ vc<mint>(1 << N, mint(0));\n  // convert to egf problem\n  mint a = s[0];\n\
-    \  s[0] = 0;\n  int D = min<int>(len(f) - 1, N);\n  vc<mint> g(D + 1);\n  FOR(j,\
-    \ D + 1) {\n    mint pow_a = 1;\n    FOR(i, j, len(f)) { g[j] += f[i] * pow_a,\
-    \ pow_a *= a, f[i] *= mint(i - j); }\n  }\n  return sps_composition_egf<mint,\
+    \ vc<mint>(1 << N, mint(0));\n  // convert to egf problem\n  int D = min<int>(len(f)\
+    \ - 1, N);\n  vc<mint> g(D + 1);\n  mint c = s[0];\n  s[0] = 0;\n  // (x+c)^i\n\
+    \  vc<mint> pow(D + 1);\n  pow[0] = 1;\n  FOR(i, len(f)) {\n    FOR(j, D + 1)\
+    \ g[j] += f[i] * pow[j];\n    FOR_R(j, D + 1) pow[j] = pow[j] * c + (j == 0 ?\
+    \ mint(0) : pow[j - 1]);\n  }\n  // to egf\n  mint factorial = 1;\n  FOR(j, D\
+    \ + 1) g[j] *= factorial, factorial *= mint(j + 1);\n  return sps_composition_egf<mint,\
     \ LIM>(N, g, s);\n}\n#line 2 \"setfunc/sps_log.hpp\"\n\ntemplate <typename mint,\
     \ int LIM>\nvc<mint> sps_log(int N, vc<mint> s) {\n  assert(len(s) == (1 << N)\
     \ && s[0] == mint(1));\n  vc<mint> f(N + 1);\n  FOR(i, 1, N + 1) f[i] = -fact<mint>(i\
@@ -350,8 +352,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc213g.test.cpp
   requiredBy: []
-  timestamp: '2023-05-04 13:29:26+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-05 05:27:13+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc213g.test.cpp
 layout: document
