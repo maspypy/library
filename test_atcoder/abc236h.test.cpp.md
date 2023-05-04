@@ -13,26 +13,26 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/sps_exp.hpp
     title: setfunc/sps_exp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc236/tasks/abc236_h
+    PROBLEM: https://atcoder.jp/contests/abc236/tasks/abc236_Ex
     links:
-    - https://atcoder.jp/contests/abc236/tasks/abc236_h
-  bundledCode: "#line 1 \"test_atcoder/abc236h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc236/tasks/abc236_h\"\
+    - https://atcoder.jp/contests/abc236/tasks/abc236_Ex
+  bundledCode: "#line 1 \"test_atcoder/abc236h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc236/tasks/abc236_Ex\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -321,8 +321,8 @@ data:
     \ = M / LCM[i];\n    int n = popcnt(i);\n    if (!(n & 1)) F[i] = -F[i];\n   \
     \ F[i] *= fact<mint>(n - 1);\n  }\n  F = sps_exp<mint, 16>(N, F);\n  print(F.back());\n\
     }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc236/tasks/abc236_h\"\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc236/tasks/abc236_Ex\"\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
     \n#include \"setfunc/sps_exp.hpp\"\n\nusing mint = modint998;\nvoid solve() {\n\
     \  LL(N, M);\n  VEC(ll, A, N);\n  vi LCM(1 << N, 1);\n  auto f = [&](ll a, ll\
     \ b) -> ll {\n    ll g = gcd(a, b);\n    a /= g;\n    if (b > M / a) return M\
@@ -342,8 +342,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc236h.test.cpp
   requiredBy: []
-  timestamp: '2023-05-05 05:27:13+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-05-05 06:05:47+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc236h.test.cpp
 layout: document
