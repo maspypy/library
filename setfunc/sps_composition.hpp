@@ -36,18 +36,24 @@ vc<mint> sps_composition_egf(int N, vc<mint>& f, vc<mint>& s) {
   return dp;
 }
 
-// sum_i f_i/i! s^i, s^i is subset-convolution
+// sum_i f_i s^i, s^i is subset-convolution
 template <typename mint, int LIM>
 vc<mint> sps_composition_poly(int N, vc<mint> f, vc<mint> s) {
   if (f.empty()) return vc<mint>(1 << N, mint(0));
   // convert to egf problem
-  mint a = s[0];
-  s[0] = 0;
   int D = min<int>(len(f) - 1, N);
   vc<mint> g(D + 1);
-  FOR(j, D + 1) {
-    mint pow_a = 1;
-    FOR(i, j, len(f)) { g[j] += f[i] * pow_a, pow_a *= a, f[i] *= mint(i - j); }
+  mint c = s[0];
+  s[0] = 0;
+  // (x+c)^i
+  vc<mint> pow(D + 1);
+  pow[0] = 1;
+  FOR(i, len(f)) {
+    FOR(j, D + 1) g[j] += f[i] * pow[j];
+    FOR_R(j, D + 1) pow[j] = pow[j] * c + (j == 0 ? mint(0) : pow[j - 1]);
   }
+  // to egf
+  mint factorial = 1;
+  FOR(j, D + 1) g[j] *= factorial, factorial *= mint(j + 1);
   return sps_composition_egf<mint, LIM>(N, g, s);
 }
