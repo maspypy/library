@@ -19,7 +19,7 @@ vc<mint> transposed_subset_convolution(int N, vc<mint> s, vc<mint> x) {
 // for fixed sps s s.t. s[0] == 0.
 // consider linear map F:f->t=f(s) for egf f.
 // given x, calcuate transpose(F)(x)
-// equivalent: calculate k! sum_i x_i(s^k)_i for k=0,1,...,N
+// equivalent: calculate sum_i x_i(s^k/k!)_i for k=0,1,...,N
 template <typename mint, int LIM>
 vc<mint> transposed_sps_composition_egf(int N, vc<mint>& s, vc<mint> x) {
   assert(len(s) == (1 << N) && len(x) == (1 << N) && s[0] == mint(0));
