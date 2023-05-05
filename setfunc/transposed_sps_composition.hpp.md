@@ -49,7 +49,7 @@ data:
     \  y = rev(conv(rev x), s)\n  */\n  reverse(all(x));\n  x = subset_convolution<mint,\
     \ LIM>(x, s);\n  reverse(all(x));\n  return x;\n}\n\n// for fixed sps s s.t. s[0]\
     \ == 0.\n// consider linear map F:f->t=f(s) for egf f.\n// given x, calcuate transpose(F)(x)\n\
-    // equivalent: calculate k! sum_i x_i(s^k)_i for k=0,1,...,N\ntemplate <typename\
+    // equivalent: calculate sum_i x_i(s^k/k!)_i for k=0,1,...,N\ntemplate <typename\
     \ mint, int LIM>\nvc<mint> transposed_sps_composition_egf(int N, vc<mint>& s,\
     \ vc<mint> x) {\n  assert(len(s) == (1 << N) && len(x) == (1 << N) && s[0] ==\
     \ mint(0));\n  vc<mint> y(N + 1);\n  y[0] = x[0];\n  auto& dp = x;\n  FOR(i, N)\
@@ -66,8 +66,8 @@ data:
     \ i}(rev x)_js_{i-j}\n  y = rev(conv(rev x), s)\n  */\n  reverse(all(x));\n  x\
     \ = subset_convolution<mint, LIM>(x, s);\n  reverse(all(x));\n  return x;\n}\n\
     \n// for fixed sps s s.t. s[0] == 0.\n// consider linear map F:f->t=f(s) for egf\
-    \ f.\n// given x, calcuate transpose(F)(x)\n// equivalent: calculate k! sum_i\
-    \ x_i(s^k)_i for k=0,1,...,N\ntemplate <typename mint, int LIM>\nvc<mint> transposed_sps_composition_egf(int\
+    \ f.\n// given x, calcuate transpose(F)(x)\n// equivalent: calculate sum_i x_i(s^k/k!)_i\
+    \ for k=0,1,...,N\ntemplate <typename mint, int LIM>\nvc<mint> transposed_sps_composition_egf(int\
     \ N, vc<mint>& s, vc<mint> x) {\n  assert(len(s) == (1 << N) && len(x) == (1 <<\
     \ N) && s[0] == mint(0));\n  vc<mint> y(N + 1);\n  y[0] = x[0];\n  auto& dp =\
     \ x;\n  FOR(i, N) {\n    vc<mint> newdp(1 << (N - 1 - i));\n    FOR(j, N - i)\
@@ -81,7 +81,7 @@ data:
   isVerificationFile: false
   path: setfunc/transposed_sps_composition.hpp
   requiredBy: []
-  timestamp: '2023-05-05 05:27:13+09:00'
+  timestamp: '2023-05-05 13:58:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: setfunc/transposed_sps_composition.hpp
