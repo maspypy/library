@@ -472,6 +472,9 @@ data:
     path: test/library_checker/math/binomial_coefficient.test.cpp
     title: test/library_checker/math/binomial_coefficient.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/composition_sps.test.cpp
+    title: test/library_checker/math/composition_sps.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/counting_primes.test.cpp
     title: test/library_checker/math/counting_primes.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1806,7 +1809,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc249_ex.test.cpp
     title: test_atcoder/abc249_ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc253h.test.cpp
     title: test_atcoder/abc253h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2523,6 +2526,7 @@ data:
   - test/library_checker/math/enumerate_quotients.test.cpp
   - test/library_checker/math/find_linear_recurrence.test.cpp
   - test/library_checker/math/min_of_mod_of_linear_2.test.cpp
+  - test/library_checker/math/composition_sps.test.cpp
   - test/library_checker/math/min_of_mod_of_linear.test.cpp
   - test/library_checker/math/partition.test.cpp
   - test/library_checker/math/factorize.test.cpp

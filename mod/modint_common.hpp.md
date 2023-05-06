@@ -310,6 +310,9 @@ data:
     path: test/library_checker/graph/enumerate_cliques.test.cpp
     title: test/library_checker/graph/enumerate_cliques.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/composition_sps.test.cpp
+    title: test/library_checker/math/composition_sps.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
   - icon: ':heavy_check_mark:'
@@ -864,7 +867,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc249_ex.test.cpp
     title: test_atcoder/abc249_ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc253h.test.cpp
     title: test_atcoder/abc253h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1225,6 +1228,7 @@ data:
   - test/library_checker/math/lcm_convolution.test.cpp
   - test/library_checker/math/totient_sum.test.cpp
   - test/library_checker/math/find_linear_recurrence.test.cpp
+  - test/library_checker/math/composition_sps.test.cpp
   - test/library_checker/math/partition.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
