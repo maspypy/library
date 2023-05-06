@@ -4,14 +4,14 @@
 #include "other/io.hpp"
 
 #include "mod/modint.hpp"
-#include "setfunc/composition_sps.hpp"
+#include "setfunc/sps_composition.hpp"
 
 using mint = modint998;
 void solve() {
   LL(M, N);
   VEC(mint, f, M);
   VEC(mint, s, 1 << N);
-  s = composition_poly_sps<mint, 20>(N, f, s);
+  s = sps_composition_poly<mint, 20>(N, f, s);
   print(s);
 }
 
