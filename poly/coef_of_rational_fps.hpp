@@ -6,6 +6,7 @@ mint coef_of_rational_fps_small(vector<mint> P, vector<mint> Q, ll N) {
   assert(len(Q) <= 16);
   int m = len(Q) - 1;
   assert(len(P) == m);
+  if (m == 0) return mint(0);
   vc<u32> Q32(m + 1);
   FOR(i, m + 1) Q32[i] = (-Q[i]).val;
 
