@@ -790,6 +790,12 @@ data:
     path: test/yukicoder/2265.test.cpp
     title: test/yukicoder/2265.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2293.test.cpp
+    title: test/yukicoder/2293.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2295.test.cpp
+    title: test/yukicoder/2295.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
   - icon: ':heavy_check_mark:'
@@ -858,6 +864,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc249_ex.test.cpp
     title: test_atcoder/abc249_ex.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc253h.test.cpp
+    title: test_atcoder/abc253h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc260h.test.cpp
     title: test_atcoder/abc260h.test.cpp
@@ -894,6 +903,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/arc105.test.cpp
+    title: test_atcoder/arc105.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
@@ -1065,6 +1077,7 @@ data:
   - test_atcoder/abc234g.test.cpp
   - test_atcoder/abc160f.test.cpp
   - test_atcoder/abc222h.test.cpp
+  - test_atcoder/arc105.test.cpp
   - test_atcoder/abc226f.test.cpp
   - test_atcoder/arc154f.test.cpp
   - test_atcoder/abc213g.test.cpp
@@ -1085,6 +1098,7 @@ data:
   - test_atcoder/abc222h_2.test.cpp
   - test_atcoder/abc276_g_2.test.cpp
   - test_atcoder/abc267h.test.cpp
+  - test_atcoder/abc253h.test.cpp
   - test_atcoder/abc288ex.test.cpp
   - test_atcoder/abc267g.test.cpp
   - test_atcoder/arc153f.test.cpp
@@ -1110,7 +1124,9 @@ data:
   - test/yukicoder/1989.test.cpp
   - test/yukicoder/1857.test.cpp
   - test/yukicoder/1561.test.cpp
+  - test/yukicoder/2293.test.cpp
   - test/yukicoder/1919.test.cpp
+  - test/yukicoder/2295.test.cpp
   - test/yukicoder/590.test.cpp
   - test/yukicoder/1755.test.cpp
   - test/yukicoder/1962.test.cpp

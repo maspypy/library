@@ -9,6 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
     title: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2295.test.cpp
+    title: test/yukicoder/2295.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2296.test.cpp
+    title: test/yukicoder/2296.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -158,6 +164,8 @@ data:
   timestamp: '2022-10-21 20:04:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/2295.test.cpp
+  - test/yukicoder/2296.test.cpp
   - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
 documentation_of: graph/ds/link_cut_path.hpp
 layout: document

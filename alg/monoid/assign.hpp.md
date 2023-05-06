@@ -64,6 +64,9 @@ data:
     path: test/yukicoder/1548.test.cpp
     title: test/yukicoder/1548.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2292.test.cpp
+    title: test/yukicoder/2292.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc256ex.test.cpp
     title: test_atcoder/abc256ex.test.cpp
   - icon: ':heavy_check_mark:'
@@ -98,6 +101,7 @@ data:
   - test_atcoder/abc256ex2.test.cpp
   - test_atcoder/abc256ex.test.cpp
   - test/yukicoder/1548.test.cpp
+  - test/yukicoder/2292.test.cpp
   - test/aoj/DSL_2_D.test.cpp
   - test/aoj/DSL_2_F.test.cpp
   - test/aoj/DSL_2_I.test.cpp

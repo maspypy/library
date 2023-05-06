@@ -22,30 +22,32 @@ data:
   - icon: ':question:'
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
+  - icon: ':x:'
+    path: setfunc/transposed_sps_composition.hpp
+    title: setfunc/transposed_sps_composition.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/exp_of_set_power_series
+    PROBLEM: https://atcoder.jp/contests/abc253/tasks/abc253_Ex
     links:
-    - https://judge.yosupo.jp/problem/exp_of_set_power_series
-  bundledCode: "#line 1 \"test/library_checker/math/sps_exp.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/exp_of_set_power_series\"\n#line 1 \"my_template.hpp\"\
-    \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n#pragma GCC\
-    \ optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\
-    \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
-    \ u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nconstexpr\
-    \ T infty = 0;\ntemplate <>\nconstexpr int infty<int> = 1'000'000'000;\ntemplate\
-    \ <>\nconstexpr ll infty<ll> = ll(infty<int>) * infty<int> * 2;\ntemplate <>\n\
-    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\n\
-    template <>\nconstexpr double infty<double> = infty<ll>;\ntemplate <>\nconstexpr\
-    \ long double infty<long double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing\
-    \ vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
-    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    - https://atcoder.jp/contests/abc253/tasks/abc253_Ex
+  bundledCode: "#line 1 \"test_atcoder/abc253h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc253/tasks/abc253_Ex\"\
+    \n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
+    )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
+    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
+    \ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int>\
+    \ = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll> = ll(infty<int>) * infty<int>\
+    \ * 2;\ntemplate <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr\
+    \ u64 infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
+    \ * infty<ll>;\ntemplate <>\nconstexpr double infty<double> = infty<ll>;\ntemplate\
+    \ <>\nconstexpr long double infty<long double> = infty<ll>;\n\nusing pi = pair<ll,\
+    \ ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
+    \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
     template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
     \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
     template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
@@ -214,75 +216,74 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 4 \"test/library_checker/math/sps_exp.test.cpp\"\n\n#line\
-    \ 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class T>\n\
-    \  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n  template\
-    \ <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate <class\
-    \ T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
-    \ {};\n\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod\
-    \ = mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n\
-    \  if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
-    \    int q = (mod + k - 1) / k;\n    dat.eb(dat[k * q - mod] * mint(q));\n  }\n\
-    \  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
-    \ const int mod = mint::get_mod();\n  assert(0 <= n);\n  if (n >= mod) return\
-    \ 0;\n  static vector<mint> dat = {1, 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat)\
-    \ - 1] * mint(len(dat)));\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint\
-    \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  assert(-1 <=\
-    \ n && n < mod);\n  static vector<mint> dat = {1, 1};\n  if (n == -1) return mint(0);\n\
-    \  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n  return\
-    \ dat[n];\n}\n\ntemplate <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n\
-    \  return (mint(1) * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint,\
-    \ class Head, class... Tail>\nmint multinomial(Head &&head, Tail &&... tail) {\n\
-    \  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\
-    \ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  static vvc<mint> C;\n\
-    \  static int H = 0, W = 0;\n  auto calc = [&](int i, int j) -> mint {\n    if\
-    \ (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j] + (j ?\
-    \ C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k\
-    \ + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n    W = k +\
-    \ 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n   \
-    \   C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H =\
-    \ n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool large = false,\
-    \ bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 ||\
-    \ n < k) return 0;\n  if (dense) return C_dense<mint>(n, k);\n  if (!large) return\
-    \ multinomial<mint>(n, k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i,\
-    \ k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename\
-    \ mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0\
-    \ <= k && k <= n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n\
-    \ - k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d] (1-x) ^ {-n} \u306E\
-    \u8A08\u7B97\ntemplate <typename mint, bool large = false, bool dense = false>\n\
-    mint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
-    \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
-    \ dense>(n + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\n\
-    struct modint {\n  int val;\n  constexpr modint(const ll val = 0) noexcept\n \
-    \     : val(val >= 0 ? val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const\
-    \ modint &other) const {\n    return val < other.val;\n  } // To use std::map\n\
-    \  modint &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -=\
-    \ mod;\n    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if\
-    \ ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint\
-    \ &operator*=(const modint &p) {\n    val = (int)(1LL * val * p.val % mod);\n\
-    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
-    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint(-val);\
-    \ }\n  modint operator+(const modint &p) const { return modint(*this) += p; }\n\
-    \  modint operator-(const modint &p) const { return modint(*this) -= p; }\n  modint\
-    \ operator*(const modint &p) const { return modint(*this) *= p; }\n  modint operator/(const\
-    \ modint &p) const { return modint(*this) /= p; }\n  bool operator==(const modint\
-    \ &p) const { return val == p.val; }\n  bool operator!=(const modint &p) const\
-    \ { return val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod,\
-    \ u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t *\
-    \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll\
-    \ n) const {\n    assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n\
-    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
-    \  }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
-    \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
-    \ int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\
-    \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 167772161) return\
-    \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
-    \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
-    \ == 998244353) return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n\
-    \    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881) return\
-    \ {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
-    \ return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 2 \"setfunc/subset_convolution.hpp\"\
+    \ yes(!t); }\n#line 5 \"test_atcoder/abc253h.test.cpp\"\n\n#line 2 \"mod/modint_common.hpp\"\
+    \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
+    \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
+    \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
+    \ decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\n\ntemplate <typename\
+    \ mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n  static\
+    \ vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n \
+    \ while (len(dat) <= n) {\n    int k = len(dat);\n    int q = (mod + k - 1) /\
+    \ k;\n    dat.eb(dat[k * q - mod] * mint(q));\n  }\n  return dat[n];\n}\n\ntemplate\
+    \ <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  assert(0 <= n);\n  if (n >= mod) return 0;\n  static vector<mint> dat = {1,\
+    \ 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * mint(len(dat)));\n \
+    \ return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static\
+    \ const int mod = mint::get_mod();\n  assert(-1 <= n && n < mod);\n  static vector<mint>\
+    \ dat = {1, 1};\n  if (n == -1) return mint(0);\n  while (len(dat) <= n) dat.eb(dat[len(dat)\
+    \ - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\ntemplate <class mint, class...\
+    \ Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
+    }\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
+    \ &&head, Tail &&... tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  static vvc<mint>\
+    \ C;\n  static int H = 0, W = 0;\n  auto calc = [&](int i, int j) -> mint {\n\
+    \    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
+    \ + (j ? C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n     \
+    \ C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n\
+    \    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n +\
+    \ 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n   \
+    \ }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool\
+    \ large = false, bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  if (dense) return C_dense<mint>(n, k);\n \
+    \ if (!large) return multinomial<mint>(n, k, n - k);\n  k = min(k, n - k);\n \
+    \ mint x(1);\n  FOR(i, k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n\
+    }\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n\
+    \  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
+    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
+    }\n\n// [x^d] (1-x) ^ {-n} \u306E\u8A08\u7B97\ntemplate <typename mint, bool large\
+    \ = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n\
+    \  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1) : mint(0));\
+    \ }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\
+    \n\ntemplate <int mod>\nstruct modint {\n  int val;\n  constexpr modint(const\
+    \ ll val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val) % mod)\
+    \ % mod) {}\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
+    \  } // To use std::map\n  modint &operator+=(const modint &p) {\n    if ((val\
+    \ += p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator-=(const\
+    \ modint &p) {\n    if ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n\
+    \  }\n  modint &operator*=(const modint &p) {\n    val = (int)(1LL * val * p.val\
+    \ % mod);\n    return *this;\n  }\n  modint &operator/=(const modint &p) {\n \
+    \   *this *= p.inverse();\n    return *this;\n  }\n  modint operator-() const\
+    \ { return modint(-val); }\n  modint operator+(const modint &p) const { return\
+    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
+    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
+    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
+    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
+    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
+    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
+    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
+    \ return modint(u);\n  }\n  modint pow(ll n) const {\n    assert(n >= 0);\n  \
+    \  modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
+    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n\
+    \  void write() { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
+    \ }\n#endif\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r\
+    \ \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info()\
+    \ {\n    if (mod == 167772161) return {25, 17};\n    if (mod == 469762049) return\
+    \ {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841)\
+    \ return {23, 211};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
+    \ 1045430273) return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n\
+    \    if (mod == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static\
+    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\nusing modint107\
+    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 2 \"setfunc/subset_convolution.hpp\"\
     \n\r\n#line 2 \"setfunc/ranked_zeta.hpp\"\n\r\ntemplate <typename T, int LIM =\
     \ 20>\r\nvc<array<T, LIM + 1>> ranked_zeta(const vc<T>& f) {\r\n  int n = topbit(len(f));\r\
     \n  assert(n <= LIM);\r\n  assert(len(f) == 1 << n);\r\n  vc<array<T, LIM + 1>>\
@@ -315,14 +316,48 @@ data:
     \  FOR(i, N) {\n    vc<mint> a = {s.begin() + (1 << i), s.begin() + (2 << i)};\n\
     \    vc<mint> b = {dp.begin(), dp.begin() + (1 << i)};\n    a = subset_convolution<mint,\
     \ LIM>(a, b);\n    copy(all(a), dp.begin() + (1 << i));\n  }\n  return dp;\n}\n\
-    #line 7 \"test/library_checker/math/sps_exp.test.cpp\"\n\nusing mint = modint998;\n\
-    void solve() {\n  LL(N);\n  VEC(mint, s, 1 << N);\n  s = sps_exp<mint, 20>(N,\
-    \ s);\n  print(s);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/exp_of_set_power_series\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
-    \n#include \"setfunc/sps_exp.hpp\"\n\nusing mint = modint998;\nvoid solve() {\n\
-    \  LL(N);\n  VEC(mint, s, 1 << N);\n  s = sps_exp<mint, 20>(N, s);\n  print(s);\n\
-    }\n\nsigned main() {\n  solve();\n  return 0;\n}"
+    #line 2 \"setfunc/transposed_sps_composition.hpp\"\n\n// for fixed sps s, consider\
+    \ linear map F:a->b = subset-conv(a,s)\n// given x, calculate transpose(F)(x)\n\
+    template <typename mint, int LIM>\nvc<mint> transposed_subset_convolution(int\
+    \ N, vc<mint> s, vc<mint> x) {\n  /*\n  sum_{j}x_jb_j = sum_{i subset j}x_ja_is_{j-i}\
+    \ = sum_{i}y_ia_i.\n  y_i = sum_{j supset i}x_js_{j-i}\n  (rev y)_i = sum_{j subset\
+    \ i}(rev x)_js_{i-j}\n  y = rev(conv(rev x), s)\n  */\n  reverse(all(x));\n  x\
+    \ = subset_convolution<mint, LIM>(x, s);\n  reverse(all(x));\n  return x;\n}\n\
+    \n// for fixed sps s s.t. s[0] == 0.\n// consider linear map F:f->t=f(s) for egf\
+    \ f.\n// given x, calcuate transpose(F)(x)\n// equivalent: calculate sum_i x_i(s^k/k!)_i\
+    \ for k=0,1,...,N\ntemplate <typename mint, int LIM>\nvc<mint> transposed_sps_composition_egf(int\
+    \ N, vc<mint>& s, vc<mint> x) {\n  assert(len(s) == (1 << N) && len(x) == (1 <<\
+    \ N) && s[0] == mint(0));\n  vc<mint> y(N + 1);\n  y[0] = x[0];\n  auto& dp =\
+    \ x;\n  FOR(i, N) {\n    vc<mint> newdp(1 << (N - 1 - i));\n    FOR(j, N - i)\
+    \ {\n      vc<mint> a = {s.begin() + (1 << j), s.begin() + (2 << j)};\n      vc<mint>\
+    \ b = {dp.begin() + (1 << j), dp.begin() + (2 << j)};\n      b = transposed_subset_convolution<mint,\
+    \ LIM>(j, a, b);\n      FOR(k, len(b)) newdp[k] += b[k];\n    }\n    swap(dp,\
+    \ newdp);\n    y[1 + i] = dp[0];\n  }\n  return y;\n}\n#line 9 \"test_atcoder/abc253h.test.cpp\"\
+    \n\nconst int LIM = 14;\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, M);\n\
+    \n  vv(int, mat, N, N);\n  FOR(M) {\n    INT(a, b);\n    --a, --b;\n    mat[a][b]++,\
+    \ mat[b][a]++;\n  }\n\n  // count tree\n  vc<mint> dp(1 << N);\n  dp[0] = 0;\n\
+    \  FOR(i, N) {\n    vc<mint> a = {dp.begin(), dp.begin() + (1 << i)};\n    FOR(s,\
+    \ 1 << i) {\n      int k = 0;\n      FOR(j, i) if (s >> j & 1) k += mat[i][j];\n\
+    \      a[s] *= mint(k);\n    }\n    a = sps_exp<mint, LIM>(i, a);\n    copy(all(a),\
+    \ dp.begin() + (1 << i));\n  }\n\n  vc<mint> x(1 << N);\n  x.back() = mint(1);\n\
+    \  auto y = transposed_sps_composition_egf<mint, LIM>(N, dp, x);\n\n  FOR(k, 1,\
+    \ N) {\n    // k edges = N-k component\n    mint ans = y[N - k];\n    ans *= inv<mint>(M).pow(k)\
+    \ * fact<mint>(k);\n    print(ans);\n  }\n}\n\nsigned main() {\n  solve();\n \
+    \ return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc253/tasks/abc253_Ex\"\n\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
+    \n#include \"setfunc/sps_exp.hpp\"\n#include \"setfunc/transposed_sps_composition.hpp\"\
+    \n\nconst int LIM = 14;\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, M);\n\
+    \n  vv(int, mat, N, N);\n  FOR(M) {\n    INT(a, b);\n    --a, --b;\n    mat[a][b]++,\
+    \ mat[b][a]++;\n  }\n\n  // count tree\n  vc<mint> dp(1 << N);\n  dp[0] = 0;\n\
+    \  FOR(i, N) {\n    vc<mint> a = {dp.begin(), dp.begin() + (1 << i)};\n    FOR(s,\
+    \ 1 << i) {\n      int k = 0;\n      FOR(j, i) if (s >> j & 1) k += mat[i][j];\n\
+    \      a[s] *= mint(k);\n    }\n    a = sps_exp<mint, LIM>(i, a);\n    copy(all(a),\
+    \ dp.begin() + (1 << i));\n  }\n\n  vc<mint> x(1 << N);\n  x.back() = mint(1);\n\
+    \  auto y = transposed_sps_composition_egf<mint, LIM>(N, dp, x);\n\n  FOR(k, 1,\
+    \ N) {\n    // k edges = N-k component\n    mint ans = y[N - k];\n    ans *= inv<mint>(M).pow(k)\
+    \ * fact<mint>(k);\n    print(ans);\n  }\n}\n\nsigned main() {\n  solve();\n \
+    \ return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -331,16 +366,17 @@ data:
   - setfunc/sps_exp.hpp
   - setfunc/subset_convolution.hpp
   - setfunc/ranked_zeta.hpp
+  - setfunc/transposed_sps_composition.hpp
   isVerificationFile: true
-  path: test/library_checker/math/sps_exp.test.cpp
+  path: test_atcoder/abc253h.test.cpp
   requiredBy: []
-  timestamp: '2023-05-05 05:27:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-06 10:59:04+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/math/sps_exp.test.cpp
+documentation_of: test_atcoder/abc253h.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/math/sps_exp.test.cpp
-- /verify/test/library_checker/math/sps_exp.test.cpp.html
-title: test/library_checker/math/sps_exp.test.cpp
+- /verify/test_atcoder/abc253h.test.cpp
+- /verify/test_atcoder/abc253h.test.cpp.html
+title: test_atcoder/abc253h.test.cpp
 ---

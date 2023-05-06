@@ -418,7 +418,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/unionfind/rollback_unionfind.hpp
       title: ds/unionfind/rollback_unionfind.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/unionfind/rollback_weighted_unionfind.hpp
       title: ds/unionfind/rollback_weighted_unionfind.hpp
     - icon: ':heavy_check_mark:'
@@ -1414,22 +1414,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: setfunc/or_convolution.hpp
       title: setfunc/or_convolution.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: setfunc/ranked_zeta.hpp
       title: setfunc/ranked_zeta.hpp
     - icon: ':heavy_check_mark:'
       path: setfunc/sps_composition.hpp
       title: setfunc/sps_composition.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: setfunc/sps_exp.hpp
       title: setfunc/sps_exp.hpp
     - icon: ':heavy_check_mark:'
       path: setfunc/sps_log.hpp
       title: setfunc/sps_log.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: setfunc/subset_convolution.hpp
       title: setfunc/subset_convolution.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: setfunc/transposed_sps_composition.hpp
       title: setfunc/transposed_sps_composition.hpp
     - icon: ':heavy_check_mark:'
@@ -3112,6 +3112,21 @@ data:
       path: test/yukicoder/2280.test.cpp
       title: test/yukicoder/2280.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yukicoder/2292.test.cpp
+      title: test/yukicoder/2292.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/2293.test.cpp
+      title: test/yukicoder/2293.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/2294.test.cpp
+      title: test/yukicoder/2294.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/2295.test.cpp
+      title: test/yukicoder/2295.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/2296.test.cpp
+      title: test/yukicoder/2296.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/235.test.cpp
       title: test/yukicoder/235.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3338,6 +3353,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc249_ex.test.cpp
       title: test_atcoder/abc249_ex.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/abc253h.test.cpp
+      title: test_atcoder/abc253h.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc256d.test.cpp
       title: test_atcoder/abc256d.test.cpp
@@ -3425,6 +3443,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/agc058d2.test.cpp
       title: test_atcoder/agc058d2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_atcoder/arc105.test.cpp
+      title: test_atcoder/arc105.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_atcoder/arc123d.test.cpp
       title: test_atcoder/arc123d.test.cpp

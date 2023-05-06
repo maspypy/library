@@ -337,6 +337,12 @@ data:
     path: test/yukicoder/2242.test.cpp
     title: test/yukicoder/2242.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2292.test.cpp
+    title: test/yukicoder/2292.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2296.test.cpp
+    title: test/yukicoder/2296.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
   - icon: ':heavy_check_mark:'
@@ -484,6 +490,7 @@ data:
   - test/yukicoder/1269.test.cpp
   - test/yukicoder/1270.test.cpp
   - test/yukicoder/1490.test.cpp
+  - test/yukicoder/2296.test.cpp
   - test/yukicoder/899.test.cpp
   - test/yukicoder/686.test.cpp
   - test/yukicoder/1874.test.cpp
@@ -501,6 +508,7 @@ data:
   - test/yukicoder/1216_2.test.cpp
   - test/yukicoder/1197.test.cpp
   - test/yukicoder/919.test.cpp
+  - test/yukicoder/2292.test.cpp
   - test/aoj/DSL_2_H.test.cpp
   - test/aoj/DSL_1_B.test.cpp
   - test/aoj/DSL_4_A.test.cpp

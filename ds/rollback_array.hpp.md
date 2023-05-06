@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/unionfind/rollback_unionfind.hpp
     title: ds/unionfind/rollback_unionfind.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/rollback_weighted_unionfind.hpp
     title: ds/unionfind/rollback_weighted_unionfind.hpp
   _extendedVerifiedWith:
@@ -15,6 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
     title: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2293.test.cpp
+    title: test/yukicoder/2293.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -51,6 +54,7 @@ data:
   timestamp: '2023-01-31 21:17:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/2293.test.cpp
   - test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
   - test/library_checker/datastructure/add_remove_query.test.cpp
 documentation_of: ds/rollback_array.hpp

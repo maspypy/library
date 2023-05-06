@@ -10,6 +10,9 @@ data:
     path: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
     title: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2292.test.cpp
+    title: test/yukicoder/2292.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/789_2.test.cpp
     title: test/yukicoder/789_2.test.cpp
   _isVerificationFailed: false
@@ -196,6 +199,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/789_2.test.cpp
+  - test/yukicoder/2292.test.cpp
   - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
   - test/mytest/dynamic_lazy_segtree.test.cpp
 documentation_of: ds/segtree/dynamic_lazy_segtree.hpp
