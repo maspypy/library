@@ -1,3 +1,5 @@
+#include "setfunc/sps_exp.hpp"
+
 // 隣接行列に対して完全マッチングを数える。
 template <typename mint, int LIM = 20>
 mint Hufnian(vc<vc<mint>>& B0) {
