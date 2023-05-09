@@ -514,25 +514,25 @@ data:
   path: poly/multipoint.hpp
   requiredBy:
   - linalg/implicit_matrix/vandermonde.hpp
-  - poly/partial_frac_decomposition.hpp
   - poly/multivar_convolution_cyclic.hpp
+  - poly/partial_frac_decomposition.hpp
   timestamp: '2023-05-01 17:29:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc272_h.test.cpp
-  - test_atcoder/agc058d2.test.cpp
   - test_atcoder/abc267g.test.cpp
   - test_atcoder/abc260h.test.cpp
+  - test_atcoder/agc058d2.test.cpp
+  - test_atcoder/abc272_h.test.cpp
   - test/yukicoder/2243.test.cpp
   - test/yukicoder/2166.test.cpp
+  - test/mytest/partial_frac.test.cpp
+  - test/mytest/chirp_z.test.cpp
+  - test/mytest/vandermonde.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - test/mytest/partial_frac.test.cpp
-  - test/mytest/vandermonde.test.cpp
-  - test/mytest/chirp_z.test.cpp
 documentation_of: poly/multipoint.hpp
 layout: document
 redirect_from:

@@ -122,8 +122,8 @@ data:
   timestamp: '2023-04-27 03:47:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1810.test.cpp
   - test/yukicoder/1750.test.cpp
+  - test/yukicoder/1810.test.cpp
 documentation_of: linalg/mat_pow.hpp
 layout: document
 redirect_from:

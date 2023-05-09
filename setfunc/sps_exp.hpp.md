@@ -79,10 +79,10 @@ data:
   timestamp: '2023-05-05 05:27:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc236h.test.cpp
   - test_atcoder/abc253h.test.cpp
-  - test/library_checker/matrix/hafnian_of_matrix.test.cpp
+  - test_atcoder/abc236h.test.cpp
   - test/library_checker/math/sps_exp.test.cpp
+  - test/library_checker/matrix/hafnian_of_matrix.test.cpp
 documentation_of: setfunc/sps_exp.hpp
 layout: document
 redirect_from:

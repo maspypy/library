@@ -18,15 +18,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1649.test.cpp
     title: test/yukicoder/1649.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1826.test.cpp
     title: test/yukicoder/1826.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/789.test.cpp
     title: test/yukicoder/789.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/dynamic_segtree.hpp\"\n\r\n// sparse \u3082\u3042\
@@ -77,25 +77,27 @@ data:
     \ r);\r\n      c->r = set_rec(c->r, m, r, i, x);\r\n    }\r\n    X xl = (c->l\
     \ ? c->l->x : default_prod(l, m));\r\n    X xr = (c->r ? c->r->x : default_prod(m,\
     \ r));\r\n    c->x = MX::op(xl, xr);\r\n    return c;\r\n  }\r\n\r\n  np multiply_rec(np\
-    \ c, ll l, ll r, ll i, const X &x) {\r\n    if (r == l + 1) {\r\n      c = copy_node(c);\r\
-    \n      c->x = MX::op(c->x, x);\r\n      return c;\r\n    }\r\n    ll m = (l +\
-    \ r) / 2;\r\n    c = copy_node(c);\r\n\r\n    if (i < m) {\r\n      if (!c->l)\
-    \ c->l = new_node(l, m);\r\n      c->l = multiply_rec(c->l, l, m, i, x);\r\n \
-    \   } else {\r\n      if (!c->r) c->r = new_node(m, r);\r\n      c->r = multiply_rec(c->r,\
-    \ m, r, i, x);\r\n    }\r\n    X xl = (c->l ? c->l->x : default_prod(l, m));\r\
-    \n    X xr = (c->r ? c->r->x : default_prod(m, r));\r\n    c->x = MX::op(xl, xr);\r\
-    \n    return c;\r\n  }\r\n\r\n  void prod_rec(np c, ll l, ll r, ll ql, ll qr,\
-    \ X &x) {\r\n    chmax(ql, l);\r\n    chmin(qr, r);\r\n    if (ql >= qr) return;\r\
-    \n    if (!c) {\r\n      x = MX::op(x, default_prod(ql, qr));\r\n      return;\r\
-    \n    }\r\n    if (l == ql && r == qr) {\r\n      x = MX::op(x, c->x);\r\n   \
-    \   return;\r\n    }\r\n    ll m = (l + r) / 2;\r\n    prod_rec(c->l, l, m, ql,\
-    \ qr, x);\r\n    prod_rec(c->r, m, r, ql, qr, x);\r\n  }\r\n\r\n  template <typename\
-    \ F>\r\n  ll max_right_rec(np c, const F &check, ll l, ll r, ll ql, X &x) {\r\n\
-    \    if (r <= ql) return R0;\r\n    if (ql <= l && check(MX::op(x, c->x))) {\r\
-    \n      x = MX::op(x, c->x);\r\n      return R0;\r\n    }\r\n    if (r == l +\
-    \ 1) return l;\r\n    ll m = (l + r) / 2;\r\n    if (!c->l) c->l = new_node(l,\
-    \ m);\r\n    ll k = max_right_rec(c->l, check, l, m, ql, x);\r\n    if (k != R0)\
-    \ return k;\r\n    if (!c->r) c->r = new_node(m, r);\r\n    return max_right_rec(c->r,\
+    \ c, ll l, ll r, ll i, const X &x, bool make_copy = true) {\r\n    if (r == l\
+    \ + 1) {\r\n      c = copy_node(c);\r\n      c->x = MX::op(c->x, x);\r\n     \
+    \ return c;\r\n    }\r\n    ll m = (l + r) / 2;\r\n    if (make_copy) c = copy_node(c);\r\
+    \n\r\n    if (i < m) {\r\n      bool make = true;\r\n      if (!c->l) c->l = new_node(l,\
+    \ m), make = false;\r\n      c->l = multiply_rec(c->l, l, m, i, x, make);\r\n\
+    \    } else {\r\n      bool make = true;\r\n      if (!c->r) c->r = new_node(m,\
+    \ r), make = false;\r\n      c->r = multiply_rec(c->r, m, r, i, x, make);\r\n\
+    \    }\r\n    X xl = (c->l ? c->l->x : default_prod(l, m));\r\n    X xr = (c->r\
+    \ ? c->r->x : default_prod(m, r));\r\n    c->x = MX::op(xl, xr);\r\n    return\
+    \ c;\r\n  }\r\n\r\n  void prod_rec(np c, ll l, ll r, ll ql, ll qr, X &x) {\r\n\
+    \    chmax(ql, l);\r\n    chmin(qr, r);\r\n    if (ql >= qr) return;\r\n    if\
+    \ (!c) {\r\n      x = MX::op(x, default_prod(ql, qr));\r\n      return;\r\n  \
+    \  }\r\n    if (l == ql && r == qr) {\r\n      x = MX::op(x, c->x);\r\n      return;\r\
+    \n    }\r\n    ll m = (l + r) / 2;\r\n    prod_rec(c->l, l, m, ql, qr, x);\r\n\
+    \    prod_rec(c->r, m, r, ql, qr, x);\r\n  }\r\n\r\n  template <typename F>\r\n\
+    \  ll max_right_rec(np c, const F &check, ll l, ll r, ll ql, X &x) {\r\n    if\
+    \ (r <= ql) return R0;\r\n    if (ql <= l && check(MX::op(x, c->x))) {\r\n   \
+    \   x = MX::op(x, c->x);\r\n      return R0;\r\n    }\r\n    if (r == l + 1) return\
+    \ l;\r\n    ll m = (l + r) / 2;\r\n    if (!c->l) c->l = new_node(l, m);\r\n \
+    \   ll k = max_right_rec(c->l, check, l, m, ql, x);\r\n    if (k != R0) return\
+    \ k;\r\n    if (!c->r) c->r = new_node(m, r);\r\n    return max_right_rec(c->r,\
     \ check, m, r, ql, x);\r\n  }\r\n\r\n  template <typename F>\r\n  ll min_left_rec(np\
     \ c, const F &check, ll l, ll r, ll qr, X &x) {\r\n    if (qr <= l) return L0;\r\
     \n    if (r <= qr && check(MX::op(c->x, x))) {\r\n      x = MX::op(x, c->x);\r\
@@ -152,25 +154,27 @@ data:
     \      c->r = set_rec(c->r, m, r, i, x);\r\n    }\r\n    X xl = (c->l ? c->l->x\
     \ : default_prod(l, m));\r\n    X xr = (c->r ? c->r->x : default_prod(m, r));\r\
     \n    c->x = MX::op(xl, xr);\r\n    return c;\r\n  }\r\n\r\n  np multiply_rec(np\
-    \ c, ll l, ll r, ll i, const X &x) {\r\n    if (r == l + 1) {\r\n      c = copy_node(c);\r\
-    \n      c->x = MX::op(c->x, x);\r\n      return c;\r\n    }\r\n    ll m = (l +\
-    \ r) / 2;\r\n    c = copy_node(c);\r\n\r\n    if (i < m) {\r\n      if (!c->l)\
-    \ c->l = new_node(l, m);\r\n      c->l = multiply_rec(c->l, l, m, i, x);\r\n \
-    \   } else {\r\n      if (!c->r) c->r = new_node(m, r);\r\n      c->r = multiply_rec(c->r,\
-    \ m, r, i, x);\r\n    }\r\n    X xl = (c->l ? c->l->x : default_prod(l, m));\r\
-    \n    X xr = (c->r ? c->r->x : default_prod(m, r));\r\n    c->x = MX::op(xl, xr);\r\
-    \n    return c;\r\n  }\r\n\r\n  void prod_rec(np c, ll l, ll r, ll ql, ll qr,\
-    \ X &x) {\r\n    chmax(ql, l);\r\n    chmin(qr, r);\r\n    if (ql >= qr) return;\r\
-    \n    if (!c) {\r\n      x = MX::op(x, default_prod(ql, qr));\r\n      return;\r\
-    \n    }\r\n    if (l == ql && r == qr) {\r\n      x = MX::op(x, c->x);\r\n   \
-    \   return;\r\n    }\r\n    ll m = (l + r) / 2;\r\n    prod_rec(c->l, l, m, ql,\
-    \ qr, x);\r\n    prod_rec(c->r, m, r, ql, qr, x);\r\n  }\r\n\r\n  template <typename\
-    \ F>\r\n  ll max_right_rec(np c, const F &check, ll l, ll r, ll ql, X &x) {\r\n\
-    \    if (r <= ql) return R0;\r\n    if (ql <= l && check(MX::op(x, c->x))) {\r\
-    \n      x = MX::op(x, c->x);\r\n      return R0;\r\n    }\r\n    if (r == l +\
-    \ 1) return l;\r\n    ll m = (l + r) / 2;\r\n    if (!c->l) c->l = new_node(l,\
-    \ m);\r\n    ll k = max_right_rec(c->l, check, l, m, ql, x);\r\n    if (k != R0)\
-    \ return k;\r\n    if (!c->r) c->r = new_node(m, r);\r\n    return max_right_rec(c->r,\
+    \ c, ll l, ll r, ll i, const X &x, bool make_copy = true) {\r\n    if (r == l\
+    \ + 1) {\r\n      c = copy_node(c);\r\n      c->x = MX::op(c->x, x);\r\n     \
+    \ return c;\r\n    }\r\n    ll m = (l + r) / 2;\r\n    if (make_copy) c = copy_node(c);\r\
+    \n\r\n    if (i < m) {\r\n      bool make = true;\r\n      if (!c->l) c->l = new_node(l,\
+    \ m), make = false;\r\n      c->l = multiply_rec(c->l, l, m, i, x, make);\r\n\
+    \    } else {\r\n      bool make = true;\r\n      if (!c->r) c->r = new_node(m,\
+    \ r), make = false;\r\n      c->r = multiply_rec(c->r, m, r, i, x, make);\r\n\
+    \    }\r\n    X xl = (c->l ? c->l->x : default_prod(l, m));\r\n    X xr = (c->r\
+    \ ? c->r->x : default_prod(m, r));\r\n    c->x = MX::op(xl, xr);\r\n    return\
+    \ c;\r\n  }\r\n\r\n  void prod_rec(np c, ll l, ll r, ll ql, ll qr, X &x) {\r\n\
+    \    chmax(ql, l);\r\n    chmin(qr, r);\r\n    if (ql >= qr) return;\r\n    if\
+    \ (!c) {\r\n      x = MX::op(x, default_prod(ql, qr));\r\n      return;\r\n  \
+    \  }\r\n    if (l == ql && r == qr) {\r\n      x = MX::op(x, c->x);\r\n      return;\r\
+    \n    }\r\n    ll m = (l + r) / 2;\r\n    prod_rec(c->l, l, m, ql, qr, x);\r\n\
+    \    prod_rec(c->r, m, r, ql, qr, x);\r\n  }\r\n\r\n  template <typename F>\r\n\
+    \  ll max_right_rec(np c, const F &check, ll l, ll r, ll ql, X &x) {\r\n    if\
+    \ (r <= ql) return R0;\r\n    if (ql <= l && check(MX::op(x, c->x))) {\r\n   \
+    \   x = MX::op(x, c->x);\r\n      return R0;\r\n    }\r\n    if (r == l + 1) return\
+    \ l;\r\n    ll m = (l + r) / 2;\r\n    if (!c->l) c->l = new_node(l, m);\r\n \
+    \   ll k = max_right_rec(c->l, check, l, m, ql, x);\r\n    if (k != R0) return\
+    \ k;\r\n    if (!c->r) c->r = new_node(m, r);\r\n    return max_right_rec(c->r,\
     \ check, m, r, ql, x);\r\n  }\r\n\r\n  template <typename F>\r\n  ll min_left_rec(np\
     \ c, const F &check, ll l, ll r, ll qr, X &x) {\r\n    if (qr <= l) return L0;\r\
     \n    if (r <= qr && check(MX::op(c->x, x))) {\r\n      x = MX::op(x, c->x);\r\
@@ -183,13 +187,13 @@ data:
   isVerificationFile: false
   path: ds/segtree/dynamic_segtree.hpp
   requiredBy: []
-  timestamp: '2023-04-14 22:06:08+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-05-10 03:05:25+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1826.test.cpp
-  - test/yukicoder/1036.test.cpp
   - test/yukicoder/789.test.cpp
   - test/yukicoder/1649.test.cpp
+  - test/yukicoder/1826.test.cpp
+  - test/yukicoder/1036.test.cpp
   - test/library_checker/datastructure/double_ended_pq.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
   - test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp

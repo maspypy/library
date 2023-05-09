@@ -47,9 +47,9 @@ data:
   isVerificationFile: false
   path: enumerate/bits.hpp
   requiredBy:
+  - linalg/hafnian.hpp
   - graph/minimum_hamiltonian_cycle.hpp
   - graph/steiner_tree.hpp
-  - linalg/hafnian.hpp
   timestamp: '2023-05-04 20:25:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

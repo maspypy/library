@@ -52,8 +52,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/minidx_add.test.cpp
-  - test/mytest/suffix_tree.test.cpp
   - test/mytest/manhattan_nns.test.cpp
+  - test/mytest/suffix_tree.test.cpp
 documentation_of: alg/monoid/min_idx.hpp
 layout: document
 redirect_from:

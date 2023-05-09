@@ -224,8 +224,8 @@ data:
   timestamp: '2023-04-27 21:29:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/2120.test.cpp
   - test/yukicoder/2181.test.cpp
+  - test/yukicoder/2120.test.cpp
   - test/library_checker/math/binomial_coefficient.test.cpp
 documentation_of: mod/binomial.hpp
 layout: document

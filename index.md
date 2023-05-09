@@ -85,7 +85,7 @@ data:
       title: alg/acted_set/from_monoid.hpp
   - name: alg/monoid
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/add.hpp
       title: alg/monoid/add.hpp
     - icon: ':heavy_check_mark:'
@@ -118,7 +118,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid/group_reverse.hpp
       title: alg/monoid/group_reverse.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/max.hpp
       title: alg/monoid/max.hpp
     - icon: ':heavy_check_mark:'
@@ -349,7 +349,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/segtree/dynamic_lazy_segtree.hpp
       title: ds/segtree/dynamic_lazy_segtree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/segtree/dynamic_segtree.hpp
       title: ds/segtree/dynamic_segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -2957,7 +2957,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1821.test.cpp
       title: test/yukicoder/1821.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/1826.test.cpp
       title: test/yukicoder/1826.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3194,7 +3194,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/779.test.cpp
       title: test/yukicoder/779.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/789.test.cpp
       title: test/yukicoder/789.test.cpp
     - icon: ':heavy_check_mark:'

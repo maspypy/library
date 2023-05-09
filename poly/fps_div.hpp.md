@@ -410,35 +410,35 @@ data:
   path: poly/fps_div.hpp
   requiredBy:
   - linalg/implicit_matrix/vandermonde.hpp
+  - poly/slice_rational_fps.hpp
+  - poly/sum_of_power_of_roots.hpp
+  - poly/composed_sum.hpp
+  - poly/composed_product.hpp
+  - poly/coef_of_rational_fps.hpp
   - seq/interpolate_linear_rec.hpp
   - seq/famous/bell_number_large.hpp
-  - poly/slice_rational_fps.hpp
-  - poly/coef_of_rational_fps.hpp
-  - poly/composed_sum.hpp
-  - poly/sum_of_power_of_roots.hpp
-  - poly/composed_product.hpp
   timestamp: '2023-04-27 16:43:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/arc154f.test.cpp
-  - test_atcoder/agc058d2.test.cpp
   - test_atcoder/agc013e.test.cpp
   - test_atcoder/abc260h.test.cpp
-  - test/yukicoder/1844.test.cpp
+  - test_atcoder/agc058d2.test.cpp
+  - test_atcoder/arc154f.test.cpp
   - test/yukicoder/578.test.cpp
-  - test/yukicoder/1561.test.cpp
-  - test/yukicoder/1962.test.cpp
-  - test/yukicoder/1516.test.cpp
-  - test/yukicoder/1547.test.cpp
   - test/yukicoder/579.test.cpp
   - test/yukicoder/2122.test.cpp
-  - test/yukicoder/541.test.cpp
+  - test/yukicoder/1547.test.cpp
   - test/yukicoder/1533.test.cpp
+  - test/yukicoder/1962.test.cpp
+  - test/yukicoder/1516.test.cpp
+  - test/yukicoder/1844.test.cpp
   - test/yukicoder/1500.test.cpp
-  - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/mytest/vandermonde.test.cpp
-  - test/mytest/slice_rational_fps.test.cpp
+  - test/yukicoder/1561.test.cpp
+  - test/yukicoder/541.test.cpp
   - test/mytest/bell.test.cpp
+  - test/mytest/slice_rational_fps.test.cpp
+  - test/mytest/vandermonde.test.cpp
+  - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
 documentation_of: poly/fps_div.hpp
 layout: document
 redirect_from:
