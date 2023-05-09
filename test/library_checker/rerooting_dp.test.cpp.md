@@ -1,18 +1,21 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: ds/unionfind/unionfind.hpp
-    title: ds/unionfind/unionfind.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/functional.hpp
-    title: graph/functional.hpp
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
+  - icon: ':question:'
+    path: graph/tree_dp/rerooting_dp.hpp
+    title: graph/tree_dp/rerooting_dp.hpp
+  - icon: ':question:'
+    path: mod/modint.hpp
+    title: mod/modint.hpp
+  - icon: ':question:'
+    path: mod/modint_common.hpp
+    title: mod/modint_common.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -21,16 +24,13 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1211
-    links:
-    - https://yukicoder.me/problems/no/1211
-  bundledCode: "#line 1 \"test/yukicoder/1211.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/1211\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    links: []
+  bundledCode: "#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
     using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
@@ -210,7 +210,8 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate\
+    \ yes(!t); }\n#line 3 \"test/library_checker/rerooting_dp.test.cpp\"\n\n#line\
+    \ 1 \"graph/tree_dp/rerooting_dp.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate\
     \ <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate\
     \ <typename T = int, bool directed = false>\nstruct Graph {\n  int N, M;\n  using\
     \ cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n \
@@ -263,21 +264,21 @@ data:
     \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
     \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
     \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 4 \"graph/tree.hpp\"\n\r\n// HLD euler tour \u3092\u3068\u3063\
-    \u3066\u3044\u308D\u3044\u308D\u3002\r\n// \u6728\u4EE5\u5916\u3001\u975E\u9023\
-    \u7D50\u3067\u3082 dfs \u9806\u5E8F\u3084\u89AA\u304C\u3068\u308C\u308B\u3002\r\
-    \ntemplate <typename GT>\r\nstruct Tree {\r\n  using Graph_type = GT;\r\n  GT\
-    \ *G_ptr;\r\n  using WT = typename GT::cost_type;\r\n  int N;\r\n  vector<int>\
-    \ LID, RID, head, V, parent, VtoE;\r\n  vc<int> depth;\r\n  vc<WT> depth_weighted;\r\
-    \n\r\n  Tree() {}\r\n  Tree(GT &G, int r = 0, bool hld = 1) { build(G, r, hld);\
-    \ }\r\n\r\n  void build(GT &G, int r = 0, bool hld = 1) {\r\n    G_ptr = &G;\r\
-    \n    N = G.N;\r\n    LID.assign(N, -1), RID.assign(N, -1), head.assign(N, r);\r\
-    \n    V.assign(N, -1), parent.assign(N, -1), VtoE.assign(N, -1);\r\n    depth.assign(N,\
-    \ -1), depth_weighted.assign(N, 0);\r\n    assert(G.is_prepared());\r\n    int\
-    \ t1 = 0;\r\n    dfs_sz(r, -1, hld);\r\n    dfs_hld(r, t1);\r\n  }\r\n\r\n  void\
-    \ dfs_sz(int v, int p, bool hld) {\r\n    auto &sz = RID;\r\n    parent[v] = p;\r\
-    \n    depth[v] = (p == -1 ? 0 : depth[p] + 1);\r\n    sz[v] = 1;\r\n    int l\
-    \ = G_ptr->indptr[v], r = G_ptr->indptr[v + 1];\r\n    auto &csr = G_ptr->csr_edges;\r\
+    \ }\n  }\n};\n#line 2 \"graph/tree.hpp\"\n\r\n#line 4 \"graph/tree.hpp\"\n\r\n\
+    // HLD euler tour \u3092\u3068\u3063\u3066\u3044\u308D\u3044\u308D\u3002\r\n//\
+    \ \u6728\u4EE5\u5916\u3001\u975E\u9023\u7D50\u3067\u3082 dfs \u9806\u5E8F\u3084\
+    \u89AA\u304C\u3068\u308C\u308B\u3002\r\ntemplate <typename GT>\r\nstruct Tree\
+    \ {\r\n  using Graph_type = GT;\r\n  GT *G_ptr;\r\n  using WT = typename GT::cost_type;\r\
+    \n  int N;\r\n  vector<int> LID, RID, head, V, parent, VtoE;\r\n  vc<int> depth;\r\
+    \n  vc<WT> depth_weighted;\r\n\r\n  Tree() {}\r\n  Tree(GT &G, int r = 0, bool\
+    \ hld = 1) { build(G, r, hld); }\r\n\r\n  void build(GT &G, int r = 0, bool hld\
+    \ = 1) {\r\n    G_ptr = &G;\r\n    N = G.N;\r\n    LID.assign(N, -1), RID.assign(N,\
+    \ -1), head.assign(N, r);\r\n    V.assign(N, -1), parent.assign(N, -1), VtoE.assign(N,\
+    \ -1);\r\n    depth.assign(N, -1), depth_weighted.assign(N, 0);\r\n    assert(G.is_prepared());\r\
+    \n    int t1 = 0;\r\n    dfs_sz(r, -1, hld);\r\n    dfs_hld(r, t1);\r\n  }\r\n\
+    \r\n  void dfs_sz(int v, int p, bool hld) {\r\n    auto &sz = RID;\r\n    parent[v]\
+    \ = p;\r\n    depth[v] = (p == -1 ? 0 : depth[p] + 1);\r\n    sz[v] = 1;\r\n \
+    \   int l = G_ptr->indptr[v], r = G_ptr->indptr[v + 1];\r\n    auto &csr = G_ptr->csr_edges;\r\
     \n    // \u4F7F\u3046\u8FBA\u304C\u3042\u308C\u3070\u5148\u982D\u306B\u3059\u308B\
     \r\n    for (int i = r - 2; i >= l; --i) {\r\n      if (hld && depth[csr[i + 1].to]\
     \ == -1) swap(csr[i], csr[i + 1]);\r\n    }\r\n    int hld_sz = 0;\r\n    for\
@@ -332,88 +333,147 @@ data:
     \ v) {\r\n    vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u,\
     \ v, 0)) {\r\n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n\
     \      } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\
-    \n    return P;\r\n  }\r\n};\r\n#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct\
-    \ UnionFind {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int\
-    \ n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
-    \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n   \
-    \ while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return\
-    \ dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int\
-    \ x) {\n    assert(dat[x] < 0);\n    return -dat[x];\n  }\n\n  bool merge(int\
-    \ x, int y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n\
-    \    if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
-    \    return true;\n  }\n};\n#line 3 \"graph/functional.hpp\"\n\r\n// N \u304C\u6839\
-    \u3068\u306A\u308B\u6728\u3092\u65B0\u305F\u306B\u4F5C\u308B\r\ntemplate <typename\
-    \ T = int>\r\nstruct FunctionalGraph {\r\n  int N, M;\r\n  vc<int> TO;\r\n  vc<T>\
-    \ wt;\r\n  vc<int> root;\r\n  Graph<T, 1> G;\r\n\r\n  FunctionalGraph() {}\r\n\
-    \  FunctionalGraph(int N) : N(N), M(0), TO(N, -1), wt(N), root(N, -1) {}\r\n\r\
-    \n  void add(int a, int b, T c = 1) {\r\n    assert(0 <= a && a < N);\r\n    assert(TO[a]\
-    \ == -1);\r\n    ++M;\r\n    TO[a] = b;\r\n    wt[a] = c;\r\n  }\r\n\r\n  Tree<Graph<T,\
-    \ 1>> build() {\r\n    assert(N == M);\r\n    UnionFind uf(N);\r\n    FOR(v, N)\
-    \ if (!uf.merge(v, TO[v])) { root[v] = v; }\r\n    FOR(v, N) if (root[v] == v)\
-    \ root[uf[v]] = v;\r\n    FOR(v, N) root[v] = root[uf[v]];\r\n\r\n    G.build(N\
-    \ + 1);\r\n    FOR(v, N) {\r\n      if (root[v] == v)\r\n        G.add(N, v, wt[v]);\r\
-    \n      else\r\n        G.add(TO[v], v, wt[v]);\r\n    }\r\n    G.build();\r\n\
-    \    Tree<Graph<T, 1>> tree(G, N);\r\n    return tree;\r\n  }\r\n\r\n  // functional\
-    \ graph \u306B\u5411\u304B\u3063\u3066\u9032\u3080\r\n  template <typename TREE>\r\
-    \n  int jump(TREE& tree, int v, ll step) {\r\n    int d = tree.depth[v];\r\n \
-    \   if (step <= d - 1) return tree.jump(v, N, step);\r\n    v = root[v];\r\n \
-    \   step -= d - 1;\r\n    int bottom = TO[v];\r\n    int c = tree.depth[bottom];\r\
-    \n    step %= c;\r\n    if (step == 0) return v;\r\n    return tree.jump(bottom,\
-    \ N, step - 1);\r\n  }\r\n\r\n  // functional graph \u306B step \u56DE\u9032\u3080\
-    \r\n  template <typename TREE>\r\n  vc<int> jump_all(TREE& tree, ll step) {\r\n\
-    \    vc<int> res(N, -1);\r\n    // v \u306E k \u500B\u5148\u3092 res[w] \u306B\
-    \u5165\u308C\u308B\r\n    vvc<pair<int, int>> query(N);\r\n    FOR(v, N) {\r\n\
-    \      int d = tree.depth[v];\r\n      int r = root[v];\r\n      if (d - 1 > step)\
-    \ { query[v].eb(v, step); }\r\n      if (d - 1 <= step) {\r\n        ll k = step\
-    \ - (d - 1);\r\n        int bottom = TO[r];\r\n        int c = tree.depth[bottom];\r\
-    \n        k %= c;\r\n        if (k == 0) {\r\n          res[v] = r;\r\n      \
-    \    continue;\r\n        }\r\n        query[bottom].eb(v, k - 1);\r\n      }\r\
-    \n    }\r\n\r\n    vc<int> path;\r\n    auto dfs = [&](auto& dfs, int v) -> void\
-    \ {\r\n      path.eb(v);\r\n      for (auto&& [w, k]: query[v]) { res[w] = path[len(path)\
-    \ - 1 - k]; }\r\n      for (auto&& e: G[v]) dfs(dfs, e.to);\r\n      path.pop_back();\r\
-    \n    };\r\n    for (auto&& e: G[N]) { dfs(dfs, e.to); }\r\n    return res;\r\n\
-    \  }\r\n\r\n  template <typename TREE>\r\n  bool in_cycle(TREE& tree, int v) {\r\
-    \n    int r = root[v];\r\n    int bottom = TO[r];\r\n    return tree.in_subtree(bottom,\
-    \ v);\r\n  }\r\n\r\n  vc<int> collect_cycle(int r) {\r\n    assert(r == root[r]);\r\
-    \n    vc<int> cyc = {TO[r]};\r\n    while (cyc.back() != r) cyc.eb(TO[cyc.back()]);\r\
-    \n    return cyc;\r\n  }\r\n};\r\n#line 5 \"test/yukicoder/1211.test.cpp\"\n\n\
-    void solve() {\n  LL(N, K);\n  VEC(int, A, N);\n  FOR(i, N) A.eb(A[i]);\n  auto\
-    \ Ac = cumsum<ll>(A);\n\n  auto check = [&](ll S) -> bool {\n    // \u5168\u90E8\
-    \ S \u4EE5\u4E0A\u306B\u3067\u304D\u308B\n    if (S <= 0) return 1;\n    FunctionalGraph<int>\
-    \ G(N + N + 1);\n    int j = 0;\n    FOR(i, N + N + 1) {\n      while (j < N +\
-    \ N && Ac[j] < Ac[i] + S) ++j;\n      G.add(i, j);\n    }\n    auto tree = G.build();\n\
-    \    auto TO = G.jump_all(tree, K);\n    FOR(i, N) if (TO[i] <= i + N) return\
-    \ true;\n    return false;\n  };\n\n  ll ANS = binary_search(check, 0, SUM<ll>(A)\
-    \ / K + 1);\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1211\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"graph/functional.hpp\"\n\nvoid solve()\
-    \ {\n  LL(N, K);\n  VEC(int, A, N);\n  FOR(i, N) A.eb(A[i]);\n  auto Ac = cumsum<ll>(A);\n\
-    \n  auto check = [&](ll S) -> bool {\n    // \u5168\u90E8 S \u4EE5\u4E0A\u306B\
-    \u3067\u304D\u308B\n    if (S <= 0) return 1;\n    FunctionalGraph<int> G(N +\
-    \ N + 1);\n    int j = 0;\n    FOR(i, N + N + 1) {\n      while (j < N + N &&\
-    \ Ac[j] < Ac[i] + S) ++j;\n      G.add(i, j);\n    }\n    auto tree = G.build();\n\
-    \    auto TO = G.jump_all(tree, K);\n    FOR(i, N) if (TO[i] <= i + N) return\
-    \ true;\n    return false;\n  };\n\n  ll ANS = binary_search(check, 0, SUM<ll>(A)\
-    \ / K + 1);\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \n    return P;\r\n  }\r\n};\r\n#line 4 \"graph/tree_dp/rerooting_dp.hpp\"\n\r\
+    \ntemplate <typename TREE, typename Data>\r\nstruct Rerooting_dp {\r\n  TREE&\
+    \ tree;\r\n  vc<Data> dp_1; // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\u5206\
+    \u6728 v\r\n  vc<Data> dp_2; // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\
+    \u5206\u6728 p\r\n  vc<Data> dp;   // full tree\r\n\r\n  template <typename F1,\
+    \ typename F2, typename F3>\r\n  Rerooting_dp(TREE& tree, F1 f_ee, F2 f_ev, F3\
+    \ f_ve, const Data unit)\r\n      : tree(tree) {\r\n    assert(!(*tree.G_ptr).is_directed());\r\
+    \n    build(f_ee, f_ev, f_ve, unit);\r\n  }\r\n\r\n  // v \u3092\u6839\u3068\u3057\
+    \u305F\u3068\u304D\u306E full tree\r\n  Data operator[](int v) { return dp[v];\
+    \ }\r\n\r\n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\
+    \u6728 v\r\n  Data get(int root, int v) {\r\n    if (root == v) return dp[v];\r\
+    \n    if (!tree.in_subtree(root, v)) { return dp_1[v]; }\r\n    int w = tree.jump(v,\
+    \ root, 1);\r\n    return dp_2[w];\r\n  }\r\n\r\n  template <typename F1, typename\
+    \ F2, typename F3>\r\n  void build(F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)\
+    \ {\r\n    int N = tree.N;\r\n    // dp1: subtree\r\n    dp_1.assign(N, unit);\r\
+    \n    FOR_R(i, N) {\r\n      int v = tree.V[i];\r\n      for (auto&& e: (*tree.G_ptr)[v])\
+    \ {\r\n        dp_1[v] = f_ee(dp_1[v], f_ve(dp_1[e.to], e));\r\n      }\r\n  \
+    \    dp_1[v] = f_ev(dp_1[v], v);\r\n    }\r\n\r\n    // dp2[v]: subtree of p,\
+    \ rooted at v\r\n    dp_2.assign(N, unit);\r\n    // dp[v]: fulltree, rooted at\
+    \ v\r\n    dp.assign(N, unit);\r\n    FOR(i, N) {\r\n      int p = tree.V[i];\r\
+    \n      vc<int> ch;\r\n      vc<Data> ch_data;\r\n      Data x = unit;\r\n   \
+    \   for (auto&& e: (*tree.G_ptr)[p]) {\r\n        if (e.to == tree.parent[p])\
+    \ {\r\n          x = f_ve(dp_2[p], e);\r\n        } else {\r\n          ch.eb(e.to);\r\
+    \n          ch_data.eb(f_ve(dp_1[e.to], e));\r\n        }\r\n      }\r\n     \
+    \ int n = len(ch);\r\n      if (!n) {\r\n        dp[p] = f_ev(x, p);\r\n     \
+    \   continue;\r\n      }\r\n      vc<Data> prod_left(n, x);\r\n      FOR(i, n\
+    \ - 1) prod_left[i + 1] = f_ee(prod_left[i], ch_data[i]);\r\n      Data prod_right\
+    \ = unit;\r\n      FOR_R(i, n) {\r\n        dp_2[ch[i]] = f_ev(f_ee(prod_left[i],\
+    \ prod_right), p);\r\n        prod_right = f_ee(prod_right, ch_data[i]);\r\n \
+    \     }\r\n      dp[p] = f_ev(f_ee(x, prod_right), p);\r\n    }\r\n  }\r\n};\r\
+    \n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
+    \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
+    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
+    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod\
+    \ = mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n\
+    \  if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
+    \    int q = (mod + k - 1) / k;\n    dat.eb(dat[k * q - mod] * mint(q));\n  }\n\
+    \  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
+    \ const int mod = mint::get_mod();\n  assert(0 <= n);\n  if (n >= mod) return\
+    \ 0;\n  static vector<mint> dat = {1, 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat)\
+    \ - 1] * mint(len(dat)));\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint\
+    \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  assert(-1 <=\
+    \ n && n < mod);\n  static vector<mint> dat = {1, 1};\n  if (n == -1) return mint(0);\n\
+    \  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n  return\
+    \ dat[n];\n}\n\ntemplate <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n\
+    \  return (mint(1) * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint,\
+    \ class Head, class... Tail>\nmint multinomial(Head &&head, Tail &&... tail) {\n\
+    \  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\
+    \ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  static vvc<mint> C;\n\
+    \  static int H = 0, W = 0;\n  auto calc = [&](int i, int j) -> mint {\n    if\
+    \ (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j] + (j ?\
+    \ C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k\
+    \ + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n    W = k +\
+    \ 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n   \
+    \   C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H =\
+    \ n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool large = false,\
+    \ bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 ||\
+    \ n < k) return 0;\n  if (dense) return C_dense<mint>(n, k);\n  if (!large) return\
+    \ multinomial<mint>(n, k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i,\
+    \ k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename\
+    \ mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0\
+    \ <= k && k <= n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n\
+    \ - k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d] (1-x) ^ {-n} \u306E\
+    \u8A08\u7B97\ntemplate <typename mint, bool large = false, bool dense = false>\n\
+    mint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
+    \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
+    \ dense>(n + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\n\
+    struct modint {\n  int val;\n  constexpr modint(const ll val = 0) noexcept\n \
+    \     : val(val >= 0 ? val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const\
+    \ modint &other) const {\n    return val < other.val;\n  } // To use std::map\n\
+    \  modint &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -=\
+    \ mod;\n    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if\
+    \ ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint\
+    \ &operator*=(const modint &p) {\n    val = (int)(1LL * val * p.val % mod);\n\
+    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
+    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint(-val);\
+    \ }\n  modint operator+(const modint &p) const { return modint(*this) += p; }\n\
+    \  modint operator-(const modint &p) const { return modint(*this) -= p; }\n  modint\
+    \ operator*(const modint &p) const { return modint(*this) *= p; }\n  modint operator/(const\
+    \ modint &p) const { return modint(*this) /= p; }\n  bool operator==(const modint\
+    \ &p) const { return val == p.val; }\n  bool operator!=(const modint &p) const\
+    \ { return val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod,\
+    \ u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t *\
+    \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll\
+    \ n) const {\n    assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n\
+    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
+    \  }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
+    \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
+    \ int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\
+    \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 167772161) return\
+    \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
+    \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
+    \ == 998244353) return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n\
+    \    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881) return\
+    \ {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
+    \ return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\n#line 6 \"test/library_checker/rerooting_dp.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  VEC(mint, A, N);\n\
+    \  Graph<bool, 0> G(N);\n  vc<mint> B(N - 1), C(N - 1);\n  FOR(i, N - 1) {\n \
+    \   LL(u, v, b, c);\n    G.add(u, v);\n    B[i] = b, C[i] = c;\n  }\n  G.build();\n\
+    \  Tree<decltype(G)> tree(G);\n\n  using Data = pair<mint, mint>; // cnt, sum\n\
+    \  Data unit = {0, 0};\n  auto fee = [&](Data x, Data y) -> Data { return {x.fi\
+    \ + y.fi, x.se + y.se}; };\n  auto fev = [&](Data x, int v) -> Data {\n    return\
+    \ {x.fi + mint(1), x.se + A[v]};\n  };\n  // e \u306F v \u306B\u5165\u308B\u6709\
+    \u5411\u8FBA\n  auto fve = [&](Data x, auto& e) -> Data {\n    x.se = B[e.id]\
+    \ * x.se + x.fi * C[e.id];\n    return x;\n  };\n  Rerooting_dp<decltype(tree),\
+    \ Data> dp(tree, fee, fev, fve, unit);\n\n  vc<mint> ANS(N);\n  FOR(v, N) ANS[v]\
+    \ = dp[v].se;\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }\n"
+  code: "#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/tree_dp/rerooting_dp.hpp\"\
+    \n#include \"mod/modint.hpp\"\n\nusing mint = modint998;\n\nvoid solve() {\n \
+    \ LL(N);\n  VEC(mint, A, N);\n  Graph<bool, 0> G(N);\n  vc<mint> B(N - 1), C(N\
+    \ - 1);\n  FOR(i, N - 1) {\n    LL(u, v, b, c);\n    G.add(u, v);\n    B[i] =\
+    \ b, C[i] = c;\n  }\n  G.build();\n  Tree<decltype(G)> tree(G);\n\n  using Data\
+    \ = pair<mint, mint>; // cnt, sum\n  Data unit = {0, 0};\n  auto fee = [&](Data\
+    \ x, Data y) -> Data { return {x.fi + y.fi, x.se + y.se}; };\n  auto fev = [&](Data\
+    \ x, int v) -> Data {\n    return {x.fi + mint(1), x.se + A[v]};\n  };\n  // e\
+    \ \u306F v \u306B\u5165\u308B\u6709\u5411\u8FBA\n  auto fve = [&](Data x, auto&\
+    \ e) -> Data {\n    x.se = B[e.id] * x.se + x.fi * C[e.id];\n    return x;\n \
+    \ };\n  Rerooting_dp<decltype(tree), Data> dp(tree, fee, fev, fve, unit);\n\n\
+    \  vc<mint> ANS(N);\n  FOR(v, N) ANS[v] = dp[v].se;\n  print(ANS);\n}\n\nsigned\
+    \ main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - graph/functional.hpp
-  - graph/tree.hpp
+  - graph/tree_dp/rerooting_dp.hpp
   - graph/base.hpp
-  - ds/unionfind/unionfind.hpp
+  - graph/tree.hpp
+  - mod/modint.hpp
+  - mod/modint_common.hpp
   isVerificationFile: true
-  path: test/yukicoder/1211.test.cpp
+  path: test/library_checker/rerooting_dp.test.cpp
   requiredBy: []
-  timestamp: '2023-04-09 13:48:33+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-10 00:53:53+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yukicoder/1211.test.cpp
+documentation_of: test/library_checker/rerooting_dp.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/1211.test.cpp
-- /verify/test/yukicoder/1211.test.cpp.html
-title: test/yukicoder/1211.test.cpp
+- /verify/test/library_checker/rerooting_dp.test.cpp
+- /verify/test/library_checker/rerooting_dp.test.cpp.html
+title: test/library_checker/rerooting_dp.test.cpp
 ---
