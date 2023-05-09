@@ -7,7 +7,7 @@ struct Rerooting_dp {
   TREE& tree;
   vc<Data> dp_1; // 辺 pv に対して、部分木 v
   vc<Data> dp_2; // 辺 pv に対して、部分木 p
-  vc<Data> dp;   // すべての v に対して、v を根とする部分木
+  vc<Data> dp;   // full tree
 
   template <typename F1, typename F2, typename F3>
   Rerooting_dp(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)
@@ -30,44 +30,46 @@ struct Rerooting_dp {
   template <typename F1, typename F2, typename F3>
   void build(F1 f_ee, F2 f_ev, F3 f_ve, const Data unit) {
     int N = tree.N;
+    // dp1: subtree
     dp_1.assign(N, unit);
-    dp_2.assign(N, unit);
-    dp.assign(N, unit);
-    auto& V = tree.V;
-    auto& par = tree.parent;
-
     FOR_R(i, N) {
-      int v = V[i];
-      auto ch = tree.collect_child(v);
-      int n = len(ch);
-      vc<Data> Xl(n + 1, unit), Xr(n + 1, unit);
-      FOR(i, n) Xl[i + 1] = f_ee(Xl[i], dp_2[ch[i]]);
-      FOR_R(i, n) Xr[i] = f_ee(dp_2[ch[i]], Xr[i + 1]);
-      FOR(i, n) dp_2[ch[i]] = f_ee(Xl[i], Xr[i + 1]);
-      dp[v] = Xr[0];
-      dp_1[v] = f_ev(dp[v], v);
+      int v = tree.V[i];
       for (auto&& e: (*tree.G_ptr)[v]) {
-        if (e.to == par[v]) { dp_2[v] = f_ve(dp_1[v], e); }
+        dp_1[v] = f_ee(dp_1[v], f_ve(dp_1[e.to], e));
       }
+      dp_1[v] = f_ev(dp_1[v], v);
     }
-    {
-      int v = V[0];
-      dp[v] = f_ev(dp[v], v);
-      for (auto&& e: (*tree.G_ptr)[v]) dp_2[e.to] = f_ev(dp_2[e.to], v);
-    }
+
+    // dp2[v]: subtree of p, rooted at v
+    dp_2.assign(N, unit);
+    // dp[v]: fulltree, rooted at v
+    dp.assign(N, unit);
     FOR(i, N) {
-      int v = V[i];
-      for (auto&& e: (*tree.G_ptr)[v]) {
-        if (e.to == par[v]) continue;
-        Data x = f_ve(dp_2[e.to], e);
-        for (auto&& f: (*tree.G_ptr)[e.to]) {
-          if (f.to == par[e.to]) continue;
-          dp_2[f.to] = f_ee(dp_2[f.to], x);
-          dp_2[f.to] = f_ev(dp_2[f.to], e.to);
+      int p = tree.V[i];
+      vc<int> ch;
+      vc<Data> ch_data;
+      Data x = unit;
+      for (auto&& e: (*tree.G_ptr)[p]) {
+        if (e.to == tree.parent[p]) {
+          x = f_ve(dp_2[p], e);
+        } else {
+          ch.eb(e.to);
+          ch_data.eb(f_ve(dp_1[e.to], e));
         }
-        x = f_ee(dp[e.to], x);
-        dp[e.to] = f_ev(x, e.to);
       }
+      int n = len(ch);
+      if (!n) {
+        dp[p] = f_ev(x, p);
+        continue;
+      }
+      vc<Data> prod_left(n, x);
+      FOR(i, n - 1) prod_left[i + 1] = f_ee(prod_left[i], ch_data[i]);
+      Data prod_right = unit;
+      FOR_R(i, n) {
+        dp_2[ch[i]] = f_ev(f_ee(prod_left[i], prod_right), p);
+        prod_right = f_ee(prod_right, ch_data[i]);
+      }
+      dp[p] = f_ev(f_ee(x, prod_right), p);
     }
   }
 };
