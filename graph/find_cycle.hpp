@@ -1,6 +1,6 @@
 #include "graph/base.hpp"
 
-// {vs, es} or empty.
+// {vs, es} or empty. minimal.
 template <typename GT>
 pair<vc<int>, vc<int>> find_cycle_directed(GT& G) {
   assert(G.is_directed());
@@ -35,8 +35,33 @@ pair<vc<int>, vc<int>> find_cycle_directed(GT& G) {
   FOR(v, N) if (!used[v]) dfs(dfs, v);
   if (es.empty()) return {vs, es};
 
-  vs.resize(len(es));
-  FOR(i, len(es)) { vs[i] = G.edges[es[i]].frm; }
+  // minimal cycle
+  vc<int> nxt(N, -1);
+  for (auto&& eid: es) nxt[G.edges[eid].frm] = eid;
+
+  for (auto&& e: G.edges) {
+    int a = e.frm, b = e.to;
+    if (nxt[a] == -1 || nxt[b] == -1) continue;
+    if (G.edges[nxt[a]].to == e.to) continue;
+    while (a != b) {
+      int t = G.edges[nxt[a]].to;
+      nxt[a] = -1;
+      a = t;
+    }
+    nxt[e.frm] = e.id;
+  }
+  es.clear();
+  FOR(v, N) {
+    if (nxt[v] == -1) continue;
+    int x = v;
+    while (1) {
+      vs.eb(x);
+      es.eb(nxt[x]);
+      x = G.edges[nxt[x]].to;
+      if (x == v) break;
+    }
+    break;
+  }
   return {vs, es};
 }
 
