@@ -132,21 +132,23 @@ private:
     return c;
   }
 
-  np multiply_rec(np c, ll l, ll r, ll i, const X &x) {
+  np multiply_rec(np c, ll l, ll r, ll i, const X &x, bool make_copy = true) {
     if (r == l + 1) {
       c = copy_node(c);
       c->x = MX::op(c->x, x);
       return c;
     }
     ll m = (l + r) / 2;
-    c = copy_node(c);
+    if (make_copy) c = copy_node(c);
 
     if (i < m) {
-      if (!c->l) c->l = new_node(l, m);
-      c->l = multiply_rec(c->l, l, m, i, x);
+      bool make = true;
+      if (!c->l) c->l = new_node(l, m), make = false;
+      c->l = multiply_rec(c->l, l, m, i, x, make);
     } else {
-      if (!c->r) c->r = new_node(m, r);
-      c->r = multiply_rec(c->r, m, r, i, x);
+      bool make = true;
+      if (!c->r) c->r = new_node(m, r), make = false;
+      c->r = multiply_rec(c->r, m, r, i, x, make);
     }
     X xl = (c->l ? c->l->x : default_prod(l, m));
     X xr = (c->r ? c->r->x : default_prod(m, r));
