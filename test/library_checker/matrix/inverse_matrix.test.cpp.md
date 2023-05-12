@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/mat_inv.hpp
     title: linalg/mat_inv.hpp
   - icon: ':question:'
