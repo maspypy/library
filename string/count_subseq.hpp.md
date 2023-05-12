@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -12,14 +12,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/number_of_subsequences.test.cpp
     title: test/library_checker/string/number_of_subsequences.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1493.test.cpp
     title: test/yukicoder/1493.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
-    links: []
+    links:
+    - https://noshi91.hatenablog.com/entry/2023/02/26/135340
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
     \      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n              \
     \       chrono::high_resolution_clock::now().time_since_epoch())\n           \
@@ -44,26 +45,23 @@ data:
     \ && keys[i] == key;\r\n  }\r\n\r\n  void reset() {\r\n    for (auto&& i: IDS)\
     \ used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  // f(key, val)\r\n  template\
     \ <typename F>\r\n  void enumerate_all(F f) {\r\n    for (auto&& i: IDS) f(keys[i],\
-    \ vals[i]);\r\n  }\r\n};\r\n#line 2 \"string/count_subseq.hpp\"\n\ntemplate <typename\
-    \ mint, typename CHAR, typename STRING, int LOG = 20>\nmint count_subseq(STRING\
-    \ S) {\n  static HashMap<int, LOG> IDX;\n  ll N = len(S);\n  vc<mint> DP(N + 1);\n\
-    \  DP[0] = 1;\n  FOR(i, N) {\n    CHAR c = S[i];\n    DP[i + 1] = DP[i] + DP[i];\n\
-    \    int k = IDX.get(c, -1);\n    if (k != -1) DP[i + 1] -= DP[k];\n    IDX[c]\
-    \ = i;\n  }\n  return DP.back();\n}\n"
-  code: "#include \"ds/hashmap.hpp\"\n\ntemplate <typename mint, typename CHAR, typename\
-    \ STRING, int LOG = 20>\nmint count_subseq(STRING S) {\n  static HashMap<int,\
-    \ LOG> IDX;\n  ll N = len(S);\n  vc<mint> DP(N + 1);\n  DP[0] = 1;\n  FOR(i, N)\
-    \ {\n    CHAR c = S[i];\n    DP[i + 1] = DP[i] + DP[i];\n    int k = IDX.get(c,\
-    \ -1);\n    if (k != -1) DP[i + 1] -= DP[k];\n    IDX[c] = i;\n  }\n  return DP.back();\n\
+    \ vals[i]);\r\n  }\r\n};\r\n#line 2 \"string/count_subseq.hpp\"\n\n// https://noshi91.hatenablog.com/entry/2023/02/26/135340\n\
+    template <typename mint, typename STRING, int LOG = 20>\nmint count_subseq(STRING\
+    \ S) {\n  static HashMap<mint, LOG> dp;\n  mint sm = 1;\n  for (auto&& x: S) {\n\
+    \    mint d = dp[x];\n    dp[x] = sm;\n    sm += sm - d;\n  }\n  return sm;\n\
     }\n"
+  code: "#include \"ds/hashmap.hpp\"\n\n// https://noshi91.hatenablog.com/entry/2023/02/26/135340\n\
+    template <typename mint, typename STRING, int LOG = 20>\nmint count_subseq(STRING\
+    \ S) {\n  static HashMap<mint, LOG> dp;\n  mint sm = 1;\n  for (auto&& x: S) {\n\
+    \    mint d = dp[x];\n    dp[x] = sm;\n    sm += sm - d;\n  }\n  return sm;\n}"
   dependsOn:
   - ds/hashmap.hpp
   - random/base.hpp
   isVerificationFile: false
   path: string/count_subseq.hpp
   requiredBy: []
-  timestamp: '2023-04-02 04:26:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-05-12 16:35:07+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1493.test.cpp
   - test/library_checker/string/number_of_subsequences.test.cpp

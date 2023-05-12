@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/all_inverse.hpp
     title: mod/all_inverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -19,38 +19,38 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc272/tasks/abc272_Ex
@@ -580,30 +580,30 @@ data:
     \n  FOR(i, n + n - 2) POW[i + 1] = POW[i] * r, tPOW[i + 1] = tPOW[i] * POW[i];\r\
     \n\r\n  vc<mint> iPOW(n + n - 1), itPOW(n + n - 1);\r\n  iPOW[0] = itPOW[0] =\
     \ mint(1);\r\n  FOR(i, n) iPOW[i + 1] = iPOW[i] * ir, itPOW[i + 1] = itPOW[i]\
-    \ * iPOW[i];\r\n\r\n  // prod_[1,i] 1-r^k\r\n  vc<mint> S(n + 1);\r\n  S[0] =\
-    \ mint(1);\r\n  FOR(i, 1, n + 1) S[i] = S[i - 1] * (mint(1) - POW[i]);\r\n  vc<mint>\
-    \ iS = all_inverse<mint>(S);\r\n\r\n  FOR(i, n) {\r\n    Y[i] = Y[i] * tPOW[n\
-    \ - 1 - i] * itPOW[n - 1] * iS[i] * iS[n - 1 - i];\r\n    if (i % 2 == 1) Y[i]\
-    \ = -Y[i];\r\n  }\r\n\r\n  // sum_i Y[i] / 1-r^ix\r\n  FOR(i, n) Y[i] *= itPOW[i];\r\
-    \n  vc<mint> f = middle_product(tPOW, Y);\r\n  FOR(i, n) f[i] *= itPOW[i];\r\n\
-    \r\n  // prod 1-r^ix\r\n  vc<mint> g(n);\r\n  FOR(i, n) {\r\n    g[i] = tPOW[i]\
-    \ * S[n] * iS[i] * iS[n - i];\r\n    if (i % 2 == 1) g[i] = -g[i];\r\n  }\r\n\
-    \  f = convolution<mint>(f, g);\r\n  f.resize(n);\r\n\r\n  reverse(all(f));\r\n\
-    \  mint ia = a.inverse();\r\n  mint pow = 1;\r\n  FOR(i, n) f[i] *= pow, pow *=\
-    \ ia;\r\n  return f;\r\n}\r\n#line 8 \"test_atcoder/abc272_h.test.cpp\"\n\nusing\
-    \ mint = modint998;\n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n  sort(all(A));\n\
-    \  vc<mint> f(N + 1);\n  FOR(i, N + 1) f[i] = fact_inv<mint>(i);\n  vvc<mint>\
-    \ polys;\n  FOR(k, N) {\n    vc<mint> p = {mint(A[k] - k), mint(1)};\n    polys.eb(p);\n\
-    \  }\n  auto p = convolution_all(polys);\n  vc<mint> X(N + 1);\n  FOR(i, N + 1)\
-    \ X[i] = mint(i);\n  auto Y = multipoint_eval(p, X);\n  FOR(i, N + 1) f[i] *=\
-    \ Y[i];\n  {\n    vc<mint> g(N + 1);\n    FOR(i, N + 1) g[i] = fact_inv<mint>(i)\
-    \ * (i % 2 == 1 ? mint(-1) : mint(1));\n    f = convolution(f, g);\n    f.resize(N\
-    \ + 1);\n  }\n  reverse(all(f));\n\n  FOR(k, N + 1) f[k] *= fact<mint>(N - k);\n\
-    \  FOR(k, N + 1) f[k] *= fact<mint>(k);\n  reverse(all(f));\n  vc<mint> g(N +\
-    \ 1);\n  FOR(i, N + 1) g[i] = fact_inv<mint>(i) * (i % 2 == 1 ? mint(-1) : mint(1));\n\
-    \  f = convolution(f, g);\n  f.resize(N + 1);\n  reverse(all(f));\n  FOR(k, N\
-    \ + 1) f[k] *= fact_inv<mint>(k);\n\n  mint ANS = 0;\n  FOR(k, N + 1) if (k %\
-    \ 2 == 1) ANS += f[k];\n  ANS *= fact_inv<mint>(N) * mint(N);\n  print(ANS);\n\
+    \ * iPOW[i];\r\n\r\n  // prod_[1,i] 1-r^k\r\n  vc<mint> S(n);\r\n  S[0] = mint(1);\r\
+    \n  FOR(i, 1, n) S[i] = S[i - 1] * (mint(1) - POW[i]);\r\n  vc<mint> iS = all_inverse<mint>(S);\r\
+    \n  mint sn = S[n - 1] * (mint(1) - POW[n]);\r\n\r\n  FOR(i, n) {\r\n    Y[i]\
+    \ = Y[i] * tPOW[n - 1 - i] * itPOW[n - 1] * iS[i] * iS[n - 1 - i];\r\n    if (i\
+    \ % 2 == 1) Y[i] = -Y[i];\r\n  }\r\n\r\n  // sum_i Y[i] / 1-r^ix\r\n  FOR(i, n)\
+    \ Y[i] *= itPOW[i];\r\n  vc<mint> f = middle_product(tPOW, Y);\r\n  FOR(i, n)\
+    \ f[i] *= itPOW[i];\r\n\r\n  // prod 1-r^ix\r\n  vc<mint> g(n);\r\n  g[0] = mint(1);\r\
+    \n  FOR(i, 1, n) {\r\n    g[i] = tPOW[i] * sn * iS[i] * iS[n - i];\r\n    if (i\
+    \ % 2 == 1) g[i] = -g[i];\r\n  }\r\n  f = convolution<mint>(f, g);\r\n  f.resize(n);\r\
+    \n\r\n  reverse(all(f));\r\n  mint ia = a.inverse();\r\n  mint pow = 1;\r\n  FOR(i,\
+    \ n) f[i] *= pow, pow *= ia;\r\n  return f;\r\n}\r\n#line 8 \"test_atcoder/abc272_h.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n \
+    \ sort(all(A));\n  vc<mint> f(N + 1);\n  FOR(i, N + 1) f[i] = fact_inv<mint>(i);\n\
+    \  vvc<mint> polys;\n  FOR(k, N) {\n    vc<mint> p = {mint(A[k] - k), mint(1)};\n\
+    \    polys.eb(p);\n  }\n  auto p = convolution_all(polys);\n  vc<mint> X(N + 1);\n\
+    \  FOR(i, N + 1) X[i] = mint(i);\n  auto Y = multipoint_eval(p, X);\n  FOR(i,\
+    \ N + 1) f[i] *= Y[i];\n  {\n    vc<mint> g(N + 1);\n    FOR(i, N + 1) g[i] =\
+    \ fact_inv<mint>(i) * (i % 2 == 1 ? mint(-1) : mint(1));\n    f = convolution(f,\
+    \ g);\n    f.resize(N + 1);\n  }\n  reverse(all(f));\n\n  FOR(k, N + 1) f[k] *=\
+    \ fact<mint>(N - k);\n  FOR(k, N + 1) f[k] *= fact<mint>(k);\n  reverse(all(f));\n\
+    \  vc<mint> g(N + 1);\n  FOR(i, N + 1) g[i] = fact_inv<mint>(i) * (i % 2 == 1\
+    \ ? mint(-1) : mint(1));\n  f = convolution(f, g);\n  f.resize(N + 1);\n  reverse(all(f));\n\
+    \  FOR(k, N + 1) f[k] *= fact_inv<mint>(k);\n\n  mint ANS = 0;\n  FOR(k, N + 1)\
+    \ if (k % 2 == 1) ANS += f[k];\n  ANS *= fact_inv<mint>(N) * mint(N);\n  print(ANS);\n\
     }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  //\
     \ LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc272/tasks/abc272_Ex\"\n\
@@ -643,8 +643,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc272_h.test.cpp
   requiredBy: []
-  timestamp: '2023-05-01 17:29:35+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-12 16:34:45+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc272_h.test.cpp
 layout: document

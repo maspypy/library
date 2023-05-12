@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -22,16 +22,16 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':heavy_check_mark:'
@@ -482,11 +482,11 @@ data:
     \  if (min(n, m) <= 50) return convolution_naive(a, b);\r\n    return convolution_ntt(a,\
     \ b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_naive(a, b);\r\n  return\
     \ convolution_garner(a, b);\r\n}\r\n#line 3 \"poly/poly_taylor_shift.hpp\"\n\r\
-    \ntemplate <typename mint>\r\nvc<mint> poly_taylor_shift(vc<mint> a, mint c) {\r\
-    \n  ll N = len(a);\r\n  FOR(i, N) a[i] *= fact<mint>(i);\r\n  auto b = powertable_1<mint>(c,\
-    \ N);\r\n  FOR(i, N) b[i] *= fact_inv<mint>(i);\r\n  reverse(all(a));\r\n  auto\
-    \ f = convolution(a, b);\r\n  f.resize(N);\r\n  reverse(all(f));\r\n  FOR(i, N)\
-    \ f[i] *= fact_inv<mint>(i);\r\n  return f;\r\n}\r\n#line 7 \"test/library_checker/polynomial/polynomial_taylor_shift.test.cpp\"\
+    \n// f(x) -> f(x+c)\r\ntemplate <typename mint>\r\nvc<mint> poly_taylor_shift(vc<mint>\
+    \ f, mint c) {\r\n  ll N = len(f);\r\n  FOR(i, N) f[i] *= fact<mint>(i);\r\n \
+    \ auto b = powertable_1<mint>(c, N);\r\n  FOR(i, N) b[i] *= fact_inv<mint>(i);\r\
+    \n  reverse(all(f));\r\n  f = convolution(f, b);\r\n  f.resize(N);\r\n  reverse(all(f));\r\
+    \n  FOR(i, N) f[i] *= fact_inv<mint>(i);\r\n  return f;\r\n}\r\n#line 7 \"test/library_checker/polynomial/polynomial_taylor_shift.test.cpp\"\
     \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N, c);\r\n  VEC(mint,\
     \ A, N);\r\n  print(poly_taylor_shift(A, mint(c)));\r\n}\r\n\r\nsigned main()\
     \ {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
@@ -514,7 +514,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
   requiredBy: []
-  timestamp: '2023-04-27 16:27:36+09:00'
+  timestamp: '2023-05-12 16:31:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp

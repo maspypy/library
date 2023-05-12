@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/all_inverse.hpp
     title: mod/all_inverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -13,28 +13,28 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -384,18 +384,18 @@ data:
     \n  FOR(i, n + n - 2) POW[i + 1] = POW[i] * r, tPOW[i + 1] = tPOW[i] * POW[i];\r\
     \n\r\n  vc<mint> iPOW(n + n - 1), itPOW(n + n - 1);\r\n  iPOW[0] = itPOW[0] =\
     \ mint(1);\r\n  FOR(i, n) iPOW[i + 1] = iPOW[i] * ir, itPOW[i + 1] = itPOW[i]\
-    \ * iPOW[i];\r\n\r\n  // prod_[1,i] 1-r^k\r\n  vc<mint> S(n + 1);\r\n  S[0] =\
-    \ mint(1);\r\n  FOR(i, 1, n + 1) S[i] = S[i - 1] * (mint(1) - POW[i]);\r\n  vc<mint>\
-    \ iS = all_inverse<mint>(S);\r\n\r\n  FOR(i, n) {\r\n    Y[i] = Y[i] * tPOW[n\
-    \ - 1 - i] * itPOW[n - 1] * iS[i] * iS[n - 1 - i];\r\n    if (i % 2 == 1) Y[i]\
-    \ = -Y[i];\r\n  }\r\n\r\n  // sum_i Y[i] / 1-r^ix\r\n  FOR(i, n) Y[i] *= itPOW[i];\r\
-    \n  vc<mint> f = middle_product(tPOW, Y);\r\n  FOR(i, n) f[i] *= itPOW[i];\r\n\
-    \r\n  // prod 1-r^ix\r\n  vc<mint> g(n);\r\n  FOR(i, n) {\r\n    g[i] = tPOW[i]\
-    \ * S[n] * iS[i] * iS[n - i];\r\n    if (i % 2 == 1) g[i] = -g[i];\r\n  }\r\n\
-    \  f = convolution<mint>(f, g);\r\n  f.resize(n);\r\n\r\n  reverse(all(f));\r\n\
-    \  mint ia = a.inverse();\r\n  mint pow = 1;\r\n  FOR(i, n) f[i] *= pow, pow *=\
-    \ ia;\r\n  return f;\r\n}\r\n#line 2 \"poly/partial_frac_decomposition.hpp\"\n\
-    // O(Nlog^2N)\n// \u5206\u6BCD\u306F\u76F8\u7570\u306A\u308B 1 \u6B21\u5F0F\u306E\
+    \ * iPOW[i];\r\n\r\n  // prod_[1,i] 1-r^k\r\n  vc<mint> S(n);\r\n  S[0] = mint(1);\r\
+    \n  FOR(i, 1, n) S[i] = S[i - 1] * (mint(1) - POW[i]);\r\n  vc<mint> iS = all_inverse<mint>(S);\r\
+    \n  mint sn = S[n - 1] * (mint(1) - POW[n]);\r\n\r\n  FOR(i, n) {\r\n    Y[i]\
+    \ = Y[i] * tPOW[n - 1 - i] * itPOW[n - 1] * iS[i] * iS[n - 1 - i];\r\n    if (i\
+    \ % 2 == 1) Y[i] = -Y[i];\r\n  }\r\n\r\n  // sum_i Y[i] / 1-r^ix\r\n  FOR(i, n)\
+    \ Y[i] *= itPOW[i];\r\n  vc<mint> f = middle_product(tPOW, Y);\r\n  FOR(i, n)\
+    \ f[i] *= itPOW[i];\r\n\r\n  // prod 1-r^ix\r\n  vc<mint> g(n);\r\n  g[0] = mint(1);\r\
+    \n  FOR(i, 1, n) {\r\n    g[i] = tPOW[i] * sn * iS[i] * iS[n - i];\r\n    if (i\
+    \ % 2 == 1) g[i] = -g[i];\r\n  }\r\n  f = convolution<mint>(f, g);\r\n  f.resize(n);\r\
+    \n\r\n  reverse(all(f));\r\n  mint ia = a.inverse();\r\n  mint pow = 1;\r\n  FOR(i,\
+    \ n) f[i] *= pow, pow *= ia;\r\n  return f;\r\n}\r\n#line 2 \"poly/partial_frac_decomposition.hpp\"\
+    \n// O(Nlog^2N)\n// \u5206\u6BCD\u306F\u76F8\u7570\u306A\u308B 1 \u6B21\u5F0F\u306E\
     \u7A4D\u9650\u5B9A\u3068\u3059\u308B\n// f / prod(ax+b) = sum c/(ax+b) \u3068\u3044\
     \u3046 C \u3092\u8FD4\u3059\ntemplate <typename mint>\nvc<mint> partial_frac_decomposition(vc<mint>\
     \ f, vc<mint> A) {\n  assert(len(f) <= len(A));\n  if (len(f) == 0) return vc<mint>(len(A));\n\
@@ -430,7 +430,7 @@ data:
   isVerificationFile: false
   path: poly/partial_frac_decomposition.hpp
   requiredBy: []
-  timestamp: '2023-05-01 17:29:35+09:00'
+  timestamp: '2023-05-12 16:34:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/partial_frac.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -16,16 +16,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -308,17 +308,17 @@ data:
     \  if (min(n, m) <= 50) return convolution_naive(a, b);\r\n    return convolution_ntt(a,\
     \ b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_naive(a, b);\r\n  return\
     \ convolution_garner(a, b);\r\n}\r\n#line 3 \"poly/poly_taylor_shift.hpp\"\n\r\
-    \ntemplate <typename mint>\r\nvc<mint> poly_taylor_shift(vc<mint> a, mint c) {\r\
-    \n  ll N = len(a);\r\n  FOR(i, N) a[i] *= fact<mint>(i);\r\n  auto b = powertable_1<mint>(c,\
-    \ N);\r\n  FOR(i, N) b[i] *= fact_inv<mint>(i);\r\n  reverse(all(a));\r\n  auto\
-    \ f = convolution(a, b);\r\n  f.resize(N);\r\n  reverse(all(f));\r\n  FOR(i, N)\
-    \ f[i] *= fact_inv<mint>(i);\r\n  return f;\r\n}\r\n"
+    \n// f(x) -> f(x+c)\r\ntemplate <typename mint>\r\nvc<mint> poly_taylor_shift(vc<mint>\
+    \ f, mint c) {\r\n  ll N = len(f);\r\n  FOR(i, N) f[i] *= fact<mint>(i);\r\n \
+    \ auto b = powertable_1<mint>(c, N);\r\n  FOR(i, N) b[i] *= fact_inv<mint>(i);\r\
+    \n  reverse(all(f));\r\n  f = convolution(f, b);\r\n  f.resize(N);\r\n  reverse(all(f));\r\
+    \n  FOR(i, N) f[i] *= fact_inv<mint>(i);\r\n  return f;\r\n}\r\n"
   code: "#include \"mod/powertable.hpp\"\r\n#include \"poly/convolution.hpp\"\r\n\r\
-    \ntemplate <typename mint>\r\nvc<mint> poly_taylor_shift(vc<mint> a, mint c) {\r\
-    \n  ll N = len(a);\r\n  FOR(i, N) a[i] *= fact<mint>(i);\r\n  auto b = powertable_1<mint>(c,\
-    \ N);\r\n  FOR(i, N) b[i] *= fact_inv<mint>(i);\r\n  reverse(all(a));\r\n  auto\
-    \ f = convolution(a, b);\r\n  f.resize(N);\r\n  reverse(all(f));\r\n  FOR(i, N)\
-    \ f[i] *= fact_inv<mint>(i);\r\n  return f;\r\n}\r\n"
+    \n// f(x) -> f(x+c)\r\ntemplate <typename mint>\r\nvc<mint> poly_taylor_shift(vc<mint>\
+    \ f, mint c) {\r\n  ll N = len(f);\r\n  FOR(i, N) f[i] *= fact<mint>(i);\r\n \
+    \ auto b = powertable_1<mint>(c, N);\r\n  FOR(i, N) b[i] *= fact_inv<mint>(i);\r\
+    \n  reverse(all(f));\r\n  f = convolution(f, b);\r\n  f.resize(N);\r\n  reverse(all(f));\r\
+    \n  FOR(i, N) f[i] *= fact_inv<mint>(i);\r\n  return f;\r\n}\r\n"
   dependsOn:
   - mod/powertable.hpp
   - nt/primetable.hpp
@@ -334,7 +334,7 @@ data:
   requiredBy:
   - linalg/det_A_plus_xB.hpp
   - seq/famous/stirling_number_1.hpp
-  timestamp: '2023-04-27 16:27:36+09:00'
+  timestamp: '2023-05-12 16:31:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1907.test.cpp

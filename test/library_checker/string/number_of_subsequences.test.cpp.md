@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':question:'
@@ -16,10 +16,10 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/count_subseq.hpp
     title: string/count_subseq.hpp
   _extendedRequiredBy: []
@@ -305,21 +305,19 @@ data:
     \ && keys[i] == key;\r\n  }\r\n\r\n  void reset() {\r\n    for (auto&& i: IDS)\
     \ used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  // f(key, val)\r\n  template\
     \ <typename F>\r\n  void enumerate_all(F f) {\r\n    for (auto&& i: IDS) f(keys[i],\
-    \ vals[i]);\r\n  }\r\n};\r\n#line 2 \"string/count_subseq.hpp\"\n\ntemplate <typename\
-    \ mint, typename CHAR, typename STRING, int LOG = 20>\nmint count_subseq(STRING\
-    \ S) {\n  static HashMap<int, LOG> IDX;\n  ll N = len(S);\n  vc<mint> DP(N + 1);\n\
-    \  DP[0] = 1;\n  FOR(i, N) {\n    CHAR c = S[i];\n    DP[i + 1] = DP[i] + DP[i];\n\
-    \    int k = IDX.get(c, -1);\n    if (k != -1) DP[i + 1] -= DP[k];\n    IDX[c]\
-    \ = i;\n  }\n  return DP.back();\n}\n#line 6 \"test/library_checker/string/number_of_subsequences.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n \
-    \ mint ANS = count_subseq<mint, int>(A);\n  ANS -= mint(1);\n  print(ANS);\n}\n\
-    \nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ vals[i]);\r\n  }\r\n};\r\n#line 2 \"string/count_subseq.hpp\"\n\n// https://noshi91.hatenablog.com/entry/2023/02/26/135340\n\
+    template <typename mint, typename STRING, int LOG = 20>\nmint count_subseq(STRING\
+    \ S) {\n  static HashMap<mint, LOG> dp;\n  mint sm = 1;\n  for (auto&& x: S) {\n\
+    \    mint d = dp[x];\n    dp[x] = sm;\n    sm += sm - d;\n  }\n  return sm;\n\
+    }\n#line 6 \"test/library_checker/string/number_of_subsequences.test.cpp\"\n\n\
+    using mint = modint998;\n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n  mint\
+    \ ANS = count_subseq<mint>(A);\n  ANS -= mint(1);\n  print(ANS);\n}\n\nsigned\
+    \ main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/number_of_subsequences\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\
     \n#include \"string/count_subseq.hpp\"\n\nusing mint = modint998;\n\nvoid solve()\
-    \ {\n  LL(N);\n  VEC(int, A, N);\n  mint ANS = count_subseq<mint, int>(A);\n \
-    \ ANS -= mint(1);\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
-    }\n"
+    \ {\n  LL(N);\n  VEC(int, A, N);\n  mint ANS = count_subseq<mint>(A);\n  ANS -=\
+    \ mint(1);\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -331,7 +329,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/number_of_subsequences.test.cpp
   requiredBy: []
-  timestamp: '2023-04-27 03:47:30+09:00'
+  timestamp: '2023-05-12 16:35:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/string/number_of_subsequences.test.cpp
