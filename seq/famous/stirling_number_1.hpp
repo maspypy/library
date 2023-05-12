@@ -1,3 +1,4 @@
+#include "poly/fps_pow.hpp"
 #include "poly/poly_taylor_shift.hpp"
 
 template <typename mint>
