@@ -6,7 +6,7 @@ ll mod_pow(ll a, ll n, int mod) {
   a %= mod;
   Barrett bt(mod);
   ll p = a;
-  ll v = 1;
+  ll v = bt.modulo(1);
   while (n) {
     if (n & 1) v = bt.mul(v, p);
     p = bt.mul(p, p);
