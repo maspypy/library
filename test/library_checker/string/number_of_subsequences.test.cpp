@@ -9,7 +9,7 @@ using mint = modint998;
 void solve() {
   LL(N);
   VEC(int, A, N);
-  mint ANS = count_subseq<mint, int>(A);
+  mint ANS = count_subseq<mint>(A);
   ANS -= mint(1);
   print(ANS);
 }
