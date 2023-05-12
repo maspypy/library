@@ -3,6 +3,7 @@
 
 template <int mod>
 struct modint {
+  static_assert(mod < (1 << 30));
   int val;
   constexpr modint(const ll val = 0) noexcept
       : val(val >= 0 ? val % mod : (mod - (-val) % mod) % mod) {}
