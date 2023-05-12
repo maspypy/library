@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc200/tasks/abc200_f
@@ -245,57 +245,58 @@ data:
     mint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
     \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
     \ dense>(n + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\n\
-    struct modint {\n  int val;\n  constexpr modint(const ll val = 0) noexcept\n \
-    \     : val(val >= 0 ? val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const\
-    \ modint &other) const {\n    return val < other.val;\n  } // To use std::map\n\
-    \  modint &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -=\
-    \ mod;\n    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if\
-    \ ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint\
-    \ &operator*=(const modint &p) {\n    val = (int)(1LL * val * p.val % mod);\n\
-    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
-    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint(-val);\
-    \ }\n  modint operator+(const modint &p) const { return modint(*this) += p; }\n\
-    \  modint operator-(const modint &p) const { return modint(*this) -= p; }\n  modint\
-    \ operator*(const modint &p) const { return modint(*this) *= p; }\n  modint operator/(const\
-    \ modint &p) const { return modint(*this) /= p; }\n  bool operator==(const modint\
-    \ &p) const { return val == p.val; }\n  bool operator!=(const modint &p) const\
-    \ { return val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod,\
-    \ u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t *\
-    \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll\
-    \ n) const {\n    assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n\
-    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
-    \  }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
-    \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
-    \ int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\
-    \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 167772161) return\
-    \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
-    \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
-    \ == 998244353) return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n\
-    \    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881) return\
-    \ {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
-    \ return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 1 \"alg/monoid_pow.hpp\"\ntemplate\
-    \ <typename Monoid>\ntypename Monoid::X monoid_pow(typename Monoid::X x, u64 exp)\
-    \ {\n  using X = typename Monoid::X;\n  assert(exp >= 0);\n  X res = Monoid::unit();\n\
-    \  while (exp) {\n    if (exp & 1) res = Monoid::op(res, x);\n    x = Monoid::op(x,\
-    \ x);\n    exp >>= 1;\n  }\n  return res;\n}\n#line 7 \"test_atcoder/abc200f.test.cpp\"\
-    \n\nusing mint = modint107;\n\nusing P = pair<mint, mint>;\nusing ARR = array<array<P,\
-    \ 2>, 2>;\n\nstruct Mono {\n  using value_type = ARR;\n  using X = value_type;\n\
-    \  static X op(X x, X y) {\n    if (x == unit()) return y;\n    if (y == unit())\
-    \ return x;\n    X z = unit();\n    FOR(i, 2) FOR(j, 2) z[i][j] = {mint(0), mint(0)};\n\
-    \    FOR(a, 2) FOR(b, 2) FOR(c, 2) FOR(d, 2) {\n      auto& dp1 = x[a][b];\n \
-    \     auto& dp2 = y[c][d];\n      z[a][d].fi += dp1.fi * dp2.fi;\n      z[a][d].se\
-    \ += dp1.fi * dp2.se + dp2.fi * dp1.se;\n      if (b != c) z[a][b].se += dp1.fi\
-    \ * dp2.fi;\n    }\n    return z;\n  }\n  static X unit() {\n    X x;\n    FOR(i,\
-    \ 2) FOR(j, 2) x[i][j] = {mint(0), mint(0)};\n    return x;\n  }\n  static X from_element(char\
-    \ c) {\n    X t = unit();\n    FOR(x, 2) {\n      if (x == 0 && c == '1') continue;\n\
-    \      if (x == 1 && c == '0') continue;\n      t[x][x] = {1, 0};\n    }\n   \
-    \ return t;\n  }\n  static constexpr bool commute = 0;\n};\n\nvoid solve() {\n\
-    \  STR(S);\n  INT(K);\n  ARR x = Mono::unit();\n  for (auto&& c: S) x = Mono::op(x,\
-    \ Mono::from_element(c));\n\n  ARR e = monoid_pow<Mono>(x, K);\n  mint ANS = 0;\n\
-    \  FOR(a, 2) FOR(b, 2) {\n    auto [cnt, sm] = e[a][b];\n    if (a != b) ANS +=\
-    \ (sm + cnt) * inv<mint>(2);\n    if (a == b) ANS += sm * inv<mint>(2);\n  }\n\
-    \  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    struct modint {\n  static_assert(mod < (1 << 30));\n  int val;\n  constexpr modint(const\
+    \ ll val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val) % mod)\
+    \ % mod) {}\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
+    \  } // To use std::map\n  modint &operator+=(const modint &p) {\n    if ((val\
+    \ += p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator-=(const\
+    \ modint &p) {\n    if ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n\
+    \  }\n  modint &operator*=(const modint &p) {\n    val = (int)(1LL * val * p.val\
+    \ % mod);\n    return *this;\n  }\n  modint &operator/=(const modint &p) {\n \
+    \   *this *= p.inverse();\n    return *this;\n  }\n  modint operator-() const\
+    \ { return modint(-val); }\n  modint operator+(const modint &p) const { return\
+    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
+    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
+    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
+    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
+    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
+    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
+    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
+    \ return modint(u);\n  }\n  modint pow(ll n) const {\n    assert(n >= 0);\n  \
+    \  modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
+    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n\
+    \  void write() { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
+    \ }\n#endif\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r\
+    \ \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info()\
+    \ {\n    if (mod == 167772161) return {25, 17};\n    if (mod == 469762049) return\
+    \ {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841)\
+    \ return {23, 211};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
+    \ 1045430273) return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n\
+    \    if (mod == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static\
+    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\nusing modint107\
+    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 1 \"alg/monoid_pow.hpp\"\
+    \ntemplate <typename Monoid>\ntypename Monoid::X monoid_pow(typename Monoid::X\
+    \ x, u64 exp) {\n  using X = typename Monoid::X;\n  assert(exp >= 0);\n  X res\
+    \ = Monoid::unit();\n  while (exp) {\n    if (exp & 1) res = Monoid::op(res, x);\n\
+    \    x = Monoid::op(x, x);\n    exp >>= 1;\n  }\n  return res;\n}\n#line 7 \"\
+    test_atcoder/abc200f.test.cpp\"\n\nusing mint = modint107;\n\nusing P = pair<mint,\
+    \ mint>;\nusing ARR = array<array<P, 2>, 2>;\n\nstruct Mono {\n  using value_type\
+    \ = ARR;\n  using X = value_type;\n  static X op(X x, X y) {\n    if (x == unit())\
+    \ return y;\n    if (y == unit()) return x;\n    X z = unit();\n    FOR(i, 2)\
+    \ FOR(j, 2) z[i][j] = {mint(0), mint(0)};\n    FOR(a, 2) FOR(b, 2) FOR(c, 2) FOR(d,\
+    \ 2) {\n      auto& dp1 = x[a][b];\n      auto& dp2 = y[c][d];\n      z[a][d].fi\
+    \ += dp1.fi * dp2.fi;\n      z[a][d].se += dp1.fi * dp2.se + dp2.fi * dp1.se;\n\
+    \      if (b != c) z[a][b].se += dp1.fi * dp2.fi;\n    }\n    return z;\n  }\n\
+    \  static X unit() {\n    X x;\n    FOR(i, 2) FOR(j, 2) x[i][j] = {mint(0), mint(0)};\n\
+    \    return x;\n  }\n  static X from_element(char c) {\n    X t = unit();\n  \
+    \  FOR(x, 2) {\n      if (x == 0 && c == '1') continue;\n      if (x == 1 && c\
+    \ == '0') continue;\n      t[x][x] = {1, 0};\n    }\n    return t;\n  }\n  static\
+    \ constexpr bool commute = 0;\n};\n\nvoid solve() {\n  STR(S);\n  INT(K);\n  ARR\
+    \ x = Mono::unit();\n  for (auto&& c: S) x = Mono::op(x, Mono::from_element(c));\n\
+    \n  ARR e = monoid_pow<Mono>(x, K);\n  mint ANS = 0;\n  FOR(a, 2) FOR(b, 2) {\n\
+    \    auto [cnt, sm] = e[a][b];\n    if (a != b) ANS += (sm + cnt) * inv<mint>(2);\n\
+    \    if (a == b) ANS += sm * inv<mint>(2);\n  }\n  print(ANS);\n}\n\nsigned main()\
+    \ {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc200/tasks/abc200_f\"\n\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\
     \n#include \"alg/monoid_pow.hpp\"\n\nusing mint = modint107;\n\nusing P = pair<mint,\
@@ -325,8 +326,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc200f.test.cpp
   requiredBy: []
-  timestamp: '2023-04-27 03:47:30+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-12 18:44:22+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc200f.test.cpp
 layout: document
