@@ -7,7 +7,7 @@ struct Barrett {
   explicit Barrett(u32 m = 1) : m(m), im(u64(-1) / m + 1) {}
   u32 umod() const { return m; }
   u32 modulo(u64 z) {
-    if (m == 1) return z;
+    if (m == 1) return 0;
     u64 x = (u64)(((unsigned __int128)(z)*im) >> 64);
     u64 y = x * m;
     return (z - y + (z < y ? m : 0));
