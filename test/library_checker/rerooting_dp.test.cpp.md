@@ -24,24 +24,28 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    links: []
-  bundledCode: "#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
-    )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
-    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    \ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int>\
-    \ = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll> = ll(infty<int>) * infty<int>\
-    \ * 2;\ntemplate <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr\
-    \ u64 infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
-    \ * infty<ll>;\ntemplate <>\nconstexpr double infty<double> = infty<ll>;\ntemplate\
-    \ <>\nconstexpr long double infty<long double> = infty<ll>;\n\nusing pi = pair<ll,\
-    \ ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
-    \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    PROBLEM: https://judge.yosupo.jp/problem/tree_path_composite_sum
+    links:
+    - https://judge.yosupo.jp/problem/tree_path_composite_sum
+  bundledCode: "#line 1 \"test/library_checker/rerooting_dp.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/tree_path_composite_sum\"\n#line 1 \"my_template.hpp\"\
+    \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n#pragma GCC\
+    \ optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\
+    \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
+    \ u64 = unsigned long long;\nusing i128 = __int128;\n\ntemplate <class T>\nconstexpr\
+    \ T infty = 0;\ntemplate <>\nconstexpr int infty<int> = 1'000'000'000;\ntemplate\
+    \ <>\nconstexpr ll infty<ll> = ll(infty<int>) * infty<int> * 2;\ntemplate <>\n\
+    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
+    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\n\
+    template <>\nconstexpr double infty<double> = infty<ll>;\ntemplate <>\nconstexpr\
+    \ long double infty<long double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing\
+    \ vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
+    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
     template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
     \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
     template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
@@ -210,7 +214,7 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 3 \"test/library_checker/rerooting_dp.test.cpp\"\n\n#line\
+    \ yes(!t); }\n#line 4 \"test/library_checker/rerooting_dp.test.cpp\"\n\n#line\
     \ 1 \"graph/tree_dp/rerooting_dp.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate\
     \ <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate\
     \ <typename T = int, bool directed = false>\nstruct Graph {\n  int N, M;\n  using\
@@ -430,7 +434,7 @@ data:
     \ 1045430273) return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n\
     \    if (mod == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static\
     \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\nusing modint107\
-    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 6 \"test/library_checker/rerooting_dp.test.cpp\"\
+    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 7 \"test/library_checker/rerooting_dp.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  VEC(mint, A, N);\n\
     \  Graph<bool, 0> G(N);\n  vc<mint> B(N - 1), C(N - 1);\n  FOR(i, N - 1) {\n \
     \   LL(u, v, b, c);\n    G.add(u, v);\n    B[i] = b, C[i] = c;\n  }\n  G.build();\n\
@@ -443,7 +447,8 @@ data:
     \ Data> dp(tree, fee, fev, fve, unit);\n\n  vc<mint> ANS(N);\n  FOR(v, N) ANS[v]\
     \ = dp[v].se;\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
     }\n"
-  code: "#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/tree_dp/rerooting_dp.hpp\"\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/tree_path_composite_sum\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/tree_dp/rerooting_dp.hpp\"\
     \n#include \"mod/modint.hpp\"\n\nusing mint = modint998;\n\nvoid solve() {\n \
     \ LL(N);\n  VEC(mint, A, N);\n  Graph<bool, 0> G(N);\n  vc<mint> B(N - 1), C(N\
     \ - 1);\n  FOR(i, N - 1) {\n    LL(u, v, b, c);\n    G.add(u, v);\n    B[i] =\
@@ -455,7 +460,7 @@ data:
     \ e) -> Data {\n    x.se = B[e.id] * x.se + x.fi * C[e.id];\n    return x;\n \
     \ };\n  Rerooting_dp<decltype(tree), Data> dp(tree, fee, fev, fve, unit);\n\n\
     \  vc<mint> ANS(N);\n  FOR(v, N) ANS[v] = dp[v].se;\n  print(ANS);\n}\n\nsigned\
-    \ main() {\n  solve();\n  return 0;\n}\n"
+    \ main() {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -467,8 +472,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/rerooting_dp.test.cpp
   requiredBy: []
-  timestamp: '2023-05-14 00:20:07+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-05-14 00:44:11+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/rerooting_dp.test.cpp
 layout: document
