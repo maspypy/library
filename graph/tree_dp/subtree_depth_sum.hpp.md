@@ -159,36 +159,36 @@ data:
     \ F2, typename F3>\r\n  void build(F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)\
     \ {\r\n    int N = tree.N;\r\n    // dp1: subtree\r\n    dp_1.assign(N, unit);\r\
     \n    FOR_R(i, N) {\r\n      int v = tree.V[i];\r\n      for (auto&& e: (*tree.G_ptr)[v])\
-    \ {\r\n        dp_1[v] = f_ee(dp_1[v], f_ve(dp_1[e.to], e));\r\n      }\r\n  \
-    \    dp_1[v] = f_ev(dp_1[v], v);\r\n    }\r\n\r\n    // dp2[v]: subtree of p,\
-    \ rooted at v\r\n    dp_2.assign(N, unit);\r\n    // dp[v]: fulltree, rooted at\
-    \ v\r\n    dp.assign(N, unit);\r\n    FOR(i, N) {\r\n      int p = tree.V[i];\r\
-    \n      vc<int> ch;\r\n      vc<Data> ch_data;\r\n      Data x = unit;\r\n   \
-    \   for (auto&& e: (*tree.G_ptr)[p]) {\r\n        if (e.to == tree.parent[p])\
-    \ {\r\n          x = f_ve(dp_2[p], e);\r\n        } else {\r\n          ch.eb(e.to);\r\
-    \n          ch_data.eb(f_ve(dp_1[e.to], e));\r\n        }\r\n      }\r\n     \
-    \ int n = len(ch);\r\n      if (!n) {\r\n        dp[p] = f_ev(x, p);\r\n     \
-    \   continue;\r\n      }\r\n      vc<Data> prod_left(n, x);\r\n      FOR(i, n\
-    \ - 1) prod_left[i + 1] = f_ee(prod_left[i], ch_data[i]);\r\n      Data prod_right\
-    \ = unit;\r\n      FOR_R(i, n) {\r\n        dp_2[ch[i]] = f_ev(f_ee(prod_left[i],\
-    \ prod_right), p);\r\n        prod_right = f_ee(prod_right, ch_data[i]);\r\n \
-    \     }\r\n      dp[p] = f_ev(f_ee(x, prod_right), p);\r\n    }\r\n  }\r\n};\r\
-    \n#line 3 \"graph/tree_dp/subtree_depth_sum.hpp\"\n\n// sum_v dist(root, v)\n\
-    template <typename TREE, typename WT = ll>\nstruct SubTree_DepthSum {\n  // num_point,\
-    \ dist_sum\n  using Data = pair<int, WT>;\n  TREE& tree;\n  vc<Data> dp, dp_1,\
-    \ dp_2;\n\n  SubTree_DepthSum(TREE& tree) : tree(tree) {\n    int N = tree.N;\n\
-    \    Data unit = {0, 0};\n    auto f_ee = [&](Data A, Data B) -> Data {\n    \
-    \  return {A.fi + B.fi, A.se + B.se};\n    };\n    auto f_ev = [&](Data A, int\
-    \ v) -> Data { return {A.fi + 1, A.se}; };\n    auto f_ve = [&](Data A, const\
-    \ auto& e) -> Data {\n      return {A.fi, A.se + A.fi * e.cost};\n    };\n\n \
-    \   Rerooting_dp<decltype(tree), Data> DP(tree, f_ee, f_ev, f_ve, unit);\n   \
-    \ dp = DP.dp, dp_1 = DP.dp_1, dp_2 = DP.dp_2;\n  }\n\n  // (cnt, sum)\n  // v\
-    \ \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E full tree\n  pair<int, WT>\
-    \ operator[](int v) { return dp[v]; }\n\n  // (cnt, sum)\n  // root \u3092\u6839\
-    \u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\u6728 v\n  pair<int, WT> get(int\
-    \ root, int v) {\n    if (root == v) return dp[v];\n    if (!tree.in_subtree(root,\
-    \ v)) { return dp_1[v]; }\n    int w = tree.jump(v, root, 1);\n    return dp_2[w];\n\
-    \  }\n};\n"
+    \ {\r\n        if (e.to == tree.parent[v]) continue;\r\n        dp_1[v] = f_ee(dp_1[v],\
+    \ f_ve(dp_1[e.to], e));\r\n      }\r\n      dp_1[v] = f_ev(dp_1[v], v);\r\n  \
+    \  }\r\n\r\n    // dp2[v]: subtree of p, rooted at v\r\n    dp_2.assign(N, unit);\r\
+    \n    // dp[v]: fulltree, rooted at v\r\n    dp.assign(N, unit);\r\n    FOR(i,\
+    \ N) {\r\n      int p = tree.V[i];\r\n      vc<int> ch;\r\n      vc<Data> ch_data;\r\
+    \n      Data x = unit;\r\n      for (auto&& e: (*tree.G_ptr)[p]) {\r\n       \
+    \ if (e.to == tree.parent[p]) {\r\n          x = f_ve(dp_2[p], e);\r\n       \
+    \ } else {\r\n          ch.eb(e.to);\r\n          ch_data.eb(f_ve(dp_1[e.to],\
+    \ e));\r\n        }\r\n      }\r\n      int n = len(ch);\r\n      if (!n) {\r\n\
+    \        dp[p] = f_ev(x, p);\r\n        continue;\r\n      }\r\n      vc<Data>\
+    \ prod_left(n, x);\r\n      FOR(i, n - 1) prod_left[i + 1] = f_ee(prod_left[i],\
+    \ ch_data[i]);\r\n      Data prod_right = unit;\r\n      FOR_R(i, n) {\r\n   \
+    \     dp_2[ch[i]] = f_ev(f_ee(prod_left[i], prod_right), p);\r\n        prod_right\
+    \ = f_ee(prod_right, ch_data[i]);\r\n      }\r\n      dp[p] = f_ev(f_ee(x, prod_right),\
+    \ p);\r\n    }\r\n  }\r\n};\r\n#line 3 \"graph/tree_dp/subtree_depth_sum.hpp\"\
+    \n\n// sum_v dist(root, v)\ntemplate <typename TREE, typename WT = ll>\nstruct\
+    \ SubTree_DepthSum {\n  // num_point, dist_sum\n  using Data = pair<int, WT>;\n\
+    \  TREE& tree;\n  vc<Data> dp, dp_1, dp_2;\n\n  SubTree_DepthSum(TREE& tree) :\
+    \ tree(tree) {\n    int N = tree.N;\n    Data unit = {0, 0};\n    auto f_ee =\
+    \ [&](Data A, Data B) -> Data {\n      return {A.fi + B.fi, A.se + B.se};\n  \
+    \  };\n    auto f_ev = [&](Data A, int v) -> Data { return {A.fi + 1, A.se}; };\n\
+    \    auto f_ve = [&](Data A, const auto& e) -> Data {\n      return {A.fi, A.se\
+    \ + A.fi * e.cost};\n    };\n\n    Rerooting_dp<decltype(tree), Data> DP(tree,\
+    \ f_ee, f_ev, f_ve, unit);\n    dp = DP.dp, dp_1 = DP.dp_1, dp_2 = DP.dp_2;\n\
+    \  }\n\n  // (cnt, sum)\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\
+    \ full tree\n  pair<int, WT> operator[](int v) { return dp[v]; }\n\n  // (cnt,\
+    \ sum)\n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\
+    \u6728 v\n  pair<int, WT> get(int root, int v) {\n    if (root == v) return dp[v];\n\
+    \    if (!tree.in_subtree(root, v)) { return dp_1[v]; }\n    int w = tree.jump(v,\
+    \ root, 1);\n    return dp_2[w];\n  }\n};\n"
   code: "\n#include \"graph/tree_dp/rerooting_dp.hpp\"\n\n// sum_v dist(root, v)\n\
     template <typename TREE, typename WT = ll>\nstruct SubTree_DepthSum {\n  // num_point,\
     \ dist_sum\n  using Data = pair<int, WT>;\n  TREE& tree;\n  vc<Data> dp, dp_1,\
@@ -212,7 +212,7 @@ data:
   isVerificationFile: false
   path: graph/tree_dp/subtree_depth_sum.hpp
   requiredBy: []
-  timestamp: '2023-05-10 00:53:53+09:00'
+  timestamp: '2023-05-14 00:20:07+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc220f.test.cpp

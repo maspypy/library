@@ -33,13 +33,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1418.test.cpp
     title: test/yukicoder/1418.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1494.test.cpp
     title: test/yukicoder/1494.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1718.test.cpp
     title: test/yukicoder/1718.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1976.test.cpp
     title: test/yukicoder/1976.test.cpp
   - icon: ':x:'
@@ -192,21 +192,21 @@ data:
     \ F2, typename F3>\r\n  void build(F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)\
     \ {\r\n    int N = tree.N;\r\n    // dp1: subtree\r\n    dp_1.assign(N, unit);\r\
     \n    FOR_R(i, N) {\r\n      int v = tree.V[i];\r\n      for (auto&& e: (*tree.G_ptr)[v])\
-    \ {\r\n        dp_1[v] = f_ee(dp_1[v], f_ve(dp_1[e.to], e));\r\n      }\r\n  \
-    \    dp_1[v] = f_ev(dp_1[v], v);\r\n    }\r\n\r\n    // dp2[v]: subtree of p,\
-    \ rooted at v\r\n    dp_2.assign(N, unit);\r\n    // dp[v]: fulltree, rooted at\
-    \ v\r\n    dp.assign(N, unit);\r\n    FOR(i, N) {\r\n      int p = tree.V[i];\r\
-    \n      vc<int> ch;\r\n      vc<Data> ch_data;\r\n      Data x = unit;\r\n   \
-    \   for (auto&& e: (*tree.G_ptr)[p]) {\r\n        if (e.to == tree.parent[p])\
-    \ {\r\n          x = f_ve(dp_2[p], e);\r\n        } else {\r\n          ch.eb(e.to);\r\
-    \n          ch_data.eb(f_ve(dp_1[e.to], e));\r\n        }\r\n      }\r\n     \
-    \ int n = len(ch);\r\n      if (!n) {\r\n        dp[p] = f_ev(x, p);\r\n     \
-    \   continue;\r\n      }\r\n      vc<Data> prod_left(n, x);\r\n      FOR(i, n\
-    \ - 1) prod_left[i + 1] = f_ee(prod_left[i], ch_data[i]);\r\n      Data prod_right\
-    \ = unit;\r\n      FOR_R(i, n) {\r\n        dp_2[ch[i]] = f_ev(f_ee(prod_left[i],\
-    \ prod_right), p);\r\n        prod_right = f_ee(prod_right, ch_data[i]);\r\n \
-    \     }\r\n      dp[p] = f_ev(f_ee(x, prod_right), p);\r\n    }\r\n  }\r\n};\r\
-    \n"
+    \ {\r\n        if (e.to == tree.parent[v]) continue;\r\n        dp_1[v] = f_ee(dp_1[v],\
+    \ f_ve(dp_1[e.to], e));\r\n      }\r\n      dp_1[v] = f_ev(dp_1[v], v);\r\n  \
+    \  }\r\n\r\n    // dp2[v]: subtree of p, rooted at v\r\n    dp_2.assign(N, unit);\r\
+    \n    // dp[v]: fulltree, rooted at v\r\n    dp.assign(N, unit);\r\n    FOR(i,\
+    \ N) {\r\n      int p = tree.V[i];\r\n      vc<int> ch;\r\n      vc<Data> ch_data;\r\
+    \n      Data x = unit;\r\n      for (auto&& e: (*tree.G_ptr)[p]) {\r\n       \
+    \ if (e.to == tree.parent[p]) {\r\n          x = f_ve(dp_2[p], e);\r\n       \
+    \ } else {\r\n          ch.eb(e.to);\r\n          ch_data.eb(f_ve(dp_1[e.to],\
+    \ e));\r\n        }\r\n      }\r\n      int n = len(ch);\r\n      if (!n) {\r\n\
+    \        dp[p] = f_ev(x, p);\r\n        continue;\r\n      }\r\n      vc<Data>\
+    \ prod_left(n, x);\r\n      FOR(i, n - 1) prod_left[i + 1] = f_ee(prod_left[i],\
+    \ ch_data[i]);\r\n      Data prod_right = unit;\r\n      FOR_R(i, n) {\r\n   \
+    \     dp_2[ch[i]] = f_ev(f_ee(prod_left[i], prod_right), p);\r\n        prod_right\
+    \ = f_ee(prod_right, ch_data[i]);\r\n      }\r\n      dp[p] = f_ev(f_ee(x, prod_right),\
+    \ p);\r\n    }\r\n  }\r\n};\r\n"
   code: "\r\n#include \"graph/base.hpp\"\r\n#include \"graph/tree.hpp\"\r\n\r\ntemplate\
     \ <typename TREE, typename Data>\r\nstruct Rerooting_dp {\r\n  TREE& tree;\r\n\
     \  vc<Data> dp_1; // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\u5206\u6728\
@@ -223,21 +223,21 @@ data:
     \ F2, typename F3>\r\n  void build(F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)\
     \ {\r\n    int N = tree.N;\r\n    // dp1: subtree\r\n    dp_1.assign(N, unit);\r\
     \n    FOR_R(i, N) {\r\n      int v = tree.V[i];\r\n      for (auto&& e: (*tree.G_ptr)[v])\
-    \ {\r\n        dp_1[v] = f_ee(dp_1[v], f_ve(dp_1[e.to], e));\r\n      }\r\n  \
-    \    dp_1[v] = f_ev(dp_1[v], v);\r\n    }\r\n\r\n    // dp2[v]: subtree of p,\
-    \ rooted at v\r\n    dp_2.assign(N, unit);\r\n    // dp[v]: fulltree, rooted at\
-    \ v\r\n    dp.assign(N, unit);\r\n    FOR(i, N) {\r\n      int p = tree.V[i];\r\
-    \n      vc<int> ch;\r\n      vc<Data> ch_data;\r\n      Data x = unit;\r\n   \
-    \   for (auto&& e: (*tree.G_ptr)[p]) {\r\n        if (e.to == tree.parent[p])\
-    \ {\r\n          x = f_ve(dp_2[p], e);\r\n        } else {\r\n          ch.eb(e.to);\r\
-    \n          ch_data.eb(f_ve(dp_1[e.to], e));\r\n        }\r\n      }\r\n     \
-    \ int n = len(ch);\r\n      if (!n) {\r\n        dp[p] = f_ev(x, p);\r\n     \
-    \   continue;\r\n      }\r\n      vc<Data> prod_left(n, x);\r\n      FOR(i, n\
-    \ - 1) prod_left[i + 1] = f_ee(prod_left[i], ch_data[i]);\r\n      Data prod_right\
-    \ = unit;\r\n      FOR_R(i, n) {\r\n        dp_2[ch[i]] = f_ev(f_ee(prod_left[i],\
-    \ prod_right), p);\r\n        prod_right = f_ee(prod_right, ch_data[i]);\r\n \
-    \     }\r\n      dp[p] = f_ev(f_ee(x, prod_right), p);\r\n    }\r\n  }\r\n};\r\
-    \n"
+    \ {\r\n        if (e.to == tree.parent[v]) continue;\r\n        dp_1[v] = f_ee(dp_1[v],\
+    \ f_ve(dp_1[e.to], e));\r\n      }\r\n      dp_1[v] = f_ev(dp_1[v], v);\r\n  \
+    \  }\r\n\r\n    // dp2[v]: subtree of p, rooted at v\r\n    dp_2.assign(N, unit);\r\
+    \n    // dp[v]: fulltree, rooted at v\r\n    dp.assign(N, unit);\r\n    FOR(i,\
+    \ N) {\r\n      int p = tree.V[i];\r\n      vc<int> ch;\r\n      vc<Data> ch_data;\r\
+    \n      Data x = unit;\r\n      for (auto&& e: (*tree.G_ptr)[p]) {\r\n       \
+    \ if (e.to == tree.parent[p]) {\r\n          x = f_ve(dp_2[p], e);\r\n       \
+    \ } else {\r\n          ch.eb(e.to);\r\n          ch_data.eb(f_ve(dp_1[e.to],\
+    \ e));\r\n        }\r\n      }\r\n      int n = len(ch);\r\n      if (!n) {\r\n\
+    \        dp[p] = f_ev(x, p);\r\n        continue;\r\n      }\r\n      vc<Data>\
+    \ prod_left(n, x);\r\n      FOR(i, n - 1) prod_left[i + 1] = f_ee(prod_left[i],\
+    \ ch_data[i]);\r\n      Data prod_right = unit;\r\n      FOR_R(i, n) {\r\n   \
+    \     dp_2[ch[i]] = f_ev(f_ee(prod_left[i], prod_right), p);\r\n        prod_right\
+    \ = f_ee(prod_right, ch_data[i]);\r\n      }\r\n      dp[p] = f_ev(f_ee(x, prod_right),\
+    \ p);\r\n    }\r\n  }\r\n};\r\n"
   dependsOn:
   - graph/base.hpp
   - graph/tree.hpp
@@ -247,7 +247,7 @@ data:
   - graph/tree_dp/subtree_diameter.hpp
   - graph/tree_dp/subtree_depth_sum.hpp
   - graph/tree_dp/subtree_hash.hpp
-  timestamp: '2023-05-10 00:53:53+09:00'
+  timestamp: '2023-05-14 00:20:07+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc220f.test.cpp

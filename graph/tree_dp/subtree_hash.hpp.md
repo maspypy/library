@@ -201,30 +201,30 @@ data:
     \ F2, typename F3>\r\n  void build(F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)\
     \ {\r\n    int N = tree.N;\r\n    // dp1: subtree\r\n    dp_1.assign(N, unit);\r\
     \n    FOR_R(i, N) {\r\n      int v = tree.V[i];\r\n      for (auto&& e: (*tree.G_ptr)[v])\
-    \ {\r\n        dp_1[v] = f_ee(dp_1[v], f_ve(dp_1[e.to], e));\r\n      }\r\n  \
-    \    dp_1[v] = f_ev(dp_1[v], v);\r\n    }\r\n\r\n    // dp2[v]: subtree of p,\
-    \ rooted at v\r\n    dp_2.assign(N, unit);\r\n    // dp[v]: fulltree, rooted at\
-    \ v\r\n    dp.assign(N, unit);\r\n    FOR(i, N) {\r\n      int p = tree.V[i];\r\
-    \n      vc<int> ch;\r\n      vc<Data> ch_data;\r\n      Data x = unit;\r\n   \
-    \   for (auto&& e: (*tree.G_ptr)[p]) {\r\n        if (e.to == tree.parent[p])\
-    \ {\r\n          x = f_ve(dp_2[p], e);\r\n        } else {\r\n          ch.eb(e.to);\r\
-    \n          ch_data.eb(f_ve(dp_1[e.to], e));\r\n        }\r\n      }\r\n     \
-    \ int n = len(ch);\r\n      if (!n) {\r\n        dp[p] = f_ev(x, p);\r\n     \
-    \   continue;\r\n      }\r\n      vc<Data> prod_left(n, x);\r\n      FOR(i, n\
-    \ - 1) prod_left[i + 1] = f_ee(prod_left[i], ch_data[i]);\r\n      Data prod_right\
-    \ = unit;\r\n      FOR_R(i, n) {\r\n        dp_2[ch[i]] = f_ev(f_ee(prod_left[i],\
-    \ prod_right), p);\r\n        prod_right = f_ee(prod_right, ch_data[i]);\r\n \
-    \     }\r\n      dp[p] = f_ev(f_ee(x, prod_right), p);\r\n    }\r\n  }\r\n};\r\
-    \n#line 6 \"graph/tree_dp/subtree_hash.hpp\"\n\ntemplate <typename TREE>\nstruct\
-    \ SubTree_Hash {\n  using mint = modint61;\n  TREE& tree;\n  vc<ll> dp, dp_1,\
-    \ dp_2;\n\n  SubTree_Hash(TREE& tree) : tree(tree) {\n    int N = tree.N;\n  \
-    \  using T = pair<int, mint>;\n    T unit = {0, mint(1)};\n\n    auto f_ee = [&](T\
-    \ A, T B) -> T { return {max(A.fi, B.fi), A.se * B.se}; };\n    auto f_ev = [&](T\
-    \ A, int v) -> T { return {A.fi + 1, A.se}; };\n    auto f_ve = [&](T A, const\
-    \ auto& e) -> T {\n      return {A.fi, A.se + hash_base(A.fi)};\n    };\n\n  \
-    \  Rerooting_dp<decltype(tree), T> DP(tree, f_ee, f_ev, f_ve, unit);\n    dp.resize(N),\
-    \ dp_1.resize(N), dp_2.resize(N);\n    FOR(v, N) dp[v] = DP.dp[v].se.val;\n  \
-    \  FOR(v, N) dp_1[v] = DP.dp_1[v].se.val;\n    FOR(v, N) dp_2[v] = DP.dp_2[v].se.val;\n\
+    \ {\r\n        if (e.to == tree.parent[v]) continue;\r\n        dp_1[v] = f_ee(dp_1[v],\
+    \ f_ve(dp_1[e.to], e));\r\n      }\r\n      dp_1[v] = f_ev(dp_1[v], v);\r\n  \
+    \  }\r\n\r\n    // dp2[v]: subtree of p, rooted at v\r\n    dp_2.assign(N, unit);\r\
+    \n    // dp[v]: fulltree, rooted at v\r\n    dp.assign(N, unit);\r\n    FOR(i,\
+    \ N) {\r\n      int p = tree.V[i];\r\n      vc<int> ch;\r\n      vc<Data> ch_data;\r\
+    \n      Data x = unit;\r\n      for (auto&& e: (*tree.G_ptr)[p]) {\r\n       \
+    \ if (e.to == tree.parent[p]) {\r\n          x = f_ve(dp_2[p], e);\r\n       \
+    \ } else {\r\n          ch.eb(e.to);\r\n          ch_data.eb(f_ve(dp_1[e.to],\
+    \ e));\r\n        }\r\n      }\r\n      int n = len(ch);\r\n      if (!n) {\r\n\
+    \        dp[p] = f_ev(x, p);\r\n        continue;\r\n      }\r\n      vc<Data>\
+    \ prod_left(n, x);\r\n      FOR(i, n - 1) prod_left[i + 1] = f_ee(prod_left[i],\
+    \ ch_data[i]);\r\n      Data prod_right = unit;\r\n      FOR_R(i, n) {\r\n   \
+    \     dp_2[ch[i]] = f_ev(f_ee(prod_left[i], prod_right), p);\r\n        prod_right\
+    \ = f_ee(prod_right, ch_data[i]);\r\n      }\r\n      dp[p] = f_ev(f_ee(x, prod_right),\
+    \ p);\r\n    }\r\n  }\r\n};\r\n#line 6 \"graph/tree_dp/subtree_hash.hpp\"\n\n\
+    template <typename TREE>\nstruct SubTree_Hash {\n  using mint = modint61;\n  TREE&\
+    \ tree;\n  vc<ll> dp, dp_1, dp_2;\n\n  SubTree_Hash(TREE& tree) : tree(tree) {\n\
+    \    int N = tree.N;\n    using T = pair<int, mint>;\n    T unit = {0, mint(1)};\n\
+    \n    auto f_ee = [&](T A, T B) -> T { return {max(A.fi, B.fi), A.se * B.se};\
+    \ };\n    auto f_ev = [&](T A, int v) -> T { return {A.fi + 1, A.se}; };\n   \
+    \ auto f_ve = [&](T A, const auto& e) -> T {\n      return {A.fi, A.se + hash_base(A.fi)};\n\
+    \    };\n\n    Rerooting_dp<decltype(tree), T> DP(tree, f_ee, f_ev, f_ve, unit);\n\
+    \    dp.resize(N), dp_1.resize(N), dp_2.resize(N);\n    FOR(v, N) dp[v] = DP.dp[v].se.val;\n\
+    \    FOR(v, N) dp_1[v] = DP.dp_1[v].se.val;\n    FOR(v, N) dp_2[v] = DP.dp_2[v].se.val;\n\
     \  }\n\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E full tree\n  ll\
     \ operator[](int v) { return dp[v]; }\n\n  // root \u3092\u6839\u3068\u3057\u305F\
     \u3068\u304D\u306E\u90E8\u5206\u6728 v\n  ll get(int root, int v) {\n    if (root\
@@ -259,7 +259,7 @@ data:
   isVerificationFile: false
   path: graph/tree_dp/subtree_hash.hpp
   requiredBy: []
-  timestamp: '2023-05-10 00:53:53+09:00'
+  timestamp: '2023-05-14 00:20:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/graph/classify_tree.test.cpp
