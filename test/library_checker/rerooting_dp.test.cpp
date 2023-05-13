@@ -1,3 +1,4 @@
+#define PROBLEM "https://judge.yosupo.jp/problem/tree_path_composite_sum"
 #include "my_template.hpp"
 #include "other/io.hpp"
 

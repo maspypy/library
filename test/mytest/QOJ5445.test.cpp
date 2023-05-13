@@ -36,7 +36,7 @@ vc<u64> solve_QOJ_5445(int N, vc<int> par, vvc<u64> dat) {
   using Data = vc<P>;
   Data unit = {};
 
-  auto fee = [&](Data& x, Data& y) -> Data {
+  auto fee = [&](Data x, Data y) -> Data {
     // merge sort
     Data z;
     auto V = SP{};
@@ -60,7 +60,7 @@ vc<u64> solve_QOJ_5445(int N, vc<int> par, vvc<u64> dat) {
     }
     return z;
   };
-  auto fev = [&](Data& x, int v) -> Data {
+  auto fev = [&](Data x, int v) -> Data {
     Data y;
     for (auto&& a: dual[v].dat) y.eb(0, a);
     auto V = dual[v];
@@ -70,8 +70,8 @@ vc<u64> solve_QOJ_5445(int N, vc<int> par, vvc<u64> dat) {
     }
     return y;
   };
-  // e は v から出る有向辺
-  auto fve = [&](Data x, auto& e) -> Data {
+  // e は v に入る有向辺
+  auto fve = [&](Data x, auto e) -> Data {
     for (auto&& [d, a]: x) ++d;
     return x;
   };
