@@ -12,7 +12,7 @@ void solve() {
   FOR(i, N - 1) A[i + 1] ^= A[i];
   A.pop_back();
 
-  mint ANS = count_subseq<mint, int, vc<int>>(A);
+  mint ANS = count_subseq<mint>(A);
   print(ANS);
 }
 
