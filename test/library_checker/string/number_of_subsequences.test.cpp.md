@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/count_subseq.hpp
     title: string/count_subseq.hpp
   _extendedRequiredBy: []
@@ -306,12 +306,13 @@ data:
     \ used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  // f(key, val)\r\n  template\
     \ <typename F>\r\n  void enumerate_all(F f) {\r\n    for (auto&& i: IDS) f(keys[i],\
     \ vals[i]);\r\n  }\r\n};\r\n#line 2 \"string/count_subseq.hpp\"\n\n// https://noshi91.hatenablog.com/entry/2023/02/26/135340\n\
-    template <typename mint, typename STRING, int LOG = 20>\nmint count_subseq(STRING\
-    \ S) {\n  static HashMap<mint, LOG> dp;\n  mint sm = 1;\n  for (auto&& x: S) {\n\
-    \    mint d = dp[x];\n    dp[x] = sm;\n    sm += sm - d;\n  }\n  return sm;\n\
-    }\n#line 6 \"test/library_checker/string/number_of_subsequences.test.cpp\"\n\n\
-    using mint = modint998;\n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n  mint\
-    \ ANS = count_subseq<mint>(A);\n  ANS -= mint(1);\n  print(ANS);\n}\n\nsigned\
+    template <typename mint, typename STRING>\nmint count_subseq(STRING& S) {\n  map<int,\
+    \ mint> dp;\n  mint sm = 1;\n  for (auto&& x: S) {\n    auto it = dp.find(x);\n\
+    \    if (it == dp.end()) {\n      dp[x] = sm;\n      sm += sm;\n    } else {\n\
+    \      mint d = (*it).se;\n      (*it).se = sm;\n      sm += sm - d;\n    }\n\
+    \  }\n  return sm;\n}\n#line 6 \"test/library_checker/string/number_of_subsequences.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n \
+    \ mint ANS = count_subseq<mint>(A);\n  ANS -= mint(1);\n  print(ANS);\n}\n\nsigned\
     \ main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/number_of_subsequences\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\
@@ -329,7 +330,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/number_of_subsequences.test.cpp
   requiredBy: []
-  timestamp: '2023-05-12 18:44:22+09:00'
+  timestamp: '2023-05-14 00:04:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/string/number_of_subsequences.test.cpp

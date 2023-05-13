@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/number_of_subsequences.test.cpp
     title: test/library_checker/string/number_of_subsequences.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1493.test.cpp
     title: test/yukicoder/1493.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://noshi91.hatenablog.com/entry/2023/02/26/135340
@@ -46,22 +46,25 @@ data:
     \ used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  // f(key, val)\r\n  template\
     \ <typename F>\r\n  void enumerate_all(F f) {\r\n    for (auto&& i: IDS) f(keys[i],\
     \ vals[i]);\r\n  }\r\n};\r\n#line 2 \"string/count_subseq.hpp\"\n\n// https://noshi91.hatenablog.com/entry/2023/02/26/135340\n\
-    template <typename mint, typename STRING, int LOG = 20>\nmint count_subseq(STRING\
-    \ S) {\n  static HashMap<mint, LOG> dp;\n  mint sm = 1;\n  for (auto&& x: S) {\n\
-    \    mint d = dp[x];\n    dp[x] = sm;\n    sm += sm - d;\n  }\n  return sm;\n\
-    }\n"
+    template <typename mint, typename STRING>\nmint count_subseq(STRING& S) {\n  map<int,\
+    \ mint> dp;\n  mint sm = 1;\n  for (auto&& x: S) {\n    auto it = dp.find(x);\n\
+    \    if (it == dp.end()) {\n      dp[x] = sm;\n      sm += sm;\n    } else {\n\
+    \      mint d = (*it).se;\n      (*it).se = sm;\n      sm += sm - d;\n    }\n\
+    \  }\n  return sm;\n}\n"
   code: "#include \"ds/hashmap.hpp\"\n\n// https://noshi91.hatenablog.com/entry/2023/02/26/135340\n\
-    template <typename mint, typename STRING, int LOG = 20>\nmint count_subseq(STRING\
-    \ S) {\n  static HashMap<mint, LOG> dp;\n  mint sm = 1;\n  for (auto&& x: S) {\n\
-    \    mint d = dp[x];\n    dp[x] = sm;\n    sm += sm - d;\n  }\n  return sm;\n}"
+    template <typename mint, typename STRING>\nmint count_subseq(STRING& S) {\n  map<int,\
+    \ mint> dp;\n  mint sm = 1;\n  for (auto&& x: S) {\n    auto it = dp.find(x);\n\
+    \    if (it == dp.end()) {\n      dp[x] = sm;\n      sm += sm;\n    } else {\n\
+    \      mint d = (*it).se;\n      (*it).se = sm;\n      sm += sm - d;\n    }\n\
+    \  }\n  return sm;\n}"
   dependsOn:
   - ds/hashmap.hpp
   - random/base.hpp
   isVerificationFile: false
   path: string/count_subseq.hpp
   requiredBy: []
-  timestamp: '2023-05-12 16:35:07+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-05-14 00:04:05+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1493.test.cpp
   - test/library_checker/string/number_of_subsequences.test.cpp
