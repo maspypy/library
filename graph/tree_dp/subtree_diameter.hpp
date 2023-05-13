@@ -32,7 +32,7 @@ struct SubTree_Diameter {
     };
     auto f_ve = [&](Data A, const auto& e) -> Data {
       A.path += e.cost;
-      if (chmax(A.diam, A.path)) { A.left = e.to, A.right = A.end; }
+      if (chmax(A.diam, A.path)) { A.left = e.frm, A.right = A.end; }
       return A;
     };
 
