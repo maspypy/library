@@ -185,7 +185,7 @@ data:
     \ int v) -> Data {\n      if (A.diam == -1) {\n        A.diam = 0, A.left = v,\
     \ A.right = v, A.path = 0, A.end = v;\n      }\n      return A;\n    };\n    auto\
     \ f_ve = [&](Data A, const auto& e) -> Data {\n      A.path += e.cost;\n     \
-    \ if (chmax(A.diam, A.path)) { A.left = e.to, A.right = A.end; }\n      return\
+    \ if (chmax(A.diam, A.path)) { A.left = e.frm, A.right = A.end; }\n      return\
     \ A;\n    };\n\n    Rerooting_dp<decltype(tree), Data> DP(tree, f_ee, f_ev, f_ve,\
     \ unit);\n    dp.resize(N), dp_1.resize(N), dp_2.resize(N);\n    FOR(v, N) {\n\
     \      dp[v] = {DP.dp[v].left, DP.dp[v].right, DP.dp[v].diam};\n      dp_1[v]\
@@ -212,7 +212,7 @@ data:
     \ if (A.diam == -1) {\n        A.diam = 0, A.left = v, A.right = v, A.path = 0,\
     \ A.end = v;\n      }\n      return A;\n    };\n    auto f_ve = [&](Data A, const\
     \ auto& e) -> Data {\n      A.path += e.cost;\n      if (chmax(A.diam, A.path))\
-    \ { A.left = e.to, A.right = A.end; }\n      return A;\n    };\n\n    Rerooting_dp<decltype(tree),\
+    \ { A.left = e.frm, A.right = A.end; }\n      return A;\n    };\n\n    Rerooting_dp<decltype(tree),\
     \ Data> DP(tree, f_ee, f_ev, f_ve, unit);\n    dp.resize(N), dp_1.resize(N), dp_2.resize(N);\n\
     \    FOR(v, N) {\n      dp[v] = {DP.dp[v].left, DP.dp[v].right, DP.dp[v].diam};\n\
     \      dp_1[v] = {DP.dp_1[v].left, DP.dp_1[v].right, DP.dp_1[v].diam};\n     \
@@ -230,7 +230,7 @@ data:
   isVerificationFile: false
   path: graph/tree_dp/subtree_diameter.hpp
   requiredBy: []
-  timestamp: '2023-05-14 00:20:07+09:00'
+  timestamp: '2023-05-14 01:20:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree_dp/subtree_diameter.hpp
