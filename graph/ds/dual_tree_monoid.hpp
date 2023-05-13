@@ -26,7 +26,7 @@ struct Dual_Tree_Monoid {
       if (edge && i == N - 1) break;
       int v = i;
       if (edge) {
-        auto &&e = tree.G.edges[i];
+        auto &&e = (*(tree.G_ptr)).edges[i];
         v = (tree.parent[e.frm] == e.to ? e.frm : e.to);
       }
       res.eb(tmp[tree.LID[v]]);
