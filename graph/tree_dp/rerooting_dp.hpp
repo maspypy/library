@@ -35,6 +35,7 @@ struct Rerooting_dp {
     FOR_R(i, N) {
       int v = tree.V[i];
       for (auto&& e: (*tree.G_ptr)[v]) {
+        if (e.to == tree.parent[v]) continue;
         dp_1[v] = f_ee(dp_1[v], f_ve(dp_1[e.to], e));
       }
       dp_1[v] = f_ev(dp_1[v], v);
