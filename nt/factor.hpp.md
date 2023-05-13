@@ -5,7 +5,7 @@ data:
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/binomial.hpp
     title: mod/binomial.hpp
   - icon: ':question:'
@@ -26,7 +26,7 @@ data:
   - icon: ':x:'
     path: nt/all_lcm.hpp
     title: nt/all_lcm.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/crt.hpp
     title: nt/crt.hpp
   - icon: ':heavy_check_mark:'
@@ -38,7 +38,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/four_square.hpp
     title: nt/four_square.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/function_on_divisors.hpp
     title: nt/function_on_divisors.hpp
   - icon: ':heavy_check_mark:'
@@ -153,13 +153,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2120.test.cpp
     title: test/yukicoder/2120.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2181.test.cpp
     title: test/yukicoder/2181.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2264.test.cpp
     title: test/yukicoder/2264.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
   - icon: ':x:'
