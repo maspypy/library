@@ -1,7 +1,10 @@
 // 10^6 ずつ区切って
 struct BigInteger {
-  static constexpr int LOG = 6;
-  static constexpr int MOD = 1000000;
+  static constexpr int TEN[]
+      = {1,      10,      100,      1000,      10000,
+         100000, 1000000, 10000000, 100000000, 1000000000};
+  static constexpr int LOG = 9;
+  static constexpr int MOD = TEN[LOG];
   using bint = BigInteger;
   int sgn; // +1 or -1. 内部状態で -0 を許容する.
   vc<int> dat;
@@ -30,8 +33,7 @@ struct BigInteger {
     int n = len(s);
     int m = ceil(n, LOG);
     dat.assign(m, 0);
-    array<int, LOG> pow = {1, 10, 100, 1000, 10000, 100000};
-    FOR(i, n) { dat[i / LOG] += pow[i % LOG] * (s[i] - '0'); }
+    FOR(i, n) { dat[i / LOG] += TEN[i % LOG] * (s[i] - '0'); }
   }
   bint &operator=(const bint &p) {
     sgn = p.sgn;
@@ -115,7 +117,7 @@ struct BigInteger {
     if (dat.empty()) return "0";
     string s;
     for (int x: dat) {
-      FOR(6) {
+      FOR(LOG) {
         s += '0' + (x % 10);
         x = x / 10;
       }
