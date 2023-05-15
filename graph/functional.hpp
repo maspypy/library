@@ -21,7 +21,7 @@ struct FunctionalGraph {
     wt[a] = c;
   }
 
-  Tree<Graph<T, 1>> build() {
+  pair<Graph<T, 1>, Tree<Graph<T, 1>>> build() {
     assert(N == M);
     UnionFind uf(N);
     FOR(v, N) if (!uf.merge(v, TO[v])) { root[v] = v; }
@@ -37,7 +37,7 @@ struct FunctionalGraph {
     }
     G.build();
     Tree<Graph<T, 1>> tree(G, N);
-    return tree;
+    return {G, tree};
   }
 
   // functional graph に向かって進む

@@ -1,6 +1,6 @@
 #include "nt/factor.hpp"
 
-template <bool SORT>
+// sort はしない
 vc<ll> divisors_by_pf(const vc<pair<ll, int>>& pf) {
   vi div = {1};
   for (auto&& [p, e]: pf) {
@@ -11,18 +11,17 @@ vc<ll> divisors_by_pf(const vc<pair<ll, int>>& pf) {
       FOR(j, n) div.eb(div[j] * pp);
     }
   }
-  if (SORT) sort(all(div));
   return div;
 }
 
-template <bool SORT>
+// sort はしない
 vc<ll> divisors(ll N) {
   auto pf = factor(N);
-  return divisors_by_pf<SORT>(pf);
+  return divisors_by_pf(pf);
 }
 
-template <bool SORT>
+// sort はしない
 vc<ll> divisors_by_lpf(ll N, vc<int>& lpf) {
   auto pf = factor_by_lpf(N, lpf);
-  return divisors_by_pf<SORT>(pf);
+  return divisors_by_pf(pf);
 }
