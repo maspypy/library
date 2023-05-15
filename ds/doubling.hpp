@@ -39,6 +39,7 @@ struct Doubling {
     }
   }
 
+  // (to, val)
   pair<int, X> calc(int i, ll step) {
     assert(is_prepared);
     assert(step < (1LL << LOG));
