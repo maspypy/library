@@ -429,7 +429,7 @@ data:
       title: ds/unionfind/weighted_unionfind.hpp
   - name: enumerate
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: enumerate/bits.hpp
       title: enumerate/bits.hpp
     - icon: ':heavy_check_mark:'
@@ -496,7 +496,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: game/dyadic_rational.hpp
       title: game/dyadic_rational.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: game/graph_game.hpp
       title: game/graph_game.hpp
     - icon: ':heavy_check_mark:'
@@ -504,10 +504,10 @@ data:
       title: game/solve_partizan_game.hpp
   - name: geo
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/angle_sort.hpp
       title: geo/angle_sort.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/base.hpp
       title: geo/base.hpp
     - icon: ':heavy_check_mark:'
@@ -516,7 +516,7 @@ data:
     - icon: ':warning:'
       path: geo/convex_hull.hpp
       title: geo/convex_hull.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/count_points_in_triangles.hpp
       title: geo/count_points_in_triangles.hpp
     - icon: ':heavy_check_mark:'
@@ -647,7 +647,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/minimum_cycle_length_through_specified.hpp
       title: graph/minimum_cycle_length_through_specified.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/minimum_hamiltonian_cycle.hpp
       title: graph/minimum_hamiltonian_cycle.hpp
     - icon: ':question:'
@@ -662,7 +662,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/reachability.hpp
       title: graph/reachability.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/reverse_graph.hpp
       title: graph/reverse_graph.hpp
     - icon: ':warning:'
@@ -1019,7 +1019,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/GF2.hpp
       title: nt/GF2.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: nt/all_lcm.hpp
       title: nt/all_lcm.hpp
     - icon: ':heavy_check_mark:'
@@ -1064,7 +1064,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/lcm_convolution.hpp
       title: nt/lcm_convolution.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/lpf_table.hpp
       title: nt/lpf_table.hpp
     - icon: ':heavy_check_mark:'
@@ -3250,16 +3250,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc151f.test.cpp
       title: test_atcoder/abc151f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc152e.test.cpp
       title: test_atcoder/abc152e.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc160f.test.cpp
       title: test_atcoder/abc160f.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc174f.test.cpp
       title: test_atcoder/abc174f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc180e.test.cpp
       title: test_atcoder/abc180e.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3280,10 +3280,10 @@ data:
     - icon: ':x:'
       path: test_atcoder/abc200f.test.cpp
       title: test_atcoder/abc200f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc202_f.test.cpp
       title: test_atcoder/abc202_f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc209e.test.cpp
       title: test_atcoder/abc209e.test.cpp
     - icon: ':heavy_check_mark:'
