@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/incremental_centroid.hpp
     title: graph/ds/incremental_centroid.hpp
   - icon: ':warning:'
@@ -27,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2251_1.test.cpp
     title: test/aoj/2251_1.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/2636.test.cpp
+    title: test/aoj/2636.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/predecessor_problem.test.cpp
     title: test/library_checker/datastructure/predecessor_problem.test.cpp
@@ -154,6 +157,7 @@ data:
   - test_atcoder/abc217e.test.cpp
   - test_atcoder/abc256ex.test.cpp
   - test/mytest/sortable_array.test.cpp
+  - test/aoj/2636.test.cpp
   - test/aoj/2251_1.test.cpp
   - test/library_checker/datastructure/predecessor_problem.test.cpp
   - test/library_checker/datastructure/sort_segtree_1.test.cpp
