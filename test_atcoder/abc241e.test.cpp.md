@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/doubling.hpp
     title: ds/doubling.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc241/tasks/abc241_e
@@ -224,12 +224,12 @@ data:
     \   int w = TO[k][v];\r\n        if (w == -1) {\r\n          TO[k + 1][v] = -1;\r\
     \n          DP[k + 1][v] = DP[k][v];\r\n          continue;\r\n        }\r\n \
     \       TO[k + 1][v] = TO[k][w];\r\n        DP[k + 1][v] = Monoid::op(DP[k][v],\
-    \ DP[k][w]);\r\n      }\r\n    }\r\n  }\r\n\r\n  pair<int, X> calc(int i, ll step)\
-    \ {\r\n    assert(is_prepared);\r\n    assert(step < (1LL << LOG));\r\n    X x\
-    \ = Monoid::unit();\r\n    FOR(k, LOG) {\r\n      if (i == -1) break;\r\n    \
-    \  if (step & 1LL << k) {\r\n        x = Monoid::op(x, DP[k][i]);\r\n        i\
-    \ = TO[k][i];\r\n      }\r\n    }\r\n    return {i, x};\r\n  }\r\n\r\n  template\
-    \ <typename F>\r\n  ll max_step(F check, int i) {\r\n    assert(is_prepared);\r\
+    \ DP[k][w]);\r\n      }\r\n    }\r\n  }\r\n\r\n  // (to, val)\r\n  pair<int, X>\
+    \ calc(int i, ll step) {\r\n    assert(is_prepared);\r\n    assert(step < (1LL\
+    \ << LOG));\r\n    X x = Monoid::unit();\r\n    FOR(k, LOG) {\r\n      if (i ==\
+    \ -1) break;\r\n      if (step & 1LL << k) {\r\n        x = Monoid::op(x, DP[k][i]);\r\
+    \n        i = TO[k][i];\r\n      }\r\n    }\r\n    return {i, x};\r\n  }\r\n\r\
+    \n  template <typename F>\r\n  ll max_step(F check, int i) {\r\n    assert(is_prepared);\r\
     \n    X x = Monoid::unit();\r\n    ll step = 0;\r\n    assert(check(x));\r\n \
     \   FOR_R(k, LOG) {\r\n      int j = TO[k][i];\r\n      X y = Monoid::op(x, DP[k][i]);\r\
     \n      if (check(y)) {\r\n        step |= 1LL << k;\r\n        i = j;\r\n   \
@@ -254,8 +254,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc241e.test.cpp
   requiredBy: []
-  timestamp: '2023-04-14 22:05:18+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-16 00:11:01+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc241e.test.cpp
 layout: document
