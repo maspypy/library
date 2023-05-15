@@ -15,6 +15,9 @@ data:
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
   - icon: ':warning:'
+    path: graph/ds/incremental_centroid.hpp
+    title: graph/ds/incremental_centroid.hpp
+  - icon: ':warning:'
     path: graph/implicit_graph/cograph_unionfind.hpp
     title: graph/implicit_graph/cograph_unionfind.hpp
   - icon: ':heavy_check_mark:'
@@ -139,6 +142,7 @@ data:
   - graph/dag_path_cover.hpp
   - graph/implicit_graph/cograph_unionfind.hpp
   - graph/toposort.hpp
+  - graph/ds/incremental_centroid.hpp
   timestamp: '2023-02-28 19:13:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

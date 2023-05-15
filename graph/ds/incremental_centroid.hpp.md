@@ -4,6 +4,9 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/fastset.hpp
+    title: ds/fastset.hpp
   - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
@@ -11,25 +14,16 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':question:'
+    path: graph/ds/tree_abelgroup.hpp
+    title: graph/ds/tree_abelgroup.hpp
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: graph/ds/incremental_centroid.hpp
-    title: graph/ds/incremental_centroid.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-    title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1326.test.cpp
-    title: test/yukicoder/1326.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1641.test.cpp
-    title: test/yukicoder/1641.test.cpp
-  _isVerificationFailed: true
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -217,53 +211,108 @@ data:
     \ \u306A\u3089 [lca, to]\r\n    X x2 = bit.prod(tree.ELID(lca) + edge, tree.ELID(to)\
     \ + 1);\r\n    return AbelGroup::op(x1, x2);\r\n  }\r\n\r\n  X prod_subtree(int\
     \ u) {\r\n    assert(subtree_query);\r\n    int l = tree.LID[u], r = tree.RID[u];\r\
-    \n    return bit_subtree.prod(l + edge, r);\r\n  }\r\n};\r\n"
-  code: "#include \"ds/fenwicktree/fenwicktree.hpp\"\r\n#include \"graph/tree.hpp\"\
-    \r\n\r\ntemplate <typename TREE, typename AbelGroup, bool edge, bool path_query,\r\
-    \n          bool subtree_query>\r\nstruct Tree_AbelGroup {\r\n  using X = typename\
-    \ AbelGroup::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  FenwickTree<AbelGroup>\
-    \ bit, bit_subtree;\r\n\r\n  Tree_AbelGroup(TREE &tree) : tree(tree), N(tree.N)\
-    \ {\r\n    build([](int i) -> X { return AbelGroup::unit(); });\r\n  }\r\n\r\n\
-    \  Tree_AbelGroup(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {\r\n    build([&](int\
-    \ i) -> X { return dat[i]; });\r\n  }\r\n\r\n  template <typename F>\r\n  Tree_AbelGroup(TREE\
-    \ &tree, F f) : tree(tree), N(tree.N) {\r\n    build(f);\r\n  }\r\n\r\n  template\
-    \ <typename F>\r\n  void build(F f) {\r\n    vc<X> bit_raw_1(2 * N);\r\n    vc<X>\
-    \ bit_raw_2(N);\r\n    if (!edge) {\r\n      FOR(v, N) {\r\n        X x = f(v);\r\
-    \n        bit_raw_1[tree.ELID(v)] = x;\r\n        bit_raw_1[tree.ERID(v)] = AbelGroup::inverse(x);\r\
-    \n        bit_raw_2[tree.LID[v]] = x;\r\n      }\r\n    } else {\r\n      FOR(e,\
-    \ N - 1) {\r\n        int v = tree.e_to_v(e);\r\n        X x = f(v);\r\n     \
-    \   bit_raw_1[tree.ELID(v)] = x;\r\n        bit_raw_1[tree.ERID(v)] = AbelGroup::inverse(x);\r\
-    \n        bit_raw_2[tree.LID[v]] = x;\r\n      }\r\n    }\r\n    bit.build(bit_raw_1);\r\
-    \n    bit_subtree.build(bit_raw_2);\r\n  }\r\n\r\n  void add(int i, X x) {\r\n\
-    \    int v = (edge ? tree.e_to_v(i) : i);\r\n    if (path_query) {\r\n      X\
-    \ inv_x = AbelGroup::inverse(x);\r\n      bit.add(tree.ELID(v), x);\r\n      bit.add(tree.ERID(v),\
-    \ inv_x);\r\n    }\r\n    if (subtree_query) bit_subtree.add(tree.LID[v], x);\r\
-    \n  }\r\n\r\n  X prod_path(int frm, int to) {\r\n    assert(path_query);\r\n \
-    \   int lca = tree.LCA(frm, to);\r\n    // [frm, lca)\r\n    X x1 = bit.prod(tree.ELID(lca)\
-    \ + 1, tree.ELID(frm) + 1);\r\n    // edge \u306A\u3089 (lca, to]\u3001vertex\
-    \ \u306A\u3089 [lca, to]\r\n    X x2 = bit.prod(tree.ELID(lca) + edge, tree.ELID(to)\
-    \ + 1);\r\n    return AbelGroup::op(x1, x2);\r\n  }\r\n\r\n  X prod_subtree(int\
-    \ u) {\r\n    assert(subtree_query);\r\n    int l = tree.LID[u], r = tree.RID[u];\r\
-    \n    return bit_subtree.prod(l + edge, r);\r\n  }\r\n};\r\n"
+    \n    return bit_subtree.prod(l + edge, r);\r\n  }\r\n};\r\n#line 1 \"ds/fastset.hpp\"\
+    \n/* 64\u5206\u6728\u3002\r\ninsert, erase\r\n[]\u3067\u306E\u5B58\u5728\u5224\
+    \u5B9A\r\nnext, prev\r\n*/\r\nstruct FastSet {\r\n  using uint = unsigned;\r\n\
+    \  using ull = unsigned long long;\r\n\r\n  int bsr(ull x) { return 63 - __builtin_clzll(x);\
+    \ }\r\n  int bsf(ull x) { return __builtin_ctzll(x); }\r\n\r\n  static constexpr\
+    \ uint B = 64;\r\n  int n, lg;\r\n  vector<vector<ull>> seg;\r\n  FastSet(int\
+    \ _n) : n(_n) {\r\n    do {\r\n      seg.push_back(vector<ull>((_n + B - 1) /\
+    \ B));\r\n      _n = (_n + B - 1) / B;\r\n    } while (_n > 1);\r\n    lg = int(seg.size());\r\
+    \n  }\r\n  bool operator[](int i) const { return (seg[0][i / B] >> (i % B) & 1)\
+    \ != 0; }\r\n  void insert(int i) {\r\n    for (int h = 0; h < lg; h++) {\r\n\
+    \      seg[h][i / B] |= 1ULL << (i % B);\r\n      i /= B;\r\n    }\r\n  }\r\n\
+    \  void erase(int i) {\r\n    for (int h = 0; h < lg; h++) {\r\n      seg[h][i\
+    \ / B] &= ~(1ULL << (i % B));\r\n      if (seg[h][i / B]) break;\r\n      i /=\
+    \ B;\r\n    }\r\n  }\r\n\r\n  // x\u4EE5\u4E0A\u6700\u5C0F\u306E\u8981\u7D20\u3092\
+    \u8FD4\u3059\u3002\u5B58\u5728\u3057\u306A\u3051\u308C\u3070 n\u3002\r\n  int\
+    \ next(int i) {\r\n    chmax(i, 0);\r\n    if (i >= n) return n;\r\n    for (int\
+    \ h = 0; h < lg; h++) {\r\n      if (i / B == seg[h].size()) break;\r\n      ull\
+    \ d = seg[h][i / B] >> (i % B);\r\n      if (!d) {\r\n        i = i / B + 1;\r\
+    \n        continue;\r\n      }\r\n      // find\r\n      i += bsf(d);\r\n    \
+    \  for (int g = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += bsf(seg[g][i\
+    \ / B]);\r\n      }\r\n      return i;\r\n    }\r\n    return n;\r\n  }\r\n\r\n\
+    \  // x\u4EE5\u4E0B\u6700\u5927\u306E\u8981\u7D20\u3092\u8FD4\u3059\u3002\u5B58\
+    \u5728\u3057\u306A\u3051\u308C\u3070 -1\u3002\r\n  int prev(int i) {\r\n    if\
+    \ (i < 0) return -1;\r\n    if (i >= n) i = n - 1;\r\n    for (int h = 0; h <\
+    \ lg; h++) {\r\n      if (i == -1) break;\r\n      ull d = seg[h][i / B] << (63\
+    \ - i % 64);\r\n      if (!d) {\r\n        i = i / B - 1;\r\n        continue;\r\
+    \n      }\r\n      // find\r\n      i += bsr(d) - (B - 1);\r\n      for (int g\
+    \ = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += bsr(seg[g][i / B]);\r\
+    \n      }\r\n      return i;\r\n    }\r\n    return -1;\r\n  }\r\n\r\n  // [l,\
+    \ r)\r\n  template <typename F>\r\n  void enumerate(int l, int r, F f) {\r\n \
+    \   int x = l - 1;\r\n    while (1) {\r\n      x = next(x + 1);\r\n      if (x\
+    \ >= r) break;\r\n      f(x);\r\n    }\r\n  }\r\n\r\n  void debug() {\r\n    string\
+    \ s;\r\n    for (int i = 0; i < n; ++i) s += ((*this)[i] ? '1' : '0');\r\n   \
+    \ print(s);\r\n  }\r\n};\r\n#line 3 \"graph/ds/incremental_centroid.hpp\"\n\n\
+    // \u6728\u306F\u56FA\u5B9A\u3002\u9802\u70B9\u91CD\u307F\u3092 +1 \u3067\u304D\
+    \u308B\u3002\n// cent: \u91CD\u5FC3\n// max_subtree\ntemplate <typename TREE>\n\
+    struct Incremental_Centroid {\n  TREE& tree;\n  int N;\n  int cent;\n  pair<int,\
+    \ int> max_subtree; // (adj, size)\n  int wt_sm;\n  Tree_AbelGroup<TREE, Monoid_Add<int>,\
+    \ 0, 0, 1> TA;\n  FastSet ss;\n\n  Incremental_Centroid(TREE& tree)\n      : tree(tree),\n\
+    \        N(tree.N),\n        cent(0),\n        max_subtree(0, 0),\n        wt_sm(0),\n\
+    \        TA(tree),\n        ss(N) {}\n\n  int get_subtree_wt(int v) {\n    assert(v\
+    \ != cent);\n    // cent \u304B\u3089\u898B\u3066 v \u65B9\u5411\n    if (tree.in_subtree(v,\
+    \ cent)) {\n      return TA.prod_subtree(tree.jump(cent, v, 1));\n    }\n    return\
+    \ wt_sm - TA.prod_subtree(cent);\n  }\n\n  int move_to(int v) {\n    // \u5727\
+    \u7E2E\u6728\u4E0A\u3067 cent \u304B\u3089 v \u306B\u9032\u3080\n    if (tree.in_subtree(v,\
+    \ cent)) {\n      // v \u65B9\u5411\u306B\u3042\u308B\u91CD\u307F\u306E lca\n\
+    \      int a = tree.jump(cent, v, 1);\n      int L = tree.LID[a], R = tree.RID[a];\n\
+    \      L = ss.next(L), R = ss.prev(R - 1);\n      int x = tree.V[L], y = tree.V[R];\n\
+    \      return tree.lca(x, y);\n    }\n    int L = tree.LID[cent], R = tree.RID[cent];\n\
+    \    int x = v;\n    vc<int> I;\n    I.eb(ss.next(0)), I.eb(ss.prev(L - 1));\n\
+    \    I.eb(ss.next(R)), I.eb(ss.prev(N - 1));\n    for (auto&& idx: I) {\n    \
+    \  if (idx == -1 || idx == N) continue;\n      if (L <= idx && idx < R) continue;\n\
+    \      int y = tree.V[idx];\n      x = tree.lca_root(x, y, cent);\n    }\n   \
+    \ return x;\n  }\n\n  void add(int v) {\n    ss.insert(tree.LID[v]), TA.add(v,\
+    \ 1), wt_sm++;\n    if (v == cent) return;\n    int wt = get_subtree_wt(v);\n\
+    \    if (max_subtree.se < wt) max_subtree = {tree.jump(cent, v, 1), wt};\n   \
+    \ if (2 * wt <= wt_sm) return;\n    int k = wt;\n    assert(wt_sm == 2 * k - 1);\n\
+    \    int to = move_to(v);\n    max_subtree = {tree.jump(to, cent, 1), k - 1};\n\
+    \    cent = to;\n  }\n};\n"
+  code: "#include \"graph/ds/tree_abelgroup.hpp\"\n#include \"ds/fastset.hpp\"\n\n\
+    // \u6728\u306F\u56FA\u5B9A\u3002\u9802\u70B9\u91CD\u307F\u3092 +1 \u3067\u304D\
+    \u308B\u3002\n// cent: \u91CD\u5FC3\n// max_subtree\ntemplate <typename TREE>\n\
+    struct Incremental_Centroid {\n  TREE& tree;\n  int N;\n  int cent;\n  pair<int,\
+    \ int> max_subtree; // (adj, size)\n  int wt_sm;\n  Tree_AbelGroup<TREE, Monoid_Add<int>,\
+    \ 0, 0, 1> TA;\n  FastSet ss;\n\n  Incremental_Centroid(TREE& tree)\n      : tree(tree),\n\
+    \        N(tree.N),\n        cent(0),\n        max_subtree(0, 0),\n        wt_sm(0),\n\
+    \        TA(tree),\n        ss(N) {}\n\n  int get_subtree_wt(int v) {\n    assert(v\
+    \ != cent);\n    // cent \u304B\u3089\u898B\u3066 v \u65B9\u5411\n    if (tree.in_subtree(v,\
+    \ cent)) {\n      return TA.prod_subtree(tree.jump(cent, v, 1));\n    }\n    return\
+    \ wt_sm - TA.prod_subtree(cent);\n  }\n\n  int move_to(int v) {\n    // \u5727\
+    \u7E2E\u6728\u4E0A\u3067 cent \u304B\u3089 v \u306B\u9032\u3080\n    if (tree.in_subtree(v,\
+    \ cent)) {\n      // v \u65B9\u5411\u306B\u3042\u308B\u91CD\u307F\u306E lca\n\
+    \      int a = tree.jump(cent, v, 1);\n      int L = tree.LID[a], R = tree.RID[a];\n\
+    \      L = ss.next(L), R = ss.prev(R - 1);\n      int x = tree.V[L], y = tree.V[R];\n\
+    \      return tree.lca(x, y);\n    }\n    int L = tree.LID[cent], R = tree.RID[cent];\n\
+    \    int x = v;\n    vc<int> I;\n    I.eb(ss.next(0)), I.eb(ss.prev(L - 1));\n\
+    \    I.eb(ss.next(R)), I.eb(ss.prev(N - 1));\n    for (auto&& idx: I) {\n    \
+    \  if (idx == -1 || idx == N) continue;\n      if (L <= idx && idx < R) continue;\n\
+    \      int y = tree.V[idx];\n      x = tree.lca_root(x, y, cent);\n    }\n   \
+    \ return x;\n  }\n\n  void add(int v) {\n    ss.insert(tree.LID[v]), TA.add(v,\
+    \ 1), wt_sm++;\n    if (v == cent) return;\n    int wt = get_subtree_wt(v);\n\
+    \    if (max_subtree.se < wt) max_subtree = {tree.jump(cent, v, 1), wt};\n   \
+    \ if (2 * wt <= wt_sm) return;\n    int k = wt;\n    assert(wt_sm == 2 * k - 1);\n\
+    \    int to = move_to(v);\n    max_subtree = {tree.jump(to, cent, 1), k - 1};\n\
+    \    cent = to;\n  }\n};\n"
   dependsOn:
+  - graph/ds/tree_abelgroup.hpp
   - ds/fenwicktree/fenwicktree.hpp
   - alg/monoid/add.hpp
   - graph/tree.hpp
   - graph/base.hpp
+  - ds/fastset.hpp
   isVerificationFile: false
-  path: graph/ds/tree_abelgroup.hpp
-  requiredBy:
-  - graph/ds/incremental_centroid.hpp
+  path: graph/ds/incremental_centroid.hpp
+  requiredBy: []
   timestamp: '2023-05-15 19:14:21+09:00'
-  verificationStatus: LIBRARY_SOME_WA
-  verifiedWith:
-  - test/yukicoder/1326.test.cpp
-  - test/yukicoder/1641.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-documentation_of: graph/ds/tree_abelgroup.hpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: graph/ds/incremental_centroid.hpp
 layout: document
 redirect_from:
-- /library/graph/ds/tree_abelgroup.hpp
-- /library/graph/ds/tree_abelgroup.hpp.html
-title: graph/ds/tree_abelgroup.hpp
+- /library/graph/ds/incremental_centroid.hpp
+- /library/graph/ds/incremental_centroid.hpp.html
+title: graph/ds/incremental_centroid.hpp
 ---
