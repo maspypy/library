@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
   - icon: ':question:'
@@ -19,17 +19,17 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/arc151/tasks/arc151_e
@@ -340,68 +340,66 @@ data:
     \ wt, off); }\n\n  void read_graph(int M, bool wt = false, int off = 1) {\n  \
     \  for (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a -= off, b -= off;\n\
     \      if (!wt) {\n        add(a, b);\n      } else {\n        T c;\n        read(c);\n\
-    \        add(a, b, c);\n      }\n    }\n    build();\n  }\n\n  void read_parent(int\
-    \ off = 1) {\n    for (int v = 1; v < N; ++v) {\n      INT(p);\n      p -= off;\n\
-    \      add(p, v);\n    }\n    build();\n  }\n\n  void build() {\n    assert(!prepared);\n\
-    \    prepared = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges)\
-    \ {\n      indptr[e.frm + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n  \
-    \  }\n    for (int v = 0; v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto\
-    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
-    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
-    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
-    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
-    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  vc<int> deg_array() {\n\
-    \    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n  }\n\n  pair<vc<int>,\
-    \ vc<int>> deg_array_inout() {\n    if (vc_indeg.empty()) calc_deg_inout();\n\
-    \    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v) {\n    if (vc_deg.empty())\
-    \ calc_deg();\n    return vc_deg[v];\n  }\n\n  int in_deg(int v) {\n    if (vc_indeg.empty())\
-    \ calc_deg_inout();\n    return vc_indeg[v];\n  }\n\n  int out_deg(int v) {\n\
-    \    if (vc_outdeg.empty()) calc_deg_inout();\n    return vc_outdeg[v];\n  }\n\
-    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
-    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
-    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
-    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
-    \    }\n  }\n\n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\
-    \u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\
-    \u308B\n  Graph<T, directed> rearrange(vc<int> V) {\n    int n = len(V);\n   \
-    \ map<int, int> MP;\n    FOR(i, n) MP[V[i]] = i;\n    Graph<T, directed> G(n);\n\
-    \    for (auto&& e: edges) {\n      if (MP.count(e.frm) && MP.count(e.to)) {\n\
-    \        G.add(MP[e.frm], MP[e.to], e.cost);\n      }\n    }\n    G.build();\n\
-    \    return G;\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
-    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
-    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
-    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 3 \"graph/shortest_path/dijkstra.hpp\"\n\ntemplate <typename\
-    \ T, typename GT>\npair<vc<T>, vc<int>> dijkstra(GT& G, int v) {\n  auto N = G.N;\n\
-    \  vector<T> dist(N, infty<T>);\n  vector<int> par(N, -1);\n  using P = pair<T,\
-    \ int>;\n\n  priority_queue<P, vector<P>, greater<P>> que;\n\n  dist[v] = 0;\n\
-    \  que.emplace(0, v);\n  while (!que.empty()) {\n    auto [dv, v] = que.top();\n\
-    \    que.pop();\n    if (dv > dist[v]) continue;\n    for (auto&& e: G[v]) {\n\
-    \      if (chmin(dist[e.to], dist[e.frm] + e.cost)) {\n        par[e.to] = e.frm;\n\
-    \        que.emplace(dist[e.to], e.to);\n      }\n    }\n  }\n  return {dist,\
-    \ par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\u30C8\u3002[dist, par, root]\n\
-    template <typename T, typename GT>\ntuple<vc<T>, vc<int>, vc<int>> dijkstra(GT&\
-    \ G, vc<int> vs) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<ll> dist(N,\
-    \ infty<T>);\n  vc<int> par(N, -1);\n  vc<int> root(N, -1);\n\n  using P = pair<T,\
-    \ int>;\n\n  priority_queue<P, vector<P>, greater<P>> que;\n\n  for (auto&& v:\
-    \ vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.emplace(T(0), v);\n  }\n\n\
-    \  while (!que.empty()) {\n    auto [dv, v] = que.top();\n    que.pop();\n   \
-    \ if (dv > dist[v]) continue;\n    for (auto&& e: G[v]) {\n      if (chmin(dist[e.to],\
-    \ dist[e.frm] + e.cost)) {\n        root[e.to] = root[e.frm];\n        par[e.to]\
-    \ = e.frm;\n        que.push(mp(dist[e.to], e.to));\n      }\n    }\n  }\n  return\
-    \ {dist, par, root};\n}\n#line 6 \"test_atcoder/arc151_e.test.cpp\"\n\nvoid solve()\
-    \ {\n  INT(N);\n  VEC(int, A, N);\n  INT(P);\n  VEC(int, B, P);\n  INT(Q);\n \
-    \ VEC(int, C, Q);\n\n  int lcp = [&]() -> int {\n    auto [l1, r1, l2, r2] = longest_common_substring(B,\
-    \ C);\n    return r1 - l1;\n  }();\n\n  if (lcp >= 1) { return print(P + Q - 2\
-    \ * lcp); }\n\n  // \u3042\u3068\u306F\u30011 \u6587\u5B57\u3092\u7D4C\u7531\u3057\
-    \u3066\u3046\u308D\u3046\u308D\u3059\u308B\u5834\u5408\n  for (auto&& x: A) --x;\n\
-    \  for (auto&& x: B) --x;\n  for (auto&& x: C) --x;\n  int S = N;\n  int T = N\
-    \ + 1;\n  Graph<int, 0> G(N + 2);\n  for (auto&& x: B) { G.add(S, x, P - 1); }\n\
-    \  for (auto&& x: C) { G.add(x, T, Q - 1); }\n  FOR(i, N - 1) {\n    G.add(A[i],\
-    \ A[i + 1], 2);\n    G.add(A[i + 1], A[i], 2);\n  }\n  G.build();\n\n  auto [dist,\
-    \ par] = dijkstra<int>(G, S);\n  print(dist[T]);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  solve();\n\n\
-    \  return 0;\n}\n"
+    \        add(a, b, c);\n      }\n    }\n    build();\n  }\n\n  void build() {\n\
+    \    assert(!prepared);\n    prepared = true;\n    indptr.assign(N + 1, 0);\n\
+    \    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if (!directed)\
+    \ indptr[e.to + 1]++;\n    }\n    for (int v = 0; v < N; ++v) { indptr[v + 1]\
+    \ += indptr[v]; }\n    auto counter = indptr;\n    csr_edges.resize(indptr.back()\
+    \ + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n\
+    \      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm,\
+    \ e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n \
+    \   assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\n \
+    \ vc<int> deg_array() {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n\
+    \  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n    if (vc_indeg.empty())\
+    \ calc_deg_inout();\n    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v)\
+    \ {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n  int\
+    \ in_deg(int v) {\n    if (vc_indeg.empty()) calc_deg_inout();\n    return vc_indeg[v];\n\
+    \  }\n\n  int out_deg(int v) {\n    if (vc_outdeg.empty()) calc_deg_inout();\n\
+    \    return vc_outdeg[v];\n  }\n\n  void debug() {\n    print(\"Graph\");\n  \
+    \  if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e: edges)\
+    \ print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\", indptr);\n\
+    \      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\n  // G \u306B\u304A\u3051\u308B\
+    \u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\
+    \u306A\u308B\u3088\u3046\u306B\u3059\u308B\n  Graph<T, directed> rearrange(vc<int>\
+    \ V) {\n    int n = len(V);\n    map<int, int> MP;\n    FOR(i, n) MP[V[i]] = i;\n\
+    \    Graph<T, directed> G(n);\n    for (auto&& e: edges) {\n      if (MP.count(e.frm)\
+    \ && MP.count(e.to)) {\n        G.add(MP[e.frm], MP[e.to], e.cost);\n      }\n\
+    \    }\n    G.build();\n    return G;\n  }\n\nprivate:\n  void calc_deg() {\n\
+    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
+    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
+    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 3 \"graph/shortest_path/dijkstra.hpp\"\
+    \n\ntemplate <typename T, typename GT>\npair<vc<T>, vc<int>> dijkstra(GT& G, int\
+    \ v) {\n  auto N = G.N;\n  vector<T> dist(N, infty<T>);\n  vector<int> par(N,\
+    \ -1);\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>>\
+    \ que;\n\n  dist[v] = 0;\n  que.emplace(0, v);\n  while (!que.empty()) {\n   \
+    \ auto [dv, v] = que.top();\n    que.pop();\n    if (dv > dist[v]) continue;\n\
+    \    for (auto&& e: G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost))\
+    \ {\n        par[e.to] = e.frm;\n        que.emplace(dist[e.to], e.to);\n    \
+    \  }\n    }\n  }\n  return {dist, par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\
+    \u30C8\u3002[dist, par, root]\ntemplate <typename T, typename GT>\ntuple<vc<T>,\
+    \ vc<int>, vc<int>> dijkstra(GT& G, vc<int> vs) {\n  assert(G.is_prepared());\n\
+    \  int N = G.N;\n  vc<ll> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  vc<int>\
+    \ root(N, -1);\n\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>,\
+    \ greater<P>> que;\n\n  for (auto&& v: vs) {\n    dist[v] = 0;\n    root[v] =\
+    \ v;\n    que.emplace(T(0), v);\n  }\n\n  while (!que.empty()) {\n    auto [dv,\
+    \ v] = que.top();\n    que.pop();\n    if (dv > dist[v]) continue;\n    for (auto&&\
+    \ e: G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost)) {\n        root[e.to]\
+    \ = root[e.frm];\n        par[e.to] = e.frm;\n        que.push(mp(dist[e.to],\
+    \ e.to));\n      }\n    }\n  }\n  return {dist, par, root};\n}\n#line 6 \"test_atcoder/arc151_e.test.cpp\"\
+    \n\nvoid solve() {\n  INT(N);\n  VEC(int, A, N);\n  INT(P);\n  VEC(int, B, P);\n\
+    \  INT(Q);\n  VEC(int, C, Q);\n\n  int lcp = [&]() -> int {\n    auto [l1, r1,\
+    \ l2, r2] = longest_common_substring(B, C);\n    return r1 - l1;\n  }();\n\n \
+    \ if (lcp >= 1) { return print(P + Q - 2 * lcp); }\n\n  // \u3042\u3068\u306F\u3001\
+    1 \u6587\u5B57\u3092\u7D4C\u7531\u3057\u3066\u3046\u308D\u3046\u308D\u3059\u308B\
+    \u5834\u5408\n  for (auto&& x: A) --x;\n  for (auto&& x: B) --x;\n  for (auto&&\
+    \ x: C) --x;\n  int S = N;\n  int T = N + 1;\n  Graph<int, 0> G(N + 2);\n  for\
+    \ (auto&& x: B) { G.add(S, x, P - 1); }\n  for (auto&& x: C) { G.add(x, T, Q -\
+    \ 1); }\n  FOR(i, N - 1) {\n    G.add(A[i], A[i + 1], 2);\n    G.add(A[i + 1],\
+    \ A[i], 2);\n  }\n  G.build();\n\n  auto [dist, par] = dijkstra<int>(G, S);\n\
+    \  print(dist[T]);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/arc151/tasks/arc151_e\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"string/longest_common_substring.hpp\"\
     \n#include \"graph/shortest_path/dijkstra.hpp\"\n\nvoid solve() {\n  INT(N);\n\
@@ -429,8 +427,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/arc151_e.test.cpp
   requiredBy: []
-  timestamp: '2023-04-09 03:51:17+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-16 02:08:22+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/arc151_e.test.cpp
 layout: document

@@ -270,9 +270,7 @@ data:
     \ int off = 1) {\n    for (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a\
     \ -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n  \
     \      T c;\n        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n\
-    \  }\n\n  void read_parent(int off = 1) {\n    for (int v = 1; v < N; ++v) {\n\
-    \      INT(p);\n      p -= off;\n      add(p, v);\n    }\n    build();\n  }\n\n\
-    \  void build() {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N\
+    \  }\n\n  void build() {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N\
     \ + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if\
     \ (!directed) indptr[e.to + 1]++;\n    }\n    for (int v = 0; v < N; ++v) { indptr[v\
     \ + 1] += indptr[v]; }\n    auto counter = indptr;\n    csr_edges.resize(indptr.back()\
@@ -384,25 +382,25 @@ data:
     \ dp_2; // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\u5206\u6728 p\r\n  vc<Data>\
     \ dp;   // full tree\r\n\r\n  template <typename F1, typename F2, typename F3>\r\
     \n  Rerooting_dp(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)\r\n \
-    \     : tree(tree) {\r\n    assert(tree.G.is_directed());\r\n    build(f_ee, f_ev,\
-    \ f_ve, unit);\r\n  }\r\n\r\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\
-    \u306E full tree\r\n  Data operator[](int v) { return dp[v]; }\r\n\r\n  // root\
-    \ \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\u6728 v\r\n  Data\
-    \ get(int root, int v) {\r\n    if (root == v) return dp[v];\r\n    if (!tree.in_subtree(root,\
-    \ v)) { return dp_1[v]; }\r\n    int w = tree.jump(v, root, 1);\r\n    return\
-    \ dp_2[w];\r\n  }\r\n\r\n  template <typename F1, typename F2, typename F3>\r\n\
-    \  void build(F1 f_ee, F2 f_ev, F3 f_ve, const Data unit) {\r\n    int N = tree.N;\r\
-    \n    // dp1: subtree\r\n    dp_1.assign(N, unit);\r\n    FOR_R(i, N) {\r\n  \
-    \    int v = tree.V[i];\r\n      for (auto&& e: tree.G[v]) {\r\n        if (e.to\
-    \ == tree.parent[v]) continue;\r\n        dp_1[v] = f_ee(dp_1[v], f_ve(dp_1[e.to],\
-    \ e));\r\n      }\r\n      dp_1[v] = f_ev(dp_1[v], v);\r\n    }\r\n\r\n    //\
-    \ dp2[v]: subtree of p, rooted at v\r\n    dp_2.assign(N, unit);\r\n    // dp[v]:\
-    \ fulltree, rooted at v\r\n    dp.assign(N, unit);\r\n    FOR(i, N) {\r\n    \
-    \  int p = tree.V[i];\r\n      vc<int> ch;\r\n      vc<Data> ch_data;\r\n    \
-    \  Data x = unit;\r\n      for (auto&& e: tree.G[p]) {\r\n        if (e.to ==\
-    \ tree.parent[p]) {\r\n          x = f_ve(dp_2[p], e);\r\n        } else {\r\n\
-    \          ch.eb(e.to);\r\n          ch_data.eb(f_ve(dp_1[e.to], e));\r\n    \
-    \    }\r\n      }\r\n      int n = len(ch);\r\n      if (!n) {\r\n        dp[p]\
+    \     : tree(tree) {\r\n    assert(!tree.G.is_directed());\r\n    build(f_ee,\
+    \ f_ev, f_ve, unit);\r\n  }\r\n\r\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\
+    \u304D\u306E full tree\r\n  Data operator[](int v) { return dp[v]; }\r\n\r\n \
+    \ // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\u6728 v\r\
+    \n  Data get(int root, int v) {\r\n    if (root == v) return dp[v];\r\n    if\
+    \ (!tree.in_subtree(root, v)) { return dp_1[v]; }\r\n    int w = tree.jump(v,\
+    \ root, 1);\r\n    return dp_2[w];\r\n  }\r\n\r\n  template <typename F1, typename\
+    \ F2, typename F3>\r\n  void build(F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)\
+    \ {\r\n    int N = tree.N;\r\n    // dp1: subtree\r\n    dp_1.assign(N, unit);\r\
+    \n    FOR_R(i, N) {\r\n      int v = tree.V[i];\r\n      for (auto&& e: tree.G[v])\
+    \ {\r\n        if (e.to == tree.parent[v]) continue;\r\n        dp_1[v] = f_ee(dp_1[v],\
+    \ f_ve(dp_1[e.to], e));\r\n      }\r\n      dp_1[v] = f_ev(dp_1[v], v);\r\n  \
+    \  }\r\n\r\n    // dp2[v]: subtree of p, rooted at v\r\n    dp_2.assign(N, unit);\r\
+    \n    // dp[v]: fulltree, rooted at v\r\n    dp.assign(N, unit);\r\n    FOR(i,\
+    \ N) {\r\n      int p = tree.V[i];\r\n      vc<int> ch;\r\n      vc<Data> ch_data;\r\
+    \n      Data x = unit;\r\n      for (auto&& e: tree.G[p]) {\r\n        if (e.to\
+    \ == tree.parent[p]) {\r\n          x = f_ve(dp_2[p], e);\r\n        } else {\r\
+    \n          ch.eb(e.to);\r\n          ch_data.eb(f_ve(dp_1[e.to], e));\r\n   \
+    \     }\r\n      }\r\n      int n = len(ch);\r\n      if (!n) {\r\n        dp[p]\
     \ = f_ev(x, p);\r\n        continue;\r\n      }\r\n      vc<Data> prod_left(n,\
     \ x);\r\n      FOR(i, n - 1) prod_left[i + 1] = f_ee(prod_left[i], ch_data[i]);\r\
     \n      Data prod_right = unit;\r\n      FOR_R(i, n) {\r\n        dp_2[ch[i]]\
@@ -425,20 +423,18 @@ data:
     \    int w = tree.jump(v, root, 1);\n    return dp_2[w];\n  }\n\n  static mint\
     \ hash_base(int k) {\n    static vc<mint> dat;\n    while (len(dat) <= k) dat.eb(RNG(mint::get_mod()));\n\
     \    return dat[k];\n  }\n};\n#line 7 \"test/library_checker/graph/classify_tree.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n  G.read_parent(0);\n  Tree<decltype(G)>\
-    \ tree(G);\n  SubTree_Hash<decltype(tree)> X(tree);\n\n  vi ANS(N);\n  FOR(v,\
-    \ N) ANS[v] = X.get(0, v);\n  vi key = ANS;\n  UNIQUE(key);\n  for (auto&& x:\
-    \ ANS) x = LB(key, x);\n  print(MAX(ANS) + 1);\n  print(ANS);\n}\n\nsigned main()\
-    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \n\nvoid solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n  FOR(v, 1, N) {\n    INT(p);\n\
+    \    G.add(p, v);\n  }\n  G.build();\n  Tree<decltype(G)> tree(G);\n  SubTree_Hash<decltype(tree)>\
+    \ X(tree);\n\n  vi ANS(N);\n  FOR(v, N) ANS[v] = X.get(0, v);\n  vi key = ANS;\n\
+    \  UNIQUE(key);\n  for (auto&& x: ANS) x = LB(key, x);\n  print(MAX(ANS) + 1);\n\
+    \  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification\"\
     \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/tree_dp/subtree_hash.hpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n  G.read_parent(0);\n  Tree<decltype(G)>\
-    \ tree(G);\n  SubTree_Hash<decltype(tree)> X(tree);\n\n  vi ANS(N);\n  FOR(v,\
-    \ N) ANS[v] = X.get(0, v);\n  vi key = ANS;\n  UNIQUE(key);\n  for (auto&& x:\
-    \ ANS) x = LB(key, x);\n  print(MAX(ANS) + 1);\n  print(ANS);\n}\n\nsigned main()\
-    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \n\nvoid solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n  FOR(v, 1, N) {\n    INT(p);\n\
+    \    G.add(p, v);\n  }\n  G.build();\n  Tree<decltype(G)> tree(G);\n  SubTree_Hash<decltype(tree)>\
+    \ X(tree);\n\n  vi ANS(N);\n  FOR(v, N) ANS[v] = X.get(0, v);\n  vi key = ANS;\n\
+    \  UNIQUE(key);\n  for (auto&& x: ANS) x = LB(key, x);\n  print(MAX(ANS) + 1);\n\
+    \  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -451,7 +447,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/classify_tree.test.cpp
   requiredBy: []
-  timestamp: '2023-05-15 19:14:21+09:00'
+  timestamp: '2023-05-16 02:08:22+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/classify_tree.test.cpp
