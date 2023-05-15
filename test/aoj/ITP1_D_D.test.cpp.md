@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/divisors.hpp
     title: nt/divisors.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':question:'
@@ -18,15 +18,15 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_3_D
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_3_D
-  bundledCode: "#line 1 \"test/aoj/ITP1_D_D.test.cpp\"\n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_3_D\"\
+  bundledCode: "#line 1 \"test/aoj/ITP1_D_D.test.cpp\"\n#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_3_D\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -266,19 +266,15 @@ data:
     \ \u306F\u3057\u306A\u3044\r\nvc<ll> divisors(ll N) {\r\n  auto pf = factor(N);\r\
     \n  return divisors_by_pf(pf);\r\n}\r\n\r\n// sort \u306F\u3057\u306A\u3044\r\n\
     vc<ll> divisors_by_lpf(ll N, vc<int>& lpf) {\r\n  auto pf = factor_by_lpf(N, lpf);\r\
-    \n  return divisors_by_pf(pf);\r\n}\n#line 5 \"test/aoj/ITP1_D_D.test.cpp\"\n\n\
-    void solve() {\n  LL(a, b, c);\n  auto divs = divisors<false>(c);\n  ll ANS =\
-    \ 0;\n  for (auto&& d: divs)\n    if (a <= d && d <= b) ++ANS;\n  print(ANS);\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
-    \ return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_3_D\"\
+    \n  return divisors_by_pf(pf);\r\n}\n#line 6 \"test/aoj/ITP1_D_D.test.cpp\"\n\n\
+    void solve() {\n  LL(a, b, c);\n  auto divs = divisors(c);\n  ll ANS = 0;\n  for\
+    \ (auto&& d: divs)\n    if (a <= d && d <= b) ++ANS;\n  print(ANS);\n}\n\nsigned\
+    \ main() {\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_3_D\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/divisors.hpp\"\
-    \n\nvoid solve() {\n  LL(a, b, c);\n  auto divs = divisors<false>(c);\n  ll ANS\
-    \ = 0;\n  for (auto&& d: divs)\n    if (a <= d && d <= b) ++ANS;\n  print(ANS);\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
-    \ return 0;\n}\n"
+    \n\nvoid solve() {\n  LL(a, b, c);\n  auto divs = divisors(c);\n  ll ANS = 0;\n\
+    \  for (auto&& d: divs)\n    if (a <= d && d <= b) ++ANS;\n  print(ANS);\n}\n\n\
+    signed main() {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -288,8 +284,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ITP1_D_D.test.cpp
   requiredBy: []
-  timestamp: '2023-05-16 04:48:50+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-05-16 06:13:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ITP1_D_D.test.cpp
 layout: document

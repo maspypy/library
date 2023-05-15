@@ -62,7 +62,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/binomial.hpp
     title: mod/binomial.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
   - icon: ':heavy_check_mark:'
@@ -77,10 +77,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modular_subset_sum.hpp
     title: mod/modular_subset_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
   - icon: ':heavy_check_mark:'
@@ -537,7 +537,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc227g.test.cpp
     title: test_atcoder/abc227g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc270_g.test.cpp
     title: test_atcoder/abc270_g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -546,7 +546,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc274_h.test.cpp
     title: test_atcoder/abc274_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
   - icon: ':x:'

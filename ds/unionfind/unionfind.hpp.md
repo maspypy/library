@@ -2,16 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/manhattan_mst.hpp
     title: geo/manhattan_mst.hpp
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
   - icon: ':heavy_check_mark:'
@@ -78,10 +78,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1170_2.test.cpp
     title: test/yukicoder/1170_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1211.test.cpp
     title: test/yukicoder/1211.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1242.test.cpp
     title: test/yukicoder/1242.test.cpp
   - icon: ':heavy_check_mark:'
@@ -135,10 +135,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc270_f.test.cpp
     title: test_atcoder/abc270_f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc274g.test.cpp
     title: test_atcoder/abc274g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc283f.test.cpp
     title: test_atcoder/abc283f.test.cpp
   _isVerificationFailed: true

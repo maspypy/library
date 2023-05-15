@@ -29,12 +29,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/mat_pow.hpp
     title: linalg/mat_pow.hpp
+  - icon: ':warning:'
+    path: mod/q_analogue.hpp
+    title: mod/q_analogue.hpp
   - icon: ':warning:'
     path: new_poly/base.hpp
     title: new_poly/base.hpp
@@ -44,7 +47,7 @@ data:
   - icon: ':question:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/coef_of_rational_fps_2d.hpp
     title: poly/coef_of_rational_fps_2d.hpp
   - icon: ':warning:'
@@ -95,13 +98,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':heavy_check_mark:'
@@ -131,7 +134,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/partial_frac_decomposition.hpp
     title: poly/partial_frac_decomposition.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
   - icon: ':heavy_check_mark:'
@@ -140,7 +143,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
   - icon: ':heavy_check_mark:'
@@ -155,7 +158,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/product_of_pow_of_linear.hpp
     title: poly/product_of_pow_of_linear.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
   - icon: ':heavy_check_mark:'
@@ -206,7 +209,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   - icon: ':heavy_check_mark:'
@@ -861,28 +864,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc269ex.test.cpp
     title: test_atcoder/abc269ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc272_h.test.cpp
     title: test_atcoder/abc272_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc276_g.test.cpp
     title: test_atcoder/abc276_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc276_g_2.test.cpp
     title: test_atcoder/abc276_g_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc288ex.test.cpp
     title: test_atcoder/abc288ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/agc013e.test.cpp
     title: test_atcoder/agc013e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d.test.cpp
     title: test_atcoder/agc058d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc105.test.cpp
     title: test_atcoder/arc105.test.cpp
   - icon: ':x:'
@@ -1070,6 +1073,7 @@ data:
   - graph/count/count_independent_set.hpp
   - graph/count/count_bipartite.hpp
   - graph/tree_all_distances.hpp
+  - mod/q_analogue.hpp
   - string/wildcard_pattern_matching.hpp
   timestamp: '2023-05-12 18:44:22+09:00'
   verificationStatus: LIBRARY_SOME_WA
