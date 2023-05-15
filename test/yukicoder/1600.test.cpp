@@ -51,7 +51,7 @@ void solve() {
     bool in_u = tree.in_subtree(u, x);
     bool in_v = tree.in_subtree(v, x);
     if (!in_G[idx] || in_u == in_v) {
-      print(tree.dist(u, v, 1));
+      print(tree.dist_weighted(u, v));
       continue;
     }
     // 木の外に出る移動が必要
@@ -66,7 +66,7 @@ void solve() {
     bool in_q = tree.in_subtree(q, x);
     if (!in_u) swap(u, v);
     if (!in_p) swap(p, q);
-    mint ANS = tree.dist(u, p, 1) + tree.dist(v, q, 1);
+    mint ANS = tree.dist_weighted(u, p) + tree.dist_weighted(v, q);
     ANS += mint(2).pow(min_i + 1);
     print(ANS);
   }
