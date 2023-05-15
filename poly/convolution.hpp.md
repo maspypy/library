@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -50,7 +50,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/multiplicative_convolution_mod2n.hpp
     title: nt/multiplicative_convolution_mod2n.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
   - icon: ':heavy_check_mark:'
@@ -62,13 +62,13 @@ data:
   - icon: ':warning:'
     path: poly/composed_sum.hpp
     title: poly/composed_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
   - icon: ':heavy_check_mark:'
     path: poly/convolution2d.hpp
     title: poly/convolution2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
   - icon: ':heavy_check_mark:'
@@ -83,19 +83,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_composition.hpp
     title: poly/fps_composition.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -167,7 +167,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/sparse_exp_of_div.hpp
     title: poly/sparse_exp_of_div.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
   - icon: ':warning:'
@@ -176,7 +176,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/sum_of_prefix_suffix_products.hpp
     title: poly/sum_of_prefix_suffix_products.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
   - icon: ':warning:'
@@ -200,7 +200,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   - icon: ':heavy_check_mark:'
@@ -507,7 +507,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2108.test.cpp
     title: test/yukicoder/2108.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
   - icon: ':heavy_check_mark:'
@@ -567,15 +567,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc154f.test.cpp
     title: test_atcoder/arc154f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -967,7 +967,7 @@ data:
   - graph/count/count_bipartite.hpp
   - graph/tree_all_distances.hpp
   timestamp: '2023-05-14 18:10:08+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc269ex.test.cpp
   - test_atcoder/agc058d.test.cpp
