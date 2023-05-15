@@ -65,7 +65,7 @@ void solve() {
     for (auto&& q: QIDS[lca]) {
       auto [S, T] = query[q];
       if (S > T) swap(S, T);
-      ll base = tree.dist(S, T, 1);
+      ll base = tree.dist_weighted(S, T);
       ll best = Mono::unit();
 
       // S, T での寄り道
@@ -95,11 +95,6 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
