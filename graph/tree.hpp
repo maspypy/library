@@ -99,6 +99,7 @@ struct Tree {
       v = parent[u];
     }
   }
+  int la(int u, int v) { return LA(u, v); }
 
   int LCA(int u, int v) {
     for (;; v = parent[head[v]]) {
@@ -106,9 +107,12 @@ struct Tree {
       if (head[u] == head[v]) return u;
     }
   }
-
+  // root を根とした場合の lca
+  int LCA_root(int u, int v, int root) {
+    return LCA(u, v) ^ LCA(u, root) ^ LCA(v, root);
+  }
   int lca(int u, int v) { return LCA(u, v); }
-  int la(int u, int v) { return LA(u, v); }
+  int lca_root(int u, int v, int root) { return LCA_root(u, v, root); }
 
   int subtree_size(int v, int root = -1) {
     if (root == -1) return RID[v] - LID[v];
@@ -123,8 +127,7 @@ struct Tree {
     return depth[a] + depth[b] - 2 * depth[c];
   }
 
-  WT dist(int a, int b, bool weighted) {
-    assert(weighted);
+  WT dist_weighted(int a, int b) {
     int c = LCA(a, b);
     return depth_weighted[a] + depth_weighted[b] - WT(2) * depth_weighted[c];
   }
