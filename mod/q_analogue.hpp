@@ -1,3 +1,4 @@
+#include "mod/modint.hpp"
 #include "mod/all_inverse.hpp"
 
 template <typename mint>
