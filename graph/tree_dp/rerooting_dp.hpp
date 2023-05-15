@@ -12,7 +12,7 @@ struct Rerooting_dp {
   template <typename F1, typename F2, typename F3>
   Rerooting_dp(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)
       : tree(tree) {
-    assert(!(*tree.G_ptr).is_directed());
+    assert(tree.G.is_directed());
     build(f_ee, f_ev, f_ve, unit);
   }
 
@@ -34,7 +34,7 @@ struct Rerooting_dp {
     dp_1.assign(N, unit);
     FOR_R(i, N) {
       int v = tree.V[i];
-      for (auto&& e: (*tree.G_ptr)[v]) {
+      for (auto&& e: tree.G[v]) {
         if (e.to == tree.parent[v]) continue;
         dp_1[v] = f_ee(dp_1[v], f_ve(dp_1[e.to], e));
       }
@@ -50,7 +50,7 @@ struct Rerooting_dp {
       vc<int> ch;
       vc<Data> ch_data;
       Data x = unit;
-      for (auto&& e: (*tree.G_ptr)[p]) {
+      for (auto&& e: tree.G[p]) {
         if (e.to == tree.parent[p]) {
           x = f_ve(dp_2[p], e);
         } else {

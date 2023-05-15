@@ -7,7 +7,7 @@
 template <typename GT>
 struct Tree {
   using Graph_type = GT;
-  GT *G_ptr;
+  GT &G;
   using WT = typename GT::cost_type;
   int N;
   vector<int> LID, RID, head, V, parent, VtoE;
@@ -15,10 +15,9 @@ struct Tree {
   vc<WT> depth_weighted;
 
   Tree() {}
-  Tree(GT &G, int r = 0, bool hld = 1) { build(G, r, hld); }
+  Tree(GT &G, int r = 0, bool hld = 1) : G(G) { build(r, hld); }
 
-  void build(GT &G, int r = 0, bool hld = 1) {
-    G_ptr = &G;
+  void build(int r = 0, bool hld = 1) {
     N = G.N;
     LID.assign(N, -1), RID.assign(N, -1), head.assign(N, r);
     V.assign(N, -1), parent.assign(N, -1), VtoE.assign(N, -1);
@@ -34,8 +33,8 @@ struct Tree {
     parent[v] = p;
     depth[v] = (p == -1 ? 0 : depth[p] + 1);
     sz[v] = 1;
-    int l = G_ptr->indptr[v], r = G_ptr->indptr[v + 1];
-    auto &csr = G_ptr->csr_edges;
+    int l = G.indptr[v], r = G.indptr[v + 1];
+    auto &csr = G.csr_edges;
     // 使う辺があれば先頭にする
     for (int i = r - 2; i >= l; --i) {
       if (hld && depth[csr[i + 1].to] == -1) swap(csr[i], csr[i + 1]);
@@ -57,7 +56,7 @@ struct Tree {
     RID[v] += LID[v];
     V[LID[v]] = v;
     bool heavy = true;
-    for (auto &&e: (*G_ptr)[v]) {
+    for (auto &&e: G[v]) {
       if (depth[e.to] <= depth[v]) continue;
       head[e.to] = (heavy ? head[v] : e.to);
       heavy = false;
@@ -69,7 +68,7 @@ struct Tree {
     vc<int> P = {v};
     while (1) {
       int a = P.back();
-      for (auto &&e: (*G_ptr)[a]) {
+      for (auto &&e: G[a]) {
         if (e.to != parent[a] && head[e.to] == v) {
           P.eb(e.to);
           break;
@@ -81,7 +80,7 @@ struct Tree {
   }
 
   int e_to_v(int eid) {
-    auto e = (*G_ptr).edges[eid];
+    auto e = G.edges[eid];
     return (parent[e.frm] == e.to ? e.frm : e.to);
   }
   int v_to_e(int v) { return VtoE[v]; }
@@ -150,7 +149,7 @@ struct Tree {
 
   vc<int> collect_child(int v) {
     vc<int> res;
-    for (auto &&e: (*G_ptr)[v])
+    for (auto &&e: G[v])
       if (e.to != parent[v]) res.eb(e.to);
     return res;
   }
