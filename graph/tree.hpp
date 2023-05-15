@@ -14,10 +14,10 @@ struct Tree {
   vc<int> depth;
   vc<WT> depth_weighted;
 
-  Tree() {}
   Tree(GT &G, int r = 0, bool hld = 1) : G(G) { build(r, hld); }
 
   void build(int r = 0, bool hld = 1) {
+    if (r == -1) return; // build を遅延したいとき
     N = G.N;
     LID.assign(N, -1), RID.assign(N, -1), head.assign(N, r);
     V.assign(N, -1), parent.assign(N, -1), VtoE.assign(N, -1);
