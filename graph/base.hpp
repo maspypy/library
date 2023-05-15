@@ -81,15 +81,6 @@ struct Graph {
     build();
   }
 
-  void read_parent(int off = 1) {
-    for (int v = 1; v < N; ++v) {
-      INT(p);
-      p -= off;
-      add(p, v);
-    }
-    build();
-  }
-
   void build() {
     assert(!prepared);
     prepared = true;

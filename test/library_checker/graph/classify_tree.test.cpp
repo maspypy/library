@@ -8,7 +8,11 @@
 void solve() {
   LL(N);
   Graph<int, 0> G(N);
-  G.read_parent(0);
+  FOR(v, 1, N) {
+    INT(p);
+    G.add(p, v);
+  }
+  G.build();
   Tree<decltype(G)> tree(G);
   SubTree_Hash<decltype(tree)> X(tree);
 
@@ -22,13 +26,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
