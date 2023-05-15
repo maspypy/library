@@ -53,7 +53,7 @@ void solve() {
 
   ll a = stoi(S);
 
-  auto tree = X.build();
+  auto [G, tree] = X.build();
   ll ANS = X.jump(tree, a, L);
   out(ANS);
 }
