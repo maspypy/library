@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: bigint/base.hpp
+    title: bigint/base.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_bipartite.hpp
     title: graph/count/count_bipartite.hpp
   - icon: ':warning:'
@@ -234,6 +237,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_5_C.test.cpp
     title: test/aoj/DPL_5_C.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/NTL_2_A.test.cpp
+    title: test/aoj/NTL_2_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/NTL_2_B.test.cpp
+    title: test/aoj/NTL_2_B.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/bitwise_and_convolution.test.cpp
     title: test/library_checker/convolution/bitwise_and_convolution.test.cpp
@@ -1060,6 +1069,7 @@ data:
   - new_poly/base.hpp
   - nt/four_square.hpp
   - nt/multiplicative_convolution_mod2n.hpp
+  - bigint/base.hpp
   - seq/count_grid_path.hpp
   - seq/sum_of_powers.hpp
   - seq/interpolate_linear_rec.hpp
@@ -1236,6 +1246,8 @@ data:
   - test/mytest/factorial_998.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/aoj/DPL_5_C.test.cpp
+  - test/aoj/NTL_2_B.test.cpp
+  - test/aoj/NTL_2_A.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp

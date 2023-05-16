@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: bigint/base.hpp
+    title: bigint/base.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_bipartite.hpp
     title: graph/count/count_bipartite.hpp
   - icon: ':warning:'
@@ -213,6 +216,12 @@ data:
     path: string/wildcard_pattern_matching.hpp
     title: string/wildcard_pattern_matching.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/NTL_2_A.test.cpp
+    title: test/aoj/NTL_2_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/NTL_2_B.test.cpp
+    title: test/aoj/NTL_2_B.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_huge.test.cpp
     title: test/library_checker/convolution/convolution_huge.test.cpp
@@ -742,6 +751,7 @@ data:
   - poly/convolution2d.hpp
   - new_poly/base.hpp
   - nt/multiplicative_convolution_mod2n.hpp
+  - bigint/base.hpp
   - seq/count_grid_path.hpp
   - seq/sum_of_powers.hpp
   - seq/interpolate_linear_rec.hpp
@@ -836,6 +846,8 @@ data:
   - test/mytest/vandermonde.test.cpp
   - test/mytest/online_exp.test.cpp
   - test/mytest/factorial_998.test.cpp
+  - test/aoj/NTL_2_B.test.cpp
+  - test/aoj/NTL_2_A.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/convolution/convolution_mod_107.test.cpp
   - test/library_checker/convolution/online_convolution.test.cpp

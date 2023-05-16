@@ -165,6 +165,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid_pow.hpp
       title: alg/monoid_pow.hpp
+  - name: bigint
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: bigint/base.hpp
+      title: bigint/base.hpp
   - name: convex
     pages:
     - icon: ':heavy_check_mark:'
@@ -1111,9 +1116,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/all_but_one_products.hpp
       title: other/all_but_one_products.hpp
-    - icon: ':warning:'
-      path: other/bigint.hpp
-      title: other/bigint.hpp
     - icon: ':heavy_check_mark:'
       path: other/connected_dp.hpp
       title: other/connected_dp.hpp
@@ -1725,6 +1727,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/NTL_1_E.test.cpp
       title: test/aoj/NTL_1_E.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/NTL_2_A.test.cpp
+      title: test/aoj/NTL_2_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/NTL_2_B.test.cpp
+      title: test/aoj/NTL_2_B.test.cpp
   - name: test/library_checker/convolution
     pages:
     - icon: ':heavy_check_mark:'

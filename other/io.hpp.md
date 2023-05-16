@@ -196,6 +196,12 @@ data:
     path: test/aoj/NTL_1_E.test.cpp
     title: test/aoj/NTL_1_E.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/NTL_2_A.test.cpp
+    title: test/aoj/NTL_2_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/NTL_2_B.test.cpp
+    title: test/aoj/NTL_2_B.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/bitwise_and_convolution.test.cpp
     title: test/library_checker/convolution/bitwise_and_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2562,6 +2568,7 @@ data:
   - test/aoj/NTL_1_E.test.cpp
   - test/aoj/0343.test.cpp
   - test/aoj/ITP1_11_D.test.cpp
+  - test/aoj/NTL_2_B.test.cpp
   - test/aoj/ALDS1_1_C.test.cpp
   - test/aoj/GRL_3_B.test.cpp
   - test/aoj/2636.test.cpp
@@ -2570,6 +2577,7 @@ data:
   - test/aoj/GRL_6_A.test.cpp
   - test/aoj/DSL_2_G.test.cpp
   - test/aoj/GRL_1_B.test.cpp
+  - test/aoj/NTL_2_A.test.cpp
   - test/aoj/DPL_1_D.test.cpp
   - test/aoj/DSL_4_A.test.cpp
   - test/aoj/CGL_1_B.test.cpp
