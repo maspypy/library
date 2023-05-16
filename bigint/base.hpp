@@ -1,4 +1,6 @@
-// 10^6 ずつ区切って
+#include "poly/convolution.hpp"
+
+// 10^9 ずつ区切って
 struct BigInteger {
   static constexpr int TEN[]
       = {1,      10,      100,      1000,      10000,
@@ -9,6 +11,7 @@ struct BigInteger {
   int sgn; // +1 or -1. 内部状態で -0 を許容する.
   vc<int> dat;
 
+  BigInteger() : sgn(1) {}
   BigInteger(i128 val) {
     if (val == 0) {
       sgn = 1;
@@ -64,7 +67,7 @@ struct BigInteger {
     int n = max(len(dat), len(p.dat));
     dat.resize(n + 1);
     FOR(i, n) {
-      dat[i] += p.dat[i];
+      if (i < len(p.dat)) dat[i] += p.dat[i];
       if (dat[i] >= MOD) dat[i] -= MOD, dat[i + 1] += 1;
     }
     while (len(dat) && dat.back() == 0) dat.pop_back();
@@ -75,8 +78,7 @@ struct BigInteger {
       *this += (-p);
       return *this;
     }
-    bool small = (*this) < p;
-    if ((sgn == 1 && small) || (sgn == -1 && (!small))) {
+    if ((sgn == 1 && *this < p) || (sgn == -1 && *this > p)) {
       *this = p - *this;
       sgn = -sgn;
       return *this;
@@ -88,7 +90,7 @@ struct BigInteger {
     while (len(dat) && dat.back() == 0) { dat.pop_back(); }
     return *this;
   }
-  // bint &operator*=(const bint &p) { return *this; }
+  // bint &operator*=(const bint &p) { return this; }
   // bint &operator/=(const bint &p) { return *this; }
   bint operator-() const {
     bint p = *this;
@@ -109,7 +111,7 @@ struct BigInteger {
   void write() { fastio::printer.write(to_string()); }
   void read() {
     string s;
-    fastio::printer.write(s);
+    fastio::scanner.read(s);
     *this = bint(s);
   }
 #endif
