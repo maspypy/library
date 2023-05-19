@@ -142,27 +142,27 @@ struct Graph {
   }
 
   // G における頂点 V[i] が、新しいグラフで i になるようにする
-  Graph<T, directed> rearrange(vc<int> V, bool keey_eid = false) {
+  // {G, es}
+  pair<Graph<T, directed>, vc<int>> rearrange(vc<int> V) {
     int n = len(V);
     map<int, int> MP;
     FOR(i, n) MP[V[i]] = i;
     set<int> used;
     Graph<T, directed> G(n);
+    vc<int> es;
     FOR(i, n) {
       for (auto&& e: (*this)[V[i]]) {
         if (used.count(e.id)) continue;
         int a = e.frm, b = e.to;
         if (MP.count(a) && MP.count(b)) {
           used.insert(e.id);
-          if (keep_eid)
-            G.add(MP[a], MP[b], e.cost, e.id);
-          else
-            G.add(MP[a], MP[b], e.cost);
+          G.add(MP[a], MP[b], e.cost);
+          es.eb(e.id);
         }
       }
     }
     G.build();
-    return G;
+    return {G, es};
   }
 
 private:
