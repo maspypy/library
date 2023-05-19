@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/triangle.hpp
     title: enumerate/triangle.hpp
   - icon: ':question:'
@@ -11,7 +11,7 @@ data:
   - icon: ':x:'
     path: game/graph_game.hpp
     title: game/graph_game.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/manhattan_mst.hpp
     title: geo/manhattan_mst.hpp
   - icon: ':heavy_check_mark:'
@@ -62,7 +62,7 @@ data:
   - icon: ':x:'
     path: graph/eulerwalk.hpp
     title: graph/eulerwalk.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/find_cycle.hpp
     title: graph/find_cycle.hpp
   - icon: ':warning:'
@@ -77,10 +77,10 @@ data:
   - icon: ':question:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/maximum_independent_set.hpp
     title: graph/maximum_independent_set.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/maximum_independent_set_weighted.hpp
     title: graph/maximum_independent_set_weighted.hpp
   - icon: ':x:'
@@ -143,7 +143,7 @@ data:
   - icon: ':x:'
     path: graph/tree_diameter.hpp
     title: graph/tree_diameter.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
   - icon: ':x:'
@@ -152,7 +152,7 @@ data:
   - icon: ':warning:'
     path: graph/tree_dp/subtree_diameter.hpp
     title: graph/tree_dp/subtree_diameter.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
   - icon: ':warning:'
@@ -164,7 +164,7 @@ data:
   - icon: ':question:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/twosat.hpp
     title: graph/twosat.hpp
   - icon: ':x:'
@@ -173,7 +173,7 @@ data:
   - icon: ':x:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_automaton.hpp
     title: string/suffix_automaton.hpp
   - icon: ':x:'
@@ -252,52 +252,52 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/chromatic_number.test.cpp
     title: test/library_checker/graph/chromatic_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/classify_tree.test.cpp
     title: test/library_checker/graph/classify_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/cycle_detection.test.cpp
     title: test/library_checker/graph/cycle_detection.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/cycle_detection_undirected.test.cpp
     title: test/library_checker/graph/cycle_detection_undirected.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/enumerate_cliques.test.cpp
     title: test/library_checker/graph/enumerate_cliques.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/enumerate_triangles.test.cpp
     title: test/library_checker/graph/enumerate_triangles.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/manhattan_mst.test.cpp
     title: test/library_checker/graph/manhattan_mst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/maximum_independent_set.test.cpp
     title: test/library_checker/graph/maximum_independent_set.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/maximum_independent_set2.test.cpp
     title: test/library_checker/graph/maximum_independent_set2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/scc.test.cpp
     title: test/library_checker/graph/scc.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/shortest_path.test.cpp
     title: test/library_checker/graph/shortest_path.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/two_edge_component.test.cpp
     title: test/library_checker/graph/two_edge_component.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/verted_add_contour_sum.test.cpp
     title: test/library_checker/graph/verted_add_contour_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/twosat.test.cpp
     title: test/library_checker/math/twosat.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/rerooting_dp.test.cpp
     title: test/library_checker/rerooting_dp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/string/number_of_substrings2.test.cpp
     title: test/library_checker/string/number_of_substrings2.test.cpp
   - icon: ':x:'
