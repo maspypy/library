@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_12_B.test.cpp
     title: test/aoj/ALDS1_12_B.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/shortest_path/dial.hpp\"\n// not verified\r\n#line\
@@ -57,36 +57,35 @@ data:
     \      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
     \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\n  // G \u306B\u304A\u3051\u308B\
     \u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\
-    \u306A\u308B\u3088\u3046\u306B\u3059\u308B\n  Graph<T, directed> rearrange(vc<int>\
-    \ V, bool keey_eid = false) {\n    int n = len(V);\n    map<int, int> MP;\n  \
-    \  FOR(i, n) MP[V[i]] = i;\n    set<int> used;\n    Graph<T, directed> G(n);\n\
-    \    FOR(i, n) {\n      for (auto&& e: (*this)[V[i]]) {\n        if (used.count(e.id))\
-    \ continue;\n        int a = e.frm, b = e.to;\n        if (MP.count(a) && MP.count(b))\
-    \ {\n          used.insert(e.id);\n          if (keep_eid)\n            G.add(MP[a],\
-    \ MP[b], e.cost, e.id);\n          else\n            G.add(MP[a], MP[b], e.cost);\n\
-    \        }\n      }\n    }\n    G.build();\n    return G;\n  }\n\nprivate:\n \
-    \ void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for\
-    \ (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
-    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
-    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 3 \"graph/shortest_path/dial.hpp\"\ntemplate <typename Graph>\r\npair<vector<typename\
-    \ Graph::cost_type>, vector<int>> dial(Graph& G, int s) {\r\n  using COST = typename\
-    \ Graph::cost_type;\r\n  assert(G.is_prepared());\r\n  ll W = 0;\r\n  ll N = G.N;\r\
-    \n  for (auto&& e: G.edges) chmax(W, e.cost);\r\n  vc<int> S(N * W + 2, -1);\r\
-    \n  vc<int> T(N * W + 2, -1);\r\n  vc<int> prev(N);\r\n  vc<int> nxt(N);\r\n \
-    \ vc<COST> dist(N, W * N + 1);\r\n  vc<int> par(N, -1);\r\n  dist[s] = 0;\r\n\
-    \  auto add = [&](ll v) -> void {\r\n    ll d = dist[v];\r\n    prev[v] = T[d];\r\
-    \n    if (T[d] != -1) nxt[T[d]] = v;\r\n    T[d] = v;\r\n    if (S[d] == -1) S[d]\
-    \ = v;\r\n    nxt[v] = -1;\r\n  };\r\n  auto rm = [&](ll v) -> void {\r\n    ll\
-    \ d = dist[v];\r\n    if (prev[v] != -1) nxt[prev[v]] = nxt[v];\r\n    if (nxt[v]\
-    \ != -1) prev[nxt[v]] = prev[v];\r\n    if (S[d] == v) S[d] = nxt[v];\r\n    if\
-    \ (T[d] == v) T[d] = prev[v];\r\n  };\r\n  FOR(v, N) add(v);\r\n\r\n  FOR(d, N\
-    \ * W) {\r\n    ll v = S[d];\r\n    while (v != -1) {\r\n      for (auto&& e:\
-    \ G[v]) {\r\n        ll w = e.to;\r\n        ll dw = d + e.cost;\r\n        if\
-    \ (dw < dist[w]) {\r\n          par[w] = v;\r\n          rm(w);\r\n          dist[w]\
-    \ = dw;\r\n          add(w);\r\n        }\r\n      }\r\n      v = nxt[v];\r\n\
-    \    }\r\n  }\r\n  FOR(v, N) if (dist[v] > N * W) dist[v] = -1;\r\n  return {dist,\
-    \ par};\r\n}\n"
+    \u306A\u308B\u3088\u3046\u306B\u3059\u308B\n  // {G, es}\n  pair<Graph<T, directed>,\
+    \ vc<int>> rearrange(vc<int> V) {\n    int n = len(V);\n    map<int, int> MP;\n\
+    \    FOR(i, n) MP[V[i]] = i;\n    set<int> used;\n    Graph<T, directed> G(n);\n\
+    \    vc<int> es;\n    FOR(i, n) {\n      for (auto&& e: (*this)[V[i]]) {\n   \
+    \     if (used.count(e.id)) continue;\n        int a = e.frm, b = e.to;\n    \
+    \    if (MP.count(a) && MP.count(b)) {\n          used.insert(e.id);\n       \
+    \   G.add(MP[a], MP[b], e.cost);\n          es.eb(e.id);\n        }\n      }\n\
+    \    }\n    G.build();\n    return {G, es};\n  }\n\nprivate:\n  void calc_deg()\
+    \ {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
+    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
+    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 3 \"graph/shortest_path/dial.hpp\"\
+    \ntemplate <typename Graph>\r\npair<vector<typename Graph::cost_type>, vector<int>>\
+    \ dial(Graph& G, int s) {\r\n  using COST = typename Graph::cost_type;\r\n  assert(G.is_prepared());\r\
+    \n  ll W = 0;\r\n  ll N = G.N;\r\n  for (auto&& e: G.edges) chmax(W, e.cost);\r\
+    \n  vc<int> S(N * W + 2, -1);\r\n  vc<int> T(N * W + 2, -1);\r\n  vc<int> prev(N);\r\
+    \n  vc<int> nxt(N);\r\n  vc<COST> dist(N, W * N + 1);\r\n  vc<int> par(N, -1);\r\
+    \n  dist[s] = 0;\r\n  auto add = [&](ll v) -> void {\r\n    ll d = dist[v];\r\n\
+    \    prev[v] = T[d];\r\n    if (T[d] != -1) nxt[T[d]] = v;\r\n    T[d] = v;\r\n\
+    \    if (S[d] == -1) S[d] = v;\r\n    nxt[v] = -1;\r\n  };\r\n  auto rm = [&](ll\
+    \ v) -> void {\r\n    ll d = dist[v];\r\n    if (prev[v] != -1) nxt[prev[v]] =\
+    \ nxt[v];\r\n    if (nxt[v] != -1) prev[nxt[v]] = prev[v];\r\n    if (S[d] ==\
+    \ v) S[d] = nxt[v];\r\n    if (T[d] == v) T[d] = prev[v];\r\n  };\r\n  FOR(v,\
+    \ N) add(v);\r\n\r\n  FOR(d, N * W) {\r\n    ll v = S[d];\r\n    while (v != -1)\
+    \ {\r\n      for (auto&& e: G[v]) {\r\n        ll w = e.to;\r\n        ll dw =\
+    \ d + e.cost;\r\n        if (dw < dist[w]) {\r\n          par[w] = v;\r\n    \
+    \      rm(w);\r\n          dist[w] = dw;\r\n          add(w);\r\n        }\r\n\
+    \      }\r\n      v = nxt[v];\r\n    }\r\n  }\r\n  FOR(v, N) if (dist[v] > N *\
+    \ W) dist[v] = -1;\r\n  return {dist, par};\r\n}\n"
   code: "// not verified\r\n#include \"graph/base.hpp\"\r\ntemplate <typename Graph>\r\
     \npair<vector<typename Graph::cost_type>, vector<int>> dial(Graph& G, int s) {\r\
     \n  using COST = typename Graph::cost_type;\r\n  assert(G.is_prepared());\r\n\
@@ -110,8 +109,8 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/dial.hpp
   requiredBy: []
-  timestamp: '2023-05-20 04:25:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-05-20 05:01:54+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_12_B.test.cpp
 documentation_of: graph/shortest_path/dial.hpp

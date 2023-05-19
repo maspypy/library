@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
@@ -54,35 +54,35 @@ data:
     \      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
     \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\n  // G \u306B\u304A\u3051\u308B\
     \u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\
-    \u306A\u308B\u3088\u3046\u306B\u3059\u308B\n  Graph<T, directed> rearrange(vc<int>\
-    \ V, bool keey_eid = false) {\n    int n = len(V);\n    map<int, int> MP;\n  \
-    \  FOR(i, n) MP[V[i]] = i;\n    set<int> used;\n    Graph<T, directed> G(n);\n\
-    \    FOR(i, n) {\n      for (auto&& e: (*this)[V[i]]) {\n        if (used.count(e.id))\
-    \ continue;\n        int a = e.frm, b = e.to;\n        if (MP.count(a) && MP.count(b))\
-    \ {\n          used.insert(e.id);\n          if (keep_eid)\n            G.add(MP[a],\
-    \ MP[b], e.cost, e.id);\n          else\n            G.add(MP[a], MP[b], e.cost);\n\
-    \        }\n      }\n    }\n    G.build();\n    return G;\n  }\n\nprivate:\n \
-    \ void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for\
-    \ (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
-    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
-    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 3 \"graph/find_nontransitive_triple.hpp\"\n\r\n// ab, bc \u8FBA\u306F\u3042\
-    \u308B\u304C ac \u8FBA\u306F\u306A\u3044\u3088\u3046\u306A 3 \u3064\u7D44 (a,b,c)\
-    \ \u3092\u63A2\u3059\u3002\r\n// \u306A\u3051\u308C\u3070 {-1,-1,-1}\r\n// example:\
-    \ https://codeforces.com/contest/967/problem/F\r\ntemplate <typename Graph>\r\n\
-    tuple<int, int, int> find_nontransitive_triple(Graph& G) {\r\n  int N = G.N;\r\
-    \n  assert(G.is_prepared());\r\n  assert(!G.is_directed());\r\n  vc<int> done(N);\r\
-    \n  vc<int> que;\r\n  FOR(root, N) {\r\n    if (done[root]) continue;\r\n    que\
-    \ = {root};\r\n    int p = 0;\r\n    while (p < len(que)) {\r\n      int v = que[p++];\r\
-    \n      done[v] = 2;\r\n      ll s = 0;\r\n      for (auto&& e: G[v]) {\r\n  \
-    \      int to = e.to;\r\n        if (done[to] == 0) {\r\n          done[to] =\
-    \ 1;\r\n          que.eb(to);\r\n        }\r\n        elif (done[to] == 2) { ++s;\
-    \ }\r\n      }\r\n      if (s == p - 1) continue;\r\n      assert(p >= 3);\r\n\
-    \      int c = v;\r\n      int a = -1;\r\n      int b = -1;\r\n      for (auto&&\
-    \ e: G[v]) done[e.to] = 0;\r\n      FOR(i, p - 1) {\r\n        int x = que[i];\r\
-    \n        if (done[x] == 2) a = x;\r\n        if (done[x] == 0) b = x;\r\n   \
-    \   }\r\n      assert(a != -1);\r\n      assert(b != -1);\r\n      return {a,\
-    \ b, c};\r\n    }\r\n  }\r\n  return {-1, -1, -1};\r\n}\r\n"
+    \u306A\u308B\u3088\u3046\u306B\u3059\u308B\n  // {G, es}\n  pair<Graph<T, directed>,\
+    \ vc<int>> rearrange(vc<int> V) {\n    int n = len(V);\n    map<int, int> MP;\n\
+    \    FOR(i, n) MP[V[i]] = i;\n    set<int> used;\n    Graph<T, directed> G(n);\n\
+    \    vc<int> es;\n    FOR(i, n) {\n      for (auto&& e: (*this)[V[i]]) {\n   \
+    \     if (used.count(e.id)) continue;\n        int a = e.frm, b = e.to;\n    \
+    \    if (MP.count(a) && MP.count(b)) {\n          used.insert(e.id);\n       \
+    \   G.add(MP[a], MP[b], e.cost);\n          es.eb(e.id);\n        }\n      }\n\
+    \    }\n    G.build();\n    return {G, es};\n  }\n\nprivate:\n  void calc_deg()\
+    \ {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
+    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
+    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 3 \"graph/find_nontransitive_triple.hpp\"\
+    \n\r\n// ab, bc \u8FBA\u306F\u3042\u308B\u304C ac \u8FBA\u306F\u306A\u3044\u3088\
+    \u3046\u306A 3 \u3064\u7D44 (a,b,c) \u3092\u63A2\u3059\u3002\r\n// \u306A\u3051\
+    \u308C\u3070 {-1,-1,-1}\r\n// example: https://codeforces.com/contest/967/problem/F\r\
+    \ntemplate <typename Graph>\r\ntuple<int, int, int> find_nontransitive_triple(Graph&\
+    \ G) {\r\n  int N = G.N;\r\n  assert(G.is_prepared());\r\n  assert(!G.is_directed());\r\
+    \n  vc<int> done(N);\r\n  vc<int> que;\r\n  FOR(root, N) {\r\n    if (done[root])\
+    \ continue;\r\n    que = {root};\r\n    int p = 0;\r\n    while (p < len(que))\
+    \ {\r\n      int v = que[p++];\r\n      done[v] = 2;\r\n      ll s = 0;\r\n  \
+    \    for (auto&& e: G[v]) {\r\n        int to = e.to;\r\n        if (done[to]\
+    \ == 0) {\r\n          done[to] = 1;\r\n          que.eb(to);\r\n        }\r\n\
+    \        elif (done[to] == 2) { ++s; }\r\n      }\r\n      if (s == p - 1) continue;\r\
+    \n      assert(p >= 3);\r\n      int c = v;\r\n      int a = -1;\r\n      int\
+    \ b = -1;\r\n      for (auto&& e: G[v]) done[e.to] = 0;\r\n      FOR(i, p - 1)\
+    \ {\r\n        int x = que[i];\r\n        if (done[x] == 2) a = x;\r\n       \
+    \ if (done[x] == 0) b = x;\r\n      }\r\n      assert(a != -1);\r\n      assert(b\
+    \ != -1);\r\n      return {a, b, c};\r\n    }\r\n  }\r\n  return {-1, -1, -1};\r\
+    \n}\r\n"
   code: "#pragma once\r\n#include \"graph/base.hpp\"\r\n\r\n// ab, bc \u8FBA\u306F\
     \u3042\u308B\u304C ac \u8FBA\u306F\u306A\u3044\u3088\u3046\u306A 3 \u3064\u7D44\
     \ (a,b,c) \u3092\u63A2\u3059\u3002\r\n// \u306A\u3051\u308C\u3070 {-1,-1,-1}\r\
@@ -105,7 +105,7 @@ data:
   isVerificationFile: false
   path: graph/find_nontransitive_triple.hpp
   requiredBy: []
-  timestamp: '2023-05-20 04:25:56+09:00'
+  timestamp: '2023-05-20 05:01:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/find_nontransitive_triple.hpp

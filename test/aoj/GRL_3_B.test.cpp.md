@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_B
@@ -246,36 +246,35 @@ data:
     \      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
     \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\n  // G \u306B\u304A\u3051\u308B\
     \u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\
-    \u306A\u308B\u3088\u3046\u306B\u3059\u308B\n  Graph<T, directed> rearrange(vc<int>\
-    \ V, bool keey_eid = false) {\n    int n = len(V);\n    map<int, int> MP;\n  \
-    \  FOR(i, n) MP[V[i]] = i;\n    set<int> used;\n    Graph<T, directed> G(n);\n\
-    \    FOR(i, n) {\n      for (auto&& e: (*this)[V[i]]) {\n        if (used.count(e.id))\
-    \ continue;\n        int a = e.frm, b = e.to;\n        if (MP.count(a) && MP.count(b))\
-    \ {\n          used.insert(e.id);\n          if (keep_eid)\n            G.add(MP[a],\
-    \ MP[b], e.cost, e.id);\n          else\n            G.add(MP[a], MP[b], e.cost);\n\
-    \        }\n      }\n    }\n    G.build();\n    return G;\n  }\n\nprivate:\n \
-    \ void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for\
-    \ (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
-    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
-    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 2 \"graph/two_edge_component.hpp\"\n\r\n// (\u6210\u5206\u6570, \u6210\u5206\
-    \u756A\u53F7\u306E vector)\r\ntemplate <typename GT>\r\npair<int, vc<int>> two_edge_component(GT&\
-    \ G) {\r\n  assert(!G.is_directed());\r\n  int N = G.N, M = G.M, n_comp = 0;\r\
-    \n  vc<int> V, par(N, -2), dp(N), comp(N);\r\n  V.reserve(N);\r\n  vc<bool> used(M);\r\
-    \n  auto dfs = [&](auto& dfs, int v) -> void {\r\n    V.eb(v);\r\n    for (auto&&\
-    \ e: G[v]) {\r\n      if (used[e.id]) continue;\r\n      if (par[e.to] != -2)\
-    \ dp[v]++, dp[e.to]--, used[e.id] = 1;\r\n      if (par[e.to] == -2) {\r\n   \
-    \     used[e.id] = 1;\r\n        par[e.to] = v;\r\n        dfs(dfs, e.to);\r\n\
-    \      }\r\n    }\r\n  };\r\n  FOR(v, N) if (par[v] == -2) { par[v] = -1, dfs(dfs,\
-    \ v); }\r\n  FOR_R(i, N) {\r\n    if (par[V[i]] != -1) dp[par[V[i]]] += dp[V[i]];\r\
-    \n  }\r\n  for (auto&& v: V) comp[v] = (dp[v] == 0 ? n_comp++ : comp[par[v]]);\r\
-    \n  return {n_comp, comp};\r\n}\n#line 7 \"test/aoj/GRL_3_B.test.cpp\"\n\nvoid\
-    \ solve() {\n  LL(N, M);\n  Graph<int, 0> G(N);\n  G.read_graph(M, 0, 0);\n  auto\
-    \ [C, comp] = two_edge_component(G);\n  vc<pi> ANS;\n  for (auto&& e: G.edges)\
-    \ {\n    auto a = e.frm, b = e.to;\n    if (a > b) swap(a, b);\n    if (comp[a]\
-    \ != comp[b]) ANS.eb(a, b);\n  }\n  sort(all(ANS));\n  for (auto&& x: ANS) print(x);\n\
-    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  //\
-    \ LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \u306A\u308B\u3088\u3046\u306B\u3059\u308B\n  // {G, es}\n  pair<Graph<T, directed>,\
+    \ vc<int>> rearrange(vc<int> V) {\n    int n = len(V);\n    map<int, int> MP;\n\
+    \    FOR(i, n) MP[V[i]] = i;\n    set<int> used;\n    Graph<T, directed> G(n);\n\
+    \    vc<int> es;\n    FOR(i, n) {\n      for (auto&& e: (*this)[V[i]]) {\n   \
+    \     if (used.count(e.id)) continue;\n        int a = e.frm, b = e.to;\n    \
+    \    if (MP.count(a) && MP.count(b)) {\n          used.insert(e.id);\n       \
+    \   G.add(MP[a], MP[b], e.cost);\n          es.eb(e.id);\n        }\n      }\n\
+    \    }\n    G.build();\n    return {G, es};\n  }\n\nprivate:\n  void calc_deg()\
+    \ {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
+    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
+    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/two_edge_component.hpp\"\
+    \n\r\n// (\u6210\u5206\u6570, \u6210\u5206\u756A\u53F7\u306E vector)\r\ntemplate\
+    \ <typename GT>\r\npair<int, vc<int>> two_edge_component(GT& G) {\r\n  assert(!G.is_directed());\r\
+    \n  int N = G.N, M = G.M, n_comp = 0;\r\n  vc<int> V, par(N, -2), dp(N), comp(N);\r\
+    \n  V.reserve(N);\r\n  vc<bool> used(M);\r\n  auto dfs = [&](auto& dfs, int v)\
+    \ -> void {\r\n    V.eb(v);\r\n    for (auto&& e: G[v]) {\r\n      if (used[e.id])\
+    \ continue;\r\n      if (par[e.to] != -2) dp[v]++, dp[e.to]--, used[e.id] = 1;\r\
+    \n      if (par[e.to] == -2) {\r\n        used[e.id] = 1;\r\n        par[e.to]\
+    \ = v;\r\n        dfs(dfs, e.to);\r\n      }\r\n    }\r\n  };\r\n  FOR(v, N) if\
+    \ (par[v] == -2) { par[v] = -1, dfs(dfs, v); }\r\n  FOR_R(i, N) {\r\n    if (par[V[i]]\
+    \ != -1) dp[par[V[i]]] += dp[V[i]];\r\n  }\r\n  for (auto&& v: V) comp[v] = (dp[v]\
+    \ == 0 ? n_comp++ : comp[par[v]]);\r\n  return {n_comp, comp};\r\n}\n#line 7 \"\
+    test/aoj/GRL_3_B.test.cpp\"\n\nvoid solve() {\n  LL(N, M);\n  Graph<int, 0> G(N);\n\
+    \  G.read_graph(M, 0, 0);\n  auto [C, comp] = two_edge_component(G);\n  vc<pi>\
+    \ ANS;\n  for (auto&& e: G.edges) {\n    auto a = e.frm, b = e.to;\n    if (a\
+    \ > b) swap(a, b);\n    if (comp[a] != comp[b]) ANS.eb(a, b);\n  }\n  sort(all(ANS));\n\
+    \  for (auto&& x: ANS) print(x);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_B\"\
     \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/two_edge_component.hpp\"\
     \n\nvoid solve() {\n  LL(N, M);\n  Graph<int, 0> G(N);\n  G.read_graph(M, 0, 0);\n\
@@ -292,8 +291,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_3_B.test.cpp
   requiredBy: []
-  timestamp: '2023-05-20 04:25:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-05-20 05:01:54+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_3_B.test.cpp
 layout: document

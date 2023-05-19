@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/my_multiset.hpp
     title: ds/my_multiset.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc281/tasks/abc281_e
@@ -216,33 +216,34 @@ data:
     \ sm[0] += x, sm_all += x;\n      return;\n    }\n    FOR(idx, len(dat)) {\n \
     \     if (dat[idx].back() < x && idx < len(dat) - 1) continue;\n      dat[idx].insert(lower_bound(all(dat[idx]),\
     \ x), x);\n      ++sz, sm[idx] += x, sm_all += x;\n      if (len(dat[idx]) > len(dat)\
-    \ * REBUILD_RATIO) rebuild();\n      break;\n    }\n  }\n\n  void erase(T x) {\n\
-    \    FOR(idx, len(dat)) {\n      if (dat[idx].back() < x && idx < len(dat) - 1)\
-    \ continue;\n      dat[idx].erase(lower_bound(all(dat[idx]), x));\n      --sz,\
-    \ sm[idx] -= x, sm_all -= x;\n      if (len(dat[idx]) == 0 && len(dat) > 0) {\n\
-    \        dat.erase(dat.begin() + idx);\n        sm.erase(sm.begin() + idx);\n\
-    \      }\n      break;\n    }\n  }\n\n  int count(T x) {\n    int cnt = 0;\n \
-    \   FOR(idx, len(dat)) {\n      if (dat[idx].back() < x) continue;\n      if (dat[idx][0]\
-    \ > x) break;\n      if (dat[idx][0] == dat[idx].back())\n        cnt += len(dat[idx]);\n\
-    \      else\n        cnt += upper_bound(all(dat[idx]), x) - lower_bound(all(dat[idx]),\
-    \ x);\n    }\n    return cnt;\n  }\n\n  // {value[k], sum[0:k]}\n  pair<VAL, SM>\
-    \ get_kth(int k, bool suffix = false) {\n    assert(0 <= k && k <= sz);\n    if\
-    \ (suffix) {\n      if (k == sz) return {-infty<VAL>, sm_all};\n      auto [x,\
-    \ s] = get_kth(sz - k - 1);\n      return {x, sm_all - s - x};\n    }\n    SM\
-    \ s = 0;\n    FOR(idx, len(dat)) {\n      if (k >= len(dat[idx])) {\n        k\
-    \ -= len(dat[idx]);\n        s += sm[idx];\n        continue;\n      }\n     \
-    \ FOR(j, k) s += dat[idx][j];\n      return {dat[idx][k], s};\n    }\n    return\
-    \ {infty<VAL>, s};\n  }\n\n  // [lo, hi) \u3067 {cnt, sm}\n  pair<int, SM> get_range(T\
-    \ lo, T hi) {\n    if (sz == 0) return {0, 0};\n    int cnt = 0;\n    SM s = 0;\n\
-    \    FOR(idx, len(dat)) {\n      if (dat[idx].back() < lo) continue;\n      if\
-    \ (hi <= dat[idx][0]) break;\n      if (lo <= dat[idx][0] && dat[idx].back() <\
-    \ hi) {\n        cnt += len(dat[idx]), s += sm[idx];\n        continue;\n    \
-    \  }\n      for (auto&& x: dat[idx])\n        if (lo <= x && x < hi) ++cnt, s\
-    \ += x;\n    }\n    return {cnt, s};\n  }\n};\n#line 6 \"test_atcoder/abc281e.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, M, K);\n  My_Multiset<int, ll> X;\n  VEC(ll, A, N);\n\
-    \  FOR(i, M) X.insert(A[i]);\n  vi ANS;\n  FOR(i, M, N + 1) {\n    ANS.eb(X.get_kth(K).se);\n\
-    \    if (i == N) break;\n    X.insert(A[i]), X.erase(A[i - M]);\n  }\n  print(ANS);\n\
-    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ * REBUILD_RATIO) rebuild();\n      break;\n    }\n  }\n  void add(T x) { insert(x);\
+    \ }\n\n  void erase(T x) {\n    FOR(idx, len(dat)) {\n      if (dat[idx].back()\
+    \ < x && idx < len(dat) - 1) continue;\n      dat[idx].erase(lower_bound(all(dat[idx]),\
+    \ x));\n      --sz, sm[idx] -= x, sm_all -= x;\n      if (len(dat[idx]) == 0 &&\
+    \ len(dat) > 0) {\n        dat.erase(dat.begin() + idx);\n        sm.erase(sm.begin()\
+    \ + idx);\n      }\n      break;\n    }\n  }\n  void remove(T x) { erase(x); }\n\
+    \n  int count(T x) {\n    int cnt = 0;\n    FOR(idx, len(dat)) {\n      if (dat[idx].back()\
+    \ < x) continue;\n      if (dat[idx][0] > x) break;\n      if (dat[idx][0] ==\
+    \ dat[idx].back())\n        cnt += len(dat[idx]);\n      else\n        cnt +=\
+    \ upper_bound(all(dat[idx]), x) - lower_bound(all(dat[idx]), x);\n    }\n    return\
+    \ cnt;\n  }\n\n  // {value[k], sum[0:k]}\n  pair<VAL, SM> get_kth(int k, bool\
+    \ suffix = false) {\n    assert(0 <= k && k <= sz);\n    if (suffix) {\n     \
+    \ if (k == sz) return {-infty<VAL>, sm_all};\n      auto [x, s] = get_kth(sz -\
+    \ k - 1);\n      return {x, sm_all - s - x};\n    }\n    SM s = 0;\n    FOR(idx,\
+    \ len(dat)) {\n      if (k >= len(dat[idx])) {\n        k -= len(dat[idx]);\n\
+    \        s += sm[idx];\n        continue;\n      }\n      FOR(j, k) s += dat[idx][j];\n\
+    \      return {dat[idx][k], s};\n    }\n    return {infty<VAL>, s};\n  }\n\n \
+    \ // [lo, hi) \u3067 {cnt, sm}\n  pair<int, SM> get_range(T lo, T hi) {\n    if\
+    \ (sz == 0) return {0, 0};\n    int cnt = 0;\n    SM s = 0;\n    FOR(idx, len(dat))\
+    \ {\n      if (dat[idx].back() < lo) continue;\n      if (hi <= dat[idx][0]) break;\n\
+    \      if (lo <= dat[idx][0] && dat[idx].back() < hi) {\n        cnt += len(dat[idx]),\
+    \ s += sm[idx];\n        continue;\n      }\n      for (auto&& x: dat[idx])\n\
+    \        if (lo <= x && x < hi) ++cnt, s += x;\n    }\n    return {cnt, s};\n\
+    \  }\n};\n#line 6 \"test_atcoder/abc281e.test.cpp\"\n\nvoid solve() {\n  LL(N,\
+    \ M, K);\n  My_Multiset<int, ll> X;\n  VEC(ll, A, N);\n  FOR(i, M) X.insert(A[i]);\n\
+    \  vi ANS;\n  FOR(i, M, N + 1) {\n    ANS.eb(X.get_kth(K).se);\n    if (i == N)\
+    \ break;\n    X.insert(A[i]), X.erase(A[i - M]);\n  }\n  print(ANS);\n}\n\nsigned\
+    \ main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc281/tasks/abc281_e\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/my_multiset.hpp\"\
     \n\nvoid solve() {\n  LL(N, M, K);\n  My_Multiset<int, ll> X;\n  VEC(ll, A, N);\n\
@@ -256,8 +257,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc281e.test.cpp
   requiredBy: []
-  timestamp: '2023-05-03 18:48:11+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-20 05:12:22+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc281e.test.cpp
 layout: document
