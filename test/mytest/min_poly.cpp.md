@@ -2,11 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':x:'
-    path: linalg/implicit_matrix/det.hpp
-    title: linalg/implicit_matrix/det.hpp
-  - icon: ':x:'
     path: linalg/implicit_matrix/min_poly.hpp
     title: linalg/implicit_matrix/min_poly.hpp
+  - icon: ':question:'
+    path: linalg/mat_mul.hpp
+    title: linalg/mat_mul.hpp
+  - icon: ':x:'
+    path: linalg/spmat_min_poly.hpp
+    title: linalg/spmat_min_poly.hpp
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
@@ -27,17 +30,14 @@ data:
     title: seq/find_linear_rec.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/sparse_matrix_det
     links:
-    - https://judge.yosupo.jp/problem/sparse_matrix_det
-  bundledCode: "#line 1 \"test/library_checker/matrix/implicit_matrix.test.cpp\"\n\
-    #define PROBLEM \"https://judge.yosupo.jp/problem/sparse_matrix_det\"\n#line 1\
-    \ \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/mytest/min_poly.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
     using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
@@ -217,137 +217,212 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 4 \"test/library_checker/matrix/implicit_matrix.test.cpp\"\
-    \n\n#line 2 \"seq/find_linear_rec.hpp\"\n\r\ntemplate <typename mint>\r\nvector<mint>\
-    \ find_linear_rec(vector<mint>& A) {\r\n  int N = len(A);\r\n  vc<mint> B = {1},\
-    \ C = {1};\r\n  int l = 0, m = 1;\r\n  mint p = 1;\r\n  FOR(i, N) {\r\n    mint\
-    \ d = A[i];\r\n    FOR3(j, 1, l + 1) { d += C[j] * A[i - j]; }\r\n    if (d ==\
-    \ 0) {\r\n      ++m;\r\n      continue;\r\n    }\r\n    auto tmp = C;\r\n    mint\
-    \ q = d / p;\r\n    if (len(C) < len(B) + m) C.insert(C.end(), len(B) + m - len(C),\
-    \ 0);\r\n    FOR(j, len(B)) C[j + m] -= q * B[j];\r\n    if (l + l <= i) {\r\n\
-    \      B = tmp;\r\n      l = i + 1 - l, m = 1;\r\n      p = d;\r\n    } else {\r\
-    \n      ++m;\r\n    }\r\n  }\r\n  return C;\r\n}\r\n#line 2 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \ yes(!t); }\n#line 4 \"test/mytest/min_poly.cpp\"\n\n#line 2 \"mod/modint_common.hpp\"\
+    \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
+    \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
+    \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
+    \ decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\n\ntemplate <typename\
+    \ mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n  static\
+    \ vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n \
+    \ while (len(dat) <= n) {\n    int k = len(dat);\n    int q = (mod + k - 1) /\
+    \ k;\n    dat.eb(dat[k * q - mod] * mint(q));\n  }\n  return dat[n];\n}\n\ntemplate\
+    \ <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  assert(0 <= n);\n  if (n >= mod) return 0;\n  static vector<mint> dat = {1,\
+    \ 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * mint(len(dat)));\n \
+    \ return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static\
+    \ const int mod = mint::get_mod();\n  assert(-1 <= n && n < mod);\n  static vector<mint>\
+    \ dat = {1, 1};\n  if (n == -1) return mint(0);\n  while (len(dat) <= n) dat.eb(dat[len(dat)\
+    \ - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\ntemplate <class mint, class...\
+    \ Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
+    }\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
+    \ &&head, Tail &&... tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  static vvc<mint>\
+    \ C;\n  static int H = 0, W = 0;\n  auto calc = [&](int i, int j) -> mint {\n\
+    \    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
+    \ + (j ? C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n     \
+    \ C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n\
+    \    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n +\
+    \ 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n   \
+    \ }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool\
+    \ large = false, bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  if (dense) return C_dense<mint>(n, k);\n \
+    \ if (!large) return multinomial<mint>(n, k, n - k);\n  k = min(k, n - k);\n \
+    \ mint x(1);\n  FOR(i, k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n\
+    }\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n\
+    \  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
+    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
+    }\n\n// [x^d] (1-x) ^ {-n} \u306E\u8A08\u7B97\ntemplate <typename mint, bool large\
+    \ = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n\
+    \  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1) : mint(0));\
+    \ }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\
+    \n\ntemplate <int mod>\nstruct modint {\n  static_assert(mod < (1 << 30));\n \
+    \ int val;\n  constexpr modint(const ll val = 0) noexcept\n      : val(val >=\
+    \ 0 ? val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const modint\
+    \ &other) const {\n    return val < other.val;\n  } // To use std::map\n  modint\
+    \ &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n\
+    \    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if ((val\
+    \ += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const\
+    \ modint &p) {\n    val = (int)(1LL * val * p.val % mod);\n    return *this;\n\
+    \  }\n  modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n   \
+    \ return *this;\n  }\n  modint operator-() const { return modint(-val); }\n  modint\
+    \ operator+(const modint &p) const { return modint(*this) += p; }\n  modint operator-(const\
+    \ modint &p) const { return modint(*this) -= p; }\n  modint operator*(const modint\
+    \ &p) const { return modint(*this) *= p; }\n  modint operator/(const modint &p)\
+    \ const { return modint(*this) /= p; }\n  bool operator==(const modint &p) const\
+    \ { return val == p.val; }\n  bool operator!=(const modint &p) const { return\
+    \ val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod, u = 1,\
+    \ v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b),\
+    \ swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n)\
+    \ const {\n    assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0)\
+    \ {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n\
+    \    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
+    \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
+    \ int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\
+    \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 167772161) return\
+    \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
+    \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
+    \ == 998244353) return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n\
+    \    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881) return\
+    \ {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
+    \ return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\n#line 2 \"seq/find_linear_rec.hpp\"\n\r\n\
+    template <typename mint>\r\nvector<mint> find_linear_rec(vector<mint>& A) {\r\n\
+    \  int N = len(A);\r\n  vc<mint> B = {1}, C = {1};\r\n  int l = 0, m = 1;\r\n\
+    \  mint p = 1;\r\n  FOR(i, N) {\r\n    mint d = A[i];\r\n    FOR3(j, 1, l + 1)\
+    \ { d += C[j] * A[i - j]; }\r\n    if (d == 0) {\r\n      ++m;\r\n      continue;\r\
+    \n    }\r\n    auto tmp = C;\r\n    mint q = d / p;\r\n    if (len(C) < len(B)\
+    \ + m) C.insert(C.end(), len(B) + m - len(C), 0);\r\n    FOR(j, len(B)) C[j +\
+    \ m] -= q * B[j];\r\n    if (l + l <= i) {\r\n      B = tmp;\r\n      l = i +\
+    \ 1 - l, m = 1;\r\n      p = d;\r\n    } else {\r\n      ++m;\r\n    }\r\n  }\r\
+    \n  return C;\r\n}\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
+    \ uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 3 \"linalg/implicit_matrix/min_poly.hpp\"\
-    \n\r\n// \u884C\u5217 A \u3092\u304B\u3051\u308B\u3053\u3068\u3092\u8868\u3059\
-    \u7DDA\u5F62\u5909\u63DB f \u3092\u6E21\u3059\r\n// auto f = [&](vc<mint> v) ->\
-    \ vc<mint> {};\r\ntemplate <typename mint, typename F>\r\nvc<mint> implicit_matrix_min_poly(int\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 3 \"linalg/spmat_min_poly.hpp\"\
+    \n\r\ntemplate <typename mint>\r\nvc<mint> spmat_min_poly(int N, vc<tuple<int,\
+    \ int, mint>> dat) {\r\n  vc<mint> S(N + N + 10);\r\n  vc<mint> c(N);\r\n  vc<mint>\
+    \ v(N);\r\n  FOR(i, N) c[i] = RNG(0, mint::get_mod());\r\n  FOR(i, N) v[i] = RNG(0,\
+    \ mint::get_mod());\r\n  FOR(k, N + N + 10) {\r\n    FOR(i, N) S[k] += c[i] *\
+    \ v[i];\r\n    vc<mint> w(N);\r\n    for (auto&& [i, j, x]: dat) w[j] += x * v[i];\r\
+    \n    swap(v, w);\r\n  }\r\n  vc<mint> f = find_linear_rec(S);\r\n  reverse(all(f));\r\
+    \n  return f;\r\n}\r\n#line 3 \"linalg/implicit_matrix/min_poly.hpp\"\n\r\n//\
+    \ \u884C\u5217 A \u3092\u304B\u3051\u308B\u3053\u3068\u3092\u8868\u3059\u7DDA\u5F62\
+    \u5909\u63DB f \u3092\u6E21\u3059\r\n// auto f = [&](vc<mint> v) -> vc<mint> {};\r\
+    \ntemplate <typename mint, typename F>\r\nvc<mint> implicit_matrix_min_poly(int\
     \ N, F f) {\r\n  vc<mint> S(N + N + 10);\r\n  vc<mint> c(N);\r\n  vc<mint> v(N);\r\
     \n  FOR(i, N) c[i] = RNG(0, mint::get_mod());\r\n  FOR(i, N) v[i] = RNG(0, mint::get_mod());\r\
     \n  FOR(k, N + N + 10) {\r\n    FOR(i, N) S[k] += c[i] * v[i];\r\n    v = f(v);\r\
     \n  }\r\n  S = find_linear_rec(S);\r\n  reverse(all(S));\r\n  return S;\r\n}\r\
-    \n#line 2 \"linalg/implicit_matrix/det.hpp\"\n\r\n// \u884C\u5217 A \u3092\u304B\
-    \u3051\u308B\u3053\u3068\u3092\u8868\u3059\u7DDA\u5F62\u5909\u63DB f \u3092\u6E21\
-    \u3059\r\n// auto f = [&](vc<mint> v) -> vc<mint> {};\r\ntemplate <typename mint,\
-    \ typename F>\r\nmint implicit_matrix_det(int N, F f) {\r\n  vc<mint> c(N);\r\n\
-    \  FOR(i, N) c[i] = RNG(1, mint::get_mod());\r\n  mint r = 1;\r\n  FOR(i, N) r\
-    \ *= c[i];\r\n  auto g = [&](vc<mint> v) -> vc<mint> {\r\n    FOR(i, N) v[i] *=\
-    \ c[i];\r\n    return f(v);\r\n  };\r\n  auto P = implicit_matrix_min_poly<mint>(N,\
-    \ g);\r\n  P.resize(N + 1);\r\n  mint det = P.back();\r\n  if (N & 1) det *= -1;\r\
-    \n  det /= r;\r\n  return det;\r\n}\r\n#line 2 \"mod/modint_common.hpp\"\n\nstruct\
-    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
-    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
-    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
-    \ {};\n\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod\
-    \ = mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n\
-    \  if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
-    \    int q = (mod + k - 1) / k;\n    dat.eb(dat[k * q - mod] * mint(q));\n  }\n\
-    \  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
-    \ const int mod = mint::get_mod();\n  assert(0 <= n);\n  if (n >= mod) return\
-    \ 0;\n  static vector<mint> dat = {1, 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat)\
-    \ - 1] * mint(len(dat)));\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint\
-    \ fact_inv(int n) {\n  static const int mod = mint::get_mod();\n  assert(-1 <=\
-    \ n && n < mod);\n  static vector<mint> dat = {1, 1};\n  if (n == -1) return mint(0);\n\
-    \  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n  return\
-    \ dat[n];\n}\n\ntemplate <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n\
-    \  return (mint(1) * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint,\
-    \ class Head, class... Tail>\nmint multinomial(Head &&head, Tail &&... tail) {\n\
-    \  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\
-    \ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  static vvc<mint> C;\n\
-    \  static int H = 0, W = 0;\n  auto calc = [&](int i, int j) -> mint {\n    if\
-    \ (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j] + (j ?\
-    \ C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k\
-    \ + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n    W = k +\
-    \ 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n   \
-    \   C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H =\
-    \ n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool large = false,\
-    \ bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 ||\
-    \ n < k) return 0;\n  if (dense) return C_dense<mint>(n, k);\n  if (!large) return\
-    \ multinomial<mint>(n, k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i,\
-    \ k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename\
-    \ mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0\
-    \ <= k && k <= n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n\
-    \ - k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d] (1-x) ^ {-n} \u306E\
-    \u8A08\u7B97\ntemplate <typename mint, bool large = false, bool dense = false>\n\
-    mint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n\
-    \  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large,\
-    \ dense>(n + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\n\
-    struct modint {\n  static_assert(mod < (1 << 30));\n  int val;\n  constexpr modint(const\
-    \ ll val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val) % mod)\
-    \ % mod) {}\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
-    \  } // To use std::map\n  modint &operator+=(const modint &p) {\n    if ((val\
-    \ += p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator-=(const\
-    \ modint &p) {\n    if ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n\
-    \  }\n  modint &operator*=(const modint &p) {\n    val = (int)(1LL * val * p.val\
-    \ % mod);\n    return *this;\n  }\n  modint &operator/=(const modint &p) {\n \
-    \   *this *= p.inverse();\n    return *this;\n  }\n  modint operator-() const\
-    \ { return modint(-val); }\n  modint operator+(const modint &p) const { return\
-    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
-    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
-    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
-    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
-    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
-    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
-    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
-    \ return modint(u);\n  }\n  modint pow(ll n) const {\n    assert(n >= 0);\n  \
-    \  modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
-    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n\
-    \  void write() { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
-    \ }\n#endif\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r\
-    \ \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info()\
-    \ {\n    if (mod == 167772161) return {25, 17};\n    if (mod == 469762049) return\
-    \ {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841)\
-    \ return {23, 211};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
-    \ 1045430273) return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n\
-    \    if (mod == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static\
-    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\nusing modint107\
-    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 7 \"test/library_checker/matrix/implicit_matrix.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, K);\n  using T = tuple<int,\
-    \ int, mint>;\n  VEC(T, dat, K);\n  auto f = [&](vc<mint> v) -> vc<mint> {\n \
-    \   vc<mint> w(N);\n    for (auto&& [a, b, c]: dat) { w[b] += v[a] * c; }\n  \
-    \  return w;\n  };\n  mint det = implicit_matrix_det<mint>(N, f);\n  print(det);\n\
-    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  solve();\n\n \
-    \ return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sparse_matrix_det\"\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"linalg/implicit_matrix/det.hpp\"\
-    \n#include \"mod/modint.hpp\"\n\nusing mint = modint998;\n\nvoid solve() {\n \
-    \ LL(N, K);\n  using T = tuple<int, int, mint>;\n  VEC(T, dat, K);\n  auto f =\
-    \ [&](vc<mint> v) -> vc<mint> {\n    vc<mint> w(N);\n    for (auto&& [a, b, c]:\
-    \ dat) { w[b] += v[a] * c; }\n    return w;\n  };\n  mint det = implicit_matrix_det<mint>(N,\
-    \ f);\n  print(det);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  solve();\n\n  return 0;\n}"
+    \n#line 3 \"linalg/mat_mul.hpp\"\n\r\ntemplate <class T, typename enable_if<has_mod<T>::value>::type*\
+    \ = nullptr>\r\nvc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n\
+    \  constexpr int mod = T::get_mod();\r\n  auto N = len(A), M = len(B), K = len(B[0]);\r\
+    \n  vv(int, b, K, M);\r\n  FOR(i, M) FOR(j, K) b[j][i] = B[i][j].val;\r\n  vv(T,\
+    \ C, N, K);\r\n\r\n  if (M <= 16) {\r\n    FOR(i, N) FOR(j, K) {\r\n      u64\
+    \ sm = 0;\r\n      FOR(m, M) sm += u64(A[i][m].val) * b[j][m];\r\n      C[i][j]\
+    \ = sm % mod;\r\n    }\r\n  } else {\r\n    FOR(i, N) FOR(j, K) {\r\n      i128\
+    \ sm = 0;\r\n      FOR(m, M) sm += ll(A[i][m].val) * b[j][m];\r\n      C[i][j]\
+    \ = sm % mod;\r\n    }\r\n  }\r\n  return C;\r\n}\r\n\r\ntemplate <class T, typename\
+    \ enable_if<!has_mod<T>::value>::type* = nullptr>\r\nvc<vc<T>> mat_mul(const vc<vc<T>>&\
+    \ A, const vc<vc<T>>& B) {\r\n  assert(!A.empty() && !B.empty());\r\n  auto N\
+    \ = len(A), M = len(B), K = len(B[0]);\r\n  vv(T, b, K, M);\r\n  FOR(i, M) FOR(j,\
+    \ K) b[j][i] = B[i][j];\r\n  vv(T, C, N, K);\r\n  FOR(n, N) FOR(m, M) FOR(k, K)\
+    \ C[n][k] += A[n][m] * b[k][m];\r\n  return C;\r\n}\r\n#line 9 \"test/mytest/min_poly.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid test() {\n  vc<tuple<int, int, mint>> A;\n\
+    \  A.eb(0, 0, 1);\n  A.eb(0, 1, 2);\n  A.eb(1, 0, 3);\n  A.eb(1, 1, 4);\n  vc<mint>\
+    \ f = spmat_min_poly<mint>(2, A);\n  assert(f == vc<mint>({-2, -5, 1}));\n\n \
+    \ A.clear();\n  A.eb(0, 1, 1);\n  f = spmat_min_poly<mint>(2, A);\n  assert(f\
+    \ == vc<mint>({0, 0, 1}));\n  assert(f == implicit_matrix_min_poly<mint>(2, [&](vc<mint>\
+    \ a) -> vc<mint> {\n           vc<mint> b(2);\n           for (auto&& [i, j, x]:\
+    \ A) b[j] += a[i] * x;\n           return b;\n         }));\n\n  A.clear();\n\
+    \  f = spmat_min_poly<mint>(2, A);\n  assert(f == vc<mint>({0, 1}));\n  assert(f\
+    \ == implicit_matrix_min_poly<mint>(2, [&](vc<mint> a) -> vc<mint> {\n       \
+    \    vc<mint> b(2);\n           for (auto&& [i, j, x]: A) b[j] += a[i] * x;\n\
+    \           return b;\n         }));\n\n  A.clear();\n  f = spmat_min_poly<mint>(0,\
+    \ A);\n  assert(f == vc<mint>({1}));\n  assert(f == implicit_matrix_min_poly<mint>(0,\
+    \ [&](vc<mint> a) -> vc<mint> {\n           vc<mint> b(0);\n           for (auto&&\
+    \ [i, j, x]: A) b[j] += a[i] * x;\n           return b;\n         }));\n\n  A.clear();\n\
+    \  A.eb(0, 1, 1);\n  A.eb(0, 2, 1);\n  A.eb(1, 2, 1);\n  f = spmat_min_poly<mint>(3,\
+    \ A);\n  assert(f == vc<mint>({0, 0, 0, 1}));\n  assert(f == implicit_matrix_min_poly<mint>(3,\
+    \ [&](vc<mint> a) -> vc<mint> {\n           vc<mint> b(3);\n           for (auto&&\
+    \ [i, j, x]: A) b[j] += a[i] * x;\n           return b;\n         }));\n\n  A.clear();\n\
+    \  A.eb(0, 2, 1);\n  f = spmat_min_poly<mint>(3, A);\n  assert(f == vc<mint>({0,\
+    \ 0, 1}));\n  assert(f == implicit_matrix_min_poly<mint>(3, [&](vc<mint> a) ->\
+    \ vc<mint> {\n           vc<mint> b(3);\n           for (auto&& [i, j, x]: A)\
+    \ b[j] += a[i] * x;\n           return b;\n         }));\n\n  A.clear();\n  f\
+    \ = spmat_min_poly<mint>(3, A);\n  assert(f == vc<mint>({0, 1}));\n  assert(f\
+    \ == implicit_matrix_min_poly<mint>(3, [&](vc<mint> a) -> vc<mint> {\n       \
+    \    vc<mint> b(3);\n           for (auto&& [i, j, x]: A) b[j] += a[i] * x;\n\
+    \           return b;\n         }));\n\n  // random matrix\n  FOR(N, 1, 20) {\n\
+    \    vv(mint, mat, N, N);\n    FOR(i, N) FOR(j, N) mat[i][j] = RNG(0, 998244353);\n\
+    \    A.clear();\n    FOR(i, N) FOR(j, N) A.eb(i, j, mat[i][j]);\n    f = spmat_min_poly(N,\
+    \ A);\n    assert(f == implicit_matrix_min_poly<mint>(N, [&](vc<mint> a) -> vc<mint>\
+    \ {\n             vc<mint> b(N);\n             for (auto&& [i, j, x]: A) b[j]\
+    \ += a[i] * x;\n             return b;\n           }));\n    vv(mint, B, N, N);\n\
+    \    FOR(i, N) B[i][i] = 1;\n    vv(mint, C, N, N);\n    FOR(d, len(f)) {\n  \
+    \    FOR(i, N) FOR(j, N) C[i][j] += f[d] * B[i][j];\n      B = mat_mul(mat, B);\n\
+    \    }\n    FOR(i, N) FOR(j, N) assert(C[i][j] == mint(0));\n  }\n}\n\nvoid solve()\
+    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\
+    \  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\n#include \"linalg/spmat_min_poly.hpp\"\
+    \n#include \"linalg/implicit_matrix/min_poly.hpp\"\n#include \"linalg/mat_mul.hpp\"\
+    \n\nusing mint = modint998;\n\nvoid test() {\n  vc<tuple<int, int, mint>> A;\n\
+    \  A.eb(0, 0, 1);\n  A.eb(0, 1, 2);\n  A.eb(1, 0, 3);\n  A.eb(1, 1, 4);\n  vc<mint>\
+    \ f = spmat_min_poly<mint>(2, A);\n  assert(f == vc<mint>({-2, -5, 1}));\n\n \
+    \ A.clear();\n  A.eb(0, 1, 1);\n  f = spmat_min_poly<mint>(2, A);\n  assert(f\
+    \ == vc<mint>({0, 0, 1}));\n  assert(f == implicit_matrix_min_poly<mint>(2, [&](vc<mint>\
+    \ a) -> vc<mint> {\n           vc<mint> b(2);\n           for (auto&& [i, j, x]:\
+    \ A) b[j] += a[i] * x;\n           return b;\n         }));\n\n  A.clear();\n\
+    \  f = spmat_min_poly<mint>(2, A);\n  assert(f == vc<mint>({0, 1}));\n  assert(f\
+    \ == implicit_matrix_min_poly<mint>(2, [&](vc<mint> a) -> vc<mint> {\n       \
+    \    vc<mint> b(2);\n           for (auto&& [i, j, x]: A) b[j] += a[i] * x;\n\
+    \           return b;\n         }));\n\n  A.clear();\n  f = spmat_min_poly<mint>(0,\
+    \ A);\n  assert(f == vc<mint>({1}));\n  assert(f == implicit_matrix_min_poly<mint>(0,\
+    \ [&](vc<mint> a) -> vc<mint> {\n           vc<mint> b(0);\n           for (auto&&\
+    \ [i, j, x]: A) b[j] += a[i] * x;\n           return b;\n         }));\n\n  A.clear();\n\
+    \  A.eb(0, 1, 1);\n  A.eb(0, 2, 1);\n  A.eb(1, 2, 1);\n  f = spmat_min_poly<mint>(3,\
+    \ A);\n  assert(f == vc<mint>({0, 0, 0, 1}));\n  assert(f == implicit_matrix_min_poly<mint>(3,\
+    \ [&](vc<mint> a) -> vc<mint> {\n           vc<mint> b(3);\n           for (auto&&\
+    \ [i, j, x]: A) b[j] += a[i] * x;\n           return b;\n         }));\n\n  A.clear();\n\
+    \  A.eb(0, 2, 1);\n  f = spmat_min_poly<mint>(3, A);\n  assert(f == vc<mint>({0,\
+    \ 0, 1}));\n  assert(f == implicit_matrix_min_poly<mint>(3, [&](vc<mint> a) ->\
+    \ vc<mint> {\n           vc<mint> b(3);\n           for (auto&& [i, j, x]: A)\
+    \ b[j] += a[i] * x;\n           return b;\n         }));\n\n  A.clear();\n  f\
+    \ = spmat_min_poly<mint>(3, A);\n  assert(f == vc<mint>({0, 1}));\n  assert(f\
+    \ == implicit_matrix_min_poly<mint>(3, [&](vc<mint> a) -> vc<mint> {\n       \
+    \    vc<mint> b(3);\n           for (auto&& [i, j, x]: A) b[j] += a[i] * x;\n\
+    \           return b;\n         }));\n\n  // random matrix\n  FOR(N, 1, 20) {\n\
+    \    vv(mint, mat, N, N);\n    FOR(i, N) FOR(j, N) mat[i][j] = RNG(0, 998244353);\n\
+    \    A.clear();\n    FOR(i, N) FOR(j, N) A.eb(i, j, mat[i][j]);\n    f = spmat_min_poly(N,\
+    \ A);\n    assert(f == implicit_matrix_min_poly<mint>(N, [&](vc<mint> a) -> vc<mint>\
+    \ {\n             vc<mint> b(N);\n             for (auto&& [i, j, x]: A) b[j]\
+    \ += a[i] * x;\n             return b;\n           }));\n    vv(mint, B, N, N);\n\
+    \    FOR(i, N) B[i][i] = 1;\n    vv(mint, C, N, N);\n    FOR(d, len(f)) {\n  \
+    \    FOR(i, N) FOR(j, N) C[i][j] += f[d] * B[i][j];\n      B = mat_mul(mat, B);\n\
+    \    }\n    FOR(i, N) FOR(j, N) assert(C[i][j] == mint(0));\n  }\n}\n\nvoid solve()\
+    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - linalg/implicit_matrix/det.hpp
-  - linalg/implicit_matrix/min_poly.hpp
-  - seq/find_linear_rec.hpp
-  - random/base.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
-  isVerificationFile: true
-  path: test/library_checker/matrix/implicit_matrix.test.cpp
+  - linalg/spmat_min_poly.hpp
+  - seq/find_linear_rec.hpp
+  - random/base.hpp
+  - linalg/implicit_matrix/min_poly.hpp
+  - linalg/mat_mul.hpp
+  isVerificationFile: false
+  path: test/mytest/min_poly.cpp
   requiredBy: []
   timestamp: '2023-05-20 02:22:04+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: test/library_checker/matrix/implicit_matrix.test.cpp
+documentation_of: test/mytest/min_poly.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/matrix/implicit_matrix.test.cpp
-- /verify/test/library_checker/matrix/implicit_matrix.test.cpp.html
-title: test/library_checker/matrix/implicit_matrix.test.cpp
+- /library/test/mytest/min_poly.cpp
+- /library/test/mytest/min_poly.cpp.html
+title: test/mytest/min_poly.cpp
 ---

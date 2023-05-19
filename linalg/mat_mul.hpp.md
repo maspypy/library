@@ -8,10 +8,10 @@ data:
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/mat_pow.hpp
     title: linalg/mat_pow.hpp
   - icon: ':question:'
@@ -26,6 +26,9 @@ data:
   - icon: ':question:'
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
+  - icon: ':warning:'
+    path: test/mytest/min_poly.cpp
+    title: test/mytest/min_poly.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/matrix_product.test.cpp
@@ -36,10 +39,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080_2.test.cpp
     title: test/yukicoder/1080_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1750.test.cpp
     title: test/yukicoder/1750.test.cpp
   - icon: ':x:'
@@ -180,6 +183,7 @@ data:
   - poly/prefix_product_of_poly.hpp
   - poly/sparse_exp_of_div.hpp
   - seq/kth_term_of_p_recursive.hpp
+  - test/mytest/min_poly.cpp
   timestamp: '2023-05-19 13:21:47+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

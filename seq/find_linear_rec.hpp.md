@@ -2,29 +2,32 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/implicit_matrix/det.hpp
     title: linalg/implicit_matrix/det.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/implicit_matrix/min_poly.hpp
     title: linalg/implicit_matrix/min_poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/spmat_det.hpp
     title: linalg/spmat_det.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/spmat_min_poly.hpp
     title: linalg/spmat_min_poly.hpp
   - icon: ':heavy_check_mark:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
+  - icon: ':warning:'
+    path: test/mytest/min_poly.cpp
+    title: test/mytest/min_poly.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/find_linear_recurrence.test.cpp
     title: test/library_checker/math/find_linear_recurrence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/matrix/implicit_matrix.test.cpp
     title: test/library_checker/matrix/implicit_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/matrix/sparse_matrix_det.test.cpp
     title: test/library_checker/matrix/sparse_matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
@@ -48,7 +51,7 @@ data:
   - icon: ':x:'
     path: test/yukicoder/2305.test.cpp
     title: test/yukicoder/2305.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/310.test.cpp
     title: test/yukicoder/310.test.cpp
   - icon: ':heavy_check_mark:'
@@ -92,6 +95,7 @@ data:
   - linalg/spmat_det.hpp
   - linalg/spmat_min_poly.hpp
   - seq/interpolate_linear_rec.hpp
+  - test/mytest/min_poly.cpp
   timestamp: '2022-05-11 21:07:53+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

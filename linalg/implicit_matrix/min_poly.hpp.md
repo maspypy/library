@@ -8,19 +8,22 @@ data:
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/implicit_matrix/det.hpp
     title: linalg/implicit_matrix/det.hpp
+  - icon: ':warning:'
+    path: test/mytest/min_poly.cpp
+    title: test/mytest/min_poly.cpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/matrix/implicit_matrix.test.cpp
     title: test/library_checker/matrix/implicit_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/310.test.cpp
     title: test/yukicoder/310.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"seq/find_linear_rec.hpp\"\n\r\ntemplate <typename mint>\r\
@@ -43,7 +46,8 @@ data:
     \ N, F f) {\r\n  vc<mint> S(N + N + 10);\r\n  vc<mint> c(N);\r\n  vc<mint> v(N);\r\
     \n  FOR(i, N) c[i] = RNG(0, mint::get_mod());\r\n  FOR(i, N) v[i] = RNG(0, mint::get_mod());\r\
     \n  FOR(k, N + N + 10) {\r\n    FOR(i, N) S[k] += c[i] * v[i];\r\n    v = f(v);\r\
-    \n  }\r\n  return find_linear_rec(S);\r\n}\r\n"
+    \n  }\r\n  S = find_linear_rec(S);\r\n  reverse(all(S));\r\n  return S;\r\n}\r\
+    \n"
   code: "#include \"seq/find_linear_rec.hpp\"\r\n#include \"random/base.hpp\"\r\n\r\
     \n// \u884C\u5217 A \u3092\u304B\u3051\u308B\u3053\u3068\u3092\u8868\u3059\u7DDA\
     \u5F62\u5909\u63DB f \u3092\u6E21\u3059\r\n// auto f = [&](vc<mint> v) -> vc<mint>\
@@ -51,7 +55,8 @@ data:
     \ N, F f) {\r\n  vc<mint> S(N + N + 10);\r\n  vc<mint> c(N);\r\n  vc<mint> v(N);\r\
     \n  FOR(i, N) c[i] = RNG(0, mint::get_mod());\r\n  FOR(i, N) v[i] = RNG(0, mint::get_mod());\r\
     \n  FOR(k, N + N + 10) {\r\n    FOR(i, N) S[k] += c[i] * v[i];\r\n    v = f(v);\r\
-    \n  }\r\n  return find_linear_rec(S);\r\n}\r\n"
+    \n  }\r\n  S = find_linear_rec(S);\r\n  reverse(all(S));\r\n  return S;\r\n}\r\
+    \n"
   dependsOn:
   - seq/find_linear_rec.hpp
   - random/base.hpp
@@ -59,8 +64,9 @@ data:
   path: linalg/implicit_matrix/min_poly.hpp
   requiredBy:
   - linalg/implicit_matrix/det.hpp
-  timestamp: '2022-10-23 11:21:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - test/mytest/min_poly.cpp
+  timestamp: '2023-05-20 02:22:04+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/310.test.cpp
   - test/library_checker/matrix/implicit_matrix.test.cpp

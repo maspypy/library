@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
   - icon: ':heavy_check_mark:'
@@ -35,7 +35,7 @@ data:
   - icon: ':question:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/mat_pow.hpp
     title: linalg/mat_pow.hpp
   - icon: ':warning:'
@@ -224,6 +224,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/wildcard_pattern_matching.hpp
     title: string/wildcard_pattern_matching.hpp
+  - icon: ':warning:'
+    path: test/mytest/min_poly.cpp
+    title: test/mytest/min_poly.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_5_C.test.cpp
@@ -363,7 +366,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/hafnian_of_matrix.test.cpp
     title: test/library_checker/matrix/hafnian_of_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/matrix/implicit_matrix.test.cpp
     title: test/library_checker/matrix/implicit_matrix.test.cpp
   - icon: ':heavy_check_mark:'
@@ -378,7 +381,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/solve_linear.test.cpp
     title: test/library_checker/matrix/solve_linear.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/matrix/sparse_matrix_det.test.cpp
     title: test/library_checker/matrix/sparse_matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
@@ -621,7 +624,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1276.test.cpp
     title: test/yukicoder/1276.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
   - icon: ':heavy_check_mark:'
@@ -636,7 +639,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1411.test.cpp
     title: test/yukicoder/1411.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1451.test.cpp
     title: test/yukicoder/1451.test.cpp
   - icon: ':heavy_check_mark:'
@@ -666,7 +669,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1600.test.cpp
     title: test/yukicoder/1600.test.cpp
   - icon: ':heavy_check_mark:'
@@ -687,7 +690,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1728.test.cpp
     title: test/yukicoder/1728.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1750.test.cpp
     title: test/yukicoder/1750.test.cpp
   - icon: ':heavy_check_mark:'
@@ -702,7 +705,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1781.test.cpp
     title: test/yukicoder/1781.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1796.test.cpp
     title: test/yukicoder/1796.test.cpp
   - icon: ':x:'
@@ -798,7 +801,7 @@ data:
   - icon: ':x:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/310.test.cpp
     title: test/yukicoder/310.test.cpp
   - icon: ':x:'
@@ -1088,6 +1091,7 @@ data:
   - graph/tree_all_distances.hpp
   - mod/q_analogue.hpp
   - string/wildcard_pattern_matching.hpp
+  - test/mytest/min_poly.cpp
   timestamp: '2023-05-12 18:44:22+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

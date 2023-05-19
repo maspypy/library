@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/max_matching_size.hpp
     title: graph/max_matching_size.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_cycle_length_through_specified.hpp
     title: graph/minimum_cycle_length_through_specified.hpp
   - icon: ':heavy_check_mark:'
@@ -44,19 +44,19 @@ data:
   - icon: ':x:'
     path: graph/vs_to_es.hpp
     title: graph/vs_to_es.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/implicit_matrix/det.hpp
     title: linalg/implicit_matrix/det.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/implicit_matrix/min_poly.hpp
     title: linalg/implicit_matrix/min_poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/spmat_det.hpp
     title: linalg/spmat_det.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/spmat_min_poly.hpp
     title: linalg/spmat_min_poly.hpp
   - icon: ':heavy_check_mark:'
@@ -116,6 +116,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/rollinghash_2d.hpp
     title: string/rollinghash_2d.hpp
+  - icon: ':warning:'
+    path: test/mytest/min_poly.cpp
+    title: test/mytest/min_poly.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_14_C.test.cpp
@@ -162,10 +165,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sqrt_mod.test.cpp
     title: test/library_checker/math/sqrt_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/matrix/implicit_matrix.test.cpp
     title: test/library_checker/matrix/implicit_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/matrix/sparse_matrix_det.test.cpp
     title: test/library_checker/matrix/sparse_matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
@@ -453,7 +456,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080_2.test.cpp
     title: test/yukicoder/1080_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
   - icon: ':heavy_check_mark:'
@@ -480,10 +483,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1726.test.cpp
     title: test/yukicoder/1726.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1769.test.cpp
     title: test/yukicoder/1769.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1775.test.cpp
     title: test/yukicoder/1775.test.cpp
   - icon: ':heavy_check_mark:'
@@ -513,7 +516,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/263.test.cpp
     title: test/yukicoder/263.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/310.test.cpp
     title: test/yukicoder/310.test.cpp
   - icon: ':heavy_check_mark:'
@@ -613,6 +616,7 @@ data:
   - string/rollinghash_2d.hpp
   - string/rollinghash.hpp
   - string/count_subseq.hpp
+  - test/mytest/min_poly.cpp
   timestamp: '2022-10-23 11:21:57+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
