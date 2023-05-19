@@ -27,6 +27,7 @@ struct FastSet {
       i /= B;
     }
   }
+  void add(int i) { insert(i); }
   void erase(int i) {
     for (int h = 0; h < lg; h++) {
       seg[h][i / B] &= ~(1ULL << (i % B));
@@ -34,6 +35,7 @@ struct FastSet {
       i /= B;
     }
   }
+  void remove(int i) { insert(i); }
 
   // x以上最小の要素を返す。存在しなければ n。
   int next(int i) {
