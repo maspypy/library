@@ -13,8 +13,7 @@ mint implicit_matrix_det(int N, F f) {
     return f(v);
   };
   auto P = implicit_matrix_min_poly<mint>(N, g);
-  P.resize(N + 1);
-  mint det = P.back();
+  mint det = (len(P) == N ? P[0] : mint(0));
   if (N & 1) det *= -1;
   det /= r;
   return det;
