@@ -14,5 +14,7 @@ vc<mint> implicit_matrix_min_poly(int N, F f) {
     FOR(i, N) S[k] += c[i] * v[i];
     v = f(v);
   }
-  return find_linear_rec(S);
+  S = find_linear_rec(S);
+  reverse(all(S));
+  return S;
 }
