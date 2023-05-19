@@ -27,6 +27,7 @@ vc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {
 
 template <class T, typename enable_if<!has_mod<T>::value>::type* = nullptr>
 vc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {
+  assert(!A.empty() && !B.empty());
   auto N = len(A), M = len(B), K = len(B[0]);
   vv(T, b, K, M);
   FOR(i, M) FOR(j, K) b[j][i] = B[i][j];
