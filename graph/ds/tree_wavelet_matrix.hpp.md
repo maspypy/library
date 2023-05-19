@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':heavy_check_mark:'
@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix.hpp
     title: ds/wavelet_matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
@@ -223,10 +223,12 @@ data:
     \u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\
     \u306A\u308B\u3088\u3046\u306B\u3059\u308B\n  Graph<T, directed> rearrange(vc<int>\
     \ V) {\n    int n = len(V);\n    map<int, int> MP;\n    FOR(i, n) MP[V[i]] = i;\n\
-    \    Graph<T, directed> G(n);\n    for (auto&& e: edges) {\n      if (MP.count(e.frm)\
-    \ && MP.count(e.to)) {\n        G.add(MP[e.frm], MP[e.to], e.cost);\n      }\n\
-    \    }\n    G.build();\n    return G;\n  }\n\nprivate:\n  void calc_deg() {\n\
-    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
+    \    set<int> used;\n    Graph<T, directed> G(n);\n    FOR(i, n) {\n      for\
+    \ (auto&& e: (*this)[V[i]]) {\n        if (used.count(e.id)) continue;\n     \
+    \   int a = e.frm, b = e.to;\n        if (MP.count(a) && MP.count(b)) {\n    \
+    \      used.insert(e.id);\n          G.add(MP[a], MP[b], e.cost);\n        }\n\
+    \      }\n    }\n    G.build();\n    return G;\n  }\n\nprivate:\n  void calc_deg()\
+    \ {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
     \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
     \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 4 \"graph/tree.hpp\"\
@@ -413,7 +415,7 @@ data:
   isVerificationFile: false
   path: graph/ds/tree_wavelet_matrix.hpp
   requiredBy: []
-  timestamp: '2023-05-16 02:08:22+09:00'
+  timestamp: '2023-05-19 13:20:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/ds/tree_wavelet_matrix.hpp
