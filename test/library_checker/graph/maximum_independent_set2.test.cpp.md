@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/maximum_independent_set_weighted.hpp
     title: graph/maximum_independent_set_weighted.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/maximum_independent_set
@@ -248,36 +248,38 @@ data:
     \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\n  // G \u306B\u304A\u3051\u308B\
     \u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\
     \u306A\u308B\u3088\u3046\u306B\u3059\u308B\n  Graph<T, directed> rearrange(vc<int>\
-    \ V) {\n    int n = len(V);\n    map<int, int> MP;\n    FOR(i, n) MP[V[i]] = i;\n\
-    \    set<int> used;\n    Graph<T, directed> G(n);\n    FOR(i, n) {\n      for\
-    \ (auto&& e: (*this)[V[i]]) {\n        if (used.count(e.id)) continue;\n     \
-    \   int a = e.frm, b = e.to;\n        if (MP.count(a) && MP.count(b)) {\n    \
-    \      used.insert(e.id);\n          G.add(MP[a], MP[b], e.cost);\n        }\n\
-    \      }\n    }\n    G.build();\n    return G;\n  }\n\nprivate:\n  void calc_deg()\
-    \ {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
-    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
-    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
-    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/maximum_independent_set_weighted.hpp\"\
-    \n\n// meed in middle \u3067 O(N2^{N/2})\n// \u81EA\u5DF1\u30EB\u30FC\u30D7 ok\uFF08\
-    \u72EC\u7ACB\u96C6\u5408\u3068\u3057\u3066\u4F7F\u3048\u306A\u3044\u70B9\uFF09\
-    \ntemplate <typename T, typename GT>\nvc<int> maximum_independent_set_weighted(GT&\
-    \ G, vc<T> weight) {\n  const int N = G.N;\n  assert(G.N <= 64);\n  vc<u64> nbd(N);\n\
-    \  FOR(v, N) {\n    for (auto&& e: G[v]) { nbd[v] |= u64(1) << (e.to); }\n  }\n\
-    \  int NL = ceil(N, 2);\n  int NR = N - NL;\n  vc<u64> nbd_L(1 << NL);\n  vc<T>\
-    \ wt_L(1 << NL);\n  FOR(i, NL) FOR(s, 1 << i) { nbd_L[s | 1 << i] = nbd_L[s] |\
-    \ nbd[i]; }\n  FOR(i, NL) FOR(s, 1 << i) { wt_L[s | 1 << i] = wt_L[s] + weight[i];\
-    \ }\n  vc<u64> nbd_R(1 << NR);\n  vc<T> wt_R(1 << NR);\n  FOR(i, NR) FOR(s, 1\
-    \ << i) { nbd_R[s | 1 << i] = nbd_R[s] | nbd[NL + i]; }\n  FOR(i, NR) FOR(s, 1\
-    \ << i) { wt_R[s | 1 << i] = wt_R[s] + weight[NL + i]; }\n\n  FOR(s, 1 << NL)\
-    \ if (nbd_L[s] & s) wt_L[s] = -1;\n  FOR(s, 1 << NR) if (nbd_R[s] >> NL & s) wt_R[s]\
-    \ = -1;\n\n  vc<T> dp = wt_R;\n  FOR(i, NR) FOR(s, 1 << NR) {\n    int t = s |\
-    \ 1 << i;\n    if (s < t) chmax(dp[t], dp[s]);\n  }\n  reverse(all(dp));\n  T\
-    \ best = 0;\n  int best_s = 0;\n  FOR(s, 1 << NL) {\n    if (chmax(best, wt_L[s]\
-    \ + dp[(nbd_L[s] >> NL)])) best_s = s;\n  }\n  int s = best_s;\n  int used = nbd_L[s]\
-    \ >> NL;\n  FOR(t, 1 << NR) {\n    if (used & t) continue;\n    if (wt_L[s] +\
-    \ wt_R[t] == best) {\n      vc<int> res;\n      FOR(i, NL) if (s & 1 << i) res.eb(i);\n\
-    \      FOR(i, NR) if (t & 1 << i) res.eb(NL + i);\n      return res;\n    }\n\
-    \  }\n  assert(0);\n  return {};\n}\n#line 5 \"test/library_checker/graph/maximum_independent_set2.test.cpp\"\
+    \ V, bool keey_eid = false) {\n    int n = len(V);\n    map<int, int> MP;\n  \
+    \  FOR(i, n) MP[V[i]] = i;\n    set<int> used;\n    Graph<T, directed> G(n);\n\
+    \    FOR(i, n) {\n      for (auto&& e: (*this)[V[i]]) {\n        if (used.count(e.id))\
+    \ continue;\n        int a = e.frm, b = e.to;\n        if (MP.count(a) && MP.count(b))\
+    \ {\n          used.insert(e.id);\n          if (keep_eid)\n            G.add(MP[a],\
+    \ MP[b], e.cost, e.id);\n          else\n            G.add(MP[a], MP[b], e.cost);\n\
+    \        }\n      }\n    }\n    G.build();\n    return G;\n  }\n\nprivate:\n \
+    \ void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for\
+    \ (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
+    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
+    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
+    #line 2 \"graph/maximum_independent_set_weighted.hpp\"\n\n// meed in middle \u3067\
+    \ O(N2^{N/2})\n// \u81EA\u5DF1\u30EB\u30FC\u30D7 ok\uFF08\u72EC\u7ACB\u96C6\u5408\
+    \u3068\u3057\u3066\u4F7F\u3048\u306A\u3044\u70B9\uFF09\ntemplate <typename T,\
+    \ typename GT>\nvc<int> maximum_independent_set_weighted(GT& G, vc<T> weight)\
+    \ {\n  const int N = G.N;\n  assert(G.N <= 64);\n  vc<u64> nbd(N);\n  FOR(v, N)\
+    \ {\n    for (auto&& e: G[v]) { nbd[v] |= u64(1) << (e.to); }\n  }\n  int NL =\
+    \ ceil(N, 2);\n  int NR = N - NL;\n  vc<u64> nbd_L(1 << NL);\n  vc<T> wt_L(1 <<\
+    \ NL);\n  FOR(i, NL) FOR(s, 1 << i) { nbd_L[s | 1 << i] = nbd_L[s] | nbd[i]; }\n\
+    \  FOR(i, NL) FOR(s, 1 << i) { wt_L[s | 1 << i] = wt_L[s] + weight[i]; }\n  vc<u64>\
+    \ nbd_R(1 << NR);\n  vc<T> wt_R(1 << NR);\n  FOR(i, NR) FOR(s, 1 << i) { nbd_R[s\
+    \ | 1 << i] = nbd_R[s] | nbd[NL + i]; }\n  FOR(i, NR) FOR(s, 1 << i) { wt_R[s\
+    \ | 1 << i] = wt_R[s] + weight[NL + i]; }\n\n  FOR(s, 1 << NL) if (nbd_L[s] &\
+    \ s) wt_L[s] = -1;\n  FOR(s, 1 << NR) if (nbd_R[s] >> NL & s) wt_R[s] = -1;\n\n\
+    \  vc<T> dp = wt_R;\n  FOR(i, NR) FOR(s, 1 << NR) {\n    int t = s | 1 << i;\n\
+    \    if (s < t) chmax(dp[t], dp[s]);\n  }\n  reverse(all(dp));\n  T best = 0;\n\
+    \  int best_s = 0;\n  FOR(s, 1 << NL) {\n    if (chmax(best, wt_L[s] + dp[(nbd_L[s]\
+    \ >> NL)])) best_s = s;\n  }\n  int s = best_s;\n  int used = nbd_L[s] >> NL;\n\
+    \  FOR(t, 1 << NR) {\n    if (used & t) continue;\n    if (wt_L[s] + wt_R[t] ==\
+    \ best) {\n      vc<int> res;\n      FOR(i, NL) if (s & 1 << i) res.eb(i);\n \
+    \     FOR(i, NR) if (t & 1 << i) res.eb(NL + i);\n      return res;\n    }\n \
+    \ }\n  assert(0);\n  return {};\n}\n#line 5 \"test/library_checker/graph/maximum_independent_set2.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, M);\n  Graph<bool, 0> G(N);\n  G.read_graph(M, 0,\
     \ 0);\n  vc<int> wt(N, 1);\n  vc<int> V = maximum_independent_set_weighted(G,\
     \ wt);\n  print(len(V));\n  print(V);\n}\n\nsigned main() {\n  solve();\n  return\
@@ -296,8 +298,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/maximum_independent_set2.test.cpp
   requiredBy: []
-  timestamp: '2023-05-19 13:20:17+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-20 04:25:56+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/maximum_independent_set2.test.cpp
 layout: document

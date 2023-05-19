@@ -1,21 +1,21 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
   - icon: ':x:'
     path: game/graph_game.hpp
     title: game/graph_game.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest_path/K_shortest_walk.hpp
     title: graph/shortest_path/K_shortest_walk.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/K_shortest_walk.test.cpp
     title: test/library_checker/graph/K_shortest_walk.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1601.test.cpp
     title: test/yukicoder/1601.test.cpp
   - icon: ':x:'
@@ -23,7 +23,7 @@ data:
     title: test_atcoder/abc209e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -69,20 +69,21 @@ data:
     \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\n  // G \u306B\u304A\u3051\u308B\
     \u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\
     \u306A\u308B\u3088\u3046\u306B\u3059\u308B\n  Graph<T, directed> rearrange(vc<int>\
-    \ V) {\n    int n = len(V);\n    map<int, int> MP;\n    FOR(i, n) MP[V[i]] = i;\n\
-    \    set<int> used;\n    Graph<T, directed> G(n);\n    FOR(i, n) {\n      for\
-    \ (auto&& e: (*this)[V[i]]) {\n        if (used.count(e.id)) continue;\n     \
-    \   int a = e.frm, b = e.to;\n        if (MP.count(a) && MP.count(b)) {\n    \
-    \      used.insert(e.id);\n          G.add(MP[a], MP[b], e.cost);\n        }\n\
-    \      }\n    }\n    G.build();\n    return G;\n  }\n\nprivate:\n  void calc_deg()\
-    \ {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
-    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
-    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
-    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/reverse_graph.hpp\"\
-    \n\r\ntemplate <typename T>\r\nGraph<T, 1> reverse_graph(Graph<T, 1>& G) {\r\n\
-    \  assert(G.is_directed());\r\n  Graph<T, 1> G1(G.N);\r\n  for (auto&& e: G.edges)\
-    \ { G1.add(e.to, e.frm, e.cost, e.id); }\r\n  G1.build();\r\n  return G1;\r\n\
-    }\r\n"
+    \ V, bool keey_eid = false) {\n    int n = len(V);\n    map<int, int> MP;\n  \
+    \  FOR(i, n) MP[V[i]] = i;\n    set<int> used;\n    Graph<T, directed> G(n);\n\
+    \    FOR(i, n) {\n      for (auto&& e: (*this)[V[i]]) {\n        if (used.count(e.id))\
+    \ continue;\n        int a = e.frm, b = e.to;\n        if (MP.count(a) && MP.count(b))\
+    \ {\n          used.insert(e.id);\n          if (keep_eid)\n            G.add(MP[a],\
+    \ MP[b], e.cost, e.id);\n          else\n            G.add(MP[a], MP[b], e.cost);\n\
+    \        }\n      }\n    }\n    G.build();\n    return G;\n  }\n\nprivate:\n \
+    \ void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for\
+    \ (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
+    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
+    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
+    #line 2 \"graph/reverse_graph.hpp\"\n\r\ntemplate <typename T>\r\nGraph<T, 1>\
+    \ reverse_graph(Graph<T, 1>& G) {\r\n  assert(G.is_directed());\r\n  Graph<T,\
+    \ 1> G1(G.N);\r\n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost, e.id);\
+    \ }\r\n  G1.build();\r\n  return G1;\r\n}\r\n"
   code: "#include \"graph/base.hpp\"\r\n\r\ntemplate <typename T>\r\nGraph<T, 1> reverse_graph(Graph<T,\
     \ 1>& G) {\r\n  assert(G.is_directed());\r\n  Graph<T, 1> G1(G.N);\r\n  for (auto&&\
     \ e: G.edges) { G1.add(e.to, e.frm, e.cost, e.id); }\r\n  G1.build();\r\n  return\
@@ -94,8 +95,8 @@ data:
   requiredBy:
   - graph/shortest_path/K_shortest_walk.hpp
   - game/graph_game.hpp
-  timestamp: '2023-05-19 13:20:17+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-05-20 04:25:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc209e.test.cpp
   - test/yukicoder/1601.test.cpp

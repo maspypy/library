@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1778.test.cpp
     title: test/yukicoder/1778.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -57,31 +57,32 @@ data:
     \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\n  // G \u306B\u304A\u3051\u308B\
     \u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\
     \u306A\u308B\u3088\u3046\u306B\u3059\u308B\n  Graph<T, directed> rearrange(vc<int>\
-    \ V) {\n    int n = len(V);\n    map<int, int> MP;\n    FOR(i, n) MP[V[i]] = i;\n\
-    \    set<int> used;\n    Graph<T, directed> G(n);\n    FOR(i, n) {\n      for\
-    \ (auto&& e: (*this)[V[i]]) {\n        if (used.count(e.id)) continue;\n     \
-    \   int a = e.frm, b = e.to;\n        if (MP.count(a) && MP.count(b)) {\n    \
-    \      used.insert(e.id);\n          G.add(MP[a], MP[b], e.cost);\n        }\n\
-    \      }\n    }\n    G.build();\n    return G;\n  }\n\nprivate:\n  void calc_deg()\
-    \ {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
-    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
-    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
-    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/bracket_graph.hpp\"\
-    \n\r\n// {G, LR}.\r\n// regular bracket sequence \u3092\u30B0\u30E9\u30D5\u306B\
-    \u3059\u308B\u3002\u5404\u9802\u70B9\u306E\u7BC4\u56F2\u3092\u8868\u3059\u914D\
-    \u5217 LR \u3082\u4F5C\u308B\u3002\r\n// \u5168\u4F53\u3092\u8868\u3059\u6839\u30CE\
-    \u30FC\u30C9\u3082\u4F5C\u3063\u3066\u3001N/2+1\u9802\u70B9\u3002\r\n// ()() \u2192\
-    \ [0,4), [0,2), [2,4)\r\n// regular bracket sequence \u4EE5\u5916\u304C\u5165\u529B\
-    \u306B\u6765\u308B\u3068\u304D\u306F\u3001\u524D\u5F8C\u306B()\u3092\u88DC\u3048\
-    \u3070\u4F7F\u3048\u308B\u3002\r\npair<Graph<int, 1>, vc<pair<int, int>>> bracket_graph(string&\
-    \ S) {\r\n  int N = len(S) / 2;\r\n  Graph<int, 1> G(N + 1);\r\n  vc<pair<int,\
-    \ int>> LR(N + 1);\r\n  int now = 0;\r\n  int nxt = 1;\r\n  LR[0] = {0, len(S)};\r\
-    \n  vc<int> par(N + 1, -1);\r\n  FOR(i, len(S)) {\r\n    assert(S[i] == '(' ||\
-    \ S[i] == ')');\r\n    if (S[i] == '(') {\r\n      G.add(now, nxt);\r\n      par[nxt]\
-    \ = now;\r\n      LR[nxt].fi = i;\r\n      now = nxt;\r\n      nxt++;\r\n    }\r\
-    \n    if (S[i] == ')') {\r\n      LR[now].se = i + 1;\r\n      now = par[now];\r\
-    \n    }\r\n  }\r\n  assert(now == 0);\r\n  G.build();\r\n  return {G, LR};\r\n\
-    }\n"
+    \ V, bool keey_eid = false) {\n    int n = len(V);\n    map<int, int> MP;\n  \
+    \  FOR(i, n) MP[V[i]] = i;\n    set<int> used;\n    Graph<T, directed> G(n);\n\
+    \    FOR(i, n) {\n      for (auto&& e: (*this)[V[i]]) {\n        if (used.count(e.id))\
+    \ continue;\n        int a = e.frm, b = e.to;\n        if (MP.count(a) && MP.count(b))\
+    \ {\n          used.insert(e.id);\n          if (keep_eid)\n            G.add(MP[a],\
+    \ MP[b], e.cost, e.id);\n          else\n            G.add(MP[a], MP[b], e.cost);\n\
+    \        }\n      }\n    }\n    G.build();\n    return G;\n  }\n\nprivate:\n \
+    \ void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for\
+    \ (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
+    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
+    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
+    #line 2 \"graph/bracket_graph.hpp\"\n\r\n// {G, LR}.\r\n// regular bracket sequence\
+    \ \u3092\u30B0\u30E9\u30D5\u306B\u3059\u308B\u3002\u5404\u9802\u70B9\u306E\u7BC4\
+    \u56F2\u3092\u8868\u3059\u914D\u5217 LR \u3082\u4F5C\u308B\u3002\r\n// \u5168\u4F53\
+    \u3092\u8868\u3059\u6839\u30CE\u30FC\u30C9\u3082\u4F5C\u3063\u3066\u3001N/2+1\u9802\
+    \u70B9\u3002\r\n// ()() \u2192 [0,4), [0,2), [2,4)\r\n// regular bracket sequence\
+    \ \u4EE5\u5916\u304C\u5165\u529B\u306B\u6765\u308B\u3068\u304D\u306F\u3001\u524D\
+    \u5F8C\u306B()\u3092\u88DC\u3048\u3070\u4F7F\u3048\u308B\u3002\r\npair<Graph<int,\
+    \ 1>, vc<pair<int, int>>> bracket_graph(string& S) {\r\n  int N = len(S) / 2;\r\
+    \n  Graph<int, 1> G(N + 1);\r\n  vc<pair<int, int>> LR(N + 1);\r\n  int now =\
+    \ 0;\r\n  int nxt = 1;\r\n  LR[0] = {0, len(S)};\r\n  vc<int> par(N + 1, -1);\r\
+    \n  FOR(i, len(S)) {\r\n    assert(S[i] == '(' || S[i] == ')');\r\n    if (S[i]\
+    \ == '(') {\r\n      G.add(now, nxt);\r\n      par[nxt] = now;\r\n      LR[nxt].fi\
+    \ = i;\r\n      now = nxt;\r\n      nxt++;\r\n    }\r\n    if (S[i] == ')') {\r\
+    \n      LR[now].se = i + 1;\r\n      now = par[now];\r\n    }\r\n  }\r\n  assert(now\
+    \ == 0);\r\n  G.build();\r\n  return {G, LR};\r\n}\n"
   code: "#include \"graph/base.hpp\"\r\n\r\n// {G, LR}.\r\n// regular bracket sequence\
     \ \u3092\u30B0\u30E9\u30D5\u306B\u3059\u308B\u3002\u5404\u9802\u70B9\u306E\u7BC4\
     \u56F2\u3092\u8868\u3059\u914D\u5217 LR \u3082\u4F5C\u308B\u3002\r\n// \u5168\u4F53\
@@ -102,8 +103,8 @@ data:
   isVerificationFile: false
   path: graph/bracket_graph.hpp
   requiredBy: []
-  timestamp: '2023-05-19 13:20:17+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-05-20 04:25:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1778.test.cpp
 documentation_of: graph/bracket_graph.hpp

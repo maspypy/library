@@ -241,8 +241,8 @@ data:
     \ T>\r\nT spmat_det(int N, vc<tuple<int, int, T>> dat) {\r\n  vc<T> c(N);\r\n\
     \  FOR(i, N) c[i] = RNG(1, T::get_mod());\r\n  T r = 1;\r\n  FOR(i, N) r *= c[i];\r\
     \n  for (auto&& [i, j, x]: dat) x *= c[i];\r\n  auto f = spmat_min_poly(N, dat);\r\
-    \n  f.resize(N + 1);\r\n  T det = f.back();\r\n  if (N & 1) det *= -1;\r\n  det\
-    \ /= r;\r\n  return det;\r\n}\r\n#line 5 \"test/library_checker/matrix/sparse_matrix_det.test.cpp\"\
+    \n  T det = (len(f) == N ? f[0] : T(0));\r\n  if (N & 1) det *= -1;\r\n  det /=\
+    \ r;\r\n  return det;\r\n}\r\n#line 5 \"test/library_checker/matrix/sparse_matrix_det.test.cpp\"\
     \n\r\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
     \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
     \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
@@ -334,7 +334,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/sparse_matrix_det.test.cpp
   requiredBy: []
-  timestamp: '2023-05-20 02:22:04+09:00'
+  timestamp: '2023-05-20 03:59:29+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/matrix/sparse_matrix_det.test.cpp

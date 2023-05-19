@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1451.test.cpp
     title: test/yukicoder/1451.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -60,38 +60,39 @@ data:
     \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\n  // G \u306B\u304A\u3051\u308B\
     \u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\
     \u306A\u308B\u3088\u3046\u306B\u3059\u308B\n  Graph<T, directed> rearrange(vc<int>\
-    \ V) {\n    int n = len(V);\n    map<int, int> MP;\n    FOR(i, n) MP[V[i]] = i;\n\
-    \    set<int> used;\n    Graph<T, directed> G(n);\n    FOR(i, n) {\n      for\
-    \ (auto&& e: (*this)[V[i]]) {\n        if (used.count(e.id)) continue;\n     \
-    \   int a = e.frm, b = e.to;\n        if (MP.count(a) && MP.count(b)) {\n    \
-    \      used.insert(e.id);\n          G.add(MP[a], MP[b], e.cost);\n        }\n\
-    \      }\n    }\n    G.build();\n    return G;\n  }\n\nprivate:\n  void calc_deg()\
-    \ {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
-    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
-    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
-    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"ds/unionfind/unionfind.hpp\"\
-    \n\nstruct UnionFind {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n \
-    \ UnionFind(int n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp\
-    \ = m;\n    dat.assign(n, -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int\
-    \ x) {\n    while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp <\
-    \ 0) { return dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n\
-    \  ll size(int x) {\n    assert(dat[x] < 0);\n    return -dat[x];\n  }\n\n  bool\
-    \ merge(int x, int y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y)\
-    \ return false;\n    if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y],\
-    \ dat[y] = x, n_comp--;\n    return true;\n  }\n};\n#line 3 \"graph/tree_of_unionfind.hpp\"\
-    \n\r\n/*\r\n\u30DE\u30FC\u30B8\u904E\u7A0B\u3092\u8868\u3059\u6728\u3092\u69CB\
-    \u7BC9\u3059\u308B\r\nq \u56DE\u76EE\u306B\u30DE\u30FC\u30B8\u3057\u3066\u3067\
-    \u304D\u308B\u6210\u5206\uFF1AN+q\r\nadd_root = true \u306E\u5834\u5408\uFF1A\u6700\
-    \u5F8C\u306B\u5168\u90E8\u3092\u30DE\u30FC\u30B8\u3057\u3066\u3001\u6839 N+Q \u3092\
-    \u8FFD\u52A0\u3059\u308B\r\n*/\r\nGraph<int> tree_of_unionfind(int N, vc<pair<int,\
-    \ int>> query, bool add_root) {\r\n  UnionFind uf(N + len(query));\r\n  vc<int>\
-    \ root(N);\r\n  iota(all(root), 0);\r\n  int Q = len(query);\r\n  Graph<int> G(N\
-    \ + Q + add_root);\r\n  FOR(q, Q) {\r\n    int v = N + q;\r\n    auto [a, b] =\
-    \ query[q];\r\n    a = uf[a], b = uf[b];\r\n    G.add(v, root[a]);\r\n    if (b\
-    \ != a) G.add(v, root[b]);\r\n    uf.merge(a, b);\r\n    uf.merge(b, v);\r\n \
-    \   root[uf[v]] = v;\r\n  }\r\n  if (add_root) {\r\n    int r = N + Q;\r\n   \
-    \ FOR(v, N) if (uf[v] == v) G.add(r, root[v]);\r\n  }\r\n  G.build();\r\n  return\
-    \ G;\r\n}\r\n"
+    \ V, bool keey_eid = false) {\n    int n = len(V);\n    map<int, int> MP;\n  \
+    \  FOR(i, n) MP[V[i]] = i;\n    set<int> used;\n    Graph<T, directed> G(n);\n\
+    \    FOR(i, n) {\n      for (auto&& e: (*this)[V[i]]) {\n        if (used.count(e.id))\
+    \ continue;\n        int a = e.frm, b = e.to;\n        if (MP.count(a) && MP.count(b))\
+    \ {\n          used.insert(e.id);\n          if (keep_eid)\n            G.add(MP[a],\
+    \ MP[b], e.cost, e.id);\n          else\n            G.add(MP[a], MP[b], e.cost);\n\
+    \        }\n      }\n    }\n    G.build();\n    return G;\n  }\n\nprivate:\n \
+    \ void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for\
+    \ (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
+    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
+    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
+    #line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int n, n_comp;\n\
+    \  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n); }\n\n  void\
+    \ build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  void\
+    \ reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x] >= 0)\
+    \ {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n     \
+    \ x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    assert(dat[x]\
+    \ < 0);\n    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x],\
+    \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
+    \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n};\n\
+    #line 3 \"graph/tree_of_unionfind.hpp\"\n\r\n/*\r\n\u30DE\u30FC\u30B8\u904E\u7A0B\
+    \u3092\u8868\u3059\u6728\u3092\u69CB\u7BC9\u3059\u308B\r\nq \u56DE\u76EE\u306B\
+    \u30DE\u30FC\u30B8\u3057\u3066\u3067\u304D\u308B\u6210\u5206\uFF1AN+q\r\nadd_root\
+    \ = true \u306E\u5834\u5408\uFF1A\u6700\u5F8C\u306B\u5168\u90E8\u3092\u30DE\u30FC\
+    \u30B8\u3057\u3066\u3001\u6839 N+Q \u3092\u8FFD\u52A0\u3059\u308B\r\n*/\r\nGraph<int>\
+    \ tree_of_unionfind(int N, vc<pair<int, int>> query, bool add_root) {\r\n  UnionFind\
+    \ uf(N + len(query));\r\n  vc<int> root(N);\r\n  iota(all(root), 0);\r\n  int\
+    \ Q = len(query);\r\n  Graph<int> G(N + Q + add_root);\r\n  FOR(q, Q) {\r\n  \
+    \  int v = N + q;\r\n    auto [a, b] = query[q];\r\n    a = uf[a], b = uf[b];\r\
+    \n    G.add(v, root[a]);\r\n    if (b != a) G.add(v, root[b]);\r\n    uf.merge(a,\
+    \ b);\r\n    uf.merge(b, v);\r\n    root[uf[v]] = v;\r\n  }\r\n  if (add_root)\
+    \ {\r\n    int r = N + Q;\r\n    FOR(v, N) if (uf[v] == v) G.add(r, root[v]);\r\
+    \n  }\r\n  G.build();\r\n  return G;\r\n}\r\n"
   code: "#include \"graph/base.hpp\"\r\n#include \"ds/unionfind/unionfind.hpp\"\r\n\
     \r\n/*\r\n\u30DE\u30FC\u30B8\u904E\u7A0B\u3092\u8868\u3059\u6728\u3092\u69CB\u7BC9\
     \u3059\u308B\r\nq \u56DE\u76EE\u306B\u30DE\u30FC\u30B8\u3057\u3066\u3067\u304D\
@@ -111,8 +112,8 @@ data:
   isVerificationFile: false
   path: graph/tree_of_unionfind.hpp
   requiredBy: []
-  timestamp: '2023-05-19 13:20:17+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-05-20 04:25:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1451.test.cpp
 documentation_of: graph/tree_of_unionfind.hpp

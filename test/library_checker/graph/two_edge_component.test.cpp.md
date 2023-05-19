@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/two_edge_connected_components
@@ -248,32 +248,34 @@ data:
     \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\n  // G \u306B\u304A\u3051\u308B\
     \u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\
     \u306A\u308B\u3088\u3046\u306B\u3059\u308B\n  Graph<T, directed> rearrange(vc<int>\
-    \ V) {\n    int n = len(V);\n    map<int, int> MP;\n    FOR(i, n) MP[V[i]] = i;\n\
-    \    set<int> used;\n    Graph<T, directed> G(n);\n    FOR(i, n) {\n      for\
-    \ (auto&& e: (*this)[V[i]]) {\n        if (used.count(e.id)) continue;\n     \
-    \   int a = e.frm, b = e.to;\n        if (MP.count(a) && MP.count(b)) {\n    \
-    \      used.insert(e.id);\n          G.add(MP[a], MP[b], e.cost);\n        }\n\
-    \      }\n    }\n    G.build();\n    return G;\n  }\n\nprivate:\n  void calc_deg()\
-    \ {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
-    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
-    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
-    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/two_edge_component.hpp\"\
-    \n\r\n// (\u6210\u5206\u6570, \u6210\u5206\u756A\u53F7\u306E vector)\r\ntemplate\
-    \ <typename GT>\r\npair<int, vc<int>> two_edge_component(GT& G) {\r\n  assert(!G.is_directed());\r\
-    \n  int N = G.N, M = G.M, n_comp = 0;\r\n  vc<int> V, par(N, -2), dp(N), comp(N);\r\
-    \n  V.reserve(N);\r\n  vc<bool> used(M);\r\n  auto dfs = [&](auto& dfs, int v)\
-    \ -> void {\r\n    V.eb(v);\r\n    for (auto&& e: G[v]) {\r\n      if (used[e.id])\
-    \ continue;\r\n      if (par[e.to] != -2) dp[v]++, dp[e.to]--, used[e.id] = 1;\r\
-    \n      if (par[e.to] == -2) {\r\n        used[e.id] = 1;\r\n        par[e.to]\
-    \ = v;\r\n        dfs(dfs, e.to);\r\n      }\r\n    }\r\n  };\r\n  FOR(v, N) if\
-    \ (par[v] == -2) { par[v] = -1, dfs(dfs, v); }\r\n  FOR_R(i, N) {\r\n    if (par[V[i]]\
-    \ != -1) dp[par[V[i]]] += dp[V[i]];\r\n  }\r\n  for (auto&& v: V) comp[v] = (dp[v]\
-    \ == 0 ? n_comp++ : comp[par[v]]);\r\n  return {n_comp, comp};\r\n}\n#line 5 \"\
-    test/library_checker/graph/two_edge_component.test.cpp\"\n\r\nvoid solve() {\r\
-    \n  LL(N, M);\r\n  Graph G(N);\r\n  G.read_graph(M, false, 0);\r\n\r\n  auto [C,\
-    \ comp] = two_edge_component(G);\r\n  vc<vc<int>> ANS(C);\r\n  FOR(v, N) ANS[comp[v]].eb(v);\r\
-    \n  print(len(ANS));\r\n  for (auto&& ans: ANS) print(len(ans), ans);\r\n}\r\n\
-    \r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ V, bool keey_eid = false) {\n    int n = len(V);\n    map<int, int> MP;\n  \
+    \  FOR(i, n) MP[V[i]] = i;\n    set<int> used;\n    Graph<T, directed> G(n);\n\
+    \    FOR(i, n) {\n      for (auto&& e: (*this)[V[i]]) {\n        if (used.count(e.id))\
+    \ continue;\n        int a = e.frm, b = e.to;\n        if (MP.count(a) && MP.count(b))\
+    \ {\n          used.insert(e.id);\n          if (keep_eid)\n            G.add(MP[a],\
+    \ MP[b], e.cost, e.id);\n          else\n            G.add(MP[a], MP[b], e.cost);\n\
+    \        }\n      }\n    }\n    G.build();\n    return G;\n  }\n\nprivate:\n \
+    \ void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for\
+    \ (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
+    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
+    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
+    #line 2 \"graph/two_edge_component.hpp\"\n\r\n// (\u6210\u5206\u6570, \u6210\u5206\
+    \u756A\u53F7\u306E vector)\r\ntemplate <typename GT>\r\npair<int, vc<int>> two_edge_component(GT&\
+    \ G) {\r\n  assert(!G.is_directed());\r\n  int N = G.N, M = G.M, n_comp = 0;\r\
+    \n  vc<int> V, par(N, -2), dp(N), comp(N);\r\n  V.reserve(N);\r\n  vc<bool> used(M);\r\
+    \n  auto dfs = [&](auto& dfs, int v) -> void {\r\n    V.eb(v);\r\n    for (auto&&\
+    \ e: G[v]) {\r\n      if (used[e.id]) continue;\r\n      if (par[e.to] != -2)\
+    \ dp[v]++, dp[e.to]--, used[e.id] = 1;\r\n      if (par[e.to] == -2) {\r\n   \
+    \     used[e.id] = 1;\r\n        par[e.to] = v;\r\n        dfs(dfs, e.to);\r\n\
+    \      }\r\n    }\r\n  };\r\n  FOR(v, N) if (par[v] == -2) { par[v] = -1, dfs(dfs,\
+    \ v); }\r\n  FOR_R(i, N) {\r\n    if (par[V[i]] != -1) dp[par[V[i]]] += dp[V[i]];\r\
+    \n  }\r\n  for (auto&& v: V) comp[v] = (dp[v] == 0 ? n_comp++ : comp[par[v]]);\r\
+    \n  return {n_comp, comp};\r\n}\n#line 5 \"test/library_checker/graph/two_edge_component.test.cpp\"\
+    \n\r\nvoid solve() {\r\n  LL(N, M);\r\n  Graph G(N);\r\n  G.read_graph(M, false,\
+    \ 0);\r\n\r\n  auto [C, comp] = two_edge_component(G);\r\n  vc<vc<int>> ANS(C);\r\
+    \n  FOR(v, N) ANS[comp[v]].eb(v);\r\n  print(len(ANS));\r\n  for (auto&& ans:\
+    \ ANS) print(len(ans), ans);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n\
+    \  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/two_edge_connected_components\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"graph/two_edge_component.hpp\"\
     \r\n\r\nvoid solve() {\r\n  LL(N, M);\r\n  Graph G(N);\r\n  G.read_graph(M, false,\
@@ -289,8 +291,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/two_edge_component.test.cpp
   requiredBy: []
-  timestamp: '2023-05-19 13:20:17+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-20 04:25:56+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/two_edge_component.test.cpp
 layout: document

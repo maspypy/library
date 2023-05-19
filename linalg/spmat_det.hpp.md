@@ -44,14 +44,14 @@ data:
     \ T>\r\nT spmat_det(int N, vc<tuple<int, int, T>> dat) {\r\n  vc<T> c(N);\r\n\
     \  FOR(i, N) c[i] = RNG(1, T::get_mod());\r\n  T r = 1;\r\n  FOR(i, N) r *= c[i];\r\
     \n  for (auto&& [i, j, x]: dat) x *= c[i];\r\n  auto f = spmat_min_poly(N, dat);\r\
-    \n  f.resize(N + 1);\r\n  T det = f.back();\r\n  if (N & 1) det *= -1;\r\n  det\
-    \ /= r;\r\n  return det;\r\n}\r\n"
+    \n  T det = (len(f) == N ? f[0] : T(0));\r\n  if (N & 1) det *= -1;\r\n  det /=\
+    \ r;\r\n  return det;\r\n}\r\n"
   code: "#include \"linalg/spmat_min_poly.hpp\"\r\n\r\ntemplate <typename T>\r\nT\
     \ spmat_det(int N, vc<tuple<int, int, T>> dat) {\r\n  vc<T> c(N);\r\n  FOR(i,\
     \ N) c[i] = RNG(1, T::get_mod());\r\n  T r = 1;\r\n  FOR(i, N) r *= c[i];\r\n\
     \  for (auto&& [i, j, x]: dat) x *= c[i];\r\n  auto f = spmat_min_poly(N, dat);\r\
-    \n  f.resize(N + 1);\r\n  T det = f.back();\r\n  if (N & 1) det *= -1;\r\n  det\
-    \ /= r;\r\n  return det;\r\n}\r\n"
+    \n  T det = (len(f) == N ? f[0] : T(0));\r\n  if (N & 1) det *= -1;\r\n  det /=\
+    \ r;\r\n  return det;\r\n}\r\n"
   dependsOn:
   - linalg/spmat_min_poly.hpp
   - seq/find_linear_rec.hpp
@@ -59,7 +59,7 @@ data:
   isVerificationFile: false
   path: linalg/spmat_det.hpp
   requiredBy: []
-  timestamp: '2023-05-20 02:22:04+09:00'
+  timestamp: '2023-05-20 03:59:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/matrix/sparse_matrix_det.test.cpp

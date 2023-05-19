@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/manhattan_mst.hpp
     title: geo/manhattan_mst.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/manhattanmst
@@ -252,47 +252,48 @@ data:
     \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\n  // G \u306B\u304A\u3051\u308B\
     \u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\
     \u306A\u308B\u3088\u3046\u306B\u3059\u308B\n  Graph<T, directed> rearrange(vc<int>\
-    \ V) {\n    int n = len(V);\n    map<int, int> MP;\n    FOR(i, n) MP[V[i]] = i;\n\
-    \    set<int> used;\n    Graph<T, directed> G(n);\n    FOR(i, n) {\n      for\
-    \ (auto&& e: (*this)[V[i]]) {\n        if (used.count(e.id)) continue;\n     \
-    \   int a = e.frm, b = e.to;\n        if (MP.count(a) && MP.count(b)) {\n    \
-    \      used.insert(e.id);\n          G.add(MP[a], MP[b], e.cost);\n        }\n\
-    \      }\n    }\n    G.build();\n    return G;\n  }\n\nprivate:\n  void calc_deg()\
-    \ {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
-    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
-    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
-    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"ds/unionfind/unionfind.hpp\"\
-    \n\nstruct UnionFind {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n \
-    \ UnionFind(int n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp\
-    \ = m;\n    dat.assign(n, -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int\
-    \ x) {\n    while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp <\
-    \ 0) { return dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n\
-    \  ll size(int x) {\n    assert(dat[x] < 0);\n    return -dat[x];\n  }\n\n  bool\
-    \ merge(int x, int y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y)\
-    \ return false;\n    if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y],\
-    \ dat[y] = x, n_comp--;\n    return true;\n  }\n};\n#line 3 \"geo/manhattan_mst.hpp\"\
-    \n\n// \u6700\u5C0F\u5168\u57DF\u6728\u3092\u4F5C\u308B\u306E\u3067\u3001\u7279\
-    \u306B\u5404\u70B9\u304B\u3089\u306E\u6700\u8FD1\u70B9\u3092\u3068\u308B\u76EE\
-    \u7684\u3067\u4F7F\u3046\u3053\u3068\u3082\u3067\u304D\u308B\ntemplate <typename\
-    \ T>\nGraph<T, 0> manhattan_mst(vc<pair<T, T>>& XY) {\n  int N = XY.size();\n\
-    \  vc<tuple<T, int, int>> dat;\n  dat.reserve(4 * N);\n  vc<int> idx(N);\n  iota(all(idx),\
-    \ 0);\n\n  FOR(a, 2) {\n    for (auto&& [x, y]: XY) x = -x;\n    FOR(b, 2) {\n\
-    \      for (auto&& [x, y]: XY) swap(x, y);\n      sort(all(idx), [&](const int&\
-    \ i, const int& j) -> bool {\n        return XY[i].fi + XY[i].se < XY[j].fi +\
-    \ XY[j].se;\n      });\n\n      map<T, int> MP;\n      for (const int i: idx)\
-    \ {\n        auto& [x, y] = XY[i];\n        for (auto it = MP.lower_bound(-y);\
-    \ it != MP.end(); it = MP.erase(it)) {\n          const int j = it->se;\n    \
-    \      auto& [xj, yj] = XY[j];\n          const int dx = x - xj;\n          const\
-    \ int dy = y - yj;\n          if (dy > dx) break;\n          dat.eb(dx + dy, i,\
-    \ j);\n        }\n        MP[-y] = i;\n      }\n    }\n  }\n\n  sort(all(dat));\n\
-    \  Graph<T, 0> G(N);\n  UnionFind uf(N);\n  for (auto&& [cost, i, j]: dat) {\n\
-    \    if (uf.merge(i, j)) G.add(i, j, cost);\n  }\n  G.build();\n  return G;\n\
-    }\n#line 6 \"test/library_checker/graph/manhattan_mst.test.cpp\"\n\nvoid solve()\
-    \ {\n  LL(N);\n  using P = pair<int, int>;\n  VEC(P, XY, N);\n  auto G = manhattan_mst<int>(XY);\n\
-    \  ll ANS = 0;\n  for (auto&& e: G.edges) { ANS += e.cost; }\n  print(ANS);\n\
-    \  for (auto&& e: G.edges) { print(e.frm, e.to); }\n}\n\nsigned main() {\n  cout\
-    \ << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\
-    \n  return 0;\n}\n"
+    \ V, bool keey_eid = false) {\n    int n = len(V);\n    map<int, int> MP;\n  \
+    \  FOR(i, n) MP[V[i]] = i;\n    set<int> used;\n    Graph<T, directed> G(n);\n\
+    \    FOR(i, n) {\n      for (auto&& e: (*this)[V[i]]) {\n        if (used.count(e.id))\
+    \ continue;\n        int a = e.frm, b = e.to;\n        if (MP.count(a) && MP.count(b))\
+    \ {\n          used.insert(e.id);\n          if (keep_eid)\n            G.add(MP[a],\
+    \ MP[b], e.cost, e.id);\n          else\n            G.add(MP[a], MP[b], e.cost);\n\
+    \        }\n      }\n    }\n    G.build();\n    return G;\n  }\n\nprivate:\n \
+    \ void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for\
+    \ (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
+    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
+    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
+    #line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int n, n_comp;\n\
+    \  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n); }\n\n  void\
+    \ build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  void\
+    \ reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x] >= 0)\
+    \ {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n     \
+    \ x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    assert(dat[x]\
+    \ < 0);\n    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x],\
+    \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
+    \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n};\n\
+    #line 3 \"geo/manhattan_mst.hpp\"\n\n// \u6700\u5C0F\u5168\u57DF\u6728\u3092\u4F5C\
+    \u308B\u306E\u3067\u3001\u7279\u306B\u5404\u70B9\u304B\u3089\u306E\u6700\u8FD1\
+    \u70B9\u3092\u3068\u308B\u76EE\u7684\u3067\u4F7F\u3046\u3053\u3068\u3082\u3067\
+    \u304D\u308B\ntemplate <typename T>\nGraph<T, 0> manhattan_mst(vc<pair<T, T>>&\
+    \ XY) {\n  int N = XY.size();\n  vc<tuple<T, int, int>> dat;\n  dat.reserve(4\
+    \ * N);\n  vc<int> idx(N);\n  iota(all(idx), 0);\n\n  FOR(a, 2) {\n    for (auto&&\
+    \ [x, y]: XY) x = -x;\n    FOR(b, 2) {\n      for (auto&& [x, y]: XY) swap(x,\
+    \ y);\n      sort(all(idx), [&](const int& i, const int& j) -> bool {\n      \
+    \  return XY[i].fi + XY[i].se < XY[j].fi + XY[j].se;\n      });\n\n      map<T,\
+    \ int> MP;\n      for (const int i: idx) {\n        auto& [x, y] = XY[i];\n  \
+    \      for (auto it = MP.lower_bound(-y); it != MP.end(); it = MP.erase(it)) {\n\
+    \          const int j = it->se;\n          auto& [xj, yj] = XY[j];\n        \
+    \  const int dx = x - xj;\n          const int dy = y - yj;\n          if (dy\
+    \ > dx) break;\n          dat.eb(dx + dy, i, j);\n        }\n        MP[-y] =\
+    \ i;\n      }\n    }\n  }\n\n  sort(all(dat));\n  Graph<T, 0> G(N);\n  UnionFind\
+    \ uf(N);\n  for (auto&& [cost, i, j]: dat) {\n    if (uf.merge(i, j)) G.add(i,\
+    \ j, cost);\n  }\n  G.build();\n  return G;\n}\n#line 6 \"test/library_checker/graph/manhattan_mst.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  using P = pair<int, int>;\n  VEC(P, XY, N);\n\
+    \  auto G = manhattan_mst<int>(XY);\n  ll ANS = 0;\n  for (auto&& e: G.edges)\
+    \ { ANS += e.cost; }\n  print(ANS);\n  for (auto&& e: G.edges) { print(e.frm,\
+    \ e.to); }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll\
+    \ T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/manhattanmst\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/manhattan_mst.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  using P = pair<int, int>;\n  VEC(P, XY, N);\n\
@@ -309,8 +310,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/manhattan_mst.test.cpp
   requiredBy: []
-  timestamp: '2023-05-19 13:20:17+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-20 04:25:56+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/manhattan_mst.test.cpp
 layout: document
