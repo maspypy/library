@@ -285,6 +285,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2243.test.cpp
     title: test/yukicoder/2243.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2305.test.cpp
+    title: test/yukicoder/2305.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/541.test.cpp
     title: test/yukicoder/541.test.cpp
@@ -660,6 +663,7 @@ data:
   - test_atcoder/abc272_h.test.cpp
   - test_atcoder/abc288ex.test.cpp
   - test_atcoder/arc153f.test.cpp
+  - test/yukicoder/2305.test.cpp
   - test/yukicoder/1549.test.cpp
   - test/yukicoder/1392.test.cpp
   - test/yukicoder/1080.test.cpp

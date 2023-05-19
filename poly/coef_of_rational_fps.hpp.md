@@ -69,6 +69,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2305.test.cpp
+    title: test/yukicoder/2305.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/541.test.cpp
     title: test/yukicoder/541.test.cpp
@@ -464,6 +467,7 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/agc058d2.test.cpp
+  - test/yukicoder/2305.test.cpp
   - test/yukicoder/578.test.cpp
   - test/yukicoder/579.test.cpp
   - test/yukicoder/2122.test.cpp
