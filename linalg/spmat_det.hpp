@@ -8,8 +8,7 @@ T spmat_det(int N, vc<tuple<int, int, T>> dat) {
   FOR(i, N) r *= c[i];
   for (auto&& [i, j, x]: dat) x *= c[i];
   auto f = spmat_min_poly(N, dat);
-  f.resize(N + 1);
-  T det = f.back();
+  T det = (len(f) == N ? f[0] : T(0));
   if (N & 1) det *= -1;
   det /= r;
   return det;
