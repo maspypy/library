@@ -18,6 +18,7 @@ struct Counter {
     freq_cnt[freq[k]]--, freq[k]++, freq_cnt[freq[k]]++;
     key[min(thresh, freq[k])][k] = 1;
   }
+  void add(int k) { insert(k); }
 
   void erase(int k) {
     if (mx == freq[k] && freq_cnt[freq[k]] == 1) --mx;
@@ -25,6 +26,7 @@ struct Counter {
     freq_cnt[freq[k]]--, freq[k]--, freq_cnt[freq[k]]++;
     key[min(thresh, freq[k])][k] = 1;
   }
+  void remove(int k) { erase(k); }
 
   int operator[](int x) { return freq[x]; }
 
