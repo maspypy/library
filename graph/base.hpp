@@ -146,10 +146,16 @@ struct Graph {
     int n = len(V);
     map<int, int> MP;
     FOR(i, n) MP[V[i]] = i;
+    set<int> used;
     Graph<T, directed> G(n);
-    for (auto&& e: edges) {
-      if (MP.count(e.frm) && MP.count(e.to)) {
-        G.add(MP[e.frm], MP[e.to], e.cost);
+    FOR(i, n) {
+      for (auto&& e: (*this)[V[i]]) {
+        if (used.count(e.id)) continue;
+        int a = e.frm, b = e.to;
+        if (MP.count(a) && MP.count(b)) {
+          used.insert(e.id);
+          G.add(MP[a], MP[b], e.cost);
+        }
       }
     }
     G.build();
