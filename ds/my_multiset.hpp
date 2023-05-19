@@ -46,6 +46,7 @@ struct My_Multiset {
       break;
     }
   }
+  void add(T x) { insert(x); }
 
   void erase(T x) {
     FOR(idx, len(dat)) {
@@ -59,6 +60,7 @@ struct My_Multiset {
       break;
     }
   }
+  void remove(T x) { erase(x); }
 
   int count(T x) {
     int cnt = 0;
