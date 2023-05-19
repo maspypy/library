@@ -51,7 +51,7 @@ data:
     \  FOR(i, N) c[i] = RNG(1, mint::get_mod());\r\n  mint r = 1;\r\n  FOR(i, N) r\
     \ *= c[i];\r\n  auto g = [&](vc<mint> v) -> vc<mint> {\r\n    FOR(i, N) v[i] *=\
     \ c[i];\r\n    return f(v);\r\n  };\r\n  auto P = implicit_matrix_min_poly<mint>(N,\
-    \ g);\r\n  P.resize(N + 1);\r\n  mint det = P.back();\r\n  if (N & 1) det *= -1;\r\
+    \ g);\r\n  mint det = (len(P) == N ? P[0] : mint(0));\r\n  if (N & 1) det *= -1;\r\
     \n  det /= r;\r\n  return det;\r\n}\r\n"
   code: "#include \"linalg/implicit_matrix/min_poly.hpp\"\r\n\r\n// \u884C\u5217 A\
     \ \u3092\u304B\u3051\u308B\u3053\u3068\u3092\u8868\u3059\u7DDA\u5F62\u5909\u63DB\
@@ -60,7 +60,7 @@ data:
     \ c(N);\r\n  FOR(i, N) c[i] = RNG(1, mint::get_mod());\r\n  mint r = 1;\r\n  FOR(i,\
     \ N) r *= c[i];\r\n  auto g = [&](vc<mint> v) -> vc<mint> {\r\n    FOR(i, N) v[i]\
     \ *= c[i];\r\n    return f(v);\r\n  };\r\n  auto P = implicit_matrix_min_poly<mint>(N,\
-    \ g);\r\n  P.resize(N + 1);\r\n  mint det = P.back();\r\n  if (N & 1) det *= -1;\r\
+    \ g);\r\n  mint det = (len(P) == N ? P[0] : mint(0));\r\n  if (N & 1) det *= -1;\r\
     \n  det /= r;\r\n  return det;\r\n}\r\n"
   dependsOn:
   - linalg/implicit_matrix/min_poly.hpp
@@ -69,7 +69,7 @@ data:
   isVerificationFile: false
   path: linalg/implicit_matrix/det.hpp
   requiredBy: []
-  timestamp: '2023-05-20 02:22:04+09:00'
+  timestamp: '2023-05-20 03:57:24+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/310.test.cpp
