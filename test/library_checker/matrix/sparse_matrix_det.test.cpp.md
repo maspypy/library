@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/spmat_det.hpp
     title: linalg/spmat_det.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/spmat_min_poly.hpp
     title: linalg/spmat_min_poly.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: seq/find_linear_rec.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sparse_matrix_det
@@ -240,9 +240,9 @@ data:
     \n  return f;\r\n}\r\n#line 2 \"linalg/spmat_det.hpp\"\n\r\ntemplate <typename\
     \ T>\r\nT spmat_det(int N, vc<tuple<int, int, T>> dat) {\r\n  vc<T> c(N);\r\n\
     \  FOR(i, N) c[i] = RNG(1, T::get_mod());\r\n  T r = 1;\r\n  FOR(i, N) r *= c[i];\r\
-    \n  for (auto&& [i, j, x]: dat) x *= c[i];\r\n  auto f = spmat_min_poly(N, dat);\r\
-    \n  T det = (len(f) == N ? f[0] : T(0));\r\n  if (N & 1) det *= -1;\r\n  det /=\
-    \ r;\r\n  return det;\r\n}\r\n#line 5 \"test/library_checker/matrix/sparse_matrix_det.test.cpp\"\
+    \n  for (auto&& [i, j, x]: dat) x *= c[i];\r\n  vc<T> f = spmat_min_poly(N, dat);\r\
+    \n  T det = (len(f) == N + 1 ? f[0] : T(0));\r\n  if (N & 1) det *= -1;\r\n  det\
+    \ /= r;\r\n  return det;\r\n}\r\n#line 5 \"test/library_checker/matrix/sparse_matrix_det.test.cpp\"\
     \n\r\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
     \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
     \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
@@ -334,8 +334,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/sparse_matrix_det.test.cpp
   requiredBy: []
-  timestamp: '2023-05-20 03:59:29+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-05-20 12:35:33+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/matrix/sparse_matrix_det.test.cpp
 layout: document
