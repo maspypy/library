@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/rollinghash.hpp
     title: alg/monoid/rollinghash.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':warning:'
@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_bipartite.hpp
     title: graph/count/count_bipartite.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/eulerwalk.hpp
     title: graph/eulerwalk.hpp
   - icon: ':heavy_check_mark:'
@@ -41,7 +41,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/vs_to_es.hpp
     title: graph/vs_to_es.hpp
   - icon: ':heavy_check_mark:'
@@ -555,7 +555,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc157a.test.cpp
     title: test_atcoder/arc157a.test.cpp
   _isVerificationFailed: true
