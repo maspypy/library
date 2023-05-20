@@ -141,26 +141,31 @@ struct Graph {
     }
   }
 
+  vc<int> new_idx;
+  vc<bool> used_e;
+
   // G における頂点 V[i] が、新しいグラフで i になるようにする
   // {G, es}
   pair<Graph<T, directed>, vc<int>> rearrange(vc<int> V) {
+    if (len(new_idx) != N) new_idx.assign(N, -1);
+    if (len(used_e) != M) used_e.assign(M, 0);
     int n = len(V);
-    map<int, int> MP;
-    FOR(i, n) MP[V[i]] = i;
-    set<int> used;
+    FOR(i, n) new_idx[V[i]] = i;
     Graph<T, directed> G(n);
     vc<int> es;
     FOR(i, n) {
       for (auto&& e: (*this)[V[i]]) {
-        if (used.count(e.id)) continue;
+        if (used_e[e.id]) continue;
         int a = e.frm, b = e.to;
-        if (MP.count(a) && MP.count(b)) {
-          used.insert(e.id);
-          G.add(MP[a], MP[b], e.cost);
+        if (new_idx[a] != -1 && new_idx[b] != -1) {
+          used_e[e.id] = 1;
+          G.add(new_idx[a], new_idx[b], e.cost);
           es.eb(e.id);
         }
       }
     }
+    FOR(i, n) new_idx[V[i]] = -1;
+    for (auto&& eid: es) used_e[eid] = 0;
     G.build();
     return {G, es};
   }
