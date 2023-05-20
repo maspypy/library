@@ -14,14 +14,14 @@ data:
   - icon: ':warning:'
     path: graph/tree_dp/subtree_diameter.hpp
     title: graph/tree_dp/subtree_diameter.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/classify_tree.test.cpp
     title: test/library_checker/graph/classify_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/rerooting_dp.test.cpp
     title: test/library_checker/rerooting_dp.test.cpp
   - icon: ':x:'
@@ -50,7 +50,7 @@ data:
     title: test_atcoder/abc220f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/tree_dp/rerooting_dp.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\
@@ -254,7 +254,7 @@ data:
   - graph/tree_dp/subtree_depth_sum.hpp
   - graph/tree_dp/subtree_hash.hpp
   timestamp: '2023-05-20 20:14:16+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc220f.test.cpp
   - test_atcoder/abc160f.test.cpp
