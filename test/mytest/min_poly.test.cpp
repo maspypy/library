@@ -16,12 +16,12 @@ void test() {
   A.eb(1, 0, 3);
   A.eb(1, 1, 4);
   vc<mint> f = spmat_min_poly<mint>(2, A);
-  assert(f == vc<mint>({-2, -5, 1}));
+  assert(f == vc<mint>({mint(-2), mint(-5), mint(1)}));
 
   A.clear();
   A.eb(0, 1, 1);
   f = spmat_min_poly<mint>(2, A);
-  assert(f == vc<mint>({0, 0, 1}));
+  assert(f == vc<mint>({mint(0), mint(0), mint(1)}));
   assert(f == implicit_matrix_min_poly<mint>(2, [&](vc<mint> a) -> vc<mint> {
            vc<mint> b(2);
            for (auto&& [i, j, x]: A) b[j] += a[i] * x;
@@ -30,7 +30,7 @@ void test() {
 
   A.clear();
   f = spmat_min_poly<mint>(2, A);
-  assert(f == vc<mint>({0, 1}));
+  assert(f == vc<mint>({mint(0), mint(1)}));
   assert(f == implicit_matrix_min_poly<mint>(2, [&](vc<mint> a) -> vc<mint> {
            vc<mint> b(2);
            for (auto&& [i, j, x]: A) b[j] += a[i] * x;
@@ -39,7 +39,7 @@ void test() {
 
   A.clear();
   f = spmat_min_poly<mint>(0, A);
-  assert(f == vc<mint>({1}));
+  assert(f == vc<mint>({mint(1)}));
   assert(f == implicit_matrix_min_poly<mint>(0, [&](vc<mint> a) -> vc<mint> {
            vc<mint> b(0);
            for (auto&& [i, j, x]: A) b[j] += a[i] * x;
@@ -51,7 +51,7 @@ void test() {
   A.eb(0, 2, 1);
   A.eb(1, 2, 1);
   f = spmat_min_poly<mint>(3, A);
-  assert(f == vc<mint>({0, 0, 0, 1}));
+  assert(f == vc<mint>({mint(0), mint(0), mint(0), mint(1)}));
   assert(f == implicit_matrix_min_poly<mint>(3, [&](vc<mint> a) -> vc<mint> {
            vc<mint> b(3);
            for (auto&& [i, j, x]: A) b[j] += a[i] * x;
@@ -61,7 +61,7 @@ void test() {
   A.clear();
   A.eb(0, 2, 1);
   f = spmat_min_poly<mint>(3, A);
-  assert(f == vc<mint>({0, 0, 1}));
+  assert(f == vc<mint>({mint(0), mint(0), mint(1)}));
   assert(f == implicit_matrix_min_poly<mint>(3, [&](vc<mint> a) -> vc<mint> {
            vc<mint> b(3);
            for (auto&& [i, j, x]: A) b[j] += a[i] * x;
@@ -70,7 +70,7 @@ void test() {
 
   A.clear();
   f = spmat_min_poly<mint>(3, A);
-  assert(f == vc<mint>({0, 1}));
+  assert(f == vc<mint>({mint(0), mint(1)}));
   assert(f == implicit_matrix_min_poly<mint>(3, [&](vc<mint> a) -> vc<mint> {
            vc<mint> b(3);
            for (auto&& [i, j, x]: A) b[j] += a[i] * x;
