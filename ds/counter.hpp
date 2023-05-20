@@ -3,16 +3,21 @@ template <int KEY_MAX, int CNT_MAX, bool BS = false>
 struct Counter {
   static constexpr int thresh = (BS ? sqrt(CNT_MAX) : 0);
   int mx;
+  int total;
   vc<int> freq;
   vc<int> freq_cnt;
   vc<bitset<KEY_MAX>> key; // freq -> key
 
-  Counter() : mx(0), freq(KEY_MAX), freq_cnt(CNT_MAX + 1), key(thresh + 1) {
+  Counter()
+      : mx(0), total(0), freq(KEY_MAX), freq_cnt(CNT_MAX + 1), key(thresh + 1) {
     freq_cnt[0] = KEY_MAX;
     key[0].set();
   }
 
+  int size() { return total; }
+
   void insert(int k) {
+    ++total;
     if (mx == freq[k]) ++mx;
     key[min(thresh, freq[k])][k] = 0;
     freq_cnt[freq[k]]--, freq[k]++, freq_cnt[freq[k]]++;
@@ -21,6 +26,7 @@ struct Counter {
   void add(int k) { insert(k); }
 
   void erase(int k) {
+    --total;
     if (mx == freq[k] && freq_cnt[freq[k]] == 1) --mx;
     key[min(thresh, freq[k])][k] = 0;
     freq_cnt[freq[k]]--, freq[k]--, freq_cnt[freq[k]]++;
