@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_affine.hpp
     title: alg/acted_monoid/sum_affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/sum_assign.hpp
     title: alg/acted_monoid/sum_assign.hpp
   - icon: ':heavy_check_mark:'
@@ -396,10 +396,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc241e.test.cpp
     title: test_atcoder/abc241e.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc256ex.test.cpp
     title: test_atcoder/abc256ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc256ex2.test.cpp
     title: test_atcoder/abc256ex2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -411,9 +411,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc280f.test.cpp
     title: test_atcoder/abc280f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -467,7 +467,7 @@ data:
   - other/rectangle_union.hpp
   - string/trie.hpp
   timestamp: '2022-11-28 14:51:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc268_ex.test.cpp
   - test_atcoder/abc256ex2.test.cpp

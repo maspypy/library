@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_add.hpp
     title: alg/acted_monoid/sum_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
   - icon: ':heavy_check_mark:'
@@ -16,10 +16,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
@@ -258,59 +258,61 @@ data:
     \ 1, size) update(i);\n  }\n\n  void update(int k) { dat[k] = MX::op(dat[2 * k],\
     \ dat[2 * k + 1]); }\n  void set(int p, X x) {\n    assert(0 <= p && p < n);\n\
     \    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    dat[p]\
-    \ = x;\n    for (int i = 1; i <= log; i++) update(p >> i);\n  }\n\n  X get(int\
-    \ p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i\
-    \ >= 1; i--) push(p >> i);\n    return dat[p];\n  }\n\n  vc<X> get_all() {\n \
-    \   FOR(k, 1, size) { push(k); }\n    return {dat.begin() + size, dat.begin()\
-    \ + size + n};\n  }\n\n  X prod(int l, int r) {\n    assert(0 <= l && l <= r &&\
-    \ r <= n);\n    if (l == r) return MX::unit();\n    l += size, r += size;\n  \
-    \  for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l >>\
-    \ i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n    }\n    X xl =\
-    \ MX::unit(), xr = MX::unit();\n    while (l < r) {\n      if (l & 1) xl = MX::op(xl,\
-    \ dat[l++]);\n      if (r & 1) xr = MX::op(dat[--r], xr);\n      l >>= 1, r >>=\
-    \ 1;\n    }\n    return MX::op(xl, xr);\n  }\n\n  X prod_all() { return dat[1];\
-    \ }\n\n  void apply(int l, int r, A a) {\n    assert(0 <= l && l <= r && r <=\
-    \ n);\n    if (l == r) return;\n    l += size, r += size;\n    for (int i = log;\
-    \ i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l >> i);\n      if (((r\
-    \ >> i) << i) != r) push((r - 1) >> i);\n    }\n    int l2 = l, r2 = r;\n    while\
-    \ (l < r) {\n      if (l & 1) apply_at(l++, a);\n      if (r & 1) apply_at(--r,\
-    \ a);\n      l >>= 1, r >>= 1;\n    }\n    l = l2, r = r2;\n    for (int i = 1;\
-    \ i <= log; i++) {\n      if (((l >> i) << i) != l) update(l >> i);\n      if\
-    \ (((r >> i) << i) != r) update((r - 1) >> i);\n    }\n  }\n\n  template <typename\
-    \ F>\n  int max_right(const F check, int l) {\n    assert(0 <= l && l <= n);\n\
-    \    assert(check(MX::unit()));\n    if (l == n) return n;\n    l += size;\n \
-    \   for (int i = log; i >= 1; i--) push(l >> i);\n    X sm = MX::unit();\n   \
-    \ do {\n      while (l % 2 == 0) l >>= 1;\n      if (!check(MX::op(sm, dat[l])))\
-    \ {\n        while (l < size) {\n          push(l);\n          l = (2 * l);\n\
-    \          if (check(MX::op(sm, dat[l]))) { sm = MX::op(sm, dat[l++]); }\n   \
-    \     }\n        return l - size;\n      }\n      sm = MX::op(sm, dat[l++]);\n\
-    \    } while ((l & -l) != l);\n    return n;\n  }\n\n  template <typename F>\n\
-    \  int min_left(const F check, int r) {\n    assert(0 <= r && r <= n);\n    assert(check(MX::unit()));\n\
-    \    if (r == 0) return 0;\n    r += size;\n    for (int i = log; i >= 1; i--)\
-    \ push((r - 1) >> i);\n    X sm = MX::unit();\n    do {\n      r--;\n      while\
-    \ (r > 1 && (r % 2)) r >>= 1;\n      if (!check(MX::op(dat[r], sm))) {\n     \
-    \   while (r < size) {\n          push(r);\n          r = (2 * r + 1);\n     \
-    \     if (check(MX::op(dat[r], sm))) { sm = MX::op(dat[r--], sm); }\n        }\n\
-    \        return r + 1 - size;\n      }\n      sm = MX::op(dat[r], sm);\n    }\
-    \ while ((r & -r) != r);\n    return 0;\n  }\n\nprivate:\n  void apply_at(int\
-    \ k, A a) {\n    ll sz = 1 << (log - topbit(k));\n    dat[k] = AM::act(dat[k],\
-    \ a, sz);\n    if (k < size) laz[k] = MA::op(laz[k], a);\n  }\n  void push(int\
-    \ k) {\n    if (laz[k] == MA::unit()) return;\n    apply_at(2 * k, laz[k]), apply_at(2\
-    \ * k + 1, laz[k]);\n    laz[k] = MA::unit();\n  }\n};\n#line 2 \"alg/monoid/add.hpp\"\
-    \n\r\ntemplate <typename X>\r\nstruct Monoid_Add {\r\n  using value_type = X;\r\
-    \n  static constexpr X op(const X &x, const X &y) noexcept { return x + y; }\r\
-    \n  static constexpr X inverse(const X &x) noexcept { return -x; }\r\n  static\
-    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\n  static\
-    \ constexpr X unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\
-    \n};\r\n#line 2 \"alg/acted_monoid/sum_add.hpp\"\n\r\ntemplate <typename E>\r\n\
-    struct ActedMonoid_Sum_Add {\r\n  using Monoid_X = Monoid_Add<E>;\r\n  using Monoid_A\
-    \ = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A\
-    \ = typename Monoid_A::value_type;\r\n  static constexpr X act(const X &x, const\
-    \ A &a, const ll &size) {\r\n    return x + a * E(size);\r\n  }\r\n};\r\n#line\
-    \ 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class T>\n\
-    \  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n  template\
-    \ <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate <class\
-    \ T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ = x;\n    for (int i = 1; i <= log; i++) update(p >> i);\n  }\n  void multiply(int\
+    \ p, const X& x) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int\
+    \ i = log; i >= 1; i--) push(p >> i);\n    dat[p] = MX::op(dat[p], x);\n    for\
+    \ (int i = 1; i <= log; i++) update(p >> i);\n  }\n\n  X get(int p) {\n    assert(0\
+    \ <= p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--) push(p >>\
+    \ i);\n    return dat[p];\n  }\n\n  vc<X> get_all() {\n    FOR(k, 1, size) { push(k);\
+    \ }\n    return {dat.begin() + size, dat.begin() + size + n};\n  }\n\n  X prod(int\
+    \ l, int r) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return\
+    \ MX::unit();\n    l += size, r += size;\n    for (int i = log; i >= 1; i--) {\n\
+    \      if (((l >> i) << i) != l) push(l >> i);\n      if (((r >> i) << i) != r)\
+    \ push((r - 1) >> i);\n    }\n    X xl = MX::unit(), xr = MX::unit();\n    while\
+    \ (l < r) {\n      if (l & 1) xl = MX::op(xl, dat[l++]);\n      if (r & 1) xr\
+    \ = MX::op(dat[--r], xr);\n      l >>= 1, r >>= 1;\n    }\n    return MX::op(xl,\
+    \ xr);\n  }\n\n  X prod_all() { return dat[1]; }\n\n  void apply(int l, int r,\
+    \ A a) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n \
+    \   l += size, r += size;\n    for (int i = log; i >= 1; i--) {\n      if (((l\
+    \ >> i) << i) != l) push(l >> i);\n      if (((r >> i) << i) != r) push((r - 1)\
+    \ >> i);\n    }\n    int l2 = l, r2 = r;\n    while (l < r) {\n      if (l & 1)\
+    \ apply_at(l++, a);\n      if (r & 1) apply_at(--r, a);\n      l >>= 1, r >>=\
+    \ 1;\n    }\n    l = l2, r = r2;\n    for (int i = 1; i <= log; i++) {\n     \
+    \ if (((l >> i) << i) != l) update(l >> i);\n      if (((r >> i) << i) != r) update((r\
+    \ - 1) >> i);\n    }\n  }\n\n  template <typename F>\n  int max_right(const F\
+    \ check, int l) {\n    assert(0 <= l && l <= n);\n    assert(check(MX::unit()));\n\
+    \    if (l == n) return n;\n    l += size;\n    for (int i = log; i >= 1; i--)\
+    \ push(l >> i);\n    X sm = MX::unit();\n    do {\n      while (l % 2 == 0) l\
+    \ >>= 1;\n      if (!check(MX::op(sm, dat[l]))) {\n        while (l < size) {\n\
+    \          push(l);\n          l = (2 * l);\n          if (check(MX::op(sm, dat[l])))\
+    \ { sm = MX::op(sm, dat[l++]); }\n        }\n        return l - size;\n      }\n\
+    \      sm = MX::op(sm, dat[l++]);\n    } while ((l & -l) != l);\n    return n;\n\
+    \  }\n\n  template <typename F>\n  int min_left(const F check, int r) {\n    assert(0\
+    \ <= r && r <= n);\n    assert(check(MX::unit()));\n    if (r == 0) return 0;\n\
+    \    r += size;\n    for (int i = log; i >= 1; i--) push((r - 1) >> i);\n    X\
+    \ sm = MX::unit();\n    do {\n      r--;\n      while (r > 1 && (r % 2)) r >>=\
+    \ 1;\n      if (!check(MX::op(dat[r], sm))) {\n        while (r < size) {\n  \
+    \        push(r);\n          r = (2 * r + 1);\n          if (check(MX::op(dat[r],\
+    \ sm))) { sm = MX::op(dat[r--], sm); }\n        }\n        return r + 1 - size;\n\
+    \      }\n      sm = MX::op(dat[r], sm);\n    } while ((r & -r) != r);\n    return\
+    \ 0;\n  }\n\nprivate:\n  void apply_at(int k, A a) {\n    ll sz = 1 << (log -\
+    \ topbit(k));\n    dat[k] = AM::act(dat[k], a, sz);\n    if (k < size) laz[k]\
+    \ = MA::op(laz[k], a);\n  }\n  void push(int k) {\n    if (laz[k] == MA::unit())\
+    \ return;\n    apply_at(2 * k, laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k]\
+    \ = MA::unit();\n  }\n};\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename\
+    \ X>\r\nstruct Monoid_Add {\r\n  using value_type = X;\r\n  static constexpr X\
+    \ op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
+    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
+    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
+    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"alg/acted_monoid/sum_add.hpp\"\
+    \n\r\ntemplate <typename E>\r\nstruct ActedMonoid_Sum_Add {\r\n  using Monoid_X\
+    \ = Monoid_Add<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename\
+    \ Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\n  static\
+    \ constexpr X act(const X &x, const A &a, const ll &size) {\r\n    return x +\
+    \ a * E(size);\r\n  }\r\n};\r\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod\
     \ = mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n\
     \  if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
@@ -405,7 +407,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc234g.test.cpp
   requiredBy: []
-  timestamp: '2023-05-12 18:44:22+09:00'
+  timestamp: '2023-05-21 00:13:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc234g.test.cpp

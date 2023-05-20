@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/count/count_P3_P4.hpp
+    title: graph/count/count_P3_P4.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -62,7 +65,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: graph/count/count_C3_C4.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/count/count_P3_P4.hpp
   timestamp: '2023-03-30 23:49:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

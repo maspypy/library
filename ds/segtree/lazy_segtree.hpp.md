@@ -105,15 +105,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc234g.test.cpp
     title: test_atcoder/abc234g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc256ex.test.cpp
     title: test_atcoder/abc256ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc256ex2.test.cpp
     title: test_atcoder/abc256ex2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -131,30 +131,33 @@ data:
     \  void update(int k) { dat[k] = MX::op(dat[2 * k], dat[2 * k + 1]); }\n  void\
     \ set(int p, X x) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int\
     \ i = log; i >= 1; i--) push(p >> i);\n    dat[p] = x;\n    for (int i = 1; i\
-    \ <= log; i++) update(p >> i);\n  }\n\n  X get(int p) {\n    assert(0 <= p &&\
-    \ p < n);\n    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n\
-    \    return dat[p];\n  }\n\n  vc<X> get_all() {\n    FOR(k, 1, size) { push(k);\
-    \ }\n    return {dat.begin() + size, dat.begin() + size + n};\n  }\n\n  X prod(int\
-    \ l, int r) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return\
-    \ MX::unit();\n    l += size, r += size;\n    for (int i = log; i >= 1; i--) {\n\
-    \      if (((l >> i) << i) != l) push(l >> i);\n      if (((r >> i) << i) != r)\
-    \ push((r - 1) >> i);\n    }\n    X xl = MX::unit(), xr = MX::unit();\n    while\
-    \ (l < r) {\n      if (l & 1) xl = MX::op(xl, dat[l++]);\n      if (r & 1) xr\
-    \ = MX::op(dat[--r], xr);\n      l >>= 1, r >>= 1;\n    }\n    return MX::op(xl,\
-    \ xr);\n  }\n\n  X prod_all() { return dat[1]; }\n\n  void apply(int l, int r,\
-    \ A a) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n \
-    \   l += size, r += size;\n    for (int i = log; i >= 1; i--) {\n      if (((l\
+    \ <= log; i++) update(p >> i);\n  }\n  void multiply(int p, const X& x) {\n  \
+    \  assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--)\
+    \ push(p >> i);\n    dat[p] = MX::op(dat[p], x);\n    for (int i = 1; i <= log;\
+    \ i++) update(p >> i);\n  }\n\n  X get(int p) {\n    assert(0 <= p && p < n);\n\
+    \    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    return\
+    \ dat[p];\n  }\n\n  vc<X> get_all() {\n    FOR(k, 1, size) { push(k); }\n    return\
+    \ {dat.begin() + size, dat.begin() + size + n};\n  }\n\n  X prod(int l, int r)\
+    \ {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return MX::unit();\n\
+    \    l += size, r += size;\n    for (int i = log; i >= 1; i--) {\n      if (((l\
     \ >> i) << i) != l) push(l >> i);\n      if (((r >> i) << i) != r) push((r - 1)\
-    \ >> i);\n    }\n    int l2 = l, r2 = r;\n    while (l < r) {\n      if (l & 1)\
-    \ apply_at(l++, a);\n      if (r & 1) apply_at(--r, a);\n      l >>= 1, r >>=\
-    \ 1;\n    }\n    l = l2, r = r2;\n    for (int i = 1; i <= log; i++) {\n     \
-    \ if (((l >> i) << i) != l) update(l >> i);\n      if (((r >> i) << i) != r) update((r\
-    \ - 1) >> i);\n    }\n  }\n\n  template <typename F>\n  int max_right(const F\
-    \ check, int l) {\n    assert(0 <= l && l <= n);\n    assert(check(MX::unit()));\n\
-    \    if (l == n) return n;\n    l += size;\n    for (int i = log; i >= 1; i--)\
-    \ push(l >> i);\n    X sm = MX::unit();\n    do {\n      while (l % 2 == 0) l\
-    \ >>= 1;\n      if (!check(MX::op(sm, dat[l]))) {\n        while (l < size) {\n\
-    \          push(l);\n          l = (2 * l);\n          if (check(MX::op(sm, dat[l])))\
+    \ >> i);\n    }\n    X xl = MX::unit(), xr = MX::unit();\n    while (l < r) {\n\
+    \      if (l & 1) xl = MX::op(xl, dat[l++]);\n      if (r & 1) xr = MX::op(dat[--r],\
+    \ xr);\n      l >>= 1, r >>= 1;\n    }\n    return MX::op(xl, xr);\n  }\n\n  X\
+    \ prod_all() { return dat[1]; }\n\n  void apply(int l, int r, A a) {\n    assert(0\
+    \ <= l && l <= r && r <= n);\n    if (l == r) return;\n    l += size, r += size;\n\
+    \    for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l\
+    \ >> i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n    }\n    int\
+    \ l2 = l, r2 = r;\n    while (l < r) {\n      if (l & 1) apply_at(l++, a);\n \
+    \     if (r & 1) apply_at(--r, a);\n      l >>= 1, r >>= 1;\n    }\n    l = l2,\
+    \ r = r2;\n    for (int i = 1; i <= log; i++) {\n      if (((l >> i) << i) !=\
+    \ l) update(l >> i);\n      if (((r >> i) << i) != r) update((r - 1) >> i);\n\
+    \    }\n  }\n\n  template <typename F>\n  int max_right(const F check, int l)\
+    \ {\n    assert(0 <= l && l <= n);\n    assert(check(MX::unit()));\n    if (l\
+    \ == n) return n;\n    l += size;\n    for (int i = log; i >= 1; i--) push(l >>\
+    \ i);\n    X sm = MX::unit();\n    do {\n      while (l % 2 == 0) l >>= 1;\n \
+    \     if (!check(MX::op(sm, dat[l]))) {\n        while (l < size) {\n        \
+    \  push(l);\n          l = (2 * l);\n          if (check(MX::op(sm, dat[l])))\
     \ { sm = MX::op(sm, dat[l++]); }\n        }\n        return l - size;\n      }\n\
     \      sm = MX::op(sm, dat[l++]);\n    } while ((l & -l) != l);\n    return n;\n\
     \  }\n\n  template <typename F>\n  int min_left(const F check, int r) {\n    assert(0\
@@ -185,30 +188,33 @@ data:
     \  void update(int k) { dat[k] = MX::op(dat[2 * k], dat[2 * k + 1]); }\n  void\
     \ set(int p, X x) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int\
     \ i = log; i >= 1; i--) push(p >> i);\n    dat[p] = x;\n    for (int i = 1; i\
-    \ <= log; i++) update(p >> i);\n  }\n\n  X get(int p) {\n    assert(0 <= p &&\
-    \ p < n);\n    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n\
-    \    return dat[p];\n  }\n\n  vc<X> get_all() {\n    FOR(k, 1, size) { push(k);\
-    \ }\n    return {dat.begin() + size, dat.begin() + size + n};\n  }\n\n  X prod(int\
-    \ l, int r) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return\
-    \ MX::unit();\n    l += size, r += size;\n    for (int i = log; i >= 1; i--) {\n\
-    \      if (((l >> i) << i) != l) push(l >> i);\n      if (((r >> i) << i) != r)\
-    \ push((r - 1) >> i);\n    }\n    X xl = MX::unit(), xr = MX::unit();\n    while\
-    \ (l < r) {\n      if (l & 1) xl = MX::op(xl, dat[l++]);\n      if (r & 1) xr\
-    \ = MX::op(dat[--r], xr);\n      l >>= 1, r >>= 1;\n    }\n    return MX::op(xl,\
-    \ xr);\n  }\n\n  X prod_all() { return dat[1]; }\n\n  void apply(int l, int r,\
-    \ A a) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n \
-    \   l += size, r += size;\n    for (int i = log; i >= 1; i--) {\n      if (((l\
+    \ <= log; i++) update(p >> i);\n  }\n  void multiply(int p, const X& x) {\n  \
+    \  assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--)\
+    \ push(p >> i);\n    dat[p] = MX::op(dat[p], x);\n    for (int i = 1; i <= log;\
+    \ i++) update(p >> i);\n  }\n\n  X get(int p) {\n    assert(0 <= p && p < n);\n\
+    \    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    return\
+    \ dat[p];\n  }\n\n  vc<X> get_all() {\n    FOR(k, 1, size) { push(k); }\n    return\
+    \ {dat.begin() + size, dat.begin() + size + n};\n  }\n\n  X prod(int l, int r)\
+    \ {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return MX::unit();\n\
+    \    l += size, r += size;\n    for (int i = log; i >= 1; i--) {\n      if (((l\
     \ >> i) << i) != l) push(l >> i);\n      if (((r >> i) << i) != r) push((r - 1)\
-    \ >> i);\n    }\n    int l2 = l, r2 = r;\n    while (l < r) {\n      if (l & 1)\
-    \ apply_at(l++, a);\n      if (r & 1) apply_at(--r, a);\n      l >>= 1, r >>=\
-    \ 1;\n    }\n    l = l2, r = r2;\n    for (int i = 1; i <= log; i++) {\n     \
-    \ if (((l >> i) << i) != l) update(l >> i);\n      if (((r >> i) << i) != r) update((r\
-    \ - 1) >> i);\n    }\n  }\n\n  template <typename F>\n  int max_right(const F\
-    \ check, int l) {\n    assert(0 <= l && l <= n);\n    assert(check(MX::unit()));\n\
-    \    if (l == n) return n;\n    l += size;\n    for (int i = log; i >= 1; i--)\
-    \ push(l >> i);\n    X sm = MX::unit();\n    do {\n      while (l % 2 == 0) l\
-    \ >>= 1;\n      if (!check(MX::op(sm, dat[l]))) {\n        while (l < size) {\n\
-    \          push(l);\n          l = (2 * l);\n          if (check(MX::op(sm, dat[l])))\
+    \ >> i);\n    }\n    X xl = MX::unit(), xr = MX::unit();\n    while (l < r) {\n\
+    \      if (l & 1) xl = MX::op(xl, dat[l++]);\n      if (r & 1) xr = MX::op(dat[--r],\
+    \ xr);\n      l >>= 1, r >>= 1;\n    }\n    return MX::op(xl, xr);\n  }\n\n  X\
+    \ prod_all() { return dat[1]; }\n\n  void apply(int l, int r, A a) {\n    assert(0\
+    \ <= l && l <= r && r <= n);\n    if (l == r) return;\n    l += size, r += size;\n\
+    \    for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l\
+    \ >> i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n    }\n    int\
+    \ l2 = l, r2 = r;\n    while (l < r) {\n      if (l & 1) apply_at(l++, a);\n \
+    \     if (r & 1) apply_at(--r, a);\n      l >>= 1, r >>= 1;\n    }\n    l = l2,\
+    \ r = r2;\n    for (int i = 1; i <= log; i++) {\n      if (((l >> i) << i) !=\
+    \ l) update(l >> i);\n      if (((r >> i) << i) != r) update((r - 1) >> i);\n\
+    \    }\n  }\n\n  template <typename F>\n  int max_right(const F check, int l)\
+    \ {\n    assert(0 <= l && l <= n);\n    assert(check(MX::unit()));\n    if (l\
+    \ == n) return n;\n    l += size;\n    for (int i = log; i >= 1; i--) push(l >>\
+    \ i);\n    X sm = MX::unit();\n    do {\n      while (l % 2 == 0) l >>= 1;\n \
+    \     if (!check(MX::op(sm, dat[l]))) {\n        while (l < size) {\n        \
+    \  push(l);\n          l = (2 * l);\n          if (check(MX::op(sm, dat[l])))\
     \ { sm = MX::op(sm, dat[l++]); }\n        }\n        return l - size;\n      }\n\
     \      sm = MX::op(sm, dat[l++]);\n    } while ((l & -l) != l);\n    return n;\n\
     \  }\n\n  template <typename F>\n  int min_left(const F check, int r) {\n    assert(0\
@@ -231,8 +237,8 @@ data:
   - seq/common_interval_decomposition.hpp
   - graph/ds/lazy_tree_monoid.hpp
   - other/rectangle_union.hpp
-  timestamp: '2023-01-31 23:11:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-05-21 00:13:10+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc256ex2.test.cpp
   - test_atcoder/abc234g.test.cpp
