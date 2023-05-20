@@ -116,9 +116,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/rollinghash_2d.hpp
     title: string/rollinghash_2d.hpp
-  - icon: ':warning:'
-    path: test/mytest/min_poly.cpp
-    title: test/mytest/min_poly.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_14_C.test.cpp
@@ -315,6 +312,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/min_of_linear_segments.test.cpp
     title: test/mytest/min_of_linear_segments.test.cpp
+  - icon: ':x:'
+    path: test/mytest/min_poly.test.cpp
+    title: test/mytest/min_poly.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/minidx_add.test.cpp
     title: test/mytest/minidx_add.test.cpp
@@ -616,7 +616,6 @@ data:
   - string/rollinghash_2d.hpp
   - string/rollinghash.hpp
   - string/count_subseq.hpp
-  - test/mytest/min_poly.cpp
   timestamp: '2022-10-23 11:21:57+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -697,6 +696,7 @@ data:
   - test/mytest/rbst_am_persistent.test.cpp
   - test/mytest/min_max.test.cpp
   - test/mytest/rbst_monoid_2.test.cpp
+  - test/mytest/min_poly.test.cpp
   - test/mytest/tournament.test.cpp
   - test/mytest/count_bipartite.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp

@@ -1,10 +1,7 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/mytest/min_poly.cpp
-    title: test/mytest/min_poly.cpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/0275.test.cpp
@@ -906,6 +903,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/min_of_linear_segments.test.cpp
     title: test/mytest/min_of_linear_segments.test.cpp
+  - icon: ':x:'
+    path: test/mytest/min_poly.test.cpp
+    title: test/mytest/min_poly.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/minidx_add.test.cpp
     title: test/mytest/minidx_add.test.cpp
@@ -2101,8 +2101,7 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: my_template.hpp
-  requiredBy:
-  - test/mytest/min_poly.cpp
+  requiredBy: []
   timestamp: '2023-02-24 07:14:18+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -2457,6 +2456,7 @@ data:
   - test/mytest/min_max.test.cpp
   - test/mytest/dyadic_rational.test.cpp
   - test/mytest/rbst_monoid_2.test.cpp
+  - test/mytest/min_poly.test.cpp
   - test/mytest/tournament.test.cpp
   - test/mytest/count_bipartite.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp

@@ -1535,11 +1535,6 @@ data:
     - icon: ':question:'
       path: string/zalgorithm.hpp
       title: string/zalgorithm.hpp
-  - name: test/mytest
-    pages:
-    - icon: ':warning:'
-      path: test/mytest/min_poly.cpp
-      title: test/mytest/min_poly.cpp
   verificationCategories:
   - name: test/aoj
     pages:
@@ -2467,6 +2462,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/min_of_linear_segments.test.cpp
       title: test/mytest/min_of_linear_segments.test.cpp
+    - icon: ':x:'
+      path: test/mytest/min_poly.test.cpp
+      title: test/mytest/min_poly.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/minidx_add.test.cpp
       title: test/mytest/minidx_add.test.cpp

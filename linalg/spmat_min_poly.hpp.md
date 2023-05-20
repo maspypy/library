@@ -11,13 +11,13 @@ data:
   - icon: ':x:'
     path: linalg/spmat_det.hpp
     title: linalg/spmat_det.hpp
-  - icon: ':warning:'
-    path: test/mytest/min_poly.cpp
-    title: test/mytest/min_poly.cpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/library_checker/matrix/sparse_matrix_det.test.cpp
     title: test/library_checker/matrix/sparse_matrix_det.test.cpp
+  - icon: ':x:'
+    path: test/mytest/min_poly.test.cpp
+    title: test/mytest/min_poly.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -59,10 +59,10 @@ data:
   path: linalg/spmat_min_poly.hpp
   requiredBy:
   - linalg/spmat_det.hpp
-  - test/mytest/min_poly.cpp
   timestamp: '2023-05-20 02:22:04+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/mytest/min_poly.test.cpp
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
 documentation_of: linalg/spmat_min_poly.hpp
 layout: document

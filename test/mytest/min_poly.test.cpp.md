@@ -30,13 +30,15 @@ data:
     title: seq/find_linear_rec.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/min_poly.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
+  bundledCode: "#line 1 \"test/mytest/min_poly.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -217,7 +219,7 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 4 \"test/mytest/min_poly.cpp\"\n\n#line 2 \"mod/modint_common.hpp\"\
+    \ yes(!t); }\n#line 4 \"test/mytest/min_poly.test.cpp\"\n\n#line 2 \"mod/modint_common.hpp\"\
     \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
     \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
     \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
@@ -327,7 +329,7 @@ data:
     \ A, const vc<vc<T>>& B) {\r\n  assert(!A.empty() && !B.empty());\r\n  auto N\
     \ = len(A), M = len(B), K = len(B[0]);\r\n  vv(T, b, K, M);\r\n  FOR(i, M) FOR(j,\
     \ K) b[j][i] = B[i][j];\r\n  vv(T, C, N, K);\r\n  FOR(n, N) FOR(m, M) FOR(k, K)\
-    \ C[n][k] += A[n][m] * b[k][m];\r\n  return C;\r\n}\r\n#line 9 \"test/mytest/min_poly.cpp\"\
+    \ C[n][k] += A[n][m] * b[k][m];\r\n  return C;\r\n}\r\n#line 9 \"test/mytest/min_poly.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid test() {\n  vc<tuple<int, int, mint>> A;\n\
     \  A.eb(0, 0, 1);\n  A.eb(0, 1, 2);\n  A.eb(1, 0, 3);\n  A.eb(1, 1, 4);\n  vc<mint>\
     \ f = spmat_min_poly<mint>(2, A);\n  assert(f == vc<mint>({-2, -5, 1}));\n\n \
@@ -413,16 +415,16 @@ data:
   - random/base.hpp
   - linalg/implicit_matrix/min_poly.hpp
   - linalg/mat_mul.hpp
-  isVerificationFile: false
-  path: test/mytest/min_poly.cpp
+  isVerificationFile: true
+  path: test/mytest/min_poly.test.cpp
   requiredBy: []
-  timestamp: '2023-05-20 02:22:04+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2023-05-20 12:28:13+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/mytest/min_poly.cpp
+documentation_of: test/mytest/min_poly.test.cpp
 layout: document
 redirect_from:
-- /library/test/mytest/min_poly.cpp
-- /library/test/mytest/min_poly.cpp.html
-title: test/mytest/min_poly.cpp
+- /verify/test/mytest/min_poly.test.cpp
+- /verify/test/mytest/min_poly.test.cpp.html
+title: test/mytest/min_poly.test.cpp
 ---

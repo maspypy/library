@@ -11,13 +11,13 @@ data:
   - icon: ':x:'
     path: linalg/implicit_matrix/det.hpp
     title: linalg/implicit_matrix/det.hpp
-  - icon: ':warning:'
-    path: test/mytest/min_poly.cpp
-    title: test/mytest/min_poly.cpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/library_checker/matrix/implicit_matrix.test.cpp
     title: test/library_checker/matrix/implicit_matrix.test.cpp
+  - icon: ':x:'
+    path: test/mytest/min_poly.test.cpp
+    title: test/mytest/min_poly.test.cpp
   - icon: ':x:'
     path: test/yukicoder/310.test.cpp
     title: test/yukicoder/310.test.cpp
@@ -64,11 +64,11 @@ data:
   path: linalg/implicit_matrix/min_poly.hpp
   requiredBy:
   - linalg/implicit_matrix/det.hpp
-  - test/mytest/min_poly.cpp
   timestamp: '2023-05-20 02:22:04+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/310.test.cpp
+  - test/mytest/min_poly.test.cpp
   - test/library_checker/matrix/implicit_matrix.test.cpp
 documentation_of: linalg/implicit_matrix/min_poly.hpp
 layout: document

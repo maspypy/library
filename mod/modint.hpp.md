@@ -224,9 +224,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/wildcard_pattern_matching.hpp
     title: string/wildcard_pattern_matching.hpp
-  - icon: ':warning:'
-    path: test/mytest/min_poly.cpp
-    title: test/mytest/min_poly.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_5_C.test.cpp
@@ -516,6 +513,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
+  - icon: ':x:'
+    path: test/mytest/min_poly.test.cpp
+    title: test/mytest/min_poly.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/multinomial.test.cpp
     title: test/mytest/multinomial.test.cpp
@@ -1091,7 +1091,6 @@ data:
   - graph/tree_all_distances.hpp
   - mod/q_analogue.hpp
   - string/wildcard_pattern_matching.hpp
-  - test/mytest/min_poly.cpp
   timestamp: '2023-05-12 18:44:22+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -1225,6 +1224,7 @@ data:
   - test/mytest/chirp_z.test.cpp
   - test/mytest/online_log.test.cpp
   - test/mytest/rbst_monoid_2.test.cpp
+  - test/mytest/min_poly.test.cpp
   - test/mytest/count_bipartite.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/online_inv.test.cpp
