@@ -299,6 +299,7 @@
 "test/mytest/min_max.test.cpp": "2023-02-24 07:14:18 +0900",
 "test/mytest/min_min.test.cpp": "2023-02-24 07:14:18 +0900",
 "test/mytest/min_of_linear_segments.test.cpp": "2023-02-24 07:14:18 +0900",
+"test/mytest/min_poly.test.cpp": "2023-05-20 23:29:39 +0900",
 "test/mytest/minidx_add.test.cpp": "2023-02-24 07:14:18 +0900",
 "test/mytest/minmax_add.test.cpp": "2023-02-24 07:14:18 +0900",
 "test/mytest/minplus_convex.test.cpp": "2023-02-24 07:14:18 +0900",
