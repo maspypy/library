@@ -59,7 +59,7 @@ struct DynamicUpperHull {
       i /= 2;
     }
   }
-  void erase(int i) { insert(i); }
+  void remove(int i) { insert(i); }
 
   inline bool exist(int i) { return seg[i].r != -1; }
 
