@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/maximum_independent_set.hpp
     title: graph/maximum_independent_set.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/maximum_independent_set
@@ -246,36 +246,39 @@ data:
     \  if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e: edges)\
     \ print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\", indptr);\n\
     \      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
-    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\n  // G \u306B\u304A\u3051\u308B\
-    \u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\
-    \u306A\u308B\u3088\u3046\u306B\u3059\u308B\n  // {G, es}\n  pair<Graph<T, directed>,\
-    \ vc<int>> rearrange(vc<int> V) {\n    int n = len(V);\n    map<int, int> MP;\n\
-    \    FOR(i, n) MP[V[i]] = i;\n    set<int> used;\n    Graph<T, directed> G(n);\n\
-    \    vc<int> es;\n    FOR(i, n) {\n      for (auto&& e: (*this)[V[i]]) {\n   \
-    \     if (used.count(e.id)) continue;\n        int a = e.frm, b = e.to;\n    \
-    \    if (MP.count(a) && MP.count(b)) {\n          used.insert(e.id);\n       \
-    \   G.add(MP[a], MP[b], e.cost);\n          es.eb(e.id);\n        }\n      }\n\
-    \    }\n    G.build();\n    return {G, es};\n  }\n\nprivate:\n  void calc_deg()\
-    \ {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
-    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
-    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
-    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/maximum_independent_set.hpp\"\
-    \n\r\n// worst N*1.381^N \u3060\u304C\u3001N=100 \u7A0B\u5EA6\u3067\u3082\u4F7F\
-    \u3048\u308B\u53EF\u80FD\u6027\u304C\u3042\u308B\u3002\r\ntemplate <int MAX_V,\
-    \ typename GT>\r\nvc<int> maximum_independent_set(GT& G) {\r\n  using BS = bitset<MAX_V>;\r\
-    \n  const int N = G.N;\r\n  assert(N <= MAX_V);\r\n  vc<BS> nbd(N);\r\n  FOR(v,\
-    \ N) for (auto&& e: G[v]) nbd[v][e.to] = 1;\r\n\r\n  int best = 0;\r\n  BS res;\r\
-    \n\r\n  auto dfs = [&](auto& dfs, BS now, BS rest) -> void {\r\n    pair<int,\
-    \ int> p = {-1, -1}; // (v, d)\r\n    while (1) {\r\n      bool upd = 0;\r\n \
-    \     FOR(v, N) if (rest[v]) {\r\n        int d = (nbd[v] & rest).count();\r\n\
-    \        if (chmax(p.se, d)) p.fi = v;\r\n        if (d <= 1) { rest[v] = 0, rest\
-    \ &= ~nbd[v], now[v] = 1, upd = 1; }\r\n      }\r\n      if (!upd) break;\r\n\
-    \      p = {-1, -1};\r\n    }\r\n    int a = now.count(), b = rest.count();\r\n\
-    \    if (chmax(best, a)) res = now;\r\n    if (b == 0 || a + b <= best) return;\r\
-    \n    int v = p.fi;\r\n    rest[v] = 0;\r\n    if (p.se >= 3) dfs(dfs, now, rest);\r\
-    \n    now[v] = 1;\r\n    dfs(dfs, now, rest & ~(nbd[v]));\r\n  };\r\n  BS now,\
-    \ rest;\r\n  FOR(v, N) rest[v] = 1;\r\n  dfs(dfs, now, rest);\r\n  vc<int> ANS;\r\
-    \n  FOR(v, N) if (res[v]) ANS.eb(v);\r\n  return ANS;\r\n}\n#line 6 \"test/library_checker/graph/maximum_independent_set.test.cpp\"\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\n  vc<int> new_idx;\n  vc<bool>\
+    \ used_e;\n\n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\
+    \u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\
+    \u308B\n  // {G, es}\n  pair<Graph<T, directed>, vc<int>> rearrange(vc<int> V)\
+    \ {\n    if (len(new_idx) != N) new_idx.assign(N, -1);\n    if (len(used_e) !=\
+    \ M) used_e.assign(M, 0);\n    int n = len(V);\n    FOR(i, n) new_idx[V[i]] =\
+    \ i;\n    Graph<T, directed> G(n);\n    vc<int> es;\n    FOR(i, n) {\n      for\
+    \ (auto&& e: (*this)[V[i]]) {\n        if (used_e[e.id]) continue;\n        int\
+    \ a = e.frm, b = e.to;\n        if (new_idx[a] != -1 && new_idx[b] != -1) {\n\
+    \          used_e[e.id] = 1;\n          G.add(new_idx[a], new_idx[b], e.cost);\n\
+    \          es.eb(e.id);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]]\
+    \ = -1;\n    for (auto&& eid: es) used_e[eid] = 0;\n    G.build();\n    return\
+    \ {G, es};\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
+    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
+    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
+    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
+    \ }\n  }\n};\n#line 2 \"graph/maximum_independent_set.hpp\"\n\r\n// worst N*1.381^N\
+    \ \u3060\u304C\u3001N=100 \u7A0B\u5EA6\u3067\u3082\u4F7F\u3048\u308B\u53EF\u80FD\
+    \u6027\u304C\u3042\u308B\u3002\r\ntemplate <int MAX_V, typename GT>\r\nvc<int>\
+    \ maximum_independent_set(GT& G) {\r\n  using BS = bitset<MAX_V>;\r\n  const int\
+    \ N = G.N;\r\n  assert(N <= MAX_V);\r\n  vc<BS> nbd(N);\r\n  FOR(v, N) for (auto&&\
+    \ e: G[v]) nbd[v][e.to] = 1;\r\n\r\n  int best = 0;\r\n  BS res;\r\n\r\n  auto\
+    \ dfs = [&](auto& dfs, BS now, BS rest) -> void {\r\n    pair<int, int> p = {-1,\
+    \ -1}; // (v, d)\r\n    while (1) {\r\n      bool upd = 0;\r\n      FOR(v, N)\
+    \ if (rest[v]) {\r\n        int d = (nbd[v] & rest).count();\r\n        if (chmax(p.se,\
+    \ d)) p.fi = v;\r\n        if (d <= 1) { rest[v] = 0, rest &= ~nbd[v], now[v]\
+    \ = 1, upd = 1; }\r\n      }\r\n      if (!upd) break;\r\n      p = {-1, -1};\r\
+    \n    }\r\n    int a = now.count(), b = rest.count();\r\n    if (chmax(best, a))\
+    \ res = now;\r\n    if (b == 0 || a + b <= best) return;\r\n    int v = p.fi;\r\
+    \n    rest[v] = 0;\r\n    if (p.se >= 3) dfs(dfs, now, rest);\r\n    now[v] =\
+    \ 1;\r\n    dfs(dfs, now, rest & ~(nbd[v]));\r\n  };\r\n  BS now, rest;\r\n  FOR(v,\
+    \ N) rest[v] = 1;\r\n  dfs(dfs, now, rest);\r\n  vc<int> ANS;\r\n  FOR(v, N) if\
+    \ (res[v]) ANS.eb(v);\r\n  return ANS;\r\n}\n#line 6 \"test/library_checker/graph/maximum_independent_set.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, M);\r\n  Graph<int> G(N);\r\n  G.read_graph(M,\
     \ 0, 0);\r\n  auto mis = maximum_independent_set<40>(G);\r\n  print(len(mis));\r\
     \n  print(mis);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
@@ -295,8 +298,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/maximum_independent_set.test.cpp
   requiredBy: []
-  timestamp: '2023-05-20 05:01:54+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-20 20:14:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/maximum_independent_set.test.cpp
 layout: document

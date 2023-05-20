@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/meldable_heap.hpp
     title: ds/meldable_heap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
   _extendedRequiredBy: []
@@ -79,45 +79,47 @@ data:
     \  if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e: edges)\
     \ print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\", indptr);\n\
     \      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
-    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\n  // G \u306B\u304A\u3051\u308B\
-    \u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\
-    \u306A\u308B\u3088\u3046\u306B\u3059\u308B\n  // {G, es}\n  pair<Graph<T, directed>,\
-    \ vc<int>> rearrange(vc<int> V) {\n    int n = len(V);\n    map<int, int> MP;\n\
-    \    FOR(i, n) MP[V[i]] = i;\n    set<int> used;\n    Graph<T, directed> G(n);\n\
-    \    vc<int> es;\n    FOR(i, n) {\n      for (auto&& e: (*this)[V[i]]) {\n   \
-    \     if (used.count(e.id)) continue;\n        int a = e.frm, b = e.to;\n    \
-    \    if (MP.count(a) && MP.count(b)) {\n          used.insert(e.id);\n       \
-    \   G.add(MP[a], MP[b], e.cost);\n          es.eb(e.id);\n        }\n      }\n\
-    \    }\n    G.build();\n    return {G, es};\n  }\n\nprivate:\n  void calc_deg()\
-    \ {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
-    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
-    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
-    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 3 \"graph/shortest_path/dijkstra.hpp\"\
-    \n\ntemplate <typename T, typename GT>\npair<vc<T>, vc<int>> dijkstra(GT& G, int\
-    \ v) {\n  auto N = G.N;\n  vector<T> dist(N, infty<T>);\n  vector<int> par(N,\
-    \ -1);\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>>\
-    \ que;\n\n  dist[v] = 0;\n  que.emplace(0, v);\n  while (!que.empty()) {\n   \
-    \ auto [dv, v] = que.top();\n    que.pop();\n    if (dv > dist[v]) continue;\n\
-    \    for (auto&& e: G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost))\
-    \ {\n        par[e.to] = e.frm;\n        que.emplace(dist[e.to], e.to);\n    \
-    \  }\n    }\n  }\n  return {dist, par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\
-    \u30C8\u3002[dist, par, root]\ntemplate <typename T, typename GT>\ntuple<vc<T>,\
-    \ vc<int>, vc<int>> dijkstra(GT& G, vc<int> vs) {\n  assert(G.is_prepared());\n\
-    \  int N = G.N;\n  vc<ll> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  vc<int>\
-    \ root(N, -1);\n\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>,\
-    \ greater<P>> que;\n\n  for (auto&& v: vs) {\n    dist[v] = 0;\n    root[v] =\
-    \ v;\n    que.emplace(T(0), v);\n  }\n\n  while (!que.empty()) {\n    auto [dv,\
-    \ v] = que.top();\n    que.pop();\n    if (dv > dist[v]) continue;\n    for (auto&&\
-    \ e: G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost)) {\n        root[e.to]\
-    \ = root[e.frm];\n        par[e.to] = e.frm;\n        que.push(mp(dist[e.to],\
-    \ e.to));\n      }\n    }\n  }\n  return {dist, par, root};\n}\n#line 2 \"graph/reverse_graph.hpp\"\
-    \n\r\ntemplate <typename T>\r\nGraph<T, 1> reverse_graph(Graph<T, 1>& G) {\r\n\
-    \  assert(G.is_directed());\r\n  Graph<T, 1> G1(G.N);\r\n  for (auto&& e: G.edges)\
-    \ { G1.add(e.to, e.frm, e.cost, e.id); }\r\n  G1.build();\r\n  return G1;\r\n\
-    }\r\n#line 4 \"graph/shortest_path/K_shortest_walk.hpp\"\n\n// infty<T> \u57CB\
-    \u3081\u3057\u3066\u5FC5\u305A\u9577\u3055 K \u306B\u3057\u305F\u3082\u306E\u3092\
-    \u304B\u3048\u3059\u3002\ntemplate <typename T, typename GT, int NODES>\nvc<T>\
-    \ K_shortest_walk(GT &G, int s, int t, int K) {\n  assert(G.is_directed());\n\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\n  vc<int> new_idx;\n  vc<bool>\
+    \ used_e;\n\n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\
+    \u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\
+    \u308B\n  // {G, es}\n  pair<Graph<T, directed>, vc<int>> rearrange(vc<int> V)\
+    \ {\n    if (len(new_idx) != N) new_idx.assign(N, -1);\n    if (len(used_e) !=\
+    \ M) used_e.assign(M, 0);\n    int n = len(V);\n    FOR(i, n) new_idx[V[i]] =\
+    \ i;\n    Graph<T, directed> G(n);\n    vc<int> es;\n    FOR(i, n) {\n      for\
+    \ (auto&& e: (*this)[V[i]]) {\n        if (used_e[e.id]) continue;\n        int\
+    \ a = e.frm, b = e.to;\n        if (new_idx[a] != -1 && new_idx[b] != -1) {\n\
+    \          used_e[e.id] = 1;\n          G.add(new_idx[a], new_idx[b], e.cost);\n\
+    \          es.eb(e.id);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]]\
+    \ = -1;\n    for (auto&& eid: es) used_e[eid] = 0;\n    G.build();\n    return\
+    \ {G, es};\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
+    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
+    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
+    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
+    \ }\n  }\n};\n#line 3 \"graph/shortest_path/dijkstra.hpp\"\n\ntemplate <typename\
+    \ T, typename GT>\npair<vc<T>, vc<int>> dijkstra(GT& G, int v) {\n  auto N = G.N;\n\
+    \  vector<T> dist(N, infty<T>);\n  vector<int> par(N, -1);\n  using P = pair<T,\
+    \ int>;\n\n  priority_queue<P, vector<P>, greater<P>> que;\n\n  dist[v] = 0;\n\
+    \  que.emplace(0, v);\n  while (!que.empty()) {\n    auto [dv, v] = que.top();\n\
+    \    que.pop();\n    if (dv > dist[v]) continue;\n    for (auto&& e: G[v]) {\n\
+    \      if (chmin(dist[e.to], dist[e.frm] + e.cost)) {\n        par[e.to] = e.frm;\n\
+    \        que.emplace(dist[e.to], e.to);\n      }\n    }\n  }\n  return {dist,\
+    \ par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\u30C8\u3002[dist, par, root]\n\
+    template <typename T, typename GT>\ntuple<vc<T>, vc<int>, vc<int>> dijkstra(GT&\
+    \ G, vc<int> vs) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<ll> dist(N,\
+    \ infty<T>);\n  vc<int> par(N, -1);\n  vc<int> root(N, -1);\n\n  using P = pair<T,\
+    \ int>;\n\n  priority_queue<P, vector<P>, greater<P>> que;\n\n  for (auto&& v:\
+    \ vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.emplace(T(0), v);\n  }\n\n\
+    \  while (!que.empty()) {\n    auto [dv, v] = que.top();\n    que.pop();\n   \
+    \ if (dv > dist[v]) continue;\n    for (auto&& e: G[v]) {\n      if (chmin(dist[e.to],\
+    \ dist[e.frm] + e.cost)) {\n        root[e.to] = root[e.frm];\n        par[e.to]\
+    \ = e.frm;\n        que.push(mp(dist[e.to], e.to));\n      }\n    }\n  }\n  return\
+    \ {dist, par, root};\n}\n#line 2 \"graph/reverse_graph.hpp\"\n\r\ntemplate <typename\
+    \ T>\r\nGraph<T, 1> reverse_graph(Graph<T, 1>& G) {\r\n  assert(G.is_directed());\r\
+    \n  Graph<T, 1> G1(G.N);\r\n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost,\
+    \ e.id); }\r\n  G1.build();\r\n  return G1;\r\n}\r\n#line 4 \"graph/shortest_path/K_shortest_walk.hpp\"\
+    \n\n// infty<T> \u57CB\u3081\u3057\u3066\u5FC5\u305A\u9577\u3055 K \u306B\u3057\
+    \u305F\u3082\u306E\u3092\u304B\u3048\u3059\u3002\ntemplate <typename T, typename\
+    \ GT, int NODES>\nvc<T> K_shortest_walk(GT &G, int s, int t, int K) {\n  assert(G.is_directed());\n\
     \  int N = G.N;\n  auto RG = reverse_graph(G);\n  auto [dist, par] = dijkstra<T,\
     \ decltype(RG)>(RG, t);\n  if (dist[s] == infty<T>) { return vc<T>(K, infty<T>);\
     \ }\n\n  using P = pair<T, int>;\n  Meldable_Heap<P, true, NODES> X;\n  using\
@@ -172,7 +174,7 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/K_shortest_walk.hpp
   requiredBy: []
-  timestamp: '2023-05-20 05:01:54+09:00'
+  timestamp: '2023-05-20 20:14:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/graph/K_shortest_walk.test.cpp
