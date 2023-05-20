@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/dynamicupperhull.hpp
     title: geo/dynamicupperhull.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/convex_layers
@@ -279,14 +279,14 @@ data:
     \ 2;\r\n    while (i) {\r\n      update(i);\r\n      i /= 2;\r\n    }\r\n  }\r\
     \n  void add(int i) { insert(i); }\r\n\r\n  void erase(int i) {\r\n    i = to_seg_idx[i];\r\
     \n    seg[sz + i] = {-1, -1, -1, -1};\r\n    i = (sz + i) / 2;\r\n    while (i)\
-    \ {\r\n      update(i);\r\n      i /= 2;\r\n    }\r\n  }\r\n  void erase(int i)\
-    \ { insert(i); }\r\n\r\n  inline bool exist(int i) { return seg[i].r != -1; }\r\
-    \n\r\n  void update(int i) {\r\n    if (!exist(2 * i + 0) && !exist(2 * i + 1))\
-    \ {\r\n      seg[i].r = -1;\r\n      return;\r\n    }\r\n    if (!exist(2 * i\
-    \ + 0)) {\r\n      seg[i] = seg[2 * i + 1];\r\n      return;\r\n    }\r\n    if\
-    \ (!exist(2 * i + 1)) {\r\n      seg[i] = seg[2 * i + 0];\r\n      return;\r\n\
-    \    }\r\n    int p = 2 * i, q = 2 * i + 1;\r\n    ll X = P[seg[q].l].x;\r\n \
-    \   while (p < sz || q < sz) {\r\n      if (p < sz && !exist(2 * p + 0)) {\r\n\
+    \ {\r\n      update(i);\r\n      i /= 2;\r\n    }\r\n  }\r\n  void remove(int\
+    \ i) { insert(i); }\r\n\r\n  inline bool exist(int i) { return seg[i].r != -1;\
+    \ }\r\n\r\n  void update(int i) {\r\n    if (!exist(2 * i + 0) && !exist(2 * i\
+    \ + 1)) {\r\n      seg[i].r = -1;\r\n      return;\r\n    }\r\n    if (!exist(2\
+    \ * i + 0)) {\r\n      seg[i] = seg[2 * i + 1];\r\n      return;\r\n    }\r\n\
+    \    if (!exist(2 * i + 1)) {\r\n      seg[i] = seg[2 * i + 0];\r\n      return;\r\
+    \n    }\r\n    int p = 2 * i, q = 2 * i + 1;\r\n    ll X = P[seg[q].l].x;\r\n\
+    \    while (p < sz || q < sz) {\r\n      if (p < sz && !exist(2 * p + 0)) {\r\n\
     \        p = 2 * p + 1;\r\n        continue;\r\n      }\r\n      if (p < sz &&\
     \ !exist(2 * p + 1)) {\r\n        p = 2 * p + 0;\r\n        continue;\r\n    \
     \  }\r\n      if (q < sz && !exist(2 * q + 0)) {\r\n        q = 2 * q + 1;\r\n\
@@ -342,8 +342,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/geometry/convex_layers.test.cpp
   requiredBy: []
-  timestamp: '2023-05-20 05:12:22+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-05-20 13:28:23+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/geometry/convex_layers.test.cpp
 layout: document

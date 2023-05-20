@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/distance.hpp
     title: geo/distance.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/dynamicupperhull.hpp
     title: geo/dynamicupperhull.hpp
   - icon: ':heavy_check_mark:'
@@ -69,7 +69,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_C.test.cpp
     title: test/aoj/CGL_7_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/convex_layers.test.cpp
     title: test/library_checker/geometry/convex_layers.test.cpp
   - icon: ':heavy_check_mark:'
@@ -96,9 +96,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc266c.test.cpp
     title: test_atcoder/abc266c.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -213,7 +213,7 @@ data:
   - geo/outcircle.hpp
   - geo/incircle.hpp
   timestamp: '2023-04-08 00:43:46+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc266c.test.cpp
   - test_atcoder/abc202_f.test.cpp
