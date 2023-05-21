@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/binary_optimization.hpp
     title: flow/binary_optimization.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc193/tasks/abc193_f
@@ -205,62 +205,107 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\n#line 1 \"flow/maxflow.hpp\"\ntemplate <typename Cap>\nstruct MaxFlowGraph\
-    \ {\n  struct Edge {\n    int to, rev;\n    Cap cap;\n  };\n\n  int N;\n  vvc<Edge>\
-    \ G;\n  vc<int> prog, level;\n  Cap flow_ans;\n  bool calculated;\n\n  MaxFlowGraph(int\
-    \ N) : N(N), calculated(0) {}\n\n  void add(int frm, int to, Cap cap) {\n    assert(0\
-    \ <= frm && frm < N);\n    assert(0 <= to && to < N);\n    assert(Cap(0) <= cap);\n\
-    \    if (len(G) < N) G.resize(N);\n    G[frm].eb(Edge{to, (int)G[to].size(), cap});\n\
-    \    G[to].eb(Edge{frm, (int)G[frm].size() - 1, 0});\n  }\n\n  Cap flow(int source,\
-    \ int sink) {\n    if (calculated) return flow_ans;\n    calculated = true;\n\
-    \    chmax(N, source + 1);\n    chmax(N, sink + 1);\n    G.resize(N);\n    flow_ans\
-    \ = 0;\n    while (set_level(source, sink)) {\n      fill(all(prog), 0);\n   \
-    \   prog.assign(N, 0);\n      while (1) {\n        Cap x = flow_dfs(source, sink,\
-    \ infty<Cap>);\n        if (x == 0) break;\n        flow_ans += x;\n        chmin(flow_ans,\
-    \ infty<Cap>);\n        if (flow_ans == infty<Cap>) return flow_ans;\n      }\n\
-    \    }\n    return flow_ans;\n  }\n\n  // \u6700\u5C0F\u30AB\u30C3\u30C8\u306E\
-    \u5024\u304A\u3088\u3073\u3001\u30AB\u30C3\u30C8\u3092\u8868\u3059 01 \u5217\u3092\
-    \u8FD4\u3059\n  pair<Cap, vc<int>> cut(int source, int sink) {\n    Cap f = flow(source,\
-    \ sink);\n    vc<int> res(N);\n    FOR(v, N) res[v] = (level[v] >= 0 ? 0 : 1);\n\
-    \    return {f, res};\n  }\n\n  // \u6B8B\u4F59\u30B0\u30E9\u30D5\u306E\u8FBA\n\
-    \  vc<tuple<int, int, Cap>> get_edges() {\n    vc<tuple<int, int, Cap>> edges;\n\
-    \    FOR(v, N) for (auto&& e: G[v]) { edges.eb(v, e.to, e.cap); }\n    return\
-    \ edges;\n  }\n\nprivate:\n  bool set_level(int source, int sink) {\n    level.assign(N,\
-    \ -1);\n    level[source] = 0;\n    queue<int> que;\n    que.push(source);\n \
-    \   while (!que.empty()) {\n      int v = que.front();\n      que.pop();\n   \
-    \   for (auto&& e: G[v]) {\n        if (e.cap > 0 && level[e.to] == -1) {\n  \
-    \        level[e.to] = level[v] + 1;\n          if (e.to == sink) return true;\n\
-    \          que.push(e.to);\n        }\n      }\n    }\n    return false;\n  }\n\
-    \n  Cap flow_dfs(int v, int sink, Cap lim) {\n    if (v == sink) return lim;\n\
-    \    Cap res = 0;\n    for (int& i = prog[v]; i < (int)G[v].size(); ++i) {\n \
-    \     auto& e = G[v][i];\n      if (e.cap > 0 && level[e.to] == level[v] + 1)\
-    \ {\n        Cap a = flow_dfs(e.to, sink, min(lim, e.cap));\n        if (a > 0)\
-    \ {\n          e.cap -= a;\n          G[e.to][e.rev].cap += a;\n          res\
-    \ += a;\n          lim -= a;\n          if (lim == 0) break;\n        }\n    \
-    \  }\n    }\n    return res;\n  }\n};\n#line 2 \"flow/binary_optimization.hpp\"\
-    \n\ntemplate <typename T, bool MINIMIZE>\nstruct Binary_Optimization {\n  int\
-    \ n;\n  int nxt;\n  int source, sink;\n  T base_cost;\n  map<pair<int, int>, T>\
-    \ edges;\n\n  Binary_Optimization(int n) : n(n), base_cost(0) {\n    source =\
-    \ n;\n    sink = n + 1;\n    nxt = n + 2;\n  }\n\n  // xi \u3092 0, 1 \u306B\u3059\
-    \u308B\u3068\u304D\u306B\u304B\u304B\u308B\u30B3\u30B9\u30C8\u3092\u8FFD\u52A0\
-    \u3059\u308B\u3002\n  void add_1(int i, T x0, T x1) {\n    assert(0 <= i && i\
-    \ < n);\n    if (!MINIMIZE) { x0 = -x0, x1 = -x1; }\n    _add_1(i, x0, x1);\n\
-    \  }\n\n  // (xi,xj) = (00,01,10,11) \u3068\u3059\u308B\u3068\u304D\u306B\u304B\
-    \u304B\u308B\u30B3\u30B9\u30C8\u3092\u8FFD\u52A0\u3059\u308B\u3002\n  // \u30B3\
-    \u30B9\u30C8\u304C\u52A3\u30E2 x00 + x11 <= x10 + x10 \u306B\u306A\u3063\u3066\
-    \u3044\u308B\u5FC5\u8981\u304C\u3042\u308B\u3002\n  // \u7279\u306B\u3001\u5BFE\
-    \u89D2\u6210\u5206\u306B\u5229\u5F97\u3092\u4E0E\u3048\u308B\u3053\u3068\u304C\
-    \u3067\u304D\u308B\u3002\n  void add_2(int i, int j, T x00, T x01, T x10, T x11)\
-    \ {\n    assert(i != j);\n    assert(0 <= i && i < n);\n    assert(0 <= j && j\
-    \ < n);\n    if (!MINIMIZE) {\n      x00 = -x00, x01 = -x01;\n      x10 = -x10,\
-    \ x11 = -x11;\n    }\n    _add_2(i, j, x00, x01, x10, x11);\n  }\n\n  // (xi,xj,xk)\
-    \ = (000,001,010,011,100,101,110,111)\n  // \u3068\u3059\u308B\u3068\u304D\u306B\
-    \u304B\u304B\u308B\u30B3\u30B9\u30C8\u3092\u8FFD\u52A0\u3059\u308B\u3002\u52A3\
-    \u30E2\u306B\u306A\u3063\u3066\u3044\u308B\u5FC5\u8981\u304C\u3042\u308B\u3002\
-    \n  // \u7279\u306B\u3001000 \u3084 111 \u306B\u5229\u5F97\u3092\u4E0E\u3048\u308B\
-    \u3053\u3068\u304C\u3067\u304D\u308B\u3002\n  void add_3(int i, int j, int k,\
-    \ T x000, T x001, T x010, T x011, T x100,\n             T x101, T x110, T x111)\
-    \ {\n    assert(i != j && i != k && j != k);\n    assert(0 <= i && i < n);\n \
-    \   assert(0 <= j && j < n);\n    assert(0 <= k && k < n);\n    if (!MINIMIZE)\
+    \ {\n  struct Edge {\n    int to, rev;\n    Cap cap;\n  };\n\n  int N;\n  vc<tuple<int,\
+    \ int, Cap, Cap>> dat;\n  vc<int> prog, level;\n  vc<int> que;\n  vc<Edge> G;\n\
+    \  vc<int> indptr;\n  Cap flow_ans;\n  bool calculated;\n  bool is_prepared;\n\
+    \n  MaxFlowGraph(int N) : N(N), calculated(0), is_prepared(0) {}\n\n  void add(int\
+    \ frm, int to, Cap cap, Cap rev_cap = 0) {\n    assert(0 <= frm && frm < N);\n\
+    \    assert(0 <= to && to < N);\n    assert(Cap(0) <= cap);\n    if (frm == to)\
+    \ return;\n    dat.eb(frm, to, cap, rev_cap);\n  }\n\n  void build() {\n    assert(!is_prepared);\n\
+    \    int M = len(dat);\n    is_prepared = 1;\n    indptr.assign(N, 0);\n    for\
+    \ (auto&& [a, b, c, d]: dat) indptr[a]++, indptr[b]++;\n    indptr = cumsum<int>(indptr);\n\
+    \    vc<int> nxt_idx = indptr;\n    G.resize(2 * M);\n    for (auto&& [a, b, c,\
+    \ d]: dat) {\n      int p = nxt_idx[a]++;\n      int q = nxt_idx[b]++;\n     \
+    \ G[p] = Edge{b, q, c};\n      G[q] = Edge{a, p, d};\n    }\n  }\n\n  Cap flow(int\
+    \ source, int sink) {\n    assert(is_prepared);\n    if (calculated) return flow_ans;\n\
+    \    calculated = true;\n    flow_ans = 0;\n    while (set_level(source, sink))\
+    \ {\n      prog = indptr;\n      while (1) {\n        Cap x = flow_dfs(source,\
+    \ sink, infty<Cap>);\n        if (x == 0) break;\n        flow_ans += x;\n   \
+    \     chmin(flow_ans, infty<Cap>);\n        if (flow_ans == infty<Cap>) return\
+    \ flow_ans;\n      }\n    }\n    return flow_ans;\n  }\n\n  // \u6700\u5C0F\u30AB\
+    \u30C3\u30C8\u306E\u5024\u304A\u3088\u3073\u3001\u30AB\u30C3\u30C8\u3092\u8868\
+    \u3059 01 \u5217\u3092\u8FD4\u3059\n  pair<Cap, vc<int>> cut(int source, int sink)\
+    \ {\n    Cap f = flow(source, sink);\n    vc<int> res(N);\n    FOR(v, N) res[v]\
+    \ = (level[v] >= 0 ? 0 : 1);\n    return {f, res};\n  }\n\n  // \u6B8B\u4F59\u30B0\
+    \u30E9\u30D5\u306E\u8FBA\n  vc<tuple<int, int, Cap>> get_edges() {\n    vc<tuple<int,\
+    \ int, Cap>> edges;\n    FOR(v, N) {\n      FOR(k, indptr[v], indptr[v + 1]) {\n\
+    \        auto& e = G[k];\n        edges.eb(v, e.to, e.cap);\n      }\n    }\n\
+    \    return edges;\n  }\n\nprivate:\n  bool set_level(int source, int sink) {\n\
+    \    que.resize(N);\n    level.assign(N, -1);\n    level[source] = 0;\n    int\
+    \ l = 0, r = 0;\n    que[r++] = source;\n    while (l < r) {\n      int v = que[l++];\n\
+    \      FOR(k, indptr[v], indptr[v + 1]) {\n        auto& e = G[k];\n        if\
+    \ (e.cap > 0 && level[e.to] == -1) {\n          level[e.to] = level[v] + 1;\n\
+    \          if (e.to == sink) return true;\n          que[r++] = e.to;\n      \
+    \  }\n      }\n    }\n    return false;\n  }\n\n  Cap flow_dfs(int v, int sink,\
+    \ Cap lim) {\n    if (v == sink) return lim;\n    Cap res = 0;\n    for (int&\
+    \ i = prog[v]; i < indptr[v + 1]; ++i) {\n      auto& e = G[i];\n      if (e.cap\
+    \ > 0 && level[e.to] == level[v] + 1) {\n        Cap a = flow_dfs(e.to, sink,\
+    \ min(lim, e.cap));\n        if (a > 0) {\n          e.cap -= a;\n          G[e.rev].cap\
+    \ += a;\n          res += a;\n          lim -= a;\n          if (lim == 0) break;\n\
+    \        }\n      }\n    }\n    return res;\n  }\n};\n\nvoid solve() {\n  LL(H,\
+    \ W, X, Y);\n\n  auto idx = [&](int x, int y, int side) -> int {\n    return (W\
+    \ + W) * x + (2 * y + side);\n  };\n\n  VEC(string, shape, H);\n  VEC(string,\
+    \ color, H);\n  VV(int, cost, H, W);\n\n  using P = pair<int, int>;\n  using T\
+    \ = array<P, 3>;\n  vvv(T, dat, H, W, 2);\n\n  // \u4E09\u89D2\u5F62\u306E\u5EA7\
+    \u6A19\n  FOR(x, H) FOR(y, W) FOR(s, 2) {\n    if (s == 0) {\n      dat[x][y][s][0]\
+    \ = {x, y};\n      dat[x][y][s][1] = {x + 1, y};\n      if (shape[x][y] == '/')\
+    \ {\n        dat[x][y][s][2] = {x, y + 1};\n      } else {\n        dat[x][y][s][2]\
+    \ = {x + 1, y + 1};\n      }\n    }\n    if (s == 1) {\n      dat[x][y][s][0]\
+    \ = {x, y + 1};\n      dat[x][y][s][1] = {x + 1, y + 1};\n      if (shape[x][y]\
+    \ == '/') {\n        dat[x][y][s][2] = {x + 1, y};\n      } else {\n        dat[x][y][s][2]\
+    \ = {x, y};\n      }\n    };\n  }\n\n  UnionFind uf(2 * H * W);\n  auto merge\
+    \ = [&](int x1, int y1, int s1, int x2, int y2, int s2) -> void {\n    if (color[x1][2\
+    \ * y1 + s1] != '#') return;\n    if (color[x2][2 * y2 + s2] != '#') return;\n\
+    \    uf.merge(idx(x1, y1, s1), idx(x2, y2, s2));\n  };\n\n  // merge black cells\n\
+    \  FOR(x1, H) FOR(y1, W) {\n    // share vertex\n    FOR(dx, -1, 2) FOR(dy, -1,\
+    \ 2) {\n      int x2 = x1 + dx, y2 = y1 + dy;\n      if (x2 < 0 || x2 >= H) continue;\n\
+    \      if (y2 < 0 || y2 >= W) continue;\n      FOR(s1, 2) FOR(s2, 2) {\n     \
+    \   T A = dat[x1][y1][s1];\n        T B = dat[x2][y2][s2];\n        bool ok =\
+    \ 0;\n        FOR(i, 3) FOR(j, 3) if (A[i] == B[j]) ok = 1;\n        if (ok) merge(x1,\
+    \ y1, s1, x2, y2, s2);\n      }\n    }\n  }\n\n  vc<int> roots;\n  FOR(x, H) FOR(y,\
+    \ W) FOR(s, 2) {\n    int i = idx(x, y, s);\n    if (uf[i] != i) continue;\n \
+    \   if (color[x][2 * y + s] != '#') continue;\n    roots.eb(i);\n  }\n\n  vc<tuple<int,\
+    \ int, int>> edge;\n  auto add = [&](int a, int b, int c) -> void { edge.eb(a,\
+    \ b, c); };\n\n  int sink = 2 * H * W;\n  // diagonal\n  FOR(x, H) FOR(y, W) {\n\
+    \    int c = cost[x][y];\n    if (color[x][2 * y + 0] == '#' || color[x][2 * y\
+    \ + 1] == '#') {\n      c = infty<int>;\n    }\n    add(idx(x, y, 0), idx(x, y,\
+    \ 1), c);\n    // add(idx(x, y, 1), idx(x, y, 0), c);\n  }\n  // x,x+1\n  FOR(x,\
+    \ -1, H) FOR(y, W) {\n    int c = X;\n    int a = sink;\n    if (x >= 0) {\n \
+    \     int s = (shape[x][y] == '/' ? 1 : 0);\n      if (color[x][2 * y + s] ==\
+    \ '#') { c = infty<int>; }\n      a = idx(x, y, s);\n    }\n    int b = sink;\n\
+    \    if (x + 1 < H) {\n      int s = (shape[x + 1][y] == '/' ? 0 : 1);\n     \
+    \ if (color[x + 1][2 * y + s] == '#') { c = infty<int>; }\n      b = idx(x + 1,\
+    \ y, s);\n    }\n    add(a, b, c);\n    // add(b, a, c);\n  }\n  // y,y+1\n  FOR(x,\
+    \ H) FOR(y, -1, W) {\n    int c = Y;\n    int a = sink;\n    if (y >= 0) {\n \
+    \     int s = (shape[x][y] == '/' ? 1 : 1);\n      if (color[x][2 * y + s] ==\
+    \ '#') { c = infty<int>; }\n      a = idx(x, y, s);\n    }\n    int b = sink;\n\
+    \    if (y + 1 < W) {\n      int s = (shape[x][y + 1] == '/' ? 0 : 0);\n     \
+    \ if (color[x][2 * (y + 1) + s] == '#') { c = infty<int>; }\n      b = idx(x,\
+    \ y + 1, s);\n    }\n    add(a, b, c);\n    // add(b, a, c);\n  }\n#line 2 \"\
+    flow/binary_optimization.hpp\"\n\ntemplate <typename T, bool MINIMIZE>\nstruct\
+    \ Binary_Optimization {\n  int n;\n  int nxt;\n  int source, sink;\n  T base_cost;\n\
+    \  map<pair<int, int>, T> edges;\n\n  Binary_Optimization(int n) : n(n), base_cost(0)\
+    \ {\n    source = n;\n    sink = n + 1;\n    nxt = n + 2;\n  }\n\n  // xi \u3092\
+    \ 0, 1 \u306B\u3059\u308B\u3068\u304D\u306B\u304B\u304B\u308B\u30B3\u30B9\u30C8\
+    \u3092\u8FFD\u52A0\u3059\u308B\u3002\n  void add_1(int i, T x0, T x1) {\n    assert(0\
+    \ <= i && i < n);\n    if (!MINIMIZE) { x0 = -x0, x1 = -x1; }\n    _add_1(i, x0,\
+    \ x1);\n  }\n\n  // (xi,xj) = (00,01,10,11) \u3068\u3059\u308B\u3068\u304D\u306B\
+    \u304B\u304B\u308B\u30B3\u30B9\u30C8\u3092\u8FFD\u52A0\u3059\u308B\u3002\n  //\
+    \ \u30B3\u30B9\u30C8\u304C\u52A3\u30E2 x00 + x11 <= x10 + x10 \u306B\u306A\u3063\
+    \u3066\u3044\u308B\u5FC5\u8981\u304C\u3042\u308B\u3002\n  // \u7279\u306B\u3001\
+    \u5BFE\u89D2\u6210\u5206\u306B\u5229\u5F97\u3092\u4E0E\u3048\u308B\u3053\u3068\
+    \u304C\u3067\u304D\u308B\u3002\n  void add_2(int i, int j, T x00, T x01, T x10,\
+    \ T x11) {\n    assert(i != j);\n    assert(0 <= i && i < n);\n    assert(0 <=\
+    \ j && j < n);\n    if (!MINIMIZE) {\n      x00 = -x00, x01 = -x01;\n      x10\
+    \ = -x10, x11 = -x11;\n    }\n    _add_2(i, j, x00, x01, x10, x11);\n  }\n\n \
+    \ // (xi,xj,xk) = (000,001,010,011,100,101,110,111)\n  // \u3068\u3059\u308B\u3068\
+    \u304D\u306B\u304B\u304B\u308B\u30B3\u30B9\u30C8\u3092\u8FFD\u52A0\u3059\u308B\
+    \u3002\u52A3\u30E2\u306B\u306A\u3063\u3066\u3044\u308B\u5FC5\u8981\u304C\u3042\
+    \u308B\u3002\n  // \u7279\u306B\u3001000 \u3084 111 \u306B\u5229\u5F97\u3092\u4E0E\
+    \u3048\u308B\u3053\u3068\u304C\u3067\u304D\u308B\u3002\n  void add_3(int i, int\
+    \ j, int k, T x000, T x001, T x010, T x011, T x100,\n             T x101, T x110,\
+    \ T x111) {\n    assert(i != j && i != k && j != k);\n    assert(0 <= i && i <\
+    \ n);\n    assert(0 <= j && j < n);\n    assert(0 <= k && k < n);\n    if (!MINIMIZE)\
     \ {\n      x000 = -x000, x001 = -x001;\n      x010 = -x010, x011 = -x011;\n  \
     \    x100 = -x100, x101 = -x101;\n      x110 = -x110, x111 = -x111;\n    }\n \
     \   _add_3(i, j, k, x000, x001, x010, x011, x100, x101, x110, x111);\n  }\n\n\
@@ -331,8 +376,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc193f.test.cpp
   requiredBy: []
-  timestamp: '2023-04-02 05:20:46+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-22 04:56:55+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc193f.test.cpp
 layout: document
