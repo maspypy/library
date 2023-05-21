@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A
@@ -241,58 +241,19 @@ data:
     \ > 0 && level[e.to] == level[v] + 1) {\n        Cap a = flow_dfs(e.to, sink,\
     \ min(lim, e.cap));\n        if (a > 0) {\n          e.cap -= a;\n          G[e.rev].cap\
     \ += a;\n          res += a;\n          lim -= a;\n          if (lim == 0) break;\n\
-    \        }\n      }\n    }\n    return res;\n  }\n};\n\nvoid solve() {\n  LL(H,\
-    \ W, X, Y);\n\n  auto idx = [&](int x, int y, int side) -> int {\n    return (W\
-    \ + W) * x + (2 * y + side);\n  };\n\n  VEC(string, shape, H);\n  VEC(string,\
-    \ color, H);\n  VV(int, cost, H, W);\n\n  using P = pair<int, int>;\n  using T\
-    \ = array<P, 3>;\n  vvv(T, dat, H, W, 2);\n\n  // \u4E09\u89D2\u5F62\u306E\u5EA7\
-    \u6A19\n  FOR(x, H) FOR(y, W) FOR(s, 2) {\n    if (s == 0) {\n      dat[x][y][s][0]\
-    \ = {x, y};\n      dat[x][y][s][1] = {x + 1, y};\n      if (shape[x][y] == '/')\
-    \ {\n        dat[x][y][s][2] = {x, y + 1};\n      } else {\n        dat[x][y][s][2]\
-    \ = {x + 1, y + 1};\n      }\n    }\n    if (s == 1) {\n      dat[x][y][s][0]\
-    \ = {x, y + 1};\n      dat[x][y][s][1] = {x + 1, y + 1};\n      if (shape[x][y]\
-    \ == '/') {\n        dat[x][y][s][2] = {x + 1, y};\n      } else {\n        dat[x][y][s][2]\
-    \ = {x, y};\n      }\n    };\n  }\n\n  UnionFind uf(2 * H * W);\n  auto merge\
-    \ = [&](int x1, int y1, int s1, int x2, int y2, int s2) -> void {\n    if (color[x1][2\
-    \ * y1 + s1] != '#') return;\n    if (color[x2][2 * y2 + s2] != '#') return;\n\
-    \    uf.merge(idx(x1, y1, s1), idx(x2, y2, s2));\n  };\n\n  // merge black cells\n\
-    \  FOR(x1, H) FOR(y1, W) {\n    // share vertex\n    FOR(dx, -1, 2) FOR(dy, -1,\
-    \ 2) {\n      int x2 = x1 + dx, y2 = y1 + dy;\n      if (x2 < 0 || x2 >= H) continue;\n\
-    \      if (y2 < 0 || y2 >= W) continue;\n      FOR(s1, 2) FOR(s2, 2) {\n     \
-    \   T A = dat[x1][y1][s1];\n        T B = dat[x2][y2][s2];\n        bool ok =\
-    \ 0;\n        FOR(i, 3) FOR(j, 3) if (A[i] == B[j]) ok = 1;\n        if (ok) merge(x1,\
-    \ y1, s1, x2, y2, s2);\n      }\n    }\n  }\n\n  vc<int> roots;\n  FOR(x, H) FOR(y,\
-    \ W) FOR(s, 2) {\n    int i = idx(x, y, s);\n    if (uf[i] != i) continue;\n \
-    \   if (color[x][2 * y + s] != '#') continue;\n    roots.eb(i);\n  }\n\n  vc<tuple<int,\
-    \ int, int>> edge;\n  auto add = [&](int a, int b, int c) -> void { edge.eb(a,\
-    \ b, c); };\n\n  int sink = 2 * H * W;\n  // diagonal\n  FOR(x, H) FOR(y, W) {\n\
-    \    int c = cost[x][y];\n    if (color[x][2 * y + 0] == '#' || color[x][2 * y\
-    \ + 1] == '#') {\n      c = infty<int>;\n    }\n    add(idx(x, y, 0), idx(x, y,\
-    \ 1), c);\n    // add(idx(x, y, 1), idx(x, y, 0), c);\n  }\n  // x,x+1\n  FOR(x,\
-    \ -1, H) FOR(y, W) {\n    int c = X;\n    int a = sink;\n    if (x >= 0) {\n \
-    \     int s = (shape[x][y] == '/' ? 1 : 0);\n      if (color[x][2 * y + s] ==\
-    \ '#') { c = infty<int>; }\n      a = idx(x, y, s);\n    }\n    int b = sink;\n\
-    \    if (x + 1 < H) {\n      int s = (shape[x + 1][y] == '/' ? 0 : 1);\n     \
-    \ if (color[x + 1][2 * y + s] == '#') { c = infty<int>; }\n      b = idx(x + 1,\
-    \ y, s);\n    }\n    add(a, b, c);\n    // add(b, a, c);\n  }\n  // y,y+1\n  FOR(x,\
-    \ H) FOR(y, -1, W) {\n    int c = Y;\n    int a = sink;\n    if (y >= 0) {\n \
-    \     int s = (shape[x][y] == '/' ? 1 : 1);\n      if (color[x][2 * y + s] ==\
-    \ '#') { c = infty<int>; }\n      a = idx(x, y, s);\n    }\n    int b = sink;\n\
-    \    if (y + 1 < W) {\n      int s = (shape[x][y + 1] == '/' ? 0 : 0);\n     \
-    \ if (color[x][2 * (y + 1) + s] == '#') { c = infty<int>; }\n      b = idx(x,\
-    \ y + 1, s);\n    }\n    add(a, b, c);\n    // add(b, a, c);\n  }\n#line 7 \"\
-    test/aoj/GRL_6_A.test.cpp\"\n\r\nvoid solve() {\r\n  LL(N, M);\r\n  MaxFlowGraph<int>\
-    \ G(N);\r\n  FOR(M) {\r\n    LL(a, b, c);\r\n    G.add(a, b, c);\r\n  }\r\n  print(G.flow(0,\
+    \        }\n      }\n    }\n    return res;\n  }\n};\n#line 7 \"test/aoj/GRL_6_A.test.cpp\"\
+    \n\r\nvoid solve() {\r\n  LL(N, M);\r\n  MaxFlowGraph<int> G(N);\r\n  FOR(M) {\r\
+    \n    LL(a, b, c);\r\n    G.add(a, b, c);\r\n  }\r\n  G.build();\r\n  print(G.flow(0,\
     \ N - 1));\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
     \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(T) solve();\r\
     \n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
     \ \"flow/maxflow.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N, M);\r\n  MaxFlowGraph<int>\
-    \ G(N);\r\n  FOR(M) {\r\n    LL(a, b, c);\r\n    G.add(a, b, c);\r\n  }\r\n  print(G.flow(0,\
-    \ N - 1));\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(T) solve();\r\
-    \n\r\n  return 0;\r\n}\r\n"
+    \ G(N);\r\n  FOR(M) {\r\n    LL(a, b, c);\r\n    G.add(a, b, c);\r\n  }\r\n  G.build();\r\
+    \n  print(G.flow(0, N - 1));\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
+    \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  ll T\
+    \ = 1;\r\n  // LL(T);\r\n  FOR(T) solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -300,8 +261,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_6_A.test.cpp
   requiredBy: []
-  timestamp: '2023-05-22 04:56:55+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-05-22 05:07:56+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_6_A.test.cpp
 layout: document
