@@ -60,6 +60,7 @@ struct Binary_Optimization {
       auto [frm, to] = key;
       G.add(frm, to, cap);
     }
+    G.build();
 
     auto [val, cut] = G.cut(source, sink);
     val += base_cost;
