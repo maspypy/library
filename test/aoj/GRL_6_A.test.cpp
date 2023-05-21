@@ -12,6 +12,7 @@ void solve() {
     LL(a, b, c);
     G.add(a, b, c);
   }
+  G.build();
   print(G.flow(0, N - 1));
 }
 
