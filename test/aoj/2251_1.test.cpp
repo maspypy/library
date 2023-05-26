@@ -3,6 +3,7 @@
 #include "other/io.hpp"
 #include "graph/shortest_path/dijkstra.hpp"
 #include "graph/dag_path_cover.hpp"
+#include "graph/toposort.hpp"
 
 void solve(ll N, ll M, ll L) {
   vv(ll, dist, N, N);
@@ -21,6 +22,10 @@ void solve(ll N, ll M, ll L) {
     if (ta + dist[pa][pb] <= tb) G.add(a, b);
   }
   G.build();
+
+  auto V = toposort(G);
+  G = G.rearrange(V).fi;
+
   auto color = dag_path_cover(G);
   print(MAX(color) + 1);
 }
