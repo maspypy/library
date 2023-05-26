@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bigint/base.hpp
     title: bigint/base.hpp
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/many_aplusb_128bit
@@ -512,11 +512,12 @@ data:
     \ {\n    string s;\n    fastio::scanner.read(s);\n    *this = bint(s);\n  }\n\
     #endif\n};\n#line 6 \"test/library_checker/aplusb128.test.cpp\"\n\nusing bint\
     \ = BigInteger;\n\nvoid solve() {\n  bint a, b;\n  read(a), read(b);\n  print(a\
-    \ + b);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ + b);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb_128bit\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"bigint/base.hpp\"\
     \n\nusing bint = BigInteger;\n\nvoid solve() {\n  bint a, b;\n  read(a), read(b);\n\
-    \  print(a + b);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
+    \  print(a + b);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n  return\
+    \ 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -531,8 +532,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/aplusb128.test.cpp
   requiredBy: []
-  timestamp: '2023-05-26 18:54:15+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-05-26 23:01:56+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/aplusb128.test.cpp
 layout: document
