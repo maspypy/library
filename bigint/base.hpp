@@ -13,9 +13,8 @@ struct BigInteger {
 
   BigInteger() : sgn(1) {}
   BigInteger(i128 val) {
-    if (val == 0) {
-      sgn = 1;
-    } else {
+    sgn = 1;
+    if (val != 0) {
       if (val < 0) sgn = -1, val = -val;
       while (val > 0) {
         dat.eb(val % MOD);
@@ -90,7 +89,11 @@ struct BigInteger {
     while (len(dat) && dat.back() == 0) { dat.pop_back(); }
     return *this;
   }
-  // bint &operator*=(const bint &p) { return this; }
+  bint &operator*=(const bint &p) {
+    sgn *= p.sgn;
+    dat = convolve(dat, p.dat);
+    return *this;
+  }
   // bint &operator/=(const bint &p) { return *this; }
   bint operator-() const {
     bint p = *this;
@@ -99,7 +102,7 @@ struct BigInteger {
   }
   bint operator+(const bint &p) const { return bint(*this) += p; }
   bint operator-(const bint &p) const { return bint(*this) -= p; }
-  // bint operator*(const modint &p) const { return modint(*this) *= p; }
+  bint operator*(const bint &p) const { return bint(*this) *= p; }
   // bint operator/(const modint &p) const { return modint(*this) /= p; }
   bool operator==(const bint &p) const {
     return (sgn == p.sgn && dat == p.dat);
@@ -107,14 +110,25 @@ struct BigInteger {
   bool operator!=(const bint &p) const {
     return (sgn != p.sgn || dat != p.dat);
   }
-#ifdef FASTIO
-  void write() { fastio::printer.write(to_string()); }
-  void read() {
-    string s;
-    fastio::scanner.read(s);
-    *this = bint(s);
+
+  // とりあえず愚直畳み込みだけ
+  vc<int> convolve(const vc<int> &A, const vc<int> &B) {
+    int NA = len(A), NB = len(B);
+    if (NA == 0 || NB == 0) return {};
+    vc<int> C(NA + NB - 1);
+    auto add = [&](int idx, ll x) -> void {
+      while (x) {
+        if (idx >= len(C)) C.resize(idx + 1);
+        x += C[idx];
+        C[idx] = x % MOD;
+        x /= MOD;
+        ++idx;
+      }
+    };
+    FOR(i, NA) FOR(j, NB) add(i + j, ll(A[i]) * A[j]);
+    return C;
   }
-#endif
+
   string to_string() {
     if (dat.empty()) return "0";
     string s;
@@ -129,4 +143,12 @@ struct BigInteger {
     reverse(all(s));
     return s;
   }
+#ifdef FASTIO
+  void write() { fastio::printer.write(to_string()); }
+  void read() {
+    string s;
+    fastio::scanner.read(s);
+    *this = bint(s);
+  }
+#endif
 };
