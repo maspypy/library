@@ -1,42 +1,45 @@
-#include "flow/bipartite.hpp"
-#include "graph/toposort.hpp"
+#include "flow/maxflow.hpp"
+#include "ds/unionfind/unionfind.hpp"
 
-// path （頂点列）の vector を返す O(m sqrt(n))
+// 各頂点の色をかえす。各色はひとつのパス上にあるようにする
 template <typename DAG>
-vc<vc<int>> dag_path_cover(DAG& G) {
+vc<int> dag_path_cover(DAG& G) {
   assert(G.is_directed());
-  int n = G.N;
-  auto V = toposort(G);
-  vc<int> idx(n);
-  FOR(i, n) idx[V[i]] = i;
+  for (auto&& e: G.edges) assert(e.frm < e.to);
 
-  // check dag
-  for (auto&& e: G.edges) assert(idx[e.frm] < idx[e.to]);
-
-  Graph H(n + n);
-  for (auto&& e: G.edges) { H.add(e.frm, e.to + n); }
-  H.build();
-  BipartiteMatching BM(H);
-  auto match = BM.matching();
-  vc<int> nxt(n, -1);
-  for (auto&& [a, b]: match) {
-    if (a > b) swap(a, b);
-    nxt[a] = b - n;
+  int N = G.N;
+  MaxFlowGraph<int> F(2 * N + 2);
+  int source = 2 * N, sink = 2 * N + 1;
+  FOR(v, N) {
+    F.add(source, 2 * v + 1, 1);
+    F.add(2 * v + 0, sink, 1);
+    F.add(2 * v + 0, 2 * v + 1, infty<int>);
   }
+  for (auto&& e: G.edges) F.add(2 * e.frm + 1, 2 * e.to + 0, infty<int>);
+  F.build();
 
-  vc<bool> done(n);
+  int flow = F.flow(source, sink);
 
-  vvc<int> paths;
-  for (auto&& v: V) {
-    if (done[v]) continue;
-    vc<int> P = {v};
+  vvc<pair<int, int>> flow_edges(N + N + 2);
+  for (auto&& [a, b, c]: F.get_flow_edges()) { flow_edges[a].eb(b, c); }
+
+  UnionFind uf(N);
+  for (auto&& [a, f]: flow_edges[source]) {
+    assert(f == 1);
+    int b = a;
     while (1) {
-      int w = nxt[P.back()];
-      if (w == -1) break;
-      P.eb(w);
+      auto [to, x] = POP(flow_edges[b]);
+      x -= 1;
+      if (x > 0) flow_edges[b].eb(to, x);
+      if (to == sink) break;
+      b = to;
     }
-    for (auto&& x: P) done[x] = 1;
-    paths.eb(P);
+    uf.merge(a / 2, b / 2);
   }
-  return paths;
+
+  vc<int> ANS(N, -1);
+  int p = 0;
+  FOR(v, N) if (uf[v] == v) ANS[v] = p++;
+  FOR(v, N) if (uf[v] != v) ANS[v] = ANS[uf[v]];
+  return ANS;
 };
