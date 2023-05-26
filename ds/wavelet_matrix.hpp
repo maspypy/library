@@ -80,6 +80,7 @@ struct Wavelet_Matrix {
 
   // xor した結果で、[L, R) の中で k>=0 番目と prefix sum
   pair<T, X> kth_value_and_sum(int L, int R, int k, T xor_val = 0) {
+    assert(!cumsum.empty());
     if (xor_val != 0) assert(set_log);
     assert(0 <= k && k <= R - L);
     if (k == R - L) { return {infty<T>, sum_all(L, R)}; }
@@ -108,6 +109,7 @@ struct Wavelet_Matrix {
   // xor した結果で、[L, R) の中で k>=0 番目と prefix sum
   pair<T, X> kth_value_and_sum(vc<pair<int, int>> segments, int k,
                                T xor_val = 0) {
+    assert(!cumsum.empty());
     if (xor_val != 0) assert(set_log);
     int total_len = 0;
     for (auto&& [L, R]: segments) total_len += R - L;
@@ -266,6 +268,7 @@ struct Wavelet_Matrix {
 
 private:
   inline X get(int d, int L, int R) {
+    assert(!cumsum.empty());
     return MX::op(MX::inverse(cumsum[d][L]), cumsum[d][R]);
   }
 
