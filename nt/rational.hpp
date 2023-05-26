@@ -9,6 +9,7 @@ struct Rational {
   }
 
   static T gcd(T a, T b) {
+    a = max(a, -a), b = max(b, -b);
     while (b) {
       a %= b;
       swap(a, b);
@@ -18,7 +19,7 @@ struct Rational {
 
   void reduce() {
     if (!REDUCE) return;
-    T g = gcd(abs(num), abs(den));
+    T g = gcd(num, den);
     num /= g, den /= g;
   }
 
@@ -73,4 +74,5 @@ struct Rational {
   }
 
   string to_string() { return std::to_string(num) + "/" + std::to_string(den); }
+  double to_double() { return double(num) / double(den); }
 };
