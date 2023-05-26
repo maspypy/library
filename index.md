@@ -85,7 +85,7 @@ data:
       title: alg/acted_set/from_monoid.hpp
   - name: alg/monoid
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/add.hpp
       title: alg/monoid/add.hpp
     - icon: ':heavy_check_mark:'
@@ -212,7 +212,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/binary_trie.hpp
       title: ds/binary_trie.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/bit_vector.hpp
       title: ds/bit_vector.hpp
     - icon: ':warning:'
@@ -260,7 +260,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/sortable_array.hpp
       title: ds/sortable_array.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/wavelet_matrix.hpp
       title: ds/wavelet_matrix.hpp
   - name: ds/fenwicktree
@@ -637,7 +637,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/max_matching_size.hpp
       title: graph/max_matching_size.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/maximum_antichain.hpp
       title: graph/maximum_antichain.hpp
     - icon: ':heavy_check_mark:'
@@ -1476,7 +1476,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/is_subseq.hpp
       title: string/is_subseq.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/is_substring.hpp
       title: string/is_substring.hpp
     - icon: ':heavy_check_mark:'
@@ -1533,7 +1533,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/wildcard_pattern_matching.hpp
       title: string/wildcard_pattern_matching.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/zalgorithm.hpp
       title: string/zalgorithm.hpp
   verificationCategories:
@@ -3262,7 +3262,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc127f.test.cpp
       title: test_atcoder/abc127f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc127f_1.test.cpp
       title: test_atcoder/abc127f_1.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3289,7 +3289,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc190f.test.cpp
       title: test_atcoder/abc190f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc193f.test.cpp
       title: test_atcoder/abc193f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3334,7 +3334,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc222g.test.cpp
       title: test_atcoder/abc222g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc222h.test.cpp
       title: test_atcoder/abc222h.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3376,7 +3376,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc236h.test.cpp
       title: test_atcoder/abc236h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc237ex.test.cpp
       title: test_atcoder/abc237ex.test.cpp
     - icon: ':heavy_check_mark:'
