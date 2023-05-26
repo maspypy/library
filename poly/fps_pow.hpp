@@ -38,6 +38,7 @@ vc<mint> fps_pow(const vc<mint>& f, ll k) {
 template <typename mint>
 vc<mint> fps_pow_1_sparse(const vc<mint>& f, mint K) {
   int N = len(f);
+  assert(N == 0 || f[0] == mint(1));
   vc<pair<int, mint>> dat;
   FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);
   vc<mint> g(N);
