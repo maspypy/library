@@ -1603,6 +1603,9 @@ data:
     path: test/yukicoder/2305.test.cpp
     title: test/yukicoder/2305.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2320.test.cpp
+    title: test/yukicoder/2320.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1926,7 +1929,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc123d.test.cpp
     title: test_atcoder/arc123d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc144d.test.cpp
     title: test_atcoder/arc144d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1935,7 +1938,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc153b.test.cpp
     title: test_atcoder/arc153b.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2371,6 +2374,7 @@ data:
   - test/yukicoder/2119.test.cpp
   - test/yukicoder/2109.test.cpp
   - test/yukicoder/187.test.cpp
+  - test/yukicoder/2320.test.cpp
   - test/yukicoder/1755.test.cpp
   - test/yukicoder/114.test.cpp
   - test/yukicoder/1769.test.cpp

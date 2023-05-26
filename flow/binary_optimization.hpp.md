@@ -10,6 +10,9 @@ data:
     path: test/yukicoder/1541.test.cpp
     title: test/yukicoder/1541.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2320.test.cpp
+    title: test/yukicoder/2320.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc193f.test.cpp
     title: test_atcoder/abc193f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -192,6 +195,7 @@ data:
   verifiedWith:
   - test_atcoder/abc193f.test.cpp
   - test_atcoder/abc259g.test.cpp
+  - test/yukicoder/2320.test.cpp
   - test/yukicoder/1541.test.cpp
 documentation_of: flow/binary_optimization.hpp
 layout: document
