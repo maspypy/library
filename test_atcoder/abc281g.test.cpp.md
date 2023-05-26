@@ -1,77 +1,77 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc281/tasks/abc281_g
@@ -686,13 +686,39 @@ data:
     \ mint>> dat;\n  FOR(i, 1, len(g)) if (g[i] != mint(0)) dat.eb(i, -g[i]);\n  FOR(i,\
     \ len(f)) {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i\
     \ - j];\n    }\n  }\n  return f;\n}\n#line 9 \"test_atcoder/abc281g.test.cpp\"\
-    \n\nusing mint = dmint;\n\nvoid solve() {}\n\nsigned main() {\n  solve();\n  return\
+    \n\nusing mint = dmint;\n \nvoid solve() {\n  LL(N, mod);\n  mint::set_mod(mod);\n\
+    \  auto POW = powertable_1<mint>(mint(2), N * N + 10);\n \n  // \u4E00\u5FDC o(N^3)\
+    \ \u3092\u5B9F\u88C5\u3059\u308B\u304B\n \n  vv(mint, dp, N, N);\n  FOR(i, N)\
+    \ dp[i][i] += POW[i * (i - 1) / 2];\n \n  FOR(n, N) {\n    vc<mint> f = dp[n];\n\
+    \    f.resize(n + 1);\n    vc<mint> g(N - n);\n    /*\n    FOR(i, n + 1) {\n \
+    \     FOR(j, 1, N - n) { g[j] += f[i] * (POW[i] - mint(1)).pow(j); }\n    }\n\
+    \    */\n    // \u7D50\u5C40\u3001sum f[i]/1-ax \u306E\u5F62\n    using poly =\
+    \ vc<mint>;\n    vc<pair<poly, poly>> rationals;\n    FOR(i, n + 1) {\n      if\
+    \ (f[i] == mint(0)) continue;\n      poly F = {f[i]};\n      poly G = {mint(1),\
+    \ mint(1) - POW[i]};\n      rationals.eb(F, G);\n    }\n    auto [F, G] = sum_of_rationals<mint>(rationals);\n\
+    \    F.resize(N - n), G.resize(N - n);\n    g = fps_div(F, G);\n \n    FOR(j,\
+    \ 1, N - n) {\n      dp[n + j][j] += g[j] * C<mint, 0, true>(n + j, j) * POW[j\
+    \ * (j - 1) / 2];\n    }\n  }\n  mint ANS = 0;\n  FOR(i, 1, N) ANS += dp[N - 2][i]\
+    \ * (POW[i] - mint(1));\n  print(ANS);\n}\n \nsigned main() {\n  solve();\n  return\
     \ 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc281/tasks/abc281_g\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/dynamic_modint.hpp\"\
     \n#include \"mod/powertable.hpp\"\n#include \"poly/sum_of_rationals.hpp\"\n#include\
-    \ \"poly/fps_div.hpp\"\n\nusing mint = dmint;\n\nvoid solve() {}\n\nsigned main()\
-    \ {\n  solve();\n  return 0;\n}\n"
+    \ \"poly/fps_div.hpp\"\n\nusing mint = dmint;\n \nvoid solve() {\n  LL(N, mod);\n\
+    \  mint::set_mod(mod);\n  auto POW = powertable_1<mint>(mint(2), N * N + 10);\n\
+    \ \n  // \u4E00\u5FDC o(N^3) \u3092\u5B9F\u88C5\u3059\u308B\u304B\n \n  vv(mint,\
+    \ dp, N, N);\n  FOR(i, N) dp[i][i] += POW[i * (i - 1) / 2];\n \n  FOR(n, N) {\n\
+    \    vc<mint> f = dp[n];\n    f.resize(n + 1);\n    vc<mint> g(N - n);\n    /*\n\
+    \    FOR(i, n + 1) {\n      FOR(j, 1, N - n) { g[j] += f[i] * (POW[i] - mint(1)).pow(j);\
+    \ }\n    }\n    */\n    // \u7D50\u5C40\u3001sum f[i]/1-ax \u306E\u5F62\n    using\
+    \ poly = vc<mint>;\n    vc<pair<poly, poly>> rationals;\n    FOR(i, n + 1) {\n\
+    \      if (f[i] == mint(0)) continue;\n      poly F = {f[i]};\n      poly G =\
+    \ {mint(1), mint(1) - POW[i]};\n      rationals.eb(F, G);\n    }\n    auto [F,\
+    \ G] = sum_of_rationals<mint>(rationals);\n    F.resize(N - n), G.resize(N - n);\n\
+    \    g = fps_div(F, G);\n \n    FOR(j, 1, N - n) {\n      dp[n + j][j] += g[j]\
+    \ * C<mint, 0, true>(n + j, j) * POW[j * (j - 1) / 2];\n    }\n  }\n  mint ANS\
+    \ = 0;\n  FOR(i, 1, N) ANS += dp[N - 2][i] * (POW[i] - mint(1));\n  print(ANS);\n\
+    }\n \nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -719,8 +745,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc281g.test.cpp
   requiredBy: []
-  timestamp: '2023-05-26 18:59:23+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-05-26 23:50:39+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc281g.test.cpp
 layout: document
