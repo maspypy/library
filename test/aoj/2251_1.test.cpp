@@ -21,15 +21,11 @@ void solve(ll N, ll M, ll L) {
     if (ta + dist[pa][pb] <= tb) G.add(a, b);
   }
   G.build();
-  auto paths = dag_path_cover(G);
-  print(len(paths));
+  auto color = dag_path_cover(G);
+  print(MAX(color) + 1);
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
   while (1) {
     LL(N, M, L);
     if (N + M + L == 0) break;
