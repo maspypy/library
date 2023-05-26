@@ -5,7 +5,7 @@ struct ConvexPolygon {
   int n;
   vc<P> point;
 
-  ConvexPolygon(vc<P> point) : n(len(point)), point(point) { assert(n >= 2); }
+  ConvexPolygon(vc<P> point) : n(len(point)), point(point) { assert(n >= 1); }
 
   // 比較関数 comp(i,j)
   template <typename F>
@@ -20,16 +20,26 @@ struct ConvexPolygon {
         L = L1, R = R1;
       }
     }
-    return M;
+    return M % n;
   }
 
   int nxt_idx(int i) { return (i + 1 == n ? 0 : i + 1); }
-  int perv_idx(int i) { return (i == 0 ? n - 1 : i - 1); }
+  int prev_idx(int i) { return (i == 0 ? n - 1 : i - 1); }
 
   // 中：1, 境界：0, 外：-1
-  int side(P p) {}
+  // int side(P p) {}
 
-  pair<int, T> min_dot(P p) {}
-  pair<int, T> max_dot(P p) {}
-  pair<int, int> visible_range(P p) {}
+  pair<int, T> min_dot(P p) {
+    int idx = periodic_min_comp([&](int i, int j) -> bool {
+      return point[i % n].dot(p) < point[j % n].dot(p);
+    });
+    return {idx, point[idx].dot(p)};
+  }
+  pair<int, T> max_dot(P p) {
+    int idx = periodic_min_comp([&](int i, int j) -> bool {
+      return point[i % n].dot(p) > point[j % n].dot(p);
+    });
+    return {idx, point[idx].dot(p)};
+  }
+  // pair<int, int> visible_range(P p) {}
 };
