@@ -5,10 +5,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/add_mul.hpp
     title: alg/acted_monoid/add_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/power_query.hpp
     title: ds/power_query.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_bipartite.hpp
     title: graph/count/count_bipartite.hpp
   - icon: ':heavy_check_mark:'
@@ -26,6 +26,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/sparse_exp_of_div.hpp
     title: poly/sparse_exp_of_div.hpp
+  - icon: ':x:'
+    path: poly/sum_of_C_negative.hpp
+    title: poly/sum_of_C_negative.hpp
   - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
@@ -42,7 +45,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/count_bipartite.test.cpp
     title: test/mytest/count_bipartite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -78,9 +81,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc276_g_2.test.cpp
     title: test_atcoder/abc276_g_2.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test_atcoder/arc144d.test.cpp
+    title: test_atcoder/arc144d.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Monoid_Mul\
@@ -99,6 +105,7 @@ data:
   requiredBy:
   - poly/lagrange_interpolate_iota.hpp
   - poly/from_log_differentiation.hpp
+  - poly/sum_of_C_negative.hpp
   - poly/prefix_product_of_poly.hpp
   - poly/sparse_exp_of_div.hpp
   - alg/acted_monoid/add_mul.hpp
@@ -108,10 +115,11 @@ data:
   - graph/count/count_bipartite.hpp
   - mod/mod_log.hpp
   timestamp: '2022-11-27 14:10:12+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc276_g_2.test.cpp
   - test_atcoder/abc222h_2.test.cpp
+  - test_atcoder/arc144d.test.cpp
   - test_atcoder/abc276_g.test.cpp
   - test/yukicoder/2005.test.cpp
   - test/yukicoder/502_2.test.cpp

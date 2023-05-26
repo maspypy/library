@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   _extendedRequiredBy: []
@@ -21,12 +21,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2251_2.test.cpp
     title: test/aoj/2251_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc237ex.test.cpp
     title: test_atcoder/abc237ex.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -186,7 +186,25 @@ data:
     \ == infty<int>) W[v] = K;\r\n    return {K, W};\r\n  }\r\n\r\n  void debug()\
     \ {\r\n    print(\"match\", match);\r\n    print(\"min vertex covor\", vertex_cover());\r\
     \n    print(\"max indep set\", independent_set());\r\n    print(\"min edge cover\"\
-    , edge_cover());\r\n  }\r\n};\n#line 2 \"graph/maximum_antichain.hpp\"\n\n// \u6BD4\
+    , edge_cover());\r\n  }\r\n};\r\n\r\n// vc<bitset> \u3067 biadj matrix \u3092\u6E21\
+    \u3059\r\n// N^3/w. (5000,5000) \u3067 300ms \u7A0B\u5EA6\u3067\u52D5\u304F\u5834\
+    \u5408\u304C\u3042\u308B\r\n// https://qoj.ac/problem/6308\r\ntemplate <typename\
+    \ BS>\r\nstruct BipartiteMatching_Dense {\r\n  int N1, N2;\r\n  vc<BS>& G;\r\n\
+    \  vc<int> match_1, match_2;\r\n  vc<int> que;\r\n  vc<int> prev;\r\n  BS vis;\r\
+    \n\r\n  BipartiteMatching_Dense(vc<BS>& G, int N1, int N2)\r\n      : N1(N1),\
+    \ N2(N2), G(G), match_1(N1, -1), match_2(N2, -1) {\r\n    FOR(s, N1) bfs(s);\r\
+    \n  }\r\n\r\n  void bfs(int s) {\r\n    if (match_1[s] != -1) return;\r\n    que.resize(N1),\
+    \ prev.resize(N1);\r\n    int l = 0, r = 0;\r\n    vis.set(), prev[s] = -1;\r\n\
+    \r\n    que[r++] = s;\r\n    while (l < r) {\r\n      int u = que[l++];\r\n  \
+    \    BS cand = vis & G[u];\r\n      for (int v = cand._Find_first(); v < N2; v\
+    \ = cand._Find_next(v)) {\r\n        vis[v] = 0;\r\n        if (match_2[v] !=\
+    \ -1) {\r\n          que[r++] = match_2[v];\r\n          prev[match_2[v]] = u;\r\
+    \n          continue;\r\n        }\r\n        int a = u, b = v;\r\n        while\
+    \ (a != -1) {\r\n          int t = match_1[a];\r\n          match_1[a] = b, match_2[b]\
+    \ = a, a = prev[a], b = t;\r\n        }\r\n        return;\r\n      }\r\n    }\r\
+    \n    return;\r\n  }\r\n\r\n  vc<pair<int, int>> matching() {\r\n    vc<pair<int,\
+    \ int>> res;\r\n    FOR(v, N1) if (match_1[v] != -1) res.eb(v, match_1[v]);\r\n\
+    \    return res;\r\n  }\r\n};\n#line 2 \"graph/maximum_antichain.hpp\"\n\n// \u6BD4\
     \u8F03\u53EF\u80FD\u30B0\u30E9\u30D5\u3092\u4E0E\u3048\u308B\u3002DAG \u306A\u3060\
     \u3051\u3067\u306F\u30C0\u30E1\u3002\ntemplate <typename T>\nvc<int> maximum_antichain(T&\
     \ G) {\n  assert(G.is_directed());\n  int n = G.N;\n\n  Graph H(n + n);\n  for\
@@ -214,8 +232,8 @@ data:
   isVerificationFile: false
   path: graph/maximum_antichain.hpp
   requiredBy: []
-  timestamp: '2023-05-20 20:14:16+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-05-26 18:55:30+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc237ex.test.cpp
   - test/aoj/2251_2.test.cpp

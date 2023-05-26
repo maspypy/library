@@ -204,19 +204,23 @@ data:
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\n#line 5 \"test/aoj/GRL_6_A.test.cpp\"\n\r\n#line 1 \"flow/maxflow.hpp\"\
     \ntemplate <typename Cap>\nstruct MaxFlowGraph {\n  struct Edge {\n    int to,\
-    \ rev;\n    Cap cap;\n  };\n\n  int N;\n  vc<tuple<int, int, Cap, Cap>> dat;\n\
-    \  vc<int> prog, level;\n  vc<int> que;\n  vc<Edge> G;\n  vc<int> indptr;\n  Cap\
-    \ flow_ans;\n  bool calculated;\n  bool is_prepared;\n\n  MaxFlowGraph(int N)\
-    \ : N(N), calculated(0), is_prepared(0) {}\n\n  void add(int frm, int to, Cap\
-    \ cap, Cap rev_cap = 0) {\n    assert(0 <= frm && frm < N);\n    assert(0 <= to\
-    \ && to < N);\n    assert(Cap(0) <= cap);\n    if (frm == to) return;\n    dat.eb(frm,\
-    \ to, cap, rev_cap);\n  }\n\n  void build() {\n    assert(!is_prepared);\n   \
-    \ int M = len(dat);\n    is_prepared = 1;\n    indptr.assign(N, 0);\n    for (auto&&\
-    \ [a, b, c, d]: dat) indptr[a]++, indptr[b]++;\n    indptr = cumsum<int>(indptr);\n\
-    \    vc<int> nxt_idx = indptr;\n    G.resize(2 * M);\n    for (auto&& [a, b, c,\
-    \ d]: dat) {\n      int p = nxt_idx[a]++;\n      int q = nxt_idx[b]++;\n     \
-    \ G[p] = Edge{b, q, c};\n      G[q] = Edge{a, p, d};\n    }\n  }\n\n  Cap flow(int\
-    \ source, int sink) {\n    assert(is_prepared);\n    if (calculated) return flow_ans;\n\
+    \ rev;\n    Cap cap;\n    Cap flow = 0;\n  };\n\n  int N;\n  vc<tuple<int, int,\
+    \ Cap, Cap>> dat;\n  vc<int> prog, level;\n  vc<int> que;\n  vc<Edge> edges;\n\
+    \  vc<int> indptr;\n  Cap flow_ans;\n  bool calculated;\n  bool is_prepared;\n\
+    \n  MaxFlowGraph(int N) : N(N), calculated(0), is_prepared(0) {}\n\n  void add(int\
+    \ frm, int to, Cap cap, Cap rev_cap = 0) {\n    assert(0 <= frm && frm < N);\n\
+    \    assert(0 <= to && to < N);\n    assert(Cap(0) <= cap);\n    if (frm == to)\
+    \ return;\n    dat.eb(frm, to, cap, rev_cap);\n  }\n\n  void build() {\n    assert(!is_prepared);\n\
+    \    int M = len(dat);\n    is_prepared = 1;\n    indptr.assign(N, 0);\n    for\
+    \ (auto&& [a, b, c, d]: dat) indptr[a]++, indptr[b]++;\n    indptr = cumsum<int>(indptr);\n\
+    \    vc<int> nxt_idx = indptr;\n    edges.resize(2 * M);\n    for (auto&& [a,\
+    \ b, c, d]: dat) {\n      int p = nxt_idx[a]++;\n      int q = nxt_idx[b]++;\n\
+    \      edges[p] = Edge{b, q, c};\n      edges[q] = Edge{a, p, d};\n    }\n  }\n\
+    \n  vc<tuple<int, int, Cap>> get_flow_edges() {\n    vc<tuple<int, int, Cap>>\
+    \ res;\n    FOR(frm, N) {\n      FOR(k, indptr[frm], indptr[frm + 1]) {\n    \
+    \    auto& e = edges[k];\n        if (e.flow <= 0) continue;\n        res.eb(frm,\
+    \ e.to, e.flow);\n      }\n    }\n    return res;\n  }\n\n  Cap flow(int source,\
+    \ int sink) {\n    assert(is_prepared);\n    if (calculated) return flow_ans;\n\
     \    calculated = true;\n    flow_ans = 0;\n    while (set_level(source, sink))\
     \ {\n      prog = indptr;\n      while (1) {\n        Cap x = flow_dfs(source,\
     \ sink, infty<Cap>);\n        if (x == 0) break;\n        flow_ans += x;\n   \
@@ -225,24 +229,21 @@ data:
     \u30C3\u30C8\u306E\u5024\u304A\u3088\u3073\u3001\u30AB\u30C3\u30C8\u3092\u8868\
     \u3059 01 \u5217\u3092\u8FD4\u3059\n  pair<Cap, vc<int>> cut(int source, int sink)\
     \ {\n    Cap f = flow(source, sink);\n    vc<int> res(N);\n    FOR(v, N) res[v]\
-    \ = (level[v] >= 0 ? 0 : 1);\n    return {f, res};\n  }\n\n  // \u6B8B\u4F59\u30B0\
-    \u30E9\u30D5\u306E\u8FBA\n  vc<tuple<int, int, Cap>> get_edges() {\n    vc<tuple<int,\
-    \ int, Cap>> edges;\n    FOR(v, N) {\n      FOR(k, indptr[v], indptr[v + 1]) {\n\
-    \        auto& e = G[k];\n        edges.eb(v, e.to, e.cap);\n      }\n    }\n\
-    \    return edges;\n  }\n\nprivate:\n  bool set_level(int source, int sink) {\n\
-    \    que.resize(N);\n    level.assign(N, -1);\n    level[source] = 0;\n    int\
-    \ l = 0, r = 0;\n    que[r++] = source;\n    while (l < r) {\n      int v = que[l++];\n\
-    \      FOR(k, indptr[v], indptr[v + 1]) {\n        auto& e = G[k];\n        if\
-    \ (e.cap > 0 && level[e.to] == -1) {\n          level[e.to] = level[v] + 1;\n\
-    \          if (e.to == sink) return true;\n          que[r++] = e.to;\n      \
-    \  }\n      }\n    }\n    return false;\n  }\n\n  Cap flow_dfs(int v, int sink,\
-    \ Cap lim) {\n    if (v == sink) return lim;\n    Cap res = 0;\n    for (int&\
-    \ i = prog[v]; i < indptr[v + 1]; ++i) {\n      auto& e = G[i];\n      if (e.cap\
-    \ > 0 && level[e.to] == level[v] + 1) {\n        Cap a = flow_dfs(e.to, sink,\
-    \ min(lim, e.cap));\n        if (a > 0) {\n          e.cap -= a;\n          G[e.rev].cap\
-    \ += a;\n          res += a;\n          lim -= a;\n          if (lim == 0) break;\n\
-    \        }\n      }\n    }\n    return res;\n  }\n};\n#line 7 \"test/aoj/GRL_6_A.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N, M);\r\n  MaxFlowGraph<int> G(N);\r\n  FOR(M) {\r\
+    \ = (level[v] >= 0 ? 0 : 1);\n    return {f, res};\n  }\n\nprivate:\n  bool set_level(int\
+    \ source, int sink) {\n    que.resize(N);\n    level.assign(N, -1);\n    level[source]\
+    \ = 0;\n    int l = 0, r = 0;\n    que[r++] = source;\n    while (l < r) {\n \
+    \     int v = que[l++];\n      FOR(k, indptr[v], indptr[v + 1]) {\n        auto&\
+    \ e = edges[k];\n        if (e.cap > 0 && level[e.to] == -1) {\n          level[e.to]\
+    \ = level[v] + 1;\n          if (e.to == sink) return true;\n          que[r++]\
+    \ = e.to;\n        }\n      }\n    }\n    return false;\n  }\n\n  Cap flow_dfs(int\
+    \ v, int sink, Cap lim) {\n    if (v == sink) return lim;\n    Cap res = 0;\n\
+    \    for (int& i = prog[v]; i < indptr[v + 1]; ++i) {\n      auto& e = edges[i];\n\
+    \      if (e.cap > 0 && level[e.to] == level[v] + 1) {\n        Cap a = flow_dfs(e.to,\
+    \ sink, min(lim, e.cap));\n        if (a > 0) {\n          e.cap -= a, e.flow\
+    \ += a;\n          edges[e.rev].cap += a, edges[e.rev].flow -= a;\n          res\
+    \ += a;\n          lim -= a;\n          if (lim == 0) break;\n        }\n    \
+    \  }\n    }\n    return res;\n  }\n};\n#line 7 \"test/aoj/GRL_6_A.test.cpp\"\n\
+    \r\nvoid solve() {\r\n  LL(N, M);\r\n  MaxFlowGraph<int> G(N);\r\n  FOR(M) {\r\
     \n    LL(a, b, c);\r\n    G.add(a, b, c);\r\n  }\r\n  G.build();\r\n  print(G.flow(0,\
     \ N - 1));\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
     \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(T) solve();\r\
@@ -261,7 +262,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_6_A.test.cpp
   requiredBy: []
-  timestamp: '2023-05-22 05:07:56+09:00'
+  timestamp: '2023-05-26 18:57:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_6_A.test.cpp

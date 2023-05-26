@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/run_enumerate.hpp
     title: string/run_enumerate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/zalgorithm.hpp
     title: string/zalgorithm.hpp
   _extendedRequiredBy: []

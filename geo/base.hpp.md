@@ -8,6 +8,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
+  - icon: ':warning:'
+    path: geo/convex_hull.hpp
+    title: geo/convex_hull.hpp
   - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
@@ -205,6 +208,7 @@ data:
   - geo/reflection.hpp
   - geo/count_points_in_triangles.hpp
   - geo/angle_sort.hpp
+  - geo/convex_hull.hpp
   - geo/closest_pair.hpp
   - geo/projection.hpp
   - geo/distance.hpp

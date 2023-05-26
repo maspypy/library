@@ -12,9 +12,6 @@ data:
     path: ds/sortable_array.hpp
     title: ds/sortable_array.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/dag_path_cover.hpp
-    title: graph/dag_path_cover.hpp
-  - icon: ':heavy_check_mark:'
     path: graph/ds/incremental_centroid.hpp
     title: graph/ds/incremental_centroid.hpp
   - icon: ':warning:'
@@ -24,9 +21,6 @@ data:
     path: graph/toposort.hpp
     title: graph/toposort.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/2251_1.test.cpp
-    title: test/aoj/2251_1.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/2636.test.cpp
     title: test/aoj/2636.test.cpp
@@ -144,7 +138,6 @@ data:
   - ds/intervals.hpp
   - ds/sortable_array.hpp
   - ds/segtree/sortable_segtree.hpp
-  - graph/dag_path_cover.hpp
   - graph/implicit_graph/cograph_unionfind.hpp
   - graph/toposort.hpp
   - graph/ds/incremental_centroid.hpp
@@ -160,7 +153,6 @@ data:
   - test_atcoder/abc256ex.test.cpp
   - test/mytest/sortable_array.test.cpp
   - test/aoj/2636.test.cpp
-  - test/aoj/2251_1.test.cpp
   - test/library_checker/datastructure/predecessor_problem.test.cpp
   - test/library_checker/datastructure/sort_segtree_1.test.cpp
   - test/library_checker/datastructure/sort_segtree.test.cpp

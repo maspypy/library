@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bigint/base.hpp
     title: bigint/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -19,16 +19,16 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -460,20 +460,20 @@ data:
     \ 10000000, 100000000, 1000000000};\n  static constexpr int LOG = 9;\n  static\
     \ constexpr int MOD = TEN[LOG];\n  using bint = BigInteger;\n  int sgn; // +1\
     \ or -1. \u5185\u90E8\u72B6\u614B\u3067 -0 \u3092\u8A31\u5BB9\u3059\u308B.\n \
-    \ vc<int> dat;\n\n  BigInteger() : sgn(1) {}\n  BigInteger(i128 val) {\n    if\
-    \ (val == 0) {\n      sgn = 1;\n    } else {\n      if (val < 0) sgn = -1, val\
-    \ = -val;\n      while (val > 0) {\n        dat.eb(val % MOD);\n        val /=\
-    \ MOD;\n      }\n    }\n  }\n  BigInteger(string s) {\n    assert(!s.empty());\n\
-    \    sgn = 1;\n    if (s[0] == '-') {\n      sgn = -1;\n      s.erase(s.begin());\n\
-    \      assert(!s.empty());\n    }\n    if (s[0] == '0') s.clear();\n    reverse(all(s));\n\
-    \    int n = len(s);\n    int m = ceil(n, LOG);\n    dat.assign(m, 0);\n    FOR(i,\
-    \ n) { dat[i / LOG] += TEN[i % LOG] * (s[i] - '0'); }\n  }\n  bint &operator=(const\
-    \ bint &p) {\n    sgn = p.sgn;\n    dat = p.dat;\n    return *this;\n  }\n  bool\
-    \ operator<(const bint &p) const {\n    if (sgn != p.sgn) return sgn < p.sgn;\n\
-    \    if (len(dat) != len(p.dat)) {\n      if (sgn == 1) return len(dat) < len(p.dat);\n\
-    \      if (sgn == -1) return len(dat) > len(p.dat);\n    }\n    FOR_R(i, len(dat))\
-    \ {\n      if (dat[i] == p.dat[i]) continue;\n      if (sgn == 1) return dat[i]\
-    \ < p.dat[i];\n      if (sgn == -1) return dat[i] > p.dat[i];\n    }\n    return\
+    \ vc<int> dat;\n\n  BigInteger() : sgn(1) {}\n  BigInteger(i128 val) {\n    sgn\
+    \ = 1;\n    if (val != 0) {\n      if (val < 0) sgn = -1, val = -val;\n      while\
+    \ (val > 0) {\n        dat.eb(val % MOD);\n        val /= MOD;\n      }\n    }\n\
+    \  }\n  BigInteger(string s) {\n    assert(!s.empty());\n    sgn = 1;\n    if\
+    \ (s[0] == '-') {\n      sgn = -1;\n      s.erase(s.begin());\n      assert(!s.empty());\n\
+    \    }\n    if (s[0] == '0') s.clear();\n    reverse(all(s));\n    int n = len(s);\n\
+    \    int m = ceil(n, LOG);\n    dat.assign(m, 0);\n    FOR(i, n) { dat[i / LOG]\
+    \ += TEN[i % LOG] * (s[i] - '0'); }\n  }\n  bint &operator=(const bint &p) {\n\
+    \    sgn = p.sgn;\n    dat = p.dat;\n    return *this;\n  }\n  bool operator<(const\
+    \ bint &p) const {\n    if (sgn != p.sgn) return sgn < p.sgn;\n    if (len(dat)\
+    \ != len(p.dat)) {\n      if (sgn == 1) return len(dat) < len(p.dat);\n      if\
+    \ (sgn == -1) return len(dat) > len(p.dat);\n    }\n    FOR_R(i, len(dat)) {\n\
+    \      if (dat[i] == p.dat[i]) continue;\n      if (sgn == 1) return dat[i] <\
+    \ p.dat[i];\n      if (sgn == -1) return dat[i] > p.dat[i];\n    }\n    return\
     \ false;\n  }\n  bool operator>(const bint &p) const { return p < *this; }\n \
     \ bool operator<=(const bint &p) const { return !(*this > p); }\n  bool operator>=(const\
     \ bint &p) const { return !(*this < p); }\n  bint &operator+=(const bint &p) {\n\
@@ -487,23 +487,31 @@ data:
     \      return *this;\n    }\n    FOR(i, len(p.dat)) { dat[i] -= p.dat[i]; }\n\
     \    FOR(i, len(dat) - 1) {\n      if (dat[i] < 0) dat[i] += MOD, dat[i + 1] -=\
     \ 1;\n    }\n    while (len(dat) && dat.back() == 0) { dat.pop_back(); }\n   \
-    \ return *this;\n  }\n  // bint &operator*=(const bint &p) { return this; }\n\
-    \  // bint &operator/=(const bint &p) { return *this; }\n  bint operator-() const\
-    \ {\n    bint p = *this;\n    p.sgn *= -1;\n    return p;\n  }\n  bint operator+(const\
-    \ bint &p) const { return bint(*this) += p; }\n  bint operator-(const bint &p)\
-    \ const { return bint(*this) -= p; }\n  // bint operator*(const modint &p) const\
-    \ { return modint(*this) *= p; }\n  // bint operator/(const modint &p) const {\
-    \ return modint(*this) /= p; }\n  bool operator==(const bint &p) const {\n   \
-    \ return (sgn == p.sgn && dat == p.dat);\n  }\n  bool operator!=(const bint &p)\
-    \ const {\n    return (sgn != p.sgn || dat != p.dat);\n  }\n#ifdef FASTIO\n  void\
-    \ write() { fastio::printer.write(to_string()); }\n  void read() {\n    string\
-    \ s;\n    fastio::scanner.read(s);\n    *this = bint(s);\n  }\n#endif\n  string\
-    \ to_string() {\n    if (dat.empty()) return \"0\";\n    string s;\n    for (int\
-    \ x: dat) {\n      FOR(LOG) {\n        s += '0' + (x % 10);\n        x = x / 10;\n\
-    \      }\n    }\n    while (s.back() == '0') s.pop_back();\n    if (sgn == -1)\
-    \ s += '-';\n    reverse(all(s));\n    return s;\n  }\n};\n#line 7 \"test/aoj/NTL_2_A.test.cpp\"\
-    \n\nusing B = BigInteger;\n\nvoid solve() {\n  B x, y;\n  read(x);\n  read(y);\n\
-    \  x += y;\n  print(x);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ return *this;\n  }\n  bint &operator*=(const bint &p) {\n    sgn *= p.sgn;\n\
+    \    dat = convolve(dat, p.dat);\n    return *this;\n  }\n  // bint &operator/=(const\
+    \ bint &p) { return *this; }\n  bint operator-() const {\n    bint p = *this;\n\
+    \    p.sgn *= -1;\n    return p;\n  }\n  bint operator+(const bint &p) const {\
+    \ return bint(*this) += p; }\n  bint operator-(const bint &p) const { return bint(*this)\
+    \ -= p; }\n  bint operator*(const bint &p) const { return bint(*this) *= p; }\n\
+    \  // bint operator/(const modint &p) const { return modint(*this) /= p; }\n \
+    \ bool operator==(const bint &p) const {\n    return (sgn == p.sgn && dat == p.dat);\n\
+    \  }\n  bool operator!=(const bint &p) const {\n    return (sgn != p.sgn || dat\
+    \ != p.dat);\n  }\n\n  // \u3068\u308A\u3042\u3048\u305A\u611A\u76F4\u7573\u307F\
+    \u8FBC\u307F\u3060\u3051\n  vc<int> convolve(const vc<int> &A, const vc<int> &B)\
+    \ {\n    int NA = len(A), NB = len(B);\n    if (NA == 0 || NB == 0) return {};\n\
+    \    vc<int> C(NA + NB - 1);\n    auto add = [&](int idx, ll x) -> void {\n  \
+    \    while (x) {\n        if (idx >= len(C)) C.resize(idx + 1);\n        x +=\
+    \ C[idx];\n        C[idx] = x % MOD;\n        x /= MOD;\n        ++idx;\n    \
+    \  }\n    };\n    FOR(i, NA) FOR(j, NB) add(i + j, ll(A[i]) * A[j]);\n    return\
+    \ C;\n  }\n\n  string to_string() {\n    if (dat.empty()) return \"0\";\n    string\
+    \ s;\n    for (int x: dat) {\n      FOR(LOG) {\n        s += '0' + (x % 10);\n\
+    \        x = x / 10;\n      }\n    }\n    while (s.back() == '0') s.pop_back();\n\
+    \    if (sgn == -1) s += '-';\n    reverse(all(s));\n    return s;\n  }\n#ifdef\
+    \ FASTIO\n  void write() { fastio::printer.write(to_string()); }\n  void read()\
+    \ {\n    string s;\n    fastio::scanner.read(s);\n    *this = bint(s);\n  }\n\
+    #endif\n};\n#line 7 \"test/aoj/NTL_2_A.test.cpp\"\n\nusing B = BigInteger;\n\n\
+    void solve() {\n  B x, y;\n  read(x);\n  read(y);\n  x += y;\n  print(x);\n}\n\
+    \nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_2_A\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"bigint/base.hpp\"\
     \n\nusing B = BigInteger;\n\nvoid solve() {\n  B x, y;\n  read(x);\n  read(y);\n\
@@ -522,7 +530,7 @@ data:
   isVerificationFile: true
   path: test/aoj/NTL_2_A.test.cpp
   requiredBy: []
-  timestamp: '2023-05-17 00:12:05+09:00'
+  timestamp: '2023-05-26 18:54:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/NTL_2_A.test.cpp
