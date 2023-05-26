@@ -3,13 +3,14 @@ struct MaxFlowGraph {
   struct Edge {
     int to, rev;
     Cap cap;
+    Cap flow = 0;
   };
 
   int N;
   vc<tuple<int, int, Cap, Cap>> dat;
   vc<int> prog, level;
   vc<int> que;
-  vc<Edge> G;
+  vc<Edge> edges;
   vc<int> indptr;
   Cap flow_ans;
   bool calculated;
@@ -33,13 +34,25 @@ struct MaxFlowGraph {
     for (auto&& [a, b, c, d]: dat) indptr[a]++, indptr[b]++;
     indptr = cumsum<int>(indptr);
     vc<int> nxt_idx = indptr;
-    G.resize(2 * M);
+    edges.resize(2 * M);
     for (auto&& [a, b, c, d]: dat) {
       int p = nxt_idx[a]++;
       int q = nxt_idx[b]++;
-      G[p] = Edge{b, q, c};
-      G[q] = Edge{a, p, d};
+      edges[p] = Edge{b, q, c};
+      edges[q] = Edge{a, p, d};
     }
+  }
+
+  vc<tuple<int, int, Cap>> get_flow_edges() {
+    vc<tuple<int, int, Cap>> res;
+    FOR(frm, N) {
+      FOR(k, indptr[frm], indptr[frm + 1]) {
+        auto& e = edges[k];
+        if (e.flow <= 0) continue;
+        res.eb(frm, e.to, e.flow);
+      }
+    }
+    return res;
   }
 
   Cap flow(int source, int sink) {
@@ -68,18 +81,6 @@ struct MaxFlowGraph {
     return {f, res};
   }
 
-  // 残余グラフの辺
-  vc<tuple<int, int, Cap>> get_edges() {
-    vc<tuple<int, int, Cap>> edges;
-    FOR(v, N) {
-      FOR(k, indptr[v], indptr[v + 1]) {
-        auto& e = G[k];
-        edges.eb(v, e.to, e.cap);
-      }
-    }
-    return edges;
-  }
-
 private:
   bool set_level(int source, int sink) {
     que.resize(N);
@@ -90,7 +91,7 @@ private:
     while (l < r) {
       int v = que[l++];
       FOR(k, indptr[v], indptr[v + 1]) {
-        auto& e = G[k];
+        auto& e = edges[k];
         if (e.cap > 0 && level[e.to] == -1) {
           level[e.to] = level[v] + 1;
           if (e.to == sink) return true;
@@ -105,12 +106,12 @@ private:
     if (v == sink) return lim;
     Cap res = 0;
     for (int& i = prog[v]; i < indptr[v + 1]; ++i) {
-      auto& e = G[i];
+      auto& e = edges[i];
       if (e.cap > 0 && level[e.to] == level[v] + 1) {
         Cap a = flow_dfs(e.to, sink, min(lim, e.cap));
         if (a > 0) {
-          e.cap -= a;
-          G[e.rev].cap += a;
+          e.cap -= a, e.flow += a;
+          edges[e.rev].cap += a, edges[e.rev].flow -= a;
           res += a;
           lim -= a;
           if (lim == 0) break;
