@@ -328,10 +328,10 @@ data:
     \    INT(a, b);\n    --a, --b;\n    int s = (1 << a) | (1 << b);\n    dp[s] +=\
     \ 1;\n  }\n  FOR(i, N) FOR(s, 1 << N) {\n    int t = s | 1 << i;\n    if (s <\
     \ t) dp[t] += dp[s];\n  }\n  vc<mint> f(1 << N);\n  FOR(s, 1 << N) f[s] = mint(2).pow(dp[s]);\n\
-    \  f = sps_log<mint, 17>(N, f);\n\n  vc<mint> ANS(N);\n  int full = (1 << N) -\
-    \ 1;\n  FOR(s, 1 << N) if (s & 1) {\n    FOR(i, 1, N) if (s >> i & 1) { ANS[i]\
-    \ += f[s] * mint(2).pow(dp[full - s]); }\n  }\n  FOR(i, 1, N) print(ANS[i]);\n\
-    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \  f = sps_log<mint, 17>(f);\n\n  vc<mint> ANS(N);\n  int full = (1 << N) - 1;\n\
+    \  FOR(s, 1 << N) if (s & 1) {\n    FOR(i, 1, N) if (s >> i & 1) { ANS[i] += f[s]\
+    \ * mint(2).pow(dp[full - s]); }\n  }\n  FOR(i, 1, N) print(ANS[i]);\n}\n\nsigned\
+    \ main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc213/tasks/abc213_g\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
     \n#include \"setfunc/sps_log.hpp\"\n\nusing mint = modint998;\nvoid solve() {\n\
@@ -339,10 +339,10 @@ data:
     \    int s = (1 << a) | (1 << b);\n    dp[s] += 1;\n  }\n  FOR(i, N) FOR(s, 1\
     \ << N) {\n    int t = s | 1 << i;\n    if (s < t) dp[t] += dp[s];\n  }\n  vc<mint>\
     \ f(1 << N);\n  FOR(s, 1 << N) f[s] = mint(2).pow(dp[s]);\n  f = sps_log<mint,\
-    \ 17>(N, f);\n\n  vc<mint> ANS(N);\n  int full = (1 << N) - 1;\n  FOR(s, 1 <<\
-    \ N) if (s & 1) {\n    FOR(i, 1, N) if (s >> i & 1) { ANS[i] += f[s] * mint(2).pow(dp[full\
+    \ 17>(f);\n\n  vc<mint> ANS(N);\n  int full = (1 << N) - 1;\n  FOR(s, 1 << N)\
+    \ if (s & 1) {\n    FOR(i, 1, N) if (s >> i & 1) { ANS[i] += f[s] * mint(2).pow(dp[full\
     \ - s]); }\n  }\n  FOR(i, 1, N) print(ANS[i]);\n}\n\nsigned main() {\n  solve();\n\
-    \  return 0;\n}"
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -354,7 +354,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc213g.test.cpp
   requiredBy: []
-  timestamp: '2023-06-03 10:19:04+09:00'
+  timestamp: '2023-06-03 22:25:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc213g.test.cpp
