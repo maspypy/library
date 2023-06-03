@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
   - icon: ':question:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: setfunc/sps_exp.hpp
     title: setfunc/sps_exp.hpp
   - icon: ':question:'
@@ -15,12 +15,12 @@ data:
     title: setfunc/subset_convolution.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/hafnian_of_matrix.test.cpp
     title: test/library_checker/matrix/hafnian_of_matrix.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"setfunc/subset_convolution.hpp\"\n\r\n#line 2 \"setfunc/ranked_zeta.hpp\"\
@@ -80,7 +80,7 @@ data:
     \       dp[K * t + k0] += dp[K * s + j0] * mat[j0][k1];\r\n          dp[K * t\
     \ + k0] += dp[K * s + j1] * mat[j1][k1];\r\n          dp[K * t + k1] += dp[K *\
     \ s + j0] * mat[j0][k0];\r\n          dp[K * t + k1] += dp[K * s + j1] * mat[j1][k0];\r\
-    \n        });\r\n      }\r\n    }\r\n  }\r\n  return sps_exp<mint, LIM>(n, cyc).back();\r\
+    \n        });\r\n      }\r\n    }\r\n  }\r\n  return sps_exp<mint, LIM>(cyc).back();\r\
     \n}\r\n"
   code: "#include \"setfunc/sps_exp.hpp\"\r\n#include \"enumerate/bits.hpp\"\r\n\r\
     \n// \u96A3\u63A5\u884C\u5217\u306B\u5BFE\u3057\u3066\u5B8C\u5168\u30DE\u30C3\u30C1\
@@ -99,7 +99,7 @@ data:
     \         dp[K * t + k0] += dp[K * s + j0] * mat[j0][k1];\r\n          dp[K *\
     \ t + k0] += dp[K * s + j1] * mat[j1][k1];\r\n          dp[K * t + k1] += dp[K\
     \ * s + j0] * mat[j0][k0];\r\n          dp[K * t + k1] += dp[K * s + j1] * mat[j1][k0];\r\
-    \n        });\r\n      }\r\n    }\r\n  }\r\n  return sps_exp<mint, LIM>(n, cyc).back();\r\
+    \n        });\r\n      }\r\n    }\r\n  }\r\n  return sps_exp<mint, LIM>(cyc).back();\r\
     \n}\r\n"
   dependsOn:
   - setfunc/sps_exp.hpp
@@ -109,8 +109,8 @@ data:
   isVerificationFile: false
   path: linalg/hafnian.hpp
   requiredBy: []
-  timestamp: '2023-06-03 10:19:04+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-06-03 11:56:26+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/matrix/hafnian_of_matrix.test.cpp
 documentation_of: linalg/hafnian.hpp

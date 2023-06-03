@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: setfunc/sps_exp.hpp
     title: setfunc/sps_exp.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: setfunc/subset_convolution.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/exp_of_set_power_series
@@ -317,13 +317,13 @@ data:
     \ + (1 << i)};\n    a = subset_convolution<mint, LIM>(a, b);\n    copy(all(a),\
     \ dp.begin() + (1 << i));\n  }\n  return dp;\n}\n#line 7 \"test/library_checker/math/sps_exp.test.cpp\"\
     \n\nusing mint = modint998;\nvoid solve() {\n  LL(N);\n  VEC(mint, s, 1 << N);\n\
-    \  s = sps_exp<mint, 20>(N, s);\n  print(s);\n}\n\nsigned main() {\n  solve();\n\
+    \  s = sps_exp<mint, 20>(s);\n  print(s);\n}\n\nsigned main() {\n  solve();\n\
     \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/exp_of_set_power_series\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
     \n#include \"setfunc/sps_exp.hpp\"\n\nusing mint = modint998;\nvoid solve() {\n\
-    \  LL(N);\n  VEC(mint, s, 1 << N);\n  s = sps_exp<mint, 20>(N, s);\n  print(s);\n\
-    }\n\nsigned main() {\n  solve();\n  return 0;\n}"
+    \  LL(N);\n  VEC(mint, s, 1 << N);\n  s = sps_exp<mint, 20>(s);\n  print(s);\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -335,8 +335,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/sps_exp.test.cpp
   requiredBy: []
-  timestamp: '2023-06-03 10:19:04+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-06-03 11:55:35+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/sps_exp.test.cpp
 layout: document

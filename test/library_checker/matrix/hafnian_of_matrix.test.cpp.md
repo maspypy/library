@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/hafnian.hpp
     title: linalg/hafnian.hpp
   - icon: ':question:'
@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: setfunc/sps_exp.hpp
     title: setfunc/sps_exp.hpp
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: setfunc/subset_convolution.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/hafnian_of_matrix
@@ -344,7 +344,7 @@ data:
     \       dp[K * t + k0] += dp[K * s + j0] * mat[j0][k1];\r\n          dp[K * t\
     \ + k0] += dp[K * s + j1] * mat[j1][k1];\r\n          dp[K * t + k1] += dp[K *\
     \ s + j0] * mat[j0][k0];\r\n          dp[K * t + k1] += dp[K * s + j1] * mat[j1][k0];\r\
-    \n        });\r\n      }\r\n    }\r\n  }\r\n  return sps_exp<mint, LIM>(n, cyc).back();\r\
+    \n        });\r\n      }\r\n    }\r\n  }\r\n  return sps_exp<mint, LIM>(cyc).back();\r\
     \n}\r\n#line 6 \"test/library_checker/matrix/hafnian_of_matrix.test.cpp\"\n\r\n\
     using mint = modint998;\r\nvoid solve() {\r\n  LL(N);\r\n  VV(mint, B, N, N);\r\
     \n  auto ANS = Hufnian(B);\r\n  print(ANS);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
@@ -369,8 +369,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/hafnian_of_matrix.test.cpp
   requiredBy: []
-  timestamp: '2023-06-03 10:19:04+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-06-03 11:56:26+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/matrix/hafnian_of_matrix.test.cpp
 layout: document
