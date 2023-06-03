@@ -30,7 +30,7 @@ void solve() {
       FOR(j, i) if (s >> j & 1) k += mat[i][j];
       a[s] *= mint(k);
     }
-    a = sps_exp<mint, LIM>(i, a);
+    a = sps_exp<mint, LIM>(a);
     copy(all(a), dp.begin() + (1 << i));
   }
 
