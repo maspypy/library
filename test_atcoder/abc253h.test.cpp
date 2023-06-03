@@ -36,7 +36,7 @@ void solve() {
 
   vc<mint> x(1 << N);
   x.back() = mint(1);
-  auto y = transposed_sps_composition_egf<mint, LIM>(N, dp, x);
+  auto y = transposed_sps_composition_egf<mint, LIM>(dp, x);
 
   FOR(k, 1, N) {
     // k edges = N-k component
