@@ -321,7 +321,7 @@ data:
     \ N) FOR(s, 1 << i) LCM[s | 1 << i] = f(LCM[s], A[i]);\n\n  vc<mint> F(1 << N);\n\
     \  FOR(i, 1, 1 << N) {\n    F[i] = M / LCM[i];\n    int n = popcnt(i);\n    if\
     \ (!(n & 1)) F[i] = -F[i];\n    F[i] *= fact<mint>(n - 1);\n  }\n  F = sps_exp<mint,\
-    \ 16>(N, F);\n  print(F.back());\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    \ 16>(F);\n  print(F.back());\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
     }\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc236/tasks/abc236_Ex\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
@@ -331,7 +331,7 @@ data:
     \ + 1;\n    return a * b;\n  };\n  FOR(i, N) FOR(s, 1 << i) LCM[s | 1 << i] =\
     \ f(LCM[s], A[i]);\n\n  vc<mint> F(1 << N);\n  FOR(i, 1, 1 << N) {\n    F[i] =\
     \ M / LCM[i];\n    int n = popcnt(i);\n    if (!(n & 1)) F[i] = -F[i];\n    F[i]\
-    \ *= fact<mint>(n - 1);\n  }\n  F = sps_exp<mint, 16>(N, F);\n  print(F.back());\n\
+    \ *= fact<mint>(n - 1);\n  }\n  F = sps_exp<mint, 16>(F);\n  print(F.back());\n\
     }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
@@ -344,7 +344,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc236h.test.cpp
   requiredBy: []
-  timestamp: '2023-06-03 10:19:04+09:00'
+  timestamp: '2023-06-03 19:30:23+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc236h.test.cpp

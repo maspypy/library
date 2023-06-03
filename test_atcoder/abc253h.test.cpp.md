@@ -341,8 +341,8 @@ data:
     \ 1 << i) {\n      int k = 0;\n      FOR(j, i) if (s >> j & 1) k += mat[i][j];\n\
     \      a[s] *= mint(k);\n    }\n    a = sps_exp<mint, LIM>(i, a);\n    copy(all(a),\
     \ dp.begin() + (1 << i));\n  }\n\n  vc<mint> x(1 << N);\n  x.back() = mint(1);\n\
-    \  auto y = transposed_sps_composition_egf<mint, LIM>(N, dp, x);\n\n  FOR(k, 1,\
-    \ N) {\n    // k edges = N-k component\n    mint ans = y[N - k];\n    ans *= inv<mint>(M).pow(k)\
+    \  auto y = transposed_sps_composition_egf<mint, LIM>(dp, x);\n\n  FOR(k, 1, N)\
+    \ {\n    // k edges = N-k component\n    mint ans = y[N - k];\n    ans *= inv<mint>(M).pow(k)\
     \ * fact<mint>(k);\n    print(ans);\n  }\n}\n\nsigned main() {\n  solve();\n \
     \ return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc253/tasks/abc253_Ex\"\n\n\
@@ -355,10 +355,10 @@ data:
     \ 1 << i) {\n      int k = 0;\n      FOR(j, i) if (s >> j & 1) k += mat[i][j];\n\
     \      a[s] *= mint(k);\n    }\n    a = sps_exp<mint, LIM>(i, a);\n    copy(all(a),\
     \ dp.begin() + (1 << i));\n  }\n\n  vc<mint> x(1 << N);\n  x.back() = mint(1);\n\
-    \  auto y = transposed_sps_composition_egf<mint, LIM>(N, dp, x);\n\n  FOR(k, 1,\
-    \ N) {\n    // k edges = N-k component\n    mint ans = y[N - k];\n    ans *= inv<mint>(M).pow(k)\
+    \  auto y = transposed_sps_composition_egf<mint, LIM>(dp, x);\n\n  FOR(k, 1, N)\
+    \ {\n    // k edges = N-k component\n    mint ans = y[N - k];\n    ans *= inv<mint>(M).pow(k)\
     \ * fact<mint>(k);\n    print(ans);\n  }\n}\n\nsigned main() {\n  solve();\n \
-    \ return 0;\n}"
+    \ return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -371,7 +371,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc253h.test.cpp
   requiredBy: []
-  timestamp: '2023-06-03 10:19:04+09:00'
+  timestamp: '2023-06-03 19:30:49+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc253h.test.cpp
