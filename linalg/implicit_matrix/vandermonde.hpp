@@ -2,8 +2,8 @@
 #include "poly/sum_of_rationals.hpp"
 #include "poly/fps_div.hpp"
 
-// transpose = 0：g[i] = sum pow(ai,j) f[j]
-// transpose = 1：g[i] = sum pow(aj,i) f[j]
+// transpose = 0：g[p] = sum pow(ap,q) f[q]
+// transpose = 1：g[p] = sum pow(aq,p) f[q]
 template <typename mint>
 vc<mint> vandermonde(vc<mint> f, vc<mint> A, bool transpose, bool inverse) {
   if (len(f) == 0) return vc<mint>();

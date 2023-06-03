@@ -1,7 +1,7 @@
 #include "poly/convolution.hpp"
 
-// transpose = 0：g[i] = sum binom(i,j) f[j]
-// transpose = 1：g[i] = sum binom(j,i) f[j]
+// transpose = 0：g[p] = sum binom(p,q) f[q]
+// transpose = 1：g[p] = sum binom(q,p) f[q]
 template <typename mint>
 vc<mint> pascal(vc<mint> f, bool transpose, bool inverse) {
   if (!transpose) {
