@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc253h.test.cpp
     title: test_atcoder/abc253h.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"setfunc/subset_convolution.hpp\"\n\r\n#line 2 \"setfunc/ranked_zeta.hpp\"\
@@ -59,7 +59,7 @@ data:
     \ dp = x;\n  FOR(i, N) {\n    vc<mint> newdp(1 << (N - 1 - i));\n    FOR(j, N\
     \ - i) {\n      vc<mint> a = {s.begin() + (1 << j), s.begin() + (2 << j)};\n \
     \     vc<mint> b = {dp.begin() + (1 << j), dp.begin() + (2 << j)};\n      b =\
-    \ transposed_subset_convolution<mint, LIM>(j, a, b);\n      FOR(k, len(b)) newdp[k]\
+    \ transposed_subset_convolution<mint, LIM>(a, b);\n      FOR(k, len(b)) newdp[k]\
     \ += b[k];\n    }\n    swap(dp, newdp);\n    y[1 + i] = dp[0];\n  }\n  return\
     \ y;\n}\n"
   code: "#include \"setfunc/subset_convolution.hpp\"\n\n// for fixed sps s, consider\
@@ -77,7 +77,7 @@ data:
     \ dp = x;\n  FOR(i, N) {\n    vc<mint> newdp(1 << (N - 1 - i));\n    FOR(j, N\
     \ - i) {\n      vc<mint> a = {s.begin() + (1 << j), s.begin() + (2 << j)};\n \
     \     vc<mint> b = {dp.begin() + (1 << j), dp.begin() + (2 << j)};\n      b =\
-    \ transposed_subset_convolution<mint, LIM>(j, a, b);\n      FOR(k, len(b)) newdp[k]\
+    \ transposed_subset_convolution<mint, LIM>(a, b);\n      FOR(k, len(b)) newdp[k]\
     \ += b[k];\n    }\n    swap(dp, newdp);\n    y[1 + i] = dp[0];\n  }\n  return\
     \ y;\n}\n"
   dependsOn:
@@ -86,8 +86,8 @@ data:
   isVerificationFile: false
   path: setfunc/transposed_sps_composition.hpp
   requiredBy: []
-  timestamp: '2023-06-03 19:31:41+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-06-04 01:22:32+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc253h.test.cpp
 documentation_of: setfunc/transposed_sps_composition.hpp
