@@ -25,7 +25,7 @@ void solve() {
   FOR(s, 1 << N) F[s] = inv<mint>(2).pow(f[s]);
   F = subset_convolution_square<mint, 17>(F);
   FOR(s, 1 << N) F[s] *= mint(2).pow(f[s]);
-  F = sps_log<mint, 17>(N, F);
+  F = sps_log<mint, 17>(F);
   print(F.back() * inv<mint>(2));
 }
 
