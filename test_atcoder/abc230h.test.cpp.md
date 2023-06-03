@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -16,26 +16,26 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc230/tasks/abc230_h
@@ -499,7 +499,8 @@ data:
     \    mint x = mint(k + 1) * B[k + 1];\n    int i = k;\n    while (i <= W) {\n\
     \      F[i] += x;\n      i += k + 1;\n    }\n    x = X.query(k, C[k], F[k]);\n\
     \    C[k + 1] = x * inv<mint>(k + 1);\n  }\n\n  C.erase(C.begin());\n  C.pop_back();\n\
-    \  print(C);\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+    \  for(auto&& x : C) print(x);\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc230/tasks/abc230_h\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
     \n#include \"poly/online/online_convolution.hpp\"\n\nusing mint = modint998;\n\
@@ -514,7 +515,8 @@ data:
     \    mint x = mint(k + 1) * B[k + 1];\n    int i = k;\n    while (i <= W) {\n\
     \      F[i] += x;\n      i += k + 1;\n    }\n    x = X.query(k, C[k], F[k]);\n\
     \    C[k + 1] = x * inv<mint>(k + 1);\n  }\n\n  C.erase(C.begin());\n  C.pop_back();\n\
-    \  print(C);\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+    \  for(auto&& x : C) print(x);\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n\
+    }\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -529,8 +531,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc230h.test.cpp
   requiredBy: []
-  timestamp: '2023-06-03 18:51:23+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-06-03 23:21:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc230h.test.cpp
 layout: document
