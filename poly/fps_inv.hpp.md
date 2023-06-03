@@ -32,7 +32,7 @@ data:
   - icon: ':warning:'
     path: graph/count/count_unicyclic.hpp
     title: graph/count/count_unicyclic.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
   - icon: ':heavy_check_mark:'
@@ -47,7 +47,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
   - icon: ':question:'
@@ -59,7 +59,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':heavy_check_mark:'
@@ -303,10 +303,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc222h.test.cpp
     title: test_atcoder/abc222h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc260h.test.cpp
     title: test_atcoder/abc260h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc267g.test.cpp
     title: test_atcoder/abc267g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -315,7 +315,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc281g.test.cpp
     title: test_atcoder/abc281g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc285h.test.cpp
     title: test_atcoder/abc285h.test.cpp
   - icon: ':heavy_check_mark:'

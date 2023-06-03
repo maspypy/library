@@ -919,10 +919,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/implicit_matrix/min_poly.hpp
       title: linalg/implicit_matrix/min_poly.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: linalg/implicit_matrix/pascal.hpp
       title: linalg/implicit_matrix/pascal.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: linalg/implicit_matrix/vandermonde.hpp
       title: linalg/implicit_matrix/vandermonde.hpp
   - name: linalg/xor
@@ -938,7 +938,7 @@ data:
       title: linalg/xor/vector_space.hpp
   - name: mod
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/all_inverse.hpp
       title: mod/all_inverse.hpp
     - icon: ':heavy_check_mark:'
@@ -1176,7 +1176,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/convolution2d.hpp
       title: poly/convolution2d.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/convolution_all.hpp
       title: poly/convolution_all.hpp
     - icon: ':heavy_check_mark:'
@@ -1203,7 +1203,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/fps_composition.hpp
       title: poly/fps_composition.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/fps_div.hpp
       title: poly/fps_div.hpp
     - icon: ':question:'
@@ -1230,10 +1230,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/lagrange_interpolate_iota.hpp
       title: poly/lagrange_interpolate_iota.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/middle_product.hpp
       title: poly/middle_product.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/multipoint.hpp
       title: poly/multipoint.hpp
     - icon: ':heavy_check_mark:'
@@ -1293,12 +1293,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/sum_of_prefix_suffix_products.hpp
       title: poly/sum_of_prefix_suffix_products.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/sum_of_rationals.hpp
       title: poly/sum_of_rationals.hpp
   - name: poly/online
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: poly/online/online_convolution.hpp
       title: poly/online/online_convolution.hpp
     - icon: ':heavy_check_mark:'
@@ -3385,6 +3385,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc230e.test.cpp
       title: test_atcoder/abc230e.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/abc230h.test.cpp
+      title: test_atcoder/abc230h.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc233c.test.cpp
       title: test_atcoder/abc233c.test.cpp
@@ -3436,7 +3439,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc259g.test.cpp
       title: test_atcoder/abc259g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc260h.test.cpp
       title: test_atcoder/abc260h.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3451,7 +3454,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc266h_2.test.cpp
       title: test_atcoder/abc266h_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc267g.test.cpp
       title: test_atcoder/abc267g.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3502,7 +3505,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc283f.test.cpp
       title: test_atcoder/abc283f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc285h.test.cpp
       title: test_atcoder/abc285h.test.cpp
     - icon: ':heavy_check_mark:'

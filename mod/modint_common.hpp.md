@@ -23,10 +23,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/implicit_matrix/pascal.hpp
     title: linalg/implicit_matrix/pascal.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
   - icon: ':heavy_check_mark:'
@@ -77,7 +77,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/convolution2d.hpp
     title: poly/convolution2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
   - icon: ':heavy_check_mark:'
@@ -92,7 +92,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_composition.hpp
     title: poly/fps_composition.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
   - icon: ':question:'
@@ -116,7 +116,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':heavy_check_mark:'
@@ -125,7 +125,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -185,7 +185,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/sum_of_prefix_suffix_products.hpp
     title: poly/sum_of_prefix_suffix_products.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
   - icon: ':warning:'
@@ -897,6 +897,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc227g.test.cpp
     title: test_atcoder/abc227g.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc230h.test.cpp
+    title: test_atcoder/abc230h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc234g.test.cpp
     title: test_atcoder/abc234g.test.cpp
@@ -909,10 +912,10 @@ data:
   - icon: ':x:'
     path: test_atcoder/abc253h.test.cpp
     title: test_atcoder/abc253h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc260h.test.cpp
     title: test_atcoder/abc260h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc267g.test.cpp
     title: test_atcoder/abc267g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -936,7 +939,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc281g.test.cpp
     title: test_atcoder/abc281g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc285h.test.cpp
     title: test_atcoder/abc285h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1340,6 +1343,7 @@ data:
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/graph/enumerate_cliques.test.cpp
   - test/library_checker/string/number_of_subsequences.test.cpp
+  - test_atcoder/abc230h.test.cpp
   - test_atcoder/abc288ex.test.cpp
   - test_atcoder/abc222h_2.test.cpp
   - test_atcoder/arc160d.test.cpp
