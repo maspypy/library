@@ -2,7 +2,8 @@
 
 // sum_i f_i/i! s^i, s^i is subset-convolution
 template <typename mint, int LIM>
-vc<mint> sps_composition_egf(int N, vc<mint>& f, vc<mint>& s) {
+vc<mint> sps_composition_egf(vc<mint>& f, vc<mint>& s) {
+  const int N = topbit(len(s));
   assert(len(s) == (1 << N) && s[0] == mint(0));
   if (len(f) > N) f.resize(N + 1);
   int D = len(f) - 1;
@@ -38,7 +39,9 @@ vc<mint> sps_composition_egf(int N, vc<mint>& f, vc<mint>& s) {
 
 // sum_i f_i s^i, s^i is subset-convolution
 template <typename mint, int LIM>
-vc<mint> sps_composition_poly(int N, vc<mint> f, vc<mint> s) {
+vc<mint> sps_composition_poly(vc<mint> f, vc<mint> s) {
+  const int N = topbit(len(s));
+  assert(len(s) == (1 << N));
   if (f.empty()) return vc<mint>(1 << N, mint(0));
   // convert to egf problem
   int D = min<int>(len(f) - 1, N);
@@ -55,5 +58,5 @@ vc<mint> sps_composition_poly(int N, vc<mint> f, vc<mint> s) {
   // to egf
   mint factorial = 1;
   FOR(j, D + 1) g[j] *= factorial, factorial *= mint(j + 1);
-  return sps_composition_egf<mint, LIM>(N, g, s);
+  return sps_composition_egf<mint, LIM>(g, s);
 }
