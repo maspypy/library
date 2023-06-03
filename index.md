@@ -265,7 +265,7 @@ data:
       title: ds/wavelet_matrix.hpp
   - name: ds/fenwicktree
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fenwicktree/fenwicktree.hpp
       title: ds/fenwicktree/fenwicktree.hpp
     - icon: ':heavy_check_mark:'
@@ -314,7 +314,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/offline_query/range_xor_basis_query.hpp
       title: ds/offline_query/range_xor_basis_query.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/offline_query/rectangle_add_point_sum.hpp
       title: ds/offline_query/rectangle_add_point_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -1444,7 +1444,7 @@ data:
     - icon: ':question:'
       path: setfunc/ranked_zeta.hpp
       title: setfunc/ranked_zeta.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: setfunc/sps_composition.hpp
       title: setfunc/sps_composition.hpp
     - icon: ':question:'
@@ -2037,7 +2037,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/binomial_coefficient.test.cpp
       title: test/library_checker/math/binomial_coefficient.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/composition_sps.test.cpp
       title: test/library_checker/math/composition_sps.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3182,7 +3182,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/2320.test.cpp
       title: test/yukicoder/2320.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/2338.test.cpp
       title: test/yukicoder/2338.test.cpp
     - icon: ':x:'

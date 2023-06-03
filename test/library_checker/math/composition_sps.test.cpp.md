@@ -16,14 +16,14 @@ data:
   - icon: ':question:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: setfunc/sps_composition.hpp
     title: setfunc/sps_composition.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/polynomial_composite_set_power_series
@@ -319,13 +319,13 @@ data:
     \ factorial *= mint(j + 1);\n  return sps_composition_egf<mint, LIM>(g, s);\n\
     }\n#line 8 \"test/library_checker/math/composition_sps.test.cpp\"\n\nusing mint\
     \ = modint998;\nvoid solve() {\n  LL(M, N);\n  VEC(mint, f, M);\n  VEC(mint, s,\
-    \ 1 << N);\n  s = sps_composition_poly<mint, 20>(N, f, s);\n  print(s);\n}\n\n\
-    signed main() {\n  solve();\n  return 0;\n}\n"
+    \ 1 << N);\n  s = sps_composition_poly<mint, 20>(f, s);\n  print(s);\n}\n\nsigned\
+    \ main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/polynomial_composite_set_power_series\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
     \n#include \"setfunc/sps_composition.hpp\"\n\nusing mint = modint998;\nvoid solve()\
     \ {\n  LL(M, N);\n  VEC(mint, f, M);\n  VEC(mint, s, 1 << N);\n  s = sps_composition_poly<mint,\
-    \ 20>(N, f, s);\n  print(s);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
+    \ 20>(f, s);\n  print(s);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -336,8 +336,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/composition_sps.test.cpp
   requiredBy: []
-  timestamp: '2023-06-03 10:19:04+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-06-03 12:23:30+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/composition_sps.test.cpp
 layout: document

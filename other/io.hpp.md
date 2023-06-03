@@ -480,7 +480,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/binomial_coefficient.test.cpp
     title: test/library_checker/math/binomial_coefficient.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/composition_sps.test.cpp
     title: test/library_checker/math/composition_sps.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1608,7 +1608,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2320.test.cpp
     title: test/yukicoder/2320.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2338.test.cpp
     title: test/yukicoder/2338.test.cpp
   - icon: ':x:'
