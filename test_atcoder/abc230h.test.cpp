@@ -51,7 +51,7 @@ void solve() {
 
   C.erase(C.begin());
   C.pop_back();
-  print(C);
+  for(auto&& x : C) print(x);
 }
 
 signed main() {
