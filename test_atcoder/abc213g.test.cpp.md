@@ -16,17 +16,17 @@ data:
   - icon: ':question:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/sps_composition.hpp
     title: setfunc/sps_composition.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/sps_log.hpp
     title: setfunc/sps_log.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc213/tasks/abc213_g
@@ -323,12 +323,12 @@ data:
     \ sps_log(vc<mint> s) {\n  const int N = topbit(len(s));\n  assert(len(s) == (1\
     \ << N) && s[0] == mint(1));\n  vc<mint> f(N + 1);\n  FOR(i, 1, N + 1) f[i] =\
     \ -fact<mint>(i - 1);\n  for (auto&& x: s) x = -x;\n  s[0] = 0;\n  return sps_composition_egf<mint,\
-    \ LIM>(N, f, s);\n}\n#line 7 \"test_atcoder/abc213g.test.cpp\"\n\nusing mint =\
-    \ modint998;\nvoid solve() {\n  LL(N, M);\n  vc<int> dp(1 << N);\n  FOR(M) {\n\
-    \    INT(a, b);\n    --a, --b;\n    int s = (1 << a) | (1 << b);\n    dp[s] +=\
-    \ 1;\n  }\n  FOR(i, N) FOR(s, 1 << N) {\n    int t = s | 1 << i;\n    if (s <\
-    \ t) dp[t] += dp[s];\n  }\n  vc<mint> f(1 << N);\n  FOR(s, 1 << N) f[s] = mint(2).pow(dp[s]);\n\
-    \  f = sps_log<mint, 17>(f);\n\n  vc<mint> ANS(N);\n  int full = (1 << N) - 1;\n\
+    \ LIM>(f, s);\n}\n#line 7 \"test_atcoder/abc213g.test.cpp\"\n\nusing mint = modint998;\n\
+    void solve() {\n  LL(N, M);\n  vc<int> dp(1 << N);\n  FOR(M) {\n    INT(a, b);\n\
+    \    --a, --b;\n    int s = (1 << a) | (1 << b);\n    dp[s] += 1;\n  }\n  FOR(i,\
+    \ N) FOR(s, 1 << N) {\n    int t = s | 1 << i;\n    if (s < t) dp[t] += dp[s];\n\
+    \  }\n  vc<mint> f(1 << N);\n  FOR(s, 1 << N) f[s] = mint(2).pow(dp[s]);\n  f\
+    \ = sps_log<mint, 17>(f);\n\n  vc<mint> ANS(N);\n  int full = (1 << N) - 1;\n\
     \  FOR(s, 1 << N) if (s & 1) {\n    FOR(i, 1, N) if (s >> i & 1) { ANS[i] += f[s]\
     \ * mint(2).pow(dp[full - s]); }\n  }\n  FOR(i, 1, N) print(ANS[i]);\n}\n\nsigned\
     \ main() {\n  solve();\n  return 0;\n}\n"
@@ -354,8 +354,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc213g.test.cpp
   requiredBy: []
-  timestamp: '2023-06-03 22:25:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-06-04 01:03:12+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc213g.test.cpp
 layout: document
