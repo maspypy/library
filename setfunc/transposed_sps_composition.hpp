@@ -3,7 +3,7 @@
 // for fixed sps s, consider linear map F:a->b = subset-conv(a,s)
 // given x, calculate transpose(F)(x)
 template <typename mint, int LIM>
-vc<mint> transposed_subset_convolution(int N, vc<mint> s, vc<mint> x) {
+vc<mint> transposed_subset_convolution(vc<mint> s, vc<mint> x) {
   /*
   sum_{j}x_jb_j = sum_{i subset j}x_ja_is_{j-i} = sum_{i}y_ia_i.
   y_i = sum_{j supset i}x_js_{j-i}
@@ -21,7 +21,8 @@ vc<mint> transposed_subset_convolution(int N, vc<mint> s, vc<mint> x) {
 // given x, calcuate transpose(F)(x)
 // equivalent: calculate sum_i x_i(s^k/k!)_i for k=0,1,...,N
 template <typename mint, int LIM>
-vc<mint> transposed_sps_composition_egf(int N, vc<mint>& s, vc<mint> x) {
+vc<mint> transposed_sps_composition_egf(vc<mint>& s, vc<mint> x) {
+  const int N = topbit(len(s));
   assert(len(s) == (1 << N) && len(x) == (1 << N) && s[0] == mint(0));
   vc<mint> y(N + 1);
   y[0] = x[0];
