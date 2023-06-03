@@ -25,7 +25,7 @@ void solve() {
     if (!(n & 1)) F[i] = -F[i];
     F[i] *= fact<mint>(n - 1);
   }
-  F = sps_exp<mint, 16>(N, F);
+  F = sps_exp<mint, 16>(F);
   print(F.back());
 }
 
