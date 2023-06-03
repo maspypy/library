@@ -1,55 +1,55 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/all_inverse.hpp
     title: mod/all_inverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
   - icon: ':heavy_check_mark:'
@@ -624,8 +624,8 @@ data:
     \  FOR(i, 1, len(g)) if (g[i] != mint(0)) dat.eb(i, -g[i]);\n  FOR(i, len(f))\
     \ {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i - j];\n\
     \    }\n  }\n  return f;\n}\n#line 4 \"linalg/implicit_matrix/vandermonde.hpp\"\
-    \n\n// transpose = 0\uFF1Ag[i] = sum pow(ai,j) f[j]\n// transpose = 1\uFF1Ag[i]\
-    \ = sum pow(aj,i) f[j]\ntemplate <typename mint>\nvc<mint> vandermonde(vc<mint>\
+    \n\n// transpose = 0\uFF1Ag[p] = sum pow(ap,q) f[q]\n// transpose = 1\uFF1Ag[p]\
+    \ = sum pow(aq,p) f[q]\ntemplate <typename mint>\nvc<mint> vandermonde(vc<mint>\
     \ f, vc<mint> A, bool transpose, bool inverse) {\n  if (len(f) == 0) return vc<mint>();\n\
     \  int N = len(f);\n  using poly = vc<mint>;\n  if (!transpose) {\n    if (!inverse)\
     \ { return multipoint_eval(f, A); }\n    if (inverse) { return multipoint_interpolate(A,\
@@ -687,7 +687,7 @@ data:
   isVerificationFile: true
   path: test/mytest/vandermonde.test.cpp
   requiredBy: []
-  timestamp: '2023-05-14 18:10:08+09:00'
+  timestamp: '2023-06-03 10:16:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/vandermonde.test.cpp

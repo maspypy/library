@@ -111,8 +111,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/263.test.cpp
-  - test/yukicoder/2102.test.cpp
   - test/yukicoder/2231.test.cpp
+  - test/yukicoder/2102.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
 documentation_of: string/rollinghash.hpp
 layout: document

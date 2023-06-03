@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   _extendedRequiredBy:
@@ -177,29 +177,29 @@ data:
   isVerificationFile: false
   path: linalg/mat_mul.hpp
   requiredBy:
-  - linalg/mat_pow.hpp
-  - linalg/det_A_plus_xB.hpp
-  - poly/from_log_differentiation.hpp
-  - poly/prefix_product_of_poly.hpp
-  - poly/sparse_exp_of_div.hpp
   - seq/kth_term_of_p_recursive.hpp
+  - poly/prefix_product_of_poly.hpp
+  - poly/from_log_differentiation.hpp
+  - poly/sparse_exp_of_div.hpp
+  - linalg/det_A_plus_xB.hpp
+  - linalg/mat_pow.hpp
   timestamp: '2023-05-19 13:21:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc276_g_2.test.cpp
-  - test_atcoder/abc222h_2.test.cpp
-  - test_atcoder/abc276_g.test.cpp
-  - test/yukicoder/502_2.test.cpp
-  - test/yukicoder/1907.test.cpp
-  - test/yukicoder/1303.test.cpp
-  - test/yukicoder/1750.test.cpp
-  - test/yukicoder/1080_2.test.cpp
-  - test/yukicoder/426.test.cpp
-  - test/yukicoder/2166.test.cpp
-  - test/yukicoder/1810.test.cpp
   - test/mytest/min_poly.test.cpp
   - test/mytest/factorial_998.test.cpp
+  - test/yukicoder/1303.test.cpp
+  - test/yukicoder/502_2.test.cpp
+  - test/yukicoder/1750.test.cpp
+  - test/yukicoder/2166.test.cpp
+  - test/yukicoder/426.test.cpp
+  - test/yukicoder/1080_2.test.cpp
+  - test/yukicoder/1907.test.cpp
+  - test/yukicoder/1810.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp
+  - test_atcoder/abc222h_2.test.cpp
+  - test_atcoder/abc276_g.test.cpp
+  - test_atcoder/abc276_g_2.test.cpp
 documentation_of: linalg/mat_mul.hpp
 layout: document
 redirect_from:

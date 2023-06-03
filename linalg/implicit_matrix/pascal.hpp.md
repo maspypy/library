@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -33,15 +33,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2243.test.cpp
     title: test/yukicoder/2243.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc260h.test.cpp
     title: test_atcoder/abc260h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc267g.test.cpp
     title: test_atcoder/abc267g.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test_atcoder/abc285h.test.cpp
+    title: test_atcoder/abc285h.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -276,8 +279,8 @@ data:
     \  if (min(n, m) <= 50) return convolution_naive(a, b);\r\n    return convolution_ntt(a,\
     \ b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_naive(a, b);\r\n  return\
     \ convolution_garner(a, b);\r\n}\r\n#line 2 \"linalg/implicit_matrix/pascal.hpp\"\
-    \n\n// transpose = 0\uFF1Ag[i] = sum binom(i,j) f[j]\n// transpose = 1\uFF1Ag[i]\
-    \ = sum binom(j,i) f[j]\ntemplate <typename mint>\nvc<mint> pascal(vc<mint> f,\
+    \n\n// transpose = 0\uFF1Ag[p] = sum binom(p,q) f[q]\n// transpose = 1\uFF1Ag[p]\
+    \ = sum binom(q,p) f[q]\ntemplate <typename mint>\nvc<mint> pascal(vc<mint> f,\
     \ bool transpose, bool inverse) {\n  if (!transpose) {\n    int n = len(f);\n\
     \    vc<mint> g(n);\n    FOR(i, n) g[i] = fact_inv<mint>(i);\n    if (inverse)\
     \ FOR(i, n) if (i & 1) g[i] = -g[i];\n    FOR(i, n) f[i] *= fact_inv<mint>(i);\n\
@@ -287,8 +290,8 @@ data:
     \  if (inverse) FOR(i, n) if (i & 1) g[i] = -g[i];\n  f = convolution(f, g);\n\
     \  f.resize(n);\n  reverse(all(f));\n  FOR(i, n) f[i] *= fact_inv<mint>(i);\n\
     \  return f;\n}\n"
-  code: "#include \"poly/convolution.hpp\"\n\n// transpose = 0\uFF1Ag[i] = sum binom(i,j)\
-    \ f[j]\n// transpose = 1\uFF1Ag[i] = sum binom(j,i) f[j]\ntemplate <typename mint>\n\
+  code: "#include \"poly/convolution.hpp\"\n\n// transpose = 0\uFF1Ag[p] = sum binom(p,q)\
+    \ f[q]\n// transpose = 1\uFF1Ag[p] = sum binom(q,p) f[q]\ntemplate <typename mint>\n\
     vc<mint> pascal(vc<mint> f, bool transpose, bool inverse) {\n  if (!transpose)\
     \ {\n    int n = len(f);\n    vc<mint> g(n);\n    FOR(i, n) g[i] = fact_inv<mint>(i);\n\
     \    if (inverse) FOR(i, n) if (i & 1) g[i] = -g[i];\n    FOR(i, n) f[i] *= fact_inv<mint>(i);\n\
@@ -309,14 +312,15 @@ data:
   isVerificationFile: false
   path: linalg/implicit_matrix/pascal.hpp
   requiredBy: []
-  timestamp: '2023-05-14 18:10:08+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-06-03 10:16:13+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc267g.test.cpp
-  - test_atcoder/abc260h.test.cpp
-  - test/yukicoder/2243.test.cpp
-  - test/yukicoder/2108.test.cpp
   - test/mytest/pascal.test.cpp
+  - test/yukicoder/2108.test.cpp
+  - test/yukicoder/2243.test.cpp
+  - test_atcoder/abc260h.test.cpp
+  - test_atcoder/abc267g.test.cpp
+  - test_atcoder/abc285h.test.cpp
 documentation_of: linalg/implicit_matrix/pascal.hpp
 layout: document
 redirect_from:

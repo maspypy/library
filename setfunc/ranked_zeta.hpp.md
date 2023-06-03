@@ -2,52 +2,52 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/hafnian.hpp
     title: linalg/hafnian.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/sps_composition.hpp
     title: setfunc/sps_composition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/sps_exp.hpp
     title: setfunc/sps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/sps_log.hpp
     title: setfunc/sps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/transposed_sps_composition.hpp
     title: setfunc/transposed_sps_composition.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution.test.cpp
     title: test/library_checker/convolution/subset_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/composition_sps.test.cpp
     title: test/library_checker/math/composition_sps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/sps_exp.test.cpp
     title: test/library_checker/math/sps_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/matrix/hafnian_of_matrix.test.cpp
     title: test/library_checker/matrix/hafnian_of_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc213g.test.cpp
     title: test_atcoder/abc213g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc236h.test.cpp
     title: test_atcoder/abc236h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc253h.test.cpp
     title: test_atcoder/abc253h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc105.test.cpp
     title: test_atcoder/arc105.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"setfunc/ranked_zeta.hpp\"\n\r\ntemplate <typename T, int\
@@ -84,23 +84,23 @@ data:
   isVerificationFile: false
   path: setfunc/ranked_zeta.hpp
   requiredBy:
-  - linalg/hafnian.hpp
-  - setfunc/subset_convolution.hpp
   - setfunc/transposed_sps_composition.hpp
-  - setfunc/sps_composition.hpp
-  - setfunc/sps_exp.hpp
   - setfunc/sps_log.hpp
+  - setfunc/sps_exp.hpp
+  - setfunc/subset_convolution.hpp
+  - setfunc/sps_composition.hpp
+  - linalg/hafnian.hpp
   timestamp: '2023-05-04 02:23:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc253h.test.cpp
-  - test_atcoder/abc236h.test.cpp
-  - test_atcoder/abc213g.test.cpp
-  - test_atcoder/arc105.test.cpp
   - test/library_checker/convolution/subset_convolution.test.cpp
-  - test/library_checker/math/composition_sps.test.cpp
   - test/library_checker/math/sps_exp.test.cpp
+  - test/library_checker/math/composition_sps.test.cpp
   - test/library_checker/matrix/hafnian_of_matrix.test.cpp
+  - test_atcoder/arc105.test.cpp
+  - test_atcoder/abc236h.test.cpp
+  - test_atcoder/abc253h.test.cpp
+  - test_atcoder/abc213g.test.cpp
 documentation_of: setfunc/ranked_zeta.hpp
 layout: document
 redirect_from:

@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/cntsum_affine.hpp
     title: alg/acted_monoid/cntsum_affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/sum_affine.hpp
     title: alg/acted_monoid/sum_affine.hpp
   - icon: ':heavy_check_mark:'
@@ -54,6 +54,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1891.test.cpp
     title: test/yukicoder/1891.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2342.test.cpp
+    title: test/yukicoder/2342.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2342_2.test.cpp
+    title: test/yukicoder/2342_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/255.test.cpp
     title: test/yukicoder/255.test.cpp
@@ -63,9 +69,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc270_g.test.cpp
     title: test_atcoder/abc270_g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/affine.hpp\"\n\ntemplate <typename K>\nstruct\
@@ -88,29 +94,31 @@ data:
   isVerificationFile: false
   path: alg/monoid/affine.hpp
   requiredBy:
-  - alg/acted_set/affine.hpp
-  - alg/acted_monoid/sum_affine.hpp
   - alg/acted_monoid/cntsum_affine.hpp
+  - alg/acted_monoid/sum_affine.hpp
+  - alg/acted_set/affine.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc270_g.test.cpp
-  - test_atcoder/abc222g.test.cpp
-  - test/yukicoder/1891.test.cpp
-  - test/yukicoder/255.test.cpp
-  - test/yukicoder/1502.test.cpp
   - test/mytest/rbst_monoid_2.test.cpp
   - test/mytest/splay.test.cpp
+  - test/yukicoder/2342_2.test.cpp
+  - test/yukicoder/1891.test.cpp
+  - test/yukicoder/1502.test.cpp
+  - test/yukicoder/255.test.cpp
+  - test/yukicoder/2342.test.cpp
+  - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
+  - test/library_checker/datastructure/sort_segtree_1.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
+  - test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - test/library_checker/datastructure/range_affine_point_add.test.cpp
   - test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
-  - test/library_checker/datastructure/range_affine_range_sum.test.cpp
-  - test/library_checker/datastructure/sort_segtree_1.test.cpp
-  - test/library_checker/datastructure/sort_segtree.test.cpp
-  - test/library_checker/datastructure/queue_operate_all_composite.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+  - test/library_checker/datastructure/queue_operate_all_composite.test.cpp
+  - test/library_checker/datastructure/sort_segtree.test.cpp
+  - test_atcoder/abc222g.test.cpp
+  - test_atcoder/abc270_g.test.cpp
 documentation_of: alg/monoid/affine.hpp
 layout: document
 redirect_from:

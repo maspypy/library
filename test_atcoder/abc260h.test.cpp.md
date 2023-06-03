@@ -1,68 +1,68 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/implicit_matrix/pascal.hpp
     title: linalg/implicit_matrix/pascal.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/all_inverse.hpp
     title: mod/all_inverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc260/tasks/abc260_Ex
@@ -489,8 +489,8 @@ data:
     \ i + 1 == n) {\r\n        polys[i] = polys[2 * i];\r\n      } else {\r\n    \
     \    polys[i] = convolution(polys[2 * i], polys[2 * i + 1]);\r\n      }\r\n  \
     \  }\r\n    polys.resize(m);\r\n  }\r\n  return polys[0];\r\n}\r\n#line 2 \"linalg/implicit_matrix/pascal.hpp\"\
-    \n\n// transpose = 0\uFF1Ag[i] = sum binom(i,j) f[j]\n// transpose = 1\uFF1Ag[i]\
-    \ = sum binom(j,i) f[j]\ntemplate <typename mint>\nvc<mint> pascal(vc<mint> f,\
+    \n\n// transpose = 0\uFF1Ag[p] = sum binom(p,q) f[q]\n// transpose = 1\uFF1Ag[p]\
+    \ = sum binom(q,p) f[q]\ntemplate <typename mint>\nvc<mint> pascal(vc<mint> f,\
     \ bool transpose, bool inverse) {\n  if (!transpose) {\n    int n = len(f);\n\
     \    vc<mint> g(n);\n    FOR(i, n) g[i] = fact_inv<mint>(i);\n    if (inverse)\
     \ FOR(i, n) if (i & 1) g[i] = -g[i];\n    FOR(i, n) f[i] *= fact_inv<mint>(i);\n\
@@ -640,8 +640,8 @@ data:
     \  FOR(i, 1, len(g)) if (g[i] != mint(0)) dat.eb(i, -g[i]);\n  FOR(i, len(f))\
     \ {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i - j];\n\
     \    }\n  }\n  return f;\n}\n#line 4 \"linalg/implicit_matrix/vandermonde.hpp\"\
-    \n\n// transpose = 0\uFF1Ag[i] = sum pow(ai,j) f[j]\n// transpose = 1\uFF1Ag[i]\
-    \ = sum pow(aj,i) f[j]\ntemplate <typename mint>\nvc<mint> vandermonde(vc<mint>\
+    \n\n// transpose = 0\uFF1Ag[p] = sum pow(ap,q) f[q]\n// transpose = 1\uFF1Ag[p]\
+    \ = sum pow(aq,p) f[q]\ntemplate <typename mint>\nvc<mint> vandermonde(vc<mint>\
     \ f, vc<mint> A, bool transpose, bool inverse) {\n  if (len(f) == 0) return vc<mint>();\n\
     \  int N = len(f);\n  using poly = vc<mint>;\n  if (!transpose) {\n    if (!inverse)\
     \ { return multipoint_eval(f, A); }\n    if (inverse) { return multipoint_interpolate(A,\
@@ -706,8 +706,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc260h.test.cpp
   requiredBy: []
-  timestamp: '2023-05-14 18:10:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-06-03 10:16:13+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc260h.test.cpp
 layout: document

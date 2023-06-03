@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sliding_window_aggregation.hpp
     title: ds/sliding_window_aggregation.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -433,23 +433,23 @@ data:
   isVerificationFile: false
   path: poly/lagrange_interpolate_iota.hpp
   requiredBy:
-  - poly/from_log_differentiation.hpp
-  - poly/prefix_product_of_poly.hpp
-  - poly/sparse_exp_of_div.hpp
   - seq/interpolate_poly_exp_sum.hpp
   - seq/kth_term_of_p_recursive.hpp
+  - poly/prefix_product_of_poly.hpp
+  - poly/from_log_differentiation.hpp
+  - poly/sparse_exp_of_div.hpp
   timestamp: '2023-05-14 18:10:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc276_g_2.test.cpp
+  - test/mytest/factorial_998.test.cpp
+  - test/yukicoder/502_2.test.cpp
+  - test/yukicoder/2166.test.cpp
+  - test/yukicoder/1080_2.test.cpp
+  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
+  - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test_atcoder/abc222h_2.test.cpp
   - test_atcoder/abc276_g.test.cpp
-  - test/yukicoder/502_2.test.cpp
-  - test/yukicoder/1080_2.test.cpp
-  - test/yukicoder/2166.test.cpp
-  - test/mytest/factorial_998.test.cpp
-  - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
+  - test_atcoder/abc276_g_2.test.cpp
 documentation_of: poly/lagrange_interpolate_iota.hpp
 layout: document
 redirect_from:

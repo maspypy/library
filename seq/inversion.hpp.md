@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   _extendedRequiredBy: []
@@ -18,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1838.test.cpp
     title: test/yukicoder/1838.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/694.test.cpp
+    title: test/yukicoder/694.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc190f.test.cpp
     title: test_atcoder/abc190f.test.cpp
@@ -107,10 +110,11 @@ data:
   timestamp: '2023-04-27 17:39:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc190f.test.cpp
-  - test/yukicoder/1838.test.cpp
-  - test/aoj/ALDS1_2_A.test.cpp
   - test/aoj/ALDS1_5.test.cpp
+  - test/aoj/ALDS1_2_A.test.cpp
+  - test/yukicoder/694.test.cpp
+  - test/yukicoder/1838.test.cpp
+  - test_atcoder/abc190f.test.cpp
 documentation_of: seq/inversion.hpp
 layout: document
 redirect_from:

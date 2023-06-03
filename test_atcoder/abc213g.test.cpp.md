@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/sps_composition.hpp
     title: setfunc/sps_composition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/sps_log.hpp
     title: setfunc/sps_log.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc213/tasks/abc213_g
@@ -298,30 +298,31 @@ data:
     \ f(1 << n);\r\n  for (int s = 0; s < (1 << n); ++s) f[s] = Rf[s][popcnt(s)];\r\
     \n  return f;\r\n}\n#line 2 \"setfunc/sps_composition.hpp\"\n\n// sum_i f_i/i!\
     \ s^i, s^i is subset-convolution\ntemplate <typename mint, int LIM>\nvc<mint>\
-    \ sps_composition_egf(int N, vc<mint>& f, vc<mint>& s) {\n  assert(len(s) == (1\
-    \ << N) && s[0] == mint(0));\n  if (len(f) > N) f.resize(N + 1);\n  int D = len(f)\
-    \ - 1;\n  using ARR = array<mint, LIM + 1>;\n  vvc<ARR> zs(N);\n  FOR(i, N) {\n\
-    \    zs[i]\n        = ranked_zeta<mint, LIM>({s.begin() + (1 << i), s.begin()\
-    \ + (2 << i)});\n  }\n\n  // dp : (d/dt)^df(s) (d=D,D-1,...)\n  vc<mint> dp(1\
-    \ << (N - D));\n  dp[0] = f[D];\n  FOR_R(d, D) {\n    vc<mint> newdp(1 << (N -\
-    \ d));\n    newdp[0] = f[d];\n    vc<ARR> zdp = ranked_zeta<mint, LIM>(dp);\n\
-    \    FOR(i, N - d) {\n      // zs[1<<i:2<<i], zdp[0:1<<i]\n      vc<ARR> znewdp(1\
-    \ << i);\n      FOR(k, 1 << i) {\n        FOR(p, i + 1) FOR(q, i - p + 1) {\n\
-    \          znewdp[k][p + q] += zdp[k][p] * zs[i][k][q];\n        }\n      }\n\
-    \      auto x = ranked_mobius<mint, LIM>(znewdp);\n      copy(all(x), newdp.begin()\
-    \ + (1 << i));\n    }\n    swap(dp, newdp);\n  }\n  return dp;\n}\n\n// sum_i\
-    \ f_i s^i, s^i is subset-convolution\ntemplate <typename mint, int LIM>\nvc<mint>\
-    \ sps_composition_poly(int N, vc<mint> f, vc<mint> s) {\n  if (f.empty()) return\
-    \ vc<mint>(1 << N, mint(0));\n  // convert to egf problem\n  int D = min<int>(len(f)\
-    \ - 1, N);\n  vc<mint> g(D + 1);\n  mint c = s[0];\n  s[0] = 0;\n  // (x+c)^i\n\
-    \  vc<mint> pow(D + 1);\n  pow[0] = 1;\n  FOR(i, len(f)) {\n    FOR(j, D + 1)\
-    \ g[j] += f[i] * pow[j];\n    FOR_R(j, D + 1) pow[j] = pow[j] * c + (j == 0 ?\
-    \ mint(0) : pow[j - 1]);\n  }\n  // to egf\n  mint factorial = 1;\n  FOR(j, D\
-    \ + 1) g[j] *= factorial, factorial *= mint(j + 1);\n  return sps_composition_egf<mint,\
-    \ LIM>(N, g, s);\n}\n#line 2 \"setfunc/sps_log.hpp\"\n\ntemplate <typename mint,\
-    \ int LIM>\nvc<mint> sps_log(int N, vc<mint> s) {\n  assert(len(s) == (1 << N)\
-    \ && s[0] == mint(1));\n  vc<mint> f(N + 1);\n  FOR(i, 1, N + 1) f[i] = -fact<mint>(i\
-    \ - 1);\n  for (auto&& x: s) x = -x;\n  s[0] = 0;\n  return sps_composition_egf<mint,\
+    \ sps_composition_egf(vc<mint>& f, vc<mint>& s) {\n  const int N = topbit(len(s));\n\
+    \  assert(len(s) == (1 << N) && s[0] == mint(0));\n  if (len(f) > N) f.resize(N\
+    \ + 1);\n  int D = len(f) - 1;\n  using ARR = array<mint, LIM + 1>;\n  vvc<ARR>\
+    \ zs(N);\n  FOR(i, N) {\n    zs[i]\n        = ranked_zeta<mint, LIM>({s.begin()\
+    \ + (1 << i), s.begin() + (2 << i)});\n  }\n\n  // dp : (d/dt)^df(s) (d=D,D-1,...)\n\
+    \  vc<mint> dp(1 << (N - D));\n  dp[0] = f[D];\n  FOR_R(d, D) {\n    vc<mint>\
+    \ newdp(1 << (N - d));\n    newdp[0] = f[d];\n    vc<ARR> zdp = ranked_zeta<mint,\
+    \ LIM>(dp);\n    FOR(i, N - d) {\n      // zs[1<<i:2<<i], zdp[0:1<<i]\n      vc<ARR>\
+    \ znewdp(1 << i);\n      FOR(k, 1 << i) {\n        FOR(p, i + 1) FOR(q, i - p\
+    \ + 1) {\n          znewdp[k][p + q] += zdp[k][p] * zs[i][k][q];\n        }\n\
+    \      }\n      auto x = ranked_mobius<mint, LIM>(znewdp);\n      copy(all(x),\
+    \ newdp.begin() + (1 << i));\n    }\n    swap(dp, newdp);\n  }\n  return dp;\n\
+    }\n\n// sum_i f_i s^i, s^i is subset-convolution\ntemplate <typename mint, int\
+    \ LIM>\nvc<mint> sps_composition_poly(vc<mint> f, vc<mint> s) {\n  const int N\
+    \ = topbit(len(s));\n  assert(len(s) == (1 << N));\n  if (f.empty()) return vc<mint>(1\
+    \ << N, mint(0));\n  // convert to egf problem\n  int D = min<int>(len(f) - 1,\
+    \ N);\n  vc<mint> g(D + 1);\n  mint c = s[0];\n  s[0] = 0;\n  // (x+c)^i\n  vc<mint>\
+    \ pow(D + 1);\n  pow[0] = 1;\n  FOR(i, len(f)) {\n    FOR(j, D + 1) g[j] += f[i]\
+    \ * pow[j];\n    FOR_R(j, D + 1) pow[j] = pow[j] * c + (j == 0 ? mint(0) : pow[j\
+    \ - 1]);\n  }\n  // to egf\n  mint factorial = 1;\n  FOR(j, D + 1) g[j] *= factorial,\
+    \ factorial *= mint(j + 1);\n  return sps_composition_egf<mint, LIM>(g, s);\n\
+    }\n#line 3 \"setfunc/sps_log.hpp\"\n\ntemplate <typename mint, int LIM>\nvc<mint>\
+    \ sps_log(vc<mint> s) {\n  const int N = topbit(len(s));\n  assert(len(s) == (1\
+    \ << N) && s[0] == mint(1));\n  vc<mint> f(N + 1);\n  FOR(i, 1, N + 1) f[i] =\
+    \ -fact<mint>(i - 1);\n  for (auto&& x: s) x = -x;\n  s[0] = 0;\n  return sps_composition_egf<mint,\
     \ LIM>(N, f, s);\n}\n#line 7 \"test_atcoder/abc213g.test.cpp\"\n\nusing mint =\
     \ modint998;\nvoid solve() {\n  LL(N, M);\n  vc<int> dp(1 << N);\n  FOR(M) {\n\
     \    INT(a, b);\n    --a, --b;\n    int s = (1 << a) | (1 << b);\n    dp[s] +=\
@@ -353,8 +354,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc213g.test.cpp
   requiredBy: []
-  timestamp: '2023-05-12 18:44:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-06-03 10:19:04+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc213g.test.cpp
 layout: document

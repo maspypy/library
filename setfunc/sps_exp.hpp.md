@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/hafnian.hpp
     title: linalg/hafnian.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/sps_exp.test.cpp
     title: test/library_checker/math/sps_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/matrix/hafnian_of_matrix.test.cpp
     title: test/library_checker/matrix/hafnian_of_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc236h.test.cpp
     title: test_atcoder/abc236h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc253h.test.cpp
     title: test_atcoder/abc253h.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"setfunc/subset_convolution.hpp\"\n\r\n#line 2 \"setfunc/ranked_zeta.hpp\"\
@@ -57,17 +57,18 @@ data:
     \ {\r\n      T x = 0;\r\n      FOR(i, d + 1) x += f[i] * g[d - i];\r\n      f[d]\
     \ = x;\r\n    }\r\n  }\r\n  return ranked_mobius<T, LIM>(RA);\r\n}\r\n#line 2\
     \ \"setfunc/sps_exp.hpp\"\n\n// sum_i f_i/i! s^i, s^i is subset-convolution\n\
-    template <typename mint, int LIM>\nvc<mint> sps_exp(int N, vc<mint>& s) {\n  assert(len(s)\
-    \ == (1 << N) && s[0] == mint(0));\n  vc<mint> dp(1 << N);\n  dp[0] = mint(1);\n\
-    \  FOR(i, N) {\n    vc<mint> a = {s.begin() + (1 << i), s.begin() + (2 << i)};\n\
-    \    vc<mint> b = {dp.begin(), dp.begin() + (1 << i)};\n    a = subset_convolution<mint,\
-    \ LIM>(a, b);\n    copy(all(a), dp.begin() + (1 << i));\n  }\n  return dp;\n}\n"
-  code: "#include \"setfunc/subset_convolution.hpp\"\n\n// sum_i f_i/i! s^i, s^i is\
-    \ subset-convolution\ntemplate <typename mint, int LIM>\nvc<mint> sps_exp(int\
-    \ N, vc<mint>& s) {\n  assert(len(s) == (1 << N) && s[0] == mint(0));\n  vc<mint>\
+    template <typename mint, int LIM>\nvc<mint> sps_exp(vc<mint>& s) {\n  const int\
+    \ N = topbit(len(s));\n  assert(len(s) == (1 << N) && s[0] == mint(0));\n  vc<mint>\
     \ dp(1 << N);\n  dp[0] = mint(1);\n  FOR(i, N) {\n    vc<mint> a = {s.begin()\
     \ + (1 << i), s.begin() + (2 << i)};\n    vc<mint> b = {dp.begin(), dp.begin()\
     \ + (1 << i)};\n    a = subset_convolution<mint, LIM>(a, b);\n    copy(all(a),\
+    \ dp.begin() + (1 << i));\n  }\n  return dp;\n}\n"
+  code: "#include \"setfunc/subset_convolution.hpp\"\n\n// sum_i f_i/i! s^i, s^i is\
+    \ subset-convolution\ntemplate <typename mint, int LIM>\nvc<mint> sps_exp(vc<mint>&\
+    \ s) {\n  const int N = topbit(len(s));\n  assert(len(s) == (1 << N) && s[0] ==\
+    \ mint(0));\n  vc<mint> dp(1 << N);\n  dp[0] = mint(1);\n  FOR(i, N) {\n    vc<mint>\
+    \ a = {s.begin() + (1 << i), s.begin() + (2 << i)};\n    vc<mint> b = {dp.begin(),\
+    \ dp.begin() + (1 << i)};\n    a = subset_convolution<mint, LIM>(a, b);\n    copy(all(a),\
     \ dp.begin() + (1 << i));\n  }\n  return dp;\n}\n"
   dependsOn:
   - setfunc/subset_convolution.hpp
@@ -76,13 +77,13 @@ data:
   path: setfunc/sps_exp.hpp
   requiredBy:
   - linalg/hafnian.hpp
-  timestamp: '2023-05-05 05:27:13+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-06-03 10:19:04+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/abc253h.test.cpp
-  - test_atcoder/abc236h.test.cpp
   - test/library_checker/math/sps_exp.test.cpp
   - test/library_checker/matrix/hafnian_of_matrix.test.cpp
+  - test_atcoder/abc236h.test.cpp
+  - test_atcoder/abc253h.test.cpp
 documentation_of: setfunc/sps_exp.hpp
 layout: document
 redirect_from:

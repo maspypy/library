@@ -1,59 +1,59 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/implicit_matrix/pascal.hpp
     title: linalg/implicit_matrix/pascal.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/all_inverse.hpp
     title: mod/all_inverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc267/tasks/abc267_g
@@ -472,8 +472,8 @@ data:
     \  if (min(n, m) <= 50) return convolution_naive(a, b);\r\n    return convolution_ntt(a,\
     \ b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_naive(a, b);\r\n  return\
     \ convolution_garner(a, b);\r\n}\r\n#line 2 \"linalg/implicit_matrix/pascal.hpp\"\
-    \n\n// transpose = 0\uFF1Ag[i] = sum binom(i,j) f[j]\n// transpose = 1\uFF1Ag[i]\
-    \ = sum binom(j,i) f[j]\ntemplate <typename mint>\nvc<mint> pascal(vc<mint> f,\
+    \n\n// transpose = 0\uFF1Ag[p] = sum binom(p,q) f[q]\n// transpose = 1\uFF1Ag[p]\
+    \ = sum binom(q,p) f[q]\ntemplate <typename mint>\nvc<mint> pascal(vc<mint> f,\
     \ bool transpose, bool inverse) {\n  if (!transpose) {\n    int n = len(f);\n\
     \    vc<mint> g(n);\n    FOR(i, n) g[i] = fact_inv<mint>(i);\n    if (inverse)\
     \ FOR(i, n) if (i & 1) g[i] = -g[i];\n    FOR(i, n) f[i] *= fact_inv<mint>(i);\n\
@@ -644,8 +644,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc267g.test.cpp
   requiredBy: []
-  timestamp: '2023-05-14 18:10:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-06-03 10:16:13+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc267g.test.cpp
 layout: document

@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/sps_exp.hpp
     title: setfunc/sps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc236/tasks/abc236_Ex
@@ -309,19 +309,20 @@ data:
     \ {\r\n      T x = 0;\r\n      FOR(i, d + 1) x += f[i] * g[d - i];\r\n      f[d]\
     \ = x;\r\n    }\r\n  }\r\n  return ranked_mobius<T, LIM>(RA);\r\n}\r\n#line 2\
     \ \"setfunc/sps_exp.hpp\"\n\n// sum_i f_i/i! s^i, s^i is subset-convolution\n\
-    template <typename mint, int LIM>\nvc<mint> sps_exp(int N, vc<mint>& s) {\n  assert(len(s)\
-    \ == (1 << N) && s[0] == mint(0));\n  vc<mint> dp(1 << N);\n  dp[0] = mint(1);\n\
-    \  FOR(i, N) {\n    vc<mint> a = {s.begin() + (1 << i), s.begin() + (2 << i)};\n\
-    \    vc<mint> b = {dp.begin(), dp.begin() + (1 << i)};\n    a = subset_convolution<mint,\
-    \ LIM>(a, b);\n    copy(all(a), dp.begin() + (1 << i));\n  }\n  return dp;\n}\n\
-    #line 7 \"test_atcoder/abc236h.test.cpp\"\n\nusing mint = modint998;\nvoid solve()\
-    \ {\n  LL(N, M);\n  VEC(ll, A, N);\n  vi LCM(1 << N, 1);\n  auto f = [&](ll a,\
-    \ ll b) -> ll {\n    ll g = gcd(a, b);\n    a /= g;\n    if (b > M / a) return\
-    \ M + 1;\n    return a * b;\n  };\n  FOR(i, N) FOR(s, 1 << i) LCM[s | 1 << i]\
-    \ = f(LCM[s], A[i]);\n\n  vc<mint> F(1 << N);\n  FOR(i, 1, 1 << N) {\n    F[i]\
-    \ = M / LCM[i];\n    int n = popcnt(i);\n    if (!(n & 1)) F[i] = -F[i];\n   \
-    \ F[i] *= fact<mint>(n - 1);\n  }\n  F = sps_exp<mint, 16>(N, F);\n  print(F.back());\n\
-    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    template <typename mint, int LIM>\nvc<mint> sps_exp(vc<mint>& s) {\n  const int\
+    \ N = topbit(len(s));\n  assert(len(s) == (1 << N) && s[0] == mint(0));\n  vc<mint>\
+    \ dp(1 << N);\n  dp[0] = mint(1);\n  FOR(i, N) {\n    vc<mint> a = {s.begin()\
+    \ + (1 << i), s.begin() + (2 << i)};\n    vc<mint> b = {dp.begin(), dp.begin()\
+    \ + (1 << i)};\n    a = subset_convolution<mint, LIM>(a, b);\n    copy(all(a),\
+    \ dp.begin() + (1 << i));\n  }\n  return dp;\n}\n#line 7 \"test_atcoder/abc236h.test.cpp\"\
+    \n\nusing mint = modint998;\nvoid solve() {\n  LL(N, M);\n  VEC(ll, A, N);\n \
+    \ vi LCM(1 << N, 1);\n  auto f = [&](ll a, ll b) -> ll {\n    ll g = gcd(a, b);\n\
+    \    a /= g;\n    if (b > M / a) return M + 1;\n    return a * b;\n  };\n  FOR(i,\
+    \ N) FOR(s, 1 << i) LCM[s | 1 << i] = f(LCM[s], A[i]);\n\n  vc<mint> F(1 << N);\n\
+    \  FOR(i, 1, 1 << N) {\n    F[i] = M / LCM[i];\n    int n = popcnt(i);\n    if\
+    \ (!(n & 1)) F[i] = -F[i];\n    F[i] *= fact<mint>(n - 1);\n  }\n  F = sps_exp<mint,\
+    \ 16>(N, F);\n  print(F.back());\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc236/tasks/abc236_Ex\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
     \n#include \"setfunc/sps_exp.hpp\"\n\nusing mint = modint998;\nvoid solve() {\n\
@@ -343,8 +344,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc236h.test.cpp
   requiredBy: []
-  timestamp: '2023-05-12 18:44:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-06-03 10:19:04+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc236h.test.cpp
 layout: document

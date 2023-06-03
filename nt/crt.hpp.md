@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':heavy_check_mark:'
@@ -146,8 +146,8 @@ data:
   timestamp: '2023-05-12 18:15:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/590.test.cpp
   - test/yukicoder/2119.test.cpp
+  - test/yukicoder/590.test.cpp
   - test/yukicoder/187.test.cpp
   - test/yukicoder/1956.test.cpp
 documentation_of: nt/crt.hpp

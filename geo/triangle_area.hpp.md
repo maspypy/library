@@ -41,9 +41,9 @@ data:
   timestamp: '2022-08-20 20:06:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc151f.test.cpp
   - test/aoj/CGL_7_B.test.cpp
   - test/aoj/CGL_7_C.test.cpp
+  - test_atcoder/abc151f.test.cpp
 documentation_of: geo/triangle_area.hpp
 layout: document
 redirect_from:
