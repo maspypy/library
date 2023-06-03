@@ -9,5 +9,5 @@ vc<mint> sps_log(vc<mint> s) {
   FOR(i, 1, N + 1) f[i] = -fact<mint>(i - 1);
   for (auto&& x: s) x = -x;
   s[0] = 0;
-  return sps_composition_egf<mint, LIM>(N, f, s);
+  return sps_composition_egf<mint, LIM>(f, s);
 }
