@@ -26,13 +26,13 @@ void solve() {
   FOR(Q) {
     LL(t);
     if (t == 1) {
-      LL(v);
+      INT(v);
       --v;
       auto f = KDT.get(v);
       print(f.fi * A[v] + f.se);
     }
     if (t == 2) {
-      LL(v, K, C, D);
+      INT(v, K, C, D);
       --v;
       assert(K <= 10);
       pair<mint, mint> p = {C, D};
@@ -61,13 +61,13 @@ void solve() {
       }
     }
     if (t == 3) {
-      LL(v, C, D);
+      INT(v, C, D);
       --v;
       pair<mint, mint> p = {C, D};
       KDT.apply(tree.LID[v], tree.RID[v], 0, infty<int>, p);
     }
     if (t == 4) {
-      LL(u, v, C, D);
+      INT(u, v, C, D);
       --u, --v;
       pair<mint, mint> p = {C, D};
       for (auto&& [a, b]: tree.get_path_decomposition(u, v, false)) {
