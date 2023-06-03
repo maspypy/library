@@ -21,7 +21,7 @@ void solve() {
   }
   vc<mint> f(1 << N);
   FOR(s, 1 << N) f[s] = mint(2).pow(dp[s]);
-  f = sps_log<mint, 17>(N, f);
+  f = sps_log<mint, 17>(f);
 
   vc<mint> ANS(N);
   int full = (1 << N) - 1;
