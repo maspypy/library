@@ -34,5 +34,5 @@ mint Hufnian(vc<vc<mint>>& mat) {
       }
     }
   }
-  return sps_exp<mint, LIM>(n, cyc).back();
+  return sps_exp<mint, LIM>(cyc).back();
 }
