@@ -32,7 +32,7 @@ vc<mint> transposed_sps_composition_egf(vc<mint>& s, vc<mint> x) {
     FOR(j, N - i) {
       vc<mint> a = {s.begin() + (1 << j), s.begin() + (2 << j)};
       vc<mint> b = {dp.begin() + (1 << j), dp.begin() + (2 << j)};
-      b = transposed_subset_convolution<mint, LIM>(j, a, b);
+      b = transposed_subset_convolution<mint, LIM>(a, b);
       FOR(k, len(b)) newdp[k] += b[k];
     }
     swap(dp, newdp);
