@@ -319,32 +319,32 @@ data:
     \ + (1 << i)};\n    a = subset_convolution<mint, LIM>(a, b);\n    copy(all(a),\
     \ dp.begin() + (1 << i));\n  }\n  return dp;\n}\n#line 2 \"setfunc/transposed_sps_composition.hpp\"\
     \n\n// for fixed sps s, consider linear map F:a->b = subset-conv(a,s)\n// given\
-    \ x, calculate transpose(F)(x)\ntemplate <typename mint, int LIM>\nvc<mint> transposed_subset_convolution(int\
-    \ N, vc<mint> s, vc<mint> x) {\n  /*\n  sum_{j}x_jb_j = sum_{i subset j}x_ja_is_{j-i}\
-    \ = sum_{i}y_ia_i.\n  y_i = sum_{j supset i}x_js_{j-i}\n  (rev y)_i = sum_{j subset\
-    \ i}(rev x)_js_{i-j}\n  y = rev(conv(rev x), s)\n  */\n  reverse(all(x));\n  x\
-    \ = subset_convolution<mint, LIM>(x, s);\n  reverse(all(x));\n  return x;\n}\n\
-    \n// for fixed sps s s.t. s[0] == 0.\n// consider linear map F:f->t=f(s) for egf\
-    \ f.\n// given x, calcuate transpose(F)(x)\n// equivalent: calculate sum_i x_i(s^k/k!)_i\
-    \ for k=0,1,...,N\ntemplate <typename mint, int LIM>\nvc<mint> transposed_sps_composition_egf(int\
-    \ N, vc<mint>& s, vc<mint> x) {\n  assert(len(s) == (1 << N) && len(x) == (1 <<\
-    \ N) && s[0] == mint(0));\n  vc<mint> y(N + 1);\n  y[0] = x[0];\n  auto& dp =\
-    \ x;\n  FOR(i, N) {\n    vc<mint> newdp(1 << (N - 1 - i));\n    FOR(j, N - i)\
-    \ {\n      vc<mint> a = {s.begin() + (1 << j), s.begin() + (2 << j)};\n      vc<mint>\
-    \ b = {dp.begin() + (1 << j), dp.begin() + (2 << j)};\n      b = transposed_subset_convolution<mint,\
-    \ LIM>(j, a, b);\n      FOR(k, len(b)) newdp[k] += b[k];\n    }\n    swap(dp,\
-    \ newdp);\n    y[1 + i] = dp[0];\n  }\n  return y;\n}\n#line 9 \"test_atcoder/abc253h.test.cpp\"\
-    \n\nconst int LIM = 14;\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, M);\n\
-    \n  vv(int, mat, N, N);\n  FOR(M) {\n    INT(a, b);\n    --a, --b;\n    mat[a][b]++,\
-    \ mat[b][a]++;\n  }\n\n  // count tree\n  vc<mint> dp(1 << N);\n  dp[0] = 0;\n\
-    \  FOR(i, N) {\n    vc<mint> a = {dp.begin(), dp.begin() + (1 << i)};\n    FOR(s,\
-    \ 1 << i) {\n      int k = 0;\n      FOR(j, i) if (s >> j & 1) k += mat[i][j];\n\
-    \      a[s] *= mint(k);\n    }\n    a = sps_exp<mint, LIM>(i, a);\n    copy(all(a),\
-    \ dp.begin() + (1 << i));\n  }\n\n  vc<mint> x(1 << N);\n  x.back() = mint(1);\n\
-    \  auto y = transposed_sps_composition_egf<mint, LIM>(dp, x);\n\n  FOR(k, 1, N)\
-    \ {\n    // k edges = N-k component\n    mint ans = y[N - k];\n    ans *= inv<mint>(M).pow(k)\
-    \ * fact<mint>(k);\n    print(ans);\n  }\n}\n\nsigned main() {\n  solve();\n \
-    \ return 0;\n}\n"
+    \ x, calculate transpose(F)(x)\ntemplate <typename mint, int LIM>\nvc<mint> transposed_subset_convolution(vc<mint>\
+    \ s, vc<mint> x) {\n  /*\n  sum_{j}x_jb_j = sum_{i subset j}x_ja_is_{j-i} = sum_{i}y_ia_i.\n\
+    \  y_i = sum_{j supset i}x_js_{j-i}\n  (rev y)_i = sum_{j subset i}(rev x)_js_{i-j}\n\
+    \  y = rev(conv(rev x), s)\n  */\n  reverse(all(x));\n  x = subset_convolution<mint,\
+    \ LIM>(x, s);\n  reverse(all(x));\n  return x;\n}\n\n// for fixed sps s s.t. s[0]\
+    \ == 0.\n// consider linear map F:f->t=f(s) for egf f.\n// given x, calcuate transpose(F)(x)\n\
+    // equivalent: calculate sum_i x_i(s^k/k!)_i for k=0,1,...,N\ntemplate <typename\
+    \ mint, int LIM>\nvc<mint> transposed_sps_composition_egf(vc<mint>& s, vc<mint>\
+    \ x) {\n  const int N = topbit(len(s));\n  assert(len(s) == (1 << N) && len(x)\
+    \ == (1 << N) && s[0] == mint(0));\n  vc<mint> y(N + 1);\n  y[0] = x[0];\n  auto&\
+    \ dp = x;\n  FOR(i, N) {\n    vc<mint> newdp(1 << (N - 1 - i));\n    FOR(j, N\
+    \ - i) {\n      vc<mint> a = {s.begin() + (1 << j), s.begin() + (2 << j)};\n \
+    \     vc<mint> b = {dp.begin() + (1 << j), dp.begin() + (2 << j)};\n      b =\
+    \ transposed_subset_convolution<mint, LIM>(j, a, b);\n      FOR(k, len(b)) newdp[k]\
+    \ += b[k];\n    }\n    swap(dp, newdp);\n    y[1 + i] = dp[0];\n  }\n  return\
+    \ y;\n}\n#line 9 \"test_atcoder/abc253h.test.cpp\"\n\nconst int LIM = 14;\nusing\
+    \ mint = modint998;\n\nvoid solve() {\n  LL(N, M);\n\n  vv(int, mat, N, N);\n\
+    \  FOR(M) {\n    INT(a, b);\n    --a, --b;\n    mat[a][b]++, mat[b][a]++;\n  }\n\
+    \n  // count tree\n  vc<mint> dp(1 << N);\n  dp[0] = 0;\n  FOR(i, N) {\n    vc<mint>\
+    \ a = {dp.begin(), dp.begin() + (1 << i)};\n    FOR(s, 1 << i) {\n      int k\
+    \ = 0;\n      FOR(j, i) if (s >> j & 1) k += mat[i][j];\n      a[s] *= mint(k);\n\
+    \    }\n    a = sps_exp<mint, LIM>(a);\n    copy(all(a), dp.begin() + (1 << i));\n\
+    \  }\n\n  vc<mint> x(1 << N);\n  x.back() = mint(1);\n  auto y = transposed_sps_composition_egf<mint,\
+    \ LIM>(dp, x);\n\n  FOR(k, 1, N) {\n    // k edges = N-k component\n    mint ans\
+    \ = y[N - k];\n    ans *= inv<mint>(M).pow(k) * fact<mint>(k);\n    print(ans);\n\
+    \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc253/tasks/abc253_Ex\"\n\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
     \n#include \"setfunc/sps_exp.hpp\"\n#include \"setfunc/transposed_sps_composition.hpp\"\
@@ -353,7 +353,7 @@ data:
     \ mat[b][a]++;\n  }\n\n  // count tree\n  vc<mint> dp(1 << N);\n  dp[0] = 0;\n\
     \  FOR(i, N) {\n    vc<mint> a = {dp.begin(), dp.begin() + (1 << i)};\n    FOR(s,\
     \ 1 << i) {\n      int k = 0;\n      FOR(j, i) if (s >> j & 1) k += mat[i][j];\n\
-    \      a[s] *= mint(k);\n    }\n    a = sps_exp<mint, LIM>(i, a);\n    copy(all(a),\
+    \      a[s] *= mint(k);\n    }\n    a = sps_exp<mint, LIM>(a);\n    copy(all(a),\
     \ dp.begin() + (1 << i));\n  }\n\n  vc<mint> x(1 << N);\n  x.back() = mint(1);\n\
     \  auto y = transposed_sps_composition_egf<mint, LIM>(dp, x);\n\n  FOR(k, 1, N)\
     \ {\n    // k edges = N-k component\n    mint ans = y[N - k];\n    ans *= inv<mint>(M).pow(k)\
@@ -371,7 +371,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc253h.test.cpp
   requiredBy: []
-  timestamp: '2023-06-03 19:30:49+09:00'
+  timestamp: '2023-06-03 19:52:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc253h.test.cpp

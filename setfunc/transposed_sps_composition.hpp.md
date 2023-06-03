@@ -46,45 +46,47 @@ data:
     \ = x;\r\n    }\r\n  }\r\n  return ranked_mobius<T, LIM>(RA);\r\n}\r\n#line 2\
     \ \"setfunc/transposed_sps_composition.hpp\"\n\n// for fixed sps s, consider linear\
     \ map F:a->b = subset-conv(a,s)\n// given x, calculate transpose(F)(x)\ntemplate\
-    \ <typename mint, int LIM>\nvc<mint> transposed_subset_convolution(int N, vc<mint>\
+    \ <typename mint, int LIM>\nvc<mint> transposed_subset_convolution(vc<mint> s,\
+    \ vc<mint> x) {\n  /*\n  sum_{j}x_jb_j = sum_{i subset j}x_ja_is_{j-i} = sum_{i}y_ia_i.\n\
+    \  y_i = sum_{j supset i}x_js_{j-i}\n  (rev y)_i = sum_{j subset i}(rev x)_js_{i-j}\n\
+    \  y = rev(conv(rev x), s)\n  */\n  reverse(all(x));\n  x = subset_convolution<mint,\
+    \ LIM>(x, s);\n  reverse(all(x));\n  return x;\n}\n\n// for fixed sps s s.t. s[0]\
+    \ == 0.\n// consider linear map F:f->t=f(s) for egf f.\n// given x, calcuate transpose(F)(x)\n\
+    // equivalent: calculate sum_i x_i(s^k/k!)_i for k=0,1,...,N\ntemplate <typename\
+    \ mint, int LIM>\nvc<mint> transposed_sps_composition_egf(vc<mint>& s, vc<mint>\
+    \ x) {\n  const int N = topbit(len(s));\n  assert(len(s) == (1 << N) && len(x)\
+    \ == (1 << N) && s[0] == mint(0));\n  vc<mint> y(N + 1);\n  y[0] = x[0];\n  auto&\
+    \ dp = x;\n  FOR(i, N) {\n    vc<mint> newdp(1 << (N - 1 - i));\n    FOR(j, N\
+    \ - i) {\n      vc<mint> a = {s.begin() + (1 << j), s.begin() + (2 << j)};\n \
+    \     vc<mint> b = {dp.begin() + (1 << j), dp.begin() + (2 << j)};\n      b =\
+    \ transposed_subset_convolution<mint, LIM>(j, a, b);\n      FOR(k, len(b)) newdp[k]\
+    \ += b[k];\n    }\n    swap(dp, newdp);\n    y[1 + i] = dp[0];\n  }\n  return\
+    \ y;\n}\n"
+  code: "#include \"setfunc/subset_convolution.hpp\"\n\n// for fixed sps s, consider\
+    \ linear map F:a->b = subset-conv(a,s)\n// given x, calculate transpose(F)(x)\n\
+    template <typename mint, int LIM>\nvc<mint> transposed_subset_convolution(vc<mint>\
     \ s, vc<mint> x) {\n  /*\n  sum_{j}x_jb_j = sum_{i subset j}x_ja_is_{j-i} = sum_{i}y_ia_i.\n\
     \  y_i = sum_{j supset i}x_js_{j-i}\n  (rev y)_i = sum_{j subset i}(rev x)_js_{i-j}\n\
     \  y = rev(conv(rev x), s)\n  */\n  reverse(all(x));\n  x = subset_convolution<mint,\
     \ LIM>(x, s);\n  reverse(all(x));\n  return x;\n}\n\n// for fixed sps s s.t. s[0]\
     \ == 0.\n// consider linear map F:f->t=f(s) for egf f.\n// given x, calcuate transpose(F)(x)\n\
     // equivalent: calculate sum_i x_i(s^k/k!)_i for k=0,1,...,N\ntemplate <typename\
-    \ mint, int LIM>\nvc<mint> transposed_sps_composition_egf(int N, vc<mint>& s,\
-    \ vc<mint> x) {\n  assert(len(s) == (1 << N) && len(x) == (1 << N) && s[0] ==\
-    \ mint(0));\n  vc<mint> y(N + 1);\n  y[0] = x[0];\n  auto& dp = x;\n  FOR(i, N)\
-    \ {\n    vc<mint> newdp(1 << (N - 1 - i));\n    FOR(j, N - i) {\n      vc<mint>\
-    \ a = {s.begin() + (1 << j), s.begin() + (2 << j)};\n      vc<mint> b = {dp.begin()\
-    \ + (1 << j), dp.begin() + (2 << j)};\n      b = transposed_subset_convolution<mint,\
-    \ LIM>(j, a, b);\n      FOR(k, len(b)) newdp[k] += b[k];\n    }\n    swap(dp,\
-    \ newdp);\n    y[1 + i] = dp[0];\n  }\n  return y;\n}\n"
-  code: "#include \"setfunc/subset_convolution.hpp\"\n\n// for fixed sps s, consider\
-    \ linear map F:a->b = subset-conv(a,s)\n// given x, calculate transpose(F)(x)\n\
-    template <typename mint, int LIM>\nvc<mint> transposed_subset_convolution(int\
-    \ N, vc<mint> s, vc<mint> x) {\n  /*\n  sum_{j}x_jb_j = sum_{i subset j}x_ja_is_{j-i}\
-    \ = sum_{i}y_ia_i.\n  y_i = sum_{j supset i}x_js_{j-i}\n  (rev y)_i = sum_{j subset\
-    \ i}(rev x)_js_{i-j}\n  y = rev(conv(rev x), s)\n  */\n  reverse(all(x));\n  x\
-    \ = subset_convolution<mint, LIM>(x, s);\n  reverse(all(x));\n  return x;\n}\n\
-    \n// for fixed sps s s.t. s[0] == 0.\n// consider linear map F:f->t=f(s) for egf\
-    \ f.\n// given x, calcuate transpose(F)(x)\n// equivalent: calculate sum_i x_i(s^k/k!)_i\
-    \ for k=0,1,...,N\ntemplate <typename mint, int LIM>\nvc<mint> transposed_sps_composition_egf(int\
-    \ N, vc<mint>& s, vc<mint> x) {\n  assert(len(s) == (1 << N) && len(x) == (1 <<\
-    \ N) && s[0] == mint(0));\n  vc<mint> y(N + 1);\n  y[0] = x[0];\n  auto& dp =\
-    \ x;\n  FOR(i, N) {\n    vc<mint> newdp(1 << (N - 1 - i));\n    FOR(j, N - i)\
-    \ {\n      vc<mint> a = {s.begin() + (1 << j), s.begin() + (2 << j)};\n      vc<mint>\
-    \ b = {dp.begin() + (1 << j), dp.begin() + (2 << j)};\n      b = transposed_subset_convolution<mint,\
-    \ LIM>(j, a, b);\n      FOR(k, len(b)) newdp[k] += b[k];\n    }\n    swap(dp,\
-    \ newdp);\n    y[1 + i] = dp[0];\n  }\n  return y;\n}\n"
+    \ mint, int LIM>\nvc<mint> transposed_sps_composition_egf(vc<mint>& s, vc<mint>\
+    \ x) {\n  const int N = topbit(len(s));\n  assert(len(s) == (1 << N) && len(x)\
+    \ == (1 << N) && s[0] == mint(0));\n  vc<mint> y(N + 1);\n  y[0] = x[0];\n  auto&\
+    \ dp = x;\n  FOR(i, N) {\n    vc<mint> newdp(1 << (N - 1 - i));\n    FOR(j, N\
+    \ - i) {\n      vc<mint> a = {s.begin() + (1 << j), s.begin() + (2 << j)};\n \
+    \     vc<mint> b = {dp.begin() + (1 << j), dp.begin() + (2 << j)};\n      b =\
+    \ transposed_subset_convolution<mint, LIM>(j, a, b);\n      FOR(k, len(b)) newdp[k]\
+    \ += b[k];\n    }\n    swap(dp, newdp);\n    y[1 + i] = dp[0];\n  }\n  return\
+    \ y;\n}\n"
   dependsOn:
   - setfunc/subset_convolution.hpp
   - setfunc/ranked_zeta.hpp
   isVerificationFile: false
   path: setfunc/transposed_sps_composition.hpp
   requiredBy: []
-  timestamp: '2023-05-05 13:58:05+09:00'
+  timestamp: '2023-06-03 19:31:41+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc253h.test.cpp
