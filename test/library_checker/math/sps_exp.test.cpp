@@ -9,7 +9,7 @@ using mint = modint998;
 void solve() {
   LL(N);
   VEC(mint, s, 1 << N);
-  s = sps_exp<mint, 20>(N, s);
+  s = sps_exp<mint, 20>(s);
   print(s);
 }
 
