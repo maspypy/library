@@ -11,7 +11,7 @@ void solve() {
   LL(M, N);
   VEC(mint, f, M);
   VEC(mint, s, 1 << N);
-  s = sps_composition_poly<mint, 20>(N, f, s);
+  s = sps_composition_poly<mint, 20>(f, s);
   print(s);
 }
 
