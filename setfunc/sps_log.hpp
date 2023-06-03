@@ -1,7 +1,9 @@
+#include "mod/modint.hpp"
 #include "setfunc/sps_composition.hpp"
 
 template <typename mint, int LIM>
-vc<mint> sps_log(int N, vc<mint> s) {
+vc<mint> sps_log(vc<mint> s) {
+  const int N = topbit(len(s));
   assert(len(s) == (1 << N) && s[0] == mint(1));
   vc<mint> f(N + 1);
   FOR(i, 1, N + 1) f[i] = -fact<mint>(i - 1);
