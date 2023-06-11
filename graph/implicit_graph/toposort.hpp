@@ -1,4 +1,3 @@
-// https://codeforces.com/contest/798/problem/E
 // toposort の候補をひとつ出力する。チェックはしない。
 // 陽にグラフを作らず、何らかのデータ構造で未訪問の行き先を探す想定。
 // set_used(v)：v を使用済に変更する
