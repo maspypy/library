@@ -10,7 +10,6 @@ struct has_mod_impl {
 template <class T>
 class has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>())) {};
 
-
 template <typename mint>
 mint inv(int n) {
   static const int mod = mint::get_mod();
@@ -38,9 +37,8 @@ mint fact(int n) {
 template <typename mint>
 mint fact_inv(int n) {
   static const int mod = mint::get_mod();
-  assert(-1 <= n && n < mod);
   static vector<mint> dat = {1, 1};
-  if (n == -1) return mint(0);
+  if (n < 0) return mint(0);
   while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));
   return dat[n];
 }
