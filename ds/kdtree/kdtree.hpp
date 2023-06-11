@@ -13,7 +13,7 @@ struct KDTree {
     closed_range.resize(1 << (log + 1));
     vc<int> vs(n);
     iota(all(vs), 0);
-    build(1, xs, ys, vs);
+    if (n > 0) build(1, xs, ys, vs);
   }
 
   // [xl, xr) x [yl, yr)
@@ -27,10 +27,12 @@ struct KDTree {
 
   // 計算量保証なし、点群がランダムなら O(logN)
   // N = Q = 10^5 で、約 1 秒
+  // T は座標の 2 乗がオーバーフローしないものを使う。XY=int, T=long など。
+  template <typename T>
   int nearest_neighbor_search(XY x, XY y) {
-    pair<int, XY> res = {-1, infty<XY>};
+    if (n == 0) return -1;
+    pair<int, T> res = {-1, -1};
     nns_rec(1, x, y, res);
-    assert(res.fi != -1);
     return res.fi;
   }
 
@@ -80,22 +82,24 @@ private:
     rect_rec(2 * i + 1, x1, x2, y1, y2, res, ms);
   }
 
-  XY best_dist_squared(int i, XY x, XY y) {
+  template <typename T>
+  T best_dist_squared(int i, XY x, XY y) {
     auto& [xmin, xmax, ymin, ymax] = closed_range[i];
-    XY dx = x - clamp(x, xmin, xmax);
-    XY dy = y - clamp(y, ymin, ymax);
+    T dx = x - clamp(x, xmin, xmax);
+    T dy = y - clamp(y, ymin, ymax);
     return dx * dx + dy * dy;
   }
 
-  void nns_rec(int i, XY x, XY y, pair<int, XY>& res) {
-    XY d = best_dist_squared(i, x, y);
-    if (d >= res.se) return;
+  template <typename T>
+  void nns_rec(int i, XY x, XY y, pair<int, T>& res) {
+    T d = best_dist_squared<T>(i, x, y);
+    if (res.fi != -1 && d >= res.se) return;
     if (dat[i] != -1) {
       res = {dat[i], d};
       return;
     }
-    XY d0 = best_dist_squared(2 * i + 0, x, y);
-    XY d1 = best_dist_squared(2 * i + 1, x, y);
+    T d0 = best_dist_squared<T>(2 * i + 0, x, y);
+    T d1 = best_dist_squared<T>(2 * i + 1, x, y);
     if (d0 < d1) {
       nns_rec(2 * i + 0, x, y, res), nns_rec(2 * i + 1, x, y, res);
     } else {
