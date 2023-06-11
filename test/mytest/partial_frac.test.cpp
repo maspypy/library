@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "random/base.hpp"
 #include "poly/sum_of_rationals.hpp"
-#include "poly/partial_frac_decomposition.hpp"
+#include "poly/partial_frac_decomposition_1.hpp"
 
 using mint = modint998;
 using poly = vc<mint>;
@@ -25,7 +25,7 @@ vc<mint> gen(int n) {
 
 void check(poly f, vc<mint> A) {
   int m = len(A);
-  auto B = partial_frac_decomposition<mint>(f, A);
+  auto B = partial_frac_decomposition_1<mint>(f, A);
   assert(len(B) == m);
   vc<pair<poly, poly>> dat;
   FOR(i, m) {
