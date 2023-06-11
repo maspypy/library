@@ -51,20 +51,20 @@ struct Dynamic_SegTree {
   }
 
   X prod(np root, ll l, ll r) {
-    assert(pid && root && L0 <= l && l <= r && r <= R0);
-    if (l == r) return MX::unit();
+    assert(L0 <= l && l <= r && r <= R0);
+    if (!root || l == r) return MX::unit();
     X x = MX::unit();
     prod_rec(root, L0, R0, l, r, x);
     return x;
   }
 
   np set(np root, ll i, const X &x) {
-    assert(pid && root && L0 <= i && i < R0);
+    assert(root && L0 <= i && i < R0);
     return set_rec(root, L0, R0, i, x);
   }
 
   np multiply(np root, ll i, const X &x) {
-    assert(pid && root && L0 <= i && i < R0);
+    assert(root && L0 <= i && i < R0);
     return multiply_rec(root, L0, R0, i, x);
   }
 
@@ -134,7 +134,7 @@ private:
 
   np multiply_rec(np c, ll l, ll r, ll i, const X &x, bool make_copy = true) {
     if (r == l + 1) {
-      c = copy_node(c);
+      if (make_copy) c = copy_node(c);
       c->x = MX::op(c->x, x);
       return c;
     }
