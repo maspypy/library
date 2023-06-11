@@ -1,3 +1,5 @@
+#include "mod/modint.hpp"
+
 // [0, LIM)^N のうちで、xor = X となるものの個数
 template <typename mint>
 mint count_seq_with_fixed_xor(ll N, ll LIM, ll X) {
