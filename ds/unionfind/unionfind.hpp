@@ -22,7 +22,7 @@ struct UnionFind {
   }
 
   ll size(int x) {
-    assert(dat[x] < 0);
+    x = (*this)[x];
     return -dat[x];
   }
 
