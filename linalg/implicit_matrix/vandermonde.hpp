@@ -4,6 +4,10 @@
 
 // transpose = 0：g[p] = sum pow(ap,q) f[q]
 // transpose = 1：g[p] = sum pow(aq,p) f[q]
+// (false, false) = multipoint eval
+// (false, true) = multipoint interpolate
+// (true, false) = sum of rationals
+// (true, true) = partial frac decomposition (fps -> coefs)
 template <typename mint>
 vc<mint> vandermonde(vc<mint> f, vc<mint> A, bool transpose, bool inverse) {
   if (len(f) == 0) return vc<mint>();
