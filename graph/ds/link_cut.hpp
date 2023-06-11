@@ -28,7 +28,7 @@ struct LinkCutTree_base {
 
   int get_root(int c) { return get_root(&nodes[c])->idx; }
 
-  // c の親を p にする。
+  // c の親を p にする。内部で evert するのでいつ呼んでも大丈夫。
   virtual void link(Node *c, Node *p) {
     evert(c);
     expose(p);
@@ -37,7 +37,7 @@ struct LinkCutTree_base {
     p->update();
   }
 
-  // c の親を p にする
+  // c の親を p にする。内部で evert するのでいつ呼んでも大丈夫。
   virtual void link(int c, int p) { return link(&nodes[c], &nodes[p]); }
 
   void cut(Node *a, Node *b) {
