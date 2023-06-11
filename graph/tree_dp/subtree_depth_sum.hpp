@@ -10,7 +10,6 @@ struct SubTree_DepthSum {
   vc<Data> dp, dp_1, dp_2;
 
   SubTree_DepthSum(TREE& tree) : tree(tree) {
-    int N = tree.N;
     Data unit = {0, 0};
     auto f_ee = [&](Data A, Data B) -> Data {
       return {A.fi + B.fi, A.se + B.se};
