@@ -55,6 +55,7 @@ struct Dynamic_Lazy_SegTree {
   }
 
   X prod(np root, ll l, ll r) {
+    if (l == r || !root) return MX::unit();
     assert(pid && L0 <= l && l < r && r <= R0);
     X x = MX::unit();
     prod_rec(root, L0, R0, l, r, x, MA::unit());
