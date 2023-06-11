@@ -1,3 +1,5 @@
+#include "graph/tree.hpp"
+
 // (圧縮された木の頂点ラベルたち、グラフ)
 template <typename TREE>
 pair<vc<int>, typename TREE::Graph_type> compress_tree(TREE& tree, vc<int> V) {
