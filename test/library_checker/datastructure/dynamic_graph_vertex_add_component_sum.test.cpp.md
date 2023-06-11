@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/add_remove_query.hpp
     title: ds/offline_query/add_remove_query.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/rollback_array.hpp
     title: ds/rollback_array.hpp
   - icon: ':heavy_check_mark:'
