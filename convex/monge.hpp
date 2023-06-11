@@ -8,7 +8,10 @@ bool check_monge(int N, F f) {
   FOR(l, N + 1) FOR(k, l) FOR(j, k) FOR(i, j) {
     T lhs = f(i, l) + f(j, k);
     T rhs = f(i, k) + f(j, l);
-    if (lhs < rhs) return false;
+    if (lhs < rhs) {
+      print(i, j, k, l, f(i, k), f(i, l), f(j, k), f(j, l), lhs, rhs);
+      return false;
+    }
   }
   return true;
 }
@@ -49,7 +52,9 @@ vc<T> monge_shortest_path(int N, F f) {
 
 // https://noshi91.github.io/algorithm-encyclopedia/d-edge-shortest-path-monge
 // |f| の上限 f_lim も渡す
-// larsch が結構重いので、自前で dp できるならその方がよい
+// ・larsch が結構重いので、自前で dp できるならその方がよい
+// ・複数の d で計算するとき：同じ lambda
+// に対する計算をメモ化しておくと定数倍高速？ 　・ABC305
 template <typename T, typename F>
 T monge_shortest_path_d_edge(int N, int d, T f_lim, F f) {
   assert(d <= N);
