@@ -40,6 +40,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: test/mytest/partial_frac.test.cpp
+    title: test/mytest/partial_frac.test.cpp
+  - icon: ':x:'
     path: test_atcoder/abc241h.test.cpp
     title: test_atcoder/abc241h.test.cpp
   _isVerificationFailed: true
@@ -428,6 +431,7 @@ data:
   timestamp: '2023-06-11 17:13:52+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/mytest/partial_frac.test.cpp
   - test_atcoder/abc241h.test.cpp
 documentation_of: poly/partial_frac_decomposition_1.hpp
 layout: document

@@ -45,6 +45,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
+  - icon: ':x:'
+    path: test/mytest/partial_frac.test.cpp
+    title: test/mytest/partial_frac.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/slice_rational_fps.test.cpp
     title: test/mytest/slice_rational_fps.test.cpp
@@ -213,6 +216,7 @@ data:
   timestamp: '2023-04-27 23:29:14+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/mytest/partial_frac.test.cpp
   - test/mytest/vandermonde.test.cpp
   - test/mytest/chirp_z.test.cpp
   - test/mytest/slice_rational_fps.test.cpp

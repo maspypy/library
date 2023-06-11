@@ -342,6 +342,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/online_pow.test.cpp
     title: test/mytest/online_pow.test.cpp
+  - icon: ':x:'
+    path: test/mytest/partial_frac.test.cpp
+    title: test/mytest/partial_frac.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/pascal.test.cpp
     title: test/mytest/pascal.test.cpp
@@ -534,7 +537,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc222g.test.cpp
     title: test_atcoder/abc222g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -637,6 +640,7 @@ data:
   - test/mytest/sortable_array.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
+  - test/mytest/partial_frac.test.cpp
   - test/mytest/powerquery.test.cpp
   - test/mytest/digit_sum.test.cpp
   - test/mytest/rbst_am.test.cpp

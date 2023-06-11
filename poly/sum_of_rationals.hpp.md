@@ -39,6 +39,9 @@ data:
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/mytest/partial_frac.test.cpp
+    title: test/mytest/partial_frac.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
@@ -351,6 +354,7 @@ data:
   timestamp: '2023-06-11 17:13:52+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/mytest/partial_frac.test.cpp
   - test/mytest/vandermonde.test.cpp
   - test/yukicoder/1145.test.cpp
   - test/yukicoder/1875.test.cpp

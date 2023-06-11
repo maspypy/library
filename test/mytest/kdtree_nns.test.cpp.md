@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/kdtree/kdtree.hpp
     title: ds/kdtree/kdtree.hpp
   - icon: ':question:'
@@ -260,32 +260,32 @@ data:
     \ < d1) {\n      nns_rec(2 * i + 0, x, y, res), nns_rec(2 * i + 1, x, y, res);\n\
     \    } else {\n      nns_rec(2 * i + 1, x, y, res), nns_rec(2 * i + 0, x, y, res);\n\
     \    }\n  }\n};\n#line 8 \"test/mytest/kdtree_nns.test.cpp\"\n\nvoid test_random_points_nns_is_fast()\
-    \ {\n  ll N = 100'000, Q = 100'000;\n  vi X(N), Y(N);\n  ll LIM = 1'000'000'000;\n\
-    \  FOR(i, N) X[i] = RNG(0, LIM);\n  FOR(i, N) Y[i] = RNG(0, LIM);\n  KDTree<ll>\
+    \ {\n  ll N = 100'000, Q = 100'000;\n  vc<int> X(N), Y(N);\n  ll LIM = 1'000'000'000;\n\
+    \  FOR(i, N) X[i] = RNG(0, LIM);\n  FOR(i, N) Y[i] = RNG(0, LIM);\n  KDTree<int>\
     \ KDT(X, Y);\n  FOR(Q) {\n    ll x = RNG(0, LIM);\n    ll y = RNG(0, LIM);\n \
-    \   KDT.nearest_neighbor_search(x, y);\n  }\n}\n\nvoid test_nns_is_correct() {\n\
-    \  ll LIM = RNG(10, 1000);\n  ll N = RNG(1, 100);\n  ll Q = 1000;\n  vi X(N),\
-    \ Y(N);\n  FOR(i, N) X[i] = RNG(0, LIM);\n  FOR(i, N) Y[i] = RNG(0, LIM);\n\n\
-    \  KDTree<ll> KDT(X, Y);\n  FOR(Q) {\n    ll x = RNG(0, LIM);\n    ll y = RNG(0,\
+    \   KDT.nearest_neighbor_search<ll>(x, y);\n  }\n}\n\nvoid test_nns_is_correct()\
+    \ {\n  ll LIM = RNG(10, 1000);\n  ll N = RNG(1, 100);\n  ll Q = 1000;\n  vc<int>\
+    \ X(N), Y(N);\n  FOR(i, N) X[i] = RNG(0, LIM);\n  FOR(i, N) Y[i] = RNG(0, LIM);\n\
+    \n  KDTree<ll> KDT(X, Y);\n  FOR(Q) {\n    ll x = RNG(0, LIM);\n    ll y = RNG(0,\
     \ LIM);\n    ll min_d = 1'000'000'000;\n    auto dist = [&](int i) -> ll {\n \
     \     ll dx = X[i] - x, dy = Y[i] - y;\n      return dx * dx + dy * dy;\n    };\n\
-    \    FOR(i, N) chmin(min_d, dist(i));\n    int k = KDT.nearest_neighbor_search(x,\
+    \    FOR(i, N) chmin(min_d, dist(i));\n    int k = KDT.nearest_neighbor_search<ll>(x,\
     \ y);\n    assert(min_d == dist(k));\n  }\n}\n\nvoid test() {\n  test_random_points_nns_is_fast();\n\
     \  test_nns_is_correct();\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n\
     }\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"random/base.hpp\"\n\
     #include \"ds/kdtree/kdtree.hpp\"\n\nvoid test_random_points_nns_is_fast() {\n\
-    \  ll N = 100'000, Q = 100'000;\n  vi X(N), Y(N);\n  ll LIM = 1'000'000'000;\n\
-    \  FOR(i, N) X[i] = RNG(0, LIM);\n  FOR(i, N) Y[i] = RNG(0, LIM);\n  KDTree<ll>\
+    \  ll N = 100'000, Q = 100'000;\n  vc<int> X(N), Y(N);\n  ll LIM = 1'000'000'000;\n\
+    \  FOR(i, N) X[i] = RNG(0, LIM);\n  FOR(i, N) Y[i] = RNG(0, LIM);\n  KDTree<int>\
     \ KDT(X, Y);\n  FOR(Q) {\n    ll x = RNG(0, LIM);\n    ll y = RNG(0, LIM);\n \
-    \   KDT.nearest_neighbor_search(x, y);\n  }\n}\n\nvoid test_nns_is_correct() {\n\
-    \  ll LIM = RNG(10, 1000);\n  ll N = RNG(1, 100);\n  ll Q = 1000;\n  vi X(N),\
-    \ Y(N);\n  FOR(i, N) X[i] = RNG(0, LIM);\n  FOR(i, N) Y[i] = RNG(0, LIM);\n\n\
-    \  KDTree<ll> KDT(X, Y);\n  FOR(Q) {\n    ll x = RNG(0, LIM);\n    ll y = RNG(0,\
+    \   KDT.nearest_neighbor_search<ll>(x, y);\n  }\n}\n\nvoid test_nns_is_correct()\
+    \ {\n  ll LIM = RNG(10, 1000);\n  ll N = RNG(1, 100);\n  ll Q = 1000;\n  vc<int>\
+    \ X(N), Y(N);\n  FOR(i, N) X[i] = RNG(0, LIM);\n  FOR(i, N) Y[i] = RNG(0, LIM);\n\
+    \n  KDTree<ll> KDT(X, Y);\n  FOR(Q) {\n    ll x = RNG(0, LIM);\n    ll y = RNG(0,\
     \ LIM);\n    ll min_d = 1'000'000'000;\n    auto dist = [&](int i) -> ll {\n \
     \     ll dx = X[i] - x, dy = Y[i] - y;\n      return dx * dx + dy * dy;\n    };\n\
-    \    FOR(i, N) chmin(min_d, dist(i));\n    int k = KDT.nearest_neighbor_search(x,\
+    \    FOR(i, N) chmin(min_d, dist(i));\n    int k = KDT.nearest_neighbor_search<ll>(x,\
     \ y);\n    assert(min_d == dist(k));\n  }\n}\n\nvoid test() {\n  test_random_points_nns_is_fast();\n\
     \  test_nns_is_correct();\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n\
     }\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
@@ -297,7 +297,7 @@ data:
   isVerificationFile: true
   path: test/mytest/kdtree_nns.test.cpp
   requiredBy: []
-  timestamp: '2023-06-11 16:53:21+09:00'
+  timestamp: '2023-06-11 23:03:42+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/kdtree_nns.test.cpp
