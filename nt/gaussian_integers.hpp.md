@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1593.test.cpp
     title: test/yukicoder/1593.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetest.hpp\"\nstruct m64 {\r\n  using i64 = int64_t;\r\
@@ -85,12 +85,13 @@ data:
     \ __int128)(z)*im) >> 64);\n    u64 y = x * m;\n    if (z < y) return {x - 1,\
     \ z - y + m};\n    return {x, z - y};\n  }\n  u32 mul(u32 a, u32 b) { return modulo(u64(a)\
     \ * b); }\n};\n#line 3 \"mod/mod_pow.hpp\"\n\r\n// int\r\nll mod_pow(ll a, ll\
-    \ n, int mod) {\r\n  a %= mod;\r\n  Barrett bt(mod);\r\n  ll p = a;\r\n  ll v\
-    \ = bt.modulo(1);\r\n  while (n) {\r\n    if (n & 1) v = bt.mul(v, p);\r\n   \
-    \ p = bt.mul(p, p);\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n\r\nll mod_pow_long(ll\
-    \ a, ll n, ll mod) {\r\n  a %= mod;\r\n  ll p = a;\r\n  ll v = 1;\r\n  while (n)\
-    \ {\r\n    if (n & 1) v = i128(v) * p % mod;\r\n    p = i128(p) * p % mod;\r\n\
-    \    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n#line 3 \"nt/gaussian_integers.hpp\"\
+    \ n, int mod) {\r\n  assert(n >= 0);\r\n  a %= mod;\r\n  if (a < 0) a += mod;\r\
+    \n  Barrett bt(mod);\r\n  ll p = a, v = bt.modulo(1);\r\n  while (n) {\r\n   \
+    \ if (n & 1) v = bt.mul(v, p);\r\n    p = bt.mul(p, p);\r\n    n >>= 1;\r\n  }\r\
+    \n  return v;\r\n}\r\n\r\nll mod_pow_long(ll a, ll n, ll mod) {\r\n  assert(n\
+    \ >= 0);\r\n  a %= mod;\r\n  if (a < 0) a += mod;\r\n  ll p = a, v = 1 % mod;\r\
+    \n  while (n) {\r\n    if (n & 1) v = i128(v) * p % mod;\r\n    p = i128(p) *\
+    \ p % mod;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n#line 3 \"nt/gaussian_integers.hpp\"\
     \n\r\ntemplate <typename INT>\r\nstruct Gaussian_Integer {\r\n  INT x, y;\r\n\
     \  using G = Gaussian_Integer;\r\n\r\n  Gaussian_Integer(INT x = 0, INT y = 0)\
     \ : x(x), y(y) {}\r\n  Gaussian_Integer(pair<INT, INT> p) : x(p.fi), y(p.se) {}\r\
@@ -208,8 +209,8 @@ data:
   isVerificationFile: false
   path: nt/gaussian_integers.hpp
   requiredBy: []
-  timestamp: '2023-05-12 18:15:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-06-11 17:09:41+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1593.test.cpp
 documentation_of: nt/gaussian_integers.hpp

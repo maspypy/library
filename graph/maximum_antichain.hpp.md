@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   _extendedRequiredBy: []
@@ -21,12 +21,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2251_2.test.cpp
     title: test/aoj/2251_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc237ex.test.cpp
     title: test_atcoder/abc237ex.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -91,8 +91,8 @@ data:
     \ m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  void reset()\
     \ { build(n); }\n\n  int operator[](int x) {\n    while (dat[x] >= 0) {\n    \
     \  int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n      x = dat[x]\
-    \ = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    assert(dat[x] <\
-    \ 0);\n    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x],\
+    \ = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    x = (*this)[x];\n\
+    \    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x],\
     \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
     \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n};\n\
     #line 5 \"graph/bipartite_vertex_coloring.hpp\"\n\r\n// \u4E8C\u90E8\u30B0\u30E9\
@@ -124,24 +124,25 @@ data:
     \  }\n  DAG.build();\n  return DAG;\n}\n#line 4 \"flow/bipartite.hpp\"\n\r\ntemplate\
     \ <typename GT>\r\nstruct BipartiteMatching {\r\n  int N;\r\n  GT& G;\r\n  vc<int>\
     \ color;\r\n  vc<int> dist, match;\r\n  vc<int> vis;\r\n\r\n  BipartiteMatching(GT&\
-    \ G) : N(G.N), G(G), dist(G.N, -1), match(G.N, -1) {\r\n    color = bipartite_vertex_coloring(G);\r\
-    \n    assert(!color.empty());\r\n    while (1) {\r\n      bfs();\r\n      vis.assign(N,\
-    \ false);\r\n      int flow = 0;\r\n      FOR(v, N) if (!color[v] && match[v]\
-    \ == -1 && dfs(v))++ flow;\r\n      if (!flow) break;\r\n    }\r\n  }\r\n\r\n\
-    \  BipartiteMatching(GT& G, vc<int> color)\r\n      : N(G.N), G(G), color(color),\
-    \ dist(G.N, -1), match(G.N, -1) {\r\n    while (1) {\r\n      bfs();\r\n     \
-    \ vis.assign(N, false);\r\n      int flow = 0;\r\n      FOR(v, N) if (!color[v]\
-    \ && match[v] == -1 && dfs(v))++ flow;\r\n      if (!flow) break;\r\n    }\r\n\
-    \  }\r\n\r\n  void bfs() {\r\n    dist.assign(N, -1);\r\n    queue<int> que;\r\
-    \n    FOR(v, N) if (!color[v] && match[v] == -1) que.emplace(v), dist[v] = 0;\r\
-    \n    while (!que.empty()) {\r\n      int v = que.front();\r\n      que.pop();\r\
-    \n      for (auto&& e: G[v]) {\r\n        dist[e.to] = 0;\r\n        int w = match[e.to];\r\
-    \n        if (w != -1 && dist[w] == -1) dist[w] = dist[v] + 1, que.emplace(w);\r\
-    \n      }\r\n    }\r\n  }\r\n\r\n  bool dfs(int v) {\r\n    vis[v] = 1;\r\n  \
-    \  for (auto&& e: G[v]) {\r\n      int w = match[e.to];\r\n      if (w == -1 ||\
-    \ (!vis[w] && dist[w] == dist[v] + 1 && dfs(w))) {\r\n        match[e.to] = v,\
-    \ match[v] = e.to;\r\n        return true;\r\n      }\r\n    }\r\n    return false;\r\
-    \n  }\r\n\r\n  vc<pair<int, int>> matching() {\r\n    vc<pair<int, int>> res;\r\
+    \ G) : N(G.N), G(G), dist(G.N, -1), match(G.N, -1) {\r\n    if (N == 0) return;\r\
+    \n    color = bipartite_vertex_coloring(G);\r\n    assert(!color.empty());\r\n\
+    \    while (1) {\r\n      bfs();\r\n      vis.assign(N, false);\r\n      int flow\
+    \ = 0;\r\n      FOR(v, N) if (!color[v] && match[v] == -1 && dfs(v))++ flow;\r\
+    \n      if (!flow) break;\r\n    }\r\n  }\r\n\r\n  BipartiteMatching(GT& G, vc<int>\
+    \ color)\r\n      : N(G.N), G(G), color(color), dist(G.N, -1), match(G.N, -1)\
+    \ {\r\n    while (1) {\r\n      bfs();\r\n      vis.assign(N, false);\r\n    \
+    \  int flow = 0;\r\n      FOR(v, N) if (!color[v] && match[v] == -1 && dfs(v))++\
+    \ flow;\r\n      if (!flow) break;\r\n    }\r\n  }\r\n\r\n  void bfs() {\r\n \
+    \   dist.assign(N, -1);\r\n    queue<int> que;\r\n    FOR(v, N) if (!color[v]\
+    \ && match[v] == -1) que.emplace(v), dist[v] = 0;\r\n    while (!que.empty())\
+    \ {\r\n      int v = que.front();\r\n      que.pop();\r\n      for (auto&& e:\
+    \ G[v]) {\r\n        dist[e.to] = 0;\r\n        int w = match[e.to];\r\n     \
+    \   if (w != -1 && dist[w] == -1) dist[w] = dist[v] + 1, que.emplace(w);\r\n \
+    \     }\r\n    }\r\n  }\r\n\r\n  bool dfs(int v) {\r\n    vis[v] = 1;\r\n    for\
+    \ (auto&& e: G[v]) {\r\n      int w = match[e.to];\r\n      if (w == -1 || (!vis[w]\
+    \ && dist[w] == dist[v] + 1 && dfs(w))) {\r\n        match[e.to] = v, match[v]\
+    \ = e.to;\r\n        return true;\r\n      }\r\n    }\r\n    return false;\r\n\
+    \  }\r\n\r\n  vc<pair<int, int>> matching() {\r\n    vc<pair<int, int>> res;\r\
     \n    FOR(v, N) if (v < match[v]) res.eb(v, match[v]);\r\n    return res;\r\n\
     \  }\r\n\r\n  vc<int> vertex_cover() {\r\n    vc<int> res;\r\n    FOR(v, N) if\
     \ (color[v] ^ (dist[v] == -1)) { res.eb(v); }\r\n    return res;\r\n  }\r\n\r\n\
@@ -232,8 +233,8 @@ data:
   isVerificationFile: false
   path: graph/maximum_antichain.hpp
   requiredBy: []
-  timestamp: '2023-05-26 18:55:30+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-06-11 17:06:58+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/2251_2.test.cpp
   - test_atcoder/abc237ex.test.cpp

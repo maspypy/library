@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/manhattan_mst.test.cpp
     title: test/library_checker/graph/manhattan_mst.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc283f.test.cpp
     title: test_atcoder/abc283f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -82,26 +82,26 @@ data:
     \  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x]\
     \ >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n\
     \      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n   \
-    \ assert(dat[x] < 0);\n    return -dat[x];\n  }\n\n  bool merge(int x, int y)\
-    \ {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n    if\
-    \ (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
-    \    return true;\n  }\n};\n#line 3 \"geo/manhattan_mst.hpp\"\n\n// \u6700\u5C0F\
-    \u5168\u57DF\u6728\u3092\u4F5C\u308B\u306E\u3067\u3001\u7279\u306B\u5404\u70B9\
-    \u304B\u3089\u306E\u6700\u8FD1\u70B9\u3092\u3068\u308B\u76EE\u7684\u3067\u4F7F\
-    \u3046\u3053\u3068\u3082\u3067\u304D\u308B\ntemplate <typename T>\nGraph<T, 0>\
-    \ manhattan_mst(vc<pair<T, T>>& XY) {\n  int N = XY.size();\n  vc<tuple<T, int,\
-    \ int>> dat;\n  dat.reserve(4 * N);\n  vc<int> idx(N);\n  iota(all(idx), 0);\n\
-    \n  FOR(a, 2) {\n    for (auto&& [x, y]: XY) x = -x;\n    FOR(b, 2) {\n      for\
-    \ (auto&& [x, y]: XY) swap(x, y);\n      sort(all(idx), [&](const int& i, const\
-    \ int& j) -> bool {\n        return XY[i].fi + XY[i].se < XY[j].fi + XY[j].se;\n\
-    \      });\n\n      map<T, int> MP;\n      for (const int i: idx) {\n        auto&\
-    \ [x, y] = XY[i];\n        for (auto it = MP.lower_bound(-y); it != MP.end();\
-    \ it = MP.erase(it)) {\n          const int j = it->se;\n          auto& [xj,\
-    \ yj] = XY[j];\n          const int dx = x - xj;\n          const int dy = y -\
-    \ yj;\n          if (dy > dx) break;\n          dat.eb(dx + dy, i, j);\n     \
-    \   }\n        MP[-y] = i;\n      }\n    }\n  }\n\n  sort(all(dat));\n  Graph<T,\
-    \ 0> G(N);\n  UnionFind uf(N);\n  for (auto&& [cost, i, j]: dat) {\n    if (uf.merge(i,\
-    \ j)) G.add(i, j, cost);\n  }\n  G.build();\n  return G;\n}\n"
+    \ x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n\
+    \    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x]\
+    \ < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return\
+    \ true;\n  }\n};\n#line 3 \"geo/manhattan_mst.hpp\"\n\n// \u6700\u5C0F\u5168\u57DF\
+    \u6728\u3092\u4F5C\u308B\u306E\u3067\u3001\u7279\u306B\u5404\u70B9\u304B\u3089\
+    \u306E\u6700\u8FD1\u70B9\u3092\u3068\u308B\u76EE\u7684\u3067\u4F7F\u3046\u3053\
+    \u3068\u3082\u3067\u304D\u308B\ntemplate <typename T>\nGraph<T, 0> manhattan_mst(vc<pair<T,\
+    \ T>>& XY) {\n  int N = XY.size();\n  vc<tuple<T, int, int>> dat;\n  dat.reserve(4\
+    \ * N);\n  vc<int> idx(N);\n  iota(all(idx), 0);\n\n  FOR(a, 2) {\n    for (auto&&\
+    \ [x, y]: XY) x = -x;\n    FOR(b, 2) {\n      for (auto&& [x, y]: XY) swap(x,\
+    \ y);\n      sort(all(idx), [&](const int& i, const int& j) -> bool {\n      \
+    \  return XY[i].fi + XY[i].se < XY[j].fi + XY[j].se;\n      });\n\n      map<T,\
+    \ int> MP;\n      for (const int i: idx) {\n        auto& [x, y] = XY[i];\n  \
+    \      for (auto it = MP.lower_bound(-y); it != MP.end(); it = MP.erase(it)) {\n\
+    \          const int j = it->se;\n          auto& [xj, yj] = XY[j];\n        \
+    \  const int dx = x - xj;\n          const int dy = y - yj;\n          if (dy\
+    \ > dx) break;\n          dat.eb(dx + dy, i, j);\n        }\n        MP[-y] =\
+    \ i;\n      }\n    }\n  }\n\n  sort(all(dat));\n  Graph<T, 0> G(N);\n  UnionFind\
+    \ uf(N);\n  for (auto&& [cost, i, j]: dat) {\n    if (uf.merge(i, j)) G.add(i,\
+    \ j, cost);\n  }\n  G.build();\n  return G;\n}\n"
   code: "#include \"graph/base.hpp\"\n#include \"ds/unionfind/unionfind.hpp\"\n\n\
     // \u6700\u5C0F\u5168\u57DF\u6728\u3092\u4F5C\u308B\u306E\u3067\u3001\u7279\u306B\
     \u5404\u70B9\u304B\u3089\u306E\u6700\u8FD1\u70B9\u3092\u3068\u308B\u76EE\u7684\
@@ -126,8 +126,8 @@ data:
   isVerificationFile: false
   path: geo/manhattan_mst.hpp
   requiredBy: []
-  timestamp: '2023-05-20 20:14:16+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-06-11 17:06:39+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/graph/manhattan_mst.test.cpp
   - test_atcoder/abc283f.test.cpp

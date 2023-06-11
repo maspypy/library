@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/link_cut.hpp
     title: graph/ds/link_cut.hpp
   _extendedRequiredBy: []
@@ -20,11 +20,14 @@ data:
     \ is_root(int c) { return state(&nodes[c]) == 0; }\n\n  Node *get_root(Node *c)\
     \ {\n    expose(c);\n    while (c->l) {\n      c->push();\n      c = c->l;\n \
     \   }\n    splay(c);\n    return c;\n  }\n\n  int get_root(int c) { return get_root(&nodes[c])->idx;\
-    \ }\n\n  // c \u306E\u89AA\u3092 p \u306B\u3059\u308B\u3002\n  virtual void link(Node\
-    \ *c, Node *p) {\n    evert(c);\n    expose(p);\n    c->p = p;\n    p->r = c;\n\
-    \    p->update();\n  }\n\n  // c \u306E\u89AA\u3092 p \u306B\u3059\u308B\n  virtual\
-    \ void link(int c, int p) { return link(&nodes[c], &nodes[p]); }\n\n  void cut(Node\
-    \ *a, Node *b) {\n    evert(a);\n    expose(b);\n    assert(!b->p);\n    assert((b->l)\
+    \ }\n\n  // c \u306E\u89AA\u3092 p \u306B\u3059\u308B\u3002\u5185\u90E8\u3067\
+    \ evert \u3059\u308B\u306E\u3067\u3044\u3064\u547C\u3093\u3067\u3082\u5927\u4E08\
+    \u592B\u3002\n  virtual void link(Node *c, Node *p) {\n    evert(c);\n    expose(p);\n\
+    \    c->p = p;\n    p->r = c;\n    p->update();\n  }\n\n  // c \u306E\u89AA\u3092\
+    \ p \u306B\u3059\u308B\u3002\u5185\u90E8\u3067 evert \u3059\u308B\u306E\u3067\u3044\
+    \u3064\u547C\u3093\u3067\u3082\u5927\u4E08\u592B\u3002\n  virtual void link(int\
+    \ c, int p) { return link(&nodes[c], &nodes[p]); }\n\n  void cut(Node *a, Node\
+    \ *b) {\n    evert(a);\n    expose(b);\n    assert(!b->p);\n    assert((b->l)\
     \ == a);\n    b->l->p = nullptr;\n    b->l = nullptr;\n    b->update();\n  }\n\
     \n  void cut(int a, int b) { return cut(&nodes[a], &nodes[b]); }\n\n  void evert(Node\
     \ *c) {\n    expose(c);\n    c->reverse();\n    c->push();\n  }\n\n  void evert(int\
@@ -159,7 +162,7 @@ data:
   isVerificationFile: false
   path: graph/ds/link_cut_subtree.hpp
   requiredBy: []
-  timestamp: '2022-10-24 14:33:15+09:00'
+  timestamp: '2023-06-11 17:11:06+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/ds/link_cut_subtree.hpp

@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/unionfind
@@ -208,8 +208,8 @@ data:
     \ build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  void\
     \ reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x] >= 0)\
     \ {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n     \
-    \ x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    assert(dat[x]\
-    \ < 0);\n    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x],\
+    \ x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    x = (*this)[x];\n\
+    \    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x],\
     \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
     \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n};\n\
     #line 6 \"test/library_checker/datastructure/unionfind.test.cpp\"\n\nvoid solve()\
@@ -229,8 +229,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/unionfind.test.cpp
   requiredBy: []
-  timestamp: '2023-03-02 23:03:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-06-11 17:06:39+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/unionfind.test.cpp
 layout: document

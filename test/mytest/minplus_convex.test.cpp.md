@@ -4,16 +4,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/minplus_convolution_convex.hpp
     title: convex/minplus_convolution_convex.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/smawk.hpp
     title: convex/smawk.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

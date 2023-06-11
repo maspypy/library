@@ -1,68 +1,68 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/implicit_matrix/pascal.hpp
     title: linalg/implicit_matrix/pascal.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/all_inverse.hpp
     title: mod/all_inverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc260/tasks/abc260_Ex
@@ -454,7 +454,7 @@ data:
     \ const vector<ll>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return\
     \ {};\r\n  if (min(n, m) <= 60) return convolution_naive(a, b);\r\n  ll abs_sum_a\
     \ = 0, abs_sum_b = 0;\r\n  ll LIM = 1e15;\r\n  FOR(i, n) abs_sum_a = min(LIM,\
-    \ abs_sum_a + abs(a[i]));\r\n  FOR(i, n) abs_sum_b = min(LIM, abs_sum_b + abs(b[i]));\r\
+    \ abs_sum_a + abs(a[i]));\r\n  FOR(i, m) abs_sum_b = min(LIM, abs_sum_b + abs(b[i]));\r\
     \n  if (i128(abs_sum_a) * abs_sum_b < 1e15) {\r\n    vc<double> c = convolution_fft<ll>(a,\
     \ b);\r\n    vc<ll> res(len(c));\r\n    FOR(i, len(c)) res[i] = ll(floor(c[i]\
     \ + .5));\r\n    return res;\r\n  }\r\n\r\n  static constexpr unsigned long long\
@@ -641,17 +641,19 @@ data:
     \ {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i - j];\n\
     \    }\n  }\n  return f;\n}\n#line 4 \"linalg/implicit_matrix/vandermonde.hpp\"\
     \n\n// transpose = 0\uFF1Ag[p] = sum pow(ap,q) f[q]\n// transpose = 1\uFF1Ag[p]\
-    \ = sum pow(aq,p) f[q]\ntemplate <typename mint>\nvc<mint> vandermonde(vc<mint>\
-    \ f, vc<mint> A, bool transpose, bool inverse) {\n  if (len(f) == 0) return vc<mint>();\n\
-    \  int N = len(f);\n  using poly = vc<mint>;\n  if (!transpose) {\n    if (!inverse)\
-    \ { return multipoint_eval(f, A); }\n    if (inverse) { return multipoint_interpolate(A,\
-    \ f); }\n  }\n  if (!inverse) {\n    vc<pair<poly, poly>> dat(N);\n    FOR(j,\
-    \ N) {\n      poly a{f[j]}, b{mint(1), mint(-A[j])};\n      dat[j] = {a, b};\n\
-    \    }\n    auto [num, den] = sum_of_rationals(dat);\n    num.resize(N);\n   \
-    \ return fps_div(num, den);\n  }\n  SubproductTree<mint> X(A);\n  vc<mint> g =\
-    \ X.T[1]; // prod(1-ax)\n  g.resize(N + 1);\n  f = convolution<mint>(f, g);\n\
-    \  f.resize(N);\n  reverse(all(f));\n  reverse(all(g));\n  FOR(i, len(g) - 1)\
-    \ g[i] = g[i + 1] * mint(i + 1);\n  g.pop_back();\n  auto num = X.evaluation(f);\n\
+    \ = sum pow(aq,p) f[q]\n// (false, false) = multipoint eval\n// (false, true)\
+    \ = multipoint interpolate\n// (true, false) = sum of rationals\n// (true, true)\
+    \ = partial frac decomposition (fps -> coefs)\ntemplate <typename mint>\nvc<mint>\
+    \ vandermonde(vc<mint> f, vc<mint> A, bool transpose, bool inverse) {\n  if (len(f)\
+    \ == 0) return vc<mint>();\n  int N = len(f);\n  using poly = vc<mint>;\n  if\
+    \ (!transpose) {\n    if (!inverse) { return multipoint_eval(f, A); }\n    if\
+    \ (inverse) { return multipoint_interpolate(A, f); }\n  }\n  if (!inverse) {\n\
+    \    vc<pair<poly, poly>> dat(N);\n    FOR(j, N) {\n      poly a{f[j]}, b{mint(1),\
+    \ mint(-A[j])};\n      dat[j] = {a, b};\n    }\n    auto [num, den] = sum_of_rationals(dat);\n\
+    \    num.resize(N);\n    return fps_div(num, den);\n  }\n  SubproductTree<mint>\
+    \ X(A);\n  vc<mint> g = X.T[1]; // prod(1-ax)\n  g.resize(N + 1);\n  f = convolution<mint>(f,\
+    \ g);\n  f.resize(N);\n  reverse(all(f));\n  reverse(all(g));\n  FOR(i, len(g)\
+    \ - 1) g[i] = g[i + 1] * mint(i + 1);\n  g.pop_back();\n  auto num = X.evaluation(f);\n\
     \  auto den = X.evaluation(g);\n  vc<mint> B(len(A));\n  FOR(i, len(A)) B[i] =\
     \ num[i] / den[i];\n  return B;\n}\n#line 9 \"test_atcoder/abc260h.test.cpp\"\n\
     \nusing mint = modint998;\n\nvoid solve() {\n  LL(N, M);\n  VEC(int, A, N);\n\
@@ -706,8 +708,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc260h.test.cpp
   requiredBy: []
-  timestamp: '2023-06-03 10:16:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-06-11 17:16:30+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc260h.test.cpp
 layout: document

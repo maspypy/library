@@ -1,50 +1,50 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/all_inverse.hpp
     title: mod/all_inverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/partial_frac.test.cpp
-    title: test/mytest/partial_frac.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test_atcoder/abc241h.test.cpp
+    title: test_atcoder/abc241h.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/multipoint.hpp\"\n\r\n#line 2 \"poly/count_terms.hpp\"\
@@ -253,7 +253,7 @@ data:
     \ const vector<ll>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return\
     \ {};\r\n  if (min(n, m) <= 60) return convolution_naive(a, b);\r\n  ll abs_sum_a\
     \ = 0, abs_sum_b = 0;\r\n  ll LIM = 1e15;\r\n  FOR(i, n) abs_sum_a = min(LIM,\
-    \ abs_sum_a + abs(a[i]));\r\n  FOR(i, n) abs_sum_b = min(LIM, abs_sum_b + abs(b[i]));\r\
+    \ abs_sum_a + abs(a[i]));\r\n  FOR(i, m) abs_sum_b = min(LIM, abs_sum_b + abs(b[i]));\r\
     \n  if (i128(abs_sum_a) * abs_sum_b < 1e15) {\r\n    vc<double> c = convolution_fft<ll>(a,\
     \ b);\r\n    vc<ll> res(len(c));\r\n    FOR(i, len(c)) res[i] = ll(floor(c[i]\
     \ + .5));\r\n    return res;\r\n  }\r\n\r\n  static constexpr unsigned long long\
@@ -394,26 +394,21 @@ data:
     \n  FOR(i, 1, n) {\r\n    g[i] = tPOW[i] * sn * iS[i] * iS[n - i];\r\n    if (i\
     \ % 2 == 1) g[i] = -g[i];\r\n  }\r\n  f = convolution<mint>(f, g);\r\n  f.resize(n);\r\
     \n\r\n  reverse(all(f));\r\n  mint ia = a.inverse();\r\n  mint pow = 1;\r\n  FOR(i,\
-    \ n) f[i] *= pow, pow *= ia;\r\n  return f;\r\n}\r\n#line 2 \"poly/partial_frac_decomposition.hpp\"\
-    \n// O(Nlog^2N)\n// \u5206\u6BCD\u306F\u76F8\u7570\u306A\u308B 1 \u6B21\u5F0F\u306E\
-    \u7A4D\u9650\u5B9A\u3068\u3059\u308B\n// f / prod(ax+b) = sum c/(ax+b) \u3068\u3044\
-    \u3046 C \u3092\u8FD4\u3059\ntemplate <typename mint>\nvc<mint> partial_frac_decomposition(vc<mint>\
-    \ f, vc<mint> A) {\n  assert(len(f) <= len(A));\n  if (len(f) == 0) return vc<mint>(len(A));\n\
-    \  SubproductTree<mint> X(A);\n  vc<mint> g = X.T[1]; // prod(1-ax)\n  g.resize(len(A)\
-    \ + 1);\n  reverse(all(g));\n  FOR(i, len(g) - 1) g[i] = g[i + 1] * mint(i + 1);\n\
-    \  g.pop_back();\n\n  auto num = X.evaluation(f);\n  auto den = X.evaluation(g);\n\
-    \  vc<mint> B(len(A));\n  FOR(i, len(A)) B[i] = num[i] / den[i];\n  return B;\n\
-    }\n"
-  code: "#include \"poly/multipoint.hpp\"\n// O(Nlog^2N)\n// \u5206\u6BCD\u306F\u76F8\
-    \u7570\u306A\u308B 1 \u6B21\u5F0F\u306E\u7A4D\u9650\u5B9A\u3068\u3059\u308B\n\
-    // f / prod(ax+b) = sum c/(ax+b) \u3068\u3044\u3046 C \u3092\u8FD4\u3059\ntemplate\
-    \ <typename mint>\nvc<mint> partial_frac_decomposition(vc<mint> f, vc<mint> A)\
-    \ {\n  assert(len(f) <= len(A));\n  if (len(f) == 0) return vc<mint>(len(A));\n\
-    \  SubproductTree<mint> X(A);\n  vc<mint> g = X.T[1]; // prod(1-ax)\n  g.resize(len(A)\
-    \ + 1);\n  reverse(all(g));\n  FOR(i, len(g) - 1) g[i] = g[i + 1] * mint(i + 1);\n\
-    \  g.pop_back();\n\n  auto num = X.evaluation(f);\n  auto den = X.evaluation(g);\n\
-    \  vc<mint> B(len(A));\n  FOR(i, len(A)) B[i] = num[i] / den[i];\n  return B;\n\
-    }\n"
+    \ n) f[i] *= pow, pow *= ia;\r\n  return f;\r\n}\r\n#line 2 \"poly/partial_frac_decomposition_1.hpp\"\
+    \n\n// f(x) / prod(1-a_ix) = sum b_i/1-a_ix\ntemplate <typename mint>\nvc<mint>\
+    \ partial_frac_decomposition_1(vc<mint> f, vc<mint> A) {\n  int N = len(A);\n\
+    \  SubproductTree<mint> X(A);\n  vc<mint> g = X.T[1]; // prod(1-ax)\n  g.resize(N\
+    \ + 1);\n  reverse(all(f));\n  reverse(all(g));\n  FOR(i, len(g) - 1) g[i] = g[i\
+    \ + 1] * mint(i + 1);\n  g.pop_back();\n  auto num = X.evaluation(f);\n  auto\
+    \ den = X.evaluation(g);\n  vc<mint> B(len(A));\n  FOR(i, len(A)) B[i] = num[i]\
+    \ / den[i];\n  return B;\n}\n"
+  code: "#include \"poly/multipoint.hpp\"\n\n// f(x) / prod(1-a_ix) = sum b_i/1-a_ix\n\
+    template <typename mint>\nvc<mint> partial_frac_decomposition_1(vc<mint> f, vc<mint>\
+    \ A) {\n  int N = len(A);\n  SubproductTree<mint> X(A);\n  vc<mint> g = X.T[1];\
+    \ // prod(1-ax)\n  g.resize(N + 1);\n  reverse(all(f));\n  reverse(all(g));\n\
+    \  FOR(i, len(g) - 1) g[i] = g[i + 1] * mint(i + 1);\n  g.pop_back();\n  auto\
+    \ num = X.evaluation(f);\n  auto den = X.evaluation(g);\n  vc<mint> B(len(A));\n\
+    \  FOR(i, len(A)) B[i] = num[i] / den[i];\n  return B;\n}"
   dependsOn:
   - poly/multipoint.hpp
   - poly/fps_inv.hpp
@@ -428,16 +423,16 @@ data:
   - poly/middle_product.hpp
   - mod/all_inverse.hpp
   isVerificationFile: false
-  path: poly/partial_frac_decomposition.hpp
+  path: poly/partial_frac_decomposition_1.hpp
   requiredBy: []
-  timestamp: '2023-05-14 18:10:08+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-06-11 17:13:52+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/partial_frac.test.cpp
-documentation_of: poly/partial_frac_decomposition.hpp
+  - test_atcoder/abc241h.test.cpp
+documentation_of: poly/partial_frac_decomposition_1.hpp
 layout: document
 redirect_from:
-- /library/poly/partial_frac_decomposition.hpp
-- /library/poly/partial_frac_decomposition.hpp.html
-title: poly/partial_frac_decomposition.hpp
+- /library/poly/partial_frac_decomposition_1.hpp
+- /library/poly/partial_frac_decomposition_1.hpp.html
+title: poly/partial_frac_decomposition_1.hpp
 ---

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':heavy_check_mark:'
@@ -62,9 +62,9 @@ data:
     \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n   \
     \ while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return\
     \ dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int\
-    \ x) {\n    assert(dat[x] < 0);\n    return -dat[x];\n  }\n\n  bool merge(int\
-    \ x, int y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n\
-    \    if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
+    \ x) {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int\
+    \ y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n \
+    \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
     \    return true;\n  }\n};\n#line 3 \"graph/dag_path_cover.hpp\"\n\n// \u5404\u9802\
     \u70B9\u306E\u8272\u3092\u304B\u3048\u3059\u3002\u5404\u8272\u306F\u3072\u3068\
     \u3064\u306E\u30D1\u30B9\u4E0A\u306B\u3042\u308B\u3088\u3046\u306B\u3059\u308B\
@@ -105,7 +105,7 @@ data:
   isVerificationFile: false
   path: graph/dag_path_cover.hpp
   requiredBy: []
-  timestamp: '2023-05-26 18:57:54+09:00'
+  timestamp: '2023-06-11 17:06:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/2251_1.test.cpp
