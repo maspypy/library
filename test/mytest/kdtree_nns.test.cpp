@@ -28,7 +28,7 @@ void test_nns_is_correct() {
   FOR(i, N) X[i] = RNG(0, LIM);
   FOR(i, N) Y[i] = RNG(0, LIM);
 
-  KDTree<ll> KDT(X, Y);
+  KDTree<int> KDT(X, Y);
   FOR(Q) {
     ll x = RNG(0, LIM);
     ll y = RNG(0, LIM);
