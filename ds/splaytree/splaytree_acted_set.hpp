@@ -32,14 +32,8 @@ struct Node_AS {
 
   void prop() {
     if (lazy != Monoid_A::unit()) {
-      if (l) {
-        l->x = ActedSet::act(l->x, lazy);
-        l->lazy = Monoid_A::op(l->lazy, lazy);
-      }
-      if (r) {
-        r->x = ActedSet::act(r->x, lazy);
-        r->lazy = Monoid_A::op(r->lazy, lazy);
-      }
+      if (l) { l->apply(lazy); }
+      if (r) { r->apply(lazy); }
       lazy = Monoid_A::unit();
     }
     if (rev) {
