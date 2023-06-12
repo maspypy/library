@@ -4,6 +4,8 @@
 template <typename mint>
 vc<mint> partial_frac_decomposition_1(vc<mint> f, vc<mint> A) {
   int N = len(A);
+  assert(len(f) <= N);
+  f.resize(N);
   SubproductTree<mint> X(A);
   vc<mint> g = X.T[1]; // prod(1-ax)
   g.resize(N + 1);
