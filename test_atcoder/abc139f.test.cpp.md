@@ -2,11 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: geo/angle_sort.hpp
+    title: geo/angle_sort.hpp
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: geo/dynamicupperhull.hpp
-    title: geo/dynamicupperhull.hpp
+  - icon: ':x:'
+    path: geo/max_norm_sum.hpp
+    title: geo/max_norm_sum.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -15,28 +18,29 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/convex_layers
+    ERROR: 1e-10
+    PROBLEM: https://atcoder.jp/contests/abc139/tasks/abc139_f
     links:
-    - https://judge.yosupo.jp/problem/convex_layers
-  bundledCode: "#line 1 \"test/library_checker/geometry/convex_layers.test.cpp\"\n\
-    #define PROBLEM \"https://judge.yosupo.jp/problem/convex_layers\"\r\n#line 1 \"\
-    my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\
-    #pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include\
-    \ <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing u32\
-    \ = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\n\
-    template <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int>\
-    \ = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll> = ll(infty<int>) * infty<int>\
-    \ * 2;\ntemplate <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr\
-    \ u64 infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
-    \ * infty<ll>;\ntemplate <>\nconstexpr double infty<double> = infty<ll>;\ntemplate\
-    \ <>\nconstexpr long double infty<long double> = infty<ll>;\n\nusing pi = pair<ll,\
-    \ ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
-    \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    - https://atcoder.jp/contests/abc139/tasks/abc139_f
+  bundledCode: "#line 1 \"test_atcoder/abc139f.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc139/tasks/abc139_f\"\
+    \n#define ERROR 1e-10\n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include\
+    \ <my_template_compiled.hpp>\n#else\n#pragma GCC optimize(\"Ofast\")\n#pragma\
+    \ GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace\
+    \ std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing u64 = unsigned\
+    \ long long;\nusing i128 = __int128;\n\ntemplate <class T>\nconstexpr T infty\
+    \ = 0;\ntemplate <>\nconstexpr int infty<int> = 1'000'000'000;\ntemplate <>\n\
+    constexpr ll infty<ll> = ll(infty<int>) * infty<int> * 2;\ntemplate <>\nconstexpr\
+    \ u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
+    template <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\ntemplate\
+    \ <>\nconstexpr double infty<double> = infty<ll>;\ntemplate <>\nconstexpr long\
+    \ double infty<long double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing vi\
+    \ = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\n\
+    using vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
     template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
     \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
     template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
@@ -205,33 +209,33 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
-    \  T x, y;\n\n  Point() = default;\n\n  template <typename A, typename B>\n  Point(A\
-    \ x, B y) : x(x), y(y) {}\n\n  template <typename A, typename B>\n  Point(pair<A,\
-    \ B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+(Point p) const { return {x\
-    \ + p.x, y + p.y}; }\n  Point operator-(Point p) const { return {x - p.x, y -\
-    \ p.y}; }\n  bool operator==(Point p) const { return x == p.x && y == p.y; }\n\
-    \  Point operator-() const { return {-x, -y}; }\n\n  bool operator<(Point p) const\
-    \ {\n    if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n  T dot(Point\
-    \ other) { return x * other.x + y * other.y; }\n  T det(Point other) { return\
-    \ x * other.y - y * other.x; }\n\n  void read() { fastio::read(x), fastio::read(y);\
-    \ }\n  void write() { fastio::printer.write(pair<T, T>({x, y})); }\n};\n\n// A\
-    \ -> B -> C \u3068\u9032\u3080\u3068\u304D\u306B\u3001\u5DE6\u306B\u66F2\u304C\
-    \u308B\u306A\u3089\u3070 +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\u3089\u3070\
-    \ -1\ntemplate <typename T>\nint ccw(Point<T> A, Point<T> B, Point<T> C) {\n \
-    \ T x = (B - A).det(C - A);\n  if (x > 0) return 1;\n  if (x < 0) return -1;\n\
-    \  return 0;\n}\n\ntemplate <typename REAL, typename T>\nREAL dist(Point<T> A,\
-    \ Point<T> B) {\n  A = A - B;\n  T p = A.dot(A);\n  return sqrt(REAL(p));\n}\n\
-    \ntemplate <typename T>\nstruct Line {\n  T a, b, c;\n\n  Line(T a, T b, T c)\
-    \ : a(a), b(b), c(c) {}\n  Line(Point<T> A, Point<T> B) {\n    a = A.y - B.y,\
-    \ b = B.x - A.x, c = A.x * B.y - A.y * B.x;\n  }\n  Line(T x1, T y1, T x2, T y2)\
-    \ : Line(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n  template <typename U>\n \
-    \ U eval(Point<U> P) {\n    return a * P.x + b * P.y + c;\n  }\n\n  template <typename\
-    \ U>\n  T eval(U x, U y) {\n    return a * x + b * y + c;\n  }\n\n  bool is_parallel(Line\
-    \ other) { return a * other.b - b * other.a == 0; }\n\n  bool is_orthogonal(Line\
-    \ other) { return a * other.a + b * other.b == 0; }\n};\n\ntemplate <typename\
-    \ T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B)\
-    \ : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
+    \ yes(!t); }\n#line 6 \"test_atcoder/abc139f.test.cpp\"\n\n#line 2 \"geo/base.hpp\"\
+    \ntemplate <typename T>\nstruct Point {\n  T x, y;\n\n  Point() = default;\n\n\
+    \  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template\
+    \ <typename A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  Point\
+    \ operator+(Point p) const { return {x + p.x, y + p.y}; }\n  Point operator-(Point\
+    \ p) const { return {x - p.x, y - p.y}; }\n  bool operator==(Point p) const {\
+    \ return x == p.x && y == p.y; }\n  Point operator-() const { return {-x, -y};\
+    \ }\n\n  bool operator<(Point p) const {\n    if (x != p.x) return x < p.x;\n\
+    \    return y < p.y;\n  }\n  T dot(Point other) { return x * other.x + y * other.y;\
+    \ }\n  T det(Point other) { return x * other.y - y * other.x; }\n\n  void read()\
+    \ { fastio::read(x), fastio::read(y); }\n  void write() { fastio::printer.write(pair<T,\
+    \ T>({x, y})); }\n};\n\n// A -> B -> C \u3068\u9032\u3080\u3068\u304D\u306B\u3001\
+    \u5DE6\u306B\u66F2\u304C\u308B\u306A\u3089\u3070 +1\u3001\u53F3\u306B\u66F2\u304C\
+    \u308B\u306A\u3089\u3070 -1\ntemplate <typename T>\nint ccw(Point<T> A, Point<T>\
+    \ B, Point<T> C) {\n  T x = (B - A).det(C - A);\n  if (x > 0) return 1;\n  if\
+    \ (x < 0) return -1;\n  return 0;\n}\n\ntemplate <typename REAL, typename T>\n\
+    REAL dist(Point<T> A, Point<T> B) {\n  A = A - B;\n  T p = A.dot(A);\n  return\
+    \ sqrt(REAL(p));\n}\n\ntemplate <typename T>\nstruct Line {\n  T a, b, c;\n\n\
+    \  Line(T a, T b, T c) : a(a), b(b), c(c) {}\n  Line(Point<T> A, Point<T> B) {\n\
+    \    a = A.y - B.y, b = B.x - A.x, c = A.x * B.y - A.y * B.x;\n  }\n  Line(T x1,\
+    \ T y1, T x2, T y2) : Line(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n  template\
+    \ <typename U>\n  U eval(Point<U> P) {\n    return a * P.x + b * P.y + c;\n  }\n\
+    \n  template <typename U>\n  T eval(U x, U y) {\n    return a * x + b * y + c;\n\
+    \  }\n\n  bool is_parallel(Line other) { return a * other.b - b * other.a == 0;\
+    \ }\n\n  bool is_orthogonal(Line other) { return a * other.a + b * other.b ==\
+    \ 0; }\n};\n\ntemplate <typename T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T>\
+    \ A, Point<T> B) : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
     \ y1), Point<T>(x2, y2)) {}\n\n  template <enable_if_t<is_integral<T>::value,\
     \ int> = 0>\n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n \
     \   if (det != 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A\
@@ -252,103 +256,72 @@ data:
     \ < 0) return false;\n    }\n    return true;\n  }\n\nprivate:\n  void build()\
     \ {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1 == len(points)\
     \ ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n    if (a < 0) {\n\
-    \      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n#line 2 \"geo/dynamicupperhull.hpp\"\
-    \n\r\n/*\r\nhttps://codeforces.com/blog/entry/75929\r\n\u52D5\u7684\u51F8\u5305\
-    \u3002\r\nx \u5EA7\u6A19\u3067\u30BD\u30FC\u30C8\u3057\u3066\u5B8C\u5168\u4E8C\
-    \u5206\u6728\u306E\u30BB\u30B0\u6728\u306E\u5F62\u306B\u3057\u3066\u304A\u304F\
-    \u3002\r\n\u30BB\u30B0\u6728\u306E\u30DE\u30FC\u30B8\u90E8\u5206\uFF08\u6B21\u306E\
-    \ bridge \u3092\u6C42\u3081\u308B\uFF09\u3067\u4E8C\u5206\u63A2\u7D22\u3059\u308B\
-    \u3002\r\nbridge \u540C\u58EB\u306E 4 \u70B9\u3067\u306E\u4E0A\u5074\u51F8\u5305\
-    \u3092\u898B\u308C\u3070\u3001\u6B21\u306B\u63A2\u7D22\u3059\u308B\u3079\u304D\
-    \u533A\u9593\u5BFE\u304C\u5206\u304B\u308B\u3002\r\n\r\n\u69CB\u7BC9 O(NlogN)\u3001\
-    \u66F4\u65B0 O(Nlog^2N)\r\n\u5EA7\u6A19 10^9 \u4EE5\u4E0B\u306E\u6574\u6570\u3092\
-    \u4EEE\u5B9A\r\n*/\r\ntemplate <typename Point>\r\nstruct DynamicUpperHull {\r\
-    \n  struct node {\r\n    int l, r;   // \u7BC4\u56F2 (-1 if no vertex)\r\n   \
-    \ int bl, br; // bridge idx\r\n  };\r\n  int N, sz;\r\n  vc<Point> P;\r\n  vc<node>\
-    \ seg;\r\n  // \u53D7\u3051\u53D6\u3063\u305F\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\
-    \u3068\u306E\u5BFE\u5FDC\r\n  vc<int> to_original_idx, to_seg_idx;\r\n\r\n  DynamicUpperHull(vc<Point>\
-    \ P) : DynamicUpperHull(P, 0) {}\r\n  DynamicUpperHull(vc<Point> P, bool b)\r\n\
-    \      : DynamicUpperHull(P, vc<bool>(len(P), b)) {}\r\n\r\n  DynamicUpperHull(vc<Point>\
-    \ _P, vc<bool> isin) : N(len(_P)), P(_P) {\r\n    to_original_idx = argsort(P);\r\
-    \n    sort(all(P));\r\n    sz = 1;\r\n    while (sz < N) sz *= 2;\r\n    to_seg_idx.resize(N);\r\
-    \n    seg.assign(sz + sz, {-1, -1, -1, -1});\r\n    for (int i = 0; i < N; ++i)\
-    \ to_seg_idx[to_original_idx[i]] = i;\r\n    for (int i = 0; i < N; ++i)\r\n \
-    \     if (isin[to_original_idx[i]]) { seg[sz + i] = {i, i + 1, i, i}; }\r\n  \
-    \  FOR3_R(i, 1, sz) update(i);\r\n  }\r\n\r\n  void insert(int i) {\r\n    i =\
-    \ to_seg_idx[i];\r\n    seg[sz + i] = {i, i + 1, i, i};\r\n    i = (sz + i) /\
-    \ 2;\r\n    while (i) {\r\n      update(i);\r\n      i /= 2;\r\n    }\r\n  }\r\
-    \n  void add(int i) { insert(i); }\r\n\r\n  void erase(int i) {\r\n    i = to_seg_idx[i];\r\
-    \n    seg[sz + i] = {-1, -1, -1, -1};\r\n    i = (sz + i) / 2;\r\n    while (i)\
-    \ {\r\n      update(i);\r\n      i /= 2;\r\n    }\r\n  }\r\n  void remove(int\
-    \ i) { insert(i); }\r\n\r\n  inline bool exist(int i) { return seg[i].r != -1;\
-    \ }\r\n\r\n  void update(int i) {\r\n    if (!exist(2 * i + 0) && !exist(2 * i\
-    \ + 1)) {\r\n      seg[i].r = -1;\r\n      return;\r\n    }\r\n    if (!exist(2\
-    \ * i + 0)) {\r\n      seg[i] = seg[2 * i + 1];\r\n      return;\r\n    }\r\n\
-    \    if (!exist(2 * i + 1)) {\r\n      seg[i] = seg[2 * i + 0];\r\n      return;\r\
-    \n    }\r\n    int p = 2 * i, q = 2 * i + 1;\r\n    ll X = P[seg[q].l].x;\r\n\
-    \    while (p < sz || q < sz) {\r\n      if (p < sz && !exist(2 * p + 0)) {\r\n\
-    \        p = 2 * p + 1;\r\n        continue;\r\n      }\r\n      if (p < sz &&\
-    \ !exist(2 * p + 1)) {\r\n        p = 2 * p + 0;\r\n        continue;\r\n    \
-    \  }\r\n      if (q < sz && !exist(2 * q + 0)) {\r\n        q = 2 * q + 1;\r\n\
-    \        continue;\r\n      }\r\n      if (q < sz && !exist(2 * q + 1)) {\r\n\
-    \        q = 2 * q + 0;\r\n        continue;\r\n      }\r\n      int a = seg[p].bl,\
-    \ b = seg[p].br, c = seg[q].bl, d = seg[q].br;\r\n      if (a != b && (P[b] -\
-    \ P[a]).det(P[c] - P[a]) > 0) p = p * 2 + 0;\r\n      elif (c != d && (P[c] -\
-    \ P[b]).det(P[d] - P[b]) > 0) q = 2 * q + 1;\r\n      elif (a == b) q = 2 * q\
-    \ + 0;\r\n      elif (c == d) p = 2 * p + 1;\r\n      else {\r\n        i128 c1\
-    \ = (P[b] - P[a]).det(P[c] - P[a]);\r\n        i128 c2 = (P[a] - P[b]).det(P[d]\
-    \ - P[b]);\r\n        if (c1 + c2 == 0 || c1 * P[d].x + c2 * P[c].x < X * (c1\
-    \ + c2)) {\r\n          p = 2 * p + 1;\r\n        } else {\r\n          q = 2\
-    \ * q + 0;\r\n        }\r\n      }\r\n    }\r\n    seg[i].l = seg[2 * i].l, seg[i].r\
-    \ = seg[2 * i + 1].r;\r\n    seg[i].bl = seg[p].l, seg[i].br = seg[q].l;\r\n \
-    \ }\r\n\r\n  vc<int> get() {\r\n    // output sensitive complexity\r\n    vc<int>\
-    \ res;\r\n    auto dfs = [&](auto self, int k, int l, int r) -> void {\r\n   \
-    \   if (!exist(k) || l >= r) return;\r\n      if (k >= sz) {\r\n        res.eb(seg[k].l);\r\
-    \n        return;\r\n      }\r\n      if (!exist(2 * k + 0)) return self(self,\
-    \ 2 * k + 1, l, r);\r\n      if (!exist(2 * k + 1)) return self(self, 2 * k +\
-    \ 0, l, r);\r\n      if (r <= seg[k].bl) return self(self, 2 * k + 0, l, r);\r\
-    \n      if (seg[k].br <= l) return self(self, 2 * k + 1, l, r);\r\n      self(self,\
-    \ 2 * k + 0, l, seg[k].bl + 1);\r\n      self(self, 2 * k + 1, seg[k].br, r);\r\
-    \n    };\r\n    dfs(dfs, 1, 0, N);\r\n    for (auto&& i: res) i = to_original_idx[i];\r\
-    \n    return res;\r\n  }\r\n\r\n  void debug() {\r\n    print(\"points\");\r\n\
-    \    FOR(i, len(P)) print(i, P[i].x, P[i].y);\r\n    print(\"seg\");\r\n    FOR(i,\
-    \ len(seg)) print(i, seg[i].l, seg[i].r, seg[i].bl, seg[i].br);\r\n    print(\"\
-    get\");\r\n    print(get());\r\n  }\r\n};\r\n#line 5 \"test/library_checker/geometry/convex_layers.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N);\r\n  vc<Point<ll>> pts(N);\r\n  FOR(i, N) read(pts[i].x),\
-    \ read(pts[i].y);\r\n  DynamicUpperHull DUH(pts, 1);\r\n  FOR(i, N) pts[i] = -pts[i];\r\
-    \n  DynamicUpperHull DLH(pts, 1);\r\n  vc<int> ANS(N, -1);\r\n  int done = 0;\r\
-    \n  int k = 0;\r\n  while (done < N) {\r\n    ++k;\r\n    auto A = DUH.get();\r\
-    \n    auto B = DLH.get();\r\n    A.insert(A.end(), all(B));\r\n    for (auto&&\
-    \ i: A)\r\n      if (ANS[i] == -1) {\r\n        ++done;\r\n        ANS[i] = k;\r\
-    \n        DUH.erase(i);\r\n        DLH.erase(i);\r\n      }\r\n  }\r\n  for (auto&&\
-    \ x: ANS) print(x);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return\
-    \ 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convex_layers\"\r\n#include\
-    \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"geo/dynamicupperhull.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  LL(N);\r\n  vc<Point<ll>> pts(N);\r\n  FOR(i, N) read(pts[i].x),\
-    \ read(pts[i].y);\r\n  DynamicUpperHull DUH(pts, 1);\r\n  FOR(i, N) pts[i] = -pts[i];\r\
-    \n  DynamicUpperHull DLH(pts, 1);\r\n  vc<int> ANS(N, -1);\r\n  int done = 0;\r\
-    \n  int k = 0;\r\n  while (done < N) {\r\n    ++k;\r\n    auto A = DUH.get();\r\
-    \n    auto B = DLH.get();\r\n    A.insert(A.end(), all(B));\r\n    for (auto&&\
-    \ i: A)\r\n      if (ANS[i] == -1) {\r\n        ++done;\r\n        ANS[i] = k;\r\
-    \n        DUH.erase(i);\r\n        DLH.erase(i);\r\n      }\r\n  }\r\n  for (auto&&\
-    \ x: ANS) print(x);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return\
-    \ 0;\r\n}\r\n"
+    \      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n#line 2 \"geo/angle_sort.hpp\"\
+    \n\r\n#line 4 \"geo/angle_sort.hpp\"\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\
+    \u5BFE\u3059\u308B argsort\r\ntemplate <typename T>\r\nvector<int> angle_argsort(vector<Point<T>>&\
+    \ P) {\r\n  vector<int> lower, origin, upper;\r\n  const Point<T> O = {0, 0};\r\
+    \n  FOR(i, len(P)) {\r\n    if (P[i] == O) origin.eb(i);\r\n    elif ((P[i].y\
+    \ < 0) || (P[i].y == 0 && P[i].x > 0)) lower.eb(i);\r\n    else upper.eb(i);\r\
+    \n  }\r\n  sort(all(lower), [&](auto& i, auto& j) { return P[i].det(P[j]) > 0;\
+    \ });\r\n  sort(all(upper), [&](auto& i, auto& j) { return P[i].det(P[j]) > 0;\
+    \ });\r\n  auto& I = lower;\r\n  I.insert(I.end(), all(origin));\r\n  I.insert(I.end(),\
+    \ all(upper));\r\n  return I;\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\
+    \u5BFE\u3059\u308B argsort\r\ntemplate <typename T>\r\nvector<int> angle_argsort(vector<pair<T,\
+    \ T>>& P) {\r\n  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\
+    \n  return angle_argsort<T>(tmp);\r\n}\r\n\r\n// inplace \u306B\u504F\u89D2\u30BD\
+    \u30FC\u30C8\u3059\u308B\r\n// index \u304C\u6B32\u3057\u3044\u5834\u5408\u306F\
+    \ angle_argsort\r\ntemplate <typename T>\r\nvoid angle_sort(vector<Point<T>>&\
+    \ P) {\r\n  auto I = angle_argsort<T>(P);\r\n  P = rearrange(P, I);\r\n}\r\n\r\
+    \n// inplace \u306B\u504F\u89D2\u30BD\u30FC\u30C8\u3059\u308B\r\n// index \u304C\
+    \u6B32\u3057\u3044\u5834\u5408\u306F angle_argsort\r\ntemplate <typename T>\r\n\
+    void angle_sort(vector<pair<T, T>>& P) {\r\n  auto I = angle_argsort<T>(P);\r\n\
+    \  P = rearrange(P, I);\r\n}\r\n#line 3 \"geo/max_norm_sum.hpp\"\n\n// \u30D9\u30AF\
+    \u30C8\u30EB\u306E\u5217\u304C\u4E0E\u3048\u3089\u308C\u308B. \u90E8\u5206\u5217\
+    \u3092\u9078\u3093\u3067\uFF0C\u548C\u306E norm \u3092\u6700\u5C0F\u5316\u3059\
+    \u308B.\n// \u7DCF\u548C\u306E\u5EA7\u6A19\u306E 2 \u4E57\u548C\u304C SM \u3067\
+    \u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u3088\u3046\u306B\
+    \u6CE8\u610F\u305B\u3088\uFF0E\n// https://atcoder.jp/contests/abc139/tasks/abc139_f\n\
+    // https://codeforces.com/contest/1841/problem/F\ntemplate <typename SM, typename\
+    \ T>\npair<SM, vc<int>> max_norm_sum(vc<Point<T>> dat) {\n  auto I = angle_argsort(dat);\n\
+    \  {\n    vc<int> J;\n    for (auto&& i: I) {\n      if (dat[i].x != 0 || dat[i].y\
+    \ != 0) J.eb(i);\n    }\n    swap(I, J);\n  }\n  dat = rearrange(dat, I);\n  const\
+    \ int N = len(dat);\n\n  if (N == 0) { return {0, {}}; }\n  SM ANS = 0;\n  pair<int,\
+    \ int> LR = {0, 0};\n\n  int L = 0, R = 1;\n  Point<T> c = dat[0];\n  auto eval\
+    \ = [&]() -> SM { return SM(c.x) * c.x + SM(c.y) * c.y; };\n  if (chmax(ANS, eval()))\
+    \ LR = {L, R};\n\n  while (L < N) {\n    Point<T>&A = dat[L], &B = dat[R % N];\n\
+    \    if (R - L < N && (A.det(B) > 0 || (A.det(B) == 0 && A.dot(B) > 0))) {\n \
+    \     c = c + B;\n      R++;\n      if (chmax(ANS, eval())) LR = {L, R};\n   \
+    \ } else {\n      c = c - A;\n      L++;\n      if (chmax(ANS, eval())) LR = {L,\
+    \ R};\n    }\n  }\n  vc<int> ids;\n  FOR(i, LR.fi, LR.se) { ids.eb(I[i % N]);\
+    \ }\n  return {ANS, ids};\n}\n#line 8 \"test_atcoder/abc139f.test.cpp\"\n\nusing\
+    \ P = Point<ll>;\n\nvoid solve() {\n  LL(N);\n  VEC(P, point, N);\n  auto [val,\
+    \ I] = max_norm_sum<ll, ll>(point);\n  ll x = 0, y = 0;\n  for (auto&& i: I) x\
+    \ += point[i].x, y += point[i].y;\n  assert(val == x * x + y * y);\n  double ANS\
+    \ = sqrtl(val);\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc139/tasks/abc139_f\"\n#define\
+    \ ERROR 1e-10\n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include\
+    \ \"geo/max_norm_sum.hpp\"\n\nusing P = Point<ll>;\n\nvoid solve() {\n  LL(N);\n\
+    \  VEC(P, point, N);\n  auto [val, I] = max_norm_sum<ll, ll>(point);\n  ll x =\
+    \ 0, y = 0;\n  for (auto&& i: I) x += point[i].x, y += point[i].y;\n  assert(val\
+    \ == x * x + y * y);\n  double ANS = sqrtl(val);\n  print(ANS);\n}\n\nsigned main()\
+    \ {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - geo/dynamicupperhull.hpp
+  - geo/max_norm_sum.hpp
   - geo/base.hpp
+  - geo/angle_sort.hpp
   isVerificationFile: true
-  path: test/library_checker/geometry/convex_layers.test.cpp
+  path: test_atcoder/abc139f.test.cpp
   requiredBy: []
-  timestamp: '2023-05-20 13:28:23+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-06-13 03:23:53+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/geometry/convex_layers.test.cpp
+documentation_of: test_atcoder/abc139f.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/geometry/convex_layers.test.cpp
-- /verify/test/library_checker/geometry/convex_layers.test.cpp.html
-title: test/library_checker/geometry/convex_layers.test.cpp
+- /verify/test_atcoder/abc139f.test.cpp
+- /verify/test_atcoder/abc139f.test.cpp.html
+title: test_atcoder/abc139f.test.cpp
 ---

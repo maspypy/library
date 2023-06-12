@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/cf702_F_splay.test.cpp
     title: test/mytest/cf702_F_splay.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/splaytree/splaytree.hpp\"\n// Node \u578B\u3092\u5225\
@@ -131,9 +131,7 @@ data:
     \ = Monoid_A::unit();\n    n->size = 1;\n    n->rev = 0;\n  }\n\n  void update()\
     \ {\n    size = 1;\n    if (l) { size += l->size; }\n    if (r) { size += r->size;\
     \ }\n  }\n\n  void prop() {\n    if (lazy != Monoid_A::unit()) {\n      if (l)\
-    \ {\n        l->x = ActedSet::act(l->x, lazy);\n        l->lazy = Monoid_A::op(l->lazy,\
-    \ lazy);\n      }\n      if (r) {\n        r->x = ActedSet::act(r->x, lazy);\n\
-    \        r->lazy = Monoid_A::op(r->lazy, lazy);\n      }\n      lazy = Monoid_A::unit();\n\
+    \ { l->apply(lazy); }\n      if (r) { r->apply(lazy); }\n      lazy = Monoid_A::unit();\n\
     \    }\n    if (rev) {\n      if (l) {\n        l->rev ^= 1;\n        swap(l->l,\
     \ l->r);\n      }\n      if (r) {\n        r->rev ^= 1;\n        swap(r->l, r->r);\n\
     \      }\n      rev = 0;\n    }\n  }\n\n  // update, prop \u4EE5\u5916\u3067\u547C\
@@ -155,9 +153,7 @@ data:
     \ = Monoid_A::unit();\n    n->size = 1;\n    n->rev = 0;\n  }\n\n  void update()\
     \ {\n    size = 1;\n    if (l) { size += l->size; }\n    if (r) { size += r->size;\
     \ }\n  }\n\n  void prop() {\n    if (lazy != Monoid_A::unit()) {\n      if (l)\
-    \ {\n        l->x = ActedSet::act(l->x, lazy);\n        l->lazy = Monoid_A::op(l->lazy,\
-    \ lazy);\n      }\n      if (r) {\n        r->x = ActedSet::act(r->x, lazy);\n\
-    \        r->lazy = Monoid_A::op(r->lazy, lazy);\n      }\n      lazy = Monoid_A::unit();\n\
+    \ { l->apply(lazy); }\n      if (r) { r->apply(lazy); }\n      lazy = Monoid_A::unit();\n\
     \    }\n    if (rev) {\n      if (l) {\n        l->rev ^= 1;\n        swap(l->l,\
     \ l->r);\n      }\n      if (r) {\n        r->rev ^= 1;\n        swap(r->l, r->r);\n\
     \      }\n      rev = 0;\n    }\n  }\n\n  // update, prop \u4EE5\u5916\u3067\u547C\
@@ -175,8 +171,8 @@ data:
   isVerificationFile: false
   path: ds/splaytree/splaytree_acted_set.hpp
   requiredBy: []
-  timestamp: '2023-05-01 17:26:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-06-13 03:24:35+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/cf702_F_splay.test.cpp
 documentation_of: ds/splaytree/splaytree_acted_set.hpp

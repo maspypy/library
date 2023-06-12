@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/splaytree/splaytree_acted_set.hpp
     title: ds/splaytree/splaytree_acted_set.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -330,9 +330,7 @@ data:
     \ = Monoid_A::unit();\n    n->size = 1;\n    n->rev = 0;\n  }\n\n  void update()\
     \ {\n    size = 1;\n    if (l) { size += l->size; }\n    if (r) { size += r->size;\
     \ }\n  }\n\n  void prop() {\n    if (lazy != Monoid_A::unit()) {\n      if (l)\
-    \ {\n        l->x = ActedSet::act(l->x, lazy);\n        l->lazy = Monoid_A::op(l->lazy,\
-    \ lazy);\n      }\n      if (r) {\n        r->x = ActedSet::act(r->x, lazy);\n\
-    \        r->lazy = Monoid_A::op(r->lazy, lazy);\n      }\n      lazy = Monoid_A::unit();\n\
+    \ { l->apply(lazy); }\n      if (r) { r->apply(lazy); }\n      lazy = Monoid_A::unit();\n\
     \    }\n    if (rev) {\n      if (l) {\n        l->rev ^= 1;\n        swap(l->l,\
     \ l->r);\n      }\n      if (r) {\n        r->rev ^= 1;\n        swap(r->l, r->r);\n\
     \      }\n      rev = 0;\n    }\n  }\n\n  // update, prop \u4EE5\u5916\u3067\u547C\
@@ -414,8 +412,8 @@ data:
   isVerificationFile: true
   path: test/mytest/cf702_F_splay.test.cpp
   requiredBy: []
-  timestamp: '2023-05-01 17:26:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-06-13 03:24:35+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/cf702_F_splay.test.cpp
 layout: document

@@ -624,7 +624,7 @@ data:
     \      f[i] = x;\n      break;\n    }\n  }\n  return f;\n}\n\nvoid check(poly\
     \ f, vc<mint> A) {\n  int m = len(A);\n  auto B = partial_frac_decomposition_1<mint>(f,\
     \ A);\n  assert(len(B) == m);\n  vc<pair<poly, poly>> dat;\n  FOR(i, m) {\n  \
-    \  poly F = {B[i]};\n    poly G = {-A[i], mint(1)};\n    dat.eb(F, G);\n  }\n\
+    \  poly F = {B[i]};\n    poly G = {mint(1), -A[i]};\n    dat.eb(F, G);\n  }\n\
     \  auto [p, q] = sum_of_rationals<mint>(dat);\n  while (len(p) && p.back() ==\
     \ mint(0)) p.pop_back();\n  while (len(f) && f.back() == mint(0)) f.pop_back();\n\
     \  assert(p == f);\n}\n\nvoid test() {\n  FOR(n, 50) FOR(m, n, 50) {\n    poly\
@@ -640,12 +640,12 @@ data:
     \    }\n  }\n  return f;\n}\n\nvoid check(poly f, vc<mint> A) {\n  int m = len(A);\n\
     \  auto B = partial_frac_decomposition_1<mint>(f, A);\n  assert(len(B) == m);\n\
     \  vc<pair<poly, poly>> dat;\n  FOR(i, m) {\n    poly F = {B[i]};\n    poly G\
-    \ = {-A[i], mint(1)};\n    dat.eb(F, G);\n  }\n  auto [p, q] = sum_of_rationals<mint>(dat);\n\
+    \ = {mint(1), -A[i]};\n    dat.eb(F, G);\n  }\n  auto [p, q] = sum_of_rationals<mint>(dat);\n\
     \  while (len(p) && p.back() == mint(0)) p.pop_back();\n  while (len(f) && f.back()\
     \ == mint(0)) f.pop_back();\n  assert(p == f);\n}\n\nvoid test() {\n  FOR(n, 50)\
     \ FOR(m, n, 50) {\n    poly f = gen(n), A = gen(m);\n    check(f, A);\n  }\n}\n\
     \nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n\
-    \  solve();\n  return 0;\n}\n"
+    \  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -667,7 +667,7 @@ data:
   isVerificationFile: true
   path: test/mytest/partial_frac.test.cpp
   requiredBy: []
-  timestamp: '2023-06-12 18:45:52+09:00'
+  timestamp: '2023-06-13 03:24:11+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/partial_frac.test.cpp

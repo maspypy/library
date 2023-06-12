@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
   - icon: ':heavy_check_mark:'
@@ -29,6 +29,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/incremental_convexhull.hpp
     title: geo/incremental_convexhull.hpp
+  - icon: ':x:'
+    path: geo/max_norm_sum.hpp
+    title: geo/max_norm_sum.hpp
   - icon: ':heavy_check_mark:'
     path: geo/minimum_enclosing_circle.hpp
     title: geo/minimum_enclosing_circle.hpp
@@ -90,6 +93,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/qoj5443.test.cpp
     title: test/mytest/qoj5443.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc139f.test.cpp
+    title: test_atcoder/abc139f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc151f.test.cpp
     title: test_atcoder/abc151f.test.cpp
@@ -99,9 +105,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc266c.test.cpp
     title: test_atcoder/abc266c.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -209,6 +215,7 @@ data:
   - geo/convex_hull.hpp
   - geo/outcircle.hpp
   - geo/count_points_in_triangles.hpp
+  - geo/max_norm_sum.hpp
   - geo/distance.hpp
   - geo/incremental_convexhull.hpp
   - geo/angle_sort.hpp
@@ -217,7 +224,7 @@ data:
   - geo/cross_point.hpp
   - geo/incircle.hpp
   timestamp: '2023-04-08 00:43:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/CGL_1_B.test.cpp
   - test/aoj/CGL_7_B.test.cpp
@@ -238,6 +245,7 @@ data:
   - test_atcoder/abc266c.test.cpp
   - test_atcoder/abc151f.test.cpp
   - test_atcoder/abc202_f.test.cpp
+  - test_atcoder/abc139f.test.cpp
 documentation_of: geo/base.hpp
 layout: document
 redirect_from:
