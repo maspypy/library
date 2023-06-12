@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: linalg/implicit_matrix/pascal.hpp
     title: linalg/implicit_matrix/pascal.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
   - icon: ':question:'
@@ -55,7 +55,7 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
   _extendedRequiredBy: []
