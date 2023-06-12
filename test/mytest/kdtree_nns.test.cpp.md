@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/kdtree/kdtree.hpp
     title: ds/kdtree/kdtree.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -266,7 +266,7 @@ data:
     \   KDT.nearest_neighbor_search<ll>(x, y);\n  }\n}\n\nvoid test_nns_is_correct()\
     \ {\n  ll LIM = RNG(10, 1000);\n  ll N = RNG(1, 100);\n  ll Q = 1000;\n  vc<int>\
     \ X(N), Y(N);\n  FOR(i, N) X[i] = RNG(0, LIM);\n  FOR(i, N) Y[i] = RNG(0, LIM);\n\
-    \n  KDTree<ll> KDT(X, Y);\n  FOR(Q) {\n    ll x = RNG(0, LIM);\n    ll y = RNG(0,\
+    \n  KDTree<int> KDT(X, Y);\n  FOR(Q) {\n    ll x = RNG(0, LIM);\n    ll y = RNG(0,\
     \ LIM);\n    ll min_d = 1'000'000'000;\n    auto dist = [&](int i) -> ll {\n \
     \     ll dx = X[i] - x, dy = Y[i] - y;\n      return dx * dx + dy * dy;\n    };\n\
     \    FOR(i, N) chmin(min_d, dist(i));\n    int k = KDT.nearest_neighbor_search<ll>(x,\
@@ -282,7 +282,7 @@ data:
     \   KDT.nearest_neighbor_search<ll>(x, y);\n  }\n}\n\nvoid test_nns_is_correct()\
     \ {\n  ll LIM = RNG(10, 1000);\n  ll N = RNG(1, 100);\n  ll Q = 1000;\n  vc<int>\
     \ X(N), Y(N);\n  FOR(i, N) X[i] = RNG(0, LIM);\n  FOR(i, N) Y[i] = RNG(0, LIM);\n\
-    \n  KDTree<ll> KDT(X, Y);\n  FOR(Q) {\n    ll x = RNG(0, LIM);\n    ll y = RNG(0,\
+    \n  KDTree<int> KDT(X, Y);\n  FOR(Q) {\n    ll x = RNG(0, LIM);\n    ll y = RNG(0,\
     \ LIM);\n    ll min_d = 1'000'000'000;\n    auto dist = [&](int i) -> ll {\n \
     \     ll dx = X[i] - x, dy = Y[i] - y;\n      return dx * dx + dy * dy;\n    };\n\
     \    FOR(i, N) chmin(min_d, dist(i));\n    int k = KDT.nearest_neighbor_search<ll>(x,\
@@ -297,8 +297,8 @@ data:
   isVerificationFile: true
   path: test/mytest/kdtree_nns.test.cpp
   requiredBy: []
-  timestamp: '2023-06-11 23:03:42+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-06-12 18:39:28+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/kdtree_nns.test.cpp
 layout: document

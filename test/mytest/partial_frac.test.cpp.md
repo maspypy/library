@@ -613,23 +613,24 @@ data:
     \ n) f[i] *= pow, pow *= ia;\r\n  return f;\r\n}\r\n#line 2 \"poly/partial_frac_decomposition_1.hpp\"\
     \n\n// f(x) / prod(1-a_ix) = sum b_i/1-a_ix\ntemplate <typename mint>\nvc<mint>\
     \ partial_frac_decomposition_1(vc<mint> f, vc<mint> A) {\n  int N = len(A);\n\
-    \  SubproductTree<mint> X(A);\n  vc<mint> g = X.T[1]; // prod(1-ax)\n  g.resize(N\
-    \ + 1);\n  reverse(all(f));\n  reverse(all(g));\n  FOR(i, len(g) - 1) g[i] = g[i\
-    \ + 1] * mint(i + 1);\n  g.pop_back();\n  auto num = X.evaluation(f);\n  auto\
-    \ den = X.evaluation(g);\n  vc<mint> B(len(A));\n  FOR(i, len(A)) B[i] = num[i]\
-    \ / den[i];\n  return B;\n}\n#line 7 \"test/mytest/partial_frac.test.cpp\"\n\n\
-    using mint = modint998;\nusing poly = vc<mint>;\n\nvc<mint> gen(int n) {\n  vc<mint>\
-    \ f(n);\n  set<mint> ss;\n  FOR(i, n) {\n    while (1) {\n      mint x = RNG(-100,\
-    \ 100);\n      if (ss.count(x)) continue;\n      ss.insert(x);\n      f[i] = x;\n\
-    \      break;\n    }\n  }\n  return f;\n}\n\nvoid check(poly f, vc<mint> A) {\n\
-    \  int m = len(A);\n  auto B = partial_frac_decomposition_1<mint>(f, A);\n  assert(len(B)\
-    \ == m);\n  vc<pair<poly, poly>> dat;\n  FOR(i, m) {\n    poly F = {B[i]};\n \
-    \   poly G = {-A[i], mint(1)};\n    dat.eb(F, G);\n  }\n  auto [p, q] = sum_of_rationals<mint>(dat);\n\
-    \  while (len(p) && p.back() == mint(0)) p.pop_back();\n  while (len(f) && f.back()\
-    \ == mint(0)) f.pop_back();\n  assert(p == f);\n}\n\nvoid test() {\n  FOR(n, 50)\
-    \ FOR(m, n, 50) {\n    poly f = gen(n), A = gen(m);\n    check(f, A);\n  }\n}\n\
-    \nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n\
-    \  solve();\n  return 0;\n}\n"
+    \  assert(len(f) <= N);\n  f.resize(N);\n  SubproductTree<mint> X(A);\n  vc<mint>\
+    \ g = X.T[1]; // prod(1-ax)\n  g.resize(N + 1);\n  reverse(all(f));\n  reverse(all(g));\n\
+    \  FOR(i, len(g) - 1) g[i] = g[i + 1] * mint(i + 1);\n  g.pop_back();\n  auto\
+    \ num = X.evaluation(f);\n  auto den = X.evaluation(g);\n  vc<mint> B(len(A));\n\
+    \  FOR(i, len(A)) B[i] = num[i] / den[i];\n  return B;\n}\n#line 7 \"test/mytest/partial_frac.test.cpp\"\
+    \n\nusing mint = modint998;\nusing poly = vc<mint>;\n\nvc<mint> gen(int n) {\n\
+    \  vc<mint> f(n);\n  set<mint> ss;\n  FOR(i, n) {\n    while (1) {\n      mint\
+    \ x = RNG(-100, 100);\n      if (ss.count(x)) continue;\n      ss.insert(x);\n\
+    \      f[i] = x;\n      break;\n    }\n  }\n  return f;\n}\n\nvoid check(poly\
+    \ f, vc<mint> A) {\n  int m = len(A);\n  auto B = partial_frac_decomposition_1<mint>(f,\
+    \ A);\n  assert(len(B) == m);\n  vc<pair<poly, poly>> dat;\n  FOR(i, m) {\n  \
+    \  poly F = {B[i]};\n    poly G = {-A[i], mint(1)};\n    dat.eb(F, G);\n  }\n\
+    \  auto [p, q] = sum_of_rationals<mint>(dat);\n  while (len(p) && p.back() ==\
+    \ mint(0)) p.pop_back();\n  while (len(f) && f.back() == mint(0)) f.pop_back();\n\
+    \  assert(p == f);\n}\n\nvoid test() {\n  FOR(n, 50) FOR(m, n, 50) {\n    poly\
+    \ f = gen(n), A = gen(m);\n    check(f, A);\n  }\n}\n\nvoid solve() {\n  LL(a,\
+    \ b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"random/base.hpp\"\n#include \"poly/sum_of_rationals.hpp\"\
     \n#include \"poly/partial_frac_decomposition_1.hpp\"\n\nusing mint = modint998;\n\
@@ -666,7 +667,7 @@ data:
   isVerificationFile: true
   path: test/mytest/partial_frac.test.cpp
   requiredBy: []
-  timestamp: '2023-06-12 00:49:28+09:00'
+  timestamp: '2023-06-12 18:45:52+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/partial_frac.test.cpp

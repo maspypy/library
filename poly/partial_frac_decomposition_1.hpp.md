@@ -400,18 +400,18 @@ data:
     \ n) f[i] *= pow, pow *= ia;\r\n  return f;\r\n}\r\n#line 2 \"poly/partial_frac_decomposition_1.hpp\"\
     \n\n// f(x) / prod(1-a_ix) = sum b_i/1-a_ix\ntemplate <typename mint>\nvc<mint>\
     \ partial_frac_decomposition_1(vc<mint> f, vc<mint> A) {\n  int N = len(A);\n\
-    \  SubproductTree<mint> X(A);\n  vc<mint> g = X.T[1]; // prod(1-ax)\n  g.resize(N\
-    \ + 1);\n  reverse(all(f));\n  reverse(all(g));\n  FOR(i, len(g) - 1) g[i] = g[i\
-    \ + 1] * mint(i + 1);\n  g.pop_back();\n  auto num = X.evaluation(f);\n  auto\
-    \ den = X.evaluation(g);\n  vc<mint> B(len(A));\n  FOR(i, len(A)) B[i] = num[i]\
-    \ / den[i];\n  return B;\n}\n"
-  code: "#include \"poly/multipoint.hpp\"\n\n// f(x) / prod(1-a_ix) = sum b_i/1-a_ix\n\
-    template <typename mint>\nvc<mint> partial_frac_decomposition_1(vc<mint> f, vc<mint>\
-    \ A) {\n  int N = len(A);\n  SubproductTree<mint> X(A);\n  vc<mint> g = X.T[1];\
-    \ // prod(1-ax)\n  g.resize(N + 1);\n  reverse(all(f));\n  reverse(all(g));\n\
+    \  assert(len(f) <= N);\n  f.resize(N);\n  SubproductTree<mint> X(A);\n  vc<mint>\
+    \ g = X.T[1]; // prod(1-ax)\n  g.resize(N + 1);\n  reverse(all(f));\n  reverse(all(g));\n\
     \  FOR(i, len(g) - 1) g[i] = g[i + 1] * mint(i + 1);\n  g.pop_back();\n  auto\
     \ num = X.evaluation(f);\n  auto den = X.evaluation(g);\n  vc<mint> B(len(A));\n\
-    \  FOR(i, len(A)) B[i] = num[i] / den[i];\n  return B;\n}"
+    \  FOR(i, len(A)) B[i] = num[i] / den[i];\n  return B;\n}\n"
+  code: "#include \"poly/multipoint.hpp\"\n\n// f(x) / prod(1-a_ix) = sum b_i/1-a_ix\n\
+    template <typename mint>\nvc<mint> partial_frac_decomposition_1(vc<mint> f, vc<mint>\
+    \ A) {\n  int N = len(A);\n  assert(len(f) <= N);\n  f.resize(N);\n  SubproductTree<mint>\
+    \ X(A);\n  vc<mint> g = X.T[1]; // prod(1-ax)\n  g.resize(N + 1);\n  reverse(all(f));\n\
+    \  reverse(all(g));\n  FOR(i, len(g) - 1) g[i] = g[i + 1] * mint(i + 1);\n  g.pop_back();\n\
+    \  auto num = X.evaluation(f);\n  auto den = X.evaluation(g);\n  vc<mint> B(len(A));\n\
+    \  FOR(i, len(A)) B[i] = num[i] / den[i];\n  return B;\n}\n"
   dependsOn:
   - poly/multipoint.hpp
   - poly/fps_inv.hpp
@@ -428,7 +428,7 @@ data:
   isVerificationFile: false
   path: poly/partial_frac_decomposition_1.hpp
   requiredBy: []
-  timestamp: '2023-06-12 00:49:28+09:00'
+  timestamp: '2023-06-12 18:45:52+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/partial_frac.test.cpp

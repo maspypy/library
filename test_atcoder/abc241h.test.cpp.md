@@ -588,21 +588,22 @@ data:
     \ n) f[i] *= pow, pow *= ia;\r\n  return f;\r\n}\r\n#line 2 \"poly/partial_frac_decomposition_1.hpp\"\
     \n\n// f(x) / prod(1-a_ix) = sum b_i/1-a_ix\ntemplate <typename mint>\nvc<mint>\
     \ partial_frac_decomposition_1(vc<mint> f, vc<mint> A) {\n  int N = len(A);\n\
-    \  SubproductTree<mint> X(A);\n  vc<mint> g = X.T[1]; // prod(1-ax)\n  g.resize(N\
-    \ + 1);\n  reverse(all(f));\n  reverse(all(g));\n  FOR(i, len(g) - 1) g[i] = g[i\
-    \ + 1] * mint(i + 1);\n  g.pop_back();\n  auto num = X.evaluation(f);\n  auto\
-    \ den = X.evaluation(g);\n  vc<mint> B(len(A));\n  FOR(i, len(A)) B[i] = num[i]\
-    \ / den[i];\n  return B;\n}\n#line 8 \"test_atcoder/abc241h.test.cpp\"\n\nusing\
-    \ mint = modint998;\n\nvoid solve() {\n  LL(N, M);\n  vc<mint> A(N);\n  vi B(N);\n\
-    \  FOR(i, N) read(A[i]), read(B[i]);\n\n  // \u5206\u5B50\n  vc<pair<ll, mint>>\
-    \ dp(1 << N);\n  dp[0] = {0, 1};\n  FOR(i, N) {\n    mint a = A[i];\n    a = a.pow(B[i]\
-    \ + 1);\n    a = -a;\n    FOR(s, 1 << i) { dp[s | 1 << i] = {dp[s].fi + B[i] +\
-    \ 1, dp[s].se * a}; }\n  }\n\n  // \u5206\u5B50\u304C 1 \u306E\u5834\u5408\u306E\
-    \u90E8\u5206\u5206\u6570\u5206\u89E3\n  vc<mint> f(N);\n  f[0] = 1;\n  f = partial_frac_decomposition_1<mint>(f,\
-    \ A);\n\n  mint ANS = 0;\n  auto calc = [&](ll p) -> mint {\n    if (p < 0) return\
-    \ 0;\n    mint ANS = 0;\n    FOR(i, N) ANS += A[i].pow(p) * f[i];\n    return\
-    \ ANS;\n  };\n  for (auto&& [p, cf]: dp) { ANS += calc(M - p) * cf; }\n  print(ANS);\n\
-    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \  assert(len(f) <= N);\n  f.resize(N);\n  SubproductTree<mint> X(A);\n  vc<mint>\
+    \ g = X.T[1]; // prod(1-ax)\n  g.resize(N + 1);\n  reverse(all(f));\n  reverse(all(g));\n\
+    \  FOR(i, len(g) - 1) g[i] = g[i + 1] * mint(i + 1);\n  g.pop_back();\n  auto\
+    \ num = X.evaluation(f);\n  auto den = X.evaluation(g);\n  vc<mint> B(len(A));\n\
+    \  FOR(i, len(A)) B[i] = num[i] / den[i];\n  return B;\n}\n#line 8 \"test_atcoder/abc241h.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, M);\n  vc<mint> A(N);\n\
+    \  vi B(N);\n  FOR(i, N) read(A[i]), read(B[i]);\n\n  // \u5206\u5B50\n  vc<pair<ll,\
+    \ mint>> dp(1 << N);\n  dp[0] = {0, 1};\n  FOR(i, N) {\n    mint a = A[i];\n \
+    \   a = a.pow(B[i] + 1);\n    a = -a;\n    FOR(s, 1 << i) { dp[s | 1 << i] = {dp[s].fi\
+    \ + B[i] + 1, dp[s].se * a}; }\n  }\n\n  // \u5206\u5B50\u304C 1 \u306E\u5834\u5408\
+    \u306E\u90E8\u5206\u5206\u6570\u5206\u89E3\n  vc<mint> f(N);\n  f[0] = 1;\n  f\
+    \ = partial_frac_decomposition_1<mint>(f, A);\n\n  mint ANS = 0;\n  auto calc\
+    \ = [&](ll p) -> mint {\n    if (p < 0) return 0;\n    mint ANS = 0;\n    FOR(i,\
+    \ N) ANS += A[i].pow(p) * f[i];\n    return ANS;\n  };\n  for (auto&& [p, cf]:\
+    \ dp) { ANS += calc(M - p) * cf; }\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc241/tasks/abc241_Ex\"\n\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
     \n#include \"poly/partial_frac_decomposition_1.hpp\"\n\nusing mint = modint998;\n\
@@ -635,7 +636,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc241h.test.cpp
   requiredBy: []
-  timestamp: '2023-06-12 00:49:28+09:00'
+  timestamp: '2023-06-12 18:45:52+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc241h.test.cpp
