@@ -30,7 +30,7 @@ void check(poly f, vc<mint> A) {
   vc<pair<poly, poly>> dat;
   FOR(i, m) {
     poly F = {B[i]};
-    poly G = {-A[i], mint(1)};
+    poly G = {mint(1), -A[i]};
     dat.eb(F, G);
   }
   auto [p, q] = sum_of_rationals<mint>(dat);
