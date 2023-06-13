@@ -1,6 +1,9 @@
+#include "graph/base.hpp"
+
 // 次の番号付けるに従う：UFRLBD
-// https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_11_A
 // i, 5-i が反対の面になっている
+// https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_11_A
+// https://atcoder.jp/contests/tenka1-2012-final/tasks/tenka1_2012_final_e
 template <typename X>
 struct Dice {
   using ARR = array<X, 6>;
@@ -21,6 +24,8 @@ struct Dice {
     elif (c == 'R' || c == 'E') A = {A[3], A[1], A[0], A[5], A[4], A[2]};
     elif (c == 'L' || c == 'W') A = {A[2], A[1], A[5], A[0], A[4], A[3]};
     elif (c == 'B' || c == 'N') A = {A[1], A[5], A[2], A[3], A[0], A[4]};
+    elif (c == 'U') A = {A[0], A[2], A[4], A[1], A[3], A[5]};
+    elif (c == 'D') A = {A[0], A[3], A[1], A[4], A[2], A[5]};
     else {
       assert(false);
     }
@@ -50,5 +55,25 @@ struct Dice {
       res[i] = {A[a], A[b], A[c], A[5 - c], A[5 - b], A[5 - a]};
     }
     return res;
+  }
+
+  // 24 頂点 6 遷移のグラフを作る
+  Graph<int, 0> to_graph() {
+    int N = 24;
+    Graph<int, 0> G(N);
+    auto dat = gen_all();
+    FOR(i, N) {
+      array<X, 6> A = dat[i];
+      for (char ch: {'U', 'F', 'R', 'L', 'B', 'D'}) {
+        Dice<X> d(A);
+        d.rotate(ch);
+        int idx = -1;
+        FOR(j, N) if (dat[j] == d.A) idx = j;
+        assert(idx != -1);
+        if (i < idx) G.add(i, idx);
+      }
+    }
+    G.build();
+    return G;
   }
 };
