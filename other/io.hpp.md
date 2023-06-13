@@ -1944,22 +1944,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc298ex.test.cpp
     title: test_atcoder/abc298ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/agc013e.test.cpp
     title: test_atcoder/agc013e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d.test.cpp
     title: test_atcoder/agc058d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc105.test.cpp
     title: test_atcoder/arc105.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc123d.test.cpp
     title: test_atcoder/arc123d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc144d.test.cpp
     title: test_atcoder/arc144d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1968,7 +1968,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc153b.test.cpp
     title: test_atcoder/arc153b.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
   - icon: ':x:'
