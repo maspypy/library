@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/persistent_queue
@@ -222,7 +222,7 @@ data:
     \n  }\r\n};\r\n#line 6 \"test/library_checker/datastructure/persistent_queue.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(Q);\r\n  vc<int> L, R;\r\n\r\n  Dynamic_Array<int,\
     \ true, 2'000'000> X(0);\r\n  using np = typename decltype(X)::np;\r\n  vc<np>\
-    \ roots;\r\n\r\n  roots.eb(X.new_node());\r\n  L.eb(0), R.eb(0);\r\n\r\n  FOR(Q)\
+    \ roots;\r\n\r\n  roots.eb(X.new_root());\r\n  L.eb(0), R.eb(0);\r\n\r\n  FOR(Q)\
     \ {\r\n    LL(t, k);\r\n    ++k;\r\n    np root = roots[k];\r\n    int l = L[k],\
     \ r = R[k];\r\n\r\n    if (t == 0) {\r\n      INT(x);\r\n      root = X.set(root,\
     \ r++, x);\r\n    }\r\n    if (t == 1) { print(X.get(root, l++)); }\r\n    roots.eb(root);\r\
@@ -233,7 +233,7 @@ data:
     #include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"ds/dynamic_array.hpp\"\
     \r\n\r\nvoid solve() {\r\n  LL(Q);\r\n  vc<int> L, R;\r\n\r\n  Dynamic_Array<int,\
     \ true, 2'000'000> X(0);\r\n  using np = typename decltype(X)::np;\r\n  vc<np>\
-    \ roots;\r\n\r\n  roots.eb(X.new_node());\r\n  L.eb(0), R.eb(0);\r\n\r\n  FOR(Q)\
+    \ roots;\r\n\r\n  roots.eb(X.new_root());\r\n  L.eb(0), R.eb(0);\r\n\r\n  FOR(Q)\
     \ {\r\n    LL(t, k);\r\n    ++k;\r\n    np root = roots[k];\r\n    int l = L[k],\
     \ r = R[k];\r\n\r\n    if (t == 0) {\r\n      INT(x);\r\n      root = X.set(root,\
     \ r++, x);\r\n    }\r\n    if (t == 1) { print(X.get(root, l++)); }\r\n    roots.eb(root);\r\
@@ -247,8 +247,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/persistent_queue.test.cpp
   requiredBy: []
-  timestamp: '2023-06-13 23:27:49+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-06-13 23:44:06+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/persistent_queue.test.cpp
 layout: document
