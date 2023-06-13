@@ -171,6 +171,9 @@ data:
     path: graph/unicyclic.hpp
     title: graph/unicyclic.hpp
   - icon: ':heavy_check_mark:'
+    path: other/dice.hpp
+    title: other/dice.hpp
+  - icon: ':heavy_check_mark:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -225,6 +228,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ITP1_11_A.test.cpp
+    title: test/aoj/ITP1_11_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ITP1_11_B.test.cpp
+    title: test/aoj/ITP1_11_B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ITP1_11_C.test.cpp
+    title: test/aoj/ITP1_11_C.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ITP1_11_D.test.cpp
+    title: test/aoj/ITP1_11_D.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
@@ -640,6 +655,7 @@ data:
   path: graph/base.hpp
   requiredBy:
   - game/graph_game.hpp
+  - other/dice.hpp
   - flow/bipartite.hpp
   - random/random_graph.hpp
   - enumerate/triangle.hpp
@@ -703,8 +719,11 @@ data:
   verifiedWith:
   - test/aoj/2251_2.test.cpp
   - test/aoj/1566.test.cpp
+  - test/aoj/ITP1_11_A.test.cpp
   - test/aoj/2995.test.cpp
   - test/aoj/GRL_3_B.test.cpp
+  - test/aoj/ITP1_11_D.test.cpp
+  - test/aoj/ITP1_11_C.test.cpp
   - test/aoj/GRL_1_B.test.cpp
   - test/aoj/GRL_2_A.test.cpp
   - test/aoj/GRL_1_C.test.cpp
@@ -713,6 +732,7 @@ data:
   - test/aoj/ALDS1_12_B.test.cpp
   - test/aoj/0275.test.cpp
   - test/aoj/2677.test.cpp
+  - test/aoj/ITP1_11_B.test.cpp
   - test/aoj/2251_1.test.cpp
   - test/aoj/DPL_2_A.test.cpp
   - test/aoj/2636.test.cpp

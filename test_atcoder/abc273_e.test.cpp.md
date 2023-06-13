@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc273/tasks/abc273_e
@@ -211,14 +211,14 @@ data:
     \ PERSISTENT, int NODES>\r\nstruct Dynamic_Array {\r\n  struct Node {\r\n    T\
     \ x;\r\n    Node* ch[16] = {};\r\n  };\r\n  Node* pool;\r\n  int pid;\r\n  using\
     \ np = Node*;\r\n  const T x0;\r\n\r\n  Dynamic_Array(T default_value) : pid(0),\
-    \ x0(default_value) {\r\n    pool = new Node[NODES];\r\n  }\r\n\r\n  np new_node()\
+    \ x0(default_value) {\r\n    pool = new Node[NODES];\r\n  }\r\n\r\n  np new_root()\
     \ {\r\n    pool[pid].x = x0;\r\n    fill(pool[pid].ch, pool[pid].ch + 16, nullptr);\r\
     \n    return &(pool[pid++]);\r\n  }\r\n\r\n  np new_node(vc<T> dat) {\r\n    np\
-    \ root = new_node();\r\n    FOR(i, len(dat)) root = set(root, i, dat[i], false);\r\
+    \ root = new_root();\r\n    FOR(i, len(dat)) root = set(root, i, dat[i], false);\r\
     \n    return root;\r\n  }\r\n\r\n  T get(np c, int idx) {\r\n    if (!c) return\
     \ x0;\r\n    if (idx == 0) return c->x;\r\n    return get(c->ch[idx & 15], (idx\
     \ - 1) >> 4);\r\n  }\r\n\r\n  np set(np c, int idx, T x, bool make_copy = true)\
-    \ {\r\n    c = (c ? copy_node(c, make_copy) : new_node());\r\n    if (idx == 0)\
+    \ {\r\n    c = (c ? copy_node(c, make_copy) : new_root());\r\n    if (idx == 0)\
     \ {\r\n      c->x = x;\r\n      return c;\r\n    }\r\n    c->ch[idx & 15] = set(c->ch[idx\
     \ & 15], (idx - 1) >> 4, x);\r\n    return c;\r\n  }\r\n\r\nprivate:\r\n  np copy_node(np\
     \ c, bool make_copy) {\r\n    if (!make_copy || !PERSISTENT) return c;\r\n   \
@@ -279,8 +279,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc273_e.test.cpp
   requiredBy: []
-  timestamp: '2023-02-24 07:14:18+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-06-13 23:27:49+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc273_e.test.cpp
 layout: document
