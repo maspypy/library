@@ -8,7 +8,7 @@ struct Dynamic_UnionFind {
 
   Dynamic_UnionFind() : PA(-1) {}
 
-  np new_node() { return PA.new_node(); }
+  np new_root() { return PA.new_root(); }
 
   int root(np c, int x) {
     while (1) {
