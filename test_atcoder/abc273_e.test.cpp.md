@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc273/tasks/abc273_e
@@ -249,7 +249,7 @@ data:
     \ <typename F>\r\n  void enumerate_all(F f) {\r\n    for (auto&& i: IDS) f(keys[i],\
     \ vals[i]);\r\n  }\r\n};\r\n#line 6 \"test_atcoder/abc273_e.test.cpp\"\n\nvoid\
     \ solve() {\n  Dynamic_Array<int, true, 3'000'000> X(0);\n  using np = typename\
-    \ decltype(X)::np;\n\n  LL(Q);\n  vi ANS;\n\n  np A = X.new_node();\n  int A_size\
+    \ decltype(X)::np;\n\n  LL(Q);\n  vi ANS;\n\n  np A = X.new_root();\n  int A_size\
     \ = 0;\n  HashMap<pair<np, int>> note;\n\n  FOR(Q) {\n    STR(S);\n    if (S ==\
     \ \"ADD\") {\n      INT(x);\n      A = X.set(A, A_size++, x);\n    }\n    if (S\
     \ == \"DELETE\") {\n      if (A_size) --A_size;\n    }\n    if (S == \"SAVE\"\
@@ -262,7 +262,7 @@ data:
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/dynamic_array.hpp\"\
     \n#include \"ds/hashmap.hpp\"\n\nvoid solve() {\n  Dynamic_Array<int, true, 3'000'000>\
     \ X(0);\n  using np = typename decltype(X)::np;\n\n  LL(Q);\n  vi ANS;\n\n  np\
-    \ A = X.new_node();\n  int A_size = 0;\n  HashMap<pair<np, int>> note;\n\n  FOR(Q)\
+    \ A = X.new_root();\n  int A_size = 0;\n  HashMap<pair<np, int>> note;\n\n  FOR(Q)\
     \ {\n    STR(S);\n    if (S == \"ADD\") {\n      INT(x);\n      A = X.set(A, A_size++,\
     \ x);\n    }\n    if (S == \"DELETE\") {\n      if (A_size) --A_size;\n    }\n\
     \    if (S == \"SAVE\") {\n      INT(y);\n      note[y] = {A, A_size};\n    }\n\
@@ -279,8 +279,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc273_e.test.cpp
   requiredBy: []
-  timestamp: '2023-06-13 23:27:49+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-06-14 01:51:22+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc273_e.test.cpp
 layout: document
