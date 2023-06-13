@@ -15,14 +15,14 @@ struct Dynamic_Array {
     pool = new Node[NODES];
   }
 
-  np new_node() {
+  np new_root() {
     pool[pid].x = x0;
     fill(pool[pid].ch, pool[pid].ch + 16, nullptr);
     return &(pool[pid++]);
   }
 
   np new_node(vc<T> dat) {
-    np root = new_node();
+    np root = new_root();
     FOR(i, len(dat)) root = set(root, i, dat[i], false);
     return root;
   }
@@ -34,7 +34,7 @@ struct Dynamic_Array {
   }
 
   np set(np c, int idx, T x, bool make_copy = true) {
-    c = (c ? copy_node(c, make_copy) : new_node());
+    c = (c ? copy_node(c, make_copy) : new_root());
     if (idx == 0) {
       c->x = x;
       return c;
