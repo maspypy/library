@@ -11,7 +11,7 @@ void solve() {
   using np = typename decltype(uf)::np;
   vc<np> roots;
 
-  roots.eb(uf.new_node());
+  roots.eb(uf.new_root());
 
   FOR(Q) {
     LL(t, k, u, v);
