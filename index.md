@@ -77,10 +77,10 @@ data:
       title: alg/acted_monoid/summin_assign.hpp
   - name: alg/acted_set
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/acted_set/affine.hpp
       title: alg/acted_set/affine.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/acted_set/from_monoid.hpp
       title: alg/acted_set/from_monoid.hpp
   - name: alg/monoid
@@ -106,7 +106,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid/add_tuple_3.hpp
       title: alg/monoid/add_tuple_3.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/affine.hpp
       title: alg/monoid/affine.hpp
     - icon: ':heavy_check_mark:'
@@ -230,7 +230,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
     - icon: ':heavy_check_mark:'
@@ -928,7 +928,7 @@ data:
     - icon: ':question:'
       path: linalg/implicit_matrix/pascal.hpp
       title: linalg/implicit_matrix/pascal.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: linalg/implicit_matrix/vandermonde.hpp
       title: linalg/implicit_matrix/vandermonde.hpp
   - name: linalg/xor
@@ -1046,7 +1046,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/digit_sum.hpp
       title: nt/digit_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/discrete_log.hpp
       title: nt/discrete_log.hpp
     - icon: ':heavy_check_mark:'
@@ -1272,10 +1272,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/product_of_f_rk_x.hpp
       title: poly/product_of_f_rk_x.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/product_of_one_minus_xn.hpp
       title: poly/product_of_one_minus_xn.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/product_of_one_plus_xn.hpp
       title: poly/product_of_one_plus_xn.hpp
     - icon: ':heavy_check_mark:'
@@ -1296,7 +1296,7 @@ data:
     - icon: ':warning:'
       path: poly/sum_of_power_of_roots.hpp
       title: poly/sum_of_power_of_roots.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/sum_of_prefix_suffix_products.hpp
       title: poly/sum_of_prefix_suffix_products.hpp
     - icon: ':question:'
@@ -3451,7 +3451,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc259g.test.cpp
       title: test_atcoder/abc259g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc260h.test.cpp
       title: test_atcoder/abc260h.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3466,22 +3466,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc266h_2.test.cpp
       title: test_atcoder/abc266h_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc267g.test.cpp
       title: test_atcoder/abc267g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc267h.test.cpp
       title: test_atcoder/abc267h.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc268_ex.test.cpp
       title: test_atcoder/abc268_ex.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc269ex.test.cpp
       title: test_atcoder/abc269ex.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc270_f.test.cpp
       title: test_atcoder/abc270_f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc270_g.test.cpp
       title: test_atcoder/abc270_g.test.cpp
     - icon: ':x:'

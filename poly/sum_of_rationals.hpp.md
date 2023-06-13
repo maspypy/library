@@ -23,7 +23,7 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
   - icon: ':question:'
@@ -54,7 +54,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1962.test.cpp
     title: test/yukicoder/1962.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc260h.test.cpp
     title: test_atcoder/abc260h.test.cpp
   - icon: ':x:'
