@@ -12,7 +12,7 @@ void solve() {
   using np = typename decltype(X)::np;
   vc<np> roots;
 
-  roots.eb(X.new_node());
+  roots.eb(X.new_root());
   L.eb(0), R.eb(0);
 
   FOR(Q) {
