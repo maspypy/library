@@ -11,7 +11,7 @@ void solve() {
   LL(Q);
   vi ANS;
 
-  np A = X.new_node();
+  np A = X.new_root();
   int A_size = 0;
   HashMap<pair<np, int>> note;
 
