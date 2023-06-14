@@ -47,14 +47,14 @@ data:
   isVerificationFile: false
   path: enumerate/bits.hpp
   requiredBy:
-  - graph/minimum_hamiltonian_cycle.hpp
-  - graph/steiner_tree.hpp
   - linalg/hafnian.hpp
+  - graph/steiner_tree.hpp
+  - graph/minimum_hamiltonian_cycle.hpp
   timestamp: '2023-05-04 20:25:23+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/DPL_2_A.test.cpp
   - test/yukicoder/114.test.cpp
+  - test/aoj/DPL_2_A.test.cpp
   - test/library_checker/matrix/hafnian_of_matrix.test.cpp
   - test_atcoder/abc180e.test.cpp
 documentation_of: enumerate/bits.hpp

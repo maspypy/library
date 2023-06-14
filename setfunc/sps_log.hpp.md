@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
   - icon: ':x:'
@@ -152,8 +152,8 @@ data:
   timestamp: '2023-06-14 19:10:38+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/arc105.test.cpp
   - test_atcoder/abc213g.test.cpp
+  - test_atcoder/arc105.test.cpp
 documentation_of: setfunc/sps_log.hpp
 layout: document
 redirect_from:
