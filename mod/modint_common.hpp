@@ -36,7 +36,6 @@ mint fact(int n) {
 
 template <typename mint>
 mint fact_inv(int n) {
-  static const int mod = mint::get_mod();
   static vector<mint> dat = {1, 1};
   if (n < 0) return mint(0);
   while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));
