@@ -16,13 +16,13 @@ data:
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':question:'
@@ -32,7 +32,7 @@ data:
   - icon: ':x:'
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
   - icon: ':warning:'
@@ -54,7 +54,7 @@ data:
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - icon: ':x:'
@@ -119,7 +119,7 @@ data:
     title: test_atcoder/arc154f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/fps_div.hpp\"\n\n#line 2 \"poly/count_terms.hpp\"\n\
@@ -415,38 +415,38 @@ data:
   isVerificationFile: false
   path: poly/fps_div.hpp
   requiredBy:
-  - poly/coef_of_rational_fps.hpp
-  - poly/composed_product.hpp
-  - poly/sum_of_power_of_roots.hpp
-  - poly/slice_rational_fps.hpp
-  - poly/composed_sum.hpp
-  - linalg/implicit_matrix/vandermonde.hpp
   - seq/interpolate_linear_rec.hpp
   - seq/famous/bell_number_large.hpp
+  - poly/composed_product.hpp
+  - poly/coef_of_rational_fps.hpp
+  - poly/sum_of_power_of_roots.hpp
+  - poly/composed_sum.hpp
+  - poly/slice_rational_fps.hpp
+  - linalg/implicit_matrix/vandermonde.hpp
   timestamp: '2023-06-14 19:10:38+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/578.test.cpp
-  - test/yukicoder/1844.test.cpp
-  - test/yukicoder/1516.test.cpp
-  - test/yukicoder/1962.test.cpp
-  - test/yukicoder/2122.test.cpp
-  - test/yukicoder/1547.test.cpp
-  - test/yukicoder/1500.test.cpp
-  - test/yukicoder/541.test.cpp
-  - test/yukicoder/2305.test.cpp
-  - test/yukicoder/1533.test.cpp
-  - test/yukicoder/1561.test.cpp
-  - test/yukicoder/579.test.cpp
-  - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/mytest/vandermonde.test.cpp
   - test/mytest/bell.test.cpp
   - test/mytest/slice_rational_fps.test.cpp
-  - test_atcoder/arc154f.test.cpp
-  - test_atcoder/agc013e.test.cpp
+  - test/yukicoder/1500.test.cpp
+  - test/yukicoder/2305.test.cpp
+  - test/yukicoder/578.test.cpp
+  - test/yukicoder/1516.test.cpp
+  - test/yukicoder/1561.test.cpp
+  - test/yukicoder/1533.test.cpp
+  - test/yukicoder/579.test.cpp
+  - test/yukicoder/1844.test.cpp
+  - test/yukicoder/2122.test.cpp
+  - test/yukicoder/541.test.cpp
+  - test/yukicoder/1962.test.cpp
+  - test/yukicoder/1547.test.cpp
+  - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test_atcoder/abc260h.test.cpp
-  - test_atcoder/agc058d2.test.cpp
+  - test_atcoder/arc154f.test.cpp
   - test_atcoder/abc281g.test.cpp
+  - test_atcoder/agc013e.test.cpp
+  - test_atcoder/agc058d2.test.cpp
 documentation_of: poly/fps_div.hpp
 layout: document
 redirect_from:

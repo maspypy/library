@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
   _extendedRequiredBy:
@@ -62,8 +62,8 @@ data:
   timestamp: '2023-05-20 02:22:04+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/matrix/sparse_matrix_det.test.cpp
   - test/mytest/min_poly.test.cpp
+  - test/library_checker/matrix/sparse_matrix_det.test.cpp
 documentation_of: linalg/spmat_min_poly.hpp
 layout: document
 redirect_from:

@@ -335,16 +335,16 @@ data:
   isVerificationFile: false
   path: poly/poly_taylor_shift.hpp
   requiredBy:
-  - linalg/det_A_plus_xB.hpp
   - seq/famous/stirling_number_1.hpp
+  - linalg/det_A_plus_xB.hpp
   timestamp: '2023-06-14 19:10:38+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1907.test.cpp
   - test/yukicoder/1303.test.cpp
+  - test/yukicoder/1907.test.cpp
   - test/yukicoder/1875.test.cpp
-  - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
+  - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
 documentation_of: poly/poly_taylor_shift.hpp
 layout: document

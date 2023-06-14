@@ -8,13 +8,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/uniqueproductquery.hpp
     title: ds/offline_query/uniqueproductquery.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
   - icon: ':heavy_check_mark:'
     path: geo/manhattan_nns.hpp
     title: geo/manhattan_nns.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -33,10 +33,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
     title: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/sort_segtree.test.cpp
     title: test/library_checker/datastructure/sort_segtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/sort_segtree_1.test.cpp
     title: test/library_checker/datastructure/sort_segtree_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -48,7 +48,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -182,38 +182,38 @@ data:
   isVerificationFile: false
   path: ds/segtree/segtree.hpp
   requiredBy:
-  - string/suffix_tree.hpp
+  - graph/minimum_spanning_tree.hpp
+  - graph/ds/tree_monoid.hpp
   - geo/manhattan_nns.hpp
+  - string/suffix_tree.hpp
+  - ds/segtree/sortable_segtree.hpp
   - ds/offline_query/uniqueproductquery.hpp
   - ds/offline_query/range_mex_query.hpp
-  - ds/segtree/sortable_segtree.hpp
-  - graph/ds/tree_monoid.hpp
-  - graph/minimum_spanning_tree.hpp
   timestamp: '2023-04-14 22:06:29+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1549.test.cpp
-  - test/yukicoder/1036_2.test.cpp
-  - test/yukicoder/1212.test.cpp
-  - test/yukicoder/426.test.cpp
-  - test/yukicoder/1435.test.cpp
-  - test/yukicoder/529.test.cpp
-  - test/aoj/GRL_2_A.test.cpp
   - test/aoj/ITP2_3_B.test.cpp
-  - test/library_checker/datastructure/sort_segtree_1.test.cpp
-  - test/library_checker/datastructure/sort_segtree.test.cpp
-  - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
-  - test/library_checker/datastructure/staticrmq_seg.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
+  - test/mytest/segtree_xor_prod.test.cpp
   - test/mytest/manhattan_nns.test.cpp
   - test/mytest/range_mex.test.cpp
   - test/mytest/suffix_tree.test.cpp
-  - test/mytest/segtree_xor_prod.test.cpp
+  - test/yukicoder/1549.test.cpp
+  - test/yukicoder/1036_2.test.cpp
+  - test/yukicoder/529.test.cpp
+  - test/yukicoder/426.test.cpp
+  - test/yukicoder/1212.test.cpp
+  - test/yukicoder/1435.test.cpp
+  - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+  - test/library_checker/datastructure/staticrmq_seg.test.cpp
+  - test/library_checker/datastructure/sort_segtree_1.test.cpp
+  - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - test/library_checker/datastructure/sort_segtree.test.cpp
   - test_atcoder/abc237g.test.cpp
-  - test_atcoder/abc174f.test.cpp
   - test_atcoder/abc270_f.test.cpp
+  - test_atcoder/abc174f.test.cpp
   - test_atcoder/abc240ex.test.cpp
 documentation_of: ds/segtree/segtree.hpp
 layout: document
