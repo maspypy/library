@@ -1,26 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/larsch.hpp
     title: convex/larsch.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/smawk.hpp
     title: convex/smawk.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/fibonacci_search.hpp
     title: other/fibonacci_search.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/705.test.cpp
     title: test/yukicoder/705.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://noshi91.github.io/algorithm-encyclopedia/d-edge-shortest-path-monge
+    - https://topcoder-g-hatena-ne-jp.jag-icpc.org/spaghetti_source/20120915/1347668163.html
   bundledCode: "#line 2 \"convex/larsch.hpp\"\n\n// https://noshi91.github.io/Library/algorithm/larsch.cpp.html\n\
     template <class T>\nclass LARSCH {\n  struct reduce_row;\n  struct reduce_col;\n\
     \n  struct reduce_row {\n    int n;\n    std::function<T(int, int)> f;\n    int\
@@ -110,7 +111,15 @@ data:
     \ cost = [&](int frm, int to) -> T { return f(frm, to) + lambda; };\r\n    vc<T>\
     \ dp = monge_shortest_path<T>(N, cost);\r\n    return dp[N] - lambda * d;\r\n\
     \  };\r\n\r\n  auto [x, fx] = fibonacci_search<T, false>(calc_L, -3 * f_lim, 3\
-    \ * f_lim + 1);\r\n  return fx;\r\n}\r\n"
+    \ * f_lim + 1);\r\n  return fx;\r\n}\r\n\r\n// https://topcoder-g-hatena-ne-jp.jag-icpc.org/spaghetti_source/20120915/1347668163.html\r\
+    \n// Prop 1\r\n// \u4E0A\u4E09\u89D2 monge A, B\r\n// C[i][j] = min_k (A[i][k]\
+    \ + B[k][j])\r\ntemplate <typename T, typename F1, typename F2>\r\nvvc<T> monge_matrix_product(int\
+    \ N, F1 A, F2 B) {\r\n  vv(T, C, N + 1, N + 1, infty<T>);\r\n  vc<int> K(N + 1);\r\
+    \n  FOR(i, N + 1) C[i][i] = A(i, i) + B(i, i), K[i] = i;\r\n  FOR(s, 1, N + 1)\
+    \ {\r\n    vc<int> newK(N + 1 - s);\r\n    FOR(i, N + 1 - s) {\r\n      int j\
+    \ = i + s;\r\n      int p = K[i], q = K[i + 1];\r\n      FOR(k, p, q + 1) if (chmin(C[i][j],\
+    \ A(i, k) + B(k, j))) newK[i] = k;\r\n    }\r\n    swap(K, newK);\r\n  }\r\n \
+    \ return C;\r\n}\r\n"
   code: "#include \"convex/larsch.hpp\"\r\n#include \"convex/smawk.hpp\"\r\n#include\
     \ \"other/fibonacci_search.hpp\"\r\n\r\n// \u5B9A\u7FA9\u57DF [0, N] \u306E\u7BC4\
     \u56F2\u3067 f \u306E monge \u6027\u3092\u78BA\u8A8D\r\ntemplate <typename T,\
@@ -141,7 +150,15 @@ data:
     \ cost = [&](int frm, int to) -> T { return f(frm, to) + lambda; };\r\n    vc<T>\
     \ dp = monge_shortest_path<T>(N, cost);\r\n    return dp[N] - lambda * d;\r\n\
     \  };\r\n\r\n  auto [x, fx] = fibonacci_search<T, false>(calc_L, -3 * f_lim, 3\
-    \ * f_lim + 1);\r\n  return fx;\r\n}\r\n"
+    \ * f_lim + 1);\r\n  return fx;\r\n}\r\n\r\n// https://topcoder-g-hatena-ne-jp.jag-icpc.org/spaghetti_source/20120915/1347668163.html\r\
+    \n// Prop 1\r\n// \u4E0A\u4E09\u89D2 monge A, B\r\n// C[i][j] = min_k (A[i][k]\
+    \ + B[k][j])\r\ntemplate <typename T, typename F1, typename F2>\r\nvvc<T> monge_matrix_product(int\
+    \ N, F1 A, F2 B) {\r\n  vv(T, C, N + 1, N + 1, infty<T>);\r\n  vc<int> K(N + 1);\r\
+    \n  FOR(i, N + 1) C[i][i] = A(i, i) + B(i, i), K[i] = i;\r\n  FOR(s, 1, N + 1)\
+    \ {\r\n    vc<int> newK(N + 1 - s);\r\n    FOR(i, N + 1 - s) {\r\n      int j\
+    \ = i + s;\r\n      int p = K[i], q = K[i + 1];\r\n      FOR(k, p, q + 1) if (chmin(C[i][j],\
+    \ A(i, k) + B(k, j))) newK[i] = k;\r\n    }\r\n    swap(K, newK);\r\n  }\r\n \
+    \ return C;\r\n}\r\n"
   dependsOn:
   - convex/larsch.hpp
   - convex/smawk.hpp
@@ -149,8 +166,8 @@ data:
   isVerificationFile: false
   path: convex/monge.hpp
   requiredBy: []
-  timestamp: '2023-06-11 16:51:17+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-06-14 19:10:38+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/705.test.cpp
 documentation_of: convex/monge.hpp
