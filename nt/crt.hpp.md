@@ -15,7 +15,7 @@ data:
     title: nt/primetest.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/187.test.cpp
     title: test/yukicoder/187.test.cpp
   - icon: ':heavy_check_mark:'
@@ -146,10 +146,10 @@ data:
   timestamp: '2023-05-12 18:15:39+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1956.test.cpp
+  - test/yukicoder/187.test.cpp
   - test/yukicoder/2119.test.cpp
   - test/yukicoder/590.test.cpp
-  - test/yukicoder/187.test.cpp
-  - test/yukicoder/1956.test.cpp
 documentation_of: nt/crt.hpp
 layout: document
 redirect_from:

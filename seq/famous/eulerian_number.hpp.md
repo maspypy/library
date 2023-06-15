@@ -33,7 +33,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/eulerian_number.test.cpp
     title: test/mytest/eulerian_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1821.test.cpp
     title: test/yukicoder/1821.test.cpp
   - icon: ':x:'
@@ -331,9 +331,9 @@ data:
   timestamp: '2023-06-14 19:10:38+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/eulerian_number.test.cpp
   - test/yukicoder/1821.test.cpp
   - test/yukicoder/2005.test.cpp
+  - test/mytest/eulerian_number.test.cpp
 documentation_of: seq/famous/eulerian_number.hpp
 layout: document
 redirect_from:

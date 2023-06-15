@@ -12,7 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1142.test.cpp
     title: test/yukicoder/1142.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1753.test.cpp
     title: test/yukicoder/1753.test.cpp
   - icon: ':x:'
@@ -39,8 +39,8 @@ data:
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1753.test.cpp
   - test/yukicoder/1142.test.cpp
+  - test/yukicoder/1753.test.cpp
   - test/library_checker/convolution/bitwise_xor_convolution.test.cpp
   - test_atcoder/abc212h.test.cpp
 documentation_of: setfunc/hadamard.hpp

@@ -12,7 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/dynamic_segtree_sparse.test.cpp
     title: test/mytest/dynamic_segtree_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1649_2.test.cpp
     title: test/yukicoder/1649_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -24,9 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/789_3.test.cpp
     title: test/yukicoder/789_3.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/dynamic_segtree_sparse.hpp\"\n\n// \u5E38\u306B\
@@ -174,15 +174,15 @@ data:
   path: ds/segtree/dynamic_segtree_sparse.hpp
   requiredBy: []
   timestamp: '2023-04-14 22:06:08+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/dynamic_segtree_sparse.test.cpp
   - test/yukicoder/789_3.test.cpp
   - test/yukicoder/2242.test.cpp
-  - test/yukicoder/1649_2.test.cpp
   - test/yukicoder/1826_2.test.cpp
-  - test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
+  - test/yukicoder/1649_2.test.cpp
   - test/library_checker/datastructure/double_ended_pq_2.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
+  - test/mytest/dynamic_segtree_sparse.test.cpp
 documentation_of: ds/segtree/dynamic_segtree_sparse.hpp
 layout: document
 redirect_from:

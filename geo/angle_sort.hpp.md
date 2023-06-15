@@ -131,12 +131,12 @@ data:
   timestamp: '2023-04-08 00:43:46+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/qoj5443.test.cpp
-  - test/mytest/count_points_in_triangles.test.cpp
-  - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
-  - test_atcoder/abc202_f.test.cpp
+  - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
+  - test/mytest/count_points_in_triangles.test.cpp
+  - test/mytest/qoj5443.test.cpp
   - test_atcoder/abc139f.test.cpp
+  - test_atcoder/abc202_f.test.cpp
 documentation_of: geo/angle_sort.hpp
 layout: document
 redirect_from:
