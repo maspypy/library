@@ -524,8 +524,8 @@ data:
   timestamp: '2023-06-14 19:10:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
+  - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
 documentation_of: seq/famous/stirling_number_1.hpp
 layout: document
 redirect_from:

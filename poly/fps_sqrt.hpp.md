@@ -505,9 +505,9 @@ data:
   timestamp: '2023-06-14 19:10:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/count_bipartite.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - test/mytest/count_bipartite.test.cpp
 documentation_of: poly/fps_sqrt.hpp
 layout: document
 redirect_from:
