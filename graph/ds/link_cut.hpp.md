@@ -138,13 +138,13 @@ data:
   isVerificationFile: false
   path: graph/ds/link_cut.hpp
   requiredBy:
-  - graph/ds/link_cut_subtree.hpp
   - graph/ds/link_cut_path.hpp
+  - graph/ds/link_cut_subtree.hpp
   timestamp: '2023-06-11 17:11:06+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/2296.test.cpp
   - test/yukicoder/2295.test.cpp
+  - test/yukicoder/2296.test.cpp
   - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
 documentation_of: graph/ds/link_cut.hpp
 layout: document

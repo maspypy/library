@@ -177,29 +177,29 @@ data:
   isVerificationFile: false
   path: linalg/mat_mul.hpp
   requiredBy:
-  - poly/sparse_exp_of_div.hpp
+  - seq/kth_term_of_p_recursive.hpp
   - poly/prefix_product_of_poly.hpp
   - poly/from_log_differentiation.hpp
+  - poly/sparse_exp_of_div.hpp
   - linalg/det_A_plus_xB.hpp
   - linalg/mat_pow.hpp
-  - seq/kth_term_of_p_recursive.hpp
   timestamp: '2023-06-14 19:10:38+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/mytest/min_poly.test.cpp
+  - test/mytest/factorial_998.test.cpp
+  - test/yukicoder/1303.test.cpp
+  - test/yukicoder/502_2.test.cpp
+  - test/yukicoder/1750.test.cpp
+  - test/yukicoder/2166.test.cpp
+  - test/yukicoder/426.test.cpp
   - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/1907.test.cpp
   - test/yukicoder/1810.test.cpp
-  - test/yukicoder/1750.test.cpp
-  - test/yukicoder/1303.test.cpp
-  - test/yukicoder/2166.test.cpp
-  - test/yukicoder/426.test.cpp
-  - test/yukicoder/502_2.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp
-  - test/mytest/factorial_998.test.cpp
-  - test/mytest/min_poly.test.cpp
-  - test_atcoder/abc276_g_2.test.cpp
   - test_atcoder/abc222h_2.test.cpp
   - test_atcoder/abc276_g.test.cpp
+  - test_atcoder/abc276_g_2.test.cpp
 documentation_of: linalg/mat_mul.hpp
 layout: document
 redirect_from:

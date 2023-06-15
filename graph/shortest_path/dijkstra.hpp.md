@@ -139,16 +139,16 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/dijkstra.hpp
   requiredBy:
-  - graph/shortest_path/K_shortest_walk.hpp
   - graph/mincostcycle.hpp
+  - graph/shortest_path/K_shortest_walk.hpp
   timestamp: '2023-05-20 20:14:16+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1320.test.cpp
-  - test/yukicoder/1601.test.cpp
   - test/aoj/2251_2.test.cpp
   - test/aoj/0275.test.cpp
   - test/aoj/2251_1.test.cpp
+  - test/yukicoder/1320.test.cpp
+  - test/yukicoder/1601.test.cpp
   - test/library_checker/graph/K_shortest_walk.test.cpp
   - test/library_checker/graph/shortest_path.test.cpp
   - test_atcoder/arc151_e.test.cpp

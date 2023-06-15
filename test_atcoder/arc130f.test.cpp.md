@@ -1,12 +1,24 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: convex/cht.hpp
-    title: convex/cht.hpp
   - icon: ':question:'
     path: convex/cht_monotone.hpp
     title: convex/cht_monotone.hpp
+  - icon: ':x:'
+    path: convex/fenchel.hpp
+    title: convex/fenchel.hpp
+  - icon: ':question:'
+    path: geo/base.hpp
+    title: geo/base.hpp
+  - icon: ':x:'
+    path: geo/convex_hull.hpp
+    title: geo/convex_hull.hpp
+  - icon: ':question:'
+    path: mod/modint.hpp
+    title: mod/modint.hpp
+  - icon: ':question:'
+    path: mod/modint_common.hpp
+    title: mod/modint_common.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -15,15 +27,15 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1297
+    PROBLEM: https://atcoder.jp/contests/arc130/tasks/arc130_f
     links:
-    - https://yukicoder.me/problems/no/1297
-  bundledCode: "#line 1 \"test/yukicoder/1297.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/1297\"\
+    - https://atcoder.jp/contests/arc130/tasks/arc130_f
+  bundledCode: "#line 1 \"test_atcoder/arc130f.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/arc130/tasks/arc130_f\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -204,12 +216,174 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 1 \"convex/cht_monotone.hpp\"\n// \u633F\u5165\u3057\u306A\
-    \u304C\u3089 query_monotone \u3092\u4F7F\u3046\u5834\u5408\u3001\u76F4\u7DDA\u306E\
-    \u633F\u5165\u9806\u3068\u540C\u3058\u65B9\u5411\u306E\u5358\u8ABF\u6027\u304C\
-    \u5FC5\u8981\r\ntemplate <typename T, bool isMin>\r\nstruct CHT_monotone {\r\n\
-    #define F first\r\n#define S second\r\n  using P = pair<T, T>;\r\n  deque<P> H;\r\
-    \n\r\n  CHT_monotone() = default;\r\n\r\n  bool empty() const { return H.empty();\
+    \ yes(!t); }\n#line 4 \"test_atcoder/arc130f.test.cpp\"\n\n#line 2 \"mod/modint_common.hpp\"\
+    \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
+    \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
+    \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
+    \ decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate <typename\
+    \ mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n  static\
+    \ vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n \
+    \ while (len(dat) <= n) {\n    int k = len(dat);\n    int q = (mod + k - 1) /\
+    \ k;\n    dat.eb(dat[k * q - mod] * mint(q));\n  }\n  return dat[n];\n}\n\ntemplate\
+    \ <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  assert(0 <= n);\n  if (n >= mod) return 0;\n  static vector<mint> dat = {1,\
+    \ 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * mint(len(dat)));\n \
+    \ return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static\
+    \ vector<mint> dat = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat)\
+    \ <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\
+    \ntemplate <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1)\
+    \ * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint, class Head, class...\
+    \ Tail>\nmint multinomial(Head &&head, Tail &&... tail) {\n  return fact<mint>(head)\
+    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
+    mint C_dense(int n, int k) {\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n\
+    \  auto calc = [&](int i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1)\
+    \ : mint(0));\n    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n  if\
+    \ (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k +\
+    \ 1) { C[i][j] = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n\
+    \    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n      FOR(j,\
+    \ W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return C[n][k];\n\
+    }\n\ntemplate <typename mint, bool large = false, bool dense = false>\nmint C(ll\
+    \ n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if (dense)\
+    \ return C_dense<mint>(n, k);\n  if (!large) return multinomial<mint>(n, k, n\
+    \ - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n \
+    \ return x * fact_inv<mint>(k);\n}\n\ntemplate <typename mint, bool large = false>\n\
+    mint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if\
+    \ (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return\
+    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d] (1-x) ^ {-n} \u306E\u8A08\u7B97\n\
+    template <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
+    \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\
+    \ return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large, dense>(n + d\
+    \ - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
+    \ {\n  static_assert(mod < (1 << 30));\n  int val;\n  constexpr modint(const ll\
+    \ val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val) % mod) %\
+    \ mod) {}\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
+    \  } // To use std::map\n  modint &operator+=(const modint &p) {\n    if ((val\
+    \ += p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator-=(const\
+    \ modint &p) {\n    if ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n\
+    \  }\n  modint &operator*=(const modint &p) {\n    val = (int)(1LL * val * p.val\
+    \ % mod);\n    return *this;\n  }\n  modint &operator/=(const modint &p) {\n \
+    \   *this *= p.inverse();\n    return *this;\n  }\n  modint operator-() const\
+    \ { return modint(-val); }\n  modint operator+(const modint &p) const { return\
+    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
+    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
+    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
+    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
+    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
+    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
+    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
+    \ return modint(u);\n  }\n  modint pow(ll n) const {\n    assert(n >= 0);\n  \
+    \  modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
+    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n\
+    \  void write() { fastio::printer.write(val); }\n  void read() { fastio::scanner.read(val);\
+    \ }\n#endif\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r\
+    \ \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info()\
+    \ {\n    if (mod == 167772161) return {25, 17};\n    if (mod == 469762049) return\
+    \ {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841)\
+    \ return {23, 211};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
+    \ 1045430273) return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n\
+    \    if (mod == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static\
+    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\nusing modint107\
+    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 2 \"geo/base.hpp\"\
+    \ntemplate <typename T>\nstruct Point {\n  T x, y;\n\n  Point() = default;\n\n\
+    \  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template\
+    \ <typename A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  Point\
+    \ operator+(Point p) const { return {x + p.x, y + p.y}; }\n  Point operator-(Point\
+    \ p) const { return {x - p.x, y - p.y}; }\n  bool operator==(Point p) const {\
+    \ return x == p.x && y == p.y; }\n  Point operator-() const { return {-x, -y};\
+    \ }\n\n  bool operator<(Point p) const {\n    if (x != p.x) return x < p.x;\n\
+    \    return y < p.y;\n  }\n  T dot(Point other) { return x * other.x + y * other.y;\
+    \ }\n  T det(Point other) { return x * other.y - y * other.x; }\n\n  void read()\
+    \ { fastio::read(x), fastio::read(y); }\n  void write() { fastio::printer.write(pair<T,\
+    \ T>({x, y})); }\n};\n\n// A -> B -> C \u3068\u9032\u3080\u3068\u304D\u306B\u3001\
+    \u5DE6\u306B\u66F2\u304C\u308B\u306A\u3089\u3070 +1\u3001\u53F3\u306B\u66F2\u304C\
+    \u308B\u306A\u3089\u3070 -1\ntemplate <typename T>\nint ccw(Point<T> A, Point<T>\
+    \ B, Point<T> C) {\n  T x = (B - A).det(C - A);\n  if (x > 0) return 1;\n  if\
+    \ (x < 0) return -1;\n  return 0;\n}\n\ntemplate <typename REAL, typename T>\n\
+    REAL dist(Point<T> A, Point<T> B) {\n  A = A - B;\n  T p = A.dot(A);\n  return\
+    \ sqrt(REAL(p));\n}\n\ntemplate <typename T>\nstruct Line {\n  T a, b, c;\n\n\
+    \  Line(T a, T b, T c) : a(a), b(b), c(c) {}\n  Line(Point<T> A, Point<T> B) {\n\
+    \    a = A.y - B.y, b = B.x - A.x, c = A.x * B.y - A.y * B.x;\n  }\n  Line(T x1,\
+    \ T y1, T x2, T y2) : Line(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n  template\
+    \ <typename U>\n  U eval(Point<U> P) {\n    return a * P.x + b * P.y + c;\n  }\n\
+    \n  template <typename U>\n  T eval(U x, U y) {\n    return a * x + b * y + c;\n\
+    \  }\n\n  bool is_parallel(Line other) { return a * other.b - b * other.a == 0;\
+    \ }\n\n  bool is_orthogonal(Line other) { return a * other.a + b * other.b ==\
+    \ 0; }\n};\n\ntemplate <typename T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T>\
+    \ A, Point<T> B) : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
+    \ y1), Point<T>(x2, y2)) {}\n\n  template <enable_if_t<is_integral<T>::value,\
+    \ int> = 0>\n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n \
+    \   if (det != 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A\
+    \ - B) >= 0;\n  }\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate\
+    \ <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle(Point<REAL>\
+    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
+    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
+    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n\n\
+    template <typename T>\nstruct Polygon {\n  vc<Point<T>> points;\n  T a;\n\n  template\
+    \ <typename A, typename B>\n  Polygon(vc<pair<A, B>> pairs) {\n    for (auto&&\
+    \ [a, b]: pairs) points.eb(Point<T>(a, b));\n    build();\n  }\n  Polygon(vc<Point<T>>\
+    \ points) : points(points) { build(); }\n\n  int size() { return len(points);\
+    \ }\n\n  template <typename REAL>\n  REAL area() {\n    return a * 0.5;\n  }\n\
+    \n  template <enable_if_t<is_integral<T>::value, int> = 0>\n  T area_2() {\n \
+    \   return a;\n  }\n\n  bool is_convex() {\n    FOR(j, len(points)) {\n      int\
+    \ i = (j == 0 ? len(points) - 1 : j - 1);\n      int k = (j == len(points) - 1\
+    \ ? 0 : j + 1);\n      if ((points[j] - points[i]).det(points[k] - points[j])\
+    \ < 0) return false;\n    }\n    return true;\n  }\n\nprivate:\n  void build()\
+    \ {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1 == len(points)\
+    \ ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n    if (a < 0) {\n\
+    \      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n#line 2 \"geo/convex_hull.hpp\"\
+    \n\ntemplate <typename T>\nvector<int> ConvexHull(vector<pair<T, T>>& XY, string\
+    \ mode = \"full\",\n                       bool inclusive = false, bool sorted\
+    \ = false) {\n  assert(mode == \"full\" || mode == \"lower\" || mode == \"upper\"\
+    );\n  ll N = XY.size();\n  if (N == 1) return {0};\n  if (N == 2) return {0, 1};\n\
+    \  vc<int> I = argsort(XY);\n\n  auto check = [&](ll i, ll j, ll k) -> bool {\n\
+    \    auto xi = XY[i].fi, yi = XY[i].se;\n    auto xj = XY[j].fi, yj = XY[j].se;\n\
+    \    auto xk = XY[k].fi, yk = XY[k].se;\n    auto dx1 = xj - xi, dy1 = yj - yi;\n\
+    \    auto dx2 = xk - xj, dy2 = yk - yj;\n    T det = dx1 * dy2 - dy1 * dx2;\n\
+    \    return (inclusive ? det >= 0 : det > 0);\n  };\n\n  auto calc = [&]() {\n\
+    \    vector<int> P;\n    for (auto&& k: I) {\n      while (P.size() > 1) {\n \
+    \       auto i = P[P.size() - 2];\n        auto j = P[P.size() - 1];\n       \
+    \ if (check(i, j, k)) break;\n        P.pop_back();\n      }\n      P.eb(k);\n\
+    \    }\n    return P;\n  };\n\n  vc<int> P;\n  if (mode == \"full\" || mode ==\
+    \ \"lower\") {\n    vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n  }\n\
+    \  if (mode == \"full\" || mode == \"upper\") {\n    if (!P.empty()) P.pop_back();\n\
+    \    reverse(all(I));\n    vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n\
+    \  }\n  if (mode == \"upper\") reverse(all(P));\n  if (len(P) >= 2 && P[0] ==\
+    \ P.back()) P.pop_back();\n  return P;\n}\n\ntemplate <typename T>\nvector<int>\
+    \ ConvexHull(vector<Point<T>>& XY, string mode = \"full\",\n                 \
+    \      bool inclusive = false, bool sorted = false) {\n  assert(mode == \"full\"\
+    \ || mode == \"lower\" || mode == \"upper\");\n  ll N = XY.size();\n  if (N ==\
+    \ 1) return {0};\n  if (N == 2) return {0, 1};\n  vc<int> I = argsort(XY);\n\n\
+    \  auto check = [&](ll i, ll j, ll k) -> bool {\n    auto xi = XY[i].x, yi = XY[i].y;\n\
+    \    auto xj = XY[j].x, yj = XY[j].y;\n    auto xk = XY[k].x, yk = XY[k].y;\n\
+    \    auto dx1 = xj - xi, dy1 = yj - yi;\n    auto dx2 = xk - xj, dy2 = yk - yj;\n\
+    \    T det = dx1 * dy2 - dy1 * dx2;\n    return (inclusive ? det >= 0 : det >\
+    \ 0);\n  };\n\n  auto calc = [&]() {\n    vector<int> P;\n    for (auto&& k: I)\
+    \ {\n      while (P.size() > 1) {\n        auto i = P[P.size() - 2];\n       \
+    \ auto j = P[P.size() - 1];\n        if (check(i, j, k)) break;\n        P.pop_back();\n\
+    \      }\n      P.eb(k);\n    }\n    return P;\n  };\n\n  vc<int> P;\n  if (mode\
+    \ == \"full\" || mode == \"lower\") {\n    vc<int> Q = calc();\n    P.insert(P.end(),\
+    \ all(Q));\n  }\n  if (mode == \"full\" || mode == \"upper\") {\n    if (!P.empty())\
+    \ P.pop_back();\n    reverse(all(I));\n    vc<int> Q = calc();\n    P.insert(P.end(),\
+    \ all(Q));\n  }\n  if (mode == \"upper\") reverse(all(P));\n  if (len(P) >= 2\
+    \ && P[0] == P.back()) P.pop_back();\n  return P;\n}\n#line 3 \"convex/fenchel.hpp\"\
+    \n\n// (L,R,a,b)\uFF1A\u50BE\u304D\u304C [L,R) \u306E\u3068\u304D (a,b) \u3092\
+    \u901A\u308B\ntemplate <typename T>\nvc<tuple<T, T, T, T>> Fenchel(vc<Point<T>>\
+    \ XY, string mode, bool sorted) {\n  if (mode == \"upper\") {\n    for (auto&&\
+    \ p: XY) p.y = -p.y;\n    vc<tuple<T, T, T, T>> res;\n    for (auto&& [L, R, a,\
+    \ b]: Fenchel(XY, \"lower\", sorted)) {\n      T l = (R == infty<T> ? -infty<T>\
+    \ : 1 - R);\n      T r = (L == -infty<T> ? infty<T> : 1 - L);\n      chmax(l,\
+    \ -infty<T>), chmin(r, infty<T>);\n      res.eb(l, r, a, -b);\n    }\n    reverse(all(res));\n\
+    \    return res;\n  }\n  auto I = ConvexHull(XY, \"lower\", false, sorted);\n\
+    \  XY = rearrange(XY, I);\n  vc<tuple<T, T, T, T>> res;\n\n  ll lo = -infty<ll>;\n\
+    \  FOR(i, len(XY)) {\n    T hi = infty<T>;\n    if (i + 1 < len(XY)) {\n     \
+    \ chmin(hi, floor(XY[i + 1].y - XY[i].y, XY[i + 1].x - XY[i].x) + 1);\n    };\n\
+    \    if (lo < hi) res.eb(lo, hi, XY[i].x, XY[i].y);\n    lo = hi;\n  }\n  return\
+    \ res;\n}\n#line 1 \"convex/cht_monotone.hpp\"\n// \u633F\u5165\u3057\u306A\u304C\
+    \u3089 query_monotone \u3092\u4F7F\u3046\u5834\u5408\u3001\u76F4\u7DDA\u306E\u633F\
+    \u5165\u9806\u3068\u540C\u3058\u65B9\u5411\u306E\u5358\u8ABF\u6027\u304C\u5FC5\
+    \u8981\r\ntemplate <typename T, bool isMin>\r\nstruct CHT_monotone {\r\n#define\
+    \ F first\r\n#define S second\r\n  using P = pair<T, T>;\r\n  deque<P> H;\r\n\r\
+    \n  CHT_monotone() = default;\r\n\r\n  bool empty() const { return H.empty();\
     \ }\r\n\r\n  void clear() { H.clear(); }\r\n\r\n  inline int sgn(T x) { return\
     \ x == 0 ? 0 : (x < 0 ? -1 : 1); }\r\n\r\n  using D = long double;\r\n\r\n  inline\
     \ bool check(const P &a, const P &b, const P &c) {\r\n    if (b.S == a.S || c.S\
@@ -237,80 +411,41 @@ data:
     \n  }\r\n\r\n  T query_monotone_dec(T x) {\r\n    assert(!empty());\r\n    while\
     \ (H.size() >= 2 && get_y(H.back(), x) >= get_y(H[H.size() - 2], x))\r\n     \
     \ H.pop_back();\r\n    if (isMin) return get_y(H.back(), x);\r\n    return -get_y(H.back(),\
-    \ x);\r\n  }\r\n\r\n#undef F\r\n#undef S\r\n};\n#line 1 \"convex/cht.hpp\"\n\r\
-    \ntemplate <typename T>\r\nstruct Line {\r\n  mutable T k, m, p;\r\n  bool operator<(const\
-    \ Line& o) const { return k < o.k; }\r\n  bool operator<(T x) const { return p\
-    \ < x; }\r\n};\r\n\r\ntemplate <typename T>\r\nT lc_inf() {\r\n  return numeric_limits<T>::max();\r\
-    \n}\r\ntemplate <>\r\nlong double lc_inf<long double>() {\r\n  return 1 / .0;\r\
-    \n}\r\n\r\ntemplate <typename T>\r\nT lc_div(T a, T b) {\r\n  return a / b - ((a\
-    \ ^ b) < 0 and a % b);\r\n}\r\ntemplate <>\r\nlong double lc_div(long double a,\
-    \ long double b) {\r\n  return a / b;\r\n};\r\ntemplate <>\r\ndouble lc_div(double\
-    \ a, double b) {\r\n  return a / b;\r\n};\r\n\r\ntemplate <typename T, bool MINIMIZE\
-    \ = true>\r\nstruct LineContainer : multiset<Line<T>, less<>> {\r\n  using super\
-    \ = multiset<Line<T>, less<>>;\r\n  using super::begin, super::end, super::insert,\
-    \ super::erase;\r\n  using super::empty, super::lower_bound;\r\n  T inf = lc_inf<T>();\r\
-    \n  bool insect(typename super::iterator x, typename super::iterator y) {\r\n\
-    \    if (y == end()) return x->p = inf, false;\r\n    if (x->k == y->k)\r\n  \
-    \    x->p = (x->m > y->m ? inf : -inf);\r\n    else\r\n      x->p = lc_div(y->m\
-    \ - x->m, x->k - y->k);\r\n    return x->p >= y->p;\r\n  }\r\n  void add(T k,\
-    \ T m) {\r\n    if (MINIMIZE) { k = -k, m = -m; }\r\n    auto z = insert({k, m,\
-    \ 0}), y = z++, x = y;\r\n    while (insect(y, z)) z = erase(z);\r\n    if (x\
-    \ != begin() and insect(--x, y)) insect(x, y = erase(y));\r\n    while ((y = x)\
-    \ != begin() and (--x)->p >= y->p) insect(x, erase(y));\r\n  }\r\n  T query(T\
-    \ x) {\r\n    assert(!empty());\r\n    auto l = *lower_bound(x);\r\n    T v =\
-    \ (l.k * x + l.m);\r\n    return (MINIMIZE ? -v : v);\r\n  }\r\n};\r\n\r\ntemplate\
-    \ <typename T>\r\nusing CHT_min = LineContainer<T, true>;\r\ntemplate <typename\
-    \ T>\r\nusing CHT_max = LineContainer<T, false>;\r\n\r\n/*\r\nlong long / double\
-    \ \u3067\u52D5\u304F\u3068\u601D\u3046\u3002\u30AF\u30A8\u30EA\u3042\u305F\u308A\
-    \ O(log N)\r\n\u30FBadd(a, b)\uFF1Aax + by \u306E\u8FFD\u52A0\r\n\u30FBget_max(x,y)\uFF1A\
-    max_{a,b} (ax + by)\r\n\u30FBget_min(x,y)\uFF1Amax_{a,b} (ax + by)\r\n*/\r\ntemplate\
-    \ <typename T>\r\nstruct CHT_xy {\r\n  using ld = long double;\r\n  CHT_min<ld>\
-    \ cht_min;\r\n  CHT_max<ld> cht_max;\r\n  T amax = -infty<T>, amin = infty<T>;\r\
-    \n  T bmax = -infty<T>, bmin = infty<T>;\r\n  bool empty = true;\r\n\r\n  void\
-    \ clear() {\r\n    empty = true;\r\n    cht_min.clear();\r\n    cht_max.clear();\r\
-    \n  }\r\n  void add(T a, T b) {\r\n    empty = false;\r\n    cht_min.add(b, a);\r\
-    \n    cht_max.add(b, a);\r\n    chmax(amax, a), chmin(amin, a), chmax(bmax, b),\
-    \ chmin(bmin, b);\r\n  }\r\n\r\n  T get_max(T x, T y) {\r\n    if (cht_min.empty())\
-    \ return -infty<T>;\r\n    if (x == 0) { return max(bmax * y, bmin * y); }\r\n\
-    \    ld z = ld(y) / x;\r\n    if (x > 0) {\r\n      auto l = cht_max.lower_bound(z);\r\
-    \n      ll a = l->m, b = l->k;\r\n      return a * x + b * y;\r\n    }\r\n   \
-    \ auto l = cht_min.lower_bound(z);\r\n    ll a = -(l->m), b = -(l->k);\r\n   \
-    \ return a * x + b * y;\r\n  }\r\n\r\n  T get_min(T x, T y) { return -get_max(-x,\
-    \ -y); }\r\n};\r\n#line 6 \"test/yukicoder/1297.test.cpp\"\n\nvoid solve() {\n\
-    \  LL(N, C);\n  CHT_monotone<ll, true> X2;\n  CHT_min<ll> X1;\n\n  FOR(i, N +\
-    \ 1) {\n    ll dp = 0;\n    if (i) dp = X1.query(i) + (i * i - i) * C;\n    if\
-    \ (i == N) return print(dp / 2);\n    {\n      ll a = i;\n      ll b = dp + (i\
-    \ * i - i) * C;\n      X2.add(a, b);\n    }\n    LL(A, B);\n    A *= 2, B *= 2;\n\
-    \    ll x = -2 * C * i - A;\n    ll y = X2.query(x);\n    y += 2 * (i * i + i)\
-    \ * C + B;\n    {\n      ll a = A - 2 * C * i;\n      ll b = y;\n      X1.add(a,\
-    \ b);\n    }\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1297\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"convex/cht_monotone.hpp\"\n#include \"\
-    convex/cht.hpp\"\n\nvoid solve() {\n  LL(N, C);\n  CHT_monotone<ll, true> X2;\n\
-    \  CHT_min<ll> X1;\n\n  FOR(i, N + 1) {\n    ll dp = 0;\n    if (i) dp = X1.query(i)\
-    \ + (i * i - i) * C;\n    if (i == N) return print(dp / 2);\n    {\n      ll a\
-    \ = i;\n      ll b = dp + (i * i - i) * C;\n      X2.add(a, b);\n    }\n    LL(A,\
-    \ B);\n    A *= 2, B *= 2;\n    ll x = -2 * C * i - A;\n    ll y = X2.query(x);\n\
-    \    y += 2 * (i * i + i) * C + B;\n    {\n      ll a = A - 2 * C * i;\n     \
-    \ ll b = y;\n      X1.add(a, b);\n    }\n  }\n}\n\nsigned main() {\n  cout <<\
-    \ fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
-    \  return 0;\n}\n"
+    \ x);\r\n  }\r\n\r\n#undef F\r\n#undef S\r\n};\n#line 8 \"test_atcoder/arc130f.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  vc<Point<ll>>\
+    \ XY(N);\n  FOR(i, N) XY[i] = {i, A[i]};\n\n  CHT_monotone<ll, false> cht;\n \
+    \ for (auto&& [L, R, a, b]: Fenchel(XY, \"lower\", true)) {\n    if (L != -infty<ll>)\
+    \ { cht.add(L, b - a * L); }\n    if (R != infty<ll>) { cht.add(R - 1, b - a *\
+    \ (R - 1)); }\n  }\n\n  FOR(i, N) A[i] = cht.query_monotone_inc(i);\n  print(SUM<ll>(A));\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/arc130/tasks/arc130_f\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
+    \n#include \"convex/fenchel.hpp\"\n#include \"convex/cht_monotone.hpp\"\n\nusing\
+    \ mint = modint998;\n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  vc<Point<ll>>\
+    \ XY(N);\n  FOR(i, N) XY[i] = {i, A[i]};\n\n  CHT_monotone<ll, false> cht;\n \
+    \ for (auto&& [L, R, a, b]: Fenchel(XY, \"lower\", true)) {\n    if (L != -infty<ll>)\
+    \ { cht.add(L, b - a * L); }\n    if (R != infty<ll>) { cht.add(R - 1, b - a *\
+    \ (R - 1)); }\n  }\n\n  FOR(i, N) A[i] = cht.query_monotone_inc(i);\n  print(SUM<ll>(A));\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
+  - mod/modint.hpp
+  - mod/modint_common.hpp
+  - convex/fenchel.hpp
+  - geo/convex_hull.hpp
+  - geo/base.hpp
   - convex/cht_monotone.hpp
-  - convex/cht.hpp
   isVerificationFile: true
-  path: test/yukicoder/1297.test.cpp
+  path: test_atcoder/arc130f.test.cpp
   requiredBy: []
-  timestamp: '2023-03-30 23:49:23+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-06-15 09:47:47+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yukicoder/1297.test.cpp
+documentation_of: test_atcoder/arc130f.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/1297.test.cpp
-- /verify/test/yukicoder/1297.test.cpp.html
-title: test/yukicoder/1297.test.cpp
+- /verify/test_atcoder/arc130f.test.cpp
+- /verify/test_atcoder/arc130f.test.cpp.html
+title: test_atcoder/arc130f.test.cpp
 ---
