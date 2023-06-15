@@ -52,8 +52,8 @@ data:
   timestamp: '2022-12-12 09:21:17+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1881.test.cpp
   - test/yukicoder/1411.test.cpp
+  - test/yukicoder/1881.test.cpp
   - test_atcoder/abc152e.test.cpp
 documentation_of: nt/lpf_table.hpp
 layout: document

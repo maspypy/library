@@ -138,8 +138,8 @@ data:
   timestamp: '2023-04-08 02:18:53+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/2264.test.cpp
   - test/yukicoder/1728.test.cpp
+  - test/yukicoder/2264.test.cpp
   - test_atcoder/abc212g.test.cpp
 documentation_of: nt/function_on_divisors.hpp
 layout: document
