@@ -67,9 +67,9 @@ data:
   timestamp: '2023-05-20 02:22:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/min_poly.test.cpp
   - test/yukicoder/310.test.cpp
   - test/library_checker/matrix/implicit_matrix.test.cpp
+  - test/mytest/min_poly.test.cpp
 documentation_of: linalg/implicit_matrix/min_poly.hpp
 layout: document
 redirect_from:

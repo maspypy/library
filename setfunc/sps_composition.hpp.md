@@ -5,14 +5,14 @@ data:
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: setfunc/sps_log.hpp
     title: setfunc/sps_log.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/composition_sps.test.cpp
     title: test/library_checker/math/composition_sps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc213g.test.cpp
     title: test_atcoder/abc213g.test.cpp
   - icon: ':x:'
@@ -94,8 +94,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/math/composition_sps.test.cpp
-  - test_atcoder/arc105.test.cpp
   - test_atcoder/abc213g.test.cpp
+  - test_atcoder/arc105.test.cpp
 documentation_of: setfunc/sps_composition.hpp
 layout: document
 redirect_from:

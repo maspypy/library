@@ -315,11 +315,11 @@ data:
   timestamp: '2023-06-14 19:10:38+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/pascal.test.cpp
   - test/yukicoder/2108.test.cpp
   - test/yukicoder/2243.test.cpp
-  - test_atcoder/abc260h.test.cpp
+  - test/mytest/pascal.test.cpp
   - test_atcoder/abc267g.test.cpp
+  - test_atcoder/abc260h.test.cpp
   - test_atcoder/abc285h.test.cpp
 documentation_of: linalg/implicit_matrix/pascal.hpp
 layout: document
