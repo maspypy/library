@@ -382,6 +382,9 @@ data:
     path: test/mytest/bell.test.cpp
     title: test/mytest/bell.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/catalan_convolution.test.cpp
+    title: test/mytest/catalan_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1053,6 +1056,7 @@ data:
   - test/mytest/online_exp.test.cpp
   - test/mytest/conv_leq.test.cpp
   - test/mytest/count_bipartite.test.cpp
+  - test/mytest/catalan_convolution.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/online_log.test.cpp
   - test/mytest/simple_perm.test.cpp
