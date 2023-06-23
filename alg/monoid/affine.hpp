@@ -4,6 +4,7 @@ template <typename K>
 struct Monoid_Affine {
   using F = pair<K, K>;
   using value_type = F;
+  using X = value_type;
   static constexpr F op(const F &x, const F &y) noexcept {
     return F({x.first * y.first, x.second * y.first + y.second});
   }
