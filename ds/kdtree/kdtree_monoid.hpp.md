@@ -116,8 +116,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1625.test.cpp
-  - test/aoj/DSL_2_C.test.cpp
   - test/mytest/kdtree_monoid.test.cpp
+  - test/aoj/DSL_2_C.test.cpp
 documentation_of: ds/kdtree/kdtree_monoid.hpp
 layout: document
 redirect_from:

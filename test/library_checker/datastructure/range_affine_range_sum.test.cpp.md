@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/sum_affine.hpp
     title: alg/acted_monoid/sum_affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -292,15 +292,15 @@ data:
     \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
     \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"alg/monoid/affine.hpp\"\
     \n\ntemplate <typename K>\nstruct Monoid_Affine {\n  using F = pair<K, K>;\n \
-    \ using value_type = F;\n  static constexpr F op(const F &x, const F &y) noexcept\
-    \ {\n    return F({x.first * y.first, x.second * y.first + y.second});\n  }\n\
-    \  static constexpr F inverse(const F &x) {\n    auto [a, b] = x;\n    a = K(1)\
-    \ / a;\n    return {a, a * (-b)};\n  }\n  static constexpr K eval(const F &f,\
-    \ K x) noexcept {\n    return f.first * x + f.second;\n  }\n  static constexpr\
-    \ F unit() { return {K(1), K(0)}; }\n  static constexpr bool commute = false;\n\
-    };\n#line 3 \"alg/acted_monoid/sum_affine.hpp\"\n\r\ntemplate <typename E>\r\n\
-    struct ActedMonoid_Sum_Affine {\r\n  using Monoid_X = Monoid_Add<E>;\r\n  using\
-    \ Monoid_A = Monoid_Affine<E>;\r\n  using X = typename Monoid_X::value_type;\r\
+    \ using value_type = F;\n  using X = value_type;\n  static constexpr F op(const\
+    \ F &x, const F &y) noexcept {\n    return F({x.first * y.first, x.second * y.first\
+    \ + y.second});\n  }\n  static constexpr F inverse(const F &x) {\n    auto [a,\
+    \ b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n  }\n  static constexpr\
+    \ K eval(const F &f, K x) noexcept {\n    return f.first * x + f.second;\n  }\n\
+    \  static constexpr F unit() { return {K(1), K(0)}; }\n  static constexpr bool\
+    \ commute = false;\n};\n#line 3 \"alg/acted_monoid/sum_affine.hpp\"\n\r\ntemplate\
+    \ <typename E>\r\nstruct ActedMonoid_Sum_Affine {\r\n  using Monoid_X = Monoid_Add<E>;\r\
+    \n  using Monoid_A = Monoid_Affine<E>;\r\n  using X = typename Monoid_X::value_type;\r\
     \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
     \ X &x, const A &a, const ll &size) {\r\n    return x * a.fi + E(size) * a.se;\r\
     \n  }\r\n};\r\n#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -387,7 +387,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-06-14 19:10:38+09:00'
+  timestamp: '2023-06-23 23:16:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_affine_range_sum.test.cpp

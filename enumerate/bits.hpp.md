@@ -54,8 +54,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/114.test.cpp
-  - test/aoj/DPL_2_A.test.cpp
   - test/library_checker/matrix/hafnian_of_matrix.test.cpp
+  - test/aoj/DPL_2_A.test.cpp
   - test_atcoder/abc180e.test.cpp
 documentation_of: enumerate/bits.hpp
 layout: document

@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/255.test.cpp
     title: test/yukicoder/255.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add_pair.hpp\"\n\r\ntemplate <typename E>\r\n\
@@ -24,17 +24,18 @@ data:
     \ -x.se}; }\r\n  static constexpr X unit() { return {0, 0}; }\r\n  static constexpr\
     \ bool commute = true;\r\n};\r\n#line 2 \"alg/monoid/affine.hpp\"\n\ntemplate\
     \ <typename K>\nstruct Monoid_Affine {\n  using F = pair<K, K>;\n  using value_type\
-    \ = F;\n  static constexpr F op(const F &x, const F &y) noexcept {\n    return\
-    \ F({x.first * y.first, x.second * y.first + y.second});\n  }\n  static constexpr\
-    \ F inverse(const F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n    return\
-    \ {a, a * (-b)};\n  }\n  static constexpr K eval(const F &f, K x) noexcept {\n\
-    \    return f.first * x + f.second;\n  }\n  static constexpr F unit() { return\
-    \ {K(1), K(0)}; }\n  static constexpr bool commute = false;\n};\n#line 3 \"alg/acted_monoid/cntsum_affine.hpp\"\
-    \n\ntemplate <typename E>\nstruct ActedMonoid_CntSum_Affine {\n  using Monoid_X\
-    \ = Monoid_Add_Pair<E>;\n  using Monoid_A = Monoid_Affine<E>;\n  using X = typename\
-    \ Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n  static\
-    \ constexpr X act(const X &x, const A &a, const ll &size) {\n    return {x.fi,\
-    \ x.se * a.fi + x.fi * a.se};\n  }\n};\n"
+    \ = F;\n  using X = value_type;\n  static constexpr F op(const F &x, const F &y)\
+    \ noexcept {\n    return F({x.first * y.first, x.second * y.first + y.second});\n\
+    \  }\n  static constexpr F inverse(const F &x) {\n    auto [a, b] = x;\n    a\
+    \ = K(1) / a;\n    return {a, a * (-b)};\n  }\n  static constexpr K eval(const\
+    \ F &f, K x) noexcept {\n    return f.first * x + f.second;\n  }\n  static constexpr\
+    \ F unit() { return {K(1), K(0)}; }\n  static constexpr bool commute = false;\n\
+    };\n#line 3 \"alg/acted_monoid/cntsum_affine.hpp\"\n\ntemplate <typename E>\n\
+    struct ActedMonoid_CntSum_Affine {\n  using Monoid_X = Monoid_Add_Pair<E>;\n \
+    \ using Monoid_A = Monoid_Affine<E>;\n  using X = typename Monoid_X::value_type;\n\
+    \  using A = typename Monoid_A::value_type;\n  static constexpr X act(const X\
+    \ &x, const A &a, const ll &size) {\n    return {x.fi, x.se * a.fi + x.fi * a.se};\n\
+    \  }\n};\n"
   code: "#include \"alg/monoid/add_pair.hpp\"\n#include \"alg/monoid/affine.hpp\"\n\
     \ntemplate <typename E>\nstruct ActedMonoid_CntSum_Affine {\n  using Monoid_X\
     \ = Monoid_Add_Pair<E>;\n  using Monoid_A = Monoid_Affine<E>;\n  using X = typename\
@@ -47,8 +48,8 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/cntsum_affine.hpp
   requiredBy: []
-  timestamp: '2022-12-04 11:32:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-06-23 23:16:45+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/255.test.cpp
 documentation_of: alg/acted_monoid/cntsum_affine.hpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -146,11 +146,11 @@ data:
   verifiedWith:
   - test/yukicoder/1320.test.cpp
   - test/yukicoder/1601.test.cpp
-  - test/aoj/2251_2.test.cpp
-  - test/aoj/0275.test.cpp
-  - test/aoj/2251_1.test.cpp
-  - test/library_checker/graph/K_shortest_walk.test.cpp
   - test/library_checker/graph/shortest_path.test.cpp
+  - test/library_checker/graph/K_shortest_walk.test.cpp
+  - test/aoj/2251_2.test.cpp
+  - test/aoj/2251_1.test.cpp
+  - test/aoj/0275.test.cpp
   - test_atcoder/arc151_e.test.cpp
 documentation_of: graph/shortest_path/dijkstra.hpp
 layout: document

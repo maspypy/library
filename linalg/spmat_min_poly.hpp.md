@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
@@ -62,8 +62,8 @@ data:
   timestamp: '2023-05-20 02:22:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/matrix/sparse_matrix_det.test.cpp
   - test/mytest/min_poly.test.cpp
+  - test/library_checker/matrix/sparse_matrix_det.test.cpp
 documentation_of: linalg/spmat_min_poly.hpp
 layout: document
 redirect_from:

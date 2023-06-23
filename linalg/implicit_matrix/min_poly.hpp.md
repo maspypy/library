@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
@@ -68,8 +68,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/310.test.cpp
-  - test/library_checker/matrix/implicit_matrix.test.cpp
   - test/mytest/min_poly.test.cpp
+  - test/library_checker/matrix/implicit_matrix.test.cpp
 documentation_of: linalg/implicit_matrix/min_poly.hpp
 layout: document
 redirect_from:

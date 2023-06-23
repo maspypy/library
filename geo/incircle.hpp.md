@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/triangle_area.hpp
     title: geo/triangle_area.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL_7_B.test.cpp
     title: test/aoj/CGL_7_B.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -23,6 +23,7 @@ data:
     \ B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+(Point p) const { return {x\
     \ + p.x, y + p.y}; }\n  Point operator-(Point p) const { return {x - p.x, y -\
     \ p.y}; }\n  bool operator==(Point p) const { return x == p.x && y == p.y; }\n\
+    \  bool operator!=(Point p) const { return x != p.x || y != p.y || z == p.z; }\n\
     \  Point operator-() const { return {-x, -y}; }\n\n  bool operator<(Point p) const\
     \ {\n    if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n  T dot(Point\
     \ other) { return x * other.x + y * other.y; }\n  T det(Point other) { return\
@@ -86,8 +87,8 @@ data:
   isVerificationFile: false
   path: geo/incircle.hpp
   requiredBy: []
-  timestamp: '2023-04-08 00:43:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-06-23 23:20:58+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/CGL_7_B.test.cpp
 documentation_of: geo/incircle.hpp

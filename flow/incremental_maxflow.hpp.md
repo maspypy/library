@@ -11,7 +11,7 @@ data:
   bundledCode: "#line 1 \"flow/incremental_maxflow.hpp\"\ntemplate <typename Cap>\n\
     struct Incremental_MaxFlow {\n  struct Edge {\n    int to, rev;\n    Cap cap;\n\
     \  };\n\n  int N;\n  int source, sink;\n  Cap flow_ans;\n  vvc<Edge> G;\n  vc<int>\
-    \ prog, level;\n\n  Incremental_MaxFlow(int N, int source, int sinkF)\n      :\
+    \ prog, level;\n\n  Incremental_MaxFlow(int N, int source, int sink)\n      :\
     \ N(N), source(source), sink(sink), flow_ans(0) {\n    G.resize(N);\n  }\n\n \
     \ void add(int frm, int to, Cap cap) {\n    assert(0 <= frm && frm < N);\n   \
     \ assert(0 <= to && to < N);\n    assert(Cap(0) <= cap);\n    if (len(G) < N)\
@@ -40,7 +40,7 @@ data:
   code: "template <typename Cap>\nstruct Incremental_MaxFlow {\n  struct Edge {\n\
     \    int to, rev;\n    Cap cap;\n  };\n\n  int N;\n  int source, sink;\n  Cap\
     \ flow_ans;\n  vvc<Edge> G;\n  vc<int> prog, level;\n\n  Incremental_MaxFlow(int\
-    \ N, int source, int sinkF)\n      : N(N), source(source), sink(sink), flow_ans(0)\
+    \ N, int source, int sink)\n      : N(N), source(source), sink(sink), flow_ans(0)\
     \ {\n    G.resize(N);\n  }\n\n  void add(int frm, int to, Cap cap) {\n    assert(0\
     \ <= frm && frm < N);\n    assert(0 <= to && to < N);\n    assert(Cap(0) <= cap);\n\
     \    if (len(G) < N) G.resize(N);\n    G[frm].eb(Edge{to, (int)G[to].size(), cap});\n\
@@ -69,7 +69,7 @@ data:
   isVerificationFile: false
   path: flow/incremental_maxflow.hpp
   requiredBy: []
-  timestamp: '2023-02-02 01:33:15+09:00'
+  timestamp: '2023-06-23 23:20:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: flow/incremental_maxflow.hpp

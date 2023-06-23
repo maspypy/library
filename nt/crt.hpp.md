@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   _extendedRequiredBy: []
@@ -148,8 +148,8 @@ data:
   verifiedWith:
   - test/yukicoder/1956.test.cpp
   - test/yukicoder/187.test.cpp
-  - test/yukicoder/2119.test.cpp
   - test/yukicoder/590.test.cpp
+  - test/yukicoder/2119.test.cpp
 documentation_of: nt/crt.hpp
 layout: document
 redirect_from:

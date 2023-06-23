@@ -185,8 +185,8 @@ data:
   timestamp: '2023-05-01 17:26:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/mytest/splay_am.test.cpp
+  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
 documentation_of: ds/splaytree/splaytree_acted_monoid.hpp
 layout: document
 redirect_from:

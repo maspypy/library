@@ -68,9 +68,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/705.test.cpp
-  - test/mytest/minplus_convex.test.cpp
-  - test/mytest/maxplus_concave.test.cpp
   - test/mytest/smawk.test.cpp
+  - test/mytest/maxplus_concave.test.cpp
+  - test/mytest/minplus_convex.test.cpp
 documentation_of: convex/smawk.hpp
 layout: document
 redirect_from:

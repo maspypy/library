@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/max_norm_sum.hpp
     title: geo/max_norm_sum.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/geometry/sort_points_by_argument.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/count_points_in_triangles.test.cpp
     title: test/mytest/count_points_in_triangles.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/qoj5443.test.cpp
     title: test/mytest/qoj5443.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc139f.test.cpp
     title: test_atcoder/abc139f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/angle_sort.hpp\"\n\r\n#line 2 \"geo/base.hpp\"\ntemplate\
@@ -41,7 +41,8 @@ data:
     \ A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+(Point\
     \ p) const { return {x + p.x, y + p.y}; }\n  Point operator-(Point p) const {\
     \ return {x - p.x, y - p.y}; }\n  bool operator==(Point p) const { return x ==\
-    \ p.x && y == p.y; }\n  Point operator-() const { return {-x, -y}; }\n\n  bool\
+    \ p.x && y == p.y; }\n  bool operator!=(Point p) const { return x != p.x || y\
+    \ != p.y || z == p.z; }\n  Point operator-() const { return {-x, -y}; }\n\n  bool\
     \ operator<(Point p) const {\n    if (x != p.x) return x < p.x;\n    return y\
     \ < p.y;\n  }\n  T dot(Point other) { return x * other.x + y * other.y; }\n  T\
     \ det(Point other) { return x * other.y - y * other.x; }\n\n  void read() { fastio::read(x),\
@@ -128,13 +129,13 @@ data:
   requiredBy:
   - geo/count_points_in_triangles.hpp
   - geo/max_norm_sum.hpp
-  timestamp: '2023-04-08 00:43:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-06-23 23:20:58+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/geometry/sort_points_by_argument.test.cpp
-  - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - test/mytest/count_points_in_triangles.test.cpp
   - test/mytest/qoj5443.test.cpp
+  - test/mytest/count_points_in_triangles.test.cpp
+  - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
+  - test/library_checker/geometry/sort_points_by_argument.test.cpp
   - test_atcoder/abc139f.test.cpp
   - test_atcoder/abc202_f.test.cpp
 documentation_of: geo/angle_sort.hpp

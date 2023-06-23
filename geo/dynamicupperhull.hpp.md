@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/geometry/convex_layers.test.cpp
     title: test/library_checker/geometry/convex_layers.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/blog/entry/75929
@@ -21,6 +21,7 @@ data:
     \ B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+(Point p) const { return {x\
     \ + p.x, y + p.y}; }\n  Point operator-(Point p) const { return {x - p.x, y -\
     \ p.y}; }\n  bool operator==(Point p) const { return x == p.x && y == p.y; }\n\
+    \  bool operator!=(Point p) const { return x != p.x || y != p.y || z == p.z; }\n\
     \  Point operator-() const { return {-x, -y}; }\n\n  bool operator<(Point p) const\
     \ {\n    if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n  T dot(Point\
     \ other) { return x * other.x + y * other.y; }\n  T det(Point other) { return\
@@ -191,8 +192,8 @@ data:
   isVerificationFile: false
   path: geo/dynamicupperhull.hpp
   requiredBy: []
-  timestamp: '2023-05-20 13:28:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-06-23 23:20:58+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/geometry/convex_layers.test.cpp
 documentation_of: geo/dynamicupperhull.hpp

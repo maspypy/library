@@ -39,8 +39,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/2230.test.cpp
-  - test/aoj/DPL_1_D.test.cpp
   - test/library_checker/math/longest_increasing_subsequence.test.cpp
+  - test/aoj/DPL_1_D.test.cpp
 documentation_of: seq/longest_increasing_subsequence.hpp
 layout: document
 redirect_from:

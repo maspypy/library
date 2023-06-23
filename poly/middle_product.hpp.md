@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -206,12 +206,12 @@ data:
   isVerificationFile: false
   path: poly/middle_product.hpp
   requiredBy:
-  - string/wildcard_pattern_matching.hpp
-  - poly/partial_frac_decomposition_1.hpp
-  - poly/multivar_convolution_cyclic.hpp
-  - poly/multipoint.hpp
   - poly/slice_rational_fps.hpp
+  - poly/multivar_convolution_cyclic.hpp
+  - poly/partial_frac_decomposition_1.hpp
+  - poly/multipoint.hpp
   - linalg/implicit_matrix/vandermonde.hpp
+  - string/wildcard_pattern_matching.hpp
   - seq/count_grid_path.hpp
   timestamp: '2023-04-27 23:29:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -219,20 +219,20 @@ data:
   - test/yukicoder/2231.test.cpp
   - test/yukicoder/2166.test.cpp
   - test/yukicoder/2243.test.cpp
-  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
-  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
   - test/mytest/chirp_z.test.cpp
   - test/mytest/vandermonde.test.cpp
   - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/partial_frac.test.cpp
-  - test_atcoder/abc241h.test.cpp
-  - test_atcoder/abc272_h.test.cpp
+  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
+  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
   - test_atcoder/abc267g.test.cpp
-  - test_atcoder/agc013e.test.cpp
+  - test_atcoder/abc241h.test.cpp
   - test_atcoder/abc260h.test.cpp
+  - test_atcoder/agc013e.test.cpp
+  - test_atcoder/abc272_h.test.cpp
   - test_atcoder/agc058d2.test.cpp
 documentation_of: poly/middle_product.hpp
 layout: document

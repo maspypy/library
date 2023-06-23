@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   _extendedRequiredBy:
@@ -48,7 +48,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/eulerian_number.test.cpp
     title: test/mytest/eulerian_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/qoj5443.test.cpp
     title: test/mytest/qoj5443.test.cpp
   - icon: ':heavy_check_mark:'
@@ -78,7 +78,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2206.test.cpp
     title: test/yukicoder/2206.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -90,9 +90,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = long long>\n\
@@ -132,35 +132,35 @@ data:
   requiredBy:
   - poly/poly_taylor_shift.hpp
   - linalg/det_A_plus_xB.hpp
-  - seq/famous/surjection.hpp
-  - seq/famous/stirling_number_1.hpp
   - seq/famous/stirling_number_2.hpp
   - seq/famous/eulerian_number.hpp
+  - seq/famous/surjection.hpp
+  - seq/famous/stirling_number_1.hpp
   timestamp: '2022-12-12 09:21:17+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1907.test.cpp
+  - test/yukicoder/1760.test.cpp
+  - test/yukicoder/1821.test.cpp
   - test/yukicoder/2206.test.cpp
-  - test/yukicoder/1321.test.cpp
+  - test/yukicoder/1907.test.cpp
+  - test/yukicoder/1392.test.cpp
   - test/yukicoder/1303.test.cpp
   - test/yukicoder/1875.test.cpp
-  - test/yukicoder/1821.test.cpp
-  - test/yukicoder/1760.test.cpp
-  - test/yukicoder/1392.test.cpp
   - test/yukicoder/2005.test.cpp
-  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
-  - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
-  - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
+  - test/yukicoder/1321.test.cpp
   - test/mytest/eulerian_number.test.cpp
-  - test/mytest/bell.test.cpp
   - test/mytest/qoj5443.test.cpp
+  - test/mytest/bell.test.cpp
+  - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
+  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
+  - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
+  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
+  - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
+  - test_atcoder/abc281g.test.cpp
   - test_atcoder/abc249_ex.test.cpp
   - test_atcoder/arc153f.test.cpp
   - test_atcoder/abc202_f.test.cpp
-  - test_atcoder/abc281g.test.cpp
 documentation_of: mod/powertable.hpp
 layout: document
 redirect_from:

@@ -99,18 +99,18 @@ data:
   path: ds/sparse_table/sparse_table.hpp
   requiredBy:
   - string/suffix_array.hpp
-  - string/suffix_tree.hpp
   - string/sort_substrings.hpp
   - string/longest_common_substring.hpp
+  - string/suffix_tree.hpp
   timestamp: '2023-04-08 01:03:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/string/number_of_substrings.test.cpp
-  - test/library_checker/string/suffix_array.test.cpp
-  - test/library_checker/string/suffix_array_vec.test.cpp
-  - test/library_checker/datastructure/staticrmq_sparse.test.cpp
-  - test/mytest/longest_common_substr.test.cpp
   - test/mytest/suffix_tree.test.cpp
+  - test/mytest/longest_common_substr.test.cpp
+  - test/library_checker/datastructure/staticrmq_sparse.test.cpp
+  - test/library_checker/string/number_of_substrings.test.cpp
+  - test/library_checker/string/suffix_array_vec.test.cpp
+  - test/library_checker/string/suffix_array.test.cpp
   - test_atcoder/arc151_e.test.cpp
   - test_atcoder/abc240ex.test.cpp
 documentation_of: ds/sparse_table/sparse_table.hpp

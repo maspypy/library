@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/fenchel.hpp
     title: convex/fenchel.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc130f.test.cpp
     title: test_atcoder/arc130f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -23,6 +23,7 @@ data:
     \ B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+(Point p) const { return {x\
     \ + p.x, y + p.y}; }\n  Point operator-(Point p) const { return {x - p.x, y -\
     \ p.y}; }\n  bool operator==(Point p) const { return x == p.x && y == p.y; }\n\
+    \  bool operator!=(Point p) const { return x != p.x || y != p.y || z == p.z; }\n\
     \  Point operator-() const { return {-x, -y}; }\n\n  bool operator<(Point p) const\
     \ {\n    if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n  T dot(Point\
     \ other) { return x * other.x + y * other.y; }\n  T det(Point other) { return\
@@ -142,8 +143,8 @@ data:
   path: geo/convex_hull.hpp
   requiredBy:
   - convex/fenchel.hpp
-  timestamp: '2023-05-26 18:58:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-06-23 23:20:58+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/arc130f.test.cpp
 documentation_of: geo/convex_hull.hpp

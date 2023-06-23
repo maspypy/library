@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/intervals.hpp
     title: ds/intervals.hpp
   - icon: ':heavy_check_mark:'
@@ -51,18 +51,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc237g1.test.cpp
     title: test_atcoder/abc237g1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc256d.test.cpp
     title: test_atcoder/abc256d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc256ex.test.cpp
     title: test_atcoder/abc256ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc256ex2.test.cpp
     title: test_atcoder/abc256ex2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/fastset.hpp\"\n/* 64\u5206\u6728\u3002\r\ninsert, erase\r\
@@ -138,28 +138,28 @@ data:
   isVerificationFile: false
   path: ds/fastset.hpp
   requiredBy:
-  - ds/intervals.hpp
-  - ds/sortable_array.hpp
-  - ds/segtree/sortable_segtree.hpp
+  - graph/toposort.hpp
   - graph/implicit_graph/cograph_unionfind.hpp
   - graph/ds/incremental_centroid.hpp
-  - graph/toposort.hpp
+  - ds/intervals.hpp
+  - ds/segtree/sortable_segtree.hpp
+  - ds/sortable_array.hpp
   timestamp: '2023-05-20 05:12:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/2251_1.test.cpp
-  - test/aoj/2636.test.cpp
+  - test/mytest/sortable_array.test.cpp
   - test/library_checker/datastructure/predecessor_problem.test.cpp
   - test/library_checker/datastructure/sort_segtree_1.test.cpp
   - test/library_checker/datastructure/sort_segtree.test.cpp
-  - test/mytest/sortable_array.test.cpp
-  - test_atcoder/abc237g.test.cpp
-  - test_atcoder/abc256ex.test.cpp
-  - test_atcoder/abc217e.test.cpp
+  - test/aoj/2251_1.test.cpp
+  - test/aoj/2636.test.cpp
   - test_atcoder/abc256d.test.cpp
+  - test_atcoder/abc217e.test.cpp
+  - test_atcoder/abc256ex.test.cpp
+  - test_atcoder/abc237g.test.cpp
+  - test_atcoder/abc223d.test.cpp
   - test_atcoder/abc237g1.test.cpp
   - test_atcoder/abc256ex2.test.cpp
-  - test_atcoder/abc223d.test.cpp
 documentation_of: ds/fastset.hpp
 layout: document
 redirect_from:

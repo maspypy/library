@@ -48,8 +48,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/2280.test.cpp
-  - test/library_checker/math/min_of_mod_of_linear_2.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
+  - test/library_checker/math/min_of_mod_of_linear_2.test.cpp
 documentation_of: mod/range_freq_of_linear.hpp
 layout: document
 redirect_from:

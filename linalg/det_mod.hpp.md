@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
   _extendedRequiredBy:
@@ -59,8 +59,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1303.test.cpp
-  - test/library_checker/matrix/matrix_det.test.cpp
   - test/library_checker/matrix/det_mod.test.cpp
+  - test/library_checker/matrix/matrix_det.test.cpp
 documentation_of: linalg/det_mod.hpp
 layout: document
 redirect_from:

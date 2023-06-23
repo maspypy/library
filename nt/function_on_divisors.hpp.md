@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   _extendedRequiredBy: []
@@ -138,8 +138,8 @@ data:
   timestamp: '2023-04-08 02:18:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1728.test.cpp
   - test/yukicoder/2264.test.cpp
+  - test/yukicoder/1728.test.cpp
   - test_atcoder/abc212g.test.cpp
 documentation_of: nt/function_on_divisors.hpp
 layout: document

@@ -2,118 +2,118 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/fenchel.hpp
     title: convex/fenchel.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/distance.hpp
     title: geo/distance.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/dynamicupperhull.hpp
     title: geo/dynamicupperhull.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/incircle.hpp
     title: geo/incircle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/incremental_convexhull.hpp
     title: geo/incremental_convexhull.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/max_norm_sum.hpp
     title: geo/max_norm_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/minimum_enclosing_circle.hpp
     title: geo/minimum_enclosing_circle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/projection.hpp
     title: geo/projection.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/reflection.hpp
     title: geo/reflection.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL_1_A.test.cpp
     title: test/aoj/CGL_1_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL_1_B.test.cpp
     title: test/aoj/CGL_1_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL_2_A.test.cpp
     title: test/aoj/CGL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL_2_B.test.cpp
     title: test/aoj/CGL_2_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL_2_C.test.cpp
     title: test/aoj/CGL_2_C.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL_2_D.test.cpp
     title: test/aoj/CGL_2_D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL_3_B.test.cpp
     title: test/aoj/CGL_3_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL_5_A.test.cpp
     title: test/aoj/CGL_5_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL_7_B.test.cpp
     title: test/aoj/CGL_7_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL_7_C.test.cpp
     title: test/aoj/CGL_7_C.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/geometry/convex_layers.test.cpp
     title: test/library_checker/geometry/convex_layers.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/geometry/sort_points_by_argument.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/count_points_in_triangles.test.cpp
     title: test/mytest/count_points_in_triangles.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/incremental_ch.test.cpp
     title: test/mytest/incremental_ch.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/qoj5443.test.cpp
     title: test/mytest/qoj5443.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc139f.test.cpp
     title: test_atcoder/abc139f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc151f.test.cpp
     title: test_atcoder/abc151f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc266c.test.cpp
     title: test_atcoder/abc266c.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc130f.test.cpp
     title: test_atcoder/arc130f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -122,6 +122,7 @@ data:
     \ B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+(Point p) const { return {x\
     \ + p.x, y + p.y}; }\n  Point operator-(Point p) const { return {x - p.x, y -\
     \ p.y}; }\n  bool operator==(Point p) const { return x == p.x && y == p.y; }\n\
+    \  bool operator!=(Point p) const { return x != p.x || y != p.y || z == p.z; }\n\
     \  Point operator-() const { return {-x, -y}; }\n\n  bool operator<(Point p) const\
     \ {\n    if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n  T dot(Point\
     \ other) { return x * other.x + y * other.y; }\n  T det(Point other) { return\
@@ -169,7 +170,8 @@ data:
     \ y(y) {}\n\n  template <typename A, typename B>\n  Point(pair<A, B> p) : x(p.fi),\
     \ y(p.se) {}\n\n  Point operator+(Point p) const { return {x + p.x, y + p.y};\
     \ }\n  Point operator-(Point p) const { return {x - p.x, y - p.y}; }\n  bool operator==(Point\
-    \ p) const { return x == p.x && y == p.y; }\n  Point operator-() const { return\
+    \ p) const { return x == p.x && y == p.y; }\n  bool operator!=(Point p) const\
+    \ { return x != p.x || y != p.y || z == p.z; }\n  Point operator-() const { return\
     \ {-x, -y}; }\n\n  bool operator<(Point p) const {\n    if (x != p.x) return x\
     \ < p.x;\n    return y < p.y;\n  }\n  T dot(Point other) { return x * other.x\
     \ + y * other.y; }\n  T det(Point other) { return x * other.y - y * other.x; }\n\
@@ -215,44 +217,44 @@ data:
   isVerificationFile: false
   path: geo/base.hpp
   requiredBy:
-  - geo/incremental_convexhull.hpp
+  - convex/fenchel.hpp
+  - geo/minimum_enclosing_circle.hpp
+  - geo/distance.hpp
+  - geo/convex_hull.hpp
+  - geo/cross_point.hpp
   - geo/outcircle.hpp
-  - geo/incircle.hpp
+  - geo/closest_pair.hpp
+  - geo/projection.hpp
   - geo/count_points_in_triangles.hpp
   - geo/dynamicupperhull.hpp
-  - geo/cross_point.hpp
-  - geo/distance.hpp
   - geo/max_norm_sum.hpp
-  - geo/convex_hull.hpp
-  - geo/minimum_enclosing_circle.hpp
-  - geo/closest_pair.hpp
-  - geo/angle_sort.hpp
+  - geo/incircle.hpp
+  - geo/incremental_convexhull.hpp
   - geo/reflection.hpp
-  - geo/projection.hpp
-  - convex/fenchel.hpp
-  timestamp: '2023-04-08 00:43:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - geo/angle_sort.hpp
+  timestamp: '2023-06-23 23:20:58+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/aoj/CGL_2_A.test.cpp
-  - test/aoj/CGL_7_B.test.cpp
-  - test/aoj/CGL_1_A.test.cpp
-  - test/aoj/CGL_3_B.test.cpp
-  - test/aoj/CGL_5_A.test.cpp
-  - test/aoj/CGL_7_C.test.cpp
-  - test/aoj/CGL_2_B.test.cpp
-  - test/aoj/CGL_1_B.test.cpp
-  - test/aoj/CGL_2_C.test.cpp
-  - test/aoj/CGL_2_D.test.cpp
+  - test/mytest/qoj5443.test.cpp
+  - test/mytest/count_points_in_triangles.test.cpp
+  - test/mytest/incremental_ch.test.cpp
+  - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
   - test/library_checker/geometry/convex_layers.test.cpp
-  - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - test/mytest/count_points_in_triangles.test.cpp
-  - test/mytest/qoj5443.test.cpp
-  - test/mytest/incremental_ch.test.cpp
+  - test/aoj/CGL_7_B.test.cpp
+  - test/aoj/CGL_2_A.test.cpp
+  - test/aoj/CGL_2_C.test.cpp
+  - test/aoj/CGL_1_B.test.cpp
+  - test/aoj/CGL_1_A.test.cpp
+  - test/aoj/CGL_2_D.test.cpp
+  - test/aoj/CGL_7_C.test.cpp
+  - test/aoj/CGL_2_B.test.cpp
+  - test/aoj/CGL_3_B.test.cpp
+  - test/aoj/CGL_5_A.test.cpp
   - test_atcoder/abc139f.test.cpp
+  - test_atcoder/arc130f.test.cpp
   - test_atcoder/abc266c.test.cpp
   - test_atcoder/abc151f.test.cpp
-  - test_atcoder/arc130f.test.cpp
   - test_atcoder/abc202_f.test.cpp
 documentation_of: geo/base.hpp
 layout: document
