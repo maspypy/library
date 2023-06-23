@@ -1281,7 +1281,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1500.test.cpp
     title: test/yukicoder/1500.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1502.test.cpp
     title: test/yukicoder/1502.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1467,7 +1467,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1881.test.cpp
     title: test/yukicoder/1881.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1891.test.cpp
     title: test/yukicoder/1891.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1593,7 +1593,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2292.test.cpp
     title: test/yukicoder/2292.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2293.test.cpp
     title: test/yukicoder/2293.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1611,16 +1611,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2338.test.cpp
     title: test/yukicoder/2338.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2342.test.cpp
     title: test/yukicoder/2342.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2342_2.test.cpp
     title: test/yukicoder/2342_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2360.test.cpp
+    title: test/yukicoder/2360.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/2361.test.cpp
+    title: test/yukicoder/2361.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/255.test.cpp
     title: test/yukicoder/255.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2214,6 +2220,7 @@ data:
   - test/yukicoder/2149.test.cpp
   - test/yukicoder/1956.test.cpp
   - test/yukicoder/1435.test.cpp
+  - test/yukicoder/2360.test.cpp
   - test/yukicoder/1212.test.cpp
   - test/yukicoder/1760.test.cpp
   - test/yukicoder/1533.test.cpp
@@ -2415,6 +2422,7 @@ data:
   - test/yukicoder/1326.test.cpp
   - test/yukicoder/1332.test.cpp
   - test/yukicoder/1479.test.cpp
+  - test/yukicoder/2361.test.cpp
   - test/mytest/minmax_add.test.cpp
   - test/mytest/partizan.test.cpp
   - test/mytest/rbst_am_persistent.test.cpp
