@@ -37,6 +37,7 @@ struct Intervals_Fast {
   }
 
   // [L, R) 内の全データの取得
+  // f(l,r,x)
   template <typename F>
   void enumerate_range(int L, int R, F f, bool ERASE) {
     assert(LLIM <= L && L <= R && R <= RLIM);
