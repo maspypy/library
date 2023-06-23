@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/reflection.hpp
     title: geo/reflection.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     ERROR: '0.00000001'
@@ -213,11 +213,11 @@ data:
     \ p) : x(p.fi), y(p.se) {}\n\n  Point operator+(Point p) const { return {x + p.x,\
     \ y + p.y}; }\n  Point operator-(Point p) const { return {x - p.x, y - p.y}; }\n\
     \  bool operator==(Point p) const { return x == p.x && y == p.y; }\n  bool operator!=(Point\
-    \ p) const { return x != p.x || y != p.y || z == p.z; }\n  Point operator-() const\
-    \ { return {-x, -y}; }\n\n  bool operator<(Point p) const {\n    if (x != p.x)\
-    \ return x < p.x;\n    return y < p.y;\n  }\n  T dot(Point other) { return x *\
-    \ other.x + y * other.y; }\n  T det(Point other) { return x * other.y - y * other.x;\
-    \ }\n\n  void read() { fastio::read(x), fastio::read(y); }\n  void write() { fastio::printer.write(pair<T,\
+    \ p) const { return x != p.x || y != p.y; }\n  Point operator-() const { return\
+    \ {-x, -y}; }\n\n  bool operator<(Point p) const {\n    if (x != p.x) return x\
+    \ < p.x;\n    return y < p.y;\n  }\n  T dot(Point other) { return x * other.x\
+    \ + y * other.y; }\n  T det(Point other) { return x * other.y - y * other.x; }\n\
+    \n  void read() { fastio::read(x), fastio::read(y); }\n  void write() { fastio::printer.write(pair<T,\
     \ T>({x, y})); }\n};\n\n// A -> B -> C \u3068\u9032\u3080\u3068\u304D\u306B\u3001\
     \u5DE6\u306B\u66F2\u304C\u308B\u306A\u3089\u3070 +1\u3001\u53F3\u306B\u66F2\u304C\
     \u308B\u306A\u3089\u3070 -1\ntemplate <typename T>\nint ccw(Point<T> A, Point<T>\
@@ -278,8 +278,8 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2023-06-23 23:20:58+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-06-24 00:40:35+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_1_B.test.cpp
 layout: document
