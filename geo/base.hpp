@@ -14,7 +14,7 @@ struct Point {
   Point operator+(Point p) const { return {x + p.x, y + p.y}; }
   Point operator-(Point p) const { return {x - p.x, y - p.y}; }
   bool operator==(Point p) const { return x == p.x && y == p.y; }
-  bool operator!=(Point p) const { return x != p.x || y != p.y || z == p.z; }
+  bool operator!=(Point p) const { return x != p.x || y != p.y; }
   Point operator-() const { return {-x, -y}; }
 
   bool operator<(Point p) const {
