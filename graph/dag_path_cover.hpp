@@ -1,3 +1,4 @@
+#include "graph/base.hpp"
 #include "flow/maxflow.hpp"
 #include "ds/unionfind/unionfind.hpp"
 
