@@ -11,7 +11,7 @@ struct Incremental_MaxFlow {
   vvc<Edge> G;
   vc<int> prog, level;
 
-  Incremental_MaxFlow(int N, int source, int sinkF)
+  Incremental_MaxFlow(int N, int source, int sink)
       : N(N), source(source), sink(sink), flow_ans(0) {
     G.resize(N);
   }
