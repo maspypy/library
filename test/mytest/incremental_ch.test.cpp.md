@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':heavy_check_mark:'
     path: geo/incremental_convexhull.hpp
     title: geo/incremental_convexhull.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []

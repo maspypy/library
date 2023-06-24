@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/913.test.cpp
     title: test/yukicoder/913.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc130f.test.cpp
     title: test_atcoder/arc130f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/cht_monotone.hpp\"\n// \u633F\u5165\u3057\u306A\u304C\
@@ -89,7 +89,7 @@ data:
   path: convex/cht_monotone.hpp
   requiredBy: []
   timestamp: '2022-12-23 11:08:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1297.test.cpp
   - test/yukicoder/913.test.cpp
