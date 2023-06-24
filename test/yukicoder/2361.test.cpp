@@ -39,7 +39,9 @@ void solve() {
   FOR(i, N) upd(i);
 
   vi ANS(Q);
-  auto [G, rect] = suffix_tree(X);
+  Graph<int, 1> G;
+  vc<tuple<int, int, int, int>> rect;
+  tie(G, rect) = suffix_tree(X);
   ll vis = 0;
   auto dfs = [&](auto& dfs, int v) -> void {
     auto [L, R, a, b] = rect[v];
