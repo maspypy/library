@@ -19,6 +19,7 @@ pair<vvc<int>, vvc<int>> path_cycle(Graph& G) {
         P.eb(e.to);
         done[e.to] = 1;
         ok = 1;
+        break;
       }
       if (!ok) break;
     }
