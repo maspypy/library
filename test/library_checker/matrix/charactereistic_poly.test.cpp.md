@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/characteristic_poly.hpp
     title: linalg/characteristic_poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/characteristic_polynomial
@@ -266,45 +266,45 @@ data:
     \ const {\n    assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0)\
     \ {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n\
     \    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
-    \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
-    \ int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\
-    \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 167772161) return\
-    \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
-    \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
-    \ == 998244353) return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n\
-    \    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881) return\
-    \ {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
-    \ return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 1 \"linalg/characteristic_poly.hpp\"\
-    \ntemplate <typename T>\r\nvoid to_Hessenberg_matrix(vc<vc<T>>& A) {\r\n  /*\r\
-    \n  P^{-1}AP \u306E\u5F62\u306E\u5909\u63DB\u3067\u3001Hessenberg \u884C\u5217\
-    \u306B\u5909\u5F62\u3059\u308B\u3002\r\n  \u7279\u5B9A\u591A\u9805\u5F0F\u306E\
-    \u8A08\u7B97\u306B\u7528\u3044\u308B\u3053\u3068\u304C\u3067\u304D\u308B\u3002\
-    \r\n  */\r\n  int n = len(A);\r\n  FOR(k, n - 2) {\r\n    FOR3(i, k + 1, n) if\
-    \ (A[i][k] != 0) {\r\n      if (i != k + 1) {\r\n        swap(A[i], A[k + 1]);\r\
-    \n        FOR(j, n) swap(A[j][i], A[j][k + 1]);\r\n      }\r\n      break;\r\n\
-    \    }\r\n    if (A[k + 1][k] == 0) continue;\r\n    FOR3(i, k + 2, n) {\r\n \
-    \     T c = A[i][k] / A[k + 1][k];\r\n      // i \u884C\u76EE -= k+1 \u884C\u76EE\
-    \ * c\r\n      FOR(j, n) A[i][j] -= A[k + 1][j] * c;\r\n      // k+1 \u5217\u76EE\
-    \ += i \u5217\u76EE * c\r\n      FOR(j, n) A[j][k + 1] += A[j][i] * c;\r\n   \
-    \ }\r\n  }\r\n}\r\n\r\n// det(xI-A)\r\ntemplate <typename T>\r\nvc<T> characteristic_poly(vc<vc<T>>\
-    \ A) {\r\n  /*\r\n  \u30FBHessenberg \u884C\u5217\u306B\u5909\u5F62\r\n  \u30FB\
-    Hessenberg \u884C\u5217\u306E\u884C\u5217\u5F0F\u306F\u3001\u6700\u5F8C\u306E\u5217\
-    \u3067\u5834\u5408\u5206\u3051\u3059\u308C\u3070 dp \u3067\u304D\u308B\r\n  */\r\
-    \n  int n = len(A);\r\n  to_Hessenberg_matrix(A);\r\n  vc<vc<T>> DP(n + 1);\r\n\
-    \  DP[0] = {1};\r\n  FOR(k, n) {\r\n    DP[k + 1].resize(k + 2);\r\n    auto&\
-    \ dp = DP[k + 1];\r\n    // (k, k) \u6210\u5206\u3092\u4F7F\u3046\u5834\u5408\r\
-    \n    FOR(i, len(DP[k])) dp[i + 1] += DP[k][i];\r\n    FOR(i, len(DP[k])) dp[i]\
-    \ -= DP[k][i] * A[k][k];\r\n    // \u4E0B\u5074\u5BFE\u89D2\u306E\u7DCF\u7A4D\u3092\
-    \u7BA1\u7406\r\n    T prod = 1;\r\n    FOR_R(i, k) {\r\n      // (i, k) \u6210\
-    \u5206\u3092\u4F7F\u3046\u5834\u5408\r\n      prod *= A[i + 1][i];\r\n      T\
-    \ c = prod * A[i][k];\r\n      // DP[i] \u306E c \u500D\u3092\u52A0\u7B97\r\n\
-    \      FOR(j, len(DP[i])) dp[j] -= DP[i][j] * c;\r\n    }\r\n  }\r\n  return DP[n];\r\
-    \n}\r\n#line 6 \"test/library_checker/matrix/charactereistic_poly.test.cpp\"\n\
-    \r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VV(mint, A,\
-    \ N, N);\r\n  auto f = characteristic_poly(A);\r\n  print(f);\r\n}\r\n\r\nsigned\
-    \ main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout\
-    \ << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\n"
+    \ }\n  void read() {\n    fastio::scanner.read(val);\n    val = (val >= 0 ? val\
+    \ % mod : (mod - (-val) % mod) % mod);\n  }\n#endif\n  static constexpr int get_mod()\
+    \ { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr\
+    \ pair<int, int> ntt_info() {\n    if (mod == 167772161) return {25, 17};\n  \
+    \  if (mod == 469762049) return {26, 30};\n    if (mod == 754974721) return {24,\
+    \ 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod == 998244353)\
+    \ return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod\
+    \ == 1051721729) return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n\
+    \    return {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi\
+    \ != -1; }\n};\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 1 \"linalg/characteristic_poly.hpp\"\ntemplate <typename T>\r\nvoid to_Hessenberg_matrix(vc<vc<T>>&\
+    \ A) {\r\n  /*\r\n  P^{-1}AP \u306E\u5F62\u306E\u5909\u63DB\u3067\u3001Hessenberg\
+    \ \u884C\u5217\u306B\u5909\u5F62\u3059\u308B\u3002\r\n  \u7279\u5B9A\u591A\u9805\
+    \u5F0F\u306E\u8A08\u7B97\u306B\u7528\u3044\u308B\u3053\u3068\u304C\u3067\u304D\
+    \u308B\u3002\r\n  */\r\n  int n = len(A);\r\n  FOR(k, n - 2) {\r\n    FOR3(i,\
+    \ k + 1, n) if (A[i][k] != 0) {\r\n      if (i != k + 1) {\r\n        swap(A[i],\
+    \ A[k + 1]);\r\n        FOR(j, n) swap(A[j][i], A[j][k + 1]);\r\n      }\r\n \
+    \     break;\r\n    }\r\n    if (A[k + 1][k] == 0) continue;\r\n    FOR3(i, k\
+    \ + 2, n) {\r\n      T c = A[i][k] / A[k + 1][k];\r\n      // i \u884C\u76EE -=\
+    \ k+1 \u884C\u76EE * c\r\n      FOR(j, n) A[i][j] -= A[k + 1][j] * c;\r\n    \
+    \  // k+1 \u5217\u76EE += i \u5217\u76EE * c\r\n      FOR(j, n) A[j][k + 1] +=\
+    \ A[j][i] * c;\r\n    }\r\n  }\r\n}\r\n\r\n// det(xI-A)\r\ntemplate <typename\
+    \ T>\r\nvc<T> characteristic_poly(vc<vc<T>> A) {\r\n  /*\r\n  \u30FBHessenberg\
+    \ \u884C\u5217\u306B\u5909\u5F62\r\n  \u30FBHessenberg \u884C\u5217\u306E\u884C\
+    \u5217\u5F0F\u306F\u3001\u6700\u5F8C\u306E\u5217\u3067\u5834\u5408\u5206\u3051\
+    \u3059\u308C\u3070 dp \u3067\u304D\u308B\r\n  */\r\n  int n = len(A);\r\n  to_Hessenberg_matrix(A);\r\
+    \n  vc<vc<T>> DP(n + 1);\r\n  DP[0] = {1};\r\n  FOR(k, n) {\r\n    DP[k + 1].resize(k\
+    \ + 2);\r\n    auto& dp = DP[k + 1];\r\n    // (k, k) \u6210\u5206\u3092\u4F7F\
+    \u3046\u5834\u5408\r\n    FOR(i, len(DP[k])) dp[i + 1] += DP[k][i];\r\n    FOR(i,\
+    \ len(DP[k])) dp[i] -= DP[k][i] * A[k][k];\r\n    // \u4E0B\u5074\u5BFE\u89D2\u306E\
+    \u7DCF\u7A4D\u3092\u7BA1\u7406\r\n    T prod = 1;\r\n    FOR_R(i, k) {\r\n   \
+    \   // (i, k) \u6210\u5206\u3092\u4F7F\u3046\u5834\u5408\r\n      prod *= A[i\
+    \ + 1][i];\r\n      T c = prod * A[i][k];\r\n      // DP[i] \u306E c \u500D\u3092\
+    \u52A0\u7B97\r\n      FOR(j, len(DP[i])) dp[j] -= DP[i][j] * c;\r\n    }\r\n \
+    \ }\r\n  return DP[n];\r\n}\r\n#line 6 \"test/library_checker/matrix/charactereistic_poly.test.cpp\"\
+    \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VV(mint,\
+    \ A, N, N);\r\n  auto f = characteristic_poly(A);\r\n  print(f);\r\n}\r\n\r\n\
+    signed main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n \
+    \ cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/characteristic_polynomial\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"mod/modint.hpp\"\
     \r\n#include \"linalg/characteristic_poly.hpp\"\r\n\r\nusing mint = modint998;\r\
@@ -320,8 +320,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/charactereistic_poly.test.cpp
   requiredBy: []
-  timestamp: '2023-06-14 19:10:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-06-30 22:46:48+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/matrix/charactereistic_poly.test.cpp
 layout: document

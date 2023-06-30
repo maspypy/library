@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/solve_linear.hpp
     title: linalg/solve_linear.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/system_of_linear_equations
@@ -269,45 +269,46 @@ data:
     \ const {\n    assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0)\
     \ {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n\
     \    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
-    \ }\n  void read() { fastio::scanner.read(val); }\n#endif\n  static constexpr\
-    \ int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\
-    \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 167772161) return\
-    \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
-    \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
-    \ == 998244353) return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n\
-    \    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881) return\
-    \ {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
-    \ return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 1 \"linalg/solve_linear.hpp\"\n/*\r\
-    \n0 \u884C\u76EE\u306B\u89E3\u306E\u3072\u3068\u3064\u3002\r\n1\uFF5E\u884C\u76EE\
-    \u306B\u89E3\u7A7A\u9593\u306E\u57FA\u5E95\u304C\u884C\u30D9\u30AF\u30C8\u30EB\
-    \u3068\u3057\u3066\u5165\u308B\u3002\r\n\u89E3\u306A\u3057 = empty\r\n*/\r\ntemplate\
-    \ <typename T>\r\nvc<vc<T>> solve_linear(const int n, const int m, vc<vc<T>> a,\
-    \ vc<T> b) {\r\n  int rk = 0;\r\n  FOR(j, m) {\r\n    if (rk == n) break;\r\n\
-    \    if (a[rk][j] == 0) {\r\n      FOR(i, rk, n) if (a[i][j] != 0) {\r\n     \
-    \   if (i == rk) break;\r\n        swap(a[rk], a[i]);\r\n        swap(b[rk], b[i]);\r\
-    \n        break;\r\n      }\r\n    }\r\n    if (a[rk][j] == 0) continue;\r\n \
-    \   T c = T(1) / a[rk][j];\r\n    for (auto&& x: a[rk]) x *= c;\r\n    b[rk] *=\
-    \ c;\r\n    FOR(i, n) if (i != rk) {\r\n      T c = a[i][j];\r\n      if (c ==\
-    \ T(0)) continue;\r\n      b[i] -= b[rk] * c;\r\n      FOR(k, j, m) { a[i][k]\
-    \ -= a[rk][k] * c; }\r\n    }\r\n    ++rk;\r\n  }\r\n  FOR(i, rk, n) if (b[i]\
-    \ != 0) return {};\r\n  vc<vc<T>> res(1, vc<T>(m));\r\n  vc<int> pivot(m, -1);\r\
-    \n  int p = 0;\r\n  FOR(i, rk) {\r\n    while (a[i][p] == 0) ++p;\r\n    res[0][p]\
-    \ = b[i];\r\n    pivot[p] = i;\r\n  }\r\n  FOR(j, m) if (pivot[j] == -1) {\r\n\
-    \    vc<T> x(m);\r\n    x[j] = -1;\r\n    FOR(k, j) if (pivot[k] != -1) x[k] =\
-    \ a[pivot[k]][j];\r\n    res.eb(x);\r\n  }\r\n  return res;\r\n}\r\n#line 1 \"\
-    linalg/matrix_rank.hpp\"\ntemplate <typename T>\nint matrix_rank(const int n,\
-    \ const int m, vc<vc<T>> a) {\n  int rk = 0;\n  FOR(j, m) {\n    if (rk == n)\
-    \ break;\n    if (a[rk][j] == 0) {\n      FOR3(i, rk + 1, n) if (a[i][j] != 0)\
-    \ {\n        swap(a[rk], a[i]);\n        break;\n      }\n    }\n    if (a[rk][j]\
-    \ == 0) continue;\n    T c = T(1) / a[rk][j];\n    FOR(k, j, m) a[rk][k] *= c;\n\
-    \    FOR(i, rk + 1, n) {\n      T c = a[i][j];\n      FOR3(k, j, m) { a[i][k]\
-    \ -= a[rk][k] * c; }\n    }\n    ++rk;\n  }\n  return rk;\n}\n#line 7 \"test/library_checker/matrix/solve_linear.test.cpp\"\
-    \n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N, M);\r\n  VV(mint, A,\
-    \ N, M);\r\n  VEC(mint, b, N);\r\n  auto xs = solve_linear(N, M, A, b);\r\n  if\
-    \ (len(xs) == 0) return print(-1);\r\n\r\n  assert(len(xs) - 1 == M - matrix_rank(N,\
-    \ M, A));\r\n\r\n  print(len(xs) - 1);\r\n  FOR(r, len(xs)) print(xs[r]);\r\n\
-    }\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \ }\n  void read() {\n    fastio::scanner.read(val);\n    val = (val >= 0 ? val\
+    \ % mod : (mod - (-val) % mod) % mod);\n  }\n#endif\n  static constexpr int get_mod()\
+    \ { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr\
+    \ pair<int, int> ntt_info() {\n    if (mod == 167772161) return {25, 17};\n  \
+    \  if (mod == 469762049) return {26, 30};\n    if (mod == 754974721) return {24,\
+    \ 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod == 998244353)\
+    \ return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod\
+    \ == 1051721729) return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n\
+    \    return {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi\
+    \ != -1; }\n};\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 1 \"linalg/solve_linear.hpp\"\n/*\r\n0 \u884C\u76EE\u306B\u89E3\u306E\u3072\
+    \u3068\u3064\u3002\r\n1\uFF5E\u884C\u76EE\u306B\u89E3\u7A7A\u9593\u306E\u57FA\u5E95\
+    \u304C\u884C\u30D9\u30AF\u30C8\u30EB\u3068\u3057\u3066\u5165\u308B\u3002\r\n\u89E3\
+    \u306A\u3057 = empty\r\n*/\r\ntemplate <typename T>\r\nvc<vc<T>> solve_linear(const\
+    \ int n, const int m, vc<vc<T>> a, vc<T> b) {\r\n  int rk = 0;\r\n  FOR(j, m)\
+    \ {\r\n    if (rk == n) break;\r\n    if (a[rk][j] == 0) {\r\n      FOR(i, rk,\
+    \ n) if (a[i][j] != 0) {\r\n        if (i == rk) break;\r\n        swap(a[rk],\
+    \ a[i]);\r\n        swap(b[rk], b[i]);\r\n        break;\r\n      }\r\n    }\r\
+    \n    if (a[rk][j] == 0) continue;\r\n    T c = T(1) / a[rk][j];\r\n    for (auto&&\
+    \ x: a[rk]) x *= c;\r\n    b[rk] *= c;\r\n    FOR(i, n) if (i != rk) {\r\n   \
+    \   T c = a[i][j];\r\n      if (c == T(0)) continue;\r\n      b[i] -= b[rk] *\
+    \ c;\r\n      FOR(k, j, m) { a[i][k] -= a[rk][k] * c; }\r\n    }\r\n    ++rk;\r\
+    \n  }\r\n  FOR(i, rk, n) if (b[i] != 0) return {};\r\n  vc<vc<T>> res(1, vc<T>(m));\r\
+    \n  vc<int> pivot(m, -1);\r\n  int p = 0;\r\n  FOR(i, rk) {\r\n    while (a[i][p]\
+    \ == 0) ++p;\r\n    res[0][p] = b[i];\r\n    pivot[p] = i;\r\n  }\r\n  FOR(j,\
+    \ m) if (pivot[j] == -1) {\r\n    vc<T> x(m);\r\n    x[j] = -1;\r\n    FOR(k,\
+    \ j) if (pivot[k] != -1) x[k] = a[pivot[k]][j];\r\n    res.eb(x);\r\n  }\r\n \
+    \ return res;\r\n}\r\n#line 1 \"linalg/matrix_rank.hpp\"\ntemplate <typename T>\n\
+    int matrix_rank(const int n, const int m, vc<vc<T>> a) {\n  int rk = 0;\n  FOR(j,\
+    \ m) {\n    if (rk == n) break;\n    if (a[rk][j] == 0) {\n      FOR3(i, rk +\
+    \ 1, n) if (a[i][j] != 0) {\n        swap(a[rk], a[i]);\n        break;\n    \
+    \  }\n    }\n    if (a[rk][j] == 0) continue;\n    T c = T(1) / a[rk][j];\n  \
+    \  FOR(k, j, m) a[rk][k] *= c;\n    FOR(i, rk + 1, n) {\n      T c = a[i][j];\n\
+    \      FOR3(k, j, m) { a[i][k] -= a[rk][k] * c; }\n    }\n    ++rk;\n  }\n  return\
+    \ rk;\n}\n#line 7 \"test/library_checker/matrix/solve_linear.test.cpp\"\n\r\n\
+    using mint = modint998;\r\nvoid solve() {\r\n  LL(N, M);\r\n  VV(mint, A, N, M);\r\
+    \n  VEC(mint, b, N);\r\n  auto xs = solve_linear(N, M, A, b);\r\n  if (len(xs)\
+    \ == 0) return print(-1);\r\n\r\n  assert(len(xs) - 1 == M - matrix_rank(N, M,\
+    \ A));\r\n\r\n  print(len(xs) - 1);\r\n  FOR(r, len(xs)) print(xs[r]);\r\n}\r\n\
+    \r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
     \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/system_of_linear_equations\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"mod/modint.hpp\"\
@@ -328,8 +329,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/solve_linear.test.cpp
   requiredBy: []
-  timestamp: '2023-06-14 19:10:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-06-30 22:46:48+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/matrix/solve_linear.test.cpp
 layout: document
