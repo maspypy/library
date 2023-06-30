@@ -53,7 +53,10 @@ struct modint {
   }
 #ifdef FASTIO
   void write() { fastio::printer.write(val); }
-  void read() { fastio::scanner.read(val); }
+  void read() {
+    fastio::scanner.read(val);
+    val = (val >= 0 ? val % mod : (mod - (-val) % mod) % mod);
+  }
 #endif
   static constexpr int get_mod() { return mod; }
   // (n, r), r は 1 の 2^n 乗根
