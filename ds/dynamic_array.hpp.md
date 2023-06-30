@@ -62,8 +62,8 @@ data:
   timestamp: '2023-06-13 23:27:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/datastructure/persistent_queue.test.cpp
   - test/library_checker/datastructure/persistent_unionfind.test.cpp
+  - test/library_checker/datastructure/persistent_queue.test.cpp
   - test_atcoder/abc273_e.test.cpp
 documentation_of: ds/dynamic_array.hpp
 layout: document

@@ -201,17 +201,17 @@ data:
   path: string/suffix_array.hpp
   requiredBy:
   - string/sort_substrings.hpp
-  - string/longest_common_substring.hpp
   - string/suffix_tree.hpp
+  - string/longest_common_substring.hpp
   timestamp: '2023-06-14 19:10:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/2361.test.cpp
-  - test/mytest/suffix_tree.test.cpp
-  - test/mytest/longest_common_substr.test.cpp
-  - test/library_checker/string/number_of_substrings.test.cpp
   - test/library_checker/string/suffix_array_vec.test.cpp
+  - test/library_checker/string/number_of_substrings.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
+  - test/mytest/longest_common_substr.test.cpp
+  - test/mytest/suffix_tree.test.cpp
+  - test/yukicoder/2361.test.cpp
   - test_atcoder/arc151_e.test.cpp
   - test_atcoder/abc240ex.test.cpp
 documentation_of: string/suffix_array.hpp

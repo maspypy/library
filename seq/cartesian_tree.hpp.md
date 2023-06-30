@@ -84,8 +84,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/tree/cartesian_tree.test.cpp
-  - test/aoj/DPL_3_B.test.cpp
   - test/aoj/DPL_3_C.test.cpp
+  - test/aoj/DPL_3_B.test.cpp
   - test_atcoder/abc234g.test.cpp
 documentation_of: seq/cartesian_tree.hpp
 layout: document

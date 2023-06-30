@@ -313,14 +313,15 @@ data:
     \ v) -> vc<int> {\n    vc<int> P = {v};\n    done[v] = 1;\n    while (1) {\n \
     \     bool ok = 0;\n      for (auto&& e: G[P.back()]) {\n        if (done[e.to])\
     \ continue;\n        P.eb(e.to);\n        done[e.to] = 1;\n        ok = 1;\n \
-    \     }\n      if (!ok) break;\n    }\n    return P;\n  };\n  vvc<int> paths,\
-    \ cycs;\n  FOR(v, N) {\n    if (deg[v] == 0) {\n      done[v] = 1;\n      paths.eb(vc<int>({int(v)}));\n\
-    \    }\n    if (done[v] || deg[v] != 1) continue;\n    paths.eb(calc_frm(v));\n\
-    \  }\n  FOR(v, N) {\n    if (done[v]) continue;\n    cycs.eb(calc_frm(v));\n \
-    \ }\n  return {paths, cycs};\n}\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
-    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
-    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
-    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \       break;\n      }\n      if (!ok) break;\n    }\n    return P;\n  };\n \
+    \ vvc<int> paths, cycs;\n  FOR(v, N) {\n    if (deg[v] == 0) {\n      done[v]\
+    \ = 1;\n      paths.eb(vc<int>({int(v)}));\n    }\n    if (done[v] || deg[v] !=\
+    \ 1) continue;\n    paths.eb(calc_frm(v));\n  }\n  FOR(v, N) {\n    if (done[v])\
+    \ continue;\n    cycs.eb(calc_frm(v));\n  }\n  return {paths, cycs};\n}\n#line\
+    \ 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class T>\n\
+    \  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n  template\
+    \ <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate <class\
+    \ T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
     \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
     \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
@@ -637,7 +638,7 @@ data:
   isVerificationFile: true
   path: test/mytest/count_indep_set.test.cpp
   requiredBy: []
-  timestamp: '2023-06-14 19:10:38+09:00'
+  timestamp: '2023-06-30 16:02:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/count_indep_set.test.cpp
