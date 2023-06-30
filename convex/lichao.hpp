@@ -1,3 +1,4 @@
+// 評価点は ll、関数の値は T になっている
 // evaluate を書き変えると、totally monotone な関数群にも使える
 template <typename T, bool COMPRESS, bool MINIMIZE>
 struct LiChao_Tree {
@@ -6,23 +7,35 @@ struct LiChao_Tree {
 
   static inline T evaluate(FUNC& f, ll x) { return f.fi * x + f.se; }
 
-  vc<ll> points;
+  vc<ll> X;
+  ll lo, hi;
   vc<int> FID;
   int n, log, size;
 
-  LiChao_Tree(int m) {
-    static_assert(!COMPRESS);
-    n = m, log = 1;
+  inline int get_idx(ll x) {
+    if constexpr (COMPRESS) {
+      int idx = LB(X, x);
+      assert(X[idx] == x);
+      return idx;
+    }
+    assert(lo <= x && x < hi);
+    return x - lo;
+  }
+
+  template <typename XY>
+  LiChao_Tree(const vc<XY>& pts) {
+    static_assert(COMPRESS);
+    for (auto&& x: pts) X.eb(x);
+    UNIQUE(X);
+    n = len(X), log = 1;
     while ((1 << log) < n) ++log;
     size = 1 << log;
     FID.assign(size << 1, -1);
   }
-  template <typename XY>
-  LiChao_Tree(const vc<XY> pts) {
-    static_assert(COMPRESS);
-    for (auto&& x: pts) points.eb(x);
-    UNIQUE(points);
-    n = len(points), log = 1;
+
+  LiChao_Tree(ll lo, ll hi) : lo(lo), hi(hi) {
+    static_assert(!COMPRESS);
+    n = hi - lo, log = 1;
     while ((1 << log) < n) ++log;
     size = 1 << log;
     FID.assign(size << 1, -1);
@@ -36,7 +49,7 @@ struct LiChao_Tree {
   void add_segment(ll xl, ll xr, FUNC f) {
     int fid = len(funcs);
     funcs.eb(f);
-    if (COMPRESS) xl = LB(points, xl), xr = LB(points, xr);
+    xl = get_idx(xl), xr = get_idx(xr);
     xl += size, xr += size;
     while (xl < xr) {
       if (xl & 1) add_line_at(xl++, fid);
@@ -44,12 +57,10 @@ struct LiChao_Tree {
       xl >>= 1, xr >>= 1;
     }
   }
+
+  // [fx, fid]
   pair<T, int> query(ll x) {
-    if (COMPRESS) {
-      int ix = LB(points, x);
-      assert(points[ix] == x);
-      x = ix;
-    }
+    x = get_idx(x);
     int i = x + size;
     pair<T, int> res;
     if (!MINIMIZE) res = {-infty<T>, -1};
@@ -95,8 +106,9 @@ struct LiChao_Tree {
     }
   }
 
+private:
   T evaluate_inner(int fid, ll x) {
     if (fid == -1) return (MINIMIZE ? infty<T> : -infty<T>);
-    return evaluate(funcs[fid], (COMPRESS ? points[min<int>(x, n - 1)] : x));
+    return evaluate(funcs[fid], (COMPRESS ? X[min<int>(x, n - 1)] : x + lo));
   }
 };
