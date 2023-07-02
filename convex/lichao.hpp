@@ -13,11 +13,7 @@ struct LiChao_Tree {
   int n, log, size;
 
   inline int get_idx(ll x) {
-    if constexpr (COMPRESS) {
-      int idx = LB(X, x);
-      assert(X[idx] == x);
-      return idx;
-    }
+    if constexpr (COMPRESS) { return LB(X, x); }
     assert(lo <= x && x < hi);
     return x - lo;
   }
