@@ -143,6 +143,28 @@ struct BigInteger {
     reverse(all(s));
     return s;
   }
+
+  // https://codeforces.com/contest/504/problem/D
+  string to_binary_string() {
+    vc<u32> A(all(dat));
+    string ANS;
+    while (1) {
+      while (len(A) && A.back() == u32(0)) POP(A);
+      if (A.empty()) break;
+      u64 rem = 0;
+      FOR_R(i, len(A)) {
+        rem = rem * MOD + A[i];
+        A[i] = rem >> 32;
+        rem &= u32(-1);
+      }
+      FOR(i, 32) { ANS += '0' + (rem >> i & 1); }
+    }
+    while (len(ANS) && ANS.back() == '0') ANS.pop_back();
+    reverse(all(ANS));
+    if (ANS.empty()) ANS += '0';
+    return ANS;
+  }
+
 #ifdef FASTIO
   void write() { fastio::printer.write(to_string()); }
   void read() {
