@@ -3,10 +3,11 @@
 
 template <typename TREE, typename Monoid, bool edge>
 struct Dual_Tree_Monoid {
-  using X = typename Monoid::value_type;
+  using MX = Monoid;
+  using X = typename MX::value_type;
   TREE &tree;
   int N;
-  Dual_SegTree<Monoid> seg;
+  Dual_SegTree<MX> seg;
 
   Dual_Tree_Monoid(TREE &tree) : tree(tree), N(tree.N), seg(tree.N) {}
 

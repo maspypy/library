@@ -101,7 +101,6 @@ struct Tree_Monoid {
 
   X prod_all() { return prod_subtree(tree.V[0]); }
 
-private:
   inline X get_prod(int a, int b) {
     if constexpr (MX::commute) {
       return (a <= b) ? seg.prod(a, b + 1) : seg.prod(b, a + 1);
@@ -109,6 +108,7 @@ private:
     return (a <= b) ? seg.prod(a, b + 1) : seg_r.prod(b, a + 1);
   }
 
+private:
   template <class F>
   int max_path_edge(F check, int u, int v) {
     static_assert(edge);

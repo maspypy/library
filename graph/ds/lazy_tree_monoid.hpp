@@ -38,13 +38,14 @@ struct Lazy_Tree_Monoid {
   }
 
   void set(int i, X x) {
-    if (edge) i = tree.e_to_v(i);
+    if constexpr (edge) i = tree.e_to_v(i);
     i = tree.LID[i];
     seg.set(i, x);
   }
 
   X get(int v) { return seg.get(tree.LID[v]); }
   vc<X> get_all() {
+    static_assert(!edge); // 単に未実装なので
     vc<X> dat = seg.get_all();
     vc<X> res(N);
     FOR(v, N) res[v] = dat[tree.LID[v]];
@@ -55,7 +56,7 @@ struct Lazy_Tree_Monoid {
     auto pd = tree.get_path_decomposition(u, v, edge);
     X val = MX::unit();
     for (auto &&[a, b]: pd) {
-      X x = (a <= b ? seg.prod(a, b + 1) : seg.prod(b, a + 1));
+      X x = get_prod(a, b);
       val = MX::op(val, x);
     }
     return val;
@@ -83,12 +84,12 @@ struct Lazy_Tree_Monoid {
 
   template <class F>
   int max_path(F &check, int u, int v) {
-    if (edge) return max_path_edge(check, u, v);
+    if constexpr (edge) return max_path_edge(check, u, v);
     if (!check(prod_path(u, u))) return -1;
     auto pd = tree.get_path_decomposition(u, v, edge);
     X val = MX::unit();
     for (auto &&[a, b]: pd) {
-      X x = (a <= b ? seg.prod(a, b + 1) : seg.prod(b, a + 1));
+      X x = get_prod(a, b);
       if (check(MX::op(val, x))) {
         val = MX::op(val, x);
         u = (tree.V[b]);
@@ -107,6 +108,11 @@ struct Lazy_Tree_Monoid {
       }
     }
     return v;
+  }
+
+  // closed range [a,b] を heavy path の形式に応じて
+  inline X get_prod(int a, int b) {
+    return (a <= b ? seg.prod(a, b + 1) : seg.prod(b, a + 1));
   }
 
 private:

@@ -95,6 +95,10 @@ struct Static_Tree_Monoid {
   }
 
 private:
+  inline X get_prod(int a, int b) {
+    return Monoid::commute ? seg.prod(b, a + 1) : seg_r.prod(b, a + 1);
+  }
+
   template <class F>
   int max_path_edge(F check, int u, int v) {
     assert(edge);
