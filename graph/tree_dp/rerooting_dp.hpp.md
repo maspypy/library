@@ -45,7 +45,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2360.test.cpp
     title: test/yukicoder/2360.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc160f.test.cpp
     title: test_atcoder/abc160f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -54,9 +54,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc298ex.test.cpp
     title: test_atcoder/abc298ex.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/tree_dp/rerooting_dp.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\
@@ -260,7 +260,7 @@ data:
   - graph/tree_dp/subtree_depth_sum.hpp
   - graph/tree_dp/subtree_diameter.hpp
   timestamp: '2023-05-20 20:14:16+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/graph/classify_tree.test.cpp
   - test/library_checker/rerooting_dp.test.cpp
