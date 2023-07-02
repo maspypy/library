@@ -5,7 +5,9 @@
 
 // 最小解を mod new_mod で返す
 // 解なしなら -1 を返す
-i128 CRT(vc<int> vals, vc<int> mods, ll new_mod = -1, bool coprime = false) {
+// long のときのテスト不十分（例：https://codeforces.com/contest/338/problem/D）
+template <typename T>
+i128 CRT(vc<T> vals, vc<T> mods, ll new_mod = -1, bool coprime = false) {
   int n = len(vals);
   FOR(i, n) {
     vals[i] %= mods[i];
@@ -15,15 +17,15 @@ i128 CRT(vc<int> vals, vc<int> mods, ll new_mod = -1, bool coprime = false) {
     unordered_map<ll, vc<pi>> MP;
     FOR(i, n) {
       for (auto&& [p, e]: factor(mods[i])) {
-        int mod = 1;
+        ll mod = 1;
         FOR(e) mod *= p;
         MP[p].eb(vals[i] % mod, mod);
       }
     }
-    vc<int> xx, mm;
+    vc<T> xx, mm;
     for (auto&& [p, dat]: MP) {
-      int mod = 1;
-      int val = 0;
+      ll mod = 1;
+      ll val = 0;
       for (auto&& [x, m]: dat)
         if (chmax(mod, m)) val = x;
       for (auto&& [x, m]: dat)
@@ -36,16 +38,16 @@ i128 CRT(vc<int> vals, vc<int> mods, ll new_mod = -1, bool coprime = false) {
     n = len(vals);
   }
 
-  vc<int> cfs(n);
+  vc<ll> cfs(n);
   FOR(i, n) {
     Barrett bt(mods[i]);
     ll a = vals[i];
     ll prod = 1;
     FOR(j, i) {
-      a = bt.modulo(a + cfs[j] * (mods[i] - prod));
-      prod = bt.mul(prod, mods[j]);
+      a = (a + i128(cfs[j]) * (mods[i] - prod)) % mods[i];
+      prod = i128(prod) * mods[j] % mods[i];
     }
-    cfs[i] = bt.mul(mod_inv(prod, mods[i]), a);
+    cfs[i] = mod_inv(prod, mods[i]) * i128(a) % mods[i];
   }
   i128 ret = 0;
   i128 prod = 1;
