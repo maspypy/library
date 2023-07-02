@@ -18,15 +18,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1769.test.cpp
     title: test/yukicoder/1769.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1796.test.cpp
     title: test/yukicoder/1796.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -127,18 +127,22 @@ data:
     \n      res[0].insert(res[0].end(), all(dat));\r\n    }\r\n    return res;\r\n\
     \  }\r\n\r\n  vc<vc<pair<int, int>>> collect_dist(int root) {\r\n    auto f =\
     \ [&](int x, auto e) -> int { return x + 1; };\r\n    return collect(root, 0,\
-    \ f);\r\n  }\r\n\r\n  // (V, H), (V[i] in G) = (i in H).\r\n  // 0,1,2... is a\
-    \ dfs order in H.\r\n  pair<vc<int>, Graph<typename GT::cost_type, true>> get_subgraph(int\
-    \ root) {\r\n    static vc<int> conv;\r\n    while (len(conv) < N) conv.eb(-1);\r\
-    \n\r\n    vc<int> V;\r\n    using cost_type = typename GT::cost_type;\r\n    vc<tuple<int,\
-    \ int, cost_type>> edges;\r\n\r\n    auto dfs = [&](auto& dfs, int v, int p) ->\
-    \ void {\r\n      conv[v] = len(V);\r\n      V.eb(v);\r\n      for (auto&& e:\
-    \ G[v]) {\r\n        int to = e.to;\r\n        if (to == p) continue;\r\n    \
-    \    if (cdep[to] < cdep[root]) continue;\r\n        dfs(dfs, to, v);\r\n    \
-    \    edges.eb(conv[v], conv[to], e.cost);\r\n      }\r\n    };\r\n    dfs(dfs,\
-    \ root, -1);\r\n    int n = len(V);\r\n    Graph<typename GT::cost_type, true>\
-    \ H(n);\r\n    for (auto&& [a, b, c]: edges) H.add(a, b, c);\r\n    H.build();\r\
-    \n    for (auto&& v: V) conv[v] = -1;\r\n    return {V, H};\r\n  }\r\n};\r\n"
+    \ f);\r\n  }\r\n\r\n  // (V, H, grp), (V[i] in G) = (i in H).\r\n  // 0,1,2...\
+    \ is a dfs order in H.\r\n  tuple<vc<int>, Graph<typename GT::cost_type, true>,\
+    \ vc<int>> get_subgraph(\r\n      int root) {\r\n    static vc<int> conv;\r\n\
+    \    while (len(conv) < N) conv.eb(-1);\r\n\r\n    vc<int> V = {root};\r\n   \
+    \ vc<int> grp = {-1};\r\n    conv[root] = 0;\r\n    int nxt_grp = 0;\r\n    using\
+    \ cost_type = typename GT::cost_type;\r\n    vc<tuple<int, int, cost_type>> edges;\r\
+    \n\r\n    auto dfs = [&](auto& dfs, int v, int p) -> void {\r\n      conv[v] =\
+    \ len(V);\r\n      V.eb(v), grp.eb(nxt_grp);\r\n      for (auto&& e: G[v]) {\r\
+    \n        int to = e.to;\r\n        if (to == p) continue;\r\n        if (cdep[to]\
+    \ < cdep[root]) continue;\r\n        dfs(dfs, to, v);\r\n        edges.eb(conv[v],\
+    \ conv[to], e.cost);\r\n      }\r\n    };\r\n    for (auto&& e: G[root]) {\r\n\
+    \      if (cdep[e.to] < cdep[root]) continue;\r\n      dfs(dfs, e.to, root);\r\
+    \n      ++nxt_grp;\r\n    }\r\n    int n = len(V);\r\n    Graph<typename GT::cost_type,\
+    \ true> H(n);\r\n    for (auto&& [a, b, c]: edges) H.add(a, b, c);\r\n    H.build();\r\
+    \n    for (auto&& v: V) conv[v] = -1;\r\n    return {V, H, grp};\r\n  }\r\n};\r\
+    \n"
   code: "#include \"graph/base.hpp\"\r\n\r\n// (v,w) or (v,-1)\r\ntemplate <typename\
     \ GT>\r\npair<int, int> find_centroids(GT& G) {\r\n  int N = G.N;\r\n  vc<int>\
     \ par(N, -1);\r\n  vc<int> V(N);\r\n  vc<int> sz(N);\r\n  int l = 0, r = 0;\r\n\
@@ -181,26 +185,30 @@ data:
     \n      res[0].insert(res[0].end(), all(dat));\r\n    }\r\n    return res;\r\n\
     \  }\r\n\r\n  vc<vc<pair<int, int>>> collect_dist(int root) {\r\n    auto f =\
     \ [&](int x, auto e) -> int { return x + 1; };\r\n    return collect(root, 0,\
-    \ f);\r\n  }\r\n\r\n  // (V, H), (V[i] in G) = (i in H).\r\n  // 0,1,2... is a\
-    \ dfs order in H.\r\n  pair<vc<int>, Graph<typename GT::cost_type, true>> get_subgraph(int\
-    \ root) {\r\n    static vc<int> conv;\r\n    while (len(conv) < N) conv.eb(-1);\r\
-    \n\r\n    vc<int> V;\r\n    using cost_type = typename GT::cost_type;\r\n    vc<tuple<int,\
-    \ int, cost_type>> edges;\r\n\r\n    auto dfs = [&](auto& dfs, int v, int p) ->\
-    \ void {\r\n      conv[v] = len(V);\r\n      V.eb(v);\r\n      for (auto&& e:\
-    \ G[v]) {\r\n        int to = e.to;\r\n        if (to == p) continue;\r\n    \
-    \    if (cdep[to] < cdep[root]) continue;\r\n        dfs(dfs, to, v);\r\n    \
-    \    edges.eb(conv[v], conv[to], e.cost);\r\n      }\r\n    };\r\n    dfs(dfs,\
-    \ root, -1);\r\n    int n = len(V);\r\n    Graph<typename GT::cost_type, true>\
-    \ H(n);\r\n    for (auto&& [a, b, c]: edges) H.add(a, b, c);\r\n    H.build();\r\
-    \n    for (auto&& v: V) conv[v] = -1;\r\n    return {V, H};\r\n  }\r\n};\r\n"
+    \ f);\r\n  }\r\n\r\n  // (V, H, grp), (V[i] in G) = (i in H).\r\n  // 0,1,2...\
+    \ is a dfs order in H.\r\n  tuple<vc<int>, Graph<typename GT::cost_type, true>,\
+    \ vc<int>> get_subgraph(\r\n      int root) {\r\n    static vc<int> conv;\r\n\
+    \    while (len(conv) < N) conv.eb(-1);\r\n\r\n    vc<int> V = {root};\r\n   \
+    \ vc<int> grp = {-1};\r\n    conv[root] = 0;\r\n    int nxt_grp = 0;\r\n    using\
+    \ cost_type = typename GT::cost_type;\r\n    vc<tuple<int, int, cost_type>> edges;\r\
+    \n\r\n    auto dfs = [&](auto& dfs, int v, int p) -> void {\r\n      conv[v] =\
+    \ len(V);\r\n      V.eb(v), grp.eb(nxt_grp);\r\n      for (auto&& e: G[v]) {\r\
+    \n        int to = e.to;\r\n        if (to == p) continue;\r\n        if (cdep[to]\
+    \ < cdep[root]) continue;\r\n        dfs(dfs, to, v);\r\n        edges.eb(conv[v],\
+    \ conv[to], e.cost);\r\n      }\r\n    };\r\n    for (auto&& e: G[root]) {\r\n\
+    \      if (cdep[e.to] < cdep[root]) continue;\r\n      dfs(dfs, e.to, root);\r\
+    \n      ++nxt_grp;\r\n    }\r\n    int n = len(V);\r\n    Graph<typename GT::cost_type,\
+    \ true> H(n);\r\n    for (auto&& [a, b, c]: edges) H.add(a, b, c);\r\n    H.build();\r\
+    \n    for (auto&& v: V) conv[v] = -1;\r\n    return {V, H, grp};\r\n  }\r\n};\r\
+    \n"
   dependsOn:
   - graph/base.hpp
   isVerificationFile: false
   path: graph/centroid.hpp
   requiredBy:
   - graph/tree_all_distances.hpp
-  timestamp: '2023-05-20 20:14:16+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-07-03 07:56:00+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/yukicoder/1002.test.cpp

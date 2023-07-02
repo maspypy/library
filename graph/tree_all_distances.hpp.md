@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/centroid.hpp
     title: graph/centroid.hpp
   - icon: ':heavy_check_mark:'
@@ -136,22 +136,25 @@ data:
     \n      res[0].insert(res[0].end(), all(dat));\r\n    }\r\n    return res;\r\n\
     \  }\r\n\r\n  vc<vc<pair<int, int>>> collect_dist(int root) {\r\n    auto f =\
     \ [&](int x, auto e) -> int { return x + 1; };\r\n    return collect(root, 0,\
-    \ f);\r\n  }\r\n\r\n  // (V, H), (V[i] in G) = (i in H).\r\n  // 0,1,2... is a\
-    \ dfs order in H.\r\n  pair<vc<int>, Graph<typename GT::cost_type, true>> get_subgraph(int\
-    \ root) {\r\n    static vc<int> conv;\r\n    while (len(conv) < N) conv.eb(-1);\r\
-    \n\r\n    vc<int> V;\r\n    using cost_type = typename GT::cost_type;\r\n    vc<tuple<int,\
-    \ int, cost_type>> edges;\r\n\r\n    auto dfs = [&](auto& dfs, int v, int p) ->\
-    \ void {\r\n      conv[v] = len(V);\r\n      V.eb(v);\r\n      for (auto&& e:\
-    \ G[v]) {\r\n        int to = e.to;\r\n        if (to == p) continue;\r\n    \
-    \    if (cdep[to] < cdep[root]) continue;\r\n        dfs(dfs, to, v);\r\n    \
-    \    edges.eb(conv[v], conv[to], e.cost);\r\n      }\r\n    };\r\n    dfs(dfs,\
-    \ root, -1);\r\n    int n = len(V);\r\n    Graph<typename GT::cost_type, true>\
-    \ H(n);\r\n    for (auto&& [a, b, c]: edges) H.add(a, b, c);\r\n    H.build();\r\
-    \n    for (auto&& v: V) conv[v] = -1;\r\n    return {V, H};\r\n  }\r\n};\r\n#line\
-    \ 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class T>\n\
-    \  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n  template\
-    \ <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate <class\
-    \ T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ f);\r\n  }\r\n\r\n  // (V, H, grp), (V[i] in G) = (i in H).\r\n  // 0,1,2...\
+    \ is a dfs order in H.\r\n  tuple<vc<int>, Graph<typename GT::cost_type, true>,\
+    \ vc<int>> get_subgraph(\r\n      int root) {\r\n    static vc<int> conv;\r\n\
+    \    while (len(conv) < N) conv.eb(-1);\r\n\r\n    vc<int> V = {root};\r\n   \
+    \ vc<int> grp = {-1};\r\n    conv[root] = 0;\r\n    int nxt_grp = 0;\r\n    using\
+    \ cost_type = typename GT::cost_type;\r\n    vc<tuple<int, int, cost_type>> edges;\r\
+    \n\r\n    auto dfs = [&](auto& dfs, int v, int p) -> void {\r\n      conv[v] =\
+    \ len(V);\r\n      V.eb(v), grp.eb(nxt_grp);\r\n      for (auto&& e: G[v]) {\r\
+    \n        int to = e.to;\r\n        if (to == p) continue;\r\n        if (cdep[to]\
+    \ < cdep[root]) continue;\r\n        dfs(dfs, to, v);\r\n        edges.eb(conv[v],\
+    \ conv[to], e.cost);\r\n      }\r\n    };\r\n    for (auto&& e: G[root]) {\r\n\
+    \      if (cdep[e.to] < cdep[root]) continue;\r\n      dfs(dfs, e.to, root);\r\
+    \n      ++nxt_grp;\r\n    }\r\n    int n = len(V);\r\n    Graph<typename GT::cost_type,\
+    \ true> H(n);\r\n    for (auto&& [a, b, c]: edges) H.add(a, b, c);\r\n    H.build();\r\
+    \n    for (auto&& v: V) conv[v] = -1;\r\n    return {V, H, grp};\r\n  }\r\n};\r\
+    \n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
+    \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
+    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
+    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
     \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
     \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
@@ -413,7 +416,7 @@ data:
   isVerificationFile: false
   path: graph/tree_all_distances.hpp
   requiredBy: []
-  timestamp: '2023-06-30 22:46:48+09:00'
+  timestamp: '2023-07-03 07:56:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
