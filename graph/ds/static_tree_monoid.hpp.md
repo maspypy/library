@@ -224,21 +224,23 @@ data:
     \ == a + 1) return u;\n        return (edge ? tree.parent[tree.V[i]] : tree.V[i]);\n\
     \      }\n    }\n    return v;\n  }\n\n  X prod_subtree(int u) {\n    int l =\
     \ tree.LID[u], r = tree.RID[u];\n    return seg.prod(l + edge, r);\n  }\n\nprivate:\n\
-    \  template <class F>\n  int max_path_edge(F check, int u, int v) {\n    assert(edge);\n\
-    \    if (!check(Monoid::unit())) return -1;\n    int lca = tree.lca(u, v);\n \
-    \   auto pd = tree.get_path_decomposition(u, lca, edge);\n    X val = Monoid::unit();\n\
-    \n    // climb\n    for (auto &&[a, b]: pd) {\n      assert(a >= b);\n      X\
-    \ x = (Monoid::commute ? seg.prod(b, a + 1) : seg_r.prod(b, a + 1));\n      if\
+    \  inline X get_prod(int a, int b) {\n    return Monoid::commute ? seg.prod(b,\
+    \ a + 1) : seg_r.prod(b, a + 1);\n  }\n\n  template <class F>\n  int max_path_edge(F\
+    \ check, int u, int v) {\n    assert(edge);\n    if (!check(Monoid::unit())) return\
+    \ -1;\n    int lca = tree.lca(u, v);\n    auto pd = tree.get_path_decomposition(u,\
+    \ lca, edge);\n    X val = Monoid::unit();\n\n    // climb\n    for (auto &&[a,\
+    \ b]: pd) {\n      assert(a >= b);\n      X x = (Monoid::commute ? seg.prod(b,\
+    \ a + 1) : seg_r.prod(b, a + 1));\n      if (check(Monoid::op(val, x))) {\n  \
+    \      val = Monoid::op(val, x);\n        u = (tree.parent[tree.V[b]]);\n    \
+    \    continue;\n      }\n      auto check_tmp = [&](X x) -> bool { return check(Monoid::op(val,\
+    \ x)); };\n      auto i = (Monoid::commute ? seg.min_left(check_tmp, a + 1)\n\
+    \                                : seg_r.min_left(check_tmp, a + 1));\n      if\
+    \ (i == a + 1) return u;\n      return tree.parent[tree.V[i]];\n    }\n    //\
+    \ down\n    pd = tree.get_path_decomposition(lca, v, edge);\n    for (auto &&[a,\
+    \ b]: pd) {\n      assert(a <= b);\n      X x = seg.prod(a, b + 1);\n      if\
     \ (check(Monoid::op(val, x))) {\n        val = Monoid::op(val, x);\n        u\
-    \ = (tree.parent[tree.V[b]]);\n        continue;\n      }\n      auto check_tmp\
-    \ = [&](X x) -> bool { return check(Monoid::op(val, x)); };\n      auto i = (Monoid::commute\
-    \ ? seg.min_left(check_tmp, a + 1)\n                                : seg_r.min_left(check_tmp,\
-    \ a + 1));\n      if (i == a + 1) return u;\n      return tree.parent[tree.V[i]];\n\
-    \    }\n    // down\n    pd = tree.get_path_decomposition(lca, v, edge);\n   \
-    \ for (auto &&[a, b]: pd) {\n      assert(a <= b);\n      X x = seg.prod(a, b\
-    \ + 1);\n      if (check(Monoid::op(val, x))) {\n        val = Monoid::op(val,\
-    \ x);\n        u = (tree.V[b]);\n        continue;\n      }\n      auto check_tmp\
-    \ = [&](X x) -> bool { return check(Monoid::op(val, x)); };\n      auto i = seg.max_right(check_tmp,\
+    \ = (tree.V[b]);\n        continue;\n      }\n      auto check_tmp = [&](X x)\
+    \ -> bool { return check(Monoid::op(val, x)); };\n      auto i = seg.max_right(check_tmp,\
     \ a);\n      return (i == a ? u : tree.V[i - 1]);\n    }\n    return v;\n  }\n\
     };\n"
   code: "#include \"ds/sparse_table/disjoint_sparse_table.hpp\"\n#include \"graph/tree.hpp\"\
@@ -279,14 +281,15 @@ data:
     \        if (i == a + 1) return u;\n        return (edge ? tree.parent[tree.V[i]]\
     \ : tree.V[i]);\n      }\n    }\n    return v;\n  }\n\n  X prod_subtree(int u)\
     \ {\n    int l = tree.LID[u], r = tree.RID[u];\n    return seg.prod(l + edge,\
-    \ r);\n  }\n\nprivate:\n  template <class F>\n  int max_path_edge(F check, int\
-    \ u, int v) {\n    assert(edge);\n    if (!check(Monoid::unit())) return -1;\n\
-    \    int lca = tree.lca(u, v);\n    auto pd = tree.get_path_decomposition(u, lca,\
-    \ edge);\n    X val = Monoid::unit();\n\n    // climb\n    for (auto &&[a, b]:\
-    \ pd) {\n      assert(a >= b);\n      X x = (Monoid::commute ? seg.prod(b, a +\
-    \ 1) : seg_r.prod(b, a + 1));\n      if (check(Monoid::op(val, x))) {\n      \
-    \  val = Monoid::op(val, x);\n        u = (tree.parent[tree.V[b]]);\n        continue;\n\
-    \      }\n      auto check_tmp = [&](X x) -> bool { return check(Monoid::op(val,\
+    \ r);\n  }\n\nprivate:\n  inline X get_prod(int a, int b) {\n    return Monoid::commute\
+    \ ? seg.prod(b, a + 1) : seg_r.prod(b, a + 1);\n  }\n\n  template <class F>\n\
+    \  int max_path_edge(F check, int u, int v) {\n    assert(edge);\n    if (!check(Monoid::unit()))\
+    \ return -1;\n    int lca = tree.lca(u, v);\n    auto pd = tree.get_path_decomposition(u,\
+    \ lca, edge);\n    X val = Monoid::unit();\n\n    // climb\n    for (auto &&[a,\
+    \ b]: pd) {\n      assert(a >= b);\n      X x = (Monoid::commute ? seg.prod(b,\
+    \ a + 1) : seg_r.prod(b, a + 1));\n      if (check(Monoid::op(val, x))) {\n  \
+    \      val = Monoid::op(val, x);\n        u = (tree.parent[tree.V[b]]);\n    \
+    \    continue;\n      }\n      auto check_tmp = [&](X x) -> bool { return check(Monoid::op(val,\
     \ x)); };\n      auto i = (Monoid::commute ? seg.min_left(check_tmp, a + 1)\n\
     \                                : seg_r.min_left(check_tmp, a + 1));\n      if\
     \ (i == a + 1) return u;\n      return tree.parent[tree.V[i]];\n    }\n    //\
@@ -305,7 +308,7 @@ data:
   isVerificationFile: false
   path: graph/ds/static_tree_monoid.hpp
   requiredBy: []
-  timestamp: '2023-05-20 20:14:16+09:00'
+  timestamp: '2023-07-03 05:07:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1216_2.test.cpp

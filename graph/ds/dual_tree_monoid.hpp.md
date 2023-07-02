@@ -173,8 +173,26 @@ data:
     \ * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n    laz[k] = MA::unit();\n  }\n\
     \  void all_apply(int k, A a) { laz[k] = MA::op(laz[k], a); }\n};\n#line 3 \"\
     graph/ds/dual_tree_monoid.hpp\"\n\r\ntemplate <typename TREE, typename Monoid,\
-    \ bool edge>\r\nstruct Dual_Tree_Monoid {\r\n  using X = typename Monoid::value_type;\r\
-    \n  TREE &tree;\r\n  int N;\r\n  Dual_SegTree<Monoid> seg;\r\n\r\n  Dual_Tree_Monoid(TREE\
+    \ bool edge>\r\nstruct Dual_Tree_Monoid {\r\n  using MX = Monoid;\r\n  using X\
+    \ = typename MX::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  Dual_SegTree<MX>\
+    \ seg;\r\n\r\n  Dual_Tree_Monoid(TREE &tree) : tree(tree), N(tree.N), seg(tree.N)\
+    \ {}\r\n\r\n  X get(int i) {\r\n    int v = i;\r\n    if (edge) {\r\n      auto\
+    \ &&e = tree.G.edges[i];\r\n      v = (tree.parent[e.frm] == e.to ? e.frm : e.to);\r\
+    \n    }\r\n    return seg.get(tree.LID[v]);\r\n  }\r\n\r\n  vc<X> get_all() {\r\
+    \n    vc<X> tmp = seg.get_all();\r\n    vc<X> res;\r\n    FOR(i, N) {\r\n    \
+    \  if (edge && i == N - 1) break;\r\n      int v = i;\r\n      if (edge) {\r\n\
+    \        auto &&e = tree.G.edges[i];\r\n        v = (tree.parent[e.frm] == e.to\
+    \ ? e.frm : e.to);\r\n      }\r\n      res.eb(tmp[tree.LID[v]]);\r\n    }\r\n\
+    \    return res;\r\n  }\r\n\r\n  void apply_path(int u, int v, X x) {\r\n    auto\
+    \ pd = tree.get_path_decomposition(u, v, edge);\r\n    for (auto &&[a, b]: pd)\
+    \ {\r\n      (a <= b ? seg.apply(a, b + 1, x) : seg.apply(b, a + 1, x));\r\n \
+    \   }\r\n    return;\r\n  }\r\n\r\n  void apply_subtree(int u, X x) {\r\n    int\
+    \ l = tree.LID[u], r = tree.RID[u];\r\n    return seg.apply(l + edge, r, x);\r\
+    \n  }\r\n};\r\n"
+  code: "#include \"graph/tree.hpp\"\r\n#include \"ds/segtree/dual_segtree.hpp\"\r\
+    \n\r\ntemplate <typename TREE, typename Monoid, bool edge>\r\nstruct Dual_Tree_Monoid\
+    \ {\r\n  using MX = Monoid;\r\n  using X = typename MX::value_type;\r\n  TREE\
+    \ &tree;\r\n  int N;\r\n  Dual_SegTree<MX> seg;\r\n\r\n  Dual_Tree_Monoid(TREE\
     \ &tree) : tree(tree), N(tree.N), seg(tree.N) {}\r\n\r\n  X get(int i) {\r\n \
     \   int v = i;\r\n    if (edge) {\r\n      auto &&e = tree.G.edges[i];\r\n   \
     \   v = (tree.parent[e.frm] == e.to ? e.frm : e.to);\r\n    }\r\n    return seg.get(tree.LID[v]);\r\
@@ -188,23 +206,6 @@ data:
     \ 1, x));\r\n    }\r\n    return;\r\n  }\r\n\r\n  void apply_subtree(int u, X\
     \ x) {\r\n    int l = tree.LID[u], r = tree.RID[u];\r\n    return seg.apply(l\
     \ + edge, r, x);\r\n  }\r\n};\r\n"
-  code: "#include \"graph/tree.hpp\"\r\n#include \"ds/segtree/dual_segtree.hpp\"\r\
-    \n\r\ntemplate <typename TREE, typename Monoid, bool edge>\r\nstruct Dual_Tree_Monoid\
-    \ {\r\n  using X = typename Monoid::value_type;\r\n  TREE &tree;\r\n  int N;\r\
-    \n  Dual_SegTree<Monoid> seg;\r\n\r\n  Dual_Tree_Monoid(TREE &tree) : tree(tree),\
-    \ N(tree.N), seg(tree.N) {}\r\n\r\n  X get(int i) {\r\n    int v = i;\r\n    if\
-    \ (edge) {\r\n      auto &&e = tree.G.edges[i];\r\n      v = (tree.parent[e.frm]\
-    \ == e.to ? e.frm : e.to);\r\n    }\r\n    return seg.get(tree.LID[v]);\r\n  }\r\
-    \n\r\n  vc<X> get_all() {\r\n    vc<X> tmp = seg.get_all();\r\n    vc<X> res;\r\
-    \n    FOR(i, N) {\r\n      if (edge && i == N - 1) break;\r\n      int v = i;\r\
-    \n      if (edge) {\r\n        auto &&e = tree.G.edges[i];\r\n        v = (tree.parent[e.frm]\
-    \ == e.to ? e.frm : e.to);\r\n      }\r\n      res.eb(tmp[tree.LID[v]]);\r\n \
-    \   }\r\n    return res;\r\n  }\r\n\r\n  void apply_path(int u, int v, X x) {\r\
-    \n    auto pd = tree.get_path_decomposition(u, v, edge);\r\n    for (auto &&[a,\
-    \ b]: pd) {\r\n      (a <= b ? seg.apply(a, b + 1, x) : seg.apply(b, a + 1, x));\r\
-    \n    }\r\n    return;\r\n  }\r\n\r\n  void apply_subtree(int u, X x) {\r\n  \
-    \  int l = tree.LID[u], r = tree.RID[u];\r\n    return seg.apply(l + edge, r,\
-    \ x);\r\n  }\r\n};\r\n"
   dependsOn:
   - graph/tree.hpp
   - graph/base.hpp
@@ -213,7 +214,7 @@ data:
   path: graph/ds/dual_tree_monoid.hpp
   requiredBy:
   - graph/minimum_spanning_tree.hpp
-  timestamp: '2023-05-20 20:14:16+09:00'
+  timestamp: '2023-07-03 05:07:01+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/GRL_2_A.test.cpp

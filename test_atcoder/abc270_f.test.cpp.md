@@ -452,10 +452,10 @@ data:
     \        return tree.V[i];\r\n      }\r\n    }\r\n    return v;\r\n  }\r\n\r\n\
     \  X prod_subtree(int u) {\r\n    int l = tree.LID[u], r = tree.RID[u];\r\n  \
     \  return seg.prod(l + edge, r);\r\n  }\r\n\r\n  X prod_all() { return prod_subtree(tree.V[0]);\
-    \ }\r\n\r\nprivate:\r\n  inline X get_prod(int a, int b) {\r\n    if constexpr\
-    \ (MX::commute) {\r\n      return (a <= b) ? seg.prod(a, b + 1) : seg.prod(b,\
-    \ a + 1);\r\n    }\r\n    return (a <= b) ? seg.prod(a, b + 1) : seg_r.prod(b,\
-    \ a + 1);\r\n  }\r\n\r\n  template <class F>\r\n  int max_path_edge(F check, int\
+    \ }\r\n\r\n  inline X get_prod(int a, int b) {\r\n    if constexpr (MX::commute)\
+    \ {\r\n      return (a <= b) ? seg.prod(a, b + 1) : seg.prod(b, a + 1);\r\n  \
+    \  }\r\n    return (a <= b) ? seg.prod(a, b + 1) : seg_r.prod(b, a + 1);\r\n \
+    \ }\r\n\r\nprivate:\r\n  template <class F>\r\n  int max_path_edge(F check, int\
     \ u, int v) {\r\n    static_assert(edge);\r\n    if (!check(MX::unit())) return\
     \ -1;\r\n    int lca = tree.lca(u, v);\r\n    auto pd = tree.get_path_decomposition(u,\
     \ lca, edge);\r\n    X val = MX::unit();\r\n\r\n    // climb\r\n    for (auto\
@@ -490,31 +490,31 @@ data:
     \ == MA::unit()) return;\n    all_apply(2 * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n\
     \    laz[k] = MA::unit();\n  }\n  void all_apply(int k, A a) { laz[k] = MA::op(laz[k],\
     \ a); }\n};\n#line 3 \"graph/ds/dual_tree_monoid.hpp\"\n\r\ntemplate <typename\
-    \ TREE, typename Monoid, bool edge>\r\nstruct Dual_Tree_Monoid {\r\n  using X\
-    \ = typename Monoid::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  Dual_SegTree<Monoid>\
-    \ seg;\r\n\r\n  Dual_Tree_Monoid(TREE &tree) : tree(tree), N(tree.N), seg(tree.N)\
-    \ {}\r\n\r\n  X get(int i) {\r\n    int v = i;\r\n    if (edge) {\r\n      auto\
-    \ &&e = tree.G.edges[i];\r\n      v = (tree.parent[e.frm] == e.to ? e.frm : e.to);\r\
-    \n    }\r\n    return seg.get(tree.LID[v]);\r\n  }\r\n\r\n  vc<X> get_all() {\r\
-    \n    vc<X> tmp = seg.get_all();\r\n    vc<X> res;\r\n    FOR(i, N) {\r\n    \
-    \  if (edge && i == N - 1) break;\r\n      int v = i;\r\n      if (edge) {\r\n\
-    \        auto &&e = tree.G.edges[i];\r\n        v = (tree.parent[e.frm] == e.to\
-    \ ? e.frm : e.to);\r\n      }\r\n      res.eb(tmp[tree.LID[v]]);\r\n    }\r\n\
-    \    return res;\r\n  }\r\n\r\n  void apply_path(int u, int v, X x) {\r\n    auto\
-    \ pd = tree.get_path_decomposition(u, v, edge);\r\n    for (auto &&[a, b]: pd)\
-    \ {\r\n      (a <= b ? seg.apply(a, b + 1, x) : seg.apply(b, a + 1, x));\r\n \
-    \   }\r\n    return;\r\n  }\r\n\r\n  void apply_subtree(int u, X x) {\r\n    int\
-    \ l = tree.LID[u], r = tree.RID[u];\r\n    return seg.apply(l + edge, r, x);\r\
-    \n  }\r\n};\r\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
-    \ Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr\
-    \ X unit() { return infty<E>; }\r\n  static constexpr bool commute = true;\r\n\
-    };\r\n#line 2 \"alg/monoid/max.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Max\
-    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return max(x, y); }\r\n  static constexpr X unit()\
-    \ { return -infty<E>; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line\
-    \ 8 \"graph/minimum_spanning_tree.hpp\"\n\r\n// return : {T mst_cost, vc<bool>\
-    \ in_mst, Graph MST}\r\ntemplate <typename T>\r\ntuple<T, vc<bool>, Graph<T>>\
+    \ TREE, typename Monoid, bool edge>\r\nstruct Dual_Tree_Monoid {\r\n  using MX\
+    \ = Monoid;\r\n  using X = typename MX::value_type;\r\n  TREE &tree;\r\n  int\
+    \ N;\r\n  Dual_SegTree<MX> seg;\r\n\r\n  Dual_Tree_Monoid(TREE &tree) : tree(tree),\
+    \ N(tree.N), seg(tree.N) {}\r\n\r\n  X get(int i) {\r\n    int v = i;\r\n    if\
+    \ (edge) {\r\n      auto &&e = tree.G.edges[i];\r\n      v = (tree.parent[e.frm]\
+    \ == e.to ? e.frm : e.to);\r\n    }\r\n    return seg.get(tree.LID[v]);\r\n  }\r\
+    \n\r\n  vc<X> get_all() {\r\n    vc<X> tmp = seg.get_all();\r\n    vc<X> res;\r\
+    \n    FOR(i, N) {\r\n      if (edge && i == N - 1) break;\r\n      int v = i;\r\
+    \n      if (edge) {\r\n        auto &&e = tree.G.edges[i];\r\n        v = (tree.parent[e.frm]\
+    \ == e.to ? e.frm : e.to);\r\n      }\r\n      res.eb(tmp[tree.LID[v]]);\r\n \
+    \   }\r\n    return res;\r\n  }\r\n\r\n  void apply_path(int u, int v, X x) {\r\
+    \n    auto pd = tree.get_path_decomposition(u, v, edge);\r\n    for (auto &&[a,\
+    \ b]: pd) {\r\n      (a <= b ? seg.apply(a, b + 1, x) : seg.apply(b, a + 1, x));\r\
+    \n    }\r\n    return;\r\n  }\r\n\r\n  void apply_subtree(int u, X x) {\r\n  \
+    \  int l = tree.LID[u], r = tree.RID[u];\r\n    return seg.apply(l + edge, r,\
+    \ x);\r\n  }\r\n};\r\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\
+    \nstruct Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n  static\
+    \ constexpr X op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static\
+    \ constexpr X unit() { return infty<E>; }\r\n  static constexpr bool commute =\
+    \ true;\r\n};\r\n#line 2 \"alg/monoid/max.hpp\"\n\r\ntemplate <typename E>\r\n\
+    struct Monoid_Max {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return max(x, y); }\r\n  static constexpr\
+    \ X unit() { return -infty<E>; }\r\n  static constexpr bool commute = true;\r\n\
+    };\r\n#line 8 \"graph/minimum_spanning_tree.hpp\"\n\r\n// return : {T mst_cost,\
+    \ vc<bool> in_mst, Graph MST}\r\ntemplate <typename T>\r\ntuple<T, vc<bool>, Graph<T>>\
     \ minimum_spanning_tree(Graph<T>& G) {\r\n  int N = G.N;\r\n  int M = len(G.edges);\r\
     \n  vc<pair<T, int>> edges;\r\n  FOR(i, M) {\r\n    auto& e = G.edges[i];\r\n\
     \    edges.eb(e.cost, i);\r\n  }\r\n  sort(all(edges));\r\n  vc<bool> in_mst(M);\r\
@@ -591,7 +591,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc270_f.test.cpp
   requiredBy: []
-  timestamp: '2023-07-03 04:52:38+09:00'
+  timestamp: '2023-07-03 05:07:01+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc270_f.test.cpp

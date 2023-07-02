@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':question:'
@@ -429,10 +429,10 @@ data:
     \        return tree.V[i];\r\n      }\r\n    }\r\n    return v;\r\n  }\r\n\r\n\
     \  X prod_subtree(int u) {\r\n    int l = tree.LID[u], r = tree.RID[u];\r\n  \
     \  return seg.prod(l + edge, r);\r\n  }\r\n\r\n  X prod_all() { return prod_subtree(tree.V[0]);\
-    \ }\r\n\r\nprivate:\r\n  inline X get_prod(int a, int b) {\r\n    if constexpr\
-    \ (MX::commute) {\r\n      return (a <= b) ? seg.prod(a, b + 1) : seg.prod(b,\
-    \ a + 1);\r\n    }\r\n    return (a <= b) ? seg.prod(a, b + 1) : seg_r.prod(b,\
-    \ a + 1);\r\n  }\r\n\r\n  template <class F>\r\n  int max_path_edge(F check, int\
+    \ }\r\n\r\n  inline X get_prod(int a, int b) {\r\n    if constexpr (MX::commute)\
+    \ {\r\n      return (a <= b) ? seg.prod(a, b + 1) : seg.prod(b, a + 1);\r\n  \
+    \  }\r\n    return (a <= b) ? seg.prod(a, b + 1) : seg_r.prod(b, a + 1);\r\n \
+    \ }\r\n\r\nprivate:\r\n  template <class F>\r\n  int max_path_edge(F check, int\
     \ u, int v) {\r\n    static_assert(edge);\r\n    if (!check(MX::unit())) return\
     \ -1;\r\n    int lca = tree.lca(u, v);\r\n    auto pd = tree.get_path_decomposition(u,\
     \ lca, edge);\r\n    X val = MX::unit();\r\n\r\n    // climb\r\n    for (auto\
@@ -486,7 +486,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   requiredBy: []
-  timestamp: '2023-07-03 04:52:38+09:00'
+  timestamp: '2023-07-03 05:07:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
