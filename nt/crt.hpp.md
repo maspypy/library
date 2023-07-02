@@ -21,17 +21,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1956.test.cpp
     title: test/yukicoder/1956.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2119.test.cpp
     title: test/yukicoder/2119.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
-    links: []
+    links:
+    - "https://codeforces.com/contest/338/problem/D\uFF09"
   bundledCode: "#line 2 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
     struct Barrett {\n  u32 m;\n  u64 im;\n  explicit Barrett(u32 m = 1) : m(m), im(u64(-1)\
     \ / m + 1) {}\n  u32 umod() const { return m; }\n  u32 modulo(u64 z) {\n    if\
@@ -99,42 +100,46 @@ data:
     \    int e = 0;\n    while (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n\
     \    res.eb(p, e);\n  }\n  return res;\n}\n#line 5 \"nt/crt.hpp\"\n\n// \u6700\
     \u5C0F\u89E3\u3092 mod new_mod \u3067\u8FD4\u3059\n// \u89E3\u306A\u3057\u306A\
-    \u3089 -1 \u3092\u8FD4\u3059\ni128 CRT(vc<int> vals, vc<int> mods, ll new_mod\
-    \ = -1, bool coprime = false) {\n  int n = len(vals);\n  FOR(i, n) {\n    vals[i]\
-    \ %= mods[i];\n    if (vals[i] < 0) vals[i] += mods[i];\n  }\n  if (!coprime)\
-    \ {\n    unordered_map<ll, vc<pi>> MP;\n    FOR(i, n) {\n      for (auto&& [p,\
-    \ e]: factor(mods[i])) {\n        int mod = 1;\n        FOR(e) mod *= p;\n   \
-    \     MP[p].eb(vals[i] % mod, mod);\n      }\n    }\n    vc<int> xx, mm;\n   \
-    \ for (auto&& [p, dat]: MP) {\n      int mod = 1;\n      int val = 0;\n      for\
-    \ (auto&& [x, m]: dat)\n        if (chmax(mod, m)) val = x;\n      for (auto&&\
-    \ [x, m]: dat)\n        if ((val - x) % m != 0) return -1;\n      xx.eb(val);\n\
-    \      mm.eb(mod);\n    }\n    swap(vals, xx);\n    swap(mods, mm);\n    n = len(vals);\n\
-    \  }\n\n  vc<int> cfs(n);\n  FOR(i, n) {\n    Barrett bt(mods[i]);\n    ll a =\
-    \ vals[i];\n    ll prod = 1;\n    FOR(j, i) {\n      a = bt.modulo(a + cfs[j]\
-    \ * (mods[i] - prod));\n      prod = bt.mul(prod, mods[j]);\n    }\n    cfs[i]\
-    \ = bt.mul(mod_inv(prod, mods[i]), a);\n  }\n  i128 ret = 0;\n  i128 prod = 1;\n\
-    \  FOR(i, n) {\n    ret += prod * cfs[i];\n    prod *= mods[i];\n    if (new_mod\
-    \ != -1) {\n      ret %= new_mod;\n      prod %= new_mod;\n    }\n  }\n  return\
-    \ ret;\n}\n"
+    \u3089 -1 \u3092\u8FD4\u3059\n// long \u306E\u3068\u304D\u306E\u30C6\u30B9\u30C8\
+    \u4E0D\u5341\u5206\uFF08\u4F8B\uFF1Ahttps://codeforces.com/contest/338/problem/D\uFF09\
+    \ntemplate <typename T>\ni128 CRT(vc<T> vals, vc<T> mods, ll new_mod = -1, bool\
+    \ coprime = false) {\n  int n = len(vals);\n  FOR(i, n) {\n    vals[i] %= mods[i];\n\
+    \    if (vals[i] < 0) vals[i] += mods[i];\n  }\n  if (!coprime) {\n    unordered_map<ll,\
+    \ vc<pi>> MP;\n    FOR(i, n) {\n      for (auto&& [p, e]: factor(mods[i])) {\n\
+    \        ll mod = 1;\n        FOR(e) mod *= p;\n        MP[p].eb(vals[i] % mod,\
+    \ mod);\n      }\n    }\n    vc<T> xx, mm;\n    for (auto&& [p, dat]: MP) {\n\
+    \      ll mod = 1;\n      ll val = 0;\n      for (auto&& [x, m]: dat)\n      \
+    \  if (chmax(mod, m)) val = x;\n      for (auto&& [x, m]: dat)\n        if ((val\
+    \ - x) % m != 0) return -1;\n      xx.eb(val);\n      mm.eb(mod);\n    }\n   \
+    \ swap(vals, xx);\n    swap(mods, mm);\n    n = len(vals);\n  }\n\n  vc<ll> cfs(n);\n\
+    \  FOR(i, n) {\n    Barrett bt(mods[i]);\n    ll a = vals[i];\n    ll prod = 1;\n\
+    \    FOR(j, i) {\n      a = (a + i128(cfs[j]) * (mods[i] - prod)) % mods[i];\n\
+    \      prod = i128(prod) * mods[j] % mods[i];\n    }\n    cfs[i] = mod_inv(prod,\
+    \ mods[i]) * i128(a) % mods[i];\n  }\n  i128 ret = 0;\n  i128 prod = 1;\n  FOR(i,\
+    \ n) {\n    ret += prod * cfs[i];\n    prod *= mods[i];\n    if (new_mod != -1)\
+    \ {\n      ret %= new_mod;\n      prod %= new_mod;\n    }\n  }\n  return ret;\n\
+    }\n"
   code: "#pragma once\n#include \"mod/barrett.hpp\"\n#include \"mod/mod_inv.hpp\"\n\
     #include \"nt/factor.hpp\"\n\n// \u6700\u5C0F\u89E3\u3092 mod new_mod \u3067\u8FD4\
-    \u3059\n// \u89E3\u306A\u3057\u306A\u3089 -1 \u3092\u8FD4\u3059\ni128 CRT(vc<int>\
-    \ vals, vc<int> mods, ll new_mod = -1, bool coprime = false) {\n  int n = len(vals);\n\
-    \  FOR(i, n) {\n    vals[i] %= mods[i];\n    if (vals[i] < 0) vals[i] += mods[i];\n\
-    \  }\n  if (!coprime) {\n    unordered_map<ll, vc<pi>> MP;\n    FOR(i, n) {\n\
-    \      for (auto&& [p, e]: factor(mods[i])) {\n        int mod = 1;\n        FOR(e)\
-    \ mod *= p;\n        MP[p].eb(vals[i] % mod, mod);\n      }\n    }\n    vc<int>\
-    \ xx, mm;\n    for (auto&& [p, dat]: MP) {\n      int mod = 1;\n      int val\
-    \ = 0;\n      for (auto&& [x, m]: dat)\n        if (chmax(mod, m)) val = x;\n\
-    \      for (auto&& [x, m]: dat)\n        if ((val - x) % m != 0) return -1;\n\
-    \      xx.eb(val);\n      mm.eb(mod);\n    }\n    swap(vals, xx);\n    swap(mods,\
-    \ mm);\n    n = len(vals);\n  }\n\n  vc<int> cfs(n);\n  FOR(i, n) {\n    Barrett\
-    \ bt(mods[i]);\n    ll a = vals[i];\n    ll prod = 1;\n    FOR(j, i) {\n     \
-    \ a = bt.modulo(a + cfs[j] * (mods[i] - prod));\n      prod = bt.mul(prod, mods[j]);\n\
-    \    }\n    cfs[i] = bt.mul(mod_inv(prod, mods[i]), a);\n  }\n  i128 ret = 0;\n\
-    \  i128 prod = 1;\n  FOR(i, n) {\n    ret += prod * cfs[i];\n    prod *= mods[i];\n\
-    \    if (new_mod != -1) {\n      ret %= new_mod;\n      prod %= new_mod;\n   \
-    \ }\n  }\n  return ret;\n}\n"
+    \u3059\n// \u89E3\u306A\u3057\u306A\u3089 -1 \u3092\u8FD4\u3059\n// long \u306E\
+    \u3068\u304D\u306E\u30C6\u30B9\u30C8\u4E0D\u5341\u5206\uFF08\u4F8B\uFF1Ahttps://codeforces.com/contest/338/problem/D\uFF09\
+    \ntemplate <typename T>\ni128 CRT(vc<T> vals, vc<T> mods, ll new_mod = -1, bool\
+    \ coprime = false) {\n  int n = len(vals);\n  FOR(i, n) {\n    vals[i] %= mods[i];\n\
+    \    if (vals[i] < 0) vals[i] += mods[i];\n  }\n  if (!coprime) {\n    unordered_map<ll,\
+    \ vc<pi>> MP;\n    FOR(i, n) {\n      for (auto&& [p, e]: factor(mods[i])) {\n\
+    \        ll mod = 1;\n        FOR(e) mod *= p;\n        MP[p].eb(vals[i] % mod,\
+    \ mod);\n      }\n    }\n    vc<T> xx, mm;\n    for (auto&& [p, dat]: MP) {\n\
+    \      ll mod = 1;\n      ll val = 0;\n      for (auto&& [x, m]: dat)\n      \
+    \  if (chmax(mod, m)) val = x;\n      for (auto&& [x, m]: dat)\n        if ((val\
+    \ - x) % m != 0) return -1;\n      xx.eb(val);\n      mm.eb(mod);\n    }\n   \
+    \ swap(vals, xx);\n    swap(mods, mm);\n    n = len(vals);\n  }\n\n  vc<ll> cfs(n);\n\
+    \  FOR(i, n) {\n    Barrett bt(mods[i]);\n    ll a = vals[i];\n    ll prod = 1;\n\
+    \    FOR(j, i) {\n      a = (a + i128(cfs[j]) * (mods[i] - prod)) % mods[i];\n\
+    \      prod = i128(prod) * mods[j] % mods[i];\n    }\n    cfs[i] = mod_inv(prod,\
+    \ mods[i]) * i128(a) % mods[i];\n  }\n  i128 ret = 0;\n  i128 prod = 1;\n  FOR(i,\
+    \ n) {\n    ret += prod * cfs[i];\n    prod *= mods[i];\n    if (new_mod != -1)\
+    \ {\n      ret %= new_mod;\n      prod %= new_mod;\n    }\n  }\n  return ret;\n\
+    }\n"
   dependsOn:
   - mod/barrett.hpp
   - mod/mod_inv.hpp
@@ -143,8 +148,8 @@ data:
   isVerificationFile: false
   path: nt/crt.hpp
   requiredBy: []
-  timestamp: '2023-05-12 18:15:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-07-03 05:47:21+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/187.test.cpp
   - test/yukicoder/2119.test.cpp

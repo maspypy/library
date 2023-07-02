@@ -506,12 +506,19 @@ data:
     \ C;\n  }\n\n  string to_string() {\n    if (dat.empty()) return \"0\";\n    string\
     \ s;\n    for (int x: dat) {\n      FOR(LOG) {\n        s += '0' + (x % 10);\n\
     \        x = x / 10;\n      }\n    }\n    while (s.back() == '0') s.pop_back();\n\
-    \    if (sgn == -1) s += '-';\n    reverse(all(s));\n    return s;\n  }\n#ifdef\
-    \ FASTIO\n  void write() { fastio::printer.write(to_string()); }\n  void read()\
-    \ {\n    string s;\n    fastio::scanner.read(s);\n    *this = bint(s);\n  }\n\
-    #endif\n};\n#line 7 \"test/aoj/NTL_2_B.test.cpp\"\n\nusing B = BigInteger;\n\n\
-    void solve() {\n  B x, y;\n  read(x);\n  read(y);\n  x -= y;\n  print(x);\n}\n\
-    \nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \    if (sgn == -1) s += '-';\n    reverse(all(s));\n    return s;\n  }\n\n  //\
+    \ https://codeforces.com/contest/504/problem/D\n  string to_binary_string() {\n\
+    \    vc<u32> A(all(dat));\n    string ANS;\n    while (1) {\n      while (len(A)\
+    \ && A.back() == u32(0)) POP(A);\n      if (A.empty()) break;\n      u64 rem =\
+    \ 0;\n      FOR_R(i, len(A)) {\n        rem = rem * MOD + A[i];\n        A[i]\
+    \ = rem >> 32;\n        rem &= u32(-1);\n      }\n      FOR(i, 32) { ANS += '0'\
+    \ + (rem >> i & 1); }\n    }\n    while (len(ANS) && ANS.back() == '0') ANS.pop_back();\n\
+    \    reverse(all(ANS));\n    if (ANS.empty()) ANS += '0';\n    return ANS;\n \
+    \ }\n\n#ifdef FASTIO\n  void write() { fastio::printer.write(to_string()); }\n\
+    \  void read() {\n    string s;\n    fastio::scanner.read(s);\n    *this = bint(s);\n\
+    \  }\n#endif\n};\n#line 7 \"test/aoj/NTL_2_B.test.cpp\"\n\nusing B = BigInteger;\n\
+    \nvoid solve() {\n  B x, y;\n  read(x);\n  read(y);\n  x -= y;\n  print(x);\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_2_B\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"bigint/base.hpp\"\
     \n\nusing B = BigInteger;\n\nvoid solve() {\n  B x, y;\n  read(x);\n  read(y);\n\
@@ -530,7 +537,7 @@ data:
   isVerificationFile: true
   path: test/aoj/NTL_2_B.test.cpp
   requiredBy: []
-  timestamp: '2023-06-30 22:46:48+09:00'
+  timestamp: '2023-07-03 05:46:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/NTL_2_B.test.cpp

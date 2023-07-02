@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
   - icon: ':heavy_check_mark:'
@@ -275,7 +275,7 @@ data:
     \        que.emplace(dist[e.to], e.to);\n      }\n    }\n  }\n  return {dist,\
     \ par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\u30C8\u3002[dist, par, root]\n\
     template <typename T, typename GT>\ntuple<vc<T>, vc<int>, vc<int>> dijkstra(GT&\
-    \ G, vc<int> vs) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<ll> dist(N,\
+    \ G, vc<int> vs) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<T> dist(N,\
     \ infty<T>);\n  vc<int> par(N, -1);\n  vc<int> root(N, -1);\n\n  using P = pair<T,\
     \ int>;\n\n  priority_queue<P, vector<P>, greater<P>> que;\n\n  for (auto&& v:\
     \ vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.emplace(T(0), v);\n  }\n\n\
@@ -309,7 +309,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/shortest_path.test.cpp
   requiredBy: []
-  timestamp: '2023-05-20 20:14:16+09:00'
+  timestamp: '2023-07-03 05:51:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/shortest_path.test.cpp

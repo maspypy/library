@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc274/tasks/abc274_g
@@ -373,31 +373,41 @@ data:
     \n    print(\"max indep set\", independent_set());\r\n    print(\"min edge cover\"\
     , edge_cover());\r\n  }\r\n};\r\n\r\n// vc<bitset> \u3067 biadj matrix \u3092\u6E21\
     \u3059\r\n// N^3/w. (5000,5000) \u3067 300ms \u7A0B\u5EA6\u3067\u52D5\u304F\u5834\
-    \u5408\u304C\u3042\u308B\r\n// https://qoj.ac/problem/6308\r\ntemplate <typename\
-    \ BS>\r\nstruct BipartiteMatching_Dense {\r\n  int N1, N2;\r\n  vc<BS>& G;\r\n\
-    \  vc<int> match_1, match_2;\r\n  vc<int> que;\r\n  vc<int> prev;\r\n  BS vis;\r\
-    \n\r\n  BipartiteMatching_Dense(vc<BS>& G, int N1, int N2)\r\n      : N1(N1),\
-    \ N2(N2), G(G), match_1(N1, -1), match_2(N2, -1) {\r\n    FOR(s, N1) bfs(s);\r\
-    \n  }\r\n\r\n  void bfs(int s) {\r\n    if (match_1[s] != -1) return;\r\n    que.resize(N1),\
-    \ prev.resize(N1);\r\n    int l = 0, r = 0;\r\n    vis.set(), prev[s] = -1;\r\n\
-    \r\n    que[r++] = s;\r\n    while (l < r) {\r\n      int u = que[l++];\r\n  \
-    \    BS cand = vis & G[u];\r\n      for (int v = cand._Find_first(); v < N2; v\
-    \ = cand._Find_next(v)) {\r\n        vis[v] = 0;\r\n        if (match_2[v] !=\
-    \ -1) {\r\n          que[r++] = match_2[v];\r\n          prev[match_2[v]] = u;\r\
-    \n          continue;\r\n        }\r\n        int a = u, b = v;\r\n        while\
-    \ (a != -1) {\r\n          int t = match_1[a];\r\n          match_1[a] = b, match_2[b]\
-    \ = a, a = prev[a], b = t;\r\n        }\r\n        return;\r\n      }\r\n    }\r\
-    \n    return;\r\n  }\r\n\r\n  vc<pair<int, int>> matching() {\r\n    vc<pair<int,\
-    \ int>> res;\r\n    FOR(v, N1) if (match_1[v] != -1) res.eb(v, match_1[v]);\r\n\
-    \    return res;\r\n  }\r\n};\n#line 5 \"test_atcoder/abc274g.test.cpp\"\n\nvoid\
-    \ solve() {\n  LL(H, W);\n  VEC(string, S, H);\n  Graph<bool, 0> G(2 * H * W);\n\
-    \n  FOR(x, H) FOR(y, W) {\n    if (S[x][y] == '#') continue;\n    ll px = x;\n\
-    \    ll py = y;\n    while (px > 0 && S[px - 1][y] == '.') --px;\n    while (py\
-    \ > 0 && S[x][py - 1] == '.') --py;\n    // (px,y), (x, py)\n    ll a = W * px\
-    \ + y;\n    ll b = W * x + py;\n    G.add(a, b + H * W);\n  }\n  G.build();\n\n\
-    \  BipartiteMatching<decltype(G)> X(G);\n  auto cov = X.vertex_cover();\n  print(len(cov));\n\
-    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  //\
-    \ LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \u5408\u304C\u3042\u308B\r\n// https://qoj.ac/problem/6308\r\n// (10000, 20000)\
+    \ \u3067 3837ms\r\n// https://codeforces.com/contest/786/problem/E\r\ntemplate\
+    \ <typename BS>\r\nstruct BipartiteMatching_Dense {\r\n  int N1, N2;\r\n  vc<BS>&\
+    \ adj;\r\n  vc<int> match_1, match_2;\r\n  vc<int> que;\r\n  vc<int> prev;\r\n\
+    \  BS vis;\r\n\r\n  BipartiteMatching_Dense(vc<BS>& adj, int N1, int N2)\r\n \
+    \     : N1(N1), N2(N2), adj(adj), match_1(N1, -1), match_2(N2, -1) {\r\n    FOR(s,\
+    \ N1) bfs(s);\r\n  }\r\n\r\n  void bfs(int s) {\r\n    if (match_1[s] != -1) return;\r\
+    \n    que.resize(N1), prev.resize(N1);\r\n    int l = 0, r = 0;\r\n    vis.set(),\
+    \ prev[s] = -1;\r\n\r\n    que[r++] = s;\r\n    while (l < r) {\r\n      int u\
+    \ = que[l++];\r\n      BS cand = vis & adj[u];\r\n      for (int v = cand._Find_first();\
+    \ v < N2; v = cand._Find_next(v)) {\r\n        vis[v] = 0;\r\n        if (match_2[v]\
+    \ != -1) {\r\n          que[r++] = match_2[v];\r\n          prev[match_2[v]] =\
+    \ u;\r\n          continue;\r\n        }\r\n        int a = u, b = v;\r\n    \
+    \    while (a != -1) {\r\n          int t = match_1[a];\r\n          match_1[a]\
+    \ = b, match_2[b] = a, a = prev[a], b = t;\r\n        }\r\n        return;\r\n\
+    \      }\r\n    }\r\n    return;\r\n  }\r\n\r\n  vc<pair<int, int>> matching()\
+    \ {\r\n    vc<pair<int, int>> res;\r\n    FOR(v, N1) if (match_1[v] != -1) res.eb(v,\
+    \ match_1[v]);\r\n    return res;\r\n  }\r\n\r\n  pair<vc<int>, vc<int>> vertex_cover()\
+    \ {\r\n    vc<int> que(N1);\r\n    int l = 0, r = 0;\r\n    vis.set();\r\n   \
+    \ vc<bool> done(N1);\r\n    FOR(i, N1) {\r\n      if (match_1[i] == -1) done[i]\
+    \ = 1, que[r++] = i;\r\n    }\r\n    while (l < r) {\r\n      int a = que[l++];\r\
+    \n      BS cand = adj[a] & vis;\r\n      for (int b = cand._Find_first(); b <\
+    \ N2; b = cand._Find_next(b)) {\r\n        vis[b] = 0;\r\n        int to = match_2[b];\r\
+    \n        assert(to != -1);\r\n        if (!done[to]) done[to] = 1, que[r++] =\
+    \ to;\r\n      }\r\n    }\r\n    vc<int> left, right;\r\n    FOR(i, N1) if (!done[i])\
+    \ left.eb(i);\r\n    FOR(i, N2) if (!vis[i]) right.eb(i);\r\n    return {left,\
+    \ right};\r\n  }\r\n};\n#line 5 \"test_atcoder/abc274g.test.cpp\"\n\nvoid solve()\
+    \ {\n  LL(H, W);\n  VEC(string, S, H);\n  Graph<bool, 0> G(2 * H * W);\n\n  FOR(x,\
+    \ H) FOR(y, W) {\n    if (S[x][y] == '#') continue;\n    ll px = x;\n    ll py\
+    \ = y;\n    while (px > 0 && S[px - 1][y] == '.') --px;\n    while (py > 0 &&\
+    \ S[x][py - 1] == '.') --py;\n    // (px,y), (x, py)\n    ll a = W * px + y;\n\
+    \    ll b = W * x + py;\n    G.add(a, b + H * W);\n  }\n  G.build();\n\n  BipartiteMatching<decltype(G)>\
+    \ X(G);\n  auto cov = X.vertex_cover();\n  print(len(cov));\n}\n\nsigned main()\
+    \ {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T)\
+    \ solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc274/tasks/abc274_g\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"flow/bipartite.hpp\"\
     \n\nvoid solve() {\n  LL(H, W);\n  VEC(string, S, H);\n  Graph<bool, 0> G(2 *\
@@ -419,8 +429,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc274g.test.cpp
   requiredBy: []
-  timestamp: '2023-06-11 17:06:58+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-03 05:47:47+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc274g.test.cpp
 layout: document

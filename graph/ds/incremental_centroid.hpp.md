@@ -4,16 +4,16 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
   - icon: ':question:'
@@ -21,12 +21,12 @@ data:
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2636.test.cpp
     title: test/aoj/2636.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -193,38 +193,38 @@ data:
     \      } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\
     \n    return P;\r\n  }\r\n};\r\n#line 3 \"graph/ds/tree_abelgroup.hpp\"\n\r\n\
     template <typename TREE, typename AbelGroup, bool edge, bool path_query,\r\n \
-    \         bool subtree_query>\r\nstruct Tree_AbelGroup {\r\n  using MX = typename\
-    \ AbelGroup;\r\n  using X = typename MX::value_type;\r\n  TREE &tree;\r\n  int\
-    \ N;\r\n  FenwickTree<MX> bit, bit_subtree;\r\n\r\n  Tree_AbelGroup(TREE &tree)\
-    \ : tree(tree), N(tree.N) {\r\n    build([](int i) -> X { return MX::unit(); });\r\
-    \n  }\r\n\r\n  Tree_AbelGroup(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N)\
-    \ {\r\n    build([&](int i) -> X { return dat[i]; });\r\n  }\r\n\r\n  template\
-    \ <typename F>\r\n  Tree_AbelGroup(TREE &tree, F f) : tree(tree), N(tree.N) {\r\
-    \n    build(f);\r\n  }\r\n\r\n  template <typename F>\r\n  void build(F f) {\r\
-    \n    vc<X> bit_raw_1(2 * N);\r\n    vc<X> bit_raw_2(N);\r\n    FOR(v, N) {\r\n\
-    \      X x = MX::unit();\r\n      if (!edge) x = f(v);\r\n      if (edge) x =\
-    \ (v == 0 ? MX::unit() : f(tree.v_to_e(v)));\r\n      bit_raw_1[tree.ELID(v)]\
-    \ = x;\r\n      bit_raw_1[tree.ERID(v)] = MX::inverse(x);\r\n      bit_raw_2[tree.LID[v]]\
-    \ = x;\r\n    }\r\n    if constexpr (path_query) bit.build(bit_raw_1);\r\n   \
-    \ if constexpr (subtree_query) bit_subtree.build(bit_raw_2);\r\n  }\r\n\r\n  void\
-    \ add(int i, X x) {\r\n    int v = (edge ? tree.e_to_v(i) : i);\r\n    if constexpr\
-    \ (path_query) {\r\n      bit.add(tree.ELID(v), x);\r\n      bit.add(tree.ERID(v),\
-    \ MX::inverse(x));\r\n    }\r\n    if constexpr (subtree_query) bit_subtree.add(tree.LID[v],\
-    \ x);\r\n  }\r\n\r\n  X prod_path(int frm, int to) {\r\n    static_assert(path_query);\r\
-    \n    int lca = tree.LCA(frm, to);\r\n    // [frm, lca)\r\n    X x1 = bit.prod(tree.ELID(lca)\
-    \ + 1, tree.ELID(frm) + 1);\r\n    // edge \u306A\u3089 (lca, to]\u3001vertex\
-    \ \u306A\u3089 [lca, to]\r\n    X x2 = bit.prod(tree.ELID(lca) + edge, tree.ELID(to)\
-    \ + 1);\r\n    return MX::op(x1, x2);\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\
-    \n    static_assert(subtree_query);\r\n    int l = tree.LID[u], r = tree.RID[u];\r\
-    \n    return bit_subtree.prod(l + edge, r);\r\n  }\r\n};\r\n#line 1 \"ds/fastset.hpp\"\
-    \n/* 64\u5206\u6728\u3002\r\ninsert, erase\r\n[]\u3067\u306E\u5B58\u5728\u5224\
-    \u5B9A\r\nnext, prev\r\n*/\r\nstruct FastSet {\r\n  using uint = unsigned;\r\n\
-    \  using ull = unsigned long long;\r\n\r\n  int bsr(ull x) { return 63 - __builtin_clzll(x);\
-    \ }\r\n  int bsf(ull x) { return __builtin_ctzll(x); }\r\n\r\n  static constexpr\
-    \ uint B = 64;\r\n  int n, lg;\r\n  vector<vector<ull>> seg;\r\n  FastSet(int\
-    \ _n) : n(_n) {\r\n    do {\r\n      seg.push_back(vector<ull>((_n + B - 1) /\
-    \ B));\r\n      _n = (_n + B - 1) / B;\r\n    } while (_n > 1);\r\n    lg = int(seg.size());\r\
-    \n  }\r\n  bool operator[](int i) const { return (seg[0][i / B] >> (i % B) & 1)\
+    \         bool subtree_query>\r\nstruct Tree_AbelGroup {\r\n  using MX = AbelGroup;\r\
+    \n  using X = typename MX::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  FenwickTree<MX>\
+    \ bit, bit_subtree;\r\n\r\n  Tree_AbelGroup(TREE &tree) : tree(tree), N(tree.N)\
+    \ {\r\n    build([](int i) -> X { return MX::unit(); });\r\n  }\r\n\r\n  Tree_AbelGroup(TREE\
+    \ &tree, vc<X> &dat) : tree(tree), N(tree.N) {\r\n    build([&](int i) -> X {\
+    \ return dat[i]; });\r\n  }\r\n\r\n  template <typename F>\r\n  Tree_AbelGroup(TREE\
+    \ &tree, F f) : tree(tree), N(tree.N) {\r\n    build(f);\r\n  }\r\n\r\n  template\
+    \ <typename F>\r\n  void build(F f) {\r\n    vc<X> bit_raw_1(2 * N);\r\n    vc<X>\
+    \ bit_raw_2(N);\r\n    FOR(v, N) {\r\n      X x = MX::unit();\r\n      if (!edge)\
+    \ x = f(v);\r\n      if (edge) x = (v == 0 ? MX::unit() : f(tree.v_to_e(v)));\r\
+    \n      bit_raw_1[tree.ELID(v)] = x;\r\n      bit_raw_1[tree.ERID(v)] = MX::inverse(x);\r\
+    \n      bit_raw_2[tree.LID[v]] = x;\r\n    }\r\n    if constexpr (path_query)\
+    \ bit.build(bit_raw_1);\r\n    if constexpr (subtree_query) bit_subtree.build(bit_raw_2);\r\
+    \n  }\r\n\r\n  void add(int i, X x) {\r\n    int v = (edge ? tree.e_to_v(i) :\
+    \ i);\r\n    if constexpr (path_query) {\r\n      bit.add(tree.ELID(v), x);\r\n\
+    \      bit.add(tree.ERID(v), MX::inverse(x));\r\n    }\r\n    if constexpr (subtree_query)\
+    \ bit_subtree.add(tree.LID[v], x);\r\n  }\r\n\r\n  X prod_path(int frm, int to)\
+    \ {\r\n    static_assert(path_query);\r\n    int lca = tree.LCA(frm, to);\r\n\
+    \    // [frm, lca)\r\n    X x1 = bit.prod(tree.ELID(lca) + 1, tree.ELID(frm) +\
+    \ 1);\r\n    // edge \u306A\u3089 (lca, to]\u3001vertex \u306A\u3089 [lca, to]\r\
+    \n    X x2 = bit.prod(tree.ELID(lca) + edge, tree.ELID(to) + 1);\r\n    return\
+    \ MX::op(x1, x2);\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\n    static_assert(subtree_query);\r\
+    \n    int l = tree.LID[u], r = tree.RID[u];\r\n    return bit_subtree.prod(l +\
+    \ edge, r);\r\n  }\r\n};\r\n#line 1 \"ds/fastset.hpp\"\n/* 64\u5206\u6728\u3002\
+    \r\ninsert, erase\r\n[]\u3067\u306E\u5B58\u5728\u5224\u5B9A\r\nnext, prev\r\n\
+    */\r\nstruct FastSet {\r\n  using uint = unsigned;\r\n  using ull = unsigned long\
+    \ long;\r\n\r\n  int bsr(ull x) { return 63 - __builtin_clzll(x); }\r\n  int bsf(ull\
+    \ x) { return __builtin_ctzll(x); }\r\n\r\n  static constexpr uint B = 64;\r\n\
+    \  int n, lg;\r\n  vector<vector<ull>> seg;\r\n  FastSet(int _n) : n(_n) {\r\n\
+    \    do {\r\n      seg.push_back(vector<ull>((_n + B - 1) / B));\r\n      _n =\
+    \ (_n + B - 1) / B;\r\n    } while (_n > 1);\r\n    lg = int(seg.size());\r\n\
+    \  }\r\n  bool operator[](int i) const { return (seg[0][i / B] >> (i % B) & 1)\
     \ != 0; }\r\n  void insert(int i) {\r\n    for (int h = 0; h < lg; h++) {\r\n\
     \      seg[h][i / B] |= 1ULL << (i % B);\r\n      i /= B;\r\n    }\r\n  }\r\n\
     \  void add(int i) { insert(i); }\r\n  void erase(int i) {\r\n    for (int h =\
@@ -312,8 +312,8 @@ data:
   isVerificationFile: false
   path: graph/ds/incremental_centroid.hpp
   requiredBy: []
-  timestamp: '2023-07-03 05:45:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-07-03 06:05:00+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/2636.test.cpp
 documentation_of: graph/ds/incremental_centroid.hpp
