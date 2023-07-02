@@ -4,7 +4,7 @@
 template <typename TREE, typename AbelGroup, bool edge, bool path_query,
           bool subtree_query>
 struct Tree_AbelGroup {
-  usnig MX = AbelGroup;
+  using MX = typename AbelGroup;
   using X = typename MX::value_type;
   TREE &tree;
   int N;

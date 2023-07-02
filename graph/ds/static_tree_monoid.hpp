@@ -4,7 +4,7 @@
 
 template <typename TREE, typename Monoid, bool edge>
 struct Static_Tree_Monoid {
-  using MX = Monoid;
+  using MX = typename Monoid;
   using X = typename Monoid::value_type;
   TREE &tree;
   int N;
