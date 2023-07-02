@@ -1905,7 +1905,7 @@ data:
   - icon: ':x:'
     path: test_atcoder/abc269ex.test.cpp
     title: test_atcoder/abc269ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc270_f.test.cpp
     title: test_atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
