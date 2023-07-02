@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/line_add_get_min_lichao_2.test.cpp
     title: test/library_checker/datastructure/line_add_get_min_lichao_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/segment_add_get_min_2.test.cpp
     title: test/library_checker/datastructure/segment_add_get_min_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/lichao.hpp\"\n// \u8A55\u4FA1\u70B9\u306F ll\u3001\
@@ -21,9 +21,8 @@ data:
     \ bool MINIMIZE>\nstruct LiChao_Tree {\n  using FUNC = pair<T, T>;\n  vc<FUNC>\
     \ funcs;\n\n  static inline T evaluate(FUNC& f, ll x) { return f.fi * x + f.se;\
     \ }\n\n  vc<ll> X;\n  ll lo, hi;\n  vc<int> FID;\n  int n, log, size;\n\n  inline\
-    \ int get_idx(ll x) {\n    if constexpr (COMPRESS) {\n      int idx = LB(X, x);\n\
-    \      assert(X[idx] == x);\n      return idx;\n    }\n    assert(lo <= x && x\
-    \ < hi);\n    return x - lo;\n  }\n\n  template <typename XY>\n  LiChao_Tree(const\
+    \ int get_idx(ll x) {\n    if constexpr (COMPRESS) { return LB(X, x); }\n    assert(lo\
+    \ <= x && x < hi);\n    return x - lo;\n  }\n\n  template <typename XY>\n  LiChao_Tree(const\
     \ vc<XY>& pts) {\n    static_assert(COMPRESS);\n    for (auto&& x: pts) X.eb(x);\n\
     \    UNIQUE(X);\n    n = len(X), log = 1;\n    while ((1 << log) < n) ++log;\n\
     \    size = 1 << log;\n    FID.assign(size << 1, -1);\n  }\n\n  LiChao_Tree(ll\
@@ -63,21 +62,20 @@ data:
     \  using FUNC = pair<T, T>;\n  vc<FUNC> funcs;\n\n  static inline T evaluate(FUNC&\
     \ f, ll x) { return f.fi * x + f.se; }\n\n  vc<ll> X;\n  ll lo, hi;\n  vc<int>\
     \ FID;\n  int n, log, size;\n\n  inline int get_idx(ll x) {\n    if constexpr\
-    \ (COMPRESS) {\n      int idx = LB(X, x);\n      assert(X[idx] == x);\n      return\
-    \ idx;\n    }\n    assert(lo <= x && x < hi);\n    return x - lo;\n  }\n\n  template\
-    \ <typename XY>\n  LiChao_Tree(const vc<XY>& pts) {\n    static_assert(COMPRESS);\n\
-    \    for (auto&& x: pts) X.eb(x);\n    UNIQUE(X);\n    n = len(X), log = 1;\n\
-    \    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    FID.assign(size\
-    \ << 1, -1);\n  }\n\n  LiChao_Tree(ll lo, ll hi) : lo(lo), hi(hi) {\n    static_assert(!COMPRESS);\n\
-    \    n = hi - lo, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 <<\
-    \ log;\n    FID.assign(size << 1, -1);\n  }\n\n  void add_line(FUNC f) {\n   \
-    \ int fid = len(funcs);\n    funcs.eb(f);\n    return add_line_at(1, fid);\n \
-    \ }\n  void add_segment(ll xl, ll xr, FUNC f) {\n    int fid = len(funcs);\n \
-    \   funcs.eb(f);\n    xl = get_idx(xl), xr = get_idx(xr);\n    xl += size, xr\
-    \ += size;\n    while (xl < xr) {\n      if (xl & 1) add_line_at(xl++, fid);\n\
-    \      if (xr & 1) add_line_at(--xr, fid);\n      xl >>= 1, xr >>= 1;\n    }\n\
-    \  }\n\n  // [fx, fid]\n  pair<T, int> query(ll x) {\n    x = get_idx(x);\n  \
-    \  int i = x + size;\n    pair<T, int> res;\n    if (!MINIMIZE) res = {-infty<T>,\
+    \ (COMPRESS) { return LB(X, x); }\n    assert(lo <= x && x < hi);\n    return\
+    \ x - lo;\n  }\n\n  template <typename XY>\n  LiChao_Tree(const vc<XY>& pts) {\n\
+    \    static_assert(COMPRESS);\n    for (auto&& x: pts) X.eb(x);\n    UNIQUE(X);\n\
+    \    n = len(X), log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 <<\
+    \ log;\n    FID.assign(size << 1, -1);\n  }\n\n  LiChao_Tree(ll lo, ll hi) : lo(lo),\
+    \ hi(hi) {\n    static_assert(!COMPRESS);\n    n = hi - lo, log = 1;\n    while\
+    \ ((1 << log) < n) ++log;\n    size = 1 << log;\n    FID.assign(size << 1, -1);\n\
+    \  }\n\n  void add_line(FUNC f) {\n    int fid = len(funcs);\n    funcs.eb(f);\n\
+    \    return add_line_at(1, fid);\n  }\n  void add_segment(ll xl, ll xr, FUNC f)\
+    \ {\n    int fid = len(funcs);\n    funcs.eb(f);\n    xl = get_idx(xl), xr = get_idx(xr);\n\
+    \    xl += size, xr += size;\n    while (xl < xr) {\n      if (xl & 1) add_line_at(xl++,\
+    \ fid);\n      if (xr & 1) add_line_at(--xr, fid);\n      xl >>= 1, xr >>= 1;\n\
+    \    }\n  }\n\n  // [fx, fid]\n  pair<T, int> query(ll x) {\n    x = get_idx(x);\n\
+    \    int i = x + size;\n    pair<T, int> res;\n    if (!MINIMIZE) res = {-infty<T>,\
     \ -1};\n    if (MINIMIZE) res = {infty<T>, -1};\n    while (i) {\n      if (FID[i]\
     \ != -1 && FID[i] != res.se) {\n        pair<T, int> res1 = {evaluate_inner(FID[i],\
     \ x), FID[i]};\n        res = (MINIMIZE ? min(res, res1) : max(res, res1));\n\
@@ -101,8 +99,8 @@ data:
   isVerificationFile: false
   path: convex/lichao.hpp
   requiredBy: []
-  timestamp: '2023-06-30 17:55:59+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-07-03 05:19:44+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/line_add_get_min_lichao_2.test.cpp
   - test/library_checker/datastructure/segment_add_get_min_2.test.cpp
