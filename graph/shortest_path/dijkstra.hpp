@@ -31,7 +31,7 @@ template <typename T, typename GT>
 tuple<vc<T>, vc<int>, vc<int>> dijkstra(GT& G, vc<int> vs) {
   assert(G.is_prepared());
   int N = G.N;
-  vc<ll> dist(N, infty<T>);
+  vc<T> dist(N, infty<T>);
   vc<int> par(N, -1);
   vc<int> root(N, -1);
 
