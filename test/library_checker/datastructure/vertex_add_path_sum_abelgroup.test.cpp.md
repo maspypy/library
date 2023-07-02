@@ -379,30 +379,30 @@ data:
     \      } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\
     \n    return P;\r\n  }\r\n};\r\n#line 3 \"graph/ds/tree_abelgroup.hpp\"\n\r\n\
     template <typename TREE, typename AbelGroup, bool edge, bool path_query,\r\n \
-    \         bool subtree_query>\r\nstruct Tree_AbelGroup {\r\n  usnig MX = AbelGroup;\r\
-    \n  using X = typename MX::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  FenwickTree<MX>\
-    \ bit, bit_subtree;\r\n\r\n  Tree_AbelGroup(TREE &tree) : tree(tree), N(tree.N)\
-    \ {\r\n    build([](int i) -> X { return MX::unit(); });\r\n  }\r\n\r\n  Tree_AbelGroup(TREE\
-    \ &tree, vc<X> &dat) : tree(tree), N(tree.N) {\r\n    build([&](int i) -> X {\
-    \ return dat[i]; });\r\n  }\r\n\r\n  template <typename F>\r\n  Tree_AbelGroup(TREE\
-    \ &tree, F f) : tree(tree), N(tree.N) {\r\n    build(f);\r\n  }\r\n\r\n  template\
-    \ <typename F>\r\n  void build(F f) {\r\n    vc<X> bit_raw_1(2 * N);\r\n    vc<X>\
-    \ bit_raw_2(N);\r\n    FOR(v, N) {\r\n      X x = MX::unit();\r\n      if (!edge)\
-    \ x = f(v);\r\n      if (edge) x = (v == 0 ? MX::unit() : f(tree.v_to_e(v)));\r\
-    \n      bit_raw_1[tree.ELID(v)] = x;\r\n      bit_raw_1[tree.ERID(v)] = MX::inverse(x);\r\
-    \n      bit_raw_2[tree.LID[v]] = x;\r\n    }\r\n    if constexpr (path_query)\
-    \ bit.build(bit_raw_1);\r\n    if constexpr (subtree_query) bit_subtree.build(bit_raw_2);\r\
-    \n  }\r\n\r\n  void add(int i, X x) {\r\n    int v = (edge ? tree.e_to_v(i) :\
-    \ i);\r\n    if constexpr (path_query) {\r\n      bit.add(tree.ELID(v), x);\r\n\
-    \      bit.add(tree.ERID(v), MX::inverse(x));\r\n    }\r\n    if constexpr (subtree_query)\
-    \ bit_subtree.add(tree.LID[v], x);\r\n  }\r\n\r\n  X prod_path(int frm, int to)\
-    \ {\r\n    static_assert(path_query);\r\n    int lca = tree.LCA(frm, to);\r\n\
-    \    // [frm, lca)\r\n    X x1 = bit.prod(tree.ELID(lca) + 1, tree.ELID(frm) +\
-    \ 1);\r\n    // edge \u306A\u3089 (lca, to]\u3001vertex \u306A\u3089 [lca, to]\r\
-    \n    X x2 = bit.prod(tree.ELID(lca) + edge, tree.ELID(to) + 1);\r\n    return\
-    \ MX::op(x1, x2);\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\n    static_assert(subtree_query);\r\
-    \n    int l = tree.LID[u], r = tree.RID[u];\r\n    return bit_subtree.prod(l +\
-    \ edge, r);\r\n  }\r\n};\r\n#line 7 \"test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp\"\
+    \         bool subtree_query>\r\nstruct Tree_AbelGroup {\r\n  using MX = typename\
+    \ AbelGroup;\r\n  using X = typename MX::value_type;\r\n  TREE &tree;\r\n  int\
+    \ N;\r\n  FenwickTree<MX> bit, bit_subtree;\r\n\r\n  Tree_AbelGroup(TREE &tree)\
+    \ : tree(tree), N(tree.N) {\r\n    build([](int i) -> X { return MX::unit(); });\r\
+    \n  }\r\n\r\n  Tree_AbelGroup(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N)\
+    \ {\r\n    build([&](int i) -> X { return dat[i]; });\r\n  }\r\n\r\n  template\
+    \ <typename F>\r\n  Tree_AbelGroup(TREE &tree, F f) : tree(tree), N(tree.N) {\r\
+    \n    build(f);\r\n  }\r\n\r\n  template <typename F>\r\n  void build(F f) {\r\
+    \n    vc<X> bit_raw_1(2 * N);\r\n    vc<X> bit_raw_2(N);\r\n    FOR(v, N) {\r\n\
+    \      X x = MX::unit();\r\n      if (!edge) x = f(v);\r\n      if (edge) x =\
+    \ (v == 0 ? MX::unit() : f(tree.v_to_e(v)));\r\n      bit_raw_1[tree.ELID(v)]\
+    \ = x;\r\n      bit_raw_1[tree.ERID(v)] = MX::inverse(x);\r\n      bit_raw_2[tree.LID[v]]\
+    \ = x;\r\n    }\r\n    if constexpr (path_query) bit.build(bit_raw_1);\r\n   \
+    \ if constexpr (subtree_query) bit_subtree.build(bit_raw_2);\r\n  }\r\n\r\n  void\
+    \ add(int i, X x) {\r\n    int v = (edge ? tree.e_to_v(i) : i);\r\n    if constexpr\
+    \ (path_query) {\r\n      bit.add(tree.ELID(v), x);\r\n      bit.add(tree.ERID(v),\
+    \ MX::inverse(x));\r\n    }\r\n    if constexpr (subtree_query) bit_subtree.add(tree.LID[v],\
+    \ x);\r\n  }\r\n\r\n  X prod_path(int frm, int to) {\r\n    static_assert(path_query);\r\
+    \n    int lca = tree.LCA(frm, to);\r\n    // [frm, lca)\r\n    X x1 = bit.prod(tree.ELID(lca)\
+    \ + 1, tree.ELID(frm) + 1);\r\n    // edge \u306A\u3089 (lca, to]\u3001vertex\
+    \ \u306A\u3089 [lca, to]\r\n    X x2 = bit.prod(tree.ELID(lca) + edge, tree.ELID(to)\
+    \ + 1);\r\n    return MX::op(x1, x2);\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\
+    \n    static_assert(subtree_query);\r\n    int l = tree.LID[u], r = tree.RID[u];\r\
+    \n    return bit_subtree.prod(l + edge, r);\r\n  }\r\n};\r\n#line 7 \"test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  Graph G(N);\r\n \
     \ G.read_tree(0, 0);\r\n\r\n  Tree tree(G);\r\n  Tree_AbelGroup<decltype(tree),\
     \ Monoid_Add<ll>, 0, 1, 0> TA(tree, A);\r\n\r\n  FOR(Q) {\r\n    LL(t);\r\n  \
@@ -431,7 +431,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   requiredBy: []
-  timestamp: '2023-07-03 05:07:01+09:00'
+  timestamp: '2023-07-03 05:45:49+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
