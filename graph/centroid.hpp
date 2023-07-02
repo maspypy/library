@@ -133,19 +133,23 @@ public:
     return collect(root, 0, f);
   }
 
-  // (V, H), (V[i] in G) = (i in H).
+  // (V, H, grp), (V[i] in G) = (i in H).
   // 0,1,2... is a dfs order in H.
-  pair<vc<int>, Graph<typename GT::cost_type, true>> get_subgraph(int root) {
+  tuple<vc<int>, Graph<typename GT::cost_type, true>, vc<int>> get_subgraph(
+      int root) {
     static vc<int> conv;
     while (len(conv) < N) conv.eb(-1);
 
-    vc<int> V;
+    vc<int> V = {root};
+    vc<int> grp = {-1};
+    conv[root] = 0;
+    int nxt_grp = 0;
     using cost_type = typename GT::cost_type;
     vc<tuple<int, int, cost_type>> edges;
 
     auto dfs = [&](auto& dfs, int v, int p) -> void {
       conv[v] = len(V);
-      V.eb(v);
+      V.eb(v), grp.eb(nxt_grp);
       for (auto&& e: G[v]) {
         int to = e.to;
         if (to == p) continue;
@@ -154,12 +158,16 @@ public:
         edges.eb(conv[v], conv[to], e.cost);
       }
     };
-    dfs(dfs, root, -1);
+    for (auto&& e: G[root]) {
+      if (cdep[e.to] < cdep[root]) continue;
+      dfs(dfs, e.to, root);
+      ++nxt_grp;
+    }
     int n = len(V);
     Graph<typename GT::cost_type, true> H(n);
     for (auto&& [a, b, c]: edges) H.add(a, b, c);
     H.build();
     for (auto&& v: V) conv[v] = -1;
-    return {V, H};
+    return {V, H, grp};
   }
 };

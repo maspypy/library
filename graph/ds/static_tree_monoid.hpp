@@ -4,7 +4,7 @@
 
 template <typename TREE, typename Monoid, bool edge>
 struct Static_Tree_Monoid {
-  using MX = typename Monoid;
+  using MX = Monoid;
   using X = typename Monoid::value_type;
   TREE &tree;
   int N;
@@ -102,7 +102,7 @@ private:
     // climb
     for (auto &&[a, b]: pd) {
       assert(a >= b);
-      X x = prod_path(a, b);
+      X x = get_prod(a, b);
       if (check(MX::op(val, x))) {
         val = MX::op(val, x);
         u = (tree.parent[tree.V[b]]);
