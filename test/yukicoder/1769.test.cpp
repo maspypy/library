@@ -19,7 +19,8 @@ void solve() {
   FOR(root, N) {
     vc<int> conv;
     Graph<int, 1> G;
-    tie(conv, G) = CD.get_subgraph(root);
+    vc<int> color;
+    tie(conv, G, color) = CD.get_subgraph(root);
     const int N = G.N;
     // lca が 0 であるような path について解く
     vc<int> A(N);
