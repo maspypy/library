@@ -161,6 +161,7 @@ public:
     for (auto&& e: G[root]) {
       if (cdep[e.to] < cdep[root]) continue;
       dfs(dfs, e.to, root);
+      edges.eb(conv[root], conv[e.to], e.cost);
       ++nxt_grp;
     }
     int n = len(V);
