@@ -102,9 +102,39 @@ private:
   }
 
 public:
+  // vector of pairs (v, path data v)
+  template <typename E, typename F>
+  vc<vc<pair<int, E>>> collect(int root, E root_val, F f) {
+    vc<vc<pair<int, E>>> res = {{{root, root_val}}};
+    for (auto&& e: G[root]) {
+      int nxt = e.to;
+      if (cdep[nxt] < cdep[root]) continue;
+      vc<pair<int, E>> dat;
+      int p = 0;
+      dat.eb(nxt, f(root_val, e));
+      par[nxt] = root;
+      while (p < len(dat)) {
+        auto [v, val] = dat[p++];
+        for (auto&& e: G[v]) {
+          if (e.to == par[v]) continue;
+          if (cdep[e.to] < cdep[root]) continue;
+          par[e.to] = v;
+          dat.eb(e.to, f(val, e));
+        }
+      }
+      res.eb(dat);
+      res[0].insert(res[0].end(), all(dat));
+    }
+    return res;
+  }
+
+  vc<vc<pair<int, int>>> collect_dist(int root) {
+    auto f = [&](int x, auto e) -> int { return x + 1; };
+    return collect(root, 0, f);
+  }
+
   // (V, H, grp), (V[i] in G) = (i in H).
   // 0,1,2... is a dfs order in H.
-  // 辺が topo 順なので、dp は edges をループすればよい
   tuple<vc<int>, Graph<typename GT::cost_type, true>, vc<int>> get_subgraph(
       int root) {
     static vc<int> conv;
@@ -124,14 +154,14 @@ public:
         int to = e.to;
         if (to == p) continue;
         if (cdep[to] < cdep[root]) continue;
-        edges.eb(conv[v], len(V), e.cost);
         dfs(dfs, to, v);
+        edges.eb(conv[v], conv[to], e.cost);
       }
     };
     for (auto&& e: G[root]) {
       if (cdep[e.to] < cdep[root]) continue;
-      edges.eb(0, len(V), e.cost);
       dfs(dfs, e.to, root);
+      edges.eb(conv[root], conv[e.to], e.cost);
       ++nxt_grp;
     }
     int n = len(V);
