@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/binomial.hpp
     title: mod/binomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/binomial_coefficient
@@ -308,26 +308,29 @@ data:
     \ e]: pf)\r\n      if (mod_pow_long(g, (p - 1) / q, p) == 1) return false;\r\n\
     \    return true;\r\n  };\r\n  while (1) {\r\n    ll x = RNG(1, p);\r\n    if\
     \ (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n#line 2 \"mod/mod_inv.hpp\"\
-    \n// long \u3067\u3082\u5927\u4E08\u592B\r\nll mod_inv(ll val, ll mod) {\r\n \
-    \ val %= mod;\r\n  if (val < 0) val += mod;\r\n  ll a = val, b = mod, u = 1, v\
-    \ = 0, t;\r\n  while (b > 0) {\r\n    t = a / b;\r\n    swap(a -= t * b, b), swap(u\
-    \ -= t * v, v);\r\n  }\r\n  if (u < 0) u += mod;\r\n  return u;\r\n}\r\n#line\
-    \ 3 \"mod/binomial.hpp\"\n\r\nstruct Binomial_PrimePower {\r\n  int p, e;\r\n\
-    \  int pp;\r\n  int root;\r\n  int ord;\r\n  vc<int> exp;\r\n  vc<int> log_fact;\r\
-    \n  vc<int> power;\r\n  Barrett bt_p, bt_pp;\r\n\r\n  Binomial_PrimePower(int\
-    \ p, int e) : p(p), e(e), power(e + 1, 1) {\r\n    FOR(i, e) power[i + 1] = power[i]\
-    \ * p;\r\n    pp = power[e];\r\n    bt_p = Barrett(p), bt_pp = Barrett(pp);\r\n\
-    \    vc<int> log;\r\n    if (p == 2) {\r\n      if (e <= 1) { return; }\r\n  \
-    \    root = 5;\r\n      ord = pp / 4;\r\n      exp.assign(ord, 1);\r\n      log.assign(pp,\
-    \ 0);\r\n      FOR(i, ord - 1) { exp[i + 1] = (exp[i] * root) & (pp - 1); }\r\n\
-    \      FOR(i, ord) log[exp[i]] = log[pp - exp[i]] = i;\r\n    } else {\r\n   \
-    \   root = primitive_root(p);\r\n      ord = pp / p * (p - 1);\r\n      exp.assign(ord,\
-    \ 1);\r\n      log.assign(pp, 0);\r\n      FOR(i, ord - 1) { exp[i + 1] = bt_pp.mul(exp[i],\
-    \ root); }\r\n      FOR(i, ord) log[exp[i]] = i;\r\n    }\r\n    log_fact.assign(pp,\
-    \ 0);\r\n    FOR(i, 1, pp) {\r\n      log_fact[i] = log_fact[i - 1] + log[i];\r\
-    \n      if (log_fact[i] >= ord) log_fact[i] -= ord;\r\n    }\r\n  }\r\n\r\n  int\
-    \ C(ll n, ll i) {\r\n    assert(n >= 0);\r\n    if (i < 0 || i > n) return 0;\r\
-    \n    ll a = i, b = n - i;\r\n    if (pp == 2) { return ((a & b) == 0 ? 1 : 0);\
+    \n// long \u3067\u3082\u5927\u4E08\u592B\r\n// (val * x - 1) \u304C mod \u306E\
+    \u500D\u6570\u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\r\n// \u7279\u306B\
+    \ mod=0 \u306A\u3089 x=0 \u304C\u6E80\u305F\u3059\r\nll mod_inv(ll val, ll mod)\
+    \ {\r\n  if (mod == 0) return 0;\r\n  mod = abs(mod);\r\n  val %= mod;\r\n  if\
+    \ (val < 0) val += mod;\r\n  ll a = val, b = mod, u = 1, v = 0, t;\r\n  while\
+    \ (b > 0) {\r\n    t = a / b;\r\n    swap(a -= t * b, b), swap(u -= t * v, v);\r\
+    \n  }\r\n  if (u < 0) u += mod;\r\n  return u;\r\n}\r\n#line 3 \"mod/binomial.hpp\"\
+    \n\r\nstruct Binomial_PrimePower {\r\n  int p, e;\r\n  int pp;\r\n  int root;\r\
+    \n  int ord;\r\n  vc<int> exp;\r\n  vc<int> log_fact;\r\n  vc<int> power;\r\n\
+    \  Barrett bt_p, bt_pp;\r\n\r\n  Binomial_PrimePower(int p, int e) : p(p), e(e),\
+    \ power(e + 1, 1) {\r\n    FOR(i, e) power[i + 1] = power[i] * p;\r\n    pp =\
+    \ power[e];\r\n    bt_p = Barrett(p), bt_pp = Barrett(pp);\r\n    vc<int> log;\r\
+    \n    if (p == 2) {\r\n      if (e <= 1) { return; }\r\n      root = 5;\r\n  \
+    \    ord = pp / 4;\r\n      exp.assign(ord, 1);\r\n      log.assign(pp, 0);\r\n\
+    \      FOR(i, ord - 1) { exp[i + 1] = (exp[i] * root) & (pp - 1); }\r\n      FOR(i,\
+    \ ord) log[exp[i]] = log[pp - exp[i]] = i;\r\n    } else {\r\n      root = primitive_root(p);\r\
+    \n      ord = pp / p * (p - 1);\r\n      exp.assign(ord, 1);\r\n      log.assign(pp,\
+    \ 0);\r\n      FOR(i, ord - 1) { exp[i + 1] = bt_pp.mul(exp[i], root); }\r\n \
+    \     FOR(i, ord) log[exp[i]] = i;\r\n    }\r\n    log_fact.assign(pp, 0);\r\n\
+    \    FOR(i, 1, pp) {\r\n      log_fact[i] = log_fact[i - 1] + log[i];\r\n    \
+    \  if (log_fact[i] >= ord) log_fact[i] -= ord;\r\n    }\r\n  }\r\n\r\n  int C(ll\
+    \ n, ll i) {\r\n    assert(n >= 0);\r\n    if (i < 0 || i > n) return 0;\r\n \
+    \   ll a = i, b = n - i;\r\n    if (pp == 2) { return ((a & b) == 0 ? 1 : 0);\
     \ }\r\n    int log = 0, cnt_p = 0, sgn = 0;\r\n    if (e > 1) {\r\n      while\
     \ (n && cnt_p < e) {\r\n        auto [n1, nr1] = bt_pp.divmod(n);\r\n        auto\
     \ [a1, ar1] = bt_pp.divmod(a);\r\n        auto [b1, br1] = bt_pp.divmod(b);\r\n\
@@ -376,8 +379,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/binomial_coefficient.test.cpp
   requiredBy: []
-  timestamp: '2023-06-11 17:09:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-06 13:22:49+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/binomial_coefficient.test.cpp
 layout: document
