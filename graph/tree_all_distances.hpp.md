@@ -377,24 +377,31 @@ data:
     \ b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_naive(a, b);\r\n  return\
     \ convolution_garner(a, b);\r\n}\r\n#line 3 \"graph/tree_all_distances.hpp\"\n\
     \r\n// frequency table of distance of all directed pairs.\r\n// sum of result\
-    \ array = N^2\r\ntemplate <typename Graph>\r\nvi tree_all_distances(Graph& G)\
-    \ {\r\n  assert(G.is_prepared());\r\n  assert(!G.is_directed());\r\n  Centroid_Decomposition\
+    \ array = N^2\r\n\r\ntemplate <typename GT>\r\nvi tree_all_distances(GT& G) {\r\
+    \n  assert(G.is_prepared());\r\n  assert(!G.is_directed());\r\n  Centroid_Decomposition\
     \ CD(G);\r\n\r\n  ll N = G.N;\r\n  vi ANS(N);\r\n  FOR(root, N) {\r\n    auto\
-    \ data = CD.collect_dist(root);\r\n    FOR(i, len(data)) {\r\n      int n = 0;\r\
-    \n      FOR(j, len(data[i])) chmax(n, data[i][j].se + 1);\r\n      vi A(n);\r\n\
-    \      FOR(j, len(data[i])) A[data[i][j].se]++;\r\n      auto B = convolution(A,\
-    \ A);\r\n      FOR(j, min(N, len(B))) ANS[j] += (i == 0 ? B[j] : -B[j]);\r\n \
-    \   }\r\n  }\r\n  return ANS;\r\n}\n"
+    \ [V, G, grp] = CD.get_subgraph(root);\r\n    int n = len(V);\r\n    vc<int> dp(n);\r\
+    \n    for (auto&& e: G.edges) dp[e.to] = dp[e.frm] + 1;\r\n    auto calc = [&](vc<int>\
+    \ vals, int sgn) -> void {\r\n      if (vals.empty()) return;\r\n      int mx\
+    \ = MAX(vals);\r\n      vi A(mx + 1);\r\n      for (int x: vals) A[x]++;\r\n \
+    \     A = convolution(A, A);\r\n      FOR(j, len(B)) if (j < N) ANS[j] += sgn\
+    \ * B[j];\r\n    };\r\n\r\n    calc(dp);\r\n    vc<int> vals;\r\n    FOR(i, 1,\
+    \ n) {\r\n      if (grp[i] != grp[i - 1]) { calc(vals, -1), vals.clear(); }\r\n\
+    \      vals.eb(dp[i]);\r\n    }\r\n    calc(vals, -1);\r\n  }\r\n  return ANS;\r\
+    \n}\r\n"
   code: "#include \"graph/centroid.hpp\"\r\n#include \"poly/convolution.hpp\"\r\n\r\
     \n// frequency table of distance of all directed pairs.\r\n// sum of result array\
-    \ = N^2\r\ntemplate <typename Graph>\r\nvi tree_all_distances(Graph& G) {\r\n\
-    \  assert(G.is_prepared());\r\n  assert(!G.is_directed());\r\n  Centroid_Decomposition\
-    \ CD(G);\r\n\r\n  ll N = G.N;\r\n  vi ANS(N);\r\n  FOR(root, N) {\r\n    auto\
-    \ data = CD.collect_dist(root);\r\n    FOR(i, len(data)) {\r\n      int n = 0;\r\
-    \n      FOR(j, len(data[i])) chmax(n, data[i][j].se + 1);\r\n      vi A(n);\r\n\
-    \      FOR(j, len(data[i])) A[data[i][j].se]++;\r\n      auto B = convolution(A,\
-    \ A);\r\n      FOR(j, min(N, len(B))) ANS[j] += (i == 0 ? B[j] : -B[j]);\r\n \
-    \   }\r\n  }\r\n  return ANS;\r\n}"
+    \ = N^2\r\n\r\ntemplate <typename GT>\r\nvi tree_all_distances(GT& G) {\r\n  assert(G.is_prepared());\r\
+    \n  assert(!G.is_directed());\r\n  Centroid_Decomposition CD(G);\r\n\r\n  ll N\
+    \ = G.N;\r\n  vi ANS(N);\r\n  FOR(root, N) {\r\n    auto [V, G, grp] = CD.get_subgraph(root);\r\
+    \n    int n = len(V);\r\n    vc<int> dp(n);\r\n    for (auto&& e: G.edges) dp[e.to]\
+    \ = dp[e.frm] + 1;\r\n    auto calc = [&](vc<int> vals, int sgn) -> void {\r\n\
+    \      if (vals.empty()) return;\r\n      int mx = MAX(vals);\r\n      vi A(mx\
+    \ + 1);\r\n      for (int x: vals) A[x]++;\r\n      A = convolution(A, A);\r\n\
+    \      FOR(j, len(B)) if (j < N) ANS[j] += sgn * B[j];\r\n    };\r\n\r\n    calc(dp);\r\
+    \n    vc<int> vals;\r\n    FOR(i, 1, n) {\r\n      if (grp[i] != grp[i - 1]) {\
+    \ calc(vals, -1), vals.clear(); }\r\n      vals.eb(dp[i]);\r\n    }\r\n    calc(vals,\
+    \ -1);\r\n  }\r\n  return ANS;\r\n}\r\n"
   dependsOn:
   - graph/centroid.hpp
   - graph/base.hpp
@@ -408,7 +415,7 @@ data:
   isVerificationFile: false
   path: graph/tree_all_distances.hpp
   requiredBy: []
-  timestamp: '2023-07-06 13:22:49+09:00'
+  timestamp: '2023-07-06 20:15:57+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
