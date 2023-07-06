@@ -3,8 +3,9 @@
 
 // frequency table of distance of all directed pairs.
 // sum of result array = N^2
-template <typename Graph>
-vi tree_all_distances(Graph& G) {
+
+template <typename GT>
+vi tree_all_distances(GT& G) {
   assert(G.is_prepared());
   assert(!G.is_directed());
   Centroid_Decomposition CD(G);
@@ -12,15 +13,26 @@ vi tree_all_distances(Graph& G) {
   ll N = G.N;
   vi ANS(N);
   FOR(root, N) {
-    auto data = CD.collect_dist(root);
-    FOR(i, len(data)) {
-      int n = 0;
-      FOR(j, len(data[i])) chmax(n, data[i][j].se + 1);
-      vi A(n);
-      FOR(j, len(data[i])) A[data[i][j].se]++;
-      auto B = convolution(A, A);
-      FOR(j, min(N, len(B))) ANS[j] += (i == 0 ? B[j] : -B[j]);
+    auto [V, G, grp] = CD.get_subgraph(root);
+    int n = len(V);
+    vc<int> dp(n);
+    for (auto&& e: G.edges) dp[e.to] = dp[e.frm] + 1;
+    auto calc = [&](vc<int> vals, int sgn) -> void {
+      if (vals.empty()) return;
+      int mx = MAX(vals);
+      vi A(mx + 1);
+      for (int x: vals) A[x]++;
+      A = convolution(A, A);
+      FOR(j, len(B)) if (j < N) ANS[j] += sgn * B[j];
+    };
+
+    calc(dp);
+    vc<int> vals;
+    FOR(i, 1, n) {
+      if (grp[i] != grp[i - 1]) { calc(vals, -1), vals.clear(); }
+      vals.eb(dp[i]);
     }
+    calc(vals, -1);
   }
   return ANS;
 }
