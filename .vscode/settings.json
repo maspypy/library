@@ -78,6 +78,10 @@
         "strstream": "cpp",
         "ranges": "cpp",
         "span": "cpp",
-        "numbers": "cpp"
+        "numbers": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "coroutine": "cpp",
+        "stop_token": "cpp"
     }
 }
