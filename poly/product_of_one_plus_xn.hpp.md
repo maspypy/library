@@ -378,10 +378,10 @@ data:
   timestamp: '2023-07-06 13:22:49+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/math/sharp_p_subset_sum.test.cpp
-  - test/mytest/product_of_one_pm_xn.test.cpp
-  - test/yukicoder/2062.test.cpp
   - test_atcoder/abc267h.test.cpp
+  - test/yukicoder/2062.test.cpp
+  - test/mytest/product_of_one_pm_xn.test.cpp
+  - test/library_checker/math/sharp_p_subset_sum.test.cpp
 documentation_of: poly/product_of_one_plus_xn.hpp
 layout: document
 redirect_from:

@@ -366,8 +366,8 @@ data:
   timestamp: '2023-07-06 13:22:49+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/product_of_one_pm_xn.test.cpp
   - test_atcoder/abc267h.test.cpp
+  - test/mytest/product_of_one_pm_xn.test.cpp
 documentation_of: poly/product_of_one_minus_xn.hpp
 layout: document
 redirect_from:

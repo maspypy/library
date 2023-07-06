@@ -412,9 +412,9 @@ data:
   timestamp: '2023-07-06 13:22:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/aplusb128.test.cpp
-  - test/aoj/NTL_2_B.test.cpp
   - test/aoj/NTL_2_A.test.cpp
+  - test/aoj/NTL_2_B.test.cpp
+  - test/library_checker/aplusb128.test.cpp
 documentation_of: bigint/base.hpp
 layout: document
 redirect_from:

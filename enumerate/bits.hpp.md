@@ -48,15 +48,15 @@ data:
   path: enumerate/bits.hpp
   requiredBy:
   - linalg/hafnian.hpp
-  - graph/minimum_hamiltonian_cycle.hpp
   - graph/steiner_tree.hpp
+  - graph/minimum_hamiltonian_cycle.hpp
   timestamp: '2023-05-04 20:25:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/matrix/hafnian_of_matrix.test.cpp
+  - test_atcoder/abc180e.test.cpp
   - test/aoj/DPL_2_A.test.cpp
   - test/yukicoder/114.test.cpp
-  - test_atcoder/abc180e.test.cpp
+  - test/library_checker/matrix/hafnian_of_matrix.test.cpp
 documentation_of: enumerate/bits.hpp
 layout: document
 redirect_from:

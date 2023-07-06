@@ -188,11 +188,11 @@ data:
   timestamp: '2023-07-06 13:22:25+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  - test/yukicoder/1002.test.cpp
-  - test/yukicoder/1796.test.cpp
   - test/yukicoder/1038.test.cpp
+  - test/yukicoder/1796.test.cpp
+  - test/yukicoder/1002.test.cpp
   - test/yukicoder/1769.test.cpp
+  - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
 documentation_of: graph/centroid.hpp
 layout: document
 redirect_from:

@@ -193,10 +193,10 @@ data:
   timestamp: '2023-05-26 18:57:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test_atcoder/abc193f.test.cpp
+  - test_atcoder/abc259g.test.cpp
   - test/yukicoder/1541.test.cpp
   - test/yukicoder/2320.test.cpp
-  - test_atcoder/abc259g.test.cpp
-  - test_atcoder/abc193f.test.cpp
 documentation_of: flow/binary_optimization.hpp
 layout: document
 redirect_from:

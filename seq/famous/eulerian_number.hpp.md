@@ -334,9 +334,9 @@ data:
   timestamp: '2023-07-06 13:22:49+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/eulerian_number.test.cpp
-  - test/yukicoder/1821.test.cpp
   - test/yukicoder/2005.test.cpp
+  - test/yukicoder/1821.test.cpp
+  - test/mytest/eulerian_number.test.cpp
 documentation_of: seq/famous/eulerian_number.hpp
 layout: document
 redirect_from:

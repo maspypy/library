@@ -355,8 +355,8 @@ data:
   timestamp: '2023-07-06 13:22:49+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1875.test.cpp
   - test_atcoder/arc154f.test.cpp
+  - test/yukicoder/1875.test.cpp
 documentation_of: poly/sum_of_exp_bx.hpp
 layout: document
 redirect_from:

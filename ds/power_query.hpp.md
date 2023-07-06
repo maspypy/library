@@ -54,8 +54,8 @@ data:
   timestamp: '2022-12-05 18:15:30+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/count_bipartite.test.cpp
   - test/mytest/powerquery.test.cpp
+  - test/mytest/count_bipartite.test.cpp
 documentation_of: ds/power_query.hpp
 layout: document
 redirect_from:

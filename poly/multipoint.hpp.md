@@ -48,16 +48,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/multipoint_evaluation.test.cpp
     title: test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
     title: test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
     title: test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/polynomial_interpolation.test.cpp
     title: test/library_checker/polynomial/polynomial_interpolation.test.cpp
   - icon: ':x:'
@@ -525,21 +525,21 @@ data:
   timestamp: '2023-07-06 13:22:49+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
-  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
-  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - test_atcoder/abc241h.test.cpp
+  - test_atcoder/abc260h.test.cpp
+  - test_atcoder/agc058d2.test.cpp
+  - test_atcoder/abc267g.test.cpp
+  - test_atcoder/abc272_h.test.cpp
+  - test/yukicoder/2243.test.cpp
+  - test/yukicoder/2166.test.cpp
   - test/mytest/vandermonde.test.cpp
   - test/mytest/partial_frac.test.cpp
   - test/mytest/chirp_z.test.cpp
-  - test/yukicoder/2243.test.cpp
-  - test/yukicoder/2166.test.cpp
-  - test_atcoder/agc058d2.test.cpp
-  - test_atcoder/abc241h.test.cpp
-  - test_atcoder/abc260h.test.cpp
-  - test_atcoder/abc272_h.test.cpp
-  - test_atcoder/abc267g.test.cpp
+  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
+  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
 documentation_of: poly/multipoint.hpp
 layout: document
 redirect_from:
