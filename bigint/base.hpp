@@ -125,7 +125,7 @@ struct BigInteger {
         ++idx;
       }
     };
-    FOR(i, NA) FOR(j, NB) add(i + j, ll(A[i]) * A[j]);
+    FOR(i, NA) FOR(j, NB) add(i + j, ll(A[i]) * B[j]);
     return C;
   }
 
