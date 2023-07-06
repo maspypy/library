@@ -2,6 +2,7 @@
 #include "poly/convolution.hpp"
 
 // frequency table of distance of all directed pairs.
+
 // sum of result array = N^2
 
 template <typename GT>
@@ -26,7 +27,7 @@ vi tree_all_distances(GT& G) {
       FOR(j, len(A)) if (j < N) ANS[j] += sgn * A[j];
     };
 
-    calc(dp);
+    calc(dp, +1);
     vc<int> vals;
     FOR(i, 1, n) {
       if (grp[i] != grp[i - 1]) { calc(vals, -1), vals.clear(); }
