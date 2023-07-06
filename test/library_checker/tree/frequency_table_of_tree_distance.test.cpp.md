@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/centroid.hpp
     title: graph/centroid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
   - icon: ':question:'
@@ -39,9 +39,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
@@ -315,24 +315,35 @@ data:
     \ st;\r\n    st.eb(0, 0);\r\n    while (!st.empty()) {\r\n      auto [lv, v] =\
     \ st.back();\r\n      st.pop_back();\r\n      auto c = find(v);\r\n      cdep[c]\
     \ = lv;\r\n      for (auto&& e: G[c]) {\r\n        if (cdep[e.to] == -1) { st.eb(lv\
-    \ + 1, e.to); }\r\n      }\r\n    }\r\n  }\r\n\r\npublic:\r\n  // (V, H, grp),\
-    \ (V[i] in G) = (i in H).\r\n  // 0,1,2... is a dfs order in H.\r\n  // \u8FBA\
-    \u304C topo \u9806\u306A\u306E\u3067\u3001dp \u306F edges \u3092\u30EB\u30FC\u30D7\
-    \u3059\u308C\u3070\u3088\u3044\r\n  tuple<vc<int>, Graph<typename GT::cost_type,\
-    \ true>, vc<int>> get_subgraph(\r\n      int root) {\r\n    static vc<int> conv;\r\
-    \n    while (len(conv) < N) conv.eb(-1);\r\n\r\n    vc<int> V = {root};\r\n  \
-    \  vc<int> grp = {-1};\r\n    conv[root] = 0;\r\n    int nxt_grp = 0;\r\n    using\
+    \ + 1, e.to); }\r\n      }\r\n    }\r\n  }\r\n\r\npublic:\r\n  // vector of pairs\
+    \ (v, path data v)\r\n  template <typename E, typename F>\r\n  vc<vc<pair<int,\
+    \ E>>> collect(int root, E root_val, F f) {\r\n    vc<vc<pair<int, E>>> res =\
+    \ {{{root, root_val}}};\r\n    for (auto&& e: G[root]) {\r\n      int nxt = e.to;\r\
+    \n      if (cdep[nxt] < cdep[root]) continue;\r\n      vc<pair<int, E>> dat;\r\
+    \n      int p = 0;\r\n      dat.eb(nxt, f(root_val, e));\r\n      par[nxt] = root;\r\
+    \n      while (p < len(dat)) {\r\n        auto [v, val] = dat[p++];\r\n      \
+    \  for (auto&& e: G[v]) {\r\n          if (e.to == par[v]) continue;\r\n     \
+    \     if (cdep[e.to] < cdep[root]) continue;\r\n          par[e.to] = v;\r\n \
+    \         dat.eb(e.to, f(val, e));\r\n        }\r\n      }\r\n      res.eb(dat);\r\
+    \n      res[0].insert(res[0].end(), all(dat));\r\n    }\r\n    return res;\r\n\
+    \  }\r\n\r\n  vc<vc<pair<int, int>>> collect_dist(int root) {\r\n    auto f =\
+    \ [&](int x, auto e) -> int { return x + 1; };\r\n    return collect(root, 0,\
+    \ f);\r\n  }\r\n\r\n  // (V, H, grp), (V[i] in G) = (i in H).\r\n  // 0,1,2...\
+    \ is a dfs order in H.\r\n  tuple<vc<int>, Graph<typename GT::cost_type, true>,\
+    \ vc<int>> get_subgraph(\r\n      int root) {\r\n    static vc<int> conv;\r\n\
+    \    while (len(conv) < N) conv.eb(-1);\r\n\r\n    vc<int> V = {root};\r\n   \
+    \ vc<int> grp = {-1};\r\n    conv[root] = 0;\r\n    int nxt_grp = 0;\r\n    using\
     \ cost_type = typename GT::cost_type;\r\n    vc<tuple<int, int, cost_type>> edges;\r\
     \n\r\n    auto dfs = [&](auto& dfs, int v, int p) -> void {\r\n      conv[v] =\
     \ len(V);\r\n      V.eb(v), grp.eb(nxt_grp);\r\n      for (auto&& e: G[v]) {\r\
     \n        int to = e.to;\r\n        if (to == p) continue;\r\n        if (cdep[to]\
-    \ < cdep[root]) continue;\r\n        edges.eb(conv[v], len(V), e.cost);\r\n  \
-    \      dfs(dfs, to, v);\r\n      }\r\n    };\r\n    for (auto&& e: G[root]) {\r\
-    \n      if (cdep[e.to] < cdep[root]) continue;\r\n      edges.eb(0, len(V), e.cost);\r\
-    \n      dfs(dfs, e.to, root);\r\n      ++nxt_grp;\r\n    }\r\n    int n = len(V);\r\
-    \n    Graph<typename GT::cost_type, true> H(n);\r\n    for (auto&& [a, b, c]:\
-    \ edges) H.add(a, b, c);\r\n    H.build();\r\n    for (auto&& v: V) conv[v] =\
-    \ -1;\r\n    return {V, H, grp};\r\n  }\r\n};\r\n#line 2 \"mod/modint_common.hpp\"\
+    \ < cdep[root]) continue;\r\n        dfs(dfs, to, v);\r\n        edges.eb(conv[v],\
+    \ conv[to], e.cost);\r\n      }\r\n    };\r\n    for (auto&& e: G[root]) {\r\n\
+    \      if (cdep[e.to] < cdep[root]) continue;\r\n      dfs(dfs, e.to, root);\r\
+    \n      edges.eb(conv[root], conv[e.to], e.cost);\r\n      ++nxt_grp;\r\n    }\r\
+    \n    int n = len(V);\r\n    Graph<typename GT::cost_type, true> H(n);\r\n   \
+    \ for (auto&& [a, b, c]: edges) H.add(a, b, c);\r\n    H.build();\r\n    for (auto&&\
+    \ v: V) conv[v] = -1;\r\n    return {V, H, grp};\r\n  }\r\n};\r\n#line 2 \"mod/modint_common.hpp\"\
     \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
     \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
     \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
@@ -607,8 +618,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   requiredBy: []
-  timestamp: '2023-07-06 22:14:15+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-07 01:22:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
 layout: document
