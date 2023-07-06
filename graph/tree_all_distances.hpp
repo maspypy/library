@@ -23,7 +23,7 @@ vi tree_all_distances(GT& G) {
       vi A(mx + 1);
       for (int x: vals) A[x]++;
       A = convolution(A, A);
-      FOR(j, len(B)) if (j < N) ANS[j] += sgn * B[j];
+      FOR(j, len(A)) if (j < N) ANS[j] += sgn * A[j];
     };
 
     calc(dp);
