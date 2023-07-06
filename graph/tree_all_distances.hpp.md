@@ -29,13 +29,10 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
-    title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -384,8 +381,8 @@ data:
     \n    for (auto&& e: G.edges) dp[e.to] = dp[e.frm] + 1;\r\n    auto calc = [&](vc<int>\
     \ vals, int sgn) -> void {\r\n      if (vals.empty()) return;\r\n      int mx\
     \ = MAX(vals);\r\n      vi A(mx + 1);\r\n      for (int x: vals) A[x]++;\r\n \
-    \     A = convolution(A, A);\r\n      FOR(j, len(B)) if (j < N) ANS[j] += sgn\
-    \ * B[j];\r\n    };\r\n\r\n    calc(dp);\r\n    vc<int> vals;\r\n    FOR(i, 1,\
+    \     A = convolution(A, A);\r\n      FOR(j, len(A)) if (j < N) ANS[j] += sgn\
+    \ * A[j];\r\n    };\r\n\r\n    calc(dp);\r\n    vc<int> vals;\r\n    FOR(i, 1,\
     \ n) {\r\n      if (grp[i] != grp[i - 1]) { calc(vals, -1), vals.clear(); }\r\n\
     \      vals.eb(dp[i]);\r\n    }\r\n    calc(vals, -1);\r\n  }\r\n  return ANS;\r\
     \n}\r\n"
@@ -398,7 +395,7 @@ data:
     \ = dp[e.frm] + 1;\r\n    auto calc = [&](vc<int> vals, int sgn) -> void {\r\n\
     \      if (vals.empty()) return;\r\n      int mx = MAX(vals);\r\n      vi A(mx\
     \ + 1);\r\n      for (int x: vals) A[x]++;\r\n      A = convolution(A, A);\r\n\
-    \      FOR(j, len(B)) if (j < N) ANS[j] += sgn * B[j];\r\n    };\r\n\r\n    calc(dp);\r\
+    \      FOR(j, len(A)) if (j < N) ANS[j] += sgn * A[j];\r\n    };\r\n\r\n    calc(dp);\r\
     \n    vc<int> vals;\r\n    FOR(i, 1, n) {\r\n      if (grp[i] != grp[i - 1]) {\
     \ calc(vals, -1), vals.clear(); }\r\n      vals.eb(dp[i]);\r\n    }\r\n    calc(vals,\
     \ -1);\r\n  }\r\n  return ANS;\r\n}\r\n"
@@ -415,10 +412,9 @@ data:
   isVerificationFile: false
   path: graph/tree_all_distances.hpp
   requiredBy: []
-  timestamp: '2023-07-06 20:15:57+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
+  timestamp: '2023-07-06 21:07:16+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: graph/tree_all_distances.hpp
 layout: document
 redirect_from:
