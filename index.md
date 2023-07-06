@@ -205,6 +205,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: convex/monge.hpp
       title: convex/monge.hpp
+    - icon: ':warning:'
+      path: convex/monotone_minima.hpp
+      title: convex/monotone_minima.hpp
     - icon: ':heavy_check_mark:'
       path: convex/slope.hpp
       title: convex/slope.hpp
@@ -239,7 +242,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
     - icon: ':heavy_check_mark:'
@@ -447,7 +450,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/unionfind/rollback_weighted_unionfind.hpp
       title: ds/unionfind/rollback_weighted_unionfind.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/unionfind/unionfind.hpp
       title: ds/unionfind/unionfind.hpp
     - icon: ':heavy_check_mark:'
@@ -654,7 +657,7 @@ data:
     - icon: ':warning:'
       path: graph/find_odd_cycle.hpp
       title: graph/find_odd_cycle.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/functional.hpp
       title: graph/functional.hpp
     - icon: ':warning:'
@@ -1021,7 +1024,7 @@ data:
     - icon: ':question:'
       path: mod/modint.hpp
       title: mod/modint.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint61.hpp
       title: mod/modint61.hpp
     - icon: ':question:'
@@ -1066,7 +1069,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/all_lcm.hpp
       title: nt/all_lcm.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/crt.hpp
       title: nt/crt.hpp
     - icon: ':heavy_check_mark:'
@@ -1155,7 +1158,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/all_but_one_products.hpp
       title: other/all_but_one_products.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/connected_dp.hpp
       title: other/connected_dp.hpp
     - icon: ':x:'
@@ -1359,7 +1362,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: random/hash_pair.hpp
       title: random/hash_pair.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/hash_vector.hpp
       title: random/hash_vector.hpp
     - icon: ':heavy_check_mark:'
@@ -1385,13 +1388,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/factorial_digit_system.hpp
       title: seq/factorial_digit_system.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: seq/find_linear_rec.hpp
       title: seq/find_linear_rec.hpp
     - icon: ':heavy_check_mark:'
       path: seq/hook_length_formula.hpp
       title: seq/hook_length_formula.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: seq/interpolate_linear_rec.hpp
       title: seq/interpolate_linear_rec.hpp
     - icon: ':warning:'
@@ -3277,13 +3280,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/541.test.cpp
       title: test/yukicoder/541.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/578.test.cpp
       title: test/yukicoder/578.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/579.test.cpp
       title: test/yukicoder/579.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/590.test.cpp
       title: test/yukicoder/590.test.cpp
     - icon: ':heavy_check_mark:'
