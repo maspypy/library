@@ -1,6 +1,7 @@
 // 単純グラフの存在判定。Erdos-Gallai の定理。
 bool check_degree_sequence(vc<int> deg) {
   const int N = len(deg);
+  if (N == 0) return true;
   if (MAX(deg) >= N) return false;
   if (SUM<ll>(deg) % 2 != 0) return false;
   vc<int> CNT(N);
@@ -19,19 +20,20 @@ bool check_degree_sequence(vc<int> deg) {
   B = cumsum<ll>(B, 0);
   FOR(k, N + 1) {
     ll x = A[k] + B[k] * k;
-    print(k, x);
     if (x < 0) return false;
   }
+  return true;
 }
 
 vc<pair<int, int>> construct_from_degree_sequence(vc<int> deg) {
   if (!check_degree_sequence(deg)) return {};
+  int N = len(deg);
   vvc<int> dat(N);
   FOR(v, N) dat[deg[v]].eb(v);
   vc<pair<int, int>> edges;
   int mx = N - 1;
   FOR(N) {
-    while (len(dat[mx]) == 0) --mx;
+    while (mx >= 0 && len(dat[mx]) == 0) --mx;
     int v = POP(dat[mx]);
     vc<int> nbd;
     int k = mx;
