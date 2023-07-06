@@ -1,38 +1,22 @@
-#include "graph/centroid.hpp"
-#include "poly/convolution.hpp"
+#define PROBLEM \
+  "https://judge.yosupo.jp/problem/frequency_table_of_tree_distance"
+#include "my_template.hpp"
+#include "other/io.hpp"
 
-// frequency table of distance of all directed pairs.
-// sum of result array = N^2
+#include "graph/tree_all_distances.hpp"
 
-template <typename GT>
-vi tree_all_distances(GT& G) {
-  assert(G.is_prepared());
-  assert(!G.is_directed());
-  Centroid_Decomposition CD(G);
+void solve() {
+  LL(N);
+  Graph<int> G(N);
+  G.read_tree(0, 0);
 
-  ll N = G.N;
-  vi ANS(N);
-  FOR(root, N) {
-    auto [V, G, grp] = CD.get_subgraph(root);
-    int n = len(V);
-    vc<int> dp(n);
-    for (auto&& e: G.edges) dp[e.to] = dp[e.frm] + 1;
-    auto calc = [&](vc<int> vals, int sgn) -> void {
-      if (vals.empty()) return;
-      int mx = MAX(vals);
-      vi A(mx + 1);
-      for (int x: vals) A[x]++;
-      A = convolution(A, A);
-      FOR(j, len(A)) if (j < N) ANS[j] += sgn * A[j];
-    };
+  vi ANS = tree_all_distances(G);
+  ANS.erase(ANS.begin());
+  for (auto&& x: ANS) x /= 2;
+  print(ANS);
+}
 
-    calc(dp, +1);
-    vc<int> vals;
-    FOR(i, 1, n) {
-      if (grp[i] != grp[i - 1]) { calc(vals, -1), vals.clear(); }
-      vals.eb(dp[i]);
-    }
-    calc(vals, -1);
-  }
-  return ANS;
+signed main() {
+  solve();
+  return 0;
 }
