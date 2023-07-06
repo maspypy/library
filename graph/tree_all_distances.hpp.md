@@ -373,7 +373,7 @@ data:
     \  if (min(n, m) <= 50) return convolution_naive(a, b);\r\n    return convolution_ntt(a,\
     \ b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_naive(a, b);\r\n  return\
     \ convolution_garner(a, b);\r\n}\r\n#line 3 \"graph/tree_all_distances.hpp\"\n\
-    \r\n// frequency table of distance of all directed pairs.\r\n// sum of result\
+    \r\n// frequency table of distance of all directed pairs.\r\n\r\n// sum of result\
     \ array = N^2\r\n\r\ntemplate <typename GT>\r\nvi tree_all_distances(GT& G) {\r\
     \n  assert(G.is_prepared());\r\n  assert(!G.is_directed());\r\n  Centroid_Decomposition\
     \ CD(G);\r\n\r\n  ll N = G.N;\r\n  vi ANS(N);\r\n  FOR(root, N) {\r\n    auto\
@@ -382,23 +382,24 @@ data:
     \ vals, int sgn) -> void {\r\n      if (vals.empty()) return;\r\n      int mx\
     \ = MAX(vals);\r\n      vi A(mx + 1);\r\n      for (int x: vals) A[x]++;\r\n \
     \     A = convolution(A, A);\r\n      FOR(j, len(A)) if (j < N) ANS[j] += sgn\
-    \ * A[j];\r\n    };\r\n\r\n    calc(dp);\r\n    vc<int> vals;\r\n    FOR(i, 1,\
-    \ n) {\r\n      if (grp[i] != grp[i - 1]) { calc(vals, -1), vals.clear(); }\r\n\
-    \      vals.eb(dp[i]);\r\n    }\r\n    calc(vals, -1);\r\n  }\r\n  return ANS;\r\
+    \ * A[j];\r\n    };\r\n\r\n    calc(dp, +1);\r\n    vc<int> vals;\r\n    FOR(i,\
+    \ 1, n) {\r\n      if (grp[i] != grp[i - 1]) { calc(vals, -1), vals.clear(); }\r\
+    \n      vals.eb(dp[i]);\r\n    }\r\n    calc(vals, -1);\r\n  }\r\n  return ANS;\r\
     \n}\r\n"
   code: "#include \"graph/centroid.hpp\"\r\n#include \"poly/convolution.hpp\"\r\n\r\
-    \n// frequency table of distance of all directed pairs.\r\n// sum of result array\
-    \ = N^2\r\n\r\ntemplate <typename GT>\r\nvi tree_all_distances(GT& G) {\r\n  assert(G.is_prepared());\r\
-    \n  assert(!G.is_directed());\r\n  Centroid_Decomposition CD(G);\r\n\r\n  ll N\
-    \ = G.N;\r\n  vi ANS(N);\r\n  FOR(root, N) {\r\n    auto [V, G, grp] = CD.get_subgraph(root);\r\
-    \n    int n = len(V);\r\n    vc<int> dp(n);\r\n    for (auto&& e: G.edges) dp[e.to]\
-    \ = dp[e.frm] + 1;\r\n    auto calc = [&](vc<int> vals, int sgn) -> void {\r\n\
-    \      if (vals.empty()) return;\r\n      int mx = MAX(vals);\r\n      vi A(mx\
-    \ + 1);\r\n      for (int x: vals) A[x]++;\r\n      A = convolution(A, A);\r\n\
-    \      FOR(j, len(A)) if (j < N) ANS[j] += sgn * A[j];\r\n    };\r\n\r\n    calc(dp);\r\
-    \n    vc<int> vals;\r\n    FOR(i, 1, n) {\r\n      if (grp[i] != grp[i - 1]) {\
-    \ calc(vals, -1), vals.clear(); }\r\n      vals.eb(dp[i]);\r\n    }\r\n    calc(vals,\
-    \ -1);\r\n  }\r\n  return ANS;\r\n}\r\n"
+    \n// frequency table of distance of all directed pairs.\r\n\r\n// sum of result\
+    \ array = N^2\r\n\r\ntemplate <typename GT>\r\nvi tree_all_distances(GT& G) {\r\
+    \n  assert(G.is_prepared());\r\n  assert(!G.is_directed());\r\n  Centroid_Decomposition\
+    \ CD(G);\r\n\r\n  ll N = G.N;\r\n  vi ANS(N);\r\n  FOR(root, N) {\r\n    auto\
+    \ [V, G, grp] = CD.get_subgraph(root);\r\n    int n = len(V);\r\n    vc<int> dp(n);\r\
+    \n    for (auto&& e: G.edges) dp[e.to] = dp[e.frm] + 1;\r\n    auto calc = [&](vc<int>\
+    \ vals, int sgn) -> void {\r\n      if (vals.empty()) return;\r\n      int mx\
+    \ = MAX(vals);\r\n      vi A(mx + 1);\r\n      for (int x: vals) A[x]++;\r\n \
+    \     A = convolution(A, A);\r\n      FOR(j, len(A)) if (j < N) ANS[j] += sgn\
+    \ * A[j];\r\n    };\r\n\r\n    calc(dp, +1);\r\n    vc<int> vals;\r\n    FOR(i,\
+    \ 1, n) {\r\n      if (grp[i] != grp[i - 1]) { calc(vals, -1), vals.clear(); }\r\
+    \n      vals.eb(dp[i]);\r\n    }\r\n    calc(vals, -1);\r\n  }\r\n  return ANS;\r\
+    \n}\r\n"
   dependsOn:
   - graph/centroid.hpp
   - graph/base.hpp
@@ -412,7 +413,7 @@ data:
   isVerificationFile: false
   path: graph/tree_all_distances.hpp
   requiredBy: []
-  timestamp: '2023-07-06 21:07:16+09:00'
+  timestamp: '2023-07-06 22:12:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree_all_distances.hpp
