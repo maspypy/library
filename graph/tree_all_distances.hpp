@@ -14,10 +14,8 @@ vi tree_all_distances(GT& G) {
   ll N = G.N;
   vi ANS(N);
   FOR(root, N) {
-    auto [V, G, grp] = CD.get_subgraph(root);
+    auto [V, dp, grp] = CD.collect_dist(root);
     int n = len(V);
-    vc<int> dp(n);
-    for (auto&& e: G.edges) dp[e.to] = dp[e.frm] + 1;
     auto calc = [&](vc<int> vals, int sgn) -> void {
       if (vals.empty()) return;
       int mx = MAX(vals);
