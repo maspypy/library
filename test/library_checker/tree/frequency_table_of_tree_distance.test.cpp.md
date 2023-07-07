@@ -315,40 +315,39 @@ data:
     \ st;\r\n    st.eb(0, 0);\r\n    while (!st.empty()) {\r\n      auto [lv, v] =\
     \ st.back();\r\n      st.pop_back();\r\n      auto c = find(v);\r\n      cdep[c]\
     \ = lv;\r\n      for (auto&& e: G[c]) {\r\n        if (cdep[e.to] == -1) { st.eb(lv\
-    \ + 1, e.to); }\r\n      }\r\n    }\r\n  }\r\n\r\npublic:\r\n  // V, dat, grp\r\
+    \ + 1, e.to); }\r\n      }\r\n    }\r\n  }\r\n\r\npublic:\r\n  // V, dat, indptr\r\
     \n  template <typename T, typename F>\r\n  tuple<vc<int>, vc<T>, vc<int>> collect_path_data(int\
     \ root, T root_val, F f) {\r\n    vc<int> V = {root};\r\n    vc<T> dp = {root_val};\r\
-    \n    vc<int> grp = {-1};\r\n    int nxt_grp = 0;\r\n    for (auto&& e: G[root])\
-    \ {\r\n      int nxt = e.to;\r\n      if (cdep[nxt] < cdep[root]) continue;\r\n\
-    \      int p = len(V);\r\n      V.eb(nxt);\r\n      dp.eb(f(root_val, e));\r\n\
-    \      grp.eb(nxt_grp);\r\n      par[nxt] = root;\r\n      while (p < len(V))\
-    \ {\r\n        int v = V[p];\r\n        T val = dp[p];\r\n        p++;\r\n   \
-    \     for (auto&& e: G[v]) {\r\n          if (e.to == par[v]) continue;\r\n  \
-    \        if (cdep[e.to] < cdep[root]) continue;\r\n          par[e.to] = v;\r\n\
-    \          V.eb(e.to);\r\n          grp.eb(nxt_grp);\r\n          dp.eb(f(val,\
-    \ e));\r\n        }\r\n      }\r\n      ++nxt_grp;\r\n    }\r\n    return {V,\
-    \ dp, grp};\r\n  }\r\n\r\n  // V, dist, grp\r\n  tuple<vc<int>, vc<int>, vc<int>>\
-    \ collect_dist(int root) {\r\n    auto f = [&](int x, auto e) -> int { return\
-    \ x + 1; };\r\n    return collect_path_data(root, 0, f);\r\n  }\r\n\r\n  // (V,\
-    \ H, grp), (V[i] in G) = (i in H).\r\n  // 0,1,2... is a dfs order in H.\r\n \
-    \ tuple<vc<int>, Graph<typename GT::cost_type, true>, vc<int>> get_subgraph(\r\
-    \n      int root) {\r\n    static vc<int> conv;\r\n    while (len(conv) < N) conv.eb(-1);\r\
-    \n\r\n    vc<int> V = {root};\r\n    vc<int> grp = {-1};\r\n    conv[root] = 0;\r\
-    \n    int nxt_grp = 0;\r\n    using cost_type = typename GT::cost_type;\r\n  \
-    \  vc<tuple<int, int, cost_type>> edges;\r\n\r\n    auto dfs = [&](auto& dfs,\
-    \ int v, int p) -> void {\r\n      conv[v] = len(V);\r\n      V.eb(v), grp.eb(nxt_grp);\r\
-    \n      for (auto&& e: G[v]) {\r\n        int to = e.to;\r\n        if (to ==\
-    \ p) continue;\r\n        if (cdep[to] < cdep[root]) continue;\r\n        dfs(dfs,\
-    \ to, v);\r\n        edges.eb(conv[v], conv[to], e.cost);\r\n      }\r\n    };\r\
-    \n    for (auto&& e: G[root]) {\r\n      if (cdep[e.to] < cdep[root]) continue;\r\
-    \n      dfs(dfs, e.to, root);\r\n      edges.eb(conv[root], conv[e.to], e.cost);\r\
-    \n      ++nxt_grp;\r\n    }\r\n    int n = len(V);\r\n    Graph<typename GT::cost_type,\
-    \ true> H(n);\r\n    for (auto&& [a, b, c]: edges) H.add(a, b, c);\r\n    H.build();\r\
-    \n    for (auto&& v: V) conv[v] = -1;\r\n    return {V, H, grp};\r\n  }\r\n};\r\
-    \n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
-    \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
-    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
-    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \n    vc<int> indptr = {0, 1};\r\n    for (auto&& e: G[root]) {\r\n      int nxt\
+    \ = e.to;\r\n      if (cdep[nxt] < cdep[root]) continue;\r\n      int p = len(V);\r\
+    \n      V.eb(nxt);\r\n      dp.eb(f(root_val, e));\r\n      par[nxt] = root;\r\
+    \n      while (p < len(V)) {\r\n        int v = V[p];\r\n        T val = dp[p];\r\
+    \n        p++;\r\n        for (auto&& e: G[v]) {\r\n          if (e.to == par[v])\
+    \ continue;\r\n          if (cdep[e.to] < cdep[root]) continue;\r\n          par[e.to]\
+    \ = v;\r\n          V.eb(e.to);\r\n          dp.eb(f(val, e));\r\n        }\r\n\
+    \      }\r\n      indptr.eb(len(V));\r\n    }\r\n    return {V, dp, indptr};\r\
+    \n  }\r\n\r\n  // V, dist, indptr\r\n  tuple<vc<int>, vc<int>, vc<int>> collect_dist(int\
+    \ root) {\r\n    auto f = [&](int x, auto e) -> int { return x + 1; };\r\n   \
+    \ return collect_path_data(root, 0, f);\r\n  }\r\n\r\n  // (V, H, indptr), (V[i]\
+    \ in G) = (i in H).\r\n  // 0,1,2... is a dfs order in H.\r\n  tuple<vc<int>,\
+    \ Graph<typename GT::cost_type, true>, vc<int>> get_subgraph(\r\n      int root)\
+    \ {\r\n    static vc<int> conv;\r\n    while (len(conv) < N) conv.eb(-1);\r\n\r\
+    \n    vc<int> V = {root};\r\n    vc<int> indptr = {0, 1};\r\n    conv[root] =\
+    \ 0;\r\n    using cost_type = typename GT::cost_type;\r\n    vc<tuple<int, int,\
+    \ cost_type>> edges;\r\n\r\n    auto dfs = [&](auto& dfs, int v, int p) -> void\
+    \ {\r\n      conv[v] = len(V);\r\n      V.eb(v);\r\n      for (auto&& e: G[v])\
+    \ {\r\n        int to = e.to;\r\n        if (to == p) continue;\r\n        if\
+    \ (cdep[to] < cdep[root]) continue;\r\n        dfs(dfs, to, v);\r\n        edges.eb(conv[v],\
+    \ conv[to], e.cost);\r\n      }\r\n    };\r\n    for (auto&& e: G[root]) {\r\n\
+    \      if (cdep[e.to] < cdep[root]) continue;\r\n      dfs(dfs, e.to, root);\r\
+    \n      edges.eb(conv[root], conv[e.to], e.cost);\r\n      indptr.eb(len(V));\r\
+    \n    }\r\n    int n = len(V);\r\n    Graph<typename GT::cost_type, true> H(n);\r\
+    \n    for (auto&& [a, b, c]: edges) H.add(a, b, c);\r\n    H.build();\r\n    for\
+    \ (auto&& v: V) conv[v] = -1;\r\n    return {V, H, indptr};\r\n  }\r\n};\r\n#line\
+    \ 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class T>\n\
+    \  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n  template\
+    \ <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate <class\
+    \ T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
     \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
     \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
@@ -617,7 +616,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   requiredBy: []
-  timestamp: '2023-07-07 11:09:15+09:00'
+  timestamp: '2023-07-07 12:09:40+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
