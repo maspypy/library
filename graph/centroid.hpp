@@ -102,20 +102,18 @@ private:
   }
 
 public:
-  // V, dat, grp
+  // V, dat, indptr
   template <typename T, typename F>
   tuple<vc<int>, vc<T>, vc<int>> collect_path_data(int root, T root_val, F f) {
     vc<int> V = {root};
     vc<T> dp = {root_val};
-    vc<int> grp = {-1};
-    int nxt_grp = 0;
+    vc<int> indptr = {0, 1};
     for (auto&& e: G[root]) {
       int nxt = e.to;
       if (cdep[nxt] < cdep[root]) continue;
       int p = len(V);
       V.eb(nxt);
       dp.eb(f(root_val, e));
-      grp.eb(nxt_grp);
       par[nxt] = root;
       while (p < len(V)) {
         int v = V[p];
@@ -126,22 +124,21 @@ public:
           if (cdep[e.to] < cdep[root]) continue;
           par[e.to] = v;
           V.eb(e.to);
-          grp.eb(nxt_grp);
           dp.eb(f(val, e));
         }
       }
-      ++nxt_grp;
+      indptr.eb(len(V));
     }
-    return {V, dp, grp};
+    return {V, dp, indptr};
   }
 
-  // V, dist, grp
+  // V, dist, indptr
   tuple<vc<int>, vc<int>, vc<int>> collect_dist(int root) {
     auto f = [&](int x, auto e) -> int { return x + 1; };
     return collect_path_data(root, 0, f);
   }
 
-  // (V, H, grp), (V[i] in G) = (i in H).
+  // (V, H, indptr), (V[i] in G) = (i in H).
   // 0,1,2... is a dfs order in H.
   tuple<vc<int>, Graph<typename GT::cost_type, true>, vc<int>> get_subgraph(
       int root) {
@@ -149,15 +146,14 @@ public:
     while (len(conv) < N) conv.eb(-1);
 
     vc<int> V = {root};
-    vc<int> grp = {-1};
+    vc<int> indptr = {0, 1};
     conv[root] = 0;
-    int nxt_grp = 0;
     using cost_type = typename GT::cost_type;
     vc<tuple<int, int, cost_type>> edges;
 
     auto dfs = [&](auto& dfs, int v, int p) -> void {
       conv[v] = len(V);
-      V.eb(v), grp.eb(nxt_grp);
+      V.eb(v);
       for (auto&& e: G[v]) {
         int to = e.to;
         if (to == p) continue;
@@ -170,13 +166,13 @@ public:
       if (cdep[e.to] < cdep[root]) continue;
       dfs(dfs, e.to, root);
       edges.eb(conv[root], conv[e.to], e.cost);
-      ++nxt_grp;
+      indptr.eb(len(V));
     }
     int n = len(V);
     Graph<typename GT::cost_type, true> H(n);
     for (auto&& [a, b, c]: edges) H.add(a, b, c);
     H.build();
     for (auto&& v: V) conv[v] = -1;
-    return {V, H, grp};
+    return {V, H, indptr};
   }
 };
