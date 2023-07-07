@@ -17,10 +17,12 @@ void solve() {
 
   Centroid_Decomposition<decltype(G)> X(G);
   FOR(v, N) {
-    auto dat = X.collect_dist(v);
-    FOR(n, len(dat)) {
+    auto [V, dp, indptr] = X.collect_dist(v);
+    auto calc = [&](vc<int> V, vc<int> dp, int sgn) -> void {
       vc<mint> F;
-      for (auto&& [v, dv]: dat[n]) {
+      int n = len(V);
+      FOR(i, n) {
+        int v = V[i], dv = dp[i];
         if (dv >= len(F)) F.resize(dv + 1);
         F[dv] += A[v];
       }
@@ -30,10 +32,19 @@ void solve() {
       FOR(i, len(F1)) F1[i] = inv<mint>(i + 1) * inv<mint>(i + 1);
       F = convolution(F, F1);
       F = {F.begin() + s - 1, F.end()};
-      if (n > 0) {
+      if (sgn == -1) {
         for (auto&& x: F) x = -x;
       }
-      for (auto&& [v, dv]: dat[n]) { ANS[v] += F[dv]; }
+      FOR(i, n) {
+        int v = V[i], dv = dp[i];
+        ANS[v] += F[dv];
+      }
+    };
+    calc(V, dp, 1);
+    FOR(i, 1, len(indptr) - 1) {
+      int l = indptr[i], r = indptr[i + 1];
+      calc({V.begin() + l, V.begin() + r}, {dp.begin() + l, dp.begin() + r},
+           -1);
     }
   }
 
@@ -44,11 +55,6 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
