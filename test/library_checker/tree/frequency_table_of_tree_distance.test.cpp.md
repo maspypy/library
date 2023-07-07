@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/centroid.hpp
     title: graph/centroid.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
   - icon: ':question:'
@@ -39,9 +39,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
@@ -583,13 +583,13 @@ data:
     \ array = N^2\r\ntemplate <typename Graph>\r\nvi tree_all_distances(Graph& G)\
     \ {\r\n  assert(G.is_prepared());\r\n  assert(!G.is_directed());\r\n  Centroid_Decomposition\
     \ CD(G);\r\n\r\n  ll N = G.N;\r\n  vi ANS(N);\r\n  FOR(root, N) {\r\n    auto\
-    \ [V, dp, grp] = CD.collect_dist(root);\r\n    int n = len(V);\r\n    auto calc\
-    \ = [&](vc<int> vals, int sgn) -> void {\r\n      if (vals.empty()) return;\r\n\
-    \      int mx = MAX(vals);\r\n      vi A(mx + 1);\r\n      for (int x: vals) A[x]++;\r\
-    \n      A = convolution(A, A);\r\n      FOR(j, len(A)) if (j < N) ANS[j] += sgn\
-    \ * A[j];\r\n    };\r\n\r\n    calc(dp, +1);\r\n    vc<int> vals;\r\n    FOR(i,\
-    \ 1, n) {\r\n      if (grp[i] != grp[i - 1]) { calc(vals, -1), vals.clear(); }\r\
-    \n      vals.eb(dp[i]);\r\n    }\r\n  }\r\n  return ANS;\r\n}\r\n#line 7 \"test/library_checker/tree/frequency_table_of_tree_distance.test.cpp\"\
+    \ [V, dp, indptr] = CD.collect_dist(root);\r\n    auto calc = [&](vc<int> vals,\
+    \ int sgn) -> void {\r\n      if (vals.empty()) return;\r\n      int mx = MAX(vals);\r\
+    \n      vi A(mx + 1);\r\n      for (int x: vals) A[x]++;\r\n      A = convolution(A,\
+    \ A);\r\n      FOR(j, len(A)) if (j < N) ANS[j] += sgn * A[j];\r\n    };\r\n\r\
+    \n    calc(dp, +1);\r\n    FOR(i, 1, len(indptr) - 1) {\r\n      int l = indptr[i],\
+    \ r = indptr[i + 1];\r\n      calc({dp.begin() + l, dp.begin() + r}, -1);\r\n\
+    \    }\r\n  }\r\n  return ANS;\r\n}\r\n#line 7 \"test/library_checker/tree/frequency_table_of_tree_distance.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N);\r\n  Graph<int> G(N);\r\n  G.read_tree(0, 0);\r\
     \n\r\n  vi ANS = tree_all_distances(G);\r\n  ANS.erase(ANS.begin());\r\n  for\
     \ (auto&& x: ANS) x /= 2;\r\n  print(ANS);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\
@@ -616,8 +616,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   requiredBy: []
-  timestamp: '2023-07-07 12:09:40+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-07-07 13:03:51+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
 layout: document
