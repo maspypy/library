@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/centroid.hpp
     title: graph/centroid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
   - icon: ':question:'
@@ -39,9 +39,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
@@ -315,117 +315,118 @@ data:
     \ st;\r\n    st.eb(0, 0);\r\n    while (!st.empty()) {\r\n      auto [lv, v] =\
     \ st.back();\r\n      st.pop_back();\r\n      auto c = find(v);\r\n      cdep[c]\
     \ = lv;\r\n      for (auto&& e: G[c]) {\r\n        if (cdep[e.to] == -1) { st.eb(lv\
-    \ + 1, e.to); }\r\n      }\r\n    }\r\n  }\r\n\r\npublic:\r\n  // vector of pairs\
-    \ (v, path data v)\r\n  template <typename E, typename F>\r\n  vc<vc<pair<int,\
-    \ E>>> collect(int root, E root_val, F f) {\r\n    vc<vc<pair<int, E>>> res =\
-    \ {{{root, root_val}}};\r\n    for (auto&& e: G[root]) {\r\n      int nxt = e.to;\r\
-    \n      if (cdep[nxt] < cdep[root]) continue;\r\n      vc<pair<int, E>> dat;\r\
-    \n      int p = 0;\r\n      dat.eb(nxt, f(root_val, e));\r\n      par[nxt] = root;\r\
-    \n      while (p < len(dat)) {\r\n        auto [v, val] = dat[p++];\r\n      \
-    \  for (auto&& e: G[v]) {\r\n          if (e.to == par[v]) continue;\r\n     \
-    \     if (cdep[e.to] < cdep[root]) continue;\r\n          par[e.to] = v;\r\n \
-    \         dat.eb(e.to, f(val, e));\r\n        }\r\n      }\r\n      res.eb(dat);\r\
-    \n      res[0].insert(res[0].end(), all(dat));\r\n    }\r\n    return res;\r\n\
-    \  }\r\n\r\n  vc<vc<pair<int, int>>> collect_dist(int root) {\r\n    auto f =\
-    \ [&](int x, auto e) -> int { return x + 1; };\r\n    return collect(root, 0,\
-    \ f);\r\n  }\r\n\r\n  // (V, H, grp), (V[i] in G) = (i in H).\r\n  // 0,1,2...\
-    \ is a dfs order in H.\r\n  tuple<vc<int>, Graph<typename GT::cost_type, true>,\
-    \ vc<int>> get_subgraph(\r\n      int root) {\r\n    static vc<int> conv;\r\n\
-    \    while (len(conv) < N) conv.eb(-1);\r\n\r\n    vc<int> V = {root};\r\n   \
-    \ vc<int> grp = {-1};\r\n    conv[root] = 0;\r\n    int nxt_grp = 0;\r\n    using\
-    \ cost_type = typename GT::cost_type;\r\n    vc<tuple<int, int, cost_type>> edges;\r\
-    \n\r\n    auto dfs = [&](auto& dfs, int v, int p) -> void {\r\n      conv[v] =\
-    \ len(V);\r\n      V.eb(v), grp.eb(nxt_grp);\r\n      for (auto&& e: G[v]) {\r\
-    \n        int to = e.to;\r\n        if (to == p) continue;\r\n        if (cdep[to]\
-    \ < cdep[root]) continue;\r\n        dfs(dfs, to, v);\r\n        edges.eb(conv[v],\
-    \ conv[to], e.cost);\r\n      }\r\n    };\r\n    for (auto&& e: G[root]) {\r\n\
-    \      if (cdep[e.to] < cdep[root]) continue;\r\n      dfs(dfs, e.to, root);\r\
-    \n      edges.eb(conv[root], conv[e.to], e.cost);\r\n      ++nxt_grp;\r\n    }\r\
-    \n    int n = len(V);\r\n    Graph<typename GT::cost_type, true> H(n);\r\n   \
-    \ for (auto&& [a, b, c]: edges) H.add(a, b, c);\r\n    H.build();\r\n    for (auto&&\
-    \ v: V) conv[v] = -1;\r\n    return {V, H, grp};\r\n  }\r\n};\r\n#line 2 \"mod/modint_common.hpp\"\
-    \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
-    \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
-    \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
-    \ decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate <typename\
-    \ mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n  static\
-    \ vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n \
-    \ while (len(dat) <= n) {\n    int k = len(dat);\n    int q = (mod + k - 1) /\
-    \ k;\n    dat.eb(dat[k * q - mod] * mint(q));\n  }\n  return dat[n];\n}\n\ntemplate\
-    \ <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
-    \  assert(0 <= n);\n  if (n >= mod) return 0;\n  static vector<mint> dat = {1,\
-    \ 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * mint(len(dat)));\n \
-    \ return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static\
-    \ vector<mint> dat = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat)\
-    \ <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\
-    \ntemplate <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1)\
-    \ * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint, class Head, class...\
-    \ Tail>\nmint multinomial(Head &&head, Tail &&... tail) {\n  return fact<mint>(head)\
-    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
-    mint C_dense(int n, int k) {\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n\
-    \  auto calc = [&](int i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1)\
-    \ : mint(0));\n    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n  if\
-    \ (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k +\
-    \ 1) { C[i][j] = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n\
-    \    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n      FOR(j,\
-    \ W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return C[n][k];\n\
-    }\n\ntemplate <typename mint, bool large = false, bool dense = false>\nmint C(ll\
-    \ n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if (dense)\
-    \ return C_dense<mint>(n, k);\n  if (!large) return multinomial<mint>(n, k, n\
-    \ - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n \
-    \ return x * fact_inv<mint>(k);\n}\n\ntemplate <typename mint, bool large = false>\n\
-    mint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if\
-    \ (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return\
-    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d] (1-x) ^ {-n} \u306E\u8A08\u7B97\n\
-    template <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
-    \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\
-    \ return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large, dense>(n + d\
-    \ - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
-    \ {\n  static_assert(mod < (1 << 30));\n  int val;\n  constexpr modint(const ll\
-    \ val = 0) noexcept\n      : val(val >= 0 ? val % mod : (mod - (-val) % mod) %\
-    \ mod) {}\n  bool operator<(const modint &other) const {\n    return val < other.val;\n\
-    \  } // To use std::map\n  modint &operator+=(const modint &p) {\n    if ((val\
-    \ += p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator-=(const\
-    \ modint &p) {\n    if ((val += mod - p.val) >= mod) val -= mod;\n    return *this;\n\
-    \  }\n  modint &operator*=(const modint &p) {\n    val = (int)(1LL * val * p.val\
-    \ % mod);\n    return *this;\n  }\n  modint &operator/=(const modint &p) {\n \
-    \   *this *= p.inverse();\n    return *this;\n  }\n  modint operator-() const\
-    \ { return modint(-val); }\n  modint operator+(const modint &p) const { return\
-    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
-    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
-    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
-    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
-    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
-    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
-    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
-    \ return modint(u);\n  }\n  modint pow(ll n) const {\n    assert(n >= 0);\n  \
-    \  modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
-    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n\
-    \  void write() { fastio::printer.write(val); }\n  void read() {\n    fastio::scanner.read(val);\n\
-    \    val = (val >= 0 ? val % mod : (mod - (-val) % mod) % mod);\n  }\n#endif\n\
-    \  static constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E\
-    \ 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n    if (mod\
-    \ == 167772161) return {25, 17};\n    if (mod == 469762049) return {26, 30};\n\
-    \    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841) return\
-    \ {23, 211};\n    if (mod == 998244353) return {23, 31};\n    if (mod == 1045430273)\
-    \ return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod\
-    \ == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr\
-    \ bool can_ntt() { return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 2 \"mod/mod_inv.hpp\"\n// long \u3067\
-    \u3082\u5927\u4E08\u592B\r\n// (val * x - 1) \u304C mod \u306E\u500D\u6570\u306B\
-    \u306A\u308B\u3088\u3046\u306B\u3059\u308B\r\n// \u7279\u306B mod=0 \u306A\u3089\
-    \ x=0 \u304C\u6E80\u305F\u3059\r\nll mod_inv(ll val, ll mod) {\r\n  if (mod ==\
-    \ 0) return 0;\r\n  mod = abs(mod);\r\n  val %= mod;\r\n  if (val < 0) val +=\
-    \ mod;\r\n  ll a = val, b = mod, u = 1, v = 0, t;\r\n  while (b > 0) {\r\n   \
-    \ t = a / b;\r\n    swap(a -= t * b, b), swap(u -= t * v, v);\r\n  }\r\n  if (u\
-    \ < 0) u += mod;\r\n  return u;\r\n}\r\n#line 1 \"poly/convolution_naive.hpp\"\
-    \ntemplate <class T>\r\nvector<T> convolution_naive(const vector<T>& a, const\
-    \ vector<T>& b) {\r\n  int n = int(a.size()), m = int(b.size());\r\n  vector<T>\
-    \ ans(n + m - 1);\r\n  if (n < m) {\r\n    FOR(j, m) FOR(i, n) ans[i + j] += a[i]\
-    \ * b[j];\r\n  } else {\r\n    FOR(i, n) FOR(j, m) ans[i + j] += a[i] * b[j];\r\
-    \n  }\r\n  return ans;\r\n}\r\n#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\
-    \nvoid ntt(vector<mint>& a, bool inverse) {\r\n  assert(mint::can_ntt());\r\n\
-    \  const int rank2 = mint::ntt_info().fi;\r\n  const int mod = mint::get_mod();\r\
+    \ + 1, e.to); }\r\n      }\r\n    }\r\n  }\r\n\r\npublic:\r\n  // V, dat, grp\r\
+    \n  template <typename T, typename F>\r\n  tuple<vc<int>, vc<T>, vc<int>> collect_path_data(int\
+    \ root, T root_val, F f) {\r\n    vc<int> V = {root};\r\n    vc<T> dp = {root_val};\r\
+    \n    vc<int> grp = {-1};\r\n    int nxt_grp = 0;\r\n    for (auto&& e: G[root])\
+    \ {\r\n      int nxt = e.to;\r\n      if (cdep[nxt] < cdep[root]) continue;\r\n\
+    \      int p = len(V);\r\n      V.eb(nxt);\r\n      dp.eb(f(root_val, e));\r\n\
+    \      grp.eb(nxt_grp);\r\n      par[nxt] = root;\r\n      while (p < len(V))\
+    \ {\r\n        int v = V[p];\r\n        T val = dp[p];\r\n        p++;\r\n   \
+    \     for (auto&& e: G[v]) {\r\n          if (e.to == par[v]) continue;\r\n  \
+    \        if (cdep[e.to] < cdep[root]) continue;\r\n          par[e.to] = v;\r\n\
+    \          V.eb(e.to);\r\n          grp.eb(nxt_grp);\r\n          dp.eb(f(val,\
+    \ e));\r\n        }\r\n      }\r\n      ++nxt_grp;\r\n    }\r\n    return {V,\
+    \ dp, grp};\r\n  }\r\n\r\n  // V, dist, grp\r\n  tuple<vc<int>, vc<int>, vc<int>>\
+    \ collect_dist(int root) {\r\n    auto f = [&](int x, auto e) -> int { return\
+    \ x + 1; };\r\n    return collect_path_data(root, 0, f);\r\n  }\r\n\r\n  // (V,\
+    \ H, grp), (V[i] in G) = (i in H).\r\n  // 0,1,2... is a dfs order in H.\r\n \
+    \ tuple<vc<int>, Graph<typename GT::cost_type, true>, vc<int>> get_subgraph(\r\
+    \n      int root) {\r\n    static vc<int> conv;\r\n    while (len(conv) < N) conv.eb(-1);\r\
+    \n\r\n    vc<int> V = {root};\r\n    vc<int> grp = {-1};\r\n    conv[root] = 0;\r\
+    \n    int nxt_grp = 0;\r\n    using cost_type = typename GT::cost_type;\r\n  \
+    \  vc<tuple<int, int, cost_type>> edges;\r\n\r\n    auto dfs = [&](auto& dfs,\
+    \ int v, int p) -> void {\r\n      conv[v] = len(V);\r\n      V.eb(v), grp.eb(nxt_grp);\r\
+    \n      for (auto&& e: G[v]) {\r\n        int to = e.to;\r\n        if (to ==\
+    \ p) continue;\r\n        if (cdep[to] < cdep[root]) continue;\r\n        dfs(dfs,\
+    \ to, v);\r\n        edges.eb(conv[v], conv[to], e.cost);\r\n      }\r\n    };\r\
+    \n    for (auto&& e: G[root]) {\r\n      if (cdep[e.to] < cdep[root]) continue;\r\
+    \n      dfs(dfs, e.to, root);\r\n      edges.eb(conv[root], conv[e.to], e.cost);\r\
+    \n      ++nxt_grp;\r\n    }\r\n    int n = len(V);\r\n    Graph<typename GT::cost_type,\
+    \ true> H(n);\r\n    for (auto&& [a, b, c]: edges) H.add(a, b, c);\r\n    H.build();\r\
+    \n    for (auto&& v: V) conv[v] = -1;\r\n    return {V, H, grp};\r\n  }\r\n};\r\
+    \n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
+    \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
+    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
+    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
+    \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
+    \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
+    \    int q = (mod + k - 1) / k;\n    dat.eb(dat[k * q - mod] * mint(q));\n  }\n\
+    \  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
+    \ const int mod = mint::get_mod();\n  assert(0 <= n);\n  if (n >= mod) return\
+    \ 0;\n  static vector<mint> dat = {1, 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat)\
+    \ - 1] * mint(len(dat)));\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint\
+    \ fact_inv(int n) {\n  static vector<mint> dat = {1, 1};\n  if (n < 0) return\
+    \ mint(0);\n  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n\
+    \  return dat[n];\n}\n\ntemplate <class mint, class... Ts>\nmint fact_invs(Ts...\
+    \ xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename\
+    \ mint, class Head, class... Tail>\nmint multinomial(Head &&head, Tail &&... tail)\
+    \ {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  static vvc<mint>\
+    \ C;\n  static int H = 0, W = 0;\n  auto calc = [&](int i, int j) -> mint {\n\
+    \    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
+    \ + (j ? C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n     \
+    \ C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n\
+    \    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n +\
+    \ 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n   \
+    \ }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool\
+    \ large = false, bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  if (dense) return C_dense<mint>(n, k);\n \
+    \ if (!large) return multinomial<mint>(n, k, n - k);\n  k = min(k, n - k);\n \
+    \ mint x(1);\n  FOR(i, k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n\
+    }\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n\
+    \  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
+    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
+    }\n\n// [x^d] (1-x) ^ {-n} \u306E\u8A08\u7B97\ntemplate <typename mint, bool large\
+    \ = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n\
+    \  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1) : mint(0));\
+    \ }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\
+    \n\ntemplate <int mod>\nstruct modint {\n  static_assert(mod < (1 << 30));\n \
+    \ int val;\n  constexpr modint(const ll val = 0) noexcept\n      : val(val >=\
+    \ 0 ? val % mod : (mod - (-val) % mod) % mod) {}\n  bool operator<(const modint\
+    \ &other) const {\n    return val < other.val;\n  } // To use std::map\n  modint\
+    \ &operator+=(const modint &p) {\n    if ((val += p.val) >= mod) val -= mod;\n\
+    \    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if ((val\
+    \ += mod - p.val) >= mod) val -= mod;\n    return *this;\n  }\n  modint &operator*=(const\
+    \ modint &p) {\n    val = (int)(1LL * val * p.val % mod);\n    return *this;\n\
+    \  }\n  modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n   \
+    \ return *this;\n  }\n  modint operator-() const { return modint(-val); }\n  modint\
+    \ operator+(const modint &p) const { return modint(*this) += p; }\n  modint operator-(const\
+    \ modint &p) const { return modint(*this) -= p; }\n  modint operator*(const modint\
+    \ &p) const { return modint(*this) *= p; }\n  modint operator/(const modint &p)\
+    \ const { return modint(*this) /= p; }\n  bool operator==(const modint &p) const\
+    \ { return val == p.val; }\n  bool operator!=(const modint &p) const { return\
+    \ val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod, u = 1,\
+    \ v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b),\
+    \ swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n)\
+    \ const {\n    assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0)\
+    \ {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n\
+    \    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
+    \ }\n  void read() {\n    fastio::scanner.read(val);\n    val = (val >= 0 ? val\
+    \ % mod : (mod - (-val) % mod) % mod);\n  }\n#endif\n  static constexpr int get_mod()\
+    \ { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr\
+    \ pair<int, int> ntt_info() {\n    if (mod == 167772161) return {25, 17};\n  \
+    \  if (mod == 469762049) return {26, 30};\n    if (mod == 754974721) return {24,\
+    \ 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod == 998244353)\
+    \ return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod\
+    \ == 1051721729) return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n\
+    \    return {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi\
+    \ != -1; }\n};\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 2 \"mod/mod_inv.hpp\"\n// long \u3067\u3082\u5927\u4E08\u592B\r\n// (val\
+    \ * x - 1) \u304C mod \u306E\u500D\u6570\u306B\u306A\u308B\u3088\u3046\u306B\u3059\
+    \u308B\r\n// \u7279\u306B mod=0 \u306A\u3089 x=0 \u304C\u6E80\u305F\u3059\r\n\
+    ll mod_inv(ll val, ll mod) {\r\n  if (mod == 0) return 0;\r\n  mod = abs(mod);\r\
+    \n  val %= mod;\r\n  if (val < 0) val += mod;\r\n  ll a = val, b = mod, u = 1,\
+    \ v = 0, t;\r\n  while (b > 0) {\r\n    t = a / b;\r\n    swap(a -= t * b, b),\
+    \ swap(u -= t * v, v);\r\n  }\r\n  if (u < 0) u += mod;\r\n  return u;\r\n}\r\n\
+    #line 1 \"poly/convolution_naive.hpp\"\ntemplate <class T>\r\nvector<T> convolution_naive(const\
+    \ vector<T>& a, const vector<T>& b) {\r\n  int n = int(a.size()), m = int(b.size());\r\
+    \n  vector<T> ans(n + m - 1);\r\n  if (n < m) {\r\n    FOR(j, m) FOR(i, n) ans[i\
+    \ + j] += a[i] * b[j];\r\n  } else {\r\n    FOR(i, n) FOR(j, m) ans[i + j] +=\
+    \ a[i] * b[j];\r\n  }\r\n  return ans;\r\n}\r\n#line 2 \"poly/ntt.hpp\"\n\r\n\
+    template <class mint>\r\nvoid ntt(vector<mint>& a, bool inverse) {\r\n  assert(mint::can_ntt());\r\
+    \n  const int rank2 = mint::ntt_info().fi;\r\n  const int mod = mint::get_mod();\r\
     \n  static array<mint, 30> root, iroot;\r\n  static array<mint, 30> rate2, irate2;\r\
     \n  static array<mint, 30> rate3, irate3;\r\n\r\n  static bool prepared = 0;\r\
     \n  if (!prepared) {\r\n    prepared = 1;\r\n    root[rank2] = mint::ntt_info().se;\r\
@@ -583,11 +584,13 @@ data:
     \ array = N^2\r\ntemplate <typename Graph>\r\nvi tree_all_distances(Graph& G)\
     \ {\r\n  assert(G.is_prepared());\r\n  assert(!G.is_directed());\r\n  Centroid_Decomposition\
     \ CD(G);\r\n\r\n  ll N = G.N;\r\n  vi ANS(N);\r\n  FOR(root, N) {\r\n    auto\
-    \ data = CD.collect_dist(root);\r\n    FOR(i, len(data)) {\r\n      int n = 0;\r\
-    \n      FOR(j, len(data[i])) chmax(n, data[i][j].se + 1);\r\n      vi A(n);\r\n\
-    \      FOR(j, len(data[i])) A[data[i][j].se]++;\r\n      auto B = convolution(A,\
-    \ A);\r\n      FOR(j, min(N, len(B))) ANS[j] += (i == 0 ? B[j] : -B[j]);\r\n \
-    \   }\r\n  }\r\n  return ANS;\r\n}\r\n#line 7 \"test/library_checker/tree/frequency_table_of_tree_distance.test.cpp\"\
+    \ [V, dp, grp] = CD.collect_dist(root);\r\n    int n = len(V);\r\n    auto calc\
+    \ = [&](vc<int> vals, int sgn) -> void {\r\n      if (vals.empty()) return;\r\n\
+    \      int mx = MAX(vals);\r\n      vi A(mx + 1);\r\n      for (int x: vals) A[x]++;\r\
+    \n      A = convolution(A, A);\r\n      FOR(j, len(A)) if (j < N) ANS[j] += sgn\
+    \ * A[j];\r\n    };\r\n\r\n    calc(dp, +1);\r\n    vc<int> vals;\r\n    FOR(i,\
+    \ 1, n) {\r\n      if (grp[i] != grp[i - 1]) { calc(vals, -1), vals.clear(); }\r\
+    \n      vals.eb(dp[i]);\r\n    }\r\n  }\r\n  return ANS;\r\n}\r\n#line 7 \"test/library_checker/tree/frequency_table_of_tree_distance.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N);\r\n  Graph<int> G(N);\r\n  G.read_tree(0, 0);\r\
     \n\r\n  vi ANS = tree_all_distances(G);\r\n  ANS.erase(ANS.begin());\r\n  for\
     \ (auto&& x: ANS) x /= 2;\r\n  print(ANS);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\
@@ -614,8 +617,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   requiredBy: []
-  timestamp: '2023-07-07 10:17:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-07 11:09:15+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
 layout: document
