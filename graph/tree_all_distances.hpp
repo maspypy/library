@@ -12,8 +12,7 @@ vi tree_all_distances(Graph& G) {
   ll N = G.N;
   vi ANS(N);
   FOR(root, N) {
-    auto [V, dp, grp] = CD.collect_dist(root);
-    int n = len(V);
+    auto [V, dp, indptr] = CD.collect_dist(root);
     auto calc = [&](vc<int> vals, int sgn) -> void {
       if (vals.empty()) return;
       int mx = MAX(vals);
@@ -24,10 +23,9 @@ vi tree_all_distances(Graph& G) {
     };
 
     calc(dp, +1);
-    vc<int> vals;
-    FOR(i, 1, n) {
-      if (grp[i] != grp[i - 1]) { calc(vals, -1), vals.clear(); }
-      vals.eb(dp[i]);
+    FOR(i, 1, len(indptr) - 1) {
+      int l = indptr[i], r = indptr[i + 1];
+      calc({dp.begin() + l, dp.begin() + r}, -1);
     }
   }
   return ANS;
