@@ -15,27 +15,28 @@ void solve() {
   for (auto&& [a, b, c]: query) --a;
 
   // 頂点 -> クエリ
+
   vc<vi> query_at(N);
   FOR(q, Q) query_at[get<0>(query[q])].eb(q);
 
-  Centroid_Decomposition CD(G);
+  Centroid_Decomposition<decltype(G)> CD(G);
   vi ANS(Q);
   FenwickTree<Monoid_Add<ll>> bit(N + 10);
 
   FOR(root, N) {
-    auto dats = CD.collect_dist(root);
-    FOR(i, len(dats)) {
-      auto dat = dats[i];
-      // qid, v, dv
+    auto [V, dp, indptr] = CD.collect_dist(root);
+    auto calc = [&](vc<int> V, vc<int> dp, int sgn) -> void {
       vc<T> event;
-      for (auto&& [v, dv]: dat) {
+      FOR(i, len(V)) {
+        int v = V[i];
+        int dv = dp[i];
         for (auto&& q: query_at[v]) { event.eb(q, v, dv); }
       }
       sort(all(event));
       for (auto&& [qid, v, dv]: event) {
         auto [_, y, z] = query[qid];
         ll add = bit.sum(0, dv + 1);
-        ANS[qid] += (i == 0 ? add : -add);
+        ANS[qid] += add * sgn;
         if (dv <= y) {
           bit.add(0, z);
           bit.add(y - dv + 1, -z);
@@ -48,19 +49,18 @@ void solve() {
           bit.add(y - dv + 1, +z);
         }
       }
+    };
+    calc(V, dp, +1);
+    FOR(i, 1, len(indptr) - 1) {
+      int l = indptr[i], r = indptr[i + 1];
+      calc({V.begin() + l, V.begin() + r}, {dp.begin() + l, dp.begin() + r},
+           -1);
     }
   }
   for (auto&& x: ANS) print(x);
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }
