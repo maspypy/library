@@ -102,35 +102,43 @@ private:
   }
 
 public:
-  // vector of pairs (v, path data v)
-  template <typename E, typename F>
-  vc<vc<pair<int, E>>> collect(int root, E root_val, F f) {
-    vc<vc<pair<int, E>>> res = {{{root, root_val}}};
+  // V, dat, grp
+  template <typename T, typename F>
+  tuple<vc<int>, vc<T>, vc<int>> collect_path_data(int root, T root_val, F f) {
+    vc<int> V = {root};
+    vc<T> dp = {root_val};
+    vc<int> grp = {-1};
+    int nxt_grp = 0;
     for (auto&& e: G[root]) {
       int nxt = e.to;
       if (cdep[nxt] < cdep[root]) continue;
-      vc<pair<int, E>> dat;
-      int p = 0;
-      dat.eb(nxt, f(root_val, e));
+      int p = len(V);
+      V.eb(nxt);
+      dp.eb(f(root_val, e));
+      grp.eb(nxt_grp);
       par[nxt] = root;
-      while (p < len(dat)) {
-        auto [v, val] = dat[p++];
+      while (p < len(V)) {
+        int v = V[p];
+        T val = dp[p];
+        p++;
         for (auto&& e: G[v]) {
           if (e.to == par[v]) continue;
           if (cdep[e.to] < cdep[root]) continue;
           par[e.to] = v;
-          dat.eb(e.to, f(val, e));
+          V.eb(e.to);
+          grp.eb(nxt_grp);
+          dp.eb(f(val, e));
         }
       }
-      res.eb(dat);
-      res[0].insert(res[0].end(), all(dat));
+      ++nxt_grp;
     }
-    return res;
+    return {V, dp, grp};
   }
 
-  vc<vc<pair<int, int>>> collect_dist(int root) {
+  // V, dist, grp
+  tuple<vc<int>, vc<int>, vc<int>> collect_dist(int root) {
     auto f = [&](int x, auto e) -> int { return x + 1; };
-    return collect(root, 0, f);
+    return collect_path_data(root, 0, f);
   }
 
   // (V, H, grp), (V[i] in G) = (i in H).
