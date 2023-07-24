@@ -29,6 +29,7 @@ struct UniqueProductQuery {
     unordered_map<ll, int> pos;
     pos.reserve(N);
 
+    for (auto&& q: IDS[0]) { ANS[q] = Mono::unit(); }
     FOR(i, N) {
       ll x = key[i];
       if (pos.count(x)) { seg.set(pos[x], Mono::unit()); }
