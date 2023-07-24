@@ -28,6 +28,8 @@ struct RollingHash {
     return hashed;
   }
 
+  mint from_char(char x) { return x; }
+
   mint query(const vc<mint>& s, int l, int r) {
     expand(r - l);
     return (s[r] - s[l] * power[r - l]).val;
