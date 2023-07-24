@@ -23,9 +23,10 @@ struct Point {
   }
   T dot(Point other) { return x * other.x + y * other.y; }
   T det(Point other) { return x * other.y - y * other.x; }
-
+#ifdef FASTIO
   void read() { fastio::read(x), fastio::read(y); }
   void write() { fastio::printer.write(pair<T, T>({x, y})); }
+#endif
 };
 
 // A -> B -> C と進むときに、左に曲がるならば +1、右に曲がるならば -1
