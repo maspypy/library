@@ -10,7 +10,16 @@ struct My_Bitset {
     assert(x == 0 || x == 1);
     u64 v = (x == 0 ? 0 : -1);
     dat.assign(ceil(N, 64), v);
-    dat.back() >>= (64 * len(dat) - N);
+    if (N) dat.back() >>= (64 * len(dat) - N);
+  }
+
+  int size() { return N; }
+  void resize(int M) {
+    ll k = ceil(M, 64);
+    dat.resize(k);
+    chmin(N, 64 * k);
+    while (N > M) off(--N);
+    N = M;
   }
 
   bool operator[](int idx) { return dat[idx >> 6] >> (idx & 63) & 1; }
@@ -41,6 +50,22 @@ struct My_Bitset {
     int ans = 0;
     for (u64 val: dat) ans += popcnt(val);
     return ans;
+  }
+
+  int next(int i) {
+    if (i >= N) return N;
+    int k = i >> 6;
+    {
+      u64 x = dat[k];
+      int s = i & 63;
+      x = (x >> s) << s;
+      if (x) return (k << 6) | lowbit(x);
+    }
+    FOR(idx, k + 1, len(dat)) {
+      if (dat[idx] == 0) continue;
+      return (idx << 6) | lowbit(dat[idx]);
+    }
+    return N;
   }
 
   My_Bitset range(int L, int R) {
