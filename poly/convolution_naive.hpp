@@ -1,3 +1,4 @@
+#pragma once
 template <class T>
 vector<T> convolution_naive(const vector<T>& a, const vector<T>& b) {
   int n = int(a.size()), m = int(b.size());

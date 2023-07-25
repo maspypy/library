@@ -1,8 +1,9 @@
 #include "poly/convolution.hpp"
+
 vector<u64> convolution_mod_2_64(const vector<u64>& a, const vector<u64>& b) {
   int n = len(a), m = len(b);
   if (!n || !m) return {};
-  if (min(n, m) <= 60) return convolution_naive(a, b);
+  if (min(n, m) <= 12500) return convolution_karatsuba(a, b);
   constexpr int P0 = 998244353;
   constexpr int P1 = 754974721;
   constexpr int P2 = 167772161;
