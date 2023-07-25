@@ -103,7 +103,10 @@ struct Dynamic_Modint {
   }
 #ifdef FASTIO
   void write() { fastio::printer.write(val); }
-  void read() { fastio::scanner.read(val); }
+  void read() {
+    fastio::scanner.read(val);
+    assert(0 <= val && val < u32(get_mod()));
+  }
 #endif
   static pair<int, int>& get_ntt() {
     static pair<int, int> p = {-1, -1};
