@@ -1,5 +1,8 @@
 
 // https://codeforces.com/contest/914/problem/F
+// https://yukicoder.me/problems/no/142
+// わずかに普通の bitset より遅いときもあるようだが，
+// 固定長にしたくないときや slice 操作が必要なときに使う
 struct My_Bitset {
   using T = My_Bitset;
   int N;
