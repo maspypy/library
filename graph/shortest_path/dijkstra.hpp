@@ -2,7 +2,30 @@
 #include "graph/base.hpp"
 
 template <typename T, typename GT>
+pair<vc<T>, vc<int>> dijkstra_dense(GT& G, int s) {
+  const int N = G.N;
+  vc<T> dist(N, infty<T>);
+  vc<int> par(N, -1);
+  vc<bool> done(N);
+  dist[s] = 0;
+  while (1) {
+    int v = -1;
+    T mi = infty<T>;
+    FOR(i, N) {
+      if (!done[i] && chmin(mi, dist[i])) v = i;
+    }
+    if (v == -1) break;
+    done[v] = 1;
+    for (auto&& e: G[v]) {
+      if (chmin(dist[e.to], dist[v] + e.cost)) par[e.to] = v;
+    }
+  }
+  return {dist, par};
+}
+
+template <typename T, typename GT, bool DENSE = false>
 pair<vc<T>, vc<int>> dijkstra(GT& G, int v) {
+  if (DENSE) return dijkstra_dense<T>(G, v);
   auto N = G.N;
   vector<T> dist(N, infty<T>);
   vector<int> par(N, -1);
