@@ -1,5 +1,6 @@
 #pragma once
 
+// op(F, G) = comp(G,F), F のあとで G
 template <typename K>
 struct Monoid_Affine {
   using F = pair<K, K>;
