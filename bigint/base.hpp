@@ -2,10 +2,8 @@
 
 // 10^9 ずつ区切って
 struct BigInteger {
-  static constexpr int TEN[]
-      = {1,      10,      100,      1000,      10000,
-         100000, 1000000, 10000000, 100000000, 1000000000};
-  static constexpr int LOG = 9;
+  static constexpr int TEN[] = {1, 10, 100, 1000, 10000, 100000, 1000000};
+  static constexpr int LOG = 6;
   static constexpr int MOD = TEN[LOG];
   using bint = BigInteger;
   int sgn; // +1 or -1. 内部状態で -0 を許容する.
@@ -113,20 +111,13 @@ struct BigInteger {
 
   // とりあえず愚直畳み込みだけ
   vc<int> convolve(const vc<int> &A, const vc<int> &B) {
-    int NA = len(A), NB = len(B);
-    if (NA == 0 || NB == 0) return {};
-    vc<int> C(NA + NB - 1);
-    auto add = [&](int idx, ll x) -> void {
-      while (x) {
-        if (idx >= len(C)) C.resize(idx + 1);
-        x += C[idx];
-        C[idx] = x % MOD;
-        x /= MOD;
-        ++idx;
-      }
-    };
-    FOR(i, NA) FOR(j, NB) add(i + j, ll(A[i]) * B[j]);
-    return C;
+    vc<ll> A1 = {A.begin(), A.end()};
+    vc<ll> B1 = {B.begin(), B.end()};
+    vc<ll> F = convolution(A1, B1);
+    F.eb(0);
+    FOR(i, len(F) - 1) { F[i + 1] += F[i] / MOD, F[i] = F[i] % MOD; }
+    while (len(F) && F.back() == 0) POP(F);
+    return {F.begin(), F.end()};
   }
 
   string to_string() {

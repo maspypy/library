@@ -2,6 +2,7 @@
 #include "mod/modint.hpp"
 #include "mod/mod_inv.hpp"
 #include "poly/convolution_naive.hpp"
+#include "poly/convolution_karatsuba.hpp"
 #include "poly/ntt.hpp"
 #include "poly/fft.hpp"
 
@@ -107,7 +108,7 @@ vc<double> convolution_fft(const vc<R>& a, const vc<R>& b) {
 vector<ll> convolution(const vector<ll>& a, const vector<ll>& b) {
   int n = len(a), m = len(b);
   if (!n || !m) return {};
-  if (min(n, m) <= 60) return convolution_naive(a, b);
+  if (min(n, m) <= 2500) return convolution_naive(a, b);
   ll abs_sum_a = 0, abs_sum_b = 0;
   ll LIM = 1e15;
   FOR(i, n) abs_sum_a = min(LIM, abs_sum_a + abs(a[i]));
@@ -166,9 +167,9 @@ vc<mint> convolution(const vc<mint>& a, const vc<mint>& b) {
   int n = len(a), m = len(b);
   if (!n || !m) return {};
   if (mint::can_ntt()) {
-    if (min(n, m) <= 50) return convolution_naive(a, b);
+    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);
     return convolution_ntt(a, b);
   }
-  if (min(n, m) <= 200) return convolution_naive(a, b);
+  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a, b);
   return convolution_garner(a, b);
 }
