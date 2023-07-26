@@ -59,7 +59,7 @@ template <typename T>
 mat<T> hgcd(arr<T> a) {
   assert(len(a[0]) > len(a[1]) && len(a[1]) > 0);
   int m = len(a[0]) / 2;
-  if (a[1].size() <= m) {
+  if (len(a[1]) <= m) {
     mat<T> M;
     M[0] = {1}, M[3] = {1};
     return M;
@@ -67,10 +67,10 @@ mat<T> hgcd(arr<T> a) {
   auto R = hgcd(arr<T>({vc<T>(a[0].begin() + m, a[0].end()),
                         vc<T>(a[1].begin() + m, a[1].end())}));
   a = R * a;
-  if (a[1].size() <= m) return R;
+  if (len(a[1]) <= m) return R;
   mat<T> Q = step(poly_divmod(a[0], a[1]).fi);
   R = Q * R, a = Q * a;
-  if (a[1].size() <= m) return R;
+  if (len(a[1]) <= m) return R;
   int k = 2 * m + 1 - len(a[0]);
   auto H = hgcd(arr<T>({vc<T>(a[0].begin() + k, a[0].end()),
                         vc<T>(a[1].begin() + k, a[1].end())}));
