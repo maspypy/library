@@ -12,6 +12,7 @@ struct modint61 {
       : val(((x %= static_cast<long long>(mod)) < 0)
                 ? (x + static_cast<long long>(mod))
                 : x) {}
+  static constexpr u64 get_mod() { return mod; }
   modint61 &operator+=(const modint61 &a) {
     val = ((val += a.val) >= mod) ? (val - mod) : val;
     return *this;
