@@ -109,7 +109,6 @@ struct BigInteger {
     return (sgn != p.sgn || dat != p.dat);
   }
 
-  // とりあえず愚直畳み込みだけ
   vc<int> convolve(const vc<int> &A, const vc<int> &B) {
     vc<ll> A1 = {A.begin(), A.end()};
     vc<ll> B1 = {B.begin(), B.end()};
