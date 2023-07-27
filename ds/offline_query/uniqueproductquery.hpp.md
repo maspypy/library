@@ -65,13 +65,13 @@ data:
     \ && R <= N);\r\n    query.eb(L, R);\r\n  }\r\n\r\n  template <typename F>\r\n\
     \  vc<X> calc(F f) {\r\n    ll Q = len(query);\r\n    vc<X> ANS(Q);\r\n    vc<vc<int>>\
     \ IDS(N + 1);\r\n    FOR(q, Q) IDS[query[q].se].eb(q);\r\n    SegTree<Mono> seg(N);\r\
-    \n\r\n    unordered_map<ll, int> pos;\r\n    pos.reserve(N);\r\n\r\n    FOR(i,\
-    \ N) {\r\n      ll x = key[i];\r\n      if (pos.count(x)) { seg.set(pos[x], Mono::unit());\
-    \ }\r\n      pos[x] = i;\r\n      seg.set(i, f(key[i]));\r\n      for (auto&&\
-    \ q: IDS[i + 1]) {\r\n        auto [L, R] = query[q];\r\n        ANS[q] = seg.prod(L,\
-    \ R);\r\n      }\r\n    }\r\n    return ANS;\r\n  }\r\n\r\n  vc<X> calc() {\r\n\
-    \    auto f = [&](ll k) -> X { return 1; };\r\n    return calc(f);\r\n  }\r\n\
-    };\r\n"
+    \n\r\n    unordered_map<ll, int> pos;\r\n    pos.reserve(N);\r\n\r\n    for (auto&&\
+    \ q: IDS[0]) { ANS[q] = Mono::unit(); }\r\n    FOR(i, N) {\r\n      ll x = key[i];\r\
+    \n      if (pos.count(x)) { seg.set(pos[x], Mono::unit()); }\r\n      pos[x] =\
+    \ i;\r\n      seg.set(i, f(key[i]));\r\n      for (auto&& q: IDS[i + 1]) {\r\n\
+    \        auto [L, R] = query[q];\r\n        ANS[q] = seg.prod(L, R);\r\n     \
+    \ }\r\n    }\r\n    return ANS;\r\n  }\r\n\r\n  vc<X> calc() {\r\n    auto f =\
+    \ [&](ll k) -> X { return 1; };\r\n    return calc(f);\r\n  }\r\n};\r\n"
   code: "#include \"ds/segtree/segtree.hpp\"\r\n\r\n// [L, R) \u5185\u306E\u8981\u7D20\
     \ (long long)\u3092 UNIQUE \u3057\u305F\u4E0A\u3067\u3001f(x)\u306E\u7DCF\u7A4D\
     \u3092\u3068\u3063\u305F\u3082\u306E\u3092\u8A08\u7B97\u3002\r\n// \u30AF\u30A8\
@@ -84,19 +84,19 @@ data:
     \ N);\r\n    query.eb(L, R);\r\n  }\r\n\r\n  template <typename F>\r\n  vc<X>\
     \ calc(F f) {\r\n    ll Q = len(query);\r\n    vc<X> ANS(Q);\r\n    vc<vc<int>>\
     \ IDS(N + 1);\r\n    FOR(q, Q) IDS[query[q].se].eb(q);\r\n    SegTree<Mono> seg(N);\r\
-    \n\r\n    unordered_map<ll, int> pos;\r\n    pos.reserve(N);\r\n\r\n    FOR(i,\
-    \ N) {\r\n      ll x = key[i];\r\n      if (pos.count(x)) { seg.set(pos[x], Mono::unit());\
-    \ }\r\n      pos[x] = i;\r\n      seg.set(i, f(key[i]));\r\n      for (auto&&\
-    \ q: IDS[i + 1]) {\r\n        auto [L, R] = query[q];\r\n        ANS[q] = seg.prod(L,\
-    \ R);\r\n      }\r\n    }\r\n    return ANS;\r\n  }\r\n\r\n  vc<X> calc() {\r\n\
-    \    auto f = [&](ll k) -> X { return 1; };\r\n    return calc(f);\r\n  }\r\n\
-    };\r\n"
+    \n\r\n    unordered_map<ll, int> pos;\r\n    pos.reserve(N);\r\n\r\n    for (auto&&\
+    \ q: IDS[0]) { ANS[q] = Mono::unit(); }\r\n    FOR(i, N) {\r\n      ll x = key[i];\r\
+    \n      if (pos.count(x)) { seg.set(pos[x], Mono::unit()); }\r\n      pos[x] =\
+    \ i;\r\n      seg.set(i, f(key[i]));\r\n      for (auto&& q: IDS[i + 1]) {\r\n\
+    \        auto [L, R] = query[q];\r\n        ANS[q] = seg.prod(L, R);\r\n     \
+    \ }\r\n    }\r\n    return ANS;\r\n  }\r\n\r\n  vc<X> calc() {\r\n    auto f =\
+    \ [&](ll k) -> X { return 1; };\r\n    return calc(f);\r\n  }\r\n};\r\n"
   dependsOn:
   - ds/segtree/segtree.hpp
   isVerificationFile: false
   path: ds/offline_query/uniqueproductquery.hpp
   requiredBy: []
-  timestamp: '2023-04-14 22:06:29+09:00'
+  timestamp: '2023-07-25 02:10:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc174f.test.cpp

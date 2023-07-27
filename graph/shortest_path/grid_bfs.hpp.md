@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1323.test.cpp
     title: test/yukicoder/1323.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc301e.test.cpp
+    title: test_atcoder/abc301e.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -44,6 +47,7 @@ data:
   timestamp: '2023-02-02 01:33:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test_atcoder/abc301e.test.cpp
   - test/yukicoder/1323.test.cpp
 documentation_of: graph/shortest_path/grid_bfs.hpp
 layout: document

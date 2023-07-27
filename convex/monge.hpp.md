@@ -85,48 +85,9 @@ data:
     \u57DF [0, N] \u306E\u7BC4\u56F2\u3067 f \u306E monge \u6027\u3092\u78BA\u8A8D\
     \r\ntemplate <typename T, typename F>\r\nbool check_monge(int N, F f) {\r\n  FOR(l,\
     \ N + 1) FOR(k, l) FOR(j, k) FOR(i, j) {\r\n    T lhs = f(i, l) + f(j, k);\r\n\
-    \    T rhs = f(i, k) + f(j, l);\r\n    if (lhs < rhs) {\r\n      print(i, j, k,\
-    \ l, f(i, k), f(i, l), f(j, k), f(j, l), lhs, rhs);\r\n      return false;\r\n\
-    \    }\r\n  }\r\n  return true;\r\n}\r\n\r\n// newdp[j] = min (dp[i] + f(i,j))\r\
-    \ntemplate <typename T, typename F>\r\nvc<T> monge_dp_update(int N, vc<T>& dp,\
-    \ F f) {\r\n  assert(len(dp) == N + 1);\r\n  auto select = [&](int i, int j, int\
-    \ k) -> int {\r\n    if (i <= k) return j;\r\n    return (dp[j] + f(j, i) > dp[k]\
-    \ + f(k, i) ? k : j);\r\n  };\r\n  vc<int> I = SMAWK(N + 1, N + 1, select);\r\n\
-    \  vc<T> newdp(N + 1, infty<T>);\r\n  FOR(j, N + 1) {\r\n    int i = I[j];\r\n\
-    \    chmin(newdp[j], dp[i] + f(i, j));\r\n  }\r\n  return newdp;\r\n}\r\n\r\n\
-    // \u9077\u79FB\u56DE\u6570\u3092\u554F\u308F\u306A\u3044\u5834\u5408\r\ntemplate\
-    \ <typename T, typename F>\r\nvc<T> monge_shortest_path(int N, F f) {\r\n  vc<T>\
-    \ dp(N + 1, infty<T>);\r\n  dp[0] = 0;\r\n  LARSCH<T> larsch(N, [&](int i, int\
-    \ j) -> T {\r\n    ++i;\r\n    if (i <= j) return infty<T>;\r\n    return dp[j]\
-    \ + f(j, i);\r\n  });\r\n  FOR(r, 1, N + 1) {\r\n    int l = larsch.get_argmin();\r\
-    \n    dp[r] = dp[l] + f(l, r);\r\n  }\r\n  return dp;\r\n}\r\n\r\n// https://noshi91.github.io/algorithm-encyclopedia/d-edge-shortest-path-monge\r\
-    \n// |f| \u306E\u4E0A\u9650 f_lim \u3082\u6E21\u3059\r\n// \u30FBlarsch \u304C\
-    \u7D50\u69CB\u91CD\u3044\u306E\u3067\u3001\u81EA\u524D\u3067 dp \u3067\u304D\u308B\
-    \u306A\u3089\u305D\u306E\u65B9\u304C\u3088\u3044\r\n// \u30FB\u8907\u6570\u306E\
-    \ d \u3067\u8A08\u7B97\u3059\u308B\u3068\u304D\uFF1A\u540C\u3058 lambda\r\n//\
-    \ \u306B\u5BFE\u3059\u308B\u8A08\u7B97\u3092\u30E1\u30E2\u5316\u3057\u3066\u304A\
-    \u304F\u3068\u5B9A\u6570\u500D\u9AD8\u901F\uFF1F \u3000\u30FBABC305\r\ntemplate\
-    \ <typename T, typename F>\r\nT monge_shortest_path_d_edge(int N, int d, T f_lim,\
-    \ F f) {\r\n  assert(d <= N);\r\n  auto calc_L = [&](T lambda) -> T {\r\n    auto\
-    \ cost = [&](int frm, int to) -> T { return f(frm, to) + lambda; };\r\n    vc<T>\
-    \ dp = monge_shortest_path<T>(N, cost);\r\n    return dp[N] - lambda * d;\r\n\
-    \  };\r\n\r\n  auto [x, fx] = fibonacci_search<T, false>(calc_L, -3 * f_lim, 3\
-    \ * f_lim + 1);\r\n  return fx;\r\n}\r\n\r\n// https://topcoder-g-hatena-ne-jp.jag-icpc.org/spaghetti_source/20120915/1347668163.html\r\
-    \n// Prop 1\r\n// \u4E0A\u4E09\u89D2 monge A, B\r\n// C[i][j] = min_k (A[i][k]\
-    \ + B[k][j])\r\ntemplate <typename T, typename F1, typename F2>\r\nvvc<T> monge_matrix_product(int\
-    \ N, F1 A, F2 B) {\r\n  vv(T, C, N + 1, N + 1, infty<T>);\r\n  vc<int> K(N + 1);\r\
-    \n  FOR(i, N + 1) C[i][i] = A(i, i) + B(i, i), K[i] = i;\r\n  FOR(s, 1, N + 1)\
-    \ {\r\n    vc<int> newK(N + 1 - s);\r\n    FOR(i, N + 1 - s) {\r\n      int j\
-    \ = i + s;\r\n      int p = K[i], q = K[i + 1];\r\n      FOR(k, p, q + 1) if (chmin(C[i][j],\
-    \ A(i, k) + B(k, j))) newK[i] = k;\r\n    }\r\n    swap(K, newK);\r\n  }\r\n \
-    \ return C;\r\n}\r\n"
-  code: "#include \"convex/larsch.hpp\"\r\n#include \"convex/smawk.hpp\"\r\n#include\
-    \ \"other/fibonacci_search.hpp\"\r\n\r\n// \u5B9A\u7FA9\u57DF [0, N] \u306E\u7BC4\
-    \u56F2\u3067 f \u306E monge \u6027\u3092\u78BA\u8A8D\r\ntemplate <typename T,\
-    \ typename F>\r\nbool check_monge(int N, F f) {\r\n  FOR(l, N + 1) FOR(k, l) FOR(j,\
-    \ k) FOR(i, j) {\r\n    T lhs = f(i, l) + f(j, k);\r\n    T rhs = f(i, k) + f(j,\
-    \ l);\r\n    if (lhs < rhs) {\r\n      print(i, j, k, l, f(i, k), f(i, l), f(j,\
-    \ k), f(j, l), lhs, rhs);\r\n      return false;\r\n    }\r\n  }\r\n  return true;\r\
+    \    T rhs = f(i, k) + f(j, l);\r\n    if (lhs < rhs) {\r\n      print(\"monge\
+    \ ng\");\r\n      print(i, j, k, l, f(i, k), f(i, l), f(j, k), f(j, l), lhs, rhs);\r\
+    \n      return false;\r\n    }\r\n  }\r\n  print(\"monge ok\");\r\n  return true;\r\
     \n}\r\n\r\n// newdp[j] = min (dp[i] + f(i,j))\r\ntemplate <typename T, typename\
     \ F>\r\nvc<T> monge_dp_update(int N, vc<T>& dp, F f) {\r\n  assert(len(dp) ==\
     \ N + 1);\r\n  auto select = [&](int i, int j, int k) -> int {\r\n    if (i <=\
@@ -159,6 +120,46 @@ data:
     \ = i + s;\r\n      int p = K[i], q = K[i + 1];\r\n      FOR(k, p, q + 1) if (chmin(C[i][j],\
     \ A(i, k) + B(k, j))) newK[i] = k;\r\n    }\r\n    swap(K, newK);\r\n  }\r\n \
     \ return C;\r\n}\r\n"
+  code: "#include \"convex/larsch.hpp\"\r\n#include \"convex/smawk.hpp\"\r\n#include\
+    \ \"other/fibonacci_search.hpp\"\r\n\r\n// \u5B9A\u7FA9\u57DF [0, N] \u306E\u7BC4\
+    \u56F2\u3067 f \u306E monge \u6027\u3092\u78BA\u8A8D\r\ntemplate <typename T,\
+    \ typename F>\r\nbool check_monge(int N, F f) {\r\n  FOR(l, N + 1) FOR(k, l) FOR(j,\
+    \ k) FOR(i, j) {\r\n    T lhs = f(i, l) + f(j, k);\r\n    T rhs = f(i, k) + f(j,\
+    \ l);\r\n    if (lhs < rhs) {\r\n      print(\"monge ng\");\r\n      print(i,\
+    \ j, k, l, f(i, k), f(i, l), f(j, k), f(j, l), lhs, rhs);\r\n      return false;\r\
+    \n    }\r\n  }\r\n  print(\"monge ok\");\r\n  return true;\r\n}\r\n\r\n// newdp[j]\
+    \ = min (dp[i] + f(i,j))\r\ntemplate <typename T, typename F>\r\nvc<T> monge_dp_update(int\
+    \ N, vc<T>& dp, F f) {\r\n  assert(len(dp) == N + 1);\r\n  auto select = [&](int\
+    \ i, int j, int k) -> int {\r\n    if (i <= k) return j;\r\n    return (dp[j]\
+    \ + f(j, i) > dp[k] + f(k, i) ? k : j);\r\n  };\r\n  vc<int> I = SMAWK(N + 1,\
+    \ N + 1, select);\r\n  vc<T> newdp(N + 1, infty<T>);\r\n  FOR(j, N + 1) {\r\n\
+    \    int i = I[j];\r\n    chmin(newdp[j], dp[i] + f(i, j));\r\n  }\r\n  return\
+    \ newdp;\r\n}\r\n\r\n// \u9077\u79FB\u56DE\u6570\u3092\u554F\u308F\u306A\u3044\
+    \u5834\u5408\r\ntemplate <typename T, typename F>\r\nvc<T> monge_shortest_path(int\
+    \ N, F f) {\r\n  vc<T> dp(N + 1, infty<T>);\r\n  dp[0] = 0;\r\n  LARSCH<T> larsch(N,\
+    \ [&](int i, int j) -> T {\r\n    ++i;\r\n    if (i <= j) return infty<T>;\r\n\
+    \    return dp[j] + f(j, i);\r\n  });\r\n  FOR(r, 1, N + 1) {\r\n    int l = larsch.get_argmin();\r\
+    \n    dp[r] = dp[l] + f(l, r);\r\n  }\r\n  return dp;\r\n}\r\n\r\n// https://noshi91.github.io/algorithm-encyclopedia/d-edge-shortest-path-monge\r\
+    \n// |f| \u306E\u4E0A\u9650 f_lim \u3082\u6E21\u3059\r\n// \u30FBlarsch \u304C\
+    \u7D50\u69CB\u91CD\u3044\u306E\u3067\u3001\u81EA\u524D\u3067 dp \u3067\u304D\u308B\
+    \u306A\u3089\u305D\u306E\u65B9\u304C\u3088\u3044\r\n// \u30FB\u8907\u6570\u306E\
+    \ d \u3067\u8A08\u7B97\u3059\u308B\u3068\u304D\uFF1A\u540C\u3058 lambda\r\n//\
+    \ \u306B\u5BFE\u3059\u308B\u8A08\u7B97\u3092\u30E1\u30E2\u5316\u3057\u3066\u304A\
+    \u304F\u3068\u5B9A\u6570\u500D\u9AD8\u901F\uFF1F \u3000\u30FBABC305\r\ntemplate\
+    \ <typename T, typename F>\r\nT monge_shortest_path_d_edge(int N, int d, T f_lim,\
+    \ F f) {\r\n  assert(d <= N);\r\n  auto calc_L = [&](T lambda) -> T {\r\n    auto\
+    \ cost = [&](int frm, int to) -> T { return f(frm, to) + lambda; };\r\n    vc<T>\
+    \ dp = monge_shortest_path<T>(N, cost);\r\n    return dp[N] - lambda * d;\r\n\
+    \  };\r\n\r\n  auto [x, fx] = fibonacci_search<T, false>(calc_L, -3 * f_lim, 3\
+    \ * f_lim + 1);\r\n  return fx;\r\n}\r\n\r\n// https://topcoder-g-hatena-ne-jp.jag-icpc.org/spaghetti_source/20120915/1347668163.html\r\
+    \n// Prop 1\r\n// \u4E0A\u4E09\u89D2 monge A, B\r\n// C[i][j] = min_k (A[i][k]\
+    \ + B[k][j])\r\ntemplate <typename T, typename F1, typename F2>\r\nvvc<T> monge_matrix_product(int\
+    \ N, F1 A, F2 B) {\r\n  vv(T, C, N + 1, N + 1, infty<T>);\r\n  vc<int> K(N + 1);\r\
+    \n  FOR(i, N + 1) C[i][i] = A(i, i) + B(i, i), K[i] = i;\r\n  FOR(s, 1, N + 1)\
+    \ {\r\n    vc<int> newK(N + 1 - s);\r\n    FOR(i, N + 1 - s) {\r\n      int j\
+    \ = i + s;\r\n      int p = K[i], q = K[i + 1];\r\n      FOR(k, p, q + 1) if (chmin(C[i][j],\
+    \ A(i, k) + B(k, j))) newK[i] = k;\r\n    }\r\n    swap(K, newK);\r\n  }\r\n \
+    \ return C;\r\n}\r\n"
   dependsOn:
   - convex/larsch.hpp
   - convex/smawk.hpp
@@ -166,7 +167,7 @@ data:
   isVerificationFile: false
   path: convex/monge.hpp
   requiredBy: []
-  timestamp: '2023-06-14 19:10:38+09:00'
+  timestamp: '2023-07-25 02:09:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/705.test.cpp

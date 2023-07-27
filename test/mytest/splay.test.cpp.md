@@ -10,16 +10,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_monoid.hpp
     title: ds/splaytree/splaytree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
@@ -216,14 +216,15 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 2 \"alg/monoid/affine.hpp\"\n\ntemplate <typename K>\nstruct\
-    \ Monoid_Affine {\n  using F = pair<K, K>;\n  using value_type = F;\n  using X\
-    \ = value_type;\n  static constexpr F op(const F &x, const F &y) noexcept {\n\
-    \    return F({x.first * y.first, x.second * y.first + y.second});\n  }\n  static\
-    \ constexpr F inverse(const F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n\
-    \    return {a, a * (-b)};\n  }\n  static constexpr K eval(const F &f, K x) noexcept\
-    \ {\n    return f.first * x + f.second;\n  }\n  static constexpr F unit() { return\
-    \ {K(1), K(0)}; }\n  static constexpr bool commute = false;\n};\n#line 2 \"mod/modint_common.hpp\"\
+    \ yes(!t); }\n#line 2 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F), F\
+    \ \u306E\u3042\u3068\u3067 G\ntemplate <typename K>\nstruct Monoid_Affine {\n\
+    \  using F = pair<K, K>;\n  using value_type = F;\n  using X = value_type;\n \
+    \ static constexpr F op(const F &x, const F &y) noexcept {\n    return F({x.first\
+    \ * y.first, x.second * y.first + y.second});\n  }\n  static constexpr F inverse(const\
+    \ F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n\
+    \  }\n  static constexpr K eval(const F &f, K x) noexcept {\n    return f.first\
+    \ * x + f.second;\n  }\n  static constexpr F unit() { return {K(1), K(0)}; }\n\
+    \  static constexpr bool commute = false;\n};\n#line 2 \"mod/modint_common.hpp\"\
     \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
     \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
     \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
@@ -480,7 +481,7 @@ data:
   isVerificationFile: true
   path: test/mytest/splay.test.cpp
   requiredBy: []
-  timestamp: '2023-06-30 22:46:48+09:00'
+  timestamp: '2023-07-25 22:13:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/splay.test.cpp

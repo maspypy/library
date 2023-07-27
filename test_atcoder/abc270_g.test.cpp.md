@@ -22,13 +22,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
@@ -40,7 +40,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
@@ -237,14 +237,15 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 2 \"alg/monoid/affine.hpp\"\n\ntemplate <typename K>\nstruct\
-    \ Monoid_Affine {\n  using F = pair<K, K>;\n  using value_type = F;\n  using X\
-    \ = value_type;\n  static constexpr F op(const F &x, const F &y) noexcept {\n\
-    \    return F({x.first * y.first, x.second * y.first + y.second});\n  }\n  static\
-    \ constexpr F inverse(const F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n\
-    \    return {a, a * (-b)};\n  }\n  static constexpr K eval(const F &f, K x) noexcept\
-    \ {\n    return f.first * x + f.second;\n  }\n  static constexpr F unit() { return\
-    \ {K(1), K(0)}; }\n  static constexpr bool commute = false;\n};\n#line 2 \"mod/modint_common.hpp\"\
+    \ yes(!t); }\n#line 2 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F), F\
+    \ \u306E\u3042\u3068\u3067 G\ntemplate <typename K>\nstruct Monoid_Affine {\n\
+    \  using F = pair<K, K>;\n  using value_type = F;\n  using X = value_type;\n \
+    \ static constexpr F op(const F &x, const F &y) noexcept {\n    return F({x.first\
+    \ * y.first, x.second * y.first + y.second});\n  }\n  static constexpr F inverse(const\
+    \ F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n\
+    \  }\n  static constexpr K eval(const F &f, K x) noexcept {\n    return f.first\
+    \ * x + f.second;\n  }\n  static constexpr F unit() { return {K(1), K(0)}; }\n\
+    \  static constexpr bool commute = false;\n};\n#line 2 \"mod/modint_common.hpp\"\
     \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
     \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
     \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
@@ -401,9 +402,10 @@ data:
     \ lhs, const mint& rhs) {\n    return lhs.val == rhs.val;\n  }\n  friend bool\
     \ operator!=(const mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n\
     \  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val); }\n  void read()\
-    \ { fastio::scanner.read(val); }\n#endif\n  static pair<int, int>& get_ntt() {\n\
-    \    static pair<int, int> p = {-1, -1};\n    return p;\n  }\n  static void set_ntt_info()\
-    \ {\n    int mod = get_mod();\n    int k = lowbit(mod - 1);\n    int r = primitive_root(mod);\n\
+    \ {\n    fastio::scanner.read(val);\n    assert(0 <= val && val < u32(get_mod()));\n\
+    \  }\n#endif\n  static pair<int, int>& get_ntt() {\n    static pair<int, int>\
+    \ p = {-1, -1};\n    return p;\n  }\n  static void set_ntt_info() {\n    int mod\
+    \ = get_mod();\n    int k = lowbit(mod - 1);\n    int r = primitive_root(mod);\n\
     \    r = mod_pow(r, (mod - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static\
     \ pair<int, int> ntt_info() { return get_ntt(); }\n  static bool can_ntt() { return\
     \ ntt_info().fi != -1; }\n};\n\nusing dmint = Dynamic_Modint;\nBarrett dmint::bt(1);\n\
@@ -494,7 +496,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc270_g.test.cpp
   requiredBy: []
-  timestamp: '2023-06-23 23:16:45+09:00'
+  timestamp: '2023-07-25 22:13:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc270_g.test.cpp

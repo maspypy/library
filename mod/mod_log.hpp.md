@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -203,9 +203,10 @@ data:
     \ lhs, const mint& rhs) {\n    return lhs.val == rhs.val;\n  }\n  friend bool\
     \ operator!=(const mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n\
     \  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val); }\n  void read()\
-    \ { fastio::scanner.read(val); }\n#endif\n  static pair<int, int>& get_ntt() {\n\
-    \    static pair<int, int> p = {-1, -1};\n    return p;\n  }\n  static void set_ntt_info()\
-    \ {\n    int mod = get_mod();\n    int k = lowbit(mod - 1);\n    int r = primitive_root(mod);\n\
+    \ {\n    fastio::scanner.read(val);\n    assert(0 <= val && val < u32(get_mod()));\n\
+    \  }\n#endif\n  static pair<int, int>& get_ntt() {\n    static pair<int, int>\
+    \ p = {-1, -1};\n    return p;\n  }\n  static void set_ntt_info() {\n    int mod\
+    \ = get_mod();\n    int k = lowbit(mod - 1);\n    int r = primitive_root(mod);\n\
     \    r = mod_pow(r, (mod - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static\
     \ pair<int, int> ntt_info() { return get_ntt(); }\n  static bool can_ntt() { return\
     \ ntt_info().fi != -1; }\n};\n\nusing dmint = Dynamic_Modint;\nBarrett dmint::bt(1);\n\
@@ -285,7 +286,7 @@ data:
   isVerificationFile: false
   path: mod/mod_log.hpp
   requiredBy: []
-  timestamp: '2023-06-14 19:10:38+09:00'
+  timestamp: '2023-07-25 22:13:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/discrete_logarithm_mod.test.cpp

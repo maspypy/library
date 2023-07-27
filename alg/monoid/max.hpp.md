@@ -81,6 +81,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc270_f.test.cpp
     title: test_atcoder/abc270_f.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc301h.test.cpp
+    title: test_atcoder/abc301h.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -110,6 +113,7 @@ data:
   verifiedWith:
   - test_atcoder/abc240ex.test.cpp
   - test_atcoder/abc270_f.test.cpp
+  - test_atcoder/abc301h.test.cpp
   - test_atcoder/abc228f.test.cpp
   - test_atcoder/abc266h_2.test.cpp
   - test_atcoder/abc266h.test.cpp

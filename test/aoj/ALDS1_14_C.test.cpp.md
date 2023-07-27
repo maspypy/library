@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
@@ -209,42 +209,40 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\n#line 5 \"test/aoj/ALDS1_14_C.test.cpp\"\n\n#line 2 \"mod/modint61.hpp\"\
-    \nstruct modint61 {\r\n  static constexpr bool is_modint = true;\r\n  static constexpr\
-    \ ll mod = (1LL << 61) - 1;\r\n  ll val;\r\n  constexpr modint61(const ll x =\
-    \ 0) : val(x) {\r\n    while (val < 0) val += mod;\r\n    while (val >= mod) val\
-    \ -= mod;\r\n  }\r\n  bool operator<(const modint61 &other) const {\r\n    return\
-    \ val < other.val;\r\n  } // To use std::map\r\n  bool operator==(const modint61\
-    \ &p) const { return val == p.val; }\r\n  bool operator!=(const modint61 &p) const\
-    \ { return val != p.val; }\r\n  modint61 &operator+=(const modint61 &p) {\r\n\
-    \    if ((val += p.val) >= mod) val -= mod;\r\n    return *this;\r\n  }\r\n  modint61\
-    \ &operator-=(const modint61 &p) {\r\n    if ((val += mod - p.val) >= mod) val\
-    \ -= mod;\r\n    return *this;\r\n  }\r\n  modint61 &operator*=(const modint61\
-    \ &p) {\r\n    ll a = val, b = p.val;\r\n    const ll MASK30 = (1LL << 30) - 1;\r\
-    \n    const ll MASK31 = (1LL << 31) - 1;\r\n    const ll MASK61 = (1LL << 61)\
-    \ - 1;\r\n    ll au = a >> 31, ad = a & MASK31;\r\n    ll bu = b >> 31, bd = b\
-    \ & MASK31;\r\n    ll x = ad * bu + au * bd;\r\n    ll xu = x >> 30, xd = x &\
-    \ MASK30;\r\n    x = au * bu * 2 + xu + (xd << 31) + ad * bd;\r\n    xu = x >>\
-    \ 61, xd = x & MASK61;\r\n    x = xu + xd;\r\n    if (x >= MASK61) x -= MASK61;\r\
-    \n    val = x;\r\n    return *this;\r\n  }\r\n  modint61 operator-() const { return\
-    \ modint61(get_mod() - val); }\r\n  modint61 &operator/=(const modint61 &p) {\r\
-    \n    *this *= p.inverse();\r\n    return *this;\r\n  }\r\n  modint61 operator+(const\
-    \ modint61 &p) const { return modint61(*this) += p; }\r\n  modint61 operator-(const\
-    \ modint61 &p) const { return modint61(*this) -= p; }\r\n  modint61 operator*(const\
-    \ modint61 &p) const { return modint61(*this) *= p; }\r\n  modint61 operator/(const\
-    \ modint61 &p) const { return modint61(*this) /= p; }\r\n\r\n  modint61 inverse()\
-    \ const {\r\n    ll a = val, b = mod, u = 1, v = 0, t;\r\n    while (b > 0) {\r\
-    \n      t = a / b;\r\n      swap(a -= t * b, b), swap(u -= t * v, v);\r\n    }\r\
-    \n    return modint61(u);\r\n  }\r\n  modint61 pow(int64_t n) const {\r\n    modint61\
-    \ ret(1), mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret = ret * mul;\r\
-    \n      mul = mul * mul;\r\n      n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\
-    \n  static constexpr ll get_mod() { return mod; }\r\n#ifdef FASTIO\r\n  void write()\
-    \ { fastio::printer.write(val); }\r\n  void read() { fastio::scanner.read(val);\
-    \ }\r\n#endif\r\n};\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
-    \ uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"string/rollinghash_2d.hpp\"\
+    \n\r\nstruct modint61 {\r\n  static constexpr u64 mod = (1ULL << 61) - 1;\r\n\
+    \  u64 val;\r\n  constexpr modint61() : val(0ULL) {}\r\n  constexpr modint61(u32\
+    \ x) : val(x) {}\r\n  constexpr modint61(u64 x) : val(x % mod) {}\r\n  constexpr\
+    \ modint61(int x)\r\n      : val((x < 0) ? (x + static_cast<long long>(mod)) :\
+    \ x) {}\r\n  constexpr modint61(ll x)\r\n      : val(((x %= static_cast<long long>(mod))\
+    \ < 0)\r\n                ? (x + static_cast<long long>(mod))\r\n            \
+    \    : x) {}\r\n  static constexpr u64 get_mod() { return mod; }\r\n  modint61\
+    \ &operator+=(const modint61 &a) {\r\n    val = ((val += a.val) >= mod) ? (val\
+    \ - mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 &operator-=(const modint61\
+    \ &a) {\r\n    val = ((val -= a.val) >= mod) ? (val + mod) : val;\r\n    return\
+    \ *this;\r\n  }\r\n  modint61 &operator*=(const modint61 &a) {\r\n    const unsigned\
+    \ __int128 y = static_cast<unsigned __int128>(val) * a.val;\r\n    val = (y >>\
+    \ 61) + (y & mod);\r\n    val = (val >= mod) ? (val - mod) : val;\r\n    return\
+    \ *this;\r\n  }\r\n  modint61 &operator/=(const modint61 &a) { return (*this *=\
+    \ a.inverse()); }\r\n  modint61 operator+(const modint61 &p) const { return modint61(*this)\
+    \ += p; }\r\n  modint61 operator-(const modint61 &p) const { return modint61(*this)\
+    \ -= p; }\r\n  modint61 operator*(const modint61 &p) const { return modint61(*this)\
+    \ *= p; }\r\n  modint61 operator/(const modint61 &p) const { return modint61(*this)\
+    \ /= p; }\r\n  bool operator==(const modint61 &p) const { return val == p.val;\
+    \ }\r\n  bool operator!=(const modint61 &p) const { return val != p.val; }\r\n\
+    \  modint61 inverse() const {\r\n    ll a = val, b = mod, u = 1, v = 0, t;\r\n\
+    \    while (b > 0) {\r\n      t = a / b;\r\n      swap(a -= t * b, b), swap(u\
+    \ -= t * v, v);\r\n    }\r\n    return modint61(u);\r\n  }\r\n  modint61 pow(ll\
+    \ n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1), mul(val);\r\n    while\
+    \ (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul *= mul, n >>= 1;\r\n\
+    \    }\r\n    return ret;\r\n  }\r\n#ifdef FASTIO\r\n  void write() { fastio::printer.write(val);\
+    \ }\r\n  void read() {\r\n    ll x;\r\n    fastio::scanner.read(x);\r\n    val\
+    \ = (val >= 0 ? val % mod : (mod - (-val) % mod) % mod);\r\n  }\r\n#endif\r\n\
+    };\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n    \
+    \  = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n                  \
+    \   chrono::high_resolution_clock::now().time_since_epoch())\n               \
+    \      .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return\
+    \ x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll\
+    \ l, ll r) { return l + RNG_64() % (r - l); }\n#line 3 \"string/rollinghash_2d.hpp\"\
     \n\nstruct RollingHash_2D {\n  using M61 = modint61;\n  const M61 b1, b2;\n  vc<M61>\
     \ pow1;\n  vc<M61> pow2;\n\n  RollingHash_2D()\n      : b1(generate_base()), b2(generate_base()),\
     \ pow1{M61(1)}, pow2{M61(1)} {}\n\n  template <typename STRING>\n  vvc<M61> build(const\
@@ -252,7 +250,7 @@ data:
     \ H + 1, W + 1);\n    FOR(x, H) {\n      FOR(y, W) { res[x + 1][y + 1] = res[x\
     \ + 1][y] * b2 + M61(S[x][y] + 1); }\n      FOR(y, W + 1) res[x + 1][y] += b1\
     \ * res[x][y];\n    }\n    return res;\n  }\n\n  M61 query(const vvc<M61>& A,\
-    \ int xl, int yl, int xr, int yr) {\n    assert(0 <= xl && xl <= xr && xr <= len(A));\n\
+    \ int xl, int xr, int yl, int yr) {\n    assert(0 <= xl && xl <= xr && xr <= len(A));\n\
     \    assert(0 <= yl && yl <= yr && yr <= len(A[0]));\n    expand(pow1, b1, xr\
     \ - xl);\n    expand(pow2, b2, yr - yl);\n    M61 res = A[xr][yr];\n    res -=\
     \ A[xl][yr] * pow1[xr - xl];\n    res -= A[xr][yl] * pow2[yr - yl];\n    res +=\
@@ -262,19 +260,17 @@ data:
     \ * b);\n  }\n};\n#line 8 \"test/aoj/ALDS1_14_C.test.cpp\"\n\nvoid solve() {\n\
     \  LL(H, W);\n  VEC(string, A, H);\n  RollingHash_2D RH;\n  auto AH = RH.build(A);\n\
     \  LL(H2, W2);\n  VEC(string, B, H2);\n  auto BH = RH.build(B);\n  auto b = RH.query(BH,\
-    \ 0, 0, H2, W2);\n\n  FOR(x, H - H2 + 1) FOR(y, W - W2 + 1) {\n    auto a = RH.query(AH,\
-    \ x, y, x + H2, y + W2);\n    if (a == b) { print(x, y); }\n  }\n}\n\nsigned main()\
-    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ 0, H2, 0, W2);\n\n  FOR(x, H - H2 + 1) FOR(y, W - W2 + 1) {\n    auto a = RH.query(AH,\
+    \ x, x + H2, y, y + W2);\n    if (a == b) { print(x, y); }\n  }\n}\n\nsigned main()\
+    \ {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_C\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint61.hpp\"\
     \n#include \"string/rollinghash_2d.hpp\"\n\nvoid solve() {\n  LL(H, W);\n  VEC(string,\
     \ A, H);\n  RollingHash_2D RH;\n  auto AH = RH.build(A);\n  LL(H2, W2);\n  VEC(string,\
-    \ B, H2);\n  auto BH = RH.build(B);\n  auto b = RH.query(BH, 0, 0, H2, W2);\n\n\
-    \  FOR(x, H - H2 + 1) FOR(y, W - W2 + 1) {\n    auto a = RH.query(AH, x, y, x\
-    \ + H2, y + W2);\n    if (a == b) { print(x, y); }\n  }\n}\n\nsigned main() {\n\
-    \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ B, H2);\n  auto BH = RH.build(B);\n  auto b = RH.query(BH, 0, H2, 0, W2);\n\n\
+    \  FOR(x, H - H2 + 1) FOR(y, W - W2 + 1) {\n    auto a = RH.query(AH, x, x + H2,\
+    \ y, y + W2);\n    if (a == b) { print(x, y); }\n  }\n}\n\nsigned main() {\n \
+    \ solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -284,7 +280,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_14_C.test.cpp
   requiredBy: []
-  timestamp: '2023-03-28 23:05:08+09:00'
+  timestamp: '2023-07-28 01:18:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_14_C.test.cpp
