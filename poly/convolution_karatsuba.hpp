@@ -19,7 +19,12 @@ vc<T> convolution_karatsuba(const vc<T>& f, const vc<T>& g) {
   FOR(i, len(f2)) f1[i] += f2[i];
   FOR(i, len(g2)) g1[i] += g2[i];
   vc<T> c = convolution_karatsuba(f1, g1);
+  print(len(f), len(g), len(a), len(b), len(c)), flush();
+  print(len(f1), len(f2), len(g1), len(g2)), flush();
   vc<T> F(len(f) + len(g) - 1);
+  print("b", b);
+  flush();
+  assert(2 * m + len(b) <= len(F));
   FOR(i, len(a)) F[i] += a[i], c[i] -= a[i];
   FOR(i, len(b)) F[2 * m + i] += b[i], c[i] -= b[i];
   FOR(i, len(c)) F[m + i] += c[i];
