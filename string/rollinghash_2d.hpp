@@ -1,4 +1,5 @@
 #include "random/base.hpp"
+#include "mod/modint61.hpp"
 
 struct RollingHash_2D {
   using M61 = modint61;
@@ -21,7 +22,7 @@ struct RollingHash_2D {
     return res;
   }
 
-  M61 query(const vvc<M61>& A, int xl, int yl, int xr, int yr) {
+  M61 query(const vvc<M61>& A, int xl, int xr, int yl, int yr) {
     assert(0 <= xl && xl <= xr && xr <= len(A));
     assert(0 <= yl && yl <= yr && yr <= len(A[0]));
     expand(pow1, b1, xr - xl);
