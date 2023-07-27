@@ -35,7 +35,7 @@ struct modint61 {
   bool operator==(const modint61 &p) const { return val == p.val; }
   bool operator!=(const modint61 &p) const { return val != p.val; }
   modint61 inverse() const {
-    u64 a = val, b = mod, u = 1, v = 0, t;
+    ll a = val, b = mod, u = 1, v = 0, t;
     while (b > 0) {
       t = a / b;
       swap(a -= t * b, b), swap(u -= t * v, v);
@@ -51,4 +51,12 @@ struct modint61 {
     }
     return ret;
   }
+#ifdef FASTIO
+  void write() { fastio::printer.write(val); }
+  void read() {
+    ll x;
+    fastio::scanner.read(x);
+    val = (val >= 0 ? val % mod : (mod - (-val) % mod) % mod);
+  }
+#endif
 };
