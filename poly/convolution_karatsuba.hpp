@@ -23,6 +23,7 @@ vc<T> convolution_karatsuba(const vc<T>& f, const vc<T>& g) {
   assert(2 * m + len(b) <= len(F));
   FOR(i, len(a)) F[i] += a[i], c[i] -= a[i];
   FOR(i, len(b)) F[2 * m + i] += b[i], c[i] -= b[i];
-  FOR(i, len(c)) F[m + i] += c[i];
+  if (c.back() == T(0)) c.pop_back();
+  FOR(i, len(c)) if (c[i] != T(0)) F[m + i] += c[i];
   return F;
 }
