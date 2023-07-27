@@ -17,19 +17,12 @@ void solve() {
   auto b = RH.query(BH, 0, 0, H2, W2);
 
   FOR(x, H - H2 + 1) FOR(y, W - W2 + 1) {
-    auto a = RH.query(AH, x, y, x + H2, y + W2);
+    auto a = RH.query(AH, x, x + H2, y, y + W2);
     if (a == b) { print(x, y); }
   }
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
