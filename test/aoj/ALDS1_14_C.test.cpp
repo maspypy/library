@@ -14,7 +14,7 @@ void solve() {
   LL(H2, W2);
   VEC(string, B, H2);
   auto BH = RH.build(B);
-  auto b = RH.query(BH, 0, 0, H2, W2);
+  auto b = RH.query(BH, 0, H2, 0, W2);
 
   FOR(x, H - H2 + 1) FOR(y, W - W2 + 1) {
     auto a = RH.query(AH, x, x + H2, y, y + W2);
