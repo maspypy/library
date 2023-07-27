@@ -108,15 +108,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc266c.test.cpp
     title: test_atcoder/abc266c.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc064c.test.cpp
     title: test_atcoder/arc064c.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc130f.test.cpp
     title: test_atcoder/arc130f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -236,7 +236,7 @@ data:
   - geo/convex_hull.hpp
   - convex/fenchel.hpp
   timestamp: '2023-07-25 02:10:50+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc151f.test.cpp
   - test_atcoder/abc202_f.test.cpp

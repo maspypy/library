@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -16,10 +16,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
@@ -220,58 +220,57 @@ data:
     \ yes(!t); }\n#line 2 \"mod/modint61.hpp\"\n\r\nstruct modint61 {\r\n  static\
     \ constexpr u64 mod = (1ULL << 61) - 1;\r\n  u64 val;\r\n  constexpr modint61()\
     \ : val(0ULL) {}\r\n  constexpr modint61(u32 x) : val(x) {}\r\n  constexpr modint61(u64\
-    \ x) : val(x % mod) {}\r\n  constexpr modint61(int x)\r\n      : val((x < 0) ?\
-    \ (x + static_cast<long long>(mod)) : x) {}\r\n  constexpr modint61(ll x)\r\n\
-    \      : val(((x %= static_cast<long long>(mod)) < 0)\r\n                ? (x\
-    \ + static_cast<long long>(mod))\r\n                : x) {}\r\n  static constexpr\
-    \ u64 get_mod() { return mod; }\r\n  modint61 &operator+=(const modint61 &a) {\r\
-    \n    val = ((val += a.val) >= mod) ? (val - mod) : val;\r\n    return *this;\r\
-    \n  }\r\n  modint61 &operator-=(const modint61 &a) {\r\n    val = ((val -= a.val)\
-    \ >= mod) ? (val + mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 &operator*=(const\
-    \ modint61 &a) {\r\n    const unsigned __int128 y = static_cast<unsigned __int128>(val)\
-    \ * a.val;\r\n    val = (y >> 61) + (y & mod);\r\n    val = (val >= mod) ? (val\
-    \ - mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 &operator/=(const modint61\
-    \ &a) { return (*this *= a.inverse()); }\r\n  modint61 operator+(const modint61\
-    \ &p) const { return modint61(*this) += p; }\r\n  modint61 operator-(const modint61\
-    \ &p) const { return modint61(*this) -= p; }\r\n  modint61 operator*(const modint61\
-    \ &p) const { return modint61(*this) *= p; }\r\n  modint61 operator/(const modint61\
-    \ &p) const { return modint61(*this) /= p; }\r\n  bool operator==(const modint61\
-    \ &p) const { return val == p.val; }\r\n  bool operator!=(const modint61 &p) const\
-    \ { return val != p.val; }\r\n  modint61 inverse() const {\r\n    ll a = val,\
-    \ b = mod, u = 1, v = 0, t;\r\n    while (b > 0) {\r\n      t = a / b;\r\n   \
-    \   swap(a -= t * b, b), swap(u -= t * v, v);\r\n    }\r\n    return modint61(u);\r\
-    \n  }\r\n  modint61 pow(ll n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1),\
-    \ mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul\
-    \ *= mul, n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n#ifdef FASTIO\r\n  void\
-    \ write() { fastio::printer.write(val); }\r\n  void read() {\r\n    ll x;\r\n\
-    \    fastio::scanner.read(x);\r\n    val = (val >= 0 ? val % mod : (mod - (-val)\
-    \ % mod) % mod);\r\n  }\r\n#endif\r\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate\
-    \ <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate\
-    \ <typename T = int, bool directed = false>\nstruct Graph {\n  int N, M;\n  using\
-    \ cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n \
-    \ vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg, vc_indeg,\
-    \ vc_outdeg;\n  bool prepared;\n\n  class OutgoingEdges {\n  public:\n    OutgoingEdges(const\
-    \ Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin()\
-    \ const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[l];\n \
-    \   }\n\n    const edge_type* end() const {\n      if (l == r) { return 0; }\n\
-    \      return &G->csr_edges[r];\n    }\n\n  private:\n    const Graph* G;\n  \
-    \  int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n  constexpr bool\
-    \ is_directed() { return directed; }\n\n  Graph() : N(0), M(0), prepared(0) {}\n\
-    \  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void build(int n) {\n    N =\
-    \ n, M = 0;\n    prepared = 0;\n    edges.clear();\n    indptr.clear();\n    csr_edges.clear();\n\
-    \    vc_deg.clear();\n    vc_indeg.clear();\n    vc_outdeg.clear();\n  }\n\n \
-    \ void add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n\
-    \    assert(0 <= frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto\
-    \ e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n  //\
-    \ wt, off\n  void read_tree(bool wt = false, int off = 1) { read_graph(N - 1,\
-    \ wt, off); }\n\n  void read_graph(int M, bool wt = false, int off = 1) {\n  \
-    \  for (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a -= off, b -= off;\n\
-    \      if (!wt) {\n        add(a, b);\n      } else {\n        T c;\n        read(c);\n\
-    \        add(a, b, c);\n      }\n    }\n    build();\n  }\n\n  void build() {\n\
-    \    assert(!prepared);\n    prepared = true;\n    indptr.assign(N + 1, 0);\n\
-    \    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if (!directed)\
-    \ indptr[e.to + 1]++;\n    }\n    for (int v = 0; v < N; ++v) { indptr[v + 1]\
-    \ += indptr[v]; }\n    auto counter = indptr;\n    csr_edges.resize(indptr.back()\
+    \ x) : val(x % mod) {}\r\n  constexpr modint61(int x) : val((x < 0) ? (x + static_cast<ll>(mod))\
+    \ : x) {}\r\n  constexpr modint61(ll x)\r\n      : val(((x %= static_cast<ll>(mod))\
+    \ < 0) ? (x + static_cast<ll>(mod))\r\n                                      \
+    \        : x) {}\r\n  static constexpr u64 get_mod() { return mod; }\r\n  modint61\
+    \ &operator+=(const modint61 &a) {\r\n    val = ((val += a.val) >= mod) ? (val\
+    \ - mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 &operator-=(const modint61\
+    \ &a) {\r\n    val = ((val -= a.val) >= mod) ? (val + mod) : val;\r\n    return\
+    \ *this;\r\n  }\r\n  modint61 &operator*=(const modint61 &a) {\r\n    const unsigned\
+    \ __int128 y = static_cast<unsigned __int128>(val) * a.val;\r\n    val = (y >>\
+    \ 61) + (y & mod);\r\n    val = (val >= mod) ? (val - mod) : val;\r\n    return\
+    \ *this;\r\n  }\r\n  modint61 &operator/=(const modint61 &a) { return (*this *=\
+    \ a.inverse()); }\r\n  modint61 operator+(const modint61 &p) const { return modint61(*this)\
+    \ += p; }\r\n  modint61 operator-(const modint61 &p) const { return modint61(*this)\
+    \ -= p; }\r\n  modint61 operator*(const modint61 &p) const { return modint61(*this)\
+    \ *= p; }\r\n  modint61 operator/(const modint61 &p) const { return modint61(*this)\
+    \ /= p; }\r\n  bool operator==(const modint61 &p) const { return val == p.val;\
+    \ }\r\n  bool operator!=(const modint61 &p) const { return val != p.val; }\r\n\
+    \  modint61 inverse() const {\r\n    ll a = val, b = mod, u = 1, v = 0, t;\r\n\
+    \    while (b > 0) {\r\n      t = a / b;\r\n      swap(a -= t * b, b), swap(u\
+    \ -= t * v, v);\r\n    }\r\n    return modint61(u);\r\n  }\r\n  modint61 pow(ll\
+    \ n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1), mul(val);\r\n    while\
+    \ (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul *= mul, n >>= 1;\r\n\
+    \    }\r\n    return ret;\r\n  }\r\n#ifdef FASTIO\r\n  void write() { fastio::printer.write(val);\
+    \ }\r\n  void read() {\r\n    ll x;\r\n    fastio::scanner.read(x);\r\n    val\
+    \ = (val >= 0 ? val % mod : (mod - (-val) % mod) % mod);\r\n  }\r\n#endif\r\n\
+    };\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int\
+    \ frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool directed\
+    \ = false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n  using edge_type\
+    \ = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n  vector<edge_type>\
+    \ csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class\
+    \ OutgoingEdges {\n  public:\n    OutgoingEdges(const Graph* G, int l, int r)\
+    \ : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n      if (l ==\
+    \ r) { return 0; }\n      return &G->csr_edges[l];\n    }\n\n    const edge_type*\
+    \ end() const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n\
+    \    }\n\n  private:\n    const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared()\
+    \ { return prepared; }\n  constexpr bool is_directed() { return directed; }\n\n\
+    \  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
+    \ {}\n\n  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
+    \    indptr.clear();\n    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n\
+    \    vc_outdeg.clear();\n  }\n\n  void add(int frm, int to, T cost = 1, int i\
+    \ = -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <= to && to < N);\n\
+    \    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n\
+    \    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool wt = false, int off = 1)\
+    \ { read_graph(N - 1, wt, off); }\n\n  void read_graph(int M, bool wt = false,\
+    \ int off = 1) {\n    for (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a\
+    \ -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n  \
+    \      T c;\n        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n\
+    \  }\n\n  void build() {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N\
+    \ + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if\
+    \ (!directed) indptr[e.to + 1]++;\n    }\n    for (int v = 0; v < N; ++v) { indptr[v\
+    \ + 1] += indptr[v]; }\n    auto counter = indptr;\n    csr_edges.resize(indptr.back()\
     \ + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n\
     \      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm,\
     \ e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n \
@@ -451,7 +450,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/classify_tree.test.cpp
   requiredBy: []
-  timestamp: '2023-07-28 01:18:36+09:00'
+  timestamp: '2023-07-28 03:32:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/classify_tree.test.cpp

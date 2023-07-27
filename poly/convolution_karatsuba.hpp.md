@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
   _extendedRequiredBy:
@@ -53,7 +53,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -80,10 +80,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv_2d.hpp
     title: poly/fps_inv_2d.hpp
   - icon: ':heavy_check_mark:'
@@ -606,12 +606,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc160d.test.cpp
     title: test_atcoder/arc160d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/convolution_naive.hpp\"\ntemplate <class T>\r\nvector<T>\
@@ -723,7 +723,7 @@ data:
   - graph/count/count_forest.hpp
   - graph/tree_all_distances.hpp
   timestamp: '2023-07-27 19:48:36+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc276_g_2.test.cpp
   - test_atcoder/abc222h.test.cpp

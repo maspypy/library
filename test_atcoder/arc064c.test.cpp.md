@@ -1,33 +1,33 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     ERROR: 1e-9
-    PROBLEM: https://atcoder.jp/contests/arc064/tasks/arc064_c
+    PROBLEM: https://atcoder.jp/contests/arc064/tasks/arc064_e
     links:
-    - https://atcoder.jp/contests/arc064/tasks/arc064_c
-  bundledCode: "#line 1 \"test_atcoder/arc064c.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/arc064/tasks/arc064_c\"\
+    - https://atcoder.jp/contests/arc064/tasks/arc064_e
+  bundledCode: "#line 1 \"test_atcoder/arc064c.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/arc064/tasks/arc064_e\"\
     \n#define ERROR 1e-9\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include\
     \ <my_template_compiled.hpp>\n#else\n#pragma GCC optimize(\"Ofast\")\n#pragma\
     \ GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace\
@@ -347,7 +347,7 @@ data:
     \ Re>(dat[i], dat[j]);\n    d -= rad[i] + rad[j];\n    chmax(d, 0);\n    G.add(i,\
     \ j, d);\n  }\n  G.build();\n  auto [dist, par] = dijkstra<Re, decltype(G), true>(G,\
     \ 0);\n  print(dist[1]);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/arc064/tasks/arc064_c\"\n#define\
+  code: "#define PROBLEM \"https://atcoder.jp/contests/arc064/tasks/arc064_e\"\n#define\
     \ ERROR 1e-9\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include\
     \ \"graph/base.hpp\"\n#include \"graph/shortest_path/dijkstra.hpp\"\n#include\
     \ \"geo/base.hpp\"\n\nusing Re = double;\n\nusing P = Point<Re>;\n\nvoid solve()\
@@ -366,8 +366,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/arc064c.test.cpp
   requiredBy: []
-  timestamp: '2023-07-25 23:30:41+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-07-28 03:32:38+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/arc064c.test.cpp
 layout: document
