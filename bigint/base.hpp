@@ -20,6 +20,8 @@ struct BigInteger {
       }
     }
   }
+
+  
   BigInteger(string s) {
     assert(!s.empty());
     sgn = 1;
