@@ -4,22 +4,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/meldable_heap.hpp
     title: ds/meldable_heap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
   - icon: ':heavy_check_mark:'
     path: graph/shortest_path/K_shortest_walk.hpp
     title: graph/shortest_path/K_shortest_walk.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -312,13 +312,12 @@ data:
     \ e: G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost)) {\n        root[e.to]\
     \ = root[e.frm];\n        par[e.to] = e.frm;\n        que.push(mp(dist[e.to],\
     \ e.to));\n      }\n    }\n  }\n  return {dist, par, root};\n}\n#line 2 \"graph/reverse_graph.hpp\"\
-    \n\r\ntemplate <typename T>\r\nGraph<T, 1> reverse_graph(Graph<T, 1>& G) {\r\n\
-    \  assert(G.is_directed());\r\n  Graph<T, 1> G1(G.N);\r\n  for (auto&& e: G.edges)\
-    \ { G1.add(e.to, e.frm, e.cost, e.id); }\r\n  G1.build();\r\n  return G1;\r\n\
-    }\r\n#line 4 \"graph/shortest_path/K_shortest_walk.hpp\"\n\n// infty<T> \u57CB\
-    \u3081\u3057\u3066\u5FC5\u305A\u9577\u3055 K \u306B\u3057\u305F\u3082\u306E\u3092\
-    \u304B\u3048\u3059\u3002\ntemplate <typename T, typename GT, int NODES>\nvc<T>\
-    \ K_shortest_walk(GT &G, int s, int t, int K) {\n  assert(G.is_directed());\n\
+    \n\r\ntemplate <typename GT>\r\nGT reverse_graph(GT& G) {\r\n  assert(G.is_directed());\r\
+    \n  GT G1(G.N);\r\n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost, e.id);\
+    \ }\r\n  G1.build();\r\n  return G1;\r\n}\r\n#line 4 \"graph/shortest_path/K_shortest_walk.hpp\"\
+    \n\n// infty<T> \u57CB\u3081\u3057\u3066\u5FC5\u305A\u9577\u3055 K \u306B\u3057\
+    \u305F\u3082\u306E\u3092\u304B\u3048\u3059\u3002\ntemplate <typename T, typename\
+    \ GT, int NODES>\nvc<T> K_shortest_walk(GT &G, int s, int t, int K) {\n  assert(G.is_directed());\n\
     \  int N = G.N;\n  auto RG = reverse_graph(G);\n  auto [dist, par] = dijkstra<T,\
     \ decltype(RG)>(RG, t);\n  if (dist[s] == infty<T>) { return vc<T>(K, infty<T>);\
     \ }\n\n  using P = pair<T, int>;\n  Meldable_Heap<P, true, NODES> X;\n  using\
@@ -362,7 +361,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/K_shortest_walk.test.cpp
   requiredBy: []
-  timestamp: '2023-07-25 23:30:41+09:00'
+  timestamp: '2023-07-30 12:32:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/K_shortest_walk.test.cpp

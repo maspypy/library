@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc209e.test.cpp
     title: test_atcoder/abc209e.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"game/graph_game.hpp\"\n\n#line 2 \"graph/base.hpp\"\n\n\
@@ -74,31 +74,30 @@ data:
     \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
     \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
     \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 2 \"graph/reverse_graph.hpp\"\n\r\ntemplate <typename T>\r\
-    \nGraph<T, 1> reverse_graph(Graph<T, 1>& G) {\r\n  assert(G.is_directed());\r\n\
-    \  Graph<T, 1> G1(G.N);\r\n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost,\
-    \ e.id); }\r\n  G1.build();\r\n  return G1;\r\n}\r\n#line 3 \"game/graph_game.hpp\"\
-    \n\n// \u6709\u5411\u30B0\u30E9\u30D5\u3001\u52D5\u3051\u306A\u3044\u4EBA\u304C\
-    \u8CA0\u3051\n// \u5404\u30CE\u30FC\u30C9\u306B\u5BFE\u3057\u3066\u624B\u756A\u306E\
-    \u30D7\u30EC\u30A4\u30E4\u304C\u6C7A\u307E\u3063\u3066\u3044\u3066\u3001\u4EA4\
-    \u4E92\n// \u52DD\u8005\u306F\u6700\u77ED\u3001\u6557\u8005\u306F\u6700\u9577\u624B\
-    \u6570\u3092\u76EE\u6307\u3059\nstruct Graph_Game {\n  vc<bool> win;\n  vc<bool>\
-    \ lose;\n  vc<int> end_turn;\n  vc<int> best_strategy;\n\n  template <typename\
-    \ GT>\n  Graph_Game(GT& G) {\n    auto RG = reverse_graph(G);\n    auto [indeg,\
-    \ outdeg] = G.deg_array_inout();\n    int N = G.N;\n    win.assign(N, 0);\n  \
-    \  lose.assign(N, 0);\n    end_turn.assign(N, infty<int>);\n    best_strategy.assign(N,\
-    \ -1);\n    deque<int> que;\n    FOR(v, N) {\n      if (outdeg[v] == 0) que.eb(v);\n\
-    \    }\n\n    while (!que.empty()) {\n      auto v = POP(que);\n      if (win[v]\
-    \ || lose[v]) continue;\n      lose[v] = 1;\n      for (auto&& e: G[v]) {\n  \
-    \      if (lose[e.to]) win[v] = 1;\n        if (!win[e.to]) lose[v] = 0;\n   \
-    \   }\n      assert(win[v] ^ lose[v]);\n      if (win[v]) {\n        for (auto&&\
-    \ e: G[v]) {\n          if (chmin(end_turn[v], end_turn[e.to] + 1)) {\n      \
-    \      best_strategy[v] = e.to;\n          }\n        }\n      }\n      if (lose[v])\
-    \ {\n        end_turn[v] = 0;\n        for (auto&& e: G[v]) {\n          if (chmax(end_turn[v],\
+    \ }\n  }\n};\n#line 2 \"graph/reverse_graph.hpp\"\n\r\ntemplate <typename GT>\r\
+    \nGT reverse_graph(GT& G) {\r\n  assert(G.is_directed());\r\n  GT G1(G.N);\r\n\
+    \  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost, e.id); }\r\n  G1.build();\r\
+    \n  return G1;\r\n}\r\n#line 3 \"game/graph_game.hpp\"\n\n// \u6709\u5411\u30B0\
+    \u30E9\u30D5\u3001\u52D5\u3051\u306A\u3044\u4EBA\u304C\u8CA0\u3051\n// \u5404\u30CE\
+    \u30FC\u30C9\u306B\u5BFE\u3057\u3066\u624B\u756A\u306E\u30D7\u30EC\u30A4\u30E4\
+    \u304C\u6C7A\u307E\u3063\u3066\u3044\u3066\u3001\u4EA4\u4E92\n// \u52DD\u8005\u306F\
+    \u6700\u77ED\u3001\u6557\u8005\u306F\u6700\u9577\u624B\u6570\u3092\u76EE\u6307\
+    \u3059\nstruct Graph_Game {\n  vc<bool> win;\n  vc<bool> lose;\n  vc<int> end_turn;\n\
+    \  vc<int> best_strategy;\n\n  template <typename GT>\n  Graph_Game(GT& G) {\n\
+    \    auto RG = reverse_graph(G);\n    auto [indeg, outdeg] = G.deg_array_inout();\n\
+    \    int N = G.N;\n    win.assign(N, 0);\n    lose.assign(N, 0);\n    end_turn.assign(N,\
+    \ infty<int>);\n    best_strategy.assign(N, -1);\n    deque<int> que;\n    FOR(v,\
+    \ N) {\n      if (outdeg[v] == 0) que.eb(v);\n    }\n\n    while (!que.empty())\
+    \ {\n      auto v = POP(que);\n      if (win[v] || lose[v]) continue;\n      lose[v]\
+    \ = 1;\n      for (auto&& e: G[v]) {\n        if (lose[e.to]) win[v] = 1;\n  \
+    \      if (!win[e.to]) lose[v] = 0;\n      }\n      assert(win[v] ^ lose[v]);\n\
+    \      if (win[v]) {\n        for (auto&& e: G[v]) {\n          if (chmin(end_turn[v],\
     \ end_turn[e.to] + 1)) {\n            best_strategy[v] = e.to;\n          }\n\
-    \        }\n      }\n      for (auto&& e: RG[v]) {\n        outdeg[e.to]--;\n\
-    \        if (lose[v] || outdeg[e.to] == 0) que.eb(e.to);\n      }\n    }\n  }\n\
-    };\n"
+    \        }\n      }\n      if (lose[v]) {\n        end_turn[v] = 0;\n        for\
+    \ (auto&& e: G[v]) {\n          if (chmax(end_turn[v], end_turn[e.to] + 1)) {\n\
+    \            best_strategy[v] = e.to;\n          }\n        }\n      }\n     \
+    \ for (auto&& e: RG[v]) {\n        outdeg[e.to]--;\n        if (lose[v] || outdeg[e.to]\
+    \ == 0) que.eb(e.to);\n      }\n    }\n  }\n};\n"
   code: "\n#include \"graph/reverse_graph.hpp\"\n\n// \u6709\u5411\u30B0\u30E9\u30D5\
     \u3001\u52D5\u3051\u306A\u3044\u4EBA\u304C\u8CA0\u3051\n// \u5404\u30CE\u30FC\u30C9\
     \u306B\u5BFE\u3057\u3066\u624B\u756A\u306E\u30D7\u30EC\u30A4\u30E4\u304C\u6C7A\
@@ -126,8 +125,8 @@ data:
   isVerificationFile: false
   path: game/graph_game.hpp
   requiredBy: []
-  timestamp: '2023-05-20 20:14:16+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-07-30 12:32:57+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc209e.test.cpp
 documentation_of: game/graph_game.hpp

@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
   _extendedVerifiedWith:
@@ -33,34 +33,32 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1479.test.cpp
     title: test/yukicoder/1479.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1744.test.cpp
     title: test/yukicoder/1744.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1745.test.cpp
     title: test/yukicoder/1745.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc237ex.test.cpp
     title: test_atcoder/abc237ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc274g.test.cpp
     title: test_atcoder/abc274g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - http://www.misojiro.t.u-tokyo.ac.jp/~murota/lect-ouyousurigaku/dm050410.pdf
-    - https://codeforces.com/contest/786/problem/E
     - https://en.wikipedia.org/wiki/Dulmage%E2%80%93Mendelsohn_decomposition
     - https://hitonanode.github.io/cplib-cpp/graph/dulmage_mendelsohn_decomposition.hpp.html
-    - https://qoj.ac/problem/6308
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n  using\
@@ -219,35 +217,7 @@ data:
     \ == infty<int>) W[v] = K;\r\n    return {K, W};\r\n  }\r\n\r\n  void debug()\
     \ {\r\n    print(\"match\", match);\r\n    print(\"min vertex covor\", vertex_cover());\r\
     \n    print(\"max indep set\", independent_set());\r\n    print(\"min edge cover\"\
-    , edge_cover());\r\n  }\r\n};\r\n\r\n// vc<bitset> \u3067 biadj matrix \u3092\u6E21\
-    \u3059\r\n// N^3/w. (5000,5000) \u3067 300ms \u7A0B\u5EA6\u3067\u52D5\u304F\u5834\
-    \u5408\u304C\u3042\u308B\r\n// https://qoj.ac/problem/6308\r\n// (10000, 20000)\
-    \ \u3067 3837ms\r\n// https://codeforces.com/contest/786/problem/E\r\ntemplate\
-    \ <typename BS>\r\nstruct BipartiteMatching_Dense {\r\n  int N1, N2;\r\n  vc<BS>&\
-    \ adj;\r\n  vc<int> match_1, match_2;\r\n  vc<int> que;\r\n  vc<int> prev;\r\n\
-    \  BS vis;\r\n\r\n  BipartiteMatching_Dense(vc<BS>& adj, int N1, int N2)\r\n \
-    \     : N1(N1), N2(N2), adj(adj), match_1(N1, -1), match_2(N2, -1) {\r\n    FOR(s,\
-    \ N1) bfs(s);\r\n  }\r\n\r\n  void bfs(int s) {\r\n    if (match_1[s] != -1) return;\r\
-    \n    que.resize(N1), prev.resize(N1);\r\n    int l = 0, r = 0;\r\n    vis.set(),\
-    \ prev[s] = -1;\r\n\r\n    que[r++] = s;\r\n    while (l < r) {\r\n      int u\
-    \ = que[l++];\r\n      BS cand = vis & adj[u];\r\n      for (int v = cand._Find_first();\
-    \ v < N2; v = cand._Find_next(v)) {\r\n        vis[v] = 0;\r\n        if (match_2[v]\
-    \ != -1) {\r\n          que[r++] = match_2[v];\r\n          prev[match_2[v]] =\
-    \ u;\r\n          continue;\r\n        }\r\n        int a = u, b = v;\r\n    \
-    \    while (a != -1) {\r\n          int t = match_1[a];\r\n          match_1[a]\
-    \ = b, match_2[b] = a, a = prev[a], b = t;\r\n        }\r\n        return;\r\n\
-    \      }\r\n    }\r\n    return;\r\n  }\r\n\r\n  vc<pair<int, int>> matching()\
-    \ {\r\n    vc<pair<int, int>> res;\r\n    FOR(v, N1) if (match_1[v] != -1) res.eb(v,\
-    \ match_1[v]);\r\n    return res;\r\n  }\r\n\r\n  pair<vc<int>, vc<int>> vertex_cover()\
-    \ {\r\n    vc<int> que(N1);\r\n    int l = 0, r = 0;\r\n    vis.set();\r\n   \
-    \ vc<bool> done(N1);\r\n    FOR(i, N1) {\r\n      if (match_1[i] == -1) done[i]\
-    \ = 1, que[r++] = i;\r\n    }\r\n    while (l < r) {\r\n      int a = que[l++];\r\
-    \n      BS cand = adj[a] & vis;\r\n      for (int b = cand._Find_first(); b <\
-    \ N2; b = cand._Find_next(b)) {\r\n        vis[b] = 0;\r\n        int to = match_2[b];\r\
-    \n        assert(to != -1);\r\n        if (!done[to]) done[to] = 1, que[r++] =\
-    \ to;\r\n      }\r\n    }\r\n    vc<int> left, right;\r\n    FOR(i, N1) if (!done[i])\
-    \ left.eb(i);\r\n    FOR(i, N2) if (!vis[i]) right.eb(i);\r\n    return {left,\
-    \ right};\r\n  }\r\n};\n"
+    , edge_cover());\r\n  }\r\n};\r\n"
   code: "#include \"graph/base.hpp\"\r\n#include \"graph/bipartite_vertex_coloring.hpp\"\
     \r\n#include \"graph/strongly_connected_component.hpp\"\r\n\r\ntemplate <typename\
     \ GT>\r\nstruct BipartiteMatching {\r\n  int N;\r\n  GT& G;\r\n  vc<int> color;\r\
@@ -315,35 +285,7 @@ data:
     \ == infty<int>) W[v] = K;\r\n    return {K, W};\r\n  }\r\n\r\n  void debug()\
     \ {\r\n    print(\"match\", match);\r\n    print(\"min vertex covor\", vertex_cover());\r\
     \n    print(\"max indep set\", independent_set());\r\n    print(\"min edge cover\"\
-    , edge_cover());\r\n  }\r\n};\r\n\r\n// vc<bitset> \u3067 biadj matrix \u3092\u6E21\
-    \u3059\r\n// N^3/w. (5000,5000) \u3067 300ms \u7A0B\u5EA6\u3067\u52D5\u304F\u5834\
-    \u5408\u304C\u3042\u308B\r\n// https://qoj.ac/problem/6308\r\n// (10000, 20000)\
-    \ \u3067 3837ms\r\n// https://codeforces.com/contest/786/problem/E\r\ntemplate\
-    \ <typename BS>\r\nstruct BipartiteMatching_Dense {\r\n  int N1, N2;\r\n  vc<BS>&\
-    \ adj;\r\n  vc<int> match_1, match_2;\r\n  vc<int> que;\r\n  vc<int> prev;\r\n\
-    \  BS vis;\r\n\r\n  BipartiteMatching_Dense(vc<BS>& adj, int N1, int N2)\r\n \
-    \     : N1(N1), N2(N2), adj(adj), match_1(N1, -1), match_2(N2, -1) {\r\n    FOR(s,\
-    \ N1) bfs(s);\r\n  }\r\n\r\n  void bfs(int s) {\r\n    if (match_1[s] != -1) return;\r\
-    \n    que.resize(N1), prev.resize(N1);\r\n    int l = 0, r = 0;\r\n    vis.set(),\
-    \ prev[s] = -1;\r\n\r\n    que[r++] = s;\r\n    while (l < r) {\r\n      int u\
-    \ = que[l++];\r\n      BS cand = vis & adj[u];\r\n      for (int v = cand._Find_first();\
-    \ v < N2; v = cand._Find_next(v)) {\r\n        vis[v] = 0;\r\n        if (match_2[v]\
-    \ != -1) {\r\n          que[r++] = match_2[v];\r\n          prev[match_2[v]] =\
-    \ u;\r\n          continue;\r\n        }\r\n        int a = u, b = v;\r\n    \
-    \    while (a != -1) {\r\n          int t = match_1[a];\r\n          match_1[a]\
-    \ = b, match_2[b] = a, a = prev[a], b = t;\r\n        }\r\n        return;\r\n\
-    \      }\r\n    }\r\n    return;\r\n  }\r\n\r\n  vc<pair<int, int>> matching()\
-    \ {\r\n    vc<pair<int, int>> res;\r\n    FOR(v, N1) if (match_1[v] != -1) res.eb(v,\
-    \ match_1[v]);\r\n    return res;\r\n  }\r\n\r\n  pair<vc<int>, vc<int>> vertex_cover()\
-    \ {\r\n    vc<int> que(N1);\r\n    int l = 0, r = 0;\r\n    vis.set();\r\n   \
-    \ vc<bool> done(N1);\r\n    FOR(i, N1) {\r\n      if (match_1[i] == -1) done[i]\
-    \ = 1, que[r++] = i;\r\n    }\r\n    while (l < r) {\r\n      int a = que[l++];\r\
-    \n      BS cand = adj[a] & vis;\r\n      for (int b = cand._Find_first(); b <\
-    \ N2; b = cand._Find_next(b)) {\r\n        vis[b] = 0;\r\n        int to = match_2[b];\r\
-    \n        assert(to != -1);\r\n        if (!done[to]) done[to] = 1, que[r++] =\
-    \ to;\r\n      }\r\n    }\r\n    vc<int> left, right;\r\n    FOR(i, N1) if (!done[i])\
-    \ left.eb(i);\r\n    FOR(i, N2) if (!vis[i]) right.eb(i);\r\n    return {left,\
-    \ right};\r\n  }\r\n};"
+    , edge_cover());\r\n  }\r\n};\r\n"
   dependsOn:
   - graph/base.hpp
   - graph/bipartite_vertex_coloring.hpp
@@ -354,8 +296,8 @@ data:
   requiredBy:
   - graph/maximum_antichain.hpp
   - graph/bipartite_edge_coloring.hpp
-  timestamp: '2023-07-03 05:47:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-07-30 12:32:17+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc274g.test.cpp
   - test_atcoder/abc237ex.test.cpp

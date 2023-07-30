@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/is_substring.hpp
     title: string/is_substring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/zalgorithm.hpp
     title: string/zalgorithm.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc237/tasks/abc237_Ex
@@ -380,62 +380,35 @@ data:
     \ == infty<int>) W[v] = K;\r\n    return {K, W};\r\n  }\r\n\r\n  void debug()\
     \ {\r\n    print(\"match\", match);\r\n    print(\"min vertex covor\", vertex_cover());\r\
     \n    print(\"max indep set\", independent_set());\r\n    print(\"min edge cover\"\
-    , edge_cover());\r\n  }\r\n};\r\n\r\n// vc<bitset> \u3067 biadj matrix \u3092\u6E21\
-    \u3059\r\n// N^3/w. (5000,5000) \u3067 300ms \u7A0B\u5EA6\u3067\u52D5\u304F\u5834\
-    \u5408\u304C\u3042\u308B\r\n// https://qoj.ac/problem/6308\r\n// (10000, 20000)\
-    \ \u3067 3837ms\r\n// https://codeforces.com/contest/786/problem/E\r\ntemplate\
-    \ <typename BS>\r\nstruct BipartiteMatching_Dense {\r\n  int N1, N2;\r\n  vc<BS>&\
-    \ adj;\r\n  vc<int> match_1, match_2;\r\n  vc<int> que;\r\n  vc<int> prev;\r\n\
-    \  BS vis;\r\n\r\n  BipartiteMatching_Dense(vc<BS>& adj, int N1, int N2)\r\n \
-    \     : N1(N1), N2(N2), adj(adj), match_1(N1, -1), match_2(N2, -1) {\r\n    FOR(s,\
-    \ N1) bfs(s);\r\n  }\r\n\r\n  void bfs(int s) {\r\n    if (match_1[s] != -1) return;\r\
-    \n    que.resize(N1), prev.resize(N1);\r\n    int l = 0, r = 0;\r\n    vis.set(),\
-    \ prev[s] = -1;\r\n\r\n    que[r++] = s;\r\n    while (l < r) {\r\n      int u\
-    \ = que[l++];\r\n      BS cand = vis & adj[u];\r\n      for (int v = cand._Find_first();\
-    \ v < N2; v = cand._Find_next(v)) {\r\n        vis[v] = 0;\r\n        if (match_2[v]\
-    \ != -1) {\r\n          que[r++] = match_2[v];\r\n          prev[match_2[v]] =\
-    \ u;\r\n          continue;\r\n        }\r\n        int a = u, b = v;\r\n    \
-    \    while (a != -1) {\r\n          int t = match_1[a];\r\n          match_1[a]\
-    \ = b, match_2[b] = a, a = prev[a], b = t;\r\n        }\r\n        return;\r\n\
-    \      }\r\n    }\r\n    return;\r\n  }\r\n\r\n  vc<pair<int, int>> matching()\
-    \ {\r\n    vc<pair<int, int>> res;\r\n    FOR(v, N1) if (match_1[v] != -1) res.eb(v,\
-    \ match_1[v]);\r\n    return res;\r\n  }\r\n\r\n  pair<vc<int>, vc<int>> vertex_cover()\
-    \ {\r\n    vc<int> que(N1);\r\n    int l = 0, r = 0;\r\n    vis.set();\r\n   \
-    \ vc<bool> done(N1);\r\n    FOR(i, N1) {\r\n      if (match_1[i] == -1) done[i]\
-    \ = 1, que[r++] = i;\r\n    }\r\n    while (l < r) {\r\n      int a = que[l++];\r\
-    \n      BS cand = adj[a] & vis;\r\n      for (int b = cand._Find_first(); b <\
-    \ N2; b = cand._Find_next(b)) {\r\n        vis[b] = 0;\r\n        int to = match_2[b];\r\
-    \n        assert(to != -1);\r\n        if (!done[to]) done[to] = 1, que[r++] =\
-    \ to;\r\n      }\r\n    }\r\n    vc<int> left, right;\r\n    FOR(i, N1) if (!done[i])\
-    \ left.eb(i);\r\n    FOR(i, N2) if (!vis[i]) right.eb(i);\r\n    return {left,\
-    \ right};\r\n  }\r\n};\n#line 2 \"graph/maximum_antichain.hpp\"\n\n// \u6BD4\u8F03\
-    \u53EF\u80FD\u30B0\u30E9\u30D5\u3092\u4E0E\u3048\u308B\u3002DAG \u306A\u3060\u3051\
-    \u3067\u306F\u30C0\u30E1\u3002\ntemplate <typename T>\nvc<int> maximum_antichain(T&\
-    \ G) {\n  assert(G.is_directed());\n  int n = G.N;\n\n  Graph H(n + n);\n  for\
-    \ (auto&& e: G.edges) { H.add(e.frm, e.to + n); }\n  H.build();\n  BipartiteMatching\
-    \ BM(H);\n  auto cover = BM.vertex_cover();\n  auto match = BM.matching();\n \
-    \ assert(len(cover) == len(match));\n  vc<bool> ok(n, 1);\n  for (auto&& v: cover)\
-    \ { ok[v % n] = 0; }\n  vc<int> antichain;\n  FOR(v, n) if (ok[v]) antichain.eb(v);\n\
-    \  for (auto&& e: G.edges) { assert(!ok[e.frm] || !ok[e.to]); }\n  return antichain;\n\
-    }\n#line 1 \"string/zalgorithm.hpp\"\ntemplate <typename STRING>  // string, vector\
-    \ \u3069\u3061\u3089\u3067\u3082\nvector<int> zalgorithm(const STRING& s) {\n\
-    \  int n = int(s.size());\n  if (n == 0) return {};\n  vector<int> z(n);\n  z[0]\
-    \ = 0;\n  for (int i = 1, j = 0; i < n; i++) {\n    int& k = z[i];\n    k = (j\
-    \ + z[j] <= i) ? 0 : min(j + z[j] - i, z[i - j]);\n    while (i + k < n && s[k]\
-    \ == s[i + k]) k++;\n    if (j + z[j] < i + z[i]) j = i;\n  }\n  z[0] = n;\n \
-    \ return z;\n}\n#line 2 \"string/is_substring.hpp\"\n\n// \u9023\u7D9A\u90E8\u5206\
-    \u5217\u306B\u542B\u3080\u304B\u3069\u3046\u304B\u3002z-algo \u3067\u7DDA\u5F62\
-    \u6642\u9593\ntemplate <typename STRING>\nbool is_substring(STRING& S, STRING&\
-    \ T) {\n  int n = int(S.size()), m = int(T.size());\n  STRING ST;\n  for (auto&&\
-    \ x: S) ST.push_back(x);\n  for (auto&& x: T) ST.push_back(x);\n  auto Z = zalgorithm(ST);\n\
-    \  for (int i = n; i < n + m; ++i) {\n    if (Z[i] >= n) return true;\n  }\n \
-    \ return false;\n}\n#line 6 \"test_atcoder/abc237ex.test.cpp\"\n\nvoid solve()\
-    \ {\n  set<string> ss;\n  STR(S);\n  ll N = len(S);\n  FOR(l, N) FOR3(r, l + 1,\
-    \ N + 1) {\n    string T = S.substr(l, r - l);\n    string U = T;\n    reverse(all(U));\n\
-    \    if (T == U) ss.insert(T);\n  }\n  vc<string> A;\n  for (auto&& x: ss) A.eb(x);\n\
-    \  N = len(A);\n  Graph<int, 1> G(N);\n  FOR(i, N) FOR(j, N) if (i != j) {\n \
-    \   if (is_substring(A[i], A[j])) G.add(i, j);\n  }\n  print(len(maximum_antichain(G)));\n\
-    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    , edge_cover());\r\n  }\r\n};\r\n#line 2 \"graph/maximum_antichain.hpp\"\n\n//\
+    \ \u6BD4\u8F03\u53EF\u80FD\u30B0\u30E9\u30D5\u3092\u4E0E\u3048\u308B\u3002DAG\
+    \ \u306A\u3060\u3051\u3067\u306F\u30C0\u30E1\u3002\ntemplate <typename T>\nvc<int>\
+    \ maximum_antichain(T& G) {\n  assert(G.is_directed());\n  int n = G.N;\n\n  Graph\
+    \ H(n + n);\n  for (auto&& e: G.edges) { H.add(e.frm, e.to + n); }\n  H.build();\n\
+    \  BipartiteMatching BM(H);\n  auto cover = BM.vertex_cover();\n  auto match =\
+    \ BM.matching();\n  assert(len(cover) == len(match));\n  vc<bool> ok(n, 1);\n\
+    \  for (auto&& v: cover) { ok[v % n] = 0; }\n  vc<int> antichain;\n  FOR(v, n)\
+    \ if (ok[v]) antichain.eb(v);\n  for (auto&& e: G.edges) { assert(!ok[e.frm] ||\
+    \ !ok[e.to]); }\n  return antichain;\n}\n#line 1 \"string/zalgorithm.hpp\"\ntemplate\
+    \ <typename STRING>  // string, vector \u3069\u3061\u3089\u3067\u3082\nvector<int>\
+    \ zalgorithm(const STRING& s) {\n  int n = int(s.size());\n  if (n == 0) return\
+    \ {};\n  vector<int> z(n);\n  z[0] = 0;\n  for (int i = 1, j = 0; i < n; i++)\
+    \ {\n    int& k = z[i];\n    k = (j + z[j] <= i) ? 0 : min(j + z[j] - i, z[i -\
+    \ j]);\n    while (i + k < n && s[k] == s[i + k]) k++;\n    if (j + z[j] < i +\
+    \ z[i]) j = i;\n  }\n  z[0] = n;\n  return z;\n}\n#line 2 \"string/is_substring.hpp\"\
+    \n\n// \u9023\u7D9A\u90E8\u5206\u5217\u306B\u542B\u3080\u304B\u3069\u3046\u304B\
+    \u3002z-algo \u3067\u7DDA\u5F62\u6642\u9593\ntemplate <typename STRING>\nbool\
+    \ is_substring(STRING& S, STRING& T) {\n  int n = int(S.size()), m = int(T.size());\n\
+    \  STRING ST;\n  for (auto&& x: S) ST.push_back(x);\n  for (auto&& x: T) ST.push_back(x);\n\
+    \  auto Z = zalgorithm(ST);\n  for (int i = n; i < n + m; ++i) {\n    if (Z[i]\
+    \ >= n) return true;\n  }\n  return false;\n}\n#line 6 \"test_atcoder/abc237ex.test.cpp\"\
+    \n\nvoid solve() {\n  set<string> ss;\n  STR(S);\n  ll N = len(S);\n  FOR(l, N)\
+    \ FOR3(r, l + 1, N + 1) {\n    string T = S.substr(l, r - l);\n    string U =\
+    \ T;\n    reverse(all(U));\n    if (T == U) ss.insert(T);\n  }\n  vc<string> A;\n\
+    \  for (auto&& x: ss) A.eb(x);\n  N = len(A);\n  Graph<int, 1> G(N);\n  FOR(i,\
+    \ N) FOR(j, N) if (i != j) {\n    if (is_substring(A[i], A[j])) G.add(i, j);\n\
+    \  }\n  print(len(maximum_antichain(G)));\n}\n\nsigned main() {\n  solve();\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc237/tasks/abc237_Ex\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/maximum_antichain.hpp\"\
     \n#include \"string/is_substring.hpp\"\n\nvoid solve() {\n  set<string> ss;\n\
@@ -459,8 +432,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc237ex.test.cpp
   requiredBy: []
-  timestamp: '2023-07-03 05:47:47+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-30 12:32:17+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc237ex.test.cpp
 layout: document
