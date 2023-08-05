@@ -12,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1400.test.cpp
     title: test/yukicoder/1400.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1400_2.test.cpp
+    title: test/yukicoder/1400_2.test.cpp
   - icon: ':x:'
     path: test/yukicoder/142.test.cpp
     title: test/yukicoder/142.test.cpp
@@ -206,6 +209,7 @@ data:
   verifiedWith:
   - test/mytest/mybitset.test.cpp
   - test/yukicoder/1400.test.cpp
+  - test/yukicoder/1400_2.test.cpp
   - test/yukicoder/142.test.cpp
 documentation_of: ds/my_bitset.hpp
 layout: document
