@@ -16,6 +16,18 @@ struct My_Bitset {
     if (N) dat.back() >>= (64 * len(dat) - N);
   }
 
+  int size() { return N; }
+
+  void resize(int size) {
+    dat.resize((size + 63) >> 6);
+    int remainingBits = size & 63;
+    if (remainingBits != 0) {
+      u64 mask = (u64(1) << remainingBits) - 1;
+      dat.back() &= mask;
+    }
+    N = size;
+  }
+
   // thanks to chatgpt!
   class Proxy {
   public:
@@ -36,19 +48,11 @@ struct My_Bitset {
     int index;
   };
 
-  int size() { return N; }
-
-  void resize(int size) {
-    dat.resize((size + 63) >> 6);
-    int remainingBits = size & 63;
-    if (remainingBits != 0) {
-      u64 mask = (u64(1) << remainingBits) - 1;
-      dat.back() &= mask;
-    }
-    N = size;
-  }
-
   Proxy operator[](int i) { return Proxy(dat, i); }
+
+  void set(int i) { (*this)[i] = 1; }
+  void reset(int i) { (*this)[i] = 0; }
+  void flip(int i) { (*this)[i].flip(); }
 
   T &operator&=(const T &p) {
     assert(N == p.N);
@@ -76,6 +80,7 @@ struct My_Bitset {
   }
 
   int next(int i) {
+    chmax(i, 0);
     if (i >= N) return N;
     int k = i >> 6;
     {
@@ -89,6 +94,23 @@ struct My_Bitset {
       return (idx << 6) | lowbit(dat[idx]);
     }
     return N;
+  }
+
+  int prev(int i) {
+    chmin(i, N - 1);
+    if (i <= -1) return -1;
+    int k = i >> 6;
+    if ((i & 63) < 63) {
+      u64 x = dat[k];
+      x &= (u64(1) << ((i & 63) + 1)) - 1;
+      if (x) return (k << 6) | topbit(x);
+      --k;
+    }
+    FOR_R(idx, k + 1) {
+      if (dat[idx] == 0) continue;
+      return (idx << 6) | topbit(dat[idx]);
+    }
+    return -1;
   }
 
   My_Bitset range(int L, int R) {
