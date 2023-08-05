@@ -1,6 +1,6 @@
 #pragma once
 
-template <typename T = long long>
+template <typename T = int>
 vc<T> primetable(int LIM) {
   ++LIM;
   const int S = 32768;
