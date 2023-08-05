@@ -12,23 +12,43 @@ struct My_Bitset {
   My_Bitset(int N = 0, int x = 0) : N(N) {
     assert(x == 0 || x == 1);
     u64 v = (x == 0 ? 0 : -1);
-    dat.assign(ceil(N, 64), v);
+    dat.assign((N + 63) >> 6, v);
     if (N) dat.back() >>= (64 * len(dat) - N);
   }
 
+  // thanks to chatgpt!
+  class Proxy {
+  public:
+    Proxy(vc<u64> &d, int i) : dat(d), index(i) {}
+    operator bool() const { return (dat[index >> 6] >> (index & 63)) & 1; }
+
+    Proxy &operator=(u64 value) {
+      dat[index >> 6] &= ~(u64(1) << (index & 63));
+      dat[index >> 6] |= (value & 1) << (index & 63);
+      return *this;
+    }
+    void flip() {
+      dat[index >> 6] ^= (u64(1) << (index & 63)); // XOR to flip the bit
+    }
+
+  private:
+    vc<u64> &dat;
+    int index;
+  };
+
   int size() { return N; }
-  void resize(int M) {
-    ll k = ceil(M, 64);
-    dat.resize(k);
-    chmin(N, 64 * k);
-    while (N > M) off(--N);
-    N = M;
+
+  void resize(int size) {
+    dat.resize((size + 63) >> 6);
+    int remainingBits = size & 63;
+    if (remainingBits != 0) {
+      u64 mask = (u64(1) << remainingBits) - 1;
+      dat.back() &= mask;
+    }
+    N = size;
   }
 
-  bool operator[](int idx) { return dat[idx >> 6] >> (idx & 63) & 1; }
-  void on(int idx) { dat[idx >> 6] |= u64(1) << (idx & 63); }
-  void off(int idx) { dat[idx >> 6] &= ~(u64(1) << (idx & 63)); }
-  void flip(int idx) { dat[idx >> 6] ^= u64(1) << (idx & 63); }
+  Proxy operator[](int i) { return Proxy(dat, i); }
 
   T &operator&=(const T &p) {
     assert(N == p.N);
@@ -76,7 +96,7 @@ struct My_Bitset {
     My_Bitset p(R - L);
     int rm = (R - L) & 63;
     FOR(rm) {
-      if ((*this)[R - 1]) p.on(R - L - 1);
+      p[R - L - 1] = bool((*this)[R - 1]);
       --R;
     }
     int n = (R - L) >> 6;
@@ -105,18 +125,8 @@ struct My_Bitset {
   void assign_to_range(int L, int R, My_Bitset &p) {
     assert(p.N == R - L);
     int a = 0, b = p.N;
-    while (L < R && (L & 63)) {
-      if (p[a++])
-        on(L++);
-      else
-        off(L++);
-    }
-    while (L < R && (R & 63)) {
-      if (p[--b])
-        on(--R);
-      else
-        off(--R);
-    }
+    while (L < R && (L & 63)) { (*this)[L++] = bool(p[a++]); }
+    while (L < R && (R & 63)) { (*this)[--R] = bool(p[--b]); }
     // p[a:b] を [L:R] に
     int l = L >> 6, r = R >> 6;
     int s = a >> 6, t = b >> t;
@@ -160,10 +170,10 @@ struct My_Bitset {
     assert(p.N == R - L);
     int a = 0, b = p.N;
     while (L < R && (L & 63)) {
-      if (!p[a++]) off(L++);
+      if (!p[a++]) (*this)[L++] = 0;
     }
     while (L < R && (R & 63)) {
-      if (!p[--b]) off(--R);
+      if (!p[--b]) (*this)[--R] = 0;
     }
     // p[a:b] を [L:R] に
     int l = L >> 6, r = R >> 6;
