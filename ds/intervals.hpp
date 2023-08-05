@@ -22,7 +22,7 @@ struct Intervals_Fast {
     ss.insert(0);
   }
 
-  // x を含む区間の情報の取得
+  // x を含む区間の情報の取得 l, r, t
   tuple<int, int, T> get(int x, bool ERASE) {
     int l = ss.prev(x);
     int r = ss.next(x + 1);
@@ -121,7 +121,7 @@ struct Intervals {
     dat[RLIM] = none_val;
   }
 
-  // x を含む区間の情報の取得
+  // x を含む区間の情報の取得 l, r, t
   tuple<X, X, T> get(X x, bool ERASE) {
     auto it2 = dat.upper_bound(x);
     auto it1 = prev(it2);
@@ -136,7 +136,7 @@ struct Intervals {
     return {l, r, tl};
   }
 
-  // [L, R) 内の全データの取得
+  // [L, R) 内の全データの取得 f(l, r, t)
   template <typename F>
   void enumerate_range(X L, X R, F f, bool ERASE) {
     assert(LLIM <= L && L <= R && R <= RLIM);
