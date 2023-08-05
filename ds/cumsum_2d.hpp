@@ -26,9 +26,9 @@ struct Cumsum_2D {
 
   // [x1,x2) x [y1,y2)
   X sum(int x1, int x2, int y1, int y2) {
+    if (x2 == 0 || y2 == 0) return MX::unit();
     assert(0 <= x1 && x1 <= x2 && x2 <= H);
     assert(0 <= y1 && y1 <= y2 && y2 <= W);
-    if (x2 == 0 || y2 == 0) return MX::unit();
     --x1, --y1, --x2, --y2;
     X a = (x1 >= 0 && y1 >= 0 ? dat[W * x1 + y1] : MX::unit());
     X b = (x1 >= 0 && y2 >= 0 ? dat[W * x1 + y2] : MX::unit());
