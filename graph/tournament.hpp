@@ -1,4 +1,5 @@
 // https://yukicoder.me/problems/no/2085
+// https://codeforces.com/problemset/problem/412/D
 template <typename F>
 vc<int> hamiltonian_path_in_tournament(int n, F check) {
   auto dfs = [&](auto& dfs, int L, int R) -> vc<int> {
