@@ -9,10 +9,10 @@ data:
     path: nt/all_lcm.hpp
     title: nt/all_lcm.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1411.test.cpp
     title: test/yukicoder/1411.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1881.test.cpp
     title: test/yukicoder/1881.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test_atcoder/abc152e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
@@ -50,7 +50,7 @@ data:
   requiredBy:
   - nt/all_lcm.hpp
   timestamp: '2023-08-06 03:59:07+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1881.test.cpp
   - test/yukicoder/1411.test.cpp

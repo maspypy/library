@@ -768,7 +768,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/all_inverse.test.cpp
     title: test/mytest/all_inverse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/bell.test.cpp
     title: test/mytest/bell.test.cpp
   - icon: ':heavy_check_mark:'
@@ -801,7 +801,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_bipartite.test.cpp
     title: test/mytest/count_bipartite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_indep_set.test.cpp
     title: test/mytest/count_indep_set.test.cpp
   - icon: ':heavy_check_mark:'
@@ -834,10 +834,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/enumerate_products.test.cpp
     title: test/mytest/enumerate_products.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/eulerian_number.test.cpp
     title: test/mytest/eulerian_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
   - icon: ':heavy_check_mark:'
@@ -915,7 +915,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/min_of_linear_segments.test.cpp
     title: test/mytest/min_of_linear_segments.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/min_poly.test.cpp
     title: test/mytest/min_poly.test.cpp
   - icon: ':heavy_check_mark:'
@@ -933,6 +933,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/multinomial.test.cpp
     title: test/mytest/multinomial.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/mybitset.test.cpp
+    title: test/mytest/mybitset.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/online_division.test.cpp
     title: test/mytest/online_division.test.cpp
@@ -963,16 +966,16 @@ data:
   - icon: ':x:'
     path: test/mytest/prime_sum.test.cpp
     title: test/mytest/prime_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/primesum_mod4.test.cpp
     title: test/mytest/primesum_mod4.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/primesum_mod6.test.cpp
     title: test/mytest/primesum_mod6.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/product_of_one_pm_xn.test.cpp
     title: test/mytest/product_of_one_pm_xn.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/qoj5443.test.cpp
     title: test/mytest/qoj5443.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1071,7 +1074,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/tdpc_grid_dp.test.cpp
     title: test/mytest/tdpc_grid_dp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/tournament.test.cpp
     title: test/mytest/tournament.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1110,7 +1113,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080.test.cpp
     title: test/yukicoder/1080.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080_2.test.cpp
     title: test/yukicoder/1080_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1122,7 +1125,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/114.test.cpp
     title: test/yukicoder/114.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1141.test.cpp
     title: test/yukicoder/1141.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1176,7 +1179,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1260.test.cpp
     title: test/yukicoder/1260.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1262.test.cpp
     title: test/yukicoder/1262.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1188,7 +1191,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1270.test.cpp
     title: test/yukicoder/1270.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1276.test.cpp
     title: test/yukicoder/1276.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1206,7 +1209,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1301.test.cpp
     title: test/yukicoder/1301.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1218,7 +1221,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1320.test.cpp
     title: test/yukicoder/1320.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1321.test.cpp
     title: test/yukicoder/1321.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1245,7 +1248,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1383.test.cpp
     title: test/yukicoder/1383.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1392.test.cpp
     title: test/yukicoder/1392.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1254,7 +1257,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1400.test.cpp
     title: test/yukicoder/1400.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1411.test.cpp
     title: test/yukicoder/1411.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1362,7 +1365,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1649_2.test.cpp
     title: test/yukicoder/1649_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1666.test.cpp
     title: test/yukicoder/1666.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1398,7 +1401,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1745.test.cpp
     title: test/yukicoder/1745.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1750.test.cpp
     title: test/yukicoder/1750.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1407,7 +1410,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1755.test.cpp
     title: test/yukicoder/1755.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1760.test.cpp
     title: test/yukicoder/1760.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1431,7 +1434,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1796.test.cpp
     title: test/yukicoder/1796.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1810.test.cpp
     title: test/yukicoder/1810.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1440,7 +1443,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1818.test.cpp
     title: test/yukicoder/1818.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1821.test.cpp
     title: test/yukicoder/1821.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1473,16 +1476,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1874.test.cpp
     title: test/yukicoder/1874.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1875.test.cpp
     title: test/yukicoder/1875.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1881.test.cpp
     title: test/yukicoder/1881.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1891.test.cpp
     title: test/yukicoder/1891.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1907.test.cpp
     title: test/yukicoder/1907.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1518,7 +1521,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2003.test.cpp
     title: test/yukicoder/2003.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2005.test.cpp
     title: test/yukicoder/2005.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1563,7 +1566,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2161.test.cpp
     title: test/yukicoder/2161.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2310,6 +2313,7 @@ data:
   - test/mytest/maxidx_add.test.cpp
   - test/mytest/rbst_commutative_persistent.test.cpp
   - test/mytest/tutte.test.cpp
+  - test/mytest/mybitset.test.cpp
   - test/mytest/online_division.test.cpp
   - test/mytest/QOJ5445.test.cpp
   - test/mytest/splay.test.cpp

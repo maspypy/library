@@ -2,20 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: ds/my_bitset.hpp
+    title: ds/my_bitset.hpp
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
-    path: nt/primesum.hpp
-    title: nt/primesum.hpp
-  - icon: ':heavy_check_mark:'
-    path: nt/primesum_mod6.hpp
-    title: nt/primesum_mod6.hpp
-  - icon: ':question:'
-    path: nt/primetable.hpp
-    title: nt/primetable.hpp
-  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
+  - icon: ':question:'
+    path: random/base.hpp
+    title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -26,20 +23,19 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/primesum_mod6.test.cpp\"\n#define PROBLEM \"\
-    https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
-    #include <my_template_compiled.hpp>\n#else\n#pragma GCC optimize(\"Ofast\")\n\
-    #pragma GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace\
-    \ std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing u64 = unsigned\
-    \ long long;\nusing i128 = __int128;\n\ntemplate <class T>\nconstexpr T infty\
-    \ = 0;\ntemplate <>\nconstexpr int infty<int> = 1'000'000'000;\ntemplate <>\n\
-    constexpr ll infty<ll> = ll(infty<int>) * infty<int> * 2;\ntemplate <>\nconstexpr\
-    \ u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
-    template <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\ntemplate\
-    \ <>\nconstexpr double infty<double> = infty<ll>;\ntemplate <>\nconstexpr long\
-    \ double infty<long double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing vi\
-    \ = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class T>\n\
-    using vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+  bundledCode: "#line 1 \"test/mytest/mybitset.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
+    )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
+    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
+    \ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int>\
+    \ = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll> = ll(infty<int>) * infty<int>\
+    \ * 2;\ntemplate <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr\
+    \ u64 infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
+    \ * infty<ll>;\ntemplate <>\nconstexpr double infty<double> = infty<ll>;\ntemplate\
+    \ <>\nconstexpr long double infty<long double> = infty<ll>;\n\nusing pi = pair<ll,\
+    \ ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate\
+    \ <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
     template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
     \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
     template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
@@ -208,97 +204,131 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
-    \ primetable(int LIM) {\n  ++LIM;\n  const int S = 32768;\n  static int done =\
-    \ 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\n  if (done < LIM) {\n    done\
-    \ = LIM;\n\n    primes = {2}, sieve.assign(S + 1, 0);\n    const int R = LIM /\
-    \ 2;\n    primes.reserve(int(LIM / log(LIM) * 1.1));\n    vc<pair<int, int>> cp;\n\
-    \    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i]) {\n        cp.eb(i,\
-    \ i * i / 2);\n        for (int j = i * i; j <= S; j += 2 * i) sieve[j] = 1;\n\
-    \      }\n    }\n    for (int L = 1; L <= R; L += S) {\n      array<bool, S> block{};\n\
-    \      for (auto& [p, idx]: cp)\n        for (int i = idx; i < S + L; idx = (i\
-    \ += p)) block[i - L] = 1;\n      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L\
-    \ + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes, LIM + 1);\n  return {primes.begin(),\
-    \ primes.begin() + k};\n}\n#line 2 \"nt/primesum.hpp\"\n\r\n/*\r\nN \u3068\u5B8C\
-    \u5168\u4E57\u6CD5\u7684\u95A2\u6570 f \u306E prefix sum \u95A2\u6570 F \u3092\
-    \u4E0E\u3048\u308B\u3002\r\nn = floor(N/d) \u3068\u306A\u308B n \u306B\u5BFE\u3059\
-    \u308B sum_{p <= n} f(p) \u3092\u8A08\u7B97\u3059\u308B\u3002\r\n\u7279\u306B\u3001\
-    \u7D20\u6570\u306E k \u4E57\u548C\u3084\u3001mod m \u3054\u3068\u3067\u306E\u7D20\
-    \u6570\u306E k \u4E57\u548C\u304C\u8A08\u7B97\u3067\u304D\u308B\u3002\r\nComplexity:\
-    \ O(N^{3/4}/logN) time, O(N^{1/2}) space.\r\n*/\r\ntemplate <typename T>\r\nstruct\
-    \ PrimeSum {\r\n  ll N;\r\n  ll sqN;\r\n  vc<T> sum_lo, sum_hi;\r\n  bool calculated;\r\
-    \n\r\n  PrimeSum(ll N) : N(N), sqN(sqrtl(N)), calculated(0) {}\r\n\r\n  // [1,\
-    \ x] \u305F\u3060\u3057\u3001x = floor(N, i) \u306E\u5F62\r\n  T operator[](ll\
-    \ x) {\r\n    assert(calculated);\r\n    return (x <= sqN ? sum_lo[x] : sum_hi[double(N)\
-    \ / x]);\r\n  }\r\n\r\n  template <typename F>\r\n  void calc(const F f) {\r\n\
-    \    auto primes = primetable(sqN);\r\n    sum_lo.resize(sqN + 1);\r\n    sum_hi.resize(sqN\
-    \ + 1);\r\n    FOR3(i, 1, sqN + 1) sum_lo[i] = f(i) - 1;\r\n    FOR3(i, 1, sqN\
-    \ + 1) sum_hi[i] = f(double(N) / i) - 1;\r\n    for (auto&& p: primes) {\r\n \
-    \     ll pp = p * p;\r\n      if (pp > N) break;\r\n      ll R = min(sqN, N /\
-    \ pp);\r\n      ll M = sqN / p;\r\n      T x = sum_lo[p - 1];\r\n      T fp =\
-    \ sum_lo[p] - sum_lo[p - 1];\r\n      FOR3(i, 1, M + 1) sum_hi[i] -= fp * (sum_hi[i\
-    \ * p] - x);\r\n      FOR3(i, M + 1, R + 1) sum_hi[i] -= fp * (sum_lo[double(N)\
-    \ / (i * p)] - x);\r\n      FOR3_R(n, pp, sqN + 1) sum_lo[n] -= fp * (sum_lo[double(n\
-    \ / p)] - x);\r\n    }\r\n    calculated = 1;\r\n  }\r\n\r\n  void calc_count()\
-    \ {\r\n    calc([](ll x) -> T { return x; });\r\n  }\r\n\r\n  void calc_sum()\
-    \ {\r\n    calc([](ll x) -> T {\r\n      ll a = x, b = x + 1;\r\n      if (!(x\
-    \ & 1)) a /= 2;\r\n      if (x & 1) b /= 2;\r\n      return T(a) * T(b);\r\n \
-    \   });\r\n  }\r\n};\r\n#line 3 \"nt/primesum_mod6.hpp\"\n\ntemplate <typename\
-    \ T>\nstruct PrimeSum_Mod_6 {\n  ll N;\n  ll sqN;\n\n  PrimeSum<T> A, B;\n  PrimeSum_Mod_6(ll\
-    \ N) : N(N), sqN(sqrtl(N)), A(N), B(N) {}\n\n  pair<T, T> operator[](ll x) {\n\
-    \    T a = A[x], b = B[x];\n    return {(a + b) / T(2), (a - b) / T(2)};\n  }\n\
-    \n  void calc_count() {\n    A.calc([](ll x) -> T { return ((x + 2) / 3 - (x %\
-    \ 6 == 4)); });\n    B.calc([](ll x) -> T { return ((x + 5) % 6 <= 3 ? 1 : 0);\
-    \ });\n  }\n\n  void calc_sum() {\n    A.calc([](ll x) -> T {\n      ll n = (x\
-    \ + 2) / 3 - (x % 6 == 4);\n      ll k = n / 2;\n      if (n % 2 == 0) { return\
-    \ T(6 * k) * T(k); }\n      return T(6 * k) * T(k) + T(6 * k + 1);\n    });\n\
-    \    B.calc([](ll x) -> T {\n      ll n = (x + 2) / 3 - (x % 6 == 4);\n      ll\
-    \ k = n / 2;\n      if (n % 2 == 0) { return T(-4 * k); }\n      return T(-4 *\
-    \ k + 6 * k + 1);\n    });\n  }\n};\n#line 5 \"test/mytest/primesum_mod6.test.cpp\"\
-    \n\nvoid test_count() {\n  ll LIM = 10000;\n  vc<int> A1(LIM), A5(LIM);\n  for\
-    \ (auto&& p: primetable(LIM))\n    if (p % 6 == 1) { A1[p]++; }\n  for (auto&&\
-    \ p: primetable(LIM))\n    if (p % 6 == 5) { A5[p]++; }\n  A1 = cumsum<int>(A1,\
-    \ 0);\n  A5 = cumsum<int>(A5, 0);\n\n  FOR(N, LIM) {\n    PrimeSum_Mod_6<int>\
-    \ X(N);\n    X.calc_count();\n    FOR(K, 1, N + 10) { assert(X[N / K] == mp(A1[N\
-    \ / K], A5[N / K])); }\n  }\n}\n\nvoid test_sum() {\n  ll LIM = 10000;\n  vc<int>\
-    \ A1(LIM), A5(LIM);\n  for (auto&& p: primetable(LIM))\n    if (p % 6 == 1) {\
-    \ A1[p] += p; }\n  for (auto&& p: primetable(LIM))\n    if (p % 6 == 5) { A5[p]\
-    \ += p; }\n  A1 = cumsum<int>(A1, 0);\n  A5 = cumsum<int>(A5, 0);\n\n  FOR(N,\
-    \ LIM) {\n    PrimeSum_Mod_6<int> X(N);\n    X.calc_sum();\n    FOR(K, 1, N +\
-    \ 10) { assert(X[N / K] == mp(A1[N / K], A5[N / K])); }\n  }\n}\n\nvoid solve()\
-    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  test_count();\n  test_sum();\n  solve();\n\n  return 0;\n}\n"
+    \ yes(!t); }\n#line 4 \"test/mytest/mybitset.test.cpp\"\n\n#line 2 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 1 \"ds/my_bitset.hpp\"\
+    \n\n// https://codeforces.com/contest/914/problem/F\n// https://yukicoder.me/problems/no/142\n\
+    // \u308F\u305A\u304B\u306B\u666E\u901A\u306E bitset \u3088\u308A\u9045\u3044\u3068\
+    \u304D\u3082\u3042\u308B\u3088\u3046\u3060\u304C\uFF0C\n// \u56FA\u5B9A\u9577\u306B\
+    \u3057\u305F\u304F\u306A\u3044\u3068\u304D\u3084 slice \u64CD\u4F5C\u304C\u5FC5\
+    \u8981\u306A\u3068\u304D\u306B\u4F7F\u3046\nstruct My_Bitset {\n  using T = My_Bitset;\n\
+    \  int N;\n  vc<u64> dat;\n\n  // x \u3067\u57CB\u3081\u308B\n  My_Bitset(int\
+    \ N = 0, int x = 0) : N(N) {\n    assert(x == 0 || x == 1);\n    u64 v = (x ==\
+    \ 0 ? 0 : -1);\n    dat.assign((N + 63) >> 6, v);\n    if (N) dat.back() >>= (64\
+    \ * len(dat) - N);\n  }\n\n  int size() { return N; }\n\n  void resize(int size)\
+    \ {\n    dat.resize((size + 63) >> 6);\n    int remainingBits = size & 63;\n \
+    \   if (remainingBits != 0) {\n      u64 mask = (u64(1) << remainingBits) - 1;\n\
+    \      dat.back() &= mask;\n    }\n    N = size;\n  }\n\n  // thanks to chatgpt!\n\
+    \  class Proxy {\n  public:\n    Proxy(vc<u64> &d, int i) : dat(d), index(i) {}\n\
+    \    operator bool() const { return (dat[index >> 6] >> (index & 63)) & 1; }\n\
+    \n    Proxy &operator=(u64 value) {\n      dat[index >> 6] &= ~(u64(1) << (index\
+    \ & 63));\n      dat[index >> 6] |= (value & 1) << (index & 63);\n      return\
+    \ *this;\n    }\n    void flip() {\n      dat[index >> 6] ^= (u64(1) << (index\
+    \ & 63)); // XOR to flip the bit\n    }\n\n  private:\n    vc<u64> &dat;\n   \
+    \ int index;\n  };\n\n  Proxy operator[](int i) { return Proxy(dat, i); }\n\n\
+    \  void set(int i) { (*this)[i] = 1; }\n  void reset(int i) { (*this)[i] = 0;\
+    \ }\n  void flip(int i) { (*this)[i].flip(); }\n\n  T &operator&=(const T &p)\
+    \ {\n    assert(N == p.N);\n    FOR(i, len(dat)) dat[i] &= p.dat[i];\n    return\
+    \ *this;\n  }\n  T &operator|=(const T &p) {\n    assert(N == p.N);\n    FOR(i,\
+    \ len(dat)) dat[i] |= p.dat[i];\n    return *this;\n  }\n  T &operator^=(const\
+    \ T &p) {\n    assert(N == p.N);\n    FOR(i, len(dat)) dat[i] ^= p.dat[i];\n \
+    \   return *this;\n  }\n  T operator&(const T &p) const { return T(*this) &= p;\
+    \ }\n  T operator|(const T &p) const { return T(*this) |= p; }\n  T operator^(const\
+    \ T &p) const { return T(*this) ^= p; }\n\n  int count() {\n    int ans = 0;\n\
+    \    for (u64 val: dat) ans += popcnt(val);\n    return ans;\n  }\n\n  int next(int\
+    \ i) {\n    chmax(i, 0);\n    if (i >= N) return N;\n    int k = i >> 6;\n   \
+    \ {\n      u64 x = dat[k];\n      int s = i & 63;\n      x = (x >> s) << s;\n\
+    \      if (x) return (k << 6) | lowbit(x);\n    }\n    FOR(idx, k + 1, len(dat))\
+    \ {\n      if (dat[idx] == 0) continue;\n      return (idx << 6) | lowbit(dat[idx]);\n\
+    \    }\n    return N;\n  }\n\n  int prev(int i) {\n    chmin(i, N - 1);\n    if\
+    \ (i <= -1) return -1;\n    int k = i >> 6;\n    if ((i & 63) < 63) {\n      u64\
+    \ x = dat[k];\n      x &= (u64(1) << ((i & 63) + 1)) - 1;\n      if (x) return\
+    \ (k << 6) | topbit(x);\n      --k;\n    }\n    FOR_R(idx, k + 1) {\n      if\
+    \ (dat[idx] == 0) continue;\n      return (idx << 6) | topbit(dat[idx]);\n   \
+    \ }\n    return -1;\n  }\n\n  My_Bitset range(int L, int R) {\n    assert(L <=\
+    \ R);\n    My_Bitset p(R - L);\n    int rm = (R - L) & 63;\n    FOR(rm) {\n  \
+    \    p[R - L - 1] = bool((*this)[R - 1]);\n      --R;\n    }\n    int n = (R -\
+    \ L) >> 6;\n    int hi = L & 63;\n    int lo = 64 - hi;\n    int s = L >> 6;\n\
+    \    if (hi == 0) {\n      FOR(i, n) { p.dat[i] ^= dat[s + i]; }\n    } else {\n\
+    \      FOR(i, n) { p.dat[i] ^= (dat[s + i] >> hi) ^ (dat[s + i + 1] << lo); }\n\
+    \    }\n    return p;\n  }\n\n  int count_range(int L, int R) {\n    assert(L\
+    \ <= R);\n    int cnt = 0;\n    while ((L < R) && (L & 63)) cnt += (*this)[L++];\n\
+    \    while ((L < R) && (R & 63)) cnt += (*this)[--R];\n    int l = L >> 6, r =\
+    \ R >> 6;\n    FOR(i, l, r) cnt += popcnt(dat[i]);\n    return cnt;\n  }\n\n \
+    \ // [L,R) \u306B p \u3092\u4EE3\u5165\n  void assign_to_range(int L, int R, My_Bitset\
+    \ &p) {\n    assert(p.N == R - L);\n    int a = 0, b = p.N;\n    while (L < R\
+    \ && (L & 63)) { (*this)[L++] = bool(p[a++]); }\n    while (L < R && (R & 63))\
+    \ { (*this)[--R] = bool(p[--b]); }\n    // p[a:b] \u3092 [L:R] \u306B\n    int\
+    \ l = L >> 6, r = R >> 6;\n    int s = a >> 6, t = b >> t;\n    int n = r - l;\n\
+    \    if (!(a & 63)) {\n      FOR(i, n) dat[l + i] = p.dat[s + i];\n    } else\
+    \ {\n      int hi = a & 63;\n      int lo = 64 - hi;\n      FOR(i, n) dat[l +\
+    \ i] = (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);\n    }\n  }\n\n  // [L,R)\
+    \ \u306B p \u3092 xor\n  void xor_to_range(int L, int R, My_Bitset &p) {\n   \
+    \ assert(p.N == R - L);\n    int a = 0, b = p.N;\n    while (L < R && (L & 63))\
+    \ {\n      dat[L >> 6] ^= u64(p[a]) << (L & 63);\n      ++a, ++L;\n    }\n   \
+    \ while (L < R && (R & 63)) {\n      --b, --R;\n      dat[R >> 6] ^= u64(p[b])\
+    \ << (R & 63);\n    }\n    // p[a:b] \u3092 [L:R] \u306B\n    int l = L >> 6,\
+    \ r = R >> 6;\n    int s = a >> 6, t = b >> t;\n    int n = r - l;\n    if (!(a\
+    \ & 63)) {\n      FOR(i, n) dat[l + i] ^= p.dat[s + i];\n    } else {\n      int\
+    \ hi = a & 63;\n      int lo = 64 - hi;\n      FOR(i, n) dat[l + i] ^= (p.dat[s\
+    \ + i] >> hi) | (p.dat[1 + s + i] << lo);\n    }\n  }\n\n  // [L,R) \u306B p \u3092\
+    \ and\n  void and_to_range(int L, int R, My_Bitset &p) {\n    assert(p.N == R\
+    \ - L);\n    int a = 0, b = p.N;\n    while (L < R && (L & 63)) {\n      if (!p[a++])\
+    \ (*this)[L++] = 0;\n    }\n    while (L < R && (R & 63)) {\n      if (!p[--b])\
+    \ (*this)[--R] = 0;\n    }\n    // p[a:b] \u3092 [L:R] \u306B\n    int l = L >>\
+    \ 6, r = R >> 6;\n    int s = a >> 6, t = b >> t;\n    int n = r - l;\n    if\
+    \ (!(a & 63)) {\n      FOR(i, n) dat[l + i] &= p.dat[s + i];\n    } else {\n \
+    \     int hi = a & 63;\n      int lo = 64 - hi;\n      FOR(i, n) dat[l + i] &=\
+    \ (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);\n    }\n  }\n\n  // [L,R) \u306B\
+    \ p \u3092 or\n  void or_to_range(int L, int R, My_Bitset &p) {\n    assert(p.N\
+    \ == R - L);\n    int a = 0, b = p.N;\n    while (L < R && (L & 63)) {\n     \
+    \ dat[L >> 6] |= u64(p[a]) << (L & 63);\n      ++a, ++L;\n    }\n    while (L\
+    \ < R && (R & 63)) {\n      --b, --R;\n      dat[R >> 6] |= u64(p[b]) << (R &\
+    \ 63);\n    }\n    // p[a:b] \u3092 [L:R] \u306B\n    int l = L >> 6, r = R >>\
+    \ 6;\n    int s = a >> 6, t = b >> t;\n    int n = r - l;\n    if (!(a & 63))\
+    \ {\n      FOR(i, n) dat[l + i] |= p.dat[s + i];\n    } else {\n      int hi =\
+    \ a & 63;\n      int lo = 64 - hi;\n      FOR(i, n) dat[l + i] |= (p.dat[s + i]\
+    \ >> hi) | (p.dat[1 + s + i] << lo);\n    }\n  }\n\n  string to_string() const\
+    \ {\n    string S;\n    FOR(i, N) S += '0' + (dat[i >> 6] >> (i & 63) & 1);\n\
+    \    return S;\n  }\n};\n#line 7 \"test/mytest/mybitset.test.cpp\"\n\nvoid test()\
+    \ {\n  FOR(N, 2000) {\n    int Q = 10 * N;\n    vc<int> A(N);\n    My_Bitset B(N);\n\
+    \    FOR(Q) {\n      int t = RNG(0, 4);\n      int i = RNG(0, N);\n      if (t\
+    \ == 0) {\n        A[i] = 0;\n        B[i] = 0;\n      }\n      if (t == 1) {\n\
+    \        A[i] = 1;\n        B[i] = 1;\n      }\n      if (t == 2) {\n        int\
+    \ p = i;\n        while (p < N && A[p] == 0) ++p;\n        assert(B.next(i) ==\
+    \ p);\n      }\n      if (t == 3) {\n        int p = i;\n        while (p >= 0\
+    \ && A[p] == 0) --p;\n        assert(B.prev(i) == p);\n      }\n    }\n  }\n}\n\
+    \nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n\
+    \  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"nt/primesum_mod6.hpp\"\n\nvoid test_count()\
-    \ {\n  ll LIM = 10000;\n  vc<int> A1(LIM), A5(LIM);\n  for (auto&& p: primetable(LIM))\n\
-    \    if (p % 6 == 1) { A1[p]++; }\n  for (auto&& p: primetable(LIM))\n    if (p\
-    \ % 6 == 5) { A5[p]++; }\n  A1 = cumsum<int>(A1, 0);\n  A5 = cumsum<int>(A5, 0);\n\
-    \n  FOR(N, LIM) {\n    PrimeSum_Mod_6<int> X(N);\n    X.calc_count();\n    FOR(K,\
-    \ 1, N + 10) { assert(X[N / K] == mp(A1[N / K], A5[N / K])); }\n  }\n}\n\nvoid\
-    \ test_sum() {\n  ll LIM = 10000;\n  vc<int> A1(LIM), A5(LIM);\n  for (auto&&\
-    \ p: primetable(LIM))\n    if (p % 6 == 1) { A1[p] += p; }\n  for (auto&& p: primetable(LIM))\n\
-    \    if (p % 6 == 5) { A5[p] += p; }\n  A1 = cumsum<int>(A1, 0);\n  A5 = cumsum<int>(A5,\
-    \ 0);\n\n  FOR(N, LIM) {\n    PrimeSum_Mod_6<int> X(N);\n    X.calc_sum();\n \
-    \   FOR(K, 1, N + 10) { assert(X[N / K] == mp(A1[N / K], A5[N / K])); }\n  }\n\
-    }\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout\
-    \ << fixed << setprecision(15);\n\n  test_count();\n  test_sum();\n  solve();\n\
-    \n  return 0;\n}\n"
+    \n#include \"other/io.hpp\"\n\n#include \"random/base.hpp\"\n#include \"ds/my_bitset.hpp\"\
+    \n\nvoid test() {\n  FOR(N, 2000) {\n    int Q = 10 * N;\n    vc<int> A(N);\n\
+    \    My_Bitset B(N);\n    FOR(Q) {\n      int t = RNG(0, 4);\n      int i = RNG(0,\
+    \ N);\n      if (t == 0) {\n        A[i] = 0;\n        B[i] = 0;\n      }\n  \
+    \    if (t == 1) {\n        A[i] = 1;\n        B[i] = 1;\n      }\n      if (t\
+    \ == 2) {\n        int p = i;\n        while (p < N && A[p] == 0) ++p;\n     \
+    \   assert(B.next(i) == p);\n      }\n      if (t == 3) {\n        int p = i;\n\
+    \        while (p >= 0 && A[p] == 0) --p;\n        assert(B.prev(i) == p);\n \
+    \     }\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\n\
+    signed main() {\n  test();\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - nt/primesum_mod6.hpp
-  - nt/primesum.hpp
-  - nt/primetable.hpp
+  - random/base.hpp
+  - ds/my_bitset.hpp
   isVerificationFile: true
-  path: test/mytest/primesum_mod6.test.cpp
+  path: test/mytest/mybitset.test.cpp
   requiredBy: []
-  timestamp: '2023-08-06 03:59:07+09:00'
+  timestamp: '2023-08-06 04:21:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/mytest/primesum_mod6.test.cpp
+documentation_of: test/mytest/mybitset.test.cpp
 layout: document
 redirect_from:
-- /verify/test/mytest/primesum_mod6.test.cpp
-- /verify/test/mytest/primesum_mod6.test.cpp.html
-title: test/mytest/primesum_mod6.test.cpp
+- /verify/test/mytest/mybitset.test.cpp
+- /verify/test/mytest/mybitset.test.cpp.html
+title: test/mytest/mybitset.test.cpp
 ---
