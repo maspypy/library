@@ -10,7 +10,7 @@ void solve() {
   using BS = My_Bitset;
   BS A(N);
   FOR(i, N) {
-    if (S & 1) A.on(i);
+    A[i] = S & 1;
     S = (X * S + Y) % Z;
   }
 
