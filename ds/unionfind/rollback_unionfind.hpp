@@ -13,6 +13,7 @@ struct Rollback_UnionFind {
   ll size(int v) { return -dat.get((*this)[v]); }
   int time() { return dat.time(); }
   void rollback(int t) { dat.rollback(t); }
+  void reset() { rollback(0); }
 
   bool merge(int a, int b) {
     a = (*this)[a], b = (*this)[b];
