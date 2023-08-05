@@ -55,8 +55,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/summax_assign.test.cpp
-  - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
   - test/mytest/dynamic_lazy_segtree.test.cpp
+  - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
 documentation_of: alg/acted_monoid/summax_assign.hpp
 layout: document
 redirect_from:

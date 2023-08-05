@@ -552,11 +552,11 @@ data:
   timestamp: '2023-07-27 19:48:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/arc153f.test.cpp
-  - test/yukicoder/1392.test.cpp
-  - test/yukicoder/1321.test.cpp
   - test/mytest/bell.test.cpp
+  - test/yukicoder/1321.test.cpp
+  - test/yukicoder/1392.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
+  - test_atcoder/arc153f.test.cpp
 documentation_of: seq/famous/stirling_number_2.hpp
 layout: document
 redirect_from:

@@ -218,8 +218,8 @@ data:
   timestamp: '2023-07-30 12:32:17+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc237ex.test.cpp
   - test/aoj/2251_2.test.cpp
+  - test_atcoder/abc237ex.test.cpp
 documentation_of: graph/maximum_antichain.hpp
 layout: document
 redirect_from:

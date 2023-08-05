@@ -30,7 +30,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1320.test.cpp
     title: test/yukicoder/1320.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1601.test.cpp
     title: test/yukicoder/1601.test.cpp
   - icon: ':x:'
@@ -162,15 +162,15 @@ data:
   timestamp: '2023-07-25 23:30:41+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/arc064c.test.cpp
-  - test_atcoder/arc151_e.test.cpp
-  - test/aoj/2251_1.test.cpp
-  - test/aoj/2251_2.test.cpp
-  - test/aoj/0275.test.cpp
-  - test/yukicoder/1320.test.cpp
   - test/yukicoder/1601.test.cpp
+  - test/yukicoder/1320.test.cpp
+  - test/aoj/2251_2.test.cpp
+  - test/aoj/2251_1.test.cpp
+  - test/aoj/0275.test.cpp
   - test/library_checker/graph/K_shortest_walk.test.cpp
   - test/library_checker/graph/shortest_path.test.cpp
+  - test_atcoder/arc151_e.test.cpp
+  - test_atcoder/arc064c.test.cpp
 documentation_of: graph/shortest_path/dijkstra.hpp
 layout: document
 redirect_from:

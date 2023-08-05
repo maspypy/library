@@ -67,8 +67,8 @@ data:
   isVerificationFile: false
   path: mod/mod_sqrt.hpp
   requiredBy:
-  - nt/four_square.hpp
   - poly/fps_sqrt.hpp
+  - nt/four_square.hpp
   - graph/count/count_bipartite.hpp
   timestamp: '2023-03-12 12:41:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -76,8 +76,8 @@ data:
   - test/mytest/count_bipartite.test.cpp
   - test/mytest/four_square.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
 documentation_of: mod/mod_sqrt.hpp
 layout: document
 redirect_from:

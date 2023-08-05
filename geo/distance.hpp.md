@@ -127,8 +127,8 @@ data:
   timestamp: '2023-07-30 12:32:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/CGL_2_D.test.cpp
   - test/aoj/CGL_7_B.test.cpp
+  - test/aoj/CGL_2_D.test.cpp
 documentation_of: geo/distance.hpp
 layout: document
 redirect_from:

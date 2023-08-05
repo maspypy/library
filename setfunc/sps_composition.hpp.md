@@ -93,9 +93,9 @@ data:
   timestamp: '2023-06-03 10:19:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc213g.test.cpp
-  - test_atcoder/arc105.test.cpp
   - test/library_checker/math/composition_sps.test.cpp
+  - test_atcoder/arc105.test.cpp
+  - test_atcoder/abc213g.test.cpp
 documentation_of: setfunc/sps_composition.hpp
 layout: document
 redirect_from:

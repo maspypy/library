@@ -368,24 +368,24 @@ data:
   isVerificationFile: false
   path: poly/sum_of_rationals.hpp
   requiredBy:
-  - seq/sum_of_powers.hpp
-  - linalg/implicit_matrix/vandermonde.hpp
   - poly/composition_f_ex.hpp
-  - poly/product_of_pow_of_linear.hpp
   - poly/sum_of_exp_bx.hpp
+  - poly/product_of_pow_of_linear.hpp
+  - linalg/implicit_matrix/vandermonde.hpp
+  - seq/sum_of_powers.hpp
   timestamp: '2023-07-27 19:48:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc276_g_2.test.cpp
-  - test_atcoder/abc276_g.test.cpp
-  - test_atcoder/abc260h.test.cpp
-  - test_atcoder/abc281g.test.cpp
-  - test_atcoder/arc154f.test.cpp
+  - test/mytest/partial_frac.test.cpp
+  - test/mytest/vandermonde.test.cpp
   - test/yukicoder/1875.test.cpp
   - test/yukicoder/1962.test.cpp
   - test/yukicoder/1145.test.cpp
-  - test/mytest/vandermonde.test.cpp
-  - test/mytest/partial_frac.test.cpp
+  - test_atcoder/arc154f.test.cpp
+  - test_atcoder/abc276_g.test.cpp
+  - test_atcoder/abc260h.test.cpp
+  - test_atcoder/abc276_g_2.test.cpp
+  - test_atcoder/abc281g.test.cpp
 documentation_of: poly/sum_of_rationals.hpp
 layout: document
 redirect_from:

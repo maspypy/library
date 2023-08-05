@@ -269,6 +269,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/rollback_array.hpp
       title: ds/rollback_array.hpp
+    - icon: ':x:'
+      path: ds/slide_split_sum.hpp
+      title: ds/slide_split_sum.hpp
     - icon: ':heavy_check_mark:'
       path: ds/sliding_window_aggregation.hpp
       title: ds/sliding_window_aggregation.hpp
@@ -672,7 +675,7 @@ data:
     - icon: ':warning:'
       path: graph/grid_hamiltonian_path.hpp
       title: graph/grid_hamiltonian_path.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/max_matching_size.hpp
       title: graph/max_matching_size.hpp
     - icon: ':question:'
@@ -937,7 +940,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/mat_pow.hpp
       title: linalg/mat_pow.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: linalg/matrix_rank.hpp
       title: linalg/matrix_rank.hpp
     - icon: ':heavy_check_mark:'
@@ -1033,7 +1036,7 @@ data:
     - icon: ':question:'
       path: mod/modint.hpp
       title: mod/modint.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint61.hpp
       title: mod/modint61.hpp
     - icon: ':question:'
@@ -2696,7 +2699,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/tournament.test.cpp
       title: test/mytest/tournament.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/tutte.test.cpp
       title: test/mytest/tutte.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2905,7 +2908,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1451.test.cpp
       title: test/yukicoder/1451.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1479.test.cpp
       title: test/yukicoder/1479.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2962,7 +2965,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1600.test.cpp
       title: test/yukicoder/1600.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1601.test.cpp
       title: test/yukicoder/1601.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3019,10 +3022,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1728.test.cpp
       title: test/yukicoder/1728.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1744.test.cpp
       title: test/yukicoder/1744.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1745.test.cpp
       title: test/yukicoder/1745.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3603,6 +3606,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc301h.test.cpp
       title: test_atcoder/abc301h.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/abc312f.test.cpp
+      title: test_atcoder/abc312f.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_atcoder/agc013e.test.cpp
       title: test_atcoder/agc013e.test.cpp

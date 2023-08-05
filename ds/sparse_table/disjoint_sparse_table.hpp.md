@@ -92,8 +92,8 @@ data:
   - test/yukicoder/2005.test.cpp
   - test/yukicoder/1216.test.cpp
   - test/yukicoder/1216_2.test.cpp
-  - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - test/library_checker/datastructure/staticrmq_dst.test.cpp
+  - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
 documentation_of: ds/sparse_table/disjoint_sparse_table.hpp
 layout: document
 redirect_from:

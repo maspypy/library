@@ -45,7 +45,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/twosat.test.cpp
     title: test/library_checker/math/twosat.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
   - icon: ':heavy_check_mark:'
@@ -54,13 +54,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1293.test.cpp
     title: test/yukicoder/1293.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1479.test.cpp
     title: test/yukicoder/1479.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1744.test.cpp
     title: test/yukicoder/1744.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1745.test.cpp
     title: test/yukicoder/1745.test.cpp
   - icon: ':heavy_check_mark:'
@@ -178,31 +178,31 @@ data:
   path: graph/strongly_connected_component.hpp
   requiredBy:
   - flow/bipartite.hpp
-  - graph/twosat.hpp
-  - graph/maximum_antichain.hpp
-  - graph/reachability.hpp
-  - graph/find_odd_cycle.hpp
   - graph/bipartite_edge_coloring.hpp
+  - graph/reachability.hpp
+  - graph/maximum_antichain.hpp
+  - graph/find_odd_cycle.hpp
+  - graph/twosat.hpp
   timestamp: '2023-05-20 20:14:16+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc214h.test.cpp
-  - test_atcoder/abc274g.test.cpp
-  - test_atcoder/abc237ex.test.cpp
-  - test/aoj/2251_2.test.cpp
-  - test/aoj/0275.test.cpp
-  - test/aoj/1566.test.cpp
+  - test/mytest/tutte.test.cpp
+  - test/yukicoder/1813.test.cpp
+  - test/yukicoder/1293.test.cpp
+  - test/yukicoder/1744.test.cpp
   - test/yukicoder/1745.test.cpp
   - test/yukicoder/1479.test.cpp
   - test/yukicoder/1170.test.cpp
-  - test/yukicoder/1744.test.cpp
-  - test/yukicoder/1813.test.cpp
-  - test/yukicoder/1293.test.cpp
-  - test/mytest/tutte.test.cpp
+  - test/aoj/2251_2.test.cpp
+  - test/aoj/0275.test.cpp
+  - test/aoj/1566.test.cpp
   - test/library_checker/math/twosat.test.cpp
-  - test/library_checker/graph/bipartitematching.test.cpp
-  - test/library_checker/graph/scc.test.cpp
   - test/library_checker/graph/bipartite_edge_coloring.test.cpp
+  - test/library_checker/graph/scc.test.cpp
+  - test/library_checker/graph/bipartitematching.test.cpp
+  - test_atcoder/abc237ex.test.cpp
+  - test_atcoder/abc214h.test.cpp
+  - test_atcoder/abc274g.test.cpp
 documentation_of: graph/strongly_connected_component.hpp
 layout: document
 redirect_from:

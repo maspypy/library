@@ -128,17 +128,17 @@ data:
   isVerificationFile: false
   path: geo/angle_sort.hpp
   requiredBy:
-  - geo/count_points_in_triangles.hpp
   - geo/max_norm_sum.hpp
+  - geo/count_points_in_triangles.hpp
   timestamp: '2023-07-30 12:32:42+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc202_f.test.cpp
-  - test_atcoder/abc139f.test.cpp
-  - test/mytest/count_points_in_triangles.test.cpp
   - test/mytest/qoj5443.test.cpp
+  - test/mytest/count_points_in_triangles.test.cpp
   - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
+  - test_atcoder/abc202_f.test.cpp
+  - test_atcoder/abc139f.test.cpp
 documentation_of: geo/angle_sort.hpp
 layout: document
 redirect_from:

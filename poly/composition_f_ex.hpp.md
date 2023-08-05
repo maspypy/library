@@ -375,8 +375,8 @@ data:
   timestamp: '2023-07-27 19:48:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/arc154f.test.cpp
   - test/yukicoder/1875.test.cpp
+  - test_atcoder/arc154f.test.cpp
 documentation_of: poly/composition_f_ex.hpp
 layout: document
 redirect_from:

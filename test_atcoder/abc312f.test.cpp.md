@@ -1,38 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: ds/hashmap.hpp
-    title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
-    path: mod/modint61.hpp
-    title: mod/modint61.hpp
+  - icon: ':x:'
+    path: ds/slide_split_sum.hpp
+    title: ds/slide_split_sum.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
-    path: random/base.hpp
-    title: random/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/palindromic_tree.hpp
-    title: string/palindromic_tree.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/rollinghash.hpp
-    title: string/rollinghash.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/263
+    PROBLEM: https://atcoder.jp/contests/abc312/tasks/abc312_f
     links:
-    - https://yukicoder.me/problems/no/263
-  bundledCode: "#line 1 \"test/yukicoder/263.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/263\"\
+    - https://atcoder.jp/contests/abc312/tasks/abc312_f
+  bundledCode: "#line 1 \"test_atcoder/abc312f.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc312/tasks/abc312_f\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -213,140 +201,67 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 4 \"test/yukicoder/263.test.cpp\"\n\n#line 2 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/modint61.hpp\"\
-    \n\r\nstruct modint61 {\r\n  static constexpr u64 mod = (1ULL << 61) - 1;\r\n\
-    \  u64 val;\r\n  constexpr modint61() : val(0ULL) {}\r\n  constexpr modint61(u32\
-    \ x) : val(x) {}\r\n  constexpr modint61(u64 x) : val(x % mod) {}\r\n  constexpr\
-    \ modint61(int x) : val((x < 0) ? (x + static_cast<ll>(mod)) : x) {}\r\n  constexpr\
-    \ modint61(ll x)\r\n      : val(((x %= static_cast<ll>(mod)) < 0) ? (x + static_cast<ll>(mod))\r\
-    \n                                              : x) {}\r\n  static constexpr\
-    \ u64 get_mod() { return mod; }\r\n  modint61 &operator+=(const modint61 &a) {\r\
-    \n    val = ((val += a.val) >= mod) ? (val - mod) : val;\r\n    return *this;\r\
-    \n  }\r\n  modint61 &operator-=(const modint61 &a) {\r\n    val = ((val -= a.val)\
-    \ >= mod) ? (val + mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 &operator*=(const\
-    \ modint61 &a) {\r\n    const unsigned __int128 y = static_cast<unsigned __int128>(val)\
-    \ * a.val;\r\n    val = (y >> 61) + (y & mod);\r\n    val = (val >= mod) ? (val\
-    \ - mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 &operator/=(const modint61\
-    \ &a) { return (*this *= a.inverse()); }\r\n  modint61 operator+(const modint61\
-    \ &p) const { return modint61(*this) += p; }\r\n  modint61 operator-(const modint61\
-    \ &p) const { return modint61(*this) -= p; }\r\n  modint61 operator*(const modint61\
-    \ &p) const { return modint61(*this) *= p; }\r\n  modint61 operator/(const modint61\
-    \ &p) const { return modint61(*this) /= p; }\r\n  bool operator==(const modint61\
-    \ &p) const { return val == p.val; }\r\n  bool operator!=(const modint61 &p) const\
-    \ { return val != p.val; }\r\n  modint61 inverse() const {\r\n    ll a = val,\
-    \ b = mod, u = 1, v = 0, t;\r\n    while (b > 0) {\r\n      t = a / b;\r\n   \
-    \   swap(a -= t * b, b), swap(u -= t * v, v);\r\n    }\r\n    return modint61(u);\r\
-    \n  }\r\n  modint61 pow(ll n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1),\
-    \ mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul\
-    \ *= mul, n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n#ifdef FASTIO\r\n  void\
-    \ write() { fastio::printer.write(val); }\r\n  void read() {\r\n    ll x;\r\n\
-    \    fastio::scanner.read(x);\r\n    val = (val >= 0 ? val % mod : (mod - (-val)\
-    \ % mod) % mod);\r\n  }\r\n#endif\r\n};\n#line 4 \"string/rollinghash.hpp\"\n\n\
-    struct RollingHash {\n  using mint = modint61;\n  static constexpr u64 mod = mint::get_mod();\n\
-    \  const mint base;\n  vc<mint> power;\n\n  static inline mint generate_base()\
-    \ { return RNG(mod); }\n\n  inline void expand(size_t sz) {\n    if (power.size()\
-    \ < sz + 1) {\n      int pre_sz = (int)power.size();\n      power.resize(sz +\
-    \ 1);\n      FOR(i, pre_sz - 1, sz) power[i + 1] = power[i] * base;\n    }\n \
-    \ }\n\n  explicit RollingHash(mint base = generate_base()) : base(base), power{1}\
-    \ {}\n\n  template <typename STRING>\n  vector<mint> build(const STRING& s) const\
-    \ {\n    int sz = s.size();\n    vector<mint> hashed(sz + 1);\n    for (int i\
-    \ = 0; i < sz; i++) { hashed[i + 1] = hashed[i] * base + s[i]; }\n    return hashed;\n\
-    \  }\n\n  mint from_char(char x) { return x; }\n\n  mint query(const vc<mint>&\
-    \ s, int l, int r) {\n    expand(r - l);\n    return (s[r] - s[l] * power[r -\
-    \ l]).val;\n  }\n\n  mint combine(mint h1, mint h2, int h2len) {\n    expand(h2len);\n\
-    \    return h1 * power[h2len] + h2;\n  }\n\n  mint add_char(mint h, int x) { return\
-    \ h * base + mint(x); }\n\n  int lcp(const vc<mint>& a, int l1, int r1, const\
-    \ vc<mint>& b, int l2,\n          int r2) {\n    int len = min(r1 - l1, r2 - l2);\n\
-    \    int low = 0, high = len + 1;\n    while (high - low > 1) {\n      int mid\
-    \ = (low + high) / 2;\n      if (query(a, l1, l1 + mid) == query(b, l2, l2 + mid))\n\
-    \        low = mid;\n      else\n        high = mid;\n    }\n    return low;\n\
-    \  }\n};\n#line 1 \"string/palindromic_tree.hpp\"\n// palindromic tree \u3092\u4F5C\
-    \u308B\ntemplate <int sigma>\nstruct Palindromic_Tree {\n  struct Node {\n   \
-    \ array<int, sigma> TO;\n    int link;\n    int length;\n    pair<int, int> pos;\
-    \ // position of first ocurrence\n    Node(int link, int length, int l, int r)\n\
-    \        : link(link), length(length), pos({l, r}) {\n      fill(all(TO), -1);\n\
-    \    }\n  };\n\n  vc<Node> nodes;\n  vc<int> path;\n\n  template <typename STRING>\n\
-    \  Palindromic_Tree(const STRING& S, char off) {\n    nodes.eb(Node(-1, -1, 0,\
-    \ -1));\n    nodes.eb(Node(0, 0, 0, 0));\n    path = {0};\n    int p = 0;\n  \
-    \  FOR(i, len(S)) {\n      path.eb(p);\n      int x = S[i] - off;\n      while\
-    \ (p) {\n        int j = i - 1 - nodes[p].length;\n        bool can = (j >= 0\
-    \ && S[j] - off == x);\n        if (!can) {\n          p = nodes[p].link;\n  \
-    \        continue;\n        }\n        break;\n      }\n      if (nodes[p].TO[x]\
-    \ != -1) {\n        p = nodes[p].TO[x];\n        continue;\n      }\n      int\
-    \ to = len(nodes);\n      int l = i - 1 - nodes[p].length;\n      int r = i +\
-    \ 1;\n      nodes[p].TO[x] = to;\n\n      int link;\n      if (p == 0) link =\
-    \ 1;\n      if (p != 0) {\n        while (1) {\n          p = nodes[p].link;\n\
-    \          int j = i - 1 - nodes[p].length;\n          bool can = (j >= 0 && S[j]\
-    \ - off == x) || (p == 0);\n          if (can) break;\n        }\n        assert(nodes[p].TO[x]\
-    \ != -1);\n        link = nodes[p].TO[x];\n      }\n      nodes.eb(Node(link,\
-    \ r - l, l, r));\n      p = to;\n    }\n    path.eb(p);\n  }\n\n  vc<int> count()\
-    \ {\n    vc<int> res(len(nodes));\n    for (auto&& p: path) res[p]++;\n    FOR_R(k,\
-    \ 1, len(nodes)) {\n      int link = nodes[k].link;\n      res[link] += res[k];\n\
-    \    }\n    return res;\n  }\n};\n#line 3 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\
-    \ntemplate <typename Val, int LOG = 20>\r\nstruct HashMap {\r\n  int N;\r\n  u64*\
-    \ keys;\r\n  Val* vals;\r\n  vc<int> IDS;\r\n  bitset<1 << LOG> used;\r\n  const\
-    \ int shift;\r\n  const u64 r = 11995408973635179863ULL;\r\n  HashMap()\r\n  \
-    \    : N(1 << LOG), keys(new u64[N]), vals(new Val[N]), shift(64 - __lg(N)) {}\r\
-    \n  int hash(ll x) {\r\n    static const u64 FIXED_RANDOM\r\n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\
-    \n    return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
-    \ u64& key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && keys[i]\
-    \ != key; (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  // [] \u3057\
-    \u305F\u6642\u70B9\u3067\u8981\u7D20\u306F\u4F5C\u3089\u308C\u308B\r\n  Val& operator[](const\
-    \ u64& key) {\r\n    int i = index(key);\r\n    if (!used[i]) IDS.eb(i), used[i]\
-    \ = 1, keys[i] = key, vals[i] = Val{};\r\n    return vals[i];\r\n  }\r\n\r\n \
-    \ Val get(const u64& key, Val default_value) {\r\n    int i = index(key);\r\n\
-    \    if (!used[i]) return default_value;\r\n    return vals[i];\r\n  }\r\n\r\n\
-    \  bool count(const u64& key) {\r\n    int i = index(key);\r\n    return used[i]\
-    \ && keys[i] == key;\r\n  }\r\n\r\n  void reset() {\r\n    for (auto&& i: IDS)\
-    \ used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  // f(key, val)\r\n  template\
-    \ <typename F>\r\n  void enumerate_all(F f) {\r\n    for (auto&& i: IDS) f(keys[i],\
-    \ vals[i]);\r\n  }\r\n};\r\n#line 8 \"test/yukicoder/263.test.cpp\"\n\nvoid solve()\
-    \ {\n  RollingHash RH;\n  using M61 = modint61;\n\n  auto get = [&]() -> vc<pair<ll,\
-    \ int>> {\n    vc<pair<ll, int>> res;\n    STR(S);\n    Palindromic_Tree<26> X(S,\
-    \ 'A');\n    auto SH = RH.build(S);\n    auto CNT = X.count();\n    FOR(i, len(X.nodes))\
-    \ {\n      if (X.nodes[i].length <= 0) continue;\n      auto [l, r] = X.nodes[i].pos;\n\
-    \      M61 x = RH.query(SH, l, r);\n      res.eb(x.val, CNT[i]);\n    }\n    return\
-    \ res;\n  };\n\n  auto A = get();\n  auto B = get();\n\n  HashMap<int, 20> MP;\n\
-    \  for (auto&& [x, cnt]: A) MP[x] += cnt;\n  ll ANS = 0;\n  for (auto&& [y, cnt]:\
-    \ B) { ANS += MP.get(y, 0) * ll(cnt); }\n  print(ANS);\n}\n\nsigned main() {\n\
-    \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/263\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n\n#include \"string/rollinghash.hpp\"\n#include \"\
-    string/palindromic_tree.hpp\"\n#include \"ds/hashmap.hpp\"\n\nvoid solve() {\n\
-    \  RollingHash RH;\n  using M61 = modint61;\n\n  auto get = [&]() -> vc<pair<ll,\
-    \ int>> {\n    vc<pair<ll, int>> res;\n    STR(S);\n    Palindromic_Tree<26> X(S,\
-    \ 'A');\n    auto SH = RH.build(S);\n    auto CNT = X.count();\n    FOR(i, len(X.nodes))\
-    \ {\n      if (X.nodes[i].length <= 0) continue;\n      auto [l, r] = X.nodes[i].pos;\n\
-    \      M61 x = RH.query(SH, l, r);\n      res.eb(x.val, CNT[i]);\n    }\n    return\
-    \ res;\n  };\n\n  auto A = get();\n  auto B = get();\n\n  HashMap<int, 20> MP;\n\
-    \  for (auto&& [x, cnt]: A) MP[x] += cnt;\n  ll ANS = 0;\n  for (auto&& [y, cnt]:\
-    \ B) { ANS += MP.get(y, 0) * ll(cnt); }\n  print(ANS);\n}\n\nsigned main() {\n\
-    \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \ yes(!t); }\n#line 4 \"test_atcoder/abc312f.test.cpp\"\n\n#line 1 \"ds/slide_split_sum.hpp\"\
+    \n/*\n\u30FB\u591A\u91CD\u96C6\u5408\u3092\u6271\u3046\n\u30FB[0,k) \u756A\u76EE\
+    \u3068 [k,N) \u756A\u76EE\u306E sum \u304C\u3068\u308C\u308B\n\u30FBO(k \u306E\
+    \u5909\u5316\u91CF\u306E\u7DCF\u548C x log N)\n*/\ntemplate <typename T>\nstruct\
+    \ Slide_Split_Sum {\n  pq<T> ql, rm_ql;\n  pqg<T> qr, rm_qr;\n  T sl, sr;\n  Slide_Split_Sum()\
+    \ : sl(0), sr(0) {}\n\n  inline int size() { return size_l() + size_r(); }\n \
+    \ void insert(T x) {\n    if (x <= lmax())\n      push_l(x);\n    else\n     \
+    \ push_r(x);\n  }\n  void erase(T x) {\n    if (x <= lmax()) {\n      erase_l(x);\n\
+    \    } else {\n      erase_r(x);\n    }\n  }\n  pair<T, T> query(int k) {\n  \
+    \  assert(0 <= k && k <= size());\n    while (size_l() < k) { push_l(pop_r());\
+    \ }\n    while (size_l() > k) { push_r(pop_l()); }\n    return {sl, sr};\n  }\n\
+    \  T query_l(int k) { return query(k).fi; }\n  T query_r(int k) { return query(size()\
+    \ - k).se; }\n\nprivate:\n  inline T lmax() {\n    while (!rm_ql.empty() && ql.top()\
+    \ == rm_ql.top()) rm_ql.pop(), ql.pop();\n    return (ql.empty() ? -infty<T> :\
+    \ ql.top());\n  }\n  inline T rmin() {\n    while (!rm_qr.empty() && qr.top()\
+    \ == rm_qr.top()) rm_qr.pop(), qr.pop();\n    return (qr.empty() ? infty<T> :\
+    \ qr.top());\n  }\n  inline T pop_l() {\n    while (!rm_ql.empty() && ql.top()\
+    \ == rm_ql.top()) rm_ql.pop(), ql.pop();\n    T x = POP(ql);\n    sl -= x;\n \
+    \   return x;\n  }\n  inline T pop_r() {\n    while (!rm_qr.empty() && qr.top()\
+    \ == rm_qr.top()) rm_qr.pop(), qr.pop();\n    T x = POP(qr);\n    sr -= x;\n \
+    \   return x;\n  }\n  inline void push_l(T x) { ql.emplace(x), sl += x; }\n  inline\
+    \ void push_r(T x) { qr.emplace(x), sr += x; }\n  inline void erase_l(T x) { rm_ql.emplace(x),\
+    \ sl -= x; }\n  inline void erase_r(T x) { rm_qr.emplace(x), sr -= x; }\n  inline\
+    \ int size_l() { return ql.size() - rm_ql.size(); }\n  inline int size_r() { return\
+    \ qr.size() - rm_qr.size(); }\n};\n#line 6 \"test_atcoder/abc312f.test.cpp\"\n\
+    \nvoid solve() {\n  LL(N, M);\n  vi A, B, C;\n  ll ANS = 0;\n  FOR(N) {\n    LL(t,\
+    \ x);\n    if (t == 0) C.eb(x);\n    if (t == 1) B.eb(x);\n    if (t == 2) A.eb(x);\n\
+    \  }\n  sort(all(A));\n  reverse(all(A));\n  sort(all(B));\n  reverse(all(B));\n\
+    \  sort(all(C));\n  reverse(all(C));\n\n  Slide_Split_Sum<ll> SSS;\n  auto calc\
+    \ = [&](ll n) -> void {\n    int k = min(n, len(SSS));\n    chmax(ANS, SSS.query_r(k));\n\
+    \  };\n  for (auto&& x: C) SSS.insert(x);\n  calc(M);\n\n  ll p = 0;\n  for (auto&&\
+    \ a: A) {\n    FOR(i, p, p + a) {\n      if (i >= len(B)) break;\n      SSS.insert(B[i]);\n\
+    \    }\n    M -= 1;\n    p += a;\n    if (M == 0) break;\n    calc(M);\n  }\n\
+    \  print(ANS);\n}\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n\
+    \  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc312/tasks/abc312_f\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/slide_split_sum.hpp\"\
+    \n\nvoid solve() {\n  LL(N, M);\n  vi A, B, C;\n  ll ANS = 0;\n  FOR(N) {\n  \
+    \  LL(t, x);\n    if (t == 0) C.eb(x);\n    if (t == 1) B.eb(x);\n    if (t ==\
+    \ 2) A.eb(x);\n  }\n  sort(all(A));\n  reverse(all(A));\n  sort(all(B));\n  reverse(all(B));\n\
+    \  sort(all(C));\n  reverse(all(C));\n\n  Slide_Split_Sum<ll> SSS;\n  auto calc\
+    \ = [&](ll n) -> void {\n    int k = min(n, len(SSS));\n    chmax(ANS, SSS.query_r(k));\n\
+    \  };\n  for (auto&& x: C) SSS.insert(x);\n  calc(M);\n\n  ll p = 0;\n  for (auto&&\
+    \ a: A) {\n    FOR(i, p, p + a) {\n      if (i >= len(B)) break;\n      SSS.insert(B[i]);\n\
+    \    }\n    M -= 1;\n    p += a;\n    if (M == 0) break;\n    calc(M);\n  }\n\
+    \  print(ANS);\n}\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n\
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - string/rollinghash.hpp
-  - random/base.hpp
-  - mod/modint61.hpp
-  - string/palindromic_tree.hpp
-  - ds/hashmap.hpp
+  - ds/slide_split_sum.hpp
   isVerificationFile: true
-  path: test/yukicoder/263.test.cpp
+  path: test_atcoder/abc312f.test.cpp
   requiredBy: []
-  timestamp: '2023-07-28 03:32:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-08-06 03:47:07+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yukicoder/263.test.cpp
+documentation_of: test_atcoder/abc312f.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/263.test.cpp
-- /verify/test/yukicoder/263.test.cpp.html
-title: test/yukicoder/263.test.cpp
+- /verify/test_atcoder/abc312f.test.cpp
+- /verify/test_atcoder/abc312f.test.cpp.html
+title: test_atcoder/abc312f.test.cpp
 ---

@@ -176,8 +176,8 @@ data:
   timestamp: '2023-07-30 12:32:42+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc202_f.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp
+  - test_atcoder/abc202_f.test.cpp
 documentation_of: geo/count_points_in_triangles.hpp
 layout: document
 redirect_from:

@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/domninator_tree.test.cpp
     title: test/library_checker/graph/domninator_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1601.test.cpp
     title: test/yukicoder/1601.test.cpp
   - icon: ':x:'
@@ -107,10 +107,10 @@ data:
   timestamp: '2023-07-30 12:32:57+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc209e.test.cpp
   - test/yukicoder/1601.test.cpp
-  - test/library_checker/graph/K_shortest_walk.test.cpp
   - test/library_checker/graph/domninator_tree.test.cpp
+  - test/library_checker/graph/K_shortest_walk.test.cpp
+  - test_atcoder/abc209e.test.cpp
 documentation_of: graph/reverse_graph.hpp
 layout: document
 redirect_from:
