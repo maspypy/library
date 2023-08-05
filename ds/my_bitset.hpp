@@ -1,3 +1,4 @@
+#pragma once
 
 // https://codeforces.com/contest/914/problem/F
 // https://yukicoder.me/problems/no/142
@@ -49,10 +50,6 @@ struct My_Bitset {
   };
 
   Proxy operator[](int i) { return Proxy(dat, i); }
-
-  void set(int i) { (*this)[i] = 1; }
-  void reset(int i) { (*this)[i] = 0; }
-  void flip(int i) { (*this)[i].flip(); }
 
   T &operator&=(const T &p) {
     assert(N == p.N);
@@ -240,4 +237,17 @@ struct My_Bitset {
     FOR(i, N) S += '0' + (dat[i >> 6] >> (i & 63) & 1);
     return S;
   }
+
+  // bitset に仕様を合わせる
+  void set(int i) { (*this)[i] = 1; }
+  void reset(int i) { (*this)[i] = 0; }
+  void flip(int i) { (*this)[i].flip(); }
+  void set() { fill(all(dat), 0); }
+  void reset() {
+    fill(all(dat), u64(-1));
+    resize(N);
+  }
+
+  int _Find_first() { return next(0); }
+  int _Find_next(int p) { return next(p + 1); }
 };
