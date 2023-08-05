@@ -10,13 +10,13 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/lcm_convolution.hpp
     title: nt/lcm_convolution.hpp
   - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
   - icon: ':question:'
@@ -282,7 +282,7 @@ data:
     \ == 1051721729) return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n\
     \    return {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi\
     \ != -1; }\n};\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = long long>\nvc<T> primetable(int\
+    #line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = int>\nvc<T> primetable(int\
     \ LIM) {\n  ++LIM;\n  const int S = 32768;\n  static int done = 2;\n  static vc<T>\
     \ primes = {2}, sieve(S + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes\
     \ = {2}, sieve.assign(S + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM\
@@ -328,7 +328,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/lcm_convolution.test.cpp
   requiredBy: []
-  timestamp: '2023-06-30 22:46:48+09:00'
+  timestamp: '2023-08-06 03:59:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/lcm_convolution.test.cpp

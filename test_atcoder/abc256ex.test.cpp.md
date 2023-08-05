@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/sum_assign.hpp
     title: alg/acted_monoid/sum_assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/intervals.hpp
     title: ds/intervals.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc256/tasks/abc256_Ex
@@ -258,8 +258,8 @@ data:
     \      : LLIM(0),\n        RLIM(N),\n        none_val(none_val),\n        total_num(0),\n\
     \        total_len(0),\n        dat(N, none_val),\n        ss(N) {\n    ss.insert(0);\n\
     \  }\n\n  // x \u3092\u542B\u3080\u533A\u9593\u306E\u60C5\u5831\u306E\u53D6\u5F97\
-    \n  tuple<int, int, T> get(int x, bool ERASE) {\n    int l = ss.prev(x);\n   \
-    \ int r = ss.next(x + 1);\n    T t = dat[l];\n    if (t != none_val && ERASE)\
+    \ l, r, t\n  tuple<int, int, T> get(int x, bool ERASE) {\n    int l = ss.prev(x);\n\
+    \    int r = ss.next(x + 1);\n    T t = dat[l];\n    if (t != none_val && ERASE)\
     \ {\n      --total_num, total_len -= r - l;\n      dat[l] = none_val;\n      merge_at(l);\n\
     \      merge_at(r);\n    }\n    return {l, r, t};\n  }\n\n  // [L, R) \u5185\u306E\
     \u5168\u30C7\u30FC\u30BF\u306E\u53D6\u5F97\n  // f(l,r,x)\n  template <typename\
@@ -291,23 +291,23 @@ data:
     \u6570\u3068\u9577\u3055\u5408\u8A08\n  int total_num;\n  X total_len;\n  map<X,\
     \ T> dat;\n\n  Intervals(T none_val) : none_val(none_val), total_num(0), total_len(0)\
     \ {\n    dat[LLIM] = none_val;\n    dat[RLIM] = none_val;\n  }\n\n  // x \u3092\
-    \u542B\u3080\u533A\u9593\u306E\u60C5\u5831\u306E\u53D6\u5F97\n  tuple<X, X, T>\
-    \ get(X x, bool ERASE) {\n    auto it2 = dat.upper_bound(x);\n    auto it1 = prev(it2);\n\
-    \    auto [l, tl] = *it1;\n    auto [r, tr] = *it2;\n    if (tl != none_val &&\
-    \ ERASE) {\n      --total_num, total_len -= r - l;\n      dat[l] = none_val;\n\
-    \      merge_at(l);\n      merge_at(r);\n    }\n    return {l, r, tl};\n  }\n\n\
-    \  // [L, R) \u5185\u306E\u5168\u30C7\u30FC\u30BF\u306E\u53D6\u5F97\n  template\
-    \ <typename F>\n  void enumerate_range(X L, X R, F f, bool ERASE) {\n    assert(LLIM\
-    \ <= L && L <= R && R <= RLIM);\n    if (!ERASE) {\n      auto it = prev(dat.upper_bound(L));\n\
-    \      while ((*it).fi < R) {\n        auto it2 = next(it);\n        f(max((*it).fi,\
-    \ L), min((*it2).fi, R), (*it).se);\n        it = it2;\n      }\n      return;\n\
-    \    }\n    // \u534A\u7AEF\u306A\u3068\u3053\u308D\u306E\u5206\u5272\n    auto\
-    \ p = prev(dat.upper_bound(L));\n    if ((*p).fi < L) {\n      dat[L] = (*p).se;\n\
-    \      if (dat[L] != none_val) ++total_num;\n    }\n    p = dat.lower_bound(R);\n\
-    \    if (R < (*p).fi) {\n      T t = (*prev(p)).se;\n      dat[R] = t;\n     \
-    \ if (t != none_val) ++total_num;\n    }\n    p = dat.lower_bound(L);\n    while\
-    \ (1) {\n      if ((*p).fi >= R) break;\n      auto q = next(p);\n      T t =\
-    \ (*p).se;\n      f((*p).fi, (*q).fi, t);\n      if (t != none_val) --total_num,\
+    \u542B\u3080\u533A\u9593\u306E\u60C5\u5831\u306E\u53D6\u5F97 l, r, t\n  tuple<X,\
+    \ X, T> get(X x, bool ERASE) {\n    auto it2 = dat.upper_bound(x);\n    auto it1\
+    \ = prev(it2);\n    auto [l, tl] = *it1;\n    auto [r, tr] = *it2;\n    if (tl\
+    \ != none_val && ERASE) {\n      --total_num, total_len -= r - l;\n      dat[l]\
+    \ = none_val;\n      merge_at(l);\n      merge_at(r);\n    }\n    return {l, r,\
+    \ tl};\n  }\n\n  // [L, R) \u5185\u306E\u5168\u30C7\u30FC\u30BF\u306E\u53D6\u5F97\
+    \ f(l, r, t)\n  template <typename F>\n  void enumerate_range(X L, X R, F f, bool\
+    \ ERASE) {\n    assert(LLIM <= L && L <= R && R <= RLIM);\n    if (!ERASE) {\n\
+    \      auto it = prev(dat.upper_bound(L));\n      while ((*it).fi < R) {\n   \
+    \     auto it2 = next(it);\n        f(max((*it).fi, L), min((*it2).fi, R), (*it).se);\n\
+    \        it = it2;\n      }\n      return;\n    }\n    // \u534A\u7AEF\u306A\u3068\
+    \u3053\u308D\u306E\u5206\u5272\n    auto p = prev(dat.upper_bound(L));\n    if\
+    \ ((*p).fi < L) {\n      dat[L] = (*p).se;\n      if (dat[L] != none_val) ++total_num;\n\
+    \    }\n    p = dat.lower_bound(R);\n    if (R < (*p).fi) {\n      T t = (*prev(p)).se;\n\
+    \      dat[R] = t;\n      if (t != none_val) ++total_num;\n    }\n    p = dat.lower_bound(L);\n\
+    \    while (1) {\n      if ((*p).fi >= R) break;\n      auto q = next(p);\n  \
+    \    T t = (*p).se;\n      f((*p).fi, (*q).fi, t);\n      if (t != none_val) --total_num,\
     \ total_len -= (*q).fi - (*p).fi;\n      p = dat.erase(p);\n    }\n    dat[L]\
     \ = none_val;\n  }\n\n  void set(X L, X R, T t) {\n    enumerate_range(\n    \
     \    L, R, [](int l, int r, T x) -> void {}, true);\n    dat[L] = t;\n    if (t\
@@ -423,8 +423,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc256ex.test.cpp
   requiredBy: []
-  timestamp: '2023-06-23 23:19:39+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-08-06 03:49:42+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc256ex.test.cpp
 layout: document

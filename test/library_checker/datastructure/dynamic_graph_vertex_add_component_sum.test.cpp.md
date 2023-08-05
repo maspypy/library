@@ -224,20 +224,20 @@ data:
     \ {}\r\n\r\n  int operator[](int v) {\r\n    while (dat.get(v) >= 0) v = dat.get(v);\r\
     \n    return v;\r\n  }\r\n\r\n  ll size(int v) { return -dat.get((*this)[v]);\
     \ }\r\n  int time() { return dat.time(); }\r\n  void rollback(int t) { dat.rollback(t);\
-    \ }\r\n\r\n  bool merge(int a, int b) {\r\n    a = (*this)[a], b = (*this)[b];\r\
-    \n    if (a == b) return false;\r\n    if (dat.get(a) > dat.get(b)) swap(a, b);\r\
-    \n    dat.set(a, dat.get(a) + dat.get(b));\r\n    dat.set(b, a);\r\n    return\
-    \ true;\r\n  }\r\n};\r\n#line 1 \"ds/offline_query/add_remove_query.hpp\"\n/*\n\
-    \u30FB\u6642\u523B t \u306B x \u3092\u8FFD\u52A0\u3059\u308B\n\u30FB\u6642\u523B\
-    \ t \u306B x \u3092\u524A\u9664\u3059\u308B\n\u304C\u3042\u308B\u3068\u304D\u306B\
-    \u3001\n\u30FB\u6642\u523B [l, r) \u306B x \u3092\u8FFD\u52A0\u3059\u308B\n\u306B\
-    \u5909\u63DB\u3059\u308B\u3002\n\u30AF\u30A8\u30EA\u304C\u6642\u7CFB\u5217\u9806\
-    \u306B\u6765\u308B\u3053\u3068\u304C\u5206\u304B\u3063\u3066\u3044\u308B\u3068\
-    \u304D\u306F monotone = true \u306E\u65B9\u304C\u9AD8\u901F\u3002\n*/\ntemplate\
-    \ <typename X, bool monotone>\nstruct Add_Remove_Query {\n  map<X, int> MP;\n\
-    \  vc<tuple<int, int, X>> dat;\n  map<X, vc<int>> ADD;\n  map<X, vc<int>> RM;\n\
-    \n  void add(int time, X x) {\n    if (monotone) return add_monotone(time, x);\n\
-    \    ADD[x].eb(time);\n  }\n  void remove(int time, X x) {\n    if (monotone)\
+    \ }\r\n  void reset() { rollback(0); }\r\n\r\n  bool merge(int a, int b) {\r\n\
+    \    a = (*this)[a], b = (*this)[b];\r\n    if (a == b) return false;\r\n    if\
+    \ (dat.get(a) > dat.get(b)) swap(a, b);\r\n    dat.set(a, dat.get(a) + dat.get(b));\r\
+    \n    dat.set(b, a);\r\n    return true;\r\n  }\r\n};\r\n#line 1 \"ds/offline_query/add_remove_query.hpp\"\
+    \n/*\n\u30FB\u6642\u523B t \u306B x \u3092\u8FFD\u52A0\u3059\u308B\n\u30FB\u6642\
+    \u523B t \u306B x \u3092\u524A\u9664\u3059\u308B\n\u304C\u3042\u308B\u3068\u304D\
+    \u306B\u3001\n\u30FB\u6642\u523B [l, r) \u306B x \u3092\u8FFD\u52A0\u3059\u308B\
+    \n\u306B\u5909\u63DB\u3059\u308B\u3002\n\u30AF\u30A8\u30EA\u304C\u6642\u7CFB\u5217\
+    \u9806\u306B\u6765\u308B\u3053\u3068\u304C\u5206\u304B\u3063\u3066\u3044\u308B\
+    \u3068\u304D\u306F monotone = true \u306E\u65B9\u304C\u9AD8\u901F\u3002\n*/\n\
+    template <typename X, bool monotone>\nstruct Add_Remove_Query {\n  map<X, int>\
+    \ MP;\n  vc<tuple<int, int, X>> dat;\n  map<X, vc<int>> ADD;\n  map<X, vc<int>>\
+    \ RM;\n\n  void add(int time, X x) {\n    if (monotone) return add_monotone(time,\
+    \ x);\n    ADD[x].eb(time);\n  }\n  void remove(int time, X x) {\n    if (monotone)\
     \ return remove_monotone(time, x);\n    RM[x].eb(time);\n  }\n\n  // \u3059\u3079\
     \u3066\u306E\u30AF\u30A8\u30EA\u304C\u7D42\u308F\u3063\u305F\u73FE\u5728\u6642\
     \u523B\u3092\u6E21\u3059\n  vc<tuple<int, int, X>> calc(int time) {\n    if (monotone)\
@@ -318,7 +318,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-06-23 23:19:58+09:00'
+  timestamp: '2023-08-06 03:58:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp

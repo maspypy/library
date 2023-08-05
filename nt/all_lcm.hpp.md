@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/lpf_table.hpp
     title: nt/lpf_table.hpp
   - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc152e.test.cpp
     title: test_atcoder/abc152e.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetest.hpp\"\nstruct m64 {\r\n  using i64 = int64_t;\r\
@@ -75,11 +75,11 @@ data:
     \ vc<int>& lpf) {\n  vc<pair<ll, int>> res;\n  while (n > 1) {\n    int p = lpf[n];\n\
     \    int e = 0;\n    while (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n\
     \    res.eb(p, e);\n  }\n  return res;\n}\n#line 2 \"nt/primetable.hpp\"\n\ntemplate\
-    \ <typename T = long long>\nvc<T> primetable(int LIM) {\n  ++LIM;\n  const int\
-    \ S = 32768;\n  static int done = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\
-    \n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S + 1,\
-    \ 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM) * 1.1));\n\
-    \    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i])\
+    \ <typename T = int>\nvc<T> primetable(int LIM) {\n  ++LIM;\n  const int S = 32768;\n\
+    \  static int done = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\n  if (done\
+    \ < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S + 1, 0);\n   \
+    \ const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM) * 1.1));\n   \
+    \ vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i])\
     \ {\n        cp.eb(i, i * i / 2);\n        for (int j = i * i; j <= S; j += 2\
     \ * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1; L <= R; L += S) {\n\
     \      array<bool, S> block{};\n      for (auto& [p, idx]: cp)\n        for (int\
@@ -109,8 +109,8 @@ data:
   isVerificationFile: false
   path: nt/all_lcm.hpp
   requiredBy: []
-  timestamp: '2023-03-05 17:53:13+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-08-06 03:59:07+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc152e.test.cpp
 documentation_of: nt/all_lcm.hpp

@@ -20,7 +20,7 @@ data:
   - icon: ':question:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/block_cut.hpp
     title: graph/block_cut.hpp
   - icon: ':heavy_check_mark:'
@@ -32,6 +32,9 @@ data:
   - icon: ':warning:'
     path: graph/compress_tree.hpp
     title: graph/compress_tree.hpp
+  - icon: ':x:'
+    path: graph/count/count_independent_set.hpp
+    title: graph/count/count_independent_set.hpp
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
@@ -104,6 +107,9 @@ data:
   - icon: ':warning:'
     path: graph/optimal_product_on_tree.hpp
     title: graph/optimal_product_on_tree.hpp
+  - icon: ':x:'
+    path: graph/path_cycle.hpp
+    title: graph/path_cycle.hpp
   - icon: ':heavy_check_mark:'
     path: graph/range_to_range_graph.hpp
     title: graph/range_to_range_graph.hpp
@@ -182,7 +188,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/dice.hpp
     title: other/dice.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -342,7 +348,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/QOJ5445.test.cpp
     title: test/mytest/QOJ5445.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/count_indep_set.test.cpp
     title: test/mytest/count_indep_set.test.cpp
   - icon: ':heavy_check_mark:'
@@ -546,7 +552,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc151_e.test.cpp
     title: test_atcoder/arc151_e.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -700,6 +706,7 @@ data:
   - graph/two_edge_component.hpp
   - graph/optimal_product_on_tree.hpp
   - graph/toposort.hpp
+  - graph/path_cycle.hpp
   - graph/maximum_matching_of_line_graph.hpp
   - graph/dsu_on_tree.hpp
   - graph/dominator_tree.hpp
@@ -712,6 +719,7 @@ data:
   - graph/bracket_graph.hpp
   - graph/maximum_independent_set_weighted.hpp
   - graph/reachability.hpp
+  - graph/count/count_independent_set.hpp
   - graph/compress_tree.hpp
   - graph/maximum_antichain.hpp
   - graph/block_cut.hpp

@@ -249,30 +249,31 @@ data:
     \ n) : dat(vc<int>(n, -1)) {}\r\n\r\n  int operator[](int v) {\r\n    while (dat.get(v)\
     \ >= 0) v = dat.get(v);\r\n    return v;\r\n  }\r\n\r\n  ll size(int v) { return\
     \ -dat.get((*this)[v]); }\r\n  int time() { return dat.time(); }\r\n  void rollback(int\
-    \ t) { dat.rollback(t); }\r\n\r\n  bool merge(int a, int b) {\r\n    a = (*this)[a],\
-    \ b = (*this)[b];\r\n    if (a == b) return false;\r\n    if (dat.get(a) > dat.get(b))\
-    \ swap(a, b);\r\n    dat.set(a, dat.get(a) + dat.get(b));\r\n    dat.set(b, a);\r\
-    \n    return true;\r\n  }\r\n};\r\n#line 8 \"test/library_checker/datastructure/add_remove_query.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A0, N);\n  using P = pair<int, int>;\n\
-    \n  vc<int> query;\n\n  Add_Remove_Query<P, true> X;\n  FOR(Q) {\n    LL(t);\n\
-    \    if (t == 0) {\n      LL(a, b);\n      if (a > b) swap(a, b);\n      P e =\
-    \ {a, b};\n      X.add(len(query), e);\n    }\n    if (t == 1) {\n      LL(a,\
-    \ b);\n      if (a > b) swap(a, b);\n      P e = {a, b};\n      X.remove(len(query),\
-    \ e);\n    }\n    if (t == 2) {\n      LL(v, x);\n      P p = {~v, x};\n     \
-    \ X.add(len(query), p);\n    }\n    if (t == 3) {\n      LL(v);\n      query.eb(v);\n\
-    \    }\n  }\n\n  auto upd = X.calc(len(query));\n  Q = len(query);\n  vi ANS(Q);\n\
-    \  vc<int> I(len(upd));\n  iota(all(I), 0);\n\n  Rollback_Array<ll> A(A0);\n \
-    \ Rollback_UnionFind uf(N);\n\n  auto dfs = [&](auto& dfs, vc<int>& I, int begin,\
-    \ int end) -> void {\n    int a_time = A.time();\n    int uf_time = uf.time();\n\
-    \n    vc<int> IL, IR;\n    int mid = (begin + end) / 2;\n    // \u533A\u9593\u3092\
-    \u5B8C\u5168\u306B\u542B\u3080\u66F4\u65B0\u30AF\u30A8\u30EA\u3092\u51E6\u7406\
-    \u3059\u308B\u3002\n    // \u90E8\u5206\u7684\u306B\u4EA4\u308F\u308B\u30AF\u30A8\
-    \u30EA\u3092 J \u306B\u5165\u308C\u308B\n    for (auto&& i: I) {\n      auto [a,\
-    \ b, X] = upd[i];\n      if (a <= begin && end <= b) {\n        // update\n  \
-    \      auto [u, v] = X;\n        if (u < 0) {\n          int i = uf[~u];\n   \
-    \       A.set(i, A.get(i) + v);\n        } else {\n          u = uf[u], v = uf[v];\n\
-    \          if (u != v) {\n            uf.merge(u, v);\n            int r = uf[u];\n\
-    \            A.set(r, A.get(u) + A.get(v));\n          }\n        }\n        continue;\n\
+    \ t) { dat.rollback(t); }\r\n  void reset() { rollback(0); }\r\n\r\n  bool merge(int\
+    \ a, int b) {\r\n    a = (*this)[a], b = (*this)[b];\r\n    if (a == b) return\
+    \ false;\r\n    if (dat.get(a) > dat.get(b)) swap(a, b);\r\n    dat.set(a, dat.get(a)\
+    \ + dat.get(b));\r\n    dat.set(b, a);\r\n    return true;\r\n  }\r\n};\r\n#line\
+    \ 8 \"test/library_checker/datastructure/add_remove_query.test.cpp\"\n\nvoid solve()\
+    \ {\n  LL(N, Q);\n  VEC(ll, A0, N);\n  using P = pair<int, int>;\n\n  vc<int>\
+    \ query;\n\n  Add_Remove_Query<P, true> X;\n  FOR(Q) {\n    LL(t);\n    if (t\
+    \ == 0) {\n      LL(a, b);\n      if (a > b) swap(a, b);\n      P e = {a, b};\n\
+    \      X.add(len(query), e);\n    }\n    if (t == 1) {\n      LL(a, b);\n    \
+    \  if (a > b) swap(a, b);\n      P e = {a, b};\n      X.remove(len(query), e);\n\
+    \    }\n    if (t == 2) {\n      LL(v, x);\n      P p = {~v, x};\n      X.add(len(query),\
+    \ p);\n    }\n    if (t == 3) {\n      LL(v);\n      query.eb(v);\n    }\n  }\n\
+    \n  auto upd = X.calc(len(query));\n  Q = len(query);\n  vi ANS(Q);\n  vc<int>\
+    \ I(len(upd));\n  iota(all(I), 0);\n\n  Rollback_Array<ll> A(A0);\n  Rollback_UnionFind\
+    \ uf(N);\n\n  auto dfs = [&](auto& dfs, vc<int>& I, int begin, int end) -> void\
+    \ {\n    int a_time = A.time();\n    int uf_time = uf.time();\n\n    vc<int> IL,\
+    \ IR;\n    int mid = (begin + end) / 2;\n    // \u533A\u9593\u3092\u5B8C\u5168\
+    \u306B\u542B\u3080\u66F4\u65B0\u30AF\u30A8\u30EA\u3092\u51E6\u7406\u3059\u308B\
+    \u3002\n    // \u90E8\u5206\u7684\u306B\u4EA4\u308F\u308B\u30AF\u30A8\u30EA\u3092\
+    \ J \u306B\u5165\u308C\u308B\n    for (auto&& i: I) {\n      auto [a, b, X] =\
+    \ upd[i];\n      if (a <= begin && end <= b) {\n        // update\n        auto\
+    \ [u, v] = X;\n        if (u < 0) {\n          int i = uf[~u];\n          A.set(i,\
+    \ A.get(i) + v);\n        } else {\n          u = uf[u], v = uf[v];\n        \
+    \  if (u != v) {\n            uf.merge(u, v);\n            int r = uf[u];\n  \
+    \          A.set(r, A.get(u) + A.get(v));\n          }\n        }\n        continue;\n\
     \      }\n      if (a < mid) IL.eb(i);\n      if (mid < b) IR.eb(i);\n    }\n\
     \    if (begin + 1 == end) {\n      // \u6C42\u5024\u30AF\u30A8\u30EA\n      int\
     \ v = query[begin];\n      ANS[begin] = A.get(uf[v]);\n    } else {\n      dfs(dfs,\
@@ -321,7 +322,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/add_remove_query.test.cpp
   requiredBy: []
-  timestamp: '2023-06-23 23:19:58+09:00'
+  timestamp: '2023-08-06 03:58:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/add_remove_query.test.cpp

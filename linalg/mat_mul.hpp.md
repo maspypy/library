@@ -8,70 +8,70 @@ data:
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/mat_pow.hpp
     title: linalg/mat_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/sparse_exp_of_div.hpp
     title: poly/sparse_exp_of_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/matrix_product.test.cpp
     title: test/library_checker/matrix/matrix_product.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/min_poly.test.cpp
     title: test/mytest/min_poly.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1080_2.test.cpp
     title: test/yukicoder/1080_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1750.test.cpp
     title: test/yukicoder/1750.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1810.test.cpp
     title: test/yukicoder/1810.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1907.test.cpp
     title: test/yukicoder/1907.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/502_2.test.cpp
     title: test/yukicoder/502_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc222h_2.test.cpp
     title: test_atcoder/abc222h_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc276_g.test.cpp
     title: test_atcoder/abc276_g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc276_g_2.test.cpp
     title: test_atcoder/abc276_g_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -144,28 +144,28 @@ data:
     \ != -1; }\n};\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     #line 3 \"linalg/mat_mul.hpp\"\n\r\ntemplate <class T, typename enable_if<has_mod<T>::value>::type*\
     \ = nullptr>\r\nvc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n\
-    \  constexpr int mod = T::get_mod();\r\n  auto N = len(A), M = len(B), K = len(B[0]);\r\
+    \  const int mod = T::get_mod();\r\n  auto N = len(A), M = len(B), K = len(B[0]);\r\
     \n  vv(int, b, K, M);\r\n  FOR(i, M) FOR(j, K) b[j][i] = B[i][j].val;\r\n  vv(T,\
     \ C, N, K);\r\n\r\n  if (M <= 16) {\r\n    FOR(i, N) FOR(j, K) {\r\n      u64\
     \ sm = 0;\r\n      FOR(m, M) sm += u64(A[i][m].val) * b[j][m];\r\n      C[i][j]\
     \ = sm % mod;\r\n    }\r\n  } else {\r\n    FOR(i, N) FOR(j, K) {\r\n      i128\
     \ sm = 0;\r\n      FOR(m, M) sm += ll(A[i][m].val) * b[j][m];\r\n      C[i][j]\
-    \ = sm % mod;\r\n    }\r\n  }\r\n  return C;\r\n}\r\n\r\ntemplate <class T, typename\
-    \ enable_if<!has_mod<T>::value>::type* = nullptr>\r\nvc<vc<T>> mat_mul(const vc<vc<T>>&\
-    \ A, const vc<vc<T>>& B) {\r\n  assert(!A.empty() && !B.empty());\r\n  auto N\
-    \ = len(A), M = len(B), K = len(B[0]);\r\n  vv(T, b, K, M);\r\n  FOR(i, M) FOR(j,\
-    \ K) b[j][i] = B[i][j];\r\n  vv(T, C, N, K);\r\n  FOR(n, N) FOR(m, M) FOR(k, K)\
-    \ C[n][k] += A[n][m] * b[k][m];\r\n  return C;\r\n}\r\n"
+    \ = int(sm % mod);\r\n    }\r\n  }\r\n  return C;\r\n}\r\n\r\ntemplate <class\
+    \ T, typename enable_if<!has_mod<T>::value>::type* = nullptr>\r\nvc<vc<T>> mat_mul(const\
+    \ vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n  assert(!A.empty() && !B.empty());\r\
+    \n  auto N = len(A), M = len(B), K = len(B[0]);\r\n  vv(T, b, K, M);\r\n  FOR(i,\
+    \ M) FOR(j, K) b[j][i] = B[i][j];\r\n  vv(T, C, N, K);\r\n  FOR(n, N) FOR(m, M)\
+    \ FOR(k, K) C[n][k] += A[n][m] * b[k][m];\r\n  return C;\r\n}\r\n"
   code: "#pragma once\r\n#include \"mod/modint.hpp\"\r\n\r\ntemplate <class T, typename\
     \ enable_if<has_mod<T>::value>::type* = nullptr>\r\nvc<vc<T>> mat_mul(const vc<vc<T>>&\
-    \ A, const vc<vc<T>>& B) {\r\n  constexpr int mod = T::get_mod();\r\n  auto N\
-    \ = len(A), M = len(B), K = len(B[0]);\r\n  vv(int, b, K, M);\r\n  FOR(i, M) FOR(j,\
-    \ K) b[j][i] = B[i][j].val;\r\n  vv(T, C, N, K);\r\n\r\n  if (M <= 16) {\r\n \
-    \   FOR(i, N) FOR(j, K) {\r\n      u64 sm = 0;\r\n      FOR(m, M) sm += u64(A[i][m].val)\
-    \ * b[j][m];\r\n      C[i][j] = sm % mod;\r\n    }\r\n  } else {\r\n    FOR(i,\
-    \ N) FOR(j, K) {\r\n      i128 sm = 0;\r\n      FOR(m, M) sm += ll(A[i][m].val)\
-    \ * b[j][m];\r\n      C[i][j] = sm % mod;\r\n    }\r\n  }\r\n  return C;\r\n}\r\
-    \n\r\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type* = nullptr>\r\
+    \ A, const vc<vc<T>>& B) {\r\n  const int mod = T::get_mod();\r\n  auto N = len(A),\
+    \ M = len(B), K = len(B[0]);\r\n  vv(int, b, K, M);\r\n  FOR(i, M) FOR(j, K) b[j][i]\
+    \ = B[i][j].val;\r\n  vv(T, C, N, K);\r\n\r\n  if (M <= 16) {\r\n    FOR(i, N)\
+    \ FOR(j, K) {\r\n      u64 sm = 0;\r\n      FOR(m, M) sm += u64(A[i][m].val) *\
+    \ b[j][m];\r\n      C[i][j] = sm % mod;\r\n    }\r\n  } else {\r\n    FOR(i, N)\
+    \ FOR(j, K) {\r\n      i128 sm = 0;\r\n      FOR(m, M) sm += ll(A[i][m].val) *\
+    \ b[j][m];\r\n      C[i][j] = int(sm % mod);\r\n    }\r\n  }\r\n  return C;\r\n\
+    }\r\n\r\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type* = nullptr>\r\
     \nvc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n  assert(!A.empty()\
     \ && !B.empty());\r\n  auto N = len(A), M = len(B), K = len(B[0]);\r\n  vv(T,\
     \ b, K, M);\r\n  FOR(i, M) FOR(j, K) b[j][i] = B[i][j];\r\n  vv(T, C, N, K);\r\
@@ -183,8 +183,8 @@ data:
   - linalg/mat_pow.hpp
   - linalg/det_A_plus_xB.hpp
   - seq/kth_term_of_p_recursive.hpp
-  timestamp: '2023-06-30 22:46:48+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-08-06 03:50:24+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/factorial_998.test.cpp
   - test/mytest/min_poly.test.cpp

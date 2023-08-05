@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
   - icon: ':heavy_check_mark:'
@@ -10,19 +10,19 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
   - icon: ':question:'
@@ -230,7 +230,7 @@ data:
     \ u32> divmod(u64 z) {\n    if (m == 1) return {z, 0};\n    u64 x = (u64)(((unsigned\
     \ __int128)(z)*im) >> 64);\n    u64 y = x * m;\n    if (z < y) return {x - 1,\
     \ z - y + m};\n    return {x, z - y};\n  }\n  u32 mul(u32 a, u32 b) { return modulo(u64(a)\
-    \ * b); }\n};\n#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = long long>\n\
+    \ * b); }\n};\n#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = int>\n\
     vc<T> primetable(int LIM) {\n  ++LIM;\n  const int S = 32768;\n  static int done\
     \ = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\n  if (done < LIM) {\n  \
     \  done = LIM;\n\n    primes = {2}, sieve.assign(S + 1, 0);\n    const int R =\
@@ -342,7 +342,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/tetration.test.cpp
   requiredBy: []
-  timestamp: '2023-05-12 18:15:39+09:00'
+  timestamp: '2023-08-06 03:59:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/tetration.test.cpp

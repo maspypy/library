@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/implicit_matrix/min_poly.hpp
     title: linalg/implicit_matrix/min_poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/spmat_min_poly.hpp
     title: linalg/spmat_min_poly.hpp
   - icon: ':question:'
@@ -25,14 +25,14 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -318,18 +318,18 @@ data:
     \n  }\r\n  S = find_linear_rec(S);\r\n  reverse(all(S));\r\n  return S;\r\n}\r\
     \n#line 3 \"linalg/mat_mul.hpp\"\n\r\ntemplate <class T, typename enable_if<has_mod<T>::value>::type*\
     \ = nullptr>\r\nvc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n\
-    \  constexpr int mod = T::get_mod();\r\n  auto N = len(A), M = len(B), K = len(B[0]);\r\
+    \  const int mod = T::get_mod();\r\n  auto N = len(A), M = len(B), K = len(B[0]);\r\
     \n  vv(int, b, K, M);\r\n  FOR(i, M) FOR(j, K) b[j][i] = B[i][j].val;\r\n  vv(T,\
     \ C, N, K);\r\n\r\n  if (M <= 16) {\r\n    FOR(i, N) FOR(j, K) {\r\n      u64\
     \ sm = 0;\r\n      FOR(m, M) sm += u64(A[i][m].val) * b[j][m];\r\n      C[i][j]\
     \ = sm % mod;\r\n    }\r\n  } else {\r\n    FOR(i, N) FOR(j, K) {\r\n      i128\
     \ sm = 0;\r\n      FOR(m, M) sm += ll(A[i][m].val) * b[j][m];\r\n      C[i][j]\
-    \ = sm % mod;\r\n    }\r\n  }\r\n  return C;\r\n}\r\n\r\ntemplate <class T, typename\
-    \ enable_if<!has_mod<T>::value>::type* = nullptr>\r\nvc<vc<T>> mat_mul(const vc<vc<T>>&\
-    \ A, const vc<vc<T>>& B) {\r\n  assert(!A.empty() && !B.empty());\r\n  auto N\
-    \ = len(A), M = len(B), K = len(B[0]);\r\n  vv(T, b, K, M);\r\n  FOR(i, M) FOR(j,\
-    \ K) b[j][i] = B[i][j];\r\n  vv(T, C, N, K);\r\n  FOR(n, N) FOR(m, M) FOR(k, K)\
-    \ C[n][k] += A[n][m] * b[k][m];\r\n  return C;\r\n}\r\n#line 9 \"test/mytest/min_poly.test.cpp\"\
+    \ = int(sm % mod);\r\n    }\r\n  }\r\n  return C;\r\n}\r\n\r\ntemplate <class\
+    \ T, typename enable_if<!has_mod<T>::value>::type* = nullptr>\r\nvc<vc<T>> mat_mul(const\
+    \ vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n  assert(!A.empty() && !B.empty());\r\
+    \n  auto N = len(A), M = len(B), K = len(B[0]);\r\n  vv(T, b, K, M);\r\n  FOR(i,\
+    \ M) FOR(j, K) b[j][i] = B[i][j];\r\n  vv(T, C, N, K);\r\n  FOR(n, N) FOR(m, M)\
+    \ FOR(k, K) C[n][k] += A[n][m] * b[k][m];\r\n  return C;\r\n}\r\n#line 9 \"test/mytest/min_poly.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid test() {\n  vc<tuple<int, int, mint>> A;\n\
     \  A.eb(0, 0, 1);\n  A.eb(0, 1, 2);\n  A.eb(1, 0, 3);\n  A.eb(1, 1, 4);\n  vc<mint>\
     \ f = spmat_min_poly<mint>(2, A);\n  assert(f == vc<mint>({mint(-2), mint(-5),\
@@ -418,8 +418,8 @@ data:
   isVerificationFile: true
   path: test/mytest/min_poly.test.cpp
   requiredBy: []
-  timestamp: '2023-06-30 22:46:48+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-08-06 03:50:24+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/min_poly.test.cpp
 layout: document

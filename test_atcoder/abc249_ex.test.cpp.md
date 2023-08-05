@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/solve_linear_lower.hpp
     title: linalg/solve_linear_lower.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc249/tasks/abc249_Ex
@@ -282,11 +282,11 @@ data:
     \ == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr\
     \ bool can_ntt() { return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
     using modint998 = modint<998244353>;\n#line 2 \"nt/primetable.hpp\"\n\ntemplate\
-    \ <typename T = long long>\nvc<T> primetable(int LIM) {\n  ++LIM;\n  const int\
-    \ S = 32768;\n  static int done = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\
-    \n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S + 1,\
-    \ 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM) * 1.1));\n\
-    \    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i])\
+    \ <typename T = int>\nvc<T> primetable(int LIM) {\n  ++LIM;\n  const int S = 32768;\n\
+    \  static int done = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\n  if (done\
+    \ < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S + 1, 0);\n   \
+    \ const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM) * 1.1));\n   \
+    \ vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i])\
     \ {\n        cp.eb(i, i * i / 2);\n        for (int j = i * i; j <= S; j += 2\
     \ * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1; L <= R; L += S) {\n\
     \      array<bool, S> block{};\n      for (auto& [p, idx]: cp)\n        for (int\
@@ -358,8 +358,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc249_ex.test.cpp
   requiredBy: []
-  timestamp: '2023-06-30 22:46:48+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-08-06 03:59:07+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc249_ex.test.cpp
 layout: document

@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/characteristic_poly.hpp
     title: linalg/characteristic_poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/mat_inv.hpp
     title: linalg/mat_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -25,22 +25,22 @@ data:
   - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   - icon: ':question:'
@@ -48,15 +48,15 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1907.test.cpp
     title: test/yukicoder/1907.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -134,14 +134,14 @@ data:
     \ bool can_ntt() { return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
     using modint998 = modint<998244353>;\n#line 3 \"linalg/mat_mul.hpp\"\n\r\ntemplate\
     \ <class T, typename enable_if<has_mod<T>::value>::type* = nullptr>\r\nvc<vc<T>>\
-    \ mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n  constexpr int mod = T::get_mod();\r\
+    \ mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n  const int mod = T::get_mod();\r\
     \n  auto N = len(A), M = len(B), K = len(B[0]);\r\n  vv(int, b, K, M);\r\n  FOR(i,\
     \ M) FOR(j, K) b[j][i] = B[i][j].val;\r\n  vv(T, C, N, K);\r\n\r\n  if (M <= 16)\
     \ {\r\n    FOR(i, N) FOR(j, K) {\r\n      u64 sm = 0;\r\n      FOR(m, M) sm +=\
     \ u64(A[i][m].val) * b[j][m];\r\n      C[i][j] = sm % mod;\r\n    }\r\n  } else\
     \ {\r\n    FOR(i, N) FOR(j, K) {\r\n      i128 sm = 0;\r\n      FOR(m, M) sm +=\
-    \ ll(A[i][m].val) * b[j][m];\r\n      C[i][j] = sm % mod;\r\n    }\r\n  }\r\n\
-    \  return C;\r\n}\r\n\r\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type*\
+    \ ll(A[i][m].val) * b[j][m];\r\n      C[i][j] = int(sm % mod);\r\n    }\r\n  }\r\
+    \n  return C;\r\n}\r\n\r\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type*\
     \ = nullptr>\r\nvc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n\
     \  assert(!A.empty() && !B.empty());\r\n  auto N = len(A), M = len(B), K = len(B[0]);\r\
     \n  vv(T, b, K, M);\r\n  FOR(i, M) FOR(j, K) b[j][i] = B[i][j];\r\n  vv(T, C,\
@@ -181,16 +181,16 @@ data:
     \ + 1][i];\r\n      T c = prod * A[i][k];\r\n      // DP[i] \u306E c \u500D\u3092\
     \u52A0\u7B97\r\n      FOR(j, len(DP[i])) dp[j] -= DP[i][j] * c;\r\n    }\r\n \
     \ }\r\n  return DP[n];\r\n}\r\n#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename\
-    \ T = long long>\nvc<T> primetable(int LIM) {\n  ++LIM;\n  const int S = 32768;\n\
-    \  static int done = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\n  if (done\
-    \ < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S + 1, 0);\n   \
-    \ const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM) * 1.1));\n   \
-    \ vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i])\
-    \ {\n        cp.eb(i, i * i / 2);\n        for (int j = i * i; j <= S; j += 2\
-    \ * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1; L <= R; L += S) {\n\
-    \      array<bool, S> block{};\n      for (auto& [p, idx]: cp)\n        for (int\
-    \ i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R\
-    \ - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes,\
+    \ T = int>\nvc<T> primetable(int LIM) {\n  ++LIM;\n  const int S = 32768;\n  static\
+    \ int done = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\n  if (done < LIM)\
+    \ {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S + 1, 0);\n    const int\
+    \ R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM) * 1.1));\n    vc<pair<int,\
+    \ int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i]) {\n \
+    \       cp.eb(i, i * i / 2);\n        for (int j = i * i; j <= S; j += 2 * i)\
+    \ sieve[j] = 1;\n      }\n    }\n    for (int L = 1; L <= R; L += S) {\n     \
+    \ array<bool, S> block{};\n      for (auto& [p, idx]: cp)\n        for (int i\
+    \ = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R -\
+    \ L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes,\
     \ LIM + 1);\n  return {primes.begin(), primes.begin() + k};\n}\n#line 3 \"mod/powertable.hpp\"\
     \n\r\n// a^0, ..., a^N\r\ntemplate <typename mint>\r\nvc<mint> powertable_1(mint\
     \ a, ll N) {\r\n  // table of a^i\r\n  vc<mint> f(N + 1, 1);\r\n  FOR(i, N) f[i\
@@ -428,8 +428,8 @@ data:
   isVerificationFile: false
   path: linalg/det_A_plus_xB.hpp
   requiredBy: []
-  timestamp: '2023-07-27 19:48:36+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-08-06 03:59:07+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1907.test.cpp
   - test/yukicoder/1303.test.cpp

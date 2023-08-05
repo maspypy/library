@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sliding_window_aggregation.hpp
     title: ds/sliding_window_aggregation.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -28,22 +28,22 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':heavy_check_mark:'
@@ -586,21 +586,21 @@ data:
     \ mint(n));\r\n  mint c = 0;\r\n  int d = len(a) - 1;\r\n  mint p = 1;\r\n  FOR(i,\
     \ d + 1) {\r\n    c += a[d - i] * p * C<mint>(d, i);\r\n    p *= -r;\r\n  }\r\n\
     \  c /= (mint(1) - r).pow(d);\r\n  for (auto&& x: a) x -= c;\r\n  return interpolate_poly_exp(a,\
-    \ r, n) + c;\r\n}\r\n#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = long\
-    \ long>\nvc<T> primetable(int LIM) {\n  ++LIM;\n  const int S = 32768;\n  static\
-    \ int done = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\n  if (done < LIM)\
-    \ {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S + 1, 0);\n    const int\
-    \ R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM) * 1.1));\n    vc<pair<int,\
-    \ int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i]) {\n \
-    \       cp.eb(i, i * i / 2);\n        for (int j = i * i; j <= S; j += 2 * i)\
-    \ sieve[j] = 1;\n      }\n    }\n    for (int L = 1; L <= R; L += S) {\n     \
-    \ array<bool, S> block{};\n      for (auto& [p, idx]: cp)\n        for (int i\
-    \ = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R -\
-    \ L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes,\
-    \ LIM + 1);\n  return {primes.begin(), primes.begin() + k};\n}\n#line 3 \"mod/powertable.hpp\"\
-    \n\r\n// a^0, ..., a^N\r\ntemplate <typename mint>\r\nvc<mint> powertable_1(mint\
-    \ a, ll N) {\r\n  // table of a^i\r\n  vc<mint> f(N + 1, 1);\r\n  FOR(i, N) f[i\
-    \ + 1] = a * f[i];\r\n  return f;\r\n}\r\n\r\n// 0^e, ..., N^e\r\ntemplate <typename\
+    \ r, n) + c;\r\n}\r\n#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = int>\n\
+    vc<T> primetable(int LIM) {\n  ++LIM;\n  const int S = 32768;\n  static int done\
+    \ = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\n  if (done < LIM) {\n  \
+    \  done = LIM;\n\n    primes = {2}, sieve.assign(S + 1, 0);\n    const int R =\
+    \ LIM / 2;\n    primes.reserve(int(LIM / log(LIM) * 1.1));\n    vc<pair<int, int>>\
+    \ cp;\n    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i]) {\n       \
+    \ cp.eb(i, i * i / 2);\n        for (int j = i * i; j <= S; j += 2 * i) sieve[j]\
+    \ = 1;\n      }\n    }\n    for (int L = 1; L <= R; L += S) {\n      array<bool,\
+    \ S> block{};\n      for (auto& [p, idx]: cp)\n        for (int i = idx; i < S\
+    \ + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R - L)) if (!block[i])\
+    \ primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes, LIM + 1);\n  return\
+    \ {primes.begin(), primes.begin() + k};\n}\n#line 3 \"mod/powertable.hpp\"\n\r\
+    \n// a^0, ..., a^N\r\ntemplate <typename mint>\r\nvc<mint> powertable_1(mint a,\
+    \ ll N) {\r\n  // table of a^i\r\n  vc<mint> f(N + 1, 1);\r\n  FOR(i, N) f[i +\
+    \ 1] = a * f[i];\r\n  return f;\r\n}\r\n\r\n// 0^e, ..., N^e\r\ntemplate <typename\
     \ mint>\r\nvc<mint> powertable_2(ll e, ll N) {\r\n  auto primes = primetable(N);\r\
     \n  vc<mint> f(N + 1, 1);\r\n  f[0] = mint(0).pow(e);\r\n  for (auto&& p: primes)\
     \ {\r\n    if (p > N) break;\r\n    mint xp = mint(p).pow(e);\r\n    ll pp = p;\r\
@@ -642,7 +642,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
   requiredBy: []
-  timestamp: '2023-07-27 19:48:36+09:00'
+  timestamp: '2023-08-06 03:59:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/sum_of_exp_times_poly.test.cpp

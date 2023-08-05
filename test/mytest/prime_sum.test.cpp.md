@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/primesum.hpp
     title: nt/primesum.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -211,9 +211,9 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\n#line 4 \"test/mytest/prime_sum.test.cpp\"\n\n#line 2 \"nt/primetable.hpp\"\
-    \n\ntemplate <typename T = long long>\nvc<T> primetable(int LIM) {\n  ++LIM;\n\
-    \  const int S = 32768;\n  static int done = 2;\n  static vc<T> primes = {2},\
-    \ sieve(S + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S\
+    \n\ntemplate <typename T = int>\nvc<T> primetable(int LIM) {\n  ++LIM;\n  const\
+    \ int S = 32768;\n  static int done = 2;\n  static vc<T> primes = {2}, sieve(S\
+    \ + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S\
     \ + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM)\
     \ * 1.1));\n    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n\
     \      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for (int j = i\
@@ -380,8 +380,8 @@ data:
   isVerificationFile: true
   path: test/mytest/prime_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-06-30 22:46:48+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-08-06 03:59:07+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/prime_sum.test.cpp
 layout: document

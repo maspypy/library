@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':question:'
@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/factor_interval.hpp
     title: nt/factor_interval.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc227/tasks/abc227_g
@@ -309,30 +309,29 @@ data:
     \    return {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi\
     \ != -1; }\n};\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     #line 7 \"test_atcoder/abc227g.test.cpp\"\n\n#line 2 \"nt/primetable.hpp\"\n\n\
-    template <typename T = long long>\nvc<T> primetable(int LIM) {\n  ++LIM;\n  const\
-    \ int S = 32768;\n  static int done = 2;\n  static vc<T> primes = {2}, sieve(S\
-    \ + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S\
-    \ + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM)\
-    \ * 1.1));\n    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n\
-    \      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for (int j = i\
-    \ * i; j <= S; j += 2 * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1;\
-    \ L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p, idx]:\
-    \ cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n\
-    \      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n\
-    \  }\n  int k = LB(primes, LIM + 1);\n  return {primes.begin(), primes.begin()\
-    \ + k};\n}\n#line 2 \"nt/factor_interval.hpp\"\n\n// n \u304C p \u3092\u6301\u3064\
-    \u3068\u304D f(n, p) \u3092\u547C\u3076\ntemplate <typename F>\nvoid factor_interval(ll\
-    \ L, ll R, F f) {\n  int n = R - L;\n  auto primes = primetable(sqrt(R));\n  vi\
-    \ A(n);\n  iota(all(A), L);\n  for (auto&& p: primes) {\n    ll pp = 1;\n    while\
-    \ (1) {\n      if (pp > R / p) break;\n      pp *= p;\n      ll s = ceil(L, pp)\
-    \ * pp;\n      while (s < R) {\n        f(s, p);\n        A[s - L] /= p;\n   \
-    \     s += pp;\n      }\n    }\n  }\n  FOR(i, n) if (A[i] > 1) f(L + i, A[i]);\n\
-    }\n#line 9 \"test_atcoder/abc227g.test.cpp\"\n\nusing mint = modint998;\n\nvoid\
-    \ solve() {\n  LL(N, K);\n  HashMap<int> MP;\n  factor_interval(1, K + 1, [&](int\
-    \ i, ll p) -> void { MP[p]--; });\n  factor_interval(N - K + 1, N + 1, [&](int\
-    \ i, ll p) -> void { MP[p]++; });\n  mint ANS = 1;\n  MP.enumerate_all([&](ll\
-    \ p, int k) -> void { ANS *= mint(1 + k); });\n  print(ANS);\n}\n\nsigned main()\
-    \ {\n  solve();\n  return 0;\n}\n"
+    template <typename T = int>\nvc<T> primetable(int LIM) {\n  ++LIM;\n  const int\
+    \ S = 32768;\n  static int done = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\
+    \n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S + 1,\
+    \ 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM) * 1.1));\n\
+    \    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i])\
+    \ {\n        cp.eb(i, i * i / 2);\n        for (int j = i * i; j <= S; j += 2\
+    \ * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1; L <= R; L += S) {\n\
+    \      array<bool, S> block{};\n      for (auto& [p, idx]: cp)\n        for (int\
+    \ i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R\
+    \ - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes,\
+    \ LIM + 1);\n  return {primes.begin(), primes.begin() + k};\n}\n#line 2 \"nt/factor_interval.hpp\"\
+    \n\n// n \u304C p \u3092\u6301\u3064\u3068\u304D f(n, p) \u3092\u547C\u3076\n\
+    template <typename F>\nvoid factor_interval(ll L, ll R, F f) {\n  int n = R -\
+    \ L;\n  auto primes = primetable(sqrt(R));\n  vi A(n);\n  iota(all(A), L);\n \
+    \ for (auto&& p: primes) {\n    ll pp = 1;\n    while (1) {\n      if (pp > R\
+    \ / p) break;\n      pp *= p;\n      ll s = ceil(L, pp) * pp;\n      while (s\
+    \ < R) {\n        f(s, p);\n        A[s - L] /= p;\n        s += pp;\n      }\n\
+    \    }\n  }\n  FOR(i, n) if (A[i] > 1) f(L + i, A[i]);\n}\n#line 9 \"test_atcoder/abc227g.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, K);\n  HashMap<int> MP;\n\
+    \  factor_interval(1, K + 1, [&](int i, ll p) -> void { MP[p]--; });\n  factor_interval(N\
+    \ - K + 1, N + 1, [&](int i, ll p) -> void { MP[p]++; });\n  mint ANS = 1;\n \
+    \ MP.enumerate_all([&](ll p, int k) -> void { ANS *= mint(1 + k); });\n  print(ANS);\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc227/tasks/abc227_g\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/hashmap.hpp\"\
     \n#include \"mod/modint.hpp\"\n\n#include \"nt/factor_interval.hpp\"\n\nusing\
@@ -353,8 +352,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc227g.test.cpp
   requiredBy: []
-  timestamp: '2023-06-30 22:46:48+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-08-06 03:59:07+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc227g.test.cpp
 layout: document
