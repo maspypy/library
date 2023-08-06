@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -61,15 +61,14 @@ data:
     \ vc<STRING>& S) {\n    int H = len(S);\n    int W = len(S[0]);\n    vv(M61, res,\
     \ H + 1, W + 1);\n    FOR(x, H) {\n      FOR(y, W) { res[x + 1][y + 1] = res[x\
     \ + 1][y] * b2 + M61(S[x][y] + 1); }\n      FOR(y, W + 1) res[x + 1][y] += b1\
-    \ * res[x][y];\n    }\n    return res;\n  }\n\n  M61 query(const vvc<M61>& A,\
-    \ int xl, int xr, int yl, int yr) {\n    assert(0 <= xl && xl <= xr && xr <= len(A));\n\
-    \    assert(0 <= yl && yl <= yr && yr <= len(A[0]));\n    expand(pow1, b1, xr\
-    \ - xl);\n    expand(pow2, b2, yr - yl);\n    M61 res = A[xr][yr];\n    res -=\
-    \ A[xl][yr] * pow1[xr - xl];\n    res -= A[xr][yl] * pow2[yr - yl];\n    res +=\
-    \ A[xl][yl] * pow1[xr - xl] * pow2[yr - yl];\n    return res;\n  }\n\nprivate:\n\
-    \  static inline u64 generate_base() { return RNG(M61::get_mod()); }\n\n  void\
-    \ expand(vc<M61>& pow, const M61& b, int n) {\n    while (len(pow) <= n) pow.eb(pow.back()\
-    \ * b);\n  }\n};\n"
+    \ * res[x][y];\n    }\n    expand(pow1, b1, H);\n    expand(pow2, b2, W);\n  \
+    \  return res;\n  }\n\n  M61 query(const vvc<M61>& A, int xl, int xr, int yl,\
+    \ int yr) {\n    assert(0 <= xl && xl <= xr && xr <= len(A));\n    assert(0 <=\
+    \ yl && yl <= yr && yr <= len(A[0]));\n    M61 a = A[xr][yr] - A[xr][yl] * pow2[yr\
+    \ - yl];\n    M61 b = A[xl][yr] - A[xl][yl] * pow2[yr - yl];\n    return a - b\
+    \ * pow1[xr - xl];\n  }\n\nprivate:\n  static inline u64 generate_base() { return\
+    \ RNG(M61::get_mod()); }\n\n  void expand(vc<M61>& pow, const M61& b, int n) {\n\
+    \    while (len(pow) <= n) pow.eb(pow.back() * b);\n  }\n};\n"
   code: "#include \"random/base.hpp\"\n#include \"mod/modint61.hpp\"\n\nstruct RollingHash_2D\
     \ {\n  using M61 = modint61;\n  const M61 b1, b2;\n  vc<M61> pow1;\n  vc<M61>\
     \ pow2;\n\n  RollingHash_2D()\n      : b1(generate_base()), b2(generate_base()),\
@@ -77,22 +76,21 @@ data:
     \ vc<STRING>& S) {\n    int H = len(S);\n    int W = len(S[0]);\n    vv(M61, res,\
     \ H + 1, W + 1);\n    FOR(x, H) {\n      FOR(y, W) { res[x + 1][y + 1] = res[x\
     \ + 1][y] * b2 + M61(S[x][y] + 1); }\n      FOR(y, W + 1) res[x + 1][y] += b1\
-    \ * res[x][y];\n    }\n    return res;\n  }\n\n  M61 query(const vvc<M61>& A,\
-    \ int xl, int xr, int yl, int yr) {\n    assert(0 <= xl && xl <= xr && xr <= len(A));\n\
-    \    assert(0 <= yl && yl <= yr && yr <= len(A[0]));\n    expand(pow1, b1, xr\
-    \ - xl);\n    expand(pow2, b2, yr - yl);\n    M61 res = A[xr][yr];\n    res -=\
-    \ A[xl][yr] * pow1[xr - xl];\n    res -= A[xr][yl] * pow2[yr - yl];\n    res +=\
-    \ A[xl][yl] * pow1[xr - xl] * pow2[yr - yl];\n    return res;\n  }\n\nprivate:\n\
-    \  static inline u64 generate_base() { return RNG(M61::get_mod()); }\n\n  void\
-    \ expand(vc<M61>& pow, const M61& b, int n) {\n    while (len(pow) <= n) pow.eb(pow.back()\
-    \ * b);\n  }\n};\n"
+    \ * res[x][y];\n    }\n    expand(pow1, b1, H);\n    expand(pow2, b2, W);\n  \
+    \  return res;\n  }\n\n  M61 query(const vvc<M61>& A, int xl, int xr, int yl,\
+    \ int yr) {\n    assert(0 <= xl && xl <= xr && xr <= len(A));\n    assert(0 <=\
+    \ yl && yl <= yr && yr <= len(A[0]));\n    M61 a = A[xr][yr] - A[xr][yl] * pow2[yr\
+    \ - yl];\n    M61 b = A[xl][yr] - A[xl][yl] * pow2[yr - yl];\n    return a - b\
+    \ * pow1[xr - xl];\n  }\n\nprivate:\n  static inline u64 generate_base() { return\
+    \ RNG(M61::get_mod()); }\n\n  void expand(vc<M61>& pow, const M61& b, int n) {\n\
+    \    while (len(pow) <= n) pow.eb(pow.back() * b);\n  }\n};\n"
   dependsOn:
   - random/base.hpp
   - mod/modint61.hpp
   isVerificationFile: false
   path: string/rollinghash_2d.hpp
   requiredBy: []
-  timestamp: '2023-08-06 22:10:42+09:00'
+  timestamp: '2023-08-06 23:25:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_14_C.test.cpp

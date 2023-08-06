@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
@@ -252,20 +252,19 @@ data:
     \ vc<STRING>& S) {\n    int H = len(S);\n    int W = len(S[0]);\n    vv(M61, res,\
     \ H + 1, W + 1);\n    FOR(x, H) {\n      FOR(y, W) { res[x + 1][y + 1] = res[x\
     \ + 1][y] * b2 + M61(S[x][y] + 1); }\n      FOR(y, W + 1) res[x + 1][y] += b1\
-    \ * res[x][y];\n    }\n    return res;\n  }\n\n  M61 query(const vvc<M61>& A,\
-    \ int xl, int xr, int yl, int yr) {\n    assert(0 <= xl && xl <= xr && xr <= len(A));\n\
-    \    assert(0 <= yl && yl <= yr && yr <= len(A[0]));\n    expand(pow1, b1, xr\
-    \ - xl);\n    expand(pow2, b2, yr - yl);\n    M61 res = A[xr][yr];\n    res -=\
-    \ A[xl][yr] * pow1[xr - xl];\n    res -= A[xr][yl] * pow2[yr - yl];\n    res +=\
-    \ A[xl][yl] * pow1[xr - xl] * pow2[yr - yl];\n    return res;\n  }\n\nprivate:\n\
-    \  static inline u64 generate_base() { return RNG(M61::get_mod()); }\n\n  void\
-    \ expand(vc<M61>& pow, const M61& b, int n) {\n    while (len(pow) <= n) pow.eb(pow.back()\
-    \ * b);\n  }\n};\n#line 8 \"test/aoj/ALDS1_14_C.test.cpp\"\n\nvoid solve() {\n\
-    \  LL(H, W);\n  VEC(string, A, H);\n  RollingHash_2D RH;\n  auto AH = RH.build(A);\n\
-    \  LL(H2, W2);\n  VEC(string, B, H2);\n  auto BH = RH.build(B);\n  auto b = RH.query(BH,\
-    \ 0, H2, 0, W2);\n\n  FOR(x, H - H2 + 1) FOR(y, W - W2 + 1) {\n    auto a = RH.query(AH,\
-    \ x, x + H2, y, y + W2);\n    if (a == b) { print(x, y); }\n  }\n}\n\nsigned main()\
-    \ {\n  solve();\n  return 0;\n}\n"
+    \ * res[x][y];\n    }\n    expand(pow1, b1, H);\n    expand(pow2, b2, W);\n  \
+    \  return res;\n  }\n\n  M61 query(const vvc<M61>& A, int xl, int xr, int yl,\
+    \ int yr) {\n    assert(0 <= xl && xl <= xr && xr <= len(A));\n    assert(0 <=\
+    \ yl && yl <= yr && yr <= len(A[0]));\n    M61 a = A[xr][yr] - A[xr][yl] * pow2[yr\
+    \ - yl];\n    M61 b = A[xl][yr] - A[xl][yl] * pow2[yr - yl];\n    return a - b\
+    \ * pow1[xr - xl];\n  }\n\nprivate:\n  static inline u64 generate_base() { return\
+    \ RNG(M61::get_mod()); }\n\n  void expand(vc<M61>& pow, const M61& b, int n) {\n\
+    \    while (len(pow) <= n) pow.eb(pow.back() * b);\n  }\n};\n#line 8 \"test/aoj/ALDS1_14_C.test.cpp\"\
+    \n\nvoid solve() {\n  LL(H, W);\n  VEC(string, A, H);\n  RollingHash_2D RH;\n\
+    \  auto AH = RH.build(A);\n  LL(H2, W2);\n  VEC(string, B, H2);\n  auto BH = RH.build(B);\n\
+    \  auto b = RH.query(BH, 0, H2, 0, W2);\n\n  FOR(x, H - H2 + 1) FOR(y, W - W2\
+    \ + 1) {\n    auto a = RH.query(AH, x, x + H2, y, y + W2);\n    if (a == b) {\
+    \ print(x, y); }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_C\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint61.hpp\"\
     \n#include \"string/rollinghash_2d.hpp\"\n\nvoid solve() {\n  LL(H, W);\n  VEC(string,\
@@ -283,7 +282,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_14_C.test.cpp
   requiredBy: []
-  timestamp: '2023-08-06 22:10:42+09:00'
+  timestamp: '2023-08-06 23:25:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_14_C.test.cpp
