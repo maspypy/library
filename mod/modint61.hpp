@@ -7,7 +7,7 @@ struct modint61 {
   static constexpr u64 MOD = (1ULL << 61) - 1;
   static constexpr u64 MOD8 = MOD * 8;
   u64 x8;
-  constexpr modint61() : x8(0ULL) {}
+  constexpr modint61() : x8(MOD8) {}
   constexpr modint61(u32 x) : x8((x + MOD - 1) % MOD * 8 + 8) {}
   constexpr modint61(u64 x) : x8((x + MOD - 1) % MOD * 8 + 8) {}
   constexpr modint61(int x) : x8((x + MOD - 1) % MOD * 8 + 8) {}
