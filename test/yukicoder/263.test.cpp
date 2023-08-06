@@ -20,7 +20,7 @@ void solve() {
       if (X.nodes[i].length <= 0) continue;
       auto [l, r] = X.nodes[i].pos;
       M61 x = RH.query(SH, l, r);
-      res.eb(x.val, CNT[i]);
+      res.eb(x.x8, CNT[i]);
     }
     return res;
   };
@@ -36,13 +36,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }

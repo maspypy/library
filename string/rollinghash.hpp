@@ -32,7 +32,7 @@ struct RollingHash {
 
   mint query(const vc<mint>& s, int l, int r) {
     expand(r - l);
-    return (s[r] - s[l] * power[r - l]).val;
+    return (s[r] - s[l] * power[r - l]);
   }
 
   mint combine(mint h1, mint h2, int h2len) {
