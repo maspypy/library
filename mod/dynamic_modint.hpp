@@ -23,11 +23,11 @@ struct Dynamic_Modint {
   Dynamic_Modint(ll x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}
 
   mint& operator+=(const mint& rhs) {
-    val = (val += rhs.val) >= umod() ? val : val - umod();
+    val = (val += rhs.val) < umod() ? val : val - umod();
     return *this;
   }
   mint& operator-=(const mint& rhs) {
-    val = (val += umod() - rhs.val) >= umod() ? val : val - umod();
+    val = (val += umod() - rhs.val) < umod() ? val : val - umod();
     return *this;
   }
   mint& operator*=(const mint& rhs) {

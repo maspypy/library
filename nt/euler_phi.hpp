@@ -7,9 +7,10 @@ ll euler_phi(ll n) {
   return n;
 }
 
-vi euler_phi_table(ll n) {
-  vi A(n + 1);
-  iota(all(A), 0);
+template <typename T>
+vc<T> euler_phi_table(ll n) {
+  vc<T> A(n + 1);
+  FOR(i, 1, n + 1) A[i] = T(i);
   divisor_mobius(A);
   return A;
 }
