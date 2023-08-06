@@ -8,6 +8,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/minplus_convolution_convex.hpp
     title: convex/minplus_convolution_convex.hpp
+  - icon: ':warning:'
+    path: convex/minplus_convolution_of_triples.hpp
+    title: convex/minplus_convolution_of_triples.hpp
   - icon: ':heavy_check_mark:'
     path: convex/monge.hpp
     title: convex/monge.hpp
@@ -61,6 +64,7 @@ data:
   isVerificationFile: false
   path: convex/smawk.hpp
   requiredBy:
+  - convex/minplus_convolution_of_triples.hpp
   - convex/minplus_convolution_convex.hpp
   - convex/maxplus_convolution_concave.hpp
   - convex/monge.hpp

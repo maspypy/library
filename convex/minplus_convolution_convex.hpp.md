@@ -4,7 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/smawk.hpp
     title: convex/smawk.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: convex/minplus_convolution_of_triples.hpp
+    title: convex/minplus_convolution_of_triples.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/mytest/minplus_convex.test.cpp
@@ -53,7 +56,8 @@ data:
   - convex/smawk.hpp
   isVerificationFile: false
   path: convex/minplus_convolution_convex.hpp
-  requiredBy: []
+  requiredBy:
+  - convex/minplus_convolution_of_triples.hpp
   timestamp: '2023-02-12 02:05:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
