@@ -34,7 +34,7 @@ data:
     \ primes.begin() + k};\n}\n#line 2 \"nt/multiplicative_sum.hpp\"\n\r\n// f_pe\uFF1A\
     T(int p,int e), f(p^e)\r\n// f_psum\uFF1A[1, x] \u3067\u306E f(p) \u306E\u548C\
     \r\ntemplate <typename T, typename F1, typename F2>\r\nT multiplicative_sum(ll\
-    \ N, F1 f_pe, F2 f_psum) {\r\n  ll sqN = sqrtl(N);\r\n  auto P = primetable(sqN);\r\
+    \ N, F1 f_pe, F2 f_psum) {\r\n  ll sqN = sqrtl(N);\r\n  auto P = primetable<int>(sqN);\r\
     \n\r\n  T ANS = T(1) + f_psum(N); // 1 and prime\r\n  // t = up_i^k \u306E\u3068\
     \u304D\u306B\u3001(t, i, k, f(t), f(u)) \u3092\u6301\u305F\u305B\u308B\r\n\r\n\
     \  auto dfs = [&](auto self, ll t, ll i, ll k, T ft, T fu) -> void {\r\n    T\
@@ -48,12 +48,12 @@ data:
   code: "#include \"nt/primetable.hpp\"\r\n\r\n// f_pe\uFF1AT(int p,int e), f(p^e)\r\
     \n// f_psum\uFF1A[1, x] \u3067\u306E f(p) \u306E\u548C\r\ntemplate <typename T,\
     \ typename F1, typename F2>\r\nT multiplicative_sum(ll N, F1 f_pe, F2 f_psum)\
-    \ {\r\n  ll sqN = sqrtl(N);\r\n  auto P = primetable(sqN);\r\n\r\n  T ANS = T(1)\
-    \ + f_psum(N); // 1 and prime\r\n  // t = up_i^k \u306E\u3068\u304D\u306B\u3001\
-    (t, i, k, f(t), f(u)) \u3092\u6301\u305F\u305B\u308B\r\n\r\n  auto dfs = [&](auto\
-    \ self, ll t, ll i, ll k, T ft, T fu) -> void {\r\n    T f_nxt = fu * f_pe(P[i],\
-    \ k + 1);\r\n    // \u5B50\u30CE\u30FC\u30C9\u3092\u5168\u90E8\u52A0\u7B97\r\n\
-    \    ANS += f_nxt;\r\n    ANS += ft * (f_psum(double(N) / t) - f_psum(P[i]));\r\
+    \ {\r\n  ll sqN = sqrtl(N);\r\n  auto P = primetable<int>(sqN);\r\n\r\n  T ANS\
+    \ = T(1) + f_psum(N); // 1 and prime\r\n  // t = up_i^k \u306E\u3068\u304D\u306B\
+    \u3001(t, i, k, f(t), f(u)) \u3092\u6301\u305F\u305B\u308B\r\n\r\n  auto dfs =\
+    \ [&](auto self, ll t, ll i, ll k, T ft, T fu) -> void {\r\n    T f_nxt = fu *\
+    \ f_pe(P[i], k + 1);\r\n    // \u5B50\u30CE\u30FC\u30C9\u3092\u5168\u90E8\u52A0\
+    \u7B97\r\n    ANS += f_nxt;\r\n    ANS += ft * (f_psum(double(N) / t) - f_psum(P[i]));\r\
     \n\r\n    ll lim = sqrtl(double(N) / t);\r\n    if (P[i] <= lim) { self(self,\
     \ t * P[i], i, k + 1, f_nxt, fu); }\r\n    FOR3(j, i + 1, len(P)) {\r\n      if\
     \ (P[j] > lim) break;\r\n      self(self, t * P[j], j, 1, ft * f_pe(P[j], 1),\
@@ -64,7 +64,7 @@ data:
   isVerificationFile: false
   path: nt/multiplicative_sum.hpp
   requiredBy: []
-  timestamp: '2023-08-06 03:59:07+09:00'
+  timestamp: '2023-08-06 12:11:45+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1276.test.cpp

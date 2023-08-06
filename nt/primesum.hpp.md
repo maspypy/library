@@ -63,17 +63,17 @@ data:
     \ / x]);\r\n  }\r\n\r\n  template <typename F>\r\n  void calc(const F f) {\r\n\
     \    auto primes = primetable<int>(sqN);\r\n    sum_lo.resize(sqN + 1);\r\n  \
     \  sum_hi.resize(sqN + 1);\r\n    FOR3(i, 1, sqN + 1) sum_lo[i] = f(i) - 1;\r\n\
-    \    FOR3(i, 1, sqN + 1) sum_hi[i] = f(double(N) / i) - 1;\r\n    for (int p:\
-    \ primes) {\r\n      ll pp = ll(p) * p;\r\n      if (pp > N) break;\r\n      ll\
-    \ R = min(sqN, N / pp);\r\n      ll M = sqN / p;\r\n      T x = sum_lo[p - 1];\r\
-    \n      T fp = sum_lo[p] - sum_lo[p - 1];\r\n      FOR(i, 1, M + 1) sum_hi[i]\
-    \ -= fp * (sum_hi[i * p] - x);\r\n      FOR(i, M + 1, R + 1) sum_hi[i] -= fp *\
-    \ (sum_lo[N / (double(i) * p)] - x);\r\n      FOR_R(n, pp, sqN + 1) sum_lo[n]\
-    \ -= fp * (sum_lo[double(n) / p] - x);\r\n    }\r\n    calculated = 1;\r\n  }\r\
-    \n\r\n  void calc_count() {\r\n    calc([](ll x) -> T { return x; });\r\n  }\r\
-    \n\r\n  void calc_sum() {\r\n    calc([](ll x) -> T {\r\n      ll a = x, b = x\
-    \ + 1;\r\n      if (!(x & 1)) a /= 2;\r\n      if (x & 1) b /= 2;\r\n      return\
-    \ T(a) * T(b);\r\n    });\r\n  }\r\n};\r\n"
+    \    FOR3(i, 1, sqN + 1) sum_hi[i] = f(double(N) / i) - 1;\r\n    for (ll p: primes)\
+    \ {\r\n      ll pp = ll(p) * p;\r\n      if (pp > N) break;\r\n      ll R = min(sqN,\
+    \ N / pp);\r\n      ll M = sqN / p;\r\n      T x = sum_lo[p - 1];\r\n      T fp\
+    \ = sum_lo[p] - sum_lo[p - 1];\r\n      FOR(i, 1, M + 1) sum_hi[i] -= fp * (sum_hi[i\
+    \ * p] - x);\r\n      FOR(i, M + 1, R + 1) sum_hi[i] -= fp * (sum_lo[double(N)\
+    \ / (i * p)] - x);\r\n      FOR_R(n, pp, sqN + 1) sum_lo[n] -= fp * (sum_lo[double(n)\
+    \ / p] - x);\r\n    }\r\n    calculated = 1;\r\n  }\r\n\r\n  void calc_count()\
+    \ {\r\n    calc([](ll x) -> T { return x; });\r\n  }\r\n\r\n  void calc_sum()\
+    \ {\r\n    calc([](ll x) -> T {\r\n      ll a = x, b = x + 1;\r\n      if (!(x\
+    \ & 1)) a /= 2;\r\n      if (x & 1) b /= 2;\r\n      return T(a) * T(b);\r\n \
+    \   });\r\n  }\r\n};\r\n"
   code: "#include \"nt/primetable.hpp\"\r\n\r\n/*\r\nN \u3068\u5B8C\u5168\u4E57\u6CD5\
     \u7684\u95A2\u6570 f \u306E prefix sum \u95A2\u6570 F \u3092\u4E0E\u3048\u308B\
     \u3002\r\nn = floor(N/d) \u3068\u306A\u308B n \u306B\u5BFE\u3059\u308B sum_{p\
@@ -88,17 +88,17 @@ data:
     \ / x]);\r\n  }\r\n\r\n  template <typename F>\r\n  void calc(const F f) {\r\n\
     \    auto primes = primetable<int>(sqN);\r\n    sum_lo.resize(sqN + 1);\r\n  \
     \  sum_hi.resize(sqN + 1);\r\n    FOR3(i, 1, sqN + 1) sum_lo[i] = f(i) - 1;\r\n\
-    \    FOR3(i, 1, sqN + 1) sum_hi[i] = f(double(N) / i) - 1;\r\n    for (int p:\
-    \ primes) {\r\n      ll pp = ll(p) * p;\r\n      if (pp > N) break;\r\n      ll\
-    \ R = min(sqN, N / pp);\r\n      ll M = sqN / p;\r\n      T x = sum_lo[p - 1];\r\
-    \n      T fp = sum_lo[p] - sum_lo[p - 1];\r\n      FOR(i, 1, M + 1) sum_hi[i]\
-    \ -= fp * (sum_hi[i * p] - x);\r\n      FOR(i, M + 1, R + 1) sum_hi[i] -= fp *\
-    \ (sum_lo[N / (double(i) * p)] - x);\r\n      FOR_R(n, pp, sqN + 1) sum_lo[n]\
-    \ -= fp * (sum_lo[double(n) / p] - x);\r\n    }\r\n    calculated = 1;\r\n  }\r\
-    \n\r\n  void calc_count() {\r\n    calc([](ll x) -> T { return x; });\r\n  }\r\
-    \n\r\n  void calc_sum() {\r\n    calc([](ll x) -> T {\r\n      ll a = x, b = x\
-    \ + 1;\r\n      if (!(x & 1)) a /= 2;\r\n      if (x & 1) b /= 2;\r\n      return\
-    \ T(a) * T(b);\r\n    });\r\n  }\r\n};\r\n"
+    \    FOR3(i, 1, sqN + 1) sum_hi[i] = f(double(N) / i) - 1;\r\n    for (ll p: primes)\
+    \ {\r\n      ll pp = ll(p) * p;\r\n      if (pp > N) break;\r\n      ll R = min(sqN,\
+    \ N / pp);\r\n      ll M = sqN / p;\r\n      T x = sum_lo[p - 1];\r\n      T fp\
+    \ = sum_lo[p] - sum_lo[p - 1];\r\n      FOR(i, 1, M + 1) sum_hi[i] -= fp * (sum_hi[i\
+    \ * p] - x);\r\n      FOR(i, M + 1, R + 1) sum_hi[i] -= fp * (sum_lo[double(N)\
+    \ / (i * p)] - x);\r\n      FOR_R(n, pp, sqN + 1) sum_lo[n] -= fp * (sum_lo[double(n)\
+    \ / p] - x);\r\n    }\r\n    calculated = 1;\r\n  }\r\n\r\n  void calc_count()\
+    \ {\r\n    calc([](ll x) -> T { return x; });\r\n  }\r\n\r\n  void calc_sum()\
+    \ {\r\n    calc([](ll x) -> T {\r\n      ll a = x, b = x + 1;\r\n      if (!(x\
+    \ & 1)) a /= 2;\r\n      if (x & 1) b /= 2;\r\n      return T(a) * T(b);\r\n \
+    \   });\r\n  }\r\n};\r\n"
   dependsOn:
   - nt/primetable.hpp
   isVerificationFile: false
@@ -106,7 +106,7 @@ data:
   requiredBy:
   - nt/primesum_mod4.hpp
   - nt/primesum_mod6.hpp
-  timestamp: '2023-08-06 05:48:33+09:00'
+  timestamp: '2023-08-06 12:11:45+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/primesum_mod4.test.cpp
