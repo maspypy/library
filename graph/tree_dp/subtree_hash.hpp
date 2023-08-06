@@ -8,7 +8,7 @@ template <typename TREE>
 struct SubTree_Hash {
   using mint = modint61;
   TREE& tree;
-  vc<ll> dp, dp_1, dp_2;
+  vc<u64> dp, dp_1, dp_2;
 
   SubTree_Hash(TREE& tree) : tree(tree) {
     int N = tree.N;
@@ -23,16 +23,16 @@ struct SubTree_Hash {
 
     Rerooting_dp<decltype(tree), T> DP(tree, f_ee, f_ev, f_ve, unit);
     dp.resize(N), dp_1.resize(N), dp_2.resize(N);
-    FOR(v, N) dp[v] = DP.dp[v].se.val;
-    FOR(v, N) dp_1[v] = DP.dp_1[v].se.val;
-    FOR(v, N) dp_2[v] = DP.dp_2[v].se.val;
+    FOR(v, N) dp[v] = DP.dp[v].se.x8;
+    FOR(v, N) dp_1[v] = DP.dp_1[v].se.x8;
+    FOR(v, N) dp_2[v] = DP.dp_2[v].se.x8;
   }
 
   // v を根としたときの full tree
-  ll operator[](int v) { return dp[v]; }
+  u64 operator[](int v) { return dp[v]; }
 
   // root を根としたときの部分木 v
-  ll get(int root, int v) {
+  u64 get(int root, int v) {
     if (root == v) return dp[v];
     if (!tree.in_subtree(root, v)) { return dp_1[v]; }
     int w = tree.jump(v, root, 1);

@@ -1,3 +1,4 @@
+#pragma once
 
 // https : // yosupo.hatenablog.com/entry/2023/08/06/181942
 // x の代わりに 8x を [8, 8MOD] で持つ
