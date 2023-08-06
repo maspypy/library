@@ -1,7 +1,10 @@
 #pragma once
 
+// https : // yosupo.hatenablog.com/entry/2023/08/06/181942
 struct modint61 {
-  static constexpr u64 mod = (1ULL << 61) - 1;
+  using u128 = unsigned __int128;
+  static constexpr u64 MOD = (1ULL << 61) - 1;
+  static constexpr u64 MOD8 = MOD * 8;
   u64 val;
   constexpr modint61() : val(0ULL) {}
   constexpr modint61(u32 x) : val(x) {}
@@ -49,6 +52,8 @@ struct modint61 {
     }
     return ret;
   }
+
+  u64 mul(u64 a, u64 b) {}
 #ifdef FASTIO
   void write() { fastio::printer.write(val); }
   void read() {
