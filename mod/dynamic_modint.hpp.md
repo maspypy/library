@@ -36,7 +36,7 @@ data:
   - icon: ':x:'
     path: test/library_checker/convolution/convolution_mod_dmint.test.cpp
     title: test/library_checker/convolution/convolution_mod_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/convolution_mod_setntt.test.cpp
     title: test/library_checker/convolution/convolution_mod_setntt.test.cpp
   - icon: ':x:'
@@ -98,7 +98,7 @@ data:
     title: test_atcoder/abc281g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -227,28 +227,28 @@ data:
     \  static void set_mod(int m) {\n    assert(1 <= m);\n    bt = Barrett(m);\n \
     \ }\n\n  Dynamic_Modint() : val(0) {}\n  Dynamic_Modint(u32 x) : val(bt.modulo(x))\
     \ {}\n  Dynamic_Modint(u64 x) : val(bt.modulo(x)) {}\n  Dynamic_Modint(int x)\
-    \ : val(bt.modulo(x)) { assert(x >= 0); }\n  Dynamic_Modint(ll x) : val(bt.modulo(x))\
-    \ { assert(x >= 0); }\n\n  mint& operator+=(const mint& rhs) {\n    val += rhs.val;\n\
-    \    if (val >= umod()) val -= umod();\n    return *this;\n  }\n  mint& operator-=(const\
-    \ mint& rhs) {\n    val += umod() - rhs.val;\n    if (val >= umod()) val -= umod();\n\
-    \    return *this;\n  }\n  mint& operator*=(const mint& rhs) {\n    val = bt.mul(val,\
-    \ rhs.val);\n    return *this;\n  }\n  mint& operator/=(const mint& rhs) { return\
-    \ *this = *this * rhs.inverse(); }\n  mint operator-() const { return mint() -\
-    \ *this; }\n  mint pow(ll n) const {\n    assert(0 <= n);\n    mint x = *this,\
-    \ r = 1;\n    while (n) {\n      if (n & 1) r *= x;\n      x *= x;\n      n >>=\
-    \ 1;\n    }\n    return r;\n  }\n  mint inverse() const {\n    int x = val;\n\
-    \    int mod = get_mod();\n    ll a = x, b = mod, u = 1, v = 0, t;\n    while\
-    \ (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n\
-    \    }\n    if (u < 0) u += mod;\n    return u;\n  }\n\n  friend mint operator+(const\
-    \ mint& lhs, const mint& rhs) {\n    return mint(lhs) += rhs;\n  }\n  friend mint\
-    \ operator-(const mint& lhs, const mint& rhs) {\n    return mint(lhs) -= rhs;\n\
-    \  }\n  friend mint operator*(const mint& lhs, const mint& rhs) {\n    return\
-    \ mint(lhs) *= rhs;\n  }\n  friend mint operator/(const mint& lhs, const mint&\
-    \ rhs) {\n    return mint(lhs) /= rhs;\n  }\n  friend bool operator==(const mint&\
-    \ lhs, const mint& rhs) {\n    return lhs.val == rhs.val;\n  }\n  friend bool\
-    \ operator!=(const mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n\
-    \  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val); }\n  void read()\
-    \ {\n    fastio::scanner.read(val);\n    assert(0 <= val && val < u32(get_mod()));\n\
+    \ : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n  Dynamic_Modint(ll x) :\
+    \ val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n\n  mint& operator+=(const\
+    \ mint& rhs) {\n    val = (val += rhs.val) >= umod() ? val : val - umod();\n \
+    \   return *this;\n  }\n  mint& operator-=(const mint& rhs) {\n    val = (val\
+    \ += umod() - rhs.val) >= umod() ? val : val - umod();\n    return *this;\n  }\n\
+    \  mint& operator*=(const mint& rhs) {\n    val = bt.mul(val, rhs.val);\n    return\
+    \ *this;\n  }\n  mint& operator/=(const mint& rhs) { return *this = *this * rhs.inverse();\
+    \ }\n  mint operator-() const { return mint() - *this; }\n  mint pow(ll n) const\
+    \ {\n    assert(0 <= n);\n    mint x = *this, r = 1;\n    while (n) {\n      if\
+    \ (n & 1) r *= x;\n      x *= x, n >>= 1;\n    }\n    return r;\n  }\n  mint inverse()\
+    \ const {\n    int x = val, mod = get_mod();\n    int a = x, b = mod, u = 1, v\
+    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
+    \ -= t * v, v);\n    }\n    if (u < 0) u += mod;\n    return u;\n  }\n\n  friend\
+    \ mint operator+(const mint& lhs, const mint& rhs) {\n    return mint(lhs) +=\
+    \ rhs;\n  }\n  friend mint operator-(const mint& lhs, const mint& rhs) {\n   \
+    \ return mint(lhs) -= rhs;\n  }\n  friend mint operator*(const mint& lhs, const\
+    \ mint& rhs) {\n    return mint(lhs) *= rhs;\n  }\n  friend mint operator/(const\
+    \ mint& lhs, const mint& rhs) {\n    return mint(lhs) /= rhs;\n  }\n  friend bool\
+    \ operator==(const mint& lhs, const mint& rhs) {\n    return lhs.val == rhs.val;\n\
+    \  }\n  friend bool operator!=(const mint& lhs, const mint& rhs) {\n    return\
+    \ lhs.val != rhs.val;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
+    \ }\n  void read() {\n    fastio::scanner.read(val);\n    val = bt.modulo(val);\n\
     \  }\n#endif\n  static pair<int, int>& get_ntt() {\n    static pair<int, int>\
     \ p = {-1, -1};\n    return p;\n  }\n  static void set_ntt_info() {\n    int mod\
     \ = get_mod();\n    int k = lowbit(mod - 1);\n    int r = primitive_root(mod);\n\
@@ -262,35 +262,34 @@ data:
     \ { return (int)(bt.umod()); }\n  static void set_mod(int m) {\n    assert(1 <=\
     \ m);\n    bt = Barrett(m);\n  }\n\n  Dynamic_Modint() : val(0) {}\n  Dynamic_Modint(u32\
     \ x) : val(bt.modulo(x)) {}\n  Dynamic_Modint(u64 x) : val(bt.modulo(x)) {}\n\
-    \  Dynamic_Modint(int x) : val(bt.modulo(x)) { assert(x >= 0); }\n  Dynamic_Modint(ll\
-    \ x) : val(bt.modulo(x)) { assert(x >= 0); }\n\n  mint& operator+=(const mint&\
-    \ rhs) {\n    val += rhs.val;\n    if (val >= umod()) val -= umod();\n    return\
-    \ *this;\n  }\n  mint& operator-=(const mint& rhs) {\n    val += umod() - rhs.val;\n\
-    \    if (val >= umod()) val -= umod();\n    return *this;\n  }\n  mint& operator*=(const\
-    \ mint& rhs) {\n    val = bt.mul(val, rhs.val);\n    return *this;\n  }\n  mint&\
-    \ operator/=(const mint& rhs) { return *this = *this * rhs.inverse(); }\n  mint\
-    \ operator-() const { return mint() - *this; }\n  mint pow(ll n) const {\n   \
-    \ assert(0 <= n);\n    mint x = *this, r = 1;\n    while (n) {\n      if (n &\
-    \ 1) r *= x;\n      x *= x;\n      n >>= 1;\n    }\n    return r;\n  }\n  mint\
-    \ inverse() const {\n    int x = val;\n    int mod = get_mod();\n    ll a = x,\
-    \ b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a\
-    \ -= t * b, b), swap(u -= t * v, v);\n    }\n    if (u < 0) u += mod;\n    return\
-    \ u;\n  }\n\n  friend mint operator+(const mint& lhs, const mint& rhs) {\n   \
-    \ return mint(lhs) += rhs;\n  }\n  friend mint operator-(const mint& lhs, const\
-    \ mint& rhs) {\n    return mint(lhs) -= rhs;\n  }\n  friend mint operator*(const\
-    \ mint& lhs, const mint& rhs) {\n    return mint(lhs) *= rhs;\n  }\n  friend mint\
-    \ operator/(const mint& lhs, const mint& rhs) {\n    return mint(lhs) /= rhs;\n\
-    \  }\n  friend bool operator==(const mint& lhs, const mint& rhs) {\n    return\
-    \ lhs.val == rhs.val;\n  }\n  friend bool operator!=(const mint& lhs, const mint&\
-    \ rhs) {\n    return lhs.val != rhs.val;\n  }\n#ifdef FASTIO\n  void write() {\
-    \ fastio::printer.write(val); }\n  void read() {\n    fastio::scanner.read(val);\n\
-    \    assert(0 <= val && val < u32(get_mod()));\n  }\n#endif\n  static pair<int,\
-    \ int>& get_ntt() {\n    static pair<int, int> p = {-1, -1};\n    return p;\n\
-    \  }\n  static void set_ntt_info() {\n    int mod = get_mod();\n    int k = lowbit(mod\
-    \ - 1);\n    int r = primitive_root(mod);\n    r = mod_pow(r, (mod - 1) >> k,\
-    \ mod);\n    get_ntt() = {k, r};\n  }\n  static pair<int, int> ntt_info() { return\
-    \ get_ntt(); }\n  static bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n\
-    using dmint = Dynamic_Modint;\nBarrett dmint::bt(1);"
+    \  Dynamic_Modint(int x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n\
+    \  Dynamic_Modint(ll x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n\n\
+    \  mint& operator+=(const mint& rhs) {\n    val = (val += rhs.val) >= umod() ?\
+    \ val : val - umod();\n    return *this;\n  }\n  mint& operator-=(const mint&\
+    \ rhs) {\n    val = (val += umod() - rhs.val) >= umod() ? val : val - umod();\n\
+    \    return *this;\n  }\n  mint& operator*=(const mint& rhs) {\n    val = bt.mul(val,\
+    \ rhs.val);\n    return *this;\n  }\n  mint& operator/=(const mint& rhs) { return\
+    \ *this = *this * rhs.inverse(); }\n  mint operator-() const { return mint() -\
+    \ *this; }\n  mint pow(ll n) const {\n    assert(0 <= n);\n    mint x = *this,\
+    \ r = 1;\n    while (n) {\n      if (n & 1) r *= x;\n      x *= x, n >>= 1;\n\
+    \    }\n    return r;\n  }\n  mint inverse() const {\n    int x = val, mod = get_mod();\n\
+    \    int a = x, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n      t = a /\
+    \ b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    if (u < 0) u\
+    \ += mod;\n    return u;\n  }\n\n  friend mint operator+(const mint& lhs, const\
+    \ mint& rhs) {\n    return mint(lhs) += rhs;\n  }\n  friend mint operator-(const\
+    \ mint& lhs, const mint& rhs) {\n    return mint(lhs) -= rhs;\n  }\n  friend mint\
+    \ operator*(const mint& lhs, const mint& rhs) {\n    return mint(lhs) *= rhs;\n\
+    \  }\n  friend mint operator/(const mint& lhs, const mint& rhs) {\n    return\
+    \ mint(lhs) /= rhs;\n  }\n  friend bool operator==(const mint& lhs, const mint&\
+    \ rhs) {\n    return lhs.val == rhs.val;\n  }\n  friend bool operator!=(const\
+    \ mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n  }\n#ifdef FASTIO\n\
+    \  void write() { fastio::printer.write(val); }\n  void read() {\n    fastio::scanner.read(val);\n\
+    \    val = bt.modulo(val);\n  }\n#endif\n  static pair<int, int>& get_ntt() {\n\
+    \    static pair<int, int> p = {-1, -1};\n    return p;\n  }\n  static void set_ntt_info()\
+    \ {\n    int mod = get_mod();\n    int k = lowbit(mod - 1);\n    int r = primitive_root(mod);\n\
+    \    r = mod_pow(r, (mod - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static\
+    \ pair<int, int> ntt_info() { return get_ntt(); }\n  static bool can_ntt() { return\
+    \ ntt_info().fi != -1; }\n};\n\nusing dmint = Dynamic_Modint;\nBarrett dmint::bt(1);"
   dependsOn:
   - mod/modint_common.hpp
   - mod/primitive_root.hpp
@@ -304,8 +303,8 @@ data:
   requiredBy:
   - mod/mod_log.hpp
   - nt/four_square.hpp
-  timestamp: '2023-08-06 23:49:51+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-08-07 00:12:37+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/four_square.test.cpp
   - test/mytest/31bit_modint.test.cpp
