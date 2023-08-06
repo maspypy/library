@@ -23,13 +23,11 @@ struct Dynamic_Modint {
   Dynamic_Modint(ll x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}
 
   mint& operator+=(const mint& rhs) {
-    val += rhs.val;
-    if (val >= umod()) val -= umod();
+    val = (val += rhs.val) >= umod() ? val : val - umod();
     return *this;
   }
   mint& operator-=(const mint& rhs) {
-    val += umod() - rhs.val;
-    if (val >= umod()) val -= umod();
+    val = (val += umod() - rhs.val) >= umod() ? val : val - umod();
     return *this;
   }
   mint& operator*=(const mint& rhs) {
@@ -43,15 +41,13 @@ struct Dynamic_Modint {
     mint x = *this, r = 1;
     while (n) {
       if (n & 1) r *= x;
-      x *= x;
-      n >>= 1;
+      x *= x, n >>= 1;
     }
     return r;
   }
   mint inverse() const {
-    int x = val;
-    int mod = get_mod();
-    ll a = x, b = mod, u = 1, v = 0, t;
+    int x = val, mod = get_mod();
+    int a = x, b = mod, u = 1, v = 0, t;
     while (b > 0) {
       t = a / b;
       swap(a -= t * b, b), swap(u -= t * v, v);
@@ -82,7 +78,7 @@ struct Dynamic_Modint {
   void write() { fastio::printer.write(val); }
   void read() {
     fastio::scanner.read(val);
-    assert(0 <= val && val < u32(get_mod()));
+    val = bt.modulo(val);
   }
 #endif
   static pair<int, int>& get_ntt() {
