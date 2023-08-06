@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -43,42 +43,43 @@ data:
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/modint61.hpp\"\
-    \n\r\n// https : // yosupo.hatenablog.com/entry/2023/08/06/181942\r\nstruct modint61\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 1 \"mod/modint61.hpp\"\
+    \n\r\n// https : // yosupo.hatenablog.com/entry/2023/08/06/181942\r\n// x \u306E\
+    \u4EE3\u308F\u308A\u306B 8x \u3092 [8, 8MOD] \u3067\u6301\u3064\r\nstruct modint61\
     \ {\r\n  using u128 = unsigned __int128;\r\n  static constexpr u64 MOD = (1ULL\
-    \ << 61) - 1;\r\n  static constexpr u64 MOD8 = MOD * 8;\r\n  u64 val;\r\n  constexpr\
-    \ modint61() : val(0ULL) {}\r\n  constexpr modint61(u32 x) : val(x) {}\r\n  constexpr\
-    \ modint61(u64 x) : val(x % mod) {}\r\n  constexpr modint61(int x) : val((x <\
-    \ 0) ? (x + static_cast<ll>(mod)) : x) {}\r\n  constexpr modint61(ll x)\r\n  \
-    \    : val(((x %= static_cast<ll>(mod)) < 0) ? (x + static_cast<ll>(mod))\r\n\
-    \                                              : x) {}\r\n  static constexpr u64\
-    \ get_mod() { return mod; }\r\n  modint61 &operator+=(const modint61 &a) {\r\n\
-    \    val = ((val += a.val) >= mod) ? (val - mod) : val;\r\n    return *this;\r\
-    \n  }\r\n  modint61 &operator-=(const modint61 &a) {\r\n    val = ((val -= a.val)\
-    \ >= mod) ? (val + mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 &operator*=(const\
-    \ modint61 &a) {\r\n    const unsigned __int128 y = static_cast<unsigned __int128>(val)\
-    \ * a.val;\r\n    val = (y >> 61) + (y & mod);\r\n    val = (val >= mod) ? (val\
-    \ - mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 &operator/=(const modint61\
-    \ &a) { return (*this *= a.inverse()); }\r\n  modint61 operator+(const modint61\
-    \ &p) const { return modint61(*this) += p; }\r\n  modint61 operator-(const modint61\
-    \ &p) const { return modint61(*this) -= p; }\r\n  modint61 operator*(const modint61\
-    \ &p) const { return modint61(*this) *= p; }\r\n  modint61 operator/(const modint61\
+    \ << 61) - 1;\r\n  static constexpr u64 MOD8 = MOD * 8;\r\n  u64 x8;\r\n  constexpr\
+    \ modint61() : x8(0ULL) {}\r\n  constexpr modint61(u32 x) : x8((x + MOD - 1) %\
+    \ MOD * 8 + 8) {}\r\n  constexpr modint61(u64 x) : x8((x + MOD - 1) % MOD * 8\
+    \ + 8) {}\r\n  constexpr modint61(int x) : x8((x + MOD - 1) % MOD * 8 + 8) {}\r\
+    \n  constexpr modint61(ll x)\r\n      : x8(8 * (((x %= ll(MOD)) <= 0) ? (x + ll(MOD))\
+    \ : x)) {}\r\n\r\n  static constexpr u64 get_mod() { return MOD; }\r\n  modint61\
+    \ &operator+=(const modint61 &a) {\r\n    if (__builtin_uaddll_overflow(x8, a.x8,\
+    \ &x8)) x8 -= MOD8;\r\n    return *this;\r\n  }\r\n  modint61 &operator-=(const\
+    \ modint61 &a) {\r\n    if (__builtin_uaddll_overflow(x8, MOD8 - a.x8, &x8)) x8\
+    \ -= MOD8;\r\n    return *this;\r\n  }\r\n  modint61 &operator*=(const modint61\
+    \ &a) {\r\n    u128 c = u128(x8) * (a.x8);\r\n    u64 x = c >> 67 << 3, y = c\
+    \ << 61 >> 64;\r\n    if (__builtin_uaddll_overflow(x, y, &x8)) x8 -= MOD8;\r\n\
+    \    return *this;\r\n  }\r\n  modint61 &operator/=(const modint61 &a) { return\
+    \ (*this *= a.inverse()); }\r\n  modint61 operator+(const modint61 &p) const {\
+    \ return modint61(*this) += p; }\r\n  modint61 operator-(const modint61 &p) const\
+    \ { return modint61(*this) -= p; }\r\n  modint61 operator*(const modint61 &p)\
+    \ const { return modint61(*this) *= p; }\r\n  modint61 operator/(const modint61\
     \ &p) const { return modint61(*this) /= p; }\r\n  bool operator==(const modint61\
-    \ &p) const { return val == p.val; }\r\n  bool operator!=(const modint61 &p) const\
-    \ { return val != p.val; }\r\n  modint61 inverse() const {\r\n    ll a = val,\
-    \ b = mod, u = 1, v = 0, t;\r\n    while (b > 0) {\r\n      t = a / b;\r\n   \
-    \   swap(a -= t * b, b), swap(u -= t * v, v);\r\n    }\r\n    return modint61(u);\r\
-    \n  }\r\n  modint61 pow(ll n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1),\
-    \ mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul\
-    \ *= mul, n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n\r\n  u64 mul(u64 a,\
-    \ u64 b) {}\r\n#ifdef FASTIO\r\n  void write() { fastio::printer.write(val); }\r\
-    \n  void read() {\r\n    ll x;\r\n    fastio::scanner.read(x);\r\n    val = (val\
-    \ >= 0 ? val % mod : (mod - (-val) % mod) % mod);\r\n  }\r\n#endif\r\n};\n#line\
-    \ 5 \"random/hash_vector.hpp\"\n\ntemplate <typename T>\nu64 hash_vector(vc<T>\
-    \ X) {\n  using mint = modint61;\n  static vc<mint> hash_base;\n  int n = len(X);\n\
-    \  while (len(hash_base) <= n) { hash_base.eb(RNG(mint::get_mod())); }\n  mint\
-    \ H = 0;\n  FOR(i, n) H += hash_base[i] * mint(X[i]);\n  H += hash_base[n];\n\
-    \  return H.val;\n}\n"
+    \ &p) const { return x8 == p.x8; }\r\n  bool operator!=(const modint61 &p) const\
+    \ { return x8 != p.x8; }\r\n  u64 val() const { return (x8 == MOD8 ? 0 : x8 >>\
+    \ 3); }\r\n  modint61 inverse() const {\r\n    ll a = val(), b = MOD, u = 1, v\
+    \ = 0, t;\r\n    while (b > 0) {\r\n      t = a / b;\r\n      swap(a -= t * b,\
+    \ b), swap(u -= t * v, v);\r\n    }\r\n    return modint61(u);\r\n  }\r\n  modint61\
+    \ pow(ll n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1);\r\n    modint61\
+    \ mul = (*this);\r\n    while (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n  \
+    \    mul *= mul, n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n\r\n#ifdef FASTIO\r\
+    \n  void write() { fastio::printer.write(val()); }\r\n  void read() {\r\n    ll\
+    \ x;\r\n    fastio::scanner.read(x);\r\n    x8 = 8 * (((x %= ll(MOD)) <= 0) ?\
+    \ (x + ll(MOD)) : x);\r\n  }\r\n#endif\r\n};\n#line 5 \"random/hash_vector.hpp\"\
+    \n\ntemplate <typename T>\nu64 hash_vector(vc<T> X) {\n  using mint = modint61;\n\
+    \  static vc<mint> hash_base;\n  int n = len(X);\n  while (len(hash_base) <= n)\
+    \ { hash_base.eb(RNG(mint::get_mod())); }\n  mint H = 0;\n  FOR(i, n) H += hash_base[i]\
+    \ * mint(X[i]);\n  H += hash_base[n];\n  return H.val;\n}\n"
   code: "#pragma once\n\n#include \"random/base.hpp\"\n#include \"mod/modint61.hpp\"\
     \n\ntemplate <typename T>\nu64 hash_vector(vc<T> X) {\n  using mint = modint61;\n\
     \  static vc<mint> hash_base;\n  int n = len(X);\n  while (len(hash_base) <= n)\
@@ -91,7 +92,7 @@ data:
   path: random/hash_vector.hpp
   requiredBy:
   - other/connected_dp.hpp
-  timestamp: '2023-08-06 21:03:20+09:00'
+  timestamp: '2023-08-06 21:18:16+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/tdpc_grid_dp.test.cpp
