@@ -107,7 +107,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/count_subseq.hpp
     title: string/count_subseq.hpp
   - icon: ':question:'
@@ -325,6 +325,9 @@ data:
     path: test/mytest/minmax_add.test.cpp
     title: test/mytest/minmax_add.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/minplus_conv_triple.test.cpp
+    title: test/mytest/minplus_conv_triple.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/minplus_convex.test.cpp
     title: test/mytest/minplus_convex.test.cpp
   - icon: ':heavy_check_mark:'
@@ -474,16 +477,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1397.test.cpp
     title: test/yukicoder/1397.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1493.test.cpp
     title: test/yukicoder/1493.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1634.test.cpp
     title: test/yukicoder/1634.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1667.test.cpp
     title: test/yukicoder/1667.test.cpp
   - icon: ':heavy_check_mark:'
@@ -636,6 +639,7 @@ data:
   - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/xor_transpose.test.cpp
   - test/mytest/matching_line_graph.test.cpp
+  - test/mytest/minplus_conv_triple.test.cpp
   - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/kdtree_nns.test.cpp
   - test/mytest/conv2d.test.cpp
