@@ -10,10 +10,10 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/multiplicative_sum.hpp
     title: nt/multiplicative_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primesum.hpp
     title: nt/primesum.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sum_of_totient_function
@@ -240,30 +240,31 @@ data:
     \ / x]);\r\n  }\r\n\r\n  template <typename F>\r\n  void calc(const F f) {\r\n\
     \    auto primes = primetable<int>(sqN);\r\n    sum_lo.resize(sqN + 1);\r\n  \
     \  sum_hi.resize(sqN + 1);\r\n    FOR3(i, 1, sqN + 1) sum_lo[i] = f(i) - 1;\r\n\
-    \    FOR3(i, 1, sqN + 1) sum_hi[i] = f(double(N) / i) - 1;\r\n    for (ll p: primes)\
-    \ {\r\n      ll pp = ll(p) * p;\r\n      if (pp > N) break;\r\n      ll R = min(sqN,\
-    \ N / pp);\r\n      ll M = sqN / p;\r\n      T x = sum_lo[p - 1];\r\n      T fp\
-    \ = sum_lo[p] - sum_lo[p - 1];\r\n      FOR(i, 1, M + 1) sum_hi[i] -= fp * (sum_hi[i\
-    \ * p] - x);\r\n      FOR(i, M + 1, R + 1) sum_hi[i] -= fp * (sum_lo[double(N)\
-    \ / (i * p)] - x);\r\n      FOR_R(n, pp, sqN + 1) sum_lo[n] -= fp * (sum_lo[double(n)\
-    \ / p] - x);\r\n    }\r\n    calculated = 1;\r\n  }\r\n\r\n  void calc_count()\
-    \ {\r\n    calc([](ll x) -> T { return x; });\r\n  }\r\n\r\n  void calc_sum()\
-    \ {\r\n    calc([](ll x) -> T {\r\n      ll a = x, b = x + 1;\r\n      if (!(x\
-    \ & 1)) a /= 2;\r\n      if (x & 1) b /= 2;\r\n      return T(a) * T(b);\r\n \
-    \   });\r\n  }\r\n};\r\n#line 2 \"nt/multiplicative_sum.hpp\"\n\r\n// f_pe\uFF1A\
-    T(int p,int e), f(p^e)\r\n// f_psum\uFF1A[1, x] \u3067\u306E f(p) \u306E\u548C\
-    \r\ntemplate <typename T, typename F1, typename F2>\r\nT multiplicative_sum(ll\
-    \ N, F1 f_pe, F2 f_psum) {\r\n  ll sqN = sqrtl(N);\r\n  auto P = primetable<int>(sqN);\r\
-    \n\r\n  T ANS = T(1) + f_psum(N); // 1 and prime\r\n  // t = up_i^k \u306E\u3068\
-    \u304D\u306B\u3001(t, i, k, f(t), f(u)) \u3092\u6301\u305F\u305B\u308B\r\n\r\n\
-    \  auto dfs = [&](auto self, ll t, ll i, ll k, T ft, T fu) -> void {\r\n    T\
-    \ f_nxt = fu * f_pe(P[i], k + 1);\r\n    // \u5B50\u30CE\u30FC\u30C9\u3092\u5168\
-    \u90E8\u52A0\u7B97\r\n    ANS += f_nxt;\r\n    ANS += ft * (f_psum(double(N) /\
-    \ t) - f_psum(P[i]));\r\n\r\n    ll lim = sqrtl(double(N) / t);\r\n    if (P[i]\
-    \ <= lim) { self(self, t * P[i], i, k + 1, f_nxt, fu); }\r\n    FOR3(j, i + 1,\
-    \ len(P)) {\r\n      if (P[j] > lim) break;\r\n      self(self, t * P[j], j, 1,\
-    \ ft * f_pe(P[j], 1), ft);\r\n    }\r\n  };\r\n  FOR(i, len(P)) if (P[i] <= sqN)\
-    \ dfs(dfs, P[i], i, 1, f_pe(P[i], 1), 1);\r\n  return ANS;\r\n}\n#line 2 \"mod/modint_common.hpp\"\
+    \    FOR3(i, 1, sqN + 1) sum_hi[i] = f(double(N) / i) - 1;\r\n    for (int p:\
+    \ primes) {\r\n      ll pp = ll(p) * p;\r\n      if (pp > N) break;\r\n      int\
+    \ R = min(sqN, N / pp);\r\n      int M = sqN / p;\r\n      T x = sum_lo[p - 1];\r\
+    \n      T fp = sum_lo[p] - sum_lo[p - 1];\r\n      for (int i = 1; i <= M; ++i)\
+    \ sum_hi[i] -= fp * (sum_hi[i * p] - x);\r\n      for (int i = M + 1; i <= R;\
+    \ ++i)\r\n        sum_hi[i] -= fp * (sum_lo[N / (double(i) * p)] - x);\r\n   \
+    \   for (int n = sqN; n >= pp; --n) sum_lo[n] -= fp * (sum_lo[n / p] - x);\r\n\
+    \    }\r\n    calculated = 1;\r\n  }\r\n\r\n  void calc_count() {\r\n    calc([](ll\
+    \ x) -> T { return x; });\r\n  }\r\n\r\n  void calc_sum() {\r\n    calc([](ll\
+    \ x) -> T {\r\n      ll a = x, b = x + 1;\r\n      if (!(x & 1)) a /= 2;\r\n \
+    \     if (x & 1) b /= 2;\r\n      return T(a) * T(b);\r\n    });\r\n  }\r\n};\n\
+    #line 2 \"nt/multiplicative_sum.hpp\"\n\r\n// f_pe\uFF1AT(int p,int e), f(p^e)\r\
+    \n// f_psum\uFF1A[1, x] \u3067\u306E f(p) \u306E\u548C\r\ntemplate <typename T,\
+    \ typename F1, typename F2>\r\nT multiplicative_sum(ll N, F1 f_pe, F2 f_psum)\
+    \ {\r\n  ll sqN = sqrtl(N);\r\n  auto P = primetable<int>(sqN);\r\n\r\n  T ANS\
+    \ = T(1) + f_psum(N); // 1 and prime\r\n  // t = up_i^k \u306E\u3068\u304D\u306B\
+    \u3001(t, i, k, f(t), f(u)) \u3092\u6301\u305F\u305B\u308B\r\n\r\n  auto dfs =\
+    \ [&](auto self, ll t, ll i, ll k, T ft, T fu) -> void {\r\n    T f_nxt = fu *\
+    \ f_pe(P[i], k + 1);\r\n    // \u5B50\u30CE\u30FC\u30C9\u3092\u5168\u90E8\u52A0\
+    \u7B97\r\n    ANS += f_nxt;\r\n    ANS += ft * (f_psum(double(N) / t) - f_psum(P[i]));\r\
+    \n\r\n    ll lim = sqrtl(double(N) / t);\r\n    if (P[i] <= lim) { self(self,\
+    \ t * P[i], i, k + 1, f_nxt, fu); }\r\n    FOR3(j, i + 1, len(P)) {\r\n      if\
+    \ (P[j] > lim) break;\r\n      self(self, t * P[j], j, 1, ft * f_pe(P[j], 1),\
+    \ ft);\r\n    }\r\n  };\r\n  FOR(i, len(P)) if (P[i] <= sqN) dfs(dfs, P[i], i,\
+    \ 1, f_pe(P[i], 1), 1);\r\n  return ANS;\r\n}\n#line 2 \"mod/modint_common.hpp\"\
     \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
     \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
     \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
@@ -356,8 +357,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/totient_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-08-06 12:11:45+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-08-06 13:04:29+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/totient_sum.test.cpp
 layout: document

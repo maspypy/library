@@ -489,7 +489,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/composition_sps.test.cpp
     title: test/library_checker/math/composition_sps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/counting_primes.test.cpp
     title: test/library_checker/math/counting_primes.test.cpp
   - icon: ':heavy_check_mark:'
@@ -579,7 +579,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/totient_sum.test.cpp
     title: test/library_checker/math/totient_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -963,7 +963,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/powerquery.test.cpp
     title: test/mytest/powerquery.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/prime_sum.test.cpp
     title: test/mytest/prime_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1191,7 +1191,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1270.test.cpp
     title: test/yukicoder/1270.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1276.test.cpp
     title: test/yukicoder/1276.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1428,7 +1428,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1778.test.cpp
     title: test/yukicoder/1778.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1781.test.cpp
     title: test/yukicoder/1781.test.cpp
   - icon: ':heavy_check_mark:'
