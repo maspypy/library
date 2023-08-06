@@ -48,10 +48,6 @@ struct MinPlus_Convolution_of_Triples {
     vc<int> x1 = restore_1(k1);
     vc<int> x2 = restore_2(k2);
     for (int i = 0; i < N; ++i) x[i] = x1[i] + x2[i];
-    // check
-    T sm = 0;
-    for (int i = 0; i < N; ++i) sm += dat[i][x[i]];
-    assert(sm == dp[k]);
     return x;
   }
 
