@@ -3,23 +3,6 @@
 #include "mod/primitive_root.hpp"
 #include "mod/barrett.hpp"
 
-template <class T>
-using is_signed_int =
-    typename std::conditional<(is_integral<T>::value
-                               && std::is_signed<T>::value),
-                              std::true_type, std::false_type>::type;
-
-template <class T>
-using is_unsigned_int =
-    typename std::conditional<(is_integral<T>::value
-                               && std::is_unsigned<T>::value),
-                              std::true_type, std::false_type>::type;
-template <class T>
-using is_signed_int_t = std::enable_if_t<is_signed_int<T>::value>;
-
-template <class T>
-using is_unsigned_int_t = std::enable_if_t<is_unsigned_int<T>::value>;
-
 struct Dynamic_Modint {
   static constexpr bool is_modint = true;
   using mint = Dynamic_Modint;
@@ -34,16 +17,10 @@ struct Dynamic_Modint {
   }
 
   Dynamic_Modint() : val(0) {}
-  template <class T, is_signed_int_t<T>* = nullptr>
-  Dynamic_Modint(T v) {
-    int x = v % get_mod();
-    if (x < 0) x += get_mod();
-    val = u32(x);
-  }
-  template <class T, is_unsigned_int_t<T>* = nullptr>
-  Dynamic_Modint(T v) {
-    val = bt.modulo(v);
-  }
+  Dynamic_Modint(u32 x) : val(bt.modulo(x)) {}
+  Dynamic_Modint(u64 x) : val(bt.modulo(x)) {}
+  Dynamic_Modint(int x) : val(bt.modulo(x)) { assert(x >= 0); }
+  Dynamic_Modint(ll x) : val(bt.modulo(x)) { assert(x >= 0); }
 
   mint& operator+=(const mint& rhs) {
     val += rhs.val;
