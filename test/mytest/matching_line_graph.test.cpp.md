@@ -288,7 +288,7 @@ data:
     \   cand.eb(a, b);\n  }\n  int m = RNG(0, len(cand) + 1);\n  set<int> ss;\n  FOR(m)\
     \ {\n    while (1) {\n      int i = RNG(0, len(cand));\n      if (simple && ss.count(i))\
     \ continue;\n      ss.insert(i);\n      auto [a, b] = cand[i];\n      G.add(a,\
-    \ b);\n      break;\n    }\n  }\n  G.build();\n  return G;\n}\n#line 1 \"mod/modint61.hpp\"\
+    \ b);\n      break;\n    }\n  }\n  G.build();\n  return G;\n}\n#line 2 \"mod/modint61.hpp\"\
     \n\r\n// https : // yosupo.hatenablog.com/entry/2023/08/06/181942\r\n// x \u306E\
     \u4EE3\u308F\u308A\u306B 8x \u3092 [8, 8MOD] \u3067\u6301\u3064\r\nstruct modint61\
     \ {\r\n  using u128 = unsigned __int128;\r\n  static constexpr u64 MOD = (1ULL\
@@ -396,7 +396,7 @@ data:
   isVerificationFile: true
   path: test/mytest/matching_line_graph.test.cpp
   requiredBy: []
-  timestamp: '2023-08-06 21:18:16+09:00'
+  timestamp: '2023-08-06 21:51:41+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/matching_line_graph.test.cpp

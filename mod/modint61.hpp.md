@@ -11,7 +11,7 @@ data:
   - icon: ':x:'
     path: graph/max_matching_size.hpp
     title: graph/max_matching_size.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
   - icon: ':heavy_check_mark:'
@@ -26,14 +26,14 @@ data:
   - icon: ':question:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/rollinghash_2d.hpp
     title: string/rollinghash_2d.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_14_C.test.cpp
     title: test/aoj/ALDS1_14_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/classify_tree.test.cpp
     title: test/library_checker/graph/classify_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -86,7 +86,7 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"mod/modint61.hpp\"\n\r\n// https : // yosupo.hatenablog.com/entry/2023/08/06/181942\r\
+  bundledCode: "#line 2 \"mod/modint61.hpp\"\n\r\n// https : // yosupo.hatenablog.com/entry/2023/08/06/181942\r\
     \n// x \u306E\u4EE3\u308F\u308A\u306B 8x \u3092 [8, 8MOD] \u3067\u6301\u3064\r\
     \nstruct modint61 {\r\n  using u128 = unsigned __int128;\r\n  static constexpr\
     \ u64 MOD = (1ULL << 61) - 1;\r\n  static constexpr u64 MOD8 = MOD * 8;\r\n  u64\
@@ -118,17 +118,17 @@ data:
     \n  void write() { fastio::printer.write(val()); }\r\n  void read() {\r\n    ll\
     \ x;\r\n    fastio::scanner.read(x);\r\n    x8 = 8 * (((x %= ll(MOD)) <= 0) ?\
     \ (x + ll(MOD)) : x);\r\n  }\r\n#endif\r\n};\n"
-  code: "\r\n// https : // yosupo.hatenablog.com/entry/2023/08/06/181942\r\n// x \u306E\
-    \u4EE3\u308F\u308A\u306B 8x \u3092 [8, 8MOD] \u3067\u6301\u3064\r\nstruct modint61\
-    \ {\r\n  using u128 = unsigned __int128;\r\n  static constexpr u64 MOD = (1ULL\
-    \ << 61) - 1;\r\n  static constexpr u64 MOD8 = MOD * 8;\r\n  u64 x8;\r\n  constexpr\
-    \ modint61() : x8(0ULL) {}\r\n  constexpr modint61(u32 x) : x8((x + MOD - 1) %\
-    \ MOD * 8 + 8) {}\r\n  constexpr modint61(u64 x) : x8((x + MOD - 1) % MOD * 8\
-    \ + 8) {}\r\n  constexpr modint61(int x) : x8((x + MOD - 1) % MOD * 8 + 8) {}\r\
-    \n  constexpr modint61(ll x)\r\n      : x8(8 * (((x %= ll(MOD)) <= 0) ? (x + ll(MOD))\
-    \ : x)) {}\r\n\r\n  static constexpr u64 get_mod() { return MOD; }\r\n  modint61\
-    \ &operator+=(const modint61 &a) {\r\n    if (__builtin_uaddll_overflow(x8, a.x8,\
-    \ &x8)) x8 -= MOD8;\r\n    return *this;\r\n  }\r\n  modint61 &operator-=(const\
+  code: "#pragma once\r\n\r\n// https : // yosupo.hatenablog.com/entry/2023/08/06/181942\r\
+    \n// x \u306E\u4EE3\u308F\u308A\u306B 8x \u3092 [8, 8MOD] \u3067\u6301\u3064\r\
+    \nstruct modint61 {\r\n  using u128 = unsigned __int128;\r\n  static constexpr\
+    \ u64 MOD = (1ULL << 61) - 1;\r\n  static constexpr u64 MOD8 = MOD * 8;\r\n  u64\
+    \ x8;\r\n  constexpr modint61() : x8(0ULL) {}\r\n  constexpr modint61(u32 x) :\
+    \ x8((x + MOD - 1) % MOD * 8 + 8) {}\r\n  constexpr modint61(u64 x) : x8((x +\
+    \ MOD - 1) % MOD * 8 + 8) {}\r\n  constexpr modint61(int x) : x8((x + MOD - 1)\
+    \ % MOD * 8 + 8) {}\r\n  constexpr modint61(ll x)\r\n      : x8(8 * (((x %= ll(MOD))\
+    \ <= 0) ? (x + ll(MOD)) : x)) {}\r\n\r\n  static constexpr u64 get_mod() { return\
+    \ MOD; }\r\n  modint61 &operator+=(const modint61 &a) {\r\n    if (__builtin_uaddll_overflow(x8,\
+    \ a.x8, &x8)) x8 -= MOD8;\r\n    return *this;\r\n  }\r\n  modint61 &operator-=(const\
     \ modint61 &a) {\r\n    if (__builtin_uaddll_overflow(x8, MOD8 - a.x8, &x8)) x8\
     \ -= MOD8;\r\n    return *this;\r\n  }\r\n  modint61 &operator*=(const modint61\
     \ &a) {\r\n    u128 c = u128(x8) * (a.x8);\r\n    u64 x = c >> 67 << 3, y = c\
@@ -163,7 +163,7 @@ data:
   - other/connected_dp.hpp
   - graph/tree_dp/subtree_hash.hpp
   - graph/max_matching_size.hpp
-  timestamp: '2023-08-06 21:18:16+09:00'
+  timestamp: '2023-08-06 21:51:41+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/matching_line_graph.test.cpp

@@ -62,7 +62,7 @@ data:
     \ && keys[i] == key;\r\n  }\r\n\r\n  void reset() {\r\n    for (auto&& i: IDS)\
     \ used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  // f(key, val)\r\n  template\
     \ <typename F>\r\n  void enumerate_all(F f) {\r\n    for (auto&& i: IDS) f(keys[i],\
-    \ vals[i]);\r\n  }\r\n};\r\n#line 2 \"random/hash_vector.hpp\"\n\n#line 1 \"mod/modint61.hpp\"\
+    \ vals[i]);\r\n  }\r\n};\r\n#line 2 \"random/hash_vector.hpp\"\n\n#line 2 \"mod/modint61.hpp\"\
     \n\r\n// https : // yosupo.hatenablog.com/entry/2023/08/06/181942\r\n// x \u306E\
     \u4EE3\u308F\u308A\u306B 8x \u3092 [8, 8MOD] \u3067\u6301\u3064\r\nstruct modint61\
     \ {\r\n  using u128 = unsigned __int128;\r\n  static constexpr u64 MOD = (1ULL\
@@ -254,7 +254,7 @@ data:
   isVerificationFile: false
   path: other/connected_dp.hpp
   requiredBy: []
-  timestamp: '2023-08-06 21:33:11+09:00'
+  timestamp: '2023-08-06 21:51:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/tdpc_grid_dp.test.cpp

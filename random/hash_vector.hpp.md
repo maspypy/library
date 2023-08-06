@@ -43,7 +43,7 @@ data:
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 1 \"mod/modint61.hpp\"\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/modint61.hpp\"\
     \n\r\n// https : // yosupo.hatenablog.com/entry/2023/08/06/181942\r\n// x \u306E\
     \u4EE3\u308F\u308A\u306B 8x \u3092 [8, 8MOD] \u3067\u6301\u3064\r\nstruct modint61\
     \ {\r\n  using u128 = unsigned __int128;\r\n  static constexpr u64 MOD = (1ULL\
@@ -92,7 +92,7 @@ data:
   path: random/hash_vector.hpp
   requiredBy:
   - other/connected_dp.hpp
-  timestamp: '2023-08-06 21:33:11+09:00'
+  timestamp: '2023-08-06 21:51:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/tdpc_grid_dp.test.cpp

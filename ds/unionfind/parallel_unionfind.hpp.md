@@ -14,7 +14,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"mod/modint61.hpp\"\n\r\n// https : // yosupo.hatenablog.com/entry/2023/08/06/181942\r\
+  bundledCode: "#line 2 \"mod/modint61.hpp\"\n\r\n// https : // yosupo.hatenablog.com/entry/2023/08/06/181942\r\
     \n// x \u306E\u4EE3\u308F\u308A\u306B 8x \u3092 [8, 8MOD] \u3067\u6301\u3064\r\
     \nstruct modint61 {\r\n  using u128 = unsigned __int128;\r\n  static constexpr\
     \ u64 MOD = (1ULL << 61) - 1;\r\n  static constexpr u64 MOD8 = MOD * 8;\r\n  u64\
@@ -120,7 +120,7 @@ data:
   isVerificationFile: false
   path: ds/unionfind/parallel_unionfind.hpp
   requiredBy: []
-  timestamp: '2023-08-06 21:18:16+09:00'
+  timestamp: '2023-08-06 21:51:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/unionfind/parallel_unionfind.hpp
