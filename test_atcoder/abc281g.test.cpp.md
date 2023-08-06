@@ -382,34 +382,25 @@ data:
     \ e]: pf)\r\n      if (mod_pow_long(g, (p - 1) / q, p) == 1) return false;\r\n\
     \    return true;\r\n  };\r\n  while (1) {\r\n    ll x = RNG(1, p);\r\n    if\
     \ (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n#line 5 \"mod/dynamic_modint.hpp\"\
-    \n\ntemplate <class T>\nusing is_signed_int =\n    typename std::conditional<(is_integral<T>::value\n\
-    \                               && std::is_signed<T>::value),\n              \
-    \                std::true_type, std::false_type>::type;\n\ntemplate <class T>\n\
-    using is_unsigned_int =\n    typename std::conditional<(is_integral<T>::value\n\
-    \                               && std::is_unsigned<T>::value),\n            \
-    \                  std::true_type, std::false_type>::type;\ntemplate <class T>\n\
-    using is_signed_int_t = std::enable_if_t<is_signed_int<T>::value>;\n\ntemplate\
-    \ <class T>\nusing is_unsigned_int_t = std::enable_if_t<is_unsigned_int<T>::value>;\n\
-    \nstruct Dynamic_Modint {\n  static constexpr bool is_modint = true;\n  using\
+    \n\nstruct Dynamic_Modint {\n  static constexpr bool is_modint = true;\n  using\
     \ mint = Dynamic_Modint;\n  u32 val;\n  static Barrett bt;\n  static u32 umod()\
     \ { return bt.umod(); }\n\n  static int get_mod() { return (int)(bt.umod()); }\n\
     \  static void set_mod(int m) {\n    assert(1 <= m);\n    bt = Barrett(m);\n \
-    \ }\n\n  Dynamic_Modint() : val(0) {}\n  template <class T, is_signed_int_t<T>*\
-    \ = nullptr>\n  Dynamic_Modint(T v) {\n    int x = v % get_mod();\n    if (x <\
-    \ 0) x += get_mod();\n    val = u32(x);\n  }\n  template <class T, is_unsigned_int_t<T>*\
-    \ = nullptr>\n  Dynamic_Modint(T v) {\n    val = bt.modulo(v);\n  }\n\n  mint&\
-    \ operator+=(const mint& rhs) {\n    val += rhs.val;\n    if (val >= umod()) val\
-    \ -= umod();\n    return *this;\n  }\n  mint& operator-=(const mint& rhs) {\n\
-    \    val += umod() - rhs.val;\n    if (val >= umod()) val -= umod();\n    return\
-    \ *this;\n  }\n  mint& operator*=(const mint& rhs) {\n    val = bt.mul(val, rhs.val);\n\
-    \    return *this;\n  }\n  mint& operator/=(const mint& rhs) { return *this =\
-    \ *this * rhs.inverse(); }\n  mint operator-() const { return mint() - *this;\
-    \ }\n  mint pow(ll n) const {\n    assert(0 <= n);\n    mint x = *this, r = 1;\n\
-    \    while (n) {\n      if (n & 1) r *= x;\n      x *= x;\n      n >>= 1;\n  \
-    \  }\n    return r;\n  }\n  mint inverse() const {\n    int x = val;\n    int\
-    \ mod = get_mod();\n    ll a = x, b = mod, u = 1, v = 0, t;\n    while (b > 0)\
-    \ {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n\
-    \    if (u < 0) u += mod;\n    return u;\n  }\n\n  friend mint operator+(const\
+    \ }\n\n  Dynamic_Modint() : val(0) {}\n  Dynamic_Modint(u32 x) : val(bt.modulo(x))\
+    \ {}\n  Dynamic_Modint(u64 x) : val(bt.modulo(x)) {}\n  Dynamic_Modint(int x)\
+    \ : val(bt.modulo(x)) { assert(x >= 0); }\n  Dynamic_Modint(ll x) : val(bt.modulo(x))\
+    \ { assert(x >= 0); }\n\n  mint& operator+=(const mint& rhs) {\n    val += rhs.val;\n\
+    \    if (val >= umod()) val -= umod();\n    return *this;\n  }\n  mint& operator-=(const\
+    \ mint& rhs) {\n    val += umod() - rhs.val;\n    if (val >= umod()) val -= umod();\n\
+    \    return *this;\n  }\n  mint& operator*=(const mint& rhs) {\n    val = bt.mul(val,\
+    \ rhs.val);\n    return *this;\n  }\n  mint& operator/=(const mint& rhs) { return\
+    \ *this = *this * rhs.inverse(); }\n  mint operator-() const { return mint() -\
+    \ *this; }\n  mint pow(ll n) const {\n    assert(0 <= n);\n    mint x = *this,\
+    \ r = 1;\n    while (n) {\n      if (n & 1) r *= x;\n      x *= x;\n      n >>=\
+    \ 1;\n    }\n    return r;\n  }\n  mint inverse() const {\n    int x = val;\n\
+    \    int mod = get_mod();\n    ll a = x, b = mod, u = 1, v = 0, t;\n    while\
+    \ (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n\
+    \    }\n    if (u < 0) u += mod;\n    return u;\n  }\n\n  friend mint operator+(const\
     \ mint& lhs, const mint& rhs) {\n    return mint(lhs) += rhs;\n  }\n  friend mint\
     \ operator-(const mint& lhs, const mint& rhs) {\n    return mint(lhs) -= rhs;\n\
     \  }\n  friend mint operator*(const mint& lhs, const mint& rhs) {\n    return\
@@ -770,7 +761,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc281g.test.cpp
   requiredBy: []
-  timestamp: '2023-08-06 23:25:43+09:00'
+  timestamp: '2023-08-06 23:49:51+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc281g.test.cpp
