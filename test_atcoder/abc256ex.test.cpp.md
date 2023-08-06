@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/intervals.hpp
     title: ds/intervals.hpp
   - icon: ':question:'
