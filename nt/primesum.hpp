@@ -28,7 +28,7 @@ struct PrimeSum {
     sum_hi.resize(sqN + 1);
     FOR3(i, 1, sqN + 1) sum_lo[i] = f(i) - 1;
     FOR3(i, 1, sqN + 1) sum_hi[i] = f(double(N) / i) - 1;
-    for (int p: primes) {
+    for (ll p: primes) {
       ll pp = ll(p) * p;
       if (pp > N) break;
       ll R = min(sqN, N / pp);
@@ -36,7 +36,7 @@ struct PrimeSum {
       T x = sum_lo[p - 1];
       T fp = sum_lo[p] - sum_lo[p - 1];
       FOR(i, 1, M + 1) sum_hi[i] -= fp * (sum_hi[i * p] - x);
-      FOR(i, M + 1, R + 1) sum_hi[i] -= fp * (sum_lo[N / (double(i) * p)] - x);
+      FOR(i, M + 1, R + 1) sum_hi[i] -= fp * (sum_lo[double(N) / (i * p)] - x);
       FOR_R(n, pp, sqN + 1) sum_lo[n] -= fp * (sum_lo[double(n) / p] - x);
     }
     calculated = 1;
