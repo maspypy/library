@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
   - icon: ':question:'
@@ -177,10 +177,10 @@ data:
     \ {}\n  Dynamic_Modint(u64 x) : val(bt.modulo(x)) {}\n  Dynamic_Modint(int x)\
     \ : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n  Dynamic_Modint(ll x) :\
     \ val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n\n  mint& operator+=(const\
-    \ mint& rhs) {\n    val = (val += rhs.val) >= umod() ? val : val - umod();\n \
-    \   return *this;\n  }\n  mint& operator-=(const mint& rhs) {\n    val = (val\
-    \ += umod() - rhs.val) >= umod() ? val : val - umod();\n    return *this;\n  }\n\
-    \  mint& operator*=(const mint& rhs) {\n    val = bt.mul(val, rhs.val);\n    return\
+    \ mint& rhs) {\n    val = (val += rhs.val) < umod() ? val : val - umod();\n  \
+    \  return *this;\n  }\n  mint& operator-=(const mint& rhs) {\n    val = (val +=\
+    \ umod() - rhs.val) < umod() ? val : val - umod();\n    return *this;\n  }\n \
+    \ mint& operator*=(const mint& rhs) {\n    val = bt.mul(val, rhs.val);\n    return\
     \ *this;\n  }\n  mint& operator/=(const mint& rhs) { return *this = *this * rhs.inverse();\
     \ }\n  mint operator-() const { return mint() - *this; }\n  mint pow(ll n) const\
     \ {\n    assert(0 <= n);\n    mint x = *this, r = 1;\n    while (n) {\n      if\
@@ -263,7 +263,7 @@ data:
   isVerificationFile: false
   path: nt/four_square.hpp
   requiredBy: []
-  timestamp: '2023-08-07 00:12:37+09:00'
+  timestamp: '2023-08-07 02:24:30+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/four_square.test.cpp

@@ -30,34 +30,34 @@ data:
     path: nt/four_square.hpp
     title: nt/four_square.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
     title: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_dmint.test.cpp
     title: test/library_checker/convolution/convolution_mod_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_setntt.test.cpp
     title: test/library_checker/convolution/convolution_mod_setntt.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sqrt_mod.test.cpp
     title: test/library_checker/math/sqrt_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
     title: test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/inv_of_fps.test.cpp
     title: test/library_checker/polynomial/inv_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
   - icon: ':x:'
@@ -229,10 +229,10 @@ data:
     \ {}\n  Dynamic_Modint(u64 x) : val(bt.modulo(x)) {}\n  Dynamic_Modint(int x)\
     \ : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n  Dynamic_Modint(ll x) :\
     \ val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n\n  mint& operator+=(const\
-    \ mint& rhs) {\n    val = (val += rhs.val) >= umod() ? val : val - umod();\n \
-    \   return *this;\n  }\n  mint& operator-=(const mint& rhs) {\n    val = (val\
-    \ += umod() - rhs.val) >= umod() ? val : val - umod();\n    return *this;\n  }\n\
-    \  mint& operator*=(const mint& rhs) {\n    val = bt.mul(val, rhs.val);\n    return\
+    \ mint& rhs) {\n    val = (val += rhs.val) < umod() ? val : val - umod();\n  \
+    \  return *this;\n  }\n  mint& operator-=(const mint& rhs) {\n    val = (val +=\
+    \ umod() - rhs.val) < umod() ? val : val - umod();\n    return *this;\n  }\n \
+    \ mint& operator*=(const mint& rhs) {\n    val = bt.mul(val, rhs.val);\n    return\
     \ *this;\n  }\n  mint& operator/=(const mint& rhs) { return *this = *this * rhs.inverse();\
     \ }\n  mint operator-() const { return mint() - *this; }\n  mint pow(ll n) const\
     \ {\n    assert(0 <= n);\n    mint x = *this, r = 1;\n    while (n) {\n      if\
@@ -264,9 +264,9 @@ data:
     \ x) : val(bt.modulo(x)) {}\n  Dynamic_Modint(u64 x) : val(bt.modulo(x)) {}\n\
     \  Dynamic_Modint(int x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n\
     \  Dynamic_Modint(ll x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n\n\
-    \  mint& operator+=(const mint& rhs) {\n    val = (val += rhs.val) >= umod() ?\
+    \  mint& operator+=(const mint& rhs) {\n    val = (val += rhs.val) < umod() ?\
     \ val : val - umod();\n    return *this;\n  }\n  mint& operator-=(const mint&\
-    \ rhs) {\n    val = (val += umod() - rhs.val) >= umod() ? val : val - umod();\n\
+    \ rhs) {\n    val = (val += umod() - rhs.val) < umod() ? val : val - umod();\n\
     \    return *this;\n  }\n  mint& operator*=(const mint& rhs) {\n    val = bt.mul(val,\
     \ rhs.val);\n    return *this;\n  }\n  mint& operator/=(const mint& rhs) { return\
     \ *this = *this * rhs.inverse(); }\n  mint operator-() const { return mint() -\
@@ -303,7 +303,7 @@ data:
   requiredBy:
   - mod/mod_log.hpp
   - nt/four_square.hpp
-  timestamp: '2023-08-07 00:12:37+09:00'
+  timestamp: '2023-08-07 02:24:30+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/four_square.test.cpp

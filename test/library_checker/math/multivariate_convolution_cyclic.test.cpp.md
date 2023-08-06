@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/all_inverse.hpp
     title: mod/all_inverse.hpp
   - icon: ':question:'
@@ -55,13 +55,13 @@ data:
   - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
   - icon: ':question:'
@@ -72,9 +72,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/multivariate_convolution_cyclic
@@ -745,10 +745,10 @@ data:
     \ {}\n  Dynamic_Modint(u64 x) : val(bt.modulo(x)) {}\n  Dynamic_Modint(int x)\
     \ : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n  Dynamic_Modint(ll x) :\
     \ val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n\n  mint& operator+=(const\
-    \ mint& rhs) {\n    val = (val += rhs.val) >= umod() ? val : val - umod();\n \
-    \   return *this;\n  }\n  mint& operator-=(const mint& rhs) {\n    val = (val\
-    \ += umod() - rhs.val) >= umod() ? val : val - umod();\n    return *this;\n  }\n\
-    \  mint& operator*=(const mint& rhs) {\n    val = bt.mul(val, rhs.val);\n    return\
+    \ mint& rhs) {\n    val = (val += rhs.val) < umod() ? val : val - umod();\n  \
+    \  return *this;\n  }\n  mint& operator-=(const mint& rhs) {\n    val = (val +=\
+    \ umod() - rhs.val) < umod() ? val : val - umod();\n    return *this;\n  }\n \
+    \ mint& operator*=(const mint& rhs) {\n    val = bt.mul(val, rhs.val);\n    return\
     \ *this;\n  }\n  mint& operator/=(const mint& rhs) { return *this = *this * rhs.inverse();\
     \ }\n  mint operator-() const { return mint() - *this; }\n  mint pow(ll n) const\
     \ {\n    assert(0 <= n);\n    mint x = *this, r = 1;\n    while (n) {\n      if\
@@ -809,8 +809,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   requiredBy: []
-  timestamp: '2023-08-07 00:12:37+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-08-07 02:24:30+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
 layout: document

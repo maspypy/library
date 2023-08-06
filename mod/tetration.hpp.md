@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
   - icon: ':question:'
@@ -115,19 +115,19 @@ data:
     \ (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n \
     \ return res;\n}\n#line 3 \"nt/euler_phi.hpp\"\n\r\nll euler_phi(ll n) {\r\n \
     \ auto pf = factor(n);\r\n  for (auto&& [p, e]: pf) n -= n / p;\r\n  return n;\r\
-    \n}\r\n\r\nvi euler_phi_table(ll n) {\r\n  vi A(n + 1);\r\n  iota(all(A), 0);\r\
-    \n  divisor_mobius(A);\r\n  return A;\r\n}\r\n#line 3 \"mod/tetration.hpp\"\n\r\
-    \nint tetration(vc<ll> a, int mod) {\r\n  for (auto&& x: a) assert(x > 0);\r\n\
-    \r\n  // a[0]^(a[1]^(a[2]^...))\r\n  vc<int> mod_chain = {mod};\r\n  while (mod_chain.back()\
-    \ > 1) mod_chain.eb(euler_phi(mod_chain.back()));\r\n  while (len(a) > len(mod_chain))\
-    \ a.pop_back();\r\n  while (len(mod_chain) > len(a)) mod_chain.pop_back();\r\n\
-    \r\n  auto pow = [&](ll x, int n, int mod) -> int {\r\n    Barrett bt(mod);\r\n\
-    \    if (x >= mod) x = bt.modulo(x) + mod;\r\n    ll v = 1;\r\n    do {\r\n  \
-    \    if (n & 1) {\r\n        v *= x;\r\n        if (v >= mod) v = bt.modulo(v)\
-    \ + mod;\r\n      }\r\n      x *= x;\r\n      if (x >= mod) x = bt.modulo(x) +\
-    \ mod;\r\n      n /= 2;\r\n    } while (n);\r\n    return v;\r\n  };\r\n\r\n \
-    \ int v = 1;\r\n  FOR_R(i, len(a)) v = pow(a[i], v, mod_chain[i]);\r\n  return\
-    \ v % mod;\r\n}\r\n"
+    \n}\r\n\r\ntemplate <typename T>\r\nvc<T> euler_phi_table(ll n) {\r\n  vc<T> A(n\
+    \ + 1);\r\n  FOR(i, 1, n + 1) A[i] = T(i);\r\n  divisor_mobius(A);\r\n  return\
+    \ A;\r\n}\r\n#line 3 \"mod/tetration.hpp\"\n\r\nint tetration(vc<ll> a, int mod)\
+    \ {\r\n  for (auto&& x: a) assert(x > 0);\r\n\r\n  // a[0]^(a[1]^(a[2]^...))\r\
+    \n  vc<int> mod_chain = {mod};\r\n  while (mod_chain.back() > 1) mod_chain.eb(euler_phi(mod_chain.back()));\r\
+    \n  while (len(a) > len(mod_chain)) a.pop_back();\r\n  while (len(mod_chain) >\
+    \ len(a)) mod_chain.pop_back();\r\n\r\n  auto pow = [&](ll x, int n, int mod)\
+    \ -> int {\r\n    Barrett bt(mod);\r\n    if (x >= mod) x = bt.modulo(x) + mod;\r\
+    \n    ll v = 1;\r\n    do {\r\n      if (n & 1) {\r\n        v *= x;\r\n     \
+    \   if (v >= mod) v = bt.modulo(v) + mod;\r\n      }\r\n      x *= x;\r\n    \
+    \  if (x >= mod) x = bt.modulo(x) + mod;\r\n      n /= 2;\r\n    } while (n);\r\
+    \n    return v;\r\n  };\r\n\r\n  int v = 1;\r\n  FOR_R(i, len(a)) v = pow(a[i],\
+    \ v, mod_chain[i]);\r\n  return v % mod;\r\n}\r\n"
   code: "#include \"mod/barrett.hpp\"\r\n#include \"nt/euler_phi.hpp\"\r\n\r\nint\
     \ tetration(vc<ll> a, int mod) {\r\n  for (auto&& x: a) assert(x > 0);\r\n\r\n\
     \  // a[0]^(a[1]^(a[2]^...))\r\n  vc<int> mod_chain = {mod};\r\n  while (mod_chain.back()\
@@ -150,7 +150,7 @@ data:
   isVerificationFile: false
   path: mod/tetration.hpp
   requiredBy: []
-  timestamp: '2023-08-06 03:59:07+09:00'
+  timestamp: '2023-08-07 02:24:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/tetration.test.cpp

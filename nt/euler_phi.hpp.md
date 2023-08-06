@@ -24,12 +24,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1262.test.cpp
     title: test/yukicoder/1262.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
@@ -108,12 +108,14 @@ data:
     \ (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n \
     \ return res;\n}\n#line 3 \"nt/euler_phi.hpp\"\n\r\nll euler_phi(ll n) {\r\n \
     \ auto pf = factor(n);\r\n  for (auto&& [p, e]: pf) n -= n / p;\r\n  return n;\r\
-    \n}\r\n\r\nvi euler_phi_table(ll n) {\r\n  vi A(n + 1);\r\n  iota(all(A), 0);\r\
-    \n  divisor_mobius(A);\r\n  return A;\r\n}\r\n"
+    \n}\r\n\r\ntemplate <typename T>\r\nvc<T> euler_phi_table(ll n) {\r\n  vc<T> A(n\
+    \ + 1);\r\n  FOR(i, 1, n + 1) A[i] = T(i);\r\n  divisor_mobius(A);\r\n  return\
+    \ A;\r\n}\r\n"
   code: "#include \"nt/zeta.hpp\"\r\n#include \"nt/factor.hpp\"\r\n\r\nll euler_phi(ll\
     \ n) {\r\n  auto pf = factor(n);\r\n  for (auto&& [p, e]: pf) n -= n / p;\r\n\
-    \  return n;\r\n}\r\n\r\nvi euler_phi_table(ll n) {\r\n  vi A(n + 1);\r\n  iota(all(A),\
-    \ 0);\r\n  divisor_mobius(A);\r\n  return A;\r\n}\r\n"
+    \  return n;\r\n}\r\n\r\ntemplate <typename T>\r\nvc<T> euler_phi_table(ll n)\
+    \ {\r\n  vc<T> A(n + 1);\r\n  FOR(i, 1, n + 1) A[i] = T(i);\r\n  divisor_mobius(A);\r\
+    \n  return A;\r\n}\r\n"
   dependsOn:
   - nt/zeta.hpp
   - nt/primetable.hpp
@@ -123,8 +125,8 @@ data:
   path: nt/euler_phi.hpp
   requiredBy:
   - mod/tetration.hpp
-  timestamp: '2023-08-06 03:59:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-08-07 02:24:30+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1262.test.cpp
   - test/aoj/NTL_1_D.test.cpp
