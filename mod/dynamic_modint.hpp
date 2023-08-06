@@ -19,8 +19,8 @@ struct Dynamic_Modint {
   Dynamic_Modint() : val(0) {}
   Dynamic_Modint(u32 x) : val(bt.modulo(x)) {}
   Dynamic_Modint(u64 x) : val(bt.modulo(x)) {}
-  Dynamic_Modint(int x) : val(bt.modulo(x)) { assert(x >= 0); }
-  Dynamic_Modint(ll x) : val(bt.modulo(x)) { assert(x >= 0); }
+  Dynamic_Modint(int x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}
+  Dynamic_Modint(ll x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}
 
   mint& operator+=(const mint& rhs) {
     val += rhs.val;
