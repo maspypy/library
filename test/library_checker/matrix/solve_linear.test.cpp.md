@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
   - icon: ':heavy_check_mark:'
@@ -299,9 +299,9 @@ data:
     \ return res;\r\n}\r\n#line 1 \"linalg/matrix_rank.hpp\"\ntemplate <typename T>\n\
     int matrix_rank(const int n, const int m, vc<vc<T>> a) {\n  int rk = 0;\n  FOR(j,\
     \ m) {\n    if (rk == n) break;\n    if (a[rk][j] == 0) {\n      FOR3(i, rk +\
-    \ 1, n) if (a[i][j] != 0) {\n        swap(a[rk], a[i]);\n        break;\n    \
-    \  }\n    }\n    if (a[rk][j] == 0) continue;\n    T c = T(1) / a[rk][j];\n  \
-    \  FOR(k, j, m) a[rk][k] *= c;\n    FOR(i, rk + 1, n) {\n      T c = a[i][j];\n\
+    \ 1, n) if (a[i][j] != T(0)) {\n        swap(a[rk], a[i]);\n        break;\n \
+    \     }\n    }\n    if (a[rk][j] == 0) continue;\n    T c = T(1) / a[rk][j];\n\
+    \    FOR(k, j, m) a[rk][k] *= c;\n    FOR(i, rk + 1, n) {\n      T c = a[i][j];\n\
     \      FOR3(k, j, m) { a[i][k] -= a[rk][k] * c; }\n    }\n    ++rk;\n  }\n  return\
     \ rk;\n}\n#line 7 \"test/library_checker/matrix/solve_linear.test.cpp\"\n\r\n\
     using mint = modint998;\r\nvoid solve() {\r\n  LL(N, M);\r\n  VV(mint, A, N, M);\r\
@@ -329,7 +329,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/solve_linear.test.cpp
   requiredBy: []
-  timestamp: '2023-06-30 22:46:48+09:00'
+  timestamp: '2023-08-06 22:10:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/matrix/solve_linear.test.cpp

@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/max_matching_size.hpp
     title: graph/max_matching_size.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
   - icon: ':question:'
@@ -36,9 +36,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -235,7 +235,7 @@ data:
     \u4EE3\u308F\u308A\u306B 8x \u3092 [8, 8MOD] \u3067\u6301\u3064\r\nstruct modint61\
     \ {\r\n  using u128 = unsigned __int128;\r\n  static constexpr u64 MOD = (1ULL\
     \ << 61) - 1;\r\n  static constexpr u64 MOD8 = MOD * 8;\r\n  u64 x8;\r\n  constexpr\
-    \ modint61() : x8(0ULL) {}\r\n  constexpr modint61(u32 x) : x8((x + MOD - 1) %\
+    \ modint61() : x8(MOD8) {}\r\n  constexpr modint61(u32 x) : x8((x + MOD - 1) %\
     \ MOD * 8 + 8) {}\r\n  constexpr modint61(u64 x) : x8((x + MOD - 1) % MOD * 8\
     \ + 8) {}\r\n  constexpr modint61(int x) : x8((x + MOD - 1) % MOD * 8 + 8) {}\r\
     \n  constexpr modint61(ll x)\r\n      : x8(8 * (((x %= ll(MOD)) <= 0) ? (x + ll(MOD))\
@@ -265,7 +265,7 @@ data:
     \ (x + ll(MOD)) : x);\r\n  }\r\n#endif\r\n};\n#line 1 \"linalg/matrix_rank.hpp\"\
     \ntemplate <typename T>\nint matrix_rank(const int n, const int m, vc<vc<T>> a)\
     \ {\n  int rk = 0;\n  FOR(j, m) {\n    if (rk == n) break;\n    if (a[rk][j] ==\
-    \ 0) {\n      FOR3(i, rk + 1, n) if (a[i][j] != 0) {\n        swap(a[rk], a[i]);\n\
+    \ 0) {\n      FOR3(i, rk + 1, n) if (a[i][j] != T(0)) {\n        swap(a[rk], a[i]);\n\
     \        break;\n      }\n    }\n    if (a[rk][j] == 0) continue;\n    T c = T(1)\
     \ / a[rk][j];\n    FOR(k, j, m) a[rk][k] *= c;\n    FOR(i, rk + 1, n) {\n    \
     \  T c = a[i][j];\n      FOR3(k, j, m) { a[i][k] -= a[rk][k] * c; }\n    }\n \
@@ -466,8 +466,8 @@ data:
   isVerificationFile: true
   path: test/mytest/tutte.test.cpp
   requiredBy: []
-  timestamp: '2023-08-06 21:51:41+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-08-06 22:10:42+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/tutte.test.cpp
 layout: document

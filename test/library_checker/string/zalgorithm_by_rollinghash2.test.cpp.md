@@ -222,7 +222,7 @@ data:
     \u4EE3\u308F\u308A\u306B 8x \u3092 [8, 8MOD] \u3067\u6301\u3064\r\nstruct modint61\
     \ {\r\n  using u128 = unsigned __int128;\r\n  static constexpr u64 MOD = (1ULL\
     \ << 61) - 1;\r\n  static constexpr u64 MOD8 = MOD * 8;\r\n  u64 x8;\r\n  constexpr\
-    \ modint61() : x8(0ULL) {}\r\n  constexpr modint61(u32 x) : x8((x + MOD - 1) %\
+    \ modint61() : x8(MOD8) {}\r\n  constexpr modint61(u32 x) : x8((x + MOD - 1) %\
     \ MOD * 8 + 8) {}\r\n  constexpr modint61(u64 x) : x8((x + MOD - 1) % MOD * 8\
     \ + 8) {}\r\n  constexpr modint61(int x) : x8((x + MOD - 1) % MOD * 8 + 8) {}\r\
     \n  constexpr modint61(ll x)\r\n      : x8(8 * (((x %= ll(MOD)) <= 0) ? (x + ll(MOD))\
@@ -312,7 +312,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   requiredBy: []
-  timestamp: '2023-08-06 21:51:41+09:00'
+  timestamp: '2023-08-06 22:10:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
