@@ -242,7 +242,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
     - icon: ':heavy_check_mark:'
@@ -1036,7 +1036,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/modint.hpp
       title: mod/modint.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint61.hpp
       title: mod/modint61.hpp
     - icon: ':heavy_check_mark:'
@@ -1065,7 +1065,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
   - name: new_poly
@@ -1182,7 +1182,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/fibonacci_search.hpp
       title: other/fibonacci_search.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -1371,7 +1371,7 @@ data:
       title: poly/online/online_pow.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -1550,7 +1550,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/palindromic_tree.hpp
       title: string/palindromic_tree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/rollinghash.hpp
       title: string/rollinghash.hpp
     - icon: ':heavy_check_mark:'
@@ -3175,7 +3175,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/2097.test.cpp
       title: test/yukicoder/2097.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/2102.test.cpp
       title: test/yukicoder/2102.test.cpp
     - icon: ':heavy_check_mark:'
