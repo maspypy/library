@@ -5,7 +5,7 @@
 template <typename T, typename F1, typename F2>
 T multiplicative_sum(ll N, F1 f_pe, F2 f_psum) {
   ll sqN = sqrtl(N);
-  auto P = primetable(sqN);
+  auto P = primetable<int>(sqN);
 
   T ANS = T(1) + f_psum(N); // 1 and prime
   // t = up_i^k のときに、(t, i, k, f(t), f(u)) を持たせる
