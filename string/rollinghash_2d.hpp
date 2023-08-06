@@ -19,19 +19,17 @@ struct RollingHash_2D {
       FOR(y, W) { res[x + 1][y + 1] = res[x + 1][y] * b2 + M61(S[x][y] + 1); }
       FOR(y, W + 1) res[x + 1][y] += b1 * res[x][y];
     }
+    expand(pow1, b1, H);
+    expand(pow2, b2, W);
     return res;
   }
 
   M61 query(const vvc<M61>& A, int xl, int xr, int yl, int yr) {
     assert(0 <= xl && xl <= xr && xr <= len(A));
     assert(0 <= yl && yl <= yr && yr <= len(A[0]));
-    expand(pow1, b1, xr - xl);
-    expand(pow2, b2, yr - yl);
-    M61 res = A[xr][yr];
-    res -= A[xl][yr] * pow1[xr - xl];
-    res -= A[xr][yl] * pow2[yr - yl];
-    res += A[xl][yl] * pow1[xr - xl] * pow2[yr - yl];
-    return res;
+    M61 a = A[xr][yr] - A[xr][yl] * pow2[yr - yl];
+    M61 b = A[xl][yr] - A[xl][yl] * pow2[yr - yl];
+    return a - b * pow1[xr - xl];
   }
 
 private:

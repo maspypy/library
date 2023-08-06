@@ -1,15 +1,16 @@
 #pragma once
 #include "mod/modint_common.hpp"
 
-template <int mod>
+template <u32 mod>
 struct modint {
-  static_assert(mod < (1 << 30));
-  int val;
-  constexpr modint(const ll val = 0) noexcept
-      : val(val >= 0 ? val % mod : (mod - (-val) % mod) % mod) {}
-  bool operator<(const modint &other) const {
-    return val < other.val;
-  } // To use std::map
+  static_assert(mod < (u32(1) << 31));
+  u32 val;
+  constexpr modint() : val(0) {}
+  constexpr modint(u32 x) : val(x % mod) {}
+  constexpr modint(u64 x) : val(x % mod) {}
+  constexpr modint(int x) : val((x %= int(mod)) < 0 ? x + int(mod) : x){};
+  constexpr modint(ll x) : val((x %= int(mod)) < 0 ? x + int(mod) : x){};
+  bool operator<(const modint &other) const { return val < other.val; }
   modint &operator+=(const modint &p) {
     if ((val += p.val) >= mod) val -= mod;
     return *this;
@@ -19,14 +20,14 @@ struct modint {
     return *this;
   }
   modint &operator*=(const modint &p) {
-    val = (int)(1LL * val * p.val % mod);
+    val = u64(val) * p.val % mod;
     return *this;
   }
   modint &operator/=(const modint &p) {
     *this *= p.inverse();
     return *this;
   }
-  modint operator-() const { return modint(-val); }
+  modint operator-() const { return modint(mod - val); }
   modint operator+(const modint &p) const { return modint(*this) += p; }
   modint operator-(const modint &p) const { return modint(*this) -= p; }
   modint operator*(const modint &p) const { return modint(*this) *= p; }
@@ -55,10 +56,10 @@ struct modint {
   void write() { fastio::printer.write(val); }
   void read() {
     fastio::scanner.read(val);
-    val = (val >= 0 ? val % mod : (mod - (-val) % mod) % mod);
+    val %= mod;
   }
 #endif
-  static constexpr int get_mod() { return mod; }
+  static constexpr u32 get_mod() { return mod; }
   // (n, r), r は 1 の 2^n 乗根
   static constexpr pair<int, int> ntt_info() {
     if (mod == 167772161) return {25, 17};
