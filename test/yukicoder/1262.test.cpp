@@ -6,13 +6,7 @@
 void solve() {
   LL(N, M);
   VEC(ll, A, M);
-  /*
-  auto f = [&](ll a, ll b) -> ll { return gcd(a, b) - 1; };
-  ll ANS = 0;
-  FOR(i, M) FOR(j, 1, A[i] + 1) { ANS += f(A[i], j); }
-  print(ANS);
-  */
-  auto phi = euler_phi_table(N);
+  auto phi = euler_phi_table<int>(N);
   vi F(N + 1);
   FOR(d, 1, N + 1) {
     ll x = d;
@@ -27,11 +21,6 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
