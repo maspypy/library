@@ -216,97 +216,99 @@ data:
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
     \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
     \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
-    \    int q = (mod + k - 1) / k;\n    dat.eb(dat[k * q - mod] * mint(q));\n  }\n\
-    \  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
-    \ const int mod = mint::get_mod();\n  assert(0 <= n);\n  if (n >= mod) return\
-    \ 0;\n  static vector<mint> dat = {1, 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat)\
-    \ - 1] * mint(len(dat)));\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint\
-    \ fact_inv(int n) {\n  static vector<mint> dat = {1, 1};\n  if (n < 0) return\
-    \ mint(0);\n  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n\
-    \  return dat[n];\n}\n\ntemplate <class mint, class... Ts>\nmint fact_invs(Ts...\
-    \ xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename\
-    \ mint, class Head, class... Tail>\nmint multinomial(Head &&head, Tail &&... tail)\
-    \ {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
-    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  static vvc<mint>\
-    \ C;\n  static int H = 0, W = 0;\n  auto calc = [&](int i, int j) -> mint {\n\
-    \    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
-    \ + (j ? C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n     \
-    \ C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n\
-    \    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n +\
-    \ 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n   \
-    \ }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool\
-    \ large = false, bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n\
-    \  if (k < 0 || n < k) return 0;\n  if (dense) return C_dense<mint>(n, k);\n \
-    \ if (!large) return multinomial<mint>(n, k, n - k);\n  k = min(k, n - k);\n \
-    \ mint x(1);\n  FOR(i, k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n\
-    }\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n\
-    \  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
-    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
-    }\n\n// [x^d] (1-x) ^ {-n} \u306E\u8A08\u7B97\ntemplate <typename mint, bool large\
-    \ = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n\
-    \  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1) : mint(0));\
-    \ }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\
-    \n\ntemplate <u32 mod>\nstruct modint {\n  static_assert(mod < (u32(1) << 31));\n\
-    \  u32 val;\n  constexpr modint() : val(0) {}\n  constexpr modint(u32 x) : val(x\
-    \ % mod) {}\n  constexpr modint(u64 x) : val(x % mod) {}\n  constexpr modint(int\
-    \ x) : val((x %= int(mod)) < 0 ? x + int(mod) : x){};\n  constexpr modint(ll x)\
-    \ : val((x %= int(mod)) < 0 ? x + int(mod) : x){};\n  bool operator<(const modint\
-    \ &other) const { return val < other.val; }\n  modint &operator+=(const modint\
-    \ &p) {\n    if ((val += p.val) >= mod) val -= mod;\n    return *this;\n  }\n\
-    \  modint &operator-=(const modint &p) {\n    if ((val += mod - p.val) >= mod)\
-    \ val -= mod;\n    return *this;\n  }\n  modint &operator*=(const modint &p) {\n\
-    \    val = u64(val) * p.val % mod;\n    return *this;\n  }\n  modint &operator/=(const\
+    \    int q = (mod + k - 1) / k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n\
+    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
+    \ const int mod = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint>\
+    \ dat = {1, 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * mint::raw(len(dat)));\n\
+    \  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static\
+    \ vector<mint> dat = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat)\
+    \ <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\
+    \ntemplate <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1)\
+    \ * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint, class Head, class...\
+    \ Tail>\nmint multinomial(Head &&head, Tail &&... tail) {\n  return fact<mint>(head)\
+    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
+    mint C_dense(int n, int k) {\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n\
+    \  auto calc = [&](int i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1)\
+    \ : mint(0));\n    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n  if\
+    \ (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k +\
+    \ 1) { C[i][j] = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n\
+    \    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n      FOR(j,\
+    \ W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return C[n][k];\n\
+    }\n\ntemplate <typename mint, bool large = false, bool dense = false>\nmint C(ll\
+    \ n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if constexpr\
+    \ (dense) return C_dense<mint>(n, k);\n  if constexpr (!large) return multinomial<mint>(n,\
+    \ k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n\
+    \  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename mint, bool large = false>\n\
+    mint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if\
+    \ (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return\
+    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d] (1-x) ^ {-n} \u306E\u8A08\u7B97\n\
+    template <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
+    \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\
+    \ return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large, dense>(n + d\
+    \ - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
+    \ {\n  static constexpr u32 umod = u32(mod);\n  static_assert(umod < u32(1) <<\
+    \ 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n    x.val =\
+    \ v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr modint(u32\
+    \ x) : val(x % umod) {}\n  constexpr modint(u64 x) : val(x % umod) {}\n  constexpr\
+    \ modint(int x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(ll\
+    \ x) : val((x %= mod) < 0 ? x + mod : x){};\n  bool operator<(const modint &other)\
+    \ const { return val < other.val; }\n  modint &operator+=(const modint &p) {\n\
+    \    if ((val += p.val) >= umod) val -= umod;\n    return *this;\n  }\n  modint\
+    \ &operator-=(const modint &p) {\n    if ((val += umod - p.val) >= umod) val -=\
+    \ umod;\n    return *this;\n  }\n  modint &operator*=(const modint &p) {\n   \
+    \ val = u64(val) * p.val % umod;\n    return *this;\n  }\n  modint &operator/=(const\
     \ modint &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n  modint operator-()\
-    \ const { return modint(mod - val); }\n  modint operator+(const modint &p) const\
-    \ { return modint(*this) += p; }\n  modint operator-(const modint &p) const {\
-    \ return modint(*this) -= p; }\n  modint operator*(const modint &p) const { return\
-    \ modint(*this) *= p; }\n  modint operator/(const modint &p) const { return modint(*this)\
-    \ /= p; }\n  bool operator==(const modint &p) const { return val == p.val; }\n\
-    \  bool operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
-    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
-    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
-    \ return modint(u);\n  }\n  modint pow(ll n) const {\n    assert(n >= 0);\n  \
-    \  modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
-    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n\
-    \  void write() { fastio::printer.write(val); }\n  void read() {\n    fastio::scanner.read(val);\n\
-    \    val %= mod;\n  }\n#endif\n  static constexpr u32 get_mod() { return mod;\
-    \ }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int,\
-    \ int> ntt_info() {\n    if (mod == 167772161) return {25, 17};\n    if (mod ==\
-    \ 469762049) return {26, 30};\n    if (mod == 754974721) return {24, 362};\n \
-    \   if (mod == 880803841) return {23, 211};\n    if (mod == 998244353) return\
-    \ {23, 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
-    \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
-    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
-    \ -1; }\n};\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 1 \"linalg/characteristic_poly.hpp\"\ntemplate <typename T>\r\nvoid to_Hessenberg_matrix(vc<vc<T>>&\
-    \ A) {\r\n  /*\r\n  P^{-1}AP \u306E\u5F62\u306E\u5909\u63DB\u3067\u3001Hessenberg\
-    \ \u884C\u5217\u306B\u5909\u5F62\u3059\u308B\u3002\r\n  \u7279\u5B9A\u591A\u9805\
-    \u5F0F\u306E\u8A08\u7B97\u306B\u7528\u3044\u308B\u3053\u3068\u304C\u3067\u304D\
-    \u308B\u3002\r\n  */\r\n  int n = len(A);\r\n  FOR(k, n - 2) {\r\n    FOR3(i,\
-    \ k + 1, n) if (A[i][k] != 0) {\r\n      if (i != k + 1) {\r\n        swap(A[i],\
-    \ A[k + 1]);\r\n        FOR(j, n) swap(A[j][i], A[j][k + 1]);\r\n      }\r\n \
-    \     break;\r\n    }\r\n    if (A[k + 1][k] == 0) continue;\r\n    FOR3(i, k\
-    \ + 2, n) {\r\n      T c = A[i][k] / A[k + 1][k];\r\n      // i \u884C\u76EE -=\
-    \ k+1 \u884C\u76EE * c\r\n      FOR(j, n) A[i][j] -= A[k + 1][j] * c;\r\n    \
-    \  // k+1 \u5217\u76EE += i \u5217\u76EE * c\r\n      FOR(j, n) A[j][k + 1] +=\
-    \ A[j][i] * c;\r\n    }\r\n  }\r\n}\r\n\r\n// det(xI-A)\r\ntemplate <typename\
-    \ T>\r\nvc<T> characteristic_poly(vc<vc<T>> A) {\r\n  /*\r\n  \u30FBHessenberg\
-    \ \u884C\u5217\u306B\u5909\u5F62\r\n  \u30FBHessenberg \u884C\u5217\u306E\u884C\
-    \u5217\u5F0F\u306F\u3001\u6700\u5F8C\u306E\u5217\u3067\u5834\u5408\u5206\u3051\
-    \u3059\u308C\u3070 dp \u3067\u304D\u308B\r\n  */\r\n  int n = len(A);\r\n  to_Hessenberg_matrix(A);\r\
-    \n  vc<vc<T>> DP(n + 1);\r\n  DP[0] = {1};\r\n  FOR(k, n) {\r\n    DP[k + 1].resize(k\
-    \ + 2);\r\n    auto& dp = DP[k + 1];\r\n    // (k, k) \u6210\u5206\u3092\u4F7F\
-    \u3046\u5834\u5408\r\n    FOR(i, len(DP[k])) dp[i + 1] += DP[k][i];\r\n    FOR(i,\
-    \ len(DP[k])) dp[i] -= DP[k][i] * A[k][k];\r\n    // \u4E0B\u5074\u5BFE\u89D2\u306E\
-    \u7DCF\u7A4D\u3092\u7BA1\u7406\r\n    T prod = 1;\r\n    FOR_R(i, k) {\r\n   \
-    \   // (i, k) \u6210\u5206\u3092\u4F7F\u3046\u5834\u5408\r\n      prod *= A[i\
-    \ + 1][i];\r\n      T c = prod * A[i][k];\r\n      // DP[i] \u306E c \u500D\u3092\
-    \u52A0\u7B97\r\n      FOR(j, len(DP[i])) dp[j] -= DP[i][j] * c;\r\n    }\r\n \
-    \ }\r\n  return DP[n];\r\n}\r\n#line 6 \"test/library_checker/matrix/charactereistic_poly.test.cpp\"\
-    \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VV(mint,\
-    \ A, N, N);\r\n  auto f = characteristic_poly(A);\r\n  print(f);\r\n}\r\n\r\n\
-    signed main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n \
-    \ cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\n"
+    \ const { return modint::raw(val ? mod - val : u32(0)); }\n  modint operator+(const\
+    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
+    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
+    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
+    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
+    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
+    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
+    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
+    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
+    \  assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if\
+    \ (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
+    \  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val); }\n  void read()\
+    \ {\n    fastio::scanner.read(val);\n    val %= mod;\n  }\n#endif\n  static constexpr\
+    \ u32 get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\
+    \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 167772161) return\
+    \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
+    \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
+    \ == 998244353) return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n\
+    \    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881) return\
+    \ {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
+    \ return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\n#line 1 \"linalg/characteristic_poly.hpp\"\
+    \ntemplate <typename T>\r\nvoid to_Hessenberg_matrix(vc<vc<T>>& A) {\r\n  /*\r\
+    \n  P^{-1}AP \u306E\u5F62\u306E\u5909\u63DB\u3067\u3001Hessenberg \u884C\u5217\
+    \u306B\u5909\u5F62\u3059\u308B\u3002\r\n  \u7279\u5B9A\u591A\u9805\u5F0F\u306E\
+    \u8A08\u7B97\u306B\u7528\u3044\u308B\u3053\u3068\u304C\u3067\u304D\u308B\u3002\
+    \r\n  */\r\n  int n = len(A);\r\n  FOR(k, n - 2) {\r\n    FOR3(i, k + 1, n) if\
+    \ (A[i][k] != 0) {\r\n      if (i != k + 1) {\r\n        swap(A[i], A[k + 1]);\r\
+    \n        FOR(j, n) swap(A[j][i], A[j][k + 1]);\r\n      }\r\n      break;\r\n\
+    \    }\r\n    if (A[k + 1][k] == 0) continue;\r\n    FOR3(i, k + 2, n) {\r\n \
+    \     T c = A[i][k] / A[k + 1][k];\r\n      // i \u884C\u76EE -= k+1 \u884C\u76EE\
+    \ * c\r\n      FOR(j, n) A[i][j] -= A[k + 1][j] * c;\r\n      // k+1 \u5217\u76EE\
+    \ += i \u5217\u76EE * c\r\n      FOR(j, n) A[j][k + 1] += A[j][i] * c;\r\n   \
+    \ }\r\n  }\r\n}\r\n\r\n// det(xI-A)\r\ntemplate <typename T>\r\nvc<T> characteristic_poly(vc<vc<T>>\
+    \ A) {\r\n  /*\r\n  \u30FBHessenberg \u884C\u5217\u306B\u5909\u5F62\r\n  \u30FB\
+    Hessenberg \u884C\u5217\u306E\u884C\u5217\u5F0F\u306F\u3001\u6700\u5F8C\u306E\u5217\
+    \u3067\u5834\u5408\u5206\u3051\u3059\u308C\u3070 dp \u3067\u304D\u308B\r\n  */\r\
+    \n  int n = len(A);\r\n  to_Hessenberg_matrix(A);\r\n  vc<vc<T>> DP(n + 1);\r\n\
+    \  DP[0] = {1};\r\n  FOR(k, n) {\r\n    DP[k + 1].resize(k + 2);\r\n    auto&\
+    \ dp = DP[k + 1];\r\n    // (k, k) \u6210\u5206\u3092\u4F7F\u3046\u5834\u5408\r\
+    \n    FOR(i, len(DP[k])) dp[i + 1] += DP[k][i];\r\n    FOR(i, len(DP[k])) dp[i]\
+    \ -= DP[k][i] * A[k][k];\r\n    // \u4E0B\u5074\u5BFE\u89D2\u306E\u7DCF\u7A4D\u3092\
+    \u7BA1\u7406\r\n    T prod = 1;\r\n    FOR_R(i, k) {\r\n      // (i, k) \u6210\
+    \u5206\u3092\u4F7F\u3046\u5834\u5408\r\n      prod *= A[i + 1][i];\r\n      T\
+    \ c = prod * A[i][k];\r\n      // DP[i] \u306E c \u500D\u3092\u52A0\u7B97\r\n\
+    \      FOR(j, len(DP[i])) dp[j] -= DP[i][j] * c;\r\n    }\r\n  }\r\n  return DP[n];\r\
+    \n}\r\n#line 6 \"test/library_checker/matrix/charactereistic_poly.test.cpp\"\n\
+    \r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VV(mint, A,\
+    \ N, N);\r\n  auto f = characteristic_poly(A);\r\n  print(f);\r\n}\r\n\r\nsigned\
+    \ main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout\
+    \ << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/characteristic_polynomial\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"mod/modint.hpp\"\
     \r\n#include \"linalg/characteristic_poly.hpp\"\r\n\r\nusing mint = modint998;\r\
@@ -322,7 +324,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/charactereistic_poly.test.cpp
   requiredBy: []
-  timestamp: '2023-08-08 01:44:15+09:00'
+  timestamp: '2023-08-08 03:16:22+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/matrix/charactereistic_poly.test.cpp
