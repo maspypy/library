@@ -321,25 +321,26 @@ data:
     \n  }\r\n  S = find_linear_rec(S);\r\n  reverse(all(S));\r\n  return S;\r\n}\r\
     \n#line 3 \"linalg/mat_mul.hpp\"\n\r\ntemplate <class T, typename enable_if<has_mod<T>::value>::type*\
     \ = nullptr>\r\nvc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n\
-    \  const int mod = T::get_mod();\r\n  auto N = len(A), M = len(B), K = len(B[0]);\r\
-    \n  vv(int, b, K, M);\r\n  FOR(i, M) FOR(j, K) b[j][i] = B[i][j].val;\r\n  vv(T,\
-    \ C, N, K);\r\n\r\n  if (M <= 16) {\r\n    FOR(i, N) FOR(j, K) {\r\n      u64\
-    \ sm = 0;\r\n      FOR(m, M) sm += u64(A[i][m].val) * b[j][m];\r\n      C[i][j]\
-    \ = sm % mod;\r\n    }\r\n  } else {\r\n    FOR(i, N) FOR(j, K) {\r\n      i128\
-    \ sm = 0;\r\n      FOR(m, M) sm += ll(A[i][m].val) * b[j][m];\r\n      C[i][j]\
-    \ = int(sm % mod);\r\n    }\r\n  }\r\n  return C;\r\n}\r\n\r\ntemplate <class\
-    \ T, typename enable_if<!has_mod<T>::value>::type* = nullptr>\r\nvc<vc<T>> mat_mul(const\
-    \ vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n  assert(!A.empty() && !B.empty());\r\
-    \n  auto N = len(A), M = len(B), K = len(B[0]);\r\n  vv(T, b, K, M);\r\n  FOR(i,\
-    \ M) FOR(j, K) b[j][i] = B[i][j];\r\n  vv(T, C, N, K);\r\n  FOR(n, N) FOR(m, M)\
-    \ FOR(k, K) C[n][k] += A[n][m] * b[k][m];\r\n  return C;\r\n}\r\n#line 9 \"test/mytest/min_poly.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid test() {\n  vc<tuple<int, int, mint>> A;\n\
-    \  A.eb(0, 0, 1);\n  A.eb(0, 1, 2);\n  A.eb(1, 0, 3);\n  A.eb(1, 1, 4);\n  vc<mint>\
-    \ f = spmat_min_poly<mint>(2, A);\n  assert(f == vc<mint>({mint(-2), mint(-5),\
-    \ mint(1)}));\n\n  A.clear();\n  A.eb(0, 1, 1);\n  f = spmat_min_poly<mint>(2,\
-    \ A);\n  assert(f == vc<mint>({mint(0), mint(0), mint(1)}));\n  assert(f == implicit_matrix_min_poly<mint>(2,\
-    \ [&](vc<mint> a) -> vc<mint> {\n           vc<mint> b(2);\n           for (auto&&\
-    \ [i, j, x]: A) b[j] += a[i] * x;\n           return b;\n         }));\n\n  A.clear();\n\
+    \  assert(T::get_mod() < u32(1) << 30);\r\n  auto N = len(A), M = len(B), K =\
+    \ len(B[0]);\r\n  vv(u32, b, K, M);\r\n  FOR(i, M) FOR(j, K) b[j][i] = B[i][j].val;\r\
+    \n  vv(T, C, N, K);\r\n\r\n  if (M <= 16) {\r\n    FOR(i, N) FOR(j, K) {\r\n \
+    \     u64 sm = 0;\r\n      FOR(m, M) sm += u64(A[i][m].val) * b[j][m];\r\n   \
+    \   C[i][j] = sm;\r\n    }\r\n  } else {\r\n    FOR(i, N) FOR(j, K) {\r\n    \
+    \  u128 sm = 0;\r\n      FOR(m, M) sm += u64(A[i][m].val) * b[j][m];\r\n     \
+    \ C[i][j] = T::raw(sm % (T::umod));\r\n    }\r\n  }\r\n  return C;\r\n}\r\n\r\n\
+    template <class T, typename enable_if<!has_mod<T>::value>::type* = nullptr>\r\n\
+    vc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n  assert(!A.empty()\
+    \ && !B.empty());\r\n  auto N = len(A), M = len(B), K = len(B[0]);\r\n  vv(T,\
+    \ b, K, M);\r\n  FOR(i, M) FOR(j, K) b[j][i] = B[i][j];\r\n  vv(T, C, N, K);\r\
+    \n  FOR(n, N) FOR(m, M) FOR(k, K) C[n][k] += A[n][m] * b[k][m];\r\n  return C;\r\
+    \n}\r\n#line 9 \"test/mytest/min_poly.test.cpp\"\n\nusing mint = modint998;\n\n\
+    void test() {\n  vc<tuple<int, int, mint>> A;\n  A.eb(0, 0, 1);\n  A.eb(0, 1,\
+    \ 2);\n  A.eb(1, 0, 3);\n  A.eb(1, 1, 4);\n  vc<mint> f = spmat_min_poly<mint>(2,\
+    \ A);\n  assert(f == vc<mint>({mint(-2), mint(-5), mint(1)}));\n\n  A.clear();\n\
+    \  A.eb(0, 1, 1);\n  f = spmat_min_poly<mint>(2, A);\n  assert(f == vc<mint>({mint(0),\
+    \ mint(0), mint(1)}));\n  assert(f == implicit_matrix_min_poly<mint>(2, [&](vc<mint>\
+    \ a) -> vc<mint> {\n           vc<mint> b(2);\n           for (auto&& [i, j, x]:\
+    \ A) b[j] += a[i] * x;\n           return b;\n         }));\n\n  A.clear();\n\
     \  f = spmat_min_poly<mint>(2, A);\n  assert(f == vc<mint>({mint(0), mint(1)}));\n\
     \  assert(f == implicit_matrix_min_poly<mint>(2, [&](vc<mint> a) -> vc<mint> {\n\
     \           vc<mint> b(2);\n           for (auto&& [i, j, x]: A) b[j] += a[i]\
@@ -421,7 +422,7 @@ data:
   isVerificationFile: true
   path: test/mytest/min_poly.test.cpp
   requiredBy: []
-  timestamp: '2023-08-08 03:16:22+09:00'
+  timestamp: '2023-08-08 03:29:58+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/min_poly.test.cpp

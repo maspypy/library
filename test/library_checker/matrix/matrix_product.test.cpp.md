@@ -282,19 +282,19 @@ data:
     \ return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
     using modint998 = modint<998244353>;\n#line 3 \"linalg/mat_mul.hpp\"\n\r\ntemplate\
     \ <class T, typename enable_if<has_mod<T>::value>::type* = nullptr>\r\nvc<vc<T>>\
-    \ mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n  const int mod = T::get_mod();\r\
-    \n  auto N = len(A), M = len(B), K = len(B[0]);\r\n  vv(int, b, K, M);\r\n  FOR(i,\
-    \ M) FOR(j, K) b[j][i] = B[i][j].val;\r\n  vv(T, C, N, K);\r\n\r\n  if (M <= 16)\
-    \ {\r\n    FOR(i, N) FOR(j, K) {\r\n      u64 sm = 0;\r\n      FOR(m, M) sm +=\
-    \ u64(A[i][m].val) * b[j][m];\r\n      C[i][j] = sm % mod;\r\n    }\r\n  } else\
-    \ {\r\n    FOR(i, N) FOR(j, K) {\r\n      i128 sm = 0;\r\n      FOR(m, M) sm +=\
-    \ ll(A[i][m].val) * b[j][m];\r\n      C[i][j] = int(sm % mod);\r\n    }\r\n  }\r\
-    \n  return C;\r\n}\r\n\r\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type*\
-    \ = nullptr>\r\nvc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n\
-    \  assert(!A.empty() && !B.empty());\r\n  auto N = len(A), M = len(B), K = len(B[0]);\r\
-    \n  vv(T, b, K, M);\r\n  FOR(i, M) FOR(j, K) b[j][i] = B[i][j];\r\n  vv(T, C,\
-    \ N, K);\r\n  FOR(n, N) FOR(m, M) FOR(k, K) C[n][k] += A[n][m] * b[k][m];\r\n\
-    \  return C;\r\n}\r\n#line 7 \"test/library_checker/matrix/matrix_product.test.cpp\"\
+    \ mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n  assert(T::get_mod() <\
+    \ u32(1) << 30);\r\n  auto N = len(A), M = len(B), K = len(B[0]);\r\n  vv(u32,\
+    \ b, K, M);\r\n  FOR(i, M) FOR(j, K) b[j][i] = B[i][j].val;\r\n  vv(T, C, N, K);\r\
+    \n\r\n  if (M <= 16) {\r\n    FOR(i, N) FOR(j, K) {\r\n      u64 sm = 0;\r\n \
+    \     FOR(m, M) sm += u64(A[i][m].val) * b[j][m];\r\n      C[i][j] = sm;\r\n \
+    \   }\r\n  } else {\r\n    FOR(i, N) FOR(j, K) {\r\n      u128 sm = 0;\r\n   \
+    \   FOR(m, M) sm += u64(A[i][m].val) * b[j][m];\r\n      C[i][j] = T::raw(sm %\
+    \ (T::umod));\r\n    }\r\n  }\r\n  return C;\r\n}\r\n\r\ntemplate <class T, typename\
+    \ enable_if<!has_mod<T>::value>::type* = nullptr>\r\nvc<vc<T>> mat_mul(const vc<vc<T>>&\
+    \ A, const vc<vc<T>>& B) {\r\n  assert(!A.empty() && !B.empty());\r\n  auto N\
+    \ = len(A), M = len(B), K = len(B[0]);\r\n  vv(T, b, K, M);\r\n  FOR(i, M) FOR(j,\
+    \ K) b[j][i] = B[i][j];\r\n  vv(T, C, N, K);\r\n  FOR(n, N) FOR(m, M) FOR(k, K)\
+    \ C[n][k] += A[n][m] * b[k][m];\r\n  return C;\r\n}\r\n#line 7 \"test/library_checker/matrix/matrix_product.test.cpp\"\
     \nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N, M, K);\r\n  VV(mint,\
     \ A, N, M);\r\n  VV(mint, B, M, K);\r\n  auto C = mat_mul(A, B);\r\n  FOR(n, len(C))\
     \ print(C[n]);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
@@ -315,7 +315,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/matrix_product.test.cpp
   requiredBy: []
-  timestamp: '2023-08-08 03:16:22+09:00'
+  timestamp: '2023-08-08 03:29:58+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/matrix/matrix_product.test.cpp
