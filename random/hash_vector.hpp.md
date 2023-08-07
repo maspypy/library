@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/tdpc_grid_dp.test.cpp
     title: test/mytest/tdpc_grid_dp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1397.test.cpp
     title: test/yukicoder/1397.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1881.test.cpp
     title: test/yukicoder/1881.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/541.test.cpp
     title: test/yukicoder/541.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/578.test.cpp
     title: test/yukicoder/578.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/hash_vector.hpp\"\n\n#line 2 \"random/base.hpp\"\n\
@@ -46,24 +46,23 @@ data:
     \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/modint61.hpp\"\
     \n\r\n// https : // yosupo.hatenablog.com/entry/2023/08/06/181942\r\n// x \u306E\
     \u4EE3\u308F\u308A\u306B 8x \u3092 [8, 8MOD] \u3067\u6301\u3064\r\nstruct modint61\
-    \ {\r\n  using u128 = unsigned __int128;\r\n  static constexpr u64 MOD = (1ULL\
-    \ << 61) - 1;\r\n  static constexpr u64 MOD8 = MOD * 8;\r\n  u64 x8;\r\n  constexpr\
-    \ modint61() : x8(MOD8) {}\r\n  constexpr modint61(u32 x) : x8((x + MOD - 1) %\
-    \ MOD * 8 + 8) {}\r\n  constexpr modint61(u64 x) : x8((x + MOD - 1) % MOD * 8\
-    \ + 8) {}\r\n  constexpr modint61(int x) : x8((x + MOD - 1) % MOD * 8 + 8) {}\r\
-    \n  constexpr modint61(ll x)\r\n      : x8(8 * (((x %= ll(MOD)) <= 0) ? (x + ll(MOD))\
-    \ : x)) {}\r\n\r\n  static constexpr u64 get_mod() { return MOD; }\r\n  modint61\
-    \ &operator+=(const modint61 &a) {\r\n    if (__builtin_uaddll_overflow(x8, a.x8,\
-    \ &x8)) x8 -= MOD8;\r\n    return *this;\r\n  }\r\n  modint61 &operator-=(const\
-    \ modint61 &a) {\r\n    if (__builtin_uaddll_overflow(x8, MOD8 - a.x8, &x8)) x8\
-    \ -= MOD8;\r\n    return *this;\r\n  }\r\n  modint61 &operator*=(const modint61\
-    \ &a) {\r\n    u128 c = u128(x8) * (a.x8);\r\n    u64 x = c >> 67 << 3, y = c\
-    \ << 61 >> 64;\r\n    if (__builtin_uaddll_overflow(x, y, &x8)) x8 -= MOD8;\r\n\
-    \    return *this;\r\n  }\r\n  modint61 &operator/=(const modint61 &a) { return\
-    \ (*this *= a.inverse()); }\r\n  modint61 operator+(const modint61 &p) const {\
-    \ return modint61(*this) += p; }\r\n  modint61 operator-(const modint61 &p) const\
-    \ { return modint61(*this) -= p; }\r\n  modint61 operator*(const modint61 &p)\
-    \ const { return modint61(*this) *= p; }\r\n  modint61 operator/(const modint61\
+    \ {\r\n  static constexpr u64 MOD = (1ULL << 61) - 1;\r\n  static constexpr u64\
+    \ MOD8 = MOD * 8;\r\n  u64 x8;\r\n  constexpr modint61() : x8(MOD8) {}\r\n  constexpr\
+    \ modint61(u32 x) : x8((x + MOD - 1) % MOD * 8 + 8) {}\r\n  constexpr modint61(u64\
+    \ x) : x8((x + MOD - 1) % MOD * 8 + 8) {}\r\n  constexpr modint61(int x) : x8((x\
+    \ + MOD - 1) % MOD * 8 + 8) {}\r\n  constexpr modint61(ll x)\r\n      : x8(8 *\
+    \ (((x %= ll(MOD)) <= 0) ? (x + ll(MOD)) : x)) {}\r\n\r\n  static constexpr u64\
+    \ get_mod() { return MOD; }\r\n  modint61 &operator+=(const modint61 &a) {\r\n\
+    \    if (__builtin_uaddll_overflow(x8, a.x8, &x8)) x8 -= MOD8;\r\n    return *this;\r\
+    \n  }\r\n  modint61 &operator-=(const modint61 &a) {\r\n    if (__builtin_uaddll_overflow(x8,\
+    \ MOD8 - a.x8, &x8)) x8 -= MOD8;\r\n    return *this;\r\n  }\r\n  modint61 &operator*=(const\
+    \ modint61 &a) {\r\n    u128 c = u128(x8) * (a.x8);\r\n    u64 x = c >> 67 <<\
+    \ 3, y = c << 61 >> 64;\r\n    if (__builtin_uaddll_overflow(x, y, &x8)) x8 -=\
+    \ MOD8;\r\n    return *this;\r\n  }\r\n  modint61 &operator/=(const modint61 &a)\
+    \ { return (*this *= a.inverse()); }\r\n  modint61 operator+(const modint61 &p)\
+    \ const { return modint61(*this) += p; }\r\n  modint61 operator-(const modint61\
+    \ &p) const { return modint61(*this) -= p; }\r\n  modint61 operator*(const modint61\
+    \ &p) const { return modint61(*this) *= p; }\r\n  modint61 operator/(const modint61\
     \ &p) const { return modint61(*this) /= p; }\r\n  bool operator==(const modint61\
     \ &p) const { return x8 == p.x8; }\r\n  bool operator!=(const modint61 &p) const\
     \ { return x8 != p.x8; }\r\n  u64 val() const { return (x8 == MOD8 ? 0 : x8 >>\
@@ -92,8 +91,8 @@ data:
   path: random/hash_vector.hpp
   requiredBy:
   - other/connected_dp.hpp
-  timestamp: '2023-08-06 22:10:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-08-08 01:44:15+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/yukicoder/1881.test.cpp
