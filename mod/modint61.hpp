@@ -3,7 +3,6 @@
 // https : // yosupo.hatenablog.com/entry/2023/08/06/181942
 // x の代わりに 8x を [8, 8MOD] で持つ
 struct modint61 {
-  using u128 = unsigned __int128;
   static constexpr u64 MOD = (1ULL << 61) - 1;
   static constexpr u64 MOD8 = MOD * 8;
   u64 x8;
