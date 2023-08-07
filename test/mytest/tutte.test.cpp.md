@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
   - icon: ':question:'

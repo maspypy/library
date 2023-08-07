@@ -922,7 +922,7 @@ data:
     - icon: ':question:'
       path: linalg/characteristic_poly.hpp
       title: linalg/characteristic_poly.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: linalg/det.hpp
       title: linalg/det.hpp
     - icon: ':x:'
@@ -937,25 +937,25 @@ data:
     - icon: ':question:'
       path: linalg/mat_inv.hpp
       title: linalg/mat_inv.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: linalg/mat_mul.hpp
       title: linalg/mat_mul.hpp
     - icon: ':x:'
       path: linalg/mat_pow.hpp
       title: linalg/mat_pow.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: linalg/matrix_rank.hpp
       title: linalg/matrix_rank.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: linalg/solve_linear.hpp
       title: linalg/solve_linear.hpp
     - icon: ':x:'
       path: linalg/solve_linear_lower.hpp
       title: linalg/solve_linear_lower.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: linalg/spmat_det.hpp
       title: linalg/spmat_det.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: linalg/spmat_min_poly.hpp
       title: linalg/spmat_min_poly.hpp
     - icon: ':x:'
@@ -1253,7 +1253,7 @@ data:
     - icon: ':question:'
       path: poly/fft.hpp
       title: poly/fft.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/fps_composition.hpp
       title: poly/fps_composition.hpp
     - icon: ':question:'
@@ -1307,10 +1307,10 @@ data:
     - icon: ':x:'
       path: poly/partial_frac_decomposition_1.hpp
       title: poly/partial_frac_decomposition_1.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/poly_divmod.hpp
       title: poly/poly_divmod.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/poly_gcd.hpp
       title: poly/poly_gcd.hpp
     - icon: ':question:'
@@ -2218,54 +2218,54 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/matrix/inverse_matrix.test.cpp
       title: test/library_checker/matrix/inverse_matrix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/matrix/matrix_det.test.cpp
       title: test/library_checker/matrix/matrix_det.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/matrix/matrix_product.test.cpp
       title: test/library_checker/matrix/matrix_product.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/matrix/solve_linear.test.cpp
       title: test/library_checker/matrix/solve_linear.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/matrix/sparse_matrix_det.test.cpp
       title: test/library_checker/matrix/sparse_matrix_det.test.cpp
   - name: test/library_checker/polynomial
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/composition_of_fps.test.cpp
       title: test/library_checker/polynomial/composition_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/exp_of_fps.test.cpp
       title: test/library_checker/polynomial/exp_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
       title: test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
       title: test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
       title: test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/inv_of_fps.test.cpp
       title: test/library_checker/polynomial/inv_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
       title: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
       title: test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
       title: test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/inv_of_polynomials.test.cpp
       title: test/library_checker/polynomial/inv_of_polynomials.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/log_of_fps.test.cpp
       title: test/library_checker/polynomial/log_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/log_of_fps_dmint.test.cpp
       title: test/library_checker/polynomial/log_of_fps_dmint.test.cpp
     - icon: ':x:'
