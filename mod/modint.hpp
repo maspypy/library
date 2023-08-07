@@ -1,33 +1,40 @@
 #pragma once
 #include "mod/modint_common.hpp"
 
-template <u32 mod>
+template <int mod>
 struct modint {
-  static_assert(mod < (u32(1) << 31));
+  static constexpr u32 umod = u32(mod);
+  static_assert(umod < u32(1) << 31);
   u32 val;
+
+  static modint raw(u32 v) {
+    modint x;
+    x.val = v;
+    return x;
+  }
   constexpr modint() : val(0) {}
-  constexpr modint(u32 x) : val(x % mod) {}
-  constexpr modint(u64 x) : val(x % mod) {}
-  constexpr modint(int x) : val((x %= int(mod)) < 0 ? x + int(mod) : x){};
-  constexpr modint(ll x) : val((x %= int(mod)) < 0 ? x + int(mod) : x){};
+  constexpr modint(u32 x) : val(x % umod) {}
+  constexpr modint(u64 x) : val(x % umod) {}
+  constexpr modint(int x) : val((x %= mod) < 0 ? x + mod : x){};
+  constexpr modint(ll x) : val((x %= mod) < 0 ? x + mod : x){};
   bool operator<(const modint &other) const { return val < other.val; }
   modint &operator+=(const modint &p) {
-    if ((val += p.val) >= mod) val -= mod;
+    if ((val += p.val) >= umod) val -= umod;
     return *this;
   }
   modint &operator-=(const modint &p) {
-    if ((val += mod - p.val) >= mod) val -= mod;
+    if ((val += umod - p.val) >= umod) val -= umod;
     return *this;
   }
   modint &operator*=(const modint &p) {
-    val = u64(val) * p.val % mod;
+    val = u64(val) * p.val % umod;
     return *this;
   }
   modint &operator/=(const modint &p) {
     *this *= p.inverse();
     return *this;
   }
-  modint operator-() const { return modint(mod - val); }
+  modint operator-() const { return modint::raw(val ? mod - val : u32(0)); }
   modint operator+(const modint &p) const { return modint(*this) += p; }
   modint operator-(const modint &p) const { return modint(*this) -= p; }
   modint operator*(const modint &p) const { return modint(*this) *= p; }
