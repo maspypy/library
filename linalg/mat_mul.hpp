@@ -3,9 +3,9 @@
 
 template <class T, typename enable_if<has_mod<T>::value>::type* = nullptr>
 vc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {
-  const int mod = T::get_mod();
+  assert(T::get_mod() < u32(1) << 30);
   auto N = len(A), M = len(B), K = len(B[0]);
-  vv(int, b, K, M);
+  vv(u32, b, K, M);
   FOR(i, M) FOR(j, K) b[j][i] = B[i][j].val;
   vv(T, C, N, K);
 
@@ -13,13 +13,13 @@ vc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {
     FOR(i, N) FOR(j, K) {
       u64 sm = 0;
       FOR(m, M) sm += u64(A[i][m].val) * b[j][m];
-      C[i][j] = sm % mod;
+      C[i][j] = sm;
     }
   } else {
     FOR(i, N) FOR(j, K) {
-      i128 sm = 0;
-      FOR(m, M) sm += ll(A[i][m].val) * b[j][m];
-      C[i][j] = int(sm % mod);
+      u128 sm = 0;
+      FOR(m, M) sm += u64(A[i][m].val) * b[j][m];
+      C[i][j] = T::raw(sm % (T::umod));
     }
   }
   return C;

@@ -10,12 +10,17 @@ struct Dynamic_Modint {
   static Barrett bt;
   static u32 umod() { return bt.umod(); }
 
-  static int get_mod() { return (int)(bt.umod()); }
+  static u32 get_mod() { return (int)(bt.umod()); }
   static void set_mod(int m) {
     assert(1 <= m);
     bt = Barrett(m);
   }
 
+  static Dynamic_Modint raw(u32 v) {
+    Dynamic_Modint x;
+    x.val = v;
+    return x;
+  }
   Dynamic_Modint() : val(0) {}
   Dynamic_Modint(u32 x) : val(bt.modulo(x)) {}
   Dynamic_Modint(u64 x) : val(bt.modulo(x)) {}
