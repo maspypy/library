@@ -1,6 +1,7 @@
 template <typename mint>
 struct Prefix_Sum_Of_Binom {
-  static constexpr int mod = mint::get_mod();
+  static constexpr u32 mod = mint::get_mod();
+  static constexpr u64 ADD = -(u64(-1) / mod * mod);
   const int MAX_N;
   const int B;
   vc<mint> POW;
@@ -30,18 +31,19 @@ struct Prefix_Sum_Of_Binom {
     if (m + m > n + 1) return POW[n] - query(n, n + 1 - m);
     --m;
     int a = m / B;
+
     if (m <= a * B + B / 2) {
-      ll t = 0;
+      u64 t = 0;
       FOR(i, a * B + 1, m + 1) {
-        t += ll(fact_inv<mint>(i).val)
-             * (fact_inv<mint>(n - i).val + (t <= 0 ? 0 : -mod));
+        u64 add = u64(fact_inv<mint>(i).val) * (fact_inv<mint>(n - i).val);
+        if (__builtin_uaddll_overflow(t, add, &t)) t += ADD;
       }
       return get(n, a) + mint(t) * fact<mint>(n);
     } else {
-      ll t = 0;
+      u64 t = 0;
       FOR(i, m + 1, (a + 1) * B + 1) {
-        t += ll(fact_inv<mint>(i).val)
-             * (fact_inv<mint>(n - i).val + (t <= 0 ? 0 : -mod));
+        u64 add = u64(fact_inv<mint>(i).val) * (fact_inv<mint>(n - i).val);
+        if (__builtin_uaddll_overflow(t, add, &t)) t += ADD;
       }
       return get(n, a + 1) - mint(t) * fact<mint>(n);
     }
