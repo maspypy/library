@@ -32,7 +32,7 @@ data:
   - icon: ':warning:'
     path: new_poly/base.hpp
     title: new_poly/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/multiplicative_convolution_mod2n.hpp
     title: nt/multiplicative_convolution_mod2n.hpp
   - icon: ':x:'
@@ -68,7 +68,7 @@ data:
   - icon: ':x:'
     path: poly/convolution_leq.hpp
     title: poly/convolution_leq.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/convolution_mod_2_64.hpp
     title: poly/convolution_mod_2_64.hpp
   - icon: ':x:'
@@ -104,13 +104,13 @@ data:
   - icon: ':x:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/multivar_convolution.hpp
     title: poly/multivar_convolution.hpp
   - icon: ':x:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
   - icon: ':x:'
@@ -234,28 +234,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_107.test.cpp
     title: test/library_checker/convolution/convolution_mod_107.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
     title: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/convolution_mod_2_64.test.cpp
     title: test/library_checker/convolution/convolution_mod_2_64.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/convolution_mod_dmint.test.cpp
     title: test/library_checker/convolution/convolution_mod_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/convolution_mod_setntt.test.cpp
     title: test/library_checker/convolution/convolution_mod_setntt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
     title: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/multivariate_convolution.test.cpp
     title: test/library_checker/convolution/multivariate_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/online_convolution.test.cpp
     title: test/library_checker/convolution/online_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
     title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
   - icon: ':x:'
@@ -614,18 +614,40 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"poly/convolution_naive.hpp\"\ntemplate <class T>\r\nvector<T>\
-    \ convolution_naive(const vector<T>& a, const vector<T>& b) {\r\n  int n = int(a.size()),\
-    \ m = int(b.size());\r\n  if (n == 0 || m == 0) return {};\r\n  vector<T> ans(n\
-    \ + m - 1);\r\n  if (n < m) {\r\n    FOR(j, m) FOR(i, n) ans[i + j] += a[i] *\
-    \ b[j];\r\n  } else {\r\n    FOR(i, n) FOR(j, m) ans[i + j] += a[i] * b[j];\r\n\
-    \  }\r\n  return ans;\r\n}\r\n"
-  code: "#pragma once\r\ntemplate <class T>\r\nvector<T> convolution_naive(const vector<T>&\
-    \ a, const vector<T>& b) {\r\n  int n = int(a.size()), m = int(b.size());\r\n\
-    \  if (n == 0 || m == 0) return {};\r\n  vector<T> ans(n + m - 1);\r\n  if (n\
-    \ < m) {\r\n    FOR(j, m) FOR(i, n) ans[i + j] += a[i] * b[j];\r\n  } else {\r\
-    \n    FOR(i, n) FOR(j, m) ans[i + j] += a[i] * b[j];\r\n  }\r\n  return ans;\r\
-    \n}\r\n"
+  bundledCode: "#line 2 \"poly/convolution_naive.hpp\"\n\r\ntemplate <class T, typename\
+    \ enable_if<!has_mod<T>::value>::type* = nullptr>\r\nvc<T> convolution_naive(const\
+    \ vc<T>& a, const vc<T>& b) {\r\n  int n = int(a.size()), m = int(b.size());\r\
+    \n  if (n > m) return convolution_naive<T>(b, a);\r\n  if (n == 0) return {};\r\
+    \n  vector<T> ans(n + m - 1);\r\n  FOR(i, n) FOR(j, m) ans[i + j] += a[i] * b[j];\r\
+    \n  return ans;\r\n}\r\n\r\ntemplate <class T, typename enable_if<has_mod<T>::value>::type*\
+    \ = nullptr>\r\nvc<T> convolution_naive(const vc<T>& a, const vc<T>& b) {\r\n\
+    \  int n = int(a.size()), m = int(b.size());\r\n  if (n > m) return convolution_naive<T>(b,\
+    \ a);\r\n  if (n == 0) return {};\r\n  assert(T::get_mod() < u32(1) << 30);\r\n\
+    \  vc<T> ans(n + m - 1);\r\n  if (n <= 16) {\r\n    for (int k = 0; k < n + m\
+    \ - 1; ++k) {\r\n      int s = max(0, k - m + 1);\r\n      int t = min(n, k +\
+    \ 1);\r\n      u64 sm = 0;\r\n      for (int i = s; i < t; ++i) { sm += u64(a[i].val)\
+    \ * (b[k - i].val); }\r\n      ans[k] = sm;\r\n    }\r\n  } else {\r\n    for\
+    \ (int k = 0; k < n + m - 1; ++k) {\r\n      int s = max(0, k - m + 1);\r\n  \
+    \    int t = min(n, k + 1);\r\n      u128 sm = 0;\r\n      for (int i = s; i <\
+    \ t; ++i) { sm += u64(a[i].val) * (b[k - i].val); }\r\n      ans[k] = T::raw(sm\
+    \ % T::get_mod());\r\n    }\r\n  }\r\n  return ans;\r\n}\r\n"
+  code: "#pragma once\r\n\r\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type*\
+    \ = nullptr>\r\nvc<T> convolution_naive(const vc<T>& a, const vc<T>& b) {\r\n\
+    \  int n = int(a.size()), m = int(b.size());\r\n  if (n > m) return convolution_naive<T>(b,\
+    \ a);\r\n  if (n == 0) return {};\r\n  vector<T> ans(n + m - 1);\r\n  FOR(i, n)\
+    \ FOR(j, m) ans[i + j] += a[i] * b[j];\r\n  return ans;\r\n}\r\n\r\ntemplate <class\
+    \ T, typename enable_if<has_mod<T>::value>::type* = nullptr>\r\nvc<T> convolution_naive(const\
+    \ vc<T>& a, const vc<T>& b) {\r\n  int n = int(a.size()), m = int(b.size());\r\
+    \n  if (n > m) return convolution_naive<T>(b, a);\r\n  if (n == 0) return {};\r\
+    \n  assert(T::get_mod() < u32(1) << 30);\r\n  vc<T> ans(n + m - 1);\r\n  if (n\
+    \ <= 16) {\r\n    for (int k = 0; k < n + m - 1; ++k) {\r\n      int s = max(0,\
+    \ k - m + 1);\r\n      int t = min(n, k + 1);\r\n      u64 sm = 0;\r\n      for\
+    \ (int i = s; i < t; ++i) { sm += u64(a[i].val) * (b[k - i].val); }\r\n      ans[k]\
+    \ = sm;\r\n    }\r\n  } else {\r\n    for (int k = 0; k < n + m - 1; ++k) {\r\n\
+    \      int s = max(0, k - m + 1);\r\n      int t = min(n, k + 1);\r\n      u128\
+    \ sm = 0;\r\n      for (int i = s; i < t; ++i) { sm += u64(a[i].val) * (b[k -\
+    \ i].val); }\r\n      ans[k] = T::raw(sm % T::get_mod());\r\n    }\r\n  }\r\n\
+    \  return ans;\r\n}\r\n"
   dependsOn: []
   isVerificationFile: false
   path: poly/convolution_naive.hpp
@@ -700,7 +722,7 @@ data:
   - graph/count/count_forest.hpp
   - graph/count/count_bipartite.hpp
   - graph/tree_all_distances.hpp
-  timestamp: '2023-07-27 13:25:06+09:00'
+  timestamp: '2023-08-08 03:50:38+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/factorial_998.test.cpp

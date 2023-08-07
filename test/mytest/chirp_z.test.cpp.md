@@ -326,12 +326,23 @@ data:
     \  mod = abs(mod);\r\n  val %= mod;\r\n  if (val < 0) val += mod;\r\n  ll a =\
     \ val, b = mod, u = 1, v = 0, t;\r\n  while (b > 0) {\r\n    t = a / b;\r\n  \
     \  swap(a -= t * b, b), swap(u -= t * v, v);\r\n  }\r\n  if (u < 0) u += mod;\r\
-    \n  return u;\r\n}\r\n#line 2 \"poly/convolution_naive.hpp\"\ntemplate <class\
-    \ T>\r\nvector<T> convolution_naive(const vector<T>& a, const vector<T>& b) {\r\
-    \n  int n = int(a.size()), m = int(b.size());\r\n  if (n == 0 || m == 0) return\
-    \ {};\r\n  vector<T> ans(n + m - 1);\r\n  if (n < m) {\r\n    FOR(j, m) FOR(i,\
-    \ n) ans[i + j] += a[i] * b[j];\r\n  } else {\r\n    FOR(i, n) FOR(j, m) ans[i\
-    \ + j] += a[i] * b[j];\r\n  }\r\n  return ans;\r\n}\r\n#line 2 \"poly/convolution_karatsuba.hpp\"\
+    \n  return u;\r\n}\r\n#line 2 \"poly/convolution_naive.hpp\"\n\r\ntemplate <class\
+    \ T, typename enable_if<!has_mod<T>::value>::type* = nullptr>\r\nvc<T> convolution_naive(const\
+    \ vc<T>& a, const vc<T>& b) {\r\n  int n = int(a.size()), m = int(b.size());\r\
+    \n  if (n > m) return convolution_naive<T>(b, a);\r\n  if (n == 0) return {};\r\
+    \n  vector<T> ans(n + m - 1);\r\n  FOR(i, n) FOR(j, m) ans[i + j] += a[i] * b[j];\r\
+    \n  return ans;\r\n}\r\n\r\ntemplate <class T, typename enable_if<has_mod<T>::value>::type*\
+    \ = nullptr>\r\nvc<T> convolution_naive(const vc<T>& a, const vc<T>& b) {\r\n\
+    \  int n = int(a.size()), m = int(b.size());\r\n  if (n > m) return convolution_naive<T>(b,\
+    \ a);\r\n  if (n == 0) return {};\r\n  assert(T::get_mod() < u32(1) << 30);\r\n\
+    \  vc<T> ans(n + m - 1);\r\n  if (n <= 16) {\r\n    for (int k = 0; k < n + m\
+    \ - 1; ++k) {\r\n      int s = max(0, k - m + 1);\r\n      int t = min(n, k +\
+    \ 1);\r\n      u64 sm = 0;\r\n      for (int i = s; i < t; ++i) { sm += u64(a[i].val)\
+    \ * (b[k - i].val); }\r\n      ans[k] = sm;\r\n    }\r\n  } else {\r\n    for\
+    \ (int k = 0; k < n + m - 1; ++k) {\r\n      int s = max(0, k - m + 1);\r\n  \
+    \    int t = min(n, k + 1);\r\n      u128 sm = 0;\r\n      for (int i = s; i <\
+    \ t; ++i) { sm += u64(a[i].val) * (b[k - i].val); }\r\n      ans[k] = T::raw(sm\
+    \ % T::get_mod());\r\n    }\r\n  }\r\n  return ans;\r\n}\r\n#line 2 \"poly/convolution_karatsuba.hpp\"\
     \n\n// \u4EFB\u610F\u306E\u74B0\u3067\u3067\u304D\u308B\ntemplate <typename T>\n\
     vc<T> convolution_karatsuba(const vc<T>& f, const vc<T>& g) {\n  const int thresh\
     \ = 30;\n  if (min(len(f), len(g)) <= thresh) return convolution_naive(f, g);\n\
@@ -664,7 +675,7 @@ data:
   isVerificationFile: true
   path: test/mytest/chirp_z.test.cpp
   requiredBy: []
-  timestamp: '2023-08-08 03:16:22+09:00'
+  timestamp: '2023-08-08 03:50:38+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/chirp_z.test.cpp
