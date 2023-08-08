@@ -27,7 +27,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/binomial_coefficient.test.cpp
     title: test/library_checker/math/binomial_coefficient.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2120.test.cpp
     title: test/yukicoder/2120.test.cpp
   - icon: ':x:'
