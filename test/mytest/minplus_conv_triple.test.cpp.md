@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/minplus_convolution_convex.hpp
     title: convex/minplus_convolution_convex.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/minplus_convolution_of_triples.hpp
     title: convex/minplus_convolution_of_triples.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: convex/smawk.hpp
     title: convex/smawk.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -333,7 +333,7 @@ data:
   path: test/mytest/minplus_conv_triple.test.cpp
   requiredBy: []
   timestamp: '2023-08-08 01:44:15+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/minplus_conv_triple.test.cpp
 layout: document
