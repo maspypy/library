@@ -36,9 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_2_C.test.cpp
     title: test/aoj/NTL_2_C.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/aplusb128.test.cpp
-    title: test/library_checker/aplusb128.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/sample/aplusb128.test.cpp
+    title: test/library_checker/sample/aplusb128.test.cpp
   - icon: ':x:'
     path: test/yukicoder/303.test.cpp
     title: test/yukicoder/303.test.cpp
@@ -448,7 +448,7 @@ data:
   - test/aoj/NTL_2_B.test.cpp
   - test/aoj/NTL_2_A.test.cpp
   - test/aoj/NTL_2_C.test.cpp
-  - test/library_checker/aplusb128.test.cpp
+  - test/library_checker/sample/aplusb128.test.cpp
 documentation_of: bigint/base.hpp
 layout: document
 redirect_from:

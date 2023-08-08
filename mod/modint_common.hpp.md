@@ -256,9 +256,6 @@ data:
     path: test/aoj/NTL_2_C.test.cpp
     title: test/aoj/NTL_2_C.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/aplusb128.test.cpp
-    title: test/library_checker/aplusb128.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/bitwise_and_convolution.test.cpp
     title: test/library_checker/convolution/bitwise_and_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -450,37 +447,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/log_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/log_of_fps_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/log_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/log_of_fps_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
     title: test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/multipoint_evaluation.test.cpp
     title: test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
     title: test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
     title: test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/polynomial_division.test.cpp
     title: test/library_checker/polynomial/polynomial_division.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/polynomial_interpolation.test.cpp
     title: test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
     title: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/pow_of_fps.test.cpp
     title: test/library_checker/polynomial/pow_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
   - icon: ':x:'
@@ -499,14 +496,17 @@ data:
     path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - icon: ':x:'
-    path: test/library_checker/rerooting_dp.test.cpp
-    title: test/library_checker/rerooting_dp.test.cpp
+    path: test/library_checker/sample/aplusb128.test.cpp
+    title: test/library_checker/sample/aplusb128.test.cpp
   - icon: ':x:'
     path: test/library_checker/string/number_of_subsequences.test.cpp
     title: test/library_checker/string/number_of_subsequences.test.cpp
   - icon: ':x:'
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/tree/rerooting_dp.test.cpp
+    title: test/library_checker/tree/rerooting_dp.test.cpp
   - icon: ':x:'
     path: test/mytest/31bit_modint.test.cpp
     title: test/mytest/31bit_modint.test.cpp
@@ -1345,7 +1345,7 @@ data:
   - test/library_checker/convolution/convolution_mod_2_64.test.cpp
   - test/library_checker/convolution/online_convolution.test.cpp
   - test/library_checker/convolution/convolution_mod.test.cpp
-  - test/library_checker/rerooting_dp.test.cpp
+  - test/library_checker/sample/aplusb128.test.cpp
   - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/exp_of_fps.test.cpp
   - test/library_checker/polynomial/log_of_fps_sparse.test.cpp
@@ -1375,8 +1375,8 @@ data:
   - test/library_checker/polynomial/pow_of_fps.test.cpp
   - test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
   - test/library_checker/string/number_of_subsequences.test.cpp
-  - test/library_checker/aplusb128.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
+  - test/library_checker/tree/rerooting_dp.test.cpp
   - test/library_checker/graph/enumerate_cliques.test.cpp
   - test_atcoder/abc160f.test.cpp
   - test_atcoder/arc154f.test.cpp

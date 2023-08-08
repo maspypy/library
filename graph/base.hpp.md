@@ -328,9 +328,6 @@ data:
     path: test/library_checker/math/twosat.test.cpp
     title: test/library_checker/math/twosat.test.cpp
   - icon: ':x:'
-    path: test/library_checker/rerooting_dp.test.cpp
-    title: test/library_checker/rerooting_dp.test.cpp
-  - icon: ':x:'
     path: test/library_checker/string/number_of_substrings2.test.cpp
     title: test/library_checker/string/number_of_substrings2.test.cpp
   - icon: ':x:'
@@ -342,6 +339,9 @@ data:
   - icon: ':x:'
     path: test/library_checker/tree/lca_directed.test.cpp
     title: test/library_checker/tree/lca_directed.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/tree/rerooting_dp.test.cpp
+    title: test/library_checker/tree/rerooting_dp.test.cpp
   - icon: ':x:'
     path: test/library_checker/tree/tree_diameter.test.cpp
     title: test/library_checker/tree/tree_diameter.test.cpp
@@ -830,10 +830,10 @@ data:
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-  - test/library_checker/rerooting_dp.test.cpp
   - test/library_checker/string/number_of_substrings2.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/tree/tree_diameter.test.cpp
+  - test/library_checker/tree/rerooting_dp.test.cpp
   - test/library_checker/tree/lca_directed.test.cpp
   - test/library_checker/tree/lca.test.cpp
   - test/library_checker/graph/domninator_tree.test.cpp

@@ -32,28 +32,29 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/tree_path_composite_sum
     links:
     - https://judge.yosupo.jp/problem/tree_path_composite_sum
-  bundledCode: "#line 1 \"test/library_checker/rerooting_dp.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/tree_path_composite_sum\"\n#line 1 \"my_template.hpp\"\
-    \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n#pragma GCC\
-    \ optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\
-    \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
-    \ u64 = unsigned long long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
-    using f128 = __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate\
-    \ <>\nconstexpr int infty<int> = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll>\
-    \ = ll(infty<int>) * infty<int> * 2;\ntemplate <>\nconstexpr u32 infty<u32> =\
-    \ infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\ntemplate <>\n\
-    constexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\ntemplate <>\nconstexpr\
-    \ double infty<double> = infty<ll>;\ntemplate <>\nconstexpr long double infty<long\
-    \ double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
-    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
-    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
-    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
-    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
-    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+  bundledCode: "#line 1 \"test/library_checker/tree/rerooting_dp.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/tree_path_composite_sum\"\n#line 1\
+    \ \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
+    )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
+    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
+    using u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class T>\n\
+    constexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int> = 1'000'000'000;\n\
+    template <>\nconstexpr ll infty<ll> = ll(infty<int>) * infty<int> * 2;\ntemplate\
+    \ <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
+    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\n\
+    template <>\nconstexpr double infty<double> = infty<ll>;\ntemplate <>\nconstexpr\
+    \ long double infty<long double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing\
+    \ vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
+    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
+    \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
+    template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
+    #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
+    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
+    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
+    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
+    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
@@ -214,34 +215,34 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 4 \"test/library_checker/rerooting_dp.test.cpp\"\n\n#line\
-    \ 1 \"graph/tree_dp/rerooting_dp.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate\
-    \ <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate\
-    \ <typename T = int, bool directed = false>\nstruct Graph {\n  int N, M;\n  using\
-    \ cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n \
-    \ vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg, vc_indeg,\
-    \ vc_outdeg;\n  bool prepared;\n\n  class OutgoingEdges {\n  public:\n    OutgoingEdges(const\
-    \ Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin()\
-    \ const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[l];\n \
-    \   }\n\n    const edge_type* end() const {\n      if (l == r) { return 0; }\n\
-    \      return &G->csr_edges[r];\n    }\n\n  private:\n    const Graph* G;\n  \
-    \  int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n  constexpr bool\
-    \ is_directed() { return directed; }\n\n  Graph() : N(0), M(0), prepared(0) {}\n\
-    \  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void build(int n) {\n    N =\
-    \ n, M = 0;\n    prepared = 0;\n    edges.clear();\n    indptr.clear();\n    csr_edges.clear();\n\
-    \    vc_deg.clear();\n    vc_indeg.clear();\n    vc_outdeg.clear();\n  }\n\n \
-    \ void add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n\
-    \    assert(0 <= frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto\
-    \ e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n  //\
-    \ wt, off\n  void read_tree(bool wt = false, int off = 1) { read_graph(N - 1,\
-    \ wt, off); }\n\n  void read_graph(int M, bool wt = false, int off = 1) {\n  \
-    \  for (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a -= off, b -= off;\n\
-    \      if (!wt) {\n        add(a, b);\n      } else {\n        T c;\n        read(c);\n\
-    \        add(a, b, c);\n      }\n    }\n    build();\n  }\n\n  void build() {\n\
-    \    assert(!prepared);\n    prepared = true;\n    indptr.assign(N + 1, 0);\n\
-    \    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if (!directed)\
-    \ indptr[e.to + 1]++;\n    }\n    for (int v = 0; v < N; ++v) { indptr[v + 1]\
-    \ += indptr[v]; }\n    auto counter = indptr;\n    csr_edges.resize(indptr.back()\
+    \ yes(!t); }\n#line 4 \"test/library_checker/tree/rerooting_dp.test.cpp\"\n\n\
+    #line 1 \"graph/tree_dp/rerooting_dp.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\n\
+    template <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\
+    \ntemplate <typename T = int, bool directed = false>\nstruct Graph {\n  int N,\
+    \ M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
+    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg,\
+    \ vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class OutgoingEdges {\n  public:\n\
+    \    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n   \
+    \ const edge_type* begin() const {\n      if (l == r) { return 0; }\n      return\
+    \ &G->csr_edges[l];\n    }\n\n    const edge_type* end() const {\n      if (l\
+    \ == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n  private:\n \
+    \   const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared;\
+    \ }\n  constexpr bool is_directed() { return directed; }\n\n  Graph() : N(0),\
+    \ M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void\
+    \ build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n \
+    \   indptr.clear();\n    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n\
+    \    vc_outdeg.clear();\n  }\n\n  void add(int frm, int to, T cost = 1, int i\
+    \ = -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <= to && to < N);\n\
+    \    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n\
+    \    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool wt = false, int off = 1)\
+    \ { read_graph(N - 1, wt, off); }\n\n  void read_graph(int M, bool wt = false,\
+    \ int off = 1) {\n    for (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a\
+    \ -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n  \
+    \      T c;\n        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n\
+    \  }\n\n  void build() {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N\
+    \ + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if\
+    \ (!directed) indptr[e.to + 1]++;\n    }\n    for (int v = 0; v < N; ++v) { indptr[v\
+    \ + 1] += indptr[v]; }\n    auto counter = indptr;\n    csr_edges.resize(indptr.back()\
     \ + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n\
     \      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm,\
     \ e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n \
@@ -444,7 +445,7 @@ data:
     \    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881) return\
     \ {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
     \ return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 7 \"test/library_checker/rerooting_dp.test.cpp\"\
+    using modint998 = modint<998244353>;\n#line 7 \"test/library_checker/tree/rerooting_dp.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  VEC(mint, A, N);\n\
     \  Graph<bool, 0> G(N);\n  vc<mint> B(N - 1), C(N - 1);\n  FOR(i, N - 1) {\n \
     \   LL(u, v, b, c);\n    G.add(u, v);\n    B[i] = b, C[i] = c;\n  }\n  G.build();\n\
@@ -480,15 +481,15 @@ data:
   - mod/modint.hpp
   - mod/modint_common.hpp
   isVerificationFile: true
-  path: test/library_checker/rerooting_dp.test.cpp
+  path: test/library_checker/tree/rerooting_dp.test.cpp
   requiredBy: []
-  timestamp: '2023-08-08 03:16:22+09:00'
+  timestamp: '2023-08-08 06:39:48+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/rerooting_dp.test.cpp
+documentation_of: test/library_checker/tree/rerooting_dp.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/rerooting_dp.test.cpp
-- /verify/test/library_checker/rerooting_dp.test.cpp.html
-title: test/library_checker/rerooting_dp.test.cpp
+- /verify/test/library_checker/tree/rerooting_dp.test.cpp
+- /verify/test/library_checker/tree/rerooting_dp.test.cpp.html
+title: test/library_checker/tree/rerooting_dp.test.cpp
 ---

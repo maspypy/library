@@ -22,8 +22,8 @@ data:
     path: test/library_checker/graph/classify_tree.test.cpp
     title: test/library_checker/graph/classify_tree.test.cpp
   - icon: ':x:'
-    path: test/library_checker/rerooting_dp.test.cpp
-    title: test/library_checker/rerooting_dp.test.cpp
+    path: test/library_checker/tree/rerooting_dp.test.cpp
+    title: test/library_checker/tree/rerooting_dp.test.cpp
   - icon: ':x:'
     path: test/mytest/QOJ5445.test.cpp
     title: test/mytest/QOJ5445.test.cpp
@@ -269,7 +269,7 @@ data:
   - test/yukicoder/1494.test.cpp
   - test/yukicoder/1976.test.cpp
   - test/yukicoder/1295.test.cpp
-  - test/library_checker/rerooting_dp.test.cpp
+  - test/library_checker/tree/rerooting_dp.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp
   - test_atcoder/abc160f.test.cpp
   - test_atcoder/abc298ex.test.cpp

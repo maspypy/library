@@ -94,14 +94,14 @@ data:
     path: test/library_checker/graph/classify_tree.test.cpp
     title: test/library_checker/graph/classify_tree.test.cpp
   - icon: ':x:'
-    path: test/library_checker/rerooting_dp.test.cpp
-    title: test/library_checker/rerooting_dp.test.cpp
-  - icon: ':x:'
     path: test/library_checker/tree/lca.test.cpp
     title: test/library_checker/tree/lca.test.cpp
   - icon: ':x:'
     path: test/library_checker/tree/lca_directed.test.cpp
     title: test/library_checker/tree/lca_directed.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/tree/rerooting_dp.test.cpp
+    title: test/library_checker/tree/rerooting_dp.test.cpp
   - icon: ':x:'
     path: test/mytest/QOJ5445.test.cpp
     title: test/mytest/QOJ5445.test.cpp
@@ -480,7 +480,7 @@ data:
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-  - test/library_checker/rerooting_dp.test.cpp
+  - test/library_checker/tree/rerooting_dp.test.cpp
   - test/library_checker/tree/lca_directed.test.cpp
   - test/library_checker/tree/lca.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp
