@@ -25,8 +25,8 @@ vc<T> minplus_convolution_arbitrary_convex(vc<T>& a, vc<T>& b) {
     if (i - j >= m) return true;
     return a[j] + b[i - j] >= a[k] + b[i - k];
   };
-  vc<int> J = smawk(n + m - 1, n, select);
-  // vc<int> J = monotone_minima(n + m - 1, n, select);
+  // vc<int> J = smawk(n + m - 1, n, select);
+  vc<int> J = monotone_minima(n + m - 1, n, select);
   vc<T> c(n + m - 1);
   FOR(i, n + m - 1) c[i] = a[J[i]] + b[i - J[i]];
   return c;
