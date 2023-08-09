@@ -234,6 +234,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_setntt.test.cpp
     title: test/library_checker/convolution/convolution_mod_setntt.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
+    title: test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
     title: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
@@ -2738,6 +2741,7 @@ data:
   - test/library_checker/convolution/subset_convolution_multivar.test.cpp
   - test/library_checker/convolution/convolution_huge.test.cpp
   - test/library_checker/convolution/bitwise_and_convolution.test.cpp
+  - test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
   - test/library_checker/convolution/bitwise_or_convolution.test.cpp
   - test/library_checker/convolution/mul_mod2n_convolution.test.cpp
   - test/library_checker/convolution/convolution_mod_dmint.test.cpp

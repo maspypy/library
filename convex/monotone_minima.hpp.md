@@ -2,13 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: convex/minplus_convolution.hpp
     title: convex/minplus_convolution.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
+    title: test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/monotone_minima.hpp\"\n\n// select(i,j,k) : (i,j)\
@@ -34,8 +37,9 @@ data:
   requiredBy:
   - convex/minplus_convolution.hpp
   timestamp: '2023-07-06 21:02:18+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
 documentation_of: convex/monotone_minima.hpp
 layout: document
 redirect_from:

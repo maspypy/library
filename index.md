@@ -199,7 +199,7 @@ data:
     - icon: ':x:'
       path: convex/maxplus_convolution_concave.hpp
       title: convex/maxplus_convolution_concave.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: convex/minplus_convolution.hpp
       title: convex/minplus_convolution.hpp
     - icon: ':warning:'
@@ -208,7 +208,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convex/monge.hpp
       title: convex/monge.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: convex/monotone_minima.hpp
       title: convex/monotone_minima.hpp
     - icon: ':heavy_check_mark:'
