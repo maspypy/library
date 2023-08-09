@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -219,19 +219,18 @@ data:
     \  };\n  vc<int> X(H), Y(W);\n  iota(all(X), 0), iota(all(Y), 0);\n  return dfs(dfs,\
     \ X, Y);\n}\n#line 5 \"test/mytest/smawk.test.cpp\"\n\nvoid test() {\n  vv(int,\
     \ A, 4, 5);\n  A[0] = {0, 1, 3, 2, 4};\n  A[1] = {0, 2, 4, 3, 1};\n  A[2] = {1,\
-    \ 3, 4, 2, 0};\n  A[3] = {4, 2, 3, 1, 0};\n  auto f\n      = [&](int i, int j,\
-    \ int k) -> int { return (A[i][j] > A[i][k] ? k : j); };\n\n  vc<int> I = SMAWK(4,\
-    \ 5, f);\n  vc<int> J = {0, 0, 4, 4};\n  assert(I == J);\n}\n\nvoid solve() {\n\
-    \  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n \
-    \ return 0;\n}\n"
+    \ 3, 4, 2, 0};\n  A[3] = {4, 2, 3, 1, 0};\n  auto f = [&](int i, int j, int k)\
+    \ -> int { return A[i][j] > A[i][k]; };\n\n  vc<int> I = smawk(4, 5, f);\n  vc<int>\
+    \ J = {0, 0, 4, 4};\n  assert(I == J);\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a\
+    \ + b);\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"convex/smawk.hpp\"\n\nvoid test() {\n\
     \  vv(int, A, 4, 5);\n  A[0] = {0, 1, 3, 2, 4};\n  A[1] = {0, 2, 4, 3, 1};\n \
-    \ A[2] = {1, 3, 4, 2, 0};\n  A[3] = {4, 2, 3, 1, 0};\n  auto f\n      = [&](int\
-    \ i, int j, int k) -> int { return (A[i][j] > A[i][k] ? k : j); };\n\n  vc<int>\
-    \ I = SMAWK(4, 5, f);\n  vc<int> J = {0, 0, 4, 4};\n  assert(I == J);\n}\n\nvoid\
-    \ solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n \
-    \ solve();\n  return 0;\n}"
+    \ A[2] = {1, 3, 4, 2, 0};\n  A[3] = {4, 2, 3, 1, 0};\n  auto f = [&](int i, int\
+    \ j, int k) -> int { return A[i][j] > A[i][k]; };\n\n  vc<int> I = smawk(4, 5,\
+    \ f);\n  vc<int> J = {0, 0, 4, 4};\n  assert(I == J);\n}\n\nvoid solve() {\n \
+    \ LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
+    \ 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -239,8 +238,8 @@ data:
   isVerificationFile: true
   path: test/mytest/smawk.test.cpp
   requiredBy: []
-  timestamp: '2023-08-10 00:32:23+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-08-10 00:51:54+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/smawk.test.cpp
 layout: document
