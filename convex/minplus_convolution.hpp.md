@@ -1,17 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: convex/monotone_minima.hpp
     title: convex/monotone_minima.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: convex/minplus_convolution_of_triples.hpp
+    title: convex/minplus_convolution_of_triples.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
     title: test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
+    title: test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/minplus_conv_triple.test.cpp
+    title: test/mytest/minplus_conv_triple.test.cpp
+  - icon: ':x:'
+    path: test/mytest/minplus_convex.test.cpp
+    title: test/mytest/minplus_convex.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/monotone_minima.hpp\"\n\n// select(i,j,k) : (i,j)\
@@ -31,15 +43,15 @@ data:
     \    }\n  }\n  return C;\n}\n\ntemplate <typename T>\nvc<T> minplus_convolution_arbitrary_convex(vc<T>&\
     \ a, vc<T>& b) {\n  int n = len(a), m = len(b);\n  auto select = [&](int i, int\
     \ j, int k) -> bool {\n    if (i < k) return false;\n    if (i - j >= m) return\
-    \ true;\n    return a[j] + b[i - j] >= a[k] + b[i - k];\n  };\n  vc<int> J = smawk(n\
-    \ + m - 1, n, select);\n  // vc<int> J = monotone_minima(n + m - 1, n, select);\n\
-    \  vc<T> c(n + m - 1);\n  FOR(i, n + m - 1) c[i] = a[J[i]] + b[i - J[i]];\n  return\
-    \ c;\n}\n\ntemplate <typename T, bool convA, bool convB>\nvc<T> minplus_convolution(vc<T>&\
-    \ A, vc<T>& B) {\n  static_assert(convA || convB);\n  if constexpr (convA && convB)\
-    \ return minplus_convolution_convex_convex(A, B);\n  if constexpr (convA && !convB)\n\
-    \    return minplus_convolution_arbitrary_convex(B, A);\n  if constexpr (convB\
-    \ && !convA)\n    return minplus_convolution_arbitrary_convex(A, B);\n  return\
-    \ {};\n}\n"
+    \ true;\n    return a[j] + b[i - j] >= a[k] + b[i - k];\n  };\n  // vc<int> J\
+    \ = smawk(n + m - 1, n, select);\n  vc<int> J = monotone_minima(n + m - 1, n,\
+    \ select);\n  vc<T> c(n + m - 1);\n  FOR(i, n + m - 1) c[i] = a[J[i]] + b[i -\
+    \ J[i]];\n  return c;\n}\n\ntemplate <typename T, bool convA, bool convB>\nvc<T>\
+    \ minplus_convolution(vc<T>& A, vc<T>& B) {\n  static_assert(convA || convB);\n\
+    \  if constexpr (convA && convB) return minplus_convolution_convex_convex(A, B);\n\
+    \  if constexpr (convA && !convB)\n    return minplus_convolution_arbitrary_convex(B,\
+    \ A);\n  if constexpr (convB && !convA)\n    return minplus_convolution_arbitrary_convex(A,\
+    \ B);\n  return {};\n}\n"
   code: "#include \"convex/monotone_minima.hpp\"\n\ntemplate <typename T>\nvc<T> minplus_convolution_convex_convex(vc<T>&\
     \ A, vc<T>& B) {\n  const int n = len(A), m = len(B);\n  if (n == 0 && m == 0)\
     \ return {};\n  vc<T> C(n + m - 1);\n  int a = 0, b = 0;\n  C[0] = A[0] + B[0];\n\
@@ -49,8 +61,8 @@ data:
     \ T>\nvc<T> minplus_convolution_arbitrary_convex(vc<T>& a, vc<T>& b) {\n  int\
     \ n = len(a), m = len(b);\n  auto select = [&](int i, int j, int k) -> bool {\n\
     \    if (i < k) return false;\n    if (i - j >= m) return true;\n    return a[j]\
-    \ + b[i - j] >= a[k] + b[i - k];\n  };\n  vc<int> J = smawk(n + m - 1, n, select);\n\
-    \  // vc<int> J = monotone_minima(n + m - 1, n, select);\n  vc<T> c(n + m - 1);\n\
+    \ + b[i - j] >= a[k] + b[i - k];\n  };\n  // vc<int> J = smawk(n + m - 1, n, select);\n\
+    \  vc<int> J = monotone_minima(n + m - 1, n, select);\n  vc<T> c(n + m - 1);\n\
     \  FOR(i, n + m - 1) c[i] = a[J[i]] + b[i - J[i]];\n  return c;\n}\n\ntemplate\
     \ <typename T, bool convA, bool convB>\nvc<T> minplus_convolution(vc<T>& A, vc<T>&\
     \ B) {\n  static_assert(convA || convB);\n  if constexpr (convA && convB) return\
@@ -62,11 +74,15 @@ data:
   - convex/monotone_minima.hpp
   isVerificationFile: false
   path: convex/minplus_convolution.hpp
-  requiredBy: []
-  timestamp: '2023-08-10 02:06:33+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  requiredBy:
+  - convex/minplus_convolution_of_triples.hpp
+  timestamp: '2023-08-10 02:31:42+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/mytest/minplus_conv_triple.test.cpp
+  - test/mytest/minplus_convex.test.cpp
   - test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
+  - test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
 documentation_of: convex/minplus_convolution.hpp
 layout: document
 redirect_from:

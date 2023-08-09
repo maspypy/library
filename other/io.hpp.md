@@ -234,9 +234,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_setntt.test.cpp
     title: test/library_checker/convolution/convolution_mod_setntt.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
     title: test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
+    title: test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
     title: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
@@ -930,6 +933,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/minmax_add.test.cpp
     title: test/mytest/minmax_add.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/minplus_conv_triple.test.cpp
+    title: test/mytest/minplus_conv_triple.test.cpp
+  - icon: ':x:'
+    path: test/mytest/minplus_convex.test.cpp
+    title: test/mytest/minplus_convex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/mod_sum_of_linear.test.cpp
     title: test/mytest/mod_sum_of_linear.test.cpp
@@ -2258,6 +2267,7 @@ data:
   - test/mytest/xor_transpose.test.cpp
   - test/mytest/ARC30D.test.cpp
   - test/mytest/matching_line_graph.test.cpp
+  - test/mytest/minplus_conv_triple.test.cpp
   - test/mytest/fibonacci_search.test.cpp
   - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/kdtree_nns.test.cpp
@@ -2324,6 +2334,7 @@ data:
   - test/mytest/online_division.test.cpp
   - test/mytest/QOJ5445.test.cpp
   - test/mytest/splay.test.cpp
+  - test/mytest/minplus_convex.test.cpp
   - test/mytest/smawk.test.cpp
   - test/mytest/enumerate_multisets.test.cpp
   - test/mytest/minidx_add.test.cpp
@@ -2748,6 +2759,7 @@ data:
   - test/library_checker/convolution/bitwise_xor_convolution.test.cpp
   - test/library_checker/convolution/multivariate_convolution.test.cpp
   - test/library_checker/convolution/convolution_mod_setntt.test.cpp
+  - test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
   - test/library_checker/convolution/convolution_mod_107.test.cpp
   - test/library_checker/convolution/subset_convolution.test.cpp
   - test/library_checker/convolution/convolution_mod_2_64.test.cpp
