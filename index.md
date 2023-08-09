@@ -199,7 +199,7 @@ data:
     - icon: ':x:'
       path: convex/maxplus_convolution_concave.hpp
       title: convex/maxplus_convolution_concave.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: convex/minplus_convolution.hpp
       title: convex/minplus_convolution.hpp
     - icon: ':heavy_check_mark:'
@@ -208,7 +208,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convex/monge.hpp
       title: convex/monge.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: convex/monotone_minima.hpp
       title: convex/monotone_minima.hpp
     - icon: ':heavy_check_mark:'
@@ -2559,7 +2559,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/minplus_conv_triple.test.cpp
       title: test/mytest/minplus_conv_triple.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/minplus_convex.test.cpp
       title: test/mytest/minplus_convex.test.cpp
     - icon: ':heavy_check_mark:'

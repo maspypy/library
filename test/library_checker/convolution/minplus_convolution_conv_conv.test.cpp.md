@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convex/minplus_convolution.hpp
     title: convex/minplus_convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convex/monotone_minima.hpp
     title: convex/monotone_minima.hpp
   - icon: ':question:'
@@ -216,23 +216,28 @@ data:
     \    dfs(dfs, x1, x, y1, best_y + 1);\n    dfs(dfs, x + 1, x2, best_y, y2);\n\
     \  };\n  dfs(dfs, 0, H, 0, W);\n  return min_col;\n}\n#line 2 \"convex/minplus_convolution.hpp\"\
     \n\ntemplate <typename T>\nvc<T> minplus_convolution_convex_convex(vc<T>& A, vc<T>&\
-    \ B) {\n  const int n = len(A), m = len(B);\n  if (n == 0 && m == 0) return {};\n\
-    \  vc<T> C(n + m - 1);\n  int a = 0, b = 0;\n  C[0] = A[0] + B[0];\n  for (int\
-    \ i = 1; i < n + m - 1; ++i) {\n    if (b == m - 1 || (a != n - 1 && A[a + 1]\
-    \ + B[b] < A[a] + B[b + 1])) {\n      C[i] = A[++a] + B[b];\n    } else {\n  \
-    \    C[i] = A[a] + B[++b];\n    }\n  }\n  return C;\n}\n\ntemplate <typename T>\n\
-    vc<T> minplus_convolution_arbitrary_convex(vc<T>& a, vc<T>& b) {\n  int n = len(a),\
-    \ m = len(b);\n  auto select = [&](int i, int j, int k) -> bool {\n    if (i <\
-    \ k) return false;\n    if (i - j >= m) return true;\n    return a[j] + b[i -\
-    \ j] >= a[k] + b[i - k];\n  };\n  // vc<int> J = smawk(n + m - 1, n, select);\n\
-    \  vc<int> J = monotone_minima(n + m - 1, n, select);\n  vc<T> c(n + m - 1);\n\
-    \  FOR(i, n + m - 1) c[i] = a[J[i]] + b[i - J[i]];\n  return c;\n}\n\ntemplate\
-    \ <typename T, bool convA, bool convB>\nvc<T> minplus_convolution(vc<T>& A, vc<T>&\
-    \ B) {\n  static_assert(convA || convB);\n  if constexpr (convA && convB) return\
-    \ minplus_convolution_convex_convex(A, B);\n  if constexpr (convA && !convB)\n\
-    \    return minplus_convolution_arbitrary_convex(B, A);\n  if constexpr (convB\
-    \ && !convA)\n    return minplus_convolution_arbitrary_convex(A, B);\n  return\
-    \ {};\n}\n#line 7 \"test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp\"\
+    \ B) {\n  int n = len(A), m = len(B);\n  if (n == 0 && m == 0) return {};\n  vc<T>\
+    \ C(n + m - 1, infty<T>);\n  while (n > 0 && A[n - 1] == infty<T>) --n;\n  while\
+    \ (m > 0 && B[m - 1] == infty<T>) --m;\n  if (n == 0 && m == 0) return C;\n  int\
+    \ a = 0, b = 0;\n  while (a < n && A[a] == infty<T>) ++a;\n  while (b < m && B[b]\
+    \ == infty<T>) ++b;\n  C[a + b] = A[a] + B[b];\n  for (int i = a + b + 1; i <\
+    \ n + m - 1; ++i) {\n    if (b == m - 1 || (a != n - 1 && A[a + 1] + B[b] < A[a]\
+    \ + B[b + 1])) {\n      chmin(C[i], A[++a] + B[b]);\n    } else {\n      chmin(C[i],\
+    \ A[a] + B[++b]);\n    }\n  }\n  return C;\n}\n\ntemplate <typename T>\nvc<T>\
+    \ minplus_convolution_arbitrary_convex(vc<T>& A, vc<T>& B) {\n  int n = len(A),\
+    \ m = len(B);\n  if (n == 0 && m == 0) return {};\n  vc<T> C(n + m - 1, infty<T>);\n\
+    \  while (m > 0 && B[m - 1] == infty<T>) --m;\n  if (m == 0) return C;\n  int\
+    \ b = 0;\n  while (b < m && B[b] == infty<T>) ++b;\n\n  auto select = [&](int\
+    \ i, int j, int k) -> bool {\n    if (i < k) return false;\n    if (i - j >= m\
+    \ - b) return true;\n    return A[j] + B[b + i - j] >= A[k] + B[b + i - k];\n\
+    \  };\n  vc<int> J = monotone_minima(n + m - b - 1, n, select);\n  FOR(i, n +\
+    \ m - b - 1) {\n    T x = A[J[i]], y = B[b + i - J[i]];\n    if (x < infty<T>\
+    \ && y < infty<T>) C[b + i] = x + y;\n  }\n  return C;\n}\n\ntemplate <typename\
+    \ T, bool convA, bool convB>\nvc<T> minplus_convolution(vc<T>& A, vc<T>& B) {\n\
+    \  static_assert(convA || convB);\n  if constexpr (convA && convB) return minplus_convolution_convex_convex(A,\
+    \ B);\n  if constexpr (convA && !convB)\n    return minplus_convolution_arbitrary_convex(B,\
+    \ A);\n  if constexpr (convB && !convA)\n    return minplus_convolution_arbitrary_convex(A,\
+    \ B);\n  return {};\n}\n#line 7 \"test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, M);\n  VEC(ll, A, N);\n  VEC(ll, B, M);\n  print(minplus_convolution<ll,\
     \ 1, 1>(A, B));\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/min_plus_convolution_convex_convex\"\
@@ -247,7 +252,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
   requiredBy: []
-  timestamp: '2023-08-10 02:31:42+09:00'
+  timestamp: '2023-08-10 03:11:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp

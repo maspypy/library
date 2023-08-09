@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convex/minplus_convolution.hpp
     title: convex/minplus_convolution.hpp
   - icon: ':heavy_check_mark:'
     path: convex/minplus_convolution_of_triples.hpp
     title: convex/minplus_convolution_of_triples.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convex/monotone_minima.hpp
     title: convex/monotone_minima.hpp
   - icon: ':question:'
@@ -226,29 +226,35 @@ data:
     \ + 1);\n    dfs(dfs, x + 1, x2, best_y, y2);\n  };\n  dfs(dfs, 0, H, 0, W);\n\
     \  return min_col;\n}\n#line 2 \"convex/minplus_convolution.hpp\"\n\ntemplate\
     \ <typename T>\nvc<T> minplus_convolution_convex_convex(vc<T>& A, vc<T>& B) {\n\
-    \  const int n = len(A), m = len(B);\n  if (n == 0 && m == 0) return {};\n  vc<T>\
-    \ C(n + m - 1);\n  int a = 0, b = 0;\n  C[0] = A[0] + B[0];\n  for (int i = 1;\
-    \ i < n + m - 1; ++i) {\n    if (b == m - 1 || (a != n - 1 && A[a + 1] + B[b]\
-    \ < A[a] + B[b + 1])) {\n      C[i] = A[++a] + B[b];\n    } else {\n      C[i]\
-    \ = A[a] + B[++b];\n    }\n  }\n  return C;\n}\n\ntemplate <typename T>\nvc<T>\
-    \ minplus_convolution_arbitrary_convex(vc<T>& a, vc<T>& b) {\n  int n = len(a),\
-    \ m = len(b);\n  auto select = [&](int i, int j, int k) -> bool {\n    if (i <\
-    \ k) return false;\n    if (i - j >= m) return true;\n    return a[j] + b[i -\
-    \ j] >= a[k] + b[i - k];\n  };\n  // vc<int> J = smawk(n + m - 1, n, select);\n\
-    \  vc<int> J = monotone_minima(n + m - 1, n, select);\n  vc<T> c(n + m - 1);\n\
-    \  FOR(i, n + m - 1) c[i] = a[J[i]] + b[i - J[i]];\n  return c;\n}\n\ntemplate\
-    \ <typename T, bool convA, bool convB>\nvc<T> minplus_convolution(vc<T>& A, vc<T>&\
-    \ B) {\n  static_assert(convA || convB);\n  if constexpr (convA && convB) return\
-    \ minplus_convolution_convex_convex(A, B);\n  if constexpr (convA && !convB)\n\
-    \    return minplus_convolution_arbitrary_convex(B, A);\n  if constexpr (convB\
-    \ && !convA)\n    return minplus_convolution_arbitrary_convex(A, B);\n  return\
-    \ {};\n}\n#line 2 \"convex/minplus_convolution_of_triples.hpp\"\n\n// https://codeforces.com/contest/436/problem/E\n\
-    // \u9577\u3055 3 \u306E\u6570\u5217 {a[i][0], a[i][1], a[i][2]} \u305F\u3061\u306E\
-    \u7573\u307F\u8FBC\u307F, O(NlogN)\n// \u540C\u7A2E\u306E\u554F\u984C\uFF1A(a_i,b_i)\
-    \ \u304C\u3042\u3063\u3066\u3001b_i \u306F a_i \u3092\u53D6\u3063\u3066\u304B\u3089\
-    \u3060\u3051\u53D6\u308C\u308B\ntemplate <typename T>\nstruct MinPlus_Convolution_of_Triples\
-    \ {\n  int N = 0;\n  T sm0 = 0;\n  vc<array<T, 3>> dat;\n  vc<T> dp1, dp2, dp;\n\
-    \  vc<int> I1, I2;\n  bool solved = false;\n\n  void add(T x0, T x1, T x2) { sm0\
+    \  int n = len(A), m = len(B);\n  if (n == 0 && m == 0) return {};\n  vc<T> C(n\
+    \ + m - 1, infty<T>);\n  while (n > 0 && A[n - 1] == infty<T>) --n;\n  while (m\
+    \ > 0 && B[m - 1] == infty<T>) --m;\n  if (n == 0 && m == 0) return C;\n  int\
+    \ a = 0, b = 0;\n  while (a < n && A[a] == infty<T>) ++a;\n  while (b < m && B[b]\
+    \ == infty<T>) ++b;\n  C[a + b] = A[a] + B[b];\n  for (int i = a + b + 1; i <\
+    \ n + m - 1; ++i) {\n    if (b == m - 1 || (a != n - 1 && A[a + 1] + B[b] < A[a]\
+    \ + B[b + 1])) {\n      chmin(C[i], A[++a] + B[b]);\n    } else {\n      chmin(C[i],\
+    \ A[a] + B[++b]);\n    }\n  }\n  return C;\n}\n\ntemplate <typename T>\nvc<T>\
+    \ minplus_convolution_arbitrary_convex(vc<T>& A, vc<T>& B) {\n  int n = len(A),\
+    \ m = len(B);\n  if (n == 0 && m == 0) return {};\n  vc<T> C(n + m - 1, infty<T>);\n\
+    \  while (m > 0 && B[m - 1] == infty<T>) --m;\n  if (m == 0) return C;\n  int\
+    \ b = 0;\n  while (b < m && B[b] == infty<T>) ++b;\n\n  auto select = [&](int\
+    \ i, int j, int k) -> bool {\n    if (i < k) return false;\n    if (i - j >= m\
+    \ - b) return true;\n    return A[j] + B[b + i - j] >= A[k] + B[b + i - k];\n\
+    \  };\n  vc<int> J = monotone_minima(n + m - b - 1, n, select);\n  FOR(i, n +\
+    \ m - b - 1) {\n    T x = A[J[i]], y = B[b + i - J[i]];\n    if (x < infty<T>\
+    \ && y < infty<T>) C[b + i] = x + y;\n  }\n  return C;\n}\n\ntemplate <typename\
+    \ T, bool convA, bool convB>\nvc<T> minplus_convolution(vc<T>& A, vc<T>& B) {\n\
+    \  static_assert(convA || convB);\n  if constexpr (convA && convB) return minplus_convolution_convex_convex(A,\
+    \ B);\n  if constexpr (convA && !convB)\n    return minplus_convolution_arbitrary_convex(B,\
+    \ A);\n  if constexpr (convB && !convA)\n    return minplus_convolution_arbitrary_convex(A,\
+    \ B);\n  return {};\n}\n#line 2 \"convex/minplus_convolution_of_triples.hpp\"\n\
+    \n// https://codeforces.com/contest/436/problem/E\n// \u9577\u3055 3 \u306E\u6570\
+    \u5217 {a[i][0], a[i][1], a[i][2]} \u305F\u3061\u306E\u7573\u307F\u8FBC\u307F\
+    , O(NlogN)\n// \u540C\u7A2E\u306E\u554F\u984C\uFF1A(a_i,b_i) \u304C\u3042\u3063\
+    \u3066\u3001b_i \u306F a_i \u3092\u53D6\u3063\u3066\u304B\u3089\u3060\u3051\u53D6\
+    \u308C\u308B\ntemplate <typename T>\nstruct MinPlus_Convolution_of_Triples {\n\
+    \  int N = 0;\n  T sm0 = 0;\n  vc<array<T, 3>> dat;\n  vc<T> dp1, dp2, dp;\n \
+    \ vc<int> I1, I2;\n  bool solved = false;\n\n  void add(T x0, T x1, T x2) { sm0\
     \ += x0, dat.eb(array<T, 3>{x0, x1, x2}); }\n\n  void solve() {\n    solved =\
     \ true;\n    N = dat.size();\n    FOR(i, N) {\n      int a = dat[i][1] - dat[i][0],\
     \ b = dat[i][2] - dat[i][1];\n      (a <= b ? I1 : I2).eb(i);\n    };\n    sort(all(I2),\
@@ -333,7 +339,7 @@ data:
   isVerificationFile: true
   path: test/mytest/minplus_conv_triple.test.cpp
   requiredBy: []
-  timestamp: '2023-08-10 02:31:42+09:00'
+  timestamp: '2023-08-10 03:11:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/minplus_conv_triple.test.cpp

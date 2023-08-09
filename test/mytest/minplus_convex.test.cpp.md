@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convex/minplus_convolution.hpp
     title: convex/minplus_convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convex/monotone_minima.hpp
     title: convex/monotone_minima.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -223,48 +223,62 @@ data:
     \ + 1);\n    dfs(dfs, x + 1, x2, best_y, y2);\n  };\n  dfs(dfs, 0, H, 0, W);\n\
     \  return min_col;\n}\n#line 2 \"convex/minplus_convolution.hpp\"\n\ntemplate\
     \ <typename T>\nvc<T> minplus_convolution_convex_convex(vc<T>& A, vc<T>& B) {\n\
-    \  const int n = len(A), m = len(B);\n  if (n == 0 && m == 0) return {};\n  vc<T>\
-    \ C(n + m - 1);\n  int a = 0, b = 0;\n  C[0] = A[0] + B[0];\n  for (int i = 1;\
-    \ i < n + m - 1; ++i) {\n    if (b == m - 1 || (a != n - 1 && A[a + 1] + B[b]\
-    \ < A[a] + B[b + 1])) {\n      C[i] = A[++a] + B[b];\n    } else {\n      C[i]\
-    \ = A[a] + B[++b];\n    }\n  }\n  return C;\n}\n\ntemplate <typename T>\nvc<T>\
-    \ minplus_convolution_arbitrary_convex(vc<T>& a, vc<T>& b) {\n  int n = len(a),\
-    \ m = len(b);\n  auto select = [&](int i, int j, int k) -> bool {\n    if (i <\
-    \ k) return false;\n    if (i - j >= m) return true;\n    return a[j] + b[i -\
-    \ j] >= a[k] + b[i - k];\n  };\n  // vc<int> J = smawk(n + m - 1, n, select);\n\
-    \  vc<int> J = monotone_minima(n + m - 1, n, select);\n  vc<T> c(n + m - 1);\n\
-    \  FOR(i, n + m - 1) c[i] = a[J[i]] + b[i - J[i]];\n  return c;\n}\n\ntemplate\
-    \ <typename T, bool convA, bool convB>\nvc<T> minplus_convolution(vc<T>& A, vc<T>&\
-    \ B) {\n  static_assert(convA || convB);\n  if constexpr (convA && convB) return\
-    \ minplus_convolution_convex_convex(A, B);\n  if constexpr (convA && !convB)\n\
-    \    return minplus_convolution_arbitrary_convex(B, A);\n  if constexpr (convB\
-    \ && !convA)\n    return minplus_convolution_arbitrary_convex(A, B);\n  return\
-    \ {};\n}\n#line 6 \"test/mytest/minplus_convex.test.cpp\"\n\nvc<int> gen(int L,\
-    \ int N, int R) {\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(-100, 100);\n  sort(all(A));\n\
-    \  A = cumsum<int>(A);\n  FOR(L) A.insert(A.begin(), infty<int>);\n  FOR(R) A.insert(A.end(),\
+    \  int n = len(A), m = len(B);\n  if (n == 0 && m == 0) return {};\n  vc<T> C(n\
+    \ + m - 1, infty<T>);\n  while (n > 0 && A[n - 1] == infty<T>) --n;\n  while (m\
+    \ > 0 && B[m - 1] == infty<T>) --m;\n  if (n == 0 && m == 0) return C;\n  int\
+    \ a = 0, b = 0;\n  while (a < n && A[a] == infty<T>) ++a;\n  while (b < m && B[b]\
+    \ == infty<T>) ++b;\n  C[a + b] = A[a] + B[b];\n  for (int i = a + b + 1; i <\
+    \ n + m - 1; ++i) {\n    if (b == m - 1 || (a != n - 1 && A[a + 1] + B[b] < A[a]\
+    \ + B[b + 1])) {\n      chmin(C[i], A[++a] + B[b]);\n    } else {\n      chmin(C[i],\
+    \ A[a] + B[++b]);\n    }\n  }\n  return C;\n}\n\ntemplate <typename T>\nvc<T>\
+    \ minplus_convolution_arbitrary_convex(vc<T>& A, vc<T>& B) {\n  int n = len(A),\
+    \ m = len(B);\n  if (n == 0 && m == 0) return {};\n  vc<T> C(n + m - 1, infty<T>);\n\
+    \  while (m > 0 && B[m - 1] == infty<T>) --m;\n  if (m == 0) return C;\n  int\
+    \ b = 0;\n  while (b < m && B[b] == infty<T>) ++b;\n\n  auto select = [&](int\
+    \ i, int j, int k) -> bool {\n    if (i < k) return false;\n    if (i - j >= m\
+    \ - b) return true;\n    return A[j] + B[b + i - j] >= A[k] + B[b + i - k];\n\
+    \  };\n  vc<int> J = monotone_minima(n + m - b - 1, n, select);\n  FOR(i, n +\
+    \ m - b - 1) {\n    T x = A[J[i]], y = B[b + i - J[i]];\n    if (x < infty<T>\
+    \ && y < infty<T>) C[b + i] = x + y;\n  }\n  return C;\n}\n\ntemplate <typename\
+    \ T, bool convA, bool convB>\nvc<T> minplus_convolution(vc<T>& A, vc<T>& B) {\n\
+    \  static_assert(convA || convB);\n  if constexpr (convA && convB) return minplus_convolution_convex_convex(A,\
+    \ B);\n  if constexpr (convA && !convB)\n    return minplus_convolution_arbitrary_convex(B,\
+    \ A);\n  if constexpr (convB && !convA)\n    return minplus_convolution_arbitrary_convex(A,\
+    \ B);\n  return {};\n}\n#line 6 \"test/mytest/minplus_convex.test.cpp\"\n\nvc<int>\
+    \ gen(int L, int N, int R, bool convex) {\n  vc<int> A(N);\n  FOR(i, N) A[i] =\
+    \ RNG(-100, 100);\n  if (!convex) return A;\n  sort(all(A));\n  A = cumsum<int>(A);\n\
+    \  FOR(L) A.insert(A.begin(), infty<int>);\n  FOR(R) A.insert(A.end(), infty<int>);\n\
+    \  return A;\n}\n\nvc<int> naive(vc<int> A, vc<int> B) {\n  int N = len(A), M\
+    \ = len(B);\n  vc<int> C(N + M - 1, infty<int>);\n  FOR(i, N) FOR(j, M) {\n  \
+    \  if (A[i] == infty<int> || B[j] == infty<int>) continue;\n    chmin(C[i + j],\
+    \ A[i] + B[j]);\n  }\n  return C;\n}\n\nvoid test() {\n  FOR(a1, 5) FOR(b1, 1,\
+    \ 10) FOR(c1, 5) {\n    vc<int> A = gen(a1, b1, c1, true);\n    FOR(a2, 5) FOR(b2,\
+    \ 1, 10) FOR(c2, 5) {\n      vc<int> B = gen(a2, b2, c2, true);\n      vc<int>\
+    \ C = minplus_convolution<int, 1, 1>(A, B);\n      assert(naive(A, B) == C);\n\
+    \    }\n  }\n  FOR(a1, 5) FOR(b1, 1, 10) FOR(c1, 5) {\n    vc<int> A = gen(a1,\
+    \ b1, c1, true);\n    FOR(a2, 5) FOR(b2, 1, 10) FOR(c2, 5) {\n      vc<int> B\
+    \ = gen(a2, b2, c2, false);\n      vc<int> C = minplus_convolution<int, 1, false>(A,\
+    \ B);\n      assert(naive(A, B) == C);\n    }\n  }\n}\n\nvoid solve() {\n  LL(a,\
+    \ b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return\
+    \ 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n#include \"random/base.hpp\"\n#include \"convex/minplus_convolution.hpp\"\
+    \n\nvc<int> gen(int L, int N, int R, bool convex) {\n  vc<int> A(N);\n  FOR(i,\
+    \ N) A[i] = RNG(-100, 100);\n  if (!convex) return A;\n  sort(all(A));\n  A =\
+    \ cumsum<int>(A);\n  FOR(L) A.insert(A.begin(), infty<int>);\n  FOR(R) A.insert(A.end(),\
     \ infty<int>);\n  return A;\n}\n\nvc<int> naive(vc<int> A, vc<int> B) {\n  int\
     \ N = len(A), M = len(B);\n  vc<int> C(N + M - 1, infty<int>);\n  FOR(i, N) FOR(j,\
     \ M) {\n    if (A[i] == infty<int> || B[j] == infty<int>) continue;\n    chmin(C[i\
     \ + j], A[i] + B[j]);\n  }\n  return C;\n}\n\nvoid test() {\n  FOR(a1, 5) FOR(b1,\
-    \ 10) FOR(c1, 5) {\n    vc<int> A = gen(a1, b1, c1);\n    FOR(a2, 5) FOR(b2, 10)\
-    \ FOR(c2, 5) {\n      vc<int> B = gen(a2, b2, c2);\n      vc<int> C = minplus_convolution<int,\
-    \ 1, 1>(A, B);\n      assert(naive(A, B) == C);\n    }\n  }\n}\n\nvoid solve()\
+    \ 1, 10) FOR(c1, 5) {\n    vc<int> A = gen(a1, b1, c1, true);\n    FOR(a2, 5)\
+    \ FOR(b2, 1, 10) FOR(c2, 5) {\n      vc<int> B = gen(a2, b2, c2, true);\n    \
+    \  vc<int> C = minplus_convolution<int, 1, 1>(A, B);\n      assert(naive(A, B)\
+    \ == C);\n    }\n  }\n  FOR(a1, 5) FOR(b1, 1, 10) FOR(c1, 5) {\n    vc<int> A\
+    \ = gen(a1, b1, c1, true);\n    FOR(a2, 5) FOR(b2, 1, 10) FOR(c2, 5) {\n     \
+    \ vc<int> B = gen(a2, b2, c2, false);\n      vc<int> C = minplus_convolution<int,\
+    \ 1, false>(A, B);\n      assert(naive(A, B) == C);\n    }\n  }\n}\n\nvoid solve()\
     \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\
     \n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"random/base.hpp\"\n#include \"convex/minplus_convolution.hpp\"\
-    \n\nvc<int> gen(int L, int N, int R) {\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(-100,\
-    \ 100);\n  sort(all(A));\n  A = cumsum<int>(A);\n  FOR(L) A.insert(A.begin(),\
-    \ infty<int>);\n  FOR(R) A.insert(A.end(), infty<int>);\n  return A;\n}\n\nvc<int>\
-    \ naive(vc<int> A, vc<int> B) {\n  int N = len(A), M = len(B);\n  vc<int> C(N\
-    \ + M - 1, infty<int>);\n  FOR(i, N) FOR(j, M) {\n    if (A[i] == infty<int> ||\
-    \ B[j] == infty<int>) continue;\n    chmin(C[i + j], A[i] + B[j]);\n  }\n  return\
-    \ C;\n}\n\nvoid test() {\n  FOR(a1, 5) FOR(b1, 10) FOR(c1, 5) {\n    vc<int> A\
-    \ = gen(a1, b1, c1);\n    FOR(a2, 5) FOR(b2, 10) FOR(c2, 5) {\n      vc<int> B\
-    \ = gen(a2, b2, c2);\n      vc<int> C = minplus_convolution<int, 1, 1>(A, B);\n\
-    \      assert(naive(A, B) == C);\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n\
-    \  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n\
-    }\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -274,8 +288,8 @@ data:
   isVerificationFile: true
   path: test/mytest/minplus_convex.test.cpp
   requiredBy: []
-  timestamp: '2023-08-10 02:31:42+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-08-10 03:11:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/minplus_convex.test.cpp
 layout: document
