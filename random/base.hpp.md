@@ -324,12 +324,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/minmax_add.test.cpp
     title: test/mytest/minmax_add.test.cpp
-  - icon: ':x:'
-    path: test/mytest/minplus_conv_triple.test.cpp
-    title: test/mytest/minplus_conv_triple.test.cpp
-  - icon: ':x:'
-    path: test/mytest/minplus_convex.test.cpp
-    title: test/mytest/minplus_convex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/mod_sum_of_linear.test.cpp
     title: test/mytest/mod_sum_of_linear.test.cpp
@@ -639,7 +633,6 @@ data:
   - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/xor_transpose.test.cpp
   - test/mytest/matching_line_graph.test.cpp
-  - test/mytest/minplus_conv_triple.test.cpp
   - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/kdtree_nns.test.cpp
   - test/mytest/conv2d.test.cpp
@@ -688,7 +681,6 @@ data:
   - test/mytest/mybitset.test.cpp
   - test/mytest/online_division.test.cpp
   - test/mytest/splay.test.cpp
-  - test/mytest/minplus_convex.test.cpp
   - test/mytest/minidx_add.test.cpp
   - test/mytest/kdtree_monoid.test.cpp
   - test/mytest/all_inverse.test.cpp

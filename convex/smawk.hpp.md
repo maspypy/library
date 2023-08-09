@@ -5,31 +5,13 @@ data:
   - icon: ':x:'
     path: convex/maxplus_convolution_concave.hpp
     title: convex/maxplus_convolution_concave.hpp
-  - icon: ':question:'
-    path: convex/minplus_convolution_convex.hpp
-    title: convex/minplus_convolution_convex.hpp
-  - icon: ':x:'
-    path: convex/minplus_convolution_of_triples.hpp
-    title: convex/minplus_convolution_of_triples.hpp
   - icon: ':heavy_check_mark:'
     path: convex/monge.hpp
     title: convex/monge.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
-    title: test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
-    title: test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
   - icon: ':x:'
     path: test/mytest/maxplus_concave.test.cpp
     title: test/mytest/maxplus_concave.test.cpp
-  - icon: ':x:'
-    path: test/mytest/minplus_conv_triple.test.cpp
-    title: test/mytest/minplus_conv_triple.test.cpp
-  - icon: ':x:'
-    path: test/mytest/minplus_convex.test.cpp
-    title: test/mytest/minplus_convex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/smawk.test.cpp
     title: test/mytest/smawk.test.cpp
@@ -77,20 +59,14 @@ data:
   isVerificationFile: false
   path: convex/smawk.hpp
   requiredBy:
-  - convex/minplus_convolution_of_triples.hpp
-  - convex/minplus_convolution_convex.hpp
   - convex/maxplus_convolution_concave.hpp
   - convex/monge.hpp
   timestamp: '2023-08-10 00:32:23+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/minplus_conv_triple.test.cpp
   - test/mytest/maxplus_concave.test.cpp
-  - test/mytest/minplus_convex.test.cpp
   - test/mytest/smawk.test.cpp
   - test/yukicoder/705.test.cpp
-  - test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
-  - test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
 documentation_of: convex/smawk.hpp
 layout: document
 redirect_from:
