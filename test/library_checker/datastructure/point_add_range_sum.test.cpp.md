@@ -242,18 +242,16 @@ data:
     \ + k - 1]);\n        if (check(t)) { i += k, s = t; }\n      }\n      k >>= 1;\n\
     \    }\n    return i;\n  }\n\n  int kth(E k) {\n    return max_right([&k](E x)\
     \ -> bool { return x <= k; });\n  }\n};\n#line 6 \"test/library_checker/datastructure/point_add_range_sum.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  FenwickTree<Monoid_Add<ll>>\
-    \ bit(A);\n\n  FOR(_, Q) {\n    LL(t, a, b);\n    if (t == 0) {\n      bit.add(a,\
-    \ b);\n    } else {\n      print(bit.prod(a, b));\n    }\n  }\n}\n\nsigned main()\
-    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  solve();\n\n  return 0;\n}\n"
+    \n\nvoid solve() {\n  LL(N, Q);\n  FenwickTree<Monoid_Add<ll>> bit(N, [&](int\
+    \ i) -> ll {\n    LL(x);\n    return x;\n  });\n\n  FOR(Q) {\n    LL(t, a, b);\n\
+    \    if (t == 0) {\n      bit.add(a, b);\n    } else {\n      print(bit.prod(a,\
+    \ b));\n    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/fenwicktree/fenwicktree.hpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  FenwickTree<Monoid_Add<ll>>\
-    \ bit(A);\n\n  FOR(_, Q) {\n    LL(t, a, b);\n    if (t == 0) {\n      bit.add(a,\
-    \ b);\n    } else {\n      print(bit.prod(a, b));\n    }\n  }\n}\n\nsigned main()\
-    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  solve();\n\n  return 0;\n}\n"
+    \n\nvoid solve() {\n  LL(N, Q);\n  FenwickTree<Monoid_Add<ll>> bit(N, [&](int\
+    \ i) -> ll {\n    LL(x);\n    return x;\n  });\n\n  FOR(Q) {\n    LL(t, a, b);\n\
+    \    if (t == 0) {\n      bit.add(a, b);\n    } else {\n      print(bit.prod(a,\
+    \ b));\n    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -262,7 +260,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/point_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-08-08 01:44:15+09:00'
+  timestamp: '2023-08-10 03:55:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/point_add_range_sum.test.cpp
