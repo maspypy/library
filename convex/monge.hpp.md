@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/larsch.hpp
     title: convex/larsch.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convex/smawk.hpp
     title: convex/smawk.hpp
   - icon: ':heavy_check_mark:'

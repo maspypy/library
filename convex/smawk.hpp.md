@@ -2,25 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
-    path: convex/maxplus_convolution_concave.hpp
-    title: convex/maxplus_convolution_concave.hpp
   - icon: ':heavy_check_mark:'
     path: convex/monge.hpp
     title: convex/monge.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/mytest/maxplus_concave.test.cpp
-    title: test/mytest/maxplus_concave.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/smawk.test.cpp
     title: test/mytest/smawk.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/705.test.cpp
     title: test/yukicoder/705.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"convex/smawk.hpp\"\n\n// select(i,j,k) \u306F (i,j) -> (i,k)\
@@ -59,12 +53,10 @@ data:
   isVerificationFile: false
   path: convex/smawk.hpp
   requiredBy:
-  - convex/maxplus_convolution_concave.hpp
   - convex/monge.hpp
   timestamp: '2023-08-10 00:32:23+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/maxplus_concave.test.cpp
   - test/mytest/smawk.test.cpp
   - test/yukicoder/705.test.cpp
 documentation_of: convex/smawk.hpp
