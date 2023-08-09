@@ -6,10 +6,12 @@
 
 void solve() {
   LL(N, Q);
-  VEC(ll, A, N);
-  FenwickTree<Monoid_Add<ll>> bit(A);
+  FenwickTree<Monoid_Add<ll>> bit(N, [&](int i) -> ll {
+    LL(x);
+    return x;
+  });
 
-  FOR(_, Q) {
+  FOR(Q) {
     LL(t, a, b);
     if (t == 0) {
       bit.add(a, b);
@@ -20,11 +22,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
   solve();
-
   return 0;
 }
