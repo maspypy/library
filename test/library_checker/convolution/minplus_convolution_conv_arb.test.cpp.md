@@ -1,18 +1,21 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: linalg/xor/transpose.hpp
-    title: linalg/xor/transpose.hpp
+  - icon: ':question:'
+    path: convex/minplus_convolution_convex.hpp
+    title: convex/minplus_convolution_convex.hpp
+  - icon: ':question:'
+    path: convex/monotone_minima.hpp
+    title: convex/monotone_minima.hpp
+  - icon: ':question:'
+    path: convex/smawk.hpp
+    title: convex/smawk.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
-    path: random/base.hpp
-    title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -20,31 +23,32 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/aplusb
+    PROBLEM: https://judge.yosupo.jp/problem/min_plus_convolution_convex_arbitrary
     links:
-    - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/xor_transpose.test.cpp\"\n#define PROBLEM \"\
-    https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
-    #include <my_template_compiled.hpp>\n#else\n#pragma GCC optimize(\"Ofast\")\n\
-    #pragma GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace\
-    \ std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing u64 = unsigned\
-    \ long long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\nusing f128\
-    \ = __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr\
-    \ int infty<int> = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll> = ll(infty<int>)\
-    \ * infty<int> * 2;\ntemplate <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate\
-    \ <>\nconstexpr u64 infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128>\
-    \ = i128(infty<ll>) * infty<ll>;\ntemplate <>\nconstexpr double infty<double>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr long double infty<long double> = infty<ll>;\n\
-    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
-    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
-    \ greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h,\
-    \ vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>>\
-    \ name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define\
-    \ vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
-    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    - https://judge.yosupo.jp/problem/min_plus_convolution_convex_arbitrary
+  bundledCode: "#line 1 \"test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp\"\
+    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/min_plus_convolution_convex_arbitrary\"\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
+    )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
+    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
+    using u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class T>\n\
+    constexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int> = 1'000'000'000;\n\
+    template <>\nconstexpr ll infty<ll> = ll(infty<int>) * infty<int> * 2;\ntemplate\
+    \ <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
+    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\n\
+    template <>\nconstexpr double infty<double> = infty<ll>;\ntemplate <>\nconstexpr\
+    \ long double infty<long double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing\
+    \ vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
+    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
+    \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
+    template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
+    #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
+    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
+    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
+    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
+    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
@@ -205,63 +209,70 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t\
-    \ x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n         \
-    \            chrono::high_resolution_clock::now().time_since_epoch())\n      \
-    \               .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n\
-    \  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
-    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"linalg/xor/transpose.hpp\"\
-    \n\n// n x m \u884C\u5217\u306E transpose\u3002O((n+m)log(n+m)) \u6642\u9593\u3002\
-    \n// https://github.com/dsnet/matrix-transpose\ntemplate <typename UINT>\nvc<UINT>\
-    \ transpose(int n, int m, vc<UINT>& A, bool keep_A = 1) {\n  assert(max(n, m)\
-    \ <= numeric_limits<UINT>::digits);\n  assert(len(A) == n);\n  vc<UINT> tmp;\n\
-    \  if (keep_A) tmp = A;\n  int LOG = 0;\n  while ((1 << LOG) < max(n, m)) ++LOG;\n\
-    \  A.resize(1 << LOG);\n  int width = 1 << LOG;\n  UINT mask = 1;\n  FOR(i, LOG)\
-    \ mask = mask | (mask << (1 << i));\n  FOR(t, LOG) {\n    width >>= 1;\n    mask\
-    \ = mask ^ (mask >> width);\n    FOR(i, 1 << t) {\n      FOR(j, width) {\n   \
-    \     UINT* x = &A[width * (2 * i + 0) + j];\n        UINT* y = &A[width * (2\
-    \ * i + 1) + j];\n        *x = ((*y << width) & mask) ^ *x;\n        *y = ((*x\
-    \ & mask) >> width) ^ *y;\n        *x = ((*y << width) & mask) ^ *x;\n      }\n\
-    \    }\n  }\n  A.resize(m);\n  if (!keep_A) return A;\n  swap(A, tmp);\n  return\
-    \ tmp;\n}\n#line 6 \"test/mytest/xor_transpose.test.cpp\"\n\ntemplate <typename\
-    \ UINT>\nvc<UINT> naive(int n, int m, vc<UINT> mat) {\n  vc<UINT> after(m);\n\
-    \  FOR(i, n) FOR(j, m) if (mat[i] >> j & 1) after[j] |= UINT(1) << i;\n  return\
-    \ after;\n}\n\nvoid test_32() {\n  FOR(100) {\n    FOR(n, 33) FOR(m, 33) {\n \
-    \     vc<u32> A(n);\n      FOR(i, n) FOR(j, m) {\n        u32 x = RNG(2);\n  \
-    \      A[i] |= x << j;\n      }\n      assert(transpose<u32>(n, m, A) == naive<u32>(n,\
-    \ m, A));\n    }\n  }\n}\n\nvoid test_64() {\n  FOR(100) {\n    FOR(n, 65) FOR(m,\
-    \ 65) {\n      vc<u64> A(n);\n      FOR(i, n) FOR(j, m) {\n        u64 x = RNG(2);\n\
-    \        A[i] |= x << j;\n      }\n      assert(transpose<u64>(n, m, A) == naive<u64>(n,\
-    \ m, A));\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\n\
-    signed main() {\n  test_32();\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"random/base.hpp\"\n#include \"linalg/xor/transpose.hpp\"\
-    \n\ntemplate <typename UINT>\nvc<UINT> naive(int n, int m, vc<UINT> mat) {\n \
-    \ vc<UINT> after(m);\n  FOR(i, n) FOR(j, m) if (mat[i] >> j & 1) after[j] |= UINT(1)\
-    \ << i;\n  return after;\n}\n\nvoid test_32() {\n  FOR(100) {\n    FOR(n, 33)\
-    \ FOR(m, 33) {\n      vc<u32> A(n);\n      FOR(i, n) FOR(j, m) {\n        u32\
-    \ x = RNG(2);\n        A[i] |= x << j;\n      }\n      assert(transpose<u32>(n,\
-    \ m, A) == naive<u32>(n, m, A));\n    }\n  }\n}\n\nvoid test_64() {\n  FOR(100)\
-    \ {\n    FOR(n, 65) FOR(m, 65) {\n      vc<u64> A(n);\n      FOR(i, n) FOR(j,\
-    \ m) {\n        u64 x = RNG(2);\n        A[i] |= x << j;\n      }\n      assert(transpose<u64>(n,\
-    \ m, A) == naive<u64>(n, m, A));\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n\
-    \  print(a + b);\n}\n\nsigned main() {\n  test_32();\n  solve();\n  return 0;\n\
-    }"
+    \ yes(!t); }\n#line 5 \"test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp\"\
+    \n\n#line 1 \"convex/monotone_minima.hpp\"\n\n// select(i,j,k) : (i,j) -> (i,k)\
+    \ \u3092\u884C\u3046\u304B\u3069\u3046\u304B\ntemplate <typename F>\nvc<int> monotone_minima(int\
+    \ H, int W, F select) {\n  vc<int> min_col(H);\n  auto dfs = [&](auto& dfs, int\
+    \ x1, int x2, int y1, int y2) -> void {\n    if (x1 == x2) return;\n    int x\
+    \ = (x1 + x2) / 2;\n    int best_y = y1;\n    for (int y = y1 + 1; y < y2; ++y)\
+    \ {\n      if (select(x, best_y, y)) best_y = y;\n    }\n    min_col[x] = best_y;\n\
+    \    dfs(dfs, x1, x, y1, best_y + 1);\n    dfs(dfs, x + 1, x2, best_y, y2);\n\
+    \  };\n  dfs(dfs, 0, H, 0, W);\n  return min_col;\n}\n#line 2 \"convex/smawk.hpp\"\
+    \n\n// select(i,j,k) \u306F (i,j) -> (i,k) \u3092\u884C\u3046\u304B\u3069\u3046\
+    \u304B\n// \u6B8B\u5FF5\u306A\u304C\u3089 monotone minima \u3088\u308A\u9AD8\u901F\
+    \u306A\u5834\u5408\u304C\u5B58\u5728\u3057\u306A\u3044\u8AAC\u304C\u3042\u308B\
+    \ntemplate <typename F>\nvc<int> smawk(int H, int W, F select) {\n  auto dfs =\
+    \ [&](auto& dfs, vc<int> X, vc<int> Y) -> vc<int> {\n    int N = len(X);\n   \
+    \ if (N == 0) return {};\n    vc<int> YY;\n    for (auto&& y: Y) {\n      while\
+    \ (len(YY)) {\n        int py = YY.back(), x = X[len(YY) - 1];\n        if (!select(x,\
+    \ py, y)) break;\n        YY.pop_back();\n      }\n      if (len(YY) < len(X))\
+    \ YY.eb(y);\n    }\n    vc<int> XX;\n    FOR(i, 1, len(X), 2) XX.eb(X[i]);\n \
+    \   vc<int> II = dfs(dfs, XX, YY);\n    vc<int> I(N);\n    FOR(i, len(II)) I[i\
+    \ + i + 1] = II[i];\n    int p = 0;\n    FOR(i, 0, N, 2) {\n      int LIM = (i\
+    \ + 1 == N ? Y.back() : I[i + 1]);\n      int best = Y[p];\n      while (Y[p]\
+    \ < LIM) {\n        ++p;\n        if (select(X[i], best, Y[p])) best = Y[p];\n\
+    \      }\n      I[i] = best;\n    }\n    return I;\n  };\n  vc<int> X(H), Y(W);\n\
+    \  iota(all(X), 0), iota(all(Y), 0);\n  return dfs(dfs, X, Y);\n}\n#line 3 \"\
+    convex/minplus_convolution_convex.hpp\"\n\ntemplate <typename T>\nvc<T> minplus_convolution_convex_convex(vc<T>&\
+    \ A, vc<T>& B) {\n  const int n = len(A), m = len(B);\n  if (n == 0 && m == 0)\
+    \ return {};\n  vc<T> C(n + m - 1);\n  int a = 0, b = 0;\n  C[0] = A[0] + B[0];\n\
+    \  for (int i = 1; i < n + m - 1; ++i) {\n    if (b == m - 1 || (a != n - 1 &&\
+    \ A[a + 1] + B[b] < A[a] + B[b + 1])) {\n      C[i] = A[++a] + B[b];\n    } else\
+    \ {\n      C[i] = A[a] + B[++b];\n    }\n  }\n  return C;\n}\n\ntemplate <typename\
+    \ T>\nvc<T> minplus_convolution_arbitrary_convex(vc<T>& a, vc<T>& b) {\n  int\
+    \ n = len(a), m = len(b);\n  auto select = [&](int i, int j, int k) -> bool {\n\
+    \    if (i < k) return false;\n    if (i - j >= m) return true;\n    return a[j]\
+    \ + b[i - j] >= a[k] + b[i - k];\n  };\n  vc<int> J = smawk(n + m - 1, n, select);\n\
+    \  // vc<int> J = monotone_minima(n + m - 1, n, select);\n  vc<T> c(n + m - 1);\n\
+    \  FOR(i, n + m - 1) c[i] = a[J[i]] + b[i - J[i]];\n  return c;\n}\n\ntemplate\
+    \ <typename T, bool convA, bool convB>\nvc<T> minplus_convolution(vc<T>& A, vc<T>&\
+    \ B) {\n  static_assert(convA || convB);\n  if constexpr (convA && convB) return\
+    \ minplus_convolution_convex_convex(A, B);\n  if constexpr (convA && !convB)\n\
+    \    return minplus_convolution_arbitrary_convex(B, A);\n  if constexpr (convB\
+    \ && !convA)\n    return minplus_convolution_arbitrary_convex(A, B);\n  return\
+    \ {};\n}\n#line 7 \"test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, M);\n  VEC(ll, A, N);\n  VEC(ll, B, M);\n  print(minplus_convolution<ll,\
+    \ 1, 0>(A, B));\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/min_plus_convolution_convex_arbitrary\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"convex/minplus_convolution_convex.hpp\"\
+    \n\nvoid solve() {\n  LL(N, M);\n  VEC(ll, A, N);\n  VEC(ll, B, M);\n  print(minplus_convolution<ll,\
+    \ 1, 0>(A, B));\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - random/base.hpp
-  - linalg/xor/transpose.hpp
+  - convex/minplus_convolution_convex.hpp
+  - convex/monotone_minima.hpp
+  - convex/smawk.hpp
   isVerificationFile: true
-  path: test/mytest/xor_transpose.test.cpp
+  path: test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
   requiredBy: []
-  timestamp: '2023-08-08 01:44:15+09:00'
+  timestamp: '2023-08-10 00:32:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/mytest/xor_transpose.test.cpp
+documentation_of: test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
 layout: document
 redirect_from:
-- /verify/test/mytest/xor_transpose.test.cpp
-- /verify/test/mytest/xor_transpose.test.cpp.html
-title: test/mytest/xor_transpose.test.cpp
+- /verify/test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
+- /verify/test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp.html
+title: test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
 ---

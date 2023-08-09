@@ -1,11 +1,29 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':question:'
+    path: convex/minplus_convolution_convex.hpp
+    title: convex/minplus_convolution_convex.hpp
+  - icon: ':x:'
+    path: convex/minplus_convolution_of_triples.hpp
+    title: convex/minplus_convolution_of_triples.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
+    title: test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
+    title: test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
+  - icon: ':x:'
+    path: test/mytest/minplus_conv_triple.test.cpp
+    title: test/mytest/minplus_conv_triple.test.cpp
+  - icon: ':x:'
+    path: test/mytest/minplus_convex.test.cpp
+    title: test/mytest/minplus_convex.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/monotone_minima.hpp\"\n\n// select(i,j,k) : (i,j)\
@@ -28,10 +46,16 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: convex/monotone_minima.hpp
-  requiredBy: []
+  requiredBy:
+  - convex/minplus_convolution_of_triples.hpp
+  - convex/minplus_convolution_convex.hpp
   timestamp: '2023-07-06 21:02:18+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/mytest/minplus_conv_triple.test.cpp
+  - test/mytest/minplus_convex.test.cpp
+  - test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
+  - test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
 documentation_of: convex/monotone_minima.hpp
 layout: document
 redirect_from:

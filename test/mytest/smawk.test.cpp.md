@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/smawk.hpp
     title: convex/smawk.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -202,26 +202,28 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 2 \"convex/smawk.hpp\"\n// select(i,j,k) \u306F (i,j) \u3068\
-    \ (i,k) \u306E\u3046\u3061\u9078\u3076\u65B9\uFF08j or k\uFF09\ntemplate <typename\
-    \ F>\nvc<int> SMAWK(int H, int W, F select) {\n  auto dfs = [&](auto& dfs, vc<int>\
-    \ X, vc<int> Y) -> vc<int> {\n    int N = len(X);\n    if (N == 0) return {};\n\
-    \    vc<int> YY;\n    for (auto&& y: Y) {\n      while (len(YY)) {\n        int\
-    \ py = YY.back(), x = X[len(YY) - 1];\n        if (select(x, py, y) == py) break;\n\
-    \        YY.pop_back();\n      }\n      if (len(YY) < len(X)) YY.eb(y);\n    }\n\
-    \    vc<int> XX;\n    FOR(i, 1, len(X), 2) XX.eb(X[i]);\n    vc<int> II = dfs(dfs,\
-    \ XX, YY);\n    vc<int> I(N);\n    FOR(i, len(II)) I[i + i + 1] = II[i];\n   \
-    \ int p = 0;\n    FOR(i, 0, N, 2) {\n      int LIM = (i + 1 == N ? Y.back() :\
-    \ I[i + 1]);\n      int best = Y[p];\n      while (Y[p] < LIM) {\n        ++p;\n\
-    \        best = select(X[i], best, Y[p]);\n      }\n      I[i] = best;\n    }\n\
-    \    return I;\n  };\n  vc<int> X(H), Y(W);\n  iota(all(X), 0), iota(all(Y), 0);\n\
-    \  return dfs(dfs, X, Y);\n}\n#line 5 \"test/mytest/smawk.test.cpp\"\n\nvoid test()\
-    \ {\n  vv(int, A, 4, 5);\n  A[0] = {0, 1, 3, 2, 4};\n  A[1] = {0, 2, 4, 3, 1};\n\
-    \  A[2] = {1, 3, 4, 2, 0};\n  A[3] = {4, 2, 3, 1, 0};\n  auto f\n      = [&](int\
-    \ i, int j, int k) -> int { return (A[i][j] > A[i][k] ? k : j); };\n\n  vc<int>\
-    \ I = SMAWK(4, 5, f);\n  vc<int> J = {0, 0, 4, 4};\n  assert(I == J);\n}\n\nvoid\
-    \ solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n \
-    \ solve();\n  return 0;\n}\n"
+    \ yes(!t); }\n#line 2 \"convex/smawk.hpp\"\n\n// select(i,j,k) \u306F (i,j) ->\
+    \ (i,k) \u3092\u884C\u3046\u304B\u3069\u3046\u304B\n// \u6B8B\u5FF5\u306A\u304C\
+    \u3089 monotone minima \u3088\u308A\u9AD8\u901F\u306A\u5834\u5408\u304C\u5B58\u5728\
+    \u3057\u306A\u3044\u8AAC\u304C\u3042\u308B\ntemplate <typename F>\nvc<int> smawk(int\
+    \ H, int W, F select) {\n  auto dfs = [&](auto& dfs, vc<int> X, vc<int> Y) ->\
+    \ vc<int> {\n    int N = len(X);\n    if (N == 0) return {};\n    vc<int> YY;\n\
+    \    for (auto&& y: Y) {\n      while (len(YY)) {\n        int py = YY.back(),\
+    \ x = X[len(YY) - 1];\n        if (!select(x, py, y)) break;\n        YY.pop_back();\n\
+    \      }\n      if (len(YY) < len(X)) YY.eb(y);\n    }\n    vc<int> XX;\n    FOR(i,\
+    \ 1, len(X), 2) XX.eb(X[i]);\n    vc<int> II = dfs(dfs, XX, YY);\n    vc<int>\
+    \ I(N);\n    FOR(i, len(II)) I[i + i + 1] = II[i];\n    int p = 0;\n    FOR(i,\
+    \ 0, N, 2) {\n      int LIM = (i + 1 == N ? Y.back() : I[i + 1]);\n      int best\
+    \ = Y[p];\n      while (Y[p] < LIM) {\n        ++p;\n        if (select(X[i],\
+    \ best, Y[p])) best = Y[p];\n      }\n      I[i] = best;\n    }\n    return I;\n\
+    \  };\n  vc<int> X(H), Y(W);\n  iota(all(X), 0), iota(all(Y), 0);\n  return dfs(dfs,\
+    \ X, Y);\n}\n#line 5 \"test/mytest/smawk.test.cpp\"\n\nvoid test() {\n  vv(int,\
+    \ A, 4, 5);\n  A[0] = {0, 1, 3, 2, 4};\n  A[1] = {0, 2, 4, 3, 1};\n  A[2] = {1,\
+    \ 3, 4, 2, 0};\n  A[3] = {4, 2, 3, 1, 0};\n  auto f\n      = [&](int i, int j,\
+    \ int k) -> int { return (A[i][j] > A[i][k] ? k : j); };\n\n  vc<int> I = SMAWK(4,\
+    \ 5, f);\n  vc<int> J = {0, 0, 4, 4};\n  assert(I == J);\n}\n\nvoid solve() {\n\
+    \  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n \
+    \ return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"convex/smawk.hpp\"\n\nvoid test() {\n\
     \  vv(int, A, 4, 5);\n  A[0] = {0, 1, 3, 2, 4};\n  A[1] = {0, 2, 4, 3, 1};\n \
@@ -237,8 +239,8 @@ data:
   isVerificationFile: true
   path: test/mytest/smawk.test.cpp
   requiredBy: []
-  timestamp: '2023-08-08 01:44:15+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-08-10 00:32:23+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/smawk.test.cpp
 layout: document
