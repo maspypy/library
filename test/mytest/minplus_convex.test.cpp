@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "random/base.hpp"
-#include "convex/minplus_convolution_convex.hpp"
+#include "convex/minplus_convolution.hpp"
 
 vc<int> gen(int L, int N, int R) {
   vc<int> A(N);
@@ -29,7 +29,7 @@ void test() {
     vc<int> A = gen(a1, b1, c1);
     FOR(a2, 5) FOR(b2, 10) FOR(c2, 5) {
       vc<int> B = gen(a2, b2, c2);
-      vc<int> C = minplus_convolution_convex<int, 1, 1>(A, B);
+      vc<int> C = minplus_convolution<int, 1, 1>(A, B);
       assert(naive(A, B) == C);
     }
   }
