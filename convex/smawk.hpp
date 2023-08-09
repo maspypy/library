@@ -1,7 +1,9 @@
 #pragma once
-// select(i,j,k) は (i,j) と (i,k) のうち選ぶ方（j or k）
+
+// select(i,j,k) は (i,j) -> (i,k) を行うかどうか
+// 残念ながら monotone minima より高速な場合が存在しない説がある
 template <typename F>
-vc<int> SMAWK(int H, int W, F select) {
+vc<int> smawk(int H, int W, F select) {
   auto dfs = [&](auto& dfs, vc<int> X, vc<int> Y) -> vc<int> {
     int N = len(X);
     if (N == 0) return {};
@@ -9,7 +11,7 @@ vc<int> SMAWK(int H, int W, F select) {
     for (auto&& y: Y) {
       while (len(YY)) {
         int py = YY.back(), x = X[len(YY) - 1];
-        if (select(x, py, y) == py) break;
+        if (!select(x, py, y)) break;
         YY.pop_back();
       }
       if (len(YY) < len(X)) YY.eb(y);
@@ -25,7 +27,7 @@ vc<int> SMAWK(int H, int W, F select) {
       int best = Y[p];
       while (Y[p] < LIM) {
         ++p;
-        best = select(X[i], best, Y[p]);
+        if (select(X[i], best, Y[p])) best = Y[p];
       }
       I[i] = best;
     }
