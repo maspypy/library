@@ -2,12 +2,12 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "random/base.hpp"
+#include "convex/maxplus_convolution.hpp"
 
-#include "convex/maxplus_convolution_concave.hpp"
-
-vc<int> gen(int L, int N, int R) {
+vc<int> gen(int L, int N, int R, bool concave) {
   vc<int> A(N);
   FOR(i, N) A[i] = RNG(-100, 100);
+  if (!concave) return A;
   sort(all(A));
   reverse(all(A));
   A = cumsum<int>(A);
@@ -27,11 +27,19 @@ vc<int> naive(vc<int> A, vc<int> B) {
 }
 
 void test() {
-  FOR(a1, 5) FOR(b1, 10) FOR(c1, 5) {
-    vc<int> A = gen(a1, b1, c1);
-    FOR(a2, 5) FOR(b2, 10) FOR(c2, 5) {
-      vc<int> B = gen(a2, b2, c2);
-      vc<int> C = maxplus_convolution_concave<int, true, true>(A, B);
+  FOR(a1, 5) FOR(b1, 1, 10) FOR(c1, 5) {
+    vc<int> A = gen(a1, b1, c1, true);
+    FOR(a2, 5) FOR(b2, 1, 10) FOR(c2, 5) {
+      vc<int> B = gen(a2, b2, c2, true);
+      vc<int> C = maxplus_convolution<int, 1, 1>(A, B);
+      assert(naive(A, B) == C);
+    }
+  }
+  FOR(a1, 5) FOR(b1, 1, 10) FOR(c1, 5) {
+    vc<int> A = gen(a1, b1, c1, true);
+    FOR(a2, 5) FOR(b2, 1, 10) FOR(c2, 5) {
+      vc<int> B = gen(a2, b2, c2, false);
+      vc<int> C = maxplus_convolution<int, 1, false>(A, B);
       assert(naive(A, B) == C);
     }
   }
@@ -43,8 +51,6 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
   test();
   solve();
 
