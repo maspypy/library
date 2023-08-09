@@ -39,7 +39,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/sortable_array.test.cpp
     title: test/mytest/sortable_array.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc217e.test.cpp
     title: test_atcoder/abc217e.test.cpp
   - icon: ':x:'
