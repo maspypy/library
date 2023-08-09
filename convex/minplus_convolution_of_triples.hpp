@@ -1,4 +1,4 @@
-#include "convex/minplus_convolution_convex.hpp"
+#include "convex/minplus_convolution.hpp"
 
 // https://codeforces.com/contest/436/problem/E
 // 長さ 3 の数列 {a[i][0], a[i][1], a[i][2]} たちの畳み込み, O(NlogN)
@@ -26,7 +26,7 @@ struct MinPlus_Convolution_of_Triples {
     });
     solve_1();
     solve_2();
-    dp = minplus_convolution_convex<T, true, false>(dp1, dp2);
+    dp = minplus_convolution<T, true, false>(dp1, dp2);
     for (auto&& x: dp) x += sm0;
   }
 
