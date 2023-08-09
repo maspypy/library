@@ -641,5 +641,9 @@
 "test_atcoder/abc266f.test.cpp": "2023-08-08 01:44:15 +0900",
 "test_atcoder/abc266h.test.cpp": "2023-08-08 01:44:15 +0900",
 "test_atcoder/abc266h_2.test.cpp": "2023-08-08 01:44:15 +0900",
-"test_atcoder/abc267g.test.cpp": "2023-08-08 03:50:38 +0900"
+"test_atcoder/abc267g.test.cpp": "2023-08-08 03:50:38 +0900",
+"test_atcoder/abc267h.test.cpp": "2023-08-08 03:50:38 +0900",
+"test_atcoder/abc268_ex.test.cpp": "2023-08-08 01:44:15 +0900",
+"test_atcoder/abc269ex.test.cpp": "2023-08-08 03:50:38 +0900",
+"test_atcoder/abc270_f.test.cpp": "2023-08-08 01:44:15 +0900"
 }
