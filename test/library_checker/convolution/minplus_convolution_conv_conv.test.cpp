@@ -9,7 +9,7 @@ void solve() {
   LL(N, M);
   VEC(ll, A, N);
   VEC(ll, B, M);
-  print(minplus_convolution_convex_arbitrary<ll, 1, 1>(A, B));
+  print(minplus_convolution<ll, 1, 1>(A, B));
 }
 
 signed main() {
