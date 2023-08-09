@@ -1,5 +1,4 @@
 #include "convex/monotone_minima.hpp"
-#include "convex/smawk.hpp"
 
 template <typename T>
 vc<T> minplus_convolution_convex_convex(vc<T>& A, vc<T>& B) {
