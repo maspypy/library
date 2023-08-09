@@ -343,6 +343,7 @@
 "test/mytest/segtree_xor_prod.test.cpp": "2023-08-08 01:44:15 +0900",
 "test/mytest/simple_perm.test.cpp": "2023-08-08 03:50:38 +0900",
 "test/mytest/slice_rational_fps.test.cpp": "2023-08-08 03:50:38 +0900",
+"test/mytest/smawk.test.cpp": "2023-08-10 00:51:54 +0900",
 "test/mytest/sortable_array.test.cpp": "2023-08-08 01:44:15 +0900",
 "test/mytest/sparse_pow_2d.test.cpp": "2023-08-08 03:50:38 +0900",
 "test/mytest/splay.test.cpp": "2023-08-08 03:16:22 +0900",
