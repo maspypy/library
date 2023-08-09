@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "convex/minplus_convolution_convex.hpp"
+#include "convex/minplus_convolution.hpp"
 
 void solve() {
   LL(N, M);
