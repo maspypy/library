@@ -4,9 +4,10 @@
 #include "random/base.hpp"
 #include "convex/minplus_convolution.hpp"
 
-vc<int> gen(int L, int N, int R) {
+vc<int> gen(int L, int N, int R, bool convex) {
   vc<int> A(N);
   FOR(i, N) A[i] = RNG(-100, 100);
+  if (!convex) return A;
   sort(all(A));
   A = cumsum<int>(A);
   FOR(L) A.insert(A.begin(), infty<int>);
@@ -25,11 +26,19 @@ vc<int> naive(vc<int> A, vc<int> B) {
 }
 
 void test() {
-  FOR(a1, 5) FOR(b1, 10) FOR(c1, 5) {
-    vc<int> A = gen(a1, b1, c1);
-    FOR(a2, 5) FOR(b2, 10) FOR(c2, 5) {
-      vc<int> B = gen(a2, b2, c2);
+  FOR(a1, 5) FOR(b1, 1, 10) FOR(c1, 5) {
+    vc<int> A = gen(a1, b1, c1, true);
+    FOR(a2, 5) FOR(b2, 1, 10) FOR(c2, 5) {
+      vc<int> B = gen(a2, b2, c2, true);
       vc<int> C = minplus_convolution<int, 1, 1>(A, B);
+      assert(naive(A, B) == C);
+    }
+  }
+  FOR(a1, 5) FOR(b1, 1, 10) FOR(c1, 5) {
+    vc<int> A = gen(a1, b1, c1, true);
+    FOR(a2, 5) FOR(b2, 1, 10) FOR(c2, 5) {
+      vc<int> B = gen(a2, b2, c2, false);
+      vc<int> C = minplus_convolution<int, 1, false>(A, B);
       assert(naive(A, B) == C);
     }
   }
