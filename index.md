@@ -80,7 +80,7 @@ data:
     - icon: ':x:'
       path: alg/acted_set/affine.hpp
       title: alg/acted_set/affine.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/acted_set/from_monoid.hpp
       title: alg/acted_set/from_monoid.hpp
   - name: alg/monoid
@@ -145,7 +145,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/minmincnt.hpp
       title: alg/monoid/minmincnt.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/monoid_reverse.hpp
       title: alg/monoid/monoid_reverse.hpp
     - icon: ':question:'
@@ -242,7 +242,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/dynamic_array.hpp
       title: ds/dynamic_array.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
     - icon: ':question:'
@@ -317,7 +317,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/offline_query/add_remove_query.hpp
       title: ds/offline_query/add_remove_query.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/offline_query/coeffient_query_2d.hpp
       title: ds/offline_query/coeffient_query_2d.hpp
     - icon: ':heavy_check_mark:'
@@ -341,7 +341,7 @@ data:
     - icon: ':question:'
       path: ds/offline_query/rectangle_add_point_sum.hpp
       title: ds/offline_query/rectangle_add_point_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/offline_query/rectangle_add_rectangle_sum.hpp
       title: ds/offline_query/rectangle_add_rectangle_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -408,7 +408,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/segtree/segtree_beats.hpp
       title: ds/segtree/segtree_beats.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/sortable_segtree.hpp
       title: ds/segtree/sortable_segtree.hpp
     - icon: ':x:'
@@ -473,7 +473,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: enumerate/ceil_range.hpp
       title: enumerate/ceil_range.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: enumerate/clique.hpp
       title: enumerate/clique.hpp
     - icon: ':question:'
@@ -823,7 +823,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/ds/tree_abelgroup.hpp
       title: graph/ds/tree_abelgroup.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/ds/tree_monoid.hpp
       title: graph/ds/tree_monoid.hpp
     - icon: ':warning:'
@@ -988,7 +988,7 @@ data:
       title: linalg/xor/vector_space.hpp
   - name: mod
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: mod/all_inverse.hpp
       title: mod/all_inverse.hpp
     - icon: ':question:'
@@ -1024,7 +1024,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_kth_root.hpp
       title: mod/mod_kth_root.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: mod/mod_log.hpp
       title: mod/mod_log.hpp
     - icon: ':question:'
@@ -1090,7 +1090,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/digit_sum.hpp
       title: nt/digit_sum.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: nt/discrete_log.hpp
       title: nt/discrete_log.hpp
     - icon: ':heavy_check_mark:'
@@ -1117,13 +1117,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/gaussian_integers.hpp
       title: nt/gaussian_integers.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: nt/gcd_convolution.hpp
       title: nt/gcd_convolution.hpp
     - icon: ':question:'
       path: nt/integer_kth_root.hpp
       title: nt/integer_kth_root.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: nt/lcm_convolution.hpp
       title: nt/lcm_convolution.hpp
     - icon: ':question:'
@@ -1205,7 +1205,7 @@ data:
       title: other/solve_hukumenzan.hpp
   - name: poly
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/coef_of_rational_fps.hpp
       title: poly/coef_of_rational_fps.hpp
     - icon: ':x:'
@@ -1244,7 +1244,7 @@ data:
     - icon: ':question:'
       path: poly/convolution_naive.hpp
       title: poly/convolution_naive.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/count_terms.hpp
       title: poly/count_terms.hpp
     - icon: ':x:'
@@ -1256,13 +1256,13 @@ data:
     - icon: ':x:'
       path: poly/fps_composition.hpp
       title: poly/fps_composition.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/fps_div.hpp
       title: poly/fps_div.hpp
     - icon: ':x:'
       path: poly/fps_exp.hpp
       title: poly/fps_exp.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/fps_inv.hpp
       title: poly/fps_inv.hpp
     - icon: ':x:'
@@ -1286,22 +1286,22 @@ data:
     - icon: ':x:'
       path: poly/lagrange_interpolate_iota.hpp
       title: poly/lagrange_interpolate_iota.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/middle_product.hpp
       title: poly/middle_product.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/multipoint.hpp
       title: poly/multipoint.hpp
     - icon: ':heavy_check_mark:'
       path: poly/multivar_convolution.hpp
       title: poly/multivar_convolution.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/multivar_convolution_cyclic.hpp
       title: poly/multivar_convolution_cyclic.hpp
     - icon: ':question:'
       path: poly/ntt.hpp
       title: poly/ntt.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/ntt_doubling.hpp
       title: poly/ntt_doubling.hpp
     - icon: ':x:'
@@ -1406,7 +1406,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/factorial_digit_system.hpp
       title: seq/factorial_digit_system.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: seq/find_linear_rec.hpp
       title: seq/find_linear_rec.hpp
     - icon: ':x:'
@@ -1465,7 +1465,7 @@ data:
     - icon: ':x:'
       path: seq/famous/indecomposable_permutations.hpp
       title: seq/famous/indecomposable_permutations.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: seq/famous/partition_number.hpp
       title: seq/famous/partition_number.hpp
     - icon: ':x:'
@@ -1503,7 +1503,7 @@ data:
     - icon: ':question:'
       path: setfunc/ranked_zeta.hpp
       title: setfunc/ranked_zeta.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: setfunc/sps_composition.hpp
       title: setfunc/sps_composition.hpp
     - icon: ':x:'
@@ -1929,7 +1929,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/range_affine_point_add.test.cpp
       title: test/library_checker/datastructure/range_affine_point_add.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
       title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1971,10 +1971,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/set_xor_min.test.cpp
       title: test/library_checker/datastructure/set_xor_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/sort_segtree.test.cpp
       title: test/library_checker/datastructure/sort_segtree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/sort_segtree_1.test.cpp
       title: test/library_checker/datastructure/sort_segtree_1.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1986,7 +1986,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/static_range_sum.test.cpp
       title: test/library_checker/datastructure/static_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
       title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2013,7 +2013,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
       title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
       title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - name: test/library_checker/geometry
@@ -2065,7 +2065,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/domninator_tree.test.cpp
       title: test/library_checker/graph/domninator_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/enumerate_cliques.test.cpp
       title: test/library_checker/graph/enumerate_cliques.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2100,13 +2100,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/binomial_coefficient.test.cpp
       title: test/library_checker/math/binomial_coefficient.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/composition_sps.test.cpp
       title: test/library_checker/math/composition_sps.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/counting_primes.test.cpp
       title: test/library_checker/math/counting_primes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/discrete_logarithm_mod.test.cpp
       title: test/library_checker/math/discrete_logarithm_mod.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2118,10 +2118,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/factorize.test.cpp
       title: test/library_checker/math/factorize.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/find_linear_recurrence.test.cpp
       title: test/library_checker/math/find_linear_recurrence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/gcd_convolution.test.cpp
       title: test/library_checker/math/gcd_convolution.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2130,10 +2130,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/kth_root_mod.test.cpp
       title: test/library_checker/math/kth_root_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
       title: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/lcm_convolution.test.cpp
       title: test/library_checker/math/lcm_convolution.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2145,13 +2145,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
       title: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
       title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/nim_product.test.cpp
       title: test/library_checker/math/nim_product.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/partition.test.cpp
       title: test/library_checker/math/partition.test.cpp
     - icon: ':heavy_check_mark:'
