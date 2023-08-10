@@ -66,7 +66,7 @@ struct modint {
     val %= mod;
   }
 #endif
-  static constexpr u32 get_mod() { return mod; }
+  static constexpr int get_mod() { return mod; }
   // (n, r), r は 1 の 2^n 乗根
   static constexpr pair<int, int> ntt_info() {
     if (mod == 167772161) return {25, 17};

@@ -10,7 +10,7 @@ struct Dynamic_Modint {
   static Barrett bt;
   static u32 umod() { return bt.umod(); }
 
-  static u32 get_mod() { return (int)(bt.umod()); }
+  static int get_mod() { return (int)(bt.umod()); }
   static void set_mod(int m) {
     assert(1 <= m);
     bt = Barrett(m);
