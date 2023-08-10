@@ -43,10 +43,10 @@ vc<mint> middle_product_garner(vc<mint>& a, vc<mint> b) {
   auto c0 = middle_product<mint0>(a0, b0);
   auto c1 = middle_product<mint1>(a1, b1);
   auto c2 = middle_product<mint2>(a2, b2);
-  static const long long m01 = 1LL * nttprimes[0] * nttprimes[1];
-  static const long long m0_inv_m1 = mint1(nttprimes[0]).inverse().val;
-  static const long long m01_inv_m2 = mint2(m01).inverse().val;
-  static const int mod = mint::get_mod();
+  const long long m01 = 1LL * nttprimes[0] * nttprimes[1];
+  const long long m0_inv_m1 = mint1(nttprimes[0]).inverse().val;
+  const long long m01_inv_m2 = mint2(m01).inverse().val;
+  const int mod = mint::get_mod();
   auto garner = [&](mint0 x0, mint1 x1, mint2 x2) -> mint {
     int r0 = x0.val, r1 = x1.val, r2 = x2.val;
     int v1 = (m0_inv_m1 * (r1 + nttprimes[1] - r0)) % nttprimes[1];
