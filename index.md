@@ -969,7 +969,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/implicit_matrix/min_poly.hpp
       title: linalg/implicit_matrix/min_poly.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: linalg/implicit_matrix/pascal.hpp
       title: linalg/implicit_matrix/pascal.hpp
     - icon: ':heavy_check_mark:'
@@ -1176,7 +1176,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/connected_dp.hpp
       title: other/connected_dp.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: other/count_seq_with_fixed_xor_value.hpp
       title: other/count_seq_with_fixed_xor_value.hpp
     - icon: ':heavy_check_mark:'
@@ -1208,7 +1208,7 @@ data:
     - icon: ':question:'
       path: poly/coef_of_rational_fps.hpp
       title: poly/coef_of_rational_fps.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/coef_of_rational_fps_2d.hpp
       title: poly/coef_of_rational_fps_2d.hpp
     - icon: ':warning:'
@@ -1331,7 +1331,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/product_of_pow_of_linear.hpp
       title: poly/product_of_pow_of_linear.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/slice_rational_fps.hpp
       title: poly/slice_rational_fps.hpp
     - icon: ':heavy_check_mark:'
@@ -3610,10 +3610,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc283f.test.cpp
       title: test_atcoder/abc283f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc285h.test.cpp
       title: test_atcoder/abc285h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc288ex.test.cpp
       title: test_atcoder/abc288ex.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3625,13 +3625,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc301h.test.cpp
       title: test_atcoder/abc301h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/agc013e.test.cpp
       title: test_atcoder/agc013e.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_atcoder/agc023f.test.cpp
       title: test_atcoder/agc023f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/agc058d.test.cpp
       title: test_atcoder/agc058d.test.cpp
     - icon: ':x:'
