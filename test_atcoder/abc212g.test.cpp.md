@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/function_on_divisors.hpp
     title: nt/function_on_divisors.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []

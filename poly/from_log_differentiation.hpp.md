@@ -1,71 +1,71 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sliding_window_aggregation.hpp
     title: ds/sliding_window_aggregation.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/sparse_exp_of_div.hpp
     title: poly/sparse_exp_of_div.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1080_2.test.cpp
     title: test/yukicoder/1080_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc222h_2.test.cpp
     title: test_atcoder/abc222h_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc276_g.test.cpp
     title: test_atcoder/abc276_g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc276_g_2.test.cpp
     title: test_atcoder/abc276_g_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/from_log_differentiation.hpp\"\n\n#line 2 \"mod/modint_common.hpp\"\
@@ -130,7 +130,7 @@ data:
     \    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n\
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() {\n    fastio::scanner.read(val);\n    val %= mod;\n  }\n#endif\n\
-    \  static constexpr u32 get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E\
+    \  static constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E\
     \ 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n    if (mod\
     \ == 167772161) return {25, 17};\n    if (mod == 469762049) return {26, 30};\n\
     \    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841) return\
@@ -207,9 +207,9 @@ data:
     \ T, typename enable_if<has_mod<T>::value>::type* = nullptr>\r\nvc<T> convolution_naive(const\
     \ vc<T>& a, const vc<T>& b) {\r\n  int n = int(a.size()), m = int(b.size());\r\
     \n  if (n > m) return convolution_naive<T>(b, a);\r\n  if (n == 0) return {};\r\
-    \n  assert(T::get_mod() < u32(1) << 30);\r\n  vc<T> ans(n + m - 1);\r\n  if (n\
-    \ <= 16) {\r\n    for (int k = 0; k < n + m - 1; ++k) {\r\n      int s = max(0,\
-    \ k - m + 1);\r\n      int t = min(n, k + 1);\r\n      u64 sm = 0;\r\n      for\
+    \n  assert(T::get_mod() < (1 << 30));\r\n  vc<T> ans(n + m - 1);\r\n  if (n <=\
+    \ 16) {\r\n    for (int k = 0; k < n + m - 1; ++k) {\r\n      int s = max(0, k\
+    \ - m + 1);\r\n      int t = min(n, k + 1);\r\n      u64 sm = 0;\r\n      for\
     \ (int i = s; i < t; ++i) { sm += u64(a[i].val) * (b[k - i].val); }\r\n      ans[k]\
     \ = sm;\r\n    }\r\n  } else {\r\n    for (int k = 0; k < n + m - 1; ++k) {\r\n\
     \      int s = max(0, k - m + 1);\r\n      int t = min(n, k + 1);\r\n      u128\
@@ -516,8 +516,8 @@ data:
   path: poly/from_log_differentiation.hpp
   requiredBy:
   - poly/sparse_exp_of_div.hpp
-  timestamp: '2023-08-08 03:50:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-08-10 12:06:50+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/2166.test.cpp

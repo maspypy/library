@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetest.hpp\"\nstruct m64 {\r\n  using i64 = int64_t;\r\
@@ -170,7 +170,7 @@ data:
     \ (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n#line 5 \"mod/dynamic_modint.hpp\"\
     \n\nstruct Dynamic_Modint {\n  static constexpr bool is_modint = true;\n  using\
     \ mint = Dynamic_Modint;\n  u32 val;\n  static Barrett bt;\n  static u32 umod()\
-    \ { return bt.umod(); }\n\n  static u32 get_mod() { return (int)(bt.umod()); }\n\
+    \ { return bt.umod(); }\n\n  static int get_mod() { return (int)(bt.umod()); }\n\
     \  static void set_mod(int m) {\n    assert(1 <= m);\n    bt = Barrett(m);\n \
     \ }\n\n  static Dynamic_Modint raw(u32 v) {\n    Dynamic_Modint x;\n    x.val\
     \ = v;\n    return x;\n  }\n  Dynamic_Modint() : val(0) {}\n  Dynamic_Modint(u32\
@@ -263,8 +263,8 @@ data:
   isVerificationFile: false
   path: nt/four_square.hpp
   requiredBy: []
-  timestamp: '2023-08-08 03:29:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-08-10 12:06:50+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/four_square.test.cpp
 documentation_of: nt/four_square.hpp

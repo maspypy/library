@@ -1,68 +1,68 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/inv_of_formal_power_series
@@ -314,7 +314,7 @@ data:
     \ (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
     \  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val); }\n  void read()\
     \ {\n    fastio::scanner.read(val);\n    val %= mod;\n  }\n#endif\n  static constexpr\
-    \ u32 get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\
+    \ int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\
     \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 167772161) return\
     \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
     \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
@@ -408,7 +408,7 @@ data:
     \ (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n#line 5 \"mod/dynamic_modint.hpp\"\
     \n\nstruct Dynamic_Modint {\n  static constexpr bool is_modint = true;\n  using\
     \ mint = Dynamic_Modint;\n  u32 val;\n  static Barrett bt;\n  static u32 umod()\
-    \ { return bt.umod(); }\n\n  static u32 get_mod() { return (int)(bt.umod()); }\n\
+    \ { return bt.umod(); }\n\n  static int get_mod() { return (int)(bt.umod()); }\n\
     \  static void set_mod(int m) {\n    assert(1 <= m);\n    bt = Barrett(m);\n \
     \ }\n\n  static Dynamic_Modint raw(u32 v) {\n    Dynamic_Modint x;\n    x.val\
     \ = v;\n    return x;\n  }\n  Dynamic_Modint() : val(0) {}\n  Dynamic_Modint(u32\
@@ -459,10 +459,10 @@ data:
     \n  return ans;\r\n}\r\n\r\ntemplate <class T, typename enable_if<has_mod<T>::value>::type*\
     \ = nullptr>\r\nvc<T> convolution_naive(const vc<T>& a, const vc<T>& b) {\r\n\
     \  int n = int(a.size()), m = int(b.size());\r\n  if (n > m) return convolution_naive<T>(b,\
-    \ a);\r\n  if (n == 0) return {};\r\n  assert(T::get_mod() < u32(1) << 30);\r\n\
-    \  vc<T> ans(n + m - 1);\r\n  if (n <= 16) {\r\n    for (int k = 0; k < n + m\
-    \ - 1; ++k) {\r\n      int s = max(0, k - m + 1);\r\n      int t = min(n, k +\
-    \ 1);\r\n      u64 sm = 0;\r\n      for (int i = s; i < t; ++i) { sm += u64(a[i].val)\
+    \ a);\r\n  if (n == 0) return {};\r\n  assert(T::get_mod() < (1 << 30));\r\n \
+    \ vc<T> ans(n + m - 1);\r\n  if (n <= 16) {\r\n    for (int k = 0; k < n + m -\
+    \ 1; ++k) {\r\n      int s = max(0, k - m + 1);\r\n      int t = min(n, k + 1);\r\
+    \n      u64 sm = 0;\r\n      for (int i = s; i < t; ++i) { sm += u64(a[i].val)\
     \ * (b[k - i].val); }\r\n      ans[k] = sm;\r\n    }\r\n  } else {\r\n    for\
     \ (int k = 0; k < n + m - 1; ++k) {\r\n      int s = max(0, k - m + 1);\r\n  \
     \    int t = min(n, k + 1);\r\n      u128 sm = 0;\r\n      for (int i = s; i <\
@@ -693,8 +693,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/polynomial/inv_of_fps.test.cpp
   requiredBy: []
-  timestamp: '2023-08-08 03:50:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-08-10 12:06:50+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/polynomial/inv_of_fps.test.cpp
 layout: document

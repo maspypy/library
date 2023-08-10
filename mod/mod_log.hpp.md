@@ -1,50 +1,50 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_set/from_monoid.hpp
     title: alg/acted_set/from_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -169,7 +169,7 @@ data:
     \ (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n#line 5 \"mod/dynamic_modint.hpp\"\
     \n\nstruct Dynamic_Modint {\n  static constexpr bool is_modint = true;\n  using\
     \ mint = Dynamic_Modint;\n  u32 val;\n  static Barrett bt;\n  static u32 umod()\
-    \ { return bt.umod(); }\n\n  static u32 get_mod() { return (int)(bt.umod()); }\n\
+    \ { return bt.umod(); }\n\n  static int get_mod() { return (int)(bt.umod()); }\n\
     \  static void set_mod(int m) {\n    assert(1 <= m);\n    bt = Barrett(m);\n \
     \ }\n\n  static Dynamic_Modint raw(u32 v) {\n    Dynamic_Modint x;\n    x.val\
     \ = v;\n    return x;\n  }\n  Dynamic_Modint() : val(0) {}\n  Dynamic_Modint(u32\
@@ -278,8 +278,8 @@ data:
   isVerificationFile: false
   path: mod/mod_log.hpp
   requiredBy: []
-  timestamp: '2023-08-08 03:29:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-08-10 12:06:50+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
 documentation_of: mod/mod_log.hpp

@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/cht_monotone.hpp
     title: convex/cht_monotone.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/fenchel.hpp
     title: convex/fenchel.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/arc130/tasks/arc130_f
@@ -279,7 +279,7 @@ data:
     \    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n\
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() {\n    fastio::scanner.read(val);\n    val %= mod;\n  }\n#endif\n\
-    \  static constexpr u32 get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E\
+    \  static constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E\
     \ 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n    if (mod\
     \ == 167772161) return {25, 17};\n    if (mod == 469762049) return {26, 30};\n\
     \    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841) return\
@@ -445,8 +445,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/arc130f.test.cpp
   requiredBy: []
-  timestamp: '2023-08-08 03:16:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-08-10 12:06:50+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/arc130f.test.cpp
 layout: document

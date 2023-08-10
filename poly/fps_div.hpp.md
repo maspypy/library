@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
   - icon: ':warning:'
@@ -44,85 +44,85 @@ data:
   - icon: ':warning:'
     path: poly/composed_sum.hpp
     title: poly/composed_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
   - icon: ':warning:'
     path: poly/sum_of_power_of_roots.hpp
     title: poly/sum_of_power_of_roots.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/bell.test.cpp
     title: test/mytest/bell.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/slice_rational_fps.test.cpp
     title: test/mytest/slice_rational_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1500.test.cpp
     title: test/yukicoder/1500.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1516.test.cpp
     title: test/yukicoder/1516.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1533.test.cpp
     title: test/yukicoder/1533.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1547.test.cpp
     title: test/yukicoder/1547.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1844.test.cpp
     title: test/yukicoder/1844.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1962.test.cpp
     title: test/yukicoder/1962.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2305.test.cpp
     title: test/yukicoder/2305.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/541.test.cpp
     title: test/yukicoder/541.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/578.test.cpp
     title: test/yukicoder/578.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc260h.test.cpp
     title: test_atcoder/abc260h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc281g.test.cpp
     title: test_atcoder/abc281g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/agc013e.test.cpp
     title: test_atcoder/agc013e.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc154f.test.cpp
     title: test_atcoder/arc154f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/fps_div.hpp\"\n\n#line 2 \"poly/count_terms.hpp\"\n\
@@ -189,7 +189,7 @@ data:
     \    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n\
     \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() {\n    fastio::scanner.read(val);\n    val %= mod;\n  }\n#endif\n\
-    \  static constexpr u32 get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E\
+    \  static constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E\
     \ 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n    if (mod\
     \ == 167772161) return {25, 17};\n    if (mod == 469762049) return {26, 30};\n\
     \    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841) return\
@@ -213,9 +213,9 @@ data:
     \ enable_if<has_mod<T>::value>::type* = nullptr>\r\nvc<T> convolution_naive(const\
     \ vc<T>& a, const vc<T>& b) {\r\n  int n = int(a.size()), m = int(b.size());\r\
     \n  if (n > m) return convolution_naive<T>(b, a);\r\n  if (n == 0) return {};\r\
-    \n  assert(T::get_mod() < u32(1) << 30);\r\n  vc<T> ans(n + m - 1);\r\n  if (n\
-    \ <= 16) {\r\n    for (int k = 0; k < n + m - 1; ++k) {\r\n      int s = max(0,\
-    \ k - m + 1);\r\n      int t = min(n, k + 1);\r\n      u64 sm = 0;\r\n      for\
+    \n  assert(T::get_mod() < (1 << 30));\r\n  vc<T> ans(n + m - 1);\r\n  if (n <=\
+    \ 16) {\r\n    for (int k = 0; k < n + m - 1; ++k) {\r\n      int s = max(0, k\
+    \ - m + 1);\r\n      int t = min(n, k + 1);\r\n      u64 sm = 0;\r\n      for\
     \ (int i = s; i < t; ++i) { sm += u64(a[i].val) * (b[k - i].val); }\r\n      ans[k]\
     \ = sm;\r\n    }\r\n  } else {\r\n    for (int k = 0; k < n + m - 1; ++k) {\r\n\
     \      int s = max(0, k - m + 1);\r\n      int t = min(n, k + 1);\r\n      u128\
@@ -459,8 +459,8 @@ data:
   - linalg/implicit_matrix/vandermonde.hpp
   - seq/interpolate_linear_rec.hpp
   - seq/famous/bell_number_large.hpp
-  timestamp: '2023-08-08 03:50:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-08-10 12:06:50+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/vandermonde.test.cpp

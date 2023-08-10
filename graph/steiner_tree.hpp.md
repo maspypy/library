@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []

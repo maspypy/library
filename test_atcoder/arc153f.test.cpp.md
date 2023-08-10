@@ -1,80 +1,80 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/product.hpp
     title: enumerate/product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/block_cut.hpp
     title: graph/block_cut.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/arc153/tasks/arc153_f
@@ -324,7 +324,7 @@ data:
     \ (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
     \  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val); }\n  void read()\
     \ {\n    fastio::scanner.read(val);\n    val %= mod;\n  }\n#endif\n  static constexpr\
-    \ u32 get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\
+    \ int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\
     \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 167772161) return\
     \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
     \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
@@ -409,9 +409,9 @@ data:
     \ T, typename enable_if<has_mod<T>::value>::type* = nullptr>\r\nvc<T> convolution_naive(const\
     \ vc<T>& a, const vc<T>& b) {\r\n  int n = int(a.size()), m = int(b.size());\r\
     \n  if (n > m) return convolution_naive<T>(b, a);\r\n  if (n == 0) return {};\r\
-    \n  assert(T::get_mod() < u32(1) << 30);\r\n  vc<T> ans(n + m - 1);\r\n  if (n\
-    \ <= 16) {\r\n    for (int k = 0; k < n + m - 1; ++k) {\r\n      int s = max(0,\
-    \ k - m + 1);\r\n      int t = min(n, k + 1);\r\n      u64 sm = 0;\r\n      for\
+    \n  assert(T::get_mod() < (1 << 30));\r\n  vc<T> ans(n + m - 1);\r\n  if (n <=\
+    \ 16) {\r\n    for (int k = 0; k < n + m - 1; ++k) {\r\n      int s = max(0, k\
+    \ - m + 1);\r\n      int t = min(n, k + 1);\r\n      u64 sm = 0;\r\n      for\
     \ (int i = s; i < t; ++i) { sm += u64(a[i].val) * (b[k - i].val); }\r\n      ans[k]\
     \ = sm;\r\n    }\r\n  } else {\r\n    for (int k = 0; k < n + m - 1; ++k) {\r\n\
     \      int s = max(0, k - m + 1);\r\n      int t = min(n, k + 1);\r\n      u128\
@@ -856,8 +856,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/arc153f.test.cpp
   requiredBy: []
-  timestamp: '2023-08-08 03:50:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-08-10 12:06:50+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/arc153f.test.cpp
 layout: document

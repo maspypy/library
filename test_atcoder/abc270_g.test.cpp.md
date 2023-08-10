@@ -1,56 +1,56 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_set/affine.hpp
     title: alg/acted_set/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_set/from_monoid.hpp
     title: alg/acted_set/from_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc270/tasks/abc270_g
@@ -368,7 +368,7 @@ data:
     \ (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n#line 5 \"mod/dynamic_modint.hpp\"\
     \n\nstruct Dynamic_Modint {\n  static constexpr bool is_modint = true;\n  using\
     \ mint = Dynamic_Modint;\n  u32 val;\n  static Barrett bt;\n  static u32 umod()\
-    \ { return bt.umod(); }\n\n  static u32 get_mod() { return (int)(bt.umod()); }\n\
+    \ { return bt.umod(); }\n\n  static int get_mod() { return (int)(bt.umod()); }\n\
     \  static void set_mod(int m) {\n    assert(1 <= m);\n    bt = Barrett(m);\n \
     \ }\n\n  static Dynamic_Modint raw(u32 v) {\n    Dynamic_Modint x;\n    x.val\
     \ = v;\n    return x;\n  }\n  Dynamic_Modint() : val(0) {}\n  Dynamic_Modint(u32\
@@ -488,8 +488,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc270_g.test.cpp
   requiredBy: []
-  timestamp: '2023-08-08 03:29:58+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-08-10 12:06:50+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc270_g.test.cpp
 layout: document

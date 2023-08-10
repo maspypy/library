@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1750.test.cpp
     title: test/yukicoder/1750.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1810.test.cpp
     title: test/yukicoder/1810.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -85,7 +85,7 @@ data:
     \ (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
     \  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val); }\n  void read()\
     \ {\n    fastio::scanner.read(val);\n    val %= mod;\n  }\n#endif\n  static constexpr\
-    \ u32 get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\
+    \ int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\
     \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 167772161) return\
     \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
     \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
@@ -123,8 +123,8 @@ data:
   isVerificationFile: false
   path: linalg/mat_pow.hpp
   requiredBy: []
-  timestamp: '2023-08-08 03:50:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-08-10 12:06:50+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1810.test.cpp
   - test/yukicoder/1750.test.cpp
