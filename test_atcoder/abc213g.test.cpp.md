@@ -19,14 +19,14 @@ data:
   - icon: ':question:'
     path: setfunc/sps_composition.hpp
     title: setfunc/sps_composition.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: setfunc/sps_log.hpp
     title: setfunc/sps_log.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc213/tasks/abc213_g
@@ -358,7 +358,7 @@ data:
   path: test_atcoder/abc213g.test.cpp
   requiredBy: []
   timestamp: '2023-08-10 12:06:50+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc213g.test.cpp
 layout: document
