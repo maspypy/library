@@ -569,43 +569,43 @@ data:
     \  vc<mint2> a2(n), b2(m);\n  FOR(i, n) a0[i] = a[i].val, a1[i] = a[i].val, a2[i]\
     \ = a[i].val;\n  FOR(i, m) b0[i] = b[i].val, b1[i] = b[i].val, b2[i] = b[i].val;\n\
     \  auto c0 = middle_product<mint0>(a0, b0);\n  auto c1 = middle_product<mint1>(a1,\
-    \ b1);\n  auto c2 = middle_product<mint2>(a2, b2);\n  static const long long m01\
-    \ = 1LL * nttprimes[0] * nttprimes[1];\n  static const long long m0_inv_m1 = mint1(nttprimes[0]).inverse().val;\n\
-    \  static const long long m01_inv_m2 = mint2(m01).inverse().val;\n  static const\
-    \ int mod = mint::get_mod();\n  auto garner = [&](mint0 x0, mint1 x1, mint2 x2)\
-    \ -> mint {\n    int r0 = x0.val, r1 = x1.val, r2 = x2.val;\n    int v1 = (m0_inv_m1\
-    \ * (r1 + nttprimes[1] - r0)) % nttprimes[1];\n    auto v2 = (mint2(r2) - r0 -\
-    \ mint2(nttprimes[0]) * v1) * mint2(m01_inv_m2);\n    return mint(r0 + 1LL * nttprimes[0]\
-    \ * v1 + m01 % mod * v2.val);\n  };\n  vc<mint> c(len(c0));\n  FOR(i, len(c))\
-    \ c[i] = garner(c0[i], c1[i], c2[i]);\n  return c;\n}\n\ntemplate <typename mint>\n\
-    vc<mint> middle_product_naive(vc<mint>& a, vc<mint>& b) {\n  vc<mint> res(len(a)\
-    \ - len(b) + 1);\n  FOR(i, len(res)) FOR(j, len(b)) res[i] += b[j] * a[i + j];\n\
-    \  return res;\n}\n#line 2 \"mod/all_inverse.hpp\"\ntemplate <typename mint>\n\
-    vc<mint> all_inverse(vc<mint>& X) {\n  for (auto&& x: X) assert(x != mint(0));\n\
-    \  int N = len(X);\n  vc<mint> res(N + 1);\n  res[0] = mint(1);\n  FOR(i, N) res[i\
-    \ + 1] = res[i] * X[i];\n  mint t = res.back().inverse();\n  res.pop_back();\n\
-    \  FOR_R(i, N) {\n    res[i] *= t;\n    t *= X[i];\n  }\n  return res;\n}\n#line\
-    \ 6 \"poly/multipoint.hpp\"\n\r\ntemplate <typename mint>\r\nstruct SubproductTree\
-    \ {\r\n  int m;\r\n  int sz;\r\n  vc<vc<mint>> T;\r\n  SubproductTree(const vc<mint>&\
-    \ x) {\r\n    m = len(x);\r\n    sz = 1;\r\n    while (sz < m) sz *= 2;\r\n  \
-    \  T.resize(2 * sz);\r\n    FOR(i, sz) T[sz + i] = {1, (i < m ? -x[i] : 0)};\r\
-    \n    FOR3_R(i, 1, sz) T[i] = convolution(T[2 * i], T[2 * i + 1]);\r\n  }\r\n\r\
-    \n  vc<mint> evaluation(vc<mint> f) {\r\n    int n = len(f);\r\n    if (n == 0)\
-    \ return vc<mint>(m, mint(0));\r\n    f.resize(2 * n - 1);\r\n    vc<vc<mint>>\
-    \ g(2 * sz);\r\n    g[1] = T[1];\r\n    g[1].resize(n);\r\n    g[1] = fps_inv(g[1]);\r\
-    \n    g[1] = middle_product(f, g[1]);\r\n    g[1].resize(sz);\r\n\r\n    FOR3(i,\
-    \ 1, sz) {\r\n      g[2 * i] = middle_product(g[i], T[2 * i + 1]);\r\n      g[2\
-    \ * i + 1] = middle_product(g[i], T[2 * i]);\r\n    }\r\n    vc<mint> vals(m);\r\
-    \n    FOR(i, m) vals[i] = g[sz + i][0];\r\n    return vals;\r\n  }\r\n\r\n  vc<mint>\
-    \ interpolation(vc<mint>& y) {\r\n    assert(len(y) == m);\r\n    vc<mint> a(m);\r\
-    \n    FOR(i, m) a[i] = T[1][m - i - 1] * (i + 1);\r\n\r\n    a = evaluation(a);\r\
-    \n    vc<vc<mint>> t(2 * sz);\r\n    FOR(i, sz) t[sz + i] = {(i < m ? y[i] / a[i]\
-    \ : 0)};\r\n    FOR3_R(i, 1, sz) {\r\n      t[i] = convolution(t[2 * i], T[2 *\
-    \ i + 1]);\r\n      auto tt = convolution(t[2 * i + 1], T[2 * i]);\r\n      FOR(k,\
-    \ len(t[i])) t[i][k] += tt[k];\r\n    }\r\n    t[1].resize(m);\r\n    reverse(all(t[1]));\r\
-    \n    return t[1];\r\n  }\r\n};\r\n\r\ntemplate <typename mint>\r\nvc<mint> multipoint_eval(vc<mint>&\
-    \ f, vc<mint>& x) {\r\n  if (x.empty()) return {};\r\n  SubproductTree<mint> F(x);\r\
-    \n  return F.evaluation(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> multipoint_interpolate(vc<mint>&\
+    \ b1);\n  auto c2 = middle_product<mint2>(a2, b2);\n  const long long m01 = 1LL\
+    \ * nttprimes[0] * nttprimes[1];\n  const long long m0_inv_m1 = mint1(nttprimes[0]).inverse().val;\n\
+    \  const long long m01_inv_m2 = mint2(m01).inverse().val;\n  const int mod = mint::get_mod();\n\
+    \  auto garner = [&](mint0 x0, mint1 x1, mint2 x2) -> mint {\n    int r0 = x0.val,\
+    \ r1 = x1.val, r2 = x2.val;\n    int v1 = (m0_inv_m1 * (r1 + nttprimes[1] - r0))\
+    \ % nttprimes[1];\n    auto v2 = (mint2(r2) - r0 - mint2(nttprimes[0]) * v1) *\
+    \ mint2(m01_inv_m2);\n    return mint(r0 + 1LL * nttprimes[0] * v1 + m01 % mod\
+    \ * v2.val);\n  };\n  vc<mint> c(len(c0));\n  FOR(i, len(c)) c[i] = garner(c0[i],\
+    \ c1[i], c2[i]);\n  return c;\n}\n\ntemplate <typename mint>\nvc<mint> middle_product_naive(vc<mint>&\
+    \ a, vc<mint>& b) {\n  vc<mint> res(len(a) - len(b) + 1);\n  FOR(i, len(res))\
+    \ FOR(j, len(b)) res[i] += b[j] * a[i + j];\n  return res;\n}\n#line 2 \"mod/all_inverse.hpp\"\
+    \ntemplate <typename mint>\nvc<mint> all_inverse(vc<mint>& X) {\n  for (auto&&\
+    \ x: X) assert(x != mint(0));\n  int N = len(X);\n  vc<mint> res(N + 1);\n  res[0]\
+    \ = mint(1);\n  FOR(i, N) res[i + 1] = res[i] * X[i];\n  mint t = res.back().inverse();\n\
+    \  res.pop_back();\n  FOR_R(i, N) {\n    res[i] *= t;\n    t *= X[i];\n  }\n \
+    \ return res;\n}\n#line 6 \"poly/multipoint.hpp\"\n\r\ntemplate <typename mint>\r\
+    \nstruct SubproductTree {\r\n  int m;\r\n  int sz;\r\n  vc<vc<mint>> T;\r\n  SubproductTree(const\
+    \ vc<mint>& x) {\r\n    m = len(x);\r\n    sz = 1;\r\n    while (sz < m) sz *=\
+    \ 2;\r\n    T.resize(2 * sz);\r\n    FOR(i, sz) T[sz + i] = {1, (i < m ? -x[i]\
+    \ : 0)};\r\n    FOR3_R(i, 1, sz) T[i] = convolution(T[2 * i], T[2 * i + 1]);\r\
+    \n  }\r\n\r\n  vc<mint> evaluation(vc<mint> f) {\r\n    int n = len(f);\r\n  \
+    \  if (n == 0) return vc<mint>(m, mint(0));\r\n    f.resize(2 * n - 1);\r\n  \
+    \  vc<vc<mint>> g(2 * sz);\r\n    g[1] = T[1];\r\n    g[1].resize(n);\r\n    g[1]\
+    \ = fps_inv(g[1]);\r\n    g[1] = middle_product(f, g[1]);\r\n    g[1].resize(sz);\r\
+    \n\r\n    FOR3(i, 1, sz) {\r\n      g[2 * i] = middle_product(g[i], T[2 * i +\
+    \ 1]);\r\n      g[2 * i + 1] = middle_product(g[i], T[2 * i]);\r\n    }\r\n  \
+    \  vc<mint> vals(m);\r\n    FOR(i, m) vals[i] = g[sz + i][0];\r\n    return vals;\r\
+    \n  }\r\n\r\n  vc<mint> interpolation(vc<mint>& y) {\r\n    assert(len(y) == m);\r\
+    \n    vc<mint> a(m);\r\n    FOR(i, m) a[i] = T[1][m - i - 1] * (i + 1);\r\n\r\n\
+    \    a = evaluation(a);\r\n    vc<vc<mint>> t(2 * sz);\r\n    FOR(i, sz) t[sz\
+    \ + i] = {(i < m ? y[i] / a[i] : 0)};\r\n    FOR3_R(i, 1, sz) {\r\n      t[i]\
+    \ = convolution(t[2 * i], T[2 * i + 1]);\r\n      auto tt = convolution(t[2 *\
+    \ i + 1], T[2 * i]);\r\n      FOR(k, len(t[i])) t[i][k] += tt[k];\r\n    }\r\n\
+    \    t[1].resize(m);\r\n    reverse(all(t[1]));\r\n    return t[1];\r\n  }\r\n\
+    };\r\n\r\ntemplate <typename mint>\r\nvc<mint> multipoint_eval(vc<mint>& f, vc<mint>&\
+    \ x) {\r\n  if (x.empty()) return {};\r\n  SubproductTree<mint> F(x);\r\n  return\
+    \ F.evaluation(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> multipoint_interpolate(vc<mint>&\
     \ x, vc<mint>& y) {\r\n  if (x.empty()) return {};\r\n  SubproductTree<mint> F(x);\r\
     \n  return F.interpolation(y);\r\n}\r\n\r\n// calculate f(ar^k) for 0 <= k < m\r\
     \ntemplate <typename mint>\r\nvc<mint> multipoint_eval_on_geom_seq(vc<mint> f,\
@@ -681,7 +681,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc267g.test.cpp
   requiredBy: []
-  timestamp: '2023-08-10 12:06:50+09:00'
+  timestamp: '2023-08-10 12:59:11+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc267g.test.cpp
