@@ -263,7 +263,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/pbds.hpp
       title: ds/pbds.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/power_query.hpp
       title: ds/power_query.hpp
     - icon: ':heavy_check_mark:'
@@ -289,7 +289,7 @@ data:
       title: ds/wavelet_matrix.hpp
   - name: ds/fenwicktree
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fenwicktree/fenwicktree.hpp
       title: ds/fenwicktree/fenwicktree.hpp
     - icon: ':question:'
@@ -338,7 +338,7 @@ data:
     - icon: ':question:'
       path: ds/offline_query/range_xor_basis_query.hpp
       title: ds/offline_query/range_xor_basis_query.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/offline_query/rectangle_add_point_sum.hpp
       title: ds/offline_query/rectangle_add_point_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -361,10 +361,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/randomized_bst/rbst_acted_set.hpp
       title: ds/randomized_bst/rbst_acted_set.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/randomized_bst/rbst_commutative_monoid.hpp
       title: ds/randomized_bst/rbst_commutative_monoid.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/randomized_bst/rbst_monoid.hpp
       title: ds/randomized_bst/rbst_monoid.hpp
   - name: ds/segtree
@@ -479,7 +479,7 @@ data:
     - icon: ':question:'
       path: enumerate/floor_range.hpp
       title: enumerate/floor_range.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: enumerate/multiset.hpp
       title: enumerate/multiset.hpp
     - icon: ':question:'
@@ -578,7 +578,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/incremental_convexhull.hpp
       title: geo/incremental_convexhull.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo/inside_polygon.hpp
       title: geo/inside_polygon.hpp
     - icon: ':heavy_check_mark:'
@@ -711,7 +711,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/optimal_product_on_tree.hpp
       title: graph/optimal_product_on_tree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/path_cycle.hpp
       title: graph/path_cycle.hpp
     - icon: ':heavy_check_mark:'
@@ -773,13 +773,13 @@ data:
     - icon: ':warning:'
       path: graph/count/count_P3_P4.hpp
       title: graph/count/count_P3_P4.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/count/count_bipartite.hpp
       title: graph/count/count_bipartite.hpp
     - icon: ':warning:'
       path: graph/count/count_forest.hpp
       title: graph/count/count_forest.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/count/count_independent_set.hpp
       title: graph/count/count_independent_set.hpp
     - icon: ':warning:'
@@ -955,7 +955,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/spmat_det.hpp
       title: linalg/spmat_det.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: linalg/spmat_min_poly.hpp
       title: linalg/spmat_min_poly.hpp
     - icon: ':x:'
@@ -969,7 +969,7 @@ data:
     - icon: ':question:'
       path: linalg/implicit_matrix/min_poly.hpp
       title: linalg/implicit_matrix/min_poly.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: linalg/implicit_matrix/pascal.hpp
       title: linalg/implicit_matrix/pascal.hpp
     - icon: ':x:'
@@ -1003,7 +1003,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/factorial107.hpp
       title: mod/factorial107.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: mod/factorial998.hpp
       title: mod/factorial998.hpp
     - icon: ':heavy_check_mark:'
@@ -1030,7 +1030,7 @@ data:
     - icon: ':question:'
       path: mod/mod_pow.hpp
       title: mod/mod_pow.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/mod_sqrt.hpp
       title: mod/mod_sqrt.hpp
     - icon: ':heavy_check_mark:'
@@ -1108,7 +1108,7 @@ data:
     - icon: ':x:'
       path: nt/factor_interval.hpp
       title: nt/factor_interval.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: nt/four_square.hpp
       title: nt/four_square.hpp
     - icon: ':question:'
@@ -1223,7 +1223,7 @@ data:
     - icon: ':question:'
       path: poly/convolution.hpp
       title: poly/convolution.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/convolution2d.hpp
       title: poly/convolution2d.hpp
     - icon: ':question:'
@@ -1235,7 +1235,7 @@ data:
     - icon: ':question:'
       path: poly/convolution_karatsuba.hpp
       title: poly/convolution_karatsuba.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/convolution_leq.hpp
       title: poly/convolution_leq.hpp
     - icon: ':heavy_check_mark:'
@@ -1274,7 +1274,7 @@ data:
     - icon: ':question:'
       path: poly/fps_pow.hpp
       title: poly/fps_pow.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/fps_sqrt.hpp
       title: poly/fps_sqrt.hpp
     - icon: ':x:'
@@ -1304,7 +1304,7 @@ data:
     - icon: ':question:'
       path: poly/ntt_doubling.hpp
       title: poly/ntt_doubling.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/partial_frac_decomposition_1.hpp
       title: poly/partial_frac_decomposition_1.hpp
     - icon: ':question:'
@@ -1316,13 +1316,13 @@ data:
     - icon: ':question:'
       path: poly/poly_taylor_shift.hpp
       title: poly/poly_taylor_shift.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/prefix_product_of_poly.hpp
       title: poly/prefix_product_of_poly.hpp
     - icon: ':x:'
       path: poly/product_of_f_rk_x.hpp
       title: poly/product_of_f_rk_x.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/product_of_one_minus_xn.hpp
       title: poly/product_of_one_minus_xn.hpp
     - icon: ':question:'
@@ -1331,7 +1331,7 @@ data:
     - icon: ':x:'
       path: poly/product_of_pow_of_linear.hpp
       title: poly/product_of_pow_of_linear.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/slice_rational_fps.hpp
       title: poly/slice_rational_fps.hpp
     - icon: ':x:'
@@ -1349,7 +1349,7 @@ data:
     - icon: ':x:'
       path: poly/sum_of_prefix_suffix_products.hpp
       title: poly/sum_of_prefix_suffix_products.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/sum_of_rationals.hpp
       title: poly/sum_of_rationals.hpp
   - name: poly/online
@@ -1357,19 +1357,19 @@ data:
     - icon: ':question:'
       path: poly/online/online_convolution.hpp
       title: poly/online/online_convolution.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/online/online_division.hpp
       title: poly/online/online_division.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/online/online_exp.hpp
       title: poly/online/online_exp.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/online/online_inv.hpp
       title: poly/online/online_inv.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/online/online_log.hpp
       title: poly/online/online_log.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/online/online_pow.hpp
       title: poly/online/online_pow.hpp
   - name: random
@@ -1383,7 +1383,7 @@ data:
     - icon: ':question:'
       path: random/hash_vector.hpp
       title: random/hash_vector.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/random_graph.hpp
       title: random/random_graph.hpp
     - icon: ':heavy_check_mark:'
@@ -1447,13 +1447,13 @@ data:
       title: seq/sum_of_powers.hpp
   - name: seq/famous
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: seq/famous/bell_number_large.hpp
       title: seq/famous/bell_number_large.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: seq/famous/catalan_convolution.hpp
       title: seq/famous/catalan_convolution.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: seq/famous/eulerian_number.hpp
       title: seq/famous/eulerian_number.hpp
     - icon: ':x:'
@@ -1462,13 +1462,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/famous/gray_code.hpp
       title: seq/famous/gray_code.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: seq/famous/indecomposable_permutations.hpp
       title: seq/famous/indecomposable_permutations.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: seq/famous/partition_number.hpp
       title: seq/famous/partition_number.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: seq/famous/simple_permutations.hpp
       title: seq/famous/simple_permutations.hpp
     - icon: ':heavy_check_mark:'
@@ -2379,7 +2379,7 @@ data:
       title: test/library_checker/tree/tree_diameter.test.cpp
   - name: test/mytest
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/31bit_modint.test.cpp
       title: test/mytest/31bit_modint.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2397,19 +2397,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/all_but_one_products.test.cpp
       title: test/mytest/all_but_one_products.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/all_inverse.test.cpp
       title: test/mytest/all_inverse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/bell.test.cpp
       title: test/mytest/bell.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/binary_trie.test.cpp
       title: test/mytest/binary_trie.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/binom.test.cpp
       title: test/mytest/binom.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/catalan_convolution.test.cpp
       title: test/mytest/catalan_convolution.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2421,19 +2421,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/cf940f.test.cpp
       title: test/mytest/cf940f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/chirp_z.test.cpp
       title: test/mytest/chirp_z.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/conv2d.test.cpp
       title: test/mytest/conv2d.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/conv_leq.test.cpp
       title: test/mytest/conv_leq.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/count_bipartite.test.cpp
       title: test/mytest/count_bipartite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/count_indep_set.test.cpp
       title: test/mytest/count_indep_set.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2457,19 +2457,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/dynamic_segtree_sparse.test.cpp
       title: test/mytest/dynamic_segtree_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/enum_partitions.test.cpp
       title: test/mytest/enum_partitions.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/enumerate_multisets.test.cpp
       title: test/mytest/enumerate_multisets.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/enumerate_products.test.cpp
       title: test/mytest/enumerate_products.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/eulerian_number.test.cpp
       title: test/mytest/eulerian_number.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/factorial_998.test.cpp
       title: test/mytest/factorial_998.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2481,7 +2481,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/floor_ceil_ranges.test.cpp
       title: test/mytest/floor_ceil_ranges.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/four_square.test.cpp
       title: test/mytest/four_square.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2547,7 +2547,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/min_of_linear_segments.test.cpp
       title: test/mytest/min_of_linear_segments.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/min_poly.test.cpp
       title: test/mytest/min_poly.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2565,40 +2565,40 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/mod_sum_of_linear.test.cpp
       title: test/mytest/mod_sum_of_linear.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/multinomial.test.cpp
       title: test/mytest/multinomial.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/mybitset.test.cpp
       title: test/mytest/mybitset.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/online_division.test.cpp
       title: test/mytest/online_division.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/online_exp.test.cpp
       title: test/mytest/online_exp.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/online_inv.test.cpp
       title: test/mytest/online_inv.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/online_log.test.cpp
       title: test/mytest/online_log.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/online_pow.test.cpp
       title: test/mytest/online_pow.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/partial_frac.test.cpp
       title: test/mytest/partial_frac.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/partizan.test.cpp
       title: test/mytest/partizan.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/pascal.test.cpp
       title: test/mytest/pascal.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/powerquery.test.cpp
       title: test/mytest/powerquery.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/prime_sum.test.cpp
       title: test/mytest/prime_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2607,13 +2607,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/primesum_mod6.test.cpp
       title: test/mytest/primesum_mod6.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/product_of_one_pm_xn.test.cpp
       title: test/mytest/product_of_one_pm_xn.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/qbinom.test.cpp
       title: test/mytest/qbinom.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/qoj5443.test.cpp
       title: test/mytest/qoj5443.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2637,22 +2637,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/rbst_am_persistent.test.cpp
       title: test/mytest/rbst_am_persistent.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/rbst_commutative_persistent.test.cpp
       title: test/mytest/rbst_commutative_persistent.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/rbst_monoid.test.cpp
       title: test/mytest/rbst_monoid.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/rbst_monoid_2.test.cpp
       title: test/mytest/rbst_monoid_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/rbst_monoid_persistent.test.cpp
       title: test/mytest/rbst_monoid_persistent.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/rbst_test.test.cpp
       title: test/mytest/rbst_test.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/rect_add_pt_sum.test.cpp
       title: test/mytest/rect_add_pt_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2661,10 +2661,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/segtree_xor_prod.test.cpp
       title: test/mytest/segtree_xor_prod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/simple_perm.test.cpp
       title: test/mytest/simple_perm.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/slice_rational_fps.test.cpp
       title: test/mytest/slice_rational_fps.test.cpp
     - icon: ':heavy_check_mark:'
