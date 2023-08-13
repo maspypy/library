@@ -369,7 +369,7 @@ data:
     \    }\n    G.build();\n    Tree<decltype(G)> tree(G, root);\n    return {G, tree};\n\
     \  };\n};\n#line 6 \"test_atcoder/abc266f.test.cpp\"\n\nvoid solve() {\n  LL(N);\n\
     \  Graph<int, 0> G(N);\n  G.read_graph(N);\n\n  UnicyclicGraph<decltype(G), true>\
-    \ X(G);\n  auto tree = X.build();\n\n  ll root = X.root;\n  ll bottom = X.TO[X.root];\n\
+    \ X(G);\n  auto tree = X.build().se;\n\n  ll root = X.root;\n  ll bottom = X.TO[X.root];\n\
     \n  LL(Q);\n  FOR(Q) {\n    LL(a, b);\n    --a, --b;\n    ll ca = tree.lca(a,\
     \ bottom);\n    ll cb = tree.lca(b, bottom);\n    Yes(ca == cb);\n  }\n}\n\nsigned\
     \ main() {\n  solve();\n  return 0;\n}\n"
@@ -377,7 +377,7 @@ data:
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/unicyclic.hpp\"\
     \n#include \"graph/tree.hpp\"\n\nvoid solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n\
     \  G.read_graph(N);\n\n  UnicyclicGraph<decltype(G), true> X(G);\n  auto tree\
-    \ = X.build();\n\n  ll root = X.root;\n  ll bottom = X.TO[X.root];\n\n  LL(Q);\n\
+    \ = X.build().se;\n\n  ll root = X.root;\n  ll bottom = X.TO[X.root];\n\n  LL(Q);\n\
     \  FOR(Q) {\n    LL(a, b);\n    --a, --b;\n    ll ca = tree.lca(a, bottom);\n\
     \    ll cb = tree.lca(b, bottom);\n    Yes(ca == cb);\n  }\n}\n\nsigned main()\
     \ {\n  solve();\n  return 0;\n}\n"
@@ -391,7 +391,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc266f.test.cpp
   requiredBy: []
-  timestamp: '2023-08-13 11:31:37+09:00'
+  timestamp: '2023-08-14 02:21:32+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc266f.test.cpp
