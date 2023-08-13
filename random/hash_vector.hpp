@@ -12,5 +12,5 @@ u64 hash_vector(vc<T> X) {
   mint H = 0;
   FOR(i, n) H += hash_base[i] * mint(X[i]);
   H += hash_base[n];
-  return H.x8;
+  return H.val;
 }
