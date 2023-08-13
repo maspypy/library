@@ -2,11 +2,10 @@
 #include "graph/tree.hpp"
 #include "ds/unionfind/unionfind.hpp"
 
-template <typename GT, bool DIRECTED = true>
+template <typename GT>
 struct UnicyclicGraph {
   using T = typename GT::cost_type;
   GT& G0;
-  Graph<T, DIRECTED> G;
   int N;
   int root;
   int out_eid;
@@ -43,9 +42,9 @@ struct UnicyclicGraph {
     for (auto&& v: cycle) in_cycle[v] = 1;
   }
 
-  // tree を作る
-  Tree<decltype(G)> build(bool keep_eid = false) {
-    G.build(N);
+  // {G, tree}
+  pair<Graph<T, 1>, Tree<Graph<T, 1>>> build(bool keep_eid = false) {
+    Graph<T, 1> G(N);
     FOR(eid, N) {
       if (eid == out_eid) continue;
       auto& e = G0.edges[eid];
@@ -56,6 +55,7 @@ struct UnicyclicGraph {
       G.add(a, b, e.cost, k);
     }
     G.build();
-    return Tree<decltype(G)>(G, root);
+    Tree<decltype(G)> tree(G, root);
+    return {G, tree};
   };
 };
