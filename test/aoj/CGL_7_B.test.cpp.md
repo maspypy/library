@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':heavy_check_mark:'
@@ -13,13 +13,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/incircle.hpp
     title: geo/incircle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/triangle_area.hpp
     title: geo/triangle_area.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -243,11 +243,8 @@ data:
     \ }\n\n  bool is_orthogonal(Line other) { return a * other.a + b * other.b ==\
     \ 0; }\n};\n\ntemplate <typename T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T>\
     \ A, Point<T> B) : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
-    \ y1), Point<T>(x2, y2)) {}\n\n  template <enable_if_t<is_integral<T>::value,\
-    \ int> = 0>\n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n \
-    \   if (det != 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A\
-    \ - B) >= 0;\n  }\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate\
-    \ <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle(Point<REAL>\
+    \ y1), Point<T>(x2, y2)) {}\n  Line<T> to_Line() { return Line(A, B); }\n};\n\n\
+    template <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle(Point<REAL>\
     \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
     \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
     \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n\n\
@@ -264,14 +261,14 @@ data:
     \ {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1 == len(points)\
     \ ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n    if (a < 0) {\n\
     \      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n#line 2 \"geo/cross_point.hpp\"\
-    \n\n// \u5E73\u884C\u3067\u306A\u3044\u3053\u3068\u3092\u4EEE\u5B9A\ntemplate\
-    \ <typename REAL, typename T>\nPoint<REAL> cross_point(const Line<T> L1, const\
-    \ Line<T> L2) {\n  T det = L1.a * L2.b - L1.b * L2.a;\n  assert(det != 0);\n \
-    \ REAL x = -REAL(L1.c) * L2.b + REAL(L1.b) * L2.c;\n  REAL y = -REAL(L1.a) * L2.c\
-    \ + REAL(L1.c) * L2.a;\n  return Point<REAL>(x / det, y / det);\n}\n\n// 0: \u4EA4\
-    \u70B9\u306A\u3057\n// 1: \u4E00\u610F\u306A\u4EA4\u70B9\n// 2\uFF1A2 \u3064\u4EE5\
-    \u4E0A\u306E\u4EA4\u70B9\uFF08\u6574\u6570\u578B\u3092\u5229\u7528\u3057\u3066\
-    \u53B3\u5BC6\u306B\u3084\u308B\uFF09\ntemplate <typename T, enable_if_t<is_integral<T>::value,\
+    \n\n#line 4 \"geo/cross_point.hpp\"\n\n// \u5E73\u884C\u3067\u306A\u3044\u3053\
+    \u3068\u3092\u4EEE\u5B9A\ntemplate <typename REAL, typename T>\nPoint<REAL> cross_point(const\
+    \ Line<T> L1, const Line<T> L2) {\n  T det = L1.a * L2.b - L1.b * L2.a;\n  assert(det\
+    \ != 0);\n  REAL x = -REAL(L1.c) * L2.b + REAL(L1.b) * L2.c;\n  REAL y = -REAL(L1.a)\
+    \ * L2.c + REAL(L1.c) * L2.a;\n  return Point<REAL>(x / det, y / det);\n}\n\n\
+    // 0: \u4EA4\u70B9\u306A\u3057\n// 1: \u4E00\u610F\u306A\u4EA4\u70B9\n// 2\uFF1A\
+    2 \u3064\u4EE5\u4E0A\u306E\u4EA4\u70B9\uFF08\u6574\u6570\u578B\u3092\u5229\u7528\
+    \u3057\u3066\u53B3\u5BC6\u306B\u3084\u308B\uFF09\ntemplate <typename T, enable_if_t<is_integral<T>::value,\
     \ int> = 0>\nint count_cross(Segment<T> S1, Segment<T> S2, bool include_ends)\
     \ {\n  Line<T> L1 = S1.to_Line();\n  Line<T> L2 = S2.to_Line();\n  if (L1.is_parallel(L2))\
     \ {\n    if (L1.eval(S2.A) != 0) return 0;\n    // 4 \u70B9\u3068\u3082\u540C\u4E00\
@@ -329,7 +326,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_7_B.test.cpp
   requiredBy: []
-  timestamp: '2023-08-08 01:44:15+09:00'
+  timestamp: '2023-08-13 11:31:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_7_B.test.cpp
