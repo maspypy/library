@@ -26,7 +26,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"mod/modint61.hpp\"\nstruct modint61 {\r\n  static constexpr\
+  bundledCode: "#line 2 \"mod/modint61.hpp\"\n\r\nstruct modint61 {\r\n  static constexpr\
     \ u64 mod = (1ULL << 61) - 1;\r\n  u64 val;\r\n  constexpr modint61() : val(0ULL)\
     \ {}\r\n  constexpr modint61(u32 x) : val(x) {}\r\n  constexpr modint61(u64 x)\
     \ : val(x % mod) {}\r\n  constexpr modint61(int x) : val((x < 0) ? (x + static_cast<ll>(mod))\
@@ -262,7 +262,7 @@ data:
   isVerificationFile: false
   path: graph/tree_dp/subtree_hash.hpp
   requiredBy: []
-  timestamp: '2023-08-13 15:09:30+09:00'
+  timestamp: '2023-08-13 16:19:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/graph/classify_tree.test.cpp

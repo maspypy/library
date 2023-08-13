@@ -218,10 +218,10 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 1 \"mod/modint61.hpp\"\nstruct modint61 {\r\n  static constexpr\
-    \ u64 mod = (1ULL << 61) - 1;\r\n  u64 val;\r\n  constexpr modint61() : val(0ULL)\
-    \ {}\r\n  constexpr modint61(u32 x) : val(x) {}\r\n  constexpr modint61(u64 x)\
-    \ : val(x % mod) {}\r\n  constexpr modint61(int x) : val((x < 0) ? (x + static_cast<ll>(mod))\
+    \ yes(!t); }\n#line 2 \"mod/modint61.hpp\"\n\r\nstruct modint61 {\r\n  static\
+    \ constexpr u64 mod = (1ULL << 61) - 1;\r\n  u64 val;\r\n  constexpr modint61()\
+    \ : val(0ULL) {}\r\n  constexpr modint61(u32 x) : val(x) {}\r\n  constexpr modint61(u64\
+    \ x) : val(x % mod) {}\r\n  constexpr modint61(int x) : val((x < 0) ? (x + static_cast<ll>(mod))\
     \ : x) {}\r\n  constexpr modint61(ll x)\r\n      : val(((x %= static_cast<ll>(mod))\
     \ < 0) ? (x + static_cast<ll>(mod))\r\n                                      \
     \        : x) {}\r\n  static constexpr u64 get_mod() { return mod; }\r\n  modint61\
@@ -451,7 +451,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/classify_tree.test.cpp
   requiredBy: []
-  timestamp: '2023-08-13 15:09:30+09:00'
+  timestamp: '2023-08-13 16:19:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/classify_tree.test.cpp

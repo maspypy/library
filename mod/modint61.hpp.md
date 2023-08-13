@@ -26,11 +26,11 @@ data:
   - icon: ':question:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/rollinghash_2d.hpp
     title: string/rollinghash_2d.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_14_C.test.cpp
     title: test/aoj/ALDS1_14_C.test.cpp
   - icon: ':heavy_check_mark:'
@@ -86,7 +86,7 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"mod/modint61.hpp\"\nstruct modint61 {\r\n  static constexpr\
+  bundledCode: "#line 2 \"mod/modint61.hpp\"\n\r\nstruct modint61 {\r\n  static constexpr\
     \ u64 mod = (1ULL << 61) - 1;\r\n  u64 val;\r\n  constexpr modint61() : val(0ULL)\
     \ {}\r\n  constexpr modint61(u32 x) : val(x) {}\r\n  constexpr modint61(u64 x)\
     \ : val(x % mod) {}\r\n  constexpr modint61(int x) : val((x < 0) ? (x + static_cast<ll>(mod))\
@@ -115,34 +115,35 @@ data:
     \ }\r\n  void read() {\r\n    ll x;\r\n    fastio::scanner.read(x);\r\n    val\
     \ = (val >= 0 ? val % mod : (mod - (-val) % mod) % mod);\r\n  }\r\n#endif\r\n\
     };\n"
-  code: "struct modint61 {\r\n  static constexpr u64 mod = (1ULL << 61) - 1;\r\n \
-    \ u64 val;\r\n  constexpr modint61() : val(0ULL) {}\r\n  constexpr modint61(u32\
-    \ x) : val(x) {}\r\n  constexpr modint61(u64 x) : val(x % mod) {}\r\n  constexpr\
-    \ modint61(int x) : val((x < 0) ? (x + static_cast<ll>(mod)) : x) {}\r\n  constexpr\
-    \ modint61(ll x)\r\n      : val(((x %= static_cast<ll>(mod)) < 0) ? (x + static_cast<ll>(mod))\r\
-    \n                                              : x) {}\r\n  static constexpr\
-    \ u64 get_mod() { return mod; }\r\n  modint61 &operator+=(const modint61 &a) {\r\
-    \n    val = ((val += a.val) >= mod) ? (val - mod) : val;\r\n    return *this;\r\
-    \n  }\r\n  modint61 &operator-=(const modint61 &a) {\r\n    val = ((val -= a.val)\
-    \ >= mod) ? (val + mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 &operator*=(const\
-    \ modint61 &a) {\r\n    const unsigned __int128 y = static_cast<unsigned __int128>(val)\
-    \ * a.val;\r\n    val = (y >> 61) + (y & mod);\r\n    val = (val >= mod) ? (val\
-    \ - mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 &operator/=(const modint61\
-    \ &a) { return (*this *= a.inverse()); }\r\n  modint61 operator+(const modint61\
-    \ &p) const { return modint61(*this) += p; }\r\n  modint61 operator-(const modint61\
-    \ &p) const { return modint61(*this) -= p; }\r\n  modint61 operator*(const modint61\
-    \ &p) const { return modint61(*this) *= p; }\r\n  modint61 operator/(const modint61\
-    \ &p) const { return modint61(*this) /= p; }\r\n  bool operator==(const modint61\
-    \ &p) const { return val == p.val; }\r\n  bool operator!=(const modint61 &p) const\
-    \ { return val != p.val; }\r\n  modint61 inverse() const {\r\n    ll a = val,\
-    \ b = mod, u = 1, v = 0, t;\r\n    while (b > 0) {\r\n      t = a / b;\r\n   \
-    \   swap(a -= t * b, b), swap(u -= t * v, v);\r\n    }\r\n    return modint61(u);\r\
-    \n  }\r\n  modint61 pow(ll n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1),\
-    \ mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul\
-    \ *= mul, n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n#ifdef FASTIO\r\n  void\
-    \ write() { fastio::printer.write(val); }\r\n  void read() {\r\n    ll x;\r\n\
-    \    fastio::scanner.read(x);\r\n    val = (val >= 0 ? val % mod : (mod - (-val)\
-    \ % mod) % mod);\r\n  }\r\n#endif\r\n};"
+  code: "#pragma once\r\n\r\nstruct modint61 {\r\n  static constexpr u64 mod = (1ULL\
+    \ << 61) - 1;\r\n  u64 val;\r\n  constexpr modint61() : val(0ULL) {}\r\n  constexpr\
+    \ modint61(u32 x) : val(x) {}\r\n  constexpr modint61(u64 x) : val(x % mod) {}\r\
+    \n  constexpr modint61(int x) : val((x < 0) ? (x + static_cast<ll>(mod)) : x)\
+    \ {}\r\n  constexpr modint61(ll x)\r\n      : val(((x %= static_cast<ll>(mod))\
+    \ < 0) ? (x + static_cast<ll>(mod))\r\n                                      \
+    \        : x) {}\r\n  static constexpr u64 get_mod() { return mod; }\r\n  modint61\
+    \ &operator+=(const modint61 &a) {\r\n    val = ((val += a.val) >= mod) ? (val\
+    \ - mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 &operator-=(const modint61\
+    \ &a) {\r\n    val = ((val -= a.val) >= mod) ? (val + mod) : val;\r\n    return\
+    \ *this;\r\n  }\r\n  modint61 &operator*=(const modint61 &a) {\r\n    const unsigned\
+    \ __int128 y = static_cast<unsigned __int128>(val) * a.val;\r\n    val = (y >>\
+    \ 61) + (y & mod);\r\n    val = (val >= mod) ? (val - mod) : val;\r\n    return\
+    \ *this;\r\n  }\r\n  modint61 &operator/=(const modint61 &a) { return (*this *=\
+    \ a.inverse()); }\r\n  modint61 operator+(const modint61 &p) const { return modint61(*this)\
+    \ += p; }\r\n  modint61 operator-(const modint61 &p) const { return modint61(*this)\
+    \ -= p; }\r\n  modint61 operator*(const modint61 &p) const { return modint61(*this)\
+    \ *= p; }\r\n  modint61 operator/(const modint61 &p) const { return modint61(*this)\
+    \ /= p; }\r\n  bool operator==(const modint61 &p) const { return val == p.val;\
+    \ }\r\n  bool operator!=(const modint61 &p) const { return val != p.val; }\r\n\
+    \  modint61 inverse() const {\r\n    ll a = val, b = mod, u = 1, v = 0, t;\r\n\
+    \    while (b > 0) {\r\n      t = a / b;\r\n      swap(a -= t * b, b), swap(u\
+    \ -= t * v, v);\r\n    }\r\n    return modint61(u);\r\n  }\r\n  modint61 pow(ll\
+    \ n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1), mul(val);\r\n    while\
+    \ (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul *= mul, n >>= 1;\r\n\
+    \    }\r\n    return ret;\r\n  }\r\n#ifdef FASTIO\r\n  void write() { fastio::printer.write(val);\
+    \ }\r\n  void read() {\r\n    ll x;\r\n    fastio::scanner.read(x);\r\n    val\
+    \ = (val >= 0 ? val % mod : (mod - (-val) % mod) % mod);\r\n  }\r\n#endif\r\n\
+    };"
   dependsOn: []
   isVerificationFile: false
   path: mod/modint61.hpp
@@ -156,7 +157,7 @@ data:
   - other/connected_dp.hpp
   - graph/tree_dp/subtree_hash.hpp
   - graph/max_matching_size.hpp
-  timestamp: '2023-08-13 11:31:49+09:00'
+  timestamp: '2023-08-13 16:19:41+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/matching_line_graph.test.cpp

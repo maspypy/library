@@ -288,10 +288,10 @@ data:
     \   cand.eb(a, b);\n  }\n  int m = RNG(0, len(cand) + 1);\n  set<int> ss;\n  FOR(m)\
     \ {\n    while (1) {\n      int i = RNG(0, len(cand));\n      if (simple && ss.count(i))\
     \ continue;\n      ss.insert(i);\n      auto [a, b] = cand[i];\n      G.add(a,\
-    \ b);\n      break;\n    }\n  }\n  G.build();\n  return G;\n}\n#line 1 \"mod/modint61.hpp\"\
-    \nstruct modint61 {\r\n  static constexpr u64 mod = (1ULL << 61) - 1;\r\n  u64\
-    \ val;\r\n  constexpr modint61() : val(0ULL) {}\r\n  constexpr modint61(u32 x)\
-    \ : val(x) {}\r\n  constexpr modint61(u64 x) : val(x % mod) {}\r\n  constexpr\
+    \ b);\n      break;\n    }\n  }\n  G.build();\n  return G;\n}\n#line 2 \"mod/modint61.hpp\"\
+    \n\r\nstruct modint61 {\r\n  static constexpr u64 mod = (1ULL << 61) - 1;\r\n\
+    \  u64 val;\r\n  constexpr modint61() : val(0ULL) {}\r\n  constexpr modint61(u32\
+    \ x) : val(x) {}\r\n  constexpr modint61(u64 x) : val(x % mod) {}\r\n  constexpr\
     \ modint61(int x) : val((x < 0) ? (x + static_cast<ll>(mod)) : x) {}\r\n  constexpr\
     \ modint61(ll x)\r\n      : val(((x %= static_cast<ll>(mod)) < 0) ? (x + static_cast<ll>(mod))\r\
     \n                                              : x) {}\r\n  static constexpr\
@@ -392,7 +392,7 @@ data:
   isVerificationFile: true
   path: test/mytest/matching_line_graph.test.cpp
   requiredBy: []
-  timestamp: '2023-08-13 11:31:49+09:00'
+  timestamp: '2023-08-13 16:19:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/matching_line_graph.test.cpp

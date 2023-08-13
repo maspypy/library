@@ -215,12 +215,12 @@ data:
     \     chrono::high_resolution_clock::now().time_since_epoch())\n             \
     \        .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return\
     \ x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll\
-    \ l, ll r) { return l + RNG_64() % (r - l); }\n#line 1 \"mod/modint61.hpp\"\n\
-    struct modint61 {\r\n  static constexpr u64 mod = (1ULL << 61) - 1;\r\n  u64 val;\r\
-    \n  constexpr modint61() : val(0ULL) {}\r\n  constexpr modint61(u32 x) : val(x)\
-    \ {}\r\n  constexpr modint61(u64 x) : val(x % mod) {}\r\n  constexpr modint61(int\
-    \ x) : val((x < 0) ? (x + static_cast<ll>(mod)) : x) {}\r\n  constexpr modint61(ll\
-    \ x)\r\n      : val(((x %= static_cast<ll>(mod)) < 0) ? (x + static_cast<ll>(mod))\r\
+    \ l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/modint61.hpp\"\n\r\
+    \nstruct modint61 {\r\n  static constexpr u64 mod = (1ULL << 61) - 1;\r\n  u64\
+    \ val;\r\n  constexpr modint61() : val(0ULL) {}\r\n  constexpr modint61(u32 x)\
+    \ : val(x) {}\r\n  constexpr modint61(u64 x) : val(x % mod) {}\r\n  constexpr\
+    \ modint61(int x) : val((x < 0) ? (x + static_cast<ll>(mod)) : x) {}\r\n  constexpr\
+    \ modint61(ll x)\r\n      : val(((x %= static_cast<ll>(mod)) < 0) ? (x + static_cast<ll>(mod))\r\
     \n                                              : x) {}\r\n  static constexpr\
     \ u64 get_mod() { return mod; }\r\n  modint61 &operator+=(const modint61 &a) {\r\
     \n    val = ((val += a.val) >= mod) ? (val - mod) : val;\r\n    return *this;\r\
@@ -284,7 +284,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   requiredBy: []
-  timestamp: '2023-08-13 11:32:10+09:00'
+  timestamp: '2023-08-13 16:19:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
