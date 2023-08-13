@@ -1,3 +1,5 @@
+#pragma once
+
 #include "geo/base.hpp"
 
 // 平行でないことを仮定
