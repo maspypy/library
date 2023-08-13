@@ -20,7 +20,7 @@ void solve() {
       if (X.nodes[i].length <= 0) continue;
       auto [l, r] = X.nodes[i].pos;
       M61 x = RH.query(SH, l, r);
-      res.eb(x.x8, CNT[i]);
+      res.eb(x.val, CNT[i]);
     }
     return res;
   };
