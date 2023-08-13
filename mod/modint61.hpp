@@ -1,3 +1,5 @@
+#pragma once
+
 struct modint61 {
   static constexpr u64 mod = (1ULL << 61) - 1;
   u64 val;
