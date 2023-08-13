@@ -23,7 +23,7 @@ struct RollingHash {
   template <typename STRING>
   vector<mint> build(const STRING& s) const {
     int sz = s.size();
-    vector<mint> hashed(sz + 1);
+    vector<mint> hashed(sz + 1, mint(0));
     for (int i = 0; i < sz; i++) { hashed[i + 1] = hashed[i] * base + s[i]; }
     return hashed;
   }
