@@ -23,9 +23,9 @@ struct SubTree_Hash {
 
     Rerooting_dp<decltype(tree), T> DP(tree, f_ee, f_ev, f_ve, unit);
     dp.resize(N), dp_1.resize(N), dp_2.resize(N);
-    FOR(v, N) dp[v] = DP.dp[v].se.x8;
-    FOR(v, N) dp_1[v] = DP.dp_1[v].se.x8;
-    FOR(v, N) dp_2[v] = DP.dp_2[v].se.x8;
+    FOR(v, N) dp[v] = DP.dp[v].se.val;
+    FOR(v, N) dp_1[v] = DP.dp_1[v].se.val;
+    FOR(v, N) dp_2[v] = DP.dp_2[v].se.val;
   }
 
   // v を根としたときの full tree
