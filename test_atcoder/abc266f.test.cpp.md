@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/unicyclic.hpp
     title: graph/unicyclic.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc266/tasks/abc266_f
@@ -368,19 +368,19 @@ data:
     \ == a);\n      int k = (keep_eid ? eid : -1);\n      G.add(a, b, e.cost, k);\n\
     \    }\n    G.build();\n    Tree<decltype(G)> tree(G, root);\n    return {G, tree};\n\
     \  };\n};\n#line 6 \"test_atcoder/abc266f.test.cpp\"\n\nvoid solve() {\n  LL(N);\n\
-    \  Graph<int, 0> G(N);\n  G.read_graph(N);\n\n  UnicyclicGraph<decltype(G), true>\
-    \ X(G);\n  auto tree = X.build().se;\n\n  ll root = X.root;\n  ll bottom = X.TO[X.root];\n\
+    \  Graph<int, 0> G(N);\n  G.read_graph(N);\n\n  UnicyclicGraph<decltype(G)> X(G);\n\
+    \  auto tree = X.build().se;\n\n  ll root = X.root;\n  ll bottom = X.TO[X.root];\n\
     \n  LL(Q);\n  FOR(Q) {\n    LL(a, b);\n    --a, --b;\n    ll ca = tree.lca(a,\
     \ bottom);\n    ll cb = tree.lca(b, bottom);\n    Yes(ca == cb);\n  }\n}\n\nsigned\
     \ main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc266/tasks/abc266_f\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/unicyclic.hpp\"\
     \n#include \"graph/tree.hpp\"\n\nvoid solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n\
-    \  G.read_graph(N);\n\n  UnicyclicGraph<decltype(G), true> X(G);\n  auto tree\
-    \ = X.build().se;\n\n  ll root = X.root;\n  ll bottom = X.TO[X.root];\n\n  LL(Q);\n\
-    \  FOR(Q) {\n    LL(a, b);\n    --a, --b;\n    ll ca = tree.lca(a, bottom);\n\
-    \    ll cb = tree.lca(b, bottom);\n    Yes(ca == cb);\n  }\n}\n\nsigned main()\
-    \ {\n  solve();\n  return 0;\n}\n"
+    \  G.read_graph(N);\n\n  UnicyclicGraph<decltype(G)> X(G);\n  auto tree = X.build().se;\n\
+    \n  ll root = X.root;\n  ll bottom = X.TO[X.root];\n\n  LL(Q);\n  FOR(Q) {\n \
+    \   LL(a, b);\n    --a, --b;\n    ll ca = tree.lca(a, bottom);\n    ll cb = tree.lca(b,\
+    \ bottom);\n    Yes(ca == cb);\n  }\n}\n\nsigned main() {\n  solve();\n  return\
+    \ 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -391,8 +391,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc266f.test.cpp
   requiredBy: []
-  timestamp: '2023-08-14 02:21:32+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-08-14 03:10:11+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc266f.test.cpp
 layout: document
