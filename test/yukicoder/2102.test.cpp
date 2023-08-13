@@ -31,10 +31,10 @@ void solve() {
     }
     bool ok = 0;
     for (auto&& x: X) {
-      if (MP.count(x.x8)) ok = 1;
+      if (MP.count(x.val)) ok = 1;
     }
     Yes(ok);
-    MP[X[0].x8] = 1;
+    MP[X[0].val] = 1;
   }
 }
 
