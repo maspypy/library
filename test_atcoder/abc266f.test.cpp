@@ -9,7 +9,7 @@ void solve() {
   Graph<int, 0> G(N);
   G.read_graph(N);
 
-  UnicyclicGraph<decltype(G), true> X(G);
+  UnicyclicGraph<decltype(G)> X(G);
   auto tree = X.build().se;
 
   ll root = X.root;
