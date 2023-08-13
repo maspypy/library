@@ -10,7 +10,7 @@ void solve() {
   G.read_graph(N);
 
   UnicyclicGraph<decltype(G), true> X(G);
-  auto tree = X.build();
+  auto tree = X.build().se;
 
   ll root = X.root;
   ll bottom = X.TO[X.root];
