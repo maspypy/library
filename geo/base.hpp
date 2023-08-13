@@ -78,6 +78,14 @@ struct Segment {
   Segment(Point<T> A, Point<T> B) : A(A), B(B) {}
   Segment(T x1, T y1, T x2, T y2)
       : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}
+
+  bool contain(Point<T> C) {
+    static_assert(is_integral<T>::value);
+    T det = (C - A).det(B - A);
+    if (det != 0) return 0;
+    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;
+  }
+
   Line<T> to_Line() { return Line(A, B); }
 };
 
