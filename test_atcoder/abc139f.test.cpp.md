@@ -238,48 +238,50 @@ data:
     \ other) { return a * other.a + b * other.b == 0; }\n};\n\ntemplate <typename\
     \ T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B)\
     \ : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
-    \ y1), Point<T>(x2, y2)) {}\n  Line<T> to_Line() { return Line(A, B); }\n};\n\n\
-    template <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle(Point<REAL>\
-    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
-    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
-    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n\n\
-    template <typename T>\nstruct Polygon {\n  vc<Point<T>> points;\n  T a;\n\n  template\
-    \ <typename A, typename B>\n  Polygon(vc<pair<A, B>> pairs) {\n    for (auto&&\
-    \ [a, b]: pairs) points.eb(Point<T>(a, b));\n    build();\n  }\n  Polygon(vc<Point<T>>\
-    \ points) : points(points) { build(); }\n\n  int size() { return len(points);\
-    \ }\n\n  template <typename REAL>\n  REAL area() {\n    return a * 0.5;\n  }\n\
-    \n  template <enable_if_t<is_integral<T>::value, int> = 0>\n  T area_2() {\n \
-    \   return a;\n  }\n\n  bool is_convex() {\n    FOR(j, len(points)) {\n      int\
-    \ i = (j == 0 ? len(points) - 1 : j - 1);\n      int k = (j == len(points) - 1\
-    \ ? 0 : j + 1);\n      if ((points[j] - points[i]).det(points[k] - points[j])\
-    \ < 0) return false;\n    }\n    return true;\n  }\n\nprivate:\n  void build()\
-    \ {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1 == len(points)\
-    \ ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n    if (a < 0) {\n\
-    \      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n#line 2 \"geo/angle_sort.hpp\"\
-    \n\r\n#line 4 \"geo/angle_sort.hpp\"\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\
-    \u5BFE\u3059\u308B argsort\r\ntemplate <typename T>\r\nvector<int> angle_argsort(vector<Point<T>>&\
-    \ P) {\r\n  vector<int> lower, origin, upper;\r\n  const Point<T> O = {0, 0};\r\
-    \n  FOR(i, len(P)) {\r\n    if (P[i] == O) origin.eb(i);\r\n    elif ((P[i].y\
-    \ < 0) || (P[i].y == 0 && P[i].x > 0)) lower.eb(i);\r\n    else upper.eb(i);\r\
-    \n  }\r\n  sort(all(lower), [&](auto& i, auto& j) { return P[i].det(P[j]) > 0;\
-    \ });\r\n  sort(all(upper), [&](auto& i, auto& j) { return P[i].det(P[j]) > 0;\
-    \ });\r\n  auto& I = lower;\r\n  I.insert(I.end(), all(origin));\r\n  I.insert(I.end(),\
-    \ all(upper));\r\n  return I;\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\
-    \u5BFE\u3059\u308B argsort\r\ntemplate <typename T>\r\nvector<int> angle_argsort(vector<pair<T,\
-    \ T>>& P) {\r\n  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\
-    \n  return angle_argsort<T>(tmp);\r\n}\r\n\r\n// inplace \u306B\u504F\u89D2\u30BD\
-    \u30FC\u30C8\u3059\u308B\r\n// index \u304C\u6B32\u3057\u3044\u5834\u5408\u306F\
-    \ angle_argsort\r\ntemplate <typename T>\r\nvoid angle_sort(vector<Point<T>>&\
-    \ P) {\r\n  auto I = angle_argsort<T>(P);\r\n  P = rearrange(P, I);\r\n}\r\n\r\
-    \n// inplace \u306B\u504F\u89D2\u30BD\u30FC\u30C8\u3059\u308B\r\n// index \u304C\
-    \u6B32\u3057\u3044\u5834\u5408\u306F angle_argsort\r\ntemplate <typename T>\r\n\
-    void angle_sort(vector<pair<T, T>>& P) {\r\n  auto I = angle_argsort<T>(P);\r\n\
-    \  P = rearrange(P, I);\r\n}\r\n#line 3 \"geo/max_norm_sum.hpp\"\n\n// \u30D9\u30AF\
-    \u30C8\u30EB\u306E\u5217\u304C\u4E0E\u3048\u3089\u308C\u308B. \u90E8\u5206\u5217\
-    \u3092\u9078\u3093\u3067\uFF0C\u548C\u306E norm \u3092\u6700\u5C0F\u5316\u3059\
-    \u308B.\n// \u7DCF\u548C\u306E\u5EA7\u6A19\u306E 2 \u4E57\u548C\u304C SM \u3067\
-    \u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u3088\u3046\u306B\
-    \u6CE8\u610F\u305B\u3088\uFF0E\n// https://atcoder.jp/contests/abc139/tasks/abc139_f\n\
+    \ y1), Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    static_assert(is_integral<T>::value);\n\
+    \    T det = (C - A).det(B - A);\n    if (det != 0) return 0;\n    return (C -\
+    \ A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_Line() {\
+    \ return Line(A, B); }\n};\n\ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL>\
+    \ O;\n  REAL r;\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL\
+    \ x, REAL y, REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
+    \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
+    \ <= r * r;\n  }\n};\n\ntemplate <typename T>\nstruct Polygon {\n  vc<Point<T>>\
+    \ points;\n  T a;\n\n  template <typename A, typename B>\n  Polygon(vc<pair<A,\
+    \ B>> pairs) {\n    for (auto&& [a, b]: pairs) points.eb(Point<T>(a, b));\n  \
+    \  build();\n  }\n  Polygon(vc<Point<T>> points) : points(points) { build(); }\n\
+    \n  int size() { return len(points); }\n\n  template <typename REAL>\n  REAL area()\
+    \ {\n    return a * 0.5;\n  }\n\n  template <enable_if_t<is_integral<T>::value,\
+    \ int> = 0>\n  T area_2() {\n    return a;\n  }\n\n  bool is_convex() {\n    FOR(j,\
+    \ len(points)) {\n      int i = (j == 0 ? len(points) - 1 : j - 1);\n      int\
+    \ k = (j == len(points) - 1 ? 0 : j + 1);\n      if ((points[j] - points[i]).det(points[k]\
+    \ - points[j]) < 0) return false;\n    }\n    return true;\n  }\n\nprivate:\n\
+    \  void build() {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1\
+    \ == len(points) ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n\
+    \    if (a < 0) {\n      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n\
+    #line 2 \"geo/angle_sort.hpp\"\n\r\n#line 4 \"geo/angle_sort.hpp\"\n\r\n// \u504F\
+    \u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate <typename\
+    \ T>\r\nvector<int> angle_argsort(vector<Point<T>>& P) {\r\n  vector<int> lower,\
+    \ origin, upper;\r\n  const Point<T> O = {0, 0};\r\n  FOR(i, len(P)) {\r\n   \
+    \ if (P[i] == O) origin.eb(i);\r\n    elif ((P[i].y < 0) || (P[i].y == 0 && P[i].x\
+    \ > 0)) lower.eb(i);\r\n    else upper.eb(i);\r\n  }\r\n  sort(all(lower), [&](auto&\
+    \ i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  sort(all(upper), [&](auto&\
+    \ i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  auto& I = lower;\r\n  I.insert(I.end(),\
+    \ all(origin));\r\n  I.insert(I.end(), all(upper));\r\n  return I;\r\n}\r\n\r\n\
+    // \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate\
+    \ <typename T>\r\nvector<int> angle_argsort(vector<pair<T, T>>& P) {\r\n  vc<Point<T>>\
+    \ tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\n  return angle_argsort<T>(tmp);\r\
+    \n}\r\n\r\n// inplace \u306B\u504F\u89D2\u30BD\u30FC\u30C8\u3059\u308B\r\n// index\
+    \ \u304C\u6B32\u3057\u3044\u5834\u5408\u306F angle_argsort\r\ntemplate <typename\
+    \ T>\r\nvoid angle_sort(vector<Point<T>>& P) {\r\n  auto I = angle_argsort<T>(P);\r\
+    \n  P = rearrange(P, I);\r\n}\r\n\r\n// inplace \u306B\u504F\u89D2\u30BD\u30FC\
+    \u30C8\u3059\u308B\r\n// index \u304C\u6B32\u3057\u3044\u5834\u5408\u306F angle_argsort\r\
+    \ntemplate <typename T>\r\nvoid angle_sort(vector<pair<T, T>>& P) {\r\n  auto\
+    \ I = angle_argsort<T>(P);\r\n  P = rearrange(P, I);\r\n}\r\n#line 3 \"geo/max_norm_sum.hpp\"\
+    \n\n// \u30D9\u30AF\u30C8\u30EB\u306E\u5217\u304C\u4E0E\u3048\u3089\u308C\u308B\
+    . \u90E8\u5206\u5217\u3092\u9078\u3093\u3067\uFF0C\u548C\u306E norm \u3092\u6700\
+    \u5C0F\u5316\u3059\u308B.\n// \u7DCF\u548C\u306E\u5EA7\u6A19\u306E 2 \u4E57\u548C\
+    \u304C SM \u3067\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u3088\
+    \u3046\u306B\u6CE8\u610F\u305B\u3088\uFF0E\n// https://atcoder.jp/contests/abc139/tasks/abc139_f\n\
     // https://codeforces.com/contest/1841/problem/F\ntemplate <typename SM, typename\
     \ T>\npair<SM, vc<int>> max_norm_sum(vc<Point<T>> dat) {\n  auto I = angle_argsort(dat);\n\
     \  {\n    vc<int> J;\n    for (auto&& i: I) {\n      if (dat[i].x != 0 || dat[i].y\
@@ -314,7 +316,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc139f.test.cpp
   requiredBy: []
-  timestamp: '2023-08-13 11:31:05+09:00'
+  timestamp: '2023-08-13 15:29:08+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc139f.test.cpp
