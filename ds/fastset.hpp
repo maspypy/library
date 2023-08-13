@@ -35,7 +35,7 @@ struct FastSet {
       i /= B;
     }
   }
-  void remove(int i) { insert(i); }
+  void remove(int i) { erase(i); }
 
   // x以上最小の要素を返す。存在しなければ n。
   int next(int i) {
