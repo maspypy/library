@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
   - icon: ':question:'
@@ -209,18 +209,18 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\n#line 2 \"ds/dynamic_array.hpp\"\n\r\ntemplate <typename T, bool\
-    \ PERSISTENT, int NODES>\r\nstruct Dynamic_Array {\r\n  constexpr int LOG = 4;\r\
-    \n  constexpr int MASK = (1 << LOG) - 1;\r\n  struct Node {\r\n    T x;\r\n  \
-    \  Node* ch[1 << LOG] = {};\r\n  };\r\n  Node* pool;\r\n  int pid;\r\n  using\
-    \ np = Node*;\r\n  const T x0;\r\n\r\n  Dynamic_Array(T default_value) : pid(0),\
-    \ x0(default_value) {\r\n    pool = new Node[NODES];\r\n  }\r\n\r\n  np new_root()\
-    \ {\r\n    pool[pid].x = x0;\r\n    fill(pool[pid].ch, pool[pid].ch + (1 << LOG),\
-    \ nullptr);\r\n    return &(pool[pid++]);\r\n  }\r\n\r\n  np new_node(vc<T> dat)\
-    \ {\r\n    np root = new_root();\r\n    FOR(i, len(dat)) root = set(root, i, dat[i],\
-    \ false);\r\n    return root;\r\n  }\r\n\r\n  T get(np c, int idx) {\r\n    if\
-    \ (!c) return x0;\r\n    if (idx == 0) return c->x;\r\n    return get(c->ch[idx\
-    \ & MASK], (idx - 1) >> LOG);\r\n  }\r\n\r\n  np set(np c, int idx, T x, bool\
-    \ make_copy = true) {\r\n    c = (c ? copy_node(c, make_copy) : new_root());\r\
+    \ PERSISTENT, int NODES>\r\nstruct Dynamic_Array {\r\n  static constexpr int LOG\
+    \ = 4;\r\n  static constexpr int MASK = (1 << LOG) - 1;\r\n  struct Node {\r\n\
+    \    T x;\r\n    Node* ch[1 << LOG] = {};\r\n  };\r\n  Node* pool;\r\n  int pid;\r\
+    \n  using np = Node*;\r\n  const T x0;\r\n\r\n  Dynamic_Array(T default_value)\
+    \ : pid(0), x0(default_value) {\r\n    pool = new Node[NODES];\r\n  }\r\n\r\n\
+    \  np new_root() {\r\n    pool[pid].x = x0;\r\n    fill(pool[pid].ch, pool[pid].ch\
+    \ + (1 << LOG), nullptr);\r\n    return &(pool[pid++]);\r\n  }\r\n\r\n  np new_node(vc<T>\
+    \ dat) {\r\n    np root = new_root();\r\n    FOR(i, len(dat)) root = set(root,\
+    \ i, dat[i], false);\r\n    return root;\r\n  }\r\n\r\n  T get(np c, int idx)\
+    \ {\r\n    if (!c) return x0;\r\n    if (idx == 0) return c->x;\r\n    return\
+    \ get(c->ch[idx & MASK], (idx - 1) >> LOG);\r\n  }\r\n\r\n  np set(np c, int idx,\
+    \ T x, bool make_copy = true) {\r\n    c = (c ? copy_node(c, make_copy) : new_root());\r\
     \n    if (idx == 0) {\r\n      c->x = x;\r\n      return c;\r\n    }\r\n    c->ch[idx\
     \ & MASK] = set(c->ch[idx & MASK], (idx - 1) >> LOG, x);\r\n    return c;\r\n\
     \  }\r\n\r\nprivate:\r\n  np copy_node(np c, bool make_copy) {\r\n    if (!make_copy\
@@ -281,7 +281,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc273_e.test.cpp
   requiredBy: []
-  timestamp: '2023-08-19 23:04:56+09:00'
+  timestamp: '2023-08-19 23:46:31+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc273_e.test.cpp
