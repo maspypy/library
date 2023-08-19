@@ -2,7 +2,7 @@
 #include "alg/monoid/mul.hpp"
 
 template <typename E>
-struct ActedMonoid_Add_Mul {
+struct ActedMonoid_Sum_Mul {
   using Monoid_X = Monoid_Add<E>;
   using Monoid_A = Monoid_Mul<E>;
   using X = typename Monoid_X::value_type;
