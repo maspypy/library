@@ -37,7 +37,7 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -533,41 +533,23 @@ data:
     \n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160 : 820);\r\n  return\
     \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\n}\r\n#line 3\
     \ \"poly/online/online_convolution.hpp\"\n\n/*\nquery(i)\uFF1Aa[i], b[i] \u3092\
-    \u4E0E\u3048\u3066 ab[i] \u3092\u5F97\u308B\u3002\n2^{17}\uFF1A176ms\n2^{18}\uFF1A\
-    370ms\n2^{19}\uFF1A800ms\n2^{20}\uFF1A1680ms\n*/\ntemplate <typename mint>\nstruct\
-    \ Online_Convolution {\n  const int thresh = 3;\n  vc<mint> f, g, h;\n  vc<vc<mint>>\
-    \ fft_f;\n  vc<vc<mint>> fft_g;\n\n  pair<vc<mint>, vc<mint>> calc_fft(int k)\
-    \ {\n    // \u73FE\u6642\u70B9\u3067\u306E\u672B\u5C3E 2^k \u9805\u306B\u5BFE\u3059\
-    \u308B fft \u30C7\u30FC\u30BF\u3092\u5F97\u308B\n    ll L = 1 << k;\n    if (k\
-    \ <= thresh) {\n      vc<mint> f_suff(f.end() - L, f.end());\n      vc<mint> g_suff(g.end()\
-    \ - L, g.end());\n      return {f_suff, g_suff};\n    }\n    vc<mint> f_suff(2\
-    \ * L), g_suff(2 * L);\n    FOR(i, 1 << k) { f_suff[i] = f[len(f) - L + i]; }\n\
-    \    FOR(i, 1 << k) { g_suff[i] = g[len(g) - L + i]; }\n    if (k <= thresh) return\
-    \ {f_suff, g_suff};\n    ntt(f_suff, 0);\n    ntt(g_suff, 0);\n    return {f_suff,\
-    \ g_suff};\n  }\n\n  void calc(int k) {\n    // suffix \u306E \u9577\u3055 2^k\
-    \ \u307E\u308F\u308A\u306E\u7573\u307F\u8FBC\u307F\u3092 h \u306B\u52A0\u7B97\u3059\
-    \u308B\n    auto [Ff, Fg] = calc_fft(k);\n    vc<mint> Fh(1 << (k + 1));\n   \
-    \ bool square = k >= len(fft_f);\n    if (square) {\n      // \u9577\u3055 2^k\
-    \ \u306E\u306F\u3058\u3081\u3066\u306E\u584A\u3002\n      fft_f.eb(Ff);\n    \
-    \  fft_g.eb(Fg);\n    }\n\n    if (k > thresh && square) {\n      FOR(i, 1 <<\
-    \ (k + 1)) Fh[i] += Ff[i] * Fg[i];\n      ntt(Fh, 1);\n    }\n    elif (k > thresh\
-    \ && !square) {\n      FOR(i, 1 << (k + 1)) {\n        Fh[i] += Ff[i] * fft_g[k][i];\n\
-    \        Fh[i] += Fg[i] * fft_f[k][i];\n      }\n      ntt(Fh, 1);\n    }\n  \
-    \  elif (k <= thresh && square) {\n      FOR(i, 1 << k) FOR(j, 1 << k) Fh[i +\
-    \ j] += Ff[i] * Fg[j];\n    }\n    elif (k <= thresh && !square) {\n      FOR(i,\
-    \ 1 << k) FOR(j, 1 << k) Fh[i + j] += Ff[i] * fft_g[k][j];\n      FOR(i, 1 <<\
-    \ k) FOR(j, 1 << k) Fh[i + j] += Fg[i] * fft_f[k][j];\n    }\n    // \u9069\u5207\
-    \u306A\u5834\u6240\u306B\u8DB3\u3057\u3053\u3080\n    int off = len(f) - 1;\n\
-    \    FOR(i, len(Fh) - 1) {\n      if (len(h) <= off + i) h.eb(0);\n      h[off\
-    \ + i] += Fh[i];\n    }\n  }\n\n  mint query(int i, mint f_i, mint g_i) {\n  \
-    \  assert(i == len(f));\n    f.eb(f_i);\n    g.eb(g_i);\n    FOR(k, 30) {\n  \
-    \    // \u9577\u3055 2^k \u306E\u90E8\u5206\u3092\u51E6\u7406\u3059\u308B\u304B\
-    \u3069\u3046\u304B\uFF1F\n      // i+2 \u304C 2^k \u306E\u500D\u6570\u304B\u3064\
-    \ i+2 >= 2^{k+1}\n      ll L = 1 << k;\n      bool bl = ((i + 2) % L == 0) &&\
-    \ (i + 2 >= 2 * L);\n      if (!bl) continue;\n      calc(k);\n    }\n    return\
-    \ h[i];\n  }\n};\n#line 3 \"poly/online/online_division.hpp\"\n\n// query(i)\uFF1A\
-    a[i], b[i] \u3092\u4E0E\u3048\u3066 (f/g)[i] \u3092\u5F97\u308B\u3002\n// g[0]\
-    \ == 1 \u3092\u4EEE\u5B9A\u3059\u308B\ntemplate <typename mint>\nstruct Online_Division\
+    \u4E0E\u3048\u3066 ab[i] \u3092\u5F97\u308B\u3002\n2^{17}\uFF1A127ms\n2^{18}\uFF1A\
+    277ms\n2^{19}\uFF1A570ms\n2^{20}\uFF1A1220ms\n*/\ntemplate <class mint>\nstruct\
+    \ Online_Convolution {\n  vc<mint> f, g, h, b0, b1;\n  vvc<mint> fm, gm;\n  int\
+    \ p;\n\n  Online_Convolution() : p(0) { assert(mint::can_ntt()); }\n\n  mint query(int\
+    \ i, mint f_i, mint g_i) {\n    assert(i == p);\n    f.eb(f_i), g.eb(g_i);\n \
+    \   int z = __builtin_ctz(p + 2), w = 1 << z, s;\n    if (p + 2 == w) {\n    \
+    \  b0 = f, b0.resize(2 * w);\n      ntt(b0, false);\n      fm.eb(b0.begin(), b0.begin()\
+    \ + w);\n      b1 = g, b1.resize(2 * w);\n      ntt(b1, false);\n      gm.eb(b1.begin(),\
+    \ b1.begin() + w);\n      FOR(i, 2 * w) b0[i] *= b1[i];\n      s = w - 2;\n  \
+    \    h.resize(2 * s + 2);\n    } else {\n      b0.assign(f.end() - w, f.end()),\
+    \ b0.resize(2 * w);\n      ntt(b0, false);\n      FOR(i, 2 * w) b0[i] *= gm[z][i];\n\
+    \      b1.assign(g.end() - w, g.end()), b1.resize(2 * w);\n      ntt(b1, false);\n\
+    \      FOR(i, 2 * w) b0[i] += b1[i] * fm[z][i];\n      s = w - 1;\n    }\n   \
+    \ ntt(b0, true);\n    FOR(i, s + 1) h[p + i] += b0[s + i];\n    return h[p++];\n\
+    \  }\n};\n#line 3 \"poly/online/online_division.hpp\"\n\n// query(i)\uFF1Aa[i],\
+    \ b[i] \u3092\u4E0E\u3048\u3066 (f/g)[i] \u3092\u5F97\u308B\u3002\n// g[0] ==\
+    \ 1 \u3092\u4EEE\u5B9A\u3059\u308B\ntemplate <typename mint>\nstruct Online_Division\
     \ {\n  vc<mint> f, g, F;\n  Online_Convolution<mint> X;\n\n  mint query(int i,\
     \ mint f_i, mint g_i) {\n    assert(i == len(f));\n    f.eb(f_i);\n    g.eb(g_i);\n\
     \    if (i == 0) {\n      assert(g_i == mint(1));\n      F.eb(f_i);\n      return\
@@ -609,7 +591,7 @@ data:
   isVerificationFile: true
   path: test/mytest/online_division.test.cpp
   requiredBy: []
-  timestamp: '2023-08-10 12:06:50+09:00'
+  timestamp: '2023-08-20 01:21:28+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/online_division.test.cpp

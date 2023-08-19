@@ -122,7 +122,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -140,6 +140,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/online/online_pow.hpp
     title: poly/online/online_pow.hpp
+  - icon: ':warning:'
+    path: poly/online/online_square.hpp
+    title: poly/online/online_square.hpp
   - icon: ':heavy_check_mark:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
@@ -570,7 +573,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc222h_2.test.cpp
     title: test_atcoder/abc222h_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc230h.test.cpp
     title: test_atcoder/abc230h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -767,6 +770,7 @@ data:
   - poly/convolution.hpp
   - poly/online/online_exp.hpp
   - poly/online/online_inv.hpp
+  - poly/online/online_square.hpp
   - poly/online/online_log.hpp
   - poly/online/online_pow.hpp
   - poly/online/online_convolution.hpp

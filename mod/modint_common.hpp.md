@@ -141,24 +141,6 @@ data:
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
   - icon: ':heavy_check_mark:'
-    path: poly/online/online_convolution.hpp
-    title: poly/online/online_convolution.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/online/online_division.hpp
-    title: poly/online/online_division.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/online/online_exp.hpp
-    title: poly/online/online_exp.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/online/online_inv.hpp
-    title: poly/online/online_inv.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/online/online_log.hpp
-    title: poly/online/online_log.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/online/online_pow.hpp
-    title: poly/online/online_pow.hpp
-  - icon: ':heavy_check_mark:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
   - icon: ':heavy_check_mark:'
@@ -218,9 +200,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/partition_number.hpp
     title: seq/famous/partition_number.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/famous/simple_permutations.hpp
-    title: seq/famous/simple_permutations.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
@@ -897,13 +876,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc152e.test.cpp
     title: test_atcoder/abc152e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc160f.test.cpp
     title: test_atcoder/abc160f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc200f.test.cpp
     title: test_atcoder/abc200f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -927,7 +906,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc227g.test.cpp
     title: test_atcoder/abc227g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc230h.test.cpp
     title: test_atcoder/abc230h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1107,12 +1086,6 @@ data:
   - poly/partial_frac_decomposition_1.hpp
   - poly/prefix_product_of_poly.hpp
   - poly/convolution.hpp
-  - poly/online/online_exp.hpp
-  - poly/online/online_inv.hpp
-  - poly/online/online_log.hpp
-  - poly/online/online_pow.hpp
-  - poly/online/online_convolution.hpp
-  - poly/online/online_division.hpp
   - poly/fps_sqrt.hpp
   - poly/convolution_leq.hpp
   - poly/fps_log.hpp
@@ -1158,7 +1131,6 @@ data:
   - seq/famous/stirling_number_2.hpp
   - seq/famous/partition_number.hpp
   - seq/famous/bell_number_large.hpp
-  - seq/famous/simple_permutations.hpp
   - seq/famous/eulerian_number.hpp
   - seq/famous/indecomposable_permutations.hpp
   - seq/famous/stirling_number_1.hpp

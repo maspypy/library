@@ -37,7 +37,7 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -534,64 +534,46 @@ data:
     \ int N) {\n  vc<mint> f(N + 1);\n  FOR(i, N + 1) f[i] = fact<mint>(i);\n  f =\
     \ fps_inv(f);\n  for (auto&& x: f) x = -x;\n  f[0] += mint(1);\n  return f;\n\
     }\n#line 3 \"poly/online/online_convolution.hpp\"\n\n/*\nquery(i)\uFF1Aa[i], b[i]\
-    \ \u3092\u4E0E\u3048\u3066 ab[i] \u3092\u5F97\u308B\u3002\n2^{17}\uFF1A176ms\n\
-    2^{18}\uFF1A370ms\n2^{19}\uFF1A800ms\n2^{20}\uFF1A1680ms\n*/\ntemplate <typename\
-    \ mint>\nstruct Online_Convolution {\n  const int thresh = 3;\n  vc<mint> f, g,\
-    \ h;\n  vc<vc<mint>> fft_f;\n  vc<vc<mint>> fft_g;\n\n  pair<vc<mint>, vc<mint>>\
-    \ calc_fft(int k) {\n    // \u73FE\u6642\u70B9\u3067\u306E\u672B\u5C3E 2^k \u9805\
-    \u306B\u5BFE\u3059\u308B fft \u30C7\u30FC\u30BF\u3092\u5F97\u308B\n    ll L =\
-    \ 1 << k;\n    if (k <= thresh) {\n      vc<mint> f_suff(f.end() - L, f.end());\n\
-    \      vc<mint> g_suff(g.end() - L, g.end());\n      return {f_suff, g_suff};\n\
-    \    }\n    vc<mint> f_suff(2 * L), g_suff(2 * L);\n    FOR(i, 1 << k) { f_suff[i]\
-    \ = f[len(f) - L + i]; }\n    FOR(i, 1 << k) { g_suff[i] = g[len(g) - L + i];\
-    \ }\n    if (k <= thresh) return {f_suff, g_suff};\n    ntt(f_suff, 0);\n    ntt(g_suff,\
-    \ 0);\n    return {f_suff, g_suff};\n  }\n\n  void calc(int k) {\n    // suffix\
-    \ \u306E \u9577\u3055 2^k \u307E\u308F\u308A\u306E\u7573\u307F\u8FBC\u307F\u3092\
-    \ h \u306B\u52A0\u7B97\u3059\u308B\n    auto [Ff, Fg] = calc_fft(k);\n    vc<mint>\
-    \ Fh(1 << (k + 1));\n    bool square = k >= len(fft_f);\n    if (square) {\n \
-    \     // \u9577\u3055 2^k \u306E\u306F\u3058\u3081\u3066\u306E\u584A\u3002\n \
-    \     fft_f.eb(Ff);\n      fft_g.eb(Fg);\n    }\n\n    if (k > thresh && square)\
-    \ {\n      FOR(i, 1 << (k + 1)) Fh[i] += Ff[i] * Fg[i];\n      ntt(Fh, 1);\n \
-    \   }\n    elif (k > thresh && !square) {\n      FOR(i, 1 << (k + 1)) {\n    \
-    \    Fh[i] += Ff[i] * fft_g[k][i];\n        Fh[i] += Fg[i] * fft_f[k][i];\n  \
-    \    }\n      ntt(Fh, 1);\n    }\n    elif (k <= thresh && square) {\n      FOR(i,\
-    \ 1 << k) FOR(j, 1 << k) Fh[i + j] += Ff[i] * Fg[j];\n    }\n    elif (k <= thresh\
-    \ && !square) {\n      FOR(i, 1 << k) FOR(j, 1 << k) Fh[i + j] += Ff[i] * fft_g[k][j];\n\
-    \      FOR(i, 1 << k) FOR(j, 1 << k) Fh[i + j] += Fg[i] * fft_f[k][j];\n    }\n\
-    \    // \u9069\u5207\u306A\u5834\u6240\u306B\u8DB3\u3057\u3053\u3080\n    int\
-    \ off = len(f) - 1;\n    FOR(i, len(Fh) - 1) {\n      if (len(h) <= off + i) h.eb(0);\n\
-    \      h[off + i] += Fh[i];\n    }\n  }\n\n  mint query(int i, mint f_i, mint\
-    \ g_i) {\n    assert(i == len(f));\n    f.eb(f_i);\n    g.eb(g_i);\n    FOR(k,\
-    \ 30) {\n      // \u9577\u3055 2^k \u306E\u90E8\u5206\u3092\u51E6\u7406\u3059\u308B\
-    \u304B\u3069\u3046\u304B\uFF1F\n      // i+2 \u304C 2^k \u306E\u500D\u6570\u304B\
-    \u3064 i+2 >= 2^{k+1}\n      ll L = 1 << k;\n      bool bl = ((i + 2) % L == 0)\
-    \ && (i + 2 >= 2 * L);\n      if (!bl) continue;\n      calc(k);\n    }\n    return\
-    \ h[i];\n  }\n};\n#line 2 \"seq/famous/simple_permutations.hpp\"\n\n// https://oeis.org/A059372\
-    \ sum_{n>0} n!x^n \u306E\u9006\u95A2\u6570\ntemplate <typename mint>\nvc<mint>\
-    \ revert_transform_of_factorials(const int N) {\n  // xQ' = Q^2 + (1+x)Q'Q\n \
-    \ // R = Q^2 \u3068\u3057\u3066\u3001xQ' = R + 1/2 (1+x)R'\n  // [x^n] \u3092\u898B\
-    \u308B\u3068\u3001nQn = Rn + 1/2(n+1)R_{n+1} + 1/2 nR_n \u306E\u5F62\n  //\n \
-    \ // Q = x + x^2F \u3068\u3059\u308C\u3070 F_{n-3} \u307E\u3067\u5206\u304B\u3063\
-    \u305F\u6642\u70B9\u3067\n  // Q_{n-1}, R_n \u307E\u3067\u78BA\u5B9A\u3002R =\
-    \ x^2+x^4F^2+2x^3F \u3068\u3057\u3066\u3001\n  // Q_n = F_{n-2}, R_{n+1} = (\u78BA\
-    \u5B9A) + 2F_{n-2} \u306E\u5F62\n  vc<mint> Q(N + 1), R(N + 2);\n  Q[1] = 1, R[2]\
-    \ = 1;\n  vc<mint> F(N - 1), FF(N - 1);\n  Online_Convolution<mint> X;\n  FOR(n,\
-    \ 2, N + 1) {\n    mint x = R[n] + mint(n) * inv<mint>(2) * R[n];\n    if (n >=\
-    \ 3) x += mint(n + 1) * FF[n - 3] * inv<mint>(2);\n    Q[n] = F[n - 2] = -x;\n\
-    \    FF[n - 2] = X.query(n - 2, x, x);\n    if (n + 1 >= 4) R[n + 1] += FF[n +\
-    \ 1 - 4];\n    R[n + 1] += mint(2) * F[n - 2];\n  }\n  return Q;\n}\n\n// https://oeis.org/A111111\n\
-    // \u305F\u3060\u3057\u3001n=1, 2 \u306B\u5BFE\u3057\u3066\u306F 0 \u3092\u8FD4\
-    \u3059\u3088\u3046\u306B\u3057\u3066\u3044\u308B\ntemplate <typename mint>\nvc<mint>\
-    \ simple_permutations(const int N) {\n  vc<mint> S = revert_transform_of_factorials<mint>(N);\n\
-    \  for (auto&& x: S) x = -x;\n  S[1] += mint(1);\n  FOR(i, 2, N + 1) {\n    if\
-    \ (i % 2 == 0) S[i] -= 2;\n    if (i % 2 == 1) S[i] += 2;\n  }\n  return S;\n\
-    }\n#line 7 \"test/mytest/simple_perm.test.cpp\"\n\nusing mint = modint998;\n\n\
-    \nvoid test() {\n  vc<mint> I = indecomposable_permutations<mint>(10);\n  assert(I\n\
-    \         == vc<mint>({0, 1, 1, 3, 13, 71, 461, 3447, 29093, 273343, 2829325}));\n\
-    \  vc<mint> S = simple_permutations<mint>(10);\n  assert(S == vc<mint>({0, 0,\
-    \ 0, 0, 2, 6, 46, 338, 2926, 28146, 298526}));\n}\n\nvoid solve() {\n  LL(a, b);\n\
-    \  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n\
-    }\n"
+    \ \u3092\u4E0E\u3048\u3066 ab[i] \u3092\u5F97\u308B\u3002\n2^{17}\uFF1A127ms\n\
+    2^{18}\uFF1A277ms\n2^{19}\uFF1A570ms\n2^{20}\uFF1A1220ms\n*/\ntemplate <class\
+    \ mint>\nstruct Online_Convolution {\n  vc<mint> f, g, h, b0, b1;\n  vvc<mint>\
+    \ fm, gm;\n  int p;\n\n  Online_Convolution() : p(0) { assert(mint::can_ntt());\
+    \ }\n\n  mint query(int i, mint f_i, mint g_i) {\n    assert(i == p);\n    f.eb(f_i),\
+    \ g.eb(g_i);\n    int z = __builtin_ctz(p + 2), w = 1 << z, s;\n    if (p + 2\
+    \ == w) {\n      b0 = f, b0.resize(2 * w);\n      ntt(b0, false);\n      fm.eb(b0.begin(),\
+    \ b0.begin() + w);\n      b1 = g, b1.resize(2 * w);\n      ntt(b1, false);\n \
+    \     gm.eb(b1.begin(), b1.begin() + w);\n      FOR(i, 2 * w) b0[i] *= b1[i];\n\
+    \      s = w - 2;\n      h.resize(2 * s + 2);\n    } else {\n      b0.assign(f.end()\
+    \ - w, f.end()), b0.resize(2 * w);\n      ntt(b0, false);\n      FOR(i, 2 * w)\
+    \ b0[i] *= gm[z][i];\n      b1.assign(g.end() - w, g.end()), b1.resize(2 * w);\n\
+    \      ntt(b1, false);\n      FOR(i, 2 * w) b0[i] += b1[i] * fm[z][i];\n     \
+    \ s = w - 1;\n    }\n    ntt(b0, true);\n    FOR(i, s + 1) h[p + i] += b0[s +\
+    \ i];\n    return h[p++];\n  }\n};\n#line 2 \"seq/famous/simple_permutations.hpp\"\
+    \n\n// https://oeis.org/A059372 sum_{n>0} n!x^n \u306E\u9006\u95A2\u6570\ntemplate\
+    \ <typename mint>\nvc<mint> revert_transform_of_factorials(const int N) {\n  //\
+    \ xQ' = Q^2 + (1+x)Q'Q\n  // R = Q^2 \u3068\u3057\u3066\u3001xQ' = R + 1/2 (1+x)R'\n\
+    \  // [x^n] \u3092\u898B\u308B\u3068\u3001nQn = Rn + 1/2(n+1)R_{n+1} + 1/2 nR_n\
+    \ \u306E\u5F62\n  //\n  // Q = x + x^2F \u3068\u3059\u308C\u3070 F_{n-3} \u307E\
+    \u3067\u5206\u304B\u3063\u305F\u6642\u70B9\u3067\n  // Q_{n-1}, R_n \u307E\u3067\
+    \u78BA\u5B9A\u3002R = x^2+x^4F^2+2x^3F \u3068\u3057\u3066\u3001\n  // Q_n = F_{n-2},\
+    \ R_{n+1} = (\u78BA\u5B9A) + 2F_{n-2} \u306E\u5F62\n  vc<mint> Q(N + 1), R(N +\
+    \ 2);\n  Q[1] = 1, R[2] = 1;\n  vc<mint> F(N - 1), FF(N - 1);\n  Online_Convolution<mint>\
+    \ X;\n  FOR(n, 2, N + 1) {\n    mint x = R[n] + mint(n) * inv<mint>(2) * R[n];\n\
+    \    if (n >= 3) x += mint(n + 1) * FF[n - 3] * inv<mint>(2);\n    Q[n] = F[n\
+    \ - 2] = -x;\n    FF[n - 2] = X.query(n - 2, x, x);\n    if (n + 1 >= 4) R[n +\
+    \ 1] += FF[n + 1 - 4];\n    R[n + 1] += mint(2) * F[n - 2];\n  }\n  return Q;\n\
+    }\n\n// https://oeis.org/A111111\n// \u305F\u3060\u3057\u3001n=1, 2 \u306B\u5BFE\
+    \u3057\u3066\u306F 0 \u3092\u8FD4\u3059\u3088\u3046\u306B\u3057\u3066\u3044\u308B\
+    \ntemplate <typename mint>\nvc<mint> simple_permutations(const int N) {\n  vc<mint>\
+    \ S = revert_transform_of_factorials<mint>(N);\n  for (auto&& x: S) x = -x;\n\
+    \  S[1] += mint(1);\n  FOR(i, 2, N + 1) {\n    if (i % 2 == 0) S[i] -= 2;\n  \
+    \  if (i % 2 == 1) S[i] += 2;\n  }\n  return S;\n}\n#line 7 \"test/mytest/simple_perm.test.cpp\"\
+    \n\nusing mint = modint998;\n\n\nvoid test() {\n  vc<mint> I = indecomposable_permutations<mint>(10);\n\
+    \  assert(I\n         == vc<mint>({0, 1, 1, 3, 13, 71, 461, 3447, 29093, 273343,\
+    \ 2829325}));\n  vc<mint> S = simple_permutations<mint>(10);\n  assert(S == vc<mint>({0,\
+    \ 0, 0, 0, 2, 6, 46, 338, 2926, 28146, 298526}));\n}\n\nvoid solve() {\n  LL(a,\
+    \ b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n#include \"seq/famous/indecomposable_permutations.hpp\"\
     \n#include \"seq/famous/simple_permutations.hpp\"\n\nusing mint = modint998;\n\
@@ -620,7 +602,7 @@ data:
   isVerificationFile: true
   path: test/mytest/simple_perm.test.cpp
   requiredBy: []
-  timestamp: '2023-08-10 12:06:50+09:00'
+  timestamp: '2023-08-20 01:21:28+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/simple_perm.test.cpp

@@ -4,20 +4,11 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
-    path: poly/online/online_convolution.hpp
-    title: poly/online/online_convolution.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/online/online_division.hpp
-    title: poly/online/online_division.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/online_inv.test.cpp
-    title: test/mytest/online_inv.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>&\
@@ -75,54 +66,44 @@ data:
     \ (a0 + a1 + 2 * mod - a2 - a3) * irot2.val;\r\n            a[i + offset + 3 *\
     \ p] = (a0 + 2 * mod - a1 - x) * irot3.val;\r\n          }\r\n          irot *=\
     \ irate3[topbit(~s & -~s)];\r\n        }\r\n        len -= 2;\r\n      }\r\n \
-    \   }\r\n  }\r\n}\r\n#line 3 \"poly/online/online_convolution.hpp\"\n\n/*\nquery(i)\uFF1A\
-    a[i], b[i] \u3092\u4E0E\u3048\u3066 ab[i] \u3092\u5F97\u308B\u3002\n2^{17}\uFF1A\
-    127ms\n2^{18}\uFF1A277ms\n2^{19}\uFF1A570ms\n2^{20}\uFF1A1220ms\n*/\ntemplate\
-    \ <class mint>\nstruct Online_Convolution {\n  vc<mint> f, g, h, b0, b1;\n  vvc<mint>\
-    \ fm, gm;\n  int p;\n\n  Online_Convolution() : p(0) { assert(mint::can_ntt());\
-    \ }\n\n  mint query(int i, mint f_i, mint g_i) {\n    assert(i == p);\n    f.eb(f_i),\
-    \ g.eb(g_i);\n    int z = __builtin_ctz(p + 2), w = 1 << z, s;\n    if (p + 2\
-    \ == w) {\n      b0 = f, b0.resize(2 * w);\n      ntt(b0, false);\n      fm.eb(b0.begin(),\
-    \ b0.begin() + w);\n      b1 = g, b1.resize(2 * w);\n      ntt(b1, false);\n \
-    \     gm.eb(b1.begin(), b1.begin() + w);\n      FOR(i, 2 * w) b0[i] *= b1[i];\n\
-    \      s = w - 2;\n      h.resize(2 * s + 2);\n    } else {\n      b0.assign(f.end()\
-    \ - w, f.end()), b0.resize(2 * w);\n      ntt(b0, false);\n      FOR(i, 2 * w)\
-    \ b0[i] *= gm[z][i];\n      b1.assign(g.end() - w, g.end()), b1.resize(2 * w);\n\
-    \      ntt(b1, false);\n      FOR(i, 2 * w) b0[i] += b1[i] * fm[z][i];\n     \
-    \ s = w - 1;\n    }\n    ntt(b0, true);\n    FOR(i, s + 1) h[p + i] += b0[s +\
-    \ i];\n    return h[p++];\n  }\n};\n#line 3 \"poly/online/online_division.hpp\"\
-    \n\n// query(i)\uFF1Aa[i], b[i] \u3092\u4E0E\u3048\u3066 (f/g)[i] \u3092\u5F97\
-    \u308B\u3002\n// g[0] == 1 \u3092\u4EEE\u5B9A\u3059\u308B\ntemplate <typename\
-    \ mint>\nstruct Online_Division {\n  vc<mint> f, g, F;\n  Online_Convolution<mint>\
-    \ X;\n\n  mint query(int i, mint f_i, mint g_i) {\n    assert(i == len(f));\n\
-    \    f.eb(f_i);\n    g.eb(g_i);\n    if (i == 0) {\n      assert(g_i == mint(1));\n\
-    \      F.eb(f_i);\n      return F[0];\n    }\n    F.eb(f[i] - X.query(i - 1, F[i\
-    \ - 1], g[i]));\n    return F[i];\n  }\n};\n#line 2 \"poly/online/online_inv.hpp\"\
-    \n\n// query(i)\uFF1Af[i] \u3092\u4E0E\u3048\u3066 (f^{-1})[i] \u3092\u5F97\u308B\
-    \u3002\n// f[0] == 1 \u3092\u4EEE\u5B9A\u3059\u308B\u3002\ntemplate <typename\
-    \ mint>\nstruct Online_Inv {\n  Online_Division<mint> X;\n\n  mint query(int i,\
-    \ mint f_i) {\n    mint g_i = (i == 0 ? mint(1) : mint(0));\n    return X.query(i,\
-    \ g_i, f_i);\n  }\n};\n"
-  code: "#include \"poly/online/online_division.hpp\"\n\n// query(i)\uFF1Af[i] \u3092\
-    \u4E0E\u3048\u3066 (f^{-1})[i] \u3092\u5F97\u308B\u3002\n// f[0] == 1 \u3092\u4EEE\
-    \u5B9A\u3059\u308B\u3002\ntemplate <typename mint>\nstruct Online_Inv {\n  Online_Division<mint>\
-    \ X;\n\n  mint query(int i, mint f_i) {\n    mint g_i = (i == 0 ? mint(1) : mint(0));\n\
-    \    return X.query(i, g_i, f_i);\n  }\n};\n"
+    \   }\r\n  }\r\n}\r\n#line 3 \"poly/online/online_square.hpp\"\n\n/*\nquery(i)\uFF1A\
+    a[i]] \u3092\u4E0E\u3048\u3066 (a^2)[i] \u3092\u5F97\u308B\u3002\n2^{17}\uFF1A\
+    52ms\n2^{18}\uFF1A107ms\n2^{19}\uFF1A237ms\n2^{20}\uFF1A499ms\n*/\ntemplate <class\
+    \ mint>\nstruct Online_Square {\n  vc<mint> f, h, b0, b1;\n  vvc<mint> fm;\n \
+    \ int p;\n\n  Online_Square() : p(0) { assert(mint::can_ntt()); }\n\n  mint query(int\
+    \ i, mint f_i) {\n    assert(i == p);\n    f.eb(f_i);\n    int z = __builtin_ctz(p\
+    \ + 2), w = 1 << z, s;\n    if (p + 2 == w) {\n      b0 = f, b0.resize(2 * w);\n\
+    \      ntt(b0, false);\n      fm.eb(b0.begin(), b0.begin() + w);\n      FOR(i,\
+    \ 2 * w) b0[i] *= b0[i];\n      s = w - 2;\n      h.resize(2 * s + 2);\n    }\
+    \ else {\n      b0.assign(f.end() - w, f.end()), b0.resize(2 * w);\n      ntt(b0,\
+    \ false);\n      FOR(i, 2 * w) b0[i] *= mint(2) * fm[z][i];\n      s = w - 1;\n\
+    \    }\n    ntt(b0, true);\n    FOR(i, s + 1) h[p + i] += b0[s + i];\n    return\
+    \ h[p++];\n  }\n};\n"
+  code: "#pragma once\n#include \"poly/ntt.hpp\"\n\n/*\nquery(i)\uFF1Aa[i]] \u3092\
+    \u4E0E\u3048\u3066 (a^2)[i] \u3092\u5F97\u308B\u3002\n2^{17}\uFF1A52ms\n2^{18}\uFF1A\
+    107ms\n2^{19}\uFF1A237ms\n2^{20}\uFF1A499ms\n*/\ntemplate <class mint>\nstruct\
+    \ Online_Square {\n  vc<mint> f, h, b0, b1;\n  vvc<mint> fm;\n  int p;\n\n  Online_Square()\
+    \ : p(0) { assert(mint::can_ntt()); }\n\n  mint query(int i, mint f_i) {\n   \
+    \ assert(i == p);\n    f.eb(f_i);\n    int z = __builtin_ctz(p + 2), w = 1 <<\
+    \ z, s;\n    if (p + 2 == w) {\n      b0 = f, b0.resize(2 * w);\n      ntt(b0,\
+    \ false);\n      fm.eb(b0.begin(), b0.begin() + w);\n      FOR(i, 2 * w) b0[i]\
+    \ *= b0[i];\n      s = w - 2;\n      h.resize(2 * s + 2);\n    } else {\n    \
+    \  b0.assign(f.end() - w, f.end()), b0.resize(2 * w);\n      ntt(b0, false);\n\
+    \      FOR(i, 2 * w) b0[i] *= mint(2) * fm[z][i];\n      s = w - 1;\n    }\n \
+    \   ntt(b0, true);\n    FOR(i, s + 1) h[p + i] += b0[s + i];\n    return h[p++];\n\
+    \  }\n};\n"
   dependsOn:
-  - poly/online/online_division.hpp
-  - poly/online/online_convolution.hpp
   - poly/ntt.hpp
   isVerificationFile: false
-  path: poly/online/online_inv.hpp
+  path: poly/online/online_square.hpp
   requiredBy: []
   timestamp: '2023-08-20 01:21:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/mytest/online_inv.test.cpp
-documentation_of: poly/online/online_inv.hpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: poly/online/online_square.hpp
 layout: document
 redirect_from:
-- /library/poly/online/online_inv.hpp
-- /library/poly/online/online_inv.hpp.html
-title: poly/online/online_inv.hpp
+- /library/poly/online/online_square.hpp
+- /library/poly/online/online_square.hpp.html
+title: poly/online/online_square.hpp
 ---
