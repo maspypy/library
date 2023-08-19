@@ -20,7 +20,7 @@ void solve() {
     DEN.eb(poly{mint(1), -q});
   }
   poly g = convolution_all(DEN);
-  g.resize(M + 1);
+  if (len(g) < M + 1) g.resize(M + 1);
 
   // e^{Nx}
   poly f(M + 1);
@@ -29,9 +29,8 @@ void solve() {
     f[i] = fact_inv<mint>(i) * pow;
     pow *= mint(N);
   }
-  print(len(g), "g", g);
   g = composition_f_ex(g);
-  print(len(g), "g", g);
+  g.resize(M + 1);
   f = fps_div(f, g);
   FOR(i, 1, M + 1) print(f[i] * fact<mint>(i) * cf);
 }
