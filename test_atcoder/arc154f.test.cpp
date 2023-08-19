@@ -29,7 +29,9 @@ void solve() {
     f[i] = fact_inv<mint>(i) * pow;
     pow *= mint(N);
   }
+  print(len(g), "g", g);
   g = composition_f_ex(g);
+  print(len(g), "g", g);
   f = fps_div(f, g);
   FOR(i, 1, M + 1) print(f[i] * fact<mint>(i) * cf);
 }
