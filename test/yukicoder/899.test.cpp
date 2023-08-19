@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "graph/ds/bfs_numbering.hpp"
 #include "ds/segtree/lazy_segtree.hpp"
-#include "alg/acted_monoid/add_mul.hpp"
+#include "alg/acted_monoid/sum_mul.hpp"
 
 void solve() {
   LL(N);
@@ -19,7 +19,7 @@ void solve() {
     seg_raw[ID[v]] = a;
   }
 
-  using AM = ActedMonoid_Add_Mul<ll>;
+  using AM = ActedMonoid_Sum_Mul<ll>;
   Lazy_SegTree<AM> seg(seg_raw);
 
   LL(Q);
@@ -44,13 +44,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }
