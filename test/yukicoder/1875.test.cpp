@@ -21,17 +21,12 @@ void solve() {
   poly f = product_of_pow_of_linear(M, A, B, C);
   // f(e^x-1) を求めたい
   f = poly_taylor_shift(f, mint(-1));
-  f = composition_f_ex(M, f);
+  f = composition_f_ex(f);
   FOR(i, M + 1) f[i] *= fact<mint>(i);
   FOR(i, 1, M + 1) print(f[i]);
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
