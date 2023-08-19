@@ -83,7 +83,7 @@ struct Lazy_Tree_Monoid {
   }
 
   template <class F>
-  int max_path(F &check, int u, int v) {
+  int max_path(F check, int u, int v) {
     if constexpr (edge) return max_path_edge(check, u, v);
     if (!check(prod_path(u, u))) return -1;
     auto pd = tree.get_path_decomposition(u, v, edge);
