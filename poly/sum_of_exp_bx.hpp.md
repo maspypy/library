@@ -356,15 +356,15 @@ data:
     \ mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  assert(f[0] != mint(0));\r\
     \n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160 : 820);\r\n  return\
     \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\n}\r\n#line 3\
-    \ \"poly/sum_of_exp_bx.hpp\"\n\n// sum a e^{bx} \u3092 N \u6B21\u307E\u3067\u3002\
-    O(Mlog^2M + NlogN)\ntemplate <typename mint>\nvc<mint> sum_of_exp_bx(int N, vc<pair<mint,\
-    \ mint>> AB) {\n  using poly = vc<mint>;\n  vc<pair<poly, poly>> fracs;\n  for\
-    \ (auto&& [a, b]: AB) {\n    poly num = {a};\n    poly den = {mint(1), -b};\n\
-    \    fracs.eb(num, den);\n  }\n  auto [f, g] = sum_of_rationals<mint>(fracs);\n\
+    \ \"poly/sum_of_exp_bx.hpp\"\n\n// sum a e^{bx} \u3092 [0,NN \u6B21\u307E\u3067\
+    \u3002O(Mlog^2M + NlogN)\ntemplate <typename mint>\nvc<mint> sum_of_exp_bx(int\
+    \ N, vc<pair<mint, mint>> AB) {\n  using poly = vc<mint>;\n  vc<pair<poly, poly>>\
+    \ fracs;\n  for (auto&& [a, b]: AB) {\n    poly num = {a};\n    poly den = {mint(1),\
+    \ -b};\n    fracs.eb(num, den);\n  }\n  auto [f, g] = sum_of_rationals<mint>(fracs);\n\
     \  g.resize(N + 1);\n  f = convolution(f, fps_inv(g));\n  f.resize(N + 1);\n \
     \ FOR(n, N + 1) f[n] *= fact_inv<mint>(n);\n  return f;\n}\n"
   code: "#include \"poly/sum_of_rationals.hpp\"\n#include \"poly/fps_inv.hpp\"\n\n\
-    // sum a e^{bx} \u3092 N \u6B21\u307E\u3067\u3002O(Mlog^2M + NlogN)\ntemplate\
+    // sum a e^{bx} \u3092 [0,NN \u6B21\u307E\u3067\u3002O(Mlog^2M + NlogN)\ntemplate\
     \ <typename mint>\nvc<mint> sum_of_exp_bx(int N, vc<pair<mint, mint>> AB) {\n\
     \  using poly = vc<mint>;\n  vc<pair<poly, poly>> fracs;\n  for (auto&& [a, b]:\
     \ AB) {\n    poly num = {a};\n    poly den = {mint(1), -b};\n    fracs.eb(num,\
@@ -388,7 +388,7 @@ data:
   requiredBy:
   - poly/composition_f_ex.hpp
   - poly/composition_f_1_minus_ex.hpp
-  timestamp: '2023-08-10 12:06:50+09:00'
+  timestamp: '2023-08-20 03:20:06+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1875.test.cpp

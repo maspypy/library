@@ -565,25 +565,28 @@ data:
     \ = len(dat);\n    FOR(i, 1, n, 2) { dat[i - 1] = add(dat[i - 1], dat[i]); }\n\
     \    FOR(i, ceil(n, 2)) dat[i] = dat[2 * i];\n    dat.resize(ceil(n, 2));\n  }\n\
     \  return dat[0];\n}\n#line 3 \"poly/sum_of_exp_bx.hpp\"\n\n// sum a e^{bx} \u3092\
-    \ N \u6B21\u307E\u3067\u3002O(Mlog^2M + NlogN)\ntemplate <typename mint>\nvc<mint>\
-    \ sum_of_exp_bx(int N, vc<pair<mint, mint>> AB) {\n  using poly = vc<mint>;\n\
+    \ [0,NN \u6B21\u307E\u3067\u3002O(Mlog^2M + NlogN)\ntemplate <typename mint>\n\
+    vc<mint> sum_of_exp_bx(int N, vc<pair<mint, mint>> AB) {\n  using poly = vc<mint>;\n\
     \  vc<pair<poly, poly>> fracs;\n  for (auto&& [a, b]: AB) {\n    poly num = {a};\n\
     \    poly den = {mint(1), -b};\n    fracs.eb(num, den);\n  }\n  auto [f, g] =\
     \ sum_of_rationals<mint>(fracs);\n  g.resize(N + 1);\n  f = convolution(f, fps_inv(g));\n\
     \  f.resize(N + 1);\n  FOR(n, N + 1) f[n] *= fact_inv<mint>(n);\n  return f;\n\
     }\n#line 2 \"poly/composition_f_ex.hpp\"\n\n// N \u6B21\u591A\u9805\u5F0F f \u306B\
-    \u5BFE\u3057\u3066\u3001f(e^x) \u3092 N \u6B21\u307E\u3067\u3002O(Nlog^2N)\ntemplate\
-    \ <typename mint>\nvc<mint> composition_f_ex(vc<mint> f) {\n  int N = len(f) -\
-    \ 1;\n  vc<pair<mint, mint>> AB;\n  FOR(k, len(f)) AB.eb(f[k], mint(k));\n  return\
-    \ sum_of_exp_bx(N, AB);\n}\n#line 8 \"test_atcoder/arc154f.test.cpp\"\n\nusing\
-    \ mint = modint998;\nusing poly = vc<mint>;\n\nvoid solve() {\n  LL(N, M);\n \
-    \ vc<poly> DEN;\n  mint cf = 1;\n  FOR(i, N) {\n    mint p = inv<mint>(N) * mint(N\
-    \ - i);\n    mint q = mint(1) - p;\n    cf *= p;\n    DEN.eb(poly{mint(1), -q});\n\
-    \  }\n  poly g = convolution_all(DEN);\n  // e^{Nx}\n  poly f(M + 1);\n  mint\
-    \ pow = 1;\n  FOR(i, M + 1) {\n    f[i] = fact_inv<mint>(i) * pow;\n    pow *=\
-    \ mint(N);\n  }\n  g = composition_f_ex(g);\n  f = fps_div(f, g);\n  FOR(i, 1,\
-    \ M + 1) print(f[i] * fact<mint>(i) * cf);\n}\n\nsigned main() {\n  solve();\n\
-    \  return 0;\n}\n"
+    \u5BFE\u3057\u3066\u3001f(e^x) \u3092 [0,N] \u6B21\u307E\u3067\u3002O(Nlog^2N)\n\
+    // f \u304C N \u3088\u308A\u9577\u304F\u3066\u6B32\u3057\u3044\u3082\u306E\u304C\
+    \ [0,N] \u3068\u3044\u3046\u5834\u5408\u3082 f \u3092 resize(N+1)\n// \u3059\u308B\
+    \u3068\u7B54\u304C\u5909\u308F\u308B\u306E\u3067\u6CE8\u610F\ntemplate <typename\
+    \ mint>\nvc<mint> composition_f_ex(vc<mint> f) {\n  int N = len(f) - 1;\n  vc<pair<mint,\
+    \ mint>> AB;\n  FOR(k, len(f)) AB.eb(f[k], mint(k));\n  return sum_of_exp_bx(N,\
+    \ AB);\n}\n#line 8 \"test_atcoder/arc154f.test.cpp\"\n\nusing mint = modint998;\n\
+    using poly = vc<mint>;\n\nvoid solve() {\n  LL(N, M);\n  vc<poly> DEN;\n  mint\
+    \ cf = 1;\n  FOR(i, N) {\n    mint p = inv<mint>(N) * mint(N - i);\n    mint q\
+    \ = mint(1) - p;\n    cf *= p;\n    DEN.eb(poly{mint(1), -q});\n  }\n  poly g\
+    \ = convolution_all(DEN);\n  g.resize(M + 1);\n\n  // e^{Nx}\n  poly f(M + 1);\n\
+    \  mint pow = 1;\n  FOR(i, M + 1) {\n    f[i] = fact_inv<mint>(i) * pow;\n   \
+    \ pow *= mint(N);\n  }\n  print(len(g), \"g\", g);\n  g = composition_f_ex(g);\n\
+    \  print(len(g), \"g\", g);\n  f = fps_div(f, g);\n  FOR(i, 1, M + 1) print(f[i]\
+    \ * fact<mint>(i) * cf);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/arc154/tasks/arc154_f\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n\
     #include \"poly/fps_div.hpp\"\n#include \"poly/convolution_all.hpp\"\n#include\
@@ -591,10 +594,11 @@ data:
     \nvoid solve() {\n  LL(N, M);\n  vc<poly> DEN;\n  mint cf = 1;\n  FOR(i, N) {\n\
     \    mint p = inv<mint>(N) * mint(N - i);\n    mint q = mint(1) - p;\n    cf *=\
     \ p;\n    DEN.eb(poly{mint(1), -q});\n  }\n  poly g = convolution_all(DEN);\n\
-    \  // e^{Nx}\n  poly f(M + 1);\n  mint pow = 1;\n  FOR(i, M + 1) {\n    f[i] =\
-    \ fact_inv<mint>(i) * pow;\n    pow *= mint(N);\n  }\n  g = composition_f_ex(g);\n\
-    \  f = fps_div(f, g);\n  FOR(i, 1, M + 1) print(f[i] * fact<mint>(i) * cf);\n\
-    }\n\nsigned main() {\n  solve();\n  return 0;\n}"
+    \  g.resize(M + 1);\n\n  // e^{Nx}\n  poly f(M + 1);\n  mint pow = 1;\n  FOR(i,\
+    \ M + 1) {\n    f[i] = fact_inv<mint>(i) * pow;\n    pow *= mint(N);\n  }\n  print(len(g),\
+    \ \"g\", g);\n  g = composition_f_ex(g);\n  print(len(g), \"g\", g);\n  f = fps_div(f,\
+    \ g);\n  FOR(i, 1, M + 1) print(f[i] * fact<mint>(i) * cf);\n}\n\nsigned main()\
+    \ {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -616,7 +620,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/arc154f.test.cpp
   requiredBy: []
-  timestamp: '2023-08-20 02:54:29+09:00'
+  timestamp: '2023-08-20 03:33:35+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/arc154f.test.cpp
