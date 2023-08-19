@@ -129,9 +129,9 @@ data:
   timestamp: '2023-05-20 20:14:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1326.test.cpp
   - test/aoj/GRL_3_A.test.cpp
   - test/library_checker/graph/biconnected_component.test.cpp
-  - test/yukicoder/1326.test.cpp
   - test_atcoder/arc153f.test.cpp
 documentation_of: graph/block_cut.hpp
 layout: document

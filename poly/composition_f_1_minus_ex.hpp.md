@@ -10,13 +10,13 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
   - icon: ':question:'
@@ -40,10 +40,10 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
   - icon: ':question:'
@@ -394,8 +394,8 @@ data:
     \ FOR(n, N + 1) f[n] *= fact_inv<mint>(n);\n  return f;\n}\n#line 2 \"poly/composition_f_ex.hpp\"\
     \n\n// N \u6B21\u591A\u9805\u5F0F f \u306B\u5BFE\u3057\u3066\u3001f(e^x) \u3092\
     \ N \u6B21\u307E\u3067\u3002O(Nlog^2N)\ntemplate <typename mint>\nvc<mint> composition_f_ex(vc<mint>\
-    \ f) {\n  vc<pair<mint, mint>> AB;\n  FOR(k, len(f)) AB.eb(f[k], mint(k));\n \
-    \ return sum_of_exp_bx(N, AB);\n}\n#line 4 \"poly/composition_f_1_minus_ex.hpp\"\
+    \ f) {\n  int N = len(f) - 1;\n  vc<pair<mint, mint>> AB;\n  FOR(k, len(f)) AB.eb(f[k],\
+    \ mint(k));\n  return sum_of_exp_bx(N, AB);\n}\n#line 4 \"poly/composition_f_1_minus_ex.hpp\"\
     \n\n// f(1-e^x)\ntemplate <typename mint>\nvc<mint> composition_1_minus_ex(vc<mint>\
     \ f) {\n  f = poly_taylor_shift<mint>(f, 1);\n  FOR(i, len(f)) if (i & 1) f[i]\
     \ = -f[i];\n  return composition_f_ex<mint>(f);\n}\n"
@@ -423,7 +423,7 @@ data:
   isVerificationFile: false
   path: poly/composition_f_1_minus_ex.hpp
   requiredBy: []
-  timestamp: '2023-08-19 23:10:42+09:00'
+  timestamp: '2023-08-20 02:09:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: poly/composition_f_1_minus_ex.hpp

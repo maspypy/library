@@ -556,27 +556,27 @@ data:
   path: poly/multipoint.hpp
   requiredBy:
   - poly/composition_f_log_1_minus_x.hpp
-  - poly/multivar_convolution_cyclic.hpp
   - poly/partial_frac_decomposition_1.hpp
+  - poly/multivar_convolution_cyclic.hpp
   - linalg/implicit_matrix/vandermonde.hpp
   timestamp: '2023-08-10 12:59:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/partial_frac.test.cpp
-  - test/mytest/chirp_z.test.cpp
   - test/mytest/vandermonde.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
-  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - test/mytest/chirp_z.test.cpp
   - test/yukicoder/2166.test.cpp
   - test/yukicoder/2243.test.cpp
+  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
+  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
+  - test_atcoder/abc260h.test.cpp
   - test_atcoder/agc058d2.test.cpp
+  - test_atcoder/abc267g.test.cpp
   - test_atcoder/abc241h.test.cpp
   - test_atcoder/abc272_h.test.cpp
-  - test_atcoder/abc260h.test.cpp
-  - test_atcoder/abc267g.test.cpp
 documentation_of: poly/multipoint.hpp
 layout: document
 redirect_from:

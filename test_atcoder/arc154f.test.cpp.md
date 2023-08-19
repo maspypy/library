@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
   - icon: ':question:'
@@ -46,7 +46,7 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
   - icon: ':question:'
@@ -573,17 +573,18 @@ data:
     \  f.resize(N + 1);\n  FOR(n, N + 1) f[n] *= fact_inv<mint>(n);\n  return f;\n\
     }\n#line 2 \"poly/composition_f_ex.hpp\"\n\n// N \u6B21\u591A\u9805\u5F0F f \u306B\
     \u5BFE\u3057\u3066\u3001f(e^x) \u3092 N \u6B21\u307E\u3067\u3002O(Nlog^2N)\ntemplate\
-    \ <typename mint>\nvc<mint> composition_f_ex(vc<mint> f) {\n  vc<pair<mint, mint>>\
-    \ AB;\n  FOR(k, len(f)) AB.eb(f[k], mint(k));\n  return sum_of_exp_bx(N, AB);\n\
-    }\n#line 8 \"test_atcoder/arc154f.test.cpp\"\n\nusing mint = modint998;\nusing\
-    \ poly = vc<mint>;\n\nvoid solve() {\n  LL(N, M);\n  vc<poly> DEN;\n  mint cf\
-    \ = 1;\n  FOR(i, N) {\n    mint p = inv<mint>(N) * mint(N - i);\n    mint q =\
-    \ mint(1) - p;\n    cf *= p;\n    DEN.eb(poly{mint(1), -q});\n  }\n  poly g =\
-    \ convolution_all(DEN);\n  // e^{Nx}\n  poly f(M + 1);\n  mint pow = 1;\n  FOR(i,\
-    \ M + 1) {\n    f[i] = fact_inv<mint>(i) * pow;\n    pow *= mint(N);\n  }\n  g\
-    \ = composition_f_ex(M, g);\n  f = fps_div(f, g);\n  FOR(i, 1, M + 1) print(f[i]\
-    \ * fact<mint>(i) * cf);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
+    \ <typename mint>\nvc<mint> composition_f_ex(vc<mint> f) {\n  int N = len(f) -\
+    \ 1;\n  vc<pair<mint, mint>> AB;\n  FOR(k, len(f)) AB.eb(f[k], mint(k));\n  return\
+    \ sum_of_exp_bx(N, AB);\n}\n#line 8 \"test_atcoder/arc154f.test.cpp\"\n\nusing\
+    \ mint = modint998;\nusing poly = vc<mint>;\n\nvoid solve() {\n  LL(N, M);\n \
+    \ vc<poly> DEN;\n  mint cf = 1;\n  FOR(i, N) {\n    mint p = inv<mint>(N) * mint(N\
+    \ - i);\n    mint q = mint(1) - p;\n    cf *= p;\n    DEN.eb(poly{mint(1), -q});\n\
+    \  }\n  poly g = convolution_all(DEN);\n  // e^{Nx}\n  poly f(M + 1);\n  mint\
+    \ pow = 1;\n  FOR(i, M + 1) {\n    f[i] = fact_inv<mint>(i) * pow;\n    pow *=\
+    \ mint(N);\n  }\n  g = composition_f_ex(M, g);\n  f = fps_div(f, g);\n  FOR(i,\
+    \ 1, M + 1) print(f[i] * fact<mint>(i) * cf);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  solve();\n\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/arc154/tasks/arc154_f\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n\
     #include \"poly/fps_div.hpp\"\n#include \"poly/convolution_all.hpp\"\n#include\
@@ -617,7 +618,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/arc154f.test.cpp
   requiredBy: []
-  timestamp: '2023-08-19 23:10:42+09:00'
+  timestamp: '2023-08-20 02:09:51+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/arc154f.test.cpp

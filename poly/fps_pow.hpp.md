@@ -22,13 +22,13 @@ data:
   - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
   - icon: ':question:'
@@ -37,7 +37,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
   - icon: ':question:'
@@ -584,36 +584,36 @@ data:
   path: poly/fps_pow.hpp
   requiredBy:
   - poly/fps_sqrt.hpp
-  - graph/count/count_bipartite.hpp
+  - seq/famous/stirling_number_2.hpp
   - seq/famous/stirling_number_1.hpp
   - seq/famous/surjection.hpp
-  - seq/famous/stirling_number_2.hpp
+  - graph/count/count_bipartite.hpp
   timestamp: '2023-08-10 12:06:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/online_pow.test.cpp
+  - test/mytest/count_bipartite.test.cpp
   - test/mytest/bell.test.cpp
   - test/mytest/sparse_pow_2d.test.cpp
-  - test/mytest/count_bipartite.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - test/library_checker/polynomial/pow_of_fps.test.cpp
+  - test/mytest/online_pow.test.cpp
+  - test/yukicoder/1321.test.cpp
+  - test/yukicoder/1939.test.cpp
+  - test/yukicoder/1549.test.cpp
+  - test/yukicoder/1392.test.cpp
+  - test/yukicoder/1533.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - test/yukicoder/1392.test.cpp
-  - test/yukicoder/1321.test.cpp
-  - test/yukicoder/1939.test.cpp
-  - test/yukicoder/1533.test.cpp
-  - test/yukicoder/1549.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
+  - test/library_checker/polynomial/pow_of_fps.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
+  - test_atcoder/abc222h.test.cpp
+  - test_atcoder/arc160d.test.cpp
   - test_atcoder/abc288ex.test.cpp
   - test_atcoder/arc153f.test.cpp
-  - test_atcoder/abc222h.test.cpp
   - test_atcoder/abc285h.test.cpp
-  - test_atcoder/arc160d.test.cpp
 documentation_of: poly/fps_pow.hpp
 layout: document
 redirect_from:

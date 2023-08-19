@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/static_tree_monoid.hpp
     title: graph/ds/static_tree_monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -39,12 +39,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc270_f.test.cpp
     title: test_atcoder/abc270_f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc301h.test.cpp
     title: test_atcoder/abc301h.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/monoid_reverse.hpp\"\n\r\ntemplate <class Monoid>\r\
@@ -61,20 +61,20 @@ data:
   isVerificationFile: false
   path: alg/monoid/monoid_reverse.hpp
   requiredBy:
-  - graph/minimum_spanning_tree.hpp
-  - graph/ds/tree_monoid.hpp
   - graph/ds/static_tree_monoid.hpp
+  - graph/ds/tree_monoid.hpp
+  - graph/minimum_spanning_tree.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/529.test.cpp
+  - test/yukicoder/1212.test.cpp
+  - test/yukicoder/1216.test.cpp
+  - test/yukicoder/1216_2.test.cpp
   - test/aoj/GRL_2_A.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - test/yukicoder/1216.test.cpp
-  - test/yukicoder/1212.test.cpp
-  - test/yukicoder/1216_2.test.cpp
-  - test/yukicoder/529.test.cpp
   - test_atcoder/abc270_f.test.cpp
   - test_atcoder/abc301h.test.cpp
 documentation_of: alg/monoid/monoid_reverse.hpp

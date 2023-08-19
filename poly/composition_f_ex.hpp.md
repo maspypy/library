@@ -31,7 +31,7 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
   - icon: ':question:'
@@ -42,7 +42,7 @@ data:
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1875.test.cpp
     title: test/yukicoder/1875.test.cpp
   - icon: ':x:'
@@ -50,7 +50,7 @@ data:
     title: test_atcoder/arc154f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/sum_of_rationals.hpp\"\n\n#line 2 \"mod/modint_common.hpp\"\
@@ -365,13 +365,13 @@ data:
     \ FOR(n, N + 1) f[n] *= fact_inv<mint>(n);\n  return f;\n}\n#line 2 \"poly/composition_f_ex.hpp\"\
     \n\n// N \u6B21\u591A\u9805\u5F0F f \u306B\u5BFE\u3057\u3066\u3001f(e^x) \u3092\
     \ N \u6B21\u307E\u3067\u3002O(Nlog^2N)\ntemplate <typename mint>\nvc<mint> composition_f_ex(vc<mint>\
-    \ f) {\n  vc<pair<mint, mint>> AB;\n  FOR(k, len(f)) AB.eb(f[k], mint(k));\n \
-    \ return sum_of_exp_bx(N, AB);\n}\n"
+    \ f) {\n  int N = len(f) - 1;\n  vc<pair<mint, mint>> AB;\n  FOR(k, len(f)) AB.eb(f[k],\
+    \ mint(k));\n  return sum_of_exp_bx(N, AB);\n}\n"
   code: "#include \"poly/sum_of_exp_bx.hpp\"\n\n// N \u6B21\u591A\u9805\u5F0F f \u306B\
     \u5BFE\u3057\u3066\u3001f(e^x) \u3092 N \u6B21\u307E\u3067\u3002O(Nlog^2N)\ntemplate\
-    \ <typename mint>\nvc<mint> composition_f_ex(vc<mint> f) {\n  vc<pair<mint, mint>>\
-    \ AB;\n  FOR(k, len(f)) AB.eb(f[k], mint(k));\n  return sum_of_exp_bx(N, AB);\n\
-    }\n"
+    \ <typename mint>\nvc<mint> composition_f_ex(vc<mint> f) {\n  int N = len(f) -\
+    \ 1;\n  vc<pair<mint, mint>> AB;\n  FOR(k, len(f)) AB.eb(f[k], mint(k));\n  return\
+    \ sum_of_exp_bx(N, AB);\n}\n"
   dependsOn:
   - poly/sum_of_exp_bx.hpp
   - poly/sum_of_rationals.hpp
@@ -389,8 +389,8 @@ data:
   path: poly/composition_f_ex.hpp
   requiredBy:
   - poly/composition_f_1_minus_ex.hpp
-  timestamp: '2023-08-19 23:10:42+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-08-20 02:09:51+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1875.test.cpp
   - test_atcoder/arc154f.test.cpp

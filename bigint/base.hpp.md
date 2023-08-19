@@ -444,11 +444,11 @@ data:
   timestamp: '2023-08-10 12:06:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/303.test.cpp
   - test/aoj/NTL_2_B.test.cpp
   - test/aoj/NTL_2_A.test.cpp
   - test/aoj/NTL_2_C.test.cpp
   - test/library_checker/sample/aplusb128.test.cpp
-  - test/yukicoder/303.test.cpp
 documentation_of: bigint/base.hpp
 layout: document
 redirect_from:
