@@ -20,6 +20,8 @@ void solve() {
     DEN.eb(poly{mint(1), -q});
   }
   poly g = convolution_all(DEN);
+  g.resize(M + 1);
+
   // e^{Nx}
   poly f(M + 1);
   mint pow = 1;

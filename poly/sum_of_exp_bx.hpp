@@ -1,7 +1,7 @@
 #include "poly/sum_of_rationals.hpp"
 #include "poly/fps_inv.hpp"
 
-// sum a e^{bx} を N 次まで。O(Mlog^2M + NlogN)
+// sum a e^{bx} を [0,NN 次まで。O(Mlog^2M + NlogN)
 template <typename mint>
 vc<mint> sum_of_exp_bx(int N, vc<pair<mint, mint>> AB) {
   using poly = vc<mint>;
