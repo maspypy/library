@@ -6,20 +6,18 @@
 
 void solve() {
   LL(N, Q);
-  VEC(int, A, N);
   using Mono = Monoid_Min<int>;
-  SegTree<Mono> seg(A);
-  FOR(_, Q) {
+  SegTree<Mono> seg(N, [&](int i) -> int {
+    INT(x);
+    return x;
+  });
+  FOR(Q) {
     LL(L, R);
     print(seg.prod(L, R));
   }
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
   solve();
 
   return 0;
