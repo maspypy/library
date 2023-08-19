@@ -3,7 +3,7 @@ template <typename T>
 struct Point {
   T x, y;
 
-  Point() = default;
+  Point() : x(0), y(0) {}
 
   template <typename A, typename B>
   Point(A x, B y) : x(x), y(y) {}
@@ -24,6 +24,15 @@ struct Point {
   }
   T dot(Point other) { return x * other.x + y * other.y; }
   T det(Point other) { return x * other.y - y * other.x; }
+
+  double norm() { return sqrtl(x * x + y * y); }
+  double angle() { return atan2(y, x); }
+
+  Point rotate(double theta) {
+    static_assert(!is_integral<T>::value);
+    double c = cos(theta), s = sin(theta);
+    return Point{c * x - s * y, s * x + c * y};
+  }
 #ifdef FASTIO
   void read() { fastio::read(x), fastio::read(y); }
   void write() { fastio::printer.write(pair<T, T>({x, y})); }
