@@ -2,8 +2,8 @@
 
 template <typename T, bool PERSISTENT, int NODES>
 struct Dynamic_Array {
-  constexpr int LOG = 4;
-  constexpr int MASK = (1 << LOG) - 1;
+  static constexpr int LOG = 4;
+  static constexpr int MASK = (1 << LOG) - 1;
   struct Node {
     T x;
     Node* ch[1 << LOG] = {};
