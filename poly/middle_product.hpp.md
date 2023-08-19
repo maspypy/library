@@ -1,13 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
+  - icon: ':warning:'
+    path: poly/composition_f_log_1_minus_x.hpp
+    title: poly/composition_f_log_1_minus_x.hpp
   - icon: ':heavy_check_mark:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
@@ -206,6 +209,7 @@ data:
   requiredBy:
   - poly/multipoint.hpp
   - poly/slice_rational_fps.hpp
+  - poly/composition_f_log_1_minus_x.hpp
   - poly/partial_frac_decomposition_1.hpp
   - poly/multivar_convolution_cyclic.hpp
   - linalg/implicit_matrix/vandermonde.hpp

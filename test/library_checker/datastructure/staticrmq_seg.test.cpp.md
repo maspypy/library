@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -251,17 +251,17 @@ data:
     \ X op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr\
     \ X unit() { return infty<E>; }\r\n  static constexpr bool commute = true;\r\n\
     };\r\n#line 6 \"test/library_checker/datastructure/staticrmq_seg.test.cpp\"\n\r\
-    \nvoid solve() {\r\n  LL(N, Q);\r\n  VEC(int, A, N);\r\n  using Mono = Monoid_Min<int>;\r\
-    \n  SegTree<Mono> seg(A);\r\n  FOR(_, Q) {\r\n    LL(L, R);\r\n    print(seg.prod(L,\
-    \ R));\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \nvoid solve() {\r\n  LL(N, Q);\r\n  using Mono = Monoid_Min<int>;\r\n  SegTree<Mono>\
+    \ seg(N, [&](int i) -> int {\r\n    INT(x);\r\n    return x;\r\n  });\r\n  FOR(Q)\
+    \ {\r\n    LL(L, R);\r\n    print(seg.prod(L, R));\r\n  }\r\n}\r\n\r\nsigned main()\
+    \ {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\r\n#include\
     \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/segtree/segtree.hpp\"\
     \r\n#include \"alg/monoid/min.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N, Q);\r\n \
-    \ VEC(int, A, N);\r\n  using Mono = Monoid_Min<int>;\r\n  SegTree<Mono> seg(A);\r\
-    \n  FOR(_, Q) {\r\n    LL(L, R);\r\n    print(seg.prod(L, R));\r\n  }\r\n}\r\n\
-    \r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ using Mono = Monoid_Min<int>;\r\n  SegTree<Mono> seg(N, [&](int i) -> int {\r\
+    \n    INT(x);\r\n    return x;\r\n  });\r\n  FOR(Q) {\r\n    LL(L, R);\r\n   \
+    \ print(seg.prod(L, R));\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\
+    \n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -270,7 +270,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/staticrmq_seg.test.cpp
   requiredBy: []
-  timestamp: '2023-08-08 01:44:15+09:00'
+  timestamp: '2023-08-19 23:10:53+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/staticrmq_seg.test.cpp

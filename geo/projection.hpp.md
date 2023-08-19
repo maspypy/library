@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy: []
@@ -15,7 +15,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/projection.hpp\"\n\n#line 2 \"geo/base.hpp\"\ntemplate\
-    \ <typename T>\nstruct Point {\n  T x, y;\n\n  Point() = default;\n\n  template\
+    \ <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template\
     \ <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename\
     \ A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+(Point\
     \ p) const { return {x + p.x, y + p.y}; }\n  Point operator-(Point p) const {\
@@ -25,7 +25,10 @@ data:
     \ t) const { return {x * t, y * t}; }\n\n  bool operator<(Point p) const {\n \
     \   if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n  T dot(Point other)\
     \ { return x * other.x + y * other.y; }\n  T det(Point other) { return x * other.y\
-    \ - y * other.x; }\n#ifdef FASTIO\n  void read() { fastio::read(x), fastio::read(y);\
+    \ - y * other.x; }\n\n  double norm() { return sqrtl(x * x + y * y); }\n  double\
+    \ angle() { return atan2(y, x); }\n\n  Point rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n\
+    \    double c = cos(theta), s = sin(theta);\n    return Point{c * x - s * y, s\
+    \ * x + c * y};\n  }\n#ifdef FASTIO\n  void read() { fastio::read(x), fastio::read(y);\
     \ }\n  void write() { fastio::printer.write(pair<T, T>({x, y})); }\n#endif\n};\n\
     \n// A -> B -> C \u3068\u9032\u3080\u3068\u304D\u306B\u3001\u5DE6\u306B\u66F2\u304C\
     \u308B\u306A\u3089\u3070 +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\u3089\u3070\
@@ -76,7 +79,7 @@ data:
   isVerificationFile: false
   path: geo/projection.hpp
   requiredBy: []
-  timestamp: '2023-08-13 15:29:08+09:00'
+  timestamp: '2023-08-19 23:05:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL_1_A.test.cpp

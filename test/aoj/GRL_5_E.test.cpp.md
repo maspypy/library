@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/sum_add.hpp
     title: alg/acted_monoid/sum_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/lazy_tree_monoid.hpp
     title: graph/ds/lazy_tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -366,6 +366,8 @@ data:
     \ a = P.back();\r\n      for (auto &&e: G[a]) {\r\n        if (e.to != parent[a]\
     \ && head[e.to] == v) {\r\n          P.eb(e.to);\r\n          break;\r\n     \
     \   }\r\n      }\r\n      if (P.back() == a) break;\r\n    }\r\n    return P;\r\
+    \n  }\r\n\r\n  int heavy_child(int v) {\r\n    int k = LID[v] + 1;\r\n    if (k\
+    \ == N) return -1;\r\n    int w = V[k];\r\n    return (parent[w] == v ? w : -1);\r\
     \n  }\r\n\r\n  int e_to_v(int eid) {\r\n    auto e = G.edges[eid];\r\n    return\
     \ (parent[e.frm] == e.to ? e.frm : e.to);\r\n  }\r\n  int v_to_e(int v) { return\
     \ VtoE[v]; }\r\n\r\n  int ELID(int v) { return 2 * LID[v] - depth[v]; }\r\n  int\
@@ -435,7 +437,7 @@ data:
     \ y]: pd) {\r\n      int l = min(x, y), r = max(x, y);\r\n      seg.apply(l, r\
     \ + 1, a);\r\n    }\r\n  }\r\n\r\n  void apply_subtree(int u, A a) {\r\n    int\
     \ l = tree.LID[u], r = tree.RID[u];\r\n    return seg.apply(l + edge, r, a);\r\
-    \n  }\r\n\r\n  template <class F>\r\n  int max_path(F &check, int u, int v) {\r\
+    \n  }\r\n\r\n  template <class F>\r\n  int max_path(F check, int u, int v) {\r\
     \n    if constexpr (edge) return max_path_edge(check, u, v);\r\n    if (!check(prod_path(u,\
     \ u))) return -1;\r\n    auto pd = tree.get_path_decomposition(u, v, edge);\r\n\
     \    X val = MX::unit();\r\n    for (auto &&[a, b]: pd) {\r\n      X x = get_prod(a,\
@@ -503,7 +505,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_5_E.test.cpp
   requiredBy: []
-  timestamp: '2023-08-08 01:44:15+09:00'
+  timestamp: '2023-08-19 23:09:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_5_E.test.cpp

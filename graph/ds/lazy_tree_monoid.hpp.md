@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
@@ -15,18 +15,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1790.test.cpp
     title: test/yukicoder/1790.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -173,6 +173,8 @@ data:
     \ a = P.back();\r\n      for (auto &&e: G[a]) {\r\n        if (e.to != parent[a]\
     \ && head[e.to] == v) {\r\n          P.eb(e.to);\r\n          break;\r\n     \
     \   }\r\n      }\r\n      if (P.back() == a) break;\r\n    }\r\n    return P;\r\
+    \n  }\r\n\r\n  int heavy_child(int v) {\r\n    int k = LID[v] + 1;\r\n    if (k\
+    \ == N) return -1;\r\n    int w = V[k];\r\n    return (parent[w] == v ? w : -1);\r\
     \n  }\r\n\r\n  int e_to_v(int eid) {\r\n    auto e = G.edges[eid];\r\n    return\
     \ (parent[e.frm] == e.to ? e.frm : e.to);\r\n  }\r\n  int v_to_e(int v) { return\
     \ VtoE[v]; }\r\n\r\n  int ELID(int v) { return 2 * LID[v] - depth[v]; }\r\n  int\
@@ -242,7 +244,7 @@ data:
     \ y]: pd) {\r\n      int l = min(x, y), r = max(x, y);\r\n      seg.apply(l, r\
     \ + 1, a);\r\n    }\r\n  }\r\n\r\n  void apply_subtree(int u, A a) {\r\n    int\
     \ l = tree.LID[u], r = tree.RID[u];\r\n    return seg.apply(l + edge, r, a);\r\
-    \n  }\r\n\r\n  template <class F>\r\n  int max_path(F &check, int u, int v) {\r\
+    \n  }\r\n\r\n  template <class F>\r\n  int max_path(F check, int u, int v) {\r\
     \n    if constexpr (edge) return max_path_edge(check, u, v);\r\n    if (!check(prod_path(u,\
     \ u))) return -1;\r\n    auto pd = tree.get_path_decomposition(u, v, edge);\r\n\
     \    X val = MX::unit();\r\n    for (auto &&[a, b]: pd) {\r\n      X x = get_prod(a,\
@@ -301,7 +303,7 @@ data:
     \ y]: pd) {\r\n      int l = min(x, y), r = max(x, y);\r\n      seg.apply(l, r\
     \ + 1, a);\r\n    }\r\n  }\r\n\r\n  void apply_subtree(int u, A a) {\r\n    int\
     \ l = tree.LID[u], r = tree.RID[u];\r\n    return seg.apply(l + edge, r, a);\r\
-    \n  }\r\n\r\n  template <class F>\r\n  int max_path(F &check, int u, int v) {\r\
+    \n  }\r\n\r\n  template <class F>\r\n  int max_path(F check, int u, int v) {\r\
     \n    if constexpr (edge) return max_path_edge(check, u, v);\r\n    if (!check(prod_path(u,\
     \ u))) return -1;\r\n    auto pd = tree.get_path_decomposition(u, v, edge);\r\n\
     \    X val = MX::unit();\r\n    for (auto &&[a, b]: pd) {\r\n      X x = get_prod(a,\
@@ -338,8 +340,8 @@ data:
   isVerificationFile: false
   path: graph/ds/lazy_tree_monoid.hpp
   requiredBy: []
-  timestamp: '2023-07-03 05:07:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-08-19 23:09:56+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1197.test.cpp
   - test/yukicoder/1790.test.cpp

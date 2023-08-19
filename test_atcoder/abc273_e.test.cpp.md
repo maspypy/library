@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc273/tasks/abc273_e
@@ -209,23 +209,24 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\n#line 2 \"ds/dynamic_array.hpp\"\n\r\ntemplate <typename T, bool\
-    \ PERSISTENT, int NODES>\r\nstruct Dynamic_Array {\r\n  struct Node {\r\n    T\
-    \ x;\r\n    Node* ch[16] = {};\r\n  };\r\n  Node* pool;\r\n  int pid;\r\n  using\
+    \ PERSISTENT, int NODES>\r\nstruct Dynamic_Array {\r\n  constexpr int LOG = 4;\r\
+    \n  constexpr int MASK = (1 << LOG) - 1;\r\n  struct Node {\r\n    T x;\r\n  \
+    \  Node* ch[1 << LOG] = {};\r\n  };\r\n  Node* pool;\r\n  int pid;\r\n  using\
     \ np = Node*;\r\n  const T x0;\r\n\r\n  Dynamic_Array(T default_value) : pid(0),\
     \ x0(default_value) {\r\n    pool = new Node[NODES];\r\n  }\r\n\r\n  np new_root()\
-    \ {\r\n    pool[pid].x = x0;\r\n    fill(pool[pid].ch, pool[pid].ch + 16, nullptr);\r\
-    \n    return &(pool[pid++]);\r\n  }\r\n\r\n  np new_node(vc<T> dat) {\r\n    np\
-    \ root = new_root();\r\n    FOR(i, len(dat)) root = set(root, i, dat[i], false);\r\
-    \n    return root;\r\n  }\r\n\r\n  T get(np c, int idx) {\r\n    if (!c) return\
-    \ x0;\r\n    if (idx == 0) return c->x;\r\n    return get(c->ch[idx & 15], (idx\
-    \ - 1) >> 4);\r\n  }\r\n\r\n  np set(np c, int idx, T x, bool make_copy = true)\
-    \ {\r\n    c = (c ? copy_node(c, make_copy) : new_root());\r\n    if (idx == 0)\
-    \ {\r\n      c->x = x;\r\n      return c;\r\n    }\r\n    c->ch[idx & 15] = set(c->ch[idx\
-    \ & 15], (idx - 1) >> 4, x);\r\n    return c;\r\n  }\r\n\r\nprivate:\r\n  np copy_node(np\
-    \ c, bool make_copy) {\r\n    if (!make_copy || !PERSISTENT) return c;\r\n   \
-    \ pool[pid].x = c->x;\r\n    FOR(k, 16) pool[pid].ch[k] = c->ch[k];\r\n    return\
-    \ &(pool[pid++]);\r\n  }\r\n};\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
-    \ {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \ {\r\n    pool[pid].x = x0;\r\n    fill(pool[pid].ch, pool[pid].ch + (1 << LOG),\
+    \ nullptr);\r\n    return &(pool[pid++]);\r\n  }\r\n\r\n  np new_node(vc<T> dat)\
+    \ {\r\n    np root = new_root();\r\n    FOR(i, len(dat)) root = set(root, i, dat[i],\
+    \ false);\r\n    return root;\r\n  }\r\n\r\n  T get(np c, int idx) {\r\n    if\
+    \ (!c) return x0;\r\n    if (idx == 0) return c->x;\r\n    return get(c->ch[idx\
+    \ & MASK], (idx - 1) >> LOG);\r\n  }\r\n\r\n  np set(np c, int idx, T x, bool\
+    \ make_copy = true) {\r\n    c = (c ? copy_node(c, make_copy) : new_root());\r\
+    \n    if (idx == 0) {\r\n      c->x = x;\r\n      return c;\r\n    }\r\n    c->ch[idx\
+    \ & MASK] = set(c->ch[idx & MASK], (idx - 1) >> LOG, x);\r\n    return c;\r\n\
+    \  }\r\n\r\nprivate:\r\n  np copy_node(np c, bool make_copy) {\r\n    if (!make_copy\
+    \ || !PERSISTENT) return c;\r\n    pool[pid].x = c->x;\r\n    FOR(k, (1 << LOG))\
+    \ pool[pid].ch[k] = c->ch[k];\r\n    return &(pool[pid++]);\r\n  }\r\n};\r\n#line\
+    \ 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
@@ -280,8 +281,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc273_e.test.cpp
   requiredBy: []
-  timestamp: '2023-08-08 01:44:15+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-08-19 23:04:56+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc273_e.test.cpp
 layout: document

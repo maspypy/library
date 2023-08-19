@@ -2,9 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: alg/acted_monoid/add_mul.hpp
-    title: alg/acted_monoid/add_mul.hpp
+  - icon: ':warning:'
+    path: alg/acted_monoid/sum_mul.hpp
+    title: alg/acted_monoid/sum_mul.hpp
   - icon: ':heavy_check_mark:'
     path: ds/power_query.hpp
     title: ds/power_query.hpp
@@ -70,9 +70,6 @@ data:
     path: test/yukicoder/502_2.test.cpp
     title: test/yukicoder/502_2.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/899.test.cpp
-    title: test/yukicoder/899.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc222h_2.test.cpp
     title: test_atcoder/abc222h_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -115,7 +112,7 @@ data:
   - mod/mod_log.hpp
   - seq/interpolate_poly_exp_sum.hpp
   - seq/kth_term_of_p_recursive.hpp
-  - alg/acted_monoid/add_mul.hpp
+  - alg/acted_monoid/sum_mul.hpp
   - graph/count/count_bipartite.hpp
   timestamp: '2022-11-27 14:10:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -125,7 +122,6 @@ data:
   - test/mytest/powerquery.test.cpp
   - test/yukicoder/2005.test.cpp
   - test/yukicoder/1080_2.test.cpp
-  - test/yukicoder/899.test.cpp
   - test/yukicoder/2166.test.cpp
   - test/yukicoder/1339.test.cpp
   - test/yukicoder/502_2.test.cpp

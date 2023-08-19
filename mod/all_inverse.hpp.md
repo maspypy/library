@@ -8,6 +8,9 @@ data:
   - icon: ':warning:'
     path: mod/q_analogue.hpp
     title: mod/q_analogue.hpp
+  - icon: ':warning:'
+    path: poly/composition_f_log_1_minus_x.hpp
+    title: poly/composition_f_log_1_minus_x.hpp
   - icon: ':heavy_check_mark:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
@@ -86,6 +89,7 @@ data:
   path: mod/all_inverse.hpp
   requiredBy:
   - poly/multipoint.hpp
+  - poly/composition_f_log_1_minus_x.hpp
   - poly/partial_frac_decomposition_1.hpp
   - poly/multivar_convolution_cyclic.hpp
   - mod/q_analogue.hpp
