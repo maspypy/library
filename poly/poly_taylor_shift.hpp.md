@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -16,19 +16,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -387,20 +387,20 @@ data:
   path: poly/poly_taylor_shift.hpp
   requiredBy:
   - poly/composition_f_log_1_minus_x.hpp
-  - poly/composition_f_1_minus_ex.hpp
   - poly/composition_f_polynomial.hpp
+  - poly/composition_f_1_minus_ex.hpp
   - poly/composition_f_rational.hpp
-  - linalg/det_A_plus_xB.hpp
   - seq/famous/stirling_number_1.hpp
+  - linalg/det_A_plus_xB.hpp
   timestamp: '2023-08-10 12:06:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
+  - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/yukicoder/1875.test.cpp
   - test/yukicoder/1907.test.cpp
   - test/yukicoder/1303.test.cpp
-  - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-  - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
   - test_atcoder/arc133f.test.cpp
 documentation_of: poly/poly_taylor_shift.hpp
 layout: document

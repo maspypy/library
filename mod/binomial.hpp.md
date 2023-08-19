@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':heavy_check_mark:'
@@ -228,9 +228,9 @@ data:
   timestamp: '2023-07-06 13:22:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/library_checker/math/binomial_coefficient.test.cpp
   - test/yukicoder/2181.test.cpp
   - test/yukicoder/2120.test.cpp
-  - test/library_checker/math/binomial_coefficient.test.cpp
 documentation_of: mod/binomial.hpp
 layout: document
 redirect_from:

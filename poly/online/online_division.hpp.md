@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':heavy_check_mark:'
@@ -133,10 +133,10 @@ data:
   timestamp: '2023-08-20 01:21:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/online_pow.test.cpp
+  - test/mytest/online_log.test.cpp
   - test/mytest/online_division.test.cpp
   - test/mytest/online_inv.test.cpp
-  - test/mytest/online_log.test.cpp
-  - test/mytest/online_pow.test.cpp
 documentation_of: poly/online/online_division.hpp
 layout: document
 redirect_from:
