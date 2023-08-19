@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -343,10 +343,10 @@ data:
   timestamp: '2023-08-19 23:09:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1197.test.cpp
-  - test/yukicoder/1790.test.cpp
-  - test/yukicoder/235.test.cpp
   - test/aoj/GRL_5_E.test.cpp
+  - test/yukicoder/1197.test.cpp
+  - test/yukicoder/235.test.cpp
+  - test/yukicoder/1790.test.cpp
 documentation_of: graph/ds/lazy_tree_monoid.hpp
 layout: document
 redirect_from:

@@ -102,8 +102,8 @@ data:
   timestamp: '2023-07-03 05:19:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/datastructure/line_add_get_min_lichao_2.test.cpp
   - test/library_checker/datastructure/segment_add_get_min_2.test.cpp
+  - test/library_checker/datastructure/line_add_get_min_lichao_2.test.cpp
 documentation_of: convex/lichao.hpp
 layout: document
 redirect_from:

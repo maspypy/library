@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
@@ -105,9 +105,9 @@ data:
   timestamp: '2023-05-20 20:14:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/17.test.cpp
-  - test/yukicoder/1344.test.cpp
   - test/aoj/GRL_1_C.test.cpp
+  - test/yukicoder/1344.test.cpp
+  - test/yukicoder/17.test.cpp
 documentation_of: graph/shortest_path/warshall_floyd.hpp
 layout: document
 redirect_from:
