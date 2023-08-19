@@ -27,17 +27,12 @@ void solve() {
     f[i] = fact_inv<mint>(i) * pow;
     pow *= mint(N);
   }
-  g = composition_f_ex(M, g);
+  g = composition_f_ex(g);
   f = fps_div(f, g);
   FOR(i, 1, M + 1) print(f[i] * fact<mint>(i) * cf);
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
   solve();
-
   return 0;
 }
