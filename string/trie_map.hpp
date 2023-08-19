@@ -22,7 +22,6 @@ struct Trie {
     return v;
   }
 
-private:
   int create_node() {
     TO.eb(MP());
     PAR.eb(-1);
