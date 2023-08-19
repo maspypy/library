@@ -1217,13 +1217,16 @@ data:
     - icon: ':warning:'
       path: poly/composed_sum.hpp
       title: poly/composed_sum.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: poly/composition_f_1_minus_ex.hpp
       title: poly/composition_f_1_minus_ex.hpp
     - icon: ':heavy_check_mark:'
       path: poly/composition_f_ex.hpp
       title: poly/composition_f_ex.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
+      path: poly/composition_f_ex_minus_1.hpp
+      title: poly/composition_f_ex_minus_1.hpp
+    - icon: ':heavy_check_mark:'
       path: poly/composition_f_log_1_minus_x.hpp
       title: poly/composition_f_log_1_minus_x.hpp
     - icon: ':heavy_check_mark:'
@@ -1384,7 +1387,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/online/online_pow.hpp
       title: poly/online/online_pow.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: poly/online/online_square.hpp
       title: poly/online/online_square.hpp
   - name: random
@@ -2443,6 +2446,15 @@ data:
       path: test/mytest/chirp_z.test.cpp
       title: test/mytest/chirp_z.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/mytest/composition_1_minus_ex.test.cpp
+      title: test/mytest/composition_1_minus_ex.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/composition_ex_minus_1.test.cpp
+      title: test/mytest/composition_ex_minus_1.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/composition_log_1_minus_x.test.cpp
+      title: test/mytest/composition_log_1_minus_x.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/mytest/conv2d.test.cpp
       title: test/mytest/conv2d.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2604,6 +2616,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/online_pow.test.cpp
       title: test/mytest/online_pow.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/online_square.test.cpp
+      title: test/mytest/online_square.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/partial_frac.test.cpp
       title: test/mytest/partial_frac.test.cpp

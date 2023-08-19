@@ -8,10 +8,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
+    path: poly/composition_f_ex_minus_1.hpp
+    title: poly/composition_f_ex_minus_1.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
   - icon: ':heavy_check_mark:'
@@ -57,6 +60,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/bell.test.cpp
     title: test/mytest/bell.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/composition_1_minus_ex.test.cpp
+    title: test/mytest/composition_1_minus_ex.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/composition_ex_minus_1.test.cpp
+    title: test/mytest/composition_ex_minus_1.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/composition_log_1_minus_x.test.cpp
+    title: test/mytest/composition_log_1_minus_x.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/eulerian_number.test.cpp
     title: test/mytest/eulerian_number.test.cpp
@@ -145,41 +157,45 @@ data:
   path: mod/powertable.hpp
   requiredBy:
   - poly/composition_f_log_1_minus_x.hpp
-  - poly/composition_f_polynomial.hpp
+  - poly/composition_f_ex_minus_1.hpp
   - poly/composition_f_1_minus_ex.hpp
-  - poly/composition_f_rational.hpp
+  - poly/composition_f_polynomial.hpp
   - poly/poly_taylor_shift.hpp
-  - seq/famous/stirling_number_1.hpp
-  - seq/famous/eulerian_number.hpp
-  - seq/famous/surjection.hpp
-  - seq/famous/stirling_number_2.hpp
+  - poly/composition_f_rational.hpp
   - linalg/det_A_plus_xB.hpp
+  - seq/famous/stirling_number_2.hpp
+  - seq/famous/eulerian_number.hpp
+  - seq/famous/stirling_number_1.hpp
+  - seq/famous/surjection.hpp
   timestamp: '2023-08-06 03:59:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/eulerian_number.test.cpp
+  - test/mytest/composition_ex_minus_1.test.cpp
   - test/mytest/bell.test.cpp
+  - test/mytest/composition_log_1_minus_x.test.cpp
   - test/mytest/qoj5443.test.cpp
-  - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
+  - test/mytest/composition_1_minus_ex.test.cpp
+  - test/yukicoder/1760.test.cpp
+  - test/yukicoder/1875.test.cpp
+  - test/yukicoder/1821.test.cpp
+  - test/yukicoder/2005.test.cpp
+  - test/yukicoder/2206.test.cpp
+  - test/yukicoder/1321.test.cpp
+  - test/yukicoder/1907.test.cpp
+  - test/yukicoder/1303.test.cpp
+  - test/yukicoder/1392.test.cpp
+  - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
-  - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
-  - test/yukicoder/1392.test.cpp
-  - test/yukicoder/1821.test.cpp
-  - test/yukicoder/1321.test.cpp
-  - test/yukicoder/2206.test.cpp
-  - test/yukicoder/1875.test.cpp
-  - test/yukicoder/1760.test.cpp
-  - test/yukicoder/2005.test.cpp
-  - test/yukicoder/1907.test.cpp
-  - test/yukicoder/1303.test.cpp
-  - test_atcoder/abc249_ex.test.cpp
-  - test_atcoder/arc153f.test.cpp
+  - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
   - test_atcoder/arc133f.test.cpp
+  - test_atcoder/abc249_ex.test.cpp
   - test_atcoder/abc281g.test.cpp
   - test_atcoder/abc202_f.test.cpp
+  - test_atcoder/arc153f.test.cpp
 documentation_of: mod/powertable.hpp
 layout: document
 redirect_from:

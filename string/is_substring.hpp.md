@@ -49,8 +49,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/is_substring.test.cpp
-  - test_atcoder/abc279b.test.cpp
   - test_atcoder/abc237ex.test.cpp
+  - test_atcoder/abc279b.test.cpp
 documentation_of: string/is_substring.hpp
 layout: document
 redirect_from:
