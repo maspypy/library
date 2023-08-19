@@ -581,9 +581,8 @@ data:
     \ - i);\n    mint q = mint(1) - p;\n    cf *= p;\n    DEN.eb(poly{mint(1), -q});\n\
     \  }\n  poly g = convolution_all(DEN);\n  // e^{Nx}\n  poly f(M + 1);\n  mint\
     \ pow = 1;\n  FOR(i, M + 1) {\n    f[i] = fact_inv<mint>(i) * pow;\n    pow *=\
-    \ mint(N);\n  }\n  g = composition_f_ex(M, g);\n  f = fps_div(f, g);\n  FOR(i,\
-    \ 1, M + 1) print(f[i] * fact<mint>(i) * cf);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  solve();\n\n\
+    \ mint(N);\n  }\n  g = composition_f_ex(g);\n  f = fps_div(f, g);\n  FOR(i, 1,\
+    \ M + 1) print(f[i] * fact<mint>(i) * cf);\n}\n\nsigned main() {\n  solve();\n\
     \  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/arc154/tasks/arc154_f\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n\
@@ -593,10 +592,9 @@ data:
     \    mint p = inv<mint>(N) * mint(N - i);\n    mint q = mint(1) - p;\n    cf *=\
     \ p;\n    DEN.eb(poly{mint(1), -q});\n  }\n  poly g = convolution_all(DEN);\n\
     \  // e^{Nx}\n  poly f(M + 1);\n  mint pow = 1;\n  FOR(i, M + 1) {\n    f[i] =\
-    \ fact_inv<mint>(i) * pow;\n    pow *= mint(N);\n  }\n  g = composition_f_ex(M,\
-    \ g);\n  f = fps_div(f, g);\n  FOR(i, 1, M + 1) print(f[i] * fact<mint>(i) * cf);\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
+    \ fact_inv<mint>(i) * pow;\n    pow *= mint(N);\n  }\n  g = composition_f_ex(g);\n\
+    \  f = fps_div(f, g);\n  FOR(i, 1, M + 1) print(f[i] * fact<mint>(i) * cf);\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -618,7 +616,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/arc154f.test.cpp
   requiredBy: []
-  timestamp: '2023-08-20 02:09:51+09:00'
+  timestamp: '2023-08-20 02:54:29+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/arc154f.test.cpp

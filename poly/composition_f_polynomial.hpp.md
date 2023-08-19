@@ -34,11 +34,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: poly/composition_f_rational.hpp
+    title: poly/composition_f_rational.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/arc133f.test.cpp
+    title: test_atcoder/arc133f.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
@@ -351,10 +357,12 @@ data:
   - poly/fft.hpp
   isVerificationFile: false
   path: poly/composition_f_polynomial.hpp
-  requiredBy: []
+  requiredBy:
+  - poly/composition_f_rational.hpp
   timestamp: '2023-08-19 23:10:42+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test_atcoder/arc133f.test.cpp
 documentation_of: poly/composition_f_polynomial.hpp
 layout: document
 redirect_from:

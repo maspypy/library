@@ -41,9 +41,12 @@ data:
   - icon: ':warning:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_polynomial.hpp
     title: poly/composition_f_polynomial.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/composition_f_rational.hpp
+    title: poly/composition_f_rational.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
@@ -66,6 +69,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1907.test.cpp
     title: test/yukicoder/1907.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/arc133f.test.cpp
+    title: test_atcoder/arc133f.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -381,19 +387,21 @@ data:
   path: poly/poly_taylor_shift.hpp
   requiredBy:
   - poly/composition_f_log_1_minus_x.hpp
-  - poly/composition_f_polynomial.hpp
   - poly/composition_f_1_minus_ex.hpp
-  - seq/famous/stirling_number_1.hpp
+  - poly/composition_f_polynomial.hpp
+  - poly/composition_f_rational.hpp
   - linalg/det_A_plus_xB.hpp
+  - seq/famous/stirling_number_1.hpp
   timestamp: '2023-08-10 12:06:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
-  - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/yukicoder/1875.test.cpp
   - test/yukicoder/1907.test.cpp
   - test/yukicoder/1303.test.cpp
+  - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
+  - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
+  - test_atcoder/arc133f.test.cpp
 documentation_of: poly/poly_taylor_shift.hpp
 layout: document
 redirect_from:
