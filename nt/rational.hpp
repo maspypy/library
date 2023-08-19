@@ -5,6 +5,7 @@ struct Rational {
   Rational() : num(0), den(1) {}
   Rational(T x) : num(x), den(1) {}
   Rational(T a, T b, bool coprime = false) : num(a), den(b) {
+    if (den < 0) num = -num, den = -den;
     if (!coprime && REDUCE) reduce();
   }
 
