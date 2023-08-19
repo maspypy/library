@@ -79,6 +79,13 @@ struct Tree {
     return P;
   }
 
+  int heavy_child(int v) {
+    int k = LID[v] + 1;
+    if (k == N) return -1;
+    int w = V[k];
+    return (parent[w] == v ? w : -1);
+  }
+
   int e_to_v(int eid) {
     auto e = G.edges[eid];
     return (parent[e.frm] == e.to ? e.frm : e.to);
