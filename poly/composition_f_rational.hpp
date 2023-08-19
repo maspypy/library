@@ -1,4 +1,4 @@
-#include "poly/composition_f_polynomial_1.hpp"
+#include "poly/composition_f_polynomial.hpp"
 #include "poly/fps_pow.hpp"
 
 // f((a+bx)/(c+dx))
