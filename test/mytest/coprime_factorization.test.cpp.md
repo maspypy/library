@@ -4,20 +4,20 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/coprime_factorization.hpp
     title: nt/coprime_factorization.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -218,11 +218,12 @@ data:
     \ vc<T> basis;\n  for (T val: nums) {\n    vc<T> new_basis;\n    for (T x: basis)\
     \ {\n      if (val == 1) {\n        new_basis.eb(x);\n        continue;\n    \
     \  }\n      vc<T> dat = {val, x};\n      FOR(p, 1, len(dat)) {\n        FOR(i,\
-    \ p) {\n          while (dat[p] > 1 && dat[i] % dat[p] == 0) dat[i] /= dat[p];\n\
-    \          while (dat[i] > 1 && dat[p] % dat[i] == 0) dat[p] /= dat[i];\n    \
-    \      T g = gcd(dat[i], dat[p]);\n          if (g == 1 || g == dat[i] || g ==\
-    \ dat[p]) continue;\n          dat[i] /= g, dat[p] /= g, dat.eb(g);\n        }\n\
-    \      }\n      val = dat[0];\n      FOR(i, 1, len(dat)) if (dat[i] != 1) new_basis.eb(dat[i]);\n\
+    \ p) {\n          while (1) {\n            if (dat[p] > 1 && dat[i] % dat[p] ==\
+    \ 0) dat[i] /= dat[p];\n            elif (dat[i] > 1 && dat[p] % dat[i] == 0)\
+    \ dat[p] /= dat[i];\n            else break;\n          }\n          T g = gcd(dat[i],\
+    \ dat[p]);\n          if (g == 1 || g == dat[i] || g == dat[p]) continue;\n  \
+    \        dat[i] /= g, dat[p] /= g, dat.eb(g);\n        }\n      }\n      val =\
+    \ dat[0];\n      FOR(i, 1, len(dat)) if (dat[i] != 1) new_basis.eb(dat[i]);\n\
     \    }\n    if (val > 1) new_basis.eb(val);\n    swap(basis, new_basis);\n  }\n\
     \n  sort(all(basis));\n\n  vvc<pair<int, int>> res(len(nums));\n  FOR(i, len(nums))\
     \ {\n    T x = nums[i];\n    FOR(j, len(basis)) {\n      int e = 0;\n      while\
@@ -230,20 +231,28 @@ data:
     \ }\n  }\n  return {basis, res};\n}\n#line 7 \"test/mytest/coprime_factorization.test.cpp\"\
     \n\nvoid test() {\n  FOR(N, 0, 100) {\n    vc<ll> dat(N);\n    FOR(i, N) dat[i]\
     \ = RNG(1, infty<ll>);\n    auto [basis, pfs] = coprime_factorization(dat);\n\
-    \    FOR(j, N) FOR(i, j) { assert(gcd(basis[i], basis[j]) == 1); }\n    FOR(i,\
-    \ N) {\n      ll x = 1;\n      for (auto&& [pid, exp]: pfs[i]) { FOR(exp) x *=\
-    \ basis[pid]; }\n      assert(x == dat[i]);\n    }\n  }\n}\n\nvoid solve() {\n\
-    \  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\n\
-    \  return 0;\n}\n"
+    \    FOR(j, len(basis)) FOR(i, j) { assert(gcd(basis[i], basis[j]) == 1); }\n\
+    \    FOR(i, N) {\n      ll x = 1;\n      for (auto&& [pid, exp]: pfs[i]) { FOR(exp)\
+    \ x *= basis[pid]; }\n      assert(x == dat[i]);\n    }\n  }\n\n  FOR(N, 0, 100)\
+    \ {\n    vc<ll> dat(N);\n    FOR(i, N) dat[i] = RNG(1, 20);\n    auto [basis,\
+    \ pfs] = coprime_factorization(dat);\n    FOR(j, len(basis)) FOR(i, j) { assert(gcd(basis[i],\
+    \ basis[j]) == 1); }\n    FOR(i, N) {\n      ll x = 1;\n      for (auto&& [pid,\
+    \ exp]: pfs[i]) { FOR(exp) x *= basis[pid]; }\n      assert(x == dat[i]);\n  \
+    \  }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main()\
+    \ {\n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"random/base.hpp\"\n#include \"nt/coprime_factorization.hpp\"\
     \n\nvoid test() {\n  FOR(N, 0, 100) {\n    vc<ll> dat(N);\n    FOR(i, N) dat[i]\
     \ = RNG(1, infty<ll>);\n    auto [basis, pfs] = coprime_factorization(dat);\n\
-    \    FOR(j, N) FOR(i, j) { assert(gcd(basis[i], basis[j]) == 1); }\n    FOR(i,\
-    \ N) {\n      ll x = 1;\n      for (auto&& [pid, exp]: pfs[i]) { FOR(exp) x *=\
-    \ basis[pid]; }\n      assert(x == dat[i]);\n    }\n  }\n}\n\nvoid solve() {\n\
-    \  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\n\
-    \  return 0;\n}\n"
+    \    FOR(j, len(basis)) FOR(i, j) { assert(gcd(basis[i], basis[j]) == 1); }\n\
+    \    FOR(i, N) {\n      ll x = 1;\n      for (auto&& [pid, exp]: pfs[i]) { FOR(exp)\
+    \ x *= basis[pid]; }\n      assert(x == dat[i]);\n    }\n  }\n\n  FOR(N, 0, 100)\
+    \ {\n    vc<ll> dat(N);\n    FOR(i, N) dat[i] = RNG(1, 20);\n    auto [basis,\
+    \ pfs] = coprime_factorization(dat);\n    FOR(j, len(basis)) FOR(i, j) { assert(gcd(basis[i],\
+    \ basis[j]) == 1); }\n    FOR(i, N) {\n      ll x = 1;\n      for (auto&& [pid,\
+    \ exp]: pfs[i]) { FOR(exp) x *= basis[pid]; }\n      assert(x == dat[i]);\n  \
+    \  }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main()\
+    \ {\n  test();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -252,8 +261,8 @@ data:
   isVerificationFile: true
   path: test/mytest/coprime_factorization.test.cpp
   requiredBy: []
-  timestamp: '2023-08-20 12:15:23+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-08-20 12:39:36+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/coprime_factorization.test.cpp
 layout: document

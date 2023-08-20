@@ -373,8 +373,8 @@ data:
   timestamp: '2023-08-10 12:06:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/polynomial/inv_of_polynomials.test.cpp
   - test/library_checker/polynomial/polynomial_division.test.cpp
+  - test/library_checker/polynomial/inv_of_polynomials.test.cpp
   - test_atcoder/agc058d2.test.cpp
 documentation_of: poly/poly_divmod.hpp
 layout: document
