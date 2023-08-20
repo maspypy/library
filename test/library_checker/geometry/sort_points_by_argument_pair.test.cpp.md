@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sort_points_by_argument
@@ -271,13 +271,14 @@ data:
     \ <typename T>\r\nvector<int> angle_sort(vector<pair<T, T>>& P) {\r\n  vc<Point<T>>\
     \ tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\n  return angle_sort<T>(tmp);\r\
     \n}\r\n#line 6 \"test/library_checker/geometry/sort_points_by_argument_pair.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(pi, P, N);\n  angle_sort(P);\n  FOR(i, N)\
-    \ print(P[i]);\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+    \n\nvoid solve() {\n  LL(N);\n  VEC(pi, P, N);\n  auto I = angle_sort(P);\n  P\
+    \ = rearrange(P, I);\n  FOR(i, N) print(P[i]);\n}\n\nsigned main() {\n  solve();\n\
+    \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sort_points_by_argument\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"geo/base.hpp\"\
     \n#include \"geo/angle_sort.hpp\"\n\nvoid solve() {\n  LL(N);\n  VEC(pi, P, N);\n\
-    \  angle_sort(P);\n  FOR(i, N) print(P[i]);\n}\n\nsigned main() {\n  solve();\n\
-    \n  return 0;\n}\n"
+    \  auto I = angle_sort(P);\n  P = rearrange(P, I);\n  FOR(i, N) print(P[i]);\n\
+    }\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -286,8 +287,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
   requiredBy: []
-  timestamp: '2023-08-20 19:49:45+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-08-20 21:56:34+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
 layout: document

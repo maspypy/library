@@ -208,9 +208,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/mybitset.test.cpp
-  - test/yukicoder/1400.test.cpp
   - test/yukicoder/1400_2.test.cpp
   - test/yukicoder/142.test.cpp
+  - test/yukicoder/1400.test.cpp
 documentation_of: ds/my_bitset.hpp
 layout: document
 redirect_from:
