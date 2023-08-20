@@ -7,7 +7,7 @@
 // https://codeforces.com/contest/1841/problem/F
 template <typename SM, typename T>
 pair<SM, vc<int>> max_norm_sum(vc<Point<T>> dat) {
-  auto I = angle_argsort(dat);
+  auto I = angle_sort(dat);
   {
     vc<int> J;
     for (auto&& i: I) {
