@@ -1,11 +1,26 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: nt/crt.hpp
+    title: nt/crt.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/mytest/coprime_factorization.test.cpp
     title: test/mytest/coprime_factorization.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/187.test.cpp
+    title: test/yukicoder/187.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1956.test.cpp
+    title: test/yukicoder/1956.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2119.test.cpp
+    title: test/yukicoder/2119.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/590.test.cpp
+    title: test/yukicoder/590.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -50,11 +65,16 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: nt/coprime_factorization.hpp
-  requiredBy: []
+  requiredBy:
+  - nt/crt.hpp
   timestamp: '2023-08-20 12:39:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/coprime_factorization.test.cpp
+  - test/yukicoder/2119.test.cpp
+  - test/yukicoder/1956.test.cpp
+  - test/yukicoder/187.test.cpp
+  - test/yukicoder/590.test.cpp
 documentation_of: nt/coprime_factorization.hpp
 layout: document
 redirect_from:
