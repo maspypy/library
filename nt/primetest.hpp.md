@@ -27,9 +27,6 @@ data:
     path: nt/all_lcm.hpp
     title: nt/all_lcm.hpp
   - icon: ':heavy_check_mark:'
-    path: nt/crt.hpp
-    title: nt/crt.hpp
-  - icon: ':heavy_check_mark:'
     path: nt/divisors.hpp
     title: nt/divisors.hpp
   - icon: ':heavy_check_mark:'
@@ -163,17 +160,8 @@ data:
     path: test/yukicoder/1728.test.cpp
     title: test/yukicoder/1728.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/187.test.cpp
-    title: test/yukicoder/187.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1881.test.cpp
     title: test/yukicoder/1881.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1956.test.cpp
-    title: test/yukicoder/1956.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2119.test.cpp
-    title: test/yukicoder/2119.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2120.test.cpp
     title: test/yukicoder/2120.test.cpp
@@ -183,9 +171,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2264.test.cpp
     title: test/yukicoder/2264.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/590.test.cpp
-    title: test/yukicoder/590.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc152e.test.cpp
     title: test_atcoder/abc152e.test.cpp
@@ -282,7 +267,6 @@ data:
   - mod/dynamic_modint.hpp
   - mod/primitive_root.hpp
   - mod/mod_log.hpp
-  - nt/crt.hpp
   - nt/euler_phi.hpp
   - nt/four_square.hpp
   - nt/gaussian_integers.hpp
@@ -298,17 +282,13 @@ data:
   - test/mytest/four_square.test.cpp
   - test/mytest/31bit_modint.test.cpp
   - test/yukicoder/1881.test.cpp
-  - test/yukicoder/187.test.cpp
   - test/yukicoder/1262.test.cpp
-  - test/yukicoder/2119.test.cpp
   - test/yukicoder/1728.test.cpp
   - test/yukicoder/2181.test.cpp
   - test/yukicoder/1025.test.cpp
   - test/yukicoder/2120.test.cpp
-  - test/yukicoder/1956.test.cpp
   - test/yukicoder/1667.test.cpp
   - test/yukicoder/1411.test.cpp
-  - test/yukicoder/590.test.cpp
   - test/yukicoder/2264.test.cpp
   - test/yukicoder/1339.test.cpp
   - test/yukicoder/1593.test.cpp

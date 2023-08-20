@@ -30,9 +30,6 @@ data:
     path: mod/tetration.hpp
     title: mod/tetration.hpp
   - icon: ':heavy_check_mark:'
-    path: nt/crt.hpp
-    title: nt/crt.hpp
-  - icon: ':heavy_check_mark:'
     path: nt/four_square.hpp
     title: nt/four_square.hpp
   - icon: ':heavy_check_mark:'
@@ -127,23 +124,11 @@ data:
     path: test/yukicoder/1667.test.cpp
     title: test/yukicoder/1667.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/187.test.cpp
-    title: test/yukicoder/187.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1956.test.cpp
-    title: test/yukicoder/1956.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2119.test.cpp
-    title: test/yukicoder/2119.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2120.test.cpp
     title: test/yukicoder/2120.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2181.test.cpp
     title: test/yukicoder/2181.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/590.test.cpp
-    title: test/yukicoder/590.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc222g.test.cpp
     title: test_atcoder/abc222g.test.cpp
@@ -198,7 +183,6 @@ data:
   - mod/mod_log.hpp
   - linalg/det_mod.hpp
   - linalg/det.hpp
-  - nt/crt.hpp
   - nt/four_square.hpp
   - nt/gaussian_integers.hpp
   timestamp: '2023-05-12 18:15:39+09:00'
@@ -206,15 +190,11 @@ data:
   verifiedWith:
   - test/mytest/four_square.test.cpp
   - test/mytest/31bit_modint.test.cpp
-  - test/yukicoder/187.test.cpp
-  - test/yukicoder/2119.test.cpp
   - test/yukicoder/2181.test.cpp
   - test/yukicoder/1025.test.cpp
   - test/yukicoder/1303.test.cpp
   - test/yukicoder/2120.test.cpp
-  - test/yukicoder/1956.test.cpp
   - test/yukicoder/1667.test.cpp
-  - test/yukicoder/590.test.cpp
   - test/yukicoder/1339.test.cpp
   - test/yukicoder/1593.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
