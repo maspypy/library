@@ -7,7 +7,8 @@
 void solve() {
   LL(N);
   VEC(pi, P, N);
-  angle_sort(P);
+  auto I = angle_sort(P);
+  P = rearrange(P, I);
   FOR(i, N) print(P[i]);
 }
 
