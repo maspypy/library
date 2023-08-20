@@ -5,8 +5,7 @@
 
 // 非負最小解を mod new_mod で返す (garner)
 template <typename T>
-i128 CRT(bool MODE, vc<T> vals, vc<T> mods, ll new_mod = -1,
-         bool coprime = false) {
+i128 CRT(vc<T> vals, vc<T> mods, ll new_mod = -1, bool coprime = false) {
   int n = len(vals);
   FOR(i, n) {
     vals[i] = ((vals[i] %= mods[i]) >= 0 ? vals[i] : vals[i] + mods[i]);
