@@ -16,7 +16,7 @@ void solve() {
 
   vc<P> vecs;
   FOR(i, N) FOR(j, N) vecs.eb(A[j] - A[i]);
-  auto I = angle_argsort(vecs);
+  auto I = angle_sort(vecs);
 
   vc<pair<int, int>> IJ;
   for (auto&& k: I) {
