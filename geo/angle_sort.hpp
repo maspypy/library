@@ -4,7 +4,7 @@
 
 // 偏角ソートに対する argsort
 template <typename T>
-vector<int> angle_argsort(vector<Point<T>>& P) {
+vector<int> angle_sort(vector<Point<T>>& P) {
   vector<int> lower, origin, upper;
   const Point<T> O = {0, 0};
   FOR(i, len(P)) {
@@ -22,24 +22,8 @@ vector<int> angle_argsort(vector<Point<T>>& P) {
 
 // 偏角ソートに対する argsort
 template <typename T>
-vector<int> angle_argsort(vector<pair<T, T>>& P) {
+vector<int> angle_sort(vector<pair<T, T>>& P) {
   vc<Point<T>> tmp(len(P));
   FOR(i, len(P)) tmp[i] = Point<T>(P[i]);
-  return angle_argsort<T>(tmp);
-}
-
-// inplace に偏角ソートする
-// index が欲しい場合は angle_argsort
-template <typename T>
-void angle_sort(vector<Point<T>>& P) {
-  auto I = angle_argsort<T>(P);
-  P = rearrange(P, I);
-}
-
-// inplace に偏角ソートする
-// index が欲しい場合は angle_argsort
-template <typename T>
-void angle_sort(vector<pair<T, T>>& P) {
-  auto I = angle_argsort<T>(P);
-  P = rearrange(P, I);
+  return angle_sort<T>(tmp);
 }
