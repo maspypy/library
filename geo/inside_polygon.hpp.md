@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/mytest/qoj5443.test.cpp
-    title: test/mytest/qoj5443.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links:
     - https://qoj.ac/problem/5443
@@ -46,9 +43,8 @@ data:
   path: geo/inside_polygon.hpp
   requiredBy: []
   timestamp: '2023-01-31 20:02:38+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/mytest/qoj5443.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: geo/inside_polygon.hpp
 layout: document
 redirect_from:

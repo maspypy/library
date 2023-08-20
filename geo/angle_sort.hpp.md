@@ -22,9 +22,6 @@ data:
     path: test/mytest/count_points_in_triangles.test.cpp
     title: test/mytest/count_points_in_triangles.test.cpp
   - icon: ':x:'
-    path: test/mytest/qoj5443.test.cpp
-    title: test/mytest/qoj5443.test.cpp
-  - icon: ':x:'
     path: test_atcoder/abc139f.test.cpp
     title: test_atcoder/abc139f.test.cpp
   - icon: ':x:'
@@ -121,12 +118,11 @@ data:
   timestamp: '2023-08-20 19:49:45+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/qoj5443.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp
   - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
-  - test_atcoder/abc139f.test.cpp
   - test_atcoder/abc202_f.test.cpp
+  - test_atcoder/abc139f.test.cpp
 documentation_of: geo/angle_sort.hpp
 layout: document
 redirect_from:

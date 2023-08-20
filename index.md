@@ -578,7 +578,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/incremental_convexhull.hpp
       title: geo/incremental_convexhull.hpp
-    - icon: ':x:'
+    - icon: ':warning:'
       path: geo/inside_polygon.hpp
       title: geo/inside_polygon.hpp
     - icon: ':heavy_check_mark:'
@@ -2652,7 +2652,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/qbinom.test.cpp
       title: test/mytest/qbinom.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/qoj5443.test.cpp
       title: test/mytest/qoj5443.test.cpp
     - icon: ':heavy_check_mark:'
