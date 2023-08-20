@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/coprime_factorization.hpp
     title: nt/coprime_factorization.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/187.test.cpp
     title: test/yukicoder/187.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1956.test.cpp
     title: test/yukicoder/1956.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2119.test.cpp
     title: test/yukicoder/2119.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/mod_inv.hpp\"\n// long \u3067\u3082\u5927\u4E08\u592B\
@@ -129,31 +129,30 @@ data:
     \ [p, e]: factor(mods[i])) {\n        T mod = 1;\n        FOR(e) mod *= p;\n \
     \       T val = vals[i] % mod;\n        if (!MP.count(p)) {\n          MP[p] =\
     \ {mod, val % mod};\n          continue;\n        }\n        auto& [mod1, val1]\
-    \ = MP[p];\n        if (mod < mod1) swap(mod, mod1), swap(val, val1);\n      \
-    \  if (val % mod1 != val1) {\n          ng = 1;\n          return;\n        }\n\
-    \        MP[p] = {mod1, val1};\n      }\n    }\n    mods.clear(), vals.clear();\n\
-    \    for (auto&& [p, x]: MP) {\n      auto [mod, val] = x;\n      mods.eb(mod),\
-    \ vals.eb(val);\n    }\n    n = len(vals);\n  };\n  auto reduction_by_coprime_factor\
-    \ = [&]() -> void {\n    auto [basis, pfs] = coprime_factorization<T>(mods);\n\
-    \    int k = len(basis);\n    vc<pair<T, int>> dat(k, {1, 0});\n    FOR(i, n)\
-    \ {\n      for (auto&& [pid, exp]: pfs[i]) {\n        T mod = 1;\n        FOR(exp)\
-    \ mod *= basis[pid];\n        T val = vals[i] % mod;\n        auto& [mod1, val1]\
-    \ = dat[pid];\n        if (mod > mod1) swap(mod, mod1), swap(val, val1);\n   \
-    \     if (val % mod1 != val1) {\n          ng = 1;\n          return;\n      \
-    \  }\n        dat[pid] = {mod1, val1};\n      }\n    }\n    mods.clear(), vals.clear();\n\
-    \    for (auto&& [mod, val]: dat) { mods.eb(mod), vals.eb(val); }\n    n = len(vals);\n\
-    \  };\n  if (!coprime) {\n    (n <= 10 ? reduction_by_coprime_factor() : reduction_by_factor());\n\
-    \  }\n\n  if (ng) return -1;\n  if (n == 0) return 0;\n\n  vc<ll> cfs(n);\n  if\
-    \ (MAX(mods) < (1LL << 31)) {\n    FOR(i, n) {\n      Barrett bt(mods[i]);\n \
-    \     ll a = vals[i], prod = 1;\n      FOR(j, i) {\n        a = bt.modulo(a +\
-    \ cfs[j] * (mods[i] - prod));\n        prod = bt.mul(prod, mods[j]);\n      }\n\
-    \      cfs[i] = bt.mul(mod_inv(prod, mods[i]), a);\n    }\n  } else {\n    FOR(i,\
-    \ n) {\n      ll a = vals[i], prod = 1;\n      FOR(j, i) {\n        a = (a + i128(cfs[j])\
-    \ * (mods[i] - prod)) % mods[i];\n        prod = i128(prod) * mods[j] % mods[i];\n\
-    \      }\n      cfs[i] = mod_inv(prod, mods[i]) * i128(a) % mods[i];\n    }\n\
-    \  }\n  i128 ret = 0, prod = 1;\n  FOR(i, n) {\n    ret += prod * cfs[i], prod\
-    \ *= mods[i];\n    if (new_mod != -1) { ret %= new_mod, prod %= new_mod; }\n \
-    \ }\n  return ret;\n}\n"
+    \ = MP[p];\n        if (mod > mod1) swap(mod, mod1), swap(val, val1);\n      \
+    \  if (val1 % mod != val) {\n          ng = 1;\n          return;\n        }\n\
+    \      }\n    }\n    mods.clear(), vals.clear();\n    for (auto&& [p, x]: MP)\
+    \ {\n      auto [mod, val] = x;\n      mods.eb(mod), vals.eb(val);\n    }\n  \
+    \  n = len(vals);\n  };\n  auto reduction_by_coprime_factor = [&]() -> void {\n\
+    \    auto [basis, pfs] = coprime_factorization<T>(mods);\n    int k = len(basis);\n\
+    \    vc<pair<T, int>> dat(k, {1, 0});\n    FOR(i, n) {\n      for (auto&& [pid,\
+    \ exp]: pfs[i]) {\n        T mod = 1;\n        FOR(exp) mod *= basis[pid];\n \
+    \       T val = vals[i] % mod;\n        auto& [mod1, val1] = dat[pid];\n     \
+    \   if (mod > mod1) swap(mod, mod1), swap(val, val1);\n        if (val1 % mod\
+    \ != val) {\n          ng = 1;\n          return;\n        }\n      }\n    }\n\
+    \    mods.clear(), vals.clear();\n    for (auto&& [mod, val]: dat) { mods.eb(mod),\
+    \ vals.eb(val); }\n    n = len(vals);\n  };\n  if (!coprime) {\n    (n <= 10 ?\
+    \ reduction_by_coprime_factor() : reduction_by_factor());\n  }\n\n  if (ng) return\
+    \ -1;\n  if (n == 0) return 0;\n\n  vc<ll> cfs(n);\n  if (MAX(mods) < (1LL <<\
+    \ 31)) {\n    FOR(i, n) {\n      Barrett bt(mods[i]);\n      ll a = vals[i], prod\
+    \ = 1;\n      FOR(j, i) {\n        a = bt.modulo(a + cfs[j] * (mods[i] - prod));\n\
+    \        prod = bt.mul(prod, mods[j]);\n      }\n      cfs[i] = bt.mul(mod_inv(prod,\
+    \ mods[i]), a);\n    }\n  } else {\n    FOR(i, n) {\n      ll a = vals[i], prod\
+    \ = 1;\n      FOR(j, i) {\n        a = (a + i128(cfs[j]) * (mods[i] - prod)) %\
+    \ mods[i];\n        prod = i128(prod) * mods[j] % mods[i];\n      }\n      cfs[i]\
+    \ = mod_inv(prod, mods[i]) * i128(a) % mods[i];\n    }\n  }\n  i128 ret = 0, prod\
+    \ = 1;\n  FOR(i, n) {\n    ret += prod * cfs[i], prod *= mods[i];\n    if (new_mod\
+    \ != -1) { ret %= new_mod, prod %= new_mod; }\n  }\n  return ret;\n}\n"
   code: "#include \"mod/mod_inv.hpp\"\n#include \"nt/coprime_factorization.hpp\"\n\
     #include \"nt/factor.hpp\"\n#include \"mod/barrett.hpp\"\n\n// \u975E\u8CA0\u6700\
     \u5C0F\u89E3\u3092 mod new_mod \u3067\u8FD4\u3059 (garner)\ntemplate <typename\
@@ -164,31 +163,30 @@ data:
     \      for (auto&& [p, e]: factor(mods[i])) {\n        T mod = 1;\n        FOR(e)\
     \ mod *= p;\n        T val = vals[i] % mod;\n        if (!MP.count(p)) {\n   \
     \       MP[p] = {mod, val % mod};\n          continue;\n        }\n        auto&\
-    \ [mod1, val1] = MP[p];\n        if (mod < mod1) swap(mod, mod1), swap(val, val1);\n\
-    \        if (val % mod1 != val1) {\n          ng = 1;\n          return;\n   \
-    \     }\n        MP[p] = {mod1, val1};\n      }\n    }\n    mods.clear(), vals.clear();\n\
-    \    for (auto&& [p, x]: MP) {\n      auto [mod, val] = x;\n      mods.eb(mod),\
-    \ vals.eb(val);\n    }\n    n = len(vals);\n  };\n  auto reduction_by_coprime_factor\
-    \ = [&]() -> void {\n    auto [basis, pfs] = coprime_factorization<T>(mods);\n\
-    \    int k = len(basis);\n    vc<pair<T, int>> dat(k, {1, 0});\n    FOR(i, n)\
-    \ {\n      for (auto&& [pid, exp]: pfs[i]) {\n        T mod = 1;\n        FOR(exp)\
-    \ mod *= basis[pid];\n        T val = vals[i] % mod;\n        auto& [mod1, val1]\
-    \ = dat[pid];\n        if (mod > mod1) swap(mod, mod1), swap(val, val1);\n   \
-    \     if (val % mod1 != val1) {\n          ng = 1;\n          return;\n      \
-    \  }\n        dat[pid] = {mod1, val1};\n      }\n    }\n    mods.clear(), vals.clear();\n\
-    \    for (auto&& [mod, val]: dat) { mods.eb(mod), vals.eb(val); }\n    n = len(vals);\n\
-    \  };\n  if (!coprime) {\n    (n <= 10 ? reduction_by_coprime_factor() : reduction_by_factor());\n\
-    \  }\n\n  if (ng) return -1;\n  if (n == 0) return 0;\n\n  vc<ll> cfs(n);\n  if\
-    \ (MAX(mods) < (1LL << 31)) {\n    FOR(i, n) {\n      Barrett bt(mods[i]);\n \
-    \     ll a = vals[i], prod = 1;\n      FOR(j, i) {\n        a = bt.modulo(a +\
-    \ cfs[j] * (mods[i] - prod));\n        prod = bt.mul(prod, mods[j]);\n      }\n\
-    \      cfs[i] = bt.mul(mod_inv(prod, mods[i]), a);\n    }\n  } else {\n    FOR(i,\
-    \ n) {\n      ll a = vals[i], prod = 1;\n      FOR(j, i) {\n        a = (a + i128(cfs[j])\
-    \ * (mods[i] - prod)) % mods[i];\n        prod = i128(prod) * mods[j] % mods[i];\n\
-    \      }\n      cfs[i] = mod_inv(prod, mods[i]) * i128(a) % mods[i];\n    }\n\
-    \  }\n  i128 ret = 0, prod = 1;\n  FOR(i, n) {\n    ret += prod * cfs[i], prod\
-    \ *= mods[i];\n    if (new_mod != -1) { ret %= new_mod, prod %= new_mod; }\n \
-    \ }\n  return ret;\n}"
+    \ [mod1, val1] = MP[p];\n        if (mod > mod1) swap(mod, mod1), swap(val, val1);\n\
+    \        if (val1 % mod != val) {\n          ng = 1;\n          return;\n    \
+    \    }\n      }\n    }\n    mods.clear(), vals.clear();\n    for (auto&& [p, x]:\
+    \ MP) {\n      auto [mod, val] = x;\n      mods.eb(mod), vals.eb(val);\n    }\n\
+    \    n = len(vals);\n  };\n  auto reduction_by_coprime_factor = [&]() -> void\
+    \ {\n    auto [basis, pfs] = coprime_factorization<T>(mods);\n    int k = len(basis);\n\
+    \    vc<pair<T, int>> dat(k, {1, 0});\n    FOR(i, n) {\n      for (auto&& [pid,\
+    \ exp]: pfs[i]) {\n        T mod = 1;\n        FOR(exp) mod *= basis[pid];\n \
+    \       T val = vals[i] % mod;\n        auto& [mod1, val1] = dat[pid];\n     \
+    \   if (mod > mod1) swap(mod, mod1), swap(val, val1);\n        if (val1 % mod\
+    \ != val) {\n          ng = 1;\n          return;\n        }\n      }\n    }\n\
+    \    mods.clear(), vals.clear();\n    for (auto&& [mod, val]: dat) { mods.eb(mod),\
+    \ vals.eb(val); }\n    n = len(vals);\n  };\n  if (!coprime) {\n    (n <= 10 ?\
+    \ reduction_by_coprime_factor() : reduction_by_factor());\n  }\n\n  if (ng) return\
+    \ -1;\n  if (n == 0) return 0;\n\n  vc<ll> cfs(n);\n  if (MAX(mods) < (1LL <<\
+    \ 31)) {\n    FOR(i, n) {\n      Barrett bt(mods[i]);\n      ll a = vals[i], prod\
+    \ = 1;\n      FOR(j, i) {\n        a = bt.modulo(a + cfs[j] * (mods[i] - prod));\n\
+    \        prod = bt.mul(prod, mods[j]);\n      }\n      cfs[i] = bt.mul(mod_inv(prod,\
+    \ mods[i]), a);\n    }\n  } else {\n    FOR(i, n) {\n      ll a = vals[i], prod\
+    \ = 1;\n      FOR(j, i) {\n        a = (a + i128(cfs[j]) * (mods[i] - prod)) %\
+    \ mods[i];\n        prod = i128(prod) * mods[j] % mods[i];\n      }\n      cfs[i]\
+    \ = mod_inv(prod, mods[i]) * i128(a) % mods[i];\n    }\n  }\n  i128 ret = 0, prod\
+    \ = 1;\n  FOR(i, n) {\n    ret += prod * cfs[i], prod *= mods[i];\n    if (new_mod\
+    \ != -1) { ret %= new_mod, prod %= new_mod; }\n  }\n  return ret;\n}"
   dependsOn:
   - mod/mod_inv.hpp
   - nt/coprime_factorization.hpp
@@ -198,8 +196,8 @@ data:
   isVerificationFile: false
   path: nt/crt.hpp
   requiredBy: []
-  timestamp: '2023-08-20 21:25:22+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-08-20 22:02:21+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/2119.test.cpp
   - test/yukicoder/1956.test.cpp
