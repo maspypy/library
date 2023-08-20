@@ -24,12 +24,11 @@ i128 CRT(vc<T> vals, vc<T> mods, ll new_mod = -1, bool coprime = false) {
           continue;
         }
         auto& [mod1, val1] = MP[p];
-        if (mod < mod1) swap(mod, mod1), swap(val, val1);
-        if (val % mod1 != val1) {
+        if (mod > mod1) swap(mod, mod1), swap(val, val1);
+        if (val1 % mod != val) {
           ng = 1;
           return;
         }
-        MP[p] = {mod1, val1};
       }
     }
     mods.clear(), vals.clear();
@@ -50,11 +49,10 @@ i128 CRT(vc<T> vals, vc<T> mods, ll new_mod = -1, bool coprime = false) {
         T val = vals[i] % mod;
         auto& [mod1, val1] = dat[pid];
         if (mod > mod1) swap(mod, mod1), swap(val, val1);
-        if (val % mod1 != val1) {
+        if (val1 % mod != val) {
           ng = 1;
           return;
         }
-        dat[pid] = {mod1, val1};
       }
     }
     mods.clear(), vals.clear();
