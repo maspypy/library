@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sort_points_by_argument
@@ -259,7 +259,7 @@ data:
     \ == len(points) ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n\
     \    if (a < 0) {\n      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n\
     #line 4 \"geo/angle_sort.hpp\"\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\
-    \u3059\u308B argsort\r\ntemplate <typename T>\r\nvector<int> angle_argsort(vector<Point<T>>&\
+    \u3059\u308B argsort\r\ntemplate <typename T>\r\nvector<int> angle_sort(vector<Point<T>>&\
     \ P) {\r\n  vector<int> lower, origin, upper;\r\n  const Point<T> O = {0, 0};\r\
     \n  FOR(i, len(P)) {\r\n    if (P[i] == O) origin.eb(i);\r\n    elif ((P[i].y\
     \ < 0) || (P[i].y == 0 && P[i].x > 0)) lower.eb(i);\r\n    else upper.eb(i);\r\
@@ -267,16 +267,9 @@ data:
     \ });\r\n  sort(all(upper), [&](auto& i, auto& j) { return P[i].det(P[j]) > 0;\
     \ });\r\n  auto& I = lower;\r\n  I.insert(I.end(), all(origin));\r\n  I.insert(I.end(),\
     \ all(upper));\r\n  return I;\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\
-    \u5BFE\u3059\u308B argsort\r\ntemplate <typename T>\r\nvector<int> angle_argsort(vector<pair<T,\
+    \u5BFE\u3059\u308B argsort\r\ntemplate <typename T>\r\nvector<int> angle_sort(vector<pair<T,\
     \ T>>& P) {\r\n  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\
-    \n  return angle_argsort<T>(tmp);\r\n}\r\n\r\n// inplace \u306B\u504F\u89D2\u30BD\
-    \u30FC\u30C8\u3059\u308B\r\n// index \u304C\u6B32\u3057\u3044\u5834\u5408\u306F\
-    \ angle_argsort\r\ntemplate <typename T>\r\nvoid angle_sort(vector<Point<T>>&\
-    \ P) {\r\n  auto I = angle_argsort<T>(P);\r\n  P = rearrange(P, I);\r\n}\r\n\r\
-    \n// inplace \u306B\u504F\u89D2\u30BD\u30FC\u30C8\u3059\u308B\r\n// index \u304C\
-    \u6B32\u3057\u3044\u5834\u5408\u306F angle_argsort\r\ntemplate <typename T>\r\n\
-    void angle_sort(vector<pair<T, T>>& P) {\r\n  auto I = angle_argsort<T>(P);\r\n\
-    \  P = rearrange(P, I);\r\n}\r\n#line 5 \"test/library_checker/geometry/sort_points_by_argument.test.cpp\"\
+    \n  return angle_sort<T>(tmp);\r\n}\r\n#line 5 \"test/library_checker/geometry/sort_points_by_argument.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N);\r\n  vc<Point<ll>> P(N);\r\n  FOR(i, N) read(P[i].x),\
     \ read(P[i].y);\r\n  angle_sort<ll>(P);\r\n  FOR(i, N) print(P[i].x, P[i].y);\r\
     \n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\n"
@@ -293,8 +286,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/geometry/sort_points_by_argument.test.cpp
   requiredBy: []
-  timestamp: '2023-08-19 23:05:14+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-08-20 19:49:45+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/geometry/sort_points_by_argument.test.cpp
 layout: document

@@ -545,10 +545,10 @@ data:
       title: game/solve_partizan_game.hpp
   - name: geo
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geo/angle_sort.hpp
       title: geo/angle_sort.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geo/base.hpp
       title: geo/base.hpp
     - icon: ':heavy_check_mark:'
@@ -560,7 +560,7 @@ data:
     - icon: ':warning:'
       path: geo/convex_polygon.hpp
       title: geo/convex_polygon.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geo/count_points_in_triangles.hpp
       title: geo/count_points_in_triangles.hpp
     - icon: ':heavy_check_mark:'
@@ -578,7 +578,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/incremental_convexhull.hpp
       title: geo/incremental_convexhull.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: geo/inside_polygon.hpp
       title: geo/inside_polygon.hpp
     - icon: ':heavy_check_mark:'
@@ -590,7 +590,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/manhattan_nns.hpp
       title: geo/manhattan_nns.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: geo/max_norm_sum.hpp
       title: geo/max_norm_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -1048,7 +1048,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/modular_subset_sum.hpp
       title: mod/modular_subset_sum.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: mod/powertable.hpp
       title: mod/powertable.hpp
     - icon: ':heavy_check_mark:'
@@ -1153,7 +1153,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/primesum_mod6.hpp
       title: nt/primesum_mod6.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: nt/primetable.hpp
       title: nt/primetable.hpp
     - icon: ':question:'
@@ -1395,7 +1395,7 @@ data:
       title: poly/online/online_square.hpp
   - name: random
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -2042,10 +2042,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/geometry/convex_layers.test.cpp
       title: test/library_checker/geometry/convex_layers.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/geometry/sort_points_by_argument.test.cpp
       title: test/library_checker/geometry/sort_points_by_argument.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
       title: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - name: test/library_checker/graph
@@ -2652,7 +2652,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/qbinom.test.cpp
       title: test/mytest/qbinom.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/mytest/qoj5443.test.cpp
       title: test/mytest/qoj5443.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3424,7 +3424,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc127f_1.test.cpp
       title: test_atcoder/abc127f_1.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_atcoder/abc139f.test.cpp
       title: test_atcoder/abc139f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3466,7 +3466,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc200f.test.cpp
       title: test_atcoder/abc200f.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_atcoder/abc202_f.test.cpp
       title: test_atcoder/abc202_f.test.cpp
     - icon: ':heavy_check_mark:'
