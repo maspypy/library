@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -412,8 +412,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/product_of_one_pm_xn.test.cpp
-  - test/library_checker/math/sharp_p_subset_sum.test.cpp
   - test/yukicoder/2062.test.cpp
+  - test/library_checker/math/sharp_p_subset_sum.test.cpp
   - test_atcoder/abc267h.test.cpp
 documentation_of: poly/product_of_one_plus_xn.hpp
 layout: document

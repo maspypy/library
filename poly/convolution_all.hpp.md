@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -358,16 +358,16 @@ data:
   timestamp: '2023-08-10 12:06:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/polynomial/product_of_polynomial_sequence.test.cpp
+  - test/yukicoder/1857.test.cpp
   - test/yukicoder/1392.test.cpp
   - test/yukicoder/1145.test.cpp
   - test/yukicoder/2243.test.cpp
-  - test/yukicoder/1857.test.cpp
+  - test/library_checker/polynomial/product_of_polynomial_sequence.test.cpp
   - test_atcoder/arc154f.test.cpp
-  - test_atcoder/abc272_h.test.cpp
   - test_atcoder/abc260h.test.cpp
-  - test_atcoder/abc267g.test.cpp
   - test_atcoder/abc269ex.test.cpp
+  - test_atcoder/abc267g.test.cpp
+  - test_atcoder/abc272_h.test.cpp
 documentation_of: poly/convolution_all.hpp
 layout: document
 redirect_from:

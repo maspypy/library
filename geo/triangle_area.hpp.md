@@ -36,8 +36,8 @@ data:
   path: geo/triangle_area.hpp
   requiredBy:
   - geo/minimum_enclosing_circle.hpp
-  - geo/outcircle.hpp
   - geo/incircle.hpp
+  - geo/outcircle.hpp
   timestamp: '2022-08-20 20:06:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

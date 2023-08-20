@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
@@ -111,10 +111,10 @@ data:
   timestamp: '2023-05-20 20:14:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/529.test.cpp
+  - test/yukicoder/1983.test.cpp
   - test/aoj/GRL_3_B.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp
-  - test/yukicoder/1983.test.cpp
-  - test/yukicoder/529.test.cpp
 documentation_of: graph/two_edge_component.hpp
 layout: document
 redirect_from:
