@@ -272,6 +272,7 @@
 "test/mytest/composition_log_1_minus_x.test.cpp": "2023-08-20 04:40:18 +0900",
 "test/mytest/conv2d.test.cpp": "2023-08-10 12:06:50 +0900",
 "test/mytest/conv_leq.test.cpp": "2023-08-10 12:06:50 +0900",
+"test/mytest/coprime_factorization.test.cpp": "2023-08-20 12:39:36 +0900",
 "test/mytest/count_bipartite.test.cpp": "2023-08-10 12:06:50 +0900",
 "test/mytest/count_indep_set.test.cpp": "2023-08-10 12:06:50 +0900",
 "test/mytest/count_points_in_triangles.test.cpp": "2023-08-19 23:05:14 +0900",
