@@ -1,37 +1,34 @@
-#pragma once
-#include "mod/barrett.hpp"
-#include "mod/mod_inv.hpp"
-#include "nt/factor.hpp"
 
-// 最小解を mod new_mod で返す
-// 解なしなら -1 を返す
-// long のときのテスト不十分（例：https://codeforces.com/contest/338/problem/D）
+// 非負最小解を mod new_mod で返す (garner)
 template <typename T>
 i128 CRT(vc<T> vals, vc<T> mods, ll new_mod = -1, bool coprime = false) {
   int n = len(vals);
   FOR(i, n) {
-    vals[i] %= mods[i];
-    if (vals[i] < 0) vals[i] += mods[i];
+    vals[i] = ((vals[i] %= mods[i]) >= 0 ? vals[i] : vals[i] + mods[i]);
   }
   if (!coprime) {
-    unordered_map<ll, vc<pi>> MP;
+    auto [basis, pfs] = coprime_factorization<T>(mods);
+    int k = len(basis);
+    vc<int> max_exp(k);
     FOR(i, n) {
-      for (auto&& [p, e]: factor(mods[i])) {
-        ll mod = 1;
-        FOR(e) mod *= p;
-        MP[p].eb(vals[i] % mod, mod);
+      for (auto&& [pid, exp]: pfs[i]) { chmax(max_exp[pid], exp); }
+    }
+    vc<T> xx(k), mm(k);
+    FOR(i, n) {
+      for (auto&& [pid, exp]: pfs[i]) {
+        if (exp == max_exp[pid]) {
+          mm[pid] = 1;
+          FOR(exp) mm[pid] *= basis[pid];
+          xx[pid] = vals[i] % mm[pid];
+        }
       }
     }
-    vc<T> xx, mm;
-    for (auto&& [p, dat]: MP) {
-      ll mod = 1;
-      ll val = 0;
-      for (auto&& [x, m]: dat)
-        if (chmax(mod, m)) val = x;
-      for (auto&& [x, m]: dat)
-        if ((val - x) % m != 0) return -1;
-      xx.eb(val);
-      mm.eb(mod);
+    FOR(i, n) {
+      for (auto&& [pid, exp]: pfs[i]) {
+        T mod = 1;
+        FOR(exp) mod *= basis[pid];
+        if (xx[pid] % mod != vals[i] % mod) return -1;
+      }
     }
     swap(vals, xx);
     swap(mods, mm);
@@ -40,7 +37,6 @@ i128 CRT(vc<T> vals, vc<T> mods, ll new_mod = -1, bool coprime = false) {
 
   vc<ll> cfs(n);
   FOR(i, n) {
-    Barrett bt(mods[i]);
     ll a = vals[i];
     ll prod = 1;
     FOR(j, i) {
@@ -49,15 +45,10 @@ i128 CRT(vc<T> vals, vc<T> mods, ll new_mod = -1, bool coprime = false) {
     }
     cfs[i] = mod_inv(prod, mods[i]) * i128(a) % mods[i];
   }
-  i128 ret = 0;
-  i128 prod = 1;
+  i128 ret = 0, prod = 1;
   FOR(i, n) {
-    ret += prod * cfs[i];
-    prod *= mods[i];
-    if (new_mod != -1) {
-      ret %= new_mod;
-      prod %= new_mod;
-    }
+    ret += prod * cfs[i], prod *= mods[i];
+    if (new_mod != -1) { ret %= new_mod, prod %= new_mod; }
   }
   return ret;
 }
