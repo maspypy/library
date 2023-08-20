@@ -1,3 +1,5 @@
+#include "mod/mod_inv.hpp"
+#include "nt/coprime_factorization.hpp"
 
 // 非負最小解を mod new_mod で返す (garner)
 template <typename T>

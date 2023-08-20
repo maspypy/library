@@ -1,6 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/187"
 #include "my_template.hpp"
 #include "other/io.hpp"
+#include "nt/factor.hpp"
 #include "nt/crt.hpp"
 #include "mod/modint.hpp"
 
@@ -27,13 +28,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }
