@@ -17,8 +17,11 @@ pair<vc<T>, vvc<pair<int, int>>> coprime_factorization(vc<T> nums) {
       vc<T> dat = {val, x};
       FOR(p, 1, len(dat)) {
         FOR(i, p) {
-          while (dat[p] > 1 && dat[i] % dat[p] == 0) dat[i] /= dat[p];
-          while (dat[i] > 1 && dat[p] % dat[i] == 0) dat[p] /= dat[i];
+          while (1) {
+            if (dat[p] > 1 && dat[i] % dat[p] == 0) dat[i] /= dat[p];
+            elif (dat[i] > 1 && dat[p] % dat[i] == 0) dat[p] /= dat[i];
+            else break;
+          }
           T g = gcd(dat[i], dat[p]);
           if (g == 1 || g == dat[i] || g == dat[p]) continue;
           dat[i] /= g, dat[p] /= g, dat.eb(g);
