@@ -10,7 +10,19 @@ void test() {
     vc<ll> dat(N);
     FOR(i, N) dat[i] = RNG(1, infty<ll>);
     auto [basis, pfs] = coprime_factorization(dat);
-    FOR(j, N) FOR(i, j) { assert(gcd(basis[i], basis[j]) == 1); }
+    FOR(j, len(basis)) FOR(i, j) { assert(gcd(basis[i], basis[j]) == 1); }
+    FOR(i, N) {
+      ll x = 1;
+      for (auto&& [pid, exp]: pfs[i]) { FOR(exp) x *= basis[pid]; }
+      assert(x == dat[i]);
+    }
+  }
+
+  FOR(N, 0, 100) {
+    vc<ll> dat(N);
+    FOR(i, N) dat[i] = RNG(1, 20);
+    auto [basis, pfs] = coprime_factorization(dat);
+    FOR(j, len(basis)) FOR(i, j) { assert(gcd(basis[i], basis[j]) == 1); }
     FOR(i, N) {
       ll x = 1;
       for (auto&& [pid, exp]: pfs[i]) { FOR(exp) x *= basis[pid]; }
