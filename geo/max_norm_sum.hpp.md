@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc139f.test.cpp
     title: test_atcoder/abc139f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://atcoder.jp/contests/abc139/tasks/abc139_f
@@ -90,8 +90,8 @@ data:
     \u30D5\u30ED\u30FC\u3057\u306A\u3044\u3088\u3046\u306B\u6CE8\u610F\u305B\u3088\
     \uFF0E\n// https://atcoder.jp/contests/abc139/tasks/abc139_f\n// https://codeforces.com/contest/1841/problem/F\n\
     template <typename SM, typename T>\npair<SM, vc<int>> max_norm_sum(vc<Point<T>>\
-    \ dat) {\n  auto I = angle_argsort(dat);\n  {\n    vc<int> J;\n    for (auto&&\
-    \ i: I) {\n      if (dat[i].x != 0 || dat[i].y != 0) J.eb(i);\n    }\n    swap(I,\
+    \ dat) {\n  auto I = angle_sort(dat);\n  {\n    vc<int> J;\n    for (auto&& i:\
+    \ I) {\n      if (dat[i].x != 0 || dat[i].y != 0) J.eb(i);\n    }\n    swap(I,\
     \ J);\n  }\n  dat = rearrange(dat, I);\n  const int N = len(dat);\n\n  if (N ==\
     \ 0) { return {0, {}}; }\n  SM ANS = 0;\n  pair<int, int> LR = {0, 0};\n\n  int\
     \ L = 0, R = 1;\n  Point<T> c = dat[0];\n  auto eval = [&]() -> SM { return SM(c.x)\
@@ -108,7 +108,7 @@ data:
     \u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u3088\u3046\u306B\
     \u6CE8\u610F\u305B\u3088\uFF0E\n// https://atcoder.jp/contests/abc139/tasks/abc139_f\n\
     // https://codeforces.com/contest/1841/problem/F\ntemplate <typename SM, typename\
-    \ T>\npair<SM, vc<int>> max_norm_sum(vc<Point<T>> dat) {\n  auto I = angle_argsort(dat);\n\
+    \ T>\npair<SM, vc<int>> max_norm_sum(vc<Point<T>> dat) {\n  auto I = angle_sort(dat);\n\
     \  {\n    vc<int> J;\n    for (auto&& i: I) {\n      if (dat[i].x != 0 || dat[i].y\
     \ != 0) J.eb(i);\n    }\n    swap(I, J);\n  }\n  dat = rearrange(dat, I);\n  const\
     \ int N = len(dat);\n\n  if (N == 0) { return {0, {}}; }\n  SM ANS = 0;\n  pair<int,\
@@ -119,15 +119,15 @@ data:
     \     c = c + B;\n      R++;\n      if (chmax(ANS, eval())) LR = {L, R};\n   \
     \ } else {\n      c = c - A;\n      L++;\n      if (chmax(ANS, eval())) LR = {L,\
     \ R};\n    }\n  }\n  vc<int> ids;\n  FOR(i, LR.fi, LR.se) { ids.eb(I[i % N]);\
-    \ }\n  return {ANS, ids};\n}"
+    \ }\n  return {ANS, ids};\n}\n"
   dependsOn:
   - geo/base.hpp
   - geo/angle_sort.hpp
   isVerificationFile: false
   path: geo/max_norm_sum.hpp
   requiredBy: []
-  timestamp: '2023-08-20 19:49:45+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-08-20 22:31:56+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc139f.test.cpp
 documentation_of: geo/max_norm_sum.hpp

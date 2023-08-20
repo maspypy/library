@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/max_norm_sum.hpp
     title: geo/max_norm_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     ERROR: 1e-10
@@ -281,8 +281,8 @@ data:
     \u30D5\u30ED\u30FC\u3057\u306A\u3044\u3088\u3046\u306B\u6CE8\u610F\u305B\u3088\
     \uFF0E\n// https://atcoder.jp/contests/abc139/tasks/abc139_f\n// https://codeforces.com/contest/1841/problem/F\n\
     template <typename SM, typename T>\npair<SM, vc<int>> max_norm_sum(vc<Point<T>>\
-    \ dat) {\n  auto I = angle_argsort(dat);\n  {\n    vc<int> J;\n    for (auto&&\
-    \ i: I) {\n      if (dat[i].x != 0 || dat[i].y != 0) J.eb(i);\n    }\n    swap(I,\
+    \ dat) {\n  auto I = angle_sort(dat);\n  {\n    vc<int> J;\n    for (auto&& i:\
+    \ I) {\n      if (dat[i].x != 0 || dat[i].y != 0) J.eb(i);\n    }\n    swap(I,\
     \ J);\n  }\n  dat = rearrange(dat, I);\n  const int N = len(dat);\n\n  if (N ==\
     \ 0) { return {0, {}}; }\n  SM ANS = 0;\n  pair<int, int> LR = {0, 0};\n\n  int\
     \ L = 0, R = 1;\n  Point<T> c = dat[0];\n  auto eval = [&]() -> SM { return SM(c.x)\
@@ -313,8 +313,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc139f.test.cpp
   requiredBy: []
-  timestamp: '2023-08-20 19:49:45+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-08-20 22:31:56+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc139f.test.cpp
 layout: document

@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/implicit_matrix/min_poly.hpp
     title: linalg/implicit_matrix/min_poly.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
@@ -68,8 +68,8 @@ data:
   timestamp: '2023-05-20 12:35:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/310.test.cpp
   - test/library_checker/matrix/implicit_matrix.test.cpp
+  - test/yukicoder/310.test.cpp
 documentation_of: linalg/implicit_matrix/det.hpp
 layout: document
 redirect_from:

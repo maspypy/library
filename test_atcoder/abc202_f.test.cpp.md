@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc202/tasks/abc202_f
@@ -419,22 +419,22 @@ data:
     \  }\r\n  return f;\r\n}\r\n#line 8 \"test_atcoder/abc202_f.test.cpp\"\n\nusing\
     \ mint = modint107;\n\nvoid solve() {\n  LL(N);\n  using P = Point<ll>;\n  VEC(P,\
     \ A, N);\n  Count_Points_In_Triangles X(A, A);\n\n  vc<P> vecs;\n  FOR(i, N) FOR(j,\
-    \ N) vecs.eb(A[j] - A[i]);\n  auto I = angle_argsort(vecs);\n\n  vc<pair<int,\
-    \ int>> IJ;\n  for (auto&& k: I) {\n    auto [i, j] = divmod(k, N);\n    if (i\
-    \ != j) IJ.eb(i, j);\n  }\n  vc<mint> POW = powertable_1<mint>(2, N);\n\n  mint\
-    \ ANS = 0;\n  FOR(s, N) {\n    vv(mint, dp, 2, N);\n    dp[0][s] = 1;\n    for\
-    \ (auto&& [i, j]: IJ) {\n      ll area = (A[i] - A[s]).det(A[j] - A[s]);\n   \
-    \   FOR(sgn, 2) {\n        ll t = (sgn + area) & 1;\n        int cnt = X.query(s,\
-    \ i, j);\n        dp[t][j] += POW[cnt] * dp[sgn][i];\n      }\n    }\n    ANS\
-    \ += dp[0][s];\n  }\n  // 1 \u89D2\u5F62\n  ANS -= mint(N);\n  // 2 \u89D2\u5F62\
-    \n  ANS -= mint(N * (N - 1) / 2);\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n\
-    \n  return 0;\n}\n"
+    \ N) vecs.eb(A[j] - A[i]);\n  auto I = angle_sort(vecs);\n\n  vc<pair<int, int>>\
+    \ IJ;\n  for (auto&& k: I) {\n    auto [i, j] = divmod(k, N);\n    if (i != j)\
+    \ IJ.eb(i, j);\n  }\n  vc<mint> POW = powertable_1<mint>(2, N);\n\n  mint ANS\
+    \ = 0;\n  FOR(s, N) {\n    vv(mint, dp, 2, N);\n    dp[0][s] = 1;\n    for (auto&&\
+    \ [i, j]: IJ) {\n      ll area = (A[i] - A[s]).det(A[j] - A[s]);\n      FOR(sgn,\
+    \ 2) {\n        ll t = (sgn + area) & 1;\n        int cnt = X.query(s, i, j);\n\
+    \        dp[t][j] += POW[cnt] * dp[sgn][i];\n      }\n    }\n    ANS += dp[0][s];\n\
+    \  }\n  // 1 \u89D2\u5F62\n  ANS -= mint(N);\n  // 2 \u89D2\u5F62\n  ANS -= mint(N\
+    \ * (N - 1) / 2);\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc202/tasks/abc202_f\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"geo/count_points_in_triangles.hpp\"\
     \n#include \"geo/angle_sort.hpp\"\n#include \"mod/modint.hpp\"\n#include \"mod/powertable.hpp\"\
     \n\nusing mint = modint107;\n\nvoid solve() {\n  LL(N);\n  using P = Point<ll>;\n\
     \  VEC(P, A, N);\n  Count_Points_In_Triangles X(A, A);\n\n  vc<P> vecs;\n  FOR(i,\
-    \ N) FOR(j, N) vecs.eb(A[j] - A[i]);\n  auto I = angle_argsort(vecs);\n\n  vc<pair<int,\
+    \ N) FOR(j, N) vecs.eb(A[j] - A[i]);\n  auto I = angle_sort(vecs);\n\n  vc<pair<int,\
     \ int>> IJ;\n  for (auto&& k: I) {\n    auto [i, j] = divmod(k, N);\n    if (i\
     \ != j) IJ.eb(i, j);\n  }\n  vc<mint> POW = powertable_1<mint>(2, N);\n\n  mint\
     \ ANS = 0;\n  FOR(s, N) {\n    vv(mint, dp, 2, N);\n    dp[0][s] = 1;\n    for\
@@ -458,8 +458,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc202_f.test.cpp
   requiredBy: []
-  timestamp: '2023-08-20 19:49:45+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-08-20 22:32:19+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc202_f.test.cpp
 layout: document
