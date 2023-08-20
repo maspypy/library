@@ -7,7 +7,8 @@ void solve() {
   LL(N);
   vc<Point<ll>> P(N);
   FOR(i, N) read(P[i].x), read(P[i].y);
-  angle_sort<ll>(P);
+  auto I = angle_sort<ll>(P);
+  P = rearrange(P, I);
   FOR(i, N) print(P[i].x, P[i].y);
 }
 
