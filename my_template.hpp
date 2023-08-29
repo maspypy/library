@@ -90,6 +90,10 @@ int popcnt(int x) { return __builtin_popcount(x); }
 int popcnt(u32 x) { return __builtin_popcount(x); }
 int popcnt(ll x) { return __builtin_popcountll(x); }
 int popcnt(u64 x) { return __builtin_popcountll(x); }
+int popcnt_mod_2(int x) { return __builtin_parity(x); }
+int popcnt_mod_2(u32 x) { return __builtin_parity(x); }
+int popcnt_mod_2(ll x) { return __builtin_parityll(x); }
+int popcnt_mod_2(u64 x) { return __builtin_parityll(x); }
 // (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)
 int topbit(int x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }
 int topbit(u32 x) { return (x == 0 ? -1 : 31 - __builtin_clz(x)); }
