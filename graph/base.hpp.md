@@ -83,6 +83,9 @@ data:
   - icon: ':x:'
     path: graph/functional.hpp
     title: graph/functional.hpp
+  - icon: ':warning:'
+    path: graph/implicit_graph/cograph_unionfind.hpp
+    title: graph/implicit_graph/cograph_unionfind.hpp
   - icon: ':question:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
@@ -731,6 +734,7 @@ data:
   - graph/maximum_independent_set_weighted.hpp
   - graph/dominator_tree.hpp
   - graph/minimum_spanning_tree.hpp
+  - graph/implicit_graph/cograph_unionfind.hpp
   - graph/dsu_on_tree.hpp
   - graph/tree_all_distances.hpp
   - graph/reverse_graph.hpp
