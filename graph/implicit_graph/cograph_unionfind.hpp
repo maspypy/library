@@ -1,3 +1,4 @@
+#include "graph/base.hpp"
 #include "ds/unionfind/unionfind.hpp"
 #include "ds/fastset.hpp"
 
