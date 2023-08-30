@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: linalg/det_mod.hpp
     title: linalg/det_mod.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
   _extendedRequiredBy: []
