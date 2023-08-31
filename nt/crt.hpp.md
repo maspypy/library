@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/coprime_factorization.hpp
     title: nt/coprime_factorization.hpp
   - icon: ':question:'

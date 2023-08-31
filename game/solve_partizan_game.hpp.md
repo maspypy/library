@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: game/dyadic_rational.hpp
     title: game/dyadic_rational.hpp
   _extendedRequiredBy: []
