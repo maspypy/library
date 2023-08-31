@@ -1,7 +1,9 @@
 #include "string/zalgorithm.hpp"
+
+// (period, l, r)
+// S[l:r] は周期 p (ただし r-l >= 2p) を持つが、S[l-1:r], S[l:r+1] はそうではない
 template <typename STRING>
 vc<tuple<int, int, int>> run_enumerate(const STRING& S) {
-  // (period, l, r)
   ll N = len(S);
   using T = tuple<int, int, int>;
   using P = pair<int, int>;
