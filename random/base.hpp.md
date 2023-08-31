@@ -44,7 +44,7 @@ data:
   - icon: ':x:'
     path: graph/vs_to_es.hpp
     title: graph/vs_to_es.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
   - icon: ':question:'
@@ -477,10 +477,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080.test.cpp
     title: test/yukicoder/1080.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080_2.test.cpp
     title: test/yukicoder/1080_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
   - icon: ':x:'
