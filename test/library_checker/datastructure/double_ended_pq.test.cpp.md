@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/removable_queue.hpp
     title: ds/removable_queue.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/double_ended_priority_queue
@@ -207,7 +207,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\n#line 1 \"ds/removable_queue.hpp\"\ntemplate <typename QUE_TYPE>\n\
-    struct Removable_Queue {\n  using QUE = QUE_TYPE;\n  using T = QUE::value_type;\n\
+    struct Removable_Queue {\n  using QUE = QUE_TYPE;\n  using T = typename QUE::value_type;\n\
     \n  QUE que, rm_que;\n\n  Removable_Queue() {}\n  Removable_Queue(vc<T>& dat)\
     \ : que(all(dat)) {}\n\n  void push(T x) { que.push(x); }\n  int size() { return\
     \ len(que) - len(rm_que); }\n\n  T pop() {\n    refresh();\n    return POP(que);\n\
@@ -236,8 +236,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/double_ended_pq.test.cpp
   requiredBy: []
-  timestamp: '2023-09-01 02:47:22+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-09-01 04:30:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/double_ended_pq.test.cpp
 layout: document
