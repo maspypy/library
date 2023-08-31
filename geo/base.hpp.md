@@ -41,6 +41,9 @@ data:
   - icon: ':question:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
+  - icon: ':warning:'
+    path: geo/perpendicular_bisector.hpp
+    title: geo/perpendicular_bisector.hpp
   - icon: ':heavy_check_mark:'
     path: geo/projection.hpp
     title: geo/projection.hpp
@@ -230,6 +233,7 @@ data:
   - geo/distance.hpp
   - geo/angle_sort.hpp
   - geo/reflection.hpp
+  - geo/perpendicular_bisector.hpp
   - geo/max_norm_sum.hpp
   - geo/count_points_in_triangles.hpp
   - geo/outcircle.hpp

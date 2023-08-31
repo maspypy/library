@@ -266,11 +266,12 @@ data:
     \ Line<T> L1, const Line<T> L2) {\n  T det = L1.a * L2.b - L1.b * L2.a;\n  assert(det\
     \ != 0);\n  REAL x = -REAL(L1.c) * L2.b + REAL(L1.b) * L2.c;\n  REAL y = -REAL(L1.a)\
     \ * L2.c + REAL(L1.c) * L2.a;\n  return Point<REAL>(x / det, y / det);\n}\n\n\
-    // 0: \u4EA4\u70B9\u306A\u3057\n// 1: \u4E00\u610F\u306A\u4EA4\u70B9\n// 2\uFF1A\
-    2 \u3064\u4EE5\u4E0A\u306E\u4EA4\u70B9\uFF08\u6574\u6570\u578B\u3092\u5229\u7528\
-    \u3057\u3066\u53B3\u5BC6\u306B\u3084\u308B\uFF09\ntemplate <typename T, enable_if_t<is_integral<T>::value,\
-    \ int> = 0>\nint count_cross(Segment<T> S1, Segment<T> S2, bool include_ends)\
-    \ {\n  Line<T> L1 = S1.to_Line();\n  Line<T> L2 = S2.to_Line();\n  if (L1.is_parallel(L2))\
+    // \u6D6E\u52D5\u5C0F\u6570\u70B9\u6570\u306F\u30A8\u30E9\u30FC\n// 0: \u4EA4\u70B9\
+    \u306A\u3057\n// 1: \u4E00\u610F\u306A\u4EA4\u70B9\n// 2\uFF1A2 \u3064\u4EE5\u4E0A\
+    \u306E\u4EA4\u70B9\uFF08\u6574\u6570\u578B\u3092\u5229\u7528\u3057\u3066\u53B3\
+    \u5BC6\u306B\u3084\u308B\uFF09\ntemplate <typename T>\nint count_cross(Segment<T>\
+    \ S1, Segment<T> S2, bool include_ends) {\n  static_assert(!std::is_floating_point<T>::value);\n\
+    \  Line<T> L1 = S1.to_Line();\n  Line<T> L2 = S2.to_Line();\n  if (L1.is_parallel(L2))\
     \ {\n    if (L1.eval(S2.A) != 0) return 0;\n    // 4 \u70B9\u3068\u3082\u540C\u4E00\
     \u76F4\u7DDA\u4E0A\u306B\u3042\u308B\n    T a1 = S1.A.x, b1 = S1.B.x;\n    T a2\
     \ = S2.A.x, b2 = S2.B.x;\n    if (a1 == b1) {\n      a1 = S1.A.y, b1 = S1.B.y;\n\
@@ -282,7 +283,20 @@ data:
     \ b1) swap(a1, b1);\n  if (a2 > b2) swap(a2, b2);\n  bool ok1 = 0, ok2 = 0;\n\n\
     \  if (include_ends) {\n    ok1 = (a1 <= 0) && (0 <= b1);\n    ok2 = (a2 <= 0)\
     \ && (0 <= b2);\n  } else {\n    ok1 = (a1 < 0) && (0 < b1);\n    ok2 = (a2 <\
-    \ 0) && (0 < b2);\n  }\n  return (ok1 && ok2 ? 1 : 0);\n}\n#line 8 \"test/aoj/CGL_2_C.test.cpp\"\
+    \ 0) && (0 < b2);\n  }\n  return (ok1 && ok2 ? 1 : 0);\n}\n\ntemplate <typename\
+    \ REAL, typename T>\nvc<Point<REAL>> cross_point(const Circle<T> C, const Line<T>\
+    \ L) {\n  T a = L.a, b = L.b, c = L.a * (C.O.x) + L.b * (C.O.y) + L.c;\n  T r\
+    \ = C.r;\n  // ax+by+c=0, x^2+y^2=r^2\n  if (a == 0) {\n    REAL y = REAL(-c)\
+    \ / b;\n    REAL bbxx = b * b * r * r - c * c;\n    if (bbxx < 0) return {};\n\
+    \    if (bbxx == 0) return {Point<REAL>(0 + C.O.x, y + C.O.y)};\n    REAL x =\
+    \ sqrtl(bbxx) / b;\n    return {Point<REAL>(-x + C.O.x, y + C.O.y),\n        \
+    \    Point<REAL>(+x + C.O.x, y + C.O.y)};\n  }\n  T D = 4 * a * a * b * b - 4\
+    \ * (a * a + b * b) * (c * c - a * a * r * r);\n  if (D < 0) return {};\n  REAL\
+    \ sqD = sqrtl(D);\n  REAL y1 = (-2 * a * c + sqD) / (2 * (a * a + b * b));\n \
+    \ REAL y2 = (-2 * a * c - sqD) / (2 * (a * a + b * b));\n  REAL x1 = (-b * y1\
+    \ - c) / a;\n  REAL x2 = (-b * y2 - c) / a;\n  x1 += C.O.x, x2 += C.O.x;\n  y1\
+    \ += C.O.y, y2 += C.O.y;\n  if (D == 0) return {Point<REAL>(x1, y1)};\n  return\
+    \ {Point<REAL>(x1, y1), Point<REAL>(x2, y2)};\n}\n#line 8 \"test/aoj/CGL_2_C.test.cpp\"\
     \n\nvoid solve() {\n  LL(Q);\n  FOR(Q) {\n    LL(a, b, c, d, e, f, g, h);\n  \
     \  Segment<ll> S1(a, b, c, d);\n    Segment<ll> S2(e, f, g, h);\n    Point<double>\
     \ pt = cross_point<double>(S1.to_Line(), S2.to_Line());\n    print(pt.x, pt.y);\n\
@@ -303,7 +317,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_2_C.test.cpp
   requiredBy: []
-  timestamp: '2023-08-30 03:52:01+09:00'
+  timestamp: '2023-09-01 02:47:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_2_C.test.cpp

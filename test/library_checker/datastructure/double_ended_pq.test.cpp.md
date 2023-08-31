@@ -1,12 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: alg/monoid/add.hpp
-    title: alg/monoid/add.hpp
-  - icon: ':question:'
-    path: ds/segtree/dynamic_segtree.hpp
-    title: ds/segtree/dynamic_segtree.hpp
+  - icon: ':x:'
+    path: ds/removable_queue.hpp
+    title: ds/removable_queue.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -15,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/double_ended_priority_queue
@@ -25,7 +22,7 @@ data:
     - https://judge.yosupo.jp/problem/double_ended_priority_queue
   bundledCode: "#line 1 \"test/library_checker/datastructure/double_ended_pq.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/double_ended_priority_queue\"\
-    \n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
     using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
@@ -209,123 +206,38 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 2 \"ds/segtree/dynamic_segtree.hpp\"\n\r\n// sparse \u3082\
-    \u3042\u308B\u306E\u3067\u72B6\u6CC1\u306B\u3088\u3063\u3066\u306F\u305D\u3063\
-    \u3061\u3067\r\ntemplate <typename Monoid, bool PERSISTENT, int NODES>\r\nstruct\
-    \ Dynamic_SegTree {\r\n  using MX = Monoid;\r\n  using X = typename MX::value_type;\r\
-    \n  using F = function<X(ll, ll)>;\r\n  F default_prod;\r\n\r\n  struct Node {\r\
-    \n    Node *l, *r;\r\n    X x;\r\n  };\r\n\r\n  const ll L0, R0;\r\n  Node *pool;\r\
-    \n  int pid;\r\n  using np = Node *;\r\n\r\n  Dynamic_SegTree(\r\n      ll L0,\
-    \ ll R0, F default_prod = [](ll l, ll r) -> X { return MX::unit(); })\r\n    \
-    \  : default_prod(default_prod), L0(L0), R0(R0), pid(0) {\r\n    pool = new Node[NODES];\r\
-    \n  }\r\n\r\n  np new_root() { return new_node(L0, R0); }\r\n\r\n  np new_node(const\
-    \ X x) {\r\n    pool[pid].l = pool[pid].r = nullptr;\r\n    pool[pid].x = x;\r\
-    \n    return &(pool[pid++]);\r\n  }\r\n\r\n  np new_node(ll l, ll r) { return\
-    \ new_node(default_prod(l, r)); }\r\n  np new_node() { return new_node(L0, R0);\
-    \ }\r\n\r\n  np new_node(const vc<X> &dat) {\r\n    assert(L0 == 0 && R0 == len(dat));\r\
-    \n    auto dfs = [&](auto &dfs, ll l, ll r) -> Node * {\r\n      if (l == r) return\
-    \ nullptr;\r\n      if (r == l + 1) return new_node(dat[l]);\r\n      ll m = (l\
-    \ + r) / 2;\r\n      np l_root = dfs(dfs, l, m), r_root = dfs(dfs, m, r);\r\n\
-    \      X x = MX::op(l_root->x, r_root->x);\r\n      np root = new_node(x);\r\n\
-    \      root->l = l_root, root->r = r_root;\r\n      return root;\r\n    };\r\n\
-    \    return dfs(dfs, 0, len(dat));\r\n  }\r\n\r\n  X prod(np root, ll l, ll r)\
-    \ {\r\n    assert(L0 <= l && l <= r && r <= R0);\r\n    if (!root || l == r) return\
-    \ MX::unit();\r\n    X x = MX::unit();\r\n    prod_rec(root, L0, R0, l, r, x);\r\
-    \n    return x;\r\n  }\r\n\r\n  np set(np root, ll i, const X &x) {\r\n    assert(root\
-    \ && L0 <= i && i < R0);\r\n    return set_rec(root, L0, R0, i, x);\r\n  }\r\n\
-    \r\n  np multiply(np root, ll i, const X &x) {\r\n    assert(root && L0 <= i &&\
-    \ i < R0);\r\n    return multiply_rec(root, L0, R0, i, x);\r\n  }\r\n\r\n  template\
-    \ <typename F>\r\n  ll max_right(np root, F check, ll L) {\r\n    assert(pid &&\
-    \ root && L0 <= L && L <= R0 && check(MX::unit()));\r\n    X x = MX::unit();\r\
-    \n    return max_right_rec(root, check, L0, R0, L, x);\r\n  }\r\n\r\n  template\
-    \ <typename F>\r\n  ll min_left(np root, F check, ll R) {\r\n    assert(pid &&\
-    \ L0 <= R && R <= R0 && check(MX::unit()));\r\n    X x = MX::unit();\r\n    return\
-    \ min_left_rec(root, check, L0, R0, R, x);\r\n  }\r\n\r\n  // (idx, val)\r\n \
-    \ template <typename F>\r\n  void enumerate(np root, F f) {\r\n    if (!root)\
-    \ return;\r\n    auto dfs = [&](auto &dfs, np c, ll l, ll r) -> void {\r\n   \
-    \   if (!c) return;\r\n      if (r - l == 1) {\r\n        f(l, c->x);\r\n    \
-    \    return;\r\n      }\r\n      ll m = (l + r) / 2;\r\n      dfs(dfs, c->l, l,\
-    \ m);\r\n      dfs(dfs, c->r, m, r);\r\n    };\r\n    dfs(dfs, root, L0, R0);\r\
-    \n    return;\r\n  }\r\n\r\n  void reset() { pid = 0; }\r\n\r\nprivate:\r\n  np\
-    \ copy_node(np c) {\r\n    if (!c || !PERSISTENT) return c;\r\n    pool[pid].l\
-    \ = c->l, pool[pid].r = c->r;\r\n    pool[pid].x = c->x;\r\n    return &(pool[pid++]);\r\
-    \n  }\r\n\r\n  np set_rec(np c, ll l, ll r, ll i, const X &x) {\r\n    if (r ==\
-    \ l + 1) {\r\n      c = copy_node(c);\r\n      c->x = x;\r\n      return c;\r\n\
-    \    }\r\n    ll m = (l + r) / 2;\r\n\r\n    c = copy_node(c);\r\n    if (i <\
-    \ m) {\r\n      if (!c->l) c->l = new_node(l, m);\r\n      c->l = set_rec(c->l,\
-    \ l, m, i, x);\r\n    } else {\r\n      if (!c->r) c->r = new_node(m, r);\r\n\
-    \      c->r = set_rec(c->r, m, r, i, x);\r\n    }\r\n    X xl = (c->l ? c->l->x\
-    \ : default_prod(l, m));\r\n    X xr = (c->r ? c->r->x : default_prod(m, r));\r\
-    \n    c->x = MX::op(xl, xr);\r\n    return c;\r\n  }\r\n\r\n  np multiply_rec(np\
-    \ c, ll l, ll r, ll i, const X &x, bool make_copy = true) {\r\n    if (r == l\
-    \ + 1) {\r\n      if (make_copy) c = copy_node(c);\r\n      c->x = MX::op(c->x,\
-    \ x);\r\n      return c;\r\n    }\r\n    ll m = (l + r) / 2;\r\n    if (make_copy)\
-    \ c = copy_node(c);\r\n\r\n    if (i < m) {\r\n      bool make = true;\r\n   \
-    \   if (!c->l) c->l = new_node(l, m), make = false;\r\n      c->l = multiply_rec(c->l,\
-    \ l, m, i, x, make);\r\n    } else {\r\n      bool make = true;\r\n      if (!c->r)\
-    \ c->r = new_node(m, r), make = false;\r\n      c->r = multiply_rec(c->r, m, r,\
-    \ i, x, make);\r\n    }\r\n    X xl = (c->l ? c->l->x : default_prod(l, m));\r\
-    \n    X xr = (c->r ? c->r->x : default_prod(m, r));\r\n    c->x = MX::op(xl, xr);\r\
-    \n    return c;\r\n  }\r\n\r\n  void prod_rec(np c, ll l, ll r, ll ql, ll qr,\
-    \ X &x) {\r\n    chmax(ql, l);\r\n    chmin(qr, r);\r\n    if (ql >= qr) return;\r\
-    \n    if (!c) {\r\n      x = MX::op(x, default_prod(ql, qr));\r\n      return;\r\
-    \n    }\r\n    if (l == ql && r == qr) {\r\n      x = MX::op(x, c->x);\r\n   \
-    \   return;\r\n    }\r\n    ll m = (l + r) / 2;\r\n    prod_rec(c->l, l, m, ql,\
-    \ qr, x);\r\n    prod_rec(c->r, m, r, ql, qr, x);\r\n  }\r\n\r\n  template <typename\
-    \ F>\r\n  ll max_right_rec(np c, const F &check, ll l, ll r, ll ql, X &x) {\r\n\
-    \    if (r <= ql) return R0;\r\n    if (ql <= l && check(MX::op(x, c->x))) {\r\
-    \n      x = MX::op(x, c->x);\r\n      return R0;\r\n    }\r\n    if (r == l +\
-    \ 1) return l;\r\n    ll m = (l + r) / 2;\r\n    if (!c->l) c->l = new_node(l,\
-    \ m);\r\n    ll k = max_right_rec(c->l, check, l, m, ql, x);\r\n    if (k != R0)\
-    \ return k;\r\n    if (!c->r) c->r = new_node(m, r);\r\n    return max_right_rec(c->r,\
-    \ check, m, r, ql, x);\r\n  }\r\n\r\n  template <typename F>\r\n  ll min_left_rec(np\
-    \ c, const F &check, ll l, ll r, ll qr, X &x) {\r\n    if (qr <= l) return L0;\r\
-    \n    if (r <= qr && check(MX::op(c->x, x))) {\r\n      x = MX::op(x, c->x);\r\
-    \n      return L0;\r\n    }\r\n    if (r == l + 1) return r;\r\n    ll m = (l\
-    \ + r) / 2;\r\n    if (!c->r) c->r = new_node(m, r);\r\n    ll k = min_left_rec(c->r,\
-    \ check, m, r, qr, x);\r\n    if (k != L0) return k;\r\n    if (!c->l) c->l =\
-    \ new_node(l, m);\r\n    return min_left_rec(c->l, check, l, m, qr, x);\r\n  }\r\
-    \n};\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct Monoid_Add\
-    \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
-    \ &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept\
-    \ { return -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return\
-    \ X(n) * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 7 \"test/library_checker/datastructure/double_ended_pq.test.cpp\"\
-    \n\nvoid solve() {\n  // \u52D5\u7684\u30BB\u30B0\u6728\u3067\u306E\u4E8C\u5206\
-    \u63A2\u7D22\n  LL(N, Q);\n  VEC(int, A, N);\n  const int LIM = 1'000'000'000;\n\
-    \n  Dynamic_SegTree<Monoid_Add<int>, false, 30'000'000> seg(-LIM, LIM + 1);\n\
-    \  auto root = seg.new_node(-LIM, LIM + 1);\n  for (auto&& a: A) root = seg.multiply(root,\
-    \ a, 1);\n\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(x);\n      seg.multiply(root,\
-    \ x, 1);\n    }\n    if (t == 1) {\n      auto check = [&](auto e) -> bool { return\
-    \ e == 0; };\n      int ANS = seg.max_right(root, check, -LIM);\n      print(ANS);\n\
-    \      root = seg.multiply(root, ANS, -1);\n    }\n    if (t == 2) {\n      auto\
-    \ check = [&](auto e) -> bool { return e == 0; };\n      int ANS = seg.min_left(root,\
-    \ check, LIM + 1) - 1;\n      print(ANS);\n      root = seg.multiply(root, ANS,\
-    \ -1);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+    \ yes(!t); }\n#line 1 \"ds/removable_queue.hpp\"\ntemplate <typename QUE_TYPE>\n\
+    struct Removable_Queue {\n  using QUE = QUE_TYPE;\n  using T = QUE::value_type;\n\
+    \n  QUE que, rm_que;\n\n  Removable_Queue() {}\n  Removable_Queue(vc<T>& dat)\
+    \ : que(all(dat)) {}\n\n  void push(T x) { que.push(x); }\n  int size() { return\
+    \ len(que) - len(rm_que); }\n\n  T pop() {\n    refresh();\n    return POP(que);\n\
+    \  }\n  T top() {\n    refresh();\n    return que.top();\n  }\n\n  void remove(T\
+    \ x) { rm_que.push(x); }\n\nprivate:\n  void refresh() {\n    while (len(rm_que)\
+    \ && rm_que.top() == que.top()) {\n      rm_que.pop(), que.pop();\n    }\n  }\n\
+    };\n#line 5 \"test/library_checker/datastructure/double_ended_pq.test.cpp\"\n\n\
+    void solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Removable_Queue<pqg<int>> que1(A);\n\
+    \  Removable_Queue<pq<int>> que2(A);\n\n  FOR(Q) {\n    LL(t);\n    if (t == 0)\
+    \ {\n      LL(x);\n      que1.push(x), que2.push(x);\n    }\n    if (t == 1) {\n\
+    \      int x = que1.pop();\n      print(x), que2.remove(x);\n    }\n    if (t\
+    \ == 2) {\n      int x = que2.pop();\n      print(x), que1.remove(x);\n    }\n\
+    \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/double_ended_priority_queue\"\
-    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/segtree/dynamic_segtree.hpp\"\
-    \n#include \"alg/monoid/add.hpp\"\n\nvoid solve() {\n  // \u52D5\u7684\u30BB\u30B0\
-    \u6728\u3067\u306E\u4E8C\u5206\u63A2\u7D22\n  LL(N, Q);\n  VEC(int, A, N);\n \
-    \ const int LIM = 1'000'000'000;\n\n  Dynamic_SegTree<Monoid_Add<int>, false,\
-    \ 30'000'000> seg(-LIM, LIM + 1);\n  auto root = seg.new_node(-LIM, LIM + 1);\n\
-    \  for (auto&& a: A) root = seg.multiply(root, a, 1);\n\n  FOR(Q) {\n    LL(t);\n\
-    \    if (t == 0) {\n      LL(x);\n      seg.multiply(root, x, 1);\n    }\n   \
-    \ if (t == 1) {\n      auto check = [&](auto e) -> bool { return e == 0; };\n\
-    \      int ANS = seg.max_right(root, check, -LIM);\n      print(ANS);\n      root\
-    \ = seg.multiply(root, ANS, -1);\n    }\n    if (t == 2) {\n      auto check =\
-    \ [&](auto e) -> bool { return e == 0; };\n      int ANS = seg.min_left(root,\
-    \ check, LIM + 1) - 1;\n      print(ANS);\n      root = seg.multiply(root, ANS,\
-    \ -1);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/removable_queue.hpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Removable_Queue<pqg<int>>\
+    \ que1(A);\n  Removable_Queue<pq<int>> que2(A);\n\n  FOR(Q) {\n    LL(t);\n  \
+    \  if (t == 0) {\n      LL(x);\n      que1.push(x), que2.push(x);\n    }\n   \
+    \ if (t == 1) {\n      int x = que1.pop();\n      print(x), que2.remove(x);\n\
+    \    }\n    if (t == 2) {\n      int x = que2.pop();\n      print(x), que1.remove(x);\n\
+    \    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/segtree/dynamic_segtree.hpp
-  - alg/monoid/add.hpp
+  - ds/removable_queue.hpp
   isVerificationFile: true
   path: test/library_checker/datastructure/double_ended_pq.test.cpp
   requiredBy: []
-  timestamp: '2023-08-30 03:52:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-09-01 02:47:22+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/double_ended_pq.test.cpp
 layout: document
