@@ -1,7 +1,7 @@
 template <typename QUE_TYPE>
 struct Removable_Queue {
   using QUE = QUE_TYPE;
-  using T = QUE::value_type;
+  using T = typename QUE::value_type;
 
   QUE que, rm_que;
 
