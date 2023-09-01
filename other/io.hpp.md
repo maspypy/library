@@ -714,7 +714,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/number_of_subsequences.test.cpp
     title: test/library_checker/string/number_of_subsequences.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/string/number_of_substrings.test.cpp
     title: test/library_checker/string/number_of_substrings.test.cpp
   - icon: ':heavy_check_mark:'
@@ -726,10 +726,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/run_enumerate_vec.test.cpp
     title: test/library_checker/string/run_enumerate_vec.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/string/suffix_array.test.cpp
     title: test/library_checker/string/suffix_array.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/string/suffix_array_vec.test.cpp
     title: test/library_checker/string/suffix_array_vec.test.cpp
   - icon: ':heavy_check_mark:'
@@ -897,7 +897,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/knight_distance.test.cpp
     title: test/mytest/knight_distance.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/longest_common_substr.test.cpp
     title: test/mytest/longest_common_substr.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1083,7 +1083,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/substring_abundant.test.cpp
     title: test/mytest/substring_abundant.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1668,9 +1668,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2360.test.cpp
     title: test/yukicoder/2360.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2361.test.cpp
     title: test/yukicoder/2361.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2459.test.cpp
+    title: test/yukicoder/2459.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/255.test.cpp
     title: test/yukicoder/255.test.cpp
@@ -1893,7 +1896,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc237g1.test.cpp
     title: test_atcoder/abc237g1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc240ex.test.cpp
     title: test_atcoder/abc240ex.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1902,13 +1905,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc241e.test.cpp
     title: test_atcoder/abc241e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc241h.test.cpp
     title: test_atcoder/abc241h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc244h.test.cpp
     title: test_atcoder/abc244h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc249_ex.test.cpp
     title: test_atcoder/abc249_ex.test.cpp
   - icon: ':x:'
@@ -2769,6 +2772,7 @@ data:
   - test/yukicoder/1516.test.cpp
   - test/yukicoder/2280.test.cpp
   - test/yukicoder/2320.test.cpp
+  - test/yukicoder/2459.test.cpp
   - test/yukicoder/590.test.cpp
   - test/yukicoder/2161.test.cpp
   - test/yukicoder/235.test.cpp

@@ -69,6 +69,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1962.test.cpp
     title: test/yukicoder/1962.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2459.test.cpp
+    title: test/yukicoder/2459.test.cpp
   - icon: ':x:'
     path: test_atcoder/abc260h.test.cpp
     title: test_atcoder/abc260h.test.cpp
@@ -409,6 +412,7 @@ data:
   - test/mytest/composition_ex_minus_1.test.cpp
   - test/yukicoder/1145.test.cpp
   - test/yukicoder/1875.test.cpp
+  - test/yukicoder/2459.test.cpp
   - test/yukicoder/1962.test.cpp
   - test_atcoder/abc276_g.test.cpp
   - test_atcoder/arc154f.test.cpp

@@ -125,7 +125,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
   - icon: ':question:'
@@ -535,6 +535,9 @@ data:
     path: test/yukicoder/2305.test.cpp
     title: test/yukicoder/2305.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2459.test.cpp
+    title: test/yukicoder/2459.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/303.test.cpp
     title: test/yukicoder/303.test.cpp
   - icon: ':heavy_check_mark:'
@@ -555,7 +558,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc222h_2.test.cpp
     title: test_atcoder/abc222h_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc241h.test.cpp
     title: test_atcoder/abc241h.test.cpp
   - icon: ':x:'
@@ -835,6 +838,7 @@ data:
   - test/yukicoder/1547.test.cpp
   - test/yukicoder/1720.test.cpp
   - test/yukicoder/1516.test.cpp
+  - test/yukicoder/2459.test.cpp
   - test/yukicoder/1685.test.cpp
   - test/yukicoder/2062.test.cpp
   - test/yukicoder/541.test.cpp

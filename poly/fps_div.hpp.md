@@ -56,6 +56,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/sum_of_powers.hpp
+    title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
@@ -69,6 +72,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1145.test.cpp
+    title: test/yukicoder/1145.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1500.test.cpp
     title: test/yukicoder/1500.test.cpp
@@ -96,6 +102,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2305.test.cpp
     title: test/yukicoder/2305.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2459.test.cpp
+    title: test/yukicoder/2459.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/541.test.cpp
     title: test/yukicoder/541.test.cpp
@@ -458,6 +467,7 @@ data:
   - poly/composed_sum.hpp
   - seq/famous/bell_number_large.hpp
   - seq/interpolate_linear_rec.hpp
+  - seq/sum_of_powers.hpp
   - linalg/implicit_matrix/vandermonde.hpp
   timestamp: '2023-08-10 12:06:50+09:00'
   verificationStatus: LIBRARY_SOME_WA
@@ -470,11 +480,13 @@ data:
   - test/yukicoder/1844.test.cpp
   - test/yukicoder/579.test.cpp
   - test/yukicoder/578.test.cpp
+  - test/yukicoder/1145.test.cpp
   - test/yukicoder/1561.test.cpp
   - test/yukicoder/1500.test.cpp
   - test/yukicoder/2122.test.cpp
   - test/yukicoder/1547.test.cpp
   - test/yukicoder/1516.test.cpp
+  - test/yukicoder/2459.test.cpp
   - test/yukicoder/541.test.cpp
   - test/yukicoder/1533.test.cpp
   - test/yukicoder/1962.test.cpp

@@ -29,6 +29,9 @@ data:
     path: poly/fft.hpp
     title: poly/fft.hpp
   - icon: ':question:'
+    path: poly/fps_div.hpp
+    title: poly/fps_div.hpp
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':question:'
@@ -45,6 +48,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1145.test.cpp
     title: test/yukicoder/1145.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2459.test.cpp
+    title: test/yukicoder/2459.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -361,8 +367,19 @@ data:
     \nvc<mint> fps_log(const vc<mint>& f) {\r\n  assert(f[0] == mint(1));\r\n  int\
     \ n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 200 : 1200);\r\n  return\
     \ (n <= t ? fps_log_sparse<mint>(f) : fps_log_dense<mint>(f));\r\n}\r\n#line 2\
-    \ \"poly/sum_of_rationals.hpp\"\n\n#line 4 \"poly/sum_of_rationals.hpp\"\n\n//\
-    \ \u6709\u7406\u5F0F\u306E\u548C\u3092\u8A08\u7B97\u3059\u308B\u3002\u5206\u5272\
+    \ \"poly/fps_div.hpp\"\n\n#line 5 \"poly/fps_div.hpp\"\n\n// f/g. f \u306E\u9577\
+    \u3055\u3067\u51FA\u529B\u3055\u308C\u308B.\ntemplate <typename mint, bool SPARSE\
+    \ = false>\nvc<mint> fps_div(vc<mint> f, vc<mint> g) {\n  if (SPARSE || count_terms(g)\
+    \ < 200) return fps_div_sparse(f, g);\n  int n = len(f);\n  g.resize(n);\n  g\
+    \ = fps_inv<mint>(g);\n  f = convolution(f, g);\n  f.resize(n);\n  return f;\n\
+    }\n\n// f/g \u305F\u3060\u3057 g \u306F sparse\ntemplate <typename mint>\nvc<mint>\
+    \ fps_div_sparse(vc<mint> f, vc<mint>& g) {\n  if (g[0] != mint(1)) {\n    mint\
+    \ cf = g[0].inverse();\n    for (auto&& x: f) x *= cf;\n    for (auto&& x: g)\
+    \ x *= cf;\n  }\n\n  vc<pair<int, mint>> dat;\n  FOR(i, 1, len(g)) if (g[i] !=\
+    \ mint(0)) dat.eb(i, -g[i]);\n  FOR(i, len(f)) {\n    for (auto&& [j, x]: dat)\
+    \ {\n      if (i >= j) f[i] += x * f[i - j];\n    }\n  }\n  return f;\n}\n#line\
+    \ 2 \"poly/sum_of_rationals.hpp\"\n\n#line 4 \"poly/sum_of_rationals.hpp\"\n\n\
+    // \u6709\u7406\u5F0F\u306E\u548C\u3092\u8A08\u7B97\u3059\u308B\u3002\u5206\u5272\
     \u7D71\u6CBB O(Nlog^2N)\u3002N \u306F\u6B21\u6570\u306E\u548C\u3002\ntemplate\
     \ <typename mint>\npair<vc<mint>, vc<mint>> sum_of_rationals(vc<pair<vc<mint>,\
     \ vc<mint>>> dat) {\n  if (len(dat) == 0) {\n    vc<mint> f = {0}, g = {1};\n\
@@ -375,28 +392,38 @@ data:
     \ b.se);\n    return {num, den};\n  };\n\n  while (len(dat) > 1) {\n    int n\
     \ = len(dat);\n    FOR(i, 1, n, 2) { dat[i - 1] = add(dat[i - 1], dat[i]); }\n\
     \    FOR(i, ceil(n, 2)) dat[i] = dat[2 * i];\n    dat.resize(ceil(n, 2));\n  }\n\
-    \  return dat[0];\n}\n#line 4 \"seq/sum_of_powers.hpp\"\n\n// sum_{a in A} a^n\
+    \  return dat[0];\n}\n#line 5 \"seq/sum_of_powers.hpp\"\n\n// sum_{a in A} a^n\
     \ \u3092\u3001n = 0, 1, ..., N \u3067\u5217\u6319\ntemplate <typename T>\nvc<T>\
     \ sum_of_powers(const vc<T>& A, ll N) {\n  vvc<T> polys;\n  for (auto&& a: A)\
     \ polys.eb(vc<T>({T(1), -a}));\n  auto f = convolution_all(polys);\n  f.resize(N\
     \ + 1);\n  f = fps_log(f);\n  FOR(i, len(f)) f[i] = -f[i] * T(i);\n  f[0] = len(A);\n\
-    \  return f;\n}\n\n// sum ca^n \u3092 n=0,1,...,N \u3067\u5217\u6319\ntemplate\
-    \ <typename T>\nvc<T> sum_of_powers_with_coef(const vc<T>& A, const vc<T>& C,\
-    \ int N) {\n  using P = pair<vc<T>, vc<T>>;\n  vc<P> dat;\n  FOR(i, len(A)) {\
-    \ dat.eb(vc<T>({C[i]}), vc<T>({1, -A[i]})); }\n  auto [num, den] = sum_of_rationals(dat);\n\
+    \  return f;\n}\n\n// sum_{i in [L, R)} i^n \u3092\u3001n = 0, 1, ..., N \u3067\
+    \u5217\u6319\ntemplate <typename T>\nvc<T> sum_of_powers_iota(ll L, ll R, ll N)\
+    \ {\n  vc<T> F(N + 1), G(N + 1);\n  T powL = 1, powR = 1;\n  FOR(i, 1, N + 2)\
+    \ {\n    powL *= T(L), powR *= T(R);\n    F[i - 1] = (powR - powL) * fact_inv<T>(i);\n\
+    \    G[i - 1] = fact_inv<T>(i);\n  }\n  F = fps_div(F, G);\n  FOR(i, N + 1) F[i]\
+    \ *= fact<T>(i);\n  return F;\n}\n\n// sum ca^n \u3092 n=0,1,...,N \u3067\u5217\
+    \u6319\ntemplate <typename T>\nvc<T> sum_of_powers_with_coef(const vc<T>& A, const\
+    \ vc<T>& C, int N) {\n  using P = pair<vc<T>, vc<T>>;\n  vc<P> dat;\n  FOR(i,\
+    \ len(A)) { dat.eb(vc<T>({C[i]}), vc<T>({1, -A[i]})); }\n  auto [num, den] = sum_of_rationals(dat);\n\
     \  num.resize(N + 1);\n  den.resize(N + 1);\n  auto f = fps_inv(den);\n  f = convolution(f,\
     \ num);\n  f.resize(N + 1);\n  return f;\n}\n"
   code: "#include \"poly/convolution_all.hpp\"\n#include \"poly/fps_log.hpp\"\n#include\
-    \ \"poly/sum_of_rationals.hpp\"\n\n// sum_{a in A} a^n \u3092\u3001n = 0, 1, ...,\
-    \ N \u3067\u5217\u6319\ntemplate <typename T>\nvc<T> sum_of_powers(const vc<T>&\
-    \ A, ll N) {\n  vvc<T> polys;\n  for (auto&& a: A) polys.eb(vc<T>({T(1), -a}));\n\
-    \  auto f = convolution_all(polys);\n  f.resize(N + 1);\n  f = fps_log(f);\n \
-    \ FOR(i, len(f)) f[i] = -f[i] * T(i);\n  f[0] = len(A);\n  return f;\n}\n\n//\
-    \ sum ca^n \u3092 n=0,1,...,N \u3067\u5217\u6319\ntemplate <typename T>\nvc<T>\
-    \ sum_of_powers_with_coef(const vc<T>& A, const vc<T>& C, int N) {\n  using P\
-    \ = pair<vc<T>, vc<T>>;\n  vc<P> dat;\n  FOR(i, len(A)) { dat.eb(vc<T>({C[i]}),\
-    \ vc<T>({1, -A[i]})); }\n  auto [num, den] = sum_of_rationals(dat);\n  num.resize(N\
-    \ + 1);\n  den.resize(N + 1);\n  auto f = fps_inv(den);\n  f = convolution(f,\
+    \ \"poly/fps_div.hpp\"\n#include \"poly/sum_of_rationals.hpp\"\n\n// sum_{a in\
+    \ A} a^n \u3092\u3001n = 0, 1, ..., N \u3067\u5217\u6319\ntemplate <typename T>\n\
+    vc<T> sum_of_powers(const vc<T>& A, ll N) {\n  vvc<T> polys;\n  for (auto&& a:\
+    \ A) polys.eb(vc<T>({T(1), -a}));\n  auto f = convolution_all(polys);\n  f.resize(N\
+    \ + 1);\n  f = fps_log(f);\n  FOR(i, len(f)) f[i] = -f[i] * T(i);\n  f[0] = len(A);\n\
+    \  return f;\n}\n\n// sum_{i in [L, R)} i^n \u3092\u3001n = 0, 1, ..., N \u3067\
+    \u5217\u6319\ntemplate <typename T>\nvc<T> sum_of_powers_iota(ll L, ll R, ll N)\
+    \ {\n  vc<T> F(N + 1), G(N + 1);\n  T powL = 1, powR = 1;\n  FOR(i, 1, N + 2)\
+    \ {\n    powL *= T(L), powR *= T(R);\n    F[i - 1] = (powR - powL) * fact_inv<T>(i);\n\
+    \    G[i - 1] = fact_inv<T>(i);\n  }\n  F = fps_div(F, G);\n  FOR(i, N + 1) F[i]\
+    \ *= fact<T>(i);\n  return F;\n}\n\n// sum ca^n \u3092 n=0,1,...,N \u3067\u5217\
+    \u6319\ntemplate <typename T>\nvc<T> sum_of_powers_with_coef(const vc<T>& A, const\
+    \ vc<T>& C, int N) {\n  using P = pair<vc<T>, vc<T>>;\n  vc<P> dat;\n  FOR(i,\
+    \ len(A)) { dat.eb(vc<T>({C[i]}), vc<T>({1, -A[i]})); }\n  auto [num, den] = sum_of_rationals(dat);\n\
+    \  num.resize(N + 1);\n  den.resize(N + 1);\n  auto f = fps_inv(den);\n  f = convolution(f,\
     \ num);\n  f.resize(N + 1);\n  return f;\n}"
   dependsOn:
   - poly/convolution_all.hpp
@@ -411,14 +438,16 @@ data:
   - poly/fps_log.hpp
   - poly/fps_inv.hpp
   - poly/count_terms.hpp
+  - poly/fps_div.hpp
   - poly/sum_of_rationals.hpp
   isVerificationFile: false
   path: seq/sum_of_powers.hpp
   requiredBy: []
-  timestamp: '2023-08-10 12:06:50+09:00'
+  timestamp: '2023-09-02 00:09:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1145.test.cpp
+  - test/yukicoder/2459.test.cpp
 documentation_of: seq/sum_of_powers.hpp
 layout: document
 redirect_from:

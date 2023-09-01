@@ -16,20 +16,20 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2361.test.cpp
     title: test/yukicoder/2361.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://twitter.com/maspy_stars/status/1565901414236205057?s=20&t=S2Tu6ayozHcakxai8dmh4g
@@ -65,14 +65,14 @@ data:
     \ ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n};\n#line 5 \"\
     string/suffix_array.hpp\"\n\n// \u8F9E\u66F8\u9806 i \u756A\u76EE\u306E suffix\
     \ \u304C j \u6587\u5B57\u76EE\u59CB\u307E\u308A\u3067\u3042\u308B\u3068\u304D\u3001\
-    \n// SA[i] = j, ISA[j] = i\nstruct Suffix_Array {\n  vc<int> SA;\n  vc<int> ISA;\n\
-    \  vc<int> LCP;\n  Sparse_Table<Monoid_Min<int>> seg;\n  // DisjointSparse<Monoid_Min<int>>\
-    \ seg;\n\n  Suffix_Array(string& s, bool lcp_query = false) {\n    char first\
-    \ = 127, last = 0;\n    for (auto&& c: s) {\n      chmin(first, c);\n      chmax(last,\
-    \ c);\n    }\n    SA = calc_suffix_array(s, first, last);\n    calc_LCP(s);\n\
-    \    if (lcp_query) seg.build(LCP);\n  }\n\n  Suffix_Array(vc<int>& s, bool lcp_query\
-    \ = false) {\n    SA = calc_suffix_array(s);\n    calc_LCP(s);\n    if (lcp_query)\
-    \ seg.build(LCP);\n  }\n\n  // lcp(S[i:], S[j:])\n  int lcp(int i, int j) {\n\
+    \n// SA[i] = j, ISA[j] = i\ntemplate <bool USE_LCP_QUERY>\nstruct Suffix_Array\
+    \ {\n  vc<int> SA;\n  vc<int> ISA;\n  vc<int> LCP;\n  Sparse_Table<Monoid_Min<int>>\
+    \ seg;\n  // DisjointSparse<Monoid_Min<int>> seg;\n\n  Suffix_Array(string& s)\
+    \ {\n    char first = 127, last = 0;\n    for (auto&& c: s) {\n      chmin(first,\
+    \ c);\n      chmax(last, c);\n    }\n    SA = calc_suffix_array(s, first, last);\n\
+    \    calc_LCP(s);\n    if (USE_LCP_QUERY) seg.build(LCP);\n  }\n\n  Suffix_Array(vc<int>&\
+    \ s) {\n    SA = calc_suffix_array(s);\n    calc_LCP(s);\n    if (lcp_query) seg.build(LCP);\n\
+    \  }\n\n  // lcp(S[i:], S[j:])\n  int lcp(int i, int j) {\n    static_assert(USE_LCP_QUERY);\n\
     \    int n = len(SA);\n    if (i == n || j == n) return 0;\n    if (i == j) return\
     \ n - i;\n    i = ISA[i], j = ISA[j];\n    if (i > j) swap(i, j);\n    return\
     \ seg.prod(i, j);\n  }\n\nprivate:\n  void induced_sort(const vc<int>& vect, int\
@@ -273,8 +273,8 @@ data:
   isVerificationFile: false
   path: string/suffix_tree.hpp
   requiredBy: []
-  timestamp: '2023-06-14 19:10:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-09-02 00:09:31+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/suffix_tree.test.cpp
   - test/yukicoder/2361.test.cpp
