@@ -43,9 +43,9 @@ data:
     \   r_root->update();\n    return r_root;\n  }\n  np merge3(np a, np b, np c)\
     \ { return merge(merge(a, b), c); }\n  np merge4(np a, np b, np c, np d) { return\
     \ merge(merge(merge(a, b), c), d); }\n\n  pair<np, np> split(np root, u32 k) {\n\
-    \    if (k == (root->size)) return {root, nullptr};\n    if (k == 0) return {nullptr,\
-    \ root};\n    splay_kth(root, k - 1);\n    np right = root->r;\n    root->r =\
-    \ nullptr, right->p = nullptr;\n    root->update();\n    return {root, right};\n\
+    \    if (k == 0) return {nullptr, root};\n    if (k == (root->size)) return {root,\
+    \ nullptr};\n    splay_kth(root, k - 1);\n    np right = root->r;\n    root->r\
+    \ = nullptr, right->p = nullptr;\n    root->update();\n    return {root, right};\n\
     \  }\n  tuple<np, np, np> split3(np root, u32 l, u32 r) {\n    np nm, nr;\n  \
     \  tie(root, nr) = split(root, r);\n    tie(root, nm) = split(root, l);\n    return\
     \ {root, nm, nr};\n  }\n  tuple<np, np, np, np> split4(np root, u32 i, u32 j,\
@@ -186,7 +186,7 @@ data:
   isVerificationFile: false
   path: ds/splaytree/splaytree_monoid.hpp
   requiredBy: []
-  timestamp: '2023-05-01 18:56:35+09:00'
+  timestamp: '2023-09-01 16:17:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/1508.test.cpp
