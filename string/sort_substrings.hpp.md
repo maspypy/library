@@ -51,7 +51,7 @@ data:
     \ R));\n      if (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n\
     \  }\n};\n#line 5 \"string/suffix_array.hpp\"\n\n// \u8F9E\u66F8\u9806 i \u756A\
     \u76EE\u306E suffix \u304C j \u6587\u5B57\u76EE\u59CB\u307E\u308A\u3067\u3042\u308B\
-    \u3068\u304D\u3001\n// SA[i] = j, ISA[j] = i\ntemplate <bool USE_LCP_QUERY>\n\
+    \u3068\u304D\u3001\n// SA[i] = j, ISA[j] = i\ntemplate <bool USE_LCP_QUERY = 0>\n\
     struct Suffix_Array {\n  vc<int> SA;\n  vc<int> ISA;\n  vc<int> LCP;\n  Sparse_Table<Monoid_Min<int>>\
     \ seg;\n  // DisjointSparse<Monoid_Min<int>> seg;\n\n  Suffix_Array(string& s)\
     \ {\n    char first = 127, last = 0;\n    for (auto&& c: s) {\n      chmin(first,\
@@ -130,7 +130,7 @@ data:
   isVerificationFile: false
   path: string/sort_substrings.hpp
   requiredBy: []
-  timestamp: '2023-09-02 00:09:31+09:00'
+  timestamp: '2023-09-02 00:28:38+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc240ex.test.cpp
