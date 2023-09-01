@@ -27,7 +27,7 @@ struct Suffix_Array {
   Suffix_Array(vc<int>& s) {
     SA = calc_suffix_array(s);
     calc_LCP(s);
-    if (lcp_query) seg.build(LCP);
+    if (USE_LCP_QUERY) seg.build(LCP);
   }
 
   // lcp(S[i:], S[j:])
