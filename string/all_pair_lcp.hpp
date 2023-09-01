@@ -1,5 +1,6 @@
 // dp[i][j] = lcp(S[i:], T[j:])
-vvc<int> all_pair_lcp(string& S, string& T) {
+template <typename STRING>
+vvc<int> all_pair_lcp(STRING& S, STRING& T) {
   int N = len(S), M = len(T);
   vv(int, dp, N, M);
   FOR_R(i, N) FOR_R(j, M) {
