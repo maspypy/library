@@ -239,7 +239,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/doubling.hpp
       title: ds/doubling.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/dynamic_array.hpp
       title: ds/dynamic_array.hpp
     - icon: ':heavy_check_mark:'
@@ -1087,7 +1087,7 @@ data:
       title: new_poly/base.hpp
   - name: nt
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/GF2.hpp
       title: nt/GF2.hpp
     - icon: ':heavy_check_mark:'
@@ -1589,7 +1589,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/rollinghash_2d.hpp
       title: string/rollinghash_2d.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/rollinghash_field.hpp
       title: string/rollinghash_field.hpp
     - icon: ':heavy_check_mark:'
@@ -3634,10 +3634,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc272_h.test.cpp
       title: test_atcoder/abc272_h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc273_e.test.cpp
       title: test_atcoder/abc273_e.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc274_h.test.cpp
       title: test_atcoder/abc274_h.test.cpp
     - icon: ':x:'
