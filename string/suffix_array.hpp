@@ -5,7 +5,7 @@
 
 // 辞書順 i 番目の suffix が j 文字目始まりであるとき、
 // SA[i] = j, ISA[j] = i
-template <bool USE_LCP_QUERY>
+template <bool USE_LCP_QUERY = 0>
 struct Suffix_Array {
   vc<int> SA;
   vc<int> ISA;
