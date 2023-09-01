@@ -8,8 +8,8 @@
 // 各ノードは、suffix array での長方形領域と見なして、
 // グラフおよび、領域データを作る。
 // sample: test/my_test/suffix_tree.test.cpp
-pair<Graph<int, 1>, vc<tuple<int, int, int, int>>> suffix_tree(
-    Suffix_Array& X) {
+template <typename SUFFIX>
+pair<Graph<int, 1>, vc<tuple<int, int, int, int>>> suffix_tree(SUFFIX& X) {
   auto SA = X.SA;
   auto ISA = X.ISA;
   auto LCP = X.LCP;
