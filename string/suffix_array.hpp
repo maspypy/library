@@ -5,6 +5,7 @@
 
 // 辞書順 i 番目の suffix が j 文字目始まりであるとき、
 // SA[i] = j, ISA[j] = i
+template <bool USE_LCP_QUERY>
 struct Suffix_Array {
   vc<int> SA;
   vc<int> ISA;
@@ -12,7 +13,7 @@ struct Suffix_Array {
   Sparse_Table<Monoid_Min<int>> seg;
   // DisjointSparse<Monoid_Min<int>> seg;
 
-  Suffix_Array(string& s, bool lcp_query = false) {
+  Suffix_Array(string& s) {
     char first = 127, last = 0;
     for (auto&& c: s) {
       chmin(first, c);
@@ -20,10 +21,10 @@ struct Suffix_Array {
     }
     SA = calc_suffix_array(s, first, last);
     calc_LCP(s);
-    if (lcp_query) seg.build(LCP);
+    if (USE_LCP_QUERY) seg.build(LCP);
   }
 
-  Suffix_Array(vc<int>& s, bool lcp_query = false) {
+  Suffix_Array(vc<int>& s) {
     SA = calc_suffix_array(s);
     calc_LCP(s);
     if (lcp_query) seg.build(LCP);
@@ -31,6 +32,7 @@ struct Suffix_Array {
 
   // lcp(S[i:], S[j:])
   int lcp(int i, int j) {
+    static_assert(USE_LCP_QUERY);
     int n = len(SA);
     if (i == n || j == n) return 0;
     if (i == j) return n - i;
