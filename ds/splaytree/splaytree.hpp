@@ -52,8 +52,8 @@ struct SplayTree {
   np merge4(np a, np b, np c, np d) { return merge(merge(merge(a, b), c), d); }
 
   pair<np, np> split(np root, u32 k) {
-    if (k == (root->size)) return {root, nullptr};
     if (k == 0) return {nullptr, root};
+    if (k == (root->size)) return {root, nullptr};
     splay_kth(root, k - 1);
     np right = root->r;
     root->r = nullptr, right->p = nullptr;
