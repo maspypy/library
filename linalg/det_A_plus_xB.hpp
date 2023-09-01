@@ -4,8 +4,9 @@
 #include "linalg/characteristic_poly.hpp"
 #include "poly/poly_taylor_shift.hpp"
 
+// O(N^3) time
 // det(A + xB) = f(x) となる N 次多項式 f を返す
-// 確率 N / mod で正しく解ける（乱数に依存しない方法もあるようだ）
+// 確率 N / mod で正しく解ける
 template <typename mint>
 vc<mint> det_A_plus_xB(vvc<mint> A, vvc<mint> B) {
   int N = len(A);
