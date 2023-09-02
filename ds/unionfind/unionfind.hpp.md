@@ -73,9 +73,6 @@ data:
     path: test/library_checker/graph/manhattan_mst.test.cpp
     title: test/library_checker/graph/manhattan_mst.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/tutte.test.cpp
-    title: test/mytest/tutte.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/114.test.cpp
     title: test/yukicoder/114.test.cpp
   - icon: ':heavy_check_mark:'
@@ -200,7 +197,6 @@ data:
   - test/aoj/GRL_2_A.test.cpp
   - test/aoj/2251_1.test.cpp
   - test/aoj/1566.test.cpp
-  - test/mytest/tutte.test.cpp
   - test/library_checker/datastructure/unionfind.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp

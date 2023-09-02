@@ -46,9 +46,6 @@ data:
     path: test/library_checker/math/twosat.test.cpp
     title: test/library_checker/math/twosat.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/tutte.test.cpp
-    title: test/mytest/tutte.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1170.test.cpp
     title: test/yukicoder/1170.test.cpp
   - icon: ':heavy_check_mark:'
@@ -189,7 +186,6 @@ data:
   - test/aoj/2251_2.test.cpp
   - test/aoj/0275.test.cpp
   - test/aoj/1566.test.cpp
-  - test/mytest/tutte.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/graph/scc.test.cpp
   - test/library_checker/graph/bipartite_edge_coloring.test.cpp

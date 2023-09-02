@@ -33,8 +33,8 @@ data:
     path: graph/eulerwalk.hpp
     title: graph/eulerwalk.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/max_matching_size.hpp
-    title: graph/max_matching_size.hpp
+    path: graph/maximum_matching_size.hpp
+    title: graph/maximum_matching_size.hpp
   - icon: ':heavy_check_mark:'
     path: graph/minimum_cycle_length_through_specified.hpp
     title: graph/minimum_cycle_length_through_specified.hpp
@@ -144,6 +144,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/classify_tree.test.cpp
     title: test/library_checker/graph/classify_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/general_matching.test.cpp
+    title: test/library_checker/graph/general_matching.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/binomial_coefficient.test.cpp
     title: test/library_checker/math/binomial_coefficient.test.cpp
@@ -298,8 +301,8 @@ data:
     path: test/mytest/manhattan_nns.test.cpp
     title: test/mytest/manhattan_nns.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/matching_line_graph.test.cpp
-    title: test/mytest/matching_line_graph.test.cpp
+    path: test/mytest/matching.test.cpp
+    title: test/mytest/matching.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/max_assign.test.cpp
     title: test/mytest/max_assign.test.cpp
@@ -460,9 +463,6 @@ data:
     path: test/mytest/tournament.test.cpp
     title: test/mytest/tournament.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/tutte.test.cpp
-    title: test/mytest/tutte.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
   - icon: ':heavy_check_mark:'
@@ -622,9 +622,9 @@ data:
   - graph/eulerwalk.hpp
   - graph/vs_to_es.hpp
   - graph/tree_dp/subtree_hash.hpp
+  - graph/maximum_matching_size.hpp
   - graph/minimum_cycle_length_through_specified.hpp
   - graph/chromatic.hpp
-  - graph/max_matching_size.hpp
   - mod/modular_subset_sum.hpp
   - mod/mod_log.hpp
   - mod/primitive_root.hpp
@@ -655,7 +655,6 @@ data:
   - test/mytest/max_max.test.cpp
   - test/mytest/min_min.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
-  - test/mytest/matching_line_graph.test.cpp
   - test/mytest/summin_add.test.cpp
   - test/mytest/partial_frac.test.cpp
   - test/mytest/online_exp.test.cpp
@@ -698,7 +697,6 @@ data:
   - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/summin_assign.test.cpp
   - test/mytest/minplus_conv_triple.test.cpp
-  - test/mytest/tutte.test.cpp
   - test/mytest/summax_assign.test.cpp
   - test/mytest/splay_monoid.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
@@ -714,6 +712,7 @@ data:
   - test/mytest/rbst_monoid_persistent.test.cpp
   - test/mytest/is_substring.test.cpp
   - test/mytest/online_square.test.cpp
+  - test/mytest/matching.test.cpp
   - test/mytest/composition_ex_minus_1.test.cpp
   - test/mytest/dynamic_segtree_sparse.test.cpp
   - test/mytest/31bit_modint.test.cpp
@@ -755,6 +754,7 @@ data:
   - test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
+  - test/library_checker/graph/general_matching.test.cpp
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/library_checker/math/binomial_coefficient.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp

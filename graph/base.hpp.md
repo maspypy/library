@@ -99,6 +99,9 @@ data:
     path: graph/maximum_independent_set_weighted.hpp
     title: graph/maximum_independent_set_weighted.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/maximum_matching.hpp
+    title: graph/maximum_matching.hpp
+  - icon: ':warning:'
     path: graph/maximum_matching_of_line_graph.hpp
     title: graph/maximum_matching_of_line_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -310,6 +313,9 @@ data:
     path: test/library_checker/graph/enumerate_triangles.test.cpp
     title: test/library_checker/graph/enumerate_triangles.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/general_matching.test.cpp
+    title: test/library_checker/graph/general_matching.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/manhattan_mst.test.cpp
     title: test/library_checker/graph/manhattan_mst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -358,14 +364,11 @@ data:
     path: test/mytest/count_indep_set.test.cpp
     title: test/mytest/count_indep_set.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/matching_line_graph.test.cpp
-    title: test/mytest/matching_line_graph.test.cpp
+    path: test/mytest/matching.test.cpp
+    title: test/mytest/matching.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/tutte.test.cpp
-    title: test/mytest/tutte.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
@@ -701,6 +704,7 @@ data:
   - flow/bipartite.hpp
   - enumerate/triangle.hpp
   - graph/optimal_product_on_tree.hpp
+  - graph/maximum_matching.hpp
   - graph/compress_tree.hpp
   - graph/bipartite_edge_coloring.hpp
   - graph/mincostcycle.hpp
@@ -782,10 +786,9 @@ data:
   - test/aoj/GRL_1_C.test.cpp
   - test/aoj/ITP1_11_D.test.cpp
   - test/aoj/1566.test.cpp
-  - test/mytest/matching_line_graph.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/count_indep_set.test.cpp
-  - test/mytest/tutte.test.cpp
+  - test/mytest/matching.test.cpp
   - test/mytest/QOJ5445.test.cpp
   - test/library_checker/tree/lca.test.cpp
   - test/library_checker/tree/tree_diameter.test.cpp
@@ -816,6 +819,7 @@ data:
   - test/library_checker/graph/enumerate_triangles.test.cpp
   - test/library_checker/graph/enumerate_cliques.test.cpp
   - test/library_checker/graph/bipartite_edge_coloring.test.cpp
+  - test/library_checker/graph/general_matching.test.cpp
   - test/library_checker/math/twosat.test.cpp
   - test/yukicoder/1254.test.cpp
   - test/yukicoder/1038.test.cpp

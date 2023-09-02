@@ -3,18 +3,18 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: graph/max_matching_size.hpp
-    title: graph/max_matching_size.hpp
+    path: graph/maximum_matching_size.hpp
+    title: graph/maximum_matching_size.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/general_matching.test.cpp
+    title: test/library_checker/graph/general_matching.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/solve_linear.test.cpp
     title: test/library_checker/matrix/solve_linear.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/matching_line_graph.test.cpp
-    title: test/mytest/matching_line_graph.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/tutte.test.cpp
-    title: test/mytest/tutte.test.cpp
+    path: test/mytest/matching.test.cpp
+    title: test/mytest/matching.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -38,13 +38,13 @@ data:
   isVerificationFile: false
   path: linalg/matrix_rank.hpp
   requiredBy:
-  - graph/max_matching_size.hpp
+  - graph/maximum_matching_size.hpp
   timestamp: '2023-08-06 22:10:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/matching_line_graph.test.cpp
-  - test/mytest/tutte.test.cpp
+  - test/mytest/matching.test.cpp
   - test/library_checker/matrix/solve_linear.test.cpp
+  - test/library_checker/graph/general_matching.test.cpp
 documentation_of: linalg/matrix_rank.hpp
 layout: document
 redirect_from:

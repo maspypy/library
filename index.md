@@ -691,9 +691,6 @@ data:
       path: graph/grid_hamiltonian_path.hpp
       title: graph/grid_hamiltonian_path.hpp
     - icon: ':heavy_check_mark:'
-      path: graph/max_matching_size.hpp
-      title: graph/max_matching_size.hpp
-    - icon: ':heavy_check_mark:'
       path: graph/maximum_antichain.hpp
       title: graph/maximum_antichain.hpp
     - icon: ':heavy_check_mark:'
@@ -702,12 +699,18 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/maximum_independent_set_weighted.hpp
       title: graph/maximum_independent_set_weighted.hpp
+    - icon: ':heavy_check_mark:'
+      path: graph/maximum_matching.hpp
+      title: graph/maximum_matching.hpp
     - icon: ':warning:'
       path: graph/maximum_matching_between_vertex_edge.hpp
       title: graph/maximum_matching_between_vertex_edge.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: graph/maximum_matching_of_line_graph.hpp
       title: graph/maximum_matching_of_line_graph.hpp
+    - icon: ':heavy_check_mark:'
+      path: graph/maximum_matching_size.hpp
+      title: graph/maximum_matching_size.hpp
     - icon: ':heavy_check_mark:'
       path: graph/mincostcycle.hpp
       title: graph/mincostcycle.hpp
@@ -2105,6 +2108,9 @@ data:
       path: test/library_checker/graph/enumerate_triangles.test.cpp
       title: test/library_checker/graph/enumerate_triangles.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library_checker/graph/general_matching.test.cpp
+      title: test/library_checker/graph/general_matching.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/manhattan_mst.test.cpp
       title: test/library_checker/graph/manhattan_mst.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2563,6 +2569,9 @@ data:
       path: test/mytest/manhattan_nns.test.cpp
       title: test/mytest/manhattan_nns.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/mytest/matching.test.cpp
+      title: test/mytest/matching.test.cpp
+    - icon: ':x:'
       path: test/mytest/matching_line_graph.test.cpp
       title: test/mytest/matching_line_graph.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2766,7 +2775,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/tournament.test.cpp
       title: test/mytest/tournament.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/mytest/tutte.test.cpp
       title: test/mytest/tutte.test.cpp
     - icon: ':heavy_check_mark:'

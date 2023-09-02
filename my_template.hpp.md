@@ -466,6 +466,9 @@ data:
     path: test/library_checker/graph/enumerate_triangles.test.cpp
     title: test/library_checker/graph/enumerate_triangles.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/general_matching.test.cpp
+    title: test/library_checker/graph/general_matching.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/manhattan_mst.test.cpp
     title: test/library_checker/graph/manhattan_mst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -910,8 +913,8 @@ data:
     path: test/mytest/manhattan_nns.test.cpp
     title: test/mytest/manhattan_nns.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/matching_line_graph.test.cpp
-    title: test/mytest/matching_line_graph.test.cpp
+    path: test/mytest/matching.test.cpp
+    title: test/mytest/matching.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/max_assign.test.cpp
     title: test/mytest/max_assign.test.cpp
@@ -1107,9 +1110,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/tournament.test.cpp
     title: test/mytest/tournament.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/tutte.test.cpp
-    title: test/mytest/tutte.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
@@ -2315,7 +2315,6 @@ data:
   - test/mytest/max_max.test.cpp
   - test/mytest/min_min.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
-  - test/mytest/matching_line_graph.test.cpp
   - test/mytest/summin_add.test.cpp
   - test/mytest/partial_frac.test.cpp
   - test/mytest/floor_ceil_ranges.test.cpp
@@ -2379,7 +2378,6 @@ data:
   - test/mytest/minplus_conv_triple.test.cpp
   - test/mytest/enumerate_multisets.test.cpp
   - test/mytest/cf940f.test.cpp
-  - test/mytest/tutte.test.cpp
   - test/mytest/summax_assign.test.cpp
   - test/mytest/splay_monoid.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
@@ -2400,6 +2398,7 @@ data:
   - test/mytest/rbst_monoid_persistent.test.cpp
   - test/mytest/is_substring.test.cpp
   - test/mytest/online_square.test.cpp
+  - test/mytest/matching.test.cpp
   - test/mytest/composition_ex_minus_1.test.cpp
   - test/mytest/dynamic_segtree_sparse.test.cpp
   - test/mytest/31bit_modint.test.cpp
@@ -2553,6 +2552,7 @@ data:
   - test/library_checker/graph/enumerate_triangles.test.cpp
   - test/library_checker/graph/enumerate_cliques.test.cpp
   - test/library_checker/graph/bipartite_edge_coloring.test.cpp
+  - test/library_checker/graph/general_matching.test.cpp
   - test/library_checker/geometry/convex_layers.test.cpp
   - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
