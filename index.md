@@ -572,6 +572,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/cross_point.hpp
       title: geo/cross_point.hpp
+    - icon: ':warning:'
+      path: geo/definite_integral.hpp
+      title: geo/definite_integral.hpp
     - icon: ':heavy_check_mark:'
       path: geo/distance.hpp
       title: geo/distance.hpp
@@ -587,9 +590,6 @@ data:
     - icon: ':warning:'
       path: geo/inside_polygon.hpp
       title: geo/inside_polygon.hpp
-    - icon: ':heavy_check_mark:'
-      path: geo/integral.hpp
-      title: geo/integral.hpp
     - icon: ':heavy_check_mark:'
       path: geo/manhattan_mst.hpp
       title: geo/manhattan_mst.hpp
@@ -2909,7 +2909,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1311.test.cpp
       title: test/yukicoder/1311.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/1319.test.cpp
       title: test/yukicoder/1319.test.cpp
     - icon: ':heavy_check_mark:'
