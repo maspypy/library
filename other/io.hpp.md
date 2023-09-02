@@ -141,6 +141,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_I.test.cpp
     title: test/aoj/DSL_2_I.test.cpp
+  - icon: ':x:'
+    path: test/aoj/DSL_4_A.test.cpp
+    title: test/aoj/DSL_4_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_B.test.cpp
     title: test/aoj/GRL_1_B.test.cpp
@@ -255,6 +258,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/add_remove_query.test.cpp
     title: test/library_checker/datastructure/add_remove_query.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+    title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array.test.cpp
     title: test/library_checker/datastructure/associative_array.test.cpp
@@ -2337,6 +2343,7 @@ data:
   - test/aoj/0275.test.cpp
   - test/aoj/DSL_2_H.test.cpp
   - test/aoj/DPL_1_B.test.cpp
+  - test/aoj/DSL_4_A.test.cpp
   - test/aoj/GRL_1_C.test.cpp
   - test/aoj/2842.test.cpp
   - test/aoj/ITP1_11_D.test.cpp
@@ -2519,6 +2526,7 @@ data:
   - test/library_checker/datastructure/unionfind.test.cpp
   - test/library_checker/datastructure/line_add_get_min_lichao.test.cpp
   - test/library_checker/datastructure/sort_segtree.test.cpp
+  - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   - test/library_checker/datastructure/staticrmq_sparse.test.cpp
