@@ -1,5 +1,5 @@
 template <typename Re, typename F>
-Re integral(Re a, Re b, F f, int n) {
+Re definite_integral(Re a, Re b, F f, int n) {
   Re I = 0;
   Re dx = (b - a) / n;
   Re fl = 0, fr = f(a);
