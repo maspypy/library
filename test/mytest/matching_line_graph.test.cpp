@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "random/random_graph.hpp"
-#include "graph/max_matching_size.hpp"
+#include "graph/maximum_matching_size.hpp"
 #include "graph/maximum_matching_of_line_graph.hpp"
 
 void test() {
@@ -23,7 +23,7 @@ void test() {
       }
       LG.build();
       vc<pair<int, int>> res = maximum_matching_of_line_graph(G);
-      assert(len(res) == max_matching_size(LG));
+      assert(len(res) == maximum_matching_size(LG));
       vc<int> done(m);
       for (auto&& [a, b]: res) {
         assert(!done[a]);
