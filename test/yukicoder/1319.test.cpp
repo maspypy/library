@@ -2,7 +2,7 @@
 #define ERROR 0.01
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "geo/integral.hpp"
+#include "geo/definite_integral.hpp"
 
 void solve() {
   DBL(R, H, D);
@@ -16,7 +16,7 @@ void solve() {
     return T - S;
   };
 
-  Re ANS = integral<Re>(0, H, f, 10000);
+  Re ANS = definite_integral<Re>(0, H, f, 10000);
   print(ANS);
 }
 
