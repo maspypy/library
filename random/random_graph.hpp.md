@@ -12,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_indep_set.test.cpp
     title: test/mytest/count_indep_set.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/matching_line_graph.test.cpp
+    title: test/mytest/matching_line_graph.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -103,6 +106,7 @@ data:
   timestamp: '2023-05-20 20:14:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/matching_line_graph.test.cpp
   - test/mytest/count_indep_set.test.cpp
 documentation_of: random/random_graph.hpp
 layout: document

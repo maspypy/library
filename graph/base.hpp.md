@@ -101,7 +101,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/maximum_matching.hpp
     title: graph/maximum_matching.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/maximum_matching_of_line_graph.hpp
     title: graph/maximum_matching_of_line_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -367,8 +367,14 @@ data:
     path: test/mytest/matching.test.cpp
     title: test/mytest/matching.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/matching_line_graph.test.cpp
+    title: test/mytest/matching_line_graph.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/tutte.test.cpp
+    title: test/mytest/tutte.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
@@ -786,8 +792,10 @@ data:
   - test/aoj/GRL_1_C.test.cpp
   - test/aoj/ITP1_11_D.test.cpp
   - test/aoj/1566.test.cpp
+  - test/mytest/matching_line_graph.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/count_indep_set.test.cpp
+  - test/mytest/tutte.test.cpp
   - test/mytest/matching.test.cpp
   - test/mytest/QOJ5445.test.cpp
   - test/library_checker/tree/lca.test.cpp

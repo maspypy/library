@@ -15,6 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/matching.test.cpp
     title: test/mytest/matching.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/matching_line_graph.test.cpp
+    title: test/mytest/matching_line_graph.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/tutte.test.cpp
+    title: test/mytest/tutte.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -42,6 +48,8 @@ data:
   timestamp: '2023-08-06 22:10:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/matching_line_graph.test.cpp
+  - test/mytest/tutte.test.cpp
   - test/mytest/matching.test.cpp
   - test/library_checker/matrix/solve_linear.test.cpp
   - test/library_checker/graph/general_matching.test.cpp

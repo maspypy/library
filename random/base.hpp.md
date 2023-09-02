@@ -304,6 +304,9 @@ data:
     path: test/mytest/matching.test.cpp
     title: test/mytest/matching.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/matching_line_graph.test.cpp
+    title: test/mytest/matching_line_graph.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/max_assign.test.cpp
     title: test/mytest/max_assign.test.cpp
   - icon: ':heavy_check_mark:'
@@ -462,6 +465,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/tournament.test.cpp
     title: test/mytest/tournament.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/tutte.test.cpp
+    title: test/mytest/tutte.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
@@ -655,6 +661,7 @@ data:
   - test/mytest/max_max.test.cpp
   - test/mytest/min_min.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
+  - test/mytest/matching_line_graph.test.cpp
   - test/mytest/summin_add.test.cpp
   - test/mytest/partial_frac.test.cpp
   - test/mytest/online_exp.test.cpp
@@ -697,6 +704,7 @@ data:
   - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/summin_assign.test.cpp
   - test/mytest/minplus_conv_triple.test.cpp
+  - test/mytest/tutte.test.cpp
   - test/mytest/summax_assign.test.cpp
   - test/mytest/splay_monoid.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp

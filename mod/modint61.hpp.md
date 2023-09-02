@@ -49,8 +49,14 @@ data:
     path: test/mytest/matching.test.cpp
     title: test/mytest/matching.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/matching_line_graph.test.cpp
+    title: test/mytest/matching_line_graph.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/tdpc_grid_dp.test.cpp
     title: test/mytest/tdpc_grid_dp.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/tutte.test.cpp
+    title: test/mytest/tutte.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1397.test.cpp
     title: test/yukicoder/1397.test.cpp
@@ -161,6 +167,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_14_C.test.cpp
+  - test/mytest/matching_line_graph.test.cpp
+  - test/mytest/tutte.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/matching.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp

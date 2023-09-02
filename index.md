@@ -572,7 +572,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/cross_point.hpp
       title: geo/cross_point.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: geo/definite_integral.hpp
       title: geo/definite_integral.hpp
     - icon: ':heavy_check_mark:'
@@ -705,7 +705,7 @@ data:
     - icon: ':warning:'
       path: graph/maximum_matching_between_vertex_edge.hpp
       title: graph/maximum_matching_between_vertex_edge.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/maximum_matching_of_line_graph.hpp
       title: graph/maximum_matching_of_line_graph.hpp
     - icon: ':heavy_check_mark:'
@@ -2571,7 +2571,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/matching.test.cpp
       title: test/mytest/matching.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/matching_line_graph.test.cpp
       title: test/mytest/matching_line_graph.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2775,7 +2775,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/tournament.test.cpp
       title: test/mytest/tournament.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/tutte.test.cpp
       title: test/mytest/tutte.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2918,7 +2918,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1311.test.cpp
       title: test/yukicoder/1311.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1319.test.cpp
       title: test/yukicoder/1319.test.cpp
     - icon: ':heavy_check_mark:'

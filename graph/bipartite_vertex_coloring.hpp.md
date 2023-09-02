@@ -31,6 +31,9 @@ data:
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/tutte.test.cpp
+    title: test/mytest/tutte.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1479.test.cpp
     title: test/yukicoder/1479.test.cpp
   - icon: ':heavy_check_mark:'
@@ -155,6 +158,7 @@ data:
   verifiedWith:
   - test/aoj/2251_2.test.cpp
   - test/aoj/1566.test.cpp
+  - test/mytest/tutte.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/graph/bipartite_edge_coloring.test.cpp
   - test/yukicoder/1744.test.cpp
