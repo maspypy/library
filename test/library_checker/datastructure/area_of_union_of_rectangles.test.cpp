@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "other/rectangle_union.hpp"
+#include "ds/rectangle_union.hpp"
 
 void solve() {
   LL(N);
