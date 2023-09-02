@@ -142,9 +142,6 @@ data:
     path: test/aoj/DSL_2_I.test.cpp
     title: test/aoj/DSL_2_I.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_4_A.test.cpp
-    title: test/aoj/DSL_4_A.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_B.test.cpp
     title: test/aoj/GRL_1_B.test.cpp
   - icon: ':heavy_check_mark:'
@@ -258,9 +255,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/add_remove_query.test.cpp
     title: test/library_checker/datastructure/add_remove_query.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
-    title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array.test.cpp
     title: test/library_checker/datastructure/associative_array.test.cpp
@@ -1929,6 +1923,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc259g.test.cpp
     title: test_atcoder/abc259g.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc260f.test.cpp
+    title: test_atcoder/abc260f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc260h.test.cpp
     title: test_atcoder/abc260h.test.cpp
@@ -2061,9 +2058,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\n#include\
@@ -2279,7 +2276,7 @@ data:
   path: other/io.hpp
   requiredBy: []
   timestamp: '2023-01-19 00:14:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/ALDS1_2_A.test.cpp
   - test/aoj/DSL_2_E.test.cpp
@@ -2340,7 +2337,6 @@ data:
   - test/aoj/0275.test.cpp
   - test/aoj/DSL_2_H.test.cpp
   - test/aoj/DPL_1_B.test.cpp
-  - test/aoj/DSL_4_A.test.cpp
   - test/aoj/GRL_1_C.test.cpp
   - test/aoj/2842.test.cpp
   - test/aoj/ITP1_11_D.test.cpp
@@ -2523,7 +2519,6 @@ data:
   - test/library_checker/datastructure/unionfind.test.cpp
   - test/library_checker/datastructure/line_add_get_min_lichao.test.cpp
   - test/library_checker/datastructure/sort_segtree.test.cpp
-  - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   - test/library_checker/datastructure/staticrmq_sparse.test.cpp
@@ -2875,6 +2870,7 @@ data:
   - test_atcoder/abc298ex.test.cpp
   - test_atcoder/abc200a.test.cpp
   - test_atcoder/abc233c.test.cpp
+  - test_atcoder/abc260f.test.cpp
   - test_atcoder/abc241d.test.cpp
   - test_atcoder/agc058d2.test.cpp
   - test_atcoder/abc273_e.test.cpp

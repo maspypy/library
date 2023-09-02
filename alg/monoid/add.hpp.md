@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/minmax_add.hpp
     title: alg/acted_monoid/minmax_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: alg/acted_monoid/minmincnt_add.hpp
     title: alg/acted_monoid/minmincnt_add.hpp
   - icon: ':warning:'
@@ -74,6 +74,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/range_add_range_sum.hpp
     title: ds/range_add_range_sum.hpp
+  - icon: ':warning:'
+    path: ds/rectangle_union.hpp
+    title: ds/rectangle_union.hpp
   - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix.hpp
     title: ds/wavelet_matrix.hpp
@@ -89,9 +92,6 @@ data:
   - icon: ':warning:'
     path: graph/ds/tree_wavelet_matrix.hpp
     title: graph/ds/tree_wavelet_matrix.hpp
-  - icon: ':heavy_check_mark:'
-    path: other/rectangle_union.hpp
-    title: other/rectangle_union.hpp
   - icon: ':heavy_check_mark:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
@@ -136,14 +136,8 @@ data:
     path: test/aoj/DSL_2_I.test.cpp
     title: test/aoj/DSL_2_I.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_4_A.test.cpp
-    title: test/aoj/DSL_4_A.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
-    title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/double_ended_pq_2.test.cpp
     title: test/library_checker/datastructure/double_ended_pq_2.test.cpp
@@ -460,7 +454,6 @@ data:
   - alg/acted_monoid/sum_mul.hpp
   - alg/acted_monoid/minmax_add.hpp
   - alg/acted_monoid/sum_add.hpp
-  - other/rectangle_union.hpp
   - ds/wavelet_matrix.hpp
   - ds/fenwicktree/fenwicktree_2d_dense.hpp
   - ds/fenwicktree/fenwicktree.hpp
@@ -472,6 +465,7 @@ data:
   - ds/offline_query/rectangle_add_point_sum.hpp
   - ds/range_add_range_sum.hpp
   - ds/doubling.hpp
+  - ds/rectangle_union.hpp
   timestamp: '2022-11-28 14:51:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -485,7 +479,6 @@ data:
   - test/aoj/DSL_2_I.test.cpp
   - test/aoj/ALDS1_5.test.cpp
   - test/aoj/DSL_2_H.test.cpp
-  - test/aoj/DSL_4_A.test.cpp
   - test/aoj/2842.test.cpp
   - test/mytest/summin_add.test.cpp
   - test/mytest/minmax_add.test.cpp
@@ -521,7 +514,6 @@ data:
   - test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
   - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
-  - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp

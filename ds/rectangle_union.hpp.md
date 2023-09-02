@@ -1,29 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: alg/acted_monoid/minmincnt_add.hpp
     title: alg/acted_monoid/minmincnt_add.hpp
   - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: alg/monoid/minmincnt.hpp
     title: alg/monoid/minmincnt.hpp
   - icon: ':heavy_check_mark:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_4_A.test.cpp
-    title: test/aoj/DSL_4_A.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
-    title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -100,15 +94,15 @@ data:
     \ Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\n  static\
     \ constexpr X act(const X &x, const A &a, const ll &size) {\r\n    auto [xmin,\
     \ xmincnt] = x;\r\n    if (xmin == infty<E>) return x;\r\n    return {xmin + a,\
-    \ xmincnt};\r\n  }\r\n};\r\n#line 3 \"other/rectangle_union.hpp\"\n\r\ntemplate\
-    \ <typename XY = int>\r\nstruct Rectangle_Union {\r\n  using RECT = tuple<XY,\
-    \ XY, XY, XY>;\r\n  vc<RECT> rectangles;\r\n  vc<XY> X, Y;\r\n\r\n  void add_rect(XY\
-    \ xl, XY xr, XY yl, XY yr) {\r\n    assert(xl < xr && yl < yr);\r\n    X.eb(xl),\
-    \ X.eb(xr), Y.eb(yl), Y.eb(yr);\r\n    rectangles.eb(xl, xr, yl, yr);\r\n  }\r\
-    \n\r\n  template <typename ANS_TYPE = ll>\r\n  ANS_TYPE calc() {\r\n    int N\
-    \ = len(X);\r\n    vc<int> ord_x = argsort(X);\r\n    vc<int> ord_y = argsort(Y);\r\
-    \n    vc<int> rk_y(N);\r\n    FOR(i, N) rk_y[ord_y[i]] = i;\r\n    X = rearrange(X,\
-    \ ord_x);\r\n    Y = rearrange(Y, ord_y);\r\n\r\n    using AM = ActedMonoid_MinMincnt_Add<XY>;\r\
+    \ xmincnt};\r\n  }\r\n};\r\n#line 3 \"ds/rectangle_union.hpp\"\n\r\ntemplate <typename\
+    \ XY = int>\r\nstruct Rectangle_Union {\r\n  using RECT = tuple<XY, XY, XY, XY>;\r\
+    \n  vc<RECT> rectangles;\r\n  vc<XY> X, Y;\r\n\r\n  void add_rect(XY xl, XY xr,\
+    \ XY yl, XY yr) {\r\n    assert(xl < xr && yl < yr);\r\n    X.eb(xl), X.eb(xr),\
+    \ Y.eb(yl), Y.eb(yr);\r\n    rectangles.eb(xl, xr, yl, yr);\r\n  }\r\n\r\n  template\
+    \ <typename ANS_TYPE = ll>\r\n  ANS_TYPE calc() {\r\n    int N = len(X);\r\n \
+    \   vc<int> ord_x = argsort(X);\r\n    vc<int> ord_y = argsort(Y);\r\n    vc<int>\
+    \ rk_y(N);\r\n    FOR(i, N) rk_y[ord_y[i]] = i;\r\n    X = rearrange(X, ord_x);\r\
+    \n    Y = rearrange(Y, ord_y);\r\n\r\n    using AM = ActedMonoid_MinMincnt_Add<XY>;\r\
     \n    Lazy_SegTree<AM> seg(N - 1, [&](int i) -> pair<XY, XY> {\r\n      return\
     \ {0, Y[i + 1] - Y[i]};\r\n    });\r\n\r\n    ANS_TYPE ANS = 0;\r\n    XY total\
     \ = Y.back() - Y[0];\r\n    FOR(i, N - 1) {\r\n      int k = ord_x[i] / 2;\r\n\
@@ -139,17 +133,15 @@ data:
   - alg/monoid/minmincnt.hpp
   - alg/monoid/add.hpp
   isVerificationFile: false
-  path: other/rectangle_union.hpp
+  path: ds/rectangle_union.hpp
   requiredBy: []
-  timestamp: '2023-05-21 00:13:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/DSL_4_A.test.cpp
-  - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
-documentation_of: other/rectangle_union.hpp
+  timestamp: '2023-09-03 00:30:38+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: ds/rectangle_union.hpp
 layout: document
 redirect_from:
-- /library/other/rectangle_union.hpp
-- /library/other/rectangle_union.hpp.html
-title: other/rectangle_union.hpp
+- /library/ds/rectangle_union.hpp
+- /library/ds/rectangle_union.hpp.html
+title: ds/rectangle_union.hpp
 ---

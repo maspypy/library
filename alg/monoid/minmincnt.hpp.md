@@ -2,22 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: alg/acted_monoid/minmincnt_add.hpp
     title: alg/acted_monoid/minmincnt_add.hpp
-  - icon: ':heavy_check_mark:'
-    path: other/rectangle_union.hpp
-    title: other/rectangle_union.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_4_A.test.cpp
-    title: test/aoj/DSL_4_A.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
-    title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+  - icon: ':warning:'
+    path: ds/rectangle_union.hpp
+    title: ds/rectangle_union.hpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/minmincnt.hpp\"\n\r\n// \u6700\u5C0F\u5024\u3001\
@@ -39,12 +33,10 @@ data:
   path: alg/monoid/minmincnt.hpp
   requiredBy:
   - alg/acted_monoid/minmincnt_add.hpp
-  - other/rectangle_union.hpp
+  - ds/rectangle_union.hpp
   timestamp: '2023-04-02 02:09:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/DSL_4_A.test.cpp
-  - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: alg/monoid/minmincnt.hpp
 layout: document
 redirect_from:

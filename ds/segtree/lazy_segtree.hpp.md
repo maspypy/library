@@ -2,12 +2,12 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: ds/rectangle_union.hpp
+    title: ds/rectangle_union.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/lazy_tree_monoid.hpp
     title: graph/ds/lazy_tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
-    path: other/rectangle_union.hpp
-    title: other/rectangle_union.hpp
   - icon: ':heavy_check_mark:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
@@ -22,14 +22,8 @@ data:
     path: test/aoj/DSL_2_I.test.cpp
     title: test/aoj/DSL_2_I.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_4_A.test.cpp
-    title: test/aoj/DSL_4_A.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
-    title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
     title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
@@ -236,7 +230,7 @@ data:
   requiredBy:
   - graph/ds/lazy_tree_monoid.hpp
   - seq/common_interval_decomposition.hpp
-  - other/rectangle_union.hpp
+  - ds/rectangle_union.hpp
   timestamp: '2023-05-21 00:13:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -244,7 +238,6 @@ data:
   - test/aoj/GRL_5_E.test.cpp
   - test/aoj/DSL_2_I.test.cpp
   - test/aoj/DSL_2_H.test.cpp
-  - test/aoj/DSL_4_A.test.cpp
   - test/mytest/max_max.test.cpp
   - test/mytest/min_min.test.cpp
   - test/mytest/summin_add.test.cpp
@@ -258,7 +251,6 @@ data:
   - test/mytest/minidx_add.test.cpp
   - test/mytest/summax_add.test.cpp
   - test/library_checker/datastructure/range_affine_range_sum.test.cpp
-  - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - test/library_checker/graph/common_interval_decomposition.test.cpp
   - test/yukicoder/749.test.cpp
   - test/yukicoder/1197.test.cpp
