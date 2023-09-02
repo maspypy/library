@@ -3,7 +3,7 @@
 #include "linalg/matrix_rank.hpp"
 
 template <typename GT>
-int max_matching_size(GT& G) {
+int maximum_matching_size(GT& G) {
   using mint = modint61;
   assert(!G.is_directed());
   int N = G.N;
