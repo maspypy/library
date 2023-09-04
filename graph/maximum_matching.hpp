@@ -12,7 +12,7 @@ pair<int, vc<int>> maximum_matching(const GT& G) {
   FOR(v, N) mu[v] = v;
   ll ans = 0;
   for (auto&& e: G.edges) {
-    if (mu[e.frm] == e.frm && mu[e.to] == e.to) {
+    if (e.frm != e.to && mu[e.frm] == e.frm && mu[e.to] == e.to) {
       mu[e.frm] = e.to, mu[e.to] = e.frm, ++ans;
     }
   }
