@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest_path/bfs_bitset.hpp
     title: graph/shortest_path/bfs_bitset.hpp
+  - icon: ':heavy_check_mark:'
+    path: knapsack/subset_sum.hpp
+    title: knapsack/subset_sum.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/mytest/mybitset.test.cpp
@@ -18,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/142.test.cpp
     title: test/yukicoder/142.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/4_2.test.cpp
+    title: test/yukicoder/4_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -203,12 +209,14 @@ data:
   isVerificationFile: false
   path: ds/my_bitset.hpp
   requiredBy:
+  - knapsack/subset_sum.hpp
   - graph/shortest_path/bfs_bitset.hpp
   timestamp: '2023-08-06 04:48:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/mybitset.test.cpp
   - test/yukicoder/1400_2.test.cpp
+  - test/yukicoder/4_2.test.cpp
   - test/yukicoder/142.test.cpp
   - test/yukicoder/1400.test.cpp
 documentation_of: ds/my_bitset.hpp

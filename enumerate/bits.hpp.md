@@ -9,6 +9,9 @@ data:
     path: graph/steiner_tree.hpp
     title: graph/steiner_tree.hpp
   - icon: ':heavy_check_mark:'
+    path: knapsack/subset_sum.hpp
+    title: knapsack/subset_sum.hpp
+  - icon: ':heavy_check_mark:'
     path: linalg/hafnian.hpp
     title: linalg/hafnian.hpp
   _extendedVerifiedWith:
@@ -21,6 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/114.test.cpp
     title: test/yukicoder/114.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/4_2.test.cpp
+    title: test/yukicoder/4_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc180e.test.cpp
     title: test_atcoder/abc180e.test.cpp
@@ -47,6 +53,7 @@ data:
   isVerificationFile: false
   path: enumerate/bits.hpp
   requiredBy:
+  - knapsack/subset_sum.hpp
   - graph/minimum_hamiltonian_cycle.hpp
   - graph/steiner_tree.hpp
   - linalg/hafnian.hpp
@@ -56,6 +63,7 @@ data:
   - test/aoj/DPL_2_A.test.cpp
   - test/library_checker/matrix/hafnian_of_matrix.test.cpp
   - test/yukicoder/114.test.cpp
+  - test/yukicoder/4_2.test.cpp
   - test_atcoder/abc180e.test.cpp
 documentation_of: enumerate/bits.hpp
 layout: document

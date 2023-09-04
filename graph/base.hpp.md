@@ -71,7 +71,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/eulerwalk.hpp
     title: graph/eulerwalk.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: graph/find_C4.hpp
     title: graph/find_C4.hpp
   - icon: ':heavy_check_mark:'
@@ -540,9 +540,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc237ex.test.cpp
     title: test_atcoder/abc237ex.test.cpp
-  - icon: ':x:'
-    path: test_atcoder/abc260f.test.cpp
-    title: test_atcoder/abc260f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc266f.test.cpp
     title: test_atcoder/abc266f.test.cpp
@@ -579,9 +576,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc157a.test.cpp
     title: test_atcoder/arc157a.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -771,7 +768,7 @@ data:
   - graph/ds/incremental_centroid.hpp
   - other/dice.hpp
   timestamp: '2023-05-20 20:14:16+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_1_B.test.cpp
   - test/aoj/DPL_2_A.test.cpp
@@ -880,7 +877,6 @@ data:
   - test_atcoder/abc220f.test.cpp
   - test_atcoder/abc270_f.test.cpp
   - test_atcoder/abc298ex.test.cpp
-  - test_atcoder/abc260f.test.cpp
   - test_atcoder/abc223d.test.cpp
   - test_atcoder/abc283f.test.cpp
   - test_atcoder/abc274g.test.cpp
