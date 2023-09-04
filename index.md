@@ -42,7 +42,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/minmax_add.hpp
       title: alg/acted_monoid/minmax_add.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/minmincnt_add.hpp
       title: alg/acted_monoid/minmincnt_add.hpp
     - icon: ':warning:'
@@ -85,7 +85,7 @@ data:
       title: alg/acted_set/from_monoid.hpp
   - name: alg/monoid
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/add.hpp
       title: alg/monoid/add.hpp
     - icon: ':heavy_check_mark:'
@@ -142,7 +142,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/minmax.hpp
       title: alg/monoid/minmax.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/minmincnt.hpp
       title: alg/monoid/minmincnt.hpp
     - icon: ':heavy_check_mark:'
@@ -269,7 +269,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/range_add_range_sum.hpp
       title: ds/range_add_range_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/rectangle_union.hpp
       title: ds/rectangle_union.hpp
     - icon: ':heavy_check_mark:'
@@ -396,7 +396,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/segtree/dynamic_segtree_sparse.hpp
       title: ds/segtree/dynamic_segtree_sparse.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/lazy_segtree.hpp
       title: ds/segtree/lazy_segtree.hpp
     - icon: ':warning:'
@@ -699,7 +699,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/maximum_independent_set_weighted.hpp
       title: graph/maximum_independent_set_weighted.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/maximum_matching.hpp
       title: graph/maximum_matching.hpp
     - icon: ':warning:'
@@ -708,7 +708,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/maximum_matching_of_line_graph.hpp
       title: graph/maximum_matching_of_line_graph.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/maximum_matching_size.hpp
       title: graph/maximum_matching_size.hpp
     - icon: ':heavy_check_mark:'
@@ -958,7 +958,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/mat_pow.hpp
       title: linalg/mat_pow.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: linalg/matrix_rank.hpp
       title: linalg/matrix_rank.hpp
     - icon: ':heavy_check_mark:'
@@ -1057,7 +1057,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/modint.hpp
       title: mod/modint.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: mod/modint61.hpp
       title: mod/modint61.hpp
     - icon: ':heavy_check_mark:'
@@ -1410,7 +1410,7 @@ data:
       title: poly/online/online_square.hpp
   - name: random
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -1775,7 +1775,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_2_I.test.cpp
       title: test/aoj/DSL_2_I.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_4_A.test.cpp
       title: test/aoj/DSL_4_A.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2568,7 +2568,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/manhattan_nns.test.cpp
       title: test/mytest/manhattan_nns.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/mytest/matching.test.cpp
       title: test/mytest/matching.test.cpp
     - icon: ':heavy_check_mark:'

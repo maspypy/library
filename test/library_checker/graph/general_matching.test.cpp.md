@@ -4,16 +4,16 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/maximum_matching.hpp
     title: graph/maximum_matching.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/maximum_matching_size.hpp
     title: graph/maximum_matching_size.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -283,32 +283,34 @@ data:
     // \u300C\u7D44\u5408\u305B\u6700\u9069\u5316\u300D\u7B2C2\u7248, \u30A2\u30EB\
     \u30B4\u30EA\u30BA\u30E0 10.2\ntemplate <typename GT>\npair<int, vc<int>> maximum_matching(const\
     \ GT& G) {\n  const int N = G.N;\n  vc<int> mu(N), phi(N), rho(N);\n  vc<bool>\
-    \ scanned(N);\n  FOR(v, N) mu[v] = v;\n  ll ans = 0;\n  vc<bool> on_path(N);\n\
-    \n  auto odd = [&](int x) -> bool {\n    return mu[x] != x && phi[mu[x]] == mu[x]\
-    \ && mu[x] != x;\n  };\n  auto out_of_forest = [&](int x) -> bool {\n    return\
-    \ mu[x] != x && phi[mu[x]] == mu[x] && phi[x] == x;\n  };\n  auto P = [&](int\
-    \ x) -> vc<int> {\n    vc<int> P;\n    P.eb(x);\n    while (mu[x] != x) {\n  \
-    \    P.eb(mu[x]);\n      P.eb(phi[mu[x]]);\n      x = phi[mu[x]];\n    }\n   \
-    \ return P;\n  };\n\n  while (1) {\n    FOR(v, N) phi[v] = rho[v] = v, scanned[v]\
-    \ = 0;\n    bool aug = 0;\n    while (1) {\n      bool upd = 0;\n      FOR(x,\
-    \ N) {\n        if (upd) break;\n        if (scanned[x] || odd(x)) continue;\n\
-    \        for (auto&& e: G[x]) {\n          int y = e.to;\n          if (out_of_forest(y))\
-    \ {\n            upd = 1;\n            // grow\n            phi[y] = x;\n    \
-    \      }\n          elif (rho[y] != rho[x] && !odd(y)) {\n            vc<int>\
-    \ F;\n            FOR(v, N) if (!out_of_forest(v)) F.eb(v);\n            upd =\
-    \ 1;\n            // augument OR shrink\n            vc<int> Px = P(x);\n    \
-    \        vc<int> Py = P(y);\n            if (Px.back() != Py.back()) {\n     \
-    \         aug = 1;\n              // augument\n              FOR(2) {\n      \
-    \          swap(Px, Py);\n                for (int i = 1; i < len(Px); i += 2)\
-    \ {\n                  int v = Px[i];\n                  mu[phi[v]] = v, mu[v]\
-    \ = phi[v];\n                }\n              }\n              mu[x] = y, mu[y]\
-    \ = x, ++ans;\n              break;\n            } else {\n              // shrink\n\
-    \              int r = -1;\n              int Nx = len(Px), Ny = len(Py);\n  \
-    \            for (int i = 0; i < Nx; i += 2) {\n                int v = Px[i];\n\
-    \                int j = i + Ny - Nx;\n                if (0 <= j && j < Ny &&\
-    \ Py[j] == v && rho[v] == v) {\n                  r = v;\n                  break;\n\
-    \                }\n              }\n              while (Px.back() != r) Px.pop_back();\n\
-    \              while (Py.back() != r) Py.pop_back();\n              vc<int> change;\n\
+    \ scanned(N);\n  FOR(v, N) mu[v] = v;\n  ll ans = 0;\n  for (auto&& e: G.edges)\
+    \ {\n    if (mu[e.frm] == e.frm && mu[e.to] == e.to) {\n      mu[e.frm] = e.to,\
+    \ mu[e.to] = e.frm, ++ans;\n    }\n  }\n\n  auto odd = [&](int x) -> bool {\n\
+    \    return mu[x] != x && phi[mu[x]] == mu[x] && mu[x] != x;\n  };\n  auto out_of_forest\
+    \ = [&](int x) -> bool {\n    return mu[x] != x && phi[mu[x]] == mu[x] && phi[x]\
+    \ == x;\n  };\n  auto P = [&](int x) -> vc<int> {\n    vc<int> P;\n    P.eb(x);\n\
+    \    while (mu[x] != x) {\n      P.eb(mu[x]);\n      P.eb(phi[mu[x]]);\n     \
+    \ x = phi[mu[x]];\n    }\n    return P;\n  };\n\n  vc<bool> on_path(N);\n  while\
+    \ (1) {\n    FOR(v, N) phi[v] = rho[v] = v, scanned[v] = 0;\n    bool aug = 0;\n\
+    \    while (1) {\n      bool upd = 0;\n      FOR(x, N) {\n        if (upd) break;\n\
+    \        if (scanned[x] || odd(x)) continue;\n        for (auto&& e: G[x]) {\n\
+    \          int y = e.to;\n          if (out_of_forest(y)) {\n            upd =\
+    \ 1;\n            // grow\n            phi[y] = x;\n          }\n          elif\
+    \ (rho[y] != rho[x] && !odd(y)) {\n            vc<int> F;\n            FOR(v,\
+    \ N) if (!out_of_forest(v)) F.eb(v);\n            upd = 1;\n            // augument\
+    \ OR shrink\n            vc<int> Px = P(x);\n            vc<int> Py = P(y);\n\
+    \            if (Px.back() != Py.back()) {\n              aug = 1;\n         \
+    \     // augument\n              FOR(2) {\n                swap(Px, Py);\n   \
+    \             for (int i = 1; i < len(Px); i += 2) {\n                  int v\
+    \ = Px[i];\n                  mu[phi[v]] = v, mu[v] = phi[v];\n              \
+    \  }\n              }\n              mu[x] = y, mu[y] = x, ++ans;\n          \
+    \    break;\n            } else {\n              // shrink\n              int\
+    \ r = -1;\n              int Nx = len(Px), Ny = len(Py);\n              for (int\
+    \ i = 0; i < Nx; i += 2) {\n                int v = Px[i];\n                int\
+    \ j = i + Ny - Nx;\n                if (0 <= j && j < Ny && Py[j] == v && rho[v]\
+    \ == v) {\n                  r = v;\n                  break;\n              \
+    \  }\n              }\n              while (Px.back() != r) Px.pop_back();\n \
+    \             while (Py.back() != r) Py.pop_back();\n              vc<int> change;\n\
     \              FOR(2) {\n                swap(Px, Py);\n                for (int\
     \ i = 1; i < len(Px); i += 2) {\n                  int v = Px[i];\n          \
     \        if (rho[phi[v]] != r) change.eb(v);\n                }\n            \
@@ -389,7 +391,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/general_matching.test.cpp
   requiredBy: []
-  timestamp: '2023-09-03 05:59:57+09:00'
+  timestamp: '2023-09-04 12:27:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/general_matching.test.cpp
