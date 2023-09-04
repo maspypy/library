@@ -11,7 +11,11 @@ pair<int, vc<int>> maximum_matching(const GT& G) {
   vc<bool> scanned(N);
   FOR(v, N) mu[v] = v;
   ll ans = 0;
-  vc<bool> on_path(N);
+  for (auto&& e: G.edges) {
+    if (mu[e.frm] == e.frm && mu[e.to] == e.to) {
+      mu[e.frm] = e.to, mu[e.to] = e.frm, ++ans;
+    }
+  }
 
   auto odd = [&](int x) -> bool {
     return mu[x] != x && phi[mu[x]] == mu[x] && mu[x] != x;
@@ -30,6 +34,7 @@ pair<int, vc<int>> maximum_matching(const GT& G) {
     return P;
   };
 
+  vc<bool> on_path(N);
   while (1) {
     FOR(v, N) phi[v] = rho[v] = v, scanned[v] = 0;
     bool aug = 0;
