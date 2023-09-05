@@ -34,7 +34,7 @@ struct DateTime {
   // 日曜日が 0 として、曜日を [0, 7) で返す
   int weekday() { return (to_int() + 1) % 7; }
 
-  DateTime& operator++() {
+  DateTime& operator++(int) {
     ++day;
     int lim = month_days[month];
     if (is_leap_year(year) && month == 2) lim = 29;
