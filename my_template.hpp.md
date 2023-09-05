@@ -964,6 +964,9 @@ data:
     path: test/mytest/minplus_convex.test.cpp
     title: test/mytest/minplus_convex.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/mo_on_tree.test.cpp
+    title: test/mytest/mo_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/mod_sum_of_linear.test.cpp
     title: test/mytest/mod_sum_of_linear.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2312,6 +2315,7 @@ data:
   - test/aoj/GRL_6_A.test.cpp
   - test/aoj/DSL_2_C.test.cpp
   - test/aoj/CGL_2_C.test.cpp
+  - test/mytest/mo_on_tree.test.cpp
   - test/mytest/binary_trie.test.cpp
   - test/mytest/add_chmin_chmax.test.cpp
   - test/mytest/eulerian_number.test.cpp

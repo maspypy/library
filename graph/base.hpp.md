@@ -53,7 +53,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/lazy_tree_monoid.hpp
     title: graph/ds/lazy_tree_monoid.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/mo_on_tree.hpp
     title: graph/ds/mo_on_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -372,6 +372,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/matching_line_graph.test.cpp
     title: test/mytest/matching_line_graph.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/mo_on_tree.test.cpp
+    title: test/mytest/mo_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
@@ -793,6 +796,7 @@ data:
   - test/aoj/GRL_1_C.test.cpp
   - test/aoj/ITP1_11_D.test.cpp
   - test/aoj/1566.test.cpp
+  - test/mytest/mo_on_tree.test.cpp
   - test/mytest/matching_line_graph.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/count_indep_set.test.cpp

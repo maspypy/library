@@ -55,6 +55,9 @@ data:
     path: test/mytest/manhattan_nns.test.cpp
     title: test/mytest/manhattan_nns.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/mo_on_tree.test.cpp
+    title: test/mytest/mo_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
   - icon: ':heavy_check_mark:'
@@ -200,6 +203,7 @@ data:
   verifiedWith:
   - test/aoj/GRL_2_A.test.cpp
   - test/aoj/ITP2_3_B.test.cpp
+  - test/mytest/mo_on_tree.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/manhattan_nns.test.cpp
   - test/mytest/range_mex.test.cpp

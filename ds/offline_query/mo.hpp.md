@@ -2,13 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/mo_on_tree.hpp
     title: graph/ds/mo_on_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
     title: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/mo_on_tree.test.cpp
+    title: test/mytest/mo_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1270.test.cpp
     title: test/yukicoder/1270.test.cpp
@@ -68,6 +71,7 @@ data:
   timestamp: '2023-09-05 19:46:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/mo_on_tree.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo.test.cpp
   - test/yukicoder/1270.test.cpp
 documentation_of: ds/offline_query/mo.hpp

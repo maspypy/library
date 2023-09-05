@@ -16,6 +16,9 @@ data:
     path: test/mytest/cf702_F_splay.test.cpp
     title: test/mytest/cf702_F_splay.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/mo_on_tree.test.cpp
+    title: test/mytest/mo_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1919.test.cpp
     title: test/yukicoder/1919.test.cpp
   - icon: ':heavy_check_mark:'
@@ -53,6 +56,7 @@ data:
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/mo_on_tree.test.cpp
   - test/mytest/cf702_F_splay.test.cpp
   - test/mytest/cf702_F.test.cpp
   - test/yukicoder/749.test.cpp

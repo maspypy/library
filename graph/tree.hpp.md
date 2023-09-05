@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/lazy_tree_monoid.hpp
     title: graph/ds/lazy_tree_monoid.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/mo_on_tree.hpp
     title: graph/ds/mo_on_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -108,6 +108,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/QOJ5445.test.cpp
     title: test/mytest/QOJ5445.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/mo_on_tree.test.cpp
+    title: test/mytest/mo_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
@@ -453,6 +456,7 @@ data:
   - test/aoj/2636.test.cpp
   - test/aoj/GRL_2_A.test.cpp
   - test/aoj/GRL_5_E.test.cpp
+  - test/mytest/mo_on_tree.test.cpp
   - test/mytest/QOJ5445.test.cpp
   - test/library_checker/tree/lca.test.cpp
   - test/library_checker/tree/rerooting_dp.test.cpp

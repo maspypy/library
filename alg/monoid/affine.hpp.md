@@ -43,6 +43,9 @@ data:
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/mo_on_tree.test.cpp
+    title: test/mytest/mo_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_monoid_2.test.cpp
     title: test/mytest/rbst_monoid_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -102,6 +105,7 @@ data:
   timestamp: '2023-07-25 22:13:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/mo_on_tree.test.cpp
   - test/mytest/splay.test.cpp
   - test/mytest/rbst_monoid_2.test.cpp
   - test/library_checker/datastructure/sort_segtree_1.test.cpp
