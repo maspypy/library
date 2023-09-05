@@ -9,12 +9,12 @@ data:
   - icon: ':x:'
     path: test/yukicoder/2109.test.cpp
     title: test/yukicoder/2109.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/779.test.cpp
     title: test/yukicoder/779.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"datetime/datetime.hpp\"\nstruct DateTime {\n  static constexpr\
@@ -85,7 +85,7 @@ data:
   path: datetime/datetime.hpp
   requiredBy: []
   timestamp: '2023-09-05 19:46:05+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/datetime.test.cpp
   - test/yukicoder/2109.test.cpp
