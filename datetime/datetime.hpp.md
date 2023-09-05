@@ -3,18 +3,18 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/datetime.test.cpp
     title: test/mytest/datetime.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2109.test.cpp
     title: test/yukicoder/2109.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/779.test.cpp
     title: test/yukicoder/779.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"datetime/datetime.hpp\"\nstruct DateTime {\n  static constexpr\
@@ -31,15 +31,16 @@ data:
     \ k;\n    }\n    if (m == 13) {\n      ++y;\n      m = 1;\n    }\n    ++d;\n \
     \   return DateTime(y, m, d);\n  }\n\n  // \u65E5\u66DC\u65E5\u304C 0 \u3068\u3057\
     \u3066\u3001\u66DC\u65E5\u3092 [0, 7) \u3067\u8FD4\u3059\n  int weekday() { return\
-    \ (to_int() + 1) % 7; }\n\n  DateTime& operator++(int) {\n    ++day;\n    int\
-    \ lim = month_days[month];\n    if (is_leap_year(year) && month == 2) lim = 29;\n\
+    \ (to_int() + 1) % 7; }\n\n  DateTime& operator++() {\n    ++day;\n    int lim\
+    \ = month_days[month];\n    if (is_leap_year(year) && month == 2) lim = 29;\n\
     \    if (day <= lim) return (*this);\n    day = 1;\n    ++month;\n    if (month\
     \ == 13) {\n      ++year;\n      month = 1;\n    }\n    return (*this);\n  }\n\
-    \n  bool operator==(DateTime const& rhs) const {\n    return to_tuple() == rhs.to_tuple();\n\
-    \  }\n  bool operator!=(DateTime const& rhs) const {\n    return to_tuple() !=\
-    \ rhs.to_tuple();\n  }\n  bool operator<(DateTime const& rhs) const {\n    return\
-    \ to_tuple() < rhs.to_tuple();\n  }\n  bool operator<=(DateTime const& rhs) const\
-    \ {\n    return to_tuple() <= rhs.to_tuple();\n  }\n  bool operator>(DateTime\
+    \  DateTime operator++(int) {\n    DateTime tmp = *this;\n    ++*this;\n    return\
+    \ tmp;\n  }\n\n  bool operator==(DateTime const& rhs) const {\n    return to_tuple()\
+    \ == rhs.to_tuple();\n  }\n  bool operator!=(DateTime const& rhs) const {\n  \
+    \  return to_tuple() != rhs.to_tuple();\n  }\n  bool operator<(DateTime const&\
+    \ rhs) const {\n    return to_tuple() < rhs.to_tuple();\n  }\n  bool operator<=(DateTime\
+    \ const& rhs) const {\n    return to_tuple() <= rhs.to_tuple();\n  }\n  bool operator>(DateTime\
     \ const& rhs) const {\n    return to_tuple() > rhs.to_tuple();\n  }\n  bool operator>=(DateTime\
     \ const& rhs) const {\n    return to_tuple() >= rhs.to_tuple();\n  }\n\n  // yyyy[sep]mm[sep]dd\n\
     \  string to_string(string sep = \"-\") {\n    string y = std::to_string(year);\n\
@@ -63,12 +64,13 @@ data:
     \      ++y;\n      m = 1;\n    }\n    ++d;\n    return DateTime(y, m, d);\n  }\n\
     \n  // \u65E5\u66DC\u65E5\u304C 0 \u3068\u3057\u3066\u3001\u66DC\u65E5\u3092 [0,\
     \ 7) \u3067\u8FD4\u3059\n  int weekday() { return (to_int() + 1) % 7; }\n\n  DateTime&\
-    \ operator++(int) {\n    ++day;\n    int lim = month_days[month];\n    if (is_leap_year(year)\
+    \ operator++() {\n    ++day;\n    int lim = month_days[month];\n    if (is_leap_year(year)\
     \ && month == 2) lim = 29;\n    if (day <= lim) return (*this);\n    day = 1;\n\
     \    ++month;\n    if (month == 13) {\n      ++year;\n      month = 1;\n    }\n\
-    \    return (*this);\n  }\n\n  bool operator==(DateTime const& rhs) const {\n\
-    \    return to_tuple() == rhs.to_tuple();\n  }\n  bool operator!=(DateTime const&\
-    \ rhs) const {\n    return to_tuple() != rhs.to_tuple();\n  }\n  bool operator<(DateTime\
+    \    return (*this);\n  }\n  DateTime operator++(int) {\n    DateTime tmp = *this;\n\
+    \    ++*this;\n    return tmp;\n  }\n\n  bool operator==(DateTime const& rhs)\
+    \ const {\n    return to_tuple() == rhs.to_tuple();\n  }\n  bool operator!=(DateTime\
+    \ const& rhs) const {\n    return to_tuple() != rhs.to_tuple();\n  }\n  bool operator<(DateTime\
     \ const& rhs) const {\n    return to_tuple() < rhs.to_tuple();\n  }\n  bool operator<=(DateTime\
     \ const& rhs) const {\n    return to_tuple() <= rhs.to_tuple();\n  }\n  bool operator>(DateTime\
     \ const& rhs) const {\n    return to_tuple() > rhs.to_tuple();\n  }\n  bool operator>=(DateTime\
@@ -84,8 +86,8 @@ data:
   isVerificationFile: false
   path: datetime/datetime.hpp
   requiredBy: []
-  timestamp: '2023-09-05 19:46:05+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-09-06 04:41:46+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/datetime.test.cpp
   - test/yukicoder/2109.test.cpp
