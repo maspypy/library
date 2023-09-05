@@ -3,7 +3,6 @@
 #include "graph/base.hpp"
 
 // HLD euler tour をとっていろいろ。
-// 木以外、非連結でも dfs 順序や親がとれる。
 template <typename GT>
 struct Tree {
   using Graph_type = GT;

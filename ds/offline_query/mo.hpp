@@ -2,7 +2,7 @@ struct Mo {
   vc<pair<int, int>> LR;
   void add(int L, int R) { LR.emplace_back(L, R); }
 
-  vc<int> get_mo_order() {
+  static vc<int> get_mo_order(vc<pair<int, int>> LR) {
     int N = 1;
     for (auto &&[l, r]: LR) chmax(N, l), chmax(N, r);
     int Q = len(LR);
@@ -37,7 +37,7 @@ struct Mo {
 
   template <typename F1, typename F2, typename F3, typename F4, typename F5>
   void calc(F1 add_l, F2 add_r, F3 rm_l, F4 rm_r, F5 query) {
-    auto I = get_mo_order();
+    auto I = get_mo_order(LR);
     int l = 0, r = 0;
     for (auto idx: I) {
       while (l > LR[idx].fi) add_l(--l);
