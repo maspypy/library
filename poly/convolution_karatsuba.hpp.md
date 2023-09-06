@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
   _extendedRequiredBy:
@@ -68,13 +68,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_rational.hpp
     title: poly/composition_f_rational.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':heavy_check_mark:'
     path: poly/convolution2d.hpp
     title: poly/convolution2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
   - icon: ':heavy_check_mark:'
@@ -164,7 +164,7 @@ data:
   - icon: ':warning:'
     path: poly/sum_of_power_of_roots.hpp
     title: poly/sum_of_power_of_roots.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/sum_of_prefix_suffix_products.hpp
     title: poly/sum_of_prefix_suffix_products.hpp
   - icon: ':heavy_check_mark:'
@@ -570,7 +570,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc267h.test.cpp
     title: test_atcoder/abc267h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc269ex.test.cpp
     title: test_atcoder/abc269ex.test.cpp
   - icon: ':heavy_check_mark:'
@@ -615,9 +615,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/convolution_naive.hpp\"\n\r\ntemplate <class T, typename\
@@ -738,7 +738,7 @@ data:
   - new_poly/base.hpp
   - nt/multiplicative_convolution_mod2n.hpp
   timestamp: '2023-08-10 12:06:50+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/NTL_2_B.test.cpp
   - test/aoj/NTL_2_A.test.cpp
