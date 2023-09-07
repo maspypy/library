@@ -1,4 +1,4 @@
-
+namespace CHT {
 template <typename T>
 struct Line {
   mutable T k, m, p;
@@ -56,7 +56,9 @@ struct LineContainer : multiset<Line<T>, less<>> {
     return (MINIMIZE ? -v : v);
   }
 };
+}; // namespace CHT
 
+using namespace CHT;
 template <typename T>
 using CHT_min = LineContainer<T, true>;
 template <typename T>
