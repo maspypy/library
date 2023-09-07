@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/binary_optimization.hpp
     title: flow/binary_optimization.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc193/tasks/abc193_f
@@ -234,7 +234,16 @@ data:
     \u30C3\u30C8\u306E\u5024\u304A\u3088\u3073\u3001\u30AB\u30C3\u30C8\u3092\u8868\
     \u3059 01 \u5217\u3092\u8FD4\u3059\n  pair<Cap, vc<int>> cut(int source, int sink)\
     \ {\n    Cap f = flow(source, sink);\n    vc<int> res(N);\n    FOR(v, N) res[v]\
-    \ = (level[v] >= 0 ? 0 : 1);\n    return {f, res};\n  }\n\nprivate:\n  bool set_level(int\
+    \ = (level[v] >= 0 ? 0 : 1);\n    return {f, res};\n  }\n\n  // O(F(N+M)) \u304F\
+    \u3089\u3044\u4F7F\u3063\u3066\u7D4C\u8DEF\u5FA9\u5143\n  // simple path \u306B\
+    \u306A\u308B\n  vvc<int> path_decomposition(int source, int sink) {\n    Cap f\
+    \ = flow(source, sink);\n    auto edges = get_flow_edges();\n    vvc<int> TO(N);\n\
+    \    for (auto&& [frm, to, flow]: edges) { FOR(flow) TO[frm].eb(to); }\n    vvc<int>\
+    \ res;\n    vc<int> vis(N);\n\n    FOR(f) {\n      vc<int> path = {source};\n\
+    \      vis[source] = 1;\n      while (path.back() != sink) {\n        int to =\
+    \ POP(TO[path.back()]);\n        while (vis[to]) { vis[POP(path)] = 0; }\n   \
+    \     path.eb(to), vis[to] = 1;\n      }\n      for (auto&& v: path) vis[v] =\
+    \ 0;\n      res.eb(path);\n    }\n    return res;\n  }\n\nprivate:\n  bool set_level(int\
     \ source, int sink) {\n    que.resize(N);\n    level.assign(N, -1);\n    level[source]\
     \ = 0;\n    int l = 0, r = 0;\n    que[r++] = source;\n    while (l < r) {\n \
     \     int v = que[l++];\n      FOR(k, indptr[v], indptr[v + 1]) {\n        auto&\
@@ -343,8 +352,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc193f.test.cpp
   requiredBy: []
-  timestamp: '2023-08-30 03:52:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-09-08 00:56:45+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc193f.test.cpp
 layout: document

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -15,14 +15,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_points_in_triangles.test.cpp
     title: test/mytest/count_points_in_triangles.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
-    links: []
+    links:
+    - https://codeforces.com/contest/13/problem/D
   bundledCode: "#line 1 \"geo/count_points_in_triangles.hpp\"\n\n#line 2 \"geo/angle_sort.hpp\"\
     \n\r\n#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n  T x,\
     \ y;\n\n  Point() : x(0), y(0) {}\n\n  template <typename A, typename B>\n  Point(A\
@@ -96,72 +97,74 @@ data:
     \n\n// \u70B9\u7FA4 A, B \u3092\u5165\u529B \uFF08Point<ll>\uFF09\n// query(i,j,k)\uFF1A\
     \u4E09\u89D2\u5F62 AiAjAk \u5185\u90E8\u306E Bl \u306E\u500B\u6570\uFF08\u975E\
     \u8CA0\uFF09\u3092\u8FD4\u3059\n// \u524D\u8A08\u7B97 O(N^2M)\u3001\u30AF\u30A8\
-    \u30EA O(1)\nstruct Count_Points_In_Triangles {\n  using P = Point<ll>;\n  const\
-    \ int LIM = 1'000'000'000 + 10;\n  vc<P> A, B;\n  vc<int> I, rk; // O \u304B\u3089\
-    \u898B\u305F\u504F\u89D2\u30BD\u30FC\u30C8\u9806\u3092\u7BA1\u7406\n  vc<int>\
-    \ point; // A[i] \u3068\u4E00\u81F4\u3059\u308B B[j] \u306E\u6570\u3048\u4E0A\u3052\
-    \n  vvc<int> seg;  // \u7DDA\u5206 A[i]A[j] \u5185\u306B\u3042\u308B B[k] \u306E\
-    \u6570\u3048\u4E0A\u3052\n  vvc<int> tri;  // OA[i]A[j] \u5185\u90E8\u306B\u3042\
-    \u308B B[k] \u306E\u6570\u3048\u4E0A\u3052\n  Count_Points_In_Triangles(vc<P>\
-    \ A, vc<P> B) : A(A), B(B) {\n    for (auto&& p: A) assert(-LIM < min(p.x, p.y)\
-    \ && max(p.x, p.y) < LIM);\n    for (auto&& p: B) assert(-LIM < min(p.x, p.y)\
-    \ && max(p.x, p.y) < LIM);\n    build();\n  }\n\n  int query(int i, int j, int\
-    \ k) {\n    i = rk[i], j = rk[j], k = rk[k];\n    if (i > j) swap(i, j);\n   \
-    \ if (j > k) swap(j, k);\n    if (i > j) swap(i, j);\n    assert(i <= j && j <=\
-    \ k);\n\n    ll d = (A[j] - A[i]).det(A[k] - A[i]);\n    if (d == 0) return 0;\n\
-    \    if (d > 0) { return tri[i][j] + tri[j][k] - tri[i][k] - seg[i][k]; }\n  \
-    \  int x = tri[i][k] - tri[i][j] - tri[j][k];\n    return x - seg[i][j] - seg[j][k]\
-    \ - point[j];\n  }\n\nprivate:\n  P take_origin() {\n    int N = len(A), M = len(B);\n\
-    \    while (1) {\n      P O = P{-LIM, RNG(-LIM, LIM)};\n      bool ok = 1;\n \
-    \     FOR(i, N) FOR(j, N) {\n        if (A[i] == A[j]) continue;\n        if ((A[i]\
-    \ - O).det(A[j] - O) == 0) ok = 0;\n      }\n      FOR(i, N) FOR(j, M) {\n   \
-    \     if (A[i] == B[j]) continue;\n        if ((A[i] - O).det(B[j] - O) == 0)\
-    \ ok = 0;\n      }\n      if (ok) return O;\n    }\n    return P{};\n  }\n\n \
-    \ void build() {\n    P O = take_origin();\n    for (auto&& p: A) p = p - O;\n\
-    \    for (auto&& p: B) p = p - O;\n    int N = len(A), M = len(B);\n    I.resize(N),\
-    \ rk.resize(N);\n    iota(all(I), 0);\n    sort(all(I), [&](auto& a, auto& b)\
-    \ -> bool { return A[a].det(A[b]) > 0; });\n    FOR(i, N) rk[I[i]] = i;\n    A\
-    \ = rearrange(A, I);\n    point.assign(N, 0);\n    seg.assign(N, vc<int>(N));\n\
-    \    tri.assign(N, vc<int>(N));\n\n    FOR(i, N) FOR(j, M) if (A[i] == B[j])++\
-    \ point[i];\n    FOR(i, N) FOR(j, i + 1, N) {\n      FOR(k, M) {\n        if (A[i].det(B[k])\
-    \ <= 0) continue;\n        if (A[j].det(B[k]) >= 0) continue;\n        ll d =\
-    \ (B[k] - A[i]).det(A[j] - A[i]);\n        if (d == 0) ++seg[i][j];\n        if\
-    \ (d < 0) ++tri[i][j];\n      }\n    }\n  }\n};\n"
+    \u30EA O(1)\n// https://codeforces.com/contest/13/problem/D\nstruct Count_Points_In_Triangles\
+    \ {\n  using P = Point<ll>;\n  const int LIM = 1'000'000'000 + 10;\n  vc<P> A,\
+    \ B;\n  vc<int> I, rk; // O \u304B\u3089\u898B\u305F\u504F\u89D2\u30BD\u30FC\u30C8\
+    \u9806\u3092\u7BA1\u7406\n  vc<int> point; // A[i] \u3068\u4E00\u81F4\u3059\u308B\
+    \ B[j] \u306E\u6570\u3048\u4E0A\u3052\n  vvc<int> seg;  // \u7DDA\u5206 A[i]A[j]\
+    \ \u5185\u306B\u3042\u308B B[k] \u306E\u6570\u3048\u4E0A\u3052\n  vvc<int> tri;\
+    \  // OA[i]A[j] \u5185\u90E8\u306B\u3042\u308B B[k] \u306E\u6570\u3048\u4E0A\u3052\
+    \n  Count_Points_In_Triangles(vc<P> A, vc<P> B) : A(A), B(B) {\n    for (auto&&\
+    \ p: A) assert(-LIM < min(p.x, p.y) && max(p.x, p.y) < LIM);\n    for (auto&&\
+    \ p: B) assert(-LIM < min(p.x, p.y) && max(p.x, p.y) < LIM);\n    build();\n \
+    \ }\n\n  int query(int i, int j, int k) {\n    i = rk[i], j = rk[j], k = rk[k];\n\
+    \    if (i > j) swap(i, j);\n    if (j > k) swap(j, k);\n    if (i > j) swap(i,\
+    \ j);\n    assert(i <= j && j <= k);\n\n    ll d = (A[j] - A[i]).det(A[k] - A[i]);\n\
+    \    if (d == 0) return 0;\n    if (d > 0) { return tri[i][j] + tri[j][k] - tri[i][k]\
+    \ - seg[i][k]; }\n    int x = tri[i][k] - tri[i][j] - tri[j][k];\n    return x\
+    \ - seg[i][j] - seg[j][k] - point[j];\n  }\n\nprivate:\n  P take_origin() {\n\
+    \    int N = len(A), M = len(B);\n    while (1) {\n      P O = P{-LIM, RNG(-LIM,\
+    \ LIM)};\n      bool ok = 1;\n      FOR(i, N) FOR(j, N) {\n        if (A[i] ==\
+    \ A[j]) continue;\n        if ((A[i] - O).det(A[j] - O) == 0) ok = 0;\n      }\n\
+    \      FOR(i, N) FOR(j, M) {\n        if (A[i] == B[j]) continue;\n        if\
+    \ ((A[i] - O).det(B[j] - O) == 0) ok = 0;\n      }\n      if (ok) return O;\n\
+    \    }\n    return P{};\n  }\n\n  void build() {\n    P O = take_origin();\n \
+    \   for (auto&& p: A) p = p - O;\n    for (auto&& p: B) p = p - O;\n    int N\
+    \ = len(A), M = len(B);\n    I.resize(N), rk.resize(N);\n    iota(all(I), 0);\n\
+    \    sort(all(I), [&](auto& a, auto& b) -> bool { return A[a].det(A[b]) > 0; });\n\
+    \    FOR(i, N) rk[I[i]] = i;\n    A = rearrange(A, I);\n    point.assign(N, 0);\n\
+    \    seg.assign(N, vc<int>(N));\n    tri.assign(N, vc<int>(N));\n\n    FOR(i,\
+    \ N) FOR(j, M) if (A[i] == B[j])++ point[i];\n    FOR(i, N) FOR(j, i + 1, N) {\n\
+    \      FOR(k, M) {\n        if (A[i].det(B[k]) <= 0) continue;\n        if (A[j].det(B[k])\
+    \ >= 0) continue;\n        ll d = (B[k] - A[i]).det(A[j] - A[i]);\n        if\
+    \ (d == 0) ++seg[i][j];\n        if (d < 0) ++tri[i][j];\n      }\n    }\n  }\n\
+    };\n"
   code: "\n#include \"geo/angle_sort.hpp\"\n#include \"geo/base.hpp\"\n#include \"\
     random/base.hpp\"\n\n// \u70B9\u7FA4 A, B \u3092\u5165\u529B \uFF08Point<ll>\uFF09\
     \n// query(i,j,k)\uFF1A\u4E09\u89D2\u5F62 AiAjAk \u5185\u90E8\u306E Bl \u306E\u500B\
     \u6570\uFF08\u975E\u8CA0\uFF09\u3092\u8FD4\u3059\n// \u524D\u8A08\u7B97 O(N^2M)\u3001\
-    \u30AF\u30A8\u30EA O(1)\nstruct Count_Points_In_Triangles {\n  using P = Point<ll>;\n\
-    \  const int LIM = 1'000'000'000 + 10;\n  vc<P> A, B;\n  vc<int> I, rk; // O \u304B\
-    \u3089\u898B\u305F\u504F\u89D2\u30BD\u30FC\u30C8\u9806\u3092\u7BA1\u7406\n  vc<int>\
-    \ point; // A[i] \u3068\u4E00\u81F4\u3059\u308B B[j] \u306E\u6570\u3048\u4E0A\u3052\
-    \n  vvc<int> seg;  // \u7DDA\u5206 A[i]A[j] \u5185\u306B\u3042\u308B B[k] \u306E\
-    \u6570\u3048\u4E0A\u3052\n  vvc<int> tri;  // OA[i]A[j] \u5185\u90E8\u306B\u3042\
-    \u308B B[k] \u306E\u6570\u3048\u4E0A\u3052\n  Count_Points_In_Triangles(vc<P>\
-    \ A, vc<P> B) : A(A), B(B) {\n    for (auto&& p: A) assert(-LIM < min(p.x, p.y)\
-    \ && max(p.x, p.y) < LIM);\n    for (auto&& p: B) assert(-LIM < min(p.x, p.y)\
-    \ && max(p.x, p.y) < LIM);\n    build();\n  }\n\n  int query(int i, int j, int\
-    \ k) {\n    i = rk[i], j = rk[j], k = rk[k];\n    if (i > j) swap(i, j);\n   \
-    \ if (j > k) swap(j, k);\n    if (i > j) swap(i, j);\n    assert(i <= j && j <=\
-    \ k);\n\n    ll d = (A[j] - A[i]).det(A[k] - A[i]);\n    if (d == 0) return 0;\n\
-    \    if (d > 0) { return tri[i][j] + tri[j][k] - tri[i][k] - seg[i][k]; }\n  \
-    \  int x = tri[i][k] - tri[i][j] - tri[j][k];\n    return x - seg[i][j] - seg[j][k]\
-    \ - point[j];\n  }\n\nprivate:\n  P take_origin() {\n    int N = len(A), M = len(B);\n\
-    \    while (1) {\n      P O = P{-LIM, RNG(-LIM, LIM)};\n      bool ok = 1;\n \
-    \     FOR(i, N) FOR(j, N) {\n        if (A[i] == A[j]) continue;\n        if ((A[i]\
-    \ - O).det(A[j] - O) == 0) ok = 0;\n      }\n      FOR(i, N) FOR(j, M) {\n   \
-    \     if (A[i] == B[j]) continue;\n        if ((A[i] - O).det(B[j] - O) == 0)\
-    \ ok = 0;\n      }\n      if (ok) return O;\n    }\n    return P{};\n  }\n\n \
-    \ void build() {\n    P O = take_origin();\n    for (auto&& p: A) p = p - O;\n\
-    \    for (auto&& p: B) p = p - O;\n    int N = len(A), M = len(B);\n    I.resize(N),\
-    \ rk.resize(N);\n    iota(all(I), 0);\n    sort(all(I), [&](auto& a, auto& b)\
-    \ -> bool { return A[a].det(A[b]) > 0; });\n    FOR(i, N) rk[I[i]] = i;\n    A\
-    \ = rearrange(A, I);\n    point.assign(N, 0);\n    seg.assign(N, vc<int>(N));\n\
-    \    tri.assign(N, vc<int>(N));\n\n    FOR(i, N) FOR(j, M) if (A[i] == B[j])++\
-    \ point[i];\n    FOR(i, N) FOR(j, i + 1, N) {\n      FOR(k, M) {\n        if (A[i].det(B[k])\
-    \ <= 0) continue;\n        if (A[j].det(B[k]) >= 0) continue;\n        ll d =\
-    \ (B[k] - A[i]).det(A[j] - A[i]);\n        if (d == 0) ++seg[i][j];\n        if\
-    \ (d < 0) ++tri[i][j];\n      }\n    }\n  }\n};"
+    \u30AF\u30A8\u30EA O(1)\n// https://codeforces.com/contest/13/problem/D\nstruct\
+    \ Count_Points_In_Triangles {\n  using P = Point<ll>;\n  const int LIM = 1'000'000'000\
+    \ + 10;\n  vc<P> A, B;\n  vc<int> I, rk; // O \u304B\u3089\u898B\u305F\u504F\u89D2\
+    \u30BD\u30FC\u30C8\u9806\u3092\u7BA1\u7406\n  vc<int> point; // A[i] \u3068\u4E00\
+    \u81F4\u3059\u308B B[j] \u306E\u6570\u3048\u4E0A\u3052\n  vvc<int> seg;  // \u7DDA\
+    \u5206 A[i]A[j] \u5185\u306B\u3042\u308B B[k] \u306E\u6570\u3048\u4E0A\u3052\n\
+    \  vvc<int> tri;  // OA[i]A[j] \u5185\u90E8\u306B\u3042\u308B B[k] \u306E\u6570\
+    \u3048\u4E0A\u3052\n  Count_Points_In_Triangles(vc<P> A, vc<P> B) : A(A), B(B)\
+    \ {\n    for (auto&& p: A) assert(-LIM < min(p.x, p.y) && max(p.x, p.y) < LIM);\n\
+    \    for (auto&& p: B) assert(-LIM < min(p.x, p.y) && max(p.x, p.y) < LIM);\n\
+    \    build();\n  }\n\n  int query(int i, int j, int k) {\n    i = rk[i], j = rk[j],\
+    \ k = rk[k];\n    if (i > j) swap(i, j);\n    if (j > k) swap(j, k);\n    if (i\
+    \ > j) swap(i, j);\n    assert(i <= j && j <= k);\n\n    ll d = (A[j] - A[i]).det(A[k]\
+    \ - A[i]);\n    if (d == 0) return 0;\n    if (d > 0) { return tri[i][j] + tri[j][k]\
+    \ - tri[i][k] - seg[i][k]; }\n    int x = tri[i][k] - tri[i][j] - tri[j][k];\n\
+    \    return x - seg[i][j] - seg[j][k] - point[j];\n  }\n\nprivate:\n  P take_origin()\
+    \ {\n    int N = len(A), M = len(B);\n    while (1) {\n      P O = P{-LIM, RNG(-LIM,\
+    \ LIM)};\n      bool ok = 1;\n      FOR(i, N) FOR(j, N) {\n        if (A[i] ==\
+    \ A[j]) continue;\n        if ((A[i] - O).det(A[j] - O) == 0) ok = 0;\n      }\n\
+    \      FOR(i, N) FOR(j, M) {\n        if (A[i] == B[j]) continue;\n        if\
+    \ ((A[i] - O).det(B[j] - O) == 0) ok = 0;\n      }\n      if (ok) return O;\n\
+    \    }\n    return P{};\n  }\n\n  void build() {\n    P O = take_origin();\n \
+    \   for (auto&& p: A) p = p - O;\n    for (auto&& p: B) p = p - O;\n    int N\
+    \ = len(A), M = len(B);\n    I.resize(N), rk.resize(N);\n    iota(all(I), 0);\n\
+    \    sort(all(I), [&](auto& a, auto& b) -> bool { return A[a].det(A[b]) > 0; });\n\
+    \    FOR(i, N) rk[I[i]] = i;\n    A = rearrange(A, I);\n    point.assign(N, 0);\n\
+    \    seg.assign(N, vc<int>(N));\n    tri.assign(N, vc<int>(N));\n\n    FOR(i,\
+    \ N) FOR(j, M) if (A[i] == B[j])++ point[i];\n    FOR(i, N) FOR(j, i + 1, N) {\n\
+    \      FOR(k, M) {\n        if (A[i].det(B[k]) <= 0) continue;\n        if (A[j].det(B[k])\
+    \ >= 0) continue;\n        ll d = (B[k] - A[i]).det(A[j] - A[i]);\n        if\
+    \ (d == 0) ++seg[i][j];\n        if (d < 0) ++tri[i][j];\n      }\n    }\n  }\n\
+    };"
   dependsOn:
   - geo/angle_sort.hpp
   - geo/base.hpp
@@ -169,8 +172,8 @@ data:
   isVerificationFile: false
   path: geo/count_points_in_triangles.hpp
   requiredBy: []
-  timestamp: '2023-08-20 19:49:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-09-08 00:56:45+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/count_points_in_triangles.test.cpp
   - test_atcoder/abc202_f.test.cpp
