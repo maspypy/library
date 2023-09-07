@@ -81,6 +81,30 @@ struct MaxFlowGraph {
     return {f, res};
   }
 
+  // O(F(N+M)) くらい使って経路復元
+  // simple path になる
+  vvc<int> path_decomposition(int source, int sink) {
+    Cap f = flow(source, sink);
+    auto edges = get_flow_edges();
+    vvc<int> TO(N);
+    for (auto&& [frm, to, flow]: edges) { FOR(flow) TO[frm].eb(to); }
+    vvc<int> res;
+    vc<int> vis(N);
+
+    FOR(f) {
+      vc<int> path = {source};
+      vis[source] = 1;
+      while (path.back() != sink) {
+        int to = POP(TO[path.back()]);
+        while (vis[to]) { vis[POP(path)] = 0; }
+        path.eb(to), vis[to] = 1;
+      }
+      for (auto&& v: path) vis[v] = 0;
+      res.eb(path);
+    }
+    return res;
+  }
+
 private:
   bool set_level(int source, int sink) {
     que.resize(N);

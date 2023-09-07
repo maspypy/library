@@ -6,6 +6,7 @@
 // 点群 A, B を入力 （Point<ll>）
 // query(i,j,k)：三角形 AiAjAk 内部の Bl の個数（非負）を返す
 // 前計算 O(N^2M)、クエリ O(1)
+// https://codeforces.com/contest/13/problem/D
 struct Count_Points_In_Triangles {
   using P = Point<ll>;
   const int LIM = 1'000'000'000 + 10;

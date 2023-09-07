@@ -41,6 +41,19 @@ struct Suffix_Array {
     return seg.prod(i, j);
   }
 
+  // -1: S[L1:R1) < S[L2, R2)
+  //  0: S[L1:R1) = S[L2, R2)
+  // +1: S[L1:R1) > S[L2, R2)
+  int compare(int L1, int R1, int L2, int R2) {
+    int N = len(SA);
+    int n1 = R1 - L1, n2 = R2 - L2;
+    int n = lcp(L1, L2);
+    if (n == n1 && n == n2) return 0;
+    if (n == n1) return -1;
+    if (n == n2) return 1;
+    return (ISA[L1 + n] > ISA[L2 + n] ? 1 : -1);
+  }
+
 private:
   void induced_sort(const vc<int>& vect, int val_range, vc<int>& SA,
                     const vc<bool>& sl, const vc<int>& lms_idx) {
