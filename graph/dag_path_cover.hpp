@@ -10,7 +10,7 @@ vc<int> dag_path_cover(DAG& G) {
 
   int N = G.N;
   int source = 2 * N, sink = 2 * N + 1;
-  MaxFlowGraph<int> F(2 * N + 2, source, sink);
+  MaxFlow<int> F(2 * N + 2, source, sink);
   FOR(v, N) {
     F.add(source, 2 * v + 1, 1);
     F.add(2 * v + 0, sink, 1);
