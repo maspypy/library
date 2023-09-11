@@ -1,15 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1541.test.cpp
     title: test/yukicoder/1541.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2320.test.cpp
     title: test/yukicoder/2320.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test_atcoder/abc259g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"flow/maxflow.hpp\"\n// incremental \u306B\u8FBA\u3092\u8FFD\
@@ -34,7 +34,7 @@ data:
     \ < N);\n    assert(0 <= to && to < N);\n    assert(frm != to);\n    assert(Cap(0)\
     \ <= cap);\n    if (frm == to) return;\n    int a = len(edges[frm]);\n    int\
     \ b = len(edges[to]);\n    edges[frm].eb(Edge{to, b, cap, 0});\n    edges[to].eb(Edge{frm,\
-    \ a, cap, 0});\n  }\n\n  // frm, to, flow\n  vc<tuple<int, int, Cap>> get_flow_edges()\
+    \ a, rev_cap, 0});\n  }\n\n  // frm, to, flow\n  vc<tuple<int, int, Cap>> get_flow_edges()\
     \ {\n    vc<tuple<int, int, Cap>> res;\n    FOR(frm, N) {\n      for (auto&& e:\
     \ edges[frm]) {\n        if (e.flow == 0) continue;\n        res.eb(frm, e.to,\
     \ e.flow);\n      }\n    }\n    return res;\n  }\n\n  // \u5DEE\u5206\u3067\u306F\
@@ -195,8 +195,8 @@ data:
   isVerificationFile: false
   path: flow/binary_optimization.hpp
   requiredBy: []
-  timestamp: '2023-09-12 01:16:35+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-09-12 01:51:16+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/2320.test.cpp
   - test/yukicoder/1541.test.cpp
