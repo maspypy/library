@@ -1,69 +1,60 @@
+// incremental に辺を追加してよい
 template <typename Cap>
-struct MaxFlowGraph {
+struct MaxFlow {
   struct Edge {
     int to, rev;
     Cap cap;
     Cap flow = 0;
   };
 
-  int N;
-  vc<tuple<int, int, Cap, Cap>> dat;
+  const int N, source, sink;
+  vvc<Edge> edges;
   vc<int> prog, level;
   vc<int> que;
-  vc<Edge> edges;
-  vc<int> indptr;
-  Cap flow_ans;
   bool calculated;
-  bool is_prepared;
+  Cap flow_ans;
 
-  MaxFlowGraph(int N) : N(N), calculated(0), is_prepared(0) {}
+  MaxFlow(int N, int source, int sink)
+      : N(N),
+        source(source),
+        sink(sink),
+        edges(N),
+        calculated(0),
+        flow_ans(0) {}
 
   void add(int frm, int to, Cap cap, Cap rev_cap = 0) {
+    calculated = 0;
     assert(0 <= frm && frm < N);
     assert(0 <= to && to < N);
+    assert(frm != to);
     assert(Cap(0) <= cap);
     if (frm == to) return;
-    dat.eb(frm, to, cap, rev_cap);
+    int a = len(edges[frm]);
+    int b = len(edges[to]);
+    edges[frm].eb(Edge{to, b, cap, 0});
+    edges[to].eb(Edge{frm, a, cap, 0});
   }
 
-  void build() {
-    assert(!is_prepared);
-    int M = len(dat);
-    is_prepared = 1;
-    indptr.assign(N, 0);
-    for (auto&& [a, b, c, d]: dat) indptr[a]++, indptr[b]++;
-    indptr = cumsum<int>(indptr);
-    vc<int> nxt_idx = indptr;
-    edges.resize(2 * M);
-    for (auto&& [a, b, c, d]: dat) {
-      int p = nxt_idx[a]++;
-      int q = nxt_idx[b]++;
-      edges[p] = Edge{b, q, c};
-      edges[q] = Edge{a, p, d};
-    }
-  }
-
+  // frm, to, flow
   vc<tuple<int, int, Cap>> get_flow_edges() {
     vc<tuple<int, int, Cap>> res;
     FOR(frm, N) {
-      FOR(k, indptr[frm], indptr[frm + 1]) {
-        auto& e = edges[k];
-        if (e.flow <= 0) continue;
+      for (auto&& e: edges[frm]) {
+        if (e.flow == 0) continue;
         res.eb(frm, e.to, e.flow);
       }
     }
     return res;
   }
 
-  Cap flow(int source, int sink) {
-    assert(is_prepared);
+  // 差分ではなくこれまでの総量
+  Cap flow() {
     if (calculated) return flow_ans;
     calculated = true;
-    flow_ans = 0;
-    while (set_level(source, sink)) {
-      prog = indptr;
+    while (set_level()) {
+      prog.assign(N, 0);
       while (1) {
-        Cap x = flow_dfs(source, sink, infty<Cap>);
+        Cap x = flow_dfs(source, infty<Cap>);
         if (x == 0) break;
         flow_ans += x;
         chmin(flow_ans, infty<Cap>);
@@ -74,24 +65,24 @@ struct MaxFlowGraph {
   }
 
   // 最小カットの値および、カットを表す 01 列を返す
-  pair<Cap, vc<int>> cut(int source, int sink) {
-    Cap f = flow(source, sink);
+  pair<Cap, vc<int>> cut() {
+    flow(source, sink);
     vc<int> res(N);
     FOR(v, N) res[v] = (level[v] >= 0 ? 0 : 1);
-    return {f, res};
+    return {flow_ans, res};
   }
 
   // O(F(N+M)) くらい使って経路復元
   // simple path になる
-  vvc<int> path_decomposition(int source, int sink) {
-    Cap f = flow(source, sink);
+  vvc<int> path_decomposition() {
+    flow();
     auto edges = get_flow_edges();
     vvc<int> TO(N);
     for (auto&& [frm, to, flow]: edges) { FOR(flow) TO[frm].eb(to); }
     vvc<int> res;
     vc<int> vis(N);
 
-    FOR(f) {
+    FOR(flow_ans) {
       vc<int> path = {source};
       vis[source] = 1;
       while (path.back() != sink) {
@@ -106,7 +97,7 @@ struct MaxFlowGraph {
   }
 
 private:
-  bool set_level(int source, int sink) {
+  bool set_level() {
     que.resize(N);
     level.assign(N, -1);
     level[source] = 0;
@@ -114,8 +105,7 @@ private:
     que[r++] = source;
     while (l < r) {
       int v = que[l++];
-      FOR(k, indptr[v], indptr[v + 1]) {
-        auto& e = edges[k];
+      for (auto&& e: edges[v]) {
         if (e.cap > 0 && level[e.to] == -1) {
           level[e.to] = level[v] + 1;
           if (e.to == sink) return true;
@@ -126,16 +116,16 @@ private:
     return false;
   }
 
-  Cap flow_dfs(int v, int sink, Cap lim) {
+  Cap flow_dfs(int v, Cap lim) {
     if (v == sink) return lim;
     Cap res = 0;
-    for (int& i = prog[v]; i < indptr[v + 1]; ++i) {
-      auto& e = edges[i];
+    for (int& i = prog[v]; i < len(edges[v]); ++i) {
+      auto& e = edges[v][i];
       if (e.cap > 0 && level[e.to] == level[v] + 1) {
-        Cap a = flow_dfs(e.to, sink, min(lim, e.cap));
+        Cap a = flow_dfs(e.to, min(lim, e.cap));
         if (a > 0) {
           e.cap -= a, e.flow += a;
-          edges[e.rev].cap += a, edges[e.rev].flow -= a;
+          edges[e.to][e.rev].cap += a, edges[e.to][e.rev].flow -= a;
           res += a;
           lim -= a;
           if (lim == 0) break;
