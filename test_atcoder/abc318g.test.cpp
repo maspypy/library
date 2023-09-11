@@ -23,7 +23,7 @@ void solve() {
     G.add(2 * b + 1, 2 * a + 0, 2);
   }
 
-  Yes(G.flow(s, t) == 2);
+  Yes(G.flow() == 2);
 }
 
 signed main() {
