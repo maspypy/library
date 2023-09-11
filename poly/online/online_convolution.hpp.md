@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -48,9 +48,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc230h.test.cpp
     title: test_atcoder/abc230h.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test_atcoder/abc315h.test.cpp
+    title: test_atcoder/abc315h.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>&\
@@ -152,7 +155,7 @@ data:
   - poly/online/online_pow.hpp
   - seq/famous/simple_permutations.hpp
   timestamp: '2023-08-20 01:21:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/online_exp.test.cpp
   - test/mytest/online_pow.test.cpp
@@ -161,6 +164,7 @@ data:
   - test/mytest/online_division.test.cpp
   - test/mytest/online_inv.test.cpp
   - test/library_checker/convolution/online_convolution.test.cpp
+  - test_atcoder/abc315h.test.cpp
   - test_atcoder/abc230h.test.cpp
 documentation_of: poly/online/online_convolution.hpp
 layout: document

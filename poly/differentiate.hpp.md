@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_rational.hpp
     title: poly/composition_f_rational.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
   - icon: ':heavy_check_mark:'
@@ -156,6 +156,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc288ex.test.cpp
     title: test_atcoder/abc288ex.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc318h.test.cpp
+    title: test_atcoder/abc318h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc133f.test.cpp
     title: test_atcoder/arc133f.test.cpp
@@ -165,9 +168,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc160d.test.cpp
     title: test_atcoder/arc160d.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/differentiate.hpp\"\n\ntemplate <typename mint>\nvc<mint>\
@@ -198,7 +201,7 @@ data:
   - seq/famous/surjection.hpp
   - seq/famous/stirling_number_2.hpp
   timestamp: '2022-05-02 13:06:43+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/composition_log_1_minus_x.test.cpp
   - test/mytest/online_exp.test.cpp
@@ -236,6 +239,7 @@ data:
   - test_atcoder/arc153f.test.cpp
   - test_atcoder/abc222h.test.cpp
   - test_atcoder/arc133f.test.cpp
+  - test_atcoder/abc318h.test.cpp
   - test_atcoder/abc285h.test.cpp
   - test_atcoder/arc160d.test.cpp
 documentation_of: poly/differentiate.hpp

@@ -2,10 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc312f.test.cpp
+    title: test_atcoder/abc312f.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc314g.test.cpp
+    title: test_atcoder/abc314g.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/slide_split_sum.hpp\"\n/*\n\u30FB\u591A\u91CD\u96C6\u5408\
@@ -62,8 +68,10 @@ data:
   path: ds/slide_split_sum.hpp
   requiredBy: []
   timestamp: '2023-08-06 03:47:07+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test_atcoder/abc312f.test.cpp
+  - test_atcoder/abc314g.test.cpp
 documentation_of: ds/slide_split_sum.hpp
 layout: document
 redirect_from:

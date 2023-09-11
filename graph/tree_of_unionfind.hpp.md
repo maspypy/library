@@ -12,9 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1451.test.cpp
     title: test/yukicoder/1451.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test_atcoder/abc314f.test.cpp
+    title: test_atcoder/abc314f.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -117,9 +120,10 @@ data:
   path: graph/tree_of_unionfind.hpp
   requiredBy: []
   timestamp: '2023-08-13 11:31:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1451.test.cpp
+  - test_atcoder/abc314f.test.cpp
 documentation_of: graph/tree_of_unionfind.hpp
 layout: document
 redirect_from:

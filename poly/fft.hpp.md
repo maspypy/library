@@ -65,7 +65,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_rational.hpp
     title: poly/composition_f_rational.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -89,7 +89,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
   - icon: ':heavy_check_mark:'
@@ -588,6 +588,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc288ex.test.cpp
     title: test_atcoder/abc288ex.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc318h.test.cpp
+    title: test_atcoder/abc318h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc013e.test.cpp
     title: test_atcoder/agc013e.test.cpp
@@ -612,9 +615,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/fft.hpp\"\nnamespace CFFT {\r\nusing real = double;\r\
@@ -733,7 +736,7 @@ data:
   - new_poly/base.hpp
   - nt/multiplicative_convolution_mod2n.hpp
   timestamp: '2022-05-02 12:36:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/NTL_2_B.test.cpp
   - test/aoj/NTL_2_A.test.cpp
@@ -862,6 +865,7 @@ data:
   - test_atcoder/agc013e.test.cpp
   - test_atcoder/abc222h.test.cpp
   - test_atcoder/arc133f.test.cpp
+  - test_atcoder/abc318h.test.cpp
   - test_atcoder/abc285h.test.cpp
   - test_atcoder/arc162f.test.cpp
   - test_atcoder/abc281g.test.cpp

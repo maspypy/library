@@ -41,7 +41,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':warning:'
@@ -89,7 +89,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_rational.hpp
     title: poly/composition_f_rational.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -113,7 +113,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
   - icon: ':heavy_check_mark:'
@@ -978,6 +978,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc288ex.test.cpp
     title: test_atcoder/abc288ex.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc314f.test.cpp
+    title: test_atcoder/abc314f.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc315h.test.cpp
+    title: test_atcoder/abc315h.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc315h2.test.cpp
+    title: test_atcoder/abc315h2.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc318h.test.cpp
+    title: test_atcoder/abc318h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc013e.test.cpp
     title: test_atcoder/agc013e.test.cpp
@@ -1011,9 +1023,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -1172,7 +1184,7 @@ data:
   - nt/multiplicative_convolution_mod2n.hpp
   - setfunc/sps_log.hpp
   timestamp: '2023-08-08 03:16:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/NTL_2_B.test.cpp
   - test/aoj/NTL_2_A.test.cpp
@@ -1397,11 +1409,13 @@ data:
   - test_atcoder/abc267h.test.cpp
   - test_atcoder/abc152e.test.cpp
   - test_atcoder/abc276_g.test.cpp
+  - test_atcoder/abc314f.test.cpp
   - test_atcoder/arc130f.test.cpp
   - test_atcoder/abc270_g.test.cpp
   - test_atcoder/abc253h.test.cpp
   - test_atcoder/abc249_ex.test.cpp
   - test_atcoder/abc288ex.test.cpp
+  - test_atcoder/abc315h2.test.cpp
   - test_atcoder/arc153f.test.cpp
   - test_atcoder/agc058d.test.cpp
   - test_atcoder/abc227g.test.cpp
@@ -1415,6 +1429,8 @@ data:
   - test_atcoder/abc200f.test.cpp
   - test_atcoder/arc105.test.cpp
   - test_atcoder/arc133f.test.cpp
+  - test_atcoder/abc315h.test.cpp
+  - test_atcoder/abc318h.test.cpp
   - test_atcoder/abc285h.test.cpp
   - test_atcoder/arc162f.test.cpp
   - test_atcoder/abc281g.test.cpp

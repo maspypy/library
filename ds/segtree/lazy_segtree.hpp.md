@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/rectangle_union.hpp
     title: ds/rectangle_union.hpp
   - icon: ':heavy_check_mark:'
@@ -111,9 +111,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc256ex2.test.cpp
     title: test_atcoder/abc256ex2.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test_atcoder/abc318b.test.cpp
+    title: test_atcoder/abc318b.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -238,7 +241,7 @@ data:
   - seq/common_interval_decomposition.hpp
   - ds/rectangle_union.hpp
   timestamp: '2023-05-21 00:13:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DSL_2_F.test.cpp
   - test/aoj/GRL_5_E.test.cpp
@@ -273,6 +276,7 @@ data:
   - test_atcoder/abc256ex.test.cpp
   - test_atcoder/abc256ex2.test.cpp
   - test_atcoder/abc234g.test.cpp
+  - test_atcoder/abc318b.test.cpp
 documentation_of: ds/segtree/lazy_segtree.hpp
 layout: document
 redirect_from:

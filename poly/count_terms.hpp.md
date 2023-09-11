@@ -41,7 +41,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
   - icon: ':heavy_check_mark:'
@@ -372,6 +372,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc288ex.test.cpp
     title: test_atcoder/abc288ex.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc318h.test.cpp
+    title: test_atcoder/abc318h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc013e.test.cpp
     title: test_atcoder/agc013e.test.cpp
@@ -393,9 +396,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
@@ -448,7 +451,7 @@ data:
   - seq/sum_of_powers.hpp
   - linalg/implicit_matrix/vandermonde.hpp
   timestamp: '2022-05-02 13:06:30+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/composition_log_1_minus_x.test.cpp
   - test/mytest/partial_frac.test.cpp
@@ -535,6 +538,7 @@ data:
   - test_atcoder/agc013e.test.cpp
   - test_atcoder/abc222h.test.cpp
   - test_atcoder/arc133f.test.cpp
+  - test_atcoder/abc318h.test.cpp
   - test_atcoder/abc285h.test.cpp
   - test_atcoder/arc162f.test.cpp
   - test_atcoder/abc281g.test.cpp
