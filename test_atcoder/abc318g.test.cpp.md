@@ -250,24 +250,22 @@ data:
     \          e.cap -= a, e.flow += a;\n          edges[e.to][e.rev].cap += a, edges[e.to][e.rev].flow\
     \ -= a;\n          res += a;\n          lim -= a;\n          if (lim == 0) break;\n\
     \        }\n      }\n    }\n    return res;\n  }\n};\n#line 5 \"test_atcoder/abc318g.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, M);\n  MaxFlowGraph<int> G(2 * N + 2);\n  int s =\
-    \ 2 * N, t = 2 * N + 1;\n  LL(a, b, c);\n  --a, --b, --c;\n\n  FOR(v, N) G.add(2\
+    \n\nvoid solve() {\n  LL(N, M);\n  int s = 2 * N, t = 2 * N + 1;\n  MaxFlow<int>\
+    \ G(2 * N + 2, s, t);\n  LL(a, b, c);\n  --a, --b, --c;\n\n  FOR(v, N) G.add(2\
     \ * v + 0, 2 * v + 1, 1);\n  G.add(2 * b + 0, 2 * b + 1, 1);\n  G.add(s, 2 * b\
     \ + 0, 2);\n  G.add(2 * a + 1, t, 1);\n  G.add(2 * c + 1, t, 1);\n\n  FOR(M) {\n\
     \    LL(a, b);\n    --a, --b;\n    G.add(2 * a + 1, 2 * b + 0, 2);\n    G.add(2\
-    \ * b + 1, 2 * a + 0, 2);\n  }\n\n  G.build();\n\n  Yes(G.flow(s, t) == 2);\n\
-    }\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return\
-    \ 0;\n}\n"
+    \ * b + 1, 2 * a + 0, 2);\n  }\n\n  Yes(G.flow(s, t) == 2);\n}\n\nsigned main()\
+    \ {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc318/tasks/abc318_g\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"flow/maxflow.hpp\"\
-    \n\nvoid solve() {\n  LL(N, M);\n  MaxFlowGraph<int> G(2 * N + 2);\n  int s =\
-    \ 2 * N, t = 2 * N + 1;\n  LL(a, b, c);\n  --a, --b, --c;\n\n  FOR(v, N) G.add(2\
+    \n\nvoid solve() {\n  LL(N, M);\n  int s = 2 * N, t = 2 * N + 1;\n  MaxFlow<int>\
+    \ G(2 * N + 2, s, t);\n  LL(a, b, c);\n  --a, --b, --c;\n\n  FOR(v, N) G.add(2\
     \ * v + 0, 2 * v + 1, 1);\n  G.add(2 * b + 0, 2 * b + 1, 1);\n  G.add(s, 2 * b\
     \ + 0, 2);\n  G.add(2 * a + 1, t, 1);\n  G.add(2 * c + 1, t, 1);\n\n  FOR(M) {\n\
     \    LL(a, b);\n    --a, --b;\n    G.add(2 * a + 1, 2 * b + 0, 2);\n    G.add(2\
-    \ * b + 1, 2 * a + 0, 2);\n  }\n\n  G.build();\n\n  Yes(G.flow(s, t) == 2);\n\
-    }\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return\
-    \ 0;\n}\n"
+    \ * b + 1, 2 * a + 0, 2);\n  }\n\n  Yes(G.flow(s, t) == 2);\n}\n\nsigned main()\
+    \ {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -275,7 +273,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc318g.test.cpp
   requiredBy: []
-  timestamp: '2023-09-12 02:46:43+09:00'
+  timestamp: '2023-09-12 06:05:26+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc318g.test.cpp

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -13,23 +13,23 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc315/tasks/abc315_h
+    PROBLEM: https://atcoder.jp/contests/abc315/tasks/abc315_Ex
     links:
-    - https://atcoder.jp/contests/abc315/tasks/abc315_h
-  bundledCode: "#line 1 \"test_atcoder/abc315h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc315/tasks/abc315_h\"\
+    - https://atcoder.jp/contests/abc315/tasks/abc315_Ex
+  bundledCode: "#line 1 \"test_atcoder/abc315h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc315/tasks/abc315_Ex\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -362,8 +362,8 @@ data:
     \ v = X.query(i - 1, f, f);\n    sm += v;\n    f = sm * A[i];\n    ANS[i - 1]\
     \ = f;\n  }\n  print(ANS);\n}\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n\
     \  FOR(T) solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc315/tasks/abc315_h\"\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"poly/online/online_convolution.hpp\"\
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc315/tasks/abc315_Ex\"\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"poly/online/online_convolution.hpp\"\
     \n#include \"mod/modint.hpp\"\n#include \"poly/ntt.hpp\"\n\nusing mint = modint998;\n\
     \nvoid solve() {\n  LL(N);\n  Online_Convolution<mint> X;\n  VEC(mint, A, N);\n\
     \  A.insert(A.begin(), mint(0));\n\n  // F^2\n  mint sm = 0;\n  mint f = 1;\n\
@@ -381,8 +381,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc315h.test.cpp
   requiredBy: []
-  timestamp: '2023-09-12 02:46:43+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-09-12 06:04:41+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc315h.test.cpp
 layout: document
