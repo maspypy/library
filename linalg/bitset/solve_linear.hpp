@@ -7,10 +7,8 @@ vc<BS> solve_linear(int n, int m, vc<BS> A, vc<T> b) {
   FOR(j, m) {
     if (rk == n) break;
     FOR(i, rk, n) if (A[i][j]) {
-      if (i != rk) {
-        swap(A[rk], A[i]);
-        if (b[rk] != b[i]) b[rk] = !b[rk], b[i] = !b[i];
-      }
+      swap(A[rk], A[i]);
+      if (b[rk] != b[i]) b[rk] = !b[rk], b[i] = !b[i];
       break;
     }
     if (!A[rk][j]) continue;
