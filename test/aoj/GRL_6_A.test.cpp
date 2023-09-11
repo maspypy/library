@@ -7,23 +7,16 @@
 
 void solve() {
   LL(N, M);
-  MaxFlowGraph<int> G(N);
+  MaxFlow<int> G(N, 0, N - 1);
   FOR(M) {
     LL(a, b, c);
     G.add(a, b, c);
   }
   G.build();
-  print(G.flow(0, N - 1));
+  print(G.flow());
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
