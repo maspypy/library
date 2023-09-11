@@ -9,17 +9,16 @@ vc<int> dag_path_cover(DAG& G) {
   for (auto&& e: G.edges) assert(e.frm < e.to);
 
   int N = G.N;
-  MaxFlowGraph<int> F(2 * N + 2);
   int source = 2 * N, sink = 2 * N + 1;
+  MaxFlowGraph<int> F(2 * N + 2, source, sink);
   FOR(v, N) {
     F.add(source, 2 * v + 1, 1);
     F.add(2 * v + 0, sink, 1);
     F.add(2 * v + 0, 2 * v + 1, infty<int>);
   }
   for (auto&& e: G.edges) F.add(2 * e.frm + 1, 2 * e.to + 0, infty<int>);
-  F.build();
 
-  int flow = F.flow(source, sink);
+  int flow = F.flow();
 
   vvc<pair<int, int>> flow_edges(N + N + 2);
   for (auto&& [a, b, c]: F.get_flow_edges()) { flow_edges[a].eb(b, c); }
