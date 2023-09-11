@@ -32,7 +32,7 @@ struct MaxFlow {
     int a = len(edges[frm]);
     int b = len(edges[to]);
     edges[frm].eb(Edge{to, b, cap, 0});
-    edges[to].eb(Edge{frm, a, cap, 0});
+    edges[to].eb(Edge{frm, a, rev_cap, 0});
   }
 
   // frm, to, flow
