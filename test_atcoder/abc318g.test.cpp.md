@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc318/tasks/abc318_g
@@ -255,8 +255,8 @@ data:
     \ * v + 0, 2 * v + 1, 1);\n  G.add(2 * b + 0, 2 * b + 1, 1);\n  G.add(s, 2 * b\
     \ + 0, 2);\n  G.add(2 * a + 1, t, 1);\n  G.add(2 * c + 1, t, 1);\n\n  FOR(M) {\n\
     \    LL(a, b);\n    --a, --b;\n    G.add(2 * a + 1, 2 * b + 0, 2);\n    G.add(2\
-    \ * b + 1, 2 * a + 0, 2);\n  }\n\n  Yes(G.flow(s, t) == 2);\n}\n\nsigned main()\
-    \ {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
+    \ * b + 1, 2 * a + 0, 2);\n  }\n\n  Yes(G.flow() == 2);\n}\n\nsigned main() {\n\
+    \  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc318/tasks/abc318_g\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"flow/maxflow.hpp\"\
     \n\nvoid solve() {\n  LL(N, M);\n  int s = 2 * N, t = 2 * N + 1;\n  MaxFlow<int>\
@@ -264,8 +264,8 @@ data:
     \ * v + 0, 2 * v + 1, 1);\n  G.add(2 * b + 0, 2 * b + 1, 1);\n  G.add(s, 2 * b\
     \ + 0, 2);\n  G.add(2 * a + 1, t, 1);\n  G.add(2 * c + 1, t, 1);\n\n  FOR(M) {\n\
     \    LL(a, b);\n    --a, --b;\n    G.add(2 * a + 1, 2 * b + 0, 2);\n    G.add(2\
-    \ * b + 1, 2 * a + 0, 2);\n  }\n\n  Yes(G.flow(s, t) == 2);\n}\n\nsigned main()\
-    \ {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
+    \ * b + 1, 2 * a + 0, 2);\n  }\n\n  Yes(G.flow() == 2);\n}\n\nsigned main() {\n\
+    \  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -273,8 +273,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc318g.test.cpp
   requiredBy: []
-  timestamp: '2023-09-12 06:05:26+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-09-12 06:26:07+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc318g.test.cpp
 layout: document
