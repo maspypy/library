@@ -8,13 +8,10 @@ vc<vc<T>> solve_linear(const int n, const int m, vc<vc<T>> a, vc<T> b) {
   int rk = 0;
   FOR(j, m) {
     if (rk == n) break;
-    if (a[rk][j] == 0) {
-      FOR(i, rk, n) if (a[i][j] != 0) {
-        if (i == rk) break;
-        swap(a[rk], a[i]);
-        swap(b[rk], b[i]);
-        break;
-      }
+    FOR(i, rk, n) if (a[i][j] != 0) {
+      swap(a[rk], a[i]);
+      swap(b[rk], b[i]);
+      break;
     }
     if (a[rk][j] == 0) continue;
     T c = T(1) / a[rk][j];
