@@ -253,14 +253,14 @@ data:
     \ -= a;\n          res += a;\n          lim -= a;\n          if (lim == 0) break;\n\
     \        }\n      }\n    }\n    return res;\n  }\n};\n#line 7 \"test/aoj/GRL_6_A.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, M);\r\n  MaxFlow<int> G(N, 0, N - 1);\r\n  FOR(M)\
-    \ {\r\n    LL(a, b, c);\r\n    G.add(a, b, c);\r\n  }\r\n  G.build();\r\n  print(G.flow());\r\
-    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
+    \ {\r\n    LL(a, b, c);\r\n    G.add(a, b, c);\r\n  }\r\n  print(G.flow());\r\n\
+    }\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
     \ \"flow/maxflow.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N, M);\r\n  MaxFlow<int>\
     \ G(N, 0, N - 1);\r\n  FOR(M) {\r\n    LL(a, b, c);\r\n    G.add(a, b, c);\r\n\
-    \  }\r\n  G.build();\r\n  print(G.flow());\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\
-    \n  return 0;\r\n}\r\n"
+    \  }\r\n  print(G.flow());\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return\
+    \ 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -268,7 +268,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_6_A.test.cpp
   requiredBy: []
-  timestamp: '2023-09-12 01:16:35+09:00'
+  timestamp: '2023-09-12 01:34:58+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/GRL_6_A.test.cpp
