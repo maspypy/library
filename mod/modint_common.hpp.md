@@ -89,7 +89,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_rational.hpp
     title: poly/composition_f_rational.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -113,7 +113,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
   - icon: ':heavy_check_mark:'
@@ -987,7 +987,7 @@ data:
   - icon: ':x:'
     path: test_atcoder/abc315h2.test.cpp
     title: test_atcoder/abc315h2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc318h.test.cpp
     title: test_atcoder/abc318h.test.cpp
   - icon: ':heavy_check_mark:'

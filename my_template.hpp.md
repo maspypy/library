@@ -2046,13 +2046,13 @@ data:
   - icon: ':x:'
     path: test_atcoder/abc318g.test.cpp
     title: test_atcoder/abc318g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc318h.test.cpp
     title: test_atcoder/abc318h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc013e.test.cpp
     title: test_atcoder/agc013e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/agc023f.test.cpp
     title: test_atcoder/agc023f.test.cpp
   - icon: ':heavy_check_mark:'
