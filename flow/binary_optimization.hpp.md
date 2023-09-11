@@ -96,39 +96,39 @@ data:
     \    x100 = -x100, x101 = -x101;\n      x110 = -x110, x111 = -x111;\n    }\n \
     \   _add_3(i, j, k, x000, x001, x010, x011, x100, x101, x110, x111);\n  }\n\n\
     \  // \u6700\u5C0F\u5024\u304A\u3088\u3073\u300101 \u5217\u3092\u8FD4\u3059\n\
-    \  pair<T, vc<int>> calc() {\n    MaxFlowGraph<T> G(nxt);\n    for (auto&& [key,\
-    \ cap]: edges) {\n      auto [frm, to] = key;\n      G.add(frm, to, cap);\n  \
-    \  }\n    G.build();\n\n    auto [val, cut] = G.cut(source, sink);\n    val +=\
-    \ base_cost;\n    chmin(val, infty<T>);\n    cut.resize(n);\n    if (!MINIMIZE)\
-    \ val = -val;\n    return {val, cut};\n  }\n\n  void debug() {\n    print(\"base_cost\"\
-    , base_cost);\n    print(\"source=\", source, \"sink=\", sink);\n    for (auto&&\
-    \ [key, cap]: edges) print(key, cap);\n  }\n\nprivate:\n  void add_edge(int i,\
-    \ int j, T t) {\n    assert(t >= 0);\n    if (t == 0) return;\n    pair<int, int>\
-    \ key = mp(i, j);\n    edges[key] += t;\n    chmin(edges[key], infty<T>);\n  }\n\
-    \n  void _add_1(int i, T x0, T x1) {\n    if (x0 <= x1) {\n      base_cost +=\
-    \ x0;\n      add_edge(source, i, x1 - x0);\n    } else {\n      base_cost += x1;\n\
-    \      add_edge(i, sink, x0 - x1);\n    }\n  }\n\n  void _add_2(int i, int j,\
-    \ T x00, T x01, T x10, T x11) {\n    assert(x00 + x11 <= x01 + x10);\n    _add_1(i,\
-    \ x00, x10);\n    _add_1(j, 0, x11 - x10);\n    add_edge(i, j, x01 + x10 - x00\
-    \ - x11);\n  }\n\n  void _add_3(int i, int j, int k, T x000, T x001, T x010, T\
-    \ x011, T x100,\n              T x101, T x110, T x111) {\n    T p = x000 - x100\
-    \ - x010 - x001 + x110 + x101 + x011 - x111;\n    if (p > 0) {\n      base_cost\
-    \ += x000;\n      _add_1(i, 0, x100 - x000);\n      _add_1(j, 0, x010 - x000);\n\
-    \      _add_1(k, 0, x001 - x000);\n      _add_2(i, j, 0, 0, 0, x000 + x110 - x100\
-    \ - x010);\n      _add_2(i, k, 0, 0, 0, x000 + x101 - x100 - x001);\n      _add_2(j,\
-    \ k, 0, 0, 0, x000 + x011 - x010 - x001);\n      // \u3042\u3068\u306F\u3001111\
-    \ \u306E\u3068\u304D\u306B\u5229\u5F97 p \u3092\u8FFD\u52A0\u3059\u308B\n    \
-    \  base_cost -= p;\n      // 111 \u4EE5\u5916\u3060\u3068\u30B3\u30B9\u30C8 p\n\
-    \      add_edge(i, nxt, p);\n      add_edge(j, nxt, p);\n      add_edge(k, nxt,\
-    \ p);\n      add_edge(nxt, sink, p);\n      ++nxt;\n    } else {\n      p = -p;\n\
-    \      base_cost += x111;\n      _add_1(i, x011 - x111, 0);\n      _add_1(i, x101\
-    \ - x111, 0);\n      _add_1(i, x110 - x111, 0);\n      _add_2(i, j, x111 + x001\
-    \ - x011 - x101, 0, 0, 0);\n      _add_2(i, k, x111 + x010 - x011 - x110, 0, 0,\
-    \ 0);\n      _add_2(j, k, x111 + x100 - x101 - x110, 0, 0, 0);\n      // 000 \u306E\
-    \u3068\u304D\u306B\u5229\u5F97 p \u3092\u8FFD\u52A0\u3059\u308B\n      base_cost\
-    \ -= p;\n      // 000 \u4EE5\u5916\u3060\u3068\u30B3\u30B9\u30C8 p\n      add_edge(nxt,\
-    \ i, p);\n      add_edge(nxt, j, p);\n      add_edge(nxt, k, p);\n      add_edge(source,\
-    \ nxt, p);\n      ++nxt;\n    }\n  }\n};\n"
+    \  pair<T, vc<int>> calc() {\n    MaxFlow<T> G(nxt, source, sink);\n    for (auto&&\
+    \ [key, cap]: edges) {\n      auto [frm, to] = key;\n      G.add(frm, to, cap);\n\
+    \    }\n\n    auto [val, cut] = G.cut();\n    val += base_cost;\n    chmin(val,\
+    \ infty<T>);\n    cut.resize(n);\n    if (!MINIMIZE) val = -val;\n    return {val,\
+    \ cut};\n  }\n\n  void debug() {\n    print(\"base_cost\", base_cost);\n    print(\"\
+    source=\", source, \"sink=\", sink);\n    for (auto&& [key, cap]: edges) print(key,\
+    \ cap);\n  }\n\nprivate:\n  void add_edge(int i, int j, T t) {\n    assert(t >=\
+    \ 0);\n    if (t == 0) return;\n    pair<int, int> key = mp(i, j);\n    edges[key]\
+    \ += t;\n    chmin(edges[key], infty<T>);\n  }\n\n  void _add_1(int i, T x0, T\
+    \ x1) {\n    if (x0 <= x1) {\n      base_cost += x0;\n      add_edge(source, i,\
+    \ x1 - x0);\n    } else {\n      base_cost += x1;\n      add_edge(i, sink, x0\
+    \ - x1);\n    }\n  }\n\n  void _add_2(int i, int j, T x00, T x01, T x10, T x11)\
+    \ {\n    assert(x00 + x11 <= x01 + x10);\n    _add_1(i, x00, x10);\n    _add_1(j,\
+    \ 0, x11 - x10);\n    add_edge(i, j, x01 + x10 - x00 - x11);\n  }\n\n  void _add_3(int\
+    \ i, int j, int k, T x000, T x001, T x010, T x011, T x100,\n              T x101,\
+    \ T x110, T x111) {\n    T p = x000 - x100 - x010 - x001 + x110 + x101 + x011\
+    \ - x111;\n    if (p > 0) {\n      base_cost += x000;\n      _add_1(i, 0, x100\
+    \ - x000);\n      _add_1(j, 0, x010 - x000);\n      _add_1(k, 0, x001 - x000);\n\
+    \      _add_2(i, j, 0, 0, 0, x000 + x110 - x100 - x010);\n      _add_2(i, k, 0,\
+    \ 0, 0, x000 + x101 - x100 - x001);\n      _add_2(j, k, 0, 0, 0, x000 + x011 -\
+    \ x010 - x001);\n      // \u3042\u3068\u306F\u3001111 \u306E\u3068\u304D\u306B\
+    \u5229\u5F97 p \u3092\u8FFD\u52A0\u3059\u308B\n      base_cost -= p;\n      //\
+    \ 111 \u4EE5\u5916\u3060\u3068\u30B3\u30B9\u30C8 p\n      add_edge(i, nxt, p);\n\
+    \      add_edge(j, nxt, p);\n      add_edge(k, nxt, p);\n      add_edge(nxt, sink,\
+    \ p);\n      ++nxt;\n    } else {\n      p = -p;\n      base_cost += x111;\n \
+    \     _add_1(i, x011 - x111, 0);\n      _add_1(i, x101 - x111, 0);\n      _add_1(i,\
+    \ x110 - x111, 0);\n      _add_2(i, j, x111 + x001 - x011 - x101, 0, 0, 0);\n\
+    \      _add_2(i, k, x111 + x010 - x011 - x110, 0, 0, 0);\n      _add_2(j, k, x111\
+    \ + x100 - x101 - x110, 0, 0, 0);\n      // 000 \u306E\u3068\u304D\u306B\u5229\
+    \u5F97 p \u3092\u8FFD\u52A0\u3059\u308B\n      base_cost -= p;\n      // 000 \u4EE5\
+    \u5916\u3060\u3068\u30B3\u30B9\u30C8 p\n      add_edge(nxt, i, p);\n      add_edge(nxt,\
+    \ j, p);\n      add_edge(nxt, k, p);\n      add_edge(source, nxt, p);\n      ++nxt;\n\
+    \    }\n  }\n};\n"
   code: "#include \"flow/maxflow.hpp\"\n\ntemplate <typename T, bool MINIMIZE>\nstruct\
     \ Binary_Optimization {\n  int n;\n  int nxt;\n  int source, sink;\n  T base_cost;\n\
     \  map<pair<int, int>, T> edges;\n\n  Binary_Optimization(int n) : n(n), base_cost(0)\
@@ -157,45 +157,45 @@ data:
     \    x100 = -x100, x101 = -x101;\n      x110 = -x110, x111 = -x111;\n    }\n \
     \   _add_3(i, j, k, x000, x001, x010, x011, x100, x101, x110, x111);\n  }\n\n\
     \  // \u6700\u5C0F\u5024\u304A\u3088\u3073\u300101 \u5217\u3092\u8FD4\u3059\n\
-    \  pair<T, vc<int>> calc() {\n    MaxFlowGraph<T> G(nxt);\n    for (auto&& [key,\
-    \ cap]: edges) {\n      auto [frm, to] = key;\n      G.add(frm, to, cap);\n  \
-    \  }\n    G.build();\n\n    auto [val, cut] = G.cut(source, sink);\n    val +=\
-    \ base_cost;\n    chmin(val, infty<T>);\n    cut.resize(n);\n    if (!MINIMIZE)\
-    \ val = -val;\n    return {val, cut};\n  }\n\n  void debug() {\n    print(\"base_cost\"\
-    , base_cost);\n    print(\"source=\", source, \"sink=\", sink);\n    for (auto&&\
-    \ [key, cap]: edges) print(key, cap);\n  }\n\nprivate:\n  void add_edge(int i,\
-    \ int j, T t) {\n    assert(t >= 0);\n    if (t == 0) return;\n    pair<int, int>\
-    \ key = mp(i, j);\n    edges[key] += t;\n    chmin(edges[key], infty<T>);\n  }\n\
-    \n  void _add_1(int i, T x0, T x1) {\n    if (x0 <= x1) {\n      base_cost +=\
-    \ x0;\n      add_edge(source, i, x1 - x0);\n    } else {\n      base_cost += x1;\n\
-    \      add_edge(i, sink, x0 - x1);\n    }\n  }\n\n  void _add_2(int i, int j,\
-    \ T x00, T x01, T x10, T x11) {\n    assert(x00 + x11 <= x01 + x10);\n    _add_1(i,\
-    \ x00, x10);\n    _add_1(j, 0, x11 - x10);\n    add_edge(i, j, x01 + x10 - x00\
-    \ - x11);\n  }\n\n  void _add_3(int i, int j, int k, T x000, T x001, T x010, T\
-    \ x011, T x100,\n              T x101, T x110, T x111) {\n    T p = x000 - x100\
-    \ - x010 - x001 + x110 + x101 + x011 - x111;\n    if (p > 0) {\n      base_cost\
-    \ += x000;\n      _add_1(i, 0, x100 - x000);\n      _add_1(j, 0, x010 - x000);\n\
-    \      _add_1(k, 0, x001 - x000);\n      _add_2(i, j, 0, 0, 0, x000 + x110 - x100\
-    \ - x010);\n      _add_2(i, k, 0, 0, 0, x000 + x101 - x100 - x001);\n      _add_2(j,\
-    \ k, 0, 0, 0, x000 + x011 - x010 - x001);\n      // \u3042\u3068\u306F\u3001111\
-    \ \u306E\u3068\u304D\u306B\u5229\u5F97 p \u3092\u8FFD\u52A0\u3059\u308B\n    \
-    \  base_cost -= p;\n      // 111 \u4EE5\u5916\u3060\u3068\u30B3\u30B9\u30C8 p\n\
-    \      add_edge(i, nxt, p);\n      add_edge(j, nxt, p);\n      add_edge(k, nxt,\
-    \ p);\n      add_edge(nxt, sink, p);\n      ++nxt;\n    } else {\n      p = -p;\n\
-    \      base_cost += x111;\n      _add_1(i, x011 - x111, 0);\n      _add_1(i, x101\
-    \ - x111, 0);\n      _add_1(i, x110 - x111, 0);\n      _add_2(i, j, x111 + x001\
-    \ - x011 - x101, 0, 0, 0);\n      _add_2(i, k, x111 + x010 - x011 - x110, 0, 0,\
-    \ 0);\n      _add_2(j, k, x111 + x100 - x101 - x110, 0, 0, 0);\n      // 000 \u306E\
-    \u3068\u304D\u306B\u5229\u5F97 p \u3092\u8FFD\u52A0\u3059\u308B\n      base_cost\
-    \ -= p;\n      // 000 \u4EE5\u5916\u3060\u3068\u30B3\u30B9\u30C8 p\n      add_edge(nxt,\
-    \ i, p);\n      add_edge(nxt, j, p);\n      add_edge(nxt, k, p);\n      add_edge(source,\
-    \ nxt, p);\n      ++nxt;\n    }\n  }\n};\n"
+    \  pair<T, vc<int>> calc() {\n    MaxFlow<T> G(nxt, source, sink);\n    for (auto&&\
+    \ [key, cap]: edges) {\n      auto [frm, to] = key;\n      G.add(frm, to, cap);\n\
+    \    }\n\n    auto [val, cut] = G.cut();\n    val += base_cost;\n    chmin(val,\
+    \ infty<T>);\n    cut.resize(n);\n    if (!MINIMIZE) val = -val;\n    return {val,\
+    \ cut};\n  }\n\n  void debug() {\n    print(\"base_cost\", base_cost);\n    print(\"\
+    source=\", source, \"sink=\", sink);\n    for (auto&& [key, cap]: edges) print(key,\
+    \ cap);\n  }\n\nprivate:\n  void add_edge(int i, int j, T t) {\n    assert(t >=\
+    \ 0);\n    if (t == 0) return;\n    pair<int, int> key = mp(i, j);\n    edges[key]\
+    \ += t;\n    chmin(edges[key], infty<T>);\n  }\n\n  void _add_1(int i, T x0, T\
+    \ x1) {\n    if (x0 <= x1) {\n      base_cost += x0;\n      add_edge(source, i,\
+    \ x1 - x0);\n    } else {\n      base_cost += x1;\n      add_edge(i, sink, x0\
+    \ - x1);\n    }\n  }\n\n  void _add_2(int i, int j, T x00, T x01, T x10, T x11)\
+    \ {\n    assert(x00 + x11 <= x01 + x10);\n    _add_1(i, x00, x10);\n    _add_1(j,\
+    \ 0, x11 - x10);\n    add_edge(i, j, x01 + x10 - x00 - x11);\n  }\n\n  void _add_3(int\
+    \ i, int j, int k, T x000, T x001, T x010, T x011, T x100,\n              T x101,\
+    \ T x110, T x111) {\n    T p = x000 - x100 - x010 - x001 + x110 + x101 + x011\
+    \ - x111;\n    if (p > 0) {\n      base_cost += x000;\n      _add_1(i, 0, x100\
+    \ - x000);\n      _add_1(j, 0, x010 - x000);\n      _add_1(k, 0, x001 - x000);\n\
+    \      _add_2(i, j, 0, 0, 0, x000 + x110 - x100 - x010);\n      _add_2(i, k, 0,\
+    \ 0, 0, x000 + x101 - x100 - x001);\n      _add_2(j, k, 0, 0, 0, x000 + x011 -\
+    \ x010 - x001);\n      // \u3042\u3068\u306F\u3001111 \u306E\u3068\u304D\u306B\
+    \u5229\u5F97 p \u3092\u8FFD\u52A0\u3059\u308B\n      base_cost -= p;\n      //\
+    \ 111 \u4EE5\u5916\u3060\u3068\u30B3\u30B9\u30C8 p\n      add_edge(i, nxt, p);\n\
+    \      add_edge(j, nxt, p);\n      add_edge(k, nxt, p);\n      add_edge(nxt, sink,\
+    \ p);\n      ++nxt;\n    } else {\n      p = -p;\n      base_cost += x111;\n \
+    \     _add_1(i, x011 - x111, 0);\n      _add_1(i, x101 - x111, 0);\n      _add_1(i,\
+    \ x110 - x111, 0);\n      _add_2(i, j, x111 + x001 - x011 - x101, 0, 0, 0);\n\
+    \      _add_2(i, k, x111 + x010 - x011 - x110, 0, 0, 0);\n      _add_2(j, k, x111\
+    \ + x100 - x101 - x110, 0, 0, 0);\n      // 000 \u306E\u3068\u304D\u306B\u5229\
+    \u5F97 p \u3092\u8FFD\u52A0\u3059\u308B\n      base_cost -= p;\n      // 000 \u4EE5\
+    \u5916\u3060\u3068\u30B3\u30B9\u30C8 p\n      add_edge(nxt, i, p);\n      add_edge(nxt,\
+    \ j, p);\n      add_edge(nxt, k, p);\n      add_edge(source, nxt, p);\n      ++nxt;\n\
+    \    }\n  }\n};\n"
   dependsOn:
   - flow/maxflow.hpp
   isVerificationFile: false
   path: flow/binary_optimization.hpp
   requiredBy: []
-  timestamp: '2023-09-11 23:08:29+09:00'
+  timestamp: '2023-09-11 23:25:52+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/2320.test.cpp

@@ -252,18 +252,15 @@ data:
     \          e.cap -= a, e.flow += a;\n          edges[e.to][e.rev].cap += a, edges[e.to][e.rev].flow\
     \ -= a;\n          res += a;\n          lim -= a;\n          if (lim == 0) break;\n\
     \        }\n      }\n    }\n    return res;\n  }\n};\n#line 7 \"test/aoj/GRL_6_A.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N, M);\r\n  MaxFlowGraph<int> G(N);\r\n  FOR(M) {\r\
-    \n    LL(a, b, c);\r\n    G.add(a, b, c);\r\n  }\r\n  G.build();\r\n  print(G.flow(0,\
-    \ N - 1));\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(T) solve();\r\
-    \n\r\n  return 0;\r\n}\r\n"
+    \n\r\nvoid solve() {\r\n  LL(N, M);\r\n  MaxFlow<int> G(N, 0, N - 1);\r\n  FOR(M)\
+    \ {\r\n    LL(a, b, c);\r\n    G.add(a, b, c);\r\n  }\r\n  G.build();\r\n  print(G.flow());\r\
+    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
-    \ \"flow/maxflow.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N, M);\r\n  MaxFlowGraph<int>\
-    \ G(N);\r\n  FOR(M) {\r\n    LL(a, b, c);\r\n    G.add(a, b, c);\r\n  }\r\n  G.build();\r\
-    \n  print(G.flow(0, N - 1));\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
-    \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  ll T\
-    \ = 1;\r\n  // LL(T);\r\n  FOR(T) solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ \"flow/maxflow.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N, M);\r\n  MaxFlow<int>\
+    \ G(N, 0, N - 1);\r\n  FOR(M) {\r\n    LL(a, b, c);\r\n    G.add(a, b, c);\r\n\
+    \  }\r\n  G.build();\r\n  print(G.flow());\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\
+    \n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -271,7 +268,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_6_A.test.cpp
   requiredBy: []
-  timestamp: '2023-09-11 23:08:29+09:00'
+  timestamp: '2023-09-11 23:24:26+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/GRL_6_A.test.cpp
