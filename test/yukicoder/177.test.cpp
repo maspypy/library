@@ -25,7 +25,6 @@ void solve() {
     }
     FOR(i, N) if (ok[i]) { G.add(left(i), right(j), infty<ll>); }
   }
-  G.build();
   ll f = G.flow();
   if (f < W)
     print("BANSAKUTSUKITA");
