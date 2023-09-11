@@ -66,7 +66,7 @@ struct MaxFlow {
 
   // 最小カットの値および、カットを表す 01 列を返す
   pair<Cap, vc<int>> cut() {
-    flow(source, sink);
+    flow();
     vc<int> res(N);
     FOR(v, N) res[v] = (level[v] >= 0 ? 0 : 1);
     return {flow_ans, res};
