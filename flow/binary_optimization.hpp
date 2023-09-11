@@ -55,14 +55,13 @@ struct Binary_Optimization {
 
   // 最小値および、01 列を返す
   pair<T, vc<int>> calc() {
-    MaxFlowGraph<T> G(nxt);
+    MaxFlow<T> G(nxt, source, sink);
     for (auto&& [key, cap]: edges) {
       auto [frm, to] = key;
       G.add(frm, to, cap);
     }
-    G.build();
 
-    auto [val, cut] = G.cut(source, sink);
+    auto [val, cut] = G.cut();
     val += base_cost;
     chmin(val, infty<T>);
     cut.resize(n);
