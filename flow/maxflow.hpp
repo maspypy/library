@@ -40,7 +40,7 @@ struct MaxFlow {
     vc<tuple<int, int, Cap>> res;
     FOR(frm, N) {
       for (auto&& e: edges[frm]) {
-        if (e.flow == 0) continue;
+        if (e.flow <= 0) continue;
         res.eb(frm, e.to, e.flow);
       }
     }
