@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree_2d.hpp
     title: ds/segtree/segtree_2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc266/tasks/abc266_Ex
@@ -280,60 +280,40 @@ data:
     \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
     \ { return max(x, y); }\r\n  static constexpr X unit() { return -infty<E>; }\r\
     \n  static constexpr bool commute = true;\r\n};\r\n#line 6 \"test_atcoder/abc266h.test.cpp\"\
-    \n\nusing Mono = Monoid_Max<ll>;\n\nvoid naive() {\n  LL(N);\n  using T = tuple<ll,\
+    \n\nusing Mono = Monoid_Max<ll>;\n\nvoid solve() {\n  LL(N);\n  using T = tuple<ll,\
     \ ll, ll, ll>;\n\n  VEC(T, dat, N);\n  dat.eb(0, 0, 0, 0);\n  ++N;\n\n  sort(all(dat),\
     \ [&](auto& a, auto& b) -> bool {\n    auto [at, ax, ay, aa] = a;\n    auto [bt,\
     \ bx, by, bb] = b;\n    if (ay < by) return true;\n    if (ay > by) return false;\n\
-    \    return at < bt;\n  });\n\n  vi dp(N, -infty<ll>);\n  dp[0] = 0;\n  FOR(j,\
-    \ N) {\n    auto [tj, xj, yj, vvj] = dat[j];\n    FOR(i, j) {\n      auto [ti,\
-    \ xi, yi, vvi] = dat[i];\n      ll d = abs(xi - xj) + abs(yi - yj);\n      if\
-    \ (yi > yj) continue;\n      if (ti + d > tj) continue;\n      chmax(dp[j], dp[i]\
-    \ + vvj);\n    }\n    print(tj, xj, yj, vvj, dp[j]);\n  }\n  print(MAX(dp));\n\
-    }\n\nvoid solve() {\n  // return naive();\n\n  LL(N);\n  using T = tuple<ll, ll,\
-    \ ll, ll>;\n\n  VEC(T, dat, N);\n  dat.eb(0, 0, 0, 0);\n  ++N;\n\n  sort(all(dat),\
-    \ [&](auto& a, auto& b) -> bool {\n    auto [at, ax, ay, aa] = a;\n    auto [bt,\
-    \ bx, by, bb] = b;\n    if (ay < by) return true;\n    if (ay > by) return false;\n\
-    \    return at < bt;\n  });\n\n  vi X1(N), Y1(N), X2(N), Y2(N);\n  FOR(i, N) {\n\
-    \    auto [t, x, y, v] = dat[i];\n    X1[i] = x;\n    X2[i] = x;\n    Y1[i] =\
-    \ x + y - t;\n    Y2[i] = x - y + t;\n  }\n  SegTree_2D<Mono, ll, false> seg1(X1,\
-    \ Y1);\n  SegTree_2D<Mono, ll, false> seg2(X2, Y2);\n\n  ll ANS = 0;\n  FOR(i,\
-    \ N) {\n    const auto [t, x, y, v] = dat[i];\n    const ll a = x, b = y, c =\
-    \ t;\n    if (i == 0) {\n      seg1.multiply(a, a + b - c, 0);\n      seg2.multiply(a,\
-    \ a - b + c, 0);\n      continue;\n    }\n    ll best = -infty<ll>;\n    chmax(best,\
-    \ seg1.prod(-infty<ll>, x + 1, x + y - t, infty<ll>));\n    chmax(best, seg2.prod(x,\
-    \ infty<ll>, -infty<ll>, x - y + t + 1));\n    if (best < 0) continue;\n    best\
-    \ += v;\n    chmax(ANS, best);\n    seg1.multiply(a, a + b - c, best);\n    seg2.multiply(a,\
-    \ a - b + c, best);\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
-    \ 0;\n}\n"
+    \    return at < bt;\n  });\n\n  SegTree_2D<Mono, ll, false> seg1(N, [&](int i)\
+    \ -> tuple<int, int, ll> {\n    auto [t, x, y, v] = dat[i];\n    return {x, x\
+    \ + y - t, Mono::unit()};\n  });\n  SegTree_2D<Mono, ll, false> seg2(N, [&](int\
+    \ i) -> tuple<int, int, ll> {\n    auto [t, x, y, v] = dat[i];\n    return {x,\
+    \ x - y + t, Mono::unit()};\n  });\n\n  ll ANS = 0;\n  FOR(i, N) {\n    const\
+    \ auto [t, x, y, v] = dat[i];\n    if (i == 0) {\n      seg1.multiply(i, 0);\n\
+    \      seg2.multiply(i, 0);\n      continue;\n    }\n    ll best = -infty<ll>;\n\
+    \    chmax(best, seg1.prod(-infty<ll>, x + 1, x + y - t, infty<ll>));\n    chmax(best,\
+    \ seg2.prod(x, infty<ll>, -infty<ll>, x - y + t + 1));\n    if (best < 0) continue;\n\
+    \    best += v;\n    chmax(ANS, best);\n    seg1.multiply(i, best);\n    seg2.multiply(i,\
+    \ best);\n  }\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc266/tasks/abc266_Ex\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/segtree/segtree_2d.hpp\"\
-    \n#include \"alg/monoid/max.hpp\"\n\nusing Mono = Monoid_Max<ll>;\n\nvoid naive()\
+    \n#include \"alg/monoid/max.hpp\"\n\nusing Mono = Monoid_Max<ll>;\n\nvoid solve()\
     \ {\n  LL(N);\n  using T = tuple<ll, ll, ll, ll>;\n\n  VEC(T, dat, N);\n  dat.eb(0,\
     \ 0, 0, 0);\n  ++N;\n\n  sort(all(dat), [&](auto& a, auto& b) -> bool {\n    auto\
     \ [at, ax, ay, aa] = a;\n    auto [bt, bx, by, bb] = b;\n    if (ay < by) return\
-    \ true;\n    if (ay > by) return false;\n    return at < bt;\n  });\n\n  vi dp(N,\
-    \ -infty<ll>);\n  dp[0] = 0;\n  FOR(j, N) {\n    auto [tj, xj, yj, vvj] = dat[j];\n\
-    \    FOR(i, j) {\n      auto [ti, xi, yi, vvi] = dat[i];\n      ll d = abs(xi\
-    \ - xj) + abs(yi - yj);\n      if (yi > yj) continue;\n      if (ti + d > tj)\
-    \ continue;\n      chmax(dp[j], dp[i] + vvj);\n    }\n    print(tj, xj, yj, vvj,\
-    \ dp[j]);\n  }\n  print(MAX(dp));\n}\n\nvoid solve() {\n  // return naive();\n\
-    \n  LL(N);\n  using T = tuple<ll, ll, ll, ll>;\n\n  VEC(T, dat, N);\n  dat.eb(0,\
-    \ 0, 0, 0);\n  ++N;\n\n  sort(all(dat), [&](auto& a, auto& b) -> bool {\n    auto\
-    \ [at, ax, ay, aa] = a;\n    auto [bt, bx, by, bb] = b;\n    if (ay < by) return\
-    \ true;\n    if (ay > by) return false;\n    return at < bt;\n  });\n\n  vi X1(N),\
-    \ Y1(N), X2(N), Y2(N);\n  FOR(i, N) {\n    auto [t, x, y, v] = dat[i];\n    X1[i]\
-    \ = x;\n    X2[i] = x;\n    Y1[i] = x + y - t;\n    Y2[i] = x - y + t;\n  }\n\
-    \  SegTree_2D<Mono, ll, false> seg1(X1, Y1);\n  SegTree_2D<Mono, ll, false> seg2(X2,\
-    \ Y2);\n\n  ll ANS = 0;\n  FOR(i, N) {\n    const auto [t, x, y, v] = dat[i];\n\
-    \    const ll a = x, b = y, c = t;\n    if (i == 0) {\n      seg1.multiply(a,\
-    \ a + b - c, 0);\n      seg2.multiply(a, a - b + c, 0);\n      continue;\n   \
-    \ }\n    ll best = -infty<ll>;\n    chmax(best, seg1.prod(-infty<ll>, x + 1, x\
-    \ + y - t, infty<ll>));\n    chmax(best, seg2.prod(x, infty<ll>, -infty<ll>, x\
-    \ - y + t + 1));\n    if (best < 0) continue;\n    best += v;\n    chmax(ANS,\
-    \ best);\n    seg1.multiply(a, a + b - c, best);\n    seg2.multiply(a, a - b +\
-    \ c, best);\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ true;\n    if (ay > by) return false;\n    return at < bt;\n  });\n\n  SegTree_2D<Mono,\
+    \ ll, false> seg1(N, [&](int i) -> tuple<int, int, ll> {\n    auto [t, x, y, v]\
+    \ = dat[i];\n    return {x, x + y - t, Mono::unit()};\n  });\n  SegTree_2D<Mono,\
+    \ ll, false> seg2(N, [&](int i) -> tuple<int, int, ll> {\n    auto [t, x, y, v]\
+    \ = dat[i];\n    return {x, x - y + t, Mono::unit()};\n  });\n\n  ll ANS = 0;\n\
+    \  FOR(i, N) {\n    const auto [t, x, y, v] = dat[i];\n    if (i == 0) {\n   \
+    \   seg1.multiply(i, 0);\n      seg2.multiply(i, 0);\n      continue;\n    }\n\
+    \    ll best = -infty<ll>;\n    chmax(best, seg1.prod(-infty<ll>, x + 1, x + y\
+    \ - t, infty<ll>));\n    chmax(best, seg2.prod(x, infty<ll>, -infty<ll>, x - y\
+    \ + t + 1));\n    if (best < 0) continue;\n    best += v;\n    chmax(ANS, best);\n\
+    \    seg1.multiply(i, best);\n    seg2.multiply(i, best);\n  }\n  print(ANS);\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -342,8 +322,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc266h.test.cpp
   requiredBy: []
-  timestamp: '2023-09-16 06:50:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-09-16 07:45:30+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc266h.test.cpp
 layout: document
