@@ -38,8 +38,8 @@ data:
   isVerificationFile: false
   path: random/shuffle.hpp
   requiredBy:
-  - geo/minimum_enclosing_circle.hpp
   - geo/closest_pair.hpp
+  - geo/minimum_enclosing_circle.hpp
   timestamp: '2023-02-17 09:47:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

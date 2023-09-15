@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1625_2.test.cpp
     title: test/yukicoder/1625_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc266h.test.cpp
     title: test_atcoder/abc266h.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/segtree/segtree_2d.hpp\"\ntemplate <typename Monoid,\
@@ -31,10 +31,10 @@ data:
     \n      N = (len(X) == 0 ? 0 : MAX(X)) - min_X + 1;\r\n      keyX.resize(N);\r\
     \n      FOR(i, N) keyX[i] = min_X + i;\r\n    }\r\n\r\n    vvc<XY> keyY_raw(N\
     \ + N);\r\n    vvc<S> dat_raw(N + N);\r\n    for (auto&& i: argsort(Y)) {\r\n\
-    \      int ix = xtoi(X[i]), y = Y[i];\r\n      ix += N;\r\n      while (ix) {\r\
-    \n        auto& KY = keyY_raw[ix];\r\n        if (len(KY) == 0 || KY.back() <\
-    \ y) {\r\n          KY.eb(y);\r\n          dat_raw[ix].eb(wt[i]);\r\n        }\
-    \ else {\r\n          dat_raw[ix].back() = MX::op(dat_raw[ix].back(), wt[i]);\r\
+    \      int ix = xtoi(X[i]);\r\n      XY y = Y[i];\r\n      ix += N;\r\n      while\
+    \ (ix) {\r\n        auto& KY = keyY_raw[ix];\r\n        if (len(KY) == 0 || KY.back()\
+    \ < y) {\r\n          KY.eb(y);\r\n          dat_raw[ix].eb(wt[i]);\r\n      \
+    \  } else {\r\n          dat_raw[ix].back() = MX::op(dat_raw[ix].back(), wt[i]);\r\
     \n        }\r\n        ix >>= 1;\r\n      }\r\n    }\r\n\r\n    indptr.assign(N\
     \ + N + 1, 0);\r\n    FOR(i, N + N) indptr[i + 1] = indptr[i] + len(keyY_raw[i]);\r\
     \n    int full_N = indptr.back();\r\n    keyY.resize(full_N), dat.assign(2 * full_N,\
@@ -72,10 +72,10 @@ data:
     \n      N = (len(X) == 0 ? 0 : MAX(X)) - min_X + 1;\r\n      keyX.resize(N);\r\
     \n      FOR(i, N) keyX[i] = min_X + i;\r\n    }\r\n\r\n    vvc<XY> keyY_raw(N\
     \ + N);\r\n    vvc<S> dat_raw(N + N);\r\n    for (auto&& i: argsort(Y)) {\r\n\
-    \      int ix = xtoi(X[i]), y = Y[i];\r\n      ix += N;\r\n      while (ix) {\r\
-    \n        auto& KY = keyY_raw[ix];\r\n        if (len(KY) == 0 || KY.back() <\
-    \ y) {\r\n          KY.eb(y);\r\n          dat_raw[ix].eb(wt[i]);\r\n        }\
-    \ else {\r\n          dat_raw[ix].back() = MX::op(dat_raw[ix].back(), wt[i]);\r\
+    \      int ix = xtoi(X[i]);\r\n      XY y = Y[i];\r\n      ix += N;\r\n      while\
+    \ (ix) {\r\n        auto& KY = keyY_raw[ix];\r\n        if (len(KY) == 0 || KY.back()\
+    \ < y) {\r\n          KY.eb(y);\r\n          dat_raw[ix].eb(wt[i]);\r\n      \
+    \  } else {\r\n          dat_raw[ix].back() = MX::op(dat_raw[ix].back(), wt[i]);\r\
     \n        }\r\n        ix >>= 1;\r\n      }\r\n    }\r\n\r\n    indptr.assign(N\
     \ + N + 1, 0);\r\n    FOR(i, N + N) indptr[i + 1] = indptr[i] + len(keyY_raw[i]);\r\
     \n    int full_N = indptr.back();\r\n    keyY.resize(full_N), dat.assign(2 * full_N,\
@@ -107,12 +107,12 @@ data:
   isVerificationFile: false
   path: ds/segtree/segtree_2d.hpp
   requiredBy: []
-  timestamp: '2023-03-24 19:53:06+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-09-15 18:48:28+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
   - test/yukicoder/1625_2.test.cpp
   - test/yukicoder/1600.test.cpp
+  - test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
   - test_atcoder/abc266h.test.cpp
 documentation_of: ds/segtree/segtree_2d.hpp
 layout: document

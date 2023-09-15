@@ -262,10 +262,10 @@ data:
   timestamp: '2023-09-05 19:46:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/2636.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/yukicoder/1641.test.cpp
   - test/yukicoder/1326.test.cpp
+  - test/aoj/2636.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
 documentation_of: graph/ds/tree_abelgroup.hpp
 layout: document
 redirect_from:

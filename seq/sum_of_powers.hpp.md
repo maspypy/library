@@ -446,8 +446,8 @@ data:
   timestamp: '2023-09-02 00:09:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1145.test.cpp
   - test/yukicoder/2459.test.cpp
+  - test/yukicoder/1145.test.cpp
 documentation_of: seq/sum_of_powers.hpp
 layout: document
 redirect_from:

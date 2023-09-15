@@ -85,11 +85,11 @@ data:
   path: setfunc/ranked_zeta.hpp
   requiredBy:
   - linalg/hafnian.hpp
-  - setfunc/subset_convolution.hpp
-  - setfunc/sps_composition.hpp
-  - setfunc/sps_exp.hpp
-  - setfunc/sps_log.hpp
   - setfunc/transposed_sps_composition.hpp
+  - setfunc/sps_composition.hpp
+  - setfunc/subset_convolution.hpp
+  - setfunc/sps_log.hpp
+  - setfunc/sps_exp.hpp
   timestamp: '2023-05-04 02:23:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -98,9 +98,9 @@ data:
   - test/library_checker/math/sps_exp.test.cpp
   - test/library_checker/convolution/subset_convolution.test.cpp
   - test_atcoder/abc253h.test.cpp
-  - test_atcoder/arc105.test.cpp
-  - test_atcoder/abc213g.test.cpp
   - test_atcoder/abc236h.test.cpp
+  - test_atcoder/abc213g.test.cpp
+  - test_atcoder/arc105.test.cpp
 documentation_of: setfunc/ranked_zeta.hpp
 layout: document
 redirect_from:

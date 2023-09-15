@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree_2d.hpp
     title: ds/segtree/segtree_2d.hpp
   - icon: ':question:'
@@ -226,10 +226,10 @@ data:
     \n      N = (len(X) == 0 ? 0 : MAX(X)) - min_X + 1;\r\n      keyX.resize(N);\r\
     \n      FOR(i, N) keyX[i] = min_X + i;\r\n    }\r\n\r\n    vvc<XY> keyY_raw(N\
     \ + N);\r\n    vvc<S> dat_raw(N + N);\r\n    for (auto&& i: argsort(Y)) {\r\n\
-    \      int ix = xtoi(X[i]), y = Y[i];\r\n      ix += N;\r\n      while (ix) {\r\
-    \n        auto& KY = keyY_raw[ix];\r\n        if (len(KY) == 0 || KY.back() <\
-    \ y) {\r\n          KY.eb(y);\r\n          dat_raw[ix].eb(wt[i]);\r\n        }\
-    \ else {\r\n          dat_raw[ix].back() = MX::op(dat_raw[ix].back(), wt[i]);\r\
+    \      int ix = xtoi(X[i]);\r\n      XY y = Y[i];\r\n      ix += N;\r\n      while\
+    \ (ix) {\r\n        auto& KY = keyY_raw[ix];\r\n        if (len(KY) == 0 || KY.back()\
+    \ < y) {\r\n          KY.eb(y);\r\n          dat_raw[ix].eb(wt[i]);\r\n      \
+    \  } else {\r\n          dat_raw[ix].back() = MX::op(dat_raw[ix].back(), wt[i]);\r\
     \n        }\r\n        ix >>= 1;\r\n      }\r\n    }\r\n\r\n    indptr.assign(N\
     \ + N + 1, 0);\r\n    FOR(i, N + N) indptr[i + 1] = indptr[i] + len(keyY_raw[i]);\r\
     \n    int full_N = indptr.back();\r\n    keyY.resize(full_N), dat.assign(2 * full_N,\
@@ -292,7 +292,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
   requiredBy: []
-  timestamp: '2023-08-30 03:52:01+09:00'
+  timestamp: '2023-09-15 18:48:28+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp

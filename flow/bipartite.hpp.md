@@ -294,19 +294,19 @@ data:
   isVerificationFile: false
   path: flow/bipartite.hpp
   requiredBy:
-  - graph/bipartite_edge_coloring.hpp
   - graph/maximum_antichain.hpp
+  - graph/bipartite_edge_coloring.hpp
   timestamp: '2023-07-30 12:32:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/2251_2.test.cpp
-  - test/aoj/1566.test.cpp
-  - test/mytest/tutte.test.cpp
-  - test/library_checker/graph/bipartitematching.test.cpp
-  - test/library_checker/graph/bipartite_edge_coloring.test.cpp
-  - test/yukicoder/1744.test.cpp
   - test/yukicoder/1745.test.cpp
+  - test/yukicoder/1744.test.cpp
   - test/yukicoder/1479.test.cpp
+  - test/aoj/1566.test.cpp
+  - test/aoj/2251_2.test.cpp
+  - test/mytest/tutte.test.cpp
+  - test/library_checker/graph/bipartite_edge_coloring.test.cpp
+  - test/library_checker/graph/bipartitematching.test.cpp
   - test_atcoder/abc274g.test.cpp
   - test_atcoder/abc237ex.test.cpp
 documentation_of: flow/bipartite.hpp
