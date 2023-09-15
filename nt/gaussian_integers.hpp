@@ -1,15 +1,15 @@
 #include "nt/factor.hpp"
 #include "mod/mod_pow.hpp"
 
-template <typename INT>
+template <typename T>
 struct Gaussian_Integer {
-  INT x, y;
+  T x, y;
   using G = Gaussian_Integer;
 
-  Gaussian_Integer(INT x = 0, INT y = 0) : x(x), y(y) {}
-  Gaussian_Integer(pair<INT, INT> p) : x(p.fi), y(p.se) {}
+  Gaussian_Integer(T x = 0, T y = 0) : x(x), y(y) {}
+  Gaussian_Integer(pair<T, T> p) : x(p.fi), y(p.se) {}
 
-  INT norm() const { return x * x + y * y; }
+  T norm() const { return x * x + y * y; }
   G conjugate() const { return G(x, -y); }
 
   G &operator+=(const G &g) {
@@ -26,7 +26,7 @@ struct Gaussian_Integer {
   }
   G &operator/=(const G &g) {
     *this *= g.conjugate();
-    INT n = g.norm();
+    T n = g.norm();
     x = floor(x + n / 2, n);
     y = floor(y + n / 2, n);
     return *this;
@@ -52,24 +52,34 @@ struct Gaussian_Integer {
     }
     return a;
   }
+
+  // (g,x,y) s.t ax+by=g
+  static tuple<G, G, G> extgcd(G a, G b) {
+    if (b.x != 0 || b.y != 0) {
+      G q = a / b;
+      auto [g, x, y] = extgcd(b, a - q * b);
+      return {g, y, x - q * y};
+    }
+    return {a, G{1, 0}, G{0, 0}};
+  }
 };
 
-template <typename INT>
-vc<Gaussian_Integer<INT>> solve_norm_equation_factor(vc<pair<ll, int>> pfs) {
-  using G = Gaussian_Integer<INT>;
+template <typename T>
+vc<Gaussian_Integer<T>> solve_norm_equation_factor(vc<pair<ll, int>> pfs) {
+  using G = Gaussian_Integer<T>;
   vc<G> res;
   for (auto &&[p, e]: pfs) {
     if (p % 4 == 3 && e % 2 == 1) return {};
   }
-  auto find = [&](INT p) -> G {
+  auto find = [&](T p) -> G {
     // p は素数. ノルム p のガウス整数をひとつ見つける
     if (p == 2) return G(1, 1);
     // x^2 = -1 mod p をひとつ見つける
-    INT x = [&]() -> INT {
-      INT x = 1;
+    T x = [&]() -> T {
+      T x = 1;
       while (1) {
         ++x;
-        INT pow_x = 1;
+        T pow_x = 1;
         if (p < (1 << 30)) {
           pow_x = mod_pow(x, (p - 1) / 4, p);
           if (pow_x * pow_x % p == p - 1) return pow_x;
@@ -91,7 +101,7 @@ vc<Gaussian_Integer<INT>> solve_norm_equation_factor(vc<pair<ll, int>> pfs) {
   res.eb(G(1, 0));
   for (auto &&[p, e]: pfs) {
     if (p % 4 == 3) {
-      INT pp = 1;
+      T pp = 1;
       FOR(e / 2) pp *= p;
       for (auto &&g: res) {
         g.x *= pp;
@@ -127,9 +137,9 @@ vc<Gaussian_Integer<INT>> solve_norm_equation_factor(vc<pair<ll, int>> pfs) {
 // ノルムがとれるように、2 乗してもオーバーフローしない型を使おう
 // 0 <= arg < 90 となるもののみ返す。
 // 単数倍は作らないので、使うときに気を付ける。
-template <typename INT>
-vc<Gaussian_Integer<INT>> solve_norm_equation(INT N) {
-  using G = Gaussian_Integer<INT>;
+template <typename T>
+vc<Gaussian_Integer<T>> solve_norm_equation(T N) {
+  using G = Gaussian_Integer<T>;
   vc<G> res;
   if (N < 0) return {};
   if (N == 0) {
@@ -137,5 +147,5 @@ vc<Gaussian_Integer<INT>> solve_norm_equation(INT N) {
     return res;
   }
   auto pfs = factor(N);
-  return solve_norm_equation_factor<INT>(pfs);
+  return solve_norm_equation_factor<T>(pfs);
 }
