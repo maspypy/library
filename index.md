@@ -85,7 +85,7 @@ data:
       title: alg/acted_set/from_monoid.hpp
   - name: alg/monoid
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/add.hpp
       title: alg/monoid/add.hpp
     - icon: ':heavy_check_mark:'
@@ -1947,7 +1947,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
       title: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
       title: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3056,7 +3056,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1625.test.cpp
       title: test/yukicoder/1625.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/1625_2.test.cpp
       title: test/yukicoder/1625_2.test.cpp
     - icon: ':heavy_check_mark:'
