@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   - icon: ':question:'
@@ -220,7 +220,7 @@ data:
     \ b, cap, 0});\n    edges[to].eb(Edge{frm, a, rev_cap, 0});\n  }\n\n  // frm,\
     \ to, flow\n  vc<tuple<int, int, Cap>> get_flow_edges() {\n    vc<tuple<int, int,\
     \ Cap>> res;\n    FOR(frm, N) {\n      for (auto&& e: edges[frm]) {\n        if\
-    \ (e.flow == 0) continue;\n        res.eb(frm, e.to, e.flow);\n      }\n    }\n\
+    \ (e.flow <= 0) continue;\n        res.eb(frm, e.to, e.flow);\n      }\n    }\n\
     \    return res;\n  }\n\n  // \u5DEE\u5206\u3067\u306F\u306A\u304F\u3053\u308C\
     \u307E\u3067\u306E\u7DCF\u91CF\n  Cap flow() {\n    if (calculated) return flow_ans;\n\
     \    calculated = true;\n    while (set_level()) {\n      prog.assign(N, 0);\n\
@@ -268,7 +268,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_6_A.test.cpp
   requiredBy: []
-  timestamp: '2023-09-12 01:51:16+09:00'
+  timestamp: '2023-09-16 07:20:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_6_A.test.cpp

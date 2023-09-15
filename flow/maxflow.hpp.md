@@ -5,11 +5,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: flow/binary_optimization.hpp
     title: flow/binary_optimization.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2251_1.test.cpp
     title: test/aoj/2251_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -33,9 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc318g.test.cpp
     title: test_atcoder/abc318g.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"flow/maxflow.hpp\"\n// incremental \u306B\u8FBA\u3092\u8FFD\
@@ -51,7 +51,7 @@ data:
     \ b = len(edges[to]);\n    edges[frm].eb(Edge{to, b, cap, 0});\n    edges[to].eb(Edge{frm,\
     \ a, rev_cap, 0});\n  }\n\n  // frm, to, flow\n  vc<tuple<int, int, Cap>> get_flow_edges()\
     \ {\n    vc<tuple<int, int, Cap>> res;\n    FOR(frm, N) {\n      for (auto&& e:\
-    \ edges[frm]) {\n        if (e.flow == 0) continue;\n        res.eb(frm, e.to,\
+    \ edges[frm]) {\n        if (e.flow <= 0) continue;\n        res.eb(frm, e.to,\
     \ e.flow);\n      }\n    }\n    return res;\n  }\n\n  // \u5DEE\u5206\u3067\u306F\
     \u306A\u304F\u3053\u308C\u307E\u3067\u306E\u7DCF\u91CF\n  Cap flow() {\n    if\
     \ (calculated) return flow_ans;\n    calculated = true;\n    while (set_level())\
@@ -96,7 +96,7 @@ data:
     \ b, cap, 0});\n    edges[to].eb(Edge{frm, a, rev_cap, 0});\n  }\n\n  // frm,\
     \ to, flow\n  vc<tuple<int, int, Cap>> get_flow_edges() {\n    vc<tuple<int, int,\
     \ Cap>> res;\n    FOR(frm, N) {\n      for (auto&& e: edges[frm]) {\n        if\
-    \ (e.flow == 0) continue;\n        res.eb(frm, e.to, e.flow);\n      }\n    }\n\
+    \ (e.flow <= 0) continue;\n        res.eb(frm, e.to, e.flow);\n      }\n    }\n\
     \    return res;\n  }\n\n  // \u5DEE\u5206\u3067\u306F\u306A\u304F\u3053\u308C\
     \u307E\u3067\u306E\u7DCF\u91CF\n  Cap flow() {\n    if (calculated) return flow_ans;\n\
     \    calculated = true;\n    while (set_level()) {\n      prog.assign(N, 0);\n\
@@ -134,8 +134,8 @@ data:
   requiredBy:
   - flow/binary_optimization.hpp
   - graph/dag_path_cover.hpp
-  timestamp: '2023-09-12 01:51:16+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-09-16 07:20:39+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/177.test.cpp
   - test/yukicoder/1541.test.cpp

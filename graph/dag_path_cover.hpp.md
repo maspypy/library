@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2251_1.test.cpp
     title: test/aoj/2251_1.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -89,7 +89,7 @@ data:
     \ b = len(edges[to]);\n    edges[frm].eb(Edge{to, b, cap, 0});\n    edges[to].eb(Edge{frm,\
     \ a, rev_cap, 0});\n  }\n\n  // frm, to, flow\n  vc<tuple<int, int, Cap>> get_flow_edges()\
     \ {\n    vc<tuple<int, int, Cap>> res;\n    FOR(frm, N) {\n      for (auto&& e:\
-    \ edges[frm]) {\n        if (e.flow == 0) continue;\n        res.eb(frm, e.to,\
+    \ edges[frm]) {\n        if (e.flow <= 0) continue;\n        res.eb(frm, e.to,\
     \ e.flow);\n      }\n    }\n    return res;\n  }\n\n  // \u5DEE\u5206\u3067\u306F\
     \u306A\u304F\u3053\u308C\u307E\u3067\u306E\u7DCF\u91CF\n  Cap flow() {\n    if\
     \ (calculated) return flow_ans;\n    calculated = true;\n    while (set_level())\
@@ -137,15 +137,11 @@ data:
     \ = 2 * N, sink = 2 * N + 1;\n  MaxFlow<int> F(2 * N + 2, source, sink);\n  FOR(v,\
     \ N) {\n    F.add(source, 2 * v + 1, 1);\n    F.add(2 * v + 0, sink, 1);\n   \
     \ F.add(2 * v + 0, 2 * v + 1, infty<int>);\n  }\n  for (auto&& e: G.edges) F.add(2\
-    \ * e.frm + 1, 2 * e.to + 0, infty<int>);\n\n  int flow = F.flow();\n\n  vvc<pair<int,\
-    \ int>> flow_edges(N + N + 2);\n  for (auto&& [a, b, c]: F.get_flow_edges()) {\
-    \ flow_edges[a].eb(b, c); }\n\n  UnionFind uf(N);\n  for (auto&& [a, f]: flow_edges[source])\
-    \ {\n    assert(f == 1);\n    int b = a;\n    while (1) {\n      auto [to, x]\
-    \ = POP(flow_edges[b]);\n      x -= 1;\n      if (x > 0) flow_edges[b].eb(to,\
-    \ x);\n      if (to == sink) break;\n      b = to;\n    }\n    uf.merge(a / 2,\
-    \ b / 2);\n  }\n\n  vc<int> ANS(N, -1);\n  int p = 0;\n  FOR(v, N) if (uf[v] ==\
-    \ v) ANS[v] = p++;\n  FOR(v, N) if (uf[v] != v) ANS[v] = ANS[uf[v]];\n  return\
-    \ ANS;\n};\n"
+    \ * e.frm + 1, 2 * e.to + 0, infty<int>);\n\n  F.flow();\n  auto paths = F.path_decomposition();\n\
+    \n  UnionFind uf(N);\n  for (auto& P: paths) {\n    int a = P[1], b = P[len(P)\
+    \ - 2];\n    uf.merge(a / 2, b / 2);\n  }\n\n  vc<int> ANS(N, -1);\n  int p =\
+    \ 0;\n  FOR(v, N) if (uf[v] == v) ANS[v] = p++;\n  FOR(v, N) if (uf[v] != v) ANS[v]\
+    \ = ANS[uf[v]];\n  return ANS;\n};\n"
   code: "#include \"graph/base.hpp\"\n#include \"flow/maxflow.hpp\"\n#include \"ds/unionfind/unionfind.hpp\"\
     \n\n// \u5404\u9802\u70B9\u306E\u8272\u3092\u304B\u3048\u3059\u3002\u5404\u8272\
     \u306F\u3072\u3068\u3064\u306E\u30D1\u30B9\u4E0A\u306B\u3042\u308B\u3088\u3046\
@@ -155,14 +151,11 @@ data:
     \ * N + 2, source, sink);\n  FOR(v, N) {\n    F.add(source, 2 * v + 1, 1);\n \
     \   F.add(2 * v + 0, sink, 1);\n    F.add(2 * v + 0, 2 * v + 1, infty<int>);\n\
     \  }\n  for (auto&& e: G.edges) F.add(2 * e.frm + 1, 2 * e.to + 0, infty<int>);\n\
-    \n  int flow = F.flow();\n\n  vvc<pair<int, int>> flow_edges(N + N + 2);\n  for\
-    \ (auto&& [a, b, c]: F.get_flow_edges()) { flow_edges[a].eb(b, c); }\n\n  UnionFind\
-    \ uf(N);\n  for (auto&& [a, f]: flow_edges[source]) {\n    assert(f == 1);\n \
-    \   int b = a;\n    while (1) {\n      auto [to, x] = POP(flow_edges[b]);\n  \
-    \    x -= 1;\n      if (x > 0) flow_edges[b].eb(to, x);\n      if (to == sink)\
-    \ break;\n      b = to;\n    }\n    uf.merge(a / 2, b / 2);\n  }\n\n  vc<int>\
-    \ ANS(N, -1);\n  int p = 0;\n  FOR(v, N) if (uf[v] == v) ANS[v] = p++;\n  FOR(v,\
-    \ N) if (uf[v] != v) ANS[v] = ANS[uf[v]];\n  return ANS;\n};\n"
+    \n  F.flow();\n  auto paths = F.path_decomposition();\n\n  UnionFind uf(N);\n\
+    \  for (auto& P: paths) {\n    int a = P[1], b = P[len(P) - 2];\n    uf.merge(a\
+    \ / 2, b / 2);\n  }\n\n  vc<int> ANS(N, -1);\n  int p = 0;\n  FOR(v, N) if (uf[v]\
+    \ == v) ANS[v] = p++;\n  FOR(v, N) if (uf[v] != v) ANS[v] = ANS[uf[v]];\n  return\
+    \ ANS;\n};\n"
   dependsOn:
   - graph/base.hpp
   - flow/maxflow.hpp
@@ -170,8 +163,8 @@ data:
   isVerificationFile: false
   path: graph/dag_path_cover.hpp
   requiredBy: []
-  timestamp: '2023-09-12 01:51:16+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-09-16 07:20:39+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/2251_1.test.cpp
 documentation_of: graph/dag_path_cover.hpp

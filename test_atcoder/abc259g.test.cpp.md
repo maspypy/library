@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: flow/binary_optimization.hpp
     title: flow/binary_optimization.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   - icon: ':question:'
@@ -221,7 +221,7 @@ data:
     \ b = len(edges[to]);\n    edges[frm].eb(Edge{to, b, cap, 0});\n    edges[to].eb(Edge{frm,\
     \ a, rev_cap, 0});\n  }\n\n  // frm, to, flow\n  vc<tuple<int, int, Cap>> get_flow_edges()\
     \ {\n    vc<tuple<int, int, Cap>> res;\n    FOR(frm, N) {\n      for (auto&& e:\
-    \ edges[frm]) {\n        if (e.flow == 0) continue;\n        res.eb(frm, e.to,\
+    \ edges[frm]) {\n        if (e.flow <= 0) continue;\n        res.eb(frm, e.to,\
     \ e.flow);\n      }\n    }\n    return res;\n  }\n\n  // \u5DEE\u5206\u3067\u306F\
     \u306A\u304F\u3053\u308C\u307E\u3067\u306E\u7DCF\u91CF\n  Cap flow() {\n    if\
     \ (calculated) return flow_ans;\n    calculated = true;\n    while (set_level())\
@@ -342,7 +342,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc259g.test.cpp
   requiredBy: []
-  timestamp: '2023-09-12 01:51:16+09:00'
+  timestamp: '2023-09-16 07:20:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc259g.test.cpp
