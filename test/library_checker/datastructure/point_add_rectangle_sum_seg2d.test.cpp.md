@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_rectangle_sum
@@ -285,31 +285,29 @@ data:
     \ + 2 * j + 0], dat[off + 2 * j + 1]);\r\n    }\r\n  }\r\n};\r\n#line 8 \"test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  vc<int> X(N), Y(N);\r\n  vi W(N);\r\n\
     \  FOR(i, N) {\r\n    LL(x, y, w);\r\n    X[i] = x, Y[i] = y, W[i] = w;\r\n  }\r\
-    \n  using QQ = tuple<ll, ll, ll, ll>;\r\n  vc<QQ> query(Q);\r\n  FOR(q, Q) {\r\
-    \n    LL(t);\r\n    if (t == 0) {\r\n      LL(x, y, w);\r\n      X.eb(x);\r\n\
-    \      Y.eb(y);\r\n      W.eb(0);\r\n      query[q] = mt(-1, x, y, w);\r\n   \
-    \ } else {\r\n      LL(a, b, c, d);\r\n      query[q] = mt(a, c, b, d);\r\n  \
-    \  }\r\n  }\r\n\r\n  using Mono = Monoid_Add<ll>;\r\n\r\n  SegTree_2D<Mono, int,\
-    \ false> seg(X, Y, W);\r\n\r\n  FOR(q, Q) {\r\n    auto [a, b, c, d] = query[q];\r\
-    \n    if (a == -1) {\r\n      seg.multiply(b, c, d);\r\n    } else {\r\n     \
-    \ print(seg.prod(a, b, c, d));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n\
-    \  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
-    \n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \n  using QQ = tuple<int, int, int, int>;\r\n  vc<QQ> query(Q);\r\n  FOR(q, Q)\
+    \ {\r\n    LL(t);\r\n    if (t == 0) {\r\n      LL(x, y, w);\r\n      X.eb(x);\r\
+    \n      Y.eb(y);\r\n      W.eb(0);\r\n      query[q] = mt(-1, x, y, w);\r\n  \
+    \  } else {\r\n      LL(a, b, c, d);\r\n      query[q] = mt(a, c, b, d);\r\n \
+    \     X.eb(0), Y.eb(0), W.eb(0);\r\n    }\r\n  }\r\n\r\n  using Mono = Monoid_Add<ll>;\r\
+    \n\r\n  SegTree_2D<Mono, int, false> seg(X, Y, W);\r\n  FOR(q, Q) {\r\n    auto\
+    \ [a, b, c, d] = query[q];\r\n    if (a == -1) {\r\n      seg.multiply(N + q,\
+    \ d);\r\n    } else {\r\n      print(seg.prod(a, b, c, d));\r\n    }\r\n  }\r\n\
+    }\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_rectangle_sum\"\
     \r\n\r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
     \ \"alg/monoid/add.hpp\"\r\n#include \"ds/segtree/segtree_2d.hpp\"\r\n\r\nvoid\
     \ solve() {\r\n  LL(N, Q);\r\n  vc<int> X(N), Y(N);\r\n  vi W(N);\r\n  FOR(i,\
     \ N) {\r\n    LL(x, y, w);\r\n    X[i] = x, Y[i] = y, W[i] = w;\r\n  }\r\n  using\
-    \ QQ = tuple<ll, ll, ll, ll>;\r\n  vc<QQ> query(Q);\r\n  FOR(q, Q) {\r\n    LL(t);\r\
-    \n    if (t == 0) {\r\n      LL(x, y, w);\r\n      X.eb(x);\r\n      Y.eb(y);\r\
-    \n      W.eb(0);\r\n      query[q] = mt(-1, x, y, w);\r\n    } else {\r\n    \
-    \  LL(a, b, c, d);\r\n      query[q] = mt(a, c, b, d);\r\n    }\r\n  }\r\n\r\n\
-    \  using Mono = Monoid_Add<ll>;\r\n\r\n  SegTree_2D<Mono, int, false> seg(X, Y,\
-    \ W);\r\n\r\n  FOR(q, Q) {\r\n    auto [a, b, c, d] = query[q];\r\n    if (a ==\
-    \ -1) {\r\n      seg.multiply(b, c, d);\r\n    } else {\r\n      print(seg.prod(a,\
-    \ b, c, d));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
-    \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
-    \n\r\n  return 0;\r\n}\r\n"
+    \ QQ = tuple<int, int, int, int>;\r\n  vc<QQ> query(Q);\r\n  FOR(q, Q) {\r\n \
+    \   LL(t);\r\n    if (t == 0) {\r\n      LL(x, y, w);\r\n      X.eb(x);\r\n  \
+    \    Y.eb(y);\r\n      W.eb(0);\r\n      query[q] = mt(-1, x, y, w);\r\n    }\
+    \ else {\r\n      LL(a, b, c, d);\r\n      query[q] = mt(a, c, b, d);\r\n    \
+    \  X.eb(0), Y.eb(0), W.eb(0);\r\n    }\r\n  }\r\n\r\n  using Mono = Monoid_Add<ll>;\r\
+    \n\r\n  SegTree_2D<Mono, int, false> seg(X, Y, W);\r\n  FOR(q, Q) {\r\n    auto\
+    \ [a, b, c, d] = query[q];\r\n    if (a == -1) {\r\n      seg.multiply(N + q,\
+    \ d);\r\n    } else {\r\n      print(seg.prod(a, b, c, d));\r\n    }\r\n  }\r\n\
+    }\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -318,8 +316,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
   requiredBy: []
-  timestamp: '2023-09-16 06:31:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-09-16 06:42:12+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
 layout: document
