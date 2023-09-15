@@ -49,5 +49,6 @@ void solve() {
 
 signed main() {
   test();
+  solve();
   return 0;
 }
