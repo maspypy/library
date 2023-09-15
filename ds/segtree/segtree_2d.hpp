@@ -25,7 +25,8 @@ struct SegTree_2D {
     vvc<XY> keyY_raw(N + N);
     vvc<S> dat_raw(N + N);
     for (auto&& i: argsort(Y)) {
-      int ix = xtoi(X[i]), y = Y[i];
+      int ix = xtoi(X[i]);
+      XY y = Y[i];
       ix += N;
       while (ix) {
         auto& KY = keyY_raw[ix];
