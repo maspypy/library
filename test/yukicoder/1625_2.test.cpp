@@ -32,21 +32,16 @@ void solve() {
     }
   }
   using Mono = Monoid_Max<ll>;
-  vi X, Y, V;
-  FOR(i, N) {
+  SegTree_2D<Mono, ll, false> seg(N + Q, [&](int i) -> tuple<ll, ll, ll> {
     auto [a, b, c] = query[i];
-    X.eb(a), Y.eb(b), V.eb(c);
-  }
-  FOR(i, N, N + Q) {
-    auto&& [a, b, c] = query[i];
-    if (a != -1) X.eb(a), Y.eb(b), V.eb(Mono::unit());
-  }
-  SegTree_2D<Mono, ll, false> seg(X, Y, V);
+    if (i < N) return {a, b, c};
+    return {a, b, Mono::unit()};
+  });
 
   FOR(q, N, N + Q) {
     auto&& [a, b, c] = query[q];
     if (a != -1) {
-      seg.multiply(a, b, c);
+      seg.multiply(q, c);
     } else {
       ll ANS = seg.prod(b, c, b, c);
       if (ANS == Mono::unit()) ANS = -1;
@@ -56,13 +51,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
