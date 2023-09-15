@@ -6,41 +6,7 @@
 
 using Mono = Monoid_Max<ll>;
 
-void naive() {
-  LL(N);
-  using T = tuple<ll, ll, ll, ll>;
-
-  VEC(T, dat, N);
-  dat.eb(0, 0, 0, 0);
-  ++N;
-
-  sort(all(dat), [&](auto& a, auto& b) -> bool {
-    auto [at, ax, ay, aa] = a;
-    auto [bt, bx, by, bb] = b;
-    if (ay < by) return true;
-    if (ay > by) return false;
-    return at < bt;
-  });
-
-  vi dp(N, -infty<ll>);
-  dp[0] = 0;
-  FOR(j, N) {
-    auto [tj, xj, yj, vvj] = dat[j];
-    FOR(i, j) {
-      auto [ti, xi, yi, vvi] = dat[i];
-      ll d = abs(xi - xj) + abs(yi - yj);
-      if (yi > yj) continue;
-      if (ti + d > tj) continue;
-      chmax(dp[j], dp[i] + vvj);
-    }
-    print(tj, xj, yj, vvj, dp[j]);
-  }
-  print(MAX(dp));
-}
-
 void solve() {
-  // return naive();
-
   LL(N);
   using T = tuple<ll, ll, ll, ll>;
 
@@ -56,24 +22,21 @@ void solve() {
     return at < bt;
   });
 
-  vi X1(N), Y1(N), X2(N), Y2(N);
-  FOR(i, N) {
+  SegTree_2D<Mono, ll, false> seg1(N, [&](int i) -> tuple<int, int, ll> {
     auto [t, x, y, v] = dat[i];
-    X1[i] = x;
-    X2[i] = x;
-    Y1[i] = x + y - t;
-    Y2[i] = x - y + t;
-  }
-  SegTree_2D<Mono, ll, false> seg1(X1, Y1);
-  SegTree_2D<Mono, ll, false> seg2(X2, Y2);
+    return {x, x + y - t, Mono::unit()};
+  });
+  SegTree_2D<Mono, ll, false> seg2(N, [&](int i) -> tuple<int, int, ll> {
+    auto [t, x, y, v] = dat[i];
+    return {x, x - y + t, Mono::unit()};
+  });
 
   ll ANS = 0;
   FOR(i, N) {
     const auto [t, x, y, v] = dat[i];
-    const ll a = x, b = y, c = t;
     if (i == 0) {
-      seg1.multiply(a, a + b - c, 0);
-      seg2.multiply(a, a - b + c, 0);
+      seg1.multiply(i, 0);
+      seg2.multiply(i, 0);
       continue;
     }
     ll best = -infty<ll>;
@@ -82,18 +45,13 @@ void solve() {
     if (best < 0) continue;
     best += v;
     chmax(ANS, best);
-    seg1.multiply(a, a + b - c, best);
-    seg2.multiply(a, a - b + c, best);
+    seg1.multiply(i, best);
+    seg2.multiply(i, best);
   }
   print(ANS);
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
