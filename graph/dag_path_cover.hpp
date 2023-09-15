@@ -18,22 +18,12 @@ vc<int> dag_path_cover(DAG& G) {
   }
   for (auto&& e: G.edges) F.add(2 * e.frm + 1, 2 * e.to + 0, infty<int>);
 
-  int flow = F.flow();
-
-  vvc<pair<int, int>> flow_edges(N + N + 2);
-  for (auto&& [a, b, c]: F.get_flow_edges()) { flow_edges[a].eb(b, c); }
+  F.flow();
+  auto paths = F.path_decomposition();
 
   UnionFind uf(N);
-  for (auto&& [a, f]: flow_edges[source]) {
-    assert(f == 1);
-    int b = a;
-    while (1) {
-      auto [to, x] = POP(flow_edges[b]);
-      x -= 1;
-      if (x > 0) flow_edges[b].eb(to, x);
-      if (to == sink) break;
-      b = to;
-    }
+  for (auto& P: paths) {
+    int a = P[1], b = P[len(P) - 2];
     uf.merge(a / 2, b / 2);
   }
 
