@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   - icon: ':question:'
@@ -13,14 +13,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -302,7 +302,7 @@ data:
     \ FOR(i, N) {\n            if (a <= X[i] && X[i] < b && c <= Y[i] && Y[i] < d)\n\
     \              chmin(ans, val[i]);\n          }\n          assert(ans == seg.prod(a,\
     \ b, c, d));\n        }\n      }\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n\
-    \  print(a + b);\n}\n\nsigned main() {\n  test();\n  return 0;\n}\n"
+    \  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"random/base.hpp\"\n#include \"ds/segtree/segtree_2d.hpp\"\
     \n#include \"alg/monoid/min.hpp\"\n\nvoid test() {\n  FOR(N, 100) {\n    FOR(Q,\
@@ -319,7 +319,7 @@ data:
     \ (a <= X[i] && X[i] < b && c <= Y[i] && Y[i] < d)\n              chmin(ans, val[i]);\n\
     \          }\n          assert(ans == seg.prod(a, b, c, d));\n        }\n    \
     \  }\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned\
-    \ main() {\n  test();\n  return 0;\n}"
+    \ main() {\n  test();\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -329,8 +329,8 @@ data:
   isVerificationFile: true
   path: test/mytest/seg2d.test.cpp
   requiredBy: []
-  timestamp: '2023-09-16 06:50:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-09-16 07:13:24+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/seg2d.test.cpp
 layout: document
