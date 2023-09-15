@@ -5,8 +5,8 @@
 
 void solve() {
   LL(N, M);
-  MaxFlowGraph<int> G(2 * N + 2);
   int s = 2 * N, t = 2 * N + 1;
+  MaxFlow<int> G(2 * N + 2, s, t);
   LL(a, b, c);
   --a, --b, --c;
 
@@ -23,9 +23,7 @@ void solve() {
     G.add(2 * b + 1, 2 * a + 0, 2);
   }
 
-  G.build();
-
-  Yes(G.flow(s, t) == 2);
+  Yes(G.flow() == 2);
 }
 
 signed main() {
