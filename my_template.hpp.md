@@ -1059,6 +1059,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/run_length.test.cpp
     title: test/mytest/run_length.test.cpp
+  - icon: ':x:'
+    path: test/mytest/seg2d.test.cpp
+    title: test/mytest/seg2d.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/segtree_xor_prod.test.cpp
     title: test/mytest/segtree_xor_prod.test.cpp
@@ -2649,6 +2652,7 @@ data:
   - test/mytest/tutte.test.cpp
   - test/mytest/sortable_array.test.cpp
   - test/mytest/kdtree_am.test.cpp
+  - test/mytest/seg2d.test.cpp
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/four_square.test.cpp
   - test/mytest/pascal.test.cpp

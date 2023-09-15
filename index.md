@@ -133,7 +133,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/merge_vector_space.hpp
       title: alg/monoid/merge_vector_space.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/min.hpp
       title: alg/monoid/min.hpp
     - icon: ':heavy_check_mark:'
@@ -1410,7 +1410,7 @@ data:
       title: poly/online/online_square.hpp
   - name: random
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -2721,6 +2721,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/run_length.test.cpp
       title: test/mytest/run_length.test.cpp
+    - icon: ':x:'
+      path: test/mytest/seg2d.test.cpp
+      title: test/mytest/seg2d.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/segtree_xor_prod.test.cpp
       title: test/mytest/segtree_xor_prod.test.cpp
