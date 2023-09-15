@@ -14,7 +14,7 @@ void solve() {
     LL(x, y, w);
     X[i] = x, Y[i] = y, W[i] = w;
   }
-  using QQ = tuple<ll, ll, ll, ll>;
+  using QQ = tuple<int, int, int, int>;
   vc<QQ> query(Q);
   FOR(q, Q) {
     LL(t);
@@ -27,17 +27,17 @@ void solve() {
     } else {
       LL(a, b, c, d);
       query[q] = mt(a, c, b, d);
+      X.eb(0), Y.eb(0), W.eb(0);
     }
   }
 
   using Mono = Monoid_Add<ll>;
 
   SegTree_2D<Mono, int, false> seg(X, Y, W);
-
   FOR(q, Q) {
     auto [a, b, c, d] = query[q];
     if (a == -1) {
-      seg.multiply(b, c, d);
+      seg.multiply(N + q, d);
     } else {
       print(seg.prod(a, b, c, d));
     }
@@ -45,11 +45,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
   solve();
-
   return 0;
 }
