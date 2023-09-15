@@ -1,6 +1,7 @@
 #include "graph/tree.hpp"
 
 // (圧縮された木の頂点ラベルたち、グラフ)
+// 新しいグラフ：辺重みあり
 template <typename TREE>
 pair<vc<int>, typename TREE::Graph_type> compress_tree(TREE& tree, vc<int> V) {
   // 大事な点をリストアップする
