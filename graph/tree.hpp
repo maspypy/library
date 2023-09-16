@@ -94,7 +94,7 @@ struct Tree {
   int ELID(int v) { return 2 * LID[v] - depth[v]; }
   int ERID(int v) { return 2 * RID[v] - depth[v] - 1; }
 
-  /* k: 0-indexed */
+  // 目標地点へ進む個数が k
   int LA(int v, int k) {
     assert(k <= depth[v]);
     while (1) {
