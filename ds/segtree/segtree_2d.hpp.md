@@ -9,18 +9,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/seg2d.test.cpp
     title: test/mytest/seg2d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1600.test.cpp
     title: test/yukicoder/1600.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1625_2.test.cpp
     title: test/yukicoder/1625_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc266h.test.cpp
     title: test_atcoder/abc266h.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/segtree/segtree_2d.hpp\"\n// \u70B9\u306E\u91CD\u8907\
@@ -74,6 +74,16 @@ data:
     \ <= l && r <= R) {\r\n        res = MX::op(res, prod_i(i, a, b));\r\n       \
     \ return;\r\n      }\r\n      int la = to_left[indptr[i] + a] - to_left[indptr[i]];\r\
     \n      int ra = a - la;\r\n      int lb = to_left[indptr[i] + b] - to_left[indptr[i]];\r\
+    \n      int rb = b - lb;\r\n      int m = (l + r) / 2;\r\n      dfs(dfs, 2 * i\
+    \ + 0, l, m, la, lb);\r\n      dfs(dfs, 2 * i + 1, m, r, ra, rb);\r\n    };\r\n\
+    \    dfs(dfs, 1, 0, size, LB(all_Y, ly), LB(all_Y, ry));\r\n    return res;\r\n\
+    \  }\r\n\r\n  // \u77E9\u5F62\u5185\u306E\u5168\u70B9\u3092\u6570\u3048\u308B\
+    , NlogN\r\n  int count(XY lx, XY rx, XY ly, XY ry) {\r\n    int L = xtoi(lx),\
+    \ R = xtoi(rx);\r\n    int res = 0;\r\n    auto dfs = [&](auto& dfs, int i, int\
+    \ l, int r, int a, int b) -> void {\r\n      if (a == b || R <= l || r <= L) return;\r\
+    \n      if (L <= l && r <= R) {\r\n        res += b - a;\r\n        return;\r\n\
+    \      }\r\n      int la = to_left[indptr[i] + a] - to_left[indptr[i]];\r\n  \
+    \    int ra = a - la;\r\n      int lb = to_left[indptr[i] + b] - to_left[indptr[i]];\r\
     \n      int rb = b - lb;\r\n      int m = (l + r) / 2;\r\n      dfs(dfs, 2 * i\
     \ + 0, l, m, la, lb);\r\n      dfs(dfs, 2 * i + 1, m, r, ra, rb);\r\n    };\r\n\
     \    dfs(dfs, 1, 0, size, LB(all_Y, ly), LB(all_Y, ry));\r\n    return res;\r\n\
@@ -144,6 +154,16 @@ data:
     \ + b] - to_left[indptr[i]];\r\n      int rb = b - lb;\r\n      int m = (l + r)\
     \ / 2;\r\n      dfs(dfs, 2 * i + 0, l, m, la, lb);\r\n      dfs(dfs, 2 * i + 1,\
     \ m, r, ra, rb);\r\n    };\r\n    dfs(dfs, 1, 0, size, LB(all_Y, ly), LB(all_Y,\
+    \ ry));\r\n    return res;\r\n  }\r\n\r\n  // \u77E9\u5F62\u5185\u306E\u5168\u70B9\
+    \u3092\u6570\u3048\u308B, NlogN\r\n  int count(XY lx, XY rx, XY ly, XY ry) {\r\
+    \n    int L = xtoi(lx), R = xtoi(rx);\r\n    int res = 0;\r\n    auto dfs = [&](auto&\
+    \ dfs, int i, int l, int r, int a, int b) -> void {\r\n      if (a == b || R <=\
+    \ l || r <= L) return;\r\n      if (L <= l && r <= R) {\r\n        res += b -\
+    \ a;\r\n        return;\r\n      }\r\n      int la = to_left[indptr[i] + a] -\
+    \ to_left[indptr[i]];\r\n      int ra = a - la;\r\n      int lb = to_left[indptr[i]\
+    \ + b] - to_left[indptr[i]];\r\n      int rb = b - lb;\r\n      int m = (l + r)\
+    \ / 2;\r\n      dfs(dfs, 2 * i + 0, l, m, la, lb);\r\n      dfs(dfs, 2 * i + 1,\
+    \ m, r, ra, rb);\r\n    };\r\n    dfs(dfs, 1, 0, size, LB(all_Y, ly), LB(all_Y,\
     \ ry));\r\n    return res;\r\n  }\r\n\r\nprivate:\r\n  inline int xtoi(XY x) {\r\
     \n    if constexpr (SMALL_X) return clamp<XY>(x - minX, 0, NX);\r\n    return\
     \ LB(keyX, x);\r\n  }\r\n\r\n  S prod_i(int i, int a, int b) {\r\n    int LID\
@@ -163,8 +183,8 @@ data:
   isVerificationFile: false
   path: ds/segtree/segtree_2d.hpp
   requiredBy: []
-  timestamp: '2023-09-16 06:50:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-09-16 20:38:43+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1625_2.test.cpp
   - test/yukicoder/1600.test.cpp
