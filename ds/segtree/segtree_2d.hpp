@@ -145,6 +145,28 @@ struct SegTree_2D {
     return res;
   }
 
+  // 矩形内の全点を数える, NlogN
+  int count(XY lx, XY rx, XY ly, XY ry) {
+    int L = xtoi(lx), R = xtoi(rx);
+    int res = 0;
+    auto dfs = [&](auto& dfs, int i, int l, int r, int a, int b) -> void {
+      if (a == b || R <= l || r <= L) return;
+      if (L <= l && r <= R) {
+        res += b - a;
+        return;
+      }
+      int la = to_left[indptr[i] + a] - to_left[indptr[i]];
+      int ra = a - la;
+      int lb = to_left[indptr[i] + b] - to_left[indptr[i]];
+      int rb = b - lb;
+      int m = (l + r) / 2;
+      dfs(dfs, 2 * i + 0, l, m, la, lb);
+      dfs(dfs, 2 * i + 1, m, r, ra, rb);
+    };
+    dfs(dfs, 1, 0, size, LB(all_Y, ly), LB(all_Y, ry));
+    return res;
+  }
+
 private:
   inline int xtoi(XY x) {
     if constexpr (SMALL_X) return clamp<XY>(x - minX, 0, NX);
