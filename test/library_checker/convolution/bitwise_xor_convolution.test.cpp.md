@@ -286,15 +286,17 @@ data:
     \    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881) return\
     \ {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
     \ return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 2 \"setfunc/hadamard.hpp\"\n\r\ntemplate\
-    \ <typename T>\r\nvoid hadamard(vc<T>& A) {\r\n  int log = topbit(len(A));\r\n\
-    \  assert(1 << log == len(A));\r\n  FOR(n, log) FOR(s, 1 << log) {\r\n    int\
-    \ t = s ^ (1 << n);\r\n    if (s < t) tie(A[s], A[t]) = mp(A[s] + A[t], A[s] -\
-    \ A[t]);  \r\n  }\r\n}\n#line 2 \"setfunc/xor_convolution.hpp\"\ntemplate <typename\
-    \ T>\r\nvc<T> xor_convolution(vc<T> A, vc<T> B) {\r\n  hadamard(A);\r\n  hadamard(B);\r\
-    \n  FOR(i, len(A)) A[i] *= B[i];\r\n  hadamard(A);\r\n  T c = T(1) / T(len(A));\r\
-    \n  if (c != T(0)) {\r\n    FOR(i, len(A)) A[i] *= c;\r\n  } else {\r\n    FOR(i,\
-    \ len(A)) A[i] /= len(A);\r\n  }\r\n  return A;\r\n}\r\n#line 7 \"test/library_checker/convolution/bitwise_xor_convolution.test.cpp\"\
+    using modint998 = modint<998244353>;\n#line 2 \"setfunc/hadamard.hpp\"\n\r\n//\
+    \ B[j] = sum_i (-1)^{popcnt(i&j)A[i]}\r\n// 2^n \u3067\u5272\u308B\u3053\u3068\
+    \u306F\u3057\u3066\u3044\u306A\u3044\r\ntemplate <typename T>\r\nvoid hadamard(vc<T>&\
+    \ A) {\r\n  int log = topbit(len(A));\r\n  assert(1 << log == len(A));\r\n  FOR(n,\
+    \ log) FOR(s, 1 << log) {\r\n    int t = s ^ (1 << n);\r\n    if (s < t) tie(A[s],\
+    \ A[t]) = mp(A[s] + A[t], A[s] - A[t]);\r\n  }\r\n}\n#line 2 \"setfunc/xor_convolution.hpp\"\
+    \ntemplate <typename T>\r\nvc<T> xor_convolution(vc<T> A, vc<T> B) {\r\n  hadamard(A);\r\
+    \n  hadamard(B);\r\n  FOR(i, len(A)) A[i] *= B[i];\r\n  hadamard(A);\r\n  T c\
+    \ = T(1) / T(len(A));\r\n  if (c != T(0)) {\r\n    FOR(i, len(A)) A[i] *= c;\r\
+    \n  } else {\r\n    FOR(i, len(A)) A[i] /= len(A);\r\n  }\r\n  return A;\r\n}\r\
+    \n#line 7 \"test/library_checker/convolution/bitwise_xor_convolution.test.cpp\"\
     \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint,\
     \ A, 1 << N);\r\n  VEC(mint, B, 1 << N);\r\n  auto C = xor_convolution(A, B);\r\
     \n  print(C);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
@@ -316,7 +318,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/convolution/bitwise_xor_convolution.test.cpp
   requiredBy: []
-  timestamp: '2023-08-30 03:52:01+09:00'
+  timestamp: '2023-09-18 22:09:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/convolution/bitwise_xor_convolution.test.cpp
