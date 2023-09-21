@@ -6,7 +6,6 @@ template <typename GT>
 struct UnicyclicGraph {
   using T = typename GT::cost_type;
   GT& G0;
-  bool prepared;
   int N;
   int root;
   int out_eid;
@@ -15,7 +14,7 @@ struct UnicyclicGraph {
   vc<int> cycle;     // 根に向かうような頂点列
   vc<bool> in_cycle; // vertex id -> bool
 
-  UnicyclicGraph(GT& G) : prepared(0), G0(G), N(G.N) {
+  UnicyclicGraph(GT& G) : G0(G), N(G.N) {
     assert(!G.is_directed() && N == G.M);
     UnionFind uf(N);
     TO.assign(N, -1);
@@ -63,16 +62,16 @@ struct UnicyclicGraph {
 
   template <typename TREE>
   int dist(TREE& tree, int a, int b) {
-    int btm = UG.TO[root];
+    int btm = TO[root];
     int ra = tree.lca(a, btm), rb = tree.lca(b, btm);
     int d = abs(tree.depth[ra] - tree.depth[rb]);
-    d = min(d, len(cycle) - d);
+    d = min<int>(d, len(cycle) - d);
     return d + tree.depth[a] + tree.depth[b] - tree.depth[ra] - tree.depth[rb];
   }
 
   template <typename TREE>
   T dist_weighted(TREE& tree, int a, int b) {
-    int btm = UG.TO[root];
+    int btm = TO[root];
     int ra = tree.lca(a, btm), rb = tree.lca(b, btm);
     vc<T>& D = tree.depth_weighted;
     T d = abs(D[ra] - D[rb]);
