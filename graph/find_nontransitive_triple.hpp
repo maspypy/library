@@ -3,6 +3,7 @@
 
 // ab, bc 辺はあるが ac 辺はないような 3 つ組 (a,b,c) を探す。
 // なければ {-1,-1,-1}
+// 不可能：完全グラフ, 辺が全部独立
 // example: https://codeforces.com/contest/967/problem/F
 template <typename Graph>
 tuple<int, int, int> find_nontransitive_triple(Graph& G) {
