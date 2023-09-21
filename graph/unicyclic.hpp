@@ -6,21 +6,23 @@ template <typename GT>
 struct UnicyclicGraph {
   using T = typename GT::cost_type;
   GT& G0;
+  bool prepared;
   int N;
   int root;
   int out_eid;
+  T out_cost;
   vc<int> TO;
   vc<int> cycle;     // 根に向かうような頂点列
   vc<bool> in_cycle; // vertex id -> bool
 
-  UnicyclicGraph(GT& G) : G0(G), N(G.N) {
+  UnicyclicGraph(GT& G) : prepared(0), G0(G), N(G.N) {
     assert(!G.is_directed() && N == G.M);
     UnionFind uf(N);
     TO.assign(N, -1);
     FOR(eid, N) {
       auto& e = G.edges[eid];
       if (uf.merge(e.frm, e.to)) continue;
-      out_eid = eid;
+      out_eid = eid, out_cost = e.cost;
       root = e.frm;
       TO[root] = e.to;
       break;
@@ -58,4 +60,23 @@ struct UnicyclicGraph {
     Tree<decltype(G)> tree(G, root);
     return {G, tree};
   };
+
+  template <typename TREE>
+  int dist(TREE& tree, int a, int b) {
+    int btm = UG.TO[root];
+    int ra = tree.lca(a, btm), rb = tree.lca(b, btm);
+    int d = abs(tree.depth[ra] - tree.depth[rb]);
+    d = min(d, len(cycle) - d);
+    return d + tree.depth[a] + tree.depth[b] - tree.depth[ra] - tree.depth[rb];
+  }
+
+  template <typename TREE>
+  T dist_weighted(TREE& tree, int a, int b) {
+    int btm = UG.TO[root];
+    int ra = tree.lca(a, btm), rb = tree.lca(b, btm);
+    vc<T>& D = tree.depth_weighted;
+    T d = abs(D[ra] - D[rb]);
+    d = min(d, D[btm] + out_cost - d);
+    return d + D[a] + D[b] - D[ra] - D[rb];
+  }
 };

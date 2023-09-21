@@ -10,6 +10,7 @@ struct Removable_Queue {
 
   void push(T x) { que.push(x); }
   int size() { return len(que) - len(rm_que); }
+  bool empty() { return size() == 0; }
 
   T pop() {
     refresh();
