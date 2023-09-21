@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/removable_queue.hpp
     title: ds/removable_queue.hpp
   - icon: ':question:'
@@ -210,17 +210,17 @@ data:
     struct Removable_Queue {\n  using QUE = QUE_TYPE;\n  using T = typename QUE::value_type;\n\
     \n  QUE que, rm_que;\n\n  Removable_Queue() {}\n  Removable_Queue(vc<T>& dat)\
     \ : que(all(dat)) {}\n\n  void push(T x) { que.push(x); }\n  int size() { return\
-    \ len(que) - len(rm_que); }\n\n  T pop() {\n    refresh();\n    return POP(que);\n\
-    \  }\n  T top() {\n    refresh();\n    return que.top();\n  }\n\n  void remove(T\
-    \ x) { rm_que.push(x); }\n\nprivate:\n  void refresh() {\n    while (len(rm_que)\
-    \ && rm_que.top() == que.top()) {\n      rm_que.pop(), que.pop();\n    }\n  }\n\
-    };\n#line 5 \"test/library_checker/datastructure/double_ended_pq.test.cpp\"\n\n\
-    void solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Removable_Queue<pqg<int>> que1(A);\n\
-    \  Removable_Queue<pq<int>> que2(A);\n\n  FOR(Q) {\n    LL(t);\n    if (t == 0)\
-    \ {\n      LL(x);\n      que1.push(x), que2.push(x);\n    }\n    if (t == 1) {\n\
-    \      int x = que1.pop();\n      print(x), que2.remove(x);\n    }\n    if (t\
-    \ == 2) {\n      int x = que2.pop();\n      print(x), que1.remove(x);\n    }\n\
-    \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ len(que) - len(rm_que); }\n  bool empty() { return size() == 0; }\n\n  T pop()\
+    \ {\n    refresh();\n    return POP(que);\n  }\n  T top() {\n    refresh();\n\
+    \    return que.top();\n  }\n\n  void remove(T x) { rm_que.push(x); }\n\nprivate:\n\
+    \  void refresh() {\n    while (len(rm_que) && rm_que.top() == que.top()) {\n\
+    \      rm_que.pop(), que.pop();\n    }\n  }\n};\n#line 5 \"test/library_checker/datastructure/double_ended_pq.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Removable_Queue<pqg<int>>\
+    \ que1(A);\n  Removable_Queue<pq<int>> que2(A);\n\n  FOR(Q) {\n    LL(t);\n  \
+    \  if (t == 0) {\n      LL(x);\n      que1.push(x), que2.push(x);\n    }\n   \
+    \ if (t == 1) {\n      int x = que1.pop();\n      print(x), que2.remove(x);\n\
+    \    }\n    if (t == 2) {\n      int x = que2.pop();\n      print(x), que1.remove(x);\n\
+    \    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/double_ended_priority_queue\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/removable_queue.hpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Removable_Queue<pqg<int>>\
@@ -236,7 +236,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/double_ended_pq.test.cpp
   requiredBy: []
-  timestamp: '2023-09-01 04:30:52+09:00'
+  timestamp: '2023-09-22 01:21:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/double_ended_pq.test.cpp
