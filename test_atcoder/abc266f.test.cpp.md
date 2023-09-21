@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/unicyclic.hpp
     title: graph/unicyclic.hpp
   - icon: ':question:'
@@ -354,34 +354,33 @@ data:
     \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
     \    return true;\n  }\n};\n#line 4 \"graph/unicyclic.hpp\"\n\ntemplate <typename\
     \ GT>\nstruct UnicyclicGraph {\n  using T = typename GT::cost_type;\n  GT& G0;\n\
-    \  bool prepared;\n  int N;\n  int root;\n  int out_eid;\n  T out_cost;\n  vc<int>\
-    \ TO;\n  vc<int> cycle;     // \u6839\u306B\u5411\u304B\u3046\u3088\u3046\u306A\
-    \u9802\u70B9\u5217\n  vc<bool> in_cycle; // vertex id -> bool\n\n  UnicyclicGraph(GT&\
-    \ G) : prepared(0), G0(G), N(G.N) {\n    assert(!G.is_directed() && N == G.M);\n\
-    \    UnionFind uf(N);\n    TO.assign(N, -1);\n    FOR(eid, N) {\n      auto& e\
-    \ = G.edges[eid];\n      if (uf.merge(e.frm, e.to)) continue;\n      out_eid =\
-    \ eid, out_cost = e.cost;\n      root = e.frm;\n      TO[root] = e.to;\n     \
-    \ break;\n    }\n    vc<bool> done(N);\n    vc<int> que = {root};\n    while (len(que))\
-    \ {\n      int v = POP(que);\n      done[v] = 1;\n      for (auto&& e: G[v]) {\n\
-    \        if (done[e.to] || e.id == out_eid) continue;\n        TO[e.to] = v;\n\
-    \        que.eb(e.to);\n      }\n    }\n    cycle = {TO[root]};\n    while (cycle.back()\
-    \ != root) cycle.eb(TO[cycle.back()]);\n    in_cycle.assign(N, 0);\n    for (auto&&\
-    \ v: cycle) in_cycle[v] = 1;\n  }\n\n  // {G, tree}\n  pair<Graph<T, 1>, Tree<Graph<T,\
-    \ 1>>> build(bool keep_eid = false) {\n    Graph<T, 1> G(N);\n    FOR(eid, N)\
-    \ {\n      if (eid == out_eid) continue;\n      auto& e = G0.edges[eid];\n   \
-    \   int a = e.frm, b = e.to;\n      if (TO[a] == b) swap(a, b);\n      assert(TO[b]\
-    \ == a);\n      int k = (keep_eid ? eid : -1);\n      G.add(a, b, e.cost, k);\n\
-    \    }\n    G.build();\n    Tree<decltype(G)> tree(G, root);\n    return {G, tree};\n\
-    \  };\n\n  template <typename TREE>\n  int dist(TREE& tree, int a, int b) {\n\
-    \    int btm = UG.TO[root];\n    int ra = tree.lca(a, btm), rb = tree.lca(b, btm);\n\
-    \    int d = abs(tree.depth[ra] - tree.depth[rb]);\n    d = min(d, len(cycle)\
-    \ - d);\n    return d + tree.depth[a] + tree.depth[b] - tree.depth[ra] - tree.depth[rb];\n\
-    \  }\n\n  template <typename TREE>\n  T dist_weighted(TREE& tree, int a, int b)\
-    \ {\n    int btm = UG.TO[root];\n    int ra = tree.lca(a, btm), rb = tree.lca(b,\
-    \ btm);\n    vc<T>& D = tree.depth_weighted;\n    T d = abs(D[ra] - D[rb]);\n\
-    \    d = min(d, D[btm] + out_cost - d);\n    return d + D[a] + D[b] - D[ra] -\
-    \ D[rb];\n  }\n};\n#line 6 \"test_atcoder/abc266f.test.cpp\"\n\nvoid solve() {\n\
-    \  LL(N);\n  Graph<int, 0> G(N);\n  G.read_graph(N);\n\n  UnicyclicGraph<decltype(G)>\
+    \  int N;\n  int root;\n  int out_eid;\n  T out_cost;\n  vc<int> TO;\n  vc<int>\
+    \ cycle;     // \u6839\u306B\u5411\u304B\u3046\u3088\u3046\u306A\u9802\u70B9\u5217\
+    \n  vc<bool> in_cycle; // vertex id -> bool\n\n  UnicyclicGraph(GT& G) : G0(G),\
+    \ N(G.N) {\n    assert(!G.is_directed() && N == G.M);\n    UnionFind uf(N);\n\
+    \    TO.assign(N, -1);\n    FOR(eid, N) {\n      auto& e = G.edges[eid];\n   \
+    \   if (uf.merge(e.frm, e.to)) continue;\n      out_eid = eid, out_cost = e.cost;\n\
+    \      root = e.frm;\n      TO[root] = e.to;\n      break;\n    }\n    vc<bool>\
+    \ done(N);\n    vc<int> que = {root};\n    while (len(que)) {\n      int v = POP(que);\n\
+    \      done[v] = 1;\n      for (auto&& e: G[v]) {\n        if (done[e.to] || e.id\
+    \ == out_eid) continue;\n        TO[e.to] = v;\n        que.eb(e.to);\n      }\n\
+    \    }\n    cycle = {TO[root]};\n    while (cycle.back() != root) cycle.eb(TO[cycle.back()]);\n\
+    \    in_cycle.assign(N, 0);\n    for (auto&& v: cycle) in_cycle[v] = 1;\n  }\n\
+    \n  // {G, tree}\n  pair<Graph<T, 1>, Tree<Graph<T, 1>>> build(bool keep_eid =\
+    \ false) {\n    Graph<T, 1> G(N);\n    FOR(eid, N) {\n      if (eid == out_eid)\
+    \ continue;\n      auto& e = G0.edges[eid];\n      int a = e.frm, b = e.to;\n\
+    \      if (TO[a] == b) swap(a, b);\n      assert(TO[b] == a);\n      int k = (keep_eid\
+    \ ? eid : -1);\n      G.add(a, b, e.cost, k);\n    }\n    G.build();\n    Tree<decltype(G)>\
+    \ tree(G, root);\n    return {G, tree};\n  };\n\n  template <typename TREE>\n\
+    \  int dist(TREE& tree, int a, int b) {\n    int btm = TO[root];\n    int ra =\
+    \ tree.lca(a, btm), rb = tree.lca(b, btm);\n    int d = abs(tree.depth[ra] - tree.depth[rb]);\n\
+    \    d = min<int>(d, len(cycle) - d);\n    return d + tree.depth[a] + tree.depth[b]\
+    \ - tree.depth[ra] - tree.depth[rb];\n  }\n\n  template <typename TREE>\n  T dist_weighted(TREE&\
+    \ tree, int a, int b) {\n    int btm = TO[root];\n    int ra = tree.lca(a, btm),\
+    \ rb = tree.lca(b, btm);\n    vc<T>& D = tree.depth_weighted;\n    T d = abs(D[ra]\
+    \ - D[rb]);\n    d = min(d, D[btm] + out_cost - d);\n    return d + D[a] + D[b]\
+    \ - D[ra] - D[rb];\n  }\n};\n#line 6 \"test_atcoder/abc266f.test.cpp\"\n\nvoid\
+    \ solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n  G.read_graph(N);\n\n  UnicyclicGraph<decltype(G)>\
     \ X(G);\n  auto tree = X.build().se;\n\n  ll root = X.root;\n  ll bottom = X.TO[X.root];\n\
     \n  LL(Q);\n  FOR(Q) {\n    LL(a, b);\n    --a, --b;\n    ll ca = tree.lca(a,\
     \ bottom);\n    ll cb = tree.lca(b, bottom);\n    Yes(ca == cb);\n  }\n}\n\nsigned\
@@ -404,7 +403,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc266f.test.cpp
   requiredBy: []
-  timestamp: '2023-09-22 01:21:11+09:00'
+  timestamp: '2023-09-22 02:40:54+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc266f.test.cpp
