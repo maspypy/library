@@ -155,6 +155,25 @@ struct BigInteger {
     return ANS;
   }
 
+  // https://codeforces.com/problemset/problem/582/D
+  vc<int> base_p_representation(int p) {
+    vc<u32> A(all(dat));
+    vc<int> res;
+    while (1) {
+      while (len(A) && A.back() == u32(0)) POP(A);
+      if (A.empty()) break;
+      u64 rm = 0;
+      FOR_R(i, len(A)) {
+        rm = rm * MOD + A[i];
+        A[i] = rm / p;
+        rm %= p;
+      }
+      res.eb(rm);
+    }
+    reverse(all(res));
+    return res;
+  }
+
 #ifdef FASTIO
   void write() { fastio::printer.write(to_string()); }
   void read() {
