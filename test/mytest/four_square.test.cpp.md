@@ -1,47 +1,47 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/four_square.hpp
     title: nt/four_square.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -288,54 +288,8 @@ data:
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/mod_sqrt.hpp\"\
-    \n\r\ntemplate <typename mint>\r\nmint mod_sqrt(mint a) {\r\n  int p = mint::get_mod();\r\
-    \n  if (p == 2) return a;\r\n  if (a == 0) return 0;\r\n  int k = (p - 1) / 2;\r\
-    \n  if (a.pow(k) != 1) return 0;\r\n  auto find = [&]() -> pair<mint, mint> {\r\
-    \n    while (1) {\r\n      mint b = RNG(2, p);\r\n      mint D = b * b - a;\r\n\
-    \      if (D == 0) return {b, D};\r\n      if (D.pow(k) != mint(1)) return {b,\
-    \ D};\r\n    }\r\n  };\r\n  auto [b, D] = find();\r\n  if (D == 0) return b;\r\
-    \n  ++k;\r\n  // (b + sqrt(D))^k\r\n  mint f0 = b, f1 = 1;\r\n  mint g0 = 1, g1\
-    \ = 0;\r\n  while (k) {\r\n    if (k & 1) { tie(g0, g1) = mp(f0 * g0 + D * f1\
-    \ * g1, f1 * g0 + f0 * g1); }\r\n    tie(f0, f1) = mp(f0 * f0 + D * f1 * f1, mint(2)\
-    \ * f0 * f1);\r\n    k >>= 1;\r\n  }\r\n  return g0;\r\n}\r\n#line 2 \"mod/modint_common.hpp\"\
-    \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
-    \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
-    \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
-    \ decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate <typename\
-    \ mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n  static\
-    \ vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n \
-    \ while (len(dat) <= n) {\n    int k = len(dat);\n    int q = (mod + k - 1) /\
-    \ k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n  }\n  return dat[n];\n}\n\
-    \ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
-    \  assert(0 <= n && n < mod);\n  static vector<mint> dat = {1, 1};\n  while (len(dat)\
-    \ <= n) dat.eb(dat[len(dat) - 1] * mint::raw(len(dat)));\n  return dat[n];\n}\n\
-    \ntemplate <typename mint>\nmint fact_inv(int n) {\n  static vector<mint> dat\
-    \ = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat) <= n) dat.eb(dat[len(dat)\
-    \ - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\ntemplate <class mint, class...\
-    \ Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
-    }\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
-    \ &&head, Tail &&... tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
-    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  static vvc<mint>\
-    \ C;\n  static int H = 0, W = 0;\n  auto calc = [&](int i, int j) -> mint {\n\
-    \    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
-    \ + (j ? C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n     \
-    \ C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n\
-    \    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n +\
-    \ 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n   \
-    \ }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool\
-    \ large = false, bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n\
-    \  if (k < 0 || n < k) return 0;\n  if constexpr (dense) return C_dense<mint>(n,\
-    \ k);\n  if constexpr (!large) return multinomial<mint>(n, k, n - k);\n  k = min(k,\
-    \ n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n\
-    }\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n\
-    \  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
-    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
-    }\n\n// [x^d] (1-x) ^ {-n} \u306E\u8A08\u7B97\ntemplate <typename mint, bool large\
-    \ = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n\
-    \  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1) : mint(0));\
-    \ }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 2 \"mod/primitive_root.hpp\"\
-    \n\r\n#line 2 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/barrett.hpp\"\
+    \n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
     struct Barrett {\n  u32 m;\n  u64 im;\n  explicit Barrett(u32 m = 1) : m(m), im(u64(-1)\
     \ / m + 1) {}\n  u32 umod() const { return m; }\n  u32 modulo(u64 z) {\n    if\
     \ (m == 1) return 0;\n    u64 x = (u64)(((unsigned __int128)(z)*im) >> 64);\n\
@@ -352,7 +306,66 @@ data:
     \n  return v;\r\n}\r\n\r\nll mod_pow_long(ll a, ll n, ll mod) {\r\n  assert(n\
     \ >= 0);\r\n  a %= mod;\r\n  if (a < 0) a += mod;\r\n  ll p = a, v = 1 % mod;\r\
     \n  while (n) {\r\n    if (n & 1) v = i128(v) * p % mod;\r\n    p = i128(p) *\
-    \ p % mod;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n#line 6 \"mod/primitive_root.hpp\"\
+    \ p % mod;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n#line 3 \"mod/mod_sqrt.hpp\"\
+    \n\r\n// \u7D20\u6570\u9650\u5B9A\r\nint mod_sqrt(int a, int p) {\r\n  if (p ==\
+    \ 2) return a;\r\n  if (a == 0) return 0;\r\n  int k = (p - 1) / 2;\r\n  if (mod_pow(a,\
+    \ k, p) != 1) return 0;\r\n  auto find = [&]() -> pi {\r\n    while (1) {\r\n\
+    \      ll b = RNG(2, p);\r\n      ll D = (b * b - a) % p;\r\n      if (D == 0)\
+    \ return {b, D};\r\n      if (mod_pow(D, k, p) != 1) return {b, D};\r\n    }\r\
+    \n  };\r\n  auto [b, D] = find();\r\n  if (D == 0) return b;\r\n  ++k;\r\n  //\
+    \ (b + sqrt(D))^k\r\n  ll f0 = b, f1 = 1, g0 = 1, g1 = 0;\r\n  while (k) {\r\n\
+    \    if (k & 1) {\r\n      tie(g0, g1) = mp(f0 * g0 + D * f1 % p * g1, f1 * g0\
+    \ + f0 * g1);\r\n      g0 %= p, g1 %= p;\r\n    }\r\n    tie(f0, f1) = mp(f0 *\
+    \ f0 + D * f1 % p * f1, 2 * f0 * f1);\r\n    f0 %= p, f1 %= p;\r\n    k >>= 1;\r\
+    \n  }\r\n  if (g0 < 0) g0 += p;\r\n  print(a, g0 * g0 % p);\r\n  return g0;\r\n\
+    }\r\n\r\n// \u7D20\u6570\u9650\u5B9A\r\nll mod_sqrt_long(ll a, ll p) {\r\n  if\
+    \ (p == 2) return a;\r\n  if (a == 0) return 0;\r\n  ll k = (p - 1) / 2;\r\n \
+    \ if (mod_pow_long(a, k, p) != 1) return 0;\r\n  auto find = [&]() -> pair<i128,\
+    \ i128> {\r\n    while (1) {\r\n      i128 b = RNG(2, p);\r\n      i128 D = b\
+    \ * b - a;\r\n      if (D == 0) return {b, D};\r\n      if (mod_pow_long(D, k,\
+    \ p) != 1) return {b, D};\r\n    }\r\n  };\r\n  auto [b, D] = find();\r\n  if\
+    \ (D == 0) return b;\r\n  ++k;\r\n  // (b + sqrt(D))^k\r\n  i128 f0 = b, f1 =\
+    \ 1, g0 = 1, g1 = 0;\r\n  while (k) {\r\n    if (k & 1) {\r\n      tie(g0, g1)\
+    \ = mp(f0 * g0 + D * f1 % p * g1, f1 * g0 + f0 * g1);\r\n      g0 %= p, g1 %=\
+    \ p;\r\n    }\r\n    tie(f0, f1) = mp(f0 * f0 + D * f1 % p * f1, 2 * f0 * f1);\r\
+    \n    f0 %= p, f1 %= p;\r\n    k >>= 1;\r\n  }\r\n  return g0;\r\n}\r\n#line 2\
+    \ \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class T>\n \
+    \ static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n  template\
+    \ <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate <class\
+    \ T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
+    \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
+    \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
+    \    int q = (mod + k - 1) / k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n\
+    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
+    \ const int mod = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint>\
+    \ dat = {1, 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * mint::raw(len(dat)));\n\
+    \  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static\
+    \ vector<mint> dat = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat)\
+    \ <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\
+    \ntemplate <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1)\
+    \ * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint, class Head, class...\
+    \ Tail>\nmint multinomial(Head &&head, Tail &&... tail) {\n  return fact<mint>(head)\
+    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
+    mint C_dense(int n, int k) {\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n\
+    \  auto calc = [&](int i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1)\
+    \ : mint(0));\n    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n  if\
+    \ (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k +\
+    \ 1) { C[i][j] = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n\
+    \    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n      FOR(j,\
+    \ W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return C[n][k];\n\
+    }\n\ntemplate <typename mint, bool large = false, bool dense = false>\nmint C(ll\
+    \ n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if constexpr\
+    \ (dense) return C_dense<mint>(n, k);\n  if constexpr (!large) return multinomial<mint>(n,\
+    \ k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n\
+    \  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename mint, bool large = false>\n\
+    mint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if\
+    \ (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return\
+    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d] (1-x) ^ {-n} \u306E\u8A08\u7B97\n\
+    template <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
+    \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\
+    \ return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large, dense>(n + d\
+    \ - 1, d);\n}\n#line 2 \"mod/primitive_root.hpp\"\n\r\n#line 6 \"mod/primitive_root.hpp\"\
     \n\r\n// int\r\nint primitive_root(int p) {\r\n  auto pf = factor(p - 1);\r\n\
     \  auto is_ok = [&](int g) -> bool {\r\n    for (auto&& [q, e]: pf)\r\n      if\
     \ (mod_pow(g, (p - 1) / q, p) == 1) return false;\r\n    return true;\r\n  };\r\
@@ -398,27 +411,50 @@ data:
     \ pair<int, int> ntt_info() { return get_ntt(); }\n  static bool can_ntt() { return\
     \ ntt_info().fi != -1; }\n};\n\nusing dmint = Dynamic_Modint;\nBarrett dmint::bt(1);\n\
     #line 5 \"nt/four_square.hpp\"\n\n// N = a^2+b^2+c^2+d^2 \u3068\u306A\u308B (a,b,c,d)\
-    \ \u3092\u3072\u3068\u3064\u8FD4\u3059\ntuple<ll, ll, ll, ll> four_square(ll N)\
-    \ {\n  if (N == 0) return {0, 0, 0, 0};\n  using T4 = tuple<ll, ll, ll, ll>;\n\
-    \  auto mul = [&](T4 x, T4 y) -> T4 {\n    auto [x1, x2, x3, x4] = x;\n    auto\
-    \ [y1, y2, y3, y4] = y;\n    ll z1 = abs(x1 * y1 + x2 * y2 + x3 * y3 + x4 * y4);\n\
-    \    ll z2 = abs(x1 * y2 - x2 * y1 + x3 * y4 - x4 * y3);\n    ll z3 = abs(x1 *\
-    \ y3 - x2 * y4 - x3 * y1 + x4 * y2);\n    ll z4 = abs(x1 * y4 + x2 * y3 - x3 *\
-    \ y2 - x4 * y1);\n    return {z1, z2, z3, z4};\n  };\n\n  auto solve_p = [&](ll\
-    \ p) -> T4 {\n    if (p == 2) return {1, 1, 0, 0};\n    using mint = dmint;\n\
-    \    mint::set_mod(p);\n    auto [a, b] = [&]() -> pair<ll, ll> {\n      while\
-    \ (1) {\n        ll a = RNG(0, p);\n        ll bb = (p - 1 - a * a) % p;\n   \
-    \     if (bb < 0) bb += p;\n        ll b = mod_sqrt<mint>(bb).val;\n        if\
-    \ ((a * a + b * b + 1) % p == 0) return {a, b};\n      }\n      return {0, 0};\n\
-    \    }();\n    T4 x = {a, b, 1, 0};\n    while (1) {\n      auto& [x1, x2, x3,\
-    \ x4] = x;\n      chmin(x1, p - x1), chmin(x2, p - x2), chmin(x3, p - x3),\n \
-    \         chmin(x4, p - x4);\n      ll m = (x1 * x1 + x2 * x2 + x3 * x3 + x4 *\
-    \ x4) / p;\n      if (m == 1) break;\n      ll y1 = x1 % m, y2 = x2 % m, y3 =\
-    \ x3 % m, y4 = x4 % m;\n      if (y1 > m / 2) y1 -= m;\n      if (y2 > m / 2)\
-    \ y2 -= m;\n      if (y3 > m / 2) y3 -= m;\n      if (y4 > m / 2) y4 -= m;\n \
-    \     auto [z1, z2, z3, z4] = mul(x, {y1, y2, y3, y4});\n      x = mt(z1 / m,\
-    \ z2 / m, z3 / m, z4 / m);\n    }\n    return x;\n  };\n  T4 x = {1, 0, 0, 0};\n\
-    \  for (auto&& [p, e]: factor(N)) { FOR(e) x = mul(x, solve_p(p)); }\n  return\
+    \ \u3092\u3072\u3068\u3064\u8FD4\u3059\n// \u73FE\u72B6\uFF1A\u7D20\u56E0\u6570\
+    \u304C 32 bit \u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\uFF01\uFF01\uFF01\uFF01\
+    \uFF01\uFF01\uFF01\uFF01\uFF01\ntuple<ll, ll, ll, ll> four_square(ll N) {\n  if\
+    \ (N == 0) return {0, 0, 0, 0};\n  using T4 = tuple<ll, ll, ll, ll>;\n  auto mul\
+    \ = [&](T4 x, T4 y) -> T4 {\n    auto [x1, x2, x3, x4] = x;\n    auto [y1, y2,\
+    \ y3, y4] = y;\n    ll z1 = abs(x1 * y1 + x2 * y2 + x3 * y3 + x4 * y4);\n    ll\
+    \ z2 = abs(x1 * y2 - x2 * y1 + x3 * y4 - x4 * y3);\n    ll z3 = abs(x1 * y3 -\
+    \ x2 * y4 - x3 * y1 + x4 * y2);\n    ll z4 = abs(x1 * y4 + x2 * y3 - x3 * y2 -\
+    \ x4 * y1);\n    return {z1, z2, z3, z4};\n  };\n\n  auto solve_p_32 = [&](ll\
+    \ p) -> T4 {\n    if (p == 2) return {1, 1, 0, 0};\n    auto [a, b] = [&]() ->\
+    \ pair<ll, ll> {\n      while (1) {\n        ll a = RNG(0, p);\n        ll bb\
+    \ = (p - 1 - a * a) % p;\n        if (bb < 0) bb += p;\n        ll b = mod_sqrt(bb,\
+    \ p);\n        if ((a * a + b * b + 1) % p == 0) return {a, b};\n      }\n   \
+    \   return {0, 0};\n    }();\n    T4 x = {a, b, 1, 0};\n    while (1) {\n    \
+    \  auto& [x1, x2, x3, x4] = x;\n      chmin(x1, p - x1), chmin(x2, p - x2), chmin(x3,\
+    \ p - x3),\n          chmin(x4, p - x4);\n      ll m = (x1 * x1 + x2 * x2 + x3\
+    \ * x3 + x4 * x4) / p;\n      if (m == 1) break;\n      ll y1 = x1 % m, y2 = x2\
+    \ % m, y3 = x3 % m, y4 = x4 % m;\n      if (y1 > m / 2) y1 -= m;\n      if (y2\
+    \ > m / 2) y2 -= m;\n      if (y3 > m / 2) y3 -= m;\n      if (y4 > m / 2) y4\
+    \ -= m;\n      auto [z1, z2, z3, z4] = mul(x, {y1, y2, y3, y4});\n      x = mt(z1\
+    \ / m, z2 / m, z3 / m, z4 / m);\n    }\n    return x;\n  };\n\n  auto solve_p_64\
+    \ = [&](ll p) -> T4 {\n    using TT4 = tuple<i128, i128, i128, i128>;\n    auto\
+    \ mul = [&](TT4 x, TT4 y) -> TT4 {\n      auto [x1, x2, x3, x4] = x;\n      auto\
+    \ [y1, y2, y3, y4] = y;\n      i128 z1 = x1 * y1 + x2 * y2 + x3 * y3 + x4 * y4;\n\
+    \      i128 z2 = x1 * y2 - x2 * y1 + x3 * y4 - x4 * y3;\n      i128 z3 = x1 *\
+    \ y3 - x2 * y4 - x3 * y1 + x4 * y2;\n      i128 z4 = x1 * y4 + x2 * y3 - x3 *\
+    \ y2 - x4 * y1;\n      if (z1 < 0) z1 = -z1;\n      if (z2 < 0) z2 = -z2;\n  \
+    \    if (z3 < 0) z3 = -z3;\n      if (z4 < 0) z4 = -z4;\n      return {z1, z2,\
+    \ z3, z4};\n    };\n\n    print(\"solve\", p), flush();\n    auto [a, b] = [&]()\
+    \ -> pair<i128, i128> {\n      while (1) {\n        i128 a = RNG(0, p);\n    \
+    \    i128 bb = (p - 1 - a * a) % p;\n        if (bb < 0) bb += p;\n        i128\
+    \ b = mod_sqrt_long(bb, p);\n        if ((a * a + b * b + 1) % p == 0) return\
+    \ {a, b};\n      }\n      return {0, 0};\n    }();\n    TT4 x = {a, b, 1, 0};\n\
+    \    while (1) {\n      auto& [x1, x2, x3, x4] = x;\n      chmin(x1, p - x1),\
+    \ chmin(x2, p - x2), chmin(x3, p - x3),\n          chmin(x4, p - x4);\n      i128\
+    \ m = (x1 * x1 + x2 * x2 + x3 * x3 + x4 * x4) / p;\n      if (m == 1) break;\n\
+    \      i128 y1 = x1 % m, y2 = x2 % m, y3 = x3 % m, y4 = x4 % m;\n      if (y1\
+    \ > m / 2) y1 -= m;\n      if (y2 > m / 2) y2 -= m;\n      if (y3 > m / 2) y3\
+    \ -= m;\n      if (y4 > m / 2) y4 -= m;\n      auto [z1, z2, z3, z4] = mul(x,\
+    \ {y1, y2, y3, y4});\n      x = mt(z1 / m, z2 / m, z3 / m, z4 / m);\n    }\n \
+    \   {\n      auto [a, b, c, d] = x;\n      print(\"done\", p, a * a + b * b +\
+    \ c * c + d * d), flush();\n      return {a, b, c, d};\n    }\n  };\n  T4 x =\
+    \ {1, 0, 0, 0};\n  for (auto&& [p, e]: factor(N)) {\n    T4 y = (p < (1 << 30)\
+    \ ? solve_p_32(p) : solve_p_64(p));\n    FOR(e) x = mul(x, y);\n  }\n  return\
     \ x;\n}\n#line 6 \"test/mytest/four_square.test.cpp\"\n\nvoid test() {\n  FOR(x,\
     \ 1000) {\n    auto [a, b, c, d] = four_square(x);\n    assert(a * a + b * b +\
     \ c * c + d * d == x);\n  }\n  FOR(1000) {\n    ll x = RNG(0, 1'000'000'000);\n\
@@ -440,16 +476,16 @@ data:
   - nt/primetest.hpp
   - random/base.hpp
   - mod/mod_sqrt.hpp
+  - mod/mod_pow.hpp
+  - mod/barrett.hpp
   - mod/dynamic_modint.hpp
   - mod/modint_common.hpp
   - mod/primitive_root.hpp
-  - mod/mod_pow.hpp
-  - mod/barrett.hpp
   isVerificationFile: true
   path: test/mytest/four_square.test.cpp
   requiredBy: []
-  timestamp: '2023-08-30 03:52:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-09-23 00:22:55+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/four_square.test.cpp
 layout: document

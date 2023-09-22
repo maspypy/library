@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sqrt_mod
@@ -384,19 +384,31 @@ data:
     \    r = mod_pow(r, (mod - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static\
     \ pair<int, int> ntt_info() { return get_ntt(); }\n  static bool can_ntt() { return\
     \ ntt_info().fi != -1; }\n};\n\nusing dmint = Dynamic_Modint;\nBarrett dmint::bt(1);\n\
-    #line 2 \"mod/mod_sqrt.hpp\"\n\r\ntemplate <typename mint>\r\nmint mod_sqrt(mint\
-    \ a) {\r\n  int p = mint::get_mod();\r\n  if (p == 2) return a;\r\n  if (a ==\
-    \ 0) return 0;\r\n  int k = (p - 1) / 2;\r\n  if (a.pow(k) != 1) return 0;\r\n\
-    \  auto find = [&]() -> pair<mint, mint> {\r\n    while (1) {\r\n      mint b\
-    \ = RNG(2, p);\r\n      mint D = b * b - a;\r\n      if (D == 0) return {b, D};\r\
-    \n      if (D.pow(k) != mint(1)) return {b, D};\r\n    }\r\n  };\r\n  auto [b,\
-    \ D] = find();\r\n  if (D == 0) return b;\r\n  ++k;\r\n  // (b + sqrt(D))^k\r\n\
-    \  mint f0 = b, f1 = 1;\r\n  mint g0 = 1, g1 = 0;\r\n  while (k) {\r\n    if (k\
-    \ & 1) { tie(g0, g1) = mp(f0 * g0 + D * f1 * g1, f1 * g0 + f0 * g1); }\r\n   \
-    \ tie(f0, f1) = mp(f0 * f0 + D * f1 * f1, mint(2) * f0 * f1);\r\n    k >>= 1;\r\
-    \n  }\r\n  return g0;\r\n}\r\n#line 6 \"test/library_checker/math/sqrt_mod.test.cpp\"\
-    \n\r\nusing mint = dmint;\r\n\r\nvoid solve() {\r\n  LL(T);\r\n  FOR(T) {\r\n\
-    \    LL(y0, p);\r\n    mint::set_mod(p);\r\n    mint y = y0;\r\n    mint r = mod_sqrt(y);\r\
+    #line 3 \"mod/mod_sqrt.hpp\"\n\r\n// \u7D20\u6570\u9650\u5B9A\r\nint mod_sqrt(int\
+    \ a, int p) {\r\n  if (p == 2) return a;\r\n  if (a == 0) return 0;\r\n  int k\
+    \ = (p - 1) / 2;\r\n  if (mod_pow(a, k, p) != 1) return 0;\r\n  auto find = [&]()\
+    \ -> pi {\r\n    while (1) {\r\n      ll b = RNG(2, p);\r\n      ll D = (b * b\
+    \ - a) % p;\r\n      if (D == 0) return {b, D};\r\n      if (mod_pow(D, k, p)\
+    \ != 1) return {b, D};\r\n    }\r\n  };\r\n  auto [b, D] = find();\r\n  if (D\
+    \ == 0) return b;\r\n  ++k;\r\n  // (b + sqrt(D))^k\r\n  ll f0 = b, f1 = 1, g0\
+    \ = 1, g1 = 0;\r\n  while (k) {\r\n    if (k & 1) {\r\n      tie(g0, g1) = mp(f0\
+    \ * g0 + D * f1 % p * g1, f1 * g0 + f0 * g1);\r\n      g0 %= p, g1 %= p;\r\n \
+    \   }\r\n    tie(f0, f1) = mp(f0 * f0 + D * f1 % p * f1, 2 * f0 * f1);\r\n   \
+    \ f0 %= p, f1 %= p;\r\n    k >>= 1;\r\n  }\r\n  if (g0 < 0) g0 += p;\r\n  print(a,\
+    \ g0 * g0 % p);\r\n  return g0;\r\n}\r\n\r\n// \u7D20\u6570\u9650\u5B9A\r\nll\
+    \ mod_sqrt_long(ll a, ll p) {\r\n  if (p == 2) return a;\r\n  if (a == 0) return\
+    \ 0;\r\n  ll k = (p - 1) / 2;\r\n  if (mod_pow_long(a, k, p) != 1) return 0;\r\
+    \n  auto find = [&]() -> pair<i128, i128> {\r\n    while (1) {\r\n      i128 b\
+    \ = RNG(2, p);\r\n      i128 D = b * b - a;\r\n      if (D == 0) return {b, D};\r\
+    \n      if (mod_pow_long(D, k, p) != 1) return {b, D};\r\n    }\r\n  };\r\n  auto\
+    \ [b, D] = find();\r\n  if (D == 0) return b;\r\n  ++k;\r\n  // (b + sqrt(D))^k\r\
+    \n  i128 f0 = b, f1 = 1, g0 = 1, g1 = 0;\r\n  while (k) {\r\n    if (k & 1) {\r\
+    \n      tie(g0, g1) = mp(f0 * g0 + D * f1 % p * g1, f1 * g0 + f0 * g1);\r\n  \
+    \    g0 %= p, g1 %= p;\r\n    }\r\n    tie(f0, f1) = mp(f0 * f0 + D * f1 % p *\
+    \ f1, 2 * f0 * f1);\r\n    f0 %= p, f1 %= p;\r\n    k >>= 1;\r\n  }\r\n  return\
+    \ g0;\r\n}\r\n#line 6 \"test/library_checker/math/sqrt_mod.test.cpp\"\n\r\nusing\
+    \ mint = dmint;\r\n\r\nvoid solve() {\r\n  LL(T);\r\n  FOR(T) {\r\n    LL(y0,\
+    \ p);\r\n    mint::set_mod(p);\r\n    mint y = y0;\r\n    mint r = mod_sqrt(y);\r\
     \n    if (r * r == y)\r\n      print(r);\r\n    else\r\n      print(-1);\r\n \
     \ }\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sqrt_mod\"\r\n#include\
@@ -421,8 +433,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/sqrt_mod.test.cpp
   requiredBy: []
-  timestamp: '2023-08-30 03:52:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-09-23 00:22:55+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/sqrt_mod.test.cpp
 layout: document

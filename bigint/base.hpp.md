@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -48,6 +48,7 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/504/problem/D
+    - https://codeforces.com/problemset/problem/582/D
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
     \ <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
     \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
@@ -367,9 +368,15 @@ data:
     \ + A[i];\n        A[i] = rem >> 32;\n        rem &= u32(-1);\n      }\n     \
     \ FOR(i, 32) { ANS += '0' + (rem >> i & 1); }\n    }\n    while (len(ANS) && ANS.back()\
     \ == '0') ANS.pop_back();\n    reverse(all(ANS));\n    if (ANS.empty()) ANS +=\
-    \ '0';\n    return ANS;\n  }\n\n#ifdef FASTIO\n  void write() { fastio::printer.write(to_string());\
-    \ }\n  void read() {\n    string s;\n    fastio::scanner.read(s);\n    *this =\
-    \ bint(s);\n  }\n#endif\n};\n"
+    \ '0';\n    return ANS;\n  }\n\n  // https://codeforces.com/problemset/problem/582/D\n\
+    \  vc<int> base_p_representation(int p) {\n    vc<u32> A(all(dat));\n    vc<int>\
+    \ res;\n    while (1) {\n      while (len(A) && A.back() == u32(0)) POP(A);\n\
+    \      if (A.empty()) break;\n      u64 rm = 0;\n      FOR_R(i, len(A)) {\n  \
+    \      rm = rm * MOD + A[i];\n        A[i] = rm / p;\n        rm %= p;\n     \
+    \ }\n      res.eb(rm);\n    }\n    reverse(all(res));\n    return res;\n  }\n\n\
+    #ifdef FASTIO\n  void write() { fastio::printer.write(to_string()); }\n  void\
+    \ read() {\n    string s;\n    fastio::scanner.read(s);\n    *this = bint(s);\n\
+    \  }\n#endif\n};\n"
   code: "#include \"poly/convolution.hpp\"\n\n// 10^9 \u305A\u3064\u533A\u5207\u3063\
     \u3066\nstruct BigInteger {\n  static constexpr int TEN[] = {1, 10, 100, 1000,\
     \ 10000, 100000, 1000000};\n  static constexpr int LOG = 6;\n  static constexpr\
@@ -426,9 +433,14 @@ data:
     \ = rem >> 32;\n        rem &= u32(-1);\n      }\n      FOR(i, 32) { ANS += '0'\
     \ + (rem >> i & 1); }\n    }\n    while (len(ANS) && ANS.back() == '0') ANS.pop_back();\n\
     \    reverse(all(ANS));\n    if (ANS.empty()) ANS += '0';\n    return ANS;\n \
-    \ }\n\n#ifdef FASTIO\n  void write() { fastio::printer.write(to_string()); }\n\
-    \  void read() {\n    string s;\n    fastio::scanner.read(s);\n    *this = bint(s);\n\
-    \  }\n#endif\n};"
+    \ }\n\n  // https://codeforces.com/problemset/problem/582/D\n  vc<int> base_p_representation(int\
+    \ p) {\n    vc<u32> A(all(dat));\n    vc<int> res;\n    while (1) {\n      while\
+    \ (len(A) && A.back() == u32(0)) POP(A);\n      if (A.empty()) break;\n      u64\
+    \ rm = 0;\n      FOR_R(i, len(A)) {\n        rm = rm * MOD + A[i];\n        A[i]\
+    \ = rm / p;\n        rm %= p;\n      }\n      res.eb(rm);\n    }\n    reverse(all(res));\n\
+    \    return res;\n  }\n\n#ifdef FASTIO\n  void write() { fastio::printer.write(to_string());\
+    \ }\n  void read() {\n    string s;\n    fastio::scanner.read(s);\n    *this =\
+    \ bint(s);\n  }\n#endif\n};"
   dependsOn:
   - poly/convolution.hpp
   - mod/modint.hpp
@@ -441,7 +453,7 @@ data:
   isVerificationFile: false
   path: bigint/base.hpp
   requiredBy: []
-  timestamp: '2023-08-10 12:06:50+09:00'
+  timestamp: '2023-09-23 00:22:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/303.test.cpp

@@ -4,34 +4,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: bigint/base.hpp
     title: bigint/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -548,11 +548,17 @@ data:
     \ + A[i];\n        A[i] = rem >> 32;\n        rem &= u32(-1);\n      }\n     \
     \ FOR(i, 32) { ANS += '0' + (rem >> i & 1); }\n    }\n    while (len(ANS) && ANS.back()\
     \ == '0') ANS.pop_back();\n    reverse(all(ANS));\n    if (ANS.empty()) ANS +=\
-    \ '0';\n    return ANS;\n  }\n\n#ifdef FASTIO\n  void write() { fastio::printer.write(to_string());\
-    \ }\n  void read() {\n    string s;\n    fastio::scanner.read(s);\n    *this =\
-    \ bint(s);\n  }\n#endif\n};\n#line 7 \"test/aoj/NTL_2_B.test.cpp\"\n\nusing B\
-    \ = BigInteger;\n\nvoid solve() {\n  B x, y;\n  read(x);\n  read(y);\n  x -= y;\n\
-    \  print(x);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ '0';\n    return ANS;\n  }\n\n  // https://codeforces.com/problemset/problem/582/D\n\
+    \  vc<int> base_p_representation(int p) {\n    vc<u32> A(all(dat));\n    vc<int>\
+    \ res;\n    while (1) {\n      while (len(A) && A.back() == u32(0)) POP(A);\n\
+    \      if (A.empty()) break;\n      u64 rm = 0;\n      FOR_R(i, len(A)) {\n  \
+    \      rm = rm * MOD + A[i];\n        A[i] = rm / p;\n        rm %= p;\n     \
+    \ }\n      res.eb(rm);\n    }\n    reverse(all(res));\n    return res;\n  }\n\n\
+    #ifdef FASTIO\n  void write() { fastio::printer.write(to_string()); }\n  void\
+    \ read() {\n    string s;\n    fastio::scanner.read(s);\n    *this = bint(s);\n\
+    \  }\n#endif\n};\n#line 7 \"test/aoj/NTL_2_B.test.cpp\"\n\nusing B = BigInteger;\n\
+    \nvoid solve() {\n  B x, y;\n  read(x);\n  read(y);\n  x -= y;\n  print(x);\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_2_B\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"bigint/base.hpp\"\
     \n\nusing B = BigInteger;\n\nvoid solve() {\n  B x, y;\n  read(x);\n  read(y);\n\
@@ -572,7 +578,7 @@ data:
   isVerificationFile: true
   path: test/aoj/NTL_2_B.test.cpp
   requiredBy: []
-  timestamp: '2023-08-30 03:52:01+09:00'
+  timestamp: '2023-09-23 00:22:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/NTL_2_B.test.cpp

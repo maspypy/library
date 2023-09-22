@@ -1,55 +1,61 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: mod/barrett.hpp
+    title: mod/barrett.hpp
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: mod/mod_pow.hpp
+    title: mod/mod_pow.hpp
+  - icon: ':question:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
@@ -57,18 +63,18 @@ data:
     path: graph/count/count_bipartite.hpp
     title: graph/count/count_bipartite.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_bipartite.test.cpp
     title: test/mytest/count_bipartite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
@@ -468,20 +474,50 @@ data:
     \      chrono::high_resolution_clock::now().time_since_epoch())\n            \
     \         .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return\
     \ x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll\
-    \ l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/mod_sqrt.hpp\"\n\r\
-    \ntemplate <typename mint>\r\nmint mod_sqrt(mint a) {\r\n  int p = mint::get_mod();\r\
-    \n  if (p == 2) return a;\r\n  if (a == 0) return 0;\r\n  int k = (p - 1) / 2;\r\
-    \n  if (a.pow(k) != 1) return 0;\r\n  auto find = [&]() -> pair<mint, mint> {\r\
-    \n    while (1) {\r\n      mint b = RNG(2, p);\r\n      mint D = b * b - a;\r\n\
-    \      if (D == 0) return {b, D};\r\n      if (D.pow(k) != mint(1)) return {b,\
-    \ D};\r\n    }\r\n  };\r\n  auto [b, D] = find();\r\n  if (D == 0) return b;\r\
-    \n  ++k;\r\n  // (b + sqrt(D))^k\r\n  mint f0 = b, f1 = 1;\r\n  mint g0 = 1, g1\
-    \ = 0;\r\n  while (k) {\r\n    if (k & 1) { tie(g0, g1) = mp(f0 * g0 + D * f1\
-    \ * g1, f1 * g0 + f0 * g1); }\r\n    tie(f0, f1) = mp(f0 * f0 + D * f1 * f1, mint(2)\
-    \ * f0 * f1);\r\n    k >>= 1;\r\n  }\r\n  return g0;\r\n}\r\n#line 5 \"poly/fps_sqrt.hpp\"\
-    \n\r\ntemplate <typename mint>\r\nvc<mint> fps_sqrt_dense(vc<mint>& f) {\r\n \
-    \ assert(f[0] == mint(1));\r\n  int n = len(f);\r\n  vc<mint> R = {1};\r\n  while\
-    \ (len(R) < n) {\r\n    int m = min(2 * int(len(R)), n);\r\n    R.resize(m);\r\
+    \ l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/barrett.hpp\"\n\n\
+    // https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
+    struct Barrett {\n  u32 m;\n  u64 im;\n  explicit Barrett(u32 m = 1) : m(m), im(u64(-1)\
+    \ / m + 1) {}\n  u32 umod() const { return m; }\n  u32 modulo(u64 z) {\n    if\
+    \ (m == 1) return 0;\n    u64 x = (u64)(((unsigned __int128)(z)*im) >> 64);\n\
+    \    u64 y = x * m;\n    return (z - y + (z < y ? m : 0));\n  }\n  u64 floor(u64\
+    \ z) {\n    if (m == 1) return z;\n    u64 x = (u64)(((unsigned __int128)(z)*im)\
+    \ >> 64);\n    u64 y = x * m;\n    return (z < y ? x - 1 : x);\n  }\n  pair<u64,\
+    \ u32> divmod(u64 z) {\n    if (m == 1) return {z, 0};\n    u64 x = (u64)(((unsigned\
+    \ __int128)(z)*im) >> 64);\n    u64 y = x * m;\n    if (z < y) return {x - 1,\
+    \ z - y + m};\n    return {x, z - y};\n  }\n  u32 mul(u32 a, u32 b) { return modulo(u64(a)\
+    \ * b); }\n};\n#line 3 \"mod/mod_pow.hpp\"\n\r\n// int\r\nll mod_pow(ll a, ll\
+    \ n, int mod) {\r\n  assert(n >= 0);\r\n  a %= mod;\r\n  if (a < 0) a += mod;\r\
+    \n  Barrett bt(mod);\r\n  ll p = a, v = bt.modulo(1);\r\n  while (n) {\r\n   \
+    \ if (n & 1) v = bt.mul(v, p);\r\n    p = bt.mul(p, p);\r\n    n >>= 1;\r\n  }\r\
+    \n  return v;\r\n}\r\n\r\nll mod_pow_long(ll a, ll n, ll mod) {\r\n  assert(n\
+    \ >= 0);\r\n  a %= mod;\r\n  if (a < 0) a += mod;\r\n  ll p = a, v = 1 % mod;\r\
+    \n  while (n) {\r\n    if (n & 1) v = i128(v) * p % mod;\r\n    p = i128(p) *\
+    \ p % mod;\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n#line 3 \"mod/mod_sqrt.hpp\"\
+    \n\r\n// \u7D20\u6570\u9650\u5B9A\r\nint mod_sqrt(int a, int p) {\r\n  if (p ==\
+    \ 2) return a;\r\n  if (a == 0) return 0;\r\n  int k = (p - 1) / 2;\r\n  if (mod_pow(a,\
+    \ k, p) != 1) return 0;\r\n  auto find = [&]() -> pi {\r\n    while (1) {\r\n\
+    \      ll b = RNG(2, p);\r\n      ll D = (b * b - a) % p;\r\n      if (D == 0)\
+    \ return {b, D};\r\n      if (mod_pow(D, k, p) != 1) return {b, D};\r\n    }\r\
+    \n  };\r\n  auto [b, D] = find();\r\n  if (D == 0) return b;\r\n  ++k;\r\n  //\
+    \ (b + sqrt(D))^k\r\n  ll f0 = b, f1 = 1, g0 = 1, g1 = 0;\r\n  while (k) {\r\n\
+    \    if (k & 1) {\r\n      tie(g0, g1) = mp(f0 * g0 + D * f1 % p * g1, f1 * g0\
+    \ + f0 * g1);\r\n      g0 %= p, g1 %= p;\r\n    }\r\n    tie(f0, f1) = mp(f0 *\
+    \ f0 + D * f1 % p * f1, 2 * f0 * f1);\r\n    f0 %= p, f1 %= p;\r\n    k >>= 1;\r\
+    \n  }\r\n  if (g0 < 0) g0 += p;\r\n  print(a, g0 * g0 % p);\r\n  return g0;\r\n\
+    }\r\n\r\n// \u7D20\u6570\u9650\u5B9A\r\nll mod_sqrt_long(ll a, ll p) {\r\n  if\
+    \ (p == 2) return a;\r\n  if (a == 0) return 0;\r\n  ll k = (p - 1) / 2;\r\n \
+    \ if (mod_pow_long(a, k, p) != 1) return 0;\r\n  auto find = [&]() -> pair<i128,\
+    \ i128> {\r\n    while (1) {\r\n      i128 b = RNG(2, p);\r\n      i128 D = b\
+    \ * b - a;\r\n      if (D == 0) return {b, D};\r\n      if (mod_pow_long(D, k,\
+    \ p) != 1) return {b, D};\r\n    }\r\n  };\r\n  auto [b, D] = find();\r\n  if\
+    \ (D == 0) return b;\r\n  ++k;\r\n  // (b + sqrt(D))^k\r\n  i128 f0 = b, f1 =\
+    \ 1, g0 = 1, g1 = 0;\r\n  while (k) {\r\n    if (k & 1) {\r\n      tie(g0, g1)\
+    \ = mp(f0 * g0 + D * f1 % p * g1, f1 * g0 + f0 * g1);\r\n      g0 %= p, g1 %=\
+    \ p;\r\n    }\r\n    tie(f0, f1) = mp(f0 * f0 + D * f1 % p * f1, 2 * f0 * f1);\r\
+    \n    f0 %= p, f1 %= p;\r\n    k >>= 1;\r\n  }\r\n  return g0;\r\n}\r\n#line 5\
+    \ \"poly/fps_sqrt.hpp\"\n\r\ntemplate <typename mint>\r\nvc<mint> fps_sqrt_dense(vc<mint>&\
+    \ f) {\r\n  assert(f[0] == mint(1));\r\n  int n = len(f);\r\n  vc<mint> R = {1};\r\
+    \n  while (len(R) < n) {\r\n    int m = min(2 * int(len(R)), n);\r\n    R.resize(m);\r\
     \n    vc<mint> tmp = {f.begin(), f.begin() + m};\r\n    tmp = convolution(tmp,\
     \ fps_inv(R));\r\n    tmp.resize(m);\r\n    FOR(i, m) R[i] += tmp[i];\r\n    mint\
     \ c = mint(1) / mint(2);\r\n    FOR(i, len(R)) R[i] *= c;\r\n  }\r\n  R.resize(n);\r\
@@ -534,12 +570,14 @@ data:
   - poly/fps_log.hpp
   - mod/mod_sqrt.hpp
   - random/base.hpp
+  - mod/mod_pow.hpp
+  - mod/barrett.hpp
   isVerificationFile: false
   path: poly/fps_sqrt.hpp
   requiredBy:
   - graph/count/count_bipartite.hpp
-  timestamp: '2023-08-10 12:06:50+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-09-23 00:22:55+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/count_bipartite.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
