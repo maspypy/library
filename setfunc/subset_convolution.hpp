@@ -24,7 +24,7 @@ vc<T> subset_convolution(const vc<T>& A, const vc<T>& B) {
   auto RB = ranked_zeta<T, LIM>(B);
   int n = topbit(len(RA));
   FOR(s, len(RA)) {
-    auto &f = RA[s], g = RB[s];
+    auto &f = RA[s], &g = RB[s];
     FOR_R(d, n + 1) {
       T x = 0;
       FOR(i, d + 1) x += f[i] * g[d - i];
