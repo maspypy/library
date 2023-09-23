@@ -1,6 +1,6 @@
 #pragma once
 
-template <typename T, int LIM = 20>
+template <typename T, int LIM>
 vc<array<T, LIM + 1>> ranked_zeta(const vc<T>& f) {
   int n = topbit(len(f));
   assert(n <= LIM);
@@ -19,7 +19,7 @@ vc<array<T, LIM + 1>> ranked_zeta(const vc<T>& f) {
   return Rf;
 }
 
-template <typename T, int LIM = 20>
+template <typename T, int LIM>
 vc<T> ranked_mobius(vc<array<T, LIM + 1>>& Rf) {
   int n = topbit(len(Rf));
   assert(len(Rf) == 1 << n);
