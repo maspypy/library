@@ -230,7 +230,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/sps_log.hpp
     title: setfunc/sps_log.hpp
   - icon: ':heavy_check_mark:'
@@ -909,7 +909,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc212h.test.cpp
     title: test_atcoder/abc212h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc213g.test.cpp
     title: test_atcoder/abc213g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -933,7 +933,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc234g.test.cpp
     title: test_atcoder/abc234g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc236h.test.cpp
     title: test_atcoder/abc236h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -942,7 +942,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc249_ex.test.cpp
     title: test_atcoder/abc249_ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc253h.test.cpp
     title: test_atcoder/abc253h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -999,7 +999,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc105.test.cpp
     title: test_atcoder/arc105.test.cpp
   - icon: ':heavy_check_mark:'
