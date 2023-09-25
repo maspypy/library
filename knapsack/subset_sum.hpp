@@ -89,6 +89,47 @@ vc<int> subset_sum_solution_2(vc<T>& vals, int target) {
   return ANS;
 }
 
+// O(sum^{1.5} / w)
+// sum=10^6 で 150ms：https://codeforces.com/contest/755/problem/F
+template <typename T>
+vc<int> subset_sum_solution_3(vc<T>& vals, int target) {
+  int SM = SUM<int>(vals);
+  int N = len(vals);
+  vvc<int> IDS(SM + 1);
+  FOR(i, N) IDS[vals[i]].eb(i);
+  vc<pair<int, int>> par(N, {-1, -1});
+  vc<int> grp_vals;
+  vvc<int> raw_idx;
+  FOR(x, 1, SM + 1) {
+    auto& I = IDS[x];
+    while (len(I) >= 3) {
+      int a = POP(I), b = POP(I);
+      int c = len(par);
+      par.eb(a, b);
+      IDS[2 * x].eb(c);
+    }
+    for (auto& i: I) {
+      grp_vals.eb(x);
+      raw_idx.eb(i);
+    }
+  }
+  auto I = subset_sum_solution_2<int>(grp_vals, target);
+  vc<int> ANS;
+  for (auto& i: I) {
+    vc<int> st = {i};
+    while (len(st)) {
+      auto c = POP(st);
+      if (c < N) {
+        ANS.eb(c);
+        continue;
+      }
+      auto [a, b] = par[c];
+      st.eb(a), st.eb(b);
+    }
+  }
+  return ANS;
+}
+
 template <typename T>
 vc<int> subset_sum(vc<T>& vals, int target) {
   if (target <= 0) return {};
@@ -99,6 +140,12 @@ vc<int> subset_sum(vc<T>& vals, int target) {
   // しきい値の調整をしていない
   // solution 1: O(N mx))
   // solution 2: O(N target / w)
-  return mx <= target / 500 ? subset_sum_solution_1(vals, target)
-                            : subset_sum_solution_2(vals, target);
+  // solution 3: O(sum^1.5 / w)
+  double x1 = len(vals) * mx;
+  double x2 = len(vals) * target / 500.0;
+  double x3 = len(vals) * sqrtl(len(vals)) / 500.0;
+  double mi = min({x1, x2, x3});
+  if (x1 == mi) return subset_sum_solution_1(vals, target);
+  if (x2 == mi) return subset_sum_solution_2(vals, target);
+  return subset_sum_solution_3(vals, target);
 }
