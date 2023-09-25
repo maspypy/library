@@ -664,6 +664,9 @@ data:
       path: graph/degree_sequence.hpp
       title: graph/degree_sequence.hpp
     - icon: ':heavy_check_mark:'
+      path: graph/directed_mst.hpp
+      title: graph/directed_mst.hpp
+    - icon: ':heavy_check_mark:'
       path: graph/dominator_tree.hpp
       title: graph/dominator_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -2101,6 +2104,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/cycle_detection_undirected.test.cpp
       title: test/library_checker/graph/cycle_detection_undirected.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/graph/directed_mst.test.cpp
+      title: test/library_checker/graph/directed_mst.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/domninator_tree.test.cpp
       title: test/library_checker/graph/domninator_tree.test.cpp

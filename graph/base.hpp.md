@@ -39,6 +39,9 @@ data:
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/directed_mst.hpp
+    title: graph/directed_mst.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/dominator_tree.hpp
     title: graph/dominator_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -306,6 +309,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/cycle_detection_undirected.test.cpp
     title: test/library_checker/graph/cycle_detection_undirected.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/directed_mst.test.cpp
+    title: test/library_checker/graph/directed_mst.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/domninator_tree.test.cpp
     title: test/library_checker/graph/domninator_tree.test.cpp
@@ -724,6 +730,7 @@ data:
   - graph/ds/tree_monoid.hpp
   - graph/ds/incremental_centroid.hpp
   - graph/ds/tree_wavelet_matrix.hpp
+  - graph/directed_mst.hpp
   - graph/tree_of_unionfind.hpp
   - graph/reachability.hpp
   - graph/find_cycle.hpp
@@ -874,6 +881,7 @@ data:
   - test/library_checker/graph/K_shortest_walk.test.cpp
   - test/library_checker/graph/maximum_independent_set2.test.cpp
   - test/library_checker/graph/domninator_tree.test.cpp
+  - test/library_checker/graph/directed_mst.test.cpp
   - test/library_checker/string/number_of_substrings2.test.cpp
   - test/library_checker/tree/lca_directed.test.cpp
   - test/library_checker/tree/lca.test.cpp

@@ -457,6 +457,9 @@ data:
     path: test/library_checker/graph/cycle_detection_undirected.test.cpp
     title: test/library_checker/graph/cycle_detection_undirected.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/directed_mst.test.cpp
+    title: test/library_checker/graph/directed_mst.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/domninator_tree.test.cpp
     title: test/library_checker/graph/domninator_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2796,6 +2799,7 @@ data:
   - test/library_checker/graph/K_shortest_walk.test.cpp
   - test/library_checker/graph/maximum_independent_set2.test.cpp
   - test/library_checker/graph/domninator_tree.test.cpp
+  - test/library_checker/graph/directed_mst.test.cpp
   - test/library_checker/string/run_enumerate.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - test/library_checker/string/zalgorithm.test.cpp
