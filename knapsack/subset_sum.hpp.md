@@ -16,7 +16,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
+    links:
+    - https://codeforces.com/contest/755/problem/F
   bundledCode: "#line 2 \"ds/my_bitset.hpp\"\n\n// https://codeforces.com/contest/914/problem/F\n\
     // https://yukicoder.me/problems/no/142\n// \u308F\u305A\u304B\u306B\u666E\u901A\
     \u306E bitset \u3088\u308A\u9045\u3044\u3068\u304D\u3082\u3042\u308B\u3088\u3046\
@@ -138,13 +139,27 @@ data:
     \ p) -> void { last[(i << 6) | p] = I[k]; });\n    }\n    swap(dp, newdp);\n \
     \ }\n  if (target >= len(dp) || !dp[target]) return {};\n  vc<int> ANS;\n  while\
     \ (target > 0) {\n    int i = last[target];\n    ANS.eb(i);\n    target -= vals[i];\n\
-    \  }\n  return ANS;\n}\n\ntemplate <typename T>\nvc<int> subset_sum(vc<T>& vals,\
-    \ int target) {\n  if (target <= 0) return {};\n  int n = len(vals);\n  if (n\
-    \ == 0) return {};\n  int mx = MAX(vals);\n\n  // \u3057\u304D\u3044\u5024\u306E\
-    \u8ABF\u6574\u3092\u3057\u3066\u3044\u306A\u3044\n  // solution 1: O(N mx))\n\
-    \  // solution 2: O(N target / w)\n  return mx <= target / 500 ? subset_sum_solution_1(vals,\
-    \ target)\n                            : subset_sum_solution_2(vals, target);\n\
-    }\n"
+    \  }\n  return ANS;\n}\n\n// O(sum^{1.5} / w)\n// sum=10^6 \u3067 150ms\uFF1A\
+    https://codeforces.com/contest/755/problem/F\ntemplate <typename T>\nvc<int> subset_sum_solution_3(vc<T>&\
+    \ vals, int target) {\n  int SM = SUM<int>(vals);\n  int N = len(vals);\n  vvc<int>\
+    \ IDS(SM + 1);\n  FOR(i, N) IDS[vals[i]].eb(i);\n  vc<pair<int, int>> par(N, {-1,\
+    \ -1});\n  vc<int> grp_vals;\n  vvc<int> raw_idx;\n  FOR(x, 1, SM + 1) {\n   \
+    \ auto& I = IDS[x];\n    while (len(I) >= 3) {\n      int a = POP(I), b = POP(I);\n\
+    \      int c = len(par);\n      par.eb(a, b);\n      IDS[2 * x].eb(c);\n    }\n\
+    \    for (auto& i: I) {\n      grp_vals.eb(x);\n      raw_idx.eb(i);\n    }\n\
+    \  }\n  auto I = subset_sum_solution_2<int>(grp_vals, target);\n  vc<int> ANS;\n\
+    \  for (auto& i: I) {\n    vc<int> st = {i};\n    while (len(st)) {\n      auto\
+    \ c = POP(st);\n      if (c < N) {\n        ANS.eb(c);\n        continue;\n  \
+    \    }\n      auto [a, b] = par[c];\n      st.eb(a), st.eb(b);\n    }\n  }\n \
+    \ return ANS;\n}\n\ntemplate <typename T>\nvc<int> subset_sum(vc<T>& vals, int\
+    \ target) {\n  if (target <= 0) return {};\n  int n = len(vals);\n  if (n == 0)\
+    \ return {};\n  int mx = MAX(vals);\n\n  // \u3057\u304D\u3044\u5024\u306E\u8ABF\
+    \u6574\u3092\u3057\u3066\u3044\u306A\u3044\n  // solution 1: O(N mx))\n  // solution\
+    \ 2: O(N target / w)\n  // solution 3: O(sum^1.5 / w)\n  double x1 = len(vals)\
+    \ * mx;\n  double x2 = len(vals) * target / 500.0;\n  double x3 = len(vals) *\
+    \ sqrtl(len(vals)) / 500.0;\n  double mi = min({x1, x2, x3});\n  if (x1 == mi)\
+    \ return subset_sum_solution_1(vals, target);\n  if (x2 == mi) return subset_sum_solution_2(vals,\
+    \ target);\n  return subset_sum_solution_3(vals, target);\n}\n"
   code: "#include \"ds/my_bitset.hpp\"\n#include \"enumerate/bits.hpp\"\n\n// O(N\
     \ MAX(vals))\ntemplate <typename T>\nvc<int> subset_sum_solution_1(vc<T>& vals,\
     \ int target) {\n  int n = len(vals);\n  int mx = MAX(vals);\n  int b = 0, sb\
@@ -173,20 +188,34 @@ data:
     \ p) -> void { last[(i << 6) | p] = I[k]; });\n    }\n    swap(dp, newdp);\n \
     \ }\n  if (target >= len(dp) || !dp[target]) return {};\n  vc<int> ANS;\n  while\
     \ (target > 0) {\n    int i = last[target];\n    ANS.eb(i);\n    target -= vals[i];\n\
-    \  }\n  return ANS;\n}\n\ntemplate <typename T>\nvc<int> subset_sum(vc<T>& vals,\
-    \ int target) {\n  if (target <= 0) return {};\n  int n = len(vals);\n  if (n\
-    \ == 0) return {};\n  int mx = MAX(vals);\n\n  // \u3057\u304D\u3044\u5024\u306E\
-    \u8ABF\u6574\u3092\u3057\u3066\u3044\u306A\u3044\n  // solution 1: O(N mx))\n\
-    \  // solution 2: O(N target / w)\n  return mx <= target / 500 ? subset_sum_solution_1(vals,\
-    \ target)\n                            : subset_sum_solution_2(vals, target);\n\
-    }\n"
+    \  }\n  return ANS;\n}\n\n// O(sum^{1.5} / w)\n// sum=10^6 \u3067 150ms\uFF1A\
+    https://codeforces.com/contest/755/problem/F\ntemplate <typename T>\nvc<int> subset_sum_solution_3(vc<T>&\
+    \ vals, int target) {\n  int SM = SUM<int>(vals);\n  int N = len(vals);\n  vvc<int>\
+    \ IDS(SM + 1);\n  FOR(i, N) IDS[vals[i]].eb(i);\n  vc<pair<int, int>> par(N, {-1,\
+    \ -1});\n  vc<int> grp_vals;\n  vvc<int> raw_idx;\n  FOR(x, 1, SM + 1) {\n   \
+    \ auto& I = IDS[x];\n    while (len(I) >= 3) {\n      int a = POP(I), b = POP(I);\n\
+    \      int c = len(par);\n      par.eb(a, b);\n      IDS[2 * x].eb(c);\n    }\n\
+    \    for (auto& i: I) {\n      grp_vals.eb(x);\n      raw_idx.eb(i);\n    }\n\
+    \  }\n  auto I = subset_sum_solution_2<int>(grp_vals, target);\n  vc<int> ANS;\n\
+    \  for (auto& i: I) {\n    vc<int> st = {i};\n    while (len(st)) {\n      auto\
+    \ c = POP(st);\n      if (c < N) {\n        ANS.eb(c);\n        continue;\n  \
+    \    }\n      auto [a, b] = par[c];\n      st.eb(a), st.eb(b);\n    }\n  }\n \
+    \ return ANS;\n}\n\ntemplate <typename T>\nvc<int> subset_sum(vc<T>& vals, int\
+    \ target) {\n  if (target <= 0) return {};\n  int n = len(vals);\n  if (n == 0)\
+    \ return {};\n  int mx = MAX(vals);\n\n  // \u3057\u304D\u3044\u5024\u306E\u8ABF\
+    \u6574\u3092\u3057\u3066\u3044\u306A\u3044\n  // solution 1: O(N mx))\n  // solution\
+    \ 2: O(N target / w)\n  // solution 3: O(sum^1.5 / w)\n  double x1 = len(vals)\
+    \ * mx;\n  double x2 = len(vals) * target / 500.0;\n  double x3 = len(vals) *\
+    \ sqrtl(len(vals)) / 500.0;\n  double mi = min({x1, x2, x3});\n  if (x1 == mi)\
+    \ return subset_sum_solution_1(vals, target);\n  if (x2 == mi) return subset_sum_solution_2(vals,\
+    \ target);\n  return subset_sum_solution_3(vals, target);\n}\n"
   dependsOn:
   - ds/my_bitset.hpp
   - enumerate/bits.hpp
   isVerificationFile: false
   path: knapsack/subset_sum.hpp
   requiredBy: []
-  timestamp: '2023-09-04 21:37:24+09:00'
+  timestamp: '2023-09-26 01:12:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/4_2.test.cpp
