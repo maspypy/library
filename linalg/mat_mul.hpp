@@ -3,7 +3,7 @@
 
 template <class T, typename enable_if<has_mod<T>::value>::type* = nullptr>
 vc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {
-  assert(T::get_mod() < u32(1) << 30);
+  assert(T::get_mod() < (1 << 30));
   auto N = len(A), M = len(B), K = len(B[0]);
   vv(u32, b, K, M);
   FOR(i, M) FOR(j, K) b[j][i] = B[i][j].val;
