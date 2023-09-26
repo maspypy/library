@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sliding_window_aggregation.hpp
     title: ds/sliding_window_aggregation.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
   - icon: ':heavy_check_mark:'
@@ -40,13 +40,13 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
   - icon: ':question:'
@@ -331,8 +331,8 @@ data:
     using modint998 = modint<998244353>;\n#line 3 \"linalg/mat_mul.hpp\"\n\r\ntemplate\
     \ <class T, typename enable_if<has_mod<T>::value>::type* = nullptr>\r\nvc<vc<T>>\
     \ mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n  assert(T::get_mod() <\
-    \ u32(1) << 30);\r\n  auto N = len(A), M = len(B), K = len(B[0]);\r\n  vv(u32,\
-    \ b, K, M);\r\n  FOR(i, M) FOR(j, K) b[j][i] = B[i][j].val;\r\n  vv(T, C, N, K);\r\
+    \ (1 << 30));\r\n  auto N = len(A), M = len(B), K = len(B[0]);\r\n  vv(u32, b,\
+    \ K, M);\r\n  FOR(i, M) FOR(j, K) b[j][i] = B[i][j].val;\r\n  vv(T, C, N, K);\r\
     \n\r\n  if (M <= 16) {\r\n    FOR(i, N) FOR(j, K) {\r\n      u64 sm = 0;\r\n \
     \     FOR(m, M) sm += u64(A[i][m].val) * b[j][m];\r\n      C[i][j] = sm;\r\n \
     \   }\r\n  } else {\r\n    FOR(i, N) FOR(j, K) {\r\n      u128 sm = 0;\r\n   \
@@ -671,7 +671,7 @@ data:
   isVerificationFile: true
   path: test/mytest/factorial_998.test.cpp
   requiredBy: []
-  timestamp: '2023-08-30 03:52:01+09:00'
+  timestamp: '2023-09-27 03:26:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/factorial_998.test.cpp

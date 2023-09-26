@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/mat_inv.hpp
     title: linalg/mat_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
   - icon: ':question:'
@@ -137,8 +137,8 @@ data:
     using modint998 = modint<998244353>;\n#line 3 \"linalg/mat_mul.hpp\"\n\r\ntemplate\
     \ <class T, typename enable_if<has_mod<T>::value>::type* = nullptr>\r\nvc<vc<T>>\
     \ mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n  assert(T::get_mod() <\
-    \ u32(1) << 30);\r\n  auto N = len(A), M = len(B), K = len(B[0]);\r\n  vv(u32,\
-    \ b, K, M);\r\n  FOR(i, M) FOR(j, K) b[j][i] = B[i][j].val;\r\n  vv(T, C, N, K);\r\
+    \ (1 << 30));\r\n  auto N = len(A), M = len(B), K = len(B[0]);\r\n  vv(u32, b,\
+    \ K, M);\r\n  FOR(i, M) FOR(j, K) b[j][i] = B[i][j].val;\r\n  vv(T, C, N, K);\r\
     \n\r\n  if (M <= 16) {\r\n    FOR(i, N) FOR(j, K) {\r\n      u64 sm = 0;\r\n \
     \     FOR(m, M) sm += u64(A[i][m].val) * b[j][m];\r\n      C[i][j] = sm;\r\n \
     \   }\r\n  } else {\r\n    FOR(i, N) FOR(j, K) {\r\n      u128 sm = 0;\r\n   \
@@ -441,7 +441,7 @@ data:
   isVerificationFile: false
   path: linalg/det_A_plus_xB.hpp
   requiredBy: []
-  timestamp: '2023-09-01 20:21:06+09:00'
+  timestamp: '2023-09-27 03:26:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1303.test.cpp
