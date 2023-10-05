@@ -10,6 +10,7 @@ __attribute__((target("pclmul"))) inline __m128i myclmul(const __m128i &a,
 // 2^n 元体
 template <int K>
 struct GF2 {
+  // https://oeis.org/A344141
   // irreducible poly x^K + ...
   static constexpr int POLY[65]
       = {0,  0, 3,  3,   3,  5,   3,  3,  27,  3,  9,  5,   9, 27, 33, 3,   43,

@@ -41,8 +41,7 @@ tuple<T, vc<bool>, Graph<T>> minimum_spanning_tree(Graph<T>& G) {
 // dat : 辺ごとに、他の辺を保ったときに MST 辺になる最大重み
 template <typename T>
 tuple<T, vc<bool>, Graph<T>, vc<T>> minimum_spanning_tree_cycle_data(
-    Graph<T>& G) {
-  int N = G.N;
+    Graph<T> G) {
   int M = len(G.edges);
   auto [mst_cost, in_mst, MST] = minimum_spanning_tree(G);
   Tree<decltype(G)> tree(MST);
