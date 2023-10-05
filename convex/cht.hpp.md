@@ -107,9 +107,9 @@ data:
   timestamp: '2023-09-08 00:56:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/2012.test.cpp
-  - test/yukicoder/1297.test.cpp
   - test/library_checker/datastructure/line_add_get_min.test.cpp
+  - test/yukicoder/1297.test.cpp
+  - test/yukicoder/2012.test.cpp
   - test_atcoder/abc244h.test.cpp
 documentation_of: convex/cht.hpp
 layout: document

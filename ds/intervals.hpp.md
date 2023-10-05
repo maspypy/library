@@ -197,8 +197,8 @@ data:
   timestamp: '2023-08-13 11:37:00+05:30'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc256ex2.test.cpp
   - test_atcoder/abc256d.test.cpp
+  - test_atcoder/abc256ex2.test.cpp
   - test_atcoder/abc256ex.test.cpp
 documentation_of: ds/intervals.hpp
 layout: document

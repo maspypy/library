@@ -8,6 +8,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: knapsack/subset_sum.hpp
     title: knapsack/subset_sum.hpp
+  - icon: ':warning:'
+    path: linalg/bitset/mat_inv.hpp
+    title: linalg/bitset/mat_inv.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/mytest/mybitset.test.cpp
@@ -211,13 +214,14 @@ data:
   requiredBy:
   - knapsack/subset_sum.hpp
   - graph/shortest_path/bfs_bitset.hpp
+  - linalg/bitset/mat_inv.hpp
   timestamp: '2023-08-06 04:48:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/142.test.cpp
-  - test/yukicoder/4_2.test.cpp
   - test/yukicoder/1400.test.cpp
   - test/yukicoder/1400_2.test.cpp
+  - test/yukicoder/142.test.cpp
+  - test/yukicoder/4_2.test.cpp
   - test/mytest/mybitset.test.cpp
 documentation_of: ds/my_bitset.hpp
 layout: document

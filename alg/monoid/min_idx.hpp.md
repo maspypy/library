@@ -8,6 +8,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/manhattan_nns.hpp
     title: geo/manhattan_nns.hpp
+  - icon: ':warning:'
+    path: graph/fast_lca.hpp
+    title: graph/fast_lca.hpp
   - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
@@ -51,6 +54,7 @@ data:
   isVerificationFile: false
   path: alg/monoid/min_idx.hpp
   requiredBy:
+  - graph/fast_lca.hpp
   - alg/acted_monoid/minidx_add.hpp
   - string/suffix_tree.hpp
   - geo/manhattan_nns.hpp
@@ -58,9 +62,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/2361.test.cpp
-  - test/mytest/suffix_tree.test.cpp
   - test/mytest/manhattan_nns.test.cpp
   - test/mytest/minidx_add.test.cpp
+  - test/mytest/suffix_tree.test.cpp
   - test_atcoder/abc301h.test.cpp
 documentation_of: alg/monoid/min_idx.hpp
 layout: document

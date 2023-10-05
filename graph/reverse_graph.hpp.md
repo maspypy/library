@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -107,9 +107,9 @@ data:
   timestamp: '2023-07-30 12:32:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1601.test.cpp
   - test/library_checker/graph/K_shortest_walk.test.cpp
   - test/library_checker/graph/domninator_tree.test.cpp
+  - test/yukicoder/1601.test.cpp
   - test_atcoder/abc209e.test.cpp
 documentation_of: graph/reverse_graph.hpp
 layout: document

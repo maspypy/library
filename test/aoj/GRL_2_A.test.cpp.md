@@ -1,37 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dual_segtree.hpp
     title: ds/segtree/dual_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':question:'
@@ -532,13 +532,13 @@ data:
     \ vc<bool> in_mst, Graph MST, vc<T> dat}\r\n// dat : \u8FBA\u3054\u3068\u306B\u3001\
     \u4ED6\u306E\u8FBA\u3092\u4FDD\u3063\u305F\u3068\u304D\u306B MST \u8FBA\u306B\u306A\
     \u308B\u6700\u5927\u91CD\u307F\r\ntemplate <typename T>\r\ntuple<T, vc<bool>,\
-    \ Graph<T>, vc<T>> minimum_spanning_tree_cycle_data(\r\n    Graph<T>& G) {\r\n\
-    \  int N = G.N;\r\n  int M = len(G.edges);\r\n  auto [mst_cost, in_mst, MST] =\
-    \ minimum_spanning_tree(G);\r\n  Tree<decltype(G)> tree(MST);\r\n  vc<T> dat;\r\
-    \n  FOR(i, M) if (in_mst[i]) dat.eb(G.edges[i].cost);\r\n  Tree_Monoid<decltype(tree),\
-    \ Monoid_Max<T>, 1> TM1(tree, dat);\r\n  Dual_Tree_Monoid<decltype(tree), Monoid_Min<T>,\
-    \ 1> TM2(tree);\r\n  FOR(i, M) {\r\n    if (!in_mst[i]) {\r\n      auto& e = G.edges[i];\r\
-    \n      TM2.apply_path(e.frm, e.to, e.cost);\r\n    }\r\n  }\r\n  vc<T> ANS(M);\r\
+    \ Graph<T>, vc<T>> minimum_spanning_tree_cycle_data(\r\n    Graph<T> G) {\r\n\
+    \  int M = len(G.edges);\r\n  auto [mst_cost, in_mst, MST] = minimum_spanning_tree(G);\r\
+    \n  Tree<decltype(G)> tree(MST);\r\n  vc<T> dat;\r\n  FOR(i, M) if (in_mst[i])\
+    \ dat.eb(G.edges[i].cost);\r\n  Tree_Monoid<decltype(tree), Monoid_Max<T>, 1>\
+    \ TM1(tree, dat);\r\n  Dual_Tree_Monoid<decltype(tree), Monoid_Min<T>, 1> TM2(tree);\r\
+    \n  FOR(i, M) {\r\n    if (!in_mst[i]) {\r\n      auto& e = G.edges[i];\r\n  \
+    \    TM2.apply_path(e.frm, e.to, e.cost);\r\n    }\r\n  }\r\n  vc<T> ANS(M);\r\
     \n  int m = 0;\r\n  FOR(i, M) {\r\n    auto& e = G.edges[i];\r\n    if (in_mst[i])\r\
     \n      ANS[i] = TM2.get(m++);\r\n    else\r\n      ANS[i] = TM1.prod_path(e.frm,\
     \ e.to);\r\n  }\r\n  return {mst_cost, in_mst, MST, ANS};\r\n}\n#line 6 \"test/aoj/GRL_2_A.test.cpp\"\
@@ -569,7 +569,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_2_A.test.cpp
   requiredBy: []
-  timestamp: '2023-09-16 20:38:43+09:00'
+  timestamp: '2023-10-06 05:10:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_2_A.test.cpp

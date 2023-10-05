@@ -23,7 +23,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
+    path: graph/fast_lca.hpp
+    title: graph/fast_lca.hpp
+  - icon: ':question:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -138,15 +141,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc240ex.test.cpp
     title: test_atcoder/abc240ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc270_f.test.cpp
     title: test_atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc151_e.test.cpp
     title: test_atcoder/arc151_e.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -162,56 +165,57 @@ data:
   isVerificationFile: false
   path: alg/monoid/min.hpp
   requiredBy:
-  - alg/acted_monoid/min_assign.hpp
-  - alg/acted_monoid/min_add.hpp
-  - alg/acted_monoid/min_max.hpp
-  - alg/acted_monoid/max_min.hpp
-  - alg/acted_monoid/min_min.hpp
+  - seq/common_interval_decomposition.hpp
   - ds/offline_query/range_mex_query.hpp
+  - graph/fast_lca.hpp
   - graph/minimum_spanning_tree.hpp
+  - alg/acted_monoid/max_min.hpp
+  - alg/acted_monoid/min_max.hpp
+  - alg/acted_monoid/min_add.hpp
+  - alg/acted_monoid/min_assign.hpp
+  - alg/acted_monoid/min_min.hpp
   - string/suffix_tree.hpp
-  - string/longest_common_substring.hpp
   - string/sort_substrings.hpp
   - string/suffix_array.hpp
-  - seq/common_interval_decomposition.hpp
+  - string/longest_common_substring.hpp
   - geo/range_closest_pair_query.hpp
   timestamp: '2023-02-02 02:12:17+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1270.test.cpp
-  - test/yukicoder/1234.test.cpp
-  - test/yukicoder/1600.test.cpp
-  - test/yukicoder/1212.test.cpp
-  - test/yukicoder/1720.test.cpp
-  - test/yukicoder/2361.test.cpp
-  - test/yukicoder/913.test.cpp
-  - test/aoj/DSL_2_H.test.cpp
-  - test/aoj/GRL_2_A.test.cpp
   - test/aoj/DSL_2_F.test.cpp
-  - test/aoj/1508.test.cpp
   - test/aoj/1508_2.test.cpp
-  - test/mytest/min_min.test.cpp
-  - test/mytest/rbst_am.test.cpp
-  - test/mytest/max_min.test.cpp
-  - test/mytest/longest_common_substr.test.cpp
-  - test/mytest/range_closest_pair.test.cpp
-  - test/mytest/suffix_tree.test.cpp
-  - test/mytest/min_max.test.cpp
-  - test/mytest/seg2d.test.cpp
-  - test/mytest/rbst_test.test.cpp
-  - test/mytest/dynamic_segtree_sparse.test.cpp
-  - test/mytest/range_mex.test.cpp
-  - test/mytest/rbst_am_persistent.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
+  - test/aoj/1508.test.cpp
+  - test/aoj/DSL_2_H.test.cpp
   - test/library_checker/graph/common_interval_decomposition.test.cpp
-  - test/library_checker/string/number_of_substrings.test.cpp
-  - test/library_checker/string/suffix_array_vec.test.cpp
-  - test/library_checker/string/suffix_array.test.cpp
+  - test/library_checker/datastructure/staticrmq_seg.test.cpp
   - test/library_checker/datastructure/staticrmq_dst.test.cpp
   - test/library_checker/datastructure/staticrmq_sparse.test.cpp
-  - test/library_checker/datastructure/staticrmq_seg.test.cpp
+  - test/library_checker/string/suffix_array.test.cpp
+  - test/library_checker/string/number_of_substrings.test.cpp
+  - test/library_checker/string/suffix_array_vec.test.cpp
+  - test/yukicoder/913.test.cpp
+  - test/yukicoder/1234.test.cpp
+  - test/yukicoder/2361.test.cpp
+  - test/yukicoder/1720.test.cpp
+  - test/yukicoder/1270.test.cpp
+  - test/yukicoder/1212.test.cpp
+  - test/yukicoder/1600.test.cpp
+  - test/mytest/min_max.test.cpp
+  - test/mytest/seg2d.test.cpp
+  - test/mytest/range_mex.test.cpp
+  - test/mytest/min_min.test.cpp
+  - test/mytest/range_closest_pair.test.cpp
+  - test/mytest/max_min.test.cpp
+  - test/mytest/rbst_test.test.cpp
+  - test/mytest/longest_common_substr.test.cpp
+  - test/mytest/suffix_tree.test.cpp
+  - test/mytest/rbst_am_persistent.test.cpp
+  - test/mytest/rbst_am.test.cpp
+  - test/mytest/dynamic_segtree_sparse.test.cpp
   - test_atcoder/abc240ex.test.cpp
-  - test_atcoder/arc151_e.test.cpp
   - test_atcoder/abc270_f.test.cpp
+  - test_atcoder/arc151_e.test.cpp
 documentation_of: alg/monoid/min.hpp
 layout: document
 redirect_from:
