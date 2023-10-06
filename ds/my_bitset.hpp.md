@@ -2,34 +2,34 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest_path/bfs_bitset.hpp
     title: graph/shortest_path/bfs_bitset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: knapsack/subset_sum.hpp
     title: knapsack/subset_sum.hpp
   - icon: ':warning:'
     path: linalg/bitset/mat_inv.hpp
     title: linalg/bitset/mat_inv.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/mybitset.test.cpp
     title: test/mytest/mybitset.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1400.test.cpp
     title: test/yukicoder/1400.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1400_2.test.cpp
     title: test/yukicoder/1400_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/142.test.cpp
     title: test/yukicoder/142.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/4_2.test.cpp
     title: test/yukicoder/4_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/914/problem/F
@@ -216,7 +216,7 @@ data:
   - graph/shortest_path/bfs_bitset.hpp
   - linalg/bitset/mat_inv.hpp
   timestamp: '2023-08-06 04:48:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1400.test.cpp
   - test/yukicoder/1400_2.test.cpp

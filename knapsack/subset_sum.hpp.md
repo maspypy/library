@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/4_2.test.cpp
     title: test/yukicoder/4_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/755/problem/F
@@ -216,7 +216,7 @@ data:
   path: knapsack/subset_sum.hpp
   requiredBy: []
   timestamp: '2023-09-26 01:12:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/4_2.test.cpp
 documentation_of: knapsack/subset_sum.hpp

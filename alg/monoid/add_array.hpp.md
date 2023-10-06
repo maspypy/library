@@ -2,35 +2,35 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/powersums_assign.hpp
     title: alg/acted_monoid/powersums_assign.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1548.test.cpp
     title: test/yukicoder/1548.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add_array.hpp\"\n\r\ntemplate <typename E, int\
     \ K>\r\nstruct Monoid_Add_Array {\r\n  using value_type = array<E, K>;\r\n  using\
-    \ X = value_type;\r\n  static X op(X x, X y) {\r\n    X z;\r\n    FOR(i, K) z[i]\
-    \ = x[i] + y[i];\r\n    return z;\r\n  }\r\n  static X unit() { return X{}; }\r\
-    \n  static constexpr bool commute = 1;\r\n};\r\n"
+    \ X = value_type;\r\n  static X op(X x, X y) {\r\n    FOR(i, K) x[i] += y[i];\r\
+    \n    return x;\r\n  }\r\n  static constexpr X unit() { return X{}; }\r\n  static\
+    \ constexpr bool commute = 1;\r\n};\r\n"
   code: "#pragma once\r\n\r\ntemplate <typename E, int K>\r\nstruct Monoid_Add_Array\
     \ {\r\n  using value_type = array<E, K>;\r\n  using X = value_type;\r\n  static\
-    \ X op(X x, X y) {\r\n    X z;\r\n    FOR(i, K) z[i] = x[i] + y[i];\r\n    return\
-    \ z;\r\n  }\r\n  static X unit() { return X{}; }\r\n  static constexpr bool commute\
+    \ X op(X x, X y) {\r\n    FOR(i, K) x[i] += y[i];\r\n    return x;\r\n  }\r\n\
+    \  static constexpr X unit() { return X{}; }\r\n  static constexpr bool commute\
     \ = 1;\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/add_array.hpp
   requiredBy:
   - alg/acted_monoid/powersums_assign.hpp
-  timestamp: '2022-11-27 20:55:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-10-06 12:20:27+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1548.test.cpp
 documentation_of: alg/monoid/add_array.hpp
