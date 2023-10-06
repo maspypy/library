@@ -12,7 +12,7 @@ data:
     path: linalg/bitset/mat_inv.hpp
     title: linalg/bitset/mat_inv.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/mybitset.test.cpp
     title: test/mytest/mybitset.test.cpp
   - icon: ':x:'
@@ -29,7 +29,7 @@ data:
     title: test/yukicoder/4_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/contest/914/problem/F
@@ -216,7 +216,7 @@ data:
   - graph/shortest_path/bfs_bitset.hpp
   - linalg/bitset/mat_inv.hpp
   timestamp: '2023-08-06 04:48:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1400.test.cpp
   - test/yukicoder/1400_2.test.cpp
