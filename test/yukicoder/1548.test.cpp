@@ -12,12 +12,11 @@ void solve() {
   using Mono = Monoid_Add_Array<mint, 5>;
   using ARR = typename Mono::value_type;
   VEC(mint, A, N);
-  vc<ARR> seg_raw(N);
-  FOR(i, N) {
-    mint a = A[i];
-    seg_raw[i] = {1, a, a * a, a * a * a, a * a * a * a};
-  }
-  Lazy_SegTree<ActedMonoid_Power_Sums_Assign<mint, 5>> seg(seg_raw);
+  Lazy_SegTree<ActedMonoid_Power_Sums_Assign<mint, 4>> seg(
+      N, [&](int i) -> ARR {
+        mint a = A[i];
+        return {mint(1), a, a * a, a * a * a, a * a * a * a};
+      });
   LL(Q);
   FOR(Q) {
     LL(t, u, v, w);
@@ -53,13 +52,7 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
+  solve();
 
   return 0;
 }
