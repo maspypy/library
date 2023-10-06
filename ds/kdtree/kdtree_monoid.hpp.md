@@ -6,7 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_C.test.cpp
     title: test/aoj/DSL_2_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/kdtree_monoid.test.cpp
     title: test/mytest/kdtree_monoid.test.cpp
   - icon: ':x:'

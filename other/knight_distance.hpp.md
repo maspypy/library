@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/knight_distance.test.cpp
     title: test/mytest/knight_distance.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/knight_distance.hpp\"\nll knight_distance(ll x, ll\
@@ -25,7 +25,7 @@ data:
   path: other/knight_distance.hpp
   requiredBy: []
   timestamp: '2022-10-21 20:47:04+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/knight_distance.test.cpp
 documentation_of: other/knight_distance.hpp

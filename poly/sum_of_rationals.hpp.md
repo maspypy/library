@@ -35,7 +35,7 @@ data:
   - icon: ':question:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex_minus_1.hpp
     title: poly/composition_f_ex_minus_1.hpp
   - icon: ':x:'
@@ -51,7 +51,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/composition_1_minus_ex.test.cpp
     title: test/mytest/composition_1_minus_ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/composition_ex_minus_1.test.cpp
     title: test/mytest/composition_ex_minus_1.test.cpp
   - icon: ':x:'

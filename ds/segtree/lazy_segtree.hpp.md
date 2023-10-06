@@ -36,10 +36,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/common_interval_decomposition.test.cpp
     title: test/library_checker/graph/common_interval_decomposition.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/max_assign.test.cpp
     title: test/mytest/max_assign.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/max_max.test.cpp
     title: test/mytest/max_max.test.cpp
   - icon: ':x:'

@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/dynamic_segtree_sparse.test.cpp
     title: test/mytest/dynamic_segtree_sparse.test.cpp
   - icon: ':x:'

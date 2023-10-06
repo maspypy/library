@@ -6,7 +6,7 @@ data:
     path: nt/crt.hpp
     title: nt/crt.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/coprime_factorization.test.cpp
     title: test/mytest/coprime_factorization.test.cpp
   - icon: ':x:'
@@ -23,7 +23,7 @@ data:
     title: test/yukicoder/590.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"nt/coprime_factorization.hpp\"\n\n/*\n\u4E92\u3044\u306B\
@@ -68,7 +68,7 @@ data:
   requiredBy:
   - nt/crt.hpp
   timestamp: '2023-08-20 12:39:16+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/2119.test.cpp
   - test/yukicoder/187.test.cpp

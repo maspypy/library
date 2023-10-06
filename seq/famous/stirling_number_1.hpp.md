@@ -56,7 +56,7 @@ data:
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
   _extendedVerifiedWith:
@@ -66,12 +66,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
     title: test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/composition_log_1_minus_x.test.cpp
     title: test/mytest/composition_log_1_minus_x.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
@@ -566,7 +566,7 @@ data:
   requiredBy:
   - poly/composition_f_log_1_minus_x.hpp
   timestamp: '2023-08-20 04:40:18+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
