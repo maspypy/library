@@ -29,7 +29,7 @@ data:
   - icon: ':x:'
     path: nt/four_square.hpp
     title: nt/four_square.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
   - icon: ':question:'
@@ -114,7 +114,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1593.test.cpp
     title: test/yukicoder/1593.test.cpp
   - icon: ':x:'
