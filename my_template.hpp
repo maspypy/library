@@ -114,6 +114,10 @@ T floor(T x, U y) {
   return (x > 0 ? x / y : (x - y + 1) / y);
 }
 template <typename T, typename U>
+T bmod(T x, U y) {
+  return x - y * floor(x, y);
+}
+template <typename T, typename U>
 pair<T, T> divmod(T x, U y) {
   T q = floor(x, y);
   return {q, x - q * y};
@@ -147,14 +151,12 @@ T POP(pq<T> &que) {
 }
 template <typename T>
 T POP(pqg<T> &que) {
-  assert(!que.empty());
   T a = que.top();
   que.pop();
   return a;
 }
 template <typename T>
 T POP(vc<T> &que) {
-  assert(!que.empty());
   T a = que.back();
   que.pop_back();
   return a;
@@ -165,7 +167,7 @@ ll binary_search(F check, ll ok, ll ng, bool check_ok = true) {
   if (check_ok) assert(check(ok));
   while (abs(ok - ng) > 1) {
     auto x = (ng + ok) / 2;
-    tie(ok, ng) = (check(x) ? mp(x, ng) : mp(ok, x));
+    (check(x) ? ok : ng) = x;
   }
   return ok;
 }
@@ -173,7 +175,7 @@ template <typename F>
 double binary_search_real(F check, double ok, double ng, int iter = 100) {
   FOR(iter) {
     double x = (ok + ng) / 2;
-    tie(ok, ng) = (check(x) ? mp(x, ng) : mp(ok, x));
+    (check(x) ? ok : ng) = x;
   }
   return (ok + ng) / 2;
 }
