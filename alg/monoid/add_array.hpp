@@ -5,10 +5,9 @@ struct Monoid_Add_Array {
   using value_type = array<E, K>;
   using X = value_type;
   static X op(X x, X y) {
-    X z;
-    FOR(i, K) z[i] = x[i] + y[i];
-    return z;
+    FOR(i, K) x[i] += y[i];
+    return x;
   }
-  static X unit() { return X{}; }
+  static constexpr X unit() { return X{}; }
   static constexpr bool commute = 1;
 };
