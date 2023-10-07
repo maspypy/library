@@ -11,6 +11,9 @@ data:
   - icon: ':warning:'
     path: linalg/bitset/mat_inv.hpp
     title: linalg/bitset/mat_inv.hpp
+  - icon: ':heavy_check_mark:'
+    path: linalg/bitset/solve_linear.hpp
+    title: linalg/bitset/solve_linear.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/mytest/mybitset.test.cpp
@@ -24,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/142.test.cpp
     title: test/yukicoder/142.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1421.test.cpp
+    title: test/yukicoder/1421.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_2.test.cpp
     title: test/yukicoder/4_2.test.cpp
@@ -214,6 +220,7 @@ data:
   requiredBy:
   - knapsack/subset_sum.hpp
   - graph/shortest_path/bfs_bitset.hpp
+  - linalg/bitset/solve_linear.hpp
   - linalg/bitset/mat_inv.hpp
   timestamp: '2023-08-06 04:48:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -221,6 +228,7 @@ data:
   - test/yukicoder/1400.test.cpp
   - test/yukicoder/1400_2.test.cpp
   - test/yukicoder/142.test.cpp
+  - test/yukicoder/1421.test.cpp
   - test/yukicoder/4_2.test.cpp
   - test/mytest/mybitset.test.cpp
 documentation_of: ds/my_bitset.hpp

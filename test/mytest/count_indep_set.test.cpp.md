@@ -633,8 +633,43 @@ data:
     \    auto [paths, cycs] = path_cycle(G);\n    for (auto&& P: paths) res = convolution_naive(res,\
     \ dp_path[len(P)]);\n    for (auto&& C: cycs) res = convolution_naive(res, dp_cyc[len(C)]);\n\
     \    return res;\n  };\n  auto res = dfs(dfs, (U(1) << N) - 1);\n  res.resize(N\
-    \ + 1);\n  return res;\n}\n#line 7 \"test/mytest/count_indep_set.test.cpp\"\n\n\
-    void test() {\n  FOR(100) {\n    FOR(n, 10) {\n      auto G = random_graph<0>(n,\
+    \ + 1);\n  return res;\n}\n\n// \u91CD\u307F\u306F\u9802\u70B9\u91CD\u307F\u306E\
+    \u7A4D\n// https://codeforces.com/contest/468/problem/E\ntemplate <typename T,\
+    \ typename GT>\nvc<T> count_independent_set_by_size_weighted(GT& G, vc<T> wt)\
+    \ {\n  using U = u64;\n  const int N = G.N;\n  assert(N < 64);\n  if (N == 0)\
+    \ return {1};\n  vc<U> nbd(N);\n  FOR(v, N) for (auto&& e: G[v]) nbd[v] |= U(1)\
+    \ << e.to;\n\n  auto solve_path = [&](const vc<T>& A) -> vc<T> {\n    int N =\
+    \ len(A);\n    vv(T, dp, 2, ceil(N, 2) + 2);\n    dp[0][0] = 1;\n    FOR(i, N)\
+    \ {\n      FOR_R(j, ceil(i, 2) + 1) {\n        T a = dp[0][j];\n        T b =\
+    \ dp[1][j];\n        dp[0][j] = a + b, dp[1][j] = 0;\n        dp[1][j + 1] +=\
+    \ a * A[i];\n      }\n    }\n    vc<T> f(ceil(N, 2) + 1);\n    FOR(j, len(f))\
+    \ f[j] = dp[0][j] + dp[1][j];\n    return f;\n  };\n  auto solve_cycle = [&](const\
+    \ vc<T>& A) -> vc<T> {\n    int N = len(A);\n    vvv(T, dp, 2, 2, ceil(N, 2) +\
+    \ 2);\n    dp[0][0][0] = 1;\n    dp[1][1][1] = A[0];\n    FOR(i, 1, N) {\n   \
+    \   FOR(k, 2) {\n        FOR_R(j, ceil(i, 2) + 1) {\n          T a = dp[k][0][j];\n\
+    \          T b = dp[k][1][j];\n          dp[k][0][j] = a + b, dp[k][1][j] = 0;\n\
+    \          dp[k][1][j + 1] += a * A[i];\n        }\n      }\n    }\n    vc<T>\
+    \ f(N / 2 + 1);\n    FOR(k, N / 2 + 1) { f[k] = dp[0][0][k] + dp[0][1][k] + dp[1][0][k];\
+    \ }\n    return f;\n  };\n\n  auto dfs = [&](auto& dfs, U s) -> vc<T> {\n    vc<T>\
+    \ res = {1};\n    pair<int, int> p = {-1, -1}; // (v, d)\n    FOR(v, N) if (s\
+    \ >> v & 1) {\n      int d = popcnt(nbd[v] & s);\n      if (chmax(p.se, d)) p.fi\
+    \ = v;\n      if (d == 0) {\n        res.eb(0);\n        FOR_R(i, len(res) - 1)\
+    \ res[i + 1] += res[i] * wt[v];\n        s &= ~(U(1) << v);\n      }\n    }\n\
+    \    if (s == 0) return res;\n    int v = p.fi;\n    if (p.se >= 3) {\n      s\
+    \ &= ~(U(1) << v);\n      auto f = dfs(dfs, s), g = dfs(dfs, s & ~nbd[v]);\n \
+    \     if (len(f) < len(g) + 1) f.resize(len(g) + 1);\n      FOR(i, len(g)) f[i\
+    \ + 1] += g[i] * wt[v];\n      return convolution<T>(f, res);\n    }\n    // d\
+    \ <= 2, path \u3068 cycle \u306E\u307F\n    vc<int> V;\n    FOR(v, N) if (s >>\
+    \ v & 1) V.eb(v);\n    int n = len(V);\n    Graph<bool, 0> G(n);\n    FOR(i, n)\
+    \ {\n      U x = nbd[V[i]] & s;\n      while (x) {\n        int v = topbit(x);\n\
+    \        x ^= U(1) << v;\n        int j = LB(V, v);\n        if (i < j) G.add(i,\
+    \ j);\n      }\n    }\n    G.build();\n    auto [paths, cycs] = path_cycle(G);\n\
+    \    for (auto&& P: paths) {\n      vc<T> A;\n      for (auto& i: P) A.eb(wt[V[i]]);\n\
+    \      res = convolution<T>(res, solve_path(A));\n    }\n    for (auto&& P: cycs)\
+    \ {\n      vc<T> A;\n      for (auto& i: P) A.eb(wt[V[i]]);\n      res = convolution(res,\
+    \ solve_cycle(A));\n    }\n    return res;\n  };\n  auto res = dfs(dfs, (U(1)\
+    \ << N) - 1);\n  res.resize(N + 1);\n  return res;\n}\n#line 7 \"test/mytest/count_indep_set.test.cpp\"\
+    \n\nvoid test() {\n  FOR(100) {\n    FOR(n, 10) {\n      auto G = random_graph<0>(n,\
     \ 1);\n      vv(int, adj, n, n);\n\n      for (auto&& e: G.edges) adj[e.frm][e.to]\
     \ = adj[e.to][e.frm] = 1;\n      auto X = count_independent_set<decltype(G)>(G);\n\
     \      auto Y = count_independent_set_by_size<decltype(G)>(G);\n      FOR(s, 1\
@@ -676,7 +711,7 @@ data:
   isVerificationFile: true
   path: test/mytest/count_indep_set.test.cpp
   requiredBy: []
-  timestamp: '2023-10-06 12:12:06+09:00'
+  timestamp: '2023-10-07 13:07:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/count_indep_set.test.cpp
