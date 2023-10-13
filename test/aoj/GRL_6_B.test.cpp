@@ -7,13 +7,13 @@
 
 void solve() {
   LL(N, M, F);
-  mcf_graph<int, ll, 0> G(N);
+  Min_Cost_Flow<int, ll, 0> G(N, 0, N - 1);
   FOR(M) {
     LL(a, b, c, d);
     G.add(a, b, c, d);
   }
 
-  auto [f, x] = G.flow(0, N - 1, F);
+  auto [f, x] = G.flow(F);
   if (f < F)
     print(-1);
   else
@@ -21,11 +21,6 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
