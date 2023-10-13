@@ -8,7 +8,7 @@ struct Trie {
   vc<int> parent;
   vc<int> suffix_link;
   vc<int> words;
-  vc<int> V; // BFS 順
+  vc<int> BFS; // BFS 順
 
   Trie() {
     n_node = 0;
@@ -41,22 +41,22 @@ struct Trie {
 
   void calc_suffix_link(bool upd_TO) {
     suffix_link.assign(n_node, -1);
-    V.resize(n_node);
+    BFS.resize(n_node);
     int p = 0, q = 0;
-    V[q++] = 0;
+    BFS[q++] = 0;
     while (p < q) {
-      int v = V[p++];
+      int v = BFS[p++];
       FOR(s, sigma) {
         int w = TO[v][s];
         if (w == -1) continue;
-        V[q++] = w;
+        BFS[q++] = w;
         int f = suffix_link[v];
         while (f != -1 && TO[f][s] == -1) f = suffix_link[f];
         suffix_link[w] = (f == -1 ? 0 : TO[f][s]);
       }
     }
     if (!upd_TO) return;
-    for (auto&& v: V) {
+    for (auto&& v: BFS) {
       FOR(s, sigma) if (TO[v][s] == -1) {
         int f = suffix_link[v];
         TO[v][s] = (f == -1 ? 0 : TO[f][s]);
@@ -68,7 +68,7 @@ struct Trie {
     assert(!suffix_link.empty());
     vc<int> count(n_node);
     for (auto&& x: words) count[x]++;
-    for (auto&& v: V)
+    for (auto&& v: BFS)
       if (v) { count[v] += count[suffix_link[v]]; }
     return count;
   }
