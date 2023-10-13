@@ -1,8 +1,8 @@
+// (ans, match, X, Y)
 // 最小重み最大マッチング。O(N^2M) time。
 // ポテンシャルは次の双対問題の解である：
 //   maximize \sum x_i + \sum y_j, subj to x_i + y_j\leq C_{ij}
 // returns:
-//   (ans, match, X, Y)
 template <typename T>
 tuple<T, vc<int>, vc<T>, vc<T>> hungarian(vvc<T>& C) {
   int N = len(C);
