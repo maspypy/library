@@ -45,11 +45,16 @@ struct Lazy_Tree_Monoid {
 
   X get(int v) { return seg.get(tree.LID[v]); }
   vc<X> get_all() {
-    static_assert(!edge); // 単に未実装なので
     vc<X> dat = seg.get_all();
-    vc<X> res(N);
-    FOR(v, N) res[v] = dat[tree.LID[v]];
-    return res;
+    if (!edge) {
+      vc<X> res(N);
+      FOR(v, N) res[v] = dat[tree.LID[v]];
+      return res;
+    } else {
+      vc<X> res(N - 1);
+      FOR(i, N - 1) { res[i] = dat[tree.LID[tree.e_to_v(i)]]; }
+      return res;
+    }
   }
 
   X prod_path(int u, int v) {
