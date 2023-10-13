@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/all_inverse.hpp
     title: mod/all_inverse.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -285,18 +285,18 @@ data:
     \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 167772161) return\
     \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
     \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
-    \ == 998244353) return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n\
-    \    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881) return\
-    \ {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
-    \ return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 2 \"mod/all_inverse.hpp\"\ntemplate\
-    \ <typename mint>\nvc<mint> all_inverse(vc<mint>& X) {\n  for (auto&& x: X) assert(x\
-    \ != mint(0));\n  int N = len(X);\n  vc<mint> res(N + 1);\n  res[0] = mint(1);\n\
-    \  FOR(i, N) res[i + 1] = res[i] * X[i];\n  mint t = res.back().inverse();\n \
-    \ res.pop_back();\n  FOR_R(i, N) {\n    res[i] *= t;\n    t *= X[i];\n  }\n  return\
-    \ res;\n}\n#line 8 \"test/mytest/all_inverse.test.cpp\"\n\nvoid test() {\n  using\
-    \ mint = modint998;\n  vc<int> ns = {1, 2, 3, 4, 5, 100000};\n\n  for (auto&&\
-    \ N: ns) {\n    vc<mint> X(N);\n    FOR(i, N) { X[i] = RNG(1, mint::get_mod());\
+    \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
+    \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
+    \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
+    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
+    \ -1; }\n};\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 2 \"mod/all_inverse.hpp\"\ntemplate <typename mint>\nvc<mint> all_inverse(vc<mint>&\
+    \ X) {\n  for (auto&& x: X) assert(x != mint(0));\n  int N = len(X);\n  vc<mint>\
+    \ res(N + 1);\n  res[0] = mint(1);\n  FOR(i, N) res[i + 1] = res[i] * X[i];\n\
+    \  mint t = res.back().inverse();\n  res.pop_back();\n  FOR_R(i, N) {\n    res[i]\
+    \ *= t;\n    t *= X[i];\n  }\n  return res;\n}\n#line 8 \"test/mytest/all_inverse.test.cpp\"\
+    \n\nvoid test() {\n  using mint = modint998;\n  vc<int> ns = {1, 2, 3, 4, 5, 100000};\n\
+    \n  for (auto&& N: ns) {\n    vc<mint> X(N);\n    FOR(i, N) { X[i] = RNG(1, mint::get_mod());\
     \ }\n    auto Y = all_inverse(X);\n    FOR(i, N) assert(X[i] * Y[i] == mint(1));\n\
     \  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n\
     \  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\n  return 0;\n\
@@ -319,8 +319,8 @@ data:
   isVerificationFile: true
   path: test/mytest/all_inverse.test.cpp
   requiredBy: []
-  timestamp: '2023-10-06 12:12:06+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-10-14 01:49:27+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/all_inverse.test.cpp
 layout: document

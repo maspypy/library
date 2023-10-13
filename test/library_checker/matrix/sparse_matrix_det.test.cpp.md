@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/spmat_det.hpp
     title: linalg/spmat_det.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/spmat_min_poly.hpp
     title: linalg/spmat_min_poly.hpp
   - icon: ':question:'
@@ -22,14 +22,14 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sparse_matrix_det
@@ -312,15 +312,16 @@ data:
     \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 167772161) return\
     \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
     \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
-    \ == 998244353) return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n\
-    \    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881) return\
-    \ {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
-    \ return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 7 \"test/library_checker/matrix/sparse_matrix_det.test.cpp\"\
-    \nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N, K);\r\n  using T =\
-    \ tuple<int, int, mint>;\r\n  VEC(T, dat, K);\r\n  print(spmat_det(N, dat));\r\
-    \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
+    \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
+    \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
+    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
+    \ -1; }\n};\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 7 \"test/library_checker/matrix/sparse_matrix_det.test.cpp\"\nusing mint\
+    \ = modint998;\r\n\r\nvoid solve() {\r\n  LL(N, K);\r\n  using T = tuple<int,\
+    \ int, mint>;\r\n  VEC(T, dat, K);\r\n  print(spmat_det(N, dat));\r\n}\r\n\r\n\
+    signed main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n \
+    \ cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sparse_matrix_det\"\r\n\
     #include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"linalg/spmat_det.hpp\"\
     \r\n\r\n#include \"mod/modint.hpp\"\r\nusing mint = modint998;\r\n\r\nvoid solve()\
@@ -340,8 +341,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/sparse_matrix_det.test.cpp
   requiredBy: []
-  timestamp: '2023-10-06 12:12:06+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-10-14 01:49:27+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/matrix/sparse_matrix_det.test.cpp
 layout: document

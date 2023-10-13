@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':question:'
@@ -10,14 +10,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/trie.hpp
     title: string/trie.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc268/tasks/abc268_Ex
@@ -215,7 +215,7 @@ data:
     \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"string/trie.hpp\"\
     \n\r\ntemplate <int sigma>\r\nstruct Trie {\r\n  using ARR = array<int, sigma>;\r\
     \n  int n_node;\r\n  vc<ARR> TO;\r\n  vc<int> parent;\r\n  vc<int> suffix_link;\r\
-    \n  vc<int> words;\r\n  vc<int> V; // BFS \u9806\r\n\r\n  Trie() {\r\n    n_node\
+    \n  vc<int> words;\r\n  vc<int> BFS; // BFS \u9806\r\n\r\n  Trie() {\r\n    n_node\
     \ = 0;\r\n    new_node();\r\n  }\r\n\r\n  template <typename STRING>\r\n  int\
     \ add(STRING S, int off) {\r\n    int v = 0;\r\n    for (auto&& ss: S) {\r\n \
     \     int s = ss - off;\r\n      assert(0 <= s && s < sigma);\r\n      if (TO[v][s]\
@@ -224,18 +224,18 @@ data:
     \n  }\r\n\r\n  int add_char(int v, int c, int off) {\r\n    c -= off;\r\n    if\
     \ (TO[v][c] != -1) return TO[v][c];\r\n    TO[v][c] = new_node();\r\n    parent.back()\
     \ = v;\r\n    return TO[v][c];\r\n  }\r\n\r\n  void calc_suffix_link(bool upd_TO)\
-    \ {\r\n    suffix_link.assign(n_node, -1);\r\n    V.resize(n_node);\r\n    int\
-    \ p = 0, q = 0;\r\n    V[q++] = 0;\r\n    while (p < q) {\r\n      int v = V[p++];\r\
+    \ {\r\n    suffix_link.assign(n_node, -1);\r\n    BFS.resize(n_node);\r\n    int\
+    \ p = 0, q = 0;\r\n    BFS[q++] = 0;\r\n    while (p < q) {\r\n      int v = BFS[p++];\r\
     \n      FOR(s, sigma) {\r\n        int w = TO[v][s];\r\n        if (w == -1) continue;\r\
-    \n        V[q++] = w;\r\n        int f = suffix_link[v];\r\n        while (f !=\
-    \ -1 && TO[f][s] == -1) f = suffix_link[f];\r\n        suffix_link[w] = (f ==\
-    \ -1 ? 0 : TO[f][s]);\r\n      }\r\n    }\r\n    if (!upd_TO) return;\r\n    for\
-    \ (auto&& v: V) {\r\n      FOR(s, sigma) if (TO[v][s] == -1) {\r\n        int\
-    \ f = suffix_link[v];\r\n        TO[v][s] = (f == -1 ? 0 : TO[f][s]);\r\n    \
-    \  }\r\n    }\r\n  }\r\n\r\n  vc<int> calc_count() {\r\n    assert(!suffix_link.empty());\r\
+    \n        BFS[q++] = w;\r\n        int f = suffix_link[v];\r\n        while (f\
+    \ != -1 && TO[f][s] == -1) f = suffix_link[f];\r\n        suffix_link[w] = (f\
+    \ == -1 ? 0 : TO[f][s]);\r\n      }\r\n    }\r\n    if (!upd_TO) return;\r\n \
+    \   for (auto&& v: BFS) {\r\n      FOR(s, sigma) if (TO[v][s] == -1) {\r\n   \
+    \     int f = suffix_link[v];\r\n        TO[v][s] = (f == -1 ? 0 : TO[f][s]);\r\
+    \n      }\r\n    }\r\n  }\r\n\r\n  vc<int> calc_count() {\r\n    assert(!suffix_link.empty());\r\
     \n    vc<int> count(n_node);\r\n    for (auto&& x: words) count[x]++;\r\n    for\
-    \ (auto&& v: V)\r\n      if (v) { count[v] += count[suffix_link[v]]; }\r\n   \
-    \ return count;\r\n  }\r\n\r\nprivate:\r\n  int new_node() {\r\n    parent.eb(-1);\r\
+    \ (auto&& v: BFS)\r\n      if (v) { count[v] += count[suffix_link[v]]; }\r\n \
+    \   return count;\r\n  }\r\n\r\nprivate:\r\n  int new_node() {\r\n    parent.eb(-1);\r\
     \n    TO.eb(ARR{});\r\n    fill(all(TO.back()), -1);\r\n    return n_node++;\r\
     \n  }\r\n};\r\n#line 5 \"test_atcoder/abc268_ex.test.cpp\"\n\nvoid solve() {\n\
     \  STR(S);\n  LL(N);\n  Trie<26> X;\n  FOR(N) {\n    STR(T);\n    X.add(T, 'a');\n\
@@ -258,8 +258,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc268_ex.test.cpp
   requiredBy: []
-  timestamp: '2023-10-06 12:12:06+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-10-14 01:49:44+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc268_ex.test.cpp
 layout: document

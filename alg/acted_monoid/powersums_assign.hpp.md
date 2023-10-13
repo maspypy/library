@@ -25,10 +25,12 @@ data:
     \n\r\ntemplate <typename E, int K>\r\nstruct Monoid_Add_Array {\r\n  using value_type\
     \ = array<E, K>;\r\n  using X = value_type;\r\n  static X op(X x, X y) {\r\n \
     \   FOR(i, K) x[i] += y[i];\r\n    return x;\r\n  }\r\n  static constexpr X unit()\
-    \ { return X{}; }\r\n  static constexpr bool commute = 1;\r\n};\r\n#line 5 \"\
-    alg/acted_monoid/powersums_assign.hpp\"\n\r\n// 0, 1, ..., K \u4E57\u548C\r\n\
-    template <typename T, int K>\r\nstruct ActedMonoid_Power_Sums_Assign {\r\n  using\
-    \ Monoid_X = Monoid_Add_Array<T, K + 1>;\r\n  using Monoid_A = Monoid_Assign<T,\
+    \ { return X{}; }\r\n  static constexpr X inverse(X x) {\r\n    for (auto& v:\
+    \ x) v = -v;\r\n    return x;\r\n  }\r\n  static constexpr X power(X x, ll n)\
+    \ {\r\n    for (auto& v: x) v *= E(n);\r\n    return x;\r\n  }\r\n  static constexpr\
+    \ bool commute = 1;\r\n};\r\n#line 5 \"alg/acted_monoid/powersums_assign.hpp\"\
+    \n\r\n// 0, 1, ..., K \u4E57\u548C\r\ntemplate <typename T, int K>\r\nstruct ActedMonoid_Power_Sums_Assign\
+    \ {\r\n  using Monoid_X = Monoid_Add_Array<T, K + 1>;\r\n  using Monoid_A = Monoid_Assign<T,\
     \ -1>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
     \n  static constexpr X act(const X &x, const A &a, const ll &size) {\r\n    if\
     \ (a == Monoid_A::unit()) return x;\r\n    X y;\r\n    T pow = 1;\r\n    FOR(i,\
@@ -47,7 +49,7 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/powersums_assign.hpp
   requiredBy: []
-  timestamp: '2023-10-06 12:20:27+09:00'
+  timestamp: '2023-10-14 01:43:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1548.test.cpp

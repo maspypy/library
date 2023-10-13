@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/hungarian.hpp
     title: flow/hungarian.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/assignment
@@ -205,11 +205,11 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\n#line 4 \"test/library_checker/graph/assignment.test.cpp\"\n\n#line\
-    \ 1 \"flow/hungarian.hpp\"\n// \u6700\u5C0F\u91CD\u307F\u6700\u5927\u30DE\u30C3\
-    \u30C1\u30F3\u30B0\u3002O(N^2M) time\u3002\n// \u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\
-    \u306F\u6B21\u306E\u53CC\u5BFE\u554F\u984C\u306E\u89E3\u3067\u3042\u308B\uFF1A\
-    \n//   maximize \\sum x_i + \\sum y_j, subj to x_i + y_j\\leq C_{ij}\n// returns:\n\
-    //   (ans, match, X, Y)\ntemplate <typename T>\ntuple<T, vc<int>, vc<T>, vc<T>>\
+    \ 1 \"flow/hungarian.hpp\"\n// (ans, match, X, Y)\n// \u6700\u5C0F\u91CD\u307F\
+    \u6700\u5927\u30DE\u30C3\u30C1\u30F3\u30B0\u3002O(N^2M) time\u3002\n// \u30DD\u30C6\
+    \u30F3\u30B7\u30E3\u30EB\u306F\u6B21\u306E\u53CC\u5BFE\u554F\u984C\u306E\u89E3\
+    \u3067\u3042\u308B\uFF1A\n//   maximize \\sum x_i + \\sum y_j, subj to x_i + y_j\\\
+    leq C_{ij}\n// returns:\ntemplate <typename T>\ntuple<T, vc<int>, vc<T>, vc<T>>\
     \ hungarian(vvc<T>& C) {\n  int N = len(C);\n  int M = len(C[0]);\n  assert(N\
     \ <= M);\n  vv(T, A, N + 1, M + 1);\n  FOR(i, N) FOR(j, M) A[1 + i][1 + j] = C[i][j];\n\
     \  ++N, ++M;\n\n  vector<int> P(M), way(M);\n  vector<T> X(N), Y(M);\n  vc<T>\
@@ -244,8 +244,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/assignment.test.cpp
   requiredBy: []
-  timestamp: '2023-10-06 12:12:06+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-10-14 01:45:13+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/assignment.test.cpp
 layout: document

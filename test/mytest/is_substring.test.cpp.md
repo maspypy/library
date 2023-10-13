@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/is_substring.hpp
     title: string/is_substring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/zalgorithm.hpp
     title: string/zalgorithm.hpp
   _extendedRequiredBy: []

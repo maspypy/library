@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/characteristic_poly.hpp
     title: linalg/characteristic_poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/mat_inv.hpp
     title: linalg/mat_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
   - icon: ':question:'
@@ -19,10 +19,10 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   - icon: ':question:'
@@ -40,7 +40,7 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   - icon: ':question:'
@@ -48,15 +48,15 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1907.test.cpp
     title: test/yukicoder/1907.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -130,10 +130,11 @@ data:
     \ 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n    if (mod\
     \ == 167772161) return {25, 17};\n    if (mod == 469762049) return {26, 30};\n\
     \    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841) return\
-    \ {23, 211};\n    if (mod == 998244353) return {23, 31};\n    if (mod == 1045430273)\
-    \ return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod\
-    \ == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr\
-    \ bool can_ntt() { return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
+    \ {23, 211};\n    if (mod == 943718401) return {22, 663003469};\n    if (mod ==\
+    \ 998244353) return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n\
+    \    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881) return\
+    \ {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
+    \ return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
     using modint998 = modint<998244353>;\n#line 3 \"linalg/mat_mul.hpp\"\n\r\ntemplate\
     \ <class T, typename enable_if<has_mod<T>::value>::type* = nullptr>\r\nvc<vc<T>>\
     \ mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n  assert(T::get_mod() <\
@@ -441,8 +442,8 @@ data:
   isVerificationFile: false
   path: linalg/det_A_plus_xB.hpp
   requiredBy: []
-  timestamp: '2023-09-27 03:26:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-10-14 01:49:27+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1907.test.cpp
   - test/yukicoder/1303.test.cpp

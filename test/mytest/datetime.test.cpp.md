@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: datetime/datetime.hpp
     title: datetime/datetime.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -236,15 +236,18 @@ data:
     \    while (len(d) < 2) d = \"0\" + d;\n    return y + sep + m + sep + d;\n  }\n\
     \n  tuple<int, int, int> to_tuple() const { return {year, month, day}; }\n\n \
     \ static bool is_leap_year(int y) {\n    if (y % 400 == 0) return true;\n    return\
-    \ (y % 4 == 0 && y % 100 != 0);\n  }\n};\n#line 6 \"test/mytest/datetime.test.cpp\"\
-    \n\nusing DT = DateTime;\n\nvoid test_ARC23_A() {\n  auto f = [&](int y, int m,\
-    \ int d) -> int {\n    return DateTime(2014, 5, 17).to_int() - DateTime(y, m,\
-    \ d).to_int();\n  };\n  assert(9449 == f(1988, 7, 3));\n  assert(735369 == f(1,\
-    \ 1, 1));\n}\n\nvoid test_from_int() {\n  DT A(1, 1, 1);\n  FOR(x, 1000000) {\n\
-    \    DT B = DT::from_int(x);\n    assert(A == B);\n    assert(A.to_int() == x);\n\
-    \    ++A;\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned\
-    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  test_ARC23_A();\n  test_from_int();\n  solve();\n\n  return 0;\n}\n"
+    \ (y % 4 == 0 && y % 100 != 0);\n  }\n\n  static bool is_valid_date(int y, int\
+    \ m, int d) {\n    if (!(1 <= m && m <= 12)) return 0;\n    int mx = month_days[m];\n\
+    \    if (m == 2 && is_leap_year(y)) ++mx;\n    return (1 <= d && d <= mx);\n \
+    \ }\n};\n#line 6 \"test/mytest/datetime.test.cpp\"\n\nusing DT = DateTime;\n\n\
+    void test_ARC23_A() {\n  auto f = [&](int y, int m, int d) -> int {\n    return\
+    \ DateTime(2014, 5, 17).to_int() - DateTime(y, m, d).to_int();\n  };\n  assert(9449\
+    \ == f(1988, 7, 3));\n  assert(735369 == f(1, 1, 1));\n}\n\nvoid test_from_int()\
+    \ {\n  DT A(1, 1, 1);\n  FOR(x, 1000000) {\n    DT B = DT::from_int(x);\n    assert(A\
+    \ == B);\n    assert(A.to_int() == x);\n    ++A;\n  }\n}\n\nvoid solve() {\n \
+    \ LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  test_ARC23_A();\n  test_from_int();\n  solve();\n\
+    \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"datetime/datetime.hpp\"\n\nusing DT\
     \ = DateTime;\n\nvoid test_ARC23_A() {\n  auto f = [&](int y, int m, int d) ->\
@@ -262,8 +265,8 @@ data:
   isVerificationFile: true
   path: test/mytest/datetime.test.cpp
   requiredBy: []
-  timestamp: '2023-10-06 12:12:06+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-10-14 01:43:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/datetime.test.cpp
 layout: document

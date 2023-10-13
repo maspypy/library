@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
@@ -15,18 +15,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1790.test.cpp
     title: test/yukicoder/1790.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -231,10 +231,11 @@ data:
     \ (i == 0 ? MX::unit() : f(tree.v_to_e(tree.V[i])));\r\n      });\r\n    }\r\n\
     \  }\r\n\r\n  void set(int i, X x) {\r\n    if constexpr (edge) i = tree.e_to_v(i);\r\
     \n    i = tree.LID[i];\r\n    seg.set(i, x);\r\n  }\r\n\r\n  X get(int v) { return\
-    \ seg.get(tree.LID[v]); }\r\n  vc<X> get_all() {\r\n    static_assert(!edge);\
-    \ // \u5358\u306B\u672A\u5B9F\u88C5\u306A\u306E\u3067\r\n    vc<X> dat = seg.get_all();\r\
-    \n    vc<X> res(N);\r\n    FOR(v, N) res[v] = dat[tree.LID[v]];\r\n    return\
-    \ res;\r\n  }\r\n\r\n  X prod_path(int u, int v) {\r\n    auto pd = tree.get_path_decomposition(u,\
+    \ seg.get(tree.LID[v]); }\r\n  vc<X> get_all() {\r\n    vc<X> dat = seg.get_all();\r\
+    \n    if (!edge) {\r\n      vc<X> res(N);\r\n      FOR(v, N) res[v] = dat[tree.LID[v]];\r\
+    \n      return res;\r\n    } else {\r\n      vc<X> res(N - 1);\r\n      FOR(i,\
+    \ N - 1) { res[i] = dat[tree.LID[tree.e_to_v(i)]]; }\r\n      return res;\r\n\
+    \    }\r\n  }\r\n\r\n  X prod_path(int u, int v) {\r\n    auto pd = tree.get_path_decomposition(u,\
     \ v, edge);\r\n    X val = MX::unit();\r\n    for (auto &&[a, b]: pd) {\r\n  \
     \    X x = get_prod(a, b);\r\n      val = MX::op(val, x);\r\n    }\r\n    return\
     \ val;\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\n    int l = tree.LID[u], r =\
@@ -290,10 +291,11 @@ data:
     \ (i == 0 ? MX::unit() : f(tree.v_to_e(tree.V[i])));\r\n      });\r\n    }\r\n\
     \  }\r\n\r\n  void set(int i, X x) {\r\n    if constexpr (edge) i = tree.e_to_v(i);\r\
     \n    i = tree.LID[i];\r\n    seg.set(i, x);\r\n  }\r\n\r\n  X get(int v) { return\
-    \ seg.get(tree.LID[v]); }\r\n  vc<X> get_all() {\r\n    static_assert(!edge);\
-    \ // \u5358\u306B\u672A\u5B9F\u88C5\u306A\u306E\u3067\r\n    vc<X> dat = seg.get_all();\r\
-    \n    vc<X> res(N);\r\n    FOR(v, N) res[v] = dat[tree.LID[v]];\r\n    return\
-    \ res;\r\n  }\r\n\r\n  X prod_path(int u, int v) {\r\n    auto pd = tree.get_path_decomposition(u,\
+    \ seg.get(tree.LID[v]); }\r\n  vc<X> get_all() {\r\n    vc<X> dat = seg.get_all();\r\
+    \n    if (!edge) {\r\n      vc<X> res(N);\r\n      FOR(v, N) res[v] = dat[tree.LID[v]];\r\
+    \n      return res;\r\n    } else {\r\n      vc<X> res(N - 1);\r\n      FOR(i,\
+    \ N - 1) { res[i] = dat[tree.LID[tree.e_to_v(i)]]; }\r\n      return res;\r\n\
+    \    }\r\n  }\r\n\r\n  X prod_path(int u, int v) {\r\n    auto pd = tree.get_path_decomposition(u,\
     \ v, edge);\r\n    X val = MX::unit();\r\n    for (auto &&[a, b]: pd) {\r\n  \
     \    X x = get_prod(a, b);\r\n      val = MX::op(val, x);\r\n    }\r\n    return\
     \ val;\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\n    int l = tree.LID[u], r =\
@@ -340,8 +342,8 @@ data:
   isVerificationFile: false
   path: graph/ds/lazy_tree_monoid.hpp
   requiredBy: []
-  timestamp: '2023-09-16 20:38:43+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-10-14 01:48:03+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/GRL_5_E.test.cpp
   - test/yukicoder/235.test.cpp

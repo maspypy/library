@@ -7,26 +7,26 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/limit_poly_exp_sum.hpp
     title: seq/limit_poly_exp_sum.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial_limit
@@ -283,34 +283,34 @@ data:
     \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 167772161) return\
     \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
     \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
-    \ == 998244353) return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n\
-    \    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881) return\
-    \ {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
-    \ return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 2 \"seq/limit_poly_exp_sum.hpp\"\n\
-    template <typename mint>\r\nmint limit_poly_exp_sum(vc<mint> a, mint r) {\r\n\
-    \  /*\r\n  a[i] = (prefix sum of r^i * (polynomial of i)) \u3068\u306A\u3063\u3066\
-    \u3044\u308B\u3082\u306E\u306E\u6975\u9650\r\n  fps \u3067\u306F (1-rx)^d(1-x)\
-    \ \u306E\u5F62\u306E\u5206\u6BCD\u3092\u6301\u3064\u5834\u5408\u3068\u3044\u3046\
-    \u3053\u3068\u306B\u306A\u308B\r\n  f(x) = g(x) / (1-rx)^d + c / (1-x) \u3068\u3057\
-    \u3066\u3001c \u304C\u7B54\u3067\u3042\u308B\r\n  */\r\n  mint c = 0;\r\n  int\
-    \ d = len(a) - 1;\r\n  mint p = 1;\r\n  FOR(i, d + 1) {\r\n    c += a[d - i] *\
-    \ p * C<mint>(d, i);\r\n    p *= -r;\r\n  }\r\n  c /= (mint(1) - r).pow(d);\r\n\
-    \  return c;\r\n}\r\n#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = int>\n\
-    vc<T> primetable(int LIM) {\n  ++LIM;\n  const int S = 32768;\n  static int done\
-    \ = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\n  if (done < LIM) {\n  \
-    \  done = LIM;\n\n    primes = {2}, sieve.assign(S + 1, 0);\n    const int R =\
-    \ LIM / 2;\n    primes.reserve(int(LIM / log(LIM) * 1.1));\n    vc<pair<int, int>>\
-    \ cp;\n    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i]) {\n       \
-    \ cp.eb(i, i * i / 2);\n        for (int j = i * i; j <= S; j += 2 * i) sieve[j]\
-    \ = 1;\n      }\n    }\n    for (int L = 1; L <= R; L += S) {\n      array<bool,\
-    \ S> block{};\n      for (auto& [p, idx]: cp)\n        for (int i = idx; i < S\
-    \ + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R - L)) if (!block[i])\
-    \ primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes, LIM + 1);\n  return\
-    \ {primes.begin(), primes.begin() + k};\n}\n#line 3 \"mod/powertable.hpp\"\n\r\
-    \n// a^0, ..., a^N\r\ntemplate <typename mint>\r\nvc<mint> powertable_1(mint a,\
-    \ ll N) {\r\n  // table of a^i\r\n  vc<mint> f(N + 1, 1);\r\n  FOR(i, N) f[i +\
-    \ 1] = a * f[i];\r\n  return f;\r\n}\r\n\r\n// 0^e, ..., N^e\r\ntemplate <typename\
+    \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
+    \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
+    \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
+    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
+    \ -1; }\n};\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 2 \"seq/limit_poly_exp_sum.hpp\"\ntemplate <typename mint>\r\nmint limit_poly_exp_sum(vc<mint>\
+    \ a, mint r) {\r\n  /*\r\n  a[i] = (prefix sum of r^i * (polynomial of i)) \u3068\
+    \u306A\u3063\u3066\u3044\u308B\u3082\u306E\u306E\u6975\u9650\r\n  fps \u3067\u306F\
+    \ (1-rx)^d(1-x) \u306E\u5F62\u306E\u5206\u6BCD\u3092\u6301\u3064\u5834\u5408\u3068\
+    \u3044\u3046\u3053\u3068\u306B\u306A\u308B\r\n  f(x) = g(x) / (1-rx)^d + c / (1-x)\
+    \ \u3068\u3057\u3066\u3001c \u304C\u7B54\u3067\u3042\u308B\r\n  */\r\n  mint c\
+    \ = 0;\r\n  int d = len(a) - 1;\r\n  mint p = 1;\r\n  FOR(i, d + 1) {\r\n    c\
+    \ += a[d - i] * p * C<mint>(d, i);\r\n    p *= -r;\r\n  }\r\n  c /= (mint(1) -\
+    \ r).pow(d);\r\n  return c;\r\n}\r\n#line 2 \"nt/primetable.hpp\"\n\ntemplate\
+    \ <typename T = int>\nvc<T> primetable(int LIM) {\n  ++LIM;\n  const int S = 32768;\n\
+    \  static int done = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\n  if (done\
+    \ < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S + 1, 0);\n   \
+    \ const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM) * 1.1));\n   \
+    \ vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i])\
+    \ {\n        cp.eb(i, i * i / 2);\n        for (int j = i * i; j <= S; j += 2\
+    \ * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1; L <= R; L += S) {\n\
+    \      array<bool, S> block{};\n      for (auto& [p, idx]: cp)\n        for (int\
+    \ i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R\
+    \ - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes,\
+    \ LIM + 1);\n  return {primes.begin(), primes.begin() + k};\n}\n#line 3 \"mod/powertable.hpp\"\
+    \n\r\n// a^0, ..., a^N\r\ntemplate <typename mint>\r\nvc<mint> powertable_1(mint\
+    \ a, ll N) {\r\n  // table of a^i\r\n  vc<mint> f(N + 1, 1);\r\n  FOR(i, N) f[i\
+    \ + 1] = a * f[i];\r\n  return f;\r\n}\r\n\r\n// 0^e, ..., N^e\r\ntemplate <typename\
     \ mint>\r\nvc<mint> powertable_2(ll e, ll N) {\r\n  auto primes = primetable(N);\r\
     \n  vc<mint> f(N + 1, 1);\r\n  f[0] = mint(0).pow(e);\r\n  for (auto&& p: primes)\
     \ {\r\n    if (p > N) break;\r\n    mint xp = mint(p).pow(e);\r\n    ll pp = p;\r\
@@ -340,8 +340,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
   requiredBy: []
-  timestamp: '2023-10-06 12:12:06+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-10-14 01:49:27+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
 layout: document

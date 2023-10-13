@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/offline_query/mo.hpp
     title: ds/offline_query/mo.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/mo_on_tree.hpp
     title: graph/ds/mo_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':question:'
@@ -45,9 +45,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -630,35 +630,35 @@ data:
     \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 167772161) return\
     \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
     \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
-    \ == 998244353) return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n\
-    \    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881) return\
-    \ {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
-    \ return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 12 \"test/mytest/mo_on_tree.test.cpp\"\
-    \n\nusing mint = modint998;\nusing AFF = pair<mint, mint>;\n\nAFF gen() {\n  mint\
-    \ a = RNG(1, 3);\n  mint b = RNG(0, 3);\n  return {a, b};\n}\n\ntemplate <typename\
-    \ Mono, bool EDGE>\nvoid test() {\n  constexpr bool ORIENTED = !(Mono::commute);\n\
-    \  FOR(N, 1, 50) {\n    FOR(Q, 1, 50) {\n      vc<pi> query(Q);\n      vc<AFF>\
-    \ dat;\n      if (!EDGE) {\n        FOR(v, N) dat.eb(gen());\n      } else {\n\
-    \        FOR(i, N - 1) dat.eb(gen());\n      }\n      Graph<int, 0> G(N);\n  \
-    \    FOR(v, 1, N) {\n        int p = RNG(0, v);\n        G.add(p, v);\n      }\n\
-    \      G.build();\n      Tree<decltype(G)> tree(G);\n      Tree_Monoid<decltype(tree),\
-    \ Mono, EDGE> TM(tree, dat);\n\n      FOR(q, Q) {\n        int a = RNG(0, N);\n\
-    \        int b = RNG(0, N);\n        query[q] = {a, b};\n      }\n      Mo_on_Tree<decltype(tree),\
-    \ ORIENTED> mo(tree);\n      for (auto&& [a, b]: query) mo.add(a, b);\n\n    \
-    \  if constexpr (!EDGE) {\n        AFF f = Mono::unit();\n        auto init =\
-    \ [&]() -> void { f = dat[0]; };\n        auto add_l = [&](int v) -> void { f\
-    \ = Mono::op(dat[v], f); };\n        auto rm_l\n            = [&](int v) -> void\
-    \ { f = Mono::op(Mono::inverse(dat[v]), f); };\n        auto add_r = [&](int v)\
-    \ -> void { f = Mono::op(f, dat[v]); };\n        auto rm_r\n            = [&](int\
-    \ v) -> void { f = Mono::op(f, Mono::inverse(dat[v])); };\n        auto ans =\
-    \ [&](int q) -> void {\n          assert(f == TM.prod_path(query[q].fi, query[q].se));\n\
-    \        };\n        mo.calc_vertex(init, add_l, add_r, rm_l, rm_r, ans);\n  \
-    \    } else {\n        AFF f = Mono::unit();\n        auto get = [&](int a, int\
-    \ b) -> int {\n          return tree.v_to_e((tree.parent[a] == b ? a : b));\n\
-    \        };\n        auto init = [&]() -> void {};\n        auto add_l\n     \
-    \       = [&](int a, int b) -> void { f = Mono::op(dat[get(a, b)], f); };\n  \
-    \      auto rm_l = [&](int a, int b) -> void {\n          f = Mono::op(Mono::inverse(dat[get(a,\
+    \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
+    \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
+    \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
+    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
+    \ -1; }\n};\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 12 \"test/mytest/mo_on_tree.test.cpp\"\n\nusing mint = modint998;\nusing\
+    \ AFF = pair<mint, mint>;\n\nAFF gen() {\n  mint a = RNG(1, 3);\n  mint b = RNG(0,\
+    \ 3);\n  return {a, b};\n}\n\ntemplate <typename Mono, bool EDGE>\nvoid test()\
+    \ {\n  constexpr bool ORIENTED = !(Mono::commute);\n  FOR(N, 1, 50) {\n    FOR(Q,\
+    \ 1, 50) {\n      vc<pi> query(Q);\n      vc<AFF> dat;\n      if (!EDGE) {\n \
+    \       FOR(v, N) dat.eb(gen());\n      } else {\n        FOR(i, N - 1) dat.eb(gen());\n\
+    \      }\n      Graph<int, 0> G(N);\n      FOR(v, 1, N) {\n        int p = RNG(0,\
+    \ v);\n        G.add(p, v);\n      }\n      G.build();\n      Tree<decltype(G)>\
+    \ tree(G);\n      Tree_Monoid<decltype(tree), Mono, EDGE> TM(tree, dat);\n\n \
+    \     FOR(q, Q) {\n        int a = RNG(0, N);\n        int b = RNG(0, N);\n  \
+    \      query[q] = {a, b};\n      }\n      Mo_on_Tree<decltype(tree), ORIENTED>\
+    \ mo(tree);\n      for (auto&& [a, b]: query) mo.add(a, b);\n\n      if constexpr\
+    \ (!EDGE) {\n        AFF f = Mono::unit();\n        auto init = [&]() -> void\
+    \ { f = dat[0]; };\n        auto add_l = [&](int v) -> void { f = Mono::op(dat[v],\
+    \ f); };\n        auto rm_l\n            = [&](int v) -> void { f = Mono::op(Mono::inverse(dat[v]),\
+    \ f); };\n        auto add_r = [&](int v) -> void { f = Mono::op(f, dat[v]); };\n\
+    \        auto rm_r\n            = [&](int v) -> void { f = Mono::op(f, Mono::inverse(dat[v]));\
+    \ };\n        auto ans = [&](int q) -> void {\n          assert(f == TM.prod_path(query[q].fi,\
+    \ query[q].se));\n        };\n        mo.calc_vertex(init, add_l, add_r, rm_l,\
+    \ rm_r, ans);\n      } else {\n        AFF f = Mono::unit();\n        auto get\
+    \ = [&](int a, int b) -> int {\n          return tree.v_to_e((tree.parent[a] ==\
+    \ b ? a : b));\n        };\n        auto init = [&]() -> void {};\n        auto\
+    \ add_l\n            = [&](int a, int b) -> void { f = Mono::op(dat[get(a, b)],\
+    \ f); };\n        auto rm_l = [&](int a, int b) -> void {\n          f = Mono::op(Mono::inverse(dat[get(a,\
     \ b)]), f);\n        };\n        auto add_r\n            = [&](int a, int b) ->\
     \ void { f = Mono::op(f, dat[get(a, b)]); };\n        auto rm_r = [&](int a, int\
     \ b) -> void {\n          f = Mono::op(f, Mono::inverse(dat[get(a, b)]));\n  \
@@ -735,8 +735,8 @@ data:
   isVerificationFile: true
   path: test/mytest/mo_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2023-10-06 12:12:06+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-10-14 01:49:27+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/mo_on_tree.test.cpp
 layout: document

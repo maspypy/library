@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/all_inverse.hpp
     title: mod/all_inverse.hpp
   - icon: ':question:'
@@ -83,29 +83,30 @@ data:
     \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 167772161) return\
     \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
     \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
-    \ == 998244353) return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n\
-    \    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881) return\
-    \ {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
-    \ return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 2 \"mod/all_inverse.hpp\"\ntemplate\
-    \ <typename mint>\nvc<mint> all_inverse(vc<mint>& X) {\n  for (auto&& x: X) assert(x\
-    \ != mint(0));\n  int N = len(X);\n  vc<mint> res(N + 1);\n  res[0] = mint(1);\n\
-    \  FOR(i, N) res[i + 1] = res[i] * X[i];\n  mint t = res.back().inverse();\n \
-    \ res.pop_back();\n  FOR_R(i, N) {\n    res[i] *= t;\n    t *= X[i];\n  }\n  return\
-    \ res;\n}\n#line 3 \"mod/q_analogue.hpp\"\n\ntemplate <typename mint>\nstruct\
-    \ q_Analogue {\n  const mint q;\n  const int LIM;\n  int D;\n  vc<mint> factorial,\
-    \ ifactorial;\n\n  q_Analogue(mint q, int LIM) : q(q), LIM(LIM) {\n    assert(LIM\
-    \ < mint::get_mod());\n    build();\n  }\n\n  void build() {\n    factorial.reserve(LIM\
-    \ + 1);\n    factorial.eb(1);\n    mint x = 1;\n    FOR(i, 1, LIM + 1) {\n   \
-    \   if (x == mint(0)) break;\n      factorial.eb(factorial.back() * x);\n    \
-    \  x = q * x + mint(1);\n    }\n    ifactorial = all_inverse(factorial);\n   \
-    \ D = len(factorial);\n  }\n\n  mint fact(int N) {\n    assert(0 <= N && N <=\
-    \ LIM);\n    return (N < D ? factorial[N] : mint(0));\n  }\n  mint fact_inv(int\
-    \ N) {\n    assert(0 <= N && N < D);\n    return (N < D ? ifactorial[N] : mint(0));\n\
-    \  }\n  mint binom(int N, int K) {\n    assert(0 <= N && N <= LIM);\n    if (K\
-    \ < 0 || K > N) return mint(0);\n    if (N < D) return factorial[N] * ifactorial[K]\
-    \ * ifactorial[N - K];\n    auto [n1, n2] = divmod(N, D);\n    auto [k1, k2] =\
-    \ divmod(K, D);\n    return C<mint>(n1, k1) * binom(n2, k2);\n  }\n};\n"
+    \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
+    \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
+    \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
+    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
+    \ -1; }\n};\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 2 \"mod/all_inverse.hpp\"\ntemplate <typename mint>\nvc<mint> all_inverse(vc<mint>&\
+    \ X) {\n  for (auto&& x: X) assert(x != mint(0));\n  int N = len(X);\n  vc<mint>\
+    \ res(N + 1);\n  res[0] = mint(1);\n  FOR(i, N) res[i + 1] = res[i] * X[i];\n\
+    \  mint t = res.back().inverse();\n  res.pop_back();\n  FOR_R(i, N) {\n    res[i]\
+    \ *= t;\n    t *= X[i];\n  }\n  return res;\n}\n#line 3 \"mod/q_analogue.hpp\"\
+    \n\ntemplate <typename mint>\nstruct q_Analogue {\n  const mint q;\n  const int\
+    \ LIM;\n  int D;\n  vc<mint> factorial, ifactorial;\n\n  q_Analogue(mint q, int\
+    \ LIM) : q(q), LIM(LIM) {\n    assert(LIM < mint::get_mod());\n    build();\n\
+    \  }\n\n  void build() {\n    factorial.reserve(LIM + 1);\n    factorial.eb(1);\n\
+    \    mint x = 1;\n    FOR(i, 1, LIM + 1) {\n      if (x == mint(0)) break;\n \
+    \     factorial.eb(factorial.back() * x);\n      x = q * x + mint(1);\n    }\n\
+    \    ifactorial = all_inverse(factorial);\n    D = len(factorial);\n  }\n\n  mint\
+    \ fact(int N) {\n    assert(0 <= N && N <= LIM);\n    return (N < D ? factorial[N]\
+    \ : mint(0));\n  }\n  mint fact_inv(int N) {\n    assert(0 <= N && N < D);\n \
+    \   return (N < D ? ifactorial[N] : mint(0));\n  }\n  mint binom(int N, int K)\
+    \ {\n    assert(0 <= N && N <= LIM);\n    if (K < 0 || K > N) return mint(0);\n\
+    \    if (N < D) return factorial[N] * ifactorial[K] * ifactorial[N - K];\n   \
+    \ auto [n1, n2] = divmod(N, D);\n    auto [k1, k2] = divmod(K, D);\n    return\
+    \ C<mint>(n1, k1) * binom(n2, k2);\n  }\n};\n"
   code: "#include \"mod/modint.hpp\"\n#include \"mod/all_inverse.hpp\"\n\ntemplate\
     \ <typename mint>\nstruct q_Analogue {\n  const mint q;\n  const int LIM;\n  int\
     \ D;\n  vc<mint> factorial, ifactorial;\n\n  q_Analogue(mint q, int LIM) : q(q),\
@@ -127,7 +128,7 @@ data:
   isVerificationFile: false
   path: mod/q_analogue.hpp
   requiredBy: []
-  timestamp: '2023-08-10 12:06:50+09:00'
+  timestamp: '2023-10-14 01:49:27+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: mod/q_analogue.hpp

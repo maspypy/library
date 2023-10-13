@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/link_cut_path.hpp
     title: graph/ds/link_cut_path.hpp
   - icon: ':warning:'
@@ -12,15 +12,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
     title: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2295.test.cpp
     title: test/yukicoder/2295.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2296.test.cpp
     title: test/yukicoder/2296.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/ds/link_cut.hpp\"\n\ntemplate <typename Node, int\
@@ -141,7 +141,7 @@ data:
   - graph/ds/link_cut_path.hpp
   - graph/ds/link_cut_subtree.hpp
   timestamp: '2023-06-11 17:11:06+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/yukicoder/2296.test.cpp

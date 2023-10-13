@@ -3,18 +3,18 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/datetime.test.cpp
     title: test/mytest/datetime.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2109.test.cpp
     title: test/yukicoder/2109.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/779.test.cpp
     title: test/yukicoder/779.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"datetime/datetime.hpp\"\nstruct DateTime {\n  static constexpr\
@@ -49,7 +49,10 @@ data:
     \    while (len(d) < 2) d = \"0\" + d;\n    return y + sep + m + sep + d;\n  }\n\
     \n  tuple<int, int, int> to_tuple() const { return {year, month, day}; }\n\n \
     \ static bool is_leap_year(int y) {\n    if (y % 400 == 0) return true;\n    return\
-    \ (y % 4 == 0 && y % 100 != 0);\n  }\n};\n"
+    \ (y % 4 == 0 && y % 100 != 0);\n  }\n\n  static bool is_valid_date(int y, int\
+    \ m, int d) {\n    if (!(1 <= m && m <= 12)) return 0;\n    int mx = month_days[m];\n\
+    \    if (m == 2 && is_leap_year(y)) ++mx;\n    return (1 <= d && d <= mx);\n \
+    \ }\n};\n"
   code: "struct DateTime {\n  static constexpr int month_days[13]\n      = {0, 31,\
     \ 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};\n  int year, month, day;\n  DateTime(int\
     \ y, int m, int d) : year(y), month(m), day(d) {}\n\n  // 1\u5E741\u67081\u65E5\
@@ -81,13 +84,16 @@ data:
     \    while (len(d) < 2) d = \"0\" + d;\n    return y + sep + m + sep + d;\n  }\n\
     \n  tuple<int, int, int> to_tuple() const { return {year, month, day}; }\n\n \
     \ static bool is_leap_year(int y) {\n    if (y % 400 == 0) return true;\n    return\
-    \ (y % 4 == 0 && y % 100 != 0);\n  }\n};\n"
+    \ (y % 4 == 0 && y % 100 != 0);\n  }\n\n  static bool is_valid_date(int y, int\
+    \ m, int d) {\n    if (!(1 <= m && m <= 12)) return 0;\n    int mx = month_days[m];\n\
+    \    if (m == 2 && is_leap_year(y)) ++mx;\n    return (1 <= d && d <= mx);\n \
+    \ }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: datetime/datetime.hpp
   requiredBy: []
-  timestamp: '2023-09-06 04:41:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-10-14 01:43:46+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/2109.test.cpp
   - test/yukicoder/779.test.cpp

@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
   - icon: ':heavy_check_mark:'

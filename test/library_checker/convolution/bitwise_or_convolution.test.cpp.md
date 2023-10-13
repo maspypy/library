@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: setfunc/or_convolution.hpp
     title: setfunc/or_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/zeta.hpp
     title: setfunc/zeta.hpp
   _extendedRequiredBy: []
@@ -281,28 +281,29 @@ data:
     \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 167772161) return\
     \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
     \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
-    \ == 998244353) return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n\
-    \    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881) return\
-    \ {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
-    \ return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 2 \"setfunc/zeta.hpp\"\n\r\ntemplate\
-    \ <typename T>\r\nvoid superset_zeta(vc<T>& A) {\r\n  int log = topbit(len(A));\r\
-    \n  assert(1 << log == len(A));\r\n  FOR(n, log) FOR(s, 1 << log) {\r\n    int\
-    \ t = s ^ (1 << n);\r\n    if (s < t) A[s] += A[t];\r\n  }\r\n}\r\n\r\ntemplate\
-    \ <typename T>\r\nvoid superset_mobius(vc<T>& A) {\r\n  int log = topbit(len(A));\r\
-    \n  assert(1 << log == len(A));\r\n  FOR(n, log) FOR(s, 1 << log) {\r\n    int\
-    \ t = s ^ (1 << n);\r\n    if (s < t) A[s] -= A[t];\r\n  }\r\n}\r\n\r\ntemplate\
-    \ <typename T>\r\nvoid subset_zeta(vc<T>& A) {\r\n  int log = topbit(len(A));\r\
-    \n  assert(1 << log == len(A));\r\n  FOR(n, log) FOR(s, 1 << log) {\r\n    int\
-    \ t = s ^ (1 << n);\r\n    if (s > t) A[s] += A[t];\r\n  }\r\n}\r\n\r\ntemplate\
-    \ <typename T>\r\nvoid subset_mobius(vc<T>& A) {\r\n  int log = topbit(len(A));\r\
-    \n  assert(1 << log == len(A));\r\n  FOR(n, log) FOR(s, 1 << log) {\r\n    int\
-    \ t = s ^ (1 << n);\r\n    if (s > t) A[s] -= A[t];\r\n  }\r\n}\n#line 2 \"setfunc/or_convolution.hpp\"\
-    \ntemplate <typename T>\r\nvc<T> or_convolution(vc<T> A, vc<T> B) {\r\n  subset_zeta(A);\r\
-    \n  subset_zeta(B);\r\n  FOR(i, len(A)) A[i] *= B[i];\r\n  subset_mobius(A);\r\
-    \n  return A;\r\n}\r\n#line 7 \"test/library_checker/convolution/bitwise_or_convolution.test.cpp\"\
-    \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint,\
-    \ A, 1 << N);\r\n  VEC(mint, B, 1 << N);\r\n  reverse(all(A));\r\n  reverse(all(B));\r\
+    \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
+    \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
+    \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
+    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
+    \ -1; }\n};\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 2 \"setfunc/zeta.hpp\"\n\r\ntemplate <typename T>\r\nvoid superset_zeta(vc<T>&\
+    \ A) {\r\n  int log = topbit(len(A));\r\n  assert(1 << log == len(A));\r\n  FOR(n,\
+    \ log) FOR(s, 1 << log) {\r\n    int t = s ^ (1 << n);\r\n    if (s < t) A[s]\
+    \ += A[t];\r\n  }\r\n}\r\n\r\ntemplate <typename T>\r\nvoid superset_mobius(vc<T>&\
+    \ A) {\r\n  int log = topbit(len(A));\r\n  assert(1 << log == len(A));\r\n  FOR(n,\
+    \ log) FOR(s, 1 << log) {\r\n    int t = s ^ (1 << n);\r\n    if (s < t) A[s]\
+    \ -= A[t];\r\n  }\r\n}\r\n\r\ntemplate <typename T>\r\nvoid subset_zeta(vc<T>&\
+    \ A) {\r\n  int log = topbit(len(A));\r\n  assert(1 << log == len(A));\r\n  FOR(n,\
+    \ log) FOR(s, 1 << log) {\r\n    int t = s ^ (1 << n);\r\n    if (s > t) A[s]\
+    \ += A[t];\r\n  }\r\n}\r\n\r\ntemplate <typename T>\r\nvoid subset_mobius(vc<T>&\
+    \ A) {\r\n  int log = topbit(len(A));\r\n  assert(1 << log == len(A));\r\n  FOR(n,\
+    \ log) FOR(s, 1 << log) {\r\n    int t = s ^ (1 << n);\r\n    if (s > t) A[s]\
+    \ -= A[t];\r\n  }\r\n}\n#line 2 \"setfunc/or_convolution.hpp\"\ntemplate <typename\
+    \ T>\r\nvc<T> or_convolution(vc<T> A, vc<T> B) {\r\n  subset_zeta(A);\r\n  subset_zeta(B);\r\
+    \n  FOR(i, len(A)) A[i] *= B[i];\r\n  subset_mobius(A);\r\n  return A;\r\n}\r\n\
+    #line 7 \"test/library_checker/convolution/bitwise_or_convolution.test.cpp\"\n\
+    \r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint, A,\
+    \ 1 << N);\r\n  VEC(mint, B, 1 << N);\r\n  reverse(all(A));\r\n  reverse(all(B));\r\
     \n  auto ANS = or_convolution(A, B);\r\n  reverse(all(ANS));\r\n  print(ANS);\r\
     \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
     \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
@@ -324,7 +325,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/convolution/bitwise_or_convolution.test.cpp
   requiredBy: []
-  timestamp: '2023-10-06 12:12:06+09:00'
+  timestamp: '2023-10-14 01:49:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/convolution/bitwise_or_convolution.test.cpp

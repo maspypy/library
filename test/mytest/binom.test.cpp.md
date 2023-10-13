@@ -18,9 +18,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -282,17 +282,17 @@ data:
     \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 167772161) return\
     \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
     \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
-    \ == 998244353) return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n\
-    \    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881) return\
-    \ {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
-    \ return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 7 \"test/mytest/binom.test.cpp\"\n\
-    \nusing mint = modint998;\n\nvoid test() {\n  FOR(100000) {\n    int n = RNG(0,\
-    \ 1000);\n    int k = RNG(0, 1000);\n    mint a = C<mint>(n, k);\n    mint b =\
-    \ C<mint, 0, 1>(n, k);\n    mint c = C<mint, 1, 0>(n, k);\n    assert(a == b &&\
-    \ b == c);\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned\
-    \ main() {\n  cout << fixed << setprecision(15);\n\n  solve();\n\n  return 0;\n\
-    }\n"
+    \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
+    \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
+    \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
+    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
+    \ -1; }\n};\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 7 \"test/mytest/binom.test.cpp\"\n\nusing mint = modint998;\n\nvoid test()\
+    \ {\n  FOR(100000) {\n    int n = RNG(0, 1000);\n    int k = RNG(0, 1000);\n \
+    \   mint a = C<mint>(n, k);\n    mint b = C<mint, 0, 1>(n, k);\n    mint c = C<mint,\
+    \ 1, 0>(n, k);\n    assert(a == b && b == c);\n  }\n}\n\nvoid solve() {\n  LL(a,\
+    \ b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"random/base.hpp\"\n\n#include \"mod/modint.hpp\"\
     \n\nusing mint = modint998;\n\nvoid test() {\n  FOR(100000) {\n    int n = RNG(0,\
@@ -310,8 +310,8 @@ data:
   isVerificationFile: true
   path: test/mytest/binom.test.cpp
   requiredBy: []
-  timestamp: '2023-10-06 12:12:06+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-10-14 01:49:27+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/binom.test.cpp
 layout: document

@@ -3,19 +3,19 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/assignment.test.cpp
     title: test/library_checker/graph/assignment.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"flow/hungarian.hpp\"\n// \u6700\u5C0F\u91CD\u307F\u6700\u5927\
-    \u30DE\u30C3\u30C1\u30F3\u30B0\u3002O(N^2M) time\u3002\n// \u30DD\u30C6\u30F3\u30B7\
-    \u30E3\u30EB\u306F\u6B21\u306E\u53CC\u5BFE\u554F\u984C\u306E\u89E3\u3067\u3042\
-    \u308B\uFF1A\n//   maximize \\sum x_i + \\sum y_j, subj to x_i + y_j\\leq C_{ij}\n\
-    // returns:\n//   (ans, match, X, Y)\ntemplate <typename T>\ntuple<T, vc<int>,\
+  bundledCode: "#line 1 \"flow/hungarian.hpp\"\n// (ans, match, X, Y)\n// \u6700\u5C0F\
+    \u91CD\u307F\u6700\u5927\u30DE\u30C3\u30C1\u30F3\u30B0\u3002O(N^2M) time\u3002\
+    \n// \u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u306F\u6B21\u306E\u53CC\u5BFE\u554F\u984C\
+    \u306E\u89E3\u3067\u3042\u308B\uFF1A\n//   maximize \\sum x_i + \\sum y_j, subj\
+    \ to x_i + y_j\\leq C_{ij}\n// returns:\ntemplate <typename T>\ntuple<T, vc<int>,\
     \ vc<T>, vc<T>> hungarian(vvc<T>& C) {\n  int N = len(C);\n  int M = len(C[0]);\n\
     \  assert(N <= M);\n  vv(T, A, N + 1, M + 1);\n  FOR(i, N) FOR(j, M) A[1 + i][1\
     \ + j] = C[i][j];\n  ++N, ++M;\n\n  vector<int> P(M), way(M);\n  vector<T> X(N),\
@@ -32,14 +32,14 @@ data:
     \  T res = -Y[0];\n  X.erase(X.begin());\n  Y.erase(Y.begin());\n  vc<int> match(N);\n\
     \  FOR(i, N) match[P[i]] = i;\n  match.erase(match.begin());\n  for (auto&& i:\
     \ match) --i;\n  return {res, match, X, Y};\n}\n"
-  code: "// \u6700\u5C0F\u91CD\u307F\u6700\u5927\u30DE\u30C3\u30C1\u30F3\u30B0\u3002\
-    O(N^2M) time\u3002\n// \u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u306F\u6B21\u306E\u53CC\
-    \u5BFE\u554F\u984C\u306E\u89E3\u3067\u3042\u308B\uFF1A\n//   maximize \\sum x_i\
-    \ + \\sum y_j, subj to x_i + y_j\\leq C_{ij}\n// returns:\n//   (ans, match, X,\
-    \ Y)\ntemplate <typename T>\ntuple<T, vc<int>, vc<T>, vc<T>> hungarian(vvc<T>&\
-    \ C) {\n  int N = len(C);\n  int M = len(C[0]);\n  assert(N <= M);\n  vv(T, A,\
-    \ N + 1, M + 1);\n  FOR(i, N) FOR(j, M) A[1 + i][1 + j] = C[i][j];\n  ++N, ++M;\n\
-    \n  vector<int> P(M), way(M);\n  vector<T> X(N), Y(M);\n  vc<T> minV;\n  vc<bool>\
+  code: "// (ans, match, X, Y)\n// \u6700\u5C0F\u91CD\u307F\u6700\u5927\u30DE\u30C3\
+    \u30C1\u30F3\u30B0\u3002O(N^2M) time\u3002\n// \u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\
+    \u306F\u6B21\u306E\u53CC\u5BFE\u554F\u984C\u306E\u89E3\u3067\u3042\u308B\uFF1A\
+    \n//   maximize \\sum x_i + \\sum y_j, subj to x_i + y_j\\leq C_{ij}\n// returns:\n\
+    template <typename T>\ntuple<T, vc<int>, vc<T>, vc<T>> hungarian(vvc<T>& C) {\n\
+    \  int N = len(C);\n  int M = len(C[0]);\n  assert(N <= M);\n  vv(T, A, N + 1,\
+    \ M + 1);\n  FOR(i, N) FOR(j, M) A[1 + i][1 + j] = C[i][j];\n  ++N, ++M;\n\n \
+    \ vector<int> P(M), way(M);\n  vector<T> X(N), Y(M);\n  vc<T> minV;\n  vc<bool>\
     \ used;\n\n  for (int i = 1; i < N; i++) {\n    P[0] = i;\n    minV.assign(M,\
     \ infty<T>);\n    used.assign(M, false);\n    int j0 = 0;\n    while (P[j0] !=\
     \ 0) {\n      int i0 = P[j0], j1 = 0;\n      used[j0] = true;\n      T delta =\
@@ -56,8 +56,8 @@ data:
   isVerificationFile: false
   path: flow/hungarian.hpp
   requiredBy: []
-  timestamp: '2023-02-02 04:07:20+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-10-14 01:45:13+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/graph/assignment.test.cpp
 documentation_of: flow/hungarian.hpp
