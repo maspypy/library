@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/count_subseq.hpp
     title: string/count_subseq.hpp
   _extendedRequiredBy: []
