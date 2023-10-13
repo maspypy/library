@@ -89,4 +89,11 @@ struct DateTime {
     if (y % 400 == 0) return true;
     return (y % 4 == 0 && y % 100 != 0);
   }
+
+  static bool is_valid_date(int y, int m, int d) {
+    if (!(1 <= m && m <= 12)) return 0;
+    int mx = month_days[m];
+    if (m == 2 && is_leap_year(y)) ++mx;
+    return (1 <= d && d <= mx);
+  }
 };
