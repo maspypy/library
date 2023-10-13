@@ -4,8 +4,8 @@
 #include "poly/coef_of_rational_fps.hpp"
 
 template <typename mint>
-mint interpolate_linear_rec(vector<mint>& A, ll N, int off) {
-  if(N < len(A)) return A[N];
+mint interpolate_linear_rec(vector<mint> A, ll N, int off) {
+  if (N < len(A)) return A[N];
   A = {A.begin() + off, A.end()};
   N -= off;
   auto G = find_linear_rec(A);
