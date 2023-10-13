@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: flow/mincostflow.hpp
     title: flow/mincostflow.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/assignment
@@ -310,30 +310,26 @@ data:
     \    cost += c * d;\n      if (prev_cost_per_flow == d) { result.pop_back(); }\n\
     \      result.push_back({flow, cost});\n      prev_cost_per_flow = d;\n    }\n\
     \    return result;\n  }\n};\n#line 5 \"test/library_checker/graph/assignment_mcf.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  mcf_graph<int, ll, true> G(N + N + 2);\n  int\
-    \ source = 0;\n  auto left = [&](int i) -> int { return 1 + i; };\n  auto right\
-    \ = [&](int i) -> int { return 1 + N + i; };\n  int sink = right(N);\n  FOR(i,\
-    \ N) FOR(j, N) {\n    LL(x);\n    G.add(left(i), right(j), 1, x);\n  }\n  FOR(i,\
-    \ N) {\n    G.add(source, left(i), 1, 0);\n    G.add(right(i), sink, 1, 0);\n\
-    \  }\n  auto xy = G.slope(source, sink);\n  auto edges = G.edges();\n  vi ANS(N);\n\
+    \n\nvoid solve() {\n  LL(N);\n  int source = 0;\n  auto left = [&](int i) -> int\
+    \ { return 1 + i; };\n  auto right = [&](int i) -> int { return 1 + N + i; };\n\
+    \  int sink = right(N);\n  Min_Cost_Flow<int, ll, true> G(N + N + 2, source, sink);\n\
+    \  FOR(i, N) FOR(j, N) {\n    LL(x);\n    G.add(left(i), right(j), 1, x);\n  }\n\
+    \  FOR(i, N) {\n    G.add(source, left(i), 1, 0);\n    G.add(right(i), sink, 1,\
+    \ 0);\n  }\n  auto xy = G.slope();\n  auto edges = G.edges();\n  vi ANS(N);\n\
     \  for (auto&& e: edges) {\n    if (e.flow && 1 <= e.frm && e.frm <= N) {\n  \
     \    ANS[e.frm - 1] = e.to - right(0);\n    }\n  }\n  print(xy.back().se);\n \
-    \ print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
+    \ print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/assignment\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"flow/mincostflow.hpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  mcf_graph<int, ll, true> G(N + N + 2);\n  int\
-    \ source = 0;\n  auto left = [&](int i) -> int { return 1 + i; };\n  auto right\
-    \ = [&](int i) -> int { return 1 + N + i; };\n  int sink = right(N);\n  FOR(i,\
-    \ N) FOR(j, N) {\n    LL(x);\n    G.add(left(i), right(j), 1, x);\n  }\n  FOR(i,\
-    \ N) {\n    G.add(source, left(i), 1, 0);\n    G.add(right(i), sink, 1, 0);\n\
-    \  }\n  auto xy = G.slope(source, sink);\n  auto edges = G.edges();\n  vi ANS(N);\n\
+    \n\nvoid solve() {\n  LL(N);\n  int source = 0;\n  auto left = [&](int i) -> int\
+    \ { return 1 + i; };\n  auto right = [&](int i) -> int { return 1 + N + i; };\n\
+    \  int sink = right(N);\n  Min_Cost_Flow<int, ll, true> G(N + N + 2, source, sink);\n\
+    \  FOR(i, N) FOR(j, N) {\n    LL(x);\n    G.add(left(i), right(j), 1, x);\n  }\n\
+    \  FOR(i, N) {\n    G.add(source, left(i), 1, 0);\n    G.add(right(i), sink, 1,\
+    \ 0);\n  }\n  auto xy = G.slope();\n  auto edges = G.edges();\n  vi ANS(N);\n\
     \  for (auto&& e: edges) {\n    if (e.flow && 1 <= e.frm && e.frm <= N) {\n  \
     \    ANS[e.frm - 1] = e.to - right(0);\n    }\n  }\n  print(xy.back().se);\n \
-    \ print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
+    \ print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -341,8 +337,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/assignment_mcf.test.cpp
   requiredBy: []
-  timestamp: '2023-10-14 01:47:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-10-14 05:56:03+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/assignment_mcf.test.cpp
 layout: document

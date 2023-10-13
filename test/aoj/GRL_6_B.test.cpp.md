@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: flow/mincostflow.hpp
     title: flow/mincostflow.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B
@@ -310,18 +310,16 @@ data:
     \    cost += c * d;\n      if (prev_cost_per_flow == d) { result.pop_back(); }\n\
     \      result.push_back({flow, cost});\n      prev_cost_per_flow = d;\n    }\n\
     \    return result;\n  }\n};\n#line 7 \"test/aoj/GRL_6_B.test.cpp\"\n\nvoid solve()\
-    \ {\n  LL(N, M, F);\n  mcf_graph<int, ll, 0> G(N);\n  FOR(M) {\n    LL(a, b, c,\
-    \ d);\n    G.add(a, b, c, d);\n  }\n\n  auto [f, x] = G.flow(0, N - 1, F);\n \
-    \ if (f < F)\n    print(-1);\n  else\n    print(x);\n}\n\nsigned main() {\n  cout\
-    \ << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\
-    \n  return 0;\n}\n"
+    \ {\n  LL(N, M, F);\n  Min_Cost_Flow<int, ll, 0> G(N, 0, N - 1);\n  FOR(M) {\n\
+    \    LL(a, b, c, d);\n    G.add(a, b, c, d);\n  }\n\n  auto [f, x] = G.flow(F);\n\
+    \  if (f < F)\n    print(-1);\n  else\n    print(x);\n}\n\nsigned main() {\n \
+    \ solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B\"\
     \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"flow/mincostflow.hpp\"\
-    \n\nvoid solve() {\n  LL(N, M, F);\n  mcf_graph<int, ll, 0> G(N);\n  FOR(M) {\n\
-    \    LL(a, b, c, d);\n    G.add(a, b, c, d);\n  }\n\n  auto [f, x] = G.flow(0,\
-    \ N - 1, F);\n  if (f < F)\n    print(-1);\n  else\n    print(x);\n}\n\nsigned\
-    \ main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n\
-    \  FOR(T) solve();\n\n  return 0;\n}\n"
+    \n\nvoid solve() {\n  LL(N, M, F);\n  Min_Cost_Flow<int, ll, 0> G(N, 0, N - 1);\n\
+    \  FOR(M) {\n    LL(a, b, c, d);\n    G.add(a, b, c, d);\n  }\n\n  auto [f, x]\
+    \ = G.flow(F);\n  if (f < F)\n    print(-1);\n  else\n    print(x);\n}\n\nsigned\
+    \ main() {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -329,8 +327,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_6_B.test.cpp
   requiredBy: []
-  timestamp: '2023-10-14 01:47:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-10-14 05:56:03+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_6_B.test.cpp
 layout: document
