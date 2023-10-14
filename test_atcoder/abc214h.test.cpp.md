@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: flow/mincostflow.hpp
     title: flow/mincostflow.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc214/tasks/abc214_h
@@ -394,11 +394,11 @@ data:
     \ nc, comp);\n  vi X(nc);\n  FOR(v, N) {\n    INT(x);\n    X[comp[v]] += x;\n\
     \  }\n\n  auto idx1 = [&](int i) -> int { return 1 + 2 * i + 0; };\n  auto idx2\
     \ = [&](int i) -> int { return 1 + 2 * i + 1; };\n  int source = 0, sink = 1 +\
-    \ nc + nc;\n\n  mcf_graph<int, ll, true> G(2 * nc + 2);\n  G.add(source, idx1(comp[0]),\
-    \ K, 0);\n  FOR(v, nc) {\n    G.add(idx1(v), idx2(v), 1, -X[v]);\n    G.add(idx1(v),\
-    \ idx2(v), K, 0);\n    G.add(idx2(v), sink, K, 0);\n  }\n  for (auto&& e: DAG.edges)\
-    \ { G.add(idx2(e.frm), idx1(e.to), K, 0); }\n\n  auto [a, b] = G.flow(source,\
-    \ sink);\n  assert(a == K);\n  print(-b);\n}\n\nsigned main() {\n  solve();\n\
+    \ nc + nc;\n\n  Min_Cost_Flow<int, ll, true> G(2 * nc + 2, source, sink);\n  G.add(source,\
+    \ idx1(comp[0]), K, 0);\n  FOR(v, nc) {\n    G.add(idx1(v), idx2(v), 1, -X[v]);\n\
+    \    G.add(idx1(v), idx2(v), K, 0);\n    G.add(idx2(v), sink, K, 0);\n  }\n  for\
+    \ (auto&& e: DAG.edges) { G.add(idx2(e.frm), idx1(e.to), K, 0); }\n\n  auto [a,\
+    \ b] = G.flow();\n  assert(a == K);\n  print(-b);\n}\n\nsigned main() {\n  solve();\n\
     \  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc214/tasks/abc214_h\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/strongly_connected_component.hpp\"\
@@ -407,12 +407,12 @@ data:
     \  auto DAG = scc_dag(G0, nc, comp);\n  vi X(nc);\n  FOR(v, N) {\n    INT(x);\n\
     \    X[comp[v]] += x;\n  }\n\n  auto idx1 = [&](int i) -> int { return 1 + 2 *\
     \ i + 0; };\n  auto idx2 = [&](int i) -> int { return 1 + 2 * i + 1; };\n  int\
-    \ source = 0, sink = 1 + nc + nc;\n\n  mcf_graph<int, ll, true> G(2 * nc + 2);\n\
-    \  G.add(source, idx1(comp[0]), K, 0);\n  FOR(v, nc) {\n    G.add(idx1(v), idx2(v),\
-    \ 1, -X[v]);\n    G.add(idx1(v), idx2(v), K, 0);\n    G.add(idx2(v), sink, K,\
-    \ 0);\n  }\n  for (auto&& e: DAG.edges) { G.add(idx2(e.frm), idx1(e.to), K, 0);\
-    \ }\n\n  auto [a, b] = G.flow(source, sink);\n  assert(a == K);\n  print(-b);\n\
-    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ source = 0, sink = 1 + nc + nc;\n\n  Min_Cost_Flow<int, ll, true> G(2 * nc +\
+    \ 2, source, sink);\n  G.add(source, idx1(comp[0]), K, 0);\n  FOR(v, nc) {\n \
+    \   G.add(idx1(v), idx2(v), 1, -X[v]);\n    G.add(idx1(v), idx2(v), K, 0);\n \
+    \   G.add(idx2(v), sink, K, 0);\n  }\n  for (auto&& e: DAG.edges) { G.add(idx2(e.frm),\
+    \ idx1(e.to), K, 0); }\n\n  auto [a, b] = G.flow();\n  assert(a == K);\n  print(-b);\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -422,8 +422,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc214h.test.cpp
   requiredBy: []
-  timestamp: '2023-10-14 01:47:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-10-14 13:09:58+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc214h.test.cpp
 layout: document
