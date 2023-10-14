@@ -1,18 +1,18 @@
 #include "random/base.hpp"
 #include "mod/mod_pow.hpp"
 
-// p は素数
+// p は素数. 解なしは -1.
 int mod_sqrt(int a, int p) {
   if (p == 2) return a;
   if (a == 0) return 0;
   int k = (p - 1) / 2;
-  if (mod_pow(a, k, p) != 1) return 0;
+  if (mod_pow(a, k, p) != 1) return -1;
   auto find = [&]() -> pi {
     while (1) {
       ll b = RNG(2, p);
       ll D = (b * b - a) % p;
       if (D == 0) return {b, D};
-      if (mod_pow_32(D, k, p) != 1) return {b, D};
+      if (mod_pow(D, k, p) != 1) return {b, D};
     }
   };
   auto [b, D] = find();
@@ -30,16 +30,15 @@ int mod_sqrt(int a, int p) {
     k >>= 1;
   }
   if (g0 < 0) g0 += p;
-  print(a, g0 * g0 % p);
   return g0;
 }
 
-// p は素数
+// p は素数. 解なしは -1.
 ll mod_sqrt_64(ll a, ll p) {
   if (p == 2) return a;
   if (a == 0) return 0;
   ll k = (p - 1) / 2;
-  if (mod_pow_64(a, k, p) != 1) return 0;
+  if (mod_pow_64(a, k, p) != 1) return -1;
   auto find = [&]() -> pair<i128, i128> {
     while (1) {
       i128 b = RNG(2, p);

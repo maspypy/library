@@ -19,11 +19,11 @@ int primitive_root(int p) {
   return -1;
 }
 
-ll primitive_root_long(ll p) {
+ll primitive_root_64(ll p) {
   auto pf = factor(p - 1);
   auto is_ok = [&](ll g) -> bool {
     for (auto&& [q, e]: pf)
-      if (mod_pow_long(g, (p - 1) / q, p) == 1) return false;
+      if (mod_pow_64(g, (p - 1) / q, p) == 1) return false;
     return true;
   };
   while (1) {
