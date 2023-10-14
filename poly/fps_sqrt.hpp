@@ -41,7 +41,7 @@ vc<mint> fps_sqrt_any(vc<mint>& f) {
   if (d == n) return f;
   if (d & 1) return {};
   mint y = f[d];
-  mint x = mod_sqrt(y);
+  mint x = mod_sqrt(y.val, mint::get_mod());
   if (x * x != y) return {};
   mint c = mint(1) / y;
   vc<mint> g(n - d);
