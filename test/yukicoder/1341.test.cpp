@@ -22,7 +22,7 @@ void solve() {
   auto idx_y = [&](int i) -> int { return 1 + 4 * N + i; };
   auto idx_xy = [&](int i) -> int { return 1 + 5 * N + i; };
   int sink = 1 + 6 * N;
-  mcf_graph<int, ll, true> G(sink + 1);
+  Min_Cost_Flow<int, ll, true> G(sink + 1, source, sink);
 
   // x：a の下として使う
   // y：c の上として使う
@@ -46,7 +46,7 @@ void solve() {
     if (k != N) G.add(idx_c(i), idx_y(k), 1, 0);
   }
 
-  auto [flow, cost] = G.flow(source, sink);
+  auto [flow, cost] = G.flow();
   YES(flow == N);
   if (flow == N) {
     cost = -cost;
@@ -55,11 +55,6 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }

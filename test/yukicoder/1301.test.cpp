@@ -5,7 +5,7 @@
 
 void solve() {
   LL(N, M);
-  mcf_graph<int, ll> G(N + M + M);
+  Min_Cost_Flow<int, ll> G(N + M + M, 0, N - 1);
   FOR(i, M) {
     LL(a, b, c, d);
     --a, --b;
@@ -18,17 +18,10 @@ void solve() {
     G.add(ein, eout, 1, c);
     G.add(ein, eout, 1, d);
   }
-  print(G.slope(0, N - 1, 2).back().se);
+  print(G.slope(2).back().se);
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }

@@ -11,7 +11,7 @@ void solve() {
   auto right = [&](int i) -> int { return 1 + N + i; };
   int source = 0;
   int sink = 1 + N + N;
-  mcf_graph<int, int, true> G(N + N + 2);
+  Min_Cost_Flow<int, int, true> G(N + N + 2, source, sink);
 
   VV(ll, P, N, N);
   FOR(i, N) G.add(source, left(i), A[i], 0);
@@ -27,16 +27,11 @@ void solve() {
       G.add(left(i), right(j), 1, b - a);
     }
   }
-  auto [flow, cost] = G.flow(source, sink);
+  auto [flow, cost] = G.flow();
   print(base + cost);
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
