@@ -8,7 +8,7 @@ data:
   - icon: ':question:'
     path: setfunc/sps_composition.hpp
     title: setfunc/sps_composition.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/sps_exp.hpp
     title: setfunc/sps_exp.hpp
   - icon: ':question:'
@@ -17,7 +17,7 @@ data:
   - icon: ':question:'
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/transposed_sps_composition.hpp
     title: setfunc/transposed_sps_composition.hpp
   _extendedVerifiedWith:
@@ -39,10 +39,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc213g.test.cpp
     title: test_atcoder/abc213g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc236h.test.cpp
     title: test_atcoder/abc236h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc253h.test.cpp
     title: test_atcoder/abc253h.test.cpp
   - icon: ':x:'
