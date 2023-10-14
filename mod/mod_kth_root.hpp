@@ -84,7 +84,7 @@ int mod_kth_root(ll k, ll a, int mod) {
   return a;
 }
 
-ll mod_kth_root_long(ll k, ll a, ll mod) {
+ll mod_kth_root_64(ll k, ll a, ll mod) {
   static HashMap<ll, 20> MP;
 
   assert(primetest(mod) && 0 <= a && a < mod);
@@ -94,14 +94,14 @@ ll mod_kth_root_long(ll k, ll a, ll mod) {
   k %= mod - 1;
 
   ll g = gcd(k, mod - 1);
-  if (mod_pow_long(a, (mod - 1) / g, mod) != 1) return -1;
+  if (mod_pow_64(a, (mod - 1) / g, mod) != 1) return -1;
 
   ll c = mod_inv(k / g, (mod - 1) / g);
-  a = mod_pow_long(a, c, mod);
+  a = mod_pow_64(a, c, mod);
   k = i128(k) * c % (mod - 1);
   if (k == 0) return 1;
 
-  g = primitive_root_long(mod);
+  g = primitive_root_64(mod);
 
   auto solve_pp = [&](ll p, ll e, ll a) -> ll {
     ll f = 0;
@@ -119,7 +119,7 @@ ll mod_kth_root_long(ll k, ll a, ll mod) {
     ll pe = 1;
     FOR(e) pe *= p;
     // 必要ならば原始 p 乗根に関する離散対数問題のセットアップ
-    ll G = mod_pow_long(g, (mod - 1) / p, mod);
+    ll G = mod_pow_64(g, (mod - 1) / p, mod);
     ll M = 0;
     ll GM_inv = -1;
     if (c) {
@@ -130,7 +130,7 @@ ll mod_kth_root_long(ll k, ll a, ll mod) {
         MP[Gpow] = m;
         Gpow = i128(Gpow) * G % mod;
       }
-      GM_inv = mod_pow_long(Gpow, mod - 2, mod);
+      GM_inv = mod_pow_64(Gpow, mod - 2, mod);
     }
 
     while (c) {
@@ -138,7 +138,7 @@ ll mod_kth_root_long(ll k, ll a, ll mod) {
       b^{mp^c} = 1 が分かっている。(b/x^{p^e}})^{mp^{c-1}} = 1 にしたい。
       x = g^{p^{f-c-e}*k} として探す。原始 p 乗根 B, G に対する B = G^k に帰着。
       */
-      ll B = mod_pow_long(b, pc / p * m, mod);
+      ll B = mod_pow_64(b, pc / p * m, mod);
       ll k = [&](ll B) -> ll {
         FOR(m, M + 1) {
           if (MP.count(B)) return m * M + MP[B];
@@ -146,16 +146,16 @@ ll mod_kth_root_long(ll k, ll a, ll mod) {
         }
         return -1;
       }(B);
-      x = i128(x) * mod_pow_long(g, pf / pc / pe * k, mod) % mod;
+      x = i128(x) * mod_pow_64(g, pf / pc / pe * k, mod) % mod;
 
       ll exp = pf / pc * i128(k) % (mod - 1);
-      b = i128(b) * mod_pow_long(g, mod - 1 - exp, mod) % mod;
+      b = i128(b) * mod_pow_64(g, mod - 1 - exp, mod) % mod;
       --c;
       pc /= p;
     }
     ll k = pe - mod_inv(m, pe);
     k = (i128(k) * m + 1) / pe;
-    ll y = mod_pow_long(b, k, mod);
+    ll y = mod_pow_64(b, k, mod);
     x = i128(x) * y % mod;
     return x;
   };

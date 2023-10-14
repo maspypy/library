@@ -8,7 +8,7 @@ using mint = dmint;
 
 void solve() {
   mint::set_mod(998244353);
-  // mint::set_ntt_info();
+  mint::set_ntt_info();
 
   LL(N, M);
   VEC(mint, A, N);
