@@ -39,7 +39,7 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/product_of_one_pm_xn.test.cpp
     title: test/mytest/product_of_one_pm_xn.test.cpp
   - icon: ':x:'
@@ -47,7 +47,7 @@ data:
     title: test_atcoder/abc267h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -397,7 +397,7 @@ data:
   path: poly/product_of_one_minus_xn.hpp
   requiredBy: []
   timestamp: '2023-10-14 15:38:43+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/product_of_one_pm_xn.test.cpp
   - test_atcoder/abc267h.test.cpp
