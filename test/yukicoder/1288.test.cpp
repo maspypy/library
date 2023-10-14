@@ -12,7 +12,7 @@ void solve() {
   auto C = [&](int i) -> int { return 2 * (N + 1) + i; };
   auto D = [&](int i) -> int { return 3 * (N + 1) + i; };
   auto E = [&](int i) -> int { return 4 * (N + 1) + i; };
-  mcf_graph<int, ll, true> G(5 * N + 5);
+  Min_Cost_Flow<int, ll, true> G(5 * N + 5, A(0), E(N));
   FOR(i, N) G.add(A(i), A(i + 1), N, 0);
   FOR(i, N) G.add(B(i), B(i + 1), N, 0);
   FOR(i, N) G.add(C(i), C(i + 1), N, 0);
@@ -25,18 +25,11 @@ void solve() {
     if (S[i] == 'i') G.add(D(i), E(i + 1), 1, -X[i]);
   }
   ll ANS = 0;
-  for (auto&& [x, y]: G.slope(A(0), E(N))) chmax(ANS, -y);
+  for (auto&& [x, y]: G.slope()) chmax(ANS, -y);
   print(ANS);
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }
