@@ -29,7 +29,7 @@ data:
   - icon: ':question:'
     path: linalg/implicit_matrix/pascal.hpp
     title: linalg/implicit_matrix/pascal.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
   - icon: ':warning:'
@@ -152,7 +152,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/online/online_square.hpp
     title: poly/online/online_square.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
   - icon: ':question:'
@@ -170,10 +170,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/product_of_f_rk_x.hpp
     title: poly/product_of_f_rk_x.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/product_of_one_minus_xn.hpp
     title: poly/product_of_one_minus_xn.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/product_of_one_plus_xn.hpp
     title: poly/product_of_one_plus_xn.hpp
   - icon: ':heavy_check_mark:'
@@ -591,25 +591,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc222h.test.cpp
     title: test_atcoder/abc222h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc222h_2.test.cpp
     title: test_atcoder/abc222h_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc230h.test.cpp
     title: test_atcoder/abc230h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc241h.test.cpp
     title: test_atcoder/abc241h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc260h.test.cpp
     title: test_atcoder/abc260h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc267g.test.cpp
     title: test_atcoder/abc267g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc267h.test.cpp
     title: test_atcoder/abc267h.test.cpp
   - icon: ':x:'

@@ -42,12 +42,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/product_of_one_pm_xn.test.cpp
     title: test/mytest/product_of_one_pm_xn.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc267h.test.cpp
     title: test_atcoder/abc267h.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -397,7 +397,7 @@ data:
   path: poly/product_of_one_minus_xn.hpp
   requiredBy: []
   timestamp: '2023-10-14 15:38:43+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/product_of_one_pm_xn.test.cpp
   - test_atcoder/abc267h.test.cpp
