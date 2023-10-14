@@ -11,7 +11,7 @@ data:
   - icon: ':question:'
     path: setfunc/sps_exp.hpp
     title: setfunc/sps_exp.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: setfunc/sps_log.hpp
     title: setfunc/sps_log.hpp
   - icon: ':question:'
@@ -36,7 +36,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2507.test.cpp
     title: test/yukicoder/2507.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc213g.test.cpp
     title: test_atcoder/abc213g.test.cpp
   - icon: ':x:'
