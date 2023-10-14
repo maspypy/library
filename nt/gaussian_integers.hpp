@@ -84,7 +84,7 @@ vc<Gaussian_Integer<T>> solve_norm_equation_factor(vc<pair<ll, int>> pfs) {
           pow_x = mod_pow(x, (p - 1) / 4, p);
           if (pow_x * pow_x % p == p - 1) return pow_x;
         } else {
-          pow_x = mod_pow_long(x, (p - 1) / 4, p);
+          pow_x = mod_pow_64(x, (p - 1) / 4, p);
           if (i128(pow_x) * pow_x % p == p - 1) return pow_x;
         }
       }
