@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/powersums_assign.hpp
     title: alg/acted_monoid/powersums_assign.hpp
   - icon: ':heavy_check_mark:'
@@ -60,7 +60,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/summin_assign.test.cpp
     title: test/mytest/summin_assign.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1548.test.cpp
     title: test/yukicoder/1548.test.cpp
   - icon: ':heavy_check_mark:'
@@ -72,18 +72,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc256ex2.test.cpp
     title: test_atcoder/abc256ex2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, X none_val>\r\
+  bundledCode: "#line 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, int none_val>\r\
     \nstruct Monoid_Assign {\r\n  using value_type = X;\r\n  static X op(X x, X y)\
-    \ { return (y == none_val ? x : y); }\r\n  static constexpr X unit() { return\
-    \ none_val; }\r\n  static constexpr bool commute = false;\r\n};\r\n"
-  code: "#pragma once\r\n\r\ntemplate <typename X, X none_val>\r\nstruct Monoid_Assign\
-    \ {\r\n  using value_type = X;\r\n  static X op(X x, X y) { return (y == none_val\
-    \ ? x : y); }\r\n  static constexpr X unit() { return none_val; }\r\n  static\
+    \ { return (y == X(none_val) ? x : y); }\r\n  static constexpr X unit() { return\
+    \ X(none_val); }\r\n  static constexpr bool commute = false;\r\n};\r\n"
+  code: "#pragma once\r\n\r\ntemplate <typename X, int none_val>\r\nstruct Monoid_Assign\
+    \ {\r\n  using value_type = X;\r\n  static X op(X x, X y) { return (y == X(none_val)\
+    \ ? x : y); }\r\n  static constexpr X unit() { return X(none_val); }\r\n  static\
     \ constexpr bool commute = false;\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
@@ -95,8 +95,8 @@ data:
   - alg/acted_monoid/sum_assign.hpp
   - alg/acted_monoid/min_assign.hpp
   - alg/acted_monoid/powersums_assign.hpp
-  timestamp: '2022-12-01 09:04:06+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-10-14 20:28:40+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_F.test.cpp
   - test/aoj/DSL_2_D.test.cpp

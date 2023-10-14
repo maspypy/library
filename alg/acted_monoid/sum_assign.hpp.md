@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
   _extendedRequiredBy: []
@@ -32,15 +32,15 @@ data:
     \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
     \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
     \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"alg/monoid/assign.hpp\"\
-    \n\r\ntemplate <typename X, X none_val>\r\nstruct Monoid_Assign {\r\n  using value_type\
-    \ = X;\r\n  static X op(X x, X y) { return (y == none_val ? x : y); }\r\n  static\
-    \ constexpr X unit() { return none_val; }\r\n  static constexpr bool commute =\
-    \ false;\r\n};\r\n#line 3 \"alg/acted_monoid/sum_assign.hpp\"\n\r\ntemplate <typename\
-    \ E, E none_val>\r\nstruct ActedMonoid_Sum_Assign {\r\n  using Monoid_X = Monoid_Add<E>;\r\
-    \n  using Monoid_A = Monoid_Assign<E, none_val>;\r\n  using X = typename Monoid_X::value_type;\r\
-    \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
-    \ X &x, const A &a, const ll &size) {\r\n    if (a == Monoid_A::unit()) return\
-    \ x;\r\n    return a * E(size);\r\n  }\r\n};\r\n"
+    \n\r\ntemplate <typename X, int none_val>\r\nstruct Monoid_Assign {\r\n  using\
+    \ value_type = X;\r\n  static X op(X x, X y) { return (y == X(none_val) ? x :\
+    \ y); }\r\n  static constexpr X unit() { return X(none_val); }\r\n  static constexpr\
+    \ bool commute = false;\r\n};\r\n#line 3 \"alg/acted_monoid/sum_assign.hpp\"\n\
+    \r\ntemplate <typename E, E none_val>\r\nstruct ActedMonoid_Sum_Assign {\r\n \
+    \ using Monoid_X = Monoid_Add<E>;\r\n  using Monoid_A = Monoid_Assign<E, none_val>;\r\
+    \n  using X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
+    \n  static constexpr X act(const X &x, const A &a, const ll &size) {\r\n    if\
+    \ (a == Monoid_A::unit()) return x;\r\n    return a * E(size);\r\n  }\r\n};\r\n"
   code: "#include \"alg/monoid/add.hpp\"\r\n#include \"alg/monoid/assign.hpp\"\r\n\
     \r\ntemplate <typename E, E none_val>\r\nstruct ActedMonoid_Sum_Assign {\r\n \
     \ using Monoid_X = Monoid_Add<E>;\r\n  using Monoid_A = Monoid_Assign<E, none_val>;\r\
@@ -53,7 +53,7 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/sum_assign.hpp
   requiredBy: []
-  timestamp: '2022-12-04 02:49:41+09:00'
+  timestamp: '2023-10-14 20:28:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_I.test.cpp

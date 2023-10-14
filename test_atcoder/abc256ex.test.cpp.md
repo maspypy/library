@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
   - icon: ':heavy_check_mark:'
@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/intervals.hpp
     title: ds/intervals.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
   - icon: ':question:'
@@ -382,25 +382,25 @@ data:
     \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
     \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
     \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"alg/monoid/assign.hpp\"\
-    \n\r\ntemplate <typename X, X none_val>\r\nstruct Monoid_Assign {\r\n  using value_type\
-    \ = X;\r\n  static X op(X x, X y) { return (y == none_val ? x : y); }\r\n  static\
-    \ constexpr X unit() { return none_val; }\r\n  static constexpr bool commute =\
-    \ false;\r\n};\r\n#line 3 \"alg/acted_monoid/sum_assign.hpp\"\n\r\ntemplate <typename\
-    \ E, E none_val>\r\nstruct ActedMonoid_Sum_Assign {\r\n  using Monoid_X = Monoid_Add<E>;\r\
-    \n  using Monoid_A = Monoid_Assign<E, none_val>;\r\n  using X = typename Monoid_X::value_type;\r\
-    \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
-    \ X &x, const A &a, const ll &size) {\r\n    if (a == Monoid_A::unit()) return\
-    \ x;\r\n    return a * E(size);\r\n  }\r\n};\r\n#line 8 \"test_atcoder/abc256ex.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  Intervals_Fast<int> I(N,\
-    \ 0);\n  FOR(i, N) I.set(i, i + 1, A[i]);\n  Lazy_SegTree<ActedMonoid_Sum_Assign<ll,\
-    \ -1>> seg(A);\n  FOR(Q) {\n    INT(t, L, R);\n    --L;\n    if (t == 2) {\n \
-    \     LL(y);\n      I.set(L, R, y);\n      seg.apply(L, R, y);\n    }\n    if\
-    \ (t == 3) { print(seg.prod(L, R)); }\n    if (t == 1) {\n      INT(d);\n    \
-    \  vc<tuple<int, int, int>> tmp;\n      I.enumerate_range(\n          L, R, [&](int\
-    \ l, int r, int x) -> void { tmp.eb(l, r, x / d); },\n          true);\n     \
-    \ for (auto&& [l, r, x]: tmp) {\n        seg.apply(l, r, x);\n        I.set(l,\
-    \ r, x);\n      }\n    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
-    }\n"
+    \n\r\ntemplate <typename X, int none_val>\r\nstruct Monoid_Assign {\r\n  using\
+    \ value_type = X;\r\n  static X op(X x, X y) { return (y == X(none_val) ? x :\
+    \ y); }\r\n  static constexpr X unit() { return X(none_val); }\r\n  static constexpr\
+    \ bool commute = false;\r\n};\r\n#line 3 \"alg/acted_monoid/sum_assign.hpp\"\n\
+    \r\ntemplate <typename E, E none_val>\r\nstruct ActedMonoid_Sum_Assign {\r\n \
+    \ using Monoid_X = Monoid_Add<E>;\r\n  using Monoid_A = Monoid_Assign<E, none_val>;\r\
+    \n  using X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
+    \n  static constexpr X act(const X &x, const A &a, const ll &size) {\r\n    if\
+    \ (a == Monoid_A::unit()) return x;\r\n    return a * E(size);\r\n  }\r\n};\r\n\
+    #line 8 \"test_atcoder/abc256ex.test.cpp\"\n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll,\
+    \ A, N);\n  Intervals_Fast<int> I(N, 0);\n  FOR(i, N) I.set(i, i + 1, A[i]);\n\
+    \  Lazy_SegTree<ActedMonoid_Sum_Assign<ll, -1>> seg(A);\n  FOR(Q) {\n    INT(t,\
+    \ L, R);\n    --L;\n    if (t == 2) {\n      LL(y);\n      I.set(L, R, y);\n \
+    \     seg.apply(L, R, y);\n    }\n    if (t == 3) { print(seg.prod(L, R)); }\n\
+    \    if (t == 1) {\n      INT(d);\n      vc<tuple<int, int, int>> tmp;\n     \
+    \ I.enumerate_range(\n          L, R, [&](int l, int r, int x) -> void { tmp.eb(l,\
+    \ r, x / d); },\n          true);\n      for (auto&& [l, r, x]: tmp) {\n     \
+    \   seg.apply(l, r, x);\n        I.set(l, r, x);\n      }\n    }\n  }\n}\n\nsigned\
+    \ main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc256/tasks/abc256_Ex\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/intervals.hpp\"\
     \n#include \"ds/segtree/lazy_segtree.hpp\"\n#include \"alg/acted_monoid/sum_assign.hpp\"\
@@ -426,7 +426,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc256ex.test.cpp
   requiredBy: []
-  timestamp: '2023-10-06 12:12:06+09:00'
+  timestamp: '2023-10-14 20:28:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc256ex.test.cpp

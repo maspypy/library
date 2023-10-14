@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
   - icon: ':heavy_check_mark:'
@@ -216,157 +216,158 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, X none_val>\r\
-    \nstruct Monoid_Assign {\r\n  using value_type = X;\r\n  static X op(X x, X y)\
-    \ { return (y == none_val ? x : y); }\r\n  static constexpr X unit() { return\
-    \ none_val; }\r\n  static constexpr bool commute = false;\r\n};\r\n#line 2 \"\
-    mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class T>\n  static\
-    \ auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n  template <class\
-    \ T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate <class T>\n\
-    class has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\
-    \ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n\
-    \  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %=\
-    \ mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n    int q = (mod + k\
-    \ - 1) / k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n  }\n  return dat[n];\n\
-    }\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
-    \  assert(0 <= n && n < mod);\n  static vector<mint> dat = {1, 1};\n  while (len(dat)\
-    \ <= n) dat.eb(dat[len(dat) - 1] * mint::raw(len(dat)));\n  return dat[n];\n}\n\
-    \ntemplate <typename mint>\nmint fact_inv(int n) {\n  static vector<mint> dat\
-    \ = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat) <= n) dat.eb(dat[len(dat)\
-    \ - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\ntemplate <class mint, class...\
-    \ Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
-    }\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
-    \ &&head, Tail &&... tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
-    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  static vvc<mint>\
-    \ C;\n  static int H = 0, W = 0;\n  auto calc = [&](int i, int j) -> mint {\n\
-    \    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
-    \ + (j ? C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n     \
-    \ C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n\
-    \    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n +\
-    \ 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n   \
-    \ }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool\
-    \ large = false, bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n\
-    \  if (k < 0 || n < k) return 0;\n  if constexpr (dense) return C_dense<mint>(n,\
-    \ k);\n  if constexpr (!large) return multinomial<mint>(n, k, n - k);\n  k = min(k,\
-    \ n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n\
-    }\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n\
-    \  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
-    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
-    }\n\n// [x^d] (1-x) ^ {-n} \u306E\u8A08\u7B97\ntemplate <typename mint, bool large\
-    \ = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n\
-    \  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1) : mint(0));\
-    \ }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\
-    \n\ntemplate <int mod>\nstruct modint {\n  static constexpr u32 umod = u32(mod);\n\
-    \  static_assert(umod < u32(1) << 31);\n  u32 val;\n\n  static modint raw(u32\
-    \ v) {\n    modint x;\n    x.val = v;\n    return x;\n  }\n  constexpr modint()\
-    \ : val(0) {}\n  constexpr modint(u32 x) : val(x % umod) {}\n  constexpr modint(u64\
-    \ x) : val(x % umod) {}\n  constexpr modint(int x) : val((x %= mod) < 0 ? x +\
-    \ mod : x){};\n  constexpr modint(ll x) : val((x %= mod) < 0 ? x + mod : x){};\n\
-    \  bool operator<(const modint &other) const { return val < other.val; }\n  modint\
-    \ &operator+=(const modint &p) {\n    if ((val += p.val) >= umod) val -= umod;\n\
-    \    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if ((val\
-    \ += umod - p.val) >= umod) val -= umod;\n    return *this;\n  }\n  modint &operator*=(const\
-    \ modint &p) {\n    val = u64(val) * p.val % umod;\n    return *this;\n  }\n \
-    \ modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return\
-    \ *this;\n  }\n  modint operator-() const { return modint::raw(val ? mod - val\
-    \ : u32(0)); }\n  modint operator+(const modint &p) const { return modint(*this)\
-    \ += p; }\n  modint operator-(const modint &p) const { return modint(*this) -=\
-    \ p; }\n  modint operator*(const modint &p) const { return modint(*this) *= p;\
-    \ }\n  modint operator/(const modint &p) const { return modint(*this) /= p; }\n\
-    \  bool operator==(const modint &p) const { return val == p.val; }\n  bool operator!=(const\
-    \ modint &p) const { return val != p.val; }\n  modint inverse() const {\n    int\
-    \ a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n\
-    \      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n\
-    \  }\n  modint pow(ll n) const {\n    assert(n >= 0);\n    modint ret(1), mul(val);\n\
-    \    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n\
-    \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
-    \ }\n  void read() {\n    fastio::scanner.read(val);\n    val %= mod;\n  }\n#endif\n\
-    \  static constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E\
-    \ 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n    if (mod\
-    \ == 167772161) return {25, 17};\n    if (mod == 469762049) return {26, 30};\n\
-    \    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841) return\
-    \ {23, 211};\n    if (mod == 943718401) return {22, 663003469};\n    if (mod ==\
-    \ 998244353) return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n\
-    \    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881) return\
-    \ {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
-    \ return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 1 \"ds/randomized_bst/rbst_monoid.hpp\"\
-    \ntemplate <typename Monoid, bool PERSISTENT, int NODES>\nstruct RBST_Monoid {\n\
-    \  using X = typename Monoid::value_type;\n\n  struct Node {\n    Node *l, *r;\n\
-    \    X x, prod, rev_prod; // rev \u53CD\u6620\u6E08\n    u32 size;\n    bool rev;\n\
-    \  };\n\n  Node *pool;\n  int pid;\n  using np = Node *;\n\n  RBST_Monoid() :\
-    \ pid(0) { pool = new Node[NODES]; }\n\n  void reset() { pid = 0; }\n\n  np new_node(const\
-    \ X &x) {\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x = x;\n  \
-    \  pool[pid].prod = x;\n    pool[pid].rev_prod = x;\n    pool[pid].size = 1;\n\
-    \    pool[pid].rev = 0;\n    return &(pool[pid++]);\n  }\n\n  np new_node(const\
-    \ vc<X> &dat) {\n    auto dfs = [&](auto &dfs, u32 l, u32 r) -> np {\n      if\
-    \ (l == r) return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n \
-    \     u32 m = (l + r) / 2;\n      np l_root = dfs(dfs, l, m);\n      np r_root\
-    \ = dfs(dfs, m + 1, r);\n      np root = new_node(dat[m]);\n      root->l = l_root,\
-    \ root->r = r_root;\n      update(root);\n      return root;\n    };\n    return\
-    \ dfs(dfs, 0, len(dat));\n  }\n\n  np copy_node(np &n) {\n    if (!n || !PERSISTENT)\
-    \ return n;\n    pool[pid].l = n->l, pool[pid].r = n->r;\n    pool[pid].x = n->x;\n\
-    \    pool[pid].prod = n->prod;\n    pool[pid].rev_prod = n->rev_prod;\n    pool[pid].size\
-    \ = n->size;\n    pool[pid].rev = n->rev;\n    return &(pool[pid++]);\n  }\n\n\
-    \  np merge(np l_root, np r_root) { return merge_rec(l_root, r_root); }\n  np\
-    \ merge3(np a, np b, np c) { return merge(merge(a, b), c); }\n  np merge4(np a,\
-    \ np b, np c, np d) { return merge(merge(merge(a, b), c), d); }\n  pair<np, np>\
-    \ split(np root, u32 k) {\n    if (!root) {\n      assert(k == 0);\n      return\
-    \ {nullptr, nullptr};\n    }\n    assert(0 <= k && k <= root->size);\n    return\
-    \ split_rec(root, k);\n  }\n  tuple<np, np, np> split3(np root, u32 l, u32 r)\
-    \ {\n    np nm, nr;\n    tie(root, nr) = split(root, r);\n    tie(root, nm) =\
-    \ split(root, l);\n    return {root, nm, nr};\n  }\n  tuple<np, np, np, np> split4(np\
-    \ root, u32 i, u32 j, u32 k) {\n    np d;\n    tie(root, d) = split(root, k);\n\
-    \    auto [a, b, c] = split3(root, i, j);\n    return {a, b, c, d};\n  }\n\n \
-    \ X prod(np root, u32 l, u32 r) {\n    if (l == r) return Monoid::unit();\n  \
-    \  return prod_rec(root, l, r, false);\n  }\n  X prod(np root) { return (root\
-    \ ? root->prod : Monoid::unit()); }\n\n  np reverse(np root, u32 l, u32 r) {\n\
-    \    assert(0 <= l && l <= r && r <= root->size);\n    if (r - l <= 1) return\
-    \ root;\n    auto [nl, nm, nr] = split3(root, l, r);\n    nm->rev ^= 1;\n    swap(nm->l,\
-    \ nm->r);\n    swap(nm->prod, nm->rev_prod);\n    return merge3(nl, nm, nr);\n\
-    \  }\n\n  np set(np root, u32 k, const X &x) { return set_rec(root, k, x); }\n\
-    \  np multiply(np root, u32 k, const X &x) { return multiply_rec(root, k, x);\
-    \ }\n  X get(np root, u32 k) { return get_rec(root, k, false); }\n\n  vc<X> get_all(np\
-    \ root) {\n    vc<X> res;\n    auto dfs = [&](auto &dfs, np root, bool rev) ->\
-    \ void {\n      if (!root) return;\n      dfs(dfs, (rev ? root->r : root->l),\
-    \ rev ^ root->rev);\n      res.eb(root->x);\n      dfs(dfs, (rev ? root->l : root->r),\
-    \ rev ^ root->rev);\n    };\n    dfs(dfs, root, 0);\n    return res;\n  }\n\n\
-    \  template <typename F>\n  pair<np, np> split_max_right(np root, const F check)\
-    \ {\n    assert(check(Monoid::unit()));\n    X x = Monoid::unit();\n    return\
-    \ split_max_right_rec(root, check, x);\n  }\n\nprivate:\n  inline u32 xor128()\
-    \ {\n    static u32 x = 123456789;\n    static u32 y = 362436069;\n    static\
-    \ u32 z = 521288629;\n    static u32 w = 88675123;\n    u32 t = x ^ (x << 11);\n\
-    \    x = y;\n    y = z;\n    z = w;\n    return w = (w ^ (w >> 19)) ^ (t ^ (t\
-    \ >> 8));\n  }\n\n  void prop(np c) {\n    // \u81EA\u8EAB\u3092\u30B3\u30D4\u30FC\
-    \u3059\u308B\u5FC5\u8981\u306F\u306A\u3044\u3002\n    // \u5B50\u3092\u30B3\u30D4\
-    \u30FC\u3059\u308B\u5FC5\u8981\u304C\u3042\u308B\u3002\u8907\u6570\u306E\u89AA\
-    \u3092\u6301\u3064\u53EF\u80FD\u6027\u304C\u3042\u308B\u305F\u3081\u3002\n   \
-    \ if (c->rev) {\n      if (c->l) {\n        c->l = copy_node(c->l);\n        c->l->rev\
-    \ ^= 1;\n        swap(c->l->l, c->l->r);\n        swap(c->l->prod, c->l->rev_prod);\n\
-    \      }\n      if (c->r) {\n        c->r = copy_node(c->r);\n        c->r->rev\
-    \ ^= 1;\n        swap(c->r->l, c->r->r);\n        swap(c->r->prod, c->r->rev_prod);\n\
-    \      }\n      c->rev = 0;\n    }\n  }\n\n  void update(np c) {\n    // \u30C7\
-    \u30FC\u30BF\u3092\u4FDD\u3063\u305F\u307E\u307E\u6B63\u5E38\u5316\u3059\u308B\
-    \u3060\u3051\u306A\u306E\u3067\u3001\u30B3\u30D4\u30FC\u4E0D\u8981\n    c->size\
-    \ = 1;\n    c->prod = c->rev_prod = c->x;\n    if (c->l) {\n      c->size += c->l->size;\n\
-    \      c->prod = Monoid::op(c->l->prod, c->prod);\n      c->rev_prod = Monoid::op(c->rev_prod,\
-    \ c->l->rev_prod);\n    }\n    if (c->r) {\n      c->size += c->r->size;\n   \
-    \   c->prod = Monoid::op(c->prod, c->r->prod);\n      c->rev_prod = Monoid::op(c->r->rev_prod,\
-    \ c->rev_prod);\n    }\n  }\n\n  np merge_rec(np l_root, np r_root) {\n    if\
-    \ (!l_root) return r_root;\n    if (!r_root) return l_root;\n    u32 sl = l_root->size,\
-    \ sr = r_root->size;\n    if (xor128() % (sl + sr) < sl) {\n      prop(l_root);\n\
-    \      l_root = copy_node(l_root);\n      l_root->r = merge_rec(l_root->r, r_root);\n\
-    \      update(l_root);\n      return l_root;\n    }\n    prop(r_root);\n    r_root\
-    \ = copy_node(r_root);\n    r_root->l = merge_rec(l_root, r_root->l);\n    update(r_root);\n\
-    \    return r_root;\n  }\n\n  pair<np, np> split_rec(np root, u32 k) {\n    if\
-    \ (!root) return {nullptr, nullptr};\n    prop(root);\n    u32 sl = (root->l ?\
-    \ root->l->size : 0);\n    if (k <= sl) {\n      auto [nl, nr] = split_rec(root->l,\
-    \ k);\n      root = copy_node(root);\n      root->l = nr;\n      update(root);\n\
-    \      return {nl, root};\n    }\n    auto [nl, nr] = split_rec(root->r, k - (1\
-    \ + sl));\n    root = copy_node(root);\n    root->r = nl;\n    update(root);\n\
-    \    return {root, nr};\n  }\n\n  np set_rec(np root, u32 k, const X &x) {\n \
-    \   if (!root) return root;\n    prop(root);\n    u32 sl = (root->l ? root->l->size\
-    \ : 0);\n    if (k < sl) {\n      root = copy_node(root);\n      root->l = set_rec(root->l,\
+    \ yes(!t); }\n#line 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, int\
+    \ none_val>\r\nstruct Monoid_Assign {\r\n  using value_type = X;\r\n  static X\
+    \ op(X x, X y) { return (y == X(none_val) ? x : y); }\r\n  static constexpr X\
+    \ unit() { return X(none_val); }\r\n  static constexpr bool commute = false;\r\
+    \n};\r\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
+    \ <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
+    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
+    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
+    \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
+    \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
+    \    int q = (mod + k - 1) / k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n\
+    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
+    \ const int mod = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint>\
+    \ dat = {1, 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * mint::raw(len(dat)));\n\
+    \  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static\
+    \ vector<mint> dat = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat)\
+    \ <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\
+    \ntemplate <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1)\
+    \ * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint, class Head, class...\
+    \ Tail>\nmint multinomial(Head &&head, Tail &&... tail) {\n  return fact<mint>(head)\
+    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
+    mint C_dense(int n, int k) {\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n\
+    \  auto calc = [&](int i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1)\
+    \ : mint(0));\n    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n  if\
+    \ (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k +\
+    \ 1) { C[i][j] = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n\
+    \    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n      FOR(j,\
+    \ W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return C[n][k];\n\
+    }\n\ntemplate <typename mint, bool large = false, bool dense = false>\nmint C(ll\
+    \ n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if constexpr\
+    \ (dense) return C_dense<mint>(n, k);\n  if constexpr (!large) return multinomial<mint>(n,\
+    \ k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n\
+    \  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename mint, bool large = false>\n\
+    mint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if\
+    \ (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return\
+    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d] (1-x) ^ {-n} \u306E\u8A08\u7B97\n\
+    template <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
+    \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\
+    \ return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large, dense>(n + d\
+    \ - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
+    \ {\n  static constexpr u32 umod = u32(mod);\n  static_assert(umod < u32(1) <<\
+    \ 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n    x.val =\
+    \ v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr modint(u32\
+    \ x) : val(x % umod) {}\n  constexpr modint(u64 x) : val(x % umod) {}\n  constexpr\
+    \ modint(int x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(ll\
+    \ x) : val((x %= mod) < 0 ? x + mod : x){};\n  bool operator<(const modint &other)\
+    \ const { return val < other.val; }\n  modint &operator+=(const modint &p) {\n\
+    \    if ((val += p.val) >= umod) val -= umod;\n    return *this;\n  }\n  modint\
+    \ &operator-=(const modint &p) {\n    if ((val += umod - p.val) >= umod) val -=\
+    \ umod;\n    return *this;\n  }\n  modint &operator*=(const modint &p) {\n   \
+    \ val = u64(val) * p.val % umod;\n    return *this;\n  }\n  modint &operator/=(const\
+    \ modint &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n  modint operator-()\
+    \ const { return modint::raw(val ? mod - val : u32(0)); }\n  modint operator+(const\
+    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
+    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
+    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
+    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
+    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
+    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
+    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
+    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
+    \  assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if\
+    \ (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
+    \  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val); }\n  void read()\
+    \ {\n    fastio::scanner.read(val);\n    val %= mod;\n  }\n#endif\n  static constexpr\
+    \ int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\
+    \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 167772161) return\
+    \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
+    \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
+    \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
+    \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
+    \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
+    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
+    \ -1; }\n};\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 1 \"ds/randomized_bst/rbst_monoid.hpp\"\ntemplate <typename Monoid, bool\
+    \ PERSISTENT, int NODES>\nstruct RBST_Monoid {\n  using X = typename Monoid::value_type;\n\
+    \n  struct Node {\n    Node *l, *r;\n    X x, prod, rev_prod; // rev \u53CD\u6620\
+    \u6E08\n    u32 size;\n    bool rev;\n  };\n\n  Node *pool;\n  int pid;\n  using\
+    \ np = Node *;\n\n  RBST_Monoid() : pid(0) { pool = new Node[NODES]; }\n\n  void\
+    \ reset() { pid = 0; }\n\n  np new_node(const X &x) {\n    pool[pid].l = pool[pid].r\
+    \ = nullptr;\n    pool[pid].x = x;\n    pool[pid].prod = x;\n    pool[pid].rev_prod\
+    \ = x;\n    pool[pid].size = 1;\n    pool[pid].rev = 0;\n    return &(pool[pid++]);\n\
+    \  }\n\n  np new_node(const vc<X> &dat) {\n    auto dfs = [&](auto &dfs, u32 l,\
+    \ u32 r) -> np {\n      if (l == r) return nullptr;\n      if (r == l + 1) return\
+    \ new_node(dat[l]);\n      u32 m = (l + r) / 2;\n      np l_root = dfs(dfs, l,\
+    \ m);\n      np r_root = dfs(dfs, m + 1, r);\n      np root = new_node(dat[m]);\n\
+    \      root->l = l_root, root->r = r_root;\n      update(root);\n      return\
+    \ root;\n    };\n    return dfs(dfs, 0, len(dat));\n  }\n\n  np copy_node(np &n)\
+    \ {\n    if (!n || !PERSISTENT) return n;\n    pool[pid].l = n->l, pool[pid].r\
+    \ = n->r;\n    pool[pid].x = n->x;\n    pool[pid].prod = n->prod;\n    pool[pid].rev_prod\
+    \ = n->rev_prod;\n    pool[pid].size = n->size;\n    pool[pid].rev = n->rev;\n\
+    \    return &(pool[pid++]);\n  }\n\n  np merge(np l_root, np r_root) { return\
+    \ merge_rec(l_root, r_root); }\n  np merge3(np a, np b, np c) { return merge(merge(a,\
+    \ b), c); }\n  np merge4(np a, np b, np c, np d) { return merge(merge(merge(a,\
+    \ b), c), d); }\n  pair<np, np> split(np root, u32 k) {\n    if (!root) {\n  \
+    \    assert(k == 0);\n      return {nullptr, nullptr};\n    }\n    assert(0 <=\
+    \ k && k <= root->size);\n    return split_rec(root, k);\n  }\n  tuple<np, np,\
+    \ np> split3(np root, u32 l, u32 r) {\n    np nm, nr;\n    tie(root, nr) = split(root,\
+    \ r);\n    tie(root, nm) = split(root, l);\n    return {root, nm, nr};\n  }\n\
+    \  tuple<np, np, np, np> split4(np root, u32 i, u32 j, u32 k) {\n    np d;\n \
+    \   tie(root, d) = split(root, k);\n    auto [a, b, c] = split3(root, i, j);\n\
+    \    return {a, b, c, d};\n  }\n\n  X prod(np root, u32 l, u32 r) {\n    if (l\
+    \ == r) return Monoid::unit();\n    return prod_rec(root, l, r, false);\n  }\n\
+    \  X prod(np root) { return (root ? root->prod : Monoid::unit()); }\n\n  np reverse(np\
+    \ root, u32 l, u32 r) {\n    assert(0 <= l && l <= r && r <= root->size);\n  \
+    \  if (r - l <= 1) return root;\n    auto [nl, nm, nr] = split3(root, l, r);\n\
+    \    nm->rev ^= 1;\n    swap(nm->l, nm->r);\n    swap(nm->prod, nm->rev_prod);\n\
+    \    return merge3(nl, nm, nr);\n  }\n\n  np set(np root, u32 k, const X &x) {\
+    \ return set_rec(root, k, x); }\n  np multiply(np root, u32 k, const X &x) { return\
+    \ multiply_rec(root, k, x); }\n  X get(np root, u32 k) { return get_rec(root,\
+    \ k, false); }\n\n  vc<X> get_all(np root) {\n    vc<X> res;\n    auto dfs = [&](auto\
+    \ &dfs, np root, bool rev) -> void {\n      if (!root) return;\n      dfs(dfs,\
+    \ (rev ? root->r : root->l), rev ^ root->rev);\n      res.eb(root->x);\n     \
+    \ dfs(dfs, (rev ? root->l : root->r), rev ^ root->rev);\n    };\n    dfs(dfs,\
+    \ root, 0);\n    return res;\n  }\n\n  template <typename F>\n  pair<np, np> split_max_right(np\
+    \ root, const F check) {\n    assert(check(Monoid::unit()));\n    X x = Monoid::unit();\n\
+    \    return split_max_right_rec(root, check, x);\n  }\n\nprivate:\n  inline u32\
+    \ xor128() {\n    static u32 x = 123456789;\n    static u32 y = 362436069;\n \
+    \   static u32 z = 521288629;\n    static u32 w = 88675123;\n    u32 t = x ^ (x\
+    \ << 11);\n    x = y;\n    y = z;\n    z = w;\n    return w = (w ^ (w >> 19))\
+    \ ^ (t ^ (t >> 8));\n  }\n\n  void prop(np c) {\n    // \u81EA\u8EAB\u3092\u30B3\
+    \u30D4\u30FC\u3059\u308B\u5FC5\u8981\u306F\u306A\u3044\u3002\n    // \u5B50\u3092\
+    \u30B3\u30D4\u30FC\u3059\u308B\u5FC5\u8981\u304C\u3042\u308B\u3002\u8907\u6570\
+    \u306E\u89AA\u3092\u6301\u3064\u53EF\u80FD\u6027\u304C\u3042\u308B\u305F\u3081\
+    \u3002\n    if (c->rev) {\n      if (c->l) {\n        c->l = copy_node(c->l);\n\
+    \        c->l->rev ^= 1;\n        swap(c->l->l, c->l->r);\n        swap(c->l->prod,\
+    \ c->l->rev_prod);\n      }\n      if (c->r) {\n        c->r = copy_node(c->r);\n\
+    \        c->r->rev ^= 1;\n        swap(c->r->l, c->r->r);\n        swap(c->r->prod,\
+    \ c->r->rev_prod);\n      }\n      c->rev = 0;\n    }\n  }\n\n  void update(np\
+    \ c) {\n    // \u30C7\u30FC\u30BF\u3092\u4FDD\u3063\u305F\u307E\u307E\u6B63\u5E38\
+    \u5316\u3059\u308B\u3060\u3051\u306A\u306E\u3067\u3001\u30B3\u30D4\u30FC\u4E0D\
+    \u8981\n    c->size = 1;\n    c->prod = c->rev_prod = c->x;\n    if (c->l) {\n\
+    \      c->size += c->l->size;\n      c->prod = Monoid::op(c->l->prod, c->prod);\n\
+    \      c->rev_prod = Monoid::op(c->rev_prod, c->l->rev_prod);\n    }\n    if (c->r)\
+    \ {\n      c->size += c->r->size;\n      c->prod = Monoid::op(c->prod, c->r->prod);\n\
+    \      c->rev_prod = Monoid::op(c->r->rev_prod, c->rev_prod);\n    }\n  }\n\n\
+    \  np merge_rec(np l_root, np r_root) {\n    if (!l_root) return r_root;\n   \
+    \ if (!r_root) return l_root;\n    u32 sl = l_root->size, sr = r_root->size;\n\
+    \    if (xor128() % (sl + sr) < sl) {\n      prop(l_root);\n      l_root = copy_node(l_root);\n\
+    \      l_root->r = merge_rec(l_root->r, r_root);\n      update(l_root);\n    \
+    \  return l_root;\n    }\n    prop(r_root);\n    r_root = copy_node(r_root);\n\
+    \    r_root->l = merge_rec(l_root, r_root->l);\n    update(r_root);\n    return\
+    \ r_root;\n  }\n\n  pair<np, np> split_rec(np root, u32 k) {\n    if (!root) return\
+    \ {nullptr, nullptr};\n    prop(root);\n    u32 sl = (root->l ? root->l->size\
+    \ : 0);\n    if (k <= sl) {\n      auto [nl, nr] = split_rec(root->l, k);\n  \
+    \    root = copy_node(root);\n      root->l = nr;\n      update(root);\n     \
+    \ return {nl, root};\n    }\n    auto [nl, nr] = split_rec(root->r, k - (1 + sl));\n\
+    \    root = copy_node(root);\n    root->r = nl;\n    update(root);\n    return\
+    \ {root, nr};\n  }\n\n  np set_rec(np root, u32 k, const X &x) {\n    if (!root)\
+    \ return root;\n    prop(root);\n    u32 sl = (root->l ? root->l->size : 0);\n\
+    \    if (k < sl) {\n      root = copy_node(root);\n      root->l = set_rec(root->l,\
     \ k, x);\n      update(root);\n      return root;\n    }\n    if (k == sl) {\n\
     \      root = copy_node(root);\n      root->x = x;\n      update(root);\n    \
     \  return root;\n    }\n    root = copy_node(root);\n    root->r = set_rec(root->r,\
@@ -458,7 +459,7 @@ data:
   isVerificationFile: true
   path: test/mytest/rbst_monoid.test.cpp
   requiredBy: []
-  timestamp: '2023-10-14 01:49:27+09:00'
+  timestamp: '2023-10-14 20:28:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/rbst_monoid.test.cpp

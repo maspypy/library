@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
   - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
   - icon: ':question:'
@@ -275,12 +275,12 @@ data:
     \ static constexpr X op(const X &x, const X &y) noexcept { return min(x, y); }\r\
     \n  static constexpr X unit() { return infty<E>; }\r\n  static constexpr bool\
     \ commute = true;\r\n};\r\n#line 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename\
-    \ X, X none_val>\r\nstruct Monoid_Assign {\r\n  using value_type = X;\r\n  static\
-    \ X op(X x, X y) { return (y == none_val ? x : y); }\r\n  static constexpr X unit()\
-    \ { return none_val; }\r\n  static constexpr bool commute = false;\r\n};\r\n#line\
-    \ 3 \"alg/acted_monoid/min_assign.hpp\"\n\r\ntemplate <typename E, E none_val>\r\
-    \nstruct ActedMonoid_Min_Assign {\r\n  using Monoid_X = Monoid_Min<E>;\r\n  using\
-    \ Monoid_A = Monoid_Assign<E, none_val>;\r\n  using X = typename Monoid_X::value_type;\r\
+    \ X, int none_val>\r\nstruct Monoid_Assign {\r\n  using value_type = X;\r\n  static\
+    \ X op(X x, X y) { return (y == X(none_val) ? x : y); }\r\n  static constexpr\
+    \ X unit() { return X(none_val); }\r\n  static constexpr bool commute = false;\r\
+    \n};\r\n#line 3 \"alg/acted_monoid/min_assign.hpp\"\n\r\ntemplate <typename E,\
+    \ E none_val>\r\nstruct ActedMonoid_Min_Assign {\r\n  using Monoid_X = Monoid_Min<E>;\r\
+    \n  using Monoid_A = Monoid_Assign<E, none_val>;\r\n  using X = typename Monoid_X::value_type;\r\
     \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
     \ X &x, const A &a, const ll &size) {\r\n    return (a == none_val ? x : a);\r\
     \n  }\r\n};\r\n#line 7 \"test/aoj/DSL_2_F.test.cpp\"\n\r\nvoid solve() {\r\n \
@@ -311,7 +311,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_F.test.cpp
   requiredBy: []
-  timestamp: '2023-10-06 12:12:06+09:00'
+  timestamp: '2023-10-14 20:28:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_F.test.cpp

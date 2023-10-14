@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add_array.hpp
     title: alg/monoid/add_array.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1548.test.cpp
     title: test/yukicoder/1548.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/acted_monoid/powersums_assign.hpp\"\n\r\n#line 2 \"\
-    alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, X none_val>\r\nstruct Monoid_Assign\
-    \ {\r\n  using value_type = X;\r\n  static X op(X x, X y) { return (y == none_val\
-    \ ? x : y); }\r\n  static constexpr X unit() { return none_val; }\r\n  static\
+    alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, int none_val>\r\nstruct Monoid_Assign\
+    \ {\r\n  using value_type = X;\r\n  static X op(X x, X y) { return (y == X(none_val)\
+    \ ? x : y); }\r\n  static constexpr X unit() { return X(none_val); }\r\n  static\
     \ constexpr bool commute = false;\r\n};\r\n#line 2 \"alg/monoid/add_array.hpp\"\
     \n\r\ntemplate <typename E, int K>\r\nstruct Monoid_Add_Array {\r\n  using value_type\
     \ = array<E, K>;\r\n  using X = value_type;\r\n  static X op(X x, X y) {\r\n \
@@ -49,8 +49,8 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/powersums_assign.hpp
   requiredBy: []
-  timestamp: '2023-10-14 01:43:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-10-14 20:28:40+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1548.test.cpp
 documentation_of: alg/acted_monoid/powersums_assign.hpp

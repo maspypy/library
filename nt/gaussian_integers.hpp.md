@@ -15,12 +15,12 @@ data:
     title: nt/primetest.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1593.test.cpp
     title: test/yukicoder/1593.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetest.hpp\"\nstruct m64 {\r\n  using i64 = int64_t;\r\
@@ -124,19 +124,19 @@ data:
     \ 1;\r\n      while (1) {\r\n        ++x;\r\n        T pow_x = 1;\r\n        if\
     \ (p < (1 << 30)) {\r\n          pow_x = mod_pow(x, (p - 1) / 4, p);\r\n     \
     \     if (pow_x * pow_x % p == p - 1) return pow_x;\r\n        } else {\r\n  \
-    \        pow_x = mod_pow_long(x, (p - 1) / 4, p);\r\n          if (i128(pow_x)\
-    \ * pow_x % p == p - 1) return pow_x;\r\n        }\r\n      }\r\n      return\
-    \ -1;\r\n    }();\r\n    assert(x != -1);\r\n    // x \u306F\u975E\u5270\u4F59\
-    \r\n    G a(p, 0), b(x, 1);\r\n    a = G::gcd(a, b);\r\n    assert(a.norm() ==\
-    \ p);\r\n    return a;\r\n  };\r\n\r\n  res.eb(G(1, 0));\r\n  for (auto &&[p,\
-    \ e]: pfs) {\r\n    if (p % 4 == 3) {\r\n      T pp = 1;\r\n      FOR(e / 2) pp\
-    \ *= p;\r\n      for (auto &&g: res) {\r\n        g.x *= pp;\r\n        g.y *=\
-    \ pp;\r\n      }\r\n      continue;\r\n    }\r\n    auto pi = find(p);\r\n   \
-    \ vc<G> pows(e + 1);\r\n    pows[0] = G(1, 0);\r\n    FOR(i, e) pows[i + 1] =\
-    \ pows[i] * pi;\r\n    if (p == 2) {\r\n      for (auto &&g: res) g *= pows[e];\r\
-    \n      continue;\r\n    }\r\n    vc<G> pis(e + 1);\r\n    FOR(j, e + 1) { pis[j]\
-    \ = pows[j] * (pows[e - j].conjugate()); }\r\n    vc<G> new_res;\r\n    new_res.reserve(len(res)\
-    \ * (e + 1));\r\n    for (auto &&g: res) {\r\n      for (auto &&a: pis) { new_res.eb(g\
+    \        pow_x = mod_pow_64(x, (p - 1) / 4, p);\r\n          if (i128(pow_x) *\
+    \ pow_x % p == p - 1) return pow_x;\r\n        }\r\n      }\r\n      return -1;\r\
+    \n    }();\r\n    assert(x != -1);\r\n    // x \u306F\u975E\u5270\u4F59\r\n  \
+    \  G a(p, 0), b(x, 1);\r\n    a = G::gcd(a, b);\r\n    assert(a.norm() == p);\r\
+    \n    return a;\r\n  };\r\n\r\n  res.eb(G(1, 0));\r\n  for (auto &&[p, e]: pfs)\
+    \ {\r\n    if (p % 4 == 3) {\r\n      T pp = 1;\r\n      FOR(e / 2) pp *= p;\r\
+    \n      for (auto &&g: res) {\r\n        g.x *= pp;\r\n        g.y *= pp;\r\n\
+    \      }\r\n      continue;\r\n    }\r\n    auto pi = find(p);\r\n    vc<G> pows(e\
+    \ + 1);\r\n    pows[0] = G(1, 0);\r\n    FOR(i, e) pows[i + 1] = pows[i] * pi;\r\
+    \n    if (p == 2) {\r\n      for (auto &&g: res) g *= pows[e];\r\n      continue;\r\
+    \n    }\r\n    vc<G> pis(e + 1);\r\n    FOR(j, e + 1) { pis[j] = pows[j] * (pows[e\
+    \ - j].conjugate()); }\r\n    vc<G> new_res;\r\n    new_res.reserve(len(res) *\
+    \ (e + 1));\r\n    for (auto &&g: res) {\r\n      for (auto &&a: pis) { new_res.eb(g\
     \ * a); }\r\n    }\r\n    swap(res, new_res);\r\n  }\r\n\r\n  for (auto &&g: res)\
     \ {\r\n    while (g.x <= 0 || g.y < 0) { g = G(-g.y, g.x); }\r\n  }\r\n  return\
     \ res;\r\n}\r\n\r\n// i128 \u3092\u4F7F\u3046\u3068 N <= 10^{18} \u3082\u3067\u304D\
@@ -182,16 +182,16 @@ data:
     \ -> T {\r\n      T x = 1;\r\n      while (1) {\r\n        ++x;\r\n        T pow_x\
     \ = 1;\r\n        if (p < (1 << 30)) {\r\n          pow_x = mod_pow(x, (p - 1)\
     \ / 4, p);\r\n          if (pow_x * pow_x % p == p - 1) return pow_x;\r\n    \
-    \    } else {\r\n          pow_x = mod_pow_long(x, (p - 1) / 4, p);\r\n      \
-    \    if (i128(pow_x) * pow_x % p == p - 1) return pow_x;\r\n        }\r\n    \
-    \  }\r\n      return -1;\r\n    }();\r\n    assert(x != -1);\r\n    // x \u306F\
-    \u975E\u5270\u4F59\r\n    G a(p, 0), b(x, 1);\r\n    a = G::gcd(a, b);\r\n   \
-    \ assert(a.norm() == p);\r\n    return a;\r\n  };\r\n\r\n  res.eb(G(1, 0));\r\n\
-    \  for (auto &&[p, e]: pfs) {\r\n    if (p % 4 == 3) {\r\n      T pp = 1;\r\n\
-    \      FOR(e / 2) pp *= p;\r\n      for (auto &&g: res) {\r\n        g.x *= pp;\r\
-    \n        g.y *= pp;\r\n      }\r\n      continue;\r\n    }\r\n    auto pi = find(p);\r\
-    \n    vc<G> pows(e + 1);\r\n    pows[0] = G(1, 0);\r\n    FOR(i, e) pows[i + 1]\
-    \ = pows[i] * pi;\r\n    if (p == 2) {\r\n      for (auto &&g: res) g *= pows[e];\r\
+    \    } else {\r\n          pow_x = mod_pow_64(x, (p - 1) / 4, p);\r\n        \
+    \  if (i128(pow_x) * pow_x % p == p - 1) return pow_x;\r\n        }\r\n      }\r\
+    \n      return -1;\r\n    }();\r\n    assert(x != -1);\r\n    // x \u306F\u975E\
+    \u5270\u4F59\r\n    G a(p, 0), b(x, 1);\r\n    a = G::gcd(a, b);\r\n    assert(a.norm()\
+    \ == p);\r\n    return a;\r\n  };\r\n\r\n  res.eb(G(1, 0));\r\n  for (auto &&[p,\
+    \ e]: pfs) {\r\n    if (p % 4 == 3) {\r\n      T pp = 1;\r\n      FOR(e / 2) pp\
+    \ *= p;\r\n      for (auto &&g: res) {\r\n        g.x *= pp;\r\n        g.y *=\
+    \ pp;\r\n      }\r\n      continue;\r\n    }\r\n    auto pi = find(p);\r\n   \
+    \ vc<G> pows(e + 1);\r\n    pows[0] = G(1, 0);\r\n    FOR(i, e) pows[i + 1] =\
+    \ pows[i] * pi;\r\n    if (p == 2) {\r\n      for (auto &&g: res) g *= pows[e];\r\
     \n      continue;\r\n    }\r\n    vc<G> pis(e + 1);\r\n    FOR(j, e + 1) { pis[j]\
     \ = pows[j] * (pows[e - j].conjugate()); }\r\n    vc<G> new_res;\r\n    new_res.reserve(len(res)\
     \ * (e + 1));\r\n    for (auto &&g: res) {\r\n      for (auto &&a: pis) { new_res.eb(g\
@@ -216,8 +216,8 @@ data:
   isVerificationFile: false
   path: nt/gaussian_integers.hpp
   requiredBy: []
-  timestamp: '2023-10-14 15:38:43+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-10-14 20:28:40+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1593.test.cpp
 documentation_of: nt/gaussian_integers.hpp

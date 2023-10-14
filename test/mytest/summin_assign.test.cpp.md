@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/summin_assign.hpp
     title: alg/acted_monoid/summin_assign.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
   - icon: ':heavy_check_mark:'
     path: alg/monoid/summin.hpp
     title: alg/monoid/summin.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
   - icon: ':question:'
@@ -221,9 +221,9 @@ data:
     \n  static X op(X x, X y) { return {x.fi + y.fi, min(x.se, y.se)}; }\r\n  static\
     \ X from_element(E x) { return {x, x}; }\r\n  static constexpr X unit() { return\
     \ {E(0), infty<E>}; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line\
-    \ 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, X none_val>\r\nstruct\
+    \ 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, int none_val>\r\nstruct\
     \ Monoid_Assign {\r\n  using value_type = X;\r\n  static X op(X x, X y) { return\
-    \ (y == none_val ? x : y); }\r\n  static constexpr X unit() { return none_val;\
+    \ (y == X(none_val) ? x : y); }\r\n  static constexpr X unit() { return X(none_val);\
     \ }\r\n  static constexpr bool commute = false;\r\n};\r\n#line 3 \"alg/acted_monoid/summin_assign.hpp\"\
     \n\r\ntemplate <typename E, ll none_val>\r\nstruct ActedMonoid_CntSumMin_Assign\
     \ {\r\n  using Monoid_X = Monoid_SumMin<E>;\r\n  using Monoid_A = Monoid_Assign<ll,\
@@ -330,7 +330,7 @@ data:
   isVerificationFile: true
   path: test/mytest/summin_assign.test.cpp
   requiredBy: []
-  timestamp: '2023-10-06 12:12:06+09:00'
+  timestamp: '2023-10-14 20:28:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/summin_assign.test.cpp
