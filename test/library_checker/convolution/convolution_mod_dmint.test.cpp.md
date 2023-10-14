@@ -630,15 +630,15 @@ data:
     \  if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n    return\
     \ convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
     \ b);\r\n  return convolution_garner(a, b);\r\n}\r\n#line 6 \"test/library_checker/convolution/convolution_mod_dmint.test.cpp\"\
-    \n\nusing mint = dmint;\n\nvoid solve() {\n  mint::set_mod(998244353);\n  // mint::set_ntt_info();\n\
+    \n\nusing mint = dmint;\n\nvoid solve() {\n  mint::set_mod(998244353);\n  mint::set_ntt_info();\n\
     \n  LL(N, M);\n  VEC(mint, A, N);\n  VEC(mint, B, M);\n  auto ANS = convolution(A,\
     \ B);\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/dynamic_modint.hpp\"\
     \n#include \"poly/convolution.hpp\"\n\nusing mint = dmint;\n\nvoid solve() {\n\
-    \  mint::set_mod(998244353);\n  // mint::set_ntt_info();\n\n  LL(N, M);\n  VEC(mint,\
+    \  mint::set_mod(998244353);\n  mint::set_ntt_info();\n\n  LL(N, M);\n  VEC(mint,\
     \ A, N);\n  VEC(mint, B, M);\n  auto ANS = convolution(A, B);\n  print(ANS);\n\
-    }\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+    }\n\nsigned main() {\n  solve();\n\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -660,7 +660,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/convolution/convolution_mod_dmint.test.cpp
   requiredBy: []
-  timestamp: '2023-10-14 15:49:24+09:00'
+  timestamp: '2023-10-14 17:14:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/convolution/convolution_mod_dmint.test.cpp

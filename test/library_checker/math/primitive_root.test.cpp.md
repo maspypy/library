@@ -27,9 +27,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/primitive_root
@@ -303,12 +303,12 @@ data:
     \n      if (mod_pow_64(g, (p - 1) / q, p) == 1) return false;\r\n    return true;\r\
     \n  };\r\n  while (1) {\r\n    ll x = RNG(1, p);\r\n    if (is_ok(x)) return x;\r\
     \n  }\r\n  return -1;\r\n}\r\n#line 5 \"test/library_checker/math/primitive_root.test.cpp\"\
-    \n\nvoid solve() {\n  LL(p);\n  ll ANS = primitive_root_long(p);\n  print(ANS);\n\
+    \n\nvoid solve() {\n  LL(p);\n  ll ANS = primitive_root_64(p);\n  print(ANS);\n\
     }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
     \ << setprecision(15);\n\n  LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/primitive_root\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/primitive_root.hpp\"\
-    \n\nvoid solve() {\n  LL(p);\n  ll ANS = primitive_root_long(p);\n  print(ANS);\n\
+    \n\nvoid solve() {\n  LL(p);\n  ll ANS = primitive_root_64(p);\n  print(ANS);\n\
     }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
     \ << setprecision(15);\n\n  LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
@@ -323,8 +323,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/primitive_root.test.cpp
   requiredBy: []
-  timestamp: '2023-10-14 15:49:24+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-10-14 17:14:37+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/primitive_root.test.cpp
 layout: document
