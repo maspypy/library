@@ -5,7 +5,7 @@
 
 void solve() {
   LL(p);
-  ll ANS = primitive_root_long(p);
+  ll ANS = primitive_root_64(p);
   print(ANS);
 }
 
