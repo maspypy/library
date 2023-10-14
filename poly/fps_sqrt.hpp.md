@@ -63,18 +63,18 @@ data:
     path: graph/count/count_bipartite.hpp
     title: graph/count/count_bipartite.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_bipartite.test.cpp
     title: test/mytest/count_bipartite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
@@ -528,11 +528,11 @@ data:
     \ fps_sqrt_dense(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_sqrt_any(vc<mint>&\
     \ f) {\r\n  int n = len(f);\r\n  int d = n;\r\n  FOR_R(i, n) if (f[i] != 0) d\
     \ = i;\r\n  if (d == n) return f;\r\n  if (d & 1) return {};\r\n  mint y = f[d];\r\
-    \n  mint x = mod_sqrt(y);\r\n  if (x * x != y) return {};\r\n  mint c = mint(1)\
-    \ / y;\r\n  vc<mint> g(n - d);\r\n  FOR(i, n - d) g[i] = f[d + i] * c;\r\n  g\
-    \ = fps_sqrt(g);\r\n  FOR(i, len(g)) g[i] *= x;\r\n  g.resize(n);\r\n  FOR_R(i,\
-    \ n) {\r\n    if (i >= d / 2)\r\n      g[i] = g[i - d / 2];\r\n    else\r\n  \
-    \    g[i] = 0;\r\n  }\r\n  return g;\r\n}\r\n"
+    \n  mint x = mod_sqrt(y.val, mint::get_mod());\r\n  if (x * x != y) return {};\r\
+    \n  mint c = mint(1) / y;\r\n  vc<mint> g(n - d);\r\n  FOR(i, n - d) g[i] = f[d\
+    \ + i] * c;\r\n  g = fps_sqrt(g);\r\n  FOR(i, len(g)) g[i] *= x;\r\n  g.resize(n);\r\
+    \n  FOR_R(i, n) {\r\n    if (i >= d / 2)\r\n      g[i] = g[i - d / 2];\r\n   \
+    \ else\r\n      g[i] = 0;\r\n  }\r\n  return g;\r\n}\r\n"
   code: "#include \"poly/fps_inv.hpp\"\r\n#include \"poly/fps_pow.hpp\"\r\n#include\
     \ \"poly/count_terms.hpp\"\r\n#include \"mod/mod_sqrt.hpp\"\r\n\r\ntemplate <typename\
     \ mint>\r\nvc<mint> fps_sqrt_dense(vc<mint>& f) {\r\n  assert(f[0] == mint(1));\r\
@@ -547,11 +547,11 @@ data:
     \ fps_sqrt_dense(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_sqrt_any(vc<mint>&\
     \ f) {\r\n  int n = len(f);\r\n  int d = n;\r\n  FOR_R(i, n) if (f[i] != 0) d\
     \ = i;\r\n  if (d == n) return f;\r\n  if (d & 1) return {};\r\n  mint y = f[d];\r\
-    \n  mint x = mod_sqrt(y);\r\n  if (x * x != y) return {};\r\n  mint c = mint(1)\
-    \ / y;\r\n  vc<mint> g(n - d);\r\n  FOR(i, n - d) g[i] = f[d + i] * c;\r\n  g\
-    \ = fps_sqrt(g);\r\n  FOR(i, len(g)) g[i] *= x;\r\n  g.resize(n);\r\n  FOR_R(i,\
-    \ n) {\r\n    if (i >= d / 2)\r\n      g[i] = g[i - d / 2];\r\n    else\r\n  \
-    \    g[i] = 0;\r\n  }\r\n  return g;\r\n}\r\n"
+    \n  mint x = mod_sqrt(y.val, mint::get_mod());\r\n  if (x * x != y) return {};\r\
+    \n  mint c = mint(1) / y;\r\n  vc<mint> g(n - d);\r\n  FOR(i, n - d) g[i] = f[d\
+    \ + i] * c;\r\n  g = fps_sqrt(g);\r\n  FOR(i, len(g)) g[i] *= x;\r\n  g.resize(n);\r\
+    \n  FOR_R(i, n) {\r\n    if (i >= d / 2)\r\n      g[i] = g[i - d / 2];\r\n   \
+    \ else\r\n      g[i] = 0;\r\n  }\r\n  return g;\r\n}\r\n"
   dependsOn:
   - poly/fps_inv.hpp
   - poly/count_terms.hpp
@@ -576,8 +576,8 @@ data:
   path: poly/fps_sqrt.hpp
   requiredBy:
   - graph/count/count_bipartite.hpp
-  timestamp: '2023-10-14 15:49:24+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-10-14 17:39:10+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp

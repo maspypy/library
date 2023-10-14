@@ -64,7 +64,7 @@ data:
   - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
   - icon: ':question:'
@@ -721,15 +721,15 @@ data:
     \ fps_sqrt_dense(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_sqrt_any(vc<mint>&\
     \ f) {\r\n  int n = len(f);\r\n  int d = n;\r\n  FOR_R(i, n) if (f[i] != 0) d\
     \ = i;\r\n  if (d == n) return f;\r\n  if (d & 1) return {};\r\n  mint y = f[d];\r\
-    \n  mint x = mod_sqrt(y);\r\n  if (x * x != y) return {};\r\n  mint c = mint(1)\
-    \ / y;\r\n  vc<mint> g(n - d);\r\n  FOR(i, n - d) g[i] = f[d + i] * c;\r\n  g\
-    \ = fps_sqrt(g);\r\n  FOR(i, len(g)) g[i] *= x;\r\n  g.resize(n);\r\n  FOR_R(i,\
-    \ n) {\r\n    if (i >= d / 2)\r\n      g[i] = g[i - d / 2];\r\n    else\r\n  \
-    \    g[i] = 0;\r\n  }\r\n  return g;\r\n}\r\n#line 2 \"alg/monoid/mul.hpp\"\n\r\
-    \ntemplate <class T>\r\nstruct Monoid_Mul {\r\n  using value_type = T;\r\n  using\
-    \ X = T;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return\
-    \ x * y; }\r\n  static constexpr X inverse(const X &x) noexcept { return X(1)\
-    \ / x; }\r\n  static constexpr X unit() { return X(1); }\r\n  static constexpr\
+    \n  mint x = mod_sqrt(y.val, mint::get_mod());\r\n  if (x * x != y) return {};\r\
+    \n  mint c = mint(1) / y;\r\n  vc<mint> g(n - d);\r\n  FOR(i, n - d) g[i] = f[d\
+    \ + i] * c;\r\n  g = fps_sqrt(g);\r\n  FOR(i, len(g)) g[i] *= x;\r\n  g.resize(n);\r\
+    \n  FOR_R(i, n) {\r\n    if (i >= d / 2)\r\n      g[i] = g[i - d / 2];\r\n   \
+    \ else\r\n      g[i] = 0;\r\n  }\r\n  return g;\r\n}\r\n#line 2 \"alg/monoid/mul.hpp\"\
+    \n\r\ntemplate <class T>\r\nstruct Monoid_Mul {\r\n  using value_type = T;\r\n\
+    \  using X = T;\r\n  static constexpr X op(const X &x, const X &y) noexcept {\
+    \ return x * y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
+    \ X(1) / x; }\r\n  static constexpr X unit() { return X(1); }\r\n  static constexpr\
     \ bool commute = true;\r\n};\r\n#line 2 \"ds/power_query.hpp\"\n\n// \u5B9A\u6570\
     \u3092\u3079\u304D\u4E57\u3059\u308B\u30AF\u30A8\u30EA\u3002 B \u4E57\u5206\u305A\
     \u3064\u524D\u8A08\u7B97\u3002\ntemplate <typename Mono, int B = 1024>\nstruct\
@@ -798,7 +798,7 @@ data:
   isVerificationFile: true
   path: test/mytest/count_bipartite.test.cpp
   requiredBy: []
-  timestamp: '2023-10-14 15:49:24+09:00'
+  timestamp: '2023-10-14 17:39:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/count_bipartite.test.cpp

@@ -55,7 +55,7 @@ data:
   - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
   - icon: ':question:'
@@ -69,9 +69,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sqrt_of_formal_power_series_sparse
@@ -714,11 +714,11 @@ data:
     \ fps_sqrt_dense(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_sqrt_any(vc<mint>&\
     \ f) {\r\n  int n = len(f);\r\n  int d = n;\r\n  FOR_R(i, n) if (f[i] != 0) d\
     \ = i;\r\n  if (d == n) return f;\r\n  if (d & 1) return {};\r\n  mint y = f[d];\r\
-    \n  mint x = mod_sqrt(y);\r\n  if (x * x != y) return {};\r\n  mint c = mint(1)\
-    \ / y;\r\n  vc<mint> g(n - d);\r\n  FOR(i, n - d) g[i] = f[d + i] * c;\r\n  g\
-    \ = fps_sqrt(g);\r\n  FOR(i, len(g)) g[i] *= x;\r\n  g.resize(n);\r\n  FOR_R(i,\
-    \ n) {\r\n    if (i >= d / 2)\r\n      g[i] = g[i - d / 2];\r\n    else\r\n  \
-    \    g[i] = 0;\r\n  }\r\n  return g;\r\n}\r\n#line 6 \"test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp\"\
+    \n  mint x = mod_sqrt(y.val, mint::get_mod());\r\n  if (x * x != y) return {};\r\
+    \n  mint c = mint(1) / y;\r\n  vc<mint> g(n - d);\r\n  FOR(i, n - d) g[i] = f[d\
+    \ + i] * c;\r\n  g = fps_sqrt(g);\r\n  FOR(i, len(g)) g[i] *= x;\r\n  g.resize(n);\r\
+    \n  FOR_R(i, n) {\r\n    if (i >= d / 2)\r\n      g[i] = g[i - d / 2];\r\n   \
+    \ else\r\n      g[i] = 0;\r\n  }\r\n  return g;\r\n}\r\n#line 6 \"test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp\"\
     \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N, K);\r\n  vc<mint>\
     \ f(N);\r\n  FOR(K) {\r\n    LL(i, a);\r\n    f[i] = a;\r\n  }\r\n  f = fps_sqrt_any(f);\r\
     \n  if (len(f) == 0) return print(-1);\r\n  print(f);\r\n}\r\n\r\nsigned main()\
@@ -757,8 +757,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   requiredBy: []
-  timestamp: '2023-10-14 15:49:24+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-10-14 17:39:10+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
 layout: document
