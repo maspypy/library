@@ -26,7 +26,7 @@ void solve() {
   ll n = X.n_node;
   vc<bool> ng(n);
   for (auto&& v: X.words) ng[v] = 1;
-  for (auto&& v: X.V)
+  for (auto&& v: X.BFS)
     if (v) {
       int p = X.suffix_link[v];
       if (ng[p]) ng[v] = 1;
@@ -50,13 +50,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
