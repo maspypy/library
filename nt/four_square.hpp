@@ -64,13 +64,12 @@ tuple<ll, ll, ll, ll> four_square(ll N) {
       return {z1, z2, z3, z4};
     };
 
-    print("solve", p), flush();
     auto [a, b] = [&]() -> pair<i128, i128> {
       while (1) {
         i128 a = RNG(0, p);
         i128 bb = (p - 1 - a * a) % p;
         if (bb < 0) bb += p;
-        i128 b = mod_sqrt_long(bb, p);
+        i128 b = mod_sqrt_64(bb, p);
         if ((a * a + b * b + 1) % p == 0) return {a, b};
       }
       return {0, 0};
@@ -92,7 +91,6 @@ tuple<ll, ll, ll, ll> four_square(ll N) {
     }
     {
       auto [a, b, c, d] = x;
-      print("done", p, a * a + b * b + c * c + d * d), flush();
       return {a, b, c, d};
     }
   };
