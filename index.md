@@ -242,7 +242,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
     - icon: ':warning:'
@@ -491,7 +491,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: enumerate/multiset.hpp
       title: enumerate/multiset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: enumerate/partition.hpp
       title: enumerate/partition.hpp
     - icon: ':question:'
@@ -1147,7 +1147,7 @@ data:
     - icon: ':question:'
       path: nt/factor.hpp
       title: nt/factor.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: nt/factor_interval.hpp
       title: nt/factor_interval.hpp
     - icon: ':x:'
@@ -3565,10 +3565,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc222g.test.cpp
       title: test_atcoder/abc222g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc222h.test.cpp
       title: test_atcoder/abc222h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc222h_2.test.cpp
       title: test_atcoder/abc222h_2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3580,10 +3580,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc224h.test.cpp
       title: test_atcoder/abc224h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc226f.test.cpp
       title: test_atcoder/abc226f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc227g.test.cpp
       title: test_atcoder/abc227g.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3595,7 +3595,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc230e.test.cpp
       title: test_atcoder/abc230e.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc230h.test.cpp
       title: test_atcoder/abc230h.test.cpp
     - icon: ':heavy_check_mark:'
