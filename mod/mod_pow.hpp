@@ -1,7 +1,6 @@
 #pragma once
 #include "mod/barrett.hpp"
 
-// int
 ll mod_pow(ll a, ll n, int mod) {
   assert(n >= 0);
   a %= mod;
@@ -16,7 +15,7 @@ ll mod_pow(ll a, ll n, int mod) {
   return v;
 }
 
-ll mod_pow_long(ll a, ll n, ll mod) {
+ll mod_pow_64(ll a, ll n, ll mod) {
   assert(n >= 0);
   a %= mod;
   if (a < 0) a += mod;
