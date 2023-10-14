@@ -21,7 +21,7 @@ void solve() {
   auto idx2 = [&](int i) -> int { return 1 + 2 * i + 1; };
   int source = 0, sink = 1 + nc + nc;
 
-  mcf_graph<int, ll, true> G(2 * nc + 2);
+  Min_Cost_Flow<int, ll, true> G(2 * nc + 2, source, sink);
   G.add(source, idx1(comp[0]), K, 0);
   FOR(v, nc) {
     G.add(idx1(v), idx2(v), 1, -X[v]);
@@ -30,7 +30,7 @@ void solve() {
   }
   for (auto&& e: DAG.edges) { G.add(idx2(e.frm), idx1(e.to), K, 0); }
 
-  auto [a, b] = G.flow(source, sink);
+  auto [a, b] = G.flow();
   assert(a == K);
   print(-b);
 }
