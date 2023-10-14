@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
   - icon: ':question:'
@@ -25,7 +25,7 @@ data:
   - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/four_square.hpp
     title: nt/four_square.hpp
   - icon: ':question:'
@@ -39,9 +39,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -438,28 +438,26 @@ data:
     \ y3 - x2 * y4 - x3 * y1 + x4 * y2;\n      i128 z4 = x1 * y4 + x2 * y3 - x3 *\
     \ y2 - x4 * y1;\n      if (z1 < 0) z1 = -z1;\n      if (z2 < 0) z2 = -z2;\n  \
     \    if (z3 < 0) z3 = -z3;\n      if (z4 < 0) z4 = -z4;\n      return {z1, z2,\
-    \ z3, z4};\n    };\n\n    print(\"solve\", p), flush();\n    auto [a, b] = [&]()\
-    \ -> pair<i128, i128> {\n      while (1) {\n        i128 a = RNG(0, p);\n    \
-    \    i128 bb = (p - 1 - a * a) % p;\n        if (bb < 0) bb += p;\n        i128\
-    \ b = mod_sqrt_long(bb, p);\n        if ((a * a + b * b + 1) % p == 0) return\
-    \ {a, b};\n      }\n      return {0, 0};\n    }();\n    TT4 x = {a, b, 1, 0};\n\
-    \    while (1) {\n      auto& [x1, x2, x3, x4] = x;\n      chmin(x1, p - x1),\
-    \ chmin(x2, p - x2), chmin(x3, p - x3),\n          chmin(x4, p - x4);\n      i128\
-    \ m = (x1 * x1 + x2 * x2 + x3 * x3 + x4 * x4) / p;\n      if (m == 1) break;\n\
-    \      i128 y1 = x1 % m, y2 = x2 % m, y3 = x3 % m, y4 = x4 % m;\n      if (y1\
-    \ > m / 2) y1 -= m;\n      if (y2 > m / 2) y2 -= m;\n      if (y3 > m / 2) y3\
-    \ -= m;\n      if (y4 > m / 2) y4 -= m;\n      auto [z1, z2, z3, z4] = mul(x,\
-    \ {y1, y2, y3, y4});\n      x = mt(z1 / m, z2 / m, z3 / m, z4 / m);\n    }\n \
-    \   {\n      auto [a, b, c, d] = x;\n      print(\"done\", p, a * a + b * b +\
-    \ c * c + d * d), flush();\n      return {a, b, c, d};\n    }\n  };\n  T4 x =\
-    \ {1, 0, 0, 0};\n  for (auto&& [p, e]: factor(N)) {\n    T4 y = (p < (1 << 30)\
-    \ ? solve_p_32(p) : solve_p_64(p));\n    FOR(e) x = mul(x, y);\n  }\n  return\
-    \ x;\n}\n#line 6 \"test/mytest/four_square.test.cpp\"\n\nvoid test() {\n  FOR(x,\
-    \ 1000) {\n    auto [a, b, c, d] = four_square(x);\n    assert(a * a + b * b +\
-    \ c * c + d * d == x);\n  }\n  FOR(1000) {\n    ll x = RNG(0, 1'000'000'000);\n\
-    \    auto [a, b, c, d] = four_square(x);\n    assert(a * a + b * b + c * c + d\
-    \ * d == x);\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned\
-    \ main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    \ z3, z4};\n    };\n\n    auto [a, b] = [&]() -> pair<i128, i128> {\n      while\
+    \ (1) {\n        i128 a = RNG(0, p);\n        i128 bb = (p - 1 - a * a) % p;\n\
+    \        if (bb < 0) bb += p;\n        i128 b = mod_sqrt_64(bb, p);\n        if\
+    \ ((a * a + b * b + 1) % p == 0) return {a, b};\n      }\n      return {0, 0};\n\
+    \    }();\n    TT4 x = {a, b, 1, 0};\n    while (1) {\n      auto& [x1, x2, x3,\
+    \ x4] = x;\n      chmin(x1, p - x1), chmin(x2, p - x2), chmin(x3, p - x3),\n \
+    \         chmin(x4, p - x4);\n      i128 m = (x1 * x1 + x2 * x2 + x3 * x3 + x4\
+    \ * x4) / p;\n      if (m == 1) break;\n      i128 y1 = x1 % m, y2 = x2 % m, y3\
+    \ = x3 % m, y4 = x4 % m;\n      if (y1 > m / 2) y1 -= m;\n      if (y2 > m / 2)\
+    \ y2 -= m;\n      if (y3 > m / 2) y3 -= m;\n      if (y4 > m / 2) y4 -= m;\n \
+    \     auto [z1, z2, z3, z4] = mul(x, {y1, y2, y3, y4});\n      x = mt(z1 / m,\
+    \ z2 / m, z3 / m, z4 / m);\n    }\n    {\n      auto [a, b, c, d] = x;\n     \
+    \ return {a, b, c, d};\n    }\n  };\n  T4 x = {1, 0, 0, 0};\n  for (auto&& [p,\
+    \ e]: factor(N)) {\n    T4 y = (p < (1 << 30) ? solve_p_32(p) : solve_p_64(p));\n\
+    \    FOR(e) x = mul(x, y);\n  }\n  return x;\n}\n#line 6 \"test/mytest/four_square.test.cpp\"\
+    \n\nvoid test() {\n  FOR(x, 1000) {\n    auto [a, b, c, d] = four_square(x);\n\
+    \    assert(a * a + b * b + c * c + d * d == x);\n  }\n  FOR(1000) {\n    ll x\
+    \ = RNG(0, 1'000'000'000);\n    auto [a, b, c, d] = four_square(x);\n    assert(a\
+    \ * a + b * b + c * c + d * d == x);\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n\
+    \  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"nt/four_square.hpp\"\n#include \"random/base.hpp\"\
     \n\nvoid test() {\n  FOR(x, 1000) {\n    auto [a, b, c, d] = four_square(x);\n\
@@ -483,8 +481,8 @@ data:
   isVerificationFile: true
   path: test/mytest/four_square.test.cpp
   requiredBy: []
-  timestamp: '2023-10-14 15:49:24+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-10-14 19:54:24+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/four_square.test.cpp
 layout: document

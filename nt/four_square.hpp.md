@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
   - icon: ':question:'
@@ -30,12 +30,12 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetest.hpp\"\nstruct m64 {\r\n  using i64 = int64_t;\r\
@@ -245,23 +245,21 @@ data:
     \ y3 - x2 * y4 - x3 * y1 + x4 * y2;\n      i128 z4 = x1 * y4 + x2 * y3 - x3 *\
     \ y2 - x4 * y1;\n      if (z1 < 0) z1 = -z1;\n      if (z2 < 0) z2 = -z2;\n  \
     \    if (z3 < 0) z3 = -z3;\n      if (z4 < 0) z4 = -z4;\n      return {z1, z2,\
-    \ z3, z4};\n    };\n\n    print(\"solve\", p), flush();\n    auto [a, b] = [&]()\
-    \ -> pair<i128, i128> {\n      while (1) {\n        i128 a = RNG(0, p);\n    \
-    \    i128 bb = (p - 1 - a * a) % p;\n        if (bb < 0) bb += p;\n        i128\
-    \ b = mod_sqrt_long(bb, p);\n        if ((a * a + b * b + 1) % p == 0) return\
-    \ {a, b};\n      }\n      return {0, 0};\n    }();\n    TT4 x = {a, b, 1, 0};\n\
-    \    while (1) {\n      auto& [x1, x2, x3, x4] = x;\n      chmin(x1, p - x1),\
-    \ chmin(x2, p - x2), chmin(x3, p - x3),\n          chmin(x4, p - x4);\n      i128\
-    \ m = (x1 * x1 + x2 * x2 + x3 * x3 + x4 * x4) / p;\n      if (m == 1) break;\n\
-    \      i128 y1 = x1 % m, y2 = x2 % m, y3 = x3 % m, y4 = x4 % m;\n      if (y1\
-    \ > m / 2) y1 -= m;\n      if (y2 > m / 2) y2 -= m;\n      if (y3 > m / 2) y3\
-    \ -= m;\n      if (y4 > m / 2) y4 -= m;\n      auto [z1, z2, z3, z4] = mul(x,\
-    \ {y1, y2, y3, y4});\n      x = mt(z1 / m, z2 / m, z3 / m, z4 / m);\n    }\n \
-    \   {\n      auto [a, b, c, d] = x;\n      print(\"done\", p, a * a + b * b +\
-    \ c * c + d * d), flush();\n      return {a, b, c, d};\n    }\n  };\n  T4 x =\
-    \ {1, 0, 0, 0};\n  for (auto&& [p, e]: factor(N)) {\n    T4 y = (p < (1 << 30)\
-    \ ? solve_p_32(p) : solve_p_64(p));\n    FOR(e) x = mul(x, y);\n  }\n  return\
-    \ x;\n}\n"
+    \ z3, z4};\n    };\n\n    auto [a, b] = [&]() -> pair<i128, i128> {\n      while\
+    \ (1) {\n        i128 a = RNG(0, p);\n        i128 bb = (p - 1 - a * a) % p;\n\
+    \        if (bb < 0) bb += p;\n        i128 b = mod_sqrt_64(bb, p);\n        if\
+    \ ((a * a + b * b + 1) % p == 0) return {a, b};\n      }\n      return {0, 0};\n\
+    \    }();\n    TT4 x = {a, b, 1, 0};\n    while (1) {\n      auto& [x1, x2, x3,\
+    \ x4] = x;\n      chmin(x1, p - x1), chmin(x2, p - x2), chmin(x3, p - x3),\n \
+    \         chmin(x4, p - x4);\n      i128 m = (x1 * x1 + x2 * x2 + x3 * x3 + x4\
+    \ * x4) / p;\n      if (m == 1) break;\n      i128 y1 = x1 % m, y2 = x2 % m, y3\
+    \ = x3 % m, y4 = x4 % m;\n      if (y1 > m / 2) y1 -= m;\n      if (y2 > m / 2)\
+    \ y2 -= m;\n      if (y3 > m / 2) y3 -= m;\n      if (y4 > m / 2) y4 -= m;\n \
+    \     auto [z1, z2, z3, z4] = mul(x, {y1, y2, y3, y4});\n      x = mt(z1 / m,\
+    \ z2 / m, z3 / m, z4 / m);\n    }\n    {\n      auto [a, b, c, d] = x;\n     \
+    \ return {a, b, c, d};\n    }\n  };\n  T4 x = {1, 0, 0, 0};\n  for (auto&& [p,\
+    \ e]: factor(N)) {\n    T4 y = (p < (1 << 30) ? solve_p_32(p) : solve_p_64(p));\n\
+    \    FOR(e) x = mul(x, y);\n  }\n  return x;\n}\n"
   code: "#include \"nt/factor.hpp\"\n#include \"random/base.hpp\"\n#include \"mod/mod_sqrt.hpp\"\
     \n#include \"mod/dynamic_modint.hpp\"\n\n// N = a^2+b^2+c^2+d^2 \u3068\u306A\u308B\
     \ (a,b,c,d) \u3092\u3072\u3068\u3064\u8FD4\u3059\n// \u73FE\u72B6\uFF1A\u7D20\u56E0\
@@ -292,23 +290,21 @@ data:
     \ y3 - x2 * y4 - x3 * y1 + x4 * y2;\n      i128 z4 = x1 * y4 + x2 * y3 - x3 *\
     \ y2 - x4 * y1;\n      if (z1 < 0) z1 = -z1;\n      if (z2 < 0) z2 = -z2;\n  \
     \    if (z3 < 0) z3 = -z3;\n      if (z4 < 0) z4 = -z4;\n      return {z1, z2,\
-    \ z3, z4};\n    };\n\n    print(\"solve\", p), flush();\n    auto [a, b] = [&]()\
-    \ -> pair<i128, i128> {\n      while (1) {\n        i128 a = RNG(0, p);\n    \
-    \    i128 bb = (p - 1 - a * a) % p;\n        if (bb < 0) bb += p;\n        i128\
-    \ b = mod_sqrt_long(bb, p);\n        if ((a * a + b * b + 1) % p == 0) return\
-    \ {a, b};\n      }\n      return {0, 0};\n    }();\n    TT4 x = {a, b, 1, 0};\n\
-    \    while (1) {\n      auto& [x1, x2, x3, x4] = x;\n      chmin(x1, p - x1),\
-    \ chmin(x2, p - x2), chmin(x3, p - x3),\n          chmin(x4, p - x4);\n      i128\
-    \ m = (x1 * x1 + x2 * x2 + x3 * x3 + x4 * x4) / p;\n      if (m == 1) break;\n\
-    \      i128 y1 = x1 % m, y2 = x2 % m, y3 = x3 % m, y4 = x4 % m;\n      if (y1\
-    \ > m / 2) y1 -= m;\n      if (y2 > m / 2) y2 -= m;\n      if (y3 > m / 2) y3\
-    \ -= m;\n      if (y4 > m / 2) y4 -= m;\n      auto [z1, z2, z3, z4] = mul(x,\
-    \ {y1, y2, y3, y4});\n      x = mt(z1 / m, z2 / m, z3 / m, z4 / m);\n    }\n \
-    \   {\n      auto [a, b, c, d] = x;\n      print(\"done\", p, a * a + b * b +\
-    \ c * c + d * d), flush();\n      return {a, b, c, d};\n    }\n  };\n  T4 x =\
-    \ {1, 0, 0, 0};\n  for (auto&& [p, e]: factor(N)) {\n    T4 y = (p < (1 << 30)\
-    \ ? solve_p_32(p) : solve_p_64(p));\n    FOR(e) x = mul(x, y);\n  }\n  return\
-    \ x;\n}\n"
+    \ z3, z4};\n    };\n\n    auto [a, b] = [&]() -> pair<i128, i128> {\n      while\
+    \ (1) {\n        i128 a = RNG(0, p);\n        i128 bb = (p - 1 - a * a) % p;\n\
+    \        if (bb < 0) bb += p;\n        i128 b = mod_sqrt_64(bb, p);\n        if\
+    \ ((a * a + b * b + 1) % p == 0) return {a, b};\n      }\n      return {0, 0};\n\
+    \    }();\n    TT4 x = {a, b, 1, 0};\n    while (1) {\n      auto& [x1, x2, x3,\
+    \ x4] = x;\n      chmin(x1, p - x1), chmin(x2, p - x2), chmin(x3, p - x3),\n \
+    \         chmin(x4, p - x4);\n      i128 m = (x1 * x1 + x2 * x2 + x3 * x3 + x4\
+    \ * x4) / p;\n      if (m == 1) break;\n      i128 y1 = x1 % m, y2 = x2 % m, y3\
+    \ = x3 % m, y4 = x4 % m;\n      if (y1 > m / 2) y1 -= m;\n      if (y2 > m / 2)\
+    \ y2 -= m;\n      if (y3 > m / 2) y3 -= m;\n      if (y4 > m / 2) y4 -= m;\n \
+    \     auto [z1, z2, z3, z4] = mul(x, {y1, y2, y3, y4});\n      x = mt(z1 / m,\
+    \ z2 / m, z3 / m, z4 / m);\n    }\n    {\n      auto [a, b, c, d] = x;\n     \
+    \ return {a, b, c, d};\n    }\n  };\n  T4 x = {1, 0, 0, 0};\n  for (auto&& [p,\
+    \ e]: factor(N)) {\n    T4 y = (p < (1 << 30) ? solve_p_32(p) : solve_p_64(p));\n\
+    \    FOR(e) x = mul(x, y);\n  }\n  return x;\n}\n"
   dependsOn:
   - nt/factor.hpp
   - nt/primetest.hpp
@@ -322,8 +318,8 @@ data:
   isVerificationFile: false
   path: nt/four_square.hpp
   requiredBy: []
-  timestamp: '2023-10-14 15:49:24+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-10-14 19:54:24+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/four_square.test.cpp
 documentation_of: nt/four_square.hpp
