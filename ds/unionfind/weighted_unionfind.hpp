@@ -2,11 +2,13 @@ template <typename Group>
 struct Weighted_UnionFind {
   using E = typename Group::value_type;
   int N;
+  int n_comp;
   vc<E> vals;
   vc<int> par;
   vc<int> size;
 
-  Weighted_UnionFind(int N) : N(N), vals(N, Group::unit()), size(N, 1) {
+  Weighted_UnionFind(int N)
+      : N(N), n_comp(N), vals(N, Group::unit()), size(N, 1) {
     par.resize(N);
     iota(all(par), 0);
   }
@@ -39,6 +41,7 @@ struct Weighted_UnionFind {
     vals[v2] = x;
     par[v2] = v1;
     size[v1] += size[v2];
+    --n_comp;
     return true;
   }
 };
