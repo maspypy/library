@@ -280,6 +280,9 @@ data:
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/fenwick_raq.test.cpp
+    title: test/mytest/fenwick_raq.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
   - icon: ':heavy_check_mark:'
@@ -782,6 +785,7 @@ data:
   - test/mytest/splay_am.test.cpp
   - test/mytest/matching_line_graph.test.cpp
   - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
+  - test/mytest/fenwick_raq.test.cpp
   - test/mytest/rbst_test.test.cpp
   - test/mytest/online_log.test.cpp
   - test/mytest/non_adj.test.cpp

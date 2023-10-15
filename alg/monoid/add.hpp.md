@@ -57,6 +57,9 @@ data:
     path: ds/fenwicktree/fenwicktree_2d_dense.hpp
     title: ds/fenwicktree/fenwicktree_2d_dense.hpp
   - icon: ':heavy_check_mark:'
+    path: ds/fenwicktree/fenwicktree_range_add.hpp
+    title: ds/fenwicktree/fenwicktree_range_add.hpp
+  - icon: ':heavy_check_mark:'
     path: ds/offline_query/coeffient_query_2d.hpp
     title: ds/offline_query/coeffient_query_2d.hpp
   - icon: ':heavy_check_mark:'
@@ -225,6 +228,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_digit.test.cpp
     title: test/mytest/factorial_digit.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/fenwick_raq.test.cpp
+    title: test/mytest/fenwick_raq.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/kdtree_am.test.cpp
     title: test/mytest/kdtree_am.test.cpp
@@ -411,15 +417,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc268_ex.test.cpp
     title: test_atcoder/abc268_ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc280f.test.cpp
     title: test_atcoder/abc280f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc318b.test.cpp
     title: test_atcoder/abc318b.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -449,6 +455,7 @@ data:
   - ds/range_add_range_sum.hpp
   - ds/doubling.hpp
   - ds/cumsum_2d.hpp
+  - ds/fenwicktree/fenwicktree_range_add.hpp
   - ds/fenwicktree/fenwicktree_2d.hpp
   - ds/fenwicktree/fenwicktree_2d_dense.hpp
   - ds/fenwicktree/fenwicktree.hpp
@@ -472,7 +479,7 @@ data:
   - alg/acted_monoid/max_add.hpp
   - string/trie.hpp
   timestamp: '2022-11-28 14:51:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DSL_4_A.test.cpp
   - test/aoj/DSL_2_G.test.cpp
@@ -563,6 +570,7 @@ data:
   - test/mytest/summax_add.test.cpp
   - test/mytest/rbst_am_2.test.cpp
   - test/mytest/splay_am.test.cpp
+  - test/mytest/fenwick_raq.test.cpp
   - test/mytest/minidx_add.test.cpp
   - test/mytest/splay_cm.test.cpp
   - test/mytest/minmax_add.test.cpp

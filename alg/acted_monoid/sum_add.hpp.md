@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   _extendedRequiredBy: []
@@ -12,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/ARC30D.test.cpp
     title: test/mytest/ARC30D.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/fenwick_raq.test.cpp
+    title: test/mytest/fenwick_raq.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_am_2.test.cpp
     title: test/mytest/rbst_am_2.test.cpp
@@ -62,6 +65,7 @@ data:
   - test/mytest/ARC30D.test.cpp
   - test/mytest/rbst_am_2.test.cpp
   - test/mytest/splay_am.test.cpp
+  - test/mytest/fenwick_raq.test.cpp
   - test_atcoder/abc234g.test.cpp
 documentation_of: alg/acted_monoid/sum_add.hpp
 layout: document

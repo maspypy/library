@@ -82,7 +82,7 @@ data:
       title: alg/acted_set/from_monoid.hpp
   - name: alg/monoid
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/add.hpp
       title: alg/monoid/add.hpp
     - icon: ':heavy_check_mark:'
@@ -304,6 +304,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fenwicktree/fenwicktree_2d_dense.hpp
       title: ds/fenwicktree/fenwicktree_2d_dense.hpp
+    - icon: ':heavy_check_mark:'
+      path: ds/fenwicktree/fenwicktree_range_add.hpp
+      title: ds/fenwicktree/fenwicktree_range_add.hpp
   - name: ds/kdtree
     pages:
     - icon: ':heavy_check_mark:'
@@ -471,7 +474,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/unionfind/unionfind.hpp
       title: ds/unionfind/unionfind.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/unionfind/weighted_unionfind.hpp
       title: ds/unionfind/weighted_unionfind.hpp
   - name: enumerate
@@ -1104,7 +1107,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
   - name: new_poly
@@ -1233,7 +1236,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/fibonacci_search.hpp
       title: other/fibonacci_search.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -2560,6 +2563,9 @@ data:
       path: test/mytest/factorial_digit.test.cpp
       title: test/mytest/factorial_digit.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/mytest/fenwick_raq.test.cpp
+      title: test/mytest/fenwick_raq.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/mytest/fibonacci_search.test.cpp
       title: test/mytest/fibonacci_search.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3706,7 +3712,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc279b.test.cpp
       title: test_atcoder/abc279b.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_atcoder/abc280f.test.cpp
       title: test_atcoder/abc280f.test.cpp
     - icon: ':heavy_check_mark:'

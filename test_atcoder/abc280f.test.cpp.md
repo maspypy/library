@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/weighted_unionfind.hpp
     title: ds/unionfind/weighted_unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc280/tasks/abc280_f
@@ -209,27 +209,27 @@ data:
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\n#line 5 \"test_atcoder/abc280f.test.cpp\"\n\n#line 1 \"ds/unionfind/weighted_unionfind.hpp\"\
     \ntemplate <typename Group>\r\nstruct Weighted_UnionFind {\r\n  using E = typename\
-    \ Group::value_type;\r\n  int N;\r\n  vc<E> vals;\r\n  vc<int> par;\r\n  vc<int>\
-    \ size;\r\n\r\n  Weighted_UnionFind(int N) : N(N), vals(N, Group::unit()), size(N,\
-    \ 1) {\r\n    par.resize(N);\r\n    iota(all(par), 0);\r\n  }\r\n\r\n  // (root,\
-    \ root=0 \u3068\u3057\u305F\u3068\u304D\u306E val)\r\n  pair<int, E> get(int v)\
-    \ {\r\n    E res = Group::unit();\r\n    while (v != par[v]) {\r\n      res =\
-    \ Group::op(vals[v], res);\r\n      res = Group::op(vals[par[v]], res);\r\n  \
-    \    vals[v] = Group::op(vals[par[v]], vals[v]);\r\n      v = par[v] = par[par[v]];\r\
-    \n    }\r\n    return {v, res};\r\n  }\r\n\r\n  pair<int, E> operator[](int v)\
-    \ { return get(v); }\r\n\r\n  bool merge(int frm, int to, E x) {\r\n    auto [v1,\
-    \ x1] = get(frm);\r\n    auto [v2, x2] = get(to);\r\n    if (v1 == v2) return\
-    \ false;\r\n    if (size[v1] < size[v2]) {\r\n      swap(v1, v2);\r\n      swap(x1,\
-    \ x2);\r\n      x = Group::inverse(x);\r\n    }\r\n    x = Group::op(x1, x);\r\
-    \n    x = Group::op(x, Group::inverse(x2));\r\n    vals[v2] = x;\r\n    par[v2]\
-    \ = v1;\r\n    size[v1] += size[v2];\r\n    return true;\r\n  }\r\n};\n#line 2\
-    \ \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct Monoid_Add {\r\n\
-    \  using value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
-    \ { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
-    \ -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return X(n)\
-    \ * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 8 \"test_atcoder/abc280f.test.cpp\"\n\n\
-    void solve() {\n  LL(N, M, Q);\n  Weighted_UnionFind<Monoid_Add<ll>> uf(N);\n\
+    \ Group::value_type;\r\n  int N;\r\n  int n_comp;\r\n  vc<E> vals;\r\n  vc<int>\
+    \ par;\r\n  vc<int> size;\r\n\r\n  Weighted_UnionFind(int N)\r\n      : N(N),\
+    \ n_comp(N), vals(N, Group::unit()), size(N, 1) {\r\n    par.resize(N);\r\n  \
+    \  iota(all(par), 0);\r\n  }\r\n\r\n  // (root, root=0 \u3068\u3057\u305F\u3068\
+    \u304D\u306E val)\r\n  pair<int, E> get(int v) {\r\n    E res = Group::unit();\r\
+    \n    while (v != par[v]) {\r\n      res = Group::op(vals[v], res);\r\n      res\
+    \ = Group::op(vals[par[v]], res);\r\n      vals[v] = Group::op(vals[par[v]], vals[v]);\r\
+    \n      v = par[v] = par[par[v]];\r\n    }\r\n    return {v, res};\r\n  }\r\n\r\
+    \n  pair<int, E> operator[](int v) { return get(v); }\r\n\r\n  bool merge(int\
+    \ frm, int to, E x) {\r\n    auto [v1, x1] = get(frm);\r\n    auto [v2, x2] =\
+    \ get(to);\r\n    if (v1 == v2) return false;\r\n    if (size[v1] < size[v2])\
+    \ {\r\n      swap(v1, v2);\r\n      swap(x1, x2);\r\n      x = Group::inverse(x);\r\
+    \n    }\r\n    x = Group::op(x1, x);\r\n    x = Group::op(x, Group::inverse(x2));\r\
+    \n    vals[v2] = x;\r\n    par[v2] = v1;\r\n    size[v1] += size[v2];\r\n    --n_comp;\r\
+    \n    return true;\r\n  }\r\n};\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate\
+    \ <typename X>\r\nstruct Monoid_Add {\r\n  using value_type = X;\r\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
+    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
+    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
+    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 8 \"test_atcoder/abc280f.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, M, Q);\n  Weighted_UnionFind<Monoid_Add<ll>> uf(N);\n\
     \  vi neg(N);\n\n  FOR(M) {\n    LL(a, b, c);\n    --a, --b;\n    auto [ra, xa]\
     \ = uf[a];\n    auto [rb, xb] = uf[b];\n    if (ra != rb) {\n      uf.merge(a,\
     \ b, c);\n      continue;\n    }\n    if (xa + c == xb) continue;\n    neg[a]\
@@ -259,8 +259,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc280f.test.cpp
   requiredBy: []
-  timestamp: '2023-10-06 12:12:06+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-10-16 08:35:06+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc280f.test.cpp
 layout: document

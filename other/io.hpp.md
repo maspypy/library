@@ -874,6 +874,9 @@ data:
     path: test/mytest/factorial_digit.test.cpp
     title: test/mytest/factorial_digit.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/fenwick_raq.test.cpp
+    title: test/mytest/fenwick_raq.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/fibonacci_search.test.cpp
     title: test/mytest/fibonacci_search.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2004,7 +2007,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc279b.test.cpp
     title: test_atcoder/abc279b.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc280f.test.cpp
     title: test_atcoder/abc280f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2109,9 +2112,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\n#include\
@@ -2327,7 +2330,7 @@ data:
   path: other/io.hpp
   requiredBy: []
   timestamp: '2023-01-19 00:14:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/ALDS1_14_C.test.cpp
   - test/aoj/DSL_2_F.test.cpp
@@ -2878,6 +2881,7 @@ data:
   - test/mytest/matching_line_graph.test.cpp
   - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
   - test/mytest/datetime.test.cpp
+  - test/mytest/fenwick_raq.test.cpp
   - test/mytest/magic_square.test.cpp
   - test/mytest/rbst_test.test.cpp
   - test/mytest/primesum_mod6.test.cpp

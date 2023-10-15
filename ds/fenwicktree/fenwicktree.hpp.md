@@ -1,10 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: ds/fenwicktree/fenwicktree_range_add.hpp
+    title: ds/fenwicktree/fenwicktree_range_add.hpp
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/coeffient_query_2d.hpp
     title: ds/offline_query/coeffient_query_2d.hpp
@@ -84,6 +87,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_digit.test.cpp
     title: test/mytest/factorial_digit.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/fenwick_raq.test.cpp
+    title: test/mytest/fenwick_raq.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
@@ -205,6 +211,7 @@ data:
   - ds/offline_query/rectangle_add_rectangle_sum.hpp
   - ds/offline_query/point_add_rectangle_sum.hpp
   - ds/range_add_range_sum.hpp
+  - ds/fenwicktree/fenwicktree_range_add.hpp
   - graph/ds/contour_sum.hpp
   - graph/ds/incremental_centroid.hpp
   - graph/ds/tree_abelgroup.hpp
@@ -239,6 +246,7 @@ data:
   - test/yukicoder/1838.test.cpp
   - test/mytest/factorial_digit.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
+  - test/mytest/fenwick_raq.test.cpp
   - test_atcoder/abc190f.test.cpp
 documentation_of: ds/fenwicktree/fenwicktree.hpp
 layout: document

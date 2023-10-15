@@ -37,6 +37,9 @@ data:
     path: test/library_checker/graph/common_interval_decomposition.test.cpp
     title: test/library_checker/graph/common_interval_decomposition.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/fenwick_raq.test.cpp
+    title: test/mytest/fenwick_raq.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/max_assign.test.cpp
     title: test/mytest/max_assign.test.cpp
   - icon: ':heavy_check_mark:'
@@ -269,6 +272,7 @@ data:
   - test/mytest/summax_assign.test.cpp
   - test/mytest/summax_add.test.cpp
   - test/mytest/max_min.test.cpp
+  - test/mytest/fenwick_raq.test.cpp
   - test/mytest/minidx_add.test.cpp
   - test/mytest/max_max.test.cpp
   - test/mytest/max_assign.test.cpp
