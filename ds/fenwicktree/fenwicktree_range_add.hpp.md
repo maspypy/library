@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':heavy_check_mark:'
@@ -18,6 +18,7 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/860/submission/228355081
+    - https://maspypy.github.io/library/test/mytest/fenwick_raq.test.cpp
   bundledCode: "#line 1 \"ds/fenwicktree/fenwicktree_range_add.hpp\"\n\n#line 2 \"\
     alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct Monoid_Add {\r\n  using\
     \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
@@ -55,44 +56,46 @@ data:
     \    }\n    return i;\n  }\n\n  int kth(E k) {\n    return max_right([&k](E x)\
     \ -> bool { return x <= k; });\n  }\n};\n#line 3 \"ds/fenwicktree/fenwicktree_range_add.hpp\"\
     \n\n// \u9045\u5EF6\u30BB\u30B0\u6728\u3088\u308A 4 \uFF5E 5 \u500D\u9AD8\u901F\
-    \uFF1F\n//\n// https://codeforces.com/contest/860/submission/228355081\ntemplate\
-    \ <typename AbelGroup>\nstruct FenwickTree_Range_Add {\n  using G = AbelGroup;\n\
-    \  using E = typename AbelGroup::value_type;\n  int n;\n  FenwickTree<G> bit0;\n\
-    \  FenwickTree<G> bit1;\n\n  FenwickTree_Range_Add() {}\n  FenwickTree_Range_Add(int\
-    \ n) { build(n); }\n  template <typename F>\n  FenwickTree_Range_Add(int n, F\
-    \ f) {\n    build(n, f);\n  }\n  FenwickTree_Range_Add(const vc<E>& v) { build(v);\
-    \ }\n\n  void build(int m) {\n    n = m;\n    bit0.build(n), bit1.build(n);\n\
-    \  }\n  void build(const vc<E>& v) {\n    build(len(v), [&](int i) -> E { return\
-    \ v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n =\
-    \ m;\n    bit0.build(m, f);\n    bit1.build(m);\n  }\n\n  void add_at(int i, E\
-    \ val) { bit0.add(i, val); }\n\n  void add(int L, int R, E val) {\n    bit0.add(L,\
-    \ G::power(val, -L));\n    bit0.add(R, G::power(val, R));\n    bit1.add(L, val);\n\
-    \    bit1.add(R, G::inverse(val));\n  }\n\n  E prod(int L, int R) {\n    E prod_R\
-    \ = G::op(G::power(bit1.prod(R), R), bit0.prod(R));\n    E prod_L = G::op(G::power(bit1.prod(L),\
-    \ L), bit0.prod(L));\n    return G::op(G::inverse(prod_L), prod_R);\n  }\n};\n"
+    \uFF1F\n// https://maspypy.github.io/library/test/mytest/fenwick_raq.test.cpp\n\
+    // https://codeforces.com/contest/860/submission/228355081\ntemplate <typename\
+    \ AbelGroup>\nstruct FenwickTree_Range_Add {\n  using G = AbelGroup;\n  using\
+    \ E = typename AbelGroup::value_type;\n  int n;\n  FenwickTree<G> bit0;\n  FenwickTree<G>\
+    \ bit1;\n\n  FenwickTree_Range_Add() {}\n  FenwickTree_Range_Add(int n) { build(n);\
+    \ }\n  template <typename F>\n  FenwickTree_Range_Add(int n, F f) {\n    build(n,\
+    \ f);\n  }\n  FenwickTree_Range_Add(const vc<E>& v) { build(v); }\n\n  void build(int\
+    \ m) {\n    n = m;\n    bit0.build(n), bit1.build(n);\n  }\n  void build(const\
+    \ vc<E>& v) {\n    build(len(v), [&](int i) -> E { return v[i]; });\n  }\n  template\
+    \ <typename F>\n  void build(int m, F f) {\n    n = m;\n    bit0.build(m, f);\n\
+    \    bit1.build(m);\n  }\n\n  void add_at(int i, E val) { bit0.add(i, val); }\n\
+    \n  void add(int L, int R, E val) {\n    bit0.add(L, G::power(val, -L));\n   \
+    \ bit0.add(R, G::power(val, R));\n    bit1.add(L, val);\n    bit1.add(R, G::inverse(val));\n\
+    \  }\n\n  E prod(int L, int R) {\n    E prod_R = G::op(G::power(bit1.prod(R),\
+    \ R), bit0.prod(R));\n    E prod_L = G::op(G::power(bit1.prod(L), L), bit0.prod(L));\n\
+    \    return G::op(G::inverse(prod_L), prod_R);\n  }\n};\n"
   code: "\n#include \"ds/fenwicktree/fenwicktree.hpp\"\n\n// \u9045\u5EF6\u30BB\u30B0\
-    \u6728\u3088\u308A 4 \uFF5E 5 \u500D\u9AD8\u901F\uFF1F\n//\n// https://codeforces.com/contest/860/submission/228355081\n\
-    template <typename AbelGroup>\nstruct FenwickTree_Range_Add {\n  using G = AbelGroup;\n\
-    \  using E = typename AbelGroup::value_type;\n  int n;\n  FenwickTree<G> bit0;\n\
-    \  FenwickTree<G> bit1;\n\n  FenwickTree_Range_Add() {}\n  FenwickTree_Range_Add(int\
-    \ n) { build(n); }\n  template <typename F>\n  FenwickTree_Range_Add(int n, F\
-    \ f) {\n    build(n, f);\n  }\n  FenwickTree_Range_Add(const vc<E>& v) { build(v);\
-    \ }\n\n  void build(int m) {\n    n = m;\n    bit0.build(n), bit1.build(n);\n\
-    \  }\n  void build(const vc<E>& v) {\n    build(len(v), [&](int i) -> E { return\
-    \ v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n =\
-    \ m;\n    bit0.build(m, f);\n    bit1.build(m);\n  }\n\n  void add_at(int i, E\
-    \ val) { bit0.add(i, val); }\n\n  void add(int L, int R, E val) {\n    bit0.add(L,\
-    \ G::power(val, -L));\n    bit0.add(R, G::power(val, R));\n    bit1.add(L, val);\n\
-    \    bit1.add(R, G::inverse(val));\n  }\n\n  E prod(int L, int R) {\n    E prod_R\
-    \ = G::op(G::power(bit1.prod(R), R), bit0.prod(R));\n    E prod_L = G::op(G::power(bit1.prod(L),\
-    \ L), bit0.prod(L));\n    return G::op(G::inverse(prod_L), prod_R);\n  }\n};"
+    \u6728\u3088\u308A 4 \uFF5E 5 \u500D\u9AD8\u901F\uFF1F\n// https://maspypy.github.io/library/test/mytest/fenwick_raq.test.cpp\n\
+    // https://codeforces.com/contest/860/submission/228355081\ntemplate <typename\
+    \ AbelGroup>\nstruct FenwickTree_Range_Add {\n  using G = AbelGroup;\n  using\
+    \ E = typename AbelGroup::value_type;\n  int n;\n  FenwickTree<G> bit0;\n  FenwickTree<G>\
+    \ bit1;\n\n  FenwickTree_Range_Add() {}\n  FenwickTree_Range_Add(int n) { build(n);\
+    \ }\n  template <typename F>\n  FenwickTree_Range_Add(int n, F f) {\n    build(n,\
+    \ f);\n  }\n  FenwickTree_Range_Add(const vc<E>& v) { build(v); }\n\n  void build(int\
+    \ m) {\n    n = m;\n    bit0.build(n), bit1.build(n);\n  }\n  void build(const\
+    \ vc<E>& v) {\n    build(len(v), [&](int i) -> E { return v[i]; });\n  }\n  template\
+    \ <typename F>\n  void build(int m, F f) {\n    n = m;\n    bit0.build(m, f);\n\
+    \    bit1.build(m);\n  }\n\n  void add_at(int i, E val) { bit0.add(i, val); }\n\
+    \n  void add(int L, int R, E val) {\n    bit0.add(L, G::power(val, -L));\n   \
+    \ bit0.add(R, G::power(val, R));\n    bit1.add(L, val);\n    bit1.add(R, G::inverse(val));\n\
+    \  }\n\n  E prod(int L, int R) {\n    E prod_R = G::op(G::power(bit1.prod(R),\
+    \ R), bit0.prod(R));\n    E prod_L = G::op(G::power(bit1.prod(L), L), bit0.prod(L));\n\
+    \    return G::op(G::inverse(prod_L), prod_R);\n  }\n};"
   dependsOn:
   - ds/fenwicktree/fenwicktree.hpp
   - alg/monoid/add.hpp
   isVerificationFile: false
   path: ds/fenwicktree/fenwicktree_range_add.hpp
   requiredBy: []
-  timestamp: '2023-10-16 08:35:06+09:00'
+  timestamp: '2023-10-16 08:46:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/fenwick_raq.test.cpp
