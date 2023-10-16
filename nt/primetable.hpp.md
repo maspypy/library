@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':heavy_check_mark:'
@@ -62,7 +62,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_rational.hpp
     title: poly/composition_f_rational.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   - icon: ':heavy_check_mark:'
@@ -147,7 +147,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1276.test.cpp
     title: test/yukicoder/1276.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
   - icon: ':heavy_check_mark:'
@@ -198,7 +198,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc249_ex.test.cpp
     title: test_atcoder/abc249_ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc281g.test.cpp
     title: test_atcoder/abc281g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -207,9 +207,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
@@ -266,7 +266,7 @@ data:
   - mod/tetration.hpp
   - mod/powertable.hpp
   timestamp: '2023-08-06 03:59:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/NTL_1_D.test.cpp
   - test/library_checker/math/enumerate_primes.test.cpp

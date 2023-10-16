@@ -92,7 +92,7 @@ data:
   - icon: ':warning:'
     path: graph/find_odd_cycle.hpp
     title: graph/find_odd_cycle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/functional.hpp
     title: graph/functional.hpp
   - icon: ':warning:'
@@ -167,7 +167,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
@@ -531,7 +531,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
   - icon: ':heavy_check_mark:'
@@ -597,9 +597,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc157a.test.cpp
     title: test_atcoder/arc157a.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -792,7 +792,7 @@ data:
   - random/random_graph.hpp
   - geo/manhattan_mst.hpp
   timestamp: '2023-05-20 20:14:16+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/1566.test.cpp
   - test/aoj/GRL_2_A.test.cpp

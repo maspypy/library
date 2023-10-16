@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/wavelet_matrix.hpp
     title: ds/wavelet_matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -326,27 +326,28 @@ data:
     \ segments) n += R - L;\r\n    int k = (UPPER ? n / 2 : (n - 1) / 2);\r\n    return\
     \ kth(segments, k, xor_val);\r\n  }\r\n\r\n  // xor \u3057\u305F\u7D50\u679C\u3067\
     \ [k1, k2) \u756A\u76EE\u3067\u3042\u308B\u3068\u3053\u308D\u306E SUM_data \u306E\
-    \u548C\r\n  X sum(int L, int R, int k1, int k2, T xor_val = 0) {\r\n    return\
-    \ prefix_sum(L, R, k2, xor_val) - prefix_sum(L, R, k1, xor_val);\r\n  }\r\n\r\n\
-    \  X sum_all(int L, int R) { return get(lg, L, R); }\r\n\r\n  X sum_all(vc<pair<int,\
-    \ int>> segments) {\r\n    X sm = MX::unit();\r\n    for (auto&& [L, R]: segments)\
-    \ { sm = MX::op(sm, get(lg, L, R)); }\r\n    return sm;\r\n  }\r\n\r\n  // check(cnt,\
-    \ prefix sum) \u304C true \u3068\u306A\u308B\u3088\u3046\u306A\u6700\u5927\u306E\
-    \ (cnt, sum)\r\n  template <typename F>\r\n  pair<int, X> max_right(F check, int\
-    \ L, int R, T xor_val = 0) {\r\n    assert(check(0, MX::unit()));\r\n    if (xor_val\
-    \ != 0) assert(set_log);\r\n    if (check(R - L, get(lg, L, R))) return {R - L,\
-    \ get(lg, L, R)};\r\n    int cnt = 0;\r\n    X sm = MX::unit();\r\n    for (int\
-    \ d = lg - 1; d >= 0; --d) {\r\n      bool f = (xor_val >> d) & 1;\r\n      int\
-    \ l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\n      int c = (f ? (R - L)\
-    \ - (r0 - l0) : (r0 - l0));\r\n      X s = (f ? get(d, L + mid[d] - l0, R + mid[d]\
-    \ - r0) : get(d, l0, r0));\r\n      if (check(cnt + c, MX::op(sm, s))) {\r\n \
-    \       cnt += c, sm = MX::op(sm, s);\r\n        if (f) L = l0, R = r0;\r\n  \
-    \      if (!f) L += mid[d] - l0, R += mid[d] - r0;\r\n      } else {\r\n     \
-    \   if (!f) L = l0, R = r0;\r\n        if (f) L += mid[d] - l0, R += mid[d] -\
-    \ r0;\r\n      }\r\n    }\r\n    int k = binary_search(\r\n        [&](int k)\
-    \ -> bool {\r\n          return check(cnt + k, MX::op(sm, get(0, L, L + k)));\r\
-    \n        },\r\n        0, R - L);\r\n    cnt += k;\r\n    sm = MX::op(sm, get(0,\
-    \ L, L + k));\r\n    return {cnt, sm};\r\n  }\r\n\r\nprivate:\r\n  inline X get(int\
+    \u548C\r\n  X sum(int L, int R, int k1, int k2, T xor_val = 0) {\r\n    X add\
+    \ = prefix_sum(L, R, k2, xor_val);\r\n    X sub = prefix_sum(L, R, k1, xor_val);\r\
+    \n    return MX::op(add, MX::inverse(sub));\r\n  }\r\n\r\n  X sum_all(int L, int\
+    \ R) { return get(lg, L, R); }\r\n\r\n  X sum_all(vc<pair<int, int>> segments)\
+    \ {\r\n    X sm = MX::unit();\r\n    for (auto&& [L, R]: segments) { sm = MX::op(sm,\
+    \ get(lg, L, R)); }\r\n    return sm;\r\n  }\r\n\r\n  // check(cnt, prefix sum)\
+    \ \u304C true \u3068\u306A\u308B\u3088\u3046\u306A\u6700\u5927\u306E (cnt, sum)\r\
+    \n  template <typename F>\r\n  pair<int, X> max_right(F check, int L, int R, T\
+    \ xor_val = 0) {\r\n    assert(check(0, MX::unit()));\r\n    if (xor_val != 0)\
+    \ assert(set_log);\r\n    if (check(R - L, get(lg, L, R))) return {R - L, get(lg,\
+    \ L, R)};\r\n    int cnt = 0;\r\n    X sm = MX::unit();\r\n    for (int d = lg\
+    \ - 1; d >= 0; --d) {\r\n      bool f = (xor_val >> d) & 1;\r\n      int l0 =\
+    \ bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\n      int c = (f ? (R - L) - (r0\
+    \ - l0) : (r0 - l0));\r\n      X s = (f ? get(d, L + mid[d] - l0, R + mid[d] -\
+    \ r0) : get(d, l0, r0));\r\n      if (check(cnt + c, MX::op(sm, s))) {\r\n   \
+    \     cnt += c, sm = MX::op(sm, s);\r\n        if (f) L = l0, R = r0;\r\n    \
+    \    if (!f) L += mid[d] - l0, R += mid[d] - r0;\r\n      } else {\r\n       \
+    \ if (!f) L = l0, R = r0;\r\n        if (f) L += mid[d] - l0, R += mid[d] - r0;\r\
+    \n      }\r\n    }\r\n    int k = binary_search(\r\n        [&](int k) -> bool\
+    \ {\r\n          return check(cnt + k, MX::op(sm, get(0, L, L + k)));\r\n    \
+    \    },\r\n        0, R - L);\r\n    cnt += k;\r\n    sm = MX::op(sm, get(0, L,\
+    \ L + k));\r\n    return {cnt, sm};\r\n  }\r\n\r\nprivate:\r\n  inline X get(int\
     \ d, int L, int R) {\r\n    assert(!cumsum.empty());\r\n    return MX::op(MX::inverse(cumsum[d][L]),\
     \ cumsum[d][R]);\r\n  }\r\n\r\n  // xor \u3057\u305F\u7D50\u679C\u3067 [0, x)\
     \ \u306B\u53CE\u307E\u308B\u3082\u306E\u3092\u6570\u3048\u308B\r\n  int prefix_count(int\
@@ -383,7 +384,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   requiredBy: []
-  timestamp: '2023-10-06 12:12:06+09:00'
+  timestamp: '2023-10-17 07:10:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp

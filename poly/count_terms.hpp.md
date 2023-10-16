@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_bipartite.hpp
     title: graph/count/count_bipartite.hpp
   - icon: ':warning:'
@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
   - icon: ':warning:'
@@ -38,28 +38,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_rational.hpp
     title: poly/composition_f_rational.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':heavy_check_mark:'
     path: poly/fps_inv_2d.hpp
     title: poly/fps_inv_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':heavy_check_mark:'
@@ -68,7 +68,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
   - icon: ':heavy_check_mark:'
@@ -171,13 +171,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/log_of_fps.test.cpp
     title: test/library_checker/polynomial/log_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/log_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/log_of_fps_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/log_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/log_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
     title: test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
   - icon: ':heavy_check_mark:'
@@ -198,19 +198,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/pow_of_fps.test.cpp
     title: test/library_checker/polynomial/pow_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - icon: ':heavy_check_mark:'
@@ -228,7 +228,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/composition_log_1_minus_x.test.cpp
     title: test/mytest/composition_log_1_minus_x.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/count_bipartite.test.cpp
     title: test/mytest/count_bipartite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -363,7 +363,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc272_h.test.cpp
     title: test_atcoder/abc272_h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc281g.test.cpp
     title: test_atcoder/abc281g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -378,7 +378,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc013e.test.cpp
     title: test_atcoder/agc013e.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -396,9 +396,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
@@ -451,7 +451,7 @@ data:
   - poly/sum_of_power_of_roots.hpp
   - poly/fps_div.hpp
   timestamp: '2022-05-02 13:06:30+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/math/partition.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp

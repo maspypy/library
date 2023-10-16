@@ -77,7 +77,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/rectangle_union.hpp
     title: ds/rectangle_union.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/wavelet_matrix.hpp
     title: ds/wavelet_matrix.hpp
   - icon: ':heavy_check_mark:'
@@ -267,7 +267,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/summin_add.test.cpp
     title: test/mytest/summin_add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/wavelet_matrix.test.cpp
     title: test/mytest/wavelet_matrix.test.cpp
   - icon: ':heavy_check_mark:'
@@ -303,7 +303,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1326.test.cpp
     title: test/yukicoder/1326.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1332.test.cpp
     title: test/yukicoder/1332.test.cpp
   - icon: ':heavy_check_mark:'
@@ -333,7 +333,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2003.test.cpp
     title: test/yukicoder/2003.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2065.test.cpp
     title: test/yukicoder/2065.test.cpp
   - icon: ':heavy_check_mark:'
@@ -378,13 +378,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/919.test.cpp
     title: test/yukicoder/919.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc127f_1.test.cpp
     title: test_atcoder/abc127f_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -423,9 +423,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc318b.test.cpp
     title: test_atcoder/abc318b.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -479,7 +479,7 @@ data:
   - alg/acted_monoid/max_add.hpp
   - string/trie.hpp
   timestamp: '2022-11-28 14:51:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DSL_4_A.test.cpp
   - test/aoj/DSL_2_G.test.cpp

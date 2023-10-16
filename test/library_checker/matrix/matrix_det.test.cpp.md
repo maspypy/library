@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/det.hpp
     title: linalg/det.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/det_mod.hpp
     title: linalg/det_mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -297,17 +297,24 @@ data:
     \ u32> divmod(u64 z) {\n    if (m == 1) return {z, 0};\n    u64 x = (u64)(((unsigned\
     \ __int128)(z)*im) >> 64);\n    u64 y = x * m;\n    if (z < y) return {x - 1,\
     \ z - y + m};\n    return {x, z - y};\n  }\n  u32 mul(u32 a, u32 b) { return modulo(u64(a)\
-    \ * b); }\n};\n#line 2 \"linalg/det_mod.hpp\"\n\nint det_mod(vvc<int> A, int m)\
-    \ {\n  Barrett bt(m);\n  const int n = len(A);\n  ll det = 1;\n  FOR(i, n) {\n\
-    \    FOR(j, i, n) {\n      if (A[j][i] == 0) continue;\n      if (i != j) { swap(A[i],\
-    \ A[j]), det = m - det; }\n      break;\n    }\n    FOR(j, i + 1, n) {\n     \
-    \ while (A[i][i] != 0) {\n        ll c = m - A[j][i] / A[i][i];\n        FOR_R(k,\
-    \ i, n) { A[j][k] = bt.modulo(A[j][k] + A[i][k] * c); }\n        swap(A[i], A[j]),\
-    \ det = m - det;\n      }\n      swap(A[i], A[j]), det = m - det;\n    }\n  }\n\
-    \  FOR(i, n) det = bt.mul(det, A[i][i]);\n  return det;\n}\n#line 2 \"linalg/det.hpp\"\
-    \n\r\ntemplate <typename mint>\r\nmint det(vvc<mint>& A) {\r\n  const int n =\
-    \ len(A);\r\n  vv(int, B, n, n);\r\n  FOR(i, n) FOR(j, n) B[i][j] = A[i][j].val;\r\
-    \n  return det_mod(B, mint::get_mod());\r\n}\r\n#line 6 \"test/library_checker/matrix/matrix_det.test.cpp\"\
+    \ * b); }\n};\n\nstruct Barrett_64 {\n  u128 mod, mh, ml;\n\n  explicit Barrett_64(u64\
+    \ mod = 1) : mod(mod) {\n    u128 m = u128(-1) / mod;\n    if (m * mod + mod ==\
+    \ u128(0)) ++m;\n    mh = m >> 64;\n    ml = m & u64(-1);\n  }\n\n  u64 umod()\
+    \ const { return mod; }\n\n  u64 modulo(u128 x) {\n    u128 z = (x & u64(-1))\
+    \ * ml;\n    z = (x & u64(-1)) * mh + (x >> 64) * ml + (z >> 64);\n    z = (x\
+    \ >> 64) * mh + (z >> 64);\n    x -= z * mod;\n    return x < mod ? x : x - mod;\n\
+    \  }\n\n  u64 mul(u64 a, u64 b) { return modulo(u128(a) * b); }\n};\n#line 2 \"\
+    linalg/det_mod.hpp\"\n\nint det_mod(vvc<int> A, int m) {\n  Barrett bt(m);\n \
+    \ const int n = len(A);\n  ll det = 1;\n  FOR(i, n) {\n    FOR(j, i, n) {\n  \
+    \    if (A[j][i] == 0) continue;\n      if (i != j) { swap(A[i], A[j]), det =\
+    \ m - det; }\n      break;\n    }\n    FOR(j, i + 1, n) {\n      while (A[i][i]\
+    \ != 0) {\n        ll c = m - A[j][i] / A[i][i];\n        FOR_R(k, i, n) { A[j][k]\
+    \ = bt.modulo(A[j][k] + A[i][k] * c); }\n        swap(A[i], A[j]), det = m - det;\n\
+    \      }\n      swap(A[i], A[j]), det = m - det;\n    }\n  }\n  FOR(i, n) det\
+    \ = bt.mul(det, A[i][i]);\n  return det;\n}\n#line 2 \"linalg/det.hpp\"\n\r\n\
+    template <typename mint>\r\nmint det(vvc<mint>& A) {\r\n  const int n = len(A);\r\
+    \n  vv(int, B, n, n);\r\n  FOR(i, n) FOR(j, n) B[i][j] = A[i][j].val;\r\n  return\
+    \ det_mod(B, mint::get_mod());\r\n}\r\n#line 6 \"test/library_checker/matrix/matrix_det.test.cpp\"\
     \n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N);\r\n  VV(mint, A, N,\
     \ N);\r\n  print(det(A));\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
     \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
@@ -329,7 +336,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/matrix_det.test.cpp
   requiredBy: []
-  timestamp: '2023-10-14 01:49:27+09:00'
+  timestamp: '2023-10-17 07:10:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/matrix/matrix_det.test.cpp
