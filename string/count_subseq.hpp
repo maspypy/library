@@ -1,5 +1,3 @@
-#include "ds/hashmap.hpp"
-
 // https://noshi91.hatenablog.com/entry/2023/02/26/135340
 template <typename mint, typename STRING>
 mint count_subseq(STRING& S) {
