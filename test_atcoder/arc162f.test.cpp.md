@@ -34,7 +34,7 @@ data:
   - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fps_inv_2d.hpp
     title: poly/fps_inv_2d.hpp
   - icon: ':question:'
@@ -42,9 +42,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/arc162/tasks/arc162_f
@@ -581,8 +581,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/arc162f.test.cpp
   requiredBy: []
-  timestamp: '2023-10-14 15:38:43+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-10-18 00:17:26+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/arc162f.test.cpp
 layout: document

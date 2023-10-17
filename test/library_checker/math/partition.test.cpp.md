@@ -37,7 +37,7 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/partition_number.hpp
     title: seq/famous/partition_number.hpp
   _extendedRequiredBy: []
@@ -557,7 +557,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/partition.test.cpp
   requiredBy: []
-  timestamp: '2023-10-14 15:38:43+09:00'
+  timestamp: '2023-10-18 00:17:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/partition.test.cpp

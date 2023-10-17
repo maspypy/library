@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bigint/base.hpp
     title: bigint/base.hpp
   - icon: ':question:'
@@ -578,7 +578,7 @@ data:
   isVerificationFile: true
   path: test/aoj/NTL_2_A.test.cpp
   requiredBy: []
-  timestamp: '2023-10-14 15:38:43+09:00'
+  timestamp: '2023-10-18 00:17:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/NTL_2_A.test.cpp

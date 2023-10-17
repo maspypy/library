@@ -668,7 +668,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
   requiredBy: []
-  timestamp: '2023-10-17 07:10:25+09:00'
+  timestamp: '2023-10-18 00:17:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
