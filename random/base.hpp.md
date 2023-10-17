@@ -89,7 +89,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
   - icon: ':heavy_check_mark:'
@@ -107,9 +107,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/count_subseq.hpp
-    title: string/count_subseq.hpp
   - icon: ':heavy_check_mark:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
@@ -186,27 +183,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
     title: test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/log_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/log_of_fps_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
     title: test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - icon: ':x:'
     path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/string/number_of_subsequences.test.cpp
-    title: test/library_checker/string/number_of_subsequences.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
     title: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
@@ -511,9 +505,6 @@ data:
     path: test/yukicoder/1397.test.cpp
     title: test/yukicoder/1397.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1493.test.cpp
-    title: test/yukicoder/1493.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
   - icon: ':heavy_check_mark:'
@@ -635,7 +626,6 @@ data:
   - graph/tree_dp/subtree_hash.hpp
   - graph/maximum_matching_size.hpp
   - alg/monoid/rollinghash.hpp
-  - string/count_subseq.hpp
   - string/rollinghash_2d.hpp
   - string/rollinghash.hpp
   - other/connected_dp.hpp
@@ -675,7 +665,6 @@ data:
   - test/library_checker/datastructure/associative_array_hashmap.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
-  - test/library_checker/string/number_of_subsequences.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
@@ -722,7 +711,6 @@ data:
   - test/yukicoder/263.test.cpp
   - test/yukicoder/578.test.cpp
   - test/yukicoder/1025.test.cpp
-  - test/yukicoder/1493.test.cpp
   - test/yukicoder/310.test.cpp
   - test/mytest/is_substring.test.cpp
   - test/mytest/min_max.test.cpp

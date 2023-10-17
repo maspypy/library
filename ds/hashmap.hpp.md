@@ -29,9 +29,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/count_subseq.hpp
-    title: string/count_subseq.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_5_A.test.cpp
@@ -49,9 +46,6 @@ data:
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/string/number_of_subsequences.test.cpp
-    title: test/library_checker/string/number_of_subsequences.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/range_closest_pair.test.cpp
     title: test/mytest/range_closest_pair.test.cpp
   - icon: ':heavy_check_mark:'
@@ -66,9 +60,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1397.test.cpp
     title: test/yukicoder/1397.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1493.test.cpp
-    title: test/yukicoder/1493.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
@@ -174,7 +165,6 @@ data:
   - nt/discrete_log.hpp
   - graph/eulerwalk.hpp
   - graph/vs_to_es.hpp
-  - string/count_subseq.hpp
   - other/connected_dp.hpp
   - mod/mod_log.hpp
   - mod/mod_kth_root.hpp
@@ -186,7 +176,6 @@ data:
   - test/aoj/CGL_5_A.test.cpp
   - test/library_checker/datastructure/set_xor_min.test.cpp
   - test/library_checker/datastructure/associative_array_hashmap.test.cpp
-  - test/library_checker/string/number_of_subsequences.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/yukicoder/1881.test.cpp
@@ -203,7 +192,6 @@ data:
   - test/yukicoder/1726.test.cpp
   - test/yukicoder/263.test.cpp
   - test/yukicoder/578.test.cpp
-  - test/yukicoder/1493.test.cpp
   - test/mytest/range_closest_pair.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
   - test_atcoder/arc157a.test.cpp
