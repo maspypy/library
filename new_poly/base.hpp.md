@@ -118,16 +118,16 @@ data:
     \ T, typename enable_if<has_mod<T>::value>::type* = nullptr>\r\nvc<T> convolution_naive(const\
     \ vc<T>& a, const vc<T>& b) {\r\n  int n = int(a.size()), m = int(b.size());\r\
     \n  if (n > m) return convolution_naive<T>(b, a);\r\n  if (n == 0) return {};\r\
-    \n  assert(T::get_mod() < (1 << 30));\r\n  vc<T> ans(n + m - 1);\r\n  if (n <=\
-    \ 16) {\r\n    for (int k = 0; k < n + m - 1; ++k) {\r\n      int s = max(0, k\
-    \ - m + 1);\r\n      int t = min(n, k + 1);\r\n      u64 sm = 0;\r\n      for\
-    \ (int i = s; i < t; ++i) { sm += u64(a[i].val) * (b[k - i].val); }\r\n      ans[k]\
-    \ = sm;\r\n    }\r\n  } else {\r\n    for (int k = 0; k < n + m - 1; ++k) {\r\n\
-    \      int s = max(0, k - m + 1);\r\n      int t = min(n, k + 1);\r\n      u128\
-    \ sm = 0;\r\n      for (int i = s; i < t; ++i) { sm += u64(a[i].val) * (b[k -\
-    \ i].val); }\r\n      ans[k] = T::raw(sm % T::get_mod());\r\n    }\r\n  }\r\n\
-    \  return ans;\r\n}\r\n#line 2 \"poly/convolution_karatsuba.hpp\"\n\n// \u4EFB\
-    \u610F\u306E\u74B0\u3067\u3067\u304D\u308B\ntemplate <typename T>\nvc<T> convolution_karatsuba(const\
+    \n  vc<T> ans(n + m - 1);\r\n  if (n <= 16 && (T::get_mod() < (1 << 30))) {\r\n\
+    \    for (int k = 0; k < n + m - 1; ++k) {\r\n      int s = max(0, k - m + 1);\r\
+    \n      int t = min(n, k + 1);\r\n      u64 sm = 0;\r\n      for (int i = s; i\
+    \ < t; ++i) { sm += u64(a[i].val) * (b[k - i].val); }\r\n      ans[k] = sm;\r\n\
+    \    }\r\n  } else {\r\n    for (int k = 0; k < n + m - 1; ++k) {\r\n      int\
+    \ s = max(0, k - m + 1);\r\n      int t = min(n, k + 1);\r\n      u128 sm = 0;\r\
+    \n      for (int i = s; i < t; ++i) { sm += u64(a[i].val) * (b[k - i].val); }\r\
+    \n      ans[k] = T::raw(sm % T::get_mod());\r\n    }\r\n  }\r\n  return ans;\r\
+    \n}\r\n#line 2 \"poly/convolution_karatsuba.hpp\"\n\n// \u4EFB\u610F\u306E\u74B0\
+    \u3067\u3067\u304D\u308B\ntemplate <typename T>\nvc<T> convolution_karatsuba(const\
     \ vc<T>& f, const vc<T>& g) {\n  const int thresh = 30;\n  if (min(len(f), len(g))\
     \ <= thresh) return convolution_naive(f, g);\n  int n = max(len(f), len(g));\n\
     \  int m = ceil(n, 2);\n  vc<T> f1, f2, g1, g2;\n  if (len(f) < m) f1 = f;\n \
@@ -316,7 +316,7 @@ data:
   isVerificationFile: false
   path: new_poly/base.hpp
   requiredBy: []
-  timestamp: '2023-10-14 15:38:43+09:00'
+  timestamp: '2023-10-18 00:17:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: new_poly/base.hpp

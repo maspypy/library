@@ -634,15 +634,15 @@ data:
     \n  return ans;\r\n}\r\n\r\ntemplate <class T, typename enable_if<has_mod<T>::value>::type*\
     \ = nullptr>\r\nvc<T> convolution_naive(const vc<T>& a, const vc<T>& b) {\r\n\
     \  int n = int(a.size()), m = int(b.size());\r\n  if (n > m) return convolution_naive<T>(b,\
-    \ a);\r\n  if (n == 0) return {};\r\n  assert(T::get_mod() < (1 << 30));\r\n \
-    \ vc<T> ans(n + m - 1);\r\n  if (n <= 16) {\r\n    for (int k = 0; k < n + m -\
-    \ 1; ++k) {\r\n      int s = max(0, k - m + 1);\r\n      int t = min(n, k + 1);\r\
-    \n      u64 sm = 0;\r\n      for (int i = s; i < t; ++i) { sm += u64(a[i].val)\
-    \ * (b[k - i].val); }\r\n      ans[k] = sm;\r\n    }\r\n  } else {\r\n    for\
-    \ (int k = 0; k < n + m - 1; ++k) {\r\n      int s = max(0, k - m + 1);\r\n  \
-    \    int t = min(n, k + 1);\r\n      u128 sm = 0;\r\n      for (int i = s; i <\
-    \ t; ++i) { sm += u64(a[i].val) * (b[k - i].val); }\r\n      ans[k] = T::raw(sm\
-    \ % T::get_mod());\r\n    }\r\n  }\r\n  return ans;\r\n}\r\n"
+    \ a);\r\n  if (n == 0) return {};\r\n  vc<T> ans(n + m - 1);\r\n  if (n <= 16\
+    \ && (T::get_mod() < (1 << 30))) {\r\n    for (int k = 0; k < n + m - 1; ++k)\
+    \ {\r\n      int s = max(0, k - m + 1);\r\n      int t = min(n, k + 1);\r\n  \
+    \    u64 sm = 0;\r\n      for (int i = s; i < t; ++i) { sm += u64(a[i].val) *\
+    \ (b[k - i].val); }\r\n      ans[k] = sm;\r\n    }\r\n  } else {\r\n    for (int\
+    \ k = 0; k < n + m - 1; ++k) {\r\n      int s = max(0, k - m + 1);\r\n      int\
+    \ t = min(n, k + 1);\r\n      u128 sm = 0;\r\n      for (int i = s; i < t; ++i)\
+    \ { sm += u64(a[i].val) * (b[k - i].val); }\r\n      ans[k] = T::raw(sm % T::get_mod());\r\
+    \n    }\r\n  }\r\n  return ans;\r\n}\r\n"
   code: "#pragma once\r\n\r\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type*\
     \ = nullptr>\r\nvc<T> convolution_naive(const vc<T>& a, const vc<T>& b) {\r\n\
     \  int n = int(a.size()), m = int(b.size());\r\n  if (n > m) return convolution_naive<T>(b,\
@@ -651,15 +651,15 @@ data:
     \ T, typename enable_if<has_mod<T>::value>::type* = nullptr>\r\nvc<T> convolution_naive(const\
     \ vc<T>& a, const vc<T>& b) {\r\n  int n = int(a.size()), m = int(b.size());\r\
     \n  if (n > m) return convolution_naive<T>(b, a);\r\n  if (n == 0) return {};\r\
-    \n  assert(T::get_mod() < (1 << 30));\r\n  vc<T> ans(n + m - 1);\r\n  if (n <=\
-    \ 16) {\r\n    for (int k = 0; k < n + m - 1; ++k) {\r\n      int s = max(0, k\
-    \ - m + 1);\r\n      int t = min(n, k + 1);\r\n      u64 sm = 0;\r\n      for\
-    \ (int i = s; i < t; ++i) { sm += u64(a[i].val) * (b[k - i].val); }\r\n      ans[k]\
-    \ = sm;\r\n    }\r\n  } else {\r\n    for (int k = 0; k < n + m - 1; ++k) {\r\n\
-    \      int s = max(0, k - m + 1);\r\n      int t = min(n, k + 1);\r\n      u128\
-    \ sm = 0;\r\n      for (int i = s; i < t; ++i) { sm += u64(a[i].val) * (b[k -\
-    \ i].val); }\r\n      ans[k] = T::raw(sm % T::get_mod());\r\n    }\r\n  }\r\n\
-    \  return ans;\r\n}\r\n"
+    \n  vc<T> ans(n + m - 1);\r\n  if (n <= 16 && (T::get_mod() < (1 << 30))) {\r\n\
+    \    for (int k = 0; k < n + m - 1; ++k) {\r\n      int s = max(0, k - m + 1);\r\
+    \n      int t = min(n, k + 1);\r\n      u64 sm = 0;\r\n      for (int i = s; i\
+    \ < t; ++i) { sm += u64(a[i].val) * (b[k - i].val); }\r\n      ans[k] = sm;\r\n\
+    \    }\r\n  } else {\r\n    for (int k = 0; k < n + m - 1; ++k) {\r\n      int\
+    \ s = max(0, k - m + 1);\r\n      int t = min(n, k + 1);\r\n      u128 sm = 0;\r\
+    \n      for (int i = s; i < t; ++i) { sm += u64(a[i].val) * (b[k - i].val); }\r\
+    \n      ans[k] = T::raw(sm % T::get_mod());\r\n    }\r\n  }\r\n  return ans;\r\
+    \n}\r\n"
   dependsOn: []
   isVerificationFile: false
   path: poly/convolution_naive.hpp
@@ -733,7 +733,7 @@ data:
   - poly/sum_of_power_of_roots.hpp
   - poly/fps_div.hpp
   - poly/from_log_differentiation.hpp
-  timestamp: '2023-08-10 12:06:50+09:00'
+  timestamp: '2023-10-18 00:17:26+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/NTL_2_C.test.cpp
