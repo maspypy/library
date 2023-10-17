@@ -15,9 +15,8 @@ vc<T> convolution_naive(const vc<T>& a, const vc<T>& b) {
   int n = int(a.size()), m = int(b.size());
   if (n > m) return convolution_naive<T>(b, a);
   if (n == 0) return {};
-  assert(T::get_mod() < (1 << 30));
   vc<T> ans(n + m - 1);
-  if (n <= 16) {
+  if (n <= 16 && (T::get_mod() < (1 << 30))) {
     for (int k = 0; k < n + m - 1; ++k) {
       int s = max(0, k - m + 1);
       int t = min(n, k + 1);
