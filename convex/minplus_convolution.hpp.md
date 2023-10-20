@@ -93,8 +93,8 @@ data:
   verifiedWith:
   - test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
   - test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
-  - test/mytest/minplus_convex.test.cpp
   - test/mytest/minplus_conv_triple.test.cpp
+  - test/mytest/minplus_convex.test.cpp
 documentation_of: convex/minplus_convolution.hpp
 layout: document
 redirect_from:

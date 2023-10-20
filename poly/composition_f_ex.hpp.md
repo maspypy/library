@@ -409,10 +409,10 @@ data:
   timestamp: '2023-10-18 00:17:26+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1875.test.cpp
-  - test/mytest/composition_ex_minus_1.test.cpp
-  - test/mytest/composition_1_minus_ex.test.cpp
   - test_atcoder/arc154f.test.cpp
+  - test/yukicoder/1875.test.cpp
+  - test/mytest/composition_1_minus_ex.test.cpp
+  - test/mytest/composition_ex_minus_1.test.cpp
 documentation_of: poly/composition_f_ex.hpp
 layout: document
 redirect_from:

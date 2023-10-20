@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':heavy_check_mark:'
@@ -145,9 +145,9 @@ data:
   timestamp: '2023-01-22 14:32:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1490.test.cpp
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp
-  - test/yukicoder/1490.test.cpp
 documentation_of: ds/offline_query/coeffient_query_2d.hpp
 layout: document
 redirect_from:

@@ -57,7 +57,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_2.test.cpp
     title: test/yukicoder/502_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc222h_2.test.cpp
     title: test_atcoder/abc222h_2.test.cpp
   - icon: ':x:'
@@ -491,12 +491,12 @@ data:
   timestamp: '2023-10-18 00:17:26+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1080_2.test.cpp
-  - test/yukicoder/502_2.test.cpp
-  - test/yukicoder/2166.test.cpp
-  - test_atcoder/abc222h_2.test.cpp
-  - test_atcoder/abc276_g.test.cpp
   - test_atcoder/abc276_g_2.test.cpp
+  - test_atcoder/abc276_g.test.cpp
+  - test_atcoder/abc222h_2.test.cpp
+  - test/yukicoder/2166.test.cpp
+  - test/yukicoder/502_2.test.cpp
+  - test/yukicoder/1080_2.test.cpp
 documentation_of: seq/kth_term_of_p_recursive.hpp
 layout: document
 redirect_from:

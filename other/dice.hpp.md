@@ -147,9 +147,9 @@ data:
   timestamp: '2023-06-13 23:27:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/ITP1_11_B.test.cpp
   - test/aoj/ITP1_11_C.test.cpp
   - test/aoj/ITP1_11_A.test.cpp
+  - test/aoj/ITP1_11_B.test.cpp
   - test/aoj/ITP1_11_D.test.cpp
 documentation_of: other/dice.hpp
 layout: document

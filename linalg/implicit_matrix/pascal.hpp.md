@@ -36,10 +36,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2243.test.cpp
     title: test/yukicoder/2243.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc260h.test.cpp
     title: test_atcoder/abc260h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc267g.test.cpp
     title: test_atcoder/abc267g.test.cpp
   - icon: ':x:'
@@ -351,12 +351,12 @@ data:
   timestamp: '2023-10-18 00:17:26+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/2243.test.cpp
-  - test/yukicoder/2108.test.cpp
-  - test/mytest/pascal.test.cpp
-  - test_atcoder/abc267g.test.cpp
   - test_atcoder/abc285h.test.cpp
   - test_atcoder/abc260h.test.cpp
+  - test_atcoder/abc267g.test.cpp
+  - test/yukicoder/2108.test.cpp
+  - test/yukicoder/2243.test.cpp
+  - test/mytest/pascal.test.cpp
 documentation_of: linalg/implicit_matrix/pascal.hpp
 layout: document
 redirect_from:

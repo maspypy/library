@@ -147,9 +147,9 @@ data:
   timestamp: '2023-09-01 02:47:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test_atcoder/abc314.test.cpp
   - test/aoj/CGL_7_B.test.cpp
   - test/aoj/CGL_2_D.test.cpp
-  - test_atcoder/abc314.test.cpp
 documentation_of: geo/distance.hpp
 layout: document
 redirect_from:

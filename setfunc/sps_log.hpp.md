@@ -165,8 +165,8 @@ data:
   timestamp: '2023-10-14 01:49:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/arc105.test.cpp
   - test_atcoder/abc213g.test.cpp
+  - test_atcoder/arc105.test.cpp
 documentation_of: setfunc/sps_log.hpp
 layout: document
 redirect_from:

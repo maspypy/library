@@ -60,8 +60,8 @@ data:
   timestamp: '2023-10-17 07:10:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/matrix/matrix_det.test.cpp
   - test/yukicoder/1303.test.cpp
+  - test/library_checker/matrix/matrix_det.test.cpp
 documentation_of: linalg/det.hpp
 layout: document
 redirect_from:
