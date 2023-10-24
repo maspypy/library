@@ -81,11 +81,35 @@ data:
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':x:'
+    path: mod/tetration.hpp
+    title: mod/tetration.hpp
+  - icon: ':x:'
+    path: nt/all_lcm.hpp
+    title: nt/all_lcm.hpp
+  - icon: ':x:'
+    path: nt/crt.hpp
+    title: nt/crt.hpp
+  - icon: ':x:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
   - icon: ':x:'
+    path: nt/divisors.hpp
+    title: nt/divisors.hpp
+  - icon: ':x:'
+    path: nt/euler_phi.hpp
+    title: nt/euler_phi.hpp
+  - icon: ':x:'
+    path: nt/factor.hpp
+    title: nt/factor.hpp
+  - icon: ':x:'
     path: nt/four_square.hpp
     title: nt/four_square.hpp
+  - icon: ':x:'
+    path: nt/function_on_divisors.hpp
+    title: nt/function_on_divisors.hpp
+  - icon: ':x:'
+    path: nt/gaussian_integers.hpp
+    title: nt/gaussian_integers.hpp
   - icon: ':heavy_check_mark:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
@@ -121,6 +145,12 @@ data:
     path: test/aoj/CGL_5_A.test.cpp
     title: test/aoj/CGL_5_A.test.cpp
   - icon: ':x:'
+    path: test/aoj/ITP1_D_D.test.cpp
+    title: test/aoj/ITP1_D_D.test.cpp
+  - icon: ':x:'
+    path: test/aoj/NTL_1_D.test.cpp
+    title: test/aoj/NTL_1_D.test.cpp
+  - icon: ':x:'
     path: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
     title: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
   - icon: ':x:'
@@ -151,6 +181,9 @@ data:
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
   - icon: ':x:'
+    path: test/library_checker/math/factorize.test.cpp
+    title: test/library_checker/math/factorize.test.cpp
+  - icon: ':x:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
   - icon: ':x:'
@@ -162,6 +195,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sqrt_mod.test.cpp
     title: test/library_checker/math/sqrt_mod.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/math/tetration.test.cpp
+    title: test/library_checker/math/tetration.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/implicit_matrix.test.cpp
     title: test/library_checker/matrix/implicit_matrix.test.cpp
@@ -492,6 +528,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080_2.test.cpp
     title: test/yukicoder/1080_2.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1262.test.cpp
+    title: test/yukicoder/1262.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
@@ -504,9 +543,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1397.test.cpp
     title: test/yukicoder/1397.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1411.test.cpp
+    title: test/yukicoder/1411.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1593.test.cpp
+    title: test/yukicoder/1593.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1634.test.cpp
     title: test/yukicoder/1634.test.cpp
@@ -516,6 +561,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1726.test.cpp
     title: test/yukicoder/1726.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1728.test.cpp
+    title: test/yukicoder/1728.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1769.test.cpp
     title: test/yukicoder/1769.test.cpp
@@ -523,14 +571,23 @@ data:
     path: test/yukicoder/1775.test.cpp
     title: test/yukicoder/1775.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/187.test.cpp
+    title: test/yukicoder/187.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1881.test.cpp
     title: test/yukicoder/1881.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1907.test.cpp
     title: test/yukicoder/1907.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1956.test.cpp
+    title: test/yukicoder/1956.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2102.test.cpp
     title: test/yukicoder/2102.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2119.test.cpp
+    title: test/yukicoder/2119.test.cpp
   - icon: ':x:'
     path: test/yukicoder/2120.test.cpp
     title: test/yukicoder/2120.test.cpp
@@ -543,6 +600,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2231.test.cpp
     title: test/yukicoder/2231.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2264.test.cpp
+    title: test/yukicoder/2264.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2305.test.cpp
     title: test/yukicoder/2305.test.cpp
@@ -565,11 +625,20 @@ data:
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/590.test.cpp
+    title: test/yukicoder/590.test.cpp
+  - icon: ':x:'
     path: test_atcoder/abc151f.test.cpp
     title: test_atcoder/abc151f.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc152e.test.cpp
+    title: test_atcoder/abc152e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc212g.test.cpp
+    title: test_atcoder/abc212g.test.cpp
   - icon: ':x:'
     path: test_atcoder/abc222g.test.cpp
     title: test_atcoder/abc222g.test.cpp
@@ -625,8 +694,15 @@ data:
   - geo/minimum_enclosing_circle.hpp
   - geo/range_closest_pair_query.hpp
   - geo/count_points_in_triangles.hpp
+  - nt/all_lcm.hpp
+  - nt/crt.hpp
+  - nt/euler_phi.hpp
+  - nt/gaussian_integers.hpp
   - nt/four_square.hpp
+  - nt/function_on_divisors.hpp
   - nt/discrete_log.hpp
+  - nt/divisors.hpp
+  - nt/factor.hpp
   - ds/hashmap.hpp
   - ds/unionfind/parallel_unionfind.hpp
   - linalg/implicit_matrix/det.hpp
@@ -641,6 +717,7 @@ data:
   - mod/mod_kth_root.hpp
   - mod/mod_log.hpp
   - mod/binomial.hpp
+  - mod/tetration.hpp
   - poly/multivar_convolution_cyclic.hpp
   - poly/fps_sqrt.hpp
   - random/random_graph.hpp
@@ -654,6 +731,7 @@ data:
   timestamp: '2022-10-23 11:21:57+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test_atcoder/abc212g.test.cpp
   - test_atcoder/abc202_f.test.cpp
   - test_atcoder/agc058d2.test.cpp
   - test_atcoder/abc270_g.test.cpp
@@ -664,11 +742,16 @@ data:
   - test_atcoder/abc151f.test.cpp
   - test_atcoder/arc157a.test.cpp
   - test_atcoder/abc273_e.test.cpp
+  - test_atcoder/abc152e.test.cpp
+  - test/yukicoder/187.test.cpp
+  - test/yukicoder/590.test.cpp
   - test/yukicoder/1726.test.cpp
   - test/yukicoder/2305.test.cpp
   - test/yukicoder/1561.test.cpp
   - test/yukicoder/1383.test.cpp
+  - test/yukicoder/1728.test.cpp
   - test/yukicoder/1769.test.cpp
+  - test/yukicoder/1411.test.cpp
   - test/yukicoder/541.test.cpp
   - test/yukicoder/2181.test.cpp
   - test/yukicoder/1339.test.cpp
@@ -676,22 +759,29 @@ data:
   - test/yukicoder/1080.test.cpp
   - test/yukicoder/1634.test.cpp
   - test/yukicoder/1907.test.cpp
+  - test/yukicoder/2119.test.cpp
   - test/yukicoder/578.test.cpp
   - test/yukicoder/4_1.test.cpp
   - test/yukicoder/1881.test.cpp
   - test/yukicoder/310.test.cpp
   - test/yukicoder/263.test.cpp
+  - test/yukicoder/1262.test.cpp
+  - test/yukicoder/1956.test.cpp
   - test/yukicoder/1775.test.cpp
   - test/yukicoder/1303.test.cpp
   - test/yukicoder/2231.test.cpp
   - test/yukicoder/579.test.cpp
   - test/yukicoder/2102.test.cpp
   - test/yukicoder/1397.test.cpp
+  - test/yukicoder/2264.test.cpp
   - test/yukicoder/2120.test.cpp
   - test/yukicoder/1025.test.cpp
   - test/yukicoder/1080_2.test.cpp
+  - test/yukicoder/1593.test.cpp
   - test/yukicoder/2167.test.cpp
   - test/aoj/ALDS1_14_C.test.cpp
+  - test/aoj/ITP1_D_D.test.cpp
+  - test/aoj/NTL_1_D.test.cpp
   - test/aoj/CGL_5_A.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp
   - test/library_checker/graph/general_matching.test.cpp
@@ -716,6 +806,8 @@ data:
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
   - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/binomial_coefficient.test.cpp
+  - test/library_checker/math/factorize.test.cpp
+  - test/library_checker/math/tetration.test.cpp
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp

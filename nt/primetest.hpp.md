@@ -304,26 +304,27 @@ data:
     \ true;\r\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 == 0) return\
     \ false;\r\n  if (x < 121) return x > 1;\r\n  const u64 d = (x - 1) >> lowbit(x\
     \ - 1);\r\n  using m64 = Dynamic_Modint_64<20231024>;\r\n\r\n  m64::set_mod(x);\r\
-    \n  const m64 one(1), minus_one(x - 1);\r\n  auto ok = [&](u64 a) {\r\n    auto\
-    \ y = m64(a).pow(d);\r\n    u64 t = d;\r\n    while (y != one and y != minus_one\
-    \ and t != x - 1) y *= y, t <<= 1;\r\n    if (y != minus_one and t % 2 == 0) return\
-    \ false;\r\n    return true;\r\n  };\r\n  if (x < (1ull << 32)) {\r\n    for (u64\
-    \ a: {2, 7, 61})\r\n      if (not ok(a)) return false;\r\n  } else {\r\n    for\
-    \ (u64 a: {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\r\n      if (x\
-    \ <= a) return true;\r\n      if (not ok(a)) return false;\r\n    }\r\n  }\r\n\
-    \  return true;\r\n}\n"
+    \n  const m64 one(1), minus_one(x - 1);\r\n  auto ok = [&](u64 a) -> bool {\r\n\
+    \    auto y = m64(a).pow(d);\r\n    u64 t = d;\r\n    while (y != one && y !=\
+    \ minus_one && t != x - 1) y *= y, t <<= 1;\r\n    if (y != minus_one && t % 2\
+    \ == 0) return false;\r\n    return true;\r\n  };\r\n  if (x < (1ull << 32)) {\r\
+    \n    for (u64 a: {2, 7, 61})\r\n      if (!ok(a)) return false;\r\n  } else {\r\
+    \n    for (u64 a: {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\r\n  \
+    \    if (x <= a) return true;\r\n      if (!ok(a)) return false;\r\n    }\r\n\
+    \  }\r\n  return true;\r\n}\n"
   code: "#pragma once\r\n#include \"mod/dynamic_modint_64.hpp\"\r\n\r\nbool primetest(const\
     \ u64 x) {\r\n  if (x == 2 or x == 3 or x == 5 or x == 7) return true;\r\n  if\
     \ (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 == 0) return false;\r\n  if\
     \ (x < 121) return x > 1;\r\n  const u64 d = (x - 1) >> lowbit(x - 1);\r\n  using\
     \ m64 = Dynamic_Modint_64<20231024>;\r\n\r\n  m64::set_mod(x);\r\n  const m64\
-    \ one(1), minus_one(x - 1);\r\n  auto ok = [&](u64 a) {\r\n    auto y = m64(a).pow(d);\r\
-    \n    u64 t = d;\r\n    while (y != one and y != minus_one and t != x - 1) y *=\
-    \ y, t <<= 1;\r\n    if (y != minus_one and t % 2 == 0) return false;\r\n    return\
-    \ true;\r\n  };\r\n  if (x < (1ull << 32)) {\r\n    for (u64 a: {2, 7, 61})\r\n\
-    \      if (not ok(a)) return false;\r\n  } else {\r\n    for (u64 a: {2, 325,\
-    \ 9375, 28178, 450775, 9780504, 1795265022}) {\r\n      if (x <= a) return true;\r\
-    \n      if (not ok(a)) return false;\r\n    }\r\n  }\r\n  return true;\r\n}"
+    \ one(1), minus_one(x - 1);\r\n  auto ok = [&](u64 a) -> bool {\r\n    auto y\
+    \ = m64(a).pow(d);\r\n    u64 t = d;\r\n    while (y != one && y != minus_one\
+    \ && t != x - 1) y *= y, t <<= 1;\r\n    if (y != minus_one && t % 2 == 0) return\
+    \ false;\r\n    return true;\r\n  };\r\n  if (x < (1ull << 32)) {\r\n    for (u64\
+    \ a: {2, 7, 61})\r\n      if (!ok(a)) return false;\r\n  } else {\r\n    for (u64\
+    \ a: {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\r\n      if (x <= a)\
+    \ return true;\r\n      if (!ok(a)) return false;\r\n    }\r\n  }\r\n  return\
+    \ true;\r\n}"
   dependsOn:
   - mod/dynamic_modint_64.hpp
   - mod/modint_common.hpp
@@ -348,7 +349,7 @@ data:
   - mod/binomial.hpp
   - mod/tetration.hpp
   - poly/multivar_convolution_cyclic.hpp
-  timestamp: '2023-10-24 20:44:29+09:00'
+  timestamp: '2023-10-24 21:04:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc212g.test.cpp

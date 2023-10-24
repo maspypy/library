@@ -130,48 +130,47 @@ data:
     \ true;\r\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 == 0) return\
     \ false;\r\n  if (x < 121) return x > 1;\r\n  const u64 d = (x - 1) >> lowbit(x\
     \ - 1);\r\n  using m64 = Dynamic_Modint_64<20231024>;\r\n\r\n  m64::set_mod(x);\r\
-    \n  const m64 one(1), minus_one(x - 1);\r\n  auto ok = [&](u64 a) {\r\n    auto\
-    \ y = m64(a).pow(d);\r\n    u64 t = d;\r\n    while (y != one and y != minus_one\
-    \ and t != x - 1) y *= y, t <<= 1;\r\n    if (y != minus_one and t % 2 == 0) return\
-    \ false;\r\n    return true;\r\n  };\r\n  if (x < (1ull << 32)) {\r\n    for (u64\
-    \ a: {2, 7, 61})\r\n      if (not ok(a)) return false;\r\n  } else {\r\n    for\
-    \ (u64 a: {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\r\n      if (x\
-    \ <= a) return true;\r\n      if (not ok(a)) return false;\r\n    }\r\n  }\r\n\
-    \  return true;\r\n}\n#line 2 \"mod/primitive_root.hpp\"\n\r\n#line 3 \"nt/factor.hpp\"\
-    \n\nmt19937_64 rng_mt{random_device{}()};\nll rnd(ll n) { return uniform_int_distribution<ll>(0,\
-    \ n - 1)(rng_mt); }\n\nll rho(ll n, ll c) {\n  m64::set_mod(n);\n  assert(n >\
-    \ 1);\n  const m64 cc(c);\n  auto f = [&](m64 x) { return x * x + cc; };\n  m64\
-    \ x = 1, y = 2, z = 1, q = 1;\n  ll g = 1;\n  const ll m = 1LL << (__lg(n) / 5);\
-    \ // ?\n  for (ll r = 1; g == 1; r <<= 1) {\n    x = y;\n    FOR(_, r) y = f(y);\n\
-    \    for (ll k = 0; k < r and g == 1; k += m) {\n      z = y;\n      FOR(_, min(m,\
-    \ r - k)) y = f(y), q *= x - y;\n      g = gcd(q.val(), n);\n    }\n  }\n  if\
-    \ (g == n) do {\n      z = f(z);\n      g = gcd((x - z).val(), n);\n    } while\
-    \ (g == 1);\n  return g;\n}\n\nll find_prime_factor(ll n) {\n  assert(n > 1);\n\
-    \  if (primetest(n)) return n;\n  FOR(_, 100) {\n    ll m = rho(n, rnd(n));\n\
-    \    if (primetest(m)) return m;\n    n = m;\n  }\n  cerr << \"failed\" << endl;\n\
-    \  assert(false);\n  return -1;\n}\n\n// \u30BD\u30FC\u30C8\u3057\u3066\u304F\u308C\
-    \u308B\nvc<pair<ll, int>> factor(ll n) {\n  assert(n >= 1);\n  vc<pair<ll, int>>\
-    \ pf;\n  FOR3(p, 2, 100) {\n    if (p * p > n) break;\n    if (n % p == 0) {\n\
-    \      ll e = 0;\n      do { n /= p, e += 1; } while (n % p == 0);\n      pf.eb(p,\
-    \ e);\n    }\n  }\n  while (n > 1) {\n    ll p = find_prime_factor(n);\n    ll\
-    \ e = 0;\n    do { n /= p, e += 1; } while (n % p == 0);\n    pf.eb(p, e);\n \
-    \ }\n  sort(all(pf));\n  return pf;\n}\n\nvc<pair<ll, int>> factor_by_lpf(ll n,\
-    \ vc<int>& lpf) {\n  vc<pair<ll, int>> res;\n  while (n > 1) {\n    int p = lpf[n];\n\
-    \    int e = 0;\n    while (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n\
-    \    res.eb(p, e);\n  }\n  return res;\n}\n#line 3 \"mod/mod_pow.hpp\"\n\r\nint\
-    \ mod_pow(int a, ll n, int mod) {\r\n  assert(n >= 0);\r\n  a = ((a %= mod) <\
-    \ 0 ? a + mod : a);\r\n  Barrett bt(mod);\r\n  int p = a, v = bt.modulo(1);\r\n\
-    \  while (n) {\r\n    if (n & 1) v = bt.mul(v, p);\r\n    p = bt.mul(p, p);\r\n\
-    \    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n\r\nll mod_pow_64(ll a, ll n, ll mod)\
-    \ {\r\n  assert(n >= 0);\r\n  a = ((a %= mod) < 0 ? a + mod : a);\r\n  Barrett\
-    \ bt(mod);\r\n  ll p = a, v = bt.modulo(1);\r\n  while (n) {\r\n    if (n & 1)\
-    \ v = bt.mul(v, p);\r\n    p = bt.mul(p, p);\r\n    n >>= 1;\r\n  }\r\n  return\
-    \ v;\r\n}\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t\
+    \n  const m64 one(1), minus_one(x - 1);\r\n  auto ok = [&](u64 a) -> bool {\r\n\
+    \    auto y = m64(a).pow(d);\r\n    u64 t = d;\r\n    while (y != one && y !=\
+    \ minus_one && t != x - 1) y *= y, t <<= 1;\r\n    if (y != minus_one && t % 2\
+    \ == 0) return false;\r\n    return true;\r\n  };\r\n  if (x < (1ull << 32)) {\r\
+    \n    for (u64 a: {2, 7, 61})\r\n      if (!ok(a)) return false;\r\n  } else {\r\
+    \n    for (u64 a: {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\r\n  \
+    \    if (x <= a) return true;\r\n      if (!ok(a)) return false;\r\n    }\r\n\
+    \  }\r\n  return true;\r\n}\n#line 2 \"mod/primitive_root.hpp\"\n\r\n#line 2 \"\
+    nt/factor.hpp\"\n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t\
     \ x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n         \
     \            chrono::high_resolution_clock::now().time_since_epoch())\n      \
     \               .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n\
     \  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
-    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 6 \"mod/primitive_root.hpp\"\
+    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 5 \"nt/factor.hpp\"\
+    \n\nll rho(ll n, ll c) {\n  using m64 = Dynamic_Modint_64<20231025>;\n  m64::set_mod(n);\n\
+    \  assert(n > 1);\n  const m64 cc(c);\n  auto f = [&](m64 x) { return x * x +\
+    \ cc; };\n  m64 x = 1, y = 2, z = 1, q = 1;\n  ll g = 1;\n  const ll m = 1LL <<\
+    \ (__lg(n) / 5); // ?\n  for (ll r = 1; g == 1; r <<= 1) {\n    x = y;\n    FOR(_,\
+    \ r) y = f(y);\n    for (ll k = 0; k < r && g == 1; k += m) {\n      z = y;\n\
+    \      FOR(min(m, r - k)) y = f(y), q *= x - y;\n      g = gcd(q.val(), n);\n\
+    \    }\n  }\n  if (g == n) do {\n      z = f(z);\n      g = gcd((x - z).val(),\
+    \ n);\n    } while (g == 1);\n  return g;\n}\n\nll find_prime_factor(ll n) {\n\
+    \  assert(n > 1);\n  if (primetest(n)) return n;\n  FOR(100) {\n    ll m = rho(n,\
+    \ RNG(0, n));\n    if (primetest(m)) return m;\n    n = m;\n  }\n  assert(0);\n\
+    \  return -1;\n}\n\n// \u30BD\u30FC\u30C8\u3057\u3066\u304F\u308C\u308B\nvc<pair<ll,\
+    \ int>> factor(ll n) {\n  assert(n >= 1);\n  vc<pair<ll, int>> pf;\n  FOR(p, 2,\
+    \ 100) {\n    if (p * p > n) break;\n    if (n % p == 0) {\n      ll e = 0;\n\
+    \      do { n /= p, e += 1; } while (n % p == 0);\n      pf.eb(p, e);\n    }\n\
+    \  }\n  while (n > 1) {\n    ll p = find_prime_factor(n);\n    ll e = 0;\n   \
+    \ do { n /= p, e += 1; } while (n % p == 0);\n    pf.eb(p, e);\n  }\n  sort(all(pf));\n\
+    \  return pf;\n}\n\nvc<pair<ll, int>> factor_by_lpf(ll n, vc<int>& lpf) {\n  vc<pair<ll,\
+    \ int>> res;\n  while (n > 1) {\n    int p = lpf[n];\n    int e = 0;\n    while\
+    \ (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n \
+    \ return res;\n}\n#line 3 \"mod/mod_pow.hpp\"\n\r\nint mod_pow(int a, ll n, int\
+    \ mod) {\r\n  assert(n >= 0);\r\n  a = ((a %= mod) < 0 ? a + mod : a);\r\n  Barrett\
+    \ bt(mod);\r\n  int p = a, v = bt.modulo(1);\r\n  while (n) {\r\n    if (n & 1)\
+    \ v = bt.mul(v, p);\r\n    p = bt.mul(p, p);\r\n    n >>= 1;\r\n  }\r\n  return\
+    \ v;\r\n}\r\n\r\nll mod_pow_64(ll a, ll n, ll mod) {\r\n  assert(n >= 0);\r\n\
+    \  a = ((a %= mod) < 0 ? a + mod : a);\r\n  Barrett bt(mod);\r\n  ll p = a, v\
+    \ = bt.modulo(1);\r\n  while (n) {\r\n    if (n & 1) v = bt.mul(v, p);\r\n   \
+    \ p = bt.mul(p, p);\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n#line 6 \"mod/primitive_root.hpp\"\
     \n\r\n// int\r\nint primitive_root(int p) {\r\n  auto pf = factor(p - 1);\r\n\
     \  auto is_ok = [&](int g) -> bool {\r\n    for (auto&& [q, e]: pf)\r\n      if\
     \ (mod_pow(g, (p - 1) / q, p) == 1) return false;\r\n    return true;\r\n  };\r\
@@ -359,14 +358,14 @@ data:
   - mod/barrett.hpp
   - mod/primitive_root.hpp
   - nt/factor.hpp
-  - mod/mod_pow.hpp
   - random/base.hpp
+  - mod/mod_pow.hpp
   - mod/mod_inv.hpp
   - ds/hashmap.hpp
   isVerificationFile: false
   path: mod/mod_kth_root.hpp
   requiredBy: []
-  timestamp: '2023-10-24 20:44:29+09:00'
+  timestamp: '2023-10-24 21:04:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/math/kth_root_mod.test.cpp
