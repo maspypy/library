@@ -1,18 +1,22 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "nt/four_square.hpp"
+
 #include "random/base.hpp"
+#include "nt/four_square.hpp"
 
 void test() {
-  FOR(x, 1000) {
-    auto [a, b, c, d] = four_square(x);
-    assert(a * a + b * b + c * c + d * d == x);
+  FOR(N, 1000000) {
+    auto [a, b, c, d] = four_square(N);
+    assert(N == a * a + b * b + c * c + d * d);
   }
-  FOR(1000) {
-    ll x = RNG(0, 1'000'000'000);
-    auto [a, b, c, d] = four_square(x);
-    assert(a * a + b * b + c * c + d * d == x);
+  vi TEN = {1};
+  FOR(18) TEN.eb(TEN.back() * 10);
+  FOR(100000) {
+    ll K = RNG(0, 18);
+    ll N = RNG(TEN[K], TEN[K + 1]);
+    auto [a, b, c, d] = four_square(N);
+    assert(N == a * a + b * b + c * c + d * d);
   }
 }
 
@@ -24,5 +28,6 @@ void solve() {
 signed main() {
   test();
   solve();
+
   return 0;
 }
