@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "linalg/det_mod.hpp"
+#include "linalg/det.hpp"
 
 void solve() {
   LL(N, mod);
@@ -12,8 +12,6 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
   solve();
 
   return 0;
