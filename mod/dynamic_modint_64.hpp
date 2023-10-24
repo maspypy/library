@@ -86,6 +86,6 @@ struct Dynamic_Modint_64 {
 #endif
 };
 
-using dmint = Dynamic_Modint_64<-1>;
+using dmint64 = Dynamic_Modint_64<-1>;
 template <int id>
 Barrett_64 Dynamic_Modint_64<id>::bt;
