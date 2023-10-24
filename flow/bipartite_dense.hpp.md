@@ -12,13 +12,13 @@ data:
     - https://codeforces.com/contest/786/problem/E
     - https://qoj.ac/problem/6308
   bundledCode: "#line 1 \"flow/bipartite_dense.hpp\"\n\n// vc<bitset> \u3067 biadj\
-    \ matrix \u3092\u6E21\u3059\n// N^3/w. (5000,5000) \u3067 300ms \u7A0B\u5EA6\u3067\
-    \u52D5\u304F\u5834\u5408\u304C\u3042\u308B\n// https://qoj.ac/problem/6308\n//\
-    \ (10000?, 5000) 655ms\n// https://codeforces.com/contest/1045/problem/A\n// (10000,\
-    \ 20000) \u3067 3837ms\n// https://codeforces.com/contest/786/problem/E\ntemplate\
-    \ <typename BS>\nstruct BipartiteMatching_Dense {\n  int N1, N2;\n  vc<BS>& adj;\n\
-    \  vc<int> match_1, match_2;\n  vc<int> que;\n  vc<int> prev;\n  BS vis;\n\n \
-    \ BipartiteMatching_Dense(vc<BS>& adj, int N1, int N2)\n      : N1(N1), N2(N2),\
+    \ matrix \u3092\u6E21\u3059\n// N_1^2N_2/w.\n// (5000,5000) \u3067 300ms \u7A0B\
+    \u5EA6\u3067\u52D5\u304F\u5834\u5408\u304C\u3042\u308B\n// https://qoj.ac/problem/6308\n\
+    // (10000?, 5000) 655ms\n// https://codeforces.com/contest/1045/problem/A\n//\
+    \ (10000, 20000) \u3067 3837ms\n// https://codeforces.com/contest/786/problem/E\n\
+    template <typename BS>\nstruct BipartiteMatching_Dense {\n  int N1, N2;\n  vc<BS>&\
+    \ adj;\n  vc<int> match_1, match_2;\n  vc<int> que;\n  vc<int> prev;\n  BS vis;\n\
+    \n  BipartiteMatching_Dense(vc<BS>& adj, int N1, int N2)\n      : N1(N1), N2(N2),\
     \ adj(adj), match_1(N1, -1), match_2(N2, -1) {\n    FOR(s, N1) bfs(s);\n  }\n\n\
     \  void bfs(int s) {\n    if (match_1[s] != -1) return;\n    que.resize(N1), prev.resize(N1);\n\
     \    int l = 0, r = 0;\n    vis.set(), prev[s] = -1;\n\n    que[r++] = s;\n  \
@@ -39,9 +39,9 @@ data:
     \        if (!done[to]) done[to] = 1, que[r++] = to;\n      }\n    }\n    vc<int>\
     \ left, right;\n    FOR(i, N1) if (!done[i]) left.eb(i);\n    FOR(i, N2) if (!vis[i])\
     \ right.eb(i);\n    return {left, right};\n  }\n};\n"
-  code: "\n// vc<bitset> \u3067 biadj matrix \u3092\u6E21\u3059\n// N^3/w. (5000,5000)\
-    \ \u3067 300ms \u7A0B\u5EA6\u3067\u52D5\u304F\u5834\u5408\u304C\u3042\u308B\n\
-    // https://qoj.ac/problem/6308\n// (10000?, 5000) 655ms\n// https://codeforces.com/contest/1045/problem/A\n\
+  code: "\n// vc<bitset> \u3067 biadj matrix \u3092\u6E21\u3059\n// N_1^2N_2/w.\n\
+    // (5000,5000) \u3067 300ms \u7A0B\u5EA6\u3067\u52D5\u304F\u5834\u5408\u304C\u3042\
+    \u308B\n// https://qoj.ac/problem/6308\n// (10000?, 5000) 655ms\n// https://codeforces.com/contest/1045/problem/A\n\
     // (10000, 20000) \u3067 3837ms\n// https://codeforces.com/contest/786/problem/E\n\
     template <typename BS>\nstruct BipartiteMatching_Dense {\n  int N1, N2;\n  vc<BS>&\
     \ adj;\n  vc<int> match_1, match_2;\n  vc<int> que;\n  vc<int> prev;\n  BS vis;\n\
@@ -70,7 +70,7 @@ data:
   isVerificationFile: false
   path: flow/bipartite_dense.hpp
   requiredBy: []
-  timestamp: '2023-10-14 01:43:46+09:00'
+  timestamp: '2023-10-24 13:36:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: flow/bipartite_dense.hpp

@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/sliding_window_aggregation.hpp
     title: ds/sliding_window_aggregation.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
   - icon: ':question:'
@@ -37,21 +37,21 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/sparse_exp_of_div.hpp
     title: poly/sparse_exp_of_div.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080_2.test.cpp
     title: test/yukicoder/1080_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
   - icon: ':x:'
@@ -65,7 +65,7 @@ data:
     title: test_atcoder/abc276_g_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/from_log_differentiation.hpp\"\n\n#line 2 \"mod/modint_common.hpp\"\
@@ -148,7 +148,7 @@ data:
     \ && N2 <= 16) {\r\n    FOR(i, N1) FOR(j, N3) {\r\n      u64 sm = 0;\r\n     \
     \ FOR(m, N2) sm += u64(A[i][m].val) * b[j][m];\r\n      C[i][j] = sm;\r\n    }\r\
     \n  } else {\r\n    FOR(i, N1) FOR(j, N3) {\r\n      u128 sm = 0;\r\n      FOR(m,\
-    \ M) sm += u64(A[i][m].val) * b[j][m];\r\n      C[i][j] = T::raw(sm % (T::get_mod()));\r\
+    \ N2) sm += u64(A[i][m].val) * b[j][m];\r\n      C[i][j] = T::raw(sm % (T::get_mod()));\r\
     \n    }\r\n  }\r\n  return C;\r\n}\r\n\r\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type*\
     \ = nullptr>\r\nvc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int\
     \ N1 = -1,\r\n                  int N2 = -1, int N3 = -1) {\r\n  assert(!A.empty()\
@@ -519,8 +519,8 @@ data:
   path: poly/from_log_differentiation.hpp
   requiredBy:
   - poly/sparse_exp_of_div.hpp
-  timestamp: '2023-10-24 13:34:47+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-10-24 13:55:19+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc276_g_2.test.cpp
   - test_atcoder/abc276_g.test.cpp

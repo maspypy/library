@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/characteristic_poly.hpp
     title: linalg/characteristic_poly.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/mat_inv.hpp
     title: linalg/mat_inv.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
   - icon: ':question:'
@@ -19,10 +19,10 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   - icon: ':question:'
@@ -40,7 +40,7 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   - icon: ':question:'
@@ -48,15 +48,15 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1907.test.cpp
     title: test/yukicoder/1907.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -144,7 +144,7 @@ data:
     \ && N2 <= 16) {\r\n    FOR(i, N1) FOR(j, N3) {\r\n      u64 sm = 0;\r\n     \
     \ FOR(m, N2) sm += u64(A[i][m].val) * b[j][m];\r\n      C[i][j] = sm;\r\n    }\r\
     \n  } else {\r\n    FOR(i, N1) FOR(j, N3) {\r\n      u128 sm = 0;\r\n      FOR(m,\
-    \ M) sm += u64(A[i][m].val) * b[j][m];\r\n      C[i][j] = T::raw(sm % (T::get_mod()));\r\
+    \ N2) sm += u64(A[i][m].val) * b[j][m];\r\n      C[i][j] = T::raw(sm % (T::get_mod()));\r\
     \n    }\r\n  }\r\n  return C;\r\n}\r\n\r\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type*\
     \ = nullptr>\r\nvc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int\
     \ N1 = -1,\r\n                  int N2 = -1, int N3 = -1) {\r\n  assert(!A.empty()\
@@ -443,8 +443,8 @@ data:
   isVerificationFile: false
   path: linalg/det_A_plus_xB.hpp
   requiredBy: []
-  timestamp: '2023-10-24 13:34:47+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-10-24 13:55:19+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1907.test.cpp
   - test/yukicoder/1303.test.cpp

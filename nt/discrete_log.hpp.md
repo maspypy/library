@@ -1,10 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_set/from_monoid.hpp
     title: alg/acted_set/from_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: alg/monoid/mul.hpp
+    title: alg/monoid/mul.hpp
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':question:'
@@ -21,22 +24,26 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc222g.test.cpp
     title: test_atcoder/abc222g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc270_g.test.cpp
     title: test_atcoder/abc270_g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"alg/acted_set/from_monoid.hpp\"\ntemplate <typename Monoid>\n\
-    struct ActedSet_From_Monoid {\n  using Monoid_A = Monoid;\n  using A = typename\
-    \ Monoid::value_type;\n  using S = A;\n  static S act(const S &x, const A &g)\
-    \ { return Monoid::op(x, g); }\n};\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
-    \ {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+  bundledCode: "#line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Monoid_Mul\
+    \ {\r\n  using value_type = T;\r\n  using X = T;\r\n  static constexpr X op(const\
+    \ X &x, const X &y) noexcept { return x * y; }\r\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return X(1) / x; }\r\n  static constexpr X unit() { return\
+    \ X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"alg/acted_set/from_monoid.hpp\"\
+    \ntemplate <typename Monoid>\nstruct ActedSet_From_Monoid {\n  using Monoid_A\
+    \ = Monoid;\n  using A = typename Monoid::value_type;\n  using S = A;\n  static\
+    \ S act(const S &x, const A &g) { return Monoid::op(x, g); }\n};\n#line 2 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
@@ -59,7 +66,7 @@ data:
     \ && keys[i] == key;\r\n  }\r\n\r\n  void reset() {\r\n    for (auto&& i: IDS)\
     \ used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  // f(key, val)\r\n  template\
     \ <typename F>\r\n  void enumerate_all(F f) {\r\n    for (auto&& i: IDS) f(keys[i],\
-    \ vals[i]);\r\n  }\r\n};\r\n#line 3 \"nt/discrete_log.hpp\"\n\r\n// \u30E2\u30CE\
+    \ vals[i]);\r\n  }\r\n};\r\n#line 4 \"nt/discrete_log.hpp\"\n\r\n// \u30E2\u30CE\
     \u30A4\u30C9 X \u306E\u4F5C\u7528\u3059\u308B\u96C6\u5408 S\u3001\u30CF\u30C3\u30B7\
     \u30E5\u95A2\u6570 H\uFF1AS -> Z\r\n// x in X, s, t in S \u306B\u5BFE\u3057\u3066\
     \ x^ns = t \u3092\u89E3\u304F\r\n// [lb, ub) \u306E\u6700\u521D\u306E\u89E3\u3092\
@@ -87,16 +94,16 @@ data:
     \ Monoid::X a, typename Monoid::X b, F H, ll lb,\r\n                       ll\
     \ ub) {\r\n  using AM = ActedSet_From_Monoid<Monoid>;\r\n  return discrete_log_acted<AM>(a,\
     \ Monoid::unit(), b, H, lb, ub);\r\n}\n"
-  code: "#include \"alg/acted_set/from_monoid.hpp\"\r\n#include \"ds/hashmap.hpp\"\
-    \r\n\r\n// \u30E2\u30CE\u30A4\u30C9 X \u306E\u4F5C\u7528\u3059\u308B\u96C6\u5408\
-    \ S\u3001\u30CF\u30C3\u30B7\u30E5\u95A2\u6570 H\uFF1AS -> Z\r\n// x in X, s, t\
-    \ in S \u306B\u5BFE\u3057\u3066 x^ns = t \u3092\u89E3\u304F\r\n// [lb, ub) \u306E\
-    \u6700\u521D\u306E\u89E3\u3092\u304B\u3048\u3059\u3002\u306A\u3051\u308C\u3070\
-    \ -1 \u3092\u304B\u3048\u3059\u3002\r\ntemplate <typename ActedSet, typename F,\
-    \ int MP_SIZE = 20>\r\nll discrete_log_acted(typename ActedSet::A x, typename\
-    \ ActedSet::S s,\r\n                      typename ActedSet::S t, F H, ll lb,\
-    \ ll ub) {\r\n  static HashMap<bool, MP_SIZE> MP;\r\n  MP.reset();\r\n  using\
-    \ Mono = typename ActedSet::Monoid_A;\r\n  using X = typename Mono::value_type;\r\
+  code: "#include \"alg/monoid/mul.hpp\"\r\n#include \"alg/acted_set/from_monoid.hpp\"\
+    \r\n#include \"ds/hashmap.hpp\"\r\n\r\n// \u30E2\u30CE\u30A4\u30C9 X \u306E\u4F5C\
+    \u7528\u3059\u308B\u96C6\u5408 S\u3001\u30CF\u30C3\u30B7\u30E5\u95A2\u6570 H\uFF1A\
+    S -> Z\r\n// x in X, s, t in S \u306B\u5BFE\u3057\u3066 x^ns = t \u3092\u89E3\u304F\
+    \r\n// [lb, ub) \u306E\u6700\u521D\u306E\u89E3\u3092\u304B\u3048\u3059\u3002\u306A\
+    \u3051\u308C\u3070 -1 \u3092\u304B\u3048\u3059\u3002\r\ntemplate <typename ActedSet,\
+    \ typename F, int MP_SIZE = 20>\r\nll discrete_log_acted(typename ActedSet::A\
+    \ x, typename ActedSet::S s,\r\n                      typename ActedSet::S t,\
+    \ F H, ll lb, ll ub) {\r\n  static HashMap<bool, MP_SIZE> MP;\r\n  MP.reset();\r\
+    \n  using Mono = typename ActedSet::Monoid_A;\r\n  using X = typename Mono::value_type;\r\
     \n  using S = typename ActedSet::S;\r\n\r\n  if (lb >= ub) return -1;\r\n  auto\
     \ xpow = [&](ll n) -> X {\r\n    X p = x;\r\n    X res = Mono::unit();\r\n   \
     \ while (n) {\r\n      if (n & 1) res = Mono::op(res, p);\r\n      p = Mono::op(p,\
@@ -117,6 +124,7 @@ data:
     \ ub) {\r\n  using AM = ActedSet_From_Monoid<Monoid>;\r\n  return discrete_log_acted<AM>(a,\
     \ Monoid::unit(), b, H, lb, ub);\r\n}"
   dependsOn:
+  - alg/monoid/mul.hpp
   - alg/acted_set/from_monoid.hpp
   - ds/hashmap.hpp
   - random/base.hpp
@@ -124,8 +132,8 @@ data:
   path: nt/discrete_log.hpp
   requiredBy:
   - mod/mod_log.hpp
-  timestamp: '2023-03-28 11:16:12+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-10-24 13:35:32+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc270_g.test.cpp
   - test_atcoder/abc222g.test.cpp

@@ -5,7 +5,7 @@ data:
     path: mod/barrett.hpp
     title: mod/barrett.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/det.hpp
     title: linalg/det.hpp
   _extendedVerifiedWith:
@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/matrix_det.test.cpp
     title: test/library_checker/matrix/matrix_det.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
@@ -63,7 +63,7 @@ data:
   requiredBy:
   - linalg/det.hpp
   timestamp: '2023-10-17 07:10:25+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1303.test.cpp
   - test/library_checker/matrix/matrix_det.test.cpp

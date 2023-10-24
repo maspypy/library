@@ -1,37 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_set/from_monoid.hpp
     title: alg/acted_set/from_monoid.hpp
   - icon: ':question:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':question:'
@@ -209,16 +209,21 @@ data:
     \ (mod - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static pair<int, int>\
     \ ntt_info() { return get_ntt(); }\n  static bool can_ntt() { return ntt_info().fi\
     \ != -1; }\n};\n\nusing dmint = Dynamic_Modint;\nBarrett dmint::bt(1);\n#line\
-    \ 1 \"alg/acted_set/from_monoid.hpp\"\ntemplate <typename Monoid>\nstruct ActedSet_From_Monoid\
-    \ {\n  using Monoid_A = Monoid;\n  using A = typename Monoid::value_type;\n  using\
-    \ S = A;\n  static S act(const S &x, const A &g) { return Monoid::op(x, g); }\n\
-    };\n#line 3 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename Val, int\
-    \ LOG = 20>\r\nstruct HashMap {\r\n  int N;\r\n  u64* keys;\r\n  Val* vals;\r\n\
-    \  vc<int> IDS;\r\n  bitset<1 << LOG> used;\r\n  const int shift;\r\n  const u64\
-    \ r = 11995408973635179863ULL;\r\n  HashMap()\r\n      : N(1 << LOG), keys(new\
-    \ u64[N]), vals(new Val[N]), shift(64 - __lg(N)) {}\r\n  int hash(ll x) {\r\n\
-    \    static const u64 FIXED_RANDOM\r\n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\
-    \n    return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
+    \ 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Monoid_Mul {\r\n\
+    \  using value_type = T;\r\n  using X = T;\r\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return x * y; }\r\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return X(1) / x; }\r\n  static constexpr X unit() { return\
+    \ X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"alg/acted_set/from_monoid.hpp\"\
+    \ntemplate <typename Monoid>\nstruct ActedSet_From_Monoid {\n  using Monoid_A\
+    \ = Monoid;\n  using A = typename Monoid::value_type;\n  using S = A;\n  static\
+    \ S act(const S &x, const A &g) { return Monoid::op(x, g); }\n};\n#line 3 \"ds/hashmap.hpp\"\
+    \n\r\n// u64 -> Val\r\ntemplate <typename Val, int LOG = 20>\r\nstruct HashMap\
+    \ {\r\n  int N;\r\n  u64* keys;\r\n  Val* vals;\r\n  vc<int> IDS;\r\n  bitset<1\
+    \ << LOG> used;\r\n  const int shift;\r\n  const u64 r = 11995408973635179863ULL;\r\
+    \n  HashMap()\r\n      : N(1 << LOG), keys(new u64[N]), vals(new Val[N]), shift(64\
+    \ - __lg(N)) {}\r\n  int hash(ll x) {\r\n    static const u64 FIXED_RANDOM\r\n\
+    \        = std::chrono::steady_clock::now().time_since_epoch().count();\r\n  \
+    \  return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
     \ u64& key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && keys[i]\
     \ != key; (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  // [] \u3057\
     \u305F\u6642\u70B9\u3067\u8981\u7D20\u306F\u4F5C\u3089\u308C\u308B\r\n  Val& operator[](const\
@@ -230,7 +235,7 @@ data:
     \ && keys[i] == key;\r\n  }\r\n\r\n  void reset() {\r\n    for (auto&& i: IDS)\
     \ used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  // f(key, val)\r\n  template\
     \ <typename F>\r\n  void enumerate_all(F f) {\r\n    for (auto&& i: IDS) f(keys[i],\
-    \ vals[i]);\r\n  }\r\n};\r\n#line 3 \"nt/discrete_log.hpp\"\n\r\n// \u30E2\u30CE\
+    \ vals[i]);\r\n  }\r\n};\r\n#line 4 \"nt/discrete_log.hpp\"\n\r\n// \u30E2\u30CE\
     \u30A4\u30C9 X \u306E\u4F5C\u7528\u3059\u308B\u96C6\u5408 S\u3001\u30CF\u30C3\u30B7\
     \u30E5\u95A2\u6570 H\uFF1AS -> Z\r\n// x in X, s, t in S \u306B\u5BFE\u3057\u3066\
     \ x^ns = t \u3092\u89E3\u304F\r\n// [lb, ub) \u306E\u6700\u521D\u306E\u89E3\u3092\
@@ -257,13 +262,8 @@ data:
     \u308C\u3070 -1\r\ntemplate <typename Monoid, typename F>\r\nll discrete_log_monoid(typename\
     \ Monoid::X a, typename Monoid::X b, F H, ll lb,\r\n                       ll\
     \ ub) {\r\n  using AM = ActedSet_From_Monoid<Monoid>;\r\n  return discrete_log_acted<AM>(a,\
-    \ Monoid::unit(), b, H, lb, ub);\r\n}\n#line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate\
-    \ <class T>\r\nstruct Monoid_Mul {\r\n  using value_type = T;\r\n  using X = T;\r\
-    \n  static constexpr X op(const X &x, const X &y) noexcept { return x * y; }\r\
-    \n  static constexpr X inverse(const X &x) noexcept { return X(1) / x; }\r\n \
-    \ static constexpr X unit() { return X(1); }\r\n  static constexpr bool commute\
-    \ = true;\r\n};\r\n#line 4 \"mod/mod_log.hpp\"\n\r\nint mod_log(int mod, ll a,\
-    \ ll b) {\r\n  dmint::set_mod(mod);\r\n  return discrete_log_monoid<Monoid_Mul<dmint>>(\r\
+    \ Monoid::unit(), b, H, lb, ub);\r\n}\n#line 4 \"mod/mod_log.hpp\"\n\r\nint mod_log(int\
+    \ mod, ll a, ll b) {\r\n  dmint::set_mod(mod);\r\n  return discrete_log_monoid<Monoid_Mul<dmint>>(\r\
     \n      dmint(a), dmint(b), [](auto x) { return x.val; }, 0, mod);\r\n}\r\n"
   code: "#include \"mod/dynamic_modint.hpp\"\r\n#include \"nt/discrete_log.hpp\"\r\
     \n#include \"alg/monoid/mul.hpp\"\r\n\r\nint mod_log(int mod, ll a, ll b) {\r\n\
@@ -279,13 +279,13 @@ data:
   - mod/barrett.hpp
   - random/base.hpp
   - nt/discrete_log.hpp
+  - alg/monoid/mul.hpp
   - alg/acted_set/from_monoid.hpp
   - ds/hashmap.hpp
-  - alg/monoid/mul.hpp
   isVerificationFile: false
   path: mod/mod_log.hpp
   requiredBy: []
-  timestamp: '2023-10-17 07:10:25+09:00'
+  timestamp: '2023-10-24 13:35:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/discrete_logarithm_mod.test.cpp

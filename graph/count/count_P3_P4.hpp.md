@@ -12,6 +12,7 @@ data:
   attributes:
     links:
     - https://atcoder.jp/contests/tkppc2/tasks/tkppc2016_h
+    - https://codeforces.com/contest/51/submission/228823033
   bundledCode: "#line 1 \"graph/count/count_C3_C4.hpp\"\n\n// \u5404\u70B9\u306B\u5BFE\
     \u3057\u3066\u3001\u305D\u306E\u70B9\u3092\u542B\u3080 C3, C4 \u3092\u6570\u3048\
     \u308B\ntemplate <typename GT>\npair<vi, vi> count_C3_C4_pointwise(GT &G) {\n\
@@ -39,6 +40,7 @@ data:
     \ &&c: TO[b]) { A[c] = 0; }\n    }\n  }\n  x3 /= 2;\n  return {x3, x4};\n}\n#line\
     \ 2 \"graph/count/count_P3_P4.hpp\"\n\n// \u5404 v \u306B\u5BFE\u3057\u3066\u3001\
     v \u3092\u59CB\u70B9\u3068\u3059\u308B P3, P4 \u3092\u6570\u3048\u308B\n// https://atcoder.jp/contests/tkppc2/tasks/tkppc2016_h\n\
+    // \u59CB\u7D42\u70B9\u3054\u3068\uFF1Ahttps://codeforces.com/contest/51/submission/228823033\n\
     template <typename GT>\npair<vi, vi> count_P3_P4_pointwise(GT& G) {\n  int N =\
     \ G.N;\n  auto deg = G.deg_array();\n  auto [C3, C4] = count_C3_C4_pointwise(G);\n\
     \n  vi P2(N), P3(N), P4(N);\n  using ARR = array<ll, 5>;\n  vc<ARR> path(N, {1,\
@@ -50,22 +52,23 @@ data:
     \  }\n  return {P3, P4};\n}\n"
   code: "#include \"graph/count/count_C3_C4.hpp\"\n\n// \u5404 v \u306B\u5BFE\u3057\
     \u3066\u3001v \u3092\u59CB\u70B9\u3068\u3059\u308B P3, P4 \u3092\u6570\u3048\u308B\
-    \n// https://atcoder.jp/contests/tkppc2/tasks/tkppc2016_h\ntemplate <typename\
-    \ GT>\npair<vi, vi> count_P3_P4_pointwise(GT& G) {\n  int N = G.N;\n  auto deg\
-    \ = G.deg_array();\n  auto [C3, C4] = count_C3_C4_pointwise(G);\n\n  vi P2(N),\
-    \ P3(N), P4(N);\n  using ARR = array<ll, 5>;\n  vc<ARR> path(N, {1, 0, 0, 0, 0});\n\
-    \  FOR(v, N) path[v][1] = deg[v];\n\n  FOR(v, N) {\n    for (auto&& e: G[v]) P2[v]\
-    \ += deg[e.to] - 1;\n  }\n\n  FOR(v, N) {\n    for (auto&& e: G[v]) { P3[v] +=\
-    \ P2[e.to] - (deg[v] - 1); }\n    P3[v] -= C3[v] * 2;\n  }\n\n  FOR(v, N) {\n\
-    \    for (auto&& e: G[v]) { P4[v] += P3[e.to]; }\n    P4[v] -= C4[v] * 2;\n  \
-    \  P4[v] -= C3[v] * 2 * (deg[v] - 3);\n    P4[v] -= P2[v] * (deg[v] - 1);\n  }\n\
-    \  return {P3, P4};\n}"
+    \n// https://atcoder.jp/contests/tkppc2/tasks/tkppc2016_h\n// \u59CB\u7D42\u70B9\
+    \u3054\u3068\uFF1Ahttps://codeforces.com/contest/51/submission/228823033\ntemplate\
+    \ <typename GT>\npair<vi, vi> count_P3_P4_pointwise(GT& G) {\n  int N = G.N;\n\
+    \  auto deg = G.deg_array();\n  auto [C3, C4] = count_C3_C4_pointwise(G);\n\n\
+    \  vi P2(N), P3(N), P4(N);\n  using ARR = array<ll, 5>;\n  vc<ARR> path(N, {1,\
+    \ 0, 0, 0, 0});\n  FOR(v, N) path[v][1] = deg[v];\n\n  FOR(v, N) {\n    for (auto&&\
+    \ e: G[v]) P2[v] += deg[e.to] - 1;\n  }\n\n  FOR(v, N) {\n    for (auto&& e: G[v])\
+    \ { P3[v] += P2[e.to] - (deg[v] - 1); }\n    P3[v] -= C3[v] * 2;\n  }\n\n  FOR(v,\
+    \ N) {\n    for (auto&& e: G[v]) { P4[v] += P3[e.to]; }\n    P4[v] -= C4[v] *\
+    \ 2;\n    P4[v] -= C3[v] * 2 * (deg[v] - 3);\n    P4[v] -= P2[v] * (deg[v] - 1);\n\
+    \  }\n  return {P3, P4};\n}"
   dependsOn:
   - graph/count/count_C3_C4.hpp
   isVerificationFile: false
   path: graph/count/count_P3_P4.hpp
   requiredBy: []
-  timestamp: '2023-05-21 00:13:10+09:00'
+  timestamp: '2023-10-24 13:35:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/count/count_P3_P4.hpp

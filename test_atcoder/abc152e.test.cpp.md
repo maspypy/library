@@ -13,16 +13,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/all_lcm.hpp
     title: nt/all_lcm.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':heavy_check_mark:'
     path: nt/lpf_table.hpp
     title: nt/lpf_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':question:'

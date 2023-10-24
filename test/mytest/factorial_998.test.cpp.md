@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: ds/sliding_window_aggregation.hpp
     title: ds/sliding_window_aggregation.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/factorial998.hpp
     title: mod/factorial998.hpp
   - icon: ':question:'
@@ -46,7 +46,7 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
   - icon: ':question:'
@@ -54,9 +54,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -336,23 +336,23 @@ data:
     \  if ((T::get_mod() < (1 << 30)) && N2 <= 16) {\r\n    FOR(i, N1) FOR(j, N3)\
     \ {\r\n      u64 sm = 0;\r\n      FOR(m, N2) sm += u64(A[i][m].val) * b[j][m];\r\
     \n      C[i][j] = sm;\r\n    }\r\n  } else {\r\n    FOR(i, N1) FOR(j, N3) {\r\n\
-    \      u128 sm = 0;\r\n      FOR(m, M) sm += u64(A[i][m].val) * b[j][m];\r\n \
-    \     C[i][j] = T::raw(sm % (T::get_mod()));\r\n    }\r\n  }\r\n  return C;\r\n\
-    }\r\n\r\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type* = nullptr>\r\
-    \nvc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int N1 = -1,\r\n \
-    \                 int N2 = -1, int N3 = -1) {\r\n  assert(!A.empty() && !B.empty());\r\
-    \n  if (N1 == -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\r\n  vv(T, b,\
-    \ N2, N3);\r\n  FOR(i, N2) FOR(j, N3) b[j][i] = B[i][j];\r\n  vv(T, C, N1, N3);\r\
-    \n  FOR(n, N1) FOR(m, N2) FOR(k, N3) C[n][k] += A[n][m] * b[k][m];\r\n  return\
-    \ C;\r\n}\r\n#line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate <class T>\r\nstruct\
-    \ Monoid_Mul {\r\n  using value_type = T;\r\n  using X = T;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return x * y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return X(1) / x; }\r\n  static constexpr X\
-    \ unit() { return X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\n\
-    #line 1 \"ds/sliding_window_aggregation.hpp\"\ntemplate <class Monoid>\nstruct\
-    \ Sliding_Window_Aggregation {\n  using X = typename Monoid::value_type;\n  using\
-    \ value_type = X;\n  int sz = 0;\n  vc<X> dat;\n  vc<X> cum_l;\n  X cum_r;\n\n\
-    \  Sliding_Window_Aggregation()\n      : cum_l({Monoid::unit()}), cum_r(Monoid::unit())\
+    \      u128 sm = 0;\r\n      FOR(m, N2) sm += u64(A[i][m].val) * b[j][m];\r\n\
+    \      C[i][j] = T::raw(sm % (T::get_mod()));\r\n    }\r\n  }\r\n  return C;\r\
+    \n}\r\n\r\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type* =\
+    \ nullptr>\r\nvc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int N1\
+    \ = -1,\r\n                  int N2 = -1, int N3 = -1) {\r\n  assert(!A.empty()\
+    \ && !B.empty());\r\n  if (N1 == -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]);\
+    \ }\r\n  vv(T, b, N2, N3);\r\n  FOR(i, N2) FOR(j, N3) b[j][i] = B[i][j];\r\n \
+    \ vv(T, C, N1, N3);\r\n  FOR(n, N1) FOR(m, N2) FOR(k, N3) C[n][k] += A[n][m] *\
+    \ b[k][m];\r\n  return C;\r\n}\r\n#line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate\
+    \ <class T>\r\nstruct Monoid_Mul {\r\n  using value_type = T;\r\n  using X = T;\r\
+    \n  static constexpr X op(const X &x, const X &y) noexcept { return x * y; }\r\
+    \n  static constexpr X inverse(const X &x) noexcept { return X(1) / x; }\r\n \
+    \ static constexpr X unit() { return X(1); }\r\n  static constexpr bool commute\
+    \ = true;\r\n};\r\n#line 1 \"ds/sliding_window_aggregation.hpp\"\ntemplate <class\
+    \ Monoid>\nstruct Sliding_Window_Aggregation {\n  using X = typename Monoid::value_type;\n\
+    \  using value_type = X;\n  int sz = 0;\n  vc<X> dat;\n  vc<X> cum_l;\n  X cum_r;\n\
+    \n  Sliding_Window_Aggregation()\n      : cum_l({Monoid::unit()}), cum_r(Monoid::unit())\
     \ {}\n\n  int size() { return sz; }\n\n  void push(X x) {\n    ++sz;\n    cum_r\
     \ = Monoid::op(cum_r, x);\n    dat.eb(x);\n  }\n\n  void pop() {\n    --sz;\n\
     \    cum_l.pop_back();\n    if (len(cum_l) == 0) {\n      cum_l = {Monoid::unit()};\n\
@@ -673,8 +673,8 @@ data:
   isVerificationFile: true
   path: test/mytest/factorial_998.test.cpp
   requiredBy: []
-  timestamp: '2023-10-24 13:34:47+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-10-24 13:55:19+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/factorial_998.test.cpp
 layout: document

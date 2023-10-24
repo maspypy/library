@@ -1,43 +1,46 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_set/affine.hpp
     title: alg/acted_set/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_set/from_monoid.hpp
     title: alg/acted_set/from_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: alg/monoid/mul.hpp
+    title: alg/monoid/mul.hpp
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':question:'
@@ -48,9 +51,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc222/tasks/abc222_g
@@ -240,10 +243,15 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 4 \"test_atcoder/abc222g.test.cpp\"\n\n#line 1 \"alg/acted_set/from_monoid.hpp\"\
-    \ntemplate <typename Monoid>\nstruct ActedSet_From_Monoid {\n  using Monoid_A\
-    \ = Monoid;\n  using A = typename Monoid::value_type;\n  using S = A;\n  static\
-    \ S act(const S &x, const A &g) { return Monoid::op(x, g); }\n};\n#line 2 \"random/base.hpp\"\
+    \ yes(!t); }\n#line 4 \"test_atcoder/abc222g.test.cpp\"\n\n#line 2 \"alg/monoid/mul.hpp\"\
+    \n\r\ntemplate <class T>\r\nstruct Monoid_Mul {\r\n  using value_type = T;\r\n\
+    \  using X = T;\r\n  static constexpr X op(const X &x, const X &y) noexcept {\
+    \ return x * y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
+    \ X(1) / x; }\r\n  static constexpr X unit() { return X(1); }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 1 \"alg/acted_set/from_monoid.hpp\"\ntemplate\
+    \ <typename Monoid>\nstruct ActedSet_From_Monoid {\n  using Monoid_A = Monoid;\n\
+    \  using A = typename Monoid::value_type;\n  using S = A;\n  static S act(const\
+    \ S &x, const A &g) { return Monoid::op(x, g); }\n};\n#line 2 \"random/base.hpp\"\
     \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
@@ -267,7 +275,7 @@ data:
     \ && keys[i] == key;\r\n  }\r\n\r\n  void reset() {\r\n    for (auto&& i: IDS)\
     \ used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  // f(key, val)\r\n  template\
     \ <typename F>\r\n  void enumerate_all(F f) {\r\n    for (auto&& i: IDS) f(keys[i],\
-    \ vals[i]);\r\n  }\r\n};\r\n#line 3 \"nt/discrete_log.hpp\"\n\r\n// \u30E2\u30CE\
+    \ vals[i]);\r\n  }\r\n};\r\n#line 4 \"nt/discrete_log.hpp\"\n\r\n// \u30E2\u30CE\
     \u30A4\u30C9 X \u306E\u4F5C\u7528\u3059\u308B\u96C6\u5408 S\u3001\u30CF\u30C3\u30B7\
     \u30E5\u95A2\u6570 H\uFF1AS -> Z\r\n// x in X, s, t in S \u306B\u5BFE\u3057\u3066\
     \ x^ns = t \u3092\u89E3\u304F\r\n// [lb, ub) \u306E\u6700\u521D\u306E\u89E3\u3092\
@@ -480,6 +488,7 @@ data:
   - my_template.hpp
   - other/io.hpp
   - nt/discrete_log.hpp
+  - alg/monoid/mul.hpp
   - alg/acted_set/from_monoid.hpp
   - ds/hashmap.hpp
   - random/base.hpp
@@ -495,8 +504,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc222g.test.cpp
   requiredBy: []
-  timestamp: '2023-10-17 07:10:25+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-10-24 13:35:32+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc222g.test.cpp
 layout: document
