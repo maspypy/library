@@ -11,12 +11,11 @@ void solve() {
   FOR(4) {
     while (count(all(A.back()), '#') == 0) POP(A);
     while (count(all(B.back()), '#') == 0) POP(B);
-    A = rot90(len(A), len(A[0]), A);
-    B = rot90(len(B), len(B[0]), B);
+    A = rot90(A), B = rot90(B);
   }
 
   FOR(4) {
-    A = rot90(len(A), len(A[0]), A);
+    A = rot90(A);
     if (A == B) return Yes();
   }
   No();
