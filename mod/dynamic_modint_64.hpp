@@ -21,6 +21,7 @@ struct Dynamic_Modint_64 {
   Dynamic_Modint_64() : val(0) {}
   Dynamic_Modint_64(u64 x) : val(bt.modulo(x)) {}
   Dynamic_Modint_64(u128 x) : val(bt.modulo(x)) {}
+  Dynamic_Modint_64(int x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}
   Dynamic_Modint_64(ll x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}
   Dynamic_Modint_64(i128 x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}
 
