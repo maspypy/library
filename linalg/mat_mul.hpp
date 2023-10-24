@@ -18,7 +18,7 @@ vc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int N1 = -1,
   } else {
     FOR(i, N1) FOR(j, N3) {
       u128 sm = 0;
-      FOR(m, M) sm += u64(A[i][m].val) * b[j][m];
+      FOR(m, N2) sm += u64(A[i][m].val) * b[j][m];
       C[i][j] = T::raw(sm % (T::get_mod()));
     }
   }
