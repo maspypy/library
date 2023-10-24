@@ -1,9 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: linalg/det_mod.hpp
-    title: linalg/det_mod.hpp
+  - icon: ':x:'
+    path: linalg/det.hpp
+    title: linalg/det.hpp
   - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/matrix_det_arbitrary_mod
@@ -226,32 +226,34 @@ data:
     \ * ml;\n    z = (x & u64(-1)) * mh + (x >> 64) * ml + (z >> 64);\n    z = (x\
     \ >> 64) * mh + (z >> 64);\n    x -= z * mod;\n    return x < mod ? x : x - mod;\n\
     \  }\n\n  u64 mul(u64 a, u64 b) { return modulo(u128(a) * b); }\n};\n#line 2 \"\
-    linalg/det_mod.hpp\"\n\nint det_mod(vvc<int> A, int m) {\n  Barrett bt(m);\n \
-    \ const int n = len(A);\n  ll det = 1;\n  FOR(i, n) {\n    FOR(j, i, n) {\n  \
-    \    if (A[j][i] == 0) continue;\n      if (i != j) { swap(A[i], A[j]), det =\
-    \ m - det; }\n      break;\n    }\n    FOR(j, i + 1, n) {\n      while (A[i][i]\
-    \ != 0) {\n        ll c = m - A[j][i] / A[i][i];\n        FOR_R(k, i, n) { A[j][k]\
-    \ = bt.modulo(A[j][k] + A[i][k] * c); }\n        swap(A[i], A[j]), det = m - det;\n\
-    \      }\n      swap(A[i], A[j]), det = m - det;\n    }\n  }\n  FOR(i, n) det\
-    \ = bt.mul(det, A[i][i]);\n  return det;\n}\n#line 6 \"test/library_checker/matrix/det_mod.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, mod);\n  VV(int, A, N, N);\n  int ANS = det_mod(A,\
-    \ mod);\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  solve();\n\n  return 0;\n}\n"
+    linalg/det.hpp\"\n\r\nint det_mod(vvc<int> A, int mod) {\r\n  Barrett bt(mod);\r\
+    \n  const int n = len(A);\r\n  ll det = 1;\r\n  FOR(i, n) {\r\n    FOR(j, i, n)\
+    \ {\r\n      if (A[j][i] == 0) continue;\r\n      if (i != j) { swap(A[i], A[j]),\
+    \ det = mod - det; }\r\n      break;\r\n    }\r\n    FOR(j, i + 1, n) {\r\n  \
+    \    while (A[i][i] != 0) {\r\n        ll c = m - A[j][i] / A[i][i];\r\n     \
+    \   FOR_R(k, i, n) { A[j][k] = bt.modulo(A[j][k] + A[i][k] * c); }\r\n       \
+    \ swap(A[i], A[j]), det = mod - det;\r\n      }\r\n      swap(A[i], A[j]), det\
+    \ = mod - det;\r\n    }\r\n  }\r\n  FOR(i, n) det = bt.mul(det, A[i][i]);\r\n\
+    \  return det % mod;\r\n}\r\n\r\ntemplate <typename mint>\r\nmint det(vvc<mint>&\
+    \ A) {\r\n  const int n = len(A);\r\n  vv(int, B, n, n);\r\n  FOR(i, n) FOR(j,\
+    \ n) B[i][j] = A[i][j].val;\r\n  return det_mod(B, mint::get_mod());\r\n}\r\n\
+    #line 6 \"test/library_checker/matrix/det_mod.test.cpp\"\n\nvoid solve() {\n \
+    \ LL(N, mod);\n  VV(int, A, N, N);\n  int ANS = det_mod(A, mod);\n  print(ANS);\n\
+    }\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_det_arbitrary_mod\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"linalg/det_mod.hpp\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"linalg/det.hpp\"\
     \n\nvoid solve() {\n  LL(N, mod);\n  VV(int, A, N, N);\n  int ANS = det_mod(A,\
-    \ mod);\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  solve();\n\n  return 0;\n}\n"
+    \ mod);\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - linalg/det_mod.hpp
+  - linalg/det.hpp
   - mod/barrett.hpp
   isVerificationFile: true
   path: test/library_checker/matrix/det_mod.test.cpp
   requiredBy: []
-  timestamp: '2023-10-17 07:10:25+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-10-24 14:35:15+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/matrix/det_mod.test.cpp
 layout: document

@@ -9,9 +9,6 @@ data:
     path: linalg/det.hpp
     title: linalg/det.hpp
   - icon: ':heavy_check_mark:'
-    path: linalg/det_mod.hpp
-    title: linalg/det_mod.hpp
-  - icon: ':heavy_check_mark:'
     path: mod/binomial.hpp
     title: mod/binomial.hpp
   - icon: ':question:'
@@ -84,7 +81,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/matrix/det_mod.test.cpp
     title: test/library_checker/matrix/det_mod.test.cpp
   - icon: ':x:'
@@ -223,7 +220,6 @@ data:
   - nt/gaussian_integers.hpp
   - nt/four_square.hpp
   - linalg/det.hpp
-  - linalg/det_mod.hpp
   - mod/mod_pow.hpp
   - mod/dynamic_modint.hpp
   - mod/primitive_root.hpp

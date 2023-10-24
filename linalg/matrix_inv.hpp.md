@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/matrix/inverse_matrix.test.cpp
+    title: test/library_checker/matrix/inverse_matrix.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/matrix_inv.hpp\"\n// (det, invA) \u3092\u304B\u3048\
@@ -33,8 +36,9 @@ data:
   path: linalg/matrix_inv.hpp
   requiredBy: []
   timestamp: '2023-10-24 14:07:00+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/library_checker/matrix/inverse_matrix.test.cpp
 documentation_of: linalg/matrix_inv.hpp
 layout: document
 redirect_from:

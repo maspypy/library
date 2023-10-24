@@ -7,6 +7,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: test/library_checker/matrix/det_mod.test.cpp
+    title: test/library_checker/matrix/det_mod.test.cpp
+  - icon: ':x:'
     path: test/library_checker/matrix/matrix_det.test.cpp
     title: test/library_checker/matrix/matrix_det.test.cpp
   _isVerificationFailed: true
@@ -62,6 +65,7 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/matrix/matrix_det.test.cpp
+  - test/library_checker/matrix/det_mod.test.cpp
 documentation_of: linalg/det.hpp
 layout: document
 redirect_from:

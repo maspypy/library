@@ -378,6 +378,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/implicit_matrix.test.cpp
     title: test/library_checker/matrix/implicit_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/matrix/inverse_matrix.test.cpp
+    title: test/library_checker/matrix/inverse_matrix.test.cpp
   - icon: ':x:'
     path: test/library_checker/matrix/matrix_det.test.cpp
     title: test/library_checker/matrix/matrix_det.test.cpp
@@ -1319,6 +1322,7 @@ data:
   - test/library_checker/matrix/hafnian_of_matrix.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp
   - test/library_checker/matrix/implicit_matrix.test.cpp
+  - test/library_checker/matrix/inverse_matrix.test.cpp
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
   - test/library_checker/matrix/solve_linear.test.cpp
   - test/library_checker/math/find_linear_recurrence.test.cpp

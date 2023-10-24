@@ -600,7 +600,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/charactereistic_poly.test.cpp
     title: test/library_checker/matrix/charactereistic_poly.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/matrix/det_mod.test.cpp
     title: test/library_checker/matrix/det_mod.test.cpp
   - icon: ':heavy_check_mark:'
@@ -609,6 +609,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/implicit_matrix.test.cpp
     title: test/library_checker/matrix/implicit_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/matrix/inverse_matrix.test.cpp
+    title: test/library_checker/matrix/inverse_matrix.test.cpp
   - icon: ':x:'
     path: test/library_checker/matrix/matrix_det.test.cpp
     title: test/library_checker/matrix/matrix_det.test.cpp
@@ -2812,6 +2815,7 @@ data:
   - test/library_checker/matrix/det_mod.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp
   - test/library_checker/matrix/implicit_matrix.test.cpp
+  - test/library_checker/matrix/inverse_matrix.test.cpp
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
   - test/library_checker/matrix/solve_linear.test.cpp
   - test/library_checker/math/counting_primes.test.cpp
