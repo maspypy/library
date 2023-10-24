@@ -4,16 +4,16 @@ data:
   - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -25,43 +25,43 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':question:'
@@ -69,9 +69,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sqrt_of_formal_power_series
@@ -682,34 +682,34 @@ data:
     \ v = bt.modulo(1);\r\n  while (n) {\r\n    if (n & 1) v = bt.mul(v, p);\r\n \
     \   p = bt.mul(p, p);\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n\r\nll mod_pow_64(ll\
     \ a, ll n, ll mod) {\r\n  assert(n >= 0);\r\n  a = ((a %= mod) < 0 ? a + mod :\
-    \ a);\r\n  Barrett bt(mod);\r\n  ll p = a, v = bt.modulo(1);\r\n  while (n) {\r\
-    \n    if (n & 1) v = bt.mul(v, p);\r\n    p = bt.mul(p, p);\r\n    n >>= 1;\r\n\
-    \  }\r\n  return v;\r\n}\r\n#line 3 \"mod/mod_sqrt.hpp\"\n\r\n// p \u306F\u7D20\
-    \u6570. \u89E3\u306A\u3057\u306F -1.\r\nint mod_sqrt(int a, int p) {\r\n  if (p\
-    \ == 2) return a;\r\n  if (a == 0) return 0;\r\n  int k = (p - 1) / 2;\r\n  if\
-    \ (mod_pow(a, k, p) != 1) return -1;\r\n  auto find = [&]() -> pi {\r\n    while\
-    \ (1) {\r\n      ll b = RNG(2, p);\r\n      ll D = (b * b - a) % p;\r\n      if\
-    \ (D == 0) return {b, D};\r\n      if (mod_pow(D, k, p) != 1) return {b, D};\r\
-    \n    }\r\n  };\r\n  auto [b, D] = find();\r\n  if (D == 0) return b;\r\n  ++k;\r\
-    \n  // (b + sqrt(D))^k\r\n  ll f0 = b, f1 = 1, g0 = 1, g1 = 0;\r\n  while (k)\
-    \ {\r\n    if (k & 1) {\r\n      tie(g0, g1) = mp(f0 * g0 + D * f1 % p * g1, f1\
-    \ * g0 + f0 * g1);\r\n      g0 %= p, g1 %= p;\r\n    }\r\n    tie(f0, f1) = mp(f0\
-    \ * f0 + D * f1 % p * f1, 2 * f0 * f1);\r\n    f0 %= p, f1 %= p;\r\n    k >>=\
-    \ 1;\r\n  }\r\n  if (g0 < 0) g0 += p;\r\n  return g0;\r\n}\r\n\r\n// p \u306F\u7D20\
-    \u6570. \u89E3\u306A\u3057\u306F -1.\r\nll mod_sqrt_64(ll a, ll p) {\r\n  if (p\
-    \ == 2) return a;\r\n  if (a == 0) return 0;\r\n  ll k = (p - 1) / 2;\r\n  if\
-    \ (mod_pow_64(a, k, p) != 1) return -1;\r\n  auto find = [&]() -> pair<i128, i128>\
-    \ {\r\n    while (1) {\r\n      i128 b = RNG(2, p);\r\n      i128 D = b * b -\
-    \ a;\r\n      if (D == 0) return {b, D};\r\n      if (mod_pow_64(D, k, p) != 1)\
-    \ return {b, D};\r\n    }\r\n  };\r\n  auto [b, D] = find();\r\n  if (D == 0)\
-    \ return b;\r\n  ++k;\r\n  // (b + sqrt(D))^k\r\n  i128 f0 = b, f1 = 1, g0 = 1,\
-    \ g1 = 0;\r\n  while (k) {\r\n    if (k & 1) {\r\n      tie(g0, g1) = mp(f0 *\
-    \ g0 + D * f1 % p * g1, f1 * g0 + f0 * g1);\r\n      g0 %= p, g1 %= p;\r\n   \
-    \ }\r\n    tie(f0, f1) = mp(f0 * f0 + D * f1 % p * f1, 2 * f0 * f1);\r\n    f0\
-    \ %= p, f1 %= p;\r\n    k >>= 1;\r\n  }\r\n  return g0;\r\n}\r\n#line 5 \"poly/fps_sqrt.hpp\"\
-    \n\r\ntemplate <typename mint>\r\nvc<mint> fps_sqrt_dense(vc<mint>& f) {\r\n \
-    \ assert(f[0] == mint(1));\r\n  int n = len(f);\r\n  vc<mint> R = {1};\r\n  while\
-    \ (len(R) < n) {\r\n    int m = min(2 * int(len(R)), n);\r\n    R.resize(m);\r\
+    \ a);\r\n  Barrett_64 bt(mod);\r\n  ll p = a, v = bt.modulo(1);\r\n  while (n)\
+    \ {\r\n    if (n & 1) v = bt.mul(v, p);\r\n    p = bt.mul(p, p);\r\n    n >>=\
+    \ 1;\r\n  }\r\n  return v;\r\n}\r\n#line 3 \"mod/mod_sqrt.hpp\"\n\r\n// p \u306F\
+    \u7D20\u6570. \u89E3\u306A\u3057\u306F -1.\r\nint mod_sqrt(int a, int p) {\r\n\
+    \  if (p == 2) return a;\r\n  if (a == 0) return 0;\r\n  int k = (p - 1) / 2;\r\
+    \n  if (mod_pow(a, k, p) != 1) return -1;\r\n  auto find = [&]() -> pi {\r\n \
+    \   while (1) {\r\n      ll b = RNG(2, p);\r\n      ll D = (b * b - a) % p;\r\n\
+    \      if (D == 0) return {b, D};\r\n      if (mod_pow(D, k, p) != 1) return {b,\
+    \ D};\r\n    }\r\n  };\r\n  auto [b, D] = find();\r\n  if (D == 0) return b;\r\
+    \n  ++k;\r\n  // (b + sqrt(D))^k\r\n  ll f0 = b, f1 = 1, g0 = 1, g1 = 0;\r\n \
+    \ while (k) {\r\n    if (k & 1) {\r\n      tie(g0, g1) = mp(f0 * g0 + D * f1 %\
+    \ p * g1, f1 * g0 + f0 * g1);\r\n      g0 %= p, g1 %= p;\r\n    }\r\n    tie(f0,\
+    \ f1) = mp(f0 * f0 + D * f1 % p * f1, 2 * f0 * f1);\r\n    f0 %= p, f1 %= p;\r\
+    \n    k >>= 1;\r\n  }\r\n  if (g0 < 0) g0 += p;\r\n  return g0;\r\n}\r\n\r\n//\
+    \ p \u306F\u7D20\u6570. \u89E3\u306A\u3057\u306F -1.\r\nll mod_sqrt_64(ll a, ll\
+    \ p) {\r\n  if (p == 2) return a;\r\n  if (a == 0) return 0;\r\n  ll k = (p -\
+    \ 1) / 2;\r\n  if (mod_pow_64(a, k, p) != 1) return -1;\r\n  auto find = [&]()\
+    \ -> pair<i128, i128> {\r\n    while (1) {\r\n      i128 b = RNG(2, p);\r\n  \
+    \    i128 D = b * b - a;\r\n      if (D == 0) return {b, D};\r\n      if (mod_pow_64(D,\
+    \ k, p) != 1) return {b, D};\r\n    }\r\n  };\r\n  auto [b, D] = find();\r\n \
+    \ if (D == 0) return b;\r\n  ++k;\r\n  // (b + sqrt(D))^k\r\n  i128 f0 = b, f1\
+    \ = 1, g0 = 1, g1 = 0;\r\n  while (k) {\r\n    if (k & 1) {\r\n      tie(g0, g1)\
+    \ = mp(f0 * g0 + D * f1 % p * g1, f1 * g0 + f0 * g1);\r\n      g0 %= p, g1 %=\
+    \ p;\r\n    }\r\n    tie(f0, f1) = mp(f0 * f0 + D * f1 % p * f1, 2 * f0 * f1);\r\
+    \n    f0 %= p, f1 %= p;\r\n    k >>= 1;\r\n  }\r\n  return g0;\r\n}\r\n#line 5\
+    \ \"poly/fps_sqrt.hpp\"\n\r\ntemplate <typename mint>\r\nvc<mint> fps_sqrt_dense(vc<mint>&\
+    \ f) {\r\n  assert(f[0] == mint(1));\r\n  int n = len(f);\r\n  vc<mint> R = {1};\r\
+    \n  while (len(R) < n) {\r\n    int m = min(2 * int(len(R)), n);\r\n    R.resize(m);\r\
     \n    vc<mint> tmp = {f.begin(), f.begin() + m};\r\n    tmp = convolution(tmp,\
     \ fps_inv(R));\r\n    tmp.resize(m);\r\n    FOR(i, m) R[i] += tmp[i];\r\n    mint\
     \ c = mint(1) / mint(2);\r\n    FOR(i, len(R)) R[i] *= c;\r\n  }\r\n  R.resize(n);\r\
@@ -763,8 +763,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
   requiredBy: []
-  timestamp: '2023-10-24 20:44:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-10-25 02:01:34+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/polynomial/sqrt_of_fps.test.cpp
 layout: document

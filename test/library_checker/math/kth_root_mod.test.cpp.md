@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':question:'
@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: mod/dynamic_modint_64.hpp
     title: mod/dynamic_modint_64.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':heavy_check_mark:'
@@ -362,31 +362,32 @@ data:
     \ bt(mod);\r\n  int p = a, v = bt.modulo(1);\r\n  while (n) {\r\n    if (n & 1)\
     \ v = bt.mul(v, p);\r\n    p = bt.mul(p, p);\r\n    n >>= 1;\r\n  }\r\n  return\
     \ v;\r\n}\r\n\r\nll mod_pow_64(ll a, ll n, ll mod) {\r\n  assert(n >= 0);\r\n\
-    \  a = ((a %= mod) < 0 ? a + mod : a);\r\n  Barrett bt(mod);\r\n  ll p = a, v\
-    \ = bt.modulo(1);\r\n  while (n) {\r\n    if (n & 1) v = bt.mul(v, p);\r\n   \
-    \ p = bt.mul(p, p);\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n#line 6 \"mod/primitive_root.hpp\"\
-    \n\r\n// int\r\nint primitive_root(int p) {\r\n  auto pf = factor(p - 1);\r\n\
-    \  auto is_ok = [&](int g) -> bool {\r\n    for (auto&& [q, e]: pf)\r\n      if\
-    \ (mod_pow(g, (p - 1) / q, p) == 1) return false;\r\n    return true;\r\n  };\r\
-    \n  while (1) {\r\n    int x = RNG(1, p);\r\n    if (is_ok(x)) return x;\r\n \
-    \ }\r\n  return -1;\r\n}\r\n\r\nll primitive_root_64(ll p) {\r\n  auto pf = factor(p\
-    \ - 1);\r\n  auto is_ok = [&](ll g) -> bool {\r\n    for (auto&& [q, e]: pf)\r\
-    \n      if (mod_pow_64(g, (p - 1) / q, p) == 1) return false;\r\n    return true;\r\
-    \n  };\r\n  while (1) {\r\n    ll x = RNG(1, p);\r\n    if (is_ok(x)) return x;\r\
-    \n  }\r\n  return -1;\r\n}\r\n#line 2 \"mod/mod_inv.hpp\"\n\r\n// long \u3067\u3082\
-    \u5927\u4E08\u592B\r\n// (val * x - 1) \u304C mod \u306E\u500D\u6570\u306B\u306A\
-    \u308B\u3088\u3046\u306B\u3059\u308B\r\n// \u7279\u306B mod=0 \u306A\u3089 x=0\
-    \ \u304C\u6E80\u305F\u3059\r\nll mod_inv(ll val, ll mod) {\r\n  if (mod == 0)\
-    \ return 0;\r\n  mod = abs(mod);\r\n  val %= mod;\r\n  if (val < 0) val += mod;\r\
-    \n  ll a = val, b = mod, u = 1, v = 0, t;\r\n  while (b > 0) {\r\n    t = a /\
-    \ b;\r\n    swap(a -= t * b, b), swap(u -= t * v, v);\r\n  }\r\n  if (u < 0) u\
-    \ += mod;\r\n  return u;\r\n}\r\n#line 3 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\
-    \ntemplate <typename Val, int LOG = 20>\r\nstruct HashMap {\r\n  int N;\r\n  u64*\
-    \ keys;\r\n  Val* vals;\r\n  vc<int> IDS;\r\n  bitset<1 << LOG> used;\r\n  const\
-    \ int shift;\r\n  const u64 r = 11995408973635179863ULL;\r\n  HashMap()\r\n  \
-    \    : N(1 << LOG), keys(new u64[N]), vals(new Val[N]), shift(64 - __lg(N)) {}\r\
-    \n  int hash(ll x) {\r\n    static const u64 FIXED_RANDOM\r\n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\
-    \n    return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
+    \  a = ((a %= mod) < 0 ? a + mod : a);\r\n  Barrett_64 bt(mod);\r\n  ll p = a,\
+    \ v = bt.modulo(1);\r\n  while (n) {\r\n    if (n & 1) v = bt.mul(v, p);\r\n \
+    \   p = bt.mul(p, p);\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n#line 6 \"\
+    mod/primitive_root.hpp\"\n\r\n// int\r\nint primitive_root(int p) {\r\n  auto\
+    \ pf = factor(p - 1);\r\n  auto is_ok = [&](int g) -> bool {\r\n    for (auto&&\
+    \ [q, e]: pf)\r\n      if (mod_pow(g, (p - 1) / q, p) == 1) return false;\r\n\
+    \    return true;\r\n  };\r\n  while (1) {\r\n    int x = RNG(1, p);\r\n    if\
+    \ (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n\r\nll primitive_root_64(ll\
+    \ p) {\r\n  auto pf = factor(p - 1);\r\n  auto is_ok = [&](ll g) -> bool {\r\n\
+    \    for (auto&& [q, e]: pf)\r\n      if (mod_pow_64(g, (p - 1) / q, p) == 1)\
+    \ return false;\r\n    return true;\r\n  };\r\n  while (1) {\r\n    ll x = RNG(1,\
+    \ p);\r\n    if (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n#line 2 \"\
+    mod/mod_inv.hpp\"\n\r\n// long \u3067\u3082\u5927\u4E08\u592B\r\n// (val * x -\
+    \ 1) \u304C mod \u306E\u500D\u6570\u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\
+    \r\n// \u7279\u306B mod=0 \u306A\u3089 x=0 \u304C\u6E80\u305F\u3059\r\nll mod_inv(ll\
+    \ val, ll mod) {\r\n  if (mod == 0) return 0;\r\n  mod = abs(mod);\r\n  val %=\
+    \ mod;\r\n  if (val < 0) val += mod;\r\n  ll a = val, b = mod, u = 1, v = 0, t;\r\
+    \n  while (b > 0) {\r\n    t = a / b;\r\n    swap(a -= t * b, b), swap(u -= t\
+    \ * v, v);\r\n  }\r\n  if (u < 0) u += mod;\r\n  return u;\r\n}\r\n#line 3 \"\
+    ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename Val, int LOG = 20>\r\
+    \nstruct HashMap {\r\n  int N;\r\n  u64* keys;\r\n  Val* vals;\r\n  vc<int> IDS;\r\
+    \n  bitset<1 << LOG> used;\r\n  const int shift;\r\n  const u64 r = 11995408973635179863ULL;\r\
+    \n  HashMap()\r\n      : N(1 << LOG), keys(new u64[N]), vals(new Val[N]), shift(64\
+    \ - __lg(N)) {}\r\n  int hash(ll x) {\r\n    static const u64 FIXED_RANDOM\r\n\
+    \        = std::chrono::steady_clock::now().time_since_epoch().count();\r\n  \
+    \  return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
     \ u64& key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && keys[i]\
     \ != key; (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  // [] \u3057\
     \u305F\u6642\u70B9\u3067\u8981\u7D20\u306F\u4F5C\u3089\u308C\u308B\r\n  Val& operator[](const\
@@ -496,7 +497,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/kth_root_mod.test.cpp
   requiredBy: []
-  timestamp: '2023-10-24 22:55:22+09:00'
+  timestamp: '2023-10-25 02:01:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/kth_root_mod.test.cpp

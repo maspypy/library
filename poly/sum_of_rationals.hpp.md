@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -81,15 +81,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc276_g_2.test.cpp
     title: test_atcoder/abc276_g_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc281g.test.cpp
     title: test_atcoder/abc281g.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc154f.test.cpp
     title: test_atcoder/arc154f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/sum_of_rationals.hpp\"\n\n#line 2 \"mod/modint_common.hpp\"\
@@ -399,27 +399,27 @@ data:
   requiredBy:
   - seq/sum_of_powers.hpp
   - linalg/implicit_matrix/vandermonde.hpp
-  - poly/product_of_pow_of_linear.hpp
   - poly/sum_of_exp_bx.hpp
-  - poly/composition_f_1_minus_ex.hpp
   - poly/composition_f_ex.hpp
   - poly/composition_f_ex_minus_1.hpp
+  - poly/composition_f_1_minus_ex.hpp
+  - poly/product_of_pow_of_linear.hpp
   timestamp: '2023-10-18 00:17:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc276_g_2.test.cpp
-  - test_atcoder/abc281g.test.cpp
   - test_atcoder/arc154f.test.cpp
+  - test_atcoder/abc281g.test.cpp
   - test_atcoder/abc276_g.test.cpp
   - test_atcoder/abc260h.test.cpp
-  - test/yukicoder/1962.test.cpp
   - test/yukicoder/2459.test.cpp
   - test/yukicoder/1875.test.cpp
+  - test/yukicoder/1962.test.cpp
   - test/yukicoder/1145.test.cpp
   - test/mytest/composition_1_minus_ex.test.cpp
+  - test/mytest/partial_frac.test.cpp
   - test/mytest/composition_ex_minus_1.test.cpp
   - test/mytest/vandermonde.test.cpp
-  - test/mytest/partial_frac.test.cpp
 documentation_of: poly/sum_of_rationals.hpp
 layout: document
 redirect_from:

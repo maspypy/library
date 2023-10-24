@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: mod/dynamic_modint_64.hpp
     title: mod/dynamic_modint_64.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -274,8 +274,8 @@ data:
   verifiedWith:
   - test/yukicoder/187.test.cpp
   - test/yukicoder/590.test.cpp
-  - test/yukicoder/2119.test.cpp
   - test/yukicoder/1956.test.cpp
+  - test/yukicoder/2119.test.cpp
 documentation_of: nt/crt.hpp
 layout: document
 redirect_from:

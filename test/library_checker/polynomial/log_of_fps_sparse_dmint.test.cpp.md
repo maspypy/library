@@ -4,19 +4,19 @@ data:
   - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
   - icon: ':question:'
     path: mod/dynamic_modint_64.hpp
     title: mod/dynamic_modint_64.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -37,28 +37,28 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':question:'
@@ -66,9 +66,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/log_of_formal_power_series_sparse
@@ -656,54 +656,55 @@ data:
     \ bt(mod);\r\n  int p = a, v = bt.modulo(1);\r\n  while (n) {\r\n    if (n & 1)\
     \ v = bt.mul(v, p);\r\n    p = bt.mul(p, p);\r\n    n >>= 1;\r\n  }\r\n  return\
     \ v;\r\n}\r\n\r\nll mod_pow_64(ll a, ll n, ll mod) {\r\n  assert(n >= 0);\r\n\
-    \  a = ((a %= mod) < 0 ? a + mod : a);\r\n  Barrett bt(mod);\r\n  ll p = a, v\
-    \ = bt.modulo(1);\r\n  while (n) {\r\n    if (n & 1) v = bt.mul(v, p);\r\n   \
-    \ p = bt.mul(p, p);\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n#line 6 \"mod/primitive_root.hpp\"\
-    \n\r\n// int\r\nint primitive_root(int p) {\r\n  auto pf = factor(p - 1);\r\n\
-    \  auto is_ok = [&](int g) -> bool {\r\n    for (auto&& [q, e]: pf)\r\n      if\
-    \ (mod_pow(g, (p - 1) / q, p) == 1) return false;\r\n    return true;\r\n  };\r\
-    \n  while (1) {\r\n    int x = RNG(1, p);\r\n    if (is_ok(x)) return x;\r\n \
-    \ }\r\n  return -1;\r\n}\r\n\r\nll primitive_root_64(ll p) {\r\n  auto pf = factor(p\
-    \ - 1);\r\n  auto is_ok = [&](ll g) -> bool {\r\n    for (auto&& [q, e]: pf)\r\
-    \n      if (mod_pow_64(g, (p - 1) / q, p) == 1) return false;\r\n    return true;\r\
-    \n  };\r\n  while (1) {\r\n    ll x = RNG(1, p);\r\n    if (is_ok(x)) return x;\r\
-    \n  }\r\n  return -1;\r\n}\r\n#line 5 \"mod/dynamic_modint.hpp\"\n\ntemplate <int\
-    \ id>\nstruct Dynamic_Modint {\n  static constexpr bool is_modint = true;\n  using\
-    \ mint = Dynamic_Modint;\n  u32 val;\n  static Barrett bt;\n  static u32 umod()\
-    \ { return bt.umod(); }\n\n  static int get_mod() { return (int)(bt.umod()); }\n\
-    \  static void set_mod(int m) {\n    assert(1 <= m);\n    bt = Barrett(m);\n \
-    \ }\n\n  static Dynamic_Modint raw(u32 v) {\n    Dynamic_Modint x;\n    x.val\
-    \ = v;\n    return x;\n  }\n  Dynamic_Modint() : val(0) {}\n  Dynamic_Modint(u32\
-    \ x) : val(bt.modulo(x)) {}\n  Dynamic_Modint(u64 x) : val(bt.modulo(x)) {}\n\
-    \  Dynamic_Modint(int x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n\
-    \  Dynamic_Modint(ll x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n\n\
-    \  mint& operator+=(const mint& rhs) {\n    val = (val += rhs.val) < umod() ?\
-    \ val : val - umod();\n    return *this;\n  }\n  mint& operator-=(const mint&\
-    \ rhs) {\n    val = (val += umod() - rhs.val) < umod() ? val : val - umod();\n\
-    \    return *this;\n  }\n  mint& operator*=(const mint& rhs) {\n    val = bt.mul(val,\
-    \ rhs.val);\n    return *this;\n  }\n  mint& operator/=(const mint& rhs) { return\
-    \ *this = *this * rhs.inverse(); }\n  mint operator-() const { return mint() -\
-    \ *this; }\n  mint pow(ll n) const {\n    assert(0 <= n);\n    mint x = *this,\
-    \ r = 1;\n    while (n) {\n      if (n & 1) r *= x;\n      x *= x, n >>= 1;\n\
-    \    }\n    return r;\n  }\n  mint inverse() const {\n    int x = val, mod = get_mod();\n\
-    \    int a = x, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n      t = a /\
-    \ b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    if (u < 0) u\
-    \ += mod;\n    return u;\n  }\n\n  friend mint operator+(const mint& lhs, const\
-    \ mint& rhs) {\n    return mint(lhs) += rhs;\n  }\n  friend mint operator-(const\
-    \ mint& lhs, const mint& rhs) {\n    return mint(lhs) -= rhs;\n  }\n  friend mint\
-    \ operator*(const mint& lhs, const mint& rhs) {\n    return mint(lhs) *= rhs;\n\
-    \  }\n  friend mint operator/(const mint& lhs, const mint& rhs) {\n    return\
-    \ mint(lhs) /= rhs;\n  }\n  friend bool operator==(const mint& lhs, const mint&\
-    \ rhs) {\n    return lhs.val == rhs.val;\n  }\n  friend bool operator!=(const\
-    \ mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n  }\n#ifdef FASTIO\n\
-    \  void write() { fastio::printer.write(val); }\n  void read() {\n    fastio::scanner.read(val);\n\
-    \    val = bt.modulo(val);\n  }\n#endif\n  static pair<int, int>& get_ntt() {\n\
-    \    static pair<int, int> p = {-1, -1};\n    return p;\n  }\n  static void set_ntt_info()\
-    \ {\n    int mod = get_mod();\n    int k = lowbit(mod - 1);\n    int r = primitive_root(mod);\n\
-    \    r = mod_pow(r, (mod - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static\
-    \ pair<int, int> ntt_info() { return get_ntt(); }\n  static bool can_ntt() { return\
-    \ ntt_info().fi != -1; }\n};\n\nusing dmint = Dynamic_Modint<-1>;\ntemplate <int\
-    \ id>\nBarrett Dynamic_Modint<id>::bt;\n#line 8 \"test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp\"\
+    \  a = ((a %= mod) < 0 ? a + mod : a);\r\n  Barrett_64 bt(mod);\r\n  ll p = a,\
+    \ v = bt.modulo(1);\r\n  while (n) {\r\n    if (n & 1) v = bt.mul(v, p);\r\n \
+    \   p = bt.mul(p, p);\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n#line 6 \"\
+    mod/primitive_root.hpp\"\n\r\n// int\r\nint primitive_root(int p) {\r\n  auto\
+    \ pf = factor(p - 1);\r\n  auto is_ok = [&](int g) -> bool {\r\n    for (auto&&\
+    \ [q, e]: pf)\r\n      if (mod_pow(g, (p - 1) / q, p) == 1) return false;\r\n\
+    \    return true;\r\n  };\r\n  while (1) {\r\n    int x = RNG(1, p);\r\n    if\
+    \ (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n\r\nll primitive_root_64(ll\
+    \ p) {\r\n  auto pf = factor(p - 1);\r\n  auto is_ok = [&](ll g) -> bool {\r\n\
+    \    for (auto&& [q, e]: pf)\r\n      if (mod_pow_64(g, (p - 1) / q, p) == 1)\
+    \ return false;\r\n    return true;\r\n  };\r\n  while (1) {\r\n    ll x = RNG(1,\
+    \ p);\r\n    if (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n#line 5 \"\
+    mod/dynamic_modint.hpp\"\n\ntemplate <int id>\nstruct Dynamic_Modint {\n  static\
+    \ constexpr bool is_modint = true;\n  using mint = Dynamic_Modint;\n  u32 val;\n\
+    \  static Barrett bt;\n  static u32 umod() { return bt.umod(); }\n\n  static int\
+    \ get_mod() { return (int)(bt.umod()); }\n  static void set_mod(int m) {\n   \
+    \ assert(1 <= m);\n    bt = Barrett(m);\n  }\n\n  static Dynamic_Modint raw(u32\
+    \ v) {\n    Dynamic_Modint x;\n    x.val = v;\n    return x;\n  }\n  Dynamic_Modint()\
+    \ : val(0) {}\n  Dynamic_Modint(u32 x) : val(bt.modulo(x)) {}\n  Dynamic_Modint(u64\
+    \ x) : val(bt.modulo(x)) {}\n  Dynamic_Modint(int x) : val((x %= get_mod()) <\
+    \ 0 ? x + get_mod() : x) {}\n  Dynamic_Modint(ll x) : val((x %= get_mod()) < 0\
+    \ ? x + get_mod() : x) {}\n\n  mint& operator+=(const mint& rhs) {\n    val =\
+    \ (val += rhs.val) < umod() ? val : val - umod();\n    return *this;\n  }\n  mint&\
+    \ operator-=(const mint& rhs) {\n    val = (val += umod() - rhs.val) < umod()\
+    \ ? val : val - umod();\n    return *this;\n  }\n  mint& operator*=(const mint&\
+    \ rhs) {\n    val = bt.mul(val, rhs.val);\n    return *this;\n  }\n  mint& operator/=(const\
+    \ mint& rhs) { return *this = *this * rhs.inverse(); }\n  mint operator-() const\
+    \ { return mint() - *this; }\n  mint pow(ll n) const {\n    assert(0 <= n);\n\
+    \    mint x = *this, r = 1;\n    while (n) {\n      if (n & 1) r *= x;\n     \
+    \ x *= x, n >>= 1;\n    }\n    return r;\n  }\n  mint inverse() const {\n    int\
+    \ x = val, mod = get_mod();\n    int a = x, b = mod, u = 1, v = 0, t;\n    while\
+    \ (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n\
+    \    }\n    if (u < 0) u += mod;\n    return u;\n  }\n\n  friend mint operator+(const\
+    \ mint& lhs, const mint& rhs) {\n    return mint(lhs) += rhs;\n  }\n  friend mint\
+    \ operator-(const mint& lhs, const mint& rhs) {\n    return mint(lhs) -= rhs;\n\
+    \  }\n  friend mint operator*(const mint& lhs, const mint& rhs) {\n    return\
+    \ mint(lhs) *= rhs;\n  }\n  friend mint operator/(const mint& lhs, const mint&\
+    \ rhs) {\n    return mint(lhs) /= rhs;\n  }\n  friend bool operator==(const mint&\
+    \ lhs, const mint& rhs) {\n    return lhs.val == rhs.val;\n  }\n  friend bool\
+    \ operator!=(const mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n\
+    \  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val); }\n  void read()\
+    \ {\n    fastio::scanner.read(val);\n    val = bt.modulo(val);\n  }\n#endif\n\
+    \  static pair<int, int>& get_ntt() {\n    static pair<int, int> p = {-1, -1};\n\
+    \    return p;\n  }\n  static void set_ntt_info() {\n    int mod = get_mod();\n\
+    \    int k = lowbit(mod - 1);\n    int r = primitive_root(mod);\n    r = mod_pow(r,\
+    \ (mod - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static pair<int, int>\
+    \ ntt_info() { return get_ntt(); }\n  static bool can_ntt() { return ntt_info().fi\
+    \ != -1; }\n};\n\nusing dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett\
+    \ Dynamic_Modint<id>::bt;\n#line 8 \"test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp\"\
     \n\nvoid solve() {\n  using mint = dmint;\n  mint::set_mod(998244353);\n  LL(N,\
     \ K);\n  vc<mint> f(N);\n  FOR(K) {\n    LL(i, a);\n    f[i] = a;\n  }\n  print(fps_log(f));\n\
     }\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
@@ -738,8 +739,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
   requiredBy: []
-  timestamp: '2023-10-24 22:55:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-10-25 02:01:34+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
 layout: document

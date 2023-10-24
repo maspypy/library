@@ -33,9 +33,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/primitive_root
@@ -353,21 +353,22 @@ data:
     \ bt(mod);\r\n  int p = a, v = bt.modulo(1);\r\n  while (n) {\r\n    if (n & 1)\
     \ v = bt.mul(v, p);\r\n    p = bt.mul(p, p);\r\n    n >>= 1;\r\n  }\r\n  return\
     \ v;\r\n}\r\n\r\nll mod_pow_64(ll a, ll n, ll mod) {\r\n  assert(n >= 0);\r\n\
-    \  a = ((a %= mod) < 0 ? a + mod : a);\r\n  Barrett bt(mod);\r\n  ll p = a, v\
-    \ = bt.modulo(1);\r\n  while (n) {\r\n    if (n & 1) v = bt.mul(v, p);\r\n   \
-    \ p = bt.mul(p, p);\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n#line 6 \"mod/primitive_root.hpp\"\
-    \n\r\n// int\r\nint primitive_root(int p) {\r\n  auto pf = factor(p - 1);\r\n\
-    \  auto is_ok = [&](int g) -> bool {\r\n    for (auto&& [q, e]: pf)\r\n      if\
-    \ (mod_pow(g, (p - 1) / q, p) == 1) return false;\r\n    return true;\r\n  };\r\
-    \n  while (1) {\r\n    int x = RNG(1, p);\r\n    if (is_ok(x)) return x;\r\n \
-    \ }\r\n  return -1;\r\n}\r\n\r\nll primitive_root_64(ll p) {\r\n  auto pf = factor(p\
-    \ - 1);\r\n  auto is_ok = [&](ll g) -> bool {\r\n    for (auto&& [q, e]: pf)\r\
-    \n      if (mod_pow_64(g, (p - 1) / q, p) == 1) return false;\r\n    return true;\r\
-    \n  };\r\n  while (1) {\r\n    ll x = RNG(1, p);\r\n    if (is_ok(x)) return x;\r\
-    \n  }\r\n  return -1;\r\n}\r\n#line 5 \"test/library_checker/math/primitive_root.test.cpp\"\
-    \n\nvoid solve() {\n  LL(p);\n  ll ANS = primitive_root_64(p);\n  print(ANS);\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \  a = ((a %= mod) < 0 ? a + mod : a);\r\n  Barrett_64 bt(mod);\r\n  ll p = a,\
+    \ v = bt.modulo(1);\r\n  while (n) {\r\n    if (n & 1) v = bt.mul(v, p);\r\n \
+    \   p = bt.mul(p, p);\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n#line 6 \"\
+    mod/primitive_root.hpp\"\n\r\n// int\r\nint primitive_root(int p) {\r\n  auto\
+    \ pf = factor(p - 1);\r\n  auto is_ok = [&](int g) -> bool {\r\n    for (auto&&\
+    \ [q, e]: pf)\r\n      if (mod_pow(g, (p - 1) / q, p) == 1) return false;\r\n\
+    \    return true;\r\n  };\r\n  while (1) {\r\n    int x = RNG(1, p);\r\n    if\
+    \ (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n\r\nll primitive_root_64(ll\
+    \ p) {\r\n  auto pf = factor(p - 1);\r\n  auto is_ok = [&](ll g) -> bool {\r\n\
+    \    for (auto&& [q, e]: pf)\r\n      if (mod_pow_64(g, (p - 1) / q, p) == 1)\
+    \ return false;\r\n    return true;\r\n  };\r\n  while (1) {\r\n    ll x = RNG(1,\
+    \ p);\r\n    if (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n#line 5 \"\
+    test/library_checker/math/primitive_root.test.cpp\"\n\nvoid solve() {\n  LL(p);\n\
+    \  ll ANS = primitive_root_64(p);\n  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  LL(T);\n  FOR(T)\
+    \ solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/primitive_root\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/primitive_root.hpp\"\
     \n\nvoid solve() {\n  LL(p);\n  ll ANS = primitive_root_64(p);\n  print(ANS);\n\
@@ -387,8 +388,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/primitive_root.test.cpp
   requiredBy: []
-  timestamp: '2023-10-24 22:55:22+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-10-25 02:01:34+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/primitive_root.test.cpp
 layout: document

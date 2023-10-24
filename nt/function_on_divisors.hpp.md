@@ -226,8 +226,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc212g.test.cpp
-  - test/yukicoder/1728.test.cpp
   - test/yukicoder/2264.test.cpp
+  - test/yukicoder/1728.test.cpp
 documentation_of: nt/function_on_divisors.hpp
 layout: document
 redirect_from:

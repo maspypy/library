@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_set/from_monoid.hpp
     title: alg/acted_set/from_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
   - icon: ':question:'
@@ -28,7 +28,7 @@ data:
   - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
   - icon: ':question:'
@@ -178,69 +178,69 @@ data:
     \ bt(mod);\r\n  int p = a, v = bt.modulo(1);\r\n  while (n) {\r\n    if (n & 1)\
     \ v = bt.mul(v, p);\r\n    p = bt.mul(p, p);\r\n    n >>= 1;\r\n  }\r\n  return\
     \ v;\r\n}\r\n\r\nll mod_pow_64(ll a, ll n, ll mod) {\r\n  assert(n >= 0);\r\n\
-    \  a = ((a %= mod) < 0 ? a + mod : a);\r\n  Barrett bt(mod);\r\n  ll p = a, v\
-    \ = bt.modulo(1);\r\n  while (n) {\r\n    if (n & 1) v = bt.mul(v, p);\r\n   \
-    \ p = bt.mul(p, p);\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n#line 6 \"mod/primitive_root.hpp\"\
-    \n\r\n// int\r\nint primitive_root(int p) {\r\n  auto pf = factor(p - 1);\r\n\
-    \  auto is_ok = [&](int g) -> bool {\r\n    for (auto&& [q, e]: pf)\r\n      if\
-    \ (mod_pow(g, (p - 1) / q, p) == 1) return false;\r\n    return true;\r\n  };\r\
-    \n  while (1) {\r\n    int x = RNG(1, p);\r\n    if (is_ok(x)) return x;\r\n \
-    \ }\r\n  return -1;\r\n}\r\n\r\nll primitive_root_64(ll p) {\r\n  auto pf = factor(p\
-    \ - 1);\r\n  auto is_ok = [&](ll g) -> bool {\r\n    for (auto&& [q, e]: pf)\r\
-    \n      if (mod_pow_64(g, (p - 1) / q, p) == 1) return false;\r\n    return true;\r\
-    \n  };\r\n  while (1) {\r\n    ll x = RNG(1, p);\r\n    if (is_ok(x)) return x;\r\
-    \n  }\r\n  return -1;\r\n}\r\n#line 5 \"mod/dynamic_modint.hpp\"\n\ntemplate <int\
-    \ id>\nstruct Dynamic_Modint {\n  static constexpr bool is_modint = true;\n  using\
-    \ mint = Dynamic_Modint;\n  u32 val;\n  static Barrett bt;\n  static u32 umod()\
-    \ { return bt.umod(); }\n\n  static int get_mod() { return (int)(bt.umod()); }\n\
-    \  static void set_mod(int m) {\n    assert(1 <= m);\n    bt = Barrett(m);\n \
-    \ }\n\n  static Dynamic_Modint raw(u32 v) {\n    Dynamic_Modint x;\n    x.val\
-    \ = v;\n    return x;\n  }\n  Dynamic_Modint() : val(0) {}\n  Dynamic_Modint(u32\
-    \ x) : val(bt.modulo(x)) {}\n  Dynamic_Modint(u64 x) : val(bt.modulo(x)) {}\n\
-    \  Dynamic_Modint(int x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n\
-    \  Dynamic_Modint(ll x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n\n\
-    \  mint& operator+=(const mint& rhs) {\n    val = (val += rhs.val) < umod() ?\
-    \ val : val - umod();\n    return *this;\n  }\n  mint& operator-=(const mint&\
-    \ rhs) {\n    val = (val += umod() - rhs.val) < umod() ? val : val - umod();\n\
-    \    return *this;\n  }\n  mint& operator*=(const mint& rhs) {\n    val = bt.mul(val,\
-    \ rhs.val);\n    return *this;\n  }\n  mint& operator/=(const mint& rhs) { return\
-    \ *this = *this * rhs.inverse(); }\n  mint operator-() const { return mint() -\
-    \ *this; }\n  mint pow(ll n) const {\n    assert(0 <= n);\n    mint x = *this,\
-    \ r = 1;\n    while (n) {\n      if (n & 1) r *= x;\n      x *= x, n >>= 1;\n\
-    \    }\n    return r;\n  }\n  mint inverse() const {\n    int x = val, mod = get_mod();\n\
-    \    int a = x, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n      t = a /\
-    \ b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    if (u < 0) u\
-    \ += mod;\n    return u;\n  }\n\n  friend mint operator+(const mint& lhs, const\
-    \ mint& rhs) {\n    return mint(lhs) += rhs;\n  }\n  friend mint operator-(const\
-    \ mint& lhs, const mint& rhs) {\n    return mint(lhs) -= rhs;\n  }\n  friend mint\
-    \ operator*(const mint& lhs, const mint& rhs) {\n    return mint(lhs) *= rhs;\n\
-    \  }\n  friend mint operator/(const mint& lhs, const mint& rhs) {\n    return\
-    \ mint(lhs) /= rhs;\n  }\n  friend bool operator==(const mint& lhs, const mint&\
-    \ rhs) {\n    return lhs.val == rhs.val;\n  }\n  friend bool operator!=(const\
-    \ mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n  }\n#ifdef FASTIO\n\
-    \  void write() { fastio::printer.write(val); }\n  void read() {\n    fastio::scanner.read(val);\n\
-    \    val = bt.modulo(val);\n  }\n#endif\n  static pair<int, int>& get_ntt() {\n\
-    \    static pair<int, int> p = {-1, -1};\n    return p;\n  }\n  static void set_ntt_info()\
-    \ {\n    int mod = get_mod();\n    int k = lowbit(mod - 1);\n    int r = primitive_root(mod);\n\
-    \    r = mod_pow(r, (mod - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static\
-    \ pair<int, int> ntt_info() { return get_ntt(); }\n  static bool can_ntt() { return\
-    \ ntt_info().fi != -1; }\n};\n\nusing dmint = Dynamic_Modint<-1>;\ntemplate <int\
-    \ id>\nBarrett Dynamic_Modint<id>::bt;\n#line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate\
-    \ <class T>\r\nstruct Monoid_Mul {\r\n  using value_type = T;\r\n  using X = T;\r\
-    \n  static constexpr X op(const X &x, const X &y) noexcept { return x * y; }\r\
-    \n  static constexpr X inverse(const X &x) noexcept { return X(1) / x; }\r\n \
-    \ static constexpr X unit() { return X(1); }\r\n  static constexpr bool commute\
-    \ = true;\r\n};\r\n#line 1 \"alg/acted_set/from_monoid.hpp\"\ntemplate <typename\
-    \ Monoid>\nstruct ActedSet_From_Monoid {\n  using Monoid_A = Monoid;\n  using\
-    \ A = typename Monoid::value_type;\n  using S = A;\n  static S act(const S &x,\
-    \ const A &g) { return Monoid::op(x, g); }\n};\n#line 3 \"ds/hashmap.hpp\"\n\r\
-    \n// u64 -> Val\r\ntemplate <typename Val, int LOG = 20>\r\nstruct HashMap {\r\
-    \n  int N;\r\n  u64* keys;\r\n  Val* vals;\r\n  vc<int> IDS;\r\n  bitset<1 <<\
-    \ LOG> used;\r\n  const int shift;\r\n  const u64 r = 11995408973635179863ULL;\r\
-    \n  HashMap()\r\n      : N(1 << LOG), keys(new u64[N]), vals(new Val[N]), shift(64\
-    \ - __lg(N)) {}\r\n  int hash(ll x) {\r\n    static const u64 FIXED_RANDOM\r\n\
-    \        = std::chrono::steady_clock::now().time_since_epoch().count();\r\n  \
-    \  return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
+    \  a = ((a %= mod) < 0 ? a + mod : a);\r\n  Barrett_64 bt(mod);\r\n  ll p = a,\
+    \ v = bt.modulo(1);\r\n  while (n) {\r\n    if (n & 1) v = bt.mul(v, p);\r\n \
+    \   p = bt.mul(p, p);\r\n    n >>= 1;\r\n  }\r\n  return v;\r\n}\r\n#line 6 \"\
+    mod/primitive_root.hpp\"\n\r\n// int\r\nint primitive_root(int p) {\r\n  auto\
+    \ pf = factor(p - 1);\r\n  auto is_ok = [&](int g) -> bool {\r\n    for (auto&&\
+    \ [q, e]: pf)\r\n      if (mod_pow(g, (p - 1) / q, p) == 1) return false;\r\n\
+    \    return true;\r\n  };\r\n  while (1) {\r\n    int x = RNG(1, p);\r\n    if\
+    \ (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n\r\nll primitive_root_64(ll\
+    \ p) {\r\n  auto pf = factor(p - 1);\r\n  auto is_ok = [&](ll g) -> bool {\r\n\
+    \    for (auto&& [q, e]: pf)\r\n      if (mod_pow_64(g, (p - 1) / q, p) == 1)\
+    \ return false;\r\n    return true;\r\n  };\r\n  while (1) {\r\n    ll x = RNG(1,\
+    \ p);\r\n    if (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n#line 5 \"\
+    mod/dynamic_modint.hpp\"\n\ntemplate <int id>\nstruct Dynamic_Modint {\n  static\
+    \ constexpr bool is_modint = true;\n  using mint = Dynamic_Modint;\n  u32 val;\n\
+    \  static Barrett bt;\n  static u32 umod() { return bt.umod(); }\n\n  static int\
+    \ get_mod() { return (int)(bt.umod()); }\n  static void set_mod(int m) {\n   \
+    \ assert(1 <= m);\n    bt = Barrett(m);\n  }\n\n  static Dynamic_Modint raw(u32\
+    \ v) {\n    Dynamic_Modint x;\n    x.val = v;\n    return x;\n  }\n  Dynamic_Modint()\
+    \ : val(0) {}\n  Dynamic_Modint(u32 x) : val(bt.modulo(x)) {}\n  Dynamic_Modint(u64\
+    \ x) : val(bt.modulo(x)) {}\n  Dynamic_Modint(int x) : val((x %= get_mod()) <\
+    \ 0 ? x + get_mod() : x) {}\n  Dynamic_Modint(ll x) : val((x %= get_mod()) < 0\
+    \ ? x + get_mod() : x) {}\n\n  mint& operator+=(const mint& rhs) {\n    val =\
+    \ (val += rhs.val) < umod() ? val : val - umod();\n    return *this;\n  }\n  mint&\
+    \ operator-=(const mint& rhs) {\n    val = (val += umod() - rhs.val) < umod()\
+    \ ? val : val - umod();\n    return *this;\n  }\n  mint& operator*=(const mint&\
+    \ rhs) {\n    val = bt.mul(val, rhs.val);\n    return *this;\n  }\n  mint& operator/=(const\
+    \ mint& rhs) { return *this = *this * rhs.inverse(); }\n  mint operator-() const\
+    \ { return mint() - *this; }\n  mint pow(ll n) const {\n    assert(0 <= n);\n\
+    \    mint x = *this, r = 1;\n    while (n) {\n      if (n & 1) r *= x;\n     \
+    \ x *= x, n >>= 1;\n    }\n    return r;\n  }\n  mint inverse() const {\n    int\
+    \ x = val, mod = get_mod();\n    int a = x, b = mod, u = 1, v = 0, t;\n    while\
+    \ (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n\
+    \    }\n    if (u < 0) u += mod;\n    return u;\n  }\n\n  friend mint operator+(const\
+    \ mint& lhs, const mint& rhs) {\n    return mint(lhs) += rhs;\n  }\n  friend mint\
+    \ operator-(const mint& lhs, const mint& rhs) {\n    return mint(lhs) -= rhs;\n\
+    \  }\n  friend mint operator*(const mint& lhs, const mint& rhs) {\n    return\
+    \ mint(lhs) *= rhs;\n  }\n  friend mint operator/(const mint& lhs, const mint&\
+    \ rhs) {\n    return mint(lhs) /= rhs;\n  }\n  friend bool operator==(const mint&\
+    \ lhs, const mint& rhs) {\n    return lhs.val == rhs.val;\n  }\n  friend bool\
+    \ operator!=(const mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n\
+    \  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val); }\n  void read()\
+    \ {\n    fastio::scanner.read(val);\n    val = bt.modulo(val);\n  }\n#endif\n\
+    \  static pair<int, int>& get_ntt() {\n    static pair<int, int> p = {-1, -1};\n\
+    \    return p;\n  }\n  static void set_ntt_info() {\n    int mod = get_mod();\n\
+    \    int k = lowbit(mod - 1);\n    int r = primitive_root(mod);\n    r = mod_pow(r,\
+    \ (mod - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static pair<int, int>\
+    \ ntt_info() { return get_ntt(); }\n  static bool can_ntt() { return ntt_info().fi\
+    \ != -1; }\n};\n\nusing dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett\
+    \ Dynamic_Modint<id>::bt;\n#line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate <class\
+    \ T>\r\nstruct Monoid_Mul {\r\n  using value_type = T;\r\n  using X = T;\r\n \
+    \ static constexpr X op(const X &x, const X &y) noexcept { return x * y; }\r\n\
+    \  static constexpr X inverse(const X &x) noexcept { return X(1) / x; }\r\n  static\
+    \ constexpr X unit() { return X(1); }\r\n  static constexpr bool commute = true;\r\
+    \n};\r\n#line 1 \"alg/acted_set/from_monoid.hpp\"\ntemplate <typename Monoid>\n\
+    struct ActedSet_From_Monoid {\n  using Monoid_A = Monoid;\n  using A = typename\
+    \ Monoid::value_type;\n  using S = A;\n  static S act(const S &x, const A &g)\
+    \ { return Monoid::op(x, g); }\n};\n#line 3 \"ds/hashmap.hpp\"\n\r\n// u64 ->\
+    \ Val\r\ntemplate <typename Val, int LOG = 20>\r\nstruct HashMap {\r\n  int N;\r\
+    \n  u64* keys;\r\n  Val* vals;\r\n  vc<int> IDS;\r\n  bitset<1 << LOG> used;\r\
+    \n  const int shift;\r\n  const u64 r = 11995408973635179863ULL;\r\n  HashMap()\r\
+    \n      : N(1 << LOG), keys(new u64[N]), vals(new Val[N]), shift(64 - __lg(N))\
+    \ {}\r\n  int hash(ll x) {\r\n    static const u64 FIXED_RANDOM\r\n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\
+    \n    return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
     \ u64& key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && keys[i]\
     \ != key; (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  // [] \u3057\
     \u305F\u6642\u70B9\u3067\u8981\u7D20\u306F\u4F5C\u3089\u308C\u308B\r\n  Val& operator[](const\
@@ -303,7 +303,7 @@ data:
   isVerificationFile: false
   path: mod/mod_log.hpp
   requiredBy: []
-  timestamp: '2023-10-24 22:55:22+09:00'
+  timestamp: '2023-10-25 02:01:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/discrete_logarithm_mod.test.cpp

@@ -50,9 +50,9 @@ data:
   verifiedWith:
   - test/library_checker/graph/general_matching.test.cpp
   - test/library_checker/matrix/solve_linear.test.cpp
-  - test/mytest/matching_line_graph.test.cpp
   - test/mytest/matching.test.cpp
   - test/mytest/tutte.test.cpp
+  - test/mytest/matching_line_graph.test.cpp
 documentation_of: linalg/matrix_rank.hpp
 layout: document
 redirect_from:

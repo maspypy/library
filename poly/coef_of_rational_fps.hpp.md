@@ -1,40 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
   _extendedRequiredBy:
@@ -84,12 +84,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/fps_div.hpp\"\n\n#line 2 \"poly/count_terms.hpp\"\n\
@@ -497,24 +497,24 @@ data:
   isVerificationFile: false
   path: poly/coef_of_rational_fps.hpp
   requiredBy:
-  - seq/famous/bell_number_large.hpp
   - seq/interpolate_linear_rec.hpp
+  - seq/famous/bell_number_large.hpp
   timestamp: '2023-10-18 00:17:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/agc058d2.test.cpp
-  - test/yukicoder/1962.test.cpp
-  - test/yukicoder/2305.test.cpp
-  - test/yukicoder/1500.test.cpp
-  - test/yukicoder/1561.test.cpp
-  - test/yukicoder/541.test.cpp
-  - test/yukicoder/2122.test.cpp
-  - test/yukicoder/1844.test.cpp
-  - test/yukicoder/578.test.cpp
-  - test/yukicoder/1547.test.cpp
-  - test/yukicoder/579.test.cpp
-  - test/yukicoder/1516.test.cpp
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/yukicoder/579.test.cpp
+  - test/yukicoder/1547.test.cpp
+  - test/yukicoder/1561.test.cpp
+  - test/yukicoder/2122.test.cpp
+  - test/yukicoder/578.test.cpp
+  - test/yukicoder/1844.test.cpp
+  - test/yukicoder/1516.test.cpp
+  - test/yukicoder/541.test.cpp
+  - test/yukicoder/1500.test.cpp
+  - test/yukicoder/2305.test.cpp
+  - test/yukicoder/1962.test.cpp
   - test/mytest/bell.test.cpp
 documentation_of: poly/coef_of_rational_fps.hpp
 layout: document
