@@ -1,6 +1,8 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1303"
+
 #include "my_template.hpp"
 #include "other/io.hpp"
+
 #include "mod/modint.hpp"
 #include "linalg/det.hpp"
 #include "ds/unionfind/unionfind.hpp"
@@ -76,11 +78,6 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
