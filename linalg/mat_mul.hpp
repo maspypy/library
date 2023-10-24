@@ -2,21 +2,21 @@
 #include "mod/modint.hpp"
 
 template <class T, typename enable_if<has_mod<T>::value>::type* = nullptr>
-vc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {
-  assert(T::get_mod() < (1 << 30));
-  auto N = len(A), M = len(B), K = len(B[0]);
-  vv(u32, b, K, M);
-  FOR(i, M) FOR(j, K) b[j][i] = B[i][j].val;
-  vv(T, C, N, K);
+vc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int N1 = -1,
+                  int N2 = -1, int N3 = -1) {
+  if (N1 == -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]); }
+  vv(u32, b, N2, N3);
+  FOR(i, N2) FOR(j, N3) b[j][i] = B[i][j].val;
+  vv(T, C, N1, N3);
 
-  if (M <= 16) {
-    FOR(i, N) FOR(j, K) {
+  if ((T::get_mod() < (1 << 30)) && N2 <= 16) {
+    FOR(i, N1) FOR(j, N3) {
       u64 sm = 0;
-      FOR(m, M) sm += u64(A[i][m].val) * b[j][m];
+      FOR(m, N2) sm += u64(A[i][m].val) * b[j][m];
       C[i][j] = sm;
     }
   } else {
-    FOR(i, N) FOR(j, K) {
+    FOR(i, N1) FOR(j, N3) {
       u128 sm = 0;
       FOR(m, M) sm += u64(A[i][m].val) * b[j][m];
       C[i][j] = T::raw(sm % (T::get_mod()));
@@ -26,12 +26,13 @@ vc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {
 }
 
 template <class T, typename enable_if<!has_mod<T>::value>::type* = nullptr>
-vc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {
+vc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int N1 = -1,
+                  int N2 = -1, int N3 = -1) {
   assert(!A.empty() && !B.empty());
-  auto N = len(A), M = len(B), K = len(B[0]);
-  vv(T, b, K, M);
-  FOR(i, M) FOR(j, K) b[j][i] = B[i][j];
-  vv(T, C, N, K);
-  FOR(n, N) FOR(m, M) FOR(k, K) C[n][k] += A[n][m] * b[k][m];
+  if (N1 == -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]); }
+  vv(T, b, N2, N3);
+  FOR(i, N2) FOR(j, N3) b[j][i] = B[i][j];
+  vv(T, C, N1, N3);
+  FOR(n, N1) FOR(m, N2) FOR(k, N3) C[n][k] += A[n][m] * b[k][m];
   return C;
 }
