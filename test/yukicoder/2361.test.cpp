@@ -5,6 +5,7 @@
 #include "string/suffix_array.hpp"
 #include "string/suffix_tree.hpp"
 #include "alg/monoid/min_idx.hpp"
+#include "ds/segtree/segtree.hpp"
 
 void solve() {
   LL(N, Q);
@@ -65,8 +66,6 @@ void solve() {
 }
 
 signed main() {
-  int T = 1;
-  // INT(T);
-  FOR(T) solve();
+  solve();
   return 0;
 }
