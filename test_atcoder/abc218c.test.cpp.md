@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/rot90.hpp
     title: linalg/rot90.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc218/tasks/abc218_c
@@ -212,18 +212,16 @@ data:
     \ FOR(y, W) B[y][H - 1 - x] = A[x][y];\n  }\n  return B;\n}\n#line 6 \"test_atcoder/abc218c.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(string, A, N);\n  VEC(string, B, N);\n  FOR(4)\
     \ {\n    while (count(all(A.back()), '#') == 0) POP(A);\n    while (count(all(B.back()),\
-    \ '#') == 0) POP(B);\n    A = rot90(len(A), len(A[0]), A);\n    B = rot90(len(B),\
-    \ len(B[0]), B);\n  }\n\n  FOR(4) {\n    A = rot90(len(A), len(A[0]), A);\n  \
-    \  if (A == B) return Yes();\n  }\n  No();\n}\n\nsigned main() {\n  solve();\n\
-    \  return 0;\n}\n"
+    \ '#') == 0) POP(B);\n    A = rot90(A), B = rot90(B);\n  }\n\n  FOR(4) {\n   \
+    \ A = rot90(A);\n    if (A == B) return Yes();\n  }\n  No();\n}\n\nsigned main()\
+    \ {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc218/tasks/abc218_c\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"linalg/rot90.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(string, A, N);\n  VEC(string, B, N);\n  FOR(4)\
     \ {\n    while (count(all(A.back()), '#') == 0) POP(A);\n    while (count(all(B.back()),\
-    \ '#') == 0) POP(B);\n    A = rot90(len(A), len(A[0]), A);\n    B = rot90(len(B),\
-    \ len(B[0]), B);\n  }\n\n  FOR(4) {\n    A = rot90(len(A), len(A[0]), A);\n  \
-    \  if (A == B) return Yes();\n  }\n  No();\n}\n\nsigned main() {\n  solve();\n\
-    \  return 0;\n}"
+    \ '#') == 0) POP(B);\n    A = rot90(A), B = rot90(B);\n  }\n\n  FOR(4) {\n   \
+    \ A = rot90(A);\n    if (A == B) return Yes();\n  }\n  No();\n}\n\nsigned main()\
+    \ {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -231,8 +229,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc218c.test.cpp
   requiredBy: []
-  timestamp: '2023-10-24 14:07:00+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-10-25 00:20:36+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc218c.test.cpp
 layout: document
