@@ -33,7 +33,6 @@ void solve() {
 
 signed main() {
   constexpr u32 mod = (u32(1) << 31) - 19;
-  using dmint = Dynamic_Modint;
   dmint::set_mod(mod);
   test<modint<mod>>();
   test<dmint>();
