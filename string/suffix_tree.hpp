@@ -20,8 +20,8 @@ pair<Graph<int, 1>, vc<tuple<int, int, int, int>>> suffix_tree(SUFFIX& X) {
   if (N == 1) {
     Graph<int, 1> G(2);
     G.add(0, 1);
-    dat.eb(0, 1, 0, 0);
-    dat.eb(0, 1, 0, 1);
+    G.build();
+    dat.eb(0, 1, 0, 0), dat.eb(0, 1, 0, 1);
     return {G, dat};
   }
 
