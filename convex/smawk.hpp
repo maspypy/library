@@ -2,6 +2,7 @@
 
 // select(i,j,k) は (i,j) -> (i,k) を行うかどうか
 // 残念ながら monotone minima より高速な場合が存在しない説がある
+// https://codeforces.com/contest/1423/problem/M
 template <typename F>
 vc<int> smawk(int H, int W, F select) {
   auto dfs = [&](auto& dfs, vc<int> X, vc<int> Y) -> vc<int> {
