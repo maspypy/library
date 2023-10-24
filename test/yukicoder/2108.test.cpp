@@ -22,7 +22,7 @@ void solve() {
   }
   FOR(i, LIM + 1) FOR(j, LIM + 1) { dp[i][j] *= fact_inv<mint>(i); }
 
-  dp = transpose(LIM + 1, LIM + 1, dp);
+  dp = transpose(dp);
 
   FOR(N, LIM + 1) {
     mint pow_N = inv<mint>(N).pow(4);

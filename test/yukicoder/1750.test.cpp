@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"
-#include "linalg/mat_pow.hpp"
+#include "linalg/matrix_pow.hpp"
 
 using mint = modint998;
 
@@ -14,7 +14,7 @@ void solve() {
     A[a][b] = 1;
     A[b][a] = 1;
   }
-  A = mat_pow(A, T);
+  A = matrix_pow(A, T);
   print(A[0][0]);
 }
 

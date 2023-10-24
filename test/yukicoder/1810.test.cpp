@@ -2,8 +2,8 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "linalg/mat_mul.hpp"
-#include "linalg/mat_pow.hpp"
+#include "linalg/matrix_mul.hpp"
+#include "linalg/matrix_pow.hpp"
 #include "mod/modint.hpp"
 
 using mint = modint107;
@@ -19,12 +19,12 @@ void solve() {
   Q[0] = {0, 0, 1};
   Q[1] = {1, 0, 0};
   Q[2] = {0, 0, 0};
-  auto QP = mat_mul(Q, P);
+  auto QP = matrix_mul(Q, P);
   LL(T);
   FOR(T) {
     LL(t);
-    auto X = mat_pow(QP, t / 2);
-    if (t & 1) X = mat_mul(P, X);
+    auto X = matrix_pow(QP, t / 2);
+    if (t & 1) X = matrix_mul(P, X);
     mint ANS = 0;
     FOR(i, 3) FOR(j, 2) ANS += X[i][j];
     print(ANS);
@@ -32,13 +32,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }
