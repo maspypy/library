@@ -99,32 +99,32 @@ data:
   isVerificationFile: false
   path: alg/monoid/affine.hpp
   requiredBy:
-  - alg/acted_set/affine.hpp
   - alg/acted_monoid/sum_affine.hpp
   - alg/acted_monoid/cntsum_affine.hpp
+  - alg/acted_set/affine.hpp
   timestamp: '2023-07-25 22:13:04+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc222g.test.cpp
   - test_atcoder/abc270_g.test.cpp
-  - test/library_checker/datastructure/sort_segtree.test.cpp
-  - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
-  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-  - test/library_checker/datastructure/sort_segtree_1.test.cpp
-  - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
-  - test/library_checker/datastructure/range_affine_point_add.test.cpp
-  - test/library_checker/datastructure/range_affine_range_sum.test.cpp
-  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - test/library_checker/datastructure/queue_operate_all_composite.test.cpp
-  - test/yukicoder/2342_2.test.cpp
-  - test/yukicoder/1502.test.cpp
+  - test_atcoder/abc222g.test.cpp
   - test/yukicoder/2342.test.cpp
-  - test/yukicoder/1891.test.cpp
   - test/yukicoder/255.test.cpp
+  - test/yukicoder/2342_2.test.cpp
+  - test/yukicoder/1891.test.cpp
+  - test/yukicoder/1502.test.cpp
+  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - test/library_checker/datastructure/sort_segtree_1.test.cpp
+  - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - test/library_checker/datastructure/range_affine_point_add.test.cpp
+  - test/library_checker/datastructure/sort_segtree.test.cpp
+  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+  - test/library_checker/datastructure/queue_operate_all_composite.test.cpp
+  - test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
+  - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
+  - test/library_checker/datastructure/range_affine_range_sum.test.cpp
+  - test/mytest/splay.test.cpp
   - test/mytest/mo_on_tree.test.cpp
   - test/mytest/rbst_monoid_2.test.cpp
-  - test/mytest/splay.test.cpp
 documentation_of: alg/monoid/affine.hpp
 layout: document
 redirect_from:

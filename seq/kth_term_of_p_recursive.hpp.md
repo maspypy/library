@@ -494,11 +494,11 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc276_g_2.test.cpp
-  - test_atcoder/abc222h_2.test.cpp
   - test_atcoder/abc276_g.test.cpp
-  - test/yukicoder/1080_2.test.cpp
+  - test_atcoder/abc222h_2.test.cpp
   - test/yukicoder/2166.test.cpp
   - test/yukicoder/502_2.test.cpp
+  - test/yukicoder/1080_2.test.cpp
 documentation_of: seq/kth_term_of_p_recursive.hpp
 layout: document
 redirect_from:

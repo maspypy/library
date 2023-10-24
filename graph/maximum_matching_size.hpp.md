@@ -92,9 +92,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/graph/general_matching.test.cpp
+  - test/mytest/matching_line_graph.test.cpp
   - test/mytest/matching.test.cpp
   - test/mytest/tutte.test.cpp
-  - test/mytest/matching_line_graph.test.cpp
 documentation_of: graph/maximum_matching_size.hpp
 layout: document
 redirect_from:

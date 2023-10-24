@@ -72,8 +72,8 @@ data:
   verifiedWith:
   - test/yukicoder/187.test.cpp
   - test/yukicoder/590.test.cpp
-  - test/yukicoder/1956.test.cpp
   - test/yukicoder/2119.test.cpp
+  - test/yukicoder/1956.test.cpp
   - test/mytest/coprime_factorization.test.cpp
 documentation_of: nt/coprime_factorization.hpp
 layout: document

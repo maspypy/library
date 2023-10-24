@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
   - icon: ':x:'
@@ -135,10 +135,10 @@ data:
   timestamp: '2023-10-24 13:35:32+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc222g.test.cpp
   - test_atcoder/abc270_g.test.cpp
-  - test/library_checker/math/discrete_logarithm_mod.test.cpp
+  - test_atcoder/abc222g.test.cpp
   - test/yukicoder/1339.test.cpp
+  - test/library_checker/math/discrete_logarithm_mod.test.cpp
 documentation_of: nt/discrete_log.hpp
 layout: document
 redirect_from:
