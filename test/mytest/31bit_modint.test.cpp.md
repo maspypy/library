@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
   - icon: ':question:'
@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -39,9 +39,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -450,8 +450,8 @@ data:
     \ mint::get_mod());\n    ll y = RNG(0, mint::get_mod());\n    check(x, y);\n \
     \ }\n  FOR(i, 1, 100) FOR(j, 1, 100) { check(mod - i, mod - j); }\n}\n\nvoid solve()\
     \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  constexpr u32 mod =\
-    \ (u32(1) << 31) - 19;\n  using dmint = Dynamic_Modint;\n  dmint::set_mod(mod);\n\
-    \  test<modint<mod>>();\n  test<dmint>();\n\n  solve();\n  return 0;\n}\n"
+    \ (u32(1) << 31) - 19;\n  dmint::set_mod(mod);\n  test<modint<mod>>();\n  test<dmint>();\n\
+    \n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"random/base.hpp\"\n#include \"mod/modint.hpp\"\
     \n#include \"mod/dynamic_modint.hpp\"\n\ntemplate <typename mint>\nvoid test()\
@@ -463,8 +463,8 @@ data:
     \    ll y = RNG(0, mint::get_mod());\n    check(x, y);\n  }\n  FOR(i, 1, 100)\
     \ FOR(j, 1, 100) { check(mod - i, mod - j); }\n}\n\nvoid solve() {\n  LL(a, b);\n\
     \  print(a + b);\n}\n\nsigned main() {\n  constexpr u32 mod = (u32(1) << 31) -\
-    \ 19;\n  using dmint = Dynamic_Modint;\n  dmint::set_mod(mod);\n  test<modint<mod>>();\n\
-    \  test<dmint>();\n\n  solve();\n  return 0;\n}"
+    \ 19;\n  dmint::set_mod(mod);\n  test<modint<mod>>();\n  test<dmint>();\n\n  solve();\n\
+    \  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -481,8 +481,8 @@ data:
   isVerificationFile: true
   path: test/mytest/31bit_modint.test.cpp
   requiredBy: []
-  timestamp: '2023-10-24 22:55:22+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-10-24 23:33:06+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/31bit_modint.test.cpp
 layout: document
