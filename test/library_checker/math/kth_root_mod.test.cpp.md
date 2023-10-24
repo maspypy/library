@@ -319,7 +319,7 @@ data:
     \ operator!=(const mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n\
     \  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val); }\n  void read()\
     \ {\n    fastio::scanner.read(val);\n    val = bt.modulo(val);\n  }\n#endif\n\
-    };\n\nusing dmint = Dynamic_Modint_64<-1>;\ntemplate <int id>\nBarrett_64 Dynamic_Modint_64<id>::bt;\n\
+    };\n\nusing dmint64 = Dynamic_Modint_64<-1>;\ntemplate <int id>\nBarrett_64 Dynamic_Modint_64<id>::bt;\n\
     #line 3 \"nt/primetest.hpp\"\n\r\nbool primetest(const u64 x) {\r\n  if (x ==\
     \ 2 or x == 3 or x == 5 or x == 7) return true;\r\n  if (x % 2 == 0 or x % 3 ==\
     \ 0 or x % 5 == 0 or x % 7 == 0) return false;\r\n  if (x < 121) return x > 1;\r\
@@ -496,7 +496,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/kth_root_mod.test.cpp
   requiredBy: []
-  timestamp: '2023-10-24 22:26:27+09:00'
+  timestamp: '2023-10-24 22:55:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/kth_root_mod.test.cpp
