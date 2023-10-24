@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
   - icon: ':warning:'
@@ -119,7 +119,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':heavy_check_mark:'
@@ -134,10 +134,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: poly/from_log_differentiation.hpp
+    title: poly/from_log_differentiation.hpp
+  - icon: ':question:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':heavy_check_mark:'
@@ -158,6 +161,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
+  - icon: ':question:'
+    path: poly/prefix_product_of_poly.hpp
+    title: poly/prefix_product_of_poly.hpp
   - icon: ':heavy_check_mark:'
     path: poly/product_of_f_rk_x.hpp
     title: poly/product_of_f_rk_x.hpp
@@ -174,6 +180,9 @@ data:
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/sparse_exp_of_div.hpp
+    title: poly/sparse_exp_of_div.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
   - icon: ':warning:'
@@ -182,7 +191,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/sum_of_prefix_suffix_products.hpp
     title: poly/sum_of_prefix_suffix_products.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
   - icon: ':warning:'
@@ -215,6 +224,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
+  - icon: ':question:'
+    path: seq/kth_term_of_p_recursive.hpp
+    title: seq/kth_term_of_p_recursive.hpp
   - icon: ':heavy_check_mark:'
     path: seq/limit_poly_exp_sum.hpp
     title: seq/limit_poly_exp_sum.hpp
@@ -540,6 +552,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/eulerian_number.test.cpp
     title: test/mytest/eulerian_number.test.cpp
+  - icon: ':x:'
+    path: test/mytest/factorial_998.test.cpp
+    title: test/mytest/factorial_998.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
@@ -630,6 +645,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080.test.cpp
     title: test/yukicoder/1080.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1080_2.test.cpp
+    title: test/yukicoder/1080_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1141.test.cpp
     title: test/yukicoder/1141.test.cpp
@@ -789,6 +807,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2149.test.cpp
     title: test/yukicoder/2149.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2166.test.cpp
+    title: test/yukicoder/2166.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2206.test.cpp
     title: test/yukicoder/2206.test.cpp
@@ -843,6 +864,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/502_2.test.cpp
+    title: test/yukicoder/502_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/541.test.cpp
     title: test/yukicoder/541.test.cpp
@@ -882,6 +906,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc222h.test.cpp
     title: test_atcoder/abc222h.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc222h_2.test.cpp
+    title: test_atcoder/abc222h_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc226f.test.cpp
     title: test_atcoder/abc226f.test.cpp
@@ -924,6 +951,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc272_h.test.cpp
     title: test_atcoder/abc272_h.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc276_g.test.cpp
+    title: test_atcoder/abc276_g.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc276_g_2.test.cpp
+    title: test_atcoder/abc276_g_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc281g.test.cpp
     title: test_atcoder/abc281g.test.cpp
@@ -1077,6 +1110,7 @@ data:
   - seq/famous/indecomposable_permutations.hpp
   - seq/interpolate_linear_rec.hpp
   - seq/interpolate_poly_exp_sum.hpp
+  - seq/kth_term_of_p_recursive.hpp
   - seq/count_grid_path.hpp
   - seq/limit_poly_exp_sum.hpp
   - seq/sum_of_powers.hpp
@@ -1119,13 +1153,16 @@ data:
   - poly/slice_rational_fps.hpp
   - poly/sum_of_prefix_suffix_products.hpp
   - poly/sum_of_rationals.hpp
+  - poly/sparse_exp_of_div.hpp
   - poly/fps_composition.hpp
   - poly/sum_of_power_of_roots.hpp
   - poly/composition_f_log_1_minus_x.hpp
   - poly/composition_f_1_minus_ex.hpp
+  - poly/prefix_product_of_poly.hpp
   - poly/partial_frac_decomposition_1.hpp
   - poly/composition_f_ex.hpp
   - poly/convolution_leq.hpp
+  - poly/from_log_differentiation.hpp
   - poly/fps_pow.hpp
   - poly/composition_f_ex_minus_1.hpp
   - poly/convolution2d.hpp
@@ -1146,6 +1183,7 @@ data:
   - test_atcoder/abc213g.test.cpp
   - test_atcoder/abc267h.test.cpp
   - test_atcoder/abc241h.test.cpp
+  - test_atcoder/abc276_g_2.test.cpp
   - test_atcoder/abc230h.test.cpp
   - test_atcoder/abc249_ex.test.cpp
   - test_atcoder/agc058d2.test.cpp
@@ -1158,9 +1196,11 @@ data:
   - test_atcoder/abc315h.test.cpp
   - test_atcoder/abc288ex.test.cpp
   - test_atcoder/abc314f.test.cpp
+  - test_atcoder/abc276_g.test.cpp
   - test_atcoder/arc130f.test.cpp
   - test_atcoder/abc260h.test.cpp
   - test_atcoder/arc153f.test.cpp
+  - test_atcoder/abc222h_2.test.cpp
   - test_atcoder/abc226f.test.cpp
   - test_atcoder/abc234g.test.cpp
   - test_atcoder/abc222g.test.cpp
@@ -1216,6 +1256,7 @@ data:
   - test/yukicoder/2149.test.cpp
   - test/yukicoder/1844.test.cpp
   - test/yukicoder/1781.test.cpp
+  - test/yukicoder/2166.test.cpp
   - test/yukicoder/1260.test.cpp
   - test/yukicoder/1649_2.test.cpp
   - test/yukicoder/1141.test.cpp
@@ -1227,6 +1268,7 @@ data:
   - test/yukicoder/1618.test.cpp
   - test/yukicoder/2360.test.cpp
   - test/yukicoder/310.test.cpp
+  - test/yukicoder/502_2.test.cpp
   - test/yukicoder/1760.test.cpp
   - test/yukicoder/2295.test.cpp
   - test/yukicoder/1547.test.cpp
@@ -1252,6 +1294,7 @@ data:
   - test/yukicoder/1502.test.cpp
   - test/yukicoder/1025.test.cpp
   - test/yukicoder/1919.test.cpp
+  - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/2062.test.cpp
   - test/yukicoder/1685.test.cpp
   - test/yukicoder/1263.test.cpp
@@ -1357,6 +1400,7 @@ data:
   - test/mytest/splay_am.test.cpp
   - test/mytest/online_square.test.cpp
   - test/mytest/count_indep_set.test.cpp
+  - test/mytest/factorial_998.test.cpp
   - test/mytest/splay.test.cpp
   - test/mytest/online_pow.test.cpp
   - test/mytest/31bit_modint.test.cpp

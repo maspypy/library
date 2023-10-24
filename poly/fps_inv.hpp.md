@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
   - icon: ':question:'
@@ -77,7 +77,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':heavy_check_mark:'
@@ -312,6 +312,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2166.test.cpp
+    title: test/yukicoder/2166.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2243.test.cpp
     title: test/yukicoder/2243.test.cpp
@@ -375,9 +378,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
@@ -741,7 +744,7 @@ data:
   - poly/composition_f_ex_minus_1.hpp
   - poly/poly_divmod.hpp
   timestamp: '2023-10-18 00:17:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/arc133f.test.cpp
   - test_atcoder/abc241h.test.cpp
@@ -773,6 +776,7 @@ data:
   - test/yukicoder/2122.test.cpp
   - test/yukicoder/1080.test.cpp
   - test/yukicoder/1844.test.cpp
+  - test/yukicoder/2166.test.cpp
   - test/yukicoder/578.test.cpp
   - test/yukicoder/2097.test.cpp
   - test/yukicoder/1547.test.cpp

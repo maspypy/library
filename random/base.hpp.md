@@ -267,6 +267,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
+  - icon: ':x:'
+    path: test/mytest/factorial_998.test.cpp
+    title: test/mytest/factorial_998.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/fenwick_raq.test.cpp
     title: test/mytest/fenwick_raq.test.cpp
@@ -481,6 +484,9 @@ data:
     path: test/yukicoder/1080.test.cpp
     title: test/yukicoder/1080.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1080_2.test.cpp
+    title: test/yukicoder/1080_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
   - icon: ':heavy_check_mark:'
@@ -668,6 +674,7 @@ data:
   - test/yukicoder/1397.test.cpp
   - test/yukicoder/2120.test.cpp
   - test/yukicoder/1025.test.cpp
+  - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/2167.test.cpp
   - test/aoj/ALDS1_14_C.test.cpp
   - test/aoj/CGL_5_A.test.cpp
@@ -724,6 +731,7 @@ data:
   - test/mytest/online_square.test.cpp
   - test/mytest/count_indep_set.test.cpp
   - test/mytest/fenwick_raq.test.cpp
+  - test/mytest/factorial_998.test.cpp
   - test/mytest/max_min.test.cpp
   - test/mytest/splay.test.cpp
   - test/mytest/wavelet_matrix.test.cpp
