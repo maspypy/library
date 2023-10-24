@@ -5,7 +5,7 @@
 #include "mod/modint.hpp"
 #include "linalg/spmat_min_poly.hpp"
 #include "linalg/implicit_matrix/min_poly.hpp"
-#include "linalg/mat_mul.hpp"
+#include "linalg/matrix_mul.hpp"
 
 using mint = modint998;
 
@@ -94,7 +94,7 @@ void test() {
     vv(mint, C, N, N);
     FOR(d, len(f)) {
       FOR(i, N) FOR(j, N) C[i][j] += f[d] * B[i][j];
-      B = mat_mul(mat, B);
+      B = matrix_mul(mat, B);
     }
     FOR(i, N) FOR(j, N) assert(C[i][j] == mint(0));
   }
