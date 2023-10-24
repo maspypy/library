@@ -1,5 +1,5 @@
 #pragma once
-#include "linalg/mat_mul.hpp"
+#include "linalg/matrix_mul.hpp"
 #include "poly/lagrange_interpolate_iota.hpp"
 
 // A[k-1]...A[0] を計算する
