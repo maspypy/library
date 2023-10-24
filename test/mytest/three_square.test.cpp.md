@@ -26,6 +26,9 @@ data:
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':heavy_check_mark:'
+    path: nt/three_square.hpp
+    title: nt/three_square.hpp
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
@@ -38,31 +41,31 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1593
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://yukicoder.me/problems/no/1593
-  bundledCode: "#line 1 \"test/yukicoder/1593.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/1593\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
-    )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
-    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    using u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class T>\n\
-    constexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int> = 1'000'000'000;\n\
-    template <>\nconstexpr ll infty<ll> = ll(infty<int>) * infty<int> * 2;\ntemplate\
-    \ <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\n\
-    template <>\nconstexpr double infty<double> = infty<ll>;\ntemplate <>\nconstexpr\
-    \ long double infty<long double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing\
-    \ vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
-    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
-    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
-    \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
-    template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
-    #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
-    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
-    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
-    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
-    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/mytest/three_square.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
+    #include <my_template_compiled.hpp>\n#else\n#pragma GCC optimize(\"Ofast\")\n\
+    #pragma GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace\
+    \ std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing u64 = unsigned\
+    \ long long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\nusing f128\
+    \ = __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr\
+    \ int infty<int> = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll> = ll(infty<int>)\
+    \ * infty<int> * 2;\ntemplate <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate\
+    \ <>\nconstexpr u64 infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128>\
+    \ = i128(infty<ll>) * infty<ll>;\ntemplate <>\nconstexpr double infty<double>\
+    \ = infty<ll>;\ntemplate <>\nconstexpr long double infty<long double> = infty<ll>;\n\
+    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
+    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h,\
+    \ vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>>\
+    \ name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define\
+    \ vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
+    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
@@ -225,12 +228,7 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 2 \"nt/factor.hpp\"\n\n#line 2 \"random/base.hpp\"\n\nu64\
-    \ RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/dynamic_modint_64.hpp\"\
+    \ yes(!t); }\n#line 4 \"test/mytest/three_square.test.cpp\"\n\n#line 2 \"mod/dynamic_modint_64.hpp\"\
     \n\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
     \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
     \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
@@ -327,8 +325,14 @@ data:
     \n  if (x < (1ull << 32)) {\r\n    for (u64 a: {2, 7, 61})\r\n      if (!ok(a))\
     \ return false;\r\n  } else {\r\n    for (u64 a: {2, 325, 9375, 28178, 450775,\
     \ 9780504, 1795265022}) {\r\n      if (x <= a) return true;\r\n      if (!ok(a))\
-    \ return false;\r\n    }\r\n  }\r\n  return true;\r\n}\n#line 5 \"nt/factor.hpp\"\
-    \n\nll rho(ll n, ll c) {\n  using m64 = Dynamic_Modint_64<20231025>;\n  m64::set_mod(n);\n\
+    \ return false;\r\n    }\r\n  }\r\n  return true;\r\n}\n#line 2 \"nt/factor.hpp\"\
+    \n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n    \
+    \  = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n                  \
+    \   chrono::high_resolution_clock::now().time_since_epoch())\n               \
+    \      .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return\
+    \ x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll\
+    \ l, ll r) { return l + RNG_64() % (r - l); }\n#line 5 \"nt/factor.hpp\"\n\nll\
+    \ rho(ll n, ll c) {\n  using m64 = Dynamic_Modint_64<20231025>;\n  m64::set_mod(n);\n\
     \  assert(n > 1);\n  const m64 cc(c);\n  auto f = [&](m64 x) { return x * x +\
     \ cc; };\n  m64 x = 1, y = 2, z = 1, q = 1;\n  ll g = 1;\n  const ll m = 1LL <<\
     \ (__lg(n) / 5); // ?\n  for (ll r = 1; g == 1; r <<= 1) {\n    x = y;\n    FOR(_,\
@@ -410,39 +414,70 @@ data:
     \ N) {\r\n  using G = Gaussian_Integer<T>;\r\n  vc<G> res;\r\n  if (N < 0) return\
     \ {};\r\n  if (N == 0) {\r\n    res.eb(G(0, 0));\r\n    return res;\r\n  }\r\n\
     \  auto pfs = factor(N);\r\n  return solve_norm_equation_factor<T>(pfs);\r\n}\r\
-    \n#line 5 \"test/yukicoder/1593.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  ll ANS\
-    \ = 0;\n  auto res = solve_norm_equation(N * N);\n  for (auto &&g: res) {\n  \
-    \  if (g.x > 0 && g.y > 0) ++ANS;\n  }\n  print(ANS);\n}\n\nsigned main() {\n\
-    \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1593\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"nt/gaussian_integers.hpp\"\n\nvoid solve()\
-    \ {\n  LL(N);\n  ll ANS = 0;\n  auto res = solve_norm_equation(N * N);\n  for\
-    \ (auto &&g: res) {\n    if (g.x > 0 && g.y > 0) ++ANS;\n  }\n  print(ANS);\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
-    \ return 0;\n}\n"
+    \n#line 3 \"nt/three_square.hpp\"\n\n// https://math.stackexchange.com/questions/483101/rabin-and-shallit-algorithm\n\
+    // ERH \u306E\u3082\u3068 O(log^2N) \uFF1F\ntuple<ll, ll, ll> three_square(ll\
+    \ N) {\n  if (N == 0) return {0, 0, 0};\n  auto F = [&](ll n) -> tuple<ll, ll,\
+    \ ll> {\n    if (N == 2) return {1, 1, 0};\n    if (N == 3) return {1, 1, 1};\n\
+    \    if (N == 10) return {3, 1, 0};\n    if (N == 34) return {5, 3, 0};\n    if\
+    \ (N == 58) return {7, 3, 0};\n    if (N == 85) return {9, 2, 0};\n    if (N ==\
+    \ 130) return {11, 3, 0};\n    if (N == 214) return {14, 3, 3};\n    if (N ==\
+    \ 226) return {15, 1, 0};\n    if (N == 370) return {19, 3, 0};\n    if (N ==\
+    \ 526) return {21, 9, 2};\n    if (N == 706) return {25, 9, 0};\n    if (N ==\
+    \ 730) return {27, 1, 0};\n    if (N == 1414) return {33, 18, 1};\n    if (N ==\
+    \ 1906) return {41, 15, 0};\n    if (N == 2986) return {45, 31, 0};\n    if (N\
+    \ == 9634) return {97, 15, 0};\n    ll x = sqrtl(N);\n    if (N == x * x) return\
+    \ {x, 0, 0};\n    if (N % 4 != 1 && x % 2 == 0) --x;\n    if (N % 4 == 1 && x\
+    \ % 2 == 1) --x;\n    x += 2;\n    while (1) {\n      x -= 2;\n      ll k = N\
+    \ - x * x;\n      if (k < 0) break;\n      if (k % 2 == 1 && primetest(k)) {\n\
+    \        auto [a, b] = solve_norm_equation_prime(k);\n        a = abs(a), b =\
+    \ abs(b);\n        return {a, b, x};\n      }\n      if (k % 2 == 0 && primetest(k\
+    \ / 2)) {\n        auto [a, b] = solve_norm_equation_prime(k / 2);\n        tie(a,\
+    \ b) = mp(a + b, a - b);\n        a = abs(a), b = abs(b);\n        return {a,\
+    \ b, x};\n      }\n    }\n    return {-1, -1, -1};\n    assert(0);\n  };\n  ll\
+    \ e = 0;\n  while (N % 4 == 0) N /= 4, ++e;\n  if (N % 8 == 7) return {-1, -1,\
+    \ -1};\n  auto [a, b, c] = F(N);\n  return {a << e, b << e, c << e};\n}\n#line\
+    \ 7 \"test/mytest/three_square.test.cpp\"\n\nvoid test() {\n  FOR(N, 1, 1000000)\
+    \ {\n    if (N % 4 == 0) continue;\n    ll n = N;\n    while (n % 4 == 0) n /=\
+    \ 4;\n    if (n % 8 == 7) continue;\n    auto [a, b, c] = three_square(N);\n \
+    \   assert(N == a * a + b * b + c * c);\n  }\n  vi TEN = {1};\n  FOR(18) TEN.eb(TEN.back()\
+    \ * 10);\n  FOR(100000) {\n    ll K = RNG(0, 18);\n    ll N = RNG(TEN[K], TEN[K\
+    \ + 1]);\n    ll n = N;\n    while (n % 4 == 0) n /= 4;\n    if (n % 8 == 7) continue;\n\
+    \    auto [a, b, c] = three_square(N);\n    assert(a * a + b * b + c * c == N);\n\
+    \  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n\
+    \  test();\n  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n\n#include \"nt/three_square.hpp\"\n#include \"random/base.hpp\"\
+    \n\nvoid test() {\n  FOR(N, 1, 1000000) {\n    if (N % 4 == 0) continue;\n   \
+    \ ll n = N;\n    while (n % 4 == 0) n /= 4;\n    if (n % 8 == 7) continue;\n \
+    \   auto [a, b, c] = three_square(N);\n    assert(N == a * a + b * b + c * c);\n\
+    \  }\n  vi TEN = {1};\n  FOR(18) TEN.eb(TEN.back() * 10);\n  FOR(100000) {\n \
+    \   ll K = RNG(0, 18);\n    ll N = RNG(TEN[K], TEN[K + 1]);\n    ll n = N;\n \
+    \   while (n % 4 == 0) n /= 4;\n    if (n % 8 == 7) continue;\n    auto [a, b,\
+    \ c] = three_square(N);\n    assert(a * a + b * b + c * c == N);\n  }\n}\n\nvoid\
+    \ solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n \
+    \ solve();\n\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - nt/gaussian_integers.hpp
-  - nt/factor.hpp
-  - random/base.hpp
+  - nt/three_square.hpp
   - nt/primetest.hpp
   - mod/dynamic_modint_64.hpp
   - mod/modint_common.hpp
   - mod/barrett.hpp
+  - nt/gaussian_integers.hpp
+  - nt/factor.hpp
+  - random/base.hpp
   - mod/mod_pow.hpp
   isVerificationFile: true
-  path: test/yukicoder/1593.test.cpp
+  path: test/mytest/three_square.test.cpp
   requiredBy: []
   timestamp: '2023-10-25 07:45:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yukicoder/1593.test.cpp
+documentation_of: test/mytest/three_square.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/1593.test.cpp
-- /verify/test/yukicoder/1593.test.cpp.html
-title: test/yukicoder/1593.test.cpp
+- /verify/test/mytest/three_square.test.cpp
+- /verify/test/mytest/three_square.test.cpp.html
+title: test/mytest/three_square.test.cpp
 ---

@@ -111,6 +111,9 @@ data:
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
   - icon: ':heavy_check_mark:'
+    path: nt/three_square.hpp
+    title: nt/three_square.hpp
+  - icon: ':heavy_check_mark:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
   - icon: ':heavy_check_mark:'
@@ -508,6 +511,9 @@ data:
     path: test/mytest/tdpc_grid_dp.test.cpp
     title: test/mytest/tdpc_grid_dp.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/three_square.test.cpp
+    title: test/mytest/three_square.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/tournament.test.cpp
     title: test/mytest/tournament.test.cpp
   - icon: ':heavy_check_mark:'
@@ -698,6 +704,7 @@ data:
   - geo/range_closest_pair_query.hpp
   - geo/count_points_in_triangles.hpp
   - nt/all_lcm.hpp
+  - nt/three_square.hpp
   - nt/crt.hpp
   - nt/euler_phi.hpp
   - nt/gaussian_integers.hpp
@@ -851,6 +858,7 @@ data:
   - test/mytest/online_pow.test.cpp
   - test/mytest/31bit_modint.test.cpp
   - test/mytest/binom.test.cpp
+  - test/mytest/three_square.test.cpp
   - test/mytest/dynamic_segtree_sparse.test.cpp
   - test/mytest/add_chmin.test.cpp
   - test/mytest/rbst.test.cpp

@@ -102,6 +102,9 @@ data:
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':heavy_check_mark:'
+    path: nt/three_square.hpp
+    title: nt/three_square.hpp
+  - icon: ':heavy_check_mark:'
     path: other/count_seq_with_fixed_xor_value.hpp
     title: other/count_seq_with_fixed_xor_value.hpp
   - icon: ':heavy_check_mark:'
@@ -721,6 +724,9 @@ data:
     path: test/mytest/tdpc_grid_dp.test.cpp
     title: test/mytest/tdpc_grid_dp.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/three_square.test.cpp
+    title: test/mytest/three_square.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1221,6 +1227,7 @@ data:
   - graph/tree_all_distances.hpp
   - new_poly/base.hpp
   - nt/all_lcm.hpp
+  - nt/three_square.hpp
   - nt/crt.hpp
   - nt/euler_phi.hpp
   - nt/gaussian_integers.hpp
@@ -1565,6 +1572,7 @@ data:
   - test/mytest/31bit_modint.test.cpp
   - test/mytest/binom.test.cpp
   - test/mytest/prime_sum.test.cpp
+  - test/mytest/three_square.test.cpp
   - test/mytest/min_poly.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/chirp_z.test.cpp

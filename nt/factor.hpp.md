@@ -57,6 +57,9 @@ data:
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
   - icon: ':heavy_check_mark:'
+    path: nt/three_square.hpp
+    title: nt/three_square.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
   _extendedVerifiedWith:
@@ -129,6 +132,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/three_square.test.cpp
+    title: test/mytest/three_square.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
@@ -351,6 +357,7 @@ data:
   path: nt/factor.hpp
   requiredBy:
   - nt/all_lcm.hpp
+  - nt/three_square.hpp
   - nt/crt.hpp
   - nt/euler_phi.hpp
   - nt/gaussian_integers.hpp
@@ -410,6 +417,7 @@ data:
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/mytest/31bit_modint.test.cpp
+  - test/mytest/three_square.test.cpp
   - test/mytest/four_square.test.cpp
 documentation_of: nt/factor.hpp
 layout: document

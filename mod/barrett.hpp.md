@@ -66,6 +66,9 @@ data:
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':heavy_check_mark:'
+    path: nt/three_square.hpp
+    title: nt/three_square.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
   - icon: ':heavy_check_mark:'
@@ -177,6 +180,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/three_square.test.cpp
+    title: test/mytest/three_square.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
@@ -290,6 +296,7 @@ data:
   - graph/count/count_bipartite.hpp
   - graph/chromatic.hpp
   - nt/all_lcm.hpp
+  - nt/three_square.hpp
   - nt/crt.hpp
   - nt/euler_phi.hpp
   - nt/gaussian_integers.hpp
@@ -368,6 +375,7 @@ data:
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
   - test/mytest/31bit_modint.test.cpp
+  - test/mytest/three_square.test.cpp
   - test/mytest/four_square.test.cpp
   - test/mytest/count_bipartite.test.cpp
 documentation_of: mod/barrett.hpp

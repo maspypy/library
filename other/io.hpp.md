@@ -1123,6 +1123,9 @@ data:
     path: test/mytest/tdpc_grid_dp.test.cpp
     title: test/mytest/tdpc_grid_dp.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/three_square.test.cpp
+    title: test/mytest/three_square.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/tournament.test.cpp
     title: test/mytest/tournament.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2960,6 +2963,7 @@ data:
   - test/mytest/binom.test.cpp
   - test/mytest/run_length.test.cpp
   - test/mytest/prime_sum.test.cpp
+  - test/mytest/three_square.test.cpp
   - test/mytest/dynamic_segtree_sparse.test.cpp
   - test/mytest/add_chmin.test.cpp
   - test/mytest/rbst.test.cpp
