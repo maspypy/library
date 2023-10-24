@@ -3,6 +3,7 @@
 #include "mod/primitive_root.hpp"
 #include "mod/barrett.hpp"
 
+template <int id>
 struct Dynamic_Modint {
   static constexpr bool is_modint = true;
   using mint = Dynamic_Modint;
@@ -101,5 +102,4 @@ struct Dynamic_Modint {
   static bool can_ntt() { return ntt_info().fi != -1; }
 };
 
-using dmint = Dynamic_Modint;
-Barrett dmint::bt(1);
+using dmint = Dynamic_Modint<-1>;

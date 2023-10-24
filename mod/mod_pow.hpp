@@ -1,12 +1,11 @@
 #pragma once
 #include "mod/barrett.hpp"
 
-ll mod_pow(ll a, ll n, int mod) {
+int mod_pow(int a, ll n, int mod) {
   assert(n >= 0);
-  a %= mod;
-  if (a < 0) a += mod;
+  a = ((a %= mod) < 0 ? a + mod : a);
   Barrett bt(mod);
-  ll p = a, v = bt.modulo(1);
+  int p = a, v = bt.modulo(1);
   while (n) {
     if (n & 1) v = bt.mul(v, p);
     p = bt.mul(p, p);
@@ -17,12 +16,12 @@ ll mod_pow(ll a, ll n, int mod) {
 
 ll mod_pow_64(ll a, ll n, ll mod) {
   assert(n >= 0);
-  a %= mod;
-  if (a < 0) a += mod;
-  ll p = a, v = 1 % mod;
+  a = ((a %= mod) < 0 ? a + mod : a);
+  Barrett bt(mod);
+  ll p = a, v = bt.modulo(1);
   while (n) {
-    if (n & 1) v = i128(v) * p % mod;
-    p = i128(p) * p % mod;
+    if (n & 1) v = bt.mul(v, p);
+    p = bt.mul(p, p);
     n >>= 1;
   }
   return v;

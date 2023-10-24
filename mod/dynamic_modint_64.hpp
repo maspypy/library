@@ -4,6 +4,7 @@
 #include "mod/barrett.hpp"
 
 // https://codeforces.com/contest/453/problem/D
+template <int id>
 struct Dynamic_Modint_64 {
   static constexpr bool is_modint = true;
   using mint = Dynamic_Modint_64;
@@ -84,5 +85,4 @@ struct Dynamic_Modint_64 {
 #endif
 };
 
-using dmint = Dynamic_Modint_64;
-Barrett_64 dmint::bt(1);
+using dmint = Dynamic_Modint_64<-1>;
