@@ -197,6 +197,7 @@ data:
     \ (ll)(bt.umod()); }\n  static void set_mod(ll m) {\n    assert(1 <= m);\n   \
     \ bt = Barrett_64(m);\n  }\n\n  Dynamic_Modint_64() : val(0) {}\n  Dynamic_Modint_64(u64\
     \ x) : val(bt.modulo(x)) {}\n  Dynamic_Modint_64(u128 x) : val(bt.modulo(x)) {}\n\
+    \  Dynamic_Modint_64(int x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n\
     \  Dynamic_Modint_64(ll x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n\
     \  Dynamic_Modint_64(i128 x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n\
     \n  mint& operator+=(const mint& rhs) {\n    val = (val += rhs.val) < umod() ?\
@@ -296,7 +297,7 @@ data:
   - mod/mod_log.hpp
   - mod/binomial.hpp
   - poly/multivar_convolution_cyclic.hpp
-  timestamp: '2023-10-24 21:40:49+09:00'
+  timestamp: '2023-10-24 22:02:15+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/agc058d2.test.cpp

@@ -274,6 +274,7 @@ data:
     \ (ll)(bt.umod()); }\n  static void set_mod(ll m) {\n    assert(1 <= m);\n   \
     \ bt = Barrett_64(m);\n  }\n\n  Dynamic_Modint_64() : val(0) {}\n  Dynamic_Modint_64(u64\
     \ x) : val(bt.modulo(x)) {}\n  Dynamic_Modint_64(u128 x) : val(bt.modulo(x)) {}\n\
+    \  Dynamic_Modint_64(int x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n\
     \  Dynamic_Modint_64(ll x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n\
     \  Dynamic_Modint_64(i128 x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n\
     \n  mint& operator+=(const mint& rhs) {\n    val = (val += rhs.val) < umod() ?\
@@ -326,7 +327,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/primality_test.test.cpp
   requiredBy: []
-  timestamp: '2023-10-24 21:40:49+09:00'
+  timestamp: '2023-10-24 22:02:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/primality_test.test.cpp
