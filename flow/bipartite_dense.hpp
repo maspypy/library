@@ -1,6 +1,7 @@
 
 // vc<bitset> で biadj matrix を渡す
-// N^3/w. (5000,5000) で 300ms 程度で動く場合がある
+// N_1^2N_2/w.
+// (5000,5000) で 300ms 程度で動く場合がある
 // https://qoj.ac/problem/6308
 // (10000?, 5000) 655ms
 // https://codeforces.com/contest/1045/problem/A
