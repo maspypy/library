@@ -103,3 +103,5 @@ struct Dynamic_Modint {
 };
 
 using dmint = Dynamic_Modint<-1>;
+template <int id>
+Barrett Dynamic_Modint<id>::bt;

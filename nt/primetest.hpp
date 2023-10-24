@@ -9,7 +9,7 @@ bool primetest(const u64 x) {
   using m64 = Dynamic_Modint_64<20231024>;
 
   m64::set_mod(x);
-  const m64 one(1), minus_one(x - 1);
+  const m64 one(u64(1)), minus_one(x - 1);
   auto ok = [&](u64 a) -> bool {
     auto y = m64(a).pow(d);
     u64 t = d;
