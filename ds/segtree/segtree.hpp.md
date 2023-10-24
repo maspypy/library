@@ -20,9 +20,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/suffix_tree.hpp
-    title: string/suffix_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.test.cpp
@@ -78,9 +75,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1549.test.cpp
     title: test/yukicoder/1549.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2361.test.cpp
-    title: test/yukicoder/2361.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
@@ -197,7 +191,6 @@ data:
   - ds/offline_query/range_mex_query.hpp
   - ds/offline_query/uniqueproductquery.hpp
   - ds/segtree/sortable_segtree.hpp
-  - string/suffix_tree.hpp
   timestamp: '2023-04-14 22:06:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -208,7 +201,6 @@ data:
   - test_atcoder/abc270_f.test.cpp
   - test/yukicoder/1435.test.cpp
   - test/yukicoder/1036_2.test.cpp
-  - test/yukicoder/2361.test.cpp
   - test/yukicoder/1212.test.cpp
   - test/yukicoder/426.test.cpp
   - test/yukicoder/529.test.cpp

@@ -490,6 +490,9 @@ data:
     path: test/mytest/stern_brocot.test.cpp
     title: test/mytest/stern_brocot.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/suffix_tree.test.cpp
+    title: test/mytest/suffix_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/summax_add.test.cpp
     title: test/mytest/summax_add.test.cpp
   - icon: ':heavy_check_mark:'
@@ -836,6 +839,7 @@ data:
   - test/mytest/kdtree_am.test.cpp
   - test/mytest/matching.test.cpp
   - test/mytest/online_square.test.cpp
+  - test/mytest/suffix_tree.test.cpp
   - test/mytest/count_indep_set.test.cpp
   - test/mytest/fenwick_raq.test.cpp
   - test/mytest/factorial_998.test.cpp
