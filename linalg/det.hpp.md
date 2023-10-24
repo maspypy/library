@@ -6,15 +6,15 @@ data:
     title: mod/barrett.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/det_mod.test.cpp
     title: test/library_checker/matrix/det_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/matrix_det.test.cpp
     title: test/library_checker/matrix/matrix_det.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
@@ -38,9 +38,9 @@ data:
     \n  const int n = len(A);\r\n  ll det = 1;\r\n  FOR(i, n) {\r\n    FOR(j, i, n)\
     \ {\r\n      if (A[j][i] == 0) continue;\r\n      if (i != j) { swap(A[i], A[j]),\
     \ det = mod - det; }\r\n      break;\r\n    }\r\n    FOR(j, i + 1, n) {\r\n  \
-    \    while (A[i][i] != 0) {\r\n        ll c = m - A[j][i] / A[i][i];\r\n     \
-    \   FOR_R(k, i, n) { A[j][k] = bt.modulo(A[j][k] + A[i][k] * c); }\r\n       \
-    \ swap(A[i], A[j]), det = mod - det;\r\n      }\r\n      swap(A[i], A[j]), det\
+    \    while (A[i][i] != 0) {\r\n        ll c = mod - A[j][i] / A[i][i];\r\n   \
+    \     FOR_R(k, i, n) { A[j][k] = bt.modulo(A[j][k] + A[i][k] * c); }\r\n     \
+    \   swap(A[i], A[j]), det = mod - det;\r\n      }\r\n      swap(A[i], A[j]), det\
     \ = mod - det;\r\n    }\r\n  }\r\n  FOR(i, n) det = bt.mul(det, A[i][i]);\r\n\
     \  return det % mod;\r\n}\r\n\r\ntemplate <typename mint>\r\nmint det(vvc<mint>&\
     \ A) {\r\n  const int n = len(A);\r\n  vv(int, B, n, n);\r\n  FOR(i, n) FOR(j,\
@@ -49,20 +49,21 @@ data:
     \  Barrett bt(mod);\r\n  const int n = len(A);\r\n  ll det = 1;\r\n  FOR(i, n)\
     \ {\r\n    FOR(j, i, n) {\r\n      if (A[j][i] == 0) continue;\r\n      if (i\
     \ != j) { swap(A[i], A[j]), det = mod - det; }\r\n      break;\r\n    }\r\n  \
-    \  FOR(j, i + 1, n) {\r\n      while (A[i][i] != 0) {\r\n        ll c = m - A[j][i]\
-    \ / A[i][i];\r\n        FOR_R(k, i, n) { A[j][k] = bt.modulo(A[j][k] + A[i][k]\
-    \ * c); }\r\n        swap(A[i], A[j]), det = mod - det;\r\n      }\r\n      swap(A[i],\
-    \ A[j]), det = mod - det;\r\n    }\r\n  }\r\n  FOR(i, n) det = bt.mul(det, A[i][i]);\r\
-    \n  return det % mod;\r\n}\r\n\r\ntemplate <typename mint>\r\nmint det(vvc<mint>&\
-    \ A) {\r\n  const int n = len(A);\r\n  vv(int, B, n, n);\r\n  FOR(i, n) FOR(j,\
-    \ n) B[i][j] = A[i][j].val;\r\n  return det_mod(B, mint::get_mod());\r\n}\r\n"
+    \  FOR(j, i + 1, n) {\r\n      while (A[i][i] != 0) {\r\n        ll c = mod -\
+    \ A[j][i] / A[i][i];\r\n        FOR_R(k, i, n) { A[j][k] = bt.modulo(A[j][k] +\
+    \ A[i][k] * c); }\r\n        swap(A[i], A[j]), det = mod - det;\r\n      }\r\n\
+    \      swap(A[i], A[j]), det = mod - det;\r\n    }\r\n  }\r\n  FOR(i, n) det =\
+    \ bt.mul(det, A[i][i]);\r\n  return det % mod;\r\n}\r\n\r\ntemplate <typename\
+    \ mint>\r\nmint det(vvc<mint>& A) {\r\n  const int n = len(A);\r\n  vv(int, B,\
+    \ n, n);\r\n  FOR(i, n) FOR(j, n) B[i][j] = A[i][j].val;\r\n  return det_mod(B,\
+    \ mint::get_mod());\r\n}\r\n"
   dependsOn:
   - mod/barrett.hpp
   isVerificationFile: false
   path: linalg/det.hpp
   requiredBy: []
-  timestamp: '2023-10-24 14:07:00+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-10-24 14:53:54+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/matrix/matrix_det.test.cpp
   - test/library_checker/matrix/det_mod.test.cpp

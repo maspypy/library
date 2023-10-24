@@ -12,15 +12,15 @@ data:
     path: linalg/matrix_pow.hpp
     title: linalg/matrix_pow.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/matrix_product.test.cpp
     title: test/library_checker/matrix/matrix_product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -97,7 +97,7 @@ data:
     #line 3 \"linalg/matrix_mul.hpp\"\n\r\ntemplate <class T, typename enable_if<has_mod<T>::value>::type*\
     \ = nullptr>\r\nvc<vc<T>> matrix_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int\
     \ N1 = -1,\r\n                     int N2 = -1, int N3 = -1) {\r\n  if (N1 ==\
-    \ -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\r\n  vv(u32, b, N2, N3);\r\
+    \ -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\r\n  vv(u32, b, N3, N2);\r\
     \n  FOR(i, N2) FOR(j, N3) b[j][i] = B[i][j].val;\r\n  vv(T, C, N1, N3);\r\n\r\n\
     \  if ((T::get_mod() < (1 << 30)) && N2 <= 16) {\r\n    FOR(i, N1) FOR(j, N3)\
     \ {\r\n      u64 sm = 0;\r\n      FOR(m, N2) sm += u64(A[i][m].val) * b[j][m];\r\
@@ -115,7 +115,7 @@ data:
     \ enable_if<has_mod<T>::value>::type* = nullptr>\r\nvc<vc<T>> matrix_mul(const\
     \ vc<vc<T>>& A, const vc<vc<T>>& B, int N1 = -1,\r\n                     int N2\
     \ = -1, int N3 = -1) {\r\n  if (N1 == -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]);\
-    \ }\r\n  vv(u32, b, N2, N3);\r\n  FOR(i, N2) FOR(j, N3) b[j][i] = B[i][j].val;\r\
+    \ }\r\n  vv(u32, b, N3, N2);\r\n  FOR(i, N2) FOR(j, N3) b[j][i] = B[i][j].val;\r\
     \n  vv(T, C, N1, N3);\r\n\r\n  if ((T::get_mod() < (1 << 30)) && N2 <= 16) {\r\
     \n    FOR(i, N1) FOR(j, N3) {\r\n      u64 sm = 0;\r\n      FOR(m, N2) sm += u64(A[i][m].val)\
     \ * b[j][m];\r\n      C[i][j] = sm;\r\n    }\r\n  } else {\r\n    FOR(i, N1) FOR(j,\
@@ -135,8 +135,8 @@ data:
   path: linalg/matrix_mul.hpp
   requiredBy:
   - linalg/matrix_pow.hpp
-  timestamp: '2023-10-24 14:20:00+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-10-24 14:53:54+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/426.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp
