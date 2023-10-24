@@ -64,6 +64,31 @@ struct Gaussian_Integer {
   }
 };
 
+pair<ll, ll> solve_norm_equation_prime(ll p) {
+  using G = Gaussian_Integer<i128>;
+  assert(p == 2 || p % 4 == 1);
+  if (p == 2) return {1, 1};
+  ll x = [&]() -> ll {
+    ll x = 1;
+    while (1) {
+      ++x;
+      ll pow_x = 1;
+      if (p < (1 << 30)) {
+        pow_x = mod_pow(x, (p - 1) / 4, p);
+        if (pow_x * pow_x % p == p - 1) return pow_x;
+      } else {
+        pow_x = mod_pow_64(x, (p - 1) / 4, p);
+        if (i128(pow_x) * pow_x % p == p - 1) return pow_x;
+      }
+    }
+    return -1;
+  }();
+  G a(p, 0), b(x, 1);
+  a = G::gcd(a, b);
+  assert(a.norm() == p);
+  return {a.x, a.y};
+}
+
 template <typename T>
 vc<Gaussian_Integer<T>> solve_norm_equation_factor(vc<pair<ll, int>> pfs) {
   using G = Gaussian_Integer<T>;
@@ -71,32 +96,6 @@ vc<Gaussian_Integer<T>> solve_norm_equation_factor(vc<pair<ll, int>> pfs) {
   for (auto &&[p, e]: pfs) {
     if (p % 4 == 3 && e % 2 == 1) return {};
   }
-  auto find = [&](T p) -> G {
-    // p は素数. ノルム p のガウス整数をひとつ見つける
-    if (p == 2) return G(1, 1);
-    // x^2 = -1 mod p をひとつ見つける
-    T x = [&]() -> T {
-      T x = 1;
-      while (1) {
-        ++x;
-        T pow_x = 1;
-        if (p < (1 << 30)) {
-          pow_x = mod_pow(x, (p - 1) / 4, p);
-          if (pow_x * pow_x % p == p - 1) return pow_x;
-        } else {
-          pow_x = mod_pow_64(x, (p - 1) / 4, p);
-          if (i128(pow_x) * pow_x % p == p - 1) return pow_x;
-        }
-      }
-      return -1;
-    }();
-    assert(x != -1);
-    // x は非剰余
-    G a(p, 0), b(x, 1);
-    a = G::gcd(a, b);
-    assert(a.norm() == p);
-    return a;
-  };
 
   res.eb(G(1, 0));
   for (auto &&[p, e]: pfs) {
@@ -109,7 +108,7 @@ vc<Gaussian_Integer<T>> solve_norm_equation_factor(vc<pair<ll, int>> pfs) {
       }
       continue;
     }
-    auto pi = find(p);
+    G pi = solve_norm_equation_prime(p);
     vc<G> pows(e + 1);
     pows[0] = G(1, 0);
     FOR(i, e) pows[i + 1] = pows[i] * pi;
