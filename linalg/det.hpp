@@ -12,7 +12,7 @@ int det_mod(vvc<int> A, int mod) {
     }
     FOR(j, i + 1, n) {
       while (A[i][i] != 0) {
-        ll c = m - A[j][i] / A[i][i];
+        ll c = mod - A[j][i] / A[i][i];
         FOR_R(k, i, n) { A[j][k] = bt.modulo(A[j][k] + A[i][k] * c); }
         swap(A[i], A[j]), det = mod - det;
       }
