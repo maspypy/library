@@ -1,3 +1,4 @@
+#include "alg/monoid/mul.hpp"
 #include "alg/acted_set/from_monoid.hpp"
 #include "ds/hashmap.hpp"
 
