@@ -36,9 +36,6 @@ data:
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
   - icon: ':heavy_check_mark:'
-    path: nt/four_square.hpp
-    title: nt/four_square.hpp
-  - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
   _extendedVerifiedWith:
@@ -96,9 +93,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/31bit_modint.test.cpp
     title: test/mytest/31bit_modint.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/four_square.test.cpp
-    title: test/mytest/four_square.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
@@ -291,7 +285,6 @@ data:
   isVerificationFile: false
   path: mod/primitive_root.hpp
   requiredBy:
-  - nt/four_square.hpp
   - mod/dynamic_modint.hpp
   - mod/mod_kth_root.hpp
   - mod/mod_log.hpp
@@ -327,7 +320,6 @@ data:
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/mytest/31bit_modint.test.cpp
-  - test/mytest/four_square.test.cpp
 documentation_of: mod/primitive_root.hpp
 layout: document
 redirect_from:

@@ -1126,6 +1126,9 @@ data:
     path: test/mytest/three_square.test.cpp
     title: test/mytest/three_square.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/three_triangular.test.cpp
+    title: test/mytest/three_triangular.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/tournament.test.cpp
     title: test/mytest/tournament.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2970,6 +2973,7 @@ data:
   - test/mytest/max_of_linear_segments.test.cpp
   - test/mytest/range_closest_pair.test.cpp
   - test/mytest/min_poly.test.cpp
+  - test/mytest/three_triangular.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/knight_distance.test.cpp
   - test/mytest/rbst_am_2.test.cpp

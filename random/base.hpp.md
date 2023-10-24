@@ -114,6 +114,9 @@ data:
     path: nt/three_square.hpp
     title: nt/three_square.hpp
   - icon: ':heavy_check_mark:'
+    path: nt/three_triangular.hpp
+    title: nt/three_triangular.hpp
+  - icon: ':heavy_check_mark:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
   - icon: ':heavy_check_mark:'
@@ -514,6 +517,9 @@ data:
     path: test/mytest/three_square.test.cpp
     title: test/mytest/three_square.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/three_triangular.test.cpp
+    title: test/mytest/three_triangular.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/tournament.test.cpp
     title: test/mytest/tournament.test.cpp
   - icon: ':heavy_check_mark:'
@@ -712,6 +718,7 @@ data:
   - nt/function_on_divisors.hpp
   - nt/discrete_log.hpp
   - nt/divisors.hpp
+  - nt/three_triangular.hpp
   - nt/factor.hpp
   - ds/hashmap.hpp
   - ds/unionfind/parallel_unionfind.hpp
@@ -865,6 +872,7 @@ data:
   - test/mytest/max_of_linear_segments.test.cpp
   - test/mytest/range_closest_pair.test.cpp
   - test/mytest/min_poly.test.cpp
+  - test/mytest/three_triangular.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/rbst_am_2.test.cpp
   - test/mytest/chirp_z.test.cpp

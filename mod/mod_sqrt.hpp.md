@@ -15,9 +15,6 @@ data:
     path: graph/count/count_bipartite.hpp
     title: graph/count/count_bipartite.hpp
   - icon: ':heavy_check_mark:'
-    path: nt/four_square.hpp
-    title: nt/four_square.hpp
-  - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
   _extendedVerifiedWith:
@@ -33,9 +30,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_bipartite.test.cpp
     title: test/mytest/count_bipartite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/four_square.test.cpp
-    title: test/mytest/four_square.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -126,7 +120,6 @@ data:
   path: mod/mod_sqrt.hpp
   requiredBy:
   - graph/count/count_bipartite.hpp
-  - nt/four_square.hpp
   - poly/fps_sqrt.hpp
   timestamp: '2023-10-25 02:01:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -134,7 +127,6 @@ data:
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
-  - test/mytest/four_square.test.cpp
   - test/mytest/count_bipartite.test.cpp
 documentation_of: mod/mod_sqrt.hpp
 layout: document

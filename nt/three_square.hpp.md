@@ -25,11 +25,23 @@ data:
   - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: nt/four_square.hpp
+    title: nt/four_square.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/three_triangular.hpp
+    title: nt/three_triangular.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/four_square.test.cpp
+    title: test/mytest/four_square.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/three_square.test.cpp
     title: test/mytest/three_square.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/three_triangular.test.cpp
+    title: test/mytest/three_triangular.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -278,11 +290,15 @@ data:
   - mod/mod_pow.hpp
   isVerificationFile: false
   path: nt/three_square.hpp
-  requiredBy: []
+  requiredBy:
+  - nt/four_square.hpp
+  - nt/three_triangular.hpp
   timestamp: '2023-10-25 07:45:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/three_square.test.cpp
+  - test/mytest/three_triangular.test.cpp
+  - test/mytest/four_square.test.cpp
 documentation_of: nt/three_square.hpp
 layout: document
 redirect_from:

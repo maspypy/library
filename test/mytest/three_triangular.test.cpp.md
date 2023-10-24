@@ -20,9 +20,6 @@ data:
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':heavy_check_mark:'
-    path: nt/four_square.hpp
-    title: nt/four_square.hpp
-  - icon: ':heavy_check_mark:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
   - icon: ':heavy_check_mark:'
@@ -31,6 +28,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/three_square.hpp
     title: nt/three_square.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/three_triangular.hpp
+    title: nt/three_triangular.hpp
   - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
@@ -47,28 +47,28 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/four_square.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
-    )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
-    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    using u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class T>\n\
-    constexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int> = 1'000'000'000;\n\
-    template <>\nconstexpr ll infty<ll> = ll(infty<int>) * infty<int> * 2;\ntemplate\
-    \ <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\n\
-    template <>\nconstexpr double infty<double> = infty<ll>;\ntemplate <>\nconstexpr\
-    \ long double infty<long double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing\
-    \ vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
-    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
-    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
-    \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
-    template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
-    #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
-    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
-    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
-    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
-    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+  bundledCode: "#line 1 \"test/mytest/three_triangular.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if\
+    \ defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n#pragma GCC optimize(\"\
+    Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\
+    \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
+    \ u64 = unsigned long long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
+    using f128 = __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate\
+    \ <>\nconstexpr int infty<int> = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll>\
+    \ = ll(infty<int>) * infty<int> * 2;\ntemplate <>\nconstexpr u32 infty<u32> =\
+    \ infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\ntemplate <>\n\
+    constexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\ntemplate <>\nconstexpr\
+    \ double infty<double> = infty<ll>;\ntemplate <>\nconstexpr long double infty<long\
+    \ double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
+    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
+    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
+    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
+    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
+    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
@@ -231,8 +231,8 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 4 \"test/mytest/four_square.test.cpp\"\n\n#line 2 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \ yes(!t); }\n#line 4 \"test/mytest/three_triangular.test.cpp\"\n\n#line 2 \"\
+    random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
@@ -438,32 +438,31 @@ data:
     \ b, x};\n      }\n    }\n    return {-1, -1, -1};\n    assert(0);\n  };\n  ll\
     \ e = 0;\n  while (N % 4 == 0) N /= 4, ++e;\n  if (N % 8 == 7) return {-1, -1,\
     \ -1};\n  auto [a, b, c] = F(N);\n  return {a << e, b << e, c << e};\n}\n#line\
-    \ 2 \"nt/four_square.hpp\"\n\ntuple<ll, ll, ll, ll> four_square(ll N) {\n  if\
-    \ (N == 0) return {0, 0, 0, 0};\n  ll e = 0;\n  while (N % 4 == 0) N /= 4, ++e;\n\
-    \  auto [a, b, c] = three_square(N);\n  if (a != -1) return {a << e, b << e, c\
-    \ << e, 0};\n  tie(a, b, c) = three_square(N - 1);\n  return {a << e, b << e,\
-    \ c << e, 1LL << e};\n}\n#line 7 \"test/mytest/four_square.test.cpp\"\n\nvoid\
-    \ test() {\n  FOR(N, 1000000) {\n    auto [a, b, c, d] = four_square(N);\n   \
-    \ assert(N == a * a + b * b + c * c + d * d);\n  }\n  vi TEN = {1};\n  FOR(18)\
-    \ TEN.eb(TEN.back() * 10);\n  FOR(100000) {\n    ll K = RNG(0, 18);\n    ll N\
-    \ = RNG(TEN[K], TEN[K + 1]);\n    auto [a, b, c, d] = four_square(N);\n    assert(N\
-    \ == a * a + b * b + c * c + d * d);\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n\
-    \  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n\
-    }\n"
+    \ 2 \"nt/three_triangular.hpp\"\n\n// 3 \u3064\u306E x(x-1)/2 \u306E\u548C\u306B\
+    \u3059\u308B\ntuple<ll, ll, ll> three_triangular(ll N) {\n  auto [a, b, c] = three_square(8\
+    \ * N + 3);\n  a = (a + 1) / 2;\n  b = (b + 1) / 2;\n  c = (c + 1) / 2;\n  return\
+    \ {a, b, c};\n}\n#line 7 \"test/mytest/three_triangular.test.cpp\"\n\nvoid test()\
+    \ {\n  auto T = [&](ll x) -> ll { return x * (x - 1) / 2; };\n  FOR(N, 1, 1000000)\
+    \ {\n    auto [a, b, c] = three_triangular(N);\n    assert(N == T(a) + T(b) +\
+    \ T(c));\n  }\n  vi TEN = {1};\n  FOR(18) TEN.eb(TEN.back() * 10);\n  FOR(100000)\
+    \ {\n    ll K = RNG(0, 18);\n    ll N = RNG(TEN[K], TEN[K + 1]);\n    auto [a,\
+    \ b, c] = three_triangular(N);\n    assert(N == T(a) + T(b) + T(c));\n  }\n}\n\
+    \nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n\
+    \  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n\n#include \"random/base.hpp\"\n#include \"nt/four_square.hpp\"\
-    \n\nvoid test() {\n  FOR(N, 1000000) {\n    auto [a, b, c, d] = four_square(N);\n\
-    \    assert(N == a * a + b * b + c * c + d * d);\n  }\n  vi TEN = {1};\n  FOR(18)\
-    \ TEN.eb(TEN.back() * 10);\n  FOR(100000) {\n    ll K = RNG(0, 18);\n    ll N\
-    \ = RNG(TEN[K], TEN[K + 1]);\n    auto [a, b, c, d] = four_square(N);\n    assert(N\
-    \ == a * a + b * b + c * c + d * d);\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n\
-    \  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n\
-    }"
+    \n#include \"other/io.hpp\"\n\n#include \"random/base.hpp\"\n#include \"nt/three_triangular.hpp\"\
+    \n\nvoid test() {\n  auto T = [&](ll x) -> ll { return x * (x - 1) / 2; };\n \
+    \ FOR(N, 1, 1000000) {\n    auto [a, b, c] = three_triangular(N);\n    assert(N\
+    \ == T(a) + T(b) + T(c));\n  }\n  vi TEN = {1};\n  FOR(18) TEN.eb(TEN.back() *\
+    \ 10);\n  FOR(100000) {\n    ll K = RNG(0, 18);\n    ll N = RNG(TEN[K], TEN[K\
+    \ + 1]);\n    auto [a, b, c] = three_triangular(N);\n    assert(N == T(a) + T(b)\
+    \ + T(c));\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned\
+    \ main() {\n  test();\n  solve();\n\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - random/base.hpp
-  - nt/four_square.hpp
+  - nt/three_triangular.hpp
   - nt/three_square.hpp
   - nt/primetest.hpp
   - mod/dynamic_modint_64.hpp
@@ -473,15 +472,15 @@ data:
   - nt/factor.hpp
   - mod/mod_pow.hpp
   isVerificationFile: true
-  path: test/mytest/four_square.test.cpp
+  path: test/mytest/three_triangular.test.cpp
   requiredBy: []
-  timestamp: '2023-10-25 07:56:21+09:00'
+  timestamp: '2023-10-25 07:50:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/mytest/four_square.test.cpp
+documentation_of: test/mytest/three_triangular.test.cpp
 layout: document
 redirect_from:
-- /verify/test/mytest/four_square.test.cpp
-- /verify/test/mytest/four_square.test.cpp.html
-title: test/mytest/four_square.test.cpp
+- /verify/test/mytest/three_triangular.test.cpp
+- /verify/test/mytest/three_triangular.test.cpp.html
+title: test/mytest/three_triangular.test.cpp
 ---

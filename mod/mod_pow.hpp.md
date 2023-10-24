@@ -36,6 +36,9 @@ data:
     path: nt/three_square.hpp
     title: nt/three_square.hpp
   - icon: ':heavy_check_mark:'
+    path: nt/three_triangular.hpp
+    title: nt/three_triangular.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
   - icon: ':heavy_check_mark:'
@@ -115,6 +118,9 @@ data:
     path: test/mytest/three_square.test.cpp
     title: test/mytest/three_square.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/three_triangular.test.cpp
+    title: test/mytest/three_triangular.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
   - icon: ':heavy_check_mark:'
@@ -191,6 +197,7 @@ data:
   - nt/three_square.hpp
   - nt/gaussian_integers.hpp
   - nt/four_square.hpp
+  - nt/three_triangular.hpp
   - mod/dynamic_modint.hpp
   - mod/primitive_root.hpp
   - mod/mod_sqrt.hpp
@@ -234,6 +241,7 @@ data:
   - test/library_checker/math/sqrt_mod.test.cpp
   - test/mytest/31bit_modint.test.cpp
   - test/mytest/three_square.test.cpp
+  - test/mytest/three_triangular.test.cpp
   - test/mytest/four_square.test.cpp
   - test/mytest/count_bipartite.test.cpp
 documentation_of: mod/mod_pow.hpp

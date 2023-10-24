@@ -29,9 +29,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':heavy_check_mark:'
-    path: nt/four_square.hpp
-    title: nt/four_square.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
@@ -78,9 +75,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/31bit_modint.test.cpp
     title: test/mytest/31bit_modint.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/four_square.test.cpp
-    title: test/mytest/four_square.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
@@ -328,7 +322,6 @@ data:
   isVerificationFile: false
   path: mod/dynamic_modint.hpp
   requiredBy:
-  - nt/four_square.hpp
   - mod/mod_log.hpp
   timestamp: '2023-10-25 02:01:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -353,7 +346,6 @@ data:
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/mytest/31bit_modint.test.cpp
-  - test/mytest/four_square.test.cpp
 documentation_of: mod/dynamic_modint.hpp
 layout: document
 redirect_from:

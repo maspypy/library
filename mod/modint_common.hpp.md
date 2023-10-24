@@ -105,6 +105,9 @@ data:
     path: nt/three_square.hpp
     title: nt/three_square.hpp
   - icon: ':heavy_check_mark:'
+    path: nt/three_triangular.hpp
+    title: nt/three_triangular.hpp
+  - icon: ':heavy_check_mark:'
     path: other/count_seq_with_fixed_xor_value.hpp
     title: other/count_seq_with_fixed_xor_value.hpp
   - icon: ':heavy_check_mark:'
@@ -727,6 +730,9 @@ data:
     path: test/mytest/three_square.test.cpp
     title: test/mytest/three_square.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/three_triangular.test.cpp
+    title: test/mytest/three_triangular.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1236,6 +1242,7 @@ data:
   - nt/primetest.hpp
   - nt/divisors.hpp
   - nt/multiplicative_convolution_mod2n.hpp
+  - nt/three_triangular.hpp
   - nt/factor.hpp
   - seq/famous/bell_number_large.hpp
   - seq/famous/stirling_number_query.hpp
@@ -1574,6 +1581,7 @@ data:
   - test/mytest/prime_sum.test.cpp
   - test/mytest/three_square.test.cpp
   - test/mytest/min_poly.test.cpp
+  - test/mytest/three_triangular.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/chirp_z.test.cpp
   - test/mytest/four_square.test.cpp

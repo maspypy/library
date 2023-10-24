@@ -31,8 +31,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/mytest/four_square.test.cpp
-    title: test/mytest/four_square.test.cpp
+    path: test/mytest/three_triangular.test.cpp
+    title: test/mytest/three_triangular.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -246,16 +246,14 @@ data:
     \ b, x};\n      }\n    }\n    return {-1, -1, -1};\n    assert(0);\n  };\n  ll\
     \ e = 0;\n  while (N % 4 == 0) N /= 4, ++e;\n  if (N % 8 == 7) return {-1, -1,\
     \ -1};\n  auto [a, b, c] = F(N);\n  return {a << e, b << e, c << e};\n}\n#line\
-    \ 2 \"nt/four_square.hpp\"\n\ntuple<ll, ll, ll, ll> four_square(ll N) {\n  if\
-    \ (N == 0) return {0, 0, 0, 0};\n  ll e = 0;\n  while (N % 4 == 0) N /= 4, ++e;\n\
-    \  auto [a, b, c] = three_square(N);\n  if (a != -1) return {a << e, b << e, c\
-    \ << e, 0};\n  tie(a, b, c) = three_square(N - 1);\n  return {a << e, b << e,\
-    \ c << e, 1LL << e};\n}\n"
-  code: "#include \"nt/three_square.hpp\"\n\ntuple<ll, ll, ll, ll> four_square(ll\
-    \ N) {\n  if (N == 0) return {0, 0, 0, 0};\n  ll e = 0;\n  while (N % 4 == 0)\
-    \ N /= 4, ++e;\n  auto [a, b, c] = three_square(N);\n  if (a != -1) return {a\
-    \ << e, b << e, c << e, 0};\n  tie(a, b, c) = three_square(N - 1);\n  return {a\
-    \ << e, b << e, c << e, 1LL << e};\n}\n"
+    \ 2 \"nt/three_triangular.hpp\"\n\n// 3 \u3064\u306E x(x-1)/2 \u306E\u548C\u306B\
+    \u3059\u308B\ntuple<ll, ll, ll> three_triangular(ll N) {\n  auto [a, b, c] = three_square(8\
+    \ * N + 3);\n  a = (a + 1) / 2;\n  b = (b + 1) / 2;\n  c = (c + 1) / 2;\n  return\
+    \ {a, b, c};\n}\n"
+  code: "#include \"nt/three_square.hpp\"\n\n// 3 \u3064\u306E x(x-1)/2 \u306E\u548C\
+    \u306B\u3059\u308B\ntuple<ll, ll, ll> three_triangular(ll N) {\n  auto [a, b,\
+    \ c] = three_square(8 * N + 3);\n  a = (a + 1) / 2;\n  b = (b + 1) / 2;\n  c =\
+    \ (c + 1) / 2;\n  return {a, b, c};\n}\n"
   dependsOn:
   - nt/three_square.hpp
   - nt/primetest.hpp
@@ -267,16 +265,16 @@ data:
   - random/base.hpp
   - mod/mod_pow.hpp
   isVerificationFile: false
-  path: nt/four_square.hpp
+  path: nt/three_triangular.hpp
   requiredBy: []
-  timestamp: '2023-10-25 07:56:21+09:00'
+  timestamp: '2023-10-25 07:50:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/four_square.test.cpp
-documentation_of: nt/four_square.hpp
+  - test/mytest/three_triangular.test.cpp
+documentation_of: nt/three_triangular.hpp
 layout: document
 redirect_from:
-- /library/nt/four_square.hpp
-- /library/nt/four_square.hpp.html
-title: nt/four_square.hpp
+- /library/nt/three_triangular.hpp
+- /library/nt/three_triangular.hpp.html
+title: nt/three_triangular.hpp
 ---

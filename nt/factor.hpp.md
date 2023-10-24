@@ -60,6 +60,9 @@ data:
     path: nt/three_square.hpp
     title: nt/three_square.hpp
   - icon: ':heavy_check_mark:'
+    path: nt/three_triangular.hpp
+    title: nt/three_triangular.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
   _extendedVerifiedWith:
@@ -135,6 +138,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/three_square.test.cpp
     title: test/mytest/three_square.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/three_triangular.test.cpp
+    title: test/mytest/three_triangular.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
@@ -364,6 +370,7 @@ data:
   - nt/four_square.hpp
   - nt/function_on_divisors.hpp
   - nt/divisors.hpp
+  - nt/three_triangular.hpp
   - mod/dynamic_modint.hpp
   - mod/primitive_root.hpp
   - mod/mod_kth_root.hpp
@@ -418,6 +425,7 @@ data:
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/mytest/31bit_modint.test.cpp
   - test/mytest/three_square.test.cpp
+  - test/mytest/three_triangular.test.cpp
   - test/mytest/four_square.test.cpp
 documentation_of: nt/factor.hpp
 layout: document
