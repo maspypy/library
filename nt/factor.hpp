@@ -1,10 +1,10 @@
 #pragma once
+
+#include "random/base.hpp"
 #include "nt/primetest.hpp"
 
-mt19937_64 rng_mt{random_device{}()};
-ll rnd(ll n) { return uniform_int_distribution<ll>(0, n - 1)(rng_mt); }
-
 ll rho(ll n, ll c) {
+  using m64 = Dynamic_Modint_64<20231025>;
   m64::set_mod(n);
   assert(n > 1);
   const m64 cc(c);
@@ -15,9 +15,9 @@ ll rho(ll n, ll c) {
   for (ll r = 1; g == 1; r <<= 1) {
     x = y;
     FOR(_, r) y = f(y);
-    for (ll k = 0; k < r and g == 1; k += m) {
+    for (ll k = 0; k < r && g == 1; k += m) {
       z = y;
-      FOR(_, min(m, r - k)) y = f(y), q *= x - y;
+      FOR(min(m, r - k)) y = f(y), q *= x - y;
       g = gcd(q.val(), n);
     }
   }
@@ -31,13 +31,12 @@ ll rho(ll n, ll c) {
 ll find_prime_factor(ll n) {
   assert(n > 1);
   if (primetest(n)) return n;
-  FOR(_, 100) {
-    ll m = rho(n, rnd(n));
+  FOR(100) {
+    ll m = rho(n, RNG(0, n));
     if (primetest(m)) return m;
     n = m;
   }
-  cerr << "failed" << endl;
-  assert(false);
+  assert(0);
   return -1;
 }
 
@@ -45,7 +44,7 @@ ll find_prime_factor(ll n) {
 vc<pair<ll, int>> factor(ll n) {
   assert(n >= 1);
   vc<pair<ll, int>> pf;
-  FOR3(p, 2, 100) {
+  FOR(p, 2, 100) {
     if (p * p > n) break;
     if (n % p == 0) {
       ll e = 0;
