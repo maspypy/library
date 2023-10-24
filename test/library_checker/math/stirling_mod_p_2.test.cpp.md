@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/dynamic_modint_64.hpp
     title: mod/dynamic_modint_64.hpp
   - icon: ':question:'
@@ -13,20 +13,20 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_query.hpp
     title: seq/famous/stirling_number_query.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind_small_p_large_n
@@ -301,20 +301,20 @@ data:
     \ operator!=(const mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n\
     \  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val); }\n  void read()\
     \ {\n    fastio::scanner.read(val);\n    val = bt.modulo(val);\n  }\n#endif\n\
-    };\n\nusing dmint = Dynamic_Modint_64<-1>;\n#line 3 \"nt/primetest.hpp\"\n\r\n\
-    bool primetest(const u64 x) {\r\n  if (x == 2 or x == 3 or x == 5 or x == 7) return\
-    \ true;\r\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 == 0) return\
-    \ false;\r\n  if (x < 121) return x > 1;\r\n  const u64 d = (x - 1) >> lowbit(x\
-    \ - 1);\r\n  using m64 = Dynamic_Modint_64<20231024>;\r\n\r\n  m64::set_mod(x);\r\
-    \n  const m64 one(1), minus_one(x - 1);\r\n  auto ok = [&](u64 a) -> bool {\r\n\
-    \    auto y = m64(a).pow(d);\r\n    u64 t = d;\r\n    while (y != one && y !=\
-    \ minus_one && t != x - 1) y *= y, t <<= 1;\r\n    if (y != minus_one && t % 2\
-    \ == 0) return false;\r\n    return true;\r\n  };\r\n  if (x < (1ull << 32)) {\r\
-    \n    for (u64 a: {2, 7, 61})\r\n      if (!ok(a)) return false;\r\n  } else {\r\
-    \n    for (u64 a: {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\r\n  \
-    \    if (x <= a) return true;\r\n      if (!ok(a)) return false;\r\n    }\r\n\
-    \  }\r\n  return true;\r\n}\n#line 2 \"seq/famous/stirling_number_query.hpp\"\n\
-    \n// O(p^2) \u6642\u9593\u306E\u524D\u8A08\u7B97\u306E\u3082\u3068\u3001O(log\
+    };\n\nusing dmint = Dynamic_Modint_64<-1>;\ntemplate <int id>\nBarrett_64 Dynamic_Modint_64<id>::bt;\n\
+    #line 3 \"nt/primetest.hpp\"\n\r\nbool primetest(const u64 x) {\r\n  if (x ==\
+    \ 2 or x == 3 or x == 5 or x == 7) return true;\r\n  if (x % 2 == 0 or x % 3 ==\
+    \ 0 or x % 5 == 0 or x % 7 == 0) return false;\r\n  if (x < 121) return x > 1;\r\
+    \n  const u64 d = (x - 1) >> lowbit(x - 1);\r\n  using m64 = Dynamic_Modint_64<20231024>;\r\
+    \n\r\n  m64::set_mod(x);\r\n  const m64 one(u64(1)), minus_one(x - 1);\r\n  auto\
+    \ ok = [&](u64 a) -> bool {\r\n    auto y = m64(a).pow(d);\r\n    u64 t = d;\r\
+    \n    while (y != one && y != minus_one && t != x - 1) y *= y, t <<= 1;\r\n  \
+    \  if (y != minus_one && t % 2 == 0) return false;\r\n    return true;\r\n  };\r\
+    \n  if (x < (1ull << 32)) {\r\n    for (u64 a: {2, 7, 61})\r\n      if (!ok(a))\
+    \ return false;\r\n  } else {\r\n    for (u64 a: {2, 325, 9375, 28178, 450775,\
+    \ 9780504, 1795265022}) {\r\n      if (x <= a) return true;\r\n      if (!ok(a))\
+    \ return false;\r\n    }\r\n  }\r\n  return true;\r\n}\n#line 2 \"seq/famous/stirling_number_query.hpp\"\
+    \n\n// O(p^2) \u6642\u9593\u306E\u524D\u8A08\u7B97\u306E\u3082\u3068\u3001O(log\
     \ n) \u6642\u9593\nstruct Stirling_Number_Query {\n  const int p;\n  vvc<int>\
     \ MEMO_C;\n  vvc<int> MEMO_S1;\n  vvc<int> MEMO_S2;\n\n  Stirling_Number_Query(int\
     \ p, bool first_kind = true, bool second_kind = true)\n      : p(p) {\n    assert(primetest(p));\n\
@@ -368,8 +368,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/stirling_mod_p_2.test.cpp
   requiredBy: []
-  timestamp: '2023-10-24 21:04:29+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-10-24 21:40:49+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/stirling_mod_p_2.test.cpp
 layout: document

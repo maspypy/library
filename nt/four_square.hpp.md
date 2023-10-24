@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/dynamic_modint_64.hpp
     title: mod/dynamic_modint_64.hpp
   - icon: ':question:'
@@ -25,7 +25,7 @@ data:
   - icon: ':x:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':question:'
@@ -130,36 +130,36 @@ data:
     \ operator!=(const mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n\
     \  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val); }\n  void read()\
     \ {\n    fastio::scanner.read(val);\n    val = bt.modulo(val);\n  }\n#endif\n\
-    };\n\nusing dmint = Dynamic_Modint_64<-1>;\n#line 3 \"nt/primetest.hpp\"\n\r\n\
-    bool primetest(const u64 x) {\r\n  if (x == 2 or x == 3 or x == 5 or x == 7) return\
-    \ true;\r\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 == 0) return\
-    \ false;\r\n  if (x < 121) return x > 1;\r\n  const u64 d = (x - 1) >> lowbit(x\
-    \ - 1);\r\n  using m64 = Dynamic_Modint_64<20231024>;\r\n\r\n  m64::set_mod(x);\r\
-    \n  const m64 one(1), minus_one(x - 1);\r\n  auto ok = [&](u64 a) -> bool {\r\n\
-    \    auto y = m64(a).pow(d);\r\n    u64 t = d;\r\n    while (y != one && y !=\
-    \ minus_one && t != x - 1) y *= y, t <<= 1;\r\n    if (y != minus_one && t % 2\
-    \ == 0) return false;\r\n    return true;\r\n  };\r\n  if (x < (1ull << 32)) {\r\
-    \n    for (u64 a: {2, 7, 61})\r\n      if (!ok(a)) return false;\r\n  } else {\r\
-    \n    for (u64 a: {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\r\n  \
-    \    if (x <= a) return true;\r\n      if (!ok(a)) return false;\r\n    }\r\n\
-    \  }\r\n  return true;\r\n}\n#line 5 \"nt/factor.hpp\"\n\nll rho(ll n, ll c) {\n\
-    \  using m64 = Dynamic_Modint_64<20231025>;\n  m64::set_mod(n);\n  assert(n >\
-    \ 1);\n  const m64 cc(c);\n  auto f = [&](m64 x) { return x * x + cc; };\n  m64\
-    \ x = 1, y = 2, z = 1, q = 1;\n  ll g = 1;\n  const ll m = 1LL << (__lg(n) / 5);\
-    \ // ?\n  for (ll r = 1; g == 1; r <<= 1) {\n    x = y;\n    FOR(_, r) y = f(y);\n\
-    \    for (ll k = 0; k < r && g == 1; k += m) {\n      z = y;\n      FOR(min(m,\
-    \ r - k)) y = f(y), q *= x - y;\n      g = gcd(q.val(), n);\n    }\n  }\n  if\
-    \ (g == n) do {\n      z = f(z);\n      g = gcd((x - z).val(), n);\n    } while\
-    \ (g == 1);\n  return g;\n}\n\nll find_prime_factor(ll n) {\n  assert(n > 1);\n\
-    \  if (primetest(n)) return n;\n  FOR(100) {\n    ll m = rho(n, RNG(0, n));\n\
-    \    if (primetest(m)) return m;\n    n = m;\n  }\n  assert(0);\n  return -1;\n\
-    }\n\n// \u30BD\u30FC\u30C8\u3057\u3066\u304F\u308C\u308B\nvc<pair<ll, int>> factor(ll\
-    \ n) {\n  assert(n >= 1);\n  vc<pair<ll, int>> pf;\n  FOR(p, 2, 100) {\n    if\
-    \ (p * p > n) break;\n    if (n % p == 0) {\n      ll e = 0;\n      do { n /=\
-    \ p, e += 1; } while (n % p == 0);\n      pf.eb(p, e);\n    }\n  }\n  while (n\
-    \ > 1) {\n    ll p = find_prime_factor(n);\n    ll e = 0;\n    do { n /= p, e\
-    \ += 1; } while (n % p == 0);\n    pf.eb(p, e);\n  }\n  sort(all(pf));\n  return\
-    \ pf;\n}\n\nvc<pair<ll, int>> factor_by_lpf(ll n, vc<int>& lpf) {\n  vc<pair<ll,\
+    };\n\nusing dmint = Dynamic_Modint_64<-1>;\ntemplate <int id>\nBarrett_64 Dynamic_Modint_64<id>::bt;\n\
+    #line 3 \"nt/primetest.hpp\"\n\r\nbool primetest(const u64 x) {\r\n  if (x ==\
+    \ 2 or x == 3 or x == 5 or x == 7) return true;\r\n  if (x % 2 == 0 or x % 3 ==\
+    \ 0 or x % 5 == 0 or x % 7 == 0) return false;\r\n  if (x < 121) return x > 1;\r\
+    \n  const u64 d = (x - 1) >> lowbit(x - 1);\r\n  using m64 = Dynamic_Modint_64<20231024>;\r\
+    \n\r\n  m64::set_mod(x);\r\n  const m64 one(u64(1)), minus_one(x - 1);\r\n  auto\
+    \ ok = [&](u64 a) -> bool {\r\n    auto y = m64(a).pow(d);\r\n    u64 t = d;\r\
+    \n    while (y != one && y != minus_one && t != x - 1) y *= y, t <<= 1;\r\n  \
+    \  if (y != minus_one && t % 2 == 0) return false;\r\n    return true;\r\n  };\r\
+    \n  if (x < (1ull << 32)) {\r\n    for (u64 a: {2, 7, 61})\r\n      if (!ok(a))\
+    \ return false;\r\n  } else {\r\n    for (u64 a: {2, 325, 9375, 28178, 450775,\
+    \ 9780504, 1795265022}) {\r\n      if (x <= a) return true;\r\n      if (!ok(a))\
+    \ return false;\r\n    }\r\n  }\r\n  return true;\r\n}\n#line 5 \"nt/factor.hpp\"\
+    \n\nll rho(ll n, ll c) {\n  using m64 = Dynamic_Modint_64<20231025>;\n  m64::set_mod(n);\n\
+    \  assert(n > 1);\n  const m64 cc(c);\n  auto f = [&](m64 x) { return x * x +\
+    \ cc; };\n  m64 x = 1, y = 2, z = 1, q = 1;\n  ll g = 1;\n  const ll m = 1LL <<\
+    \ (__lg(n) / 5); // ?\n  for (ll r = 1; g == 1; r <<= 1) {\n    x = y;\n    FOR(_,\
+    \ r) y = f(y);\n    for (ll k = 0; k < r && g == 1; k += m) {\n      z = y;\n\
+    \      FOR(min(m, r - k)) y = f(y), q *= x - y;\n      g = gcd(q.val(), n);\n\
+    \    }\n  }\n  if (g == n) do {\n      z = f(z);\n      g = gcd((x - z).val(),\
+    \ n);\n    } while (g == 1);\n  return g;\n}\n\nll find_prime_factor(ll n) {\n\
+    \  assert(n > 1);\n  if (primetest(n)) return n;\n  FOR(100) {\n    ll m = rho(n,\
+    \ RNG(0, n));\n    if (primetest(m)) return m;\n    n = m;\n  }\n  assert(0);\n\
+    \  return -1;\n}\n\n// \u30BD\u30FC\u30C8\u3057\u3066\u304F\u308C\u308B\nvc<pair<ll,\
+    \ int>> factor(ll n) {\n  assert(n >= 1);\n  vc<pair<ll, int>> pf;\n  FOR(p, 2,\
+    \ 100) {\n    if (p * p > n) break;\n    if (n % p == 0) {\n      ll e = 0;\n\
+    \      do { n /= p, e += 1; } while (n % p == 0);\n      pf.eb(p, e);\n    }\n\
+    \  }\n  while (n > 1) {\n    ll p = find_prime_factor(n);\n    ll e = 0;\n   \
+    \ do { n /= p, e += 1; } while (n % p == 0);\n    pf.eb(p, e);\n  }\n  sort(all(pf));\n\
+    \  return pf;\n}\n\nvc<pair<ll, int>> factor_by_lpf(ll n, vc<int>& lpf) {\n  vc<pair<ll,\
     \ int>> res;\n  while (n > 1) {\n    int p = lpf[n];\n    int e = 0;\n    while\
     \ (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n \
     \ return res;\n}\n#line 3 \"mod/mod_pow.hpp\"\n\r\nint mod_pow(int a, ll n, int\
@@ -236,51 +236,52 @@ data:
     \ {\n    int mod = get_mod();\n    int k = lowbit(mod - 1);\n    int r = primitive_root(mod);\n\
     \    r = mod_pow(r, (mod - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static\
     \ pair<int, int> ntt_info() { return get_ntt(); }\n  static bool can_ntt() { return\
-    \ ntt_info().fi != -1; }\n};\n\nusing dmint = Dynamic_Modint<-1>;\n#line 5 \"\
-    nt/four_square.hpp\"\n\n// N = a^2+b^2+c^2+d^2 \u3068\u306A\u308B (a,b,c,d) \u3092\
-    \u3072\u3068\u3064\u8FD4\u3059\n// \u73FE\u72B6\uFF1A\u7D20\u56E0\u6570\u304C\
-    \ 32 bit \u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\uFF01\uFF01\uFF01\uFF01\uFF01\
-    \uFF01\uFF01\uFF01\uFF01\ntuple<ll, ll, ll, ll> four_square(ll N) {\n  if (N ==\
-    \ 0) return {0, 0, 0, 0};\n  using T4 = tuple<ll, ll, ll, ll>;\n  auto mul = [&](T4\
-    \ x, T4 y) -> T4 {\n    auto [x1, x2, x3, x4] = x;\n    auto [y1, y2, y3, y4]\
-    \ = y;\n    ll z1 = abs(x1 * y1 + x2 * y2 + x3 * y3 + x4 * y4);\n    ll z2 = abs(x1\
-    \ * y2 - x2 * y1 + x3 * y4 - x4 * y3);\n    ll z3 = abs(x1 * y3 - x2 * y4 - x3\
-    \ * y1 + x4 * y2);\n    ll z4 = abs(x1 * y4 + x2 * y3 - x3 * y2 - x4 * y1);\n\
-    \    return {z1, z2, z3, z4};\n  };\n\n  auto solve_p_32 = [&](ll p) -> T4 {\n\
-    \    if (p == 2) return {1, 1, 0, 0};\n    auto [a, b] = [&]() -> pair<ll, ll>\
-    \ {\n      while (1) {\n        ll a = RNG(0, p);\n        ll bb = (p - 1 - a\
-    \ * a) % p;\n        if (bb < 0) bb += p;\n        ll b = mod_sqrt(bb, p);\n \
-    \       if ((a * a + b * b + 1) % p == 0) return {a, b};\n      }\n      return\
-    \ {0, 0};\n    }();\n    T4 x = {a, b, 1, 0};\n    while (1) {\n      auto& [x1,\
-    \ x2, x3, x4] = x;\n      chmin(x1, p - x1), chmin(x2, p - x2), chmin(x3, p -\
-    \ x3),\n          chmin(x4, p - x4);\n      ll m = (x1 * x1 + x2 * x2 + x3 * x3\
-    \ + x4 * x4) / p;\n      if (m == 1) break;\n      ll y1 = x1 % m, y2 = x2 % m,\
-    \ y3 = x3 % m, y4 = x4 % m;\n      if (y1 > m / 2) y1 -= m;\n      if (y2 > m\
-    \ / 2) y2 -= m;\n      if (y3 > m / 2) y3 -= m;\n      if (y4 > m / 2) y4 -= m;\n\
-    \      auto [z1, z2, z3, z4] = mul(x, {y1, y2, y3, y4});\n      x = mt(z1 / m,\
-    \ z2 / m, z3 / m, z4 / m);\n    }\n    return x;\n  };\n\n  auto solve_p_64 =\
-    \ [&](ll p) -> T4 {\n    using TT4 = tuple<i128, i128, i128, i128>;\n    auto\
-    \ mul = [&](TT4 x, TT4 y) -> TT4 {\n      auto [x1, x2, x3, x4] = x;\n      auto\
-    \ [y1, y2, y3, y4] = y;\n      i128 z1 = x1 * y1 + x2 * y2 + x3 * y3 + x4 * y4;\n\
-    \      i128 z2 = x1 * y2 - x2 * y1 + x3 * y4 - x4 * y3;\n      i128 z3 = x1 *\
-    \ y3 - x2 * y4 - x3 * y1 + x4 * y2;\n      i128 z4 = x1 * y4 + x2 * y3 - x3 *\
-    \ y2 - x4 * y1;\n      if (z1 < 0) z1 = -z1;\n      if (z2 < 0) z2 = -z2;\n  \
-    \    if (z3 < 0) z3 = -z3;\n      if (z4 < 0) z4 = -z4;\n      return {z1, z2,\
-    \ z3, z4};\n    };\n\n    auto [a, b] = [&]() -> pair<i128, i128> {\n      while\
-    \ (1) {\n        i128 a = RNG(0, p);\n        i128 bb = (p - 1 - a * a) % p;\n\
-    \        if (bb < 0) bb += p;\n        i128 b = mod_sqrt_64(bb, p);\n        if\
-    \ ((a * a + b * b + 1) % p == 0) return {a, b};\n      }\n      return {0, 0};\n\
-    \    }();\n    TT4 x = {a, b, 1, 0};\n    while (1) {\n      auto& [x1, x2, x3,\
-    \ x4] = x;\n      chmin(x1, p - x1), chmin(x2, p - x2), chmin(x3, p - x3),\n \
-    \         chmin(x4, p - x4);\n      i128 m = (x1 * x1 + x2 * x2 + x3 * x3 + x4\
-    \ * x4) / p;\n      if (m == 1) break;\n      i128 y1 = x1 % m, y2 = x2 % m, y3\
-    \ = x3 % m, y4 = x4 % m;\n      if (y1 > m / 2) y1 -= m;\n      if (y2 > m / 2)\
-    \ y2 -= m;\n      if (y3 > m / 2) y3 -= m;\n      if (y4 > m / 2) y4 -= m;\n \
-    \     auto [z1, z2, z3, z4] = mul(x, {y1, y2, y3, y4});\n      x = mt(z1 / m,\
-    \ z2 / m, z3 / m, z4 / m);\n    }\n    {\n      auto [a, b, c, d] = x;\n     \
-    \ return {a, b, c, d};\n    }\n  };\n  T4 x = {1, 0, 0, 0};\n  for (auto&& [p,\
-    \ e]: factor(N)) {\n    T4 y = (p < (1 << 30) ? solve_p_32(p) : solve_p_64(p));\n\
-    \    FOR(e) x = mul(x, y);\n  }\n  return x;\n}\n"
+    \ ntt_info().fi != -1; }\n};\n\nusing dmint = Dynamic_Modint<-1>;\ntemplate <int\
+    \ id>\nBarrett Dynamic_Modint<id>::bt;\n#line 5 \"nt/four_square.hpp\"\n\n// N\
+    \ = a^2+b^2+c^2+d^2 \u3068\u306A\u308B (a,b,c,d) \u3092\u3072\u3068\u3064\u8FD4\
+    \u3059\n// \u73FE\u72B6\uFF1A\u7D20\u56E0\u6570\u304C 32 bit \u3092\u4EEE\u5B9A\
+    \u3057\u3066\u3044\u308B\uFF01\uFF01\uFF01\uFF01\uFF01\uFF01\uFF01\uFF01\uFF01\
+    \ntuple<ll, ll, ll, ll> four_square(ll N) {\n  if (N == 0) return {0, 0, 0, 0};\n\
+    \  using T4 = tuple<ll, ll, ll, ll>;\n  auto mul = [&](T4 x, T4 y) -> T4 {\n \
+    \   auto [x1, x2, x3, x4] = x;\n    auto [y1, y2, y3, y4] = y;\n    ll z1 = abs(x1\
+    \ * y1 + x2 * y2 + x3 * y3 + x4 * y4);\n    ll z2 = abs(x1 * y2 - x2 * y1 + x3\
+    \ * y4 - x4 * y3);\n    ll z3 = abs(x1 * y3 - x2 * y4 - x3 * y1 + x4 * y2);\n\
+    \    ll z4 = abs(x1 * y4 + x2 * y3 - x3 * y2 - x4 * y1);\n    return {z1, z2,\
+    \ z3, z4};\n  };\n\n  auto solve_p_32 = [&](ll p) -> T4 {\n    if (p == 2) return\
+    \ {1, 1, 0, 0};\n    auto [a, b] = [&]() -> pair<ll, ll> {\n      while (1) {\n\
+    \        ll a = RNG(0, p);\n        ll bb = (p - 1 - a * a) % p;\n        if (bb\
+    \ < 0) bb += p;\n        ll b = mod_sqrt(bb, p);\n        if ((a * a + b * b +\
+    \ 1) % p == 0) return {a, b};\n      }\n      return {0, 0};\n    }();\n    T4\
+    \ x = {a, b, 1, 0};\n    while (1) {\n      auto& [x1, x2, x3, x4] = x;\n    \
+    \  chmin(x1, p - x1), chmin(x2, p - x2), chmin(x3, p - x3),\n          chmin(x4,\
+    \ p - x4);\n      ll m = (x1 * x1 + x2 * x2 + x3 * x3 + x4 * x4) / p;\n      if\
+    \ (m == 1) break;\n      ll y1 = x1 % m, y2 = x2 % m, y3 = x3 % m, y4 = x4 % m;\n\
+    \      if (y1 > m / 2) y1 -= m;\n      if (y2 > m / 2) y2 -= m;\n      if (y3\
+    \ > m / 2) y3 -= m;\n      if (y4 > m / 2) y4 -= m;\n      auto [z1, z2, z3, z4]\
+    \ = mul(x, {y1, y2, y3, y4});\n      x = mt(z1 / m, z2 / m, z3 / m, z4 / m);\n\
+    \    }\n    return x;\n  };\n\n  auto solve_p_64 = [&](ll p) -> T4 {\n    using\
+    \ TT4 = tuple<i128, i128, i128, i128>;\n    auto mul = [&](TT4 x, TT4 y) -> TT4\
+    \ {\n      auto [x1, x2, x3, x4] = x;\n      auto [y1, y2, y3, y4] = y;\n    \
+    \  i128 z1 = x1 * y1 + x2 * y2 + x3 * y3 + x4 * y4;\n      i128 z2 = x1 * y2 -\
+    \ x2 * y1 + x3 * y4 - x4 * y3;\n      i128 z3 = x1 * y3 - x2 * y4 - x3 * y1 +\
+    \ x4 * y2;\n      i128 z4 = x1 * y4 + x2 * y3 - x3 * y2 - x4 * y1;\n      if (z1\
+    \ < 0) z1 = -z1;\n      if (z2 < 0) z2 = -z2;\n      if (z3 < 0) z3 = -z3;\n \
+    \     if (z4 < 0) z4 = -z4;\n      return {z1, z2, z3, z4};\n    };\n\n    auto\
+    \ [a, b] = [&]() -> pair<i128, i128> {\n      while (1) {\n        i128 a = RNG(0,\
+    \ p);\n        i128 bb = (p - 1 - a * a) % p;\n        if (bb < 0) bb += p;\n\
+    \        i128 b = mod_sqrt_64(bb, p);\n        if ((a * a + b * b + 1) % p ==\
+    \ 0) return {a, b};\n      }\n      return {0, 0};\n    }();\n    TT4 x = {a,\
+    \ b, 1, 0};\n    while (1) {\n      auto& [x1, x2, x3, x4] = x;\n      chmin(x1,\
+    \ p - x1), chmin(x2, p - x2), chmin(x3, p - x3),\n          chmin(x4, p - x4);\n\
+    \      i128 m = (x1 * x1 + x2 * x2 + x3 * x3 + x4 * x4) / p;\n      if (m == 1)\
+    \ break;\n      i128 y1 = x1 % m, y2 = x2 % m, y3 = x3 % m, y4 = x4 % m;\n   \
+    \   if (y1 > m / 2) y1 -= m;\n      if (y2 > m / 2) y2 -= m;\n      if (y3 > m\
+    \ / 2) y3 -= m;\n      if (y4 > m / 2) y4 -= m;\n      auto [z1, z2, z3, z4] =\
+    \ mul(x, {y1, y2, y3, y4});\n      x = mt(z1 / m, z2 / m, z3 / m, z4 / m);\n \
+    \   }\n    {\n      auto [a, b, c, d] = x;\n      return {a, b, c, d};\n    }\n\
+    \  };\n  T4 x = {1, 0, 0, 0};\n  for (auto&& [p, e]: factor(N)) {\n    T4 y =\
+    \ (p < (1 << 30) ? solve_p_32(p) : solve_p_64(p));\n    FOR(e) x = mul(x, y);\n\
+    \  }\n  return x;\n}\n"
   code: "#include \"nt/factor.hpp\"\n#include \"random/base.hpp\"\n#include \"mod/mod_sqrt.hpp\"\
     \n#include \"mod/dynamic_modint.hpp\"\n\n// N = a^2+b^2+c^2+d^2 \u3068\u306A\u308B\
     \ (a,b,c,d) \u3092\u3072\u3068\u3064\u8FD4\u3059\n// \u73FE\u72B6\uFF1A\u7D20\u56E0\
@@ -340,7 +341,7 @@ data:
   isVerificationFile: false
   path: nt/four_square.hpp
   requiredBy: []
-  timestamp: '2023-10-24 21:04:29+09:00'
+  timestamp: '2023-10-24 21:40:49+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/four_square.test.cpp

@@ -8,7 +8,7 @@ data:
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
   - icon: ':x:'
@@ -53,17 +53,17 @@ data:
   - icon: ':x:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':x:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_query.hpp
     title: seq/famous/stirling_number_query.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_1_C.test.cpp
     title: test/aoj/ALDS1_1_C.test.cpp
   - icon: ':x:'
@@ -81,7 +81,7 @@ data:
   - icon: ':x:'
     path: test/library_checker/convolution/convolution_mod_setntt.test.cpp
     title: test/library_checker/convolution/convolution_mod_setntt.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/chromatic_number.test.cpp
     title: test/library_checker/graph/chromatic_number.test.cpp
   - icon: ':x:'
@@ -99,16 +99,16 @@ data:
   - icon: ':x:'
     path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/primality_test.test.cpp
     title: test/library_checker/math/primality_test.test.cpp
   - icon: ':x:'
     path: test/library_checker/math/primitive_root.test.cpp
     title: test/library_checker/math/primitive_root.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_mod_p_1.test.cpp
     title: test/library_checker/math/stirling_mod_p_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_mod_p_2.test.cpp
     title: test/library_checker/math/stirling_mod_p_2.test.cpp
   - icon: ':x:'
@@ -212,7 +212,7 @@ data:
     title: test_atcoder/agc058d2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/contest/453/problem/D
@@ -300,7 +300,7 @@ data:
     \ operator!=(const mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n\
     \  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val); }\n  void read()\
     \ {\n    fastio::scanner.read(val);\n    val = bt.modulo(val);\n  }\n#endif\n\
-    };\n\nusing dmint = Dynamic_Modint_64<-1>;\n"
+    };\n\nusing dmint = Dynamic_Modint_64<-1>;\ntemplate <int id>\nBarrett_64 Dynamic_Modint_64<id>::bt;\n"
   code: "#pragma once\n\n#include \"mod/modint_common.hpp\"\n#include \"mod/barrett.hpp\"\
     \n\n// https://codeforces.com/contest/453/problem/D\ntemplate <int id>\nstruct\
     \ Dynamic_Modint_64 {\n  static constexpr bool is_modint = true;\n  using mint\
@@ -331,7 +331,8 @@ data:
     \ lhs.val == rhs.val;\n  }\n  friend bool operator!=(const mint& lhs, const mint&\
     \ rhs) {\n    return lhs.val != rhs.val;\n  }\n#ifdef FASTIO\n  void write() {\
     \ fastio::printer.write(val); }\n  void read() {\n    fastio::scanner.read(val);\n\
-    \    val = bt.modulo(val);\n  }\n#endif\n};\n\nusing dmint = Dynamic_Modint_64<-1>;\n"
+    \    val = bt.modulo(val);\n  }\n#endif\n};\n\nusing dmint = Dynamic_Modint_64<-1>;\n\
+    template <int id>\nBarrett_64 Dynamic_Modint_64<id>::bt;\n"
   dependsOn:
   - mod/modint_common.hpp
   - mod/barrett.hpp
@@ -356,8 +357,8 @@ data:
   - mod/binomial.hpp
   - mod/tetration.hpp
   - poly/multivar_convolution_cyclic.hpp
-  timestamp: '2023-10-24 20:44:29+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-10-24 21:40:49+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc212g.test.cpp
   - test_atcoder/agc058d2.test.cpp

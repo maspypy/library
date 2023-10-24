@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/dynamic_modint_64.hpp
     title: mod/dynamic_modint_64.hpp
   - icon: ':question:'
@@ -31,7 +31,7 @@ data:
   - icon: ':x:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':question:'
@@ -318,25 +318,25 @@ data:
     \ operator!=(const mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n\
     \  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val); }\n  void read()\
     \ {\n    fastio::scanner.read(val);\n    val = bt.modulo(val);\n  }\n#endif\n\
-    };\n\nusing dmint = Dynamic_Modint_64<-1>;\n#line 3 \"nt/primetest.hpp\"\n\r\n\
-    bool primetest(const u64 x) {\r\n  if (x == 2 or x == 3 or x == 5 or x == 7) return\
-    \ true;\r\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 == 0) return\
-    \ false;\r\n  if (x < 121) return x > 1;\r\n  const u64 d = (x - 1) >> lowbit(x\
-    \ - 1);\r\n  using m64 = Dynamic_Modint_64<20231024>;\r\n\r\n  m64::set_mod(x);\r\
-    \n  const m64 one(1), minus_one(x - 1);\r\n  auto ok = [&](u64 a) -> bool {\r\n\
-    \    auto y = m64(a).pow(d);\r\n    u64 t = d;\r\n    while (y != one && y !=\
-    \ minus_one && t != x - 1) y *= y, t <<= 1;\r\n    if (y != minus_one && t % 2\
-    \ == 0) return false;\r\n    return true;\r\n  };\r\n  if (x < (1ull << 32)) {\r\
-    \n    for (u64 a: {2, 7, 61})\r\n      if (!ok(a)) return false;\r\n  } else {\r\
-    \n    for (u64 a: {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\r\n  \
-    \    if (x <= a) return true;\r\n      if (!ok(a)) return false;\r\n    }\r\n\
-    \  }\r\n  return true;\r\n}\n#line 2 \"mod/primitive_root.hpp\"\n\r\n#line 2 \"\
-    nt/factor.hpp\"\n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t\
-    \ x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n         \
-    \            chrono::high_resolution_clock::now().time_since_epoch())\n      \
-    \               .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n\
-    \  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
-    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 5 \"nt/factor.hpp\"\
+    };\n\nusing dmint = Dynamic_Modint_64<-1>;\ntemplate <int id>\nBarrett_64 Dynamic_Modint_64<id>::bt;\n\
+    #line 3 \"nt/primetest.hpp\"\n\r\nbool primetest(const u64 x) {\r\n  if (x ==\
+    \ 2 or x == 3 or x == 5 or x == 7) return true;\r\n  if (x % 2 == 0 or x % 3 ==\
+    \ 0 or x % 5 == 0 or x % 7 == 0) return false;\r\n  if (x < 121) return x > 1;\r\
+    \n  const u64 d = (x - 1) >> lowbit(x - 1);\r\n  using m64 = Dynamic_Modint_64<20231024>;\r\
+    \n\r\n  m64::set_mod(x);\r\n  const m64 one(u64(1)), minus_one(x - 1);\r\n  auto\
+    \ ok = [&](u64 a) -> bool {\r\n    auto y = m64(a).pow(d);\r\n    u64 t = d;\r\
+    \n    while (y != one && y != minus_one && t != x - 1) y *= y, t <<= 1;\r\n  \
+    \  if (y != minus_one && t % 2 == 0) return false;\r\n    return true;\r\n  };\r\
+    \n  if (x < (1ull << 32)) {\r\n    for (u64 a: {2, 7, 61})\r\n      if (!ok(a))\
+    \ return false;\r\n  } else {\r\n    for (u64 a: {2, 325, 9375, 28178, 450775,\
+    \ 9780504, 1795265022}) {\r\n      if (x <= a) return true;\r\n      if (!ok(a))\
+    \ return false;\r\n    }\r\n  }\r\n  return true;\r\n}\n#line 2 \"mod/primitive_root.hpp\"\
+    \n\r\n#line 2 \"nt/factor.hpp\"\n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
+    \ {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 5 \"nt/factor.hpp\"\
     \n\nll rho(ll n, ll c) {\n  using m64 = Dynamic_Modint_64<20231025>;\n  m64::set_mod(n);\n\
     \  assert(n > 1);\n  const m64 cc(c);\n  auto f = [&](m64 x) { return x * x +\
     \ cc; };\n  m64 x = 1, y = 2, z = 1, q = 1;\n  ll g = 1;\n  const ll m = 1LL <<\
@@ -495,7 +495,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/kth_root_mod.test.cpp
   requiredBy: []
-  timestamp: '2023-10-24 21:04:29+09:00'
+  timestamp: '2023-10-24 21:40:49+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/kth_root_mod.test.cpp

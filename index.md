@@ -651,7 +651,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/centroid.hpp
       title: graph/centroid.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/chromatic.hpp
       title: graph/chromatic.hpp
     - icon: ':warning:'
@@ -1036,7 +1036,7 @@ data:
     - icon: ':x:'
       path: mod/dynamic_modint.hpp
       title: mod/dynamic_modint.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: mod/dynamic_modint_64.hpp
       title: mod/dynamic_modint_64.hpp
     - icon: ':heavy_check_mark:'
@@ -1198,7 +1198,7 @@ data:
     - icon: ':question:'
       path: nt/primetable.hpp
       title: nt/primetable.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: nt/primetest.hpp
       title: nt/primetest.hpp
     - icon: ':warning:'
@@ -1546,7 +1546,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/famous/stirling_number_2.hpp
       title: seq/famous/stirling_number_2.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: seq/famous/stirling_number_query.hpp
       title: seq/famous/stirling_number_query.hpp
     - icon: ':heavy_check_mark:'
@@ -1718,7 +1718,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_14_C.test.cpp
       title: test/aoj/ALDS1_14_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_1_C.test.cpp
       title: test/aoj/ALDS1_1_C.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2116,7 +2116,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/bipartitematching.test.cpp
       title: test/library_checker/graph/bipartitematching.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/chromatic_number.test.cpp
       title: test/library_checker/graph/chromatic_number.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2229,7 +2229,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/partition.test.cpp
       title: test/library_checker/math/partition.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/primality_test.test.cpp
       title: test/library_checker/math/primality_test.test.cpp
     - icon: ':x:'
@@ -2244,10 +2244,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/sqrt_mod.test.cpp
       title: test/library_checker/math/sqrt_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/stirling_mod_p_1.test.cpp
       title: test/library_checker/math/stirling_mod_p_1.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/stirling_mod_p_2.test.cpp
       title: test/library_checker/math/stirling_mod_p_2.test.cpp
     - icon: ':heavy_check_mark:'

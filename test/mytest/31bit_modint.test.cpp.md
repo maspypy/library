@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/dynamic_modint_64.hpp
     title: mod/dynamic_modint_64.hpp
   - icon: ':question:'
@@ -28,7 +28,7 @@ data:
   - icon: ':x:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':question:'
@@ -356,36 +356,36 @@ data:
     \ operator!=(const mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n\
     \  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val); }\n  void read()\
     \ {\n    fastio::scanner.read(val);\n    val = bt.modulo(val);\n  }\n#endif\n\
-    };\n\nusing dmint = Dynamic_Modint_64<-1>;\n#line 3 \"nt/primetest.hpp\"\n\r\n\
-    bool primetest(const u64 x) {\r\n  if (x == 2 or x == 3 or x == 5 or x == 7) return\
-    \ true;\r\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 == 0) return\
-    \ false;\r\n  if (x < 121) return x > 1;\r\n  const u64 d = (x - 1) >> lowbit(x\
-    \ - 1);\r\n  using m64 = Dynamic_Modint_64<20231024>;\r\n\r\n  m64::set_mod(x);\r\
-    \n  const m64 one(1), minus_one(x - 1);\r\n  auto ok = [&](u64 a) -> bool {\r\n\
-    \    auto y = m64(a).pow(d);\r\n    u64 t = d;\r\n    while (y != one && y !=\
-    \ minus_one && t != x - 1) y *= y, t <<= 1;\r\n    if (y != minus_one && t % 2\
-    \ == 0) return false;\r\n    return true;\r\n  };\r\n  if (x < (1ull << 32)) {\r\
-    \n    for (u64 a: {2, 7, 61})\r\n      if (!ok(a)) return false;\r\n  } else {\r\
-    \n    for (u64 a: {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\r\n  \
-    \    if (x <= a) return true;\r\n      if (!ok(a)) return false;\r\n    }\r\n\
-    \  }\r\n  return true;\r\n}\n#line 5 \"nt/factor.hpp\"\n\nll rho(ll n, ll c) {\n\
-    \  using m64 = Dynamic_Modint_64<20231025>;\n  m64::set_mod(n);\n  assert(n >\
-    \ 1);\n  const m64 cc(c);\n  auto f = [&](m64 x) { return x * x + cc; };\n  m64\
-    \ x = 1, y = 2, z = 1, q = 1;\n  ll g = 1;\n  const ll m = 1LL << (__lg(n) / 5);\
-    \ // ?\n  for (ll r = 1; g == 1; r <<= 1) {\n    x = y;\n    FOR(_, r) y = f(y);\n\
-    \    for (ll k = 0; k < r && g == 1; k += m) {\n      z = y;\n      FOR(min(m,\
-    \ r - k)) y = f(y), q *= x - y;\n      g = gcd(q.val(), n);\n    }\n  }\n  if\
-    \ (g == n) do {\n      z = f(z);\n      g = gcd((x - z).val(), n);\n    } while\
-    \ (g == 1);\n  return g;\n}\n\nll find_prime_factor(ll n) {\n  assert(n > 1);\n\
-    \  if (primetest(n)) return n;\n  FOR(100) {\n    ll m = rho(n, RNG(0, n));\n\
-    \    if (primetest(m)) return m;\n    n = m;\n  }\n  assert(0);\n  return -1;\n\
-    }\n\n// \u30BD\u30FC\u30C8\u3057\u3066\u304F\u308C\u308B\nvc<pair<ll, int>> factor(ll\
-    \ n) {\n  assert(n >= 1);\n  vc<pair<ll, int>> pf;\n  FOR(p, 2, 100) {\n    if\
-    \ (p * p > n) break;\n    if (n % p == 0) {\n      ll e = 0;\n      do { n /=\
-    \ p, e += 1; } while (n % p == 0);\n      pf.eb(p, e);\n    }\n  }\n  while (n\
-    \ > 1) {\n    ll p = find_prime_factor(n);\n    ll e = 0;\n    do { n /= p, e\
-    \ += 1; } while (n % p == 0);\n    pf.eb(p, e);\n  }\n  sort(all(pf));\n  return\
-    \ pf;\n}\n\nvc<pair<ll, int>> factor_by_lpf(ll n, vc<int>& lpf) {\n  vc<pair<ll,\
+    };\n\nusing dmint = Dynamic_Modint_64<-1>;\ntemplate <int id>\nBarrett_64 Dynamic_Modint_64<id>::bt;\n\
+    #line 3 \"nt/primetest.hpp\"\n\r\nbool primetest(const u64 x) {\r\n  if (x ==\
+    \ 2 or x == 3 or x == 5 or x == 7) return true;\r\n  if (x % 2 == 0 or x % 3 ==\
+    \ 0 or x % 5 == 0 or x % 7 == 0) return false;\r\n  if (x < 121) return x > 1;\r\
+    \n  const u64 d = (x - 1) >> lowbit(x - 1);\r\n  using m64 = Dynamic_Modint_64<20231024>;\r\
+    \n\r\n  m64::set_mod(x);\r\n  const m64 one(u64(1)), minus_one(x - 1);\r\n  auto\
+    \ ok = [&](u64 a) -> bool {\r\n    auto y = m64(a).pow(d);\r\n    u64 t = d;\r\
+    \n    while (y != one && y != minus_one && t != x - 1) y *= y, t <<= 1;\r\n  \
+    \  if (y != minus_one && t % 2 == 0) return false;\r\n    return true;\r\n  };\r\
+    \n  if (x < (1ull << 32)) {\r\n    for (u64 a: {2, 7, 61})\r\n      if (!ok(a))\
+    \ return false;\r\n  } else {\r\n    for (u64 a: {2, 325, 9375, 28178, 450775,\
+    \ 9780504, 1795265022}) {\r\n      if (x <= a) return true;\r\n      if (!ok(a))\
+    \ return false;\r\n    }\r\n  }\r\n  return true;\r\n}\n#line 5 \"nt/factor.hpp\"\
+    \n\nll rho(ll n, ll c) {\n  using m64 = Dynamic_Modint_64<20231025>;\n  m64::set_mod(n);\n\
+    \  assert(n > 1);\n  const m64 cc(c);\n  auto f = [&](m64 x) { return x * x +\
+    \ cc; };\n  m64 x = 1, y = 2, z = 1, q = 1;\n  ll g = 1;\n  const ll m = 1LL <<\
+    \ (__lg(n) / 5); // ?\n  for (ll r = 1; g == 1; r <<= 1) {\n    x = y;\n    FOR(_,\
+    \ r) y = f(y);\n    for (ll k = 0; k < r && g == 1; k += m) {\n      z = y;\n\
+    \      FOR(min(m, r - k)) y = f(y), q *= x - y;\n      g = gcd(q.val(), n);\n\
+    \    }\n  }\n  if (g == n) do {\n      z = f(z);\n      g = gcd((x - z).val(),\
+    \ n);\n    } while (g == 1);\n  return g;\n}\n\nll find_prime_factor(ll n) {\n\
+    \  assert(n > 1);\n  if (primetest(n)) return n;\n  FOR(100) {\n    ll m = rho(n,\
+    \ RNG(0, n));\n    if (primetest(m)) return m;\n    n = m;\n  }\n  assert(0);\n\
+    \  return -1;\n}\n\n// \u30BD\u30FC\u30C8\u3057\u3066\u304F\u308C\u308B\nvc<pair<ll,\
+    \ int>> factor(ll n) {\n  assert(n >= 1);\n  vc<pair<ll, int>> pf;\n  FOR(p, 2,\
+    \ 100) {\n    if (p * p > n) break;\n    if (n % p == 0) {\n      ll e = 0;\n\
+    \      do { n /= p, e += 1; } while (n % p == 0);\n      pf.eb(p, e);\n    }\n\
+    \  }\n  while (n > 1) {\n    ll p = find_prime_factor(n);\n    ll e = 0;\n   \
+    \ do { n /= p, e += 1; } while (n % p == 0);\n    pf.eb(p, e);\n  }\n  sort(all(pf));\n\
+    \  return pf;\n}\n\nvc<pair<ll, int>> factor_by_lpf(ll n, vc<int>& lpf) {\n  vc<pair<ll,\
     \ int>> res;\n  while (n > 1) {\n    int p = lpf[n];\n    int e = 0;\n    while\
     \ (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n \
     \ return res;\n}\n#line 3 \"mod/mod_pow.hpp\"\n\r\nint mod_pow(int a, ll n, int\
@@ -439,18 +439,18 @@ data:
     \ {\n    int mod = get_mod();\n    int k = lowbit(mod - 1);\n    int r = primitive_root(mod);\n\
     \    r = mod_pow(r, (mod - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static\
     \ pair<int, int> ntt_info() { return get_ntt(); }\n  static bool can_ntt() { return\
-    \ ntt_info().fi != -1; }\n};\n\nusing dmint = Dynamic_Modint<-1>;\n#line 8 \"\
-    test/mytest/31bit_modint.test.cpp\"\n\ntemplate <typename mint>\nvoid test() {\n\
-    \  const u32 mod = mint::get_mod();\n  auto check = [&](ll x, ll y) -> void {\n\
-    \    mint mx = x, my = y;\n    assert((x + y) % mod == (mx + my).val);\n    assert((x\
-    \ + mod - y) % mod == (mx - my).val);\n    assert((x * y) % mod == (mx * my).val);\n\
-    \    mint mz = mx / my;\n    ll z = mz.val;\n    assert(y * z % mod == x);\n \
-    \ };\n  FOR(10000) {\n    ll x = RNG(0, mint::get_mod());\n    ll y = RNG(0, mint::get_mod());\n\
-    \    check(x, y);\n  }\n  FOR(i, 1, 100) FOR(j, 1, 100) { check(mod - i, mod -\
-    \ j); }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main()\
-    \ {\n  constexpr u32 mod = (u32(1) << 31) - 19;\n  using dmint = Dynamic_Modint;\n\
-    \  dmint::set_mod(mod);\n  test<modint<mod>>();\n  test<dmint>();\n\n  solve();\n\
-    \  return 0;\n}\n"
+    \ ntt_info().fi != -1; }\n};\n\nusing dmint = Dynamic_Modint<-1>;\ntemplate <int\
+    \ id>\nBarrett Dynamic_Modint<id>::bt;\n#line 8 \"test/mytest/31bit_modint.test.cpp\"\
+    \n\ntemplate <typename mint>\nvoid test() {\n  const u32 mod = mint::get_mod();\n\
+    \  auto check = [&](ll x, ll y) -> void {\n    mint mx = x, my = y;\n    assert((x\
+    \ + y) % mod == (mx + my).val);\n    assert((x + mod - y) % mod == (mx - my).val);\n\
+    \    assert((x * y) % mod == (mx * my).val);\n    mint mz = mx / my;\n    ll z\
+    \ = mz.val;\n    assert(y * z % mod == x);\n  };\n  FOR(10000) {\n    ll x = RNG(0,\
+    \ mint::get_mod());\n    ll y = RNG(0, mint::get_mod());\n    check(x, y);\n \
+    \ }\n  FOR(i, 1, 100) FOR(j, 1, 100) { check(mod - i, mod - j); }\n}\n\nvoid solve()\
+    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  constexpr u32 mod =\
+    \ (u32(1) << 31) - 19;\n  using dmint = Dynamic_Modint;\n  dmint::set_mod(mod);\n\
+    \  test<modint<mod>>();\n  test<dmint>();\n\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"random/base.hpp\"\n#include \"mod/modint.hpp\"\
     \n#include \"mod/dynamic_modint.hpp\"\n\ntemplate <typename mint>\nvoid test()\
@@ -480,7 +480,7 @@ data:
   isVerificationFile: true
   path: test/mytest/31bit_modint.test.cpp
   requiredBy: []
-  timestamp: '2023-10-24 21:04:29+09:00'
+  timestamp: '2023-10-24 21:40:49+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/31bit_modint.test.cpp
