@@ -10,20 +10,20 @@ bool primetest(const u64 x) {
 
   m64::set_mod(x);
   const m64 one(1), minus_one(x - 1);
-  auto ok = [&](u64 a) {
+  auto ok = [&](u64 a) -> bool {
     auto y = m64(a).pow(d);
     u64 t = d;
-    while (y != one and y != minus_one and t != x - 1) y *= y, t <<= 1;
-    if (y != minus_one and t % 2 == 0) return false;
+    while (y != one && y != minus_one && t != x - 1) y *= y, t <<= 1;
+    if (y != minus_one && t % 2 == 0) return false;
     return true;
   };
   if (x < (1ull << 32)) {
     for (u64 a: {2, 7, 61})
-      if (not ok(a)) return false;
+      if (!ok(a)) return false;
   } else {
     for (u64 a: {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {
       if (x <= a) return true;
-      if (not ok(a)) return false;
+      if (!ok(a)) return false;
     }
   }
   return true;
