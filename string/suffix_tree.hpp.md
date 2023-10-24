@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/cartesian_tree.hpp
     title: seq/cartesian_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   _extendedRequiredBy: []
@@ -21,12 +21,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2361.test.cpp
     title: test/yukicoder/2361.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://twitter.com/maspy_stars/status/1565901414236205057?s=20&t=S2Tu6ayozHcakxai8dmh4g
@@ -215,11 +215,11 @@ data:
     \ 1>, vc<tuple<int, int, int, int>>> suffix_tree(SUFFIX& X) {\n  auto SA = X.SA;\n\
     \  auto ISA = X.ISA;\n  auto LCP = X.LCP;\n\n  vc<tuple<int, int, int, int>> dat;\n\
     \  vc<pair<int, int>> edges;\n\n  int N = len(SA);\n  if (N == 1) {\n    Graph<int,\
-    \ 1> G(2);\n    G.add(0, 1);\n    dat.eb(0, 1, 0, 0);\n    dat.eb(0, 1, 0, 1);\n\
-    \    return {G, dat};\n  }\n\n  dat.eb(0, N, 0, 0);\n  CartesianTree<int, true>\
-    \ CT(LCP);\n\n  auto dfs = [&](auto& dfs, int p, int idx, int h) -> void {\n \
-    \   int L = CT.range[idx].fi;\n    int R = CT.range[idx].se + 1;\n    int hh =\
-    \ LCP[idx];\n    if (h < hh) {\n      edges.eb(p, len(dat));\n      p = len(dat);\n\
+    \ 1> G(2);\n    G.add(0, 1);\n    G.build();\n    dat.eb(0, 1, 0, 0), dat.eb(0,\
+    \ 1, 0, 1);\n    return {G, dat};\n  }\n\n  dat.eb(0, N, 0, 0);\n  CartesianTree<int,\
+    \ true> CT(LCP);\n\n  auto dfs = [&](auto& dfs, int p, int idx, int h) -> void\
+    \ {\n    int L = CT.range[idx].fi;\n    int R = CT.range[idx].se + 1;\n    int\
+    \ hh = LCP[idx];\n    if (h < hh) {\n      edges.eb(p, len(dat));\n      p = len(dat);\n\
     \      dat.eb(L, R, h, hh);\n    }\n    if (CT.lch[idx] == -1) {\n      if (hh\
     \ < N - SA[idx]) {\n        edges.eb(p, len(dat));\n        dat.eb(idx, idx +\
     \ 1, hh, N - SA[idx]);\n      }\n    } else {\n      dfs(dfs, p, CT.lch[idx],\
@@ -239,11 +239,11 @@ data:
     \ 1>, vc<tuple<int, int, int, int>>> suffix_tree(SUFFIX& X) {\n  auto SA = X.SA;\n\
     \  auto ISA = X.ISA;\n  auto LCP = X.LCP;\n\n  vc<tuple<int, int, int, int>> dat;\n\
     \  vc<pair<int, int>> edges;\n\n  int N = len(SA);\n  if (N == 1) {\n    Graph<int,\
-    \ 1> G(2);\n    G.add(0, 1);\n    dat.eb(0, 1, 0, 0);\n    dat.eb(0, 1, 0, 1);\n\
-    \    return {G, dat};\n  }\n\n  dat.eb(0, N, 0, 0);\n  CartesianTree<int, true>\
-    \ CT(LCP);\n\n  auto dfs = [&](auto& dfs, int p, int idx, int h) -> void {\n \
-    \   int L = CT.range[idx].fi;\n    int R = CT.range[idx].se + 1;\n    int hh =\
-    \ LCP[idx];\n    if (h < hh) {\n      edges.eb(p, len(dat));\n      p = len(dat);\n\
+    \ 1> G(2);\n    G.add(0, 1);\n    G.build();\n    dat.eb(0, 1, 0, 0), dat.eb(0,\
+    \ 1, 0, 1);\n    return {G, dat};\n  }\n\n  dat.eb(0, N, 0, 0);\n  CartesianTree<int,\
+    \ true> CT(LCP);\n\n  auto dfs = [&](auto& dfs, int p, int idx, int h) -> void\
+    \ {\n    int L = CT.range[idx].fi;\n    int R = CT.range[idx].se + 1;\n    int\
+    \ hh = LCP[idx];\n    if (h < hh) {\n      edges.eb(p, len(dat));\n      p = len(dat);\n\
     \      dat.eb(L, R, h, hh);\n    }\n    if (CT.lch[idx] == -1) {\n      if (hh\
     \ < N - SA[idx]) {\n        edges.eb(p, len(dat));\n        dat.eb(idx, idx +\
     \ 1, hh, N - SA[idx]);\n      }\n    } else {\n      dfs(dfs, p, CT.lch[idx],\
@@ -263,8 +263,8 @@ data:
   isVerificationFile: false
   path: string/suffix_tree.hpp
   requiredBy: []
-  timestamp: '2023-10-25 01:14:51+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-10-25 01:47:18+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/2361.test.cpp
   - test/mytest/suffix_tree.test.cpp
