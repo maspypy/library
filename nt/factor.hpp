@@ -18,12 +18,12 @@ ll rho(ll n, ll c) {
     for (ll k = 0; k < r && g == 1; k += m) {
       z = y;
       FOR(min(m, r - k)) y = f(y), q *= x - y;
-      g = gcd(q.val(), n);
+      g = gcd(q.val, n);
     }
   }
   if (g == n) do {
       z = f(z);
-      g = gcd((x - z).val(), n);
+      g = gcd((x - z).val, n);
     } while (g == 1);
   return g;
 }
