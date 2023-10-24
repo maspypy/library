@@ -2,13 +2,13 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"
-#include "linalg/mat_inv.hpp"
+#include "linalg/matrix_inv.hpp"
 
 using mint = modint998;
 void solve() {
   LL(N);
   VV(mint, A, N, N);
-  auto [det, inv] = mat_inv(A);
+  auto [det, inv] = matrix_inv(A);
   if (inv.empty()) return print(-1);
   FOR(n, N) print(inv[n]);
 }
