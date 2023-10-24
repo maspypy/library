@@ -1,6 +1,6 @@
 // (det, invA) をかえす
 template <typename T>
-pair<T, vc<vc<T>>> mat_inv(vc<vc<T>> A) {
+pair<T, vc<vc<T>>> matrix_inv(vc<vc<T>> A) {
   T det = 1;
   int N = len(A);
   vv(T, B, N, N);

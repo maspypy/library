@@ -1,11 +1,12 @@
 template <typename VC>
-vc<VC> rot90(const int n, const int m, const vc<VC>& A,
-             bool counter_clockwise = true) {
-  vc<VC> B(m, VC(n, A[0][0]));
+vc<VC> rot90(const vc<VC>& A, bool counter_clockwise = true, int H = -1,
+             int W = -1) {
+  if (H == -1) { H = len(A), W = len(A[0]); }
+  vc<VC> B(W, VC(H, A[0][0]));
   if (counter_clockwise) {
-    FOR(x, n) FOR(y, m) B[m - 1 - y][x] = A[x][y];
+    FOR(x, H) FOR(y, W) B[W - 1 - y][x] = A[x][y];
   } else {
-    FOR(x, n) FOR(y, m) B[y][n - 1 - x] = A[x][y];
+    FOR(x, H) FOR(y, W) B[y][H - 1 - x] = A[x][y];
   }
   return B;
 }

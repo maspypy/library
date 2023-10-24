@@ -1,4 +1,27 @@
-#include "linalg/det_mod.hpp"
+#include "mod/barrett.hpp"
+
+int det_mod(vvc<int> A, int mod) {
+  Barrett bt(mod);
+  const int n = len(A);
+  ll det = 1;
+  FOR(i, n) {
+    FOR(j, i, n) {
+      if (A[j][i] == 0) continue;
+      if (i != j) { swap(A[i], A[j]), det = mod - det; }
+      break;
+    }
+    FOR(j, i + 1, n) {
+      while (A[i][i] != 0) {
+        ll c = m - A[j][i] / A[i][i];
+        FOR_R(k, i, n) { A[j][k] = bt.modulo(A[j][k] + A[i][k] * c); }
+        swap(A[i], A[j]), det = mod - det;
+      }
+      swap(A[i], A[j]), det = mod - det;
+    }
+  }
+  FOR(i, n) det = bt.mul(det, A[i][i]);
+  return det % mod;
+}
 
 template <typename mint>
 mint det(vvc<mint>& A) {
