@@ -75,6 +75,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1549.test.cpp
     title: test/yukicoder/1549.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2361.test.cpp
+    title: test/yukicoder/2361.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
@@ -96,9 +99,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc301h.test.cpp
     title: test_atcoder/abc301h.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
@@ -192,7 +195,7 @@ data:
   - ds/offline_query/uniqueproductquery.hpp
   - ds/segtree/sortable_segtree.hpp
   timestamp: '2023-04-14 22:06:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc240ex.test.cpp
   - test_atcoder/abc174f.test.cpp
@@ -201,6 +204,7 @@ data:
   - test_atcoder/abc270_f.test.cpp
   - test/yukicoder/1435.test.cpp
   - test/yukicoder/1036_2.test.cpp
+  - test/yukicoder/2361.test.cpp
   - test/yukicoder/1212.test.cpp
   - test/yukicoder/426.test.cpp
   - test/yukicoder/529.test.cpp
