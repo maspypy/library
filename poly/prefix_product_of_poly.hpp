@@ -53,8 +53,8 @@ vc<vc<T>> prefix_product_of_poly_matrix(vc<vc<vc<T>>>& A, ll k) {
     auto G2 = shift(G, (W * T(deg) * T(v) + T(v)) * iv);
     auto G3 = shift(G, (W * T(deg) * T(v) + T(v) + W) * iv);
     FOR(i, w * deg + 1) {
-      G[i] = mat_mul(G1[i], G[i]);
-      G2[i] = mat_mul(G3[i], G2[i]);
+      G[i] = matrix_mul(G1[i], G[i]);
+      G2[i] = matrix_mul(G3[i], G2[i]);
     }
     copy(G2.begin(), G2.end() - 1, back_inserter(G));
   }
@@ -62,11 +62,11 @@ vc<vc<T>> prefix_product_of_poly_matrix(vc<vc<vc<T>>>& A, ll k) {
   vv(T, res, n, n);
   FOR(i, n) res[i][i] = 1;
   ll i = 0;
-  while (i + v <= k) res = mat_mul(G[i / v], res), i += v;
+  while (i + v <= k) res = matrix_mul(G[i / v], res), i += v;
   while (i < k) {
     vv(T, mat, n, n);
     FOR(j, n) FOR(k, n) mat[j][k] = evaluate(A[j][k], i);
-    res = mat_mul(mat, res);
+    res = matrix_mul(mat, res);
     ++i;
   }
   return res;
