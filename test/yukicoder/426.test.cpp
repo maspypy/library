@@ -3,9 +3,9 @@
 #include "other/io.hpp"
 #include "mod/modint.hpp"
 #include "ds/segtree/segtree.hpp"
-#include "linalg/mat_mul.hpp"
-using mint = modint107;
+#include "linalg/matrix_mul.hpp"
 
+using mint = modint107;
 using mat = vc<vc<mint>>;
 
 struct Mono {
@@ -14,10 +14,10 @@ struct Mono {
   static X op(X x, X y) {
     auto& [A, B, C] = x;
     auto& [D, E, F] = y;
-    auto P = mat_mul(D, A);
-    auto Q = mat_mul(mat_mul(C, E), A);
+    auto P = matrix_mul(D, A);
+    auto Q = matrix_mul(matrix_mul(C, E), A);
     FOR(i, 2) FOR(j, 3) Q[i][j] += B[i][j];
-    auto R = mat_mul(C, F);
+    auto R = matrix_mul(C, F);
     return {P, Q, R};
   }
   static X unit() {
@@ -89,7 +89,7 @@ void solve() {
       }
       mint s = 6 * i + 6;
       Q[i] = {{s, s + 1, s + 2}, {s + 3, s + 4, s + 5}};
-      Q[i] = mat_mul(Q[i], P[i]);
+      Q[i] = matrix_mul(Q[i], P[i]);
       seg.set(i, {P[i], Q[i], R[i]});
     }
     if (s == "b") {
@@ -105,13 +105,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }
