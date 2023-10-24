@@ -4,20 +4,11 @@ data:
   - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: linalg/det.hpp
-    title: linalg/det.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/det_mod.test.cpp
     title: test/library_checker/matrix/det_mod.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/matrix/matrix_det.test.cpp
-    title: test/library_checker/matrix/matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1303.test.cpp
-    title: test/yukicoder/1303.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -60,13 +51,10 @@ data:
   - mod/barrett.hpp
   isVerificationFile: false
   path: linalg/det_mod.hpp
-  requiredBy:
-  - linalg/det.hpp
+  requiredBy: []
   timestamp: '2023-10-17 07:10:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1303.test.cpp
-  - test/library_checker/matrix/matrix_det.test.cpp
   - test/library_checker/matrix/det_mod.test.cpp
 documentation_of: linalg/det_mod.hpp
 layout: document

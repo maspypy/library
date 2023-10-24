@@ -28,9 +28,6 @@ data:
     path: test/library_checker/matrix/sparse_matrix_det.test.cpp
     title: test/library_checker/matrix/sparse_matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/min_poly.test.cpp
-    title: test/mytest/min_poly.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1500.test.cpp
     title: test/yukicoder/1500.test.cpp
   - icon: ':heavy_check_mark:'
@@ -112,7 +109,6 @@ data:
   - test/library_checker/matrix/implicit_matrix.test.cpp
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
   - test/library_checker/math/find_linear_recurrence.test.cpp
-  - test/mytest/min_poly.test.cpp
 documentation_of: seq/find_linear_rec.hpp
 layout: document
 redirect_from:

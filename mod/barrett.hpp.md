@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_bipartite.hpp
     title: graph/count/count_bipartite.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/det.hpp
     title: linalg/det.hpp
   - icon: ':heavy_check_mark:'
@@ -87,7 +87,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/det_mod.test.cpp
     title: test/library_checker/matrix/det_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/matrix/matrix_det.test.cpp
     title: test/library_checker/matrix/matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
@@ -135,9 +135,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1303.test.cpp
-    title: test/yukicoder/1303.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
@@ -252,7 +249,6 @@ data:
   - test/yukicoder/1667.test.cpp
   - test/yukicoder/2119.test.cpp
   - test/yukicoder/1956.test.cpp
-  - test/yukicoder/1303.test.cpp
   - test/yukicoder/2120.test.cpp
   - test/yukicoder/1025.test.cpp
   - test/yukicoder/1593.test.cpp

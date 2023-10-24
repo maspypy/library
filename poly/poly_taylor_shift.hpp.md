@@ -33,9 +33,6 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: linalg/det_A_plus_xB.hpp
-    title: linalg/det_A_plus_xB.hpp
-  - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
   - icon: ':heavy_check_mark:'
@@ -73,14 +70,8 @@ data:
     path: test/mytest/composition_log_1_minus_x.test.cpp
     title: test/mytest/composition_log_1_minus_x.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1303.test.cpp
-    title: test/yukicoder/1303.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1875.test.cpp
     title: test/yukicoder/1875.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1907.test.cpp
-    title: test/yukicoder/1907.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc133f.test.cpp
     title: test_atcoder/arc133f.test.cpp
@@ -400,7 +391,6 @@ data:
   path: poly/poly_taylor_shift.hpp
   requiredBy:
   - seq/famous/stirling_number_1.hpp
-  - linalg/det_A_plus_xB.hpp
   - poly/composition_f_rational.hpp
   - poly/composition_f_polynomial.hpp
   - poly/composition_f_log_1_minus_x.hpp
@@ -410,8 +400,6 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/arc133f.test.cpp
-  - test/yukicoder/1907.test.cpp
-  - test/yukicoder/1303.test.cpp
   - test/yukicoder/1875.test.cpp
   - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp

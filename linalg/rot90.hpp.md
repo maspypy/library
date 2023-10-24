@@ -3,30 +3,31 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc218c.test.cpp
     title: test_atcoder/abc218c.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/rot90.hpp\"\ntemplate <typename VC>\nvc<VC> rot90(const\
-    \ int n, const int m, const vc<VC>& A,\n             bool counter_clockwise =\
-    \ true) {\n  vc<VC> B(m, VC(n, A[0][0]));\n  if (counter_clockwise) {\n    FOR(x,\
-    \ n) FOR(y, m) B[m - 1 - y][x] = A[x][y];\n  } else {\n    FOR(x, n) FOR(y, m)\
-    \ B[y][n - 1 - x] = A[x][y];\n  }\n  return B;\n}\n"
-  code: "template <typename VC>\nvc<VC> rot90(const int n, const int m, const vc<VC>&\
-    \ A,\n             bool counter_clockwise = true) {\n  vc<VC> B(m, VC(n, A[0][0]));\n\
-    \  if (counter_clockwise) {\n    FOR(x, n) FOR(y, m) B[m - 1 - y][x] = A[x][y];\n\
-    \  } else {\n    FOR(x, n) FOR(y, m) B[y][n - 1 - x] = A[x][y];\n  }\n  return\
+    \ vc<VC>& A, bool counter_clockwise = true, int H = -1,\n             int W =\
+    \ -1) {\n  if (H == -1) { H = len(A), W = len(A[0]); }\n  vc<VC> B(W, VC(H, A[0][0]));\n\
+    \  if (counter_clockwise) {\n    FOR(x, H) FOR(y, W) B[W - 1 - y][x] = A[x][y];\n\
+    \  } else {\n    FOR(x, H) FOR(y, W) B[y][H - 1 - x] = A[x][y];\n  }\n  return\
     \ B;\n}\n"
+  code: "template <typename VC>\nvc<VC> rot90(const vc<VC>& A, bool counter_clockwise\
+    \ = true, int H = -1,\n             int W = -1) {\n  if (H == -1) { H = len(A),\
+    \ W = len(A[0]); }\n  vc<VC> B(W, VC(H, A[0][0]));\n  if (counter_clockwise) {\n\
+    \    FOR(x, H) FOR(y, W) B[W - 1 - y][x] = A[x][y];\n  } else {\n    FOR(x, H)\
+    \ FOR(y, W) B[y][H - 1 - x] = A[x][y];\n  }\n  return B;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: linalg/rot90.hpp
   requiredBy: []
-  timestamp: '2023-09-01 06:23:34+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-10-24 14:07:00+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc218c.test.cpp
 documentation_of: linalg/rot90.hpp

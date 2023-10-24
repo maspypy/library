@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/rot90.hpp
     title: linalg/rot90.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc218/tasks/abc218_c
@@ -205,16 +205,17 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\n#line 4 \"test_atcoder/abc218c.test.cpp\"\n\n#line 1 \"linalg/rot90.hpp\"\
-    \ntemplate <typename VC>\nvc<VC> rot90(const int n, const int m, const vc<VC>&\
-    \ A,\n             bool counter_clockwise = true) {\n  vc<VC> B(m, VC(n, A[0][0]));\n\
-    \  if (counter_clockwise) {\n    FOR(x, n) FOR(y, m) B[m - 1 - y][x] = A[x][y];\n\
-    \  } else {\n    FOR(x, n) FOR(y, m) B[y][n - 1 - x] = A[x][y];\n  }\n  return\
-    \ B;\n}\n#line 6 \"test_atcoder/abc218c.test.cpp\"\n\nvoid solve() {\n  LL(N);\n\
-    \  VEC(string, A, N);\n  VEC(string, B, N);\n  FOR(4) {\n    while (count(all(A.back()),\
-    \ '#') == 0) POP(A);\n    while (count(all(B.back()), '#') == 0) POP(B);\n   \
-    \ A = rot90(len(A), len(A[0]), A);\n    B = rot90(len(B), len(B[0]), B);\n  }\n\
-    \n  FOR(4) {\n    A = rot90(len(A), len(A[0]), A);\n    if (A == B) return Yes();\n\
-    \  }\n  No();\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ntemplate <typename VC>\nvc<VC> rot90(const vc<VC>& A, bool counter_clockwise\
+    \ = true, int H = -1,\n             int W = -1) {\n  if (H == -1) { H = len(A),\
+    \ W = len(A[0]); }\n  vc<VC> B(W, VC(H, A[0][0]));\n  if (counter_clockwise) {\n\
+    \    FOR(x, H) FOR(y, W) B[W - 1 - y][x] = A[x][y];\n  } else {\n    FOR(x, H)\
+    \ FOR(y, W) B[y][H - 1 - x] = A[x][y];\n  }\n  return B;\n}\n#line 6 \"test_atcoder/abc218c.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  VEC(string, A, N);\n  VEC(string, B, N);\n  FOR(4)\
+    \ {\n    while (count(all(A.back()), '#') == 0) POP(A);\n    while (count(all(B.back()),\
+    \ '#') == 0) POP(B);\n    A = rot90(len(A), len(A[0]), A);\n    B = rot90(len(B),\
+    \ len(B[0]), B);\n  }\n\n  FOR(4) {\n    A = rot90(len(A), len(A[0]), A);\n  \
+    \  if (A == B) return Yes();\n  }\n  No();\n}\n\nsigned main() {\n  solve();\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc218/tasks/abc218_c\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"linalg/rot90.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(string, A, N);\n  VEC(string, B, N);\n  FOR(4)\
@@ -230,8 +231,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc218c.test.cpp
   requiredBy: []
-  timestamp: '2023-10-06 12:12:06+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-10-24 14:07:00+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc218c.test.cpp
 layout: document

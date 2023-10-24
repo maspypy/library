@@ -61,9 +61,6 @@ data:
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2166.test.cpp
-    title: test/yukicoder/2166.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2231.test.cpp
     title: test/yukicoder/2231.test.cpp
   - icon: ':heavy_check_mark:'
@@ -228,7 +225,6 @@ data:
   - test_atcoder/agc013e.test.cpp
   - test_atcoder/abc272_h.test.cpp
   - test/yukicoder/2243.test.cpp
-  - test/yukicoder/2166.test.cpp
   - test/yukicoder/2231.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
