@@ -7,11 +7,212 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: graph/chromatic.hpp
+    title: graph/chromatic.hpp
+  - icon: ':x:'
+    path: mod/binomial.hpp
+    title: mod/binomial.hpp
+  - icon: ':x:'
+    path: mod/dynamic_modint.hpp
+    title: mod/dynamic_modint.hpp
+  - icon: ':x:'
+    path: mod/mod_kth_root.hpp
+    title: mod/mod_kth_root.hpp
+  - icon: ':x:'
+    path: mod/mod_log.hpp
+    title: mod/mod_log.hpp
+  - icon: ':x:'
+    path: mod/primitive_root.hpp
+    title: mod/primitive_root.hpp
+  - icon: ':x:'
+    path: mod/tetration.hpp
+    title: mod/tetration.hpp
+  - icon: ':x:'
+    path: nt/all_lcm.hpp
+    title: nt/all_lcm.hpp
+  - icon: ':x:'
+    path: nt/crt.hpp
+    title: nt/crt.hpp
+  - icon: ':x:'
+    path: nt/divisors.hpp
+    title: nt/divisors.hpp
+  - icon: ':x:'
+    path: nt/euler_phi.hpp
+    title: nt/euler_phi.hpp
+  - icon: ':x:'
+    path: nt/factor.hpp
+    title: nt/factor.hpp
+  - icon: ':x:'
+    path: nt/four_square.hpp
+    title: nt/four_square.hpp
+  - icon: ':x:'
+    path: nt/function_on_divisors.hpp
+    title: nt/function_on_divisors.hpp
+  - icon: ':x:'
+    path: nt/gaussian_integers.hpp
+    title: nt/gaussian_integers.hpp
+  - icon: ':x:'
+    path: nt/primetest.hpp
+    title: nt/primetest.hpp
+  - icon: ':x:'
+    path: poly/multivar_convolution_cyclic.hpp
+    title: poly/multivar_convolution_cyclic.hpp
+  - icon: ':x:'
+    path: seq/famous/stirling_number_query.hpp
+    title: seq/famous/stirling_number_query.hpp
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/ALDS1_1_C.test.cpp
+    title: test/aoj/ALDS1_1_C.test.cpp
+  - icon: ':x:'
+    path: test/aoj/ITP1_D_D.test.cpp
+    title: test/aoj/ITP1_D_D.test.cpp
+  - icon: ':x:'
+    path: test/aoj/NTL_1_D.test.cpp
+    title: test/aoj/NTL_1_D.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
+    title: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/convolution/convolution_mod_dmint.test.cpp
+    title: test/library_checker/convolution/convolution_mod_dmint.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/convolution/convolution_mod_setntt.test.cpp
+    title: test/library_checker/convolution/convolution_mod_setntt.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/graph/chromatic_number.test.cpp
+    title: test/library_checker/graph/chromatic_number.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/math/binomial_coefficient.test.cpp
+    title: test/library_checker/math/binomial_coefficient.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/math/discrete_logarithm_mod.test.cpp
+    title: test/library_checker/math/discrete_logarithm_mod.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/math/factorize.test.cpp
+    title: test/library_checker/math/factorize.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/math/kth_root_mod.test.cpp
+    title: test/library_checker/math/kth_root_mod.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+    title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/math/primality_test.test.cpp
+    title: test/library_checker/math/primality_test.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/math/primitive_root.test.cpp
+    title: test/library_checker/math/primitive_root.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/math/stirling_mod_p_1.test.cpp
+    title: test/library_checker/math/stirling_mod_p_1.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/math/stirling_mod_p_2.test.cpp
+    title: test/library_checker/math/stirling_mod_p_2.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/math/tetration.test.cpp
+    title: test/library_checker/math/tetration.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
+    title: test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
+    title: test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/inv_of_fps.test.cpp
+    title: test/library_checker/polynomial/inv_of_fps.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
+    title: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
+    title: test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/log_of_fps_dmint.test.cpp
+    title: test/library_checker/polynomial/log_of_fps_dmint.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
+    title: test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
+    title: test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
+    title: test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
+  - icon: ':x:'
+    path: test/mytest/31bit_modint.test.cpp
+    title: test/mytest/31bit_modint.test.cpp
+  - icon: ':x:'
+    path: test/mytest/four_square.test.cpp
+    title: test/mytest/four_square.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1025.test.cpp
+    title: test/yukicoder/1025.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1262.test.cpp
+    title: test/yukicoder/1262.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1339.test.cpp
+    title: test/yukicoder/1339.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1411.test.cpp
+    title: test/yukicoder/1411.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1593.test.cpp
+    title: test/yukicoder/1593.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1667.test.cpp
+    title: test/yukicoder/1667.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1728.test.cpp
+    title: test/yukicoder/1728.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/187.test.cpp
+    title: test/yukicoder/187.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1881.test.cpp
+    title: test/yukicoder/1881.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1956.test.cpp
+    title: test/yukicoder/1956.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2119.test.cpp
+    title: test/yukicoder/2119.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2120.test.cpp
+    title: test/yukicoder/2120.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2181.test.cpp
+    title: test/yukicoder/2181.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2264.test.cpp
+    title: test/yukicoder/2264.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/590.test.cpp
+    title: test/yukicoder/590.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc152e.test.cpp
+    title: test_atcoder/abc152e.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc212g.test.cpp
+    title: test_atcoder/abc212g.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc222g.test.cpp
+    title: test_atcoder/abc222g.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc270_g.test.cpp
+    title: test_atcoder/abc270_g.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc281g.test.cpp
+    title: test_atcoder/abc281g.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/agc058d2.test.cpp
+    title: test_atcoder/agc058d2.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/453/problem/D
@@ -70,10 +271,42 @@ data:
     \ >> 64) * mh + (z >> 64);\n    x -= z * mod;\n    return x < mod ? x : x - mod;\n\
     \  }\n\n  u64 mul(u64 a, u64 b) { return modulo(u128(a) * b); }\n};\n#line 5 \"\
     mod/dynamic_modint_64.hpp\"\n\n// https://codeforces.com/contest/453/problem/D\n\
-    struct Dynamic_Modint_64 {\n  static constexpr bool is_modint = true;\n  using\
-    \ mint = Dynamic_Modint_64;\n  u64 val;\n  static Barrett_64 bt;\n  static u64\
-    \ umod() { return bt.umod(); }\n\n  static ll get_mod() { return (ll)(bt.umod());\
-    \ }\n  static void set_mod(ll m) {\n    assert(1 <= m);\n    bt = Barrett_64(m);\n\
+    template <int id>\nstruct Dynamic_Modint_64 {\n  static constexpr bool is_modint\
+    \ = true;\n  using mint = Dynamic_Modint_64;\n  u64 val;\n  static Barrett_64\
+    \ bt;\n  static u64 umod() { return bt.umod(); }\n\n  static ll get_mod() { return\
+    \ (ll)(bt.umod()); }\n  static void set_mod(ll m) {\n    assert(1 <= m);\n   \
+    \ bt = Barrett_64(m);\n  }\n\n  Dynamic_Modint_64() : val(0) {}\n  Dynamic_Modint_64(u64\
+    \ x) : val(bt.modulo(x)) {}\n  Dynamic_Modint_64(u128 x) : val(bt.modulo(x)) {}\n\
+    \  Dynamic_Modint_64(ll x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n\
+    \  Dynamic_Modint_64(i128 x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n\
+    \n  mint& operator+=(const mint& rhs) {\n    val = (val += rhs.val) < umod() ?\
+    \ val : val - umod();\n    return *this;\n  }\n  mint& operator-=(const mint&\
+    \ rhs) {\n    val = (val += umod() - rhs.val) < umod() ? val : val - umod();\n\
+    \    return *this;\n  }\n  mint& operator*=(const mint& rhs) {\n    val = bt.mul(val,\
+    \ rhs.val);\n    return *this;\n  }\n  mint& operator/=(const mint& rhs) { return\
+    \ *this = *this * rhs.inverse(); }\n  mint operator-() const { return mint() -\
+    \ *this; }\n  mint pow(ll n) const {\n    assert(0 <= n);\n    mint x = *this,\
+    \ r = u64(1);\n    while (n) {\n      if (n & 1) r *= x;\n      x *= x, n >>=\
+    \ 1;\n    }\n    return r;\n  }\n  mint inverse() const {\n    ll x = val, mod\
+    \ = get_mod();\n    ll a = x, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n\
+    \      t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n  \
+    \  if (u < 0) u += mod;\n    return u64(u);\n  }\n\n  friend mint operator+(const\
+    \ mint& lhs, const mint& rhs) {\n    return mint(lhs) += rhs;\n  }\n  friend mint\
+    \ operator-(const mint& lhs, const mint& rhs) {\n    return mint(lhs) -= rhs;\n\
+    \  }\n  friend mint operator*(const mint& lhs, const mint& rhs) {\n    return\
+    \ mint(lhs) *= rhs;\n  }\n  friend mint operator/(const mint& lhs, const mint&\
+    \ rhs) {\n    return mint(lhs) /= rhs;\n  }\n  friend bool operator==(const mint&\
+    \ lhs, const mint& rhs) {\n    return lhs.val == rhs.val;\n  }\n  friend bool\
+    \ operator!=(const mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n\
+    \  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val); }\n  void read()\
+    \ {\n    fastio::scanner.read(val);\n    val = bt.modulo(val);\n  }\n#endif\n\
+    };\n\nusing dmint = Dynamic_Modint_64<-1>;\n"
+  code: "#pragma once\n\n#include \"mod/modint_common.hpp\"\n#include \"mod/barrett.hpp\"\
+    \n\n// https://codeforces.com/contest/453/problem/D\ntemplate <int id>\nstruct\
+    \ Dynamic_Modint_64 {\n  static constexpr bool is_modint = true;\n  using mint\
+    \ = Dynamic_Modint_64;\n  u64 val;\n  static Barrett_64 bt;\n  static u64 umod()\
+    \ { return bt.umod(); }\n\n  static ll get_mod() { return (ll)(bt.umod()); }\n\
+    \  static void set_mod(ll m) {\n    assert(1 <= m);\n    bt = Barrett_64(m);\n\
     \  }\n\n  Dynamic_Modint_64() : val(0) {}\n  Dynamic_Modint_64(u64 x) : val(bt.modulo(x))\
     \ {}\n  Dynamic_Modint_64(u128 x) : val(bt.modulo(x)) {}\n  Dynamic_Modint_64(ll\
     \ x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n  Dynamic_Modint_64(i128\
@@ -98,48 +331,83 @@ data:
     \ lhs.val == rhs.val;\n  }\n  friend bool operator!=(const mint& lhs, const mint&\
     \ rhs) {\n    return lhs.val != rhs.val;\n  }\n#ifdef FASTIO\n  void write() {\
     \ fastio::printer.write(val); }\n  void read() {\n    fastio::scanner.read(val);\n\
-    \    val = bt.modulo(val);\n  }\n#endif\n};\n\nusing dmint = Dynamic_Modint_64;\n\
-    Barrett_64 dmint::bt(1);\n"
-  code: "#pragma once\n\n#include \"mod/modint_common.hpp\"\n#include \"mod/barrett.hpp\"\
-    \n\n// https://codeforces.com/contest/453/problem/D\nstruct Dynamic_Modint_64\
-    \ {\n  static constexpr bool is_modint = true;\n  using mint = Dynamic_Modint_64;\n\
-    \  u64 val;\n  static Barrett_64 bt;\n  static u64 umod() { return bt.umod();\
-    \ }\n\n  static ll get_mod() { return (ll)(bt.umod()); }\n  static void set_mod(ll\
-    \ m) {\n    assert(1 <= m);\n    bt = Barrett_64(m);\n  }\n\n  Dynamic_Modint_64()\
-    \ : val(0) {}\n  Dynamic_Modint_64(u64 x) : val(bt.modulo(x)) {}\n  Dynamic_Modint_64(u128\
-    \ x) : val(bt.modulo(x)) {}\n  Dynamic_Modint_64(ll x) : val((x %= get_mod())\
-    \ < 0 ? x + get_mod() : x) {}\n  Dynamic_Modint_64(i128 x) : val((x %= get_mod())\
-    \ < 0 ? x + get_mod() : x) {}\n\n  mint& operator+=(const mint& rhs) {\n    val\
-    \ = (val += rhs.val) < umod() ? val : val - umod();\n    return *this;\n  }\n\
-    \  mint& operator-=(const mint& rhs) {\n    val = (val += umod() - rhs.val) <\
-    \ umod() ? val : val - umod();\n    return *this;\n  }\n  mint& operator*=(const\
-    \ mint& rhs) {\n    val = bt.mul(val, rhs.val);\n    return *this;\n  }\n  mint&\
-    \ operator/=(const mint& rhs) { return *this = *this * rhs.inverse(); }\n  mint\
-    \ operator-() const { return mint() - *this; }\n  mint pow(ll n) const {\n   \
-    \ assert(0 <= n);\n    mint x = *this, r = u64(1);\n    while (n) {\n      if\
-    \ (n & 1) r *= x;\n      x *= x, n >>= 1;\n    }\n    return r;\n  }\n  mint inverse()\
-    \ const {\n    ll x = val, mod = get_mod();\n    ll a = x, b = mod, u = 1, v =\
-    \ 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
-    \ -= t * v, v);\n    }\n    if (u < 0) u += mod;\n    return u64(u);\n  }\n\n\
-    \  friend mint operator+(const mint& lhs, const mint& rhs) {\n    return mint(lhs)\
-    \ += rhs;\n  }\n  friend mint operator-(const mint& lhs, const mint& rhs) {\n\
-    \    return mint(lhs) -= rhs;\n  }\n  friend mint operator*(const mint& lhs, const\
-    \ mint& rhs) {\n    return mint(lhs) *= rhs;\n  }\n  friend mint operator/(const\
-    \ mint& lhs, const mint& rhs) {\n    return mint(lhs) /= rhs;\n  }\n  friend bool\
-    \ operator==(const mint& lhs, const mint& rhs) {\n    return lhs.val == rhs.val;\n\
-    \  }\n  friend bool operator!=(const mint& lhs, const mint& rhs) {\n    return\
-    \ lhs.val != rhs.val;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
-    \ }\n  void read() {\n    fastio::scanner.read(val);\n    val = bt.modulo(val);\n\
-    \  }\n#endif\n};\n\nusing dmint = Dynamic_Modint_64;\nBarrett_64 dmint::bt(1);"
+    \    val = bt.modulo(val);\n  }\n#endif\n};\n\nusing dmint = Dynamic_Modint_64<-1>;\n"
   dependsOn:
   - mod/modint_common.hpp
   - mod/barrett.hpp
   isVerificationFile: false
   path: mod/dynamic_modint_64.hpp
-  requiredBy: []
-  timestamp: '2023-10-17 07:10:25+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy:
+  - graph/chromatic.hpp
+  - nt/all_lcm.hpp
+  - nt/crt.hpp
+  - nt/euler_phi.hpp
+  - nt/gaussian_integers.hpp
+  - nt/four_square.hpp
+  - nt/function_on_divisors.hpp
+  - nt/primetest.hpp
+  - nt/divisors.hpp
+  - nt/factor.hpp
+  - seq/famous/stirling_number_query.hpp
+  - mod/dynamic_modint.hpp
+  - mod/primitive_root.hpp
+  - mod/mod_kth_root.hpp
+  - mod/mod_log.hpp
+  - mod/binomial.hpp
+  - mod/tetration.hpp
+  - poly/multivar_convolution_cyclic.hpp
+  timestamp: '2023-10-24 20:44:29+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test_atcoder/abc212g.test.cpp
+  - test_atcoder/agc058d2.test.cpp
+  - test_atcoder/abc270_g.test.cpp
+  - test_atcoder/abc281g.test.cpp
+  - test_atcoder/abc222g.test.cpp
+  - test_atcoder/abc152e.test.cpp
+  - test/yukicoder/187.test.cpp
+  - test/yukicoder/590.test.cpp
+  - test/yukicoder/1728.test.cpp
+  - test/yukicoder/1411.test.cpp
+  - test/yukicoder/2181.test.cpp
+  - test/yukicoder/1339.test.cpp
+  - test/yukicoder/1667.test.cpp
+  - test/yukicoder/2119.test.cpp
+  - test/yukicoder/1881.test.cpp
+  - test/yukicoder/1262.test.cpp
+  - test/yukicoder/1956.test.cpp
+  - test/yukicoder/2264.test.cpp
+  - test/yukicoder/2120.test.cpp
+  - test/yukicoder/1025.test.cpp
+  - test/yukicoder/1593.test.cpp
+  - test/aoj/ALDS1_1_C.test.cpp
+  - test/aoj/ITP1_D_D.test.cpp
+  - test/aoj/NTL_1_D.test.cpp
+  - test/library_checker/graph/chromatic_number.test.cpp
+  - test/library_checker/convolution/convolution_mod_dmint.test.cpp
+  - test/library_checker/convolution/convolution_mod_setntt.test.cpp
+  - test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
+  - test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
+  - test/library_checker/polynomial/log_of_fps_dmint.test.cpp
+  - test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
+  - test/library_checker/polynomial/inv_of_fps.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
+  - test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
+  - test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
+  - test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
+  - test/library_checker/math/primitive_root.test.cpp
+  - test/library_checker/math/binomial_coefficient.test.cpp
+  - test/library_checker/math/factorize.test.cpp
+  - test/library_checker/math/tetration.test.cpp
+  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - test/library_checker/math/stirling_mod_p_1.test.cpp
+  - test/library_checker/math/kth_root_mod.test.cpp
+  - test/library_checker/math/stirling_mod_p_2.test.cpp
+  - test/library_checker/math/primality_test.test.cpp
+  - test/library_checker/math/discrete_logarithm_mod.test.cpp
+  - test/mytest/31bit_modint.test.cpp
+  - test/mytest/four_square.test.cpp
 documentation_of: mod/dynamic_modint_64.hpp
 layout: document
 redirect_from:

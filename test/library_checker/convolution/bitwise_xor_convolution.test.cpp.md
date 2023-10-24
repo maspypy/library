@@ -13,10 +13,10 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/hadamard.hpp
     title: setfunc/hadamard.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/xor_convolution.hpp
     title: setfunc/xor_convolution.hpp
   _extendedRequiredBy: []
@@ -291,9 +291,9 @@ data:
     template <typename T>\r\nvoid hadamard(vc<T>& A) {\r\n  int log = topbit(len(A));\r\
     \n  assert(1 << log == len(A));\r\n  FOR(n, log) FOR(s, 1 << log) {\r\n    int\
     \ t = s ^ (1 << n);\r\n    if (s < t) tie(A[s], A[t]) = mp(A[s] + A[t], A[s] -\
-    \ A[t]);\r\n  }\r\n}\n#line 2 \"setfunc/xor_convolution.hpp\"\ntemplate <typename\
+    \ A[t]);\r\n  }\r\n}\n#line 2 \"setfunc/xor_convolution.hpp\"\n\r\ntemplate <typename\
     \ T>\r\nvc<T> xor_convolution(vc<T> A, vc<T> B) {\r\n  hadamard(A);\r\n  hadamard(B);\r\
-    \n  FOR(i, len(A)) A[i] *= B[i];\r\n  hadamard(A);\r\n  T c = T(1) / T(len(A));\r\
+    \n  FOR(i, len(A)) A[i] *= B[i];\r\n  hadamard(A);\r\n\r\n  T c = T(1) / T(len(A));\r\
     \n  if (c != T(0)) {\r\n    FOR(i, len(A)) A[i] *= c;\r\n  } else {\r\n    FOR(i,\
     \ len(A)) A[i] /= len(A);\r\n  }\r\n  return A;\r\n}\r\n#line 7 \"test/library_checker/convolution/bitwise_xor_convolution.test.cpp\"\
     \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint,\
@@ -317,7 +317,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/convolution/bitwise_xor_convolution.test.cpp
   requiredBy: []
-  timestamp: '2023-10-14 01:49:27+09:00'
+  timestamp: '2023-10-24 20:44:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/convolution/bitwise_xor_convolution.test.cpp
