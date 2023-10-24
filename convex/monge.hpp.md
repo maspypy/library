@@ -58,43 +58,43 @@ data:
     \n\n// select(i,j,k) \u306F (i,j) -> (i,k) \u3092\u884C\u3046\u304B\u3069\u3046\
     \u304B\n// \u6B8B\u5FF5\u306A\u304C\u3089 monotone minima \u3088\u308A\u9AD8\u901F\
     \u306A\u5834\u5408\u304C\u5B58\u5728\u3057\u306A\u3044\u8AAC\u304C\u3042\u308B\
-    \ntemplate <typename F>\nvc<int> smawk(int H, int W, F select) {\n  auto dfs =\
-    \ [&](auto& dfs, vc<int> X, vc<int> Y) -> vc<int> {\n    int N = len(X);\n   \
-    \ if (N == 0) return {};\n    vc<int> YY;\n    for (auto&& y: Y) {\n      while\
-    \ (len(YY)) {\n        int py = YY.back(), x = X[len(YY) - 1];\n        if (!select(x,\
-    \ py, y)) break;\n        YY.pop_back();\n      }\n      if (len(YY) < len(X))\
-    \ YY.eb(y);\n    }\n    vc<int> XX;\n    FOR(i, 1, len(X), 2) XX.eb(X[i]);\n \
-    \   vc<int> II = dfs(dfs, XX, YY);\n    vc<int> I(N);\n    FOR(i, len(II)) I[i\
-    \ + i + 1] = II[i];\n    int p = 0;\n    FOR(i, 0, N, 2) {\n      int LIM = (i\
-    \ + 1 == N ? Y.back() : I[i + 1]);\n      int best = Y[p];\n      while (Y[p]\
-    \ < LIM) {\n        ++p;\n        if (select(X[i], best, Y[p])) best = Y[p];\n\
-    \      }\n      I[i] = best;\n    }\n    return I;\n  };\n  vc<int> X(H), Y(W);\n\
-    \  iota(all(X), 0), iota(all(Y), 0);\n  return dfs(dfs, X, Y);\n}\n#line 1 \"\
-    other/fibonacci_search.hpp\"\n// [L, R) \u3067\u306E\u6975\u5C0F\u5024\u3092\u3072\
-    \u3068\u3064\u6C42\u3081\u308B\u3001\u5358\u5CF0\u306F\u4E0D\u8981\ntemplate <typename\
-    \ T, bool MINIMIZE, typename F>\npair<ll, T> fibonacci_search(F f, ll L, ll R)\
-    \ {\n  assert(L < R);\n  --R;\n  ll a = L, b = L + 1, c = L + 2, d = L + 3;\n\
-    \  int n = 0;\n  while (d < R) { b = c, c = d, d = b + c - a, ++n; }\n  auto get\
-    \ = [&](ll x) -> T {\n    if (R < x) return infty<T>;\n    return (MINIMIZE ?\
-    \ f(x) : -f(x));\n  };\n  T ya = get(a), yb = get(b), yc = get(c), yd = get(d);\n\
-    \  // \u3053\u306E\u4E2D\u3067\u6975\u5C0F\u306A\u3089\u3070\u5168\u4F53\u3067\
-    \u3082\u6975\u5C0F\u3001\u3092\u7DAD\u6301\u3059\u308B\n  FOR(n) {\n    if (yb\
-    \ <= yc) {\n      d = c, c = b, b = a + d - c;\n      yd = yc, yc = yb, yb = get(b);\n\
-    \    } else {\n      a = b, b = c, c = a + d - b;\n      ya = yb, yb = yc, yc\
-    \ = get(c);\n    }\n  }\n  ll x = a;\n  T y = ya;\n  if (chmin(y, yb)) x = b;\n\
-    \  if (chmin(y, yc)) x = c;\n  if (chmin(y, yd)) x = d;\n  if (MINIMIZE) return\
-    \ {x, y};\n  return {x, -y};\n}\n#line 4 \"convex/monge.hpp\"\n\r\n// \u5B9A\u7FA9\
-    \u57DF [0, N] \u306E\u7BC4\u56F2\u3067 f \u306E monge \u6027\u3092\u78BA\u8A8D\
-    \r\ntemplate <typename T, typename F>\r\nbool check_monge(int N, F f) {\r\n  FOR(l,\
-    \ N + 1) FOR(k, l) FOR(j, k) FOR(i, j) {\r\n    T lhs = f(i, l) + f(j, k);\r\n\
-    \    T rhs = f(i, k) + f(j, l);\r\n    if (lhs < rhs) {\r\n      print(\"monge\
-    \ ng\");\r\n      print(i, j, k, l, f(i, k), f(i, l), f(j, k), f(j, l), lhs, rhs);\r\
-    \n      return false;\r\n    }\r\n  }\r\n  print(\"monge ok\");\r\n  return true;\r\
-    \n}\r\n\r\n// newdp[j] = min (dp[i] + f(i,j))\r\ntemplate <typename T, typename\
-    \ F>\r\nvc<T> monge_dp_update(int N, vc<T>& dp, F f) {\r\n  assert(len(dp) ==\
-    \ N + 1);\r\n  auto select = [&](int i, int j, int k) -> int {\r\n    if (i <=\
-    \ k) return j;\r\n    return (dp[j] + f(j, i) > dp[k] + f(k, i) ? k : j);\r\n\
-    \  };\r\n  vc<int> I = SMAWK(N + 1, N + 1, select);\r\n  vc<T> newdp(N + 1, infty<T>);\r\
+    \n// https://codeforces.com/contest/1423/problem/M\ntemplate <typename F>\nvc<int>\
+    \ smawk(int H, int W, F select) {\n  auto dfs = [&](auto& dfs, vc<int> X, vc<int>\
+    \ Y) -> vc<int> {\n    int N = len(X);\n    if (N == 0) return {};\n    vc<int>\
+    \ YY;\n    for (auto&& y: Y) {\n      while (len(YY)) {\n        int py = YY.back(),\
+    \ x = X[len(YY) - 1];\n        if (!select(x, py, y)) break;\n        YY.pop_back();\n\
+    \      }\n      if (len(YY) < len(X)) YY.eb(y);\n    }\n    vc<int> XX;\n    FOR(i,\
+    \ 1, len(X), 2) XX.eb(X[i]);\n    vc<int> II = dfs(dfs, XX, YY);\n    vc<int>\
+    \ I(N);\n    FOR(i, len(II)) I[i + i + 1] = II[i];\n    int p = 0;\n    FOR(i,\
+    \ 0, N, 2) {\n      int LIM = (i + 1 == N ? Y.back() : I[i + 1]);\n      int best\
+    \ = Y[p];\n      while (Y[p] < LIM) {\n        ++p;\n        if (select(X[i],\
+    \ best, Y[p])) best = Y[p];\n      }\n      I[i] = best;\n    }\n    return I;\n\
+    \  };\n  vc<int> X(H), Y(W);\n  iota(all(X), 0), iota(all(Y), 0);\n  return dfs(dfs,\
+    \ X, Y);\n}\n#line 1 \"other/fibonacci_search.hpp\"\n// [L, R) \u3067\u306E\u6975\
+    \u5C0F\u5024\u3092\u3072\u3068\u3064\u6C42\u3081\u308B\u3001\u5358\u5CF0\u306F\
+    \u4E0D\u8981\ntemplate <typename T, bool MINIMIZE, typename F>\npair<ll, T> fibonacci_search(F\
+    \ f, ll L, ll R) {\n  assert(L < R);\n  --R;\n  ll a = L, b = L + 1, c = L + 2,\
+    \ d = L + 3;\n  int n = 0;\n  while (d < R) { b = c, c = d, d = b + c - a, ++n;\
+    \ }\n  auto get = [&](ll x) -> T {\n    if (R < x) return infty<T>;\n    return\
+    \ (MINIMIZE ? f(x) : -f(x));\n  };\n  T ya = get(a), yb = get(b), yc = get(c),\
+    \ yd = get(d);\n  // \u3053\u306E\u4E2D\u3067\u6975\u5C0F\u306A\u3089\u3070\u5168\
+    \u4F53\u3067\u3082\u6975\u5C0F\u3001\u3092\u7DAD\u6301\u3059\u308B\n  FOR(n) {\n\
+    \    if (yb <= yc) {\n      d = c, c = b, b = a + d - c;\n      yd = yc, yc =\
+    \ yb, yb = get(b);\n    } else {\n      a = b, b = c, c = a + d - b;\n      ya\
+    \ = yb, yb = yc, yc = get(c);\n    }\n  }\n  ll x = a;\n  T y = ya;\n  if (chmin(y,\
+    \ yb)) x = b;\n  if (chmin(y, yc)) x = c;\n  if (chmin(y, yd)) x = d;\n  if (MINIMIZE)\
+    \ return {x, y};\n  return {x, -y};\n}\n#line 4 \"convex/monge.hpp\"\n\r\n// \u5B9A\
+    \u7FA9\u57DF [0, N] \u306E\u7BC4\u56F2\u3067 f \u306E monge \u6027\u3092\u78BA\
+    \u8A8D\r\ntemplate <typename T, typename F>\r\nbool check_monge(int N, F f) {\r\
+    \n  FOR(l, N + 1) FOR(k, l) FOR(j, k) FOR(i, j) {\r\n    T lhs = f(i, l) + f(j,\
+    \ k);\r\n    T rhs = f(i, k) + f(j, l);\r\n    if (lhs < rhs) {\r\n      print(\"\
+    monge ng\");\r\n      print(i, j, k, l, f(i, k), f(i, l), f(j, k), f(j, l), lhs,\
+    \ rhs);\r\n      return false;\r\n    }\r\n  }\r\n  print(\"monge ok\");\r\n \
+    \ return true;\r\n}\r\n\r\n// newdp[j] = min (dp[i] + f(i,j))\r\ntemplate <typename\
+    \ T, typename F>\r\nvc<T> monge_dp_update(int N, vc<T>& dp, F f) {\r\n  assert(len(dp)\
+    \ == N + 1);\r\n  auto select = [&](int i, int j, int k) -> int {\r\n    if (i\
+    \ <= k) return j;\r\n    return (dp[j] + f(j, i) > dp[k] + f(k, i) ? k : j);\r\
+    \n  };\r\n  vc<int> I = SMAWK(N + 1, N + 1, select);\r\n  vc<T> newdp(N + 1, infty<T>);\r\
     \n  FOR(j, N + 1) {\r\n    int i = I[j];\r\n    chmin(newdp[j], dp[i] + f(i, j));\r\
     \n  }\r\n  return newdp;\r\n}\r\n\r\n// \u9077\u79FB\u56DE\u6570\u3092\u554F\u308F\
     \u306A\u3044\u5834\u5408\r\ntemplate <typename T, typename F>\r\nvc<T> monge_shortest_path(int\
@@ -169,7 +169,7 @@ data:
   isVerificationFile: false
   path: convex/monge.hpp
   requiredBy: []
-  timestamp: '2023-08-10 00:32:23+09:00'
+  timestamp: '2023-10-24 13:33:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/705.test.cpp

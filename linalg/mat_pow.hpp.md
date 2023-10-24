@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1750.test.cpp
     title: test/yukicoder/1750.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1810.test.cpp
     title: test/yukicoder/1810.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -95,23 +95,26 @@ data:
     \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
     \ -1; }\n};\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     #line 3 \"linalg/mat_mul.hpp\"\n\r\ntemplate <class T, typename enable_if<has_mod<T>::value>::type*\
-    \ = nullptr>\r\nvc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n\
-    \  assert(T::get_mod() < (1 << 30));\r\n  auto N = len(A), M = len(B), K = len(B[0]);\r\
-    \n  vv(u32, b, K, M);\r\n  FOR(i, M) FOR(j, K) b[j][i] = B[i][j].val;\r\n  vv(T,\
-    \ C, N, K);\r\n\r\n  if (M <= 16) {\r\n    FOR(i, N) FOR(j, K) {\r\n      u64\
-    \ sm = 0;\r\n      FOR(m, M) sm += u64(A[i][m].val) * b[j][m];\r\n      C[i][j]\
-    \ = sm;\r\n    }\r\n  } else {\r\n    FOR(i, N) FOR(j, K) {\r\n      u128 sm =\
-    \ 0;\r\n      FOR(m, M) sm += u64(A[i][m].val) * b[j][m];\r\n      C[i][j] = T::raw(sm\
-    \ % (T::get_mod()));\r\n    }\r\n  }\r\n  return C;\r\n}\r\n\r\ntemplate <class\
-    \ T, typename enable_if<!has_mod<T>::value>::type* = nullptr>\r\nvc<vc<T>> mat_mul(const\
-    \ vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n  assert(!A.empty() && !B.empty());\r\
-    \n  auto N = len(A), M = len(B), K = len(B[0]);\r\n  vv(T, b, K, M);\r\n  FOR(i,\
-    \ M) FOR(j, K) b[j][i] = B[i][j];\r\n  vv(T, C, N, K);\r\n  FOR(n, N) FOR(m, M)\
-    \ FOR(k, K) C[n][k] += A[n][m] * b[k][m];\r\n  return C;\r\n}\r\n#line 2 \"linalg/mat_pow.hpp\"\
-    \ntemplate<typename T>\r\nvc<vc<T>> mat_pow(vc<vc<T>> A, ll n){\r\n  int N = len(A);\r\
-    \n  vv(T, ret, N, N);\r\n  FOR(i, N) ret[i][i] = T(1);\r\n  while(n){\r\n    if(n\
-    \ & 1) ret = mat_mul(ret, A);\r\n    n /= 2;\r\n    if(n) A = mat_mul(A, A);\r\
-    \n  }\r\n  return ret;\r\n}\n"
+    \ = nullptr>\r\nvc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int\
+    \ N1 = -1,\r\n                  int N2 = -1, int N3 = -1) {\r\n  if (N1 == -1)\
+    \ { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\r\n  vv(u32, b, N2, N3);\r\n \
+    \ FOR(i, N2) FOR(j, N3) b[j][i] = B[i][j].val;\r\n  vv(T, C, N1, N3);\r\n\r\n\
+    \  if ((T::get_mod() < (1 << 30)) && N2 <= 16) {\r\n    FOR(i, N1) FOR(j, N3)\
+    \ {\r\n      u64 sm = 0;\r\n      FOR(m, N2) sm += u64(A[i][m].val) * b[j][m];\r\
+    \n      C[i][j] = sm;\r\n    }\r\n  } else {\r\n    FOR(i, N1) FOR(j, N3) {\r\n\
+    \      u128 sm = 0;\r\n      FOR(m, M) sm += u64(A[i][m].val) * b[j][m];\r\n \
+    \     C[i][j] = T::raw(sm % (T::get_mod()));\r\n    }\r\n  }\r\n  return C;\r\n\
+    }\r\n\r\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type* = nullptr>\r\
+    \nvc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int N1 = -1,\r\n \
+    \                 int N2 = -1, int N3 = -1) {\r\n  assert(!A.empty() && !B.empty());\r\
+    \n  if (N1 == -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\r\n  vv(T, b,\
+    \ N2, N3);\r\n  FOR(i, N2) FOR(j, N3) b[j][i] = B[i][j];\r\n  vv(T, C, N1, N3);\r\
+    \n  FOR(n, N1) FOR(m, N2) FOR(k, N3) C[n][k] += A[n][m] * b[k][m];\r\n  return\
+    \ C;\r\n}\r\n#line 2 \"linalg/mat_pow.hpp\"\ntemplate<typename T>\r\nvc<vc<T>>\
+    \ mat_pow(vc<vc<T>> A, ll n){\r\n  int N = len(A);\r\n  vv(T, ret, N, N);\r\n\
+    \  FOR(i, N) ret[i][i] = T(1);\r\n  while(n){\r\n    if(n & 1) ret = mat_mul(ret,\
+    \ A);\r\n    n /= 2;\r\n    if(n) A = mat_mul(A, A);\r\n  }\r\n  return ret;\r\
+    \n}\n"
   code: "#include \"linalg/mat_mul.hpp\"\r\ntemplate<typename T>\r\nvc<vc<T>> mat_pow(vc<vc<T>>\
     \ A, ll n){\r\n  int N = len(A);\r\n  vv(T, ret, N, N);\r\n  FOR(i, N) ret[i][i]\
     \ = T(1);\r\n  while(n){\r\n    if(n & 1) ret = mat_mul(ret, A);\r\n    n /= 2;\r\
@@ -123,8 +126,8 @@ data:
   isVerificationFile: false
   path: linalg/mat_pow.hpp
   requiredBy: []
-  timestamp: '2023-10-14 01:49:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-10-24 13:34:47+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1750.test.cpp
   - test/yukicoder/1810.test.cpp

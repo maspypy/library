@@ -1,62 +1,62 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/characteristic_poly.hpp
     title: linalg/characteristic_poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/mat_inv.hpp
     title: linalg/mat_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/mat_mul.hpp
     title: linalg/mat_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1907.test.cpp
     title: test/yukicoder/1907.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -137,65 +137,66 @@ data:
     \ return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
     using modint998 = modint<998244353>;\n#line 3 \"linalg/mat_mul.hpp\"\n\r\ntemplate\
     \ <class T, typename enable_if<has_mod<T>::value>::type* = nullptr>\r\nvc<vc<T>>\
-    \ mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n  assert(T::get_mod() <\
-    \ (1 << 30));\r\n  auto N = len(A), M = len(B), K = len(B[0]);\r\n  vv(u32, b,\
-    \ K, M);\r\n  FOR(i, M) FOR(j, K) b[j][i] = B[i][j].val;\r\n  vv(T, C, N, K);\r\
-    \n\r\n  if (M <= 16) {\r\n    FOR(i, N) FOR(j, K) {\r\n      u64 sm = 0;\r\n \
-    \     FOR(m, M) sm += u64(A[i][m].val) * b[j][m];\r\n      C[i][j] = sm;\r\n \
-    \   }\r\n  } else {\r\n    FOR(i, N) FOR(j, K) {\r\n      u128 sm = 0;\r\n   \
-    \   FOR(m, M) sm += u64(A[i][m].val) * b[j][m];\r\n      C[i][j] = T::raw(sm %\
-    \ (T::get_mod()));\r\n    }\r\n  }\r\n  return C;\r\n}\r\n\r\ntemplate <class\
-    \ T, typename enable_if<!has_mod<T>::value>::type* = nullptr>\r\nvc<vc<T>> mat_mul(const\
-    \ vc<vc<T>>& A, const vc<vc<T>>& B) {\r\n  assert(!A.empty() && !B.empty());\r\
-    \n  auto N = len(A), M = len(B), K = len(B[0]);\r\n  vv(T, b, K, M);\r\n  FOR(i,\
-    \ M) FOR(j, K) b[j][i] = B[i][j];\r\n  vv(T, C, N, K);\r\n  FOR(n, N) FOR(m, M)\
-    \ FOR(k, K) C[n][k] += A[n][m] * b[k][m];\r\n  return C;\r\n}\r\n#line 1 \"linalg/mat_inv.hpp\"\
-    \n// (det, invA) \u3092\u304B\u3048\u3059\r\ntemplate <typename T>\r\npair<T,\
-    \ vc<vc<T>>> mat_inv(vc<vc<T>> A) {\r\n  T det = 1;\r\n  int N = len(A);\r\n \
-    \ vv(T, B, N, N);\r\n  FOR(n, N) B[n][n] = 1;\r\n  FOR(i, N) {\r\n    FOR(k, i,\
-    \ N) if (A[k][i] != 0) {\r\n      if (k != i) {\r\n        swap(A[i], A[k]), swap(B[i],\
-    \ B[k]);\r\n        det = -det;\r\n      }\r\n      break;\r\n    }\r\n    if\
-    \ (A[i][i] == 0) return {T(0), {}};\r\n    T c = T(1) / A[i][i];\r\n    det *=\
-    \ A[i][i];\r\n    FOR(j, i, N) A[i][j] *= c;\r\n    FOR(j, N) B[i][j] *= c;\r\n\
-    \    FOR(k, N) if (i != k) {\r\n      T c = A[k][i];\r\n      FOR(j, i, N) A[k][j]\
-    \ -= A[i][j] * c;\r\n      FOR(j, N) B[k][j] -= B[i][j] * c;\r\n    }\r\n  }\r\
-    \n  return {det, B};\r\n}\r\n#line 1 \"linalg/characteristic_poly.hpp\"\ntemplate\
-    \ <typename T>\r\nvoid to_Hessenberg_matrix(vc<vc<T>>& A) {\r\n  /*\r\n  P^{-1}AP\
-    \ \u306E\u5F62\u306E\u5909\u63DB\u3067\u3001Hessenberg \u884C\u5217\u306B\u5909\
-    \u5F62\u3059\u308B\u3002\r\n  \u7279\u5B9A\u591A\u9805\u5F0F\u306E\u8A08\u7B97\
-    \u306B\u7528\u3044\u308B\u3053\u3068\u304C\u3067\u304D\u308B\u3002\r\n  */\r\n\
-    \  int n = len(A);\r\n  FOR(k, n - 2) {\r\n    FOR3(i, k + 1, n) if (A[i][k] !=\
-    \ 0) {\r\n      if (i != k + 1) {\r\n        swap(A[i], A[k + 1]);\r\n       \
-    \ FOR(j, n) swap(A[j][i], A[j][k + 1]);\r\n      }\r\n      break;\r\n    }\r\n\
-    \    if (A[k + 1][k] == 0) continue;\r\n    FOR3(i, k + 2, n) {\r\n      T c =\
-    \ A[i][k] / A[k + 1][k];\r\n      // i \u884C\u76EE -= k+1 \u884C\u76EE * c\r\n\
-    \      FOR(j, n) A[i][j] -= A[k + 1][j] * c;\r\n      // k+1 \u5217\u76EE += i\
-    \ \u5217\u76EE * c\r\n      FOR(j, n) A[j][k + 1] += A[j][i] * c;\r\n    }\r\n\
-    \  }\r\n}\r\n\r\n// det(xI-A)\r\ntemplate <typename T>\r\nvc<T> characteristic_poly(vc<vc<T>>\
-    \ A) {\r\n  /*\r\n  \u30FBHessenberg \u884C\u5217\u306B\u5909\u5F62\r\n  \u30FB\
-    Hessenberg \u884C\u5217\u306E\u884C\u5217\u5F0F\u306F\u3001\u6700\u5F8C\u306E\u5217\
-    \u3067\u5834\u5408\u5206\u3051\u3059\u308C\u3070 dp \u3067\u304D\u308B\r\n  */\r\
-    \n  int n = len(A);\r\n  to_Hessenberg_matrix(A);\r\n  vc<vc<T>> DP(n + 1);\r\n\
-    \  DP[0] = {1};\r\n  FOR(k, n) {\r\n    DP[k + 1].resize(k + 2);\r\n    auto&\
-    \ dp = DP[k + 1];\r\n    // (k, k) \u6210\u5206\u3092\u4F7F\u3046\u5834\u5408\r\
-    \n    FOR(i, len(DP[k])) dp[i + 1] += DP[k][i];\r\n    FOR(i, len(DP[k])) dp[i]\
-    \ -= DP[k][i] * A[k][k];\r\n    // \u4E0B\u5074\u5BFE\u89D2\u306E\u7DCF\u7A4D\u3092\
-    \u7BA1\u7406\r\n    T prod = 1;\r\n    FOR_R(i, k) {\r\n      // (i, k) \u6210\
-    \u5206\u3092\u4F7F\u3046\u5834\u5408\r\n      prod *= A[i + 1][i];\r\n      T\
-    \ c = prod * A[i][k];\r\n      // DP[i] \u306E c \u500D\u3092\u52A0\u7B97\r\n\
-    \      FOR(j, len(DP[i])) dp[j] -= DP[i][j] * c;\r\n    }\r\n  }\r\n  return DP[n];\r\
-    \n}\r\n#line 2 \"poly/poly_taylor_shift.hpp\"\n\r\n#line 2 \"nt/primetable.hpp\"\
-    \n\ntemplate <typename T = int>\nvc<T> primetable(int LIM) {\n  ++LIM;\n  const\
-    \ int S = 32768;\n  static int done = 2;\n  static vc<T> primes = {2}, sieve(S\
-    \ + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S\
-    \ + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM)\
-    \ * 1.1));\n    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n\
-    \      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for (int j = i\
-    \ * i; j <= S; j += 2 * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1;\
-    \ L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p, idx]:\
-    \ cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n\
-    \      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n\
-    \  }\n  int k = LB(primes, LIM + 1);\n  return {primes.begin(), primes.begin()\
+    \ mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int N1 = -1,\r\n           \
+    \       int N2 = -1, int N3 = -1) {\r\n  if (N1 == -1) { N1 = len(A), N2 = len(B),\
+    \ N3 = len(B[0]); }\r\n  vv(u32, b, N2, N3);\r\n  FOR(i, N2) FOR(j, N3) b[j][i]\
+    \ = B[i][j].val;\r\n  vv(T, C, N1, N3);\r\n\r\n  if ((T::get_mod() < (1 << 30))\
+    \ && N2 <= 16) {\r\n    FOR(i, N1) FOR(j, N3) {\r\n      u64 sm = 0;\r\n     \
+    \ FOR(m, N2) sm += u64(A[i][m].val) * b[j][m];\r\n      C[i][j] = sm;\r\n    }\r\
+    \n  } else {\r\n    FOR(i, N1) FOR(j, N3) {\r\n      u128 sm = 0;\r\n      FOR(m,\
+    \ M) sm += u64(A[i][m].val) * b[j][m];\r\n      C[i][j] = T::raw(sm % (T::get_mod()));\r\
+    \n    }\r\n  }\r\n  return C;\r\n}\r\n\r\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type*\
+    \ = nullptr>\r\nvc<vc<T>> mat_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int\
+    \ N1 = -1,\r\n                  int N2 = -1, int N3 = -1) {\r\n  assert(!A.empty()\
+    \ && !B.empty());\r\n  if (N1 == -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]);\
+    \ }\r\n  vv(T, b, N2, N3);\r\n  FOR(i, N2) FOR(j, N3) b[j][i] = B[i][j];\r\n \
+    \ vv(T, C, N1, N3);\r\n  FOR(n, N1) FOR(m, N2) FOR(k, N3) C[n][k] += A[n][m] *\
+    \ b[k][m];\r\n  return C;\r\n}\r\n#line 1 \"linalg/mat_inv.hpp\"\n// (det, invA)\
+    \ \u3092\u304B\u3048\u3059\r\ntemplate <typename T>\r\npair<T, vc<vc<T>>> mat_inv(vc<vc<T>>\
+    \ A) {\r\n  T det = 1;\r\n  int N = len(A);\r\n  vv(T, B, N, N);\r\n  FOR(n, N)\
+    \ B[n][n] = 1;\r\n  FOR(i, N) {\r\n    FOR(k, i, N) if (A[k][i] != 0) {\r\n  \
+    \    if (k != i) {\r\n        swap(A[i], A[k]), swap(B[i], B[k]);\r\n        det\
+    \ = -det;\r\n      }\r\n      break;\r\n    }\r\n    if (A[i][i] == 0) return\
+    \ {T(0), {}};\r\n    T c = T(1) / A[i][i];\r\n    det *= A[i][i];\r\n    FOR(j,\
+    \ i, N) A[i][j] *= c;\r\n    FOR(j, N) B[i][j] *= c;\r\n    FOR(k, N) if (i !=\
+    \ k) {\r\n      T c = A[k][i];\r\n      FOR(j, i, N) A[k][j] -= A[i][j] * c;\r\
+    \n      FOR(j, N) B[k][j] -= B[i][j] * c;\r\n    }\r\n  }\r\n  return {det, B};\r\
+    \n}\r\n#line 1 \"linalg/characteristic_poly.hpp\"\ntemplate <typename T>\r\nvoid\
+    \ to_Hessenberg_matrix(vc<vc<T>>& A) {\r\n  /*\r\n  P^{-1}AP \u306E\u5F62\u306E\
+    \u5909\u63DB\u3067\u3001Hessenberg \u884C\u5217\u306B\u5909\u5F62\u3059\u308B\u3002\
+    \r\n  \u7279\u5B9A\u591A\u9805\u5F0F\u306E\u8A08\u7B97\u306B\u7528\u3044\u308B\
+    \u3053\u3068\u304C\u3067\u304D\u308B\u3002\r\n  */\r\n  int n = len(A);\r\n  FOR(k,\
+    \ n - 2) {\r\n    FOR3(i, k + 1, n) if (A[i][k] != 0) {\r\n      if (i != k +\
+    \ 1) {\r\n        swap(A[i], A[k + 1]);\r\n        FOR(j, n) swap(A[j][i], A[j][k\
+    \ + 1]);\r\n      }\r\n      break;\r\n    }\r\n    if (A[k + 1][k] == 0) continue;\r\
+    \n    FOR3(i, k + 2, n) {\r\n      T c = A[i][k] / A[k + 1][k];\r\n      // i\
+    \ \u884C\u76EE -= k+1 \u884C\u76EE * c\r\n      FOR(j, n) A[i][j] -= A[k + 1][j]\
+    \ * c;\r\n      // k+1 \u5217\u76EE += i \u5217\u76EE * c\r\n      FOR(j, n) A[j][k\
+    \ + 1] += A[j][i] * c;\r\n    }\r\n  }\r\n}\r\n\r\n// det(xI-A)\r\ntemplate <typename\
+    \ T>\r\nvc<T> characteristic_poly(vc<vc<T>> A) {\r\n  /*\r\n  \u30FBHessenberg\
+    \ \u884C\u5217\u306B\u5909\u5F62\r\n  \u30FBHessenberg \u884C\u5217\u306E\u884C\
+    \u5217\u5F0F\u306F\u3001\u6700\u5F8C\u306E\u5217\u3067\u5834\u5408\u5206\u3051\
+    \u3059\u308C\u3070 dp \u3067\u304D\u308B\r\n  */\r\n  int n = len(A);\r\n  to_Hessenberg_matrix(A);\r\
+    \n  vc<vc<T>> DP(n + 1);\r\n  DP[0] = {1};\r\n  FOR(k, n) {\r\n    DP[k + 1].resize(k\
+    \ + 2);\r\n    auto& dp = DP[k + 1];\r\n    // (k, k) \u6210\u5206\u3092\u4F7F\
+    \u3046\u5834\u5408\r\n    FOR(i, len(DP[k])) dp[i + 1] += DP[k][i];\r\n    FOR(i,\
+    \ len(DP[k])) dp[i] -= DP[k][i] * A[k][k];\r\n    // \u4E0B\u5074\u5BFE\u89D2\u306E\
+    \u7DCF\u7A4D\u3092\u7BA1\u7406\r\n    T prod = 1;\r\n    FOR_R(i, k) {\r\n   \
+    \   // (i, k) \u6210\u5206\u3092\u4F7F\u3046\u5834\u5408\r\n      prod *= A[i\
+    \ + 1][i];\r\n      T c = prod * A[i][k];\r\n      // DP[i] \u306E c \u500D\u3092\
+    \u52A0\u7B97\r\n      FOR(j, len(DP[i])) dp[j] -= DP[i][j] * c;\r\n    }\r\n \
+    \ }\r\n  return DP[n];\r\n}\r\n#line 2 \"poly/poly_taylor_shift.hpp\"\n\r\n#line\
+    \ 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = int>\nvc<T> primetable(int\
+    \ LIM) {\n  ++LIM;\n  const int S = 32768;\n  static int done = 2;\n  static vc<T>\
+    \ primes = {2}, sieve(S + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes\
+    \ = {2}, sieve.assign(S + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM\
+    \ / log(LIM) * 1.1));\n    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S;\
+    \ i += 2) {\n      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for\
+    \ (int j = i * i; j <= S; j += 2 * i) sieve[j] = 1;\n      }\n    }\n    for (int\
+    \ L = 1; L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p,\
+    \ idx]: cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L]\
+    \ = 1;\n      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n\
+    \    }\n  }\n  int k = LB(primes, LIM + 1);\n  return {primes.begin(), primes.begin()\
     \ + k};\n}\n#line 3 \"mod/powertable.hpp\"\n\r\n// a^0, ..., a^N\r\ntemplate <typename\
     \ mint>\r\nvc<mint> powertable_1(mint a, ll N) {\r\n  // table of a^i\r\n  vc<mint>\
     \ f(N + 1, 1);\r\n  FOR(i, N) f[i + 1] = a * f[i];\r\n  return f;\r\n}\r\n\r\n\
@@ -442,8 +443,8 @@ data:
   isVerificationFile: false
   path: linalg/det_A_plus_xB.hpp
   requiredBy: []
-  timestamp: '2023-10-18 00:17:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-10-24 13:34:47+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1907.test.cpp
   - test/yukicoder/1303.test.cpp

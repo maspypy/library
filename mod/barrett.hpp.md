@@ -5,10 +5,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_bipartite.hpp
     title: graph/count/count_bipartite.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/det.hpp
     title: linalg/det.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/det_mod.hpp
     title: linalg/det_mod.hpp
   - icon: ':heavy_check_mark:'
@@ -135,7 +135,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
   - icon: ':heavy_check_mark:'
@@ -177,9 +177,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp
@@ -239,7 +239,7 @@ data:
   - poly/multivar_convolution_cyclic.hpp
   - poly/fps_sqrt.hpp
   timestamp: '2023-10-17 07:10:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/agc058d2.test.cpp
   - test_atcoder/abc270_g.test.cpp
