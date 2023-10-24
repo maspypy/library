@@ -27,19 +27,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/matrix_product.test.cpp
     title: test/library_checker/matrix/matrix_product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/min_poly.test.cpp
+    title: test/mytest/min_poly.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080_2.test.cpp
     title: test/yukicoder/1080_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_2.test.cpp
     title: test/yukicoder/502_2.test.cpp
   - icon: ':x:'
@@ -184,6 +187,7 @@ data:
   - test/yukicoder/1080_2.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp
   - test/mytest/factorial_998.test.cpp
+  - test/mytest/min_poly.test.cpp
 documentation_of: linalg/matrix_mul.hpp
 layout: document
 redirect_from:

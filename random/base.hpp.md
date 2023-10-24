@@ -267,7 +267,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
   - icon: ':heavy_check_mark:'
@@ -327,6 +327,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/min_of_linear_segments.test.cpp
     title: test/mytest/min_of_linear_segments.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/min_poly.test.cpp
+    title: test/mytest/min_poly.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/minidx_add.test.cpp
     title: test/mytest/minidx_add.test.cpp
@@ -745,6 +748,7 @@ data:
   - test/mytest/rbst.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
   - test/mytest/range_closest_pair.test.cpp
+  - test/mytest/min_poly.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/rbst_am_2.test.cpp
   - test/mytest/chirp_z.test.cpp

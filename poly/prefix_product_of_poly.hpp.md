@@ -48,16 +48,16 @@ data:
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080_2.test.cpp
     title: test/yukicoder/1080_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_2.test.cpp
     title: test/yukicoder/502_2.test.cpp
   - icon: ':x:'
@@ -447,15 +447,16 @@ data:
     \ = evaluate(A[j][k], x);\n    G[i] = mat;\n  }\n\n  for (ll w = 1; w != v; w\
     \ *= 2) {\n    T W = w;\n    auto G1 = shift(G, W * iv);\n    auto G2 = shift(G,\
     \ (W * T(deg) * T(v) + T(v)) * iv);\n    auto G3 = shift(G, (W * T(deg) * T(v)\
-    \ + T(v) + W) * iv);\n    FOR(i, w * deg + 1) {\n      G[i] = mat_mul(G1[i], G[i]);\n\
-    \      G2[i] = mat_mul(G3[i], G2[i]);\n    }\n    copy(G2.begin(), G2.end() -\
-    \ 1, back_inserter(G));\n  }\n\n  vv(T, res, n, n);\n  FOR(i, n) res[i][i] = 1;\n\
-    \  ll i = 0;\n  while (i + v <= k) res = mat_mul(G[i / v], res), i += v;\n  while\
-    \ (i < k) {\n    vv(T, mat, n, n);\n    FOR(j, n) FOR(k, n) mat[j][k] = evaluate(A[j][k],\
-    \ i);\n    res = mat_mul(mat, res);\n    ++i;\n  }\n  return res;\n}\n\n// f[k-1]...f[0]\
-    \ \u3092\u8A08\u7B97\u3059\u308B\ntemplate <typename T>\nT prefix_product_of_poly(vc<T>&\
-    \ f, ll k) {\n  vc<vc<vc<T>>> A(1);\n  A[0].resize(1);\n  A[0][0] = f;\n  auto\
-    \ res = prefix_product_of_poly_matrix(A, k);\n  return res[0][0];\n}\n"
+    \ + T(v) + W) * iv);\n    FOR(i, w * deg + 1) {\n      G[i] = matrix_mul(G1[i],\
+    \ G[i]);\n      G2[i] = matrix_mul(G3[i], G2[i]);\n    }\n    copy(G2.begin(),\
+    \ G2.end() - 1, back_inserter(G));\n  }\n\n  vv(T, res, n, n);\n  FOR(i, n) res[i][i]\
+    \ = 1;\n  ll i = 0;\n  while (i + v <= k) res = matrix_mul(G[i / v], res), i +=\
+    \ v;\n  while (i < k) {\n    vv(T, mat, n, n);\n    FOR(j, n) FOR(k, n) mat[j][k]\
+    \ = evaluate(A[j][k], i);\n    res = matrix_mul(mat, res);\n    ++i;\n  }\n  return\
+    \ res;\n}\n\n// f[k-1]...f[0] \u3092\u8A08\u7B97\u3059\u308B\ntemplate <typename\
+    \ T>\nT prefix_product_of_poly(vc<T>& f, ll k) {\n  vc<vc<vc<T>>> A(1);\n  A[0].resize(1);\n\
+    \  A[0][0] = f;\n  auto res = prefix_product_of_poly_matrix(A, k);\n  return res[0][0];\n\
+    }\n"
   code: "#pragma once\n#include \"linalg/matrix_mul.hpp\"\n#include \"poly/lagrange_interpolate_iota.hpp\"\
     \n\n// A[k-1]...A[0] \u3092\u8A08\u7B97\u3059\u308B\n// \u30A2\u30EB\u30B4\u30EA\
     \u30BA\u30E0\u53C2\u8003\uFF1Ahttps://github.com/noshi91/n91lib_rs/blob/master/src/algorithm/polynomial_matrix_prod.rs\n\
@@ -474,15 +475,16 @@ data:
     \ = evaluate(A[j][k], x);\n    G[i] = mat;\n  }\n\n  for (ll w = 1; w != v; w\
     \ *= 2) {\n    T W = w;\n    auto G1 = shift(G, W * iv);\n    auto G2 = shift(G,\
     \ (W * T(deg) * T(v) + T(v)) * iv);\n    auto G3 = shift(G, (W * T(deg) * T(v)\
-    \ + T(v) + W) * iv);\n    FOR(i, w * deg + 1) {\n      G[i] = mat_mul(G1[i], G[i]);\n\
-    \      G2[i] = mat_mul(G3[i], G2[i]);\n    }\n    copy(G2.begin(), G2.end() -\
-    \ 1, back_inserter(G));\n  }\n\n  vv(T, res, n, n);\n  FOR(i, n) res[i][i] = 1;\n\
-    \  ll i = 0;\n  while (i + v <= k) res = mat_mul(G[i / v], res), i += v;\n  while\
-    \ (i < k) {\n    vv(T, mat, n, n);\n    FOR(j, n) FOR(k, n) mat[j][k] = evaluate(A[j][k],\
-    \ i);\n    res = mat_mul(mat, res);\n    ++i;\n  }\n  return res;\n}\n\n// f[k-1]...f[0]\
-    \ \u3092\u8A08\u7B97\u3059\u308B\ntemplate <typename T>\nT prefix_product_of_poly(vc<T>&\
-    \ f, ll k) {\n  vc<vc<vc<T>>> A(1);\n  A[0].resize(1);\n  A[0][0] = f;\n  auto\
-    \ res = prefix_product_of_poly_matrix(A, k);\n  return res[0][0];\n}"
+    \ + T(v) + W) * iv);\n    FOR(i, w * deg + 1) {\n      G[i] = matrix_mul(G1[i],\
+    \ G[i]);\n      G2[i] = matrix_mul(G3[i], G2[i]);\n    }\n    copy(G2.begin(),\
+    \ G2.end() - 1, back_inserter(G));\n  }\n\n  vv(T, res, n, n);\n  FOR(i, n) res[i][i]\
+    \ = 1;\n  ll i = 0;\n  while (i + v <= k) res = matrix_mul(G[i / v], res), i +=\
+    \ v;\n  while (i < k) {\n    vv(T, mat, n, n);\n    FOR(j, n) FOR(k, n) mat[j][k]\
+    \ = evaluate(A[j][k], i);\n    res = matrix_mul(mat, res);\n    ++i;\n  }\n  return\
+    \ res;\n}\n\n// f[k-1]...f[0] \u3092\u8A08\u7B97\u3059\u308B\ntemplate <typename\
+    \ T>\nT prefix_product_of_poly(vc<T>& f, ll k) {\n  vc<vc<vc<T>>> A(1);\n  A[0].resize(1);\n\
+    \  A[0][0] = f;\n  auto res = prefix_product_of_poly_matrix(A, k);\n  return res[0][0];\n\
+    }"
   dependsOn:
   - linalg/matrix_mul.hpp
   - mod/modint.hpp
@@ -502,7 +504,7 @@ data:
   - seq/kth_term_of_p_recursive.hpp
   - poly/sparse_exp_of_div.hpp
   - poly/from_log_differentiation.hpp
-  timestamp: '2023-10-24 15:09:13+09:00'
+  timestamp: '2023-10-24 15:23:55+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc276_g_2.test.cpp

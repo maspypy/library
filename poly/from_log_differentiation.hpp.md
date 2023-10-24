@@ -51,7 +51,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080_2.test.cpp
     title: test/yukicoder/1080_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
   - icon: ':x:'
@@ -440,45 +440,45 @@ data:
     \ = evaluate(A[j][k], x);\n    G[i] = mat;\n  }\n\n  for (ll w = 1; w != v; w\
     \ *= 2) {\n    T W = w;\n    auto G1 = shift(G, W * iv);\n    auto G2 = shift(G,\
     \ (W * T(deg) * T(v) + T(v)) * iv);\n    auto G3 = shift(G, (W * T(deg) * T(v)\
-    \ + T(v) + W) * iv);\n    FOR(i, w * deg + 1) {\n      G[i] = mat_mul(G1[i], G[i]);\n\
-    \      G2[i] = mat_mul(G3[i], G2[i]);\n    }\n    copy(G2.begin(), G2.end() -\
-    \ 1, back_inserter(G));\n  }\n\n  vv(T, res, n, n);\n  FOR(i, n) res[i][i] = 1;\n\
-    \  ll i = 0;\n  while (i + v <= k) res = mat_mul(G[i / v], res), i += v;\n  while\
-    \ (i < k) {\n    vv(T, mat, n, n);\n    FOR(j, n) FOR(k, n) mat[j][k] = evaluate(A[j][k],\
-    \ i);\n    res = mat_mul(mat, res);\n    ++i;\n  }\n  return res;\n}\n\n// f[k-1]...f[0]\
-    \ \u3092\u8A08\u7B97\u3059\u308B\ntemplate <typename T>\nT prefix_product_of_poly(vc<T>&\
-    \ f, ll k) {\n  vc<vc<vc<T>>> A(1);\n  A[0].resize(1);\n  A[0][0] = f;\n  auto\
-    \ res = prefix_product_of_poly_matrix(A, k);\n  return res[0][0];\n}\n#line 2\
-    \ \"seq/kth_term_of_p_recursive.hpp\"\n\n// a0, ..., a_{r-1} \u304A\u3088\u3073\
-    \ f_0, ..., f_r \u3092\u4E0E\u3048\u308B\n// a_r f_0(0) + a_{r-1}f_1(0) + ...\
-    \ = 0\n// a_{r+1} f_0(1) + a_{r}f_1(1) + ... = 0\ntemplate <typename T>\nT kth_term_of_p_recursive(vc<T>\
-    \ a, vc<vc<T>>& fs, ll k) {\n  int r = len(a);\n  assert(len(fs) == r + 1);\n\
-    \  if (k < r) return a[k];\n\n  vc<vc<vc<T>>> A;\n  A.resize(r);\n  FOR(i, r)\
-    \ A[i].resize(r);\n  FOR(i, r) {\n    // A[0][i] = -fs[i + 1];\n    for (auto&&\
-    \ x: fs[i + 1]) A[0][i].eb(-x);\n  }\n  FOR3(i, 1, r) A[i][i - 1] = fs[0];\n \
-    \ vc<T> den = fs[0];\n  auto res = prefix_product_of_poly_matrix(A, k - r + 1);\n\
-    \  reverse(all(a));\n  T ANS = 0;\n  FOR(j, r) ANS += res[0][j] * a[j];\n  ANS\
-    \ /= prefix_product_of_poly(den, k - r + 1);\n  return ANS;\n}\n#line 4 \"poly/from_log_differentiation.hpp\"\
-    \n\n// \u5BFE\u6570\u5FAE\u5206 F'/F = a(x)/b(x) \u304B\u3089 F \u3092\u5FA9\u5143\
-    \u3059\u308B\u3002\n// a, b \u304C sparse \u3067\u3042\u308C\u3070\u3001O(N(K1+K2))\
-    \ \u6642\u9593\u3067\u3067\u304D\u308B\n// [0, N] \u3092\u8A08\u7B97\ntemplate\
-    \ <typename mint>\nvc<mint> from_log_differentiation(int N, const vc<mint>& a,\
-    \ const vc<mint>& b) {\n  assert(b[0] == mint(1));\n  using P = pair<int, mint>;\n\
-    \n  vc<P> dat_a, dat_b;\n  FOR(i, len(a)) if (a[i] != mint(0)) dat_a.eb(i, a[i]);\n\
-    \  FOR(i, 1, len(b)) if (b[i] != mint(0)) dat_b.eb(i, b[i]);\n\n  vc<mint> f(N\
-    \ + 1);\n  vc<mint> df(N);\n  f[0] = mint(1);\n  FOR(n, N) {\n    mint v = 0;\n\
-    \    for (auto&& [i, bi]: dat_b) {\n      if (i > n) break;\n      v -= bi * df[n\
-    \ - i];\n    }\n    for (auto&& [i, ai]: dat_a) {\n      if (i > n) break;\n \
-    \     v += ai * f[n - i];\n    }\n    df[n] = v;\n    f[n + 1] = df[n] * inv<mint>(n\
-    \ + 1);\n  }\n  return f;\n}\n\n// F'/F = a/b \u306E\u89E3\u306E\u3001[x^K]F \u3092\
-    \u6C42\u3081\u308B\u3002\u53F3\u8FBA\u306F\u4F4E\u6B21\u306E\u6709\u7406\u5F0F\
-    \u3002\ntemplate <typename mint>\nmint from_log_differentiation_kth(int K, vc<mint>&\
-    \ a, vc<mint>& b) {\n  assert(b[0] == mint(1));\n  int r = max(len(a), len(b)\
-    \ - 1);\n  vvc<mint> c(r + 1);\n  FOR(i, r + 1) {\n    mint c0 = 0, c1 = 0;\n\
-    \    if (i < len(b)) c0 += mint(r - i) * b[i];\n    if (i < len(b)) c1 += b[i];\n\
-    \    if (0 <= i - 1 && i - 1 < len(b)) c0 -= a[i - 1];\n    c[i] = {c0, c1};\n\
-    \  }\n  auto f = from_log_differentiation(r - 1, a, b);\n  mint ANS = kth_term_of_p_recursive(f,\
-    \ c, K);\n  return ANS;\n}\n"
+    \ + T(v) + W) * iv);\n    FOR(i, w * deg + 1) {\n      G[i] = matrix_mul(G1[i],\
+    \ G[i]);\n      G2[i] = matrix_mul(G3[i], G2[i]);\n    }\n    copy(G2.begin(),\
+    \ G2.end() - 1, back_inserter(G));\n  }\n\n  vv(T, res, n, n);\n  FOR(i, n) res[i][i]\
+    \ = 1;\n  ll i = 0;\n  while (i + v <= k) res = matrix_mul(G[i / v], res), i +=\
+    \ v;\n  while (i < k) {\n    vv(T, mat, n, n);\n    FOR(j, n) FOR(k, n) mat[j][k]\
+    \ = evaluate(A[j][k], i);\n    res = matrix_mul(mat, res);\n    ++i;\n  }\n  return\
+    \ res;\n}\n\n// f[k-1]...f[0] \u3092\u8A08\u7B97\u3059\u308B\ntemplate <typename\
+    \ T>\nT prefix_product_of_poly(vc<T>& f, ll k) {\n  vc<vc<vc<T>>> A(1);\n  A[0].resize(1);\n\
+    \  A[0][0] = f;\n  auto res = prefix_product_of_poly_matrix(A, k);\n  return res[0][0];\n\
+    }\n#line 2 \"seq/kth_term_of_p_recursive.hpp\"\n\n// a0, ..., a_{r-1} \u304A\u3088\
+    \u3073 f_0, ..., f_r \u3092\u4E0E\u3048\u308B\n// a_r f_0(0) + a_{r-1}f_1(0) +\
+    \ ... = 0\n// a_{r+1} f_0(1) + a_{r}f_1(1) + ... = 0\ntemplate <typename T>\n\
+    T kth_term_of_p_recursive(vc<T> a, vc<vc<T>>& fs, ll k) {\n  int r = len(a);\n\
+    \  assert(len(fs) == r + 1);\n  if (k < r) return a[k];\n\n  vc<vc<vc<T>>> A;\n\
+    \  A.resize(r);\n  FOR(i, r) A[i].resize(r);\n  FOR(i, r) {\n    // A[0][i] =\
+    \ -fs[i + 1];\n    for (auto&& x: fs[i + 1]) A[0][i].eb(-x);\n  }\n  FOR3(i, 1,\
+    \ r) A[i][i - 1] = fs[0];\n  vc<T> den = fs[0];\n  auto res = prefix_product_of_poly_matrix(A,\
+    \ k - r + 1);\n  reverse(all(a));\n  T ANS = 0;\n  FOR(j, r) ANS += res[0][j]\
+    \ * a[j];\n  ANS /= prefix_product_of_poly(den, k - r + 1);\n  return ANS;\n}\n\
+    #line 4 \"poly/from_log_differentiation.hpp\"\n\n// \u5BFE\u6570\u5FAE\u5206 F'/F\
+    \ = a(x)/b(x) \u304B\u3089 F \u3092\u5FA9\u5143\u3059\u308B\u3002\n// a, b \u304C\
+    \ sparse \u3067\u3042\u308C\u3070\u3001O(N(K1+K2)) \u6642\u9593\u3067\u3067\u304D\
+    \u308B\n// [0, N] \u3092\u8A08\u7B97\ntemplate <typename mint>\nvc<mint> from_log_differentiation(int\
+    \ N, const vc<mint>& a, const vc<mint>& b) {\n  assert(b[0] == mint(1));\n  using\
+    \ P = pair<int, mint>;\n\n  vc<P> dat_a, dat_b;\n  FOR(i, len(a)) if (a[i] !=\
+    \ mint(0)) dat_a.eb(i, a[i]);\n  FOR(i, 1, len(b)) if (b[i] != mint(0)) dat_b.eb(i,\
+    \ b[i]);\n\n  vc<mint> f(N + 1);\n  vc<mint> df(N);\n  f[0] = mint(1);\n  FOR(n,\
+    \ N) {\n    mint v = 0;\n    for (auto&& [i, bi]: dat_b) {\n      if (i > n) break;\n\
+    \      v -= bi * df[n - i];\n    }\n    for (auto&& [i, ai]: dat_a) {\n      if\
+    \ (i > n) break;\n      v += ai * f[n - i];\n    }\n    df[n] = v;\n    f[n +\
+    \ 1] = df[n] * inv<mint>(n + 1);\n  }\n  return f;\n}\n\n// F'/F = a/b \u306E\u89E3\
+    \u306E\u3001[x^K]F \u3092\u6C42\u3081\u308B\u3002\u53F3\u8FBA\u306F\u4F4E\u6B21\
+    \u306E\u6709\u7406\u5F0F\u3002\ntemplate <typename mint>\nmint from_log_differentiation_kth(int\
+    \ K, vc<mint>& a, vc<mint>& b) {\n  assert(b[0] == mint(1));\n  int r = max(len(a),\
+    \ len(b) - 1);\n  vvc<mint> c(r + 1);\n  FOR(i, r + 1) {\n    mint c0 = 0, c1\
+    \ = 0;\n    if (i < len(b)) c0 += mint(r - i) * b[i];\n    if (i < len(b)) c1\
+    \ += b[i];\n    if (0 <= i - 1 && i - 1 < len(b)) c0 -= a[i - 1];\n    c[i] =\
+    \ {c0, c1};\n  }\n  auto f = from_log_differentiation(r - 1, a, b);\n  mint ANS\
+    \ = kth_term_of_p_recursive(f, c, K);\n  return ANS;\n}\n"
   code: "#pragma once\n\n#include \"seq/kth_term_of_p_recursive.hpp\"\n\n// \u5BFE\
     \u6570\u5FAE\u5206 F'/F = a(x)/b(x) \u304B\u3089 F \u3092\u5FA9\u5143\u3059\u308B\
     \u3002\n// a, b \u304C sparse \u3067\u3042\u308C\u3070\u3001O(N(K1+K2)) \u6642\
@@ -519,7 +519,7 @@ data:
   path: poly/from_log_differentiation.hpp
   requiredBy:
   - poly/sparse_exp_of_div.hpp
-  timestamp: '2023-10-24 15:09:13+09:00'
+  timestamp: '2023-10-24 15:23:55+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc276_g_2.test.cpp

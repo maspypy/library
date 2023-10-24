@@ -15,6 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/sparse_matrix_det.test.cpp
     title: test/library_checker/matrix/sparse_matrix_det.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/min_poly.test.cpp
+    title: test/mytest/min_poly.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -60,6 +63,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
+  - test/mytest/min_poly.test.cpp
 documentation_of: linalg/spmat_min_poly.hpp
 layout: document
 redirect_from:

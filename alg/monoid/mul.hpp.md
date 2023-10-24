@@ -51,7 +51,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_bipartite.test.cpp
     title: test/mytest/count_bipartite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
   - icon: ':heavy_check_mark:'
@@ -66,10 +66,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2005.test.cpp
     title: test/yukicoder/2005.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_2.test.cpp
     title: test/yukicoder/502_2.test.cpp
   - icon: ':heavy_check_mark:'

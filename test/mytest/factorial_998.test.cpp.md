@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/factorial998.hpp
     title: mod/factorial998.hpp
   - icon: ':question:'
@@ -54,9 +54,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -628,21 +628,21 @@ data:
     \ = evaluate(A[j][k], x);\n    G[i] = mat;\n  }\n\n  for (ll w = 1; w != v; w\
     \ *= 2) {\n    T W = w;\n    auto G1 = shift(G, W * iv);\n    auto G2 = shift(G,\
     \ (W * T(deg) * T(v) + T(v)) * iv);\n    auto G3 = shift(G, (W * T(deg) * T(v)\
-    \ + T(v) + W) * iv);\n    FOR(i, w * deg + 1) {\n      G[i] = mat_mul(G1[i], G[i]);\n\
-    \      G2[i] = mat_mul(G3[i], G2[i]);\n    }\n    copy(G2.begin(), G2.end() -\
-    \ 1, back_inserter(G));\n  }\n\n  vv(T, res, n, n);\n  FOR(i, n) res[i][i] = 1;\n\
-    \  ll i = 0;\n  while (i + v <= k) res = mat_mul(G[i / v], res), i += v;\n  while\
-    \ (i < k) {\n    vv(T, mat, n, n);\n    FOR(j, n) FOR(k, n) mat[j][k] = evaluate(A[j][k],\
-    \ i);\n    res = mat_mul(mat, res);\n    ++i;\n  }\n  return res;\n}\n\n// f[k-1]...f[0]\
-    \ \u3092\u8A08\u7B97\u3059\u308B\ntemplate <typename T>\nT prefix_product_of_poly(vc<T>&\
-    \ f, ll k) {\n  vc<vc<vc<T>>> A(1);\n  A[0].resize(1);\n  A[0][0] = f;\n  auto\
-    \ res = prefix_product_of_poly_matrix(A, k);\n  return res[0][0];\n}\n#line 8\
-    \ \"test/mytest/factorial_998.test.cpp\"\n\nusing mint = modint998;\n\nvoid test()\
-    \ {\n  FOR(10) {\n    int x = RNG(0, mint::get_mod());\n    // int x = t;\n  \
-    \  int a = factorial998(x);\n    vc<mint> f = {1, 1};\n    int b = prefix_product_of_poly(f,\
-    \ x).val;\n    assert(a == b);\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a\
-    \ + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  test();\n\
-    \  solve();\n\n  return 0;\n}\n"
+    \ + T(v) + W) * iv);\n    FOR(i, w * deg + 1) {\n      G[i] = matrix_mul(G1[i],\
+    \ G[i]);\n      G2[i] = matrix_mul(G3[i], G2[i]);\n    }\n    copy(G2.begin(),\
+    \ G2.end() - 1, back_inserter(G));\n  }\n\n  vv(T, res, n, n);\n  FOR(i, n) res[i][i]\
+    \ = 1;\n  ll i = 0;\n  while (i + v <= k) res = matrix_mul(G[i / v], res), i +=\
+    \ v;\n  while (i < k) {\n    vv(T, mat, n, n);\n    FOR(j, n) FOR(k, n) mat[j][k]\
+    \ = evaluate(A[j][k], i);\n    res = matrix_mul(mat, res);\n    ++i;\n  }\n  return\
+    \ res;\n}\n\n// f[k-1]...f[0] \u3092\u8A08\u7B97\u3059\u308B\ntemplate <typename\
+    \ T>\nT prefix_product_of_poly(vc<T>& f, ll k) {\n  vc<vc<vc<T>>> A(1);\n  A[0].resize(1);\n\
+    \  A[0][0] = f;\n  auto res = prefix_product_of_poly_matrix(A, k);\n  return res[0][0];\n\
+    }\n#line 8 \"test/mytest/factorial_998.test.cpp\"\n\nusing mint = modint998;\n\
+    \nvoid test() {\n  FOR(10) {\n    int x = RNG(0, mint::get_mod());\n    // int\
+    \ x = t;\n    int a = factorial998(x);\n    vc<mint> f = {1, 1};\n    int b =\
+    \ prefix_product_of_poly(f, x).val;\n    assert(a == b);\n  }\n}\n\nvoid solve()\
+    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"random/base.hpp\"\n\n#include \"mod/factorial998.hpp\"\
     \n#include \"poly/prefix_product_of_poly.hpp\"\n\nusing mint = modint998;\n\n\
@@ -672,8 +672,8 @@ data:
   isVerificationFile: true
   path: test/mytest/factorial_998.test.cpp
   requiredBy: []
-  timestamp: '2023-10-24 15:09:13+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-10-24 15:23:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/factorial_998.test.cpp
 layout: document

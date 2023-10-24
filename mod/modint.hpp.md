@@ -107,7 +107,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':heavy_check_mark:'
@@ -128,7 +128,7 @@ data:
   - icon: ':question:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':heavy_check_mark:'
@@ -537,9 +537,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/eulerian_number.test.cpp
     title: test/mytest/eulerian_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/min_poly.test.cpp
+    title: test/mytest/min_poly.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/mo_on_tree.test.cpp
     title: test/mytest/mo_on_tree.test.cpp
@@ -783,7 +786,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2149.test.cpp
     title: test/yukicoder/2149.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
   - icon: ':heavy_check_mark:'
@@ -840,7 +843,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/502_2.test.cpp
     title: test/yukicoder/502_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1401,6 +1404,7 @@ data:
   - test/mytest/31bit_modint.test.cpp
   - test/mytest/binom.test.cpp
   - test/mytest/prime_sum.test.cpp
+  - test/mytest/min_poly.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/chirp_z.test.cpp
   - test/mytest/enumerate_multisets.test.cpp
