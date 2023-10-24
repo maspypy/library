@@ -2,6 +2,7 @@
 
 // 各 v に対して、v を始点とする P3, P4 を数える
 // https://atcoder.jp/contests/tkppc2/tasks/tkppc2016_h
+// 始終点ごと：https://codeforces.com/contest/51/submission/228823033
 template <typename GT>
 pair<vi, vi> count_P3_P4_pointwise(GT& G) {
   int N = G.N;
