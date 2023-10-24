@@ -8,7 +8,10 @@ data:
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
+    path: linalg/det_A_plus_xB.hpp
+    title: linalg/det_A_plus_xB.hpp
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_pow.hpp
     title: linalg/matrix_pow.hpp
   - icon: ':question:'
@@ -36,6 +39,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080_2.test.cpp
     title: test/yukicoder/1080_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1303.test.cpp
+    title: test/yukicoder/1303.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1750.test.cpp
+    title: test/yukicoder/1750.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1810.test.cpp
+    title: test/yukicoder/1810.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1907.test.cpp
+    title: test/yukicoder/1907.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
@@ -171,6 +186,7 @@ data:
   path: linalg/matrix_mul.hpp
   requiredBy:
   - seq/kth_term_of_p_recursive.hpp
+  - linalg/det_A_plus_xB.hpp
   - linalg/matrix_pow.hpp
   - poly/sparse_exp_of_div.hpp
   - poly/prefix_product_of_poly.hpp
@@ -181,9 +197,13 @@ data:
   - test_atcoder/abc276_g_2.test.cpp
   - test_atcoder/abc276_g.test.cpp
   - test_atcoder/abc222h_2.test.cpp
+  - test/yukicoder/1750.test.cpp
   - test/yukicoder/426.test.cpp
   - test/yukicoder/2166.test.cpp
+  - test/yukicoder/1907.test.cpp
   - test/yukicoder/502_2.test.cpp
+  - test/yukicoder/1303.test.cpp
+  - test/yukicoder/1810.test.cpp
   - test/yukicoder/1080_2.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp
   - test/mytest/factorial_998.test.cpp

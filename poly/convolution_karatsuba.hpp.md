@@ -26,7 +26,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
+    path: linalg/det_A_plus_xB.hpp
+    title: linalg/det_A_plus_xB.hpp
+  - icon: ':heavy_check_mark:'
     path: linalg/implicit_matrix/pascal.hpp
     title: linalg/implicit_matrix/pascal.hpp
   - icon: ':heavy_check_mark:'
@@ -448,6 +451,9 @@ data:
     path: test/yukicoder/1145.test.cpp
     title: test/yukicoder/1145.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1303.test.cpp
+    title: test/yukicoder/1303.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1321.test.cpp
     title: test/yukicoder/1321.test.cpp
   - icon: ':heavy_check_mark:'
@@ -499,6 +505,9 @@ data:
     path: test/yukicoder/1875.test.cpp
     title: test/yukicoder/1875.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1907.test.cpp
+    title: test/yukicoder/1907.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1939.test.cpp
     title: test/yukicoder/1939.test.cpp
   - icon: ':heavy_check_mark:'
@@ -513,7 +522,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2097.test.cpp
     title: test/yukicoder/2097.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2108.test.cpp
     title: test/yukicoder/2108.test.cpp
   - icon: ':heavy_check_mark:'
@@ -691,6 +700,7 @@ data:
   - seq/sum_of_powers.hpp
   - linalg/implicit_matrix/pascal.hpp
   - linalg/implicit_matrix/vandermonde.hpp
+  - linalg/det_A_plus_xB.hpp
   - poly/composed_product.hpp
   - poly/convolution_all.hpp
   - poly/fps_log.hpp
@@ -781,6 +791,7 @@ data:
   - test/yukicoder/1080.test.cpp
   - test/yukicoder/1844.test.cpp
   - test/yukicoder/2166.test.cpp
+  - test/yukicoder/1907.test.cpp
   - test/yukicoder/578.test.cpp
   - test/yukicoder/1720.test.cpp
   - test/yukicoder/2097.test.cpp
@@ -788,6 +799,7 @@ data:
   - test/yukicoder/502_2.test.cpp
   - test/yukicoder/1547.test.cpp
   - test/yukicoder/1549.test.cpp
+  - test/yukicoder/1303.test.cpp
   - test/yukicoder/1875.test.cpp
   - test/yukicoder/579.test.cpp
   - test/yukicoder/303.test.cpp

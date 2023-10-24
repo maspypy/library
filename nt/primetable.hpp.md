@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: linalg/det_A_plus_xB.hpp
+    title: linalg/det_A_plus_xB.hpp
+  - icon: ':heavy_check_mark:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':heavy_check_mark:'
@@ -145,6 +148,9 @@ data:
     path: test/yukicoder/1276.test.cpp
     title: test/yukicoder/1276.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1303.test.cpp
+    title: test/yukicoder/1303.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1321.test.cpp
     title: test/yukicoder/1321.test.cpp
   - icon: ':heavy_check_mark:'
@@ -171,6 +177,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1881.test.cpp
     title: test/yukicoder/1881.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1907.test.cpp
+    title: test/yukicoder/1907.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2005.test.cpp
     title: test/yukicoder/2005.test.cpp
@@ -247,6 +256,7 @@ data:
   - seq/famous/surjection.hpp
   - seq/famous/stirling_number_1.hpp
   - seq/famous/stirling_number_2.hpp
+  - linalg/det_A_plus_xB.hpp
   - mod/tetration.hpp
   - mod/powertable.hpp
   - poly/poly_taylor_shift.hpp
@@ -270,11 +280,13 @@ data:
   - test/yukicoder/1411.test.cpp
   - test/yukicoder/1392.test.cpp
   - test/yukicoder/1781.test.cpp
+  - test/yukicoder/1907.test.cpp
   - test/yukicoder/1666.test.cpp
   - test/yukicoder/1276.test.cpp
   - test/yukicoder/1881.test.cpp
   - test/yukicoder/1760.test.cpp
   - test/yukicoder/1262.test.cpp
+  - test/yukicoder/1303.test.cpp
   - test/yukicoder/1875.test.cpp
   - test/yukicoder/2206.test.cpp
   - test/yukicoder/1821.test.cpp

@@ -1,11 +1,20 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: linalg/det_A_plus_xB.hpp
+    title: linalg/det_A_plus_xB.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/charactereistic_poly.test.cpp
     title: test/library_checker/matrix/charactereistic_poly.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1303.test.cpp
+    title: test/yukicoder/1303.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1907.test.cpp
+    title: test/yukicoder/1907.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -64,10 +73,13 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: linalg/characteristic_poly.hpp
-  requiredBy: []
+  requiredBy:
+  - linalg/det_A_plus_xB.hpp
   timestamp: '2022-10-12 08:04:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1907.test.cpp
+  - test/yukicoder/1303.test.cpp
   - test/library_checker/matrix/charactereistic_poly.test.cpp
 documentation_of: linalg/characteristic_poly.hpp
 layout: document

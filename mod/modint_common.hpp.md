@@ -23,7 +23,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
+    path: linalg/det_A_plus_xB.hpp
+    title: linalg/det_A_plus_xB.hpp
+  - icon: ':heavy_check_mark:'
     path: linalg/implicit_matrix/pascal.hpp
     title: linalg/implicit_matrix/pascal.hpp
   - icon: ':heavy_check_mark:'
@@ -32,7 +35,7 @@ data:
   - icon: ':question:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_pow.hpp
     title: linalg/matrix_pow.hpp
   - icon: ':question:'
@@ -673,6 +676,9 @@ data:
     path: test/yukicoder/1276.test.cpp
     title: test/yukicoder/1276.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1303.test.cpp
+    title: test/yukicoder/1303.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1321.test.cpp
     title: test/yukicoder/1321.test.cpp
   - icon: ':heavy_check_mark:'
@@ -742,6 +748,9 @@ data:
     path: test/yukicoder/1728.test.cpp
     title: test/yukicoder/1728.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1750.test.cpp
+    title: test/yukicoder/1750.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1753.test.cpp
     title: test/yukicoder/1753.test.cpp
   - icon: ':heavy_check_mark:'
@@ -756,6 +765,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1796.test.cpp
     title: test/yukicoder/1796.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1810.test.cpp
+    title: test/yukicoder/1810.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1821.test.cpp
     title: test/yukicoder/1821.test.cpp
@@ -777,6 +789,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1891.test.cpp
     title: test/yukicoder/1891.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1907.test.cpp
+    title: test/yukicoder/1907.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1919.test.cpp
     title: test/yukicoder/1919.test.cpp
@@ -801,7 +816,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2097.test.cpp
     title: test/yukicoder/2097.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2108.test.cpp
     title: test/yukicoder/2108.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1119,6 +1134,7 @@ data:
   - seq/sum_of_powers.hpp
   - linalg/implicit_matrix/pascal.hpp
   - linalg/implicit_matrix/vandermonde.hpp
+  - linalg/det_A_plus_xB.hpp
   - linalg/matrix_mul.hpp
   - linalg/matrix_pow.hpp
   - mod/dynamic_modint.hpp
@@ -1238,6 +1254,7 @@ data:
   - test/yukicoder/1500.test.cpp
   - test/yukicoder/1561.test.cpp
   - test/yukicoder/2508.test.cpp
+  - test/yukicoder/1750.test.cpp
   - test/yukicoder/1728.test.cpp
   - test/yukicoder/1649.test.cpp
   - test/yukicoder/1411.test.cpp
@@ -1261,6 +1278,7 @@ data:
   - test/yukicoder/1781.test.cpp
   - test/yukicoder/2166.test.cpp
   - test/yukicoder/1260.test.cpp
+  - test/yukicoder/1907.test.cpp
   - test/yukicoder/1649_2.test.cpp
   - test/yukicoder/1141.test.cpp
   - test/yukicoder/578.test.cpp
@@ -1278,11 +1296,13 @@ data:
   - test/yukicoder/1989.test.cpp
   - test/yukicoder/1549.test.cpp
   - test/yukicoder/1753.test.cpp
+  - test/yukicoder/1303.test.cpp
   - test/yukicoder/1875.test.cpp
   - test/yukicoder/2231.test.cpp
   - test/yukicoder/579.test.cpp
   - test/yukicoder/2206.test.cpp
   - test/yukicoder/303.test.cpp
+  - test/yukicoder/1810.test.cpp
   - test/yukicoder/2342_2.test.cpp
   - test/yukicoder/2003.test.cpp
   - test/yukicoder/1145.test.cpp

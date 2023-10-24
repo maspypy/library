@@ -45,6 +45,9 @@ data:
     path: graph/vs_to_es.hpp
     title: graph/vs_to_es.hpp
   - icon: ':heavy_check_mark:'
+    path: linalg/det_A_plus_xB.hpp
+    title: linalg/det_A_plus_xB.hpp
+  - icon: ':heavy_check_mark:'
     path: linalg/implicit_matrix/det.hpp
     title: linalg/implicit_matrix/det.hpp
   - icon: ':heavy_check_mark:'
@@ -490,6 +493,9 @@ data:
     path: test/yukicoder/1080_2.test.cpp
     title: test/yukicoder/1080_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1303.test.cpp
+    title: test/yukicoder/1303.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
   - icon: ':heavy_check_mark:'
@@ -519,6 +525,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1881.test.cpp
     title: test/yukicoder/1881.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1907.test.cpp
+    title: test/yukicoder/1907.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2102.test.cpp
     title: test/yukicoder/2102.test.cpp
@@ -622,6 +631,7 @@ data:
   - ds/unionfind/parallel_unionfind.hpp
   - linalg/implicit_matrix/det.hpp
   - linalg/implicit_matrix/min_poly.hpp
+  - linalg/det_A_plus_xB.hpp
   - linalg/spmat_det.hpp
   - linalg/spmat_min_poly.hpp
   - mod/dynamic_modint.hpp
@@ -665,12 +675,14 @@ data:
   - test/yukicoder/1667.test.cpp
   - test/yukicoder/1080.test.cpp
   - test/yukicoder/1634.test.cpp
+  - test/yukicoder/1907.test.cpp
   - test/yukicoder/578.test.cpp
   - test/yukicoder/4_1.test.cpp
   - test/yukicoder/1881.test.cpp
   - test/yukicoder/310.test.cpp
   - test/yukicoder/263.test.cpp
   - test/yukicoder/1775.test.cpp
+  - test/yukicoder/1303.test.cpp
   - test/yukicoder/2231.test.cpp
   - test/yukicoder/579.test.cpp
   - test/yukicoder/2102.test.cpp

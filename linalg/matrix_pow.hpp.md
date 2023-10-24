@@ -11,10 +11,16 @@ data:
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1750.test.cpp
+    title: test/yukicoder/1750.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1810.test.cpp
+    title: test/yukicoder/1810.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -122,8 +128,10 @@ data:
   path: linalg/matrix_pow.hpp
   requiredBy: []
   timestamp: '2023-10-24 14:53:54+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yukicoder/1750.test.cpp
+  - test/yukicoder/1810.test.cpp
 documentation_of: linalg/matrix_pow.hpp
 layout: document
 redirect_from:
