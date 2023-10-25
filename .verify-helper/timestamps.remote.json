@@ -294,6 +294,7 @@
 "test/mytest/fibonacci_search.test.cpp": "2023-10-06 12:12:06 +0900",
 "test/mytest/floor_ceil_ranges.test.cpp": "2023-10-06 12:12:06 +0900",
 "test/mytest/four_square.test.cpp": "2023-10-25 07:56:21 +0900",
+"test/mytest/geometric_sequence_sum.test.cpp": "2023-10-25 17:42:47 +0900",
 "test/mytest/gray_code.test.cpp": "2023-10-06 12:12:06 +0900",
 "test/mytest/incremental_ch.test.cpp": "2023-10-06 12:12:06 +0900",
 "test/mytest/is_substring.test.cpp": "2023-10-06 12:12:06 +0900",
