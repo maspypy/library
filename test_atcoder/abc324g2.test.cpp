@@ -20,7 +20,10 @@ void solve() {
   INT(Q);
   FOR(Q) {
     INT(t, s, x);
-    auto [L, R, lo, hi] = dat[s];
+    int L = get<0>(dat[s]);
+    int R = get<0>(dat[s]);
+    int lo = get<0>(dat[s]);
+    int hi = get<0>(dat[s]);
     if (t == 1) {
       auto check = [&](int M) -> bool { return seg.count(L, M, lo, hi) >= x; };
       if (!check(R)) {
