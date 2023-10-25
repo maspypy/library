@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix.hpp
     title: ds/wavelet_matrix.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc324/tasks/abc324_g
@@ -368,8 +368,9 @@ data:
     #line 6 \"test_atcoder/abc324g.test.cpp\"\n\nvoid solve() {\n  INT(N);\n  VEC(int,\
     \ A, N);\n  using T = tuple<int, int, int, int>;\n  vc<T> dat;\n  dat.eb(0, N,\
     \ 0, MAX(A) + 1);\n\n  Wavelet_Matrix<int, 0> WM(A);\n\n  INT(Q);\n  FOR(Q) {\n\
-    \    INT(t, s, x);\n    auto [L, R, lo, hi] = dat[s];\n    if (t == 1) {\n   \
-    \   auto check = [&](int M) -> bool { return WM.count(L, M, lo, hi) >= x; };\n\
+    \    INT(t, s, x);\n    int L = get<0>(dat[s]);\n    int R = get<1>(dat[s]);\n\
+    \    int lo = get<2>(dat[s]);\n    int hi = get<3>(dat[s]);\n    if (t == 1) {\n\
+    \      auto check = [&](int M) -> bool { return WM.count(L, M, lo, hi) >= x; };\n\
     \      if (!check(R)) {\n        dat.eb(0, 0, 0, 0);\n      } else {\n       \
     \ int M = binary_search(check, R, L - 1);\n        dat[s] = {L, M, lo, hi};\n\
     \        dat.eb(M, R, lo, hi);\n      }\n    }\n    if (t == 2) {\n      if (x\
@@ -377,24 +378,24 @@ data:
     \ 0, 0, 0};\n        dat.eb(L, R, lo, hi);\n      }\n      else {\n        dat[s]\
     \ = {L, R, lo, x + 1};\n        dat.eb(L, R, x + 1, hi);\n      }\n    }\n\n \
     \   {\n      auto [L, R, lo, hi] = dat.back();\n      int ANS = WM.count(L, R,\
-    \ lo, hi);\n      print(ANS);\n    }\n  }\n}\n\nsigned main() {\n  int T = 1;\n\
-    \  // INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
+    \ lo, hi);\n      print(ANS);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc324/tasks/abc324_g\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/wavelet_matrix.hpp\"\
     \n\nvoid solve() {\n  INT(N);\n  VEC(int, A, N);\n  using T = tuple<int, int,\
     \ int, int>;\n  vc<T> dat;\n  dat.eb(0, N, 0, MAX(A) + 1);\n\n  Wavelet_Matrix<int,\
-    \ 0> WM(A);\n\n  INT(Q);\n  FOR(Q) {\n    INT(t, s, x);\n    auto [L, R, lo, hi]\
-    \ = dat[s];\n    if (t == 1) {\n      auto check = [&](int M) -> bool { return\
-    \ WM.count(L, M, lo, hi) >= x; };\n      if (!check(R)) {\n        dat.eb(0, 0,\
-    \ 0, 0);\n      } else {\n        int M = binary_search(check, R, L - 1);\n  \
-    \      dat[s] = {L, M, lo, hi};\n        dat.eb(M, R, lo, hi);\n      }\n    }\n\
-    \    if (t == 2) {\n      if (x >= hi) { dat.eb(0, 0, 0, 0); }\n      elif (x\
-    \ < lo) {\n        dat[s] = {0, 0, 0, 0};\n        dat.eb(L, R, lo, hi);\n   \
-    \   }\n      else {\n        dat[s] = {L, R, lo, x + 1};\n        dat.eb(L, R,\
-    \ x + 1, hi);\n      }\n    }\n\n    {\n      auto [L, R, lo, hi] = dat.back();\n\
-    \      int ANS = WM.count(L, R, lo, hi);\n      print(ANS);\n    }\n  }\n}\n\n\
-    signed main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n\
-    }\n"
+    \ 0> WM(A);\n\n  INT(Q);\n  FOR(Q) {\n    INT(t, s, x);\n    int L = get<0>(dat[s]);\n\
+    \    int R = get<1>(dat[s]);\n    int lo = get<2>(dat[s]);\n    int hi = get<3>(dat[s]);\n\
+    \    if (t == 1) {\n      auto check = [&](int M) -> bool { return WM.count(L,\
+    \ M, lo, hi) >= x; };\n      if (!check(R)) {\n        dat.eb(0, 0, 0, 0);\n \
+    \     } else {\n        int M = binary_search(check, R, L - 1);\n        dat[s]\
+    \ = {L, M, lo, hi};\n        dat.eb(M, R, lo, hi);\n      }\n    }\n    if (t\
+    \ == 2) {\n      if (x >= hi) { dat.eb(0, 0, 0, 0); }\n      elif (x < lo) {\n\
+    \        dat[s] = {0, 0, 0, 0};\n        dat.eb(L, R, lo, hi);\n      }\n    \
+    \  else {\n        dat[s] = {L, R, lo, x + 1};\n        dat.eb(L, R, x + 1, hi);\n\
+    \      }\n    }\n\n    {\n      auto [L, R, lo, hi] = dat.back();\n      int ANS\
+    \ = WM.count(L, R, lo, hi);\n      print(ANS);\n    }\n  }\n}\n\nsigned main()\
+    \ {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -404,8 +405,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc324g.test.cpp
   requiredBy: []
-  timestamp: '2023-10-25 22:00:07+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-10-26 02:02:42+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc324g.test.cpp
 layout: document

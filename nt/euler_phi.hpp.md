@@ -214,9 +214,9 @@ data:
   timestamp: '2023-10-24 22:55:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1262.test.cpp
   - test/aoj/NTL_1_D.test.cpp
   - test/library_checker/math/tetration.test.cpp
+  - test/yukicoder/1262.test.cpp
 documentation_of: nt/euler_phi.hpp
 layout: document
 redirect_from:
