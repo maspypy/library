@@ -2077,6 +2077,18 @@ data:
     path: test_atcoder/abc318h.test.cpp
     title: test_atcoder/abc318h.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc319g.test.cpp
+    title: test_atcoder/abc319g.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc321g.test.cpp
+    title: test_atcoder/abc321g.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc324g.test.cpp
+    title: test_atcoder/abc324g.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc324g2.test.cpp
+    title: test_atcoder/abc324g2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/agc013e.test.cpp
     title: test_atcoder/agc013e.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2127,9 +2139,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://trap.jp/post/1224/
@@ -2299,7 +2311,7 @@ data:
   path: my_template.hpp
   requiredBy: []
   timestamp: '2023-10-06 12:12:06+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/arc144d.test.cpp
   - test_atcoder/abc241e.test.cpp
@@ -2333,6 +2345,7 @@ data:
   - test_atcoder/abc141e.test.cpp
   - test_atcoder/abc190f.test.cpp
   - test_atcoder/abc228f.test.cpp
+  - test_atcoder/abc324g2.test.cpp
   - test_atcoder/agc058d2.test.cpp
   - test_atcoder/abc222g.test.cpp
   - test_atcoder/abc141f.test.cpp
@@ -2359,6 +2372,7 @@ data:
   - test_atcoder/abc281g.test.cpp
   - test_atcoder/abc312f.test.cpp
   - test_atcoder/abc230h.test.cpp
+  - test_atcoder/abc319g.test.cpp
   - test_atcoder/abc212g.test.cpp
   - test_atcoder/abc217h.test.cpp
   - test_atcoder/abc267g.test.cpp
@@ -2398,6 +2412,8 @@ data:
   - test_atcoder/abc268_ex.test.cpp
   - test_atcoder/arc064c.test.cpp
   - test_atcoder/arc105.test.cpp
+  - test_atcoder/abc321g.test.cpp
+  - test_atcoder/abc324g.test.cpp
   - test_atcoder/agc013e.test.cpp
   - test_atcoder/abc276_g.test.cpp
   - test_atcoder/abc314g.test.cpp

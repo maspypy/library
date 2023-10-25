@@ -95,6 +95,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/functional.hpp
     title: graph/functional.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/implicit_graph/cograph_bfs.hpp
+    title: graph/implicit_graph/cograph_bfs.hpp
   - icon: ':warning:'
     path: graph/implicit_graph/cograph_unionfind.hpp
     title: graph/implicit_graph/cograph_unionfind.hpp
@@ -583,6 +586,9 @@ data:
     path: test_atcoder/abc314f.test.cpp
     title: test_atcoder/abc314f.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc319g.test.cpp
+    title: test_atcoder/abc319g.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/agc023f.test.cpp
     title: test_atcoder/agc023f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -768,6 +774,7 @@ data:
   - graph/ds/lazy_tree_monoid.hpp
   - graph/block_cut.hpp
   - graph/tree_of_unionfind.hpp
+  - graph/implicit_graph/cograph_bfs.hpp
   - graph/implicit_graph/cograph_unionfind.hpp
   - graph/tree_dp/tree_dp.hpp
   - graph/tree_dp/subtree_hash.hpp
@@ -804,6 +811,7 @@ data:
   - test_atcoder/abc220f.test.cpp
   - test_atcoder/abc270_f.test.cpp
   - test_atcoder/abc301h.test.cpp
+  - test_atcoder/abc319g.test.cpp
   - test_atcoder/arc157a.test.cpp
   - test_atcoder/arc151_e.test.cpp
   - test_atcoder/abc214h.test.cpp

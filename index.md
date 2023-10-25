@@ -82,7 +82,7 @@ data:
       title: alg/acted_set/from_monoid.hpp
   - name: alg/monoid
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/add.hpp
       title: alg/monoid/add.hpp
     - icon: ':heavy_check_mark:'
@@ -224,7 +224,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/binary_trie.hpp
       title: ds/binary_trie.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/bit_vector.hpp
       title: ds/bit_vector.hpp
     - icon: ':warning:'
@@ -290,7 +290,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/sqrt_decompotision.hpp
       title: ds/sqrt_decompotision.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/wavelet_matrix.hpp
       title: ds/wavelet_matrix.hpp
   - name: ds/fenwicktree
@@ -408,7 +408,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/segtree/segtree.hpp
       title: ds/segtree/segtree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/segtree/segtree_2d.hpp
       title: ds/segtree/segtree_2d.hpp
     - icon: ':heavy_check_mark:'
@@ -867,6 +867,9 @@ data:
     - icon: ':warning:'
       path: graph/implicit_graph/bfs.hpp
       title: graph/implicit_graph/bfs.hpp
+    - icon: ':heavy_check_mark:'
+      path: graph/implicit_graph/cograph_bfs.hpp
+      title: graph/implicit_graph/cograph_bfs.hpp
     - icon: ':warning:'
       path: graph/implicit_graph/cograph_unionfind.hpp
       title: graph/implicit_graph/cograph_unionfind.hpp
@@ -1107,7 +1110,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
   - name: new_poly
@@ -1242,7 +1245,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/fibonacci_search.hpp
       title: other/fibonacci_search.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -3790,6 +3793,18 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc318h.test.cpp
       title: test_atcoder/abc318h.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_atcoder/abc319g.test.cpp
+      title: test_atcoder/abc319g.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_atcoder/abc321g.test.cpp
+      title: test_atcoder/abc321g.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/abc324g.test.cpp
+      title: test_atcoder/abc324g.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/abc324g2.test.cpp
+      title: test_atcoder/abc324g2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_atcoder/agc013e.test.cpp
       title: test_atcoder/agc013e.test.cpp

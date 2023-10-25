@@ -16,6 +16,9 @@ data:
     path: test_atcoder/abc213g.test.cpp
     title: test_atcoder/abc213g.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc321g.test.cpp
+    title: test_atcoder/abc321g.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc105.test.cpp
     title: test_atcoder/arc105.test.cpp
   _isVerificationFailed: false
@@ -95,6 +98,7 @@ data:
   verifiedWith:
   - test_atcoder/abc213g.test.cpp
   - test_atcoder/arc105.test.cpp
+  - test_atcoder/abc321g.test.cpp
   - test/library_checker/math/composition_sps.test.cpp
 documentation_of: setfunc/sps_composition.hpp
 layout: document

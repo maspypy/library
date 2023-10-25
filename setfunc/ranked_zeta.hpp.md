@@ -46,6 +46,9 @@ data:
     path: test_atcoder/abc253h.test.cpp
     title: test_atcoder/abc253h.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc321g.test.cpp
+    title: test_atcoder/abc321g.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc105.test.cpp
     title: test_atcoder/arc105.test.cpp
   _isVerificationFailed: false
@@ -100,6 +103,7 @@ data:
   - test_atcoder/abc236h.test.cpp
   - test_atcoder/abc213g.test.cpp
   - test_atcoder/arc105.test.cpp
+  - test_atcoder/abc321g.test.cpp
   - test/library_checker/math/composition_sps.test.cpp
   - test/library_checker/math/sps_exp.test.cpp
   - test/library_checker/convolution/subset_convolution.test.cpp

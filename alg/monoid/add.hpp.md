@@ -77,7 +77,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/rectangle_union.hpp
     title: ds/rectangle_union.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/wavelet_matrix.hpp
     title: ds/wavelet_matrix.hpp
   - icon: ':heavy_check_mark:'
@@ -423,9 +423,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc318b.test.cpp
     title: test_atcoder/abc318b.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test_atcoder/abc324g.test.cpp
+    title: test_atcoder/abc324g.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc324g2.test.cpp
+    title: test_atcoder/abc324g2.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -479,7 +485,7 @@ data:
   - graph/ds/contour_sum.hpp
   - graph/ds/incremental_centroid.hpp
   timestamp: '2022-11-28 14:51:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc241e.test.cpp
   - test_atcoder/abc256ex.test.cpp
@@ -487,6 +493,7 @@ data:
   - test_atcoder/abc174f.test.cpp
   - test_atcoder/abc190f.test.cpp
   - test_atcoder/abc228f.test.cpp
+  - test_atcoder/abc324g2.test.cpp
   - test_atcoder/abc256ex2.test.cpp
   - test_atcoder/abc280f.test.cpp
   - test_atcoder/abc237g.test.cpp
@@ -494,6 +501,7 @@ data:
   - test_atcoder/abc318b.test.cpp
   - test_atcoder/abc127f_1.test.cpp
   - test_atcoder/abc268_ex.test.cpp
+  - test_atcoder/abc324g.test.cpp
   - test/aoj/2842.test.cpp
   - test/aoj/DSL_4_A.test.cpp
   - test/aoj/DSL_1_B.test.cpp
