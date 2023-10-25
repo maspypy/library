@@ -352,10 +352,10 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc285h.test.cpp
-  - test_atcoder/abc267g.test.cpp
   - test_atcoder/abc260h.test.cpp
-  - test/yukicoder/2243.test.cpp
+  - test_atcoder/abc267g.test.cpp
   - test/yukicoder/2108.test.cpp
+  - test/yukicoder/2243.test.cpp
   - test/mytest/pascal.test.cpp
 documentation_of: linalg/implicit_matrix/pascal.hpp
 layout: document
