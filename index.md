@@ -1485,6 +1485,9 @@ data:
       path: seq/find_linear_rec.hpp
       title: seq/find_linear_rec.hpp
     - icon: ':heavy_check_mark:'
+      path: seq/geometric_sequence_sum.hpp
+      title: seq/geometric_sequence_sum.hpp
+    - icon: ':heavy_check_mark:'
       path: seq/hook_length_formula.hpp
       title: seq/hook_length_formula.hpp
     - icon: ':heavy_check_mark:'
@@ -2583,6 +2586,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/four_square.test.cpp
       title: test/mytest/four_square.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/geometric_sequence_sum.test.cpp
+      title: test/mytest/geometric_sequence_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/gray_code.test.cpp
       title: test/mytest/gray_code.test.cpp

@@ -59,8 +59,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/arc105.test.cpp
-  - test/library_checker/convolution/bitwise_or_convolution.test.cpp
   - test/library_checker/convolution/bitwise_and_convolution.test.cpp
+  - test/library_checker/convolution/bitwise_or_convolution.test.cpp
 documentation_of: setfunc/zeta.hpp
 layout: document
 redirect_from:
