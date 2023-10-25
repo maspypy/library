@@ -16,7 +16,10 @@ void solve() {
   INT(Q);
   FOR(Q) {
     INT(t, s, x);
-    auto [L, R, lo, hi] = dat[s];
+    int L = get<0>(dat[s]);
+    int R = get<1>(dat[s]);
+    int lo = get<2>(dat[s]);
+    int hi = get<3>(dat[s]);
     if (t == 1) {
       auto check = [&](int M) -> bool { return WM.count(L, M, lo, hi) >= x; };
       if (!check(R)) {
@@ -48,8 +51,6 @@ void solve() {
 }
 
 signed main() {
-  int T = 1;
-  // INT(T);
-  FOR(T) solve();
+  solve();
   return 0;
 }
