@@ -63,10 +63,10 @@ data:
   verifiedWith:
   - test_atcoder/abc237ex.test.cpp
   - test_atcoder/abc279b.test.cpp
-  - test/library_checker/string/run_enumerate_vec.test.cpp
-  - test/library_checker/string/run_enumerate.test.cpp
-  - test/library_checker/string/zalgorithm.test.cpp
   - test/yukicoder/1848.test.cpp
+  - test/library_checker/string/run_enumerate_vec.test.cpp
+  - test/library_checker/string/zalgorithm.test.cpp
+  - test/library_checker/string/run_enumerate.test.cpp
   - test/mytest/is_substring.test.cpp
 documentation_of: string/zalgorithm.hpp
 layout: document

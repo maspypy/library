@@ -230,45 +230,45 @@ data:
   isVerificationFile: false
   path: geo/base.hpp
   requiredBy:
+  - geo/projection.hpp
+  - geo/convex_hull.hpp
+  - geo/closest_pair.hpp
+  - geo/max_norm_sum.hpp
   - geo/outcircle.hpp
-  - geo/reflection.hpp
+  - geo/distance.hpp
+  - geo/minimum_enclosing_circle.hpp
   - geo/incremental_convexhull.hpp
   - geo/perpendicular_bisector.hpp
-  - geo/cross_point.hpp
-  - geo/projection.hpp
-  - geo/dynamicupperhull.hpp
-  - geo/angle_sort.hpp
-  - geo/max_norm_sum.hpp
-  - geo/closest_pair.hpp
+  - geo/reflection.hpp
   - geo/incircle.hpp
-  - geo/convex_hull.hpp
   - geo/count_points_in_triangles.hpp
-  - geo/minimum_enclosing_circle.hpp
-  - geo/distance.hpp
+  - geo/angle_sort.hpp
+  - geo/dynamicupperhull.hpp
+  - geo/cross_point.hpp
   - convex/fenchel.hpp
   timestamp: '2023-08-19 23:05:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc139f.test.cpp
+  - test_atcoder/abc314.test.cpp
   - test_atcoder/abc202_f.test.cpp
   - test_atcoder/abc266c.test.cpp
-  - test_atcoder/abc314.test.cpp
   - test_atcoder/arc130f.test.cpp
   - test_atcoder/arc064c.test.cpp
+  - test_atcoder/abc139f.test.cpp
   - test_atcoder/abc151f.test.cpp
-  - test/aoj/CGL_2_A.test.cpp
-  - test/aoj/CGL_3_B.test.cpp
-  - test/aoj/CGL_2_B.test.cpp
-  - test/aoj/CGL_1_B.test.cpp
   - test/aoj/CGL_1_A.test.cpp
-  - test/aoj/CGL_5_A.test.cpp
   - test/aoj/CGL_2_C.test.cpp
-  - test/aoj/CGL_7_B.test.cpp
-  - test/aoj/CGL_2_D.test.cpp
   - test/aoj/CGL_7_C.test.cpp
-  - test/library_checker/geometry/convex_layers.test.cpp
-  - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
+  - test/aoj/CGL_1_B.test.cpp
+  - test/aoj/CGL_2_B.test.cpp
+  - test/aoj/CGL_2_A.test.cpp
+  - test/aoj/CGL_7_B.test.cpp
+  - test/aoj/CGL_5_A.test.cpp
+  - test/aoj/CGL_2_D.test.cpp
+  - test/aoj/CGL_3_B.test.cpp
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
+  - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
+  - test/library_checker/geometry/convex_layers.test.cpp
   - test/mytest/incremental_ch.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp
 documentation_of: geo/base.hpp

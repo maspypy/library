@@ -186,8 +186,8 @@ data:
   path: linalg/matrix_mul.hpp
   requiredBy:
   - seq/kth_term_of_p_recursive.hpp
-  - linalg/matrix_pow.hpp
   - linalg/det_A_plus_xB.hpp
+  - linalg/matrix_pow.hpp
   - poly/sparse_exp_of_div.hpp
   - poly/prefix_product_of_poly.hpp
   - poly/from_log_differentiation.hpp
@@ -195,19 +195,19 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc276_g_2.test.cpp
-  - test_atcoder/abc222h_2.test.cpp
   - test_atcoder/abc276_g.test.cpp
-  - test/library_checker/matrix/matrix_product.test.cpp
-  - test/yukicoder/1080_2.test.cpp
-  - test/yukicoder/2166.test.cpp
-  - test/yukicoder/502_2.test.cpp
-  - test/yukicoder/1907.test.cpp
-  - test/yukicoder/1810.test.cpp
-  - test/yukicoder/426.test.cpp
-  - test/yukicoder/1303.test.cpp
+  - test_atcoder/abc222h_2.test.cpp
   - test/yukicoder/1750.test.cpp
-  - test/mytest/min_poly.test.cpp
+  - test/yukicoder/426.test.cpp
+  - test/yukicoder/2166.test.cpp
+  - test/yukicoder/1907.test.cpp
+  - test/yukicoder/502_2.test.cpp
+  - test/yukicoder/1303.test.cpp
+  - test/yukicoder/1810.test.cpp
+  - test/yukicoder/1080_2.test.cpp
+  - test/library_checker/matrix/matrix_product.test.cpp
   - test/mytest/factorial_998.test.cpp
+  - test/mytest/min_poly.test.cpp
 documentation_of: linalg/matrix_mul.hpp
 layout: document
 redirect_from:
