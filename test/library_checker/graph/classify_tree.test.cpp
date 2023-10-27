@@ -17,7 +17,7 @@ void solve() {
   SubTree_Hash<decltype(tree)> X(tree);
 
   vi ANS(N);
-  FOR(v, N) ANS[v] = X.get(0, v);
+  FOR(v, N) ANS[v] = X.get(v, 0);
   vi key = ANS;
   UNIQUE(key);
   for (auto&& x: ANS) x = LB(key, x);
