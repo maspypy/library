@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
@@ -130,9 +130,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/arc153f.test.cpp
-  - test/yukicoder/1326.test.cpp
   - test/aoj/GRL_3_A.test.cpp
   - test/library_checker/graph/biconnected_component.test.cpp
+  - test/yukicoder/1326.test.cpp
 documentation_of: graph/block_cut.hpp
 layout: document
 redirect_from:

@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -303,16 +303,16 @@ data:
   isVerificationFile: false
   path: nt/gaussian_integers.hpp
   requiredBy:
-  - nt/three_square.hpp
   - nt/four_square.hpp
+  - nt/three_square.hpp
   - nt/three_triangular.hpp
   timestamp: '2023-10-25 07:45:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1593.test.cpp
+  - test/mytest/four_square.test.cpp
   - test/mytest/three_square.test.cpp
   - test/mytest/three_triangular.test.cpp
-  - test/mytest/four_square.test.cpp
 documentation_of: nt/gaussian_integers.hpp
 layout: document
 redirect_from:

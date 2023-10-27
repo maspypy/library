@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -291,9 +291,9 @@ data:
   timestamp: '2023-10-25 02:01:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/2181.test.cpp
-  - test/yukicoder/2120.test.cpp
   - test/library_checker/math/binomial_coefficient.test.cpp
+  - test/yukicoder/2120.test.cpp
+  - test/yukicoder/2181.test.cpp
 documentation_of: mod/binomial.hpp
 layout: document
 redirect_from:

@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -274,8 +274,8 @@ data:
   verifiedWith:
   - test/yukicoder/187.test.cpp
   - test/yukicoder/590.test.cpp
-  - test/yukicoder/2119.test.cpp
   - test/yukicoder/1956.test.cpp
+  - test/yukicoder/2119.test.cpp
 documentation_of: nt/crt.hpp
 layout: document
 redirect_from:

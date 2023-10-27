@@ -149,21 +149,21 @@ data:
   path: poly/online/online_convolution.hpp
   requiredBy:
   - seq/famous/simple_permutations.hpp
-  - poly/online/online_log.hpp
   - poly/online/online_inv.hpp
   - poly/online/online_pow.hpp
-  - poly/online/online_division.hpp
   - poly/online/online_exp.hpp
+  - poly/online/online_division.hpp
+  - poly/online/online_log.hpp
   timestamp: '2023-08-20 01:21:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc230h.test.cpp
   - test_atcoder/abc315h.test.cpp
   - test/library_checker/convolution/online_convolution.test.cpp
-  - test/mytest/online_division.test.cpp
   - test/mytest/online_exp.test.cpp
-  - test/mytest/online_pow.test.cpp
   - test/mytest/online_inv.test.cpp
+  - test/mytest/online_pow.test.cpp
+  - test/mytest/online_division.test.cpp
   - test/mytest/simple_perm.test.cpp
   - test/mytest/online_log.test.cpp
 documentation_of: poly/online/online_convolution.hpp

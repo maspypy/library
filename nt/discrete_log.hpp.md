@@ -135,10 +135,10 @@ data:
   timestamp: '2023-10-24 13:35:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc270_g.test.cpp
   - test_atcoder/abc222g.test.cpp
-  - test/yukicoder/1339.test.cpp
+  - test_atcoder/abc270_g.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
+  - test/yukicoder/1339.test.cpp
 documentation_of: nt/discrete_log.hpp
 layout: document
 redirect_from:

@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   _extendedRequiredBy: []
@@ -130,8 +130,8 @@ data:
   timestamp: '2023-10-24 14:53:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1750.test.cpp
   - test/yukicoder/1810.test.cpp
+  - test/yukicoder/1750.test.cpp
 documentation_of: linalg/matrix_pow.hpp
 layout: document
 redirect_from:
