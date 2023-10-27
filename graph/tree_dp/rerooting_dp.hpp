@@ -1,4 +1,4 @@
-
+#pragma once
 #include "graph/base.hpp"
 #include "graph/tree.hpp"
 
@@ -20,7 +20,7 @@ struct Rerooting_dp {
   Data operator[](int v) { return dp[v]; }
 
   // root を根としたときの部分木 v
-  Data get(int root, int v) {
+  Data get(int v, int root) {
     if (root == v) return dp[v];
     if (!tree.in_subtree(root, v)) { return dp_1[v]; }
     int w = tree.jump(v, root, 1);
