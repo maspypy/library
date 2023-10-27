@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification
@@ -431,16 +431,16 @@ data:
     \    return dat[k];\n  }\n};\n#line 7 \"test/library_checker/graph/classify_tree.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n  FOR(v, 1, N) {\n    INT(p);\n\
     \    G.add(p, v);\n  }\n  G.build();\n  Tree<decltype(G)> tree(G);\n  SubTree_Hash<decltype(tree)>\
-    \ X(tree);\n\n  vi ANS(N);\n  FOR(v, N) ANS[v] = X.get(0, v);\n  vi key = ANS;\n\
+    \ X(tree);\n\n  vi ANS(N);\n  FOR(v, N) ANS[v] = X.get(v, 0);\n  vi key = ANS;\n\
     \  UNIQUE(key);\n  for (auto&& x: ANS) x = LB(key, x);\n  print(MAX(ANS) + 1);\n\
     \  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification\"\
     \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/tree_dp/subtree_hash.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n  FOR(v, 1, N) {\n    INT(p);\n\
     \    G.add(p, v);\n  }\n  G.build();\n  Tree<decltype(G)> tree(G);\n  SubTree_Hash<decltype(tree)>\
-    \ X(tree);\n\n  vi ANS(N);\n  FOR(v, N) ANS[v] = X.get(0, v);\n  vi key = ANS;\n\
+    \ X(tree);\n\n  vi ANS(N);\n  FOR(v, N) ANS[v] = X.get(v, 0);\n  vi key = ANS;\n\
     \  UNIQUE(key);\n  for (auto&& x: ANS) x = LB(key, x);\n  print(MAX(ANS) + 1);\n\
-    \  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
+    \  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -453,8 +453,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/classify_tree.test.cpp
   requiredBy: []
-  timestamp: '2023-10-28 00:30:26+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-10-28 02:14:30+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/classify_tree.test.cpp
 layout: document
