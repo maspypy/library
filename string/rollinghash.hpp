@@ -28,7 +28,12 @@ struct RollingHash {
     return hashed;
   }
 
-  mint from_char(char x) { return x; }
+  template <typename STRING>
+  mint eval(string& s) {
+    mint x = 0;
+    for (auto& ch: s) x = base * x + ch;
+    return x;
+  }
 
   mint query(const vc<mint>& s, int l, int r) {
     expand(r - l);
