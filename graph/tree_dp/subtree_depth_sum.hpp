@@ -29,7 +29,7 @@ struct SubTree_DepthSum {
 
   // (cnt, sum)
   // root を根としたときの部分木 v
-  pair<int, WT> get(int root, int v) {
+  pair<int, WT> get(int v, int root) {
     if (root == v) return dp[v];
     if (!tree.in_subtree(root, v)) { return dp_1[v]; }
     int w = tree.jump(v, root, 1);
