@@ -146,7 +146,6 @@
 "test/library_checker/graph/bipartite_edge_coloring.test.cpp": "2023-10-06 12:12:06 +0900",
 "test/library_checker/graph/bipartitematching.test.cpp": "2023-10-06 12:12:06 +0900",
 "test/library_checker/graph/chromatic_number.test.cpp": "2023-10-24 22:55:22 +0900",
-"test/library_checker/graph/classify_tree.test.cpp": "2023-10-28 00:09:18 +0900",
 "test/library_checker/graph/common_interval_decomposition.test.cpp": "2023-10-06 12:12:06 +0900",
 "test/library_checker/graph/cycle_detection.test.cpp": "2023-10-06 12:12:06 +0900",
 "test/library_checker/graph/cycle_detection_undirected.test.cpp": "2023-10-06 12:12:06 +0900",
