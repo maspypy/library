@@ -386,7 +386,7 @@ data:
     \ \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E full tree\n  pair<int, WT>\
     \ operator[](int v) { return dp[v]; }\n\n  // (cnt, sum)\n  // root \u3092\u6839\
     \u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\u6728 v\n  pair<int, WT> get(int\
-    \ root, int v) {\n    if (root == v) return dp[v];\n    if (!tree.in_subtree(root,\
+    \ v, int root) {\n    if (root == v) return dp[v];\n    if (!tree.in_subtree(root,\
     \ v)) { return dp_1[v]; }\n    int w = tree.jump(v, root, 1);\n    return dp_2[w];\n\
     \  }\n};\n#line 6 \"test_atcoder/abc220f.test.cpp\"\n\nvoid solve() {\n  LL(N);\n\
     \  Graph<int, 0> G(N);\n  G.read_tree();\n  Tree<decltype(G)> tree(G);\n\n  SubTree_DepthSum<decltype(tree),\
@@ -407,7 +407,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc220f.test.cpp
   requiredBy: []
-  timestamp: '2023-10-28 00:09:18+09:00'
+  timestamp: '2023-10-28 00:30:26+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc220f.test.cpp

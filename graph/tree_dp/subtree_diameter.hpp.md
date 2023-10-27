@@ -200,7 +200,7 @@ data:
     \ \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E full tree\n  tuple<int, int,\
     \ WT> operator[](int v) { return dp[v]; }\n\n  // (u, v, diam)\n  // root \u3092\
     \u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\u6728 v\n  tuple<int, int,\
-    \ WT> get(int root, int v) {\n    if (root == v) return dp[v];\n    if (!tree.in_subtree(root,\
+    \ WT> get(int v, int root) {\n    if (root == v) return dp[v];\n    if (!tree.in_subtree(root,\
     \ v)) { return dp_1[v]; }\n    int w = tree.jump(v, root, 1);\n    return dp_2[w];\n\
     \  }\n};\n"
   code: "#include \"graph/tree_dp/rerooting_dp.hpp\"\ntemplate <typename TREE, typename\
@@ -226,7 +226,7 @@ data:
     \n  // (u, v, diam)\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E full\
     \ tree\n  tuple<int, int, WT> operator[](int v) { return dp[v]; }\n\n  // (u,\
     \ v, diam)\n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\
-    \u6728 v\n  tuple<int, int, WT> get(int root, int v) {\n    if (root == v) return\
+    \u6728 v\n  tuple<int, int, WT> get(int v, int root) {\n    if (root == v) return\
     \ dp[v];\n    if (!tree.in_subtree(root, v)) { return dp_1[v]; }\n    int w =\
     \ tree.jump(v, root, 1);\n    return dp_2[w];\n  }\n};"
   dependsOn:
@@ -236,7 +236,7 @@ data:
   isVerificationFile: false
   path: graph/tree_dp/subtree_diameter.hpp
   requiredBy: []
-  timestamp: '2023-10-28 00:09:18+09:00'
+  timestamp: '2023-10-28 00:30:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree_dp/subtree_diameter.hpp

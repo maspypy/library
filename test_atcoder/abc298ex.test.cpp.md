@@ -386,23 +386,23 @@ data:
     \ \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E full tree\n  pair<int, WT>\
     \ operator[](int v) { return dp[v]; }\n\n  // (cnt, sum)\n  // root \u3092\u6839\
     \u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\u6728 v\n  pair<int, WT> get(int\
-    \ root, int v) {\n    if (root == v) return dp[v];\n    if (!tree.in_subtree(root,\
+    \ v, int root) {\n    if (root == v) return dp[v];\n    if (!tree.in_subtree(root,\
     \ v)) { return dp_1[v]; }\n    int w = tree.jump(v, root, 1);\n    return dp_2[w];\n\
     \  }\n};\n#line 7 \"test_atcoder/abc298ex.test.cpp\"\n\nvoid solve() {\n  LL(N);\n\
     \  Graph<int, 0> G(N);\n  G.read_tree();\n  Tree<decltype(G)> tree(G);\n\n  SubTree_DepthSum<decltype(tree),\
     \ ll> DP(tree);\n\n  LL(Q);\n  FOR(Q) {\n    LL(A, B);\n    --A, --B;\n    ll\
     \ d = tree.dist(A, B);\n\n    ll ANS = 0;\n    if (d == 0) { ANS = DP[A].se; }\n\
     \    elif (d % 2 == 1) {\n      ll A1 = tree.jump(A, B, d / 2);\n      ll B1 =\
-    \ tree.jump(B, A, d / 2);\n      ANS += DP[A].se;\n      ANS -= DP.get(A, B1).se\
-    \ + ll(tree.dist(A, B1)) * DP.get(A, B1).fi;\n      ANS += DP[B].se;\n      ANS\
-    \ -= DP.get(B, A1).se + ll(tree.dist(B, A1)) * DP.get(B, A1).fi;\n    }\n    else\
+    \ tree.jump(B, A, d / 2);\n      ANS += DP[A].se;\n      ANS -= DP.get(B1, A).se\
+    \ + ll(tree.dist(A, B1)) * DP.get(B1, A).fi;\n      ANS += DP[B].se;\n      ANS\
+    \ -= DP.get(A1, B).se + ll(tree.dist(B, A1)) * DP.get(A1, B).fi;\n    }\n    else\
     \ {\n      ll C = tree.jump(A, B, d / 2);\n      ll A1 = tree.jump(C, A, 1);\n\
-    \      ll B1 = tree.jump(C, B, 1);\n      ANS += DP[A].se;\n      ANS -= DP.get(A,\
-    \ C).se + ll(tree.dist(A, C)) * DP.get(A, C).fi;\n      ANS += DP[B].se;\n   \
-    \   ANS -= DP.get(B, C).se + ll(tree.dist(B, C)) * DP.get(B, C).fi;\n      ll\
-    \ x = 0;\n      ll n = 0;\n      x += DP[C].se;\n      x -= DP.get(C, A1).se +\
-    \ DP.get(C, A1).fi;\n      x -= DP.get(C, B1).se + DP.get(C, B1).fi;\n      n\
-    \ += DP[C].fi - DP.get(C, A1).fi - DP.get(C, B1).fi;\n      ANS += x + n * d /\
+    \      ll B1 = tree.jump(C, B, 1);\n      ANS += DP[A].se;\n      ANS -= DP.get(C,\
+    \ A).se + ll(tree.dist(A, C)) * DP.get(C, A).fi;\n      ANS += DP[B].se;\n   \
+    \   ANS -= DP.get(C, B).se + ll(tree.dist(B, C)) * DP.get(C, B).fi;\n      ll\
+    \ x = 0;\n      ll n = 0;\n      x += DP[C].se;\n      x -= DP.get(A1, C).se +\
+    \ DP.get(A1, C).fi;\n      x -= DP.get(B1, C).se + DP.get(B1, C).fi;\n      n\
+    \ += DP[C].fi - DP.get(A1, C).fi - DP.get(B1, C).fi;\n      ANS += x + n * d /\
     \ 2;\n    }\n    print(ANS);\n  }\n}\n\nsigned main() {\n  solve();\n  return\
     \ 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc298/tasks/abc298_Ex\"\n\
@@ -412,18 +412,18 @@ data:
     \ ll> DP(tree);\n\n  LL(Q);\n  FOR(Q) {\n    LL(A, B);\n    --A, --B;\n    ll\
     \ d = tree.dist(A, B);\n\n    ll ANS = 0;\n    if (d == 0) { ANS = DP[A].se; }\n\
     \    elif (d % 2 == 1) {\n      ll A1 = tree.jump(A, B, d / 2);\n      ll B1 =\
-    \ tree.jump(B, A, d / 2);\n      ANS += DP[A].se;\n      ANS -= DP.get(A, B1).se\
-    \ + ll(tree.dist(A, B1)) * DP.get(A, B1).fi;\n      ANS += DP[B].se;\n      ANS\
-    \ -= DP.get(B, A1).se + ll(tree.dist(B, A1)) * DP.get(B, A1).fi;\n    }\n    else\
+    \ tree.jump(B, A, d / 2);\n      ANS += DP[A].se;\n      ANS -= DP.get(B1, A).se\
+    \ + ll(tree.dist(A, B1)) * DP.get(B1, A).fi;\n      ANS += DP[B].se;\n      ANS\
+    \ -= DP.get(A1, B).se + ll(tree.dist(B, A1)) * DP.get(A1, B).fi;\n    }\n    else\
     \ {\n      ll C = tree.jump(A, B, d / 2);\n      ll A1 = tree.jump(C, A, 1);\n\
-    \      ll B1 = tree.jump(C, B, 1);\n      ANS += DP[A].se;\n      ANS -= DP.get(A,\
-    \ C).se + ll(tree.dist(A, C)) * DP.get(A, C).fi;\n      ANS += DP[B].se;\n   \
-    \   ANS -= DP.get(B, C).se + ll(tree.dist(B, C)) * DP.get(B, C).fi;\n      ll\
-    \ x = 0;\n      ll n = 0;\n      x += DP[C].se;\n      x -= DP.get(C, A1).se +\
-    \ DP.get(C, A1).fi;\n      x -= DP.get(C, B1).se + DP.get(C, B1).fi;\n      n\
-    \ += DP[C].fi - DP.get(C, A1).fi - DP.get(C, B1).fi;\n      ANS += x + n * d /\
+    \      ll B1 = tree.jump(C, B, 1);\n      ANS += DP[A].se;\n      ANS -= DP.get(C,\
+    \ A).se + ll(tree.dist(A, C)) * DP.get(C, A).fi;\n      ANS += DP[B].se;\n   \
+    \   ANS -= DP.get(C, B).se + ll(tree.dist(B, C)) * DP.get(C, B).fi;\n      ll\
+    \ x = 0;\n      ll n = 0;\n      x += DP[C].se;\n      x -= DP.get(A1, C).se +\
+    \ DP.get(A1, C).fi;\n      x -= DP.get(B1, C).se + DP.get(B1, C).fi;\n      n\
+    \ += DP[C].fi - DP.get(A1, C).fi - DP.get(B1, C).fi;\n      ANS += x + n * d /\
     \ 2;\n    }\n    print(ANS);\n  }\n}\n\nsigned main() {\n  solve();\n  return\
-    \ 0;\n}\n"
+    \ 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -434,7 +434,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc298ex.test.cpp
   requiredBy: []
-  timestamp: '2023-10-28 00:09:18+09:00'
+  timestamp: '2023-10-28 00:30:26+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc298ex.test.cpp
