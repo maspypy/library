@@ -51,7 +51,7 @@ struct SubTree_Diameter {
 
   // (u, v, diam)
   // root を根としたときの部分木 v
-  tuple<int, int, WT> get(int root, int v) {
+  tuple<int, int, WT> get(int v, int root) {
     if (root == v) return dp[v];
     if (!tree.in_subtree(root, v)) { return dp_1[v]; }
     int w = tree.jump(v, root, 1);

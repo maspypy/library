@@ -32,7 +32,7 @@ struct SubTree_Hash {
   u64 operator[](int v) { return dp[v]; }
 
   // root を根としたときの部分木 v
-  u64 get(int root, int v) {
+  u64 get(int v, int root) {
     if (root == v) return dp[v];
     if (!tree.in_subtree(root, v)) { return dp_1[v]; }
     int w = tree.jump(v, root, 1);
