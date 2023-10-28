@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc318/tasks/abc318_g
@@ -236,17 +236,21 @@ data:
     \     vis[source] = 1;\n      while (path.back() != sink) {\n        int to =\
     \ POP(TO[path.back()]);\n        while (vis[to]) { vis[POP(path)] = 0; }\n   \
     \     path.eb(to), vis[to] = 1;\n      }\n      for (auto&& v: path) vis[v] =\
-    \ 0;\n      res.eb(path);\n    }\n    return res;\n  }\n\nprivate:\n  bool set_level()\
-    \ {\n    que.resize(N);\n    level.assign(N, -1);\n    level[source] = 0;\n  \
-    \  int l = 0, r = 0;\n    que[r++] = source;\n    while (l < r) {\n      int v\
-    \ = que[l++];\n      for (auto&& e: edges[v]) {\n        if (e.cap > 0 && level[e.to]\
-    \ == -1) {\n          level[e.to] = level[v] + 1;\n          if (e.to == sink)\
-    \ return true;\n          que[r++] = e.to;\n        }\n      }\n    }\n    return\
-    \ false;\n  }\n\n  Cap flow_dfs(int v, Cap lim) {\n    if (v == sink) return lim;\n\
-    \    Cap res = 0;\n    for (int& i = prog[v]; i < len(edges[v]); ++i) {\n    \
-    \  auto& e = edges[v][i];\n      if (e.cap > 0 && level[e.to] == level[v] + 1)\
-    \ {\n        Cap a = flow_dfs(e.to, min(lim, e.cap));\n        if (a > 0) {\n\
-    \          e.cap -= a, e.flow += a;\n          edges[e.to][e.rev].cap += a, edges[e.to][e.rev].flow\
+    \ 0;\n      res.eb(path);\n    }\n    return res;\n  }\n\n  void debug() {\n \
+    \   print(\"source\", source);\n    print(\"sink\", sink);\n    print(\"edges\
+    \ (frm, to, cap, flow)\");\n    FOR(v, N) {\n      for (auto& e: edges[v]) {\n\
+    \        if (e.cap == 0 && e.flow == 0) continue;\n        print(v, e.to, e.cap,\
+    \ e.flow);\n      }\n    }\n  }\n\nprivate:\n  bool set_level() {\n    que.resize(N);\n\
+    \    level.assign(N, -1);\n    level[source] = 0;\n    int l = 0, r = 0;\n   \
+    \ que[r++] = source;\n    while (l < r) {\n      int v = que[l++];\n      for\
+    \ (auto&& e: edges[v]) {\n        if (e.cap > 0 && level[e.to] == -1) {\n    \
+    \      level[e.to] = level[v] + 1;\n          if (e.to == sink) return true;\n\
+    \          que[r++] = e.to;\n        }\n      }\n    }\n    return false;\n  }\n\
+    \n  Cap flow_dfs(int v, Cap lim) {\n    if (v == sink) return lim;\n    Cap res\
+    \ = 0;\n    for (int& i = prog[v]; i < len(edges[v]); ++i) {\n      auto& e =\
+    \ edges[v][i];\n      if (e.cap > 0 && level[e.to] == level[v] + 1) {\n      \
+    \  Cap a = flow_dfs(e.to, min(lim, e.cap));\n        if (a > 0) {\n          e.cap\
+    \ -= a, e.flow += a;\n          edges[e.to][e.rev].cap += a, edges[e.to][e.rev].flow\
     \ -= a;\n          res += a;\n          lim -= a;\n          if (lim == 0) break;\n\
     \        }\n      }\n    }\n    return res;\n  }\n};\n#line 5 \"test_atcoder/abc318g.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, M);\n  int s = 2 * N, t = 2 * N + 1;\n  MaxFlow<int>\
@@ -272,8 +276,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc318g.test.cpp
   requiredBy: []
-  timestamp: '2023-10-06 12:12:06+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-10-29 05:43:44+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc318g.test.cpp
 layout: document

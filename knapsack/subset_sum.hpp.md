@@ -151,15 +151,32 @@ data:
     \  for (auto& i: I) {\n    vc<int> st = {i};\n    while (len(st)) {\n      auto\
     \ c = POP(st);\n      if (c < N) {\n        ANS.eb(c);\n        continue;\n  \
     \    }\n      auto [a, b] = par[c];\n      st.eb(a), st.eb(b);\n    }\n  }\n \
-    \ return ANS;\n}\n\ntemplate <typename T>\nvc<int> subset_sum(vc<T>& vals, int\
-    \ target) {\n  if (target <= 0) return {};\n  int n = len(vals);\n  if (n == 0)\
-    \ return {};\n  int mx = MAX(vals);\n\n  // \u3057\u304D\u3044\u5024\u306E\u8ABF\
-    \u6574\u3092\u3057\u3066\u3044\u306A\u3044\n  // solution 1: O(N mx))\n  // solution\
-    \ 2: O(N target / w)\n  // solution 3: O(sum^1.5 / w)\n  double x1 = len(vals)\
-    \ * mx;\n  double x2 = len(vals) * target / 500.0;\n  double x3 = len(vals) *\
-    \ sqrtl(len(vals)) / 500.0;\n  double mi = min({x1, x2, x3});\n  if (x1 == mi)\
-    \ return subset_sum_solution_1(vals, target);\n  if (x2 == mi) return subset_sum_solution_2(vals,\
-    \ target);\n  return subset_sum_solution_3(vals, target);\n}\n"
+    \ return ANS;\n}\n\ntemplate <typename T>\nvc<int> subset_sum_solution_4(vc<T>&\
+    \ vals, T target) {\n  if (target <= 0) return {};\n  int N = len(vals);\n  int\
+    \ M = N / 2;\n\n  auto calc = [&](int L, int R) -> vc<T> {\n    int n = R - L;\n\
+    \    vc<T> dp = {0};\n    FOR(i, n) {\n      T a = vals[L + i];\n      vc<T> dp1(len(dp));\n\
+    \      FOR(k, len(dp)) dp1[k] = dp[k] + a;\n      vc<T> newdp;\n      merge(all(dp),\
+    \ all(dp1), back_inserter(newdp));\n      swap(dp, newdp);\n    }\n    return\
+    \ dp;\n  };\n\n  auto restore = [&](int L, int R, T v) -> vc<int> {\n    int n\
+    \ = R - L;\n    vc<T> dp(1 << n);\n    FOR(i, n) FOR(s, 1 << i) dp[s | 1 << i]\
+    \ = dp[s] + vals[L + i];\n    FOR(s, 1 << n) {\n      if (dp[s] == v) {\n    \
+    \    vc<int> I;\n        FOR(i, n) if (s >> i & 1) I.eb(L + i);\n        return\
+    \ I;\n      }\n    }\n    assert(0);\n    return {};\n  };\n\n  auto dp1 = calc(0,\
+    \ M);\n  auto dp2 = calc(M, N);\n  int t = 0;\n  FOR_R(s, len(dp1)) {\n    while\
+    \ (t + 1 < len(dp2) && dp1[s] + dp2[t + 1] <= target) { ++t; }\n    if (dp1[s]\
+    \ + dp2[t] == target) {\n      vc<int> I1 = restore(0, M, dp1[s]);\n      vc<int>\
+    \ I2 = restore(M, N, dp2[t]);\n      I1.insert(I1.end(), all(I2));\n      return\
+    \ I1;\n    }\n  }\n  return {};\n}\n\ntemplate <typename T>\nvc<int> subset_sum(vc<T>&\
+    \ vals, T target) {\n  if (target <= 0) return {};\n  int n = len(vals);\n  if\
+    \ (n == 0) return {};\n  int mx = MAX(vals);\n\n  // \u3057\u304D\u3044\u5024\u306E\
+    \u8ABF\u6574\u3092\u3057\u3066\u3044\u306A\u3044\n  // solution 1: O(N mx))\n\
+    \  // solution 2: O(N target / w)\n  // solution 3: O(sum^1.5 / w)\n  // solution\
+    \ 4: O(2^(N/2))\n  double x1 = double(len(vals)) * mx;\n  double x2 = double(len(vals))\
+    \ * target / 500.0;\n  double x3 = pow(SUM<double>(vals), 1.5) / 500.0;\n  double\
+    \ x4 = pow(2.0, 0.5 * len(vals));\n  double mi = min({x1, x2, x3, x4});\n  if\
+    \ (x1 == mi) return subset_sum_solution_1(vals, target);\n  if (x2 == mi) return\
+    \ subset_sum_solution_2(vals, target);\n  if (x3 == mi) return subset_sum_solution_3(vals,\
+    \ target);\n  return subset_sum_solution_4(vals, target);\n}\n"
   code: "#include \"ds/my_bitset.hpp\"\n#include \"enumerate/bits.hpp\"\n\n// O(N\
     \ MAX(vals))\ntemplate <typename T>\nvc<int> subset_sum_solution_1(vc<T>& vals,\
     \ int target) {\n  int n = len(vals);\n  int mx = MAX(vals);\n  int b = 0, sb\
@@ -200,22 +217,39 @@ data:
     \  for (auto& i: I) {\n    vc<int> st = {i};\n    while (len(st)) {\n      auto\
     \ c = POP(st);\n      if (c < N) {\n        ANS.eb(c);\n        continue;\n  \
     \    }\n      auto [a, b] = par[c];\n      st.eb(a), st.eb(b);\n    }\n  }\n \
-    \ return ANS;\n}\n\ntemplate <typename T>\nvc<int> subset_sum(vc<T>& vals, int\
-    \ target) {\n  if (target <= 0) return {};\n  int n = len(vals);\n  if (n == 0)\
-    \ return {};\n  int mx = MAX(vals);\n\n  // \u3057\u304D\u3044\u5024\u306E\u8ABF\
-    \u6574\u3092\u3057\u3066\u3044\u306A\u3044\n  // solution 1: O(N mx))\n  // solution\
-    \ 2: O(N target / w)\n  // solution 3: O(sum^1.5 / w)\n  double x1 = len(vals)\
-    \ * mx;\n  double x2 = len(vals) * target / 500.0;\n  double x3 = len(vals) *\
-    \ sqrtl(len(vals)) / 500.0;\n  double mi = min({x1, x2, x3});\n  if (x1 == mi)\
-    \ return subset_sum_solution_1(vals, target);\n  if (x2 == mi) return subset_sum_solution_2(vals,\
-    \ target);\n  return subset_sum_solution_3(vals, target);\n}\n"
+    \ return ANS;\n}\n\ntemplate <typename T>\nvc<int> subset_sum_solution_4(vc<T>&\
+    \ vals, T target) {\n  if (target <= 0) return {};\n  int N = len(vals);\n  int\
+    \ M = N / 2;\n\n  auto calc = [&](int L, int R) -> vc<T> {\n    int n = R - L;\n\
+    \    vc<T> dp = {0};\n    FOR(i, n) {\n      T a = vals[L + i];\n      vc<T> dp1(len(dp));\n\
+    \      FOR(k, len(dp)) dp1[k] = dp[k] + a;\n      vc<T> newdp;\n      merge(all(dp),\
+    \ all(dp1), back_inserter(newdp));\n      swap(dp, newdp);\n    }\n    return\
+    \ dp;\n  };\n\n  auto restore = [&](int L, int R, T v) -> vc<int> {\n    int n\
+    \ = R - L;\n    vc<T> dp(1 << n);\n    FOR(i, n) FOR(s, 1 << i) dp[s | 1 << i]\
+    \ = dp[s] + vals[L + i];\n    FOR(s, 1 << n) {\n      if (dp[s] == v) {\n    \
+    \    vc<int> I;\n        FOR(i, n) if (s >> i & 1) I.eb(L + i);\n        return\
+    \ I;\n      }\n    }\n    assert(0);\n    return {};\n  };\n\n  auto dp1 = calc(0,\
+    \ M);\n  auto dp2 = calc(M, N);\n  int t = 0;\n  FOR_R(s, len(dp1)) {\n    while\
+    \ (t + 1 < len(dp2) && dp1[s] + dp2[t + 1] <= target) { ++t; }\n    if (dp1[s]\
+    \ + dp2[t] == target) {\n      vc<int> I1 = restore(0, M, dp1[s]);\n      vc<int>\
+    \ I2 = restore(M, N, dp2[t]);\n      I1.insert(I1.end(), all(I2));\n      return\
+    \ I1;\n    }\n  }\n  return {};\n}\n\ntemplate <typename T>\nvc<int> subset_sum(vc<T>&\
+    \ vals, T target) {\n  if (target <= 0) return {};\n  int n = len(vals);\n  if\
+    \ (n == 0) return {};\n  int mx = MAX(vals);\n\n  // \u3057\u304D\u3044\u5024\u306E\
+    \u8ABF\u6574\u3092\u3057\u3066\u3044\u306A\u3044\n  // solution 1: O(N mx))\n\
+    \  // solution 2: O(N target / w)\n  // solution 3: O(sum^1.5 / w)\n  // solution\
+    \ 4: O(2^(N/2))\n  double x1 = double(len(vals)) * mx;\n  double x2 = double(len(vals))\
+    \ * target / 500.0;\n  double x3 = pow(SUM<double>(vals), 1.5) / 500.0;\n  double\
+    \ x4 = pow(2.0, 0.5 * len(vals));\n  double mi = min({x1, x2, x3, x4});\n  if\
+    \ (x1 == mi) return subset_sum_solution_1(vals, target);\n  if (x2 == mi) return\
+    \ subset_sum_solution_2(vals, target);\n  if (x3 == mi) return subset_sum_solution_3(vals,\
+    \ target);\n  return subset_sum_solution_4(vals, target);\n}\n"
   dependsOn:
   - ds/my_bitset.hpp
   - enumerate/bits.hpp
   isVerificationFile: false
   path: knapsack/subset_sum.hpp
   requiredBy: []
-  timestamp: '2023-09-26 01:12:51+09:00'
+  timestamp: '2023-10-29 05:43:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/4_2.test.cpp

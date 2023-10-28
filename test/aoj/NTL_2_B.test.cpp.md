@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
@@ -548,7 +548,12 @@ data:
     \ + A[i];\n        A[i] = rem >> 32;\n        rem &= u32(-1);\n      }\n     \
     \ FOR(i, 32) { ANS += '0' + (rem >> i & 1); }\n    }\n    while (len(ANS) && ANS.back()\
     \ == '0') ANS.pop_back();\n    reverse(all(ANS));\n    if (ANS.empty()) ANS +=\
-    \ '0';\n    return ANS;\n  }\n\n  // https://codeforces.com/problemset/problem/582/D\n\
+    \ '0';\n    return ANS;\n  }\n\n  pair<bint, int> divmod(int p) {\n    assert(dat.empty()\
+    \ || sgn == 1);\n    vc<int> after;\n    ll rm = 0;\n    FOR_R(i, len(dat)) {\n\
+    \      for (auto &x: dat) {\n        rm = x * MOD + rm;\n        after.eb(rm /\
+    \ p);\n        rm = rm % p;\n      }\n    }\n    reverse(all(after));\n    while\
+    \ (len(after) && after.back() == 0) POP(after);\n    bint q;\n    q.sgn = 1;\n\
+    \    q.dat = after;\n    return {q, rm};\n  }\n\n  // https://codeforces.com/problemset/problem/582/D\n\
     \  vc<int> base_p_representation(int p) {\n    vc<u32> A(all(dat));\n    vc<int>\
     \ res;\n    while (1) {\n      while (len(A) && A.back() == u32(0)) POP(A);\n\
     \      if (A.empty()) break;\n      u64 rm = 0;\n      FOR_R(i, len(A)) {\n  \
@@ -578,7 +583,7 @@ data:
   isVerificationFile: true
   path: test/aoj/NTL_2_B.test.cpp
   requiredBy: []
-  timestamp: '2023-10-18 00:17:26+09:00'
+  timestamp: '2023-10-29 05:43:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/NTL_2_B.test.cpp

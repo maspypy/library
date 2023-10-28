@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/binary_optimization.hpp
     title: flow/binary_optimization.hpp
   - icon: ':heavy_check_mark:'
@@ -24,18 +24,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2320.test.cpp
     title: test/yukicoder/2320.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc193f.test.cpp
     title: test_atcoder/abc193f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc259g.test.cpp
     title: test_atcoder/abc259g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc318g.test.cpp
     title: test_atcoder/abc318g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"flow/maxflow.hpp\"\n// incremental \u306B\u8FBA\u3092\u8FFD\
@@ -70,17 +70,21 @@ data:
     \     vis[source] = 1;\n      while (path.back() != sink) {\n        int to =\
     \ POP(TO[path.back()]);\n        while (vis[to]) { vis[POP(path)] = 0; }\n   \
     \     path.eb(to), vis[to] = 1;\n      }\n      for (auto&& v: path) vis[v] =\
-    \ 0;\n      res.eb(path);\n    }\n    return res;\n  }\n\nprivate:\n  bool set_level()\
-    \ {\n    que.resize(N);\n    level.assign(N, -1);\n    level[source] = 0;\n  \
-    \  int l = 0, r = 0;\n    que[r++] = source;\n    while (l < r) {\n      int v\
-    \ = que[l++];\n      for (auto&& e: edges[v]) {\n        if (e.cap > 0 && level[e.to]\
-    \ == -1) {\n          level[e.to] = level[v] + 1;\n          if (e.to == sink)\
-    \ return true;\n          que[r++] = e.to;\n        }\n      }\n    }\n    return\
-    \ false;\n  }\n\n  Cap flow_dfs(int v, Cap lim) {\n    if (v == sink) return lim;\n\
-    \    Cap res = 0;\n    for (int& i = prog[v]; i < len(edges[v]); ++i) {\n    \
-    \  auto& e = edges[v][i];\n      if (e.cap > 0 && level[e.to] == level[v] + 1)\
-    \ {\n        Cap a = flow_dfs(e.to, min(lim, e.cap));\n        if (a > 0) {\n\
-    \          e.cap -= a, e.flow += a;\n          edges[e.to][e.rev].cap += a, edges[e.to][e.rev].flow\
+    \ 0;\n      res.eb(path);\n    }\n    return res;\n  }\n\n  void debug() {\n \
+    \   print(\"source\", source);\n    print(\"sink\", sink);\n    print(\"edges\
+    \ (frm, to, cap, flow)\");\n    FOR(v, N) {\n      for (auto& e: edges[v]) {\n\
+    \        if (e.cap == 0 && e.flow == 0) continue;\n        print(v, e.to, e.cap,\
+    \ e.flow);\n      }\n    }\n  }\n\nprivate:\n  bool set_level() {\n    que.resize(N);\n\
+    \    level.assign(N, -1);\n    level[source] = 0;\n    int l = 0, r = 0;\n   \
+    \ que[r++] = source;\n    while (l < r) {\n      int v = que[l++];\n      for\
+    \ (auto&& e: edges[v]) {\n        if (e.cap > 0 && level[e.to] == -1) {\n    \
+    \      level[e.to] = level[v] + 1;\n          if (e.to == sink) return true;\n\
+    \          que[r++] = e.to;\n        }\n      }\n    }\n    return false;\n  }\n\
+    \n  Cap flow_dfs(int v, Cap lim) {\n    if (v == sink) return lim;\n    Cap res\
+    \ = 0;\n    for (int& i = prog[v]; i < len(edges[v]); ++i) {\n      auto& e =\
+    \ edges[v][i];\n      if (e.cap > 0 && level[e.to] == level[v] + 1) {\n      \
+    \  Cap a = flow_dfs(e.to, min(lim, e.cap));\n        if (a > 0) {\n          e.cap\
+    \ -= a, e.flow += a;\n          edges[e.to][e.rev].cap += a, edges[e.to][e.rev].flow\
     \ -= a;\n          res += a;\n          lim -= a;\n          if (lim == 0) break;\n\
     \        }\n      }\n    }\n    return res;\n  }\n};\n"
   code: "// incremental \u306B\u8FBA\u3092\u8FFD\u52A0\u3057\u3066\u3088\u3044\ntemplate\
@@ -115,27 +119,31 @@ data:
     \ = 1;\n      while (path.back() != sink) {\n        int to = POP(TO[path.back()]);\n\
     \        while (vis[to]) { vis[POP(path)] = 0; }\n        path.eb(to), vis[to]\
     \ = 1;\n      }\n      for (auto&& v: path) vis[v] = 0;\n      res.eb(path);\n\
-    \    }\n    return res;\n  }\n\nprivate:\n  bool set_level() {\n    que.resize(N);\n\
-    \    level.assign(N, -1);\n    level[source] = 0;\n    int l = 0, r = 0;\n   \
-    \ que[r++] = source;\n    while (l < r) {\n      int v = que[l++];\n      for\
-    \ (auto&& e: edges[v]) {\n        if (e.cap > 0 && level[e.to] == -1) {\n    \
-    \      level[e.to] = level[v] + 1;\n          if (e.to == sink) return true;\n\
-    \          que[r++] = e.to;\n        }\n      }\n    }\n    return false;\n  }\n\
-    \n  Cap flow_dfs(int v, Cap lim) {\n    if (v == sink) return lim;\n    Cap res\
-    \ = 0;\n    for (int& i = prog[v]; i < len(edges[v]); ++i) {\n      auto& e =\
-    \ edges[v][i];\n      if (e.cap > 0 && level[e.to] == level[v] + 1) {\n      \
-    \  Cap a = flow_dfs(e.to, min(lim, e.cap));\n        if (a > 0) {\n          e.cap\
-    \ -= a, e.flow += a;\n          edges[e.to][e.rev].cap += a, edges[e.to][e.rev].flow\
-    \ -= a;\n          res += a;\n          lim -= a;\n          if (lim == 0) break;\n\
-    \        }\n      }\n    }\n    return res;\n  }\n};\n"
+    \    }\n    return res;\n  }\n\n  void debug() {\n    print(\"source\", source);\n\
+    \    print(\"sink\", sink);\n    print(\"edges (frm, to, cap, flow)\");\n    FOR(v,\
+    \ N) {\n      for (auto& e: edges[v]) {\n        if (e.cap == 0 && e.flow == 0)\
+    \ continue;\n        print(v, e.to, e.cap, e.flow);\n      }\n    }\n  }\n\nprivate:\n\
+    \  bool set_level() {\n    que.resize(N);\n    level.assign(N, -1);\n    level[source]\
+    \ = 0;\n    int l = 0, r = 0;\n    que[r++] = source;\n    while (l < r) {\n \
+    \     int v = que[l++];\n      for (auto&& e: edges[v]) {\n        if (e.cap >\
+    \ 0 && level[e.to] == -1) {\n          level[e.to] = level[v] + 1;\n         \
+    \ if (e.to == sink) return true;\n          que[r++] = e.to;\n        }\n    \
+    \  }\n    }\n    return false;\n  }\n\n  Cap flow_dfs(int v, Cap lim) {\n    if\
+    \ (v == sink) return lim;\n    Cap res = 0;\n    for (int& i = prog[v]; i < len(edges[v]);\
+    \ ++i) {\n      auto& e = edges[v][i];\n      if (e.cap > 0 && level[e.to] ==\
+    \ level[v] + 1) {\n        Cap a = flow_dfs(e.to, min(lim, e.cap));\n        if\
+    \ (a > 0) {\n          e.cap -= a, e.flow += a;\n          edges[e.to][e.rev].cap\
+    \ += a, edges[e.to][e.rev].flow -= a;\n          res += a;\n          lim -= a;\n\
+    \          if (lim == 0) break;\n        }\n      }\n    }\n    return res;\n\
+    \  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: flow/maxflow.hpp
   requiredBy:
   - flow/binary_optimization.hpp
   - graph/dag_path_cover.hpp
-  timestamp: '2023-09-16 07:20:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-10-29 05:43:44+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc193f.test.cpp
   - test_atcoder/abc318g.test.cpp
