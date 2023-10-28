@@ -96,6 +96,18 @@ struct MaxFlow {
     return res;
   }
 
+  void debug() {
+    print("source", source);
+    print("sink", sink);
+    print("edges (frm, to, cap, flow)");
+    FOR(v, N) {
+      for (auto& e: edges[v]) {
+        if (e.cap == 0 && e.flow == 0) continue;
+        print(v, e.to, e.cap, e.flow);
+      }
+    }
+  }
+
 private:
   bool set_level() {
     que.resize(N);

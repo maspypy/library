@@ -131,7 +131,57 @@ vc<int> subset_sum_solution_3(vc<T>& vals, int target) {
 }
 
 template <typename T>
-vc<int> subset_sum(vc<T>& vals, int target) {
+vc<int> subset_sum_solution_4(vc<T>& vals, T target) {
+  if (target <= 0) return {};
+  int N = len(vals);
+  int M = N / 2;
+
+  auto calc = [&](int L, int R) -> vc<T> {
+    int n = R - L;
+    vc<T> dp = {0};
+    FOR(i, n) {
+      T a = vals[L + i];
+      vc<T> dp1(len(dp));
+      FOR(k, len(dp)) dp1[k] = dp[k] + a;
+      vc<T> newdp;
+      merge(all(dp), all(dp1), back_inserter(newdp));
+      swap(dp, newdp);
+    }
+    return dp;
+  };
+
+  auto restore = [&](int L, int R, T v) -> vc<int> {
+    int n = R - L;
+    vc<T> dp(1 << n);
+    FOR(i, n) FOR(s, 1 << i) dp[s | 1 << i] = dp[s] + vals[L + i];
+    FOR(s, 1 << n) {
+      if (dp[s] == v) {
+        vc<int> I;
+        FOR(i, n) if (s >> i & 1) I.eb(L + i);
+        return I;
+      }
+    }
+    assert(0);
+    return {};
+  };
+
+  auto dp1 = calc(0, M);
+  auto dp2 = calc(M, N);
+  int t = 0;
+  FOR_R(s, len(dp1)) {
+    while (t + 1 < len(dp2) && dp1[s] + dp2[t + 1] <= target) { ++t; }
+    if (dp1[s] + dp2[t] == target) {
+      vc<int> I1 = restore(0, M, dp1[s]);
+      vc<int> I2 = restore(M, N, dp2[t]);
+      I1.insert(I1.end(), all(I2));
+      return I1;
+    }
+  }
+  return {};
+}
+
+template <typename T>
+vc<int> subset_sum(vc<T>& vals, T target) {
   if (target <= 0) return {};
   int n = len(vals);
   if (n == 0) return {};
@@ -141,11 +191,14 @@ vc<int> subset_sum(vc<T>& vals, int target) {
   // solution 1: O(N mx))
   // solution 2: O(N target / w)
   // solution 3: O(sum^1.5 / w)
-  double x1 = len(vals) * mx;
-  double x2 = len(vals) * target / 500.0;
-  double x3 = len(vals) * sqrtl(len(vals)) / 500.0;
-  double mi = min({x1, x2, x3});
+  // solution 4: O(2^(N/2))
+  double x1 = double(len(vals)) * mx;
+  double x2 = double(len(vals)) * target / 500.0;
+  double x3 = pow(SUM<double>(vals), 1.5) / 500.0;
+  double x4 = pow(2.0, 0.5 * len(vals));
+  double mi = min({x1, x2, x3, x4});
   if (x1 == mi) return subset_sum_solution_1(vals, target);
   if (x2 == mi) return subset_sum_solution_2(vals, target);
-  return subset_sum_solution_3(vals, target);
+  if (x3 == mi) return subset_sum_solution_3(vals, target);
+  return subset_sum_solution_4(vals, target);
 }
