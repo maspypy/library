@@ -5,6 +5,7 @@
 
 // 辞書順 i 番目の suffix が j 文字目始まりであるとき、
 // SA[i] = j, ISA[j] = i
+// |S|>0 を前提（そうでない場合 dummy 文字を追加して利用せよ）
 template <bool USE_LCP_QUERY = 0>
 struct Suffix_Array {
   vc<int> SA;
@@ -14,6 +15,7 @@ struct Suffix_Array {
   // DisjointSparse<Monoid_Min<int>> seg;
 
   Suffix_Array(string& s) {
+    assert(len(s) > 0);
     char first = 127, last = 0;
     for (auto&& c: s) {
       chmin(first, c);
@@ -25,6 +27,7 @@ struct Suffix_Array {
   }
 
   Suffix_Array(vc<int>& s) {
+    assert(len(s) > 0);
     SA = calc_suffix_array(s);
     calc_LCP(s);
     if (USE_LCP_QUERY) seg.build(LCP);
