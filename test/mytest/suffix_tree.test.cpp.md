@@ -265,47 +265,49 @@ data:
     \ (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n};\n#line\
     \ 5 \"string/suffix_array.hpp\"\n\n// \u8F9E\u66F8\u9806 i \u756A\u76EE\u306E\
     \ suffix \u304C j \u6587\u5B57\u76EE\u59CB\u307E\u308A\u3067\u3042\u308B\u3068\
-    \u304D\u3001\n// SA[i] = j, ISA[j] = i\ntemplate <bool USE_LCP_QUERY = 0>\nstruct\
+    \u304D\u3001\n// SA[i] = j, ISA[j] = i\n// |S|>0 \u3092\u524D\u63D0\uFF08\u305D\
+    \u3046\u3067\u306A\u3044\u5834\u5408 dummy \u6587\u5B57\u3092\u8FFD\u52A0\u3057\
+    \u3066\u5229\u7528\u305B\u3088\uFF09\ntemplate <bool USE_LCP_QUERY = 0>\nstruct\
     \ Suffix_Array {\n  vc<int> SA;\n  vc<int> ISA;\n  vc<int> LCP;\n  Sparse_Table<Monoid_Min<int>>\
     \ seg;\n  // DisjointSparse<Monoid_Min<int>> seg;\n\n  Suffix_Array(string& s)\
-    \ {\n    char first = 127, last = 0;\n    for (auto&& c: s) {\n      chmin(first,\
-    \ c);\n      chmax(last, c);\n    }\n    SA = calc_suffix_array(s, first, last);\n\
-    \    calc_LCP(s);\n    if (USE_LCP_QUERY) seg.build(LCP);\n  }\n\n  Suffix_Array(vc<int>&\
-    \ s) {\n    SA = calc_suffix_array(s);\n    calc_LCP(s);\n    if (USE_LCP_QUERY)\
-    \ seg.build(LCP);\n  }\n\n  // lcp(S[i:], S[j:])\n  int lcp(int i, int j) {\n\
-    \    static_assert(USE_LCP_QUERY);\n    int n = len(SA);\n    if (i == n || j\
-    \ == n) return 0;\n    if (i == j) return n - i;\n    i = ISA[i], j = ISA[j];\n\
-    \    if (i > j) swap(i, j);\n    return seg.prod(i, j);\n  }\n\n  // S[i:] \u3068\
-    \u306E lcp \u304C n \u4EE5\u4E0A\u3067\u3042\u308B\u3088\u3046\u306A\u534A\u958B\
-    \u533A\u9593\n  pair<int, int> lcp_range(int i, int n) {\n    static_assert(USE_LCP_QUERY);\n\
-    \    i = ISA[i];\n    int a = seg.min_left([&](auto e) -> bool { return e >= n;\
-    \ }, i);\n    int b = seg.max_right([&](auto e) -> bool { return e >= n; }, i);\n\
-    \    return {a, b + 1};\n  }\n\n  // -1: S[L1:R1) < S[L2, R2)\n  //  0: S[L1:R1)\
-    \ = S[L2, R2)\n  // +1: S[L1:R1) > S[L2, R2)\n  int compare(int L1, int R1, int\
-    \ L2, int R2) {\n    int N = len(SA);\n    int n1 = R1 - L1, n2 = R2 - L2;\n \
-    \   int n = lcp(L1, L2);\n    if (n == n1 && n == n2) return 0;\n    if (n ==\
-    \ n1) return -1;\n    if (n == n2) return 1;\n    return (ISA[L1 + n] > ISA[L2\
-    \ + n] ? 1 : -1);\n  }\n\nprivate:\n  void induced_sort(const vc<int>& vect, int\
-    \ val_range, vc<int>& SA,\n                    const vc<bool>& sl, const vc<int>&\
-    \ lms_idx) {\n    vc<int> l(val_range, 0), r(val_range, 0);\n    for (int c: vect)\
-    \ {\n      if (c + 1 < val_range) ++l[c + 1];\n      ++r[c];\n    }\n    partial_sum(l.begin(),\
-    \ l.end(), l.begin());\n    partial_sum(r.begin(), r.end(), r.begin());\n    fill(SA.begin(),\
-    \ SA.end(), -1);\n    for (int i = (int)lms_idx.size() - 1; i >= 0; --i)\n   \
-    \   SA[--r[vect[lms_idx[i]]]] = lms_idx[i];\n    for (int i: SA)\n      if (i\
-    \ >= 1 && sl[i - 1]) SA[l[vect[i - 1]]++] = i - 1;\n    fill(r.begin(), r.end(),\
-    \ 0);\n    for (int c: vect) ++r[c];\n    partial_sum(r.begin(), r.end(), r.begin());\n\
-    \    for (int k = (int)SA.size() - 1, i = SA[k]; k >= 1; --k, i = SA[k])\n   \
-    \   if (i >= 1 && !sl[i - 1]) { SA[--r[vect[i - 1]]] = i - 1; }\n  }\n\n  vc<int>\
-    \ SA_IS(const vc<int>& vect, int val_range) {\n    const int n = vect.size();\n\
-    \    vc<int> SA(n), lms_idx;\n    vc<bool> sl(n);\n    sl[n - 1] = false;\n  \
-    \  for (int i = n - 2; i >= 0; --i) {\n      sl[i] = (vect[i] > vect[i + 1] ||\
-    \ (vect[i] == vect[i + 1] && sl[i + 1]));\n      if (sl[i] && !sl[i + 1]) lms_idx.push_back(i\
-    \ + 1);\n    }\n    reverse(lms_idx.begin(), lms_idx.end());\n    induced_sort(vect,\
-    \ val_range, SA, sl, lms_idx);\n    vc<int> new_lms_idx(lms_idx.size()), lms_vec(lms_idx.size());\n\
-    \    for (int i = 0, k = 0; i < n; ++i)\n      if (!sl[SA[i]] && SA[i] >= 1 &&\
-    \ sl[SA[i] - 1]) {\n        new_lms_idx[k++] = SA[i];\n      }\n    int cur =\
-    \ 0;\n    SA[n - 1] = cur;\n    for (size_t k = 1; k < new_lms_idx.size(); ++k)\
-    \ {\n      int i = new_lms_idx[k - 1], j = new_lms_idx[k];\n      if (vect[i]\
+    \ {\n    assert(len(s) > 0);\n    char first = 127, last = 0;\n    for (auto&&\
+    \ c: s) {\n      chmin(first, c);\n      chmax(last, c);\n    }\n    SA = calc_suffix_array(s,\
+    \ first, last);\n    calc_LCP(s);\n    if (USE_LCP_QUERY) seg.build(LCP);\n  }\n\
+    \n  Suffix_Array(vc<int>& s) {\n    assert(len(s) > 0);\n    SA = calc_suffix_array(s);\n\
+    \    calc_LCP(s);\n    if (USE_LCP_QUERY) seg.build(LCP);\n  }\n\n  // lcp(S[i:],\
+    \ S[j:])\n  int lcp(int i, int j) {\n    static_assert(USE_LCP_QUERY);\n    int\
+    \ n = len(SA);\n    if (i == n || j == n) return 0;\n    if (i == j) return n\
+    \ - i;\n    i = ISA[i], j = ISA[j];\n    if (i > j) swap(i, j);\n    return seg.prod(i,\
+    \ j);\n  }\n\n  // S[i:] \u3068\u306E lcp \u304C n \u4EE5\u4E0A\u3067\u3042\u308B\
+    \u3088\u3046\u306A\u534A\u958B\u533A\u9593\n  pair<int, int> lcp_range(int i,\
+    \ int n) {\n    static_assert(USE_LCP_QUERY);\n    i = ISA[i];\n    int a = seg.min_left([&](auto\
+    \ e) -> bool { return e >= n; }, i);\n    int b = seg.max_right([&](auto e) ->\
+    \ bool { return e >= n; }, i);\n    return {a, b + 1};\n  }\n\n  // -1: S[L1:R1)\
+    \ < S[L2, R2)\n  //  0: S[L1:R1) = S[L2, R2)\n  // +1: S[L1:R1) > S[L2, R2)\n\
+    \  int compare(int L1, int R1, int L2, int R2) {\n    int N = len(SA);\n    int\
+    \ n1 = R1 - L1, n2 = R2 - L2;\n    int n = lcp(L1, L2);\n    if (n == n1 && n\
+    \ == n2) return 0;\n    if (n == n1) return -1;\n    if (n == n2) return 1;\n\
+    \    return (ISA[L1 + n] > ISA[L2 + n] ? 1 : -1);\n  }\n\nprivate:\n  void induced_sort(const\
+    \ vc<int>& vect, int val_range, vc<int>& SA,\n                    const vc<bool>&\
+    \ sl, const vc<int>& lms_idx) {\n    vc<int> l(val_range, 0), r(val_range, 0);\n\
+    \    for (int c: vect) {\n      if (c + 1 < val_range) ++l[c + 1];\n      ++r[c];\n\
+    \    }\n    partial_sum(l.begin(), l.end(), l.begin());\n    partial_sum(r.begin(),\
+    \ r.end(), r.begin());\n    fill(SA.begin(), SA.end(), -1);\n    for (int i =\
+    \ (int)lms_idx.size() - 1; i >= 0; --i)\n      SA[--r[vect[lms_idx[i]]]] = lms_idx[i];\n\
+    \    for (int i: SA)\n      if (i >= 1 && sl[i - 1]) SA[l[vect[i - 1]]++] = i\
+    \ - 1;\n    fill(r.begin(), r.end(), 0);\n    for (int c: vect) ++r[c];\n    partial_sum(r.begin(),\
+    \ r.end(), r.begin());\n    for (int k = (int)SA.size() - 1, i = SA[k]; k >= 1;\
+    \ --k, i = SA[k])\n      if (i >= 1 && !sl[i - 1]) { SA[--r[vect[i - 1]]] = i\
+    \ - 1; }\n  }\n\n  vc<int> SA_IS(const vc<int>& vect, int val_range) {\n    const\
+    \ int n = vect.size();\n    vc<int> SA(n), lms_idx;\n    vc<bool> sl(n);\n   \
+    \ sl[n - 1] = false;\n    for (int i = n - 2; i >= 0; --i) {\n      sl[i] = (vect[i]\
+    \ > vect[i + 1] || (vect[i] == vect[i + 1] && sl[i + 1]));\n      if (sl[i] &&\
+    \ !sl[i + 1]) lms_idx.push_back(i + 1);\n    }\n    reverse(lms_idx.begin(), lms_idx.end());\n\
+    \    induced_sort(vect, val_range, SA, sl, lms_idx);\n    vc<int> new_lms_idx(lms_idx.size()),\
+    \ lms_vec(lms_idx.size());\n    for (int i = 0, k = 0; i < n; ++i)\n      if (!sl[SA[i]]\
+    \ && SA[i] >= 1 && sl[SA[i] - 1]) {\n        new_lms_idx[k++] = SA[i];\n     \
+    \ }\n    int cur = 0;\n    SA[n - 1] = cur;\n    for (size_t k = 1; k < new_lms_idx.size();\
+    \ ++k) {\n      int i = new_lms_idx[k - 1], j = new_lms_idx[k];\n      if (vect[i]\
     \ != vect[j]) {\n        SA[j] = ++cur;\n        continue;\n      }\n      bool\
     \ flag = false;\n      for (int a = i + 1, b = j + 1;; ++a, ++b) {\n        if\
     \ (vect[a] != vect[b]) {\n          flag = true;\n          break;\n        }\n\
@@ -596,7 +598,7 @@ data:
   isVerificationFile: true
   path: test/mytest/suffix_tree.test.cpp
   requiredBy: []
-  timestamp: '2023-10-29 16:22:13+09:00'
+  timestamp: '2023-10-29 23:53:17+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/suffix_tree.test.cpp

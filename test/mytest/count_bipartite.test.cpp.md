@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/power_query.hpp
     title: ds/power_query.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_bipartite.hpp
     title: graph/count/count_bipartite.hpp
   - icon: ':question:'
@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
   - icon: ':question:'
@@ -61,10 +61,10 @@ data:
   - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
   - icon: ':question:'
@@ -78,9 +78,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -634,10 +634,10 @@ data:
     \ mint>\r\nvc<mint> fps_pow(const vc<mint>& f, ll k) {\r\n  assert(0 <= k);\r\n\
     \  int n = len(f);\r\n  if (k == 0) {\r\n    vc<mint> g(n);\r\n    g[0] = mint(1);\r\
     \n    return g;\r\n  }\r\n  int d = n;\r\n  FOR_R(i, n) if (f[i] != 0) d = i;\r\
-    \n  // d * k >= n\r\n  if (d >= ceil(n, k)) {\r\n    vc<mint> g(n);\r\n    return\
-    \ g;\r\n  }\r\n  ll off = d * k;\r\n  mint c = f[d];\r\n  mint c_inv = mint(1)\
-    \ / mint(c);\r\n  vc<mint> g(n - off);\r\n  FOR(i, n - off) g[i] = f[d + i] *\
-    \ c_inv;\r\n  g = fps_pow_1(g, mint(k));\r\n  vc<mint> h(n);\r\n  c = c.pow(k);\r\
+    \n  // d * k >= n\r\n  if (d >= ceil<ll>(n, k)) {\r\n    vc<mint> g(n);\r\n  \
+    \  return g;\r\n  }\r\n  ll off = d * k;\r\n  mint c = f[d];\r\n  mint c_inv =\
+    \ mint(1) / mint(c);\r\n  vc<mint> g(n - off);\r\n  FOR(i, n - off) g[i] = f[d\
+    \ + i] * c_inv;\r\n  g = fps_pow_1(g, mint(k));\r\n  vc<mint> h(n);\r\n  c = c.pow(k);\r\
     \n  FOR(i, len(g)) h[off + i] = g[i] * c;\r\n  return h;\r\n}\r\n\r\ntemplate\
     \ <typename mint>\r\nvc<mint> fps_pow_1_sparse(const vc<mint>& f, mint K) {\r\n\
     \  int N = len(f);\r\n  assert(N == 0 || f[0] == mint(1));\r\n  vc<pair<int, mint>>\
@@ -803,8 +803,8 @@ data:
   isVerificationFile: true
   path: test/mytest/count_bipartite.test.cpp
   requiredBy: []
-  timestamp: '2023-10-29 16:21:41+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-10-29 23:53:17+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/count_bipartite.test.cpp
 layout: document
