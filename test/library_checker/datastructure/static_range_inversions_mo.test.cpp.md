@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/offline_query/mo.hpp
     title: ds/offline_query/mo.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_inversions_query
@@ -74,15 +74,14 @@ data:
     \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
     \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
     \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
-    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T, typename U>\n\
-    T ceil(T x, U y) {\n  return (x > 0 ? (x + y - 1) / y : x / y);\n}\ntemplate <typename\
-    \ T, typename U>\nT floor(T x, U y) {\n  return (x > 0 ? x / y : (x - y + 1) /\
-    \ y);\n}\ntemplate <typename T, typename U>\nT bmod(T x, U y) {\n  return x -\
-    \ y * floor(x, y);\n}\ntemplate <typename T, typename U>\npair<T, T> divmod(T\
-    \ x, U y) {\n  T q = floor(x, y);\n  return {q, x - q * y};\n}\n\ntemplate <typename\
-    \ T, typename U>\nT SUM(const vector<U> &A) {\n  T sum = 0;\n  for (auto &&a:\
-    \ A) sum += a;\n  return sum;\n}\n\n#define MIN(v) *min_element(all(v))\n#define\
-    \ MAX(v) *max_element(all(v))\n#define LB(c, x) distance((c).begin(), lower_bound(all(c),\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT floor(T a,\
+    \ T b) {\n  return a / b - (a % b && (a ^ b) < 0);\n}\ntemplate <typename T>\n\
+    T ceil(T x, T y) {\n  return floor(x + y - 1, y);\n}\ntemplate <typename T>\n\
+    T bmod(T x, T y) {\n  return x - y * floor(x, y);\n}\ntemplate <typename T>\n\
+    pair<T, T> divmod(T x, T y) {\n  T q = floor(x, y);\n  return {q, x - q * y};\n\
+    }\n\ntemplate <typename T, typename U>\nT SUM(const vector<U> &A) {\n  T sm =\
+    \ 0;\n  for (auto &&a: A) sm += a;\n  return sm;\n}\n\n#define MIN(v) *min_element(all(v))\n\
+    #define MAX(v) *max_element(all(v))\n#define LB(c, x) distance((c).begin(), lower_bound(all(c),\
     \ (x)))\n#define UB(c, x) distance((c).begin(), upper_bound(all(c), (x)))\n#define\
     \ UNIQUE(x) \\\n  sort(all(x)), x.erase(unique(all(x)), x.end()), x.shrink_to_fit()\n\
     \ntemplate <typename T>\nT POP(deque<T> &que) {\n  T a = que.front();\n  que.pop_front();\n\
@@ -247,27 +246,28 @@ data:
     \ + k - 1]);\n        if (check(t)) { i += k, s = t; }\n      }\n      k >>= 1;\n\
     \    }\n    return i;\n  }\n\n  int kth(E k) {\n    return max_right([&k](E x)\
     \ -> bool { return x <= k; });\n  }\n};\n#line 1 \"ds/offline_query/mo.hpp\"\n\
-    struct Mo {\r\n  vc<pair<int, int>> LR;\r\n  void add(int L, int R) { LR.emplace_back(L,\
-    \ R); }\r\n\r\n  static vc<int> get_mo_order(vc<pair<int, int>> LR) {\r\n    int\
-    \ N = 1;\r\n    for (auto &&[l, r]: LR) chmax(N, l), chmax(N, r);\r\n    int Q\
-    \ = len(LR);\r\n    if (Q == 0) return {};\r\n    int bs = sqrt(3) * N / sqrt(2\
-    \ * Q);\r\n    chmax(bs, 1);\r\n    vc<int> I(Q);\r\n    iota(all(I), 0);\r\n\
-    \    sort(all(I), [&](int a, int b) {\r\n      int aa = LR[a].fi / bs, bb = LR[b].fi\
-    \ / bs;\r\n      if (aa != bb) return aa < bb;\r\n      return (aa & 1) ? LR[a].se\
-    \ > LR[b].se : LR[a].se < LR[b].se;\r\n    });\r\n\r\n    auto cost = [&](int\
-    \ a, int b) -> int {\r\n      return abs(LR[I[a]].fi - LR[I[b]].fi) + abs(LR[I[a]].se\
-    \ - LR[I[b]].se);\r\n    };\r\n\r\n    // \u30E9\u30F3\u30C0\u30E0\u30B1\u30FC\
-    \u30B9\u3067\u6570\u30D1\u30FC\u30BB\u30F3\u30C8\r\n    FOR(k, Q - 5) {\r\n  \
-    \    if (cost(k, k + 2) + cost(k + 1, k + 3)\r\n          < cost(k, k + 1) + cost(k\
-    \ + 2, k + 3)) {\r\n        swap(I[k + 1], I[k + 2]);\r\n      }\r\n      if (cost(k,\
-    \ k + 3) + cost(k + 1, k + 4)\r\n          < cost(k, k + 1) + cost(k + 3, k +\
-    \ 4)) {\r\n        swap(I[k + 1], I[k + 3]);\r\n      }\r\n    }\r\n    return\
-    \ I;\r\n  }\r\n\r\n  template <typename F1, typename F2, typename F3, typename\
-    \ F4, typename F5>\r\n  void calc(F1 add_l, F2 add_r, F3 rm_l, F4 rm_r, F5 query)\
-    \ {\r\n    auto I = get_mo_order(LR);\r\n    int l = 0, r = 0;\r\n    for (auto\
-    \ idx: I) {\r\n      while (l > LR[idx].fi) add_l(--l);\r\n      while (r < LR[idx].se)\
-    \ add_r(r++);\r\n      while (l < LR[idx].fi) rm_l(l++);\r\n      while (r > LR[idx].se)\
-    \ rm_r(--r);\r\n      query(idx);\r\n    }\r\n  }\r\n};\r\n#line 7 \"test/library_checker/datastructure/static_range_inversions_mo.test.cpp\"\
+    // Nsqrt(Q)\r\nstruct Mo {\r\n  vc<pair<int, int>> LR;\r\n  void add(int L, int\
+    \ R) { LR.emplace_back(L, R); }\r\n\r\n  static vc<int> get_mo_order(vc<pair<int,\
+    \ int>> LR) {\r\n    int N = 1;\r\n    for (auto &&[l, r]: LR) chmax(N, l), chmax(N,\
+    \ r);\r\n    int Q = len(LR);\r\n    if (Q == 0) return {};\r\n    int bs = sqrt(3)\
+    \ * N / sqrt(2 * Q);\r\n    chmax(bs, 1);\r\n    vc<int> I(Q);\r\n    iota(all(I),\
+    \ 0);\r\n    sort(all(I), [&](int a, int b) {\r\n      int aa = LR[a].fi / bs,\
+    \ bb = LR[b].fi / bs;\r\n      if (aa != bb) return aa < bb;\r\n      return (aa\
+    \ & 1) ? LR[a].se > LR[b].se : LR[a].se < LR[b].se;\r\n    });\r\n\r\n    auto\
+    \ cost = [&](int a, int b) -> int {\r\n      return abs(LR[I[a]].fi - LR[I[b]].fi)\
+    \ + abs(LR[I[a]].se - LR[I[b]].se);\r\n    };\r\n\r\n    // \u30E9\u30F3\u30C0\
+    \u30E0\u30B1\u30FC\u30B9\u3067\u6570\u30D1\u30FC\u30BB\u30F3\u30C8\r\n    FOR(k,\
+    \ Q - 5) {\r\n      if (cost(k, k + 2) + cost(k + 1, k + 3)\r\n          < cost(k,\
+    \ k + 1) + cost(k + 2, k + 3)) {\r\n        swap(I[k + 1], I[k + 2]);\r\n    \
+    \  }\r\n      if (cost(k, k + 3) + cost(k + 1, k + 4)\r\n          < cost(k, k\
+    \ + 1) + cost(k + 3, k + 4)) {\r\n        swap(I[k + 1], I[k + 3]);\r\n      }\r\
+    \n    }\r\n    return I;\r\n  }\r\n\r\n  template <typename F1, typename F2, typename\
+    \ F3, typename F4, typename F5>\r\n  void calc(F1 add_l, F2 add_r, F3 rm_l, F4\
+    \ rm_r, F5 query) {\r\n    auto I = get_mo_order(LR);\r\n    int l = 0, r = 0;\r\
+    \n    for (auto idx: I) {\r\n      while (l > LR[idx].fi) add_l(--l);\r\n    \
+    \  while (r < LR[idx].se) add_r(r++);\r\n      while (l < LR[idx].fi) rm_l(l++);\r\
+    \n      while (r > LR[idx].se) rm_r(--r);\r\n      query(idx);\r\n    }\r\n  }\r\
+    \n};\r\n#line 7 \"test/library_checker/datastructure/static_range_inversions_mo.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  vi key = A;\r\n \
     \ UNIQUE(key);\r\n\r\n  for (auto&& x: A) x = LB(key, x);\r\n  ll K = len(key);\r\
     \n  FenwickTree<Monoid_Add<int>> bit(K);\r\n\r\n  Mo mo;\r\n  vi ANS(Q);\r\n \
@@ -308,8 +308,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
   requiredBy: []
-  timestamp: '2023-10-06 12:12:06+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-10-29 16:22:13+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
 layout: document

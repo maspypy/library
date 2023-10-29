@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
   - icon: ':question:'
@@ -13,14 +13,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/suffixarray
@@ -73,15 +73,14 @@ data:
     \ (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1 : __builtin_ctz(x));\
     \ }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }\nint lowbit(ll\
     \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64 x) { return\
-    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T, typename U>\n\
-    T ceil(T x, U y) {\n  return (x > 0 ? (x + y - 1) / y : x / y);\n}\ntemplate <typename\
-    \ T, typename U>\nT floor(T x, U y) {\n  return (x > 0 ? x / y : (x - y + 1) /\
-    \ y);\n}\ntemplate <typename T, typename U>\nT bmod(T x, U y) {\n  return x -\
-    \ y * floor(x, y);\n}\ntemplate <typename T, typename U>\npair<T, T> divmod(T\
-    \ x, U y) {\n  T q = floor(x, y);\n  return {q, x - q * y};\n}\n\ntemplate <typename\
-    \ T, typename U>\nT SUM(const vector<U> &A) {\n  T sum = 0;\n  for (auto &&a:\
-    \ A) sum += a;\n  return sum;\n}\n\n#define MIN(v) *min_element(all(v))\n#define\
-    \ MAX(v) *max_element(all(v))\n#define LB(c, x) distance((c).begin(), lower_bound(all(c),\
+    \ (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\nT floor(T a,\
+    \ T b) {\n  return a / b - (a % b && (a ^ b) < 0);\n}\ntemplate <typename T>\n\
+    T ceil(T x, T y) {\n  return floor(x + y - 1, y);\n}\ntemplate <typename T>\n\
+    T bmod(T x, T y) {\n  return x - y * floor(x, y);\n}\ntemplate <typename T>\n\
+    pair<T, T> divmod(T x, T y) {\n  T q = floor(x, y);\n  return {q, x - q * y};\n\
+    }\n\ntemplate <typename T, typename U>\nT SUM(const vector<U> &A) {\n  T sm =\
+    \ 0;\n  for (auto &&a: A) sm += a;\n  return sm;\n}\n\n#define MIN(v) *min_element(all(v))\n\
+    #define MAX(v) *max_element(all(v))\n#define LB(c, x) distance((c).begin(), lower_bound(all(c),\
     \ (x)))\n#define UB(c, x) distance((c).begin(), upper_bound(all(c), (x)))\n#define\
     \ UNIQUE(x) \\\n  sort(all(x)), x.erase(unique(all(x)), x.end()), x.shrink_to_fit()\n\
     \ntemplate <typename T>\nT POP(deque<T> &que) {\n  T a = que.front();\n  que.pop_front();\n\
@@ -252,32 +251,37 @@ data:
     \ seg.build(LCP);\n  }\n\n  // lcp(S[i:], S[j:])\n  int lcp(int i, int j) {\n\
     \    static_assert(USE_LCP_QUERY);\n    int n = len(SA);\n    if (i == n || j\
     \ == n) return 0;\n    if (i == j) return n - i;\n    i = ISA[i], j = ISA[j];\n\
-    \    if (i > j) swap(i, j);\n    return seg.prod(i, j);\n  }\n\n  // -1: S[L1:R1)\
-    \ < S[L2, R2)\n  //  0: S[L1:R1) = S[L2, R2)\n  // +1: S[L1:R1) > S[L2, R2)\n\
-    \  int compare(int L1, int R1, int L2, int R2) {\n    int N = len(SA);\n    int\
-    \ n1 = R1 - L1, n2 = R2 - L2;\n    int n = lcp(L1, L2);\n    if (n == n1 && n\
-    \ == n2) return 0;\n    if (n == n1) return -1;\n    if (n == n2) return 1;\n\
-    \    return (ISA[L1 + n] > ISA[L2 + n] ? 1 : -1);\n  }\n\nprivate:\n  void induced_sort(const\
-    \ vc<int>& vect, int val_range, vc<int>& SA,\n                    const vc<bool>&\
-    \ sl, const vc<int>& lms_idx) {\n    vc<int> l(val_range, 0), r(val_range, 0);\n\
-    \    for (int c: vect) {\n      if (c + 1 < val_range) ++l[c + 1];\n      ++r[c];\n\
-    \    }\n    partial_sum(l.begin(), l.end(), l.begin());\n    partial_sum(r.begin(),\
-    \ r.end(), r.begin());\n    fill(SA.begin(), SA.end(), -1);\n    for (int i =\
-    \ (int)lms_idx.size() - 1; i >= 0; --i)\n      SA[--r[vect[lms_idx[i]]]] = lms_idx[i];\n\
-    \    for (int i: SA)\n      if (i >= 1 && sl[i - 1]) SA[l[vect[i - 1]]++] = i\
-    \ - 1;\n    fill(r.begin(), r.end(), 0);\n    for (int c: vect) ++r[c];\n    partial_sum(r.begin(),\
-    \ r.end(), r.begin());\n    for (int k = (int)SA.size() - 1, i = SA[k]; k >= 1;\
-    \ --k, i = SA[k])\n      if (i >= 1 && !sl[i - 1]) { SA[--r[vect[i - 1]]] = i\
-    \ - 1; }\n  }\n\n  vc<int> SA_IS(const vc<int>& vect, int val_range) {\n    const\
-    \ int n = vect.size();\n    vc<int> SA(n), lms_idx;\n    vc<bool> sl(n);\n   \
-    \ sl[n - 1] = false;\n    for (int i = n - 2; i >= 0; --i) {\n      sl[i] = (vect[i]\
-    \ > vect[i + 1] || (vect[i] == vect[i + 1] && sl[i + 1]));\n      if (sl[i] &&\
-    \ !sl[i + 1]) lms_idx.push_back(i + 1);\n    }\n    reverse(lms_idx.begin(), lms_idx.end());\n\
-    \    induced_sort(vect, val_range, SA, sl, lms_idx);\n    vc<int> new_lms_idx(lms_idx.size()),\
-    \ lms_vec(lms_idx.size());\n    for (int i = 0, k = 0; i < n; ++i)\n      if (!sl[SA[i]]\
-    \ && SA[i] >= 1 && sl[SA[i] - 1]) {\n        new_lms_idx[k++] = SA[i];\n     \
-    \ }\n    int cur = 0;\n    SA[n - 1] = cur;\n    for (size_t k = 1; k < new_lms_idx.size();\
-    \ ++k) {\n      int i = new_lms_idx[k - 1], j = new_lms_idx[k];\n      if (vect[i]\
+    \    if (i > j) swap(i, j);\n    return seg.prod(i, j);\n  }\n\n  // S[i:] \u3068\
+    \u306E lcp \u304C n \u4EE5\u4E0A\u3067\u3042\u308B\u3088\u3046\u306A\u534A\u958B\
+    \u533A\u9593\n  pair<int, int> lcp_range(int i, int n) {\n    static_assert(USE_LCP_QUERY);\n\
+    \    i = ISA[i];\n    int a = seg.min_left([&](auto e) -> bool { return e >= n;\
+    \ }, i);\n    int b = seg.max_right([&](auto e) -> bool { return e >= n; }, i);\n\
+    \    return {a, b + 1};\n  }\n\n  // -1: S[L1:R1) < S[L2, R2)\n  //  0: S[L1:R1)\
+    \ = S[L2, R2)\n  // +1: S[L1:R1) > S[L2, R2)\n  int compare(int L1, int R1, int\
+    \ L2, int R2) {\n    int N = len(SA);\n    int n1 = R1 - L1, n2 = R2 - L2;\n \
+    \   int n = lcp(L1, L2);\n    if (n == n1 && n == n2) return 0;\n    if (n ==\
+    \ n1) return -1;\n    if (n == n2) return 1;\n    return (ISA[L1 + n] > ISA[L2\
+    \ + n] ? 1 : -1);\n  }\n\nprivate:\n  void induced_sort(const vc<int>& vect, int\
+    \ val_range, vc<int>& SA,\n                    const vc<bool>& sl, const vc<int>&\
+    \ lms_idx) {\n    vc<int> l(val_range, 0), r(val_range, 0);\n    for (int c: vect)\
+    \ {\n      if (c + 1 < val_range) ++l[c + 1];\n      ++r[c];\n    }\n    partial_sum(l.begin(),\
+    \ l.end(), l.begin());\n    partial_sum(r.begin(), r.end(), r.begin());\n    fill(SA.begin(),\
+    \ SA.end(), -1);\n    for (int i = (int)lms_idx.size() - 1; i >= 0; --i)\n   \
+    \   SA[--r[vect[lms_idx[i]]]] = lms_idx[i];\n    for (int i: SA)\n      if (i\
+    \ >= 1 && sl[i - 1]) SA[l[vect[i - 1]]++] = i - 1;\n    fill(r.begin(), r.end(),\
+    \ 0);\n    for (int c: vect) ++r[c];\n    partial_sum(r.begin(), r.end(), r.begin());\n\
+    \    for (int k = (int)SA.size() - 1, i = SA[k]; k >= 1; --k, i = SA[k])\n   \
+    \   if (i >= 1 && !sl[i - 1]) { SA[--r[vect[i - 1]]] = i - 1; }\n  }\n\n  vc<int>\
+    \ SA_IS(const vc<int>& vect, int val_range) {\n    const int n = vect.size();\n\
+    \    vc<int> SA(n), lms_idx;\n    vc<bool> sl(n);\n    sl[n - 1] = false;\n  \
+    \  for (int i = n - 2; i >= 0; --i) {\n      sl[i] = (vect[i] > vect[i + 1] ||\
+    \ (vect[i] == vect[i + 1] && sl[i + 1]));\n      if (sl[i] && !sl[i + 1]) lms_idx.push_back(i\
+    \ + 1);\n    }\n    reverse(lms_idx.begin(), lms_idx.end());\n    induced_sort(vect,\
+    \ val_range, SA, sl, lms_idx);\n    vc<int> new_lms_idx(lms_idx.size()), lms_vec(lms_idx.size());\n\
+    \    for (int i = 0, k = 0; i < n; ++i)\n      if (!sl[SA[i]] && SA[i] >= 1 &&\
+    \ sl[SA[i] - 1]) {\n        new_lms_idx[k++] = SA[i];\n      }\n    int cur =\
+    \ 0;\n    SA[n - 1] = cur;\n    for (size_t k = 1; k < new_lms_idx.size(); ++k)\
+    \ {\n      int i = new_lms_idx[k - 1], j = new_lms_idx[k];\n      if (vect[i]\
     \ != vect[j]) {\n        SA[j] = ++cur;\n        continue;\n      }\n      bool\
     \ flag = false;\n      for (int a = i + 1, b = j + 1;; ++a, ++b) {\n        if\
     \ (vect[a] != vect[b]) {\n          flag = true;\n          break;\n        }\n\
@@ -321,8 +325,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/suffix_array.test.cpp
   requiredBy: []
-  timestamp: '2023-10-06 12:12:06+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-10-29 16:22:13+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/string/suffix_array.test.cpp
 layout: document
