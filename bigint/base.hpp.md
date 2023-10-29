@@ -51,6 +51,7 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/504/problem/D
+    - https://codeforces.com/contest/759/problem/E
     - https://codeforces.com/problemset/problem/582/D
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
     \ <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
@@ -371,12 +372,12 @@ data:
     \ + A[i];\n        A[i] = rem >> 32;\n        rem &= u32(-1);\n      }\n     \
     \ FOR(i, 32) { ANS += '0' + (rem >> i & 1); }\n    }\n    while (len(ANS) && ANS.back()\
     \ == '0') ANS.pop_back();\n    reverse(all(ANS));\n    if (ANS.empty()) ANS +=\
-    \ '0';\n    return ANS;\n  }\n\n  pair<bint, int> divmod(int p) {\n    assert(dat.empty()\
-    \ || sgn == 1);\n    vc<int> after;\n    ll rm = 0;\n    FOR_R(i, len(dat)) {\n\
-    \      for (auto &x: dat) {\n        rm = x * MOD + rm;\n        after.eb(rm /\
-    \ p);\n        rm = rm % p;\n      }\n    }\n    reverse(all(after));\n    while\
-    \ (len(after) && after.back() == 0) POP(after);\n    bint q;\n    q.sgn = 1;\n\
-    \    q.dat = after;\n    return {q, rm};\n  }\n\n  // https://codeforces.com/problemset/problem/582/D\n\
+    \ '0';\n    return ANS;\n  }\n\n  // https://codeforces.com/contest/759/problem/E\n\
+    \  pair<bint, int> divmod(int p) {\n    assert(dat.empty() || sgn == 1);\n   \
+    \ vc<int> after;\n    ll rm = 0;\n    FOR_R(i, len(dat)) {\n      rm = rm * MOD\
+    \ + dat[i];\n      after.eb(rm / p);\n      rm = rm % p;\n    }\n    reverse(all(after));\n\
+    \    while (len(after) && after.back() == 0) POP(after);\n    bint q;\n    q.sgn\
+    \ = 1;\n    q.dat = after;\n    return {q, rm};\n  }\n\n  // https://codeforces.com/problemset/problem/582/D\n\
     \  vc<int> base_p_representation(int p) {\n    vc<u32> A(all(dat));\n    vc<int>\
     \ res;\n    while (1) {\n      while (len(A) && A.back() == u32(0)) POP(A);\n\
     \      if (A.empty()) break;\n      u64 rm = 0;\n      FOR_R(i, len(A)) {\n  \
@@ -441,12 +442,12 @@ data:
     \ = rem >> 32;\n        rem &= u32(-1);\n      }\n      FOR(i, 32) { ANS += '0'\
     \ + (rem >> i & 1); }\n    }\n    while (len(ANS) && ANS.back() == '0') ANS.pop_back();\n\
     \    reverse(all(ANS));\n    if (ANS.empty()) ANS += '0';\n    return ANS;\n \
-    \ }\n\n  pair<bint, int> divmod(int p) {\n    assert(dat.empty() || sgn == 1);\n\
-    \    vc<int> after;\n    ll rm = 0;\n    FOR_R(i, len(dat)) {\n      for (auto\
-    \ &x: dat) {\n        rm = x * MOD + rm;\n        after.eb(rm / p);\n        rm\
-    \ = rm % p;\n      }\n    }\n    reverse(all(after));\n    while (len(after) &&\
-    \ after.back() == 0) POP(after);\n    bint q;\n    q.sgn = 1;\n    q.dat = after;\n\
-    \    return {q, rm};\n  }\n\n  // https://codeforces.com/problemset/problem/582/D\n\
+    \ }\n\n  // https://codeforces.com/contest/759/problem/E\n  pair<bint, int> divmod(int\
+    \ p) {\n    assert(dat.empty() || sgn == 1);\n    vc<int> after;\n    ll rm =\
+    \ 0;\n    FOR_R(i, len(dat)) {\n      rm = rm * MOD + dat[i];\n      after.eb(rm\
+    \ / p);\n      rm = rm % p;\n    }\n    reverse(all(after));\n    while (len(after)\
+    \ && after.back() == 0) POP(after);\n    bint q;\n    q.sgn = 1;\n    q.dat =\
+    \ after;\n    return {q, rm};\n  }\n\n  // https://codeforces.com/problemset/problem/582/D\n\
     \  vc<int> base_p_representation(int p) {\n    vc<u32> A(all(dat));\n    vc<int>\
     \ res;\n    while (1) {\n      while (len(A) && A.back() == u32(0)) POP(A);\n\
     \      if (A.empty()) break;\n      u64 rm = 0;\n      FOR_R(i, len(A)) {\n  \
@@ -467,7 +468,7 @@ data:
   isVerificationFile: false
   path: bigint/base.hpp
   requiredBy: []
-  timestamp: '2023-10-29 05:43:44+09:00'
+  timestamp: '2023-10-30 03:38:34+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/NTL_2_B.test.cpp
