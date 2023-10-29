@@ -20,7 +20,7 @@ data:
   - icon: ':warning:'
     path: graph/count/count_unicyclic.hpp
     title: graph/count/count_unicyclic.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
   - icon: ':x:'
@@ -50,13 +50,13 @@ data:
   - icon: ':warning:'
     path: poly/composed_sum.hpp
     title: poly/composed_sum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex_minus_1.hpp
     title: poly/composition_f_ex_minus_1.hpp
   - icon: ':x:'
@@ -71,16 +71,16 @@ data:
   - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution2d.hpp
     title: poly/convolution2d.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
   - icon: ':heavy_check_mark:'
     path: poly/convolution_huge.hpp
     title: poly/convolution_huge.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_leq.hpp
     title: poly/convolution_leq.hpp
   - icon: ':heavy_check_mark:'
@@ -158,7 +158,7 @@ data:
   - icon: ':x:'
     path: poly/sparse_exp_of_div.hpp
     title: poly/sparse_exp_of_div.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
   - icon: ':warning:'
@@ -167,7 +167,7 @@ data:
   - icon: ':x:'
     path: poly/sum_of_prefix_suffix_products.hpp
     title: poly/sum_of_prefix_suffix_products.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
   - icon: ':warning:'
@@ -342,10 +342,10 @@ data:
   - icon: ':x:'
     path: test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/product_of_polynomial_sequence.test.cpp
     title: test/library_checker/polynomial/product_of_polynomial_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - icon: ':x:'
@@ -354,34 +354,34 @@ data:
   - icon: ':x:'
     path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/sample/aplusb128.test.cpp
     title: test/library_checker/sample/aplusb128.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - icon: ':x:'
     path: test/mytest/bell.test.cpp
     title: test/mytest/bell.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/catalan_convolution.test.cpp
     title: test/mytest/catalan_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/composition_1_minus_ex.test.cpp
     title: test/mytest/composition_1_minus_ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/composition_ex_minus_1.test.cpp
     title: test/mytest/composition_ex_minus_1.test.cpp
   - icon: ':x:'
     path: test/mytest/composition_log_1_minus_x.test.cpp
     title: test/mytest/composition_log_1_minus_x.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/conv2d.test.cpp
     title: test/mytest/conv2d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/conv_leq.test.cpp
     title: test/mytest/conv_leq.test.cpp
   - icon: ':x:'

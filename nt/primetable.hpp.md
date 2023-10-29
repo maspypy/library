@@ -47,10 +47,10 @@ data:
   - icon: ':question:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex_minus_1.hpp
     title: poly/composition_f_ex_minus_1.hpp
   - icon: ':x:'
@@ -120,10 +120,10 @@ data:
   - icon: ':x:'
     path: test/mytest/bell.test.cpp
     title: test/mytest/bell.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/composition_1_minus_ex.test.cpp
     title: test/mytest/composition_1_minus_ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/composition_ex_minus_1.test.cpp
     title: test/mytest/composition_ex_minus_1.test.cpp
   - icon: ':x:'

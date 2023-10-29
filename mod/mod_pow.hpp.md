@@ -105,7 +105,7 @@ data:
   - icon: ':x:'
     path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/31bit_modint.test.cpp
     title: test/mytest/31bit_modint.test.cpp
   - icon: ':x:'
