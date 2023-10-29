@@ -105,29 +105,29 @@ int lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x)); }
 int lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }
 int lowbit(u64 x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }
 
-template <typename T, typename U>
-T ceil(T x, U y) {
-  return (x > 0 ? (x + y - 1) / y : x / y);
+template <typename T>
+T floor(T a, T b) {
+  return a / b - (a % b && (a ^ b) < 0);
 }
-template <typename T, typename U>
-T floor(T x, U y) {
-  return (x > 0 ? x / y : (x - y + 1) / y);
+template <typename T>
+T ceil(T x, T y) {
+  return floor(x + y - 1, y);
 }
-template <typename T, typename U>
-T bmod(T x, U y) {
+template <typename T>
+T bmod(T x, T y) {
   return x - y * floor(x, y);
 }
-template <typename T, typename U>
-pair<T, T> divmod(T x, U y) {
+template <typename T>
+pair<T, T> divmod(T x, T y) {
   T q = floor(x, y);
   return {q, x - q * y};
 }
 
 template <typename T, typename U>
 T SUM(const vector<U> &A) {
-  T sum = 0;
-  for (auto &&a: A) sum += a;
-  return sum;
+  T sm = 0;
+  for (auto &&a: A) sm += a;
+  return sm;
 }
 
 #define MIN(v) *min_element(all(v))
