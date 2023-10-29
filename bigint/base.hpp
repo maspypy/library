@@ -155,16 +155,15 @@ struct BigInteger {
     return ANS;
   }
 
+  // https://codeforces.com/contest/759/problem/E
   pair<bint, int> divmod(int p) {
     assert(dat.empty() || sgn == 1);
     vc<int> after;
     ll rm = 0;
     FOR_R(i, len(dat)) {
-      for (auto &x: dat) {
-        rm = x * MOD + rm;
-        after.eb(rm / p);
-        rm = rm % p;
-      }
+      rm = rm * MOD + dat[i];
+      after.eb(rm / p);
+      rm = rm % p;
     }
     reverse(all(after));
     while (len(after) && after.back() == 0) POP(after);
