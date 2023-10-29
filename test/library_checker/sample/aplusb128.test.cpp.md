@@ -558,7 +558,9 @@ data:
     \      if (A.empty()) break;\n      u64 rm = 0;\n      FOR_R(i, len(A)) {\n  \
     \      rm = rm * MOD + A[i];\n        A[i] = rm / p;\n        rm %= p;\n     \
     \ }\n      res.eb(rm);\n    }\n    reverse(all(res));\n    return res;\n  }\n\n\
-    #ifdef FASTIO\n  void write() { fastio::printer.write(to_string()); }\n  void\
+    \  // overflow \u7121\u8996\u3057\u3066\u8A08\u7B97\n  ll to_ll() {\n    ll x\
+    \ = 0;\n    FOR_R(i, len(dat)) x = MOD * x + dat[i];\n    return sgn * x;\n  }\n\
+    \n#ifdef FASTIO\n  void write() { fastio::printer.write(to_string()); }\n  void\
     \ read() {\n    string s;\n    fastio::scanner.read(s);\n    *this = bint(s);\n\
     \  }\n#endif\n};\n#line 6 \"test/library_checker/sample/aplusb128.test.cpp\"\n\
     \nusing bint = BigInteger;\n\nvoid solve() {\n  bint a, b;\n  read(a), read(b);\n\
@@ -584,7 +586,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/sample/aplusb128.test.cpp
   requiredBy: []
-  timestamp: '2023-10-30 03:38:34+09:00'
+  timestamp: '2023-10-30 04:00:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/sample/aplusb128.test.cpp

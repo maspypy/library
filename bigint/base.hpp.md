@@ -383,7 +383,9 @@ data:
     \      if (A.empty()) break;\n      u64 rm = 0;\n      FOR_R(i, len(A)) {\n  \
     \      rm = rm * MOD + A[i];\n        A[i] = rm / p;\n        rm %= p;\n     \
     \ }\n      res.eb(rm);\n    }\n    reverse(all(res));\n    return res;\n  }\n\n\
-    #ifdef FASTIO\n  void write() { fastio::printer.write(to_string()); }\n  void\
+    \  // overflow \u7121\u8996\u3057\u3066\u8A08\u7B97\n  ll to_ll() {\n    ll x\
+    \ = 0;\n    FOR_R(i, len(dat)) x = MOD * x + dat[i];\n    return sgn * x;\n  }\n\
+    \n#ifdef FASTIO\n  void write() { fastio::printer.write(to_string()); }\n  void\
     \ read() {\n    string s;\n    fastio::scanner.read(s);\n    *this = bint(s);\n\
     \  }\n#endif\n};\n"
   code: "#include \"poly/convolution.hpp\"\n\n// 10^9 \u305A\u3064\u533A\u5207\u3063\
@@ -453,7 +455,9 @@ data:
     \      if (A.empty()) break;\n      u64 rm = 0;\n      FOR_R(i, len(A)) {\n  \
     \      rm = rm * MOD + A[i];\n        A[i] = rm / p;\n        rm %= p;\n     \
     \ }\n      res.eb(rm);\n    }\n    reverse(all(res));\n    return res;\n  }\n\n\
-    #ifdef FASTIO\n  void write() { fastio::printer.write(to_string()); }\n  void\
+    \  // overflow \u7121\u8996\u3057\u3066\u8A08\u7B97\n  ll to_ll() {\n    ll x\
+    \ = 0;\n    FOR_R(i, len(dat)) x = MOD * x + dat[i];\n    return sgn * x;\n  }\n\
+    \n#ifdef FASTIO\n  void write() { fastio::printer.write(to_string()); }\n  void\
     \ read() {\n    string s;\n    fastio::scanner.read(s);\n    *this = bint(s);\n\
     \  }\n#endif\n};"
   dependsOn:
@@ -468,7 +472,7 @@ data:
   isVerificationFile: false
   path: bigint/base.hpp
   requiredBy: []
-  timestamp: '2023-10-30 03:38:34+09:00'
+  timestamp: '2023-10-30 04:00:51+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/NTL_2_B.test.cpp
