@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/non_adjecent_selection.hpp
     title: convex/non_adjecent_selection.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -235,9 +235,9 @@ data:
     ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 8 \"test/mytest/non_adj.test.cpp\"\
     \n\nvoid test() {\n  FOR(100) {\n    FOR(N, 10) {\n      vi A(N);\n      FOR(i,\
     \ N) A[i] = RNG(0, 1000000000);\n\n      Non_Adjacent_Selection<ll, true> MI(A);\n\
-    \      Non_Adjacent_Selection<ll, false> MA(A);\n      FOR(cnt, ceil(N, 2) + 1)\
-    \ {\n        ll mi = infty<ll>, ma = -infty<ll>;\n        FOR(s, 1 << N) {\n \
-    \         if (s & (s >> 1)) continue;\n          if (popcnt(s) != cnt) continue;\n\
+    \      Non_Adjacent_Selection<ll, false> MA(A);\n      FOR(cnt, ceil<int>(N, 2)\
+    \ + 1) {\n        ll mi = infty<ll>, ma = -infty<ll>;\n        FOR(s, 1 << N)\
+    \ {\n          if (s & (s >> 1)) continue;\n          if (popcnt(s) != cnt) continue;\n\
     \          ll sm = 0;\n          FOR(i, N) if (s >> i & 1) sm += A[i];\n     \
     \     chmin(mi, sm), chmax(ma, sm);\n        }\n        assert(MI.ANS[cnt] ==\
     \ mi);\n        assert(MA.ANS[cnt] == ma);\n\n        {\n          vc<int> I =\
@@ -253,10 +253,10 @@ data:
     \n#include \"random/base.hpp\"\n\nvoid test() {\n  FOR(100) {\n    FOR(N, 10)\
     \ {\n      vi A(N);\n      FOR(i, N) A[i] = RNG(0, 1000000000);\n\n      Non_Adjacent_Selection<ll,\
     \ true> MI(A);\n      Non_Adjacent_Selection<ll, false> MA(A);\n      FOR(cnt,\
-    \ ceil(N, 2) + 1) {\n        ll mi = infty<ll>, ma = -infty<ll>;\n        FOR(s,\
-    \ 1 << N) {\n          if (s & (s >> 1)) continue;\n          if (popcnt(s) !=\
-    \ cnt) continue;\n          ll sm = 0;\n          FOR(i, N) if (s >> i & 1) sm\
-    \ += A[i];\n          chmin(mi, sm), chmax(ma, sm);\n        }\n        assert(MI.ANS[cnt]\
+    \ ceil<int>(N, 2) + 1) {\n        ll mi = infty<ll>, ma = -infty<ll>;\n      \
+    \  FOR(s, 1 << N) {\n          if (s & (s >> 1)) continue;\n          if (popcnt(s)\
+    \ != cnt) continue;\n          ll sm = 0;\n          FOR(i, N) if (s >> i & 1)\
+    \ sm += A[i];\n          chmin(mi, sm), chmax(ma, sm);\n        }\n        assert(MI.ANS[cnt]\
     \ == mi);\n        assert(MA.ANS[cnt] == ma);\n\n        {\n          vc<int>\
     \ I = MI.restore(cnt);\n          FOR(k, len(I) - 1) assert(I[k + 1] >= I[k] +\
     \ 2);\n          ll sm = 0;\n          for (auto& i: I) sm += A[i];\n        \
@@ -273,8 +273,8 @@ data:
   isVerificationFile: true
   path: test/mytest/non_adj.test.cpp
   requiredBy: []
-  timestamp: '2023-10-29 16:21:41+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-10-30 02:40:30+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/non_adj.test.cpp
 layout: document
