@@ -14,7 +14,7 @@ void test() {
 
       Non_Adjacent_Selection<ll, true> MI(A);
       Non_Adjacent_Selection<ll, false> MA(A);
-      FOR(cnt, ceil(N, 2) + 1) {
+      FOR(cnt, ceil<int>(N, 2) + 1) {
         ll mi = infty<ll>, ma = -infty<ll>;
         FOR(s, 1 << N) {
           if (s & (s >> 1)) continue;
