@@ -512,12 +512,12 @@ data:
     \ < p.dat[i];\n      if (sgn == -1) return dat[i] > p.dat[i];\n    }\n    return\
     \ false;\n  }\n  bool operator>(const bint &p) const { return p < *this; }\n \
     \ bool operator<=(const bint &p) const { return !(*this > p); }\n  bool operator>=(const\
-    \ bint &p) const { return !(*this < p); }\n  bint &operator+=(const bint &p) {\n\
+    \ bint &p) const { return !(*this < p); }\n  bint &operator+=(const bint p) {\n\
     \    if (sgn != p.sgn) {\n      *this -= (-p);\n      return *this;\n    }\n \
     \   int n = max(len(dat), len(p.dat));\n    dat.resize(n + 1);\n    FOR(i, n)\
     \ {\n      if (i < len(p.dat)) dat[i] += p.dat[i];\n      if (dat[i] >= MOD) dat[i]\
     \ -= MOD, dat[i + 1] += 1;\n    }\n    while (len(dat) && dat.back() == 0) dat.pop_back();\n\
-    \    return *this;\n  }\n  bint &operator-=(const bint &p) {\n    if (sgn != p.sgn)\
+    \    return *this;\n  }\n  bint &operator-=(const bint p) {\n    if (sgn != p.sgn)\
     \ {\n      *this += (-p);\n      return *this;\n    }\n    if ((sgn == 1 && *this\
     \ < p) || (sgn == -1 && *this > p)) {\n      *this = p - *this;\n      sgn = -sgn;\n\
     \      return *this;\n    }\n    FOR(i, len(p.dat)) { dat[i] -= p.dat[i]; }\n\
@@ -560,8 +560,17 @@ data:
     \ }\n      res.eb(rm);\n    }\n    reverse(all(res));\n    return res;\n  }\n\n\
     \  // overflow \u7121\u8996\u3057\u3066\u8A08\u7B97\n  ll to_ll() {\n    ll x\
     \ = 0;\n    FOR_R(i, len(dat)) x = MOD * x + dat[i];\n    return sgn * x;\n  }\n\
-    \n#ifdef FASTIO\n  void write() { fastio::printer.write(to_string()); }\n  void\
-    \ read() {\n    string s;\n    fastio::scanner.read(s);\n    *this = bint(s);\n\
+    \n  // https://codeforces.com/contest/986/problem/D\n  bint pow(ll n) {\n    auto\
+    \ dfs = [&](auto &dfs, ll n) -> bint {\n      if (n == 1) return (*this);\n  \
+    \    bint x = dfs(dfs, n / 2);\n      x *= x;\n      if (n & 1) x *= (*this);\n\
+    \      return x;\n    };\n    if (n == 0) return bint(1);\n    return dfs(dfs,\
+    \ n);\n  }\n\n  // https://codeforces.com/contest/986/problem/D\n  double log10()\
+    \ {\n    assert(!dat.empty() && sgn == 1);\n    if (len(dat) <= 3) {\n      double\
+    \ x = 0;\n      FOR_R(i, len(dat)) x = MOD * x + dat[i];\n      return std::log10(x);\n\
+    \    }\n    double x = 0;\n    FOR(i, 4) x = MOD * x + dat[len(dat) - 1 - i];\n\
+    \    x = std::log10(x);\n    x += double(LOG) * (len(dat) - 4);\n    return x;\n\
+    \  }\n\n#ifdef FASTIO\n  void write() { fastio::printer.write(to_string()); }\n\
+    \  void read() {\n    string s;\n    fastio::scanner.read(s);\n    *this = bint(s);\n\
     \  }\n#endif\n};\n#line 6 \"test/library_checker/sample/aplusb128.test.cpp\"\n\
     \nusing bint = BigInteger;\n\nvoid solve() {\n  bint a, b;\n  read(a), read(b);\n\
     \  print(a + b);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n  return\
@@ -586,7 +595,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/sample/aplusb128.test.cpp
   requiredBy: []
-  timestamp: '2023-10-30 04:00:51+09:00'
+  timestamp: '2023-10-30 04:34:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/sample/aplusb128.test.cpp

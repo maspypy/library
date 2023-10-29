@@ -9,9 +9,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -202,33 +202,32 @@ data:
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\n#line 4 \"test/mytest/floor_ceil.test.cpp\"\n\ntemplate <typename\
     \ T>\nvoid test() {\n  vc<T> X;\n  T mi = numeric_limits<T>::min();\n  T ma =\
-    \ numeric_limits<T>::max();\n  for (T x = -100; x <= 100; ++x) { X.eb(x); }\n\
-    \  if (mi < 0) {\n    for (T x = mi; x <= mi + 100; ++x) { X.eb(x); }\n  }\n \
-    \ for (T x = ma - 100; 1 <= x && x <= ma; ++x) { X.eb(x); }\n  for (auto& x: X)\
-    \ {\n    for (auto& y: X) {\n      if (y <= 0) continue;\n      T k = floor(x,\
-    \ y);\n      assert(0 <= x - k * y && x - k * y < y);\n      k = ceil(x, y);\n\
-    \      assert(0 <= k * y - x && k * y - x < y);\n    }\n  }\n}\n\nvoid solve()\
-    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test<int>();\n  test<u32>();\n\
-    \  test<ll>();\n  test<u64>();\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n\ntemplate <typename T>\nvoid test() {\n  vc<T> X;\n\
-    \  T mi = numeric_limits<T>::min();\n  T ma = numeric_limits<T>::max();\n  for\
-    \ (T x = -100; x <= 100; ++x) { X.eb(x); }\n  if (mi < 0) {\n    for (T x = mi;\
-    \ x <= mi + 100; ++x) { X.eb(x); }\n  }\n  for (T x = ma - 100; 1 <= x && x <=\
-    \ ma; ++x) { X.eb(x); }\n  for (auto& x: X) {\n    for (auto& y: X) {\n      if\
+    \ numeric_limits<T>::max();\n  for (int x = -100; x <= 100; ++x) X.eb(T(x));\n\
+    \  for (int x = 0; x <= 100; ++x) X.eb(mi + T(x));\n  for (int x = 0; x <= 100;\
+    \ ++x) X.eb(ma - T(x));\n  for (auto& x: X) {\n    for (auto& y: X) {\n      if\
     \ (y <= 0) continue;\n      T k = floor(x, y);\n      assert(0 <= x - k * y &&\
     \ x - k * y < y);\n      k = ceil(x, y);\n      assert(0 <= k * y - x && k * y\
     \ - x < y);\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\
     \nsigned main() {\n  test<int>();\n  test<u32>();\n  test<ll>();\n  test<u64>();\n\
-    \  solve();\n  return 0;\n}"
+    \  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n\ntemplate <typename T>\nvoid test() {\n  vc<T> X;\n\
+    \  T mi = numeric_limits<T>::min();\n  T ma = numeric_limits<T>::max();\n  for\
+    \ (int x = -100; x <= 100; ++x) X.eb(T(x));\n  for (int x = 0; x <= 100; ++x)\
+    \ X.eb(mi + T(x));\n  for (int x = 0; x <= 100; ++x) X.eb(ma - T(x));\n  for (auto&\
+    \ x: X) {\n    for (auto& y: X) {\n      if (y <= 0) continue;\n      T k = floor(x,\
+    \ y);\n      assert(0 <= x - k * y && x - k * y < y);\n      k = ceil(x, y);\n\
+    \      assert(0 <= k * y - x && k * y - x < y);\n    }\n  }\n}\n\nvoid solve()\
+    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test<int>();\n  test<u32>();\n\
+    \  test<ll>();\n  test<u64>();\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   isVerificationFile: true
   path: test/mytest/floor_ceil.test.cpp
   requiredBy: []
-  timestamp: '2023-10-29 16:22:13+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-10-30 04:38:39+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/floor_ceil.test.cpp
 layout: document
