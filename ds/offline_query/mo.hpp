@@ -1,3 +1,4 @@
+// Nsqrt(Q)
 struct Mo {
   vc<pair<int, int>> LR;
   void add(int L, int R) { LR.emplace_back(L, R); }

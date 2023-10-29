@@ -41,6 +41,15 @@ struct Suffix_Array {
     return seg.prod(i, j);
   }
 
+  // S[i:] との lcp が n 以上であるような半開区間
+  pair<int, int> lcp_range(int i, int n) {
+    static_assert(USE_LCP_QUERY);
+    i = ISA[i];
+    int a = seg.min_left([&](auto e) -> bool { return e >= n; }, i);
+    int b = seg.max_right([&](auto e) -> bool { return e >= n; }, i);
+    return {a, b + 1};
+  }
+
   // -1: S[L1:R1) < S[L2, R2)
   //  0: S[L1:R1) = S[L2, R2)
   // +1: S[L1:R1) > S[L2, R2)
