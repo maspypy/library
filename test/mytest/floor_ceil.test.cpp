@@ -7,11 +7,9 @@ void test() {
   vc<T> X;
   T mi = numeric_limits<T>::min();
   T ma = numeric_limits<T>::max();
-  for (T x = -100; x <= 100; ++x) { X.eb(x); }
-  if (mi < 0) {
-    for (T x = mi; x <= mi + 100; ++x) { X.eb(x); }
-  }
-  for (T x = ma - 100; 1 <= x && x <= ma; ++x) { X.eb(x); }
+  for (int x = -100; x <= 100; ++x) X.eb(T(x));
+  for (int x = 0; x <= 100; ++x) X.eb(mi + T(x));
+  for (int x = 0; x <= 100; ++x) X.eb(ma - T(x));
   for (auto& x: X) {
     for (auto& y: X) {
       if (y <= 0) continue;
