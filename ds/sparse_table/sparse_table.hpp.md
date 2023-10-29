@@ -5,7 +5,7 @@ data:
   - icon: ':warning:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
   - icon: ':x:'
@@ -30,7 +30,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/suffix_array_vec.test.cpp
     title: test/library_checker/string/suffix_array_vec.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/longest_common_substr.test.cpp
     title: test/mytest/longest_common_substr.test.cpp
   - icon: ':x:'

@@ -12,16 +12,16 @@ data:
     - icon: ':x:'
       path: alg/acted_monoid/max_add.hpp
       title: alg/acted_monoid/max_add.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/max_assign.hpp
       title: alg/acted_monoid/max_assign.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/max_max.hpp
       title: alg/acted_monoid/max_max.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/max_min.hpp
       title: alg/acted_monoid/max_min.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/maxidx_add.hpp
       title: alg/acted_monoid/maxidx_add.hpp
     - icon: ':question:'
@@ -60,7 +60,7 @@ data:
     - icon: ':x:'
       path: alg/acted_monoid/sum_mul.hpp
       title: alg/acted_monoid/sum_mul.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/acted_monoid/summax_add.hpp
       title: alg/acted_monoid/summax_add.hpp
     - icon: ':question:'
@@ -118,7 +118,7 @@ data:
     - icon: ':question:'
       path: alg/monoid/max.hpp
       title: alg/monoid/max.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/monoid/max_idx.hpp
       title: alg/monoid/max_idx.hpp
     - icon: ':x:'
@@ -127,7 +127,7 @@ data:
     - icon: ':question:'
       path: alg/monoid/min.hpp
       title: alg/monoid/min.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/monoid/min_idx.hpp
       title: alg/monoid/min_idx.hpp
     - icon: ':question:'
@@ -190,7 +190,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convex/lichao.hpp
       title: convex/lichao.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: convex/maxplus_convolution.hpp
       title: convex/maxplus_convolution.hpp
     - icon: ':question:'
@@ -208,7 +208,7 @@ data:
     - icon: ':x:'
       path: convex/non_adjecent_selection.hpp
       title: convex/non_adjecent_selection.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: convex/slope.hpp
       title: convex/slope.hpp
     - icon: ':x:'
@@ -312,10 +312,10 @@ data:
     - icon: ':x:'
       path: ds/kdtree/dual_kdtree_monoid.hpp
       title: ds/kdtree/dual_kdtree_monoid.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/kdtree/kdtree.hpp
       title: ds/kdtree/kdtree.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/kdtree/kdtree_acted_monoid.hpp
       title: ds/kdtree/kdtree_acted_monoid.hpp
     - icon: ':question:'
@@ -482,7 +482,7 @@ data:
     - icon: ':question:'
       path: enumerate/bits.hpp
       title: enumerate/bits.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: enumerate/ceil_range.hpp
       title: enumerate/ceil_range.hpp
     - icon: ':heavy_check_mark:'
@@ -532,7 +532,7 @@ data:
     - icon: ':question:'
       path: flow/maxflow.hpp
       title: flow/maxflow.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: flow/min_cost_matching_on_line.hpp
       title: flow/min_cost_matching_on_line.hpp
     - icon: ':question:'
@@ -587,7 +587,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/incircle.hpp
       title: geo/incircle.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: geo/incremental_convexhull.hpp
       title: geo/incremental_convexhull.hpp
     - icon: ':warning:'
@@ -596,7 +596,7 @@ data:
     - icon: ':question:'
       path: geo/manhattan_mst.hpp
       title: geo/manhattan_mst.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo/manhattan_nns.hpp
       title: geo/manhattan_nns.hpp
     - icon: ':x:'
@@ -708,13 +708,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/maximum_independent_set_weighted.hpp
       title: graph/maximum_independent_set_weighted.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/maximum_matching.hpp
       title: graph/maximum_matching.hpp
     - icon: ':warning:'
       path: graph/maximum_matching_between_vertex_edge.hpp
       title: graph/maximum_matching_between_vertex_edge.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/maximum_matching_of_line_graph.hpp
       title: graph/maximum_matching_of_line_graph.hpp
     - icon: ':question:'
@@ -1051,7 +1051,7 @@ data:
     - icon: ':question:'
       path: mod/floor_sum_of_linear.hpp
       title: mod/floor_sum_of_linear.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: mod/max_of_linear_segments.hpp
       title: mod/max_of_linear_segments.hpp
     - icon: ':question:'
@@ -1156,13 +1156,13 @@ data:
     - icon: ':x:'
       path: nt/factor_interval.hpp
       title: nt/factor_interval.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: nt/four_square.hpp
       title: nt/four_square.hpp
     - icon: ':x:'
       path: nt/function_on_divisors.hpp
       title: nt/function_on_divisors.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: nt/gaussian_integers.hpp
       title: nt/gaussian_integers.hpp
     - icon: ':heavy_check_mark:'
@@ -1216,7 +1216,7 @@ data:
     - icon: ':x:'
       path: nt/stern_brocot_tree.hpp
       title: nt/stern_brocot_tree.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: nt/three_square.hpp
       title: nt/three_square.hpp
     - icon: ':x:'
@@ -1251,10 +1251,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/io2.hpp
       title: other/io2.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: other/knight_distance.hpp
       title: other/knight_distance.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: other/magic_square.hpp
       title: other/magic_square.hpp
     - icon: ':warning:'
@@ -1461,7 +1461,7 @@ data:
     - icon: ':x:'
       path: random/hash_vector.hpp
       title: random/hash_vector.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: random/random_graph.hpp
       title: random/random_graph.hpp
     - icon: ':question:'
@@ -1487,7 +1487,7 @@ data:
     - icon: ':question:'
       path: seq/find_linear_rec.hpp
       title: seq/find_linear_rec.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: seq/geometric_sequence_sum.hpp
       title: seq/geometric_sequence_sum.hpp
     - icon: ':x:'
@@ -1540,7 +1540,7 @@ data:
     - icon: ':x:'
       path: seq/famous/fibonacci.hpp
       title: seq/famous/fibonacci.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: seq/famous/gray_code.hpp
       title: seq/famous/gray_code.hpp
     - icon: ':x:'
@@ -1619,13 +1619,13 @@ data:
     - icon: ':x:'
       path: string/is_subseq.hpp
       title: string/is_subseq.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: string/is_substring.hpp
       title: string/is_substring.hpp
     - icon: ':heavy_check_mark:'
       path: string/longest_common_subsequence.hpp
       title: string/longest_common_subsequence.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: string/longest_common_substring.hpp
       title: string/longest_common_substring.hpp
     - icon: ':heavy_check_mark:'
@@ -2586,70 +2586,70 @@ data:
     - icon: ':x:'
       path: test/mytest/floor_ceil.test.cpp
       title: test/mytest/floor_ceil.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/floor_ceil_ranges.test.cpp
       title: test/mytest/floor_ceil_ranges.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/four_square.test.cpp
       title: test/mytest/four_square.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/geometric_sequence_sum.test.cpp
       title: test/mytest/geometric_sequence_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/gray_code.test.cpp
       title: test/mytest/gray_code.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/incremental_ch.test.cpp
       title: test/mytest/incremental_ch.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/is_substring.test.cpp
       title: test/mytest/is_substring.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/kdtree_am.test.cpp
       title: test/mytest/kdtree_am.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/kdtree_monoid.test.cpp
       title: test/mytest/kdtree_monoid.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/kdtree_nns.test.cpp
       title: test/mytest/kdtree_nns.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/knight_distance.test.cpp
       title: test/mytest/knight_distance.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/longest_common_substr.test.cpp
       title: test/mytest/longest_common_substr.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/magic_square.test.cpp
       title: test/mytest/magic_square.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/manhattan_nns.test.cpp
       title: test/mytest/manhattan_nns.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/matching.test.cpp
       title: test/mytest/matching.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/matching_line_graph.test.cpp
       title: test/mytest/matching_line_graph.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/max_assign.test.cpp
       title: test/mytest/max_assign.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/max_max.test.cpp
       title: test/mytest/max_max.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/max_min.test.cpp
       title: test/mytest/max_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/max_of_linear_segments.test.cpp
       title: test/mytest/max_of_linear_segments.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/maxidx_add.test.cpp
       title: test/mytest/maxidx_add.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/maxplus_concave.test.cpp
       title: test/mytest/maxplus_concave.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/min_cost_matching_on_line.test.cpp
       title: test/mytest/min_cost_matching_on_line.test.cpp
     - icon: ':x:'

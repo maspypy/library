@@ -16,13 +16,13 @@ data:
   - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
   - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/three_square.hpp
     title: nt/three_square.hpp
   - icon: ':question:'
@@ -30,12 +30,12 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/dynamic_modint_64.hpp\"\n\n#line 2 \"mod/modint_common.hpp\"\
@@ -270,7 +270,7 @@ data:
   path: nt/four_square.hpp
   requiredBy: []
   timestamp: '2023-10-25 07:56:21+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/four_square.test.cpp
 documentation_of: nt/four_square.hpp
