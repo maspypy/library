@@ -56,7 +56,7 @@ struct BigInteger {
   bool operator>(const bint &p) const { return p < *this; }
   bool operator<=(const bint &p) const { return !(*this > p); }
   bool operator>=(const bint &p) const { return !(*this < p); }
-  bint &operator+=(const bint &p) {
+  bint &operator+=(const bint p) {
     if (sgn != p.sgn) {
       *this -= (-p);
       return *this;
@@ -70,7 +70,7 @@ struct BigInteger {
     while (len(dat) && dat.back() == 0) dat.pop_back();
     return *this;
   }
-  bint &operator-=(const bint &p) {
+  bint &operator-=(const bint p) {
     if (sgn != p.sgn) {
       *this += (-p);
       return *this;
@@ -197,6 +197,34 @@ struct BigInteger {
     ll x = 0;
     FOR_R(i, len(dat)) x = MOD * x + dat[i];
     return sgn * x;
+  }
+
+  // https://codeforces.com/contest/986/problem/D
+  bint pow(ll n) {
+    auto dfs = [&](auto &dfs, ll n) -> bint {
+      if (n == 1) return (*this);
+      bint x = dfs(dfs, n / 2);
+      x *= x;
+      if (n & 1) x *= (*this);
+      return x;
+    };
+    if (n == 0) return bint(1);
+    return dfs(dfs, n);
+  }
+
+  // https://codeforces.com/contest/986/problem/D
+  double log10() {
+    assert(!dat.empty() && sgn == 1);
+    if (len(dat) <= 3) {
+      double x = 0;
+      FOR_R(i, len(dat)) x = MOD * x + dat[i];
+      return std::log10(x);
+    }
+    double x = 0;
+    FOR(i, 4) x = MOD * x + dat[len(dat) - 1 - i];
+    x = std::log10(x);
+    x += double(LOG) * (len(dat) - 4);
+    return x;
   }
 
 #ifdef FASTIO
