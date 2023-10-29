@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_freq_of_linear.test.cpp
     title: test/mytest/range_freq_of_linear.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1201.test.cpp
     title: test/yukicoder/1201.test.cpp
   - icon: ':x:'

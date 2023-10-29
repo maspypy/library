@@ -41,10 +41,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/summin_add.hpp
     title: alg/acted_monoid/summin_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/cumsum_2d.hpp
     title: ds/cumsum_2d.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/doubling.hpp
     title: ds/doubling.hpp
   - icon: ':question:'
@@ -273,13 +273,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1097.test.cpp
     title: test/yukicoder/1097.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1141.test.cpp
     title: test/yukicoder/1141.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
   - icon: ':x:'

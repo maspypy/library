@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/directed_mst.hpp
     title: graph/directed_mst.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/functional.hpp
     title: graph/functional.hpp
   - icon: ':warning:'
@@ -29,7 +29,7 @@ data:
   - icon: ':warning:'
     path: graph/implicit_graph/mst.hpp
     title: graph/implicit_graph/mst.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/implicit_graph/unionfind.hpp
     title: graph/implicit_graph/unionfind.hpp
   - icon: ':question:'
@@ -81,13 +81,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/114.test.cpp
     title: test/yukicoder/114.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1170_2.test.cpp
     title: test/yukicoder/1170_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1211.test.cpp
     title: test/yukicoder/1211.test.cpp
   - icon: ':x:'
