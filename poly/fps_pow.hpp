@@ -19,7 +19,7 @@ vc<mint> fps_pow(const vc<mint>& f, ll k) {
   int d = n;
   FOR_R(i, n) if (f[i] != 0) d = i;
   // d * k >= n
-  if (d >= ceil(n, k)) {
+  if (d >= ceil<ll>(n, k)) {
     vc<mint> g(n);
     return g;
   }
