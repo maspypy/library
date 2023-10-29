@@ -4,7 +4,7 @@ int factorial998table[1024] = {1,467742124,703158536,849331177,183632821,7867875
 int factorial998(ll n) {
   constexpr int mod = 998244353;
   if (n >= mod) return 0;
-  auto [q, r] = divmod(n, 1 << 20);
+  auto [q, r] = divmod<int>(n, 1 << 20);
   ll x = factorial998table[q];
   int s = q << 20;
   FOR(i, r) x = x * (s + i + 1) % mod;
