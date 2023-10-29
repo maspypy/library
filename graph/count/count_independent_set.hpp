@@ -71,7 +71,7 @@ vc<u64> count_independent_set_by_size(GT& G) {
   dp_path[0] = {1}, dp_path[1] = {1, 1};
   FOR(i, 2, N + 1) {
     dp_path[i] = dp_path[i - 1];
-    dp_path[i].resize(ceil(i, 2) + 1);
+    dp_path[i].resize(ceil<int>(i, 2) + 1);
     FOR(k, len(dp_path[i - 2])) { dp_path[i][k + 1] += dp_path[i - 2][k]; }
   }
   FOR(i, 3, N + 1) {
@@ -138,28 +138,28 @@ vc<T> count_independent_set_by_size_weighted(GT& G, vc<T> wt) {
 
   auto solve_path = [&](const vc<T>& A) -> vc<T> {
     int N = len(A);
-    vv(T, dp, 2, ceil(N, 2) + 2);
+    vv(T, dp, 2, ceil<int>(N, 2) + 2);
     dp[0][0] = 1;
     FOR(i, N) {
-      FOR_R(j, ceil(i, 2) + 1) {
+      FOR_R(j, ceil<int>(i, 2) + 1) {
         T a = dp[0][j];
         T b = dp[1][j];
         dp[0][j] = a + b, dp[1][j] = 0;
         dp[1][j + 1] += a * A[i];
       }
     }
-    vc<T> f(ceil(N, 2) + 1);
+    vc<T> f(ceil<int>(N, 2) + 1);
     FOR(j, len(f)) f[j] = dp[0][j] + dp[1][j];
     return f;
   };
   auto solve_cycle = [&](const vc<T>& A) -> vc<T> {
     int N = len(A);
-    vvv(T, dp, 2, 2, ceil(N, 2) + 2);
+    vvv(T, dp, 2, 2, ceil<int>(N, 2) + 2);
     dp[0][0][0] = 1;
     dp[1][1][1] = A[0];
     FOR(i, 1, N) {
       FOR(k, 2) {
-        FOR_R(j, ceil(i, 2) + 1) {
+        FOR_R(j, ceil<int>(i, 2) + 1) {
           T a = dp[k][0][j];
           T b = dp[k][1][j];
           dp[k][0][j] = a + b, dp[k][1][j] = 0;
