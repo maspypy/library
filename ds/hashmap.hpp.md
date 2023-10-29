@@ -17,13 +17,13 @@ data:
   - icon: ':x:'
     path: graph/vs_to_es.hpp
     title: graph/vs_to_es.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
   - icon: ':x:'
@@ -39,10 +39,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/set_xor_min.test.cpp
     title: test/library_checker/datastructure/set_xor_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
   - icon: ':x:'

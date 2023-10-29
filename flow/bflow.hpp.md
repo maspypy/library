@@ -6,7 +6,7 @@ data:
     path: flow/dual_mcf.hpp
     title: flow/dual_mcf.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/min_cost_b-flow.test.cpp
     title: test/library_checker/graph/min_cost_b-flow.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test_atcoder/abc224h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"flow/bflow.hpp\"\ntemplate <class Flow = ll, class Cost\
@@ -197,7 +197,7 @@ data:
   requiredBy:
   - flow/dual_mcf.hpp
   timestamp: '2023-05-03 04:52:35+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc224h.test.cpp
   - test/library_checker/graph/min_cost_b-flow.test.cpp
