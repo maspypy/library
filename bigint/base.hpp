@@ -192,6 +192,13 @@ struct BigInteger {
     return res;
   }
 
+  // overflow 無視して計算
+  ll to_ll() {
+    ll x = 0;
+    FOR_R(i, len(dat)) x = MOD * x + dat[i];
+    return sgn * x;
+  }
+
 #ifdef FASTIO
   void write() { fastio::printer.write(to_string()); }
   void read() {
