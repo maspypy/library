@@ -201,19 +201,19 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\n#line 5 \"test_atcoder/abc200a.test.cpp\"\n\nvoid solve() {\n  LL(N);\n\
-    \  print(ceil(N, 100));\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \  print(ceil<int>(N, 100));\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc200/tasks/abc200_a\"\n\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\nvoid solve() {\n  LL(N);\n\
-    \  print(ceil(N, 100));\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \  print(ceil<int>(N, 100));\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   isVerificationFile: true
   path: test_atcoder/abc200a.test.cpp
   requiredBy: []
-  timestamp: '2023-10-29 16:21:41+09:00'
+  timestamp: '2023-10-30 17:22:32+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc200a.test.cpp
