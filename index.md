@@ -529,7 +529,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: flow/hungarian.hpp
       title: flow/hungarian.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: flow/maxflow.hpp
       title: flow/maxflow.hpp
     - icon: ':heavy_check_mark:'
@@ -867,7 +867,7 @@ data:
     - icon: ':warning:'
       path: graph/implicit_graph/bfs.hpp
       title: graph/implicit_graph/bfs.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/implicit_graph/cograph_bfs.hpp
       title: graph/implicit_graph/cograph_bfs.hpp
     - icon: ':warning:'
@@ -3790,13 +3790,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc318b.test.cpp
       title: test_atcoder/abc318b.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc318g.test.cpp
       title: test_atcoder/abc318g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc318h.test.cpp
       title: test_atcoder/abc318h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc319g.test.cpp
       title: test_atcoder/abc319g.test.cpp
     - icon: ':x:'

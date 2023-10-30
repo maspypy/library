@@ -95,7 +95,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/functional.hpp
     title: graph/functional.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/implicit_graph/cograph_bfs.hpp
     title: graph/implicit_graph/cograph_bfs.hpp
   - icon: ':warning:'
@@ -585,7 +585,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc314f.test.cpp
     title: test_atcoder/abc314f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc319g.test.cpp
     title: test_atcoder/abc319g.test.cpp
   - icon: ':x:'
