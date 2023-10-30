@@ -5,15 +5,10 @@
 
 void solve() {
   LL(N);
-  print(ceil(N, 100));
+  print(ceil<int>(N, 100));
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
