@@ -20,7 +20,7 @@ void solve() {
 
   vc<pair<int, int>> IJ;
   for (auto&& k: I) {
-    auto [i, j] = divmod(k, N);
+    auto [i, j] = divmod<int>(k, N);
     if (i != j) IJ.eb(i, j);
   }
   vc<mint> POW = powertable_1<mint>(2, N);
