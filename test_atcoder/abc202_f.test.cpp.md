@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc202/tasks/abc202_f
@@ -423,7 +423,7 @@ data:
     \ solve() {\n  LL(N);\n  using P = Point<ll>;\n  VEC(P, A, N);\n  Count_Points_In_Triangles\
     \ X(A, A);\n\n  vc<P> vecs;\n  FOR(i, N) FOR(j, N) vecs.eb(A[j] - A[i]);\n  auto\
     \ I = angle_sort(vecs);\n\n  vc<pair<int, int>> IJ;\n  for (auto&& k: I) {\n \
-    \   auto [i, j] = divmod(k, N);\n    if (i != j) IJ.eb(i, j);\n  }\n  vc<mint>\
+    \   auto [i, j] = divmod<int>(k, N);\n    if (i != j) IJ.eb(i, j);\n  }\n  vc<mint>\
     \ POW = powertable_1<mint>(2, N);\n\n  mint ANS = 0;\n  FOR(s, N) {\n    vv(mint,\
     \ dp, 2, N);\n    dp[0][s] = 1;\n    for (auto&& [i, j]: IJ) {\n      ll area\
     \ = (A[i] - A[s]).det(A[j] - A[s]);\n      FOR(sgn, 2) {\n        ll t = (sgn\
@@ -437,11 +437,11 @@ data:
     \n\nusing mint = modint107;\n\nvoid solve() {\n  LL(N);\n  using P = Point<ll>;\n\
     \  VEC(P, A, N);\n  Count_Points_In_Triangles X(A, A);\n\n  vc<P> vecs;\n  FOR(i,\
     \ N) FOR(j, N) vecs.eb(A[j] - A[i]);\n  auto I = angle_sort(vecs);\n\n  vc<pair<int,\
-    \ int>> IJ;\n  for (auto&& k: I) {\n    auto [i, j] = divmod(k, N);\n    if (i\
-    \ != j) IJ.eb(i, j);\n  }\n  vc<mint> POW = powertable_1<mint>(2, N);\n\n  mint\
-    \ ANS = 0;\n  FOR(s, N) {\n    vv(mint, dp, 2, N);\n    dp[0][s] = 1;\n    for\
-    \ (auto&& [i, j]: IJ) {\n      ll area = (A[i] - A[s]).det(A[j] - A[s]);\n   \
-    \   FOR(sgn, 2) {\n        ll t = (sgn + area) & 1;\n        int cnt = X.query(s,\
+    \ int>> IJ;\n  for (auto&& k: I) {\n    auto [i, j] = divmod<int>(k, N);\n   \
+    \ if (i != j) IJ.eb(i, j);\n  }\n  vc<mint> POW = powertable_1<mint>(2, N);\n\n\
+    \  mint ANS = 0;\n  FOR(s, N) {\n    vv(mint, dp, 2, N);\n    dp[0][s] = 1;\n\
+    \    for (auto&& [i, j]: IJ) {\n      ll area = (A[i] - A[s]).det(A[j] - A[s]);\n\
+    \      FOR(sgn, 2) {\n        ll t = (sgn + area) & 1;\n        int cnt = X.query(s,\
     \ i, j);\n        dp[t][j] += POW[cnt] * dp[sgn][i];\n      }\n    }\n    ANS\
     \ += dp[0][s];\n  }\n  // 1 \u89D2\u5F62\n  ANS -= mint(N);\n  // 2 \u89D2\u5F62\
     \n  ANS -= mint(N * (N - 1) / 2);\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n\
@@ -460,8 +460,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc202_f.test.cpp
   requiredBy: []
-  timestamp: '2023-10-29 16:21:41+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-10-30 19:59:49+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc202_f.test.cpp
 layout: document
