@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: enumerate/ceil_range.hpp
     title: enumerate/ceil_range.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/floor_range.hpp
     title: enumerate/floor_range.hpp
   - icon: ':question:'
