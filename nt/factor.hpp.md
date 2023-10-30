@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/tetration.hpp
     title: mod/tetration.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/all_lcm.hpp
     title: nt/all_lcm.hpp
   - icon: ':heavy_check_mark:'
@@ -189,7 +189,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc152e.test.cpp
     title: test_atcoder/abc152e.test.cpp
   - icon: ':x:'
