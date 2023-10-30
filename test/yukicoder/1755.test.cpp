@@ -16,7 +16,7 @@ void solve() {
     FOR(a, N + 1) {
       ll n = N - 2 * a;
       if (n <= 1) break;
-      mint x = K.pow(ceil(n - 1, 2)) * (K - 1);
+      mint x = K.pow(ceil<ll>(n - 1, 2)) * (K - 1);
       mint y = (n % 2 == 0 ? K * (K - mint(1)) : 0);
       x = x + x - y;
       x *= K.pow(a);
@@ -45,11 +45,6 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
