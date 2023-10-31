@@ -81,3 +81,20 @@ vc<Point<REAL>> cross_point(const Circle<T> C, const Line<T> L) {
   if (D == 0) return {Point<REAL>(x1, y1)};
   return {Point<REAL>(x1, y1), Point<REAL>(x2, y2)};
 }
+
+// https://codeforces.com/contest/2/problem/C
+template <typename REAL, typename T>
+tuple<bool, Point<T>, Point<T>> cross_point_circle(Circle<T> C1, Circle<T> C2) {
+  using P = Point<T>;
+  P O{0, 0};
+  P A = C1.O, B = C2.O;
+  if (A == B) return {false, O, O};
+  T d = (B - A).norm();
+  REAL cos_val = (C1.r * C1.r + d * d - C2.r * C2.r) / (2 * C1.r * d);
+  if (cos_val < -1 || 1 < cos_val) return {false, O, O};
+  REAL t = acos(cos_val);
+  REAL u = (B - A).angle();
+  P X = A + P{C1.r * cos(u + t), C1.r * sin(u + t)};
+  P Y = A + P{C1.r * cos(u - t), C1.r * sin(u - t)};
+  return {true, X, Y};
+}

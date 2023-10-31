@@ -17,6 +17,7 @@ struct Point {
   bool operator!=(Point p) const { return x != p.x || y != p.y; }
   Point operator-() const { return {-x, -y}; }
   Point operator*(T t) const { return {x * t, y * t}; }
+  Point operator/(T t) const { return {x / t, y / t}; }
 
   bool operator<(Point p) const {
     if (x != p.x) return x < p.x;

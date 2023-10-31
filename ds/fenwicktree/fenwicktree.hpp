@@ -85,6 +85,24 @@ struct FenwickTree {
     return i;
   }
 
+  // check(i, x)
+  template <class F>
+  int max_right_with_index(const F check) {
+    assert(check(0, G::unit()));
+    int i = 0;
+    E s = G::unit();
+    int k = 1;
+    while (2 * k <= n) k *= 2;
+    while (k) {
+      if (i + k - 1 < len(dat)) {
+        E t = G::op(s, dat[i + k - 1]);
+        if (check(i + k, t)) { i += k, s = t; }
+      }
+      k >>= 1;
+    }
+    return i;
+  }
+
   int kth(E k) {
     return max_right([&k](E x) -> bool { return x <= k; });
   }
