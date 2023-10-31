@@ -1,37 +1,29 @@
 #pragma once
 #include "graph/base.hpp"
 
-template <typename Graph>
-pair<int, vc<int>> strongly_connected_component(Graph& G) {
-  static_assert(decltype(G)::is_directed);
+template <typename GT>
+pair<int, vc<int>> strongly_connected_component(GT& G) {
+  static_assert(GT::is_directed);
   assert(G.is_prepared());
   int N = G.N;
   int C = 0;
-  vc<int> comp(N);
-  vc<int> low(N);
-  vc<int> ord(N, -1);
-  vc<int> visited;
+  vc<int> comp(N), low(N), ord(N, -1), path;
   int now = 0;
 
-  auto dfs = [&](auto self, int v) -> void {
-    low[v] = now;
-    ord[v] = now;
-    ++now;
-    visited.eb(v);
+  auto dfs = [&](auto& dfs, int v) -> void {
+    low[v] = ord[v] = now++;
+    path.eb(v);
     for (auto&& [frm, to, cost, id]: G[v]) {
       if (ord[to] == -1) {
-        self(self, to);
-        chmin(low[v], low[to]);
+        dfs(dfs, to), chmin(low[v], low[to]);
       } else {
         chmin(low[v], ord[to]);
       }
     }
     if (low[v] == ord[v]) {
       while (1) {
-        int u = visited.back();
-        visited.pop_back();
-        ord[u] = N;
-        comp[u] = C;
+        int u = POP(path);
+        ord[u] = N, comp[u] = C;
         if (u == v) break;
       }
       ++C;
