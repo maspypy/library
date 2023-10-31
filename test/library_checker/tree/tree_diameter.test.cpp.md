@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/shortest_path/restore_path.hpp
     title: graph/shortest_path/restore_path.hpp
   - icon: ':x:'
@@ -291,15 +291,14 @@ data:
     \ par, int t){\r\n  vector<int> pth = {t};\r\n  while (par[pth.back()] != -1)\
     \ pth.eb(par[pth.back()]);\r\n  reverse(all(pth));\r\n  return pth;\r\n}\n#line\
     \ 3 \"graph/tree_diameter.hpp\"\n\r\ntemplate <typename T, typename GT>\r\npair<T,\
-    \ vc<int>> tree_diameter(GT& G) {\r\n  assert(G.is_prepared());\r\n  T sm = 0;\r\
-    \n  for (auto&& e: G.edges) {\r\n    sm += e.cost;\r\n    assert(sm < infty<T>);\r\
-    \n  }\r\n  int A, B;\r\n  auto [distA, parA] = bfs01<T>(G, 0);\r\n  A = max_element(all(distA))\
-    \ - distA.begin();\r\n  auto [dist, par] = bfs01<T>(G, A);\r\n  B = max_element(all(dist))\
-    \ - dist.begin();\r\n  vc<int> P = restore_path(par, B);\r\n  return {dist[B],\
-    \ P};\r\n}\r\n#line 5 \"test/library_checker/tree/tree_diameter.test.cpp\"\n\r\
-    \nvoid solve() {\r\n  LL(N);\r\n  Graph<ll> G(N);\r\n  G.read_tree(1, 0);\r\n\
-    \  auto [diam, P] = tree_diameter<ll>(G);\r\n  print(diam, len(P));\r\n  print(P);\r\
-    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ vc<int>> tree_diameter(GT& G) {\r\n  assert(G.is_prepared());\r\n  int A, B;\r\
+    \n  auto [distA, parA] = bfs01<T>(G, 0);\r\n  A = max_element(all(distA)) - distA.begin();\r\
+    \n  auto [dist, par] = bfs01<T>(G, A);\r\n  B = max_element(all(dist)) - dist.begin();\r\
+    \n  vc<int> P = restore_path(par, B);\r\n  return {dist[B], P};\r\n}\r\n#line\
+    \ 5 \"test/library_checker/tree/tree_diameter.test.cpp\"\n\r\nvoid solve() {\r\
+    \n  LL(N);\r\n  Graph<ll> G(N);\r\n  G.read_tree(1, 0);\r\n  auto [diam, P] =\
+    \ tree_diameter<ll>(G);\r\n  print(diam, len(P));\r\n  print(P);\r\n}\r\n\r\n\
+    signed main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/tree_diameter\"\r\n#include\
     \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"graph/tree_diameter.hpp\"\
     \r\n\r\nvoid solve() {\r\n  LL(N);\r\n  Graph<ll> G(N);\r\n  G.read_tree(1, 0);\r\
@@ -315,7 +314,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/tree/tree_diameter.test.cpp
   requiredBy: []
-  timestamp: '2023-11-01 01:33:38+09:00'
+  timestamp: '2023-11-01 01:50:41+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/tree/tree_diameter.test.cpp

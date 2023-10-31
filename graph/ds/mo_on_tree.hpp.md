@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/offline_query/mo.hpp
     title: ds/offline_query/mo.hpp
   - icon: ':question:'

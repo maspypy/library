@@ -2,22 +2,19 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: ds/unionfind/unionfind.hpp
-    title: ds/unionfind/unionfind.hpp
-  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
+  - icon: ':x:'
+    path: graph/shortest_path/bfs01.hpp
+    title: graph/shortest_path/bfs01.hpp
+  - icon: ':question:'
+    path: graph/shortest_path/restore_path.hpp
+    title: graph/shortest_path/restore_path.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/yukicoder/1451.test.cpp
-    title: test/yukicoder/1451.test.cpp
-  - icon: ':x:'
-    path: test_atcoder/abc314f.test.cpp
-    title: test_atcoder/abc314f.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -76,58 +73,69 @@ data:
     \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
     \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
     \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n \
-    \ int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n);\
-    \ }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n\
-    \  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x]\
-    \ >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n\
-    \      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n   \
-    \ x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n\
-    \    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x]\
-    \ < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return\
-    \ true;\n  }\n};\n#line 3 \"graph/tree_of_unionfind.hpp\"\n\r\n/*\r\n\u30DE\u30FC\
-    \u30B8\u904E\u7A0B\u3092\u8868\u3059\u6728\u3092\u69CB\u7BC9\u3059\u308B\r\nq\
-    \ \u56DE\u76EE\u306B\u30DE\u30FC\u30B8\u3057\u3066\u3067\u304D\u308B\u6210\u5206\
-    \uFF1AN+q\r\nadd_root = true \u306E\u5834\u5408\uFF1A\u6700\u5F8C\u306B\u5168\u90E8\
-    \u3092\u30DE\u30FC\u30B8\u3057\u3066\u3001\u6839 N+Q \u3092\u8FFD\u52A0\u3059\u308B\
-    \r\n*/\r\nGraph<int, 1> tree_of_unionfind(int N, vc<pair<int, int>> query,\r\n\
-    \                                bool add_root) {\r\n  UnionFind uf(N + len(query));\r\
-    \n  vc<int> root(N);\r\n  iota(all(root), 0);\r\n  int Q = len(query);\r\n  Graph<int,\
-    \ 1> G(N + Q + add_root);\r\n  FOR(q, Q) {\r\n    int v = N + q;\r\n    auto [a,\
-    \ b] = query[q];\r\n    a = uf[a], b = uf[b];\r\n    G.add(v, root[a]);\r\n  \
-    \  if (b != a) G.add(v, root[b]);\r\n    uf.merge(a, b);\r\n    uf.merge(b, v);\r\
-    \n    root[uf[v]] = v;\r\n  }\r\n  if (add_root) {\r\n    int r = N + Q;\r\n \
-    \   FOR(v, N) if (uf[v] == v) G.add(r, root[v]);\r\n  }\r\n  G.build();\r\n  return\
-    \ G;\r\n}\r\n"
-  code: "#include \"graph/base.hpp\"\r\n#include \"ds/unionfind/unionfind.hpp\"\r\n\
-    \r\n/*\r\n\u30DE\u30FC\u30B8\u904E\u7A0B\u3092\u8868\u3059\u6728\u3092\u69CB\u7BC9\
-    \u3059\u308B\r\nq \u56DE\u76EE\u306B\u30DE\u30FC\u30B8\u3057\u3066\u3067\u304D\
-    \u308B\u6210\u5206\uFF1AN+q\r\nadd_root = true \u306E\u5834\u5408\uFF1A\u6700\u5F8C\
-    \u306B\u5168\u90E8\u3092\u30DE\u30FC\u30B8\u3057\u3066\u3001\u6839 N+Q \u3092\u8FFD\
-    \u52A0\u3059\u308B\r\n*/\r\nGraph<int, 1> tree_of_unionfind(int N, vc<pair<int,\
-    \ int>> query,\r\n                                bool add_root) {\r\n  UnionFind\
-    \ uf(N + len(query));\r\n  vc<int> root(N);\r\n  iota(all(root), 0);\r\n  int\
-    \ Q = len(query);\r\n  Graph<int, 1> G(N + Q + add_root);\r\n  FOR(q, Q) {\r\n\
-    \    int v = N + q;\r\n    auto [a, b] = query[q];\r\n    a = uf[a], b = uf[b];\r\
-    \n    G.add(v, root[a]);\r\n    if (b != a) G.add(v, root[b]);\r\n    uf.merge(a,\
-    \ b);\r\n    uf.merge(b, v);\r\n    root[uf[v]] = v;\r\n  }\r\n  if (add_root)\
-    \ {\r\n    int r = N + Q;\r\n    FOR(v, N) if (uf[v] == v) G.add(r, root[v]);\r\
-    \n  }\r\n  G.build();\r\n  return G;\r\n}\r\n"
+    \ }\n  }\n};\n#line 3 \"graph/shortest_path/bfs01.hpp\"\n\ntemplate <typename\
+    \ T, typename GT>\npair<vc<T>, vc<int>> bfs01(GT& G, int v) {\n  assert(G.is_prepared());\n\
+    \  int N = G.N;\n  vc<T> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  deque<int>\
+    \ que;\n\n  dist[v] = 0;\n  que.push_front(v);\n  while (!que.empty()) {\n   \
+    \ auto v = que.front();\n    que.pop_front();\n    for (auto&& e: G[v]) {\n  \
+    \    if (dist[e.to] == infty<T> || dist[e.to] > dist[e.frm] + e.cost) {\n    \
+    \    dist[e.to] = dist[e.frm] + e.cost;\n        par[e.to] = e.frm;\n        if\
+    \ (e.cost == 0)\n          que.push_front(e.to);\n        else\n          que.push_back(e.to);\n\
+    \      }\n    }\n  }\n  return {dist, par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\
+    \u30C8\u3002[dist, par, root]\ntemplate <typename T, typename GT>\ntuple<vc<T>,\
+    \ vc<int>, vc<int>> bfs01(GT& G, vc<int> vs) {\n  assert(G.is_prepared());\n \
+    \ int N = G.N;\n  vc<T> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  vc<int> root(N,\
+    \ -1);\n  deque<int> que;\n\n  for (auto&& v: vs) {\n    dist[v] = 0;\n    root[v]\
+    \ = v;\n    que.push_front(v);\n  }\n\n  while (!que.empty()) {\n    auto v =\
+    \ que.front();\n    que.pop_front();\n    for (auto&& e: G[v]) {\n      if (dist[e.to]\
+    \ == infty<T> || dist[e.to] > dist[e.frm] + e.cost) {\n        dist[e.to] = dist[e.frm]\
+    \ + e.cost;\n        root[e.to] = root[e.frm];\n        par[e.to] = e.frm;\n \
+    \       if (e.cost == 0)\n          que.push_front(e.to);\n        else\n    \
+    \      que.push_back(e.to);\n      }\n    }\n  }\n  return {dist, par, root};\n\
+    }\n#line 1 \"graph/shortest_path/restore_path.hpp\"\nvector<int> restore_path(vector<int>\
+    \ par, int t){\r\n  vector<int> pth = {t};\r\n  while (par[pth.back()] != -1)\
+    \ pth.eb(par[pth.back()]);\r\n  reverse(all(pth));\r\n  return pth;\r\n}\n#line\
+    \ 3 \"graph/tree_center.hpp\"\n\n// verify \u3057\u3066\u306A\u3044\n// {a, b,\
+    \ d}\uFF1Aa \u304B\u3089 b \u306B d \u9032\u3080 / {a, a, 0}\n// \u76F4\u5F84\u306E\
+    \u9577\u3055\u304C\u5076\u6570\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\
+    \u3057\u3066\u3044\u308B\uFF08\u5FC5\u8981\u306A\u3089 2 \u500D\u3057\u3066\u304A\
+    \u304F\u3053\u3068\uFF09\ntemplate <typename T, typename GT>\ntuple<int, int,\
+    \ T> tree_center(GT& G) {\n  assert(G.is_prepared());\n  auto [distA, parA] =\
+    \ bfs01<T>(G, 0);\n  int a = max_element(all(distA)) - distA.begin();\n  auto\
+    \ [dist, par] = bfs01<T>(G, A);\n  int b = max_element(all(dist)) - dist.begin();\n\
+    \  T d = dist[b];\n  assert(d % 2 == 0);\n  vc<int> path = restore_path(par, b);\n\
+    \  FOR(i, len(path)) {\n    int v = path[i];\n    if (dist[v] == d / 2) return\
+    \ {v, v, 0};\n  }\n  FOR(i, len(path) - 1) {\n    int a = path[i], b = path[i\
+    \ + 1];\n    if (dist[a] < d / 2 && d / 2 < dist[b]) { return {a, b, d / 2 - dist[a]};\
+    \ }\n  }\n  assert(0);\n  return {-1, -1, 0};\n}\n"
+  code: "#include \"graph/shortest_path/bfs01.hpp\"\n#include \"graph/shortest_path/restore_path.hpp\"\
+    \n\n// verify \u3057\u3066\u306A\u3044\n// {a, b, d}\uFF1Aa \u304B\u3089 b \u306B\
+    \ d \u9032\u3080 / {a, a, 0}\n// \u76F4\u5F84\u306E\u9577\u3055\u304C\u5076\u6570\
+    \u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\uFF08\
+    \u5FC5\u8981\u306A\u3089 2 \u500D\u3057\u3066\u304A\u304F\u3053\u3068\uFF09\n\
+    template <typename T, typename GT>\ntuple<int, int, T> tree_center(GT& G) {\n\
+    \  assert(G.is_prepared());\n  auto [distA, parA] = bfs01<T>(G, 0);\n  int a =\
+    \ max_element(all(distA)) - distA.begin();\n  auto [dist, par] = bfs01<T>(G, A);\n\
+    \  int b = max_element(all(dist)) - dist.begin();\n  T d = dist[b];\n  assert(d\
+    \ % 2 == 0);\n  vc<int> path = restore_path(par, b);\n  FOR(i, len(path)) {\n\
+    \    int v = path[i];\n    if (dist[v] == d / 2) return {v, v, 0};\n  }\n  FOR(i,\
+    \ len(path) - 1) {\n    int a = path[i], b = path[i + 1];\n    if (dist[a] < d\
+    \ / 2 && d / 2 < dist[b]) { return {a, b, d / 2 - dist[a]}; }\n  }\n  assert(0);\n\
+    \  return {-1, -1, 0};\n}\n"
   dependsOn:
+  - graph/shortest_path/bfs01.hpp
   - graph/base.hpp
-  - ds/unionfind/unionfind.hpp
+  - graph/shortest_path/restore_path.hpp
   isVerificationFile: false
-  path: graph/tree_of_unionfind.hpp
+  path: graph/tree_center.hpp
   requiredBy: []
-  timestamp: '2023-11-01 01:33:38+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/yukicoder/1451.test.cpp
-  - test_atcoder/abc314f.test.cpp
-documentation_of: graph/tree_of_unionfind.hpp
+  timestamp: '2023-11-01 01:50:41+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: graph/tree_center.hpp
 layout: document
 redirect_from:
-- /library/graph/tree_of_unionfind.hpp
-- /library/graph/tree_of_unionfind.hpp.html
-title: graph/tree_of_unionfind.hpp
+- /library/graph/tree_center.hpp
+- /library/graph/tree_center.hpp.html
+title: graph/tree_center.hpp
 ---

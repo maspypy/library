@@ -272,9 +272,9 @@ data:
   timestamp: '2023-10-24 22:55:22+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1956.test.cpp
   - test/yukicoder/187.test.cpp
   - test/yukicoder/590.test.cpp
-  - test/yukicoder/1956.test.cpp
   - test/yukicoder/2119.test.cpp
 documentation_of: nt/crt.hpp
 layout: document

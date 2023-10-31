@@ -10,7 +10,7 @@ data:
   - icon: ':x:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
   _extendedRequiredBy: []

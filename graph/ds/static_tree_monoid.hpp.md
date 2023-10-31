@@ -302,8 +302,8 @@ data:
   timestamp: '2023-11-01 01:33:38+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1216.test.cpp
   - test/yukicoder/1216_2.test.cpp
+  - test/yukicoder/1216.test.cpp
 documentation_of: graph/ds/static_tree_monoid.hpp
 layout: document
 redirect_from:

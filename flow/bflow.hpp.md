@@ -199,8 +199,8 @@ data:
   timestamp: '2023-05-03 04:52:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc224h.test.cpp
   - test/library_checker/graph/min_cost_b-flow.test.cpp
+  - test_atcoder/abc224h.test.cpp
 documentation_of: flow/bflow.hpp
 layout: document
 redirect_from:

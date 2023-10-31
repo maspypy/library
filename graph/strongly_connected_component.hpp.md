@@ -8,7 +8,7 @@ data:
   - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
   - icon: ':warning:'
@@ -17,14 +17,14 @@ data:
   - icon: ':x:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/reachability.hpp
     title: graph/reachability.hpp
   - icon: ':x:'
     path: graph/twosat.hpp
     title: graph/twosat.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/0275.test.cpp
     title: test/aoj/0275.test.cpp
   - icon: ':heavy_check_mark:'
@@ -33,13 +33,13 @@ data:
   - icon: ':x:'
     path: test/aoj/2251_2.test.cpp
     title: test/aoj/2251_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartite_edge_coloring.test.cpp
     title: test/library_checker/graph/bipartite_edge_coloring.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/scc.test.cpp
     title: test/library_checker/graph/scc.test.cpp
   - icon: ':x:'
@@ -137,72 +137,68 @@ data:
     \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
     \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
     \ }\n  }\n};\n#line 3 \"graph/strongly_connected_component.hpp\"\n\ntemplate <typename\
-    \ Graph>\npair<int, vc<int>> strongly_connected_component(Graph& G) {\n  assert(G.is_directed());\n\
-    \  assert(G.is_prepared());\n  int N = G.N;\n  int C = 0;\n  vc<int> comp(N);\n\
-    \  vc<int> low(N);\n  vc<int> ord(N, -1);\n  vc<int> visited;\n  int now = 0;\n\
-    \n  auto dfs = [&](auto self, int v) -> void {\n    low[v] = now;\n    ord[v]\
-    \ = now;\n    ++now;\n    visited.eb(v);\n    for (auto&& [frm, to, cost, id]:\
-    \ G[v]) {\n      if (ord[to] == -1) {\n        self(self, to);\n        chmin(low[v],\
-    \ low[to]);\n      } else {\n        chmin(low[v], ord[to]);\n      }\n    }\n\
-    \    if (low[v] == ord[v]) {\n      while (1) {\n        int u = visited.back();\n\
-    \        visited.pop_back();\n        ord[u] = N;\n        comp[u] = C;\n    \
-    \    if (u == v) break;\n      }\n      ++C;\n    }\n  };\n  FOR(v, N) {\n   \
-    \ if (ord[v] == -1) dfs(dfs, v);\n  }\n  FOR(v, N) comp[v] = C - 1 - comp[v];\n\
-    \  return {C, comp};\n}\n\ntemplate <typename GT>\nGraph<int, 1> scc_dag(GT& G,\
-    \ int C, vc<int>& comp) {\n  Graph<int, 1> DAG(C);\n  vvc<int> edges(C);\n  for\
-    \ (auto&& e: G.edges) {\n    int x = comp[e.frm], y = comp[e.to];\n    if (x ==\
-    \ y) continue;\n    edges[x].eb(y);\n  }\n  FOR(c, C) {\n    UNIQUE(edges[c]);\n\
-    \    for (auto&& to: edges[c]) DAG.add(c, to);\n  }\n  DAG.build();\n  return\
-    \ DAG;\n}\n"
-  code: "#pragma once\n#include \"graph/base.hpp\"\n\ntemplate <typename Graph>\n\
-    pair<int, vc<int>> strongly_connected_component(Graph& G) {\n  assert(G.is_directed());\n\
-    \  assert(G.is_prepared());\n  int N = G.N;\n  int C = 0;\n  vc<int> comp(N);\n\
-    \  vc<int> low(N);\n  vc<int> ord(N, -1);\n  vc<int> visited;\n  int now = 0;\n\
-    \n  auto dfs = [&](auto self, int v) -> void {\n    low[v] = now;\n    ord[v]\
-    \ = now;\n    ++now;\n    visited.eb(v);\n    for (auto&& [frm, to, cost, id]:\
-    \ G[v]) {\n      if (ord[to] == -1) {\n        self(self, to);\n        chmin(low[v],\
-    \ low[to]);\n      } else {\n        chmin(low[v], ord[to]);\n      }\n    }\n\
-    \    if (low[v] == ord[v]) {\n      while (1) {\n        int u = visited.back();\n\
-    \        visited.pop_back();\n        ord[u] = N;\n        comp[u] = C;\n    \
-    \    if (u == v) break;\n      }\n      ++C;\n    }\n  };\n  FOR(v, N) {\n   \
-    \ if (ord[v] == -1) dfs(dfs, v);\n  }\n  FOR(v, N) comp[v] = C - 1 - comp[v];\n\
-    \  return {C, comp};\n}\n\ntemplate <typename GT>\nGraph<int, 1> scc_dag(GT& G,\
-    \ int C, vc<int>& comp) {\n  Graph<int, 1> DAG(C);\n  vvc<int> edges(C);\n  for\
-    \ (auto&& e: G.edges) {\n    int x = comp[e.frm], y = comp[e.to];\n    if (x ==\
-    \ y) continue;\n    edges[x].eb(y);\n  }\n  FOR(c, C) {\n    UNIQUE(edges[c]);\n\
-    \    for (auto&& to: edges[c]) DAG.add(c, to);\n  }\n  DAG.build();\n  return\
-    \ DAG;\n}"
+    \ GT>\npair<int, vc<int>> strongly_connected_component(GT& G) {\n  static_assert(GT::is_directed);\n\
+    \  assert(G.is_prepared());\n  int N = G.N;\n  int C = 0;\n  vc<int> comp(N),\
+    \ low(N), ord(N, -1), path;\n  int now = 0;\n\n  auto dfs = [&](auto& dfs, int\
+    \ v) -> void {\n    low[v] = ord[v] = now++;\n    path.eb(v);\n    for (auto&&\
+    \ [frm, to, cost, id]: G[v]) {\n      if (ord[to] == -1) {\n        dfs(dfs, to),\
+    \ chmin(low[v], low[to]);\n      } else {\n        chmin(low[v], ord[to]);\n \
+    \     }\n    }\n    if (low[v] == ord[v]) {\n      while (1) {\n        int u\
+    \ = POP(path);\n        ord[u] = N, comp[u] = C;\n        if (u == v) break;\n\
+    \      }\n      ++C;\n    }\n  };\n  FOR(v, N) {\n    if (ord[v] == -1) dfs(dfs,\
+    \ v);\n  }\n  FOR(v, N) comp[v] = C - 1 - comp[v];\n  return {C, comp};\n}\n\n\
+    template <typename GT>\nGraph<int, 1> scc_dag(GT& G, int C, vc<int>& comp) {\n\
+    \  Graph<int, 1> DAG(C);\n  vvc<int> edges(C);\n  for (auto&& e: G.edges) {\n\
+    \    int x = comp[e.frm], y = comp[e.to];\n    if (x == y) continue;\n    edges[x].eb(y);\n\
+    \  }\n  FOR(c, C) {\n    UNIQUE(edges[c]);\n    for (auto&& to: edges[c]) DAG.add(c,\
+    \ to);\n  }\n  DAG.build();\n  return DAG;\n}\n"
+  code: "#pragma once\n#include \"graph/base.hpp\"\n\ntemplate <typename GT>\npair<int,\
+    \ vc<int>> strongly_connected_component(GT& G) {\n  static_assert(GT::is_directed);\n\
+    \  assert(G.is_prepared());\n  int N = G.N;\n  int C = 0;\n  vc<int> comp(N),\
+    \ low(N), ord(N, -1), path;\n  int now = 0;\n\n  auto dfs = [&](auto& dfs, int\
+    \ v) -> void {\n    low[v] = ord[v] = now++;\n    path.eb(v);\n    for (auto&&\
+    \ [frm, to, cost, id]: G[v]) {\n      if (ord[to] == -1) {\n        dfs(dfs, to),\
+    \ chmin(low[v], low[to]);\n      } else {\n        chmin(low[v], ord[to]);\n \
+    \     }\n    }\n    if (low[v] == ord[v]) {\n      while (1) {\n        int u\
+    \ = POP(path);\n        ord[u] = N, comp[u] = C;\n        if (u == v) break;\n\
+    \      }\n      ++C;\n    }\n  };\n  FOR(v, N) {\n    if (ord[v] == -1) dfs(dfs,\
+    \ v);\n  }\n  FOR(v, N) comp[v] = C - 1 - comp[v];\n  return {C, comp};\n}\n\n\
+    template <typename GT>\nGraph<int, 1> scc_dag(GT& G, int C, vc<int>& comp) {\n\
+    \  Graph<int, 1> DAG(C);\n  vvc<int> edges(C);\n  for (auto&& e: G.edges) {\n\
+    \    int x = comp[e.frm], y = comp[e.to];\n    if (x == y) continue;\n    edges[x].eb(y);\n\
+    \  }\n  FOR(c, C) {\n    UNIQUE(edges[c]);\n    for (auto&& to: edges[c]) DAG.add(c,\
+    \ to);\n  }\n  DAG.build();\n  return DAG;\n}"
   dependsOn:
   - graph/base.hpp
   isVerificationFile: false
   path: graph/strongly_connected_component.hpp
   requiredBy:
   - flow/bipartite.hpp
-  - graph/reachability.hpp
-  - graph/twosat.hpp
   - graph/bipartite_edge_coloring.hpp
+  - graph/reachability.hpp
   - graph/find_odd_cycle.hpp
+  - graph/twosat.hpp
   - graph/maximum_antichain.hpp
-  timestamp: '2023-11-01 01:33:38+09:00'
+  timestamp: '2023-11-01 02:04:43+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc237ex.test.cpp
-  - test_atcoder/abc274g.test.cpp
-  - test_atcoder/abc214h.test.cpp
-  - test/aoj/2251_2.test.cpp
-  - test/aoj/1566.test.cpp
-  - test/aoj/0275.test.cpp
-  - test/library_checker/math/twosat.test.cpp
+  - test/yukicoder/1479.test.cpp
+  - test/yukicoder/1744.test.cpp
+  - test/yukicoder/1293.test.cpp
+  - test/yukicoder/1813.test.cpp
+  - test/yukicoder/1170.test.cpp
+  - test/yukicoder/1745.test.cpp
+  - test/mytest/tutte.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/graph/scc.test.cpp
   - test/library_checker/graph/bipartite_edge_coloring.test.cpp
-  - test/yukicoder/1479.test.cpp
-  - test/yukicoder/1813.test.cpp
-  - test/yukicoder/1744.test.cpp
-  - test/yukicoder/1293.test.cpp
-  - test/yukicoder/1745.test.cpp
-  - test/yukicoder/1170.test.cpp
-  - test/mytest/tutte.test.cpp
+  - test/library_checker/math/twosat.test.cpp
+  - test/aoj/1566.test.cpp
+  - test/aoj/2251_2.test.cpp
+  - test/aoj/0275.test.cpp
+  - test_atcoder/abc214h.test.cpp
+  - test_atcoder/abc237ex.test.cpp
+  - test_atcoder/abc274g.test.cpp
 documentation_of: graph/strongly_connected_component.hpp
 layout: document
 redirect_from:

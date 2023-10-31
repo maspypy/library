@@ -9,12 +9,12 @@ data:
     title: graph/strongly_connected_component.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/0275.test.cpp
     title: test/aoj/0275.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -74,34 +74,33 @@ data:
     \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
     \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
     \ }\n  }\n};\n#line 3 \"graph/strongly_connected_component.hpp\"\n\ntemplate <typename\
-    \ Graph>\npair<int, vc<int>> strongly_connected_component(Graph& G) {\n  assert(G.is_directed());\n\
-    \  assert(G.is_prepared());\n  int N = G.N;\n  int C = 0;\n  vc<int> comp(N);\n\
-    \  vc<int> low(N);\n  vc<int> ord(N, -1);\n  vc<int> visited;\n  int now = 0;\n\
-    \n  auto dfs = [&](auto self, int v) -> void {\n    low[v] = now;\n    ord[v]\
-    \ = now;\n    ++now;\n    visited.eb(v);\n    for (auto&& [frm, to, cost, id]:\
-    \ G[v]) {\n      if (ord[to] == -1) {\n        self(self, to);\n        chmin(low[v],\
-    \ low[to]);\n      } else {\n        chmin(low[v], ord[to]);\n      }\n    }\n\
-    \    if (low[v] == ord[v]) {\n      while (1) {\n        int u = visited.back();\n\
-    \        visited.pop_back();\n        ord[u] = N;\n        comp[u] = C;\n    \
-    \    if (u == v) break;\n      }\n      ++C;\n    }\n  };\n  FOR(v, N) {\n   \
-    \ if (ord[v] == -1) dfs(dfs, v);\n  }\n  FOR(v, N) comp[v] = C - 1 - comp[v];\n\
-    \  return {C, comp};\n}\n\ntemplate <typename GT>\nGraph<int, 1> scc_dag(GT& G,\
-    \ int C, vc<int>& comp) {\n  Graph<int, 1> DAG(C);\n  vvc<int> edges(C);\n  for\
-    \ (auto&& e: G.edges) {\n    int x = comp[e.frm], y = comp[e.to];\n    if (x ==\
-    \ y) continue;\n    edges[x].eb(y);\n  }\n  FOR(c, C) {\n    UNIQUE(edges[c]);\n\
-    \    for (auto&& to: edges[c]) DAG.add(c, to);\n  }\n  DAG.build();\n  return\
-    \ DAG;\n}\n#line 3 \"graph/reachability.hpp\"\n\n// \u6709\u5411\u30B0\u30E9\u30D5\
-    \u306E\u5230\u9054\u53EF\u80FD\u6027\u30AF\u30A8\u30EA\u3002O((N+M)Q/w)\u3002\n\
-    template <typename GT, typename P>\nvc<int> reachability(GT& G, vc<P> query) {\n\
-    \  auto [C, comp] = strongly_connected_component(G);\n  Graph<int, 1> DAG(C);\n\
-    \  for (auto&& e: G.edges) {\n    auto a = comp[e.frm], b = comp[e.to];\n    assert(a\
-    \ <= b);\n    if (a < b) DAG.add(a, b);\n  }\n  DAG.build();\n\n  int Q = len(query);\n\
-    \  vc<u64> dp(C);\n  vc<int> res(Q);\n  for (int l = 0; l < Q; l += 64) {\n  \
-    \  int r = min(l + 64, Q);\n    fill(all(dp), u64(0));\n\n    FOR3(qid, l, r)\
-    \ {\n      auto v = comp[query[qid].fi];\n      dp[v] |= u64(1) << (qid - l);\n\
-    \    }\n    FOR(v, C) for (auto&& e: DAG[v]) { dp[e.to] |= dp[v]; }\n    FOR3(qid,\
-    \ l, r) {\n      auto v = comp[query[qid].se];\n      if (dp[v] & (u64(1) << (qid\
-    \ - l))) res[qid] = 1;\n    }\n  }\n  return res;\n}\n"
+    \ GT>\npair<int, vc<int>> strongly_connected_component(GT& G) {\n  static_assert(GT::is_directed);\n\
+    \  assert(G.is_prepared());\n  int N = G.N;\n  int C = 0;\n  vc<int> comp(N),\
+    \ low(N), ord(N, -1), path;\n  int now = 0;\n\n  auto dfs = [&](auto& dfs, int\
+    \ v) -> void {\n    low[v] = ord[v] = now++;\n    path.eb(v);\n    for (auto&&\
+    \ [frm, to, cost, id]: G[v]) {\n      if (ord[to] == -1) {\n        dfs(dfs, to),\
+    \ chmin(low[v], low[to]);\n      } else {\n        chmin(low[v], ord[to]);\n \
+    \     }\n    }\n    if (low[v] == ord[v]) {\n      while (1) {\n        int u\
+    \ = POP(path);\n        ord[u] = N, comp[u] = C;\n        if (u == v) break;\n\
+    \      }\n      ++C;\n    }\n  };\n  FOR(v, N) {\n    if (ord[v] == -1) dfs(dfs,\
+    \ v);\n  }\n  FOR(v, N) comp[v] = C - 1 - comp[v];\n  return {C, comp};\n}\n\n\
+    template <typename GT>\nGraph<int, 1> scc_dag(GT& G, int C, vc<int>& comp) {\n\
+    \  Graph<int, 1> DAG(C);\n  vvc<int> edges(C);\n  for (auto&& e: G.edges) {\n\
+    \    int x = comp[e.frm], y = comp[e.to];\n    if (x == y) continue;\n    edges[x].eb(y);\n\
+    \  }\n  FOR(c, C) {\n    UNIQUE(edges[c]);\n    for (auto&& to: edges[c]) DAG.add(c,\
+    \ to);\n  }\n  DAG.build();\n  return DAG;\n}\n#line 3 \"graph/reachability.hpp\"\
+    \n\n// \u6709\u5411\u30B0\u30E9\u30D5\u306E\u5230\u9054\u53EF\u80FD\u6027\u30AF\
+    \u30A8\u30EA\u3002O((N+M)Q/w)\u3002\ntemplate <typename GT, typename P>\nvc<int>\
+    \ reachability(GT& G, vc<P> query) {\n  auto [C, comp] = strongly_connected_component(G);\n\
+    \  Graph<int, 1> DAG(C);\n  for (auto&& e: G.edges) {\n    auto a = comp[e.frm],\
+    \ b = comp[e.to];\n    assert(a <= b);\n    if (a < b) DAG.add(a, b);\n  }\n \
+    \ DAG.build();\n\n  int Q = len(query);\n  vc<u64> dp(C);\n  vc<int> res(Q);\n\
+    \  for (int l = 0; l < Q; l += 64) {\n    int r = min(l + 64, Q);\n    fill(all(dp),\
+    \ u64(0));\n\n    FOR3(qid, l, r) {\n      auto v = comp[query[qid].fi];\n   \
+    \   dp[v] |= u64(1) << (qid - l);\n    }\n    FOR(v, C) for (auto&& e: DAG[v])\
+    \ { dp[e.to] |= dp[v]; }\n    FOR3(qid, l, r) {\n      auto v = comp[query[qid].se];\n\
+    \      if (dp[v] & (u64(1) << (qid - l))) res[qid] = 1;\n    }\n  }\n  return\
+    \ res;\n}\n"
   code: "#pragma once\n#include \"graph/strongly_connected_component.hpp\"\n\n// \u6709\
     \u5411\u30B0\u30E9\u30D5\u306E\u5230\u9054\u53EF\u80FD\u6027\u30AF\u30A8\u30EA\
     \u3002O((N+M)Q/w)\u3002\ntemplate <typename GT, typename P>\nvc<int> reachability(GT&\
@@ -120,8 +119,8 @@ data:
   isVerificationFile: false
   path: graph/reachability.hpp
   requiredBy: []
-  timestamp: '2023-11-01 01:33:38+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-11-01 02:04:43+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/0275.test.cpp
 documentation_of: graph/reachability.hpp

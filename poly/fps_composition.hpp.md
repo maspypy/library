@@ -348,10 +348,10 @@ data:
   timestamp: '2023-10-18 00:17:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/polynomial/composition_of_fps.test.cpp
-  - test/mytest/composition_1_minus_ex.test.cpp
-  - test/mytest/composition_ex_minus_1.test.cpp
   - test/mytest/composition_log_1_minus_x.test.cpp
+  - test/mytest/composition_ex_minus_1.test.cpp
+  - test/mytest/composition_1_minus_ex.test.cpp
+  - test/library_checker/polynomial/composition_of_fps.test.cpp
 documentation_of: poly/fps_composition.hpp
 layout: document
 redirect_from:

@@ -326,19 +326,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/offline_query/add_remove_query.hpp
       title: ds/offline_query/add_remove_query.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/offline_query/coeffient_query_2d.hpp
       title: ds/offline_query/coeffient_query_2d.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/offline_query/mo.hpp
       title: ds/offline_query/mo.hpp
     - icon: ':heavy_check_mark:'
       path: ds/offline_query/mo_3d.hpp
       title: ds/offline_query/mo_3d.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/offline_query/parallel_binary_search.hpp
       title: ds/offline_query/parallel_binary_search.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/offline_query/point_add_rectangle_sum.hpp
       title: ds/offline_query/point_add_rectangle_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -350,10 +350,10 @@ data:
     - icon: ':x:'
       path: ds/offline_query/rectangle_add_point_sum.hpp
       title: ds/offline_query/rectangle_add_point_sum.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/offline_query/rectangle_add_rectangle_sum.hpp
       title: ds/offline_query/rectangle_add_rectangle_sum.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/offline_query/rollback_mo.hpp
       title: ds/offline_query/rollback_mo.hpp
     - icon: ':heavy_check_mark:'
@@ -485,7 +485,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: enumerate/ceil_range.hpp
       title: enumerate/ceil_range.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: enumerate/clique.hpp
       title: enumerate/clique.hpp
     - icon: ':heavy_check_mark:'
@@ -500,7 +500,7 @@ data:
     - icon: ':question:'
       path: enumerate/product.hpp
       title: enumerate/product.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: enumerate/triangle.hpp
       title: enumerate/triangle.hpp
     - icon: ':heavy_check_mark:'
@@ -554,7 +554,7 @@ data:
       title: game/solve_partizan_game.hpp
   - name: geo
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: geo/angle_sort.hpp
       title: geo/angle_sort.hpp
     - icon: ':warning:'
@@ -584,7 +584,7 @@ data:
     - icon: ':question:'
       path: geo/distance.hpp
       title: geo/distance.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo/dynamicupperhull.hpp
       title: geo/dynamicupperhull.hpp
     - icon: ':heavy_check_mark:'
@@ -596,7 +596,7 @@ data:
     - icon: ':warning:'
       path: geo/inside_polygon.hpp
       title: geo/inside_polygon.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: geo/manhattan_mst.hpp
       title: geo/manhattan_mst.hpp
     - icon: ':heavy_check_mark:'
@@ -636,7 +636,7 @@ data:
     - icon: ':question:'
       path: graph/base.hpp
       title: graph/base.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/bipartite_edge_coloring.hpp
       title: graph/bipartite_edge_coloring.hpp
     - icon: ':question:'
@@ -654,7 +654,7 @@ data:
     - icon: ':x:'
       path: graph/centroid.hpp
       title: graph/centroid.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/chromatic.hpp
       title: graph/chromatic.hpp
     - icon: ':warning:'
@@ -669,13 +669,13 @@ data:
     - icon: ':warning:'
       path: graph/degree_sequence.hpp
       title: graph/degree_sequence.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/directed_mst.hpp
       title: graph/directed_mst.hpp
     - icon: ':x:'
       path: graph/dominator_tree.hpp
       title: graph/dominator_tree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/dsu_on_tree.hpp
       title: graph/dsu_on_tree.hpp
     - icon: ':x:'
@@ -705,10 +705,10 @@ data:
     - icon: ':x:'
       path: graph/maximum_antichain.hpp
       title: graph/maximum_antichain.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/maximum_independent_set.hpp
       title: graph/maximum_independent_set.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/maximum_independent_set_weighted.hpp
       title: graph/maximum_independent_set_weighted.hpp
     - icon: ':x:'
@@ -744,7 +744,7 @@ data:
     - icon: ':x:'
       path: graph/range_to_range_graph.hpp
       title: graph/range_to_range_graph.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/reachability.hpp
       title: graph/reachability.hpp
     - icon: ':x:'
@@ -771,6 +771,9 @@ data:
     - icon: ':x:'
       path: graph/tree_all_distances.hpp
       title: graph/tree_all_distances.hpp
+    - icon: ':warning:'
+      path: graph/tree_center.hpp
+      title: graph/tree_center.hpp
     - icon: ':x:'
       path: graph/tree_diameter.hpp
       title: graph/tree_diameter.hpp
@@ -908,13 +911,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/shortest_path/dial.hpp
       title: graph/shortest_path/dial.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/shortest_path/dijkstra.hpp
       title: graph/shortest_path/dijkstra.hpp
     - icon: ':heavy_check_mark:'
       path: graph/shortest_path/grid_bfs.hpp
       title: graph/shortest_path/grid_bfs.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/shortest_path/restore_path.hpp
       title: graph/shortest_path/restore_path.hpp
     - icon: ':question:'
@@ -1242,7 +1245,7 @@ data:
     - icon: ':warning:'
       path: other/cuboid_union_volume.hpp
       title: other/cuboid_union_volume.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/dice.hpp
       title: other/dice.hpp
     - icon: ':heavy_check_mark:'
@@ -1685,7 +1688,7 @@ data:
   verificationCategories:
   - name: test/aoj
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/0275.test.cpp
       title: test/aoj/0275.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1856,10 +1859,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ITP1_11_B.test.cpp
       title: test/aoj/ITP1_11_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ITP1_11_C.test.cpp
       title: test/aoj/ITP1_11_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ITP1_11_D.test.cpp
       title: test/aoj/ITP1_11_D.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1989,7 +1992,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/persistent_unionfind.test.cpp
       title: test/library_checker/datastructure/persistent_unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/point_add_range_sum.test.cpp
       title: test/library_checker/datastructure/point_add_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2019,7 +2022,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
       title: test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
       title: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2040,10 +2043,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
       title: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp
       title: test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
       title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2061,16 +2064,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/sort_segtree_1.test.cpp
       title: test/library_checker/datastructure/sort_segtree_1.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
       title: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
       title: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/static_range_sum.test.cpp
       title: test/library_checker/datastructure/static_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
       title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2085,30 +2088,30 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/unionfind.test.cpp
       title: test/library_checker/datastructure/unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
       title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
       title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
       title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
       title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
       title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - name: test/library_checker/geometry
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/geometry/convex_layers.test.cpp
       title: test/library_checker/geometry/convex_layers.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/geometry/sort_points_by_argument.test.cpp
       title: test/library_checker/geometry/sort_points_by_argument.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
       title: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - name: test/library_checker/graph
@@ -2122,16 +2125,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/assignment_mcf.test.cpp
       title: test/library_checker/graph/assignment_mcf.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/biconnected_component.test.cpp
       title: test/library_checker/graph/biconnected_component.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/bipartite_edge_coloring.test.cpp
       title: test/library_checker/graph/bipartite_edge_coloring.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/bipartitematching.test.cpp
       title: test/library_checker/graph/bipartitematching.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/chromatic_number.test.cpp
       title: test/library_checker/graph/chromatic_number.test.cpp
     - icon: ':x:'
@@ -2146,37 +2149,37 @@ data:
     - icon: ':x:'
       path: test/library_checker/graph/cycle_detection_undirected.test.cpp
       title: test/library_checker/graph/cycle_detection_undirected.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/directed_mst.test.cpp
       title: test/library_checker/graph/directed_mst.test.cpp
     - icon: ':x:'
       path: test/library_checker/graph/domninator_tree.test.cpp
       title: test/library_checker/graph/domninator_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/enumerate_cliques.test.cpp
       title: test/library_checker/graph/enumerate_cliques.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/enumerate_triangles.test.cpp
       title: test/library_checker/graph/enumerate_triangles.test.cpp
     - icon: ':x:'
       path: test/library_checker/graph/general_matching.test.cpp
       title: test/library_checker/graph/general_matching.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/manhattan_mst.test.cpp
       title: test/library_checker/graph/manhattan_mst.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/maximum_independent_set.test.cpp
       title: test/library_checker/graph/maximum_independent_set.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/maximum_independent_set2.test.cpp
       title: test/library_checker/graph/maximum_independent_set2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/min_cost_b-flow.test.cpp
       title: test/library_checker/graph/min_cost_b-flow.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/scc.test.cpp
       title: test/library_checker/graph/scc.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/shortest_path.test.cpp
       title: test/library_checker/graph/shortest_path.test.cpp
     - icon: ':x:'
