@@ -1,6 +1,6 @@
 #include "graph/base.hpp"
 
-// weight, vs, es
+// {wt, vs, es}, O(N * shortest path)
 template <typename T, typename GT>
 tuple<T, vc<int>, vc<int>> minimum_cost_cycle_directed(GT& G) {
   const int N = G.N;
@@ -65,7 +65,7 @@ tuple<T, vc<int>, vc<int>> minimum_cost_cycle_directed(GT& G) {
   return {ans, vs, es};
 }
 
-// {wt, vs, es}
+// {wt, vs, es}, O(N * shortest path)
 template <typename T, typename GT>
 tuple<T, vc<int>, vc<int>> minimum_cost_cycle_undirected(GT& G) {
   const int N = G.N;
@@ -118,7 +118,7 @@ tuple<T, vc<int>, vc<int>> minimum_cost_cycle_undirected(GT& G) {
   return {ans, vs, es};
 }
 
-// {wt, vs, es}
+// {wt, vs, es}, O(N * shortest path)
 template <typename T, typename GT>
 tuple<T, vc<int>, vc<int>> minimum_cost_cycle(GT& G) {
   for (auto& e: G.edges) assert(e.cost >= 0);
