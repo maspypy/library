@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
   - icon: ':question:'
@@ -301,10 +301,10 @@ data:
     \ s;\r\n    for (int i = 0; i < n; ++i) s += ((*this)[i] ? '1' : '0');\r\n   \
     \ print(s);\r\n  }\r\n};\r\n#line 3 \"graph/toposort.hpp\"\n\n// \u8F9E\u66F8\u9806\
     \u6700\u5C0F\u306E toposort \u3092\u8FD4\u3059\ntemplate <typename GT>\nvc<int>\
-    \ toposort(GT& G) {\n  assert(G.is_prepared() && G.is_directed());\n  const int\
-    \ N = G.N;\n  auto [indeg, outdeg] = G.deg_array_inout();\n  FastSet que(N);\n\
-    \  vc<int> V;\n  FOR(v, N) if (indeg[v] == 0) que.insert(v);\n  while (1) {\n\
-    \    int v = que.next(0);\n    if (v == N) break;\n    que.erase(v), V.eb(v);\n\
+    \ toposort(GT& G) {\n  static_assert(GT::is_directed);\n  assert(G.is_prepared());\n\
+    \  const int N = G.N;\n  auto [indeg, outdeg] = G.deg_array_inout();\n  FastSet\
+    \ que(N);\n  vc<int> V;\n  FOR(v, N) if (indeg[v] == 0) que.insert(v);\n  while\
+    \ (1) {\n    int v = que.next(0);\n    if (v == N) break;\n    que.erase(v), V.eb(v);\n\
     \    for (auto&& e: G[v]) {\n      if (--indeg[e.to] == 0) que.insert(e.to);\n\
     \    }\n  }\n  return (len(V) < N ? vc<int>{} : V);\n}\n#line 5 \"test_atcoder/abc223d.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, M);\n  Graph<bool, 1> G(N);\n  G.read_graph(M);\n\
@@ -324,7 +324,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc223d.test.cpp
   requiredBy: []
-  timestamp: '2023-11-01 01:33:38+09:00'
+  timestamp: '2023-11-01 05:14:24+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc223d.test.cpp

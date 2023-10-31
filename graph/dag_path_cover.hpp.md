@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   - icon: ':question:'
@@ -12,12 +12,12 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2251_1.test.cpp
     title: test/aoj/2251_1.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -136,7 +136,7 @@ data:
     \    return true;\n  }\n};\n#line 4 \"graph/dag_path_cover.hpp\"\n\n// \u5404\u9802\
     \u70B9\u306E\u8272\u3092\u304B\u3048\u3059\u3002\u5404\u8272\u306F\u3072\u3068\
     \u3064\u306E\u30D1\u30B9\u4E0A\u306B\u3042\u308B\u3088\u3046\u306B\u3059\u308B\
-    \ntemplate <typename DAG>\nvc<int> dag_path_cover(DAG& G) {\n  assert(G.is_directed());\n\
+    \ntemplate <typename DAG>\nvc<int> dag_path_cover(DAG& G) {\n  static_assert(DAG::is_directed);\n\
     \  for (auto&& e: G.edges) assert(e.frm < e.to);\n\n  int N = G.N;\n  int source\
     \ = 2 * N, sink = 2 * N + 1;\n  MaxFlow<int> F(2 * N + 2, source, sink);\n  FOR(v,\
     \ N) {\n    F.add(source, 2 * v + 1, 1);\n    F.add(2 * v + 0, sink, 1);\n   \
@@ -150,10 +150,10 @@ data:
     \n\n// \u5404\u9802\u70B9\u306E\u8272\u3092\u304B\u3048\u3059\u3002\u5404\u8272\
     \u306F\u3072\u3068\u3064\u306E\u30D1\u30B9\u4E0A\u306B\u3042\u308B\u3088\u3046\
     \u306B\u3059\u308B\ntemplate <typename DAG>\nvc<int> dag_path_cover(DAG& G) {\n\
-    \  assert(G.is_directed());\n  for (auto&& e: G.edges) assert(e.frm < e.to);\n\
-    \n  int N = G.N;\n  int source = 2 * N, sink = 2 * N + 1;\n  MaxFlow<int> F(2\
-    \ * N + 2, source, sink);\n  FOR(v, N) {\n    F.add(source, 2 * v + 1, 1);\n \
-    \   F.add(2 * v + 0, sink, 1);\n    F.add(2 * v + 0, 2 * v + 1, infty<int>);\n\
+    \  static_assert(DAG::is_directed);\n  for (auto&& e: G.edges) assert(e.frm <\
+    \ e.to);\n\n  int N = G.N;\n  int source = 2 * N, sink = 2 * N + 1;\n  MaxFlow<int>\
+    \ F(2 * N + 2, source, sink);\n  FOR(v, N) {\n    F.add(source, 2 * v + 1, 1);\n\
+    \    F.add(2 * v + 0, sink, 1);\n    F.add(2 * v + 0, 2 * v + 1, infty<int>);\n\
     \  }\n  for (auto&& e: G.edges) F.add(2 * e.frm + 1, 2 * e.to + 0, infty<int>);\n\
     \n  F.flow();\n  auto paths = F.path_decomposition();\n\n  UnionFind uf(N);\n\
     \  for (auto& P: paths) {\n    int a = P[1], b = P[len(P) - 2];\n    uf.merge(a\
@@ -167,8 +167,8 @@ data:
   isVerificationFile: false
   path: graph/dag_path_cover.hpp
   requiredBy: []
-  timestamp: '2023-11-01 01:33:38+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-11-01 05:14:24+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/2251_1.test.cpp
 documentation_of: graph/dag_path_cover.hpp
