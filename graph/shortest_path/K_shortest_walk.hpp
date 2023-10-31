@@ -5,7 +5,7 @@
 // infty<T> 埋めして必ず長さ K にしたものをかえす。
 template <typename T, typename GT, int NODES>
 vc<T> K_shortest_walk(GT &G, int s, int t, int K) {
-  assert(G.is_directed());
+  static_assert(GT::is_directed);
   int N = G.N;
   auto RG = reverse_graph(G);
   auto [dist, par] = dijkstra<T, decltype(RG)>(RG, t);
