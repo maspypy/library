@@ -5,7 +5,7 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/K_shortest_walk.hpp
     title: graph/shortest_path/K_shortest_walk.hpp
   _extendedVerifiedWith:
@@ -18,7 +18,7 @@ data:
   - icon: ':x:'
     path: test/aoj/2251_2.test.cpp
     title: test/aoj/2251_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/K_shortest_walk.test.cpp
     title: test/library_checker/graph/K_shortest_walk.test.cpp
   - icon: ':heavy_check_mark:'
@@ -155,14 +155,14 @@ data:
   timestamp: '2023-11-01 01:33:38+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/arc151_e.test.cpp
-  - test_atcoder/arc064c.test.cpp
-  - test/aoj/2251_2.test.cpp
-  - test/aoj/0275.test.cpp
-  - test/aoj/2251_1.test.cpp
-  - test/library_checker/graph/shortest_path.test.cpp
-  - test/library_checker/graph/K_shortest_walk.test.cpp
   - test/yukicoder/1601.test.cpp
+  - test/library_checker/graph/K_shortest_walk.test.cpp
+  - test/library_checker/graph/shortest_path.test.cpp
+  - test/aoj/2251_2.test.cpp
+  - test/aoj/2251_1.test.cpp
+  - test/aoj/0275.test.cpp
+  - test_atcoder/arc064c.test.cpp
+  - test_atcoder/arc151_e.test.cpp
 documentation_of: graph/shortest_path/dijkstra.hpp
 layout: document
 redirect_from:

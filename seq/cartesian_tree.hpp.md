@@ -93,12 +93,12 @@ data:
   timestamp: '2023-04-14 22:08:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc234g.test.cpp
-  - test/aoj/DPL_3_C.test.cpp
-  - test/aoj/DPL_3_B.test.cpp
-  - test/library_checker/tree/cartesian_tree.test.cpp
   - test/yukicoder/2361.test.cpp
   - test/mytest/suffix_tree.test.cpp
+  - test/library_checker/tree/cartesian_tree.test.cpp
+  - test/aoj/DPL_3_C.test.cpp
+  - test/aoj/DPL_3_B.test.cpp
+  - test_atcoder/abc234g.test.cpp
 documentation_of: seq/cartesian_tree.hpp
 layout: document
 redirect_from:

@@ -311,8 +311,8 @@ data:
   verifiedWith:
   - test/yukicoder/1593.test.cpp
   - test/mytest/four_square.test.cpp
-  - test/mytest/three_square.test.cpp
   - test/mytest/three_triangular.test.cpp
+  - test/mytest/three_square.test.cpp
 documentation_of: nt/gaussian_integers.hpp
 layout: document
 redirect_from:

@@ -58,15 +58,15 @@ data:
     \  }\n\n  int kth(E k) {\n    return max_right([&k](E x) -> bool { return x <=\
     \ k; });\n  }\n};\n#line 2 \"graph/ds/contour_sum.hpp\"\n\n// \u70B9\u52A0\u7B97\
     \u3001\u8DDD\u96E2\u533A\u9593\u3067\u306E\u548C\ntemplate <typename GT, typename\
-    \ AbelGroup>\nstruct Contour_Sum {\n  int N;\n  GT& G;\n  using X = typename AbelGroup::value_type;\n\
-    \  FenwickTree<AbelGroup> bit;\n  // centroid \u3054\u3068\u3001\u65B9\u5411\u3054\
-    \u3068\n  vvc<int> bit_range;\n  // \u65B9\u5411\u30E9\u30D9\u30EB\u3001\u91CD\
-    \u5FC3\u304B\u3089\u306E\u8DDD\u96E2\u3001bit \u3067\u306Eindex\n  vvc<tuple<int,\
-    \ int, int>> dat;\n\n  Contour_Sum(GT& G) : N(G.N), G(G) {\n    assert(!G.is_directed());\n\
-    \    vc<X> v_vals(N, AbelGroup::unit());\n    build(v_vals);\n  }\n  Contour_Sum(GT&\
-    \ G, const vc<X>& v_vals) : N(G.N), G(G) {\n    assert(!G.is_directed());\n  \
-    \  build(v_vals);\n  }\n\n  void add(int v, X val) {\n    for (auto&& [k, x, i]:\
-    \ dat[v]) bit.add(i, val);\n  }\n\n  // v \u3092\u4E2D\u5FC3\u3068\u3057\u3066\
+    \ AbelGroup>\nstruct Contour_Sum {\n  static_assert(!GT::is_directed);\n  int\
+    \ N;\n  GT& G;\n  using X = typename AbelGroup::value_type;\n  FenwickTree<AbelGroup>\
+    \ bit;\n  // centroid \u3054\u3068\u3001\u65B9\u5411\u3054\u3068\n  vvc<int> bit_range;\n\
+    \  // \u65B9\u5411\u30E9\u30D9\u30EB\u3001\u91CD\u5FC3\u304B\u3089\u306E\u8DDD\
+    \u96E2\u3001bit \u3067\u306Eindex\n  vvc<tuple<int, int, int>> dat;\n\n  Contour_Sum(GT&\
+    \ G) : N(G.N), G(G) {\n    vc<X> v_vals(N, AbelGroup::unit());\n    build(v_vals);\n\
+    \  }\n  Contour_Sum(GT& G, const vc<X>& v_vals) : N(G.N), G(G) {\n    assert(!G.is_directed());\n\
+    \    build(v_vals);\n  }\n\n  void add(int v, X val) {\n    for (auto&& [k, x,\
+    \ i]: dat[v]) bit.add(i, val);\n  }\n\n  // v \u3092\u4E2D\u5FC3\u3068\u3057\u3066\
     \u3001\u8DDD\u96E2 [l, r) \u306E\u7BC4\u56F2\u306E\u548C\n  X sum(int v, int l,\
     \ int r) {\n    X sm = AbelGroup::unit();\n    for (auto [k, x, i]: dat[v]) {\n\
     \      int lo = l - x, hi = r - x;\n      int K = k;\n      if (k < 0) { lo -=\
@@ -120,15 +120,15 @@ data:
     \ }\n    bit.build(bit_raw);\n  }\n};\n"
   code: "#include \"ds/fenwicktree/fenwicktree.hpp\"\n\n// \u70B9\u52A0\u7B97\u3001\
     \u8DDD\u96E2\u533A\u9593\u3067\u306E\u548C\ntemplate <typename GT, typename AbelGroup>\n\
-    struct Contour_Sum {\n  int N;\n  GT& G;\n  using X = typename AbelGroup::value_type;\n\
-    \  FenwickTree<AbelGroup> bit;\n  // centroid \u3054\u3068\u3001\u65B9\u5411\u3054\
-    \u3068\n  vvc<int> bit_range;\n  // \u65B9\u5411\u30E9\u30D9\u30EB\u3001\u91CD\
-    \u5FC3\u304B\u3089\u306E\u8DDD\u96E2\u3001bit \u3067\u306Eindex\n  vvc<tuple<int,\
-    \ int, int>> dat;\n\n  Contour_Sum(GT& G) : N(G.N), G(G) {\n    assert(!G.is_directed());\n\
-    \    vc<X> v_vals(N, AbelGroup::unit());\n    build(v_vals);\n  }\n  Contour_Sum(GT&\
-    \ G, const vc<X>& v_vals) : N(G.N), G(G) {\n    assert(!G.is_directed());\n  \
-    \  build(v_vals);\n  }\n\n  void add(int v, X val) {\n    for (auto&& [k, x, i]:\
-    \ dat[v]) bit.add(i, val);\n  }\n\n  // v \u3092\u4E2D\u5FC3\u3068\u3057\u3066\
+    struct Contour_Sum {\n  static_assert(!GT::is_directed);\n  int N;\n  GT& G;\n\
+    \  using X = typename AbelGroup::value_type;\n  FenwickTree<AbelGroup> bit;\n\
+    \  // centroid \u3054\u3068\u3001\u65B9\u5411\u3054\u3068\n  vvc<int> bit_range;\n\
+    \  // \u65B9\u5411\u30E9\u30D9\u30EB\u3001\u91CD\u5FC3\u304B\u3089\u306E\u8DDD\
+    \u96E2\u3001bit \u3067\u306Eindex\n  vvc<tuple<int, int, int>> dat;\n\n  Contour_Sum(GT&\
+    \ G) : N(G.N), G(G) {\n    vc<X> v_vals(N, AbelGroup::unit());\n    build(v_vals);\n\
+    \  }\n  Contour_Sum(GT& G, const vc<X>& v_vals) : N(G.N), G(G) {\n    assert(!G.is_directed());\n\
+    \    build(v_vals);\n  }\n\n  void add(int v, X val) {\n    for (auto&& [k, x,\
+    \ i]: dat[v]) bit.add(i, val);\n  }\n\n  // v \u3092\u4E2D\u5FC3\u3068\u3057\u3066\
     \u3001\u8DDD\u96E2 [l, r) \u306E\u7BC4\u56F2\u306E\u548C\n  X sum(int v, int l,\
     \ int r) {\n    X sm = AbelGroup::unit();\n    for (auto [k, x, i]: dat[v]) {\n\
     \      int lo = l - x, hi = r - x;\n      int K = k;\n      if (k < 0) { lo -=\
@@ -186,7 +186,7 @@ data:
   isVerificationFile: false
   path: graph/ds/contour_sum.hpp
   requiredBy: []
-  timestamp: '2023-11-01 01:33:38+09:00'
+  timestamp: '2023-11-01 05:33:01+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/graph/verted_add_contour_sum.test.cpp

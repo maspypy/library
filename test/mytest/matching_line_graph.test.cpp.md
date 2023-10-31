@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: graph/maximum_matching_of_line_graph.hpp
     title: graph/maximum_matching_of_line_graph.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/maximum_matching_size.hpp
     title: graph/maximum_matching_size.hpp
   - icon: ':question:'
@@ -325,13 +325,13 @@ data:
     \ / a[rk][j];\n    FOR(k, j, m) a[rk][k] *= c;\n    FOR(i, rk + 1, n) {\n    \
     \  T c = a[i][j];\n      FOR3(k, j, m) { a[i][k] -= a[rk][k] * c; }\n    }\n \
     \   ++rk;\n  }\n  return rk;\n}\n#line 4 \"graph/maximum_matching_size.hpp\"\n\
-    \ntemplate <typename GT>\nint maximum_matching_size(GT& G) {\n  using mint = modint61;\n\
-    \  assert(!G.is_directed());\n  int N = G.N;\n  vv(mint, tutte, N, N);\n  for\
-    \ (auto&& e: G.edges) {\n    mint x = RNG(mint::get_mod());\n    int i = e.frm,\
-    \ j = e.to;\n    tutte[i][j] += x;\n    tutte[j][i] -= x;\n  }\n  return matrix_rank(N,\
-    \ N, tutte) / 2;\n}\n#line 2 \"graph/maximum_matching_of_line_graph.hpp\"\n\n\
-    // \u540C\u3058\u9802\u70B9\u306B\u63A5\u7D9A\u3059\u308B 2 \u8FBA\u3092\u30DE\
-    \u30C3\u30C1\u3067\u304D\u308B\ntemplate <typename GT>\nvc<pair<int, int>> maximum_matching_of_line_graph(GT&\
+    \ntemplate <typename GT>\nint maximum_matching_size(GT& G) {\n  static_assert(!GT::is_directed);\n\
+    \  using mint = modint61;\n  int N = G.N;\n  vv(mint, tutte, N, N);\n  for (auto&&\
+    \ e: G.edges) {\n    mint x = RNG(mint::get_mod());\n    int i = e.frm, j = e.to;\n\
+    \    tutte[i][j] += x;\n    tutte[j][i] -= x;\n  }\n  return matrix_rank(N, N,\
+    \ tutte) / 2;\n}\n#line 2 \"graph/maximum_matching_of_line_graph.hpp\"\n\n// \u540C\
+    \u3058\u9802\u70B9\u306B\u63A5\u7D9A\u3059\u308B 2 \u8FBA\u3092\u30DE\u30C3\u30C1\
+    \u3067\u304D\u308B\ntemplate <typename GT>\nvc<pair<int, int>> maximum_matching_of_line_graph(GT&\
     \ G) {\n  assert(!G.is_directed());\n  assert(G.is_prepared());\n  const int N\
     \ = G.N, M = G.M;\n  vc<pair<int, int>> ANS;\n  vc<int> V;\n  vc<int> par(N, -1);\
     \ // eid\n  {\n    vc<int> done(N);\n    FOR(v, N) {\n      if (done[v]) continue;\n\
@@ -393,7 +393,7 @@ data:
   isVerificationFile: true
   path: test/mytest/matching_line_graph.test.cpp
   requiredBy: []
-  timestamp: '2023-11-01 01:33:38+09:00'
+  timestamp: '2023-11-01 05:33:01+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/matching_line_graph.test.cpp

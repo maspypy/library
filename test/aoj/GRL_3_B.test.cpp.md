@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_B
@@ -264,9 +264,9 @@ data:
     \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
     \ }\n  }\n};\n#line 2 \"graph/two_edge_component.hpp\"\n\r\n// (\u6210\u5206\u6570\
     , \u6210\u5206\u756A\u53F7\u306E vector)\r\ntemplate <typename GT>\r\npair<int,\
-    \ vc<int>> two_edge_component(GT& G) {\r\n  assert(!G.is_directed());\r\n  int\
-    \ N = G.N, M = G.M, n_comp = 0;\r\n  vc<int> V, par(N, -2), dp(N), comp(N);\r\n\
-    \  V.reserve(N);\r\n  vc<bool> used(M);\r\n  auto dfs = [&](auto& dfs, int v)\
+    \ vc<int>> two_edge_component(GT& G) {\r\n  static_assert(!GT::is_directed);\r\
+    \n  int N = G.N, M = G.M, n_comp = 0;\r\n  vc<int> V, par(N, -2), dp(N), comp(N);\r\
+    \n  V.reserve(N);\r\n  vc<bool> used(M);\r\n  auto dfs = [&](auto& dfs, int v)\
     \ -> void {\r\n    V.eb(v);\r\n    for (auto&& e: G[v]) {\r\n      if (used[e.id])\
     \ continue;\r\n      if (par[e.to] != -2) dp[v]++, dp[e.to]--, used[e.id] = 1;\r\
     \n      if (par[e.to] == -2) {\r\n        used[e.id] = 1;\r\n        par[e.to]\
@@ -296,8 +296,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_3_B.test.cpp
   requiredBy: []
-  timestamp: '2023-11-01 01:33:38+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-01 05:26:51+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_3_B.test.cpp
 layout: document

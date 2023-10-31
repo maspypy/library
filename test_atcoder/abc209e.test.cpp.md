@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
   - icon: ':question:'
@@ -267,8 +267,8 @@ data:
     \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
     \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
     \ }\n  }\n};\n#line 2 \"graph/reverse_graph.hpp\"\n\r\ntemplate <typename GT>\r\
-    \nGT reverse_graph(GT& G) {\r\n  assert(G.is_directed());\r\n  GT G1(G.N);\r\n\
-    \  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost, e.id); }\r\n  G1.build();\r\
+    \nGT reverse_graph(GT& G) {\r\n  static_assert(GT::is_directed);\r\n  GT G1(G.N);\r\
+    \n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost, e.id); }\r\n  G1.build();\r\
     \n  return G1;\r\n}\r\n#line 3 \"game/graph_game.hpp\"\n\n// \u6709\u5411\u30B0\
     \u30E9\u30D5\u3001\u52D5\u3051\u306A\u3044\u4EBA\u304C\u8CA0\u3051\n// \u5404\u30CE\
     \u30FC\u30C9\u306B\u5BFE\u3057\u3066\u624B\u756A\u306E\u30D7\u30EC\u30A4\u30E4\
@@ -323,7 +323,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc209e.test.cpp
   requiredBy: []
-  timestamp: '2023-11-01 01:33:38+09:00'
+  timestamp: '2023-11-01 05:26:51+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc209e.test.cpp

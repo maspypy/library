@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/dominator_tree.hpp
     title: graph/dominator_tree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dominatortree
@@ -268,13 +268,13 @@ data:
     \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
     \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
     \ }\n  }\n};\n#line 2 \"graph/reverse_graph.hpp\"\n\r\ntemplate <typename GT>\r\
-    \nGT reverse_graph(GT& G) {\r\n  assert(G.is_directed());\r\n  GT G1(G.N);\r\n\
-    \  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost, e.id); }\r\n  G1.build();\r\
+    \nGT reverse_graph(GT& G) {\r\n  static_assert(GT::is_directed);\r\n  GT G1(G.N);\r\
+    \n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost, e.id); }\r\n  G1.build();\r\
     \n  return G1;\r\n}\r\n#line 2 \"graph/dominator_tree.hpp\"\n\n// parent (idom)\
     \ \u306E\u5217\u3092\u8FD4\u3059. -1 if unreachable.\ntemplate <typename GT>\n\
-    vc<int> dominator_tree(GT& G, int root) {\n  assert(G.is_directed());\n  const\
-    \ int N = G.N;\n\n  vc<int> par(N, -1), ord(N, -1), V;\n  V.reserve(N);\n  auto\
-    \ dfs = [&](auto& dfs, int v) -> void {\n    ord[v] = len(V);\n    V.eb(v);\n\
+    vc<int> dominator_tree(GT& G, int root) {\n  static_assert(GT::is_directed);\n\
+    \  const int N = G.N;\n\n  vc<int> par(N, -1), ord(N, -1), V;\n  V.reserve(N);\n\
+    \  auto dfs = [&](auto& dfs, int v) -> void {\n    ord[v] = len(V);\n    V.eb(v);\n\
     \    for (auto&& e: G[v]) {\n      if (ord[e.to] == -1) par[e.to] = v, dfs(dfs,\
     \ e.to);\n    }\n  };\n  dfs(dfs, root);\n\n  auto RG = reverse_graph(G);\n\n\
     \  vc<int> sdom(N, -1);\n  FOR(v, N) sdom[v] = v;\n  vc<int> mi = sdom;\n  vc<int>\
@@ -306,8 +306,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/domninator_tree.test.cpp
   requiredBy: []
-  timestamp: '2023-11-01 01:33:38+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-01 05:33:01+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/domninator_tree.test.cpp
 layout: document

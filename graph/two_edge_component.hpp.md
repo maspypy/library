@@ -6,10 +6,10 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_B.test.cpp
     title: test/aoj/GRL_3_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/two_edge_component.test.cpp
     title: test/library_checker/graph/two_edge_component.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test/yukicoder/529.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -81,9 +81,9 @@ data:
     \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
     \ }\n  }\n};\n#line 2 \"graph/two_edge_component.hpp\"\n\r\n// (\u6210\u5206\u6570\
     , \u6210\u5206\u756A\u53F7\u306E vector)\r\ntemplate <typename GT>\r\npair<int,\
-    \ vc<int>> two_edge_component(GT& G) {\r\n  assert(!G.is_directed());\r\n  int\
-    \ N = G.N, M = G.M, n_comp = 0;\r\n  vc<int> V, par(N, -2), dp(N), comp(N);\r\n\
-    \  V.reserve(N);\r\n  vc<bool> used(M);\r\n  auto dfs = [&](auto& dfs, int v)\
+    \ vc<int>> two_edge_component(GT& G) {\r\n  static_assert(!GT::is_directed);\r\
+    \n  int N = G.N, M = G.M, n_comp = 0;\r\n  vc<int> V, par(N, -2), dp(N), comp(N);\r\
+    \n  V.reserve(N);\r\n  vc<bool> used(M);\r\n  auto dfs = [&](auto& dfs, int v)\
     \ -> void {\r\n    V.eb(v);\r\n    for (auto&& e: G[v]) {\r\n      if (used[e.id])\
     \ continue;\r\n      if (par[e.to] != -2) dp[v]++, dp[e.to]--, used[e.id] = 1;\r\
     \n      if (par[e.to] == -2) {\r\n        used[e.id] = 1;\r\n        par[e.to]\
@@ -93,13 +93,13 @@ data:
     \ == 0 ? n_comp++ : comp[par[v]]);\r\n  return {n_comp, comp};\r\n}\n"
   code: "#include \"graph/base.hpp\"\r\n\r\n// (\u6210\u5206\u6570, \u6210\u5206\u756A\
     \u53F7\u306E vector)\r\ntemplate <typename GT>\r\npair<int, vc<int>> two_edge_component(GT&\
-    \ G) {\r\n  assert(!G.is_directed());\r\n  int N = G.N, M = G.M, n_comp = 0;\r\
-    \n  vc<int> V, par(N, -2), dp(N), comp(N);\r\n  V.reserve(N);\r\n  vc<bool> used(M);\r\
-    \n  auto dfs = [&](auto& dfs, int v) -> void {\r\n    V.eb(v);\r\n    for (auto&&\
-    \ e: G[v]) {\r\n      if (used[e.id]) continue;\r\n      if (par[e.to] != -2)\
-    \ dp[v]++, dp[e.to]--, used[e.id] = 1;\r\n      if (par[e.to] == -2) {\r\n   \
-    \     used[e.id] = 1;\r\n        par[e.to] = v;\r\n        dfs(dfs, e.to);\r\n\
-    \      }\r\n    }\r\n  };\r\n  FOR(v, N) if (par[v] == -2) { par[v] = -1, dfs(dfs,\
+    \ G) {\r\n  static_assert(!GT::is_directed);\r\n  int N = G.N, M = G.M, n_comp\
+    \ = 0;\r\n  vc<int> V, par(N, -2), dp(N), comp(N);\r\n  V.reserve(N);\r\n  vc<bool>\
+    \ used(M);\r\n  auto dfs = [&](auto& dfs, int v) -> void {\r\n    V.eb(v);\r\n\
+    \    for (auto&& e: G[v]) {\r\n      if (used[e.id]) continue;\r\n      if (par[e.to]\
+    \ != -2) dp[v]++, dp[e.to]--, used[e.id] = 1;\r\n      if (par[e.to] == -2) {\r\
+    \n        used[e.id] = 1;\r\n        par[e.to] = v;\r\n        dfs(dfs, e.to);\r\
+    \n      }\r\n    }\r\n  };\r\n  FOR(v, N) if (par[v] == -2) { par[v] = -1, dfs(dfs,\
     \ v); }\r\n  FOR_R(i, N) {\r\n    if (par[V[i]] != -1) dp[par[V[i]]] += dp[V[i]];\r\
     \n  }\r\n  for (auto&& v: V) comp[v] = (dp[v] == 0 ? n_comp++ : comp[par[v]]);\r\
     \n  return {n_comp, comp};\r\n}"
@@ -108,13 +108,13 @@ data:
   isVerificationFile: false
   path: graph/two_edge_component.hpp
   requiredBy: []
-  timestamp: '2023-11-01 01:33:38+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-11-01 05:26:51+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/GRL_3_B.test.cpp
-  - test/library_checker/graph/two_edge_component.test.cpp
   - test/yukicoder/529.test.cpp
   - test/yukicoder/1983.test.cpp
+  - test/library_checker/graph/two_edge_component.test.cpp
+  - test/aoj/GRL_3_B.test.cpp
 documentation_of: graph/two_edge_component.hpp
 layout: document
 redirect_from:

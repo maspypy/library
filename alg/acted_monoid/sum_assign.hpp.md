@@ -56,10 +56,10 @@ data:
   timestamp: '2023-10-14 20:28:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/2292.test.cpp
+  - test/aoj/DSL_2_I.test.cpp
   - test_atcoder/abc256ex.test.cpp
   - test_atcoder/abc256ex2.test.cpp
-  - test/aoj/DSL_2_I.test.cpp
-  - test/yukicoder/2292.test.cpp
 documentation_of: alg/acted_monoid/sum_assign.hpp
 layout: document
 redirect_from:

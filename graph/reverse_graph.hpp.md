@@ -8,17 +8,17 @@ data:
   - icon: ':x:'
     path: game/graph_game.hpp
     title: game/graph_game.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/dominator_tree.hpp
     title: graph/dominator_tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/K_shortest_walk.hpp
     title: graph/shortest_path/K_shortest_walk.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/K_shortest_walk.test.cpp
     title: test/library_checker/graph/K_shortest_walk.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/domninator_tree.test.cpp
     title: test/library_checker/graph/domninator_tree.test.cpp
   - icon: ':x:'
@@ -29,7 +29,7 @@ data:
     title: test_atcoder/abc209e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -89,28 +89,28 @@ data:
     \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
     \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
     \ }\n  }\n};\n#line 2 \"graph/reverse_graph.hpp\"\n\r\ntemplate <typename GT>\r\
-    \nGT reverse_graph(GT& G) {\r\n  assert(G.is_directed());\r\n  GT G1(G.N);\r\n\
-    \  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost, e.id); }\r\n  G1.build();\r\
+    \nGT reverse_graph(GT& G) {\r\n  static_assert(GT::is_directed);\r\n  GT G1(G.N);\r\
+    \n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost, e.id); }\r\n  G1.build();\r\
     \n  return G1;\r\n}\r\n"
   code: "#include \"graph/base.hpp\"\r\n\r\ntemplate <typename GT>\r\nGT reverse_graph(GT&\
-    \ G) {\r\n  assert(G.is_directed());\r\n  GT G1(G.N);\r\n  for (auto&& e: G.edges)\
-    \ { G1.add(e.to, e.frm, e.cost, e.id); }\r\n  G1.build();\r\n  return G1;\r\n\
-    }\r\n"
+    \ G) {\r\n  static_assert(GT::is_directed);\r\n  GT G1(G.N);\r\n  for (auto&&\
+    \ e: G.edges) { G1.add(e.to, e.frm, e.cost, e.id); }\r\n  G1.build();\r\n  return\
+    \ G1;\r\n}\r\n"
   dependsOn:
   - graph/base.hpp
   isVerificationFile: false
   path: graph/reverse_graph.hpp
   requiredBy:
-  - game/graph_game.hpp
-  - graph/dominator_tree.hpp
   - graph/shortest_path/K_shortest_walk.hpp
-  timestamp: '2023-11-01 01:33:38+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  - graph/dominator_tree.hpp
+  - game/graph_game.hpp
+  timestamp: '2023-11-01 05:26:51+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc209e.test.cpp
+  - test/yukicoder/1601.test.cpp
   - test/library_checker/graph/K_shortest_walk.test.cpp
   - test/library_checker/graph/domninator_tree.test.cpp
-  - test/yukicoder/1601.test.cpp
+  - test_atcoder/abc209e.test.cpp
 documentation_of: graph/reverse_graph.hpp
 layout: document
 redirect_from:

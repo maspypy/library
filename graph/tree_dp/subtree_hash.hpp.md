@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
   - icon: ':question:'
@@ -18,12 +18,12 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/classify_tree.test.cpp
     title: test/library_checker/graph/classify_tree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint61.hpp\"\n\r\nstruct modint61 {\r\n  static constexpr\
@@ -189,17 +189,17 @@ data:
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
     \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 4 \"graph/tree_dp/rerooting_dp.hpp\"\
-    \n\r\ntemplate <typename TREE, typename Data>\r\nstruct Rerooting_dp {\r\n  TREE&\
-    \ tree;\r\n  vc<Data> dp_1; // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\u5206\
-    \u6728 v\r\n  vc<Data> dp_2; // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\
-    \u5206\u6728 p\r\n  vc<Data> dp;   // full tree\r\n\r\n  template <typename F1,\
-    \ typename F2, typename F3>\r\n  Rerooting_dp(TREE& tree, F1 f_ee, F2 f_ev, F3\
-    \ f_ve, const Data unit)\r\n      : tree(tree) {\r\n    assert(!tree.G.is_directed());\r\
-    \n    build(f_ee, f_ev, f_ve, unit);\r\n  }\r\n\r\n  // v \u3092\u6839\u3068\u3057\
-    \u305F\u3068\u304D\u306E full tree\r\n  Data operator[](int v) { return dp[v];\
-    \ }\r\n\r\n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\
-    \u6728 v\r\n  Data get(int v, int root) {\r\n    if (root == v) return dp[v];\r\
-    \n    if (!tree.in_subtree(root, v)) { return dp_1[v]; }\r\n    int w = tree.jump(v,\
+    \n\r\ntemplate <typename TREE, typename Data>\r\nstruct Rerooting_dp {\r\n  static_assert(!TREE::Graph_type::is_directed);\r\
+    \n  TREE& tree;\r\n  vc<Data> dp_1; // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\
+    \u90E8\u5206\u6728 v\r\n  vc<Data> dp_2; // \u8FBA pv \u306B\u5BFE\u3057\u3066\
+    \u3001\u90E8\u5206\u6728 p\r\n  vc<Data> dp;   // full tree\r\n\r\n  template\
+    \ <typename F1, typename F2, typename F3>\r\n  Rerooting_dp(TREE& tree, F1 f_ee,\
+    \ F2 f_ev, F3 f_ve, const Data unit)\r\n      : tree(tree) {\r\n    build(f_ee,\
+    \ f_ev, f_ve, unit);\r\n  }\r\n\r\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\
+    \u304D\u306E full tree\r\n  Data operator[](int v) { return dp[v]; }\r\n\r\n \
+    \ // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\u6728 v\r\
+    \n  Data get(int v, int root) {\r\n    if (root == v) return dp[v];\r\n    if\
+    \ (!tree.in_subtree(root, v)) { return dp_1[v]; }\r\n    int w = tree.jump(v,\
     \ root, 1);\r\n    return dp_2[w];\r\n  }\r\n\r\n  template <typename F1, typename\
     \ F2, typename F3>\r\n  void build(F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)\
     \ {\r\n    int N = tree.N;\r\n    // dp1: subtree\r\n    dp_1.assign(N, unit);\r\
@@ -225,9 +225,9 @@ data:
     \ [&](T A, T B) -> T { return {max(A.fi, B.fi), A.se * B.se}; };\n    auto f_ev\
     \ = [&](T A, int v) -> T { return {A.fi + 1, A.se}; };\n    auto f_ve = [&](T\
     \ A, const auto& e) -> T {\n      return {A.fi, A.se + hash_base(A.fi)};\n   \
-    \ };\n\n    Rerooting_dp<decltype(tree), T> DP(tree, f_ee, f_ev, f_ve, unit);\n\
-    \    dp.resize(N), dp_1.resize(N), dp_2.resize(N);\n    FOR(v, N) dp[v] = DP.dp[v].se.val;\n\
-    \    FOR(v, N) dp_1[v] = DP.dp_1[v].se.val;\n    FOR(v, N) dp_2[v] = DP.dp_2[v].se.val;\n\
+    \ };\n\n    Rerooting_dp<TREE, T> DP(tree, f_ee, f_ev, f_ve, unit);\n    dp.resize(N),\
+    \ dp_1.resize(N), dp_2.resize(N);\n    FOR(v, N) dp[v] = DP.dp[v].se.val;\n  \
+    \  FOR(v, N) dp_1[v] = DP.dp_1[v].se.val;\n    FOR(v, N) dp_2[v] = DP.dp_2[v].se.val;\n\
     \  }\n\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E full tree\n  u64\
     \ operator[](int v) { return dp[v]; }\n\n  // root \u3092\u6839\u3068\u3057\u305F\
     \u3068\u304D\u306E\u90E8\u5206\u6728 v\n  u64 get(int v, int root) {\n    if (root\
@@ -243,9 +243,9 @@ data:
     \n    auto f_ee = [&](T A, T B) -> T { return {max(A.fi, B.fi), A.se * B.se};\
     \ };\n    auto f_ev = [&](T A, int v) -> T { return {A.fi + 1, A.se}; };\n   \
     \ auto f_ve = [&](T A, const auto& e) -> T {\n      return {A.fi, A.se + hash_base(A.fi)};\n\
-    \    };\n\n    Rerooting_dp<decltype(tree), T> DP(tree, f_ee, f_ev, f_ve, unit);\n\
-    \    dp.resize(N), dp_1.resize(N), dp_2.resize(N);\n    FOR(v, N) dp[v] = DP.dp[v].se.val;\n\
-    \    FOR(v, N) dp_1[v] = DP.dp_1[v].se.val;\n    FOR(v, N) dp_2[v] = DP.dp_2[v].se.val;\n\
+    \    };\n\n    Rerooting_dp<TREE, T> DP(tree, f_ee, f_ev, f_ve, unit);\n    dp.resize(N),\
+    \ dp_1.resize(N), dp_2.resize(N);\n    FOR(v, N) dp[v] = DP.dp[v].se.val;\n  \
+    \  FOR(v, N) dp_1[v] = DP.dp_1[v].se.val;\n    FOR(v, N) dp_2[v] = DP.dp_2[v].se.val;\n\
     \  }\n\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E full tree\n  u64\
     \ operator[](int v) { return dp[v]; }\n\n  // root \u3092\u6839\u3068\u3057\u305F\
     \u3068\u304D\u306E\u90E8\u5206\u6728 v\n  u64 get(int v, int root) {\n    if (root\
@@ -262,8 +262,8 @@ data:
   isVerificationFile: false
   path: graph/tree_dp/subtree_hash.hpp
   requiredBy: []
-  timestamp: '2023-11-01 01:33:38+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-11-01 05:27:51+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/graph/classify_tree.test.cpp
 documentation_of: graph/tree_dp/subtree_hash.hpp

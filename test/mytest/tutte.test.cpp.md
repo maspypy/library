@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/maximum_matching_size.hpp
     title: graph/maximum_matching_size.hpp
   - icon: ':question:'
@@ -268,11 +268,11 @@ data:
     \ / a[rk][j];\n    FOR(k, j, m) a[rk][k] *= c;\n    FOR(i, rk + 1, n) {\n    \
     \  T c = a[i][j];\n      FOR3(k, j, m) { a[i][k] -= a[rk][k] * c; }\n    }\n \
     \   ++rk;\n  }\n  return rk;\n}\n#line 4 \"graph/maximum_matching_size.hpp\"\n\
-    \ntemplate <typename GT>\nint maximum_matching_size(GT& G) {\n  using mint = modint61;\n\
-    \  assert(!G.is_directed());\n  int N = G.N;\n  vv(mint, tutte, N, N);\n  for\
-    \ (auto&& e: G.edges) {\n    mint x = RNG(mint::get_mod());\n    int i = e.frm,\
-    \ j = e.to;\n    tutte[i][j] += x;\n    tutte[j][i] -= x;\n  }\n  return matrix_rank(N,\
-    \ N, tutte) / 2;\n}\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct\
+    \ntemplate <typename GT>\nint maximum_matching_size(GT& G) {\n  static_assert(!GT::is_directed);\n\
+    \  using mint = modint61;\n  int N = G.N;\n  vv(mint, tutte, N, N);\n  for (auto&&\
+    \ e: G.edges) {\n    mint x = RNG(mint::get_mod());\n    int i = e.frm, j = e.to;\n\
+    \    tutte[i][j] += x;\n    tutte[j][i] -= x;\n  }\n  return matrix_rank(N, N,\
+    \ tutte) / 2;\n}\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct\
     \ Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int,\
     \ bool directed = false>\nstruct Graph {\n  static constexpr bool is_directed\
     \ = directed;\n  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n\
@@ -464,7 +464,7 @@ data:
   isVerificationFile: true
   path: test/mytest/tutte.test.cpp
   requiredBy: []
-  timestamp: '2023-11-01 02:04:43+09:00'
+  timestamp: '2023-11-01 05:33:01+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/tutte.test.cpp

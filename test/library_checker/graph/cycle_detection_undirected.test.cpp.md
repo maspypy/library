@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/find_cycle.hpp
     title: graph/find_cycle.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/cycle_detection_undirected
@@ -266,8 +266,8 @@ data:
     \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
     \ }\n  }\n};\n#line 2 \"graph/find_cycle.hpp\"\n\r\n// {vs, es} or empty. minimal.\r\
     \ntemplate <typename GT>\r\npair<vc<int>, vc<int>> find_cycle_directed(GT& G)\
-    \ {\r\n  assert(G.is_directed());\r\n  assert(G.is_prepared());\r\n\r\n  int N\
-    \ = G.N;\r\n  vc<int> used(N);\r\n  vc<pair<int, int>> par(N);\r\n  vector<int>\
+    \ {\r\n  static_assert(GT::is_directed);\r\n  assert(G.is_prepared());\r\n\r\n\
+    \  int N = G.N;\r\n  vc<int> used(N);\r\n  vc<pair<int, int>> par(N);\r\n  vector<int>\
     \ es, vs;\r\n\r\n  auto dfs = [&](auto self, int v) -> void {\r\n    used[v] =\
     \ 1;\r\n    for (auto&& e: G[v]) {\r\n      if (len(es)) return;\r\n      if (!used[e.to])\
     \ {\r\n        par[e.to] = {v, e.id};\r\n        self(self, e.to);\r\n      }\r\
@@ -286,7 +286,7 @@ data:
     \   x = G.edges[nxt[x]].to;\r\n      if (x == v) break;\r\n    }\r\n    break;\r\
     \n  }\r\n  return {vs, es};\r\n}\r\n\r\n// {vs, es} or empty. minimal.\r\ntemplate\
     \ <typename GT>\r\npair<vc<int>, vc<int>> find_cycle_undirected(GT& G) {\r\n \
-    \ assert(!G.is_directed());\r\n  assert(G.is_prepared());\r\n  const int N = G.N;\r\
+    \ assert(!GT::is_directed);\r\n  assert(G.is_prepared());\r\n  const int N = G.N;\r\
     \n  const int M = G.M;\r\n  vc<int> dep(N, -1);\r\n  vc<bool> used_e(M);\r\n \
     \ vc<int> par(N, -1); // edge idx\r\n\r\n  auto dfs = [&](auto& dfs, int v, int\
     \ d) -> int {\r\n    dep[v] = d;\r\n    for (auto&& e: G[v]) {\r\n      if (used_e[e.id])\
@@ -324,8 +324,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/cycle_detection_undirected.test.cpp
   requiredBy: []
-  timestamp: '2023-11-01 01:33:38+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-01 05:33:01+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/cycle_detection_undirected.test.cpp
 layout: document

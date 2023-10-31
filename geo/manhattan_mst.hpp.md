@@ -129,8 +129,8 @@ data:
   timestamp: '2023-11-01 01:33:38+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc283f.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp
+  - test_atcoder/abc283f.test.cpp
 documentation_of: geo/manhattan_mst.hpp
 layout: document
 redirect_from:
