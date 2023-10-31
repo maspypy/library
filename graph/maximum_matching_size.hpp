@@ -4,8 +4,8 @@
 
 template <typename GT>
 int maximum_matching_size(GT& G) {
+  static_assert(!GT::is_directed);
   using mint = modint61;
-  assert(!G.is_directed());
   int N = G.N;
   vv(mint, tutte, N, N);
   for (auto&& e: G.edges) {
