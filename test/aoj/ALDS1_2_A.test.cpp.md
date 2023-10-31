@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   _extendedRequiredBy: []
@@ -243,16 +243,21 @@ data:
     \ i = 0;\n    E s = G::unit();\n    int k = 1;\n    while (2 * k <= n) k *= 2;\n\
     \    while (k) {\n      if (i + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i\
     \ + k - 1]);\n        if (check(t)) { i += k, s = t; }\n      }\n      k >>= 1;\n\
-    \    }\n    return i;\n  }\n\n  int kth(E k) {\n    return max_right([&k](E x)\
-    \ -> bool { return x <= k; });\n  }\n};\n#line 3 \"seq/inversion.hpp\"\n\ntemplate\
-    \ <typename T, bool SMALL = false>\nll inversion(vc<T> A) {\n  if (A.empty())\
-    \ return 0;\n  if (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n    for (auto&&\
-    \ x: A) x = LB(key, x);\n  }\n  ll ANS = 0;\n  ll K = MAX(A) + 1;\n  FenwickTree<Monoid_Add<int>>\
-    \ bit(K);\n  for (auto&& x: A) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x,\
-    \ 1);\n  }\n  return ANS;\n}\n\n// i \u756A\u76EE\uFF1AA_i \u304C\u5148\u982D\u306B\
-    \u306A\u308B\u3088\u3046\u306B rotate \u3057\u305F\u3068\u304D\u306E\u8EE2\u5012\
-    \u6570\ntemplate <typename T, bool SMALL = false>\nvi inversion_rotate(vc<T>&\
-    \ A) {\n  const int N = len(A);\n  if (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n\
+    \    }\n    return i;\n  }\n\n  // check(i, x)\n  template <class F>\n  int max_right_with_index(const\
+    \ F check) {\n    assert(check(0, G::unit()));\n    int i = 0;\n    E s = G::unit();\n\
+    \    int k = 1;\n    while (2 * k <= n) k *= 2;\n    while (k) {\n      if (i\
+    \ + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i + k - 1]);\n        if (check(i\
+    \ + k, t)) { i += k, s = t; }\n      }\n      k >>= 1;\n    }\n    return i;\n\
+    \  }\n\n  int kth(E k) {\n    return max_right([&k](E x) -> bool { return x <=\
+    \ k; });\n  }\n};\n#line 3 \"seq/inversion.hpp\"\n\ntemplate <typename T, bool\
+    \ SMALL = false>\nll inversion(vc<T> A) {\n  if (A.empty()) return 0;\n  if (!SMALL)\
+    \ {\n    auto key = A;\n    UNIQUE(key);\n    for (auto&& x: A) x = LB(key, x);\n\
+    \  }\n  ll ANS = 0;\n  ll K = MAX(A) + 1;\n  FenwickTree<Monoid_Add<int>> bit(K);\n\
+    \  for (auto&& x: A) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x, 1);\n  }\n\
+    \  return ANS;\n}\n\n// i \u756A\u76EE\uFF1AA_i \u304C\u5148\u982D\u306B\u306A\
+    \u308B\u3088\u3046\u306B rotate \u3057\u305F\u3068\u304D\u306E\u8EE2\u5012\u6570\
+    \ntemplate <typename T, bool SMALL = false>\nvi inversion_rotate(vc<T>& A) {\n\
+    \  const int N = len(A);\n  if (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n\
     \    for (auto&& x: A) x = LB(key, x);\n  }\n  ll K = MAX(A) + 1;\n  ll ANS =\
     \ 0;\n  FenwickTree<Monoid_Add<int>> bit(K);\n  for (auto&& x: A) {\n    ANS +=\
     \ bit.sum(x + 1, K);\n    bit.add(x, 1);\n  }\n  vi res(N);\n  FOR(i, N) {\n \
@@ -282,7 +287,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_2_A.test.cpp
   requiredBy: []
-  timestamp: '2023-10-29 16:21:41+09:00'
+  timestamp: '2023-11-01 01:33:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_2_A.test.cpp

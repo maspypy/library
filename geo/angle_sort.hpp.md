@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/max_norm_sum.hpp
     title: geo/max_norm_sum.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/geometry/sort_points_by_argument.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/count_points_in_triangles.test.cpp
     title: test/mytest/count_points_in_triangles.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc139f.test.cpp
     title: test_atcoder/abc139f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/angle_sort.hpp\"\n\r\n#line 2 \"geo/base.hpp\"\ntemplate\
@@ -40,11 +40,12 @@ data:
     \ return {x - p.x, y - p.y}; }\n  bool operator==(Point p) const { return x ==\
     \ p.x && y == p.y; }\n  bool operator!=(Point p) const { return x != p.x || y\
     \ != p.y; }\n  Point operator-() const { return {-x, -y}; }\n  Point operator*(T\
-    \ t) const { return {x * t, y * t}; }\n\n  bool operator<(Point p) const {\n \
-    \   if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n  T dot(Point other)\
-    \ { return x * other.x + y * other.y; }\n  T det(Point other) { return x * other.y\
-    \ - y * other.x; }\n\n  double norm() { return sqrtl(x * x + y * y); }\n  double\
-    \ angle() { return atan2(y, x); }\n\n  Point rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n\
+    \ t) const { return {x * t, y * t}; }\n  Point operator/(T t) const { return {x\
+    \ / t, y / t}; }\n\n  bool operator<(Point p) const {\n    if (x != p.x) return\
+    \ x < p.x;\n    return y < p.y;\n  }\n  T dot(Point other) { return x * other.x\
+    \ + y * other.y; }\n  T det(Point other) { return x * other.y - y * other.x; }\n\
+    \n  double norm() { return sqrtl(x * x + y * y); }\n  double angle() { return\
+    \ atan2(y, x); }\n\n  Point rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n\
     \    double c = cos(theta), s = sin(theta);\n    return Point{c * x - s * y, s\
     \ * x + c * y};\n  }\n#ifdef FASTIO\n  void read() { fastio::read(x), fastio::read(y);\
     \ }\n  void write() { fastio::printer.write(pair<T, T>({x, y})); }\n#endif\n};\n\
@@ -115,8 +116,8 @@ data:
   requiredBy:
   - geo/max_norm_sum.hpp
   - geo/count_points_in_triangles.hpp
-  timestamp: '2023-08-20 19:49:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-11-01 01:33:38+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc139f.test.cpp
   - test_atcoder/abc202_f.test.cpp

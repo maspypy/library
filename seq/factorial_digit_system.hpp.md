@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/factorial_digit.test.cpp
     title: test/mytest/factorial_digit.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -50,11 +50,16 @@ data:
     \ i = 0;\n    E s = G::unit();\n    int k = 1;\n    while (2 * k <= n) k *= 2;\n\
     \    while (k) {\n      if (i + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i\
     \ + k - 1]);\n        if (check(t)) { i += k, s = t; }\n      }\n      k >>= 1;\n\
-    \    }\n    return i;\n  }\n\n  int kth(E k) {\n    return max_right([&k](E x)\
-    \ -> bool { return x <= k; });\n  }\n};\n#line 2 \"seq/factorial_digit_system.hpp\"\
-    \n\n// \u53F3\u306B\u3042\u308B\u5C0F\u3055\u3044\u3084\u3064\u306E\u500B\u6570\
-    \ [2,0,3,1] \u2192 [2,0,1,0]\nvc<int> to_factorial_digit_system(vc<int>& A) {\n\
-    \  int N = len(A);\n  for (auto&& x: A) assert(0 <= x && x < N);\n  FenwickTree<Monoid_Add<int>>\
+    \    }\n    return i;\n  }\n\n  // check(i, x)\n  template <class F>\n  int max_right_with_index(const\
+    \ F check) {\n    assert(check(0, G::unit()));\n    int i = 0;\n    E s = G::unit();\n\
+    \    int k = 1;\n    while (2 * k <= n) k *= 2;\n    while (k) {\n      if (i\
+    \ + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i + k - 1]);\n        if (check(i\
+    \ + k, t)) { i += k, s = t; }\n      }\n      k >>= 1;\n    }\n    return i;\n\
+    \  }\n\n  int kth(E k) {\n    return max_right([&k](E x) -> bool { return x <=\
+    \ k; });\n  }\n};\n#line 2 \"seq/factorial_digit_system.hpp\"\n\n// \u53F3\u306B\
+    \u3042\u308B\u5C0F\u3055\u3044\u3084\u3064\u306E\u500B\u6570 [2,0,3,1] \u2192\
+    \ [2,0,1,0]\nvc<int> to_factorial_digit_system(vc<int>& A) {\n  int N = len(A);\n\
+    \  for (auto&& x: A) assert(0 <= x && x < N);\n  FenwickTree<Monoid_Add<int>>\
     \ bit(N);\n  vc<int> B(N);\n  FOR_R(i, N) B[i] = bit.sum(0, A[i]), bit.add(A[i],\
     \ 1);\n  return B;\n}\n\n// \u53F3\u306B\u3042\u308B\u5C0F\u3055\u3044\u3084\u3064\
     \u306E\u500B\u6570 [2,0,1,0] \u2192 [2,0,3,1]\nvc<int> from_factorial_digit_system(vc<int>&\
@@ -79,8 +84,8 @@ data:
   isVerificationFile: false
   path: seq/factorial_digit_system.hpp
   requiredBy: []
-  timestamp: '2023-03-05 17:53:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-11-01 01:33:38+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/factorial_digit.test.cpp
 documentation_of: seq/factorial_digit_system.hpp

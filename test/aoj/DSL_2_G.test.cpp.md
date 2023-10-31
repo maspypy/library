@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':heavy_check_mark:'
     path: ds/range_add_range_sum.hpp
     title: ds/range_add_range_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -243,31 +243,36 @@ data:
     \ i = 0;\n    E s = G::unit();\n    int k = 1;\n    while (2 * k <= n) k *= 2;\n\
     \    while (k) {\n      if (i + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i\
     \ + k - 1]);\n        if (check(t)) { i += k, s = t; }\n      }\n      k >>= 1;\n\
-    \    }\n    return i;\n  }\n\n  int kth(E k) {\n    return max_right([&k](E x)\
-    \ -> bool { return x <= k; });\n  }\n};\n#line 2 \"ds/range_add_range_sum.hpp\"\
-    \n\ntemplate <typename Monoid>\nstruct Range_Add_Range_Sum {\n  using MX = Monoid;\n\
-    \  using E = typename MX::value_type;\n\n  struct Mono {\n    using value_type\
-    \ = pair<E, E>;\n    using X = value_type;\n    static X op(X x, X y) { return\
-    \ {MX::op(x.fi, y.fi), MX::op(x.se, y.se)}; }\n    static constexpr X unit() {\
-    \ return {MX::unit(), MX::unit()}; }\n    static constexpr bool commute = 1;\n\
-    \  };\n  FenwickTree<Mono> bit;\n\n  Range_Add_Range_Sum() {}\n  Range_Add_Range_Sum(int\
-    \ n) { build(n); }\n  template <typename F>\n  Range_Add_Range_Sum(int n, F f)\
-    \ {\n    build(n, f);\n  }\n  Range_Add_Range_Sum(const vc<E>& v) { build(v);\
-    \ }\n\n  void build(int m) {\n    build(m, [](int i) -> E { return MX::unit();\
-    \ });\n  }\n  void build(const vc<E>& v) {\n    build(len(v), [&](int i) -> E\
-    \ { return v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n\
-    \    bit.build(m, [&](int i) -> pair<E, E> { return {f(i), MX::unit()}; });\n\
-    \  }\n\n  void add(int L, int R, E a) {\n    E b = MX::inverse(a);\n    bit.add(L,\
-    \ {MX::power(b, L), a});\n    bit.add(R, {MX::power(a, R), b});\n  }\n\n  E sum(int\
-    \ L, int R) {\n    auto [x0, x1] = bit.sum(L);\n    auto [y0, y1] = bit.sum(R);\n\
-    \    E x = MX::op(MX::power(x1, L), x0);\n    E y = MX::op(MX::power(y1, R), y0);\n\
-    \    return MX::op(MX::inverse(x), y);\n  }\n};\n#line 6 \"test/aoj/DSL_2_G.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  Range_Add_Range_Sum<Monoid_Add<ll>> bit(N);\r\
-    \n  FOR(_, Q) {\r\n    LL(t, L, R);\r\n    --L;\r\n    if (t == 0) {\r\n     \
-    \ LL(x);\r\n      bit.add(L, R, x);\r\n    } else {\r\n      print(bit.sum(L,\
-    \ R));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n\
-    \  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  ll T =\
-    \ 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \    }\n    return i;\n  }\n\n  // check(i, x)\n  template <class F>\n  int max_right_with_index(const\
+    \ F check) {\n    assert(check(0, G::unit()));\n    int i = 0;\n    E s = G::unit();\n\
+    \    int k = 1;\n    while (2 * k <= n) k *= 2;\n    while (k) {\n      if (i\
+    \ + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i + k - 1]);\n        if (check(i\
+    \ + k, t)) { i += k, s = t; }\n      }\n      k >>= 1;\n    }\n    return i;\n\
+    \  }\n\n  int kth(E k) {\n    return max_right([&k](E x) -> bool { return x <=\
+    \ k; });\n  }\n};\n#line 2 \"ds/range_add_range_sum.hpp\"\n\ntemplate <typename\
+    \ Monoid>\nstruct Range_Add_Range_Sum {\n  using MX = Monoid;\n  using E = typename\
+    \ MX::value_type;\n\n  struct Mono {\n    using value_type = pair<E, E>;\n   \
+    \ using X = value_type;\n    static X op(X x, X y) { return {MX::op(x.fi, y.fi),\
+    \ MX::op(x.se, y.se)}; }\n    static constexpr X unit() { return {MX::unit(),\
+    \ MX::unit()}; }\n    static constexpr bool commute = 1;\n  };\n  FenwickTree<Mono>\
+    \ bit;\n\n  Range_Add_Range_Sum() {}\n  Range_Add_Range_Sum(int n) { build(n);\
+    \ }\n  template <typename F>\n  Range_Add_Range_Sum(int n, F f) {\n    build(n,\
+    \ f);\n  }\n  Range_Add_Range_Sum(const vc<E>& v) { build(v); }\n\n  void build(int\
+    \ m) {\n    build(m, [](int i) -> E { return MX::unit(); });\n  }\n  void build(const\
+    \ vc<E>& v) {\n    build(len(v), [&](int i) -> E { return v[i]; });\n  }\n  template\
+    \ <typename F>\n  void build(int m, F f) {\n    bit.build(m, [&](int i) -> pair<E,\
+    \ E> { return {f(i), MX::unit()}; });\n  }\n\n  void add(int L, int R, E a) {\n\
+    \    E b = MX::inverse(a);\n    bit.add(L, {MX::power(b, L), a});\n    bit.add(R,\
+    \ {MX::power(a, R), b});\n  }\n\n  E sum(int L, int R) {\n    auto [x0, x1] =\
+    \ bit.sum(L);\n    auto [y0, y1] = bit.sum(R);\n    E x = MX::op(MX::power(x1,\
+    \ L), x0);\n    E y = MX::op(MX::power(y1, R), y0);\n    return MX::op(MX::inverse(x),\
+    \ y);\n  }\n};\n#line 6 \"test/aoj/DSL_2_G.test.cpp\"\n\r\nvoid solve() {\r\n\
+    \  LL(N, Q);\r\n  Range_Add_Range_Sum<Monoid_Add<ll>> bit(N);\r\n  FOR(_, Q) {\r\
+    \n    LL(t, L, R);\r\n    --L;\r\n    if (t == 0) {\r\n      LL(x);\r\n      bit.add(L,\
+    \ R, x);\r\n    } else {\r\n      print(bit.sum(L, R));\r\n    }\r\n  }\r\n}\r\
+    \n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T)\
+    \ solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/range_add_range_sum.hpp\"\
     \r\n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  Range_Add_Range_Sum<Monoid_Add<ll>>\
@@ -285,7 +290,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_G.test.cpp
   requiredBy: []
-  timestamp: '2023-10-29 16:21:41+09:00'
+  timestamp: '2023-11-01 01:33:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_G.test.cpp

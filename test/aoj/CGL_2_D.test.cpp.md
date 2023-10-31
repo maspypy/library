@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/distance.hpp
     title: geo/distance.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -218,11 +218,12 @@ data:
     \ return {x - p.x, y - p.y}; }\n  bool operator==(Point p) const { return x ==\
     \ p.x && y == p.y; }\n  bool operator!=(Point p) const { return x != p.x || y\
     \ != p.y; }\n  Point operator-() const { return {-x, -y}; }\n  Point operator*(T\
-    \ t) const { return {x * t, y * t}; }\n\n  bool operator<(Point p) const {\n \
-    \   if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n  T dot(Point other)\
-    \ { return x * other.x + y * other.y; }\n  T det(Point other) { return x * other.y\
-    \ - y * other.x; }\n\n  double norm() { return sqrtl(x * x + y * y); }\n  double\
-    \ angle() { return atan2(y, x); }\n\n  Point rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n\
+    \ t) const { return {x * t, y * t}; }\n  Point operator/(T t) const { return {x\
+    \ / t, y / t}; }\n\n  bool operator<(Point p) const {\n    if (x != p.x) return\
+    \ x < p.x;\n    return y < p.y;\n  }\n  T dot(Point other) { return x * other.x\
+    \ + y * other.y; }\n  T det(Point other) { return x * other.y - y * other.x; }\n\
+    \n  double norm() { return sqrtl(x * x + y * y); }\n  double angle() { return\
+    \ atan2(y, x); }\n\n  Point rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n\
     \    double c = cos(theta), s = sin(theta);\n    return Point{c * x - s * y, s\
     \ * x + c * y};\n  }\n#ifdef FASTIO\n  void read() { fastio::read(x), fastio::read(y);\
     \ }\n  void write() { fastio::printer.write(pair<T, T>({x, y})); }\n#endif\n};\n\
@@ -297,25 +298,32 @@ data:
     \ REAL y2 = (-2 * a * c - sqD) / (2 * (a * a + b * b));\n  REAL x1 = (-b * y1\
     \ - c) / a;\n  REAL x2 = (-b * y2 - c) / a;\n  x1 += C.O.x, x2 += C.O.x;\n  y1\
     \ += C.O.y, y2 += C.O.y;\n  if (D == 0) return {Point<REAL>(x1, y1)};\n  return\
-    \ {Point<REAL>(x1, y1), Point<REAL>(x2, y2)};\n}\n#line 2 \"geo/distance.hpp\"\
-    \n\ntemplate <typename REAL, typename T, typename U>\nREAL distance(Point<T> S,\
-    \ Point<U> P) {\n  REAL dx = P.x - S.x;\n  REAL dy = P.y - S.y;\n  return sqrt(dx\
-    \ * dx + dy * dy);\n}\n\ntemplate <typename REAL, typename T, typename U>\nREAL\
-    \ distance(Segment<T> S, Point<U> P) {\n  Point<T> A = S.A, B = S.B;\n  bool b1\
-    \ = (B - A).dot(P - A) >= 0;\n  bool b2 = (A - B).dot(P - B) >= 0;\n  if (b1 &&\
-    \ !b2) { return distance<REAL, T, T>(B, P); }\n  if (!b1 && b2) { return distance<REAL,\
-    \ T, T>(A, P); }\n  Line<T> L = S.to_Line();\n  // \u70B9\u3068\u76F4\u7DDA\u306E\
-    \u8DDD\u96E2\n  return REAL(abs(L.eval(P))) / sqrt(REAL(L.a) * L.a + REAL(L.b)\
-    \ * L.b);\n}\n\ntemplate <typename REAL, typename T>\nREAL distance(Segment<T>\
-    \ S1, Segment<T> S2) {\n  if (count_cross<T>(S1, S2, true)) return REAL(0);\n\
-    \  REAL res = distance<REAL, T, T>(S1, S2.A);\n  chmin(res, distance<REAL, T,\
-    \ T>(S1, S2.B));\n  chmin(res, distance<REAL, T, T>(S2, S1.A));\n  chmin(res,\
-    \ distance<REAL, T, T>(S2, S1.B));\n  return res;\n}\n#line 7 \"test/aoj/CGL_2_D.test.cpp\"\
-    \n\nusing Re = double;\n\nvoid solve() {\n  LL(Q);\n  FOR(Q) {\n    LL(a, b, c,\
-    \ d, e, f, g, h);\n    Segment<ll> S1(a, b, c, d);\n    Segment<ll> S2(e, f, g,\
-    \ h);\n    Re x = distance<Re, ll>(S1, S2);\n    print(x);\n  }\n}\n\nsigned main()\
-    \ {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T)\
-    \ solve();\n\n  return 0;\n}\n"
+    \ {Point<REAL>(x1, y1), Point<REAL>(x2, y2)};\n}\n\n// https://codeforces.com/contest/2/problem/C\n\
+    template <typename REAL, typename T>\ntuple<bool, Point<T>, Point<T>> cross_point_circle(Circle<T>\
+    \ C1, Circle<T> C2) {\n  using P = Point<T>;\n  P O{0, 0};\n  P A = C1.O, B =\
+    \ C2.O;\n  if (A == B) return {false, O, O};\n  T d = (B - A).norm();\n  REAL\
+    \ cos_val = (C1.r * C1.r + d * d - C2.r * C2.r) / (2 * C1.r * d);\n  if (cos_val\
+    \ < -1 || 1 < cos_val) return {false, O, O};\n  REAL t = acos(cos_val);\n  REAL\
+    \ u = (B - A).angle();\n  P X = A + P{C1.r * cos(u + t), C1.r * sin(u + t)};\n\
+    \  P Y = A + P{C1.r * cos(u - t), C1.r * sin(u - t)};\n  return {true, X, Y};\n\
+    }\n#line 2 \"geo/distance.hpp\"\n\ntemplate <typename REAL, typename T, typename\
+    \ U>\nREAL distance(Point<T> S, Point<U> P) {\n  REAL dx = P.x - S.x;\n  REAL\
+    \ dy = P.y - S.y;\n  return sqrt(dx * dx + dy * dy);\n}\n\ntemplate <typename\
+    \ REAL, typename T, typename U>\nREAL distance(Segment<T> S, Point<U> P) {\n \
+    \ Point<T> A = S.A, B = S.B;\n  bool b1 = (B - A).dot(P - A) >= 0;\n  bool b2\
+    \ = (A - B).dot(P - B) >= 0;\n  if (b1 && !b2) { return distance<REAL, T, T>(B,\
+    \ P); }\n  if (!b1 && b2) { return distance<REAL, T, T>(A, P); }\n  Line<T> L\
+    \ = S.to_Line();\n  // \u70B9\u3068\u76F4\u7DDA\u306E\u8DDD\u96E2\n  return REAL(abs(L.eval(P)))\
+    \ / sqrt(REAL(L.a) * L.a + REAL(L.b) * L.b);\n}\n\ntemplate <typename REAL, typename\
+    \ T>\nREAL distance(Segment<T> S1, Segment<T> S2) {\n  if (count_cross<T>(S1,\
+    \ S2, true)) return REAL(0);\n  REAL res = distance<REAL, T, T>(S1, S2.A);\n \
+    \ chmin(res, distance<REAL, T, T>(S1, S2.B));\n  chmin(res, distance<REAL, T,\
+    \ T>(S2, S1.A));\n  chmin(res, distance<REAL, T, T>(S2, S1.B));\n  return res;\n\
+    }\n#line 7 \"test/aoj/CGL_2_D.test.cpp\"\n\nusing Re = double;\n\nvoid solve()\
+    \ {\n  LL(Q);\n  FOR(Q) {\n    LL(a, b, c, d, e, f, g, h);\n    Segment<ll> S1(a,\
+    \ b, c, d);\n    Segment<ll> S2(e, f, g, h);\n    Re x = distance<Re, ll>(S1,\
+    \ S2);\n    print(x);\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D\"\
     \n#define ERROR 0.00000001\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\
     \n#include \"geo/distance.hpp\"\n\nusing Re = double;\n\nvoid solve() {\n  LL(Q);\n\
@@ -332,7 +340,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_2_D.test.cpp
   requiredBy: []
-  timestamp: '2023-10-29 16:21:41+09:00'
+  timestamp: '2023-11-01 01:33:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_2_D.test.cpp

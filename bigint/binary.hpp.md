@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -31,7 +31,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
+    links:
+    - https://codeforces.com/contest/477/problem/D
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
     \ <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
     \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
@@ -345,14 +346,19 @@ data:
     \ '0' + (x & 1);\n        x /= 2;\n      }\n    }\n    while (s.back() == '0')\
     \ s.pop_back();\n    if (sgn == -1) s += '-';\n    reverse(all(s));\n    return\
     \ s;\n  }\n\n  string to_decimal_string() {\n    assert(0);\n    return \"\";\n\
-    \  }\n\n  vc<int> base_p_representation(int p) {\n    vc<u32> A(all(dat));\n \
-    \   vc<int> res;\n    while (1) {\n      while (len(A) && A.back() == u32(0))\
-    \ POP(A);\n      if (A.empty()) break;\n      u64 rm = 0;\n      FOR_R(i, len(A))\
-    \ {\n        rm = rm * MOD + A[i];\n        A[i] = rm / p;\n        rm %= p;\n\
-    \      }\n      res.eb(rm);\n    }\n    reverse(all(res));\n    return res;\n\
-    \  }\n\n#ifdef FASTIO\n  void write() { fastio::printer.write(to_string()); }\n\
-    \  void read() {\n    string s;\n    fastio::scanner.read(s);\n    *this = bint(s);\n\
-    \  }\n#endif\n};\n"
+    \  }\n\n  // https://codeforces.com/contest/477/problem/D\n  pair<bint, int> divmod(int\
+    \ p) {\n    assert(dat.empty() || sgn == 1);\n    vc<int> after;\n    ll rm =\
+    \ 0;\n    FOR_R(i, len(dat)) {\n      rm = rm * MOD + dat[i];\n      after.eb(rm\
+    \ / p);\n      rm = rm % p;\n    }\n    reverse(all(after));\n    while (len(after)\
+    \ && after.back() == 0) POP(after);\n    bint q;\n    q.sgn = 1;\n    q.dat =\
+    \ after;\n    return {q, rm};\n  }\n\n  vc<int> base_p_representation(int p) {\n\
+    \    vc<u32> A(all(dat));\n    vc<int> res;\n    while (1) {\n      while (len(A)\
+    \ && A.back() == u32(0)) POP(A);\n      if (A.empty()) break;\n      u64 rm =\
+    \ 0;\n      FOR_R(i, len(A)) {\n        rm = rm * MOD + A[i];\n        A[i] =\
+    \ rm / p;\n        rm %= p;\n      }\n      res.eb(rm);\n    }\n    reverse(all(res));\n\
+    \    return res;\n  }\n\n#ifdef FASTIO\n  void write() { fastio::printer.write(to_string());\
+    \ }\n  void read() {\n    string s;\n    fastio::scanner.read(s);\n    *this =\
+    \ bint(s);\n  }\n#endif\n};\n"
   code: "#include \"poly/convolution.hpp\"\n\nstruct BigInteger_Binary {\n  static\
     \ constexpr int LOG = 30;\n  static constexpr int MOD = 1 << LOG;\n  using bint\
     \ = BigInteger_Binary;\n  int sgn; // +1 or -1. \u5185\u90E8\u72B6\u614B\u3067\
@@ -402,7 +408,12 @@ data:
     \      FOR(LOG) {\n        s += '0' + (x & 1);\n        x /= 2;\n      }\n   \
     \ }\n    while (s.back() == '0') s.pop_back();\n    if (sgn == -1) s += '-';\n\
     \    reverse(all(s));\n    return s;\n  }\n\n  string to_decimal_string() {\n\
-    \    assert(0);\n    return \"\";\n  }\n\n  vc<int> base_p_representation(int\
+    \    assert(0);\n    return \"\";\n  }\n\n  // https://codeforces.com/contest/477/problem/D\n\
+    \  pair<bint, int> divmod(int p) {\n    assert(dat.empty() || sgn == 1);\n   \
+    \ vc<int> after;\n    ll rm = 0;\n    FOR_R(i, len(dat)) {\n      rm = rm * MOD\
+    \ + dat[i];\n      after.eb(rm / p);\n      rm = rm % p;\n    }\n    reverse(all(after));\n\
+    \    while (len(after) && after.back() == 0) POP(after);\n    bint q;\n    q.sgn\
+    \ = 1;\n    q.dat = after;\n    return {q, rm};\n  }\n\n  vc<int> base_p_representation(int\
     \ p) {\n    vc<u32> A(all(dat));\n    vc<int> res;\n    while (1) {\n      while\
     \ (len(A) && A.back() == u32(0)) POP(A);\n      if (A.empty()) break;\n      u64\
     \ rm = 0;\n      FOR_R(i, len(A)) {\n        rm = rm * MOD + A[i];\n        A[i]\
@@ -422,7 +433,7 @@ data:
   isVerificationFile: false
   path: bigint/binary.hpp
   requiredBy: []
-  timestamp: '2023-10-18 00:17:26+09:00'
+  timestamp: '2023-11-01 01:33:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: bigint/binary.hpp

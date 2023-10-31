@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   _extendedRequiredBy: []
@@ -53,25 +53,30 @@ data:
     \ i = 0;\n    E s = G::unit();\n    int k = 1;\n    while (2 * k <= n) k *= 2;\n\
     \    while (k) {\n      if (i + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i\
     \ + k - 1]);\n        if (check(t)) { i += k, s = t; }\n      }\n      k >>= 1;\n\
-    \    }\n    return i;\n  }\n\n  int kth(E k) {\n    return max_right([&k](E x)\
-    \ -> bool { return x <= k; });\n  }\n};\n#line 2 \"ds/range_add_range_sum.hpp\"\
-    \n\ntemplate <typename Monoid>\nstruct Range_Add_Range_Sum {\n  using MX = Monoid;\n\
-    \  using E = typename MX::value_type;\n\n  struct Mono {\n    using value_type\
-    \ = pair<E, E>;\n    using X = value_type;\n    static X op(X x, X y) { return\
-    \ {MX::op(x.fi, y.fi), MX::op(x.se, y.se)}; }\n    static constexpr X unit() {\
-    \ return {MX::unit(), MX::unit()}; }\n    static constexpr bool commute = 1;\n\
-    \  };\n  FenwickTree<Mono> bit;\n\n  Range_Add_Range_Sum() {}\n  Range_Add_Range_Sum(int\
-    \ n) { build(n); }\n  template <typename F>\n  Range_Add_Range_Sum(int n, F f)\
-    \ {\n    build(n, f);\n  }\n  Range_Add_Range_Sum(const vc<E>& v) { build(v);\
-    \ }\n\n  void build(int m) {\n    build(m, [](int i) -> E { return MX::unit();\
-    \ });\n  }\n  void build(const vc<E>& v) {\n    build(len(v), [&](int i) -> E\
-    \ { return v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n\
-    \    bit.build(m, [&](int i) -> pair<E, E> { return {f(i), MX::unit()}; });\n\
-    \  }\n\n  void add(int L, int R, E a) {\n    E b = MX::inverse(a);\n    bit.add(L,\
-    \ {MX::power(b, L), a});\n    bit.add(R, {MX::power(a, R), b});\n  }\n\n  E sum(int\
-    \ L, int R) {\n    auto [x0, x1] = bit.sum(L);\n    auto [y0, y1] = bit.sum(R);\n\
-    \    E x = MX::op(MX::power(x1, L), x0);\n    E y = MX::op(MX::power(y1, R), y0);\n\
-    \    return MX::op(MX::inverse(x), y);\n  }\n};\n"
+    \    }\n    return i;\n  }\n\n  // check(i, x)\n  template <class F>\n  int max_right_with_index(const\
+    \ F check) {\n    assert(check(0, G::unit()));\n    int i = 0;\n    E s = G::unit();\n\
+    \    int k = 1;\n    while (2 * k <= n) k *= 2;\n    while (k) {\n      if (i\
+    \ + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i + k - 1]);\n        if (check(i\
+    \ + k, t)) { i += k, s = t; }\n      }\n      k >>= 1;\n    }\n    return i;\n\
+    \  }\n\n  int kth(E k) {\n    return max_right([&k](E x) -> bool { return x <=\
+    \ k; });\n  }\n};\n#line 2 \"ds/range_add_range_sum.hpp\"\n\ntemplate <typename\
+    \ Monoid>\nstruct Range_Add_Range_Sum {\n  using MX = Monoid;\n  using E = typename\
+    \ MX::value_type;\n\n  struct Mono {\n    using value_type = pair<E, E>;\n   \
+    \ using X = value_type;\n    static X op(X x, X y) { return {MX::op(x.fi, y.fi),\
+    \ MX::op(x.se, y.se)}; }\n    static constexpr X unit() { return {MX::unit(),\
+    \ MX::unit()}; }\n    static constexpr bool commute = 1;\n  };\n  FenwickTree<Mono>\
+    \ bit;\n\n  Range_Add_Range_Sum() {}\n  Range_Add_Range_Sum(int n) { build(n);\
+    \ }\n  template <typename F>\n  Range_Add_Range_Sum(int n, F f) {\n    build(n,\
+    \ f);\n  }\n  Range_Add_Range_Sum(const vc<E>& v) { build(v); }\n\n  void build(int\
+    \ m) {\n    build(m, [](int i) -> E { return MX::unit(); });\n  }\n  void build(const\
+    \ vc<E>& v) {\n    build(len(v), [&](int i) -> E { return v[i]; });\n  }\n  template\
+    \ <typename F>\n  void build(int m, F f) {\n    bit.build(m, [&](int i) -> pair<E,\
+    \ E> { return {f(i), MX::unit()}; });\n  }\n\n  void add(int L, int R, E a) {\n\
+    \    E b = MX::inverse(a);\n    bit.add(L, {MX::power(b, L), a});\n    bit.add(R,\
+    \ {MX::power(a, R), b});\n  }\n\n  E sum(int L, int R) {\n    auto [x0, x1] =\
+    \ bit.sum(L);\n    auto [y0, y1] = bit.sum(R);\n    E x = MX::op(MX::power(x1,\
+    \ L), x0);\n    E y = MX::op(MX::power(y1, R), y0);\n    return MX::op(MX::inverse(x),\
+    \ y);\n  }\n};\n"
   code: "#include \"fenwicktree/fenwicktree.hpp\"\n\ntemplate <typename Monoid>\n\
     struct Range_Add_Range_Sum {\n  using MX = Monoid;\n  using E = typename MX::value_type;\n\
     \n  struct Mono {\n    using value_type = pair<E, E>;\n    using X = value_type;\n\
@@ -95,7 +100,7 @@ data:
   isVerificationFile: false
   path: ds/range_add_range_sum.hpp
   requiredBy: []
-  timestamp: '2023-01-19 00:13:06+09:00'
+  timestamp: '2023-11-01 01:33:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_2_E.test.cpp

@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/contour_sum.hpp
     title: graph/ds/contour_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree
@@ -215,16 +215,16 @@ data:
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge\
     \ {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
-    \ directed = false>\nstruct Graph {\n  int N, M;\n  using cost_type = T;\n  using\
-    \ edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n  vector<edge_type>\
-    \ csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class\
-    \ OutgoingEdges {\n  public:\n    OutgoingEdges(const Graph* G, int l, int r)\
-    \ : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n      if (l ==\
-    \ r) { return 0; }\n      return &G->csr_edges[l];\n    }\n\n    const edge_type*\
-    \ end() const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n\
-    \    }\n\n  private:\n    const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared()\
-    \ { return prepared; }\n  constexpr bool is_directed() { return directed; }\n\n\
-    \  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
+    \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
+    \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
+    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg,\
+    \ vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class OutgoingEdges {\n  public:\n\
+    \    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n   \
+    \ const edge_type* begin() const {\n      if (l == r) { return 0; }\n      return\
+    \ &G->csr_edges[l];\n    }\n\n    const edge_type* end() const {\n      if (l\
+    \ == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n  private:\n \
+    \   const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared;\
+    \ }\n\n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
     \ {}\n\n  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
     \    indptr.clear();\n    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n\
     \    vc_outdeg.clear();\n  }\n\n  void add(int frm, int to, T cost = 1, int i\
@@ -302,49 +302,54 @@ data:
     \ i = 0;\n    E s = G::unit();\n    int k = 1;\n    while (2 * k <= n) k *= 2;\n\
     \    while (k) {\n      if (i + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i\
     \ + k - 1]);\n        if (check(t)) { i += k, s = t; }\n      }\n      k >>= 1;\n\
-    \    }\n    return i;\n  }\n\n  int kth(E k) {\n    return max_right([&k](E x)\
-    \ -> bool { return x <= k; });\n  }\n};\n#line 2 \"graph/ds/contour_sum.hpp\"\n\
-    \n// \u70B9\u52A0\u7B97\u3001\u8DDD\u96E2\u533A\u9593\u3067\u306E\u548C\ntemplate\
-    \ <typename GT, typename AbelGroup>\nstruct Contour_Sum {\n  int N;\n  GT& G;\n\
-    \  using X = typename AbelGroup::value_type;\n  FenwickTree<AbelGroup> bit;\n\
-    \  // centroid \u3054\u3068\u3001\u65B9\u5411\u3054\u3068\n  vvc<int> bit_range;\n\
-    \  // \u65B9\u5411\u30E9\u30D9\u30EB\u3001\u91CD\u5FC3\u304B\u3089\u306E\u8DDD\
-    \u96E2\u3001bit \u3067\u306Eindex\n  vvc<tuple<int, int, int>> dat;\n\n  Contour_Sum(GT&\
-    \ G) : N(G.N), G(G) {\n    assert(!G.is_directed());\n    vc<X> v_vals(N, AbelGroup::unit());\n\
-    \    build(v_vals);\n  }\n  Contour_Sum(GT& G, const vc<X>& v_vals) : N(G.N),\
-    \ G(G) {\n    assert(!G.is_directed());\n    build(v_vals);\n  }\n\n  void add(int\
-    \ v, X val) {\n    for (auto&& [k, x, i]: dat[v]) bit.add(i, val);\n  }\n\n  //\
-    \ v \u3092\u4E2D\u5FC3\u3068\u3057\u3066\u3001\u8DDD\u96E2 [l, r) \u306E\u7BC4\
-    \u56F2\u306E\u548C\n  X sum(int v, int l, int r) {\n    X sm = AbelGroup::unit();\n\
-    \    for (auto [k, x, i]: dat[v]) {\n      int lo = l - x, hi = r - x;\n     \
-    \ int K = k;\n      if (k < 0) { lo -= 2, hi -= 2, K = ~k; }\n      int n = len(bit_range[K])\
-    \ - 2;\n      chmax(lo, 0);\n      chmin(hi, n + 1);\n      if (lo >= hi) continue;\n\
-    \      int a = bit_range[K][lo], b = bit_range[K][hi];\n      X val = bit.prod(a,\
-    \ b);\n      if (k < 0) { val = AbelGroup::inverse(val); }\n      sm = AbelGroup::op(sm,\
-    \ val);\n    }\n    return sm;\n  }\n\n  void build(const vc<X>& v_vals) {\n \
-    \   int nxt_bit_idx = 0;\n    vc<int> done(N, 0);\n    vc<int> sz(N, 0);\n   \
-    \ vc<int> par(N, -1);\n    vc<int> dist(N, -1);\n    vc<pair<int, int>> st;\n\
-    \    bit_range.resize(N);\n    dat.resize(N);\n    st.eb(0, N);\n\n    while (len(st))\
-    \ {\n      int v0 = st.back().fi;\n      int n = st.back().se;\n      st.pop_back();\n\
-    \      int c = -1;\n      {\n        auto dfs = [&](auto& dfs, int v) -> int {\n\
-    \          sz[v] = 1;\n          for (auto&& e: G[v])\n            if (e.to !=\
-    \ par[v] && !done[e.to]) {\n              par[e.to] = v;\n              sz[v]\
-    \ += dfs(dfs, e.to);\n            }\n          if (c == -1 && n - sz[v] <= n /\
-    \ 2) { c = v; }\n          return sz[v];\n        };\n        dfs(dfs, v0);\n\
-    \      }\n      // center \u304B\u3089\u306E bfs\u3002\u90E8\u5206\u6728\u30B5\
-    \u30A4\u30BA\u3082\u3068\u3063\u3066\u304A\u304F\u3002\n      done[c] = 1;\n \
-    \     {\n        int off = nxt_bit_idx;\n        vc<int> que;\n        auto add\
-    \ = [&](int v, int d, int p) -> void {\n          if (dist[v] != -1) return;\n\
-    \          sz[v] = 1;\n          dist[v] = d;\n          par[v] = p;\n       \
-    \   que.eb(v);\n        };\n        int p = 0;\n        add(c, 0, -1);\n     \
-    \   while (p < len(que)) {\n          auto v = que[p++];\n          for (auto&&\
-    \ e: G[v]) {\n            if (done[e.to]) continue;\n            add(e.to, dist[v]\
-    \ + 1, v);\n          }\n        }\n        FOR_R(i, 1, len(que)) {\n        \
-    \  int v = que[i];\n          sz[par[v]] += sz[v];\n        }\n        // \u8DDD\
-    \u96E2\u3054\u3068\u306E\u30AB\u30A6\u30F3\u30C8\n        int max_d = dist[que.back()];\n\
-    \        vc<int> count(max_d + 1);\n        // \u91CD\u5FC3\u3001\u65B9\u5411\u30E9\
-    \u30D9\u30EB\u3001\u91CD\u5FC3\u304B\u3089\u306E\u8DDD\u96E2\u3001bit \u3067\u306E\
-    index\n        for (auto&& v: que) {\n          dat[v].eb(c, dist[v], nxt_bit_idx++);\n\
+    \    }\n    return i;\n  }\n\n  // check(i, x)\n  template <class F>\n  int max_right_with_index(const\
+    \ F check) {\n    assert(check(0, G::unit()));\n    int i = 0;\n    E s = G::unit();\n\
+    \    int k = 1;\n    while (2 * k <= n) k *= 2;\n    while (k) {\n      if (i\
+    \ + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i + k - 1]);\n        if (check(i\
+    \ + k, t)) { i += k, s = t; }\n      }\n      k >>= 1;\n    }\n    return i;\n\
+    \  }\n\n  int kth(E k) {\n    return max_right([&k](E x) -> bool { return x <=\
+    \ k; });\n  }\n};\n#line 2 \"graph/ds/contour_sum.hpp\"\n\n// \u70B9\u52A0\u7B97\
+    \u3001\u8DDD\u96E2\u533A\u9593\u3067\u306E\u548C\ntemplate <typename GT, typename\
+    \ AbelGroup>\nstruct Contour_Sum {\n  int N;\n  GT& G;\n  using X = typename AbelGroup::value_type;\n\
+    \  FenwickTree<AbelGroup> bit;\n  // centroid \u3054\u3068\u3001\u65B9\u5411\u3054\
+    \u3068\n  vvc<int> bit_range;\n  // \u65B9\u5411\u30E9\u30D9\u30EB\u3001\u91CD\
+    \u5FC3\u304B\u3089\u306E\u8DDD\u96E2\u3001bit \u3067\u306Eindex\n  vvc<tuple<int,\
+    \ int, int>> dat;\n\n  Contour_Sum(GT& G) : N(G.N), G(G) {\n    assert(!G.is_directed());\n\
+    \    vc<X> v_vals(N, AbelGroup::unit());\n    build(v_vals);\n  }\n  Contour_Sum(GT&\
+    \ G, const vc<X>& v_vals) : N(G.N), G(G) {\n    assert(!G.is_directed());\n  \
+    \  build(v_vals);\n  }\n\n  void add(int v, X val) {\n    for (auto&& [k, x, i]:\
+    \ dat[v]) bit.add(i, val);\n  }\n\n  // v \u3092\u4E2D\u5FC3\u3068\u3057\u3066\
+    \u3001\u8DDD\u96E2 [l, r) \u306E\u7BC4\u56F2\u306E\u548C\n  X sum(int v, int l,\
+    \ int r) {\n    X sm = AbelGroup::unit();\n    for (auto [k, x, i]: dat[v]) {\n\
+    \      int lo = l - x, hi = r - x;\n      int K = k;\n      if (k < 0) { lo -=\
+    \ 2, hi -= 2, K = ~k; }\n      int n = len(bit_range[K]) - 2;\n      chmax(lo,\
+    \ 0);\n      chmin(hi, n + 1);\n      if (lo >= hi) continue;\n      int a = bit_range[K][lo],\
+    \ b = bit_range[K][hi];\n      X val = bit.prod(a, b);\n      if (k < 0) { val\
+    \ = AbelGroup::inverse(val); }\n      sm = AbelGroup::op(sm, val);\n    }\n  \
+    \  return sm;\n  }\n\n  void build(const vc<X>& v_vals) {\n    int nxt_bit_idx\
+    \ = 0;\n    vc<int> done(N, 0);\n    vc<int> sz(N, 0);\n    vc<int> par(N, -1);\n\
+    \    vc<int> dist(N, -1);\n    vc<pair<int, int>> st;\n    bit_range.resize(N);\n\
+    \    dat.resize(N);\n    st.eb(0, N);\n\n    while (len(st)) {\n      int v0 =\
+    \ st.back().fi;\n      int n = st.back().se;\n      st.pop_back();\n      int\
+    \ c = -1;\n      {\n        auto dfs = [&](auto& dfs, int v) -> int {\n      \
+    \    sz[v] = 1;\n          for (auto&& e: G[v])\n            if (e.to != par[v]\
+    \ && !done[e.to]) {\n              par[e.to] = v;\n              sz[v] += dfs(dfs,\
+    \ e.to);\n            }\n          if (c == -1 && n - sz[v] <= n / 2) { c = v;\
+    \ }\n          return sz[v];\n        };\n        dfs(dfs, v0);\n      }\n   \
+    \   // center \u304B\u3089\u306E bfs\u3002\u90E8\u5206\u6728\u30B5\u30A4\u30BA\
+    \u3082\u3068\u3063\u3066\u304A\u304F\u3002\n      done[c] = 1;\n      {\n    \
+    \    int off = nxt_bit_idx;\n        vc<int> que;\n        auto add = [&](int\
+    \ v, int d, int p) -> void {\n          if (dist[v] != -1) return;\n         \
+    \ sz[v] = 1;\n          dist[v] = d;\n          par[v] = p;\n          que.eb(v);\n\
+    \        };\n        int p = 0;\n        add(c, 0, -1);\n        while (p < len(que))\
+    \ {\n          auto v = que[p++];\n          for (auto&& e: G[v]) {\n        \
+    \    if (done[e.to]) continue;\n            add(e.to, dist[v] + 1, v);\n     \
+    \     }\n        }\n        FOR_R(i, 1, len(que)) {\n          int v = que[i];\n\
+    \          sz[par[v]] += sz[v];\n        }\n        // \u8DDD\u96E2\u3054\u3068\
+    \u306E\u30AB\u30A6\u30F3\u30C8\n        int max_d = dist[que.back()];\n      \
+    \  vc<int> count(max_d + 1);\n        // \u91CD\u5FC3\u3001\u65B9\u5411\u30E9\u30D9\
+    \u30EB\u3001\u91CD\u5FC3\u304B\u3089\u306E\u8DDD\u96E2\u3001bit \u3067\u306Eindex\n\
+    \        for (auto&& v: que) {\n          dat[v].eb(c, dist[v], nxt_bit_idx++);\n\
     \          count[dist[v]]++;\n          par[v] = -1;\n          dist[v] = -1;\n\
     \        }\n        bit_range[c] = cumsum<int, int>(count);\n        for (auto&&\
     \ x: bit_range[c]) x += off;\n      }\n      // \u65B9\u5411\u3054\u3068\u306E\
@@ -390,8 +395,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/verted_add_contour_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-10-29 16:21:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-01 01:33:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/verted_add_contour_sum.test.cpp
 layout: document

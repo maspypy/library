@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/offline_query/rollback_mo.hpp
     title: ds/offline_query/rollback_mo.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_inversions_query
@@ -244,31 +244,36 @@ data:
     \ i = 0;\n    E s = G::unit();\n    int k = 1;\n    while (2 * k <= n) k *= 2;\n\
     \    while (k) {\n      if (i + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i\
     \ + k - 1]);\n        if (check(t)) { i += k, s = t; }\n      }\n      k >>= 1;\n\
-    \    }\n    return i;\n  }\n\n  int kth(E k) {\n    return max_right([&k](E x)\
-    \ -> bool { return x <= k; });\n  }\n};\n#line 1 \"ds/offline_query/rollback_mo.hpp\"\
-    \n// https://codeforces.com/contest/620/problem/F\nstruct Rollback_Mo {\n  vc<pair<int,\
-    \ int>> LR;\n  void add(int L, int R) { LR.emplace_back(L, R); }\n\n  template\
-    \ <typename AL, typename AR, typename F1, typename F2, typename F3,\n        \
-    \    typename O>\n  void calc(AL add_left, AR add_right, F1 reset, F2 save, F3\
-    \ rollback,\n            O query) {\n    const int Q = len(LR);\n    if (Q ==\
-    \ 0) return;\n    int N = 0;\n    for (auto &&[L, R]: LR) chmax(N, R);\n    const\
-    \ int b_num = sqrt(Q);\n    const int b_sz = ceil(N, b_num);\n    vvc<int> QID((N\
-    \ - 1) / b_sz + 1);\n    // \u5DE6\u7AEF\u306E\u5C5E\u3059\u308B\u30D6\u30ED\u30C3\
-    \u30AF\u3067\u5206\u985E\n    // \u5DE6\u7AEF\u3068\u53F3\u7AEF\u304C\u540C\u3058\
-    \u30D6\u30ED\u30C3\u30AF\u306B\u5C5E\u3059\u308B\u3082\u306E\u306F\u3001\u5148\
-    \u306B\u51E6\u7406\u3057\u3066\u3057\u307E\u3046\u3002\n    auto naive = [&](int\
-    \ qid) -> void {\n      save();\n      auto [L, R] = LR[qid];\n      FOR(i, L,\
-    \ R) add_right(i);\n      query(qid);\n      rollback();\n    };\n\n    FOR(qid,\
-    \ Q) {\n      auto [L, R] = LR[qid];\n      int iL = L / b_sz, iR = R / b_sz;\n\
-    \      if (iL == iR) {\n        naive(qid);\n        continue;\n      }\n    \
-    \  QID[iL].eb(qid);\n    }\n\n    FOR(iL, len(QID)) {\n      auto &I = QID[iL];\n\
-    \      if (I.empty()) continue;\n      sort(all(I),\n           [&](auto &a, auto\
-    \ &b) -> bool { return LR[a].se < LR[b].se; });\n      int LMAX = 0;\n      for\
-    \ (auto &&qid: I) {\n        auto [L, R] = LR[qid];\n        chmax(LMAX, L);\n\
-    \      }\n      reset();\n      int l = LMAX, r = LMAX;\n      for (auto &&qid:\
-    \ I) {\n        auto [L, R] = LR[qid];\n        while (r < R) add_right(r++);\n\
-    \        save();\n        while (L < l) add_left(--l);\n        query(qid);\n\
-    \        rollback();\n        l = LMAX;\n      }\n    }\n  }\n};\n#line 7 \"test/library_checker/datastructure/static_range_inversions_mo2.test.cpp\"\
+    \    }\n    return i;\n  }\n\n  // check(i, x)\n  template <class F>\n  int max_right_with_index(const\
+    \ F check) {\n    assert(check(0, G::unit()));\n    int i = 0;\n    E s = G::unit();\n\
+    \    int k = 1;\n    while (2 * k <= n) k *= 2;\n    while (k) {\n      if (i\
+    \ + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i + k - 1]);\n        if (check(i\
+    \ + k, t)) { i += k, s = t; }\n      }\n      k >>= 1;\n    }\n    return i;\n\
+    \  }\n\n  int kth(E k) {\n    return max_right([&k](E x) -> bool { return x <=\
+    \ k; });\n  }\n};\n#line 1 \"ds/offline_query/rollback_mo.hpp\"\n// https://codeforces.com/contest/620/problem/F\n\
+    struct Rollback_Mo {\n  vc<pair<int, int>> LR;\n  void add(int L, int R) { LR.emplace_back(L,\
+    \ R); }\n\n  template <typename AL, typename AR, typename F1, typename F2, typename\
+    \ F3,\n            typename O>\n  void calc(AL add_left, AR add_right, F1 reset,\
+    \ F2 save, F3 rollback,\n            O query) {\n    const int Q = len(LR);\n\
+    \    if (Q == 0) return;\n    int N = 0;\n    for (auto &&[L, R]: LR) chmax(N,\
+    \ R);\n    const int b_num = sqrt(Q);\n    const int b_sz = ceil(N, b_num);\n\
+    \    vvc<int> QID((N - 1) / b_sz + 1);\n    // \u5DE6\u7AEF\u306E\u5C5E\u3059\u308B\
+    \u30D6\u30ED\u30C3\u30AF\u3067\u5206\u985E\n    // \u5DE6\u7AEF\u3068\u53F3\u7AEF\
+    \u304C\u540C\u3058\u30D6\u30ED\u30C3\u30AF\u306B\u5C5E\u3059\u308B\u3082\u306E\
+    \u306F\u3001\u5148\u306B\u51E6\u7406\u3057\u3066\u3057\u307E\u3046\u3002\n   \
+    \ auto naive = [&](int qid) -> void {\n      save();\n      auto [L, R] = LR[qid];\n\
+    \      FOR(i, L, R) add_right(i);\n      query(qid);\n      rollback();\n    };\n\
+    \n    FOR(qid, Q) {\n      auto [L, R] = LR[qid];\n      int iL = L / b_sz, iR\
+    \ = R / b_sz;\n      if (iL == iR) {\n        naive(qid);\n        continue;\n\
+    \      }\n      QID[iL].eb(qid);\n    }\n\n    FOR(iL, len(QID)) {\n      auto\
+    \ &I = QID[iL];\n      if (I.empty()) continue;\n      sort(all(I),\n        \
+    \   [&](auto &a, auto &b) -> bool { return LR[a].se < LR[b].se; });\n      int\
+    \ LMAX = 0;\n      for (auto &&qid: I) {\n        auto [L, R] = LR[qid];\n   \
+    \     chmax(LMAX, L);\n      }\n      reset();\n      int l = LMAX, r = LMAX;\n\
+    \      for (auto &&qid: I) {\n        auto [L, R] = LR[qid];\n        while (r\
+    \ < R) add_right(r++);\n        save();\n        while (L < l) add_left(--l);\n\
+    \        query(qid);\n        rollback();\n        l = LMAX;\n      }\n    }\n\
+    \  }\n};\n#line 7 \"test/library_checker/datastructure/static_range_inversions_mo2.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  vi key = A;\n  UNIQUE(key);\n\
     \n  for (auto&& x: A) x = LB(key, x);\n  ll K = len(key);\n  FenwickTree<Monoid_Add<int>>\
     \ bit(K);\n\n  Rollback_Mo mo;\n  vi ANS(Q);\n  FOR(Q) {\n    LL(L, R);\n    mo.add(L,\
@@ -311,8 +316,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   requiredBy: []
-  timestamp: '2023-10-29 16:21:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-01 01:33:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
 layout: document
