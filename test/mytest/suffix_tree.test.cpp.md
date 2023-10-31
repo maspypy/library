@@ -25,13 +25,13 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/cartesian_tree.hpp
     title: seq/cartesian_tree.hpp
   - icon: ':question:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedRequiredBy: []

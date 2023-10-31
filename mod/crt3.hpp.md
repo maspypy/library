@@ -32,18 +32,9 @@ data:
   - icon: ':x:'
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
-  - icon: ':heavy_check_mark:'
-    path: mod/binomial.hpp
-    title: mod/binomial.hpp
-  - icon: ':heavy_check_mark:'
-    path: mod/mod_kth_root.hpp
-    title: mod/mod_kth_root.hpp
   - icon: ':warning:'
     path: new_poly/base.hpp
     title: new_poly/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: nt/crt.hpp
-    title: nt/crt.hpp
   - icon: ':x:'
     path: nt/multiplicative_convolution_mod2n.hpp
     title: nt/multiplicative_convolution_mod2n.hpp
@@ -255,12 +246,6 @@ data:
   - icon: ':x:'
     path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
     title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/binomial_coefficient.test.cpp
-    title: test/library_checker/math/binomial_coefficient.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/kth_root_mod.test.cpp
-    title: test/library_checker/math/kth_root_mod.test.cpp
   - icon: ':x:'
     path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
@@ -513,9 +498,6 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1857.test.cpp
     title: test/yukicoder/1857.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/187.test.cpp
-    title: test/yukicoder/187.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1875.test.cpp
     title: test/yukicoder/1875.test.cpp
@@ -525,9 +507,6 @@ data:
   - icon: ':x:'
     path: test/yukicoder/1939.test.cpp
     title: test/yukicoder/1939.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1956.test.cpp
-    title: test/yukicoder/1956.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1962.test.cpp
     title: test/yukicoder/1962.test.cpp
@@ -543,21 +522,12 @@ data:
   - icon: ':x:'
     path: test/yukicoder/2108.test.cpp
     title: test/yukicoder/2108.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2119.test.cpp
-    title: test/yukicoder/2119.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2120.test.cpp
-    title: test/yukicoder/2120.test.cpp
   - icon: ':x:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
   - icon: ':x:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2181.test.cpp
-    title: test/yukicoder/2181.test.cpp
   - icon: ':x:'
     path: test/yukicoder/2243.test.cpp
     title: test/yukicoder/2243.test.cpp
@@ -585,9 +555,6 @@ data:
   - icon: ':x:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/590.test.cpp
-    title: test/yukicoder/590.test.cpp
   - icon: ':x:'
     path: test_atcoder/abc222h.test.cpp
     title: test_atcoder/abc222h.test.cpp
@@ -659,27 +626,27 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"mod/mod_inv.hpp\"\n\r\n// long \u3067\u3082\u5927\u4E08\u592B\
-    \r\n// (val * x - 1) \u304C mod \u306E\u500D\u6570\u306B\u306A\u308B\u3088\u3046\
-    \u306B\u3059\u308B\r\n// \u7279\u306B mod=0 \u306A\u3089 x=0 \u304C\u6E80\u305F\
-    \u3059\r\nll mod_inv(ll val, ll mod) {\r\n  if (mod == 0) return 0;\r\n  mod =\
-    \ abs(mod);\r\n  val %= mod;\r\n  if (val < 0) val += mod;\r\n  ll a = val, b\
-    \ = mod, u = 1, v = 0, t;\r\n  while (b > 0) {\r\n    t = a / b;\r\n    swap(a\
-    \ -= t * b, b), swap(u -= t * v, v);\r\n  }\r\n  if (u < 0) u += mod;\r\n  return\
-    \ u;\r\n}\r\n"
-  code: "#pragma once\r\n\r\n// long \u3067\u3082\u5927\u4E08\u592B\r\n// (val * x\
-    \ - 1) \u304C mod \u306E\u500D\u6570\u306B\u306A\u308B\u3088\u3046\u306B\u3059\
-    \u308B\r\n// \u7279\u306B mod=0 \u306A\u3089 x=0 \u304C\u6E80\u305F\u3059\r\n\
-    ll mod_inv(ll val, ll mod) {\r\n  if (mod == 0) return 0;\r\n  mod = abs(mod);\r\
-    \n  val %= mod;\r\n  if (val < 0) val += mod;\r\n  ll a = val, b = mod, u = 1,\
-    \ v = 0, t;\r\n  while (b > 0) {\r\n    t = a / b;\r\n    swap(a -= t * b, b),\
-    \ swap(u -= t * v, v);\r\n  }\r\n  if (u < 0) u += mod;\r\n  return u;\r\n}\r\n"
+  bundledCode: "#line 1 \"mod/crt3.hpp\"\n\nconstexpr u32 mod_pow_constexpr(u64 a,\
+    \ u64 n, u32 mod) {\n  a %= mod;\n  u64 res = 1;\n  FOR(32) {\n    if (n & 1)\
+    \ res = res * a % mod;\n    a = a * a % mod, n /= 2;\n  }\n  return res;\n}\n\n\
+    template <typename T, u32 p0, u32 p1, u32 p2>\nT CRT3(u64 a0, u64 a1, u64 a2)\
+    \ {\n  static_assert(p0 < p1 && p1 < p2);\n  static constexpr u64 x0_1 = mod_pow_constexpr(p0,\
+    \ p1 - 2, p1);\n  static constexpr u64 x01_2 = mod_pow_constexpr(u64(p0) * p1\
+    \ % p2, p2 - 2, p2);\n  u64 c = (a1 - a0 + p1) * x0_1 % p1;\n  u64 a = a0 + c\
+    \ * p0;\n  c = (a2 - a % p2 + p2) * x01_2 % p2;\n  return T(a) + T(c) * T(p0)\
+    \ * T(p1);\n}\n"
+  code: "\nconstexpr u32 mod_pow_constexpr(u64 a, u64 n, u32 mod) {\n  a %= mod;\n\
+    \  u64 res = 1;\n  FOR(32) {\n    if (n & 1) res = res * a % mod;\n    a = a *\
+    \ a % mod, n /= 2;\n  }\n  return res;\n}\n\ntemplate <typename T, u32 p0, u32\
+    \ p1, u32 p2>\nT CRT3(u64 a0, u64 a1, u64 a2) {\n  static_assert(p0 < p1 && p1\
+    \ < p2);\n  static constexpr u64 x0_1 = mod_pow_constexpr(p0, p1 - 2, p1);\n \
+    \ static constexpr u64 x01_2 = mod_pow_constexpr(u64(p0) * p1 % p2, p2 - 2, p2);\n\
+    \  u64 c = (a1 - a0 + p1) * x0_1 % p1;\n  u64 a = a0 + c * p0;\n  c = (a2 - a\
+    \ % p2 + p2) * x01_2 % p2;\n  return T(a) + T(c) * T(p0) * T(p1);\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: mod/mod_inv.hpp
+  path: mod/crt3.hpp
   requiredBy:
-  - mod/binomial.hpp
-  - mod/mod_kth_root.hpp
   - seq/interpolate_linear_rec.hpp
   - seq/famous/eulerian_number.hpp
   - seq/famous/stirling_number_1.hpp
@@ -697,7 +664,6 @@ data:
   - linalg/det_A_plus_xB.hpp
   - bigint/binary.hpp
   - bigint/base.hpp
-  - nt/crt.hpp
   - nt/multiplicative_convolution_mod2n.hpp
   - poly/sparse_exp_of_div.hpp
   - poly/fps_log.hpp
@@ -749,7 +715,7 @@ data:
   - graph/count/count_independent_set.hpp
   - graph/count/count_forest.hpp
   - new_poly/base.hpp
-  timestamp: '2023-10-14 15:38:43+09:00'
+  timestamp: '2023-11-01 03:36:04+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc285h.test.cpp
@@ -777,7 +743,6 @@ data:
   - test/aoj/NTL_2_B.test.cpp
   - test/aoj/NTL_2_A.test.cpp
   - test/aoj/NTL_2_C.test.cpp
-  - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/library_checker/math/partition.test.cpp
@@ -785,7 +750,6 @@ data:
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-  - test/library_checker/math/binomial_coefficient.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/sample/aplusb128.test.cpp
@@ -828,17 +792,13 @@ data:
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/polynomial/log_of_fps_dmint.test.cpp
   - test/yukicoder/1755.test.cpp
-  - test/yukicoder/187.test.cpp
   - test/yukicoder/1080_2.test.cpp
-  - test/yukicoder/2120.test.cpp
   - test/yukicoder/2166.test.cpp
   - test/yukicoder/579.test.cpp
   - test/yukicoder/502_2.test.cpp
   - test/yukicoder/1907.test.cpp
-  - test/yukicoder/590.test.cpp
   - test/yukicoder/1720.test.cpp
   - test/yukicoder/1547.test.cpp
-  - test/yukicoder/1956.test.cpp
   - test/yukicoder/1561.test.cpp
   - test/yukicoder/2459.test.cpp
   - test/yukicoder/2122.test.cpp
@@ -850,7 +810,6 @@ data:
   - test/yukicoder/541.test.cpp
   - test/yukicoder/2243.test.cpp
   - test/yukicoder/1875.test.cpp
-  - test/yukicoder/2181.test.cpp
   - test/yukicoder/1533.test.cpp
   - test/yukicoder/1796.test.cpp
   - test/yukicoder/2062.test.cpp
@@ -859,7 +818,6 @@ data:
   - test/yukicoder/2005.test.cpp
   - test/yukicoder/1500.test.cpp
   - test/yukicoder/1685.test.cpp
-  - test/yukicoder/2119.test.cpp
   - test/yukicoder/1321.test.cpp
   - test/yukicoder/1303.test.cpp
   - test/yukicoder/2305.test.cpp
@@ -898,10 +856,10 @@ data:
   - test/mytest/online_log.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp
-documentation_of: mod/mod_inv.hpp
+documentation_of: mod/crt3.hpp
 layout: document
 redirect_from:
-- /library/mod/mod_inv.hpp
-- /library/mod/mod_inv.hpp.html
-title: mod/mod_inv.hpp
+- /library/mod/crt3.hpp
+- /library/mod/crt3.hpp.html
+title: mod/crt3.hpp
 ---

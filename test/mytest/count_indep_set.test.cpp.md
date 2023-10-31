@@ -11,6 +11,9 @@ data:
     path: graph/path_cycle.hpp
     title: graph/path_cycle.hpp
   - icon: ':question:'
+    path: mod/crt3.hpp
+    title: mod/crt3.hpp
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -400,7 +403,15 @@ data:
     \n  val %= mod;\r\n  if (val < 0) val += mod;\r\n  ll a = val, b = mod, u = 1,\
     \ v = 0, t;\r\n  while (b > 0) {\r\n    t = a / b;\r\n    swap(a -= t * b, b),\
     \ swap(u -= t * v, v);\r\n  }\r\n  if (u < 0) u += mod;\r\n  return u;\r\n}\r\n\
-    #line 2 \"poly/convolution_naive.hpp\"\n\r\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type*\
+    #line 1 \"mod/crt3.hpp\"\n\nconstexpr u32 mod_pow_constexpr(u64 a, u64 n, u32\
+    \ mod) {\n  a %= mod;\n  u64 res = 1;\n  FOR(32) {\n    if (n & 1) res = res *\
+    \ a % mod;\n    a = a * a % mod, n /= 2;\n  }\n  return res;\n}\n\ntemplate <typename\
+    \ T, u32 p0, u32 p1, u32 p2>\nT CRT3(u64 a0, u64 a1, u64 a2) {\n  static_assert(p0\
+    \ < p1 && p1 < p2);\n  static constexpr u64 x0_1 = mod_pow_constexpr(p0, p1 -\
+    \ 2, p1);\n  static constexpr u64 x01_2 = mod_pow_constexpr(u64(p0) * p1 % p2,\
+    \ p2 - 2, p2);\n  u64 c = (a1 - a0 + p1) * x0_1 % p1;\n  u64 a = a0 + c * p0;\n\
+    \  c = (a2 - a % p2 + p2) * x01_2 % p2;\n  return T(a) + T(c) * T(p0) * T(p1);\n\
+    }\n#line 2 \"poly/convolution_naive.hpp\"\n\r\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type*\
     \ = nullptr>\r\nvc<T> convolution_naive(const vc<T>& a, const vc<T>& b) {\r\n\
     \  int n = int(a.size()), m = int(b.size());\r\n  if (n > m) return convolution_naive<T>(b,\
     \ a);\r\n  if (n == 0) return {};\r\n  vector<T> ans(n + m - 1);\r\n  FOR(i, n)\
@@ -507,7 +518,7 @@ data:
     \ n; k <<= 1) {\r\n    for (int i = 0; i < n; i += 2 * k) {\r\n      for (int\
     \ j = 0; j < k; j++) {\r\n        C z = a[i + j + k] * rts[j + k];\r\n       \
     \ a[i + j + k] = a[i + j] - z;\r\n        a[i + j] = a[i + j] + z;\r\n      }\r\
-    \n    }\r\n  }\r\n}\r\n} // namespace CFFT\n#line 8 \"poly/convolution.hpp\"\n\
+    \n    }\r\n  }\r\n}\r\n} // namespace CFFT\n#line 9 \"poly/convolution.hpp\"\n\
     \r\ntemplate <class mint>\r\nvector<mint> convolution_ntt(vector<mint> a, vector<mint>\
     \ b) {\r\n  if (a.empty() || b.empty()) return {};\r\n  int n = int(a.size()),\
     \ m = int(b.size());\r\n  int sz = 1;\r\n  while (sz < n + m - 1) sz *= 2;\r\n\
@@ -523,22 +534,15 @@ data:
     \n  a.resize(n + m - 1);\r\n  return a;\r\n}\r\n\r\ntemplate <typename mint>\r\
     \nvector<mint> convolution_garner(const vector<mint>& a, const vector<mint>& b)\
     \ {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  static\
-    \ const long long nttprimes[] = {754974721, 167772161, 469762049};\r\n  using\
-    \ mint0 = modint<754974721>;\r\n  using mint1 = modint<167772161>;\r\n  using\
-    \ mint2 = modint<469762049>;\r\n  vc<mint0> a0(n), b0(m);\r\n  vc<mint1> a1(n),\
-    \ b1(m);\r\n  vc<mint2> a2(n), b2(m);\r\n  FOR(i, n) a0[i] = a[i].val, a1[i] =\
-    \ a[i].val, a2[i] = a[i].val;\r\n  FOR(i, m) b0[i] = b[i].val, b1[i] = b[i].val,\
-    \ b2[i] = b[i].val;\r\n  auto c0 = convolution_ntt<mint0>(a0, b0);\r\n  auto c1\
-    \ = convolution_ntt<mint1>(a1, b1);\r\n  auto c2 = convolution_ntt<mint2>(a2,\
-    \ b2);\r\n  static const long long m01 = 1LL * nttprimes[0] * nttprimes[1];\r\n\
-    \  static const long long m0_inv_m1 = mint1(nttprimes[0]).inverse().val;\r\n \
-    \ static const long long m01_inv_m2 = mint2(m01).inverse().val;\r\n  const int\
-    \ mod = mint::get_mod();\r\n  auto garner = [&](mint0 x0, mint1 x1, mint2 x2)\
-    \ -> mint {\r\n    int r0 = x0.val, r1 = x1.val, r2 = x2.val;\r\n    int v1 =\
-    \ (m0_inv_m1 * (r1 + nttprimes[1] - r0)) % nttprimes[1];\r\n    auto v2 = (mint2(r2)\
-    \ - r0 - mint2(nttprimes[0]) * v1) * mint2(m01_inv_m2);\r\n    return mint(r0\
-    \ + 1LL * nttprimes[0] * v1 + m01 % mod * v2.val);\r\n  };\r\n  vc<mint> c(len(c0));\r\
-    \n  FOR(i, len(c)) c[i] = garner(c0[i], c1[i], c2[i]);\r\n  return c;\r\n}\r\n\
+    \ constexpr int p0 = 167772161;\r\n  static constexpr int p1 = 469762049;\r\n\
+    \  static constexpr int p2 = 754974721;\r\n  using mint0 = modint<p0>;\r\n  using\
+    \ mint1 = modint<p1>;\r\n  using mint2 = modint<p2>;\r\n  vc<mint0> a0(n), b0(m);\r\
+    \n  vc<mint1> a1(n), b1(m);\r\n  vc<mint2> a2(n), b2(m);\r\n  FOR(i, n) a0[i]\
+    \ = a[i].val, a1[i] = a[i].val, a2[i] = a[i].val;\r\n  FOR(i, m) b0[i] = b[i].val,\
+    \ b1[i] = b[i].val, b2[i] = b[i].val;\r\n  auto c0 = convolution_ntt<mint0>(a0,\
+    \ b0);\r\n  auto c1 = convolution_ntt<mint1>(a1, b1);\r\n  auto c2 = convolution_ntt<mint2>(a2,\
+    \ b2);\r\n  vc<mint> c(len(c0));\r\n  FOR(i, n + m - 1) {\r\n    c[i] = CRT3<mint,\
+    \ p0, p1, p2>(c0[i].val, c1[i].val, c2[i].val);\r\n  }\r\n  return c;\r\n}\r\n\
     \r\ntemplate <typename R>\r\nvc<double> convolution_fft(const vc<R>& a, const\
     \ vc<R>& b) {\r\n  using C = CFFT::C;\r\n  int need = (int)a.size() + (int)b.size()\
     \ - 1;\r\n  int nbase = 1;\r\n  while ((1 << nbase) < need) nbase++;\r\n  CFFT::ensure_base(nbase);\r\
@@ -553,85 +557,70 @@ data:
     \ >> 1)]) * t * CFFT::rts[(sz >> 1) + i];\r\n    fa[i] = A0 + A1 * s;\r\n  }\r\
     \n  CFFT::fft(fa, sz >> 1);\r\n  vector<double> ret(need);\r\n  for (int i = 0;\
     \ i < need; i++) {\r\n    ret[i] = (i & 1 ? fa[i >> 1].y : fa[i >> 1].x);\r\n\
-    \  }\r\n  return ret;\r\n}\r\n\r\nvector<ll> convolution(const vector<ll>& a,\
-    \ const vector<ll>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return\
-    \ {};\r\n  if (min(n, m) <= 2500) return convolution_naive(a, b);\r\n  ll abs_sum_a\
-    \ = 0, abs_sum_b = 0;\r\n  ll LIM = 1e15;\r\n  FOR(i, n) abs_sum_a = min(LIM,\
-    \ abs_sum_a + abs(a[i]));\r\n  FOR(i, m) abs_sum_b = min(LIM, abs_sum_b + abs(b[i]));\r\
-    \n  if (i128(abs_sum_a) * abs_sum_b < 1e15) {\r\n    vc<double> c = convolution_fft<ll>(a,\
-    \ b);\r\n    vc<ll> res(len(c));\r\n    FOR(i, len(c)) res[i] = ll(floor(c[i]\
-    \ + .5));\r\n    return res;\r\n  }\r\n\r\n  static constexpr unsigned long long\
-    \ MOD1 = 754974721; // 2^24\r\n  static constexpr unsigned long long MOD2 = 167772161;\
-    \ // 2^25\r\n  static constexpr unsigned long long MOD3 = 469762049; // 2^26\r\
-    \n  static constexpr unsigned long long M2M3 = MOD2 * MOD3;\r\n  static constexpr\
-    \ unsigned long long M1M3 = MOD1 * MOD3;\r\n  static constexpr unsigned long long\
-    \ M1M2 = MOD1 * MOD2;\r\n  static constexpr unsigned long long M1M2M3 = MOD1 *\
-    \ MOD2 * MOD3;\r\n\r\n  static const unsigned long long i1 = mod_inv(MOD2 * MOD3,\
-    \ MOD1);\r\n  static const unsigned long long i2 = mod_inv(MOD1 * MOD3, MOD2);\r\
-    \n  static const unsigned long long i3 = mod_inv(MOD1 * MOD2, MOD3);\r\n\r\n \
-    \ using mint1 = modint<MOD1>;\r\n  using mint2 = modint<MOD2>;\r\n  using mint3\
-    \ = modint<MOD3>;\r\n\r\n  vc<mint1> a1(n), b1(m);\r\n  vc<mint2> a2(n), b2(m);\r\
-    \n  vc<mint3> a3(n), b3(m);\r\n  FOR(i, n) a1[i] = a[i], a2[i] = a[i], a3[i] =\
-    \ a[i];\r\n  FOR(i, m) b1[i] = b[i], b2[i] = b[i], b3[i] = b[i];\r\n\r\n  auto\
-    \ c1 = convolution_ntt<mint1>(a1, b1);\r\n  auto c2 = convolution_ntt<mint2>(a2,\
-    \ b2);\r\n  auto c3 = convolution_ntt<mint3>(a3, b3);\r\n\r\n  vc<ll> c(n + m\
-    \ - 1);\r\n  FOR(i, n + m - 1) {\r\n    u64 x = 0;\r\n    x += (c1[i].val * i1)\
-    \ % MOD1 * M2M3;\r\n    x += (c2[i].val * i2) % MOD2 * M1M3;\r\n    x += (c3[i].val\
-    \ * i3) % MOD3 * M1M2;\r\n    ll diff = c1[i].val - ((long long)(x) % (long long)(MOD1));\r\
-    \n    if (diff < 0) diff += MOD1;\r\n    static constexpr unsigned long long offset[5]\r\
-    \n        = {0, 0, M1M2M3, 2 * M1M2M3, 3 * M1M2M3};\r\n    x -= offset[diff %\
-    \ 5];\r\n    c[i] = x;\r\n  }\r\n  return c;\r\n}\r\n\r\ntemplate <typename mint>\r\
-    \nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b) {\r\n  int n = len(a),\
-    \ m = len(b);\r\n  if (!n || !m) return {};\r\n  if (mint::can_ntt()) {\r\n  \
-    \  if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n    return\
-    \ convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\r\n  return convolution_garner(a, b);\r\n}\r\n#line 3 \"graph/count/count_independent_set.hpp\"\
-    \n\n// \u72EC\u7ACB\u96C6\u5408\u6570\u3048\u4E0A\u3052\u3002\u7A7A\u96C6\u5408\
-    \u3082\u8A8D\u3081\u308B\u3002N 1.381^N \u7A0B\u5EA6\u3002\ntemplate <typename\
-    \ GT>\nu64 count_independent_set(GT& G) {\n  using U = u64;\n  const int N = G.N;\n\
-    \  assert(N < 64);\n  if (N == 0) return 1;\n  vc<U> nbd(N);\n  FOR(v, N) for\
-    \ (auto&& e: G[v]) nbd[v] |= U(1) << e.to;\n\n  vc<U> dp_path(N + 1), dp_cyc(N\
-    \ + 1);\n  dp_path[0] = 1, dp_path[1] = 2;\n  FOR(i, 2, N + 1) dp_path[i] = dp_path[i\
-    \ - 1] + dp_path[i - 2];\n  FOR(i, 3, N + 1) dp_cyc[i] = dp_path[i - 1] + dp_path[i\
-    \ - 3];\n\n  auto dfs = [&](auto& dfs, U s) -> U {\n    int deg0 = 0;\n    pair<int,\
-    \ int> p = {-1, -1}; // (v, d)\n    FOR(v, N) if (s >> v & 1) {\n      int d =\
-    \ popcnt(nbd[v] & s);\n      if (chmax(p.se, d)) p.fi = v;\n      if (d == 0)\
-    \ {\n        ++deg0;\n        s &= ~(U(1) << v);\n      }\n    }\n    if (s ==\
-    \ 0) return U(1) << deg0;\n    int v = p.fi;\n    if (p.se >= 3) {\n      s &=\
-    \ ~(U(1) << v);\n      return (dfs(dfs, s) + dfs(dfs, s & ~nbd[v])) << deg0;\n\
-    \    }\n    // d <= 2, path \u3068 cycle \u306E\u307F\n    vc<int> V;\n    FOR(v,\
-    \ N) if (s >> v & 1) V.eb(v);\n    int n = len(V);\n    Graph<bool, 0> G(n);\n\
-    \    FOR(i, n) {\n      U x = nbd[V[i]] & s;\n      while (x) {\n        int v\
-    \ = topbit(x);\n        x ^= U(1) << v;\n        int j = LB(V, v);\n        if\
-    \ (i < j) G.add(i, j);\n      }\n    }\n    G.build();\n    auto [paths, cycs]\
-    \ = path_cycle(G);\n    U res = 1;\n    for (auto&& P: paths) res *= dp_path[len(P)];\n\
-    \    for (auto&& C: cycs) res *= dp_cyc[len(C)];\n    return res << deg0;\n  };\n\
-    \  return dfs(dfs, (U(1) << N) - 1);\n}\n\n// \u72EC\u7ACB\u96C6\u5408\u6570\u3048\
-    \u4E0A\u3052\u3002\u7A7A\u96C6\u5408\u3082\u8A8D\u3081\u308B\u3002N 1.381^N \u7A0B\
-    \u5EA6\u3002\ntemplate <typename GT>\nvc<u64> count_independent_set_by_size(GT&\
+    \  }\r\n  return ret;\r\n}\r\n\r\nvi convolution(vi a, vi b) {\r\n  int n = len(a),\
+    \ m = len(b);\r\n  if (!n || !m) return {};\r\n  if (min(n, m) <= 2500) return\
+    \ convolution_naive(a, b);\r\n\r\n  ll min_a = MIN(a), min_b = MIN(b);\r\n  for\
+    \ (auto& x: a) x -= min_a;\r\n  for (auto& x: b) x -= min_b;\r\n\r\n  static constexpr\
+    \ int p0 = 1045430273;\r\n  static constexpr int p1 = 1051721729;\r\n  static\
+    \ constexpr int p2 = 1053818881;\r\n  using mint0 = modint<p0>;\r\n  using mint1\
+    \ = modint<p1>;\r\n  using mint2 = modint<p2>;\r\n  vc<mint0> a0(n), b0(m);\r\n\
+    \  vc<mint1> a1(n), b1(m);\r\n  vc<mint2> a2(n), b2(m);\r\n  FOR(i, n) a0[i] =\
+    \ u64(a[i]), a1[i] = u64(a[i]), a2[i] = u64(a[i]);\r\n  FOR(i, m) b0[i] = u64(b[i]),\
+    \ b1[i] = u64(b[i]), b2[i] = u64(b[i]);\r\n  auto c0 = convolution_ntt<mint0>(a0,\
+    \ b0);\r\n  auto c1 = convolution_ntt<mint1>(a1, b1);\r\n  auto c2 = convolution_ntt<mint2>(a2,\
+    \ b2);\r\n\r\n  vi c(n + m - 1);\r\n  FOR(i, n + m - 1) {\r\n    c[i] = CRT3<u64,\
+    \ p0, p1, p2>(c0[i].val, c1[i].val, c2[i].val);\r\n  }\r\n  return c;\r\n}\r\n\
+    \r\ntemplate <typename mint>\r\nvc<mint> convolution(const vc<mint>& a, const\
+    \ vc<mint>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\
+    \n  if (mint::can_ntt()) {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
+    \ b);\r\n    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return\
+    \ convolution_karatsuba<mint>(a, b);\r\n  return convolution_garner(a, b);\r\n\
+    }\r\n#line 3 \"graph/count/count_independent_set.hpp\"\n\n// \u72EC\u7ACB\u96C6\
+    \u5408\u6570\u3048\u4E0A\u3052\u3002\u7A7A\u96C6\u5408\u3082\u8A8D\u3081\u308B\
+    \u3002N 1.381^N \u7A0B\u5EA6\u3002\ntemplate <typename GT>\nu64 count_independent_set(GT&\
     \ G) {\n  using U = u64;\n  const int N = G.N;\n  assert(N < 64);\n  if (N ==\
-    \ 0) return {1};\n  vc<U> nbd(N);\n  FOR(v, N) for (auto&& e: G[v]) nbd[v] |=\
-    \ U(1) << e.to;\n\n  vvc<U> dp_path(N + 1), dp_cyc(N + 1);\n  dp_path[0] = {1},\
-    \ dp_path[1] = {1, 1};\n  FOR(i, 2, N + 1) {\n    dp_path[i] = dp_path[i - 1];\n\
-    \    dp_path[i].resize(ceil<int>(i, 2) + 1);\n    FOR(k, len(dp_path[i - 2]))\
-    \ { dp_path[i][k + 1] += dp_path[i - 2][k]; }\n  }\n  FOR(i, 3, N + 1) {\n   \
-    \ dp_cyc[i] = dp_path[i - 1];\n    FOR(k, len(dp_path[i - 3])) dp_cyc[i][k + 1]\
-    \ += dp_path[i - 3][k];\n  }\n\n  auto dfs = [&](auto& dfs, U s) -> vc<U> {\n\
-    \    vc<U> res = {1};\n    pair<int, int> p = {-1, -1}; // (v, d)\n    FOR(v,\
-    \ N) if (s >> v & 1) {\n      int d = popcnt(nbd[v] & s);\n      if (chmax(p.se,\
-    \ d)) p.fi = v;\n      if (d == 0) {\n        res.eb(0);\n        FOR_R(i, len(res)\
-    \ - 1) res[i + 1] += res[i];\n        s &= ~(U(1) << v);\n      }\n    }\n   \
-    \ if (s == 0) return res;\n    int v = p.fi;\n    if (p.se >= 3) {\n      s &=\
-    \ ~(U(1) << v);\n      auto f = dfs(dfs, s), g = dfs(dfs, s & ~nbd[v]);\n    \
-    \  if (len(f) < len(g) + 1) f.resize(len(g) + 1);\n      FOR(i, len(g)) f[i +\
-    \ 1] += g[i];\n      return convolution_naive(f, res);\n    }\n    // d <= 2,\
-    \ path \u3068 cycle \u306E\u307F\n    vc<int> V;\n    FOR(v, N) if (s >> v & 1)\
-    \ V.eb(v);\n    int n = len(V);\n    Graph<bool, 0> G(n);\n    FOR(i, n) {\n \
-    \     U x = nbd[V[i]] & s;\n      while (x) {\n        int v = topbit(x);\n  \
-    \      x ^= U(1) << v;\n        int j = LB(V, v);\n        if (i < j) G.add(i,\
-    \ j);\n      }\n    }\n    G.build();\n    auto [paths, cycs] = path_cycle(G);\n\
-    \    for (auto&& P: paths) res = convolution_naive(res, dp_path[len(P)]);\n  \
-    \  for (auto&& C: cycs) res = convolution_naive(res, dp_cyc[len(C)]);\n    return\
+    \ 0) return 1;\n  vc<U> nbd(N);\n  FOR(v, N) for (auto&& e: G[v]) nbd[v] |= U(1)\
+    \ << e.to;\n\n  vc<U> dp_path(N + 1), dp_cyc(N + 1);\n  dp_path[0] = 1, dp_path[1]\
+    \ = 2;\n  FOR(i, 2, N + 1) dp_path[i] = dp_path[i - 1] + dp_path[i - 2];\n  FOR(i,\
+    \ 3, N + 1) dp_cyc[i] = dp_path[i - 1] + dp_path[i - 3];\n\n  auto dfs = [&](auto&\
+    \ dfs, U s) -> U {\n    int deg0 = 0;\n    pair<int, int> p = {-1, -1}; // (v,\
+    \ d)\n    FOR(v, N) if (s >> v & 1) {\n      int d = popcnt(nbd[v] & s);\n   \
+    \   if (chmax(p.se, d)) p.fi = v;\n      if (d == 0) {\n        ++deg0;\n    \
+    \    s &= ~(U(1) << v);\n      }\n    }\n    if (s == 0) return U(1) << deg0;\n\
+    \    int v = p.fi;\n    if (p.se >= 3) {\n      s &= ~(U(1) << v);\n      return\
+    \ (dfs(dfs, s) + dfs(dfs, s & ~nbd[v])) << deg0;\n    }\n    // d <= 2, path \u3068\
+    \ cycle \u306E\u307F\n    vc<int> V;\n    FOR(v, N) if (s >> v & 1) V.eb(v);\n\
+    \    int n = len(V);\n    Graph<bool, 0> G(n);\n    FOR(i, n) {\n      U x = nbd[V[i]]\
+    \ & s;\n      while (x) {\n        int v = topbit(x);\n        x ^= U(1) << v;\n\
+    \        int j = LB(V, v);\n        if (i < j) G.add(i, j);\n      }\n    }\n\
+    \    G.build();\n    auto [paths, cycs] = path_cycle(G);\n    U res = 1;\n   \
+    \ for (auto&& P: paths) res *= dp_path[len(P)];\n    for (auto&& C: cycs) res\
+    \ *= dp_cyc[len(C)];\n    return res << deg0;\n  };\n  return dfs(dfs, (U(1) <<\
+    \ N) - 1);\n}\n\n// \u72EC\u7ACB\u96C6\u5408\u6570\u3048\u4E0A\u3052\u3002\u7A7A\
+    \u96C6\u5408\u3082\u8A8D\u3081\u308B\u3002N 1.381^N \u7A0B\u5EA6\u3002\ntemplate\
+    \ <typename GT>\nvc<u64> count_independent_set_by_size(GT& G) {\n  using U = u64;\n\
+    \  const int N = G.N;\n  assert(N < 64);\n  if (N == 0) return {1};\n  vc<U> nbd(N);\n\
+    \  FOR(v, N) for (auto&& e: G[v]) nbd[v] |= U(1) << e.to;\n\n  vvc<U> dp_path(N\
+    \ + 1), dp_cyc(N + 1);\n  dp_path[0] = {1}, dp_path[1] = {1, 1};\n  FOR(i, 2,\
+    \ N + 1) {\n    dp_path[i] = dp_path[i - 1];\n    dp_path[i].resize(ceil<int>(i,\
+    \ 2) + 1);\n    FOR(k, len(dp_path[i - 2])) { dp_path[i][k + 1] += dp_path[i -\
+    \ 2][k]; }\n  }\n  FOR(i, 3, N + 1) {\n    dp_cyc[i] = dp_path[i - 1];\n    FOR(k,\
+    \ len(dp_path[i - 3])) dp_cyc[i][k + 1] += dp_path[i - 3][k];\n  }\n\n  auto dfs\
+    \ = [&](auto& dfs, U s) -> vc<U> {\n    vc<U> res = {1};\n    pair<int, int> p\
+    \ = {-1, -1}; // (v, d)\n    FOR(v, N) if (s >> v & 1) {\n      int d = popcnt(nbd[v]\
+    \ & s);\n      if (chmax(p.se, d)) p.fi = v;\n      if (d == 0) {\n        res.eb(0);\n\
+    \        FOR_R(i, len(res) - 1) res[i + 1] += res[i];\n        s &= ~(U(1) <<\
+    \ v);\n      }\n    }\n    if (s == 0) return res;\n    int v = p.fi;\n    if\
+    \ (p.se >= 3) {\n      s &= ~(U(1) << v);\n      auto f = dfs(dfs, s), g = dfs(dfs,\
+    \ s & ~nbd[v]);\n      if (len(f) < len(g) + 1) f.resize(len(g) + 1);\n      FOR(i,\
+    \ len(g)) f[i + 1] += g[i];\n      return convolution_naive(f, res);\n    }\n\
+    \    // d <= 2, path \u3068 cycle \u306E\u307F\n    vc<int> V;\n    FOR(v, N)\
+    \ if (s >> v & 1) V.eb(v);\n    int n = len(V);\n    Graph<bool, 0> G(n);\n  \
+    \  FOR(i, n) {\n      U x = nbd[V[i]] & s;\n      while (x) {\n        int v =\
+    \ topbit(x);\n        x ^= U(1) << v;\n        int j = LB(V, v);\n        if (i\
+    \ < j) G.add(i, j);\n      }\n    }\n    G.build();\n    auto [paths, cycs] =\
+    \ path_cycle(G);\n    for (auto&& P: paths) res = convolution_naive(res, dp_path[len(P)]);\n\
+    \    for (auto&& C: cycs) res = convolution_naive(res, dp_cyc[len(C)]);\n    return\
     \ res;\n  };\n  auto res = dfs(dfs, (U(1) << N) - 1);\n  res.resize(N + 1);\n\
     \  return res;\n}\n\n// \u91CD\u307F\u306F\u9802\u70B9\u91CD\u307F\u306E\u7A4D\
     \n// https://codeforces.com/contest/468/problem/E\ntemplate <typename T, typename\
@@ -704,6 +693,7 @@ data:
   - mod/modint.hpp
   - mod/modint_common.hpp
   - mod/mod_inv.hpp
+  - mod/crt3.hpp
   - poly/convolution_naive.hpp
   - poly/convolution_karatsuba.hpp
   - poly/ntt.hpp
@@ -711,7 +701,7 @@ data:
   isVerificationFile: true
   path: test/mytest/count_indep_set.test.cpp
   requiredBy: []
-  timestamp: '2023-11-01 01:33:38+09:00'
+  timestamp: '2023-11-01 03:36:04+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/count_indep_set.test.cpp
