@@ -141,6 +141,24 @@ struct BigInteger_Binary {
     return "";
   }
 
+  // https://codeforces.com/contest/477/problem/D
+  pair<bint, int> divmod(int p) {
+    assert(dat.empty() || sgn == 1);
+    vc<int> after;
+    ll rm = 0;
+    FOR_R(i, len(dat)) {
+      rm = rm * MOD + dat[i];
+      after.eb(rm / p);
+      rm = rm % p;
+    }
+    reverse(all(after));
+    while (len(after) && after.back() == 0) POP(after);
+    bint q;
+    q.sgn = 1;
+    q.dat = after;
+    return {q, rm};
+  }
+
   vc<int> base_p_representation(int p) {
     vc<u32> A(all(dat));
     vc<int> res;

@@ -9,6 +9,7 @@ struct Edge {
 
 template <typename T = int, bool directed = false>
 struct Graph {
+  static constexpr bool is_directed = directed;
   int N, M;
   using cost_type = T;
   using edge_type = Edge<T>;
@@ -38,7 +39,6 @@ struct Graph {
   };
 
   bool is_prepared() { return prepared; }
-  constexpr bool is_directed() { return directed; }
 
   Graph() : N(0), M(0), prepared(0) {}
   Graph(int N) : N(N), M(0), prepared(0) {}
