@@ -21,7 +21,7 @@ struct SubTree_Hash {
       return {A.fi, A.se + hash_base(A.fi)};
     };
 
-    Rerooting_dp<decltype(tree), T> DP(tree, f_ee, f_ev, f_ve, unit);
+    Rerooting_dp<TREE, T> DP(tree, f_ee, f_ev, f_ve, unit);
     dp.resize(N), dp_1.resize(N), dp_2.resize(N);
     FOR(v, N) dp[v] = DP.dp[v].se.val;
     FOR(v, N) dp_1[v] = DP.dp_1[v].se.val;
