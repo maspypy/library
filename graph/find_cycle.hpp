@@ -3,7 +3,7 @@
 // {vs, es} or empty. minimal.
 template <typename GT>
 pair<vc<int>, vc<int>> find_cycle_directed(GT& G) {
-  assert(G.is_directed());
+  static_assert(GT::is_directed);
   assert(G.is_prepared());
 
   int N = G.N;
@@ -68,7 +68,7 @@ pair<vc<int>, vc<int>> find_cycle_directed(GT& G) {
 // {vs, es} or empty. minimal.
 template <typename GT>
 pair<vc<int>, vc<int>> find_cycle_undirected(GT& G) {
-  assert(!G.is_directed());
+  assert(!GT::is_directed);
   assert(G.is_prepared());
   const int N = G.N;
   const int M = G.M;

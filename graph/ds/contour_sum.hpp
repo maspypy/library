@@ -3,6 +3,7 @@
 // 点加算、距離区間での和
 template <typename GT, typename AbelGroup>
 struct Contour_Sum {
+  static_assert(!GT::is_directed);
   int N;
   GT& G;
   using X = typename AbelGroup::value_type;
@@ -13,7 +14,6 @@ struct Contour_Sum {
   vvc<tuple<int, int, int>> dat;
 
   Contour_Sum(GT& G) : N(G.N), G(G) {
-    assert(!G.is_directed());
     vc<X> v_vals(N, AbelGroup::unit());
     build(v_vals);
   }

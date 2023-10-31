@@ -3,7 +3,7 @@
 // parent (idom) の列を返す. -1 if unreachable.
 template <typename GT>
 vc<int> dominator_tree(GT& G, int root) {
-  assert(G.is_directed());
+  static_assert(GT::is_directed);
   const int N = G.N;
 
   vc<int> par(N, -1), ord(N, -1), V;
