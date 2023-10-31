@@ -1,6 +1,7 @@
 #pragma once
 #include "mod/modint.hpp"
 #include "mod/mod_inv.hpp"
+#include "mod/crt3.hpp"
 #include "poly/convolution_naive.hpp"
 #include "poly/convolution_karatsuba.hpp"
 #include "poly/ntt.hpp"
@@ -43,10 +44,12 @@ template <typename mint>
 vector<mint> convolution_garner(const vector<mint>& a, const vector<mint>& b) {
   int n = len(a), m = len(b);
   if (!n || !m) return {};
-  static const long long nttprimes[] = {754974721, 167772161, 469762049};
-  using mint0 = modint<754974721>;
-  using mint1 = modint<167772161>;
-  using mint2 = modint<469762049>;
+  static constexpr int p0 = 167772161;
+  static constexpr int p1 = 469762049;
+  static constexpr int p2 = 754974721;
+  using mint0 = modint<p0>;
+  using mint1 = modint<p1>;
+  using mint2 = modint<p2>;
   vc<mint0> a0(n), b0(m);
   vc<mint1> a1(n), b1(m);
   vc<mint2> a2(n), b2(m);
@@ -55,18 +58,10 @@ vector<mint> convolution_garner(const vector<mint>& a, const vector<mint>& b) {
   auto c0 = convolution_ntt<mint0>(a0, b0);
   auto c1 = convolution_ntt<mint1>(a1, b1);
   auto c2 = convolution_ntt<mint2>(a2, b2);
-  static const long long m01 = 1LL * nttprimes[0] * nttprimes[1];
-  static const long long m0_inv_m1 = mint1(nttprimes[0]).inverse().val;
-  static const long long m01_inv_m2 = mint2(m01).inverse().val;
-  const int mod = mint::get_mod();
-  auto garner = [&](mint0 x0, mint1 x1, mint2 x2) -> mint {
-    int r0 = x0.val, r1 = x1.val, r2 = x2.val;
-    int v1 = (m0_inv_m1 * (r1 + nttprimes[1] - r0)) % nttprimes[1];
-    auto v2 = (mint2(r2) - r0 - mint2(nttprimes[0]) * v1) * mint2(m01_inv_m2);
-    return mint(r0 + 1LL * nttprimes[0] * v1 + m01 % mod * v2.val);
-  };
   vc<mint> c(len(c0));
-  FOR(i, len(c)) c[i] = garner(c0[i], c1[i], c2[i]);
+  FOR(i, n + m - 1) {
+    c[i] = CRT3<mint, p0, p1, p2>(c0[i].val, c1[i].val, c2[i].val);
+  }
   return c;
 }
 
@@ -105,59 +100,33 @@ vc<double> convolution_fft(const vc<R>& a, const vc<R>& b) {
   return ret;
 }
 
-vector<ll> convolution(const vector<ll>& a, const vector<ll>& b) {
+vi convolution(vi a, vi b) {
   int n = len(a), m = len(b);
   if (!n || !m) return {};
   if (min(n, m) <= 2500) return convolution_naive(a, b);
-  ll abs_sum_a = 0, abs_sum_b = 0;
-  ll LIM = 1e15;
-  FOR(i, n) abs_sum_a = min(LIM, abs_sum_a + abs(a[i]));
-  FOR(i, m) abs_sum_b = min(LIM, abs_sum_b + abs(b[i]));
-  if (i128(abs_sum_a) * abs_sum_b < 1e15) {
-    vc<double> c = convolution_fft<ll>(a, b);
-    vc<ll> res(len(c));
-    FOR(i, len(c)) res[i] = ll(floor(c[i] + .5));
-    return res;
-  }
 
-  static constexpr unsigned long long MOD1 = 754974721; // 2^24
-  static constexpr unsigned long long MOD2 = 167772161; // 2^25
-  static constexpr unsigned long long MOD3 = 469762049; // 2^26
-  static constexpr unsigned long long M2M3 = MOD2 * MOD3;
-  static constexpr unsigned long long M1M3 = MOD1 * MOD3;
-  static constexpr unsigned long long M1M2 = MOD1 * MOD2;
-  static constexpr unsigned long long M1M2M3 = MOD1 * MOD2 * MOD3;
+  ll min_a = MIN(a), min_b = MIN(b);
+  for (auto& x: a) x -= min_a;
+  for (auto& x: b) x -= min_b;
 
-  static const unsigned long long i1 = mod_inv(MOD2 * MOD3, MOD1);
-  static const unsigned long long i2 = mod_inv(MOD1 * MOD3, MOD2);
-  static const unsigned long long i3 = mod_inv(MOD1 * MOD2, MOD3);
-
-  using mint1 = modint<MOD1>;
-  using mint2 = modint<MOD2>;
-  using mint3 = modint<MOD3>;
-
+  static constexpr int p0 = 1045430273;
+  static constexpr int p1 = 1051721729;
+  static constexpr int p2 = 1053818881;
+  using mint0 = modint<p0>;
+  using mint1 = modint<p1>;
+  using mint2 = modint<p2>;
+  vc<mint0> a0(n), b0(m);
   vc<mint1> a1(n), b1(m);
   vc<mint2> a2(n), b2(m);
-  vc<mint3> a3(n), b3(m);
-  FOR(i, n) a1[i] = a[i], a2[i] = a[i], a3[i] = a[i];
-  FOR(i, m) b1[i] = b[i], b2[i] = b[i], b3[i] = b[i];
-
+  FOR(i, n) a0[i] = u64(a[i]), a1[i] = u64(a[i]), a2[i] = u64(a[i]);
+  FOR(i, m) b0[i] = u64(b[i]), b1[i] = u64(b[i]), b2[i] = u64(b[i]);
+  auto c0 = convolution_ntt<mint0>(a0, b0);
   auto c1 = convolution_ntt<mint1>(a1, b1);
   auto c2 = convolution_ntt<mint2>(a2, b2);
-  auto c3 = convolution_ntt<mint3>(a3, b3);
 
-  vc<ll> c(n + m - 1);
+  vi c(n + m - 1);
   FOR(i, n + m - 1) {
-    u64 x = 0;
-    x += (c1[i].val * i1) % MOD1 * M2M3;
-    x += (c2[i].val * i2) % MOD2 * M1M3;
-    x += (c3[i].val * i3) % MOD3 * M1M2;
-    ll diff = c1[i].val - ((long long)(x) % (long long)(MOD1));
-    if (diff < 0) diff += MOD1;
-    static constexpr unsigned long long offset[5]
-        = {0, 0, M1M2M3, 2 * M1M2M3, 3 * M1M2M3};
-    x -= offset[diff % 5];
-    c[i] = x;
+    c[i] = CRT3<u64, p0, p1, p2>(c0[i].val, c1[i].val, c2[i].val);
   }
   return c;
 }
