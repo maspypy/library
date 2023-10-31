@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: bigint/base.hpp
+    title: bigint/base.hpp
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
   - icon: ':question:'
@@ -29,36 +32,24 @@ data:
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
   - icon: ':question:'
-    path: poly/count_terms.hpp
-    title: poly/count_terms.hpp
-  - icon: ':question:'
-    path: poly/differentiate.hpp
-    title: poly/differentiate.hpp
-  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
-    path: poly/fps_exp.hpp
-    title: poly/fps_exp.hpp
-  - icon: ':question:'
-    path: poly/integrate.hpp
-    title: poly/integrate.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/exp_of_formal_power_series_sparse
+    PROBLEM: https://judge.yosupo.jp/problem/multiplication_of_big_integers
     links:
-    - https://judge.yosupo.jp/problem/exp_of_formal_power_series_sparse
-  bundledCode: "#line 1 \"test/library_checker/polynomial/exp_of_fps_sparse.test.cpp\"\
-    \n#define PROBLEM \\\r\n  \"https://judge.yosupo.jp/problem/exp_of_formal_power_series_sparse\"\
-    \r\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    - https://judge.yosupo.jp/problem/multiplication_of_big_integers
+  bundledCode: "#line 1 \"test/library_checker/multiplication_of_bigintegers.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/multiplication_of_big_integers\"\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
     using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
@@ -240,8 +231,8 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 5 \"test/library_checker/polynomial/exp_of_fps_sparse.test.cpp\"\
-    \n\r\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
+    \ yes(!t); }\n#line 4 \"test/library_checker/multiplication_of_bigintegers.test.cpp\"\
+    \n\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
     \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
     \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
     \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
@@ -491,73 +482,108 @@ data:
     \n  if (mint::can_ntt()) {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
     \ b);\r\n    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return\
     \ convolution_karatsuba<mint>(a, b);\r\n  return convolution_garner(a, b);\r\n\
-    }\r\n#line 2 \"poly/integrate.hpp\"\n\n// \u4E0D\u5B9A\u7A4D\u5206\uFF1Aintegrate(f)\n\
-    // \u5B9A\u7A4D\u5206\uFF1Aintegrate(f, L, R)\ntemplate <typename mint>\nvc<mint>\
-    \ integrate(const vc<mint>& f) {\n  vc<mint> g(len(f) + 1);\n  FOR3(i, 1, len(g))\
-    \ g[i] = f[i - 1] * inv<mint>(i);\n  return g;\n}\n\n// \u4E0D\u5B9A\u7A4D\u5206\
-    \uFF1Aintegrate(f)\n// \u5B9A\u7A4D\u5206\uFF1Aintegrate(f, L, R)\ntemplate <typename\
-    \ mint>\nmint integrate(const vc<mint>& f, mint L, mint R) {\n  mint I = 0;\n\
-    \  mint pow_L = 1, pow_R = 1;\n  FOR(i, len(f)) {\n    pow_L *= L, pow_R *= R;\n\
-    \    I += inv<mint>(i + 1) * f[i] * (pow_R - pow_L);\n  }\n  return I;\n}\n#line\
-    \ 2 \"poly/differentiate.hpp\"\n\ntemplate <typename mint>\nvc<mint> differentiate(const\
-    \ vc<mint>& f) {\n  if (len(f) <= 1) return {};\n  vc<mint> g(len(f) - 1);\n \
-    \ FOR(i, len(g)) g[i] = f[i + 1] * mint(i + 1);\n  return g;\n}\n#line 2 \"poly/count_terms.hpp\"\
-    \ntemplate<typename mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t =\
-    \ 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 6\
-    \ \"poly/fps_exp.hpp\"\n\r\ntemplate <typename mint>\r\nvc<mint> fps_exp_sparse(vc<mint>&\
-    \ f) {\r\n  if (len(f) == 0) return {mint(1)};\r\n  assert(f[0] == 0);\r\n  int\
-    \ N = len(f);\r\n  // df \u3092\u6301\u305F\u305B\u308B\r\n  vc<pair<int, mint>>\
-    \ dat;\r\n  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i - 1, mint(i) * f[i]);\r\
-    \n  vc<mint> F(N);\r\n  F[0] = 1;\r\n  FOR(n, 1, N) {\r\n    mint rhs = 0;\r\n\
-    \    for (auto&& [k, fk]: dat) {\r\n      if (k > n - 1) break;\r\n      rhs +=\
-    \ fk * F[n - 1 - k];\r\n    }\r\n    F[n] = rhs * inv<mint>(n);\r\n  }\r\n  return\
-    \ F;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_exp_dense(vc<mint>&\
-    \ h) {\r\n  const int n = len(h);\r\n  assert(n > 0 && h[0] == mint(0));\r\n \
-    \ if (mint::can_ntt()) {\r\n    vc<mint>& f = h;\r\n    vc<mint> b = {1, (1 <\
-    \ n ? f[1] : 0)};\r\n    vc<mint> c = {1}, z1, z2 = {1, 1};\r\n    while (len(b)\
-    \ < n) {\r\n      int m = len(b);\r\n      auto y = b;\r\n      y.resize(2 * m);\r\
-    \n      ntt(y, 0);\r\n      z1 = z2;\r\n      vc<mint> z(m);\r\n      FOR(i, m)\
-    \ z[i] = y[i] * z1[i];\r\n      ntt(z, 1);\r\n      FOR(i, m / 2) z[i] = 0;\r\n\
-    \      ntt(z, 0);\r\n      FOR(i, m) z[i] *= -z1[i];\r\n      ntt(z, 1);\r\n \
-    \     c.insert(c.end(), z.begin() + m / 2, z.end());\r\n      z2 = c;\r\n    \
-    \  z2.resize(2 * m);\r\n      ntt(z2, 0);\r\n\r\n      vc<mint> x(f.begin(), f.begin()\
-    \ + m);\r\n      FOR(i, len(x) - 1) x[i] = x[i + 1] * mint(i + 1);\r\n      x.back()\
-    \ = 0;\r\n      ntt(x, 0);\r\n      FOR(i, m) x[i] *= y[i];\r\n      ntt(x, 1);\r\
-    \n\r\n      FOR(i, m - 1) x[i] -= b[i + 1] * mint(i + 1);\r\n\r\n      x.resize(m\
-    \ + m);\r\n      FOR(i, m - 1) x[m + i] = x[i], x[i] = 0;\r\n      ntt(x, 0);\r\
-    \n      FOR(i, m + m) x[i] *= z2[i];\r\n      ntt(x, 1);\r\n      FOR_R(i, len(x)\
-    \ - 1) x[i + 1] = x[i] * inv<mint>(i + 1);\r\n      x[0] = 0;\r\n\r\n      FOR3(i,\
-    \ m, min(n, m + m)) x[i] += f[i];\r\n      FOR(i, m) x[i] = 0;\r\n      ntt(x,\
-    \ 0);\r\n      FOR(i, m + m) x[i] *= y[i];\r\n      ntt(x, 1);\r\n      b.insert(b.end(),\
-    \ x.begin() + m, x.end());\r\n    }\r\n    b.resize(n);\r\n    return b;\r\n \
-    \ }\r\n\r\n  const int L = len(h);\r\n  assert(L > 0 && h[0] == mint(0));\r\n\
-    \  int LOG = 0;\r\n  while (1 << LOG < L) ++LOG;\r\n  h.resize(1 << LOG);\r\n\
-    \  auto dh = differentiate(h);\r\n  vc<mint> f = {1}, g = {1};\r\n  int m = 1;\r\
-    \n\r\n  vc<mint> p;\r\n\r\n  FOR(LOG) {\r\n    p = convolution(f, g);\r\n    p.resize(m);\r\
-    \n    p = convolution(p, g);\r\n    p.resize(m);\r\n    g.resize(m);\r\n    FOR(i,\
-    \ m) g[i] += g[i] - p[i];\r\n    p = {dh.begin(), dh.begin() + m - 1};\r\n   \
-    \ p = convolution(f, p);\r\n    p.resize(m + m - 1);\r\n    FOR(i, m + m - 1)\
-    \ p[i] = -p[i];\r\n    FOR(i, m - 1) p[i] += mint(i + 1) * f[i + 1];\r\n    p\
-    \ = convolution(p, g);\r\n\r\n    p.resize(m + m - 1);\r\n    FOR(i, m - 1) p[i]\
-    \ += dh[i];\r\n    p = integrate(p);\r\n    FOR(i, m + m) p[i] = h[i] - p[i];\r\
-    \n    p[0] += mint(1);\r\n    f = convolution(f, p);\r\n    f.resize(m + m);\r\
-    \n    m += m;\r\n  }\r\n  f.resize(L);\r\n  return f;\r\n}\r\n\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> fps_exp(vc<mint>& f) {\r\n  int n = count_terms(f);\r\n  int\
-    \ t = (mint::can_ntt() ? 320 : 3000);\r\n  return (n <= t ? fps_exp_sparse<mint>(f)\
-    \ : fps_exp_dense<mint>(f));\r\n}\r\n#line 7 \"test/library_checker/polynomial/exp_of_fps_sparse.test.cpp\"\
-    \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N, K);\r\n  vc<mint>\
-    \ f(N);\r\n  FOR(K) {\r\n    LL(i, a);\r\n    f[i] = a;\r\n  }\r\n  print(fps_exp(f));\r\
-    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \\\r\n  \"https://judge.yosupo.jp/problem/exp_of_formal_power_series_sparse\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
-    \ \"poly/fps_exp.hpp\"\r\n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n\
-    \  LL(N, K);\r\n  vc<mint> f(N);\r\n  FOR(K) {\r\n    LL(i, a);\r\n    f[i] =\
-    \ a;\r\n  }\r\n  print(fps_exp(f));\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\
-    \n\r\n  return 0;\r\n}\r\n"
+    }\r\n#line 2 \"bigint/base.hpp\"\n\n// 10^9 \u305A\u3064\u533A\u5207\u3063\u3066\
+    \nstruct BigInteger {\n  static constexpr int TEN[]\n      = {1,      10,    \
+    \  100,      1000,      10000,\n         100000, 1000000, 10000000, 100000000,\
+    \ 1000000000};\n  static constexpr int LOG = 9;\n  static constexpr int MOD =\
+    \ TEN[LOG];\n  using bint = BigInteger;\n  int sgn; // +1 or -1. \u5185\u90E8\u72B6\
+    \u614B\u3067 -0 \u3092\u8A31\u5BB9\u3059\u308B.\n  vc<int> dat;\n\n  BigInteger()\
+    \ : sgn(1) {}\n  BigInteger(i128 val) {\n    sgn = 1;\n    if (val != 0) {\n \
+    \     if (val < 0) sgn = -1, val = -val;\n      while (val > 0) {\n        dat.eb(val\
+    \ % MOD);\n        val /= MOD;\n      }\n    }\n  }\n  BigInteger(string s) {\n\
+    \    assert(!s.empty());\n    sgn = 1;\n    if (s[0] == '-') {\n      sgn = -1;\n\
+    \      s.erase(s.begin());\n      assert(!s.empty());\n    }\n    if (s[0] ==\
+    \ '0') s.clear();\n    reverse(all(s));\n    int n = len(s);\n    int m = ceil(n,\
+    \ LOG);\n    dat.assign(m, 0);\n    FOR(i, n) { dat[i / LOG] += TEN[i % LOG] *\
+    \ (s[i] - '0'); }\n  }\n  bint &operator=(const bint &p) {\n    sgn = p.sgn;\n\
+    \    dat = p.dat;\n    return *this;\n  }\n  bool operator<(const bint &p) const\
+    \ {\n    if (sgn != p.sgn) return sgn < p.sgn;\n    if (len(dat) != len(p.dat))\
+    \ {\n      if (sgn == 1) return len(dat) < len(p.dat);\n      if (sgn == -1) return\
+    \ len(dat) > len(p.dat);\n    }\n    FOR_R(i, len(dat)) {\n      if (dat[i] ==\
+    \ p.dat[i]) continue;\n      if (sgn == 1) return dat[i] < p.dat[i];\n      if\
+    \ (sgn == -1) return dat[i] > p.dat[i];\n    }\n    return false;\n  }\n  bool\
+    \ operator>(const bint &p) const { return p < *this; }\n  bool operator<=(const\
+    \ bint &p) const { return !(*this > p); }\n  bool operator>=(const bint &p) const\
+    \ { return !(*this < p); }\n  bint &operator+=(const bint p) {\n    if (sgn !=\
+    \ p.sgn) {\n      *this -= (-p);\n      return *this;\n    }\n    int n = max(len(dat),\
+    \ len(p.dat));\n    dat.resize(n + 1);\n    FOR(i, n) {\n      if (i < len(p.dat))\
+    \ dat[i] += p.dat[i];\n      if (dat[i] >= MOD) dat[i] -= MOD, dat[i + 1] += 1;\n\
+    \    }\n    while (len(dat) && dat.back() == 0) dat.pop_back();\n    return *this;\n\
+    \  }\n  bint &operator-=(const bint p) {\n    if (sgn != p.sgn) {\n      *this\
+    \ += (-p);\n      return *this;\n    }\n    if ((sgn == 1 && *this < p) || (sgn\
+    \ == -1 && *this > p)) {\n      *this = p - *this;\n      sgn = -sgn;\n      return\
+    \ *this;\n    }\n    FOR(i, len(p.dat)) { dat[i] -= p.dat[i]; }\n    FOR(i, len(dat)\
+    \ - 1) {\n      if (dat[i] < 0) dat[i] += MOD, dat[i + 1] -= 1;\n    }\n    while\
+    \ (len(dat) && dat.back() == 0) { dat.pop_back(); }\n    return *this;\n  }\n\
+    \  bint &operator*=(const bint &p) {\n    sgn *= p.sgn;\n    dat = convolve(dat,\
+    \ p.dat);\n    return *this;\n  }\n  // bint &operator/=(const bint &p) { return\
+    \ *this; }\n  bint operator-() const {\n    bint p = *this;\n    p.sgn *= -1;\n\
+    \    return p;\n  }\n  bint operator+(const bint &p) const { return bint(*this)\
+    \ += p; }\n  bint operator-(const bint &p) const { return bint(*this) -= p; }\n\
+    \  bint operator*(const bint &p) const { return bint(*this) *= p; }\n  // bint\
+    \ operator/(const modint &p) const { return modint(*this) /= p; }\n  bool operator==(const\
+    \ bint &p) const {\n    return (sgn == p.sgn && dat == p.dat);\n  }\n  bool operator!=(const\
+    \ bint &p) const {\n    return (sgn != p.sgn || dat != p.dat);\n  }\n\n  vc<int>\
+    \ convolve(const vc<int> &a, const vc<int> &b) {\n    int n = len(a), m = len(b);\n\
+    \    if (!n || !m) return {};\n    if (min(n, m) <= 500) {\n      vc<int> c(n\
+    \ + m - 1);\n      u128 x = 0;\n      FOR(k, n + m - 1) {\n        int s = max<int>(0,\
+    \ k + 1 - m), t = min<int>(k, n - 1);\n        FOR(i, s, t + 1) { x += u64(a[i])\
+    \ * b[k - i]; }\n        c[k] = x % MOD, x = x / MOD;\n      }\n      while (x\
+    \ > 0) { c.eb(x % MOD), x = x / MOD; }\n      return c;\n    }\n    static constexpr\
+    \ int p0 = 167772161;\n    static constexpr int p1 = 469762049;\n    static constexpr\
+    \ int p2 = 754974721;\n    using mint0 = modint<p0>;\n    using mint1 = modint<p1>;\n\
+    \    using mint2 = modint<p2>;\n    vc<mint0> a0(all(a)), b0(all(b));\n    vc<mint1>\
+    \ a1(all(a)), b1(all(b));\n    vc<mint2> a2(all(a)), b2(all(b));\n    auto c0\
+    \ = convolution_ntt<mint0>(a0, b0);\n    auto c1 = convolution_ntt<mint1>(a1,\
+    \ b1);\n    auto c2 = convolution_ntt<mint2>(a2, b2);\n    vc<int> c(len(c0));\n\
+    \    u128 x = 0;\n    FOR(i, n + m - 1) {\n      x += CRT3<u128, p0, p1, p2>(c0[i].val,\
+    \ c1[i].val, c2[i].val);\n      c[i] = x % MOD, x = x / MOD;\n    }\n    while\
+    \ (x) { c.eb(x % MOD), x = x / MOD; }\n    return c;\n  }\n\n  string to_string()\
+    \ {\n    if (dat.empty()) return \"0\";\n    string s;\n    for (int x: dat) {\n\
+    \      FOR(LOG) {\n        s += '0' + (x % 10);\n        x = x / 10;\n      }\n\
+    \    }\n    while (s.back() == '0') s.pop_back();\n    if (sgn == -1) s += '-';\n\
+    \    reverse(all(s));\n    return s;\n  }\n\n  // https://codeforces.com/contest/504/problem/D\n\
+    \  string to_binary_string() {\n    vc<u32> A(all(dat));\n    string ANS;\n  \
+    \  while (1) {\n      while (len(A) && A.back() == u32(0)) POP(A);\n      if (A.empty())\
+    \ break;\n      u64 rem = 0;\n      FOR_R(i, len(A)) {\n        rem = rem * MOD\
+    \ + A[i];\n        A[i] = rem >> 32;\n        rem &= u32(-1);\n      }\n     \
+    \ FOR(i, 32) { ANS += '0' + (rem >> i & 1); }\n    }\n    while (len(ANS) && ANS.back()\
+    \ == '0') ANS.pop_back();\n    reverse(all(ANS));\n    if (ANS.empty()) ANS +=\
+    \ '0';\n    return ANS;\n  }\n\n  // https://codeforces.com/contest/759/problem/E\n\
+    \  pair<bint, int> divmod(int p) {\n    assert(dat.empty() || sgn == 1);\n   \
+    \ vc<int> after;\n    ll rm = 0;\n    FOR_R(i, len(dat)) {\n      rm = rm * MOD\
+    \ + dat[i];\n      after.eb(rm / p);\n      rm = rm % p;\n    }\n    reverse(all(after));\n\
+    \    while (len(after) && after.back() == 0) POP(after);\n    bint q;\n    q.sgn\
+    \ = 1;\n    q.dat = after;\n    return {q, rm};\n  }\n\n  // https://codeforces.com/problemset/problem/582/D\n\
+    \  vc<int> base_p_representation(int p) {\n    vc<u32> A(all(dat));\n    vc<int>\
+    \ res;\n    while (1) {\n      while (len(A) && A.back() == u32(0)) POP(A);\n\
+    \      if (A.empty()) break;\n      u64 rm = 0;\n      FOR_R(i, len(A)) {\n  \
+    \      rm = rm * MOD + A[i];\n        A[i] = rm / p;\n        rm %= p;\n     \
+    \ }\n      res.eb(rm);\n    }\n    reverse(all(res));\n    return res;\n  }\n\n\
+    \  // overflow \u7121\u8996\u3057\u3066\u8A08\u7B97\n  ll to_ll() {\n    ll x\
+    \ = 0;\n    FOR_R(i, len(dat)) x = MOD * x + dat[i];\n    return sgn * x;\n  }\n\
+    \n  // https://codeforces.com/contest/986/problem/D\n  bint pow(ll n) {\n    auto\
+    \ dfs = [&](auto &dfs, ll n) -> bint {\n      if (n == 1) return (*this);\n  \
+    \    bint x = dfs(dfs, n / 2);\n      x *= x;\n      if (n & 1) x *= (*this);\n\
+    \      return x;\n    };\n    if (n == 0) return bint(1);\n    return dfs(dfs,\
+    \ n);\n  }\n\n  // https://codeforces.com/contest/986/problem/D\n  double log10()\
+    \ {\n    assert(!dat.empty() && sgn == 1);\n    if (len(dat) <= 3) {\n      double\
+    \ x = 0;\n      FOR_R(i, len(dat)) x = MOD * x + dat[i];\n      return std::log10(x);\n\
+    \    }\n    double x = 0;\n    FOR(i, 4) x = MOD * x + dat[len(dat) - 1 - i];\n\
+    \    x = std::log10(x);\n    x += double(LOG) * (len(dat) - 4);\n    return x;\n\
+    \  }\n\n#ifdef FASTIO\n  void write() { fastio::printer.write(to_string()); }\n\
+    \  void read() {\n    string s;\n    fastio::scanner.read(s);\n    *this = bint(s);\n\
+    \  }\n#endif\n};\n#line 6 \"test/library_checker/multiplication_of_bigintegers.test.cpp\"\
+    \n\nusing B = BigInteger;\n\nvoid solve() {\n  B a, b;\n  read(a, b);\n  print(a\
+    \ * b);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/multiplication_of_big_integers\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"bigint/base.hpp\"\
+    \n\nusing B = BigInteger;\n\nvoid solve() {\n  B a, b;\n  read(a, b);\n  print(a\
+    \ * b);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - poly/fps_exp.hpp
+  - bigint/base.hpp
   - poly/convolution.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
@@ -567,19 +593,16 @@ data:
   - poly/convolution_karatsuba.hpp
   - poly/ntt.hpp
   - poly/fft.hpp
-  - poly/integrate.hpp
-  - poly/differentiate.hpp
-  - poly/count_terms.hpp
   isVerificationFile: true
-  path: test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
+  path: test/library_checker/multiplication_of_bigintegers.test.cpp
   requiredBy: []
-  timestamp: '2023-11-01 03:36:04+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-01 04:11:53+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
+documentation_of: test/library_checker/multiplication_of_bigintegers.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
-- /verify/test/library_checker/polynomial/exp_of_fps_sparse.test.cpp.html
-title: test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
+- /verify/test/library_checker/multiplication_of_bigintegers.test.cpp
+- /verify/test/library_checker/multiplication_of_bigintegers.test.cpp.html
+title: test/library_checker/multiplication_of_bigintegers.test.cpp
 ---
