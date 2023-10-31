@@ -5,7 +5,7 @@
 // 各頂点の色をかえす。各色はひとつのパス上にあるようにする
 template <typename DAG>
 vc<int> dag_path_cover(DAG& G) {
-  assert(G.is_directed());
+  static_assert(DAG::is_directed);
   for (auto&& e: G.edges) assert(e.frm < e.to);
 
   int N = G.N;

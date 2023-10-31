@@ -4,7 +4,8 @@
 // 辞書順最小の toposort を返す
 template <typename GT>
 vc<int> toposort(GT& G) {
-  assert(G.is_prepared() && G.is_directed());
+  static_assert(GT::is_directed);
+  assert(G.is_prepared());
   const int N = G.N;
   auto [indeg, outdeg] = G.deg_array_inout();
   FastSet que(N);
