@@ -370,8 +370,8 @@ data:
   timestamp: '2023-10-18 00:17:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/enum_partitions.test.cpp
   - test/library_checker/math/partition.test.cpp
+  - test/mytest/enum_partitions.test.cpp
 documentation_of: seq/famous/partition_number.hpp
 layout: document
 redirect_from:

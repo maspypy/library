@@ -237,9 +237,9 @@ data:
   timestamp: '2023-08-13 11:37:00+05:30'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/datastructure/sort_segtree_1.test.cpp
-  - test/library_checker/datastructure/sort_segtree.test.cpp
   - test_atcoder/abc237g.test.cpp
+  - test/library_checker/datastructure/sort_segtree.test.cpp
+  - test/library_checker/datastructure/sort_segtree_1.test.cpp
 documentation_of: ds/segtree/sortable_segtree.hpp
 layout: document
 redirect_from:
