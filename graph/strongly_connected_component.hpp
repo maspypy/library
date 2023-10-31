@@ -3,7 +3,7 @@
 
 template <typename Graph>
 pair<int, vc<int>> strongly_connected_component(Graph& G) {
-  assert(G.is_directed());
+  static_assert(decltype(G)::is_directed);
   assert(G.is_prepared());
   int N = G.N;
   int C = 0;
