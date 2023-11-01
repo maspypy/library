@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/totient_sum.test.cpp
     title: test/library_checker/math/totient_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1276.test.cpp
     title: test/yukicoder/1276.test.cpp
   - icon: ':x:'
@@ -67,9 +67,9 @@ data:
   timestamp: '2023-08-06 12:11:45+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/library_checker/math/totient_sum.test.cpp
   - test/yukicoder/1276.test.cpp
   - test/yukicoder/1781.test.cpp
-  - test/library_checker/math/totient_sum.test.cpp
 documentation_of: nt/multiplicative_sum.hpp
 layout: document
 redirect_from:

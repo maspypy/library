@@ -12,7 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/biconnected_component.test.cpp
     title: test/library_checker/graph/biconnected_component.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1326.test.cpp
     title: test/yukicoder/1326.test.cpp
   - icon: ':x:'
@@ -129,10 +129,10 @@ data:
   timestamp: '2023-11-01 01:33:38+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1326.test.cpp
-  - test/library_checker/graph/biconnected_component.test.cpp
-  - test/aoj/GRL_3_A.test.cpp
   - test_atcoder/arc153f.test.cpp
+  - test/aoj/GRL_3_A.test.cpp
+  - test/library_checker/graph/biconnected_component.test.cpp
+  - test/yukicoder/1326.test.cpp
 documentation_of: graph/block_cut.hpp
 layout: document
 redirect_from:

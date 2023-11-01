@@ -9,16 +9,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/assignment_mcf.test.cpp
     title: test/library_checker/graph/assignment_mcf.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1288.test.cpp
     title: test/yukicoder/1288.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1301.test.cpp
     title: test/yukicoder/1301.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1324.test.cpp
     title: test/yukicoder/1324.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1341.test.cpp
     title: test/yukicoder/1341.test.cpp
   - icon: ':x:'
@@ -254,15 +254,15 @@ data:
   timestamp: '2023-10-14 01:47:11+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1288.test.cpp
-  - test/yukicoder/1341.test.cpp
+  - test_atcoder/abc214h.test.cpp
+  - test/aoj/GRL_6_B.test.cpp
+  - test/library_checker/graph/assignment_mcf.test.cpp
   - test/yukicoder/1678.test.cpp
   - test/yukicoder/1301.test.cpp
-  - test/yukicoder/1324.test.cpp
+  - test/yukicoder/1341.test.cpp
   - test/yukicoder/1676.test.cpp
-  - test/library_checker/graph/assignment_mcf.test.cpp
-  - test/aoj/GRL_6_B.test.cpp
-  - test_atcoder/abc214h.test.cpp
+  - test/yukicoder/1324.test.cpp
+  - test/yukicoder/1288.test.cpp
 documentation_of: flow/mincostflow.hpp
 layout: document
 redirect_from:

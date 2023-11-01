@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1323.test.cpp
     title: test/yukicoder/1323.test.cpp
   - icon: ':x:'
@@ -11,7 +11,7 @@ data:
     title: test_atcoder/abc301e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/shortest_path/grid_bfs.hpp\"\n\n// walls = \"#\" \u3084\
@@ -45,10 +45,10 @@ data:
   path: graph/shortest_path/grid_bfs.hpp
   requiredBy: []
   timestamp: '2023-02-02 01:33:15+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1323.test.cpp
   - test_atcoder/abc301e.test.cpp
+  - test/yukicoder/1323.test.cpp
 documentation_of: graph/shortest_path/grid_bfs.hpp
 layout: document
 redirect_from:

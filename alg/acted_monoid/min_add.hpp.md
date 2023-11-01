@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1234.test.cpp
     title: test/yukicoder/1234.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1270.test.cpp
     title: test/yukicoder/1270.test.cpp
   - icon: ':x:'
@@ -63,11 +63,11 @@ data:
   timestamp: '2023-02-02 02:12:17+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1270.test.cpp
+  - test/aoj/DSL_2_H.test.cpp
+  - test/library_checker/graph/common_interval_decomposition.test.cpp
   - test/yukicoder/1234.test.cpp
   - test/yukicoder/1720.test.cpp
-  - test/library_checker/graph/common_interval_decomposition.test.cpp
-  - test/aoj/DSL_2_H.test.cpp
+  - test/yukicoder/1270.test.cpp
 documentation_of: alg/acted_monoid/min_add.hpp
 layout: document
 redirect_from:
