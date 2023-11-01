@@ -234,8 +234,8 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 4 \"test/mytest/three_square.test.cpp\"\n\n#line 1 \"mod/mongomery_modint.hpp\"\
-    \n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
+    \ yes(!t); }\n#line 4 \"test/mytest/three_square.test.cpp\"\n\n#line 2 \"mod/mongomery_modint.hpp\"\
+    \n\n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
     \ <int id, typename U1, typename U2>\nstruct Mongomery_modint {\n  using mint\
     \ = Mongomery_modint;\n  inline static U1 m, r, n2;\n  static constexpr int W\
     \ = numeric_limits<U1>::digits;\n\n  static void set_mod(U1 mod) {\n    assert(mod\
@@ -426,59 +426,38 @@ data:
     \  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val); }\n  void read()\
     \ {\n    fastio::scanner.read(val);\n    val = bt.modulo(val);\n  }\n#endif\n\
     };\n\nusing dmint64 = Dynamic_Modint_64<-1>;\ntemplate <int id>\nBarrett_64 Dynamic_Modint_64<id>::bt;\n\
-    #line 1 \"mod/mongomery_modint.hpp\"\n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\
-    \u306B rx \u3092\u6301\u3064\ntemplate <int id, typename U1, typename U2>\nstruct\
-    \ Mongomery_modint {\n  using mint = Mongomery_modint;\n  inline static U1 m,\
-    \ r, n2;\n  static constexpr int W = numeric_limits<U1>::digits;\n\n  static void\
-    \ set_mod(U1 mod) {\n    assert(mod & 1 && mod <= U1(1) << (W - 2));\n    m =\
-    \ mod, n2 = -U2(m) % m, r = m;\n    FOR(5) r *= 2 - m * r;\n    r = -r;\n    assert(r\
-    \ * m == U1(-1));\n  }\n  static U1 reduce(U2 b) { return (b + U2(U1(b) * r) *\
-    \ m) >> W; }\n\n  U1 x;\n  Mongomery_modint() : x(0) {}\n  Mongomery_modint(U1\
-    \ x) : x(reduce(U2(x) * n2)){};\n  U1 val() const {\n    U1 y = reduce(x);\n \
-    \   return y >= m ? y - m : y;\n  }\n  mint &operator+=(mint y) {\n    x = ((x\
-    \ += y.x) >= m ? x - m : x);\n    return *this;\n  }\n  mint &operator-=(mint\
-    \ y) {\n    x -= (x >= y.x ? y.x : y.x - m);\n    return *this;\n  }\n  mint &operator*=(mint\
-    \ y) {\n    x = reduce(U2(x) * y.x);\n    return *this;\n  }\n  mint operator+(mint\
-    \ y) const { return mint(*this) += y; }\n  mint operator-(mint y) const { return\
-    \ mint(*this) -= y; }\n  mint operator*(mint y) const { return mint(*this) *=\
-    \ y; }\n  bool operator==(mint y) const {\n    return (x >= m ? x - m : x) ==\
-    \ (y.x >= m ? y.x - m : y.x);\n  }\n  bool operator!=(mint y) const { return not\
-    \ operator==(y); }\n  mint pow(ll n) const {\n    assert(n >= 0);\n    mint y\
-    \ = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if (n & 1) y *= z;\n\
-    \    return y;\n  }\n};\n\ntemplate <int id>\nusing Mongomery_modint_32 = Mongomery_modint<id,\
-    \ u32, u64>;\ntemplate <int id>\nusing Mongomery_modint_64 = Mongomery_modint<id,\
-    \ u64, u128>;\n#line 5 \"mod/mod_pow.hpp\"\n\r\nu32 mod_pow(int a, ll n, int mod)\
+    #line 5 \"mod/mod_pow.hpp\"\n\r\nu32 mod_pow(int a, ll n, int mod) {\r\n  assert(n\
+    \ >= 0);\r\n  a = ((a %= mod) < 0 ? a + mod : a);\r\n  if ((mod & 1) && (mod <\
+    \ (1 << 30))) {\r\n    using mint = Mongomery_modint_32<202311021>;\r\n    mint::set_mod(mod);\r\
+    \n    return mint(a).pow(n).val();\r\n  }\r\n  using mint = Dynamic_Modint<202311022>;\r\
+    \n  return mint(a).pow(n).val;\r\n}\r\n\r\nu64 mod_pow_64(ll a, ll n, u64 mod)\
     \ {\r\n  assert(n >= 0);\r\n  a = ((a %= mod) < 0 ? a + mod : a);\r\n  if ((mod\
-    \ & 1) && (mod < (1 << 30))) {\r\n    using mint = Mongomery_modint_32<202311021>;\r\
+    \ & 1) && (mod < (1 << 30))) {\r\n    using mint = Mongomery_modint_64<202311023>;\r\
     \n    mint::set_mod(mod);\r\n    return mint(a).pow(n).val();\r\n  }\r\n  using\
-    \ mint = Dynamic_Modint<202311022>;\r\n  return mint(a).pow(n).val;\r\n}\r\n\r\
-    \nu64 mod_pow_64(ll a, ll n, u64 mod) {\r\n  assert(n >= 0);\r\n  a = ((a %= mod)\
-    \ < 0 ? a + mod : a);\r\n  if ((mod & 1) && (mod < (1 << 30))) {\r\n    using\
-    \ mint = Mongomery_modint_64<202311023>;\r\n    mint::set_mod(mod);\r\n    return\
-    \ mint(a).pow(n).val();\r\n  }\r\n  using mint = Dynamic_Modint_64<202311024>;\r\
-    \n  return mint(a).pow(n).val;\r\n}\n#line 3 \"nt/gaussian_integers.hpp\"\n\r\n\
-    template <typename T>\r\nstruct Gaussian_Integer {\r\n  T x, y;\r\n  using G =\
-    \ Gaussian_Integer;\r\n\r\n  Gaussian_Integer(T x = 0, T y = 0) : x(x), y(y) {}\r\
-    \n  Gaussian_Integer(pair<T, T> p) : x(p.fi), y(p.se) {}\r\n\r\n  T norm() const\
-    \ { return x * x + y * y; }\r\n  G conjugate() const { return G(x, -y); }\r\n\r\
-    \n  G &operator+=(const G &g) {\r\n    x += g.x, y += g.y;\r\n    return *this;\r\
-    \n  }\r\n  G &operator-=(const G &g) {\r\n    x -= g.x, y -= g.y;\r\n    return\
-    \ *this;\r\n  }\r\n  G &operator*=(const G &g) {\r\n    tie(x, y) = mp(x * g.x\
-    \ - y * g.y, x * g.y + y * g.x);\r\n    return *this;\r\n  }\r\n  G &operator/=(const\
-    \ G &g) {\r\n    *this *= g.conjugate();\r\n    T n = g.norm();\r\n    x = floor(x\
-    \ + n / 2, n);\r\n    y = floor(y + n / 2, n);\r\n    return *this;\r\n  }\r\n\
-    \  G &operator%=(const G &g) {\r\n    auto q = G(*this) / g;\r\n    q *= g;\r\n\
-    \    (*this) -= q;\r\n    return *this;\r\n  }\r\n  G operator-() { return G(-x,\
-    \ -y); }\r\n  G operator+(const G &g) { return G(*this) += g; }\r\n  G operator-(const\
-    \ G &g) { return G(*this) -= g; }\r\n  G operator*(const G &g) { return G(*this)\
-    \ *= g; }\r\n  G operator/(const G &g) { return G(*this) /= g; }\r\n  G operator%(const\
-    \ G &g) { return G(*this) %= g; }\r\n  bool operator==(const G &g) { return (x\
-    \ == g.x && y == g.y); }\r\n\r\n  static G gcd(G a, G b) {\r\n    while (b.x !=\
-    \ 0 || b.y != 0) {\r\n      a %= b;\r\n      swap(a, b);\r\n    }\r\n    return\
-    \ a;\r\n  }\r\n\r\n  // (g,x,y) s.t ax+by=g\r\n  static tuple<G, G, G> extgcd(G\
-    \ a, G b) {\r\n    if (b.x != 0 || b.y != 0) {\r\n      G q = a / b;\r\n     \
-    \ auto [g, x, y] = extgcd(b, a - q * b);\r\n      return {g, y, x - q * y};\r\n\
-    \    }\r\n    return {a, G{1, 0}, G{0, 0}};\r\n  }\r\n};\r\n\r\npair<ll, ll> solve_norm_equation_prime(ll\
+    \ mint = Dynamic_Modint_64<202311024>;\r\n  return mint(a).pow(n).val;\r\n}\n\
+    #line 3 \"nt/gaussian_integers.hpp\"\n\r\ntemplate <typename T>\r\nstruct Gaussian_Integer\
+    \ {\r\n  T x, y;\r\n  using G = Gaussian_Integer;\r\n\r\n  Gaussian_Integer(T\
+    \ x = 0, T y = 0) : x(x), y(y) {}\r\n  Gaussian_Integer(pair<T, T> p) : x(p.fi),\
+    \ y(p.se) {}\r\n\r\n  T norm() const { return x * x + y * y; }\r\n  G conjugate()\
+    \ const { return G(x, -y); }\r\n\r\n  G &operator+=(const G &g) {\r\n    x +=\
+    \ g.x, y += g.y;\r\n    return *this;\r\n  }\r\n  G &operator-=(const G &g) {\r\
+    \n    x -= g.x, y -= g.y;\r\n    return *this;\r\n  }\r\n  G &operator*=(const\
+    \ G &g) {\r\n    tie(x, y) = mp(x * g.x - y * g.y, x * g.y + y * g.x);\r\n   \
+    \ return *this;\r\n  }\r\n  G &operator/=(const G &g) {\r\n    *this *= g.conjugate();\r\
+    \n    T n = g.norm();\r\n    x = floor(x + n / 2, n);\r\n    y = floor(y + n /\
+    \ 2, n);\r\n    return *this;\r\n  }\r\n  G &operator%=(const G &g) {\r\n    auto\
+    \ q = G(*this) / g;\r\n    q *= g;\r\n    (*this) -= q;\r\n    return *this;\r\
+    \n  }\r\n  G operator-() { return G(-x, -y); }\r\n  G operator+(const G &g) {\
+    \ return G(*this) += g; }\r\n  G operator-(const G &g) { return G(*this) -= g;\
+    \ }\r\n  G operator*(const G &g) { return G(*this) *= g; }\r\n  G operator/(const\
+    \ G &g) { return G(*this) /= g; }\r\n  G operator%(const G &g) { return G(*this)\
+    \ %= g; }\r\n  bool operator==(const G &g) { return (x == g.x && y == g.y); }\r\
+    \n\r\n  static G gcd(G a, G b) {\r\n    while (b.x != 0 || b.y != 0) {\r\n   \
+    \   a %= b;\r\n      swap(a, b);\r\n    }\r\n    return a;\r\n  }\r\n\r\n  //\
+    \ (g,x,y) s.t ax+by=g\r\n  static tuple<G, G, G> extgcd(G a, G b) {\r\n    if\
+    \ (b.x != 0 || b.y != 0) {\r\n      G q = a / b;\r\n      auto [g, x, y] = extgcd(b,\
+    \ a - q * b);\r\n      return {g, y, x - q * y};\r\n    }\r\n    return {a, G{1,\
+    \ 0}, G{0, 0}};\r\n  }\r\n};\r\n\r\npair<ll, ll> solve_norm_equation_prime(ll\
     \ p) {\r\n  using G = Gaussian_Integer<i128>;\r\n  assert(p == 2 || p % 4 == 1);\r\
     \n  if (p == 2) return {1, 1};\r\n  ll x = [&]() -> ll {\r\n    ll x = 1;\r\n\
     \    while (1) {\r\n      ++x;\r\n      ll pow_x = 1;\r\n      if (p < (1 << 30))\
@@ -571,7 +550,7 @@ data:
   isVerificationFile: true
   path: test/mytest/three_square.test.cpp
   requiredBy: []
-  timestamp: '2023-11-02 04:28:32+09:00'
+  timestamp: '2023-11-02 05:00:07+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/three_square.test.cpp

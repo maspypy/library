@@ -47,7 +47,7 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"mod/mongomery_modint.hpp\"\n// odd mod.\n// x \u306E\u4EE3\
+  bundledCode: "#line 2 \"mod/mongomery_modint.hpp\"\n\n// odd mod.\n// x \u306E\u4EE3\
     \u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate <int id, typename U1, typename\
     \ U2>\nstruct Mongomery_modint {\n  using mint = Mongomery_modint;\n  inline static\
     \ U1 m, r, n2;\n  static constexpr int W = numeric_limits<U1>::digits;\n\n  static\
@@ -229,59 +229,38 @@ data:
     \  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val); }\n  void read()\
     \ {\n    fastio::scanner.read(val);\n    val = bt.modulo(val);\n  }\n#endif\n\
     };\n\nusing dmint64 = Dynamic_Modint_64<-1>;\ntemplate <int id>\nBarrett_64 Dynamic_Modint_64<id>::bt;\n\
-    #line 1 \"mod/mongomery_modint.hpp\"\n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\
-    \u306B rx \u3092\u6301\u3064\ntemplate <int id, typename U1, typename U2>\nstruct\
-    \ Mongomery_modint {\n  using mint = Mongomery_modint;\n  inline static U1 m,\
-    \ r, n2;\n  static constexpr int W = numeric_limits<U1>::digits;\n\n  static void\
-    \ set_mod(U1 mod) {\n    assert(mod & 1 && mod <= U1(1) << (W - 2));\n    m =\
-    \ mod, n2 = -U2(m) % m, r = m;\n    FOR(5) r *= 2 - m * r;\n    r = -r;\n    assert(r\
-    \ * m == U1(-1));\n  }\n  static U1 reduce(U2 b) { return (b + U2(U1(b) * r) *\
-    \ m) >> W; }\n\n  U1 x;\n  Mongomery_modint() : x(0) {}\n  Mongomery_modint(U1\
-    \ x) : x(reduce(U2(x) * n2)){};\n  U1 val() const {\n    U1 y = reduce(x);\n \
-    \   return y >= m ? y - m : y;\n  }\n  mint &operator+=(mint y) {\n    x = ((x\
-    \ += y.x) >= m ? x - m : x);\n    return *this;\n  }\n  mint &operator-=(mint\
-    \ y) {\n    x -= (x >= y.x ? y.x : y.x - m);\n    return *this;\n  }\n  mint &operator*=(mint\
-    \ y) {\n    x = reduce(U2(x) * y.x);\n    return *this;\n  }\n  mint operator+(mint\
-    \ y) const { return mint(*this) += y; }\n  mint operator-(mint y) const { return\
-    \ mint(*this) -= y; }\n  mint operator*(mint y) const { return mint(*this) *=\
-    \ y; }\n  bool operator==(mint y) const {\n    return (x >= m ? x - m : x) ==\
-    \ (y.x >= m ? y.x - m : y.x);\n  }\n  bool operator!=(mint y) const { return not\
-    \ operator==(y); }\n  mint pow(ll n) const {\n    assert(n >= 0);\n    mint y\
-    \ = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if (n & 1) y *= z;\n\
-    \    return y;\n  }\n};\n\ntemplate <int id>\nusing Mongomery_modint_32 = Mongomery_modint<id,\
-    \ u32, u64>;\ntemplate <int id>\nusing Mongomery_modint_64 = Mongomery_modint<id,\
-    \ u64, u128>;\n#line 5 \"mod/mod_pow.hpp\"\n\r\nu32 mod_pow(int a, ll n, int mod)\
+    #line 5 \"mod/mod_pow.hpp\"\n\r\nu32 mod_pow(int a, ll n, int mod) {\r\n  assert(n\
+    \ >= 0);\r\n  a = ((a %= mod) < 0 ? a + mod : a);\r\n  if ((mod & 1) && (mod <\
+    \ (1 << 30))) {\r\n    using mint = Mongomery_modint_32<202311021>;\r\n    mint::set_mod(mod);\r\
+    \n    return mint(a).pow(n).val();\r\n  }\r\n  using mint = Dynamic_Modint<202311022>;\r\
+    \n  return mint(a).pow(n).val;\r\n}\r\n\r\nu64 mod_pow_64(ll a, ll n, u64 mod)\
     \ {\r\n  assert(n >= 0);\r\n  a = ((a %= mod) < 0 ? a + mod : a);\r\n  if ((mod\
-    \ & 1) && (mod < (1 << 30))) {\r\n    using mint = Mongomery_modint_32<202311021>;\r\
+    \ & 1) && (mod < (1 << 30))) {\r\n    using mint = Mongomery_modint_64<202311023>;\r\
     \n    mint::set_mod(mod);\r\n    return mint(a).pow(n).val();\r\n  }\r\n  using\
-    \ mint = Dynamic_Modint<202311022>;\r\n  return mint(a).pow(n).val;\r\n}\r\n\r\
-    \nu64 mod_pow_64(ll a, ll n, u64 mod) {\r\n  assert(n >= 0);\r\n  a = ((a %= mod)\
-    \ < 0 ? a + mod : a);\r\n  if ((mod & 1) && (mod < (1 << 30))) {\r\n    using\
-    \ mint = Mongomery_modint_64<202311023>;\r\n    mint::set_mod(mod);\r\n    return\
-    \ mint(a).pow(n).val();\r\n  }\r\n  using mint = Dynamic_Modint_64<202311024>;\r\
-    \n  return mint(a).pow(n).val;\r\n}\n#line 6 \"mod/primitive_root.hpp\"\n\r\n\
-    // int\r\nint primitive_root(int p) {\r\n  auto pf = factor(p - 1);\r\n  auto\
-    \ is_ok = [&](int g) -> bool {\r\n    for (auto&& [q, e]: pf)\r\n      if (mod_pow(g,\
-    \ (p - 1) / q, p) == 1) return false;\r\n    return true;\r\n  };\r\n  while (1)\
-    \ {\r\n    int x = RNG(1, p);\r\n    if (is_ok(x)) return x;\r\n  }\r\n  return\
-    \ -1;\r\n}\r\n\r\nll primitive_root_64(ll p) {\r\n  auto pf = factor(p - 1);\r\
-    \n  auto is_ok = [&](ll g) -> bool {\r\n    for (auto&& [q, e]: pf)\r\n      if\
-    \ (mod_pow_64(g, (p - 1) / q, p) == 1) return false;\r\n    return true;\r\n \
-    \ };\r\n  while (1) {\r\n    ll x = RNG(1, p);\r\n    if (is_ok(x)) return x;\r\
-    \n  }\r\n  return -1;\r\n}\r\n#line 2 \"mod/mod_inv.hpp\"\n\r\n// long \u3067\u3082\
-    \u5927\u4E08\u592B\r\n// (val * x - 1) \u304C mod \u306E\u500D\u6570\u306B\u306A\
-    \u308B\u3088\u3046\u306B\u3059\u308B\r\n// \u7279\u306B mod=0 \u306A\u3089 x=0\
-    \ \u304C\u6E80\u305F\u3059\r\nll mod_inv(ll val, ll mod) {\r\n  if (mod == 0)\
-    \ return 0;\r\n  mod = abs(mod);\r\n  val %= mod;\r\n  if (val < 0) val += mod;\r\
-    \n  ll a = val, b = mod, u = 1, v = 0, t;\r\n  while (b > 0) {\r\n    t = a /\
-    \ b;\r\n    swap(a -= t * b, b), swap(u -= t * v, v);\r\n  }\r\n  if (u < 0) u\
-    \ += mod;\r\n  return u;\r\n}\r\n#line 3 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\
-    \ntemplate <typename Val, int LOG = 20>\r\nstruct HashMap {\r\n  int N;\r\n  u64*\
-    \ keys;\r\n  Val* vals;\r\n  vc<int> IDS;\r\n  bitset<1 << LOG> used;\r\n  const\
-    \ int shift;\r\n  const u64 r = 11995408973635179863ULL;\r\n  HashMap()\r\n  \
-    \    : N(1 << LOG), keys(new u64[N]), vals(new Val[N]), shift(64 - __lg(N)) {}\r\
-    \n  int hash(ll x) {\r\n    static const u64 FIXED_RANDOM\r\n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\
-    \n    return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
+    \ mint = Dynamic_Modint_64<202311024>;\r\n  return mint(a).pow(n).val;\r\n}\n\
+    #line 6 \"mod/primitive_root.hpp\"\n\r\n// int\r\nint primitive_root(int p) {\r\
+    \n  auto pf = factor(p - 1);\r\n  auto is_ok = [&](int g) -> bool {\r\n    for\
+    \ (auto&& [q, e]: pf)\r\n      if (mod_pow(g, (p - 1) / q, p) == 1) return false;\r\
+    \n    return true;\r\n  };\r\n  while (1) {\r\n    int x = RNG(1, p);\r\n    if\
+    \ (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n\r\nll primitive_root_64(ll\
+    \ p) {\r\n  auto pf = factor(p - 1);\r\n  auto is_ok = [&](ll g) -> bool {\r\n\
+    \    for (auto&& [q, e]: pf)\r\n      if (mod_pow_64(g, (p - 1) / q, p) == 1)\
+    \ return false;\r\n    return true;\r\n  };\r\n  while (1) {\r\n    ll x = RNG(1,\
+    \ p);\r\n    if (is_ok(x)) return x;\r\n  }\r\n  return -1;\r\n}\r\n#line 2 \"\
+    mod/mod_inv.hpp\"\n\r\n// long \u3067\u3082\u5927\u4E08\u592B\r\n// (val * x -\
+    \ 1) \u304C mod \u306E\u500D\u6570\u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\
+    \r\n// \u7279\u306B mod=0 \u306A\u3089 x=0 \u304C\u6E80\u305F\u3059\r\nll mod_inv(ll\
+    \ val, ll mod) {\r\n  if (mod == 0) return 0;\r\n  mod = abs(mod);\r\n  val %=\
+    \ mod;\r\n  if (val < 0) val += mod;\r\n  ll a = val, b = mod, u = 1, v = 0, t;\r\
+    \n  while (b > 0) {\r\n    t = a / b;\r\n    swap(a -= t * b, b), swap(u -= t\
+    \ * v, v);\r\n  }\r\n  if (u < 0) u += mod;\r\n  return u;\r\n}\r\n#line 3 \"\
+    ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename Val, int LOG = 20>\r\
+    \nstruct HashMap {\r\n  int N;\r\n  u64* keys;\r\n  Val* vals;\r\n  vc<int> IDS;\r\
+    \n  bitset<1 << LOG> used;\r\n  const int shift;\r\n  const u64 r = 11995408973635179863ULL;\r\
+    \n  HashMap()\r\n      : N(1 << LOG), keys(new u64[N]), vals(new Val[N]), shift(64\
+    \ - __lg(N)) {}\r\n  int hash(ll x) {\r\n    static const u64 FIXED_RANDOM\r\n\
+    \        = std::chrono::steady_clock::now().time_since_epoch().count();\r\n  \
+    \  return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
     \ u64& key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && keys[i]\
     \ != key; (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
     \ u64& key) {\r\n    int i = index(key);\r\n    if (!used[i]) IDS.eb(i), used[i]\
@@ -455,7 +434,7 @@ data:
   isVerificationFile: false
   path: mod/mod_kth_root.hpp
   requiredBy: []
-  timestamp: '2023-11-02 04:28:32+09:00'
+  timestamp: '2023-11-02 05:00:07+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/math/kth_root_mod.test.cpp

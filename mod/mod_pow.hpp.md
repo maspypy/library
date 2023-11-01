@@ -223,8 +223,8 @@ data:
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 1 \"mod/mongomery_modint.hpp\"\
-    \n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/mongomery_modint.hpp\"\
+    \n\n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
     \ <int id, typename U1, typename U2>\nstruct Mongomery_modint {\n  using mint\
     \ = Mongomery_modint;\n  inline static U1 m, r, n2;\n  static constexpr int W\
     \ = numeric_limits<U1>::digits;\n\n  static void set_mod(U1 mod) {\n    assert(mod\
@@ -373,37 +373,15 @@ data:
     \  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val); }\n  void read()\
     \ {\n    fastio::scanner.read(val);\n    val = bt.modulo(val);\n  }\n#endif\n\
     };\n\nusing dmint64 = Dynamic_Modint_64<-1>;\ntemplate <int id>\nBarrett_64 Dynamic_Modint_64<id>::bt;\n\
-    #line 1 \"mod/mongomery_modint.hpp\"\n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\
-    \u306B rx \u3092\u6301\u3064\ntemplate <int id, typename U1, typename U2>\nstruct\
-    \ Mongomery_modint {\n  using mint = Mongomery_modint;\n  inline static U1 m,\
-    \ r, n2;\n  static constexpr int W = numeric_limits<U1>::digits;\n\n  static void\
-    \ set_mod(U1 mod) {\n    assert(mod & 1 && mod <= U1(1) << (W - 2));\n    m =\
-    \ mod, n2 = -U2(m) % m, r = m;\n    FOR(5) r *= 2 - m * r;\n    r = -r;\n    assert(r\
-    \ * m == U1(-1));\n  }\n  static U1 reduce(U2 b) { return (b + U2(U1(b) * r) *\
-    \ m) >> W; }\n\n  U1 x;\n  Mongomery_modint() : x(0) {}\n  Mongomery_modint(U1\
-    \ x) : x(reduce(U2(x) * n2)){};\n  U1 val() const {\n    U1 y = reduce(x);\n \
-    \   return y >= m ? y - m : y;\n  }\n  mint &operator+=(mint y) {\n    x = ((x\
-    \ += y.x) >= m ? x - m : x);\n    return *this;\n  }\n  mint &operator-=(mint\
-    \ y) {\n    x -= (x >= y.x ? y.x : y.x - m);\n    return *this;\n  }\n  mint &operator*=(mint\
-    \ y) {\n    x = reduce(U2(x) * y.x);\n    return *this;\n  }\n  mint operator+(mint\
-    \ y) const { return mint(*this) += y; }\n  mint operator-(mint y) const { return\
-    \ mint(*this) -= y; }\n  mint operator*(mint y) const { return mint(*this) *=\
-    \ y; }\n  bool operator==(mint y) const {\n    return (x >= m ? x - m : x) ==\
-    \ (y.x >= m ? y.x - m : y.x);\n  }\n  bool operator!=(mint y) const { return not\
-    \ operator==(y); }\n  mint pow(ll n) const {\n    assert(n >= 0);\n    mint y\
-    \ = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if (n & 1) y *= z;\n\
-    \    return y;\n  }\n};\n\ntemplate <int id>\nusing Mongomery_modint_32 = Mongomery_modint<id,\
-    \ u32, u64>;\ntemplate <int id>\nusing Mongomery_modint_64 = Mongomery_modint<id,\
-    \ u64, u128>;\n#line 5 \"mod/mod_pow.hpp\"\n\r\nu32 mod_pow(int a, ll n, int mod)\
+    #line 5 \"mod/mod_pow.hpp\"\n\r\nu32 mod_pow(int a, ll n, int mod) {\r\n  assert(n\
+    \ >= 0);\r\n  a = ((a %= mod) < 0 ? a + mod : a);\r\n  if ((mod & 1) && (mod <\
+    \ (1 << 30))) {\r\n    using mint = Mongomery_modint_32<202311021>;\r\n    mint::set_mod(mod);\r\
+    \n    return mint(a).pow(n).val();\r\n  }\r\n  using mint = Dynamic_Modint<202311022>;\r\
+    \n  return mint(a).pow(n).val;\r\n}\r\n\r\nu64 mod_pow_64(ll a, ll n, u64 mod)\
     \ {\r\n  assert(n >= 0);\r\n  a = ((a %= mod) < 0 ? a + mod : a);\r\n  if ((mod\
-    \ & 1) && (mod < (1 << 30))) {\r\n    using mint = Mongomery_modint_32<202311021>;\r\
+    \ & 1) && (mod < (1 << 30))) {\r\n    using mint = Mongomery_modint_64<202311023>;\r\
     \n    mint::set_mod(mod);\r\n    return mint(a).pow(n).val();\r\n  }\r\n  using\
-    \ mint = Dynamic_Modint<202311022>;\r\n  return mint(a).pow(n).val;\r\n}\r\n\r\
-    \nu64 mod_pow_64(ll a, ll n, u64 mod) {\r\n  assert(n >= 0);\r\n  a = ((a %= mod)\
-    \ < 0 ? a + mod : a);\r\n  if ((mod & 1) && (mod < (1 << 30))) {\r\n    using\
-    \ mint = Mongomery_modint_64<202311023>;\r\n    mint::set_mod(mod);\r\n    return\
-    \ mint(a).pow(n).val();\r\n  }\r\n  using mint = Dynamic_Modint_64<202311024>;\r\
-    \n  return mint(a).pow(n).val;\r\n}\n"
+    \ mint = Dynamic_Modint_64<202311024>;\r\n  return mint(a).pow(n).val;\r\n}\n"
   code: "#pragma once\r\n#include \"mod/dynamic_modint.hpp\"\r\n#include \"mod/dynamic_modint_64.hpp\"\
     \r\n#include \"mod/mongomery_modint.hpp\"\r\n\r\nu32 mod_pow(int a, ll n, int\
     \ mod) {\r\n  assert(n >= 0);\r\n  a = ((a %= mod) < 0 ? a + mod : a);\r\n  if\
@@ -441,7 +419,7 @@ data:
   - poly/multivar_convolution_cyclic.hpp
   - poly/fps_sqrt.hpp
   - graph/count/count_bipartite.hpp
-  timestamp: '2023-11-02 04:28:32+09:00'
+  timestamp: '2023-11-02 05:00:07+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/agc058d2.test.cpp

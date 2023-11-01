@@ -248,7 +248,7 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"mod/mongomery_modint.hpp\"\n// odd mod.\n// x \u306E\u4EE3\
+  bundledCode: "#line 2 \"mod/mongomery_modint.hpp\"\n\n// odd mod.\n// x \u306E\u4EE3\
     \u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate <int id, typename U1, typename\
     \ U2>\nstruct Mongomery_modint {\n  using mint = Mongomery_modint;\n  inline static\
     \ U1 m, r, n2;\n  static constexpr int W = numeric_limits<U1>::digits;\n\n  static\
@@ -270,27 +270,28 @@ data:
     \    return y;\n  }\n};\n\ntemplate <int id>\nusing Mongomery_modint_32 = Mongomery_modint<id,\
     \ u32, u64>;\ntemplate <int id>\nusing Mongomery_modint_64 = Mongomery_modint<id,\
     \ u64, u128>;\n"
-  code: "// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\n\
-    template <int id, typename U1, typename U2>\nstruct Mongomery_modint {\n  using\
-    \ mint = Mongomery_modint;\n  inline static U1 m, r, n2;\n  static constexpr int\
-    \ W = numeric_limits<U1>::digits;\n\n  static void set_mod(U1 mod) {\n    assert(mod\
-    \ & 1 && mod <= U1(1) << (W - 2));\n    m = mod, n2 = -U2(m) % m, r = m;\n   \
-    \ FOR(5) r *= 2 - m * r;\n    r = -r;\n    assert(r * m == U1(-1));\n  }\n  static\
-    \ U1 reduce(U2 b) { return (b + U2(U1(b) * r) * m) >> W; }\n\n  U1 x;\n  Mongomery_modint()\
-    \ : x(0) {}\n  Mongomery_modint(U1 x) : x(reduce(U2(x) * n2)){};\n  U1 val() const\
-    \ {\n    U1 y = reduce(x);\n    return y >= m ? y - m : y;\n  }\n  mint &operator+=(mint\
-    \ y) {\n    x = ((x += y.x) >= m ? x - m : x);\n    return *this;\n  }\n  mint\
-    \ &operator-=(mint y) {\n    x -= (x >= y.x ? y.x : y.x - m);\n    return *this;\n\
-    \  }\n  mint &operator*=(mint y) {\n    x = reduce(U2(x) * y.x);\n    return *this;\n\
-    \  }\n  mint operator+(mint y) const { return mint(*this) += y; }\n  mint operator-(mint\
-    \ y) const { return mint(*this) -= y; }\n  mint operator*(mint y) const { return\
-    \ mint(*this) *= y; }\n  bool operator==(mint y) const {\n    return (x >= m ?\
-    \ x - m : x) == (y.x >= m ? y.x - m : y.x);\n  }\n  bool operator!=(mint y) const\
-    \ { return not operator==(y); }\n  mint pow(ll n) const {\n    assert(n >= 0);\n\
-    \    mint y = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if (n & 1)\
-    \ y *= z;\n    return y;\n  }\n};\n\ntemplate <int id>\nusing Mongomery_modint_32\
-    \ = Mongomery_modint<id, u32, u64>;\ntemplate <int id>\nusing Mongomery_modint_64\
-    \ = Mongomery_modint<id, u64, u128>;\n"
+  code: "#pragma once\n\n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\
+    \u6301\u3064\ntemplate <int id, typename U1, typename U2>\nstruct Mongomery_modint\
+    \ {\n  using mint = Mongomery_modint;\n  inline static U1 m, r, n2;\n  static\
+    \ constexpr int W = numeric_limits<U1>::digits;\n\n  static void set_mod(U1 mod)\
+    \ {\n    assert(mod & 1 && mod <= U1(1) << (W - 2));\n    m = mod, n2 = -U2(m)\
+    \ % m, r = m;\n    FOR(5) r *= 2 - m * r;\n    r = -r;\n    assert(r * m == U1(-1));\n\
+    \  }\n  static U1 reduce(U2 b) { return (b + U2(U1(b) * r) * m) >> W; }\n\n  U1\
+    \ x;\n  Mongomery_modint() : x(0) {}\n  Mongomery_modint(U1 x) : x(reduce(U2(x)\
+    \ * n2)){};\n  U1 val() const {\n    U1 y = reduce(x);\n    return y >= m ? y\
+    \ - m : y;\n  }\n  mint &operator+=(mint y) {\n    x = ((x += y.x) >= m ? x -\
+    \ m : x);\n    return *this;\n  }\n  mint &operator-=(mint y) {\n    x -= (x >=\
+    \ y.x ? y.x : y.x - m);\n    return *this;\n  }\n  mint &operator*=(mint y) {\n\
+    \    x = reduce(U2(x) * y.x);\n    return *this;\n  }\n  mint operator+(mint y)\
+    \ const { return mint(*this) += y; }\n  mint operator-(mint y) const { return\
+    \ mint(*this) -= y; }\n  mint operator*(mint y) const { return mint(*this) *=\
+    \ y; }\n  bool operator==(mint y) const {\n    return (x >= m ? x - m : x) ==\
+    \ (y.x >= m ? y.x - m : y.x);\n  }\n  bool operator!=(mint y) const { return not\
+    \ operator==(y); }\n  mint pow(ll n) const {\n    assert(n >= 0);\n    mint y\
+    \ = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if (n & 1) y *= z;\n\
+    \    return y;\n  }\n};\n\ntemplate <int id>\nusing Mongomery_modint_32 = Mongomery_modint<id,\
+    \ u32, u64>;\ntemplate <int id>\nusing Mongomery_modint_64 = Mongomery_modint<id,\
+    \ u64, u128>;\n"
   dependsOn: []
   isVerificationFile: false
   path: mod/mongomery_modint.hpp
@@ -319,7 +320,7 @@ data:
   - poly/fps_sqrt.hpp
   - graph/chromatic.hpp
   - graph/count/count_bipartite.hpp
-  timestamp: '2023-11-02 04:28:32+09:00'
+  timestamp: '2023-11-02 05:00:07+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/agc058d2.test.cpp
