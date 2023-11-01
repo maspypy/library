@@ -3,12 +3,12 @@
 // どの点の次数も 2 以下のグラフがあるときに、
 // パスの頂点列, サイクルの頂点列
 // に分解する
-template <typename Graph>
-pair<vvc<int>, vvc<int>> path_cycle(Graph& G) {
+template <typename GT>
+pair<vvc<int>, vvc<int>> path_cycle(GT& G) {
+  static_assert(GT::is_directed);
   int N = G.N;
   auto deg = G.deg_array();
   assert(MAX(deg) <= 2);
-  assert(!G.is_directed());
 
   vc<bool> done(N);
   auto calc_frm = [&](int v) -> vc<int> {

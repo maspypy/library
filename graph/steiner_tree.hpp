@@ -5,7 +5,8 @@
 // O(3^kn + 2^k(n+m)log n), k: terminal size
 template <typename T, typename GT>
 tuple<T, vc<int>, vc<int>> steiner_tree(GT& G, vc<int> S, vc<T> v_wt = {}) {
-  assert(!S.empty() && !G.is_directed());
+  static_assert(GT::is_directed);
+  assert(!S.empty());
   const int N = G.N, M = G.M, K = len(S);
   if (v_wt.empty()) v_wt.assign(N, 0);
 
