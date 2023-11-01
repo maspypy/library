@@ -5,10 +5,10 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
   - icon: ':question:'
@@ -17,10 +17,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
   - icon: ':warning:'
@@ -45,19 +45,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/polynomial_interpolation.test.cpp
     title: test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/composition_log_1_minus_x.test.cpp
     title: test/mytest/composition_log_1_minus_x.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/partial_frac.test.cpp
     title: test/mytest/partial_frac.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/slice_rational_fps.test.cpp
     title: test/mytest/slice_rational_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
   - icon: ':x:'
@@ -210,36 +210,36 @@ data:
   isVerificationFile: false
   path: poly/middle_product.hpp
   requiredBy:
-  - poly/slice_rational_fps.hpp
-  - poly/multipoint.hpp
-  - poly/multivar_convolution_cyclic.hpp
-  - poly/composition_f_log_1_minus_x.hpp
-  - poly/partial_frac_decomposition_1.hpp
   - seq/count_grid_path.hpp
-  - linalg/implicit_matrix/vandermonde.hpp
   - string/wildcard_pattern_matching.hpp
+  - linalg/implicit_matrix/vandermonde.hpp
+  - poly/composition_f_log_1_minus_x.hpp
+  - poly/slice_rational_fps.hpp
+  - poly/multivar_convolution_cyclic.hpp
+  - poly/partial_frac_decomposition_1.hpp
+  - poly/multipoint.hpp
   timestamp: '2023-08-10 12:59:11+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/2243.test.cpp
+  - test_atcoder/abc272_h.test.cpp
+  - test_atcoder/agc058d2.test.cpp
+  - test_atcoder/abc241h.test.cpp
+  - test_atcoder/abc267g.test.cpp
+  - test_atcoder/agc013e.test.cpp
+  - test_atcoder/abc260h.test.cpp
+  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
+  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
   - test/yukicoder/2166.test.cpp
   - test/yukicoder/2231.test.cpp
+  - test/yukicoder/2243.test.cpp
   - test/mytest/partial_frac.test.cpp
-  - test/mytest/vandermonde.test.cpp
+  - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/chirp_z.test.cpp
   - test/mytest/composition_log_1_minus_x.test.cpp
-  - test/mytest/slice_rational_fps.test.cpp
-  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
-  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
-  - test_atcoder/abc267g.test.cpp
-  - test_atcoder/agc058d2.test.cpp
-  - test_atcoder/abc272_h.test.cpp
-  - test_atcoder/abc260h.test.cpp
-  - test_atcoder/agc013e.test.cpp
-  - test_atcoder/abc241h.test.cpp
+  - test/mytest/vandermonde.test.cpp
 documentation_of: poly/middle_product.hpp
 layout: document
 redirect_from:

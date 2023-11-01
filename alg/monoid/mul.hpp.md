@@ -5,10 +5,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_mul.hpp
     title: alg/acted_monoid/sum_mul.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/power_query.hpp
     title: ds/power_query.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_bipartite.hpp
     title: graph/count/count_bipartite.hpp
   - icon: ':heavy_check_mark:'
@@ -17,16 +17,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
   - icon: ':question:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/sparse_exp_of_div.hpp
     title: poly/sparse_exp_of_div.hpp
   - icon: ':question:'
@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   _extendedVerifiedWith:
@@ -48,16 +48,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_bipartite.test.cpp
     title: test/mytest/count_bipartite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/powerquery.test.cpp
     title: test/mytest/powerquery.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080_2.test.cpp
     title: test/yukicoder/1080_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -115,40 +115,40 @@ data:
   isVerificationFile: false
   path: alg/monoid/mul.hpp
   requiredBy:
-  - poly/lagrange_interpolate_iota.hpp
-  - poly/sum_of_C_negative.hpp
+  - mod/mod_log.hpp
+  - seq/interpolate_poly_exp_sum.hpp
+  - seq/kth_term_of_p_recursive.hpp
+  - alg/acted_monoid/sum_mul.hpp
+  - nt/discrete_log.hpp
   - poly/sparse_exp_of_div.hpp
+  - poly/sum_of_C_negative.hpp
   - poly/prefix_product_of_poly.hpp
   - poly/from_log_differentiation.hpp
-  - mod/mod_log.hpp
-  - graph/count/count_bipartite.hpp
-  - seq/kth_term_of_p_recursive.hpp
-  - seq/interpolate_poly_exp_sum.hpp
-  - nt/discrete_log.hpp
-  - alg/acted_monoid/sum_mul.hpp
+  - poly/lagrange_interpolate_iota.hpp
   - ds/power_query.hpp
+  - graph/count/count_bipartite.hpp
   timestamp: '2022-11-27 14:10:12+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1339.test.cpp
-  - test/yukicoder/1080_2.test.cpp
-  - test/yukicoder/899.test.cpp
-  - test/yukicoder/502_2.test.cpp
-  - test/yukicoder/2005.test.cpp
-  - test/yukicoder/2166.test.cpp
-  - test/mytest/powerquery.test.cpp
-  - test/mytest/factorial_998.test.cpp
-  - test/mytest/count_bipartite.test.cpp
-  - test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
-  - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - test_atcoder/abc276_g.test.cpp
-  - test_atcoder/abc276_g_2.test.cpp
   - test_atcoder/arc144d.test.cpp
+  - test_atcoder/abc276_g_2.test.cpp
   - test_atcoder/abc222g.test.cpp
   - test_atcoder/abc222h_2.test.cpp
-  - test_atcoder/abc270_g.test.cpp
   - test_atcoder/arc160d.test.cpp
+  - test_atcoder/abc270_g.test.cpp
+  - test_atcoder/abc276_g.test.cpp
+  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
+  - test/library_checker/math/discrete_logarithm_mod.test.cpp
+  - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+  - test/yukicoder/1339.test.cpp
+  - test/yukicoder/899.test.cpp
+  - test/yukicoder/1080_2.test.cpp
+  - test/yukicoder/2166.test.cpp
+  - test/yukicoder/502_2.test.cpp
+  - test/yukicoder/2005.test.cpp
+  - test/mytest/count_bipartite.test.cpp
+  - test/mytest/powerquery.test.cpp
+  - test/mytest/factorial_998.test.cpp
 documentation_of: alg/monoid/mul.hpp
 layout: document
 redirect_from:

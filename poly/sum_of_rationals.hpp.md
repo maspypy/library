@@ -29,41 +29,41 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex_minus_1.hpp
     title: poly/composition_f_ex_minus_1.hpp
   - icon: ':x:'
     path: poly/product_of_pow_of_linear.hpp
     title: poly/product_of_pow_of_linear.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/composition_1_minus_ex.test.cpp
     title: test/mytest/composition_1_minus_ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/composition_ex_minus_1.test.cpp
     title: test/mytest/composition_ex_minus_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/partial_frac.test.cpp
     title: test/mytest/partial_frac.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1145.test.cpp
     title: test/yukicoder/1145.test.cpp
   - icon: ':x:'
@@ -92,7 +92,7 @@ data:
     title: test_atcoder/arc154f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/sum_of_rationals.hpp\"\n\n#line 2 \"mod/modint_common.hpp\"\
@@ -387,29 +387,29 @@ data:
   isVerificationFile: false
   path: poly/sum_of_rationals.hpp
   requiredBy:
-  - poly/composition_f_1_minus_ex.hpp
-  - poly/composition_f_ex_minus_1.hpp
-  - poly/product_of_pow_of_linear.hpp
-  - poly/sum_of_exp_bx.hpp
-  - poly/composition_f_ex.hpp
   - seq/sum_of_powers.hpp
   - linalg/implicit_matrix/vandermonde.hpp
+  - poly/sum_of_exp_bx.hpp
+  - poly/composition_f_ex.hpp
+  - poly/composition_f_ex_minus_1.hpp
+  - poly/composition_f_1_minus_ex.hpp
+  - poly/product_of_pow_of_linear.hpp
   timestamp: '2023-11-01 03:36:04+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1962.test.cpp
+  - test_atcoder/abc276_g_2.test.cpp
+  - test_atcoder/arc154f.test.cpp
+  - test_atcoder/abc281g.test.cpp
+  - test_atcoder/abc276_g.test.cpp
+  - test_atcoder/abc260h.test.cpp
   - test/yukicoder/2459.test.cpp
   - test/yukicoder/1875.test.cpp
+  - test/yukicoder/1962.test.cpp
   - test/yukicoder/1145.test.cpp
-  - test/mytest/partial_frac.test.cpp
-  - test/mytest/vandermonde.test.cpp
-  - test/mytest/composition_ex_minus_1.test.cpp
   - test/mytest/composition_1_minus_ex.test.cpp
-  - test_atcoder/abc276_g.test.cpp
-  - test_atcoder/arc154f.test.cpp
-  - test_atcoder/abc276_g_2.test.cpp
-  - test_atcoder/abc260h.test.cpp
-  - test_atcoder/abc281g.test.cpp
+  - test/mytest/partial_frac.test.cpp
+  - test/mytest/composition_ex_minus_1.test.cpp
+  - test/mytest/vandermonde.test.cpp
 documentation_of: poly/sum_of_rationals.hpp
 layout: document
 redirect_from:
