@@ -4,6 +4,7 @@
 
 template <typename GT>
 struct UnicyclicGraph {
+  static_assert(GT::is_directed);
   using T = typename GT::cost_type;
   GT& G0;
   int N;
@@ -15,7 +16,7 @@ struct UnicyclicGraph {
   vc<bool> in_cycle; // vertex id -> bool
 
   UnicyclicGraph(GT& G) : G0(G), N(G.N) {
-    assert(!G.is_directed() && N == G.M);
+    assert(N == G.M);
     UnionFind uf(N);
     TO.assign(N, -1);
     FOR(eid, N) {
