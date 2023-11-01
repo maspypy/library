@@ -19,7 +19,7 @@ data:
   - icon: ':x:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':question:'
@@ -236,9 +236,9 @@ data:
     \ y) {\n    x = ((x += y.x) >= m ? x - m : x);\n    return *this;\n  }\n  mint\
     \ &operator-=(mint y) {\n    x -= (x >= y.x ? y.x : y.x - m);\n    return *this;\n\
     \  }\n  mint &operator*=(mint y) {\n    x = reduce(U2(x) * y.x);\n    return *this;\n\
-    \  }\n  mint operator+(mint y) const { return m64(*this) += y; }\n  mint operator-(mint\
-    \ y) const { return m64(*this) -= y; }\n  mint operator*(mint y) const { return\
-    \ m64(*this) *= y; }\n  bool operator==(mint y) const {\n    return (x >= m ?\
+    \  }\n  mint operator+(mint y) const { return mint(*this) += y; }\n  mint operator-(mint\
+    \ y) const { return mint(*this) -= y; }\n  mint operator*(mint y) const { return\
+    \ mint(*this) *= y; }\n  bool operator==(mint y) const {\n    return (x >= m ?\
     \ x - m : x) == (y.x >= m ? y.x - m : y.x);\n  }\n  bool operator!=(mint y) const\
     \ { return not operator==(y); }\n  mint pow(ll n) const {\n    assert(n >= 0);\n\
     \    mint y = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if (n & 1)\
@@ -341,17 +341,17 @@ data:
     \ += y.x) >= m ? x - m : x);\n    return *this;\n  }\n  mint &operator-=(mint\
     \ y) {\n    x -= (x >= y.x ? y.x : y.x - m);\n    return *this;\n  }\n  mint &operator*=(mint\
     \ y) {\n    x = reduce(U2(x) * y.x);\n    return *this;\n  }\n  mint operator+(mint\
-    \ y) const { return m64(*this) += y; }\n  mint operator-(mint y) const { return\
-    \ m64(*this) -= y; }\n  mint operator*(mint y) const { return m64(*this) *= y;\
-    \ }\n  bool operator==(mint y) const {\n    return (x >= m ? x - m : x) == (y.x\
-    \ >= m ? y.x - m : y.x);\n  }\n  bool operator!=(mint y) const { return not operator==(y);\
-    \ }\n  mint pow(ll n) const {\n    assert(n >= 0);\n    mint y = 1, z = *this;\n\
-    \    for (; n; n >>= 1, z *= z)\n      if (n & 1) y *= z;\n    return y;\n  }\n\
-    };\n\ntemplate <int id>\nusing Mongomery_modint_32 = Mongomery_modint<id, u32,\
-    \ u64>;\ntemplate <int id>\nusing Mongomery_modint_64 = Mongomery_modint<id, u64,\
-    \ u128>;\n#line 5 \"mod/mod_pow.hpp\"\n\r\nu32 mod_pow(int a, ll n, int mod) {\r\
-    \n  assert(n >= 0);\r\n  a = ((a %= mod) < 0 ? a + mod : a);\r\n  if ((mod & 1)\
-    \ && (mod < (1 << 30))) {\r\n    using mint = Mongomery_modint_32<202311021>;\r\
+    \ y) const { return mint(*this) += y; }\n  mint operator-(mint y) const { return\
+    \ mint(*this) -= y; }\n  mint operator*(mint y) const { return mint(*this) *=\
+    \ y; }\n  bool operator==(mint y) const {\n    return (x >= m ? x - m : x) ==\
+    \ (y.x >= m ? y.x - m : y.x);\n  }\n  bool operator!=(mint y) const { return not\
+    \ operator==(y); }\n  mint pow(ll n) const {\n    assert(n >= 0);\n    mint y\
+    \ = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if (n & 1) y *= z;\n\
+    \    return y;\n  }\n};\n\ntemplate <int id>\nusing Mongomery_modint_32 = Mongomery_modint<id,\
+    \ u32, u64>;\ntemplate <int id>\nusing Mongomery_modint_64 = Mongomery_modint<id,\
+    \ u64, u128>;\n#line 5 \"mod/mod_pow.hpp\"\n\r\nu32 mod_pow(int a, ll n, int mod)\
+    \ {\r\n  assert(n >= 0);\r\n  a = ((a %= mod) < 0 ? a + mod : a);\r\n  if ((mod\
+    \ & 1) && (mod < (1 << 30))) {\r\n    using mint = Mongomery_modint_32<202311021>;\r\
     \n    mint::set_mod(mod);\r\n    return mint(a).pow(n).val();\r\n  }\r\n  using\
     \ mint = Dynamic_Modint<202311022>;\r\n  return mint(a).pow(n).val;\r\n}\r\n\r\
     \nu64 mod_pow_64(ll a, ll n, u64 mod) {\r\n  assert(n >= 0);\r\n  a = ((a %= mod)\
@@ -455,58 +455,58 @@ data:
   isVerificationFile: false
   path: mod/dynamic_modint.hpp
   requiredBy:
-  - poly/multivar_convolution_cyclic.hpp
-  - poly/fps_sqrt.hpp
-  - mod/mod_log.hpp
   - mod/mod_pow.hpp
-  - mod/mod_kth_root.hpp
-  - mod/mod_sqrt.hpp
+  - mod/mod_log.hpp
   - mod/binomial.hpp
+  - mod/mod_sqrt.hpp
+  - mod/mod_kth_root.hpp
   - mod/primitive_root.hpp
-  - graph/count/count_bipartite.hpp
-  - nt/four_square.hpp
   - nt/gaussian_integers.hpp
+  - nt/four_square.hpp
   - nt/three_square.hpp
   - nt/three_triangular.hpp
-  timestamp: '2023-11-02 04:04:38+09:00'
+  - poly/multivar_convolution_cyclic.hpp
+  - poly/fps_sqrt.hpp
+  - graph/count/count_bipartite.hpp
+  timestamp: '2023-11-02 04:28:32+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1339.test.cpp
+  - test_atcoder/agc058d2.test.cpp
+  - test_atcoder/abc222g.test.cpp
+  - test_atcoder/abc281g.test.cpp
+  - test_atcoder/abc270_g.test.cpp
+  - test/library_checker/math/kth_root_mod.test.cpp
+  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - test/library_checker/math/primitive_root.test.cpp
+  - test/library_checker/math/binomial_coefficient.test.cpp
+  - test/library_checker/math/discrete_logarithm_mod.test.cpp
+  - test/library_checker/math/sqrt_mod.test.cpp
+  - test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
+  - test/library_checker/convolution/convolution_mod_setntt.test.cpp
+  - test/library_checker/convolution/convolution_mod_dmint.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
+  - test/library_checker/polynomial/inv_of_fps.test.cpp
+  - test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
+  - test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
+  - test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
+  - test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
+  - test/library_checker/polynomial/log_of_fps_dmint.test.cpp
   - test/yukicoder/1593.test.cpp
-  - test/yukicoder/2181.test.cpp
+  - test/yukicoder/1339.test.cpp
   - test/yukicoder/2120.test.cpp
+  - test/yukicoder/2181.test.cpp
   - test/yukicoder/1025.test.cpp
   - test/yukicoder/1667.test.cpp
   - test/mytest/four_square.test.cpp
-  - test/mytest/three_triangular.test.cpp
-  - test/mytest/geometric_sequence_sum.test.cpp
   - test/mytest/three_square.test.cpp
+  - test/mytest/geometric_sequence_sum.test.cpp
   - test/mytest/31bit_modint.test.cpp
+  - test/mytest/three_triangular.test.cpp
   - test/mytest/count_bipartite.test.cpp
-  - test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
-  - test/library_checker/convolution/convolution_mod_dmint.test.cpp
-  - test/library_checker/convolution/convolution_mod_setntt.test.cpp
-  - test/library_checker/math/primitive_root.test.cpp
-  - test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - test/library_checker/math/sqrt_mod.test.cpp
-  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - test/library_checker/math/kth_root_mod.test.cpp
-  - test/library_checker/math/binomial_coefficient.test.cpp
-  - test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/log_of_fps_dmint.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
-  - test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
-  - test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
-  - test/library_checker/polynomial/inv_of_fps.test.cpp
-  - test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
-  - test_atcoder/abc222g.test.cpp
-  - test_atcoder/agc058d2.test.cpp
-  - test_atcoder/abc270_g.test.cpp
-  - test_atcoder/abc281g.test.cpp
 documentation_of: mod/dynamic_modint.hpp
 layout: document
 redirect_from:

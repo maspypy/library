@@ -137,8 +137,8 @@ data:
   timestamp: '2023-08-06 04:48:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1400_2.test.cpp
   - test/yukicoder/1400.test.cpp
+  - test/yukicoder/1400_2.test.cpp
 documentation_of: graph/shortest_path/bfs_bitset.hpp
 layout: document
 redirect_from:

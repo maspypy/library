@@ -33,16 +33,16 @@ data:
     \ += y.x) >= m ? x - m : x);\n    return *this;\n  }\n  mint &operator-=(mint\
     \ y) {\n    x -= (x >= y.x ? y.x : y.x - m);\n    return *this;\n  }\n  mint &operator*=(mint\
     \ y) {\n    x = reduce(U2(x) * y.x);\n    return *this;\n  }\n  mint operator+(mint\
-    \ y) const { return m64(*this) += y; }\n  mint operator-(mint y) const { return\
-    \ m64(*this) -= y; }\n  mint operator*(mint y) const { return m64(*this) *= y;\
-    \ }\n  bool operator==(mint y) const {\n    return (x >= m ? x - m : x) == (y.x\
-    \ >= m ? y.x - m : y.x);\n  }\n  bool operator!=(mint y) const { return not operator==(y);\
-    \ }\n  mint pow(ll n) const {\n    assert(n >= 0);\n    mint y = 1, z = *this;\n\
-    \    for (; n; n >>= 1, z *= z)\n      if (n & 1) y *= z;\n    return y;\n  }\n\
-    };\n\ntemplate <int id>\nusing Mongomery_modint_32 = Mongomery_modint<id, u32,\
-    \ u64>;\ntemplate <int id>\nusing Mongomery_modint_64 = Mongomery_modint<id, u64,\
-    \ u128>;\n#line 3 \"nt/primetest.hpp\"\n\r\nbool primetest(const u64 x) {\r\n\
-    \  assert(x < u64(1) << 62);\r\n  if (x == 2 or x == 3 or x == 5 or x == 7) return\
+    \ y) const { return mint(*this) += y; }\n  mint operator-(mint y) const { return\
+    \ mint(*this) -= y; }\n  mint operator*(mint y) const { return mint(*this) *=\
+    \ y; }\n  bool operator==(mint y) const {\n    return (x >= m ? x - m : x) ==\
+    \ (y.x >= m ? y.x - m : y.x);\n  }\n  bool operator!=(mint y) const { return not\
+    \ operator==(y); }\n  mint pow(ll n) const {\n    assert(n >= 0);\n    mint y\
+    \ = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if (n & 1) y *= z;\n\
+    \    return y;\n  }\n};\n\ntemplate <int id>\nusing Mongomery_modint_32 = Mongomery_modint<id,\
+    \ u32, u64>;\ntemplate <int id>\nusing Mongomery_modint_64 = Mongomery_modint<id,\
+    \ u64, u128>;\n#line 3 \"nt/primetest.hpp\"\n\r\nbool primetest(const u64 x) {\r\
+    \n  assert(x < u64(1) << 62);\r\n  if (x == 2 or x == 3 or x == 5 or x == 7) return\
     \ true;\r\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 == 0) return\
     \ false;\r\n  if (x < 121) return x > 1;\r\n  const u64 d = (x - 1) >> lowbit(x\
     \ - 1);\r\n\r\n  using mint = Mongomery_modint_64<202311020>;\r\n\r\n  mint::set_mod(x);\r\
@@ -125,11 +125,11 @@ data:
   isVerificationFile: false
   path: seq/famous/stirling_number_query.hpp
   requiredBy: []
-  timestamp: '2023-11-02 04:00:06+09:00'
+  timestamp: '2023-11-02 04:28:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/math/stirling_mod_p_2.test.cpp
   - test/library_checker/math/stirling_mod_p_1.test.cpp
+  - test/library_checker/math/stirling_mod_p_2.test.cpp
 documentation_of: seq/famous/stirling_number_query.hpp
 layout: document
 redirect_from:

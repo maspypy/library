@@ -38,9 +38,9 @@ data:
     \ y) {\n    x = ((x += y.x) >= m ? x - m : x);\n    return *this;\n  }\n  mint\
     \ &operator-=(mint y) {\n    x -= (x >= y.x ? y.x : y.x - m);\n    return *this;\n\
     \  }\n  mint &operator*=(mint y) {\n    x = reduce(U2(x) * y.x);\n    return *this;\n\
-    \  }\n  mint operator+(mint y) const { return m64(*this) += y; }\n  mint operator-(mint\
-    \ y) const { return m64(*this) -= y; }\n  mint operator*(mint y) const { return\
-    \ m64(*this) *= y; }\n  bool operator==(mint y) const {\n    return (x >= m ?\
+    \  }\n  mint operator+(mint y) const { return mint(*this) += y; }\n  mint operator-(mint\
+    \ y) const { return mint(*this) -= y; }\n  mint operator*(mint y) const { return\
+    \ mint(*this) *= y; }\n  bool operator==(mint y) const {\n    return (x >= m ?\
     \ x - m : x) == (y.x >= m ? y.x - m : y.x);\n  }\n  bool operator!=(mint y) const\
     \ { return not operator==(y); }\n  mint pow(ll n) const {\n    assert(n >= 0);\n\
     \    mint y = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if (n & 1)\
@@ -95,7 +95,7 @@ data:
   isVerificationFile: false
   path: graph/chromatic.hpp
   requiredBy: []
-  timestamp: '2023-11-02 04:00:06+09:00'
+  timestamp: '2023-11-02 04:28:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/graph/chromatic_number.test.cpp

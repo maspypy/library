@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/factorize
@@ -229,9 +229,9 @@ data:
     \ y) {\n    x = ((x += y.x) >= m ? x - m : x);\n    return *this;\n  }\n  mint\
     \ &operator-=(mint y) {\n    x -= (x >= y.x ? y.x : y.x - m);\n    return *this;\n\
     \  }\n  mint &operator*=(mint y) {\n    x = reduce(U2(x) * y.x);\n    return *this;\n\
-    \  }\n  mint operator+(mint y) const { return m64(*this) += y; }\n  mint operator-(mint\
-    \ y) const { return m64(*this) -= y; }\n  mint operator*(mint y) const { return\
-    \ m64(*this) *= y; }\n  bool operator==(mint y) const {\n    return (x >= m ?\
+    \  }\n  mint operator+(mint y) const { return mint(*this) += y; }\n  mint operator-(mint\
+    \ y) const { return mint(*this) -= y; }\n  mint operator*(mint y) const { return\
+    \ mint(*this) *= y; }\n  bool operator==(mint y) const {\n    return (x >= m ?\
     \ x - m : x) == (y.x >= m ? y.x - m : y.x);\n  }\n  bool operator!=(mint y) const\
     \ { return not operator==(y); }\n  mint pow(ll n) const {\n    assert(n >= 0);\n\
     \    mint y = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if (n & 1)\
@@ -272,18 +272,16 @@ data:
     \ n, vc<int>& lpf) {\n  vc<pair<ll, int>> res;\n  while (n > 1) {\n    int p =\
     \ lpf[n];\n    int e = 0;\n    while (n % p == 0) {\n      n /= p;\n      ++e;\n\
     \    }\n    res.eb(p, e);\n  }\n  return res;\n}\n#line 6 \"test/library_checker/math/factorize.test.cpp\"\
-    \n\nvoid solve() {\n  LL(Q);\n  FOR(_, Q) {\n    LL(x);\n    auto pf = factor(x);\n\
-    \    vi ANS;\n    for (auto&& [p, e]: pf) { FOR(_, e) ANS.eb(p); }\n    if (len(ANS))\n\
-    \      print(len(ANS), ANS);\n    else\n      print(0);\n  }\n}\n\nsigned main()\
-    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  solve();\n\n  return 0;\n}\n"
+    \n\nvoid solve() {\n  LL(x);\n  auto pf = factor(x);\n  vi ANS;\n  for (auto&&\
+    \ [p, e]: pf) { FOR(_, e) ANS.eb(p); }\n  if (len(ANS))\n    print(len(ANS), ANS);\n\
+    \  else\n    print(0);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\n#include \"\
     my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"nt/factor.hpp\"\n\n\
-    void solve() {\n  LL(Q);\n  FOR(_, Q) {\n    LL(x);\n    auto pf = factor(x);\n\
-    \    vi ANS;\n    for (auto&& [p, e]: pf) { FOR(_, e) ANS.eb(p); }\n    if (len(ANS))\n\
-    \      print(len(ANS), ANS);\n    else\n      print(0);\n  }\n}\n\nsigned main()\
-    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  solve();\n\n  return 0;\n}\n"
+    void solve() {\n  LL(x);\n  auto pf = factor(x);\n  vi ANS;\n  for (auto&& [p,\
+    \ e]: pf) { FOR(_, e) ANS.eb(p); }\n  if (len(ANS))\n    print(len(ANS), ANS);\n\
+    \  else\n    print(0);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n\n\
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -294,8 +292,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/factorize.test.cpp
   requiredBy: []
-  timestamp: '2023-11-02 04:04:38+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-02 04:28:32+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/factorize.test.cpp
 layout: document

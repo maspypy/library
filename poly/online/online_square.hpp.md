@@ -106,8 +106,8 @@ data:
   timestamp: '2023-08-20 01:21:28+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/online_square.test.cpp
   - test_atcoder/abc315h2.test.cpp
+  - test/mytest/online_square.test.cpp
 documentation_of: poly/online/online_square.hpp
 layout: document
 redirect_from:

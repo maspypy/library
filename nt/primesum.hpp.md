@@ -109,13 +109,13 @@ data:
   timestamp: '2023-08-06 13:04:29+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/library_checker/math/totient_sum.test.cpp
+  - test/library_checker/math/counting_primes.test.cpp
   - test/yukicoder/1276.test.cpp
   - test/yukicoder/1781.test.cpp
   - test/mytest/prime_sum.test.cpp
-  - test/mytest/primesum_mod4.test.cpp
   - test/mytest/primesum_mod6.test.cpp
-  - test/library_checker/math/totient_sum.test.cpp
-  - test/library_checker/math/counting_primes.test.cpp
+  - test/mytest/primesum_mod4.test.cpp
 documentation_of: nt/primesum.hpp
 layout: document
 redirect_from:

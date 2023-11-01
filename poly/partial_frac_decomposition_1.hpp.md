@@ -34,10 +34,10 @@ data:
   - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':question:'
@@ -479,9 +479,9 @@ data:
   timestamp: '2023-11-02 02:44:26+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test_atcoder/abc241h.test.cpp
   - test/mytest/partial_frac.test.cpp
   - test/mytest/composition_log_1_minus_x.test.cpp
-  - test_atcoder/abc241h.test.cpp
 documentation_of: poly/partial_frac_decomposition_1.hpp
 layout: document
 redirect_from:
