@@ -38,13 +38,13 @@ data:
   - icon: ':x:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex_minus_1.hpp
     title: poly/composition_f_ex_minus_1.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
   - icon: ':x:'
@@ -53,7 +53,7 @@ data:
   - icon: ':x:'
     path: poly/composition_f_rational.hpp
     title: poly/composition_f_rational.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
   _extendedVerifiedWith:
@@ -66,13 +66,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
     title: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/composition_1_minus_ex.test.cpp
     title: test/mytest/composition_1_minus_ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/composition_ex_minus_1.test.cpp
     title: test/mytest/composition_ex_minus_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/composition_log_1_minus_x.test.cpp
     title: test/mytest/composition_log_1_minus_x.test.cpp
   - icon: ':x:'
@@ -404,26 +404,26 @@ data:
   isVerificationFile: false
   path: poly/poly_taylor_shift.hpp
   requiredBy:
+  - poly/composition_f_1_minus_ex.hpp
+  - poly/composition_f_ex_minus_1.hpp
+  - poly/composition_f_log_1_minus_x.hpp
+  - poly/composition_f_polynomial.hpp
+  - poly/composition_f_rational.hpp
   - seq/famous/stirling_number_1.hpp
   - linalg/det_A_plus_xB.hpp
-  - poly/composition_f_log_1_minus_x.hpp
-  - poly/composition_f_ex_minus_1.hpp
-  - poly/composition_f_1_minus_ex.hpp
-  - poly/composition_f_rational.hpp
-  - poly/composition_f_polynomial.hpp
   timestamp: '2023-11-02 02:44:26+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/arc133f.test.cpp
+  - test/yukicoder/1303.test.cpp
+  - test/yukicoder/1907.test.cpp
+  - test/yukicoder/1875.test.cpp
+  - test/mytest/composition_log_1_minus_x.test.cpp
+  - test/mytest/composition_ex_minus_1.test.cpp
+  - test/mytest/composition_1_minus_ex.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
-  - test/yukicoder/1907.test.cpp
-  - test/yukicoder/1875.test.cpp
-  - test/yukicoder/1303.test.cpp
-  - test/mytest/composition_1_minus_ex.test.cpp
-  - test/mytest/composition_ex_minus_1.test.cpp
-  - test/mytest/composition_log_1_minus_x.test.cpp
+  - test_atcoder/arc133f.test.cpp
 documentation_of: poly/poly_taylor_shift.hpp
 layout: document
 redirect_from:
