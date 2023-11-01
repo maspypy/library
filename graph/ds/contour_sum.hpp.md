@@ -9,12 +9,12 @@ data:
     title: ds/fenwicktree/fenwicktree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/verted_add_contour_sum.test.cpp
     title: test/library_checker/graph/verted_add_contour_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -64,7 +64,7 @@ data:
     \  // \u65B9\u5411\u30E9\u30D9\u30EB\u3001\u91CD\u5FC3\u304B\u3089\u306E\u8DDD\
     \u96E2\u3001bit \u3067\u306Eindex\n  vvc<tuple<int, int, int>> dat;\n\n  Contour_Sum(GT&\
     \ G) : N(G.N), G(G) {\n    vc<X> v_vals(N, AbelGroup::unit());\n    build(v_vals);\n\
-    \  }\n  Contour_Sum(GT& G, const vc<X>& v_vals) : N(G.N), G(G) {\n    assert(!G.is_prepared());\n\
+    \  }\n  Contour_Sum(GT& G, const vc<X>& v_vals) : N(G.N), G(G) {\n    assert(G.is_prepared());\n\
     \    build(v_vals);\n  }\n\n  void add(int v, X val) {\n    for (auto&& [k, x,\
     \ i]: dat[v]) bit.add(i, val);\n  }\n\n  // v \u3092\u4E2D\u5FC3\u3068\u3057\u3066\
     \u3001\u8DDD\u96E2 [l, r) \u306E\u7BC4\u56F2\u306E\u548C\n  X sum(int v, int l,\
@@ -126,7 +126,7 @@ data:
     \  // \u65B9\u5411\u30E9\u30D9\u30EB\u3001\u91CD\u5FC3\u304B\u3089\u306E\u8DDD\
     \u96E2\u3001bit \u3067\u306Eindex\n  vvc<tuple<int, int, int>> dat;\n\n  Contour_Sum(GT&\
     \ G) : N(G.N), G(G) {\n    vc<X> v_vals(N, AbelGroup::unit());\n    build(v_vals);\n\
-    \  }\n  Contour_Sum(GT& G, const vc<X>& v_vals) : N(G.N), G(G) {\n    assert(!G.is_prepared());\n\
+    \  }\n  Contour_Sum(GT& G, const vc<X>& v_vals) : N(G.N), G(G) {\n    assert(G.is_prepared());\n\
     \    build(v_vals);\n  }\n\n  void add(int v, X val) {\n    for (auto&& [k, x,\
     \ i]: dat[v]) bit.add(i, val);\n  }\n\n  // v \u3092\u4E2D\u5FC3\u3068\u3057\u3066\
     \u3001\u8DDD\u96E2 [l, r) \u306E\u7BC4\u56F2\u306E\u548C\n  X sum(int v, int l,\
@@ -186,8 +186,8 @@ data:
   isVerificationFile: false
   path: graph/ds/contour_sum.hpp
   requiredBy: []
-  timestamp: '2023-11-01 13:21:15+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-11-02 01:05:01+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/graph/verted_add_contour_sum.test.cpp
 documentation_of: graph/ds/contour_sum.hpp
