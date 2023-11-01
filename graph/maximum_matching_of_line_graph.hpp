@@ -3,7 +3,7 @@
 // 同じ頂点に接続する 2 辺をマッチできる
 template <typename GT>
 vc<pair<int, int>> maximum_matching_of_line_graph(GT& G) {
-  assert(!G.is_directed());
+  assert(!GT::is_directed);
   assert(G.is_prepared());
   const int N = G.N, M = G.M;
   vc<pair<int, int>> ANS;

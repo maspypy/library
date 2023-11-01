@@ -3,7 +3,7 @@
 // (cost, vs, es)
 template <typename T, typename GT>
 vc<tuple<T, vc<int>, vc<int>>> K_shortest_path(GT& G, int s, int t, int K) {
-  assert(G.is_directed());
+  assert(GT::is_directed);
   const int N = G.N;
 
   // (cost, vs, es)
