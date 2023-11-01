@@ -34,7 +34,7 @@ data:
   - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
   - icon: ':question:'
@@ -47,14 +47,14 @@ data:
   - icon: ':x:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
   - icon: ':x:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - icon: ':x:'
@@ -104,7 +104,7 @@ data:
     title: test_atcoder/agc058d2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/multipoint.hpp\"\n\r\n#line 2 \"poly/count_terms.hpp\"\
@@ -563,29 +563,29 @@ data:
   isVerificationFile: false
   path: poly/multipoint.hpp
   requiredBy:
-  - linalg/implicit_matrix/vandermonde.hpp
-  - poly/composition_f_log_1_minus_x.hpp
   - poly/multivar_convolution_cyclic.hpp
+  - poly/composition_f_log_1_minus_x.hpp
   - poly/partial_frac_decomposition_1.hpp
+  - linalg/implicit_matrix/vandermonde.hpp
   timestamp: '2023-11-02 02:44:26+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/abc272_h.test.cpp
-  - test_atcoder/agc058d2.test.cpp
-  - test_atcoder/abc241h.test.cpp
-  - test_atcoder/abc267g.test.cpp
-  - test_atcoder/abc260h.test.cpp
-  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
-  - test/yukicoder/2166.test.cpp
   - test/yukicoder/2243.test.cpp
+  - test/yukicoder/2166.test.cpp
   - test/mytest/partial_frac.test.cpp
+  - test/mytest/vandermonde.test.cpp
   - test/mytest/chirp_z.test.cpp
   - test/mytest/composition_log_1_minus_x.test.cpp
-  - test/mytest/vandermonde.test.cpp
+  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
+  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
+  - test_atcoder/abc267g.test.cpp
+  - test_atcoder/agc058d2.test.cpp
+  - test_atcoder/abc272_h.test.cpp
+  - test_atcoder/abc260h.test.cpp
+  - test_atcoder/abc241h.test.cpp
 documentation_of: poly/multipoint.hpp
 layout: document
 redirect_from:
