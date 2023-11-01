@@ -49,7 +49,7 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_composition.hpp
     title: poly/fps_composition.hpp
   - icon: ':question:'
