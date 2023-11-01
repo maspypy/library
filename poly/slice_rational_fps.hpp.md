@@ -42,7 +42,7 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/slice_rational_fps.test.cpp
     title: test/mytest/slice_rational_fps.test.cpp
   - icon: ':x:'
@@ -50,7 +50,7 @@ data:
     title: test_atcoder/agc013e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://qiita.com/ryuhe1/items/c18ddbb834eed724a42b
@@ -434,10 +434,10 @@ data:
   path: poly/slice_rational_fps.hpp
   requiredBy: []
   timestamp: '2023-11-02 02:44:26+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/agc013e.test.cpp
   - test/mytest/slice_rational_fps.test.cpp
+  - test_atcoder/agc013e.test.cpp
 documentation_of: poly/slice_rational_fps.hpp
 layout: document
 redirect_from:
