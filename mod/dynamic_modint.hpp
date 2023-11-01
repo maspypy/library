@@ -1,4 +1,5 @@
 #pragma once
+
 #include "mod/modint_common.hpp"
 #include "mod/primitive_root.hpp"
 #include "mod/barrett.hpp"
