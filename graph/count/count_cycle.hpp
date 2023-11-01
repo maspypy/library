@@ -6,7 +6,7 @@
 template <typename T, typename GT>
 vc<T> count_cycle(GT& G) {
   const int N = G.N;
-  assert(N <= 32 && !G.is_directed());
+  assert(N <= 32 && !GT::is_directed);
   vc<u32> nbd(N);
   FOR(v, N) for (auto& e: G[v]) nbd[v] |= u32(1) << (e.to);
 
