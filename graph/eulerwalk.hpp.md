@@ -93,8 +93,7 @@ data:
     \        = std::chrono::steady_clock::now().time_since_epoch().count();\r\n  \
     \  return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
     \ u64& key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && keys[i]\
-    \ != key; (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  // [] \u3057\
-    \u305F\u6642\u70B9\u3067\u8981\u7D20\u306F\u4F5C\u3089\u308C\u308B\r\n  Val& operator[](const\
+    \ != key; (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
     \ u64& key) {\r\n    int i = index(key);\r\n    if (!used[i]) IDS.eb(i), used[i]\
     \ = 1, keys[i] = key, vals[i] = Val{};\r\n    return vals[i];\r\n  }\r\n\r\n \
     \ Val get(const u64& key, Val default_value) {\r\n    int i = index(key);\r\n\
@@ -158,7 +157,7 @@ data:
   isVerificationFile: false
   path: graph/eulerwalk.hpp
   requiredBy: []
-  timestamp: '2023-11-01 01:33:38+09:00'
+  timestamp: '2023-11-01 19:15:19+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/arc157a.test.cpp

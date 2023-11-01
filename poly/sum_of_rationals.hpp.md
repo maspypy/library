@@ -1,78 +1,78 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/composition_f_ex_minus_1.hpp
     title: poly/composition_f_ex_minus_1.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/product_of_pow_of_linear.hpp
     title: poly/product_of_pow_of_linear.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/composition_1_minus_ex.test.cpp
     title: test/mytest/composition_1_minus_ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/composition_ex_minus_1.test.cpp
     title: test/mytest/composition_ex_minus_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/partial_frac.test.cpp
     title: test/mytest/partial_frac.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1145.test.cpp
     title: test/yukicoder/1145.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1875.test.cpp
     title: test/yukicoder/1875.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1962.test.cpp
     title: test/yukicoder/1962.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2459.test.cpp
     title: test/yukicoder/2459.test.cpp
   - icon: ':x:'
@@ -92,7 +92,7 @@ data:
     title: test_atcoder/arc154f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/sum_of_rationals.hpp\"\n\n#line 2 \"mod/modint_common.hpp\"\
@@ -128,34 +128,34 @@ data:
     }\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n\
     \  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
     \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
-    }\n\n// [x^d] (1-x) ^ {-n} \u306E\u8A08\u7B97\ntemplate <typename mint, bool large\
-    \ = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n\
-    \  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1) : mint(0));\
-    \ }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\
-    \n\ntemplate <int mod>\nstruct modint {\n  static constexpr u32 umod = u32(mod);\n\
-    \  static_assert(umod < u32(1) << 31);\n  u32 val;\n\n  static modint raw(u32\
-    \ v) {\n    modint x;\n    x.val = v;\n    return x;\n  }\n  constexpr modint()\
-    \ : val(0) {}\n  constexpr modint(u32 x) : val(x % umod) {}\n  constexpr modint(u64\
-    \ x) : val(x % umod) {}\n  constexpr modint(int x) : val((x %= mod) < 0 ? x +\
-    \ mod : x){};\n  constexpr modint(ll x) : val((x %= mod) < 0 ? x + mod : x){};\n\
-    \  bool operator<(const modint &other) const { return val < other.val; }\n  modint\
-    \ &operator+=(const modint &p) {\n    if ((val += p.val) >= umod) val -= umod;\n\
-    \    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if ((val\
-    \ += umod - p.val) >= umod) val -= umod;\n    return *this;\n  }\n  modint &operator*=(const\
-    \ modint &p) {\n    val = u64(val) * p.val % umod;\n    return *this;\n  }\n \
-    \ modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return\
-    \ *this;\n  }\n  modint operator-() const { return modint::raw(val ? mod - val\
-    \ : u32(0)); }\n  modint operator+(const modint &p) const { return modint(*this)\
-    \ += p; }\n  modint operator-(const modint &p) const { return modint(*this) -=\
-    \ p; }\n  modint operator*(const modint &p) const { return modint(*this) *= p;\
-    \ }\n  modint operator/(const modint &p) const { return modint(*this) /= p; }\n\
-    \  bool operator==(const modint &p) const { return val == p.val; }\n  bool operator!=(const\
-    \ modint &p) const { return val != p.val; }\n  modint inverse() const {\n    int\
-    \ a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n\
-    \      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n\
-    \  }\n  modint pow(ll n) const {\n    assert(n >= 0);\n    modint ret(1), mul(val);\n\
-    \    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n\
-    \ >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
+    }\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint, bool large = false, bool dense\
+    \ = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return\
+    \ mint(0);\n  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint,\
+    \ large, dense>(n + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int\
+    \ mod>\nstruct modint {\n  static constexpr u32 umod = u32(mod);\n  static_assert(umod\
+    \ < u32(1) << 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n\
+    \    x.val = v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr\
+    \ modint(u32 x) : val(x % umod) {}\n  constexpr modint(u64 x) : val(x % umod)\
+    \ {}\n  constexpr modint(int x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr\
+    \ modint(ll x) : val((x %= mod) < 0 ? x + mod : x){};\n  bool operator<(const\
+    \ modint &other) const { return val < other.val; }\n  modint &operator+=(const\
+    \ modint &p) {\n    if ((val += p.val) >= umod) val -= umod;\n    return *this;\n\
+    \  }\n  modint &operator-=(const modint &p) {\n    if ((val += umod - p.val) >=\
+    \ umod) val -= umod;\n    return *this;\n  }\n  modint &operator*=(const modint\
+    \ &p) {\n    val = u64(val) * p.val % umod;\n    return *this;\n  }\n  modint\
+    \ &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return *this;\n\
+    \  }\n  modint operator-() const { return modint::raw(val ? mod - val : u32(0));\
+    \ }\n  modint operator+(const modint &p) const { return modint(*this) += p; }\n\
+    \  modint operator-(const modint &p) const { return modint(*this) -= p; }\n  modint\
+    \ operator*(const modint &p) const { return modint(*this) *= p; }\n  modint operator/(const\
+    \ modint &p) const { return modint(*this) /= p; }\n  bool operator==(const modint\
+    \ &p) const { return val == p.val; }\n  bool operator!=(const modint &p) const\
+    \ { return val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod,\
+    \ u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t *\
+    \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll\
+    \ n) const {\n    assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n\
+    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
+    \  }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
     \ }\n  void read() {\n    fastio::scanner.read(val);\n    val %= mod;\n  }\n#endif\n\
     \  static constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E\
     \ 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n    if (mod\
@@ -394,8 +394,8 @@ data:
   - poly/composition_f_ex_minus_1.hpp
   - poly/composition_f_1_minus_ex.hpp
   - poly/product_of_pow_of_linear.hpp
-  timestamp: '2023-11-01 03:36:04+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-11-01 19:15:19+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc276_g_2.test.cpp
   - test_atcoder/arc154f.test.cpp

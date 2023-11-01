@@ -2,26 +2,26 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/minidx_add.hpp
     title: alg/acted_monoid/minidx_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/manhattan_nns.hpp
     title: geo/manhattan_nns.hpp
   - icon: ':warning:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/manhattan_nns.test.cpp
     title: test/mytest/manhattan_nns.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/minidx_add.test.cpp
     title: test/mytest/minidx_add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2361.test.cpp
     title: test/yukicoder/2361.test.cpp
   - icon: ':x:'
@@ -29,7 +29,7 @@ data:
     title: test_atcoder/abc301h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/min_idx.hpp\"\n\r\ntemplate <typename T, bool\
@@ -55,7 +55,7 @@ data:
   - geo/manhattan_nns.hpp
   - graph/fast_lca.hpp
   timestamp: '2023-02-01 23:31:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc301h.test.cpp
   - test/yukicoder/2361.test.cpp

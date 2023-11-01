@@ -15,15 +15,15 @@ data:
     title: nt/primetest.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/stirling_mod_p_1.test.cpp
     title: test/library_checker/math/stirling_mod_p_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/stirling_mod_p_2.test.cpp
     title: test/library_checker/math/stirling_mod_p_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/dynamic_modint_64.hpp\"\n\n#line 2 \"mod/modint_common.hpp\"\
@@ -59,11 +59,10 @@ data:
     }\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n\
     \  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
     \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
-    }\n\n// [x^d] (1-x) ^ {-n} \u306E\u8A08\u7B97\ntemplate <typename mint, bool large\
-    \ = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n\
-    \  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1) : mint(0));\
-    \ }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 2 \"mod/barrett.hpp\"\
-    \n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
+    }\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint, bool large = false, bool dense\
+    \ = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return\
+    \ mint(0);\n  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint,\
+    \ large, dense>(n + d - 1, d);\n}\n#line 2 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
     struct Barrett {\n  u32 m;\n  u64 im;\n  explicit Barrett(u32 m = 1) : m(m), im(u64(-1)\
     \ / m + 1) {}\n  u32 umod() const { return m; }\n  u32 modulo(u64 z) {\n    if\
     \ (m == 1) return 0;\n    u64 x = (u64)(((unsigned __int128)(z)*im) >> 64);\n\
@@ -198,8 +197,8 @@ data:
   isVerificationFile: false
   path: seq/famous/stirling_number_query.hpp
   requiredBy: []
-  timestamp: '2023-10-24 22:55:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-11-01 19:15:19+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/math/stirling_mod_p_1.test.cpp
   - test/library_checker/math/stirling_mod_p_2.test.cpp

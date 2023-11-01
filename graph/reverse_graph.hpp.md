@@ -8,20 +8,20 @@ data:
   - icon: ':x:'
     path: game/graph_game.hpp
     title: game/graph_game.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/dominator_tree.hpp
     title: graph/dominator_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest_path/K_shortest_walk.hpp
     title: graph/shortest_path/K_shortest_walk.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/K_shortest_walk.test.cpp
     title: test/library_checker/graph/K_shortest_walk.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/domninator_tree.test.cpp
     title: test/library_checker/graph/domninator_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1601.test.cpp
     title: test/yukicoder/1601.test.cpp
   - icon: ':x:'
@@ -29,7 +29,7 @@ data:
     title: test_atcoder/abc209e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -105,7 +105,7 @@ data:
   - graph/dominator_tree.hpp
   - graph/shortest_path/K_shortest_walk.hpp
   timestamp: '2023-11-01 05:26:51+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc209e.test.cpp
   - test/library_checker/graph/K_shortest_walk.test.cpp

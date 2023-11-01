@@ -2,95 +2,95 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/offline_query/range_mex_query.hpp
     title: ds/offline_query/range_mex_query.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/offline_query/uniqueproductquery.hpp
     title: ds/offline_query/uniqueproductquery.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/manhattan_nns.hpp
     title: geo/manhattan_nns.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ITP2_3_B.test.cpp
     title: test/aoj/ITP2_3_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
     title: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/sort_segtree.test.cpp
     title: test/library_checker/datastructure/sort_segtree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/sort_segtree_1.test.cpp
     title: test/library_checker/datastructure/sort_segtree_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/staticrmq_seg.test.cpp
     title: test/library_checker/datastructure/staticrmq_seg.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/manhattan_nns.test.cpp
     title: test/mytest/manhattan_nns.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/mo_on_tree.test.cpp
     title: test/mytest/mo_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/range_mex.test.cpp
     title: test/mytest/range_mex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/segtree_xor_prod.test.cpp
     title: test/mytest/segtree_xor_prod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1036_2.test.cpp
     title: test/yukicoder/1036_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1212.test.cpp
     title: test/yukicoder/1212.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1435.test.cpp
     title: test/yukicoder/1435.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1549.test.cpp
     title: test/yukicoder/1549.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2361.test.cpp
     title: test/yukicoder/2361.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc174f.test.cpp
     title: test_atcoder/abc174f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc237g.test.cpp
     title: test_atcoder/abc237g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc240ex.test.cpp
     title: test_atcoder/abc240ex.test.cpp
   - icon: ':x:'
@@ -101,7 +101,7 @@ data:
     title: test_atcoder/abc301h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
@@ -195,7 +195,7 @@ data:
   - graph/minimum_spanning_tree.hpp
   - graph/ds/tree_monoid.hpp
   timestamp: '2023-04-14 22:06:29+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc240ex.test.cpp
   - test_atcoder/abc270_f.test.cpp

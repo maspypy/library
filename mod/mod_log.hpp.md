@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_set/from_monoid.hpp
     title: alg/acted_set/from_monoid.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
   - icon: ':question:'
@@ -13,25 +13,25 @@ data:
   - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
   - icon: ':question:'
     path: mod/dynamic_modint_64.hpp
     title: mod/dynamic_modint_64.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':question:'
@@ -42,12 +42,12 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -82,17 +82,16 @@ data:
     \  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename mint, bool large = false>\n\
     mint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if\
     \ (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return\
-    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d] (1-x) ^ {-n} \u306E\u8A08\u7B97\n\
-    template <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
-    \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\
-    \ return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large, dense>(n + d\
-    \ - 1, d);\n}\n#line 2 \"mod/primitive_root.hpp\"\n\r\n#line 2 \"nt/factor.hpp\"\
-    \n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n    \
-    \  = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n                  \
-    \   chrono::high_resolution_clock::now().time_since_epoch())\n               \
-    \      .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return\
-    \ x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll\
-    \ l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/dynamic_modint_64.hpp\"\
+    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint,\
+    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
+    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
+    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 2 \"\
+    mod/primitive_root.hpp\"\n\r\n#line 2 \"nt/factor.hpp\"\n\n#line 2 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/dynamic_modint_64.hpp\"\
     \n\n#line 2 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
     struct Barrett {\n  u32 m;\n  u64 im;\n  explicit Barrett(u32 m = 1) : m(m), im(u64(-1)\
     \ / m + 1) {}\n  u32 umod() const { return m; }\n  u32 modulo(u64 z) {\n    if\
@@ -242,8 +241,7 @@ data:
     \ {}\r\n  int hash(ll x) {\r\n    static const u64 FIXED_RANDOM\r\n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\
     \n    return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
     \ u64& key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && keys[i]\
-    \ != key; (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  // [] \u3057\
-    \u305F\u6642\u70B9\u3067\u8981\u7D20\u306F\u4F5C\u3089\u308C\u308B\r\n  Val& operator[](const\
+    \ != key; (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
     \ u64& key) {\r\n    int i = index(key);\r\n    if (!used[i]) IDS.eb(i), used[i]\
     \ = 1, keys[i] = key, vals[i] = Val{};\r\n    return vals[i];\r\n  }\r\n\r\n \
     \ Val get(const u64& key, Val default_value) {\r\n    int i = index(key);\r\n\
@@ -303,8 +301,8 @@ data:
   isVerificationFile: false
   path: mod/mod_log.hpp
   requiredBy: []
-  timestamp: '2023-10-25 02:01:34+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-11-01 19:15:19+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
 documentation_of: mod/mod_log.hpp

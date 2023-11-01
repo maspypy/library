@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2231.test.cpp
     title: test/yukicoder/2231.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -55,51 +55,51 @@ data:
     \  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename mint, bool large = false>\n\
     mint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if\
     \ (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return\
-    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d] (1-x) ^ {-n} \u306E\u8A08\u7B97\n\
-    template <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
-    \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\
-    \ return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large, dense>(n + d\
-    \ - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
-    \ {\n  static constexpr u32 umod = u32(mod);\n  static_assert(umod < u32(1) <<\
-    \ 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n    x.val =\
-    \ v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr modint(u32\
-    \ x) : val(x % umod) {}\n  constexpr modint(u64 x) : val(x % umod) {}\n  constexpr\
-    \ modint(int x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(ll\
-    \ x) : val((x %= mod) < 0 ? x + mod : x){};\n  bool operator<(const modint &other)\
-    \ const { return val < other.val; }\n  modint &operator+=(const modint &p) {\n\
-    \    if ((val += p.val) >= umod) val -= umod;\n    return *this;\n  }\n  modint\
-    \ &operator-=(const modint &p) {\n    if ((val += umod - p.val) >= umod) val -=\
-    \ umod;\n    return *this;\n  }\n  modint &operator*=(const modint &p) {\n   \
-    \ val = u64(val) * p.val % umod;\n    return *this;\n  }\n  modint &operator/=(const\
-    \ modint &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n  modint operator-()\
-    \ const { return modint::raw(val ? mod - val : u32(0)); }\n  modint operator+(const\
-    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
-    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
-    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
-    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
-    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
-    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
-    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
-    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
-    \  assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if\
-    \ (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
-    \  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val); }\n  void read()\
-    \ {\n    fastio::scanner.read(val);\n    val %= mod;\n  }\n#endif\n  static constexpr\
-    \ int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\
-    \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 167772161) return\
-    \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
-    \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
-    \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
-    \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
-    \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
-    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
-    \ -1; }\n};\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>&\
-    \ a, bool inverse) {\r\n  assert(mint::can_ntt());\r\n  const int rank2 = mint::ntt_info().fi;\r\
-    \n  const int mod = mint::get_mod();\r\n  static array<mint, 30> root, iroot;\r\
-    \n  static array<mint, 30> rate2, irate2;\r\n  static array<mint, 30> rate3, irate3;\r\
-    \n\r\n  static bool prepared = 0;\r\n  if (!prepared) {\r\n    prepared = 1;\r\
-    \n    root[rank2] = mint::ntt_info().se;\r\n    iroot[rank2] = mint(1) / root[rank2];\r\
+    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint,\
+    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
+    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
+    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 3 \"\
+    mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n  static constexpr u32\
+    \ umod = u32(mod);\n  static_assert(umod < u32(1) << 31);\n  u32 val;\n\n  static\
+    \ modint raw(u32 v) {\n    modint x;\n    x.val = v;\n    return x;\n  }\n  constexpr\
+    \ modint() : val(0) {}\n  constexpr modint(u32 x) : val(x % umod) {}\n  constexpr\
+    \ modint(u64 x) : val(x % umod) {}\n  constexpr modint(int x) : val((x %= mod)\
+    \ < 0 ? x + mod : x){};\n  constexpr modint(ll x) : val((x %= mod) < 0 ? x + mod\
+    \ : x){};\n  bool operator<(const modint &other) const { return val < other.val;\
+    \ }\n  modint &operator+=(const modint &p) {\n    if ((val += p.val) >= umod)\
+    \ val -= umod;\n    return *this;\n  }\n  modint &operator-=(const modint &p)\
+    \ {\n    if ((val += umod - p.val) >= umod) val -= umod;\n    return *this;\n\
+    \  }\n  modint &operator*=(const modint &p) {\n    val = u64(val) * p.val % umod;\n\
+    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
+    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint::raw(val\
+    \ ? mod - val : u32(0)); }\n  modint operator+(const modint &p) const { return\
+    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
+    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
+    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
+    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
+    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
+    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
+    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
+    \ return modint(u);\n  }\n  modint pow(ll n) const {\n    assert(n >= 0);\n  \
+    \  modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
+    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n\
+    \  void write() { fastio::printer.write(val); }\n  void read() {\n    fastio::scanner.read(val);\n\
+    \    val %= mod;\n  }\n#endif\n  static constexpr int get_mod() { return mod;\
+    \ }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int,\
+    \ int> ntt_info() {\n    if (mod == 167772161) return {25, 17};\n    if (mod ==\
+    \ 469762049) return {26, 30};\n    if (mod == 754974721) return {24, 362};\n \
+    \   if (mod == 880803841) return {23, 211};\n    if (mod == 943718401) return\
+    \ {22, 663003469};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
+    \ 1045430273) return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n\
+    \    if (mod == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static\
+    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\nusing modint107\
+    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 2 \"poly/ntt.hpp\"\
+    \n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>& a, bool inverse) {\r\n \
+    \ assert(mint::can_ntt());\r\n  const int rank2 = mint::ntt_info().fi;\r\n  const\
+    \ int mod = mint::get_mod();\r\n  static array<mint, 30> root, iroot;\r\n  static\
+    \ array<mint, 30> rate2, irate2;\r\n  static array<mint, 30> rate3, irate3;\r\n\
+    \r\n  static bool prepared = 0;\r\n  if (!prepared) {\r\n    prepared = 1;\r\n\
+    \    root[rank2] = mint::ntt_info().se;\r\n    iroot[rank2] = mint(1) / root[rank2];\r\
     \n    FOR_R(i, rank2) {\r\n      root[i] = root[i + 1] * root[i + 1];\r\n    \
     \  iroot[i] = iroot[i + 1] * iroot[i + 1];\r\n    }\r\n    mint prod = 1, iprod\
     \ = 1;\r\n    for (int i = 0; i <= rank2 - 2; i++) {\r\n      rate2[i] = root[i\
@@ -209,8 +209,8 @@ data:
   isVerificationFile: false
   path: string/wildcard_pattern_matching.hpp
   requiredBy: []
-  timestamp: '2023-10-14 01:49:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-11-01 19:15:19+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/2231.test.cpp
 documentation_of: string/wildcard_pattern_matching.hpp

@@ -7,13 +7,13 @@ data:
   - icon: ':question:'
     path: mod/dynamic_modint_64.hpp
     title: mod/dynamic_modint_64.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':question:'
@@ -23,31 +23,31 @@ data:
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/four_square.hpp
     title: nt/four_square.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/three_square.hpp
     title: nt/three_square.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/three_triangular.hpp
     title: nt/three_triangular.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/three_square.test.cpp
     title: test/mytest/three_square.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/three_triangular.test.cpp
     title: test/mytest/three_triangular.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1593.test.cpp
     title: test/yukicoder/1593.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/factor.hpp\"\n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
@@ -88,11 +88,11 @@ data:
     \  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename mint, bool large = false>\n\
     mint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if\
     \ (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return\
-    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d] (1-x) ^ {-n} \u306E\u8A08\u7B97\n\
-    template <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
-    \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\
-    \ return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large, dense>(n + d\
-    \ - 1, d);\n}\n#line 2 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
+    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint,\
+    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
+    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
+    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 2 \"\
+    mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
     struct Barrett {\n  u32 m;\n  u64 im;\n  explicit Barrett(u32 m = 1) : m(m), im(u64(-1)\
     \ / m + 1) {}\n  u32 umod() const { return m; }\n  u32 modulo(u64 z) {\n    if\
     \ (m == 1) return 0;\n    u64 x = (u64)(((unsigned __int128)(z)*im) >> 64);\n\
@@ -306,8 +306,8 @@ data:
   - nt/four_square.hpp
   - nt/three_square.hpp
   - nt/three_triangular.hpp
-  timestamp: '2023-10-25 07:45:48+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-11-01 19:15:19+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1593.test.cpp
   - test/mytest/four_square.test.cpp

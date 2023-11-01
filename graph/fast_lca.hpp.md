@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/min_idx.hpp
     title: alg/monoid/min_idx.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
   _extendedRequiredBy: []

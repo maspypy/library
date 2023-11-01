@@ -7,16 +7,16 @@ data:
   - icon: ':question:'
     path: mod/dynamic_modint_64.hpp
     title: mod/dynamic_modint_64.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':question:'
@@ -26,68 +26,68 @@ data:
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
     title: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/convolution_mod_dmint.test.cpp
     title: test/library_checker/convolution/convolution_mod_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/convolution_mod_setntt.test.cpp
     title: test/library_checker/convolution/convolution_mod_setntt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
     title: test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/inv_of_fps.test.cpp
     title: test/library_checker/polynomial/inv_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
     title: test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/log_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/log_of_fps_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
     title: test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/31bit_modint.test.cpp
     title: test/mytest/31bit_modint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/geometric_sequence_sum.test.cpp
     title: test/mytest/geometric_sequence_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1667.test.cpp
     title: test/yukicoder/1667.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc222g.test.cpp
     title: test_atcoder/abc222g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc270_g.test.cpp
     title: test_atcoder/abc270_g.test.cpp
   - icon: ':x:'
@@ -95,7 +95,7 @@ data:
     title: test_atcoder/abc281g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -130,17 +130,16 @@ data:
     \  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename mint, bool large = false>\n\
     mint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if\
     \ (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return\
-    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d] (1-x) ^ {-n} \u306E\u8A08\u7B97\n\
-    template <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
-    \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\
-    \ return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large, dense>(n + d\
-    \ - 1, d);\n}\n#line 2 \"mod/primitive_root.hpp\"\n\r\n#line 2 \"nt/factor.hpp\"\
-    \n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n    \
-    \  = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n                  \
-    \   chrono::high_resolution_clock::now().time_since_epoch())\n               \
-    \      .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return\
-    \ x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll\
-    \ l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/dynamic_modint_64.hpp\"\
+    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint,\
+    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
+    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
+    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 2 \"\
+    mod/primitive_root.hpp\"\n\r\n#line 2 \"nt/factor.hpp\"\n\n#line 2 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/dynamic_modint_64.hpp\"\
     \n\n#line 2 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
     struct Barrett {\n  u32 m;\n  u64 im;\n  explicit Barrett(u32 m = 1) : m(m), im(u64(-1)\
     \ / m + 1) {}\n  u32 umod() const { return m; }\n  u32 modulo(u64 z) {\n    if\
@@ -326,8 +325,8 @@ data:
   path: mod/dynamic_modint.hpp
   requiredBy:
   - mod/mod_log.hpp
-  timestamp: '2023-10-25 02:01:34+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-11-01 19:15:19+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc222g.test.cpp
   - test_atcoder/abc281g.test.cpp

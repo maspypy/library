@@ -3,28 +3,28 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_6_B.test.cpp
     title: test/aoj/GRL_6_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/assignment_mcf.test.cpp
     title: test/library_checker/graph/assignment_mcf.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1288.test.cpp
     title: test/yukicoder/1288.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1301.test.cpp
     title: test/yukicoder/1301.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1324.test.cpp
     title: test/yukicoder/1324.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1341.test.cpp
     title: test/yukicoder/1341.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1676.test.cpp
     title: test/yukicoder/1676.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1678.test.cpp
     title: test/yukicoder/1678.test.cpp
   - icon: ':x:'
@@ -32,7 +32,7 @@ data:
     title: test_atcoder/abc214h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"flow/mincostflow.hpp\"\n\n// atcoder library \u306E\u3082\
@@ -252,7 +252,7 @@ data:
   path: flow/mincostflow.hpp
   requiredBy: []
   timestamp: '2023-10-14 01:47:11+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc214h.test.cpp
   - test/aoj/GRL_6_B.test.cpp

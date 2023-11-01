@@ -18,12 +18,12 @@ data:
     title: graph/strongly_connected_component.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/bipartite_edge_coloring.test.cpp
     title: test/library_checker/graph/bipartite_edge_coloring.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/bipartite_vertex_coloring.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\
@@ -302,7 +302,7 @@ data:
   path: graph/bipartite_edge_coloring.hpp
   requiredBy: []
   timestamp: '2023-11-01 02:04:43+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/graph/bipartite_edge_coloring.test.cpp
 documentation_of: graph/bipartite_edge_coloring.hpp

@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   - icon: ':question:'

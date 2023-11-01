@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
   - icon: ':question:'
@@ -12,7 +12,7 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/count_points_in_triangles.test.cpp
     title: test/mytest/count_points_in_triangles.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test_atcoder/abc202_f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/13/problem/D
@@ -174,7 +174,7 @@ data:
   path: geo/count_points_in_triangles.hpp
   requiredBy: []
   timestamp: '2023-11-01 01:33:38+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc202_f.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp

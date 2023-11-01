@@ -5,13 +5,13 @@ data:
   - icon: ':warning:'
     path: ds/incremental_rectangle_union.hpp
     title: ds/incremental_rectangle_union.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/intervals.hpp
     title: ds/intervals.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/sortable_array.hpp
     title: ds/sortable_array.hpp
   - icon: ':heavy_check_mark:'
@@ -33,37 +33,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2636.test.cpp
     title: test/aoj/2636.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/predecessor_problem.test.cpp
     title: test/library_checker/datastructure/predecessor_problem.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/sort_segtree.test.cpp
     title: test/library_checker/datastructure/sort_segtree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/sort_segtree_1.test.cpp
     title: test/library_checker/datastructure/sort_segtree_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/sortable_array.test.cpp
     title: test/mytest/sortable_array.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc217e.test.cpp
     title: test_atcoder/abc217e.test.cpp
   - icon: ':x:'
     path: test_atcoder/abc223d.test.cpp
     title: test_atcoder/abc223d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc237g.test.cpp
     title: test_atcoder/abc237g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc237g1.test.cpp
     title: test_atcoder/abc237g1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc256d.test.cpp
     title: test_atcoder/abc256d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc256ex.test.cpp
     title: test_atcoder/abc256ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc256ex2.test.cpp
     title: test_atcoder/abc256ex2.test.cpp
   _isVerificationFailed: true

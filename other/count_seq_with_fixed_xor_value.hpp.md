@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -49,60 +49,60 @@ data:
     \  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename mint, bool large = false>\n\
     mint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if\
     \ (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return\
-    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d] (1-x) ^ {-n} \u306E\u8A08\u7B97\n\
-    template <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
-    \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\
-    \ return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large, dense>(n + d\
-    \ - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
-    \ {\n  static constexpr u32 umod = u32(mod);\n  static_assert(umod < u32(1) <<\
-    \ 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n    x.val =\
-    \ v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr modint(u32\
-    \ x) : val(x % umod) {}\n  constexpr modint(u64 x) : val(x % umod) {}\n  constexpr\
-    \ modint(int x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(ll\
-    \ x) : val((x %= mod) < 0 ? x + mod : x){};\n  bool operator<(const modint &other)\
-    \ const { return val < other.val; }\n  modint &operator+=(const modint &p) {\n\
-    \    if ((val += p.val) >= umod) val -= umod;\n    return *this;\n  }\n  modint\
-    \ &operator-=(const modint &p) {\n    if ((val += umod - p.val) >= umod) val -=\
-    \ umod;\n    return *this;\n  }\n  modint &operator*=(const modint &p) {\n   \
-    \ val = u64(val) * p.val % umod;\n    return *this;\n  }\n  modint &operator/=(const\
-    \ modint &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n  modint operator-()\
-    \ const { return modint::raw(val ? mod - val : u32(0)); }\n  modint operator+(const\
-    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
-    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
-    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
-    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
-    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
-    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
-    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
-    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
-    \  assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if\
-    \ (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
-    \  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val); }\n  void read()\
-    \ {\n    fastio::scanner.read(val);\n    val %= mod;\n  }\n#endif\n  static constexpr\
-    \ int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\
-    \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 167772161) return\
-    \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
-    \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
-    \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
-    \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
-    \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
-    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
-    \ -1; }\n};\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 2 \"other/count_seq_with_fixed_xor_value.hpp\"\n\n// [0, LIM)^N \u306E\u3046\
-    \u3061\u3067\u3001xor = X \u3068\u306A\u308B\u3082\u306E\u306E\u500B\u6570\ntemplate\
-    \ <typename mint>\nmint count_seq_with_fixed_xor(ll N, ll LIM, ll X) {\n  assert(LIM\
-    \ >= 1);\n  --LIM; // closed\n  if (LIM == 0) return (X == 0 ? 1 : 0);\n  int\
-    \ LOG = topbit(LIM) + 1;\n  if (X >> LOG) return 0;\n  mint res = 0;\n  bool ok\
-    \ = 1;\n  FOR_R(k, LOG) {\n    int LIM1 = LIM >> k & 1;\n    int X1 = X >> k &\
-    \ 1;\n    if (LIM1) {\n      ll mk = LIM - (LIM >> k << k);\n      mint a = mint(2).pow(k),\
-    \ b = mk + 1;\n      tie(a, b) = mp(a + b, a - b);\n      a = a.pow(N), b = b.pow(N);\n\
-    \      tie(a, b) = mp(a + b, a - b);\n      a *= inv<mint>(2), b *= inv<mint>(2);\n\
-    \      mint now = (X1 ? b : a);\n      if ((N & 1) == X1) now -= mint(mk + 1).pow(N);\n\
-    \      now /= mint(2).pow(k);\n      res += now;\n    }\n    if (LIM1 * (N & 1)\
-    \ != X1) {\n      ok = 0;\n      break;\n    }\n  }\n  if (ok) res += mint(1);\n\
-    \  return res;\n}\n\n// [0, LIM)^N \u306E\u3046\u3061\u3067\u3001xor = X \u3068\
-    \u306A\u308B\u3082\u306E\u306E\u500B\u6570\u3002N = 0,1,...,nmax\ntemplate <typename\
-    \ mint>\nvc<mint> count_seq_with_fixed_xor_iota(ll nmax, ll LIM, ll X) {\n  assert(LIM\
+    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint,\
+    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
+    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
+    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 3 \"\
+    mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n  static constexpr u32\
+    \ umod = u32(mod);\n  static_assert(umod < u32(1) << 31);\n  u32 val;\n\n  static\
+    \ modint raw(u32 v) {\n    modint x;\n    x.val = v;\n    return x;\n  }\n  constexpr\
+    \ modint() : val(0) {}\n  constexpr modint(u32 x) : val(x % umod) {}\n  constexpr\
+    \ modint(u64 x) : val(x % umod) {}\n  constexpr modint(int x) : val((x %= mod)\
+    \ < 0 ? x + mod : x){};\n  constexpr modint(ll x) : val((x %= mod) < 0 ? x + mod\
+    \ : x){};\n  bool operator<(const modint &other) const { return val < other.val;\
+    \ }\n  modint &operator+=(const modint &p) {\n    if ((val += p.val) >= umod)\
+    \ val -= umod;\n    return *this;\n  }\n  modint &operator-=(const modint &p)\
+    \ {\n    if ((val += umod - p.val) >= umod) val -= umod;\n    return *this;\n\
+    \  }\n  modint &operator*=(const modint &p) {\n    val = u64(val) * p.val % umod;\n\
+    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
+    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint::raw(val\
+    \ ? mod - val : u32(0)); }\n  modint operator+(const modint &p) const { return\
+    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
+    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
+    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
+    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
+    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
+    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
+    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
+    \ return modint(u);\n  }\n  modint pow(ll n) const {\n    assert(n >= 0);\n  \
+    \  modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
+    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n\
+    \  void write() { fastio::printer.write(val); }\n  void read() {\n    fastio::scanner.read(val);\n\
+    \    val %= mod;\n  }\n#endif\n  static constexpr int get_mod() { return mod;\
+    \ }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int,\
+    \ int> ntt_info() {\n    if (mod == 167772161) return {25, 17};\n    if (mod ==\
+    \ 469762049) return {26, 30};\n    if (mod == 754974721) return {24, 362};\n \
+    \   if (mod == 880803841) return {23, 211};\n    if (mod == 943718401) return\
+    \ {22, 663003469};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
+    \ 1045430273) return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n\
+    \    if (mod == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static\
+    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\nusing modint107\
+    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 2 \"other/count_seq_with_fixed_xor_value.hpp\"\
+    \n\n// [0, LIM)^N \u306E\u3046\u3061\u3067\u3001xor = X \u3068\u306A\u308B\u3082\
+    \u306E\u306E\u500B\u6570\ntemplate <typename mint>\nmint count_seq_with_fixed_xor(ll\
+    \ N, ll LIM, ll X) {\n  assert(LIM >= 1);\n  --LIM; // closed\n  if (LIM == 0)\
+    \ return (X == 0 ? 1 : 0);\n  int LOG = topbit(LIM) + 1;\n  if (X >> LOG) return\
+    \ 0;\n  mint res = 0;\n  bool ok = 1;\n  FOR_R(k, LOG) {\n    int LIM1 = LIM >>\
+    \ k & 1;\n    int X1 = X >> k & 1;\n    if (LIM1) {\n      ll mk = LIM - (LIM\
+    \ >> k << k);\n      mint a = mint(2).pow(k), b = mk + 1;\n      tie(a, b) = mp(a\
+    \ + b, a - b);\n      a = a.pow(N), b = b.pow(N);\n      tie(a, b) = mp(a + b,\
+    \ a - b);\n      a *= inv<mint>(2), b *= inv<mint>(2);\n      mint now = (X1 ?\
+    \ b : a);\n      if ((N & 1) == X1) now -= mint(mk + 1).pow(N);\n      now /=\
+    \ mint(2).pow(k);\n      res += now;\n    }\n    if (LIM1 * (N & 1) != X1) {\n\
+    \      ok = 0;\n      break;\n    }\n  }\n  if (ok) res += mint(1);\n  return\
+    \ res;\n}\n\n// [0, LIM)^N \u306E\u3046\u3061\u3067\u3001xor = X \u3068\u306A\u308B\
+    \u3082\u306E\u306E\u500B\u6570\u3002N = 0,1,...,nmax\ntemplate <typename mint>\n\
+    vc<mint> count_seq_with_fixed_xor_iota(ll nmax, ll LIM, ll X) {\n  assert(LIM\
     \ >= 1);\n  --LIM; // closed\n  vc<mint> res(nmax + 1);\n  if (LIM == 0) {\n \
     \   if (X == 0) fill(all(res), mint(1));\n    return res;\n  }\n  int LOG = topbit(LIM)\
     \ + 1;\n  if (X >> LOG) return res;\n  vc<bool> ok(nmax + 1, 1);\n  mint x2 =\
@@ -150,7 +150,7 @@ data:
   isVerificationFile: false
   path: other/count_seq_with_fixed_xor_value.hpp
   requiredBy: []
-  timestamp: '2023-10-14 01:49:27+09:00'
+  timestamp: '2023-11-01 19:15:19+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc288ex.test.cpp

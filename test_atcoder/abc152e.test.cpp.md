@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: mod/dynamic_modint_64.hpp
     title: mod/dynamic_modint_64.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -16,16 +16,16 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/all_lcm.hpp
     title: nt/all_lcm.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/lpf_table.hpp
     title: nt/lpf_table.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   - icon: ':question:'
@@ -39,9 +39,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc152/tasks/abc152_e
@@ -128,37 +128,35 @@ data:
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
     \  return B;\n}\n#endif\n#line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\
-    \n#include <unistd.h>\r\n\r\nnamespace fastio {\r\n#define FASTIO\r\n// \u30AF\
-    \u30E9\u30B9\u304C read(), print() \u3092\u6301\u3063\u3066\u3044\u308B\u304B\u3092\
-    \u5224\u5B9A\u3059\u308B\u30E1\u30BF\u95A2\u6570\r\nstruct has_write_impl {\r\n\
-    \  template <class T>\r\n  static auto check(T &&x) -> decltype(x.write(), std::true_type{});\r\
-    \n\r\n  template <class T>\r\n  static auto check(...) -> std::false_type;\r\n\
-    };\r\n\r\ntemplate <class T>\r\nclass has_write : public decltype(has_write_impl::check<T>(std::declval<T>()))\
-    \ {\r\n};\r\n\r\nstruct has_read_impl {\r\n  template <class T>\r\n  static auto\
-    \ check(T &&x) -> decltype(x.read(), std::true_type{});\r\n\r\n  template <class\
-    \ T>\r\n  static auto check(...) -> std::false_type;\r\n};\r\n\r\ntemplate <class\
-    \ T>\r\nclass has_read : public decltype(has_read_impl::check<T>(std::declval<T>()))\
-    \ {};\r\n\r\nstruct Scanner {\r\n  FILE *fp;\r\n  char line[(1 << 15) + 1];\r\n\
-    \  size_t st = 0, ed = 0;\r\n  void reread() {\r\n    memmove(line, line + st,\
-    \ ed - st);\r\n    ed -= st;\r\n    st = 0;\r\n    ed += fread(line + ed, 1, (1\
-    \ << 15) - ed, fp);\r\n    line[ed] = '\\0';\r\n  }\r\n  bool succ() {\r\n   \
-    \ while (true) {\r\n      if (st == ed) {\r\n        reread();\r\n        if (st\
-    \ == ed) return false;\r\n      }\r\n      while (st != ed && isspace(line[st]))\
-    \ st++;\r\n      if (st != ed) break;\r\n    }\r\n    if (ed - st <= 50) {\r\n\
-    \      bool sep = false;\r\n      for (size_t i = st; i < ed; i++) {\r\n     \
-    \   if (isspace(line[i])) {\r\n          sep = true;\r\n          break;\r\n \
-    \       }\r\n      }\r\n      if (!sep) reread();\r\n    }\r\n    return true;\r\
-    \n  }\r\n  template <class T, enable_if_t<is_same<T, string>::value, int> = 0>\r\
-    \n  bool read_single(T &ref) {\r\n    if (!succ()) return false;\r\n    while\
-    \ (true) {\r\n      size_t sz = 0;\r\n      while (st + sz < ed && !isspace(line[st\
-    \ + sz])) sz++;\r\n      ref.append(line + st, sz);\r\n      st += sz;\r\n   \
-    \   if (!sz || st != ed) break;\r\n      reread();\r\n    }\r\n    return true;\r\
-    \n  }\r\n  template <class T, enable_if_t<is_integral<T>::value, int> = 0>\r\n\
-    \  bool read_single(T &ref) {\r\n    if (!succ()) return false;\r\n    bool neg\
-    \ = false;\r\n    if (line[st] == '-') {\r\n      neg = true;\r\n      st++;\r\
-    \n    }\r\n    ref = T(0);\r\n    while (isdigit(line[st])) { ref = 10 * ref +\
-    \ (line[st++] & 0xf); }\r\n    if (neg) ref = -ref;\r\n    return true;\r\n  }\r\
-    \n  template <typename T,\r\n            typename enable_if<has_read<T>::value>::type\
+    \n#include <unistd.h>\r\n\r\nnamespace fastio {\r\n#define FASTIO\r\nstruct has_write_impl\
+    \ {\r\n  template <class T>\r\n  static auto check(T &&x) -> decltype(x.write(),\
+    \ std::true_type{});\r\n\r\n  template <class T>\r\n  static auto check(...) ->\
+    \ std::false_type;\r\n};\r\n\r\ntemplate <class T>\r\nclass has_write : public\
+    \ decltype(has_write_impl::check<T>(std::declval<T>())) {\r\n};\r\n\r\nstruct\
+    \ has_read_impl {\r\n  template <class T>\r\n  static auto check(T &&x) -> decltype(x.read(),\
+    \ std::true_type{});\r\n\r\n  template <class T>\r\n  static auto check(...) ->\
+    \ std::false_type;\r\n};\r\n\r\ntemplate <class T>\r\nclass has_read : public\
+    \ decltype(has_read_impl::check<T>(std::declval<T>())) {};\r\n\r\nstruct Scanner\
+    \ {\r\n  FILE *fp;\r\n  char line[(1 << 15) + 1];\r\n  size_t st = 0, ed = 0;\r\
+    \n  void reread() {\r\n    memmove(line, line + st, ed - st);\r\n    ed -= st;\r\
+    \n    st = 0;\r\n    ed += fread(line + ed, 1, (1 << 15) - ed, fp);\r\n    line[ed]\
+    \ = '\\0';\r\n  }\r\n  bool succ() {\r\n    while (true) {\r\n      if (st ==\
+    \ ed) {\r\n        reread();\r\n        if (st == ed) return false;\r\n      }\r\
+    \n      while (st != ed && isspace(line[st])) st++;\r\n      if (st != ed) break;\r\
+    \n    }\r\n    if (ed - st <= 50) {\r\n      bool sep = false;\r\n      for (size_t\
+    \ i = st; i < ed; i++) {\r\n        if (isspace(line[i])) {\r\n          sep =\
+    \ true;\r\n          break;\r\n        }\r\n      }\r\n      if (!sep) reread();\r\
+    \n    }\r\n    return true;\r\n  }\r\n  template <class T, enable_if_t<is_same<T,\
+    \ string>::value, int> = 0>\r\n  bool read_single(T &ref) {\r\n    if (!succ())\
+    \ return false;\r\n    while (true) {\r\n      size_t sz = 0;\r\n      while (st\
+    \ + sz < ed && !isspace(line[st + sz])) sz++;\r\n      ref.append(line + st, sz);\r\
+    \n      st += sz;\r\n      if (!sz || st != ed) break;\r\n      reread();\r\n\
+    \    }\r\n    return true;\r\n  }\r\n  template <class T, enable_if_t<is_integral<T>::value,\
+    \ int> = 0>\r\n  bool read_single(T &ref) {\r\n    if (!succ()) return false;\r\
+    \n    bool neg = false;\r\n    if (line[st] == '-') {\r\n      neg = true;\r\n\
+    \      st++;\r\n    }\r\n    ref = T(0);\r\n    while (isdigit(line[st])) { ref\
+    \ = 10 * ref + (line[st++] & 0xf); }\r\n    if (neg) ref = -ref;\r\n    return\
+    \ true;\r\n  }\r\n  template <typename T,\r\n            typename enable_if<has_read<T>::value>::type\
     \ * = nullptr>\r\n  inline bool read_single(T &x) {\r\n    x.read();\r\n    return\
     \ true;\r\n  }\r\n  bool read_single(double &ref) {\r\n    string s;\r\n    if\
     \ (!read_single(s)) return false;\r\n    ref = std::stod(s);\r\n    return true;\r\
@@ -268,11 +266,11 @@ data:
     \  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename mint, bool large = false>\n\
     mint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if\
     \ (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return\
-    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d] (1-x) ^ {-n} \u306E\u8A08\u7B97\n\
-    template <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
-    \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\
-    \ return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large, dense>(n + d\
-    \ - 1, d);\n}\n#line 2 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
+    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint,\
+    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
+    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
+    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 2 \"\
+    mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
     struct Barrett {\n  u32 m;\n  u64 im;\n  explicit Barrett(u32 m = 1) : m(m), im(u64(-1)\
     \ / m + 1) {}\n  u32 umod() const { return m; }\n  u32 modulo(u64 z) {\n    if\
     \ (m == 1) return 0;\n    u64 x = (u64)(((unsigned __int128)(z)*im) >> 64);\n\
@@ -434,8 +432,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc152e.test.cpp
   requiredBy: []
-  timestamp: '2023-10-29 16:21:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-01 19:16:20+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc152e.test.cpp
 layout: document

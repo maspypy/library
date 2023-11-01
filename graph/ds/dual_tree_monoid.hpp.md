@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/segtree/dual_segtree.hpp
     title: ds/segtree/dual_segtree.hpp
   - icon: ':question:'
@@ -11,11 +11,11 @@ data:
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
   - icon: ':x:'
@@ -26,7 +26,7 @@ data:
     title: test_atcoder/abc301h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate\
@@ -220,7 +220,7 @@ data:
   requiredBy:
   - graph/minimum_spanning_tree.hpp
   timestamp: '2023-11-01 01:33:38+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc270_f.test.cpp
   - test_atcoder/abc301h.test.cpp

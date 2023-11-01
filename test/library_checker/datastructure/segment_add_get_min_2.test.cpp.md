@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/lichao.hpp
     title: convex/lichao.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/segment_add_get_min
@@ -102,37 +102,35 @@ data:
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
     \  return B;\n}\n#endif\n#line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\
-    \n#include <unistd.h>\r\n\r\nnamespace fastio {\r\n#define FASTIO\r\n// \u30AF\
-    \u30E9\u30B9\u304C read(), print() \u3092\u6301\u3063\u3066\u3044\u308B\u304B\u3092\
-    \u5224\u5B9A\u3059\u308B\u30E1\u30BF\u95A2\u6570\r\nstruct has_write_impl {\r\n\
-    \  template <class T>\r\n  static auto check(T &&x) -> decltype(x.write(), std::true_type{});\r\
-    \n\r\n  template <class T>\r\n  static auto check(...) -> std::false_type;\r\n\
-    };\r\n\r\ntemplate <class T>\r\nclass has_write : public decltype(has_write_impl::check<T>(std::declval<T>()))\
-    \ {\r\n};\r\n\r\nstruct has_read_impl {\r\n  template <class T>\r\n  static auto\
-    \ check(T &&x) -> decltype(x.read(), std::true_type{});\r\n\r\n  template <class\
-    \ T>\r\n  static auto check(...) -> std::false_type;\r\n};\r\n\r\ntemplate <class\
-    \ T>\r\nclass has_read : public decltype(has_read_impl::check<T>(std::declval<T>()))\
-    \ {};\r\n\r\nstruct Scanner {\r\n  FILE *fp;\r\n  char line[(1 << 15) + 1];\r\n\
-    \  size_t st = 0, ed = 0;\r\n  void reread() {\r\n    memmove(line, line + st,\
-    \ ed - st);\r\n    ed -= st;\r\n    st = 0;\r\n    ed += fread(line + ed, 1, (1\
-    \ << 15) - ed, fp);\r\n    line[ed] = '\\0';\r\n  }\r\n  bool succ() {\r\n   \
-    \ while (true) {\r\n      if (st == ed) {\r\n        reread();\r\n        if (st\
-    \ == ed) return false;\r\n      }\r\n      while (st != ed && isspace(line[st]))\
-    \ st++;\r\n      if (st != ed) break;\r\n    }\r\n    if (ed - st <= 50) {\r\n\
-    \      bool sep = false;\r\n      for (size_t i = st; i < ed; i++) {\r\n     \
-    \   if (isspace(line[i])) {\r\n          sep = true;\r\n          break;\r\n \
-    \       }\r\n      }\r\n      if (!sep) reread();\r\n    }\r\n    return true;\r\
-    \n  }\r\n  template <class T, enable_if_t<is_same<T, string>::value, int> = 0>\r\
-    \n  bool read_single(T &ref) {\r\n    if (!succ()) return false;\r\n    while\
-    \ (true) {\r\n      size_t sz = 0;\r\n      while (st + sz < ed && !isspace(line[st\
-    \ + sz])) sz++;\r\n      ref.append(line + st, sz);\r\n      st += sz;\r\n   \
-    \   if (!sz || st != ed) break;\r\n      reread();\r\n    }\r\n    return true;\r\
-    \n  }\r\n  template <class T, enable_if_t<is_integral<T>::value, int> = 0>\r\n\
-    \  bool read_single(T &ref) {\r\n    if (!succ()) return false;\r\n    bool neg\
-    \ = false;\r\n    if (line[st] == '-') {\r\n      neg = true;\r\n      st++;\r\
-    \n    }\r\n    ref = T(0);\r\n    while (isdigit(line[st])) { ref = 10 * ref +\
-    \ (line[st++] & 0xf); }\r\n    if (neg) ref = -ref;\r\n    return true;\r\n  }\r\
-    \n  template <typename T,\r\n            typename enable_if<has_read<T>::value>::type\
+    \n#include <unistd.h>\r\n\r\nnamespace fastio {\r\n#define FASTIO\r\nstruct has_write_impl\
+    \ {\r\n  template <class T>\r\n  static auto check(T &&x) -> decltype(x.write(),\
+    \ std::true_type{});\r\n\r\n  template <class T>\r\n  static auto check(...) ->\
+    \ std::false_type;\r\n};\r\n\r\ntemplate <class T>\r\nclass has_write : public\
+    \ decltype(has_write_impl::check<T>(std::declval<T>())) {\r\n};\r\n\r\nstruct\
+    \ has_read_impl {\r\n  template <class T>\r\n  static auto check(T &&x) -> decltype(x.read(),\
+    \ std::true_type{});\r\n\r\n  template <class T>\r\n  static auto check(...) ->\
+    \ std::false_type;\r\n};\r\n\r\ntemplate <class T>\r\nclass has_read : public\
+    \ decltype(has_read_impl::check<T>(std::declval<T>())) {};\r\n\r\nstruct Scanner\
+    \ {\r\n  FILE *fp;\r\n  char line[(1 << 15) + 1];\r\n  size_t st = 0, ed = 0;\r\
+    \n  void reread() {\r\n    memmove(line, line + st, ed - st);\r\n    ed -= st;\r\
+    \n    st = 0;\r\n    ed += fread(line + ed, 1, (1 << 15) - ed, fp);\r\n    line[ed]\
+    \ = '\\0';\r\n  }\r\n  bool succ() {\r\n    while (true) {\r\n      if (st ==\
+    \ ed) {\r\n        reread();\r\n        if (st == ed) return false;\r\n      }\r\
+    \n      while (st != ed && isspace(line[st])) st++;\r\n      if (st != ed) break;\r\
+    \n    }\r\n    if (ed - st <= 50) {\r\n      bool sep = false;\r\n      for (size_t\
+    \ i = st; i < ed; i++) {\r\n        if (isspace(line[i])) {\r\n          sep =\
+    \ true;\r\n          break;\r\n        }\r\n      }\r\n      if (!sep) reread();\r\
+    \n    }\r\n    return true;\r\n  }\r\n  template <class T, enable_if_t<is_same<T,\
+    \ string>::value, int> = 0>\r\n  bool read_single(T &ref) {\r\n    if (!succ())\
+    \ return false;\r\n    while (true) {\r\n      size_t sz = 0;\r\n      while (st\
+    \ + sz < ed && !isspace(line[st + sz])) sz++;\r\n      ref.append(line + st, sz);\r\
+    \n      st += sz;\r\n      if (!sz || st != ed) break;\r\n      reread();\r\n\
+    \    }\r\n    return true;\r\n  }\r\n  template <class T, enable_if_t<is_integral<T>::value,\
+    \ int> = 0>\r\n  bool read_single(T &ref) {\r\n    if (!succ()) return false;\r\
+    \n    bool neg = false;\r\n    if (line[st] == '-') {\r\n      neg = true;\r\n\
+    \      st++;\r\n    }\r\n    ref = T(0);\r\n    while (isdigit(line[st])) { ref\
+    \ = 10 * ref + (line[st++] & 0xf); }\r\n    if (neg) ref = -ref;\r\n    return\
+    \ true;\r\n  }\r\n  template <typename T,\r\n            typename enable_if<has_read<T>::value>::type\
     \ * = nullptr>\r\n  inline bool read_single(T &x) {\r\n    x.read();\r\n    return\
     \ true;\r\n  }\r\n  bool read_single(double &ref) {\r\n    string s;\r\n    if\
     \ (!read_single(s)) return false;\r\n    ref = std::stod(s);\r\n    return true;\r\
@@ -274,8 +272,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/segment_add_get_min_2.test.cpp
   requiredBy: []
-  timestamp: '2023-10-29 16:21:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-01 19:16:20+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/segment_add_get_min_2.test.cpp
 layout: document
