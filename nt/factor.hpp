@@ -3,27 +3,26 @@
 #include "random/base.hpp"
 #include "nt/primetest.hpp"
 
+template <typename mint>
 ll rho(ll n, ll c) {
-  using m64 = Dynamic_Modint_64<20231025>;
-  m64::set_mod(n);
   assert(n > 1);
-  const m64 cc(c);
-  auto f = [&](m64 x) { return x * x + cc; };
-  m64 x = 1, y = 2, z = 1, q = 1;
+  const mint cc(c);
+  auto f = [&](mint x) { return x * x + cc; };
+  mint x = 1, y = 2, z = 1, q = 1;
   ll g = 1;
-  const ll m = 1LL << (__lg(n) / 5); // ?
+  const ll m = 1LL << (__lg(n) / 5);
   for (ll r = 1; g == 1; r <<= 1) {
     x = y;
-    FOR(_, r) y = f(y);
+    FOR(r) y = f(y);
     for (ll k = 0; k < r && g == 1; k += m) {
       z = y;
       FOR(min(m, r - k)) y = f(y), q *= x - y;
-      g = gcd(q.val, n);
+      g = gcd(q.val(), n);
     }
   }
   if (g == n) do {
       z = f(z);
-      g = gcd((x - z).val, n);
+      g = gcd((x - z).val(), n);
     } while (g == 1);
   return g;
 }
@@ -32,7 +31,16 @@ ll find_prime_factor(ll n) {
   assert(n > 1);
   if (primetest(n)) return n;
   FOR(100) {
-    ll m = rho(n, RNG(0, n));
+    ll m = 0;
+    if (n < (1 << 30)) {
+      using mint = Mongomery_modint_32<20231025>;
+      mint::set_mod(n);
+      m = rho<mint>(n, RNG(0, n));
+    } else {
+      using mint = Mongomery_modint_64<20231025>;
+      mint::set_mod(n);
+      m = rho<mint>(n, RNG(0, n));
+    }
     if (primetest(m)) return m;
     n = m;
   }
