@@ -3,10 +3,10 @@
 
 // frequency table of distance of all directed pairs.
 // sum of result array = N^2
-template <typename Graph>
-vi tree_all_distances(Graph& G) {
+template <typename GT>
+vi tree_all_distances(GT& G) {
+  static_assert(!GT::is_directed);
   assert(G.is_prepared());
-  assert(!G.is_directed());
   Centroid_Decomposition CD(G);
 
   ll N = G.N;

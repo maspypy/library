@@ -1,9 +1,9 @@
 #include "flow/bipartite.hpp"
 
 // 比較可能グラフを与える。DAG なだけではダメ。
-template <typename T>
-vc<int> maximum_antichain(T& G) {
-  assert(G.is_directed());
+template <typename GT>
+vc<int> maximum_antichain(GT& G) {
+  static_assert(GT::is_directed);
   int n = G.N;
 
   Graph H(n + n);
