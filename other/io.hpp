@@ -3,7 +3,6 @@
 
 namespace fastio {
 #define FASTIO
-// クラスが read(), print() を持っているかを判定するメタ関数
 struct has_write_impl {
   template <class T>
   static auto check(T &&x) -> decltype(x.write(), std::true_type{});
