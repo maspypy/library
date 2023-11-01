@@ -97,7 +97,7 @@ mint C_inv(ll n, ll k) {
   return mint(1) / C<mint, 1>(n, k);
 }
 
-// [x^d] (1-x) ^ {-n} の計算
+// [x^d](1-x)^{-n}
 template <typename mint, bool large = false, bool dense = false>
 mint C_negative(ll n, ll d) {
   assert(n >= 0);

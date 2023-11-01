@@ -25,7 +25,6 @@ struct HashMap {
     return i;
   }
 
-  // [] した時点で要素は作られる
   Val& operator[](const u64& key) {
     int i = index(key);
     if (!used[i]) IDS.eb(i), used[i] = 1, keys[i] = key, vals[i] = Val{};
