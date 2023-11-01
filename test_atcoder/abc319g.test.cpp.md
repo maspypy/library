@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: graph/implicit_graph/cograph_bfs.hpp
     title: graph/implicit_graph/cograph_bfs.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
