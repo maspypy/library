@@ -15,10 +15,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1769.test.cpp
     title: test/yukicoder/1769.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1796.test.cpp
     title: test/yukicoder/1796.test.cpp
   _isVerificationFailed: true
@@ -207,10 +207,10 @@ data:
   timestamp: '2023-11-01 12:54:38+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1038.test.cpp
-  - test/yukicoder/1796.test.cpp
-  - test/yukicoder/1769.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
+  - test/yukicoder/1038.test.cpp
+  - test/yukicoder/1769.test.cpp
+  - test/yukicoder/1796.test.cpp
 documentation_of: graph/centroid.hpp
 layout: document
 redirect_from:

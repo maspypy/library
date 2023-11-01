@@ -201,8 +201,8 @@ data:
   timestamp: '2023-10-24 22:55:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/math/stirling_mod_p_2.test.cpp
   - test/library_checker/math/stirling_mod_p_1.test.cpp
+  - test/library_checker/math/stirling_mod_p_2.test.cpp
 documentation_of: seq/famous/stirling_number_query.hpp
 layout: document
 redirect_from:

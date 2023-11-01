@@ -6,12 +6,12 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/matching_line_graph.test.cpp
     title: test/mytest/matching_line_graph.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -73,7 +73,7 @@ data:
     \ }\n  }\n};\n#line 2 \"graph/maximum_matching_of_line_graph.hpp\"\n\n// \u540C\
     \u3058\u9802\u70B9\u306B\u63A5\u7D9A\u3059\u308B 2 \u8FBA\u3092\u30DE\u30C3\u30C1\
     \u3067\u304D\u308B\ntemplate <typename GT>\nvc<pair<int, int>> maximum_matching_of_line_graph(GT&\
-    \ G) {\n  assert(!G.is_directed());\n  assert(G.is_prepared());\n  const int N\
+    \ G) {\n  assert(!GT::is_directed);\n  assert(G.is_prepared());\n  const int N\
     \ = G.N, M = G.M;\n  vc<pair<int, int>> ANS;\n  vc<int> V;\n  vc<int> par(N, -1);\
     \ // eid\n  {\n    vc<int> done(N);\n    FOR(v, N) {\n      if (done[v]) continue;\n\
     \      int cnt = 0;\n      auto dfs = [&](auto& dfs, int v, int p) -> void {\n\
@@ -90,7 +90,7 @@ data:
     \ = done[y] = 1;\n      ANS.eb(x, y);\n    }\n  }\n  return ANS;\n}\n"
   code: "#include \"graph/base.hpp\"\n\n// \u540C\u3058\u9802\u70B9\u306B\u63A5\u7D9A\
     \u3059\u308B 2 \u8FBA\u3092\u30DE\u30C3\u30C1\u3067\u304D\u308B\ntemplate <typename\
-    \ GT>\nvc<pair<int, int>> maximum_matching_of_line_graph(GT& G) {\n  assert(!G.is_directed());\n\
+    \ GT>\nvc<pair<int, int>> maximum_matching_of_line_graph(GT& G) {\n  assert(!GT::is_directed);\n\
     \  assert(G.is_prepared());\n  const int N = G.N, M = G.M;\n  vc<pair<int, int>>\
     \ ANS;\n  vc<int> V;\n  vc<int> par(N, -1); // eid\n  {\n    vc<int> done(N);\n\
     \    FOR(v, N) {\n      if (done[v]) continue;\n      int cnt = 0;\n      auto\
@@ -111,8 +111,8 @@ data:
   isVerificationFile: false
   path: graph/maximum_matching_of_line_graph.hpp
   requiredBy: []
-  timestamp: '2023-11-01 01:33:38+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-11-01 13:24:40+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/matching_line_graph.test.cpp
 documentation_of: graph/maximum_matching_of_line_graph.hpp

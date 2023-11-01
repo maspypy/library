@@ -33,7 +33,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1844.test.cpp
     title: test/yukicoder/1844.test.cpp
   - icon: ':x:'
@@ -137,26 +137,26 @@ data:
   isVerificationFile: false
   path: poly/ntt_doubling.hpp
   requiredBy:
-  - poly/coef_of_rational_fps.hpp
-  - seq/famous/bell_number_large.hpp
   - seq/interpolate_linear_rec.hpp
+  - seq/famous/bell_number_large.hpp
+  - poly/coef_of_rational_fps.hpp
   timestamp: '2023-05-01 17:29:54+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/578.test.cpp
-  - test/yukicoder/1547.test.cpp
-  - test/yukicoder/2122.test.cpp
-  - test/yukicoder/1962.test.cpp
-  - test/yukicoder/1844.test.cpp
-  - test/yukicoder/541.test.cpp
-  - test/yukicoder/2305.test.cpp
-  - test/yukicoder/1500.test.cpp
-  - test/yukicoder/1561.test.cpp
-  - test/yukicoder/579.test.cpp
-  - test/yukicoder/1516.test.cpp
-  - test/mytest/bell.test.cpp
-  - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test_atcoder/agc058d2.test.cpp
+  - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/yukicoder/579.test.cpp
+  - test/yukicoder/1547.test.cpp
+  - test/yukicoder/1561.test.cpp
+  - test/yukicoder/2122.test.cpp
+  - test/yukicoder/578.test.cpp
+  - test/yukicoder/1844.test.cpp
+  - test/yukicoder/1516.test.cpp
+  - test/yukicoder/541.test.cpp
+  - test/yukicoder/1500.test.cpp
+  - test/yukicoder/2305.test.cpp
+  - test/yukicoder/1962.test.cpp
+  - test/mytest/bell.test.cpp
 documentation_of: poly/ntt_doubling.hpp
 layout: document
 redirect_from:
