@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
   - icon: ':question:'
@@ -9,12 +9,12 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2507.test.cpp
     title: test/yukicoder/2507.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"enumerate/bits.hpp\"\ntemplate <typename F>\nvoid enumerate_bits_32(u32\
@@ -84,7 +84,7 @@ data:
     \u5408\u3054\u3068\u306B\u30B5\u30A4\u30AF\u30EB\u3092\u6570\u3048\u308B. N^22^N.\n\
     // \u30B5\u30A4\u30AF\u30EB\u306E\u9577\u3055\u306F 3 \u4EE5\u4E0A\uFF08\u5358\
     \u7D14\u30B0\u30E9\u30D5\u3092\u4EEE\u5B9A\uFF09\ntemplate <typename T, typename\
-    \ GT>\nvc<T> count_cycle(GT& G) {\n  const int N = G.N;\n  assert(N <= 32 && !G.is_directed());\n\
+    \ GT>\nvc<T> count_cycle(GT& G) {\n  const int N = G.N;\n  assert(N <= 32 && !GT::is_directed);\n\
     \  vc<u32> nbd(N);\n  FOR(v, N) for (auto& e: G[v]) nbd[v] |= u32(1) << (e.to);\n\
     \n  vc<T> cyc(1 << N);\n  for (int v = 0; v < N; ++v) {\n    vc<T> dp(v << v);\n\
     \    for (int w = 0; w < v; ++w) {\n      if (nbd[v] >> w & 1) dp[(v << w) + w]\
@@ -99,7 +99,7 @@ data:
     \u308B. N^22^N.\n// \u30B5\u30A4\u30AF\u30EB\u306E\u9577\u3055\u306F 3 \u4EE5\u4E0A\
     \uFF08\u5358\u7D14\u30B0\u30E9\u30D5\u3092\u4EEE\u5B9A\uFF09\ntemplate <typename\
     \ T, typename GT>\nvc<T> count_cycle(GT& G) {\n  const int N = G.N;\n  assert(N\
-    \ <= 32 && !G.is_directed());\n  vc<u32> nbd(N);\n  FOR(v, N) for (auto& e: G[v])\
+    \ <= 32 && !GT::is_directed);\n  vc<u32> nbd(N);\n  FOR(v, N) for (auto& e: G[v])\
     \ nbd[v] |= u32(1) << (e.to);\n\n  vc<T> cyc(1 << N);\n  for (int v = 0; v < N;\
     \ ++v) {\n    vc<T> dp(v << v);\n    for (int w = 0; w < v; ++w) {\n      if (nbd[v]\
     \ >> w & 1) dp[(v << w) + w] = 1;\n    }\n    const u32 mask = (u32(1) << v) -\
@@ -115,8 +115,8 @@ data:
   isVerificationFile: false
   path: graph/count/count_cycle.hpp
   requiredBy: []
-  timestamp: '2023-11-01 01:33:38+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-11-01 18:40:50+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/2507.test.cpp
 documentation_of: graph/count/count_cycle.hpp

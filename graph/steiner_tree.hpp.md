@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
   - icon: ':question:'
@@ -9,12 +9,12 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/114.test.cpp
     title: test/yukicoder/114.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -83,7 +83,7 @@ data:
     \n\n// \u8FBA\u91CD\u307F\u306F e.cost\u3001\u9802\u70B9\u91CD\u307F\u306F vector\
     \ \u3067\u6E21\u3059\u3002\u8FD4\u308A\u5024\uFF1A{cost, vs, es}\n// O(3^kn +\
     \ 2^k(n+m)log n), k: terminal size\ntemplate <typename T, typename GT>\ntuple<T,\
-    \ vc<int>, vc<int>> steiner_tree(GT& G, vc<int> S, vc<T> v_wt = {}) {\n  static_assert(GT::is_directed);\n\
+    \ vc<int>, vc<int>> steiner_tree(GT& G, vc<int> S, vc<T> v_wt = {}) {\n  static_assert(!GT::is_directed);\n\
     \  assert(!S.empty());\n  const int N = G.N, M = G.M, K = len(S);\n  if (v_wt.empty())\
     \ v_wt.assign(N, 0);\n\n  // \u30BF\u30FC\u30DF\u30CA\u30EB\u96C6\u5408, root\
     \ -> cost\n  vv(T, DP, 1 << K, N, infty<T>);\n  FOR(v, N) DP[0][v] = v_wt[v];\n\
@@ -115,7 +115,7 @@ data:
     \u91CD\u307F\u306F e.cost\u3001\u9802\u70B9\u91CD\u307F\u306F vector \u3067\u6E21\
     \u3059\u3002\u8FD4\u308A\u5024\uFF1A{cost, vs, es}\n// O(3^kn + 2^k(n+m)log n),\
     \ k: terminal size\ntemplate <typename T, typename GT>\ntuple<T, vc<int>, vc<int>>\
-    \ steiner_tree(GT& G, vc<int> S, vc<T> v_wt = {}) {\n  static_assert(GT::is_directed);\n\
+    \ steiner_tree(GT& G, vc<int> S, vc<T> v_wt = {}) {\n  static_assert(!GT::is_directed);\n\
     \  assert(!S.empty());\n  const int N = G.N, M = G.M, K = len(S);\n  if (v_wt.empty())\
     \ v_wt.assign(N, 0);\n\n  // \u30BF\u30FC\u30DF\u30CA\u30EB\u96C6\u5408, root\
     \ -> cost\n  vv(T, DP, 1 << K, N, infty<T>);\n  FOR(v, N) DP[0][v] = v_wt[v];\n\
@@ -149,8 +149,8 @@ data:
   isVerificationFile: false
   path: graph/steiner_tree.hpp
   requiredBy: []
-  timestamp: '2023-11-01 13:24:40+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-11-01 18:40:50+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/114.test.cpp
 documentation_of: graph/steiner_tree.hpp

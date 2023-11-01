@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/unicyclic.hpp
     title: graph/unicyclic.hpp
   - icon: ':question:'
@@ -351,8 +351,8 @@ data:
     \ y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n \
     \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
     \    return true;\n  }\n};\n#line 4 \"graph/unicyclic.hpp\"\n\ntemplate <typename\
-    \ GT>\nstruct UnicyclicGraph {\n  static_assert(GT::is_directed);\n  using T =\
-    \ typename GT::cost_type;\n  GT& G0;\n  int N;\n  int root;\n  int out_eid;\n\
+    \ GT>\nstruct UnicyclicGraph {\n  static_assert(!GT::is_directed);\n  using T\
+    \ = typename GT::cost_type;\n  GT& G0;\n  int N;\n  int root;\n  int out_eid;\n\
     \  T out_cost;\n  vc<int> TO;\n  vc<int> cycle;     // \u6839\u306B\u5411\u304B\
     \u3046\u3088\u3046\u306A\u9802\u70B9\u5217\n  vc<bool> in_cycle; // vertex id\
     \ -> bool\n\n  UnicyclicGraph(GT& G) : G0(G), N(G.N) {\n    assert(N == G.M);\n\
@@ -402,7 +402,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc266f.test.cpp
   requiredBy: []
-  timestamp: '2023-11-01 13:25:44+09:00'
+  timestamp: '2023-11-01 18:40:50+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc266f.test.cpp

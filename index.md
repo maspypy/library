@@ -479,7 +479,7 @@ data:
       title: ds/unionfind/weighted_unionfind.hpp
   - name: enumerate
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: enumerate/bits.hpp
       title: enumerate/bits.hpp
     - icon: ':heavy_check_mark:'
@@ -602,13 +602,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/manhattan_nns.hpp
       title: geo/manhattan_nns.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo/max_norm_sum.hpp
       title: geo/max_norm_sum.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo/minimum_enclosing_circle.hpp
       title: geo/minimum_enclosing_circle.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/outcircle.hpp
       title: geo/outcircle.hpp
     - icon: ':warning:'
@@ -623,7 +623,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/reflection.hpp
       title: geo/reflection.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/triangle_area.hpp
       title: geo/triangle_area.hpp
   - name: geo3d
@@ -726,10 +726,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/minimum_cost_cycle.hpp
       title: graph/minimum_cost_cycle.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/minimum_cycle_length_through_specified.hpp
       title: graph/minimum_cycle_length_through_specified.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/minimum_hamiltonian_cycle.hpp
       title: graph/minimum_hamiltonian_cycle.hpp
     - icon: ':question:'
@@ -753,7 +753,7 @@ data:
     - icon: ':warning:'
       path: graph/scc_tounament_by_indegrees.hpp
       title: graph/scc_tounament_by_indegrees.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/steiner_tree.hpp
       title: graph/steiner_tree.hpp
     - icon: ':question:'
@@ -786,7 +786,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/twosat.hpp
       title: graph/twosat.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/unicyclic.hpp
       title: graph/unicyclic.hpp
     - icon: ':x:'
@@ -809,7 +809,7 @@ data:
     - icon: ':warning:'
       path: graph/count/count_clique.hpp
       title: graph/count/count_clique.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/count/count_cycle.hpp
       title: graph/count/count_cycle.hpp
     - icon: ':warning:'
@@ -1129,7 +1129,7 @@ data:
       title: new_poly/base.hpp
   - name: nt
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/GF2.hpp
       title: nt/GF2.hpp
     - icon: ':heavy_check_mark:'
@@ -1473,7 +1473,7 @@ data:
     - icon: ':question:'
       path: random/random_graph.hpp
       title: random/random_graph.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/shuffle.hpp
       title: random/shuffle.hpp
   - name: seq
@@ -1590,19 +1590,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: setfunc/or_convolution.hpp
       title: setfunc/or_convolution.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: setfunc/ranked_zeta.hpp
       title: setfunc/ranked_zeta.hpp
     - icon: ':heavy_check_mark:'
       path: setfunc/sps_composition.hpp
       title: setfunc/sps_composition.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: setfunc/sps_exp.hpp
       title: setfunc/sps_exp.hpp
     - icon: ':heavy_check_mark:'
       path: setfunc/sps_log.hpp
       title: setfunc/sps_log.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: setfunc/subset_convolution.hpp
       title: setfunc/subset_convolution.hpp
     - icon: ':heavy_check_mark:'
@@ -2914,7 +2914,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1117.test.cpp
       title: test/yukicoder/1117.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/114.test.cpp
       title: test/yukicoder/114.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2965,7 +2965,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1242.test.cpp
       title: test/yukicoder/1242.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1254.test.cpp
       title: test/yukicoder/1254.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3214,7 +3214,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/177.test.cpp
       title: test/yukicoder/177.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1775.test.cpp
       title: test/yukicoder/1775.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3442,7 +3442,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/2459.test.cpp
       title: test/yukicoder/2459.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/2507.test.cpp
       title: test/yukicoder/2507.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3543,7 +3543,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc127f_1.test.cpp
       title: test_atcoder/abc127f_1.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc139f.test.cpp
       title: test_atcoder/abc139f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3552,19 +3552,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc141f.test.cpp
       title: test_atcoder/abc141f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc151f.test.cpp
       title: test_atcoder/abc151f.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc152e.test.cpp
       title: test_atcoder/abc152e.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc160f.test.cpp
       title: test_atcoder/abc160f.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc174f.test.cpp
       title: test_atcoder/abc174f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc180e.test.cpp
       title: test_atcoder/abc180e.test.cpp
     - icon: ':x:'

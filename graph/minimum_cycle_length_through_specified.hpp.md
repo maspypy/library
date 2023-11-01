@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/GF2.hpp
     title: nt/GF2.hpp
   - icon: ':question:'
@@ -9,12 +9,12 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1775.test.cpp
     title: test/yukicoder/1775.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://epubs.siam.org/doi/10.1137/1.9781611973099.139
@@ -66,7 +66,7 @@ data:
     \    }\n    return ret;\n  }\n};\n#line 3 \"graph/minimum_cycle_length_through_specified.hpp\"\
     \n\n// https://www.slideshare.net/wata_orz/ss-12208032\n// https://epubs.siam.org/doi/10.1137/1.9781611973099.139\n\
     // O(2^kN^2M)\ntemplate <typename GT>\nint minimum_cycle_length_through_specified(GT&\
-    \ G, vc<int> use) {\n  assert(len(use) >= 2);\n  assert(!G.is_directed());\n \
+    \ G, vc<int> use) {\n  assert(len(use) >= 2);\n  assert(!GT::is_directed);\n \
     \ const int N = G.N;\n  using F = GF2<64>;\n  int s = use.back();\n  use.pop_back();\n\
     \n  // \u91CD\u307F\u4ED8\u304D\u6709\u5411\u30B0\u30E9\u30D5\u306B\u5909\u5F62\
     \n  // \u59CB\u70B9\u306E\u8FD1\u304F\u3067\u306F\u9006\u5411\u304D\u3092\u9055\
@@ -90,7 +90,7 @@ data:
   code: "#include \"random/base.hpp\"\n#include \"nt/GF2.hpp\"\n\n// https://www.slideshare.net/wata_orz/ss-12208032\n\
     // https://epubs.siam.org/doi/10.1137/1.9781611973099.139\n// O(2^kN^2M)\ntemplate\
     \ <typename GT>\nint minimum_cycle_length_through_specified(GT& G, vc<int> use)\
-    \ {\n  assert(len(use) >= 2);\n  assert(!G.is_directed());\n  const int N = G.N;\n\
+    \ {\n  assert(len(use) >= 2);\n  assert(!GT::is_directed);\n  const int N = G.N;\n\
     \  using F = GF2<64>;\n  int s = use.back();\n  use.pop_back();\n\n  // \u91CD\
     \u307F\u4ED8\u304D\u6709\u5411\u30B0\u30E9\u30D5\u306B\u5909\u5F62\n  // \u59CB\
     \u70B9\u306E\u8FD1\u304F\u3067\u306F\u9006\u5411\u304D\u3092\u9055\u3046\u91CD\
@@ -117,8 +117,8 @@ data:
   isVerificationFile: false
   path: graph/minimum_cycle_length_through_specified.hpp
   requiredBy: []
-  timestamp: '2023-10-06 05:10:13+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-11-01 18:40:50+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1775.test.cpp
 documentation_of: graph/minimum_cycle_length_through_specified.hpp
