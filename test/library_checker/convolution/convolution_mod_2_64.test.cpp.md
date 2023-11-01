@@ -25,7 +25,7 @@ data:
   - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/convolution_mod_2_64.hpp
     title: poly/convolution_mod_2_64.hpp
   - icon: ':question:'
@@ -39,9 +39,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/convolution_mod_2_64
@@ -462,53 +462,68 @@ data:
     \ >> 1)]) * t * CFFT::rts[(sz >> 1) + i];\r\n    fa[i] = A0 + A1 * s;\r\n  }\r\
     \n  CFFT::fft(fa, sz >> 1);\r\n  vector<double> ret(need);\r\n  for (int i = 0;\
     \ i < need; i++) {\r\n    ret[i] = (i & 1 ? fa[i >> 1].y : fa[i >> 1].x);\r\n\
-    \  }\r\n  return ret;\r\n}\r\n\r\nvi convolution(vi a, vi b) {\r\n  int n = len(a),\
-    \ m = len(b);\r\n  if (!n || !m) return {};\r\n  if (min(n, m) <= 2500) return\
-    \ convolution_naive(a, b);\r\n\r\n  ll min_a = MIN(a), min_b = MIN(b);\r\n  for\
-    \ (auto& x: a) x -= min_a;\r\n  for (auto& x: b) x -= min_b;\r\n\r\n  static constexpr\
-    \ int p0 = 1045430273;\r\n  static constexpr int p1 = 1051721729;\r\n  static\
-    \ constexpr int p2 = 1053818881;\r\n  using mint0 = modint<p0>;\r\n  using mint1\
-    \ = modint<p1>;\r\n  using mint2 = modint<p2>;\r\n  vc<mint0> a0(n), b0(m);\r\n\
-    \  vc<mint1> a1(n), b1(m);\r\n  vc<mint2> a2(n), b2(m);\r\n  FOR(i, n) a0[i] =\
-    \ u64(a[i]), a1[i] = u64(a[i]), a2[i] = u64(a[i]);\r\n  FOR(i, m) b0[i] = u64(b[i]),\
-    \ b1[i] = u64(b[i]), b2[i] = u64(b[i]);\r\n  auto c0 = convolution_ntt<mint0>(a0,\
-    \ b0);\r\n  auto c1 = convolution_ntt<mint1>(a1, b1);\r\n  auto c2 = convolution_ntt<mint2>(a2,\
-    \ b2);\r\n\r\n  vi c(n + m - 1);\r\n  FOR(i, n + m - 1) {\r\n    c[i] = CRT3<u64,\
-    \ p0, p1, p2>(c0[i].val, c1[i].val, c2[i].val);\r\n  }\r\n  return c;\r\n}\r\n\
-    \r\ntemplate <typename mint>\r\nvc<mint> convolution(const vc<mint>& a, const\
-    \ vc<mint>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\
-    \n  if (mint::can_ntt()) {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
-    \ b);\r\n    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return\
-    \ convolution_karatsuba<mint>(a, b);\r\n  return convolution_garner(a, b);\r\n\
-    }\r\n#line 2 \"poly/convolution_mod_2_64.hpp\"\n\r\nvector<u64> convolution_mod_2_64(const\
-    \ vector<u64>& a, const vector<u64>& b) {\r\n  int n = len(a), m = len(b);\r\n\
-    \  if (!n || !m) return {};\r\n  if (min(n, m) <= 12500) return convolution_karatsuba(a,\
-    \ b);\r\n  constexpr int P0 = 998244353;\r\n  constexpr int P1 = 754974721;\r\n\
-    \  constexpr int P2 = 167772161;\r\n  constexpr int P3 = 469762049;\r\n  constexpr\
-    \ int P4 = 880803841;\r\n  using M0 = modint<P0>;\r\n  using M1 = modint<P1>;\r\
-    \n  using M2 = modint<P2>;\r\n  using M3 = modint<P3>;\r\n  using M4 = modint<P4>;\r\
-    \n  vc<M0> a0(n), b0(m);\r\n  vc<M1> a1(n), b1(m);\r\n  vc<M2> a2(n), b2(m);\r\
-    \n  vc<M3> a3(n), b3(m);\r\n  vc<M4> a4(n), b4(m);\r\n  FOR(i, n) a0[i] = a[i]\
-    \ % P0;\r\n  FOR(i, m) b0[i] = b[i] % P0;\r\n  FOR(i, n) a1[i] = a[i] % P1;\r\n\
-    \  FOR(i, m) b1[i] = b[i] % P1;\r\n  FOR(i, n) a2[i] = a[i] % P2;\r\n  FOR(i,\
-    \ m) b2[i] = b[i] % P2;\r\n  FOR(i, n) a3[i] = a[i] % P3;\r\n  FOR(i, m) b3[i]\
-    \ = b[i] % P3;\r\n  FOR(i, n) a4[i] = a[i] % P4;\r\n  FOR(i, m) b4[i] = b[i] %\
-    \ P4;\r\n  a0 = convolution_ntt<M0>(a0, b0);\r\n  a1 = convolution_ntt<M1>(a1,\
-    \ b1);\r\n  a2 = convolution_ntt<M2>(a2, b2);\r\n  a3 = convolution_ntt<M3>(a3,\
-    \ b3);\r\n  a4 = convolution_ntt<M4>(a4, b4);\r\n  static const M1 inv10 = M1(1)\
-    \ / M1(P0);\r\n  static const M2 inv21 = M2(1) / M2(P1), inv20 = inv21 / M2(P0);\r\
-    \n  static const M3 inv32 = M3(1) / M3(P2), inv31 = inv32 / M3(P1),\r\n      \
-    \            inv30 = inv31 / M3(P0);\r\n  static const M4 inv43 = M4(1) / M4(P3),\
-    \ inv42 = inv43 / M4(P2),\r\n                  inv41 = inv42 / M4(P1), inv40 =\
-    \ inv41 / M4(P0);\r\n  vc<u64> c(len(a0));\r\n  FOR(i, len(c)) {\r\n    ll x0\
-    \ = a0[i].val;\r\n    ll x1 = (M1(a1[i] - x0) * inv10).val;\r\n    ll x2 = (M2(a2[i]\
-    \ - x0) * inv20 - M2(x1) * inv21).val;\r\n    ll x3 = (M3(a3[i] - x0) * inv30\
-    \ - M3(x1) * inv31 - M3(x2) * inv32).val;\r\n    ll x4 = (M4(a4[i] - x0) * inv40\
-    \ - M4(x1) * inv41 - M4(x2) * inv42\r\n             - M4(x3) * inv43)\r\n    \
-    \            .val;\r\n    c[i] = x0 + P0 * (x1 + P1 * (x2 + P2 * (x3 + P3 * u64(x4))));\r\
-    \n  }\r\n  return c;\r\n}\r\n#line 6 \"test/library_checker/convolution/convolution_mod_2_64.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N, M);\r\n  VEC(u64, A, N);\r\n  VEC(u64, B, M);\r\
-    \n  auto C = convolution_mod_2_64(A, B);\r\n  print(C);\r\n}\r\n\r\nsigned main()\
+    \  }\r\n  return ret;\r\n}\r\n\r\nvector<ll> convolution(const vector<ll>& a,\
+    \ const vector<ll>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return\
+    \ {};\r\n  if (min(n, m) <= 2500) return convolution_naive(a, b);\r\n  ll abs_sum_a\
+    \ = 0, abs_sum_b = 0;\r\n  ll LIM = 1e15;\r\n  FOR(i, n) abs_sum_a = min(LIM,\
+    \ abs_sum_a + abs(a[i]));\r\n  FOR(i, m) abs_sum_b = min(LIM, abs_sum_b + abs(b[i]));\r\
+    \n  if (i128(abs_sum_a) * abs_sum_b < 1e15) {\r\n    vc<double> c = convolution_fft<ll>(a,\
+    \ b);\r\n    vc<ll> res(len(c));\r\n    FOR(i, len(c)) res[i] = ll(floor(c[i]\
+    \ + .5));\r\n    return res;\r\n  }\r\n\r\n  static constexpr unsigned long long\
+    \ MOD1 = 754974721; // 2^24\r\n  static constexpr unsigned long long MOD2 = 167772161;\
+    \ // 2^25\r\n  static constexpr unsigned long long MOD3 = 469762049; // 2^26\r\
+    \n  static constexpr unsigned long long M2M3 = MOD2 * MOD3;\r\n  static constexpr\
+    \ unsigned long long M1M3 = MOD1 * MOD3;\r\n  static constexpr unsigned long long\
+    \ M1M2 = MOD1 * MOD2;\r\n  static constexpr unsigned long long M1M2M3 = MOD1 *\
+    \ MOD2 * MOD3;\r\n\r\n  static const unsigned long long i1 = mod_inv(MOD2 * MOD3,\
+    \ MOD1);\r\n  static const unsigned long long i2 = mod_inv(MOD1 * MOD3, MOD2);\r\
+    \n  static const unsigned long long i3 = mod_inv(MOD1 * MOD2, MOD3);\r\n\r\n \
+    \ using mint1 = modint<MOD1>;\r\n  using mint2 = modint<MOD2>;\r\n  using mint3\
+    \ = modint<MOD3>;\r\n\r\n  vc<mint1> a1(n), b1(m);\r\n  vc<mint2> a2(n), b2(m);\r\
+    \n  vc<mint3> a3(n), b3(m);\r\n  FOR(i, n) a1[i] = a[i], a2[i] = a[i], a3[i] =\
+    \ a[i];\r\n  FOR(i, m) b1[i] = b[i], b2[i] = b[i], b3[i] = b[i];\r\n\r\n  auto\
+    \ c1 = convolution_ntt<mint1>(a1, b1);\r\n  auto c2 = convolution_ntt<mint2>(a2,\
+    \ b2);\r\n  auto c3 = convolution_ntt<mint3>(a3, b3);\r\n\r\n  vc<ll> c(n + m\
+    \ - 1);\r\n  FOR(i, n + m - 1) {\r\n    u64 x = 0;\r\n    x += (c1[i].val * i1)\
+    \ % MOD1 * M2M3;\r\n    x += (c2[i].val * i2) % MOD2 * M1M3;\r\n    x += (c3[i].val\
+    \ * i3) % MOD3 * M1M2;\r\n    ll diff = c1[i].val - ((long long)(x) % (long long)(MOD1));\r\
+    \n    if (diff < 0) diff += MOD1;\r\n    static constexpr unsigned long long offset[5]\r\
+    \n        = {0, 0, M1M2M3, 2 * M1M2M3, 3 * M1M2M3};\r\n    x -= offset[diff %\
+    \ 5];\r\n    c[i] = x;\r\n  }\r\n  return c;\r\n}\r\n\r\ntemplate <typename mint>\r\
+    \nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b) {\r\n  int n = len(a),\
+    \ m = len(b);\r\n  if (!n || !m) return {};\r\n  if (mint::can_ntt()) {\r\n  \
+    \  if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n    return\
+    \ convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
+    \ b);\r\n  return convolution_garner(a, b);\r\n}\r\n#line 2 \"poly/convolution_mod_2_64.hpp\"\
+    \n\r\nvector<u64> convolution_mod_2_64(const vector<u64>& a, const vector<u64>&\
+    \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
+    \ (min(n, m) <= 12500) return convolution_karatsuba(a, b);\r\n  constexpr int\
+    \ P0 = 998244353;\r\n  constexpr int P1 = 754974721;\r\n  constexpr int P2 = 167772161;\r\
+    \n  constexpr int P3 = 469762049;\r\n  constexpr int P4 = 880803841;\r\n  using\
+    \ M0 = modint<P0>;\r\n  using M1 = modint<P1>;\r\n  using M2 = modint<P2>;\r\n\
+    \  using M3 = modint<P3>;\r\n  using M4 = modint<P4>;\r\n  vc<M0> a0(n), b0(m);\r\
+    \n  vc<M1> a1(n), b1(m);\r\n  vc<M2> a2(n), b2(m);\r\n  vc<M3> a3(n), b3(m);\r\
+    \n  vc<M4> a4(n), b4(m);\r\n  FOR(i, n) a0[i] = a[i] % P0;\r\n  FOR(i, m) b0[i]\
+    \ = b[i] % P0;\r\n  FOR(i, n) a1[i] = a[i] % P1;\r\n  FOR(i, m) b1[i] = b[i] %\
+    \ P1;\r\n  FOR(i, n) a2[i] = a[i] % P2;\r\n  FOR(i, m) b2[i] = b[i] % P2;\r\n\
+    \  FOR(i, n) a3[i] = a[i] % P3;\r\n  FOR(i, m) b3[i] = b[i] % P3;\r\n  FOR(i,\
+    \ n) a4[i] = a[i] % P4;\r\n  FOR(i, m) b4[i] = b[i] % P4;\r\n  a0 = convolution_ntt<M0>(a0,\
+    \ b0);\r\n  a1 = convolution_ntt<M1>(a1, b1);\r\n  a2 = convolution_ntt<M2>(a2,\
+    \ b2);\r\n  a3 = convolution_ntt<M3>(a3, b3);\r\n  a4 = convolution_ntt<M4>(a4,\
+    \ b4);\r\n  static const M1 inv10 = M1(1) / M1(P0);\r\n  static const M2 inv21\
+    \ = M2(1) / M2(P1), inv20 = inv21 / M2(P0);\r\n  static const M3 inv32 = M3(1)\
+    \ / M3(P2), inv31 = inv32 / M3(P1),\r\n                  inv30 = inv31 / M3(P0);\r\
+    \n  static const M4 inv43 = M4(1) / M4(P3), inv42 = inv43 / M4(P2),\r\n      \
+    \            inv41 = inv42 / M4(P1), inv40 = inv41 / M4(P0);\r\n  vc<u64> c(len(a0));\r\
+    \n  FOR(i, len(c)) {\r\n    ll x0 = a0[i].val;\r\n    ll x1 = (M1(a1[i] - x0)\
+    \ * inv10).val;\r\n    ll x2 = (M2(a2[i] - x0) * inv20 - M2(x1) * inv21).val;\r\
+    \n    ll x3 = (M3(a3[i] - x0) * inv30 - M3(x1) * inv31 - M3(x2) * inv32).val;\r\
+    \n    ll x4 = (M4(a4[i] - x0) * inv40 - M4(x1) * inv41 - M4(x2) * inv42\r\n  \
+    \           - M4(x3) * inv43)\r\n                .val;\r\n    c[i] = x0 + P0 *\
+    \ (x1 + P1 * (x2 + P2 * (x3 + P3 * u64(x4))));\r\n  }\r\n  return c;\r\n}\r\n\
+    #line 6 \"test/library_checker/convolution/convolution_mod_2_64.test.cpp\"\n\r\
+    \nvoid solve() {\r\n  LL(N, M);\r\n  VEC(u64, A, N);\r\n  VEC(u64, B, M);\r\n\
+    \  auto C = convolution_mod_2_64(A, B);\r\n  print(C);\r\n}\r\n\r\nsigned main()\
     \ {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
     \n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod_2_64\"\r\
@@ -533,8 +548,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/convolution/convolution_mod_2_64.test.cpp
   requiredBy: []
-  timestamp: '2023-11-01 19:16:20+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-02 02:44:26+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/convolution/convolution_mod_2_64.test.cpp
 layout: document

@@ -31,7 +31,7 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/multivar_convolution.hpp
     title: poly/multivar_convolution.hpp
   - icon: ':question:'
@@ -39,9 +39,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/multivariate_convolution
@@ -462,54 +462,69 @@ data:
     \ >> 1)]) * t * CFFT::rts[(sz >> 1) + i];\r\n    fa[i] = A0 + A1 * s;\r\n  }\r\
     \n  CFFT::fft(fa, sz >> 1);\r\n  vector<double> ret(need);\r\n  for (int i = 0;\
     \ i < need; i++) {\r\n    ret[i] = (i & 1 ? fa[i >> 1].y : fa[i >> 1].x);\r\n\
-    \  }\r\n  return ret;\r\n}\r\n\r\nvi convolution(vi a, vi b) {\r\n  int n = len(a),\
-    \ m = len(b);\r\n  if (!n || !m) return {};\r\n  if (min(n, m) <= 2500) return\
-    \ convolution_naive(a, b);\r\n\r\n  ll min_a = MIN(a), min_b = MIN(b);\r\n  for\
-    \ (auto& x: a) x -= min_a;\r\n  for (auto& x: b) x -= min_b;\r\n\r\n  static constexpr\
-    \ int p0 = 1045430273;\r\n  static constexpr int p1 = 1051721729;\r\n  static\
-    \ constexpr int p2 = 1053818881;\r\n  using mint0 = modint<p0>;\r\n  using mint1\
-    \ = modint<p1>;\r\n  using mint2 = modint<p2>;\r\n  vc<mint0> a0(n), b0(m);\r\n\
-    \  vc<mint1> a1(n), b1(m);\r\n  vc<mint2> a2(n), b2(m);\r\n  FOR(i, n) a0[i] =\
-    \ u64(a[i]), a1[i] = u64(a[i]), a2[i] = u64(a[i]);\r\n  FOR(i, m) b0[i] = u64(b[i]),\
-    \ b1[i] = u64(b[i]), b2[i] = u64(b[i]);\r\n  auto c0 = convolution_ntt<mint0>(a0,\
-    \ b0);\r\n  auto c1 = convolution_ntt<mint1>(a1, b1);\r\n  auto c2 = convolution_ntt<mint2>(a2,\
-    \ b2);\r\n\r\n  vi c(n + m - 1);\r\n  FOR(i, n + m - 1) {\r\n    c[i] = CRT3<u64,\
-    \ p0, p1, p2>(c0[i].val, c1[i].val, c2[i].val);\r\n  }\r\n  return c;\r\n}\r\n\
-    \r\ntemplate <typename mint>\r\nvc<mint> convolution(const vc<mint>& a, const\
-    \ vc<mint>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\
-    \n  if (mint::can_ntt()) {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
-    \ b);\r\n    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return\
-    \ convolution_karatsuba<mint>(a, b);\r\n  return convolution_garner(a, b);\r\n\
-    }\r\n#line 2 \"poly/multivar_convolution.hpp\"\n\r\n/*\r\n(n0, n1, n2, ...) \u9032\
-    \u6CD5\u3067\u306E\u7E70\u308A\u4E0A\u304C\u308A\u306E\u306A\u3044\u8DB3\u3057\
-    \u7B97\u306B\u95A2\u3059\u308B\u7573\u307F\u8FBC\u307F\r\n\r\nexample : ns = (2,\
-    \ 3) \u2192 1 \u306E\u4F4D\u304B\u3089\u9806\u306B 2, 3 \u9032\u6CD5\r\n[a0, a1,\
-    \ a2, a3, a4, a5] = [a(0,0), a(1,0), a(0,1), a(1,1), a(0,2), a(1,2)]\r\n[b0, b1,\
-    \ b2, b3, b4, b5] = [b(0,0), b(1,0), b(0,1), b(1,1), b(0,2), b(1,2)]\r\nc(0,2)\
-    \ = a(0,0)b(0,2) + a(0,1)b(0,1) + a(0,2)b(1,1)\r\nc4 = a0b4 + a2b2 + a4b0\r\n\r\
-    \nexample : ns = (2, 2, ..., 2, 2) \u2192 subset convolution\r\n*/\r\ntemplate\
-    \ <typename mint>\r\nvc<mint> multivar_convolution(vc<int> ns, vc<mint>& f, vc<mint>&\
-    \ g) {\r\n  int K = len(ns);\r\n  int N = 1;\r\n  FOR(k, K) N *= ns[k];\r\n  assert(len(f)\
-    \ == N && len(g) == N);\r\n  if (N == 1) return {f[0] * g[0]};\r\n\r\n  auto chi\
-    \ = [&](ll i) -> ll {\r\n    int x = 0;\r\n    for (auto&& n: ns) {\r\n      i\
-    \ /= n;\r\n      x += i;\r\n    }\r\n    return x % K;\r\n  };\r\n\r\n  int sz\
-    \ = 1;\r\n  while (sz < N + N) sz *= 2;\r\n  vv(mint, ff, K, sz);\r\n  vv(mint,\
-    \ gg, K, sz);\r\n\r\n  FOR(i, N) {\r\n    auto k = chi(i);\r\n    ff[k][i] = f[i];\r\
-    \n    gg[k][i] = g[i];\r\n  }\r\n\r\n  FOR(k, K) {\r\n    ntt(ff[k], false);\r\
-    \n    ntt(gg[k], false);\r\n  }\r\n\r\n  vv(mint, hh, K, sz);\r\n  FOR(a, K) FOR(b,\
-    \ K) FOR(i, sz) { hh[(a + b) % K][i] += ff[a][i] * gg[b][i]; }\r\n  FOR(k, K)\
-    \ ntt(hh[k], true);\r\n\r\n  vc<mint> h(N);\r\n  FOR(i, N) h[i] = hh[chi(i)][i];\r\
-    \n  return h;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<vc<mint>> multivar_convolution_2d(vc<vc<mint>>&\
-    \ f, vc<vc<mint>>& g) {\r\n  int H = len(f);\r\n  int W = len(f[0]);\r\n  assert(len(g)\
-    \ == H);\r\n  assert(len(g[0]) == W);\r\n  vc<mint> F(H * W), G(H * W);\r\n  FOR(x,\
-    \ H) FOR(y, W) F[x + H * y] = f[x][y];\r\n  FOR(x, H) FOR(y, W) G[x + H * y] =\
-    \ g[x][y];\r\n  F = multivar_convolution(vc<int>({H, W}), F, G);\r\n  vv(mint,\
-    \ h, H, W);\r\n  FOR(x, H) FOR(y, W) h[x][y] = F[x + H * y];\r\n  return h;\r\n\
-    }\r\n#line 6 \"test/library_checker/convolution/multivariate_convolution.test.cpp\"\
-    \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(K);\r\n  VEC(int,\
-    \ ns, K);\r\n  ll N = 1;\r\n  FOR(k, K) N *= ns[k];\r\n  VEC(mint, f, N);\r\n\
-    \  VEC(mint, g, N);\r\n\r\n  auto h = multivar_convolution(ns, f, g);\r\n  print(h);\r\
-    \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \  }\r\n  return ret;\r\n}\r\n\r\nvector<ll> convolution(const vector<ll>& a,\
+    \ const vector<ll>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return\
+    \ {};\r\n  if (min(n, m) <= 2500) return convolution_naive(a, b);\r\n  ll abs_sum_a\
+    \ = 0, abs_sum_b = 0;\r\n  ll LIM = 1e15;\r\n  FOR(i, n) abs_sum_a = min(LIM,\
+    \ abs_sum_a + abs(a[i]));\r\n  FOR(i, m) abs_sum_b = min(LIM, abs_sum_b + abs(b[i]));\r\
+    \n  if (i128(abs_sum_a) * abs_sum_b < 1e15) {\r\n    vc<double> c = convolution_fft<ll>(a,\
+    \ b);\r\n    vc<ll> res(len(c));\r\n    FOR(i, len(c)) res[i] = ll(floor(c[i]\
+    \ + .5));\r\n    return res;\r\n  }\r\n\r\n  static constexpr unsigned long long\
+    \ MOD1 = 754974721; // 2^24\r\n  static constexpr unsigned long long MOD2 = 167772161;\
+    \ // 2^25\r\n  static constexpr unsigned long long MOD3 = 469762049; // 2^26\r\
+    \n  static constexpr unsigned long long M2M3 = MOD2 * MOD3;\r\n  static constexpr\
+    \ unsigned long long M1M3 = MOD1 * MOD3;\r\n  static constexpr unsigned long long\
+    \ M1M2 = MOD1 * MOD2;\r\n  static constexpr unsigned long long M1M2M3 = MOD1 *\
+    \ MOD2 * MOD3;\r\n\r\n  static const unsigned long long i1 = mod_inv(MOD2 * MOD3,\
+    \ MOD1);\r\n  static const unsigned long long i2 = mod_inv(MOD1 * MOD3, MOD2);\r\
+    \n  static const unsigned long long i3 = mod_inv(MOD1 * MOD2, MOD3);\r\n\r\n \
+    \ using mint1 = modint<MOD1>;\r\n  using mint2 = modint<MOD2>;\r\n  using mint3\
+    \ = modint<MOD3>;\r\n\r\n  vc<mint1> a1(n), b1(m);\r\n  vc<mint2> a2(n), b2(m);\r\
+    \n  vc<mint3> a3(n), b3(m);\r\n  FOR(i, n) a1[i] = a[i], a2[i] = a[i], a3[i] =\
+    \ a[i];\r\n  FOR(i, m) b1[i] = b[i], b2[i] = b[i], b3[i] = b[i];\r\n\r\n  auto\
+    \ c1 = convolution_ntt<mint1>(a1, b1);\r\n  auto c2 = convolution_ntt<mint2>(a2,\
+    \ b2);\r\n  auto c3 = convolution_ntt<mint3>(a3, b3);\r\n\r\n  vc<ll> c(n + m\
+    \ - 1);\r\n  FOR(i, n + m - 1) {\r\n    u64 x = 0;\r\n    x += (c1[i].val * i1)\
+    \ % MOD1 * M2M3;\r\n    x += (c2[i].val * i2) % MOD2 * M1M3;\r\n    x += (c3[i].val\
+    \ * i3) % MOD3 * M1M2;\r\n    ll diff = c1[i].val - ((long long)(x) % (long long)(MOD1));\r\
+    \n    if (diff < 0) diff += MOD1;\r\n    static constexpr unsigned long long offset[5]\r\
+    \n        = {0, 0, M1M2M3, 2 * M1M2M3, 3 * M1M2M3};\r\n    x -= offset[diff %\
+    \ 5];\r\n    c[i] = x;\r\n  }\r\n  return c;\r\n}\r\n\r\ntemplate <typename mint>\r\
+    \nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b) {\r\n  int n = len(a),\
+    \ m = len(b);\r\n  if (!n || !m) return {};\r\n  if (mint::can_ntt()) {\r\n  \
+    \  if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n    return\
+    \ convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
+    \ b);\r\n  return convolution_garner(a, b);\r\n}\r\n#line 2 \"poly/multivar_convolution.hpp\"\
+    \n\r\n/*\r\n(n0, n1, n2, ...) \u9032\u6CD5\u3067\u306E\u7E70\u308A\u4E0A\u304C\
+    \u308A\u306E\u306A\u3044\u8DB3\u3057\u7B97\u306B\u95A2\u3059\u308B\u7573\u307F\
+    \u8FBC\u307F\r\n\r\nexample : ns = (2, 3) \u2192 1 \u306E\u4F4D\u304B\u3089\u9806\
+    \u306B 2, 3 \u9032\u6CD5\r\n[a0, a1, a2, a3, a4, a5] = [a(0,0), a(1,0), a(0,1),\
+    \ a(1,1), a(0,2), a(1,2)]\r\n[b0, b1, b2, b3, b4, b5] = [b(0,0), b(1,0), b(0,1),\
+    \ b(1,1), b(0,2), b(1,2)]\r\nc(0,2) = a(0,0)b(0,2) + a(0,1)b(0,1) + a(0,2)b(1,1)\r\
+    \nc4 = a0b4 + a2b2 + a4b0\r\n\r\nexample : ns = (2, 2, ..., 2, 2) \u2192 subset\
+    \ convolution\r\n*/\r\ntemplate <typename mint>\r\nvc<mint> multivar_convolution(vc<int>\
+    \ ns, vc<mint>& f, vc<mint>& g) {\r\n  int K = len(ns);\r\n  int N = 1;\r\n  FOR(k,\
+    \ K) N *= ns[k];\r\n  assert(len(f) == N && len(g) == N);\r\n  if (N == 1) return\
+    \ {f[0] * g[0]};\r\n\r\n  auto chi = [&](ll i) -> ll {\r\n    int x = 0;\r\n \
+    \   for (auto&& n: ns) {\r\n      i /= n;\r\n      x += i;\r\n    }\r\n    return\
+    \ x % K;\r\n  };\r\n\r\n  int sz = 1;\r\n  while (sz < N + N) sz *= 2;\r\n  vv(mint,\
+    \ ff, K, sz);\r\n  vv(mint, gg, K, sz);\r\n\r\n  FOR(i, N) {\r\n    auto k = chi(i);\r\
+    \n    ff[k][i] = f[i];\r\n    gg[k][i] = g[i];\r\n  }\r\n\r\n  FOR(k, K) {\r\n\
+    \    ntt(ff[k], false);\r\n    ntt(gg[k], false);\r\n  }\r\n\r\n  vv(mint, hh,\
+    \ K, sz);\r\n  FOR(a, K) FOR(b, K) FOR(i, sz) { hh[(a + b) % K][i] += ff[a][i]\
+    \ * gg[b][i]; }\r\n  FOR(k, K) ntt(hh[k], true);\r\n\r\n  vc<mint> h(N);\r\n \
+    \ FOR(i, N) h[i] = hh[chi(i)][i];\r\n  return h;\r\n}\r\n\r\ntemplate <typename\
+    \ mint>\r\nvc<vc<mint>> multivar_convolution_2d(vc<vc<mint>>& f, vc<vc<mint>>&\
+    \ g) {\r\n  int H = len(f);\r\n  int W = len(f[0]);\r\n  assert(len(g) == H);\r\
+    \n  assert(len(g[0]) == W);\r\n  vc<mint> F(H * W), G(H * W);\r\n  FOR(x, H) FOR(y,\
+    \ W) F[x + H * y] = f[x][y];\r\n  FOR(x, H) FOR(y, W) G[x + H * y] = g[x][y];\r\
+    \n  F = multivar_convolution(vc<int>({H, W}), F, G);\r\n  vv(mint, h, H, W);\r\
+    \n  FOR(x, H) FOR(y, W) h[x][y] = F[x + H * y];\r\n  return h;\r\n}\r\n#line 6\
+    \ \"test/library_checker/convolution/multivariate_convolution.test.cpp\"\n\r\n\
+    using mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(K);\r\n  VEC(int, ns, K);\r\
+    \n  ll N = 1;\r\n  FOR(k, K) N *= ns[k];\r\n  VEC(mint, f, N);\r\n  VEC(mint,\
+    \ g, N);\r\n\r\n  auto h = multivar_convolution(ns, f, g);\r\n  print(h);\r\n\
+    }\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
     \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/multivariate_convolution\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
@@ -535,8 +550,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/convolution/multivariate_convolution.test.cpp
   requiredBy: []
-  timestamp: '2023-11-01 19:16:20+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-02 02:44:26+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/convolution/multivariate_convolution.test.cpp
 layout: document

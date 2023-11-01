@@ -42,10 +42,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/addition_of_bigintegers.test.cpp
     title: test/library_checker/addition_of_bigintegers.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/multiplication_of_bigintegers.test.cpp
     title: test/library_checker/multiplication_of_bigintegers.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/sample/aplusb128.test.cpp
     title: test/library_checker/sample/aplusb128.test.cpp
   - icon: ':x:'
@@ -295,87 +295,102 @@ data:
     \ >> 1)]) * t * CFFT::rts[(sz >> 1) + i];\r\n    fa[i] = A0 + A1 * s;\r\n  }\r\
     \n  CFFT::fft(fa, sz >> 1);\r\n  vector<double> ret(need);\r\n  for (int i = 0;\
     \ i < need; i++) {\r\n    ret[i] = (i & 1 ? fa[i >> 1].y : fa[i >> 1].x);\r\n\
-    \  }\r\n  return ret;\r\n}\r\n\r\nvi convolution(vi a, vi b) {\r\n  int n = len(a),\
-    \ m = len(b);\r\n  if (!n || !m) return {};\r\n  if (min(n, m) <= 2500) return\
-    \ convolution_naive(a, b);\r\n\r\n  ll min_a = MIN(a), min_b = MIN(b);\r\n  for\
-    \ (auto& x: a) x -= min_a;\r\n  for (auto& x: b) x -= min_b;\r\n\r\n  static constexpr\
-    \ int p0 = 1045430273;\r\n  static constexpr int p1 = 1051721729;\r\n  static\
-    \ constexpr int p2 = 1053818881;\r\n  using mint0 = modint<p0>;\r\n  using mint1\
-    \ = modint<p1>;\r\n  using mint2 = modint<p2>;\r\n  vc<mint0> a0(n), b0(m);\r\n\
-    \  vc<mint1> a1(n), b1(m);\r\n  vc<mint2> a2(n), b2(m);\r\n  FOR(i, n) a0[i] =\
-    \ u64(a[i]), a1[i] = u64(a[i]), a2[i] = u64(a[i]);\r\n  FOR(i, m) b0[i] = u64(b[i]),\
-    \ b1[i] = u64(b[i]), b2[i] = u64(b[i]);\r\n  auto c0 = convolution_ntt<mint0>(a0,\
-    \ b0);\r\n  auto c1 = convolution_ntt<mint1>(a1, b1);\r\n  auto c2 = convolution_ntt<mint2>(a2,\
-    \ b2);\r\n\r\n  vi c(n + m - 1);\r\n  FOR(i, n + m - 1) {\r\n    c[i] = CRT3<u64,\
-    \ p0, p1, p2>(c0[i].val, c1[i].val, c2[i].val);\r\n  }\r\n  return c;\r\n}\r\n\
-    \r\ntemplate <typename mint>\r\nvc<mint> convolution(const vc<mint>& a, const\
-    \ vc<mint>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\
-    \n  if (mint::can_ntt()) {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
-    \ b);\r\n    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return\
-    \ convolution_karatsuba<mint>(a, b);\r\n  return convolution_garner(a, b);\r\n\
-    }\r\n#line 2 \"bigint/base.hpp\"\n\n// 10^9 \u305A\u3064\u533A\u5207\u3063\u3066\
-    \nstruct BigInteger {\n  static constexpr int TEN[]\n      = {1,      10,    \
-    \  100,      1000,      10000,\n         100000, 1000000, 10000000, 100000000,\
-    \ 1000000000};\n  static constexpr int LOG = 9;\n  static constexpr int MOD =\
-    \ TEN[LOG];\n  using bint = BigInteger;\n  int sgn; // +1 or -1. \u5185\u90E8\u72B6\
-    \u614B\u3067 -0 \u3092\u8A31\u5BB9\u3059\u308B.\n  vc<int> dat;\n\n  BigInteger()\
-    \ : sgn(1) {}\n  BigInteger(i128 val) {\n    sgn = 1;\n    if (val != 0) {\n \
-    \     if (val < 0) sgn = -1, val = -val;\n      while (val > 0) {\n        dat.eb(val\
-    \ % MOD);\n        val /= MOD;\n      }\n    }\n  }\n  BigInteger(string s) {\n\
-    \    assert(!s.empty());\n    sgn = 1;\n    if (s[0] == '-') {\n      sgn = -1;\n\
-    \      s.erase(s.begin());\n      assert(!s.empty());\n    }\n    if (s[0] ==\
-    \ '0') s.clear();\n    reverse(all(s));\n    int n = len(s);\n    int m = ceil(n,\
-    \ LOG);\n    dat.assign(m, 0);\n    FOR(i, n) { dat[i / LOG] += TEN[i % LOG] *\
-    \ (s[i] - '0'); }\n  }\n  bint &operator=(const bint &p) {\n    sgn = p.sgn;\n\
-    \    dat = p.dat;\n    return *this;\n  }\n  bool operator<(const bint &p) const\
-    \ {\n    if (sgn != p.sgn) return sgn < p.sgn;\n    if (len(dat) != len(p.dat))\
-    \ {\n      if (sgn == 1) return len(dat) < len(p.dat);\n      if (sgn == -1) return\
-    \ len(dat) > len(p.dat);\n    }\n    FOR_R(i, len(dat)) {\n      if (dat[i] ==\
-    \ p.dat[i]) continue;\n      if (sgn == 1) return dat[i] < p.dat[i];\n      if\
-    \ (sgn == -1) return dat[i] > p.dat[i];\n    }\n    return false;\n  }\n  bool\
-    \ operator>(const bint &p) const { return p < *this; }\n  bool operator<=(const\
-    \ bint &p) const { return !(*this > p); }\n  bool operator>=(const bint &p) const\
-    \ { return !(*this < p); }\n  bint &operator+=(const bint p) {\n    if (sgn !=\
-    \ p.sgn) {\n      *this -= (-p);\n      return *this;\n    }\n    int n = max(len(dat),\
-    \ len(p.dat));\n    dat.resize(n + 1);\n    FOR(i, n) {\n      if (i < len(p.dat))\
-    \ dat[i] += p.dat[i];\n      if (dat[i] >= MOD) dat[i] -= MOD, dat[i + 1] += 1;\n\
-    \    }\n    while (len(dat) && dat.back() == 0) dat.pop_back();\n    return *this;\n\
-    \  }\n  bint &operator-=(const bint p) {\n    if (sgn != p.sgn) {\n      *this\
-    \ += (-p);\n      return *this;\n    }\n    if ((sgn == 1 && *this < p) || (sgn\
-    \ == -1 && *this > p)) {\n      *this = p - *this;\n      sgn = -sgn;\n      return\
-    \ *this;\n    }\n    FOR(i, len(p.dat)) { dat[i] -= p.dat[i]; }\n    FOR(i, len(dat)\
-    \ - 1) {\n      if (dat[i] < 0) dat[i] += MOD, dat[i + 1] -= 1;\n    }\n    while\
-    \ (len(dat) && dat.back() == 0) { dat.pop_back(); }\n    return *this;\n  }\n\
-    \  bint &operator*=(const bint &p) {\n    sgn *= p.sgn;\n    dat = convolve(dat,\
-    \ p.dat);\n    return *this;\n  }\n  // bint &operator/=(const bint &p) { return\
-    \ *this; }\n  bint operator-() const {\n    bint p = *this;\n    p.sgn *= -1;\n\
-    \    return p;\n  }\n  bint operator+(const bint &p) const { return bint(*this)\
-    \ += p; }\n  bint operator-(const bint &p) const { return bint(*this) -= p; }\n\
-    \  bint operator*(const bint &p) const { return bint(*this) *= p; }\n  // bint\
-    \ operator/(const modint &p) const { return modint(*this) /= p; }\n  bool operator==(const\
-    \ bint &p) const {\n    return (sgn == p.sgn && dat == p.dat);\n  }\n  bool operator!=(const\
-    \ bint &p) const {\n    return (sgn != p.sgn || dat != p.dat);\n  }\n\n  vc<int>\
-    \ convolve(const vc<int> &a, const vc<int> &b) {\n    int n = len(a), m = len(b);\n\
-    \    if (!n || !m) return {};\n    if (min(n, m) <= 500) {\n      vc<int> c(n\
-    \ + m - 1);\n      u128 x = 0;\n      FOR(k, n + m - 1) {\n        int s = max<int>(0,\
-    \ k + 1 - m), t = min<int>(k, n - 1);\n        FOR(i, s, t + 1) { x += u64(a[i])\
-    \ * b[k - i]; }\n        c[k] = x % MOD, x = x / MOD;\n      }\n      while (x\
-    \ > 0) { c.eb(x % MOD), x = x / MOD; }\n      return c;\n    }\n    static constexpr\
-    \ int p0 = 167772161;\n    static constexpr int p1 = 469762049;\n    static constexpr\
-    \ int p2 = 754974721;\n    using mint0 = modint<p0>;\n    using mint1 = modint<p1>;\n\
-    \    using mint2 = modint<p2>;\n    vc<mint0> a0(all(a)), b0(all(b));\n    vc<mint1>\
-    \ a1(all(a)), b1(all(b));\n    vc<mint2> a2(all(a)), b2(all(b));\n    auto c0\
-    \ = convolution_ntt<mint0>(a0, b0);\n    auto c1 = convolution_ntt<mint1>(a1,\
-    \ b1);\n    auto c2 = convolution_ntt<mint2>(a2, b2);\n    vc<int> c(len(c0));\n\
-    \    u128 x = 0;\n    FOR(i, n + m - 1) {\n      x += CRT3<u128, p0, p1, p2>(c0[i].val,\
-    \ c1[i].val, c2[i].val);\n      c[i] = x % MOD, x = x / MOD;\n    }\n    while\
-    \ (x) { c.eb(x % MOD), x = x / MOD; }\n    return c;\n  }\n\n  string to_string()\
-    \ {\n    if (dat.empty()) return \"0\";\n    string s;\n    for (int x: dat) {\n\
-    \      FOR(LOG) {\n        s += '0' + (x % 10);\n        x = x / 10;\n      }\n\
-    \    }\n    while (s.back() == '0') s.pop_back();\n    if (sgn == -1) s += '-';\n\
-    \    reverse(all(s));\n    return s;\n  }\n\n  // https://codeforces.com/contest/504/problem/D\n\
-    \  string to_binary_string() {\n    vc<u32> A(all(dat));\n    string ANS;\n  \
-    \  while (1) {\n      while (len(A) && A.back() == u32(0)) POP(A);\n      if (A.empty())\
+    \  }\r\n  return ret;\r\n}\r\n\r\nvector<ll> convolution(const vector<ll>& a,\
+    \ const vector<ll>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return\
+    \ {};\r\n  if (min(n, m) <= 2500) return convolution_naive(a, b);\r\n  ll abs_sum_a\
+    \ = 0, abs_sum_b = 0;\r\n  ll LIM = 1e15;\r\n  FOR(i, n) abs_sum_a = min(LIM,\
+    \ abs_sum_a + abs(a[i]));\r\n  FOR(i, m) abs_sum_b = min(LIM, abs_sum_b + abs(b[i]));\r\
+    \n  if (i128(abs_sum_a) * abs_sum_b < 1e15) {\r\n    vc<double> c = convolution_fft<ll>(a,\
+    \ b);\r\n    vc<ll> res(len(c));\r\n    FOR(i, len(c)) res[i] = ll(floor(c[i]\
+    \ + .5));\r\n    return res;\r\n  }\r\n\r\n  static constexpr unsigned long long\
+    \ MOD1 = 754974721; // 2^24\r\n  static constexpr unsigned long long MOD2 = 167772161;\
+    \ // 2^25\r\n  static constexpr unsigned long long MOD3 = 469762049; // 2^26\r\
+    \n  static constexpr unsigned long long M2M3 = MOD2 * MOD3;\r\n  static constexpr\
+    \ unsigned long long M1M3 = MOD1 * MOD3;\r\n  static constexpr unsigned long long\
+    \ M1M2 = MOD1 * MOD2;\r\n  static constexpr unsigned long long M1M2M3 = MOD1 *\
+    \ MOD2 * MOD3;\r\n\r\n  static const unsigned long long i1 = mod_inv(MOD2 * MOD3,\
+    \ MOD1);\r\n  static const unsigned long long i2 = mod_inv(MOD1 * MOD3, MOD2);\r\
+    \n  static const unsigned long long i3 = mod_inv(MOD1 * MOD2, MOD3);\r\n\r\n \
+    \ using mint1 = modint<MOD1>;\r\n  using mint2 = modint<MOD2>;\r\n  using mint3\
+    \ = modint<MOD3>;\r\n\r\n  vc<mint1> a1(n), b1(m);\r\n  vc<mint2> a2(n), b2(m);\r\
+    \n  vc<mint3> a3(n), b3(m);\r\n  FOR(i, n) a1[i] = a[i], a2[i] = a[i], a3[i] =\
+    \ a[i];\r\n  FOR(i, m) b1[i] = b[i], b2[i] = b[i], b3[i] = b[i];\r\n\r\n  auto\
+    \ c1 = convolution_ntt<mint1>(a1, b1);\r\n  auto c2 = convolution_ntt<mint2>(a2,\
+    \ b2);\r\n  auto c3 = convolution_ntt<mint3>(a3, b3);\r\n\r\n  vc<ll> c(n + m\
+    \ - 1);\r\n  FOR(i, n + m - 1) {\r\n    u64 x = 0;\r\n    x += (c1[i].val * i1)\
+    \ % MOD1 * M2M3;\r\n    x += (c2[i].val * i2) % MOD2 * M1M3;\r\n    x += (c3[i].val\
+    \ * i3) % MOD3 * M1M2;\r\n    ll diff = c1[i].val - ((long long)(x) % (long long)(MOD1));\r\
+    \n    if (diff < 0) diff += MOD1;\r\n    static constexpr unsigned long long offset[5]\r\
+    \n        = {0, 0, M1M2M3, 2 * M1M2M3, 3 * M1M2M3};\r\n    x -= offset[diff %\
+    \ 5];\r\n    c[i] = x;\r\n  }\r\n  return c;\r\n}\r\n\r\ntemplate <typename mint>\r\
+    \nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b) {\r\n  int n = len(a),\
+    \ m = len(b);\r\n  if (!n || !m) return {};\r\n  if (mint::can_ntt()) {\r\n  \
+    \  if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n    return\
+    \ convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
+    \ b);\r\n  return convolution_garner(a, b);\r\n}\r\n#line 2 \"bigint/base.hpp\"\
+    \n\n// 10^9 \u305A\u3064\u533A\u5207\u3063\u3066\nstruct BigInteger {\n  static\
+    \ constexpr int TEN[]\n      = {1,      10,      100,      1000,      10000,\n\
+    \         100000, 1000000, 10000000, 100000000, 1000000000};\n  static constexpr\
+    \ int LOG = 9;\n  static constexpr int MOD = TEN[LOG];\n  using bint = BigInteger;\n\
+    \  int sgn; // +1 or -1. \u5185\u90E8\u72B6\u614B\u3067 -0 \u3092\u8A31\u5BB9\u3059\
+    \u308B.\n  vc<int> dat;\n\n  BigInteger() : sgn(1) {}\n  BigInteger(i128 val)\
+    \ {\n    sgn = 1;\n    if (val != 0) {\n      if (val < 0) sgn = -1, val = -val;\n\
+    \      while (val > 0) {\n        dat.eb(val % MOD);\n        val /= MOD;\n  \
+    \    }\n    }\n  }\n  BigInteger(string s) {\n    assert(!s.empty());\n    sgn\
+    \ = 1;\n    if (s[0] == '-') {\n      sgn = -1;\n      s.erase(s.begin());\n \
+    \     assert(!s.empty());\n    }\n    if (s[0] == '0') s.clear();\n    reverse(all(s));\n\
+    \    int n = len(s);\n    int m = ceil(n, LOG);\n    dat.assign(m, 0);\n    FOR(i,\
+    \ n) { dat[i / LOG] += TEN[i % LOG] * (s[i] - '0'); }\n  }\n  bint &operator=(const\
+    \ bint &p) {\n    sgn = p.sgn;\n    dat = p.dat;\n    return *this;\n  }\n  bool\
+    \ operator<(const bint &p) const {\n    if (sgn != p.sgn) return sgn < p.sgn;\n\
+    \    if (len(dat) != len(p.dat)) {\n      if (sgn == 1) return len(dat) < len(p.dat);\n\
+    \      if (sgn == -1) return len(dat) > len(p.dat);\n    }\n    FOR_R(i, len(dat))\
+    \ {\n      if (dat[i] == p.dat[i]) continue;\n      if (sgn == 1) return dat[i]\
+    \ < p.dat[i];\n      if (sgn == -1) return dat[i] > p.dat[i];\n    }\n    return\
+    \ false;\n  }\n  bool operator>(const bint &p) const { return p < *this; }\n \
+    \ bool operator<=(const bint &p) const { return !(*this > p); }\n  bool operator>=(const\
+    \ bint &p) const { return !(*this < p); }\n  bint &operator+=(const bint p) {\n\
+    \    if (sgn != p.sgn) {\n      *this -= (-p);\n      return *this;\n    }\n \
+    \   int n = max(len(dat), len(p.dat));\n    dat.resize(n + 1);\n    FOR(i, n)\
+    \ {\n      if (i < len(p.dat)) dat[i] += p.dat[i];\n      if (dat[i] >= MOD) dat[i]\
+    \ -= MOD, dat[i + 1] += 1;\n    }\n    while (len(dat) && dat.back() == 0) dat.pop_back();\n\
+    \    return *this;\n  }\n  bint &operator-=(const bint p) {\n    if (sgn != p.sgn)\
+    \ {\n      *this += (-p);\n      return *this;\n    }\n    if ((sgn == 1 && *this\
+    \ < p) || (sgn == -1 && *this > p)) {\n      *this = p - *this;\n      sgn = -sgn;\n\
+    \      return *this;\n    }\n    FOR(i, len(p.dat)) { dat[i] -= p.dat[i]; }\n\
+    \    FOR(i, len(dat) - 1) {\n      if (dat[i] < 0) dat[i] += MOD, dat[i + 1] -=\
+    \ 1;\n    }\n    while (len(dat) && dat.back() == 0) { dat.pop_back(); }\n   \
+    \ return *this;\n  }\n  bint &operator*=(const bint &p) {\n    sgn *= p.sgn;\n\
+    \    dat = convolve(dat, p.dat);\n    return *this;\n  }\n  // bint &operator/=(const\
+    \ bint &p) { return *this; }\n  bint operator-() const {\n    bint p = *this;\n\
+    \    p.sgn *= -1;\n    return p;\n  }\n  bint operator+(const bint &p) const {\
+    \ return bint(*this) += p; }\n  bint operator-(const bint &p) const { return bint(*this)\
+    \ -= p; }\n  bint operator*(const bint &p) const { return bint(*this) *= p; }\n\
+    \  // bint operator/(const modint &p) const { return modint(*this) /= p; }\n \
+    \ bool operator==(const bint &p) const {\n    return (sgn == p.sgn && dat == p.dat);\n\
+    \  }\n  bool operator!=(const bint &p) const {\n    return (sgn != p.sgn || dat\
+    \ != p.dat);\n  }\n\n  vc<int> convolve(const vc<int> &a, const vc<int> &b) {\n\
+    \    int n = len(a), m = len(b);\n    if (!n || !m) return {};\n    if (min(n,\
+    \ m) <= 500) {\n      vc<int> c(n + m - 1);\n      u128 x = 0;\n      FOR(k, n\
+    \ + m - 1) {\n        int s = max<int>(0, k + 1 - m), t = min<int>(k, n - 1);\n\
+    \        FOR(i, s, t + 1) { x += u64(a[i]) * b[k - i]; }\n        c[k] = x % MOD,\
+    \ x = x / MOD;\n      }\n      while (x > 0) { c.eb(x % MOD), x = x / MOD; }\n\
+    \      return c;\n    }\n    static constexpr int p0 = 167772161;\n    static\
+    \ constexpr int p1 = 469762049;\n    static constexpr int p2 = 754974721;\n  \
+    \  using mint0 = modint<p0>;\n    using mint1 = modint<p1>;\n    using mint2 =\
+    \ modint<p2>;\n    vc<mint0> a0(all(a)), b0(all(b));\n    vc<mint1> a1(all(a)),\
+    \ b1(all(b));\n    vc<mint2> a2(all(a)), b2(all(b));\n    auto c0 = convolution_ntt<mint0>(a0,\
+    \ b0);\n    auto c1 = convolution_ntt<mint1>(a1, b1);\n    auto c2 = convolution_ntt<mint2>(a2,\
+    \ b2);\n    vc<int> c(len(c0));\n    u128 x = 0;\n    FOR(i, n + m - 1) {\n  \
+    \    x += CRT3<u128, p0, p1, p2>(c0[i].val, c1[i].val, c2[i].val);\n      c[i]\
+    \ = x % MOD, x = x / MOD;\n    }\n    while (x) { c.eb(x % MOD), x = x / MOD;\
+    \ }\n    return c;\n  }\n\n  string to_string() {\n    if (dat.empty()) return\
+    \ \"0\";\n    string s;\n    for (int x: dat) {\n      FOR(LOG) {\n        s +=\
+    \ '0' + (x % 10);\n        x = x / 10;\n      }\n    }\n    while (s.back() ==\
+    \ '0') s.pop_back();\n    if (sgn == -1) s += '-';\n    reverse(all(s));\n   \
+    \ return s;\n  }\n\n  // https://codeforces.com/contest/504/problem/D\n  string\
+    \ to_binary_string() {\n    vc<u32> A(all(dat));\n    string ANS;\n    while (1)\
+    \ {\n      while (len(A) && A.back() == u32(0)) POP(A);\n      if (A.empty())\
     \ break;\n      u64 rem = 0;\n      FOR_R(i, len(A)) {\n        rem = rem * MOD\
     \ + A[i];\n        A[i] = rem >> 32;\n        rem &= u32(-1);\n      }\n     \
     \ FOR(i, 32) { ANS += '0' + (rem >> i & 1); }\n    }\n    while (len(ANS) && ANS.back()\
@@ -510,7 +525,7 @@ data:
   isVerificationFile: false
   path: bigint/base.hpp
   requiredBy: []
-  timestamp: '2023-11-01 19:15:19+09:00'
+  timestamp: '2023-11-02 02:44:26+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/NTL_2_B.test.cpp

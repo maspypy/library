@@ -30,12 +30,12 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/conv_leq.test.cpp
     title: test/mytest/conv_leq.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -270,37 +270,52 @@ data:
     \ >> 1)]) * t * CFFT::rts[(sz >> 1) + i];\r\n    fa[i] = A0 + A1 * s;\r\n  }\r\
     \n  CFFT::fft(fa, sz >> 1);\r\n  vector<double> ret(need);\r\n  for (int i = 0;\
     \ i < need; i++) {\r\n    ret[i] = (i & 1 ? fa[i >> 1].y : fa[i >> 1].x);\r\n\
-    \  }\r\n  return ret;\r\n}\r\n\r\nvi convolution(vi a, vi b) {\r\n  int n = len(a),\
-    \ m = len(b);\r\n  if (!n || !m) return {};\r\n  if (min(n, m) <= 2500) return\
-    \ convolution_naive(a, b);\r\n\r\n  ll min_a = MIN(a), min_b = MIN(b);\r\n  for\
-    \ (auto& x: a) x -= min_a;\r\n  for (auto& x: b) x -= min_b;\r\n\r\n  static constexpr\
-    \ int p0 = 1045430273;\r\n  static constexpr int p1 = 1051721729;\r\n  static\
-    \ constexpr int p2 = 1053818881;\r\n  using mint0 = modint<p0>;\r\n  using mint1\
-    \ = modint<p1>;\r\n  using mint2 = modint<p2>;\r\n  vc<mint0> a0(n), b0(m);\r\n\
-    \  vc<mint1> a1(n), b1(m);\r\n  vc<mint2> a2(n), b2(m);\r\n  FOR(i, n) a0[i] =\
-    \ u64(a[i]), a1[i] = u64(a[i]), a2[i] = u64(a[i]);\r\n  FOR(i, m) b0[i] = u64(b[i]),\
-    \ b1[i] = u64(b[i]), b2[i] = u64(b[i]);\r\n  auto c0 = convolution_ntt<mint0>(a0,\
-    \ b0);\r\n  auto c1 = convolution_ntt<mint1>(a1, b1);\r\n  auto c2 = convolution_ntt<mint2>(a2,\
-    \ b2);\r\n\r\n  vi c(n + m - 1);\r\n  FOR(i, n + m - 1) {\r\n    c[i] = CRT3<u64,\
-    \ p0, p1, p2>(c0[i].val, c1[i].val, c2[i].val);\r\n  }\r\n  return c;\r\n}\r\n\
-    \r\ntemplate <typename mint>\r\nvc<mint> convolution(const vc<mint>& a, const\
-    \ vc<mint>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\
-    \n  if (mint::can_ntt()) {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
-    \ b);\r\n    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return\
-    \ convolution_karatsuba<mint>(a, b);\r\n  return convolution_garner(a, b);\r\n\
-    }\r\n#line 2 \"poly/convolution_leq.hpp\"\n\r\n// h[k] = sum_{i+j=k and i<=j}\
-    \ f_ig_j\r\n// if strict: i < j\r\ntemplate <typename T>\r\nvc<T> convolution_leq(vc<T>\
-    \ f, vc<T> g, bool strict) {\r\n  vc<T> h(len(f) + len(g) - 1);\r\n  ll THRESH\
-    \ = 60;\r\n\r\n  ll N = max(len(f), len(g));\r\n  vc<pair<int, int>> que;\r\n\
-    \  que.eb(0, N);\r\n  while (!que.empty()) {\r\n    auto [L, R] = que.back();\r\
-    \n    que.pop_back();\r\n    if (R - L <= THRESH) {\r\n      FOR3(i, L, min<int>(R,\
-    \ len(f))) FOR3(j, i + 1, min<int>(R, len(g))) {\r\n        h[i + j] += f[i] *\
-    \ g[j];\r\n      }\r\n      continue;\r\n    }\r\n    ll M = (L + R) / 2;\r\n\
-    \    que.eb(L, M), que.eb(M, R);\r\n    if (len(f) <= L || len(g) <= M) continue;\r\
-    \n    auto p = convolution<T>({f.begin() + L, f.begin() + min<int>(M, len(f))},\r\
-    \n                            {g.begin() + M, g.begin() + min<int>(R, len(g))});\r\
-    \n    FOR(i, len(p)) h[L + M + i] += p[i];\r\n  }\r\n  if (!strict) { FOR(i, min(len(f),\
-    \ len(g))) h[i + i] += f[i] * g[i]; }\r\n  return h;\r\n}\n"
+    \  }\r\n  return ret;\r\n}\r\n\r\nvector<ll> convolution(const vector<ll>& a,\
+    \ const vector<ll>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return\
+    \ {};\r\n  if (min(n, m) <= 2500) return convolution_naive(a, b);\r\n  ll abs_sum_a\
+    \ = 0, abs_sum_b = 0;\r\n  ll LIM = 1e15;\r\n  FOR(i, n) abs_sum_a = min(LIM,\
+    \ abs_sum_a + abs(a[i]));\r\n  FOR(i, m) abs_sum_b = min(LIM, abs_sum_b + abs(b[i]));\r\
+    \n  if (i128(abs_sum_a) * abs_sum_b < 1e15) {\r\n    vc<double> c = convolution_fft<ll>(a,\
+    \ b);\r\n    vc<ll> res(len(c));\r\n    FOR(i, len(c)) res[i] = ll(floor(c[i]\
+    \ + .5));\r\n    return res;\r\n  }\r\n\r\n  static constexpr unsigned long long\
+    \ MOD1 = 754974721; // 2^24\r\n  static constexpr unsigned long long MOD2 = 167772161;\
+    \ // 2^25\r\n  static constexpr unsigned long long MOD3 = 469762049; // 2^26\r\
+    \n  static constexpr unsigned long long M2M3 = MOD2 * MOD3;\r\n  static constexpr\
+    \ unsigned long long M1M3 = MOD1 * MOD3;\r\n  static constexpr unsigned long long\
+    \ M1M2 = MOD1 * MOD2;\r\n  static constexpr unsigned long long M1M2M3 = MOD1 *\
+    \ MOD2 * MOD3;\r\n\r\n  static const unsigned long long i1 = mod_inv(MOD2 * MOD3,\
+    \ MOD1);\r\n  static const unsigned long long i2 = mod_inv(MOD1 * MOD3, MOD2);\r\
+    \n  static const unsigned long long i3 = mod_inv(MOD1 * MOD2, MOD3);\r\n\r\n \
+    \ using mint1 = modint<MOD1>;\r\n  using mint2 = modint<MOD2>;\r\n  using mint3\
+    \ = modint<MOD3>;\r\n\r\n  vc<mint1> a1(n), b1(m);\r\n  vc<mint2> a2(n), b2(m);\r\
+    \n  vc<mint3> a3(n), b3(m);\r\n  FOR(i, n) a1[i] = a[i], a2[i] = a[i], a3[i] =\
+    \ a[i];\r\n  FOR(i, m) b1[i] = b[i], b2[i] = b[i], b3[i] = b[i];\r\n\r\n  auto\
+    \ c1 = convolution_ntt<mint1>(a1, b1);\r\n  auto c2 = convolution_ntt<mint2>(a2,\
+    \ b2);\r\n  auto c3 = convolution_ntt<mint3>(a3, b3);\r\n\r\n  vc<ll> c(n + m\
+    \ - 1);\r\n  FOR(i, n + m - 1) {\r\n    u64 x = 0;\r\n    x += (c1[i].val * i1)\
+    \ % MOD1 * M2M3;\r\n    x += (c2[i].val * i2) % MOD2 * M1M3;\r\n    x += (c3[i].val\
+    \ * i3) % MOD3 * M1M2;\r\n    ll diff = c1[i].val - ((long long)(x) % (long long)(MOD1));\r\
+    \n    if (diff < 0) diff += MOD1;\r\n    static constexpr unsigned long long offset[5]\r\
+    \n        = {0, 0, M1M2M3, 2 * M1M2M3, 3 * M1M2M3};\r\n    x -= offset[diff %\
+    \ 5];\r\n    c[i] = x;\r\n  }\r\n  return c;\r\n}\r\n\r\ntemplate <typename mint>\r\
+    \nvc<mint> convolution(const vc<mint>& a, const vc<mint>& b) {\r\n  int n = len(a),\
+    \ m = len(b);\r\n  if (!n || !m) return {};\r\n  if (mint::can_ntt()) {\r\n  \
+    \  if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n    return\
+    \ convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
+    \ b);\r\n  return convolution_garner(a, b);\r\n}\r\n#line 2 \"poly/convolution_leq.hpp\"\
+    \n\r\n// h[k] = sum_{i+j=k and i<=j} f_ig_j\r\n// if strict: i < j\r\ntemplate\
+    \ <typename T>\r\nvc<T> convolution_leq(vc<T> f, vc<T> g, bool strict) {\r\n \
+    \ vc<T> h(len(f) + len(g) - 1);\r\n  ll THRESH = 60;\r\n\r\n  ll N = max(len(f),\
+    \ len(g));\r\n  vc<pair<int, int>> que;\r\n  que.eb(0, N);\r\n  while (!que.empty())\
+    \ {\r\n    auto [L, R] = que.back();\r\n    que.pop_back();\r\n    if (R - L <=\
+    \ THRESH) {\r\n      FOR3(i, L, min<int>(R, len(f))) FOR3(j, i + 1, min<int>(R,\
+    \ len(g))) {\r\n        h[i + j] += f[i] * g[j];\r\n      }\r\n      continue;\r\
+    \n    }\r\n    ll M = (L + R) / 2;\r\n    que.eb(L, M), que.eb(M, R);\r\n    if\
+    \ (len(f) <= L || len(g) <= M) continue;\r\n    auto p = convolution<T>({f.begin()\
+    \ + L, f.begin() + min<int>(M, len(f))},\r\n                            {g.begin()\
+    \ + M, g.begin() + min<int>(R, len(g))});\r\n    FOR(i, len(p)) h[L + M + i] +=\
+    \ p[i];\r\n  }\r\n  if (!strict) { FOR(i, min(len(f), len(g))) h[i + i] += f[i]\
+    \ * g[i]; }\r\n  return h;\r\n}\n"
   code: "#include \"poly/convolution.hpp\"\r\n\r\n// h[k] = sum_{i+j=k and i<=j} f_ig_j\r\
     \n// if strict: i < j\r\ntemplate <typename T>\r\nvc<T> convolution_leq(vc<T>\
     \ f, vc<T> g, bool strict) {\r\n  vc<T> h(len(f) + len(g) - 1);\r\n  ll THRESH\
@@ -327,8 +342,8 @@ data:
   isVerificationFile: false
   path: poly/convolution_leq.hpp
   requiredBy: []
-  timestamp: '2023-11-01 19:15:19+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-11-02 02:44:26+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/conv_leq.test.cpp
 documentation_of: poly/convolution_leq.hpp
