@@ -110,10 +110,10 @@ data:
   timestamp: '2023-10-28 00:09:18+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
-  - test/yukicoder/2231.test.cpp
   - test/yukicoder/2102.test.cpp
   - test/yukicoder/263.test.cpp
+  - test/yukicoder/2231.test.cpp
+  - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
 documentation_of: string/rollinghash.hpp
 layout: document
 redirect_from:

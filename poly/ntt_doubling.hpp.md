@@ -5,7 +5,7 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
   - icon: ':x:'
@@ -15,7 +15,7 @@ data:
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - icon: ':x:'
@@ -59,7 +59,7 @@ data:
     title: test_atcoder/agc058d2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>&\
@@ -137,26 +137,26 @@ data:
   isVerificationFile: false
   path: poly/ntt_doubling.hpp
   requiredBy:
-  - seq/interpolate_linear_rec.hpp
-  - seq/famous/bell_number_large.hpp
   - poly/coef_of_rational_fps.hpp
+  - seq/famous/bell_number_large.hpp
+  - seq/interpolate_linear_rec.hpp
   timestamp: '2023-05-01 17:29:54+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/agc058d2.test.cpp
-  - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/yukicoder/579.test.cpp
-  - test/yukicoder/1547.test.cpp
-  - test/yukicoder/1561.test.cpp
-  - test/yukicoder/2122.test.cpp
   - test/yukicoder/578.test.cpp
-  - test/yukicoder/1844.test.cpp
-  - test/yukicoder/1516.test.cpp
-  - test/yukicoder/541.test.cpp
-  - test/yukicoder/1500.test.cpp
-  - test/yukicoder/2305.test.cpp
+  - test/yukicoder/1547.test.cpp
+  - test/yukicoder/2122.test.cpp
   - test/yukicoder/1962.test.cpp
+  - test/yukicoder/1844.test.cpp
+  - test/yukicoder/541.test.cpp
+  - test/yukicoder/2305.test.cpp
+  - test/yukicoder/1500.test.cpp
+  - test/yukicoder/1561.test.cpp
+  - test/yukicoder/579.test.cpp
+  - test/yukicoder/1516.test.cpp
   - test/mytest/bell.test.cpp
+  - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test_atcoder/agc058d2.test.cpp
 documentation_of: poly/ntt_doubling.hpp
 layout: document
 redirect_from:

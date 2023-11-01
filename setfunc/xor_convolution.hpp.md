@@ -40,8 +40,8 @@ data:
   timestamp: '2023-10-24 20:44:29+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/convolution/bitwise_xor_convolution.test.cpp
   - test/yukicoder/1142.test.cpp
+  - test/library_checker/convolution/bitwise_xor_convolution.test.cpp
 documentation_of: setfunc/xor_convolution.hpp
 layout: document
 redirect_from:

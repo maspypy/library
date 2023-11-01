@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: setfunc/sps_composition.hpp
     title: setfunc/sps_composition.hpp
   _extendedRequiredBy: []
@@ -167,8 +167,8 @@ data:
   timestamp: '2023-11-01 19:15:19+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/abc213g.test.cpp
   - test_atcoder/arc105.test.cpp
+  - test_atcoder/abc213g.test.cpp
   - test_atcoder/abc321g.test.cpp
 documentation_of: setfunc/sps_log.hpp
 layout: document
