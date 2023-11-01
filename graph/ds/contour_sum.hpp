@@ -18,7 +18,7 @@ struct Contour_Sum {
     build(v_vals);
   }
   Contour_Sum(GT& G, const vc<X>& v_vals) : N(G.N), G(G) {
-    assert(!G.is_directed());
+    assert(!G.is_prepared());
     build(v_vals);
   }
 
