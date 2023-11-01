@@ -34,9 +34,9 @@ struct Mongomery_modint {
     x = reduce(U2(x) * y.x);
     return *this;
   }
-  mint operator+(mint y) const { return m64(*this) += y; }
-  mint operator-(mint y) const { return m64(*this) -= y; }
-  mint operator*(mint y) const { return m64(*this) *= y; }
+  mint operator+(mint y) const { return mint(*this) += y; }
+  mint operator-(mint y) const { return mint(*this) -= y; }
+  mint operator*(mint y) const { return mint(*this) *= y; }
   bool operator==(mint y) const {
     return (x >= m ? x - m : x) == (y.x >= m ? y.x - m : y.x);
   }
