@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/implicit_matrix.test.cpp
     title: test/library_checker/matrix/implicit_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/min_poly.test.cpp
     title: test/mytest/min_poly.test.cpp
   - icon: ':x:'
@@ -67,9 +67,9 @@ data:
   timestamp: '2023-05-20 02:22:04+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/matrix/implicit_matrix.test.cpp
   - test/yukicoder/310.test.cpp
   - test/mytest/min_poly.test.cpp
+  - test/library_checker/matrix/implicit_matrix.test.cpp
 documentation_of: linalg/implicit_matrix/min_poly.hpp
 layout: document
 redirect_from:

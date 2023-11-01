@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/spmat_det.hpp
     title: linalg/spmat_det.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/spmat_min_poly.hpp
     title: linalg/spmat_min_poly.hpp
   - icon: ':x:'
@@ -27,7 +27,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/sparse_matrix_det.test.cpp
     title: test/library_checker/matrix/sparse_matrix_det.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/min_poly.test.cpp
     title: test/mytest/min_poly.test.cpp
   - icon: ':x:'
@@ -91,28 +91,28 @@ data:
   path: seq/find_linear_rec.hpp
   requiredBy:
   - seq/interpolate_linear_rec.hpp
-  - linalg/implicit_matrix/det.hpp
-  - linalg/implicit_matrix/min_poly.hpp
-  - linalg/spmat_det.hpp
   - linalg/spmat_min_poly.hpp
+  - linalg/spmat_det.hpp
+  - linalg/implicit_matrix/min_poly.hpp
+  - linalg/implicit_matrix/det.hpp
   timestamp: '2022-05-11 21:07:53+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/math/find_linear_recurrence.test.cpp
-  - test/library_checker/matrix/implicit_matrix.test.cpp
-  - test/library_checker/matrix/sparse_matrix_det.test.cpp
+  - test/yukicoder/578.test.cpp
   - test/yukicoder/1755.test.cpp
+  - test/yukicoder/1547.test.cpp
+  - test/yukicoder/1844.test.cpp
+  - test/yukicoder/541.test.cpp
+  - test/yukicoder/2305.test.cpp
+  - test/yukicoder/1500.test.cpp
+  - test/yukicoder/1561.test.cpp
   - test/yukicoder/579.test.cpp
   - test/yukicoder/310.test.cpp
-  - test/yukicoder/1547.test.cpp
-  - test/yukicoder/1561.test.cpp
-  - test/yukicoder/578.test.cpp
-  - test/yukicoder/1844.test.cpp
   - test/yukicoder/1516.test.cpp
-  - test/yukicoder/541.test.cpp
-  - test/yukicoder/1500.test.cpp
-  - test/yukicoder/2305.test.cpp
   - test/mytest/min_poly.test.cpp
+  - test/library_checker/matrix/implicit_matrix.test.cpp
+  - test/library_checker/matrix/sparse_matrix_det.test.cpp
+  - test/library_checker/math/find_linear_recurrence.test.cpp
 documentation_of: seq/find_linear_rec.hpp
 layout: document
 redirect_from:

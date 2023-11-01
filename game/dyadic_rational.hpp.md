@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: game/solve_partizan_game.hpp
     title: game/solve_partizan_game.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/mytest/dyadic_rational.test.cpp
     title: test/mytest/dyadic_rational.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/partizan.test.cpp
     title: test/mytest/partizan.test.cpp
   - icon: ':x:'
@@ -99,9 +99,9 @@ data:
   timestamp: '2022-09-29 20:05:16+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc229h.test.cpp
-  - test/mytest/dyadic_rational.test.cpp
   - test/mytest/partizan.test.cpp
+  - test/mytest/dyadic_rational.test.cpp
+  - test_atcoder/abc229h.test.cpp
 documentation_of: game/dyadic_rational.hpp
 layout: document
 redirect_from:

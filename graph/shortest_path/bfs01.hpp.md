@@ -127,14 +127,14 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/bfs01.hpp
   requiredBy:
-  - graph/tree_center.hpp
   - graph/tree_diameter.hpp
+  - graph/tree_center.hpp
   timestamp: '2023-11-01 01:33:38+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/tree/tree_diameter.test.cpp
   - test/yukicoder/1868.test.cpp
   - test/yukicoder/1718.test.cpp
+  - test/library_checker/tree/tree_diameter.test.cpp
 documentation_of: graph/shortest_path/bfs01.hpp
 layout: document
 redirect_from:

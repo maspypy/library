@@ -70,9 +70,9 @@ data:
   timestamp: '2023-08-20 12:39:16+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1956.test.cpp
   - test/yukicoder/187.test.cpp
   - test/yukicoder/590.test.cpp
-  - test/yukicoder/1956.test.cpp
   - test/yukicoder/2119.test.cpp
   - test/mytest/coprime_factorization.test.cpp
 documentation_of: nt/coprime_factorization.hpp
