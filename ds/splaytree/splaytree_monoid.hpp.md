@@ -9,10 +9,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508.test.cpp
     title: test/aoj/1508.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/splay.test.cpp
     title: test/mytest/splay.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/splay_monoid.test.cpp
     title: test/mytest/splay_monoid.test.cpp
   - icon: ':x:'
@@ -189,10 +189,10 @@ data:
   timestamp: '2023-09-01 16:17:08+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1441.test.cpp
-  - test/mytest/splay.test.cpp
-  - test/mytest/splay_monoid.test.cpp
   - test/aoj/1508.test.cpp
+  - test/yukicoder/1441.test.cpp
+  - test/mytest/splay_monoid.test.cpp
+  - test/mytest/splay.test.cpp
 documentation_of: ds/splaytree/splaytree_monoid.hpp
 layout: document
 redirect_from:

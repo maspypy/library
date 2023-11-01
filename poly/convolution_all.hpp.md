@@ -29,14 +29,14 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/product_of_polynomial_sequence.test.cpp
     title: test/library_checker/polynomial/product_of_polynomial_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1145.test.cpp
     title: test/yukicoder/1145.test.cpp
   - icon: ':x:'
@@ -353,17 +353,17 @@ data:
   timestamp: '2023-11-01 19:15:19+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1857.test.cpp
-  - test/yukicoder/2243.test.cpp
-  - test/yukicoder/2459.test.cpp
-  - test/yukicoder/1145.test.cpp
-  - test/yukicoder/1392.test.cpp
-  - test/library_checker/polynomial/product_of_polynomial_sequence.test.cpp
-  - test_atcoder/abc267g.test.cpp
-  - test_atcoder/arc154f.test.cpp
   - test_atcoder/abc272_h.test.cpp
-  - test_atcoder/abc260h.test.cpp
+  - test_atcoder/arc154f.test.cpp
+  - test_atcoder/abc267g.test.cpp
   - test_atcoder/abc269ex.test.cpp
+  - test_atcoder/abc260h.test.cpp
+  - test/library_checker/polynomial/product_of_polynomial_sequence.test.cpp
+  - test/yukicoder/2459.test.cpp
+  - test/yukicoder/1392.test.cpp
+  - test/yukicoder/2243.test.cpp
+  - test/yukicoder/1857.test.cpp
+  - test/yukicoder/1145.test.cpp
 documentation_of: poly/convolution_all.hpp
 layout: document
 redirect_from:

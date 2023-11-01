@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
     title: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/range_freq_of_linear.test.cpp
     title: test/mytest/range_freq_of_linear.test.cpp
   - icon: ':x:'
@@ -47,9 +47,9 @@ data:
   timestamp: '2022-09-19 03:25:55+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/library_checker/math/min_of_mod_of_linear_2.test.cpp
   - test/yukicoder/2280.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
-  - test/library_checker/math/min_of_mod_of_linear_2.test.cpp
 documentation_of: mod/range_freq_of_linear.hpp
 layout: document
 redirect_from:

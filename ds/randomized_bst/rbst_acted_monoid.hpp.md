@@ -9,13 +9,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/ARC30D.test.cpp
     title: test/mytest/ARC30D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_am.test.cpp
     title: test/mytest/rbst_am.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_am_2.test.cpp
     title: test/mytest/rbst_am_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_am_persistent.test.cpp
     title: test/mytest/rbst_am_persistent.test.cpp
   - icon: ':x:'
@@ -297,12 +297,12 @@ data:
   timestamp: '2022-12-04 13:46:37+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - test/yukicoder/686.test.cpp
-  - test/mytest/rbst_am_2.test.cpp
+  - test/mytest/ARC30D.test.cpp
   - test/mytest/rbst_am_persistent.test.cpp
   - test/mytest/rbst_am.test.cpp
-  - test/mytest/ARC30D.test.cpp
-  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+  - test/mytest/rbst_am_2.test.cpp
 documentation_of: ds/randomized_bst/rbst_acted_monoid.hpp
 layout: document
 redirect_from:

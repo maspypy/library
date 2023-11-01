@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/online/online_pow.hpp
     title: poly/online/online_pow.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/simple_permutations.hpp
     title: seq/famous/simple_permutations.hpp
   _extendedVerifiedWith:
@@ -42,7 +42,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/online_pow.test.cpp
     title: test/mytest/online_pow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/simple_perm.test.cpp
     title: test/mytest/simple_perm.test.cpp
   - icon: ':x:'
@@ -148,24 +148,24 @@ data:
   isVerificationFile: false
   path: poly/online/online_convolution.hpp
   requiredBy:
-  - poly/online/online_log.hpp
-  - poly/online/online_division.hpp
+  - seq/famous/simple_permutations.hpp
   - poly/online/online_inv.hpp
   - poly/online/online_pow.hpp
   - poly/online/online_exp.hpp
-  - seq/famous/simple_permutations.hpp
+  - poly/online/online_division.hpp
+  - poly/online/online_log.hpp
   timestamp: '2023-08-20 01:21:28+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/online_division.test.cpp
-  - test/mytest/online_log.test.cpp
-  - test/mytest/online_pow.test.cpp
-  - test/mytest/online_inv.test.cpp
-  - test/mytest/online_exp.test.cpp
-  - test/mytest/simple_perm.test.cpp
-  - test/library_checker/convolution/online_convolution.test.cpp
-  - test_atcoder/abc315h.test.cpp
   - test_atcoder/abc230h.test.cpp
+  - test_atcoder/abc315h.test.cpp
+  - test/library_checker/convolution/online_convolution.test.cpp
+  - test/mytest/online_exp.test.cpp
+  - test/mytest/online_inv.test.cpp
+  - test/mytest/online_pow.test.cpp
+  - test/mytest/online_division.test.cpp
+  - test/mytest/simple_perm.test.cpp
+  - test/mytest/online_log.test.cpp
 documentation_of: poly/online/online_convolution.hpp
 layout: document
 redirect_from:

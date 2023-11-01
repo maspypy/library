@@ -8,7 +8,7 @@ data:
   - icon: ':question:'
     path: graph/minimum_hamiltonian_cycle.hpp
     title: graph/minimum_hamiltonian_cycle.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/steiner_tree.hpp
     title: graph/steiner_tree.hpp
   - icon: ':x:'
@@ -24,7 +24,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/hafnian_of_matrix.test.cpp
     title: test/library_checker/matrix/hafnian_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/114.test.cpp
     title: test/yukicoder/114.test.cpp
   - icon: ':x:'
@@ -59,20 +59,20 @@ data:
   isVerificationFile: false
   path: enumerate/bits.hpp
   requiredBy:
-  - graph/steiner_tree.hpp
-  - graph/count/count_cycle.hpp
-  - graph/minimum_hamiltonian_cycle.hpp
   - knapsack/subset_sum.hpp
   - linalg/hafnian.hpp
+  - graph/minimum_hamiltonian_cycle.hpp
+  - graph/steiner_tree.hpp
+  - graph/count/count_cycle.hpp
   timestamp: '2023-05-04 20:25:23+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/4_2.test.cpp
-  - test/yukicoder/114.test.cpp
-  - test/yukicoder/2507.test.cpp
-  - test/library_checker/matrix/hafnian_of_matrix.test.cpp
-  - test/aoj/DPL_2_A.test.cpp
   - test_atcoder/abc180e.test.cpp
+  - test/aoj/DPL_2_A.test.cpp
+  - test/library_checker/matrix/hafnian_of_matrix.test.cpp
+  - test/yukicoder/2507.test.cpp
+  - test/yukicoder/114.test.cpp
+  - test/yukicoder/4_2.test.cpp
 documentation_of: enumerate/bits.hpp
 layout: document
 redirect_from:

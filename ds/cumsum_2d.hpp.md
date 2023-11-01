@@ -6,7 +6,7 @@ data:
     title: alg/monoid/add.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1141.test.cpp
     title: test/yukicoder/1141.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: test_atcoder/abc228f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/cumsum_2d.hpp\"\n\r\n#line 2 \"alg/monoid/add.hpp\"\n\
@@ -67,11 +67,11 @@ data:
   path: ds/cumsum_2d.hpp
   requiredBy: []
   timestamp: '2023-08-06 03:49:22+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test_atcoder/abc228f.test.cpp
   - test/yukicoder/655.test.cpp
   - test/yukicoder/1141.test.cpp
-  - test_atcoder/abc228f.test.cpp
 documentation_of: ds/cumsum_2d.hpp
 layout: document
 redirect_from:

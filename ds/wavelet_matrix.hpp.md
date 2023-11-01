@@ -18,7 +18,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/wavelet_matrix.test.cpp
     title: test/mytest/wavelet_matrix.test.cpp
   - icon: ':x:'
@@ -352,15 +352,15 @@ data:
   timestamp: '2023-10-17 07:10:25+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test_atcoder/abc127f_1.test.cpp
+  - test_atcoder/abc324g.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
+  - test/yukicoder/924.test.cpp
   - test/yukicoder/2065.test.cpp
   - test/yukicoder/919.test.cpp
-  - test/yukicoder/924.test.cpp
   - test/yukicoder/1332.test.cpp
   - test/mytest/wavelet_matrix.test.cpp
-  - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
-  - test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
-  - test_atcoder/abc324g.test.cpp
-  - test_atcoder/abc127f_1.test.cpp
 documentation_of: ds/wavelet_matrix.hpp
 layout: document
 redirect_from:

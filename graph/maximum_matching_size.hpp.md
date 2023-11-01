@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
   - icon: ':question:'
@@ -21,12 +21,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/matching_line_graph.test.cpp
     title: test/mytest/matching_line_graph.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -89,12 +89,12 @@ data:
   path: graph/maximum_matching_size.hpp
   requiredBy: []
   timestamp: '2023-11-01 05:33:01+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/library_checker/graph/general_matching.test.cpp
+  - test/mytest/matching.test.cpp
   - test/mytest/tutte.test.cpp
   - test/mytest/matching_line_graph.test.cpp
-  - test/mytest/matching.test.cpp
-  - test/library_checker/graph/general_matching.test.cpp
 documentation_of: graph/maximum_matching_size.hpp
 layout: document
 redirect_from:

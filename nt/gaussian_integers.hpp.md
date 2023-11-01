@@ -26,20 +26,20 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/four_square.hpp
     title: nt/four_square.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/three_square.hpp
     title: nt/three_square.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/three_triangular.hpp
     title: nt/three_triangular.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/three_square.test.cpp
     title: test/mytest/three_square.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/three_triangular.test.cpp
     title: test/mytest/three_triangular.test.cpp
   - icon: ':x:'
@@ -311,8 +311,8 @@ data:
   verifiedWith:
   - test/yukicoder/1593.test.cpp
   - test/mytest/four_square.test.cpp
-  - test/mytest/three_triangular.test.cpp
   - test/mytest/three_square.test.cpp
+  - test/mytest/three_triangular.test.cpp
 documentation_of: nt/gaussian_integers.hpp
 layout: document
 redirect_from:

@@ -12,15 +12,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_F.test.cpp
     title: test/aoj/DSL_2_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_am.test.cpp
     title: test/mytest/rbst_am.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_am_persistent.test.cpp
     title: test/mytest/rbst_am_persistent.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -50,11 +50,11 @@ data:
   path: alg/acted_monoid/min_assign.hpp
   requiredBy: []
   timestamp: '2023-10-14 20:28:40+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/DSL_2_F.test.cpp
   - test/mytest/rbst_am_persistent.test.cpp
   - test/mytest/rbst_am.test.cpp
-  - test/aoj/DSL_2_F.test.cpp
 documentation_of: alg/acted_monoid/min_assign.hpp
 layout: document
 redirect_from:

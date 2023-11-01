@@ -221,19 +221,19 @@ data:
   isVerificationFile: false
   path: ds/my_bitset.hpp
   requiredBy:
-  - graph/shortest_path/bfs_bitset.hpp
   - knapsack/subset_sum.hpp
-  - linalg/bitset/solve_linear.hpp
   - linalg/bitset/mat_inv.hpp
+  - linalg/bitset/solve_linear.hpp
   - ds/counter.hpp
+  - graph/shortest_path/bfs_bitset.hpp
   timestamp: '2023-08-06 04:48:55+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/4_2.test.cpp
-  - test/yukicoder/1400_2.test.cpp
+  - test/yukicoder/142.test.cpp
   - test/yukicoder/1400.test.cpp
   - test/yukicoder/1421.test.cpp
-  - test/yukicoder/142.test.cpp
+  - test/yukicoder/1400_2.test.cpp
+  - test/yukicoder/4_2.test.cpp
   - test/mytest/mybitset.test.cpp
 documentation_of: ds/my_bitset.hpp
 layout: document

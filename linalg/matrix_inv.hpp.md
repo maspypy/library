@@ -48,9 +48,9 @@ data:
   timestamp: '2023-10-24 14:07:00+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1303.test.cpp
-  - test/yukicoder/1907.test.cpp
   - test/library_checker/matrix/inverse_matrix.test.cpp
+  - test/yukicoder/1907.test.cpp
+  - test/yukicoder/1303.test.cpp
 documentation_of: linalg/matrix_inv.hpp
 layout: document
 redirect_from:

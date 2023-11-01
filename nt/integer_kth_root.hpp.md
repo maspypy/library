@@ -6,7 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_root_integer.test.cpp
     title: test/library_checker/math/kth_root_integer.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1260.test.cpp
     title: test/yukicoder/1260.test.cpp
   - icon: ':x:'
@@ -43,9 +43,9 @@ data:
   timestamp: '2022-12-23 11:04:23+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/library_checker/math/kth_root_integer.test.cpp
   - test/yukicoder/1666.test.cpp
   - test/yukicoder/1260.test.cpp
-  - test/library_checker/math/kth_root_integer.test.cpp
 documentation_of: nt/integer_kth_root.hpp
 layout: document
 redirect_from:

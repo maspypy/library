@@ -129,10 +129,10 @@ data:
   timestamp: '2023-11-01 01:33:38+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1326.test.cpp
-  - test/library_checker/graph/biconnected_component.test.cpp
-  - test/aoj/GRL_3_A.test.cpp
   - test_atcoder/arc153f.test.cpp
+  - test/aoj/GRL_3_A.test.cpp
+  - test/library_checker/graph/biconnected_component.test.cpp
+  - test/yukicoder/1326.test.cpp
 documentation_of: graph/block_cut.hpp
 layout: document
 redirect_from:

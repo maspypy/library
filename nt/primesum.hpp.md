@@ -5,10 +5,10 @@ data:
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/primesum_mod4.hpp
     title: nt/primesum_mod4.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/primesum_mod6.hpp
     title: nt/primesum_mod6.hpp
   _extendedVerifiedWith:
@@ -21,10 +21,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/prime_sum.test.cpp
     title: test/mytest/prime_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/primesum_mod4.test.cpp
     title: test/mytest/primesum_mod4.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/primesum_mod6.test.cpp
     title: test/mytest/primesum_mod6.test.cpp
   - icon: ':x:'
@@ -109,13 +109,13 @@ data:
   timestamp: '2023-08-06 13:04:29+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/library_checker/math/totient_sum.test.cpp
+  - test/library_checker/math/counting_primes.test.cpp
   - test/yukicoder/1276.test.cpp
   - test/yukicoder/1781.test.cpp
   - test/mytest/prime_sum.test.cpp
-  - test/mytest/primesum_mod4.test.cpp
   - test/mytest/primesum_mod6.test.cpp
-  - test/library_checker/math/totient_sum.test.cpp
-  - test/library_checker/math/counting_primes.test.cpp
+  - test/mytest/primesum_mod4.test.cpp
 documentation_of: nt/primesum.hpp
 layout: document
 redirect_from:

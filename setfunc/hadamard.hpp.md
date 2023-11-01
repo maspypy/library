@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/xor_convolution.hpp
     title: setfunc/xor_convolution.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/bitwise_xor_convolution.test.cpp
     title: test/library_checker/convolution/bitwise_xor_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1142.test.cpp
     title: test/yukicoder/1142.test.cpp
   - icon: ':x:'
@@ -43,10 +43,10 @@ data:
   timestamp: '2023-09-18 22:09:51+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test_atcoder/abc212h.test.cpp
+  - test/library_checker/convolution/bitwise_xor_convolution.test.cpp
   - test/yukicoder/1142.test.cpp
   - test/yukicoder/1753.test.cpp
-  - test/library_checker/convolution/bitwise_xor_convolution.test.cpp
-  - test_atcoder/abc212h.test.cpp
 documentation_of: setfunc/hadamard.hpp
 layout: document
 redirect_from:
