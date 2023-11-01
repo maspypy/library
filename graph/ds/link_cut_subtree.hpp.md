@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/link_cut.hpp
     title: graph/ds/link_cut.hpp
   _extendedRequiredBy: []
