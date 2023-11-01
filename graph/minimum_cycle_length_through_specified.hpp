@@ -7,7 +7,7 @@
 template <typename GT>
 int minimum_cycle_length_through_specified(GT& G, vc<int> use) {
   assert(len(use) >= 2);
-  assert(!G.is_directed());
+  assert(!GT::is_directed);
   const int N = G.N;
   using F = GF2<64>;
   int s = use.back();

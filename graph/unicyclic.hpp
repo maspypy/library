@@ -4,7 +4,7 @@
 
 template <typename GT>
 struct UnicyclicGraph {
-  static_assert(GT::is_directed);
+  static_assert(!GT::is_directed);
   using T = typename GT::cost_type;
   GT& G0;
   int N;
