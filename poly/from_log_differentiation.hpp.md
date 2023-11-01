@@ -34,7 +34,7 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
   - icon: ':question:'
@@ -513,11 +513,11 @@ data:
   timestamp: '2023-11-01 19:15:19+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1080_2.test.cpp
-  - test/yukicoder/2166.test.cpp
-  - test_atcoder/abc276_g.test.cpp
   - test_atcoder/abc276_g_2.test.cpp
   - test_atcoder/abc222h_2.test.cpp
+  - test_atcoder/abc276_g.test.cpp
+  - test/yukicoder/1080_2.test.cpp
+  - test/yukicoder/2166.test.cpp
 documentation_of: poly/from_log_differentiation.hpp
 layout: document
 redirect_from:

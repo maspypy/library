@@ -34,7 +34,7 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
   - icon: ':question:'
@@ -492,19 +492,19 @@ data:
   isVerificationFile: false
   path: poly/prefix_product_of_poly.hpp
   requiredBy:
+  - seq/kth_term_of_p_recursive.hpp
   - poly/sparse_exp_of_div.hpp
   - poly/from_log_differentiation.hpp
-  - seq/kth_term_of_p_recursive.hpp
   timestamp: '2023-11-01 19:15:19+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1080_2.test.cpp
-  - test/yukicoder/502_2.test.cpp
-  - test/yukicoder/2166.test.cpp
-  - test/mytest/factorial_998.test.cpp
-  - test_atcoder/abc276_g.test.cpp
   - test_atcoder/abc276_g_2.test.cpp
   - test_atcoder/abc222h_2.test.cpp
+  - test_atcoder/abc276_g.test.cpp
+  - test/yukicoder/1080_2.test.cpp
+  - test/yukicoder/2166.test.cpp
+  - test/yukicoder/502_2.test.cpp
+  - test/mytest/factorial_998.test.cpp
 documentation_of: poly/prefix_product_of_poly.hpp
 layout: document
 redirect_from:

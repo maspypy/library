@@ -15,15 +15,15 @@ data:
     title: nt/primetest.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_mod_p_1.test.cpp
     title: test/library_checker/math/stirling_mod_p_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_mod_p_2.test.cpp
     title: test/library_checker/math/stirling_mod_p_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/dynamic_modint_64.hpp\"\n\n#line 2 \"mod/modint_common.hpp\"\
@@ -198,10 +198,10 @@ data:
   path: seq/famous/stirling_number_query.hpp
   requiredBy: []
   timestamp: '2023-11-01 19:15:19+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/math/stirling_mod_p_2.test.cpp
   - test/library_checker/math/stirling_mod_p_1.test.cpp
+  - test/library_checker/math/stirling_mod_p_2.test.cpp
 documentation_of: seq/famous/stirling_number_query.hpp
 layout: document
 redirect_from:

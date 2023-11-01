@@ -147,9 +147,9 @@ data:
   timestamp: '2023-09-03 00:30:38+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
-  - test/aoj/DSL_4_A.test.cpp
   - test_atcoder/abc318b.test.cpp
+  - test/aoj/DSL_4_A.test.cpp
+  - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
 documentation_of: ds/rectangle_union.hpp
 layout: document
 redirect_from:

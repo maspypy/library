@@ -296,8 +296,8 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/four_square.test.cpp
-  - test/mytest/three_triangular.test.cpp
   - test/mytest/three_square.test.cpp
+  - test/mytest/three_triangular.test.cpp
 documentation_of: nt/three_square.hpp
 layout: document
 redirect_from:

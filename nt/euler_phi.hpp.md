@@ -26,14 +26,14 @@ data:
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/tetration.hpp
     title: mod/tetration.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_1_D.test.cpp
     title: test/aoj/NTL_1_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
   - icon: ':x:'
@@ -214,9 +214,9 @@ data:
   timestamp: '2023-11-01 19:15:19+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1262.test.cpp
-  - test/library_checker/math/tetration.test.cpp
   - test/aoj/NTL_1_D.test.cpp
+  - test/library_checker/math/tetration.test.cpp
+  - test/yukicoder/1262.test.cpp
 documentation_of: nt/euler_phi.hpp
 layout: document
 redirect_from:

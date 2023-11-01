@@ -59,11 +59,11 @@ data:
   timestamp: '2023-07-06 21:02:18+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
+  - test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
   - test/mytest/minplus_conv_triple.test.cpp
   - test/mytest/minplus_convex.test.cpp
   - test/mytest/maxplus_concave.test.cpp
-  - test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
-  - test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
 documentation_of: convex/monotone_minima.hpp
 layout: document
 redirect_from:

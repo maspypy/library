@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':question:'
@@ -53,14 +53,14 @@ data:
   - icon: ':x:'
     path: poly/composition_f_rational.hpp
     title: poly/composition_f_rational.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
     title: test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - icon: ':x:'
@@ -89,7 +89,7 @@ data:
     title: test_atcoder/arc133f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/poly_taylor_shift.hpp\"\n\r\n#line 2 \"nt/primetable.hpp\"\
@@ -390,26 +390,26 @@ data:
   isVerificationFile: false
   path: poly/poly_taylor_shift.hpp
   requiredBy:
-  - poly/composition_f_1_minus_ex.hpp
-  - poly/composition_f_ex_minus_1.hpp
-  - poly/composition_f_log_1_minus_x.hpp
-  - poly/composition_f_polynomial.hpp
-  - poly/composition_f_rational.hpp
   - seq/famous/stirling_number_1.hpp
   - linalg/det_A_plus_xB.hpp
+  - poly/composition_f_log_1_minus_x.hpp
+  - poly/composition_f_ex_minus_1.hpp
+  - poly/composition_f_1_minus_ex.hpp
+  - poly/composition_f_rational.hpp
+  - poly/composition_f_polynomial.hpp
   timestamp: '2023-11-01 19:15:19+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1303.test.cpp
-  - test/yukicoder/1907.test.cpp
-  - test/yukicoder/1875.test.cpp
-  - test/mytest/composition_log_1_minus_x.test.cpp
-  - test/mytest/composition_ex_minus_1.test.cpp
-  - test/mytest/composition_1_minus_ex.test.cpp
+  - test_atcoder/arc133f.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
-  - test_atcoder/arc133f.test.cpp
+  - test/yukicoder/1907.test.cpp
+  - test/yukicoder/1875.test.cpp
+  - test/yukicoder/1303.test.cpp
+  - test/mytest/composition_1_minus_ex.test.cpp
+  - test/mytest/composition_ex_minus_1.test.cpp
+  - test/mytest/composition_log_1_minus_x.test.cpp
 documentation_of: poly/poly_taylor_shift.hpp
 layout: document
 redirect_from:
