@@ -1,3 +1,5 @@
+#pragma once
+
 // odd mod.
 // x の代わりに rx を持つ
 template <int id, typename U1, typename U2>
