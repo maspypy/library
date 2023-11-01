@@ -169,8 +169,8 @@ data:
   timestamp: '2023-11-01 01:33:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/matching.test.cpp
   - test/library_checker/graph/general_matching.test.cpp
+  - test/mytest/matching.test.cpp
 documentation_of: graph/maximum_matching.hpp
 layout: document
 redirect_from:

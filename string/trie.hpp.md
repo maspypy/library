@@ -81,8 +81,8 @@ data:
   timestamp: '2023-10-14 01:49:44+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1269.test.cpp
   - test_atcoder/abc268_ex.test.cpp
+  - test/yukicoder/1269.test.cpp
 documentation_of: string/trie.hpp
 layout: document
 redirect_from:

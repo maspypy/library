@@ -99,13 +99,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/exp_of_fps.test.cpp
     title: test/library_checker/polynomial/exp_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
     title: test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
   - icon: ':heavy_check_mark:'
@@ -584,63 +584,63 @@ data:
   isVerificationFile: false
   path: poly/fps_exp.hpp
   requiredBy:
-  - poly/product_of_one_plus_xn.hpp
-  - poly/composed_product.hpp
-  - poly/fps_pow.hpp
-  - poly/product_of_one_minus_xn.hpp
-  - poly/product_of_f_rk_x.hpp
-  - poly/fps_sqrt.hpp
-  - poly/composition_f_log_1_minus_x.hpp
-  - poly/product_of_pow_of_linear.hpp
-  - poly/composed_sum.hpp
-  - poly/composition_f_rational.hpp
-  - graph/count/count_forest.hpp
-  - graph/count/count_bipartite.hpp
+  - seq/famous/stirling_number_1.hpp
   - seq/famous/surjection.hpp
   - seq/famous/stirling_number_2.hpp
-  - seq/famous/stirling_number_1.hpp
+  - poly/composition_f_log_1_minus_x.hpp
+  - poly/product_of_one_plus_xn.hpp
+  - poly/fps_pow.hpp
+  - poly/composed_product.hpp
+  - poly/composed_sum.hpp
+  - poly/composition_f_rational.hpp
+  - poly/fps_sqrt.hpp
+  - poly/product_of_pow_of_linear.hpp
+  - poly/product_of_one_minus_xn.hpp
+  - poly/product_of_f_rk_x.hpp
+  - graph/count/count_bipartite.hpp
+  - graph/count/count_forest.hpp
   timestamp: '2023-11-02 02:44:26+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1549.test.cpp
-  - test/yukicoder/1321.test.cpp
-  - test/yukicoder/1533.test.cpp
-  - test/yukicoder/2097.test.cpp
-  - test/yukicoder/1875.test.cpp
-  - test/yukicoder/2062.test.cpp
-  - test/yukicoder/1939.test.cpp
-  - test/yukicoder/1392.test.cpp
-  - test/yukicoder/1080.test.cpp
-  - test/mytest/online_square.test.cpp
-  - test/mytest/product_of_one_pm_xn.test.cpp
-  - test/mytest/bell.test.cpp
-  - test/mytest/sparse_pow_2d.test.cpp
-  - test/mytest/composition_log_1_minus_x.test.cpp
-  - test/mytest/online_pow.test.cpp
-  - test/mytest/online_exp.test.cpp
-  - test/mytest/count_bipartite.test.cpp
-  - test/library_checker/math/sharp_p_subset_sum.test.cpp
+  - test_atcoder/abc285h.test.cpp
+  - test_atcoder/arc133f.test.cpp
+  - test_atcoder/abc288ex.test.cpp
+  - test_atcoder/abc222h.test.cpp
+  - test_atcoder/abc318h.test.cpp
+  - test_atcoder/abc267h.test.cpp
+  - test_atcoder/arc160d.test.cpp
+  - test_atcoder/arc153f.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
+  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
+  - test/library_checker/math/sharp_p_subset_sum.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
+  - test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
   - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/pow_of_fps.test.cpp
-  - test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
-  - test/library_checker/polynomial/exp_of_fps.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
   - test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
-  - test_atcoder/abc222h.test.cpp
-  - test_atcoder/abc285h.test.cpp
-  - test_atcoder/abc267h.test.cpp
-  - test_atcoder/arc133f.test.cpp
-  - test_atcoder/arc160d.test.cpp
-  - test_atcoder/abc288ex.test.cpp
-  - test_atcoder/arc153f.test.cpp
-  - test_atcoder/abc318h.test.cpp
+  - test/library_checker/polynomial/exp_of_fps.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
+  - test/yukicoder/1392.test.cpp
+  - test/yukicoder/1875.test.cpp
+  - test/yukicoder/1533.test.cpp
+  - test/yukicoder/2062.test.cpp
+  - test/yukicoder/1939.test.cpp
+  - test/yukicoder/1321.test.cpp
+  - test/yukicoder/1549.test.cpp
+  - test/yukicoder/2097.test.cpp
+  - test/yukicoder/1080.test.cpp
+  - test/mytest/sparse_pow_2d.test.cpp
+  - test/mytest/bell.test.cpp
+  - test/mytest/online_exp.test.cpp
+  - test/mytest/online_pow.test.cpp
+  - test/mytest/count_bipartite.test.cpp
+  - test/mytest/online_square.test.cpp
+  - test/mytest/composition_log_1_minus_x.test.cpp
+  - test/mytest/product_of_one_pm_xn.test.cpp
 documentation_of: poly/fps_exp.hpp
 layout: document
 redirect_from:

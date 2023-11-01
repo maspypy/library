@@ -54,9 +54,9 @@ data:
   timestamp: '2023-10-14 20:28:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/summax_assign.test.cpp
-  - test/mytest/dynamic_lazy_segtree.test.cpp
   - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
+  - test/mytest/dynamic_lazy_segtree.test.cpp
+  - test/mytest/summax_assign.test.cpp
 documentation_of: alg/acted_monoid/summax_assign.hpp
 layout: document
 redirect_from:

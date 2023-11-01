@@ -189,9 +189,9 @@ data:
   timestamp: '2023-08-13 11:37:00+05:30'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/sortable_array.test.cpp
   - test_atcoder/abc237g1.test.cpp
   - test_atcoder/abc217e.test.cpp
+  - test/mytest/sortable_array.test.cpp
 documentation_of: ds/sortable_array.hpp
 layout: document
 redirect_from:

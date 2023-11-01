@@ -105,9 +105,9 @@ data:
   timestamp: '2023-11-01 01:33:38+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/aoj/GRL_1_C.test.cpp
   - test/yukicoder/1344.test.cpp
   - test/yukicoder/17.test.cpp
-  - test/aoj/GRL_1_C.test.cpp
 documentation_of: graph/shortest_path/warshall_floyd.hpp
 layout: document
 redirect_from:

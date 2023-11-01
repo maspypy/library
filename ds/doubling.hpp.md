@@ -90,10 +90,10 @@ data:
   timestamp: '2023-05-16 00:11:01+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1977.test.cpp
+  - test_atcoder/abc241e.test.cpp
   - test/yukicoder/1097.test.cpp
   - test/yukicoder/2242.test.cpp
-  - test_atcoder/abc241e.test.cpp
+  - test/yukicoder/1977.test.cpp
 documentation_of: ds/doubling.hpp
 layout: document
 redirect_from:

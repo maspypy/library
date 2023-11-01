@@ -186,8 +186,8 @@ data:
   timestamp: '2023-11-01 01:33:38+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/incremental_ch.test.cpp
   - test_atcoder/abc266c.test.cpp
+  - test/mytest/incremental_ch.test.cpp
 documentation_of: geo/incremental_convexhull.hpp
 layout: document
 redirect_from:
