@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/centroid.hpp
     title: graph/centroid.hpp
   - icon: ':question:'
@@ -101,31 +101,31 @@ data:
     \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
     \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
     \ }\n  }\n};\n#line 2 \"graph/centroid.hpp\"\n\r\n// (v,w) or (v,-1)\r\ntemplate\
-    \ <typename GT>\r\npair<int, int> find_centroids(GT& G) {\r\n  int N = G.N;\r\n\
-    \  vc<int> par(N, -1);\r\n  vc<int> V(N);\r\n  vc<int> sz(N);\r\n  int l = 0,\
-    \ r = 0;\r\n  V[r++] = 0;\r\n  while (l < r) {\r\n    int v = V[l++];\r\n    for\
-    \ (auto&& e: G[v])\r\n      if (e.to != par[v]) {\r\n        par[e.to] = v;\r\n\
-    \        V[r++] = e.to;\r\n      }\r\n  }\r\n  FOR_R(i, N) {\r\n    int v = V[i];\r\
-    \n    sz[v] += 1;\r\n    int p = par[v];\r\n    if (p != -1) sz[p] += sz[v];\r\
-    \n  }\r\n\r\n  int M = N / 2;\r\n  auto check = [&](int v) -> bool {\r\n    if\
-    \ (N - sz[v] > M) return false;\r\n    for (auto&& e: G[v]) {\r\n      if (e.to\
-    \ != par[v] && sz[e.to] > M) return false;\r\n    }\r\n    return true;\r\n  };\r\
-    \n  pair<int, int> ANS = {-1, -1};\r\n  FOR(v, N) if (check(v)) {\r\n    if (ANS.fi\
-    \ != -1) {\r\n      ANS.se = v;\r\n    } else {\r\n      ANS.fi = v;\r\n    }\r\
-    \n  }\r\n  return ANS;\r\n}\r\n\r\ntemplate <typename GT>\r\nstruct Centroid_Decomposition\
-    \ {\r\n  using edge_type = typename GT::edge_type;\r\n  GT& G;\r\n  int N;\r\n\
-    \  vc<int> sz;\r\n  vc<int> par;\r\n  vector<int> cdep; // depth in centroid tree\r\
-    \n  bool calculated;\r\n\r\n  Centroid_Decomposition(GT& G)\r\n      : G(G), N(G.N),\
-    \ sz(G.N), par(G.N), cdep(G.N, -1) {\r\n    calculated = 0;\r\n    build();\r\n\
-    \  }\r\n\r\nprivate:\r\n  int find(int v) {\r\n    vc<int> V = {v};\r\n    par[v]\
-    \ = -1;\r\n    int p = 0;\r\n    while (p < len(V)) {\r\n      int v = V[p++];\r\
-    \n      sz[v] = 0;\r\n      for (auto&& e: G[v]) {\r\n        if (e.to == par[v]\
-    \ || cdep[e.to] != -1) continue;\r\n        par[e.to] = v;\r\n        V.eb(e.to);\r\
-    \n      }\r\n    }\r\n    while (len(V)) {\r\n      int v = V.back();\r\n    \
-    \  V.pop_back();\r\n      sz[v] += 1;\r\n      if (p - sz[v] <= p / 2) return\
-    \ v;\r\n      sz[par[v]] += sz[v];\r\n    }\r\n    return -1;\r\n  }\r\n  void\
-    \ build() {\r\n    assert(G.is_prepared());\r\n    assert(!G.is_directed());\r\
-    \n    assert(!calculated);\r\n    calculated = 1;\r\n\r\n    vc<pair<int, int>>\
+    \ <typename GT>\r\npair<int, int> find_centroids(GT& G) {\r\n  static_assert(!GT::is_directed);\r\
+    \n  int N = G.N;\r\n  vc<int> par(N, -1);\r\n  vc<int> V(N);\r\n  vc<int> sz(N);\r\
+    \n  int l = 0, r = 0;\r\n  V[r++] = 0;\r\n  while (l < r) {\r\n    int v = V[l++];\r\
+    \n    for (auto&& e: G[v])\r\n      if (e.to != par[v]) {\r\n        par[e.to]\
+    \ = v;\r\n        V[r++] = e.to;\r\n      }\r\n  }\r\n  FOR_R(i, N) {\r\n    int\
+    \ v = V[i];\r\n    sz[v] += 1;\r\n    int p = par[v];\r\n    if (p != -1) sz[p]\
+    \ += sz[v];\r\n  }\r\n\r\n  int M = N / 2;\r\n  auto check = [&](int v) -> bool\
+    \ {\r\n    if (N - sz[v] > M) return false;\r\n    for (auto&& e: G[v]) {\r\n\
+    \      if (e.to != par[v] && sz[e.to] > M) return false;\r\n    }\r\n    return\
+    \ true;\r\n  };\r\n  pair<int, int> ANS = {-1, -1};\r\n  FOR(v, N) if (check(v))\
+    \ {\r\n    if (ANS.fi != -1) {\r\n      ANS.se = v;\r\n    } else {\r\n      ANS.fi\
+    \ = v;\r\n    }\r\n  }\r\n  return ANS;\r\n}\r\n\r\ntemplate <typename GT>\r\n\
+    struct Centroid_Decomposition {\r\n  using edge_type = typename GT::edge_type;\r\
+    \n  GT& G;\r\n  int N;\r\n  vc<int> sz;\r\n  vc<int> par;\r\n  vector<int> cdep;\
+    \ // depth in centroid tree\r\n  bool calculated;\r\n\r\n  Centroid_Decomposition(GT&\
+    \ G)\r\n      : G(G), N(G.N), sz(G.N), par(G.N), cdep(G.N, -1) {\r\n    calculated\
+    \ = 0;\r\n    build();\r\n  }\r\n\r\nprivate:\r\n  int find(int v) {\r\n    vc<int>\
+    \ V = {v};\r\n    par[v] = -1;\r\n    int p = 0;\r\n    while (p < len(V)) {\r\
+    \n      int v = V[p++];\r\n      sz[v] = 0;\r\n      for (auto&& e: G[v]) {\r\n\
+    \        if (e.to == par[v] || cdep[e.to] != -1) continue;\r\n        par[e.to]\
+    \ = v;\r\n        V.eb(e.to);\r\n      }\r\n    }\r\n    while (len(V)) {\r\n\
+    \      int v = V.back();\r\n      V.pop_back();\r\n      sz[v] += 1;\r\n     \
+    \ if (p - sz[v] <= p / 2) return v;\r\n      sz[par[v]] += sz[v];\r\n    }\r\n\
+    \    return -1;\r\n  }\r\n  void build() {\r\n    assert(G.is_prepared());\r\n\
+    \    assert(!calculated);\r\n    calculated = 1;\r\n\r\n    vc<pair<int, int>>\
     \ st;\r\n    st.eb(0, 0);\r\n    while (!st.empty()) {\r\n      auto [lv, v] =\
     \ st.back();\r\n      st.pop_back();\r\n      auto c = find(v);\r\n      cdep[c]\
     \ = lv;\r\n      for (auto&& e: G[c]) {\r\n        if (cdep[e.to] == -1) { st.eb(lv\
@@ -410,8 +410,8 @@ data:
     \ convolution_karatsuba<mint>(a, b);\r\n  return convolution_garner(a, b);\r\n\
     }\r\n#line 3 \"graph/tree_all_distances.hpp\"\n\r\n// frequency table of distance\
     \ of all directed pairs.\r\n// sum of result array = N^2\r\ntemplate <typename\
-    \ Graph>\r\nvi tree_all_distances(Graph& G) {\r\n  assert(G.is_prepared());\r\n\
-    \  assert(!G.is_directed());\r\n  Centroid_Decomposition CD(G);\r\n\r\n  ll N\
+    \ GT>\r\nvi tree_all_distances(GT& G) {\r\n  static_assert(!GT::is_directed);\r\
+    \n  assert(G.is_prepared());\r\n  Centroid_Decomposition CD(G);\r\n\r\n  ll N\
     \ = G.N;\r\n  vi ANS(N);\r\n  FOR(root, N) {\r\n    auto [V, dp, indptr] = CD.collect_dist(root);\r\
     \n    auto calc = [&](vc<int> vals, int sgn) -> void {\r\n      if (vals.empty())\
     \ return;\r\n      int mx = MAX(vals);\r\n      vi A(mx + 1);\r\n      for (int\
@@ -422,16 +422,16 @@ data:
     \n}\r\n"
   code: "#include \"graph/centroid.hpp\"\r\n#include \"poly/convolution.hpp\"\r\n\r\
     \n// frequency table of distance of all directed pairs.\r\n// sum of result array\
-    \ = N^2\r\ntemplate <typename Graph>\r\nvi tree_all_distances(Graph& G) {\r\n\
-    \  assert(G.is_prepared());\r\n  assert(!G.is_directed());\r\n  Centroid_Decomposition\
-    \ CD(G);\r\n\r\n  ll N = G.N;\r\n  vi ANS(N);\r\n  FOR(root, N) {\r\n    auto\
-    \ [V, dp, indptr] = CD.collect_dist(root);\r\n    auto calc = [&](vc<int> vals,\
-    \ int sgn) -> void {\r\n      if (vals.empty()) return;\r\n      int mx = MAX(vals);\r\
-    \n      vi A(mx + 1);\r\n      for (int x: vals) A[x]++;\r\n      A = convolution(A,\
-    \ A);\r\n      FOR(j, len(A)) if (j < N) ANS[j] += sgn * A[j];\r\n    };\r\n\r\
-    \n    calc(dp, +1);\r\n    FOR(i, 1, len(indptr) - 1) {\r\n      int l = indptr[i],\
-    \ r = indptr[i + 1];\r\n      calc({dp.begin() + l, dp.begin() + r}, -1);\r\n\
-    \    }\r\n  }\r\n  return ANS;\r\n}\r\n"
+    \ = N^2\r\ntemplate <typename GT>\r\nvi tree_all_distances(GT& G) {\r\n  static_assert(!GT::is_directed);\r\
+    \n  assert(G.is_prepared());\r\n  Centroid_Decomposition CD(G);\r\n\r\n  ll N\
+    \ = G.N;\r\n  vi ANS(N);\r\n  FOR(root, N) {\r\n    auto [V, dp, indptr] = CD.collect_dist(root);\r\
+    \n    auto calc = [&](vc<int> vals, int sgn) -> void {\r\n      if (vals.empty())\
+    \ return;\r\n      int mx = MAX(vals);\r\n      vi A(mx + 1);\r\n      for (int\
+    \ x: vals) A[x]++;\r\n      A = convolution(A, A);\r\n      FOR(j, len(A)) if\
+    \ (j < N) ANS[j] += sgn * A[j];\r\n    };\r\n\r\n    calc(dp, +1);\r\n    FOR(i,\
+    \ 1, len(indptr) - 1) {\r\n      int l = indptr[i], r = indptr[i + 1];\r\n   \
+    \   calc({dp.begin() + l, dp.begin() + r}, -1);\r\n    }\r\n  }\r\n  return ANS;\r\
+    \n}\r\n"
   dependsOn:
   - graph/centroid.hpp
   - graph/base.hpp
@@ -447,7 +447,7 @@ data:
   isVerificationFile: false
   path: graph/tree_all_distances.hpp
   requiredBy: []
-  timestamp: '2023-11-01 03:36:04+09:00'
+  timestamp: '2023-11-01 12:54:38+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp

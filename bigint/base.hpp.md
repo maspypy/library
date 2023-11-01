@@ -513,14 +513,14 @@ data:
   timestamp: '2023-11-01 04:04:11+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/2508.test.cpp
+  - test/yukicoder/303.test.cpp
+  - test/library_checker/multiplication_of_bigintegers.test.cpp
+  - test/library_checker/addition_of_bigintegers.test.cpp
+  - test/library_checker/sample/aplusb128.test.cpp
   - test/aoj/NTL_2_B.test.cpp
   - test/aoj/NTL_2_A.test.cpp
   - test/aoj/NTL_2_C.test.cpp
-  - test/library_checker/multiplication_of_bigintegers.test.cpp
-  - test/library_checker/sample/aplusb128.test.cpp
-  - test/library_checker/addition_of_bigintegers.test.cpp
-  - test/yukicoder/303.test.cpp
-  - test/yukicoder/2508.test.cpp
 documentation_of: bigint/base.hpp
 layout: document
 redirect_from:

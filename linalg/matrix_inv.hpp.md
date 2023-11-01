@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/inverse_matrix.test.cpp
     title: test/library_checker/matrix/inverse_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
   - icon: ':x:'
@@ -48,9 +48,9 @@ data:
   timestamp: '2023-10-24 14:07:00+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/matrix/inverse_matrix.test.cpp
-  - test/yukicoder/1907.test.cpp
   - test/yukicoder/1303.test.cpp
+  - test/yukicoder/1907.test.cpp
+  - test/library_checker/matrix/inverse_matrix.test.cpp
 documentation_of: linalg/matrix_inv.hpp
 layout: document
 redirect_from:

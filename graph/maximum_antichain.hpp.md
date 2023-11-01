@@ -18,7 +18,7 @@ data:
     title: graph/strongly_connected_component.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2251_2.test.cpp
     title: test/aoj/2251_2.test.cpp
   - icon: ':x:'
@@ -26,7 +26,7 @@ data:
     title: test_atcoder/abc237ex.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -187,17 +187,17 @@ data:
     \n    print(\"max indep set\", independent_set());\r\n    print(\"min edge cover\"\
     , edge_cover());\r\n  }\r\n};\r\n#line 2 \"graph/maximum_antichain.hpp\"\n\n//\
     \ \u6BD4\u8F03\u53EF\u80FD\u30B0\u30E9\u30D5\u3092\u4E0E\u3048\u308B\u3002DAG\
-    \ \u306A\u3060\u3051\u3067\u306F\u30C0\u30E1\u3002\ntemplate <typename T>\nvc<int>\
-    \ maximum_antichain(T& G) {\n  assert(G.is_directed());\n  int n = G.N;\n\n  Graph\
-    \ H(n + n);\n  for (auto&& e: G.edges) { H.add(e.frm, e.to + n); }\n  H.build();\n\
-    \  BipartiteMatching BM(H);\n  auto cover = BM.vertex_cover();\n  auto match =\
-    \ BM.matching();\n  assert(len(cover) == len(match));\n  vc<bool> ok(n, 1);\n\
-    \  for (auto&& v: cover) { ok[v % n] = 0; }\n  vc<int> antichain;\n  FOR(v, n)\
-    \ if (ok[v]) antichain.eb(v);\n  for (auto&& e: G.edges) { assert(!ok[e.frm] ||\
-    \ !ok[e.to]); }\n  return antichain;\n}\n"
+    \ \u306A\u3060\u3051\u3067\u306F\u30C0\u30E1\u3002\ntemplate <typename GT>\nvc<int>\
+    \ maximum_antichain(GT& G) {\n  static_assert(GT::is_directed);\n  int n = G.N;\n\
+    \n  Graph H(n + n);\n  for (auto&& e: G.edges) { H.add(e.frm, e.to + n); }\n \
+    \ H.build();\n  BipartiteMatching BM(H);\n  auto cover = BM.vertex_cover();\n\
+    \  auto match = BM.matching();\n  assert(len(cover) == len(match));\n  vc<bool>\
+    \ ok(n, 1);\n  for (auto&& v: cover) { ok[v % n] = 0; }\n  vc<int> antichain;\n\
+    \  FOR(v, n) if (ok[v]) antichain.eb(v);\n  for (auto&& e: G.edges) { assert(!ok[e.frm]\
+    \ || !ok[e.to]); }\n  return antichain;\n}\n"
   code: "#include \"flow/bipartite.hpp\"\n\n// \u6BD4\u8F03\u53EF\u80FD\u30B0\u30E9\
     \u30D5\u3092\u4E0E\u3048\u308B\u3002DAG \u306A\u3060\u3051\u3067\u306F\u30C0\u30E1\
-    \u3002\ntemplate <typename T>\nvc<int> maximum_antichain(T& G) {\n  assert(G.is_directed());\n\
+    \u3002\ntemplate <typename GT>\nvc<int> maximum_antichain(GT& G) {\n  static_assert(GT::is_directed);\n\
     \  int n = G.N;\n\n  Graph H(n + n);\n  for (auto&& e: G.edges) { H.add(e.frm,\
     \ e.to + n); }\n  H.build();\n  BipartiteMatching BM(H);\n  auto cover = BM.vertex_cover();\n\
     \  auto match = BM.matching();\n  assert(len(cover) == len(match));\n  vc<bool>\
@@ -213,11 +213,11 @@ data:
   isVerificationFile: false
   path: graph/maximum_antichain.hpp
   requiredBy: []
-  timestamp: '2023-11-01 02:04:43+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-11-01 12:54:38+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc237ex.test.cpp
   - test/aoj/2251_2.test.cpp
+  - test_atcoder/abc237ex.test.cpp
 documentation_of: graph/maximum_antichain.hpp
 layout: document
 redirect_from:

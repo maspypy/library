@@ -386,16 +386,16 @@ data:
   isVerificationFile: false
   path: poly/sum_of_exp_bx.hpp
   requiredBy:
-  - poly/composition_f_ex.hpp
-  - poly/composition_f_ex_minus_1.hpp
   - poly/composition_f_1_minus_ex.hpp
+  - poly/composition_f_ex_minus_1.hpp
+  - poly/composition_f_ex.hpp
   timestamp: '2023-11-01 03:36:04+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/arc154f.test.cpp
   - test/yukicoder/1875.test.cpp
-  - test/mytest/composition_1_minus_ex.test.cpp
   - test/mytest/composition_ex_minus_1.test.cpp
+  - test/mytest/composition_1_minus_ex.test.cpp
+  - test_atcoder/arc154f.test.cpp
 documentation_of: poly/sum_of_exp_bx.hpp
 layout: document
 redirect_from:

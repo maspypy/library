@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1397.test.cpp
     title: test/yukicoder/1397.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
   - icon: ':x:'
@@ -253,11 +253,11 @@ data:
   timestamp: '2023-08-13 16:19:41+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/579.test.cpp
-  - test/yukicoder/1561.test.cpp
   - test/yukicoder/578.test.cpp
   - test/yukicoder/541.test.cpp
+  - test/yukicoder/1561.test.cpp
   - test/yukicoder/1397.test.cpp
+  - test/yukicoder/579.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
 documentation_of: other/connected_dp.hpp
 layout: document

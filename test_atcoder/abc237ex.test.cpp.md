@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
   - icon: ':question:'
@@ -382,20 +382,20 @@ data:
     \n    print(\"max indep set\", independent_set());\r\n    print(\"min edge cover\"\
     , edge_cover());\r\n  }\r\n};\r\n#line 2 \"graph/maximum_antichain.hpp\"\n\n//\
     \ \u6BD4\u8F03\u53EF\u80FD\u30B0\u30E9\u30D5\u3092\u4E0E\u3048\u308B\u3002DAG\
-    \ \u306A\u3060\u3051\u3067\u306F\u30C0\u30E1\u3002\ntemplate <typename T>\nvc<int>\
-    \ maximum_antichain(T& G) {\n  assert(G.is_directed());\n  int n = G.N;\n\n  Graph\
-    \ H(n + n);\n  for (auto&& e: G.edges) { H.add(e.frm, e.to + n); }\n  H.build();\n\
-    \  BipartiteMatching BM(H);\n  auto cover = BM.vertex_cover();\n  auto match =\
-    \ BM.matching();\n  assert(len(cover) == len(match));\n  vc<bool> ok(n, 1);\n\
-    \  for (auto&& v: cover) { ok[v % n] = 0; }\n  vc<int> antichain;\n  FOR(v, n)\
-    \ if (ok[v]) antichain.eb(v);\n  for (auto&& e: G.edges) { assert(!ok[e.frm] ||\
-    \ !ok[e.to]); }\n  return antichain;\n}\n#line 1 \"string/zalgorithm.hpp\"\ntemplate\
-    \ <typename STRING>  // string, vector \u3069\u3061\u3089\u3067\u3082\nvector<int>\
-    \ zalgorithm(const STRING& s) {\n  int n = int(s.size());\n  if (n == 0) return\
-    \ {};\n  vector<int> z(n);\n  z[0] = 0;\n  for (int i = 1, j = 0; i < n; i++)\
-    \ {\n    int& k = z[i];\n    k = (j + z[j] <= i) ? 0 : min(j + z[j] - i, z[i -\
-    \ j]);\n    while (i + k < n && s[k] == s[i + k]) k++;\n    if (j + z[j] < i +\
-    \ z[i]) j = i;\n  }\n  z[0] = n;\n  return z;\n}\n#line 2 \"string/is_substring.hpp\"\
+    \ \u306A\u3060\u3051\u3067\u306F\u30C0\u30E1\u3002\ntemplate <typename GT>\nvc<int>\
+    \ maximum_antichain(GT& G) {\n  static_assert(GT::is_directed);\n  int n = G.N;\n\
+    \n  Graph H(n + n);\n  for (auto&& e: G.edges) { H.add(e.frm, e.to + n); }\n \
+    \ H.build();\n  BipartiteMatching BM(H);\n  auto cover = BM.vertex_cover();\n\
+    \  auto match = BM.matching();\n  assert(len(cover) == len(match));\n  vc<bool>\
+    \ ok(n, 1);\n  for (auto&& v: cover) { ok[v % n] = 0; }\n  vc<int> antichain;\n\
+    \  FOR(v, n) if (ok[v]) antichain.eb(v);\n  for (auto&& e: G.edges) { assert(!ok[e.frm]\
+    \ || !ok[e.to]); }\n  return antichain;\n}\n#line 1 \"string/zalgorithm.hpp\"\n\
+    template <typename STRING>  // string, vector \u3069\u3061\u3089\u3067\u3082\n\
+    vector<int> zalgorithm(const STRING& s) {\n  int n = int(s.size());\n  if (n ==\
+    \ 0) return {};\n  vector<int> z(n);\n  z[0] = 0;\n  for (int i = 1, j = 0; i\
+    \ < n; i++) {\n    int& k = z[i];\n    k = (j + z[j] <= i) ? 0 : min(j + z[j]\
+    \ - i, z[i - j]);\n    while (i + k < n && s[k] == s[i + k]) k++;\n    if (j +\
+    \ z[j] < i + z[i]) j = i;\n  }\n  z[0] = n;\n  return z;\n}\n#line 2 \"string/is_substring.hpp\"\
     \n\n// \u9023\u7D9A\u90E8\u5206\u5217\u306B\u542B\u3080\u304B\u3069\u3046\u304B\
     \u3002z-algo \u3067\u7DDA\u5F62\u6642\u9593\ntemplate <typename STRING>\nbool\
     \ is_substring(STRING& S, STRING& T) {\n  int n = int(S.size()), m = int(T.size());\n\
@@ -432,7 +432,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc237ex.test.cpp
   requiredBy: []
-  timestamp: '2023-11-01 02:04:43+09:00'
+  timestamp: '2023-11-01 12:54:38+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc237ex.test.cpp

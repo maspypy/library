@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/minmincnt.hpp
     title: alg/monoid/minmincnt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
   _extendedRequiredBy: []
@@ -147,9 +147,9 @@ data:
   timestamp: '2023-09-03 00:30:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc318b.test.cpp
-  - test/aoj/DSL_4_A.test.cpp
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+  - test/aoj/DSL_4_A.test.cpp
+  - test_atcoder/abc318b.test.cpp
 documentation_of: ds/rectangle_union.hpp
 layout: document
 redirect_from:
