@@ -19,7 +19,7 @@ struct SubTree_DepthSum {
       return {A.fi, A.se + A.fi * e.cost};
     };
 
-    Rerooting_dp<decltype(tree), Data> DP(tree, f_ee, f_ev, f_ve, unit);
+    Rerooting_dp<TREE, Data> DP(tree, f_ee, f_ev, f_ve, unit);
     dp = DP.dp, dp_1 = DP.dp_1, dp_2 = DP.dp_2;
   }
 
