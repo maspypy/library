@@ -499,6 +499,9 @@ data:
     path: test/mytest/stern_brocot.test.cpp
     title: test/mytest/stern_brocot.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/subset_sum.test.cpp
+    title: test/mytest/subset_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -879,6 +882,7 @@ data:
   - test/mytest/31bit_modint.test.cpp
   - test/mytest/segtree_xor_prod.test.cpp
   - test/mytest/add_chmin.test.cpp
+  - test/mytest/subset_sum.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/kdtree_monoid.test.cpp

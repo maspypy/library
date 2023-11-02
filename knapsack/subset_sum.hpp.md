@@ -10,6 +10,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/mytest/subset_sum.test.cpp
+    title: test/mytest/subset_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_2.test.cpp
     title: test/yukicoder/4_2.test.cpp
   _isVerificationFailed: false
@@ -113,45 +116,45 @@ data:
     \ f) {\n  int p = (b[L] ? L : b._Find_next(L));\n  while (p < R) {\n    f(p);\n\
     \    p = b._Find_next(p);\n  }\n}\n#line 3 \"knapsack/subset_sum.hpp\"\n\n// O(N\
     \ MAX(vals))\ntemplate <typename T>\nvc<int> subset_sum_solution_1(vc<T>& vals,\
-    \ int target) {\n  int n = len(vals);\n  int mx = MAX(vals);\n  int b = 0, sb\
-    \ = 0;\n  while (b < n && sb + vals[b] <= target) { sb += vals[b++]; }\n  if (b\
-    \ == n && sb != target) return {};\n\n  int off = target - mx + 1;\n  vc<int>\
-    \ dp(2 * mx, -1);\n  vv(int, PAR, n, 2 * mx, -1);\n  dp[sb - off] = b;\n  FOR3(i,\
-    \ b, n) {\n    auto newdp = dp;\n    auto& par = PAR[i];\n    int a = vals[i];\n\
-    \    FOR(j, mx) {\n      if (chmax(newdp[j + a], dp[j])) { par[j + a] = -2; }\n\
-    \    }\n    FOR3_R(j, mx, 2 * mx) {\n      FOR3_R(k, max(dp[j], 0), newdp[j])\
-    \ {\n        if (chmax(newdp[j - vals[k]], k)) par[j - vals[k]] = k;\n      }\n\
-    \    }\n    swap(dp, newdp);\n  }\n  if (dp[mx - 1] == -1) return {};\n  vc<bool>\
-    \ use(n);\n  int i = n - 1, j = mx - 1;\n  while (i >= b) {\n    int p = PAR[i][j];\n\
-    \    if (p == -2) {\n      use[i] = !use[i];\n      j -= vals[i--];\n    }\n \
-    \   elif (p == -1) { --i; }\n    else {\n      use[p] = !use[p];\n      j += vals[p];\n\
-    \    }\n  }\n  while (i >= 0) {\n    use[i] = !use[i];\n    --i;\n  }\n  vc<int>\
-    \ I;\n  FOR(i, n) if (use[i]) I.eb(i);\n\n  ll sm = 0;\n  for (auto&& i: I) sm\
-    \ += vals[i];\n  assert(sm == target);\n\n  return I;\n}\n\n// O(N target / w)\n\
-    template <typename T>\nvc<int> subset_sum_solution_2(vc<T>& vals, int target)\
-    \ {\n  int n = len(vals);\n  auto I = argsort(vals);\n  My_Bitset dp(1, 1);\n\
-    \  vc<int> last(target + 1, -1);\n  FOR(k, n) {\n    int v = vals[I[k]];\n   \
-    \ if (v > target) continue;\n    My_Bitset newdp = dp;\n    int new_size = min<int>(len(dp)\
-    \ + v, target + 1);\n    newdp.resize(new_size);\n    dp.resize(new_size - v);\n\
-    \    newdp.or_to_range(v, new_size, dp);\n    // update \u3057\u305F\u3068\u3053\
-    \u308D\u3092\u30E1\u30E2\n    FOR(i, len(newdp.dat)) {\n      u64 upd = (i < len(dp.dat)\
-    \ ? dp.dat[i] : u64(0)) ^ newdp.dat[i];\n      enumerate_bits_64(upd, [&](int\
-    \ p) -> void { last[(i << 6) | p] = I[k]; });\n    }\n    swap(dp, newdp);\n \
-    \ }\n  if (target >= len(dp) || !dp[target]) return {};\n  vc<int> ANS;\n  while\
-    \ (target > 0) {\n    int i = last[target];\n    ANS.eb(i);\n    target -= vals[i];\n\
-    \  }\n  return ANS;\n}\n\n// O(sum^{1.5} / w)\n// sum=10^6 \u3067 150ms\uFF1A\
-    https://codeforces.com/contest/755/problem/F\ntemplate <typename T>\nvc<int> subset_sum_solution_3(vc<T>&\
-    \ vals, int target) {\n  int SM = SUM<int>(vals);\n  int N = len(vals);\n  vvc<int>\
-    \ IDS(SM + 1);\n  FOR(i, N) IDS[vals[i]].eb(i);\n  vc<pair<int, int>> par(N, {-1,\
-    \ -1});\n  vc<int> grp_vals;\n  vvc<int> raw_idx;\n  FOR(x, 1, SM + 1) {\n   \
-    \ auto& I = IDS[x];\n    while (len(I) >= 3) {\n      int a = POP(I), b = POP(I);\n\
-    \      int c = len(par);\n      par.eb(a, b);\n      IDS[2 * x].eb(c);\n    }\n\
-    \    for (auto& i: I) {\n      grp_vals.eb(x);\n      raw_idx.eb(i);\n    }\n\
-    \  }\n  auto I = subset_sum_solution_2<int>(grp_vals, target);\n  vc<int> ANS;\n\
-    \  for (auto& i: I) {\n    vc<int> st = {i};\n    while (len(st)) {\n      auto\
-    \ c = POP(st);\n      if (c < N) {\n        ANS.eb(c);\n        continue;\n  \
-    \    }\n      auto [a, b] = par[c];\n      st.eb(a), st.eb(b);\n    }\n  }\n \
-    \ return ANS;\n}\n\ntemplate <typename T>\nvc<int> subset_sum_solution_4(vc<T>&\
+    \ int target) {\n  int n = len(vals);\n  if (n == 0) return {};\n  int mx = MAX(vals);\n\
+    \  int b = 0, sb = 0;\n  while (b < n && sb + vals[b] <= target) { sb += vals[b++];\
+    \ }\n  if (b == n && sb != target) return {};\n\n  int off = target - mx + 1;\n\
+    \  vc<int> dp(2 * mx, -1);\n  vv(int, PAR, n, 2 * mx, -1);\n  dp[sb - off] = b;\n\
+    \  FOR3(i, b, n) {\n    auto newdp = dp;\n    auto& par = PAR[i];\n    int a =\
+    \ vals[i];\n    FOR(j, mx) {\n      if (chmax(newdp[j + a], dp[j])) { par[j +\
+    \ a] = -2; }\n    }\n    FOR3_R(j, mx, 2 * mx) {\n      FOR3_R(k, max(dp[j], 0),\
+    \ newdp[j]) {\n        if (chmax(newdp[j - vals[k]], k)) par[j - vals[k]] = k;\n\
+    \      }\n    }\n    swap(dp, newdp);\n  }\n  if (dp[mx - 1] == -1) return {};\n\
+    \  vc<bool> use(n);\n  int i = n - 1, j = mx - 1;\n  while (i >= b) {\n    int\
+    \ p = PAR[i][j];\n    if (p == -2) {\n      use[i] = !use[i];\n      j -= vals[i--];\n\
+    \    }\n    elif (p == -1) { --i; }\n    else {\n      use[p] = !use[p];\n   \
+    \   j += vals[p];\n    }\n  }\n  while (i >= 0) {\n    use[i] = !use[i];\n   \
+    \ --i;\n  }\n  vc<int> I;\n  FOR(i, n) if (use[i]) I.eb(i);\n\n  ll sm = 0;\n\
+    \  for (auto&& i: I) sm += vals[i];\n  assert(sm == target);\n\n  return I;\n\
+    }\n\n// O(N target / w)\ntemplate <typename T>\nvc<int> subset_sum_solution_2(vc<T>&\
+    \ vals, int target) {\n  int n = len(vals);\n  auto I = argsort(vals);\n  My_Bitset\
+    \ dp(1, 1);\n  vc<int> last(target + 1, -1);\n  FOR(k, n) {\n    int v = vals[I[k]];\n\
+    \    if (v > target) continue;\n    My_Bitset newdp = dp;\n    int new_size =\
+    \ len(dp) + v;\n    newdp.resize(new_size);\n    newdp.or_to_range(v, new_size,\
+    \ dp);\n    if (len(newdp) > target + 1) newdp.resize(target + 1);\n    // update\
+    \ \u3057\u305F\u3068\u3053\u308D\u3092\u30E1\u30E2\n    FOR(i, len(newdp.dat))\
+    \ {\n      u64 upd = (i < len(dp.dat) ? dp.dat[i] : u64(0)) ^ newdp.dat[i];\n\
+    \      enumerate_bits_64(upd, [&](int p) -> void { last[(i << 6) | p] = I[k];\
+    \ });\n    }\n    swap(dp, newdp);\n  }\n  if (target >= len(dp) || !dp[target])\
+    \ return {};\n  vc<int> ANS;\n  while (target > 0) {\n    int i = last[target];\n\
+    \    ANS.eb(i);\n    target -= vals[i];\n  }\n  return ANS;\n}\n\n// O(sum^{1.5}\
+    \ / w)\n// sum=10^6 \u3067 150ms\uFF1Ahttps://codeforces.com/contest/755/problem/F\n\
+    template <typename T>\nvc<int> subset_sum_solution_3(vc<T>& vals, int target)\
+    \ {\n  int SM = SUM<int>(vals);\n  int N = len(vals);\n  vvc<int> IDS(SM + 1);\n\
+    \  FOR(i, N) IDS[vals[i]].eb(i);\n  vc<pair<int, int>> par(N, {-1, -1});\n  vc<int>\
+    \ grp_vals;\n  vc<int> raw_idx;\n  FOR(x, 1, SM + 1) {\n    auto& I = IDS[x];\n\
+    \    while (len(I) >= 3) {\n      int a = POP(I), b = POP(I);\n      int c = len(par);\n\
+    \      par.eb(a, b);\n      IDS[2 * x].eb(c);\n    }\n    for (auto& i: I) {\n\
+    \      grp_vals.eb(x);\n      raw_idx.eb(i);\n    }\n  }\n  auto I = subset_sum_solution_2<int>(grp_vals,\
+    \ target);\n  vc<int> ANS;\n  for (auto& i: I) {\n    vc<int> st = {raw_idx[i]};\n\
+    \    while (len(st)) {\n      auto c = POP(st);\n      if (c < N) {\n        ANS.eb(c);\n\
+    \        continue;\n      }\n      auto [a, b] = par[c];\n      st.eb(a), st.eb(b);\n\
+    \    }\n  }\n  return ANS;\n}\n\ntemplate <typename T>\nvc<int> subset_sum_solution_4(vc<T>&\
     \ vals, T target) {\n  if (target <= 0) return {};\n  int N = len(vals);\n  int\
     \ M = N / 2;\n\n  auto calc = [&](int L, int R) -> vc<T> {\n    int n = R - L;\n\
     \    vc<T> dp = {0};\n    FOR(i, n) {\n      T a = vals[L + i];\n      vc<T> dp1(len(dp));\n\
@@ -179,45 +182,45 @@ data:
     \ target);\n  return subset_sum_solution_4(vals, target);\n}\n"
   code: "#include \"ds/my_bitset.hpp\"\n#include \"enumerate/bits.hpp\"\n\n// O(N\
     \ MAX(vals))\ntemplate <typename T>\nvc<int> subset_sum_solution_1(vc<T>& vals,\
-    \ int target) {\n  int n = len(vals);\n  int mx = MAX(vals);\n  int b = 0, sb\
-    \ = 0;\n  while (b < n && sb + vals[b] <= target) { sb += vals[b++]; }\n  if (b\
-    \ == n && sb != target) return {};\n\n  int off = target - mx + 1;\n  vc<int>\
-    \ dp(2 * mx, -1);\n  vv(int, PAR, n, 2 * mx, -1);\n  dp[sb - off] = b;\n  FOR3(i,\
-    \ b, n) {\n    auto newdp = dp;\n    auto& par = PAR[i];\n    int a = vals[i];\n\
-    \    FOR(j, mx) {\n      if (chmax(newdp[j + a], dp[j])) { par[j + a] = -2; }\n\
-    \    }\n    FOR3_R(j, mx, 2 * mx) {\n      FOR3_R(k, max(dp[j], 0), newdp[j])\
-    \ {\n        if (chmax(newdp[j - vals[k]], k)) par[j - vals[k]] = k;\n      }\n\
-    \    }\n    swap(dp, newdp);\n  }\n  if (dp[mx - 1] == -1) return {};\n  vc<bool>\
-    \ use(n);\n  int i = n - 1, j = mx - 1;\n  while (i >= b) {\n    int p = PAR[i][j];\n\
-    \    if (p == -2) {\n      use[i] = !use[i];\n      j -= vals[i--];\n    }\n \
-    \   elif (p == -1) { --i; }\n    else {\n      use[p] = !use[p];\n      j += vals[p];\n\
-    \    }\n  }\n  while (i >= 0) {\n    use[i] = !use[i];\n    --i;\n  }\n  vc<int>\
-    \ I;\n  FOR(i, n) if (use[i]) I.eb(i);\n\n  ll sm = 0;\n  for (auto&& i: I) sm\
-    \ += vals[i];\n  assert(sm == target);\n\n  return I;\n}\n\n// O(N target / w)\n\
-    template <typename T>\nvc<int> subset_sum_solution_2(vc<T>& vals, int target)\
-    \ {\n  int n = len(vals);\n  auto I = argsort(vals);\n  My_Bitset dp(1, 1);\n\
-    \  vc<int> last(target + 1, -1);\n  FOR(k, n) {\n    int v = vals[I[k]];\n   \
-    \ if (v > target) continue;\n    My_Bitset newdp = dp;\n    int new_size = min<int>(len(dp)\
-    \ + v, target + 1);\n    newdp.resize(new_size);\n    dp.resize(new_size - v);\n\
-    \    newdp.or_to_range(v, new_size, dp);\n    // update \u3057\u305F\u3068\u3053\
-    \u308D\u3092\u30E1\u30E2\n    FOR(i, len(newdp.dat)) {\n      u64 upd = (i < len(dp.dat)\
-    \ ? dp.dat[i] : u64(0)) ^ newdp.dat[i];\n      enumerate_bits_64(upd, [&](int\
-    \ p) -> void { last[(i << 6) | p] = I[k]; });\n    }\n    swap(dp, newdp);\n \
-    \ }\n  if (target >= len(dp) || !dp[target]) return {};\n  vc<int> ANS;\n  while\
-    \ (target > 0) {\n    int i = last[target];\n    ANS.eb(i);\n    target -= vals[i];\n\
-    \  }\n  return ANS;\n}\n\n// O(sum^{1.5} / w)\n// sum=10^6 \u3067 150ms\uFF1A\
-    https://codeforces.com/contest/755/problem/F\ntemplate <typename T>\nvc<int> subset_sum_solution_3(vc<T>&\
-    \ vals, int target) {\n  int SM = SUM<int>(vals);\n  int N = len(vals);\n  vvc<int>\
-    \ IDS(SM + 1);\n  FOR(i, N) IDS[vals[i]].eb(i);\n  vc<pair<int, int>> par(N, {-1,\
-    \ -1});\n  vc<int> grp_vals;\n  vvc<int> raw_idx;\n  FOR(x, 1, SM + 1) {\n   \
-    \ auto& I = IDS[x];\n    while (len(I) >= 3) {\n      int a = POP(I), b = POP(I);\n\
-    \      int c = len(par);\n      par.eb(a, b);\n      IDS[2 * x].eb(c);\n    }\n\
-    \    for (auto& i: I) {\n      grp_vals.eb(x);\n      raw_idx.eb(i);\n    }\n\
-    \  }\n  auto I = subset_sum_solution_2<int>(grp_vals, target);\n  vc<int> ANS;\n\
-    \  for (auto& i: I) {\n    vc<int> st = {i};\n    while (len(st)) {\n      auto\
-    \ c = POP(st);\n      if (c < N) {\n        ANS.eb(c);\n        continue;\n  \
-    \    }\n      auto [a, b] = par[c];\n      st.eb(a), st.eb(b);\n    }\n  }\n \
-    \ return ANS;\n}\n\ntemplate <typename T>\nvc<int> subset_sum_solution_4(vc<T>&\
+    \ int target) {\n  int n = len(vals);\n  if (n == 0) return {};\n  int mx = MAX(vals);\n\
+    \  int b = 0, sb = 0;\n  while (b < n && sb + vals[b] <= target) { sb += vals[b++];\
+    \ }\n  if (b == n && sb != target) return {};\n\n  int off = target - mx + 1;\n\
+    \  vc<int> dp(2 * mx, -1);\n  vv(int, PAR, n, 2 * mx, -1);\n  dp[sb - off] = b;\n\
+    \  FOR3(i, b, n) {\n    auto newdp = dp;\n    auto& par = PAR[i];\n    int a =\
+    \ vals[i];\n    FOR(j, mx) {\n      if (chmax(newdp[j + a], dp[j])) { par[j +\
+    \ a] = -2; }\n    }\n    FOR3_R(j, mx, 2 * mx) {\n      FOR3_R(k, max(dp[j], 0),\
+    \ newdp[j]) {\n        if (chmax(newdp[j - vals[k]], k)) par[j - vals[k]] = k;\n\
+    \      }\n    }\n    swap(dp, newdp);\n  }\n  if (dp[mx - 1] == -1) return {};\n\
+    \  vc<bool> use(n);\n  int i = n - 1, j = mx - 1;\n  while (i >= b) {\n    int\
+    \ p = PAR[i][j];\n    if (p == -2) {\n      use[i] = !use[i];\n      j -= vals[i--];\n\
+    \    }\n    elif (p == -1) { --i; }\n    else {\n      use[p] = !use[p];\n   \
+    \   j += vals[p];\n    }\n  }\n  while (i >= 0) {\n    use[i] = !use[i];\n   \
+    \ --i;\n  }\n  vc<int> I;\n  FOR(i, n) if (use[i]) I.eb(i);\n\n  ll sm = 0;\n\
+    \  for (auto&& i: I) sm += vals[i];\n  assert(sm == target);\n\n  return I;\n\
+    }\n\n// O(N target / w)\ntemplate <typename T>\nvc<int> subset_sum_solution_2(vc<T>&\
+    \ vals, int target) {\n  int n = len(vals);\n  auto I = argsort(vals);\n  My_Bitset\
+    \ dp(1, 1);\n  vc<int> last(target + 1, -1);\n  FOR(k, n) {\n    int v = vals[I[k]];\n\
+    \    if (v > target) continue;\n    My_Bitset newdp = dp;\n    int new_size =\
+    \ len(dp) + v;\n    newdp.resize(new_size);\n    newdp.or_to_range(v, new_size,\
+    \ dp);\n    if (len(newdp) > target + 1) newdp.resize(target + 1);\n    // update\
+    \ \u3057\u305F\u3068\u3053\u308D\u3092\u30E1\u30E2\n    FOR(i, len(newdp.dat))\
+    \ {\n      u64 upd = (i < len(dp.dat) ? dp.dat[i] : u64(0)) ^ newdp.dat[i];\n\
+    \      enumerate_bits_64(upd, [&](int p) -> void { last[(i << 6) | p] = I[k];\
+    \ });\n    }\n    swap(dp, newdp);\n  }\n  if (target >= len(dp) || !dp[target])\
+    \ return {};\n  vc<int> ANS;\n  while (target > 0) {\n    int i = last[target];\n\
+    \    ANS.eb(i);\n    target -= vals[i];\n  }\n  return ANS;\n}\n\n// O(sum^{1.5}\
+    \ / w)\n// sum=10^6 \u3067 150ms\uFF1Ahttps://codeforces.com/contest/755/problem/F\n\
+    template <typename T>\nvc<int> subset_sum_solution_3(vc<T>& vals, int target)\
+    \ {\n  int SM = SUM<int>(vals);\n  int N = len(vals);\n  vvc<int> IDS(SM + 1);\n\
+    \  FOR(i, N) IDS[vals[i]].eb(i);\n  vc<pair<int, int>> par(N, {-1, -1});\n  vc<int>\
+    \ grp_vals;\n  vc<int> raw_idx;\n  FOR(x, 1, SM + 1) {\n    auto& I = IDS[x];\n\
+    \    while (len(I) >= 3) {\n      int a = POP(I), b = POP(I);\n      int c = len(par);\n\
+    \      par.eb(a, b);\n      IDS[2 * x].eb(c);\n    }\n    for (auto& i: I) {\n\
+    \      grp_vals.eb(x);\n      raw_idx.eb(i);\n    }\n  }\n  auto I = subset_sum_solution_2<int>(grp_vals,\
+    \ target);\n  vc<int> ANS;\n  for (auto& i: I) {\n    vc<int> st = {raw_idx[i]};\n\
+    \    while (len(st)) {\n      auto c = POP(st);\n      if (c < N) {\n        ANS.eb(c);\n\
+    \        continue;\n      }\n      auto [a, b] = par[c];\n      st.eb(a), st.eb(b);\n\
+    \    }\n  }\n  return ANS;\n}\n\ntemplate <typename T>\nvc<int> subset_sum_solution_4(vc<T>&\
     \ vals, T target) {\n  if (target <= 0) return {};\n  int N = len(vals);\n  int\
     \ M = N / 2;\n\n  auto calc = [&](int L, int R) -> vc<T> {\n    int n = R - L;\n\
     \    vc<T> dp = {0};\n    FOR(i, n) {\n      T a = vals[L + i];\n      vc<T> dp1(len(dp));\n\
@@ -249,10 +252,11 @@ data:
   isVerificationFile: false
   path: knapsack/subset_sum.hpp
   requiredBy: []
-  timestamp: '2023-10-29 05:43:44+09:00'
+  timestamp: '2023-11-03 04:36:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/4_2.test.cpp
+  - test/mytest/subset_sum.test.cpp
 documentation_of: knapsack/subset_sum.hpp
 layout: document
 redirect_from:

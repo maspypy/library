@@ -22,6 +22,9 @@ data:
     path: test/mytest/mybitset.test.cpp
     title: test/mytest/mybitset.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/subset_sum.test.cpp
+    title: test/mytest/subset_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1400.test.cpp
     title: test/yukicoder/1400.test.cpp
   - icon: ':heavy_check_mark:'
@@ -235,6 +238,7 @@ data:
   - test/yukicoder/1421.test.cpp
   - test/yukicoder/142.test.cpp
   - test/mytest/mybitset.test.cpp
+  - test/mytest/subset_sum.test.cpp
 documentation_of: ds/my_bitset.hpp
 layout: document
 redirect_from:

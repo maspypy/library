@@ -25,6 +25,9 @@ data:
     path: test/library_checker/matrix/hafnian_of_matrix.test.cpp
     title: test/library_checker/matrix/hafnian_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/subset_sum.test.cpp
+    title: test/mytest/subset_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/114.test.cpp
     title: test/yukicoder/114.test.cpp
   - icon: ':heavy_check_mark:'
@@ -70,6 +73,7 @@ data:
   - test/yukicoder/4_2.test.cpp
   - test/yukicoder/114.test.cpp
   - test/yukicoder/2507.test.cpp
+  - test/mytest/subset_sum.test.cpp
   - test/library_checker/matrix/hafnian_of_matrix.test.cpp
   - test/aoj/DPL_2_A.test.cpp
   - test_atcoder/abc180e.test.cpp
