@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/scc_tournament.test.cpp
+    title: test/mytest/scc_tournament.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/scc_tounament_by_indegrees.hpp\"\npair<int, vc<int>>\
@@ -26,8 +29,9 @@ data:
   path: graph/scc_tounament_by_indegrees.hpp
   requiredBy: []
   timestamp: '2023-03-15 22:02:24+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/mytest/scc_tournament.test.cpp
 documentation_of: graph/scc_tounament_by_indegrees.hpp
 layout: document
 redirect_from:

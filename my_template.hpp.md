@@ -1084,6 +1084,9 @@ data:
     path: test/mytest/run_length.test.cpp
     title: test/mytest/run_length.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/scc_tournament.test.cpp
+    title: test/mytest/scc_tournament.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/seg2d.test.cpp
     title: test/mytest/seg2d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2637,6 +2640,7 @@ data:
   - test/mytest/summin_assign.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/splay_cm.test.cpp
+  - test/mytest/scc_tournament.test.cpp
   - test/mytest/minmax_add.test.cpp
   - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/longest_common_substr.test.cpp

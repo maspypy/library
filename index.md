@@ -753,7 +753,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/reverse_graph.hpp
       title: graph/reverse_graph.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/scc_tounament_by_indegrees.hpp
       title: graph/scc_tounament_by_indegrees.hpp
     - icon: ':heavy_check_mark:'
@@ -2807,6 +2807,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/run_length.test.cpp
       title: test/mytest/run_length.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/scc_tournament.test.cpp
+      title: test/mytest/scc_tournament.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/seg2d.test.cpp
       title: test/mytest/seg2d.test.cpp

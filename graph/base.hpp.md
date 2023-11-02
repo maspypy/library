@@ -391,6 +391,9 @@ data:
     path: test/mytest/mo_on_tree.test.cpp
     title: test/mytest/mo_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/scc_tournament.test.cpp
+    title: test/mytest/scc_tournament.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -858,6 +861,7 @@ data:
   - test/mytest/count_indep_set.test.cpp
   - test/mytest/tutte.test.cpp
   - test/mytest/matching_line_graph.test.cpp
+  - test/mytest/scc_tournament.test.cpp
   - test/mytest/QOJ5445.test.cpp
   - test/mytest/matching.test.cpp
   - test/mytest/suffix_tree.test.cpp

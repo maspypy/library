@@ -46,6 +46,9 @@ data:
     path: test/library_checker/math/twosat.test.cpp
     title: test/library_checker/math/twosat.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/scc_tournament.test.cpp
+    title: test/mytest/scc_tournament.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
   - icon: ':heavy_check_mark:'
@@ -189,6 +192,7 @@ data:
   - test/yukicoder/1170.test.cpp
   - test/yukicoder/1745.test.cpp
   - test/mytest/tutte.test.cpp
+  - test/mytest/scc_tournament.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/graph/scc.test.cpp
   - test/library_checker/graph/bipartite_edge_coloring.test.cpp
