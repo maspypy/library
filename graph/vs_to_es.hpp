@@ -11,7 +11,7 @@ vc<int> vs_to_es(GT& G, vc<int>& vs, bool allow_use_twice = false) {
   vc<int> nxt(G.M, -1);
 
   auto get = [&](ll a, ll b) -> u64 {
-    if (!G.is_directed() && a > b) swap(a, b);
+    if (GT::is_directed && a > b) swap(a, b);
     return a * G.N + b;
   };
 
