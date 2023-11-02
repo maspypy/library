@@ -2,17 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: ds/unionfind/unionfind.hpp
-    title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
-    path: geo/manhattan_mst.hpp
-    title: geo/manhattan_mst.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/base.hpp
-    title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/stern_brocot_tree.hpp
+    title: nt/stern_brocot_tree.hpp
   - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
@@ -23,31 +17,31 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc283/tasks/abc283_f
+    PROBLEM: https://judge.yosupo.jp/problem/stern_brocot_tree
     links:
-    - https://atcoder.jp/contests/abc283/tasks/abc283_f
-  bundledCode: "#line 1 \"test_atcoder/abc283f.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc283/tasks/abc283_f\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
-    )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
-    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    using u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class T>\n\
-    constexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int> = 1'000'000'000;\n\
-    template <>\nconstexpr ll infty<ll> = ll(infty<int>) * infty<int> * 2;\ntemplate\
-    \ <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\n\
-    template <>\nconstexpr double infty<double> = infty<ll>;\ntemplate <>\nconstexpr\
-    \ long double infty<long double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing\
-    \ vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
-    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
-    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
-    \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
-    template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
-    #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
-    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
-    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
-    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
-    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    - https://judge.yosupo.jp/problem/stern_brocot_tree
+  bundledCode: "#line 1 \"test/library_checker/math/stern-brocot.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/stern_brocot_tree\"\n#line 1 \"my_template.hpp\"\
+    \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n#pragma GCC\
+    \ optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\
+    \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
+    \ u64 = unsigned long long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
+    using f128 = __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate\
+    \ <>\nconstexpr int infty<int> = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll>\
+    \ = ll(infty<int>) * infty<int> * 2;\ntemplate <>\nconstexpr u32 infty<u32> =\
+    \ infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\ntemplate <>\n\
+    constexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\ntemplate <>\nconstexpr\
+    \ double infty<double> = infty<ll>;\ntemplate <>\nconstexpr long double infty<long\
+    \ double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
+    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
+    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
+    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
+    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
+    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
@@ -207,116 +201,92 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge\
-    \ {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
-    \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
-    \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
-    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg,\
-    \ vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class OutgoingEdges {\n  public:\n\
-    \    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n   \
-    \ const edge_type* begin() const {\n      if (l == r) { return 0; }\n      return\
-    \ &G->csr_edges[l];\n    }\n\n    const edge_type* end() const {\n      if (l\
-    \ == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n  private:\n \
-    \   const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared;\
-    \ }\n\n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
-    \ {}\n\n  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
-    \    indptr.clear();\n    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n\
-    \    vc_outdeg.clear();\n  }\n\n  void add(int frm, int to, T cost = 1, int i\
-    \ = -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <= to && to < N);\n\
-    \    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n\
-    \    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool wt = false, int off = 1)\
-    \ { read_graph(N - 1, wt, off); }\n\n  void read_graph(int M, bool wt = false,\
-    \ int off = 1) {\n    for (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a\
-    \ -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n  \
-    \      T c;\n        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n\
-    \  }\n\n  void build() {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N\
-    \ + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if\
-    \ (!directed) indptr[e.to + 1]++;\n    }\n    for (int v = 0; v < N; ++v) { indptr[v\
-    \ + 1] += indptr[v]; }\n    auto counter = indptr;\n    csr_edges.resize(indptr.back()\
-    \ + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n\
-    \      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm,\
-    \ e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n \
-    \   assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\n \
-    \ vc<int> deg_array() {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n\
-    \  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n    if (vc_indeg.empty())\
-    \ calc_deg_inout();\n    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v)\
-    \ {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n  int\
-    \ in_deg(int v) {\n    if (vc_indeg.empty()) calc_deg_inout();\n    return vc_indeg[v];\n\
-    \  }\n\n  int out_deg(int v) {\n    if (vc_outdeg.empty()) calc_deg_inout();\n\
-    \    return vc_outdeg[v];\n  }\n\n  void debug() {\n    print(\"Graph\");\n  \
-    \  if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e: edges)\
-    \ print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\", indptr);\n\
-    \      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
-    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\n  vc<int> new_idx;\n  vc<bool>\
-    \ used_e;\n\n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\
-    \u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\
-    \u308B\n  // {G, es}\n  pair<Graph<T, directed>, vc<int>> rearrange(vc<int> V)\
-    \ {\n    if (len(new_idx) != N) new_idx.assign(N, -1);\n    if (len(used_e) !=\
-    \ M) used_e.assign(M, 0);\n    int n = len(V);\n    FOR(i, n) new_idx[V[i]] =\
-    \ i;\n    Graph<T, directed> G(n);\n    vc<int> es;\n    FOR(i, n) {\n      for\
-    \ (auto&& e: (*this)[V[i]]) {\n        if (used_e[e.id]) continue;\n        int\
-    \ a = e.frm, b = e.to;\n        if (new_idx[a] != -1 && new_idx[b] != -1) {\n\
-    \          used_e[e.id] = 1;\n          G.add(new_idx[a], new_idx[b], e.cost);\n\
-    \          es.eb(e.id);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]]\
-    \ = -1;\n    for (auto&& eid: es) used_e[eid] = 0;\n    G.build();\n    return\
-    \ {G, es};\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
-    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
-    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
-    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n \
-    \ int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n);\
-    \ }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n\
-    \  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x]\
-    \ >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n\
-    \      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n   \
-    \ x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n\
-    \    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x]\
-    \ < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return\
-    \ true;\n  }\n};\n#line 3 \"geo/manhattan_mst.hpp\"\n\n// \u6700\u5C0F\u5168\u57DF\
-    \u6728\u3092\u4F5C\u308B\u306E\u3067\u3001\u7279\u306B\u5404\u70B9\u304B\u3089\
-    \u306E\u6700\u8FD1\u70B9\u3092\u3068\u308B\u76EE\u7684\u3067\u4F7F\u3046\u3053\
-    \u3068\u3082\u3067\u304D\u308B\ntemplate <typename T>\nGraph<T, 0> manhattan_mst(vc<pair<T,\
-    \ T>>& XY) {\n  int N = XY.size();\n  vc<tuple<T, int, int>> dat;\n  dat.reserve(4\
-    \ * N);\n  vc<int> idx(N);\n  iota(all(idx), 0);\n\n  FOR(a, 2) {\n    for (auto&&\
-    \ [x, y]: XY) x = -x;\n    FOR(b, 2) {\n      for (auto&& [x, y]: XY) swap(x,\
-    \ y);\n      sort(all(idx), [&](const int& i, const int& j) -> bool {\n      \
-    \  return XY[i].fi + XY[i].se < XY[j].fi + XY[j].se;\n      });\n\n      map<T,\
-    \ int> MP;\n      for (const int i: idx) {\n        auto& [x, y] = XY[i];\n  \
-    \      for (auto it = MP.lower_bound(-y); it != MP.end(); it = MP.erase(it)) {\n\
-    \          const int j = it->se;\n          auto& [xj, yj] = XY[j];\n        \
-    \  const int dx = x - xj;\n          const int dy = y - yj;\n          if (dy\
-    \ > dx) break;\n          dat.eb(dx + dy, i, j);\n        }\n        MP[-y] =\
-    \ i;\n      }\n    }\n  }\n\n  sort(all(dat));\n  Graph<T, 0> G(N);\n  UnionFind\
-    \ uf(N);\n  for (auto&& [cost, i, j]: dat) {\n    if (uf.merge(i, j)) G.add(i,\
-    \ j, cost);\n  }\n  G.build();\n  return G;\n}\n#line 5 \"test_atcoder/abc283f.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  vc<pair<int, int>> dat(N);\n  FOR(i, N) {\n  \
-    \  INT(p);\n    dat[i] = {i, p};\n  }\n  auto G = manhattan_mst(dat);\n  const\
-    \ int INF = 1 << 30;\n  vc<int> ANS(N, INF);\n  for (auto&& e: G.edges) {\n  \
-    \  chmin(ANS[e.frm], e.cost);\n    chmin(ANS[e.to], e.cost);\n  }\n  print(ANS,\
-    \ \"\");\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc283/tasks/abc283_f\"\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"geo/manhattan_mst.hpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  vc<pair<int, int>> dat(N);\n  FOR(i, N) {\n  \
-    \  INT(p);\n    dat[i] = {i, p};\n  }\n  auto G = manhattan_mst(dat);\n  const\
-    \ int INF = 1 << 30;\n  vc<int> ANS(N, INF);\n  for (auto&& e: G.edges) {\n  \
-    \  chmin(ANS[e.frm], e.cost);\n    chmin(ANS[e.to], e.cost);\n  }\n  print(ANS,\
-    \ \"\");\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ yes(!t); }\n#line 4 \"test/library_checker/math/stern-brocot.test.cpp\"\n\n\
+    #line 1 \"nt/stern_brocot_tree.hpp\"\n\nstruct Stern_Brocot_Tree {\n  using PATH\
+    \ = vi; // \u306F\u3058\u3081\u306F R\n\n  static tuple<PATH, pi, pi> get_path_and_range(pi\
+    \ x) {\n    PATH path;\n    pi l = {0, 1}, r = {1, 0};\n    pi m = {1, 1};\n \
+    \   ll det_l = l.fi * x.se - l.se * x.fi;\n    ll det_r = r.fi * x.se - r.se *\
+    \ x.fi;\n    ll det_m = det_l + det_r;\n    while (1) {\n      if (det_m == 0)\
+    \ break;\n      ll k = ceil(-det_m, det_r);\n      path.eb(k);\n      l = {l.fi\
+    \ + k * r.fi, l.se + k * r.se};\n      m = {l.fi + r.fi, l.se + r.se};\n     \
+    \ det_l += k * det_r;\n      det_m += k * det_r;\n      if (det_m == 0) break;\n\
+    \      k = ceil(det_m, -det_l);\n      path.eb(k);\n      r = {r.fi + k * l.fi,\
+    \ r.se + k * l.se};\n      m = {l.fi + r.fi, l.se + r.se};\n      det_r += k *\
+    \ det_l;\n      det_m += k * det_l;\n    }\n    return {path, l, r};\n  }\n\n\
+    \  static PATH get_path(pi x) {\n    auto [path, l, r] = get_path_and_range(x);\n\
+    \    return path;\n  }\n\n  static pair<pi, pi> range(pi x) {\n    auto [path,\
+    \ l, r] = get_path_and_range(x);\n    return {l, r};\n  }\n\n  // x in range(y)\n\
+    \  static bool in_subtree(pi x, pi y) {\n    auto [l, r] = range(y);\n    bool\
+    \ ok_l = i128(x.fi) * l.se - i128(x.se) * l.fi > 0;\n    bool ok_r = i128(r.fi)\
+    \ * x.se - i128(r.se) * x.fi > 0;\n    return ok_l && ok_r;\n  }\n\n  template\
+    \ <typename T = ll>\n  static pair<T, T> from_path(PATH& p) {\n    using P = pair<T,\
+    \ T>;\n    P l = {0, 1}, r = {1, 0};\n    FOR(i, len(p)) {\n      ll k = p[i];\n\
+    \      if (i % 2 == 0) {\n        l.fi += T(k) * r.fi;\n        l.se += T(k) *\
+    \ r.se;\n      }\n      if (i % 2 == 1) {\n        r.fi += T(k) * l.fi;\n    \
+    \    r.se += T(k) * l.se;\n      }\n    }\n    return {l.fi + r.fi, l.se + r.se};\n\
+    \  }\n\n  static pair<pi, pi> child(pi x) {\n    auto [l, r] = range(x);\n   \
+    \ pi lc = {l.fi + x.fi, l.se + x.se};\n    pi rc = {x.fi + r.fi, x.se + r.se};\n\
+    \    return {lc, rc};\n  }\n\n  static pi LCA(pi x, pi y) {\n    auto Px = get_path(x);\n\
+    \    auto Py = get_path(y);\n    vi P;\n    FOR(i, min(len(Px), len(Py))) {\n\
+    \      ll k = min(Px[i], Py[i]);\n      P.eb(k);\n      if (k < Px[i] || k < Py[i])\
+    \ break;\n    }\n    return from_path(P);\n  }\n\n  static pi LA(pi x, ll dep)\
+    \ {\n    pi l = {0, 1}, r = {1, 0};\n    pi m = {1, 1};\n    ll det_l = l.fi *\
+    \ x.se - l.se * x.fi;\n    ll det_r = r.fi * x.se - r.se * x.fi;\n    ll det_m\
+    \ = det_l + det_r;\n    while (1) {\n      if (det_m == 0 || dep == 0) break;\n\
+    \      ll k = min(dep, ceil(-det_m, det_r));\n      l = {l.fi + k * r.fi, l.se\
+    \ + k * r.se};\n      m = {l.fi + r.fi, l.se + r.se};\n      det_l += k * det_r;\n\
+    \      det_m += k * det_r;\n      dep -= k;\n      if (det_m == 0 || dep == 0)\
+    \ break;\n      k = min(dep, ceil(det_m, -det_l));\n      r = {r.fi + k * l.fi,\
+    \ r.se + k * l.se};\n      m = {l.fi + r.fi, l.se + r.se};\n      det_r += k *\
+    \ det_l;\n      det_m += k * det_l;\n      dep -= k;\n    }\n    if (dep == 0)\
+    \ return m;\n    return {-1, -1};\n  }\n\n  static string to_string(PATH& p) {\n\
+    \    string res;\n    char c = 'L';\n    for (auto&& x: p) {\n      c = 'L' +\
+    \ 'R' - c;\n      if (x == 0) continue;\n      res += c;\n      res += \" \" +\
+    \ std::to_string(x);\n    }\n    return res;\n  }\n};\n#line 6 \"test/library_checker/math/stern-brocot.test.cpp\"\
+    \n\nvoid solve() {\n  using SBT = Stern_Brocot_Tree;\n  STR(S);\n  if (S == \"\
+    DECODE_PATH\") {\n    INT(n);\n    vi A;\n    FOR(n) {\n      CHAR(s);\n     \
+    \ INT(x);\n      if (A.empty() && s == 'L') { A.eb(0); }\n      A.eb(x);\n   \
+    \ }\n    auto [a, b] = SBT::from_path(A);\n    print(a, b);\n  }\n  if (S == \"\
+    ENCODE_PATH\") {\n    LL(a, b);\n    vi A = SBT::get_path({a, b});\n    vc<string>\
+    \ ANS;\n    FOR(i, len(A)) {\n      if (A[i] == 0) continue;\n      string x =\
+    \ (i % 2 == 0 ? \"R\" : \"L\");\n      ANS.eb(x);\n      ANS.eb(to_string(A[i]));\n\
+    \    }\n    print(len(ANS) / 2, ANS);\n  }\n  if (S == \"LCA\") {\n    LL(a, b,\
+    \ c, d);\n    auto [e, f] = SBT::LCA({a, b}, {c, d});\n    print(e, f);\n  }\n\
+    \  if (S == \"ANCESTOR\") {\n    LL(k, a, b);\n    auto [x, y] = SBT::LA({a, b},\
+    \ k);\n    if (x == -1) {\n      print(-1);\n    } else {\n      print(x, y);\n\
+    \    }\n  }\n  if (S == \"RANGE\") {\n    LL(a, b);\n    auto [x, y] = SBT::range({a,\
+    \ b});\n    print(x, y);\n  }\n}\n\nsigned main() {\n  INT(T);\n  FOR(T)\n  solve();\n\
+    \  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stern_brocot_tree\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"nt/stern_brocot_tree.hpp\"\
+    \n\nvoid solve() {\n  using SBT = Stern_Brocot_Tree;\n  STR(S);\n  if (S == \"\
+    DECODE_PATH\") {\n    INT(n);\n    vi A;\n    FOR(n) {\n      CHAR(s);\n     \
+    \ INT(x);\n      if (A.empty() && s == 'L') { A.eb(0); }\n      A.eb(x);\n   \
+    \ }\n    auto [a, b] = SBT::from_path(A);\n    print(a, b);\n  }\n  if (S == \"\
+    ENCODE_PATH\") {\n    LL(a, b);\n    vi A = SBT::get_path({a, b});\n    vc<string>\
+    \ ANS;\n    FOR(i, len(A)) {\n      if (A[i] == 0) continue;\n      string x =\
+    \ (i % 2 == 0 ? \"R\" : \"L\");\n      ANS.eb(x);\n      ANS.eb(to_string(A[i]));\n\
+    \    }\n    print(len(ANS) / 2, ANS);\n  }\n  if (S == \"LCA\") {\n    LL(a, b,\
+    \ c, d);\n    auto [e, f] = SBT::LCA({a, b}, {c, d});\n    print(e, f);\n  }\n\
+    \  if (S == \"ANCESTOR\") {\n    LL(k, a, b);\n    auto [x, y] = SBT::LA({a, b},\
+    \ k);\n    if (x == -1) {\n      print(-1);\n    } else {\n      print(x, y);\n\
+    \    }\n  }\n  if (S == \"RANGE\") {\n    LL(a, b);\n    auto [x, y] = SBT::range({a,\
+    \ b});\n    print(x, y);\n  }\n}\n\nsigned main() {\n  INT(T);\n  FOR(T)\n  solve();\n\
+    \  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - geo/manhattan_mst.hpp
-  - graph/base.hpp
-  - ds/unionfind/unionfind.hpp
+  - nt/stern_brocot_tree.hpp
   isVerificationFile: true
-  path: test_atcoder/abc283f.test.cpp
+  path: test/library_checker/math/stern-brocot.test.cpp
   requiredBy: []
-  timestamp: '2023-11-01 19:16:20+09:00'
+  timestamp: '2023-11-03 03:52:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test_atcoder/abc283f.test.cpp
+documentation_of: test/library_checker/math/stern-brocot.test.cpp
 layout: document
 redirect_from:
-- /verify/test_atcoder/abc283f.test.cpp
-- /verify/test_atcoder/abc283f.test.cpp.html
-title: test_atcoder/abc283f.test.cpp
+- /verify/test/library_checker/math/stern-brocot.test.cpp
+- /verify/test/library_checker/math/stern-brocot.test.cpp.html
+title: test/library_checker/math/stern-brocot.test.cpp
 ---

@@ -245,7 +245,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
     - icon: ':warning:'
@@ -636,7 +636,7 @@ data:
       title: geo3d/base.hpp
   - name: graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/base.hpp
       title: graph/base.hpp
     - icon: ':heavy_check_mark:'
@@ -681,7 +681,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/dsu_on_tree.hpp
       title: graph/dsu_on_tree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/eulerwalk.hpp
       title: graph/eulerwalk.hpp
     - icon: ':warning:'
@@ -792,7 +792,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/unicyclic.hpp
       title: graph/unicyclic.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/vs_to_es.hpp
       title: graph/vs_to_es.hpp
   - name: graph/count
@@ -1125,7 +1125,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
   - name: new_poly
@@ -1260,7 +1260,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/fibonacci_search.hpp
       title: other/fibonacci_search.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -1467,7 +1467,7 @@ data:
       title: poly/online/online_square.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -2279,6 +2279,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/sqrt_mod.test.cpp
       title: test/library_checker/math/sqrt_mod.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/math/stern-brocot.test.cpp
+      title: test/library_checker/math/stern-brocot.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/stirling_mod_p_1.test.cpp
       title: test/library_checker/math/stirling_mod_p_1.test.cpp
@@ -3876,7 +3879,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/arc154f.test.cpp
       title: test_atcoder/arc154f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/arc157a.test.cpp
       title: test_atcoder/arc157a.test.cpp
     - icon: ':heavy_check_mark:'

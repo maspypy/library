@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/stern-brocot.test.cpp
+    title: test/library_checker/math/stern-brocot.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/stern_brocot.test.cpp
     title: test/mytest/stern_brocot.test.cpp
   _isVerificationFailed: false
@@ -100,6 +103,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/stern_brocot.test.cpp
+  - test/library_checker/math/stern-brocot.test.cpp
 documentation_of: nt/stern_brocot_tree.hpp
 layout: document
 redirect_from:

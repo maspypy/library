@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/eulerwalk.hpp
     title: graph/eulerwalk.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc157a.test.cpp
     title: test_atcoder/arc157a.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/vs_to_es.hpp\"\n\n#line 2 \"random/base.hpp\"\n\n\
@@ -46,7 +46,7 @@ data:
     \ vals[i]);\r\n  }\r\n};\r\n#line 4 \"graph/vs_to_es.hpp\"\n\ntemplate <typename\
     \ GT>\nvc<int> vs_to_es(GT& G, vc<int>& vs, bool allow_use_twice = false) {\n\
     \  assert(!vs.empty());\n\n  static HashMap<int> MP;\n  MP.reset();\n  vc<int>\
-    \ nxt(G.M, -1);\n\n  auto get = [&](ll a, ll b) -> u64 {\n    if (!G.is_directed()\
+    \ nxt(G.M, -1);\n\n  auto get = [&](ll a, ll b) -> u64 {\n    if (GT::is_directed\
     \ && a > b) swap(a, b);\n    return a * G.N + b;\n  };\n\n  FOR(eid, G.M) {\n\
     \    u64 k = get(G.edges[eid].frm, G.edges[eid].to);\n    int x = MP[k];\n   \
     \ nxt[eid] = x, MP[k] = eid;\n  }\n  int n = len(vs);\n  vc<int> es(n - 1);\n\
@@ -56,7 +56,7 @@ data:
   code: "#pragma once\n\n#include \"ds/hashmap.hpp\"\n\ntemplate <typename GT>\nvc<int>\
     \ vs_to_es(GT& G, vc<int>& vs, bool allow_use_twice = false) {\n  assert(!vs.empty());\n\
     \n  static HashMap<int> MP;\n  MP.reset();\n  vc<int> nxt(G.M, -1);\n\n  auto\
-    \ get = [&](ll a, ll b) -> u64 {\n    if (!G.is_directed() && a > b) swap(a, b);\n\
+    \ get = [&](ll a, ll b) -> u64 {\n    if (GT::is_directed && a > b) swap(a, b);\n\
     \    return a * G.N + b;\n  };\n\n  FOR(eid, G.M) {\n    u64 k = get(G.edges[eid].frm,\
     \ G.edges[eid].to);\n    int x = MP[k];\n    nxt[eid] = x, MP[k] = eid;\n  }\n\
     \  int n = len(vs);\n  vc<int> es(n - 1);\n  FOR(i, n - 1) {\n    u64 k = get(vs[i],\
@@ -70,8 +70,8 @@ data:
   path: graph/vs_to_es.hpp
   requiredBy:
   - graph/eulerwalk.hpp
-  timestamp: '2023-11-01 19:15:19+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-11-03 03:52:46+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/arc157a.test.cpp
 documentation_of: graph/vs_to_es.hpp

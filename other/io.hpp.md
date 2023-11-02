@@ -568,6 +568,9 @@ data:
     path: test/library_checker/math/sqrt_mod.test.cpp
     title: test/library_checker/math/sqrt_mod.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/stern-brocot.test.cpp
+    title: test/library_checker/math/stern-brocot.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_mod_p_1.test.cpp
     title: test/library_checker/math/stirling_mod_p_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2139,7 +2142,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc154f.test.cpp
     title: test_atcoder/arc154f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc157a.test.cpp
     title: test_atcoder/arc157a.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2148,9 +2151,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\n#include\
@@ -2362,7 +2365,7 @@ data:
   path: other/io.hpp
   requiredBy: []
   timestamp: '2023-11-01 19:16:20+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1038.test.cpp
   - test/yukicoder/1549.test.cpp
@@ -2799,6 +2802,7 @@ data:
   - test/library_checker/math/gcd_convolution.test.cpp
   - test/library_checker/math/stirling_mod_p_1.test.cpp
   - test/library_checker/math/find_linear_recurrence.test.cpp
+  - test/library_checker/math/stern-brocot.test.cpp
   - test/library_checker/math/enumerate_quotients.test.cpp
   - test/library_checker/math/sps_exp.test.cpp
   - test/library_checker/math/partition.test.cpp
