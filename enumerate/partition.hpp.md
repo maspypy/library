@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1263.test.cpp
     title: test/yukicoder/1263.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1881.test.cpp
     title: test/yukicoder/1881.test.cpp
   - icon: ':x:'
@@ -51,10 +51,10 @@ data:
   timestamp: '2023-01-23 21:38:53+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc226f.test.cpp
   - test/yukicoder/1263.test.cpp
   - test/yukicoder/1881.test.cpp
   - test/mytest/enum_partitions.test.cpp
+  - test_atcoder/abc226f.test.cpp
 documentation_of: enumerate/partition.hpp
 layout: document
 redirect_from:

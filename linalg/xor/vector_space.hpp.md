@@ -5,14 +5,14 @@ data:
     path: linalg/xor/transpose.hpp
     title: linalg/xor/transpose.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/merge_vector_space.hpp
     title: alg/monoid/merge_vector_space.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/mytest/QOJ5445.test.cpp
     title: test/mytest/QOJ5445.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/184.test.cpp
     title: test/yukicoder/184.test.cpp
   - icon: ':x:'
@@ -97,9 +97,9 @@ data:
   timestamp: '2023-02-16 20:34:07+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc141f.test.cpp
   - test/yukicoder/184.test.cpp
   - test/mytest/QOJ5445.test.cpp
+  - test_atcoder/abc141f.test.cpp
 documentation_of: linalg/xor/vector_space.hpp
 layout: document
 redirect_from:

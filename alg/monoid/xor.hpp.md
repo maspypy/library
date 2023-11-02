@@ -6,7 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1641.test.cpp
     title: test/yukicoder/1641.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1790.test.cpp
     title: test/yukicoder/1790.test.cpp
   - icon: ':x:'
@@ -35,9 +35,9 @@ data:
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1790.test.cpp
   - test/yukicoder/1641.test.cpp
   - test/yukicoder/2293.test.cpp
+  - test/yukicoder/1790.test.cpp
 documentation_of: alg/monoid/xor.hpp
 layout: document
 redirect_from:

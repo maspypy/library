@@ -18,7 +18,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1541.test.cpp
     title: test/yukicoder/1541.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/177.test.cpp
     title: test/yukicoder/177.test.cpp
   - icon: ':x:'
@@ -145,14 +145,14 @@ data:
   timestamp: '2023-10-29 05:43:44+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc193f.test.cpp
-  - test_atcoder/abc318g.test.cpp
-  - test_atcoder/abc259g.test.cpp
-  - test/aoj/GRL_6_A.test.cpp
-  - test/aoj/2251_1.test.cpp
   - test/yukicoder/2320.test.cpp
   - test/yukicoder/1541.test.cpp
   - test/yukicoder/177.test.cpp
+  - test/aoj/GRL_6_A.test.cpp
+  - test/aoj/2251_1.test.cpp
+  - test_atcoder/abc318g.test.cpp
+  - test_atcoder/abc193f.test.cpp
+  - test_atcoder/abc259g.test.cpp
 documentation_of: flow/maxflow.hpp
 layout: document
 redirect_from:

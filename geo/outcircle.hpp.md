@@ -102,8 +102,8 @@ data:
   timestamp: '2023-11-01 01:33:38+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc151f.test.cpp
   - test/aoj/CGL_7_C.test.cpp
+  - test_atcoder/abc151f.test.cpp
 documentation_of: geo/outcircle.hpp
 layout: document
 redirect_from:
