@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
   _extendedRequiredBy: []
@@ -95,8 +95,8 @@ data:
     \ '0' + (dat[i >> 6] >> (i & 63) & 1);\n    return S;\n  }\n\n  // bitset \u306B\
     \u4ED5\u69D8\u3092\u5408\u308F\u305B\u308B\n  void set(int i) { (*this)[i] = 1;\
     \ }\n  void reset(int i) { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip();\
-    \ }\n  void set() { fill(all(dat), 0); }\n  void reset() {\n    fill(all(dat),\
-    \ u64(-1));\n    resize(N);\n  }\n\n  int _Find_first() { return next(0); }\n\
+    \ }\n  void set() {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n  void\
+    \ reset() { fill(all(dat), 0); }\n\n  int _Find_first() { return next(0); }\n\
     \  int _Find_next(int p) { return next(p + 1); }\n};\n#line 2 \"ds/counter.hpp\"\
     \n\n// mo + \u6700\u983B\u5024\u30AF\u30A8\u30EA\u3067\u4F7F\u3048\u308B\n// most_freq_key\uFF1A\
     O(sqrt(N)+KEY_MAX/w)\n// \u305D\u308C\u4EE5\u5916\u306F O(1)\ntemplate <int USE_MAX_FREQ_KEY>\n\
@@ -150,7 +150,7 @@ data:
   isVerificationFile: false
   path: ds/counter.hpp
   requiredBy: []
-  timestamp: '2023-10-29 16:22:13+09:00'
+  timestamp: '2023-11-03 05:38:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/counter.hpp

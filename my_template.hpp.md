@@ -771,7 +771,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/lca_directed.test.cpp
     title: test/library_checker/tree/lca_directed.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/tree/lca_fast.test.cpp
     title: test/library_checker/tree/lca_fast.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1750,6 +1750,12 @@ data:
     path: test/yukicoder/310.test.cpp
     title: test/yukicoder/310.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/421.test.cpp
+    title: test/yukicoder/421.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/421_2.test.cpp
+    title: test/yukicoder/421_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2163,9 +2169,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://trap.jp/post/1224/
@@ -2333,7 +2339,7 @@ data:
   path: my_template.hpp
   requiredBy: []
   timestamp: '2023-10-29 16:21:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1038.test.cpp
   - test/yukicoder/1549.test.cpp
@@ -2358,6 +2364,7 @@ data:
   - test/yukicoder/1755.test.cpp
   - test/yukicoder/1726.test.cpp
   - test/yukicoder/919.test.cpp
+  - test/yukicoder/421_2.test.cpp
   - test/yukicoder/924.test.cpp
   - test/yukicoder/1344.test.cpp
   - test/yukicoder/1643.test.cpp
@@ -2470,6 +2477,7 @@ data:
   - test/yukicoder/913.test.cpp
   - test/yukicoder/1234.test.cpp
   - test/yukicoder/1526_2.test.cpp
+  - test/yukicoder/421.test.cpp
   - test/yukicoder/2320.test.cpp
   - test/yukicoder/1875.test.cpp
   - test/yukicoder/1490.test.cpp

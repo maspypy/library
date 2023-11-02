@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
   _extendedRequiredBy: []
@@ -101,8 +101,8 @@ data:
     \ '0' + (dat[i >> 6] >> (i & 63) & 1);\n    return S;\n  }\n\n  // bitset \u306B\
     \u4ED5\u69D8\u3092\u5408\u308F\u305B\u308B\n  void set(int i) { (*this)[i] = 1;\
     \ }\n  void reset(int i) { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip();\
-    \ }\n  void set() { fill(all(dat), 0); }\n  void reset() {\n    fill(all(dat),\
-    \ u64(-1));\n    resize(N);\n  }\n\n  int _Find_first() { return next(0); }\n\
+    \ }\n  void set() {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n  void\
+    \ reset() { fill(all(dat), 0); }\n\n  int _Find_first() { return next(0); }\n\
     \  int _Find_next(int p) { return next(p + 1); }\n};\n#line 2 \"graph/shortest_path/bfs_bitset.hpp\"\
     \n\n// \u5BC6\u30B0\u30E9\u30D5\u306E\u91CD\u307F\u306A\u3057\u6700\u77ED\u8DEF\
     \u554F\u984C\n// 01 \u884C\u5217\u3092 vc<bitset> \u306E\u5F62\u3067\u6E21\u3059\
@@ -134,7 +134,7 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/bfs_bitset.hpp
   requiredBy: []
-  timestamp: '2023-08-06 04:48:55+09:00'
+  timestamp: '2023-11-03 05:38:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1400_2.test.cpp

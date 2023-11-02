@@ -8,13 +8,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/manhattan_nns.hpp
     title: geo/manhattan_nns.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/tree/lca_fast.test.cpp
-    title: test/library_checker/tree/lca_fast.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/manhattan_nns.test.cpp
     title: test/mytest/manhattan_nns.test.cpp
@@ -64,7 +61,6 @@ data:
   - test/mytest/manhattan_nns.test.cpp
   - test/mytest/minidx_add.test.cpp
   - test/mytest/suffix_tree.test.cpp
-  - test/library_checker/tree/lca_fast.test.cpp
   - test_atcoder/abc301h.test.cpp
 documentation_of: alg/monoid/min_idx.hpp
 layout: document

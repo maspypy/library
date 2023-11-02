@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
   _extendedRequiredBy: []
@@ -95,8 +95,8 @@ data:
     \ '0' + (dat[i >> 6] >> (i & 63) & 1);\n    return S;\n  }\n\n  // bitset \u306B\
     \u4ED5\u69D8\u3092\u5408\u308F\u305B\u308B\n  void set(int i) { (*this)[i] = 1;\
     \ }\n  void reset(int i) { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip();\
-    \ }\n  void set() { fill(all(dat), 0); }\n  void reset() {\n    fill(all(dat),\
-    \ u64(-1));\n    resize(N);\n  }\n\n  int _Find_first() { return next(0); }\n\
+    \ }\n  void set() {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n  void\
+    \ reset() { fill(all(dat), 0); }\n\n  int _Find_first() { return next(0); }\n\
     \  int _Find_next(int p) { return next(p + 1); }\n};\n#line 2 \"linalg/bitset/mat_inv.hpp\"\
     \n\n// det = 0 \u306E\u5834\u5408\u306B\u306F empty \u3092\u304B\u3048\u3059\n\
     template <typename BS>\nvc<BS> mat_inv(vc<BS> A) {\n  int N = len(A);\n  vc<BS>\
@@ -119,7 +119,7 @@ data:
   isVerificationFile: false
   path: linalg/bitset/mat_inv.hpp
   requiredBy: []
-  timestamp: '2023-10-06 05:10:45+09:00'
+  timestamp: '2023-11-03 05:38:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: linalg/bitset/mat_inv.hpp

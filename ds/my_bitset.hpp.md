@@ -18,6 +18,9 @@ data:
     path: linalg/bitset/solve_linear.hpp
     title: linalg/bitset/solve_linear.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/library_checker/tree/lca_fast.test.cpp
+    title: test/library_checker/tree/lca_fast.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/mybitset.test.cpp
     title: test/mytest/mybitset.test.cpp
@@ -37,11 +40,17 @@ data:
     path: test/yukicoder/1421.test.cpp
     title: test/yukicoder/1421.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/421.test.cpp
+    title: test/yukicoder/421.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/421_2.test.cpp
+    title: test/yukicoder/421_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_2.test.cpp
     title: test/yukicoder/4_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/contest/914/problem/F
@@ -130,8 +139,8 @@ data:
     \ '0' + (dat[i >> 6] >> (i & 63) & 1);\n    return S;\n  }\n\n  // bitset \u306B\
     \u4ED5\u69D8\u3092\u5408\u308F\u305B\u308B\n  void set(int i) { (*this)[i] = 1;\
     \ }\n  void reset(int i) { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip();\
-    \ }\n  void set() { fill(all(dat), 0); }\n  void reset() {\n    fill(all(dat),\
-    \ u64(-1));\n    resize(N);\n  }\n\n  int _Find_first() { return next(0); }\n\
+    \ }\n  void set() {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n  void\
+    \ reset() { fill(all(dat), 0); }\n\n  int _Find_first() { return next(0); }\n\
     \  int _Find_next(int p) { return next(p + 1); }\n};\n"
   code: "#pragma once\n\n// https://codeforces.com/contest/914/problem/F\n// https://yukicoder.me/problems/no/142\n\
     // \u308F\u305A\u304B\u306B\u666E\u901A\u306E bitset \u3088\u308A\u9045\u3044\u3068\
@@ -217,8 +226,8 @@ data:
     \ '0' + (dat[i >> 6] >> (i & 63) & 1);\n    return S;\n  }\n\n  // bitset \u306B\
     \u4ED5\u69D8\u3092\u5408\u308F\u305B\u308B\n  void set(int i) { (*this)[i] = 1;\
     \ }\n  void reset(int i) { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip();\
-    \ }\n  void set() { fill(all(dat), 0); }\n  void reset() {\n    fill(all(dat),\
-    \ u64(-1));\n    resize(N);\n  }\n\n  int _Find_first() { return next(0); }\n\
+    \ }\n  void set() {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n  void\
+    \ reset() { fill(all(dat), 0); }\n\n  int _Find_first() { return next(0); }\n\
     \  int _Find_next(int p) { return next(p + 1); }\n};"
   dependsOn: []
   isVerificationFile: false
@@ -229,16 +238,19 @@ data:
   - linalg/bitset/solve_linear.hpp
   - linalg/bitset/mat_inv.hpp
   - ds/counter.hpp
-  timestamp: '2023-08-06 04:48:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-11-03 05:38:01+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/421_2.test.cpp
   - test/yukicoder/4_2.test.cpp
   - test/yukicoder/1400_2.test.cpp
   - test/yukicoder/1400.test.cpp
+  - test/yukicoder/421.test.cpp
   - test/yukicoder/1421.test.cpp
   - test/yukicoder/142.test.cpp
   - test/mytest/mybitset.test.cpp
   - test/mytest/subset_sum.test.cpp
+  - test/library_checker/tree/lca_fast.test.cpp
 documentation_of: ds/my_bitset.hpp
 layout: document
 redirect_from:

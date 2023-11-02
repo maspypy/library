@@ -1,62 +1,47 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: alg/monoid/min.hpp
-    title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
-    path: alg/monoid/min_idx.hpp
-    title: alg/monoid/min_idx.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/sparse_table/sparse_table.hpp
-    title: ds/sparse_table/sparse_table.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/base.hpp
-    title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/fast_lca.hpp
-    title: graph/fast_lca.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/tree.hpp
-    title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: ds/my_bitset.hpp
+    title: ds/my_bitset.hpp
+  - icon: ':question:'
+    path: flow/bipartite_dense.hpp
+    title: flow/bipartite_dense.hpp
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/lca
-    links:
-    - https://judge.yosupo.jp/problem/lca
-  bundledCode: "#line 1 \"test/library_checker/tree/lca_fast.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/lca\"\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
-    #include <my_template_compiled.hpp>\n#else\n#pragma GCC optimize(\"Ofast\")\n\
-    #pragma GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace\
-    \ std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing u64 = unsigned\
-    \ long long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\nusing f128\
-    \ = __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr\
-    \ int infty<int> = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll> = ll(infty<int>)\
-    \ * infty<int> * 2;\ntemplate <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate\
-    \ <>\nconstexpr u64 infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128>\
-    \ = i128(infty<ll>) * infty<ll>;\ntemplate <>\nconstexpr double infty<double>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr long double infty<long double> = infty<ll>;\n\
-    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
-    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
-    \ greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h,\
-    \ vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>>\
-    \ name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define\
-    \ vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
-    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    links: []
+  bundledCode: "#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
+    )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
+    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
+    using u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class T>\n\
+    constexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int> = 1'000'000'000;\n\
+    template <>\nconstexpr ll infty<ll> = ll(infty<int>) * infty<int> * 2;\ntemplate\
+    \ <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
+    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\n\
+    template <>\nconstexpr double infty<double> = infty<ll>;\ntemplate <>\nconstexpr\
+    \ long double infty<long double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing\
+    \ vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
+    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
+    \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
+    template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
+    #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
+    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
+    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
+    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
+    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
@@ -216,219 +201,160 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 4 \"test/library_checker/tree/lca_fast.test.cpp\"\n\n#line\
-    \ 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n\
-    \  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool directed = false>\n\
-    struct Graph {\n  static constexpr bool is_directed = directed;\n  int N, M;\n\
-    \  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n\
-    \  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg, vc_indeg,\
-    \ vc_outdeg;\n  bool prepared;\n\n  class OutgoingEdges {\n  public:\n    OutgoingEdges(const\
-    \ Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin()\
-    \ const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[l];\n \
-    \   }\n\n    const edge_type* end() const {\n      if (l == r) { return 0; }\n\
-    \      return &G->csr_edges[r];\n    }\n\n  private:\n    const Graph* G;\n  \
-    \  int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n\n  Graph() :\
-    \ N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n\
-    \  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
-    \    indptr.clear();\n    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n\
-    \    vc_outdeg.clear();\n  }\n\n  void add(int frm, int to, T cost = 1, int i\
-    \ = -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <= to && to < N);\n\
-    \    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n\
-    \    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool wt = false, int off = 1)\
-    \ { read_graph(N - 1, wt, off); }\n\n  void read_graph(int M, bool wt = false,\
-    \ int off = 1) {\n    for (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a\
-    \ -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n  \
-    \      T c;\n        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n\
-    \  }\n\n  void build() {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N\
-    \ + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if\
-    \ (!directed) indptr[e.to + 1]++;\n    }\n    for (int v = 0; v < N; ++v) { indptr[v\
-    \ + 1] += indptr[v]; }\n    auto counter = indptr;\n    csr_edges.resize(indptr.back()\
-    \ + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n\
-    \      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm,\
-    \ e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n \
-    \   assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\n \
-    \ vc<int> deg_array() {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n\
-    \  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n    if (vc_indeg.empty())\
-    \ calc_deg_inout();\n    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v)\
-    \ {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n  int\
-    \ in_deg(int v) {\n    if (vc_indeg.empty()) calc_deg_inout();\n    return vc_indeg[v];\n\
-    \  }\n\n  int out_deg(int v) {\n    if (vc_outdeg.empty()) calc_deg_inout();\n\
-    \    return vc_outdeg[v];\n  }\n\n  void debug() {\n    print(\"Graph\");\n  \
-    \  if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e: edges)\
-    \ print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\", indptr);\n\
-    \      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
-    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\n  vc<int> new_idx;\n  vc<bool>\
-    \ used_e;\n\n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\
-    \u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\
-    \u308B\n  // {G, es}\n  pair<Graph<T, directed>, vc<int>> rearrange(vc<int> V)\
-    \ {\n    if (len(new_idx) != N) new_idx.assign(N, -1);\n    if (len(used_e) !=\
-    \ M) used_e.assign(M, 0);\n    int n = len(V);\n    FOR(i, n) new_idx[V[i]] =\
-    \ i;\n    Graph<T, directed> G(n);\n    vc<int> es;\n    FOR(i, n) {\n      for\
-    \ (auto&& e: (*this)[V[i]]) {\n        if (used_e[e.id]) continue;\n        int\
-    \ a = e.frm, b = e.to;\n        if (new_idx[a] != -1 && new_idx[b] != -1) {\n\
-    \          used_e[e.id] = 1;\n          G.add(new_idx[a], new_idx[b], e.cost);\n\
-    \          es.eb(e.id);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]]\
-    \ = -1;\n    for (auto&& eid: es) used_e[eid] = 0;\n    G.build();\n    return\
-    \ {G, es};\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
-    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
-    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
-    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 2 \"graph/tree.hpp\"\n\r\n#line 4 \"graph/tree.hpp\"\n\r\n\
-    // HLD euler tour \u3092\u3068\u3063\u3066\u3044\u308D\u3044\u308D\u3002\r\ntemplate\
-    \ <typename GT>\r\nstruct Tree {\r\n  using Graph_type = GT;\r\n  GT &G;\r\n \
-    \ using WT = typename GT::cost_type;\r\n  int N;\r\n  vector<int> LID, RID, head,\
-    \ V, parent, VtoE;\r\n  vc<int> depth;\r\n  vc<WT> depth_weighted;\r\n\r\n  Tree(GT\
-    \ &G, int r = 0, bool hld = 1) : G(G) { build(r, hld); }\r\n\r\n  void build(int\
-    \ r = 0, bool hld = 1) {\r\n    if (r == -1) return; // build \u3092\u9045\u5EF6\
-    \u3057\u305F\u3044\u3068\u304D\r\n    N = G.N;\r\n    LID.assign(N, -1), RID.assign(N,\
-    \ -1), head.assign(N, r);\r\n    V.assign(N, -1), parent.assign(N, -1), VtoE.assign(N,\
-    \ -1);\r\n    depth.assign(N, -1), depth_weighted.assign(N, 0);\r\n    assert(G.is_prepared());\r\
-    \n    int t1 = 0;\r\n    dfs_sz(r, -1, hld);\r\n    dfs_hld(r, t1);\r\n  }\r\n\
-    \r\n  void dfs_sz(int v, int p, bool hld) {\r\n    auto &sz = RID;\r\n    parent[v]\
-    \ = p;\r\n    depth[v] = (p == -1 ? 0 : depth[p] + 1);\r\n    sz[v] = 1;\r\n \
-    \   int l = G.indptr[v], r = G.indptr[v + 1];\r\n    auto &csr = G.csr_edges;\r\
-    \n    // \u4F7F\u3046\u8FBA\u304C\u3042\u308C\u3070\u5148\u982D\u306B\u3059\u308B\
-    \r\n    for (int i = r - 2; i >= l; --i) {\r\n      if (hld && depth[csr[i + 1].to]\
-    \ == -1) swap(csr[i], csr[i + 1]);\r\n    }\r\n    int hld_sz = 0;\r\n    for\
-    \ (int i = l; i < r; ++i) {\r\n      auto e = csr[i];\r\n      if (depth[e.to]\
-    \ != -1) continue;\r\n      depth_weighted[e.to] = depth_weighted[v] + e.cost;\r\
-    \n      VtoE[e.to] = e.id;\r\n      dfs_sz(e.to, v, hld);\r\n      sz[v] += sz[e.to];\r\
-    \n      if (hld && chmax(hld_sz, sz[e.to]) && l < i) { swap(csr[l], csr[i]); }\r\
-    \n    }\r\n  }\r\n\r\n  void dfs_hld(int v, int &times) {\r\n    LID[v] = times++;\r\
-    \n    RID[v] += LID[v];\r\n    V[LID[v]] = v;\r\n    bool heavy = true;\r\n  \
-    \  for (auto &&e: G[v]) {\r\n      if (depth[e.to] <= depth[v]) continue;\r\n\
-    \      head[e.to] = (heavy ? head[v] : e.to);\r\n      heavy = false;\r\n    \
-    \  dfs_hld(e.to, times);\r\n    }\r\n  }\r\n\r\n  vc<int> heavy_path_at(int v)\
-    \ {\r\n    vc<int> P = {v};\r\n    while (1) {\r\n      int a = P.back();\r\n\
-    \      for (auto &&e: G[a]) {\r\n        if (e.to != parent[a] && head[e.to] ==\
-    \ v) {\r\n          P.eb(e.to);\r\n          break;\r\n        }\r\n      }\r\n\
-    \      if (P.back() == a) break;\r\n    }\r\n    return P;\r\n  }\r\n\r\n  int\
-    \ heavy_child(int v) {\r\n    int k = LID[v] + 1;\r\n    if (k == N) return -1;\r\
-    \n    int w = V[k];\r\n    return (parent[w] == v ? w : -1);\r\n  }\r\n\r\n  int\
-    \ e_to_v(int eid) {\r\n    auto e = G.edges[eid];\r\n    return (parent[e.frm]\
-    \ == e.to ? e.frm : e.to);\r\n  }\r\n  int v_to_e(int v) { return VtoE[v]; }\r\
-    \n\r\n  int ELID(int v) { return 2 * LID[v] - depth[v]; }\r\n  int ERID(int v)\
-    \ { return 2 * RID[v] - depth[v] - 1; }\r\n\r\n  // \u76EE\u6A19\u5730\u70B9\u3078\
-    \u9032\u3080\u500B\u6570\u304C k\r\n  int LA(int v, int k) {\r\n    assert(k <=\
-    \ depth[v]);\r\n    while (1) {\r\n      int u = head[v];\r\n      if (LID[v]\
-    \ - k >= LID[u]) return V[LID[v] - k];\r\n      k -= LID[v] - LID[u] + 1;\r\n\
-    \      v = parent[u];\r\n    }\r\n  }\r\n  int la(int u, int v) { return LA(u,\
-    \ v); }\r\n\r\n  int LCA(int u, int v) {\r\n    for (;; v = parent[head[v]]) {\r\
-    \n      if (LID[u] > LID[v]) swap(u, v);\r\n      if (head[u] == head[v]) return\
-    \ u;\r\n    }\r\n  }\r\n  // root \u3092\u6839\u3068\u3057\u305F\u5834\u5408\u306E\
-    \ lca\r\n  int LCA_root(int u, int v, int root) {\r\n    return LCA(u, v) ^ LCA(u,\
-    \ root) ^ LCA(v, root);\r\n  }\r\n  int lca(int u, int v) { return LCA(u, v);\
-    \ }\r\n  int lca_root(int u, int v, int root) { return LCA_root(u, v, root); }\r\
-    \n\r\n  int subtree_size(int v, int root = -1) {\r\n    if (root == -1) return\
-    \ RID[v] - LID[v];\r\n    if (v == root) return N;\r\n    int x = jump(v, root,\
-    \ 1);\r\n    if (in_subtree(v, x)) return RID[v] - LID[v];\r\n    return N - RID[x]\
-    \ + LID[x];\r\n  }\r\n\r\n  int dist(int a, int b) {\r\n    int c = LCA(a, b);\r\
-    \n    return depth[a] + depth[b] - 2 * depth[c];\r\n  }\r\n\r\n  WT dist_weighted(int\
-    \ a, int b) {\r\n    int c = LCA(a, b);\r\n    return depth_weighted[a] + depth_weighted[b]\
-    \ - WT(2) * depth_weighted[c];\r\n  }\r\n\r\n  // a is in b\r\n  bool in_subtree(int\
-    \ a, int b) { return LID[b] <= LID[a] && LID[a] < RID[b]; }\r\n\r\n  int jump(int\
-    \ a, int b, ll k) {\r\n    if (k == 1) {\r\n      if (a == b) return -1;\r\n \
-    \     return (in_subtree(b, a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);\r\
-    \n    }\r\n    int c = LCA(a, b);\r\n    int d_ac = depth[a] - depth[c];\r\n \
-    \   int d_bc = depth[b] - depth[c];\r\n    if (k > d_ac + d_bc) return -1;\r\n\
-    \    if (k <= d_ac) return LA(a, k);\r\n    return LA(b, d_ac + d_bc - k);\r\n\
-    \  }\r\n\r\n  vc<int> collect_child(int v) {\r\n    vc<int> res;\r\n    for (auto\
-    \ &&e: G[v])\r\n      if (e.to != parent[v]) res.eb(e.to);\r\n    return res;\r\
-    \n  }\r\n\r\n  vc<pair<int, int>> get_path_decomposition(int u, int v, bool edge)\
-    \ {\r\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\"\u9589\"\u533A\u9593\u5217\u3002\
-    \r\n    vc<pair<int, int>> up, down;\r\n    while (1) {\r\n      if (head[u] ==\
-    \ head[v]) break;\r\n      if (LID[u] < LID[v]) {\r\n        down.eb(LID[head[v]],\
-    \ LID[v]);\r\n        v = parent[head[v]];\r\n      } else {\r\n        up.eb(LID[u],\
-    \ LID[head[u]]);\r\n        u = parent[head[u]];\r\n      }\r\n    }\r\n    if\
-    \ (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\r\n    elif (LID[v] + edge\
-    \ <= LID[u]) up.eb(LID[u], LID[v] + edge);\r\n    reverse(all(down));\r\n    up.insert(up.end(),\
-    \ all(down));\r\n    return up;\r\n  }\r\n\r\n  vc<int> restore_path(int u, int\
-    \ v) {\r\n    vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u,\
-    \ v, 0)) {\r\n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n\
-    \      } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\
-    \n    return P;\r\n  }\r\n};\r\n#line 2 \"alg/monoid/min_idx.hpp\"\n\r\ntemplate\
-    \ <typename T, bool tie_is_left = true>\r\nstruct Monoid_Min_Idx {\r\n  using\
-    \ value_type = pair<T, int>;\r\n  using X = value_type;\r\n  static constexpr\
-    \ bool is_small(const X& x, const X& y) {\r\n    if (x.fi < y.fi) return true;\r\
-    \n    if (x.fi > y.fi) return false;\r\n    return (tie_is_left ? (x.se < y.se)\
-    \ : (x.se >= y.se));\r\n  }\r\n  static X op(X x, X y) { return (is_small(x, y)\
-    \ ? x : y); }\r\n  static constexpr X unit() { return {infty<T>, -1}; }\r\n  static\
-    \ constexpr bool commute = true;\r\n};\r\n#line 2 \"alg/monoid/min.hpp\"\n\r\n\
-    template <typename E>\r\nstruct Monoid_Min {\r\n  using X = E;\r\n  using value_type\
-    \ = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return min(x,\
-    \ y); }\r\n  static constexpr X unit() { return infty<E>; }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 1 \"ds/sparse_table/sparse_table.hpp\"\n\
-    \n// \u51AA\u7B49\u306A\u30E2\u30CE\u30A4\u30C9\u3067\u3042\u308B\u3053\u3068\u3092\
-    \u4EEE\u5B9A\u3002disjoint sparse table \u3088\u308A x \u500D\u9AD8\u901F\ntemplate\
-    \ <class Monoid>\nstruct Sparse_Table {\n  using MX = Monoid;\n  using X = typename\
-    \ MX::value_type;\n  int n, log;\n  vvc<X> dat;\n\n  Sparse_Table() {}\n  Sparse_Table(int\
-    \ n) { build(n); }\n  template <typename F>\n  Sparse_Table(int n, F f) {\n  \
-    \  build(n, f);\n  }\n  Sparse_Table(const vc<X>& v) { build(v); }\n\n  void build(int\
-    \ m) {\n    build(m, [](int i) -> X { return MX::unit(); });\n  }\n  void build(const\
-    \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
-    \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1\
-    \ << log) < n) ++log;\n    dat.resize(log);\n    dat[0].resize(n);\n    FOR(i,\
-    \ n) dat[0][i] = f(i);\n\n    FOR(i, log - 1) {\n      dat[i + 1].resize(len(dat[i])\
-    \ - (1 << i));\n      FOR(j, len(dat[i]) - (1 << i)) {\n        dat[i + 1][j]\
-    \ = MX::op(dat[i][j], dat[i][j + (1 << i)]);\n      }\n    }\n  }\n\n  X prod(int\
-    \ L, int R) {\n    if (L == R) return MX::unit();\n    if (R == L + 1) return\
-    \ dat[0][L];\n    int k = topbit(R - L - 1);\n    return MX::op(dat[k][L], dat[k][R\
-    \ - (1 << k)]);\n  }\n\n  template <class F>\n  int max_right(const F check, int\
-    \ L) {\n    assert(0 <= L && L <= n && check(MX::unit()));\n    if (L == n) return\
-    \ n;\n    int ok = L, ng = n + 1;\n    while (ok + 1 < ng) {\n      int k = (ok\
-    \ + ng) / 2;\n      bool bl = check(prod(L, k));\n      if (bl) ok = k;\n    \
-    \  if (!bl) ng = k;\n    }\n    return ok;\n  }\n\n  template <class F>\n  int\
-    \ min_left(const F check, int R) {\n    assert(0 <= R && R <= n && check(MX::unit()));\n\
-    \    if (R == 0) return 0;\n    int ok = R, ng = -1;\n    while (ng + 1 < ok)\
-    \ {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k, R));\n      if\
-    \ (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n};\n#line\
-    \ 5 \"graph/fast_lca.hpp\"\n\n// sparse table \u3092\u4F7F\u3046 <O(NlogN),O(1)>\n\
-    // dist_only \u306E\u65B9\u304C 2 \u5272\u304F\u3089\u3044\u9AD8\u901F\u304B\n\
-    template <typename TREE, bool dist_only>\nstruct Fast_Lca {\n  TREE& tree;\n \
-    \ Sparse_Table<Monoid_Min<int>> seg_mi;\n  Sparse_Table<Monoid_Min_Idx<int>> seg_mi_idx;\n\
-    \  vc<int> pos;\n\n  Fast_Lca(TREE& tree) : tree(tree) {\n    int N = tree.N;\n\
-    \    pos.resize(N);\n    if constexpr (dist_only) {\n      vc<int> dat(2 * N -\
-    \ 1);\n      FOR(v, N) {\n        int a = tree.ELID(v);\n        int b = tree.ERID(v);\n\
-    \        int d = tree.depth[v];\n        dat[a] = d;\n        pos[v] = a;\n  \
-    \      if (b < 2 * N - 1) dat[b] = d - 1;\n      }\n      seg_mi.build(dat);\n\
-    \    } else {\n      vc<pair<int, int>> dat(2 * N - 1);\n      FOR(v, N) {\n \
-    \       int a = tree.ELID(v);\n        int b = tree.ERID(v);\n        int d =\
-    \ tree.depth[v];\n        pos[v] = a;\n        dat[a] = {d, v};\n        if (b\
-    \ < 2 * N - 1) dat[b] = {d - 1, tree.parent[v]};\n      }\n      seg_mi_idx.build(dat);\n\
-    \    }\n  }\n\n  int lca(int a, int b) {\n    static_assert(!dist_only);\n   \
-    \ return lca_and_dist(a, b).fi;\n  }\n\n  int dist(int a, int b) {\n    if constexpr\
-    \ (dist_only) {\n      int da = tree.depth[a], db = tree.depth[b];\n      int\
-    \ p = pos[a], q = pos[b];\n      if (p > q) swap(p, q);\n      return da + db\
-    \ - 2 * seg_mi.prod(p, q + 1);\n    } else {\n      return lca_and_dist(a, b).se;\n\
-    \    }\n  }\n\n  pair<int, int> lca_and_dist(int a, int b) {\n    int da = tree.depth[a],\
-    \ db = tree.depth[b];\n    int p = pos[a], q = pos[b];\n    if (p > q) swap(p,\
-    \ q);\n    auto [dc, c] = seg_mi_idx.prod(p, q + 1);\n    return {c, da + db -\
-    \ dc - dc};\n  }\n};\n#line 7 \"test/library_checker/tree/lca_fast.test.cpp\"\n\
-    \nvoid solve() {\n  INT(N, Q);\n  Graph<int, 1> G(N);\n  FOR(v, 1, N) {\n    INT(p);\n\
-    \    G.add(p, v);\n  }\n  G.build();\n\n  Tree<decltype(G)> tree(G);\n  Fast_Lca<decltype(tree),\
-    \ false> LCA(tree);\n\n  FOR(Q) {\n    INT(a, b);\n    print(LCA.lca(a, b));\n\
-    \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n\n#include \"graph/base.hpp\"\n#include \"graph/fast_lca.hpp\"\
-    \n\nvoid solve() {\n  INT(N, Q);\n  Graph<int, 1> G(N);\n  FOR(v, 1, N) {\n  \
-    \  INT(p);\n    G.add(p, v);\n  }\n  G.build();\n\n  Tree<decltype(G)> tree(G);\n\
-    \  Fast_Lca<decltype(tree), false> LCA(tree);\n\n  FOR(Q) {\n    INT(a, b);\n\
-    \    print(LCA.lca(a, b));\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
-    }"
+    \ yes(!t); }\n#line 3 \"test/library_checker/tree/lca_fast.test.cpp\"\n\n#line\
+    \ 2 \"ds/my_bitset.hpp\"\n\n// https://codeforces.com/contest/914/problem/F\n\
+    // https://yukicoder.me/problems/no/142\n// \u308F\u305A\u304B\u306B\u666E\u901A\
+    \u306E bitset \u3088\u308A\u9045\u3044\u3068\u304D\u3082\u3042\u308B\u3088\u3046\
+    \u3060\u304C\uFF0C\n// \u56FA\u5B9A\u9577\u306B\u3057\u305F\u304F\u306A\u3044\u3068\
+    \u304D\u3084 slice \u64CD\u4F5C\u304C\u5FC5\u8981\u306A\u3068\u304D\u306B\u4F7F\
+    \u3046\nstruct My_Bitset {\n  using T = My_Bitset;\n  int N;\n  vc<u64> dat;\n\
+    \n  // x \u3067\u57CB\u3081\u308B\n  My_Bitset(int N = 0, int x = 0) : N(N) {\n\
+    \    assert(x == 0 || x == 1);\n    u64 v = (x == 0 ? 0 : -1);\n    dat.assign((N\
+    \ + 63) >> 6, v);\n    if (N) dat.back() >>= (64 * len(dat) - N);\n  }\n\n  int\
+    \ size() { return N; }\n\n  void resize(int size) {\n    dat.resize((size + 63)\
+    \ >> 6);\n    int remainingBits = size & 63;\n    if (remainingBits != 0) {\n\
+    \      u64 mask = (u64(1) << remainingBits) - 1;\n      dat.back() &= mask;\n\
+    \    }\n    N = size;\n  }\n\n  // thanks to chatgpt!\n  class Proxy {\n  public:\n\
+    \    Proxy(vc<u64> &d, int i) : dat(d), index(i) {}\n    operator bool() const\
+    \ { return (dat[index >> 6] >> (index & 63)) & 1; }\n\n    Proxy &operator=(u64\
+    \ value) {\n      dat[index >> 6] &= ~(u64(1) << (index & 63));\n      dat[index\
+    \ >> 6] |= (value & 1) << (index & 63);\n      return *this;\n    }\n    void\
+    \ flip() {\n      dat[index >> 6] ^= (u64(1) << (index & 63)); // XOR to flip\
+    \ the bit\n    }\n\n  private:\n    vc<u64> &dat;\n    int index;\n  };\n\n  Proxy\
+    \ operator[](int i) { return Proxy(dat, i); }\n\n  T &operator&=(const T &p) {\n\
+    \    assert(N == p.N);\n    FOR(i, len(dat)) dat[i] &= p.dat[i];\n    return *this;\n\
+    \  }\n  T &operator|=(const T &p) {\n    assert(N == p.N);\n    FOR(i, len(dat))\
+    \ dat[i] |= p.dat[i];\n    return *this;\n  }\n  T &operator^=(const T &p) {\n\
+    \    assert(N == p.N);\n    FOR(i, len(dat)) dat[i] ^= p.dat[i];\n    return *this;\n\
+    \  }\n  T operator&(const T &p) const { return T(*this) &= p; }\n  T operator|(const\
+    \ T &p) const { return T(*this) |= p; }\n  T operator^(const T &p) const { return\
+    \ T(*this) ^= p; }\n\n  int count() {\n    int ans = 0;\n    for (u64 val: dat)\
+    \ ans += popcnt(val);\n    return ans;\n  }\n\n  int next(int i) {\n    chmax(i,\
+    \ 0);\n    if (i >= N) return N;\n    int k = i >> 6;\n    {\n      u64 x = dat[k];\n\
+    \      int s = i & 63;\n      x = (x >> s) << s;\n      if (x) return (k << 6)\
+    \ | lowbit(x);\n    }\n    FOR(idx, k + 1, len(dat)) {\n      if (dat[idx] ==\
+    \ 0) continue;\n      return (idx << 6) | lowbit(dat[idx]);\n    }\n    return\
+    \ N;\n  }\n\n  int prev(int i) {\n    chmin(i, N - 1);\n    if (i <= -1) return\
+    \ -1;\n    int k = i >> 6;\n    if ((i & 63) < 63) {\n      u64 x = dat[k];\n\
+    \      x &= (u64(1) << ((i & 63) + 1)) - 1;\n      if (x) return (k << 6) | topbit(x);\n\
+    \      --k;\n    }\n    FOR_R(idx, k + 1) {\n      if (dat[idx] == 0) continue;\n\
+    \      return (idx << 6) | topbit(dat[idx]);\n    }\n    return -1;\n  }\n\n \
+    \ My_Bitset range(int L, int R) {\n    assert(L <= R);\n    My_Bitset p(R - L);\n\
+    \    int rm = (R - L) & 63;\n    FOR(rm) {\n      p[R - L - 1] = bool((*this)[R\
+    \ - 1]);\n      --R;\n    }\n    int n = (R - L) >> 6;\n    int hi = L & 63;\n\
+    \    int lo = 64 - hi;\n    int s = L >> 6;\n    if (hi == 0) {\n      FOR(i,\
+    \ n) { p.dat[i] ^= dat[s + i]; }\n    } else {\n      FOR(i, n) { p.dat[i] ^=\
+    \ (dat[s + i] >> hi) ^ (dat[s + i + 1] << lo); }\n    }\n    return p;\n  }\n\n\
+    \  int count_range(int L, int R) {\n    assert(L <= R);\n    int cnt = 0;\n  \
+    \  while ((L < R) && (L & 63)) cnt += (*this)[L++];\n    while ((L < R) && (R\
+    \ & 63)) cnt += (*this)[--R];\n    int l = L >> 6, r = R >> 6;\n    FOR(i, l,\
+    \ r) cnt += popcnt(dat[i]);\n    return cnt;\n  }\n\n  // [L,R) \u306B p \u3092\
+    \u4EE3\u5165\n  void assign_to_range(int L, int R, My_Bitset &p) {\n    assert(p.N\
+    \ == R - L);\n    int a = 0, b = p.N;\n    while (L < R && (L & 63)) { (*this)[L++]\
+    \ = bool(p[a++]); }\n    while (L < R && (R & 63)) { (*this)[--R] = bool(p[--b]);\
+    \ }\n    // p[a:b] \u3092 [L:R] \u306B\n    int l = L >> 6, r = R >> 6;\n    int\
+    \ s = a >> 6, t = b >> t;\n    int n = r - l;\n    if (!(a & 63)) {\n      FOR(i,\
+    \ n) dat[l + i] = p.dat[s + i];\n    } else {\n      int hi = a & 63;\n      int\
+    \ lo = 64 - hi;\n      FOR(i, n) dat[l + i] = (p.dat[s + i] >> hi) | (p.dat[1\
+    \ + s + i] << lo);\n    }\n  }\n\n  // [L,R) \u306B p \u3092 xor\n  void xor_to_range(int\
+    \ L, int R, My_Bitset &p) {\n    assert(p.N == R - L);\n    int a = 0, b = p.N;\n\
+    \    while (L < R && (L & 63)) {\n      dat[L >> 6] ^= u64(p[a]) << (L & 63);\n\
+    \      ++a, ++L;\n    }\n    while (L < R && (R & 63)) {\n      --b, --R;\n  \
+    \    dat[R >> 6] ^= u64(p[b]) << (R & 63);\n    }\n    // p[a:b] \u3092 [L:R]\
+    \ \u306B\n    int l = L >> 6, r = R >> 6;\n    int s = a >> 6, t = b >> t;\n \
+    \   int n = r - l;\n    if (!(a & 63)) {\n      FOR(i, n) dat[l + i] ^= p.dat[s\
+    \ + i];\n    } else {\n      int hi = a & 63;\n      int lo = 64 - hi;\n     \
+    \ FOR(i, n) dat[l + i] ^= (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);\n \
+    \   }\n  }\n\n  // [L,R) \u306B p \u3092 and\n  void and_to_range(int L, int R,\
+    \ My_Bitset &p) {\n    assert(p.N == R - L);\n    int a = 0, b = p.N;\n    while\
+    \ (L < R && (L & 63)) {\n      if (!p[a++]) (*this)[L++] = 0;\n    }\n    while\
+    \ (L < R && (R & 63)) {\n      if (!p[--b]) (*this)[--R] = 0;\n    }\n    // p[a:b]\
+    \ \u3092 [L:R] \u306B\n    int l = L >> 6, r = R >> 6;\n    int s = a >> 6, t\
+    \ = b >> t;\n    int n = r - l;\n    if (!(a & 63)) {\n      FOR(i, n) dat[l +\
+    \ i] &= p.dat[s + i];\n    } else {\n      int hi = a & 63;\n      int lo = 64\
+    \ - hi;\n      FOR(i, n) dat[l + i] &= (p.dat[s + i] >> hi) | (p.dat[1 + s + i]\
+    \ << lo);\n    }\n  }\n\n  // [L,R) \u306B p \u3092 or\n  void or_to_range(int\
+    \ L, int R, My_Bitset &p) {\n    assert(p.N == R - L);\n    int a = 0, b = p.N;\n\
+    \    while (L < R && (L & 63)) {\n      dat[L >> 6] |= u64(p[a]) << (L & 63);\n\
+    \      ++a, ++L;\n    }\n    while (L < R && (R & 63)) {\n      --b, --R;\n  \
+    \    dat[R >> 6] |= u64(p[b]) << (R & 63);\n    }\n    // p[a:b] \u3092 [L:R]\
+    \ \u306B\n    int l = L >> 6, r = R >> 6;\n    int s = a >> 6, t = b >> t;\n \
+    \   int n = r - l;\n    if (!(a & 63)) {\n      FOR(i, n) dat[l + i] |= p.dat[s\
+    \ + i];\n    } else {\n      int hi = a & 63;\n      int lo = 64 - hi;\n     \
+    \ FOR(i, n) dat[l + i] |= (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);\n \
+    \   }\n  }\n\n  string to_string() const {\n    string S;\n    FOR(i, N) S +=\
+    \ '0' + (dat[i >> 6] >> (i & 63) & 1);\n    return S;\n  }\n\n  // bitset \u306B\
+    \u4ED5\u69D8\u3092\u5408\u308F\u305B\u308B\n  void set(int i) { (*this)[i] = 1;\
+    \ }\n  void reset(int i) { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip();\
+    \ }\n  void set() {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n  void\
+    \ reset() { fill(all(dat), 0); }\n\n  int _Find_first() { return next(0); }\n\
+    \  int _Find_next(int p) { return next(p + 1); }\n};\n#line 1 \"flow/bipartite_dense.hpp\"\
+    \n\n// vc<bitset> \u3067 biadj matrix \u3092\u6E21\u3059\n// N_1^2N_2/w.\n// (5000,5000)\
+    \ \u3067 300ms \u7A0B\u5EA6\u3067\u52D5\u304F\u5834\u5408\u304C\u3042\u308B\n\
+    // https://qoj.ac/problem/6308\n// (10000?, 5000) 655ms\n// https://codeforces.com/contest/1045/problem/A\n\
+    // (10000, 20000) \u3067 3837ms\n// https://codeforces.com/contest/786/problem/E\n\
+    template <typename BS>\nstruct BipartiteMatching_Dense {\n  int N1, N2;\n  vc<BS>&\
+    \ adj;\n  vc<int> match_1, match_2;\n  vc<int> que;\n  vc<int> prev;\n  BS vis;\n\
+    \n  BipartiteMatching_Dense(vc<BS>& adj, int N1, int N2)\n      : N1(N1), N2(N2),\
+    \ adj(adj), match_1(N1, -1), match_2(N2, -1) {\n    if constexpr (is_same_v<BS,\
+    \ My_Bitset>) vis.resize(N2);\n    FOR(s, N1) bfs(s);\n  }\n\n  void bfs(int s)\
+    \ {\n    if (match_1[s] != -1) return;\n    que.resize(N1), prev.resize(N1);\n\
+    \    int l = 0, r = 0;\n    prev[s] = -1;\n    vis.set();\n\n    que[r++] = s;\n\
+    \    while (l < r) {\n      int u = que[l++];\n      BS cand = vis & adj[u];\n\
+    \      for (int v = cand._Find_first(); v < N2; v = cand._Find_next(v)) {\n  \
+    \      vis[v] = 0;\n        if (match_2[v] != -1) {\n          que[r++] = match_2[v];\n\
+    \          prev[match_2[v]] = u;\n          continue;\n        }\n        int\
+    \ a = u, b = v;\n        while (a != -1) {\n          int t = match_1[a];\n  \
+    \        match_1[a] = b, match_2[b] = a, a = prev[a], b = t;\n        }\n    \
+    \    return;\n      }\n    }\n    return;\n  }\n\n  vc<pair<int, int>> matching()\
+    \ {\n    vc<pair<int, int>> res;\n    FOR(v, N1) if (match_1[v] != -1) res.eb(v,\
+    \ match_1[v]);\n    return res;\n  }\n\n  pair<vc<int>, vc<int>> vertex_cover()\
+    \ {\n    vc<int> que(N1);\n    int l = 0, r = 0;\n    vis.set();\n    vc<bool>\
+    \ done(N1);\n    FOR(i, N1) {\n      if (match_1[i] == -1) done[i] = 1, que[r++]\
+    \ = i;\n    }\n    while (l < r) {\n      int a = que[l++];\n      BS cand = adj[a]\
+    \ & vis;\n      for (int b = cand._Find_first(); b < N2; b = cand._Find_next(b))\
+    \ {\n        vis[b] = 0;\n        int to = match_2[b];\n        assert(to != -1);\n\
+    \        if (!done[to]) done[to] = 1, que[r++] = to;\n      }\n    }\n    vc<int>\
+    \ left, right;\n    FOR(i, N1) if (!done[i]) left.eb(i);\n    FOR(i, N2) if (!vis[i])\
+    \ right.eb(i);\n    return {left, right};\n  }\n};\n#line 6 \"test/library_checker/tree/lca_fast.test.cpp\"\
+    \n\nvoid solve() {\n  INT(H, W);\n  VEC(string, G, H);\n\n  vv(int, IDX, H, W);\n\
+    \  int a = 0, b = 0;\n  FOR(x, H) FOR(y, W) {\n    if ((x + y) % 2 == 0) IDX[x][y]\
+    \ = a++;\n    if ((x + y) % 2 == 1) IDX[x][y] = b++;\n  }\n\n  auto isin = [&](int\
+    \ x, int y) -> bool {\n    return (0 <= x && x < H && 0 <= y && y < W);\n  };\n\
+    \  int dx[] = {1, 0, -1, 0, 1, 1, -1, -1};\n  int dy[] = {0, 1, 0, -1, 1, -1,\
+    \ 1, -1};\n\n  vc<My_Bitset> adj(a, My_Bitset(b));\n  FOR(x, H) FOR(y, W) {\n\
+    \    if ((x + y) & 1) continue;\n    FOR(d, 2) {\n      int nx = x + dx[d], ny\
+    \ = y + dy[d];\n      if (!isin(nx, ny)) continue;\n      if (G[x][y] == G[nx][ny])\
+    \ continue;\n      if (G[x][y] == '.') continue;\n      if (G[nx][ny] == '.')\
+    \ continue;\n      adj[IDX[x][y]][IDX[nx][ny]] = 1;\n    }\n  }\n\n  BipartiteMatching_Dense<My_Bitset>\
+    \ BM(adj, a, b);\n  auto match = BM.matching();\n  int n = len(match);\n  int\
+    \ x = 0;\n  FOR(i, H) FOR(j, W) x += (G[i][j] != '.');\n  print(100 * n + (x -\
+    \ 2 * n));\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+  code: "#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/my_bitset.hpp\"\
+    \n#include \"flow/bipartite_dense.hpp\"\n\nvoid solve() {\n  INT(H, W);\n  VEC(string,\
+    \ G, H);\n\n  vv(int, IDX, H, W);\n  int a = 0, b = 0;\n  FOR(x, H) FOR(y, W)\
+    \ {\n    if ((x + y) % 2 == 0) IDX[x][y] = a++;\n    if ((x + y) % 2 == 1) IDX[x][y]\
+    \ = b++;\n  }\n\n  auto isin = [&](int x, int y) -> bool {\n    return (0 <= x\
+    \ && x < H && 0 <= y && y < W);\n  };\n  int dx[] = {1, 0, -1, 0, 1, 1, -1, -1};\n\
+    \  int dy[] = {0, 1, 0, -1, 1, -1, 1, -1};\n\n  vc<My_Bitset> adj(a, My_Bitset(b));\n\
+    \  FOR(x, H) FOR(y, W) {\n    if ((x + y) & 1) continue;\n    FOR(d, 2) {\n  \
+    \    int nx = x + dx[d], ny = y + dy[d];\n      if (!isin(nx, ny)) continue;\n\
+    \      if (G[x][y] == G[nx][ny]) continue;\n      if (G[x][y] == '.') continue;\n\
+    \      if (G[nx][ny] == '.') continue;\n      adj[IDX[x][y]][IDX[nx][ny]] = 1;\n\
+    \    }\n  }\n\n  BipartiteMatching_Dense<My_Bitset> BM(adj, a, b);\n  auto match\
+    \ = BM.matching();\n  int n = len(match);\n  int x = 0;\n  FOR(i, H) FOR(j, W)\
+    \ x += (G[i][j] != '.');\n  print(100 * n + (x - 2 * n));\n}\n\nsigned main()\
+    \ {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - graph/base.hpp
-  - graph/fast_lca.hpp
-  - graph/tree.hpp
-  - alg/monoid/min_idx.hpp
-  - alg/monoid/min.hpp
-  - ds/sparse_table/sparse_table.hpp
+  - ds/my_bitset.hpp
+  - flow/bipartite_dense.hpp
   isVerificationFile: true
   path: test/library_checker/tree/lca_fast.test.cpp
   requiredBy: []
-  timestamp: '2023-11-03 05:00:06+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-03 05:41:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/tree/lca_fast.test.cpp
 layout: document

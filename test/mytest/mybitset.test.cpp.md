@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
@@ -294,8 +294,8 @@ data:
     \ '0' + (dat[i >> 6] >> (i & 63) & 1);\n    return S;\n  }\n\n  // bitset \u306B\
     \u4ED5\u69D8\u3092\u5408\u308F\u305B\u308B\n  void set(int i) { (*this)[i] = 1;\
     \ }\n  void reset(int i) { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip();\
-    \ }\n  void set() { fill(all(dat), 0); }\n  void reset() {\n    fill(all(dat),\
-    \ u64(-1));\n    resize(N);\n  }\n\n  int _Find_first() { return next(0); }\n\
+    \ }\n  void set() {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n  void\
+    \ reset() { fill(all(dat), 0); }\n\n  int _Find_first() { return next(0); }\n\
     \  int _Find_next(int p) { return next(p + 1); }\n};\n#line 7 \"test/mytest/mybitset.test.cpp\"\
     \n\nvoid test() {\n  FOR(N, 2000) {\n    int Q = 10 * N;\n    vc<int> A(N);\n\
     \    My_Bitset B(N);\n    FOR(Q) {\n      int t = RNG(0, 4);\n      int i = RNG(0,\
@@ -325,7 +325,7 @@ data:
   isVerificationFile: true
   path: test/mytest/mybitset.test.cpp
   requiredBy: []
-  timestamp: '2023-11-01 19:16:20+09:00'
+  timestamp: '2023-11-03 05:38:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/mybitset.test.cpp

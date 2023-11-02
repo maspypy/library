@@ -2,10 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/library_checker/tree/lca_fast.test.cpp
+    title: test/library_checker/tree/lca_fast.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/421.test.cpp
+    title: test/yukicoder/421.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/421_2.test.cpp
+    title: test/yukicoder/421_2.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/contest/1045/problem/A
@@ -19,12 +28,13 @@ data:
     template <typename BS>\nstruct BipartiteMatching_Dense {\n  int N1, N2;\n  vc<BS>&\
     \ adj;\n  vc<int> match_1, match_2;\n  vc<int> que;\n  vc<int> prev;\n  BS vis;\n\
     \n  BipartiteMatching_Dense(vc<BS>& adj, int N1, int N2)\n      : N1(N1), N2(N2),\
-    \ adj(adj), match_1(N1, -1), match_2(N2, -1) {\n    FOR(s, N1) bfs(s);\n  }\n\n\
-    \  void bfs(int s) {\n    if (match_1[s] != -1) return;\n    que.resize(N1), prev.resize(N1);\n\
-    \    int l = 0, r = 0;\n    vis.set(), prev[s] = -1;\n\n    que[r++] = s;\n  \
-    \  while (l < r) {\n      int u = que[l++];\n      BS cand = vis & adj[u];\n \
-    \     for (int v = cand._Find_first(); v < N2; v = cand._Find_next(v)) {\n   \
-    \     vis[v] = 0;\n        if (match_2[v] != -1) {\n          que[r++] = match_2[v];\n\
+    \ adj(adj), match_1(N1, -1), match_2(N2, -1) {\n    if constexpr (is_same_v<BS,\
+    \ My_Bitset>) vis.resize(N2);\n    FOR(s, N1) bfs(s);\n  }\n\n  void bfs(int s)\
+    \ {\n    if (match_1[s] != -1) return;\n    que.resize(N1), prev.resize(N1);\n\
+    \    int l = 0, r = 0;\n    prev[s] = -1;\n    vis.set();\n\n    que[r++] = s;\n\
+    \    while (l < r) {\n      int u = que[l++];\n      BS cand = vis & adj[u];\n\
+    \      for (int v = cand._Find_first(); v < N2; v = cand._Find_next(v)) {\n  \
+    \      vis[v] = 0;\n        if (match_2[v] != -1) {\n          que[r++] = match_2[v];\n\
     \          prev[match_2[v]] = u;\n          continue;\n        }\n        int\
     \ a = u, b = v;\n        while (a != -1) {\n          int t = match_1[a];\n  \
     \        match_1[a] = b, match_2[b] = a, a = prev[a], b = t;\n        }\n    \
@@ -46,12 +56,13 @@ data:
     template <typename BS>\nstruct BipartiteMatching_Dense {\n  int N1, N2;\n  vc<BS>&\
     \ adj;\n  vc<int> match_1, match_2;\n  vc<int> que;\n  vc<int> prev;\n  BS vis;\n\
     \n  BipartiteMatching_Dense(vc<BS>& adj, int N1, int N2)\n      : N1(N1), N2(N2),\
-    \ adj(adj), match_1(N1, -1), match_2(N2, -1) {\n    FOR(s, N1) bfs(s);\n  }\n\n\
-    \  void bfs(int s) {\n    if (match_1[s] != -1) return;\n    que.resize(N1), prev.resize(N1);\n\
-    \    int l = 0, r = 0;\n    vis.set(), prev[s] = -1;\n\n    que[r++] = s;\n  \
-    \  while (l < r) {\n      int u = que[l++];\n      BS cand = vis & adj[u];\n \
-    \     for (int v = cand._Find_first(); v < N2; v = cand._Find_next(v)) {\n   \
-    \     vis[v] = 0;\n        if (match_2[v] != -1) {\n          que[r++] = match_2[v];\n\
+    \ adj(adj), match_1(N1, -1), match_2(N2, -1) {\n    if constexpr (is_same_v<BS,\
+    \ My_Bitset>) vis.resize(N2);\n    FOR(s, N1) bfs(s);\n  }\n\n  void bfs(int s)\
+    \ {\n    if (match_1[s] != -1) return;\n    que.resize(N1), prev.resize(N1);\n\
+    \    int l = 0, r = 0;\n    prev[s] = -1;\n    vis.set();\n\n    que[r++] = s;\n\
+    \    while (l < r) {\n      int u = que[l++];\n      BS cand = vis & adj[u];\n\
+    \      for (int v = cand._Find_first(); v < N2; v = cand._Find_next(v)) {\n  \
+    \      vis[v] = 0;\n        if (match_2[v] != -1) {\n          que[r++] = match_2[v];\n\
     \          prev[match_2[v]] = u;\n          continue;\n        }\n        int\
     \ a = u, b = v;\n        while (a != -1) {\n          int t = match_1[a];\n  \
     \        match_1[a] = b, match_2[b] = a, a = prev[a], b = t;\n        }\n    \
@@ -70,9 +81,12 @@ data:
   isVerificationFile: false
   path: flow/bipartite_dense.hpp
   requiredBy: []
-  timestamp: '2023-10-24 13:36:12+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2023-11-03 05:41:28+09:00'
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/yukicoder/421_2.test.cpp
+  - test/yukicoder/421.test.cpp
+  - test/library_checker/tree/lca_fast.test.cpp
 documentation_of: flow/bipartite_dense.hpp
 layout: document
 redirect_from:

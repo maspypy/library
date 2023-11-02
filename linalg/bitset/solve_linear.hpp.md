@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
   _extendedRequiredBy: []
@@ -98,8 +98,8 @@ data:
     \ '0' + (dat[i >> 6] >> (i & 63) & 1);\n    return S;\n  }\n\n  // bitset \u306B\
     \u4ED5\u69D8\u3092\u5408\u308F\u305B\u308B\n  void set(int i) { (*this)[i] = 1;\
     \ }\n  void reset(int i) { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip();\
-    \ }\n  void set() { fill(all(dat), 0); }\n  void reset() {\n    fill(all(dat),\
-    \ u64(-1));\n    resize(N);\n  }\n\n  int _Find_first() { return next(0); }\n\
+    \ }\n  void set() {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n  void\
+    \ reset() { fill(all(dat), 0); }\n\n  int _Find_first() { return next(0); }\n\
     \  int _Find_next(int p) { return next(p + 1); }\n};\n#line 2 \"linalg/bitset/solve_linear.hpp\"\
     \n\n// \u884C\u30D9\u30AF\u30C8\u30EB\u3092 bitset \u306B\u3059\u308B\n// (2000,\
     \ 8000) \u3067 300ms \u7A0B\u5EA6\uFF08ABC276H\uFF09\ntemplate <typename BS, typename\
@@ -134,7 +134,7 @@ data:
   isVerificationFile: false
   path: linalg/bitset/solve_linear.hpp
   requiredBy: []
-  timestamp: '2023-10-07 13:07:07+09:00'
+  timestamp: '2023-11-03 05:38:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1421.test.cpp
