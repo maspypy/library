@@ -11,13 +11,13 @@ pair<vc<int>, vc<int>> euler_walk(GT& G, int s = -1) {
   if (s == -1) {
     vc<int> deg(N);
     for (auto&& e: G.edges) {
-      if (G.is_directed()) {
+      if constexpr (GT::is_directed) {
         deg[e.frm]++, deg[e.to]--;
       } else {
         deg[e.frm]++, deg[e.to]++;
       }
     }
-    if (G.is_directed()) {
+    if constexpr (GT::is_directed) {
       s = max_element(all(deg)) - deg.begin();
       if (deg[s] == 0) s = (M == 0 ? 0 : G.edges[0].frm);
     } else {
