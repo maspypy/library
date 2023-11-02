@@ -27,12 +27,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1678.test.cpp
     title: test/yukicoder/1678.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc214h.test.cpp
     title: test_atcoder/abc214h.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"flow/mincostflow.hpp\"\n\n// atcoder library \u306E\u3082\
@@ -252,7 +252,7 @@ data:
   path: flow/mincostflow.hpp
   requiredBy: []
   timestamp: '2023-10-14 01:47:11+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc214h.test.cpp
   - test/aoj/GRL_6_B.test.cpp
