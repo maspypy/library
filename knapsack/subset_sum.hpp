@@ -5,6 +5,7 @@
 template <typename T>
 vc<int> subset_sum_solution_1(vc<T>& vals, int target) {
   int n = len(vals);
+  if (n == 0) return {};
   int mx = MAX(vals);
   int b = 0, sb = 0;
   while (b < n && sb + vals[b] <= target) { sb += vals[b++]; }
@@ -68,10 +69,10 @@ vc<int> subset_sum_solution_2(vc<T>& vals, int target) {
     int v = vals[I[k]];
     if (v > target) continue;
     My_Bitset newdp = dp;
-    int new_size = min<int>(len(dp) + v, target + 1);
+    int new_size = len(dp) + v;
     newdp.resize(new_size);
-    dp.resize(new_size - v);
     newdp.or_to_range(v, new_size, dp);
+    if (len(newdp) > target + 1) newdp.resize(target + 1);
     // update したところをメモ
     FOR(i, len(newdp.dat)) {
       u64 upd = (i < len(dp.dat) ? dp.dat[i] : u64(0)) ^ newdp.dat[i];
@@ -99,7 +100,7 @@ vc<int> subset_sum_solution_3(vc<T>& vals, int target) {
   FOR(i, N) IDS[vals[i]].eb(i);
   vc<pair<int, int>> par(N, {-1, -1});
   vc<int> grp_vals;
-  vvc<int> raw_idx;
+  vc<int> raw_idx;
   FOR(x, 1, SM + 1) {
     auto& I = IDS[x];
     while (len(I) >= 3) {
@@ -116,7 +117,7 @@ vc<int> subset_sum_solution_3(vc<T>& vals, int target) {
   auto I = subset_sum_solution_2<int>(grp_vals, target);
   vc<int> ANS;
   for (auto& i: I) {
-    vc<int> st = {i};
+    vc<int> st = {raw_idx[i]};
     while (len(st)) {
       auto c = POP(st);
       if (c < N) {
