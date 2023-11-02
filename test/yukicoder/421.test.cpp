@@ -1,3 +1,4 @@
+#define PROBLEM "https://yukicoder.me/problems/no/421"
 #include "my_template.hpp"
 #include "other/io.hpp"
 
@@ -24,7 +25,7 @@ void solve() {
   vc<My_Bitset> adj(a, My_Bitset(b));
   FOR(x, H) FOR(y, W) {
     if ((x + y) & 1) continue;
-    FOR(d, 2) {
+    FOR(d, 4) {
       int nx = x + dx[d], ny = y + dy[d];
       if (!isin(nx, ny)) continue;
       if (G[x][y] == G[nx][ny]) continue;
@@ -37,9 +38,16 @@ void solve() {
   BipartiteMatching_Dense<My_Bitset> BM(adj, a, b);
   auto match = BM.matching();
   int n = len(match);
-  int x = 0;
-  FOR(i, H) FOR(j, W) x += (G[i][j] != '.');
-  print(100 * n + (x - 2 * n));
+  int x = 0, y = 0;
+  FOR(i, H) FOR(j, W) x += (G[i][j] == 'w');
+  FOR(i, H) FOR(j, W) y += (G[i][j] == 'b');
+  x -= n, y -= n;
+  int ANS = 0;
+  ANS += 100 * n;
+  int m = min(x, y);
+  ANS += 10 * m;
+  ANS += x + y - 2 * m;
+  print(ANS);
 }
 
 signed main() {
