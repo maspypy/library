@@ -80,6 +80,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/eulerwalk.hpp
     title: graph/eulerwalk.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/fast_lca.hpp
+    title: graph/fast_lca.hpp
   - icon: ':warning:'
     path: graph/find_C4.hpp
     title: graph/find_C4.hpp
@@ -369,6 +372,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/lca_directed.test.cpp
     title: test/library_checker/tree/lca_directed.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/tree/lca_fast.test.cpp
+    title: test/library_checker/tree/lca_fast.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/rerooting_dp.test.cpp
     title: test/library_checker/tree/rerooting_dp.test.cpp
@@ -782,6 +788,7 @@ data:
   - graph/unicyclic.hpp
   - graph/minimum_cost_cycle.hpp
   - graph/maximum_antichain.hpp
+  - graph/fast_lca.hpp
   - graph/reverse_graph.hpp
   - graph/ds/tree_abelgroup.hpp
   - graph/ds/incremental_centroid.hpp
@@ -889,6 +896,7 @@ data:
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/tree/rerooting_dp.test.cpp
   - test/library_checker/tree/lca.test.cpp
+  - test/library_checker/tree/lca_fast.test.cpp
   - test/library_checker/tree/lca_directed.test.cpp
   - test/library_checker/math/twosat.test.cpp
   - test/library_checker/string/number_of_substrings2.test.cpp

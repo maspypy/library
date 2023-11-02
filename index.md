@@ -684,7 +684,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/eulerwalk.hpp
       title: graph/eulerwalk.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/fast_lca.hpp
       title: graph/fast_lca.hpp
     - icon: ':warning:'
@@ -2487,6 +2487,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/tree/lca_directed.test.cpp
       title: test/library_checker/tree/lca_directed.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/tree/lca_fast.test.cpp
+      title: test/library_checker/tree/lca_fast.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/tree/rerooting_dp.test.cpp
       title: test/library_checker/tree/rerooting_dp.test.cpp

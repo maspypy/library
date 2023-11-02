@@ -769,6 +769,9 @@ data:
     path: test/library_checker/tree/lca_directed.test.cpp
     title: test/library_checker/tree/lca_directed.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/tree/lca_fast.test.cpp
+    title: test/library_checker/tree/lca_fast.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/rerooting_dp.test.cpp
     title: test/library_checker/tree/rerooting_dp.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2750,6 +2753,7 @@ data:
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/tree/rerooting_dp.test.cpp
   - test/library_checker/tree/lca.test.cpp
+  - test/library_checker/tree/lca_fast.test.cpp
   - test/library_checker/tree/lca_directed.test.cpp
   - test/library_checker/tree/cartesian_tree.test.cpp
   - test/library_checker/addition_of_bigintegers.test.cpp
