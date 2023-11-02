@@ -17,10 +17,13 @@ data:
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/tree/lca_fast.test.cpp
+    title: test/library_checker/tree/lca_fast.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate\
@@ -245,8 +248,9 @@ data:
   path: graph/fast_lca.hpp
   requiredBy: []
   timestamp: '2023-11-03 05:00:06+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/library_checker/tree/lca_fast.test.cpp
 documentation_of: graph/fast_lca.hpp
 layout: document
 redirect_from:

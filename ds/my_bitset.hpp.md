@@ -18,9 +18,6 @@ data:
     path: linalg/bitset/solve_linear.hpp
     title: linalg/bitset/solve_linear.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/library_checker/tree/lca_fast.test.cpp
-    title: test/library_checker/tree/lca_fast.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/mybitset.test.cpp
     title: test/mytest/mybitset.test.cpp
@@ -48,9 +45,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_2.test.cpp
     title: test/yukicoder/4_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/contest/914/problem/F
@@ -239,7 +236,7 @@ data:
   - linalg/bitset/mat_inv.hpp
   - ds/counter.hpp
   timestamp: '2023-11-03 05:38:01+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/421_2.test.cpp
   - test/yukicoder/4_2.test.cpp
@@ -250,7 +247,6 @@ data:
   - test/yukicoder/142.test.cpp
   - test/mytest/mybitset.test.cpp
   - test/mytest/subset_sum.test.cpp
-  - test/library_checker/tree/lca_fast.test.cpp
 documentation_of: ds/my_bitset.hpp
 layout: document
 redirect_from:
