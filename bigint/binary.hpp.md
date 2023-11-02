@@ -340,12 +340,22 @@ data:
     \  // bint operator/(const modint &p) const { return modint(*this) /= p; }\n \
     \ bool operator==(const bint &p) const {\n    return (sgn == p.sgn && dat == p.dat);\n\
     \  }\n  bool operator!=(const bint &p) const {\n    return (sgn != p.sgn || dat\
-    \ != p.dat);\n  }\n\n  vc<int> convolve(const vc<int> &A, const vc<int> &B) {\n\
-    \    assert(0);\n    return {};\n    /*\n    vc<ll> A1 = {A.begin(), A.end()};\n\
-    \    vc<ll> B1 = {B.begin(), B.end()};\n    vc<ll> F = convolution(A1, B1);\n\
-    \    F.eb(0);\n    FOR(i, len(F) - 1) { F[i + 1] += F[i] / MOD, F[i] = F[i] %\
-    \ MOD; }\n    while (len(F) && F.back() == 0) POP(F);\n    return {F.begin(),\
-    \ F.end()};\n    */\n  }\n\n  string to_string() {\n    if (dat.empty()) return\
+    \ != p.dat);\n  }\n\n  vc<int> convolve(const vc<int> &a, const vc<int> &b) {\n\
+    \    int n = len(a), m = len(b);\n    if (!n || !m) return {};\n    if (min(n,\
+    \ m) <= 500) {\n      vc<int> c(n + m - 1);\n      u128 x = 0;\n      FOR(k, n\
+    \ + m - 1) {\n        int s = max<int>(0, k + 1 - m), t = min<int>(k, n - 1);\n\
+    \        FOR(i, s, t + 1) { x += u64(a[i]) * b[k - i]; }\n        c[k] = x % MOD,\
+    \ x = x / MOD;\n      }\n      while (x > 0) { c.eb(x % MOD), x = x / MOD; }\n\
+    \      return c;\n    }\n    static constexpr int p0 = 167772161;\n    static\
+    \ constexpr int p1 = 469762049;\n    static constexpr int p2 = 754974721;\n  \
+    \  using mint0 = modint<p0>;\n    using mint1 = modint<p1>;\n    using mint2 =\
+    \ modint<p2>;\n    vc<mint0> a0(all(a)), b0(all(b));\n    vc<mint1> a1(all(a)),\
+    \ b1(all(b));\n    vc<mint2> a2(all(a)), b2(all(b));\n    auto c0 = convolution_ntt<mint0>(a0,\
+    \ b0);\n    auto c1 = convolution_ntt<mint1>(a1, b1);\n    auto c2 = convolution_ntt<mint2>(a2,\
+    \ b2);\n    vc<int> c(len(c0));\n    u128 x = 0;\n    FOR(i, n + m - 1) {\n  \
+    \    x += CRT3<u128, p0, p1, p2>(c0[i].val, c1[i].val, c2[i].val);\n      c[i]\
+    \ = x % MOD, x = x / MOD;\n    }\n    while (x) { c.eb(x % MOD), x = x / MOD;\
+    \ }\n    return c;\n  }\n\n  string to_string() {\n    if (dat.empty()) return\
     \ \"0\";\n    string s;\n    for (int x: dat) {\n      FOR(LOG) {\n        s +=\
     \ '0' + (x & 1);\n        x /= 2;\n      }\n    }\n    while (s.back() == '0')\
     \ s.pop_back();\n    if (sgn == -1) s += '-';\n    reverse(all(s));\n    return\
@@ -403,11 +413,21 @@ data:
     \ operator/(const modint &p) const { return modint(*this) /= p; }\n  bool operator==(const\
     \ bint &p) const {\n    return (sgn == p.sgn && dat == p.dat);\n  }\n  bool operator!=(const\
     \ bint &p) const {\n    return (sgn != p.sgn || dat != p.dat);\n  }\n\n  vc<int>\
-    \ convolve(const vc<int> &A, const vc<int> &B) {\n    assert(0);\n    return {};\n\
-    \    /*\n    vc<ll> A1 = {A.begin(), A.end()};\n    vc<ll> B1 = {B.begin(), B.end()};\n\
-    \    vc<ll> F = convolution(A1, B1);\n    F.eb(0);\n    FOR(i, len(F) - 1) { F[i\
-    \ + 1] += F[i] / MOD, F[i] = F[i] % MOD; }\n    while (len(F) && F.back() == 0)\
-    \ POP(F);\n    return {F.begin(), F.end()};\n    */\n  }\n\n  string to_string()\
+    \ convolve(const vc<int> &a, const vc<int> &b) {\n    int n = len(a), m = len(b);\n\
+    \    if (!n || !m) return {};\n    if (min(n, m) <= 500) {\n      vc<int> c(n\
+    \ + m - 1);\n      u128 x = 0;\n      FOR(k, n + m - 1) {\n        int s = max<int>(0,\
+    \ k + 1 - m), t = min<int>(k, n - 1);\n        FOR(i, s, t + 1) { x += u64(a[i])\
+    \ * b[k - i]; }\n        c[k] = x % MOD, x = x / MOD;\n      }\n      while (x\
+    \ > 0) { c.eb(x % MOD), x = x / MOD; }\n      return c;\n    }\n    static constexpr\
+    \ int p0 = 167772161;\n    static constexpr int p1 = 469762049;\n    static constexpr\
+    \ int p2 = 754974721;\n    using mint0 = modint<p0>;\n    using mint1 = modint<p1>;\n\
+    \    using mint2 = modint<p2>;\n    vc<mint0> a0(all(a)), b0(all(b));\n    vc<mint1>\
+    \ a1(all(a)), b1(all(b));\n    vc<mint2> a2(all(a)), b2(all(b));\n    auto c0\
+    \ = convolution_ntt<mint0>(a0, b0);\n    auto c1 = convolution_ntt<mint1>(a1,\
+    \ b1);\n    auto c2 = convolution_ntt<mint2>(a2, b2);\n    vc<int> c(len(c0));\n\
+    \    u128 x = 0;\n    FOR(i, n + m - 1) {\n      x += CRT3<u128, p0, p1, p2>(c0[i].val,\
+    \ c1[i].val, c2[i].val);\n      c[i] = x % MOD, x = x / MOD;\n    }\n    while\
+    \ (x) { c.eb(x % MOD), x = x / MOD; }\n    return c;\n  }\n\n  string to_string()\
     \ {\n    if (dat.empty()) return \"0\";\n    string s;\n    for (int x: dat) {\n\
     \      FOR(LOG) {\n        s += '0' + (x & 1);\n        x /= 2;\n      }\n   \
     \ }\n    while (s.back() == '0') s.pop_back();\n    if (sgn == -1) s += '-';\n\
@@ -438,7 +458,7 @@ data:
   isVerificationFile: false
   path: bigint/binary.hpp
   requiredBy: []
-  timestamp: '2023-11-02 02:44:26+09:00'
+  timestamp: '2023-11-03 05:47:33+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: bigint/binary.hpp
