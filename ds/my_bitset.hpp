@@ -242,11 +242,11 @@ struct My_Bitset {
   void set(int i) { (*this)[i] = 1; }
   void reset(int i) { (*this)[i] = 0; }
   void flip(int i) { (*this)[i].flip(); }
-  void set() { fill(all(dat), 0); }
-  void reset() {
+  void set() {
     fill(all(dat), u64(-1));
     resize(N);
   }
+  void reset() { fill(all(dat), 0); }
 
   int _Find_first() { return next(0); }
   int _Find_next(int p) { return next(p + 1); }
