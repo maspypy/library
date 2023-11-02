@@ -378,15 +378,15 @@ data:
     \  return {A.fi + B.fi, A.se + B.se};\n    };\n    auto f_ev = [&](Data A, int\
     \ v) -> Data { return {A.fi + 1, A.se}; };\n    auto f_ve = [&](Data A, const\
     \ auto& e) -> Data {\n      return {A.fi, A.se + A.fi * e.cost};\n    };\n\n \
-    \   Rerooting_dp<decltype(tree), Data> DP(tree, f_ee, f_ev, f_ve, unit);\n   \
-    \ dp = DP.dp, dp_1 = DP.dp_1, dp_2 = DP.dp_2;\n  }\n\n  // (cnt, sum)\n  // v\
-    \ \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E full tree\n  pair<int, WT>\
-    \ operator[](int v) { return dp[v]; }\n\n  // (cnt, sum)\n  // root \u3092\u6839\
-    \u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\u6728 v\n  pair<int, WT> get(int\
-    \ v, int root) {\n    if (root == v) return dp[v];\n    if (!tree.in_subtree(root,\
-    \ v)) { return dp_1[v]; }\n    int w = tree.jump(v, root, 1);\n    return dp_2[w];\n\
-    \  }\n};\n#line 6 \"test_atcoder/abc220f.test.cpp\"\n\nvoid solve() {\n  LL(N);\n\
-    \  Graph<int, 0> G(N);\n  G.read_tree();\n  Tree<decltype(G)> tree(G);\n\n  SubTree_DepthSum<decltype(tree),\
+    \   Rerooting_dp<TREE, Data> DP(tree, f_ee, f_ev, f_ve, unit);\n    dp = DP.dp,\
+    \ dp_1 = DP.dp_1, dp_2 = DP.dp_2;\n  }\n\n  // (cnt, sum)\n  // v \u3092\u6839\
+    \u3068\u3057\u305F\u3068\u304D\u306E full tree\n  pair<int, WT> operator[](int\
+    \ v) { return dp[v]; }\n\n  // (cnt, sum)\n  // root \u3092\u6839\u3068\u3057\u305F\
+    \u3068\u304D\u306E\u90E8\u5206\u6728 v\n  pair<int, WT> get(int v, int root) {\n\
+    \    if (root == v) return dp[v];\n    if (!tree.in_subtree(root, v)) { return\
+    \ dp_1[v]; }\n    int w = tree.jump(v, root, 1);\n    return dp_2[w];\n  }\n};\n\
+    #line 6 \"test_atcoder/abc220f.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  Graph<int,\
+    \ 0> G(N);\n  G.read_tree();\n  Tree<decltype(G)> tree(G);\n\n  SubTree_DepthSum<decltype(tree),\
     \ ll> dp(tree);\n  FOR(v, N) print(dp[v].se);\n}\n\nsigned main() {\n  solve();\n\
     \  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc220/tasks/abc220_f\"\n#include\
@@ -404,7 +404,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc220f.test.cpp
   requiredBy: []
-  timestamp: '2023-11-01 19:16:20+09:00'
+  timestamp: '2023-11-02 17:13:58+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc220f.test.cpp
