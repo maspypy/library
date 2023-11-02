@@ -96,13 +96,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1844.test.cpp
     title: test/yukicoder/1844.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1962.test.cpp
     title: test/yukicoder/1962.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2305.test.cpp
     title: test/yukicoder/2305.test.cpp
   - icon: ':x:'
@@ -466,41 +466,41 @@ data:
   isVerificationFile: false
   path: poly/fps_div.hpp
   requiredBy:
-  - poly/coef_of_rational_fps.hpp
-  - poly/slice_rational_fps.hpp
-  - poly/sum_of_power_of_roots.hpp
-  - poly/composed_product.hpp
-  - poly/composed_sum.hpp
-  - seq/famous/bell_number_large.hpp
   - seq/interpolate_linear_rec.hpp
+  - seq/famous/bell_number_large.hpp
   - seq/sum_of_powers.hpp
   - linalg/implicit_matrix/vandermonde.hpp
+  - poly/slice_rational_fps.hpp
+  - poly/coef_of_rational_fps.hpp
+  - poly/composed_product.hpp
+  - poly/composed_sum.hpp
+  - poly/sum_of_power_of_roots.hpp
   timestamp: '2023-11-02 02:44:26+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/578.test.cpp
+  - test_atcoder/agc058d2.test.cpp
+  - test_atcoder/arc154f.test.cpp
+  - test_atcoder/abc281g.test.cpp
+  - test_atcoder/agc013e.test.cpp
+  - test_atcoder/abc260h.test.cpp
+  - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/yukicoder/579.test.cpp
   - test/yukicoder/1547.test.cpp
-  - test/yukicoder/2122.test.cpp
-  - test/yukicoder/1533.test.cpp
-  - test/yukicoder/1962.test.cpp
-  - test/yukicoder/1844.test.cpp
-  - test/yukicoder/541.test.cpp
-  - test/yukicoder/2305.test.cpp
-  - test/yukicoder/1500.test.cpp
   - test/yukicoder/1561.test.cpp
   - test/yukicoder/2459.test.cpp
-  - test/yukicoder/1145.test.cpp
-  - test/yukicoder/579.test.cpp
+  - test/yukicoder/2122.test.cpp
+  - test/yukicoder/578.test.cpp
+  - test/yukicoder/1844.test.cpp
   - test/yukicoder/1516.test.cpp
+  - test/yukicoder/541.test.cpp
+  - test/yukicoder/1533.test.cpp
+  - test/yukicoder/1500.test.cpp
+  - test/yukicoder/2305.test.cpp
+  - test/yukicoder/1962.test.cpp
+  - test/yukicoder/1145.test.cpp
+  - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/bell.test.cpp
   - test/mytest/vandermonde.test.cpp
-  - test/mytest/slice_rational_fps.test.cpp
-  - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test_atcoder/arc154f.test.cpp
-  - test_atcoder/agc058d2.test.cpp
-  - test_atcoder/abc260h.test.cpp
-  - test_atcoder/agc013e.test.cpp
-  - test_atcoder/abc281g.test.cpp
 documentation_of: poly/fps_div.hpp
 layout: document
 redirect_from:

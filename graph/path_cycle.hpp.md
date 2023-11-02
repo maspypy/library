@@ -5,16 +5,16 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_independent_set.hpp
     title: graph/count/count_independent_set.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_indep_set.test.cpp
     title: test/mytest/count_indep_set.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -77,7 +77,7 @@ data:
     \u6570\u3082 2 \u4EE5\u4E0B\u306E\u30B0\u30E9\u30D5\u304C\u3042\u308B\u3068\u304D\
     \u306B\u3001\n// \u30D1\u30B9\u306E\u9802\u70B9\u5217, \u30B5\u30A4\u30AF\u30EB\
     \u306E\u9802\u70B9\u5217\n// \u306B\u5206\u89E3\u3059\u308B\ntemplate <typename\
-    \ GT>\npair<vvc<int>, vvc<int>> path_cycle(GT& G) {\n  static_assert(GT::is_directed);\n\
+    \ GT>\npair<vvc<int>, vvc<int>> path_cycle(GT& G) {\n  static_assert(!GT::is_directed);\n\
     \  int N = G.N;\n  auto deg = G.deg_array();\n  assert(MAX(deg) <= 2);\n\n  vc<bool>\
     \ done(N);\n  auto calc_frm = [&](int v) -> vc<int> {\n    vc<int> P = {v};\n\
     \    done[v] = 1;\n    while (1) {\n      bool ok = 0;\n      for (auto&& e: G[P.back()])\
@@ -92,7 +92,7 @@ data:
     \ 2 \u4EE5\u4E0B\u306E\u30B0\u30E9\u30D5\u304C\u3042\u308B\u3068\u304D\u306B\u3001\
     \n// \u30D1\u30B9\u306E\u9802\u70B9\u5217, \u30B5\u30A4\u30AF\u30EB\u306E\u9802\
     \u70B9\u5217\n// \u306B\u5206\u89E3\u3059\u308B\ntemplate <typename GT>\npair<vvc<int>,\
-    \ vvc<int>> path_cycle(GT& G) {\n  static_assert(GT::is_directed);\n  int N =\
+    \ vvc<int>> path_cycle(GT& G) {\n  static_assert(!GT::is_directed);\n  int N =\
     \ G.N;\n  auto deg = G.deg_array();\n  assert(MAX(deg) <= 2);\n\n  vc<bool> done(N);\n\
     \  auto calc_frm = [&](int v) -> vc<int> {\n    vc<int> P = {v};\n    done[v]\
     \ = 1;\n    while (1) {\n      bool ok = 0;\n      for (auto&& e: G[P.back()])\
@@ -109,8 +109,8 @@ data:
   path: graph/path_cycle.hpp
   requiredBy:
   - graph/count/count_independent_set.hpp
-  timestamp: '2023-11-01 13:24:40+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-11-02 11:29:55+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/count_indep_set.test.cpp
 documentation_of: graph/path_cycle.hpp

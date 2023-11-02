@@ -12,10 +12,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
     title: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2102.test.cpp
     title: test/yukicoder/2102.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2231.test.cpp
     title: test/yukicoder/2231.test.cpp
   - icon: ':x:'
@@ -110,10 +110,10 @@ data:
   timestamp: '2023-10-28 00:09:18+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
+  - test/yukicoder/2231.test.cpp
   - test/yukicoder/2102.test.cpp
   - test/yukicoder/263.test.cpp
-  - test/yukicoder/2231.test.cpp
-  - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
 documentation_of: string/rollinghash.hpp
 layout: document
 redirect_from:

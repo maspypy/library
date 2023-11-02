@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1541.test.cpp
     title: test/yukicoder/1541.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2320.test.cpp
     title: test/yukicoder/2320.test.cpp
   - icon: ':x:'
@@ -202,10 +202,10 @@ data:
   timestamp: '2023-10-29 05:43:44+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/2320.test.cpp
-  - test/yukicoder/1541.test.cpp
   - test_atcoder/abc193f.test.cpp
   - test_atcoder/abc259g.test.cpp
+  - test/yukicoder/2320.test.cpp
+  - test/yukicoder/1541.test.cpp
 documentation_of: flow/binary_optimization.hpp
 layout: document
 redirect_from:

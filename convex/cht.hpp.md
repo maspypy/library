@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1297.test.cpp
     title: test/yukicoder/1297.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2012.test.cpp
     title: test/yukicoder/2012.test.cpp
   - icon: ':x:'
@@ -107,10 +107,10 @@ data:
   timestamp: '2023-09-08 00:56:45+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test_atcoder/abc244h.test.cpp
+  - test/library_checker/datastructure/line_add_get_min.test.cpp
   - test/yukicoder/2012.test.cpp
   - test/yukicoder/1297.test.cpp
-  - test/library_checker/datastructure/line_add_get_min.test.cpp
-  - test_atcoder/abc244h.test.cpp
 documentation_of: convex/cht.hpp
 layout: document
 redirect_from:

@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/cntsum_add.hpp
     title: alg/acted_monoid/cntsum_add.hpp
   - icon: ':x:'
@@ -18,10 +18,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/mo_on_tree.test.cpp
     title: test/mytest/mo_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1919.test.cpp
     title: test/yukicoder/1919.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
   - icon: ':x:'
@@ -51,17 +51,17 @@ data:
   isVerificationFile: false
   path: alg/monoid/add_pair.hpp
   requiredBy:
-  - alg/acted_monoid/cntsum_affine.hpp
   - alg/acted_monoid/cntsum_add.hpp
+  - alg/acted_monoid/cntsum_affine.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1919.test.cpp
-  - test/yukicoder/255.test.cpp
   - test/yukicoder/749.test.cpp
   - test/yukicoder/235.test.cpp
-  - test/mytest/cf702_F.test.cpp
+  - test/yukicoder/255.test.cpp
+  - test/yukicoder/1919.test.cpp
   - test/mytest/mo_on_tree.test.cpp
+  - test/mytest/cf702_F.test.cpp
   - test/mytest/cf702_F_splay.test.cpp
 documentation_of: alg/monoid/add_pair.hpp
 layout: document

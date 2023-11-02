@@ -12,7 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/two_edge_component.test.cpp
     title: test/library_checker/graph/two_edge_component.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1983.test.cpp
     title: test/yukicoder/1983.test.cpp
   - icon: ':x:'
@@ -111,10 +111,10 @@ data:
   timestamp: '2023-11-01 05:26:51+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/aoj/GRL_3_B.test.cpp
+  - test/library_checker/graph/two_edge_component.test.cpp
   - test/yukicoder/529.test.cpp
   - test/yukicoder/1983.test.cpp
-  - test/library_checker/graph/two_edge_component.test.cpp
-  - test/aoj/GRL_3_B.test.cpp
 documentation_of: graph/two_edge_component.hpp
 layout: document
 redirect_from:

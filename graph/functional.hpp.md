@@ -18,7 +18,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1242.test.cpp
     title: test/yukicoder/1242.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
   - icon: ':x:'
@@ -253,8 +253,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1211.test.cpp
-  - test/yukicoder/2122.test.cpp
   - test/yukicoder/590.test.cpp
+  - test/yukicoder/2122.test.cpp
   - test/yukicoder/1242.test.cpp
 documentation_of: graph/functional.hpp
 layout: document
