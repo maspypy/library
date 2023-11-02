@@ -599,7 +599,7 @@ data:
     - icon: ':warning:'
       path: geo/inside_polygon.hpp
       title: geo/inside_polygon.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/manhattan_mst.hpp
       title: geo/manhattan_mst.hpp
     - icon: ':heavy_check_mark:'
@@ -1048,7 +1048,7 @@ data:
     - icon: ':question:'
       path: mod/crt3.hpp
       title: mod/crt3.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/dynamic_modint.hpp
       title: mod/dynamic_modint.hpp
     - icon: ':warning:'
@@ -3774,10 +3774,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc281e.test.cpp
       title: test_atcoder/abc281e.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc281g.test.cpp
       title: test_atcoder/abc281g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc283f.test.cpp
       title: test_atcoder/abc283f.test.cpp
     - icon: ':x:'
