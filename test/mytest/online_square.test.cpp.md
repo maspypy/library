@@ -55,7 +55,7 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/online/online_square.hpp
     title: poly/online/online_square.hpp
   - icon: ':question:'
