@@ -107,18 +107,40 @@ struct BigInteger_Binary {
     return (sgn != p.sgn || dat != p.dat);
   }
 
-  vc<int> convolve(const vc<int> &A, const vc<int> &B) {
-    assert(0);
-    return {};
-    /*
-    vc<ll> A1 = {A.begin(), A.end()};
-    vc<ll> B1 = {B.begin(), B.end()};
-    vc<ll> F = convolution(A1, B1);
-    F.eb(0);
-    FOR(i, len(F) - 1) { F[i + 1] += F[i] / MOD, F[i] = F[i] % MOD; }
-    while (len(F) && F.back() == 0) POP(F);
-    return {F.begin(), F.end()};
-    */
+  vc<int> convolve(const vc<int> &a, const vc<int> &b) {
+    int n = len(a), m = len(b);
+    if (!n || !m) return {};
+    if (min(n, m) <= 500) {
+      vc<int> c(n + m - 1);
+      u128 x = 0;
+      FOR(k, n + m - 1) {
+        int s = max<int>(0, k + 1 - m), t = min<int>(k, n - 1);
+        FOR(i, s, t + 1) { x += u64(a[i]) * b[k - i]; }
+        c[k] = x % MOD, x = x / MOD;
+      }
+      while (x > 0) { c.eb(x % MOD), x = x / MOD; }
+      return c;
+    }
+    static constexpr int p0 = 167772161;
+    static constexpr int p1 = 469762049;
+    static constexpr int p2 = 754974721;
+    using mint0 = modint<p0>;
+    using mint1 = modint<p1>;
+    using mint2 = modint<p2>;
+    vc<mint0> a0(all(a)), b0(all(b));
+    vc<mint1> a1(all(a)), b1(all(b));
+    vc<mint2> a2(all(a)), b2(all(b));
+    auto c0 = convolution_ntt<mint0>(a0, b0);
+    auto c1 = convolution_ntt<mint1>(a1, b1);
+    auto c2 = convolution_ntt<mint2>(a2, b2);
+    vc<int> c(len(c0));
+    u128 x = 0;
+    FOR(i, n + m - 1) {
+      x += CRT3<u128, p0, p1, p2>(c0[i].val, c1[i].val, c2[i].val);
+      c[i] = x % MOD, x = x / MOD;
+    }
+    while (x) { c.eb(x % MOD), x = x / MOD; }
+    return c;
   }
 
   string to_string() {
