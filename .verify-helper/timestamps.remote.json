@@ -361,6 +361,7 @@
 "test/mytest/rbst_test.test.cpp": "2023-11-01 19:16:20 +0900",
 "test/mytest/rect_add_pt_sum.test.cpp": "2023-11-01 19:16:20 +0900",
 "test/mytest/run_length.test.cpp": "2023-11-01 19:16:20 +0900",
+"test/mytest/scc_tournament.test.cpp": "2023-11-03 04:56:22 +0900",
 "test/mytest/seg2d.test.cpp": "2023-11-01 19:16:20 +0900",
 "test/mytest/segtree_xor_prod.test.cpp": "2023-11-01 19:16:20 +0900",
 "test/mytest/simple_perm.test.cpp": "2023-11-02 02:44:26 +0900",
