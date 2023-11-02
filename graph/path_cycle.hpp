@@ -5,7 +5,7 @@
 // に分解する
 template <typename GT>
 pair<vvc<int>, vvc<int>> path_cycle(GT& G) {
-  static_assert(GT::is_directed);
+  static_assert(!GT::is_directed);
   int N = G.N;
   auto deg = G.deg_array();
   assert(MAX(deg) <= 2);
