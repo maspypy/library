@@ -122,8 +122,8 @@ data:
   timestamp: '2023-11-01 01:33:38+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc314f.test.cpp
   - test/yukicoder/1451.test.cpp
+  - test_atcoder/abc314f.test.cpp
 documentation_of: graph/tree_of_unionfind.hpp
 layout: document
 redirect_from:
