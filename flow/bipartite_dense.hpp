@@ -18,7 +18,7 @@ struct BipartiteMatching_Dense {
 
   BipartiteMatching_Dense(vc<BS>& adj, int N1, int N2)
       : N1(N1), N2(N2), adj(adj), match_1(N1, -1), match_2(N2, -1) {
-    vis = BS(N2, 1);
+    if constexpr (is_same_v<BS, My_Bitset>) vis.resize(N2);
     FOR(s, N1) bfs(s);
   }
 
