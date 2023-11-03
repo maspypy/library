@@ -17,12 +17,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_forest.hpp
     title: graph/count/count_forest.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/count/count_independent_set.hpp
     title: graph/count/count_independent_set.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/count_unicyclic.hpp
     title: graph/count/count_unicyclic.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/tree_all_distances.hpp
+    title: graph/tree_all_distances.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
@@ -364,6 +367,12 @@ data:
     path: test/library_checker/sample/aplusb128.test.cpp
     title: test/library_checker/sample/aplusb128.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
+    title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
+    title: test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/bell.test.cpp
     title: test/mytest/bell.test.cpp
   - icon: ':heavy_check_mark:'
@@ -393,7 +402,7 @@ data:
   - icon: ':x:'
     path: test/mytest/count_clique.test.cpp
     title: test/mytest/count_clique.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_indep_set.test.cpp
     title: test/mytest/count_indep_set.test.cpp
   - icon: ':heavy_check_mark:'
@@ -495,6 +504,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1755.test.cpp
     title: test/yukicoder/1755.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1796.test.cpp
+    title: test/yukicoder/1796.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1821.test.cpp
     title: test/yukicoder/1821.test.cpp
@@ -727,6 +739,7 @@ data:
   - poly/sum_of_rationals.hpp
   - poly/from_log_differentiation.hpp
   - poly/composition_f_rational.hpp
+  - graph/tree_all_distances.hpp
   - graph/count/count_forest.hpp
   - graph/count/count_clique.hpp
   - graph/count/count_unicyclic.hpp
@@ -762,6 +775,7 @@ data:
   - test/yukicoder/1547.test.cpp
   - test/yukicoder/2122.test.cpp
   - test/yukicoder/1533.test.cpp
+  - test/yukicoder/1796.test.cpp
   - test/yukicoder/2508.test.cpp
   - test/yukicoder/2097.test.cpp
   - test/yukicoder/2243.test.cpp
@@ -822,6 +836,8 @@ data:
   - test/mytest/simple_perm.test.cpp
   - test/mytest/count_bipartite.test.cpp
   - test/library_checker/multiplication_of_bigintegers.test.cpp
+  - test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
+  - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/addition_of_bigintegers.test.cpp
   - test/library_checker/sample/aplusb128.test.cpp
   - test/library_checker/convolution/multivariate_convolution.test.cpp

@@ -8,19 +8,19 @@ data:
   - icon: ':x:'
     path: graph/count/count_clique.hpp
     title: graph/count/count_clique.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/count/count_independent_set.hpp
     title: graph/count/count_independent_set.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/mytest/count_clique.test.cpp
     title: test/mytest/count_clique.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_indep_set.test.cpp
     title: test/mytest/count_indep_set.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -118,7 +118,7 @@ data:
   - graph/count/count_clique.hpp
   - graph/count/count_independent_set.hpp
   timestamp: '2023-11-04 05:26:59+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/count_clique.test.cpp
   - test/mytest/count_indep_set.test.cpp

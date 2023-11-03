@@ -4,26 +4,17 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
+  _extendedRequiredBy:
   - icon: ':question:'
-    path: random/base.hpp
-    title: random/base.hpp
-  _extendedRequiredBy: []
+    path: graph/centroid_decomposition_old.hpp
+    title: graph/centroid_decomposition_old.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1038.test.cpp
+    title: test/yukicoder/1038.test.cpp
   - icon: ':x:'
-    path: test/mytest/count_clique.test.cpp
-    title: test/mytest/count_clique.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/count_indep_set.test.cpp
-    title: test/mytest/count_indep_set.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/find_odd_cycle.test.cpp
-    title: test/mytest/find_odd_cycle.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/matching_line_graph.test.cpp
-    title: test/mytest/matching_line_graph.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/matching_ve.test.cpp
-    title: test/mytest/matching_ve.test.cpp
+    path: test/yukicoder/1796.test.cpp
+    title: test/yukicoder/1796.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -86,44 +77,47 @@ data:
     \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 3 \"random/random_graph.hpp\"\
-    \n\ntemplate <int DIRECTED>\nGraph<int, DIRECTED> random_graph(int n, bool simple)\
-    \ {\n  Graph<int, DIRECTED> G(n);\n  vc<pi> cand;\n  FOR(a, n) FOR(b, n) {\n \
-    \   if (simple && a == b) continue;\n    if (!DIRECTED && a > b) continue;\n \
-    \   cand.eb(a, b);\n  }\n  int m = RNG(0, len(cand) + 1);\n  set<int> ss;\n  FOR(m)\
-    \ {\n    while (1) {\n      int i = RNG(0, len(cand));\n      if (simple && ss.count(i))\
-    \ continue;\n      ss.insert(i);\n      auto [a, b] = cand[i];\n      G.add(a,\
-    \ b);\n      break;\n    }\n  }\n  G.build();\n  return G;\n}\n"
-  code: "#include \"graph/base.hpp\"\n#include \"random/base.hpp\"\n\ntemplate <int\
-    \ DIRECTED>\nGraph<int, DIRECTED> random_graph(int n, bool simple) {\n  Graph<int,\
-    \ DIRECTED> G(n);\n  vc<pi> cand;\n  FOR(a, n) FOR(b, n) {\n    if (simple &&\
-    \ a == b) continue;\n    if (!DIRECTED && a > b) continue;\n    cand.eb(a, b);\n\
-    \  }\n  int m = RNG(0, len(cand) + 1);\n  set<int> ss;\n  FOR(m) {\n    while\
-    \ (1) {\n      int i = RNG(0, len(cand));\n      if (simple && ss.count(i)) continue;\n\
-    \      ss.insert(i);\n      auto [a, b] = cand[i];\n      G.add(a, b);\n     \
-    \ break;\n    }\n  }\n  G.build();\n  return G;\n}"
+    #line 2 \"graph/find_centroid.hpp\"\n\r\n// (v,w) or (v,-1)\r\ntemplate <typename\
+    \ GT>\r\npair<int, int> find_centroids(GT& G) {\r\n  int N = G.N;\r\n  vc<int>\
+    \ par(N, -1);\r\n  vc<int> V(N);\r\n  vc<int> sz(N);\r\n  int l = 0, r = 0;\r\n\
+    \  V[r++] = 0;\r\n  while (l < r) {\r\n    int v = V[l++];\r\n    for (auto&&\
+    \ e: G[v])\r\n      if (e.to != par[v]) {\r\n        par[e.to] = v;\r\n      \
+    \  V[r++] = e.to;\r\n      }\r\n  }\r\n  FOR_R(i, N) {\r\n    int v = V[i];\r\n\
+    \    sz[v] += 1;\r\n    int p = par[v];\r\n    if (p != -1) sz[p] += sz[v];\r\n\
+    \  }\r\n\r\n  int M = N / 2;\r\n  auto check = [&](int v) -> bool {\r\n    if\
+    \ (N - sz[v] > M) return false;\r\n    for (auto&& e: G[v]) {\r\n      if (e.to\
+    \ != par[v] && sz[e.to] > M) return false;\r\n    }\r\n    return true;\r\n  };\r\
+    \n  pair<int, int> ANS = {-1, -1};\r\n  FOR(v, N) if (check(v)) {\r\n    if (ANS.fi\
+    \ != -1) {\r\n      ANS.se = v;\r\n    } else {\r\n      ANS.fi = v;\r\n    }\r\
+    \n  }\r\n  return ANS;\r\n}\r\n"
+  code: "#include \"graph/base.hpp\"\r\n\r\n// (v,w) or (v,-1)\r\ntemplate <typename\
+    \ GT>\r\npair<int, int> find_centroids(GT& G) {\r\n  int N = G.N;\r\n  vc<int>\
+    \ par(N, -1);\r\n  vc<int> V(N);\r\n  vc<int> sz(N);\r\n  int l = 0, r = 0;\r\n\
+    \  V[r++] = 0;\r\n  while (l < r) {\r\n    int v = V[l++];\r\n    for (auto&&\
+    \ e: G[v])\r\n      if (e.to != par[v]) {\r\n        par[e.to] = v;\r\n      \
+    \  V[r++] = e.to;\r\n      }\r\n  }\r\n  FOR_R(i, N) {\r\n    int v = V[i];\r\n\
+    \    sz[v] += 1;\r\n    int p = par[v];\r\n    if (p != -1) sz[p] += sz[v];\r\n\
+    \  }\r\n\r\n  int M = N / 2;\r\n  auto check = [&](int v) -> bool {\r\n    if\
+    \ (N - sz[v] > M) return false;\r\n    for (auto&& e: G[v]) {\r\n      if (e.to\
+    \ != par[v] && sz[e.to] > M) return false;\r\n    }\r\n    return true;\r\n  };\r\
+    \n  pair<int, int> ANS = {-1, -1};\r\n  FOR(v, N) if (check(v)) {\r\n    if (ANS.fi\
+    \ != -1) {\r\n      ANS.se = v;\r\n    } else {\r\n      ANS.fi = v;\r\n    }\r\
+    \n  }\r\n  return ANS;\r\n}\r\n"
   dependsOn:
   - graph/base.hpp
-  - random/base.hpp
   isVerificationFile: false
-  path: random/random_graph.hpp
-  requiredBy: []
-  timestamp: '2023-11-04 05:26:59+09:00'
+  path: graph/find_centroid.hpp
+  requiredBy:
+  - graph/centroid_decomposition_old.hpp
+  timestamp: '2023-11-04 05:38:35+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/count_clique.test.cpp
-  - test/mytest/find_odd_cycle.test.cpp
-  - test/mytest/count_indep_set.test.cpp
-  - test/mytest/matching_line_graph.test.cpp
-  - test/mytest/matching_ve.test.cpp
-documentation_of: random/random_graph.hpp
+  - test/yukicoder/1038.test.cpp
+  - test/yukicoder/1796.test.cpp
+documentation_of: graph/find_centroid.hpp
 layout: document
 redirect_from:
-- /library/random/random_graph.hpp
-- /library/random/random_graph.hpp.html
-title: random/random_graph.hpp
+- /library/graph/find_centroid.hpp
+- /library/graph/find_centroid.hpp.html
+title: graph/find_centroid.hpp
 ---

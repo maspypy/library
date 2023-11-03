@@ -8,19 +8,28 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/centroid_decomposition.hpp
     title: graph/centroid_decomposition.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/tree_all_distances.hpp
+    title: graph/tree_all_distances.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2251_1.test.cpp
     title: test/aoj/2251_1.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
+    title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
+    title: test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
   - icon: ':x:'
     path: test_atcoder/abc223d.test.cpp
     title: test_atcoder/abc223d.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -135,10 +144,13 @@ data:
   isVerificationFile: false
   path: graph/toposort.hpp
   requiredBy:
+  - graph/tree_all_distances.hpp
   - graph/centroid_decomposition.hpp
   timestamp: '2023-11-04 05:26:59+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
+  - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/aoj/2251_1.test.cpp
   - test_atcoder/abc223d.test.cpp
 documentation_of: graph/toposort.hpp

@@ -17,12 +17,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_forest.hpp
     title: graph/count/count_forest.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/count/count_independent_set.hpp
     title: graph/count/count_independent_set.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/count_unicyclic.hpp
     title: graph/count/count_unicyclic.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/tree_all_distances.hpp
+    title: graph/tree_all_distances.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
@@ -333,7 +336,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/enumerate_cliques.test.cpp
     title: test/library_checker/graph/enumerate_cliques.test.cpp
   - icon: ':heavy_check_mark:'
@@ -501,7 +504,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/number_of_subsequences.test.cpp
     title: test/library_checker/string/number_of_subsequences.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
+    title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
+    title: test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/rerooting_dp.test.cpp
     title: test/library_checker/tree/rerooting_dp.test.cpp
   - icon: ':heavy_check_mark:'
@@ -543,7 +552,7 @@ data:
   - icon: ':x:'
     path: test/mytest/count_clique.test.cpp
     title: test/mytest/count_clique.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_indep_set.test.cpp
     title: test/mytest/count_indep_set.test.cpp
   - icon: ':heavy_check_mark:'
@@ -570,7 +579,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/min_poly.test.cpp
     title: test/mytest/min_poly.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/mo_on_tree.test.cpp
     title: test/mytest/mo_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -699,7 +708,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1411.test.cpp
     title: test/yukicoder/1411.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1451.test.cpp
     title: test/yukicoder/1451.test.cpp
   - icon: ':heavy_check_mark:'
@@ -768,6 +777,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1781.test.cpp
     title: test/yukicoder/1781.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1796.test.cpp
+    title: test/yukicoder/1796.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1810.test.cpp
     title: test/yukicoder/1810.test.cpp
@@ -1171,6 +1183,7 @@ data:
   - mod/mod_log.hpp
   - mod/q_analogue.hpp
   - mod/dynamic_modint_64.hpp
+  - graph/tree_all_distances.hpp
   - graph/count/count_forest.hpp
   - graph/count/count_clique.hpp
   - graph/count/count_unicyclic.hpp
@@ -1218,6 +1231,7 @@ data:
   - test/yukicoder/187.test.cpp
   - test/yukicoder/1533.test.cpp
   - test/yukicoder/426.test.cpp
+  - test/yukicoder/1796.test.cpp
   - test/yukicoder/2508.test.cpp
   - test/yukicoder/1339.test.cpp
   - test/yukicoder/2097.test.cpp
@@ -1340,6 +1354,8 @@ data:
   - test/mytest/count_bipartite.test.cpp
   - test/library_checker/multiplication_of_bigintegers.test.cpp
   - test/library_checker/graph/enumerate_cliques.test.cpp
+  - test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
+  - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/tree/rerooting_dp.test.cpp
   - test/library_checker/addition_of_bigintegers.test.cpp
   - test/library_checker/sample/aplusb128.test.cpp

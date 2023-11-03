@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/sortable_array.hpp
     title: ds/sortable_array.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/centroid_decomposition.hpp
     title: graph/centroid_decomposition.hpp
   - icon: ':heavy_check_mark:'
@@ -23,14 +23,17 @@ data:
   - icon: ':warning:'
     path: graph/implicit_graph/cograph_unionfind.hpp
     title: graph/implicit_graph/cograph_unionfind.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/tree_all_distances.hpp
+    title: graph/tree_all_distances.hpp
   - icon: ':warning:'
     path: other/cuboid_union_volume.hpp
     title: other/cuboid_union_volume.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2251_1.test.cpp
     title: test/aoj/2251_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -45,6 +48,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/sort_segtree_1.test.cpp
     title: test/library_checker/datastructure/sort_segtree_1.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
+    title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
+    title: test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/sortable_array.test.cpp
     title: test/mytest/sortable_array.test.cpp
@@ -147,6 +156,7 @@ data:
   isVerificationFile: false
   path: ds/fastset.hpp
   requiredBy:
+  - graph/tree_all_distances.hpp
   - graph/toposort.hpp
   - graph/implicit_graph/cograph_unionfind.hpp
   - graph/ds/incremental_centroid.hpp
@@ -160,6 +170,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/sortable_array.test.cpp
+  - test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
+  - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/datastructure/predecessor_problem.test.cpp
   - test/library_checker/datastructure/sort_segtree_1.test.cpp
   - test/library_checker/datastructure/sort_segtree.test.cpp
