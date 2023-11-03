@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/non_adjecent_selection.hpp
     title: convex/non_adjecent_selection.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'

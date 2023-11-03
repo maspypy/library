@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/bipartite_edge_coloring
@@ -411,13 +411,13 @@ data:
     \    if (color == 1) A1.eb(A[i]);\n        dfs(dfs, to, 1 ^ color);\n      }\n\
     \    };\n    FOR(v, N) dfs(dfs, v, 0);\n    return {A0, A1};\n  }\n};\n\ntemplate\
     \ <typename GT>\npair<int, vc<int>> bipartite_edge_coloring(GT& G) {\n  auto vcolor\
-    \ = bipartite_vertex_coloring<decltype(G)>(G);\n  auto deg = G.deg_array();\n\
-    \  int D = MAX(deg);\n\n  UnionFind uf(G.N);\n  FOR(c, 2) {\n    pqg<pair<int,\
-    \ int>> que;\n    FOR(v, G.N) {\n      if (vcolor[v] == c) que.emplace(deg[v],\
-    \ v);\n    }\n    while (len(que) > 1) {\n      auto [d1, v1] = POP(que);\n  \
-    \    auto [d2, v2] = POP(que);\n      if (d1 + d2 > D) break;\n      uf.merge(v1,\
-    \ v2);\n      int r = uf[v1];\n      que.emplace(d1 + d2, r);\n    }\n  }\n\n\
-    \  vc<int> LV, RV;\n  FOR(v, G.N) if (uf[v] == v) {\n    if (vcolor[v] == 0) LV.eb(v);\n\
+    \ = bipartite_vertex_coloring<GT>(G);\n  auto deg = G.deg_array();\n  int D =\
+    \ MAX(deg);\n\n  UnionFind uf(G.N);\n  FOR(c, 2) {\n    pqg<pair<int, int>> que;\n\
+    \    FOR(v, G.N) {\n      if (vcolor[v] == c) que.emplace(deg[v], v);\n    }\n\
+    \    while (len(que) > 1) {\n      auto [d1, v1] = POP(que);\n      auto [d2,\
+    \ v2] = POP(que);\n      if (d1 + d2 > D) break;\n      uf.merge(v1, v2);\n  \
+    \    int r = uf[v1];\n      que.emplace(d1 + d2, r);\n    }\n  }\n\n  vc<int>\
+    \ LV, RV;\n  FOR(v, G.N) if (uf[v] == v) {\n    if (vcolor[v] == 0) LV.eb(v);\n\
     \    if (vcolor[v] == 1) RV.eb(v);\n  }\n  int X = max(len(LV), len(RV));\n  vc<int>\
     \ degL(X), degR(X);\n\n  vc<pair<int, int>> edges;\n  for (auto&& e: G.edges)\
     \ {\n    int a = e.frm, b = e.to;\n    a = uf[a], b = uf[b];\n    a = LB(LV, a);\n\
@@ -451,8 +451,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/bipartite_edge_coloring.test.cpp
   requiredBy: []
-  timestamp: '2023-11-03 12:23:39+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-03 14:07:11+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/bipartite_edge_coloring.test.cpp
 layout: document
