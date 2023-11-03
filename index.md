@@ -2634,6 +2634,9 @@ data:
       path: test/mytest/geometric_sequence_sum.test.cpp
       title: test/mytest/geometric_sequence_sum.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/mytest/graph_count.test.cpp
+      title: test/mytest/graph_count.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/mytest/gray_code.test.cpp
       title: test/mytest/gray_code.test.cpp
     - icon: ':heavy_check_mark:'
