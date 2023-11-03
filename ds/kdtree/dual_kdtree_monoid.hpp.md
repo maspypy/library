@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2342_2.test.cpp
     title: test/yukicoder/2342_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/kdtree/dual_kdtree_monoid.hpp\"\n// \u77E9\u5F62\u4F5C\
@@ -105,7 +105,7 @@ data:
   path: ds/kdtree/dual_kdtree_monoid.hpp
   requiredBy: []
   timestamp: '2023-06-03 10:19:19+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/2342_2.test.cpp
 documentation_of: ds/kdtree/dual_kdtree_monoid.hpp
