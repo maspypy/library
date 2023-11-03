@@ -5,14 +5,17 @@ data:
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':heavy_check_mark:'
+    path: flow/bipartite.hpp
+    title: flow/bipartite.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/find_odd_cycle.hpp
-    title: graph/find_odd_cycle.hpp
+    path: graph/maximum_matching_between_vertex_edge.hpp
+    title: graph/maximum_matching_between_vertex_edge.hpp
   - icon: ':heavy_check_mark:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
@@ -38,28 +41,28 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/find_odd_cycle.test.cpp\"\n#define PROBLEM \"\
-    https://judge.yosupo.jp/problem/aplusb\"\n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
-    #include <my_template_compiled.hpp>\n#else\n#pragma GCC optimize(\"Ofast\")\n\
-    #pragma GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace\
-    \ std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing u64 = unsigned\
-    \ long long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\nusing f128\
-    \ = __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr\
-    \ int infty<int> = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll> = ll(infty<int>)\
-    \ * infty<int> * 2;\ntemplate <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate\
-    \ <>\nconstexpr u64 infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128>\
-    \ = i128(infty<ll>) * infty<ll>;\ntemplate <>\nconstexpr double infty<double>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr long double infty<long double> = infty<ll>;\n\
-    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
-    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
-    \ greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h,\
-    \ vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>>\
-    \ name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define\
-    \ vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
-    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+  bundledCode: "#line 1 \"test/mytest/matching_ve.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
+    )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
+    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
+    using u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class T>\n\
+    constexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int> = 1'000'000'000;\n\
+    template <>\nconstexpr ll infty<ll> = ll(infty<int>) * infty<int> * 2;\ntemplate\
+    \ <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
+    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\n\
+    template <>\nconstexpr double infty<double> = infty<ll>;\ntemplate <>\nconstexpr\
+    \ long double infty<long double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing\
+    \ vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
+    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
+    \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
+    template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
+    #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
+    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
+    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
+    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
+    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
@@ -219,10 +222,25 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge\
-    \ {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
-    \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
-    \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
+    \ yes(!t); }\n#line 4 \"test/mytest/matching_ve.test.cpp\"\n\n#line 1 \"graph/maximum_matching_between_vertex_edge.hpp\"\
+    \n// (v_i, e_i)\ntemplate <typename GT>\nvector<pair<int, int>> maximum_matching_between_vertex_edge(GT&\
+    \ G) {\n  static_assert(!GT::is_directed);\n  assert(G.is_prepared());\n  const\
+    \ int N = G.N, M = G.M;\n  vc<int> match(M, -1);\n  vc<int> par(N, -1); // eid\n\
+    \  vc<bool> used(M);\n  vc<bool> vis(N);\n\n  FOR(root, N) {\n    if (vis[root])\
+    \ continue;\n    int back_e = -1;\n    int frm = -1, to = -1;\n    auto dfs =\
+    \ [&](auto& dfs, int v) -> void {\n      for (auto&& e: G[v]) {\n        if (used[e.id])\
+    \ continue;\n        used[e.id] = 1;\n        if (vis[e.to]) {\n          back_e\
+    \ = e.id;\n          frm = v, to = e.to;\n        } else {\n          match[e.id]\
+    \ = e.to;\n          vis[e.to] = 1;\n          par[e.to] = e.id;\n          dfs(dfs,\
+    \ e.to);\n        }\n      }\n    };\n    vis[root] = 1;\n    dfs(dfs, root);\n\
+    \    if (back_e == -1) continue;\n    match[back_e] = to;\n    int x = to;\n \
+    \   while (x != root) {\n      int eid = par[x];\n      x = G.edges[eid].frm +\
+    \ G.edges[eid].to - x;\n      match[eid] = x;\n    }\n  }\n  vc<pair<int, int>>\
+    \ ANS;\n  FOR(i, M) if (match[i] != -1) ANS.eb(match[i], i);\n  return ANS;\n\
+    }\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int frm,\
+    \ to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool directed =\
+    \ false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n  int\
+    \ N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
     \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg,\
     \ vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class OutgoingEdges {\n  public:\n\
     \    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n   \
@@ -275,25 +293,13 @@ data:
     \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
     \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
     \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t\
-    \ x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n         \
-    \            chrono::high_resolution_clock::now().time_since_epoch())\n      \
-    \               .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n\
-    \  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
-    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 3 \"random/random_graph.hpp\"\
-    \n\ntemplate <int DIRECTED>\nGraph<int, DIRECTED> random_graph(int n, bool simple)\
-    \ {\n  Graph<int, DIRECTED> G(n);\n  vc<pi> cand;\n  FOR(a, n) FOR(b, n) {\n \
-    \   if (simple && a == b) continue;\n    if (!DIRECTED && a > b) continue;\n \
-    \   cand.eb(a, b);\n  }\n  int m = RNG(0, len(cand) + 1);\n  set<int> ss;\n  FOR(m)\
-    \ {\n    while (1) {\n      int i = RNG(0, len(cand));\n      if (simple && ss.count(i))\
-    \ continue;\n      ss.insert(i);\n      auto [a, b] = cand[i];\n      G.add(a,\
-    \ b);\n      break;\n    }\n  }\n  G.build();\n  return G;\n}\n#line 2 \"graph/bipartite_vertex_coloring.hpp\"\
-    \n\r\n#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int n, n_comp;\n\
-    \  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n); }\n\n  void\
-    \ build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  void\
-    \ reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x] >= 0)\
-    \ {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n     \
-    \ x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    x = (*this)[x];\n\
+    \ }\n  }\n};\n#line 2 \"graph/bipartite_vertex_coloring.hpp\"\n\r\n#line 2 \"\
+    ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int n, n_comp;\n  vc<int>\
+    \ dat; // par or (-size)\n  UnionFind(int n = 0) { build(n); }\n\n  void build(int\
+    \ m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  void reset()\
+    \ { build(n); }\n\n  int operator[](int x) {\n    while (dat[x] >= 0) {\n    \
+    \  int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n      x = dat[x]\
+    \ = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    x = (*this)[x];\n\
     \    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x],\
     \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
     \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n};\n\
@@ -322,99 +328,129 @@ data:
     \  Graph<int, 1> DAG(C);\n  vvc<int> edges(C);\n  for (auto&& e: G.edges) {\n\
     \    int x = comp[e.frm], y = comp[e.to];\n    if (x == y) continue;\n    edges[x].eb(y);\n\
     \  }\n  FOR(c, C) {\n    UNIQUE(edges[c]);\n    for (auto&& to: edges[c]) DAG.add(c,\
-    \ to);\n  }\n  DAG.build();\n  return DAG;\n}\n#line 2 \"graph/find_odd_cycle.hpp\"\
-    \n\n// (vs, es)\n// https://yukicoder.me/problems/no/1436\ntemplate <typename\
-    \ GT>\npair<vc<int>, vc<int>> find_odd_cycle(GT& G) {\n  int N = G.N;\n  vc<int>\
-    \ comp(N);\n  if constexpr (GT::is_directed) {\n    comp = strongly_connected_component<GT>(G).se;\n\
-    \  }\n  vc<int> dist(2 * N, infty<int>);\n  vc<int> par(2 * N, -1); // edge index\n\
-    \  deque<int> que;\n  auto add = [&](int v, int d, int p) -> void {\n    if (chmin(dist[v],\
-    \ d)) { que.eb(v), par[v] = p; }\n  };\n  FOR(root, N) {\n    if (dist[2 * root\
-    \ + 0] < infty<int>) continue;\n    if (dist[2 * root + 1] < infty<int>) continue;\n\
-    \    add(2 * root, 0, -1);\n    while (len(que)) {\n      auto v = POP(que);\n\
-    \      auto [a, b] = divmod(v, 2);\n      for (auto&& e: G[a]) {\n        if (comp[e.frm]\
-    \ != comp[e.to]) continue;\n        int w = 2 * e.to + (b ^ 1);\n        add(w,\
-    \ dist[v] + 1, e.id);\n      }\n    }\n    if (dist[2 * root + 1] == infty<int>)\
-    \ continue;\n    // found\n    vc<int> edges;\n    vc<int> vs;\n    vs.eb(root);\n\
-    \    int v = 2 * root + 1;\n    while (par[v] != -1) {\n      int i = par[v];\n\
-    \      edges.eb(i);\n      auto& e = G.edges[i];\n      v = 2 * (e.frm + e.to)\
-    \ + 1 - v;\n      vs.eb(v / 2);\n    }\n    reverse(all(edges));\n    reverse(all(vs));\n\
-    \    // walk -> cycle\n    vc<int> used(N, -1);\n    int l = -1, r = -1;\n   \
-    \ FOR(i, len(vs)) {\n      if (used[vs[i]] == -1) {\n        used[vs[i]] = i;\n\
-    \        continue;\n      }\n      l = used[vs[i]];\n      r = i;\n      break;\n\
-    \    }\n    assert(l != -1);\n    vs = {vs.begin() + l, vs.begin() + r};\n   \
-    \ edges = {edges.begin() + l, edges.begin() + r};\n    vs.eb(vs[0]);\n    return\
-    \ {vs, edges};\n  }\n  return {};\n}\n#line 8 \"test/mytest/find_odd_cycle.test.cpp\"\
-    \n\nvc<int> find_odd_cycle_naive(Graph<int, 1> G) {\n  int N = G.N;\n  vc<int>\
-    \ used_v(N);\n  vc<int> path;\n  vc<int> ANS;\n  auto dfs = [&](auto& dfs, int\
-    \ v) -> void {\n    if (!ANS.empty()) return;\n    for (auto& e: G[v]) {\n   \
-    \   if (e.to == path[0] && len(path) % 2 == 1) {\n        ANS = path;\n      \
-    \  return;\n      }\n      if (!used_v[e.to]) {\n        used_v[e.to] = 1;\n \
-    \       path.eb(e.to);\n        dfs(dfs, e.to);\n        POP(path);\n        used_v[e.to]\
-    \ = 0;\n      }\n    }\n  };\n  FOR(v, N) {\n    used_v[v] = 1;\n    path.eb(v);\n\
-    \    dfs(dfs, v);\n    used_v[v] = 0;\n    path.pop_back();\n  }\n  return ANS;\n\
-    }\n\nvoid test() {\n  FOR(N, 1, 30) {\n    FOR(100) {\n      auto G = random_graph<0>(N,\
-    \ false);\n      auto color = bipartite_vertex_coloring(G);\n      if (!color.empty())\
-    \ continue;\n      auto [vs, es] = find_odd_cycle(G);\n      int n = len(es);\n\
-    \      assert(n % 2 == 1);\n      assert(len(vs) == 1 + n);\n      assert(vs[0]\
-    \ == vs[n]);\n      FOR(i, n) {\n        int a = vs[i], b = vs[i + 1];\n     \
-    \   auto& e = G.edges[es[i]];\n        assert((e.frm == a && e.to == b) || (e.frm\
-    \ == b && e.to == a));\n      }\n      UNIQUE(vs);\n      assert(len(vs) == n);\n\
-    \    }\n  }\n  FOR(N, 1, 20) {\n    FOR(100) {\n      auto G = random_graph<1>(N,\
-    \ true);\n      auto [vs, es] = find_odd_cycle(G);\n      vc<int> ans = find_odd_cycle_naive(G);\n\
-    \      if (vs.empty()) {\n        assert(ans.empty());\n        continue;\n  \
-    \    }\n      assert(!ans.empty());\n      int n = len(es);\n\n      assert(n\
-    \ % 2 == 1);\n      assert(len(vs) == 1 + n);\n      assert(vs[0] == vs[n]);\n\
-    \      FOR(i, n) {\n        int a = vs[i], b = vs[i + 1];\n        auto& e = G.edges[es[i]];\n\
-    \        assert(e.frm == a && e.to == b);\n      }\n      UNIQUE(vs);\n      assert(len(vs)\
-    \ == n);\n    }\n  }\n}\n\nvoid solve() {\n  INT(a, b);\n  print(a + b);\n}\n\n\
-    signed main() {\n  test();\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
-    my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"random/random_graph.hpp\"\
-    \n#include \"graph/bipartite_vertex_coloring.hpp\"\n#include \"graph/find_odd_cycle.hpp\"\
-    \n\nvc<int> find_odd_cycle_naive(Graph<int, 1> G) {\n  int N = G.N;\n  vc<int>\
-    \ used_v(N);\n  vc<int> path;\n  vc<int> ANS;\n  auto dfs = [&](auto& dfs, int\
-    \ v) -> void {\n    if (!ANS.empty()) return;\n    for (auto& e: G[v]) {\n   \
-    \   if (e.to == path[0] && len(path) % 2 == 1) {\n        ANS = path;\n      \
-    \  return;\n      }\n      if (!used_v[e.to]) {\n        used_v[e.to] = 1;\n \
-    \       path.eb(e.to);\n        dfs(dfs, e.to);\n        POP(path);\n        used_v[e.to]\
-    \ = 0;\n      }\n    }\n  };\n  FOR(v, N) {\n    used_v[v] = 1;\n    path.eb(v);\n\
-    \    dfs(dfs, v);\n    used_v[v] = 0;\n    path.pop_back();\n  }\n  return ANS;\n\
-    }\n\nvoid test() {\n  FOR(N, 1, 30) {\n    FOR(100) {\n      auto G = random_graph<0>(N,\
-    \ false);\n      auto color = bipartite_vertex_coloring(G);\n      if (!color.empty())\
-    \ continue;\n      auto [vs, es] = find_odd_cycle(G);\n      int n = len(es);\n\
-    \      assert(n % 2 == 1);\n      assert(len(vs) == 1 + n);\n      assert(vs[0]\
-    \ == vs[n]);\n      FOR(i, n) {\n        int a = vs[i], b = vs[i + 1];\n     \
-    \   auto& e = G.edges[es[i]];\n        assert((e.frm == a && e.to == b) || (e.frm\
-    \ == b && e.to == a));\n      }\n      UNIQUE(vs);\n      assert(len(vs) == n);\n\
-    \    }\n  }\n  FOR(N, 1, 20) {\n    FOR(100) {\n      auto G = random_graph<1>(N,\
-    \ true);\n      auto [vs, es] = find_odd_cycle(G);\n      vc<int> ans = find_odd_cycle_naive(G);\n\
-    \      if (vs.empty()) {\n        assert(ans.empty());\n        continue;\n  \
-    \    }\n      assert(!ans.empty());\n      int n = len(es);\n\n      assert(n\
-    \ % 2 == 1);\n      assert(len(vs) == 1 + n);\n      assert(vs[0] == vs[n]);\n\
-    \      FOR(i, n) {\n        int a = vs[i], b = vs[i + 1];\n        auto& e = G.edges[es[i]];\n\
-    \        assert(e.frm == a && e.to == b);\n      }\n      UNIQUE(vs);\n      assert(len(vs)\
-    \ == n);\n    }\n  }\n}\n\nvoid solve() {\n  INT(a, b);\n  print(a + b);\n}\n\n\
-    signed main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    \ to);\n  }\n  DAG.build();\n  return DAG;\n}\n#line 4 \"flow/bipartite.hpp\"\n\
+    \r\ntemplate <typename GT>\r\nstruct BipartiteMatching {\r\n  int N;\r\n  GT&\
+    \ G;\r\n  vc<int> color;\r\n  vc<int> dist, match;\r\n  vc<int> vis;\r\n\r\n \
+    \ BipartiteMatching(GT& G) : N(G.N), G(G), dist(G.N, -1), match(G.N, -1) {\r\n\
+    \    if (N == 0) return;\r\n    color = bipartite_vertex_coloring(G);\r\n    assert(!color.empty());\r\
+    \n    while (1) {\r\n      bfs();\r\n      vis.assign(N, false);\r\n      int\
+    \ flow = 0;\r\n      FOR(v, N) if (!color[v] && match[v] == -1 && dfs(v))++ flow;\r\
+    \n      if (!flow) break;\r\n    }\r\n  }\r\n\r\n  BipartiteMatching(GT& G, vc<int>\
+    \ color)\r\n      : N(G.N), G(G), color(color), dist(G.N, -1), match(G.N, -1)\
+    \ {\r\n    while (1) {\r\n      bfs();\r\n      vis.assign(N, false);\r\n    \
+    \  int flow = 0;\r\n      FOR(v, N) if (!color[v] && match[v] == -1 && dfs(v))++\
+    \ flow;\r\n      if (!flow) break;\r\n    }\r\n  }\r\n\r\n  void bfs() {\r\n \
+    \   dist.assign(N, -1);\r\n    queue<int> que;\r\n    FOR(v, N) if (!color[v]\
+    \ && match[v] == -1) que.emplace(v), dist[v] = 0;\r\n    while (!que.empty())\
+    \ {\r\n      int v = que.front();\r\n      que.pop();\r\n      for (auto&& e:\
+    \ G[v]) {\r\n        dist[e.to] = 0;\r\n        int w = match[e.to];\r\n     \
+    \   if (w != -1 && dist[w] == -1) dist[w] = dist[v] + 1, que.emplace(w);\r\n \
+    \     }\r\n    }\r\n  }\r\n\r\n  bool dfs(int v) {\r\n    vis[v] = 1;\r\n    for\
+    \ (auto&& e: G[v]) {\r\n      int w = match[e.to];\r\n      if (w == -1 || (!vis[w]\
+    \ && dist[w] == dist[v] + 1 && dfs(w))) {\r\n        match[e.to] = v, match[v]\
+    \ = e.to;\r\n        return true;\r\n      }\r\n    }\r\n    return false;\r\n\
+    \  }\r\n\r\n  vc<pair<int, int>> matching() {\r\n    vc<pair<int, int>> res;\r\
+    \n    FOR(v, N) if (v < match[v]) res.eb(v, match[v]);\r\n    return res;\r\n\
+    \  }\r\n\r\n  vc<int> vertex_cover() {\r\n    vc<int> res;\r\n    FOR(v, N) if\
+    \ (color[v] ^ (dist[v] == -1)) { res.eb(v); }\r\n    return res;\r\n  }\r\n\r\n\
+    \  vc<int> independent_set() {\r\n    vc<int> res;\r\n    FOR(v, N) if (!(color[v]\
+    \ ^ (dist[v] == -1))) { res.eb(v); }\r\n    return res;\r\n  }\r\n\r\n  vc<int>\
+    \ edge_cover() {\r\n    vc<bool> done(N);\r\n    vc<int> res;\r\n    for (auto&&\
+    \ e: G.edges) {\r\n      if (done[e.frm] || done[e.to]) continue;\r\n      if\
+    \ (match[e.frm] == e.to) {\r\n        res.eb(e.id);\r\n        done[e.frm] = done[e.to]\
+    \ = 1;\r\n      }\r\n    }\r\n    for (auto&& e: G.edges) {\r\n      if (!done[e.frm])\
+    \ {\r\n        res.eb(e.id);\r\n        done[e.frm] = 1;\r\n      }\r\n      if\
+    \ (!done[e.to]) {\r\n        res.eb(e.id);\r\n        done[e.to] = 1;\r\n    \
+    \  }\r\n    }\r\n    sort(all(res));\r\n    return res;\r\n  }\r\n\r\n  /* Dulmage\u2013\
+    Mendelsohn decomposition\r\n  https://en.wikipedia.org/wiki/Dulmage%E2%80%93Mendelsohn_decomposition\r\
+    \n  http://www.misojiro.t.u-tokyo.ac.jp/~murota/lect-ouyousurigaku/dm050410.pdf\r\
+    \n  https://hitonanode.github.io/cplib-cpp/graph/dulmage_mendelsohn_decomposition.hpp.html\r\
+    \n  - \u6700\u5927\u30DE\u30C3\u30C1\u30F3\u30B0\u3068\u3057\u3066\u3042\u308A\
+    \u3046\u308B iff \u540C\u3058 W \u3092\u6301\u3064\r\n  - \u8FBA uv \u304C\u5FC5\
+    \u305A\u4F7F\u308F\u308C\u308B\uFF1A\u540C\u3058 W \u3092\u6301\u3064\u8FBA\u304C\
+    \u552F\u4E00\r\n  - color=0 \u304B\u3089 1 \u3078\u306E\u8FBA\uFF1AW[l] <= W[r]\r\
+    \n  - color=0 \u306E\u70B9\u304C\u5FC5\u305A\u4F7F\u308F\u308C\u308B\uFF1AW=1,2,...,K\r\
+    \n  - color=1 \u306E\u70B9\u304C\u5FC5\u305A\u4F7F\u308F\u308C\u308B\uFF1AW=0,1,...,K-1\r\
+    \n  */\r\n  pair<int, vc<int>> DM_decomposition() {\r\n    // \u975E\u98FD\u548C\
+    \u70B9\u304B\u3089\u306E\u63A2\u7D22\r\n    vc<int> W(N, -1);\r\n    vc<int> que;\r\
+    \n    auto add = [&](int v, int x) -> void {\r\n      if (W[v] == -1) {\r\n  \
+    \      W[v] = x;\r\n        que.eb(v);\r\n      }\r\n    };\r\n    FOR(v, N) if\
+    \ (match[v] == -1 && color[v] == 0) add(v, 0);\r\n    FOR(v, N) if (match[v] ==\
+    \ -1 && color[v] == 1) add(v, infty<int>);\r\n    while (len(que)) {\r\n     \
+    \ auto v = POP(que);\r\n      if (match[v] != -1) add(match[v], W[v]);\r\n   \
+    \   if (color[v] == 0 && W[v] == 0) {\r\n        for (auto&& e: G[v]) { add(e.to,\
+    \ W[v]); }\r\n      }\r\n      if (color[v] == 1 && W[v] == infty<int>) {\r\n\
+    \        for (auto&& e: G[v]) { add(e.to, W[v]); }\r\n      }\r\n    }\r\n   \
+    \ // \u6B8B\u3063\u305F\u70B9\u304B\u3089\u306A\u308B\u30B0\u30E9\u30D5\u3092\u4F5C\
+    \u3063\u3066\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\r\n    vc<int> V;\r\n \
+    \   FOR(v, N) if (W[v] == -1) V.eb(v);\r\n    int n = len(V);\r\n    Graph<bool,\
+    \ 1> DG(n);\r\n    FOR(i, n) {\r\n      int v = V[i];\r\n      if (match[v] !=\
+    \ -1) {\r\n        int j = LB(V, match[v]);\r\n        DG.add(i, j);\r\n     \
+    \ }\r\n      if (color[v] == 0) {\r\n        for (auto&& e: G[v]) {\r\n      \
+    \    if (W[e.to] != -1 || e.to == match[v]) continue;\r\n          int j = LB(V,\
+    \ e.to);\r\n          DG.add(i, j);\r\n        }\r\n      }\r\n    }\r\n    DG.build();\r\
+    \n    auto [K, comp] = strongly_connected_component(DG);\r\n    K += 1;\r\n  \
+    \  // \u7B54\r\n    FOR(i, n) { W[V[i]] = 1 + comp[i]; }\r\n    FOR(v, N) if (W[v]\
+    \ == infty<int>) W[v] = K;\r\n    return {K, W};\r\n  }\r\n\r\n  void debug()\
+    \ {\r\n    print(\"match\", match);\r\n    print(\"min vertex covor\", vertex_cover());\r\
+    \n    print(\"max indep set\", independent_set());\r\n    print(\"min edge cover\"\
+    , edge_cover());\r\n  }\r\n};\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n\
+    \  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 3 \"random/random_graph.hpp\"\
+    \n\ntemplate <int DIRECTED>\nGraph<int, DIRECTED> random_graph(int n, bool simple)\
+    \ {\n  Graph<int, DIRECTED> G(n);\n  vc<pi> cand;\n  FOR(a, n) FOR(b, n) {\n \
+    \   if (simple && a == b) continue;\n    if (!DIRECTED && a > b) continue;\n \
+    \   cand.eb(a, b);\n  }\n  int m = RNG(0, len(cand) + 1);\n  set<int> ss;\n  FOR(m)\
+    \ {\n    while (1) {\n      int i = RNG(0, len(cand));\n      if (simple && ss.count(i))\
+    \ continue;\n      ss.insert(i);\n      auto [a, b] = cand[i];\n      G.add(a,\
+    \ b);\n      break;\n    }\n  }\n  G.build();\n  return G;\n}\n#line 8 \"test/mytest/matching_ve.test.cpp\"\
+    \n\nvoid test() {\n  FOR(N, 50) {\n    FOR(100) {\n      Graph<int, 0> G = random_graph<0>(N,\
+    \ 0);\n      Graph<int, 0> VE(G.N + G.M);\n      for (auto& e: G.edges) {\n  \
+    \      VE.add(e.frm, N + e.id);\n        VE.add(e.to, N + e.id);\n      }\n  \
+    \    VE.build();\n      BipartiteMatching<decltype(G)> BM(VE);\n      int n =\
+    \ len(BM.matching());\n\n      auto match = maximum_matching_between_vertex_edge(G);\n\
+    \      assert(len(match) == n);\n      vc<int> used_v(N), used_e(G.M);\n     \
+    \ for (auto& [v, e]: match) {\n        assert(!used_v[v]);\n        assert(!used_e[e]);\n\
+    \        used_v[v] = used_e[e] = 1;\n        auto& eg = G.edges[e];\n        assert(eg.frm\
+    \ == v || eg.to == v);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  INT(a, b);\n\
+    \  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n\n#include \"graph/maximum_matching_between_vertex_edge.hpp\"\
+    \n#include \"flow/bipartite.hpp\"\n#include \"random/random_graph.hpp\"\n\nvoid\
+    \ test() {\n  FOR(N, 50) {\n    FOR(100) {\n      Graph<int, 0> G = random_graph<0>(N,\
+    \ 0);\n      Graph<int, 0> VE(G.N + G.M);\n      for (auto& e: G.edges) {\n  \
+    \      VE.add(e.frm, N + e.id);\n        VE.add(e.to, N + e.id);\n      }\n  \
+    \    VE.build();\n      BipartiteMatching<decltype(G)> BM(VE);\n      int n =\
+    \ len(BM.matching());\n\n      auto match = maximum_matching_between_vertex_edge(G);\n\
+    \      assert(len(match) == n);\n      vc<int> used_v(N), used_e(G.M);\n     \
+    \ for (auto& [v, e]: match) {\n        assert(!used_v[v]);\n        assert(!used_e[e]);\n\
+    \        used_v[v] = used_e[e] = 1;\n        auto& eg = G.edges[e];\n        assert(eg.frm\
+    \ == v || eg.to == v);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  INT(a, b);\n\
+    \  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - random/random_graph.hpp
+  - graph/maximum_matching_between_vertex_edge.hpp
+  - flow/bipartite.hpp
   - graph/base.hpp
-  - random/base.hpp
   - graph/bipartite_vertex_coloring.hpp
   - ds/unionfind/unionfind.hpp
-  - graph/find_odd_cycle.hpp
   - graph/strongly_connected_component.hpp
+  - random/random_graph.hpp
+  - random/base.hpp
   isVerificationFile: true
-  path: test/mytest/find_odd_cycle.test.cpp
+  path: test/mytest/matching_ve.test.cpp
   requiredBy: []
-  timestamp: '2023-11-03 16:53:35+09:00'
+  timestamp: '2023-11-03 17:01:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/mytest/find_odd_cycle.test.cpp
+documentation_of: test/mytest/matching_ve.test.cpp
 layout: document
 redirect_from:
-- /verify/test/mytest/find_odd_cycle.test.cpp
-- /verify/test/mytest/find_odd_cycle.test.cpp.html
-title: test/mytest/find_odd_cycle.test.cpp
+- /verify/test/mytest/matching_ve.test.cpp
+- /verify/test/mytest/matching_ve.test.cpp.html
+title: test/mytest/matching_ve.test.cpp
 ---

@@ -8,10 +8,13 @@ data:
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/find_odd_cycle.test.cpp
+    title: test/mytest/find_odd_cycle.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://yukicoder.me/problems/no/1436
@@ -137,8 +140,9 @@ data:
   path: graph/find_odd_cycle.hpp
   requiredBy: []
   timestamp: '2023-11-03 12:23:39+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/mytest/find_odd_cycle.test.cpp
 documentation_of: graph/find_odd_cycle.hpp
 layout: document
 redirect_from:

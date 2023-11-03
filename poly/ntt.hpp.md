@@ -14,13 +14,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_clique.hpp
     title: graph/count/count_clique.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_forest.hpp
     title: graph/count/count_forest.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/count_independent_set.hpp
     title: graph/count/count_independent_set.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_unicyclic.hpp
     title: graph/count/count_unicyclic.hpp
   - icon: ':heavy_check_mark:'
@@ -447,6 +447,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/graph_count.test.cpp
+    title: test/mytest/graph_count.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/online_division.test.cpp
     title: test/mytest/online_division.test.cpp
@@ -933,6 +936,7 @@ data:
   - test/mytest/bell.test.cpp
   - test/mytest/pascal.test.cpp
   - test/mytest/sparse_pow_2d.test.cpp
+  - test/mytest/graph_count.test.cpp
   - test/mytest/eulerian_number.test.cpp
   - test/mytest/vandermonde.test.cpp
   - test/mytest/conv2d.test.cpp

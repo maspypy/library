@@ -322,6 +322,9 @@ data:
     path: test/mytest/fenwick_raq.test.cpp
     title: test/mytest/fenwick_raq.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/find_odd_cycle.test.cpp
+    title: test/mytest/find_odd_cycle.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
   - icon: ':heavy_check_mark:'
@@ -351,6 +354,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/matching_line_graph.test.cpp
     title: test/mytest/matching_line_graph.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/matching_ve.test.cpp
+    title: test/mytest/matching_ve.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/max_assign.test.cpp
     title: test/mytest/max_assign.test.cpp
@@ -825,6 +831,7 @@ data:
   - test/mytest/rbst_monoid.test.cpp
   - test/mytest/max_assign.test.cpp
   - test/mytest/max_max.test.cpp
+  - test/mytest/find_odd_cycle.test.cpp
   - test/mytest/pascal.test.cpp
   - test/mytest/stern_brocot.test.cpp
   - test/mytest/rbst_am.test.cpp
@@ -880,6 +887,7 @@ data:
   - test/mytest/online_exp.test.cpp
   - test/mytest/maxplus_concave.test.cpp
   - test/mytest/add_chmin_chmax.test.cpp
+  - test/mytest/matching_ve.test.cpp
   - test/mytest/matching.test.cpp
   - test/mytest/tournament.test.cpp
   - test/mytest/max_min.test.cpp

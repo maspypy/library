@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_bipartite.hpp
     title: graph/count/count_bipartite.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_unicyclic.hpp
     title: graph/count/count_unicyclic.hpp
   - icon: ':heavy_check_mark:'
@@ -234,6 +234,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/graph_count.test.cpp
+    title: test/mytest/graph_count.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/online_division.test.cpp
     title: test/mytest/online_division.test.cpp
@@ -780,6 +783,7 @@ data:
   - test/mytest/partial_frac.test.cpp
   - test/mytest/bell.test.cpp
   - test/mytest/sparse_pow_2d.test.cpp
+  - test/mytest/graph_count.test.cpp
   - test/mytest/vandermonde.test.cpp
   - test/mytest/chirp_z.test.cpp
   - test/mytest/composition_log_1_minus_x.test.cpp

@@ -16,8 +16,14 @@ data:
     path: test/mytest/count_indep_set.test.cpp
     title: test/mytest/count_indep_set.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/find_odd_cycle.test.cpp
+    title: test/mytest/find_odd_cycle.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/matching_line_graph.test.cpp
     title: test/mytest/matching_line_graph.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/matching_ve.test.cpp
+    title: test/mytest/matching_ve.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -110,8 +116,10 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/count_clique.test.cpp
+  - test/mytest/find_odd_cycle.test.cpp
   - test/mytest/count_indep_set.test.cpp
   - test/mytest/matching_line_graph.test.cpp
+  - test/mytest/matching_ve.test.cpp
 documentation_of: random/random_graph.hpp
 layout: document
 redirect_from:

@@ -702,7 +702,7 @@ data:
     - icon: ':warning:'
       path: graph/find_nontransitive_triple.hpp
       title: graph/find_nontransitive_triple.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/find_odd_cycle.hpp
       title: graph/find_odd_cycle.hpp
     - icon: ':heavy_check_mark:'
@@ -723,7 +723,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/maximum_matching.hpp
       title: graph/maximum_matching.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/maximum_matching_between_vertex_edge.hpp
       title: graph/maximum_matching_between_vertex_edge.hpp
     - icon: ':heavy_check_mark:'
@@ -821,19 +821,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/count/count_cycle.hpp
       title: graph/count/count_cycle.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/count/count_forest.hpp
       title: graph/count/count_forest.hpp
     - icon: ':heavy_check_mark:'
       path: graph/count/count_independent_set.hpp
       title: graph/count/count_independent_set.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/count/count_tree.hpp
       title: graph/count/count_tree.hpp
     - icon: ':warning:'
       path: graph/count/count_tree_by_root_degree.hpp
       title: graph/count/count_tree_by_root_degree.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/count/count_unicyclic.hpp
       title: graph/count/count_unicyclic.hpp
   - name: graph/ds
@@ -2675,6 +2675,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/matching_line_graph.test.cpp
       title: test/mytest/matching_line_graph.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/matching_ve.test.cpp
+      title: test/mytest/matching_ve.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/max_assign.test.cpp
       title: test/mytest/max_assign.test.cpp

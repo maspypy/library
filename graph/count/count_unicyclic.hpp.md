@@ -38,10 +38,13 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/graph_count.test.cpp
+    title: test/mytest/graph_count.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://oeis.org/A057500
@@ -390,8 +393,9 @@ data:
   path: graph/count/count_unicyclic.hpp
   requiredBy: []
   timestamp: '2023-11-02 02:44:26+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/mytest/graph_count.test.cpp
 documentation_of: graph/count/count_unicyclic.hpp
 layout: document
 redirect_from:

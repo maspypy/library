@@ -895,6 +895,9 @@ data:
     path: test/mytest/fibonacci_search.test.cpp
     title: test/mytest/fibonacci_search.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/find_odd_cycle.test.cpp
+    title: test/mytest/find_odd_cycle.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/floor_ceil.test.cpp
     title: test/mytest/floor_ceil.test.cpp
   - icon: ':heavy_check_mark:'
@@ -906,6 +909,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/geometric_sequence_sum.test.cpp
     title: test/mytest/geometric_sequence_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/graph_count.test.cpp
+    title: test/mytest/graph_count.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/gray_code.test.cpp
     title: test/mytest/gray_code.test.cpp
@@ -942,6 +948,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/matching_line_graph.test.cpp
     title: test/mytest/matching_line_graph.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/matching_ve.test.cpp
+    title: test/mytest/matching_ve.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/max_assign.test.cpp
     title: test/mytest/max_assign.test.cpp
@@ -2647,12 +2656,14 @@ data:
   - test/mytest/bell.test.cpp
   - test/mytest/max_assign.test.cpp
   - test/mytest/max_max.test.cpp
+  - test/mytest/find_odd_cycle.test.cpp
   - test/mytest/pascal.test.cpp
   - test/mytest/datetime.test.cpp
   - test/mytest/stern_brocot.test.cpp
   - test/mytest/rbst_am.test.cpp
   - test/mytest/magic_square.test.cpp
   - test/mytest/sparse_pow_2d.test.cpp
+  - test/mytest/graph_count.test.cpp
   - test/mytest/eulerian_number.test.cpp
   - test/mytest/prime_sum.test.cpp
   - test/mytest/splay_am.test.cpp
@@ -2720,6 +2731,7 @@ data:
   - test/mytest/maxplus_concave.test.cpp
   - test/mytest/catalan_convolution.test.cpp
   - test/mytest/add_chmin_chmax.test.cpp
+  - test/mytest/matching_ve.test.cpp
   - test/mytest/matching.test.cpp
   - test/mytest/tournament.test.cpp
   - test/mytest/run_length.test.cpp

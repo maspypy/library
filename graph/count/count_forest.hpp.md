@@ -41,10 +41,13 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/graph_count.test.cpp
+    title: test/mytest/graph_count.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://oeis.org/A001858
@@ -392,8 +395,9 @@ data:
   path: graph/count/count_forest.hpp
   requiredBy: []
   timestamp: '2023-11-03 16:29:39+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/mytest/graph_count.test.cpp
 documentation_of: graph/count/count_forest.hpp
 layout: document
 redirect_from:

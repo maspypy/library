@@ -79,6 +79,12 @@ data:
     path: test/library_checker/graph/manhattan_mst.test.cpp
     title: test/library_checker/graph/manhattan_mst.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/find_odd_cycle.test.cpp
+    title: test/mytest/find_odd_cycle.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/matching_ve.test.cpp
+    title: test/mytest/matching_ve.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
   - icon: ':heavy_check_mark:'
@@ -223,7 +229,9 @@ data:
   - test/yukicoder/1392.test.cpp
   - test/yukicoder/2295.test.cpp
   - test/yukicoder/1983.test.cpp
+  - test/mytest/find_odd_cycle.test.cpp
   - test/mytest/tutte.test.cpp
+  - test/mytest/matching_ve.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/graph/directed_mst.test.cpp

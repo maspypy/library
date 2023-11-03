@@ -38,7 +38,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_bipartite.hpp
     title: graph/count/count_bipartite.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_unicyclic.hpp
     title: graph/count/count_unicyclic.hpp
   - icon: ':heavy_check_mark:'
@@ -117,6 +117,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_bipartite.test.cpp
     title: test/mytest/count_bipartite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/graph_count.test.cpp
+    title: test/mytest/graph_count.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/online_log.test.cpp
     title: test/mytest/online_log.test.cpp
@@ -538,6 +541,7 @@ data:
   - test/mytest/online_square.test.cpp
   - test/mytest/bell.test.cpp
   - test/mytest/sparse_pow_2d.test.cpp
+  - test/mytest/graph_count.test.cpp
   - test/mytest/composition_log_1_minus_x.test.cpp
   - test/mytest/online_log.test.cpp
   - test/mytest/online_pow.test.cpp

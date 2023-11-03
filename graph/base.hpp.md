@@ -95,7 +95,7 @@ data:
   - icon: ':warning:'
     path: graph/find_nontransitive_triple.hpp
     title: graph/find_nontransitive_triple.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/find_odd_cycle.hpp
     title: graph/find_odd_cycle.hpp
   - icon: ':heavy_check_mark:'
@@ -394,11 +394,17 @@ data:
     path: test/mytest/count_indep_set.test.cpp
     title: test/mytest/count_indep_set.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/find_odd_cycle.test.cpp
+    title: test/mytest/find_odd_cycle.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/matching.test.cpp
     title: test/mytest/matching.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/matching_line_graph.test.cpp
     title: test/mytest/matching_line_graph.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/matching_ve.test.cpp
+    title: test/mytest/matching_ve.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/mo_on_tree.test.cpp
     title: test/mytest/mo_on_tree.test.cpp
@@ -876,11 +882,13 @@ data:
   - test/yukicoder/1983.test.cpp
   - test/mytest/count_clique.test.cpp
   - test/mytest/mo_on_tree.test.cpp
+  - test/mytest/find_odd_cycle.test.cpp
   - test/mytest/count_indep_set.test.cpp
   - test/mytest/tutte.test.cpp
   - test/mytest/matching_line_graph.test.cpp
   - test/mytest/scc_tournament.test.cpp
   - test/mytest/QOJ5445.test.cpp
+  - test/mytest/matching_ve.test.cpp
   - test/mytest/matching.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp

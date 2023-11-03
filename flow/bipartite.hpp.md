@@ -34,6 +34,9 @@ data:
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/matching_ve.test.cpp
+    title: test/mytest/matching_ve.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
   - icon: ':heavy_check_mark:'
@@ -302,6 +305,7 @@ data:
   - test/yukicoder/1744.test.cpp
   - test/yukicoder/1745.test.cpp
   - test/mytest/tutte.test.cpp
+  - test/mytest/matching_ve.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/graph/bipartite_edge_coloring.test.cpp
   - test/aoj/1566.test.cpp
