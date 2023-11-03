@@ -1,7 +1,7 @@
 // (v_i, e_i)
 template <typename GT>
 vector<pair<int, int>> maximum_matching_between_vertex_edge(GT& G) {
-  assert(!G.is_directed());
+  static_assert(!GT::is_directed);
   assert(G.is_prepared());
   const int N = G.N, M = G.M;
   vc<int> match(M, -1);
