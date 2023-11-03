@@ -144,6 +144,7 @@
 "test/library_checker/graph/assignment.test.cpp": "2023-11-01 19:16:20 +0900",
 "test/library_checker/graph/assignment_mcf.test.cpp": "2023-11-01 19:16:20 +0900",
 "test/library_checker/graph/biconnected_component.test.cpp": "2023-11-01 19:16:20 +0900",
+"test/library_checker/graph/bipartite_edge_coloring.test.cpp": "2023-11-03 14:07:11 +0900",
 "test/library_checker/graph/bipartitematching.test.cpp": "2023-11-03 12:23:39 +0900",
 "test/library_checker/graph/chromatic_number.test.cpp": "2023-11-02 05:00:07 +0900",
 "test/library_checker/graph/classify_tree.test.cpp": "2023-11-01 19:16:20 +0900",
