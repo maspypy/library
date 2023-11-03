@@ -562,32 +562,32 @@ data:
     \ FOR(i, 32) { ANS += '0' + (rem >> i & 1); }\n    }\n    while (len(ANS) && ANS.back()\
     \ == '0') ANS.pop_back();\n    reverse(all(ANS));\n    if (ANS.empty()) ANS +=\
     \ '0';\n    return ANS;\n  }\n\n  // https://codeforces.com/contest/759/problem/E\n\
-    \  pair<bint, int> divmod(int p) {\n    assert(dat.empty() || sgn == 1);\n   \
-    \ vc<int> after;\n    ll rm = 0;\n    FOR_R(i, len(dat)) {\n      rm = rm * MOD\
-    \ + dat[i];\n      after.eb(rm / p);\n      rm = rm % p;\n    }\n    reverse(all(after));\n\
-    \    while (len(after) && after.back() == 0) POP(after);\n    bint q;\n    q.sgn\
-    \ = 1;\n    q.dat = after;\n    return {q, rm};\n  }\n\n  // https://codeforces.com/problemset/problem/582/D\n\
-    \  vc<int> base_p_representation(int p) {\n    vc<u32> A(all(dat));\n    vc<int>\
-    \ res;\n    while (1) {\n      while (len(A) && A.back() == u32(0)) POP(A);\n\
-    \      if (A.empty()) break;\n      u64 rm = 0;\n      FOR_R(i, len(A)) {\n  \
-    \      rm = rm * MOD + A[i];\n        A[i] = rm / p;\n        rm %= p;\n     \
-    \ }\n      res.eb(rm);\n    }\n    reverse(all(res));\n    return res;\n  }\n\n\
-    \  // overflow \u7121\u8996\u3057\u3066\u8A08\u7B97\n  ll to_ll() {\n    ll x\
-    \ = 0;\n    FOR_R(i, len(dat)) x = MOD * x + dat[i];\n    return sgn * x;\n  }\n\
-    \n  // https://codeforces.com/contest/986/problem/D\n  bint pow(ll n) {\n    auto\
-    \ dfs = [&](auto &dfs, ll n) -> bint {\n      if (n == 1) return (*this);\n  \
-    \    bint x = dfs(dfs, n / 2);\n      x *= x;\n      if (n & 1) x *= (*this);\n\
-    \      return x;\n    };\n    if (n == 0) return bint(1);\n    return dfs(dfs,\
-    \ n);\n  }\n\n  // https://codeforces.com/contest/986/problem/D\n  double log10()\
-    \ {\n    assert(!dat.empty() && sgn == 1);\n    if (len(dat) <= 3) {\n      double\
-    \ x = 0;\n      FOR_R(i, len(dat)) x = MOD * x + dat[i];\n      return std::log10(x);\n\
-    \    }\n    double x = 0;\n    FOR(i, 4) x = MOD * x + dat[len(dat) - 1 - i];\n\
-    \    x = std::log10(x);\n    x += double(LOG) * (len(dat) - 4);\n    return x;\n\
-    \  }\n\n#ifdef FASTIO\n  void write() { fastio::printer.write(to_string()); }\n\
-    \  void read() {\n    string s;\n    fastio::scanner.read(s);\n    *this = bint(s);\n\
-    \  }\n#endif\n};\n#line 7 \"test/aoj/NTL_2_B.test.cpp\"\n\nusing B = BigInteger;\n\
-    \nvoid solve() {\n  B x, y;\n  read(x);\n  read(y);\n  x -= y;\n  print(x);\n\
-    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \  pair<bint, int> divmod(int p) {\n    vc<int> after;\n    ll rm = 0;\n    FOR_R(i,\
+    \ len(dat)) {\n      rm = rm * MOD + dat[i];\n      after.eb(rm / p);\n      rm\
+    \ = rm % p;\n    }\n    reverse(all(after));\n    while (len(after) && after.back()\
+    \ == 0) POP(after);\n    bint q;\n    q.sgn = sgn;\n    q.dat = after;\n    rm\
+    \ *= sgn;\n    if (rm < 0) {\n      rm += p;\n      q -= 1;\n    }\n    return\
+    \ {q, rm};\n  }\n\n  // https://codeforces.com/problemset/problem/582/D\n  vc<int>\
+    \ base_p_representation(int p) {\n    vc<u32> A(all(dat));\n    vc<int> res;\n\
+    \    while (1) {\n      while (len(A) && A.back() == u32(0)) POP(A);\n      if\
+    \ (A.empty()) break;\n      u64 rm = 0;\n      FOR_R(i, len(A)) {\n        rm\
+    \ = rm * MOD + A[i];\n        A[i] = rm / p;\n        rm %= p;\n      }\n    \
+    \  res.eb(rm);\n    }\n    reverse(all(res));\n    return res;\n  }\n\n  // overflow\
+    \ \u7121\u8996\u3057\u3066\u8A08\u7B97\n  ll to_ll() {\n    ll x = 0;\n    FOR_R(i,\
+    \ len(dat)) x = MOD * x + dat[i];\n    return sgn * x;\n  }\n\n  // https://codeforces.com/contest/986/problem/D\n\
+    \  bint pow(ll n) {\n    auto dfs = [&](auto &dfs, ll n) -> bint {\n      if (n\
+    \ == 1) return (*this);\n      bint x = dfs(dfs, n / 2);\n      x *= x;\n    \
+    \  if (n & 1) x *= (*this);\n      return x;\n    };\n    if (n == 0) return bint(1);\n\
+    \    return dfs(dfs, n);\n  }\n\n  // https://codeforces.com/contest/986/problem/D\n\
+    \  double log10() {\n    assert(!dat.empty() && sgn == 1);\n    if (len(dat) <=\
+    \ 3) {\n      double x = 0;\n      FOR_R(i, len(dat)) x = MOD * x + dat[i];\n\
+    \      return std::log10(x);\n    }\n    double x = 0;\n    FOR(i, 4) x = MOD\
+    \ * x + dat[len(dat) - 1 - i];\n    x = std::log10(x);\n    x += double(LOG) *\
+    \ (len(dat) - 4);\n    return x;\n  }\n\n#ifdef FASTIO\n  void write() { fastio::printer.write(to_string());\
+    \ }\n  void read() {\n    string s;\n    fastio::scanner.read(s);\n    *this =\
+    \ bint(s);\n  }\n#endif\n};\n#line 7 \"test/aoj/NTL_2_B.test.cpp\"\n\nusing B\
+    \ = BigInteger;\n\nvoid solve() {\n  B x, y;\n  read(x);\n  read(y);\n  x -= y;\n\
+    \  print(x);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_2_B\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"bigint/base.hpp\"\
     \n\nusing B = BigInteger;\n\nvoid solve() {\n  B x, y;\n  read(x);\n  read(y);\n\
@@ -608,7 +608,7 @@ data:
   isVerificationFile: true
   path: test/aoj/NTL_2_B.test.cpp
   requiredBy: []
-  timestamp: '2023-11-02 02:44:26+09:00'
+  timestamp: '2023-11-04 02:05:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/NTL_2_B.test.cpp
