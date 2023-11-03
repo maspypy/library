@@ -185,7 +185,6 @@ struct BigInteger {
 
   // https://codeforces.com/contest/759/problem/E
   pair<bint, int> divmod(int p) {
-    assert(dat.empty() || sgn == 1);
     vc<int> after;
     ll rm = 0;
     FOR_R(i, len(dat)) {
@@ -196,8 +195,13 @@ struct BigInteger {
     reverse(all(after));
     while (len(after) && after.back() == 0) POP(after);
     bint q;
-    q.sgn = 1;
+    q.sgn = sgn;
     q.dat = after;
+    rm *= sgn;
+    if (rm < 0) {
+      rm += p;
+      q -= 1;
+    }
     return {q, rm};
   }
 
