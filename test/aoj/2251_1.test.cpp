@@ -24,7 +24,7 @@ void solve(ll N, ll M, ll L) {
   G.build();
 
   auto V = toposort(G);
-  G = G.rearrange(V).fi;
+  G = G.rearrange(V);
 
   auto color = dag_path_cover(G);
   print(MAX(color) + 1);
@@ -36,6 +36,5 @@ signed main() {
     if (N + M + L == 0) break;
     solve(N, M, L);
   }
-
   return 0;
 }

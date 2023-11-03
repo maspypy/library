@@ -26,15 +26,10 @@ void solve(ll N, ll M, ll L) {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
   while (1) {
     LL(N, M, L);
     if (N + M + L == 0) break;
     solve(N, M, L);
   }
-
   return 0;
 }
