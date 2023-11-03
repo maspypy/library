@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   _extendedRequiredBy: []
@@ -89,7 +89,7 @@ data:
     \ to);\n  }\n  DAG.build();\n  return DAG;\n}\n#line 2 \"graph/find_odd_cycle.hpp\"\
     \n\n// (vs, es)\n// https://yukicoder.me/problems/no/1436\ntemplate <typename\
     \ GT>\npair<vc<int>, vc<int>> find_odd_cycle(GT& G) {\n  int N = G.N;\n  vc<int>\
-    \ comp(N);\n  if (G.is_directed()) {\n    comp = strongly_connected_component<decltype(G)>(G).se;\n\
+    \ comp(N);\n  if constexpr (GT::is_directed) {\n    comp = strongly_connected_component<GT>(G).se;\n\
     \  }\n  vc<int> dist(2 * N, infty<int>);\n  vc<int> par(2 * N, -1); // edge index\n\
     \  deque<int> que;\n  auto add = [&](int v, int d, int p) -> void {\n    if (chmin(dist[v],\
     \ d)) { que.eb(v), par[v] = p; }\n  };\n  FOR(root, N) {\n    if (dist[2 * root\
@@ -106,36 +106,37 @@ data:
     \ FOR(i, len(vs)) {\n      if (used[vs[i]] == -1) {\n        used[vs[i]] = i;\n\
     \        continue;\n      }\n      l = used[vs[i]];\n      r = i;\n      break;\n\
     \    }\n    assert(l != -1);\n    vs = {vs.begin() + l, vs.begin() + r};\n   \
-    \ edges = {edges.begin() + l, edges.begin() + r};\n    return {vs, edges};\n \
-    \ }\n  return {};\n}\n"
+    \ edges = {edges.begin() + l, edges.begin() + r};\n    vs.eb(vs[0]);\n    return\
+    \ {vs, edges};\n  }\n  return {};\n}\n"
   code: "#include \"graph/strongly_connected_component.hpp\"\n\n// (vs, es)\n// https://yukicoder.me/problems/no/1436\n\
     template <typename GT>\npair<vc<int>, vc<int>> find_odd_cycle(GT& G) {\n  int\
-    \ N = G.N;\n  vc<int> comp(N);\n  if (G.is_directed()) {\n    comp = strongly_connected_component<decltype(G)>(G).se;\n\
-    \  }\n  vc<int> dist(2 * N, infty<int>);\n  vc<int> par(2 * N, -1); // edge index\n\
-    \  deque<int> que;\n  auto add = [&](int v, int d, int p) -> void {\n    if (chmin(dist[v],\
-    \ d)) { que.eb(v), par[v] = p; }\n  };\n  FOR(root, N) {\n    if (dist[2 * root\
-    \ + 0] < infty<int>) continue;\n    if (dist[2 * root + 1] < infty<int>) continue;\n\
-    \    add(2 * root, 0, -1);\n    while (len(que)) {\n      auto v = POP(que);\n\
-    \      auto [a, b] = divmod(v, 2);\n      for (auto&& e: G[a]) {\n        if (comp[e.frm]\
-    \ != comp[e.to]) continue;\n        int w = 2 * e.to + (b ^ 1);\n        add(w,\
-    \ dist[v] + 1, e.id);\n      }\n    }\n    if (dist[2 * root + 1] == infty<int>)\
-    \ continue;\n    // found\n    vc<int> edges;\n    vc<int> vs;\n    vs.eb(root);\n\
-    \    int v = 2 * root + 1;\n    while (par[v] != -1) {\n      int i = par[v];\n\
-    \      edges.eb(i);\n      auto& e = G.edges[i];\n      v = 2 * (e.frm + e.to)\
-    \ + 1 - v;\n      vs.eb(v / 2);\n    }\n    reverse(all(edges));\n    reverse(all(vs));\n\
-    \    // walk -> cycle\n    vc<int> used(N, -1);\n    int l = -1, r = -1;\n   \
-    \ FOR(i, len(vs)) {\n      if (used[vs[i]] == -1) {\n        used[vs[i]] = i;\n\
-    \        continue;\n      }\n      l = used[vs[i]];\n      r = i;\n      break;\n\
-    \    }\n    assert(l != -1);\n    vs = {vs.begin() + l, vs.begin() + r};\n   \
-    \ edges = {edges.begin() + l, edges.begin() + r};\n    return {vs, edges};\n \
-    \ }\n  return {};\n}"
+    \ N = G.N;\n  vc<int> comp(N);\n  if constexpr (GT::is_directed) {\n    comp =\
+    \ strongly_connected_component<GT>(G).se;\n  }\n  vc<int> dist(2 * N, infty<int>);\n\
+    \  vc<int> par(2 * N, -1); // edge index\n  deque<int> que;\n  auto add = [&](int\
+    \ v, int d, int p) -> void {\n    if (chmin(dist[v], d)) { que.eb(v), par[v] =\
+    \ p; }\n  };\n  FOR(root, N) {\n    if (dist[2 * root + 0] < infty<int>) continue;\n\
+    \    if (dist[2 * root + 1] < infty<int>) continue;\n    add(2 * root, 0, -1);\n\
+    \    while (len(que)) {\n      auto v = POP(que);\n      auto [a, b] = divmod(v,\
+    \ 2);\n      for (auto&& e: G[a]) {\n        if (comp[e.frm] != comp[e.to]) continue;\n\
+    \        int w = 2 * e.to + (b ^ 1);\n        add(w, dist[v] + 1, e.id);\n   \
+    \   }\n    }\n    if (dist[2 * root + 1] == infty<int>) continue;\n    // found\n\
+    \    vc<int> edges;\n    vc<int> vs;\n    vs.eb(root);\n    int v = 2 * root +\
+    \ 1;\n    while (par[v] != -1) {\n      int i = par[v];\n      edges.eb(i);\n\
+    \      auto& e = G.edges[i];\n      v = 2 * (e.frm + e.to) + 1 - v;\n      vs.eb(v\
+    \ / 2);\n    }\n    reverse(all(edges));\n    reverse(all(vs));\n    // walk ->\
+    \ cycle\n    vc<int> used(N, -1);\n    int l = -1, r = -1;\n    FOR(i, len(vs))\
+    \ {\n      if (used[vs[i]] == -1) {\n        used[vs[i]] = i;\n        continue;\n\
+    \      }\n      l = used[vs[i]];\n      r = i;\n      break;\n    }\n    assert(l\
+    \ != -1);\n    vs = {vs.begin() + l, vs.begin() + r};\n    edges = {edges.begin()\
+    \ + l, edges.begin() + r};\n    vs.eb(vs[0]);\n    return {vs, edges};\n  }\n\
+    \  return {};\n}"
   dependsOn:
   - graph/strongly_connected_component.hpp
   - graph/base.hpp
   isVerificationFile: false
   path: graph/find_odd_cycle.hpp
   requiredBy: []
-  timestamp: '2023-11-01 02:04:43+09:00'
+  timestamp: '2023-11-03 12:23:39+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/find_odd_cycle.hpp
