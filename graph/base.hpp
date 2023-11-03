@@ -146,28 +146,29 @@ struct Graph {
 
   // G における頂点 V[i] が、新しいグラフで i になるようにする
   // {G, es}
-  pair<Graph<T, directed>, vc<int>> rearrange(vc<int> V) {
+  Graph<T, directed> rearrange(vc<int> V, bool keep_eid = 0) {
     if (len(new_idx) != N) new_idx.assign(N, -1);
     if (len(used_e) != M) used_e.assign(M, 0);
     int n = len(V);
     FOR(i, n) new_idx[V[i]] = i;
     Graph<T, directed> G(n);
-    vc<int> es;
+    vc<int> history;
     FOR(i, n) {
       for (auto&& e: (*this)[V[i]]) {
         if (used_e[e.id]) continue;
         int a = e.frm, b = e.to;
         if (new_idx[a] != -1 && new_idx[b] != -1) {
+          history.eb(e.id);
           used_e[e.id] = 1;
-          G.add(new_idx[a], new_idx[b], e.cost);
-          es.eb(e.id);
+          int eid = (keep_eid ? e.id : -1);
+          G.add(new_idx[a], new_idx[b], e.cost, eid);
         }
       }
     }
     FOR(i, n) new_idx[V[i]] = -1;
-    for (auto&& eid: es) used_e[eid] = 0;
+    for (auto&& eid: history) used_e[eid] = 0;
     G.build();
-    return {G, es};
+    return G;
   }
 
 private:

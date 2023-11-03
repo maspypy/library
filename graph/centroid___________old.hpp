@@ -3,7 +3,6 @@
 // (v,w) or (v,-1)
 template <typename GT>
 pair<int, int> find_centroids(GT& G) {
-  static_assert(!GT::is_directed);
   int N = G.N;
   vc<int> par(N, -1);
   vc<int> V(N);
