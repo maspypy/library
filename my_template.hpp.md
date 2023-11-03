@@ -847,6 +847,9 @@ data:
     path: test/mytest/count_bipartite.test.cpp
     title: test/mytest/count_bipartite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/count_clique.test.cpp
+    title: test/mytest/count_clique.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_indep_set.test.cpp
     title: test/mytest/count_indep_set.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1044,6 +1047,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/product_of_one_pm_xn.test.cpp
     title: test/mytest/product_of_one_pm_xn.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/pytagorean_triples.test.cpp
+    title: test/mytest/pytagorean_triples.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/range_closest_pair.test.cpp
     title: test/mytest/range_closest_pair.test.cpp
@@ -2583,6 +2589,7 @@ data:
   - test/mytest/rbst_am_persistent.test.cpp
   - test/mytest/minplus_convex.test.cpp
   - test/mytest/floor_ceil_ranges.test.cpp
+  - test/mytest/count_clique.test.cpp
   - test/mytest/binom.test.cpp
   - test/mytest/min_min.test.cpp
   - test/mytest/online_square.test.cpp
@@ -2662,6 +2669,7 @@ data:
   - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/longest_common_substr.test.cpp
   - test/mytest/fibonacci_search.test.cpp
+  - test/mytest/pytagorean_triples.test.cpp
   - test/mytest/dynamic_lazy_segtree.test.cpp
   - test/mytest/three_square.test.cpp
   - test/mytest/ARC30D.test.cpp

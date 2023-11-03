@@ -11,6 +11,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_bipartite.hpp
     title: graph/count/count_bipartite.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/count/count_clique.hpp
+    title: graph/count/count_clique.hpp
   - icon: ':warning:'
     path: graph/count/count_forest.hpp
     title: graph/count/count_forest.hpp
@@ -543,6 +546,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_bipartite.test.cpp
     title: test/mytest/count_bipartite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_clique.test.cpp
+    title: test/mytest/count_clique.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_indep_set.test.cpp
     title: test/mytest/count_indep_set.test.cpp
@@ -1170,6 +1176,7 @@ data:
   - mod/dynamic_modint_64.hpp
   - graph/tree_all_distances.hpp
   - graph/count/count_forest.hpp
+  - graph/count/count_clique.hpp
   - graph/count/count_unicyclic.hpp
   - graph/count/count_bipartite.hpp
   - graph/count/count_independent_set.hpp
@@ -1289,6 +1296,7 @@ data:
   - test/mytest/online_division.test.cpp
   - test/mytest/min_poly.test.cpp
   - test/mytest/enumerate_products.test.cpp
+  - test/mytest/count_clique.test.cpp
   - test/mytest/binom.test.cpp
   - test/mytest/online_square.test.cpp
   - test/mytest/mo_on_tree.test.cpp

@@ -11,6 +11,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_bipartite.hpp
     title: graph/count/count_bipartite.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/count/count_clique.hpp
+    title: graph/count/count_clique.hpp
   - icon: ':warning:'
     path: graph/count/count_forest.hpp
     title: graph/count/count_forest.hpp
@@ -397,6 +400,9 @@ data:
     path: test/mytest/count_bipartite.test.cpp
     title: test/mytest/count_bipartite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/count_clique.test.cpp
+    title: test/mytest/count_clique.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_indep_set.test.cpp
     title: test/mytest/count_indep_set.test.cpp
   - icon: ':heavy_check_mark:'
@@ -720,6 +726,7 @@ data:
   - poly/composition_f_rational.hpp
   - graph/tree_all_distances.hpp
   - graph/count/count_forest.hpp
+  - graph/count/count_clique.hpp
   - graph/count/count_unicyclic.hpp
   - graph/count/count_bipartite.hpp
   - graph/count/count_independent_set.hpp
@@ -785,6 +792,7 @@ data:
   - test/yukicoder/1516.test.cpp
   - test/yukicoder/2166.test.cpp
   - test/mytest/online_division.test.cpp
+  - test/mytest/count_clique.test.cpp
   - test/mytest/online_square.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/partial_frac.test.cpp

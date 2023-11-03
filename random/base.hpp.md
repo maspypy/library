@@ -292,6 +292,9 @@ data:
     path: test/mytest/count_bipartite.test.cpp
     title: test/mytest/count_bipartite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/count_clique.test.cpp
+    title: test/mytest/count_clique.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_indep_set.test.cpp
     title: test/mytest/count_indep_set.test.cpp
   - icon: ':heavy_check_mark:'
@@ -807,6 +810,7 @@ data:
   - test/mytest/minplus_conv_triple.test.cpp
   - test/mytest/rbst_am_persistent.test.cpp
   - test/mytest/minplus_convex.test.cpp
+  - test/mytest/count_clique.test.cpp
   - test/mytest/binom.test.cpp
   - test/mytest/min_min.test.cpp
   - test/mytest/online_square.test.cpp

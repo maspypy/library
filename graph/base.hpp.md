@@ -33,6 +33,9 @@ data:
     path: graph/compress_tree.hpp
     title: graph/compress_tree.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/count/count_clique.hpp
+    title: graph/count/count_clique.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_cycle.hpp
     title: graph/count/count_cycle.hpp
   - icon: ':heavy_check_mark:'
@@ -384,6 +387,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/QOJ5445.test.cpp
     title: test/mytest/QOJ5445.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_clique.test.cpp
+    title: test/mytest/count_clique.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_indep_set.test.cpp
     title: test/mytest/count_indep_set.test.cpp
@@ -770,6 +776,7 @@ data:
   - graph/find_odd_cycle.hpp
   - graph/compress_tree.hpp
   - graph/find_C4.hpp
+  - graph/count/count_clique.hpp
   - graph/count/count_independent_set.hpp
   - graph/count/count_cycle.hpp
   - graph/find_nontransitive_triple.hpp
@@ -867,6 +874,7 @@ data:
   - test/yukicoder/235.test.cpp
   - test/yukicoder/529.test.cpp
   - test/yukicoder/1983.test.cpp
+  - test/mytest/count_clique.test.cpp
   - test/mytest/mo_on_tree.test.cpp
   - test/mytest/count_indep_set.test.cpp
   - test/mytest/tutte.test.cpp

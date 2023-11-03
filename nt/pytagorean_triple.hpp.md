@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/pytagorean_triples.test.cpp
+    title: test/mytest/pytagorean_triples.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/contest/60/problem/D
@@ -20,9 +23,9 @@ data:
     \ c, 2 * a - b + 2 * c, 2 * a - 2 * b + 3 * c);\n    add(a + 2 * b + 2 * c, 2\
     \ * a + b + 2 * c, 2 * a + 2 * b + 3 * c);\n    add(-a + 2 * b + 2 * c, -2 * a\
     \ + b + 2 * c, -2 * a + 2 * b + 3 * c);\n    if constexpr (coprime_only) {\n \
-    \     f(a, b, c);\n    } else {\n      int x = a, y = b, z = c;\n      while (z\
-    \ <= LIM) {\n        f(x, y, z);\n        x += a, y += b, z += c;\n      }\n \
-    \   }\n  }\n}\n"
+    \     f(min(a, b), max(a, b), c);\n    } else {\n      int x = min(a, b), y =\
+    \ max(a, b), z = c;\n      while (z <= LIM) {\n        f(x, y, z);\n        x\
+    \ += min(a, b), y += max(a, b), z += c;\n      }\n    }\n  }\n}\n"
   code: "\n/*\nc <= LIM, (a,b,c) \u3068 (b,a,c) \u306F\u540C\u4E00\u8996, O(LIM) \u6642\
     \u9593\n\u30FBLIM = 10^8\uFF1A\u4E92\u3044\u306B\u7D20 1.59*10^7 \u500B, 0.13sec\n\
     \u30FBLIM = 10^8\uFF1A\u5168\u90E8 2.71*10^8 \u500B, 0.53sec\nhttps://codeforces.com/contest/60/problem/D\n\
@@ -33,16 +36,17 @@ data:
     \ c, 2 * a - b + 2 * c, 2 * a - 2 * b + 3 * c);\n    add(a + 2 * b + 2 * c, 2\
     \ * a + b + 2 * c, 2 * a + 2 * b + 3 * c);\n    add(-a + 2 * b + 2 * c, -2 * a\
     \ + b + 2 * c, -2 * a + 2 * b + 3 * c);\n    if constexpr (coprime_only) {\n \
-    \     f(a, b, c);\n    } else {\n      int x = a, y = b, z = c;\n      while (z\
-    \ <= LIM) {\n        f(x, y, z);\n        x += a, y += b, z += c;\n      }\n \
-    \   }\n  }\n}\n"
+    \     f(min(a, b), max(a, b), c);\n    } else {\n      int x = min(a, b), y =\
+    \ max(a, b), z = c;\n      while (z <= LIM) {\n        f(x, y, z);\n        x\
+    \ += min(a, b), y += max(a, b), z += c;\n      }\n    }\n  }\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: nt/pytagorean_triple.hpp
   requiredBy: []
-  timestamp: '2023-10-06 05:10:25+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2023-11-03 16:49:01+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/mytest/pytagorean_triples.test.cpp
 documentation_of: nt/pytagorean_triple.hpp
 layout: document
 redirect_from:

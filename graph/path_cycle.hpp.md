@@ -6,9 +6,15 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: graph/count/count_clique.hpp
+    title: graph/count/count_clique.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_independent_set.hpp
     title: graph/count/count_independent_set.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_clique.test.cpp
+    title: test/mytest/count_clique.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_indep_set.test.cpp
     title: test/mytest/count_indep_set.test.cpp
@@ -108,10 +114,12 @@ data:
   isVerificationFile: false
   path: graph/path_cycle.hpp
   requiredBy:
+  - graph/count/count_clique.hpp
   - graph/count/count_independent_set.hpp
   timestamp: '2023-11-02 11:29:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/count_clique.test.cpp
   - test/mytest/count_indep_set.test.cpp
 documentation_of: graph/path_cycle.hpp
 layout: document
