@@ -315,6 +315,7 @@
 "test/mytest/manhattan_nns.test.cpp": "2023-11-01 19:16:20 +0900",
 "test/mytest/matching.test.cpp": "2023-11-01 19:16:20 +0900",
 "test/mytest/matching_line_graph.test.cpp": "2023-11-01 19:16:20 +0900",
+"test/mytest/matching_ve.test.cpp": "2023-11-03 17:01:54 +0900",
 "test/mytest/max_assign.test.cpp": "2023-11-01 19:16:20 +0900",
 "test/mytest/max_max.test.cpp": "2023-11-01 19:16:20 +0900",
 "test/mytest/max_min.test.cpp": "2023-11-01 19:16:20 +0900",
