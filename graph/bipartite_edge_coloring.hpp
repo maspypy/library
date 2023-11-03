@@ -120,7 +120,7 @@ struct RegularBipartiteColoring {
 
 template <typename GT>
 pair<int, vc<int>> bipartite_edge_coloring(GT& G) {
-  auto vcolor = bipartite_vertex_coloring<decltype(G)>(G);
+  auto vcolor = bipartite_vertex_coloring<GT>(G);
   auto deg = G.deg_array();
   int D = MAX(deg);
 
