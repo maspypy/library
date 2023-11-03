@@ -76,8 +76,16 @@ struct Line {
     return a * x + b * y + c;
   }
 
-  bool is_parallel(Line other) { return a * other.b - b * other.a == 0; }
+  // 同じ直線が同じ a,b,c で表現されるようにする
+  void normalize() {
+    static_assert(is_same_v<T, int> || is_same_v<T, long long>);
+    T g = gcd(gcd(abs(a), abs(b)), abs(c));
+    a /= g, b /= g, c /= g;
+    if (b < 0) { a = -a, b = -b, c = -c; }
+    if (b == 0 && a < 0) { a = -a, b = -b, c = -c; }
+  }
 
+  bool is_parallel(Line other) { return a * other.b - b * other.a == 0; }
   bool is_orthogonal(Line other) { return a * other.a + b * other.b == 0; }
 };
 
