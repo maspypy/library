@@ -1,12 +1,11 @@
+#include "graph/count/count_independent_set.hpp"
 
 // (n,m)=(1000,1000) で 24ms
 // https://contest.ucup.ac/contest/1358/problem/7514
 template <typename GT>
 u64 count_clique(GT& G) {
-  INT(N, M);
-  Graph<int, 0> G(N);
-  G.read_graph(M);
-
+  static_assert(!GT::is_directed);
+  int N = G.N;
   u64 ANS = 1; // emptyset
   vc<int> new_idx(N, -1);
 
