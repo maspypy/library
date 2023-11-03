@@ -131,6 +131,9 @@ data:
       path: alg/monoid/min.hpp
       title: alg/monoid/min.hpp
     - icon: ':heavy_check_mark:'
+      path: alg/monoid/min2.hpp
+      title: alg/monoid/min2.hpp
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/min_idx.hpp
       title: alg/monoid/min_idx.hpp
     - icon: ':heavy_check_mark:'
@@ -708,7 +711,7 @@ data:
     - icon: ':warning:'
       path: graph/grid_hamiltonian_path.hpp
       title: graph/grid_hamiltonian_path.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/maximum_antichain.hpp
       title: graph/maximum_antichain.hpp
     - icon: ':heavy_check_mark:'
@@ -1637,7 +1640,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/is_subseq.hpp
       title: string/is_subseq.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/is_substring.hpp
       title: string/is_substring.hpp
     - icon: ':heavy_check_mark:'
@@ -1694,7 +1697,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/wildcard_pattern_matching.hpp
       title: string/wildcard_pattern_matching.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/zalgorithm.hpp
       title: string/zalgorithm.hpp
   verificationCategories:
@@ -3699,7 +3702,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc236h.test.cpp
       title: test_atcoder/abc236h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc237ex.test.cpp
       title: test_atcoder/abc237ex.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3723,6 +3726,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc244h.test.cpp
       title: test_atcoder/abc244h.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_atcoder/abc245g.test.cpp
+      title: test_atcoder/abc245g.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc249_ex.test.cpp
       title: test_atcoder/abc249_ex.test.cpp

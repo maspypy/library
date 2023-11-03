@@ -299,13 +299,14 @@ data:
     \ <typename F>\r\n  void enumerate_all(F f) {\r\n    for (auto&& i: IDS) f(keys[i],\
     \ vals[i]);\r\n  }\r\n};\r\n#line 2 \"alg/monoid/max2.hpp\"\n\ntemplate <typename\
     \ T, typename KEY>\nstruct Monoid_Max2 {\n  struct Data {\n    T max1, max2;\n\
-    \    KEY key1, key2;\n    void add_element(T x, KEY key) {\n      if (key1 ==\
-    \ key) {\n        chmax(max1, x);\n        return;\n      }\n      if (key2 ==\
-    \ key) {\n        chmax(max2, x);\n        if (max1 < max2) swap(max1, max2),\
-    \ swap(key1, key2);\n        return;\n      }\n      if (max1 < x) { max2 = max1,\
-    \ key2 = key1, max1 = x, key1 = key; }\n      elif (max2 < x) { max2 = x, key2\
-    \ = key; }\n    }\n  };\n  using value_type = Data;\n  using X = value_type;\n\
-    \n  static X op(X x, X y) {\n    x.add_element(y.max1, y.key1);\n    x.add_element(y.max2,\
+    \    KEY key1, key2;\n    bool add_element(T x, KEY key) {\n      if (key1 ==\
+    \ key) { return chmax(max1, x); }\n      if (key2 == key) {\n        bool upd\
+    \ = chmax(max2, x);\n        if (max1 < max2) swap(max1, max2), swap(key1, key2);\n\
+    \        return upd;\n      }\n      if (max1 < x) {\n        max2 = max1, key2\
+    \ = key1, max1 = x, key1 = key;\n        return 1;\n      }\n      elif (max2\
+    \ < x) {\n        max2 = x, key2 = key;\n        return 1;\n      }\n      return\
+    \ 0;\n    }\n  };\n  using value_type = Data;\n  using X = value_type;\n\n  static\
+    \ X op(X x, X y) {\n    x.add_element(y.max1, y.key1);\n    x.add_element(y.max2,\
     \ y.key2);\n    return x;\n  }\n  static constexpr X unit() { return {-infty<T>,\
     \ -infty<T>, 0, 0}; }\n  static constexpr bool commute = true;\n};\n#line 10 \"\
     test_atcoder/abc220g.test.cpp\"\n\nusing P = Point<ll>;\n\nvoid solve() {\n  LL(N);\n\
@@ -348,7 +349,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc220g.test.cpp
   requiredBy: []
-  timestamp: '2023-11-03 13:02:29+09:00'
+  timestamp: '2023-11-03 13:22:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc220g.test.cpp

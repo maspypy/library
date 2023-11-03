@@ -1,21 +1,18 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: alg/monoid/min2.hpp
+    title: alg/monoid/min2.hpp
   - icon: ':question:'
-    path: mod/modint.hpp
-    title: mod/modint.hpp
-  - icon: ':question:'
-    path: mod/modint_common.hpp
-    title: mod/modint_common.hpp
+    path: graph/base.hpp
+    title: graph/base.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/zalgorithm.hpp
-    title: string/zalgorithm.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -23,10 +20,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1848
+    PROBLEM: https://atcoder.jp/contests/abc245/tasks/abc245_g
     links:
-    - https://yukicoder.me/problems/no/1848
-  bundledCode: "#line 1 \"test/yukicoder/1848.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/1848\"\
+    - https://atcoder.jp/contests/abc245/tasks/abc245_g
+  bundledCode: "#line 1 \"test_atcoder/abc245g.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc245/tasks/abc245_g\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -207,121 +204,121 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 1 \"string/zalgorithm.hpp\"\ntemplate <typename STRING>  //\
-    \ string, vector \u3069\u3061\u3089\u3067\u3082\nvector<int> zalgorithm(const\
-    \ STRING& s) {\n  int n = int(s.size());\n  if (n == 0) return {};\n  vector<int>\
-    \ z(n);\n  z[0] = 0;\n  for (int i = 1, j = 0; i < n; i++) {\n    int& k = z[i];\n\
-    \    k = (j + z[j] <= i) ? 0 : min(j + z[j] - i, z[i - j]);\n    while (i + k\
-    \ < n && s[k] == s[i + k]) k++;\n    if (j + z[j] < i + z[i]) j = i;\n  }\n  z[0]\
-    \ = n;\n  return z;\n}\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
-    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
-    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
-    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
-    \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
-    \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
-    \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
-    \    int q = (mod + k - 1) / k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
-    \ const int mod = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint>\
-    \ dat = {1, 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * mint::raw(len(dat)));\n\
-    \  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static\
-    \ vector<mint> dat = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat)\
-    \ <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\
-    \ntemplate <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1)\
-    \ * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint, class Head, class...\
-    \ Tail>\nmint multinomial(Head &&head, Tail &&... tail) {\n  return fact<mint>(head)\
-    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
-    mint C_dense(int n, int k) {\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n\
-    \  auto calc = [&](int i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1)\
-    \ : mint(0));\n    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n  if\
-    \ (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k +\
-    \ 1) { C[i][j] = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n\
-    \    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n      FOR(j,\
-    \ W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return C[n][k];\n\
-    }\n\ntemplate <typename mint, bool large = false, bool dense = false>\nmint C(ll\
-    \ n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if constexpr\
-    \ (dense) return C_dense<mint>(n, k);\n  if constexpr (!large) return multinomial<mint>(n,\
-    \ k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n\
-    \  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename mint, bool large = false>\n\
-    mint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if\
-    \ (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return\
-    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint,\
-    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
-    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
-    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 3 \"\
-    mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n  static constexpr u32\
-    \ umod = u32(mod);\n  static_assert(umod < u32(1) << 31);\n  u32 val;\n\n  static\
-    \ modint raw(u32 v) {\n    modint x;\n    x.val = v;\n    return x;\n  }\n  constexpr\
-    \ modint() : val(0) {}\n  constexpr modint(u32 x) : val(x % umod) {}\n  constexpr\
-    \ modint(u64 x) : val(x % umod) {}\n  constexpr modint(int x) : val((x %= mod)\
-    \ < 0 ? x + mod : x){};\n  constexpr modint(ll x) : val((x %= mod) < 0 ? x + mod\
-    \ : x){};\n  bool operator<(const modint &other) const { return val < other.val;\
-    \ }\n  modint &operator+=(const modint &p) {\n    if ((val += p.val) >= umod)\
-    \ val -= umod;\n    return *this;\n  }\n  modint &operator-=(const modint &p)\
-    \ {\n    if ((val += umod - p.val) >= umod) val -= umod;\n    return *this;\n\
-    \  }\n  modint &operator*=(const modint &p) {\n    val = u64(val) * p.val % umod;\n\
-    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
-    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint::raw(val\
-    \ ? mod - val : u32(0)); }\n  modint operator+(const modint &p) const { return\
-    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
-    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
-    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
-    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
-    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
-    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
-    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
-    \ return modint(u);\n  }\n  modint pow(ll n) const {\n    assert(n >= 0);\n  \
-    \  modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
-    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n\
-    \  void write() { fastio::printer.write(val); }\n  void read() {\n    fastio::scanner.read(val);\n\
-    \    val %= mod;\n  }\n#endif\n  static constexpr int get_mod() { return mod;\
-    \ }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int,\
-    \ int> ntt_info() {\n    if (mod == 167772161) return {25, 17};\n    if (mod ==\
-    \ 469762049) return {26, 30};\n    if (mod == 754974721) return {24, 362};\n \
-    \   if (mod == 880803841) return {23, 211};\n    if (mod == 943718401) return\
-    \ {22, 663003469};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
-    \ 1045430273) return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n\
-    \    if (mod == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static\
-    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\nusing modint107\
-    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 6 \"test/yukicoder/1848.test.cpp\"\
-    \n\nusing mint = modint107;\n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n \
-    \ STR(S);\n  auto Ac = cumsum<ll>(A);\n\n  // 1 \u6587\u5B57\u76EE\u4EE5\u964D\
-    \n  vc<pair<char, int>> dat;\n  FOR(i, 1, N) dat.eb(S[i], A[i]);\n  auto Z = zalgorithm<decltype(dat)>(dat);\n\
-    \n  mint ANS = 0;\n  FOR(i, N) {\n    if (S[i] != S[0]) continue;\n    ll a =\
-    \ A[0], b = A[i];\n    ll k = min(a, b);\n    ANS += mint(k * (k + 1) / 2);\n\
-    \    ANS += mint(a * (b - k));\n\n    if (A[i] < A[0] || i == N - 1) continue;\n\
-    \    ll z = Z[i];\n    ll s = Ac[z + 1];\n    if (i + z + 1 < N && S[1 + z] ==\
-    \ S[1 + z + i]) {\n      s += min(A[1 + z], A[1 + z + i]);\n    }\n    ANS +=\
-    \ mint(s - a);\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1848\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"string/zalgorithm.hpp\"\n#include \"mod/modint.hpp\"\
-    \n\nusing mint = modint107;\n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n \
-    \ STR(S);\n  auto Ac = cumsum<ll>(A);\n\n  // 1 \u6587\u5B57\u76EE\u4EE5\u964D\
-    \n  vc<pair<char, int>> dat;\n  FOR(i, 1, N) dat.eb(S[i], A[i]);\n  auto Z = zalgorithm<decltype(dat)>(dat);\n\
-    \n  mint ANS = 0;\n  FOR(i, N) {\n    if (S[i] != S[0]) continue;\n    ll a =\
-    \ A[0], b = A[i];\n    ll k = min(a, b);\n    ANS += mint(k * (k + 1) / 2);\n\
-    \    ANS += mint(a * (b - k));\n\n    if (A[i] < A[0] || i == N - 1) continue;\n\
-    \    ll z = Z[i];\n    ll s = Ac[z + 1];\n    if (i + z + 1 < N && S[1 + z] ==\
-    \ S[1 + z + i]) {\n      s += min(A[1 + z], A[1 + z + i]);\n    }\n    ANS +=\
-    \ mint(s - a);\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ yes(!t); }\n#line 4 \"test_atcoder/abc245g.test.cpp\"\n\n#line 2 \"graph/base.hpp\"\
+    \n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n\
+    };\n\ntemplate <typename T = int, bool directed = false>\nstruct Graph {\n  static\
+    \ constexpr bool is_directed = directed;\n  int N, M;\n  using cost_type = T;\n\
+    \  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n\
+    \  vector<edge_type> csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  bool\
+    \ prepared;\n\n  class OutgoingEdges {\n  public:\n    OutgoingEdges(const Graph*\
+    \ G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const\
+    \ {\n      if (l == r) { return 0; }\n      return &G->csr_edges[l];\n    }\n\n\
+    \    const edge_type* end() const {\n      if (l == r) { return 0; }\n      return\
+    \ &G->csr_edges[r];\n    }\n\n  private:\n    const Graph* G;\n    int l, r;\n\
+    \  };\n\n  bool is_prepared() { return prepared; }\n\n  Graph() : N(0), M(0),\
+    \ prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void build(int\
+    \ n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n    indptr.clear();\n\
+    \    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n    vc_outdeg.clear();\n\
+    \  }\n\n  void add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n\
+    \    assert(0 <= frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto\
+    \ e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n  //\
+    \ wt, off\n  void read_tree(bool wt = false, int off = 1) { read_graph(N - 1,\
+    \ wt, off); }\n\n  void read_graph(int M, bool wt = false, int off = 1) {\n  \
+    \  for (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a -= off, b -= off;\n\
+    \      if (!wt) {\n        add(a, b);\n      } else {\n        T c;\n        read(c);\n\
+    \        add(a, b, c);\n      }\n    }\n    build();\n  }\n\n  void build() {\n\
+    \    assert(!prepared);\n    prepared = true;\n    indptr.assign(N + 1, 0);\n\
+    \    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if (!directed)\
+    \ indptr[e.to + 1]++;\n    }\n    for (int v = 0; v < N; ++v) { indptr[v + 1]\
+    \ += indptr[v]; }\n    auto counter = indptr;\n    csr_edges.resize(indptr.back()\
+    \ + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n\
+    \      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm,\
+    \ e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n \
+    \   assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\n \
+    \ vc<int> deg_array() {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n\
+    \  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n    if (vc_indeg.empty())\
+    \ calc_deg_inout();\n    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v)\
+    \ {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n  int\
+    \ in_deg(int v) {\n    if (vc_indeg.empty()) calc_deg_inout();\n    return vc_indeg[v];\n\
+    \  }\n\n  int out_deg(int v) {\n    if (vc_outdeg.empty()) calc_deg_inout();\n\
+    \    return vc_outdeg[v];\n  }\n\n  void debug() {\n    print(\"Graph\");\n  \
+    \  if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e: edges)\
+    \ print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\", indptr);\n\
+    \      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\n  vc<int> new_idx;\n  vc<bool>\
+    \ used_e;\n\n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\
+    \u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\
+    \u308B\n  // {G, es}\n  pair<Graph<T, directed>, vc<int>> rearrange(vc<int> V)\
+    \ {\n    if (len(new_idx) != N) new_idx.assign(N, -1);\n    if (len(used_e) !=\
+    \ M) used_e.assign(M, 0);\n    int n = len(V);\n    FOR(i, n) new_idx[V[i]] =\
+    \ i;\n    Graph<T, directed> G(n);\n    vc<int> es;\n    FOR(i, n) {\n      for\
+    \ (auto&& e: (*this)[V[i]]) {\n        if (used_e[e.id]) continue;\n        int\
+    \ a = e.frm, b = e.to;\n        if (new_idx[a] != -1 && new_idx[b] != -1) {\n\
+    \          used_e[e.id] = 1;\n          G.add(new_idx[a], new_idx[b], e.cost);\n\
+    \          es.eb(e.id);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]]\
+    \ = -1;\n    for (auto&& eid: es) used_e[eid] = 0;\n    G.build();\n    return\
+    \ {G, es};\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
+    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
+    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
+    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
+    \ }\n  }\n};\n#line 2 \"alg/monoid/min2.hpp\"\n\ntemplate <typename T, typename\
+    \ KEY>\nstruct Monoid_Min2 {\n  struct Data {\n    T min1, min2;\n    KEY key1,\
+    \ key2;\n    bool add_element(T x, KEY key) {\n      if (key1 == key) { return\
+    \ chmin(min1, x); }\n      if (key2 == key) {\n        bool upd = chmin(min2,\
+    \ x);\n        if (min1 > min2) swap(min1, min2), swap(key1, key2);\n        return\
+    \ upd;\n      }\n      if (min1 > x) {\n        min2 = min1, key2 = key1, min1\
+    \ = x, key1 = key;\n        return 1;\n      }\n      elif (min2 > x) {\n    \
+    \    min2 = x, key2 = key;\n        return 1;\n      }\n      return 0;\n    }\n\
+    \  };\n  using value_type = Data;\n  using X = value_type;\n\n  static X op(X\
+    \ x, X y) {\n    x.add_element(y.min1, y.key1);\n    x.add_element(y.min2, y.key2);\n\
+    \    return x;\n  }\n  static constexpr X unit() { return {infty<T>, infty<T>,\
+    \ 0, 0}; }\n  static constexpr bool commute = true;\n};\n#line 7 \"test_atcoder/abc245g.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, M, K, L);\n  VEC(ll, A, N);\n  for (auto&& a: A) --a;\n\
+    \  VEC(ll, B, L);\n  for (auto&& b: B) --b;\n\n  Graph<int, 0> G(N);\n  G.read_graph(M,\
+    \ 1);\n\n  using Mono = Monoid_Min2<ll, int>;\n  using Data = typename Mono::Data;\n\
+    \  vc<Data> dist(N, Mono::unit());\n\n  using T = tuple<ll, int, int>; // \u8DDD\
+    \u96E2\u3001\u753A\u3001\u8272\n  pqg<T> que;\n\n  auto add = [&](ll v, ll c,\
+    \ ll x) -> void {\n    if (dist[v].add_element(x, c)) que.emplace(x, v, c);\n\
+    \  };\n\n  for (auto&& b: B) add(b, A[b], 0);\n\n  while (len(que)) {\n    auto\
+    \ [dv, v, c] = que.top();\n    que.pop();\n    bool ok = 0;\n    auto& e = dist[v];\n\
+    \    if (e.min1 == dv && e.key1 == c) ok = 1;\n    if (e.min2 == dv && e.key2\
+    \ == c) ok = 1;\n    if (!ok) continue;\n    for (auto&& e: G[v]) { add(e.to,\
+    \ c, dv + e.cost); }\n  }\n\n  vi ANS(N);\n  FOR(v, N) {\n    auto& e = dist[v];\n\
+    \    ll x = infty<ll>;\n    if (e.key1 != A[v]) chmin(x, e.min1);\n    if (e.key2\
+    \ != A[v]) chmin(x, e.min2);\n    if (x == infty<ll>) x = -1;\n    ANS[v] = x;\n\
+    \  }\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc245/tasks/abc245_g\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/base.hpp\"\
+    \n#include \"alg/monoid/min2.hpp\"\n\nvoid solve() {\n  LL(N, M, K, L);\n  VEC(ll,\
+    \ A, N);\n  for (auto&& a: A) --a;\n  VEC(ll, B, L);\n  for (auto&& b: B) --b;\n\
+    \n  Graph<int, 0> G(N);\n  G.read_graph(M, 1);\n\n  using Mono = Monoid_Min2<ll,\
+    \ int>;\n  using Data = typename Mono::Data;\n  vc<Data> dist(N, Mono::unit());\n\
+    \n  using T = tuple<ll, int, int>; // \u8DDD\u96E2\u3001\u753A\u3001\u8272\n \
+    \ pqg<T> que;\n\n  auto add = [&](ll v, ll c, ll x) -> void {\n    if (dist[v].add_element(x,\
+    \ c)) que.emplace(x, v, c);\n  };\n\n  for (auto&& b: B) add(b, A[b], 0);\n\n\
+    \  while (len(que)) {\n    auto [dv, v, c] = que.top();\n    que.pop();\n    bool\
+    \ ok = 0;\n    auto& e = dist[v];\n    if (e.min1 == dv && e.key1 == c) ok = 1;\n\
+    \    if (e.min2 == dv && e.key2 == c) ok = 1;\n    if (!ok) continue;\n    for\
+    \ (auto&& e: G[v]) { add(e.to, c, dv + e.cost); }\n  }\n\n  vi ANS(N);\n  FOR(v,\
+    \ N) {\n    auto& e = dist[v];\n    ll x = infty<ll>;\n    if (e.key1 != A[v])\
+    \ chmin(x, e.min1);\n    if (e.key2 != A[v]) chmin(x, e.min2);\n    if (x == infty<ll>)\
+    \ x = -1;\n    ANS[v] = x;\n  }\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n\
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - string/zalgorithm.hpp
-  - mod/modint.hpp
-  - mod/modint_common.hpp
+  - graph/base.hpp
+  - alg/monoid/min2.hpp
   isVerificationFile: true
-  path: test/yukicoder/1848.test.cpp
+  path: test_atcoder/abc245g.test.cpp
   requiredBy: []
-  timestamp: '2023-11-01 19:16:20+09:00'
+  timestamp: '2023-11-03 13:22:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yukicoder/1848.test.cpp
+documentation_of: test_atcoder/abc245g.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/1848.test.cpp
-- /verify/test/yukicoder/1848.test.cpp.html
-title: test/yukicoder/1848.test.cpp
+- /verify/test_atcoder/abc245g.test.cpp
+- /verify/test_atcoder/abc245g.test.cpp.html
+title: test_atcoder/abc245g.test.cpp
 ---
