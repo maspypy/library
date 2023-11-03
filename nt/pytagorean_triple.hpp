@@ -18,12 +18,12 @@ void enumerate_pytagorean_triple(int LIM, F f) {
     add(a + 2 * b + 2 * c, 2 * a + b + 2 * c, 2 * a + 2 * b + 3 * c);
     add(-a + 2 * b + 2 * c, -2 * a + b + 2 * c, -2 * a + 2 * b + 3 * c);
     if constexpr (coprime_only) {
-      f(a, b, c);
+      f(min(a, b), max(a, b), c);
     } else {
-      int x = a, y = b, z = c;
+      int x = min(a, b), y = max(a, b), z = c;
       while (z <= LIM) {
         f(x, y, z);
-        x += a, y += b, z += c;
+        x += min(a, b), y += max(a, b), z += c;
       }
     }
   }
