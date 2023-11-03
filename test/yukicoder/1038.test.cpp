@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 
 #include "ds/fenwicktree/fenwicktree.hpp"
-#include "graph/centroid.hpp"
+#include "graph/centroid_decomposition_old.hpp"
 
 void solve() {
   LL(N, Q);
@@ -13,9 +13,7 @@ void solve() {
   using T = tuple<ll, ll, ll>;
   VEC(T, query, Q);
   for (auto&& [a, b, c]: query) --a;
-
   // 頂点 -> クエリ
-
   vc<vi> query_at(N);
   FOR(q, Q) query_at[get<0>(query[q])].eb(q);
 
