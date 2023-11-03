@@ -664,6 +664,9 @@ data:
     path: test_atcoder/abc212g.test.cpp
     title: test_atcoder/abc212g.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc220g.test.cpp
+    title: test_atcoder/abc220g.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc222g.test.cpp
     title: test_atcoder/abc222g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -935,6 +938,7 @@ data:
   - test_atcoder/abc222g.test.cpp
   - test_atcoder/agc058d2.test.cpp
   - test_atcoder/abc270_g.test.cpp
+  - test_atcoder/abc220g.test.cpp
   - test_atcoder/abc151f.test.cpp
   - test_atcoder/abc281g.test.cpp
   - test_atcoder/abc274_h.test.cpp

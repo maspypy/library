@@ -2,17 +2,26 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: geo/angle_sort.hpp
-    title: geo/angle_sort.hpp
+    path: alg/monoid/max2.hpp
+    title: alg/monoid/max2.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/hashmap.hpp
+    title: ds/hashmap.hpp
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
+  - icon: ':heavy_check_mark:'
+    path: geo/perpendicular_bisector.hpp
+    title: geo/perpendicular_bisector.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
+  - icon: ':heavy_check_mark:'
+    path: random/base.hpp
+    title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -20,12 +29,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/sort_points_by_argument
+    PROBLEM: https://atcoder.jp/contests/abc220/tasks/abc220_g
     links:
-    - https://judge.yosupo.jp/problem/sort_points_by_argument
-  bundledCode: "#line 1 \"test/library_checker/geometry/sort_points_by_argument_pair.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/sort_points_by_argument\"\n\
-    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    - https://atcoder.jp/contests/abc220/tasks/abc220_g
+  bundledCode: "#line 1 \"test_atcoder/abc220g.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc220/tasks/abc220_g\"\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
     using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
@@ -205,45 +213,45 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
-    \  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template <typename A, typename B>\n\
-    \  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename A, typename B>\n  Point(pair<A,\
-    \ B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+(Point p) const { return {x\
-    \ + p.x, y + p.y}; }\n  Point operator-(Point p) const { return {x - p.x, y -\
-    \ p.y}; }\n  bool operator==(Point p) const { return x == p.x && y == p.y; }\n\
-    \  bool operator!=(Point p) const { return x != p.x || y != p.y; }\n  Point operator-()\
-    \ const { return {-x, -y}; }\n  Point operator*(T t) const { return {x * t, y\
-    \ * t}; }\n  Point operator/(T t) const { return {x / t, y / t}; }\n\n  bool operator<(Point\
-    \ p) const {\n    if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n  T\
-    \ dot(Point other) { return x * other.x + y * other.y; }\n  T det(Point other)\
-    \ { return x * other.y - y * other.x; }\n\n  double norm() { return sqrtl(x *\
-    \ x + y * y); }\n  double angle() { return atan2(y, x); }\n\n  Point rotate(double\
-    \ theta) {\n    static_assert(!is_integral<T>::value);\n    double c = cos(theta),\
-    \ s = sin(theta);\n    return Point{c * x - s * y, s * x + c * y};\n  }\n#ifdef\
-    \ FASTIO\n  void read() { fastio::read(x), fastio::read(y); }\n  void write()\
-    \ { fastio::printer.write(pair<T, T>({x, y})); }\n#endif\n};\n\n// A -> B -> C\
-    \ \u3068\u9032\u3080\u3068\u304D\u306B\u3001\u5DE6\u306B\u66F2\u304C\u308B\u306A\
-    \u3089\u3070 +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\u3089\u3070 -1\ntemplate\
-    \ <typename T>\nint ccw(Point<T> A, Point<T> B, Point<T> C) {\n  T x = (B - A).det(C\
-    \ - A);\n  if (x > 0) return 1;\n  if (x < 0) return -1;\n  return 0;\n}\n\ntemplate\
-    \ <typename REAL, typename T>\nREAL dist(Point<T> A, Point<T> B) {\n  A = A -\
-    \ B;\n  T p = A.dot(A);\n  return sqrt(REAL(p));\n}\n\ntemplate <typename T>\n\
-    struct Line {\n  T a, b, c;\n\n  Line(T a, T b, T c) : a(a), b(b), c(c) {}\n \
-    \ Line(Point<T> A, Point<T> B) {\n    a = A.y - B.y, b = B.x - A.x, c = A.x *\
-    \ B.y - A.y * B.x;\n  }\n  Line(T x1, T y1, T x2, T y2) : Line(Point<T>(x1, y1),\
-    \ Point<T>(x2, y2)) {}\n\n  template <typename U>\n  U eval(Point<U> P) {\n  \
-    \  return a * P.x + b * P.y + c;\n  }\n\n  template <typename U>\n  T eval(U x,\
-    \ U y) {\n    return a * x + b * y + c;\n  }\n\n  // \u540C\u3058\u76F4\u7DDA\u304C\
-    \u540C\u3058 a,b,c \u3067\u8868\u73FE\u3055\u308C\u308B\u3088\u3046\u306B\u3059\
-    \u308B\n  void normalize() {\n    static_assert(is_same_v<T, int> || is_same_v<T,\
-    \ long long>);\n    T g = gcd(gcd(abs(a), abs(b)), abs(c));\n    a /= g, b /=\
-    \ g, c /= g;\n    if (b < 0) { a = -a, b = -b, c = -c; }\n    if (b == 0 && a\
-    \ < 0) { a = -a, b = -b, c = -c; }\n  }\n\n  bool is_parallel(Line other) { return\
-    \ a * other.b - b * other.a == 0; }\n  bool is_orthogonal(Line other) { return\
-    \ a * other.a + b * other.b == 0; }\n};\n\ntemplate <typename T>\nstruct Segment\
-    \ {\n  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n \
-    \ Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2,\
-    \ y2)) {}\n\n  bool contain(Point<T> C) {\n    static_assert(is_integral<T>::value);\n\
+    \ yes(!t); }\n#line 4 \"test_atcoder/abc220g.test.cpp\"\n\n#line 2 \"geo/base.hpp\"\
+    \ntemplate <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\
+    \n  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n \
+    \ template <typename A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se)\
+    \ {}\n\n  Point operator+(Point p) const { return {x + p.x, y + p.y}; }\n  Point\
+    \ operator-(Point p) const { return {x - p.x, y - p.y}; }\n  bool operator==(Point\
+    \ p) const { return x == p.x && y == p.y; }\n  bool operator!=(Point p) const\
+    \ { return x != p.x || y != p.y; }\n  Point operator-() const { return {-x, -y};\
+    \ }\n  Point operator*(T t) const { return {x * t, y * t}; }\n  Point operator/(T\
+    \ t) const { return {x / t, y / t}; }\n\n  bool operator<(Point p) const {\n \
+    \   if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n  T dot(Point other)\
+    \ { return x * other.x + y * other.y; }\n  T det(Point other) { return x * other.y\
+    \ - y * other.x; }\n\n  double norm() { return sqrtl(x * x + y * y); }\n  double\
+    \ angle() { return atan2(y, x); }\n\n  Point rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n\
+    \    double c = cos(theta), s = sin(theta);\n    return Point{c * x - s * y, s\
+    \ * x + c * y};\n  }\n#ifdef FASTIO\n  void read() { fastio::read(x), fastio::read(y);\
+    \ }\n  void write() { fastio::printer.write(pair<T, T>({x, y})); }\n#endif\n};\n\
+    \n// A -> B -> C \u3068\u9032\u3080\u3068\u304D\u306B\u3001\u5DE6\u306B\u66F2\u304C\
+    \u308B\u306A\u3089\u3070 +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\u3089\u3070\
+    \ -1\ntemplate <typename T>\nint ccw(Point<T> A, Point<T> B, Point<T> C) {\n \
+    \ T x = (B - A).det(C - A);\n  if (x > 0) return 1;\n  if (x < 0) return -1;\n\
+    \  return 0;\n}\n\ntemplate <typename REAL, typename T>\nREAL dist(Point<T> A,\
+    \ Point<T> B) {\n  A = A - B;\n  T p = A.dot(A);\n  return sqrt(REAL(p));\n}\n\
+    \ntemplate <typename T>\nstruct Line {\n  T a, b, c;\n\n  Line(T a, T b, T c)\
+    \ : a(a), b(b), c(c) {}\n  Line(Point<T> A, Point<T> B) {\n    a = A.y - B.y,\
+    \ b = B.x - A.x, c = A.x * B.y - A.y * B.x;\n  }\n  Line(T x1, T y1, T x2, T y2)\
+    \ : Line(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n  template <typename U>\n \
+    \ U eval(Point<U> P) {\n    return a * P.x + b * P.y + c;\n  }\n\n  template <typename\
+    \ U>\n  T eval(U x, U y) {\n    return a * x + b * y + c;\n  }\n\n  // \u540C\u3058\
+    \u76F4\u7DDA\u304C\u540C\u3058 a,b,c \u3067\u8868\u73FE\u3055\u308C\u308B\u3088\
+    \u3046\u306B\u3059\u308B\n  void normalize() {\n    static_assert(is_same_v<T,\
+    \ int> || is_same_v<T, long long>);\n    T g = gcd(gcd(abs(a), abs(b)), abs(c));\n\
+    \    a /= g, b /= g, c /= g;\n    if (b < 0) { a = -a, b = -b, c = -c; }\n   \
+    \ if (b == 0 && a < 0) { a = -a, b = -b, c = -c; }\n  }\n\n  bool is_parallel(Line\
+    \ other) { return a * other.b - b * other.a == 0; }\n  bool is_orthogonal(Line\
+    \ other) { return a * other.a + b * other.b == 0; }\n};\n\ntemplate <typename\
+    \ T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B)\
+    \ : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
+    \ y1), Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    static_assert(is_integral<T>::value);\n\
     \    T det = (C - A).det(B - A);\n    if (det != 0) return 0;\n    return (C -\
     \ A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_Line() {\
     \ return Line(A, B); }\n};\n\ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL>\
@@ -263,42 +271,90 @@ data:
     \  void build() {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1\
     \ == len(points) ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n\
     \    if (a < 0) {\n      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n\
-    #line 2 \"geo/angle_sort.hpp\"\n\r\n#line 4 \"geo/angle_sort.hpp\"\n\r\n// \u504F\
-    \u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate <typename\
-    \ T>\r\nvector<int> angle_sort(vector<Point<T>>& P) {\r\n  vector<int> lower,\
-    \ origin, upper;\r\n  const Point<T> O = {0, 0};\r\n  FOR(i, len(P)) {\r\n   \
-    \ if (P[i] == O) origin.eb(i);\r\n    elif ((P[i].y < 0) || (P[i].y == 0 && P[i].x\
-    \ > 0)) lower.eb(i);\r\n    else upper.eb(i);\r\n  }\r\n  sort(all(lower), [&](auto&\
-    \ i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  sort(all(upper), [&](auto&\
-    \ i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  auto& I = lower;\r\n  I.insert(I.end(),\
-    \ all(origin));\r\n  I.insert(I.end(), all(upper));\r\n  return I;\r\n}\r\n\r\n\
-    // \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate\
-    \ <typename T>\r\nvector<int> angle_sort(vector<pair<T, T>>& P) {\r\n  vc<Point<T>>\
-    \ tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\n  return angle_sort<T>(tmp);\r\
-    \n}\r\n#line 6 \"test/library_checker/geometry/sort_points_by_argument_pair.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(pi, P, N);\n  auto I = angle_sort(P);\n  P\
-    \ = rearrange(P, I);\n  FOR(i, N) print(P[i]);\n}\n\nsigned main() {\n  solve();\n\
-    \n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sort_points_by_argument\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"geo/base.hpp\"\
-    \n#include \"geo/angle_sort.hpp\"\n\nvoid solve() {\n  LL(N);\n  VEC(pi, P, N);\n\
-    \  auto I = angle_sort(P);\n  P = rearrange(P, I);\n  FOR(i, N) print(P[i]);\n\
-    }\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+    #line 2 \"geo/perpendicular_bisector.hpp\"\n\ntemplate <typename T>\nLine<T> perpendicular_bisector(Point<T>\
+    \ A, Point<T> B) {\n  assert(A != B);\n  T a = 2 * (B.x - A.x);\n  T b = 2 * (B.y\
+    \ - A.y);\n  T c = (A.x * A.x + A.y * A.y) - (B.x * B.x + B.y * B.y);\n  return\
+    \ Line<T>(a, b, c);\n}\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
+    \ uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 3 \"ds/hashmap.hpp\"\
+    \n\r\n// u64 -> Val\r\ntemplate <typename Val, int LOG = 20>\r\nstruct HashMap\
+    \ {\r\n  int N;\r\n  u64* keys;\r\n  Val* vals;\r\n  vc<int> IDS;\r\n  bitset<1\
+    \ << LOG> used;\r\n  const int shift;\r\n  const u64 r = 11995408973635179863ULL;\r\
+    \n  HashMap()\r\n      : N(1 << LOG), keys(new u64[N]), vals(new Val[N]), shift(64\
+    \ - __lg(N)) {}\r\n  int hash(ll x) {\r\n    static const u64 FIXED_RANDOM\r\n\
+    \        = std::chrono::steady_clock::now().time_since_epoch().count();\r\n  \
+    \  return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
+    \ u64& key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && keys[i]\
+    \ != key; (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
+    \ u64& key) {\r\n    int i = index(key);\r\n    if (!used[i]) IDS.eb(i), used[i]\
+    \ = 1, keys[i] = key, vals[i] = Val{};\r\n    return vals[i];\r\n  }\r\n\r\n \
+    \ Val get(const u64& key, Val default_value) {\r\n    int i = index(key);\r\n\
+    \    if (!used[i]) return default_value;\r\n    return vals[i];\r\n  }\r\n\r\n\
+    \  bool count(const u64& key) {\r\n    int i = index(key);\r\n    return used[i]\
+    \ && keys[i] == key;\r\n  }\r\n\r\n  void reset() {\r\n    for (auto&& i: IDS)\
+    \ used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  // f(key, val)\r\n  template\
+    \ <typename F>\r\n  void enumerate_all(F f) {\r\n    for (auto&& i: IDS) f(keys[i],\
+    \ vals[i]);\r\n  }\r\n};\r\n#line 2 \"alg/monoid/max2.hpp\"\n\ntemplate <typename\
+    \ T, typename KEY>\nstruct Monoid_Max2 {\n  struct Data {\n    T max1, max2;\n\
+    \    KEY key1, key2;\n    void add_element(T x, KEY key) {\n      if (key1 ==\
+    \ key) {\n        chmax(max1, x);\n        return;\n      }\n      if (key2 ==\
+    \ key) {\n        chmax(max2, x);\n        if (max1 < max2) swap(max1, max2),\
+    \ swap(key1, key2);\n        return;\n      }\n      if (max1 < x) { max2 = max1,\
+    \ key2 = key1, max1 = x, key1 = key; }\n      elif (max2 < x) { max2 = x, key2\
+    \ = key; }\n    }\n  };\n  using value_type = Data;\n  using X = value_type;\n\
+    \n  static X op(X x, X y) {\n    x.add_element(y.max1, y.key1);\n    x.add_element(y.max2,\
+    \ y.key2);\n    return x;\n  }\n  static constexpr X unit() { return {-infty<T>,\
+    \ -infty<T>, 0, 0}; }\n  static constexpr bool commute = true;\n};\n#line 10 \"\
+    test_atcoder/abc220g.test.cpp\"\n\nusing P = Point<ll>;\n\nvoid solve() {\n  LL(N);\n\
+    \  vc<P> point(N);\n  vi C(N);\n  FOR(i, N) read(point[i], C[i]);\n\n  u64 aa\
+    \ = RNG_64(), bb = RNG_64(), cc = RNG_64();\n\n  using Mono = Monoid_Max2<ll,\
+    \ ll>;\n  using Data = typename Mono::Data;\n  HashMap<Data> MP;\n\n  FOR(j, N)\
+    \ FOR(i, j) {\n    Line<ll> L = perpendicular_bisector(point[i], point[j]);\n\
+    \    L.normalize();\n    u64 key = 0;\n    key += u64(L.a + infty<ll>) * aa;\n\
+    \    key += u64(L.b + infty<ll>) * bb;\n    key += u64(L.c + infty<ll>) * cc;\n\
+    \    if (!MP.count(key)) MP[key] = Mono::unit();\n    ll g = gcd(L.a, L.b);\n\
+    \    Point<ll> normal = {L.b / g, -L.a / g};\n    ll t = normal.dot(point[i]);\n\
+    \    MP[key].add_element(C[i] + C[j], t);\n  }\n\n  ll ANS = -1;\n  MP.enumerate_all([&](auto\
+    \ key, auto dat) -> void {\n    ll ans = dat.max1 + dat.max2;\n    chmax(ANS,\
+    \ ans);\n  });\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc220/tasks/abc220_g\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/base.hpp\"\n\
+    #include \"geo/perpendicular_bisector.hpp\"\n#include \"random/base.hpp\"\n#include\
+    \ \"ds/hashmap.hpp\"\n#include \"alg/monoid/max2.hpp\"\n\nusing P = Point<ll>;\n\
+    \nvoid solve() {\n  LL(N);\n  vc<P> point(N);\n  vi C(N);\n  FOR(i, N) read(point[i],\
+    \ C[i]);\n\n  u64 aa = RNG_64(), bb = RNG_64(), cc = RNG_64();\n\n  using Mono\
+    \ = Monoid_Max2<ll, ll>;\n  using Data = typename Mono::Data;\n  HashMap<Data>\
+    \ MP;\n\n  FOR(j, N) FOR(i, j) {\n    Line<ll> L = perpendicular_bisector(point[i],\
+    \ point[j]);\n    L.normalize();\n    u64 key = 0;\n    key += u64(L.a + infty<ll>)\
+    \ * aa;\n    key += u64(L.b + infty<ll>) * bb;\n    key += u64(L.c + infty<ll>)\
+    \ * cc;\n    if (!MP.count(key)) MP[key] = Mono::unit();\n    ll g = gcd(L.a,\
+    \ L.b);\n    Point<ll> normal = {L.b / g, -L.a / g};\n    ll t = normal.dot(point[i]);\n\
+    \    MP[key].add_element(C[i] + C[j], t);\n  }\n\n  ll ANS = -1;\n  MP.enumerate_all([&](auto\
+    \ key, auto dat) -> void {\n    ll ans = dat.max1 + dat.max2;\n    chmax(ANS,\
+    \ ans);\n  });\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - geo/base.hpp
-  - geo/angle_sort.hpp
+  - geo/perpendicular_bisector.hpp
+  - random/base.hpp
+  - ds/hashmap.hpp
+  - alg/monoid/max2.hpp
   isVerificationFile: true
-  path: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
+  path: test_atcoder/abc220g.test.cpp
   requiredBy: []
   timestamp: '2023-11-03 13:02:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
+documentation_of: test_atcoder/abc220g.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
-- /verify/test/library_checker/geometry/sort_points_by_argument_pair.test.cpp.html
-title: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
+- /verify/test_atcoder/abc220g.test.cpp
+- /verify/test_atcoder/abc220g.test.cpp.html
+title: test_atcoder/abc220g.test.cpp
 ---
