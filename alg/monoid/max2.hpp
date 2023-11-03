@@ -5,18 +5,22 @@ struct Monoid_Max2 {
   struct Data {
     T max1, max2;
     KEY key1, key2;
-    void add_element(T x, KEY key) {
-      if (key1 == key) {
-        chmax(max1, x);
-        return;
-      }
+    bool add_element(T x, KEY key) {
+      if (key1 == key) { return chmax(max1, x); }
       if (key2 == key) {
-        chmax(max2, x);
+        bool upd = chmax(max2, x);
         if (max1 < max2) swap(max1, max2), swap(key1, key2);
-        return;
+        return upd;
       }
-      if (max1 < x) { max2 = max1, key2 = key1, max1 = x, key1 = key; }
-      elif (max2 < x) { max2 = x, key2 = key; }
+      if (max1 < x) {
+        max2 = max1, key2 = key1, max1 = x, key1 = key;
+        return 1;
+      }
+      elif (max2 < x) {
+        max2 = x, key2 = key;
+        return 1;
+      }
+      return 0;
     }
   };
   using value_type = Data;
