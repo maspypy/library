@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
     path: graph/shortest_path/dial.hpp
     title: graph/shortest_path/dial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -249,43 +249,43 @@ data:
     \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\n  vc<int> new_idx;\n  vc<bool>\
     \ used_e;\n\n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\
     \u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\
-    \u308B\n  // {G, es}\n  pair<Graph<T, directed>, vc<int>> rearrange(vc<int> V)\
-    \ {\n    if (len(new_idx) != N) new_idx.assign(N, -1);\n    if (len(used_e) !=\
-    \ M) used_e.assign(M, 0);\n    int n = len(V);\n    FOR(i, n) new_idx[V[i]] =\
-    \ i;\n    Graph<T, directed> G(n);\n    vc<int> es;\n    FOR(i, n) {\n      for\
-    \ (auto&& e: (*this)[V[i]]) {\n        if (used_e[e.id]) continue;\n        int\
-    \ a = e.frm, b = e.to;\n        if (new_idx[a] != -1 && new_idx[b] != -1) {\n\
-    \          used_e[e.id] = 1;\n          G.add(new_idx[a], new_idx[b], e.cost);\n\
-    \          es.eb(e.id);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]]\
-    \ = -1;\n    for (auto&& eid: es) used_e[eid] = 0;\n    G.build();\n    return\
-    \ {G, es};\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
-    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
-    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
-    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 3 \"graph/shortest_path/dial.hpp\"\ntemplate <typename Graph>\r\
-    \npair<vector<typename Graph::cost_type>, vector<int>> dial(Graph& G, int s) {\r\
-    \n  using COST = typename Graph::cost_type;\r\n  assert(G.is_prepared());\r\n\
-    \  ll W = 0;\r\n  ll N = G.N;\r\n  for (auto&& e: G.edges) chmax(W, e.cost);\r\
-    \n  vc<int> S(N * W + 2, -1);\r\n  vc<int> T(N * W + 2, -1);\r\n  vc<int> prev(N);\r\
-    \n  vc<int> nxt(N);\r\n  vc<COST> dist(N, W * N + 1);\r\n  vc<int> par(N, -1);\r\
-    \n  dist[s] = 0;\r\n  auto add = [&](ll v) -> void {\r\n    ll d = dist[v];\r\n\
-    \    prev[v] = T[d];\r\n    if (T[d] != -1) nxt[T[d]] = v;\r\n    T[d] = v;\r\n\
-    \    if (S[d] == -1) S[d] = v;\r\n    nxt[v] = -1;\r\n  };\r\n  auto rm = [&](ll\
-    \ v) -> void {\r\n    ll d = dist[v];\r\n    if (prev[v] != -1) nxt[prev[v]] =\
-    \ nxt[v];\r\n    if (nxt[v] != -1) prev[nxt[v]] = prev[v];\r\n    if (S[d] ==\
-    \ v) S[d] = nxt[v];\r\n    if (T[d] == v) T[d] = prev[v];\r\n  };\r\n  FOR(v,\
-    \ N) add(v);\r\n\r\n  FOR(d, N * W) {\r\n    ll v = S[d];\r\n    while (v != -1)\
-    \ {\r\n      for (auto&& e: G[v]) {\r\n        ll w = e.to;\r\n        ll dw =\
-    \ d + e.cost;\r\n        if (dw < dist[w]) {\r\n          par[w] = v;\r\n    \
-    \      rm(w);\r\n          dist[w] = dw;\r\n          add(w);\r\n        }\r\n\
-    \      }\r\n      v = nxt[v];\r\n    }\r\n  }\r\n  FOR(v, N) if (dist[v] > N *\
-    \ W) dist[v] = -1;\r\n  return {dist, par};\r\n}\n#line 6 \"test/aoj/ALDS1_12_B.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  Graph<int, 1> G(N);\n  FOR(v, N) {\n    LL(u);\n\
-    \    assert(u == v);\n    LL(k);\n    FOR(k) {\n      LL(a, b);\n      G.add(v,\
-    \ a, b);\n    }\n  }\n  G.build();\n  auto [dist, par] = dial(G, 0);\n  FOR(v,\
-    \ N) print(v, dist[v]);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
-    \  return 0;\n}\n"
+    \u308B\n  // {G, es}\n  Graph<T, directed> rearrange(vc<int> V, bool keep_eid\
+    \ = 0) {\n    if (len(new_idx) != N) new_idx.assign(N, -1);\n    if (len(used_e)\
+    \ != M) used_e.assign(M, 0);\n    int n = len(V);\n    FOR(i, n) new_idx[V[i]]\
+    \ = i;\n    Graph<T, directed> G(n);\n    vc<int> history;\n    FOR(i, n) {\n\
+    \      for (auto&& e: (*this)[V[i]]) {\n        if (used_e[e.id]) continue;\n\
+    \        int a = e.frm, b = e.to;\n        if (new_idx[a] != -1 && new_idx[b]\
+    \ != -1) {\n          history.eb(e.id);\n          used_e[e.id] = 1;\n       \
+    \   int eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b],\
+    \ e.cost, eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n\
+    \    for (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n\
+    \  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n\
+    \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
+    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
+    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
+    #line 3 \"graph/shortest_path/dial.hpp\"\ntemplate <typename Graph>\r\npair<vector<typename\
+    \ Graph::cost_type>, vector<int>> dial(Graph& G, int s) {\r\n  using COST = typename\
+    \ Graph::cost_type;\r\n  assert(G.is_prepared());\r\n  ll W = 0;\r\n  ll N = G.N;\r\
+    \n  for (auto&& e: G.edges) chmax(W, e.cost);\r\n  vc<int> S(N * W + 2, -1);\r\
+    \n  vc<int> T(N * W + 2, -1);\r\n  vc<int> prev(N);\r\n  vc<int> nxt(N);\r\n \
+    \ vc<COST> dist(N, W * N + 1);\r\n  vc<int> par(N, -1);\r\n  dist[s] = 0;\r\n\
+    \  auto add = [&](ll v) -> void {\r\n    ll d = dist[v];\r\n    prev[v] = T[d];\r\
+    \n    if (T[d] != -1) nxt[T[d]] = v;\r\n    T[d] = v;\r\n    if (S[d] == -1) S[d]\
+    \ = v;\r\n    nxt[v] = -1;\r\n  };\r\n  auto rm = [&](ll v) -> void {\r\n    ll\
+    \ d = dist[v];\r\n    if (prev[v] != -1) nxt[prev[v]] = nxt[v];\r\n    if (nxt[v]\
+    \ != -1) prev[nxt[v]] = prev[v];\r\n    if (S[d] == v) S[d] = nxt[v];\r\n    if\
+    \ (T[d] == v) T[d] = prev[v];\r\n  };\r\n  FOR(v, N) add(v);\r\n\r\n  FOR(d, N\
+    \ * W) {\r\n    ll v = S[d];\r\n    while (v != -1) {\r\n      for (auto&& e:\
+    \ G[v]) {\r\n        ll w = e.to;\r\n        ll dw = d + e.cost;\r\n        if\
+    \ (dw < dist[w]) {\r\n          par[w] = v;\r\n          rm(w);\r\n          dist[w]\
+    \ = dw;\r\n          add(w);\r\n        }\r\n      }\r\n      v = nxt[v];\r\n\
+    \    }\r\n  }\r\n  FOR(v, N) if (dist[v] > N * W) dist[v] = -1;\r\n  return {dist,\
+    \ par};\r\n}\n#line 6 \"test/aoj/ALDS1_12_B.test.cpp\"\n\nvoid solve() {\n  LL(N);\n\
+    \  Graph<int, 1> G(N);\n  FOR(v, N) {\n    LL(u);\n    assert(u == v);\n    LL(k);\n\
+    \    FOR(k) {\n      LL(a, b);\n      G.add(v, a, b);\n    }\n  }\n  G.build();\n\
+    \  auto [dist, par] = dial(G, 0);\n  FOR(v, N) print(v, dist[v]);\n}\n\nsigned\
+    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_12_B\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/shortest_path/dial.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  Graph<int, 1> G(N);\n  FOR(v, N) {\n    LL(u);\n\
@@ -302,7 +302,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_12_B.test.cpp
   requiredBy: []
-  timestamp: '2023-11-01 19:16:20+09:00'
+  timestamp: '2023-11-04 05:26:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_12_B.test.cpp

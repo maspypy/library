@@ -1,29 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: graph/tree_all_distances.hpp
-    title: graph/tree_all_distances.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
-    title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1038.test.cpp
-    title: test/yukicoder/1038.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1769.test.cpp
-    title: test/yukicoder/1769.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1796.test.cpp
-    title: test/yukicoder/1796.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -69,51 +54,52 @@ data:
     \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\n  vc<int> new_idx;\n  vc<bool>\
     \ used_e;\n\n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\
     \u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\
-    \u308B\n  // {G, es}\n  pair<Graph<T, directed>, vc<int>> rearrange(vc<int> V)\
-    \ {\n    if (len(new_idx) != N) new_idx.assign(N, -1);\n    if (len(used_e) !=\
-    \ M) used_e.assign(M, 0);\n    int n = len(V);\n    FOR(i, n) new_idx[V[i]] =\
-    \ i;\n    Graph<T, directed> G(n);\n    vc<int> es;\n    FOR(i, n) {\n      for\
-    \ (auto&& e: (*this)[V[i]]) {\n        if (used_e[e.id]) continue;\n        int\
-    \ a = e.frm, b = e.to;\n        if (new_idx[a] != -1 && new_idx[b] != -1) {\n\
-    \          used_e[e.id] = 1;\n          G.add(new_idx[a], new_idx[b], e.cost);\n\
-    \          es.eb(e.id);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]]\
-    \ = -1;\n    for (auto&& eid: es) used_e[eid] = 0;\n    G.build();\n    return\
-    \ {G, es};\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
-    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
-    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
-    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 2 \"graph/centroid.hpp\"\n\r\n// (v,w) or (v,-1)\r\ntemplate\
-    \ <typename GT>\r\npair<int, int> find_centroids(GT& G) {\r\n  static_assert(!GT::is_directed);\r\
-    \n  int N = G.N;\r\n  vc<int> par(N, -1);\r\n  vc<int> V(N);\r\n  vc<int> sz(N);\r\
-    \n  int l = 0, r = 0;\r\n  V[r++] = 0;\r\n  while (l < r) {\r\n    int v = V[l++];\r\
-    \n    for (auto&& e: G[v])\r\n      if (e.to != par[v]) {\r\n        par[e.to]\
-    \ = v;\r\n        V[r++] = e.to;\r\n      }\r\n  }\r\n  FOR_R(i, N) {\r\n    int\
-    \ v = V[i];\r\n    sz[v] += 1;\r\n    int p = par[v];\r\n    if (p != -1) sz[p]\
-    \ += sz[v];\r\n  }\r\n\r\n  int M = N / 2;\r\n  auto check = [&](int v) -> bool\
-    \ {\r\n    if (N - sz[v] > M) return false;\r\n    for (auto&& e: G[v]) {\r\n\
-    \      if (e.to != par[v] && sz[e.to] > M) return false;\r\n    }\r\n    return\
-    \ true;\r\n  };\r\n  pair<int, int> ANS = {-1, -1};\r\n  FOR(v, N) if (check(v))\
-    \ {\r\n    if (ANS.fi != -1) {\r\n      ANS.se = v;\r\n    } else {\r\n      ANS.fi\
-    \ = v;\r\n    }\r\n  }\r\n  return ANS;\r\n}\r\n\r\ntemplate <typename GT>\r\n\
-    struct Centroid_Decomposition {\r\n  using edge_type = typename GT::edge_type;\r\
-    \n  GT& G;\r\n  int N;\r\n  vc<int> sz;\r\n  vc<int> par;\r\n  vector<int> cdep;\
-    \ // depth in centroid tree\r\n  bool calculated;\r\n\r\n  Centroid_Decomposition(GT&\
-    \ G)\r\n      : G(G), N(G.N), sz(G.N), par(G.N), cdep(G.N, -1) {\r\n    calculated\
-    \ = 0;\r\n    build();\r\n  }\r\n\r\nprivate:\r\n  int find(int v) {\r\n    vc<int>\
-    \ V = {v};\r\n    par[v] = -1;\r\n    int p = 0;\r\n    while (p < len(V)) {\r\
-    \n      int v = V[p++];\r\n      sz[v] = 0;\r\n      for (auto&& e: G[v]) {\r\n\
-    \        if (e.to == par[v] || cdep[e.to] != -1) continue;\r\n        par[e.to]\
-    \ = v;\r\n        V.eb(e.to);\r\n      }\r\n    }\r\n    while (len(V)) {\r\n\
-    \      int v = V.back();\r\n      V.pop_back();\r\n      sz[v] += 1;\r\n     \
-    \ if (p - sz[v] <= p / 2) return v;\r\n      sz[par[v]] += sz[v];\r\n    }\r\n\
-    \    return -1;\r\n  }\r\n  void build() {\r\n    assert(G.is_prepared());\r\n\
-    \    assert(!calculated);\r\n    calculated = 1;\r\n\r\n    vc<pair<int, int>>\
-    \ st;\r\n    st.eb(0, 0);\r\n    while (!st.empty()) {\r\n      auto [lv, v] =\
-    \ st.back();\r\n      st.pop_back();\r\n      auto c = find(v);\r\n      cdep[c]\
-    \ = lv;\r\n      for (auto&& e: G[c]) {\r\n        if (cdep[e.to] == -1) { st.eb(lv\
-    \ + 1, e.to); }\r\n      }\r\n    }\r\n  }\r\n\r\npublic:\r\n  // V, dat, indptr\r\
-    \n  template <typename T, typename F>\r\n  tuple<vc<int>, vc<T>, vc<int>> collect_path_data(int\
-    \ root, T root_val, F f) {\r\n    vc<int> V = {root};\r\n    vc<T> dp = {root_val};\r\
+    \u308B\n  // {G, es}\n  Graph<T, directed> rearrange(vc<int> V, bool keep_eid\
+    \ = 0) {\n    if (len(new_idx) != N) new_idx.assign(N, -1);\n    if (len(used_e)\
+    \ != M) used_e.assign(M, 0);\n    int n = len(V);\n    FOR(i, n) new_idx[V[i]]\
+    \ = i;\n    Graph<T, directed> G(n);\n    vc<int> history;\n    FOR(i, n) {\n\
+    \      for (auto&& e: (*this)[V[i]]) {\n        if (used_e[e.id]) continue;\n\
+    \        int a = e.frm, b = e.to;\n        if (new_idx[a] != -1 && new_idx[b]\
+    \ != -1) {\n          history.eb(e.id);\n          used_e[e.id] = 1;\n       \
+    \   int eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b],\
+    \ e.cost, eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n\
+    \    for (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n\
+    \  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n\
+    \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
+    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
+    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
+    #line 2 \"graph/centroid___________old.hpp\"\n\r\n// (v,w) or (v,-1)\r\ntemplate\
+    \ <typename GT>\r\npair<int, int> find_centroids(GT& G) {\r\n  int N = G.N;\r\n\
+    \  vc<int> par(N, -1);\r\n  vc<int> V(N);\r\n  vc<int> sz(N);\r\n  int l = 0,\
+    \ r = 0;\r\n  V[r++] = 0;\r\n  while (l < r) {\r\n    int v = V[l++];\r\n    for\
+    \ (auto&& e: G[v])\r\n      if (e.to != par[v]) {\r\n        par[e.to] = v;\r\n\
+    \        V[r++] = e.to;\r\n      }\r\n  }\r\n  FOR_R(i, N) {\r\n    int v = V[i];\r\
+    \n    sz[v] += 1;\r\n    int p = par[v];\r\n    if (p != -1) sz[p] += sz[v];\r\
+    \n  }\r\n\r\n  int M = N / 2;\r\n  auto check = [&](int v) -> bool {\r\n    if\
+    \ (N - sz[v] > M) return false;\r\n    for (auto&& e: G[v]) {\r\n      if (e.to\
+    \ != par[v] && sz[e.to] > M) return false;\r\n    }\r\n    return true;\r\n  };\r\
+    \n  pair<int, int> ANS = {-1, -1};\r\n  FOR(v, N) if (check(v)) {\r\n    if (ANS.fi\
+    \ != -1) {\r\n      ANS.se = v;\r\n    } else {\r\n      ANS.fi = v;\r\n    }\r\
+    \n  }\r\n  return ANS;\r\n}\r\n\r\ntemplate <typename GT>\r\nstruct Centroid_Decomposition\
+    \ {\r\n  using edge_type = typename GT::edge_type;\r\n  GT& G;\r\n  int N;\r\n\
+    \  vc<int> sz;\r\n  vc<int> par;\r\n  vector<int> cdep; // depth in centroid tree\r\
+    \n  bool calculated;\r\n\r\n  Centroid_Decomposition(GT& G)\r\n      : G(G), N(G.N),\
+    \ sz(G.N), par(G.N), cdep(G.N, -1) {\r\n    calculated = 0;\r\n    build();\r\n\
+    \  }\r\n\r\nprivate:\r\n  int find(int v) {\r\n    vc<int> V = {v};\r\n    par[v]\
+    \ = -1;\r\n    int p = 0;\r\n    while (p < len(V)) {\r\n      int v = V[p++];\r\
+    \n      sz[v] = 0;\r\n      for (auto&& e: G[v]) {\r\n        if (e.to == par[v]\
+    \ || cdep[e.to] != -1) continue;\r\n        par[e.to] = v;\r\n        V.eb(e.to);\r\
+    \n      }\r\n    }\r\n    while (len(V)) {\r\n      int v = V.back();\r\n    \
+    \  V.pop_back();\r\n      sz[v] += 1;\r\n      if (p - sz[v] <= p / 2) return\
+    \ v;\r\n      sz[par[v]] += sz[v];\r\n    }\r\n    return -1;\r\n  }\r\n  void\
+    \ build() {\r\n    assert(G.is_prepared());\r\n    assert(!calculated);\r\n  \
+    \  calculated = 1;\r\n\r\n    vc<pair<int, int>> st;\r\n    st.eb(0, 0);\r\n \
+    \   while (!st.empty()) {\r\n      auto [lv, v] = st.back();\r\n      st.pop_back();\r\
+    \n      auto c = find(v);\r\n      cdep[c] = lv;\r\n      for (auto&& e: G[c])\
+    \ {\r\n        if (cdep[e.to] == -1) { st.eb(lv + 1, e.to); }\r\n      }\r\n \
+    \   }\r\n  }\r\n\r\npublic:\r\n  // V, dat, indptr\r\n  template <typename T,\
+    \ typename F>\r\n  tuple<vc<int>, vc<T>, vc<int>> collect_path_data(int root,\
+    \ T root_val, F f) {\r\n    vc<int> V = {root};\r\n    vc<T> dp = {root_val};\r\
     \n    vc<int> indptr = {0, 1};\r\n    for (auto&& e: G[root]) {\r\n      int nxt\
     \ = e.to;\r\n      if (cdep[nxt] < cdep[root]) continue;\r\n      int p = len(V);\r\
     \n      V.eb(nxt);\r\n      dp.eb(f(root_val, e));\r\n      par[nxt] = root;\r\
@@ -141,37 +127,37 @@ data:
     \n    for (auto&& [a, b, c]: edges) H.add(a, b, c);\r\n    H.build();\r\n    for\
     \ (auto&& v: V) conv[v] = -1;\r\n    return {V, H, indptr};\r\n  }\r\n};\r\n"
   code: "#include \"graph/base.hpp\"\r\n\r\n// (v,w) or (v,-1)\r\ntemplate <typename\
-    \ GT>\r\npair<int, int> find_centroids(GT& G) {\r\n  static_assert(!GT::is_directed);\r\
-    \n  int N = G.N;\r\n  vc<int> par(N, -1);\r\n  vc<int> V(N);\r\n  vc<int> sz(N);\r\
-    \n  int l = 0, r = 0;\r\n  V[r++] = 0;\r\n  while (l < r) {\r\n    int v = V[l++];\r\
-    \n    for (auto&& e: G[v])\r\n      if (e.to != par[v]) {\r\n        par[e.to]\
-    \ = v;\r\n        V[r++] = e.to;\r\n      }\r\n  }\r\n  FOR_R(i, N) {\r\n    int\
-    \ v = V[i];\r\n    sz[v] += 1;\r\n    int p = par[v];\r\n    if (p != -1) sz[p]\
-    \ += sz[v];\r\n  }\r\n\r\n  int M = N / 2;\r\n  auto check = [&](int v) -> bool\
-    \ {\r\n    if (N - sz[v] > M) return false;\r\n    for (auto&& e: G[v]) {\r\n\
-    \      if (e.to != par[v] && sz[e.to] > M) return false;\r\n    }\r\n    return\
-    \ true;\r\n  };\r\n  pair<int, int> ANS = {-1, -1};\r\n  FOR(v, N) if (check(v))\
-    \ {\r\n    if (ANS.fi != -1) {\r\n      ANS.se = v;\r\n    } else {\r\n      ANS.fi\
-    \ = v;\r\n    }\r\n  }\r\n  return ANS;\r\n}\r\n\r\ntemplate <typename GT>\r\n\
-    struct Centroid_Decomposition {\r\n  using edge_type = typename GT::edge_type;\r\
-    \n  GT& G;\r\n  int N;\r\n  vc<int> sz;\r\n  vc<int> par;\r\n  vector<int> cdep;\
-    \ // depth in centroid tree\r\n  bool calculated;\r\n\r\n  Centroid_Decomposition(GT&\
-    \ G)\r\n      : G(G), N(G.N), sz(G.N), par(G.N), cdep(G.N, -1) {\r\n    calculated\
-    \ = 0;\r\n    build();\r\n  }\r\n\r\nprivate:\r\n  int find(int v) {\r\n    vc<int>\
-    \ V = {v};\r\n    par[v] = -1;\r\n    int p = 0;\r\n    while (p < len(V)) {\r\
-    \n      int v = V[p++];\r\n      sz[v] = 0;\r\n      for (auto&& e: G[v]) {\r\n\
-    \        if (e.to == par[v] || cdep[e.to] != -1) continue;\r\n        par[e.to]\
-    \ = v;\r\n        V.eb(e.to);\r\n      }\r\n    }\r\n    while (len(V)) {\r\n\
-    \      int v = V.back();\r\n      V.pop_back();\r\n      sz[v] += 1;\r\n     \
-    \ if (p - sz[v] <= p / 2) return v;\r\n      sz[par[v]] += sz[v];\r\n    }\r\n\
-    \    return -1;\r\n  }\r\n  void build() {\r\n    assert(G.is_prepared());\r\n\
-    \    assert(!calculated);\r\n    calculated = 1;\r\n\r\n    vc<pair<int, int>>\
-    \ st;\r\n    st.eb(0, 0);\r\n    while (!st.empty()) {\r\n      auto [lv, v] =\
-    \ st.back();\r\n      st.pop_back();\r\n      auto c = find(v);\r\n      cdep[c]\
-    \ = lv;\r\n      for (auto&& e: G[c]) {\r\n        if (cdep[e.to] == -1) { st.eb(lv\
-    \ + 1, e.to); }\r\n      }\r\n    }\r\n  }\r\n\r\npublic:\r\n  // V, dat, indptr\r\
-    \n  template <typename T, typename F>\r\n  tuple<vc<int>, vc<T>, vc<int>> collect_path_data(int\
-    \ root, T root_val, F f) {\r\n    vc<int> V = {root};\r\n    vc<T> dp = {root_val};\r\
+    \ GT>\r\npair<int, int> find_centroids(GT& G) {\r\n  int N = G.N;\r\n  vc<int>\
+    \ par(N, -1);\r\n  vc<int> V(N);\r\n  vc<int> sz(N);\r\n  int l = 0, r = 0;\r\n\
+    \  V[r++] = 0;\r\n  while (l < r) {\r\n    int v = V[l++];\r\n    for (auto&&\
+    \ e: G[v])\r\n      if (e.to != par[v]) {\r\n        par[e.to] = v;\r\n      \
+    \  V[r++] = e.to;\r\n      }\r\n  }\r\n  FOR_R(i, N) {\r\n    int v = V[i];\r\n\
+    \    sz[v] += 1;\r\n    int p = par[v];\r\n    if (p != -1) sz[p] += sz[v];\r\n\
+    \  }\r\n\r\n  int M = N / 2;\r\n  auto check = [&](int v) -> bool {\r\n    if\
+    \ (N - sz[v] > M) return false;\r\n    for (auto&& e: G[v]) {\r\n      if (e.to\
+    \ != par[v] && sz[e.to] > M) return false;\r\n    }\r\n    return true;\r\n  };\r\
+    \n  pair<int, int> ANS = {-1, -1};\r\n  FOR(v, N) if (check(v)) {\r\n    if (ANS.fi\
+    \ != -1) {\r\n      ANS.se = v;\r\n    } else {\r\n      ANS.fi = v;\r\n    }\r\
+    \n  }\r\n  return ANS;\r\n}\r\n\r\ntemplate <typename GT>\r\nstruct Centroid_Decomposition\
+    \ {\r\n  using edge_type = typename GT::edge_type;\r\n  GT& G;\r\n  int N;\r\n\
+    \  vc<int> sz;\r\n  vc<int> par;\r\n  vector<int> cdep; // depth in centroid tree\r\
+    \n  bool calculated;\r\n\r\n  Centroid_Decomposition(GT& G)\r\n      : G(G), N(G.N),\
+    \ sz(G.N), par(G.N), cdep(G.N, -1) {\r\n    calculated = 0;\r\n    build();\r\n\
+    \  }\r\n\r\nprivate:\r\n  int find(int v) {\r\n    vc<int> V = {v};\r\n    par[v]\
+    \ = -1;\r\n    int p = 0;\r\n    while (p < len(V)) {\r\n      int v = V[p++];\r\
+    \n      sz[v] = 0;\r\n      for (auto&& e: G[v]) {\r\n        if (e.to == par[v]\
+    \ || cdep[e.to] != -1) continue;\r\n        par[e.to] = v;\r\n        V.eb(e.to);\r\
+    \n      }\r\n    }\r\n    while (len(V)) {\r\n      int v = V.back();\r\n    \
+    \  V.pop_back();\r\n      sz[v] += 1;\r\n      if (p - sz[v] <= p / 2) return\
+    \ v;\r\n      sz[par[v]] += sz[v];\r\n    }\r\n    return -1;\r\n  }\r\n  void\
+    \ build() {\r\n    assert(G.is_prepared());\r\n    assert(!calculated);\r\n  \
+    \  calculated = 1;\r\n\r\n    vc<pair<int, int>> st;\r\n    st.eb(0, 0);\r\n \
+    \   while (!st.empty()) {\r\n      auto [lv, v] = st.back();\r\n      st.pop_back();\r\
+    \n      auto c = find(v);\r\n      cdep[c] = lv;\r\n      for (auto&& e: G[c])\
+    \ {\r\n        if (cdep[e.to] == -1) { st.eb(lv + 1, e.to); }\r\n      }\r\n \
+    \   }\r\n  }\r\n\r\npublic:\r\n  // V, dat, indptr\r\n  template <typename T,\
+    \ typename F>\r\n  tuple<vc<int>, vc<T>, vc<int>> collect_path_data(int root,\
+    \ T root_val, F f) {\r\n    vc<int> V = {root};\r\n    vc<T> dp = {root_val};\r\
     \n    vc<int> indptr = {0, 1};\r\n    for (auto&& e: G[root]) {\r\n      int nxt\
     \ = e.to;\r\n      if (cdep[nxt] < cdep[root]) continue;\r\n      int p = len(V);\r\
     \n      V.eb(nxt);\r\n      dp.eb(f(root_val, e));\r\n      par[nxt] = root;\r\
@@ -201,20 +187,15 @@ data:
   dependsOn:
   - graph/base.hpp
   isVerificationFile: false
-  path: graph/centroid.hpp
-  requiredBy:
-  - graph/tree_all_distances.hpp
-  timestamp: '2023-11-01 12:54:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yukicoder/1038.test.cpp
-  - test/yukicoder/1796.test.cpp
-  - test/yukicoder/1769.test.cpp
-  - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
-documentation_of: graph/centroid.hpp
+  path: graph/centroid___________old.hpp
+  requiredBy: []
+  timestamp: '2023-11-04 05:26:59+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: graph/centroid___________old.hpp
 layout: document
 redirect_from:
-- /library/graph/centroid.hpp
-- /library/graph/centroid.hpp.html
-title: graph/centroid.hpp
+- /library/graph/centroid___________old.hpp
+- /library/graph/centroid___________old.hpp.html
+title: graph/centroid___________old.hpp
 ---

@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2507.test.cpp
     title: test/yukicoder/2507.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"enumerate/bits.hpp\"\ntemplate <typename F>\nvoid enumerate_bits_32(u32\
@@ -67,33 +67,34 @@ data:
     \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\n  vc<int> new_idx;\n  vc<bool>\
     \ used_e;\n\n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\
     \u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\
-    \u308B\n  // {G, es}\n  pair<Graph<T, directed>, vc<int>> rearrange(vc<int> V)\
-    \ {\n    if (len(new_idx) != N) new_idx.assign(N, -1);\n    if (len(used_e) !=\
-    \ M) used_e.assign(M, 0);\n    int n = len(V);\n    FOR(i, n) new_idx[V[i]] =\
-    \ i;\n    Graph<T, directed> G(n);\n    vc<int> es;\n    FOR(i, n) {\n      for\
-    \ (auto&& e: (*this)[V[i]]) {\n        if (used_e[e.id]) continue;\n        int\
-    \ a = e.frm, b = e.to;\n        if (new_idx[a] != -1 && new_idx[b] != -1) {\n\
-    \          used_e[e.id] = 1;\n          G.add(new_idx[a], new_idx[b], e.cost);\n\
-    \          es.eb(e.id);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]]\
-    \ = -1;\n    for (auto&& eid: es) used_e[eid] = 0;\n    G.build();\n    return\
-    \ {G, es};\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
-    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
-    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
-    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 3 \"graph/count/count_cycle.hpp\"\n\n// \u9802\u70B9\u96C6\
-    \u5408\u3054\u3068\u306B\u30B5\u30A4\u30AF\u30EB\u3092\u6570\u3048\u308B. N^22^N.\n\
-    // \u30B5\u30A4\u30AF\u30EB\u306E\u9577\u3055\u306F 3 \u4EE5\u4E0A\uFF08\u5358\
-    \u7D14\u30B0\u30E9\u30D5\u3092\u4EEE\u5B9A\uFF09\ntemplate <typename T, typename\
-    \ GT>\nvc<T> count_cycle(GT& G) {\n  const int N = G.N;\n  assert(N <= 32 && !GT::is_directed);\n\
-    \  vc<u32> nbd(N);\n  FOR(v, N) for (auto& e: G[v]) nbd[v] |= u32(1) << (e.to);\n\
-    \n  vc<T> cyc(1 << N);\n  for (int v = 0; v < N; ++v) {\n    vc<T> dp(v << v);\n\
-    \    for (int w = 0; w < v; ++w) {\n      if (nbd[v] >> w & 1) dp[(v << w) + w]\
-    \ = 1;\n    }\n    const u32 mask = (u32(1) << v) - 1;\n    for (u32 s = 0; s\
-    \ < (u32(1) << v); ++s) {\n      enumerate_bits_32(s, [&](int a) -> void {\n \
-    \       enumerate_bits_32(nbd[a] & mask & (~s), [&](int b) -> void {\n       \
-    \   dp[v * (s | 1 << b) + b] += dp[v * s + a];\n        });\n        if (popcnt(s)\
-    \ >= 2 && nbd[a] >> v & 1) cyc[s | 1 << v] += dp[v * s + a];\n      });\n    }\n\
-    \  }\n  for (auto& x: cyc) x /= T(2);\n  return cyc;\n}\n"
+    \u308B\n  // {G, es}\n  Graph<T, directed> rearrange(vc<int> V, bool keep_eid\
+    \ = 0) {\n    if (len(new_idx) != N) new_idx.assign(N, -1);\n    if (len(used_e)\
+    \ != M) used_e.assign(M, 0);\n    int n = len(V);\n    FOR(i, n) new_idx[V[i]]\
+    \ = i;\n    Graph<T, directed> G(n);\n    vc<int> history;\n    FOR(i, n) {\n\
+    \      for (auto&& e: (*this)[V[i]]) {\n        if (used_e[e.id]) continue;\n\
+    \        int a = e.frm, b = e.to;\n        if (new_idx[a] != -1 && new_idx[b]\
+    \ != -1) {\n          history.eb(e.id);\n          used_e[e.id] = 1;\n       \
+    \   int eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b],\
+    \ e.cost, eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n\
+    \    for (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n\
+    \  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n\
+    \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
+    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
+    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
+    #line 3 \"graph/count/count_cycle.hpp\"\n\n// \u9802\u70B9\u96C6\u5408\u3054\u3068\
+    \u306B\u30B5\u30A4\u30AF\u30EB\u3092\u6570\u3048\u308B. N^22^N.\n// \u30B5\u30A4\
+    \u30AF\u30EB\u306E\u9577\u3055\u306F 3 \u4EE5\u4E0A\uFF08\u5358\u7D14\u30B0\u30E9\
+    \u30D5\u3092\u4EEE\u5B9A\uFF09\ntemplate <typename T, typename GT>\nvc<T> count_cycle(GT&\
+    \ G) {\n  const int N = G.N;\n  assert(N <= 32 && !GT::is_directed);\n  vc<u32>\
+    \ nbd(N);\n  FOR(v, N) for (auto& e: G[v]) nbd[v] |= u32(1) << (e.to);\n\n  vc<T>\
+    \ cyc(1 << N);\n  for (int v = 0; v < N; ++v) {\n    vc<T> dp(v << v);\n    for\
+    \ (int w = 0; w < v; ++w) {\n      if (nbd[v] >> w & 1) dp[(v << w) + w] = 1;\n\
+    \    }\n    const u32 mask = (u32(1) << v) - 1;\n    for (u32 s = 0; s < (u32(1)\
+    \ << v); ++s) {\n      enumerate_bits_32(s, [&](int a) -> void {\n        enumerate_bits_32(nbd[a]\
+    \ & mask & (~s), [&](int b) -> void {\n          dp[v * (s | 1 << b) + b] += dp[v\
+    \ * s + a];\n        });\n        if (popcnt(s) >= 2 && nbd[a] >> v & 1) cyc[s\
+    \ | 1 << v] += dp[v * s + a];\n      });\n    }\n  }\n  for (auto& x: cyc) x /=\
+    \ T(2);\n  return cyc;\n}\n"
   code: "#include \"enumerate/bits.hpp\"\n#include \"graph/base.hpp\"\n\n// \u9802\
     \u70B9\u96C6\u5408\u3054\u3068\u306B\u30B5\u30A4\u30AF\u30EB\u3092\u6570\u3048\
     \u308B. N^22^N.\n// \u30B5\u30A4\u30AF\u30EB\u306E\u9577\u3055\u306F 3 \u4EE5\u4E0A\
@@ -115,8 +116,8 @@ data:
   isVerificationFile: false
   path: graph/count/count_cycle.hpp
   requiredBy: []
-  timestamp: '2023-11-01 18:40:50+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-11-04 05:26:59+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/2507.test.cpp
 documentation_of: graph/count/count_cycle.hpp
