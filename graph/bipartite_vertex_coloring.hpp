@@ -4,8 +4,9 @@
 #include "ds/unionfind/unionfind.hpp"
 
 // 二部グラフでなかった場合には empty
-template <typename Graph>
-vc<int> bipartite_vertex_coloring(Graph& G) {
+template <typename GT>
+vc<int> bipartite_vertex_coloring(GT& G) {
+  assert(!GT::is_directed);
   assert(G.is_prepared());
 
   int n = G.N;
