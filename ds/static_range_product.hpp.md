@@ -1,26 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/sparse_table/disjoint_sparse_table.hpp
     title: ds/sparse_table/disjoint_sparse_table.hpp
   - icon: ':question:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
-  _extendedRequiredBy:
-  - icon: ':x:'
-    path: graph/fast_lca.hpp
-    title: graph/fast_lca.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticrmq.test.cpp
     title: test/library_checker/datastructure/staticrmq.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/tree/lca_fast.test.cpp
-    title: test/library_checker/tree/lca_fast.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://judge.yosupo.jp/submission/106668
@@ -130,12 +124,10 @@ data:
   - ds/sparse_table/disjoint_sparse_table.hpp
   isVerificationFile: false
   path: ds/static_range_product.hpp
-  requiredBy:
-  - graph/fast_lca.hpp
+  requiredBy: []
   timestamp: '2023-11-04 19:28:51+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/tree/lca_fast.test.cpp
   - test/library_checker/datastructure/staticrmq.test.cpp
 documentation_of: ds/static_range_product.hpp
 layout: document

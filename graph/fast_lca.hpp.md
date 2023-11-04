@@ -4,32 +4,26 @@ data:
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min_idx.hpp
     title: alg/monoid/min_idx.hpp
-  - icon: ':question:'
-    path: ds/sparse_table/disjoint_sparse_table.hpp
-    title: ds/sparse_table/disjoint_sparse_table.hpp
   - icon: ':question:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
   - icon: ':question:'
-    path: ds/static_range_product.hpp
-    title: ds/static_range_product.hpp
-  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/lca_fast.test.cpp
     title: test/library_checker/tree/lca_fast.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate\
@@ -199,63 +193,35 @@ data:
     \    if (R == 0) return 0;\n    int ok = R, ng = -1;\n    while (ng + 1 < ok)\
     \ {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k, R));\n      if\
     \ (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n};\n#line\
-    \ 2 \"ds/sparse_table/disjoint_sparse_table.hpp\"\n\r\ntemplate <class Monoid>\r\
-    \nstruct Disjoint_Sparse_Table {\r\n  using MX = Monoid;\r\n  using X = typename\
-    \ MX::value_type;\r\n  int n, log;\r\n  vvc<X> dat;\r\n\r\n  Disjoint_Sparse_Table()\
-    \ {}\r\n  Disjoint_Sparse_Table(int n) { build(n); }\r\n  template <typename F>\r\
-    \n  Disjoint_Sparse_Table(int n, F f) {\r\n    build(n, f);\r\n  }\r\n  Disjoint_Sparse_Table(const\
-    \ vc<X>& v) { build(v); }\r\n\r\n  void build(int m) {\r\n    build(m, [](int\
-    \ i) -> X { return MX::unit(); });\r\n  }\r\n  void build(const vc<X>& v) {\r\n\
-    \    build(len(v), [&](int i) -> X { return v[i]; });\r\n  }\r\n  template <typename\
-    \ F>\r\n  void build(int m, F f) {\r\n    n = m, log = 1;\r\n    while ((1 <<\
-    \ log) < n) ++log;\r\n    dat.resize(log);\r\n    dat[0].reserve(n);\r\n    FOR(i,\
-    \ n) dat[0].eb(f(i));\r\n    FOR(i, 1, log) {\r\n      auto& v = dat[i];\r\n \
-    \     v = dat[0];\r\n      int b = 1 << i;\r\n      for (int m = b; m <= n; m\
-    \ += 2 * b) {\r\n        int L = m - b, R = min(n, m + b);\r\n        FOR_R(j,\
-    \ L + 1, m) v[j - 1] = MX::op(v[j - 1], v[j]);\r\n        FOR(j, m, R - 1) v[j\
-    \ + 1] = MX::op(v[j], v[j + 1]);\r\n      }\r\n    }\r\n  }\r\n\r\n  X prod(int\
-    \ L, int R) {\r\n    if (L == R) return MX::unit();\r\n    --R;\r\n    if (L ==\
-    \ R) return dat[0][L];\r\n    int k = 31 - __builtin_clz(L ^ R);\r\n    return\
-    \ MX::op(dat[k][L], dat[k][R]);\r\n  }\r\n\r\n  template <class F>\r\n  int max_right(const\
-    \ F check, int L) {\r\n    assert(0 <= L && L <= n && check(MX::unit()));\r\n\
-    \    if (L == n) return n;\r\n    int ok = L, ng = n + 1;\r\n    while (ok + 1\
-    \ < ng) {\r\n      int k = (ok + ng) / 2;\r\n      bool bl = check(prod(L, k));\r\
-    \n      if (bl) ok = k;\r\n      if (!bl) ng = k;\r\n    }\r\n    return ok;\r\
-    \n  }\r\n\r\n  template <class F>\r\n  int min_left(const F check, int R) {\r\n\
-    \    assert(0 <= R && R <= n && check(MX::unit()));\r\n    if (R == 0) return\
-    \ 0;\r\n    int ok = R, ng = -1;\r\n    while (ng + 1 < ok) {\r\n      int k =\
-    \ (ok + ng) / 2;\r\n      bool bl = check(prod(k, R));\r\n      if (bl) ok = k;\r\
-    \n      if (!bl) ng = k;\r\n    }\r\n    return ok;\r\n  }\r\n};\n#line 3 \"ds/static_range_product.hpp\"\
-    \n\n/*\n\u53C2\u8003\uFF1Ahttps://judge.yosupo.jp/submission/106668\n\u9577\u3055\
-    \ 2^LOG \u306E\u30D6\u30ED\u30C3\u30AF\u306B\u5206\u3051\u308B\uFF0E\u30D6\u30ED\
-    \u30C3\u30AF\u5185\u306E prefix, suffix \u3092\u6301\u3064\uFF0E\n\u30D6\u30ED\
-    \u30C3\u30AF\u7A4D\u306E\u5217\u3092 ST(DST) \u3067\u6301\u3064\uFF0E\u30D6\u30ED\
-    \u30C3\u30AF\u3092\u307E\u305F\u3050\u7A4D\u306F O(1).\n\u77ED\u3044\u3082\u306E\
-    \u306F O(1) \u3092\u8AE6\u3081\u3066\u611A\u76F4\u3068\u3044\u3046\u3053\u3068\
-    \u306B\u3059\u308B\uFF0E\n\u524D\u8A08\u7B97\uFF1AO(Nlog(N)/2^LOG)\n\u30AF\u30A8\
-    \u30EA\uFF1AO(1) / worst O(2^LOG)\n*/\ntemplate <typename Monoid, typename SPARSE_TABLE,\
-    \ int LOG = 4>\nstruct Static_Range_Product {\n  using MX = Monoid;\n  using X\
-    \ = typename MX::value_type;\n  int N, b_num;\n  vc<X> A, pre, suf; // inclusive\n\
-    \  SPARSE_TABLE ST;\n\n  Static_Range_Product() {}\n  template <typename F>\n\
-    \  Static_Range_Product(int n, F f) {\n    build(n, f);\n  }\n  Static_Range_Product(const\
-    \ vc<X>& v) { build(v); }\n\n  void build(const vc<X>& v) {\n    build(len(v),\
-    \ [&](int i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int\
-    \ m, F f) {\n    N = m;\n    b_num = N >> LOG;\n    A.resize(N);\n    FOR(i, N)\
-    \ A[i] = f(i);\n    pre = A, suf = A;\n    constexpr int mask = (1 << LOG) - 1;\n\
-    \    FOR(i, 1, N) {\n      if (i & mask) pre[i] = MX::op(pre[i - 1], A[i]);\n\
-    \    }\n    FOR_R(i, 1, N) {\n      if (i & mask) suf[i - 1] = MX::op(A[i - 1],\
-    \ suf[i]);\n    }\n    ST.build(b_num, [&](int i) -> X { return suf[i << LOG];\
-    \ });\n  }\n\n  // O(1) or O(R-L)\n  X prod(int L, int R) {\n    if (L == R) return\
-    \ MX::unit();\n    R -= 1;\n    int a = L >> LOG, b = R >> LOG;\n    if (a < b)\
-    \ {\n      X x = ST.prod(a + 1, b);\n      x = MX::op(suf[L], x);\n      x = MX::op(x,\
-    \ pre[R]);\n      return x;\n    }\n    X x = A[L];\n    FOR(i, L + 1, R + 1)\
-    \ x = MX::op(x, A[i]);\n    return x;\n  }\n};\n#line 5 \"graph/fast_lca.hpp\"\
-    \n\n// sparse table \u3092\u4F7F\u3046 <O(NlogN),O(1)>\n// dist_only \u306E\u65B9\
-    \u304C 2 \u5272\u304F\u3089\u3044\u9AD8\u901F\u304B\ntemplate <typename TREE,\
-    \ bool dist_only>\nstruct Fast_Lca {\n  using Mono1 = Monoid_Min<int>;\n  using\
-    \ Mono2 = Monoid_Min_Idx<int>;\n  TREE& tree;\n  Static_Range_Produc<Mono1, Sparse_Table<Mono1>>\
-    \ seg_mi;\n  Static_Range_Produc<Mono2, Sparse_Table<Mono2>> seg_mi_idx;\n  vc<int>\
-    \ pos;\n\n  Fast_Lca(TREE& tree) : tree(tree) {\n    int N = tree.N;\n    pos.resize(N);\n\
+    \ 5 \"graph/fast_lca.hpp\"\n\n// sparse table \u3092\u4F7F\u3046 <O(NlogN),O(1)>\n\
+    // dist_only \u306E\u65B9\u304C 2 \u5272\u304F\u3089\u3044\u9AD8\u901F\u304B\n\
+    template <typename TREE, bool dist_only>\nstruct Fast_Lca {\n  TREE& tree;\n \
+    \ Sparse_Table<Monoid_Min<int>> seg_mi;\n  Sparse_Table<Monoid_Min_Idx<int>> seg_mi_idx;\n\
+    \  vc<int> pos;\n\n  Fast_Lca(TREE& tree) : tree(tree) {\n    int N = tree.N;\n\
+    \    pos.resize(N);\n    if constexpr (dist_only) {\n      vc<int> dat(2 * N -\
+    \ 1);\n      FOR(v, N) {\n        int a = tree.ELID(v);\n        int b = tree.ERID(v);\n\
+    \        int d = tree.depth[v];\n        dat[a] = d;\n        pos[v] = a;\n  \
+    \      if (b < 2 * N - 1) dat[b] = d - 1;\n      }\n      seg_mi.build(dat);\n\
+    \    } else {\n      vc<pair<int, int>> dat(2 * N - 1);\n      FOR(v, N) {\n \
+    \       int a = tree.ELID(v);\n        int b = tree.ERID(v);\n        int d =\
+    \ tree.depth[v];\n        pos[v] = a;\n        dat[a] = {d, v};\n        if (b\
+    \ < 2 * N - 1) dat[b] = {d - 1, tree.parent[v]};\n      }\n      seg_mi_idx.build(dat);\n\
+    \    }\n  }\n\n  int lca(int a, int b) {\n    static_assert(!dist_only);\n   \
+    \ return lca_and_dist(a, b).fi;\n  }\n\n  int dist(int a, int b) {\n    if constexpr\
+    \ (dist_only) {\n      int da = tree.depth[a], db = tree.depth[b];\n      int\
+    \ p = pos[a], q = pos[b];\n      if (p > q) swap(p, q);\n      return da + db\
+    \ - 2 * seg_mi.prod(p, q + 1);\n    } else {\n      return lca_and_dist(a, b).se;\n\
+    \    }\n  }\n\n  pair<int, int> lca_and_dist(int a, int b) {\n    int da = tree.depth[a],\
+    \ db = tree.depth[b];\n    int p = pos[a], q = pos[b];\n    if (p > q) swap(p,\
+    \ q);\n    auto [dc, c] = seg_mi_idx.prod(p, q + 1);\n    return {c, da + db -\
+    \ dc - dc};\n  }\n};\n"
+  code: "#include \"graph/tree.hpp\"\n#include \"alg/monoid/min_idx.hpp\"\n#include\
+    \ \"alg/monoid/min.hpp\"\n#include \"ds/sparse_table/sparse_table.hpp\"\n\n//\
+    \ sparse table \u3092\u4F7F\u3046 <O(NlogN),O(1)>\n// dist_only \u306E\u65B9\u304C\
+    \ 2 \u5272\u304F\u3089\u3044\u9AD8\u901F\u304B\ntemplate <typename TREE, bool\
+    \ dist_only>\nstruct Fast_Lca {\n  TREE& tree;\n  Sparse_Table<Monoid_Min<int>>\
+    \ seg_mi;\n  Sparse_Table<Monoid_Min_Idx<int>> seg_mi_idx;\n  vc<int> pos;\n\n\
+    \  Fast_Lca(TREE& tree) : tree(tree) {\n    int N = tree.N;\n    pos.resize(N);\n\
     \    if constexpr (dist_only) {\n      vc<int> dat(2 * N - 1);\n      FOR(v, N)\
     \ {\n        int a = tree.ELID(v);\n        int b = tree.ERID(v);\n        int\
     \ d = tree.depth[v];\n        dat[a] = d;\n        pos[v] = a;\n        if (b\
@@ -264,36 +230,10 @@ data:
     \ a = tree.ELID(v);\n        int b = tree.ERID(v);\n        int d = tree.depth[v];\n\
     \        pos[v] = a;\n        dat[a] = {d, v};\n        if (b < 2 * N - 1) dat[b]\
     \ = {d - 1, tree.parent[v]};\n      }\n      seg_mi_idx.build(dat);\n    }\n \
-    \ }\n\n  int lca(int a, int b) {\n    static_assert(!dist_only);\n    int p =\
-    \ pos[a], q = pos[b];\n    if (p > q) swap(p, q);\n    return seg_mi_idx.prod(p,\
-    \ q + 1).se;\n  }\n\n  int dist(int a, int b) {\n    if constexpr (dist_only)\
-    \ {\n      int da = tree.depth[a], db = tree.depth[b];\n      int p = pos[a],\
-    \ q = pos[b];\n      if (p > q) swap(p, q);\n      return da + db - 2 * seg_mi.prod(p,\
-    \ q + 1);\n    } else {\n      return lca_and_dist(a, b).se;\n    }\n  }\n\n \
-    \ pair<int, int> lca_and_dist(int a, int b) {\n    int da = tree.depth[a], db\
-    \ = tree.depth[b];\n    int p = pos[a], q = pos[b];\n    if (p > q) swap(p, q);\n\
-    \    auto [dc, c] = seg_mi_idx.prod(p, q + 1);\n    return {c, da + db - dc -\
-    \ dc};\n  }\n};\n"
-  code: "#include \"graph/tree.hpp\"\n#include \"alg/monoid/min_idx.hpp\"\n#include\
-    \ \"alg/monoid/min.hpp\"\n#include \"ds/static_range_product.hpp\"\n\n// sparse\
-    \ table \u3092\u4F7F\u3046 <O(NlogN),O(1)>\n// dist_only \u306E\u65B9\u304C 2\
-    \ \u5272\u304F\u3089\u3044\u9AD8\u901F\u304B\ntemplate <typename TREE, bool dist_only>\n\
-    struct Fast_Lca {\n  using Mono1 = Monoid_Min<int>;\n  using Mono2 = Monoid_Min_Idx<int>;\n\
-    \  TREE& tree;\n  Static_Range_Produc<Mono1, Sparse_Table<Mono1>> seg_mi;\n  Static_Range_Produc<Mono2,\
-    \ Sparse_Table<Mono2>> seg_mi_idx;\n  vc<int> pos;\n\n  Fast_Lca(TREE& tree) :\
-    \ tree(tree) {\n    int N = tree.N;\n    pos.resize(N);\n    if constexpr (dist_only)\
-    \ {\n      vc<int> dat(2 * N - 1);\n      FOR(v, N) {\n        int a = tree.ELID(v);\n\
-    \        int b = tree.ERID(v);\n        int d = tree.depth[v];\n        dat[a]\
-    \ = d;\n        pos[v] = a;\n        if (b < 2 * N - 1) dat[b] = d - 1;\n    \
-    \  }\n      seg_mi.build(dat);\n    } else {\n      vc<pair<int, int>> dat(2 *\
-    \ N - 1);\n      FOR(v, N) {\n        int a = tree.ELID(v);\n        int b = tree.ERID(v);\n\
-    \        int d = tree.depth[v];\n        pos[v] = a;\n        dat[a] = {d, v};\n\
-    \        if (b < 2 * N - 1) dat[b] = {d - 1, tree.parent[v]};\n      }\n     \
-    \ seg_mi_idx.build(dat);\n    }\n  }\n\n  int lca(int a, int b) {\n    static_assert(!dist_only);\n\
-    \    int p = pos[a], q = pos[b];\n    if (p > q) swap(p, q);\n    return seg_mi_idx.prod(p,\
-    \ q + 1).se;\n  }\n\n  int dist(int a, int b) {\n    if constexpr (dist_only)\
-    \ {\n      int da = tree.depth[a], db = tree.depth[b];\n      int p = pos[a],\
-    \ q = pos[b];\n      if (p > q) swap(p, q);\n      return da + db - 2 * seg_mi.prod(p,\
+    \ }\n\n  int lca(int a, int b) {\n    static_assert(!dist_only);\n    return lca_and_dist(a,\
+    \ b).fi;\n  }\n\n  int dist(int a, int b) {\n    if constexpr (dist_only) {\n\
+    \      int da = tree.depth[a], db = tree.depth[b];\n      int p = pos[a], q =\
+    \ pos[b];\n      if (p > q) swap(p, q);\n      return da + db - 2 * seg_mi.prod(p,\
     \ q + 1);\n    } else {\n      return lca_and_dist(a, b).se;\n    }\n  }\n\n \
     \ pair<int, int> lca_and_dist(int a, int b) {\n    int da = tree.depth[a], db\
     \ = tree.depth[b];\n    int p = pos[a], q = pos[b];\n    if (p > q) swap(p, q);\n\
@@ -304,14 +244,12 @@ data:
   - graph/base.hpp
   - alg/monoid/min_idx.hpp
   - alg/monoid/min.hpp
-  - ds/static_range_product.hpp
   - ds/sparse_table/sparse_table.hpp
-  - ds/sparse_table/disjoint_sparse_table.hpp
   isVerificationFile: false
   path: graph/fast_lca.hpp
   requiredBy: []
-  timestamp: '2023-11-04 19:33:13+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-11-05 00:26:11+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/tree/lca_fast.test.cpp
 documentation_of: graph/fast_lca.hpp
