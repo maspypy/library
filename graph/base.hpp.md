@@ -56,6 +56,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/bfs_numbering.hpp
     title: graph/ds/bfs_numbering.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/ds/contour_query_range.hpp
+    title: graph/ds/contour_query_range.hpp
   - icon: ':question:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
@@ -301,11 +304,17 @@ data:
     path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
+    title: test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
+    title: test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
@@ -825,6 +834,7 @@ data:
   - graph/reverse_graph.hpp
   - graph/ds/tree_abelgroup.hpp
   - graph/ds/incremental_centroid.hpp
+  - graph/ds/contour_query_range.hpp
   - graph/ds/tree_monoid.hpp
   - graph/ds/mo_on_tree.hpp
   - graph/ds/static_tree_monoid.hpp
@@ -939,8 +949,10 @@ data:
   - test/library_checker/tree/lca_directed.test.cpp
   - test/library_checker/math/twosat.test.cpp
   - test/library_checker/string/number_of_substrings2.test.cpp
+  - test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp

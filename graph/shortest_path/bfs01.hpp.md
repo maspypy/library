@@ -9,6 +9,9 @@ data:
     path: graph/centroid_decomposition.hpp
     title: graph/centroid_decomposition.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/ds/contour_query_range.hpp
+    title: graph/ds/contour_query_range.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
   - icon: ':warning:'
@@ -18,6 +21,12 @@ data:
     path: graph/tree_diameter.hpp
     title: graph/tree_diameter.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
+    title: test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
+    title: test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
@@ -148,6 +157,7 @@ data:
   - graph/tree_diameter.hpp
   - graph/tree_all_distances.hpp
   - graph/tree_center.hpp
+  - graph/ds/contour_query_range.hpp
   - graph/centroid_decomposition.hpp
   timestamp: '2023-11-04 05:26:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -159,6 +169,8 @@ data:
   - test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
+  - test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
+  - test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
 documentation_of: graph/shortest_path/bfs01.hpp
 layout: document
 redirect_from:

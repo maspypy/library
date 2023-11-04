@@ -851,6 +851,9 @@ data:
       path: graph/ds/bfs_numbering.hpp
       title: graph/ds/bfs_numbering.hpp
     - icon: ':heavy_check_mark:'
+      path: graph/ds/contour_query_range.hpp
+      title: graph/ds/contour_query_range.hpp
+    - icon: ':heavy_check_mark:'
       path: graph/ds/contour_sum.hpp
       title: graph/ds/contour_sum.hpp
     - icon: ':question:'
@@ -2127,11 +2130,17 @@ data:
       path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
       title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
+      title: test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
       title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
       title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
+      title: test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
       title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
