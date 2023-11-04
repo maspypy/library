@@ -117,15 +117,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc314.test.cpp
     title: test_atcoder/abc314.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc064c.test.cpp
     title: test_atcoder/arc064c.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc130f.test.cpp
     title: test_atcoder/arc130f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -266,7 +266,7 @@ data:
   - geo/distance.hpp
   - convex/fenchel.hpp
   timestamp: '2023-11-03 13:02:29+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/incremental_ch.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp
