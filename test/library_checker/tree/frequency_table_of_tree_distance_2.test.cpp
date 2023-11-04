@@ -12,12 +12,10 @@ void solve() {
   Graph<int> G(N);
   G.read_tree(0, 0);
   vi ANS(N);
-  auto f = [&](Graph<int, 1>& G, vc<int>& V, vc<int>& color) -> void {
-    int N = G.N;
+  auto f = [&](vc<int>& par, vc<int>& V, vc<int>& color) -> void {
+    int N = len(par);
     vc<int> dist(N);
-    FOR(i, N) {
-      for (auto& e: G[i]) dist[e.to] = dist[i] + 1;
-    }
+    FOR(i, 1, N) { dist[i] = dist[par[i]] + 1; }
     vi f(N), g(N);
     FOR(i, N) {
       if (color[i] == 0) f[dist[i]]++;
