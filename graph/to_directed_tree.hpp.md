@@ -4,23 +4,11 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: graph/centroid_decomposition.hpp
-    title: graph/centroid_decomposition.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/tree_all_distances.hpp
-    title: graph/tree_all_distances.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
-    title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
-    title: test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -104,14 +92,10 @@ data:
   - graph/base.hpp
   isVerificationFile: false
   path: graph/to_directed_tree.hpp
-  requiredBy:
-  - graph/tree_all_distances.hpp
-  - graph/centroid_decomposition.hpp
+  requiredBy: []
   timestamp: '2023-11-04 05:26:59+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
-  - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: graph/to_directed_tree.hpp
 layout: document
 redirect_from:

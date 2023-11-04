@@ -15,9 +15,6 @@ data:
     path: ds/sortable_array.hpp
     title: ds/sortable_array.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/centroid_decomposition.hpp
-    title: graph/centroid_decomposition.hpp
-  - icon: ':heavy_check_mark:'
     path: graph/ds/incremental_centroid.hpp
     title: graph/ds/incremental_centroid.hpp
   - icon: ':warning:'
@@ -26,9 +23,6 @@ data:
   - icon: ':question:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/tree_all_distances.hpp
-    title: graph/tree_all_distances.hpp
   - icon: ':warning:'
     path: other/cuboid_union_volume.hpp
     title: other/cuboid_union_volume.hpp
@@ -48,12 +42,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/sort_segtree_1.test.cpp
     title: test/library_checker/datastructure/sort_segtree_1.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
-    title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
-    title: test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/sortable_array.test.cpp
     title: test/mytest/sortable_array.test.cpp
@@ -156,11 +144,9 @@ data:
   isVerificationFile: false
   path: ds/fastset.hpp
   requiredBy:
-  - graph/tree_all_distances.hpp
   - graph/toposort.hpp
   - graph/implicit_graph/cograph_unionfind.hpp
   - graph/ds/incremental_centroid.hpp
-  - graph/centroid_decomposition.hpp
   - other/cuboid_union_volume.hpp
   - ds/segtree/sortable_segtree.hpp
   - ds/intervals.hpp
@@ -170,8 +156,6 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/sortable_array.test.cpp
-  - test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
-  - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/datastructure/predecessor_problem.test.cpp
   - test/library_checker/datastructure/sort_segtree_1.test.cpp
   - test/library_checker/datastructure/sort_segtree.test.cpp

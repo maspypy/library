@@ -2,17 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: ds/fastset.hpp
-    title: ds/fastset.hpp
-  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/to_directed_tree.hpp
-    title: graph/to_directed_tree.hpp
   - icon: ':question:'
-    path: graph/toposort.hpp
-    title: graph/toposort.hpp
+    path: graph/shortest_path/bfs01.hpp
+    title: graph/shortest_path/bfs01.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: graph/tree_all_distances.hpp
@@ -21,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://maspypy.com/%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%83%bb1-3%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%81%ae%e3%81%8a%e7%b5%b5%e6%8f%8f%e3%81%8d
@@ -87,211 +81,181 @@ data:
     \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 2 \"graph/to_directed_tree.hpp\"\n\ntemplate <typename GT>\nGraph<typename\
-    \ GT::cost_type, true> to_directed_tree(GT& G, int root = 0) {\n  assert(!GT::is_directed);\n\
-    \  if (!G.is_prepared()) G.build();\n  int N = G.N;\n  vc<int> par_e(N, -1);\n\
-    \  vc<int> V(N);\n  int l = 0, r = 0;\n  V[r++] = root;\n  while (l < r) {\n \
-    \   int v = V[l++];\n    for (auto&& e: G[v]) {\n      if (e.id != par_e[v]) {\n\
-    \        par_e[e.to] = e.id;\n        V[r++] = e.to;\n      }\n    }\n  }\n  Graph<typename\
-    \ GT::cost_type, true> H(N);\n  FOR(v, N) {\n    if (v == root) continue;\n  \
-    \  assert(par_e[v] != -1);\n    int eid = par_e[v];\n    auto& e = G.edges[eid];\n\
-    \    int p = e.frm ^ e.to ^ v;\n    H.add(p, v, e.cost, e.id);\n  }\n  H.build();\n\
-    \  return H;\n}\n#line 1 \"ds/fastset.hpp\"\n/* 64\u5206\u6728\u3002\r\ninsert,\
-    \ erase\r\n[]\u3067\u306E\u5B58\u5728\u5224\u5B9A\r\nnext, prev\r\n*/\r\nstruct\
-    \ FastSet {\r\n  using uint = unsigned;\r\n  using ull = unsigned long long;\r\
-    \n\r\n  int bsr(ull x) { return 63 - __builtin_clzll(x); }\r\n  int bsf(ull x)\
-    \ { return __builtin_ctzll(x); }\r\n\r\n  static constexpr uint B = 64;\r\n  int\
-    \ n, lg;\r\n  vector<vector<ull>> seg;\r\n  FastSet(int _n) : n(_n) {\r\n    do\
-    \ {\r\n      seg.push_back(vector<ull>((_n + B - 1) / B));\r\n      _n = (_n +\
-    \ B - 1) / B;\r\n    } while (_n > 1);\r\n    lg = int(seg.size());\r\n  }\r\n\
-    \  bool operator[](int i) const { return (seg[0][i / B] >> (i % B) & 1) != 0;\
-    \ }\r\n  void insert(int i) {\r\n    for (int h = 0; h < lg; h++) {\r\n      seg[h][i\
-    \ / B] |= 1ULL << (i % B);\r\n      i /= B;\r\n    }\r\n  }\r\n  void add(int\
-    \ i) { insert(i); }\r\n  void erase(int i) {\r\n    for (int h = 0; h < lg; h++)\
-    \ {\r\n      seg[h][i / B] &= ~(1ULL << (i % B));\r\n      if (seg[h][i / B])\
-    \ break;\r\n      i /= B;\r\n    }\r\n  }\r\n  void remove(int i) { erase(i);\
-    \ }\r\n\r\n  // x\u4EE5\u4E0A\u6700\u5C0F\u306E\u8981\u7D20\u3092\u8FD4\u3059\u3002\
-    \u5B58\u5728\u3057\u306A\u3051\u308C\u3070 n\u3002\r\n  int next(int i) {\r\n\
-    \    chmax(i, 0);\r\n    if (i >= n) return n;\r\n    for (int h = 0; h < lg;\
-    \ h++) {\r\n      if (i / B == seg[h].size()) break;\r\n      ull d = seg[h][i\
-    \ / B] >> (i % B);\r\n      if (!d) {\r\n        i = i / B + 1;\r\n        continue;\r\
-    \n      }\r\n      // find\r\n      i += bsf(d);\r\n      for (int g = h - 1;\
-    \ g >= 0; g--) {\r\n        i *= B;\r\n        i += bsf(seg[g][i / B]);\r\n  \
-    \    }\r\n      return i;\r\n    }\r\n    return n;\r\n  }\r\n\r\n  // x\u4EE5\
-    \u4E0B\u6700\u5927\u306E\u8981\u7D20\u3092\u8FD4\u3059\u3002\u5B58\u5728\u3057\
-    \u306A\u3051\u308C\u3070 -1\u3002\r\n  int prev(int i) {\r\n    if (i < 0) return\
-    \ -1;\r\n    if (i >= n) i = n - 1;\r\n    for (int h = 0; h < lg; h++) {\r\n\
-    \      if (i == -1) break;\r\n      ull d = seg[h][i / B] << (63 - i % 64);\r\n\
-    \      if (!d) {\r\n        i = i / B - 1;\r\n        continue;\r\n      }\r\n\
-    \      // find\r\n      i += bsr(d) - (B - 1);\r\n      for (int g = h - 1; g\
-    \ >= 0; g--) {\r\n        i *= B;\r\n        i += bsr(seg[g][i / B]);\r\n    \
-    \  }\r\n      return i;\r\n    }\r\n    return -1;\r\n  }\r\n\r\n  // [l, r)\r\
-    \n  template <typename F>\r\n  void enumerate(int l, int r, F f) {\r\n    int\
-    \ x = l - 1;\r\n    while (1) {\r\n      x = next(x + 1);\r\n      if (x >= r)\
-    \ break;\r\n      f(x);\r\n    }\r\n  }\r\n\r\n  void debug() {\r\n    string\
-    \ s;\r\n    for (int i = 0; i < n; ++i) s += ((*this)[i] ? '1' : '0');\r\n   \
-    \ print(s);\r\n  }\r\n};\r\n#line 3 \"graph/toposort.hpp\"\n\n// \u8F9E\u66F8\u9806\
-    \u6700\u5C0F\u306E toposort \u3092\u8FD4\u3059\ntemplate <typename GT>\nvc<int>\
-    \ toposort(GT& G) {\n  static_assert(GT::is_directed);\n  assert(G.is_prepared());\n\
-    \  const int N = G.N;\n  auto [indeg, outdeg] = G.deg_array_inout();\n  FastSet\
-    \ que(N);\n  vc<int> V;\n  FOR(v, N) if (indeg[v] == 0) que.insert(v);\n  while\
-    \ (1) {\n    int v = que.next(0);\n    if (v == N) break;\n    que.erase(v), V.eb(v);\n\
-    \    for (auto&& e: G[v]) {\n      if (--indeg[e.to] == 0) que.insert(e.to);\n\
-    \    }\n  }\n  return (len(V) < N ? vc<int>{} : V);\n}\n#line 4 \"graph/centroid_decomposition.hpp\"\
+    #line 3 \"graph/shortest_path/bfs01.hpp\"\n\ntemplate <typename T, typename GT>\n\
+    pair<vc<T>, vc<int>> bfs01(GT& G, int v) {\n  assert(G.is_prepared());\n  int\
+    \ N = G.N;\n  vc<T> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  deque<int> que;\n\
+    \n  dist[v] = 0;\n  que.push_front(v);\n  while (!que.empty()) {\n    auto v =\
+    \ que.front();\n    que.pop_front();\n    for (auto&& e: G[v]) {\n      if (dist[e.to]\
+    \ == infty<T> || dist[e.to] > dist[e.frm] + e.cost) {\n        dist[e.to] = dist[e.frm]\
+    \ + e.cost;\n        par[e.to] = e.frm;\n        if (e.cost == 0)\n          que.push_front(e.to);\n\
+    \        else\n          que.push_back(e.to);\n      }\n    }\n  }\n  return {dist,\
+    \ par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\u30C8\u3002[dist, par, root]\n\
+    template <typename T, typename GT>\ntuple<vc<T>, vc<int>, vc<int>> bfs01(GT& G,\
+    \ vc<int> vs) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<T> dist(N, infty<T>);\n\
+    \  vc<int> par(N, -1);\n  vc<int> root(N, -1);\n  deque<int> que;\n\n  for (auto&&\
+    \ v: vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.push_front(v);\n  }\n\n\
+    \  while (!que.empty()) {\n    auto v = que.front();\n    que.pop_front();\n \
+    \   for (auto&& e: G[v]) {\n      if (dist[e.to] == infty<T> || dist[e.to] > dist[e.frm]\
+    \ + e.cost) {\n        dist[e.to] = dist[e.frm] + e.cost;\n        root[e.to]\
+    \ = root[e.frm];\n        par[e.to] = e.frm;\n        if (e.cost == 0)\n     \
+    \     que.push_front(e.to);\n        else\n          que.push_back(e.to);\n  \
+    \    }\n    }\n  }\n  return {dist, par, root};\n}\n#line 3 \"graph/centroid_decomposition.hpp\"\
     \n\n/*\nhttps://maspypy.com/%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%83%bb1-3%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%81%ae%e3%81%8a%e7%b5%b5%e6%8f%8f%e3%81%8d\n\
     1/3 CD \u306E\u307F\u6271\u3046\ncentroid_decomposition_1\uFF1A\u9577\u3055 2\
-    \ \u4EE5\u4E0A\u306E\u30D1\u30B9\u5168\u4F53\n*/\n\ntemplate <typename GT, typename\
-    \ F>\nvoid centroid_decomposition_1_dfs(GT& G, vc<int> vs, F f) {\n  const int\
-    \ N = G.N;\n  assert(N > 1);\n  if (N == 2) return;\n  vc<int> sz(N, 1), par(N,\
-    \ -1);\n  FOR_R(i, N) {\n    for (auto& e: G[i]) sz[i] += sz[e.to], par[e.to]\
-    \ = i;\n  }\n  int c = -1;\n  FOR_R(i, N) {\n    if (sz[i] >= ceil<int>(N, 2))\
-    \ {\n      c = i;\n      break;\n    }\n  }\n  vc<int> color(N, -1);\n  int take\
-    \ = 0;\n  vc<int> ord(N, -1);\n  ord[c] = 0;\n  int p = 1;\n  for (auto& e: G[c])\
-    \ {\n    if (take + sz[e.to] <= floor<int>(N - 1, 2)) {\n      color[e.to] = 0,\
-    \ ord[e.to] = p++, take += sz[e.to];\n    }\n  }\n  FOR(i, N) {\n    if (color[i]\
-    \ == 0) {\n      for (auto& e: G[i]) { color[e.to] = 0, ord[e.to] = p++; }\n \
-    \   }\n  }\n  int n1 = p - 1;\n  int a = c;\n  while (1) {\n    a = par[a];\n\
-    \    if (a == -1) break;\n    color[a] = 1, ord[a] = p++;\n  }\n  FOR(i, N) {\n\
-    \    if (i != c && color[i] == -1) color[i] = 1, ord[i] = p++;\n  }\n  assert(p\
-    \ == N);\n  int n2 = N - 1 - n1;\n  using WT = typename GT::cost_type;\n  Graph<WT,\
-    \ true> H1(n1 + 1), H2(n2 + 1), H(N);\n  vc<int> V1(n1 + 1), V2(n2 + 1), V(N);\n\
-    \  V1[0] = V2[0] = V[0] = c;\n  FOR(v, N) {\n    int i = ord[v];\n    V[i] = vs[v];\n\
-    \    (i <= n1 ? V1[i] : V2[i - n1]) = vs[v];\n  }\n  for (auto& e: G.edges) {\n\
-    \    int a = ord[e.frm], b = ord[e.to];\n    if (a > b) swap(a, b);\n    H.add(a,\
-    \ b, e.cost, e.id);\n    if (b <= n1) {\n      H1.add(a, b, e.cost, e.id);\n \
-    \   } else {\n      H2.add(max(a - n1, 0), b - n1, e.cost, e.id);\n    }\n  }\n\
-    \  H.build(), H1.build(), H2.build();\n  f(H, V, n1, n2);\n  centroid_decomposition_1_dfs(H1,\
-    \ V1, f);\n  centroid_decomposition_1_dfs(H2, V2, f);\n}\n\n// \u9577\u3055 1\
-    \ \u306E\u30D1\u30B9\u306F\u5225\u51E6\u7406\u3059\u308B\u3053\u3068\u306B\u6CE8\
-    \u610F\n// \u9577\u3055 2 \u4EE5\u4E0A\u306E\u30D1\u30B9\u3059\u3079\u3066\u306B\
-    \u5BFE\u3059\u308B\u8A08\u7B97\u3092\u3057\u305F\u3044\n// f(G, V, n1, n2)\n//\
-    \ G: oriented\n// V: label in original tree, dfs order\n// color=1: V[1:1+n1]\n\
-    // color=2: V[1+n1:1+n1+n2]\ntemplate <typename GT, typename F>\nvoid centroid_decomposition_1(GT&\
-    \ G, F f) {\n  if (G.N == 1) return;\n  if constexpr (GT::is_directed) {\n   \
-    \ vc<int> V = toposort(G);\n    G = G.rearrange(V, true);\n    centroid_decomposition_1_dfs(G,\
-    \ V, f);\n  } else {\n    Graph<typename GT::cost_type, true> H = to_directed_tree(G);\n\
+    \ \u4EE5\u4E0A\u306E\u30D1\u30B9\u5168\u4F53\n*/\n\ntemplate <typename F>\nvoid\
+    \ centroid_decomposition_1_dfs(vc<int>& par, vc<int> vs, F f) {\n  const int N\
+    \ = len(par);\n  assert(N > 1);\n  if (N == 2) { return; }\n  int c = -1;\n  vc<int>\
+    \ sz(N, 1);\n  FOR_R(i, N) {\n    if (sz[i] >= ceil<int>(N, 2)) {\n      c = i;\n\
+    \      break;\n    }\n    sz[par[i]] += sz[i];\n  }\n  vc<int> color(N, -1);\n\
+    \  int take = 0;\n  vc<int> ord(N, -1);\n  ord[c] = 0;\n  int p = 1;\n  FOR(v,\
+    \ 1, N) {\n    if (par[v] == c && take + sz[v] <= floor<int>(N - 1, 2)) {\n  \
+    \    color[v] = 0, ord[v] = p++, take += sz[v];\n    }\n  }\n  FOR(i, 1, N) {\n\
+    \    if (color[par[i]] == 0) color[i] = 0, ord[i] = p++;\n  }\n  int n0 = p -\
+    \ 1;\n  int a = c;\n  while (1) {\n    a = par[a];\n    if (a == -1) break;\n\
+    \    color[a] = 1, ord[a] = p++;\n  }\n  FOR(i, N) {\n    if (i != c && color[i]\
+    \ == -1) color[i] = 1, ord[i] = p++;\n  }\n  assert(p == N);\n  int n1 = N - 1\
+    \ - n0;\n  vc<int> par0(n0 + 1, -1), par1(n1 + 1, -1), par2(N, -1);\n  vc<int>\
+    \ V0(n0 + 1), V1(n1 + 1), V2(N);\n  FOR(v, N) {\n    int i = ord[v];\n    V2[i]\
+    \ = vs[v];\n    if (color[v] != 1) { V0[i] = vs[v]; }\n    if (color[v] != 0)\
+    \ { V1[max(i - n0, 0)] = vs[v]; }\n  }\n  FOR(v, 1, N) {\n    int a = ord[v],\
+    \ b = ord[par[v]];\n    if (a > b) swap(a, b);\n    par2[b] = a;\n    if (color[v]\
+    \ != 1 && color[par[v]] != 1) par0[b] = a;\n    if (color[v] != 0 && color[par[v]]\
+    \ != 0)\n      par1[max(b - n0, 0)] = max(a - n0, 0);\n  }\n  f(par2, V2, n0,\
+    \ n1);\n  centroid_decomposition_1_dfs(par0, V0, f);\n  centroid_decomposition_1_dfs(par1,\
+    \ V1, f);\n}\n\n// \u9577\u3055 1 \u306E\u30D1\u30B9\u306F\u5225\u51E6\u7406\u3059\
+    \u308B\u3053\u3068\u306B\u6CE8\u610F\n// \u9577\u3055 2 \u4EE5\u4E0A\u306E\u30D1\
+    \u30B9\u3059\u3079\u3066\u306B\u5BFE\u3059\u308B\u8A08\u7B97\u3092\u3057\u305F\
+    \u3044\n// f(G, V, n1, n2)\n// G: oriented\n// V: label in original tree, dfs\
+    \ order\n// color=1: V[1:1+n1]\n// color=2: V[1+n1:1+n1+n2]\ntemplate <typename\
+    \ GT, typename F>\nvoid centroid_decomposition_1(GT& G, F f) {\n  if (G.N == 1)\
+    \ return;\n  if constexpr (GT::is_directed) {\n    vc<int> V = toposort(G);\n\
+    \    G = G.rearrange(V, true);\n    centroid_decomposition_1_dfs(G, V, f);\n \
+    \ } else {\n    Graph<typename GT::cost_type, true> H = to_directed_tree(G);\n\
     \    vc<int> V = toposort(H);\n    H = H.rearrange(V, true);\n    centroid_decomposition_1_dfs(H,\
     \ V, f);\n  }\n}\n\n/*\nhttps://maspypy.com/%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%83%bb1-3%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%81%ae%e3%81%8a%e7%b5%b5%e6%8f%8f%e3%81%8d\n\
     1/3 CD \u306E\u307F\u6271\u3046\ncentroid_decomposition_1\uFF1A\u9577\u3055 2\
-    \ \u4EE5\u4E0A\u306E\u30D1\u30B9\u5168\u4F53\n*/\n\ntemplate <typename GT, typename\
-    \ F>\nvoid centroid_decomposition_2_dfs(GT& G, vc<int> vs, vc<int> real, F f)\
-    \ {\n  const int N = G.N;\n  assert(N > 1);\n  if (N == 2) {\n    if (real[0]\
-    \ && real[1]) {\n      vc<int> color = {0, 1};\n      f(G, vs, color);\n    }\n\
-    \    return;\n  }\n  vc<int> sz(N, 1), par(N, -1);\n  FOR_R(i, N) {\n    for (auto&\
-    \ e: G[i]) sz[i] += sz[e.to], par[e.to] = i;\n  }\n  int c = -1;\n  FOR_R(i, N)\
-    \ {\n    if (sz[i] >= ceil<int>(N, 2)) {\n      c = i;\n      break;\n    }\n\
-    \  }\n  vc<int> color(N, -1);\n  int take = 0;\n  vc<int> ord(N, -1);\n  ord[c]\
-    \ = 0;\n  int p = 1;\n  for (auto& e: G[c]) {\n    if (take + sz[e.to] <= floor<int>(N\
-    \ - 1, 2)) {\n      color[e.to] = 0, ord[e.to] = p++, take += sz[e.to];\n    }\n\
-    \  }\n  FOR(i, N) {\n    if (color[i] == 0) {\n      for (auto& e: G[i]) { color[e.to]\
-    \ = 0, ord[e.to] = p++; }\n    }\n  }\n  int n1 = p - 1;\n  int a = c;\n  while\
-    \ (1) {\n    a = par[a];\n    if (a == -1) break;\n    color[a] = 1, ord[a] =\
-    \ p++;\n  }\n  FOR(i, N) {\n    if (i != c && color[i] == -1) color[i] = 1, ord[i]\
-    \ = p++;\n  }\n  assert(p == N);\n  int n2 = N - 1 - n1;\n  using WT = typename\
-    \ GT::cost_type;\n  Graph<WT, true> H1(n1 + 1), H2(n2 + 1), H(N);\n  vc<int> V1(n1\
-    \ + 1), V2(n2 + 1), V(N);\n  vc<int> rea1(n1 + 1), rea2(n2 + 1), rea(N);\n  V1[0]\
-    \ = V2[0] = V[0] = c;\n  FOR(v, N) {\n    int i = ord[v];\n    V[i] = vs[v], rea[i]\
-    \ = real[v];\n    (i <= n1 ? V1[i] : V2[i - n1]) = vs[v];\n    (i <= n1 ? rea1[i]\
-    \ : rea2[i - n1]) = real[v];\n  }\n  for (auto& e: G.edges) {\n    int a = ord[e.frm],\
-    \ b = ord[e.to];\n    if (a > b) swap(a, b);\n    H.add(a, b, e.cost, e.id);\n\
-    \    if (b <= n1) {\n      H1.add(a, b, e.cost, e.id);\n    } else {\n      H2.add(max(a\
-    \ - n1, 0), b - n1, e.cost, e.id);\n    }\n  }\n  H.build(), H1.build(), H2.build();\n\
-    \  if (real[c]) {\n    color.assign(N, -1);\n    color[0] = 0;\n    FOR(i, 1,\
-    \ N) color[i] = rea[i] ? 1 : -1;\n    f(H, V, color);\n    rea[0] = rea1[0] =\
-    \ rea2[0] = 0;\n  }\n  color.assign(N, -1);\n  FOR(i, 1, N) if (rea[i]) color[i]\
-    \ = (i <= n1 ? 0 : 1);\n  f(H, V, color);\n  centroid_decomposition_2_dfs(H1,\
-    \ V1, rea1, f);\n  centroid_decomposition_2_dfs(H2, V2, rea2, f);\n}\n\n// f(G,\
-    \ V, color)\n// G: oriented\n// V: label in original tree, dfs order\n// color\
-    \ in [-1,0,1], color=-1: virtual\ntemplate <typename GT, typename F>\nvoid centroid_decomposition_2(GT&\
-    \ G, F f) {\n  if (G.N == 1) return;\n  vc<int> real(G.N, 1);\n  if constexpr\
-    \ (GT::is_directed) {\n    vc<int> V = toposort(G);\n    G = G.rearrange(V, true);\n\
-    \    centroid_decomposition_2_dfs(G, V, real, f);\n  } else {\n    Graph<typename\
-    \ GT::cost_type, true> H = to_directed_tree(G);\n    vc<int> V = toposort(H);\n\
-    \    H = H.rearrange(V, true);\n    centroid_decomposition_2_dfs(H, V, real, f);\n\
-    \  }\n}\n"
-  code: "#include \"graph/base.hpp\"\n#include \"graph/to_directed_tree.hpp\"\n#include\
-    \ \"graph/toposort.hpp\"\n\n/*\nhttps://maspypy.com/%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%83%bb1-3%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%81%ae%e3%81%8a%e7%b5%b5%e6%8f%8f%e3%81%8d\n\
+    \ \u4EE5\u4E0A\u306E\u30D1\u30B9\u5168\u4F53\n*/\n\ntemplate <typename F>\nvoid\
+    \ centroid_decomposition_2_dfs(vc<int>& par, vc<int>& vs, vc<int>& real,\n   \
+    \                               F f) {\n  const int N = len(par);\n  assert(N\
+    \ > 1);\n  if (N == 2) {\n    if (real[0] && real[1]) {\n      vc<int> color =\
+    \ {0, 1};\n      f(par, vs, color);\n    }\n    return;\n  }\n  int c = -1;\n\
+    \  vc<int> sz(N, 1);\n  FOR_R(i, N) {\n    if (sz[i] >= ceil<int>(N, 2)) {\n \
+    \     c = i;\n      break;\n    }\n    sz[par[i]] += sz[i];\n  }\n  vc<int> color(N,\
+    \ -1);\n  int take = 0;\n  vc<int> ord(N, -1);\n  ord[c] = 0;\n  int p = 1;\n\
+    \  FOR(v, 1, N) {\n    if (par[v] == c && take + sz[v] <= floor<int>(N - 1, 2))\
+    \ {\n      color[v] = 0, ord[v] = p++, take += sz[v];\n    }\n  }\n  FOR(i, 1,\
+    \ N) {\n    if (color[par[i]] == 0) color[i] = 0, ord[i] = p++;\n  }\n  int n0\
+    \ = p - 1;\n  int a = c;\n  while (1) {\n    a = par[a];\n    if (a == -1) break;\n\
+    \    color[a] = 1, ord[a] = p++;\n  }\n  FOR(i, N) {\n    if (i != c && color[i]\
+    \ == -1) color[i] = 1, ord[i] = p++;\n  }\n  assert(p == N);\n  int n1 = N - 1\
+    \ - n0;\n  vc<int> par0(n0 + 1, -1), par1(n1 + 1, -1), par2(N, -1);\n  vc<int>\
+    \ V0(n0 + 1), V1(n1 + 1), V2(N);\n  vc<int> rea0(n0 + 1), rea1(n1 + 1), rea2(N);\n\
+    \  FOR(v, N) {\n    int i = ord[v];\n    V2[i] = vs[v], rea2[i] = real[v];\n \
+    \   if (color[v] != 1) { V0[i] = vs[v], rea0[i] = real[v]; }\n    if (color[v]\
+    \ != 0) {\n      V1[max(i - n0, 0)] = vs[v], rea1[max(i - n0, 0)] = real[v];\n\
+    \    }\n  }\n  FOR(v, 1, N) {\n    int a = ord[v], b = ord[par[v]];\n    if (a\
+    \ > b) swap(a, b);\n    par2[b] = a;\n    if (color[v] != 1 && color[par[v]] !=\
+    \ 1) par0[b] = a;\n    if (color[v] != 0 && color[par[v]] != 0)\n      par1[max(b\
+    \ - n0, 0)] = max(a - n0, 0);\n  }\n  if (real[c]) {\n    color.assign(N, -1);\n\
+    \    color[0] = 0;\n    FOR(i, 1, N) color[i] = rea2[i] ? 1 : -1;\n    f(par2,\
+    \ V2, color);\n    rea0[0] = rea1[0] = rea2[0] = 0;\n  }\n  color.assign(N, -1);\n\
+    \  FOR(i, 1, N) if (rea2[i]) color[i] = (i <= n0 ? 0 : 1);\n  f(par2, V2, color);\n\
+    \  centroid_decomposition_2_dfs(par0, V0, rea0, f);\n  centroid_decomposition_2_dfs(par1,\
+    \ V1, rea1, f);\n}\n\n// f(par, V, color)\n// V: label in original tree, dfs order\n\
+    // color in [-1,0,1], color=-1: virtual\ntemplate <int MODE, typename GT, typename\
+    \ F>\nvoid centroid_decomposition(GT& G, F f) {\n  const int N = G.N;\n  if (N\
+    \ == 1) return;\n  vc<int> V(N), par(N, -1);\n  int l = 0, r = 0;\n  V[r++] =\
+    \ 0;\n  while (l < r) {\n    int v = V[l++];\n    for (auto& e: G[v]) {\n    \
+    \  if (e.to != par[v]) V[r++] = e.to, par[e.to] = v;\n    }\n  }\n  assert(r ==\
+    \ N);\n  vc<int> new_idx(N);\n  FOR(i, N) new_idx[V[i]] = i;\n  vc<int> tmp(N,\
+    \ -1);\n  FOR(i, 1, N) {\n    int j = par[i];\n    tmp[new_idx[i]] = new_idx[j];\n\
+    \  }\n  swap(par, tmp);\n  static_assert(MODE == 1 || MODE == 2);\n  if constexpr\
+    \ (MODE == 1) {\n    centroid_decomposition_1_dfs(par, V, f);\n  } else {\n  \
+    \  vc<int> real(N, 1);\n    centroid_decomposition_2_dfs(par, V, real, f);\n \
+    \ }\n}\n"
+  code: "#include \"graph/base.hpp\"\n#include \"graph/shortest_path/bfs01.hpp\"\n\
+    \n/*\nhttps://maspypy.com/%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%83%bb1-3%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%81%ae%e3%81%8a%e7%b5%b5%e6%8f%8f%e3%81%8d\n\
     1/3 CD \u306E\u307F\u6271\u3046\ncentroid_decomposition_1\uFF1A\u9577\u3055 2\
-    \ \u4EE5\u4E0A\u306E\u30D1\u30B9\u5168\u4F53\n*/\n\ntemplate <typename GT, typename\
-    \ F>\nvoid centroid_decomposition_1_dfs(GT& G, vc<int> vs, F f) {\n  const int\
-    \ N = G.N;\n  assert(N > 1);\n  if (N == 2) return;\n  vc<int> sz(N, 1), par(N,\
-    \ -1);\n  FOR_R(i, N) {\n    for (auto& e: G[i]) sz[i] += sz[e.to], par[e.to]\
-    \ = i;\n  }\n  int c = -1;\n  FOR_R(i, N) {\n    if (sz[i] >= ceil<int>(N, 2))\
-    \ {\n      c = i;\n      break;\n    }\n  }\n  vc<int> color(N, -1);\n  int take\
-    \ = 0;\n  vc<int> ord(N, -1);\n  ord[c] = 0;\n  int p = 1;\n  for (auto& e: G[c])\
-    \ {\n    if (take + sz[e.to] <= floor<int>(N - 1, 2)) {\n      color[e.to] = 0,\
-    \ ord[e.to] = p++, take += sz[e.to];\n    }\n  }\n  FOR(i, N) {\n    if (color[i]\
-    \ == 0) {\n      for (auto& e: G[i]) { color[e.to] = 0, ord[e.to] = p++; }\n \
-    \   }\n  }\n  int n1 = p - 1;\n  int a = c;\n  while (1) {\n    a = par[a];\n\
-    \    if (a == -1) break;\n    color[a] = 1, ord[a] = p++;\n  }\n  FOR(i, N) {\n\
-    \    if (i != c && color[i] == -1) color[i] = 1, ord[i] = p++;\n  }\n  assert(p\
-    \ == N);\n  int n2 = N - 1 - n1;\n  using WT = typename GT::cost_type;\n  Graph<WT,\
-    \ true> H1(n1 + 1), H2(n2 + 1), H(N);\n  vc<int> V1(n1 + 1), V2(n2 + 1), V(N);\n\
-    \  V1[0] = V2[0] = V[0] = c;\n  FOR(v, N) {\n    int i = ord[v];\n    V[i] = vs[v];\n\
-    \    (i <= n1 ? V1[i] : V2[i - n1]) = vs[v];\n  }\n  for (auto& e: G.edges) {\n\
-    \    int a = ord[e.frm], b = ord[e.to];\n    if (a > b) swap(a, b);\n    H.add(a,\
-    \ b, e.cost, e.id);\n    if (b <= n1) {\n      H1.add(a, b, e.cost, e.id);\n \
-    \   } else {\n      H2.add(max(a - n1, 0), b - n1, e.cost, e.id);\n    }\n  }\n\
-    \  H.build(), H1.build(), H2.build();\n  f(H, V, n1, n2);\n  centroid_decomposition_1_dfs(H1,\
-    \ V1, f);\n  centroid_decomposition_1_dfs(H2, V2, f);\n}\n\n// \u9577\u3055 1\
-    \ \u306E\u30D1\u30B9\u306F\u5225\u51E6\u7406\u3059\u308B\u3053\u3068\u306B\u6CE8\
-    \u610F\n// \u9577\u3055 2 \u4EE5\u4E0A\u306E\u30D1\u30B9\u3059\u3079\u3066\u306B\
-    \u5BFE\u3059\u308B\u8A08\u7B97\u3092\u3057\u305F\u3044\n// f(G, V, n1, n2)\n//\
-    \ G: oriented\n// V: label in original tree, dfs order\n// color=1: V[1:1+n1]\n\
-    // color=2: V[1+n1:1+n1+n2]\ntemplate <typename GT, typename F>\nvoid centroid_decomposition_1(GT&\
-    \ G, F f) {\n  if (G.N == 1) return;\n  if constexpr (GT::is_directed) {\n   \
-    \ vc<int> V = toposort(G);\n    G = G.rearrange(V, true);\n    centroid_decomposition_1_dfs(G,\
-    \ V, f);\n  } else {\n    Graph<typename GT::cost_type, true> H = to_directed_tree(G);\n\
+    \ \u4EE5\u4E0A\u306E\u30D1\u30B9\u5168\u4F53\n*/\n\ntemplate <typename F>\nvoid\
+    \ centroid_decomposition_1_dfs(vc<int>& par, vc<int> vs, F f) {\n  const int N\
+    \ = len(par);\n  assert(N > 1);\n  if (N == 2) { return; }\n  int c = -1;\n  vc<int>\
+    \ sz(N, 1);\n  FOR_R(i, N) {\n    if (sz[i] >= ceil<int>(N, 2)) {\n      c = i;\n\
+    \      break;\n    }\n    sz[par[i]] += sz[i];\n  }\n  vc<int> color(N, -1);\n\
+    \  int take = 0;\n  vc<int> ord(N, -1);\n  ord[c] = 0;\n  int p = 1;\n  FOR(v,\
+    \ 1, N) {\n    if (par[v] == c && take + sz[v] <= floor<int>(N - 1, 2)) {\n  \
+    \    color[v] = 0, ord[v] = p++, take += sz[v];\n    }\n  }\n  FOR(i, 1, N) {\n\
+    \    if (color[par[i]] == 0) color[i] = 0, ord[i] = p++;\n  }\n  int n0 = p -\
+    \ 1;\n  int a = c;\n  while (1) {\n    a = par[a];\n    if (a == -1) break;\n\
+    \    color[a] = 1, ord[a] = p++;\n  }\n  FOR(i, N) {\n    if (i != c && color[i]\
+    \ == -1) color[i] = 1, ord[i] = p++;\n  }\n  assert(p == N);\n  int n1 = N - 1\
+    \ - n0;\n  vc<int> par0(n0 + 1, -1), par1(n1 + 1, -1), par2(N, -1);\n  vc<int>\
+    \ V0(n0 + 1), V1(n1 + 1), V2(N);\n  FOR(v, N) {\n    int i = ord[v];\n    V2[i]\
+    \ = vs[v];\n    if (color[v] != 1) { V0[i] = vs[v]; }\n    if (color[v] != 0)\
+    \ { V1[max(i - n0, 0)] = vs[v]; }\n  }\n  FOR(v, 1, N) {\n    int a = ord[v],\
+    \ b = ord[par[v]];\n    if (a > b) swap(a, b);\n    par2[b] = a;\n    if (color[v]\
+    \ != 1 && color[par[v]] != 1) par0[b] = a;\n    if (color[v] != 0 && color[par[v]]\
+    \ != 0)\n      par1[max(b - n0, 0)] = max(a - n0, 0);\n  }\n  f(par2, V2, n0,\
+    \ n1);\n  centroid_decomposition_1_dfs(par0, V0, f);\n  centroid_decomposition_1_dfs(par1,\
+    \ V1, f);\n}\n\n// \u9577\u3055 1 \u306E\u30D1\u30B9\u306F\u5225\u51E6\u7406\u3059\
+    \u308B\u3053\u3068\u306B\u6CE8\u610F\n// \u9577\u3055 2 \u4EE5\u4E0A\u306E\u30D1\
+    \u30B9\u3059\u3079\u3066\u306B\u5BFE\u3059\u308B\u8A08\u7B97\u3092\u3057\u305F\
+    \u3044\n// f(G, V, n1, n2)\n// G: oriented\n// V: label in original tree, dfs\
+    \ order\n// color=1: V[1:1+n1]\n// color=2: V[1+n1:1+n1+n2]\ntemplate <typename\
+    \ GT, typename F>\nvoid centroid_decomposition_1(GT& G, F f) {\n  if (G.N == 1)\
+    \ return;\n  if constexpr (GT::is_directed) {\n    vc<int> V = toposort(G);\n\
+    \    G = G.rearrange(V, true);\n    centroid_decomposition_1_dfs(G, V, f);\n \
+    \ } else {\n    Graph<typename GT::cost_type, true> H = to_directed_tree(G);\n\
     \    vc<int> V = toposort(H);\n    H = H.rearrange(V, true);\n    centroid_decomposition_1_dfs(H,\
     \ V, f);\n  }\n}\n\n/*\nhttps://maspypy.com/%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%83%bb1-3%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%81%ae%e3%81%8a%e7%b5%b5%e6%8f%8f%e3%81%8d\n\
     1/3 CD \u306E\u307F\u6271\u3046\ncentroid_decomposition_1\uFF1A\u9577\u3055 2\
-    \ \u4EE5\u4E0A\u306E\u30D1\u30B9\u5168\u4F53\n*/\n\ntemplate <typename GT, typename\
-    \ F>\nvoid centroid_decomposition_2_dfs(GT& G, vc<int> vs, vc<int> real, F f)\
-    \ {\n  const int N = G.N;\n  assert(N > 1);\n  if (N == 2) {\n    if (real[0]\
-    \ && real[1]) {\n      vc<int> color = {0, 1};\n      f(G, vs, color);\n    }\n\
-    \    return;\n  }\n  vc<int> sz(N, 1), par(N, -1);\n  FOR_R(i, N) {\n    for (auto&\
-    \ e: G[i]) sz[i] += sz[e.to], par[e.to] = i;\n  }\n  int c = -1;\n  FOR_R(i, N)\
-    \ {\n    if (sz[i] >= ceil<int>(N, 2)) {\n      c = i;\n      break;\n    }\n\
-    \  }\n  vc<int> color(N, -1);\n  int take = 0;\n  vc<int> ord(N, -1);\n  ord[c]\
-    \ = 0;\n  int p = 1;\n  for (auto& e: G[c]) {\n    if (take + sz[e.to] <= floor<int>(N\
-    \ - 1, 2)) {\n      color[e.to] = 0, ord[e.to] = p++, take += sz[e.to];\n    }\n\
-    \  }\n  FOR(i, N) {\n    if (color[i] == 0) {\n      for (auto& e: G[i]) { color[e.to]\
-    \ = 0, ord[e.to] = p++; }\n    }\n  }\n  int n1 = p - 1;\n  int a = c;\n  while\
-    \ (1) {\n    a = par[a];\n    if (a == -1) break;\n    color[a] = 1, ord[a] =\
-    \ p++;\n  }\n  FOR(i, N) {\n    if (i != c && color[i] == -1) color[i] = 1, ord[i]\
-    \ = p++;\n  }\n  assert(p == N);\n  int n2 = N - 1 - n1;\n  using WT = typename\
-    \ GT::cost_type;\n  Graph<WT, true> H1(n1 + 1), H2(n2 + 1), H(N);\n  vc<int> V1(n1\
-    \ + 1), V2(n2 + 1), V(N);\n  vc<int> rea1(n1 + 1), rea2(n2 + 1), rea(N);\n  V1[0]\
-    \ = V2[0] = V[0] = c;\n  FOR(v, N) {\n    int i = ord[v];\n    V[i] = vs[v], rea[i]\
-    \ = real[v];\n    (i <= n1 ? V1[i] : V2[i - n1]) = vs[v];\n    (i <= n1 ? rea1[i]\
-    \ : rea2[i - n1]) = real[v];\n  }\n  for (auto& e: G.edges) {\n    int a = ord[e.frm],\
-    \ b = ord[e.to];\n    if (a > b) swap(a, b);\n    H.add(a, b, e.cost, e.id);\n\
-    \    if (b <= n1) {\n      H1.add(a, b, e.cost, e.id);\n    } else {\n      H2.add(max(a\
-    \ - n1, 0), b - n1, e.cost, e.id);\n    }\n  }\n  H.build(), H1.build(), H2.build();\n\
-    \  if (real[c]) {\n    color.assign(N, -1);\n    color[0] = 0;\n    FOR(i, 1,\
-    \ N) color[i] = rea[i] ? 1 : -1;\n    f(H, V, color);\n    rea[0] = rea1[0] =\
-    \ rea2[0] = 0;\n  }\n  color.assign(N, -1);\n  FOR(i, 1, N) if (rea[i]) color[i]\
-    \ = (i <= n1 ? 0 : 1);\n  f(H, V, color);\n  centroid_decomposition_2_dfs(H1,\
-    \ V1, rea1, f);\n  centroid_decomposition_2_dfs(H2, V2, rea2, f);\n}\n\n// f(G,\
-    \ V, color)\n// G: oriented\n// V: label in original tree, dfs order\n// color\
-    \ in [-1,0,1], color=-1: virtual\ntemplate <typename GT, typename F>\nvoid centroid_decomposition_2(GT&\
-    \ G, F f) {\n  if (G.N == 1) return;\n  vc<int> real(G.N, 1);\n  if constexpr\
-    \ (GT::is_directed) {\n    vc<int> V = toposort(G);\n    G = G.rearrange(V, true);\n\
-    \    centroid_decomposition_2_dfs(G, V, real, f);\n  } else {\n    Graph<typename\
-    \ GT::cost_type, true> H = to_directed_tree(G);\n    vc<int> V = toposort(H);\n\
-    \    H = H.rearrange(V, true);\n    centroid_decomposition_2_dfs(H, V, real, f);\n\
-    \  }\n}\n"
+    \ \u4EE5\u4E0A\u306E\u30D1\u30B9\u5168\u4F53\n*/\n\ntemplate <typename F>\nvoid\
+    \ centroid_decomposition_2_dfs(vc<int>& par, vc<int>& vs, vc<int>& real,\n   \
+    \                               F f) {\n  const int N = len(par);\n  assert(N\
+    \ > 1);\n  if (N == 2) {\n    if (real[0] && real[1]) {\n      vc<int> color =\
+    \ {0, 1};\n      f(par, vs, color);\n    }\n    return;\n  }\n  int c = -1;\n\
+    \  vc<int> sz(N, 1);\n  FOR_R(i, N) {\n    if (sz[i] >= ceil<int>(N, 2)) {\n \
+    \     c = i;\n      break;\n    }\n    sz[par[i]] += sz[i];\n  }\n  vc<int> color(N,\
+    \ -1);\n  int take = 0;\n  vc<int> ord(N, -1);\n  ord[c] = 0;\n  int p = 1;\n\
+    \  FOR(v, 1, N) {\n    if (par[v] == c && take + sz[v] <= floor<int>(N - 1, 2))\
+    \ {\n      color[v] = 0, ord[v] = p++, take += sz[v];\n    }\n  }\n  FOR(i, 1,\
+    \ N) {\n    if (color[par[i]] == 0) color[i] = 0, ord[i] = p++;\n  }\n  int n0\
+    \ = p - 1;\n  int a = c;\n  while (1) {\n    a = par[a];\n    if (a == -1) break;\n\
+    \    color[a] = 1, ord[a] = p++;\n  }\n  FOR(i, N) {\n    if (i != c && color[i]\
+    \ == -1) color[i] = 1, ord[i] = p++;\n  }\n  assert(p == N);\n  int n1 = N - 1\
+    \ - n0;\n  vc<int> par0(n0 + 1, -1), par1(n1 + 1, -1), par2(N, -1);\n  vc<int>\
+    \ V0(n0 + 1), V1(n1 + 1), V2(N);\n  vc<int> rea0(n0 + 1), rea1(n1 + 1), rea2(N);\n\
+    \  FOR(v, N) {\n    int i = ord[v];\n    V2[i] = vs[v], rea2[i] = real[v];\n \
+    \   if (color[v] != 1) { V0[i] = vs[v], rea0[i] = real[v]; }\n    if (color[v]\
+    \ != 0) {\n      V1[max(i - n0, 0)] = vs[v], rea1[max(i - n0, 0)] = real[v];\n\
+    \    }\n  }\n  FOR(v, 1, N) {\n    int a = ord[v], b = ord[par[v]];\n    if (a\
+    \ > b) swap(a, b);\n    par2[b] = a;\n    if (color[v] != 1 && color[par[v]] !=\
+    \ 1) par0[b] = a;\n    if (color[v] != 0 && color[par[v]] != 0)\n      par1[max(b\
+    \ - n0, 0)] = max(a - n0, 0);\n  }\n  if (real[c]) {\n    color.assign(N, -1);\n\
+    \    color[0] = 0;\n    FOR(i, 1, N) color[i] = rea2[i] ? 1 : -1;\n    f(par2,\
+    \ V2, color);\n    rea0[0] = rea1[0] = rea2[0] = 0;\n  }\n  color.assign(N, -1);\n\
+    \  FOR(i, 1, N) if (rea2[i]) color[i] = (i <= n0 ? 0 : 1);\n  f(par2, V2, color);\n\
+    \  centroid_decomposition_2_dfs(par0, V0, rea0, f);\n  centroid_decomposition_2_dfs(par1,\
+    \ V1, rea1, f);\n}\n\n// f(par, V, color)\n// V: label in original tree, dfs order\n\
+    // color in [-1,0,1], color=-1: virtual\ntemplate <int MODE, typename GT, typename\
+    \ F>\nvoid centroid_decomposition(GT& G, F f) {\n  const int N = G.N;\n  if (N\
+    \ == 1) return;\n  vc<int> V(N), par(N, -1);\n  int l = 0, r = 0;\n  V[r++] =\
+    \ 0;\n  while (l < r) {\n    int v = V[l++];\n    for (auto& e: G[v]) {\n    \
+    \  if (e.to != par[v]) V[r++] = e.to, par[e.to] = v;\n    }\n  }\n  assert(r ==\
+    \ N);\n  vc<int> new_idx(N);\n  FOR(i, N) new_idx[V[i]] = i;\n  vc<int> tmp(N,\
+    \ -1);\n  FOR(i, 1, N) {\n    int j = par[i];\n    tmp[new_idx[i]] = new_idx[j];\n\
+    \  }\n  swap(par, tmp);\n  static_assert(MODE == 1 || MODE == 2);\n  if constexpr\
+    \ (MODE == 1) {\n    centroid_decomposition_1_dfs(par, V, f);\n  } else {\n  \
+    \  vc<int> real(N, 1);\n    centroid_decomposition_2_dfs(par, V, real, f);\n \
+    \ }\n}\n"
   dependsOn:
   - graph/base.hpp
-  - graph/to_directed_tree.hpp
-  - graph/toposort.hpp
-  - ds/fastset.hpp
+  - graph/shortest_path/bfs01.hpp
   isVerificationFile: false
   path: graph/centroid_decomposition.hpp
   requiredBy:
   - graph/tree_all_distances.hpp
-  timestamp: '2023-11-04 06:12:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-11-04 15:00:53+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
