@@ -8,7 +8,7 @@ data:
   - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: game/graph_game.hpp
     title: game/graph_game.hpp
   - icon: ':question:'
@@ -134,7 +134,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/minimum_cost_cycle.hpp
     title: graph/minimum_cost_cycle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_hamiltonian_cycle.hpp
     title: graph/minimum_hamiltonian_cycle.hpp
   - icon: ':question:'
@@ -152,7 +152,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/reachability.hpp
     title: graph/reachability.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -185,7 +185,7 @@ data:
   - icon: ':warning:'
     path: graph/to_directed_tree.hpp
     title: graph/to_directed_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
   - icon: ':question:'
@@ -203,7 +203,7 @@ data:
   - icon: ':question:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree_dp/subtree_depth_sum.hpp
     title: graph/tree_dp/subtree_depth_sum.hpp
   - icon: ':warning:'
@@ -375,9 +375,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/two_edge_component.test.cpp
     title: test/library_checker/graph/two_edge_component.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/verted_add_contour_sum.test.cpp
-    title: test/library_checker/graph/verted_add_contour_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/twosat.test.cpp
     title: test/library_checker/math/twosat.test.cpp
@@ -588,22 +585,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc160f.test.cpp
     title: test_atcoder/abc160f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc180e.test.cpp
     title: test_atcoder/abc180e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc209e.test.cpp
     title: test_atcoder/abc209e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc214h.test.cpp
     title: test_atcoder/abc214h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc220f.test.cpp
     title: test_atcoder/abc220f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc223d.test.cpp
     title: test_atcoder/abc223d.test.cpp
   - icon: ':x:'
@@ -920,7 +917,6 @@ data:
   - test/mytest/matching.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
-  - test/library_checker/graph/verted_add_contour_sum.test.cpp
   - test/library_checker/graph/biconnected_component.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp

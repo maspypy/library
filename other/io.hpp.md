@@ -499,9 +499,6 @@ data:
     path: test/library_checker/graph/two_edge_component.test.cpp
     title: test/library_checker/graph/two_edge_component.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/verted_add_contour_sum.test.cpp
-    title: test/library_checker/graph/verted_add_contour_sum.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/binomial_coefficient.test.cpp
     title: test/library_checker/math/binomial_coefficient.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1878,13 +1875,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc152e.test.cpp
     title: test_atcoder/abc152e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc160f.test.cpp
     title: test_atcoder/abc160f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc174f.test.cpp
     title: test_atcoder/abc174f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc180e.test.cpp
     title: test_atcoder/abc180e.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1908,7 +1905,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc209e.test.cpp
     title: test_atcoder/abc209e.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1920,7 +1917,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc213g.test.cpp
     title: test_atcoder/abc213g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc214h.test.cpp
     title: test_atcoder/abc214h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1932,7 +1929,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc218c.test.cpp
     title: test_atcoder/abc218c.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc220f.test.cpp
     title: test_atcoder/abc220f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1947,7 +1944,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc222h_2.test.cpp
     title: test_atcoder/abc222h_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc223d.test.cpp
     title: test_atcoder/abc223d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2776,7 +2773,6 @@ data:
   - test/mytest/dyadic_rational.test.cpp
   - test/library_checker/multiplication_of_bigintegers.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
-  - test/library_checker/graph/verted_add_contour_sum.test.cpp
   - test/library_checker/graph/biconnected_component.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp

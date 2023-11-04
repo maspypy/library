@@ -24,9 +24,6 @@ data:
     path: ds/range_add_range_sum.hpp
     title: ds/range_add_range_sum.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/ds/contour_sum.hpp
-    title: graph/ds/contour_sum.hpp
-  - icon: ':heavy_check_mark:'
     path: graph/ds/incremental_centroid.hpp
     title: graph/ds/incremental_centroid.hpp
   - icon: ':heavy_check_mark:'
@@ -87,9 +84,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
     title: test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/verted_add_contour_sum.test.cpp
-    title: test/library_checker/graph/verted_add_contour_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_digit.test.cpp
     title: test/mytest/factorial_digit.test.cpp
@@ -222,7 +216,6 @@ data:
   requiredBy:
   - graph/ds/tree_abelgroup.hpp
   - graph/ds/incremental_centroid.hpp
-  - graph/ds/contour_sum.hpp
   - seq/inversion.hpp
   - seq/factorial_digit_system.hpp
   - ds/fenwicktree/fenwicktree_range_add.hpp
@@ -248,7 +241,6 @@ data:
   - test/mytest/factorial_digit.test.cpp
   - test/mytest/fenwick_raq.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
-  - test/library_checker/graph/verted_add_contour_sum.test.cpp
   - test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp

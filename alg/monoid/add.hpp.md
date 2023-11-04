@@ -81,9 +81,6 @@ data:
     path: ds/wavelet_matrix.hpp
     title: ds/wavelet_matrix.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/ds/contour_sum.hpp
-    title: graph/ds/contour_sum.hpp
-  - icon: ':heavy_check_mark:'
     path: graph/ds/incremental_centroid.hpp
     title: graph/ds/incremental_centroid.hpp
   - icon: ':heavy_check_mark:'
@@ -225,9 +222,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/common_interval_decomposition.test.cpp
     title: test/library_checker/graph/common_interval_decomposition.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/graph/verted_add_contour_sum.test.cpp
-    title: test/library_checker/graph/verted_add_contour_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/ARC30D.test.cpp
     title: test/mytest/ARC30D.test.cpp
@@ -458,7 +452,6 @@ data:
   requiredBy:
   - graph/ds/tree_abelgroup.hpp
   - graph/ds/incremental_centroid.hpp
-  - graph/ds/contour_sum.hpp
   - graph/ds/tree_wavelet_matrix.hpp
   - seq/common_interval_decomposition.hpp
   - seq/inversion.hpp
@@ -547,7 +540,6 @@ data:
   - test/mytest/summin_add.test.cpp
   - test/mytest/segtree_xor_prod.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
-  - test/library_checker/graph/verted_add_contour_sum.test.cpp
   - test/library_checker/graph/common_interval_decomposition.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   - test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
