@@ -34,7 +34,7 @@ u64 count_clique(GT& G) {
     G1.build();
     u64 cnt = count_independent_set(G1);
     ANS += cnt;
-    G = G.rearrange(other).fi;
+    G = G.rearrange(other);
     assert(G.N == N - 1);
     --N;
   }
