@@ -40,6 +40,9 @@ data:
     path: test/library_checker/tree/tree_diameter.test.cpp
     title: test/library_checker/tree/tree_diameter.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1038.test.cpp
+    title: test/yukicoder/1038.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1718.test.cpp
     title: test/yukicoder/1718.test.cpp
   - icon: ':heavy_check_mark:'
@@ -162,6 +165,7 @@ data:
   timestamp: '2023-11-04 05:26:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1038.test.cpp
   - test/yukicoder/1868.test.cpp
   - test/yukicoder/1796_1.test.cpp
   - test/yukicoder/1718.test.cpp

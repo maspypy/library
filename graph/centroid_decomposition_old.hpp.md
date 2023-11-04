@@ -10,9 +10,6 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1038.test.cpp
-    title: test/yukicoder/1038.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1796.test.cpp
     title: test/yukicoder/1796.test.cpp
   _isVerificationFailed: false
@@ -190,7 +187,6 @@ data:
   timestamp: '2023-11-04 05:38:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1038.test.cpp
   - test/yukicoder/1796.test.cpp
 documentation_of: graph/centroid_decomposition_old.hpp
 layout: document

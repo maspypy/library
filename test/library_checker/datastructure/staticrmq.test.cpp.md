@@ -1,12 +1,18 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: alg/monoid/min2.hpp
-    title: alg/monoid/min2.hpp
   - icon: ':question:'
-    path: graph/base.hpp
-    title: graph/base.hpp
+    path: alg/monoid/min.hpp
+    title: alg/monoid/min.hpp
+  - icon: ':question:'
+    path: ds/sparse_table/disjoint_sparse_table.hpp
+    title: ds/sparse_table/disjoint_sparse_table.hpp
+  - icon: ':question:'
+    path: ds/sparse_table/sparse_table.hpp
+    title: ds/sparse_table/sparse_table.hpp
+  - icon: ':question:'
+    path: ds/static_range_product.hpp
+    title: ds/static_range_product.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -20,31 +26,31 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc245/tasks/abc245_g
+    PROBLEM: https://judge.yosupo.jp/problem/staticrmq
     links:
-    - https://atcoder.jp/contests/abc245/tasks/abc245_g
-  bundledCode: "#line 1 \"test_atcoder/abc245g.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc245/tasks/abc245_g\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
-    )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
-    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    using u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class T>\n\
-    constexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int> = 1'000'000'000;\n\
-    template <>\nconstexpr ll infty<ll> = ll(infty<int>) * infty<int> * 2;\ntemplate\
-    \ <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\n\
-    template <>\nconstexpr double infty<double> = infty<ll>;\ntemplate <>\nconstexpr\
-    \ long double infty<long double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing\
-    \ vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
-    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
-    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
-    \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
-    template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
-    #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
-    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
-    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
-    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
-    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    - https://judge.yosupo.jp/problem/staticrmq
+  bundledCode: "#line 1 \"test/library_checker/datastructure/staticrmq.test.cpp\"\n\
+    #define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n#line 1 \"my_template.hpp\"\
+    \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n#pragma GCC\
+    \ optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\
+    \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
+    \ u64 = unsigned long long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
+    using f128 = __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate\
+    \ <>\nconstexpr int infty<int> = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll>\
+    \ = ll(infty<int>) * infty<int> * 2;\ntemplate <>\nconstexpr u32 infty<u32> =\
+    \ infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\ntemplate <>\n\
+    constexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\ntemplate <>\nconstexpr\
+    \ double infty<double> = infty<ll>;\ntemplate <>\nconstexpr long double infty<long\
+    \ double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
+    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
+    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
+    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
+    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
+    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
@@ -204,122 +210,114 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 4 \"test_atcoder/abc245g.test.cpp\"\n\n#line 2 \"graph/base.hpp\"\
-    \n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n\
-    };\n\ntemplate <typename T = int, bool directed = false>\nstruct Graph {\n  static\
-    \ constexpr bool is_directed = directed;\n  int N, M;\n  using cost_type = T;\n\
-    \  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n\
-    \  vector<edge_type> csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  bool\
-    \ prepared;\n\n  class OutgoingEdges {\n  public:\n    OutgoingEdges(const Graph*\
-    \ G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const\
-    \ {\n      if (l == r) { return 0; }\n      return &G->csr_edges[l];\n    }\n\n\
-    \    const edge_type* end() const {\n      if (l == r) { return 0; }\n      return\
-    \ &G->csr_edges[r];\n    }\n\n  private:\n    const Graph* G;\n    int l, r;\n\
-    \  };\n\n  bool is_prepared() { return prepared; }\n\n  Graph() : N(0), M(0),\
-    \ prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void build(int\
-    \ n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n    indptr.clear();\n\
-    \    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n    vc_outdeg.clear();\n\
-    \  }\n\n  void add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n\
-    \    assert(0 <= frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto\
-    \ e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n  //\
-    \ wt, off\n  void read_tree(bool wt = false, int off = 1) { read_graph(N - 1,\
-    \ wt, off); }\n\n  void read_graph(int M, bool wt = false, int off = 1) {\n  \
-    \  for (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a -= off, b -= off;\n\
-    \      if (!wt) {\n        add(a, b);\n      } else {\n        T c;\n        read(c);\n\
-    \        add(a, b, c);\n      }\n    }\n    build();\n  }\n\n  void build() {\n\
-    \    assert(!prepared);\n    prepared = true;\n    indptr.assign(N + 1, 0);\n\
-    \    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if (!directed)\
-    \ indptr[e.to + 1]++;\n    }\n    for (int v = 0; v < N; ++v) { indptr[v + 1]\
-    \ += indptr[v]; }\n    auto counter = indptr;\n    csr_edges.resize(indptr.back()\
-    \ + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n\
-    \      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm,\
-    \ e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n \
-    \   assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\n \
-    \ vc<int> deg_array() {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n\
-    \  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n    if (vc_indeg.empty())\
-    \ calc_deg_inout();\n    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v)\
-    \ {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n  int\
-    \ in_deg(int v) {\n    if (vc_indeg.empty()) calc_deg_inout();\n    return vc_indeg[v];\n\
-    \  }\n\n  int out_deg(int v) {\n    if (vc_outdeg.empty()) calc_deg_inout();\n\
-    \    return vc_outdeg[v];\n  }\n\n  void debug() {\n    print(\"Graph\");\n  \
-    \  if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e: edges)\
-    \ print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\", indptr);\n\
-    \      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
-    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\n  vc<int> new_idx;\n  vc<bool>\
-    \ used_e;\n\n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\
-    \u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\
-    \u308B\n  // {G, es}\n  Graph<T, directed> rearrange(vc<int> V, bool keep_eid\
-    \ = 0) {\n    if (len(new_idx) != N) new_idx.assign(N, -1);\n    if (len(used_e)\
-    \ != M) used_e.assign(M, 0);\n    int n = len(V);\n    FOR(i, n) new_idx[V[i]]\
-    \ = i;\n    Graph<T, directed> G(n);\n    vc<int> history;\n    FOR(i, n) {\n\
-    \      for (auto&& e: (*this)[V[i]]) {\n        if (used_e[e.id]) continue;\n\
-    \        int a = e.frm, b = e.to;\n        if (new_idx[a] != -1 && new_idx[b]\
-    \ != -1) {\n          history.eb(e.id);\n          used_e[e.id] = 1;\n       \
-    \   int eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b],\
-    \ e.cost, eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n\
-    \    for (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n\
-    \  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n\
-    \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
-    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
-    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 2 \"alg/monoid/min2.hpp\"\n\ntemplate <typename T, typename KEY>\nstruct\
-    \ Monoid_Min2 {\n  struct Data {\n    T min1, min2;\n    KEY key1, key2;\n   \
-    \ bool add_element(T x, KEY key) {\n      if (key1 == key) { return chmin(min1,\
-    \ x); }\n      if (key2 == key) {\n        bool upd = chmin(min2, x);\n      \
-    \  if (min1 > min2) swap(min1, min2), swap(key1, key2);\n        return upd;\n\
-    \      }\n      if (min1 > x) {\n        min2 = min1, key2 = key1, min1 = x, key1\
-    \ = key;\n        return 1;\n      }\n      elif (min2 > x) {\n        min2 =\
-    \ x, key2 = key;\n        return 1;\n      }\n      return 0;\n    }\n  };\n \
-    \ using value_type = Data;\n  using X = value_type;\n\n  static X op(X x, X y)\
-    \ {\n    x.add_element(y.min1, y.key1);\n    x.add_element(y.min2, y.key2);\n\
-    \    return x;\n  }\n  static constexpr X unit() { return {infty<T>, infty<T>,\
-    \ 0, 0}; }\n  static constexpr bool commute = true;\n};\n#line 7 \"test_atcoder/abc245g.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, M, K, L);\n  VEC(ll, A, N);\n  for (auto&& a: A) --a;\n\
-    \  VEC(ll, B, L);\n  for (auto&& b: B) --b;\n\n  Graph<int, 0> G(N);\n  G.read_graph(M,\
-    \ 1);\n\n  using Mono = Monoid_Min2<ll, int>;\n  using Data = typename Mono::Data;\n\
-    \  vc<Data> dist(N, Mono::unit());\n\n  using T = tuple<ll, int, int>; // \u8DDD\
-    \u96E2\u3001\u753A\u3001\u8272\n  pqg<T> que;\n\n  auto add = [&](ll v, ll c,\
-    \ ll x) -> void {\n    if (dist[v].add_element(x, c)) que.emplace(x, v, c);\n\
-    \  };\n\n  for (auto&& b: B) add(b, A[b], 0);\n\n  while (len(que)) {\n    auto\
-    \ [dv, v, c] = que.top();\n    que.pop();\n    bool ok = 0;\n    auto& e = dist[v];\n\
-    \    if (e.min1 == dv && e.key1 == c) ok = 1;\n    if (e.min2 == dv && e.key2\
-    \ == c) ok = 1;\n    if (!ok) continue;\n    for (auto&& e: G[v]) { add(e.to,\
-    \ c, dv + e.cost); }\n  }\n\n  vi ANS(N);\n  FOR(v, N) {\n    auto& e = dist[v];\n\
-    \    ll x = infty<ll>;\n    if (e.key1 != A[v]) chmin(x, e.min1);\n    if (e.key2\
-    \ != A[v]) chmin(x, e.min2);\n    if (x == infty<ll>) x = -1;\n    ANS[v] = x;\n\
-    \  }\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc245/tasks/abc245_g\"\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/base.hpp\"\
-    \n#include \"alg/monoid/min2.hpp\"\n\nvoid solve() {\n  LL(N, M, K, L);\n  VEC(ll,\
-    \ A, N);\n  for (auto&& a: A) --a;\n  VEC(ll, B, L);\n  for (auto&& b: B) --b;\n\
-    \n  Graph<int, 0> G(N);\n  G.read_graph(M, 1);\n\n  using Mono = Monoid_Min2<ll,\
-    \ int>;\n  using Data = typename Mono::Data;\n  vc<Data> dist(N, Mono::unit());\n\
-    \n  using T = tuple<ll, int, int>; // \u8DDD\u96E2\u3001\u753A\u3001\u8272\n \
-    \ pqg<T> que;\n\n  auto add = [&](ll v, ll c, ll x) -> void {\n    if (dist[v].add_element(x,\
-    \ c)) que.emplace(x, v, c);\n  };\n\n  for (auto&& b: B) add(b, A[b], 0);\n\n\
-    \  while (len(que)) {\n    auto [dv, v, c] = que.top();\n    que.pop();\n    bool\
-    \ ok = 0;\n    auto& e = dist[v];\n    if (e.min1 == dv && e.key1 == c) ok = 1;\n\
-    \    if (e.min2 == dv && e.key2 == c) ok = 1;\n    if (!ok) continue;\n    for\
-    \ (auto&& e: G[v]) { add(e.to, c, dv + e.cost); }\n  }\n\n  vi ANS(N);\n  FOR(v,\
-    \ N) {\n    auto& e = dist[v];\n    ll x = infty<ll>;\n    if (e.key1 != A[v])\
-    \ chmin(x, e.min1);\n    if (e.key2 != A[v]) chmin(x, e.min2);\n    if (x == infty<ll>)\
-    \ x = -1;\n    ANS[v] = x;\n  }\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n\
-    \  return 0;\n}\n"
+    \ yes(!t); }\n#line 4 \"test/library_checker/datastructure/staticrmq.test.cpp\"\
+    \n\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Min\
+    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
+    \ X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr X unit()\
+    \ { return infty<E>; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line\
+    \ 1 \"ds/sparse_table/sparse_table.hpp\"\n\n// \u51AA\u7B49\u306A\u30E2\u30CE\u30A4\
+    \u30C9\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3002disjoint sparse table\
+    \ \u3088\u308A x \u500D\u9AD8\u901F\ntemplate <class Monoid>\nstruct Sparse_Table\
+    \ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  int n, log;\n\
+    \  vvc<X> dat;\n\n  Sparse_Table() {}\n  Sparse_Table(int n) { build(n); }\n \
+    \ template <typename F>\n  Sparse_Table(int n, F f) {\n    build(n, f);\n  }\n\
+    \  Sparse_Table(const vc<X>& v) { build(v); }\n\n  void build(int m) {\n    build(m,\
+    \ [](int i) -> X { return MX::unit(); });\n  }\n  void build(const vc<X>& v) {\n\
+    \    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template <typename\
+    \ F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1 << log) <\
+    \ n) ++log;\n    dat.resize(log);\n    dat[0].resize(n);\n    FOR(i, n) dat[0][i]\
+    \ = f(i);\n\n    FOR(i, log - 1) {\n      dat[i + 1].resize(len(dat[i]) - (1 <<\
+    \ i));\n      FOR(j, len(dat[i]) - (1 << i)) {\n        dat[i + 1][j] = MX::op(dat[i][j],\
+    \ dat[i][j + (1 << i)]);\n      }\n    }\n  }\n\n  X prod(int L, int R) {\n  \
+    \  if (L == R) return MX::unit();\n    if (R == L + 1) return dat[0][L];\n   \
+    \ int k = topbit(R - L - 1);\n    return MX::op(dat[k][L], dat[k][R - (1 << k)]);\n\
+    \  }\n\n  template <class F>\n  int max_right(const F check, int L) {\n    assert(0\
+    \ <= L && L <= n && check(MX::unit()));\n    if (L == n) return n;\n    int ok\
+    \ = L, ng = n + 1;\n    while (ok + 1 < ng) {\n      int k = (ok + ng) / 2;\n\
+    \      bool bl = check(prod(L, k));\n      if (bl) ok = k;\n      if (!bl) ng\
+    \ = k;\n    }\n    return ok;\n  }\n\n  template <class F>\n  int min_left(const\
+    \ F check, int R) {\n    assert(0 <= R && R <= n && check(MX::unit()));\n    if\
+    \ (R == 0) return 0;\n    int ok = R, ng = -1;\n    while (ng + 1 < ok) {\n  \
+    \    int k = (ok + ng) / 2;\n      bool bl = check(prod(k, R));\n      if (bl)\
+    \ ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n};\n#line 2 \"\
+    ds/sparse_table/disjoint_sparse_table.hpp\"\n\r\ntemplate <class Monoid>\r\nstruct\
+    \ Disjoint_Sparse_Table {\r\n  using MX = Monoid;\r\n  using X = typename MX::value_type;\r\
+    \n  int n, log;\r\n  vvc<X> dat;\r\n\r\n  Disjoint_Sparse_Table() {}\r\n  Disjoint_Sparse_Table(int\
+    \ n) { build(n); }\r\n  template <typename F>\r\n  Disjoint_Sparse_Table(int n,\
+    \ F f) {\r\n    build(n, f);\r\n  }\r\n  Disjoint_Sparse_Table(const vc<X>& v)\
+    \ { build(v); }\r\n\r\n  void build(int m) {\r\n    build(m, [](int i) -> X {\
+    \ return MX::unit(); });\r\n  }\r\n  void build(const vc<X>& v) {\r\n    build(len(v),\
+    \ [&](int i) -> X { return v[i]; });\r\n  }\r\n  template <typename F>\r\n  void\
+    \ build(int m, F f) {\r\n    n = m, log = 1;\r\n    while ((1 << log) < n) ++log;\r\
+    \n    dat.resize(log);\r\n    dat[0].reserve(n);\r\n    FOR(i, n) dat[0].eb(f(i));\r\
+    \n    FOR(i, 1, log) {\r\n      auto& v = dat[i];\r\n      v = dat[0];\r\n   \
+    \   int b = 1 << i;\r\n      for (int m = b; m <= n; m += 2 * b) {\r\n       \
+    \ int L = m - b, R = min(n, m + b);\r\n        FOR_R(j, L + 1, m) v[j - 1] = MX::op(v[j\
+    \ - 1], v[j]);\r\n        FOR(j, m, R - 1) v[j + 1] = MX::op(v[j], v[j + 1]);\r\
+    \n      }\r\n    }\r\n  }\r\n\r\n  X prod(int L, int R) {\r\n    if (L == R) return\
+    \ MX::unit();\r\n    --R;\r\n    if (L == R) return dat[0][L];\r\n    int k =\
+    \ 31 - __builtin_clz(L ^ R);\r\n    return MX::op(dat[k][L], dat[k][R]);\r\n \
+    \ }\r\n\r\n  template <class F>\r\n  int max_right(const F check, int L) {\r\n\
+    \    assert(0 <= L && L <= n && check(MX::unit()));\r\n    if (L == n) return\
+    \ n;\r\n    int ok = L, ng = n + 1;\r\n    while (ok + 1 < ng) {\r\n      int\
+    \ k = (ok + ng) / 2;\r\n      bool bl = check(prod(L, k));\r\n      if (bl) ok\
+    \ = k;\r\n      if (!bl) ng = k;\r\n    }\r\n    return ok;\r\n  }\r\n\r\n  template\
+    \ <class F>\r\n  int min_left(const F check, int R) {\r\n    assert(0 <= R &&\
+    \ R <= n && check(MX::unit()));\r\n    if (R == 0) return 0;\r\n    int ok = R,\
+    \ ng = -1;\r\n    while (ng + 1 < ok) {\r\n      int k = (ok + ng) / 2;\r\n  \
+    \    bool bl = check(prod(k, R));\r\n      if (bl) ok = k;\r\n      if (!bl) ng\
+    \ = k;\r\n    }\r\n    return ok;\r\n  }\r\n};\n#line 3 \"ds/static_range_product.hpp\"\
+    \n\n/*\n\u53C2\u8003\uFF1Ahttps://judge.yosupo.jp/submission/106668\n\u9577\u3055\
+    \ 2^LOG \u306E\u30D6\u30ED\u30C3\u30AF\u306B\u5206\u3051\u308B\uFF0E\u30D6\u30ED\
+    \u30C3\u30AF\u5185\u306E prefix, suffix \u3092\u6301\u3064\uFF0E\n\u30D6\u30ED\
+    \u30C3\u30AF\u7A4D\u306E\u5217\u3092 ST(DST) \u3067\u6301\u3064\uFF0E\u30D6\u30ED\
+    \u30C3\u30AF\u3092\u307E\u305F\u3050\u7A4D\u306F O(1).\n\u77ED\u3044\u3082\u306E\
+    \u306F O(1) \u3092\u8AE6\u3081\u3066\u611A\u76F4\u3068\u3044\u3046\u3053\u3068\
+    \u306B\u3059\u308B\uFF0E\n\u524D\u8A08\u7B97\uFF1AO(Nlog(N)/2^LOG)\n\u30AF\u30A8\
+    \u30EA\uFF1AO(1) / worst O(2^LOG)\n*/\ntemplate <typename Monoid, typename SPARSE_TABLE,\
+    \ int LOG = 4>\nstruct Static_Range_Product {\n  using MX = Monoid;\n  using X\
+    \ = typename MX::value_type;\n  int N, b_num;\n  vc<X> A, pre, suf; // inclusive\n\
+    \  SPARSE_TABLE ST;\n\n  Static_Range_Product() {}\n  template <typename F>\n\
+    \  Static_Range_Product(int n, F f) {\n    build(n, f);\n  }\n  Static_Range_Product(const\
+    \ vc<X>& v) { build(v); }\n\n  void build(const vc<X>& v) {\n    build(len(v),\
+    \ [&](int i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int\
+    \ m, F f) {\n    N = m;\n    b_num = N >> LOG;\n    A.resize(N);\n    FOR(i, N)\
+    \ A[i] = f(i);\n    pre = A, suf = A;\n    constexpr int mask = (1 << LOG) - 1;\n\
+    \    FOR(i, 1, N) {\n      if (i & mask) pre[i] = MX::op(pre[i - 1], A[i]);\n\
+    \    }\n    FOR_R(i, 1, N) {\n      if (i & mask) suf[i - 1] = MX::op(A[i - 1],\
+    \ suf[i]);\n    }\n    ST.build(b_num, [&](int i) -> X { return suf[i << LOG];\
+    \ });\n  }\n\n  // O(1) or O(R-L)\n  X prod(int L, int R) {\n    if (L == R) return\
+    \ MX::unit();\n    R -= 1;\n    int a = L >> LOG, b = R >> LOG;\n    if (a < b)\
+    \ {\n      X x = ST.prod(a + 1, b);\n      x = MX::op(suf[L], x);\n      x = MX::op(x,\
+    \ pre[R]);\n      return x;\n    }\n    X x = A[L];\n    FOR(i, L + 1, R + 1)\
+    \ x = MX::op(x, A[i]);\n    return x;\n  }\n};\n#line 7 \"test/library_checker/datastructure/staticrmq.test.cpp\"\
+    \n\nsigned main() {\n  using Mono = Monoid_Min<int>;\n  using ST = Sparse_Table<Mono>;\n\
+    \  INT(N, Q);\n  Static_Range_Product<Mono, ST> X(N, [&](int i) -> int {\n   \
+    \ INT(x);\n    return x;\n  });\n  FOR(Q) {\n    INT(L, R);\n    print(X.prod(L,\
+    \ R));\n  }\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n#include \"\
+    my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"alg/monoid/min.hpp\"\
+    \n#include \"ds/static_range_product.hpp\"\n\nsigned main() {\n  using Mono =\
+    \ Monoid_Min<int>;\n  using ST = Sparse_Table<Mono>;\n  INT(N, Q);\n  Static_Range_Product<Mono,\
+    \ ST> X(N, [&](int i) -> int {\n    INT(x);\n    return x;\n  });\n  FOR(Q) {\n\
+    \    INT(L, R);\n    print(X.prod(L, R));\n  }\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - graph/base.hpp
-  - alg/monoid/min2.hpp
+  - alg/monoid/min.hpp
+  - ds/static_range_product.hpp
+  - ds/sparse_table/sparse_table.hpp
+  - ds/sparse_table/disjoint_sparse_table.hpp
   isVerificationFile: true
-  path: test_atcoder/abc245g.test.cpp
+  path: test/library_checker/datastructure/staticrmq.test.cpp
   requiredBy: []
-  timestamp: '2023-11-04 05:26:59+09:00'
+  timestamp: '2023-11-04 19:28:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test_atcoder/abc245g.test.cpp
+documentation_of: test/library_checker/datastructure/staticrmq.test.cpp
 layout: document
 redirect_from:
-- /verify/test_atcoder/abc245g.test.cpp
-- /verify/test_atcoder/abc245g.test.cpp.html
-title: test_atcoder/abc245g.test.cpp
+- /verify/test/library_checker/datastructure/staticrmq.test.cpp
+- /verify/test/library_checker/datastructure/staticrmq.test.cpp.html
+title: test/library_checker/datastructure/staticrmq.test.cpp
 ---

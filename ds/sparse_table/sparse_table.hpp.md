@@ -2,7 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: ds/static_range_product.hpp
+    title: ds/static_range_product.hpp
+  - icon: ':x:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
   - icon: ':question:'
@@ -19,6 +22,9 @@ data:
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/staticrmq.test.cpp
+    title: test/library_checker/datastructure/staticrmq.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticrmq_sparse.test.cpp
     title: test/library_checker/datastructure/staticrmq_sparse.test.cpp
   - icon: ':heavy_check_mark:'
@@ -30,7 +36,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/suffix_array_vec.test.cpp
     title: test/library_checker/string/suffix_array_vec.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/tree/lca_fast.test.cpp
     title: test/library_checker/tree/lca_fast.test.cpp
   - icon: ':heavy_check_mark:'
@@ -112,6 +118,7 @@ data:
   - string/sort_substrings.hpp
   - string/suffix_tree.hpp
   - string/longest_common_substring.hpp
+  - ds/static_range_product.hpp
   timestamp: '2023-04-08 01:03:35+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -123,6 +130,7 @@ data:
   - test/library_checker/string/number_of_substrings.test.cpp
   - test/library_checker/string/suffix_array_vec.test.cpp
   - test/library_checker/datastructure/staticrmq_sparse.test.cpp
+  - test/library_checker/datastructure/staticrmq.test.cpp
   - test_atcoder/abc240ex.test.cpp
   - test_atcoder/arc151_e.test.cpp
 documentation_of: ds/sparse_table/sparse_table.hpp
