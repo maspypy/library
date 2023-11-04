@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
   - icon: ':heavy_check_mark:'
@@ -84,7 +84,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/suffix_array_vec.test.cpp
     title: test/library_checker/string/suffix_array_vec.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/lca_fast.test.cpp
     title: test/library_checker/tree/lca_fast.test.cpp
   - icon: ':heavy_check_mark:'
@@ -153,9 +153,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc151_e.test.cpp
     title: test_atcoder/arc151_e.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -186,7 +186,7 @@ data:
   - string/longest_common_substring.hpp
   - ds/offline_query/range_mex_query.hpp
   timestamp: '2023-02-02 02:12:17+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1600.test.cpp
   - test/yukicoder/2361.test.cpp

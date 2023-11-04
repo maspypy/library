@@ -127,13 +127,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/merge_vector_space.hpp
       title: alg/monoid/merge_vector_space.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/min.hpp
       title: alg/monoid/min.hpp
     - icon: ':heavy_check_mark:'
       path: alg/monoid/min2.hpp
       title: alg/monoid/min2.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/min_idx.hpp
       title: alg/monoid/min_idx.hpp
     - icon: ':heavy_check_mark:'
@@ -440,7 +440,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/sparse_table/disjoint_sparse_table.hpp
       title: ds/sparse_table/disjoint_sparse_table.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/sparse_table/sparse_table.hpp
       title: ds/sparse_table/sparse_table.hpp
     - icon: ':warning:'
@@ -645,7 +645,7 @@ data:
       title: geo3d/base.hpp
   - name: graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/base.hpp
       title: graph/base.hpp
     - icon: ':heavy_check_mark:'
@@ -696,7 +696,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/eulerwalk.hpp
       title: graph/eulerwalk.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/fast_lca.hpp
       title: graph/fast_lca.hpp
     - icon: ':warning:'
@@ -786,7 +786,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tournament.hpp
       title: graph/tournament.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree.hpp
       title: graph/tree.hpp
     - icon: ':heavy_check_mark:'
@@ -1143,7 +1143,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
   - name: new_poly
@@ -1278,7 +1278,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/fibonacci_search.hpp
       title: other/fibonacci_search.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -2517,7 +2517,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/tree/lca_directed.test.cpp
       title: test/library_checker/tree/lca_directed.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/tree/lca_fast.test.cpp
       title: test/library_checker/tree/lca_fast.test.cpp
     - icon: ':heavy_check_mark:'
