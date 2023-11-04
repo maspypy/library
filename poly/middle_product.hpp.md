@@ -61,6 +61,9 @@ data:
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1796_1.test.cpp
+    title: test/yukicoder/1796_1.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
   - icon: ':heavy_check_mark:'
@@ -222,6 +225,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/2243.test.cpp
+  - test/yukicoder/1796_1.test.cpp
   - test/yukicoder/2166.test.cpp
   - test/yukicoder/2231.test.cpp
   - test/mytest/partial_frac.test.cpp

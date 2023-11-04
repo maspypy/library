@@ -34,6 +34,9 @@ data:
     path: test/yukicoder/1718.test.cpp
     title: test/yukicoder/1718.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1796_1.test.cpp
+    title: test/yukicoder/1796_1.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1868.test.cpp
     title: test/yukicoder/1868.test.cpp
   _isVerificationFailed: false
@@ -150,6 +153,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1868.test.cpp
+  - test/yukicoder/1796_1.test.cpp
   - test/yukicoder/1718.test.cpp
   - test/library_checker/tree/tree_diameter.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp

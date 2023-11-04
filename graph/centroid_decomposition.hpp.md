@@ -21,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1796_1.test.cpp
+    title: test/yukicoder/1796_1.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -274,6 +277,7 @@ data:
   timestamp: '2023-11-04 15:56:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/1796_1.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
