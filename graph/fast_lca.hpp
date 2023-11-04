@@ -1,17 +1,15 @@
 #include "graph/tree.hpp"
 #include "alg/monoid/min_idx.hpp"
 #include "alg/monoid/min.hpp"
-#include "ds/static_range_product.hpp"
+#include "ds/sparse_table/sparse_table.hpp"
 
 // sparse table を使う <O(NlogN),O(1)>
 // dist_only の方が 2 割くらい高速か
 template <typename TREE, bool dist_only>
 struct Fast_Lca {
-  using Mono1 = Monoid_Min<int>;
-  using Mono2 = Monoid_Min_Idx<int>;
   TREE& tree;
-  Static_Range_Produc<Mono1, Sparse_Table<Mono1>> seg_mi;
-  Static_Range_Produc<Mono2, Sparse_Table<Mono2>> seg_mi_idx;
+  Sparse_Table<Monoid_Min<int>> seg_mi;
+  Sparse_Table<Monoid_Min_Idx<int>> seg_mi_idx;
   vc<int> pos;
 
   Fast_Lca(TREE& tree) : tree(tree) {
@@ -44,9 +42,7 @@ struct Fast_Lca {
 
   int lca(int a, int b) {
     static_assert(!dist_only);
-    int p = pos[a], q = pos[b];
-    if (p > q) swap(p, q);
-    return seg_mi_idx.prod(p, q + 1).se;
+    return lca_and_dist(a, b).fi;
   }
 
   int dist(int a, int b) {
