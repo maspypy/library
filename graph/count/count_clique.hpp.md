@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_independent_set.hpp
     title: graph/count/count_independent_set.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/path_cycle.hpp
     title: graph/path_cycle.hpp
   - icon: ':question:'
@@ -39,12 +39,12 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_clique.test.cpp
     title: test/mytest/count_clique.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://contest.ucup.ac/contest/1358/problem/7514
@@ -480,7 +480,7 @@ data:
     \ continue;\n      adj[a][b] = adj[b][a] = 1;\n    }\n    FOR(i, n) { new_idx[nbd[i]]\
     \ = -1; }\n    Graph<int, 0> G1(n);\n    FOR(i, n) FOR(j, i) if (!adj[i][j]) G1.add(i,\
     \ j);\n    G1.build();\n    u64 cnt = count_independent_set(G1);\n    ANS += cnt;\n\
-    \    G = G.rearrange(other).fi;\n    assert(G.N == N - 1);\n    --N;\n  }\n  return\
+    \    G = G.rearrange(other);\n    assert(G.N == N - 1);\n    --N;\n  }\n  return\
     \ ANS;\n}\n"
   code: "#include \"graph/count/count_independent_set.hpp\"\n\n// (n,m)=(1000,1000)\
     \ \u3067 24ms\n// https://contest.ucup.ac/contest/1358/problem/7514\ntemplate\
@@ -496,7 +496,7 @@ data:
     \ continue;\n      adj[a][b] = adj[b][a] = 1;\n    }\n    FOR(i, n) { new_idx[nbd[i]]\
     \ = -1; }\n    Graph<int, 0> G1(n);\n    FOR(i, n) FOR(j, i) if (!adj[i][j]) G1.add(i,\
     \ j);\n    G1.build();\n    u64 cnt = count_independent_set(G1);\n    ANS += cnt;\n\
-    \    G = G.rearrange(other).fi;\n    assert(G.N == N - 1);\n    --N;\n  }\n  return\
+    \    G = G.rearrange(other);\n    assert(G.N == N - 1);\n    --N;\n  }\n  return\
     \ ANS;\n}\n"
   dependsOn:
   - graph/count/count_independent_set.hpp
@@ -514,8 +514,8 @@ data:
   isVerificationFile: false
   path: graph/count/count_clique.hpp
   requiredBy: []
-  timestamp: '2023-11-04 05:26:59+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-11-04 13:20:16+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/count_clique.test.cpp
 documentation_of: graph/count/count_clique.hpp

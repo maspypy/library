@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_clique.hpp
     title: graph/count/count_clique.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_independent_set.hpp
     title: graph/count/count_independent_set.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/path_cycle.hpp
     title: graph/path_cycle.hpp
   - icon: ':question:'
@@ -49,14 +49,14 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -688,7 +688,7 @@ data:
     \ continue;\n      adj[a][b] = adj[b][a] = 1;\n    }\n    FOR(i, n) { new_idx[nbd[i]]\
     \ = -1; }\n    Graph<int, 0> G1(n);\n    FOR(i, n) FOR(j, i) if (!adj[i][j]) G1.add(i,\
     \ j);\n    G1.build();\n    u64 cnt = count_independent_set(G1);\n    ANS += cnt;\n\
-    \    G = G.rearrange(other).fi;\n    assert(G.N == N - 1);\n    --N;\n  }\n  return\
+    \    G = G.rearrange(other);\n    assert(G.N == N - 1);\n    --N;\n  }\n  return\
     \ ANS;\n}\n#line 8 \"test/mytest/count_clique.test.cpp\"\n\nvoid test() {\n  FOR(N,\
     \ 15) {\n    FOR(100) {\n      Graph<int, 0> G = random_graph<0>(N, true);\n \
     \     vc<int> nbd(N);\n      for (auto& e: G.edges) {\n        nbd[e.frm] |= 1\
@@ -730,8 +730,8 @@ data:
   isVerificationFile: true
   path: test/mytest/count_clique.test.cpp
   requiredBy: []
-  timestamp: '2023-11-04 05:26:59+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-04 13:20:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/count_clique.test.cpp
 layout: document
