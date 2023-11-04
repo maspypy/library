@@ -394,16 +394,15 @@ data:
     \ int p = pos[a], q = pos[b];\n    if (p > q) swap(p, q);\n    return tree.V[seg.prod(p,\
     \ q + 1)];\n  }\n};\n#line 7 \"test/library_checker/tree/lca_fast.test.cpp\"\n\
     \nvoid solve() {\n  INT(N, Q);\n  Graph<int, 1> G(N);\n  FOR(v, 1, N) {\n    INT(p);\n\
-    \    G.add(p, v);\n  }\n  G.build();\n\n  Tree<decltype(G)> tree(G);\n  Fast_Lca<decltype(tree),\
-    \ false> LCA(tree);\n\n  FOR(Q) {\n    INT(a, b);\n    print(LCA.lca(a, b));\n\
-    \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \    G.add(p, v);\n  }\n  G.build();\n\n  Tree<decltype(G)> tree(G);\n  Fast_Lca<decltype(tree)>\
+    \ LCA(tree);\n\n  FOR(Q) {\n    INT(a, b);\n    print(LCA.lca(a, b));\n  }\n}\n\
+    \nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"graph/base.hpp\"\n#include \"graph/fast_lca.hpp\"\
     \n\nvoid solve() {\n  INT(N, Q);\n  Graph<int, 1> G(N);\n  FOR(v, 1, N) {\n  \
     \  INT(p);\n    G.add(p, v);\n  }\n  G.build();\n\n  Tree<decltype(G)> tree(G);\n\
-    \  Fast_Lca<decltype(tree), false> LCA(tree);\n\n  FOR(Q) {\n    INT(a, b);\n\
-    \    print(LCA.lca(a, b));\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
-    }\n"
+    \  Fast_Lca<decltype(tree)> LCA(tree);\n\n  FOR(Q) {\n    INT(a, b);\n    print(LCA.lca(a,\
+    \ b));\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -416,7 +415,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/tree/lca_fast.test.cpp
   requiredBy: []
-  timestamp: '2023-11-05 01:23:15+09:00'
+  timestamp: '2023-11-05 02:41:49+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/tree/lca_fast.test.cpp
