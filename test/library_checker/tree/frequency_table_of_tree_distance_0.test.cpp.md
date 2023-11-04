@@ -53,7 +53,7 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
     links:
     - https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
-  bundledCode: "#line 1 \"test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp\"\
+  bundledCode: "#line 1 \"test/library_checker/tree/frequency_table_of_tree_distance_0.test.cpp\"\
     \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/frequency_table_of_tree_distance\"\
     \n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
@@ -235,7 +235,7 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 6 \"test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp\"\
+    \ yes(!t); }\n#line 6 \"test/library_checker/tree/frequency_table_of_tree_distance_0.test.cpp\"\
     \n\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int\
     \ frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool directed\
     \ = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
@@ -655,27 +655,29 @@ data:
     \ m = len(b);\r\n  if (!n || !m) return {};\r\n  if (mint::can_ntt()) {\r\n  \
     \  if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n    return\
     \ convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\r\n  return convolution_garner(a, b);\r\n}\r\n#line 9 \"test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp\"\
+    \ b);\r\n  return convolution_garner(a, b);\r\n}\r\n#line 9 \"test/library_checker/tree/frequency_table_of_tree_distance_0.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  Graph<int> G(N);\n  G.read_tree(0, 0);\n  vi ANS(N);\n\
-    \  auto f = [&](vc<int>& par, vc<int>& V, vc<int>& color) -> void {\n    int N\
-    \ = len(par);\n    vc<int> dist(N);\n    FOR(i, 1, N) { dist[i] = dist[par[i]]\
-    \ + 1; }\n    vi f(N), g(N);\n    FOR(i, N) {\n      if (color[i] == 0) f[dist[i]]++;\n\
-    \      if (color[i] == 1) g[dist[i]]++;\n    }\n    while (len(f) && f.back()\
-    \ == 0) POP(f);\n    while (len(g) && g.back() == 0) POP(g);\n    f = convolution(f,\
-    \ g);\n    FOR(i, len(f)) ANS[i] += f[i];\n  };\n  centroid_decomposition<2>(G,\
-    \ f);\n  ANS.erase(ANS.begin());\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n\
-    \  return 0;\n}\n"
+    \  auto f = [&](vc<int>& par, vc<int>& V, vc<int>& indptr) -> void {\n    int\
+    \ N = len(par);\n    vc<int> dist(N);\n    FOR(i, 1, N) { dist[i] = dist[par[i]]\
+    \ + 1; }\n    auto calc = [&](int L, int R, int sgn) -> void {\n      int mx =\
+    \ *max_element(dist.begin() + L, dist.begin() + R);\n      vi f(mx + 1);\n   \
+    \   FOR(i, L, R) f[dist[i]]++;\n      f = convolution(f, f);\n      FOR(i, len(f))\
+    \ ANS[i] += sgn * f[i];\n    };\n    calc(0, N, +1);\n    FOR(k, 1, len(indptr)\
+    \ - 1) { calc(indptr[k], indptr[k + 1], -1); }\n  };\n  centroid_decomposition<0>(G,\
+    \ f);\n  for (auto& x: ANS) x /= 2;\n  ANS.erase(ANS.begin());\n  print(ANS);\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/frequency_table_of_tree_distance\"\
     \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/centroid_decomposition.hpp\"\
     \n#include \"poly/convolution.hpp\"\n\nvoid solve() {\n  LL(N);\n  Graph<int>\
     \ G(N);\n  G.read_tree(0, 0);\n  vi ANS(N);\n  auto f = [&](vc<int>& par, vc<int>&\
-    \ V, vc<int>& color) -> void {\n    int N = len(par);\n    vc<int> dist(N);\n\
-    \    FOR(i, 1, N) { dist[i] = dist[par[i]] + 1; }\n    vi f(N), g(N);\n    FOR(i,\
-    \ N) {\n      if (color[i] == 0) f[dist[i]]++;\n      if (color[i] == 1) g[dist[i]]++;\n\
-    \    }\n    while (len(f) && f.back() == 0) POP(f);\n    while (len(g) && g.back()\
-    \ == 0) POP(g);\n    f = convolution(f, g);\n    FOR(i, len(f)) ANS[i] += f[i];\n\
-    \  };\n  centroid_decomposition<2>(G, f);\n  ANS.erase(ANS.begin());\n  print(ANS);\n\
-    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ V, vc<int>& indptr) -> void {\n    int N = len(par);\n    vc<int> dist(N);\n\
+    \    FOR(i, 1, N) { dist[i] = dist[par[i]] + 1; }\n    auto calc = [&](int L,\
+    \ int R, int sgn) -> void {\n      int mx = *max_element(dist.begin() + L, dist.begin()\
+    \ + R);\n      vi f(mx + 1);\n      FOR(i, L, R) f[dist[i]]++;\n      f = convolution(f,\
+    \ f);\n      FOR(i, len(f)) ANS[i] += sgn * f[i];\n    };\n    calc(0, N, +1);\n\
+    \    FOR(k, 1, len(indptr) - 1) { calc(indptr[k], indptr[k + 1], -1); }\n  };\n\
+    \  centroid_decomposition<0>(G, f);\n  for (auto& x: ANS) x /= 2;\n  ANS.erase(ANS.begin());\n\
+    \  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -692,15 +694,15 @@ data:
   - poly/ntt.hpp
   - poly/fft.hpp
   isVerificationFile: true
-  path: test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
+  path: test/library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
   requiredBy: []
   timestamp: '2023-11-04 15:56:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
+documentation_of: test/library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
-- /verify/test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp.html
-title: test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
+- /verify/test/library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
+- /verify/test/library_checker/tree/frequency_table_of_tree_distance_0.test.cpp.html
+title: test/library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
 ---

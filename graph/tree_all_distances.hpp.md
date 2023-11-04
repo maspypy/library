@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/centroid_decomposition.hpp
     title: graph/centroid_decomposition.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
   - icon: ':question:'
@@ -123,9 +123,27 @@ data:
     \ = root[e.frm];\n        par[e.to] = e.frm;\n        if (e.cost == 0)\n     \
     \     que.push_front(e.to);\n        else\n          que.push_back(e.to);\n  \
     \    }\n    }\n  }\n  return {dist, par, root};\n}\n#line 3 \"graph/centroid_decomposition.hpp\"\
-    \n\n/*\nhttps://maspypy.com/%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%83%bb1-3%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%81%ae%e3%81%8a%e7%b5%b5%e6%8f%8f%e3%81%8d\n\
+    \n\ntemplate <typename F>\nvoid centroid_decomposition_0_dfs(vc<int>& par, vc<int>&\
+    \ vs, F f) {\n  const int N = len(par);\n  assert(N >= 1);\n  int c = -1;\n  vc<int>\
+    \ sz(N, 1);\n  FOR_R(i, N) {\n    if (sz[i] >= ceil<int>(N, 2)) {\n      c = i;\n\
+    \      break;\n    }\n    sz[par[i]] += sz[i];\n  }\n  vc<int> color(N);\n  vc<int>\
+    \ V = {c};\n  int nc = 1;\n  FOR(v, 1, N) {\n    if (par[v] == c) { V.eb(v), color[v]\
+    \ = nc++; }\n  }\n  if (c > 0) {\n    for (int a = par[c]; a != -1; a = par[a])\
+    \ { color[a] = nc, V.eb(a); }\n    ++nc;\n  }\n  FOR(i, N) {\n    if (i != c &&\
+    \ color[i] == 0) color[i] = color[par[i]], V.eb(i);\n  }\n  vc<int> indptr(nc\
+    \ + 1);\n  FOR(i, N) indptr[1 + color[i]]++;\n  FOR(i, nc) indptr[i + 1] += indptr[i];\n\
+    \  vc<int> counter = indptr;\n  vc<int> ord(N);\n  for (auto& v: V) { ord[counter[color[v]]++]\
+    \ = v; }\n  vc<int> new_idx(N);\n  FOR(i, N) new_idx[ord[i]] = i;\n  vc<int> name(N);\n\
+    \  FOR(i, N) name[new_idx[i]] = vs[i];\n  {\n    vc<int> tmp(N, -1);\n    FOR(i,\
+    \ 1, N) {\n      int a = new_idx[i], b = new_idx[par[i]];\n      if (a > b) swap(a,\
+    \ b);\n      tmp[b] = a;\n    }\n    swap(par, tmp);\n  }\n  f(par, name, indptr);\n\
+    \  FOR(k, 1, nc) {\n    int L = indptr[k], R = indptr[k + 1];\n    vc<int> par1(R\
+    \ - L, -1);\n    vc<int> name1(R - L, -1);\n    name1[0] = name[0];\n    FOR(i,\
+    \ L, R) name1[i - L] = name[i];\n    FOR(i, L, R) { par1[i - L] = max(par[i] -\
+    \ L, -1); }\n    centroid_decomposition_0_dfs(par1, name1, f);\n  }\n}\n\n/*\n\
+    https://maspypy.com/%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%83%bb1-3%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%81%ae%e3%81%8a%e7%b5%b5%e6%8f%8f%e3%81%8d\n\
     1/3 CD \u306E\u307F\u6271\u3046\ncentroid_decomposition_1\uFF1A\u9577\u3055 2\
-    \ \u4EE5\u4E0A\u306E\u30D1\u30B9\u5168\u4F53\n*/\n\ntemplate <typename F>\nvoid\
+    \ \u4EE5\u4E0A\u306E\u30D1\u30B9\u5168\u4F53\n*/\ntemplate <typename F>\nvoid\
     \ centroid_decomposition_1_dfs(vc<int>& par, vc<int> vs, F f) {\n  const int N\
     \ = len(par);\n  assert(N > 1);\n  if (N == 2) { return; }\n  int c = -1;\n  vc<int>\
     \ sz(N, 1);\n  FOR_R(i, N) {\n    if (sz[i] >= ceil<int>(N, 2)) {\n      c = i;\n\
@@ -134,28 +152,17 @@ data:
     \ 1, N) {\n    if (par[v] == c && take + sz[v] <= floor<int>(N - 1, 2)) {\n  \
     \    color[v] = 0, ord[v] = p++, take += sz[v];\n    }\n  }\n  FOR(i, 1, N) {\n\
     \    if (color[par[i]] == 0) color[i] = 0, ord[i] = p++;\n  }\n  int n0 = p -\
-    \ 1;\n  int a = c;\n  while (1) {\n    a = par[a];\n    if (a == -1) break;\n\
-    \    color[a] = 1, ord[a] = p++;\n  }\n  FOR(i, N) {\n    if (i != c && color[i]\
-    \ == -1) color[i] = 1, ord[i] = p++;\n  }\n  assert(p == N);\n  int n1 = N - 1\
-    \ - n0;\n  vc<int> par0(n0 + 1, -1), par1(n1 + 1, -1), par2(N, -1);\n  vc<int>\
-    \ V0(n0 + 1), V1(n1 + 1), V2(N);\n  FOR(v, N) {\n    int i = ord[v];\n    V2[i]\
-    \ = vs[v];\n    if (color[v] != 1) { V0[i] = vs[v]; }\n    if (color[v] != 0)\
-    \ { V1[max(i - n0, 0)] = vs[v]; }\n  }\n  FOR(v, 1, N) {\n    int a = ord[v],\
-    \ b = ord[par[v]];\n    if (a > b) swap(a, b);\n    par2[b] = a;\n    if (color[v]\
-    \ != 1 && color[par[v]] != 1) par0[b] = a;\n    if (color[v] != 0 && color[par[v]]\
-    \ != 0)\n      par1[max(b - n0, 0)] = max(a - n0, 0);\n  }\n  f(par2, V2, n0,\
-    \ n1);\n  centroid_decomposition_1_dfs(par0, V0, f);\n  centroid_decomposition_1_dfs(par1,\
-    \ V1, f);\n}\n\n// \u9577\u3055 1 \u306E\u30D1\u30B9\u306F\u5225\u51E6\u7406\u3059\
-    \u308B\u3053\u3068\u306B\u6CE8\u610F\n// \u9577\u3055 2 \u4EE5\u4E0A\u306E\u30D1\
-    \u30B9\u3059\u3079\u3066\u306B\u5BFE\u3059\u308B\u8A08\u7B97\u3092\u3057\u305F\
-    \u3044\n// f(G, V, n1, n2)\n// G: oriented\n// V: label in original tree, dfs\
-    \ order\n// color=1: V[1:1+n1]\n// color=2: V[1+n1:1+n1+n2]\ntemplate <typename\
-    \ GT, typename F>\nvoid centroid_decomposition_1(GT& G, F f) {\n  if (G.N == 1)\
-    \ return;\n  if constexpr (GT::is_directed) {\n    vc<int> V = toposort(G);\n\
-    \    G = G.rearrange(V, true);\n    centroid_decomposition_1_dfs(G, V, f);\n \
-    \ } else {\n    Graph<typename GT::cost_type, true> H = to_directed_tree(G);\n\
-    \    vc<int> V = toposort(H);\n    H = H.rearrange(V, true);\n    centroid_decomposition_1_dfs(H,\
-    \ V, f);\n  }\n}\n\n/*\nhttps://maspypy.com/%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%83%bb1-3%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%81%ae%e3%81%8a%e7%b5%b5%e6%8f%8f%e3%81%8d\n\
+    \ 1;\n  for (int a = par[c]; a != -1; a = par[a]) { color[a] = 1, ord[a] = p++;\
+    \ }\n  FOR(i, N) {\n    if (i != c && color[i] == -1) color[i] = 1, ord[i] = p++;\n\
+    \  }\n  assert(p == N);\n  int n1 = N - 1 - n0;\n  vc<int> par0(n0 + 1, -1), par1(n1\
+    \ + 1, -1), par2(N, -1);\n  vc<int> V0(n0 + 1), V1(n1 + 1), V2(N);\n  FOR(v, N)\
+    \ {\n    int i = ord[v];\n    V2[i] = vs[v];\n    if (color[v] != 1) { V0[i] =\
+    \ vs[v]; }\n    if (color[v] != 0) { V1[max(i - n0, 0)] = vs[v]; }\n  }\n  FOR(v,\
+    \ 1, N) {\n    int a = ord[v], b = ord[par[v]];\n    if (a > b) swap(a, b);\n\
+    \    par2[b] = a;\n    if (color[v] != 1 && color[par[v]] != 1) par0[b] = a;\n\
+    \    if (color[v] != 0 && color[par[v]] != 0)\n      par1[max(b - n0, 0)] = max(a\
+    \ - n0, 0);\n  }\n  f(par2, V2, n0, n1);\n  centroid_decomposition_1_dfs(par0,\
+    \ V0, f);\n  centroid_decomposition_1_dfs(par1, V1, f);\n}\n\n/*\nhttps://maspypy.com/%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%83%bb1-3%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%81%ae%e3%81%8a%e7%b5%b5%e6%8f%8f%e3%81%8d\n\
     1/3 CD \u306E\u307F\u6271\u3046\ncentroid_decomposition_1\uFF1A\u9577\u3055 2\
     \ \u4EE5\u4E0A\u306E\u30D1\u30B9\u5168\u4F53\n*/\n\ntemplate <typename F>\nvoid\
     \ centroid_decomposition_2_dfs(vc<int>& par, vc<int>& vs, vc<int>& real,\n   \
@@ -168,37 +175,37 @@ data:
     \  FOR(v, 1, N) {\n    if (par[v] == c && take + sz[v] <= floor<int>(N - 1, 2))\
     \ {\n      color[v] = 0, ord[v] = p++, take += sz[v];\n    }\n  }\n  FOR(i, 1,\
     \ N) {\n    if (color[par[i]] == 0) color[i] = 0, ord[i] = p++;\n  }\n  int n0\
-    \ = p - 1;\n  int a = c;\n  while (1) {\n    a = par[a];\n    if (a == -1) break;\n\
-    \    color[a] = 1, ord[a] = p++;\n  }\n  FOR(i, N) {\n    if (i != c && color[i]\
-    \ == -1) color[i] = 1, ord[i] = p++;\n  }\n  assert(p == N);\n  int n1 = N - 1\
-    \ - n0;\n  vc<int> par0(n0 + 1, -1), par1(n1 + 1, -1), par2(N, -1);\n  vc<int>\
-    \ V0(n0 + 1), V1(n1 + 1), V2(N);\n  vc<int> rea0(n0 + 1), rea1(n1 + 1), rea2(N);\n\
-    \  FOR(v, N) {\n    int i = ord[v];\n    V2[i] = vs[v], rea2[i] = real[v];\n \
-    \   if (color[v] != 1) { V0[i] = vs[v], rea0[i] = real[v]; }\n    if (color[v]\
-    \ != 0) {\n      V1[max(i - n0, 0)] = vs[v], rea1[max(i - n0, 0)] = real[v];\n\
-    \    }\n  }\n  FOR(v, 1, N) {\n    int a = ord[v], b = ord[par[v]];\n    if (a\
-    \ > b) swap(a, b);\n    par2[b] = a;\n    if (color[v] != 1 && color[par[v]] !=\
-    \ 1) par0[b] = a;\n    if (color[v] != 0 && color[par[v]] != 0)\n      par1[max(b\
-    \ - n0, 0)] = max(a - n0, 0);\n  }\n  if (real[c]) {\n    color.assign(N, -1);\n\
-    \    color[0] = 0;\n    FOR(i, 1, N) color[i] = rea2[i] ? 1 : -1;\n    f(par2,\
-    \ V2, color);\n    rea0[0] = rea1[0] = rea2[0] = 0;\n  }\n  color.assign(N, -1);\n\
-    \  FOR(i, 1, N) if (rea2[i]) color[i] = (i <= n0 ? 0 : 1);\n  f(par2, V2, color);\n\
-    \  centroid_decomposition_2_dfs(par0, V0, rea0, f);\n  centroid_decomposition_2_dfs(par1,\
-    \ V1, rea1, f);\n}\n\n// f(par, V, color)\n// V: label in original tree, dfs order\n\
-    // color in [-1,0,1], color=-1: virtual\ntemplate <int MODE, typename GT, typename\
-    \ F>\nvoid centroid_decomposition(GT& G, F f) {\n  const int N = G.N;\n  if (N\
-    \ == 1) return;\n  vc<int> V(N), par(N, -1);\n  int l = 0, r = 0;\n  V[r++] =\
-    \ 0;\n  while (l < r) {\n    int v = V[l++];\n    for (auto& e: G[v]) {\n    \
-    \  if (e.to != par[v]) V[r++] = e.to, par[e.to] = v;\n    }\n  }\n  assert(r ==\
-    \ N);\n  vc<int> new_idx(N);\n  FOR(i, N) new_idx[V[i]] = i;\n  vc<int> tmp(N,\
-    \ -1);\n  FOR(i, 1, N) {\n    int j = par[i];\n    tmp[new_idx[i]] = new_idx[j];\n\
-    \  }\n  swap(par, tmp);\n  static_assert(MODE == 1 || MODE == 2);\n  if constexpr\
-    \ (MODE == 1) {\n    centroid_decomposition_1_dfs(par, V, f);\n  } else {\n  \
-    \  vc<int> real(N, 1);\n    centroid_decomposition_2_dfs(par, V, real, f);\n \
-    \ }\n}\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
-    \ <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
-    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
-    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ = p - 1;\n  for (int a = par[c]; a != -1; a = par[a]) { color[a] = 1, ord[a]\
+    \ = p++; }\n  FOR(i, N) {\n    if (i != c && color[i] == -1) color[i] = 1, ord[i]\
+    \ = p++;\n  }\n  assert(p == N);\n  int n1 = N - 1 - n0;\n  vc<int> par0(n0 +\
+    \ 1, -1), par1(n1 + 1, -1), par2(N, -1);\n  vc<int> V0(n0 + 1), V1(n1 + 1), V2(N);\n\
+    \  vc<int> rea0(n0 + 1), rea1(n1 + 1), rea2(N);\n  FOR(v, N) {\n    int i = ord[v];\n\
+    \    V2[i] = vs[v], rea2[i] = real[v];\n    if (color[v] != 1) { V0[i] = vs[v],\
+    \ rea0[i] = real[v]; }\n    if (color[v] != 0) {\n      V1[max(i - n0, 0)] = vs[v],\
+    \ rea1[max(i - n0, 0)] = real[v];\n    }\n  }\n  FOR(v, 1, N) {\n    int a = ord[v],\
+    \ b = ord[par[v]];\n    if (a > b) swap(a, b);\n    par2[b] = a;\n    if (color[v]\
+    \ != 1 && color[par[v]] != 1) par0[b] = a;\n    if (color[v] != 0 && color[par[v]]\
+    \ != 0)\n      par1[max(b - n0, 0)] = max(a - n0, 0);\n  }\n  if (real[c]) {\n\
+    \    color.assign(N, -1);\n    color[0] = 0;\n    FOR(i, 1, N) color[i] = rea2[i]\
+    \ ? 1 : -1;\n    f(par2, V2, color);\n    rea0[0] = rea1[0] = rea2[0] = 0;\n \
+    \ }\n  color.assign(N, -1);\n  FOR(i, 1, N) if (rea2[i]) color[i] = (i <= n0 ?\
+    \ 0 : 1);\n  f(par2, V2, color);\n  centroid_decomposition_2_dfs(par0, V0, rea0,\
+    \ f);\n  centroid_decomposition_2_dfs(par1, V1, rea1, f);\n}\n\n// f(par, V, color)\n\
+    // V: label in original tree, dfs order\n// color in [-1,0,1], color=-1: virtual\n\
+    template <int MODE, typename GT, typename F>\nvoid centroid_decomposition(GT&\
+    \ G, F f) {\n  const int N = G.N;\n  if (N == 1) return;\n  vc<int> V(N), par(N,\
+    \ -1);\n  int l = 0, r = 0;\n  V[r++] = 0;\n  while (l < r) {\n    int v = V[l++];\n\
+    \    for (auto& e: G[v]) {\n      if (e.to != par[v]) V[r++] = e.to, par[e.to]\
+    \ = v;\n    }\n  }\n  assert(r == N);\n  vc<int> new_idx(N);\n  FOR(i, N) new_idx[V[i]]\
+    \ = i;\n  vc<int> tmp(N, -1);\n  FOR(i, 1, N) {\n    int j = par[i];\n    tmp[new_idx[i]]\
+    \ = new_idx[j];\n  }\n  swap(par, tmp);\n  static_assert(MODE == 0 || MODE ==\
+    \ 1 || MODE == 2);\n  if constexpr (MODE == 0) { centroid_decomposition_0_dfs(par,\
+    \ V, f); }\n  elif constexpr(MODE == 1) { centroid_decomposition_1_dfs(par, V,\
+    \ f); }\n  else {\n    vc<int> real(N, 1);\n    centroid_decomposition_2_dfs(par,\
+    \ V, real, f);\n  }\n}\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
     \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
     \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
@@ -497,7 +504,7 @@ data:
   isVerificationFile: false
   path: graph/tree_all_distances.hpp
   requiredBy: []
-  timestamp: '2023-11-04 15:00:53+09:00'
+  timestamp: '2023-11-04 15:56:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp

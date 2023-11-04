@@ -765,7 +765,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
+    title: test/library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2748,6 +2751,7 @@ data:
   - test/library_checker/tree/tree_diameter.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
+  - test/library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
   - test/library_checker/tree/rerooting_dp.test.cpp
   - test/library_checker/tree/lca.test.cpp
   - test/library_checker/tree/lca_fast.test.cpp
