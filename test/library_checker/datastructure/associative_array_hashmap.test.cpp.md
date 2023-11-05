@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -211,34 +211,35 @@ data:
     \               .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n\
     \  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
     ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 3 \"ds/hashmap.hpp\"\
-    \n\r\n// u64 -> Val\r\ntemplate <typename Val, int LOG = 20>\r\nstruct HashMap\
-    \ {\r\n  int N;\r\n  u64* keys;\r\n  Val* vals;\r\n  vc<int> IDS;\r\n  bitset<1\
-    \ << LOG> used;\r\n  const int shift;\r\n  const u64 r = 11995408973635179863ULL;\r\
-    \n  HashMap()\r\n      : N(1 << LOG), keys(new u64[N]), vals(new Val[N]), shift(64\
+    \n\r\n// u64 -> Val\r\ntemplate <typename Val, int LOG = 20, bool KEEP_IDS = false>\r\
+    \nstruct HashMap {\r\n  using P = pair<u64, Val>;\r\n  int N;\r\n  P* dat;\r\n\
+    \  vc<int> IDS;\r\n  bitset<1 << LOG> used;\r\n  const int shift;\r\n  const u64\
+    \ r = 11995408973635179863ULL;\r\n  HashMap() : N(1 << LOG), dat(new P[N]), shift(64\
     \ - __lg(N)) {}\r\n  int hash(ll x) {\r\n    static const u64 FIXED_RANDOM\r\n\
     \        = std::chrono::steady_clock::now().time_since_epoch().count();\r\n  \
     \  return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
-    \ u64& key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && keys[i]\
+    \ u64& key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && dat[i].fi\
     \ != key; (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
-    \ u64& key) {\r\n    int i = index(key);\r\n    if (!used[i]) IDS.eb(i), used[i]\
-    \ = 1, keys[i] = key, vals[i] = Val{};\r\n    return vals[i];\r\n  }\r\n\r\n \
-    \ Val get(const u64& key, Val default_value) {\r\n    int i = index(key);\r\n\
-    \    if (!used[i]) return default_value;\r\n    return vals[i];\r\n  }\r\n\r\n\
-    \  bool count(const u64& key) {\r\n    int i = index(key);\r\n    return used[i]\
-    \ && keys[i] == key;\r\n  }\r\n\r\n  void reset() {\r\n    for (auto&& i: IDS)\
-    \ used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  // f(key, val)\r\n  template\
-    \ <typename F>\r\n  void enumerate_all(F f) {\r\n    for (auto&& i: IDS) f(keys[i],\
-    \ vals[i]);\r\n  }\r\n};\r\n#line 5 \"test/library_checker/datastructure/associative_array_hashmap.test.cpp\"\
+    \ u64& key) {\r\n    int i = index(key);\r\n    if (!used[i]) {\r\n      used[i]\
+    \ = 1, dat[i] = {key, Val{}};\r\n      if constexpr (KEEP_IDS) IDS.eb(i);\r\n\
+    \    }\r\n    return dat[i].se;\r\n  }\r\n\r\n  Val get(const u64& key, Val default_value)\
+    \ {\r\n    int i = index(key);\r\n    if (!used[i]) return default_value;\r\n\
+    \    return dat[i].se;\r\n  }\r\n\r\n  bool count(const u64& key) {\r\n    int\
+    \ i = index(key);\r\n    return used[i] && dat[i].fi == key;\r\n  }\r\n\r\n  void\
+    \ reset() {\r\n    static_assert(KEEP_IDS);\r\n    for (auto&& i: IDS) used[i]\
+    \ = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  // f(key, val)\r\n  template <typename\
+    \ F>\r\n  void enumerate_all(F f) {\r\n    static_assert(KEEP_IDS);\r\n    for\
+    \ (auto&& i: IDS) f(dat[i].fi, dat[i].se);\r\n  }\r\n};\r\n#line 5 \"test/library_checker/datastructure/associative_array_hashmap.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(Q);\r\n  HashMap<ll> A;\r\n  FOR(Q) {\r\n    LL(t);\r\
     \n    if (t == 0) {\r\n      LL(k, v);\r\n      A[k] = v;\r\n    } else {\r\n\
-    \      LL(k);\r\n      print(A[k]);\r\n    }\r\n  }\r\n}\r\n\r\nsigned main()\
-    \ {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \      LL(k);\r\n      print(A.get(k, 0));\r\n    }\r\n  }\r\n}\r\n\r\nsigned\
+    \ main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/associative_array\"\r\n\
     #include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/hashmap.hpp\"\
     \r\n\r\nvoid solve() {\r\n  LL(Q);\r\n  HashMap<ll> A;\r\n  FOR(Q) {\r\n    LL(t);\r\
     \n    if (t == 0) {\r\n      LL(k, v);\r\n      A[k] = v;\r\n    } else {\r\n\
-    \      LL(k);\r\n      print(A[k]);\r\n    }\r\n  }\r\n}\r\n\r\nsigned main()\
-    \ {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \      LL(k);\r\n      print(A.get(k, 0));\r\n    }\r\n  }\r\n}\r\n\r\nsigned\
+    \ main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -247,7 +248,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
   requiredBy: []
-  timestamp: '2023-11-01 19:16:20+09:00'
+  timestamp: '2023-11-06 02:54:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/associative_array_hashmap.test.cpp

@@ -1,59 +1,59 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_set/from_monoid.hpp
     title: alg/acted_set/from_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/discrete_logarithm_mod
@@ -420,32 +420,34 @@ data:
     \ Monoid>\nstruct ActedSet_From_Monoid {\n  using Monoid_A = Monoid;\n  using\
     \ A = typename Monoid::value_type;\n  using S = A;\n  static S act(const S &x,\
     \ const A &g) { return Monoid::op(x, g); }\n};\n#line 3 \"ds/hashmap.hpp\"\n\r\
-    \n// u64 -> Val\r\ntemplate <typename Val, int LOG = 20>\r\nstruct HashMap {\r\
-    \n  int N;\r\n  u64* keys;\r\n  Val* vals;\r\n  vc<int> IDS;\r\n  bitset<1 <<\
-    \ LOG> used;\r\n  const int shift;\r\n  const u64 r = 11995408973635179863ULL;\r\
-    \n  HashMap()\r\n      : N(1 << LOG), keys(new u64[N]), vals(new Val[N]), shift(64\
+    \n// u64 -> Val\r\ntemplate <typename Val, int LOG = 20, bool KEEP_IDS = false>\r\
+    \nstruct HashMap {\r\n  using P = pair<u64, Val>;\r\n  int N;\r\n  P* dat;\r\n\
+    \  vc<int> IDS;\r\n  bitset<1 << LOG> used;\r\n  const int shift;\r\n  const u64\
+    \ r = 11995408973635179863ULL;\r\n  HashMap() : N(1 << LOG), dat(new P[N]), shift(64\
     \ - __lg(N)) {}\r\n  int hash(ll x) {\r\n    static const u64 FIXED_RANDOM\r\n\
     \        = std::chrono::steady_clock::now().time_since_epoch().count();\r\n  \
     \  return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
-    \ u64& key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && keys[i]\
+    \ u64& key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && dat[i].fi\
     \ != key; (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
-    \ u64& key) {\r\n    int i = index(key);\r\n    if (!used[i]) IDS.eb(i), used[i]\
-    \ = 1, keys[i] = key, vals[i] = Val{};\r\n    return vals[i];\r\n  }\r\n\r\n \
-    \ Val get(const u64& key, Val default_value) {\r\n    int i = index(key);\r\n\
-    \    if (!used[i]) return default_value;\r\n    return vals[i];\r\n  }\r\n\r\n\
-    \  bool count(const u64& key) {\r\n    int i = index(key);\r\n    return used[i]\
-    \ && keys[i] == key;\r\n  }\r\n\r\n  void reset() {\r\n    for (auto&& i: IDS)\
-    \ used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  // f(key, val)\r\n  template\
-    \ <typename F>\r\n  void enumerate_all(F f) {\r\n    for (auto&& i: IDS) f(keys[i],\
-    \ vals[i]);\r\n  }\r\n};\r\n#line 4 \"nt/discrete_log.hpp\"\n\r\n// \u30E2\u30CE\
-    \u30A4\u30C9 X \u306E\u4F5C\u7528\u3059\u308B\u96C6\u5408 S\u3001\u30CF\u30C3\u30B7\
-    \u30E5\u95A2\u6570 H\uFF1AS -> Z\r\n// x in X, s, t in S \u306B\u5BFE\u3057\u3066\
-    \ x^ns = t \u3092\u89E3\u304F\r\n// [lb, ub) \u306E\u6700\u521D\u306E\u89E3\u3092\
-    \u304B\u3048\u3059\u3002\u306A\u3051\u308C\u3070 -1 \u3092\u304B\u3048\u3059\u3002\
-    \r\ntemplate <typename ActedSet, typename F, int MP_SIZE = 20>\r\nll discrete_log_acted(typename\
-    \ ActedSet::A x, typename ActedSet::S s,\r\n                      typename ActedSet::S\
-    \ t, F H, ll lb, ll ub) {\r\n  static HashMap<bool, MP_SIZE> MP;\r\n  MP.reset();\r\
-    \n  using Mono = typename ActedSet::Monoid_A;\r\n  using X = typename Mono::value_type;\r\
+    \ u64& key) {\r\n    int i = index(key);\r\n    if (!used[i]) {\r\n      used[i]\
+    \ = 1, dat[i] = {key, Val{}};\r\n      if constexpr (KEEP_IDS) IDS.eb(i);\r\n\
+    \    }\r\n    return dat[i].se;\r\n  }\r\n\r\n  Val get(const u64& key, Val default_value)\
+    \ {\r\n    int i = index(key);\r\n    if (!used[i]) return default_value;\r\n\
+    \    return dat[i].se;\r\n  }\r\n\r\n  bool count(const u64& key) {\r\n    int\
+    \ i = index(key);\r\n    return used[i] && dat[i].fi == key;\r\n  }\r\n\r\n  void\
+    \ reset() {\r\n    static_assert(KEEP_IDS);\r\n    for (auto&& i: IDS) used[i]\
+    \ = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  // f(key, val)\r\n  template <typename\
+    \ F>\r\n  void enumerate_all(F f) {\r\n    static_assert(KEEP_IDS);\r\n    for\
+    \ (auto&& i: IDS) f(dat[i].fi, dat[i].se);\r\n  }\r\n};\r\n#line 4 \"nt/discrete_log.hpp\"\
+    \n\r\n// \u30E2\u30CE\u30A4\u30C9 X \u306E\u4F5C\u7528\u3059\u308B\u96C6\u5408\
+    \ S\u3001\u30CF\u30C3\u30B7\u30E5\u95A2\u6570 H\uFF1AS -> Z\r\n// x in X, s, t\
+    \ in S \u306B\u5BFE\u3057\u3066 x^ns = t \u3092\u89E3\u304F\r\n// [lb, ub) \u306E\
+    \u6700\u521D\u306E\u89E3\u3092\u304B\u3048\u3059\u3002\u306A\u3051\u308C\u3070\
+    \ -1 \u3092\u304B\u3048\u3059\u3002\r\ntemplate <typename ActedSet, typename F,\
+    \ int MP_SIZE = 20>\r\nll discrete_log_acted(typename ActedSet::A x, typename\
+    \ ActedSet::S s,\r\n                      typename ActedSet::S t, F H, ll lb,\
+    \ ll ub) {\r\n  static HashMap<bool, MP_SIZE> MP;\r\n  MP.reset();\r\n  using\
+    \ Mono = typename ActedSet::Monoid_A;\r\n  using X = typename Mono::value_type;\r\
     \n  using S = typename ActedSet::S;\r\n\r\n  if (lb >= ub) return -1;\r\n  auto\
     \ xpow = [&](ll n) -> X {\r\n    X p = x;\r\n    X res = Mono::unit();\r\n   \
     \ while (n) {\r\n      if (n & 1) res = Mono::op(res, p);\r\n      p = Mono::op(p,\
@@ -495,8 +497,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/discrete_logarithm_mod.test.cpp
   requiredBy: []
-  timestamp: '2023-11-02 05:38:57+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-06 02:54:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/discrete_logarithm_mod.test.cpp
 layout: document

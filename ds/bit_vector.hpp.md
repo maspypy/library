@@ -8,7 +8,7 @@ data:
   - icon: ':warning:'
     path: graph/ds/tree_wavelet_matrix.hpp
     title: graph/ds/tree_wavelet_matrix.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: string/prefix_substring_LCS.hpp
     title: string/prefix_substring_LCS.hpp
   _extendedVerifiedWith:
@@ -18,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/string/prefix_substring_lcs.test.cpp
+    title: test/library_checker/string/prefix_substring_lcs.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/wavelet_matrix.test.cpp
     title: test/mytest/wavelet_matrix.test.cpp
@@ -73,6 +76,7 @@ data:
   - test/yukicoder/924.test.cpp
   - test/yukicoder/1332.test.cpp
   - test/mytest/wavelet_matrix.test.cpp
+  - test/library_checker/string/prefix_substring_lcs.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
   - test_atcoder/abc324g.test.cpp

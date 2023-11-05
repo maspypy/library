@@ -98,7 +98,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: string/prefix_substring_LCS.hpp
     title: string/prefix_substring_LCS.hpp
   - icon: ':heavy_check_mark:'
@@ -225,6 +225,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/common_interval_decomposition.test.cpp
     title: test/library_checker/graph/common_interval_decomposition.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/string/prefix_substring_lcs.test.cpp
+    title: test/library_checker/string/prefix_substring_lcs.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/ARC30D.test.cpp
     title: test/mytest/ARC30D.test.cpp
@@ -545,6 +548,7 @@ data:
   - test/mytest/segtree_xor_prod.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/library_checker/graph/common_interval_decomposition.test.cpp
+  - test/library_checker/string/prefix_substring_lcs.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   - test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp

@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: random/hash_pair.hpp
     title: random/hash_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     ERROR: '0.000001'
@@ -282,30 +282,31 @@ data:
     \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"random/shuffle.hpp\"\
     \n\ntemplate <typename T>\nvoid shuffle(vc<T>& A) {\n  FOR(i, len(A)) swap(A[i],\
     \ A[RNG(0, i + 1)]);\n}\n#line 3 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate\
-    \ <typename Val, int LOG = 20>\r\nstruct HashMap {\r\n  int N;\r\n  u64* keys;\r\
-    \n  Val* vals;\r\n  vc<int> IDS;\r\n  bitset<1 << LOG> used;\r\n  const int shift;\r\
-    \n  const u64 r = 11995408973635179863ULL;\r\n  HashMap()\r\n      : N(1 << LOG),\
-    \ keys(new u64[N]), vals(new Val[N]), shift(64 - __lg(N)) {}\r\n  int hash(ll\
+    \ <typename Val, int LOG = 20, bool KEEP_IDS = false>\r\nstruct HashMap {\r\n\
+    \  using P = pair<u64, Val>;\r\n  int N;\r\n  P* dat;\r\n  vc<int> IDS;\r\n  bitset<1\
+    \ << LOG> used;\r\n  const int shift;\r\n  const u64 r = 11995408973635179863ULL;\r\
+    \n  HashMap() : N(1 << LOG), dat(new P[N]), shift(64 - __lg(N)) {}\r\n  int hash(ll\
     \ x) {\r\n    static const u64 FIXED_RANDOM\r\n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\
     \n    return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
-    \ u64& key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && keys[i]\
+    \ u64& key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && dat[i].fi\
     \ != key; (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
-    \ u64& key) {\r\n    int i = index(key);\r\n    if (!used[i]) IDS.eb(i), used[i]\
-    \ = 1, keys[i] = key, vals[i] = Val{};\r\n    return vals[i];\r\n  }\r\n\r\n \
-    \ Val get(const u64& key, Val default_value) {\r\n    int i = index(key);\r\n\
-    \    if (!used[i]) return default_value;\r\n    return vals[i];\r\n  }\r\n\r\n\
-    \  bool count(const u64& key) {\r\n    int i = index(key);\r\n    return used[i]\
-    \ && keys[i] == key;\r\n  }\r\n\r\n  void reset() {\r\n    for (auto&& i: IDS)\
-    \ used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  // f(key, val)\r\n  template\
-    \ <typename F>\r\n  void enumerate_all(F f) {\r\n    for (auto&& i: IDS) f(keys[i],\
-    \ vals[i]);\r\n  }\r\n};\r\n#line 2 \"random/hash_pair.hpp\"\n\ntemplate <typename\
-    \ T>\nu64 hash_pair(pair<T, T> X) {\n  static ll hash_base = 0;\n  if (hash_base\
-    \ == 0) hash_base = RNG_64();\n  return hash_base * X.fi + X.se;\n}\n#line 6 \"\
-    geo/closest_pair.hpp\"\n\ntemplate <typename T, int LOG = 20>\npair<int, int>\
-    \ closest_pair(vc<Point<T>> points) {\n  static HashMap<int, LOG> MP;\n  MP.reset();\n\
-    \  int N = len(points);\n  assert(N >= 2 && N < (1 << LOG));\n  vc<int> I(N);\n\
-    \  iota(all(I), 0);\n  shuffle(I);\n  points = rearrange(points, I);\n\n  auto\
-    \ calc = [&](int i, int j) -> T {\n    return (points[j] - points[i]).dot(points[j]\
+    \ u64& key) {\r\n    int i = index(key);\r\n    if (!used[i]) {\r\n      used[i]\
+    \ = 1, dat[i] = {key, Val{}};\r\n      if constexpr (KEEP_IDS) IDS.eb(i);\r\n\
+    \    }\r\n    return dat[i].se;\r\n  }\r\n\r\n  Val get(const u64& key, Val default_value)\
+    \ {\r\n    int i = index(key);\r\n    if (!used[i]) return default_value;\r\n\
+    \    return dat[i].se;\r\n  }\r\n\r\n  bool count(const u64& key) {\r\n    int\
+    \ i = index(key);\r\n    return used[i] && dat[i].fi == key;\r\n  }\r\n\r\n  void\
+    \ reset() {\r\n    static_assert(KEEP_IDS);\r\n    for (auto&& i: IDS) used[i]\
+    \ = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  // f(key, val)\r\n  template <typename\
+    \ F>\r\n  void enumerate_all(F f) {\r\n    static_assert(KEEP_IDS);\r\n    for\
+    \ (auto&& i: IDS) f(dat[i].fi, dat[i].se);\r\n  }\r\n};\r\n#line 2 \"random/hash_pair.hpp\"\
+    \n\ntemplate <typename T>\nu64 hash_pair(pair<T, T> X) {\n  static ll hash_base\
+    \ = 0;\n  if (hash_base == 0) hash_base = RNG_64();\n  return hash_base * X.fi\
+    \ + X.se;\n}\n#line 6 \"geo/closest_pair.hpp\"\n\ntemplate <typename T, int LOG\
+    \ = 20>\npair<int, int> closest_pair(vc<Point<T>> points) {\n  static HashMap<int,\
+    \ LOG> MP;\n  MP.reset();\n  int N = len(points);\n  assert(N >= 2 && N < (1 <<\
+    \ LOG));\n  vc<int> I(N);\n  iota(all(I), 0);\n  shuffle(I);\n  points = rearrange(points,\
+    \ I);\n\n  auto calc = [&](int i, int j) -> T {\n    return (points[j] - points[i]).dot(points[j]\
     \ - points[i]);\n  };\n\n  T best = calc(0, 1);\n  pair<int, int> res = {0, 1};\n\
     \  T w = sqrtl(best);\n\n  vc<int> nxt(N, -1);\n\n  auto insert = [&](int i) ->\
     \ void {\n    u64 k = hash_pair<ll>({points[i].x / w, points[i].y / w});\n   \
@@ -340,8 +341,8 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_5_A.test.cpp
   requiredBy: []
-  timestamp: '2023-11-03 13:02:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-06 02:54:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/CGL_5_A.test.cpp
 layout: document

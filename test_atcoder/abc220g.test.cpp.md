@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/max2.hpp
     title: alg/monoid/max2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/perpendicular_bisector.hpp
     title: geo/perpendicular_bisector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc220/tasks/abc220_g
@@ -280,44 +280,45 @@ data:
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
     \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 3 \"ds/hashmap.hpp\"\
-    \n\r\n// u64 -> Val\r\ntemplate <typename Val, int LOG = 20>\r\nstruct HashMap\
-    \ {\r\n  int N;\r\n  u64* keys;\r\n  Val* vals;\r\n  vc<int> IDS;\r\n  bitset<1\
-    \ << LOG> used;\r\n  const int shift;\r\n  const u64 r = 11995408973635179863ULL;\r\
-    \n  HashMap()\r\n      : N(1 << LOG), keys(new u64[N]), vals(new Val[N]), shift(64\
+    \n\r\n// u64 -> Val\r\ntemplate <typename Val, int LOG = 20, bool KEEP_IDS = false>\r\
+    \nstruct HashMap {\r\n  using P = pair<u64, Val>;\r\n  int N;\r\n  P* dat;\r\n\
+    \  vc<int> IDS;\r\n  bitset<1 << LOG> used;\r\n  const int shift;\r\n  const u64\
+    \ r = 11995408973635179863ULL;\r\n  HashMap() : N(1 << LOG), dat(new P[N]), shift(64\
     \ - __lg(N)) {}\r\n  int hash(ll x) {\r\n    static const u64 FIXED_RANDOM\r\n\
     \        = std::chrono::steady_clock::now().time_since_epoch().count();\r\n  \
     \  return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
-    \ u64& key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && keys[i]\
+    \ u64& key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && dat[i].fi\
     \ != key; (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
-    \ u64& key) {\r\n    int i = index(key);\r\n    if (!used[i]) IDS.eb(i), used[i]\
-    \ = 1, keys[i] = key, vals[i] = Val{};\r\n    return vals[i];\r\n  }\r\n\r\n \
-    \ Val get(const u64& key, Val default_value) {\r\n    int i = index(key);\r\n\
-    \    if (!used[i]) return default_value;\r\n    return vals[i];\r\n  }\r\n\r\n\
-    \  bool count(const u64& key) {\r\n    int i = index(key);\r\n    return used[i]\
-    \ && keys[i] == key;\r\n  }\r\n\r\n  void reset() {\r\n    for (auto&& i: IDS)\
-    \ used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  // f(key, val)\r\n  template\
-    \ <typename F>\r\n  void enumerate_all(F f) {\r\n    for (auto&& i: IDS) f(keys[i],\
-    \ vals[i]);\r\n  }\r\n};\r\n#line 2 \"alg/monoid/max2.hpp\"\n\ntemplate <typename\
-    \ T, typename KEY>\nstruct Monoid_Max2 {\n  struct Data {\n    T max1, max2;\n\
-    \    KEY key1, key2;\n    bool add_element(T x, KEY key) {\n      if (key1 ==\
-    \ key) { return chmax(max1, x); }\n      if (key2 == key) {\n        bool upd\
-    \ = chmax(max2, x);\n        if (max1 < max2) swap(max1, max2), swap(key1, key2);\n\
-    \        return upd;\n      }\n      if (max1 < x) {\n        max2 = max1, key2\
-    \ = key1, max1 = x, key1 = key;\n        return 1;\n      }\n      elif (max2\
-    \ < x) {\n        max2 = x, key2 = key;\n        return 1;\n      }\n      return\
-    \ 0;\n    }\n  };\n  using value_type = Data;\n  using X = value_type;\n\n  static\
-    \ X op(X x, X y) {\n    x.add_element(y.max1, y.key1);\n    x.add_element(y.max2,\
-    \ y.key2);\n    return x;\n  }\n  static constexpr X unit() { return {-infty<T>,\
-    \ -infty<T>, 0, 0}; }\n  static constexpr bool commute = true;\n};\n#line 10 \"\
-    test_atcoder/abc220g.test.cpp\"\n\nusing P = Point<ll>;\n\nvoid solve() {\n  LL(N);\n\
-    \  vc<P> point(N);\n  vi C(N);\n  FOR(i, N) read(point[i], C[i]);\n\n  u64 aa\
-    \ = RNG_64(), bb = RNG_64(), cc = RNG_64();\n\n  using Mono = Monoid_Max2<ll,\
-    \ ll>;\n  using Data = typename Mono::Data;\n  HashMap<Data> MP;\n\n  FOR(j, N)\
-    \ FOR(i, j) {\n    Line<ll> L = perpendicular_bisector(point[i], point[j]);\n\
-    \    L.normalize();\n    u64 key = 0;\n    key += u64(L.a + infty<ll>) * aa;\n\
-    \    key += u64(L.b + infty<ll>) * bb;\n    key += u64(L.c + infty<ll>) * cc;\n\
-    \    if (!MP.count(key)) MP[key] = Mono::unit();\n    ll g = gcd(L.a, L.b);\n\
-    \    Point<ll> normal = {L.b / g, -L.a / g};\n    ll t = normal.dot(point[i]);\n\
+    \ u64& key) {\r\n    int i = index(key);\r\n    if (!used[i]) {\r\n      used[i]\
+    \ = 1, dat[i] = {key, Val{}};\r\n      if constexpr (KEEP_IDS) IDS.eb(i);\r\n\
+    \    }\r\n    return dat[i].se;\r\n  }\r\n\r\n  Val get(const u64& key, Val default_value)\
+    \ {\r\n    int i = index(key);\r\n    if (!used[i]) return default_value;\r\n\
+    \    return dat[i].se;\r\n  }\r\n\r\n  bool count(const u64& key) {\r\n    int\
+    \ i = index(key);\r\n    return used[i] && dat[i].fi == key;\r\n  }\r\n\r\n  void\
+    \ reset() {\r\n    static_assert(KEEP_IDS);\r\n    for (auto&& i: IDS) used[i]\
+    \ = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  // f(key, val)\r\n  template <typename\
+    \ F>\r\n  void enumerate_all(F f) {\r\n    static_assert(KEEP_IDS);\r\n    for\
+    \ (auto&& i: IDS) f(dat[i].fi, dat[i].se);\r\n  }\r\n};\r\n#line 2 \"alg/monoid/max2.hpp\"\
+    \n\ntemplate <typename T, typename KEY>\nstruct Monoid_Max2 {\n  struct Data {\n\
+    \    T max1, max2;\n    KEY key1, key2;\n    bool add_element(T x, KEY key) {\n\
+    \      if (key1 == key) { return chmax(max1, x); }\n      if (key2 == key) {\n\
+    \        bool upd = chmax(max2, x);\n        if (max1 < max2) swap(max1, max2),\
+    \ swap(key1, key2);\n        return upd;\n      }\n      if (max1 < x) {\n   \
+    \     max2 = max1, key2 = key1, max1 = x, key1 = key;\n        return 1;\n   \
+    \   }\n      elif (max2 < x) {\n        max2 = x, key2 = key;\n        return\
+    \ 1;\n      }\n      return 0;\n    }\n  };\n  using value_type = Data;\n  using\
+    \ X = value_type;\n\n  static X op(X x, X y) {\n    x.add_element(y.max1, y.key1);\n\
+    \    x.add_element(y.max2, y.key2);\n    return x;\n  }\n  static constexpr X\
+    \ unit() { return {-infty<T>, -infty<T>, 0, 0}; }\n  static constexpr bool commute\
+    \ = true;\n};\n#line 10 \"test_atcoder/abc220g.test.cpp\"\n\nusing P = Point<ll>;\n\
+    \nvoid solve() {\n  LL(N);\n  vc<P> point(N);\n  vi C(N);\n  FOR(i, N) read(point[i],\
+    \ C[i]);\n\n  u64 aa = RNG_64(), bb = RNG_64(), cc = RNG_64();\n\n  using Mono\
+    \ = Monoid_Max2<ll, ll>;\n  using Data = typename Mono::Data;\n  HashMap<Data>\
+    \ MP;\n\n  FOR(j, N) FOR(i, j) {\n    Line<ll> L = perpendicular_bisector(point[i],\
+    \ point[j]);\n    L.normalize();\n    u64 key = 0;\n    key += u64(L.a + infty<ll>)\
+    \ * aa;\n    key += u64(L.b + infty<ll>) * bb;\n    key += u64(L.c + infty<ll>)\
+    \ * cc;\n    if (!MP.count(key)) MP[key] = Mono::unit();\n    ll g = gcd(L.a,\
+    \ L.b);\n    Point<ll> normal = {L.b / g, -L.a / g};\n    ll t = normal.dot(point[i]);\n\
     \    MP[key].add_element(C[i] + C[j], t);\n  }\n\n  ll ANS = -1;\n  MP.enumerate_all([&](auto\
     \ key, auto dat) -> void {\n    ll ans = dat.max1 + dat.max2;\n    chmax(ANS,\
     \ ans);\n  });\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
@@ -349,8 +350,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc220g.test.cpp
   requiredBy: []
-  timestamp: '2023-11-03 13:22:21+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-06 02:54:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc220g.test.cpp
 layout: document
