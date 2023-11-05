@@ -36,7 +36,7 @@ struct Range_Closest_Pair_Query {
   }
 
   vc<ll> calc() {
-    static HashMap<int> MP;
+    static HashMap<int, 20, true> MP;
     const int K = LOG;
     const int N = len(point), Q = len(query);
     using A9 = array<int, 9>;
@@ -45,26 +45,31 @@ struct Range_Closest_Pair_Query {
     // 各セル番号に対する近傍
     vc<A9> nbd;
     FOR(k, 1, K) {
-      auto to_ll = [&](int x, int y) -> ll { return ll(x) << 30 | y; };
+      auto to_64 = [&](int x, int y) -> u64 { return u64(x) << 30 | y; };
       int off = len(nbd);
       int p = off;
       MP.reset();
       FOR(i, N) {
         int x = point[i].fi >> (k);
         int y = point[i].se >> (k);
-        ll key = to_ll(x, y);
-        if (!MP.count(key)) MP[key] = p++;
-        IDX[k][i] = MP[key];
+        u64 key = to_ll(x, y);
+        int idx = MP.index(key);
+        if (MP.used[idx]) {
+          IDX[k][i] = MP.dat[idx].se;
+        } else {
+          MP.used[idx] = 1;
+          MP.dat[idx] = {key, p++};
+        }
       }
       nbd.resize(p);
       FOR(i, N) {
         int x = point[i].fi >> (k);
         int y = point[i].se >> (k);
-        int me = MP[to_ll(x, y)];
+        int me = MP[to_64(x, y)];
         int s = 0;
         FOR(dx, -1, 2) FOR(dy, -1, 2) {
-          ll key = to_ll(x + dx, y + dy);
-          nbd[me][s++] = (MP.count(key) ? MP[key] : -1);
+          u64 key = to_64(x + dx, y + dy);
+          nbd[me][s++] = MP.get(key, -1);
         }
       }
     }
