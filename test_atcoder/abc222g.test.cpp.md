@@ -251,19 +251,14 @@ data:
     \ bool commute = true;\r\n};\r\n#line 1 \"alg/acted_set/from_monoid.hpp\"\ntemplate\
     \ <typename Monoid>\nstruct ActedSet_From_Monoid {\n  using Monoid_A = Monoid;\n\
     \  using A = typename Monoid::value_type;\n  using S = A;\n  static S act(const\
-    \ S &x, const A &g) { return Monoid::op(x, g); }\n};\n#line 2 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 3 \"ds/hashmap.hpp\"\
+    \ S &x, const A &g) { return Monoid::op(x, g); }\n};\n#line 2 \"ds/hashmap.hpp\"\
     \n\r\n// u64 -> Val\r\ntemplate <typename Val, int LOG = 20, bool KEEP_IDS = false>\r\
-    \nstruct HashMap {\r\n  using P = pair<u64, Val>;\r\n  int N;\r\n  P* dat;\r\n\
-    \  vc<int> IDS;\r\n  bitset<1 << LOG> used;\r\n  const int shift;\r\n  const u64\
-    \ r = 11995408973635179863ULL;\r\n  HashMap() : N(1 << LOG), dat(new P[N]), shift(64\
-    \ - __lg(N)) {}\r\n  int hash(ll x) {\r\n    static const u64 FIXED_RANDOM\r\n\
-    \        = std::chrono::steady_clock::now().time_since_epoch().count();\r\n  \
-    \  return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
+    \nstruct HashMap {\r\n  using P = pair<u64, Val>;\r\n  static constexpr int N\
+    \ = (1 << LOG);\r\n  P* dat;\r\n  vc<int> IDS;\r\n  bitset<N> used;\r\n  const\
+    \ int shift;\r\n  const u64 r = 11995408973635179863ULL;\r\n  HashMap() : dat(new\
+    \ P[N]), shift(64 - LOG) {}\r\n  int hash(ll x) {\r\n    static const u64 FIXED_RANDOM\r\
+    \n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\n \
+    \   return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
     \ u64& key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && dat[i].fi\
     \ != key; (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
     \ u64& key) {\r\n    int i = index(key);\r\n    if (!used[i]) {\r\n      used[i]\
@@ -353,16 +348,21 @@ data:
     \ = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return\
     \ mint(0);\n  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint,\
     \ large, dense>(n + d - 1, d);\n}\n#line 2 \"mod/primitive_root.hpp\"\n\r\n#line\
-    \ 2 \"nt/factor.hpp\"\n\n#line 2 \"mod/mongomery_modint.hpp\"\n\n// odd mod.\n\
-    // x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate <int id, typename\
-    \ U1, typename U2>\nstruct Mongomery_modint {\n  using mint = Mongomery_modint;\n\
-    \  inline static U1 m, r, n2;\n  static constexpr int W = numeric_limits<U1>::digits;\n\
-    \n  static void set_mod(U1 mod) {\n    assert(mod & 1 && mod <= U1(1) << (W -\
-    \ 2));\n    m = mod, n2 = -U2(m) % m, r = m;\n    FOR(5) r *= 2 - m * r;\n   \
-    \ r = -r;\n    assert(r * m == U1(-1));\n  }\n  static U1 reduce(U2 b) { return\
-    \ (b + U2(U1(b) * r) * m) >> W; }\n\n  U1 x;\n  Mongomery_modint() : x(0) {}\n\
-    \  Mongomery_modint(U1 x) : x(reduce(U2(x) * n2)){};\n  U1 val() const {\n   \
-    \ U1 y = reduce(x);\n    return y >= m ? y - m : y;\n  }\n  mint &operator+=(mint\
+    \ 2 \"nt/factor.hpp\"\n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
+    \ uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/mongomery_modint.hpp\"\
+    \n\n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
+    \ <int id, typename U1, typename U2>\nstruct Mongomery_modint {\n  using mint\
+    \ = Mongomery_modint;\n  inline static U1 m, r, n2;\n  static constexpr int W\
+    \ = numeric_limits<U1>::digits;\n\n  static void set_mod(U1 mod) {\n    assert(mod\
+    \ & 1 && mod <= U1(1) << (W - 2));\n    m = mod, n2 = -U2(m) % m, r = m;\n   \
+    \ FOR(5) r *= 2 - m * r;\n    r = -r;\n    assert(r * m == U1(-1));\n  }\n  static\
+    \ U1 reduce(U2 b) { return (b + U2(U1(b) * r) * m) >> W; }\n\n  U1 x;\n  Mongomery_modint()\
+    \ : x(0) {}\n  Mongomery_modint(U1 x) : x(reduce(U2(x) * n2)){};\n  U1 val() const\
+    \ {\n    U1 y = reduce(x);\n    return y >= m ? y - m : y;\n  }\n  mint &operator+=(mint\
     \ y) {\n    x = ((x += y.x) >= m ? x - m : x);\n    return *this;\n  }\n  mint\
     \ &operator-=(mint y) {\n    x -= (x >= y.x ? y.x : y.x - m);\n    return *this;\n\
     \  }\n  mint &operator*=(mint y) {\n    x = reduce(U2(x) * y.x);\n    return *this;\n\
@@ -502,13 +502,13 @@ data:
   - alg/monoid/mul.hpp
   - alg/acted_set/from_monoid.hpp
   - ds/hashmap.hpp
-  - random/base.hpp
   - alg/acted_set/affine.hpp
   - alg/monoid/affine.hpp
   - mod/dynamic_modint.hpp
   - mod/modint_common.hpp
   - mod/primitive_root.hpp
   - nt/factor.hpp
+  - random/base.hpp
   - nt/primetest.hpp
   - mod/mongomery_modint.hpp
   - mod/mod_pow.hpp
@@ -516,7 +516,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc222g.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 02:54:38+09:00'
+  timestamp: '2023-11-06 03:08:30+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc222g.test.cpp

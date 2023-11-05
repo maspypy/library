@@ -333,15 +333,16 @@ data:
     \ return 0;\r\n  mod = abs(mod);\r\n  val %= mod;\r\n  if (val < 0) val += mod;\r\
     \n  ll a = val, b = mod, u = 1, v = 0, t;\r\n  while (b > 0) {\r\n    t = a /\
     \ b;\r\n    swap(a -= t * b, b), swap(u -= t * v, v);\r\n  }\r\n  if (u < 0) u\
-    \ += mod;\r\n  return u;\r\n}\r\n#line 3 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\
+    \ += mod;\r\n  return u;\r\n}\r\n#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\
     \ntemplate <typename Val, int LOG = 20, bool KEEP_IDS = false>\r\nstruct HashMap\
-    \ {\r\n  using P = pair<u64, Val>;\r\n  int N;\r\n  P* dat;\r\n  vc<int> IDS;\r\
-    \n  bitset<1 << LOG> used;\r\n  const int shift;\r\n  const u64 r = 11995408973635179863ULL;\r\
-    \n  HashMap() : N(1 << LOG), dat(new P[N]), shift(64 - __lg(N)) {}\r\n  int hash(ll\
-    \ x) {\r\n    static const u64 FIXED_RANDOM\r\n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\
-    \n    return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
-    \ u64& key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && dat[i].fi\
-    \ != key; (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
+    \ {\r\n  using P = pair<u64, Val>;\r\n  static constexpr int N = (1 << LOG);\r\
+    \n  P* dat;\r\n  vc<int> IDS;\r\n  bitset<N> used;\r\n  const int shift;\r\n \
+    \ const u64 r = 11995408973635179863ULL;\r\n  HashMap() : dat(new P[N]), shift(64\
+    \ - LOG) {}\r\n  int hash(ll x) {\r\n    static const u64 FIXED_RANDOM\r\n   \
+    \     = std::chrono::steady_clock::now().time_since_epoch().count();\r\n    return\
+    \ (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const u64& key)\
+    \ {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && dat[i].fi != key;\
+    \ (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
     \ u64& key) {\r\n    int i = index(key);\r\n    if (!used[i]) {\r\n      used[i]\
     \ = 1, dat[i] = {key, Val{}};\r\n      if constexpr (KEEP_IDS) IDS.eb(i);\r\n\
     \    }\r\n    return dat[i].se;\r\n  }\r\n\r\n  Val get(const u64& key, Val default_value)\
@@ -448,7 +449,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/kth_root_mod.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 02:54:38+09:00'
+  timestamp: '2023-11-06 03:08:30+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/kth_root_mod.test.cpp

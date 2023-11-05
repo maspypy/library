@@ -5,9 +5,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/rollinghash.hpp
     title: alg/monoid/rollinghash.hpp
-  - icon: ':question:'
-    path: ds/hashmap.hpp
-    title: ds/hashmap.hpp
   - icon: ':warning:'
     path: ds/unionfind/parallel_unionfind.hpp
     title: ds/unionfind/parallel_unionfind.hpp
@@ -20,18 +17,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/minimum_enclosing_circle.hpp
     title: geo/minimum_enclosing_circle.hpp
-  - icon: ':x:'
-    path: geo/range_closest_pair_query.hpp
-    title: geo/range_closest_pair_query.hpp
   - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/count_bipartite.hpp
     title: graph/count/count_bipartite.hpp
-  - icon: ':x:'
-    path: graph/eulerwalk.hpp
-    title: graph/eulerwalk.hpp
   - icon: ':heavy_check_mark:'
     path: graph/maximum_matching_size.hpp
     title: graph/maximum_matching_size.hpp
@@ -41,9 +32,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
-  - icon: ':x:'
-    path: graph/vs_to_es.hpp
-    title: graph/vs_to_es.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
@@ -89,9 +77,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/crt.hpp
     title: nt/crt.hpp
-  - icon: ':x:'
-    path: nt/discrete_log.hpp
-    title: nt/discrete_log.hpp
   - icon: ':heavy_check_mark:'
     path: nt/divisors.hpp
     title: nt/divisors.hpp
@@ -165,12 +150,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_setntt.test.cpp
     title: test/library_checker/convolution/convolution_mod_setntt.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
-    title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/set_xor_min.test.cpp
-    title: test/library_checker/datastructure/set_xor_min.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/chromatic_number.test.cpp
     title: test/library_checker/graph/chromatic_number.test.cpp
@@ -571,9 +550,6 @@ data:
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1383.test.cpp
-    title: test/yukicoder/1383.test.cpp
-  - icon: ':x:'
     path: test/yukicoder/1397.test.cpp
     title: test/yukicoder/1397.test.cpp
   - icon: ':heavy_check_mark:'
@@ -585,15 +561,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1593.test.cpp
     title: test/yukicoder/1593.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1634.test.cpp
-    title: test/yukicoder/1634.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1667.test.cpp
     title: test/yukicoder/1667.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1726.test.cpp
-    title: test/yukicoder/1726.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1728.test.cpp
     title: test/yukicoder/1728.test.cpp
@@ -676,14 +646,8 @@ data:
     path: test_atcoder/abc222g.test.cpp
     title: test_atcoder/abc222g.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc227g.test.cpp
-    title: test_atcoder/abc227g.test.cpp
-  - icon: ':x:'
     path: test_atcoder/abc270_g.test.cpp
     title: test_atcoder/abc270_g.test.cpp
-  - icon: ':x:'
-    path: test_atcoder/abc273_e.test.cpp
-    title: test_atcoder/abc273_e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc274_h.test.cpp
     title: test_atcoder/abc274_h.test.cpp
@@ -693,9 +657,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  - icon: ':x:'
-    path: test_atcoder/arc157a.test.cpp
-    title: test_atcoder/arc157a.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -726,18 +687,15 @@ data:
   - mod/binomial.hpp
   - mod/tetration.hpp
   - mod/primitive_root.hpp
-  - graph/eulerwalk.hpp
   - graph/maximum_matching_size.hpp
   - graph/chromatic.hpp
   - graph/count/count_bipartite.hpp
   - graph/minimum_cycle_length_through_specified.hpp
   - graph/tree_dp/subtree_hash.hpp
-  - graph/vs_to_es.hpp
   - random/hash_pair.hpp
   - random/random_graph.hpp
   - random/shuffle.hpp
   - random/hash_vector.hpp
-  - geo/range_closest_pair_query.hpp
   - geo/closest_pair.hpp
   - geo/minimum_enclosing_circle.hpp
   - geo/count_points_in_triangles.hpp
@@ -748,7 +706,6 @@ data:
   - nt/gaussian_integers.hpp
   - nt/three_square.hpp
   - nt/factor.hpp
-  - nt/discrete_log.hpp
   - nt/all_lcm.hpp
   - nt/three_triangular.hpp
   - nt/euler_phi.hpp
@@ -762,14 +719,12 @@ data:
   - string/rollinghash_2d.hpp
   - string/rollinghash.hpp
   - ds/unionfind/parallel_unionfind.hpp
-  - ds/hashmap.hpp
   timestamp: '2022-10-23 11:21:57+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1775.test.cpp
   - test/yukicoder/578.test.cpp
   - test/yukicoder/1956.test.cpp
-  - test/yukicoder/1726.test.cpp
   - test/yukicoder/4_1.test.cpp
   - test/yukicoder/187.test.cpp
   - test/yukicoder/1339.test.cpp
@@ -777,7 +732,6 @@ data:
   - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/1593.test.cpp
   - test/yukicoder/1411.test.cpp
-  - test/yukicoder/1634.test.cpp
   - test/yukicoder/2102.test.cpp
   - test/yukicoder/590.test.cpp
   - test/yukicoder/541.test.cpp
@@ -798,7 +752,6 @@ data:
   - test/yukicoder/1667.test.cpp
   - test/yukicoder/1881.test.cpp
   - test/yukicoder/263.test.cpp
-  - test/yukicoder/1383.test.cpp
   - test/yukicoder/2119.test.cpp
   - test/yukicoder/2231.test.cpp
   - test/mytest/online_division.test.cpp
@@ -931,17 +884,12 @@ data:
   - test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
-  - test/library_checker/datastructure/associative_array_hashmap.test.cpp
-  - test/library_checker/datastructure/set_xor_min.test.cpp
   - test/aoj/CGL_5_A.test.cpp
   - test/aoj/NTL_1_D.test.cpp
   - test/aoj/ITP1_D_D.test.cpp
   - test/aoj/ALDS1_14_C.test.cpp
   - test_atcoder/abc212g.test.cpp
   - test_atcoder/abc152e.test.cpp
-  - test_atcoder/abc273_e.test.cpp
-  - test_atcoder/abc227g.test.cpp
-  - test_atcoder/arc157a.test.cpp
   - test_atcoder/abc202_f.test.cpp
   - test_atcoder/abc222g.test.cpp
   - test_atcoder/agc058d2.test.cpp

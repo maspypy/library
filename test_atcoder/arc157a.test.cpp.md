@@ -19,9 +19,6 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
-    path: random/base.hpp
-    title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
@@ -271,21 +268,16 @@ data:
     \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 2 \"graph/vs_to_es.hpp\"\n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
-    \ {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 3 \"ds/hashmap.hpp\"\
-    \n\r\n// u64 -> Val\r\ntemplate <typename Val, int LOG = 20, bool KEEP_IDS = false>\r\
-    \nstruct HashMap {\r\n  using P = pair<u64, Val>;\r\n  int N;\r\n  P* dat;\r\n\
-    \  vc<int> IDS;\r\n  bitset<1 << LOG> used;\r\n  const int shift;\r\n  const u64\
-    \ r = 11995408973635179863ULL;\r\n  HashMap() : N(1 << LOG), dat(new P[N]), shift(64\
-    \ - __lg(N)) {}\r\n  int hash(ll x) {\r\n    static const u64 FIXED_RANDOM\r\n\
-    \        = std::chrono::steady_clock::now().time_since_epoch().count();\r\n  \
-    \  return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
-    \ u64& key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && dat[i].fi\
-    \ != key; (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
+    #line 2 \"graph/vs_to_es.hpp\"\n\n#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\
+    \ntemplate <typename Val, int LOG = 20, bool KEEP_IDS = false>\r\nstruct HashMap\
+    \ {\r\n  using P = pair<u64, Val>;\r\n  static constexpr int N = (1 << LOG);\r\
+    \n  P* dat;\r\n  vc<int> IDS;\r\n  bitset<N> used;\r\n  const int shift;\r\n \
+    \ const u64 r = 11995408973635179863ULL;\r\n  HashMap() : dat(new P[N]), shift(64\
+    \ - LOG) {}\r\n  int hash(ll x) {\r\n    static const u64 FIXED_RANDOM\r\n   \
+    \     = std::chrono::steady_clock::now().time_since_epoch().count();\r\n    return\
+    \ (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const u64& key)\
+    \ {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && dat[i].fi != key;\
+    \ (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
     \ u64& key) {\r\n    int i = index(key);\r\n    if (!used[i]) {\r\n      used[i]\
     \ = 1, dat[i] = {key, Val{}};\r\n      if constexpr (KEEP_IDS) IDS.eb(i);\r\n\
     \    }\r\n    return dat[i].se;\r\n  }\r\n\r\n  Val get(const u64& key, Val default_value)\
@@ -340,11 +332,10 @@ data:
   - graph/base.hpp
   - graph/vs_to_es.hpp
   - ds/hashmap.hpp
-  - random/base.hpp
   isVerificationFile: true
   path: test_atcoder/arc157a.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 02:54:38+09:00'
+  timestamp: '2023-11-06 03:08:30+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/arc157a.test.cpp
