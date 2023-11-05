@@ -1,17 +1,16 @@
 #pragma once
-#include "random/base.hpp"
 
 // u64 -> Val
 template <typename Val, int LOG = 20, bool KEEP_IDS = false>
 struct HashMap {
   using P = pair<u64, Val>;
-  int N;
+  static constexpr int N = (1 << LOG);
   P* dat;
   vc<int> IDS;
-  bitset<1 << LOG> used;
+  bitset<N> used;
   const int shift;
   const u64 r = 11995408973635179863ULL;
-  HashMap() : N(1 << LOG), dat(new P[N]), shift(64 - __lg(N)) {}
+  HashMap() : dat(new P[N]), shift(64 - LOG) {}
   int hash(ll x) {
     static const u64 FIXED_RANDOM
         = std::chrono::steady_clock::now().time_since_epoch().count();
