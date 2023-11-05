@@ -13,7 +13,7 @@ void solve() {
       A[k] = v;
     } else {
       LL(k);
-      print(A[k]);
+      print(A.get(k, 0));
     }
   }
 }
