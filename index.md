@@ -1667,6 +1667,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/palindromic_tree.hpp
       title: string/palindromic_tree.hpp
+    - icon: ':warning:'
+      path: string/prefix_substring_LCS.hpp
+      title: string/prefix_substring_LCS.hpp
     - icon: ':heavy_check_mark:'
       path: string/rollinghash.hpp
       title: string/rollinghash.hpp
@@ -2476,6 +2479,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/string/number_of_substrings2.test.cpp
       title: test/library_checker/string/number_of_substrings2.test.cpp
+    - icon: ':x:'
+      path: test/library_checker/string/prefix_substring_lcs.test.cpp
+      title: test/library_checker/string/prefix_substring_lcs.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/string/run_enumerate.test.cpp
       title: test/library_checker/string/run_enumerate.test.cpp

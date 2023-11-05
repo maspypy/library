@@ -11,6 +11,9 @@ data:
   - icon: ':warning:'
     path: graph/ds/tree_wavelet_matrix.hpp
     title: graph/ds/tree_wavelet_matrix.hpp
+  - icon: ':warning:'
+    path: string/prefix_substring_LCS.hpp
+    title: string/prefix_substring_LCS.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
@@ -349,6 +352,7 @@ data:
   path: ds/wavelet_matrix.hpp
   requiredBy:
   - graph/ds/tree_wavelet_matrix.hpp
+  - string/prefix_substring_LCS.hpp
   timestamp: '2023-10-17 07:10:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

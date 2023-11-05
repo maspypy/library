@@ -98,6 +98,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
+  - icon: ':warning:'
+    path: string/prefix_substring_LCS.hpp
+    title: string/prefix_substring_LCS.hpp
   - icon: ':heavy_check_mark:'
     path: string/trie.hpp
     title: string/trie.hpp
@@ -469,6 +472,7 @@ data:
   - alg/acted_monoid/sum_mul.hpp
   - alg/acted_monoid/summax_add.hpp
   - alg/acted_monoid/minidx_add.hpp
+  - string/prefix_substring_LCS.hpp
   - string/trie.hpp
   - ds/fenwicktree/fenwicktree_2d_dense.hpp
   - ds/fenwicktree/fenwicktree_range_add.hpp
