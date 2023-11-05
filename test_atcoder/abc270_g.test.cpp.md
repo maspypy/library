@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: alg/acted_set/affine.hpp
     title: alg/acted_set/affine.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/acted_set/from_monoid.hpp
     title: alg/acted_set/from_monoid.hpp
   - icon: ':question:'
@@ -37,7 +37,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
   - icon: ':question:'
@@ -460,8 +460,8 @@ data:
     \ -1 \u3092\u304B\u3048\u3059\u3002\r\ntemplate <typename ActedSet, typename F,\
     \ int MP_SIZE = 20>\r\nll discrete_log_acted(typename ActedSet::A x, typename\
     \ ActedSet::S s,\r\n                      typename ActedSet::S t, F H, ll lb,\
-    \ ll ub) {\r\n  static HashMap<bool, MP_SIZE> MP;\r\n  MP.reset();\r\n  using\
-    \ Mono = typename ActedSet::Monoid_A;\r\n  using X = typename Mono::value_type;\r\
+    \ ll ub) {\r\n  static HashMap<bool, MP_SIZE, true> MP;\r\n  MP.reset();\r\n \
+    \ using Mono = typename ActedSet::Monoid_A;\r\n  using X = typename Mono::value_type;\r\
     \n  using S = typename ActedSet::S;\r\n\r\n  if (lb >= ub) return -1;\r\n  auto\
     \ xpow = [&](ll n) -> X {\r\n    X p = x;\r\n    X res = Mono::unit();\r\n   \
     \ while (n) {\r\n      if (n & 1) res = Mono::op(res, p);\r\n      p = Mono::op(p,\
@@ -480,7 +480,7 @@ data:
     \u308C\u3070 -1\r\ntemplate <typename Monoid, typename F>\r\nll discrete_log_monoid(typename\
     \ Monoid::X a, typename Monoid::X b, F H, ll lb,\r\n                       ll\
     \ ub) {\r\n  using AM = ActedSet_From_Monoid<Monoid>;\r\n  return discrete_log_acted<AM>(a,\
-    \ Monoid::unit(), b, H, lb, ub);\r\n}\n#line 8 \"test_atcoder/abc270_g.test.cpp\"\
+    \ Monoid::unit(), b, H, lb, ub);\r\n}\r\n#line 8 \"test_atcoder/abc270_g.test.cpp\"\
     \n\nusing mint = dmint;\n\nvoid solve() {\n  LL(P, A, B, S, G);\n  mint::set_mod(P);\n\
     \  using AS = ActedSet_Affine<mint>;\n  auto h = [&](mint x) -> ll { return x.val;\
     \ };\n\n  ll ANS = discrete_log_acted<AS, decltype(h), 18>({A, B}, S, G, h, 0,\
@@ -516,7 +516,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc270_g.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 03:08:30+09:00'
+  timestamp: '2023-11-06 05:48:32+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc270_g.test.cpp
