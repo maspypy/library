@@ -8,7 +8,7 @@
 template <typename ActedSet, typename F, int MP_SIZE = 20>
 ll discrete_log_acted(typename ActedSet::A x, typename ActedSet::S s,
                       typename ActedSet::S t, F H, ll lb, ll ub) {
-  static HashMap<bool, MP_SIZE> MP;
+  static HashMap<bool, MP_SIZE, true> MP;
   MP.reset();
   using Mono = typename ActedSet::Monoid_A;
   using X = typename Mono::value_type;
