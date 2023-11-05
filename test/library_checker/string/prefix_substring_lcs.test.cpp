@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "prefix_substring_LCS.hpp"
+#include "string/prefix_substring_LCS.hpp"
 
 void solve() {
   INT(Q);
