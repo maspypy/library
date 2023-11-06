@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -127,14 +127,19 @@ data:
     \ }\r\nvoid rd(i128 &x) { rd_integer(x); }\r\nvoid rd(u32 &x) { rd_integer(x);\
     \ }\r\nvoid rd(u64 &x) { rd_integer(x); }\r\nvoid rd(u128 &x) { rd_integer(x);\
     \ }\r\nvoid rd(double &x) { rd_real(x); }\r\nvoid rd(long double &x) { rd_real(x);\
-    \ }\r\nvoid rd(f128 &x) { rd_real(x); }\r\ntemplate <class T>\r\nvoid rd(vc<T>\
-    \ &x) {\r\n  for (auto &d: x) rd(d);\r\n}\r\ntemplate <size_t N = 0, typename\
-    \ T>\r\nvoid rd(array<T, N> &x) {\r\n  for (auto &d: x) rd(d);\r\n}\r\ntemplate\
-    \ <class T, class U>\r\nvoid rd(pair<T, U> &p) {\r\n  return rd(p.first), rd(p.second);\r\
-    \n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd(T &t) {\r\n  if constexpr\
-    \ (N < std::tuple_size<T>::value) {\r\n    auto &x = std::get<N>(t);\r\n    rd(x);\r\
-    \n    rd<N + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...>\
-    \ &tpl) {\r\n  rd(tpl);\r\n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class...\
+    \ }\r\nvoid rd(f128 &x) { rd_real(x); }\r\ntemplate <class T, class U>\r\nvoid\
+    \ rd(pair<T, U> &p) {\r\n  return rd(p.first), rd(p.second);\r\n}\r\ntemplate\
+    \ <size_t N = 0, typename T>\r\nvoid rd(T &t) {\r\n  if constexpr (N < std::tuple_size<T>::value)\
+    \ {\r\n    auto &x = std::get<N>(t);\r\n    rd(x);\r\n    rd<N + 1>(t);\r\n  }\r\
+    \n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...> &tpl) {\r\n  rd(tpl);\r\n\
+    }\r\ntemplate <class T>\r\nvoid rd(vc<T> &x) {\r\n  for (auto &d: x) rd(d);\r\n\
+    }\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd(array<T, N> &x) {\r\n  for\
+    \ (auto &d: x) rd(d);\r\n}\r\n\r\ntemplate <typename T>\r\nstruct has_read_method\
+    \ {\r\n  template <typename U>\r\n  static std::true_type test(decltype(&U::read)\
+    \ *);\r\n  template <typename>\r\n  static std::false_type test(...);\r\n  using\
+    \ type = decltype(test<T>(nullptr));\r\n  static constexpr bool value = type::value;\r\
+    \n};\r\n\r\ntemplate <typename T>\r\nenable_if<has_read_method<T>::value, void>::type\
+    \ rd(T &x) {\r\n  x.read();\r\n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class...\
     \ T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const\
     \ char c) {\r\n  if (obufi == BSZ) flush();\r\n  obuf[obufi++] = c;\r\n}\r\nvoid\
     \ wt(const string &s) {\r\n  for (char c: s) wt(c);\r\n}\r\n\r\ntemplate <typename\
@@ -153,100 +158,105 @@ data:
     \nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\n\
     void wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\nvoid\
     \ wt(double x) { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\nvoid\
-    \ wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class T>\r\nvoid wt(const vector<T>\
-    \ val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n \
-    \   if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\ntemplate <class T, class\
-    \ U>\r\nvoid wt(const pair<T, U> val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n\
-    \  wt(val.second);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const\
-    \ T t) {\r\n  if constexpr (N < std::tuple_size<T>::value) {\r\n    if constexpr\
-    \ (N > 0) { wt(' '); }\r\n    const auto x = std::get<N>(t);\r\n    wt(x);\r\n\
-    \    wt_tuple<N + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid wt(tuple<T...>\
-    \ tpl) {\r\n  wt_tuple(tpl);\r\n}\r\ntemplate <class T, size_t S>\r\nvoid wt(const\
-    \ array<T, S> val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n;\
-    \ i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\n\r\nvoid print()\
-    \ { wt('\\n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head,\
-    \ Tail &&... tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail)) wt(' ');\r\n  print(forward<Tail>(tail)...);\r\
-    \n}\r\n\r\n// gcc expansion. called automaticall after main.\r\nvoid __attribute__((destructor))\
-    \ _d() { flush(); }\r\n} // namespace fastio\r\n\r\nusing fastio::read;\r\nusing\
-    \ fastio::print;\r\nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int\
-    \ __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__;\
-    \ \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n  string __VA_ARGS__;\
-    \ \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\
-    \r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n  double __VA_ARGS__; \\\
-    \r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name, size) \\\r\n  vector<type>\
-    \ name(size);    \\\r\n  read(name)\r\n#define VV(type, name, h, w)          \
-    \           \\\r\n  vector<vector<type>> name(h, vector<type>(w)); \\\r\n  read(name)\r\
-    \n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t\
-    \ = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\
-    \nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\"\
-    \ : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\n#line 1 \"ds/randomized_bst/rbst.hpp\"\
-    \n// \u5358\u306B S \u306E\u5143\u306E\u5217\u3092\u7BA1\u7406\u3059\u308B\ntemplate\
-    \ <typename S, bool PERSISTENT, int NODES>\nstruct RBST {\n  struct Node {\n \
-    \   Node *l, *r;\n    S s;\n    u32 size;\n    bool rev;\n  };\n\n  Node *pool;\n\
-    \  int pid;\n  using np = Node *;\n\n  RBST() : pid(0) { pool = new Node[NODES];\
-    \ }\n\n  void reset() { pid = 0; }\n\n  np new_node(const S &s) {\n    pool[pid].l\
-    \ = pool[pid].r = nullptr;\n    pool[pid].s = s;\n    pool[pid].size = 1;\n  \
-    \  pool[pid].rev = 0;\n    return &(pool[pid++]);\n  }\n\n  np new_node(const\
-    \ vc<S> &dat) {\n    auto dfs = [&](auto &dfs, u32 l, u32 r) -> np {\n      if\
-    \ (l == r) return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n \
-    \     u32 m = (l + r) / 2;\n      np l_root = dfs(dfs, l, m);\n      np r_root\
-    \ = dfs(dfs, m + 1, r);\n      np root = new_node(dat[m]);\n      root->l = l_root,\
-    \ root->r = r_root;\n      update(root);\n      return root;\n    };\n    return\
-    \ dfs(dfs, 0, len(dat));\n  }\n\n  np copy_node(np &n) {\n    if (!n || !PERSISTENT)\
-    \ return n;\n    pool[pid].l = n->l, pool[pid].r = n->r;\n    pool[pid].s = n->s;\n\
-    \    pool[pid].size = n->size;\n    pool[pid].rev = n->rev;\n    return &(pool[pid++]);\n\
-    \  }\n\n  np merge(np l_root, np r_root) { return merge_rec(l_root, r_root); }\n\
-    \  np merge3(np a, np b, np c) { return merge(merge(a, b), c); }\n  np merge4(np\
-    \ a, np b, np c, np d) { return merge(merge(merge(a, b), c), d); }\n  pair<np,\
-    \ np> split(np root, u32 k) {\n    if (!root) {\n      assert(k == 0);\n     \
-    \ return {nullptr, nullptr};\n    }\n    assert(0 <= k && k <= root->size);\n\
-    \    return split_rec(root, k);\n  }\n  tuple<np, np, np> split3(np root, u32\
-    \ l, u32 r) {\n    np nm, nr;\n    tie(root, nr) = split(root, r);\n    tie(root,\
-    \ nm) = split(root, l);\n    return {root, nm, nr};\n  }\n  tuple<np, np, np,\
-    \ np> split4(np root, u32 i, u32 j, u32 k) {\n    np d;\n    tie(root, d) = split(root,\
-    \ k);\n    auto [a, b, c] = split3(root, i, j);\n    return {a, b, c, d};\n  }\n\
-    \n  np reverse(np root, u32 l, u32 r) {\n    assert(0 <= l && l <= r && r <= root->size);\n\
-    \    if (r - l <= 1) return root;\n    auto [nl, nm, nr] = split3(root, l, r);\n\
-    \    nm->rev ^= 1;\n    swap(nm->l, nm->r);\n    return merge3(nl, nm, nr);\n\
-    \  }\n\n  np set(np root, u32 k, const S &s) { return set_rec(root, k, s); }\n\
-    \  S get(np root, u32 k) { return get_rec(root, k, false); }\n\n  vc<S> get_all(np\
-    \ root) {\n    vc<S> res;\n    auto dfs = [&](auto &dfs, np root, bool rev) ->\
-    \ void {\n      if (!root) return;\n      dfs(dfs, (rev ? root->r : root->l),\
-    \ rev ^ root->rev);\n      res.eb(root->s);\n      dfs(dfs, (rev ? root->l : root->r),\
-    \ rev ^ root->rev);\n    };\n    dfs(dfs, root, 0);\n    return res;\n  }\n\n\
-    \  // \u6700\u5F8C\u306B check(s) \u304C\u6210\u308A\u7ACB\u3064\u3068\u3053\u308D\
-    \u307E\u3067\u3092\u5DE6\u3068\u3057\u3066 split\n  template <typename F>\n  pair<np,\
-    \ np> split_max_right(np root, const F check) {\n    return split_max_right_rec(root,\
-    \ check);\n  }\n\nprivate:\n  inline u32 xor128() {\n    static u32 x = 123456789;\n\
-    \    static u32 y = 362436069;\n    static u32 z = 521288629;\n    static u32\
-    \ w = 88675123;\n    u32 t = x ^ (x << 11);\n    x = y;\n    y = z;\n    z = w;\n\
-    \    return w = (w ^ (w >> 19)) ^ (t ^ (t >> 8));\n  }\n\n  void prop(np c) {\n\
-    \    // \u81EA\u8EAB\u3092\u30B3\u30D4\u30FC\u3059\u308B\u5FC5\u8981\u306F\u306A\
-    \u3044\u3002\n    // \u5B50\u3092\u30B3\u30D4\u30FC\u3059\u308B\u5FC5\u8981\u304C\
-    \u3042\u308B\u3002\u8907\u6570\u306E\u89AA\u3092\u6301\u3064\u53EF\u80FD\u6027\
-    \u304C\u3042\u308B\u305F\u3081\u3002\n    if (c->rev) {\n      if (c->l) {\n \
-    \       c->l = copy_node(c->l);\n        c->l->rev ^= 1;\n        swap(c->l->l,\
-    \ c->l->r);\n      }\n      if (c->r) {\n        c->r = copy_node(c->r);\n   \
-    \     c->r->rev ^= 1;\n        swap(c->r->l, c->r->r);\n      }\n      c->rev\
-    \ = 0;\n    }\n  }\n\n  void update(np c) {\n    // \u30C7\u30FC\u30BF\u3092\u4FDD\
-    \u3063\u305F\u307E\u307E\u6B63\u5E38\u5316\u3059\u308B\u3060\u3051\u306A\u306E\
-    \u3067\u3001\u30B3\u30D4\u30FC\u4E0D\u8981\n    c->size = 1;\n    if (c->l) {\
-    \ c->size += c->l->size; }\n    if (c->r) { c->size += c->r->size; }\n  }\n\n\
-    \  np merge_rec(np l_root, np r_root) {\n    if (!l_root) return r_root;\n   \
-    \ if (!r_root) return l_root;\n    u32 sl = l_root->size, sr = r_root->size;\n\
-    \    if (xor128() % (sl + sr) < sl) {\n      prop(l_root);\n      l_root = copy_node(l_root);\n\
-    \      l_root->r = merge_rec(l_root->r, r_root);\n      update(l_root);\n    \
-    \  return l_root;\n    }\n    prop(r_root);\n    r_root = copy_node(r_root);\n\
-    \    r_root->l = merge_rec(l_root, r_root->l);\n    update(r_root);\n    return\
-    \ r_root;\n  }\n\n  pair<np, np> split_rec(np root, u32 k) {\n    if (!root) return\
-    \ {nullptr, nullptr};\n    prop(root);\n    u32 sl = (root->l ? root->l->size\
-    \ : 0);\n    if (k <= sl) {\n      auto [nl, nr] = split_rec(root->l, k);\n  \
-    \    root = copy_node(root);\n      root->l = nr;\n      update(root);\n     \
-    \ return {nl, root};\n    }\n    auto [nl, nr] = split_rec(root->r, k - (1 + sl));\n\
-    \    root = copy_node(root);\n    root->r = nl;\n    update(root);\n    return\
-    \ {root, nr};\n  }\n\n  np set_rec(np root, u32 k, const S &s) {\n    if (!root)\
-    \ return root;\n    prop(root);\n    u32 sl = (root->l ? root->l->size : 0);\n\
-    \    if (k < sl) {\n      root = copy_node(root);\n      root->l = set_rec(root->l,\
+    \ wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid wt(const\
+    \ pair<T, U> val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n  wt(val.second);\r\n\
+    }\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const T t) {\r\n  if\
+    \ constexpr (N < std::tuple_size<T>::value) {\r\n    if constexpr (N > 0) { wt('\
+    \ '); }\r\n    const auto x = std::get<N>(t);\r\n    wt(x);\r\n    wt_tuple<N\
+    \ + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid wt(tuple<T...> tpl) {\r\
+    \n  wt_tuple(tpl);\r\n}\r\ntemplate <class T, size_t S>\r\nvoid wt(const array<T,\
+    \ S> val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n\
+    \    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\ntemplate <class T>\r\n\
+    void wt(const vector<T> val) {\r\n  auto n = val.size();\r\n  for (size_t i =\
+    \ 0; i < n; i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\n\r\
+    \ntemplate <typename T>\r\nstruct has_print_method {\r\n  template <typename U>\r\
+    \n  static std::true_type test(decltype(&U::print) *);\r\n  template <typename>\r\
+    \n  static std::false_type test(...);\r\n  using type = decltype(test<T>(nullptr));\r\
+    \n  static constexpr bool value = type::value;\r\n};\r\n\r\ntemplate <typename\
+    \ T>\r\nenable_if<has_print_method<T>::value, void>::type wt(T x) {\r\n  x.print();\r\
+    \n}\r\n\r\nvoid print() { wt('\\n'); }\r\ntemplate <class Head, class... Tail>\r\
+    \nvoid print(Head &&head, Tail &&... tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail))\
+    \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
+    \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
+    \ }\r\n} // namespace fastio\r\n\r\nusing fastio::read;\r\nusing fastio::print;\r\
+    \nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\
+    \n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
+    \n#define STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
+    \n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    #define DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    \r\n#define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n \
+    \ read(name)\r\n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
+    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
+    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
+    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
+    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
+    \ { yes(!t); }\n#line 1 \"ds/randomized_bst/rbst.hpp\"\n// \u5358\u306B S \u306E\
+    \u5143\u306E\u5217\u3092\u7BA1\u7406\u3059\u308B\ntemplate <typename S, bool PERSISTENT,\
+    \ int NODES>\nstruct RBST {\n  struct Node {\n    Node *l, *r;\n    S s;\n   \
+    \ u32 size;\n    bool rev;\n  };\n\n  Node *pool;\n  int pid;\n  using np = Node\
+    \ *;\n\n  RBST() : pid(0) { pool = new Node[NODES]; }\n\n  void reset() { pid\
+    \ = 0; }\n\n  np new_node(const S &s) {\n    pool[pid].l = pool[pid].r = nullptr;\n\
+    \    pool[pid].s = s;\n    pool[pid].size = 1;\n    pool[pid].rev = 0;\n    return\
+    \ &(pool[pid++]);\n  }\n\n  np new_node(const vc<S> &dat) {\n    auto dfs = [&](auto\
+    \ &dfs, u32 l, u32 r) -> np {\n      if (l == r) return nullptr;\n      if (r\
+    \ == l + 1) return new_node(dat[l]);\n      u32 m = (l + r) / 2;\n      np l_root\
+    \ = dfs(dfs, l, m);\n      np r_root = dfs(dfs, m + 1, r);\n      np root = new_node(dat[m]);\n\
+    \      root->l = l_root, root->r = r_root;\n      update(root);\n      return\
+    \ root;\n    };\n    return dfs(dfs, 0, len(dat));\n  }\n\n  np copy_node(np &n)\
+    \ {\n    if (!n || !PERSISTENT) return n;\n    pool[pid].l = n->l, pool[pid].r\
+    \ = n->r;\n    pool[pid].s = n->s;\n    pool[pid].size = n->size;\n    pool[pid].rev\
+    \ = n->rev;\n    return &(pool[pid++]);\n  }\n\n  np merge(np l_root, np r_root)\
+    \ { return merge_rec(l_root, r_root); }\n  np merge3(np a, np b, np c) { return\
+    \ merge(merge(a, b), c); }\n  np merge4(np a, np b, np c, np d) { return merge(merge(merge(a,\
+    \ b), c), d); }\n  pair<np, np> split(np root, u32 k) {\n    if (!root) {\n  \
+    \    assert(k == 0);\n      return {nullptr, nullptr};\n    }\n    assert(0 <=\
+    \ k && k <= root->size);\n    return split_rec(root, k);\n  }\n  tuple<np, np,\
+    \ np> split3(np root, u32 l, u32 r) {\n    np nm, nr;\n    tie(root, nr) = split(root,\
+    \ r);\n    tie(root, nm) = split(root, l);\n    return {root, nm, nr};\n  }\n\
+    \  tuple<np, np, np, np> split4(np root, u32 i, u32 j, u32 k) {\n    np d;\n \
+    \   tie(root, d) = split(root, k);\n    auto [a, b, c] = split3(root, i, j);\n\
+    \    return {a, b, c, d};\n  }\n\n  np reverse(np root, u32 l, u32 r) {\n    assert(0\
+    \ <= l && l <= r && r <= root->size);\n    if (r - l <= 1) return root;\n    auto\
+    \ [nl, nm, nr] = split3(root, l, r);\n    nm->rev ^= 1;\n    swap(nm->l, nm->r);\n\
+    \    return merge3(nl, nm, nr);\n  }\n\n  np set(np root, u32 k, const S &s) {\
+    \ return set_rec(root, k, s); }\n  S get(np root, u32 k) { return get_rec(root,\
+    \ k, false); }\n\n  vc<S> get_all(np root) {\n    vc<S> res;\n    auto dfs = [&](auto\
+    \ &dfs, np root, bool rev) -> void {\n      if (!root) return;\n      dfs(dfs,\
+    \ (rev ? root->r : root->l), rev ^ root->rev);\n      res.eb(root->s);\n     \
+    \ dfs(dfs, (rev ? root->l : root->r), rev ^ root->rev);\n    };\n    dfs(dfs,\
+    \ root, 0);\n    return res;\n  }\n\n  // \u6700\u5F8C\u306B check(s) \u304C\u6210\
+    \u308A\u7ACB\u3064\u3068\u3053\u308D\u307E\u3067\u3092\u5DE6\u3068\u3057\u3066\
+    \ split\n  template <typename F>\n  pair<np, np> split_max_right(np root, const\
+    \ F check) {\n    return split_max_right_rec(root, check);\n  }\n\nprivate:\n\
+    \  inline u32 xor128() {\n    static u32 x = 123456789;\n    static u32 y = 362436069;\n\
+    \    static u32 z = 521288629;\n    static u32 w = 88675123;\n    u32 t = x ^\
+    \ (x << 11);\n    x = y;\n    y = z;\n    z = w;\n    return w = (w ^ (w >> 19))\
+    \ ^ (t ^ (t >> 8));\n  }\n\n  void prop(np c) {\n    // \u81EA\u8EAB\u3092\u30B3\
+    \u30D4\u30FC\u3059\u308B\u5FC5\u8981\u306F\u306A\u3044\u3002\n    // \u5B50\u3092\
+    \u30B3\u30D4\u30FC\u3059\u308B\u5FC5\u8981\u304C\u3042\u308B\u3002\u8907\u6570\
+    \u306E\u89AA\u3092\u6301\u3064\u53EF\u80FD\u6027\u304C\u3042\u308B\u305F\u3081\
+    \u3002\n    if (c->rev) {\n      if (c->l) {\n        c->l = copy_node(c->l);\n\
+    \        c->l->rev ^= 1;\n        swap(c->l->l, c->l->r);\n      }\n      if (c->r)\
+    \ {\n        c->r = copy_node(c->r);\n        c->r->rev ^= 1;\n        swap(c->r->l,\
+    \ c->r->r);\n      }\n      c->rev = 0;\n    }\n  }\n\n  void update(np c) {\n\
+    \    // \u30C7\u30FC\u30BF\u3092\u4FDD\u3063\u305F\u307E\u307E\u6B63\u5E38\u5316\
+    \u3059\u308B\u3060\u3051\u306A\u306E\u3067\u3001\u30B3\u30D4\u30FC\u4E0D\u8981\
+    \n    c->size = 1;\n    if (c->l) { c->size += c->l->size; }\n    if (c->r) {\
+    \ c->size += c->r->size; }\n  }\n\n  np merge_rec(np l_root, np r_root) {\n  \
+    \  if (!l_root) return r_root;\n    if (!r_root) return l_root;\n    u32 sl =\
+    \ l_root->size, sr = r_root->size;\n    if (xor128() % (sl + sr) < sl) {\n   \
+    \   prop(l_root);\n      l_root = copy_node(l_root);\n      l_root->r = merge_rec(l_root->r,\
+    \ r_root);\n      update(l_root);\n      return l_root;\n    }\n    prop(r_root);\n\
+    \    r_root = copy_node(r_root);\n    r_root->l = merge_rec(l_root, r_root->l);\n\
+    \    update(r_root);\n    return r_root;\n  }\n\n  pair<np, np> split_rec(np root,\
+    \ u32 k) {\n    if (!root) return {nullptr, nullptr};\n    prop(root);\n    u32\
+    \ sl = (root->l ? root->l->size : 0);\n    if (k <= sl) {\n      auto [nl, nr]\
+    \ = split_rec(root->l, k);\n      root = copy_node(root);\n      root->l = nr;\n\
+    \      update(root);\n      return {nl, root};\n    }\n    auto [nl, nr] = split_rec(root->r,\
+    \ k - (1 + sl));\n    root = copy_node(root);\n    root->r = nl;\n    update(root);\n\
+    \    return {root, nr};\n  }\n\n  np set_rec(np root, u32 k, const S &s) {\n \
+    \   if (!root) return root;\n    prop(root);\n    u32 sl = (root->l ? root->l->size\
+    \ : 0);\n    if (k < sl) {\n      root = copy_node(root);\n      root->l = set_rec(root->l,\
     \ k, s);\n      update(root);\n      return root;\n    }\n    if (k == sl) {\n\
     \      root = copy_node(root);\n      root->s = s;\n      update(root);\n    \
     \  return root;\n    }\n    root = copy_node(root);\n    root->r = set_rec(root->r,\
@@ -307,7 +317,7 @@ data:
   isVerificationFile: true
   path: test/mytest/rbst.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 14:40:18+09:00'
+  timestamp: '2023-11-06 15:15:17+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/rbst.test.cpp

@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -127,14 +127,19 @@ data:
     \ }\r\nvoid rd(i128 &x) { rd_integer(x); }\r\nvoid rd(u32 &x) { rd_integer(x);\
     \ }\r\nvoid rd(u64 &x) { rd_integer(x); }\r\nvoid rd(u128 &x) { rd_integer(x);\
     \ }\r\nvoid rd(double &x) { rd_real(x); }\r\nvoid rd(long double &x) { rd_real(x);\
-    \ }\r\nvoid rd(f128 &x) { rd_real(x); }\r\ntemplate <class T>\r\nvoid rd(vc<T>\
-    \ &x) {\r\n  for (auto &d: x) rd(d);\r\n}\r\ntemplate <size_t N = 0, typename\
-    \ T>\r\nvoid rd(array<T, N> &x) {\r\n  for (auto &d: x) rd(d);\r\n}\r\ntemplate\
-    \ <class T, class U>\r\nvoid rd(pair<T, U> &p) {\r\n  return rd(p.first), rd(p.second);\r\
-    \n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd(T &t) {\r\n  if constexpr\
-    \ (N < std::tuple_size<T>::value) {\r\n    auto &x = std::get<N>(t);\r\n    rd(x);\r\
-    \n    rd<N + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...>\
-    \ &tpl) {\r\n  rd(tpl);\r\n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class...\
+    \ }\r\nvoid rd(f128 &x) { rd_real(x); }\r\ntemplate <class T, class U>\r\nvoid\
+    \ rd(pair<T, U> &p) {\r\n  return rd(p.first), rd(p.second);\r\n}\r\ntemplate\
+    \ <size_t N = 0, typename T>\r\nvoid rd(T &t) {\r\n  if constexpr (N < std::tuple_size<T>::value)\
+    \ {\r\n    auto &x = std::get<N>(t);\r\n    rd(x);\r\n    rd<N + 1>(t);\r\n  }\r\
+    \n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...> &tpl) {\r\n  rd(tpl);\r\n\
+    }\r\ntemplate <class T>\r\nvoid rd(vc<T> &x) {\r\n  for (auto &d: x) rd(d);\r\n\
+    }\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd(array<T, N> &x) {\r\n  for\
+    \ (auto &d: x) rd(d);\r\n}\r\n\r\ntemplate <typename T>\r\nstruct has_read_method\
+    \ {\r\n  template <typename U>\r\n  static std::true_type test(decltype(&U::read)\
+    \ *);\r\n  template <typename>\r\n  static std::false_type test(...);\r\n  using\
+    \ type = decltype(test<T>(nullptr));\r\n  static constexpr bool value = type::value;\r\
+    \n};\r\n\r\ntemplate <typename T>\r\nenable_if<has_read_method<T>::value, void>::type\
+    \ rd(T &x) {\r\n  x.read();\r\n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class...\
     \ T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const\
     \ char c) {\r\n  if (obufi == BSZ) flush();\r\n  obuf[obufi++] = c;\r\n}\r\nvoid\
     \ wt(const string &s) {\r\n  for (char c: s) wt(c);\r\n}\r\n\r\ntemplate <typename\
@@ -153,76 +158,81 @@ data:
     \nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\n\
     void wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\nvoid\
     \ wt(double x) { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\nvoid\
-    \ wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class T>\r\nvoid wt(const vector<T>\
-    \ val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n \
-    \   if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\ntemplate <class T, class\
-    \ U>\r\nvoid wt(const pair<T, U> val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n\
-    \  wt(val.second);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const\
-    \ T t) {\r\n  if constexpr (N < std::tuple_size<T>::value) {\r\n    if constexpr\
-    \ (N > 0) { wt(' '); }\r\n    const auto x = std::get<N>(t);\r\n    wt(x);\r\n\
-    \    wt_tuple<N + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid wt(tuple<T...>\
-    \ tpl) {\r\n  wt_tuple(tpl);\r\n}\r\ntemplate <class T, size_t S>\r\nvoid wt(const\
-    \ array<T, S> val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n;\
-    \ i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\n\r\nvoid print()\
-    \ { wt('\\n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head,\
-    \ Tail &&... tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail)) wt(' ');\r\n  print(forward<Tail>(tail)...);\r\
-    \n}\r\n\r\n// gcc expansion. called automaticall after main.\r\nvoid __attribute__((destructor))\
-    \ _d() { flush(); }\r\n} // namespace fastio\r\n\r\nusing fastio::read;\r\nusing\
-    \ fastio::print;\r\nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int\
-    \ __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__;\
-    \ \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n  string __VA_ARGS__;\
-    \ \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\
-    \r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n  double __VA_ARGS__; \\\
-    \r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name, size) \\\r\n  vector<type>\
-    \ name(size);    \\\r\n  read(name)\r\n#define VV(type, name, h, w)          \
-    \           \\\r\n  vector<vector<type>> name(h, vector<type>(w)); \\\r\n  read(name)\r\
-    \n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t\
-    \ = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\
-    \nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\"\
-    \ : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\n#line 2 \"linalg/xor/transpose.hpp\"\
-    \n\n// n x m \u884C\u5217\u306E transpose\u3002O((n+m)log(n+m)) \u6642\u9593\u3002\
-    \n// https://github.com/dsnet/matrix-transpose\ntemplate <typename UINT>\nvc<UINT>\
-    \ transpose(int n, int m, vc<UINT>& A, bool keep_A = 1) {\n  assert(max(n, m)\
-    \ <= numeric_limits<UINT>::digits);\n  assert(len(A) == n);\n  vc<UINT> tmp;\n\
-    \  if (keep_A) tmp = A;\n  int LOG = 0;\n  while ((1 << LOG) < max(n, m)) ++LOG;\n\
-    \  A.resize(1 << LOG);\n  int width = 1 << LOG;\n  UINT mask = 1;\n  FOR(i, LOG)\
-    \ mask = mask | (mask << (1 << i));\n  FOR(t, LOG) {\n    width >>= 1;\n    mask\
-    \ = mask ^ (mask >> width);\n    FOR(i, 1 << t) {\n      FOR(j, width) {\n   \
-    \     UINT* x = &A[width * (2 * i + 0) + j];\n        UINT* y = &A[width * (2\
-    \ * i + 1) + j];\n        *x = ((*y << width) & mask) ^ *x;\n        *y = ((*x\
-    \ & mask) >> width) ^ *y;\n        *x = ((*y << width) & mask) ^ *x;\n      }\n\
-    \    }\n  }\n  A.resize(m);\n  if (!keep_A) return A;\n  swap(A, tmp);\n  return\
-    \ tmp;\n}\n#line 2 \"linalg/xor/vector_space.hpp\"\n\ntemplate <typename UINT>\n\
-    struct Vector_Space {\n#define SP Vector_Space\n  vc<UINT> dat;\n\n  Vector_Space()\
-    \ {}\n  Vector_Space(vc<UINT> dat, bool is_reduced = false) : dat(dat) {\n   \
-    \ if (!is_reduced) reduce();\n  }\n\n  int size() { return dat.size(); }\n\n \
-    \ bool add_element(UINT v) {\n    for (auto&& e: dat) {\n      if (e == 0 || v\
-    \ == 0) break;\n      chmin(v, v ^ e);\n    }\n    if (v) {\n      dat.eb(v);\n\
-    \      return true;\n    }\n    return false;\n  }\n\n  bool contain(UINT v) {\n\
-    \    for (auto&& w: dat) {\n      if (v == 0) break;\n      chmin(v, v ^ w);\n\
-    \    }\n    return v == 0;\n  }\n\n  UINT get_max(UINT xor_val = 0) {\n    UINT\
-    \ res = xor_val;\n    for (auto&& x: dat) chmax(res, res ^ x);\n    return res;\n\
-    \  }\n\n  UINT get_min(UINT xor_val) {\n    UINT res = xor_val;\n    for (auto&&\
-    \ x: dat) chmin(res, res ^ x);\n    return res;\n  }\n\n  static SP merge(SP x,\
-    \ SP y) {\n    if (len(x) < len(y)) swap(x, y);\n    for (auto v: y.dat) { x.add_element(v);\
-    \ }\n    return x;\n  }\n\n  static SP intersection(SP& x, SP& y, int max_dim)\
-    \ {\n    SP xx = x.orthogonal_space(max_dim);\n    SP yy = y.orthogonal_space(max_dim);\n\
-    \    xx = merge(xx, yy);\n    return xx.orthogonal_space(max_dim);\n  }\n\n  SP\
-    \ orthogonal_space(int max_dim) {\n    normalize();\n    int m = max_dim;\n  \
-    \  // pivot[k] == k \u3068\u306A\u308B\u3088\u3046\u306B\u884C\u306E\u9806\u756A\
-    \u3092\u5909\u3048\u308B\n    vc<u64> tmp(m);\n    FOR(i, len(dat)) tmp[topbit(dat[i])]\
-    \ = dat[i];\n    tmp = transpose(m, m, tmp, 0);\n    SP res;\n    FOR(j, m) {\n\
-    \      if (tmp[j] >> j & 1) continue;\n      res.add_element(tmp[j] | UINT(1)\
-    \ << j);\n    }\n    return res;\n  }\n\n  void normalize(bool dec = true) {\n\
-    \    int n = len(dat);\n    // \u4E09\u89D2\u5316\n    FOR(j, n) FOR(i, j) chmin(dat[i],\
-    \ dat[i] ^ dat[j]);\n    sort(all(dat));\n    if (dec) reverse(all(dat));\n  }\n\
-    \nprivate:\n  void reduce() {\n    SP y;\n    for (auto&& e: dat) y.add_element(e);\n\
-    \    (*this) = y;\n  }\n#undef SP\n};\n#line 5 \"test_atcoder/abc141f.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  using SP = Vector_Space<u64>;\n  SP X;\n  u64\
-    \ S = 0;\n  FOR(N) {\n    u64 x;\n    read(x);\n    S ^= x;\n    X.add_element(x);\n\
-    \  }\n  u64 mask = ~S;\n\n  SP Y;\n  for (auto&& e: X.dat) { Y.add_element(e &\
-    \ mask); }\n  u64 x = Y.get_max();\n  print(x + (S ^ x));\n}\n\nsigned main()\
-    \ {\n  solve();\n  return 0;\n}\n"
+    \ wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid wt(const\
+    \ pair<T, U> val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n  wt(val.second);\r\n\
+    }\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const T t) {\r\n  if\
+    \ constexpr (N < std::tuple_size<T>::value) {\r\n    if constexpr (N > 0) { wt('\
+    \ '); }\r\n    const auto x = std::get<N>(t);\r\n    wt(x);\r\n    wt_tuple<N\
+    \ + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid wt(tuple<T...> tpl) {\r\
+    \n  wt_tuple(tpl);\r\n}\r\ntemplate <class T, size_t S>\r\nvoid wt(const array<T,\
+    \ S> val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n\
+    \    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\ntemplate <class T>\r\n\
+    void wt(const vector<T> val) {\r\n  auto n = val.size();\r\n  for (size_t i =\
+    \ 0; i < n; i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\n\r\
+    \ntemplate <typename T>\r\nstruct has_print_method {\r\n  template <typename U>\r\
+    \n  static std::true_type test(decltype(&U::print) *);\r\n  template <typename>\r\
+    \n  static std::false_type test(...);\r\n  using type = decltype(test<T>(nullptr));\r\
+    \n  static constexpr bool value = type::value;\r\n};\r\n\r\ntemplate <typename\
+    \ T>\r\nenable_if<has_print_method<T>::value, void>::type wt(T x) {\r\n  x.print();\r\
+    \n}\r\n\r\nvoid print() { wt('\\n'); }\r\ntemplate <class Head, class... Tail>\r\
+    \nvoid print(Head &&head, Tail &&... tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail))\
+    \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
+    \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
+    \ }\r\n} // namespace fastio\r\n\r\nusing fastio::read;\r\nusing fastio::print;\r\
+    \nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\
+    \n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
+    \n#define STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
+    \n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    #define DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    \r\n#define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n \
+    \ read(name)\r\n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
+    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
+    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
+    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
+    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
+    \ { yes(!t); }\n#line 2 \"linalg/xor/transpose.hpp\"\n\n// n x m \u884C\u5217\u306E\
+    \ transpose\u3002O((n+m)log(n+m)) \u6642\u9593\u3002\n// https://github.com/dsnet/matrix-transpose\n\
+    template <typename UINT>\nvc<UINT> transpose(int n, int m, vc<UINT>& A, bool keep_A\
+    \ = 1) {\n  assert(max(n, m) <= numeric_limits<UINT>::digits);\n  assert(len(A)\
+    \ == n);\n  vc<UINT> tmp;\n  if (keep_A) tmp = A;\n  int LOG = 0;\n  while ((1\
+    \ << LOG) < max(n, m)) ++LOG;\n  A.resize(1 << LOG);\n  int width = 1 << LOG;\n\
+    \  UINT mask = 1;\n  FOR(i, LOG) mask = mask | (mask << (1 << i));\n  FOR(t, LOG)\
+    \ {\n    width >>= 1;\n    mask = mask ^ (mask >> width);\n    FOR(i, 1 << t)\
+    \ {\n      FOR(j, width) {\n        UINT* x = &A[width * (2 * i + 0) + j];\n \
+    \       UINT* y = &A[width * (2 * i + 1) + j];\n        *x = ((*y << width) &\
+    \ mask) ^ *x;\n        *y = ((*x & mask) >> width) ^ *y;\n        *x = ((*y <<\
+    \ width) & mask) ^ *x;\n      }\n    }\n  }\n  A.resize(m);\n  if (!keep_A) return\
+    \ A;\n  swap(A, tmp);\n  return tmp;\n}\n#line 2 \"linalg/xor/vector_space.hpp\"\
+    \n\ntemplate <typename UINT>\nstruct Vector_Space {\n#define SP Vector_Space\n\
+    \  vc<UINT> dat;\n\n  Vector_Space() {}\n  Vector_Space(vc<UINT> dat, bool is_reduced\
+    \ = false) : dat(dat) {\n    if (!is_reduced) reduce();\n  }\n\n  int size() {\
+    \ return dat.size(); }\n\n  bool add_element(UINT v) {\n    for (auto&& e: dat)\
+    \ {\n      if (e == 0 || v == 0) break;\n      chmin(v, v ^ e);\n    }\n    if\
+    \ (v) {\n      dat.eb(v);\n      return true;\n    }\n    return false;\n  }\n\
+    \n  bool contain(UINT v) {\n    for (auto&& w: dat) {\n      if (v == 0) break;\n\
+    \      chmin(v, v ^ w);\n    }\n    return v == 0;\n  }\n\n  UINT get_max(UINT\
+    \ xor_val = 0) {\n    UINT res = xor_val;\n    for (auto&& x: dat) chmax(res,\
+    \ res ^ x);\n    return res;\n  }\n\n  UINT get_min(UINT xor_val) {\n    UINT\
+    \ res = xor_val;\n    for (auto&& x: dat) chmin(res, res ^ x);\n    return res;\n\
+    \  }\n\n  static SP merge(SP x, SP y) {\n    if (len(x) < len(y)) swap(x, y);\n\
+    \    for (auto v: y.dat) { x.add_element(v); }\n    return x;\n  }\n\n  static\
+    \ SP intersection(SP& x, SP& y, int max_dim) {\n    SP xx = x.orthogonal_space(max_dim);\n\
+    \    SP yy = y.orthogonal_space(max_dim);\n    xx = merge(xx, yy);\n    return\
+    \ xx.orthogonal_space(max_dim);\n  }\n\n  SP orthogonal_space(int max_dim) {\n\
+    \    normalize();\n    int m = max_dim;\n    // pivot[k] == k \u3068\u306A\u308B\
+    \u3088\u3046\u306B\u884C\u306E\u9806\u756A\u3092\u5909\u3048\u308B\n    vc<u64>\
+    \ tmp(m);\n    FOR(i, len(dat)) tmp[topbit(dat[i])] = dat[i];\n    tmp = transpose(m,\
+    \ m, tmp, 0);\n    SP res;\n    FOR(j, m) {\n      if (tmp[j] >> j & 1) continue;\n\
+    \      res.add_element(tmp[j] | UINT(1) << j);\n    }\n    return res;\n  }\n\n\
+    \  void normalize(bool dec = true) {\n    int n = len(dat);\n    // \u4E09\u89D2\
+    \u5316\n    FOR(j, n) FOR(i, j) chmin(dat[i], dat[i] ^ dat[j]);\n    sort(all(dat));\n\
+    \    if (dec) reverse(all(dat));\n  }\n\nprivate:\n  void reduce() {\n    SP y;\n\
+    \    for (auto&& e: dat) y.add_element(e);\n    (*this) = y;\n  }\n#undef SP\n\
+    };\n#line 5 \"test_atcoder/abc141f.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  using\
+    \ SP = Vector_Space<u64>;\n  SP X;\n  u64 S = 0;\n  FOR(N) {\n    u64 x;\n   \
+    \ read(x);\n    S ^= x;\n    X.add_element(x);\n  }\n  u64 mask = ~S;\n\n  SP\
+    \ Y;\n  for (auto&& e: X.dat) { Y.add_element(e & mask); }\n  u64 x = Y.get_max();\n\
+    \  print(x + (S ^ x));\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc141/tasks/abc141_f\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"linalg/xor/vector_space.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  using SP = Vector_Space<u64>;\n  SP X;\n  u64\
@@ -238,7 +248,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc141f.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 14:40:18+09:00'
+  timestamp: '2023-11-06 15:15:17+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc141f.test.cpp

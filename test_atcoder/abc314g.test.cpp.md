@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -127,14 +127,19 @@ data:
     \ }\r\nvoid rd(i128 &x) { rd_integer(x); }\r\nvoid rd(u32 &x) { rd_integer(x);\
     \ }\r\nvoid rd(u64 &x) { rd_integer(x); }\r\nvoid rd(u128 &x) { rd_integer(x);\
     \ }\r\nvoid rd(double &x) { rd_real(x); }\r\nvoid rd(long double &x) { rd_real(x);\
-    \ }\r\nvoid rd(f128 &x) { rd_real(x); }\r\ntemplate <class T>\r\nvoid rd(vc<T>\
-    \ &x) {\r\n  for (auto &d: x) rd(d);\r\n}\r\ntemplate <size_t N = 0, typename\
-    \ T>\r\nvoid rd(array<T, N> &x) {\r\n  for (auto &d: x) rd(d);\r\n}\r\ntemplate\
-    \ <class T, class U>\r\nvoid rd(pair<T, U> &p) {\r\n  return rd(p.first), rd(p.second);\r\
-    \n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd(T &t) {\r\n  if constexpr\
-    \ (N < std::tuple_size<T>::value) {\r\n    auto &x = std::get<N>(t);\r\n    rd(x);\r\
-    \n    rd<N + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...>\
-    \ &tpl) {\r\n  rd(tpl);\r\n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class...\
+    \ }\r\nvoid rd(f128 &x) { rd_real(x); }\r\ntemplate <class T, class U>\r\nvoid\
+    \ rd(pair<T, U> &p) {\r\n  return rd(p.first), rd(p.second);\r\n}\r\ntemplate\
+    \ <size_t N = 0, typename T>\r\nvoid rd(T &t) {\r\n  if constexpr (N < std::tuple_size<T>::value)\
+    \ {\r\n    auto &x = std::get<N>(t);\r\n    rd(x);\r\n    rd<N + 1>(t);\r\n  }\r\
+    \n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...> &tpl) {\r\n  rd(tpl);\r\n\
+    }\r\ntemplate <class T>\r\nvoid rd(vc<T> &x) {\r\n  for (auto &d: x) rd(d);\r\n\
+    }\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd(array<T, N> &x) {\r\n  for\
+    \ (auto &d: x) rd(d);\r\n}\r\n\r\ntemplate <typename T>\r\nstruct has_read_method\
+    \ {\r\n  template <typename U>\r\n  static std::true_type test(decltype(&U::read)\
+    \ *);\r\n  template <typename>\r\n  static std::false_type test(...);\r\n  using\
+    \ type = decltype(test<T>(nullptr));\r\n  static constexpr bool value = type::value;\r\
+    \n};\r\n\r\ntemplate <typename T>\r\nenable_if<has_read_method<T>::value, void>::type\
+    \ rd(T &x) {\r\n  x.read();\r\n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class...\
     \ T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const\
     \ char c) {\r\n  if (obufi == BSZ) flush();\r\n  obuf[obufi++] = c;\r\n}\r\nvoid\
     \ wt(const string &s) {\r\n  for (char c: s) wt(c);\r\n}\r\n\r\ntemplate <typename\
@@ -153,66 +158,72 @@ data:
     \nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\n\
     void wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\nvoid\
     \ wt(double x) { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\nvoid\
-    \ wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class T>\r\nvoid wt(const vector<T>\
-    \ val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n \
-    \   if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\ntemplate <class T, class\
-    \ U>\r\nvoid wt(const pair<T, U> val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n\
-    \  wt(val.second);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const\
-    \ T t) {\r\n  if constexpr (N < std::tuple_size<T>::value) {\r\n    if constexpr\
-    \ (N > 0) { wt(' '); }\r\n    const auto x = std::get<N>(t);\r\n    wt(x);\r\n\
-    \    wt_tuple<N + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid wt(tuple<T...>\
-    \ tpl) {\r\n  wt_tuple(tpl);\r\n}\r\ntemplate <class T, size_t S>\r\nvoid wt(const\
-    \ array<T, S> val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n;\
-    \ i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\n\r\nvoid print()\
-    \ { wt('\\n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head,\
-    \ Tail &&... tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail)) wt(' ');\r\n  print(forward<Tail>(tail)...);\r\
-    \n}\r\n\r\n// gcc expansion. called automaticall after main.\r\nvoid __attribute__((destructor))\
-    \ _d() { flush(); }\r\n} // namespace fastio\r\n\r\nusing fastio::read;\r\nusing\
-    \ fastio::print;\r\nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int\
-    \ __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__;\
-    \ \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n  string __VA_ARGS__;\
-    \ \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\
-    \r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n  double __VA_ARGS__; \\\
-    \r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name, size) \\\r\n  vector<type>\
-    \ name(size);    \\\r\n  read(name)\r\n#define VV(type, name, h, w)          \
-    \           \\\r\n  vector<vector<type>> name(h, vector<type>(w)); \\\r\n  read(name)\r\
-    \n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t\
-    \ = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\
-    \nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\"\
-    \ : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\n#line 1 \"ds/removable_queue.hpp\"\
-    \ntemplate <typename QUE_TYPE>\nstruct Removable_Queue {\n  using QUE = QUE_TYPE;\n\
-    \  using T = typename QUE::value_type;\n\n  QUE que, rm_que;\n\n  Removable_Queue()\
-    \ {}\n  Removable_Queue(vc<T>& dat) : que(all(dat)) {}\n\n  void push(T x) { que.push(x);\
-    \ }\n  int size() { return len(que) - len(rm_que); }\n  bool empty() { return\
-    \ size() == 0; }\n\n  T pop() {\n    refresh();\n    return POP(que);\n  }\n \
-    \ T top() {\n    refresh();\n    return que.top();\n  }\n\n  void remove(T x)\
-    \ { rm_que.push(x); }\n\nprivate:\n  void refresh() {\n    while (len(rm_que)\
-    \ && rm_que.top() == que.top()) {\n      rm_que.pop(), que.pop();\n    }\n  }\n\
-    };\n#line 2 \"ds/slide_split_sum.hpp\"\n\n/*\n\u30FB\u591A\u91CD\u96C6\u5408\u3092\
-    \u6271\u3046\n\u30FB[0,k) \u756A\u76EE\u3068 [k,N) \u756A\u76EE\u306E sum \u304C\
-    \u3068\u308C\u308B\n\u30FBO(k \u306E\u5909\u5316\u91CF\u306E\u7DCF\u548C x log\
-    \ N)\n*/\ntemplate <typename T>\nstruct Slide_Split_Sum {\n  Removable_Queue<pq<T>>\
-    \ ql;\n  Removable_Queue<pqg<T>> qr;\n  T sl, sr;\n  Slide_Split_Sum() : sl(0),\
-    \ sr(0) {}\n\n  inline int size() { return len(ql) + len(qr); }\n  void insert(T\
-    \ x) { (x <= lmax() ? push_l(x) : push_r(x)); }\n  void erase(T x) { (x <= lmax()\
-    \ ? erase_l(x) : erase_r(x)); }\n  pair<T, T> query(int k) {\n    assert(0 <=\
-    \ k && k <= size());\n    while (len(ql) < k) { push_l(pop_r()); }\n    while\
-    \ (len(ql) > k) { push_r(pop_l()); }\n    return {sl, sr};\n  }\n  T query_l(int\
-    \ k) { return query(k).fi; }\n  T query_r(int k) { return query(size() - k).se;\
-    \ }\n\nprivate:\n  inline T lmax() { return (ql.empty() ? -infty<T> : ql.top());\
-    \ }\n  inline T rmin() { return (qr.empty() ? infty<T> : qr.top()); }\n  inline\
-    \ T pop_l() {\n    T x = ql.pop();\n    sl -= x;\n    return x;\n  }\n  inline\
-    \ T pop_r() {\n    T x = qr.pop();\n    sr -= x;\n    return x;\n  }\n  inline\
-    \ void push_l(T x) { ql.push(x), sl += x; }\n  inline void push_r(T x) { qr.push(x),\
-    \ sr += x; }\n  inline void erase_l(T x) { ql.remove(x), sl -= x; }\n  inline\
-    \ void erase_r(T x) { qr.remove(x), sr -= x; }\n};\n#line 5 \"test_atcoder/abc314g.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, M);\n  LL(H);\n  vi A(N), B(N);\n  FOR(i, N) read(A[i],\
-    \ B[i]);\n  for (auto&& x: B) --x;\n  Slide_Split_Sum<ll> S;\n  FOR(M) S.insert(0);\n\
-    \  vi F(M);\n  vi ANS(M + 1);\n\n  // \u304F\u3089\u3063\u3066\u3082\u5927\u4E08\
-    \u592B\n  ll can = M;\n  FOR(i, N) {\n    ll b = B[i];\n    S.erase(F[b]);\n \
-    \   F[b] += A[i];\n    S.insert(F[b]);\n    while (S.query(can).fi >= H) { --can;\
-    \ }\n    ANS[can] = 1 + i;\n  }\n  reverse(all(ANS));\n  FOR(i, M) chmax(ANS[i\
-    \ + 1], ANS[i]);\n\n  print(ANS);\n}\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n\
+    \ wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid wt(const\
+    \ pair<T, U> val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n  wt(val.second);\r\n\
+    }\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const T t) {\r\n  if\
+    \ constexpr (N < std::tuple_size<T>::value) {\r\n    if constexpr (N > 0) { wt('\
+    \ '); }\r\n    const auto x = std::get<N>(t);\r\n    wt(x);\r\n    wt_tuple<N\
+    \ + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid wt(tuple<T...> tpl) {\r\
+    \n  wt_tuple(tpl);\r\n}\r\ntemplate <class T, size_t S>\r\nvoid wt(const array<T,\
+    \ S> val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n\
+    \    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\ntemplate <class T>\r\n\
+    void wt(const vector<T> val) {\r\n  auto n = val.size();\r\n  for (size_t i =\
+    \ 0; i < n; i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\n\r\
+    \ntemplate <typename T>\r\nstruct has_print_method {\r\n  template <typename U>\r\
+    \n  static std::true_type test(decltype(&U::print) *);\r\n  template <typename>\r\
+    \n  static std::false_type test(...);\r\n  using type = decltype(test<T>(nullptr));\r\
+    \n  static constexpr bool value = type::value;\r\n};\r\n\r\ntemplate <typename\
+    \ T>\r\nenable_if<has_print_method<T>::value, void>::type wt(T x) {\r\n  x.print();\r\
+    \n}\r\n\r\nvoid print() { wt('\\n'); }\r\ntemplate <class Head, class... Tail>\r\
+    \nvoid print(Head &&head, Tail &&... tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail))\
+    \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
+    \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
+    \ }\r\n} // namespace fastio\r\n\r\nusing fastio::read;\r\nusing fastio::print;\r\
+    \nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\
+    \n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
+    \n#define STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
+    \n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    #define DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    \r\n#define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n \
+    \ read(name)\r\n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
+    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
+    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
+    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
+    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
+    \ { yes(!t); }\n#line 1 \"ds/removable_queue.hpp\"\ntemplate <typename QUE_TYPE>\n\
+    struct Removable_Queue {\n  using QUE = QUE_TYPE;\n  using T = typename QUE::value_type;\n\
+    \n  QUE que, rm_que;\n\n  Removable_Queue() {}\n  Removable_Queue(vc<T>& dat)\
+    \ : que(all(dat)) {}\n\n  void push(T x) { que.push(x); }\n  int size() { return\
+    \ len(que) - len(rm_que); }\n  bool empty() { return size() == 0; }\n\n  T pop()\
+    \ {\n    refresh();\n    return POP(que);\n  }\n  T top() {\n    refresh();\n\
+    \    return que.top();\n  }\n\n  void remove(T x) { rm_que.push(x); }\n\nprivate:\n\
+    \  void refresh() {\n    while (len(rm_que) && rm_que.top() == que.top()) {\n\
+    \      rm_que.pop(), que.pop();\n    }\n  }\n};\n#line 2 \"ds/slide_split_sum.hpp\"\
+    \n\n/*\n\u30FB\u591A\u91CD\u96C6\u5408\u3092\u6271\u3046\n\u30FB[0,k) \u756A\u76EE\
+    \u3068 [k,N) \u756A\u76EE\u306E sum \u304C\u3068\u308C\u308B\n\u30FBO(k \u306E\
+    \u5909\u5316\u91CF\u306E\u7DCF\u548C x log N)\n*/\ntemplate <typename T>\nstruct\
+    \ Slide_Split_Sum {\n  Removable_Queue<pq<T>> ql;\n  Removable_Queue<pqg<T>> qr;\n\
+    \  T sl, sr;\n  Slide_Split_Sum() : sl(0), sr(0) {}\n\n  inline int size() { return\
+    \ len(ql) + len(qr); }\n  void insert(T x) { (x <= lmax() ? push_l(x) : push_r(x));\
+    \ }\n  void erase(T x) { (x <= lmax() ? erase_l(x) : erase_r(x)); }\n  pair<T,\
+    \ T> query(int k) {\n    assert(0 <= k && k <= size());\n    while (len(ql) <\
+    \ k) { push_l(pop_r()); }\n    while (len(ql) > k) { push_r(pop_l()); }\n    return\
+    \ {sl, sr};\n  }\n  T query_l(int k) { return query(k).fi; }\n  T query_r(int\
+    \ k) { return query(size() - k).se; }\n\nprivate:\n  inline T lmax() { return\
+    \ (ql.empty() ? -infty<T> : ql.top()); }\n  inline T rmin() { return (qr.empty()\
+    \ ? infty<T> : qr.top()); }\n  inline T pop_l() {\n    T x = ql.pop();\n    sl\
+    \ -= x;\n    return x;\n  }\n  inline T pop_r() {\n    T x = qr.pop();\n    sr\
+    \ -= x;\n    return x;\n  }\n  inline void push_l(T x) { ql.push(x), sl += x;\
+    \ }\n  inline void push_r(T x) { qr.push(x), sr += x; }\n  inline void erase_l(T\
+    \ x) { ql.remove(x), sl -= x; }\n  inline void erase_r(T x) { qr.remove(x), sr\
+    \ -= x; }\n};\n#line 5 \"test_atcoder/abc314g.test.cpp\"\n\nvoid solve() {\n \
+    \ LL(N, M);\n  LL(H);\n  vi A(N), B(N);\n  FOR(i, N) read(A[i], B[i]);\n  for\
+    \ (auto&& x: B) --x;\n  Slide_Split_Sum<ll> S;\n  FOR(M) S.insert(0);\n  vi F(M);\n\
+    \  vi ANS(M + 1);\n\n  // \u304F\u3089\u3063\u3066\u3082\u5927\u4E08\u592B\n \
+    \ ll can = M;\n  FOR(i, N) {\n    ll b = B[i];\n    S.erase(F[b]);\n    F[b] +=\
+    \ A[i];\n    S.insert(F[b]);\n    while (S.query(can).fi >= H) { --can; }\n  \
+    \  ANS[can] = 1 + i;\n  }\n  reverse(all(ANS));\n  FOR(i, M) chmax(ANS[i + 1],\
+    \ ANS[i]);\n\n  print(ANS);\n}\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n\
     \  FOR(T) solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc314/tasks/abc314_g\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/slide_split_sum.hpp\"\
@@ -232,7 +243,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc314g.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 14:40:18+09:00'
+  timestamp: '2023-11-06 15:15:17+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc314g.test.cpp

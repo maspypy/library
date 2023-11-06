@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -128,14 +128,19 @@ data:
     \ }\r\nvoid rd(i128 &x) { rd_integer(x); }\r\nvoid rd(u32 &x) { rd_integer(x);\
     \ }\r\nvoid rd(u64 &x) { rd_integer(x); }\r\nvoid rd(u128 &x) { rd_integer(x);\
     \ }\r\nvoid rd(double &x) { rd_real(x); }\r\nvoid rd(long double &x) { rd_real(x);\
-    \ }\r\nvoid rd(f128 &x) { rd_real(x); }\r\ntemplate <class T>\r\nvoid rd(vc<T>\
-    \ &x) {\r\n  for (auto &d: x) rd(d);\r\n}\r\ntemplate <size_t N = 0, typename\
-    \ T>\r\nvoid rd(array<T, N> &x) {\r\n  for (auto &d: x) rd(d);\r\n}\r\ntemplate\
-    \ <class T, class U>\r\nvoid rd(pair<T, U> &p) {\r\n  return rd(p.first), rd(p.second);\r\
-    \n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd(T &t) {\r\n  if constexpr\
-    \ (N < std::tuple_size<T>::value) {\r\n    auto &x = std::get<N>(t);\r\n    rd(x);\r\
-    \n    rd<N + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...>\
-    \ &tpl) {\r\n  rd(tpl);\r\n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class...\
+    \ }\r\nvoid rd(f128 &x) { rd_real(x); }\r\ntemplate <class T, class U>\r\nvoid\
+    \ rd(pair<T, U> &p) {\r\n  return rd(p.first), rd(p.second);\r\n}\r\ntemplate\
+    \ <size_t N = 0, typename T>\r\nvoid rd(T &t) {\r\n  if constexpr (N < std::tuple_size<T>::value)\
+    \ {\r\n    auto &x = std::get<N>(t);\r\n    rd(x);\r\n    rd<N + 1>(t);\r\n  }\r\
+    \n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...> &tpl) {\r\n  rd(tpl);\r\n\
+    }\r\ntemplate <class T>\r\nvoid rd(vc<T> &x) {\r\n  for (auto &d: x) rd(d);\r\n\
+    }\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd(array<T, N> &x) {\r\n  for\
+    \ (auto &d: x) rd(d);\r\n}\r\n\r\ntemplate <typename T>\r\nstruct has_read_method\
+    \ {\r\n  template <typename U>\r\n  static std::true_type test(decltype(&U::read)\
+    \ *);\r\n  template <typename>\r\n  static std::false_type test(...);\r\n  using\
+    \ type = decltype(test<T>(nullptr));\r\n  static constexpr bool value = type::value;\r\
+    \n};\r\n\r\ntemplate <typename T>\r\nenable_if<has_read_method<T>::value, void>::type\
+    \ rd(T &x) {\r\n  x.read();\r\n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class...\
     \ T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const\
     \ char c) {\r\n  if (obufi == BSZ) flush();\r\n  obuf[obufi++] = c;\r\n}\r\nvoid\
     \ wt(const string &s) {\r\n  for (char c: s) wt(c);\r\n}\r\n\r\ntemplate <typename\
@@ -154,84 +159,90 @@ data:
     \nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\n\
     void wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\nvoid\
     \ wt(double x) { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\nvoid\
-    \ wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class T>\r\nvoid wt(const vector<T>\
-    \ val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n \
-    \   if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\ntemplate <class T, class\
-    \ U>\r\nvoid wt(const pair<T, U> val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n\
-    \  wt(val.second);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const\
-    \ T t) {\r\n  if constexpr (N < std::tuple_size<T>::value) {\r\n    if constexpr\
-    \ (N > 0) { wt(' '); }\r\n    const auto x = std::get<N>(t);\r\n    wt(x);\r\n\
-    \    wt_tuple<N + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid wt(tuple<T...>\
-    \ tpl) {\r\n  wt_tuple(tpl);\r\n}\r\ntemplate <class T, size_t S>\r\nvoid wt(const\
-    \ array<T, S> val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n;\
-    \ i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\n\r\nvoid print()\
-    \ { wt('\\n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head,\
-    \ Tail &&... tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail)) wt(' ');\r\n  print(forward<Tail>(tail)...);\r\
-    \n}\r\n\r\n// gcc expansion. called automaticall after main.\r\nvoid __attribute__((destructor))\
-    \ _d() { flush(); }\r\n} // namespace fastio\r\n\r\nusing fastio::read;\r\nusing\
-    \ fastio::print;\r\nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int\
-    \ __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__;\
-    \ \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n  string __VA_ARGS__;\
-    \ \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\
-    \r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n  double __VA_ARGS__; \\\
-    \r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name, size) \\\r\n  vector<type>\
-    \ name(size);    \\\r\n  read(name)\r\n#define VV(type, name, h, w)          \
-    \           \\\r\n  vector<vector<type>> name(h, vector<type>(w)); \\\r\n  read(name)\r\
-    \n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t\
-    \ = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\
-    \nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\"\
-    \ : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\n#line 1 \"convex/slope.hpp\"\
-    \nstruct Slope_Trick {\r\n  static constexpr ll LMIN = -infty<ll>;\r\n  static\
-    \ constexpr ll RMAX = infty<ll>;\r\n  pq<ll> que_l;\r\n  pqg<ll> que_r;\r\n\r\n\
-    \  ll add_l, add_r;\r\n  i128 min_f; // infty \u3092\u8DB3\u3057\u5F15\u304D\u3057\
-    \u3066\u3082\u58CA\u308C\u306A\u3044\u3088\u3046\u306B i128 \u306B\u3059\u308B\
-    \r\n\r\n  Slope_Trick() : add_l(0), add_r(0), min_f(0) {}\r\n  Slope_Trick(vc<ll>\
-    \ left, vc<ll> right)\r\n      : que_l(all(left)), que_r(all(right)), add_l(0),\
-    \ add_r(0), min_f(0) {}\r\n\r\n  int size() { return len(que_l) + len(que_r);\
-    \ }\r\n  tuple<ll, ll, i128> get_min() { return {top_L(), top_R(), min_f}; }\r\
-    \n\r\n  void add_const(ll a) { min_f += a; }\r\n\r\n  // O(|a| log N)\r\n  void\
-    \ add_linear(ll a, ll b) {\r\n    min_f += b;\r\n    FOR(max<int>(a, 0)) {\r\n\
-    \      ll x = pop_L();\r\n      min_f += x;\r\n      push_R(x);\r\n    }\r\n \
-    \   FOR(max<int>(-a, 0)) {\r\n      ll x = pop_R();\r\n      min_f -= x;\r\n \
-    \     push_L(x);\r\n    }\r\n  }\r\n\r\n  // (a-x)+\r\n  void add_a_minus_x(ll\
-    \ a) {\r\n    min_f += max<ll>(0, a - top_R());\r\n    push_R(a), push_L(pop_R());\r\
-    \n  }\r\n  // (x-a)+\r\n  void add_x_minus_a(ll a) {\r\n    min_f += max<ll>(0,\
-    \ top_L() - a);\r\n    push_L(a), push_R(pop_L());\r\n  }\r\n\r\n  // |x-a|\r\n\
-    \  void add_abs(ll a) {\r\n    add_a_minus_x(a);\r\n    add_x_minus_a(a);\r\n\
-    \  }\r\n\r\n  // \u5897\u52A0\u5074\u3092\u6D88\u3057\u3066\u3001\u6E1B\u5C11\u5074\
-    \u306E\u307F\u306B\u3059\u308B\r\n  void clear_right() { que_r = pqg<ll>(); }\r\
-    \n  // \u6E1B\u5C11\u5074\u3092\u6D88\u3057\u3066\u3001\u5897\u52A0\u5074\u306E\
-    \u307F\u306B\u3059\u308B\r\n  void clear_left() { que_l = pq<ll>(); }\r\n  void\
-    \ shift(const ll &a) { add_l += a, add_r += a; }\r\n\r\n  // g(x) = min_{x-b <=\
-    \ y <= x-a} f(y)\r\n  void sliding_window_minimum(const ll &a, const ll &b) {\r\
-    \n    add_l += a, add_r += b;\r\n  }\r\n\r\n  // O(size log(size))\r\n  i128 eval(ll\
-    \ x) {\r\n    i128 y = min_f;\r\n    pq<ll> que_l_copy = que_l;\r\n    pqg<ll>\
-    \ que_r_copy = que_r;\r\n    while (len(que_l_copy)) { y += max<ll>(0, (POP(que_l_copy)\
-    \ + add_l) - x); }\r\n    while (len(que_r_copy)) { y += max<ll>(0, x - (POP(que_r_copy)\
-    \ + add_r)); }\r\n    return y;\r\n  }\r\n\r\n  void push_R(const ll &x) { que_r.emplace(x\
-    \ - add_r); }\r\n  void push_L(const ll &x) { que_l.emplace(x - add_l); }\r\n\
-    \  ll top_R() {\r\n    if (que_r.empty()) que_r.emplace(RMAX);\r\n    return que_r.top()\
-    \ + add_r;\r\n  }\r\n  ll top_L() {\r\n    if (que_l.empty()) que_l.emplace(LMIN);\r\
-    \n    return que_l.top() + add_l;\r\n  }\r\n  ll pop_R() {\r\n    ll res = top_R();\r\
-    \n    que_r.pop();\r\n    return res;\r\n  }\r\n  ll pop_L() {\r\n    ll res =\
-    \ top_L();\r\n    que_l.pop();\r\n    return res;\r\n  }\r\n\r\n  void debug()\
-    \ {\r\n    vi left, right;\r\n    pq<ll> que_l_copy = que_l;\r\n    pqg<ll> que_r_copy\
-    \ = que_r;\r\n    while (len(que_l_copy)) { left.eb(POP(que_l_copy) + add_l);\
-    \ }\r\n    while (len(que_r_copy)) { right.eb(POP(que_r_copy) + add_r); }\r\n\
-    \    sort(all(left));\r\n    sort(all(right));\r\n    print(\"min_f\", min_f,\
-    \ \"left\", left, \"right\", right);\r\n  }\r\n};\n#line 2 \"flow/min_cost_matching_on_line.hpp\"\
-    \n\n// \u5EA7\u6A19 0, ..., N-1 \u306B A_i \u500B\u3042\u308B\n// \u5EA7\u6A19\
-    \ 0, ..., N-1 \u3067 B_i \u500B\u307E\u3067\u53D7\u3051\u5165\u308C\u3089\u308C\
-    \u308B\nll min_cost_matching_on_line_1(vi A, vi B) {\n  assert(SUM<ll>(A) <= SUM<ll>(B));\n\
-    \  const int N = len(A);\n  Slope_Trick f(vi(N + 1, 0), vi());\n  FOR(i, N) {\n\
-    \    ll c = A[i] - B[i];\n    f.shift(c);\n    f.clear_right();\n    f.add_abs(0);\n\
-    \  }\n  return f.eval(0);\n}\n#line 5 \"test/mytest/min_cost_matching_on_line.test.cpp\"\
-    \n\nvoid test() {\n  // https://atcoder.jp/contests/kupc2016/tasks/kupc2016_h\n\
-    \  vi A = {3, 1}, B = {1, 5};\n  assert(min_cost_matching_on_line_1(A, B) == 2);\n\
-    \  A = {3, 3, 1, 1, 1}, B = {1, 2, 3, 4, 5};\n  assert(min_cost_matching_on_line_1(A,\
-    \ B) == 6);\n  A = {10, 2, 5, 6, 2, 6, 3,  2, 2,  5, 3, 11, 13, 2,\n       2,\
-    \  7, 7, 3, 9, 5, 13, 4, 17, 2, 2, 2,  4},\n  B = {46, 3, 4, 2, 10, 2, 5, 2, 6,\
-    \ 7,  20, 13, 9, 49,\n       3,  8, 4, 3, 19, 9, 3, 5, 4, 13, 9,  5,  7};\n  assert(min_cost_matching_on_line_1(A,\
+    \ wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid wt(const\
+    \ pair<T, U> val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n  wt(val.second);\r\n\
+    }\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const T t) {\r\n  if\
+    \ constexpr (N < std::tuple_size<T>::value) {\r\n    if constexpr (N > 0) { wt('\
+    \ '); }\r\n    const auto x = std::get<N>(t);\r\n    wt(x);\r\n    wt_tuple<N\
+    \ + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid wt(tuple<T...> tpl) {\r\
+    \n  wt_tuple(tpl);\r\n}\r\ntemplate <class T, size_t S>\r\nvoid wt(const array<T,\
+    \ S> val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n\
+    \    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\ntemplate <class T>\r\n\
+    void wt(const vector<T> val) {\r\n  auto n = val.size();\r\n  for (size_t i =\
+    \ 0; i < n; i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\n\r\
+    \ntemplate <typename T>\r\nstruct has_print_method {\r\n  template <typename U>\r\
+    \n  static std::true_type test(decltype(&U::print) *);\r\n  template <typename>\r\
+    \n  static std::false_type test(...);\r\n  using type = decltype(test<T>(nullptr));\r\
+    \n  static constexpr bool value = type::value;\r\n};\r\n\r\ntemplate <typename\
+    \ T>\r\nenable_if<has_print_method<T>::value, void>::type wt(T x) {\r\n  x.print();\r\
+    \n}\r\n\r\nvoid print() { wt('\\n'); }\r\ntemplate <class Head, class... Tail>\r\
+    \nvoid print(Head &&head, Tail &&... tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail))\
+    \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
+    \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
+    \ }\r\n} // namespace fastio\r\n\r\nusing fastio::read;\r\nusing fastio::print;\r\
+    \nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\
+    \n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
+    \n#define STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
+    \n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    #define DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    \r\n#define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n \
+    \ read(name)\r\n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
+    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
+    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
+    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
+    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
+    \ { yes(!t); }\n#line 1 \"convex/slope.hpp\"\nstruct Slope_Trick {\r\n  static\
+    \ constexpr ll LMIN = -infty<ll>;\r\n  static constexpr ll RMAX = infty<ll>;\r\
+    \n  pq<ll> que_l;\r\n  pqg<ll> que_r;\r\n\r\n  ll add_l, add_r;\r\n  i128 min_f;\
+    \ // infty \u3092\u8DB3\u3057\u5F15\u304D\u3057\u3066\u3082\u58CA\u308C\u306A\u3044\
+    \u3088\u3046\u306B i128 \u306B\u3059\u308B\r\n\r\n  Slope_Trick() : add_l(0),\
+    \ add_r(0), min_f(0) {}\r\n  Slope_Trick(vc<ll> left, vc<ll> right)\r\n      :\
+    \ que_l(all(left)), que_r(all(right)), add_l(0), add_r(0), min_f(0) {}\r\n\r\n\
+    \  int size() { return len(que_l) + len(que_r); }\r\n  tuple<ll, ll, i128> get_min()\
+    \ { return {top_L(), top_R(), min_f}; }\r\n\r\n  void add_const(ll a) { min_f\
+    \ += a; }\r\n\r\n  // O(|a| log N)\r\n  void add_linear(ll a, ll b) {\r\n    min_f\
+    \ += b;\r\n    FOR(max<int>(a, 0)) {\r\n      ll x = pop_L();\r\n      min_f +=\
+    \ x;\r\n      push_R(x);\r\n    }\r\n    FOR(max<int>(-a, 0)) {\r\n      ll x\
+    \ = pop_R();\r\n      min_f -= x;\r\n      push_L(x);\r\n    }\r\n  }\r\n\r\n\
+    \  // (a-x)+\r\n  void add_a_minus_x(ll a) {\r\n    min_f += max<ll>(0, a - top_R());\r\
+    \n    push_R(a), push_L(pop_R());\r\n  }\r\n  // (x-a)+\r\n  void add_x_minus_a(ll\
+    \ a) {\r\n    min_f += max<ll>(0, top_L() - a);\r\n    push_L(a), push_R(pop_L());\r\
+    \n  }\r\n\r\n  // |x-a|\r\n  void add_abs(ll a) {\r\n    add_a_minus_x(a);\r\n\
+    \    add_x_minus_a(a);\r\n  }\r\n\r\n  // \u5897\u52A0\u5074\u3092\u6D88\u3057\
+    \u3066\u3001\u6E1B\u5C11\u5074\u306E\u307F\u306B\u3059\u308B\r\n  void clear_right()\
+    \ { que_r = pqg<ll>(); }\r\n  // \u6E1B\u5C11\u5074\u3092\u6D88\u3057\u3066\u3001\
+    \u5897\u52A0\u5074\u306E\u307F\u306B\u3059\u308B\r\n  void clear_left() { que_l\
+    \ = pq<ll>(); }\r\n  void shift(const ll &a) { add_l += a, add_r += a; }\r\n\r\
+    \n  // g(x) = min_{x-b <= y <= x-a} f(y)\r\n  void sliding_window_minimum(const\
+    \ ll &a, const ll &b) {\r\n    add_l += a, add_r += b;\r\n  }\r\n\r\n  // O(size\
+    \ log(size))\r\n  i128 eval(ll x) {\r\n    i128 y = min_f;\r\n    pq<ll> que_l_copy\
+    \ = que_l;\r\n    pqg<ll> que_r_copy = que_r;\r\n    while (len(que_l_copy)) {\
+    \ y += max<ll>(0, (POP(que_l_copy) + add_l) - x); }\r\n    while (len(que_r_copy))\
+    \ { y += max<ll>(0, x - (POP(que_r_copy) + add_r)); }\r\n    return y;\r\n  }\r\
+    \n\r\n  void push_R(const ll &x) { que_r.emplace(x - add_r); }\r\n  void push_L(const\
+    \ ll &x) { que_l.emplace(x - add_l); }\r\n  ll top_R() {\r\n    if (que_r.empty())\
+    \ que_r.emplace(RMAX);\r\n    return que_r.top() + add_r;\r\n  }\r\n  ll top_L()\
+    \ {\r\n    if (que_l.empty()) que_l.emplace(LMIN);\r\n    return que_l.top() +\
+    \ add_l;\r\n  }\r\n  ll pop_R() {\r\n    ll res = top_R();\r\n    que_r.pop();\r\
+    \n    return res;\r\n  }\r\n  ll pop_L() {\r\n    ll res = top_L();\r\n    que_l.pop();\r\
+    \n    return res;\r\n  }\r\n\r\n  void debug() {\r\n    vi left, right;\r\n  \
+    \  pq<ll> que_l_copy = que_l;\r\n    pqg<ll> que_r_copy = que_r;\r\n    while\
+    \ (len(que_l_copy)) { left.eb(POP(que_l_copy) + add_l); }\r\n    while (len(que_r_copy))\
+    \ { right.eb(POP(que_r_copy) + add_r); }\r\n    sort(all(left));\r\n    sort(all(right));\r\
+    \n    print(\"min_f\", min_f, \"left\", left, \"right\", right);\r\n  }\r\n};\n\
+    #line 2 \"flow/min_cost_matching_on_line.hpp\"\n\n// \u5EA7\u6A19 0, ..., N-1\
+    \ \u306B A_i \u500B\u3042\u308B\n// \u5EA7\u6A19 0, ..., N-1 \u3067 B_i \u500B\
+    \u307E\u3067\u53D7\u3051\u5165\u308C\u3089\u308C\u308B\nll min_cost_matching_on_line_1(vi\
+    \ A, vi B) {\n  assert(SUM<ll>(A) <= SUM<ll>(B));\n  const int N = len(A);\n \
+    \ Slope_Trick f(vi(N + 1, 0), vi());\n  FOR(i, N) {\n    ll c = A[i] - B[i];\n\
+    \    f.shift(c);\n    f.clear_right();\n    f.add_abs(0);\n  }\n  return f.eval(0);\n\
+    }\n#line 5 \"test/mytest/min_cost_matching_on_line.test.cpp\"\n\nvoid test() {\n\
+    \  // https://atcoder.jp/contests/kupc2016/tasks/kupc2016_h\n  vi A = {3, 1},\
+    \ B = {1, 5};\n  assert(min_cost_matching_on_line_1(A, B) == 2);\n  A = {3, 3,\
+    \ 1, 1, 1}, B = {1, 2, 3, 4, 5};\n  assert(min_cost_matching_on_line_1(A, B) ==\
+    \ 6);\n  A = {10, 2, 5, 6, 2, 6, 3,  2, 2,  5, 3, 11, 13, 2,\n       2,  7, 7,\
+    \ 3, 9, 5, 13, 4, 17, 2, 2, 2,  4},\n  B = {46, 3, 4, 2, 10, 2, 5, 2, 6, 7,  20,\
+    \ 13, 9, 49,\n       3,  8, 4, 3, 19, 9, 3, 5, 4, 13, 9,  5,  7};\n  assert(min_cost_matching_on_line_1(A,\
     \ B) == 48);\n  A = {1236501, 770807,  4003004, 131688,  1965412, 266841,\n  \
     \     3980782, 565060,  816313,  192940,  541896,  250801,\n       217586,  3806049,\
     \ 1220252, 1161079, 31168,   2008961},\n  B = {3878348, 423911,  8031742, 1035156,\
@@ -264,7 +275,7 @@ data:
   isVerificationFile: true
   path: test/mytest/min_cost_matching_on_line.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 14:40:18+09:00'
+  timestamp: '2023-11-06 15:15:17+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/min_cost_matching_on_line.test.cpp
