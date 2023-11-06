@@ -64,6 +64,13 @@ inline void flush() {
   por = 0;
 }
 
+void rd(char &c) {
+  do {
+    if (pil + 1 > pir) load();
+    c = ibuf[pil++];
+  } while (isspace(c));
+}
+
 void rd(string &x) {
   x.clear();
   char c;
