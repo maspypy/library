@@ -105,7 +105,7 @@ void rd(Dynamic_Modint<id>& x) {
 }
 template <int id>
 void wt(Dynamic_Modint<id> x) {
-  wt(x.val);
+  fastio::wt(x.val);
 }
 #endif
 
