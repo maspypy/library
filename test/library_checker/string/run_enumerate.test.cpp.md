@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':x:'
@@ -138,27 +138,27 @@ data:
     \ {\r\n  template <typename U>\r\n  static std::true_type test(decltype(&U::read)\
     \ *);\r\n  template <typename>\r\n  static std::false_type test(...);\r\n  using\
     \ type = decltype(test<T>(nullptr));\r\n  static constexpr bool value = type::value;\r\
-    \n};\r\n\r\ntemplate <typename T>\r\nenable_if<has_read_method<T>::value, void>::type\
-    \ rd(T &x) {\r\n  x.read();\r\n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class...\
-    \ T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const\
-    \ char c) {\r\n  if (obufi == BSZ) flush();\r\n  obuf[obufi++] = c;\r\n}\r\nvoid\
-    \ wt(const string &s) {\r\n  for (char c: s) wt(c);\r\n}\r\n\r\ntemplate <typename\
-    \ T>\r\nvoid wt_integer(T x) {\r\n  if (obufi > BSZ - 100) flush();\r\n  if (x\
-    \ < 0) { obuf[obufi++] = '-', x = -x; }\r\n  for (outi = 96; x >= 10000; outi\
-    \ -= 4) {\r\n    memcpy(out + outi, pre.num[x % 10000], 4);\r\n    x /= 10000;\r\
-    \n  }\r\n  if (x >= 1000) {\r\n    memcpy(obuf + obufi, pre.num[x], 4);\r\n  \
-    \  obufi += 4;\r\n  } else if (x >= 100) {\r\n    memcpy(obuf + obufi, pre.num[x]\
-    \ + 1, 3);\r\n    obufi += 3;\r\n  } else if (x >= 10) {\r\n    int q = (x * 103)\
-    \ >> 10;\r\n    obuf[obufi] = q | '0';\r\n    obuf[obufi + 1] = (x - q * 10) |\
-    \ '0';\r\n    obufi += 2;\r\n  } else\r\n    obuf[obufi++] = x | '0';\r\n  memcpy(obuf\
-    \ + obufi, out + outi + 4, 96 - outi);\r\n  obufi += 96 - outi;\r\n}\r\n\r\ntemplate\
-    \ <typename T>\r\nvoid wt_real(T x) {\r\n  ostringstream oss;\r\n  oss << fixed\
-    \ << setprecision(15) << double(x);\r\n  string s = oss.str();\r\n  wt(s);\r\n\
-    }\r\n\r\nvoid wt(int x) { wt_integer(x); }\r\nvoid wt(ll x) { wt_integer(x); }\r\
-    \nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\n\
-    void wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\nvoid\
-    \ wt(double x) { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\nvoid\
-    \ wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid wt(const\
+    \n};\r\n\r\ntemplate <typename T>\r\ntypename enable_if<has_read_method<T>::value,\
+    \ void>::type rd(T &x) {\r\n  x.read();\r\n}\r\n\r\nvoid read() {}\r\ntemplate\
+    \ <class H, class... T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\
+    \n}\r\n\r\nvoid wt(const char c) {\r\n  if (obufi == BSZ) flush();\r\n  obuf[obufi++]\
+    \ = c;\r\n}\r\nvoid wt(const string &s) {\r\n  for (char c: s) wt(c);\r\n}\r\n\
+    \r\ntemplate <typename T>\r\nvoid wt_integer(T x) {\r\n  if (obufi > BSZ - 100)\
+    \ flush();\r\n  if (x < 0) { obuf[obufi++] = '-', x = -x; }\r\n  for (outi = 96;\
+    \ x >= 10000; outi -= 4) {\r\n    memcpy(out + outi, pre.num[x % 10000], 4);\r\
+    \n    x /= 10000;\r\n  }\r\n  if (x >= 1000) {\r\n    memcpy(obuf + obufi, pre.num[x],\
+    \ 4);\r\n    obufi += 4;\r\n  } else if (x >= 100) {\r\n    memcpy(obuf + obufi,\
+    \ pre.num[x] + 1, 3);\r\n    obufi += 3;\r\n  } else if (x >= 10) {\r\n    int\
+    \ q = (x * 103) >> 10;\r\n    obuf[obufi] = q | '0';\r\n    obuf[obufi + 1] =\
+    \ (x - q * 10) | '0';\r\n    obufi += 2;\r\n  } else\r\n    obuf[obufi++] = x\
+    \ | '0';\r\n  memcpy(obuf + obufi, out + outi + 4, 96 - outi);\r\n  obufi += 96\
+    \ - outi;\r\n}\r\n\r\ntemplate <typename T>\r\nvoid wt_real(T x) {\r\n  ostringstream\
+    \ oss;\r\n  oss << fixed << setprecision(15) << double(x);\r\n  string s = oss.str();\r\
+    \n  wt(s);\r\n}\r\n\r\nvoid wt(int x) { wt_integer(x); }\r\nvoid wt(ll x) { wt_integer(x);\
+    \ }\r\nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\
+    \nvoid wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\n\
+    void wt(double x) { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\n\
+    void wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid wt(const\
     \ pair<T, U> val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n  wt(val.second);\r\n\
     }\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const T t) {\r\n  if\
     \ constexpr (N < std::tuple_size<T>::value) {\r\n    if constexpr (N > 0) { wt('\
@@ -173,55 +173,55 @@ data:
     \n  static std::true_type test(decltype(&U::print) *);\r\n  template <typename>\r\
     \n  static std::false_type test(...);\r\n  using type = decltype(test<T>(nullptr));\r\
     \n  static constexpr bool value = type::value;\r\n};\r\n\r\ntemplate <typename\
-    \ T>\r\nenable_if<has_print_method<T>::value, void>::type wt(T x) {\r\n  x.print();\r\
-    \n}\r\n\r\nvoid print() { wt('\\n'); }\r\ntemplate <class Head, class... Tail>\r\
-    \nvoid print(Head &&head, Tail &&... tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail))\
-    \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
-    \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
-    \ }\r\n} // namespace fastio\r\n\r\nusing fastio::read;\r\nusing fastio::print;\r\
-    \nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\
-    \n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    \r\n#define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n \
-    \ read(name)\r\n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
-    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
-    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
-    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
-    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\n#line 1 \"string/zalgorithm.hpp\"\ntemplate <typename STRING>\
-    \  // string, vector \u3069\u3061\u3089\u3067\u3082\nvector<int> zalgorithm(const\
-    \ STRING& s) {\n  int n = int(s.size());\n  if (n == 0) return {};\n  vector<int>\
-    \ z(n);\n  z[0] = 0;\n  for (int i = 1, j = 0; i < n; i++) {\n    int& k = z[i];\n\
-    \    k = (j + z[j] <= i) ? 0 : min(j + z[j] - i, z[i - j]);\n    while (i + k\
-    \ < n && s[k] == s[i + k]) k++;\n    if (j + z[j] < i + z[i]) j = i;\n  }\n  z[0]\
-    \ = n;\n  return z;\n}\n#line 2 \"string/run_enumerate.hpp\"\n\r\n// (period,\
-    \ l, r)\r\n// S[l:r] \u306F\u5468\u671F p (\u305F\u3060\u3057 r-l >= 2p) \u3092\
-    \u6301\u3064\u304C\u3001S[l-1:r], S[l:r+1] \u306F\u305D\u3046\u3067\u306F\u306A\
-    \u3044\r\ntemplate <typename STRING>\r\nvc<tuple<int, int, int>> run_enumerate(const\
-    \ STRING& S) {\r\n  ll N = len(S);\r\n  using T = tuple<int, int, int>;\r\n  using\
-    \ P = pair<int, int>;\r\n  vc<vc<P>> by_p(N + 1);\r\n\r\n  auto solve_sub = [&](STRING&\
-    \ left, STRING& right) -> vc<T> {\r\n    vc<T> res;\r\n    int n = len(left),\
-    \ m = len(right);\r\n    auto S = left, T = right;\r\n    reverse(all(S));\r\n\
-    \    T.insert(T.end(), all(left));\r\n    T.insert(T.end(), all(right));\r\n \
-    \   auto ZS = zalgorithm(S), ZT = zalgorithm(T);\r\n    FOR3(p, 1, n + 1) {\r\n\
-    \      int a = (p == n ? p : min(ZS[p] + int(p), n));\r\n      int b = min(ZT[n\
-    \ + m - p], m);\r\n      if (a + b < 2 * p) continue;\r\n      res.eb(p, a, b);\r\
-    \n    }\r\n    return res;\r\n  };\r\n\r\n  vc<P> st = {{0, N}};\r\n  while (!st.empty())\
-    \ {\r\n    auto [L, R] = st.back();\r\n    st.pop_back();\r\n    if (R - L <=\
-    \ 1) continue;\r\n    int M = (L + R) / 2;\r\n    st.eb(L, M), st.eb(M, R);\r\n\
-    \    STRING SL = {S.begin() + L, S.begin() + M};\r\n    STRING SR = {S.begin()\
-    \ + M, S.begin() + R};\r\n    {\r\n      auto sub_res = solve_sub(SL, SR);\r\n\
-    \      for (auto&& [p, a, b]: sub_res) by_p[p].eb(M - a, M + b);\r\n    }\r\n\
-    \    {\r\n      reverse(all(SL)), reverse(all(SR));\r\n      auto sub_res = solve_sub(SR,\
-    \ SL);\r\n      for (auto&& [p, a, b]: sub_res) by_p[p].eb(M - b, M + a);\r\n\
-    \    }\r\n  }\r\n\r\n  vc<T> res;\r\n  set<P> done;\r\n  FOR(p, len(by_p)) {\r\
-    \n    auto& LR = by_p[p];\r\n    sort(all(LR),\r\n         [](auto& x, auto& y)\
-    \ { return P(x.fi, -x.se) < P(y.fi, -y.se); });\r\n    int r = -1;\r\n    for\
-    \ (auto&& lr: LR) {\r\n      if (chmax(r, lr.se) && !done.count(lr)) {\r\n   \
-    \     done.insert(lr);\r\n        res.eb(p, lr.fi, lr.se);\r\n      }\r\n    }\r\
-    \n  }\r\n  return res;\r\n}\r\n#line 5 \"test/library_checker/string/run_enumerate.test.cpp\"\
+    \ T>\r\ntypename enable_if<has_print_method<T>::value, void>::type wt(T x) {\r\
+    \n  x.print();\r\n}\r\n\r\nvoid print() { wt('\\n'); }\r\ntemplate <class Head,\
+    \ class... Tail>\r\nvoid print(Head &&head, Tail &&... tail) {\r\n  wt(head);\r\
+    \n  if (sizeof...(Tail)) wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\
+    \r\n// gcc expansion. called automaticall after main.\r\nvoid __attribute__((destructor))\
+    \ _d() { flush(); }\r\n} // namespace fastio\r\n\r\nusing fastio::read;\r\nusing\
+    \ fastio::print;\r\nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int\
+    \ __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__;\
+    \ \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n  string __VA_ARGS__;\
+    \ \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\
+    \r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n  double __VA_ARGS__; \\\
+    \r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name, size) \\\r\n  vector<type>\
+    \ name(size);    \\\r\n  read(name)\r\n#define VV(type, name, h, w)          \
+    \           \\\r\n  vector<vector<type>> name(h, vector<type>(w)); \\\r\n  read(name)\r\
+    \n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t\
+    \ = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\
+    \nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\"\
+    \ : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\n#line 1 \"string/zalgorithm.hpp\"\
+    \ntemplate <typename STRING>  // string, vector \u3069\u3061\u3089\u3067\u3082\
+    \nvector<int> zalgorithm(const STRING& s) {\n  int n = int(s.size());\n  if (n\
+    \ == 0) return {};\n  vector<int> z(n);\n  z[0] = 0;\n  for (int i = 1, j = 0;\
+    \ i < n; i++) {\n    int& k = z[i];\n    k = (j + z[j] <= i) ? 0 : min(j + z[j]\
+    \ - i, z[i - j]);\n    while (i + k < n && s[k] == s[i + k]) k++;\n    if (j +\
+    \ z[j] < i + z[i]) j = i;\n  }\n  z[0] = n;\n  return z;\n}\n#line 2 \"string/run_enumerate.hpp\"\
+    \n\r\n// (period, l, r)\r\n// S[l:r] \u306F\u5468\u671F p (\u305F\u3060\u3057\
+    \ r-l >= 2p) \u3092\u6301\u3064\u304C\u3001S[l-1:r], S[l:r+1] \u306F\u305D\u3046\
+    \u3067\u306F\u306A\u3044\r\ntemplate <typename STRING>\r\nvc<tuple<int, int, int>>\
+    \ run_enumerate(const STRING& S) {\r\n  ll N = len(S);\r\n  using T = tuple<int,\
+    \ int, int>;\r\n  using P = pair<int, int>;\r\n  vc<vc<P>> by_p(N + 1);\r\n\r\n\
+    \  auto solve_sub = [&](STRING& left, STRING& right) -> vc<T> {\r\n    vc<T> res;\r\
+    \n    int n = len(left), m = len(right);\r\n    auto S = left, T = right;\r\n\
+    \    reverse(all(S));\r\n    T.insert(T.end(), all(left));\r\n    T.insert(T.end(),\
+    \ all(right));\r\n    auto ZS = zalgorithm(S), ZT = zalgorithm(T);\r\n    FOR3(p,\
+    \ 1, n + 1) {\r\n      int a = (p == n ? p : min(ZS[p] + int(p), n));\r\n    \
+    \  int b = min(ZT[n + m - p], m);\r\n      if (a + b < 2 * p) continue;\r\n  \
+    \    res.eb(p, a, b);\r\n    }\r\n    return res;\r\n  };\r\n\r\n  vc<P> st =\
+    \ {{0, N}};\r\n  while (!st.empty()) {\r\n    auto [L, R] = st.back();\r\n   \
+    \ st.pop_back();\r\n    if (R - L <= 1) continue;\r\n    int M = (L + R) / 2;\r\
+    \n    st.eb(L, M), st.eb(M, R);\r\n    STRING SL = {S.begin() + L, S.begin() +\
+    \ M};\r\n    STRING SR = {S.begin() + M, S.begin() + R};\r\n    {\r\n      auto\
+    \ sub_res = solve_sub(SL, SR);\r\n      for (auto&& [p, a, b]: sub_res) by_p[p].eb(M\
+    \ - a, M + b);\r\n    }\r\n    {\r\n      reverse(all(SL)), reverse(all(SR));\r\
+    \n      auto sub_res = solve_sub(SR, SL);\r\n      for (auto&& [p, a, b]: sub_res)\
+    \ by_p[p].eb(M - b, M + a);\r\n    }\r\n  }\r\n\r\n  vc<T> res;\r\n  set<P> done;\r\
+    \n  FOR(p, len(by_p)) {\r\n    auto& LR = by_p[p];\r\n    sort(all(LR),\r\n  \
+    \       [](auto& x, auto& y) { return P(x.fi, -x.se) < P(y.fi, -y.se); });\r\n\
+    \    int r = -1;\r\n    for (auto&& lr: LR) {\r\n      if (chmax(r, lr.se) &&\
+    \ !done.count(lr)) {\r\n        done.insert(lr);\r\n        res.eb(p, lr.fi, lr.se);\r\
+    \n      }\r\n    }\r\n  }\r\n  return res;\r\n}\r\n#line 5 \"test/library_checker/string/run_enumerate.test.cpp\"\
     \n\r\nvoid solve() {\r\n  STR(S);\r\n  auto ANS = run_enumerate(S);\r\n  print(len(ANS));\r\
     \n  for (auto&& [p, l, r]: ANS) print(p, l, r);\r\n}\r\n\r\nsigned main() {\r\n\
     \  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
@@ -240,7 +240,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/run_enumerate.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 15:15:17+09:00'
+  timestamp: '2023-11-06 15:47:15+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/string/run_enumerate.test.cpp

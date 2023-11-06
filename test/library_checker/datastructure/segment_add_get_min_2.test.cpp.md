@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -136,27 +136,27 @@ data:
     \ {\r\n  template <typename U>\r\n  static std::true_type test(decltype(&U::read)\
     \ *);\r\n  template <typename>\r\n  static std::false_type test(...);\r\n  using\
     \ type = decltype(test<T>(nullptr));\r\n  static constexpr bool value = type::value;\r\
-    \n};\r\n\r\ntemplate <typename T>\r\nenable_if<has_read_method<T>::value, void>::type\
-    \ rd(T &x) {\r\n  x.read();\r\n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class...\
-    \ T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const\
-    \ char c) {\r\n  if (obufi == BSZ) flush();\r\n  obuf[obufi++] = c;\r\n}\r\nvoid\
-    \ wt(const string &s) {\r\n  for (char c: s) wt(c);\r\n}\r\n\r\ntemplate <typename\
-    \ T>\r\nvoid wt_integer(T x) {\r\n  if (obufi > BSZ - 100) flush();\r\n  if (x\
-    \ < 0) { obuf[obufi++] = '-', x = -x; }\r\n  for (outi = 96; x >= 10000; outi\
-    \ -= 4) {\r\n    memcpy(out + outi, pre.num[x % 10000], 4);\r\n    x /= 10000;\r\
-    \n  }\r\n  if (x >= 1000) {\r\n    memcpy(obuf + obufi, pre.num[x], 4);\r\n  \
-    \  obufi += 4;\r\n  } else if (x >= 100) {\r\n    memcpy(obuf + obufi, pre.num[x]\
-    \ + 1, 3);\r\n    obufi += 3;\r\n  } else if (x >= 10) {\r\n    int q = (x * 103)\
-    \ >> 10;\r\n    obuf[obufi] = q | '0';\r\n    obuf[obufi + 1] = (x - q * 10) |\
-    \ '0';\r\n    obufi += 2;\r\n  } else\r\n    obuf[obufi++] = x | '0';\r\n  memcpy(obuf\
-    \ + obufi, out + outi + 4, 96 - outi);\r\n  obufi += 96 - outi;\r\n}\r\n\r\ntemplate\
-    \ <typename T>\r\nvoid wt_real(T x) {\r\n  ostringstream oss;\r\n  oss << fixed\
-    \ << setprecision(15) << double(x);\r\n  string s = oss.str();\r\n  wt(s);\r\n\
-    }\r\n\r\nvoid wt(int x) { wt_integer(x); }\r\nvoid wt(ll x) { wt_integer(x); }\r\
-    \nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\n\
-    void wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\nvoid\
-    \ wt(double x) { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\nvoid\
-    \ wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid wt(const\
+    \n};\r\n\r\ntemplate <typename T>\r\ntypename enable_if<has_read_method<T>::value,\
+    \ void>::type rd(T &x) {\r\n  x.read();\r\n}\r\n\r\nvoid read() {}\r\ntemplate\
+    \ <class H, class... T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\
+    \n}\r\n\r\nvoid wt(const char c) {\r\n  if (obufi == BSZ) flush();\r\n  obuf[obufi++]\
+    \ = c;\r\n}\r\nvoid wt(const string &s) {\r\n  for (char c: s) wt(c);\r\n}\r\n\
+    \r\ntemplate <typename T>\r\nvoid wt_integer(T x) {\r\n  if (obufi > BSZ - 100)\
+    \ flush();\r\n  if (x < 0) { obuf[obufi++] = '-', x = -x; }\r\n  for (outi = 96;\
+    \ x >= 10000; outi -= 4) {\r\n    memcpy(out + outi, pre.num[x % 10000], 4);\r\
+    \n    x /= 10000;\r\n  }\r\n  if (x >= 1000) {\r\n    memcpy(obuf + obufi, pre.num[x],\
+    \ 4);\r\n    obufi += 4;\r\n  } else if (x >= 100) {\r\n    memcpy(obuf + obufi,\
+    \ pre.num[x] + 1, 3);\r\n    obufi += 3;\r\n  } else if (x >= 10) {\r\n    int\
+    \ q = (x * 103) >> 10;\r\n    obuf[obufi] = q | '0';\r\n    obuf[obufi + 1] =\
+    \ (x - q * 10) | '0';\r\n    obufi += 2;\r\n  } else\r\n    obuf[obufi++] = x\
+    \ | '0';\r\n  memcpy(obuf + obufi, out + outi + 4, 96 - outi);\r\n  obufi += 96\
+    \ - outi;\r\n}\r\n\r\ntemplate <typename T>\r\nvoid wt_real(T x) {\r\n  ostringstream\
+    \ oss;\r\n  oss << fixed << setprecision(15) << double(x);\r\n  string s = oss.str();\r\
+    \n  wt(s);\r\n}\r\n\r\nvoid wt(int x) { wt_integer(x); }\r\nvoid wt(ll x) { wt_integer(x);\
+    \ }\r\nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\
+    \nvoid wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\n\
+    void wt(double x) { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\n\
+    void wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid wt(const\
     \ pair<T, U> val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n  wt(val.second);\r\n\
     }\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const T t) {\r\n  if\
     \ constexpr (N < std::tuple_size<T>::value) {\r\n    if constexpr (N > 0) { wt('\
@@ -171,74 +171,75 @@ data:
     \n  static std::true_type test(decltype(&U::print) *);\r\n  template <typename>\r\
     \n  static std::false_type test(...);\r\n  using type = decltype(test<T>(nullptr));\r\
     \n  static constexpr bool value = type::value;\r\n};\r\n\r\ntemplate <typename\
-    \ T>\r\nenable_if<has_print_method<T>::value, void>::type wt(T x) {\r\n  x.print();\r\
-    \n}\r\n\r\nvoid print() { wt('\\n'); }\r\ntemplate <class Head, class... Tail>\r\
-    \nvoid print(Head &&head, Tail &&... tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail))\
-    \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
-    \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
-    \ }\r\n} // namespace fastio\r\n\r\nusing fastio::read;\r\nusing fastio::print;\r\
-    \nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\
-    \n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    \r\n#define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n \
-    \ read(name)\r\n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
-    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
-    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
-    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
-    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\n#line 1 \"convex/lichao.hpp\"\n// \u8A55\u4FA1\u70B9\u306F ll\u3001\
-    \u95A2\u6570\u306E\u5024\u306F T \u306B\u306A\u3063\u3066\u3044\u308B\n// evaluate\
-    \ \u3092\u66F8\u304D\u5909\u3048\u308B\u3068\u3001totally monotone \u306A\u95A2\
-    \u6570\u7FA4\u306B\u3082\u4F7F\u3048\u308B\ntemplate <typename T, bool COMPRESS,\
-    \ bool MINIMIZE>\nstruct LiChao_Tree {\n  using FUNC = pair<T, T>;\n  vc<FUNC>\
-    \ funcs;\n\n  static inline T evaluate(FUNC& f, ll x) { return f.fi * x + f.se;\
-    \ }\n\n  vc<ll> X;\n  ll lo, hi;\n  vc<int> FID;\n  int n, log, size;\n\n  inline\
-    \ int get_idx(ll x) {\n    if constexpr (COMPRESS) { return LB(X, x); }\n    assert(lo\
-    \ <= x && x < hi);\n    return x - lo;\n  }\n\n  template <typename XY>\n  LiChao_Tree(const\
-    \ vc<XY>& pts) {\n    static_assert(COMPRESS);\n    for (auto&& x: pts) X.eb(x);\n\
-    \    UNIQUE(X);\n    n = len(X), log = 1;\n    while ((1 << log) < n) ++log;\n\
-    \    size = 1 << log;\n    FID.assign(size << 1, -1);\n  }\n\n  LiChao_Tree(ll\
-    \ lo, ll hi) : lo(lo), hi(hi) {\n    static_assert(!COMPRESS);\n    n = hi - lo,\
-    \ log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    FID.assign(size\
-    \ << 1, -1);\n  }\n\n  void add_line(FUNC f) {\n    int fid = len(funcs);\n  \
-    \  funcs.eb(f);\n    return add_line_at(1, fid);\n  }\n  void add_segment(ll xl,\
-    \ ll xr, FUNC f) {\n    int fid = len(funcs);\n    funcs.eb(f);\n    xl = get_idx(xl),\
-    \ xr = get_idx(xr);\n    xl += size, xr += size;\n    while (xl < xr) {\n    \
-    \  if (xl & 1) add_line_at(xl++, fid);\n      if (xr & 1) add_line_at(--xr, fid);\n\
-    \      xl >>= 1, xr >>= 1;\n    }\n  }\n\n  // [fx, fid]\n  pair<T, int> query(ll\
-    \ x) {\n    x = get_idx(x);\n    int i = x + size;\n    pair<T, int> res;\n  \
-    \  if (!MINIMIZE) res = {-infty<T>, -1};\n    if (MINIMIZE) res = {infty<T>, -1};\n\
-    \    while (i) {\n      if (FID[i] != -1 && FID[i] != res.se) {\n        pair<T,\
-    \ int> res1 = {evaluate_inner(FID[i], x), FID[i]};\n        res = (MINIMIZE ?\
-    \ min(res, res1) : max(res, res1));\n      }\n      i >>= 1;\n    }\n    return\
-    \ res;\n  }\n\n  void add_line_at(int i, int fid) {\n    int upper_bit = 31 -\
-    \ __builtin_clz(i);\n    int l = (size >> upper_bit) * (i - (1 << upper_bit));\n\
-    \    int r = l + (size >> upper_bit);\n    while (l < r) {\n      int gid = FID[i];\n\
-    \      T fl = evaluate_inner(fid, l), fr = evaluate_inner(fid, r - 1);\n     \
-    \ T gl = evaluate_inner(gid, l), gr = evaluate_inner(gid, r - 1);\n      bool\
-    \ bl = (MINIMIZE ? fl < gl : fl > gl);\n      bool br = (MINIMIZE ? fr < gr :\
-    \ fr > gr);\n      if (bl && br) {\n        FID[i] = fid;\n        return;\n \
-    \     }\n      if (!bl && !br) return;\n      int m = (l + r) / 2;\n      T fm\
-    \ = evaluate_inner(fid, m), gm = evaluate_inner(gid, m);\n      bool bm = (MINIMIZE\
-    \ ? fm < gm : fm > gm);\n      if (bm) {\n        FID[i] = fid;\n        fid =\
-    \ gid;\n        if (!bl) { i = 2 * i + 0, r = m; }\n        if (bl) { i = 2 *\
-    \ i + 1, l = m; }\n      }\n      if (!bm) {\n        if (bl) { i = 2 * i + 0,\
-    \ r = m; }\n        if (!bl) { i = 2 * i + 1, l = m; }\n      }\n    }\n  }\n\n\
-    private:\n  T evaluate_inner(int fid, ll x) {\n    if (fid == -1) return (MINIMIZE\
-    \ ? infty<T> : -infty<T>);\n    return evaluate(funcs[fid], (COMPRESS ? X[min<int>(x,\
-    \ n - 1)] : x + lo));\n  }\n};\n#line 5 \"test/library_checker/datastructure/segment_add_get_min_2.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  using T = tuple<int, int, int, int, ll>;\n\
-    \  vc<T> query;\n  query.reserve(N + Q);\n  FOR(N) {\n    LL(l, r, a, b);\n  \
-    \  query.eb(0, l, r, a, b);\n  }\n  vc<int> points;\n  FOR(Q) {\n    INT(t);\n\
-    \    if (t == 0) {\n      LL(l, r, a, b);\n      query.eb(0, l, r, a, b);\n  \
-    \  }\n    if (t == 1) {\n      INT(x);\n      query.eb(1, x, 0, 0, 0);\n     \
-    \ points.eb(x);\n    }\n  }\n  LiChao_Tree<ll, 1, 1> X(points);\n  for (auto&&\
-    \ [t, l, r, a, b]: query) {\n    if (t == 0) X.add_segment(l, r, {a, b});\n  \
-    \  if (t == 1) {\n      auto [fval, fid] = X.query(l);\n      if (fid == -1) print(\"\
-    INFINITY\");\n      if (fid != -1) print(fval);\n    }\n  }\n}\n\nsigned main()\
-    \ {\n  solve();\n  return 0;\n}\n"
+    \ T>\r\ntypename enable_if<has_print_method<T>::value, void>::type wt(T x) {\r\
+    \n  x.print();\r\n}\r\n\r\nvoid print() { wt('\\n'); }\r\ntemplate <class Head,\
+    \ class... Tail>\r\nvoid print(Head &&head, Tail &&... tail) {\r\n  wt(head);\r\
+    \n  if (sizeof...(Tail)) wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\
+    \r\n// gcc expansion. called automaticall after main.\r\nvoid __attribute__((destructor))\
+    \ _d() { flush(); }\r\n} // namespace fastio\r\n\r\nusing fastio::read;\r\nusing\
+    \ fastio::print;\r\nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int\
+    \ __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__;\
+    \ \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n  string __VA_ARGS__;\
+    \ \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\
+    \r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n  double __VA_ARGS__; \\\
+    \r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name, size) \\\r\n  vector<type>\
+    \ name(size);    \\\r\n  read(name)\r\n#define VV(type, name, h, w)          \
+    \           \\\r\n  vector<vector<type>> name(h, vector<type>(w)); \\\r\n  read(name)\r\
+    \n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t\
+    \ = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\
+    \nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\"\
+    \ : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\n#line 1 \"convex/lichao.hpp\"\
+    \n// \u8A55\u4FA1\u70B9\u306F ll\u3001\u95A2\u6570\u306E\u5024\u306F T \u306B\u306A\
+    \u3063\u3066\u3044\u308B\n// evaluate \u3092\u66F8\u304D\u5909\u3048\u308B\u3068\
+    \u3001totally monotone \u306A\u95A2\u6570\u7FA4\u306B\u3082\u4F7F\u3048\u308B\n\
+    template <typename T, bool COMPRESS, bool MINIMIZE>\nstruct LiChao_Tree {\n  using\
+    \ FUNC = pair<T, T>;\n  vc<FUNC> funcs;\n\n  static inline T evaluate(FUNC& f,\
+    \ ll x) { return f.fi * x + f.se; }\n\n  vc<ll> X;\n  ll lo, hi;\n  vc<int> FID;\n\
+    \  int n, log, size;\n\n  inline int get_idx(ll x) {\n    if constexpr (COMPRESS)\
+    \ { return LB(X, x); }\n    assert(lo <= x && x < hi);\n    return x - lo;\n \
+    \ }\n\n  template <typename XY>\n  LiChao_Tree(const vc<XY>& pts) {\n    static_assert(COMPRESS);\n\
+    \    for (auto&& x: pts) X.eb(x);\n    UNIQUE(X);\n    n = len(X), log = 1;\n\
+    \    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    FID.assign(size\
+    \ << 1, -1);\n  }\n\n  LiChao_Tree(ll lo, ll hi) : lo(lo), hi(hi) {\n    static_assert(!COMPRESS);\n\
+    \    n = hi - lo, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 <<\
+    \ log;\n    FID.assign(size << 1, -1);\n  }\n\n  void add_line(FUNC f) {\n   \
+    \ int fid = len(funcs);\n    funcs.eb(f);\n    return add_line_at(1, fid);\n \
+    \ }\n  void add_segment(ll xl, ll xr, FUNC f) {\n    int fid = len(funcs);\n \
+    \   funcs.eb(f);\n    xl = get_idx(xl), xr = get_idx(xr);\n    xl += size, xr\
+    \ += size;\n    while (xl < xr) {\n      if (xl & 1) add_line_at(xl++, fid);\n\
+    \      if (xr & 1) add_line_at(--xr, fid);\n      xl >>= 1, xr >>= 1;\n    }\n\
+    \  }\n\n  // [fx, fid]\n  pair<T, int> query(ll x) {\n    x = get_idx(x);\n  \
+    \  int i = x + size;\n    pair<T, int> res;\n    if (!MINIMIZE) res = {-infty<T>,\
+    \ -1};\n    if (MINIMIZE) res = {infty<T>, -1};\n    while (i) {\n      if (FID[i]\
+    \ != -1 && FID[i] != res.se) {\n        pair<T, int> res1 = {evaluate_inner(FID[i],\
+    \ x), FID[i]};\n        res = (MINIMIZE ? min(res, res1) : max(res, res1));\n\
+    \      }\n      i >>= 1;\n    }\n    return res;\n  }\n\n  void add_line_at(int\
+    \ i, int fid) {\n    int upper_bit = 31 - __builtin_clz(i);\n    int l = (size\
+    \ >> upper_bit) * (i - (1 << upper_bit));\n    int r = l + (size >> upper_bit);\n\
+    \    while (l < r) {\n      int gid = FID[i];\n      T fl = evaluate_inner(fid,\
+    \ l), fr = evaluate_inner(fid, r - 1);\n      T gl = evaluate_inner(gid, l), gr\
+    \ = evaluate_inner(gid, r - 1);\n      bool bl = (MINIMIZE ? fl < gl : fl > gl);\n\
+    \      bool br = (MINIMIZE ? fr < gr : fr > gr);\n      if (bl && br) {\n    \
+    \    FID[i] = fid;\n        return;\n      }\n      if (!bl && !br) return;\n\
+    \      int m = (l + r) / 2;\n      T fm = evaluate_inner(fid, m), gm = evaluate_inner(gid,\
+    \ m);\n      bool bm = (MINIMIZE ? fm < gm : fm > gm);\n      if (bm) {\n    \
+    \    FID[i] = fid;\n        fid = gid;\n        if (!bl) { i = 2 * i + 0, r =\
+    \ m; }\n        if (bl) { i = 2 * i + 1, l = m; }\n      }\n      if (!bm) {\n\
+    \        if (bl) { i = 2 * i + 0, r = m; }\n        if (!bl) { i = 2 * i + 1,\
+    \ l = m; }\n      }\n    }\n  }\n\nprivate:\n  T evaluate_inner(int fid, ll x)\
+    \ {\n    if (fid == -1) return (MINIMIZE ? infty<T> : -infty<T>);\n    return\
+    \ evaluate(funcs[fid], (COMPRESS ? X[min<int>(x, n - 1)] : x + lo));\n  }\n};\n\
+    #line 5 \"test/library_checker/datastructure/segment_add_get_min_2.test.cpp\"\n\
+    \nvoid solve() {\n  LL(N, Q);\n  using T = tuple<int, int, int, int, ll>;\n  vc<T>\
+    \ query;\n  query.reserve(N + Q);\n  FOR(N) {\n    LL(l, r, a, b);\n    query.eb(0,\
+    \ l, r, a, b);\n  }\n  vc<int> points;\n  FOR(Q) {\n    INT(t);\n    if (t ==\
+    \ 0) {\n      LL(l, r, a, b);\n      query.eb(0, l, r, a, b);\n    }\n    if (t\
+    \ == 1) {\n      INT(x);\n      query.eb(1, x, 0, 0, 0);\n      points.eb(x);\n\
+    \    }\n  }\n  LiChao_Tree<ll, 1, 1> X(points);\n  for (auto&& [t, l, r, a, b]:\
+    \ query) {\n    if (t == 0) X.add_segment(l, r, {a, b});\n    if (t == 1) {\n\
+    \      auto [fval, fid] = X.query(l);\n      if (fid == -1) print(\"INFINITY\"\
+    );\n      if (fid != -1) print(fval);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/segment_add_get_min\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"convex/lichao.hpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  using T = tuple<int, int, int, int, ll>;\n\
@@ -258,7 +259,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/segment_add_get_min_2.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 15:15:17+09:00'
+  timestamp: '2023-11-06 15:47:15+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/segment_add_get_min_2.test.cpp

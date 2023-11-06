@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':x:'
@@ -138,27 +138,27 @@ data:
     \ {\r\n  template <typename U>\r\n  static std::true_type test(decltype(&U::read)\
     \ *);\r\n  template <typename>\r\n  static std::false_type test(...);\r\n  using\
     \ type = decltype(test<T>(nullptr));\r\n  static constexpr bool value = type::value;\r\
-    \n};\r\n\r\ntemplate <typename T>\r\nenable_if<has_read_method<T>::value, void>::type\
-    \ rd(T &x) {\r\n  x.read();\r\n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class...\
-    \ T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const\
-    \ char c) {\r\n  if (obufi == BSZ) flush();\r\n  obuf[obufi++] = c;\r\n}\r\nvoid\
-    \ wt(const string &s) {\r\n  for (char c: s) wt(c);\r\n}\r\n\r\ntemplate <typename\
-    \ T>\r\nvoid wt_integer(T x) {\r\n  if (obufi > BSZ - 100) flush();\r\n  if (x\
-    \ < 0) { obuf[obufi++] = '-', x = -x; }\r\n  for (outi = 96; x >= 10000; outi\
-    \ -= 4) {\r\n    memcpy(out + outi, pre.num[x % 10000], 4);\r\n    x /= 10000;\r\
-    \n  }\r\n  if (x >= 1000) {\r\n    memcpy(obuf + obufi, pre.num[x], 4);\r\n  \
-    \  obufi += 4;\r\n  } else if (x >= 100) {\r\n    memcpy(obuf + obufi, pre.num[x]\
-    \ + 1, 3);\r\n    obufi += 3;\r\n  } else if (x >= 10) {\r\n    int q = (x * 103)\
-    \ >> 10;\r\n    obuf[obufi] = q | '0';\r\n    obuf[obufi + 1] = (x - q * 10) |\
-    \ '0';\r\n    obufi += 2;\r\n  } else\r\n    obuf[obufi++] = x | '0';\r\n  memcpy(obuf\
-    \ + obufi, out + outi + 4, 96 - outi);\r\n  obufi += 96 - outi;\r\n}\r\n\r\ntemplate\
-    \ <typename T>\r\nvoid wt_real(T x) {\r\n  ostringstream oss;\r\n  oss << fixed\
-    \ << setprecision(15) << double(x);\r\n  string s = oss.str();\r\n  wt(s);\r\n\
-    }\r\n\r\nvoid wt(int x) { wt_integer(x); }\r\nvoid wt(ll x) { wt_integer(x); }\r\
-    \nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\n\
-    void wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\nvoid\
-    \ wt(double x) { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\nvoid\
-    \ wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid wt(const\
+    \n};\r\n\r\ntemplate <typename T>\r\ntypename enable_if<has_read_method<T>::value,\
+    \ void>::type rd(T &x) {\r\n  x.read();\r\n}\r\n\r\nvoid read() {}\r\ntemplate\
+    \ <class H, class... T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\
+    \n}\r\n\r\nvoid wt(const char c) {\r\n  if (obufi == BSZ) flush();\r\n  obuf[obufi++]\
+    \ = c;\r\n}\r\nvoid wt(const string &s) {\r\n  for (char c: s) wt(c);\r\n}\r\n\
+    \r\ntemplate <typename T>\r\nvoid wt_integer(T x) {\r\n  if (obufi > BSZ - 100)\
+    \ flush();\r\n  if (x < 0) { obuf[obufi++] = '-', x = -x; }\r\n  for (outi = 96;\
+    \ x >= 10000; outi -= 4) {\r\n    memcpy(out + outi, pre.num[x % 10000], 4);\r\
+    \n    x /= 10000;\r\n  }\r\n  if (x >= 1000) {\r\n    memcpy(obuf + obufi, pre.num[x],\
+    \ 4);\r\n    obufi += 4;\r\n  } else if (x >= 100) {\r\n    memcpy(obuf + obufi,\
+    \ pre.num[x] + 1, 3);\r\n    obufi += 3;\r\n  } else if (x >= 10) {\r\n    int\
+    \ q = (x * 103) >> 10;\r\n    obuf[obufi] = q | '0';\r\n    obuf[obufi + 1] =\
+    \ (x - q * 10) | '0';\r\n    obufi += 2;\r\n  } else\r\n    obuf[obufi++] = x\
+    \ | '0';\r\n  memcpy(obuf + obufi, out + outi + 4, 96 - outi);\r\n  obufi += 96\
+    \ - outi;\r\n}\r\n\r\ntemplate <typename T>\r\nvoid wt_real(T x) {\r\n  ostringstream\
+    \ oss;\r\n  oss << fixed << setprecision(15) << double(x);\r\n  string s = oss.str();\r\
+    \n  wt(s);\r\n}\r\n\r\nvoid wt(int x) { wt_integer(x); }\r\nvoid wt(ll x) { wt_integer(x);\
+    \ }\r\nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\
+    \nvoid wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\n\
+    void wt(double x) { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\n\
+    void wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid wt(const\
     \ pair<T, U> val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n  wt(val.second);\r\n\
     }\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const T t) {\r\n  if\
     \ constexpr (N < std::tuple_size<T>::value) {\r\n    if constexpr (N > 0) { wt('\
@@ -173,59 +173,60 @@ data:
     \n  static std::true_type test(decltype(&U::print) *);\r\n  template <typename>\r\
     \n  static std::false_type test(...);\r\n  using type = decltype(test<T>(nullptr));\r\
     \n  static constexpr bool value = type::value;\r\n};\r\n\r\ntemplate <typename\
-    \ T>\r\nenable_if<has_print_method<T>::value, void>::type wt(T x) {\r\n  x.print();\r\
-    \n}\r\n\r\nvoid print() { wt('\\n'); }\r\ntemplate <class Head, class... Tail>\r\
-    \nvoid print(Head &&head, Tail &&... tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail))\
-    \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
-    \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
-    \ }\r\n} // namespace fastio\r\n\r\nusing fastio::read;\r\nusing fastio::print;\r\
-    \nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\
-    \n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    \r\n#define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n \
-    \ read(name)\r\n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
-    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
-    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
-    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
-    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\n\
-    struct Monoid_Add {\r\n  using value_type = X;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"string/trie.hpp\"\
-    \n\r\ntemplate <int sigma>\r\nstruct Trie {\r\n  using ARR = array<int, sigma>;\r\
-    \n  int n_node;\r\n  vc<ARR> TO;\r\n  vc<int> parent;\r\n  vc<int> suffix_link;\r\
-    \n  vc<int> words;\r\n  vc<int> BFS; // BFS \u9806\r\n\r\n  Trie() {\r\n    n_node\
-    \ = 0;\r\n    new_node();\r\n  }\r\n\r\n  template <typename STRING>\r\n  int\
-    \ add(STRING S, int off) {\r\n    int v = 0;\r\n    for (auto&& ss: S) {\r\n \
-    \     int s = ss - off;\r\n      assert(0 <= s && s < sigma);\r\n      if (TO[v][s]\
-    \ == -1) {\r\n        TO[v][s] = new_node();\r\n        parent.back() = v;\r\n\
-    \      }\r\n      v = TO[v][s];\r\n    }\r\n    words.eb(v);\r\n    return v;\r\
-    \n  }\r\n\r\n  int add_char(int v, int c, int off) {\r\n    c -= off;\r\n    if\
-    \ (TO[v][c] != -1) return TO[v][c];\r\n    TO[v][c] = new_node();\r\n    parent.back()\
-    \ = v;\r\n    return TO[v][c];\r\n  }\r\n\r\n  void calc_suffix_link(bool upd_TO)\
-    \ {\r\n    suffix_link.assign(n_node, -1);\r\n    BFS.resize(n_node);\r\n    int\
-    \ p = 0, q = 0;\r\n    BFS[q++] = 0;\r\n    while (p < q) {\r\n      int v = BFS[p++];\r\
-    \n      FOR(s, sigma) {\r\n        int w = TO[v][s];\r\n        if (w == -1) continue;\r\
-    \n        BFS[q++] = w;\r\n        int f = suffix_link[v];\r\n        while (f\
-    \ != -1 && TO[f][s] == -1) f = suffix_link[f];\r\n        suffix_link[w] = (f\
-    \ == -1 ? 0 : TO[f][s]);\r\n      }\r\n    }\r\n    if (!upd_TO) return;\r\n \
-    \   for (auto&& v: BFS) {\r\n      FOR(s, sigma) if (TO[v][s] == -1) {\r\n   \
-    \     int f = suffix_link[v];\r\n        TO[v][s] = (f == -1 ? 0 : TO[f][s]);\r\
-    \n      }\r\n    }\r\n  }\r\n\r\n  vc<int> calc_count() {\r\n    assert(!suffix_link.empty());\r\
-    \n    vc<int> count(n_node);\r\n    for (auto&& x: words) count[x]++;\r\n    for\
-    \ (auto&& v: BFS)\r\n      if (v) { count[v] += count[suffix_link[v]]; }\r\n \
-    \   return count;\r\n  }\r\n\r\nprivate:\r\n  int new_node() {\r\n    parent.eb(-1);\r\
-    \n    TO.eb(ARR{});\r\n    fill(all(TO.back()), -1);\r\n    return n_node++;\r\
-    \n  }\r\n};\r\n#line 5 \"test_atcoder/abc268_ex.test.cpp\"\n\nvoid solve() {\n\
-    \  STR(S);\n  LL(N);\n  Trie<26> X;\n  FOR(N) {\n    STR(T);\n    X.add(T, 'a');\n\
-    \  }\n  X.calc_suffix_link(1);\n  auto CNT = X.calc_count();\n\n  ll ANS = 0;\n\
-    \  int v = 0;\n  for (auto&& x: S) {\n    v = X.TO[v][x - 'a'];\n    if (CNT[v])\
-    \ {\n      ++ANS;\n      v = 0;\n    }\n  }\n  print(ANS);\n}\n\nsigned main()\
-    \ {\n  solve();\n  return 0;\n}\n"
+    \ T>\r\ntypename enable_if<has_print_method<T>::value, void>::type wt(T x) {\r\
+    \n  x.print();\r\n}\r\n\r\nvoid print() { wt('\\n'); }\r\ntemplate <class Head,\
+    \ class... Tail>\r\nvoid print(Head &&head, Tail &&... tail) {\r\n  wt(head);\r\
+    \n  if (sizeof...(Tail)) wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\
+    \r\n// gcc expansion. called automaticall after main.\r\nvoid __attribute__((destructor))\
+    \ _d() { flush(); }\r\n} // namespace fastio\r\n\r\nusing fastio::read;\r\nusing\
+    \ fastio::print;\r\nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int\
+    \ __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__;\
+    \ \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n  string __VA_ARGS__;\
+    \ \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\
+    \r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n  double __VA_ARGS__; \\\
+    \r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name, size) \\\r\n  vector<type>\
+    \ name(size);    \\\r\n  read(name)\r\n#define VV(type, name, h, w)          \
+    \           \\\r\n  vector<vector<type>> name(h, vector<type>(w)); \\\r\n  read(name)\r\
+    \n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t\
+    \ = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\
+    \nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\"\
+    \ : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\n#line 2 \"alg/monoid/add.hpp\"\
+    \n\r\ntemplate <typename X>\r\nstruct Monoid_Add {\r\n  using value_type = X;\r\
+    \n  static constexpr X op(const X &x, const X &y) noexcept { return x + y; }\r\
+    \n  static constexpr X inverse(const X &x) noexcept { return -x; }\r\n  static\
+    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\n  static\
+    \ constexpr X unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\
+    \n};\r\n#line 2 \"string/trie.hpp\"\n\r\ntemplate <int sigma>\r\nstruct Trie {\r\
+    \n  using ARR = array<int, sigma>;\r\n  int n_node;\r\n  vc<ARR> TO;\r\n  vc<int>\
+    \ parent;\r\n  vc<int> suffix_link;\r\n  vc<int> words;\r\n  vc<int> BFS; // BFS\
+    \ \u9806\r\n\r\n  Trie() {\r\n    n_node = 0;\r\n    new_node();\r\n  }\r\n\r\n\
+    \  template <typename STRING>\r\n  int add(STRING S, int off) {\r\n    int v =\
+    \ 0;\r\n    for (auto&& ss: S) {\r\n      int s = ss - off;\r\n      assert(0\
+    \ <= s && s < sigma);\r\n      if (TO[v][s] == -1) {\r\n        TO[v][s] = new_node();\r\
+    \n        parent.back() = v;\r\n      }\r\n      v = TO[v][s];\r\n    }\r\n  \
+    \  words.eb(v);\r\n    return v;\r\n  }\r\n\r\n  int add_char(int v, int c, int\
+    \ off) {\r\n    c -= off;\r\n    if (TO[v][c] != -1) return TO[v][c];\r\n    TO[v][c]\
+    \ = new_node();\r\n    parent.back() = v;\r\n    return TO[v][c];\r\n  }\r\n\r\
+    \n  void calc_suffix_link(bool upd_TO) {\r\n    suffix_link.assign(n_node, -1);\r\
+    \n    BFS.resize(n_node);\r\n    int p = 0, q = 0;\r\n    BFS[q++] = 0;\r\n  \
+    \  while (p < q) {\r\n      int v = BFS[p++];\r\n      FOR(s, sigma) {\r\n   \
+    \     int w = TO[v][s];\r\n        if (w == -1) continue;\r\n        BFS[q++]\
+    \ = w;\r\n        int f = suffix_link[v];\r\n        while (f != -1 && TO[f][s]\
+    \ == -1) f = suffix_link[f];\r\n        suffix_link[w] = (f == -1 ? 0 : TO[f][s]);\r\
+    \n      }\r\n    }\r\n    if (!upd_TO) return;\r\n    for (auto&& v: BFS) {\r\n\
+    \      FOR(s, sigma) if (TO[v][s] == -1) {\r\n        int f = suffix_link[v];\r\
+    \n        TO[v][s] = (f == -1 ? 0 : TO[f][s]);\r\n      }\r\n    }\r\n  }\r\n\r\
+    \n  vc<int> calc_count() {\r\n    assert(!suffix_link.empty());\r\n    vc<int>\
+    \ count(n_node);\r\n    for (auto&& x: words) count[x]++;\r\n    for (auto&& v:\
+    \ BFS)\r\n      if (v) { count[v] += count[suffix_link[v]]; }\r\n    return count;\r\
+    \n  }\r\n\r\nprivate:\r\n  int new_node() {\r\n    parent.eb(-1);\r\n    TO.eb(ARR{});\r\
+    \n    fill(all(TO.back()), -1);\r\n    return n_node++;\r\n  }\r\n};\r\n#line\
+    \ 5 \"test_atcoder/abc268_ex.test.cpp\"\n\nvoid solve() {\n  STR(S);\n  LL(N);\n\
+    \  Trie<26> X;\n  FOR(N) {\n    STR(T);\n    X.add(T, 'a');\n  }\n  X.calc_suffix_link(1);\n\
+    \  auto CNT = X.calc_count();\n\n  ll ANS = 0;\n  int v = 0;\n  for (auto&& x:\
+    \ S) {\n    v = X.TO[v][x - 'a'];\n    if (CNT[v]) {\n      ++ANS;\n      v =\
+    \ 0;\n    }\n  }\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc268/tasks/abc268_Ex\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"string/trie.hpp\"\
     \n\nvoid solve() {\n  STR(S);\n  LL(N);\n  Trie<26> X;\n  FOR(N) {\n    STR(T);\n\
@@ -241,7 +242,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc268_ex.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 15:15:17+09:00'
+  timestamp: '2023-11-06 15:47:15+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc268_ex.test.cpp

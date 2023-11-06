@@ -20,14 +20,14 @@ data:
   - icon: ':warning:'
     path: graph/implicit_graph/cograph_unionfind.hpp
     title: graph/implicit_graph/cograph_unionfind.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
   - icon: ':warning:'
     path: other/cuboid_union_volume.hpp
     title: other/cuboid_union_volume.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2251_1.test.cpp
     title: test/aoj/2251_1.test.cpp
   - icon: ':x:'
@@ -68,7 +68,7 @@ data:
     title: test_atcoder/abc256ex2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/fastset.hpp\"\n// 64-ary tree\r\n// space: (N/63) * u64\r\
@@ -151,7 +151,7 @@ data:
   - ds/incremental_rectangle_union.hpp
   - ds/sortable_array.hpp
   timestamp: '2023-11-06 14:40:18+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/sortable_array.test.cpp
   - test/library_checker/datastructure/predecessor_problem.test.cpp

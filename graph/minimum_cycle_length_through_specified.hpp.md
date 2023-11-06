@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: nt/GF2.hpp
     title: nt/GF2.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

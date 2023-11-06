@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -135,27 +135,27 @@ data:
     \ {\r\n  template <typename U>\r\n  static std::true_type test(decltype(&U::read)\
     \ *);\r\n  template <typename>\r\n  static std::false_type test(...);\r\n  using\
     \ type = decltype(test<T>(nullptr));\r\n  static constexpr bool value = type::value;\r\
-    \n};\r\n\r\ntemplate <typename T>\r\nenable_if<has_read_method<T>::value, void>::type\
-    \ rd(T &x) {\r\n  x.read();\r\n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class...\
-    \ T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const\
-    \ char c) {\r\n  if (obufi == BSZ) flush();\r\n  obuf[obufi++] = c;\r\n}\r\nvoid\
-    \ wt(const string &s) {\r\n  for (char c: s) wt(c);\r\n}\r\n\r\ntemplate <typename\
-    \ T>\r\nvoid wt_integer(T x) {\r\n  if (obufi > BSZ - 100) flush();\r\n  if (x\
-    \ < 0) { obuf[obufi++] = '-', x = -x; }\r\n  for (outi = 96; x >= 10000; outi\
-    \ -= 4) {\r\n    memcpy(out + outi, pre.num[x % 10000], 4);\r\n    x /= 10000;\r\
-    \n  }\r\n  if (x >= 1000) {\r\n    memcpy(obuf + obufi, pre.num[x], 4);\r\n  \
-    \  obufi += 4;\r\n  } else if (x >= 100) {\r\n    memcpy(obuf + obufi, pre.num[x]\
-    \ + 1, 3);\r\n    obufi += 3;\r\n  } else if (x >= 10) {\r\n    int q = (x * 103)\
-    \ >> 10;\r\n    obuf[obufi] = q | '0';\r\n    obuf[obufi + 1] = (x - q * 10) |\
-    \ '0';\r\n    obufi += 2;\r\n  } else\r\n    obuf[obufi++] = x | '0';\r\n  memcpy(obuf\
-    \ + obufi, out + outi + 4, 96 - outi);\r\n  obufi += 96 - outi;\r\n}\r\n\r\ntemplate\
-    \ <typename T>\r\nvoid wt_real(T x) {\r\n  ostringstream oss;\r\n  oss << fixed\
-    \ << setprecision(15) << double(x);\r\n  string s = oss.str();\r\n  wt(s);\r\n\
-    }\r\n\r\nvoid wt(int x) { wt_integer(x); }\r\nvoid wt(ll x) { wt_integer(x); }\r\
-    \nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\n\
-    void wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\nvoid\
-    \ wt(double x) { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\nvoid\
-    \ wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid wt(const\
+    \n};\r\n\r\ntemplate <typename T>\r\ntypename enable_if<has_read_method<T>::value,\
+    \ void>::type rd(T &x) {\r\n  x.read();\r\n}\r\n\r\nvoid read() {}\r\ntemplate\
+    \ <class H, class... T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\
+    \n}\r\n\r\nvoid wt(const char c) {\r\n  if (obufi == BSZ) flush();\r\n  obuf[obufi++]\
+    \ = c;\r\n}\r\nvoid wt(const string &s) {\r\n  for (char c: s) wt(c);\r\n}\r\n\
+    \r\ntemplate <typename T>\r\nvoid wt_integer(T x) {\r\n  if (obufi > BSZ - 100)\
+    \ flush();\r\n  if (x < 0) { obuf[obufi++] = '-', x = -x; }\r\n  for (outi = 96;\
+    \ x >= 10000; outi -= 4) {\r\n    memcpy(out + outi, pre.num[x % 10000], 4);\r\
+    \n    x /= 10000;\r\n  }\r\n  if (x >= 1000) {\r\n    memcpy(obuf + obufi, pre.num[x],\
+    \ 4);\r\n    obufi += 4;\r\n  } else if (x >= 100) {\r\n    memcpy(obuf + obufi,\
+    \ pre.num[x] + 1, 3);\r\n    obufi += 3;\r\n  } else if (x >= 10) {\r\n    int\
+    \ q = (x * 103) >> 10;\r\n    obuf[obufi] = q | '0';\r\n    obuf[obufi + 1] =\
+    \ (x - q * 10) | '0';\r\n    obufi += 2;\r\n  } else\r\n    obuf[obufi++] = x\
+    \ | '0';\r\n  memcpy(obuf + obufi, out + outi + 4, 96 - outi);\r\n  obufi += 96\
+    \ - outi;\r\n}\r\n\r\ntemplate <typename T>\r\nvoid wt_real(T x) {\r\n  ostringstream\
+    \ oss;\r\n  oss << fixed << setprecision(15) << double(x);\r\n  string s = oss.str();\r\
+    \n  wt(s);\r\n}\r\n\r\nvoid wt(int x) { wt_integer(x); }\r\nvoid wt(ll x) { wt_integer(x);\
+    \ }\r\nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\
+    \nvoid wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\n\
+    void wt(double x) { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\n\
+    void wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid wt(const\
     \ pair<T, U> val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n  wt(val.second);\r\n\
     }\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const T t) {\r\n  if\
     \ constexpr (N < std::tuple_size<T>::value) {\r\n    if constexpr (N > 0) { wt('\
@@ -170,78 +170,78 @@ data:
     \n  static std::true_type test(decltype(&U::print) *);\r\n  template <typename>\r\
     \n  static std::false_type test(...);\r\n  using type = decltype(test<T>(nullptr));\r\
     \n  static constexpr bool value = type::value;\r\n};\r\n\r\ntemplate <typename\
-    \ T>\r\nenable_if<has_print_method<T>::value, void>::type wt(T x) {\r\n  x.print();\r\
-    \n}\r\n\r\nvoid print() { wt('\\n'); }\r\ntemplate <class Head, class... Tail>\r\
-    \nvoid print(Head &&head, Tail &&... tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail))\
-    \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
-    \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
-    \ }\r\n} // namespace fastio\r\n\r\nusing fastio::read;\r\nusing fastio::print;\r\
-    \nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\
-    \n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    \r\n#define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n \
-    \ read(name)\r\n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
-    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
-    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
-    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
-    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\n#line 1 \"ds/kdtree/kdtree_monoid.hpp\"\ntemplate <class Monoid,\
-    \ typename XY>\r\nstruct KDTree_Monoid {\r\n  using MX = Monoid;\r\n  using X\
-    \ = typename MX::value_type;\r\n  static_assert(MX::commute);\r\n\r\n  // \u5C0F\
-    \u6570\u3082\u8003\u616E\u3059\u308B\u3068\u3001\u9589\u3067\u6301\u3064\u8A2D\
-    \u8A08\u65B9\u91DD\u306B\u306A\u308B\u3002\u305F\u3060\u3057\u3001\u30AF\u30A8\
-    \u30EA\u306F\u3044\u3064\u3082\u306E\u534A\u958B\u3092\u4F7F\u3046\r\n  vc<tuple<XY,\
-    \ XY, XY, XY>> closed_range;\r\n  vc<X> dat;\r\n  int n;\r\n\r\n  KDTree_Monoid(vc<XY>\
-    \ xs, vc<XY> ys, vc<X> vs) : n(len(xs)) {\r\n    assert(n > 0);\r\n    int log\
-    \ = 0;\r\n    while ((1 << log) < n) ++log;\r\n    dat.resize(1 << (log + 1));\r\
-    \n    closed_range.resize(1 << (log + 1));\r\n    build(1, xs, ys, vs);\r\n  }\r\
-    \n\r\n  void multiply(XY x, XY y, const X& v) { multiply_rec(1, x, y, v); }\r\n\
-    \r\n  // [xl, xr) x [yl, yr)\r\n  X prod(XY xl, XY xr, XY yl, XY yr) {\r\n   \
-    \ assert(xl <= xr && yl <= yr);\r\n    return prod_rec(1, xl, xr, yl, yr);\r\n\
-    \  }\r\n\r\n  X prod_all() { return dat[1]; }\r\n\r\nprivate:\r\n  void build(int\
-    \ idx, vc<XY> xs, vc<XY> ys, vc<X> vs, bool divx = true) {\r\n    int n = len(xs);\r\
-    \n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\n    xmin = ymin =\
-    \ infty<XY>;\r\n    xmax = ymax = -infty<XY>;\r\n\r\n    FOR(i, n) {\r\n     \
-    \ auto x = xs[i], y = ys[i];\r\n      chmin(xmin, x), chmax(xmax, x), chmin(ymin,\
-    \ y), chmax(ymax, y);\r\n    }\r\n    if (xmin == xmax && ymin == ymax) {\r\n\
-    \      X x = MX::unit();\r\n      for (auto&& v: vs) x = MX::op(x, v);\r\n   \
-    \   dat[idx] = x;\r\n      return;\r\n    }\r\n\r\n    int m = n / 2;\r\n    vc<int>\
-    \ I(n);\r\n    iota(all(I), 0);\r\n    if (divx) {\r\n      nth_element(I.begin(),\
-    \ I.begin() + m, I.end(),\r\n                  [xs](int i, int j) { return xs[i]\
-    \ < xs[j]; });\r\n    } else {\r\n      nth_element(I.begin(), I.begin() + m,\
-    \ I.end(),\r\n                  [ys](int i, int j) { return ys[i] < ys[j]; });\r\
-    \n    }\r\n    xs = rearrange(xs, I), ys = rearrange(ys, I), vs = rearrange(vs,\
-    \ I);\r\n    build(2 * idx + 0, {xs.begin(), xs.begin() + m},\r\n          {ys.begin(),\
-    \ ys.begin() + m}, {vs.begin(), vs.begin() + m}, !divx);\r\n    build(2 * idx\
-    \ + 1, {xs.begin() + m, xs.end()}, {ys.begin() + m, ys.end()},\r\n          {vs.begin()\
-    \ + m, vs.end()}, !divx);\r\n    dat[idx] = MX::op(dat[2 * idx + 0], dat[2 * idx\
-    \ + 1]);\r\n  }\r\n\r\n  inline bool is_leaf(int idx) {\r\n    auto& [xmin, xmax,\
-    \ ymin, ymax] = closed_range[idx];\r\n    return xmin == xmax && ymin == ymax;\r\
-    \n  }\r\n\r\n  inline bool isin(XY x, XY y, int idx) {\r\n    auto& [xmin, xmax,\
-    \ ymin, ymax] = closed_range[idx];\r\n    return (xmin <= x && x <= xmax && ymin\
-    \ <= y && y <= ymax);\r\n  }\r\n\r\n  bool multiply_rec(int idx, XY x, XY y, X\
-    \ v) {\r\n    if (!isin(x, y, idx)) return false;\r\n    if (is_leaf(idx)) {\r\
-    \n      dat[idx] = MX::op(dat[idx], v);\r\n      return true;\r\n    }\r\n   \
-    \ bool done = 0;\r\n    if (multiply_rec(2 * idx + 0, x, y, v)) done = 1;\r\n\
-    \    if (!done && multiply_rec(2 * idx + 1, x, y, v)) done = 1;\r\n    if (done)\
-    \ { dat[idx] = MX::op(dat[2 * idx + 0], dat[2 * idx + 1]); }\r\n    return done;\r\
-    \n  }\r\n\r\n  X prod_rec(int idx, XY x1, XY x2, XY y1, XY y2) {\r\n    auto&\
-    \ [xmin, xmax, ymin, ymax] = closed_range[idx];\r\n    if (x2 <= xmin || xmax\
-    \ < x1) return MX::unit();\r\n    if (y2 <= ymin || ymax < y1) return MX::unit();\r\
-    \n    if (x1 <= xmin && xmax < x2 && y1 <= ymin && ymax < y2) { return dat[idx];\
-    \ }\r\n    return MX::op(prod_rec(2 * idx + 0, x1, x2, y1, y2),\r\n          \
-    \        prod_rec(2 * idx + 1, x1, x2, y1, y2));\r\n  }\r\n};\r\n#line 6 \"test/aoj/DSL_2_C.test.cpp\"\
-    \n\nstruct Mono {\n  using value_type = vc<int>;\n  using X = value_type;\n  static\
-    \ X op(X x, X y) {\n    x.insert(x.end(), all(y));\n    return x;\n  }\n  static\
-    \ X unit() { return {}; }\n  static constexpr bool commute = 1;\n};\n\nvoid solve()\
-    \ {\n  LL(N);\n  vi X, Y;\n  vvc<int> idx(N);\n  FOR(i, N) {\n    LL(x, y);\n\
-    \    X.eb(x);\n    Y.eb(y);\n    idx[i].eb(i);\n  }\n  KDTree_Monoid<Mono, ll>\
-    \ KDT(X, Y, idx);\n\n  LL(Q);\n  FOR(Q) {\n    LL(xl, xr, yl, yr);\n    auto e\
-    \ = KDT.prod(xl, xr + 1, yl, yr + 1);\n    sort(all(e));\n    for (auto&& v: e)\
-    \ print(v);\n    print();\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n\
-    }\n"
+    \ T>\r\ntypename enable_if<has_print_method<T>::value, void>::type wt(T x) {\r\
+    \n  x.print();\r\n}\r\n\r\nvoid print() { wt('\\n'); }\r\ntemplate <class Head,\
+    \ class... Tail>\r\nvoid print(Head &&head, Tail &&... tail) {\r\n  wt(head);\r\
+    \n  if (sizeof...(Tail)) wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\
+    \r\n// gcc expansion. called automaticall after main.\r\nvoid __attribute__((destructor))\
+    \ _d() { flush(); }\r\n} // namespace fastio\r\n\r\nusing fastio::read;\r\nusing\
+    \ fastio::print;\r\nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int\
+    \ __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__;\
+    \ \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n  string __VA_ARGS__;\
+    \ \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\
+    \r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n  double __VA_ARGS__; \\\
+    \r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name, size) \\\r\n  vector<type>\
+    \ name(size);    \\\r\n  read(name)\r\n#define VV(type, name, h, w)          \
+    \           \\\r\n  vector<vector<type>> name(h, vector<type>(w)); \\\r\n  read(name)\r\
+    \n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t\
+    \ = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\
+    \nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\"\
+    \ : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\n#line 1 \"ds/kdtree/kdtree_monoid.hpp\"\
+    \ntemplate <class Monoid, typename XY>\r\nstruct KDTree_Monoid {\r\n  using MX\
+    \ = Monoid;\r\n  using X = typename MX::value_type;\r\n  static_assert(MX::commute);\r\
+    \n\r\n  // \u5C0F\u6570\u3082\u8003\u616E\u3059\u308B\u3068\u3001\u9589\u3067\u6301\
+    \u3064\u8A2D\u8A08\u65B9\u91DD\u306B\u306A\u308B\u3002\u305F\u3060\u3057\u3001\
+    \u30AF\u30A8\u30EA\u306F\u3044\u3064\u3082\u306E\u534A\u958B\u3092\u4F7F\u3046\
+    \r\n  vc<tuple<XY, XY, XY, XY>> closed_range;\r\n  vc<X> dat;\r\n  int n;\r\n\r\
+    \n  KDTree_Monoid(vc<XY> xs, vc<XY> ys, vc<X> vs) : n(len(xs)) {\r\n    assert(n\
+    \ > 0);\r\n    int log = 0;\r\n    while ((1 << log) < n) ++log;\r\n    dat.resize(1\
+    \ << (log + 1));\r\n    closed_range.resize(1 << (log + 1));\r\n    build(1, xs,\
+    \ ys, vs);\r\n  }\r\n\r\n  void multiply(XY x, XY y, const X& v) { multiply_rec(1,\
+    \ x, y, v); }\r\n\r\n  // [xl, xr) x [yl, yr)\r\n  X prod(XY xl, XY xr, XY yl,\
+    \ XY yr) {\r\n    assert(xl <= xr && yl <= yr);\r\n    return prod_rec(1, xl,\
+    \ xr, yl, yr);\r\n  }\r\n\r\n  X prod_all() { return dat[1]; }\r\n\r\nprivate:\r\
+    \n  void build(int idx, vc<XY> xs, vc<XY> ys, vc<X> vs, bool divx = true) {\r\n\
+    \    int n = len(xs);\r\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\
+    \n    xmin = ymin = infty<XY>;\r\n    xmax = ymax = -infty<XY>;\r\n\r\n    FOR(i,\
+    \ n) {\r\n      auto x = xs[i], y = ys[i];\r\n      chmin(xmin, x), chmax(xmax,\
+    \ x), chmin(ymin, y), chmax(ymax, y);\r\n    }\r\n    if (xmin == xmax && ymin\
+    \ == ymax) {\r\n      X x = MX::unit();\r\n      for (auto&& v: vs) x = MX::op(x,\
+    \ v);\r\n      dat[idx] = x;\r\n      return;\r\n    }\r\n\r\n    int m = n /\
+    \ 2;\r\n    vc<int> I(n);\r\n    iota(all(I), 0);\r\n    if (divx) {\r\n     \
+    \ nth_element(I.begin(), I.begin() + m, I.end(),\r\n                  [xs](int\
+    \ i, int j) { return xs[i] < xs[j]; });\r\n    } else {\r\n      nth_element(I.begin(),\
+    \ I.begin() + m, I.end(),\r\n                  [ys](int i, int j) { return ys[i]\
+    \ < ys[j]; });\r\n    }\r\n    xs = rearrange(xs, I), ys = rearrange(ys, I), vs\
+    \ = rearrange(vs, I);\r\n    build(2 * idx + 0, {xs.begin(), xs.begin() + m},\r\
+    \n          {ys.begin(), ys.begin() + m}, {vs.begin(), vs.begin() + m}, !divx);\r\
+    \n    build(2 * idx + 1, {xs.begin() + m, xs.end()}, {ys.begin() + m, ys.end()},\r\
+    \n          {vs.begin() + m, vs.end()}, !divx);\r\n    dat[idx] = MX::op(dat[2\
+    \ * idx + 0], dat[2 * idx + 1]);\r\n  }\r\n\r\n  inline bool is_leaf(int idx)\
+    \ {\r\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\n    return xmin\
+    \ == xmax && ymin == ymax;\r\n  }\r\n\r\n  inline bool isin(XY x, XY y, int idx)\
+    \ {\r\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\n    return (xmin\
+    \ <= x && x <= xmax && ymin <= y && y <= ymax);\r\n  }\r\n\r\n  bool multiply_rec(int\
+    \ idx, XY x, XY y, X v) {\r\n    if (!isin(x, y, idx)) return false;\r\n    if\
+    \ (is_leaf(idx)) {\r\n      dat[idx] = MX::op(dat[idx], v);\r\n      return true;\r\
+    \n    }\r\n    bool done = 0;\r\n    if (multiply_rec(2 * idx + 0, x, y, v)) done\
+    \ = 1;\r\n    if (!done && multiply_rec(2 * idx + 1, x, y, v)) done = 1;\r\n \
+    \   if (done) { dat[idx] = MX::op(dat[2 * idx + 0], dat[2 * idx + 1]); }\r\n \
+    \   return done;\r\n  }\r\n\r\n  X prod_rec(int idx, XY x1, XY x2, XY y1, XY y2)\
+    \ {\r\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\n    if (x2 <=\
+    \ xmin || xmax < x1) return MX::unit();\r\n    if (y2 <= ymin || ymax < y1) return\
+    \ MX::unit();\r\n    if (x1 <= xmin && xmax < x2 && y1 <= ymin && ymax < y2) {\
+    \ return dat[idx]; }\r\n    return MX::op(prod_rec(2 * idx + 0, x1, x2, y1, y2),\r\
+    \n                  prod_rec(2 * idx + 1, x1, x2, y1, y2));\r\n  }\r\n};\r\n#line\
+    \ 6 \"test/aoj/DSL_2_C.test.cpp\"\n\nstruct Mono {\n  using value_type = vc<int>;\n\
+    \  using X = value_type;\n  static X op(X x, X y) {\n    x.insert(x.end(), all(y));\n\
+    \    return x;\n  }\n  static X unit() { return {}; }\n  static constexpr bool\
+    \ commute = 1;\n};\n\nvoid solve() {\n  LL(N);\n  vi X, Y;\n  vvc<int> idx(N);\n\
+    \  FOR(i, N) {\n    LL(x, y);\n    X.eb(x);\n    Y.eb(y);\n    idx[i].eb(i);\n\
+    \  }\n  KDTree_Monoid<Mono, ll> KDT(X, Y, idx);\n\n  LL(Q);\n  FOR(Q) {\n    LL(xl,\
+    \ xr, yl, yr);\n    auto e = KDT.prod(xl, xr + 1, yl, yr + 1);\n    sort(all(e));\n\
+    \    for (auto&& v: e) print(v);\n    print();\n  }\n}\n\nsigned main() {\n  solve();\n\
+    \n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/kdtree/kdtree_monoid.hpp\"\
     \n\nstruct Mono {\n  using value_type = vc<int>;\n  using X = value_type;\n  static\
@@ -260,7 +260,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_C.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 15:15:17+09:00'
+  timestamp: '2023-11-06 15:47:15+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_C.test.cpp

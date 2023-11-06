@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -135,27 +135,27 @@ data:
     \ {\r\n  template <typename U>\r\n  static std::true_type test(decltype(&U::read)\
     \ *);\r\n  template <typename>\r\n  static std::false_type test(...);\r\n  using\
     \ type = decltype(test<T>(nullptr));\r\n  static constexpr bool value = type::value;\r\
-    \n};\r\n\r\ntemplate <typename T>\r\nenable_if<has_read_method<T>::value, void>::type\
-    \ rd(T &x) {\r\n  x.read();\r\n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class...\
-    \ T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const\
-    \ char c) {\r\n  if (obufi == BSZ) flush();\r\n  obuf[obufi++] = c;\r\n}\r\nvoid\
-    \ wt(const string &s) {\r\n  for (char c: s) wt(c);\r\n}\r\n\r\ntemplate <typename\
-    \ T>\r\nvoid wt_integer(T x) {\r\n  if (obufi > BSZ - 100) flush();\r\n  if (x\
-    \ < 0) { obuf[obufi++] = '-', x = -x; }\r\n  for (outi = 96; x >= 10000; outi\
-    \ -= 4) {\r\n    memcpy(out + outi, pre.num[x % 10000], 4);\r\n    x /= 10000;\r\
-    \n  }\r\n  if (x >= 1000) {\r\n    memcpy(obuf + obufi, pre.num[x], 4);\r\n  \
-    \  obufi += 4;\r\n  } else if (x >= 100) {\r\n    memcpy(obuf + obufi, pre.num[x]\
-    \ + 1, 3);\r\n    obufi += 3;\r\n  } else if (x >= 10) {\r\n    int q = (x * 103)\
-    \ >> 10;\r\n    obuf[obufi] = q | '0';\r\n    obuf[obufi + 1] = (x - q * 10) |\
-    \ '0';\r\n    obufi += 2;\r\n  } else\r\n    obuf[obufi++] = x | '0';\r\n  memcpy(obuf\
-    \ + obufi, out + outi + 4, 96 - outi);\r\n  obufi += 96 - outi;\r\n}\r\n\r\ntemplate\
-    \ <typename T>\r\nvoid wt_real(T x) {\r\n  ostringstream oss;\r\n  oss << fixed\
-    \ << setprecision(15) << double(x);\r\n  string s = oss.str();\r\n  wt(s);\r\n\
-    }\r\n\r\nvoid wt(int x) { wt_integer(x); }\r\nvoid wt(ll x) { wt_integer(x); }\r\
-    \nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\n\
-    void wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\nvoid\
-    \ wt(double x) { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\nvoid\
-    \ wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid wt(const\
+    \n};\r\n\r\ntemplate <typename T>\r\ntypename enable_if<has_read_method<T>::value,\
+    \ void>::type rd(T &x) {\r\n  x.read();\r\n}\r\n\r\nvoid read() {}\r\ntemplate\
+    \ <class H, class... T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\
+    \n}\r\n\r\nvoid wt(const char c) {\r\n  if (obufi == BSZ) flush();\r\n  obuf[obufi++]\
+    \ = c;\r\n}\r\nvoid wt(const string &s) {\r\n  for (char c: s) wt(c);\r\n}\r\n\
+    \r\ntemplate <typename T>\r\nvoid wt_integer(T x) {\r\n  if (obufi > BSZ - 100)\
+    \ flush();\r\n  if (x < 0) { obuf[obufi++] = '-', x = -x; }\r\n  for (outi = 96;\
+    \ x >= 10000; outi -= 4) {\r\n    memcpy(out + outi, pre.num[x % 10000], 4);\r\
+    \n    x /= 10000;\r\n  }\r\n  if (x >= 1000) {\r\n    memcpy(obuf + obufi, pre.num[x],\
+    \ 4);\r\n    obufi += 4;\r\n  } else if (x >= 100) {\r\n    memcpy(obuf + obufi,\
+    \ pre.num[x] + 1, 3);\r\n    obufi += 3;\r\n  } else if (x >= 10) {\r\n    int\
+    \ q = (x * 103) >> 10;\r\n    obuf[obufi] = q | '0';\r\n    obuf[obufi + 1] =\
+    \ (x - q * 10) | '0';\r\n    obufi += 2;\r\n  } else\r\n    obuf[obufi++] = x\
+    \ | '0';\r\n  memcpy(obuf + obufi, out + outi + 4, 96 - outi);\r\n  obufi += 96\
+    \ - outi;\r\n}\r\n\r\ntemplate <typename T>\r\nvoid wt_real(T x) {\r\n  ostringstream\
+    \ oss;\r\n  oss << fixed << setprecision(15) << double(x);\r\n  string s = oss.str();\r\
+    \n  wt(s);\r\n}\r\n\r\nvoid wt(int x) { wt_integer(x); }\r\nvoid wt(ll x) { wt_integer(x);\
+    \ }\r\nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\
+    \nvoid wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\n\
+    void wt(double x) { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\n\
+    void wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid wt(const\
     \ pair<T, U> val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n  wt(val.second);\r\n\
     }\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const T t) {\r\n  if\
     \ constexpr (N < std::tuple_size<T>::value) {\r\n    if constexpr (N > 0) { wt('\
@@ -170,55 +170,56 @@ data:
     \n  static std::true_type test(decltype(&U::print) *);\r\n  template <typename>\r\
     \n  static std::false_type test(...);\r\n  using type = decltype(test<T>(nullptr));\r\
     \n  static constexpr bool value = type::value;\r\n};\r\n\r\ntemplate <typename\
-    \ T>\r\nenable_if<has_print_method<T>::value, void>::type wt(T x) {\r\n  x.print();\r\
-    \n}\r\n\r\nvoid print() { wt('\\n'); }\r\ntemplate <class Head, class... Tail>\r\
-    \nvoid print(Head &&head, Tail &&... tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail))\
-    \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
-    \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
-    \ }\r\n} // namespace fastio\r\n\r\nusing fastio::read;\r\nusing fastio::print;\r\
-    \nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\
-    \n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    \r\n#define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n \
-    \ read(name)\r\n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
-    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
-    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
-    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
-    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\n#line 2 \"knapsack/subset_sum_count.hpp\"\n\n/*\nO(2^{N/2})\n\
-    subset sum 2^N \u901A\u308A\u306E\u3046\u3061\u3001[lo, hi) \u306B\u5165\u308B\
-    \u3082\u306E\u306E\u500B\u6570\n*/\ntemplate <typename T = ll>\nll subset_sum_count(vc<T>\
-    \ A, T lo, T hi) {\n  int n = len(A);\n  auto gen = [&](vc<T> A) -> vc<T> {\n\
-    \    vc<T> dp = {0};\n    for (auto&& a: A) {\n      vc<T> dp1 = dp;\n      for\
-    \ (auto&& t: dp1) t += a;\n      vc<T> newdp;\n      merge(all(dp), all(dp1),\
-    \ back_inserter(newdp));\n      swap(dp, newdp);\n    }\n    return dp;\n  };\n\
-    \  vc<T> AL = {A.begin(), A.begin() + n / 2};\n  vc<T> AR = {A.begin() + n / 2,\
-    \ A.end()};\n  auto dp1 = gen(AL);\n  auto dp2 = gen(AR);\n  auto f = [&](T lim)\
-    \ -> ll {\n    int q = len(dp2);\n    ll res = 0;\n    FOR(p, len(dp1)) {\n  \
-    \    while (q && dp1[p] + dp2[q - 1] >= lim) --q;\n      res += q;\n    }\n  \
-    \  return res;\n  };\n  return f(hi) - f(lo);\n}\n\n/*\nO(2^{N/2})\nsubset sum\
-    \ 2^N \u901A\u308A\u306E\u3046\u3061\u3001[lo, hi) \u306B\u5165\u308B\u3082\u306E\
-    \u306E\u500B\u6570\u3002\n\u3092\u4F7F\u3046\u500B\u6570\u3054\u3068\u306B\u6C42\
-    \u3081\u308B\u3002\n*/\ntemplate <typename T = ll>\nvc<ll> subset_sum_count_by_size(vc<T>\
-    \ A, T lo, T hi) {\n  int n = len(A);\n  using P = pair<T, int>;\n  auto gen =\
-    \ [&](vc<T> A) -> vc<vc<T>> {\n    vc<P> dp;\n    dp.eb(0, 0);\n    for (auto&&\
-    \ a: A) {\n      vc<P> dp1 = dp;\n      for (auto&& t: dp1) t.fi += a, t.se +=\
-    \ 1;\n      vc<P> newdp;\n      merge(all(dp), all(dp1), back_inserter(newdp));\n\
-    \      swap(dp, newdp);\n    }\n    vc<vc<T>> res(len(A) + 1);\n    for (auto&&\
-    \ p: dp) res[p.se].eb(p.fi);\n    return res;\n  };\n  vc<T> AL = {A.begin(),\
-    \ A.begin() + n / 2};\n  vc<T> AR = {A.begin() + n / 2, A.end()};\n  auto dp1\
-    \ = gen(AL);\n  auto dp2 = gen(AR);\n\n  auto f = [&](T lim) -> vi {\n    vi res(n\
-    \ + 1);\n    FOR(s1, len(dp1)) FOR(s2, len(dp2)) {\n      auto& X = dp1[s1];\n\
-    \      auto& Y = dp2[s2];\n      int q = len(Y);\n      ll& cnt = res[s1 + s2];\n\
-    \      for (auto&& x: X) {\n        while (q && x + Y[q - 1] >= lim) --q;\n  \
-    \      cnt += q;\n      }\n    }\n    return res;\n  };\n  auto CNT1 = f(hi);\n\
-    \  auto CNT2 = f(lo);\n  FOR(i, len(CNT1)) CNT1[i] -= CNT2[i];\n  return CNT1;\n\
-    }\n#line 6 \"test/aoj/DPL_4_B.test.cpp\"\n\nvoid solve() {\n  LL(N, K, L, R);\n\
-    \  VEC(ll, A, N);\n  print(subset_sum_count_by_size(A, L, R + 1)[K]);\n}\n\nsigned\
-    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \ T>\r\ntypename enable_if<has_print_method<T>::value, void>::type wt(T x) {\r\
+    \n  x.print();\r\n}\r\n\r\nvoid print() { wt('\\n'); }\r\ntemplate <class Head,\
+    \ class... Tail>\r\nvoid print(Head &&head, Tail &&... tail) {\r\n  wt(head);\r\
+    \n  if (sizeof...(Tail)) wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\
+    \r\n// gcc expansion. called automaticall after main.\r\nvoid __attribute__((destructor))\
+    \ _d() { flush(); }\r\n} // namespace fastio\r\n\r\nusing fastio::read;\r\nusing\
+    \ fastio::print;\r\nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int\
+    \ __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__;\
+    \ \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n  string __VA_ARGS__;\
+    \ \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\
+    \r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n  double __VA_ARGS__; \\\
+    \r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name, size) \\\r\n  vector<type>\
+    \ name(size);    \\\r\n  read(name)\r\n#define VV(type, name, h, w)          \
+    \           \\\r\n  vector<vector<type>> name(h, vector<type>(w)); \\\r\n  read(name)\r\
+    \n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t\
+    \ = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\
+    \nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\"\
+    \ : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\n#line 2 \"knapsack/subset_sum_count.hpp\"\
+    \n\n/*\nO(2^{N/2})\nsubset sum 2^N \u901A\u308A\u306E\u3046\u3061\u3001[lo, hi)\
+    \ \u306B\u5165\u308B\u3082\u306E\u306E\u500B\u6570\n*/\ntemplate <typename T =\
+    \ ll>\nll subset_sum_count(vc<T> A, T lo, T hi) {\n  int n = len(A);\n  auto gen\
+    \ = [&](vc<T> A) -> vc<T> {\n    vc<T> dp = {0};\n    for (auto&& a: A) {\n  \
+    \    vc<T> dp1 = dp;\n      for (auto&& t: dp1) t += a;\n      vc<T> newdp;\n\
+    \      merge(all(dp), all(dp1), back_inserter(newdp));\n      swap(dp, newdp);\n\
+    \    }\n    return dp;\n  };\n  vc<T> AL = {A.begin(), A.begin() + n / 2};\n \
+    \ vc<T> AR = {A.begin() + n / 2, A.end()};\n  auto dp1 = gen(AL);\n  auto dp2\
+    \ = gen(AR);\n  auto f = [&](T lim) -> ll {\n    int q = len(dp2);\n    ll res\
+    \ = 0;\n    FOR(p, len(dp1)) {\n      while (q && dp1[p] + dp2[q - 1] >= lim)\
+    \ --q;\n      res += q;\n    }\n    return res;\n  };\n  return f(hi) - f(lo);\n\
+    }\n\n/*\nO(2^{N/2})\nsubset sum 2^N \u901A\u308A\u306E\u3046\u3061\u3001[lo, hi)\
+    \ \u306B\u5165\u308B\u3082\u306E\u306E\u500B\u6570\u3002\n\u3092\u4F7F\u3046\u500B\
+    \u6570\u3054\u3068\u306B\u6C42\u3081\u308B\u3002\n*/\ntemplate <typename T = ll>\n\
+    vc<ll> subset_sum_count_by_size(vc<T> A, T lo, T hi) {\n  int n = len(A);\n  using\
+    \ P = pair<T, int>;\n  auto gen = [&](vc<T> A) -> vc<vc<T>> {\n    vc<P> dp;\n\
+    \    dp.eb(0, 0);\n    for (auto&& a: A) {\n      vc<P> dp1 = dp;\n      for (auto&&\
+    \ t: dp1) t.fi += a, t.se += 1;\n      vc<P> newdp;\n      merge(all(dp), all(dp1),\
+    \ back_inserter(newdp));\n      swap(dp, newdp);\n    }\n    vc<vc<T>> res(len(A)\
+    \ + 1);\n    for (auto&& p: dp) res[p.se].eb(p.fi);\n    return res;\n  };\n \
+    \ vc<T> AL = {A.begin(), A.begin() + n / 2};\n  vc<T> AR = {A.begin() + n / 2,\
+    \ A.end()};\n  auto dp1 = gen(AL);\n  auto dp2 = gen(AR);\n\n  auto f = [&](T\
+    \ lim) -> vi {\n    vi res(n + 1);\n    FOR(s1, len(dp1)) FOR(s2, len(dp2)) {\n\
+    \      auto& X = dp1[s1];\n      auto& Y = dp2[s2];\n      int q = len(Y);\n \
+    \     ll& cnt = res[s1 + s2];\n      for (auto&& x: X) {\n        while (q &&\
+    \ x + Y[q - 1] >= lim) --q;\n        cnt += q;\n      }\n    }\n    return res;\n\
+    \  };\n  auto CNT1 = f(hi);\n  auto CNT2 = f(lo);\n  FOR(i, len(CNT1)) CNT1[i]\
+    \ -= CNT2[i];\n  return CNT1;\n}\n#line 6 \"test/aoj/DPL_4_B.test.cpp\"\n\nvoid\
+    \ solve() {\n  LL(N, K, L, R);\n  VEC(ll, A, N);\n  print(subset_sum_count_by_size(A,\
+    \ L, R + 1)[K]);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
+    \n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_4_B\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"knapsack/subset_sum_count.hpp\"\
     \n\nvoid solve() {\n  LL(N, K, L, R);\n  VEC(ll, A, N);\n  print(subset_sum_count_by_size(A,\
@@ -232,7 +233,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL_4_B.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 15:15:17+09:00'
+  timestamp: '2023-11-06 15:47:15+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DPL_4_B.test.cpp
