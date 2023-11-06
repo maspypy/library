@@ -57,10 +57,10 @@ data:
     \n  }\r\n  modint61 pow(ll n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1),\
     \ mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul\
     \ *= mul, n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n#ifdef FASTIO\r\n  void\
-    \ write() { fastio::wt(val); }\r\n  void read() {\r\n    ll x;\r\n    fastio::read(x);\r\
-    \n    val = (val >= 0 ? val % mod : (mod - (-val) % mod) % mod);\r\n  }\r\n#endif\r\
-    \n};\n#line 4 \"string/rollinghash.hpp\"\n\nstruct RollingHash {\n  using mint\
-    \ = modint61;\n  static constexpr u64 mod = mint::get_mod();\n  const mint base;\n\
+    \ print() { fastio::wt(val); }\r\n  void read() {\r\n    ll x;\r\n    fastio::read(x);\r\
+    \n    val = (x >= 0 ? x % mod : (mod - (-x) % mod) % mod);\r\n  }\r\n#endif\r\n\
+    };\n#line 4 \"string/rollinghash.hpp\"\n\nstruct RollingHash {\n  using mint =\
+    \ modint61;\n  static constexpr u64 mod = mint::get_mod();\n  const mint base;\n\
     \  vc<mint> power;\n\n  static inline mint generate_base() { return RNG(mod);\
     \ }\n\n  inline void expand(size_t sz) {\n    if (power.size() < sz + 1) {\n \
     \     int pre_sz = (int)power.size();\n      power.resize(sz + 1);\n      FOR(i,\
@@ -107,7 +107,7 @@ data:
   isVerificationFile: false
   path: string/rollinghash.hpp
   requiredBy: []
-  timestamp: '2023-11-06 17:38:34+09:00'
+  timestamp: '2023-11-06 21:46:03+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/2102.test.cpp

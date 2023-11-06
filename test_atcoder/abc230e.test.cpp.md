@@ -182,20 +182,22 @@ data:
     \ _d() { flush(); }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\
     \nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\
     \n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    \r\n#define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n \
-    \ read(name)\r\n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
-    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
-    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
-    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
-    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 1 \"nt/sigma_0_sum.hpp\"\n// sum_[1,N] sigma_0(n)\nll\
-    \ sigma_0_sum(ll N) {\n  assert(N <= (1LL << 50));\n  ll sq = sqrtl(N);\n  ll\
-    \ ANS = 0;\n  for (int d = 1; d <= sq; ++d) { ANS += ll(double(N) / d); }\n  return\
-    \ 2 * ANS - sq * sq;\n}\n#line 5 \"test_atcoder/abc230e.test.cpp\"\n\nvoid solve()\
-    \ {\n  LL(N);\n  print(sigma_0_sum(N));\n}\n\nsigned main() {\n  solve();\n  return\
+    \n#define U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ U64(...)   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)\
+    \      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
+    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
+    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
+    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
+    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
+    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
+    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
+    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
+    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
+    \ yes(!t); }\r\n#line 1 \"nt/sigma_0_sum.hpp\"\n// sum_[1,N] sigma_0(n)\nll sigma_0_sum(ll\
+    \ N) {\n  assert(N <= (1LL << 50));\n  ll sq = sqrtl(N);\n  ll ANS = 0;\n  for\
+    \ (int d = 1; d <= sq; ++d) { ANS += ll(double(N) / d); }\n  return 2 * ANS -\
+    \ sq * sq;\n}\n#line 5 \"test_atcoder/abc230e.test.cpp\"\n\nvoid solve() {\n \
+    \ LL(N);\n  print(sigma_0_sum(N));\n}\n\nsigned main() {\n  solve();\n  return\
     \ 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc230/tasks/abc230_e\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/sigma_0_sum.hpp\"\
@@ -208,7 +210,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc230e.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 21:21:26+09:00'
+  timestamp: '2023-11-06 21:58:56+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc230e.test.cpp

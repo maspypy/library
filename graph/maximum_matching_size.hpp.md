@@ -60,9 +60,9 @@ data:
     \n  }\r\n  modint61 pow(ll n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1),\
     \ mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul\
     \ *= mul, n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n#ifdef FASTIO\r\n  void\
-    \ write() { fastio::wt(val); }\r\n  void read() {\r\n    ll x;\r\n    fastio::read(x);\r\
-    \n    val = (val >= 0 ? val % mod : (mod - (-val) % mod) % mod);\r\n  }\r\n#endif\r\
-    \n};\n#line 1 \"linalg/matrix_rank.hpp\"\ntemplate <typename T>\nint matrix_rank(const\
+    \ print() { fastio::wt(val); }\r\n  void read() {\r\n    ll x;\r\n    fastio::read(x);\r\
+    \n    val = (x >= 0 ? x % mod : (mod - (-x) % mod) % mod);\r\n  }\r\n#endif\r\n\
+    };\n#line 1 \"linalg/matrix_rank.hpp\"\ntemplate <typename T>\nint matrix_rank(const\
     \ int n, const int m, vc<vc<T>> a) {\n  int rk = 0;\n  FOR(j, m) {\n    if (rk\
     \ == n) break;\n    if (a[rk][j] == 0) {\n      FOR3(i, rk + 1, n) if (a[i][j]\
     \ != T(0)) {\n        swap(a[rk], a[i]);\n        break;\n      }\n    }\n   \
@@ -87,7 +87,7 @@ data:
   isVerificationFile: false
   path: graph/maximum_matching_size.hpp
   requiredBy: []
-  timestamp: '2023-11-06 17:38:34+09:00'
+  timestamp: '2023-11-06 21:46:03+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/tutte.test.cpp

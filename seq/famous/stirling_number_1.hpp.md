@@ -139,7 +139,7 @@ data:
     \ return modint(u);\n  }\n  modint pow(ll n) const {\n    assert(n >= 0);\n  \
     \  modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
     \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n\
-    \  void write() { fastio::wt(val); }\n  void read() {\n    ll x;\n    fastio::read(x);\n\
+    \  void print() { fastio::wt(val); }\n  void read() {\n    ll x;\n    fastio::read(x);\n\
     \    val = (x >= 0 ? x % mod : (mod - (-x) % mod) % mod);\n  }\n#endif\n  static\
     \ constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n\
     \ \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n    if (mod ==\
@@ -570,7 +570,7 @@ data:
   path: seq/famous/stirling_number_1.hpp
   requiredBy:
   - poly/composition_f_log_1_minus_x.hpp
-  timestamp: '2023-11-06 17:38:34+09:00'
+  timestamp: '2023-11-06 21:46:03+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/composition_log_1_minus_x.test.cpp

@@ -182,32 +182,34 @@ data:
     \ _d() { flush(); }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\
     \nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\
     \n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    \r\n#define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n \
-    \ read(name)\r\n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
-    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
-    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
-    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
-    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 4 \"test/mytest/knight_distance.test.cpp\"\n\n#line 1\
-    \ \"other/knight_distance.hpp\"\nll knight_distance(ll x, ll y) {\n  x = abs(x),\
-    \ y = abs(y);\n  if (x + y == 0) return 0;\n  if (x + y == 1) return 3;\n  if\
-    \ (x == 2 && y == 2) return 4;\n  ll step = (max(x, y) + 1) / 2;\n  chmax(step,\
-    \ (x + y + 2) / 3);\n  step += (step ^ x ^ y) & 1;\n  return step;\n}\n#line 6\
-    \ \"test/mytest/knight_distance.test.cpp\"\n\nvoid test() {\n  ll LIM = 20;\n\
-    \  map<pi, int> dist;\n  deque<pi> que;\n  auto add = [&](int x, int y, int d)\
-    \ -> void {\n    if (abs(x) > 2 * LIM || abs(y) > 2 * LIM) return;\n    pi key\
-    \ = {x, y};\n    if (dist.count(key)) return;\n    dist[key] = d;\n    que.eb(x,\
-    \ y);\n  };\n  add(0, 0, 0);\n  ll dx[] = {2, 1, -1, -2, -2, -1, 1, 2};\n  ll\
-    \ dy[] = {1, 2, 2, 1, -1, -2, -2, -1};\n  while (len(que)) {\n    auto [x, y]\
-    \ = POP(que);\n    FOR(d, 8) {\n      ll nx = x + dx[d], ny = y + dy[d];\n   \
-    \   pi key = {x, y};\n      add(nx, ny, dist[key] + 1);\n    }\n  }\n  for (auto&&\
-    \ [key, d]: dist) {\n    auto [x, y] = key;\n    assert(knight_distance(x, y)\
-    \ == d);\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned\
-    \ main() {\n  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\n\
-    \  return 0;\n}\n"
+    \n#define U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ U64(...)   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)\
+    \      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
+    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
+    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
+    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
+    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
+    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
+    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
+    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
+    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
+    \ yes(!t); }\r\n#line 4 \"test/mytest/knight_distance.test.cpp\"\n\n#line 1 \"\
+    other/knight_distance.hpp\"\nll knight_distance(ll x, ll y) {\n  x = abs(x), y\
+    \ = abs(y);\n  if (x + y == 0) return 0;\n  if (x + y == 1) return 3;\n  if (x\
+    \ == 2 && y == 2) return 4;\n  ll step = (max(x, y) + 1) / 2;\n  chmax(step, (x\
+    \ + y + 2) / 3);\n  step += (step ^ x ^ y) & 1;\n  return step;\n}\n#line 6 \"\
+    test/mytest/knight_distance.test.cpp\"\n\nvoid test() {\n  ll LIM = 20;\n  map<pi,\
+    \ int> dist;\n  deque<pi> que;\n  auto add = [&](int x, int y, int d) -> void\
+    \ {\n    if (abs(x) > 2 * LIM || abs(y) > 2 * LIM) return;\n    pi key = {x, y};\n\
+    \    if (dist.count(key)) return;\n    dist[key] = d;\n    que.eb(x, y);\n  };\n\
+    \  add(0, 0, 0);\n  ll dx[] = {2, 1, -1, -2, -2, -1, 1, 2};\n  ll dy[] = {1, 2,\
+    \ 2, 1, -1, -2, -2, -1};\n  while (len(que)) {\n    auto [x, y] = POP(que);\n\
+    \    FOR(d, 8) {\n      ll nx = x + dx[d], ny = y + dy[d];\n      pi key = {x,\
+    \ y};\n      add(nx, ny, dist[key] + 1);\n    }\n  }\n  for (auto&& [key, d]:\
+    \ dist) {\n    auto [x, y] = key;\n    assert(knight_distance(x, y) == d);\n \
+    \ }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n\
+    \  cout << fixed << setprecision(15);\n\n  test();\n  solve();\n\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"other/knight_distance.hpp\"\n\nvoid\
     \ test() {\n  ll LIM = 20;\n  map<pi, int> dist;\n  deque<pi> que;\n  auto add\
@@ -228,7 +230,7 @@ data:
   isVerificationFile: true
   path: test/mytest/knight_distance.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 21:21:26+09:00'
+  timestamp: '2023-11-06 21:58:56+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/knight_distance.test.cpp

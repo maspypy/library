@@ -287,7 +287,7 @@ data:
     \ mint(lhs) /= rhs;\n  }\n  friend bool operator==(const mint& lhs, const mint&\
     \ rhs) {\n    return lhs.val == rhs.val;\n  }\n  friend bool operator!=(const\
     \ mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n  }\n#ifdef FASTIO\n\
-    \  void write() { fastio::wt(val); }\n  void read() {\n    ll x;\n    fastio::read(x);\n\
+    \  void print() { fastio::wt(val); }\n  void read() {\n    ll x;\n    fastio::read(x);\n\
     \    val = (x >= 0 ? x % mod : (mod - (-x) % mod) % mod);\n  }\n#endif\n  static\
     \ pair<int, int>& get_ntt() {\n    static pair<int, int> p = {-1, -1};\n    return\
     \ p;\n  }\n  static void set_ntt_info() {\n    int mod = get_mod();\n    int k\
@@ -347,7 +347,7 @@ data:
   isVerificationFile: true
   path: test/mytest/geometric_sequence_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 17:38:34+09:00'
+  timestamp: '2023-11-06 21:46:03+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/geometric_sequence_sum.test.cpp

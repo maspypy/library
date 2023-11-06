@@ -182,18 +182,20 @@ data:
     \ _d() { flush(); }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\
     \nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\
     \n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    \r\n#define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n \
-    \ read(name)\r\n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
-    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
-    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
-    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
-    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 1 \"seq/longest_increasing_subsequence.hpp\"\n// dp[i]\
-    \ := \u7B2C i \u9805\u3067\u7D42\u308F\u308B lis \u9577\u306E\u6700\u5927\u5024\
-    \uFF08[1, LIS]\uFF09\ntemplate <typename T, bool strong = true>\npair<int, vc<int>>\
+    \n#define U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ U64(...)   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)\
+    \      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
+    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
+    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
+    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
+    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
+    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
+    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
+    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
+    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
+    \ yes(!t); }\r\n#line 1 \"seq/longest_increasing_subsequence.hpp\"\n// dp[i] :=\
+    \ \u7B2C i \u9805\u3067\u7D42\u308F\u308B lis \u9577\u306E\u6700\u5927\u5024\uFF08\
+    [1, LIS]\uFF09\ntemplate <typename T, bool strong = true>\npair<int, vc<int>>\
     \ longest_increasing_subsequence(vector<T> A) {\n  const int N = A.size();\n \
     \ vc<T> dp(N, infty<T>);\n  int lis = 0;\n  vc<int> lis_rank(N);\n  FOR(i, N)\
     \ {\n    int j = (strong ? LB(dp, A[i]) : UB(dp, A[i]));\n    dp[j] = A[i];\n\
@@ -212,7 +214,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL_1_D.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 21:21:26+09:00'
+  timestamp: '2023-11-06 21:58:56+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DPL_1_D.test.cpp

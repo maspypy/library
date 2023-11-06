@@ -189,18 +189,20 @@ data:
     \ _d() { flush(); }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\
     \nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\
     \n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    \r\n#define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n \
-    \ read(name)\r\n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
-    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
-    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
-    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
-    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 1 \"ds/offline_query/parallel_binary_search.hpp\"\n/*\r\
-    \n\u4E26\u5217\u4E8C\u5206\u63A2\u7D22\u3002(Q, ok, ng, init, upd, check)\u3002\
-    \r\ncheck \u304C\u6210\u308A\u7ACB\u3064\u304E\u308A\u304E\u308A\u306E upd\u56DE\
+    \n#define U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ U64(...)   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)\
+    \      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
+    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
+    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
+    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
+    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
+    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
+    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
+    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
+    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
+    \ yes(!t); }\r\n#line 1 \"ds/offline_query/parallel_binary_search.hpp\"\n/*\r\n\
+    \u4E26\u5217\u4E8C\u5206\u63A2\u7D22\u3002(Q, ok, ng, init, upd, check)\u3002\r\
+    \ncheck \u304C\u6210\u308A\u7ACB\u3064\u304E\u308A\u304E\u308A\u306E upd\u56DE\
     \u6570\u3092\u8FD4\u3059\u3002\r\n\u30FBvoid upd(t)\uFF1At \u56DE\u76EE\u306E\
     \ update\r\n\u30FBbool check(q)\uFF1A\u30AF\u30A8\u30EA q \u306E\u5224\u5B9A\r\
     \n*/\r\ntemplate <typename F1, typename F2, typename F3>\r\nvc<int> parallel_binary_search(int\
@@ -283,7 +285,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 21:21:26+09:00'
+  timestamp: '2023-11-06 21:58:56+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp

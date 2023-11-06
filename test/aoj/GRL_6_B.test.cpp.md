@@ -182,58 +182,59 @@ data:
     \ _d() { flush(); }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\
     \nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\
     \n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    \r\n#define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n \
-    \ read(name)\r\n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
-    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
-    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
-    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
-    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"flow/mincostflow.hpp\"\n\n// atcoder library \u306E\
-    \u3082\u306E\u3092\u6539\u5909\nnamespace internal {\ntemplate <class E>\nstruct\
-    \ csr {\n  vector<int> start;\n  vector<E> elist;\n  explicit csr(int n, const\
-    \ vector<pair<int, E>>& edges)\n      : start(n + 1), elist(edges.size()) {\n\
-    \    for (auto e: edges) { start[e.first + 1]++; }\n    for (int i = 1; i <= n;\
-    \ i++) { start[i] += start[i - 1]; }\n    auto counter = start;\n    for (auto\
-    \ e: edges) { elist[counter[e.first]++] = e.second; }\n  }\n};\n\ntemplate <class\
-    \ T>\nstruct simple_queue {\n  vector<T> payload;\n  int pos = 0;\n  void reserve(int\
-    \ n) { payload.reserve(n); }\n  int size() const { return int(payload.size())\
-    \ - pos; }\n  bool empty() const { return pos == int(payload.size()); }\n  void\
-    \ push(const T& t) { payload.push_back(t); }\n  T& front() { return payload[pos];\
-    \ }\n  void clear() {\n    payload.clear();\n    pos = 0;\n  }\n  void pop() {\
-    \ pos++; }\n};\n\n} // namespace internal\n\n/*\n\u30FBatcoder library \u3092\u3059\
-    \u3053\u3057\u6539\u5909\u3057\u305F\u3082\u306E\n\u30FBDAG = true \u3067\u3042\
-    \u308C\u3070\u3001\u8CA0\u8FBA OK \uFF081 \u56DE\u76EE\u306E\u6700\u77ED\u8DEF\
-    \u3092 dp \u3067\u884C\u3046\uFF09\n\u305F\u3060\u3057\u3001\u9802\u70B9\u756A\
-    \u53F7\u306F toposort \u3055\u308C\u3066\u3044\u308B\u3053\u3068\u3092\u4EEE\u5B9A\
-    \u3057\u3066\u3044\u308B\u3002\n*/\ntemplate <class Cap = int, class Cost = ll,\
-    \ bool DAG = false>\nstruct Min_Cost_Flow {\npublic:\n  Min_Cost_Flow() {}\n \
-    \ explicit Min_Cost_Flow(int n, int source, int sink)\n      : n(n), source(source),\
-    \ sink(sink) {\n    assert(0 <= source && source < n);\n    assert(0 <= sink &&\
-    \ sink < n);\n    assert(source != sink);\n  }\n\n  // frm, to, cap, cost\n  int\
-    \ add(int frm, int to, Cap cap, Cost cost) {\n    assert(0 <= frm && frm < n);\n\
-    \    assert(0 <= to && to < n);\n    assert(0 <= cap);\n    assert(DAG || 0 <=\
-    \ cost);\n    if (DAG) assert(frm < to);\n    int m = int(_edges.size());\n  \
-    \  _edges.push_back({frm, to, cap, 0, cost});\n    return m;\n  }\n\n  void debug()\
-    \ {\n    print(\"flow graph\");\n    print(\"frm, to, cap, cost\");\n    for (auto&&\
-    \ [frm, to, cap, flow, cost]: _edges) {\n      print(frm, to, cap, cost);\n  \
-    \  }\n  }\n\n  struct edge {\n    int frm, to;\n    Cap cap, flow;\n    Cost cost;\n\
-    \  };\n\n  edge get_edge(int i) {\n    int m = int(_edges.size());\n    assert(0\
-    \ <= i && i < m);\n    return _edges[i];\n  }\n  vector<edge> edges() { return\
-    \ _edges; }\n\n  // (\u6D41\u91CF, \u8CBB\u7528)\n  pair<Cap, Cost> flow() { return\
-    \ flow(infty<Cap>); }\n  // (\u6D41\u91CF, \u8CBB\u7528)\n  pair<Cap, Cost> flow(Cap\
-    \ flow_limit) { return slope(flow_limit).back(); }\n  vector<pair<Cap, Cost>>\
-    \ slope() { return slope(infty<Cap>); }\n  vector<pair<Cap, Cost>> slope(Cap flow_limit)\
-    \ {\n    int m = int(_edges.size());\n    vector<int> edge_idx(m);\n\n    auto\
-    \ g = [&]() {\n      vector<int> degree(n), redge_idx(m);\n      vector<pair<int,\
-    \ _edge>> elist;\n      elist.reserve(2 * m);\n      for (int i = 0; i < m; i++)\
-    \ {\n        auto e = _edges[i];\n        edge_idx[i] = degree[e.frm]++;\n   \
-    \     redge_idx[i] = degree[e.to]++;\n        elist.push_back({e.frm, {e.to, -1,\
-    \ e.cap - e.flow, e.cost}});\n        elist.push_back({e.to, {e.frm, -1, e.flow,\
-    \ -e.cost}});\n      }\n      auto _g = internal::csr<_edge>(n, elist);\n    \
-    \  for (int i = 0; i < m; i++) {\n        auto e = _edges[i];\n        edge_idx[i]\
+    \n#define U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ U64(...)   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)\
+    \      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
+    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
+    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
+    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
+    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
+    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
+    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
+    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
+    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
+    \ yes(!t); }\r\n#line 2 \"flow/mincostflow.hpp\"\n\n// atcoder library \u306E\u3082\
+    \u306E\u3092\u6539\u5909\nnamespace internal {\ntemplate <class E>\nstruct csr\
+    \ {\n  vector<int> start;\n  vector<E> elist;\n  explicit csr(int n, const vector<pair<int,\
+    \ E>>& edges)\n      : start(n + 1), elist(edges.size()) {\n    for (auto e: edges)\
+    \ { start[e.first + 1]++; }\n    for (int i = 1; i <= n; i++) { start[i] += start[i\
+    \ - 1]; }\n    auto counter = start;\n    for (auto e: edges) { elist[counter[e.first]++]\
+    \ = e.second; }\n  }\n};\n\ntemplate <class T>\nstruct simple_queue {\n  vector<T>\
+    \ payload;\n  int pos = 0;\n  void reserve(int n) { payload.reserve(n); }\n  int\
+    \ size() const { return int(payload.size()) - pos; }\n  bool empty() const { return\
+    \ pos == int(payload.size()); }\n  void push(const T& t) { payload.push_back(t);\
+    \ }\n  T& front() { return payload[pos]; }\n  void clear() {\n    payload.clear();\n\
+    \    pos = 0;\n  }\n  void pop() { pos++; }\n};\n\n} // namespace internal\n\n\
+    /*\n\u30FBatcoder library \u3092\u3059\u3053\u3057\u6539\u5909\u3057\u305F\u3082\
+    \u306E\n\u30FBDAG = true \u3067\u3042\u308C\u3070\u3001\u8CA0\u8FBA OK \uFF08\
+    1 \u56DE\u76EE\u306E\u6700\u77ED\u8DEF\u3092 dp \u3067\u884C\u3046\uFF09\n\u305F\
+    \u3060\u3057\u3001\u9802\u70B9\u756A\u53F7\u306F toposort \u3055\u308C\u3066\u3044\
+    \u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\u3002\n*/\ntemplate\
+    \ <class Cap = int, class Cost = ll, bool DAG = false>\nstruct Min_Cost_Flow {\n\
+    public:\n  Min_Cost_Flow() {}\n  explicit Min_Cost_Flow(int n, int source, int\
+    \ sink)\n      : n(n), source(source), sink(sink) {\n    assert(0 <= source &&\
+    \ source < n);\n    assert(0 <= sink && sink < n);\n    assert(source != sink);\n\
+    \  }\n\n  // frm, to, cap, cost\n  int add(int frm, int to, Cap cap, Cost cost)\
+    \ {\n    assert(0 <= frm && frm < n);\n    assert(0 <= to && to < n);\n    assert(0\
+    \ <= cap);\n    assert(DAG || 0 <= cost);\n    if (DAG) assert(frm < to);\n  \
+    \  int m = int(_edges.size());\n    _edges.push_back({frm, to, cap, 0, cost});\n\
+    \    return m;\n  }\n\n  void debug() {\n    print(\"flow graph\");\n    print(\"\
+    frm, to, cap, cost\");\n    for (auto&& [frm, to, cap, flow, cost]: _edges) {\n\
+    \      print(frm, to, cap, cost);\n    }\n  }\n\n  struct edge {\n    int frm,\
+    \ to;\n    Cap cap, flow;\n    Cost cost;\n  };\n\n  edge get_edge(int i) {\n\
+    \    int m = int(_edges.size());\n    assert(0 <= i && i < m);\n    return _edges[i];\n\
+    \  }\n  vector<edge> edges() { return _edges; }\n\n  // (\u6D41\u91CF, \u8CBB\u7528\
+    )\n  pair<Cap, Cost> flow() { return flow(infty<Cap>); }\n  // (\u6D41\u91CF,\
+    \ \u8CBB\u7528)\n  pair<Cap, Cost> flow(Cap flow_limit) { return slope(flow_limit).back();\
+    \ }\n  vector<pair<Cap, Cost>> slope() { return slope(infty<Cap>); }\n  vector<pair<Cap,\
+    \ Cost>> slope(Cap flow_limit) {\n    int m = int(_edges.size());\n    vector<int>\
+    \ edge_idx(m);\n\n    auto g = [&]() {\n      vector<int> degree(n), redge_idx(m);\n\
+    \      vector<pair<int, _edge>> elist;\n      elist.reserve(2 * m);\n      for\
+    \ (int i = 0; i < m; i++) {\n        auto e = _edges[i];\n        edge_idx[i]\
+    \ = degree[e.frm]++;\n        redge_idx[i] = degree[e.to]++;\n        elist.push_back({e.frm,\
+    \ {e.to, -1, e.cap - e.flow, e.cost}});\n        elist.push_back({e.to, {e.frm,\
+    \ -1, e.flow, -e.cost}});\n      }\n      auto _g = internal::csr<_edge>(n, elist);\n\
+    \      for (int i = 0; i < m; i++) {\n        auto e = _edges[i];\n        edge_idx[i]\
     \ += _g.start[e.frm];\n        redge_idx[i] += _g.start[e.to];\n        _g.elist[edge_idx[i]].rev\
     \ = redge_idx[i];\n        _g.elist[redge_idx[i]].rev = edge_idx[i];\n      }\n\
     \      return _g;\n    }();\n\n    auto result = slope(g, flow_limit);\n\n   \
@@ -315,7 +316,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_6_B.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 21:21:26+09:00'
+  timestamp: '2023-11-06 21:58:56+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/GRL_6_B.test.cpp

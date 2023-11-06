@@ -182,22 +182,24 @@ data:
     \ _d() { flush(); }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\
     \nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\
     \n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    \r\n#define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n \
-    \ read(name)\r\n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
-    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
-    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
-    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
-    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 4 \"test/library_checker/graph/assignment.test.cpp\"\n\
-    \n#line 1 \"flow/hungarian.hpp\"\n// (ans, match, X, Y)\n// \u6700\u5C0F\u91CD\
-    \u307F\u6700\u5927\u30DE\u30C3\u30C1\u30F3\u30B0\u3002O(N^2M) time\u3002\n// \u30DD\
-    \u30C6\u30F3\u30B7\u30E3\u30EB\u306F\u6B21\u306E\u53CC\u5BFE\u554F\u984C\u306E\
-    \u89E3\u3067\u3042\u308B\uFF1A\n//   maximize \\sum x_i + \\sum y_j, subj to x_i\
-    \ + y_j\\leq C_{ij}\n// returns:\ntemplate <typename T>\ntuple<T, vc<int>, vc<T>,\
-    \ vc<T>> hungarian(vvc<T>& C) {\n  int N = len(C);\n  int M = len(C[0]);\n  assert(N\
+    \n#define U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ U64(...)   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)\
+    \      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
+    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
+    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
+    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
+    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
+    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
+    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
+    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
+    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
+    \ yes(!t); }\r\n#line 4 \"test/library_checker/graph/assignment.test.cpp\"\n\n\
+    #line 1 \"flow/hungarian.hpp\"\n// (ans, match, X, Y)\n// \u6700\u5C0F\u91CD\u307F\
+    \u6700\u5927\u30DE\u30C3\u30C1\u30F3\u30B0\u3002O(N^2M) time\u3002\n// \u30DD\u30C6\
+    \u30F3\u30B7\u30E3\u30EB\u306F\u6B21\u306E\u53CC\u5BFE\u554F\u984C\u306E\u89E3\
+    \u3067\u3042\u308B\uFF1A\n//   maximize \\sum x_i + \\sum y_j, subj to x_i + y_j\\\
+    leq C_{ij}\n// returns:\ntemplate <typename T>\ntuple<T, vc<int>, vc<T>, vc<T>>\
+    \ hungarian(vvc<T>& C) {\n  int N = len(C);\n  int M = len(C[0]);\n  assert(N\
     \ <= M);\n  vv(T, A, N + 1, M + 1);\n  FOR(i, N) FOR(j, M) A[1 + i][1 + j] = C[i][j];\n\
     \  ++N, ++M;\n\n  vector<int> P(M), way(M);\n  vector<T> X(N), Y(M);\n  vc<T>\
     \ minV;\n  vc<bool> used;\n\n  for (int i = 1; i < N; i++) {\n    P[0] = i;\n\
@@ -231,7 +233,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/assignment.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 21:21:26+09:00'
+  timestamp: '2023-11-06 21:58:56+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/assignment.test.cpp

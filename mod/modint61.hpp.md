@@ -117,9 +117,9 @@ data:
     \ -= t * v, v);\r\n    }\r\n    return modint61(u);\r\n  }\r\n  modint61 pow(ll\
     \ n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1), mul(val);\r\n    while\
     \ (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul *= mul, n >>= 1;\r\n\
-    \    }\r\n    return ret;\r\n  }\r\n#ifdef FASTIO\r\n  void write() { fastio::wt(val);\
-    \ }\r\n  void read() {\r\n    ll x;\r\n    fastio::read(x);\r\n    val = (val\
-    \ >= 0 ? val % mod : (mod - (-val) % mod) % mod);\r\n  }\r\n#endif\r\n};\n"
+    \    }\r\n    return ret;\r\n  }\r\n#ifdef FASTIO\r\n  void print() { fastio::wt(val);\
+    \ }\r\n  void read() {\r\n    ll x;\r\n    fastio::read(x);\r\n    val = (x >=\
+    \ 0 ? x % mod : (mod - (-x) % mod) % mod);\r\n  }\r\n#endif\r\n};\n"
   code: "#pragma once\r\n\r\nstruct modint61 {\r\n  static constexpr u64 mod = (1ULL\
     \ << 61) - 1;\r\n  u64 val;\r\n  constexpr modint61() : val(0ULL) {}\r\n  constexpr\
     \ modint61(u32 x) : val(x) {}\r\n  constexpr modint61(u64 x) : val(x % mod) {}\r\
@@ -145,9 +145,9 @@ data:
     \ -= t * v, v);\r\n    }\r\n    return modint61(u);\r\n  }\r\n  modint61 pow(ll\
     \ n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1), mul(val);\r\n    while\
     \ (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul *= mul, n >>= 1;\r\n\
-    \    }\r\n    return ret;\r\n  }\r\n#ifdef FASTIO\r\n  void write() { fastio::wt(val);\
-    \ }\r\n  void read() {\r\n    ll x;\r\n    fastio::read(x);\r\n    val = (val\
-    \ >= 0 ? val % mod : (mod - (-val) % mod) % mod);\r\n  }\r\n#endif\r\n};"
+    \    }\r\n    return ret;\r\n  }\r\n#ifdef FASTIO\r\n  void print() { fastio::wt(val);\
+    \ }\r\n  void read() {\r\n    ll x;\r\n    fastio::read(x);\r\n    val = (x >=\
+    \ 0 ? x % mod : (mod - (-x) % mod) % mod);\r\n  }\r\n#endif\r\n};"
   dependsOn: []
   isVerificationFile: false
   path: mod/modint61.hpp
@@ -161,7 +161,7 @@ data:
   - string/rollinghash_2d.hpp
   - string/rollinghash.hpp
   - ds/unionfind/parallel_unionfind.hpp
-  timestamp: '2023-11-06 17:38:34+09:00'
+  timestamp: '2023-11-06 21:46:03+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/578.test.cpp

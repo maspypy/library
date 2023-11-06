@@ -97,7 +97,7 @@ data:
     \ rhs) {\n    return mint(lhs) /= rhs;\n  }\n  friend bool operator==(const mint&\
     \ lhs, const mint& rhs) {\n    return lhs.val == rhs.val;\n  }\n  friend bool\
     \ operator!=(const mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n\
-    \  }\n#ifdef FASTIO\n  void write() { fastio::wt(val); }\n  void read() {\n  \
+    \  }\n#ifdef FASTIO\n  void print() { fastio::wt(val); }\n  void read() {\n  \
     \  ll x;\n    fastio::read(x);\n    val = (x >= 0 ? x % mod : (mod - (-x) % mod)\
     \ % mod);\n  }\n#endif\n};\n\nusing dmint64 = Dynamic_Modint_64<-1>;\ntemplate\
     \ <int id>\nBarrett_64 Dynamic_Modint_64<id>::bt;\n"
@@ -130,7 +130,7 @@ data:
     \ operator/(const mint& lhs, const mint& rhs) {\n    return mint(lhs) /= rhs;\n\
     \  }\n  friend bool operator==(const mint& lhs, const mint& rhs) {\n    return\
     \ lhs.val == rhs.val;\n  }\n  friend bool operator!=(const mint& lhs, const mint&\
-    \ rhs) {\n    return lhs.val != rhs.val;\n  }\n#ifdef FASTIO\n  void write() {\
+    \ rhs) {\n    return lhs.val != rhs.val;\n  }\n#ifdef FASTIO\n  void print() {\
     \ fastio::wt(val); }\n  void read() {\n    ll x;\n    fastio::read(x);\n    val\
     \ = (x >= 0 ? x % mod : (mod - (-x) % mod) % mod);\n  }\n#endif\n};\n\nusing dmint64\
     \ = Dynamic_Modint_64<-1>;\ntemplate <int id>\nBarrett_64 Dynamic_Modint_64<id>::bt;\n"
@@ -140,7 +140,7 @@ data:
   isVerificationFile: false
   path: mod/dynamic_modint_64.hpp
   requiredBy: []
-  timestamp: '2023-11-06 17:38:34+09:00'
+  timestamp: '2023-11-06 21:46:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: mod/dynamic_modint_64.hpp

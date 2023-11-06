@@ -39,10 +39,10 @@ data:
     \ -= t * v, v);\r\n    }\r\n    return modint61(u);\r\n  }\r\n  modint61 pow(ll\
     \ n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1), mul(val);\r\n    while\
     \ (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul *= mul, n >>= 1;\r\n\
-    \    }\r\n    return ret;\r\n  }\r\n#ifdef FASTIO\r\n  void write() { fastio::wt(val);\
-    \ }\r\n  void read() {\r\n    ll x;\r\n    fastio::read(x);\r\n    val = (val\
-    \ >= 0 ? val % mod : (mod - (-val) % mod) % mod);\r\n  }\r\n#endif\r\n};\n#line\
-    \ 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \    }\r\n    return ret;\r\n  }\r\n#ifdef FASTIO\r\n  void print() { fastio::wt(val);\
+    \ }\r\n  void read() {\r\n    ll x;\r\n    fastio::read(x);\r\n    val = (x >=\
+    \ 0 ? x % mod : (mod - (-x) % mod) % mod);\r\n  }\r\n#endif\r\n};\n#line 2 \"\
+    random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
@@ -116,7 +116,7 @@ data:
   isVerificationFile: false
   path: ds/unionfind/parallel_unionfind.hpp
   requiredBy: []
-  timestamp: '2023-11-06 17:38:34+09:00'
+  timestamp: '2023-11-06 21:46:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/unionfind/parallel_unionfind.hpp

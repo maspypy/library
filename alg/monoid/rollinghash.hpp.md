@@ -48,9 +48,9 @@ data:
     \n  }\r\n  modint61 pow(ll n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1),\
     \ mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul\
     \ *= mul, n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n#ifdef FASTIO\r\n  void\
-    \ write() { fastio::wt(val); }\r\n  void read() {\r\n    ll x;\r\n    fastio::read(x);\r\
-    \n    val = (val >= 0 ? val % mod : (mod - (-val) % mod) % mod);\r\n  }\r\n#endif\r\
-    \n};\n#line 5 \"alg/monoid/rollinghash.hpp\"\n\r\n// pow of base, val\r\nstruct\
+    \ print() { fastio::wt(val); }\r\n  void read() {\r\n    ll x;\r\n    fastio::read(x);\r\
+    \n    val = (x >= 0 ? x % mod : (mod - (-x) % mod) % mod);\r\n  }\r\n#endif\r\n\
+    };\n#line 5 \"alg/monoid/rollinghash.hpp\"\n\r\n// pow of base, val\r\nstruct\
     \ Monoid_Rolling_Hash {\r\n  using value_type = pair<modint61, modint61>;\r\n\
     \  using X = value_type;\r\n\r\n  static u64 &get_param() {\r\n    static u64\
     \ base = 0;\r\n    return base;\r\n  }\r\n  static void set_param(u64 base) {\
@@ -74,7 +74,7 @@ data:
   isVerificationFile: false
   path: alg/monoid/rollinghash.hpp
   requiredBy: []
-  timestamp: '2023-11-06 17:38:34+09:00'
+  timestamp: '2023-11-06 21:46:03+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp

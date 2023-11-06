@@ -191,16 +191,18 @@ data:
     \ _d() { flush(); }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\
     \nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\
     \n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    \r\n#define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n \
-    \ read(name)\r\n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
-    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
-    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
-    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
-    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 4 \"test/library_checker/datastructure/staticrmq.test.cpp\"\
+    \n#define U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ U64(...)   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)\
+    \      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
+    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
+    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
+    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
+    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
+    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
+    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
+    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
+    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
+    \ yes(!t); }\r\n#line 4 \"test/library_checker/datastructure/staticrmq.test.cpp\"\
     \n\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Min\
     \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
     \ X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr X unit()\
@@ -281,16 +283,17 @@ data:
     \ {\n      X x = ST.prod(a + 1, b);\n      x = MX::op(suf[L], x);\n      x = MX::op(x,\
     \ pre[R]);\n      return x;\n    }\n    X x = A[L];\n    FOR(i, L + 1, R + 1)\
     \ x = MX::op(x, A[i]);\n    return x;\n  }\n};\n#line 7 \"test/library_checker/datastructure/staticrmq.test.cpp\"\
-    \n\nsigned main() {\n  using Mono = Monoid_Min<int>;\n  using ST = Sparse_Table<Mono>;\n\
-    \  INT(N, Q);\n  Static_Range_Product<Mono, ST> X(N, [&](int i) -> int {\n   \
-    \ INT(x);\n    return x;\n  });\n  FOR(Q) {\n    INT(L, R);\n    print(X.prod(L,\
-    \ R));\n  }\n  return 0;\n}\n"
+    \n\nsigned main() {\n  using Mono = Monoid_Min<u32>;\n  using ST = Sparse_Table<Mono>;\n\
+    \  INT(N, Q);\n  Static_Range_Product<Mono, ST> X(N, [&](int i) -> u32 {\n   \
+    \ u32 x;\n    read(x);\n    return x;\n  });\n  FOR(Q) {\n    u32 L, R;\n    read(L,\
+    \ R);\n    print(X.prod(L, R));\n  }\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n#include \"\
     my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"alg/monoid/min.hpp\"\
     \n#include \"ds/static_range_product.hpp\"\n\nsigned main() {\n  using Mono =\
-    \ Monoid_Min<int>;\n  using ST = Sparse_Table<Mono>;\n  INT(N, Q);\n  Static_Range_Product<Mono,\
-    \ ST> X(N, [&](int i) -> int {\n    INT(x);\n    return x;\n  });\n  FOR(Q) {\n\
-    \    INT(L, R);\n    print(X.prod(L, R));\n  }\n  return 0;\n}\n"
+    \ Monoid_Min<u32>;\n  using ST = Sparse_Table<Mono>;\n  INT(N, Q);\n  Static_Range_Product<Mono,\
+    \ ST> X(N, [&](int i) -> u32 {\n    u32 x;\n    read(x);\n    return x;\n  });\n\
+    \  FOR(Q) {\n    u32 L, R;\n    read(L, R);\n    print(X.prod(L, R));\n  }\n \
+    \ return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -301,7 +304,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/staticrmq.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 21:21:26+09:00'
+  timestamp: '2023-11-06 21:58:56+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/staticrmq.test.cpp

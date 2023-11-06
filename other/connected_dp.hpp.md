@@ -88,9 +88,9 @@ data:
     \n  }\r\n  modint61 pow(ll n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1),\
     \ mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul\
     \ *= mul, n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n#ifdef FASTIO\r\n  void\
-    \ write() { fastio::wt(val); }\r\n  void read() {\r\n    ll x;\r\n    fastio::read(x);\r\
-    \n    val = (val >= 0 ? val % mod : (mod - (-val) % mod) % mod);\r\n  }\r\n#endif\r\
-    \n};\n#line 5 \"random/hash_vector.hpp\"\n\ntemplate <typename T>\nu64 hash_vector(vc<T>\
+    \ print() { fastio::wt(val); }\r\n  void read() {\r\n    ll x;\r\n    fastio::read(x);\r\
+    \n    val = (x >= 0 ? x % mod : (mod - (-x) % mod) % mod);\r\n  }\r\n#endif\r\n\
+    };\n#line 5 \"random/hash_vector.hpp\"\n\ntemplate <typename T>\nu64 hash_vector(vc<T>\
     \ X) {\n  using mint = modint61;\n  static vc<mint> hash_base;\n  int n = len(X);\n\
     \  while (len(hash_base) <= n) { hash_base.eb(RNG(mint::get_mod())); }\n  mint\
     \ H = 0;\n  FOR(i, n) H += hash_base[i] * mint(X[i]);\n  H += hash_base[n];\n\
@@ -250,7 +250,7 @@ data:
   isVerificationFile: false
   path: other/connected_dp.hpp
   requiredBy: []
-  timestamp: '2023-11-06 17:38:34+09:00'
+  timestamp: '2023-11-06 21:46:03+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/578.test.cpp

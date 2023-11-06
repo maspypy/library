@@ -189,7 +189,7 @@ data:
     \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll\
     \ n) const {\n    assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n\
     \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
-    \  }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::wt(val); }\n\
+    \  }\n    return ret;\n  }\n#ifdef FASTIO\n  void print() { fastio::wt(val); }\n\
     \  void read() {\n    ll x;\n    fastio::read(x);\n    val = (x >= 0 ? x % mod\
     \ : (mod - (-x) % mod) % mod);\n  }\n#endif\n  static constexpr int get_mod()\
     \ { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr\
@@ -323,7 +323,7 @@ data:
     \ mint(lhs) /= rhs;\n  }\n  friend bool operator==(const mint& lhs, const mint&\
     \ rhs) {\n    return lhs.val == rhs.val;\n  }\n  friend bool operator!=(const\
     \ mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n  }\n#ifdef FASTIO\n\
-    \  void write() { fastio::wt(val); }\n  void read() {\n    ll x;\n    fastio::read(x);\n\
+    \  void print() { fastio::wt(val); }\n  void read() {\n    ll x;\n    fastio::read(x);\n\
     \    val = (x >= 0 ? x % mod : (mod - (-x) % mod) % mod);\n  }\n#endif\n  static\
     \ pair<int, int>& get_ntt() {\n    static pair<int, int> p = {-1, -1};\n    return\
     \ p;\n  }\n  static void set_ntt_info() {\n    int mod = get_mod();\n    int k\
@@ -369,7 +369,7 @@ data:
   isVerificationFile: true
   path: test/mytest/31bit_modint.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 17:38:34+09:00'
+  timestamp: '2023-11-06 21:46:03+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/31bit_modint.test.cpp

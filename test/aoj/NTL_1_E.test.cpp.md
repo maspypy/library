@@ -182,33 +182,34 @@ data:
     \ _d() { flush(); }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\
     \nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\
     \n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    \r\n#define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n \
-    \ read(name)\r\n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
-    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
-    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
-    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
-    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 1 \"nt/extgcd.hpp\"\ntuple<ll, ll, ll, ll> Farey_lr(ll\
-    \ a, ll b) {\r\n  assert(a > 0 && b > 0);\r\n  /*\r\n  Farey \u6570\u5217\u3067\
-    \u3001a/b \u304C\u6700\u521D\u306B\u73FE\u308C\u308B\u3068\u304D\u306E\u3001\u5DE6\
-    \u53F3\u3092\u6C42\u3081\u308B\u3002\r\n  a/b = 19/12 \u2192 (x1/y1, x2/y2) =\
-    \ (11/7, 8/5) \u2192 (11,7,8,5) \u3092\u8FD4\u3059\u3002\r\n  */\r\n  if (a ==\
-    \ b) return {0, 1, 1, 0};\r\n  ll q = (a - 1) / b;\r\n  auto [x1, y1, x2, y2]\
-    \ = Farey_lr(b, a - q * b);\r\n  return {q * x2 + y2, x2, q * x1 + y1, x1};\r\n\
-    }\r\n\r\ntuple<ll, ll, ll> extgcd(ll a, ll b) {\r\n  // ax + by = d \u306E\u6700\
-    \u5C0F\u89E3 (x, y, d) \u3092\u8FD4\u3059\u3002\r\n  // (|x|+|y|, x) \u306B\u95A2\
-    \u3059\u308B\u8F9E\u66F8\u9806\u6700\u5C0F\u3068\u3059\u308B\u3002\r\n  auto [x1,\
-    \ y1, x2, y2] = Farey_lr(a, b);\r\n  tie(x1, y1) = mp(y1, -x1);\r\n  tie(x2, y2)\
-    \ = mp(-y2, x2);\r\n  ll g = a * x1 + b * y1;\r\n\r\n  pi key1 = mp(abs(x1) +\
-    \ abs(y1), x1);\r\n  pi key2 = mp(abs(x2) + abs(y2), x2);\r\n  return (key1 <\
-    \ key2 ? mt(x1, y1, g) : mt(x2, y2, g));\r\n}\r\n#line 7 \"test/aoj/NTL_1_E.test.cpp\"\
-    \n\nvoid solve() {\n  LL(a, b);\n  auto [x, y, d] = extgcd(a, b);\n  print(x,\
-    \ y);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
+    \n#define U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ U64(...)   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)\
+    \      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
+    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
+    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
+    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
+    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
+    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
+    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
+    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
+    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
+    \ yes(!t); }\r\n#line 1 \"nt/extgcd.hpp\"\ntuple<ll, ll, ll, ll> Farey_lr(ll a,\
+    \ ll b) {\r\n  assert(a > 0 && b > 0);\r\n  /*\r\n  Farey \u6570\u5217\u3067\u3001\
+    a/b \u304C\u6700\u521D\u306B\u73FE\u308C\u308B\u3068\u304D\u306E\u3001\u5DE6\u53F3\
+    \u3092\u6C42\u3081\u308B\u3002\r\n  a/b = 19/12 \u2192 (x1/y1, x2/y2) = (11/7,\
+    \ 8/5) \u2192 (11,7,8,5) \u3092\u8FD4\u3059\u3002\r\n  */\r\n  if (a == b) return\
+    \ {0, 1, 1, 0};\r\n  ll q = (a - 1) / b;\r\n  auto [x1, y1, x2, y2] = Farey_lr(b,\
+    \ a - q * b);\r\n  return {q * x2 + y2, x2, q * x1 + y1, x1};\r\n}\r\n\r\ntuple<ll,\
+    \ ll, ll> extgcd(ll a, ll b) {\r\n  // ax + by = d \u306E\u6700\u5C0F\u89E3 (x,\
+    \ y, d) \u3092\u8FD4\u3059\u3002\r\n  // (|x|+|y|, x) \u306B\u95A2\u3059\u308B\
+    \u8F9E\u66F8\u9806\u6700\u5C0F\u3068\u3059\u308B\u3002\r\n  auto [x1, y1, x2,\
+    \ y2] = Farey_lr(a, b);\r\n  tie(x1, y1) = mp(y1, -x1);\r\n  tie(x2, y2) = mp(-y2,\
+    \ x2);\r\n  ll g = a * x1 + b * y1;\r\n\r\n  pi key1 = mp(abs(x1) + abs(y1), x1);\r\
+    \n  pi key2 = mp(abs(x2) + abs(y2), x2);\r\n  return (key1 < key2 ? mt(x1, y1,\
+    \ g) : mt(x2, y2, g));\r\n}\r\n#line 7 \"test/aoj/NTL_1_E.test.cpp\"\n\nvoid solve()\
+    \ {\n  LL(a, b);\n  auto [x, y, d] = extgcd(a, b);\n  print(x, y);\n}\n\nsigned\
+    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_E\"\
     \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/extgcd.hpp\"\
     \n\nvoid solve() {\n  LL(a, b);\n  auto [x, y, d] = extgcd(a, b);\n  print(x,\
@@ -222,7 +223,7 @@ data:
   isVerificationFile: true
   path: test/aoj/NTL_1_E.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 21:21:26+09:00'
+  timestamp: '2023-11-06 21:58:56+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/NTL_1_E.test.cpp

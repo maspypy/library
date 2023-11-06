@@ -183,21 +183,23 @@ data:
     \ _d() { flush(); }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\
     \nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\
     \n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    \r\n#define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n \
-    \ read(name)\r\n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
-    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
-    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
-    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
-    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 1 \"convex/dynamic_lichao.hpp\"\n// \u76F4\u7DDA\u8FFD\
-    \u52A0\u304B\u3064\u975E\u6C38\u7D9A\u306A\u3089\u7A7A\u9593 Q \u3067\u3088\u3044\
-    \u3002\n// \u95A2\u6570\u306F ll -> T\u3002[L, R) \u4E0A f \u304C overflow \u3057\
-    \u306A\u3044\u3088\u3046\u306B\u6CE8\u610F\u3002\n// evaluate \u3092\u66F8\u304D\
-    \u5909\u3048\u308B\u3068\u3001totally monotone \u306A\u95A2\u6570\u7FA4\u306B\u3082\
-    \u4F7F\u3048\u308B\ntemplate <typename T, bool PERSISTENT, int NODES, bool MINIMIZE>\n\
+    \n#define U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ U64(...)   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)\
+    \      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
+    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
+    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
+    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
+    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
+    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
+    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
+    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
+    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
+    \ yes(!t); }\r\n#line 1 \"convex/dynamic_lichao.hpp\"\n// \u76F4\u7DDA\u8FFD\u52A0\
+    \u304B\u3064\u975E\u6C38\u7D9A\u306A\u3089\u7A7A\u9593 Q \u3067\u3088\u3044\u3002\
+    \n// \u95A2\u6570\u306F ll -> T\u3002[L, R) \u4E0A f \u304C overflow \u3057\u306A\
+    \u3044\u3088\u3046\u306B\u6CE8\u610F\u3002\n// evaluate \u3092\u66F8\u304D\u5909\
+    \u3048\u308B\u3068\u3001totally monotone \u306A\u95A2\u6570\u7FA4\u306B\u3082\u4F7F\
+    \u3048\u308B\ntemplate <typename T, bool PERSISTENT, int NODES, bool MINIMIZE>\n\
     struct Dynamic_LiChao_Tree {\n  using FUNC = pair<T, T>;\n  vc<FUNC> funcs;\n\n\
     \  static inline T evaluate(FUNC &f, ll x) { return f.fi * x + f.se; }\n\n  struct\
     \ Node {\n    int fid;\n    Node *l, *r;\n  };\n\n  Node *pool;\n  int pid;\n\
@@ -271,7 +273,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/segment_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 21:21:26+09:00'
+  timestamp: '2023-11-06 21:58:56+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/segment_add_get_min.test.cpp

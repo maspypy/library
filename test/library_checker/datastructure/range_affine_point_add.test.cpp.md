@@ -192,16 +192,18 @@ data:
     \ _d() { flush(); }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\
     \nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\
     \n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    \r\n#define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n \
-    \ read(name)\r\n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
-    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
-    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
-    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
-    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 4 \"test/library_checker/datastructure/range_affine_point_add.test.cpp\"\
+    \n#define U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ U64(...)   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)\
+    \      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
+    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
+    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
+    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
+    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
+    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
+    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
+    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
+    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
+    \ yes(!t); }\r\n#line 4 \"test/library_checker/datastructure/range_affine_point_add.test.cpp\"\
     \n\n#line 2 \"ds/segtree/dual_segtree.hpp\"\n\ntemplate <typename Monoid>\nstruct\
     \ Dual_SegTree {\n  using MA = Monoid;\n  using A = typename MA::value_type;\n\
     \  int n, log, size;\n  vc<A> laz;\n\n  Dual_SegTree() : Dual_SegTree(0) {}\n\
@@ -287,7 +289,7 @@ data:
     \ return modint(u);\n  }\n  modint pow(ll n) const {\n    assert(n >= 0);\n  \
     \  modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
     \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n\
-    \  void write() { fastio::wt(val); }\n  void read() {\n    ll x;\n    fastio::read(x);\n\
+    \  void print() { fastio::wt(val); }\n  void read() {\n    ll x;\n    fastio::read(x);\n\
     \    val = (x >= 0 ? x % mod : (mod - (-x) % mod) % mod);\n  }\n#endif\n  static\
     \ constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n\
     \ \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n    if (mod ==\
@@ -299,23 +301,23 @@ data:
     \    return {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi\
     \ != -1; }\n};\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     #line 8 \"test/library_checker/datastructure/range_affine_point_add.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  VEC(mint, A, N);\n\
-    \  Dual_SegTree<Monoid_Affine<mint>> seg(N);\n  FOR(Q) {\n    LL(t);\n    if (t\
-    \ == 0) {\n      LL(l, r, b, c);\n      seg.apply(l, r, {mint(b), mint(c)});\n\
-    \    }\n    if (t == 1) {\n      LL(idx);\n      mint x = A[idx];\n      auto\
-    \ [a, b] = seg.get(idx);\n      print(a * x + b);\n    }\n  }\n}\n\nsigned main()\
-    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  INT(N, Q);\n  vc<mint> A(N);\n\
+    \  FOR(i, N) {\n    u32 x;\n    read(x);\n    A[i] = mint::raw(x);\n  }\n  Dual_SegTree<Monoid_Affine<mint>>\
+    \ seg(N);\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      u32 l, r, b, c;\n\
+    \      read(l, r, b, c);\n      seg.apply(l, r, {mint::raw(b), mint::raw(c)});\n\
+    \    }\n    if (t == 1) {\n      u32 idx;\n      read(idx);\n      mint x = A[idx];\n\
+    \      auto [a, b] = seg.get(idx);\n      print(a * x + b);\n    }\n  }\n}\n\n\
+    signed main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_point_get\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/segtree/dual_segtree.hpp\"\
     \n#include \"alg/monoid/affine.hpp\"\n#include \"mod/modint.hpp\"\n\nusing mint\
-    \ = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  VEC(mint, A, N);\n  Dual_SegTree<Monoid_Affine<mint>>\
-    \ seg(N);\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(l, r, b, c);\n\
-    \      seg.apply(l, r, {mint(b), mint(c)});\n    }\n    if (t == 1) {\n      LL(idx);\n\
-    \      mint x = A[idx];\n      auto [a, b] = seg.get(idx);\n      print(a * x\
-    \ + b);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
+    \ = modint998;\n\nvoid solve() {\n  INT(N, Q);\n  vc<mint> A(N);\n  FOR(i, N)\
+    \ {\n    u32 x;\n    read(x);\n    A[i] = mint::raw(x);\n  }\n  Dual_SegTree<Monoid_Affine<mint>>\
+    \ seg(N);\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      u32 l, r, b, c;\n\
+    \      read(l, r, b, c);\n      seg.apply(l, r, {mint::raw(b), mint::raw(c)});\n\
+    \    }\n    if (t == 1) {\n      u32 idx;\n      read(idx);\n      mint x = A[idx];\n\
+    \      auto [a, b] = seg.get(idx);\n      print(a * x + b);\n    }\n  }\n}\n\n\
+    signed main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -326,7 +328,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/range_affine_point_add.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 21:21:26+09:00'
+  timestamp: '2023-11-06 21:58:56+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_affine_point_add.test.cpp

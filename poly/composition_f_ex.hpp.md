@@ -125,7 +125,7 @@ data:
     \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll\
     \ n) const {\n    assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n\
     \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
-    \  }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::wt(val); }\n\
+    \  }\n    return ret;\n  }\n#ifdef FASTIO\n  void print() { fastio::wt(val); }\n\
     \  void read() {\n    ll x;\n    fastio::read(x);\n    val = (x >= 0 ? x % mod\
     \ : (mod - (-x) % mod) % mod);\n  }\n#endif\n  static constexpr int get_mod()\
     \ { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr\
@@ -411,7 +411,7 @@ data:
   requiredBy:
   - poly/composition_f_1_minus_ex.hpp
   - poly/composition_f_ex_minus_1.hpp
-  timestamp: '2023-11-06 17:38:34+09:00'
+  timestamp: '2023-11-06 21:46:03+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1875.test.cpp

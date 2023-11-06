@@ -48,9 +48,9 @@ data:
     \n  }\r\n  modint61 pow(ll n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1),\
     \ mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul\
     \ *= mul, n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n#ifdef FASTIO\r\n  void\
-    \ write() { fastio::wt(val); }\r\n  void read() {\r\n    ll x;\r\n    fastio::read(x);\r\
-    \n    val = (val >= 0 ? val % mod : (mod - (-val) % mod) % mod);\r\n  }\r\n#endif\r\
-    \n};\n#line 3 \"string/rollinghash_2d.hpp\"\n\nstruct RollingHash_2D {\n  using\
+    \ print() { fastio::wt(val); }\r\n  void read() {\r\n    ll x;\r\n    fastio::read(x);\r\
+    \n    val = (x >= 0 ? x % mod : (mod - (-x) % mod) % mod);\r\n  }\r\n#endif\r\n\
+    };\n#line 3 \"string/rollinghash_2d.hpp\"\n\nstruct RollingHash_2D {\n  using\
     \ M61 = modint61;\n  const M61 b1, b2;\n  vc<M61> pow1;\n  vc<M61> pow2;\n\n \
     \ RollingHash_2D()\n      : b1(generate_base()), b2(generate_base()), pow1{M61(1)},\
     \ pow2{M61(1)} {}\n\n  template <typename STRING>\n  vvc<M61> build(const vc<STRING>&\
@@ -86,7 +86,7 @@ data:
   isVerificationFile: false
   path: string/rollinghash_2d.hpp
   requiredBy: []
-  timestamp: '2023-11-06 17:38:34+09:00'
+  timestamp: '2023-11-06 21:46:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_14_C.test.cpp

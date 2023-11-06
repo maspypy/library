@@ -182,36 +182,38 @@ data:
     \ _d() { flush(); }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\
     \nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\
     \n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    \r\n#define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n \
-    \ read(name)\r\n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
-    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
-    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
-    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
-    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
-    \ { yes(!t); }\r\n#line 2 \"ds/offline_query/range_xor_basis_query.hpp\"\n\n//\
-    \ \u5217\u3082\u30AF\u30A8\u30EA\u3082 static\ntemplate <typename INT_TYPE, int\
-    \ LOG>\nstruct Range_Xor_Basis_Query {\n  int n;\n  int Q;\n  vc<INT_TYPE>& A;\n\
-    \  vvc<pair<int, int>> QUERY;\n\n  Range_Xor_Basis_Query(vc<INT_TYPE>& A) : n(len(A)),\
-    \ Q(0), A(A) {\n    QUERY.resize(n + 1);\n  }\n\n  // \u30AF\u30A8\u30EA\u8FFD\
-    \u52A0\u3002\n  void query(int L, int R) {\n    assert(0 <= L && L <= R && R <=\
-    \ n);\n    QUERY[R].eb(Q++, L);\n  }\n\n  // \u95A2\u6570 F(qid, basis) \u3092\
-    \u6E21\u3059\n  template <typename CALC>\n  void calc(CALC F) {\n    using P =\
-    \ pair<INT_TYPE, int>;\n    array<P, LOG> d;\n    FOR(k, LOG) d[k] = {INT_TYPE(1)\
-    \ << k, -1};\n    vc<INT_TYPE> basis;\n    FOR(i, n + 1) {\n      for (auto&&\
-    \ [qid, L]: QUERY[i]) {\n        basis.clear();\n        FOR_R(k, LOG) if (d[k].se\
-    \ >= L) basis.eb(d[k].fi);\n        F(qid, basis);\n      }\n      if (i == n)\
-    \ break;\n      P p = {A[i], i};\n      FOR_R(k, LOG) {\n        if (!(p.fi >>\
-    \ k & 1)) continue;\n        if (p.se > d[k].se) swap(p, d[k]);\n        p.fi\
-    \ ^= d[k].fi;\n      }\n    }\n  }\n};\n#line 5 \"test_atcoder/abc223h.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  Range_Xor_Basis_Query<ll,\
-    \ 60> S(A);\n  vi X(Q);\n  FOR(q, Q) {\n    LL(L, R);\n    read(X[q]);\n    S.query(--L,\
-    \ R);\n  }\n\n  vc<bool> ANS(Q);\n\n  S.calc([&](int q, vi basis) -> void {\n\
-    \    ll x = X[q];\n    for (auto&& b: basis) x = min(x, x ^ b);\n    ANS[q] =\
-    \ x == 0;\n  });\n  for (auto&& a: ANS) Yes(a);\n}\n\nsigned main() {\n  solve();\n\
-    \  return 0;\n}\n"
+    \n#define U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ U64(...)   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)\
+    \      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
+    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
+    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
+    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
+    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
+    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
+    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
+    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
+    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
+    \ yes(!t); }\r\n#line 2 \"ds/offline_query/range_xor_basis_query.hpp\"\n\n// \u5217\
+    \u3082\u30AF\u30A8\u30EA\u3082 static\ntemplate <typename INT_TYPE, int LOG>\n\
+    struct Range_Xor_Basis_Query {\n  int n;\n  int Q;\n  vc<INT_TYPE>& A;\n  vvc<pair<int,\
+    \ int>> QUERY;\n\n  Range_Xor_Basis_Query(vc<INT_TYPE>& A) : n(len(A)), Q(0),\
+    \ A(A) {\n    QUERY.resize(n + 1);\n  }\n\n  // \u30AF\u30A8\u30EA\u8FFD\u52A0\
+    \u3002\n  void query(int L, int R) {\n    assert(0 <= L && L <= R && R <= n);\n\
+    \    QUERY[R].eb(Q++, L);\n  }\n\n  // \u95A2\u6570 F(qid, basis) \u3092\u6E21\
+    \u3059\n  template <typename CALC>\n  void calc(CALC F) {\n    using P = pair<INT_TYPE,\
+    \ int>;\n    array<P, LOG> d;\n    FOR(k, LOG) d[k] = {INT_TYPE(1) << k, -1};\n\
+    \    vc<INT_TYPE> basis;\n    FOR(i, n + 1) {\n      for (auto&& [qid, L]: QUERY[i])\
+    \ {\n        basis.clear();\n        FOR_R(k, LOG) if (d[k].se >= L) basis.eb(d[k].fi);\n\
+    \        F(qid, basis);\n      }\n      if (i == n) break;\n      P p = {A[i],\
+    \ i};\n      FOR_R(k, LOG) {\n        if (!(p.fi >> k & 1)) continue;\n      \
+    \  if (p.se > d[k].se) swap(p, d[k]);\n        p.fi ^= d[k].fi;\n      }\n   \
+    \ }\n  }\n};\n#line 5 \"test_atcoder/abc223h.test.cpp\"\n\nvoid solve() {\n  LL(N,\
+    \ Q);\n  VEC(ll, A, N);\n  Range_Xor_Basis_Query<ll, 60> S(A);\n  vi X(Q);\n \
+    \ FOR(q, Q) {\n    LL(L, R);\n    read(X[q]);\n    S.query(--L, R);\n  }\n\n \
+    \ vc<bool> ANS(Q);\n\n  S.calc([&](int q, vi basis) -> void {\n    ll x = X[q];\n\
+    \    for (auto&& b: basis) x = min(x, x ^ b);\n    ANS[q] = x == 0;\n  });\n \
+    \ for (auto&& a: ANS) Yes(a);\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc223/tasks/abc223_h\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/offline_query/range_xor_basis_query.hpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  Range_Xor_Basis_Query<ll,\
@@ -227,7 +229,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc223h.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 21:21:26+09:00'
+  timestamp: '2023-11-06 21:58:56+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc223h.test.cpp
