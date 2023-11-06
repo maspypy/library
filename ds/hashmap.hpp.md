@@ -2,6 +2,12 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: ds/static_range_frequency.hpp
+    title: ds/static_range_frequency.hpp
+  - icon: ':x:'
+    path: ds/to_small_key.hpp
+    title: ds/to_small_key.hpp
   - icon: ':x:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
@@ -36,6 +42,9 @@ data:
   - icon: ':x:'
     path: test/library_checker/datastructure/set_xor_min.test.cpp
     title: test/library_checker/datastructure/set_xor_min.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/static_range_freq.test.cpp
+    title: test/library_checker/datastructure/static_range_freq.test.cpp
   - icon: ':x:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
@@ -163,6 +172,8 @@ data:
   - geo/closest_pair.hpp
   - nt/discrete_log.hpp
   - other/connected_dp.hpp
+  - ds/to_small_key.hpp
+  - ds/static_range_frequency.hpp
   timestamp: '2023-11-06 03:08:30+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
@@ -184,6 +195,7 @@ data:
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
+  - test/library_checker/datastructure/static_range_freq.test.cpp
   - test/library_checker/datastructure/associative_array_hashmap.test.cpp
   - test/library_checker/datastructure/set_xor_min.test.cpp
   - test/aoj/CGL_5_A.test.cpp

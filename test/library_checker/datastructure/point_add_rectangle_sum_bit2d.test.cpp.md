@@ -108,17 +108,7 @@ data:
     \ <unistd.h>\r\n\r\n// https://judge.yosupo.jp/submission/21623\r\nnamespace fastio\
     \ {\r\nstatic constexpr uint32_t SZ = 1 << 17;\r\nchar ibuf[SZ];\r\nchar obuf[SZ];\r\
     \nchar out[100];\r\n// pointer of ibuf, obuf\r\nuint32_t pil = 0, pir = 0, por\
-    \ = 0;\r\n\r\ntemplate <typename T>\r\nstruct has_read_method {\r\n  template\
-    \ <typename U>\r\n  static std::true_type test(decltype(&U::read) *);\r\n  template\
-    \ <typename>\r\n  static std::false_type test(...);\r\n  using type = decltype(test<T>(nullptr));\r\
-    \n  static constexpr bool value = type::value;\r\n};\r\n\r\ntemplate <typename\
-    \ T>\r\nstruct has_print_method {\r\n  template <typename U>\r\n  static std::true_type\
-    \ test(decltype(&U::print) *);\r\n  template <typename>\r\n  static std::false_type\
-    \ test(...);\r\n  using type = decltype(test<T>(nullptr));\r\n  static constexpr\
-    \ bool value = type::value;\r\n};\r\n\r\ntemplate <typename T>\r\ntypename enable_if<has_read_method<T>::value,\
-    \ void>::type rd(T &x) {\r\n  x.read();\r\n}\r\n\r\ntemplate <typename T>\r\n\
-    typename enable_if<has_print_method<T>::value, void>::type wt(T x) {\r\n  x.print();\r\
-    \n}\r\n\r\nstruct Pre {\r\n  char num[10000][4];\r\n  constexpr Pre() : num()\
+    \ = 0;\r\n\r\nstruct Pre {\r\n  char num[10000][4];\r\n  constexpr Pre() : num()\
     \ {\r\n    for (int i = 0; i < 10000; i++) {\r\n      int n = i;\r\n      for\
     \ (int j = 3; j >= 0; j--) {\r\n        num[i][j] = n % 10 | '0';\r\n        n\
     \ /= 10;\r\n      }\r\n    }\r\n  }\r\n} constexpr pre;\r\n\r\ninline void load()\
@@ -256,31 +246,29 @@ data:
     \ + LID;\r\n    int R = lower_bound(it, it + n, ry) - it - 1;\r\n    while (R\
     \ >= 0) { pos = G::op(pos, dat[LID + R]), R = prev(R); }\r\n    return pos;\r\n\
     \  }\r\n};\r\n#line 7 \"test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  vi X(N), Y(N), W(N);\r\n  FOR(i, N) {\r\
-    \n    LL(x, y, w);\r\n    X[i] = x, Y[i] = y, W[i] = w;\r\n  }\r\n  using QQ =\
-    \ tuple<ll, ll, ll, ll>;\r\n  vc<QQ> query(Q);\r\n  FOR(q, Q) {\r\n    LL(t);\r\
-    \n    if (t == 0) {\r\n      LL(x, y, w);\r\n      X.eb(x);\r\n      Y.eb(y);\r\
-    \n      W.eb(0);\r\n      query[q] = mt(-1, x, y, w);\r\n    } else {\r\n    \
-    \  LL(a, b, c, d);\r\n      query[q] = mt(a, c, b, d);\r\n    }\r\n  }\r\n\r\n\
-    \  FenwickTree_2D<Monoid_Add<ll>, ll, false> bit(X, Y, W);\r\n  FOR(q, Q) {\r\n\
-    \    auto [a, b, c, d] = query[q];\r\n    if (a == -1) {\r\n      bit.add(b, c,\
-    \ d);\r\n    } else {\r\n      print(bit.prod(a, b, c, d));\r\n    }\r\n  }\r\n\
-    }\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  vc<u32> X(N), Y(N);\r\n  vc<u64> W(N);\r\
+    \n  FOR(i, N) read(X[i], Y[i], W[i]);\r\n  using QQ = tuple<u32, u32, u32, u32>;\r\
+    \n  vc<QQ> query(Q);\r\n  FOR(q, Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n \
+    \     U32(x, y, w);\r\n      X.eb(x);\r\n      Y.eb(y);\r\n      W.eb(0);\r\n\
+    \      query[q] = mt(-1, x, y, w);\r\n    } else {\r\n      U32(a, b, c, d);\r\
+    \n      query[q] = mt(a, c, b, d);\r\n    }\r\n  }\r\n\r\n  FenwickTree_2D<Monoid_Add<u64>,\
+    \ u32, false> bit(X, Y, W);\r\n  FOR(q, Q) {\r\n    auto [a, b, c, d] = query[q];\r\
+    \n    if (a == u32(-1)) {\r\n      bit.add(b, c, d);\r\n    } else {\r\n     \
+    \ print(bit.prod(a, b, c, d));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n\
+    \  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_rectangle_sum\"\
     \r\n\r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
     \ \"ds/fenwicktree/fenwicktree_2d.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N, Q);\r\
-    \n  vi X(N), Y(N), W(N);\r\n  FOR(i, N) {\r\n    LL(x, y, w);\r\n    X[i] = x,\
-    \ Y[i] = y, W[i] = w;\r\n  }\r\n  using QQ = tuple<ll, ll, ll, ll>;\r\n  vc<QQ>\
-    \ query(Q);\r\n  FOR(q, Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n      LL(x,\
-    \ y, w);\r\n      X.eb(x);\r\n      Y.eb(y);\r\n      W.eb(0);\r\n      query[q]\
-    \ = mt(-1, x, y, w);\r\n    } else {\r\n      LL(a, b, c, d);\r\n      query[q]\
-    \ = mt(a, c, b, d);\r\n    }\r\n  }\r\n\r\n  FenwickTree_2D<Monoid_Add<ll>, ll,\
-    \ false> bit(X, Y, W);\r\n  FOR(q, Q) {\r\n    auto [a, b, c, d] = query[q];\r\
-    \n    if (a == -1) {\r\n      bit.add(b, c, d);\r\n    } else {\r\n      print(bit.prod(a,\
-    \ b, c, d));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
-    \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
-    \n\r\n  return 0;\r\n}\r\n"
+    \n  vc<u32> X(N), Y(N);\r\n  vc<u64> W(N);\r\n  FOR(i, N) read(X[i], Y[i], W[i]);\r\
+    \n  using QQ = tuple<u32, u32, u32, u32>;\r\n  vc<QQ> query(Q);\r\n  FOR(q, Q)\
+    \ {\r\n    LL(t);\r\n    if (t == 0) {\r\n      U32(x, y, w);\r\n      X.eb(x);\r\
+    \n      Y.eb(y);\r\n      W.eb(0);\r\n      query[q] = mt(-1, x, y, w);\r\n  \
+    \  } else {\r\n      U32(a, b, c, d);\r\n      query[q] = mt(a, c, b, d);\r\n\
+    \    }\r\n  }\r\n\r\n  FenwickTree_2D<Monoid_Add<u64>, u32, false> bit(X, Y, W);\r\
+    \n  FOR(q, Q) {\r\n    auto [a, b, c, d] = query[q];\r\n    if (a == u32(-1))\
+    \ {\r\n      bit.add(b, c, d);\r\n    } else {\r\n      print(bit.prod(a, b, c,\
+    \ d));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return\
+    \ 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -289,7 +277,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 21:58:56+09:00'
+  timestamp: '2023-11-06 23:45:48+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp

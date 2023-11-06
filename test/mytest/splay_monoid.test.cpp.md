@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
   - icon: ':question:'
@@ -10,10 +10,10 @@ data:
   - icon: ':question:'
     path: ds/splaytree/splaytree_monoid.hpp
     title: ds/splaytree/splaytree_monoid.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -119,17 +119,7 @@ data:
     \ <unistd.h>\r\n\r\n// https://judge.yosupo.jp/submission/21623\r\nnamespace fastio\
     \ {\r\nstatic constexpr uint32_t SZ = 1 << 17;\r\nchar ibuf[SZ];\r\nchar obuf[SZ];\r\
     \nchar out[100];\r\n// pointer of ibuf, obuf\r\nuint32_t pil = 0, pir = 0, por\
-    \ = 0;\r\n\r\ntemplate <typename T>\r\nstruct has_read_method {\r\n  template\
-    \ <typename U>\r\n  static std::true_type test(decltype(&U::read) *);\r\n  template\
-    \ <typename>\r\n  static std::false_type test(...);\r\n  using type = decltype(test<T>(nullptr));\r\
-    \n  static constexpr bool value = type::value;\r\n};\r\n\r\ntemplate <typename\
-    \ T>\r\nstruct has_print_method {\r\n  template <typename U>\r\n  static std::true_type\
-    \ test(decltype(&U::print) *);\r\n  template <typename>\r\n  static std::false_type\
-    \ test(...);\r\n  using type = decltype(test<T>(nullptr));\r\n  static constexpr\
-    \ bool value = type::value;\r\n};\r\n\r\ntemplate <typename T>\r\ntypename enable_if<has_read_method<T>::value,\
-    \ void>::type rd(T &x) {\r\n  x.read();\r\n}\r\n\r\ntemplate <typename T>\r\n\
-    typename enable_if<has_print_method<T>::value, void>::type wt(T x) {\r\n  x.print();\r\
-    \n}\r\n\r\nstruct Pre {\r\n  char num[10000][4];\r\n  constexpr Pre() : num()\
+    \ = 0;\r\n\r\nstruct Pre {\r\n  char num[10000][4];\r\n  constexpr Pre() : num()\
     \ {\r\n    for (int i = 0; i < 10000; i++) {\r\n      int n = i;\r\n      for\
     \ (int j = 3; j >= 0; j--) {\r\n        num[i][j] = n % 10 | '0';\r\n        n\
     \ /= 10;\r\n      }\r\n    }\r\n  }\r\n} constexpr pre;\r\n\r\ninline void load()\
@@ -273,31 +263,31 @@ data:
     \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
     \  assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if\
     \ (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
-    \  }\n#ifdef FASTIO\n  void print() { fastio::wt(val); }\n  void read() {\n  \
-    \  ll x;\n    fastio::read(x);\n    val = (x >= 0 ? x % mod : (mod - (-x) % mod)\
-    \ % mod);\n  }\n#endif\n  static constexpr int get_mod() { return mod; }\n  //\
-    \ (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int>\
-    \ ntt_info() {\n    if (mod == 167772161) return {25, 17};\n    if (mod == 469762049)\
-    \ return {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod ==\
-    \ 880803841) return {23, 211};\n    if (mod == 943718401) return {22, 663003469};\n\
-    \    if (mod == 998244353) return {23, 31};\n    if (mod == 1045430273) return\
-    \ {20, 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881)\
+    \  }\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F\
+    \ 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n\
+    \    if (mod == 167772161) return {25, 17};\n    if (mod == 469762049) return\
+    \ {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841)\
+    \ return {23, 211};\n    if (mod == 943718401) return {22, 663003469};\n    if\
+    \ (mod == 998244353) return {23, 31};\n    if (mod == 1045430273) return {20,\
+    \ 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881)\
     \ return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt()\
-    \ { return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 2 \"ds/splaytree/splaytree.hpp\"\n\
-    // Node \u578B\u3092\u5225\u306B\u5B9A\u7FA9\u3057\u3066\u4F7F\u3046\ntemplate\
-    \ <typename Node, int NODES = 1'000'000>\nstruct SplayTree {\n  Node *pool;\n\
-    \  int pid;\n  using np = Node *;\n  using X = typename Node::value_type;\n  using\
-    \ A = typename Node::operator_type;\n\n  SplayTree() : pid(0) { pool = new Node[NODES];\
-    \ }\n\n  void reset() { pid = 0; }\n\n  np new_root() { return nullptr; }\n\n\
-    \  np new_node(const X &x) {\n    np n = &(pool[pid++]);\n    Node::new_node(n,\
-    \ x);\n    return n;\n  }\n\n  np new_node(const vc<X> &dat) {\n    auto dfs =\
-    \ [&](auto &dfs, int l, int r) -> np {\n      if (l == r) return nullptr;\n  \
-    \    if (r == l + 1) return new_node(dat[l]);\n      int m = (l + r) / 2;\n  \
-    \    np l_root = dfs(dfs, l, m);\n      np r_root = dfs(dfs, m + 1, r);\n    \
-    \  np root = new_node(dat[m]);\n      root->l = l_root, root->r = r_root;\n  \
-    \    if (l_root) l_root->p = root;\n      if (r_root) r_root->p = root;\n    \
-    \  root->update();\n      return root;\n    };\n    return dfs(dfs, 0, len(dat));\n\
+    \ { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
+    \ rd(modint<mod> &x) {\n  ll v;\n  fastio::rd(v);\n  x = modint<mod>(v);\n}\n\
+    template <int mod>\nvoid wt(modint<mod> x) {\n  wt(x.val);\n}\n#endif\n\nusing\
+    \ modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line\
+    \ 2 \"ds/splaytree/splaytree.hpp\"\n// Node \u578B\u3092\u5225\u306B\u5B9A\u7FA9\
+    \u3057\u3066\u4F7F\u3046\ntemplate <typename Node, int NODES = 1'000'000>\nstruct\
+    \ SplayTree {\n  Node *pool;\n  int pid;\n  using np = Node *;\n  using X = typename\
+    \ Node::value_type;\n  using A = typename Node::operator_type;\n\n  SplayTree()\
+    \ : pid(0) { pool = new Node[NODES]; }\n\n  void reset() { pid = 0; }\n\n  np\
+    \ new_root() { return nullptr; }\n\n  np new_node(const X &x) {\n    np n = &(pool[pid++]);\n\
+    \    Node::new_node(n, x);\n    return n;\n  }\n\n  np new_node(const vc<X> &dat)\
+    \ {\n    auto dfs = [&](auto &dfs, int l, int r) -> np {\n      if (l == r) return\
+    \ nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n      int m = (l +\
+    \ r) / 2;\n      np l_root = dfs(dfs, l, m);\n      np r_root = dfs(dfs, m + 1,\
+    \ r);\n      np root = new_node(dat[m]);\n      root->l = l_root, root->r = r_root;\n\
+    \      if (l_root) l_root->p = root;\n      if (r_root) r_root->p = root;\n  \
+    \    root->update();\n      return root;\n    };\n    return dfs(dfs, 0, len(dat));\n\
     \  }\n\n  u32 get_size(np root) { return (root ? root->size : 0); }\n\n  np merge(np\
     \ l_root, np r_root) {\n    if (!l_root) return r_root;\n    if (!r_root) return\
     \ l_root;\n    splay_kth(r_root, 0); // splay \u3057\u305F\u306E\u3067 prop \u6E08\
@@ -475,7 +465,7 @@ data:
   isVerificationFile: true
   path: test/mytest/splay_monoid.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 22:12:25+09:00'
+  timestamp: '2023-11-06 23:45:48+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/splay_monoid.test.cpp

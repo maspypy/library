@@ -111,17 +111,7 @@ data:
     \ <unistd.h>\r\n\r\n// https://judge.yosupo.jp/submission/21623\r\nnamespace fastio\
     \ {\r\nstatic constexpr uint32_t SZ = 1 << 17;\r\nchar ibuf[SZ];\r\nchar obuf[SZ];\r\
     \nchar out[100];\r\n// pointer of ibuf, obuf\r\nuint32_t pil = 0, pir = 0, por\
-    \ = 0;\r\n\r\ntemplate <typename T>\r\nstruct has_read_method {\r\n  template\
-    \ <typename U>\r\n  static std::true_type test(decltype(&U::read) *);\r\n  template\
-    \ <typename>\r\n  static std::false_type test(...);\r\n  using type = decltype(test<T>(nullptr));\r\
-    \n  static constexpr bool value = type::value;\r\n};\r\n\r\ntemplate <typename\
-    \ T>\r\nstruct has_print_method {\r\n  template <typename U>\r\n  static std::true_type\
-    \ test(decltype(&U::print) *);\r\n  template <typename>\r\n  static std::false_type\
-    \ test(...);\r\n  using type = decltype(test<T>(nullptr));\r\n  static constexpr\
-    \ bool value = type::value;\r\n};\r\n\r\ntemplate <typename T>\r\ntypename enable_if<has_read_method<T>::value,\
-    \ void>::type rd(T &x) {\r\n  x.read();\r\n}\r\n\r\ntemplate <typename T>\r\n\
-    typename enable_if<has_print_method<T>::value, void>::type wt(T x) {\r\n  x.print();\r\
-    \n}\r\n\r\nstruct Pre {\r\n  char num[10000][4];\r\n  constexpr Pre() : num()\
+    \ = 0;\r\n\r\nstruct Pre {\r\n  char num[10000][4];\r\n  constexpr Pre() : num()\
     \ {\r\n    for (int i = 0; i < 10000; i++) {\r\n      int n = i;\r\n      for\
     \ (int j = 3; j >= 0; j--) {\r\n        num[i][j] = n % 10 | '0';\r\n        n\
     \ /= 10;\r\n      }\r\n    }\r\n  }\r\n} constexpr pre;\r\n\r\ninline void load()\
@@ -231,35 +221,32 @@ data:
     \   swap(a -= t * b, b), swap(u -= t * v, v);\r\n    }\r\n    return modint61(u);\r\
     \n  }\r\n  modint61 pow(ll n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1),\
     \ mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul\
-    \ *= mul, n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n#ifdef FASTIO\r\n  void\
-    \ print() { fastio::wt(val); }\r\n  void read() {\r\n    ll x;\r\n    fastio::read(x);\r\
-    \n    val = (x >= 0 ? x % mod : (mod - (-x) % mod) % mod);\r\n  }\r\n#endif\r\n\
-    };\n#line 4 \"string/rollinghash.hpp\"\n\nstruct RollingHash {\n  using mint =\
-    \ modint61;\n  static constexpr u64 mod = mint::get_mod();\n  const mint base;\n\
-    \  vc<mint> power;\n\n  static inline mint generate_base() { return RNG(mod);\
-    \ }\n\n  inline void expand(size_t sz) {\n    if (power.size() < sz + 1) {\n \
-    \     int pre_sz = (int)power.size();\n      power.resize(sz + 1);\n      FOR(i,\
-    \ pre_sz - 1, sz) power[i + 1] = power[i] * base;\n    }\n  }\n\n  explicit RollingHash(mint\
-    \ base = generate_base()) : base(base), power{1} {}\n\n  template <typename STRING>\n\
-    \  vector<mint> build(const STRING& s) const {\n    int sz = s.size();\n    vector<mint>\
-    \ hashed(sz + 1, mint(0));\n    for (int i = 0; i < sz; i++) { hashed[i + 1] =\
-    \ hashed[i] * base + s[i]; }\n    return hashed;\n  }\n\n  template <typename\
-    \ STRING>\n  mint eval(string& s) {\n    mint x = 0;\n    for (auto& ch: s) x\
-    \ = base * x + ch;\n    return x;\n  }\n\n  mint query(const vc<mint>& s, int\
-    \ l, int r) {\n    expand(r - l);\n    return (s[r] - s[l] * power[r - l]);\n\
-    \  }\n\n  mint combine(mint h1, mint h2, int h2len) {\n    expand(h2len);\n  \
-    \  return h1 * power[h2len] + h2;\n  }\n\n  mint add_char(mint h, int x) { return\
-    \ h * base + mint(x); }\n\n  int lcp(const vc<mint>& a, int l1, int r1, const\
-    \ vc<mint>& b, int l2,\n          int r2) {\n    int len = min(r1 - l1, r2 - l2);\n\
-    \    int low = 0, high = len + 1;\n    while (high - low > 1) {\n      int mid\
-    \ = (low + high) / 2;\n      if (query(a, l1, l1 + mid) == query(b, l2, l2 + mid))\n\
-    \        low = mid;\n      else\n        high = mid;\n    }\n    return low;\n\
-    \  }\n};\n#line 6 \"test/library_checker/string/zalgorithm_by_rollinghash.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  STR(S);\r\n  ll N = len(S);\r\n  RollingHash RH;\r\n\
-    \  auto RS = RH.build(S);\r\n  vi Z(N);\r\n  FOR(i, N) { Z[i] = RH.lcp(RS, 0,\
-    \ N, RS, i, N); }\r\n  print(Z);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
-    \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
-    \n\r\n  return 0;\r\n}\r\n"
+    \ *= mul, n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n};\n#line 4 \"string/rollinghash.hpp\"\
+    \n\nstruct RollingHash {\n  using mint = modint61;\n  static constexpr u64 mod\
+    \ = mint::get_mod();\n  const mint base;\n  vc<mint> power;\n\n  static inline\
+    \ mint generate_base() { return RNG(mod); }\n\n  inline void expand(size_t sz)\
+    \ {\n    if (power.size() < sz + 1) {\n      int pre_sz = (int)power.size();\n\
+    \      power.resize(sz + 1);\n      FOR(i, pre_sz - 1, sz) power[i + 1] = power[i]\
+    \ * base;\n    }\n  }\n\n  explicit RollingHash(mint base = generate_base()) :\
+    \ base(base), power{1} {}\n\n  template <typename STRING>\n  vector<mint> build(const\
+    \ STRING& s) const {\n    int sz = s.size();\n    vector<mint> hashed(sz + 1,\
+    \ mint(0));\n    for (int i = 0; i < sz; i++) { hashed[i + 1] = hashed[i] * base\
+    \ + s[i]; }\n    return hashed;\n  }\n\n  template <typename STRING>\n  mint eval(string&\
+    \ s) {\n    mint x = 0;\n    for (auto& ch: s) x = base * x + ch;\n    return\
+    \ x;\n  }\n\n  mint query(const vc<mint>& s, int l, int r) {\n    expand(r - l);\n\
+    \    return (s[r] - s[l] * power[r - l]);\n  }\n\n  mint combine(mint h1, mint\
+    \ h2, int h2len) {\n    expand(h2len);\n    return h1 * power[h2len] + h2;\n \
+    \ }\n\n  mint add_char(mint h, int x) { return h * base + mint(x); }\n\n  int\
+    \ lcp(const vc<mint>& a, int l1, int r1, const vc<mint>& b, int l2,\n        \
+    \  int r2) {\n    int len = min(r1 - l1, r2 - l2);\n    int low = 0, high = len\
+    \ + 1;\n    while (high - low > 1) {\n      int mid = (low + high) / 2;\n    \
+    \  if (query(a, l1, l1 + mid) == query(b, l2, l2 + mid))\n        low = mid;\n\
+    \      else\n        high = mid;\n    }\n    return low;\n  }\n};\n#line 6 \"\
+    test/library_checker/string/zalgorithm_by_rollinghash.test.cpp\"\n\r\nvoid solve()\
+    \ {\r\n  STR(S);\r\n  ll N = len(S);\r\n  RollingHash RH;\r\n  auto RS = RH.build(S);\r\
+    \n  vi Z(N);\r\n  FOR(i, N) { Z[i] = RH.lcp(RS, 0, N, RS, i, N); }\r\n  print(Z);\r\
+    \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\"\r\n#include\
     \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"string/rollinghash.hpp\"\
     \r\n\r\nvoid solve() {\r\n  STR(S);\r\n  ll N = len(S);\r\n  RollingHash RH;\r\
@@ -276,7 +263,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 21:58:56+09:00'
+  timestamp: '2023-11-06 23:45:48+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp

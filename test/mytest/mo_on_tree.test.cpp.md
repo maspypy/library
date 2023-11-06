@@ -7,13 +7,13 @@ data:
   - icon: ':x:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
   - icon: ':x:'
     path: ds/offline_query/mo.hpp
     title: ds/offline_query/mo.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   - icon: ':question:'
@@ -22,16 +22,16 @@ data:
   - icon: ':x:'
     path: graph/ds/mo_on_tree.hpp
     title: graph/ds/mo_on_tree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -137,17 +137,7 @@ data:
     \ <unistd.h>\r\n\r\n// https://judge.yosupo.jp/submission/21623\r\nnamespace fastio\
     \ {\r\nstatic constexpr uint32_t SZ = 1 << 17;\r\nchar ibuf[SZ];\r\nchar obuf[SZ];\r\
     \nchar out[100];\r\n// pointer of ibuf, obuf\r\nuint32_t pil = 0, pir = 0, por\
-    \ = 0;\r\n\r\ntemplate <typename T>\r\nstruct has_read_method {\r\n  template\
-    \ <typename U>\r\n  static std::true_type test(decltype(&U::read) *);\r\n  template\
-    \ <typename>\r\n  static std::false_type test(...);\r\n  using type = decltype(test<T>(nullptr));\r\
-    \n  static constexpr bool value = type::value;\r\n};\r\n\r\ntemplate <typename\
-    \ T>\r\nstruct has_print_method {\r\n  template <typename U>\r\n  static std::true_type\
-    \ test(decltype(&U::print) *);\r\n  template <typename>\r\n  static std::false_type\
-    \ test(...);\r\n  using type = decltype(test<T>(nullptr));\r\n  static constexpr\
-    \ bool value = type::value;\r\n};\r\n\r\ntemplate <typename T>\r\ntypename enable_if<has_read_method<T>::value,\
-    \ void>::type rd(T &x) {\r\n  x.read();\r\n}\r\n\r\ntemplate <typename T>\r\n\
-    typename enable_if<has_print_method<T>::value, void>::type wt(T x) {\r\n  x.print();\r\
-    \n}\r\n\r\nstruct Pre {\r\n  char num[10000][4];\r\n  constexpr Pre() : num()\
+    \ = 0;\r\n\r\nstruct Pre {\r\n  char num[10000][4];\r\n  constexpr Pre() : num()\
     \ {\r\n    for (int i = 0; i < 10000; i++) {\r\n      int n = i;\r\n      for\
     \ (int j = 3; j >= 0; j--) {\r\n        num[i][j] = n % 10 | '0';\r\n        n\
     \ /= 10;\r\n      }\r\n    }\r\n  }\r\n} constexpr pre;\r\n\r\ninline void load()\
@@ -615,42 +605,42 @@ data:
     \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
     \  assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if\
     \ (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
-    \  }\n#ifdef FASTIO\n  void print() { fastio::wt(val); }\n  void read() {\n  \
-    \  ll x;\n    fastio::read(x);\n    val = (x >= 0 ? x % mod : (mod - (-x) % mod)\
-    \ % mod);\n  }\n#endif\n  static constexpr int get_mod() { return mod; }\n  //\
-    \ (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int>\
-    \ ntt_info() {\n    if (mod == 167772161) return {25, 17};\n    if (mod == 469762049)\
-    \ return {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod ==\
-    \ 880803841) return {23, 211};\n    if (mod == 943718401) return {22, 663003469};\n\
-    \    if (mod == 998244353) return {23, 31};\n    if (mod == 1045430273) return\
-    \ {20, 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881)\
+    \  }\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F\
+    \ 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n\
+    \    if (mod == 167772161) return {25, 17};\n    if (mod == 469762049) return\
+    \ {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841)\
+    \ return {23, 211};\n    if (mod == 943718401) return {22, 663003469};\n    if\
+    \ (mod == 998244353) return {23, 31};\n    if (mod == 1045430273) return {20,\
+    \ 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881)\
     \ return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt()\
-    \ { return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 12 \"test/mytest/mo_on_tree.test.cpp\"\
-    \n\nusing mint = modint998;\nusing AFF = pair<mint, mint>;\n\nAFF gen() {\n  mint\
-    \ a = RNG(1, 3);\n  mint b = RNG(0, 3);\n  return {a, b};\n}\n\ntemplate <typename\
-    \ Mono, bool EDGE>\nvoid test() {\n  constexpr bool ORIENTED = !(Mono::commute);\n\
-    \  FOR(N, 1, 50) {\n    FOR(Q, 1, 50) {\n      vc<pi> query(Q);\n      vc<AFF>\
-    \ dat;\n      if (!EDGE) {\n        FOR(v, N) dat.eb(gen());\n      } else {\n\
-    \        FOR(i, N - 1) dat.eb(gen());\n      }\n      Graph<int, 0> G(N);\n  \
-    \    FOR(v, 1, N) {\n        int p = RNG(0, v);\n        G.add(p, v);\n      }\n\
-    \      G.build();\n      Tree<decltype(G)> tree(G);\n      Tree_Monoid<decltype(tree),\
-    \ Mono, EDGE> TM(tree, dat);\n\n      FOR(q, Q) {\n        int a = RNG(0, N);\n\
-    \        int b = RNG(0, N);\n        query[q] = {a, b};\n      }\n      Mo_on_Tree<decltype(tree),\
-    \ ORIENTED> mo(tree);\n      for (auto&& [a, b]: query) mo.add(a, b);\n\n    \
-    \  if constexpr (!EDGE) {\n        AFF f = Mono::unit();\n        auto init =\
-    \ [&]() -> void { f = dat[0]; };\n        auto add_l = [&](int v) -> void { f\
-    \ = Mono::op(dat[v], f); };\n        auto rm_l\n            = [&](int v) -> void\
-    \ { f = Mono::op(Mono::inverse(dat[v]), f); };\n        auto add_r = [&](int v)\
-    \ -> void { f = Mono::op(f, dat[v]); };\n        auto rm_r\n            = [&](int\
-    \ v) -> void { f = Mono::op(f, Mono::inverse(dat[v])); };\n        auto ans =\
-    \ [&](int q) -> void {\n          assert(f == TM.prod_path(query[q].fi, query[q].se));\n\
-    \        };\n        mo.calc_vertex(init, add_l, add_r, rm_l, rm_r, ans);\n  \
-    \    } else {\n        AFF f = Mono::unit();\n        auto get = [&](int a, int\
-    \ b) -> int {\n          return tree.v_to_e((tree.parent[a] == b ? a : b));\n\
-    \        };\n        auto init = [&]() -> void {};\n        auto add_l\n     \
-    \       = [&](int a, int b) -> void { f = Mono::op(dat[get(a, b)], f); };\n  \
-    \      auto rm_l = [&](int a, int b) -> void {\n          f = Mono::op(Mono::inverse(dat[get(a,\
+    \ { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
+    \ rd(modint<mod> &x) {\n  ll v;\n  fastio::rd(v);\n  x = modint<mod>(v);\n}\n\
+    template <int mod>\nvoid wt(modint<mod> x) {\n  wt(x.val);\n}\n#endif\n\nusing\
+    \ modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line\
+    \ 12 \"test/mytest/mo_on_tree.test.cpp\"\n\nusing mint = modint998;\nusing AFF\
+    \ = pair<mint, mint>;\n\nAFF gen() {\n  mint a = RNG(1, 3);\n  mint b = RNG(0,\
+    \ 3);\n  return {a, b};\n}\n\ntemplate <typename Mono, bool EDGE>\nvoid test()\
+    \ {\n  constexpr bool ORIENTED = !(Mono::commute);\n  FOR(N, 1, 50) {\n    FOR(Q,\
+    \ 1, 50) {\n      vc<pi> query(Q);\n      vc<AFF> dat;\n      if (!EDGE) {\n \
+    \       FOR(v, N) dat.eb(gen());\n      } else {\n        FOR(i, N - 1) dat.eb(gen());\n\
+    \      }\n      Graph<int, 0> G(N);\n      FOR(v, 1, N) {\n        int p = RNG(0,\
+    \ v);\n        G.add(p, v);\n      }\n      G.build();\n      Tree<decltype(G)>\
+    \ tree(G);\n      Tree_Monoid<decltype(tree), Mono, EDGE> TM(tree, dat);\n\n \
+    \     FOR(q, Q) {\n        int a = RNG(0, N);\n        int b = RNG(0, N);\n  \
+    \      query[q] = {a, b};\n      }\n      Mo_on_Tree<decltype(tree), ORIENTED>\
+    \ mo(tree);\n      for (auto&& [a, b]: query) mo.add(a, b);\n\n      if constexpr\
+    \ (!EDGE) {\n        AFF f = Mono::unit();\n        auto init = [&]() -> void\
+    \ { f = dat[0]; };\n        auto add_l = [&](int v) -> void { f = Mono::op(dat[v],\
+    \ f); };\n        auto rm_l\n            = [&](int v) -> void { f = Mono::op(Mono::inverse(dat[v]),\
+    \ f); };\n        auto add_r = [&](int v) -> void { f = Mono::op(f, dat[v]); };\n\
+    \        auto rm_r\n            = [&](int v) -> void { f = Mono::op(f, Mono::inverse(dat[v]));\
+    \ };\n        auto ans = [&](int q) -> void {\n          assert(f == TM.prod_path(query[q].fi,\
+    \ query[q].se));\n        };\n        mo.calc_vertex(init, add_l, add_r, rm_l,\
+    \ rm_r, ans);\n      } else {\n        AFF f = Mono::unit();\n        auto get\
+    \ = [&](int a, int b) -> int {\n          return tree.v_to_e((tree.parent[a] ==\
+    \ b ? a : b));\n        };\n        auto init = [&]() -> void {};\n        auto\
+    \ add_l\n            = [&](int a, int b) -> void { f = Mono::op(dat[get(a, b)],\
+    \ f); };\n        auto rm_l = [&](int a, int b) -> void {\n          f = Mono::op(Mono::inverse(dat[get(a,\
     \ b)]), f);\n        };\n        auto add_r\n            = [&](int a, int b) ->\
     \ void { f = Mono::op(f, dat[get(a, b)]); };\n        auto rm_r = [&](int a, int\
     \ b) -> void {\n          f = Mono::op(f, Mono::inverse(dat[get(a, b)]));\n  \
@@ -727,7 +717,7 @@ data:
   isVerificationFile: true
   path: test/mytest/mo_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 22:12:25+09:00'
+  timestamp: '2023-11-06 23:45:48+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/mo_on_tree.test.cpp

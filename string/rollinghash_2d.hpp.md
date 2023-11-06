@@ -47,24 +47,21 @@ data:
     \   swap(a -= t * b, b), swap(u -= t * v, v);\r\n    }\r\n    return modint61(u);\r\
     \n  }\r\n  modint61 pow(ll n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1),\
     \ mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul\
-    \ *= mul, n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n#ifdef FASTIO\r\n  void\
-    \ print() { fastio::wt(val); }\r\n  void read() {\r\n    ll x;\r\n    fastio::read(x);\r\
-    \n    val = (x >= 0 ? x % mod : (mod - (-x) % mod) % mod);\r\n  }\r\n#endif\r\n\
-    };\n#line 3 \"string/rollinghash_2d.hpp\"\n\nstruct RollingHash_2D {\n  using\
-    \ M61 = modint61;\n  const M61 b1, b2;\n  vc<M61> pow1;\n  vc<M61> pow2;\n\n \
-    \ RollingHash_2D()\n      : b1(generate_base()), b2(generate_base()), pow1{M61(1)},\
-    \ pow2{M61(1)} {}\n\n  template <typename STRING>\n  vvc<M61> build(const vc<STRING>&\
-    \ S) {\n    int H = len(S);\n    int W = len(S[0]);\n    vv(M61, res, H + 1, W\
-    \ + 1);\n    FOR(x, H) {\n      FOR(y, W) { res[x + 1][y + 1] = res[x + 1][y]\
-    \ * b2 + M61(S[x][y] + 1); }\n      FOR(y, W + 1) res[x + 1][y] += b1 * res[x][y];\n\
-    \    }\n    expand(pow1, b1, H);\n    expand(pow2, b2, W);\n    return res;\n\
-    \  }\n\n  M61 query(const vvc<M61>& A, int xl, int xr, int yl, int yr) {\n   \
-    \ assert(0 <= xl && xl <= xr && xr <= len(A));\n    assert(0 <= yl && yl <= yr\
-    \ && yr <= len(A[0]));\n    M61 a = A[xr][yr] - A[xr][yl] * pow2[yr - yl];\n \
-    \   M61 b = A[xl][yr] - A[xl][yl] * pow2[yr - yl];\n    return a - b * pow1[xr\
-    \ - xl];\n  }\n\nprivate:\n  static inline u64 generate_base() { return RNG(M61::get_mod());\
-    \ }\n\n  void expand(vc<M61>& pow, const M61& b, int n) {\n    while (len(pow)\
-    \ <= n) pow.eb(pow.back() * b);\n  }\n};\n"
+    \ *= mul, n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n};\n#line 3 \"string/rollinghash_2d.hpp\"\
+    \n\nstruct RollingHash_2D {\n  using M61 = modint61;\n  const M61 b1, b2;\n  vc<M61>\
+    \ pow1;\n  vc<M61> pow2;\n\n  RollingHash_2D()\n      : b1(generate_base()), b2(generate_base()),\
+    \ pow1{M61(1)}, pow2{M61(1)} {}\n\n  template <typename STRING>\n  vvc<M61> build(const\
+    \ vc<STRING>& S) {\n    int H = len(S);\n    int W = len(S[0]);\n    vv(M61, res,\
+    \ H + 1, W + 1);\n    FOR(x, H) {\n      FOR(y, W) { res[x + 1][y + 1] = res[x\
+    \ + 1][y] * b2 + M61(S[x][y] + 1); }\n      FOR(y, W + 1) res[x + 1][y] += b1\
+    \ * res[x][y];\n    }\n    expand(pow1, b1, H);\n    expand(pow2, b2, W);\n  \
+    \  return res;\n  }\n\n  M61 query(const vvc<M61>& A, int xl, int xr, int yl,\
+    \ int yr) {\n    assert(0 <= xl && xl <= xr && xr <= len(A));\n    assert(0 <=\
+    \ yl && yl <= yr && yr <= len(A[0]));\n    M61 a = A[xr][yr] - A[xr][yl] * pow2[yr\
+    \ - yl];\n    M61 b = A[xl][yr] - A[xl][yl] * pow2[yr - yl];\n    return a - b\
+    \ * pow1[xr - xl];\n  }\n\nprivate:\n  static inline u64 generate_base() { return\
+    \ RNG(M61::get_mod()); }\n\n  void expand(vc<M61>& pow, const M61& b, int n) {\n\
+    \    while (len(pow) <= n) pow.eb(pow.back() * b);\n  }\n};\n"
   code: "#include \"random/base.hpp\"\n#include \"mod/modint61.hpp\"\n\nstruct RollingHash_2D\
     \ {\n  using M61 = modint61;\n  const M61 b1, b2;\n  vc<M61> pow1;\n  vc<M61>\
     \ pow2;\n\n  RollingHash_2D()\n      : b1(generate_base()), b2(generate_base()),\
@@ -86,7 +83,7 @@ data:
   isVerificationFile: false
   path: string/rollinghash_2d.hpp
   requiredBy: []
-  timestamp: '2023-11-06 21:46:03+09:00'
+  timestamp: '2023-11-06 23:45:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_14_C.test.cpp

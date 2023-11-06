@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   _extendedRequiredBy: []
@@ -97,10 +97,10 @@ data:
     \ rhs) {\n    return mint(lhs) /= rhs;\n  }\n  friend bool operator==(const mint&\
     \ lhs, const mint& rhs) {\n    return lhs.val == rhs.val;\n  }\n  friend bool\
     \ operator!=(const mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n\
-    \  }\n#ifdef FASTIO\n  void print() { fastio::wt(val); }\n  void read() {\n  \
-    \  ll x;\n    fastio::read(x);\n    val = (x >= 0 ? x % mod : (mod - (-x) % mod)\
-    \ % mod);\n  }\n#endif\n};\n\nusing dmint64 = Dynamic_Modint_64<-1>;\ntemplate\
-    \ <int id>\nBarrett_64 Dynamic_Modint_64<id>::bt;\n"
+    \  }\n};\n\n#ifdef FASTIO\ntemplate <int id>\nvoid rd(Dynamic_Modint_64<id>& x)\
+    \ {\n  ll v;\n  fastio::rd(v);\n  x = Dynamic_Modint_64<id>(v);\n}\ntemplate <int\
+    \ id>\nvoid wt(Dynamic_Modint_64<id> x) {\n  wt(x.val);\n}\n#endif\n\nusing dmint64\
+    \ = Dynamic_Modint_64<-1>;\ntemplate <int id>\nBarrett_64 Dynamic_Modint_64<id>::bt;\n"
   code: "#pragma once\n\n#include \"mod/modint_common.hpp\"\n#include \"mod/barrett.hpp\"\
     \n\n// https://codeforces.com/contest/453/problem/D\ntemplate <int id>\nstruct\
     \ Dynamic_Modint_64 {\n  static constexpr bool is_modint = true;\n  using mint\
@@ -130,17 +130,17 @@ data:
     \ operator/(const mint& lhs, const mint& rhs) {\n    return mint(lhs) /= rhs;\n\
     \  }\n  friend bool operator==(const mint& lhs, const mint& rhs) {\n    return\
     \ lhs.val == rhs.val;\n  }\n  friend bool operator!=(const mint& lhs, const mint&\
-    \ rhs) {\n    return lhs.val != rhs.val;\n  }\n#ifdef FASTIO\n  void print() {\
-    \ fastio::wt(val); }\n  void read() {\n    ll x;\n    fastio::read(x);\n    val\
-    \ = (x >= 0 ? x % mod : (mod - (-x) % mod) % mod);\n  }\n#endif\n};\n\nusing dmint64\
-    \ = Dynamic_Modint_64<-1>;\ntemplate <int id>\nBarrett_64 Dynamic_Modint_64<id>::bt;\n"
+    \ rhs) {\n    return lhs.val != rhs.val;\n  }\n};\n\n#ifdef FASTIO\ntemplate <int\
+    \ id>\nvoid rd(Dynamic_Modint_64<id>& x) {\n  ll v;\n  fastio::rd(v);\n  x = Dynamic_Modint_64<id>(v);\n\
+    }\ntemplate <int id>\nvoid wt(Dynamic_Modint_64<id> x) {\n  wt(x.val);\n}\n#endif\n\
+    \nusing dmint64 = Dynamic_Modint_64<-1>;\ntemplate <int id>\nBarrett_64 Dynamic_Modint_64<id>::bt;\n"
   dependsOn:
   - mod/modint_common.hpp
   - mod/barrett.hpp
   isVerificationFile: false
   path: mod/dynamic_modint_64.hpp
   requiredBy: []
-  timestamp: '2023-11-06 21:46:03+09:00'
+  timestamp: '2023-11-06 23:45:48+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: mod/dynamic_modint_64.hpp
