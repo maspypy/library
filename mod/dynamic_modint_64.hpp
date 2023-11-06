@@ -77,15 +77,20 @@ struct Dynamic_Modint_64 {
   friend bool operator!=(const mint& lhs, const mint& rhs) {
     return lhs.val != rhs.val;
   }
-#ifdef FASTIO
-  void print() { fastio::wt(val); }
-  void read() {
-    ll x;
-    fastio::read(x);
-    val = (x %= get_mod()) < 0 ? x + get_mod() : x;
-  }
-#endif
 };
+
+#ifdef FASTIO
+template <int id>
+void rd(Dynamic_Modint_64<id>& x) {
+  ll v;
+  fastio::rd(v);
+  x = Dynamic_Modint_64<id>(v);
+}
+template <int id>
+void wt(Dynamic_Modint_64<id> x) {
+  wt(x.val);
+}
+#endif
 
 using dmint64 = Dynamic_Modint_64<-1>;
 template <int id>

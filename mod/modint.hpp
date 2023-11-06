@@ -61,14 +61,6 @@ struct modint {
     }
     return ret;
   }
-#ifdef FASTIO
-  void print() { fastio::wt(val); }
-  void read() {
-    ll x;
-    fastio::read(x);
-    val = (x >= 0 ? x % mod : (mod - (-x) % mod) % mod);
-  }
-#endif
   static constexpr int get_mod() { return mod; }
   // (n, r), r は 1 の 2^n 乗根
   static constexpr pair<int, int> ntt_info() {
@@ -85,6 +77,19 @@ struct modint {
   }
   static constexpr bool can_ntt() { return ntt_info().fi != -1; }
 };
+
+#ifdef FASTIO
+template <int mod>
+void rd(modint<mod> &x) {
+  ll v;
+  fastio::rd(v);
+  x = modint<mod>(v);
+}
+template <int mod>
+void wt(modint<mod> x) {
+  wt(x.val);
+}
+#endif
 
 using modint107 = modint<1000000007>;
 using modint998 = modint<998244353>;
