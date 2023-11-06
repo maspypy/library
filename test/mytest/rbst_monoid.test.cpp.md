@@ -270,10 +270,10 @@ data:
     \ return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt()\
     \ { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
     \ rd(modint<mod> &x) {\n  ll v;\n  fastio::rd(v);\n  x = modint<mod>(v);\n}\n\
-    template <int mod>\nvoid wt(modint<mod> x) {\n  wt(x.val);\n}\n#endif\n\nusing\
-    \ modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line\
-    \ 1 \"ds/randomized_bst/rbst_monoid.hpp\"\ntemplate <typename Monoid, bool PERSISTENT,\
-    \ int NODES>\nstruct RBST_Monoid {\n  using X = typename Monoid::value_type;\n\
+    template <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 1 \"ds/randomized_bst/rbst_monoid.hpp\"\ntemplate <typename Monoid, bool\
+    \ PERSISTENT, int NODES>\nstruct RBST_Monoid {\n  using X = typename Monoid::value_type;\n\
     \n  struct Node {\n    Node *l, *r;\n    X x, prod, rev_prod; // rev \u53CD\u6620\
     \u6E08\n    u32 size;\n    bool rev;\n  };\n\n  Node *pool;\n  int pid;\n  using\
     \ np = Node *;\n\n  RBST_Monoid() : pid(0) { pool = new Node[NODES]; }\n\n  void\
@@ -440,7 +440,7 @@ data:
   isVerificationFile: true
   path: test/mytest/rbst_monoid.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 23:45:48+09:00'
+  timestamp: '2023-11-07 00:41:09+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/rbst_monoid.test.cpp

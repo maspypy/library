@@ -265,9 +265,9 @@ data:
     \ return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt()\
     \ { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
     \ rd(modint<mod> &x) {\n  ll v;\n  fastio::rd(v);\n  x = modint<mod>(v);\n}\n\
-    template <int mod>\nvoid wt(modint<mod> x) {\n  wt(x.val);\n}\n#endif\n\nusing\
-    \ modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line\
-    \ 2 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F), F \u306E\u3042\u3068\
+    template <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 2 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F), F \u306E\u3042\u3068\
     \u3067 G\ntemplate <typename K>\nstruct Monoid_Affine {\n  using F = pair<K, K>;\n\
     \  using value_type = F;\n  using X = value_type;\n  static constexpr F op(const\
     \ F &x, const F &y) noexcept {\n    return F({x.first * y.first, x.second * y.first\
@@ -341,7 +341,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 23:45:48+09:00'
+  timestamp: '2023-11-07 00:41:09+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp

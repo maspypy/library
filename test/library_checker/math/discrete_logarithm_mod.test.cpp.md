@@ -393,16 +393,16 @@ data:
     \ { return get_ntt(); }\n  static bool can_ntt() { return ntt_info().fi != -1;\
     \ }\n};\n\n#ifdef FASTIO\ntemplate <int id>\nvoid rd(Dynamic_Modint<id>& x) {\n\
     \  ll v;\n  fastio::rd(v);\n  x = Dynamic_Modint<id>(v);\n}\ntemplate <int id>\n\
-    void wt(Dynamic_Modint<id> x) {\n  wt(x.val);\n}\n#endif\n\nusing dmint = Dynamic_Modint<-1>;\n\
-    template <int id>\nBarrett Dynamic_Modint<id>::bt;\n#line 2 \"alg/monoid/mul.hpp\"\
-    \n\r\ntemplate <class T>\r\nstruct Monoid_Mul {\r\n  using value_type = T;\r\n\
-    \  using X = T;\r\n  static constexpr X op(const X &x, const X &y) noexcept {\
-    \ return x * y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
-    \ X(1) / x; }\r\n  static constexpr X unit() { return X(1); }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 1 \"alg/acted_set/from_monoid.hpp\"\ntemplate\
-    \ <typename Monoid>\nstruct ActedSet_From_Monoid {\n  using Monoid_A = Monoid;\n\
-    \  using A = typename Monoid::value_type;\n  using S = A;\n  static S act(const\
-    \ S &x, const A &g) { return Monoid::op(x, g); }\n};\n#line 2 \"ds/hashmap.hpp\"\
+    void wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing dmint\
+    \ = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n\
+    #line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Monoid_Mul {\r\
+    \n  using value_type = T;\r\n  using X = T;\r\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return x * y; }\r\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return X(1) / x; }\r\n  static constexpr X unit() { return\
+    \ X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"alg/acted_set/from_monoid.hpp\"\
+    \ntemplate <typename Monoid>\nstruct ActedSet_From_Monoid {\n  using Monoid_A\
+    \ = Monoid;\n  using A = typename Monoid::value_type;\n  using S = A;\n  static\
+    \ S act(const S &x, const A &g) { return Monoid::op(x, g); }\n};\n#line 2 \"ds/hashmap.hpp\"\
     \n\r\n// u64 -> Val\r\ntemplate <typename Val, int LOG = 20, bool KEEP_IDS = false>\r\
     \nstruct HashMap {\r\n  using P = pair<u64, Val>;\r\n  static constexpr int N\
     \ = (1 << LOG);\r\n  P* dat;\r\n  vc<int> IDS;\r\n  bitset<N> used;\r\n  const\
@@ -480,7 +480,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/discrete_logarithm_mod.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 23:45:48+09:00'
+  timestamp: '2023-11-07 00:41:09+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/discrete_logarithm_mod.test.cpp

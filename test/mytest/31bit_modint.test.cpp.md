@@ -201,7 +201,7 @@ data:
     \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
     \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
     \  ll v;\n  fastio::rd(v);\n  x = modint<mod>(v);\n}\ntemplate <int mod>\nvoid\
-    \ wt(modint<mod> x) {\n  wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
+    \ wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
     using modint998 = modint<998244353>;\n#line 2 \"mod/dynamic_modint.hpp\"\n\n#line\
     \ 2 \"mod/primitive_root.hpp\"\n\r\n#line 2 \"nt/factor.hpp\"\n\n#line 2 \"mod/mongomery_modint.hpp\"\
     \n\n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
@@ -331,18 +331,19 @@ data:
     \ { return get_ntt(); }\n  static bool can_ntt() { return ntt_info().fi != -1;\
     \ }\n};\n\n#ifdef FASTIO\ntemplate <int id>\nvoid rd(Dynamic_Modint<id>& x) {\n\
     \  ll v;\n  fastio::rd(v);\n  x = Dynamic_Modint<id>(v);\n}\ntemplate <int id>\n\
-    void wt(Dynamic_Modint<id> x) {\n  wt(x.val);\n}\n#endif\n\nusing dmint = Dynamic_Modint<-1>;\n\
-    template <int id>\nBarrett Dynamic_Modint<id>::bt;\n#line 7 \"test/mytest/31bit_modint.test.cpp\"\
-    \n\ntemplate <typename mint>\nvoid test() {\n  const u32 mod = mint::get_mod();\n\
-    \  auto check = [&](ll x, ll y) -> void {\n    mint mx = x, my = y;\n    assert((x\
-    \ + y) % mod == (mx + my).val);\n    assert((x + mod - y) % mod == (mx - my).val);\n\
-    \    assert((x * y) % mod == (mx * my).val);\n    mint mz = mx / my;\n    ll z\
-    \ = mz.val;\n    assert(y * z % mod == x);\n  };\n  FOR(10000) {\n    ll x = RNG(0,\
-    \ mint::get_mod());\n    ll y = RNG(0, mint::get_mod());\n    check(x, y);\n \
-    \ }\n  FOR(i, 1, 100) FOR(j, 1, 100) { check(mod - i, mod - j); }\n}\n\nvoid solve()\
-    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\
-    \nsigned main() {\n  constexpr u32 mod = (u32(1) << 31) - 19;\n  dmint::set_mod(mod);\n\
-    \  test<modint<mod>>();\n  test<dmint>();\n\n  solve();\n  return 0;\n}\n"
+    void wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing dmint\
+    \ = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n\
+    #line 7 \"test/mytest/31bit_modint.test.cpp\"\n\ntemplate <typename mint>\nvoid\
+    \ test() {\n  const u32 mod = mint::get_mod();\n  auto check = [&](ll x, ll y)\
+    \ -> void {\n    mint mx = x, my = y;\n    assert((x + y) % mod == (mx + my).val);\n\
+    \    assert((x + mod - y) % mod == (mx - my).val);\n    assert((x * y) % mod ==\
+    \ (mx * my).val);\n    mint mz = mx / my;\n    ll z = mz.val;\n    assert(y *\
+    \ z % mod == x);\n  };\n  FOR(10000) {\n    ll x = RNG(0, mint::get_mod());\n\
+    \    ll y = RNG(0, mint::get_mod());\n    check(x, y);\n  }\n  FOR(i, 1, 100)\
+    \ FOR(j, 1, 100) { check(mod - i, mod - j); }\n}\n\nvoid solve() {\n  int a, b;\n\
+    \  cin >> a >> b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n\
+    \  constexpr u32 mod = (u32(1) << 31) - 19;\n  dmint::set_mod(mod);\n  test<modint<mod>>();\n\
+    \  test<dmint>();\n\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"random/base.hpp\"\n#include \"mod/modint.hpp\"\n#include \"mod/dynamic_modint.hpp\"\
     \n\ntemplate <typename mint>\nvoid test() {\n  const u32 mod = mint::get_mod();\n\
@@ -370,7 +371,7 @@ data:
   isVerificationFile: true
   path: test/mytest/31bit_modint.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 23:45:48+09:00'
+  timestamp: '2023-11-07 00:41:09+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/31bit_modint.test.cpp

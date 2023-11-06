@@ -362,9 +362,9 @@ data:
     \ return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt()\
     \ { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
     \ rd(modint<mod> &x) {\n  ll v;\n  fastio::rd(v);\n  x = modint<mod>(v);\n}\n\
-    template <int mod>\nvoid wt(modint<mod> x) {\n  wt(x.val);\n}\n#endif\n\nusing\
-    \ modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line\
-    \ 8 \"test_atcoder/abc234g.test.cpp\"\n\nusing mint = modint998;\n\nvoid solve()\
+    template <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 8 \"test_atcoder/abc234g.test.cpp\"\n\nusing mint = modint998;\n\nvoid solve()\
     \ {\n  LL(N);\n  VEC(int, A, N);\n  CartesianTree<int, 1> X1(A);\n  CartesianTree<int,\
     \ 0> X2(A);\n  Lazy_SegTree<ActedMonoid_Sum_Add<mint>> seg(N + 1);\n  seg.set(0,\
     \ mint(1));\n\n  FOR(i, N) {\n    auto [L1, R1] = X1.range[i];\n    mint x1 =\
@@ -395,7 +395,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc234g.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 23:45:48+09:00'
+  timestamp: '2023-11-07 00:41:09+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc234g.test.cpp

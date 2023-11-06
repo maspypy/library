@@ -290,11 +290,11 @@ data:
     \ return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt()\
     \ { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
     \ rd(modint<mod> &x) {\n  ll v;\n  fastio::rd(v);\n  x = modint<mod>(v);\n}\n\
-    template <int mod>\nvoid wt(modint<mod> x) {\n  wt(x.val);\n}\n#endif\n\nusing\
-    \ modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line\
-    \ 8 \"test/library_checker/datastructure/range_affine_point_add.test.cpp\"\n\n\
-    using mint = modint998;\n\nvoid solve() {\n  INT(N, Q);\n  vc<mint> A(N);\n  FOR(i,\
-    \ N) {\n    u32 x;\n    read(x);\n    A[i] = mint::raw(x);\n  }\n  Dual_SegTree<Monoid_Affine<mint>>\
+    template <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 8 \"test/library_checker/datastructure/range_affine_point_add.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  INT(N, Q);\n  vc<mint> A(N);\n\
+    \  FOR(i, N) {\n    u32 x;\n    read(x);\n    A[i] = mint::raw(x);\n  }\n  Dual_SegTree<Monoid_Affine<mint>>\
     \ seg(N);\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      u32 l, r, b, c;\n\
     \      read(l, r, b, c);\n      seg.apply(l, r, {mint::raw(b), mint::raw(c)});\n\
     \    }\n    if (t == 1) {\n      u32 idx;\n      read(idx);\n      mint x = A[idx];\n\
@@ -320,7 +320,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/range_affine_point_add.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 23:45:48+09:00'
+  timestamp: '2023-11-07 00:41:09+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_affine_point_add.test.cpp

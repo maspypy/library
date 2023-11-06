@@ -267,7 +267,7 @@ data:
     \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
     \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
     \  ll v;\n  fastio::rd(v);\n  x = modint<mod>(v);\n}\ntemplate <int mod>\nvoid\
-    \ wt(modint<mod> x) {\n  wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
+    \ wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
     using modint998 = modint<998244353>;\n#line 2 \"setfunc/ranked_zeta.hpp\"\n\r\n\
     template <typename T, int LIM>\r\nvc<array<T, LIM + 1>> ranked_zeta(const vc<T>&\
     \ f) {\r\n  int n = topbit(len(f));\r\n  assert(n <= LIM);\r\n  assert(len(f)\
@@ -345,7 +345,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc213g.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 23:45:48+09:00'
+  timestamp: '2023-11-07 00:41:09+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc213g.test.cpp

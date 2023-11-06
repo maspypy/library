@@ -264,12 +264,12 @@ data:
     \ return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt()\
     \ { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
     \ rd(modint<mod> &x) {\n  ll v;\n  fastio::rd(v);\n  x = modint<mod>(v);\n}\n\
-    template <int mod>\nvoid wt(modint<mod> x) {\n  wt(x.val);\n}\n#endif\n\nusing\
-    \ modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line\
-    \ 1 \"linalg/solve_linear.hpp\"\n/*\r\n0 \u884C\u76EE\u306B\u89E3\u306E\u3072\u3068\
-    \u3064\u3002\r\n1\uFF5E\u884C\u76EE\u306B\u89E3\u7A7A\u9593\u306E\u57FA\u5E95\u304C\
-    \u884C\u30D9\u30AF\u30C8\u30EB\u3068\u3057\u3066\u5165\u308B\u3002\r\n\u89E3\u306A\
-    \u3057 = empty\r\n*/\r\ntemplate <typename T>\r\nvc<vc<T>> solve_linear(const\
+    template <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 1 \"linalg/solve_linear.hpp\"\n/*\r\n0 \u884C\u76EE\u306B\u89E3\u306E\u3072\
+    \u3068\u3064\u3002\r\n1\uFF5E\u884C\u76EE\u306B\u89E3\u7A7A\u9593\u306E\u57FA\u5E95\
+    \u304C\u884C\u30D9\u30AF\u30C8\u30EB\u3068\u3057\u3066\u5165\u308B\u3002\r\n\u89E3\
+    \u306A\u3057 = empty\r\n*/\r\ntemplate <typename T>\r\nvc<vc<T>> solve_linear(const\
     \ int n, const int m, vc<vc<T>> a, vc<T> b) {\r\n  int rk = 0;\r\n  FOR(j, m)\
     \ {\r\n    if (rk == n) break;\r\n    FOR(i, rk, n) if (a[i][j] != 0) {\r\n  \
     \    swap(a[rk], a[i]);\r\n      swap(b[rk], b[i]);\r\n      break;\r\n    }\r\
@@ -315,7 +315,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/solve_linear.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 23:45:48+09:00'
+  timestamp: '2023-11-07 00:41:09+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/matrix/solve_linear.test.cpp

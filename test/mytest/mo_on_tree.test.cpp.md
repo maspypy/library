@@ -615,10 +615,10 @@ data:
     \ return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt()\
     \ { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
     \ rd(modint<mod> &x) {\n  ll v;\n  fastio::rd(v);\n  x = modint<mod>(v);\n}\n\
-    template <int mod>\nvoid wt(modint<mod> x) {\n  wt(x.val);\n}\n#endif\n\nusing\
-    \ modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line\
-    \ 12 \"test/mytest/mo_on_tree.test.cpp\"\n\nusing mint = modint998;\nusing AFF\
-    \ = pair<mint, mint>;\n\nAFF gen() {\n  mint a = RNG(1, 3);\n  mint b = RNG(0,\
+    template <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 12 \"test/mytest/mo_on_tree.test.cpp\"\n\nusing mint = modint998;\nusing\
+    \ AFF = pair<mint, mint>;\n\nAFF gen() {\n  mint a = RNG(1, 3);\n  mint b = RNG(0,\
     \ 3);\n  return {a, b};\n}\n\ntemplate <typename Mono, bool EDGE>\nvoid test()\
     \ {\n  constexpr bool ORIENTED = !(Mono::commute);\n  FOR(N, 1, 50) {\n    FOR(Q,\
     \ 1, 50) {\n      vc<pi> query(Q);\n      vc<AFF> dat;\n      if (!EDGE) {\n \
@@ -717,7 +717,7 @@ data:
   isVerificationFile: true
   path: test/mytest/mo_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 23:45:48+09:00'
+  timestamp: '2023-11-07 00:41:09+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/mo_on_tree.test.cpp

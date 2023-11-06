@@ -266,18 +266,18 @@ data:
     \ return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt()\
     \ { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
     \ rd(modint<mod> &x) {\n  ll v;\n  fastio::rd(v);\n  x = modint<mod>(v);\n}\n\
-    template <int mod>\nvoid wt(modint<mod> x) {\n  wt(x.val);\n}\n#endif\n\nusing\
-    \ modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line\
-    \ 7 \"test/mytest/enumerate_multisets.test.cpp\"\n\nusing mint = modint998;\n\n\
-    void test() {\n  {\n    vvc<int> res;\n    auto f = [&](vc<int> A) -> void { res.eb(A);\
-    \ };\n    enumerate_multiset(3, 2, f);\n    assert(len(res) == 6);\n    assert(res[0]\
-    \ == vc<int>({0, 0}));\n    assert(res[1] == vc<int>({0, 1}));\n    assert(res[2]\
-    \ == vc<int>({0, 2}));\n    assert(res[3] == vc<int>({1, 1}));\n    assert(res[4]\
-    \ == vc<int>({1, 2}));\n    assert(res[5] == vc<int>({2, 2}));\n  }\n  {\n   \
-    \ int cnt = 0;\n    auto f = [&](vc<int> A) -> void { ++cnt; };\n    enumerate_multiset(3,\
-    \ 4, f);\n    assert(cnt == 15);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin\
-    \ >> a >> b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
-    \  solve();\n  return 0;\n}\n"
+    template <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 7 \"test/mytest/enumerate_multisets.test.cpp\"\n\nusing mint = modint998;\n\
+    \nvoid test() {\n  {\n    vvc<int> res;\n    auto f = [&](vc<int> A) -> void {\
+    \ res.eb(A); };\n    enumerate_multiset(3, 2, f);\n    assert(len(res) == 6);\n\
+    \    assert(res[0] == vc<int>({0, 0}));\n    assert(res[1] == vc<int>({0, 1}));\n\
+    \    assert(res[2] == vc<int>({0, 2}));\n    assert(res[3] == vc<int>({1, 1}));\n\
+    \    assert(res[4] == vc<int>({1, 2}));\n    assert(res[5] == vc<int>({2, 2}));\n\
+    \  }\n  {\n    int cnt = 0;\n    auto f = [&](vc<int> A) -> void { ++cnt; };\n\
+    \    enumerate_multiset(3, 4, f);\n    assert(cnt == 15);\n  }\n}\n\nvoid solve()\
+    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\
+    \nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"enumerate/multiset.hpp\"\n#include \"\
     mod/modint.hpp\"\n\nusing mint = modint998;\n\nvoid test() {\n  {\n    vvc<int>\
@@ -299,7 +299,7 @@ data:
   isVerificationFile: true
   path: test/mytest/enumerate_multisets.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 23:45:48+09:00'
+  timestamp: '2023-11-07 00:41:09+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/enumerate_multisets.test.cpp

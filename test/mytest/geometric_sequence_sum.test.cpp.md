@@ -294,17 +294,18 @@ data:
     \ { return get_ntt(); }\n  static bool can_ntt() { return ntt_info().fi != -1;\
     \ }\n};\n\n#ifdef FASTIO\ntemplate <int id>\nvoid rd(Dynamic_Modint<id>& x) {\n\
     \  ll v;\n  fastio::rd(v);\n  x = Dynamic_Modint<id>(v);\n}\ntemplate <int id>\n\
-    void wt(Dynamic_Modint<id> x) {\n  wt(x.val);\n}\n#endif\n\nusing dmint = Dynamic_Modint<-1>;\n\
-    template <int id>\nBarrett Dynamic_Modint<id>::bt;\n#line 1 \"seq/geometric_sequence_sum.hpp\"\
-    \n\n// sum_{i=0}^{n-1}r^i\ntemplate <typename T>\nT geometic_sequence_sum(T r,\
-    \ ll n) {\n  // (r^n, 1+...+r^{n-1})\n  auto dfs = [&](auto& dfs, ll n) -> pair<T,\
-    \ T> {\n    if (n == 0) return {r, T(0)};\n    auto [x, y] = dfs(dfs, n / 2);\n\
-    \    tie(x, y) = mp(x * x, x * y + y);\n    if (n & 1) { tie(x, y) = mp(x * r,\
-    \ y + x); }\n    return {x, y};\n  };\n  return dfs(dfs, n).se;\n}\n\n// sum_{i=0}^{n-1}i^kr^i\
-    \ \u3092 k=0,1,...,K\ntemplate <typename T, int K>\narray<T, K + 1> geometic_sequence_sum_K(T\
-    \ r, ll n) {\n  array<array<T, K + 1>, K + 1> comb{};\n  comb[0][0] = 1;\n  FOR(i,\
-    \ K) {\n    FOR(j, i + 1) {\n      comb[i + 1][j] += comb[i][j], comb[i + 1][j\
-    \ + 1] += comb[i][j];\n    }\n  }\n\n  // (n, r^n, sum i^kr^i)\n  using X = tuple<T,\
+    void wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing dmint\
+    \ = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n\
+    #line 1 \"seq/geometric_sequence_sum.hpp\"\n\n// sum_{i=0}^{n-1}r^i\ntemplate\
+    \ <typename T>\nT geometic_sequence_sum(T r, ll n) {\n  // (r^n, 1+...+r^{n-1})\n\
+    \  auto dfs = [&](auto& dfs, ll n) -> pair<T, T> {\n    if (n == 0) return {r,\
+    \ T(0)};\n    auto [x, y] = dfs(dfs, n / 2);\n    tie(x, y) = mp(x * x, x * y\
+    \ + y);\n    if (n & 1) { tie(x, y) = mp(x * r, y + x); }\n    return {x, y};\n\
+    \  };\n  return dfs(dfs, n).se;\n}\n\n// sum_{i=0}^{n-1}i^kr^i \u3092 k=0,1,...,K\n\
+    template <typename T, int K>\narray<T, K + 1> geometic_sequence_sum_K(T r, ll\
+    \ n) {\n  array<array<T, K + 1>, K + 1> comb{};\n  comb[0][0] = 1;\n  FOR(i, K)\
+    \ {\n    FOR(j, i + 1) {\n      comb[i + 1][j] += comb[i][j], comb[i + 1][j +\
+    \ 1] += comb[i][j];\n    }\n  }\n\n  // (n, r^n, sum i^kr^i)\n  using X = tuple<T,\
     \ T, array<T, K + 1>>;\n  auto mul = [&](X& l, X& r) -> X {\n    auto& [n1, r1,\
     \ A] = l;\n    auto& [n2, r2, B] = r;\n    array<T, K + 1> C;\n    FOR(k, K +\
     \ 1) {\n      C[k] = A[k];\n      T c = r1;\n      FOR(j, k + 1) { C[k] += comb[k][j]\
@@ -347,7 +348,7 @@ data:
   isVerificationFile: true
   path: test/mytest/geometric_sequence_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 23:45:48+09:00'
+  timestamp: '2023-11-07 00:41:09+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/geometric_sequence_sum.test.cpp

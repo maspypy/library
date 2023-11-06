@@ -268,8 +268,8 @@ data:
     \ { return get_ntt(); }\n  static bool can_ntt() { return ntt_info().fi != -1;\
     \ }\n};\n\n#ifdef FASTIO\ntemplate <int id>\nvoid rd(Dynamic_Modint<id>& x) {\n\
     \  ll v;\n  fastio::rd(v);\n  x = Dynamic_Modint<id>(v);\n}\ntemplate <int id>\n\
-    void wt(Dynamic_Modint<id> x) {\n  wt(x.val);\n}\n#endif\n\nusing dmint = Dynamic_Modint<-1>;\n\
-    template <int id>\nBarrett Dynamic_Modint<id>::bt;\n"
+    void wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing dmint\
+    \ = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n"
   code: "#pragma once\n\n#include \"mod/modint_common.hpp\"\n#include \"mod/primitive_root.hpp\"\
     \n#include \"mod/barrett.hpp\"\n\ntemplate <int id>\nstruct Dynamic_Modint {\n\
     \  static constexpr bool is_modint = true;\n  using mint = Dynamic_Modint;\n \
@@ -306,8 +306,8 @@ data:
     \ ntt_info() { return get_ntt(); }\n  static bool can_ntt() { return ntt_info().fi\
     \ != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int id>\nvoid rd(Dynamic_Modint<id>&\
     \ x) {\n  ll v;\n  fastio::rd(v);\n  x = Dynamic_Modint<id>(v);\n}\ntemplate <int\
-    \ id>\nvoid wt(Dynamic_Modint<id> x) {\n  wt(x.val);\n}\n#endif\n\nusing dmint\
-    \ = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n"
+    \ id>\nvoid wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing\
+    \ dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n"
   dependsOn:
   - mod/modint_common.hpp
   - mod/primitive_root.hpp
@@ -321,7 +321,7 @@ data:
   path: mod/dynamic_modint.hpp
   requiredBy:
   - mod/mod_log.hpp
-  timestamp: '2023-11-06 23:45:48+09:00'
+  timestamp: '2023-11-07 00:41:09+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1339.test.cpp

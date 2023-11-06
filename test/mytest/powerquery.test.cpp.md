@@ -286,14 +286,15 @@ data:
     \ return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt()\
     \ { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
     \ rd(modint<mod> &x) {\n  ll v;\n  fastio::rd(v);\n  x = modint<mod>(v);\n}\n\
-    template <int mod>\nvoid wt(modint<mod> x) {\n  wt(x.val);\n}\n#endif\n\nusing\
-    \ modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line\
-    \ 8 \"test/mytest/powerquery.test.cpp\"\n\nusing mint = modint998;\n\nvoid test()\
-    \ {\n  mint base = RNG(0, mint::get_mod());\n  Power_Query<Monoid_Mul<mint>> X(base);\n\
-    \  FOR(1000) {\n    ll exp = RNG(0, 1'000'000'000'000'000'000);\n    mint a =\
-    \ base.pow(exp);\n    mint b = X(exp);\n    assert(a == b);\n  }\n}\n\nvoid solve()\
-    \ {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  FOR(10) test();\n  solve();\n\n  return 0;\n}\n"
+    template <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 8 \"test/mytest/powerquery.test.cpp\"\n\nusing mint = modint998;\n\nvoid\
+    \ test() {\n  mint base = RNG(0, mint::get_mod());\n  Power_Query<Monoid_Mul<mint>>\
+    \ X(base);\n  FOR(1000) {\n    ll exp = RNG(0, 1'000'000'000'000'000'000);\n \
+    \   mint a = base.pow(exp);\n    mint b = X(exp);\n    assert(a == b);\n  }\n\
+    }\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout\
+    \ << fixed << setprecision(15);\n\n  FOR(10) test();\n  solve();\n\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"random/base.hpp\"\n\n#include \"ds/power_query.hpp\"\
     \n#include \"mod/modint.hpp\"\n\nusing mint = modint998;\n\nvoid test() {\n  mint\
@@ -313,7 +314,7 @@ data:
   isVerificationFile: true
   path: test/mytest/powerquery.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 23:45:48+09:00'
+  timestamp: '2023-11-07 00:41:09+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/powerquery.test.cpp

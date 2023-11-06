@@ -300,9 +300,9 @@ data:
     \ return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt()\
     \ { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
     \ rd(modint<mod> &x) {\n  ll v;\n  fastio::rd(v);\n  x = modint<mod>(v);\n}\n\
-    template <int mod>\nvoid wt(modint<mod> x) {\n  wt(x.val);\n}\n#endif\n\nusing\
-    \ modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line\
-    \ 8 \"test/mytest/prime_sum.test.cpp\"\n\nvoid test_count() {\n  vc<int> A(1000);\n\
+    template <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 8 \"test/mytest/prime_sum.test.cpp\"\n\nvoid test_count() {\n  vc<int> A(1000);\n\
     \  for (auto&& p: primetable(1000)) { A[p]++; }\n  A = cumsum<int>(A, 0);\n\n\
     \  FOR(N, 1000) {\n    PrimeSum<int> X(N);\n    X.calc_count();\n    FOR(K, 1,\
     \ N + 10) { assert(X[N / K] == A[N / K]); }\n  }\n\n  vc<ll> TEN(13);\n  TEN[0]\
@@ -368,7 +368,7 @@ data:
   isVerificationFile: true
   path: test/mytest/prime_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 23:45:48+09:00'
+  timestamp: '2023-11-07 00:41:09+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/prime_sum.test.cpp

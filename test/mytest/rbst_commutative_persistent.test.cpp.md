@@ -272,7 +272,7 @@ data:
     \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
     \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
     \  ll v;\n  fastio::rd(v);\n  x = modint<mod>(v);\n}\ntemplate <int mod>\nvoid\
-    \ wt(modint<mod> x) {\n  wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
+    \ wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
     using modint998 = modint<998244353>;\n#line 1 \"ds/randomized_bst/rbst_commutative_monoid.hpp\"\
     \ntemplate <typename CommutativeMonoid, bool PERSISTENT, int NODES>\nstruct RBST_CommutativeMonoid\
     \ {\n  using Monoid = CommutativeMonoid;\n  using X = typename Monoid::value_type;\n\
@@ -444,7 +444,7 @@ data:
   isVerificationFile: true
   path: test/mytest/rbst_commutative_persistent.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 23:45:48+09:00'
+  timestamp: '2023-11-07 00:41:09+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/rbst_commutative_persistent.test.cpp
