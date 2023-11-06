@@ -10,36 +10,6 @@ char out[100];
 // pointer of ibuf, obuf
 uint32_t pil = 0, pir = 0, por = 0;
 
-template <typename T>
-struct has_read_method {
-  template <typename U>
-  static std::true_type test(decltype(&U::read) *);
-  template <typename>
-  static std::false_type test(...);
-  using type = decltype(test<T>(nullptr));
-  static constexpr bool value = type::value;
-};
-
-template <typename T>
-struct has_print_method {
-  template <typename U>
-  static std::true_type test(decltype(&U::print) *);
-  template <typename>
-  static std::false_type test(...);
-  using type = decltype(test<T>(nullptr));
-  static constexpr bool value = type::value;
-};
-
-template <typename T>
-typename enable_if<has_read_method<T>::value, void>::type rd(T &x) {
-  x.read();
-}
-
-template <typename T>
-typename enable_if<has_print_method<T>::value, void>::type wt(T x) {
-  x.print();
-}
-
 struct Pre {
   char num[10000][4];
   constexpr Pre() : num() {

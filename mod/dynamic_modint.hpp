@@ -81,14 +81,6 @@ struct Dynamic_Modint {
   friend bool operator!=(const mint& lhs, const mint& rhs) {
     return lhs.val != rhs.val;
   }
-#ifdef FASTIO
-  void print() { fastio::wt(val); }
-  void read() {
-    ll x;
-    fastio::read(x);
-    val = (x %= get_mod()) < 0 ? x + get_mod() : x;
-  }
-#endif
   static pair<int, int>& get_ntt() {
     static pair<int, int> p = {-1, -1};
     return p;
@@ -103,6 +95,19 @@ struct Dynamic_Modint {
   static pair<int, int> ntt_info() { return get_ntt(); }
   static bool can_ntt() { return ntt_info().fi != -1; }
 };
+
+#ifdef FASTIO
+template <int id>
+void rd(Dynamic_Modint<id>& x) {
+  ll v;
+  fastio::rd(v);
+  x = Dynamic_Modint<id>(v);
+}
+template <int id>
+void wt(Dynamic_Modint<id> x) {
+  wt(x.val);
+}
+#endif
 
 using dmint = Dynamic_Modint<-1>;
 template <int id>
