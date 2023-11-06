@@ -96,16 +96,16 @@ void rd(pair<T, U> &p) {
   return rd(p.first), rd(p.second);
 }
 template <size_t N = 0, typename T>
-void rd(T &t) {
+void rd_tuple(T &t) {
   if constexpr (N < std::tuple_size<T>::value) {
     auto &x = std::get<N>(t);
     rd(x);
-    rd<N + 1>(t);
+    rd_tuple<N + 1>(t);
   }
 }
 template <class... T>
 void rd(tuple<T...> &tpl) {
-  rd(tpl);
+  rd_tuple(tpl);
 }
 
 template <size_t N = 0, typename T>
