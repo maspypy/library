@@ -9,17 +9,24 @@
 using mint = modint998;
 
 void solve() {
-  LL(N, Q);
-  VEC(mint, A, N);
+  INT(N, Q);
+  vc<mint> A(N);
+  FOR(i, N) {
+    u32 x;
+    read(x);
+    A[i] = mint::raw(x);
+  }
   Dual_SegTree<Monoid_Affine<mint>> seg(N);
   FOR(Q) {
     LL(t);
     if (t == 0) {
-      LL(l, r, b, c);
-      seg.apply(l, r, {mint(b), mint(c)});
+      u32 l, r, b, c;
+      read(l, r, b, c);
+      seg.apply(l, r, {mint::raw(b), mint::raw(c)});
     }
     if (t == 1) {
-      LL(idx);
+      u32 idx;
+      read(idx);
       mint x = A[idx];
       auto [a, b] = seg.get(idx);
       print(a * x + b);
@@ -28,13 +35,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }
