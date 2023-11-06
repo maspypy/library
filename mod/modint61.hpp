@@ -50,11 +50,11 @@ struct modint61 {
     return ret;
   }
 #ifdef FASTIO
-  void write() { fastio::wt(val); }
+  void print() { fastio::wt(val); }
   void read() {
     ll x;
     fastio::read(x);
-    val = (val >= 0 ? val % mod : (mod - (-val) % mod) % mod);
+    val = (x >= 0 ? x % mod : (mod - (-x) % mod) % mod);
   }
 #endif
 };

@@ -60,7 +60,7 @@ struct modint {
     return ret;
   }
 #ifdef FASTIO
-  void write() { fastio::wt(val); }
+  void print() { fastio::wt(val); }
   void read() {
     ll x;
     fastio::read(x);
