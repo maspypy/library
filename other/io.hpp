@@ -127,7 +127,7 @@ void wt(const char c) {
   if (por == SZ) flush();
   obuf[por++] = c;
 }
-void wt(const string &s) {
+void wt(const string s) {
   for (char c: s) wt(c);
 }
 void wt(const char *s) {

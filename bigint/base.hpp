@@ -258,13 +258,13 @@ struct BigInteger {
     x += double(LOG) * (len(dat) - 4);
     return x;
   }
+};
 
 #ifdef FASTIO
-  void write() { fastio::printer.write(to_string()); }
-  void read() {
-    string s;
-    fastio::scanner.read(s);
-    *this = bint(s);
-  }
+void wt(BigInteger x) { fastio::wt(x.to_string()); }
+void rd(BigInteger &x) {
+  string s;
+  fastio::rd(s);
+  x = BigInteger(s);
+}
 #endif
-};
