@@ -24,10 +24,10 @@ data:
     - icon: ':x:'
       path: alg/acted_monoid/maxidx_add.hpp
       title: alg/acted_monoid/maxidx_add.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: alg/acted_monoid/min_add.hpp
       title: alg/acted_monoid/min_add.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: alg/acted_monoid/min_assign.hpp
       title: alg/acted_monoid/min_assign.hpp
     - icon: ':x:'
@@ -42,19 +42,19 @@ data:
     - icon: ':x:'
       path: alg/acted_monoid/minmax_add.hpp
       title: alg/acted_monoid/minmax_add.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: alg/acted_monoid/minmincnt_add.hpp
       title: alg/acted_monoid/minmincnt_add.hpp
     - icon: ':x:'
       path: alg/acted_monoid/powersums_assign.hpp
       title: alg/acted_monoid/powersums_assign.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: alg/acted_monoid/sum_add.hpp
       title: alg/acted_monoid/sum_add.hpp
     - icon: ':x:'
       path: alg/acted_monoid/sum_affine.hpp
       title: alg/acted_monoid/sum_affine.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: alg/acted_monoid/sum_assign.hpp
       title: alg/acted_monoid/sum_assign.hpp
     - icon: ':x:'
@@ -106,7 +106,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid/and.hpp
       title: alg/monoid/and.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: alg/monoid/assign.hpp
       title: alg/monoid/assign.hpp
     - icon: ':x:'
@@ -115,7 +115,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid/lcm.hpp
       title: alg/monoid/lcm.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: alg/monoid/max.hpp
       title: alg/monoid/max.hpp
     - icon: ':x:'
@@ -136,13 +136,13 @@ data:
     - icon: ':x:'
       path: alg/monoid/min_idx.hpp
       title: alg/monoid/min_idx.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: alg/monoid/minmax.hpp
       title: alg/monoid/minmax.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: alg/monoid/minmincnt.hpp
       title: alg/monoid/minmincnt.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: alg/monoid/monoid_reverse.hpp
       title: alg/monoid/monoid_reverse.hpp
     - icon: ':x:'
@@ -199,7 +199,7 @@ data:
     - icon: ':x:'
       path: convex/maxplus_convolution.hpp
       title: convex/maxplus_convolution.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: convex/minplus_convolution.hpp
       title: convex/minplus_convolution.hpp
     - icon: ':x:'
@@ -211,7 +211,7 @@ data:
     - icon: ':x:'
       path: convex/monge_lichao_tree.hpp
       title: convex/monge_lichao_tree.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: convex/monotone_minima.hpp
       title: convex/monotone_minima.hpp
     - icon: ':x:'
@@ -251,7 +251,7 @@ data:
     - icon: ':question:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
     - icon: ':warning:'
@@ -275,16 +275,16 @@ data:
     - icon: ':x:'
       path: ds/power_query.hpp
       title: ds/power_query.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: ds/range_add_range_sum.hpp
       title: ds/range_add_range_sum.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/rectangle_union.hpp
       title: ds/rectangle_union.hpp
     - icon: ':x:'
       path: ds/removable_queue.hpp
       title: ds/removable_queue.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/rollback_array.hpp
       title: ds/rollback_array.hpp
     - icon: ':x:'
@@ -330,12 +330,12 @@ data:
     - icon: ':x:'
       path: ds/kdtree/kdtree_acted_monoid.hpp
       title: ds/kdtree/kdtree_acted_monoid.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/kdtree/kdtree_monoid.hpp
       title: ds/kdtree/kdtree_monoid.hpp
   - name: ds/offline_query
     pages:
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/offline_query/add_remove_query.hpp
       title: ds/offline_query/add_remove_query.hpp
     - icon: ':x:'
@@ -399,7 +399,7 @@ data:
     - icon: ':x:'
       path: ds/segtree/beats_summinmax_chminchmax.hpp
       title: ds/segtree/beats_summinmax_chminchmax.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/segtree/dual_segtree.hpp
       title: ds/segtree/dual_segtree.hpp
     - icon: ':x:'
@@ -411,13 +411,13 @@ data:
     - icon: ':x:'
       path: ds/segtree/dynamic_segtree_sparse.hpp
       title: ds/segtree/dynamic_segtree_sparse.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/segtree/lazy_segtree.hpp
       title: ds/segtree/lazy_segtree.hpp
     - icon: ':warning:'
       path: ds/segtree/rollback_lazy_segtree.hpp
       title: ds/segtree/rollback_lazy_segtree.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/segtree/segtree.hpp
       title: ds/segtree/segtree.hpp
     - icon: ':x:'
@@ -477,21 +477,21 @@ data:
     - icon: ':warning:'
       path: ds/unionfind/parallel_unionfind.hpp
       title: ds/unionfind/parallel_unionfind.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/unionfind/rollback_unionfind.hpp
       title: ds/unionfind/rollback_unionfind.hpp
     - icon: ':x:'
       path: ds/unionfind/rollback_weighted_unionfind.hpp
       title: ds/unionfind/rollback_weighted_unionfind.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/unionfind/unionfind.hpp
       title: ds/unionfind/unionfind.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: ds/unionfind/weighted_unionfind.hpp
       title: ds/unionfind/weighted_unionfind.hpp
   - name: enumerate
     pages:
-    - icon: ':question:'
+    - icon: ':x:'
       path: enumerate/bits.hpp
       title: enumerate/bits.hpp
     - icon: ':x:'
@@ -526,7 +526,7 @@ data:
     - icon: ':x:'
       path: flow/binary_optimization.hpp
       title: flow/binary_optimization.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: flow/bipartite.hpp
       title: flow/bipartite.hpp
     - icon: ':x:'
@@ -541,13 +541,13 @@ data:
     - icon: ':x:'
       path: flow/hungarian.hpp
       title: flow/hungarian.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: flow/maxflow.hpp
       title: flow/maxflow.hpp
     - icon: ':x:'
       path: flow/min_cost_matching_on_line.hpp
       title: flow/min_cost_matching_on_line.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: flow/mincostflow.hpp
       title: flow/mincostflow.hpp
     - icon: ':warning:'
@@ -572,7 +572,7 @@ data:
     - icon: ':warning:'
       path: geo/apollonian_circle.hpp
       title: geo/apollonian_circle.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: geo/base.hpp
       title: geo/base.hpp
     - icon: ':x:'
@@ -587,13 +587,13 @@ data:
     - icon: ':x:'
       path: geo/count_points_in_triangles.hpp
       title: geo/count_points_in_triangles.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: geo/cross_point.hpp
       title: geo/cross_point.hpp
     - icon: ':x:'
       path: geo/definite_integral.hpp
       title: geo/definite_integral.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: geo/distance.hpp
       title: geo/distance.hpp
     - icon: ':x:'
@@ -626,13 +626,13 @@ data:
     - icon: ':x:'
       path: geo/perpendicular_bisector.hpp
       title: geo/perpendicular_bisector.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo/projection.hpp
       title: geo/projection.hpp
     - icon: ':x:'
       path: geo/range_closest_pair_query.hpp
       title: geo/range_closest_pair_query.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo/reflection.hpp
       title: geo/reflection.hpp
     - icon: ':x:'
@@ -651,13 +651,13 @@ data:
     - icon: ':x:'
       path: graph/bipartite_edge_coloring.hpp
       title: graph/bipartite_edge_coloring.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/bipartite_vertex_coloring.hpp
       title: graph/bipartite_vertex_coloring.hpp
     - icon: ':warning:'
       path: graph/bipartite_vertex_coloring_ng1.hpp
       title: graph/bipartite_vertex_coloring_ng1.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/block_cut.hpp
       title: graph/block_cut.hpp
     - icon: ':x:'
@@ -675,7 +675,7 @@ data:
     - icon: ':warning:'
       path: graph/compress_tree.hpp
       title: graph/compress_tree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/dag_path_cover.hpp
       title: graph/dag_path_cover.hpp
     - icon: ':warning:'
@@ -690,7 +690,7 @@ data:
     - icon: ':x:'
       path: graph/dominator_tree.hpp
       title: graph/dominator_tree.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/dsu_on_tree.hpp
       title: graph/dsu_on_tree.hpp
     - icon: ':x:'
@@ -720,7 +720,7 @@ data:
     - icon: ':warning:'
       path: graph/grid_hamiltonian_path.hpp
       title: graph/grid_hamiltonian_path.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/maximum_antichain.hpp
       title: graph/maximum_antichain.hpp
     - icon: ':x:'
@@ -747,10 +747,10 @@ data:
     - icon: ':x:'
       path: graph/minimum_cycle_length_through_specified.hpp
       title: graph/minimum_cycle_length_through_specified.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/minimum_hamiltonian_cycle.hpp
       title: graph/minimum_hamiltonian_cycle.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/minimum_spanning_tree.hpp
       title: graph/minimum_spanning_tree.hpp
     - icon: ':x:'
@@ -762,7 +762,7 @@ data:
     - icon: ':x:'
       path: graph/range_to_range_graph.hpp
       title: graph/range_to_range_graph.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/reachability.hpp
       title: graph/reachability.hpp
     - icon: ':x:'
@@ -774,13 +774,13 @@ data:
     - icon: ':x:'
       path: graph/steiner_tree.hpp
       title: graph/steiner_tree.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/strongly_connected_component.hpp
       title: graph/strongly_connected_component.hpp
     - icon: ':warning:'
       path: graph/to_directed_tree.hpp
       title: graph/to_directed_tree.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/toposort.hpp
       title: graph/toposort.hpp
     - icon: ':x:'
@@ -801,7 +801,7 @@ data:
     - icon: ':x:'
       path: graph/tree_of_unionfind.hpp
       title: graph/tree_of_unionfind.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/two_edge_component.hpp
       title: graph/two_edge_component.hpp
     - icon: ':x:'
@@ -856,13 +856,13 @@ data:
     - icon: ':x:'
       path: graph/ds/contour_query_range.hpp
       title: graph/ds/contour_query_range.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/ds/dual_tree_monoid.hpp
       title: graph/ds/dual_tree_monoid.hpp
     - icon: ':heavy_check_mark:'
       path: graph/ds/incremental_centroid.hpp
       title: graph/ds/incremental_centroid.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/ds/lazy_tree_monoid.hpp
       title: graph/ds/lazy_tree_monoid.hpp
     - icon: ':x:'
@@ -883,7 +883,7 @@ data:
     - icon: ':question:'
       path: graph/ds/tree_abelgroup.hpp
       title: graph/ds/tree_abelgroup.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/ds/tree_monoid.hpp
       title: graph/ds/tree_monoid.hpp
     - icon: ':warning:'
@@ -920,7 +920,7 @@ data:
     - icon: ':x:'
       path: graph/shortest_path/K_shortest_walk.hpp
       title: graph/shortest_path/K_shortest_walk.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/shortest_path/bellmanford.hpp
       title: graph/shortest_path/bellmanford.hpp
     - icon: ':x:'
@@ -932,7 +932,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/shortest_path/dial.hpp
       title: graph/shortest_path/dial.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/shortest_path/dijkstra.hpp
       title: graph/shortest_path/dijkstra.hpp
     - icon: ':x:'
@@ -941,7 +941,7 @@ data:
     - icon: ':x:'
       path: graph/shortest_path/restore_path.hpp
       title: graph/shortest_path/restore_path.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/shortest_path/warshall_floyd.hpp
       title: graph/shortest_path/warshall_floyd.hpp
   - name: graph/tree_dp
@@ -963,7 +963,7 @@ data:
       title: graph/tree_dp/tree_dp.hpp
   - name: knapsack
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: knapsack/knapsack01.hpp
       title: knapsack/knapsack01.hpp
     - icon: ':x:'
@@ -972,7 +972,7 @@ data:
     - icon: ':x:'
       path: knapsack/subset_sum.hpp
       title: knapsack/subset_sum.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: knapsack/subset_sum_count.hpp
       title: knapsack/subset_sum_count.hpp
   - name: linalg/bitset
@@ -1111,7 +1111,7 @@ data:
     - icon: ':x:'
       path: mod/modint.hpp
       title: mod/modint.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: mod/modint61.hpp
       title: mod/modint61.hpp
     - icon: ':x:'
@@ -1174,16 +1174,16 @@ data:
     - icon: ':x:'
       path: nt/discrete_log.hpp
       title: nt/discrete_log.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: nt/divisors.hpp
       title: nt/divisors.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: nt/euler_phi.hpp
       title: nt/euler_phi.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: nt/extgcd.hpp
       title: nt/extgcd.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: nt/factor.hpp
       title: nt/factor.hpp
     - icon: ':x:'
@@ -1231,7 +1231,7 @@ data:
     - icon: ':x:'
       path: nt/primesum_mod6.hpp
       title: nt/primesum_mod6.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: nt/primetable.hpp
       title: nt/primetable.hpp
     - icon: ':question:'
@@ -1255,7 +1255,7 @@ data:
     - icon: ':x:'
       path: nt/three_triangular.hpp
       title: nt/three_triangular.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: nt/zeta.hpp
       title: nt/zeta.hpp
   - name: other
@@ -1272,7 +1272,7 @@ data:
     - icon: ':warning:'
       path: other/cuboid_union_volume.hpp
       title: other/cuboid_union_volume.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: other/dice.hpp
       title: other/dice.hpp
     - icon: ':x:'
@@ -1505,7 +1505,7 @@ data:
       title: random/shuffle.hpp
   - name: seq
     pages:
-    - icon: ':question:'
+    - icon: ':x:'
       path: seq/cartesian_tree.hpp
       title: seq/cartesian_tree.hpp
     - icon: ':x:'
@@ -1556,7 +1556,7 @@ data:
     - icon: ':x:'
       path: seq/limit_poly_exp_sum.hpp
       title: seq/limit_poly_exp_sum.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: seq/longest_increasing_subsequence.hpp
       title: seq/longest_increasing_subsequence.hpp
     - icon: ':x:'
@@ -1608,7 +1608,7 @@ data:
     - icon: ':x:'
       path: setfunc/count_surjection.hpp
       title: setfunc/count_surjection.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: setfunc/for_nck.hpp
       title: setfunc/for_nck.hpp
     - icon: ':x:'
@@ -1676,7 +1676,7 @@ data:
     - icon: ':x:'
       path: string/rollinghash.hpp
       title: string/rollinghash.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/rollinghash_2d.hpp
       title: string/rollinghash_2d.hpp
     - icon: ':x:'
@@ -1721,7 +1721,7 @@ data:
   verificationCategories:
   - name: test/aoj
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/0275.test.cpp
       title: test/aoj/0275.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1736,13 +1736,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/1508_2.test.cpp
       title: test/aoj/1508_2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/1566.test.cpp
       title: test/aoj/1566.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/2251_1.test.cpp
       title: test/aoj/2251_1.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/2251_2.test.cpp
       title: test/aoj/2251_2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1757,7 +1757,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/2842_2.test.cpp
       title: test/aoj/2842_2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/2995.test.cpp
       title: test/aoj/2995.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1766,7 +1766,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_12_B.test.cpp
       title: test/aoj/ALDS1_12_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_14_C.test.cpp
       title: test/aoj/ALDS1_14_C.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1778,22 +1778,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_5.test.cpp
       title: test/aoj/ALDS1_5.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_1_A.test.cpp
       title: test/aoj/CGL_1_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_1_B.test.cpp
       title: test/aoj/CGL_1_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_2_A.test.cpp
       title: test/aoj/CGL_2_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_2_B.test.cpp
       title: test/aoj/CGL_2_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_2_C.test.cpp
       title: test/aoj/CGL_2_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_2_D.test.cpp
       title: test/aoj/CGL_2_D.test.cpp
     - icon: ':x:'
@@ -1808,112 +1808,112 @@ data:
     - icon: ':x:'
       path: test/aoj/CGL_7_C.test.cpp
       title: test/aoj/CGL_7_C.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DPL_1_B.test.cpp
       title: test/aoj/DPL_1_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DPL_1_D.test.cpp
       title: test/aoj/DPL_1_D.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DPL_1_F.test.cpp
       title: test/aoj/DPL_1_F.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DPL_1_H.test.cpp
       title: test/aoj/DPL_1_H.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DPL_2_A.test.cpp
       title: test/aoj/DPL_2_A.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DPL_3_B.test.cpp
       title: test/aoj/DPL_3_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DPL_3_C.test.cpp
       title: test/aoj/DPL_3_C.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DPL_4_B.test.cpp
       title: test/aoj/DPL_4_B.test.cpp
     - icon: ':x:'
       path: test/aoj/DPL_5_C.test.cpp
       title: test/aoj/DPL_5_C.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL_1_B.test.cpp
       title: test/aoj/DSL_1_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL_2_C.test.cpp
       title: test/aoj/DSL_2_C.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL_2_D.test.cpp
       title: test/aoj/DSL_2_D.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL_2_E.test.cpp
       title: test/aoj/DSL_2_E.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL_2_F.test.cpp
       title: test/aoj/DSL_2_F.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL_2_G.test.cpp
       title: test/aoj/DSL_2_G.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL_2_H.test.cpp
       title: test/aoj/DSL_2_H.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL_2_I.test.cpp
       title: test/aoj/DSL_2_I.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DSL_4_A.test.cpp
       title: test/aoj/DSL_4_A.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL_1_B.test.cpp
       title: test/aoj/GRL_1_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL_1_C.test.cpp
       title: test/aoj/GRL_1_C.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL_2_A.test.cpp
       title: test/aoj/GRL_2_A.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL_3_A.test.cpp
       title: test/aoj/GRL_3_A.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL_3_B.test.cpp
       title: test/aoj/GRL_3_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL_5_E.test.cpp
       title: test/aoj/GRL_5_E.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL_6_A.test.cpp
       title: test/aoj/GRL_6_A.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/GRL_6_B.test.cpp
       title: test/aoj/GRL_6_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/ITP1_11_A.test.cpp
       title: test/aoj/ITP1_11_A.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/ITP1_11_B.test.cpp
       title: test/aoj/ITP1_11_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/ITP1_11_C.test.cpp
       title: test/aoj/ITP1_11_C.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/ITP1_11_D.test.cpp
       title: test/aoj/ITP1_11_D.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/ITP1_9_A.test.cpp
       title: test/aoj/ITP1_9_A.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/ITP1_D_D.test.cpp
       title: test/aoj/ITP1_D_D.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/ITP2_11_D.test.cpp
       title: test/aoj/ITP2_11_D.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/ITP2_3_B.test.cpp
       title: test/aoj/ITP2_3_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/NTL_1_D.test.cpp
       title: test/aoj/NTL_1_D.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/NTL_1_E.test.cpp
       title: test/aoj/NTL_1_E.test.cpp
     - icon: ':x:'
@@ -1965,10 +1965,10 @@ data:
     - icon: ':x:'
       path: test/library_checker/convolution/convolution_mod_setntt.test.cpp
       title: test/library_checker/convolution/convolution_mod_setntt.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
       title: test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
       title: test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
     - icon: ':x:'
@@ -1988,16 +1988,16 @@ data:
       title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
   - name: test/library_checker/datastructure
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/datastructure/add_remove_query.test.cpp
       title: test/library_checker/datastructure/add_remove_query.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
       title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/datastructure/associative_array.test.cpp
       title: test/library_checker/datastructure/associative_array.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
       title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
     - icon: ':x:'

@@ -77,13 +77,13 @@ data:
   - icon: ':x:'
     path: nt/crt.hpp
     title: nt/crt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/divisors.hpp
     title: nt/divisors.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':x:'
@@ -125,20 +125,20 @@ data:
   - icon: ':x:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/rollinghash_2d.hpp
     title: string/rollinghash_2d.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_14_C.test.cpp
     title: test/aoj/ALDS1_14_C.test.cpp
   - icon: ':x:'
     path: test/aoj/CGL_5_A.test.cpp
     title: test/aoj/CGL_5_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ITP1_D_D.test.cpp
     title: test/aoj/ITP1_D_D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL_1_D.test.cpp
     title: test/aoj/NTL_1_D.test.cpp
   - icon: ':x:'

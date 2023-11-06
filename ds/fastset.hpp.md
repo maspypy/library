@@ -20,14 +20,14 @@ data:
   - icon: ':warning:'
     path: graph/implicit_graph/cograph_unionfind.hpp
     title: graph/implicit_graph/cograph_unionfind.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
   - icon: ':warning:'
     path: other/cuboid_union_volume.hpp
     title: other/cuboid_union_volume.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/2251_1.test.cpp
     title: test/aoj/2251_1.test.cpp
   - icon: ':heavy_check_mark:'

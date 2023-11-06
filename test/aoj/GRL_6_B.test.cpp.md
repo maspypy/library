@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: flow/mincostflow.hpp
     title: flow/mincostflow.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B
@@ -101,151 +101,136 @@ data:
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
     \  return B;\n}\n#endif\n#line 1 \"other/io.hpp\"\n#define FASTIO\r\n#include\
-    \ <unistd.h>\r\n\r\nnamespace fastio {\r\nstruct Pre {\r\n  char num[10000][4];\r\
-    \n  constexpr Pre() : num() {\r\n    for (int i = 0; i < 10000; i++) {\r\n   \
-    \   int n = i;\r\n      for (int j = 3; j >= 0; j--) {\r\n        num[i][j] =\
-    \ n % 10 | '0';\r\n        n /= 10;\r\n      }\r\n    }\r\n  }\r\n} constexpr\
-    \ pre;\r\n\r\ntemplate <typename T>\r\nstruct has_read_method {\r\n  template\
+    \ <unistd.h>\r\n\r\n// https://judge.yosupo.jp/submission/21623\r\nnamespace fastio\
+    \ {\r\nstatic constexpr uint32_t SZ = 1 << 17;\r\nchar ibuf[SZ];\r\nchar obuf[SZ];\r\
+    \nchar out[100];\r\n// pointer of ibuf, obuf\r\nuint32_t pil = 0, pir = 0, por\
+    \ = 0;\r\n\r\ntemplate <typename T>\r\nstruct has_read_method {\r\n  template\
     \ <typename U>\r\n  static std::true_type test(decltype(&U::read) *);\r\n  template\
     \ <typename>\r\n  static std::false_type test(...);\r\n  using type = decltype(test<T>(nullptr));\r\
     \n  static constexpr bool value = type::value;\r\n};\r\n\r\ntemplate <typename\
     \ T>\r\nstruct has_print_method {\r\n  template <typename U>\r\n  static std::true_type\
     \ test(decltype(&U::print) *);\r\n  template <typename>\r\n  static std::false_type\
     \ test(...);\r\n  using type = decltype(test<T>(nullptr));\r\n  static constexpr\
-    \ bool value = type::value;\r\n};\r\n\r\nstruct Scanner {\r\n  FILE *fp;\r\n \
-    \ char line[(1 << 15) + 1];\r\n  size_t st = 0, ed = 0;\r\n  void reread() {\r\
-    \n    memmove(line, line + st, ed - st);\r\n    ed -= st;\r\n    st = 0;\r\n \
-    \   ed += fread(line + ed, 1, (1 << 15) - ed, fp);\r\n    line[ed] = '\\0';\r\n\
-    \  }\r\n  void succ() {\r\n    while (true) {\r\n      if (st == ed) {\r\n   \
-    \     reread();\r\n        if (st == ed) return;\r\n      }\r\n      while (st\
-    \ != ed && isspace(line[st])) st++;\r\n      if (st != ed) break;\r\n    }\r\n\
-    \    if (ed - st <= 100) {\r\n      bool sep = false;\r\n      for (size_t i =\
-    \ st; i < ed; i++) {\r\n        if (isspace(line[i])) {\r\n          sep = true;\r\
-    \n          break;\r\n        }\r\n      }\r\n      if (!sep) reread();\r\n  \
-    \  }\r\n    return;\r\n  }\r\n\r\n  void rd(char &c) {\r\n    succ();\r\n    c\
-    \ = line[st++];\r\n  }\r\n\r\n  void rd(string &x) {\r\n    x.clear();\r\n   \
-    \ succ();\r\n    while (true) {\r\n      size_t sz = 0;\r\n      while (st + sz\
-    \ < ed && !isspace(line[st + sz])) sz++;\r\n      x.append(line + st, sz);\r\n\
-    \      st += sz;\r\n      if (!sz || st != ed) break;\r\n      reread();\r\n \
-    \   }\r\n  }\r\n\r\n  template <typename T>\r\n  void rd_integer(T &x) {\r\n \
-    \   succ();\r\n    bool minus = 0;\r\n    char c = line[st++];\r\n    if constexpr\
-    \ (is_signed<T>::value || is_same_v<T, i128>) {\r\n      if (c == '-') { minus\
-    \ = 1, c = line[st++]; }\r\n    }\r\n    x = 0;\r\n    while (c >= '0') { x =\
-    \ x * 10 + (c & 15), c = line[st++]; }\r\n    if constexpr (is_signed<T>::value\
-    \ || is_same_v<T, i128>) {\r\n      if (minus) x = -x;\r\n    }\r\n  }\r\n\r\n\
-    \  template <typename T>\r\n  void rd_real(T &x) {\r\n    string s;\r\n    rd(s);\r\
-    \n    x = stod(s);\r\n  }\r\n\r\n  template <typename T>\r\n  typename enable_if<has_read_method<T>::value,\
-    \ void>::type rd(T &x) {\r\n    x.read();\r\n  }\r\n\r\n  void rd(int &x) { rd_integer(x);\
-    \ }\r\n  void rd(ll &x) { rd_integer(x); }\r\n  void rd(i128 &x) { rd_integer(x);\
-    \ }\r\n  void rd(u32 &x) { rd_integer(x); }\r\n  void rd(u64 &x) { rd_integer(x);\
-    \ }\r\n  void rd(u128 &x) { rd_integer(x); }\r\n  void rd(double &x) { rd_real(x);\
-    \ }\r\n  void rd(long double &x) { rd_real(x); }\r\n  void rd(f128 &x) { rd_real(x);\
-    \ }\r\n  template <class T, class U>\r\n  void rd(pair<T, U> &p) {\r\n    return\
-    \ rd(p.first), rd(p.second);\r\n  }\r\n  template <size_t N = 0, typename T>\r\
-    \n  void rd_tuple(T &t) {\r\n    if constexpr (N < std::tuple_size<T>::value)\
-    \ {\r\n      auto &x = std::get<N>(t);\r\n      rd(x);\r\n      rd_tuple<N + 1>(t);\r\
-    \n    }\r\n  }\r\n  template <class... T>\r\n  void rd(tuple<T...> &tpl) {\r\n\
-    \    rd_tuple(tpl);\r\n  }\r\n  template <class T>\r\n  void rd(vc<T> &x) {\r\n\
-    \    for (auto &d: x) rd(d);\r\n  }\r\n  template <size_t N = 0, typename T>\r\
-    \n  void rd(array<T, N> &x) {\r\n    for (auto &d: x) rd(d);\r\n  }\r\n  Scanner(FILE\
-    \ *fp) : fp(fp) {}\r\n};\r\n\r\nstruct Printer {\r\n  Printer(FILE *_fp) : fp(_fp)\
-    \ {}\r\n  ~Printer() { flush(); }\r\n\r\n  static constexpr size_t SIZE = 1 <<\
-    \ 15;\r\n  FILE *fp;\r\n  char line[SIZE], out[100];\r\n  size_t pos = 0;\r\n\
-    \  void flush() {\r\n    fwrite(line, 1, pos, fp);\r\n    pos = 0;\r\n  }\r\n\r\
-    \n  void wt(const char val) {\r\n    if (pos == SIZE) flush();\r\n    line[pos++]\
-    \ = val;\r\n  }\r\n  void wt(const string &s) {\r\n    for (char c: s) wt(c);\r\
-    \n  }\r\n  void wt(const char *s) {\r\n    size_t len = strlen(s);\r\n    for\
-    \ (size_t i = 0; i < len; i++) wt(s[i]);\r\n  }\r\n\r\n  template <typename T>\r\
-    \n  void wt_integer(T x) {\r\n    if (pos > SIZE - 100) flush();\r\n    if (x\
-    \ < 0) { line[pos++] = '-', x = -x; }\r\n    int outi;\r\n    for (outi = 96;\
-    \ x >= 10000; outi -= 4) {\r\n      memcpy(out + outi, pre.num[x % 10000], 4);\r\
-    \n      x /= 10000;\r\n    }\r\n    if (x >= 1000) {\r\n      memcpy(line + pos,\
-    \ pre.num[x], 4), pos += 4;\r\n    } else if (x >= 100) {\r\n      memcpy(line\
-    \ + pos, pre.num[x] + 1, 3), pos += 3;\r\n    } else if (x >= 10) {\r\n      int\
-    \ q = (x * 103) >> 10;\r\n      line[pos] = q | '0';\r\n      line[pos + 1] =\
-    \ (x - q * 10) | '0';\r\n      pos += 2;\r\n    } else\r\n      line[pos++] =\
-    \ x | '0';\r\n    memcpy(line + pos, out + outi + 4, 96 - outi);\r\n    pos +=\
-    \ 96 - outi;\r\n  }\r\n\r\n  template <typename T>\r\n  void wt_real(T x) {\r\n\
-    \    ostringstream oss;\r\n    oss << fixed << setprecision(15) << double(x);\r\
-    \n    string s = oss.str();\r\n    wt(s);\r\n  }\r\n\r\n  template <typename T>\r\
-    \n  typename enable_if<has_print_method<T>::value, void>::type wt(T x) {\r\n \
-    \   x.print();\r\n  }\r\n\r\n  void wt(bool x) { wt_integer(int(x)); }\r\n  void\
-    \ wt(int x) { wt_integer(x); }\r\n  void wt(ll x) { wt_integer(x); }\r\n  void\
-    \ wt(i128 x) { wt_integer(x); }\r\n  void wt(u32 x) { wt_integer(x); }\r\n  void\
-    \ wt(u64 x) { wt_integer(x); }\r\n  void wt(u128 x) { wt_integer(x); }\r\n  void\
-    \ wt(double x) { wt_real(x); }\r\n  void wt(long double x) { wt_real(x); }\r\n\
-    \  void wt(f128 x) { wt_real(x); }\r\n\r\n  template <class T, class U>\r\n  void\
-    \ wt(const pair<T, U> val) {\r\n    wt(val.first);\r\n    wt(' ');\r\n    wt(val.second);\r\
-    \n  }\r\n  template <size_t N = 0, typename T>\r\n  void wt_tuple(const T t) {\r\
-    \n    if constexpr (N < std::tuple_size<T>::value) {\r\n      if constexpr (N\
-    \ > 0) { wt(' '); }\r\n      const auto x = std::get<N>(t);\r\n      wt(x);\r\n\
-    \      wt_tuple<N + 1>(t);\r\n    }\r\n  }\r\n  template <class... T>\r\n  void\
-    \ wt(tuple<T...> tpl) {\r\n    wt_tuple(tpl);\r\n  }\r\n  template <class T, size_t\
-    \ S>\r\n  void wt(const array<T, S> val) {\r\n    auto n = val.size();\r\n   \
-    \ for (size_t i = 0; i < n; i++) {\r\n      if (i) wt(' ');\r\n      wt(val[i]);\r\
-    \n    }\r\n  }\r\n  template <class T>\r\n  void wt(const vector<T> val) {\r\n\
-    \    auto n = val.size();\r\n    for (size_t i = 0; i < n; i++) {\r\n      if\
-    \ (i) wt(' ');\r\n      wt(val[i]);\r\n    }\r\n  }\r\n};\r\nScanner scanner =\
-    \ Scanner(stdin);\r\nPrinter printer = Printer(stdout);\r\nvoid flush() { printer.flush();\
-    \ }\r\nvoid print() { printer.wt('\\n'); }\r\ntemplate <class Head, class... Tail>\r\
-    \nvoid print(Head &&head, Tail &&... tail) {\r\n  printer.wt(head);\r\n  if (sizeof...(Tail))\
-    \ printer.wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\nvoid read()\
-    \ {}\r\ntemplate <class Head, class... Tail>\r\nvoid read(Head &head, Tail &...\
-    \ tail) {\r\n  scanner.rd(head);\r\n  read(tail...);\r\n}\r\n} // namespace fastio\r\
-    \nusing fastio::print;\r\nusing fastio::flush;\r\nusing fastio::read;\r\n\r\n\
-    #define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)\
-    \      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
-    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
-    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
-    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
-    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
-    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
-    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
-    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
-    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 2 \"flow/mincostflow.hpp\"\n\n// atcoder library \u306E\u3082\
-    \u306E\u3092\u6539\u5909\nnamespace internal {\ntemplate <class E>\nstruct csr\
-    \ {\n  vector<int> start;\n  vector<E> elist;\n  explicit csr(int n, const vector<pair<int,\
-    \ E>>& edges)\n      : start(n + 1), elist(edges.size()) {\n    for (auto e: edges)\
-    \ { start[e.first + 1]++; }\n    for (int i = 1; i <= n; i++) { start[i] += start[i\
-    \ - 1]; }\n    auto counter = start;\n    for (auto e: edges) { elist[counter[e.first]++]\
-    \ = e.second; }\n  }\n};\n\ntemplate <class T>\nstruct simple_queue {\n  vector<T>\
-    \ payload;\n  int pos = 0;\n  void reserve(int n) { payload.reserve(n); }\n  int\
-    \ size() const { return int(payload.size()) - pos; }\n  bool empty() const { return\
-    \ pos == int(payload.size()); }\n  void push(const T& t) { payload.push_back(t);\
-    \ }\n  T& front() { return payload[pos]; }\n  void clear() {\n    payload.clear();\n\
-    \    pos = 0;\n  }\n  void pop() { pos++; }\n};\n\n} // namespace internal\n\n\
-    /*\n\u30FBatcoder library \u3092\u3059\u3053\u3057\u6539\u5909\u3057\u305F\u3082\
-    \u306E\n\u30FBDAG = true \u3067\u3042\u308C\u3070\u3001\u8CA0\u8FBA OK \uFF08\
-    1 \u56DE\u76EE\u306E\u6700\u77ED\u8DEF\u3092 dp \u3067\u884C\u3046\uFF09\n\u305F\
-    \u3060\u3057\u3001\u9802\u70B9\u756A\u53F7\u306F toposort \u3055\u308C\u3066\u3044\
-    \u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\u3002\n*/\ntemplate\
-    \ <class Cap = int, class Cost = ll, bool DAG = false>\nstruct Min_Cost_Flow {\n\
-    public:\n  Min_Cost_Flow() {}\n  explicit Min_Cost_Flow(int n, int source, int\
-    \ sink)\n      : n(n), source(source), sink(sink) {\n    assert(0 <= source &&\
-    \ source < n);\n    assert(0 <= sink && sink < n);\n    assert(source != sink);\n\
-    \  }\n\n  // frm, to, cap, cost\n  int add(int frm, int to, Cap cap, Cost cost)\
-    \ {\n    assert(0 <= frm && frm < n);\n    assert(0 <= to && to < n);\n    assert(0\
-    \ <= cap);\n    assert(DAG || 0 <= cost);\n    if (DAG) assert(frm < to);\n  \
-    \  int m = int(_edges.size());\n    _edges.push_back({frm, to, cap, 0, cost});\n\
-    \    return m;\n  }\n\n  void debug() {\n    print(\"flow graph\");\n    print(\"\
-    frm, to, cap, cost\");\n    for (auto&& [frm, to, cap, flow, cost]: _edges) {\n\
-    \      print(frm, to, cap, cost);\n    }\n  }\n\n  struct edge {\n    int frm,\
-    \ to;\n    Cap cap, flow;\n    Cost cost;\n  };\n\n  edge get_edge(int i) {\n\
-    \    int m = int(_edges.size());\n    assert(0 <= i && i < m);\n    return _edges[i];\n\
-    \  }\n  vector<edge> edges() { return _edges; }\n\n  // (\u6D41\u91CF, \u8CBB\u7528\
-    )\n  pair<Cap, Cost> flow() { return flow(infty<Cap>); }\n  // (\u6D41\u91CF,\
-    \ \u8CBB\u7528)\n  pair<Cap, Cost> flow(Cap flow_limit) { return slope(flow_limit).back();\
-    \ }\n  vector<pair<Cap, Cost>> slope() { return slope(infty<Cap>); }\n  vector<pair<Cap,\
-    \ Cost>> slope(Cap flow_limit) {\n    int m = int(_edges.size());\n    vector<int>\
-    \ edge_idx(m);\n\n    auto g = [&]() {\n      vector<int> degree(n), redge_idx(m);\n\
-    \      vector<pair<int, _edge>> elist;\n      elist.reserve(2 * m);\n      for\
-    \ (int i = 0; i < m; i++) {\n        auto e = _edges[i];\n        edge_idx[i]\
-    \ = degree[e.frm]++;\n        redge_idx[i] = degree[e.to]++;\n        elist.push_back({e.frm,\
-    \ {e.to, -1, e.cap - e.flow, e.cost}});\n        elist.push_back({e.to, {e.frm,\
-    \ -1, e.flow, -e.cost}});\n      }\n      auto _g = internal::csr<_edge>(n, elist);\n\
-    \      for (int i = 0; i < m; i++) {\n        auto e = _edges[i];\n        edge_idx[i]\
+    \ bool value = type::value;\r\n};\r\n\r\ntemplate <typename T>\r\ntypename enable_if<has_read_method<T>::value,\
+    \ void>::type rd(T x) {\r\n  x.read();\r\n}\r\n\r\ntemplate <typename T>\r\ntypename\
+    \ enable_if<has_print_method<T>::value, void>::type wt(T x) {\r\n  x.print();\r\
+    \n}\r\n\r\nstruct Pre {\r\n  char num[10000][4];\r\n  constexpr Pre() : num()\
+    \ {\r\n    for (int i = 0; i < 10000; i++) {\r\n      int n = i;\r\n      for\
+    \ (int j = 3; j >= 0; j--) {\r\n        num[i][j] = n % 10 | '0';\r\n        n\
+    \ /= 10;\r\n      }\r\n    }\r\n  }\r\n} constexpr pre;\r\n\r\ninline void load()\
+    \ {\r\n  memcpy(ibuf, ibuf + pil, pir - pil);\r\n  pir = pir - pil + fread(ibuf\
+    \ + pir - pil, 1, SZ - pir + pil, stdin);\r\n  pil = 0;\r\n}\r\n\r\ninline void\
+    \ flush() {\r\n  fwrite(obuf, 1, por, stdout);\r\n  por = 0;\r\n}\r\n\r\n// read\
+    \ non-space character\r\nvoid rd_c(char &c) {\r\n  if (pil + 1 > pir) load();\r\
+    \n  c = ibuf[pil++];\r\n}\r\n\r\nvoid rd(string &x) {\r\n  x.clear();\r\n  char\
+    \ c;\r\n  do { rd_c(c); } while (isspace(c));\r\n  do { x += c, rd_c(c); } while\
+    \ (!isspace(c));\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_real(T &x) {\r\n\
+    \  string s;\r\n  rd(s);\r\n  x = stod(s);\r\n}\r\n\r\ntemplate <typename T>\r\
+    \nvoid rd_integer(T &x) {\r\n  if (pil + 100 > pir) load();\r\n  char c;\r\n \
+    \ do\r\n    c = ibuf[pil++];\r\n  while (c < '-');\r\n  bool minus = 0;\r\n  if\
+    \ constexpr (is_signed<T>::value || is_same_v<T, i128>) {\r\n    if (c == '-')\
+    \ { minus = 1, c = ibuf[pil++]; }\r\n  }\r\n  x = 0;\r\n  while (c >= '0') { x\
+    \ = x * 10 + (c & 15), c = ibuf[pil++]; }\r\n  if constexpr (is_signed<T>::value\
+    \ || is_same_v<T, i128>) {\r\n    if (minus) x = -x;\r\n  }\r\n}\r\n\r\nvoid rd(int\
+    \ &x) { rd_integer(x); }\r\nvoid rd(ll &x) { rd_integer(x); }\r\nvoid rd(i128\
+    \ &x) { rd_integer(x); }\r\nvoid rd(u32 &x) { rd_integer(x); }\r\nvoid rd(u64\
+    \ &x) { rd_integer(x); }\r\nvoid rd(u128 &x) { rd_integer(x); }\r\nvoid rd(double\
+    \ &x) { rd_real(x); }\r\nvoid rd(long double &x) { rd_real(x); }\r\nvoid rd(f128\
+    \ &x) { rd_real(x); }\r\ntemplate <class T>\r\nvoid rd(vc<T> &x) {\r\n  for (auto\
+    \ &d: x) rd(d);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd(array<T,\
+    \ N> &x) {\r\n  for (auto &d: x) rd(d);\r\n}\r\ntemplate <class T, class U>\r\n\
+    void rd(pair<T, U> &p) {\r\n  return rd(p.first), rd(p.second);\r\n}\r\ntemplate\
+    \ <size_t N = 0, typename T>\r\nvoid rd(T &t) {\r\n  if constexpr (N < std::tuple_size<T>::value)\
+    \ {\r\n    auto &x = std::get<N>(t);\r\n    rd(x);\r\n    rd<N + 1>(t);\r\n  }\r\
+    \n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...> &tpl) {\r\n  rd(tpl);\r\n\
+    }\r\n\r\nvoid read() {}\r\ntemplate <class H, class... T>\r\nvoid read(H &h, T\
+    \ &... t) {\r\n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const char c) {\r\n  if\
+    \ (por == SZ) flush();\r\n  obuf[por++] = c;\r\n}\r\nvoid wt(const string &s)\
+    \ {\r\n  for (char c: s) wt(c);\r\n}\r\n\r\ntemplate <typename T>\r\nvoid wt_integer(T\
+    \ x) {\r\n  if (por > SZ - 100) flush();\r\n  if (x < 0) { obuf[por++] = '-',\
+    \ x = -x; }\r\n  int outi;\r\n  for (outi = 96; x >= 10000; outi -= 4) {\r\n \
+    \   memcpy(out + outi, pre.num[x % 10000], 4);\r\n    x /= 10000;\r\n  }\r\n \
+    \ if (x >= 1000) {\r\n    memcpy(obuf + por, pre.num[x], 4);\r\n    por += 4;\r\
+    \n  } else if (x >= 100) {\r\n    memcpy(obuf + por, pre.num[x] + 1, 3);\r\n \
+    \   por += 3;\r\n  } else if (x >= 10) {\r\n    int q = (x * 103) >> 10;\r\n \
+    \   obuf[por] = q | '0';\r\n    obuf[por + 1] = (x - q * 10) | '0';\r\n    por\
+    \ += 2;\r\n  } else\r\n    obuf[por++] = x | '0';\r\n  memcpy(obuf + por, out\
+    \ + outi + 4, 96 - outi);\r\n  por += 96 - outi;\r\n}\r\n\r\ntemplate <typename\
+    \ T>\r\nvoid wt_real(T x) {\r\n  ostringstream oss;\r\n  oss << fixed << setprecision(15)\
+    \ << double(x);\r\n  string s = oss.str();\r\n  wt(s);\r\n}\r\n\r\nvoid wt(int\
+    \ x) { wt_integer(x); }\r\nvoid wt(ll x) { wt_integer(x); }\r\nvoid wt(i128 x)\
+    \ { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\nvoid wt(u64 x) {\
+    \ wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\nvoid wt(double x)\
+    \ { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\nvoid wt(f128 x)\
+    \ { wt_real(x); }\r\n\r\ntemplate <class T>\r\nvoid wt(const vector<T> val) {\r\
+    \n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n    if (i) wt('\
+    \ ');\r\n    wt(val[i]);\r\n  }\r\n}\r\ntemplate <class T, class U>\r\nvoid wt(const\
+    \ pair<T, U> val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n  wt(val.second);\r\n\
+    }\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const T t) {\r\n  if\
+    \ constexpr (N < std::tuple_size<T>::value) {\r\n    if constexpr (N > 0) { wt('\
+    \ '); }\r\n    const auto x = std::get<N>(t);\r\n    wt(x);\r\n    wt_tuple<N\
+    \ + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid wt(tuple<T...> tpl) {\r\
+    \n  wt_tuple(tpl);\r\n}\r\ntemplate <class T, size_t S>\r\nvoid wt(const array<T,\
+    \ S> val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n\
+    \    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\n\r\nvoid print() { wt('\\\
+    n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head, Tail\
+    \ &&... tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail)) wt(' ');\r\n  print(forward<Tail>(tail)...);\r\
+    \n}\r\n\r\n// gcc expansion. called automaticall after main.\r\nvoid __attribute__((destructor))\
+    \ _d() { flush(); }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\
+    \nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\
+    \n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
+    \n#define STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
+    \n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    #define DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    \r\n#define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n \
+    \ read(name)\r\n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
+    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
+    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
+    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
+    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
+    \ { yes(!t); }\r\n#line 2 \"flow/mincostflow.hpp\"\n\n// atcoder library \u306E\
+    \u3082\u306E\u3092\u6539\u5909\nnamespace internal {\ntemplate <class E>\nstruct\
+    \ csr {\n  vector<int> start;\n  vector<E> elist;\n  explicit csr(int n, const\
+    \ vector<pair<int, E>>& edges)\n      : start(n + 1), elist(edges.size()) {\n\
+    \    for (auto e: edges) { start[e.first + 1]++; }\n    for (int i = 1; i <= n;\
+    \ i++) { start[i] += start[i - 1]; }\n    auto counter = start;\n    for (auto\
+    \ e: edges) { elist[counter[e.first]++] = e.second; }\n  }\n};\n\ntemplate <class\
+    \ T>\nstruct simple_queue {\n  vector<T> payload;\n  int pos = 0;\n  void reserve(int\
+    \ n) { payload.reserve(n); }\n  int size() const { return int(payload.size())\
+    \ - pos; }\n  bool empty() const { return pos == int(payload.size()); }\n  void\
+    \ push(const T& t) { payload.push_back(t); }\n  T& front() { return payload[pos];\
+    \ }\n  void clear() {\n    payload.clear();\n    pos = 0;\n  }\n  void pop() {\
+    \ pos++; }\n};\n\n} // namespace internal\n\n/*\n\u30FBatcoder library \u3092\u3059\
+    \u3053\u3057\u6539\u5909\u3057\u305F\u3082\u306E\n\u30FBDAG = true \u3067\u3042\
+    \u308C\u3070\u3001\u8CA0\u8FBA OK \uFF081 \u56DE\u76EE\u306E\u6700\u77ED\u8DEF\
+    \u3092 dp \u3067\u884C\u3046\uFF09\n\u305F\u3060\u3057\u3001\u9802\u70B9\u756A\
+    \u53F7\u306F toposort \u3055\u308C\u3066\u3044\u308B\u3053\u3068\u3092\u4EEE\u5B9A\
+    \u3057\u3066\u3044\u308B\u3002\n*/\ntemplate <class Cap = int, class Cost = ll,\
+    \ bool DAG = false>\nstruct Min_Cost_Flow {\npublic:\n  Min_Cost_Flow() {}\n \
+    \ explicit Min_Cost_Flow(int n, int source, int sink)\n      : n(n), source(source),\
+    \ sink(sink) {\n    assert(0 <= source && source < n);\n    assert(0 <= sink &&\
+    \ sink < n);\n    assert(source != sink);\n  }\n\n  // frm, to, cap, cost\n  int\
+    \ add(int frm, int to, Cap cap, Cost cost) {\n    assert(0 <= frm && frm < n);\n\
+    \    assert(0 <= to && to < n);\n    assert(0 <= cap);\n    assert(DAG || 0 <=\
+    \ cost);\n    if (DAG) assert(frm < to);\n    int m = int(_edges.size());\n  \
+    \  _edges.push_back({frm, to, cap, 0, cost});\n    return m;\n  }\n\n  void debug()\
+    \ {\n    print(\"flow graph\");\n    print(\"frm, to, cap, cost\");\n    for (auto&&\
+    \ [frm, to, cap, flow, cost]: _edges) {\n      print(frm, to, cap, cost);\n  \
+    \  }\n  }\n\n  struct edge {\n    int frm, to;\n    Cap cap, flow;\n    Cost cost;\n\
+    \  };\n\n  edge get_edge(int i) {\n    int m = int(_edges.size());\n    assert(0\
+    \ <= i && i < m);\n    return _edges[i];\n  }\n  vector<edge> edges() { return\
+    \ _edges; }\n\n  // (\u6D41\u91CF, \u8CBB\u7528)\n  pair<Cap, Cost> flow() { return\
+    \ flow(infty<Cap>); }\n  // (\u6D41\u91CF, \u8CBB\u7528)\n  pair<Cap, Cost> flow(Cap\
+    \ flow_limit) { return slope(flow_limit).back(); }\n  vector<pair<Cap, Cost>>\
+    \ slope() { return slope(infty<Cap>); }\n  vector<pair<Cap, Cost>> slope(Cap flow_limit)\
+    \ {\n    int m = int(_edges.size());\n    vector<int> edge_idx(m);\n\n    auto\
+    \ g = [&]() {\n      vector<int> degree(n), redge_idx(m);\n      vector<pair<int,\
+    \ _edge>> elist;\n      elist.reserve(2 * m);\n      for (int i = 0; i < m; i++)\
+    \ {\n        auto e = _edges[i];\n        edge_idx[i] = degree[e.frm]++;\n   \
+    \     redge_idx[i] = degree[e.to]++;\n        elist.push_back({e.frm, {e.to, -1,\
+    \ e.cap - e.flow, e.cost}});\n        elist.push_back({e.to, {e.frm, -1, e.flow,\
+    \ -e.cost}});\n      }\n      auto _g = internal::csr<_edge>(n, elist);\n    \
+    \  for (int i = 0; i < m; i++) {\n        auto e = _edges[i];\n        edge_idx[i]\
     \ += _g.start[e.frm];\n        redge_idx[i] += _g.start[e.to];\n        _g.elist[edge_idx[i]].rev\
     \ = redge_idx[i];\n        _g.elist[redge_idx[i]].rev = edge_idx[i];\n      }\n\
     \      return _g;\n    }();\n\n    auto result = slope(g, flow_limit);\n\n   \
@@ -327,8 +312,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_6_B.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 18:59:57+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-06 20:38:11+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/GRL_6_B.test.cpp
 layout: document

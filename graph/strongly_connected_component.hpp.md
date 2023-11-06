@@ -5,7 +5,7 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
   - icon: ':x:'
@@ -14,23 +14,23 @@ data:
   - icon: ':x:'
     path: graph/find_odd_cycle.hpp
     title: graph/find_odd_cycle.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/reachability.hpp
     title: graph/reachability.hpp
   - icon: ':x:'
     path: graph/twosat.hpp
     title: graph/twosat.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/0275.test.cpp
     title: test/aoj/0275.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/1566.test.cpp
     title: test/aoj/1566.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/2251_2.test.cpp
     title: test/aoj/2251_2.test.cpp
   - icon: ':x:'
@@ -86,7 +86,7 @@ data:
     title: test_atcoder/abc274g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -190,7 +190,7 @@ data:
   - graph/twosat.hpp
   - graph/maximum_antichain.hpp
   timestamp: '2023-11-04 05:26:59+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1479.test.cpp
   - test/yukicoder/1744.test.cpp

@@ -13,7 +13,7 @@ data:
   - icon: ':x:'
     path: nt/coprime_factorization.hpp
     title: nt/coprime_factorization.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':question:'

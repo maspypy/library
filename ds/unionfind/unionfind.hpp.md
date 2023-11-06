@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
   - icon: ':x:'
@@ -11,10 +11,10 @@ data:
   - icon: ':x:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
   - icon: ':x:'
@@ -32,10 +32,10 @@ data:
   - icon: ':x:'
     path: graph/implicit_graph/unionfind.hpp
     title: graph/implicit_graph/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':x:'
@@ -48,19 +48,19 @@ data:
     path: graph/unicyclic.hpp
     title: graph/unicyclic.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/1566.test.cpp
     title: test/aoj/1566.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/2251_1.test.cpp
     title: test/aoj/2251_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/2251_2.test.cpp
     title: test/aoj/2251_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/2995.test.cpp
     title: test/aoj/2995.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
   - icon: ':x:'
@@ -167,7 +167,7 @@ data:
     title: test_atcoder/agc023f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int\
@@ -209,7 +209,7 @@ data:
   - graph/dag_path_cover.hpp
   - geo/manhattan_mst.hpp
   timestamp: '2023-06-11 17:06:39+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1600.test.cpp
   - test/yukicoder/1254.test.cpp

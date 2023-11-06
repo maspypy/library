@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':x:'
@@ -122,144 +122,129 @@ data:
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
     \  return B;\n}\n#endif\n#line 1 \"other/io.hpp\"\n#define FASTIO\r\n#include\
-    \ <unistd.h>\r\n\r\nnamespace fastio {\r\nstruct Pre {\r\n  char num[10000][4];\r\
-    \n  constexpr Pre() : num() {\r\n    for (int i = 0; i < 10000; i++) {\r\n   \
-    \   int n = i;\r\n      for (int j = 3; j >= 0; j--) {\r\n        num[i][j] =\
-    \ n % 10 | '0';\r\n        n /= 10;\r\n      }\r\n    }\r\n  }\r\n} constexpr\
-    \ pre;\r\n\r\ntemplate <typename T>\r\nstruct has_read_method {\r\n  template\
+    \ <unistd.h>\r\n\r\n// https://judge.yosupo.jp/submission/21623\r\nnamespace fastio\
+    \ {\r\nstatic constexpr uint32_t SZ = 1 << 17;\r\nchar ibuf[SZ];\r\nchar obuf[SZ];\r\
+    \nchar out[100];\r\n// pointer of ibuf, obuf\r\nuint32_t pil = 0, pir = 0, por\
+    \ = 0;\r\n\r\ntemplate <typename T>\r\nstruct has_read_method {\r\n  template\
     \ <typename U>\r\n  static std::true_type test(decltype(&U::read) *);\r\n  template\
     \ <typename>\r\n  static std::false_type test(...);\r\n  using type = decltype(test<T>(nullptr));\r\
     \n  static constexpr bool value = type::value;\r\n};\r\n\r\ntemplate <typename\
     \ T>\r\nstruct has_print_method {\r\n  template <typename U>\r\n  static std::true_type\
     \ test(decltype(&U::print) *);\r\n  template <typename>\r\n  static std::false_type\
     \ test(...);\r\n  using type = decltype(test<T>(nullptr));\r\n  static constexpr\
-    \ bool value = type::value;\r\n};\r\n\r\nstruct Scanner {\r\n  FILE *fp;\r\n \
-    \ char line[(1 << 15) + 1];\r\n  size_t st = 0, ed = 0;\r\n  void reread() {\r\
-    \n    memmove(line, line + st, ed - st);\r\n    ed -= st;\r\n    st = 0;\r\n \
-    \   ed += fread(line + ed, 1, (1 << 15) - ed, fp);\r\n    line[ed] = '\\0';\r\n\
-    \  }\r\n  void succ() {\r\n    while (true) {\r\n      if (st == ed) {\r\n   \
-    \     reread();\r\n        if (st == ed) return;\r\n      }\r\n      while (st\
-    \ != ed && isspace(line[st])) st++;\r\n      if (st != ed) break;\r\n    }\r\n\
-    \    if (ed - st <= 100) {\r\n      bool sep = false;\r\n      for (size_t i =\
-    \ st; i < ed; i++) {\r\n        if (isspace(line[i])) {\r\n          sep = true;\r\
-    \n          break;\r\n        }\r\n      }\r\n      if (!sep) reread();\r\n  \
-    \  }\r\n    return;\r\n  }\r\n\r\n  void rd(char &c) {\r\n    succ();\r\n    c\
-    \ = line[st++];\r\n  }\r\n\r\n  void rd(string &x) {\r\n    x.clear();\r\n   \
-    \ succ();\r\n    while (true) {\r\n      size_t sz = 0;\r\n      while (st + sz\
-    \ < ed && !isspace(line[st + sz])) sz++;\r\n      x.append(line + st, sz);\r\n\
-    \      st += sz;\r\n      if (!sz || st != ed) break;\r\n      reread();\r\n \
-    \   }\r\n  }\r\n\r\n  template <typename T>\r\n  void rd_integer(T &x) {\r\n \
-    \   succ();\r\n    bool minus = 0;\r\n    char c = line[st++];\r\n    if constexpr\
-    \ (is_signed<T>::value || is_same_v<T, i128>) {\r\n      if (c == '-') { minus\
-    \ = 1, c = line[st++]; }\r\n    }\r\n    x = 0;\r\n    while (c >= '0') { x =\
-    \ x * 10 + (c & 15), c = line[st++]; }\r\n    if constexpr (is_signed<T>::value\
-    \ || is_same_v<T, i128>) {\r\n      if (minus) x = -x;\r\n    }\r\n  }\r\n\r\n\
-    \  template <typename T>\r\n  void rd_real(T &x) {\r\n    string s;\r\n    rd(s);\r\
-    \n    x = stod(s);\r\n  }\r\n\r\n  template <typename T>\r\n  typename enable_if<has_read_method<T>::value,\
-    \ void>::type rd(T &x) {\r\n    x.read();\r\n  }\r\n\r\n  void rd(int &x) { rd_integer(x);\
-    \ }\r\n  void rd(ll &x) { rd_integer(x); }\r\n  void rd(i128 &x) { rd_integer(x);\
-    \ }\r\n  void rd(u32 &x) { rd_integer(x); }\r\n  void rd(u64 &x) { rd_integer(x);\
-    \ }\r\n  void rd(u128 &x) { rd_integer(x); }\r\n  void rd(double &x) { rd_real(x);\
-    \ }\r\n  void rd(long double &x) { rd_real(x); }\r\n  void rd(f128 &x) { rd_real(x);\
-    \ }\r\n  template <class T, class U>\r\n  void rd(pair<T, U> &p) {\r\n    return\
-    \ rd(p.first), rd(p.second);\r\n  }\r\n  template <size_t N = 0, typename T>\r\
-    \n  void rd_tuple(T &t) {\r\n    if constexpr (N < std::tuple_size<T>::value)\
-    \ {\r\n      auto &x = std::get<N>(t);\r\n      rd(x);\r\n      rd_tuple<N + 1>(t);\r\
-    \n    }\r\n  }\r\n  template <class... T>\r\n  void rd(tuple<T...> &tpl) {\r\n\
-    \    rd_tuple(tpl);\r\n  }\r\n  template <class T>\r\n  void rd(vc<T> &x) {\r\n\
-    \    for (auto &d: x) rd(d);\r\n  }\r\n  template <size_t N = 0, typename T>\r\
-    \n  void rd(array<T, N> &x) {\r\n    for (auto &d: x) rd(d);\r\n  }\r\n  Scanner(FILE\
-    \ *fp) : fp(fp) {}\r\n};\r\n\r\nstruct Printer {\r\n  Printer(FILE *_fp) : fp(_fp)\
-    \ {}\r\n  ~Printer() { flush(); }\r\n\r\n  static constexpr size_t SIZE = 1 <<\
-    \ 15;\r\n  FILE *fp;\r\n  char line[SIZE], out[100];\r\n  size_t pos = 0;\r\n\
-    \  void flush() {\r\n    fwrite(line, 1, pos, fp);\r\n    pos = 0;\r\n  }\r\n\r\
-    \n  void wt(const char val) {\r\n    if (pos == SIZE) flush();\r\n    line[pos++]\
-    \ = val;\r\n  }\r\n  void wt(const string &s) {\r\n    for (char c: s) wt(c);\r\
-    \n  }\r\n  void wt(const char *s) {\r\n    size_t len = strlen(s);\r\n    for\
-    \ (size_t i = 0; i < len; i++) wt(s[i]);\r\n  }\r\n\r\n  template <typename T>\r\
-    \n  void wt_integer(T x) {\r\n    if (pos > SIZE - 100) flush();\r\n    if (x\
-    \ < 0) { line[pos++] = '-', x = -x; }\r\n    int outi;\r\n    for (outi = 96;\
-    \ x >= 10000; outi -= 4) {\r\n      memcpy(out + outi, pre.num[x % 10000], 4);\r\
-    \n      x /= 10000;\r\n    }\r\n    if (x >= 1000) {\r\n      memcpy(line + pos,\
-    \ pre.num[x], 4), pos += 4;\r\n    } else if (x >= 100) {\r\n      memcpy(line\
-    \ + pos, pre.num[x] + 1, 3), pos += 3;\r\n    } else if (x >= 10) {\r\n      int\
-    \ q = (x * 103) >> 10;\r\n      line[pos] = q | '0';\r\n      line[pos + 1] =\
-    \ (x - q * 10) | '0';\r\n      pos += 2;\r\n    } else\r\n      line[pos++] =\
-    \ x | '0';\r\n    memcpy(line + pos, out + outi + 4, 96 - outi);\r\n    pos +=\
-    \ 96 - outi;\r\n  }\r\n\r\n  template <typename T>\r\n  void wt_real(T x) {\r\n\
-    \    ostringstream oss;\r\n    oss << fixed << setprecision(15) << double(x);\r\
-    \n    string s = oss.str();\r\n    wt(s);\r\n  }\r\n\r\n  template <typename T>\r\
-    \n  typename enable_if<has_print_method<T>::value, void>::type wt(T x) {\r\n \
-    \   x.print();\r\n  }\r\n\r\n  void wt(bool x) { wt_integer(int(x)); }\r\n  void\
-    \ wt(int x) { wt_integer(x); }\r\n  void wt(ll x) { wt_integer(x); }\r\n  void\
-    \ wt(i128 x) { wt_integer(x); }\r\n  void wt(u32 x) { wt_integer(x); }\r\n  void\
-    \ wt(u64 x) { wt_integer(x); }\r\n  void wt(u128 x) { wt_integer(x); }\r\n  void\
-    \ wt(double x) { wt_real(x); }\r\n  void wt(long double x) { wt_real(x); }\r\n\
-    \  void wt(f128 x) { wt_real(x); }\r\n\r\n  template <class T, class U>\r\n  void\
-    \ wt(const pair<T, U> val) {\r\n    wt(val.first);\r\n    wt(' ');\r\n    wt(val.second);\r\
-    \n  }\r\n  template <size_t N = 0, typename T>\r\n  void wt_tuple(const T t) {\r\
-    \n    if constexpr (N < std::tuple_size<T>::value) {\r\n      if constexpr (N\
-    \ > 0) { wt(' '); }\r\n      const auto x = std::get<N>(t);\r\n      wt(x);\r\n\
-    \      wt_tuple<N + 1>(t);\r\n    }\r\n  }\r\n  template <class... T>\r\n  void\
-    \ wt(tuple<T...> tpl) {\r\n    wt_tuple(tpl);\r\n  }\r\n  template <class T, size_t\
-    \ S>\r\n  void wt(const array<T, S> val) {\r\n    auto n = val.size();\r\n   \
-    \ for (size_t i = 0; i < n; i++) {\r\n      if (i) wt(' ');\r\n      wt(val[i]);\r\
-    \n    }\r\n  }\r\n  template <class T>\r\n  void wt(const vector<T> val) {\r\n\
-    \    auto n = val.size();\r\n    for (size_t i = 0; i < n; i++) {\r\n      if\
-    \ (i) wt(' ');\r\n      wt(val[i]);\r\n    }\r\n  }\r\n};\r\nScanner scanner =\
-    \ Scanner(stdin);\r\nPrinter printer = Printer(stdout);\r\nvoid flush() { printer.flush();\
-    \ }\r\nvoid print() { printer.wt('\\n'); }\r\ntemplate <class Head, class... Tail>\r\
-    \nvoid print(Head &&head, Tail &&... tail) {\r\n  printer.wt(head);\r\n  if (sizeof...(Tail))\
-    \ printer.wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\nvoid read()\
-    \ {}\r\ntemplate <class Head, class... Tail>\r\nvoid read(Head &head, Tail &...\
-    \ tail) {\r\n  scanner.rd(head);\r\n  read(tail...);\r\n}\r\n} // namespace fastio\r\
-    \nusing fastio::print;\r\nusing fastio::flush;\r\nusing fastio::read;\r\n\r\n\
-    #define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)\
-    \      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
-    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
-    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
-    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
-    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
-    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
-    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
-    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
-    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 4 \"test/mytest/three_square.test.cpp\"\n\n#line 2 \"mod/mongomery_modint.hpp\"\
-    \n\n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
-    \ <int id, typename U1, typename U2>\nstruct Mongomery_modint {\n  using mint\
-    \ = Mongomery_modint;\n  inline static U1 m, r, n2;\n  static constexpr int W\
-    \ = numeric_limits<U1>::digits;\n\n  static void set_mod(U1 mod) {\n    assert(mod\
-    \ & 1 && mod <= U1(1) << (W - 2));\n    m = mod, n2 = -U2(m) % m, r = m;\n   \
-    \ FOR(5) r *= 2 - m * r;\n    r = -r;\n    assert(r * m == U1(-1));\n  }\n  static\
-    \ U1 reduce(U2 b) { return (b + U2(U1(b) * r) * m) >> W; }\n\n  U1 x;\n  Mongomery_modint()\
-    \ : x(0) {}\n  Mongomery_modint(U1 x) : x(reduce(U2(x) * n2)){};\n  U1 val() const\
-    \ {\n    U1 y = reduce(x);\n    return y >= m ? y - m : y;\n  }\n  mint &operator+=(mint\
-    \ y) {\n    x = ((x += y.x) >= m ? x - m : x);\n    return *this;\n  }\n  mint\
-    \ &operator-=(mint y) {\n    x -= (x >= y.x ? y.x : y.x - m);\n    return *this;\n\
-    \  }\n  mint &operator*=(mint y) {\n    x = reduce(U2(x) * y.x);\n    return *this;\n\
-    \  }\n  mint operator+(mint y) const { return mint(*this) += y; }\n  mint operator-(mint\
-    \ y) const { return mint(*this) -= y; }\n  mint operator*(mint y) const { return\
-    \ mint(*this) *= y; }\n  bool operator==(mint y) const {\n    return (x >= m ?\
-    \ x - m : x) == (y.x >= m ? y.x - m : y.x);\n  }\n  bool operator!=(mint y) const\
-    \ { return not operator==(y); }\n  mint pow(ll n) const {\n    assert(n >= 0);\n\
-    \    mint y = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if (n & 1)\
-    \ y *= z;\n    return y;\n  }\n};\n\ntemplate <int id>\nusing Mongomery_modint_32\
-    \ = Mongomery_modint<id, u32, u64>;\ntemplate <int id>\nusing Mongomery_modint_64\
-    \ = Mongomery_modint<id, u64, u128>;\n#line 3 \"nt/primetest.hpp\"\n\r\nbool primetest(const\
-    \ u64 x) {\r\n  assert(x < u64(1) << 62);\r\n  if (x == 2 or x == 3 or x == 5\
-    \ or x == 7) return true;\r\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x\
-    \ % 7 == 0) return false;\r\n  if (x < 121) return x > 1;\r\n  const u64 d = (x\
-    \ - 1) >> lowbit(x - 1);\r\n\r\n  using mint = Mongomery_modint_64<202311020>;\r\
-    \n\r\n  mint::set_mod(x);\r\n  const mint one(u64(1)), minus_one(x - 1);\r\n \
-    \ auto ok = [&](u64 a) -> bool {\r\n    auto y = mint(a).pow(d);\r\n    u64 t\
-    \ = d;\r\n    while (y != one && y != minus_one && t != x - 1) y *= y, t <<= 1;\r\
-    \n    if (y != minus_one && t % 2 == 0) return false;\r\n    return true;\r\n\
-    \  };\r\n  if (x < (u64(1) << 32)) {\r\n    for (u64 a: {2, 7, 61})\r\n      if\
-    \ (!ok(a)) return false;\r\n  } else {\r\n    for (u64 a: {2, 325, 9375, 28178,\
-    \ 450775, 9780504, 1795265022}) {\r\n      if (!ok(a)) return false;\r\n    }\r\
-    \n  }\r\n  return true;\r\n}\n#line 2 \"nt/factor.hpp\"\n\n#line 2 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \ bool value = type::value;\r\n};\r\n\r\ntemplate <typename T>\r\ntypename enable_if<has_read_method<T>::value,\
+    \ void>::type rd(T x) {\r\n  x.read();\r\n}\r\n\r\ntemplate <typename T>\r\ntypename\
+    \ enable_if<has_print_method<T>::value, void>::type wt(T x) {\r\n  x.print();\r\
+    \n}\r\n\r\nstruct Pre {\r\n  char num[10000][4];\r\n  constexpr Pre() : num()\
+    \ {\r\n    for (int i = 0; i < 10000; i++) {\r\n      int n = i;\r\n      for\
+    \ (int j = 3; j >= 0; j--) {\r\n        num[i][j] = n % 10 | '0';\r\n        n\
+    \ /= 10;\r\n      }\r\n    }\r\n  }\r\n} constexpr pre;\r\n\r\ninline void load()\
+    \ {\r\n  memcpy(ibuf, ibuf + pil, pir - pil);\r\n  pir = pir - pil + fread(ibuf\
+    \ + pir - pil, 1, SZ - pir + pil, stdin);\r\n  pil = 0;\r\n}\r\n\r\ninline void\
+    \ flush() {\r\n  fwrite(obuf, 1, por, stdout);\r\n  por = 0;\r\n}\r\n\r\n// read\
+    \ non-space character\r\nvoid rd_c(char &c) {\r\n  if (pil + 1 > pir) load();\r\
+    \n  c = ibuf[pil++];\r\n}\r\n\r\nvoid rd(string &x) {\r\n  x.clear();\r\n  char\
+    \ c;\r\n  do { rd_c(c); } while (isspace(c));\r\n  do { x += c, rd_c(c); } while\
+    \ (!isspace(c));\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_real(T &x) {\r\n\
+    \  string s;\r\n  rd(s);\r\n  x = stod(s);\r\n}\r\n\r\ntemplate <typename T>\r\
+    \nvoid rd_integer(T &x) {\r\n  if (pil + 100 > pir) load();\r\n  char c;\r\n \
+    \ do\r\n    c = ibuf[pil++];\r\n  while (c < '-');\r\n  bool minus = 0;\r\n  if\
+    \ constexpr (is_signed<T>::value || is_same_v<T, i128>) {\r\n    if (c == '-')\
+    \ { minus = 1, c = ibuf[pil++]; }\r\n  }\r\n  x = 0;\r\n  while (c >= '0') { x\
+    \ = x * 10 + (c & 15), c = ibuf[pil++]; }\r\n  if constexpr (is_signed<T>::value\
+    \ || is_same_v<T, i128>) {\r\n    if (minus) x = -x;\r\n  }\r\n}\r\n\r\nvoid rd(int\
+    \ &x) { rd_integer(x); }\r\nvoid rd(ll &x) { rd_integer(x); }\r\nvoid rd(i128\
+    \ &x) { rd_integer(x); }\r\nvoid rd(u32 &x) { rd_integer(x); }\r\nvoid rd(u64\
+    \ &x) { rd_integer(x); }\r\nvoid rd(u128 &x) { rd_integer(x); }\r\nvoid rd(double\
+    \ &x) { rd_real(x); }\r\nvoid rd(long double &x) { rd_real(x); }\r\nvoid rd(f128\
+    \ &x) { rd_real(x); }\r\ntemplate <class T>\r\nvoid rd(vc<T> &x) {\r\n  for (auto\
+    \ &d: x) rd(d);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd(array<T,\
+    \ N> &x) {\r\n  for (auto &d: x) rd(d);\r\n}\r\ntemplate <class T, class U>\r\n\
+    void rd(pair<T, U> &p) {\r\n  return rd(p.first), rd(p.second);\r\n}\r\ntemplate\
+    \ <size_t N = 0, typename T>\r\nvoid rd(T &t) {\r\n  if constexpr (N < std::tuple_size<T>::value)\
+    \ {\r\n    auto &x = std::get<N>(t);\r\n    rd(x);\r\n    rd<N + 1>(t);\r\n  }\r\
+    \n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...> &tpl) {\r\n  rd(tpl);\r\n\
+    }\r\n\r\nvoid read() {}\r\ntemplate <class H, class... T>\r\nvoid read(H &h, T\
+    \ &... t) {\r\n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const char c) {\r\n  if\
+    \ (por == SZ) flush();\r\n  obuf[por++] = c;\r\n}\r\nvoid wt(const string &s)\
+    \ {\r\n  for (char c: s) wt(c);\r\n}\r\n\r\ntemplate <typename T>\r\nvoid wt_integer(T\
+    \ x) {\r\n  if (por > SZ - 100) flush();\r\n  if (x < 0) { obuf[por++] = '-',\
+    \ x = -x; }\r\n  int outi;\r\n  for (outi = 96; x >= 10000; outi -= 4) {\r\n \
+    \   memcpy(out + outi, pre.num[x % 10000], 4);\r\n    x /= 10000;\r\n  }\r\n \
+    \ if (x >= 1000) {\r\n    memcpy(obuf + por, pre.num[x], 4);\r\n    por += 4;\r\
+    \n  } else if (x >= 100) {\r\n    memcpy(obuf + por, pre.num[x] + 1, 3);\r\n \
+    \   por += 3;\r\n  } else if (x >= 10) {\r\n    int q = (x * 103) >> 10;\r\n \
+    \   obuf[por] = q | '0';\r\n    obuf[por + 1] = (x - q * 10) | '0';\r\n    por\
+    \ += 2;\r\n  } else\r\n    obuf[por++] = x | '0';\r\n  memcpy(obuf + por, out\
+    \ + outi + 4, 96 - outi);\r\n  por += 96 - outi;\r\n}\r\n\r\ntemplate <typename\
+    \ T>\r\nvoid wt_real(T x) {\r\n  ostringstream oss;\r\n  oss << fixed << setprecision(15)\
+    \ << double(x);\r\n  string s = oss.str();\r\n  wt(s);\r\n}\r\n\r\nvoid wt(int\
+    \ x) { wt_integer(x); }\r\nvoid wt(ll x) { wt_integer(x); }\r\nvoid wt(i128 x)\
+    \ { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\nvoid wt(u64 x) {\
+    \ wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\nvoid wt(double x)\
+    \ { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\nvoid wt(f128 x)\
+    \ { wt_real(x); }\r\n\r\ntemplate <class T>\r\nvoid wt(const vector<T> val) {\r\
+    \n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n    if (i) wt('\
+    \ ');\r\n    wt(val[i]);\r\n  }\r\n}\r\ntemplate <class T, class U>\r\nvoid wt(const\
+    \ pair<T, U> val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n  wt(val.second);\r\n\
+    }\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const T t) {\r\n  if\
+    \ constexpr (N < std::tuple_size<T>::value) {\r\n    if constexpr (N > 0) { wt('\
+    \ '); }\r\n    const auto x = std::get<N>(t);\r\n    wt(x);\r\n    wt_tuple<N\
+    \ + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid wt(tuple<T...> tpl) {\r\
+    \n  wt_tuple(tpl);\r\n}\r\ntemplate <class T, size_t S>\r\nvoid wt(const array<T,\
+    \ S> val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n\
+    \    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\n\r\nvoid print() { wt('\\\
+    n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head, Tail\
+    \ &&... tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail)) wt(' ');\r\n  print(forward<Tail>(tail)...);\r\
+    \n}\r\n\r\n// gcc expansion. called automaticall after main.\r\nvoid __attribute__((destructor))\
+    \ _d() { flush(); }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\
+    \nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\
+    \n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
+    \n#define STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
+    \n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    #define DBL(...)      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    \r\n#define VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n \
+    \ read(name)\r\n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
+    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t\
+    \ ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool\
+    \ t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\
+    \nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1)\
+    \ { yes(!t); }\r\n#line 4 \"test/mytest/three_square.test.cpp\"\n\n#line 2 \"\
+    mod/mongomery_modint.hpp\"\n\n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B\
+    \ rx \u3092\u6301\u3064\ntemplate <int id, typename U1, typename U2>\nstruct Mongomery_modint\
+    \ {\n  using mint = Mongomery_modint;\n  inline static U1 m, r, n2;\n  static\
+    \ constexpr int W = numeric_limits<U1>::digits;\n\n  static void set_mod(U1 mod)\
+    \ {\n    assert(mod & 1 && mod <= U1(1) << (W - 2));\n    m = mod, n2 = -U2(m)\
+    \ % m, r = m;\n    FOR(5) r *= 2 - m * r;\n    r = -r;\n    assert(r * m == U1(-1));\n\
+    \  }\n  static U1 reduce(U2 b) { return (b + U2(U1(b) * r) * m) >> W; }\n\n  U1\
+    \ x;\n  Mongomery_modint() : x(0) {}\n  Mongomery_modint(U1 x) : x(reduce(U2(x)\
+    \ * n2)){};\n  U1 val() const {\n    U1 y = reduce(x);\n    return y >= m ? y\
+    \ - m : y;\n  }\n  mint &operator+=(mint y) {\n    x = ((x += y.x) >= m ? x -\
+    \ m : x);\n    return *this;\n  }\n  mint &operator-=(mint y) {\n    x -= (x >=\
+    \ y.x ? y.x : y.x - m);\n    return *this;\n  }\n  mint &operator*=(mint y) {\n\
+    \    x = reduce(U2(x) * y.x);\n    return *this;\n  }\n  mint operator+(mint y)\
+    \ const { return mint(*this) += y; }\n  mint operator-(mint y) const { return\
+    \ mint(*this) -= y; }\n  mint operator*(mint y) const { return mint(*this) *=\
+    \ y; }\n  bool operator==(mint y) const {\n    return (x >= m ? x - m : x) ==\
+    \ (y.x >= m ? y.x - m : y.x);\n  }\n  bool operator!=(mint y) const { return not\
+    \ operator==(y); }\n  mint pow(ll n) const {\n    assert(n >= 0);\n    mint y\
+    \ = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if (n & 1) y *= z;\n\
+    \    return y;\n  }\n};\n\ntemplate <int id>\nusing Mongomery_modint_32 = Mongomery_modint<id,\
+    \ u32, u64>;\ntemplate <int id>\nusing Mongomery_modint_64 = Mongomery_modint<id,\
+    \ u64, u128>;\n#line 3 \"nt/primetest.hpp\"\n\r\nbool primetest(const u64 x) {\r\
+    \n  assert(x < u64(1) << 62);\r\n  if (x == 2 or x == 3 or x == 5 or x == 7) return\
+    \ true;\r\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 == 0) return\
+    \ false;\r\n  if (x < 121) return x > 1;\r\n  const u64 d = (x - 1) >> lowbit(x\
+    \ - 1);\r\n\r\n  using mint = Mongomery_modint_64<202311020>;\r\n\r\n  mint::set_mod(x);\r\
+    \n  const mint one(u64(1)), minus_one(x - 1);\r\n  auto ok = [&](u64 a) -> bool\
+    \ {\r\n    auto y = mint(a).pow(d);\r\n    u64 t = d;\r\n    while (y != one &&\
+    \ y != minus_one && t != x - 1) y *= y, t <<= 1;\r\n    if (y != minus_one &&\
+    \ t % 2 == 0) return false;\r\n    return true;\r\n  };\r\n  if (x < (u64(1) <<\
+    \ 32)) {\r\n    for (u64 a: {2, 7, 61})\r\n      if (!ok(a)) return false;\r\n\
+    \  } else {\r\n    for (u64 a: {2, 325, 9375, 28178, 450775, 9780504, 1795265022})\
+    \ {\r\n      if (!ok(a)) return false;\r\n    }\r\n  }\r\n  return true;\r\n}\n\
+    #line 2 \"nt/factor.hpp\"\n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n \
+    \ static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
@@ -424,7 +409,7 @@ data:
   isVerificationFile: true
   path: test/mytest/three_square.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 18:59:57+09:00'
+  timestamp: '2023-11-06 20:38:11+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/three_square.test.cpp
