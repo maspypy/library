@@ -110,7 +110,7 @@ struct has_read_method {
 };
 
 template <typename T>
-enable_if<has_read_method<T>::value, void>::type rd(T &x) {
+typename enable_if<has_read_method<T>::value, void>::type rd(T &x) {
   x.read();
 }
 
@@ -218,7 +218,7 @@ struct has_print_method {
 };
 
 template <typename T>
-enable_if<has_print_method<T>::value, void>::type wt(T x) {
+typename enable_if<has_print_method<T>::value, void>::type wt(T x) {
   x.print();
 }
 
