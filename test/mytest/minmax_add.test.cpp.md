@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/minmax.hpp
     title: alg/monoid/minmax.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
   - icon: ':question:'
@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

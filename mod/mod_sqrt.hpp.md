@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:

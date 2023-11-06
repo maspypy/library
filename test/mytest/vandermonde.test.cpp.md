@@ -58,7 +58,7 @@ data:
   - icon: ':x:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

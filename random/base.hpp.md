@@ -77,13 +77,13 @@ data:
   - icon: ':x:'
     path: nt/crt.hpp
     title: nt/crt.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/divisors.hpp
     title: nt/divisors.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':x:'
@@ -135,10 +135,10 @@ data:
   - icon: ':x:'
     path: test/aoj/CGL_5_A.test.cpp
     title: test/aoj/CGL_5_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ITP1_D_D.test.cpp
     title: test/aoj/ITP1_D_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_1_D.test.cpp
     title: test/aoj/NTL_1_D.test.cpp
   - icon: ':x:'
@@ -659,7 +659,7 @@ data:
     title: test_atcoder/agc058d2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -720,7 +720,7 @@ data:
   - string/rollinghash.hpp
   - ds/unionfind/parallel_unionfind.hpp
   timestamp: '2022-10-23 11:21:57+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1775.test.cpp
   - test/yukicoder/578.test.cpp

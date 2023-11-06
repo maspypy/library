@@ -52,7 +52,7 @@ data:
   - icon: ':x:'
     path: poly/product_of_one_plus_xn.hpp
     title: poly/product_of_one_plus_xn.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

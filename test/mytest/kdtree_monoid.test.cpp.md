@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: alg/monoid/summax.hpp
     title: alg/monoid/summax.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/kdtree/kdtree_monoid.hpp
     title: ds/kdtree/kdtree_monoid.hpp
   - icon: ':question:'
@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

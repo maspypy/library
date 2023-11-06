@@ -40,7 +40,7 @@ data:
   - icon: ':x:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':question:'
@@ -49,7 +49,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

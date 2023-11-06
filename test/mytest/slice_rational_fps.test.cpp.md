@@ -49,7 +49,7 @@ data:
   - icon: ':x:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

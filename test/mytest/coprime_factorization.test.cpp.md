@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: nt/coprime_factorization.hpp
     title: nt/coprime_factorization.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':x:'

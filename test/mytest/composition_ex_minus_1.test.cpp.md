@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   - icon: ':x:'
@@ -61,7 +61,7 @@ data:
   - icon: ':x:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

@@ -49,7 +49,7 @@ data:
   - icon: ':x:'
     path: poly/online/online_inv.hpp
     title: poly/online/online_inv.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

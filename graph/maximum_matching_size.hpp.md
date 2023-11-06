@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

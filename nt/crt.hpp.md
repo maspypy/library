@@ -13,13 +13,13 @@ data:
   - icon: ':x:'
     path: nt/coprime_factorization.hpp
     title: nt/coprime_factorization.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

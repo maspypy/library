@@ -46,7 +46,7 @@ data:
   - icon: ':x:'
     path: poly/online/online_division.hpp
     title: poly/online/online_division.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

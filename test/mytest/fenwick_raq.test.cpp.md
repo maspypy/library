@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/acted_monoid/sum_add.hpp
     title: alg/acted_monoid/sum_add.hpp
   - icon: ':question:'
@@ -13,13 +13,13 @@ data:
   - icon: ':x:'
     path: ds/fenwicktree/fenwicktree_range_add.hpp
     title: ds/fenwicktree/fenwicktree_range_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

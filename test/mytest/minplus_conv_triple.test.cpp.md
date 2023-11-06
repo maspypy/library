@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: convex/minplus_convolution.hpp
     title: convex/minplus_convolution.hpp
   - icon: ':x:'
     path: convex/minplus_convolution_of_triples.hpp
     title: convex/minplus_convolution_of_triples.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: convex/monotone_minima.hpp
     title: convex/monotone_minima.hpp
   - icon: ':question:'
@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
   - icon: ':x:'
@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

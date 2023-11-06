@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: alg/acted_monoid/summax_assign.hpp
     title: alg/acted_monoid/summax_assign.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
   - icon: ':x:'
@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

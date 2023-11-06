@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/dual_segtree.hpp
     title: ds/segtree/dual_segtree.hpp
   - icon: ':x:'
@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
