@@ -86,7 +86,7 @@ struct Dynamic_Modint {
   void read() {
     ll x;
     fastio::read(x);
-    val = (x >= 0 ? x % mod : (mod - (-x) % mod) % mod);
+    val = (x %= get_mod()) < 0 ? x + get_mod() : x;
   }
 #endif
   static pair<int, int>& get_ntt() {
