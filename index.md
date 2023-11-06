@@ -251,7 +251,7 @@ data:
     - icon: ':question:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
     - icon: ':warning:'
@@ -284,7 +284,7 @@ data:
     - icon: ':x:'
       path: ds/removable_queue.hpp
       title: ds/removable_queue.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/rollback_array.hpp
       title: ds/rollback_array.hpp
     - icon: ':x:'
@@ -335,7 +335,7 @@ data:
       title: ds/kdtree/kdtree_monoid.hpp
   - name: ds/offline_query
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/offline_query/add_remove_query.hpp
       title: ds/offline_query/add_remove_query.hpp
     - icon: ':x:'
@@ -477,7 +477,7 @@ data:
     - icon: ':warning:'
       path: ds/unionfind/parallel_unionfind.hpp
       title: ds/unionfind/parallel_unionfind.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/unionfind/rollback_unionfind.hpp
       title: ds/unionfind/rollback_unionfind.hpp
     - icon: ':x:'
@@ -1968,7 +1968,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
       title: test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
       title: test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
     - icon: ':x:'
@@ -1988,16 +1988,16 @@ data:
       title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
   - name: test/library_checker/datastructure
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/add_remove_query.test.cpp
       title: test/library_checker/datastructure/add_remove_query.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
       title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/associative_array.test.cpp
       title: test/library_checker/datastructure/associative_array.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
       title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
     - icon: ':x:'

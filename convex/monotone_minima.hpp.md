@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
     title: test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
     title: test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
   - icon: ':x:'

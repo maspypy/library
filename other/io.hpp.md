@@ -240,7 +240,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
     title: test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
     title: test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
   - icon: ':x:'
@@ -258,16 +258,16 @@ data:
   - icon: ':x:'
     path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
     title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/add_remove_query.test.cpp
     title: test/library_checker/datastructure/add_remove_query.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
     title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array.test.cpp
     title: test/library_checker/datastructure/associative_array.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
     title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
   - icon: ':x:'
