@@ -5,20 +5,15 @@
 
 void solve() {
   LL(N, Q);
-  VEC(ll, A, N);
-  A = cumsum<ll, ll>(A);
-  FOR(_, Q) {
-    LL(L, R);
-    print(A[R] - A[L]);
+  VEC(int, A, N);
+  auto Ac = cumsum<ll>(A);
+  FOR(Q) {
+    INT(L, R);
+    print(Ac[R] - Ac[L]);
   }
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
   solve();
-
   return 0;
 }
