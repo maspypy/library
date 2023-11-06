@@ -32,7 +32,7 @@ data:
     \ x + y * y); }\n  double angle() { return atan2(y, x); }\n\n  Point rotate(double\
     \ theta) {\n    static_assert(!is_integral<T>::value);\n    double c = cos(theta),\
     \ s = sin(theta);\n    return Point{c * x - s * y, s * x + c * y};\n  }\n#ifdef\
-    \ FASTIO\n  void read() { fastio::read(x), fastio::read(y); }\n  void write()\
+    \ FASTIO\n  void read() { fastio::read(x), fastio::read(y); }\n  void print()\
     \ { fastio::wt(pair<T, T>({x, y})); }\n#endif\n};\n\n// A -> B -> C \u3068\u9032\
     \u3080\u3068\u304D\u306B\u3001\u5DE6\u306B\u66F2\u304C\u308B\u306A\u3089\u3070\
     \ +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\u3089\u3070 -1\ntemplate <typename\
@@ -97,7 +97,7 @@ data:
   isVerificationFile: false
   path: geo/incircle.hpp
   requiredBy: []
-  timestamp: '2023-11-06 17:24:00+09:00'
+  timestamp: '2023-11-06 21:03:26+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/CGL_7_B.test.cpp
