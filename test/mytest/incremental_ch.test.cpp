@@ -1,6 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
-#include "other/io.hpp"
 #include "geo/incremental_convexhull.hpp"
 
 // geocon2013 c sample より
@@ -43,15 +42,13 @@ void test() {
 }
 
 void solve() {
-  LL(A, B);
-  print(A + B);
+  int a, b;
+  cin >> a >> b;
+  cout << a << " " << b << "\n";
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
   test();
   solve();
-
   return 0;
 }

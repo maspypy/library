@@ -1,6 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
-#include "other/io.hpp"
 #include "ds/offline_query/mo_3d.hpp"
 
 using T = tuple<int, int, int>;
@@ -82,8 +81,9 @@ void test_CF940F() {
 }
 
 void solve() {
-  LL(a, b);
-  print(a + b);
+  int a, b;
+  cin >> a >> b;
+  cout << a << " " << b << "\n";
 }
 
 signed main() {

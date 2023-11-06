@@ -1,6 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
-#include "other/io.hpp"
 #include "alg/acted_monoid/sum_add.hpp"
 #include "ds/randomized_bst/rbst_acted_monoid.hpp"
 
@@ -95,8 +94,9 @@ void test_ARC30D_case2() {
 }
 
 void solve() {
-  LL(a, b);
-  print(a + b);
+  int a, b;
+  cin >> a >> b;
+  cout << a << " " << b << "\n";
 }
 
 signed main() {
