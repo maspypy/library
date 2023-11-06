@@ -7,31 +7,29 @@
 
 void solve() {
   LL(N, Q);
-  vi X(N), Y(N), W(N);
-  FOR(i, N) {
-    LL(x, y, w);
-    X[i] = x, Y[i] = y, W[i] = w;
-  }
-  using QQ = tuple<ll, ll, ll, ll>;
+  vc<u32> X(N), Y(N);
+  vc<u64> W(N);
+  FOR(i, N) read(X[i], Y[i], W[i]);
+  using QQ = tuple<u32, u32, u32, u32>;
   vc<QQ> query(Q);
   FOR(q, Q) {
     LL(t);
     if (t == 0) {
-      LL(x, y, w);
+      U32(x, y, w);
       X.eb(x);
       Y.eb(y);
       W.eb(0);
       query[q] = mt(-1, x, y, w);
     } else {
-      LL(a, b, c, d);
+      U32(a, b, c, d);
       query[q] = mt(a, c, b, d);
     }
   }
 
-  FenwickTree_2D<Monoid_Add<ll>, ll, false> bit(X, Y, W);
+  FenwickTree_2D<Monoid_Add<u64>, u32, false> bit(X, Y, W);
   FOR(q, Q) {
     auto [a, b, c, d] = query[q];
-    if (a == -1) {
+    if (a == u32(-1)) {
       bit.add(b, c, d);
     } else {
       print(bit.prod(a, b, c, d));
@@ -40,10 +38,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
   solve();
 
   return 0;
