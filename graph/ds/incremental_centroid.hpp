@@ -45,8 +45,10 @@ struct Incremental_Centroid {
     int L = tree.LID[cent], R = tree.RID[cent];
     int x = v;
     vc<int> I;
-    I.eb(ss.next(0)), I.eb(ss.prev(L - 1));
-    I.eb(ss.next(R)), I.eb(ss.prev(N - 1));
+    I.eb(ss.next(0));
+    if (1 < L) I.eb(ss.prev(L - 1));
+    if (R < N - 1) I.eb(ss.next(R));
+    I.eb(ss.prev(N - 1));
     for (auto&& idx: I) {
       if (idx == -1 || idx == N) continue;
       if (L <= idx && idx < R) continue;
