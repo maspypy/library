@@ -199,7 +199,7 @@ data:
     - icon: ':x:'
       path: convex/maxplus_convolution.hpp
       title: convex/maxplus_convolution.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: convex/minplus_convolution.hpp
       title: convex/minplus_convolution.hpp
     - icon: ':x:'
@@ -211,7 +211,7 @@ data:
     - icon: ':x:'
       path: convex/monge_lichao_tree.hpp
       title: convex/monge_lichao_tree.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: convex/monotone_minima.hpp
       title: convex/monotone_minima.hpp
     - icon: ':x:'
@@ -284,7 +284,7 @@ data:
     - icon: ':x:'
       path: ds/removable_queue.hpp
       title: ds/removable_queue.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/rollback_array.hpp
       title: ds/rollback_array.hpp
     - icon: ':x:'
@@ -335,7 +335,7 @@ data:
       title: ds/kdtree/kdtree_monoid.hpp
   - name: ds/offline_query
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/offline_query/add_remove_query.hpp
       title: ds/offline_query/add_remove_query.hpp
     - icon: ':x:'
@@ -477,7 +477,7 @@ data:
     - icon: ':warning:'
       path: ds/unionfind/parallel_unionfind.hpp
       title: ds/unionfind/parallel_unionfind.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/unionfind/rollback_unionfind.hpp
       title: ds/unionfind/rollback_unionfind.hpp
     - icon: ':x:'
@@ -1063,7 +1063,7 @@ data:
     - icon: ':x:'
       path: mod/binomial.hpp
       title: mod/binomial.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: mod/crt3.hpp
       title: mod/crt3.hpp
     - icon: ':x:'
@@ -1090,7 +1090,7 @@ data:
     - icon: ':x:'
       path: mod/min_of_linear_segments.hpp
       title: mod/min_of_linear_segments.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: mod/mod_inv.hpp
       title: mod/mod_inv.hpp
     - icon: ':x:'
@@ -1331,7 +1331,7 @@ data:
     - icon: ':x:'
       path: poly/composition_f_rational.hpp
       title: poly/composition_f_rational.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/convolution.hpp
       title: poly/convolution.hpp
     - icon: ':x:'
@@ -1343,16 +1343,16 @@ data:
     - icon: ':x:'
       path: poly/convolution_huge.hpp
       title: poly/convolution_huge.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/convolution_karatsuba.hpp
       title: poly/convolution_karatsuba.hpp
     - icon: ':x:'
       path: poly/convolution_leq.hpp
       title: poly/convolution_leq.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/convolution_mod_2_64.hpp
       title: poly/convolution_mod_2_64.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/convolution_naive.hpp
       title: poly/convolution_naive.hpp
     - icon: ':x:'
@@ -1361,7 +1361,7 @@ data:
     - icon: ':x:'
       path: poly/differentiate.hpp
       title: poly/differentiate.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/fft.hpp
       title: poly/fft.hpp
     - icon: ':x:'
@@ -1409,7 +1409,7 @@ data:
     - icon: ':x:'
       path: poly/multivar_convolution_cyclic.hpp
       title: poly/multivar_convolution_cyclic.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/ntt.hpp
       title: poly/ntt.hpp
     - icon: ':x:'
@@ -1956,7 +1956,7 @@ data:
     - icon: ':x:'
       path: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
       title: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/convolution_mod_2_64.test.cpp
       title: test/library_checker/convolution/convolution_mod_2_64.test.cpp
     - icon: ':x:'
@@ -1965,10 +1965,10 @@ data:
     - icon: ':x:'
       path: test/library_checker/convolution/convolution_mod_setntt.test.cpp
       title: test/library_checker/convolution/convolution_mod_setntt.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
       title: test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
       title: test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
     - icon: ':x:'
@@ -1988,7 +1988,7 @@ data:
       title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
   - name: test/library_checker/datastructure
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/add_remove_query.test.cpp
       title: test/library_checker/datastructure/add_remove_query.test.cpp
     - icon: ':x:'
