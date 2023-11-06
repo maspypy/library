@@ -42,7 +42,7 @@ void rd(string &x) {
   x.clear();
   char c;
   do { rd(c); } while (isspace(c));
-  do { x += c, rd(c); } while (!isspace(c));
+  do { x += c, rd(c); } while (c > ' ');
 }
 
 template <typename T>
