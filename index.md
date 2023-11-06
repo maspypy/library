@@ -1111,7 +1111,7 @@ data:
     - icon: ':x:'
       path: mod/modint.hpp
       title: mod/modint.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: mod/modint61.hpp
       title: mod/modint61.hpp
     - icon: ':x:'
@@ -1120,7 +1120,7 @@ data:
     - icon: ':x:'
       path: mod/modular_subset_sum.hpp
       title: mod/modular_subset_sum.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: mod/mongomery_modint.hpp
       title: mod/mongomery_modint.hpp
     - icon: ':x:'
@@ -1234,7 +1234,7 @@ data:
     - icon: ':x:'
       path: nt/primetable.hpp
       title: nt/primetable.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: nt/primetest.hpp
       title: nt/primetest.hpp
     - icon: ':x:'
@@ -1488,7 +1488,7 @@ data:
       title: poly/online/online_square.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':x:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':x:'
@@ -1541,7 +1541,7 @@ data:
     - icon: ':x:'
       path: seq/interpolate_poly_exp_sum.hpp
       title: seq/interpolate_poly_exp_sum.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: seq/inversion.hpp
       title: seq/inversion.hpp
     - icon: ':x:'
@@ -1676,7 +1676,7 @@ data:
     - icon: ':x:'
       path: string/rollinghash.hpp
       title: string/rollinghash.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: string/rollinghash_2d.hpp
       title: string/rollinghash_2d.hpp
     - icon: ':x:'
@@ -1766,16 +1766,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_12_B.test.cpp
       title: test/aoj/ALDS1_12_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/ALDS1_14_C.test.cpp
       title: test/aoj/ALDS1_14_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_1_C.test.cpp
       title: test/aoj/ALDS1_1_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_2_A.test.cpp
       title: test/aoj/ALDS1_2_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_5.test.cpp
       title: test/aoj/ALDS1_5.test.cpp
     - icon: ':x:'

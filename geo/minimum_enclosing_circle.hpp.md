@@ -10,7 +10,7 @@ data:
   - icon: ':x:'
     path: geo/triangle_area.hpp
     title: geo/triangle_area.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':x:'

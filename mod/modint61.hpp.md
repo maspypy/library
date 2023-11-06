@@ -26,11 +26,11 @@ data:
   - icon: ':x:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/rollinghash_2d.hpp
     title: string/rollinghash_2d.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ALDS1_14_C.test.cpp
     title: test/aoj/ALDS1_14_C.test.cpp
   - icon: ':x:'
@@ -89,7 +89,7 @@ data:
     title: test/yukicoder/579.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint61.hpp\"\n\r\nstruct modint61 {\r\n  static constexpr\
@@ -162,7 +162,7 @@ data:
   - string/rollinghash.hpp
   - ds/unionfind/parallel_unionfind.hpp
   timestamp: '2023-11-06 17:38:34+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/578.test.cpp
   - test/yukicoder/4_1.test.cpp

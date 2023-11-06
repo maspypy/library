@@ -105,140 +105,154 @@ data:
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
     \  return B;\n}\n#endif\n#line 1 \"other/io.hpp\"\n#define FASTIO\r\n#include\
-    \ <unistd.h>\r\n#include <sys/mman.h>\r\n#include <sys/stat.h>\r\n\r\nnamespace\
-    \ fastio {\r\n// https://judge.yosupo.jp/submission/21623\r\n// https://judge.yosupo.jp/submission/70667\r\
-    \n\r\nstruct Pre {\r\n  char num[10000][4];\r\n  constexpr Pre() : num() {\r\n\
-    \    for (int i = 0; i < 10000; i++) {\r\n      int n = i;\r\n      for (int j\
-    \ = 3; j >= 0; j--) {\r\n        num[i][j] = n % 10 | '0';\r\n        n /= 10;\r\
-    \n      }\r\n    }\r\n  }\r\n} constexpr pre;\r\n\r\nconstexpr int BSZ = 1 <<\
-    \ 19;\r\nchar *ibuf, obuf[BSZ], out[100];\r\nint outi, obufi;\r\n\r\n// gcc expansion.\
-    \ called automaticall before main.\r\nvoid __attribute__((constructor)) _c() {\r\
-    \n  struct stat sb;\r\n  fstat(0, &sb);\r\n  ibuf\r\n      = (char *)mmap(0, sb.st_size,\
-    \ PROT_READ, MAP_SHARED | MAP_POPULATE, 0, 0);\r\n}\r\n\r\nvoid flush() {\r\n\
-    \  assert(write(1, obuf, obufi) == obufi);\r\n  obufi = 0;\r\n}\r\n\r\nvoid rd(char\
-    \ &c) { c = *ibuf++; }\r\nvoid rd(string &x) {\r\n  x.clear();\r\n  char c;\r\n\
-    \  do { rd(c); } while (isspace(c));\r\n  do { x += c, rd(c); } while (c > ' ');\r\
-    \n}\r\n\r\ntemplate <typename T>\r\nvoid rd_integer(T &x) {\r\n  char c;\r\n \
-    \ do\r\n    rd(c);\r\n  while (c < '-');\r\n  bool minus = 0;\r\n  if constexpr\
-    \ (is_signed<T>::value || is_same_v<T, i128>) {\r\n    if (c == '-') { minus =\
-    \ 1, rd(c); }\r\n  }\r\n  x = 0;\r\n  while (c >= '0') { x = x * 10 + (c & 15),\
-    \ rd(c); }\r\n  if constexpr (is_signed<T>::value || is_same_v<T, i128>) {\r\n\
-    \    if (minus) x = -x;\r\n  }\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_real(T\
-    \ &x) {\r\n  string s;\r\n  rd(s);\r\n  x = stod(s);\r\n}\r\n\r\ntemplate <typename\
-    \ T>\r\nstruct has_read_method {\r\n  template <typename U>\r\n  static std::true_type\
-    \ test(decltype(&U::read) *);\r\n  template <typename>\r\n  static std::false_type\
-    \ test(...);\r\n  using type = decltype(test<T>(nullptr));\r\n  static constexpr\
-    \ bool value = type::value;\r\n};\r\n\r\ntemplate <typename T>\r\ntypename enable_if<has_read_method<T>::value,\
-    \ void>::type rd(T &x) {\r\n  x.read();\r\n}\r\n\r\nvoid rd(int &x) { rd_integer(x);\
-    \ }\r\nvoid rd(ll &x) { rd_integer(x); }\r\nvoid rd(i128 &x) { rd_integer(x);\
-    \ }\r\nvoid rd(u32 &x) { rd_integer(x); }\r\nvoid rd(u64 &x) { rd_integer(x);\
-    \ }\r\nvoid rd(u128 &x) { rd_integer(x); }\r\nvoid rd(double &x) { rd_real(x);\
-    \ }\r\nvoid rd(long double &x) { rd_real(x); }\r\nvoid rd(f128 &x) { rd_real(x);\
-    \ }\r\ntemplate <class T, class U>\r\nvoid rd(pair<T, U> &p) {\r\n  return rd(p.first),\
-    \ rd(p.second);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd_tuple(T\
-    \ &t) {\r\n  if constexpr (N < std::tuple_size<T>::value) {\r\n    auto &x = std::get<N>(t);\r\
-    \n    rd(x);\r\n    rd_tuple<N + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\
-    \nvoid rd(tuple<T...> &tpl) {\r\n  rd_tuple(tpl);\r\n}\r\ntemplate <class T>\r\
-    \nvoid rd(vc<T> &x) {\r\n  for (auto &d: x) rd(d);\r\n}\r\ntemplate <size_t N\
-    \ = 0, typename T>\r\nvoid rd(array<T, N> &x) {\r\n  for (auto &d: x) rd(d);\r\
-    \n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class... T>\r\nvoid read(H &h,\
-    \ T &... t) {\r\n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const char c) {\r\n\
-    \  if (obufi == BSZ) flush();\r\n  obuf[obufi++] = c;\r\n}\r\nvoid wt(const string\
-    \ &s) {\r\n  for (char c: s) wt(c);\r\n}\r\nvoid wt(const char *s) {\r\n  size_t\
-    \ len = strlen(s);\r\n  for (size_t i = 0; i < len; i++) wt(s[i]);\r\n}\r\n\r\n\
-    template <typename T>\r\nvoid wt_integer(T x) {\r\n  if (obufi > BSZ - 100) flush();\r\
-    \n  if (x < 0) { obuf[obufi++] = '-', x = -x; }\r\n  for (outi = 96; x >= 10000;\
-    \ outi -= 4) {\r\n    memcpy(out + outi, pre.num[x % 10000], 4);\r\n    x /= 10000;\r\
-    \n  }\r\n  if (x >= 1000) {\r\n    memcpy(obuf + obufi, pre.num[x], 4);\r\n  \
-    \  obufi += 4;\r\n  } else if (x >= 100) {\r\n    memcpy(obuf + obufi, pre.num[x]\
-    \ + 1, 3);\r\n    obufi += 3;\r\n  } else if (x >= 10) {\r\n    int q = (x * 103)\
-    \ >> 10;\r\n    obuf[obufi] = q | '0';\r\n    obuf[obufi + 1] = (x - q * 10) |\
-    \ '0';\r\n    obufi += 2;\r\n  } else\r\n    obuf[obufi++] = x | '0';\r\n  memcpy(obuf\
-    \ + obufi, out + outi + 4, 96 - outi);\r\n  obufi += 96 - outi;\r\n}\r\n\r\ntemplate\
-    \ <typename T>\r\nvoid wt_real(T x) {\r\n  ostringstream oss;\r\n  oss << fixed\
-    \ << setprecision(15) << double(x);\r\n  string s = oss.str();\r\n  wt(s);\r\n\
-    }\r\n\r\ntemplate <typename T>\r\nstruct has_print_method {\r\n  template <typename\
-    \ U>\r\n  static std::true_type test(decltype(&U::print) *);\r\n  template <typename>\r\
-    \n  static std::false_type test(...);\r\n  using type = decltype(test<T>(nullptr));\r\
+    \ <unistd.h>\r\n\r\nnamespace fastio {\r\nstruct Pre {\r\n  char num[10000][4];\r\
+    \n  constexpr Pre() : num() {\r\n    for (int i = 0; i < 10000; i++) {\r\n   \
+    \   int n = i;\r\n      for (int j = 3; j >= 0; j--) {\r\n        num[i][j] =\
+    \ n % 10 | '0';\r\n        n /= 10;\r\n      }\r\n    }\r\n  }\r\n} constexpr\
+    \ pre;\r\n\r\ntemplate <typename T>\r\nstruct has_read_method {\r\n  template\
+    \ <typename U>\r\n  static std::true_type test(decltype(&U::read) *);\r\n  template\
+    \ <typename>\r\n  static std::false_type test(...);\r\n  using type = decltype(test<T>(nullptr));\r\
     \n  static constexpr bool value = type::value;\r\n};\r\n\r\ntemplate <typename\
-    \ T>\r\ntypename enable_if<has_print_method<T>::value, void>::type wt(T x) {\r\
-    \n  x.print();\r\n}\r\n\r\nvoid wt(bool x) { wt_integer(int(x)); }\r\nvoid wt(int\
-    \ x) { wt_integer(x); }\r\nvoid wt(ll x) { wt_integer(x); }\r\nvoid wt(i128 x)\
-    \ { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\nvoid wt(u64 x) {\
-    \ wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\nvoid wt(double x)\
-    \ { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\nvoid wt(f128 x)\
-    \ { wt_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid wt(const pair<T,\
-    \ U> val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n  wt(val.second);\r\n}\r\ntemplate\
-    \ <size_t N = 0, typename T>\r\nvoid wt_tuple(const T t) {\r\n  if constexpr (N\
-    \ < std::tuple_size<T>::value) {\r\n    if constexpr (N > 0) { wt(' '); }\r\n\
-    \    const auto x = std::get<N>(t);\r\n    wt(x);\r\n    wt_tuple<N + 1>(t);\r\
-    \n  }\r\n}\r\ntemplate <class... T>\r\nvoid wt(tuple<T...> tpl) {\r\n  wt_tuple(tpl);\r\
-    \n}\r\ntemplate <class T, size_t S>\r\nvoid wt(const array<T, S> val) {\r\n  auto\
-    \ n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n    if (i) wt(' ');\r\
-    \n    wt(val[i]);\r\n  }\r\n}\r\ntemplate <class T>\r\nvoid wt(const vector<T>\
-    \ val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n \
-    \   if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\n\r\nvoid print() { wt('\\\
-    n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head, Tail\
-    \ &&... tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail)) wt(' ');\r\n  print(forward<Tail>(tail)...);\r\
-    \n}\r\n\r\n// gcc expansion. called automaticall after main.\r\nvoid __attribute__((destructor))\
-    \ _d() { flush(); }\r\n} // namespace fastio\r\n\r\nusing fastio::read;\r\nusing\
-    \ fastio::print;\r\nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int\
-    \ __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__;\
-    \ \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n  string __VA_ARGS__;\
-    \ \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\
-    \r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n  double __VA_ARGS__; \\\
-    \r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name, size) \\\r\n  vector<type>\
-    \ name(size);    \\\r\n  read(name)\r\n#define VV(type, name, h, w)          \
-    \           \\\r\n  vector<vector<type>> name(h, vector<type>(w)); \\\r\n  read(name)\r\
-    \n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t\
-    \ = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\
-    \nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\"\
-    \ : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\n#line 2 \"alg/monoid/add.hpp\"\
-    \n\r\ntemplate <typename X>\r\nstruct Monoid_Add {\r\n  using value_type = X;\r\
-    \n  static constexpr X op(const X &x, const X &y) noexcept { return x + y; }\r\
-    \n  static constexpr X inverse(const X &x) noexcept { return -x; }\r\n  static\
-    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\n  static\
-    \ constexpr X unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\
-    \n};\r\n#line 2 \"ds/segtree/dynamic_segtree_sparse.hpp\"\n\n// \u5E38\u306B\u307B\
-    \u3068\u3093\u3069\u306E\u8981\u7D20\u304C unit \u3067\u3042\u308B\u3053\u3068\
-    \u304C\u4FDD\u8A3C\u3055\u308C\u308B\u3088\u3046\u306A\u52D5\u7684\u30BB\u30B0\
-    \u6728\n// \u3057\u305F\u304C\u3063\u3066\u3001default_prod \u306E\u985E\u306F\
-    \u6301\u305F\u305B\u3089\u308C\u305A\u3001acted monoid \u3082\u4E00\u822C\u306B\
-    \u306F\u6271\u3048\u306A\u3044\n// \u6C38\u7D9A\u5316\u3057\u306A\u3044\u5834\u5408\
-    \u306E\u30CE\u30FC\u30C9\u6570\u3092 O(N) \u306B\u6291\u3048\u308B\u3053\u3068\
-    \u304C\u3067\u304D\u308B\u306E\u304C\u5229\u70B9\ntemplate <typename Monoid, bool\
-    \ PERSISTENT, int NODES>\nstruct Dynamic_SegTree_Sparse {\n  using MX = Monoid;\n\
-    \  using X = typename MX::value_type;\n\n  struct Node {\n    ll idx;\n    Node\
-    \ *l, *r;\n    X prod, x;\n  };\n\n  const ll L0, R0;\n  Node *pool;\n  int pid;\n\
-    \  using np = Node *;\n\n  Dynamic_SegTree_Sparse(ll L0, ll R0) : L0(L0), R0(R0),\
-    \ pid(0) {\n    pool = new Node[NODES];\n  }\n\n  np new_root() { return nullptr;\
-    \ }\n\n  np new_node(ll idx, const X x) {\n    pool[pid].idx = idx;\n    pool[pid].l\
-    \ = pool[pid].r = nullptr;\n    pool[pid].x = pool[pid].prod = x;\n    return\
-    \ &(pool[pid++]);\n  }\n\n  X prod(np root, ll l, ll r) {\n    assert(L0 <= l\
-    \ && l <= r && r <= R0);\n    if (l == r) return MX::unit();\n    X x = MX::unit();\n\
-    \    prod_rec(root, L0, R0, l, r, x);\n    return x;\n  }\n\n  X prod_all(np root)\
-    \ { return prod(root, L0, R0); }\n\n  np set(np root, ll i, const X &x) {\n  \
-    \  assert(L0 <= i && i < R0);\n    return set_rec(root, L0, R0, i, x);\n  }\n\n\
-    \  np multiply(np root, ll i, const X &x) {\n    assert(L0 <= i && i < R0);\n\
-    \    return multiply_rec(root, L0, R0, i, x);\n  }\n\n  template <typename F>\n\
-    \  ll max_right(np root, F check, ll L) {\n    assert(L0 <= L && L <= R0 && check(MX::unit()));\n\
-    \    X x = MX::unit();\n    return max_right_rec(root, check, L0, R0, L, x);\n\
-    \  }\n\n  template <typename F>\n  ll min_left(np root, F check, ll R) {\n   \
-    \ assert(L0 <= R && R <= R0 && check(MX::unit()));\n    X x = MX::unit();\n  \
-    \  return min_left_rec(root, check, L0, R0, R, x);\n  }\n\n  void reset() { pid\
-    \ = 0; }\n\n  vc<pair<ll, X>> get_all(np root) {\n    vc<pair<ll, X>> res;\n \
-    \   auto dfs = [&](auto &dfs, np c) -> void {\n      if (!c) return;\n      dfs(dfs,\
-    \ c->l);\n      res.eb(c->idx, c->x);\n      dfs(dfs, c->r);\n    };\n    dfs(dfs,\
-    \ root);\n    return res;\n  }\n\n  X get(np root, ll idx) {\n    auto dfs = [&](auto\
-    \ &dfs, np c) -> X {\n      if (!c) return Monoid::unit();\n      if (idx == c->idx)\
-    \ return c->x;\n      if (idx < (c->idx)) return dfs(dfs, c->l);\n      return\
-    \ dfs(dfs, c->r);\n    };\n    return dfs(dfs, root);\n  }\n\nprivate:\n  void\
-    \ update(np c) {\n    c->prod = c->x;\n    if (c->l) c->prod = MX::op(c->l->prod,\
-    \ c->prod);\n    if (c->r) c->prod = MX::op(c->prod, c->r->prod);\n  }\n\n  np\
-    \ copy_node(np c) {\n    if (!c || !PERSISTENT) return c;\n    pool[pid].idx =\
-    \ c->idx;\n    pool[pid].l = c->l;\n    pool[pid].r = c->r;\n    pool[pid].x =\
-    \ c->x;\n    pool[pid].prod = c->prod;\n    return &(pool[pid++]);\n  }\n\n  np\
-    \ set_rec(np c, ll l, ll r, ll i, X x) {\n    if (!c) {\n      c = new_node(i,\
+    \ T>\r\nstruct has_print_method {\r\n  template <typename U>\r\n  static std::true_type\
+    \ test(decltype(&U::print) *);\r\n  template <typename>\r\n  static std::false_type\
+    \ test(...);\r\n  using type = decltype(test<T>(nullptr));\r\n  static constexpr\
+    \ bool value = type::value;\r\n};\r\n\r\nstruct Scanner {\r\n  FILE *fp;\r\n \
+    \ char line[(1 << 15) + 1];\r\n  size_t st = 0, ed = 0;\r\n  void reread() {\r\
+    \n    memmove(line, line + st, ed - st);\r\n    ed -= st;\r\n    st = 0;\r\n \
+    \   ed += fread(line + ed, 1, (1 << 15) - ed, fp);\r\n    line[ed] = '\\0';\r\n\
+    \  }\r\n  void succ() {\r\n    while (true) {\r\n      if (st == ed) {\r\n   \
+    \     reread();\r\n        if (st == ed) return;\r\n      }\r\n      while (st\
+    \ != ed && isspace(line[st])) st++;\r\n      if (st != ed) break;\r\n    }\r\n\
+    \    if (ed - st <= 100) {\r\n      bool sep = false;\r\n      for (size_t i =\
+    \ st; i < ed; i++) {\r\n        if (isspace(line[i])) {\r\n          sep = true;\r\
+    \n          break;\r\n        }\r\n      }\r\n      if (!sep) reread();\r\n  \
+    \  }\r\n    return;\r\n  }\r\n\r\n  void rd(char &c) {\r\n    succ();\r\n    c\
+    \ = line[st++];\r\n  }\r\n\r\n  void rd(string &x) {\r\n    x.clear();\r\n   \
+    \ succ();\r\n    while (true) {\r\n      size_t sz = 0;\r\n      while (st + sz\
+    \ < ed && !isspace(line[st + sz])) sz++;\r\n      x.append(line + st, sz);\r\n\
+    \      st += sz;\r\n      if (!sz || st != ed) break;\r\n      reread();\r\n \
+    \   }\r\n  }\r\n\r\n  template <typename T>\r\n  void rd_integer(T &x) {\r\n \
+    \   succ();\r\n    bool minus = 0;\r\n    char c = line[st++];\r\n    if constexpr\
+    \ (is_signed<T>::value || is_same_v<T, i128>) {\r\n      if (c == '-') { minus\
+    \ = 1, c = line[st++]; }\r\n    }\r\n    x = 0;\r\n    while (c >= '0') { x =\
+    \ x * 10 + (c & 15), c = line[st++]; }\r\n    if constexpr (is_signed<T>::value\
+    \ || is_same_v<T, i128>) {\r\n      if (minus) x = -x;\r\n    }\r\n  }\r\n\r\n\
+    \  template <typename T>\r\n  void rd_real(T &x) {\r\n    string s;\r\n    rd(s);\r\
+    \n    x = stod(s);\r\n  }\r\n\r\n  template <typename T>\r\n  typename enable_if<has_read_method<T>::value,\
+    \ void>::type rd(T &x) {\r\n    x.read();\r\n  }\r\n\r\n  void rd(int &x) { rd_integer(x);\
+    \ }\r\n  void rd(ll &x) { rd_integer(x); }\r\n  void rd(i128 &x) { rd_integer(x);\
+    \ }\r\n  void rd(u32 &x) { rd_integer(x); }\r\n  void rd(u64 &x) { rd_integer(x);\
+    \ }\r\n  void rd(u128 &x) { rd_integer(x); }\r\n  void rd(double &x) { rd_real(x);\
+    \ }\r\n  void rd(long double &x) { rd_real(x); }\r\n  void rd(f128 &x) { rd_real(x);\
+    \ }\r\n  template <class T, class U>\r\n  void rd(pair<T, U> &p) {\r\n    return\
+    \ rd(p.first), rd(p.second);\r\n  }\r\n  template <size_t N = 0, typename T>\r\
+    \n  void rd_tuple(T &t) {\r\n    if constexpr (N < std::tuple_size<T>::value)\
+    \ {\r\n      auto &x = std::get<N>(t);\r\n      rd(x);\r\n      rd_tuple<N + 1>(t);\r\
+    \n    }\r\n  }\r\n  template <class... T>\r\n  void rd(tuple<T...> &tpl) {\r\n\
+    \    rd_tuple(tpl);\r\n  }\r\n  template <class T>\r\n  void rd(vc<T> &x) {\r\n\
+    \    for (auto &d: x) rd(d);\r\n  }\r\n  template <size_t N = 0, typename T>\r\
+    \n  void rd(array<T, N> &x) {\r\n    for (auto &d: x) rd(d);\r\n  }\r\n  Scanner(FILE\
+    \ *fp) : fp(fp) {}\r\n};\r\n\r\nstruct Printer {\r\n  Printer(FILE *_fp) : fp(_fp)\
+    \ {}\r\n  ~Printer() { flush(); }\r\n\r\n  static constexpr size_t SIZE = 1 <<\
+    \ 15;\r\n  FILE *fp;\r\n  char line[SIZE], out[100];\r\n  size_t pos = 0;\r\n\
+    \  void flush() {\r\n    fwrite(line, 1, pos, fp);\r\n    pos = 0;\r\n  }\r\n\r\
+    \n  void wt(const char val) {\r\n    if (pos == SIZE) flush();\r\n    line[pos++]\
+    \ = val;\r\n  }\r\n  void wt(const string &s) {\r\n    for (char c: s) wt(c);\r\
+    \n  }\r\n  void wt(const char *s) {\r\n    size_t len = strlen(s);\r\n    for\
+    \ (size_t i = 0; i < len; i++) wt(s[i]);\r\n  }\r\n\r\n  template <typename T>\r\
+    \n  void wt_integer(T x) {\r\n    if (pos > SIZE - 100) flush();\r\n    if (x\
+    \ < 0) { line[pos++] = '-', x = -x; }\r\n    int outi;\r\n    for (outi = 96;\
+    \ x >= 10000; outi -= 4) {\r\n      memcpy(out + outi, pre.num[x % 10000], 4);\r\
+    \n      x /= 10000;\r\n    }\r\n    if (x >= 1000) {\r\n      memcpy(line + pos,\
+    \ pre.num[x], 4), pos += 4;\r\n    } else if (x >= 100) {\r\n      memcpy(line\
+    \ + pos, pre.num[x] + 1, 3), pos += 3;\r\n    } else if (x >= 10) {\r\n      int\
+    \ q = (x * 103) >> 10;\r\n      line[pos] = q | '0';\r\n      line[pos + 1] =\
+    \ (x - q * 10) | '0';\r\n      pos += 2;\r\n    } else\r\n      line[pos++] =\
+    \ x | '0';\r\n    memcpy(line + pos, out + outi + 4, 96 - outi);\r\n    pos +=\
+    \ 96 - outi;\r\n  }\r\n\r\n  template <typename T>\r\n  void wt_real(T x) {\r\n\
+    \    ostringstream oss;\r\n    oss << fixed << setprecision(15) << double(x);\r\
+    \n    string s = oss.str();\r\n    wt(s);\r\n  }\r\n\r\n  template <typename T>\r\
+    \n  typename enable_if<has_print_method<T>::value, void>::type wt(T x) {\r\n \
+    \   x.print();\r\n  }\r\n\r\n  void wt(bool x) { wt_integer(int(x)); }\r\n  void\
+    \ wt(int x) { wt_integer(x); }\r\n  void wt(ll x) { wt_integer(x); }\r\n  void\
+    \ wt(i128 x) { wt_integer(x); }\r\n  void wt(u32 x) { wt_integer(x); }\r\n  void\
+    \ wt(u64 x) { wt_integer(x); }\r\n  void wt(u128 x) { wt_integer(x); }\r\n  void\
+    \ wt(double x) { wt_real(x); }\r\n  void wt(long double x) { wt_real(x); }\r\n\
+    \  void wt(f128 x) { wt_real(x); }\r\n\r\n  template <class T, class U>\r\n  void\
+    \ wt(const pair<T, U> val) {\r\n    wt(val.first);\r\n    wt(' ');\r\n    wt(val.second);\r\
+    \n  }\r\n  template <size_t N = 0, typename T>\r\n  void wt_tuple(const T t) {\r\
+    \n    if constexpr (N < std::tuple_size<T>::value) {\r\n      if constexpr (N\
+    \ > 0) { wt(' '); }\r\n      const auto x = std::get<N>(t);\r\n      wt(x);\r\n\
+    \      wt_tuple<N + 1>(t);\r\n    }\r\n  }\r\n  template <class... T>\r\n  void\
+    \ wt(tuple<T...> tpl) {\r\n    wt_tuple(tpl);\r\n  }\r\n  template <class T, size_t\
+    \ S>\r\n  void wt(const array<T, S> val) {\r\n    auto n = val.size();\r\n   \
+    \ for (size_t i = 0; i < n; i++) {\r\n      if (i) wt(' ');\r\n      wt(val[i]);\r\
+    \n    }\r\n  }\r\n  template <class T>\r\n  void wt(const vector<T> val) {\r\n\
+    \    auto n = val.size();\r\n    for (size_t i = 0; i < n; i++) {\r\n      if\
+    \ (i) wt(' ');\r\n      wt(val[i]);\r\n    }\r\n  }\r\n};\r\nScanner scanner =\
+    \ Scanner(stdin);\r\nPrinter printer = Printer(stdout);\r\nvoid flush() { printer.flush();\
+    \ }\r\nvoid print() { printer.wt('\\n'); }\r\ntemplate <class Head, class... Tail>\r\
+    \nvoid print(Head &&head, Tail &&... tail) {\r\n  printer.wt(head);\r\n  if (sizeof...(Tail))\
+    \ printer.wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\nvoid read()\
+    \ {}\r\ntemplate <class Head, class... Tail>\r\nvoid read(Head &head, Tail &...\
+    \ tail) {\r\n  scanner.rd(head);\r\n  read(tail...);\r\n}\r\n} // namespace fastio\r\
+    \nusing fastio::print;\r\nusing fastio::flush;\r\nusing fastio::read;\r\n\r\n\
+    #define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)\
+    \      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
+    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
+    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
+    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
+    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
+    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
+    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
+    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
+    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
+    \ yes(!t); }\r\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\n\
+    struct Monoid_Add {\r\n  using value_type = X;\r\n  static constexpr X op(const\
+    \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
+    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
+    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/segtree/dynamic_segtree_sparse.hpp\"\
+    \n\n// \u5E38\u306B\u307B\u3068\u3093\u3069\u306E\u8981\u7D20\u304C unit \u3067\
+    \u3042\u308B\u3053\u3068\u304C\u4FDD\u8A3C\u3055\u308C\u308B\u3088\u3046\u306A\
+    \u52D5\u7684\u30BB\u30B0\u6728\n// \u3057\u305F\u304C\u3063\u3066\u3001default_prod\
+    \ \u306E\u985E\u306F\u6301\u305F\u305B\u3089\u308C\u305A\u3001acted monoid \u3082\
+    \u4E00\u822C\u306B\u306F\u6271\u3048\u306A\u3044\n// \u6C38\u7D9A\u5316\u3057\u306A\
+    \u3044\u5834\u5408\u306E\u30CE\u30FC\u30C9\u6570\u3092 O(N) \u306B\u6291\u3048\
+    \u308B\u3053\u3068\u304C\u3067\u304D\u308B\u306E\u304C\u5229\u70B9\ntemplate <typename\
+    \ Monoid, bool PERSISTENT, int NODES>\nstruct Dynamic_SegTree_Sparse {\n  using\
+    \ MX = Monoid;\n  using X = typename MX::value_type;\n\n  struct Node {\n    ll\
+    \ idx;\n    Node *l, *r;\n    X prod, x;\n  };\n\n  const ll L0, R0;\n  Node *pool;\n\
+    \  int pid;\n  using np = Node *;\n\n  Dynamic_SegTree_Sparse(ll L0, ll R0) :\
+    \ L0(L0), R0(R0), pid(0) {\n    pool = new Node[NODES];\n  }\n\n  np new_root()\
+    \ { return nullptr; }\n\n  np new_node(ll idx, const X x) {\n    pool[pid].idx\
+    \ = idx;\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x = pool[pid].prod\
+    \ = x;\n    return &(pool[pid++]);\n  }\n\n  X prod(np root, ll l, ll r) {\n \
+    \   assert(L0 <= l && l <= r && r <= R0);\n    if (l == r) return MX::unit();\n\
+    \    X x = MX::unit();\n    prod_rec(root, L0, R0, l, r, x);\n    return x;\n\
+    \  }\n\n  X prod_all(np root) { return prod(root, L0, R0); }\n\n  np set(np root,\
+    \ ll i, const X &x) {\n    assert(L0 <= i && i < R0);\n    return set_rec(root,\
+    \ L0, R0, i, x);\n  }\n\n  np multiply(np root, ll i, const X &x) {\n    assert(L0\
+    \ <= i && i < R0);\n    return multiply_rec(root, L0, R0, i, x);\n  }\n\n  template\
+    \ <typename F>\n  ll max_right(np root, F check, ll L) {\n    assert(L0 <= L &&\
+    \ L <= R0 && check(MX::unit()));\n    X x = MX::unit();\n    return max_right_rec(root,\
+    \ check, L0, R0, L, x);\n  }\n\n  template <typename F>\n  ll min_left(np root,\
+    \ F check, ll R) {\n    assert(L0 <= R && R <= R0 && check(MX::unit()));\n   \
+    \ X x = MX::unit();\n    return min_left_rec(root, check, L0, R0, R, x);\n  }\n\
+    \n  void reset() { pid = 0; }\n\n  vc<pair<ll, X>> get_all(np root) {\n    vc<pair<ll,\
+    \ X>> res;\n    auto dfs = [&](auto &dfs, np c) -> void {\n      if (!c) return;\n\
+    \      dfs(dfs, c->l);\n      res.eb(c->idx, c->x);\n      dfs(dfs, c->r);\n \
+    \   };\n    dfs(dfs, root);\n    return res;\n  }\n\n  X get(np root, ll idx)\
+    \ {\n    auto dfs = [&](auto &dfs, np c) -> X {\n      if (!c) return Monoid::unit();\n\
+    \      if (idx == c->idx) return c->x;\n      if (idx < (c->idx)) return dfs(dfs,\
+    \ c->l);\n      return dfs(dfs, c->r);\n    };\n    return dfs(dfs, root);\n \
+    \ }\n\nprivate:\n  void update(np c) {\n    c->prod = c->x;\n    if (c->l) c->prod\
+    \ = MX::op(c->l->prod, c->prod);\n    if (c->r) c->prod = MX::op(c->prod, c->r->prod);\n\
+    \  }\n\n  np copy_node(np c) {\n    if (!c || !PERSISTENT) return c;\n    pool[pid].idx\
+    \ = c->idx;\n    pool[pid].l = c->l;\n    pool[pid].r = c->r;\n    pool[pid].x\
+    \ = c->x;\n    pool[pid].prod = c->prod;\n    return &(pool[pid++]);\n  }\n\n\
+    \  np set_rec(np c, ll l, ll r, ll i, X x) {\n    if (!c) {\n      c = new_node(i,\
     \ x);\n      return c;\n    }\n    c = copy_node(c);\n    if (c->idx == i) {\n\
     \      c->x = x;\n      update(c);\n      return c;\n    }\n    ll m = (l + r)\
     \ / 2;\n    if (i < m) {\n      if (c->idx < i) swap(c->idx, i), swap(c->x, x);\n\
@@ -294,7 +308,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 18:25:44+09:00'
+  timestamp: '2023-11-06 18:59:57+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
