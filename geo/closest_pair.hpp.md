@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':question:'
@@ -10,20 +10,20 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/hash_pair.hpp
     title: random/hash_pair.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_5_A.test.cpp
     title: test/aoj/CGL_5_A.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -40,9 +40,10 @@ data:
     \ { return x * other.y - y * other.x; }\n\n  double norm() { return sqrtl(x *\
     \ x + y * y); }\n  double angle() { return atan2(y, x); }\n\n  Point rotate(double\
     \ theta) {\n    static_assert(!is_integral<T>::value);\n    double c = cos(theta),\
-    \ s = sin(theta);\n    return Point{c * x - s * y, s * x + c * y};\n  }\n#ifdef\
-    \ FASTIO\n  void read() { fastio::read(x), fastio::read(y); }\n  void print()\
-    \ { fastio::wt(pair<T, T>({x, y})); }\n#endif\n};\n\n// A -> B -> C \u3068\u9032\
+    \ s = sin(theta);\n    return Point{c * x - s * y, s * x + c * y};\n  }\n};\n\n\
+    #ifdef FASTIO\ntemplate <typename T>\nvoid rd(Point<T>& p) {\n  fastio::rd(p.x),\
+    \ fastio::rd(p.y);\n}\ntemplate <typename T>\nvoid print(Point<T>& p) {\n  fastio::wt(p.x);\n\
+    \  fastio::wt(' ');\n  fastio::wt(p.y);\n}\n#endif\n\n// A -> B -> C \u3068\u9032\
     \u3080\u3068\u304D\u306B\u3001\u5DE6\u306B\u66F2\u304C\u308B\u306A\u3089\u3070\
     \ +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\u3089\u3070 -1\ntemplate <typename\
     \ T>\nint ccw(Point<T> A, Point<T> B, Point<T> C) {\n  T x = (B - A).det(C - A);\n\
@@ -158,8 +159,8 @@ data:
   isVerificationFile: false
   path: geo/closest_pair.hpp
   requiredBy: []
-  timestamp: '2023-11-06 21:03:26+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-11-07 00:08:42+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL_5_A.test.cpp
 documentation_of: geo/closest_pair.hpp
