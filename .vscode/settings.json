@@ -82,6 +82,7 @@
         "compare": "cpp",
         "concepts": "cpp",
         "coroutine": "cpp",
-        "stop_token": "cpp"
+        "stop_token": "cpp",
+        "tmp": "cpp"
     }
 }
