@@ -12,6 +12,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/2293.test.cpp
     title: test/yukicoder/2293.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2294.test.cpp
+    title: test/yukicoder/2294.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -37,6 +40,7 @@ data:
   verifiedWith:
   - test/yukicoder/1641.test.cpp
   - test/yukicoder/2293.test.cpp
+  - test/yukicoder/2294.test.cpp
   - test/yukicoder/1790.test.cpp
 documentation_of: alg/monoid/xor.hpp
 layout: document

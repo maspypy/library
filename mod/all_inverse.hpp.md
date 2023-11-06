@@ -5,7 +5,7 @@ data:
   - icon: ':x:'
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: mod/q_analogue.hpp
     title: mod/q_analogue.hpp
   - icon: ':x:'
@@ -48,6 +48,9 @@ data:
   - icon: ':x:'
     path: test/mytest/partial_frac.test.cpp
     title: test/mytest/partial_frac.test.cpp
+  - icon: ':x:'
+    path: test/mytest/qbinom.test.cpp
+    title: test/mytest/qbinom.test.cpp
   - icon: ':x:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
@@ -103,6 +106,7 @@ data:
   - test/yukicoder/2243.test.cpp
   - test/yukicoder/2166.test.cpp
   - test/mytest/partial_frac.test.cpp
+  - test/mytest/qbinom.test.cpp
   - test/mytest/vandermonde.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/chirp_z.test.cpp

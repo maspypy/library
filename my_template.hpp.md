@@ -84,118 +84,118 @@ data:
   - icon: ':x:'
     path: test/aoj/CGL_5_A.test.cpp
     title: test/aoj/CGL_5_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_B.test.cpp
     title: test/aoj/CGL_7_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_C.test.cpp
     title: test/aoj/CGL_7_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_1_B.test.cpp
     title: test/aoj/DPL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_1_D.test.cpp
     title: test/aoj/DPL_1_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_1_F.test.cpp
     title: test/aoj/DPL_1_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_1_H.test.cpp
     title: test/aoj/DPL_1_H.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_2_A.test.cpp
     title: test/aoj/DPL_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_3_B.test.cpp
     title: test/aoj/DPL_3_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_3_C.test.cpp
     title: test/aoj/DPL_3_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_4_B.test.cpp
     title: test/aoj/DPL_4_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_5_C.test.cpp
     title: test/aoj/DPL_5_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_1_B.test.cpp
     title: test/aoj/DSL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_C.test.cpp
     title: test/aoj/DSL_2_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_D.test.cpp
     title: test/aoj/DSL_2_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_E.test.cpp
     title: test/aoj/DSL_2_E.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_F.test.cpp
     title: test/aoj/DSL_2_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_G.test.cpp
     title: test/aoj/DSL_2_G.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_H.test.cpp
     title: test/aoj/DSL_2_H.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_I.test.cpp
     title: test/aoj/DSL_2_I.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_4_A.test.cpp
     title: test/aoj/DSL_4_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_B.test.cpp
     title: test/aoj/GRL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_C.test.cpp
     title: test/aoj/GRL_1_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_A.test.cpp
     title: test/aoj/GRL_3_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_B.test.cpp
     title: test/aoj/GRL_3_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_6_A.test.cpp
     title: test/aoj/GRL_6_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_6_B.test.cpp
     title: test/aoj/GRL_6_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ITP1_11_A.test.cpp
     title: test/aoj/ITP1_11_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ITP1_11_B.test.cpp
     title: test/aoj/ITP1_11_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ITP1_11_C.test.cpp
     title: test/aoj/ITP1_11_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ITP1_11_D.test.cpp
     title: test/aoj/ITP1_11_D.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/ITP1_9_A.test.cpp
     title: test/aoj/ITP1_9_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ITP1_D_D.test.cpp
     title: test/aoj/ITP1_D_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ITP2_11_D.test.cpp
     title: test/aoj/ITP2_11_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ITP2_3_B.test.cpp
     title: test/aoj/ITP2_3_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_1_D.test.cpp
     title: test/aoj/NTL_1_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_1_E.test.cpp
     title: test/aoj/NTL_1_E.test.cpp
   - icon: ':x:'
@@ -1075,6 +1075,9 @@ data:
     path: test/mytest/pytagorean_triples.test.cpp
     title: test/mytest/pytagorean_triples.test.cpp
   - icon: ':x:'
+    path: test/mytest/qbinom.test.cpp
+    title: test/mytest/qbinom.test.cpp
+  - icon: ':x:'
     path: test/mytest/range_closest_pair.test.cpp
     title: test/mytest/range_closest_pair.test.cpp
   - icon: ':x:'
@@ -1528,6 +1531,9 @@ data:
     path: test/yukicoder/1760.test.cpp
     title: test/yukicoder/1760.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/1769.test.cpp
+    title: test/yukicoder/1769.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/177.test.cpp
     title: test/yukicoder/177.test.cpp
   - icon: ':x:'
@@ -1728,6 +1734,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/2293.test.cpp
     title: test/yukicoder/2293.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2294.test.cpp
+    title: test/yukicoder/2294.test.cpp
   - icon: ':x:'
     path: test/yukicoder/2295.test.cpp
     title: test/yukicoder/2295.test.cpp
@@ -2495,6 +2504,8 @@ data:
   - test/yukicoder/1753.test.cpp
   - test/yukicoder/2360.test.cpp
   - test/yukicoder/1781.test.cpp
+  - test/yukicoder/2294.test.cpp
+  - test/yukicoder/1769.test.cpp
   - test/yukicoder/1400.test.cpp
   - test/yukicoder/2149.test.cpp
   - test/yukicoder/1618.test.cpp
@@ -2641,6 +2652,7 @@ data:
   - test/mytest/rbst_am.test.cpp
   - test/mytest/magic_square.test.cpp
   - test/mytest/sparse_pow_2d.test.cpp
+  - test/mytest/qbinom.test.cpp
   - test/mytest/graph_count.test.cpp
   - test/mytest/eulerian_number.test.cpp
   - test/mytest/prime_sum.test.cpp

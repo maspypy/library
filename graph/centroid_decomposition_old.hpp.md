@@ -10,6 +10,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: test/yukicoder/1769.test.cpp
+    title: test/yukicoder/1769.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1796.test.cpp
     title: test/yukicoder/1796.test.cpp
   _isVerificationFailed: true
@@ -188,6 +191,7 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1796.test.cpp
+  - test/yukicoder/1769.test.cpp
 documentation_of: graph/centroid_decomposition_old.hpp
 layout: document
 redirect_from:

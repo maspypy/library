@@ -4,25 +4,25 @@ data:
   - icon: ':x:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -264,53 +264,54 @@ data:
     \ umod = u32(mod);\n  static_assert(umod < u32(1) << 31);\n  u32 val;\n\n  static\
     \ modint raw(u32 v) {\n    modint x;\n    x.val = v;\n    return x;\n  }\n  constexpr\
     \ modint() : val(0) {}\n  constexpr modint(u32 x) : val(x % umod) {}\n  constexpr\
-    \ modint(u64 x) : val(x % umod) {}\n  constexpr modint(int x) : val((x %= mod)\
-    \ < 0 ? x + mod : x){};\n  constexpr modint(ll x) : val((x %= mod) < 0 ? x + mod\
-    \ : x){};\n  bool operator<(const modint &other) const { return val < other.val;\
-    \ }\n  modint &operator+=(const modint &p) {\n    if ((val += p.val) >= umod)\
-    \ val -= umod;\n    return *this;\n  }\n  modint &operator-=(const modint &p)\
-    \ {\n    if ((val += umod - p.val) >= umod) val -= umod;\n    return *this;\n\
-    \  }\n  modint &operator*=(const modint &p) {\n    val = u64(val) * p.val % umod;\n\
-    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
-    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint::raw(val\
-    \ ? mod - val : u32(0)); }\n  modint operator+(const modint &p) const { return\
-    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
-    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
-    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
-    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
-    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
-    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
-    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
-    \ return modint(u);\n  }\n  modint pow(ll n) const {\n    assert(n >= 0);\n  \
-    \  modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
-    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n\
-    \  void print() { fastio::wt(val); }\n  void read() {\n    ll x;\n    fastio::read(x);\n\
-    \    val = (x >= 0 ? x % mod : (mod - (-x) % mod) % mod);\n  }\n#endif\n  static\
-    \ constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n\
-    \ \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n    if (mod ==\
-    \ 167772161) return {25, 17};\n    if (mod == 469762049) return {26, 30};\n  \
-    \  if (mod == 754974721) return {24, 362};\n    if (mod == 880803841) return {23,\
-    \ 211};\n    if (mod == 943718401) return {22, 663003469};\n    if (mod == 998244353)\
-    \ return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod\
-    \ == 1051721729) return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n\
-    \    return {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi\
-    \ != -1; }\n};\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 2 \"graph/ds/tree_monoid.hpp\"\n\r\n#line 2 \"ds/segtree/segtree.hpp\"\n\
-    \ntemplate <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X =\
-    \ typename MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n, log,\
-    \ size;\n\n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename\
-    \ F>\n  SegTree(int n, F f) {\n    build(n, f);\n  }\n  SegTree(const vc<X>& v)\
-    \ { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return\
-    \ MX::unit(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int\
-    \ i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int m,\
-    \ F f) {\n    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1\
-    \ << log;\n    dat.assign(size << 1, MX::unit());\n    FOR(i, n) dat[size + i]\
-    \ = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n  X get(int i) { return dat[size\
-    \ + i]; }\n  vc<X> get_all() { return {dat.begin() + size, dat.begin() + size\
-    \ + n}; }\n\n  void update(int i) { dat[i] = Monoid::op(dat[2 * i], dat[2 * i\
-    \ + 1]); }\n  void set(int i, const X& x) {\n    assert(i < n);\n    dat[i +=\
-    \ size] = x;\n    while (i >>= 1) update(i);\n  }\n\n  void multiply(int i, const\
-    \ X& x) {\n    assert(i < n);\n    i += size;\n    dat[i] = Monoid::op(dat[i],\
+    \ modint(u64 x) : val(x % umod) {}\n  constexpr modint(u128 x) : val(x % umod)\
+    \ {}\n  constexpr modint(int x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr\
+    \ modint(ll x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(i128\
+    \ x) : val((x %= mod) < 0 ? x + mod : x){};\n  bool operator<(const modint &other)\
+    \ const { return val < other.val; }\n  modint &operator+=(const modint &p) {\n\
+    \    if ((val += p.val) >= umod) val -= umod;\n    return *this;\n  }\n  modint\
+    \ &operator-=(const modint &p) {\n    if ((val += umod - p.val) >= umod) val -=\
+    \ umod;\n    return *this;\n  }\n  modint &operator*=(const modint &p) {\n   \
+    \ val = u64(val) * p.val % umod;\n    return *this;\n  }\n  modint &operator/=(const\
+    \ modint &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n  modint operator-()\
+    \ const { return modint::raw(val ? mod - val : u32(0)); }\n  modint operator+(const\
+    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
+    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
+    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
+    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
+    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
+    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
+    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
+    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
+    \  assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if\
+    \ (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
+    \  }\n#ifdef FASTIO\n  void print() { fastio::wt(val); }\n  void read() {\n  \
+    \  ll x;\n    fastio::read(x);\n    val = (x >= 0 ? x % mod : (mod - (-x) % mod)\
+    \ % mod);\n  }\n#endif\n  static constexpr int get_mod() { return mod; }\n  //\
+    \ (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int>\
+    \ ntt_info() {\n    if (mod == 167772161) return {25, 17};\n    if (mod == 469762049)\
+    \ return {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod ==\
+    \ 880803841) return {23, 211};\n    if (mod == 943718401) return {22, 663003469};\n\
+    \    if (mod == 998244353) return {23, 31};\n    if (mod == 1045430273) return\
+    \ {20, 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881)\
+    \ return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt()\
+    \ { return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\n#line 2 \"graph/ds/tree_monoid.hpp\"\n\r\
+    \n#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct SegTree\
+    \ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  using value_type\
+    \ = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() {}\n  SegTree(int n)\
+    \ { build(n); }\n  template <typename F>\n  SegTree(int n, F f) {\n    build(n,\
+    \ f);\n  }\n  SegTree(const vc<X>& v) { build(v); }\n\n  void build(int m) {\n\
+    \    build(m, [](int i) -> X { return MX::unit(); });\n  }\n  void build(const\
+    \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
+    \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1\
+    \ << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, MX::unit());\n\
+    \    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n\
+    \  X get(int i) { return dat[size + i]; }\n  vc<X> get_all() { return {dat.begin()\
+    \ + size, dat.begin() + size + n}; }\n\n  void update(int i) { dat[i] = Monoid::op(dat[2\
+    \ * i], dat[2 * i + 1]); }\n  void set(int i, const X& x) {\n    assert(i < n);\n\
+    \    dat[i += size] = x;\n    while (i >>= 1) update(i);\n  }\n\n  void multiply(int\
+    \ i, const X& x) {\n    assert(i < n);\n    i += size;\n    dat[i] = Monoid::op(dat[i],\
     \ x);\n    while (i >>= 1) update(i);\n  }\n\n  X prod(int L, int R) {\n    assert(0\
     \ <= L && L <= R && R <= n);\n    X vl = Monoid::unit(), vr = Monoid::unit();\n\
     \    L += size, R += size;\n    while (L < R) {\n      if (L & 1) vl = Monoid::op(vl,\
@@ -565,7 +566,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 21:58:56+09:00'
+  timestamp: '2023-11-06 22:12:25+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp

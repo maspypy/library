@@ -10,10 +10,10 @@ data:
   - icon: ':x:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -325,52 +325,53 @@ data:
     \ umod = u32(mod);\n  static_assert(umod < u32(1) << 31);\n  u32 val;\n\n  static\
     \ modint raw(u32 v) {\n    modint x;\n    x.val = v;\n    return x;\n  }\n  constexpr\
     \ modint() : val(0) {}\n  constexpr modint(u32 x) : val(x % umod) {}\n  constexpr\
-    \ modint(u64 x) : val(x % umod) {}\n  constexpr modint(int x) : val((x %= mod)\
-    \ < 0 ? x + mod : x){};\n  constexpr modint(ll x) : val((x %= mod) < 0 ? x + mod\
-    \ : x){};\n  bool operator<(const modint &other) const { return val < other.val;\
-    \ }\n  modint &operator+=(const modint &p) {\n    if ((val += p.val) >= umod)\
-    \ val -= umod;\n    return *this;\n  }\n  modint &operator-=(const modint &p)\
-    \ {\n    if ((val += umod - p.val) >= umod) val -= umod;\n    return *this;\n\
-    \  }\n  modint &operator*=(const modint &p) {\n    val = u64(val) * p.val % umod;\n\
-    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
-    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint::raw(val\
-    \ ? mod - val : u32(0)); }\n  modint operator+(const modint &p) const { return\
-    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
-    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
-    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
-    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
-    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
-    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
-    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
-    \ return modint(u);\n  }\n  modint pow(ll n) const {\n    assert(n >= 0);\n  \
-    \  modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
-    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n\
-    \  void print() { fastio::wt(val); }\n  void read() {\n    ll x;\n    fastio::read(x);\n\
-    \    val = (x >= 0 ? x % mod : (mod - (-x) % mod) % mod);\n  }\n#endif\n  static\
-    \ constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n\
-    \ \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n    if (mod ==\
-    \ 167772161) return {25, 17};\n    if (mod == 469762049) return {26, 30};\n  \
-    \  if (mod == 754974721) return {24, 362};\n    if (mod == 880803841) return {23,\
-    \ 211};\n    if (mod == 943718401) return {22, 663003469};\n    if (mod == 998244353)\
-    \ return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod\
-    \ == 1051721729) return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n\
-    \    return {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi\
-    \ != -1; }\n};\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 8 \"test_atcoder/abc314f.test.cpp\"\n\nusing mint = modint998;\n\nvoid solve()\
-    \ {\n  LL(N);\n  vc<pair<int, int>> query;\n  FOR(N - 1) {\n    LL(a, b);\n  \
-    \  query.eb(--a, --b);\n  }\n\n  auto G = tree_of_unionfind(N, query, false);\n\
-    \  int root = N + N - 2;\n  vc<int> sz(N + N - 1);\n\n  {\n    auto dfs = [&](auto&\
-    \ dfs, int v) -> void {\n      if (0 <= v && v < N) sz[v]++;\n      for (auto&&\
-    \ e: G[v]) {\n        dfs(dfs, e.to);\n        sz[v] += sz[e.to];\n      }\n \
-    \   };\n    dfs(dfs, root);\n  }\n\n  vc<mint> dp(N + N - 1);\n  {\n    auto dfs\
-    \ = [&](auto& dfs, int v) -> void {\n      if (v < N) return;\n      vc<int> ch;\n\
-    \      for (auto&& e: G[v]) ch.eb(e.to);\n      assert(len(ch) == 2);\n      int\
-    \ s = ch[0], t = ch[1];\n      ll a = sz[s], b = sz[t];\n      mint ps = mint(a)\
-    \ / mint(a + b);\n      mint qs = mint(1) - ps;\n      dp[s] += dp[v] + ps;\n\
-    \      dp[t] += dp[v] + qs;\n      dfs(dfs, s);\n      dfs(dfs, t);\n    };\n\
-    \    dfs(dfs, root);\n  }\n  // print(sz);\n  dp.resize(N);\n  print(dp);\n}\n\
-    \nsigned main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n\
-    }\n"
+    \ modint(u64 x) : val(x % umod) {}\n  constexpr modint(u128 x) : val(x % umod)\
+    \ {}\n  constexpr modint(int x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr\
+    \ modint(ll x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(i128\
+    \ x) : val((x %= mod) < 0 ? x + mod : x){};\n  bool operator<(const modint &other)\
+    \ const { return val < other.val; }\n  modint &operator+=(const modint &p) {\n\
+    \    if ((val += p.val) >= umod) val -= umod;\n    return *this;\n  }\n  modint\
+    \ &operator-=(const modint &p) {\n    if ((val += umod - p.val) >= umod) val -=\
+    \ umod;\n    return *this;\n  }\n  modint &operator*=(const modint &p) {\n   \
+    \ val = u64(val) * p.val % umod;\n    return *this;\n  }\n  modint &operator/=(const\
+    \ modint &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n  modint operator-()\
+    \ const { return modint::raw(val ? mod - val : u32(0)); }\n  modint operator+(const\
+    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
+    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
+    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
+    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
+    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
+    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
+    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
+    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
+    \  assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if\
+    \ (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
+    \  }\n#ifdef FASTIO\n  void print() { fastio::wt(val); }\n  void read() {\n  \
+    \  ll x;\n    fastio::read(x);\n    val = (x >= 0 ? x % mod : (mod - (-x) % mod)\
+    \ % mod);\n  }\n#endif\n  static constexpr int get_mod() { return mod; }\n  //\
+    \ (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int>\
+    \ ntt_info() {\n    if (mod == 167772161) return {25, 17};\n    if (mod == 469762049)\
+    \ return {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod ==\
+    \ 880803841) return {23, 211};\n    if (mod == 943718401) return {22, 663003469};\n\
+    \    if (mod == 998244353) return {23, 31};\n    if (mod == 1045430273) return\
+    \ {20, 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881)\
+    \ return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt()\
+    \ { return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\n#line 8 \"test_atcoder/abc314f.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  vc<pair<int, int>>\
+    \ query;\n  FOR(N - 1) {\n    LL(a, b);\n    query.eb(--a, --b);\n  }\n\n  auto\
+    \ G = tree_of_unionfind(N, query, false);\n  int root = N + N - 2;\n  vc<int>\
+    \ sz(N + N - 1);\n\n  {\n    auto dfs = [&](auto& dfs, int v) -> void {\n    \
+    \  if (0 <= v && v < N) sz[v]++;\n      for (auto&& e: G[v]) {\n        dfs(dfs,\
+    \ e.to);\n        sz[v] += sz[e.to];\n      }\n    };\n    dfs(dfs, root);\n \
+    \ }\n\n  vc<mint> dp(N + N - 1);\n  {\n    auto dfs = [&](auto& dfs, int v) ->\
+    \ void {\n      if (v < N) return;\n      vc<int> ch;\n      for (auto&& e: G[v])\
+    \ ch.eb(e.to);\n      assert(len(ch) == 2);\n      int s = ch[0], t = ch[1];\n\
+    \      ll a = sz[s], b = sz[t];\n      mint ps = mint(a) / mint(a + b);\n    \
+    \  mint qs = mint(1) - ps;\n      dp[s] += dp[v] + ps;\n      dp[t] += dp[v] +\
+    \ qs;\n      dfs(dfs, s);\n      dfs(dfs, t);\n    };\n    dfs(dfs, root);\n \
+    \ }\n  // print(sz);\n  dp.resize(N);\n  print(dp);\n}\n\nsigned main() {\n  int\
+    \ T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc314/tasks/abc314_f\"\n\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/tree_of_unionfind.hpp\"\
     \n#include \"mod/modint.hpp\"\n\nusing mint = modint998;\n\nvoid solve() {\n \
@@ -398,7 +399,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc314f.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 21:58:56+09:00'
+  timestamp: '2023-11-06 22:12:25+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc314f.test.cpp

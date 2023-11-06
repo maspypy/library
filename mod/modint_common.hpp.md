@@ -50,10 +50,10 @@ data:
   - icon: ':x:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: mod/q_analogue.hpp
     title: mod/q_analogue.hpp
   - icon: ':warning:'
@@ -243,7 +243,7 @@ data:
     path: string/wildcard_pattern_matching.hpp
     title: string/wildcard_pattern_matching.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_5_C.test.cpp
     title: test/aoj/DPL_5_C.test.cpp
   - icon: ':x:'
@@ -622,6 +622,9 @@ data:
     path: test/mytest/product_of_one_pm_xn.test.cpp
     title: test/mytest/product_of_one_pm_xn.test.cpp
   - icon: ':x:'
+    path: test/mytest/qbinom.test.cpp
+    title: test/mytest/qbinom.test.cpp
+  - icon: ':x:'
     path: test/mytest/rbst_commutative_persistent.test.cpp
     title: test/mytest/rbst_commutative_persistent.test.cpp
   - icon: ':x:'
@@ -871,6 +874,9 @@ data:
     path: test/yukicoder/2293.test.cpp
     title: test/yukicoder/2293.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/2294.test.cpp
+    title: test/yukicoder/2294.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/2295.test.cpp
     title: test/yukicoder/2295.test.cpp
   - icon: ':x:'
@@ -1061,7 +1067,7 @@ data:
     title: test_atcoder/arc162f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -1221,7 +1227,7 @@ data:
   - linalg/implicit_matrix/vandermonde.hpp
   - string/wildcard_pattern_matching.hpp
   timestamp: '2023-11-01 19:15:19+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1549.test.cpp
   - test/yukicoder/1600.test.cpp
@@ -1267,6 +1273,7 @@ data:
   - test/yukicoder/1753.test.cpp
   - test/yukicoder/2360.test.cpp
   - test/yukicoder/1781.test.cpp
+  - test/yukicoder/2294.test.cpp
   - test/yukicoder/2149.test.cpp
   - test/yukicoder/1618.test.cpp
   - test/yukicoder/2003.test.cpp
@@ -1325,6 +1332,7 @@ data:
   - test/mytest/bell.test.cpp
   - test/mytest/pascal.test.cpp
   - test/mytest/sparse_pow_2d.test.cpp
+  - test/mytest/qbinom.test.cpp
   - test/mytest/graph_count.test.cpp
   - test/mytest/eulerian_number.test.cpp
   - test/mytest/prime_sum.test.cpp

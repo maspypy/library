@@ -29,7 +29,7 @@ data:
   - icon: ':x:'
     path: geo/dynamicupperhull.hpp
     title: geo/dynamicupperhull.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/incircle.hpp
     title: geo/incircle.hpp
   - icon: ':x:'
@@ -41,7 +41,7 @@ data:
   - icon: ':x:'
     path: geo/minimum_enclosing_circle.hpp
     title: geo/minimum_enclosing_circle.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
   - icon: ':x:'
@@ -78,10 +78,10 @@ data:
   - icon: ':x:'
     path: test/aoj/CGL_5_A.test.cpp
     title: test/aoj/CGL_5_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_B.test.cpp
     title: test/aoj/CGL_7_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_C.test.cpp
     title: test/aoj/CGL_7_C.test.cpp
   - icon: ':x:'

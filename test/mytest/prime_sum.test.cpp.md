@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -13,7 +13,7 @@ data:
   - icon: ':x:'
     path: nt/primesum.hpp
     title: nt/primesum.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   - icon: ':question:'
@@ -279,56 +279,57 @@ data:
     \ umod = u32(mod);\n  static_assert(umod < u32(1) << 31);\n  u32 val;\n\n  static\
     \ modint raw(u32 v) {\n    modint x;\n    x.val = v;\n    return x;\n  }\n  constexpr\
     \ modint() : val(0) {}\n  constexpr modint(u32 x) : val(x % umod) {}\n  constexpr\
-    \ modint(u64 x) : val(x % umod) {}\n  constexpr modint(int x) : val((x %= mod)\
-    \ < 0 ? x + mod : x){};\n  constexpr modint(ll x) : val((x %= mod) < 0 ? x + mod\
-    \ : x){};\n  bool operator<(const modint &other) const { return val < other.val;\
-    \ }\n  modint &operator+=(const modint &p) {\n    if ((val += p.val) >= umod)\
-    \ val -= umod;\n    return *this;\n  }\n  modint &operator-=(const modint &p)\
-    \ {\n    if ((val += umod - p.val) >= umod) val -= umod;\n    return *this;\n\
-    \  }\n  modint &operator*=(const modint &p) {\n    val = u64(val) * p.val % umod;\n\
-    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
-    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint::raw(val\
-    \ ? mod - val : u32(0)); }\n  modint operator+(const modint &p) const { return\
-    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
-    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
-    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
-    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
-    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
-    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
-    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
-    \ return modint(u);\n  }\n  modint pow(ll n) const {\n    assert(n >= 0);\n  \
-    \  modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
-    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n\
-    \  void print() { fastio::wt(val); }\n  void read() {\n    ll x;\n    fastio::read(x);\n\
-    \    val = (x >= 0 ? x % mod : (mod - (-x) % mod) % mod);\n  }\n#endif\n  static\
-    \ constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n\
-    \ \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n    if (mod ==\
-    \ 167772161) return {25, 17};\n    if (mod == 469762049) return {26, 30};\n  \
-    \  if (mod == 754974721) return {24, 362};\n    if (mod == 880803841) return {23,\
-    \ 211};\n    if (mod == 943718401) return {22, 663003469};\n    if (mod == 998244353)\
-    \ return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod\
-    \ == 1051721729) return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n\
-    \    return {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi\
-    \ != -1; }\n};\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 8 \"test/mytest/prime_sum.test.cpp\"\n\nvoid test_count() {\n  vc<int> A(1000);\n\
-    \  for (auto&& p: primetable(1000)) { A[p]++; }\n  A = cumsum<int>(A, 0);\n\n\
-    \  FOR(N, 1000) {\n    PrimeSum<int> X(N);\n    X.calc_count();\n    FOR(K, 1,\
-    \ N + 10) { assert(X[N / K] == A[N / K]); }\n  }\n\n  vc<ll> TEN(13);\n  TEN[0]\
-    \ = 1;\n  FOR(i, 12) TEN[i + 1] = TEN[i] * 10;\n\n  ll N = TEN[12];\n  PrimeSum<ll>\
-    \ X(N);\n  X.calc_count();\n  assert(X[TEN[0]] == 0);\n  assert(X[TEN[1]] == 4);\n\
-    \  assert(X[TEN[2]] == 25);\n  assert(X[TEN[3]] == 168);\n  assert(X[TEN[4]] ==\
-    \ 1229);\n  assert(X[TEN[5]] == 9592);\n  assert(X[TEN[6]] == 78498);\n  assert(X[TEN[7]]\
-    \ == 664579);\n  assert(X[TEN[8]] == 5761455);\n  assert(X[TEN[9]] == 50847534);\n\
-    \  assert(X[TEN[10]] == 455052511);\n  assert(X[TEN[11]] == 4118054813);\n  assert(X[TEN[12]]\
-    \ == 37607912018);\n}\n\nvoid test_sum() {\n  vc<int> A(1000);\n  for (auto&&\
-    \ p: primetable(1000)) { A[p] += p; }\n  A = cumsum<int>(A, 0);\n\n  FOR(N, 1000)\
-    \ {\n    PrimeSum<int> X(N);\n    X.calc_sum();\n    FOR(K, 1, N + 10) { assert(X[N\
-    \ / K] == A[N / K]); }\n  }\n\n  vc<ll> TEN(13);\n  TEN[0] = 1;\n  FOR(i, 12)\
-    \ TEN[i + 1] = TEN[i] * 10;\n\n  using mint = modint998;\n  ll N = TEN[12];\n\
-    \  PrimeSum<mint> X(N);\n  X.calc_sum();\n\n  auto f = [&](string S) -> mint {\n\
-    \    mint x = 0;\n    for (auto&& s: S) { x = x * mint(10) + mint(s - '0'); }\n\
-    \    return x;\n  };\n\n  assert(X[TEN[0]] == f(\"0\"));\n  assert(X[TEN[1]] ==\
-    \ f(\"17\"));\n  assert(X[TEN[2]] == f(\"1060\"));\n  assert(X[TEN[3]] == f(\"\
+    \ modint(u64 x) : val(x % umod) {}\n  constexpr modint(u128 x) : val(x % umod)\
+    \ {}\n  constexpr modint(int x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr\
+    \ modint(ll x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(i128\
+    \ x) : val((x %= mod) < 0 ? x + mod : x){};\n  bool operator<(const modint &other)\
+    \ const { return val < other.val; }\n  modint &operator+=(const modint &p) {\n\
+    \    if ((val += p.val) >= umod) val -= umod;\n    return *this;\n  }\n  modint\
+    \ &operator-=(const modint &p) {\n    if ((val += umod - p.val) >= umod) val -=\
+    \ umod;\n    return *this;\n  }\n  modint &operator*=(const modint &p) {\n   \
+    \ val = u64(val) * p.val % umod;\n    return *this;\n  }\n  modint &operator/=(const\
+    \ modint &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n  modint operator-()\
+    \ const { return modint::raw(val ? mod - val : u32(0)); }\n  modint operator+(const\
+    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
+    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
+    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
+    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
+    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
+    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
+    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
+    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
+    \  assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if\
+    \ (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
+    \  }\n#ifdef FASTIO\n  void print() { fastio::wt(val); }\n  void read() {\n  \
+    \  ll x;\n    fastio::read(x);\n    val = (x >= 0 ? x % mod : (mod - (-x) % mod)\
+    \ % mod);\n  }\n#endif\n  static constexpr int get_mod() { return mod; }\n  //\
+    \ (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int>\
+    \ ntt_info() {\n    if (mod == 167772161) return {25, 17};\n    if (mod == 469762049)\
+    \ return {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod ==\
+    \ 880803841) return {23, 211};\n    if (mod == 943718401) return {22, 663003469};\n\
+    \    if (mod == 998244353) return {23, 31};\n    if (mod == 1045430273) return\
+    \ {20, 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881)\
+    \ return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt()\
+    \ { return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\n#line 8 \"test/mytest/prime_sum.test.cpp\"\
+    \n\nvoid test_count() {\n  vc<int> A(1000);\n  for (auto&& p: primetable(1000))\
+    \ { A[p]++; }\n  A = cumsum<int>(A, 0);\n\n  FOR(N, 1000) {\n    PrimeSum<int>\
+    \ X(N);\n    X.calc_count();\n    FOR(K, 1, N + 10) { assert(X[N / K] == A[N /\
+    \ K]); }\n  }\n\n  vc<ll> TEN(13);\n  TEN[0] = 1;\n  FOR(i, 12) TEN[i + 1] = TEN[i]\
+    \ * 10;\n\n  ll N = TEN[12];\n  PrimeSum<ll> X(N);\n  X.calc_count();\n  assert(X[TEN[0]]\
+    \ == 0);\n  assert(X[TEN[1]] == 4);\n  assert(X[TEN[2]] == 25);\n  assert(X[TEN[3]]\
+    \ == 168);\n  assert(X[TEN[4]] == 1229);\n  assert(X[TEN[5]] == 9592);\n  assert(X[TEN[6]]\
+    \ == 78498);\n  assert(X[TEN[7]] == 664579);\n  assert(X[TEN[8]] == 5761455);\n\
+    \  assert(X[TEN[9]] == 50847534);\n  assert(X[TEN[10]] == 455052511);\n  assert(X[TEN[11]]\
+    \ == 4118054813);\n  assert(X[TEN[12]] == 37607912018);\n}\n\nvoid test_sum()\
+    \ {\n  vc<int> A(1000);\n  for (auto&& p: primetable(1000)) { A[p] += p; }\n \
+    \ A = cumsum<int>(A, 0);\n\n  FOR(N, 1000) {\n    PrimeSum<int> X(N);\n    X.calc_sum();\n\
+    \    FOR(K, 1, N + 10) { assert(X[N / K] == A[N / K]); }\n  }\n\n  vc<ll> TEN(13);\n\
+    \  TEN[0] = 1;\n  FOR(i, 12) TEN[i + 1] = TEN[i] * 10;\n\n  using mint = modint998;\n\
+    \  ll N = TEN[12];\n  PrimeSum<mint> X(N);\n  X.calc_sum();\n\n  auto f = [&](string\
+    \ S) -> mint {\n    mint x = 0;\n    for (auto&& s: S) { x = x * mint(10) + mint(s\
+    \ - '0'); }\n    return x;\n  };\n\n  assert(X[TEN[0]] == f(\"0\"));\n  assert(X[TEN[1]]\
+    \ == f(\"17\"));\n  assert(X[TEN[2]] == f(\"1060\"));\n  assert(X[TEN[3]] == f(\"\
     76127\"));\n  assert(X[TEN[4]] == f(\"5736396\"));\n  assert(X[TEN[5]] == f(\"\
     454396537\"));\n  assert(X[TEN[6]] == f(\"37550402023\"));\n  assert(X[TEN[7]]\
     \ == f(\"3203324994356\"));\n  assert(X[TEN[8]] == f(\"279209790387276\"));\n\
@@ -376,7 +377,7 @@ data:
   isVerificationFile: true
   path: test/mytest/prime_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 21:58:56+09:00'
+  timestamp: '2023-11-06 22:12:25+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/prime_sum.test.cpp
