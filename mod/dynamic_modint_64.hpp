@@ -78,7 +78,7 @@ struct Dynamic_Modint_64 {
     return lhs.val != rhs.val;
   }
 #ifdef FASTIO
-  void write() { fastio::wt(val); }
+  void print() { fastio::wt(val); }
   void read() {
     ll x;
     fastio::read(x);
