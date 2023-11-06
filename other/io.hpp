@@ -31,7 +31,7 @@ struct has_print_method {
 };
 
 template <typename T>
-typename enable_if<has_read_method<T>::value, void>::type rd(T x) {
+typename enable_if<has_read_method<T>::value, void>::type rd(T &x) {
   x.read();
 }
 
@@ -64,17 +64,19 @@ inline void flush() {
   por = 0;
 }
 
-// read non-space character
-void rd_c(char &c) {
-  if (pil + 1 > pir) load();
-  c = ibuf[pil++];
-}
-
 void rd(string &x) {
   x.clear();
   char c;
-  do { rd_c(c); } while (isspace(c));
-  do { x += c, rd_c(c); } while (!isspace(c));
+  do {
+    if (pil + 1 > pir) load();
+    c = ibuf[pil++];
+  } while (isspace(c));
+  do {
+    x += c;
+    if (pil == pir) load();
+    if (pil == pir) break;
+    c = ibuf[pil++];
+  } while (!isspace(c));
 }
 
 template <typename T>
@@ -148,6 +150,10 @@ void wt(const char c) {
 }
 void wt(const string &s) {
   for (char c: s) wt(c);
+}
+void wt(const char *s) {
+  size_t len = strlen(s);
+  for (size_t i = 0; i < len; i++) wt(s[i]);
 }
 
 template <typename T>

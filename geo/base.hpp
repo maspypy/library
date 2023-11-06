@@ -36,7 +36,7 @@ struct Point {
   }
 #ifdef FASTIO
   void read() { fastio::read(x), fastio::read(y); }
-  void write() { fastio::wt(pair<T, T>({x, y})); }
+  void print() { fastio::wt(pair<T, T>({x, y})); }
 #endif
 };
 
