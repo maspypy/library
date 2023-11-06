@@ -161,6 +161,7 @@ void wt_real(T x) {
   wt(s);
 }
 
+void wt(bool x) { wt_integer(int(x)); }
 void wt(int x) { wt_integer(x); }
 void wt(ll x) { wt_integer(x); }
 void wt(i128 x) { wt_integer(x); }
