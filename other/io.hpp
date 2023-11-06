@@ -31,7 +31,10 @@ void __attribute__((constructor)) _c() {
       = (char *)mmap(0, sb.st_size, PROT_READ, MAP_SHARED | MAP_POPULATE, 0, 0);
 }
 
-void flush() { write(1, obuf, obufi), obufi = 0; }
+void flush() {
+  assert(write(1, obuf, obufi) == obufi);
+  obufi = 0;
+}
 
 void rd(char &c) { c = *ibuf++; }
 void rd(string &x) {
