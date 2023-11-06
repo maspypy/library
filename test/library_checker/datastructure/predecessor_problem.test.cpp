@@ -11,7 +11,7 @@ void solve() {
     if (S[x] == '1') ss.insert(x);
   }
 
-  FOR(_, Q) {
+  FOR(Q) {
     LL(t, k);
     if (t == 0) { ss.insert(k); }
     elif (t == 1) { ss.erase(k); }
@@ -26,10 +26,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
   solve();
 
   return 0;
