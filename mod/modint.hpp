@@ -15,8 +15,10 @@ struct modint {
   constexpr modint() : val(0) {}
   constexpr modint(u32 x) : val(x % umod) {}
   constexpr modint(u64 x) : val(x % umod) {}
+  constexpr modint(u128 x) : val(x % umod) {}
   constexpr modint(int x) : val((x %= mod) < 0 ? x + mod : x){};
   constexpr modint(ll x) : val((x %= mod) < 0 ? x + mod : x){};
+  constexpr modint(i128 x) : val((x %= mod) < 0 ? x + mod : x){};
   bool operator<(const modint &other) const { return val < other.val; }
   modint &operator+=(const modint &p) {
     if ((val += p.val) >= umod) val -= umod;
