@@ -1,67 +1,66 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc256d.test.cpp
     title: test_atcoder/abc256d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc256ex.test.cpp
     title: test_atcoder/abc256ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc256ex2.test.cpp
     title: test_atcoder/abc256ex2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/1638/problem/E
-  bundledCode: "#line 1 \"ds/fastset.hpp\"\n/* 64\u5206\u6728\u3002\r\ninsert, erase\r\
-    \n[]\u3067\u306E\u5B58\u5728\u5224\u5B9A\r\nnext, prev\r\n*/\r\nstruct FastSet\
-    \ {\r\n  using uint = unsigned;\r\n  using ull = unsigned long long;\r\n\r\n \
-    \ int bsr(ull x) { return 63 - __builtin_clzll(x); }\r\n  int bsf(ull x) { return\
-    \ __builtin_ctzll(x); }\r\n\r\n  static constexpr uint B = 64;\r\n  int n, lg;\r\
-    \n  vector<vector<ull>> seg;\r\n  FastSet(int _n) : n(_n) {\r\n    do {\r\n  \
-    \    seg.push_back(vector<ull>((_n + B - 1) / B));\r\n      _n = (_n + B - 1)\
-    \ / B;\r\n    } while (_n > 1);\r\n    lg = int(seg.size());\r\n  }\r\n  bool\
-    \ operator[](int i) const { return (seg[0][i / B] >> (i % B) & 1) != 0; }\r\n\
-    \  void insert(int i) {\r\n    for (int h = 0; h < lg; h++) {\r\n      seg[h][i\
-    \ / B] |= 1ULL << (i % B);\r\n      i /= B;\r\n    }\r\n  }\r\n  void add(int\
-    \ i) { insert(i); }\r\n  void erase(int i) {\r\n    for (int h = 0; h < lg; h++)\
-    \ {\r\n      seg[h][i / B] &= ~(1ULL << (i % B));\r\n      if (seg[h][i / B])\
-    \ break;\r\n      i /= B;\r\n    }\r\n  }\r\n  void remove(int i) { erase(i);\
-    \ }\r\n\r\n  // x\u4EE5\u4E0A\u6700\u5C0F\u306E\u8981\u7D20\u3092\u8FD4\u3059\u3002\
-    \u5B58\u5728\u3057\u306A\u3051\u308C\u3070 n\u3002\r\n  int next(int i) {\r\n\
-    \    chmax(i, 0);\r\n    if (i >= n) return n;\r\n    for (int h = 0; h < lg;\
-    \ h++) {\r\n      if (i / B == seg[h].size()) break;\r\n      ull d = seg[h][i\
-    \ / B] >> (i % B);\r\n      if (!d) {\r\n        i = i / B + 1;\r\n        continue;\r\
-    \n      }\r\n      // find\r\n      i += bsf(d);\r\n      for (int g = h - 1;\
-    \ g >= 0; g--) {\r\n        i *= B;\r\n        i += bsf(seg[g][i / B]);\r\n  \
-    \    }\r\n      return i;\r\n    }\r\n    return n;\r\n  }\r\n\r\n  // x\u4EE5\
-    \u4E0B\u6700\u5927\u306E\u8981\u7D20\u3092\u8FD4\u3059\u3002\u5B58\u5728\u3057\
-    \u306A\u3051\u308C\u3070 -1\u3002\r\n  int prev(int i) {\r\n    if (i < 0) return\
-    \ -1;\r\n    if (i >= n) i = n - 1;\r\n    for (int h = 0; h < lg; h++) {\r\n\
-    \      if (i == -1) break;\r\n      ull d = seg[h][i / B] << (63 - i % 64);\r\n\
-    \      if (!d) {\r\n        i = i / B - 1;\r\n        continue;\r\n      }\r\n\
-    \      // find\r\n      i += bsr(d) - (B - 1);\r\n      for (int g = h - 1; g\
-    \ >= 0; g--) {\r\n        i *= B;\r\n        i += bsr(seg[g][i / B]);\r\n    \
-    \  }\r\n      return i;\r\n    }\r\n    return -1;\r\n  }\r\n\r\n  // [l, r)\r\
-    \n  template <typename F>\r\n  void enumerate(int l, int r, F f) {\r\n    int\
-    \ x = l - 1;\r\n    while (1) {\r\n      x = next(x + 1);\r\n      if (x >= r)\
-    \ break;\r\n      f(x);\r\n    }\r\n  }\r\n\r\n  void debug() {\r\n    string\
-    \ s;\r\n    for (int i = 0; i < n; ++i) s += ((*this)[i] ? '1' : '0');\r\n   \
-    \ print(s);\r\n  }\r\n};\r\n#line 2 \"ds/intervals.hpp\"\n\n// FastSet \u3067\u9AD8\
-    \u901F\u5316\u3057\u305F\u3082\u306E\ntemplate <typename T>\nstruct Intervals_Fast\
-    \ {\n  const int LLIM, RLIM;\n  const T none_val;\n  // none_val \u3067\u306A\u3044\
-    \u533A\u9593\u306E\u500B\u6570\u3068\u9577\u3055\u5408\u8A08\n  int total_num;\n\
-    \  int total_len;\n  vc<T> dat;\n  FastSet ss;\n\n  Intervals_Fast(int N, T none_val)\n\
-    \      : LLIM(0),\n        RLIM(N),\n        none_val(none_val),\n        total_num(0),\n\
-    \        total_len(0),\n        dat(N, none_val),\n        ss(N) {\n    ss.insert(0);\n\
+  bundledCode: "#line 1 \"ds/fastset.hpp\"\n// 64-ary tree\r\n// space: (N/63) * u64\r\
+    \nstruct FastSet {\r\n  static constexpr u32 B = 64;\r\n  int n, log;\r\n  vvc<u64>\
+    \ seg;\r\n\r\n  FastSet() {}\r\n  FastSet(int n) { build(n); }\r\n\r\n  template\
+    \ <typename F>\r\n  FastSet(int n, F f) {\r\n    build(n, f);\r\n  }\r\n\r\n \
+    \ void build(int m) {\r\n    seg.clear();\r\n    n = m;\r\n    do {\r\n      seg.push_back(vc<u64>((m\
+    \ + B - 1) / B));\r\n      m = (m + B - 1) / B;\r\n    } while (m > 1);\r\n  \
+    \  log = len(seg);\r\n  }\r\n  template <typename F>\r\n  void build(int n, F\
+    \ f) {\r\n    build(n);\r\n    FOR(i, n) { seg[0][i / B] |= u64(f(i)) << (i %\
+    \ B); }\r\n    FOR(h, log - 1) {\r\n      FOR(i, len(seg[h])) {\r\n        seg[h\
+    \ + 1][i / B] |= u64(bool(seg[h][i])) << (i % B);\r\n      }\r\n    }\r\n  }\r\
+    \n\r\n  bool operator[](int i) const { return seg[0][i / B] >> (i % B) & 1; }\r\
+    \n  void insert(int i) {\r\n    for (int h = 0; h < log; h++) {\r\n      seg[h][i\
+    \ / B] |= u64(1) << (i % B), i /= B;\r\n    }\r\n  }\r\n  void add(int i) { insert(i);\
+    \ }\r\n  void erase(int i) {\r\n    u64 x = 0;\r\n    for (int h = 0; h < log;\
+    \ h++) {\r\n      seg[h][i / B] &= ~(u64(1) << (i % B));\r\n      seg[h][i / B]\
+    \ |= x << (i % B);\r\n      x = bool(seg[h][i / B]);\r\n      i /= B;\r\n    }\r\
+    \n  }\r\n  void remove(int i) { erase(i); }\r\n\r\n  // min[x,n) or n\r\n  int\
+    \ next(int i) {\r\n    assert(i < n);\r\n    chmax(i, 0);\r\n    for (int h =\
+    \ 0; h < log; h++) {\r\n      if (i / B == seg[h].size()) break;\r\n      u64\
+    \ d = seg[h][i / B] >> (i % B);\r\n      if (!d) {\r\n        i = i / B + 1;\r\
+    \n        continue;\r\n      }\r\n      i += lowbit(d);\r\n      for (int g =\
+    \ h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += lowbit(seg[g][i / B]);\r\
+    \n      }\r\n      return i;\r\n    }\r\n    return n;\r\n  }\r\n\r\n  // max\
+    \ [0,x], or -1\r\n  int prev(int i) {\r\n    assert(i >= 0);\r\n    if (i >= n)\
+    \ i = n - 1;\r\n    for (int h = 0; h < log; h++) {\r\n      if (i == -1) break;\r\
+    \n      u64 d = seg[h][i / B] << (63 - i % B);\r\n      if (!d) {\r\n        i\
+    \ = i / B - 1;\r\n        continue;\r\n      }\r\n      i -= __builtin_clzll(d);\r\
+    \n      for (int g = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i +=\
+    \ topbit(seg[g][i / B]);\r\n      }\r\n      return i;\r\n    }\r\n    return\
+    \ -1;\r\n  }\r\n\r\n  // [l, r)\r\n  template <typename F>\r\n  void enumerate(int\
+    \ l, int r, F f) {\r\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\r\
+    \n  }\r\n\r\n  string to_string() {\r\n    string s(n, '?');\r\n    for (int i\
+    \ = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\r\n    return s;\r\n  }\r\n\
+    };\n#line 2 \"ds/intervals.hpp\"\n\n// FastSet \u3067\u9AD8\u901F\u5316\u3057\u305F\
+    \u3082\u306E\ntemplate <typename T>\nstruct Intervals_Fast {\n  const int LLIM,\
+    \ RLIM;\n  const T none_val;\n  // none_val \u3067\u306A\u3044\u533A\u9593\u306E\
+    \u500B\u6570\u3068\u9577\u3055\u5408\u8A08\n  int total_num;\n  int total_len;\n\
+    \  vc<T> dat;\n  FastSet ss;\n\n  Intervals_Fast(int N, T none_val)\n      : LLIM(0),\n\
+    \        RLIM(N),\n        none_val(none_val),\n        total_num(0),\n      \
+    \  total_len(0),\n        dat(N, none_val),\n        ss(N) {\n    ss.insert(0);\n\
     \  }\n\n  // x \u3092\u542B\u3080\u533A\u9593\u306E\u60C5\u5831\u306E\u53D6\u5F97\
     \ l, r, t\n  tuple<int, int, T> get(int x, bool ERASE) {\n    int l = ss.prev(x);\n\
     \    int r = ss.next(x + 1);\n    T t = dat[l];\n    if (t != none_val && ERASE)\
@@ -194,8 +193,8 @@ data:
   isVerificationFile: false
   path: ds/intervals.hpp
   requiredBy: []
-  timestamp: '2023-08-13 11:37:00+05:30'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-11-06 14:40:18+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc256ex.test.cpp
   - test_atcoder/abc256d.test.cpp

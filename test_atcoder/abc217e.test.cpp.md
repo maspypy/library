@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/sortable_array.hpp
     title: ds/sortable_array.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc217/tasks/abc217_e
@@ -103,210 +103,184 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\
-    \n#include <unistd.h>\r\n\r\nnamespace fastio {\r\n#define FASTIO\r\nstruct has_write_impl\
-    \ {\r\n  template <class T>\r\n  static auto check(T &&x) -> decltype(x.write(),\
-    \ std::true_type{});\r\n\r\n  template <class T>\r\n  static auto check(...) ->\
-    \ std::false_type;\r\n};\r\n\r\ntemplate <class T>\r\nclass has_write : public\
-    \ decltype(has_write_impl::check<T>(std::declval<T>())) {\r\n};\r\n\r\nstruct\
-    \ has_read_impl {\r\n  template <class T>\r\n  static auto check(T &&x) -> decltype(x.read(),\
-    \ std::true_type{});\r\n\r\n  template <class T>\r\n  static auto check(...) ->\
-    \ std::false_type;\r\n};\r\n\r\ntemplate <class T>\r\nclass has_read : public\
-    \ decltype(has_read_impl::check<T>(std::declval<T>())) {};\r\n\r\nstruct Scanner\
-    \ {\r\n  FILE *fp;\r\n  char line[(1 << 15) + 1];\r\n  size_t st = 0, ed = 0;\r\
-    \n  void reread() {\r\n    memmove(line, line + st, ed - st);\r\n    ed -= st;\r\
-    \n    st = 0;\r\n    ed += fread(line + ed, 1, (1 << 15) - ed, fp);\r\n    line[ed]\
-    \ = '\\0';\r\n  }\r\n  bool succ() {\r\n    while (true) {\r\n      if (st ==\
-    \ ed) {\r\n        reread();\r\n        if (st == ed) return false;\r\n      }\r\
-    \n      while (st != ed && isspace(line[st])) st++;\r\n      if (st != ed) break;\r\
-    \n    }\r\n    if (ed - st <= 50) {\r\n      bool sep = false;\r\n      for (size_t\
-    \ i = st; i < ed; i++) {\r\n        if (isspace(line[i])) {\r\n          sep =\
-    \ true;\r\n          break;\r\n        }\r\n      }\r\n      if (!sep) reread();\r\
-    \n    }\r\n    return true;\r\n  }\r\n  template <class T, enable_if_t<is_same<T,\
-    \ string>::value, int> = 0>\r\n  bool read_single(T &ref) {\r\n    if (!succ())\
-    \ return false;\r\n    while (true) {\r\n      size_t sz = 0;\r\n      while (st\
-    \ + sz < ed && !isspace(line[st + sz])) sz++;\r\n      ref.append(line + st, sz);\r\
-    \n      st += sz;\r\n      if (!sz || st != ed) break;\r\n      reread();\r\n\
-    \    }\r\n    return true;\r\n  }\r\n  template <class T, enable_if_t<is_integral<T>::value,\
-    \ int> = 0>\r\n  bool read_single(T &ref) {\r\n    if (!succ()) return false;\r\
-    \n    bool neg = false;\r\n    if (line[st] == '-') {\r\n      neg = true;\r\n\
-    \      st++;\r\n    }\r\n    ref = T(0);\r\n    while (isdigit(line[st])) { ref\
-    \ = 10 * ref + (line[st++] & 0xf); }\r\n    if (neg) ref = -ref;\r\n    return\
-    \ true;\r\n  }\r\n  template <typename T,\r\n            typename enable_if<has_read<T>::value>::type\
-    \ * = nullptr>\r\n  inline bool read_single(T &x) {\r\n    x.read();\r\n    return\
-    \ true;\r\n  }\r\n  bool read_single(double &ref) {\r\n    string s;\r\n    if\
-    \ (!read_single(s)) return false;\r\n    ref = std::stod(s);\r\n    return true;\r\
-    \n  }\r\n  bool read_single(char &ref) {\r\n    string s;\r\n    if (!read_single(s)\
-    \ || s.size() != 1) return false;\r\n    ref = s[0];\r\n    return true;\r\n \
-    \ }\r\n  template <class T>\r\n  bool read_single(vector<T> &ref) {\r\n    for\
-    \ (auto &d: ref) {\r\n      if (!read_single(d)) return false;\r\n    }\r\n  \
-    \  return true;\r\n  }\r\n  template <class T, class U>\r\n  bool read_single(pair<T,\
-    \ U> &p) {\r\n    return (read_single(p.first) && read_single(p.second));\r\n\
-    \  }\r\n  template <size_t N = 0, typename T>\r\n  void read_single_tuple(T &t)\
-    \ {\r\n    if constexpr (N < std::tuple_size<T>::value) {\r\n      auto &x = std::get<N>(t);\r\
-    \n      read_single(x);\r\n      read_single_tuple<N + 1>(t);\r\n    }\r\n  }\r\
-    \n  template <class... T>\r\n  bool read_single(tuple<T...> &tpl) {\r\n    read_single_tuple(tpl);\r\
-    \n    return true;\r\n  }\r\n  void read() {}\r\n  template <class H, class...\
-    \ T>\r\n  void read(H &h, T &... t) {\r\n    bool f = read_single(h);\r\n    assert(f);\r\
-    \n    read(t...);\r\n  }\r\n  Scanner(FILE *fp) : fp(fp) {}\r\n};\r\n\r\nstruct\
-    \ Printer {\r\n  Printer(FILE *_fp) : fp(_fp) {}\r\n  ~Printer() { flush(); }\r\
-    \n\r\n  static constexpr size_t SIZE = 1 << 15;\r\n  FILE *fp;\r\n  char line[SIZE],\
-    \ small[50];\r\n  size_t pos = 0;\r\n  void flush() {\r\n    fwrite(line, 1, pos,\
-    \ fp);\r\n    pos = 0;\r\n  }\r\n  void write(const char val) {\r\n    if (pos\
-    \ == SIZE) flush();\r\n    line[pos++] = val;\r\n  }\r\n  template <class T, enable_if_t<is_integral<T>::value,\
-    \ int> = 0>\r\n  void write(T val) {\r\n    if (pos > (1 << 15) - 50) flush();\r\
-    \n    if (val == 0) {\r\n      write('0');\r\n      return;\r\n    }\r\n    if\
-    \ (val < 0) {\r\n      write('-');\r\n      val = -val; // todo min\r\n    }\r\
-    \n    size_t len = 0;\r\n    while (val) {\r\n      small[len++] = char(0x30 |\
-    \ (val % 10));\r\n      val /= 10;\r\n    }\r\n    for (size_t i = 0; i < len;\
-    \ i++) { line[pos + i] = small[len - 1 - i]; }\r\n    pos += len;\r\n  }\r\n \
-    \ void write(const string s) {\r\n    for (char c: s) write(c);\r\n  }\r\n  void\
-    \ write(const char *s) {\r\n    size_t len = strlen(s);\r\n    for (size_t i =\
-    \ 0; i < len; i++) write(s[i]);\r\n  }\r\n  void write(const double x) {\r\n \
-    \   ostringstream oss;\r\n    oss << fixed << setprecision(15) << x;\r\n    string\
-    \ s = oss.str();\r\n    write(s);\r\n  }\r\n  void write(const long double x)\
-    \ {\r\n    ostringstream oss;\r\n    oss << fixed << setprecision(15) << x;\r\n\
-    \    string s = oss.str();\r\n    write(s);\r\n  }\r\n  template <typename T,\r\
-    \n            typename enable_if<has_write<T>::value>::type * = nullptr>\r\n \
-    \ inline void write(T x) {\r\n    x.write();\r\n  }\r\n  template <class T>\r\n\
-    \  void write(const vector<T> val) {\r\n    auto n = val.size();\r\n    for (size_t\
-    \ i = 0; i < n; i++) {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\n\
-    \    }\r\n  }\r\n  template <class T, class U>\r\n  void write(const pair<T, U>\
-    \ val) {\r\n    write(val.first);\r\n    write(' ');\r\n    write(val.second);\r\
-    \n  }\r\n  template <size_t N = 0, typename T>\r\n  void write_tuple(const T t)\
-    \ {\r\n    if constexpr (N < std::tuple_size<T>::value) {\r\n      if constexpr\
-    \ (N > 0) { write(' '); }\r\n      const auto x = std::get<N>(t);\r\n      write(x);\r\
-    \n      write_tuple<N + 1>(t);\r\n    }\r\n  }\r\n  template <class... T>\r\n\
-    \  bool write(tuple<T...> tpl) {\r\n    write_tuple(tpl);\r\n    return true;\r\
-    \n  }\r\n  template <class T, size_t S>\r\n  void write(const array<T, S> val)\
-    \ {\r\n    auto n = val.size();\r\n    for (size_t i = 0; i < n; i++) {\r\n  \
-    \    if (i) write(' ');\r\n      write(val[i]);\r\n    }\r\n  }\r\n  void write(i128\
-    \ val) {\r\n    string s;\r\n    bool negative = 0;\r\n    if (val < 0) {\r\n\
-    \      negative = 1;\r\n      val = -val;\r\n    }\r\n    while (val) {\r\n  \
-    \    s += '0' + int(val % 10);\r\n      val /= 10;\r\n    }\r\n    if (negative)\
-    \ s += \"-\";\r\n    reverse(all(s));\r\n    if (len(s) == 0) s = \"0\";\r\n \
-    \   write(s);\r\n  }\r\n};\r\nScanner scanner = Scanner(stdin);\r\nPrinter printer\
-    \ = Printer(stdout);\r\nvoid flush() { printer.flush(); }\r\nvoid print() { printer.write('\\\
-    n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head, Tail\
-    \ &&... tail) {\r\n  printer.write(head);\r\n  if (sizeof...(Tail)) printer.write('\
-    \ ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\nvoid read() {}\r\ntemplate\
-    \ <class Head, class... Tail>\r\nvoid read(Head &head, Tail &... tail) {\r\n \
-    \ scanner.read(head);\r\n  read(tail...);\r\n}\r\n} // namespace fastio\r\nusing\
-    \ fastio::print;\r\nusing fastio::flush;\r\nusing fastio::read;\r\n\r\n#define\
-    \ INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)\
-    \   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)    \
-    \  \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
-    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
-    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
-    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
-    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
-    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
-    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
-    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
-    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 5 \"test_atcoder/abc217e.test.cpp\"\n\n#line 1 \"ds/fastset.hpp\"\
-    \n/* 64\u5206\u6728\u3002\r\ninsert, erase\r\n[]\u3067\u306E\u5B58\u5728\u5224\
-    \u5B9A\r\nnext, prev\r\n*/\r\nstruct FastSet {\r\n  using uint = unsigned;\r\n\
-    \  using ull = unsigned long long;\r\n\r\n  int bsr(ull x) { return 63 - __builtin_clzll(x);\
-    \ }\r\n  int bsf(ull x) { return __builtin_ctzll(x); }\r\n\r\n  static constexpr\
-    \ uint B = 64;\r\n  int n, lg;\r\n  vector<vector<ull>> seg;\r\n  FastSet(int\
-    \ _n) : n(_n) {\r\n    do {\r\n      seg.push_back(vector<ull>((_n + B - 1) /\
-    \ B));\r\n      _n = (_n + B - 1) / B;\r\n    } while (_n > 1);\r\n    lg = int(seg.size());\r\
-    \n  }\r\n  bool operator[](int i) const { return (seg[0][i / B] >> (i % B) & 1)\
-    \ != 0; }\r\n  void insert(int i) {\r\n    for (int h = 0; h < lg; h++) {\r\n\
-    \      seg[h][i / B] |= 1ULL << (i % B);\r\n      i /= B;\r\n    }\r\n  }\r\n\
-    \  void add(int i) { insert(i); }\r\n  void erase(int i) {\r\n    for (int h =\
-    \ 0; h < lg; h++) {\r\n      seg[h][i / B] &= ~(1ULL << (i % B));\r\n      if\
-    \ (seg[h][i / B]) break;\r\n      i /= B;\r\n    }\r\n  }\r\n  void remove(int\
-    \ i) { erase(i); }\r\n\r\n  // x\u4EE5\u4E0A\u6700\u5C0F\u306E\u8981\u7D20\u3092\
-    \u8FD4\u3059\u3002\u5B58\u5728\u3057\u306A\u3051\u308C\u3070 n\u3002\r\n  int\
-    \ next(int i) {\r\n    chmax(i, 0);\r\n    if (i >= n) return n;\r\n    for (int\
-    \ h = 0; h < lg; h++) {\r\n      if (i / B == seg[h].size()) break;\r\n      ull\
+    \  return B;\n}\n#endif\n#line 1 \"other/io.hpp\"\n#include <unistd.h>\r\n#include\
+    \ <sys/mman.h>\r\n#include <sys/stat.h>\r\n\r\nnamespace fastio {\r\n// https://judge.yosupo.jp/submission/21623\r\
+    \n// https://judge.yosupo.jp/submission/70667\r\n\r\nstruct Pre {\r\n  char num[10000][4];\r\
+    \n  constexpr Pre() : num() {\r\n    for (int i = 0; i < 10000; i++) {\r\n   \
+    \   int n = i;\r\n      for (int j = 3; j >= 0; j--) {\r\n        num[i][j] =\
+    \ n % 10 | '0';\r\n        n /= 10;\r\n      }\r\n    }\r\n  }\r\n} constexpr\
+    \ pre;\r\n\r\nconstexpr int BSZ = 1 << 19;\r\nchar *ibuf, obuf[BSZ], out[100];\r\
+    \nint outi, obufi;\r\n\r\n// gcc expansion. called automaticall before main.\r\
+    \nvoid __attribute__((constructor)) _c() {\r\n  struct stat sb;\r\n  fstat(0,\
+    \ &sb);\r\n  ibuf\r\n      = (char *)mmap(0, sb.st_size, PROT_READ, MAP_SHARED\
+    \ | MAP_POPULATE, 0, 0);\r\n}\r\n\r\nvoid flush() { write(1, obuf, obufi), obufi\
+    \ = 0; }\r\n\r\nvoid rd(char &c) { c = *ibuf++; }\r\nvoid rd(string &x) {\r\n\
+    \  x.clear();\r\n  char c;\r\n  do { rd(c); } while (isspace(c));\r\n  do { x\
+    \ += c, rd(c); } while (!isspace(c));\r\n}\r\n\r\ntemplate <typename T>\r\nvoid\
+    \ rd_integer(T &x) {\r\n  char c;\r\n  do\r\n    rd(c);\r\n  while (c < '-');\r\
+    \n  bool minus = 0;\r\n  if constexpr (is_signed<T>::value || is_same_v<T, i128>)\
+    \ {\r\n    if (c == '-') { minus = 1, rd(c); }\r\n  }\r\n  x = 0;\r\n  while (c\
+    \ >= '0') { x = x * 10 + (c & 15), rd(c); }\r\n  if constexpr (is_signed<T>::value\
+    \ || is_same_v<T, i128>) {\r\n    if (minus) x = -x;\r\n  }\r\n}\r\n\r\ntemplate\
+    \ <typename T>\r\nvoid rd_real(T &x) {\r\n  string s;\r\n  rd(s);\r\n  x = stod(s);\r\
+    \n}\r\n\r\nvoid rd(int &x) { rd_integer(x); }\r\nvoid rd(ll &x) { rd_integer(x);\
+    \ }\r\nvoid rd(i128 &x) { rd_integer(x); }\r\nvoid rd(u32 &x) { rd_integer(x);\
+    \ }\r\nvoid rd(u64 &x) { rd_integer(x); }\r\nvoid rd(u128 &x) { rd_integer(x);\
+    \ }\r\nvoid rd(double &x) { rd_real(x); }\r\nvoid rd(long double &x) { rd_real(x);\
+    \ }\r\nvoid rd(f128 &x) { rd_real(x); }\r\ntemplate <class T>\r\nvoid rd(vc<T>\
+    \ &x) {\r\n  for (auto &d: x) rd(d);\r\n}\r\ntemplate <size_t N = 0, typename\
+    \ T>\r\nvoid rd(array<T, N> &x) {\r\n  for (auto &d: x) rd(d);\r\n}\r\ntemplate\
+    \ <class T, class U>\r\nvoid rd(pair<T, U> &p) {\r\n  return rd(p.first), rd(p.second);\r\
+    \n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd(T &t) {\r\n  if constexpr\
+    \ (N < std::tuple_size<T>::value) {\r\n    auto &x = std::get<N>(t);\r\n    rd(x);\r\
+    \n    rd<N + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...>\
+    \ &tpl) {\r\n  rd(tpl);\r\n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class...\
+    \ T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const\
+    \ char c) {\r\n  if (obufi == BSZ) flush();\r\n  obuf[obufi++] = c;\r\n}\r\nvoid\
+    \ wt(const string &s) {\r\n  for (char c: s) wt(c);\r\n}\r\n\r\ntemplate <typename\
+    \ T>\r\nvoid wt_integer(T x) {\r\n  if (obufi > BSZ - 100) flush();\r\n  if (x\
+    \ < 0) { obuf[obufi++] = '-', x = -x; }\r\n  for (outi = 96; x >= 10000; outi\
+    \ -= 4) {\r\n    memcpy(out + outi, pre.num[x % 10000], 4);\r\n    x /= 10000;\r\
+    \n  }\r\n  if (x >= 1000) {\r\n    memcpy(obuf + obufi, pre.num[x], 4);\r\n  \
+    \  obufi += 4;\r\n  } else if (x >= 100) {\r\n    memcpy(obuf + obufi, pre.num[x]\
+    \ + 1, 3);\r\n    obufi += 3;\r\n  } else if (x >= 10) {\r\n    int q = (x * 103)\
+    \ >> 10;\r\n    obuf[obufi] = q | '0';\r\n    obuf[obufi + 1] = (x - q * 10) |\
+    \ '0';\r\n    obufi += 2;\r\n  } else\r\n    obuf[obufi++] = x | '0';\r\n  memcpy(obuf\
+    \ + obufi, out + outi + 4, 96 - outi);\r\n  obufi += 96 - outi;\r\n}\r\n\r\ntemplate\
+    \ <typename T>\r\nvoid wt_real(T x) {\r\n  ostringstream oss;\r\n  oss << fixed\
+    \ << setprecision(15) << double(x);\r\n  string s = oss.str();\r\n  wt(s);\r\n\
+    }\r\n\r\nvoid wt(int x) { wt_integer(x); }\r\nvoid wt(ll x) { wt_integer(x); }\r\
+    \nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\n\
+    void wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\nvoid\
+    \ wt(double x) { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\nvoid\
+    \ wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class T>\r\nvoid wt(const vector<T>\
+    \ val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n \
+    \   if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\ntemplate <class T, class\
+    \ U>\r\nvoid wt(const pair<T, U> val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n\
+    \  wt(val.second);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const\
+    \ T t) {\r\n  if constexpr (N < std::tuple_size<T>::value) {\r\n    if constexpr\
+    \ (N > 0) { wt(' '); }\r\n    const auto x = std::get<N>(t);\r\n    wt(x);\r\n\
+    \    wt_tuple<N + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid wt(tuple<T...>\
+    \ tpl) {\r\n  wt_tuple(tpl);\r\n}\r\ntemplate <class T, size_t S>\r\nvoid wt(const\
+    \ array<T, S> val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n;\
+    \ i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\n\r\nvoid print()\
+    \ { wt('\\n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head,\
+    \ Tail &&... tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail)) wt(' ');\r\n  print(forward<Tail>(tail)...);\r\
+    \n}\r\n\r\n// gcc expansion. called automaticall after main.\r\nvoid __attribute__((destructor))\
+    \ _d() { flush(); }\r\n} // namespace fastio\r\n\r\nusing fastio::read;\r\nusing\
+    \ fastio::print;\r\nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int\
+    \ __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__;\
+    \ \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n  string __VA_ARGS__;\
+    \ \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\
+    \r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n  double __VA_ARGS__; \\\
+    \r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name, size) \\\r\n  vector<type>\
+    \ name(size);    \\\r\n  read(name)\r\n#define VV(type, name, h, w)          \
+    \           \\\r\n  vector<vector<type>> name(h, vector<type>(w)); \\\r\n  read(name)\r\
+    \n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t\
+    \ = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\
+    \nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\"\
+    \ : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\n#line 5 \"test_atcoder/abc217e.test.cpp\"\
+    \n\n#line 1 \"ds/fastset.hpp\"\n// 64-ary tree\r\n// space: (N/63) * u64\r\nstruct\
+    \ FastSet {\r\n  static constexpr u32 B = 64;\r\n  int n, log;\r\n  vvc<u64> seg;\r\
+    \n\r\n  FastSet() {}\r\n  FastSet(int n) { build(n); }\r\n\r\n  template <typename\
+    \ F>\r\n  FastSet(int n, F f) {\r\n    build(n, f);\r\n  }\r\n\r\n  void build(int\
+    \ m) {\r\n    seg.clear();\r\n    n = m;\r\n    do {\r\n      seg.push_back(vc<u64>((m\
+    \ + B - 1) / B));\r\n      m = (m + B - 1) / B;\r\n    } while (m > 1);\r\n  \
+    \  log = len(seg);\r\n  }\r\n  template <typename F>\r\n  void build(int n, F\
+    \ f) {\r\n    build(n);\r\n    FOR(i, n) { seg[0][i / B] |= u64(f(i)) << (i %\
+    \ B); }\r\n    FOR(h, log - 1) {\r\n      FOR(i, len(seg[h])) {\r\n        seg[h\
+    \ + 1][i / B] |= u64(bool(seg[h][i])) << (i % B);\r\n      }\r\n    }\r\n  }\r\
+    \n\r\n  bool operator[](int i) const { return seg[0][i / B] >> (i % B) & 1; }\r\
+    \n  void insert(int i) {\r\n    for (int h = 0; h < log; h++) {\r\n      seg[h][i\
+    \ / B] |= u64(1) << (i % B), i /= B;\r\n    }\r\n  }\r\n  void add(int i) { insert(i);\
+    \ }\r\n  void erase(int i) {\r\n    u64 x = 0;\r\n    for (int h = 0; h < log;\
+    \ h++) {\r\n      seg[h][i / B] &= ~(u64(1) << (i % B));\r\n      seg[h][i / B]\
+    \ |= x << (i % B);\r\n      x = bool(seg[h][i / B]);\r\n      i /= B;\r\n    }\r\
+    \n  }\r\n  void remove(int i) { erase(i); }\r\n\r\n  // min[x,n) or n\r\n  int\
+    \ next(int i) {\r\n    assert(i < n);\r\n    chmax(i, 0);\r\n    for (int h =\
+    \ 0; h < log; h++) {\r\n      if (i / B == seg[h].size()) break;\r\n      u64\
     \ d = seg[h][i / B] >> (i % B);\r\n      if (!d) {\r\n        i = i / B + 1;\r\
-    \n        continue;\r\n      }\r\n      // find\r\n      i += bsf(d);\r\n    \
-    \  for (int g = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += bsf(seg[g][i\
-    \ / B]);\r\n      }\r\n      return i;\r\n    }\r\n    return n;\r\n  }\r\n\r\n\
-    \  // x\u4EE5\u4E0B\u6700\u5927\u306E\u8981\u7D20\u3092\u8FD4\u3059\u3002\u5B58\
-    \u5728\u3057\u306A\u3051\u308C\u3070 -1\u3002\r\n  int prev(int i) {\r\n    if\
-    \ (i < 0) return -1;\r\n    if (i >= n) i = n - 1;\r\n    for (int h = 0; h <\
-    \ lg; h++) {\r\n      if (i == -1) break;\r\n      ull d = seg[h][i / B] << (63\
-    \ - i % 64);\r\n      if (!d) {\r\n        i = i / B - 1;\r\n        continue;\r\
-    \n      }\r\n      // find\r\n      i += bsr(d) - (B - 1);\r\n      for (int g\
-    \ = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += bsr(seg[g][i / B]);\r\
-    \n      }\r\n      return i;\r\n    }\r\n    return -1;\r\n  }\r\n\r\n  // [l,\
-    \ r)\r\n  template <typename F>\r\n  void enumerate(int l, int r, F f) {\r\n \
-    \   int x = l - 1;\r\n    while (1) {\r\n      x = next(x + 1);\r\n      if (x\
-    \ >= r) break;\r\n      f(x);\r\n    }\r\n  }\r\n\r\n  void debug() {\r\n    string\
-    \ s;\r\n    for (int i = 0; i < n; ++i) s += ((*this)[i] ? '1' : '0');\r\n   \
-    \ print(s);\r\n  }\r\n};\r\n#line 2 \"ds/sortable_array.hpp\"\n\n// int \u5217\
-    \u3092\u6271\u3046. key \u306E\u91CD\u8907\u53EF.\ntemplate <int NODES>\nstruct\
-    \ Sortable_Array {\n  const int N, KEY_MAX;\n\n  struct Node {\n    int size;\n\
-    \    Node *l, *r;\n  };\n  Node* pool;\n  int pid;\n  using np = Node*;\n\n  FastSet\
-    \ ss;      // \u533A\u9593\u306E\u5DE6\u7AEF\u5168\u4F53\u3092\u8868\u3059 fastset\n\
-    \  vector<np> root; // \u533A\u9593\u306E\u5DE6\u7AEF\u306B\u3001dynamic segtree\
-    \ \u306E node \u3092\u4E57\u305B\u308B\n  vector<bool> rev;\n\n  Sortable_Array(int\
-    \ KEY_MAX, vector<int> key)\n      : N(key.size()), KEY_MAX(KEY_MAX), pid(0),\
-    \ ss(key.size()) {\n    pool = new Node[NODES];\n    init(key);\n  }\n\n  void\
-    \ set(int i, int key) {\n    assert(0 <= key && key < KEY_MAX);\n    split_at(i),\
-    \ split_at(i + 1);\n    rev[i] = 0, root[i] = new_node(0);\n    set_rec(root[i],\
-    \ 0, KEY_MAX, key);\n  }\n\n  void sort_inc(int l, int r) {\n    if (l == r) return;\n\
-    \    split_at(l), split_at(r);\n    while (1) {\n      if (pid > NODES * 0.9)\
-    \ rebuild();\n      np c = root[l];\n      int i = ss.next(l + 1);\n      if (i\
-    \ == r) break;\n      root[l] = merge(0, KEY_MAX, c, root[i]);\n      ss.erase(i);\n\
-    \    }\n    rev[l] = 0;\n  };\n\n  void sort_dec(int l, int r) {\n    if (l ==\
-    \ r) return;\n    if (pid > NODES * 0.9) rebuild();\n    sort_inc(l, r), rev[l]\
-    \ = 1;\n  };\n\n  vc<int> get_all() {\n    vector<int> key;\n    key.reserve(N);\n\
-    \    auto dfs = [&](auto& dfs, np n, int l, int r, bool rev) -> void {\n     \
-    \ if (!n || !n->size) return;\n      if (r == l + 1) {\n        FOR(n->size) key.eb(l);\n\
-    \        return;\n      }\n      int m = (l + r) / 2;\n      if (!rev) { dfs(dfs,\
-    \ n->l, l, m, rev), dfs(dfs, n->r, m, r, rev); }\n      if (rev) { dfs(dfs, n->r,\
-    \ m, r, rev), dfs(dfs, n->l, l, m, rev); }\n    };\n    for (int i = 0; i < N;\
-    \ ++i) {\n      if (ss[i]) dfs(dfs, root[i], 0, KEY_MAX, rev[i]);\n    }\n   \
-    \ return key;\n  }\n\n  int get(int idx) {\n    auto dfs = [&](auto& dfs, np n,\
-    \ int l, int r, int k) -> int {\n      if (r == l + 1) { return l; }\n      int\
-    \ m = (l + r) / 2;\n      int s = (n->l ? n->l->size : 0);\n      if (k < s) return\
-    \ dfs(dfs, n->l, l, m, k);\n      return dfs(dfs, n->r, m, r, k - s);\n    };\n\
-    \    int i = ss.prev(idx);\n    int k = idx - i;\n    int s = root[i]->size;\n\
-    \    if (rev[i]) k = s - 1 - k;\n    return dfs(dfs, root[i], 0, KEY_MAX, k);\n\
-    \  }\n\nprivate:\n  void init(vector<int>& key) {\n    rev.assign(N, 0), root.clear(),\
-    \ root.reserve(N);\n    for (int i = 0; i < N; ++i) {\n      ss.insert(i);\n \
-    \     root.eb(new_node(0));\n      assert(key[i] < KEY_MAX);\n      set_rec(root[i],\
-    \ 0, KEY_MAX, key[i]);\n    }\n  }\n\n  // x \u304C\u5DE6\u7AEF\u306B\u306A\u308B\
-    \u3088\u3046\u306B\u3059\u308B\n  void split_at(int x) {\n    if (x == N || ss[x])\
-    \ return;\n    int a = ss.prev(x), b = ss.next(a + 1);\n    ss.insert(x);\n  \
-    \  if (!rev[a]) {\n      auto [nl, nr] = split(root[a], 0, KEY_MAX, x - a);\n\
-    \      root[a] = nl, root[x] = nr;\n      rev[a] = rev[x] = 0;\n    } else {\n\
-    \      auto [nl, nr] = split(root[a], 0, KEY_MAX, b - x);\n      root[a] = nr,\
-    \ root[x] = nl;\n      rev[a] = rev[x] = 1;\n    }\n  }\n\n  void rebuild() {\n\
-    \    auto key = get_all();\n    pid = 0;\n    init(key);\n  }\n\n  np new_node(int\
-    \ size) {\n    assert(pid < NODES);\n    pool[pid].l = pool[pid].r = nullptr;\n\
-    \    pool[pid].size = size;\n    return &(pool[pid++]);\n  }\n\n  pair<np, np>\
-    \ split(np n, int l, int r, int k) {\n    if (k == 0) { return {nullptr, n}; }\n\
-    \    if (k == n->size) { return {n, nullptr}; }\n    if (r == l + 1) {\n     \
-    \ int s = n->size;\n      n->size = k;\n      Node* b = new_node(s - k);\n   \
-    \   return {n, b};\n    }\n    int s = (n->l ? n->l->size : 0);\n    Node* b =\
-    \ new_node(0);\n    int m = (l + r) / 2;\n    if (k <= s) {\n      auto [nl, nr]\
-    \ = split(n->l, l, m, k);\n      b->l = nr, b->r = n->r, n->l = nl, n->r = nullptr;\n\
-    \    }\n    if (k > s) {\n      auto [nl, nr] = split(n->r, m, r, k - s);\n  \
-    \    n->l = n->l, n->r = nl, b->l = nullptr, b->r = nr;\n    }\n    update(n),\
-    \ update(b);\n    return {n, b};\n  }\n\n  np merge(int l, int r, np a, np b)\
-    \ {\n    if (!a) return b;\n    if (!b) return a;\n    if (r == l + 1) {\n   \
-    \   a->size += b->size;\n      return a;\n    }\n    int m = (l + r) / 2;\n  \
-    \  a->l = merge(l, m, a->l, b->l), a->r = merge(m, r, a->r, b->r);\n    update(a);\n\
-    \    return a;\n  }\n\n  void update(np n) {\n    if (!(n->l) && !(n->r)) { return;\
-    \ }\n    if (!(n->l)) {\n      n->size = n->r->size;\n      return;\n    }\n \
-    \   if (!(n->r)) {\n      n->size = n->l->size;\n      return;\n    }\n    n->size\
-    \ = n->l->size + n->r->size;\n  }\n\n  void set_rec(np n, int l, int r, int k)\
-    \ {\n    if (r == l + 1) {\n      n->size = 1;\n      return;\n    }\n    int\
-    \ m = (l + r) / 2;\n    if (k < m) {\n      if (!(n->l)) n->l = new_node(0);\n\
-    \      set_rec(n->l, l, m, k);\n    }\n    if (m <= k) {\n      if (!(n->r)) n->r\
-    \ = new_node(0);\n      set_rec(n->r, m, r, k);\n    }\n    update(n);\n  }\n\
-    };\n#line 7 \"test_atcoder/abc217e.test.cpp\"\n\nvoid solve() {\n  LL(Q);\n  int\
-    \ L = 0, R = 0;\n  Sortable_Array<15'000'000> X(infty<int> + 1, vc<int>(Q));\n\
-    \  FOR(Q) {\n    INT(t);\n    if (t == 1) {\n      INT(x);\n      X.set(R++, x);\n\
-    \    }\n    if (t == 2) {\n      print(X.get(L));\n      L++;\n    }\n    if (t\
-    \ == 3) {\n      if (L < R) X.sort_inc(L, R);\n    }\n  }\n}\n\nsigned main()\
-    \ {\n  solve();\n  return 0;\n}\n"
+    \n        continue;\r\n      }\r\n      i += lowbit(d);\r\n      for (int g =\
+    \ h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += lowbit(seg[g][i / B]);\r\
+    \n      }\r\n      return i;\r\n    }\r\n    return n;\r\n  }\r\n\r\n  // max\
+    \ [0,x], or -1\r\n  int prev(int i) {\r\n    assert(i >= 0);\r\n    if (i >= n)\
+    \ i = n - 1;\r\n    for (int h = 0; h < log; h++) {\r\n      if (i == -1) break;\r\
+    \n      u64 d = seg[h][i / B] << (63 - i % B);\r\n      if (!d) {\r\n        i\
+    \ = i / B - 1;\r\n        continue;\r\n      }\r\n      i -= __builtin_clzll(d);\r\
+    \n      for (int g = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i +=\
+    \ topbit(seg[g][i / B]);\r\n      }\r\n      return i;\r\n    }\r\n    return\
+    \ -1;\r\n  }\r\n\r\n  // [l, r)\r\n  template <typename F>\r\n  void enumerate(int\
+    \ l, int r, F f) {\r\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\r\
+    \n  }\r\n\r\n  string to_string() {\r\n    string s(n, '?');\r\n    for (int i\
+    \ = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\r\n    return s;\r\n  }\r\n\
+    };\n#line 2 \"ds/sortable_array.hpp\"\n\n// int \u5217\u3092\u6271\u3046. key\
+    \ \u306E\u91CD\u8907\u53EF.\ntemplate <int NODES>\nstruct Sortable_Array {\n \
+    \ const int N, KEY_MAX;\n\n  struct Node {\n    int size;\n    Node *l, *r;\n\
+    \  };\n  Node* pool;\n  int pid;\n  using np = Node*;\n\n  FastSet ss;      //\
+    \ \u533A\u9593\u306E\u5DE6\u7AEF\u5168\u4F53\u3092\u8868\u3059 fastset\n  vector<np>\
+    \ root; // \u533A\u9593\u306E\u5DE6\u7AEF\u306B\u3001dynamic segtree \u306E node\
+    \ \u3092\u4E57\u305B\u308B\n  vector<bool> rev;\n\n  Sortable_Array(int KEY_MAX,\
+    \ vector<int> key)\n      : N(key.size()), KEY_MAX(KEY_MAX), pid(0), ss(key.size())\
+    \ {\n    pool = new Node[NODES];\n    init(key);\n  }\n\n  void set(int i, int\
+    \ key) {\n    assert(0 <= key && key < KEY_MAX);\n    split_at(i), split_at(i\
+    \ + 1);\n    rev[i] = 0, root[i] = new_node(0);\n    set_rec(root[i], 0, KEY_MAX,\
+    \ key);\n  }\n\n  void sort_inc(int l, int r) {\n    if (l == r) return;\n   \
+    \ split_at(l), split_at(r);\n    while (1) {\n      if (pid > NODES * 0.9) rebuild();\n\
+    \      np c = root[l];\n      int i = ss.next(l + 1);\n      if (i == r) break;\n\
+    \      root[l] = merge(0, KEY_MAX, c, root[i]);\n      ss.erase(i);\n    }\n \
+    \   rev[l] = 0;\n  };\n\n  void sort_dec(int l, int r) {\n    if (l == r) return;\n\
+    \    if (pid > NODES * 0.9) rebuild();\n    sort_inc(l, r), rev[l] = 1;\n  };\n\
+    \n  vc<int> get_all() {\n    vector<int> key;\n    key.reserve(N);\n    auto dfs\
+    \ = [&](auto& dfs, np n, int l, int r, bool rev) -> void {\n      if (!n || !n->size)\
+    \ return;\n      if (r == l + 1) {\n        FOR(n->size) key.eb(l);\n        return;\n\
+    \      }\n      int m = (l + r) / 2;\n      if (!rev) { dfs(dfs, n->l, l, m, rev),\
+    \ dfs(dfs, n->r, m, r, rev); }\n      if (rev) { dfs(dfs, n->r, m, r, rev), dfs(dfs,\
+    \ n->l, l, m, rev); }\n    };\n    for (int i = 0; i < N; ++i) {\n      if (ss[i])\
+    \ dfs(dfs, root[i], 0, KEY_MAX, rev[i]);\n    }\n    return key;\n  }\n\n  int\
+    \ get(int idx) {\n    auto dfs = [&](auto& dfs, np n, int l, int r, int k) ->\
+    \ int {\n      if (r == l + 1) { return l; }\n      int m = (l + r) / 2;\n   \
+    \   int s = (n->l ? n->l->size : 0);\n      if (k < s) return dfs(dfs, n->l, l,\
+    \ m, k);\n      return dfs(dfs, n->r, m, r, k - s);\n    };\n    int i = ss.prev(idx);\n\
+    \    int k = idx - i;\n    int s = root[i]->size;\n    if (rev[i]) k = s - 1 -\
+    \ k;\n    return dfs(dfs, root[i], 0, KEY_MAX, k);\n  }\n\nprivate:\n  void init(vector<int>&\
+    \ key) {\n    rev.assign(N, 0), root.clear(), root.reserve(N);\n    for (int i\
+    \ = 0; i < N; ++i) {\n      ss.insert(i);\n      root.eb(new_node(0));\n     \
+    \ assert(key[i] < KEY_MAX);\n      set_rec(root[i], 0, KEY_MAX, key[i]);\n   \
+    \ }\n  }\n\n  // x \u304C\u5DE6\u7AEF\u306B\u306A\u308B\u3088\u3046\u306B\u3059\
+    \u308B\n  void split_at(int x) {\n    if (x == N || ss[x]) return;\n    int a\
+    \ = ss.prev(x), b = ss.next(a + 1);\n    ss.insert(x);\n    if (!rev[a]) {\n \
+    \     auto [nl, nr] = split(root[a], 0, KEY_MAX, x - a);\n      root[a] = nl,\
+    \ root[x] = nr;\n      rev[a] = rev[x] = 0;\n    } else {\n      auto [nl, nr]\
+    \ = split(root[a], 0, KEY_MAX, b - x);\n      root[a] = nr, root[x] = nl;\n  \
+    \    rev[a] = rev[x] = 1;\n    }\n  }\n\n  void rebuild() {\n    auto key = get_all();\n\
+    \    pid = 0;\n    init(key);\n  }\n\n  np new_node(int size) {\n    assert(pid\
+    \ < NODES);\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].size = size;\n\
+    \    return &(pool[pid++]);\n  }\n\n  pair<np, np> split(np n, int l, int r, int\
+    \ k) {\n    if (k == 0) { return {nullptr, n}; }\n    if (k == n->size) { return\
+    \ {n, nullptr}; }\n    if (r == l + 1) {\n      int s = n->size;\n      n->size\
+    \ = k;\n      Node* b = new_node(s - k);\n      return {n, b};\n    }\n    int\
+    \ s = (n->l ? n->l->size : 0);\n    Node* b = new_node(0);\n    int m = (l + r)\
+    \ / 2;\n    if (k <= s) {\n      auto [nl, nr] = split(n->l, l, m, k);\n     \
+    \ b->l = nr, b->r = n->r, n->l = nl, n->r = nullptr;\n    }\n    if (k > s) {\n\
+    \      auto [nl, nr] = split(n->r, m, r, k - s);\n      n->l = n->l, n->r = nl,\
+    \ b->l = nullptr, b->r = nr;\n    }\n    update(n), update(b);\n    return {n,\
+    \ b};\n  }\n\n  np merge(int l, int r, np a, np b) {\n    if (!a) return b;\n\
+    \    if (!b) return a;\n    if (r == l + 1) {\n      a->size += b->size;\n   \
+    \   return a;\n    }\n    int m = (l + r) / 2;\n    a->l = merge(l, m, a->l, b->l),\
+    \ a->r = merge(m, r, a->r, b->r);\n    update(a);\n    return a;\n  }\n\n  void\
+    \ update(np n) {\n    if (!(n->l) && !(n->r)) { return; }\n    if (!(n->l)) {\n\
+    \      n->size = n->r->size;\n      return;\n    }\n    if (!(n->r)) {\n     \
+    \ n->size = n->l->size;\n      return;\n    }\n    n->size = n->l->size + n->r->size;\n\
+    \  }\n\n  void set_rec(np n, int l, int r, int k) {\n    if (r == l + 1) {\n \
+    \     n->size = 1;\n      return;\n    }\n    int m = (l + r) / 2;\n    if (k\
+    \ < m) {\n      if (!(n->l)) n->l = new_node(0);\n      set_rec(n->l, l, m, k);\n\
+    \    }\n    if (m <= k) {\n      if (!(n->r)) n->r = new_node(0);\n      set_rec(n->r,\
+    \ m, r, k);\n    }\n    update(n);\n  }\n};\n#line 7 \"test_atcoder/abc217e.test.cpp\"\
+    \n\nvoid solve() {\n  LL(Q);\n  int L = 0, R = 0;\n  Sortable_Array<15'000'000>\
+    \ X(infty<int> + 1, vc<int>(Q));\n  FOR(Q) {\n    INT(t);\n    if (t == 1) {\n\
+    \      INT(x);\n      X.set(R++, x);\n    }\n    if (t == 2) {\n      print(X.get(L));\n\
+    \      L++;\n    }\n    if (t == 3) {\n      if (L < R) X.sort_inc(L, R);\n  \
+    \  }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc217/tasks/abc217_e\"\n\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/sortable_array.hpp\"\
     \n\nvoid solve() {\n  LL(Q);\n  int L = 0, R = 0;\n  Sortable_Array<15'000'000>\
@@ -322,8 +296,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc217e.test.cpp
   requiredBy: []
-  timestamp: '2023-11-01 19:16:20+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-06 14:40:18+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc217e.test.cpp
 layout: document

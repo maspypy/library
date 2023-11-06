@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/2636.test.cpp
     title: test/aoj/2636.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -224,49 +224,49 @@ data:
     \n    X x2 = bit.prod(tree.ELID(lca) + edge, tree.ELID(to) + 1);\r\n    return\
     \ MX::op(x1, x2);\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\n    static_assert(subtree_query);\r\
     \n    int l = tree.LID[u], r = tree.RID[u];\r\n    return bit_subtree.prod(l +\
-    \ edge, r);\r\n  }\r\n};\r\n#line 1 \"ds/fastset.hpp\"\n/* 64\u5206\u6728\u3002\
-    \r\ninsert, erase\r\n[]\u3067\u306E\u5B58\u5728\u5224\u5B9A\r\nnext, prev\r\n\
-    */\r\nstruct FastSet {\r\n  using uint = unsigned;\r\n  using ull = unsigned long\
-    \ long;\r\n\r\n  int bsr(ull x) { return 63 - __builtin_clzll(x); }\r\n  int bsf(ull\
-    \ x) { return __builtin_ctzll(x); }\r\n\r\n  static constexpr uint B = 64;\r\n\
-    \  int n, lg;\r\n  vector<vector<ull>> seg;\r\n  FastSet(int _n) : n(_n) {\r\n\
-    \    do {\r\n      seg.push_back(vector<ull>((_n + B - 1) / B));\r\n      _n =\
-    \ (_n + B - 1) / B;\r\n    } while (_n > 1);\r\n    lg = int(seg.size());\r\n\
-    \  }\r\n  bool operator[](int i) const { return (seg[0][i / B] >> (i % B) & 1)\
-    \ != 0; }\r\n  void insert(int i) {\r\n    for (int h = 0; h < lg; h++) {\r\n\
-    \      seg[h][i / B] |= 1ULL << (i % B);\r\n      i /= B;\r\n    }\r\n  }\r\n\
-    \  void add(int i) { insert(i); }\r\n  void erase(int i) {\r\n    for (int h =\
-    \ 0; h < lg; h++) {\r\n      seg[h][i / B] &= ~(1ULL << (i % B));\r\n      if\
-    \ (seg[h][i / B]) break;\r\n      i /= B;\r\n    }\r\n  }\r\n  void remove(int\
-    \ i) { erase(i); }\r\n\r\n  // x\u4EE5\u4E0A\u6700\u5C0F\u306E\u8981\u7D20\u3092\
-    \u8FD4\u3059\u3002\u5B58\u5728\u3057\u306A\u3051\u308C\u3070 n\u3002\r\n  int\
-    \ next(int i) {\r\n    chmax(i, 0);\r\n    if (i >= n) return n;\r\n    for (int\
-    \ h = 0; h < lg; h++) {\r\n      if (i / B == seg[h].size()) break;\r\n      ull\
-    \ d = seg[h][i / B] >> (i % B);\r\n      if (!d) {\r\n        i = i / B + 1;\r\
-    \n        continue;\r\n      }\r\n      // find\r\n      i += bsf(d);\r\n    \
-    \  for (int g = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += bsf(seg[g][i\
-    \ / B]);\r\n      }\r\n      return i;\r\n    }\r\n    return n;\r\n  }\r\n\r\n\
-    \  // x\u4EE5\u4E0B\u6700\u5927\u306E\u8981\u7D20\u3092\u8FD4\u3059\u3002\u5B58\
-    \u5728\u3057\u306A\u3051\u308C\u3070 -1\u3002\r\n  int prev(int i) {\r\n    if\
-    \ (i < 0) return -1;\r\n    if (i >= n) i = n - 1;\r\n    for (int h = 0; h <\
-    \ lg; h++) {\r\n      if (i == -1) break;\r\n      ull d = seg[h][i / B] << (63\
-    \ - i % 64);\r\n      if (!d) {\r\n        i = i / B - 1;\r\n        continue;\r\
-    \n      }\r\n      // find\r\n      i += bsr(d) - (B - 1);\r\n      for (int g\
-    \ = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += bsr(seg[g][i / B]);\r\
-    \n      }\r\n      return i;\r\n    }\r\n    return -1;\r\n  }\r\n\r\n  // [l,\
-    \ r)\r\n  template <typename F>\r\n  void enumerate(int l, int r, F f) {\r\n \
-    \   int x = l - 1;\r\n    while (1) {\r\n      x = next(x + 1);\r\n      if (x\
-    \ >= r) break;\r\n      f(x);\r\n    }\r\n  }\r\n\r\n  void debug() {\r\n    string\
-    \ s;\r\n    for (int i = 0; i < n; ++i) s += ((*this)[i] ? '1' : '0');\r\n   \
-    \ print(s);\r\n  }\r\n};\r\n#line 3 \"graph/ds/incremental_centroid.hpp\"\n\n\
-    // \u6728\u306F\u56FA\u5B9A\u3002\u9802\u70B9\u91CD\u307F\u3092 +1 \u3067\u304D\
-    \u308B\u3002\n// cent: \u91CD\u5FC3\n// max_subtree\ntemplate <typename TREE>\n\
-    struct Incremental_Centroid {\n  TREE& tree;\n  int N;\n  int cent;\n  pair<int,\
-    \ int> max_subtree; // (adj, size)\n  int wt_sm;\n  Tree_AbelGroup<TREE, Monoid_Add<int>,\
-    \ 0, 0, 1> TA;\n  FastSet ss;\n\n  Incremental_Centroid(TREE& tree)\n      : tree(tree),\n\
-    \        N(tree.N),\n        cent(0),\n        max_subtree(0, 0),\n        wt_sm(0),\n\
-    \        TA(tree),\n        ss(N) {}\n\n  int get_subtree_wt(int v) {\n    assert(v\
-    \ != cent);\n    // cent \u304B\u3089\u898B\u3066 v \u65B9\u5411\n    if (tree.in_subtree(v,\
+    \ edge, r);\r\n  }\r\n};\r\n#line 1 \"ds/fastset.hpp\"\n// 64-ary tree\r\n// space:\
+    \ (N/63) * u64\r\nstruct FastSet {\r\n  static constexpr u32 B = 64;\r\n  int\
+    \ n, log;\r\n  vvc<u64> seg;\r\n\r\n  FastSet() {}\r\n  FastSet(int n) { build(n);\
+    \ }\r\n\r\n  template <typename F>\r\n  FastSet(int n, F f) {\r\n    build(n,\
+    \ f);\r\n  }\r\n\r\n  void build(int m) {\r\n    seg.clear();\r\n    n = m;\r\n\
+    \    do {\r\n      seg.push_back(vc<u64>((m + B - 1) / B));\r\n      m = (m +\
+    \ B - 1) / B;\r\n    } while (m > 1);\r\n    log = len(seg);\r\n  }\r\n  template\
+    \ <typename F>\r\n  void build(int n, F f) {\r\n    build(n);\r\n    FOR(i, n)\
+    \ { seg[0][i / B] |= u64(f(i)) << (i % B); }\r\n    FOR(h, log - 1) {\r\n    \
+    \  FOR(i, len(seg[h])) {\r\n        seg[h + 1][i / B] |= u64(bool(seg[h][i]))\
+    \ << (i % B);\r\n      }\r\n    }\r\n  }\r\n\r\n  bool operator[](int i) const\
+    \ { return seg[0][i / B] >> (i % B) & 1; }\r\n  void insert(int i) {\r\n    for\
+    \ (int h = 0; h < log; h++) {\r\n      seg[h][i / B] |= u64(1) << (i % B), i /=\
+    \ B;\r\n    }\r\n  }\r\n  void add(int i) { insert(i); }\r\n  void erase(int i)\
+    \ {\r\n    u64 x = 0;\r\n    for (int h = 0; h < log; h++) {\r\n      seg[h][i\
+    \ / B] &= ~(u64(1) << (i % B));\r\n      seg[h][i / B] |= x << (i % B);\r\n  \
+    \    x = bool(seg[h][i / B]);\r\n      i /= B;\r\n    }\r\n  }\r\n  void remove(int\
+    \ i) { erase(i); }\r\n\r\n  // min[x,n) or n\r\n  int next(int i) {\r\n    assert(i\
+    \ < n);\r\n    chmax(i, 0);\r\n    for (int h = 0; h < log; h++) {\r\n      if\
+    \ (i / B == seg[h].size()) break;\r\n      u64 d = seg[h][i / B] >> (i % B);\r\
+    \n      if (!d) {\r\n        i = i / B + 1;\r\n        continue;\r\n      }\r\n\
+    \      i += lowbit(d);\r\n      for (int g = h - 1; g >= 0; g--) {\r\n       \
+    \ i *= B;\r\n        i += lowbit(seg[g][i / B]);\r\n      }\r\n      return i;\r\
+    \n    }\r\n    return n;\r\n  }\r\n\r\n  // max [0,x], or -1\r\n  int prev(int\
+    \ i) {\r\n    assert(i >= 0);\r\n    if (i >= n) i = n - 1;\r\n    for (int h\
+    \ = 0; h < log; h++) {\r\n      if (i == -1) break;\r\n      u64 d = seg[h][i\
+    \ / B] << (63 - i % B);\r\n      if (!d) {\r\n        i = i / B - 1;\r\n     \
+    \   continue;\r\n      }\r\n      i -= __builtin_clzll(d);\r\n      for (int g\
+    \ = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += topbit(seg[g][i /\
+    \ B]);\r\n      }\r\n      return i;\r\n    }\r\n    return -1;\r\n  }\r\n\r\n\
+    \  // [l, r)\r\n  template <typename F>\r\n  void enumerate(int l, int r, F f)\
+    \ {\r\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\r\n  }\r\n\r\n\
+    \  string to_string() {\r\n    string s(n, '?');\r\n    for (int i = 0; i < n;\
+    \ ++i) s[i] = ((*this)[i] ? '1' : '0');\r\n    return s;\r\n  }\r\n};\n#line 3\
+    \ \"graph/ds/incremental_centroid.hpp\"\n\n// \u6728\u306F\u56FA\u5B9A\u3002\u9802\
+    \u70B9\u91CD\u307F\u3092 +1 \u3067\u304D\u308B\u3002\n// cent: \u91CD\u5FC3\n\
+    // max_subtree\ntemplate <typename TREE>\nstruct Incremental_Centroid {\n  TREE&\
+    \ tree;\n  int N;\n  int cent;\n  pair<int, int> max_subtree; // (adj, size)\n\
+    \  int wt_sm;\n  Tree_AbelGroup<TREE, Monoid_Add<int>, 0, 0, 1> TA;\n  FastSet\
+    \ ss;\n\n  Incremental_Centroid(TREE& tree)\n      : tree(tree),\n        N(tree.N),\n\
+    \        cent(0),\n        max_subtree(0, 0),\n        wt_sm(0),\n        TA(tree),\n\
+    \        ss(N) {}\n\n  int get_subtree_wt(int v) {\n    assert(v != cent);\n \
+    \   // cent \u304B\u3089\u898B\u3066 v \u65B9\u5411\n    if (tree.in_subtree(v,\
     \ cent)) {\n      return TA.prod_subtree(tree.jump(cent, v, 1));\n    }\n    return\
     \ wt_sm - TA.prod_subtree(cent);\n  }\n\n  int move_to(int v) {\n    // \u5727\
     \u7E2E\u6728\u4E0A\u3067 cent \u304B\u3089 v \u306B\u9032\u3080\n    if (tree.in_subtree(v,\
@@ -320,8 +320,8 @@ data:
   isVerificationFile: false
   path: graph/ds/incremental_centroid.hpp
   requiredBy: []
-  timestamp: '2023-11-04 05:26:59+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-11-06 14:40:18+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/2636.test.cpp
 documentation_of: graph/ds/incremental_centroid.hpp

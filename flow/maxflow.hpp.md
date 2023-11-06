@@ -2,40 +2,40 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/binary_optimization.hpp
     title: flow/binary_optimization.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/2251_1.test.cpp
     title: test/aoj/2251_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_6_A.test.cpp
     title: test/aoj/GRL_6_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1541.test.cpp
     title: test/yukicoder/1541.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/177.test.cpp
     title: test/yukicoder/177.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2320.test.cpp
     title: test/yukicoder/2320.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc193f.test.cpp
     title: test_atcoder/abc193f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc259g.test.cpp
     title: test_atcoder/abc259g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc318g.test.cpp
     title: test_atcoder/abc318g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"flow/maxflow.hpp\"\n// incremental \u306B\u8FBA\u3092\u8FFD\
@@ -143,7 +143,7 @@ data:
   - flow/binary_optimization.hpp
   - graph/dag_path_cover.hpp
   timestamp: '2023-10-29 05:43:44+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/2320.test.cpp
   - test/yukicoder/1541.test.cpp

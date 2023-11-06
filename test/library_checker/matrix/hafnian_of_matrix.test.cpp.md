@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/hafnian.hpp
     title: linalg/hafnian.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -19,20 +19,20 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/sps_exp.hpp
     title: setfunc/sps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/hafnian_of_matrix
@@ -119,178 +119,154 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 1 \"other/io.hpp\"\n// based on yosupo's fastio\r\
-    \n#include <unistd.h>\r\n\r\nnamespace fastio {\r\n#define FASTIO\r\nstruct has_write_impl\
-    \ {\r\n  template <class T>\r\n  static auto check(T &&x) -> decltype(x.write(),\
-    \ std::true_type{});\r\n\r\n  template <class T>\r\n  static auto check(...) ->\
-    \ std::false_type;\r\n};\r\n\r\ntemplate <class T>\r\nclass has_write : public\
-    \ decltype(has_write_impl::check<T>(std::declval<T>())) {\r\n};\r\n\r\nstruct\
-    \ has_read_impl {\r\n  template <class T>\r\n  static auto check(T &&x) -> decltype(x.read(),\
-    \ std::true_type{});\r\n\r\n  template <class T>\r\n  static auto check(...) ->\
-    \ std::false_type;\r\n};\r\n\r\ntemplate <class T>\r\nclass has_read : public\
-    \ decltype(has_read_impl::check<T>(std::declval<T>())) {};\r\n\r\nstruct Scanner\
-    \ {\r\n  FILE *fp;\r\n  char line[(1 << 15) + 1];\r\n  size_t st = 0, ed = 0;\r\
-    \n  void reread() {\r\n    memmove(line, line + st, ed - st);\r\n    ed -= st;\r\
-    \n    st = 0;\r\n    ed += fread(line + ed, 1, (1 << 15) - ed, fp);\r\n    line[ed]\
-    \ = '\\0';\r\n  }\r\n  bool succ() {\r\n    while (true) {\r\n      if (st ==\
-    \ ed) {\r\n        reread();\r\n        if (st == ed) return false;\r\n      }\r\
-    \n      while (st != ed && isspace(line[st])) st++;\r\n      if (st != ed) break;\r\
-    \n    }\r\n    if (ed - st <= 50) {\r\n      bool sep = false;\r\n      for (size_t\
-    \ i = st; i < ed; i++) {\r\n        if (isspace(line[i])) {\r\n          sep =\
-    \ true;\r\n          break;\r\n        }\r\n      }\r\n      if (!sep) reread();\r\
-    \n    }\r\n    return true;\r\n  }\r\n  template <class T, enable_if_t<is_same<T,\
-    \ string>::value, int> = 0>\r\n  bool read_single(T &ref) {\r\n    if (!succ())\
-    \ return false;\r\n    while (true) {\r\n      size_t sz = 0;\r\n      while (st\
-    \ + sz < ed && !isspace(line[st + sz])) sz++;\r\n      ref.append(line + st, sz);\r\
-    \n      st += sz;\r\n      if (!sz || st != ed) break;\r\n      reread();\r\n\
-    \    }\r\n    return true;\r\n  }\r\n  template <class T, enable_if_t<is_integral<T>::value,\
-    \ int> = 0>\r\n  bool read_single(T &ref) {\r\n    if (!succ()) return false;\r\
-    \n    bool neg = false;\r\n    if (line[st] == '-') {\r\n      neg = true;\r\n\
-    \      st++;\r\n    }\r\n    ref = T(0);\r\n    while (isdigit(line[st])) { ref\
-    \ = 10 * ref + (line[st++] & 0xf); }\r\n    if (neg) ref = -ref;\r\n    return\
-    \ true;\r\n  }\r\n  template <typename T,\r\n            typename enable_if<has_read<T>::value>::type\
-    \ * = nullptr>\r\n  inline bool read_single(T &x) {\r\n    x.read();\r\n    return\
-    \ true;\r\n  }\r\n  bool read_single(double &ref) {\r\n    string s;\r\n    if\
-    \ (!read_single(s)) return false;\r\n    ref = std::stod(s);\r\n    return true;\r\
-    \n  }\r\n  bool read_single(char &ref) {\r\n    string s;\r\n    if (!read_single(s)\
-    \ || s.size() != 1) return false;\r\n    ref = s[0];\r\n    return true;\r\n \
-    \ }\r\n  template <class T>\r\n  bool read_single(vector<T> &ref) {\r\n    for\
-    \ (auto &d: ref) {\r\n      if (!read_single(d)) return false;\r\n    }\r\n  \
-    \  return true;\r\n  }\r\n  template <class T, class U>\r\n  bool read_single(pair<T,\
-    \ U> &p) {\r\n    return (read_single(p.first) && read_single(p.second));\r\n\
-    \  }\r\n  template <size_t N = 0, typename T>\r\n  void read_single_tuple(T &t)\
-    \ {\r\n    if constexpr (N < std::tuple_size<T>::value) {\r\n      auto &x = std::get<N>(t);\r\
-    \n      read_single(x);\r\n      read_single_tuple<N + 1>(t);\r\n    }\r\n  }\r\
-    \n  template <class... T>\r\n  bool read_single(tuple<T...> &tpl) {\r\n    read_single_tuple(tpl);\r\
-    \n    return true;\r\n  }\r\n  void read() {}\r\n  template <class H, class...\
-    \ T>\r\n  void read(H &h, T &... t) {\r\n    bool f = read_single(h);\r\n    assert(f);\r\
-    \n    read(t...);\r\n  }\r\n  Scanner(FILE *fp) : fp(fp) {}\r\n};\r\n\r\nstruct\
-    \ Printer {\r\n  Printer(FILE *_fp) : fp(_fp) {}\r\n  ~Printer() { flush(); }\r\
-    \n\r\n  static constexpr size_t SIZE = 1 << 15;\r\n  FILE *fp;\r\n  char line[SIZE],\
-    \ small[50];\r\n  size_t pos = 0;\r\n  void flush() {\r\n    fwrite(line, 1, pos,\
-    \ fp);\r\n    pos = 0;\r\n  }\r\n  void write(const char val) {\r\n    if (pos\
-    \ == SIZE) flush();\r\n    line[pos++] = val;\r\n  }\r\n  template <class T, enable_if_t<is_integral<T>::value,\
-    \ int> = 0>\r\n  void write(T val) {\r\n    if (pos > (1 << 15) - 50) flush();\r\
-    \n    if (val == 0) {\r\n      write('0');\r\n      return;\r\n    }\r\n    if\
-    \ (val < 0) {\r\n      write('-');\r\n      val = -val; // todo min\r\n    }\r\
-    \n    size_t len = 0;\r\n    while (val) {\r\n      small[len++] = char(0x30 |\
-    \ (val % 10));\r\n      val /= 10;\r\n    }\r\n    for (size_t i = 0; i < len;\
-    \ i++) { line[pos + i] = small[len - 1 - i]; }\r\n    pos += len;\r\n  }\r\n \
-    \ void write(const string s) {\r\n    for (char c: s) write(c);\r\n  }\r\n  void\
-    \ write(const char *s) {\r\n    size_t len = strlen(s);\r\n    for (size_t i =\
-    \ 0; i < len; i++) write(s[i]);\r\n  }\r\n  void write(const double x) {\r\n \
-    \   ostringstream oss;\r\n    oss << fixed << setprecision(15) << x;\r\n    string\
-    \ s = oss.str();\r\n    write(s);\r\n  }\r\n  void write(const long double x)\
-    \ {\r\n    ostringstream oss;\r\n    oss << fixed << setprecision(15) << x;\r\n\
-    \    string s = oss.str();\r\n    write(s);\r\n  }\r\n  template <typename T,\r\
-    \n            typename enable_if<has_write<T>::value>::type * = nullptr>\r\n \
-    \ inline void write(T x) {\r\n    x.write();\r\n  }\r\n  template <class T>\r\n\
-    \  void write(const vector<T> val) {\r\n    auto n = val.size();\r\n    for (size_t\
-    \ i = 0; i < n; i++) {\r\n      if (i) write(' ');\r\n      write(val[i]);\r\n\
-    \    }\r\n  }\r\n  template <class T, class U>\r\n  void write(const pair<T, U>\
-    \ val) {\r\n    write(val.first);\r\n    write(' ');\r\n    write(val.second);\r\
-    \n  }\r\n  template <size_t N = 0, typename T>\r\n  void write_tuple(const T t)\
-    \ {\r\n    if constexpr (N < std::tuple_size<T>::value) {\r\n      if constexpr\
-    \ (N > 0) { write(' '); }\r\n      const auto x = std::get<N>(t);\r\n      write(x);\r\
-    \n      write_tuple<N + 1>(t);\r\n    }\r\n  }\r\n  template <class... T>\r\n\
-    \  bool write(tuple<T...> tpl) {\r\n    write_tuple(tpl);\r\n    return true;\r\
-    \n  }\r\n  template <class T, size_t S>\r\n  void write(const array<T, S> val)\
-    \ {\r\n    auto n = val.size();\r\n    for (size_t i = 0; i < n; i++) {\r\n  \
-    \    if (i) write(' ');\r\n      write(val[i]);\r\n    }\r\n  }\r\n  void write(i128\
-    \ val) {\r\n    string s;\r\n    bool negative = 0;\r\n    if (val < 0) {\r\n\
-    \      negative = 1;\r\n      val = -val;\r\n    }\r\n    while (val) {\r\n  \
-    \    s += '0' + int(val % 10);\r\n      val /= 10;\r\n    }\r\n    if (negative)\
-    \ s += \"-\";\r\n    reverse(all(s));\r\n    if (len(s) == 0) s = \"0\";\r\n \
-    \   write(s);\r\n  }\r\n};\r\nScanner scanner = Scanner(stdin);\r\nPrinter printer\
-    \ = Printer(stdout);\r\nvoid flush() { printer.flush(); }\r\nvoid print() { printer.write('\\\
-    n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head, Tail\
-    \ &&... tail) {\r\n  printer.write(head);\r\n  if (sizeof...(Tail)) printer.write('\
-    \ ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\nvoid read() {}\r\ntemplate\
-    \ <class Head, class... Tail>\r\nvoid read(Head &head, Tail &... tail) {\r\n \
-    \ scanner.read(head);\r\n  read(tail...);\r\n}\r\n} // namespace fastio\r\nusing\
-    \ fastio::print;\r\nusing fastio::flush;\r\nusing fastio::read;\r\n\r\n#define\
-    \ INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)\
-    \   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)    \
-    \  \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
-    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
-    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
-    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
-    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
-    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
-    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
-    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
-    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
-    \ <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
-    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
-    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
-    \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
-    \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
-    \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
-    \    int q = (mod + k - 1) / k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
-    \ const int mod = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint>\
-    \ dat = {1, 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * mint::raw(len(dat)));\n\
-    \  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static\
-    \ vector<mint> dat = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat)\
-    \ <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\
-    \ntemplate <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1)\
-    \ * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint, class Head, class...\
-    \ Tail>\nmint multinomial(Head &&head, Tail &&... tail) {\n  return fact<mint>(head)\
-    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
-    mint C_dense(int n, int k) {\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n\
-    \  auto calc = [&](int i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1)\
-    \ : mint(0));\n    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n  if\
-    \ (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k +\
-    \ 1) { C[i][j] = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n\
-    \    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n      FOR(j,\
-    \ W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return C[n][k];\n\
-    }\n\ntemplate <typename mint, bool large = false, bool dense = false>\nmint C(ll\
-    \ n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if constexpr\
-    \ (dense) return C_dense<mint>(n, k);\n  if constexpr (!large) return multinomial<mint>(n,\
-    \ k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n\
-    \  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename mint, bool large = false>\n\
-    mint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if\
-    \ (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return\
-    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint,\
-    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
-    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
-    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 3 \"\
-    mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n  static constexpr u32\
-    \ umod = u32(mod);\n  static_assert(umod < u32(1) << 31);\n  u32 val;\n\n  static\
-    \ modint raw(u32 v) {\n    modint x;\n    x.val = v;\n    return x;\n  }\n  constexpr\
-    \ modint() : val(0) {}\n  constexpr modint(u32 x) : val(x % umod) {}\n  constexpr\
-    \ modint(u64 x) : val(x % umod) {}\n  constexpr modint(int x) : val((x %= mod)\
-    \ < 0 ? x + mod : x){};\n  constexpr modint(ll x) : val((x %= mod) < 0 ? x + mod\
-    \ : x){};\n  bool operator<(const modint &other) const { return val < other.val;\
-    \ }\n  modint &operator+=(const modint &p) {\n    if ((val += p.val) >= umod)\
-    \ val -= umod;\n    return *this;\n  }\n  modint &operator-=(const modint &p)\
-    \ {\n    if ((val += umod - p.val) >= umod) val -= umod;\n    return *this;\n\
-    \  }\n  modint &operator*=(const modint &p) {\n    val = u64(val) * p.val % umod;\n\
-    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
-    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint::raw(val\
-    \ ? mod - val : u32(0)); }\n  modint operator+(const modint &p) const { return\
-    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
-    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
-    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
-    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
-    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
-    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
-    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
-    \ return modint(u);\n  }\n  modint pow(ll n) const {\n    assert(n >= 0);\n  \
-    \  modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
-    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n\
-    \  void write() { fastio::printer.write(val); }\n  void read() {\n    fastio::scanner.read(val);\n\
-    \    val %= mod;\n  }\n#endif\n  static constexpr int get_mod() { return mod;\
-    \ }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int,\
-    \ int> ntt_info() {\n    if (mod == 167772161) return {25, 17};\n    if (mod ==\
-    \ 469762049) return {26, 30};\n    if (mod == 754974721) return {24, 362};\n \
-    \   if (mod == 880803841) return {23, 211};\n    if (mod == 943718401) return\
-    \ {22, 663003469};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
-    \ 1045430273) return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n\
-    \    if (mod == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static\
-    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\nusing modint107\
-    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 2 \"setfunc/subset_convolution.hpp\"\
+    \  return B;\n}\n#endif\n#line 1 \"other/io.hpp\"\n#include <unistd.h>\r\n#include\
+    \ <sys/mman.h>\r\n#include <sys/stat.h>\r\n\r\nnamespace fastio {\r\n// https://judge.yosupo.jp/submission/21623\r\
+    \n// https://judge.yosupo.jp/submission/70667\r\n\r\nstruct Pre {\r\n  char num[10000][4];\r\
+    \n  constexpr Pre() : num() {\r\n    for (int i = 0; i < 10000; i++) {\r\n   \
+    \   int n = i;\r\n      for (int j = 3; j >= 0; j--) {\r\n        num[i][j] =\
+    \ n % 10 | '0';\r\n        n /= 10;\r\n      }\r\n    }\r\n  }\r\n} constexpr\
+    \ pre;\r\n\r\nconstexpr int BSZ = 1 << 19;\r\nchar *ibuf, obuf[BSZ], out[100];\r\
+    \nint outi, obufi;\r\n\r\n// gcc expansion. called automaticall before main.\r\
+    \nvoid __attribute__((constructor)) _c() {\r\n  struct stat sb;\r\n  fstat(0,\
+    \ &sb);\r\n  ibuf\r\n      = (char *)mmap(0, sb.st_size, PROT_READ, MAP_SHARED\
+    \ | MAP_POPULATE, 0, 0);\r\n}\r\n\r\nvoid flush() { write(1, obuf, obufi), obufi\
+    \ = 0; }\r\n\r\nvoid rd(char &c) { c = *ibuf++; }\r\nvoid rd(string &x) {\r\n\
+    \  x.clear();\r\n  char c;\r\n  do { rd(c); } while (isspace(c));\r\n  do { x\
+    \ += c, rd(c); } while (!isspace(c));\r\n}\r\n\r\ntemplate <typename T>\r\nvoid\
+    \ rd_integer(T &x) {\r\n  char c;\r\n  do\r\n    rd(c);\r\n  while (c < '-');\r\
+    \n  bool minus = 0;\r\n  if constexpr (is_signed<T>::value || is_same_v<T, i128>)\
+    \ {\r\n    if (c == '-') { minus = 1, rd(c); }\r\n  }\r\n  x = 0;\r\n  while (c\
+    \ >= '0') { x = x * 10 + (c & 15), rd(c); }\r\n  if constexpr (is_signed<T>::value\
+    \ || is_same_v<T, i128>) {\r\n    if (minus) x = -x;\r\n  }\r\n}\r\n\r\ntemplate\
+    \ <typename T>\r\nvoid rd_real(T &x) {\r\n  string s;\r\n  rd(s);\r\n  x = stod(s);\r\
+    \n}\r\n\r\nvoid rd(int &x) { rd_integer(x); }\r\nvoid rd(ll &x) { rd_integer(x);\
+    \ }\r\nvoid rd(i128 &x) { rd_integer(x); }\r\nvoid rd(u32 &x) { rd_integer(x);\
+    \ }\r\nvoid rd(u64 &x) { rd_integer(x); }\r\nvoid rd(u128 &x) { rd_integer(x);\
+    \ }\r\nvoid rd(double &x) { rd_real(x); }\r\nvoid rd(long double &x) { rd_real(x);\
+    \ }\r\nvoid rd(f128 &x) { rd_real(x); }\r\ntemplate <class T>\r\nvoid rd(vc<T>\
+    \ &x) {\r\n  for (auto &d: x) rd(d);\r\n}\r\ntemplate <size_t N = 0, typename\
+    \ T>\r\nvoid rd(array<T, N> &x) {\r\n  for (auto &d: x) rd(d);\r\n}\r\ntemplate\
+    \ <class T, class U>\r\nvoid rd(pair<T, U> &p) {\r\n  return rd(p.first), rd(p.second);\r\
+    \n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd(T &t) {\r\n  if constexpr\
+    \ (N < std::tuple_size<T>::value) {\r\n    auto &x = std::get<N>(t);\r\n    rd(x);\r\
+    \n    rd<N + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...>\
+    \ &tpl) {\r\n  rd(tpl);\r\n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class...\
+    \ T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const\
+    \ char c) {\r\n  if (obufi == BSZ) flush();\r\n  obuf[obufi++] = c;\r\n}\r\nvoid\
+    \ wt(const string &s) {\r\n  for (char c: s) wt(c);\r\n}\r\n\r\ntemplate <typename\
+    \ T>\r\nvoid wt_integer(T x) {\r\n  if (obufi > BSZ - 100) flush();\r\n  if (x\
+    \ < 0) { obuf[obufi++] = '-', x = -x; }\r\n  for (outi = 96; x >= 10000; outi\
+    \ -= 4) {\r\n    memcpy(out + outi, pre.num[x % 10000], 4);\r\n    x /= 10000;\r\
+    \n  }\r\n  if (x >= 1000) {\r\n    memcpy(obuf + obufi, pre.num[x], 4);\r\n  \
+    \  obufi += 4;\r\n  } else if (x >= 100) {\r\n    memcpy(obuf + obufi, pre.num[x]\
+    \ + 1, 3);\r\n    obufi += 3;\r\n  } else if (x >= 10) {\r\n    int q = (x * 103)\
+    \ >> 10;\r\n    obuf[obufi] = q | '0';\r\n    obuf[obufi + 1] = (x - q * 10) |\
+    \ '0';\r\n    obufi += 2;\r\n  } else\r\n    obuf[obufi++] = x | '0';\r\n  memcpy(obuf\
+    \ + obufi, out + outi + 4, 96 - outi);\r\n  obufi += 96 - outi;\r\n}\r\n\r\ntemplate\
+    \ <typename T>\r\nvoid wt_real(T x) {\r\n  ostringstream oss;\r\n  oss << fixed\
+    \ << setprecision(15) << double(x);\r\n  string s = oss.str();\r\n  wt(s);\r\n\
+    }\r\n\r\nvoid wt(int x) { wt_integer(x); }\r\nvoid wt(ll x) { wt_integer(x); }\r\
+    \nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\n\
+    void wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\nvoid\
+    \ wt(double x) { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\nvoid\
+    \ wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class T>\r\nvoid wt(const vector<T>\
+    \ val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n \
+    \   if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\ntemplate <class T, class\
+    \ U>\r\nvoid wt(const pair<T, U> val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n\
+    \  wt(val.second);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const\
+    \ T t) {\r\n  if constexpr (N < std::tuple_size<T>::value) {\r\n    if constexpr\
+    \ (N > 0) { wt(' '); }\r\n    const auto x = std::get<N>(t);\r\n    wt(x);\r\n\
+    \    wt_tuple<N + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid wt(tuple<T...>\
+    \ tpl) {\r\n  wt_tuple(tpl);\r\n}\r\ntemplate <class T, size_t S>\r\nvoid wt(const\
+    \ array<T, S> val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n;\
+    \ i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\n\r\nvoid print()\
+    \ { wt('\\n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head,\
+    \ Tail &&... tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail)) wt(' ');\r\n  print(forward<Tail>(tail)...);\r\
+    \n}\r\n\r\n// gcc expansion. called automaticall after main.\r\nvoid __attribute__((destructor))\
+    \ _d() { flush(); }\r\n} // namespace fastio\r\n\r\nusing fastio::read;\r\nusing\
+    \ fastio::print;\r\nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int\
+    \ __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__;\
+    \ \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n  string __VA_ARGS__;\
+    \ \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\
+    \r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n  double __VA_ARGS__; \\\
+    \r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name, size) \\\r\n  vector<type>\
+    \ name(size);    \\\r\n  read(name)\r\n#define VV(type, name, h, w)          \
+    \           \\\r\n  vector<vector<type>> name(h, vector<type>(w)); \\\r\n  read(name)\r\
+    \n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t\
+    \ = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\
+    \nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\"\
+    \ : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\n#line 2 \"mod/modint_common.hpp\"\
+    \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
+    \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
+    \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
+    \ decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate <typename\
+    \ mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n  static\
+    \ vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n \
+    \ while (len(dat) <= n) {\n    int k = len(dat);\n    int q = (mod + k - 1) /\
+    \ k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n  }\n  return dat[n];\n}\n\
+    \ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  assert(0 <= n && n < mod);\n  static vector<mint> dat = {1, 1};\n  while (len(dat)\
+    \ <= n) dat.eb(dat[len(dat) - 1] * mint::raw(len(dat)));\n  return dat[n];\n}\n\
+    \ntemplate <typename mint>\nmint fact_inv(int n) {\n  static vector<mint> dat\
+    \ = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat) <= n) dat.eb(dat[len(dat)\
+    \ - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\ntemplate <class mint, class...\
+    \ Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
+    }\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
+    \ &&head, Tail &&... tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  static vvc<mint>\
+    \ C;\n  static int H = 0, W = 0;\n  auto calc = [&](int i, int j) -> mint {\n\
+    \    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
+    \ + (j ? C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n     \
+    \ C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n\
+    \    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n +\
+    \ 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n   \
+    \ }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool\
+    \ large = false, bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  if constexpr (dense) return C_dense<mint>(n,\
+    \ k);\n  if constexpr (!large) return multinomial<mint>(n, k, n - k);\n  k = min(k,\
+    \ n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n\
+    }\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n\
+    \  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
+    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
+    }\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint, bool large = false, bool dense\
+    \ = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return\
+    \ mint(0);\n  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint,\
+    \ large, dense>(n + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int\
+    \ mod>\nstruct modint {\n  static constexpr u32 umod = u32(mod);\n  static_assert(umod\
+    \ < u32(1) << 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n\
+    \    x.val = v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr\
+    \ modint(u32 x) : val(x % umod) {}\n  constexpr modint(u64 x) : val(x % umod)\
+    \ {}\n  constexpr modint(int x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr\
+    \ modint(ll x) : val((x %= mod) < 0 ? x + mod : x){};\n  bool operator<(const\
+    \ modint &other) const { return val < other.val; }\n  modint &operator+=(const\
+    \ modint &p) {\n    if ((val += p.val) >= umod) val -= umod;\n    return *this;\n\
+    \  }\n  modint &operator-=(const modint &p) {\n    if ((val += umod - p.val) >=\
+    \ umod) val -= umod;\n    return *this;\n  }\n  modint &operator*=(const modint\
+    \ &p) {\n    val = u64(val) * p.val % umod;\n    return *this;\n  }\n  modint\
+    \ &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return *this;\n\
+    \  }\n  modint operator-() const { return modint::raw(val ? mod - val : u32(0));\
+    \ }\n  modint operator+(const modint &p) const { return modint(*this) += p; }\n\
+    \  modint operator-(const modint &p) const { return modint(*this) -= p; }\n  modint\
+    \ operator*(const modint &p) const { return modint(*this) *= p; }\n  modint operator/(const\
+    \ modint &p) const { return modint(*this) /= p; }\n  bool operator==(const modint\
+    \ &p) const { return val == p.val; }\n  bool operator!=(const modint &p) const\
+    \ { return val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod,\
+    \ u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t *\
+    \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll\
+    \ n) const {\n    assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n\
+    \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
+    \  }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
+    \ }\n  void read() {\n    fastio::scanner.read(val);\n    val %= mod;\n  }\n#endif\n\
+    \  static constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E\
+    \ 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n    if (mod\
+    \ == 167772161) return {25, 17};\n    if (mod == 469762049) return {26, 30};\n\
+    \    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841) return\
+    \ {23, 211};\n    if (mod == 943718401) return {22, 663003469};\n    if (mod ==\
+    \ 998244353) return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n\
+    \    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881) return\
+    \ {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
+    \ return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\n#line 2 \"setfunc/subset_convolution.hpp\"\
     \n\r\n#line 2 \"setfunc/ranked_zeta.hpp\"\n\r\ntemplate <typename T, int LIM>\r\
     \nvc<array<T, LIM + 1>> ranked_zeta(const vc<T>& f) {\r\n  int n = topbit(len(f));\r\
     \n  assert(n <= LIM);\r\n  assert(len(f) == 1 << n);\r\n  vc<array<T, LIM + 1>>\
@@ -372,8 +348,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/hafnian_of_matrix.test.cpp
   requiredBy: []
-  timestamp: '2023-11-01 19:16:20+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-06 14:40:18+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/matrix/hafnian_of_matrix.test.cpp
 layout: document

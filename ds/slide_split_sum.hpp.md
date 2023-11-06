@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/removable_queue.hpp
     title: ds/removable_queue.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc312f.test.cpp
     title: test_atcoder/abc312f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc314g.test.cpp
     title: test_atcoder/abc314g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/removable_queue.hpp\"\ntemplate <typename QUE_TYPE>\n\
@@ -68,7 +68,7 @@ data:
   path: ds/slide_split_sum.hpp
   requiredBy: []
   timestamp: '2023-09-22 01:21:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc312f.test.cpp
   - test_atcoder/abc314g.test.cpp
