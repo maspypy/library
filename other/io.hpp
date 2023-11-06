@@ -266,6 +266,12 @@ using fastio::flush;
 #define LL(...)   \
   ll __VA_ARGS__; \
   read(__VA_ARGS__)
+#define U32(...)   \
+  u32 __VA_ARGS__; \
+  read(__VA_ARGS__)
+#define U64(...)   \
+  u64 __VA_ARGS__; \
+  read(__VA_ARGS__)
 #define STR(...)      \
   string __VA_ARGS__; \
   read(__VA_ARGS__)
