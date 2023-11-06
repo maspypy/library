@@ -169,6 +169,21 @@ void wt_real(T x) {
   wt(s);
 }
 
+template <typename T>
+struct has_print_method {
+  template <typename U>
+  static std::true_type test(decltype(&U::print) *);
+  template <typename>
+  static std::false_type test(...);
+  using type = decltype(test<T>(nullptr));
+  static constexpr bool value = type::value;
+};
+
+template <typename T>
+typename enable_if<has_print_method<T>::value, void>::type wt(T x) {
+  x.print();
+}
+
 void wt(bool x) { wt_integer(int(x)); }
 void wt(int x) { wt_integer(x); }
 void wt(ll x) { wt_integer(x); }
@@ -214,21 +229,6 @@ void wt(const vector<T> val) {
     if (i) wt(' ');
     wt(val[i]);
   }
-}
-
-template <typename T>
-struct has_print_method {
-  template <typename U>
-  static std::true_type test(decltype(&U::print) *);
-  template <typename>
-  static std::false_type test(...);
-  using type = decltype(test<T>(nullptr));
-  static constexpr bool value = type::value;
-};
-
-template <typename T>
-typename enable_if<has_print_method<T>::value, void>::type wt(T x) {
-  x.print();
 }
 
 void print() { wt('\n'); }
