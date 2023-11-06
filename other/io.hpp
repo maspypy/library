@@ -74,14 +74,6 @@ void rd(u128 &x) { rd_integer(x); }
 void rd(double &x) { rd_real(x); }
 void rd(long double &x) { rd_real(x); }
 void rd(f128 &x) { rd_real(x); }
-template <class T>
-void rd(vc<T> &x) {
-  for (auto &d: x) rd(d);
-}
-template <size_t N = 0, typename T>
-void rd(array<T, N> &x) {
-  for (auto &d: x) rd(d);
-}
 template <class T, class U>
 void rd(pair<T, U> &p) {
   return rd(p.first), rd(p.second);
@@ -97,6 +89,29 @@ void rd(T &t) {
 template <class... T>
 void rd(tuple<T...> &tpl) {
   rd(tpl);
+}
+template <class T>
+void rd(vc<T> &x) {
+  for (auto &d: x) rd(d);
+}
+template <size_t N = 0, typename T>
+void rd(array<T, N> &x) {
+  for (auto &d: x) rd(d);
+}
+
+template <typename T>
+struct has_read_method {
+  template <typename U>
+  static std::true_type test(decltype(&U::read) *);
+  template <typename>
+  static std::false_type test(...);
+  using type = decltype(test<T>(nullptr));
+  static constexpr bool value = type::value;
+};
+
+template <typename T>
+enable_if<has_read_method<T>::value, void>::type rd(T &x) {
+  x.read();
 }
 
 void read() {}
@@ -156,14 +171,6 @@ void wt(double x) { wt_real(x); }
 void wt(long double x) { wt_real(x); }
 void wt(f128 x) { wt_real(x); }
 
-template <class T>
-void wt(const vector<T> val) {
-  auto n = val.size();
-  for (size_t i = 0; i < n; i++) {
-    if (i) wt(' ');
-    wt(val[i]);
-  }
-}
 template <class T, class U>
 void wt(const pair<T, U> val) {
   wt(val.first);
@@ -190,6 +197,29 @@ void wt(const array<T, S> val) {
     if (i) wt(' ');
     wt(val[i]);
   }
+}
+template <class T>
+void wt(const vector<T> val) {
+  auto n = val.size();
+  for (size_t i = 0; i < n; i++) {
+    if (i) wt(' ');
+    wt(val[i]);
+  }
+}
+
+template <typename T>
+struct has_print_method {
+  template <typename U>
+  static std::true_type test(decltype(&U::print) *);
+  template <typename>
+  static std::false_type test(...);
+  using type = decltype(test<T>(nullptr));
+  static constexpr bool value = type::value;
+};
+
+template <typename T>
+enable_if<has_print_method<T>::value, void>::type wt(T x) {
+  x.print();
 }
 
 void print() { wt('\n'); }
