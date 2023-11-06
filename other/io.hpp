@@ -130,6 +130,10 @@ void wt(const char c) {
 void wt(const string &s) {
   for (char c: s) wt(c);
 }
+void wt(const char *s) {
+  size_t len = strlen(s);
+  for (size_t i = 0; i < len; i++) wt(s[i]);
+}
 
 template <typename T>
 void wt_integer(T x) {
