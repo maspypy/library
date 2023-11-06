@@ -42,7 +42,7 @@ void rd(Point<T>& p) {
   fastio::rd(p.x), fastio::rd(p.y);
 }
 template <typename T>
-void print(Point<T>& p) {
+void wt(Point<T>& p) {
   fastio::wt(p.x);
   fastio::wt(' ');
   fastio::wt(p.y);
