@@ -1,3 +1,4 @@
+#define FASTIO
 #include <unistd.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
@@ -68,6 +69,21 @@ void rd_real(T &x) {
   x = stod(s);
 }
 
+template <typename T>
+struct has_read_method {
+  template <typename U>
+  static std::true_type test(decltype(&U::read) *);
+  template <typename>
+  static std::false_type test(...);
+  using type = decltype(test<T>(nullptr));
+  static constexpr bool value = type::value;
+};
+
+template <typename T>
+typename enable_if<has_read_method<T>::value, void>::type rd(T &x) {
+  x.read();
+}
+
 void rd(int &x) { rd_integer(x); }
 void rd(ll &x) { rd_integer(x); }
 void rd(i128 &x) { rd_integer(x); }
@@ -82,16 +98,16 @@ void rd(pair<T, U> &p) {
   return rd(p.first), rd(p.second);
 }
 template <size_t N = 0, typename T>
-void rd(T &t) {
+void rd_tuple(T &t) {
   if constexpr (N < std::tuple_size<T>::value) {
     auto &x = std::get<N>(t);
     rd(x);
-    rd<N + 1>(t);
+    rd_tuple<N + 1>(t);
   }
 }
 template <class... T>
 void rd(tuple<T...> &tpl) {
-  rd(tpl);
+  rd_tuple(tpl);
 }
 template <class T>
 void rd(vc<T> &x) {
@@ -100,21 +116,6 @@ void rd(vc<T> &x) {
 template <size_t N = 0, typename T>
 void rd(array<T, N> &x) {
   for (auto &d: x) rd(d);
-}
-
-template <typename T>
-struct has_read_method {
-  template <typename U>
-  static std::true_type test(decltype(&U::read) *);
-  template <typename>
-  static std::false_type test(...);
-  using type = decltype(test<T>(nullptr));
-  static constexpr bool value = type::value;
-};
-
-template <typename T>
-typename enable_if<has_read_method<T>::value, void>::type rd(T &x) {
-  x.read();
 }
 
 void read() {}

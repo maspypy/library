@@ -72,8 +72,9 @@ void test() {
 }
 
 void solve() {
-  LL(a, b);
-  print(a + b);
+  int a, b;
+  cin >> a >> b;
+  cout << a << " " << b << "\n";
 }
 
 signed main() {

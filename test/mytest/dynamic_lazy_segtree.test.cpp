@@ -1,6 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
-#include "other/io.hpp"
 #include "alg/acted_monoid/summax_assign.hpp"
 #include "ds/segtree/dynamic_lazy_segtree.hpp"
 #include "random/base.hpp"
@@ -62,8 +61,9 @@ void test() {
 }
 
 void solve() {
-  LL(a, b);
-  print(a + b);
+  int a, b;
+  cin >> a >> b;
+  cout << a << " " << b << "\n";
 }
 
 signed main() {

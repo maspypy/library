@@ -6,7 +6,7 @@
 
 template <typename T, int LOG = 20>
 pair<int, int> closest_pair(vc<Point<T>> points) {
-  static HashMap<int, LOG> MP;
+  static HashMap<int, LOG, true> MP;
   MP.reset();
   int N = len(points);
   assert(N >= 2 && N < (1 << LOG));

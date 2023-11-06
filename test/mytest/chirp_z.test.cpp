@@ -1,6 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
-#include "other/io.hpp"
 #include "mod/modint.hpp"
 #include "random/base.hpp"
 #include "poly/multipoint.hpp"
@@ -41,17 +40,13 @@ void test() {
 }
 
 void solve() {
-  test();
-  LL(a, b);
-  print(a + b);
+  int a, b;
+  cin >> a >> b;
+  cout << a << " " << b << "\n";
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
+  test();
   solve();
-
   return 0;
 }
