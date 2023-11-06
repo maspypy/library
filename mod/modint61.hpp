@@ -50,10 +50,10 @@ struct modint61 {
     return ret;
   }
 #ifdef FASTIO
-  void write() { fastio::printer.write(val); }
+  void write() { fastio::wt(val); }
   void read() {
     ll x;
-    fastio::scanner.read(x);
+    fastio::read(x);
     val = (val >= 0 ? val % mod : (mod - (-val) % mod) % mod);
   }
 #endif

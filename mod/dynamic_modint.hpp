@@ -82,10 +82,11 @@ struct Dynamic_Modint {
     return lhs.val != rhs.val;
   }
 #ifdef FASTIO
-  void write() { fastio::printer.write(val); }
+  void write() { fastio::wt(val); }
   void read() {
-    fastio::scanner.read(val);
-    val = bt.modulo(val);
+    ll x;
+    fastio::read(x);
+    val = (x >= 0 ? x % mod : (mod - (-x) % mod) % mod);
   }
 #endif
   static pair<int, int>& get_ntt() {
