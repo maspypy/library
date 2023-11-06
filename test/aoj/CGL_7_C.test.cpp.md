@@ -107,83 +107,83 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 1 \"other/io.hpp\"\n#include <unistd.h>\r\n#include\
-    \ <sys/mman.h>\r\n#include <sys/stat.h>\r\n\r\nnamespace fastio {\r\n// https://judge.yosupo.jp/submission/21623\r\
-    \n// https://judge.yosupo.jp/submission/70667\r\n\r\nstruct Pre {\r\n  char num[10000][4];\r\
-    \n  constexpr Pre() : num() {\r\n    for (int i = 0; i < 10000; i++) {\r\n   \
-    \   int n = i;\r\n      for (int j = 3; j >= 0; j--) {\r\n        num[i][j] =\
-    \ n % 10 | '0';\r\n        n /= 10;\r\n      }\r\n    }\r\n  }\r\n} constexpr\
-    \ pre;\r\n\r\nconstexpr int BSZ = 1 << 19;\r\nchar *ibuf, obuf[BSZ], out[100];\r\
-    \nint outi, obufi;\r\n\r\n// gcc expansion. called automaticall before main.\r\
-    \nvoid __attribute__((constructor)) _c() {\r\n  struct stat sb;\r\n  fstat(0,\
-    \ &sb);\r\n  ibuf\r\n      = (char *)mmap(0, sb.st_size, PROT_READ, MAP_SHARED\
-    \ | MAP_POPULATE, 0, 0);\r\n}\r\n\r\nvoid flush() {\r\n  assert(write(1, obuf,\
-    \ obufi) == obufi);\r\n  obufi = 0;\r\n}\r\n\r\nvoid rd(char &c) { c = *ibuf++;\
-    \ }\r\nvoid rd(string &x) {\r\n  x.clear();\r\n  char c;\r\n  do { rd(c); } while\
-    \ (isspace(c));\r\n  do { x += c, rd(c); } while (!isspace(c));\r\n}\r\n\r\ntemplate\
-    \ <typename T>\r\nvoid rd_integer(T &x) {\r\n  char c;\r\n  do\r\n    rd(c);\r\
-    \n  while (c < '-');\r\n  bool minus = 0;\r\n  if constexpr (is_signed<T>::value\
-    \ || is_same_v<T, i128>) {\r\n    if (c == '-') { minus = 1, rd(c); }\r\n  }\r\
-    \n  x = 0;\r\n  while (c >= '0') { x = x * 10 + (c & 15), rd(c); }\r\n  if constexpr\
-    \ (is_signed<T>::value || is_same_v<T, i128>) {\r\n    if (minus) x = -x;\r\n\
-    \  }\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_real(T &x) {\r\n  string s;\r\
-    \n  rd(s);\r\n  x = stod(s);\r\n}\r\n\r\nvoid rd(int &x) { rd_integer(x); }\r\n\
-    void rd(ll &x) { rd_integer(x); }\r\nvoid rd(i128 &x) { rd_integer(x); }\r\nvoid\
-    \ rd(u32 &x) { rd_integer(x); }\r\nvoid rd(u64 &x) { rd_integer(x); }\r\nvoid\
-    \ rd(u128 &x) { rd_integer(x); }\r\nvoid rd(double &x) { rd_real(x); }\r\nvoid\
-    \ rd(long double &x) { rd_real(x); }\r\nvoid rd(f128 &x) { rd_real(x); }\r\ntemplate\
-    \ <class T, class U>\r\nvoid rd(pair<T, U> &p) {\r\n  return rd(p.first), rd(p.second);\r\
-    \n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd(T &t) {\r\n  if constexpr\
-    \ (N < std::tuple_size<T>::value) {\r\n    auto &x = std::get<N>(t);\r\n    rd(x);\r\
-    \n    rd<N + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...>\
-    \ &tpl) {\r\n  rd(tpl);\r\n}\r\ntemplate <class T>\r\nvoid rd(vc<T> &x) {\r\n\
-    \  for (auto &d: x) rd(d);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid\
-    \ rd(array<T, N> &x) {\r\n  for (auto &d: x) rd(d);\r\n}\r\n\r\ntemplate <typename\
+    \  return B;\n}\n#endif\n#line 1 \"other/io.hpp\"\n#define FASTIO\r\n#include\
+    \ <unistd.h>\r\n#include <sys/mman.h>\r\n#include <sys/stat.h>\r\n\r\nnamespace\
+    \ fastio {\r\n// https://judge.yosupo.jp/submission/21623\r\n// https://judge.yosupo.jp/submission/70667\r\
+    \n\r\nstruct Pre {\r\n  char num[10000][4];\r\n  constexpr Pre() : num() {\r\n\
+    \    for (int i = 0; i < 10000; i++) {\r\n      int n = i;\r\n      for (int j\
+    \ = 3; j >= 0; j--) {\r\n        num[i][j] = n % 10 | '0';\r\n        n /= 10;\r\
+    \n      }\r\n    }\r\n  }\r\n} constexpr pre;\r\n\r\nconstexpr int BSZ = 1 <<\
+    \ 19;\r\nchar *ibuf, obuf[BSZ], out[100];\r\nint outi, obufi;\r\n\r\n// gcc expansion.\
+    \ called automaticall before main.\r\nvoid __attribute__((constructor)) _c() {\r\
+    \n  struct stat sb;\r\n  fstat(0, &sb);\r\n  ibuf\r\n      = (char *)mmap(0, sb.st_size,\
+    \ PROT_READ, MAP_SHARED | MAP_POPULATE, 0, 0);\r\n}\r\n\r\nvoid flush() {\r\n\
+    \  assert(write(1, obuf, obufi) == obufi);\r\n  obufi = 0;\r\n}\r\n\r\nvoid rd(char\
+    \ &c) { c = *ibuf++; }\r\nvoid rd(string &x) {\r\n  x.clear();\r\n  char c;\r\n\
+    \  do { rd(c); } while (isspace(c));\r\n  do { x += c, rd(c); } while (!isspace(c));\r\
+    \n}\r\n\r\ntemplate <typename T>\r\nvoid rd_integer(T &x) {\r\n  char c;\r\n \
+    \ do\r\n    rd(c);\r\n  while (c < '-');\r\n  bool minus = 0;\r\n  if constexpr\
+    \ (is_signed<T>::value || is_same_v<T, i128>) {\r\n    if (c == '-') { minus =\
+    \ 1, rd(c); }\r\n  }\r\n  x = 0;\r\n  while (c >= '0') { x = x * 10 + (c & 15),\
+    \ rd(c); }\r\n  if constexpr (is_signed<T>::value || is_same_v<T, i128>) {\r\n\
+    \    if (minus) x = -x;\r\n  }\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_real(T\
+    \ &x) {\r\n  string s;\r\n  rd(s);\r\n  x = stod(s);\r\n}\r\n\r\ntemplate <typename\
     \ T>\r\nstruct has_read_method {\r\n  template <typename U>\r\n  static std::true_type\
     \ test(decltype(&U::read) *);\r\n  template <typename>\r\n  static std::false_type\
     \ test(...);\r\n  using type = decltype(test<T>(nullptr));\r\n  static constexpr\
     \ bool value = type::value;\r\n};\r\n\r\ntemplate <typename T>\r\ntypename enable_if<has_read_method<T>::value,\
-    \ void>::type rd(T &x) {\r\n  x.read();\r\n}\r\n\r\nvoid read() {}\r\ntemplate\
-    \ <class H, class... T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\
-    \n}\r\n\r\nvoid wt(const char c) {\r\n  if (obufi == BSZ) flush();\r\n  obuf[obufi++]\
-    \ = c;\r\n}\r\nvoid wt(const string &s) {\r\n  for (char c: s) wt(c);\r\n}\r\n\
-    void wt(const char *s) {\r\n  size_t len = strlen(s);\r\n  for (size_t i = 0;\
-    \ i < len; i++) wt(s[i]);\r\n}\r\n\r\ntemplate <typename T>\r\nvoid wt_integer(T\
-    \ x) {\r\n  if (obufi > BSZ - 100) flush();\r\n  if (x < 0) { obuf[obufi++] =\
-    \ '-', x = -x; }\r\n  for (outi = 96; x >= 10000; outi -= 4) {\r\n    memcpy(out\
-    \ + outi, pre.num[x % 10000], 4);\r\n    x /= 10000;\r\n  }\r\n  if (x >= 1000)\
-    \ {\r\n    memcpy(obuf + obufi, pre.num[x], 4);\r\n    obufi += 4;\r\n  } else\
-    \ if (x >= 100) {\r\n    memcpy(obuf + obufi, pre.num[x] + 1, 3);\r\n    obufi\
-    \ += 3;\r\n  } else if (x >= 10) {\r\n    int q = (x * 103) >> 10;\r\n    obuf[obufi]\
-    \ = q | '0';\r\n    obuf[obufi + 1] = (x - q * 10) | '0';\r\n    obufi += 2;\r\
-    \n  } else\r\n    obuf[obufi++] = x | '0';\r\n  memcpy(obuf + obufi, out + outi\
-    \ + 4, 96 - outi);\r\n  obufi += 96 - outi;\r\n}\r\n\r\ntemplate <typename T>\r\
-    \nvoid wt_real(T x) {\r\n  ostringstream oss;\r\n  oss << fixed << setprecision(15)\
-    \ << double(x);\r\n  string s = oss.str();\r\n  wt(s);\r\n}\r\n\r\nvoid wt(bool\
-    \ x) { wt_integer(int(x)); }\r\nvoid wt(int x) { wt_integer(x); }\r\nvoid wt(ll\
-    \ x) { wt_integer(x); }\r\nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x)\
-    \ { wt_integer(x); }\r\nvoid wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) {\
-    \ wt_integer(x); }\r\nvoid wt(double x) { wt_real(x); }\r\nvoid wt(long double\
-    \ x) { wt_real(x); }\r\nvoid wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class\
-    \ T, class U>\r\nvoid wt(const pair<T, U> val) {\r\n  wt(val.first);\r\n  wt('\
-    \ ');\r\n  wt(val.second);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid\
-    \ wt_tuple(const T t) {\r\n  if constexpr (N < std::tuple_size<T>::value) {\r\n\
-    \    if constexpr (N > 0) { wt(' '); }\r\n    const auto x = std::get<N>(t);\r\
-    \n    wt(x);\r\n    wt_tuple<N + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\
-    \nvoid wt(tuple<T...> tpl) {\r\n  wt_tuple(tpl);\r\n}\r\ntemplate <class T, size_t\
-    \ S>\r\nvoid wt(const array<T, S> val) {\r\n  auto n = val.size();\r\n  for (size_t\
-    \ i = 0; i < n; i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\
-    \ntemplate <class T>\r\nvoid wt(const vector<T> val) {\r\n  auto n = val.size();\r\
-    \n  for (size_t i = 0; i < n; i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\
-    \n  }\r\n}\r\n\r\ntemplate <typename T>\r\nstruct has_print_method {\r\n  template\
-    \ <typename U>\r\n  static std::true_type test(decltype(&U::print) *);\r\n  template\
-    \ <typename>\r\n  static std::false_type test(...);\r\n  using type = decltype(test<T>(nullptr));\r\
+    \ void>::type rd(T &x) {\r\n  x.read();\r\n}\r\n\r\nvoid rd(int &x) { rd_integer(x);\
+    \ }\r\nvoid rd(ll &x) { rd_integer(x); }\r\nvoid rd(i128 &x) { rd_integer(x);\
+    \ }\r\nvoid rd(u32 &x) { rd_integer(x); }\r\nvoid rd(u64 &x) { rd_integer(x);\
+    \ }\r\nvoid rd(u128 &x) { rd_integer(x); }\r\nvoid rd(double &x) { rd_real(x);\
+    \ }\r\nvoid rd(long double &x) { rd_real(x); }\r\nvoid rd(f128 &x) { rd_real(x);\
+    \ }\r\ntemplate <class T, class U>\r\nvoid rd(pair<T, U> &p) {\r\n  return rd(p.first),\
+    \ rd(p.second);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd_tuple(T\
+    \ &t) {\r\n  if constexpr (N < std::tuple_size<T>::value) {\r\n    auto &x = std::get<N>(t);\r\
+    \n    rd(x);\r\n    rd_tuple<N + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\
+    \nvoid rd(tuple<T...> &tpl) {\r\n  rd_tuple(tpl);\r\n}\r\ntemplate <class T>\r\
+    \nvoid rd(vc<T> &x) {\r\n  for (auto &d: x) rd(d);\r\n}\r\ntemplate <size_t N\
+    \ = 0, typename T>\r\nvoid rd(array<T, N> &x) {\r\n  for (auto &d: x) rd(d);\r\
+    \n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class... T>\r\nvoid read(H &h,\
+    \ T &... t) {\r\n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const char c) {\r\n\
+    \  if (obufi == BSZ) flush();\r\n  obuf[obufi++] = c;\r\n}\r\nvoid wt(const string\
+    \ &s) {\r\n  for (char c: s) wt(c);\r\n}\r\nvoid wt(const char *s) {\r\n  size_t\
+    \ len = strlen(s);\r\n  for (size_t i = 0; i < len; i++) wt(s[i]);\r\n}\r\n\r\n\
+    template <typename T>\r\nvoid wt_integer(T x) {\r\n  if (obufi > BSZ - 100) flush();\r\
+    \n  if (x < 0) { obuf[obufi++] = '-', x = -x; }\r\n  for (outi = 96; x >= 10000;\
+    \ outi -= 4) {\r\n    memcpy(out + outi, pre.num[x % 10000], 4);\r\n    x /= 10000;\r\
+    \n  }\r\n  if (x >= 1000) {\r\n    memcpy(obuf + obufi, pre.num[x], 4);\r\n  \
+    \  obufi += 4;\r\n  } else if (x >= 100) {\r\n    memcpy(obuf + obufi, pre.num[x]\
+    \ + 1, 3);\r\n    obufi += 3;\r\n  } else if (x >= 10) {\r\n    int q = (x * 103)\
+    \ >> 10;\r\n    obuf[obufi] = q | '0';\r\n    obuf[obufi + 1] = (x - q * 10) |\
+    \ '0';\r\n    obufi += 2;\r\n  } else\r\n    obuf[obufi++] = x | '0';\r\n  memcpy(obuf\
+    \ + obufi, out + outi + 4, 96 - outi);\r\n  obufi += 96 - outi;\r\n}\r\n\r\ntemplate\
+    \ <typename T>\r\nvoid wt_real(T x) {\r\n  ostringstream oss;\r\n  oss << fixed\
+    \ << setprecision(15) << double(x);\r\n  string s = oss.str();\r\n  wt(s);\r\n\
+    }\r\n\r\ntemplate <typename T>\r\nstruct has_print_method {\r\n  template <typename\
+    \ U>\r\n  static std::true_type test(decltype(&U::print) *);\r\n  template <typename>\r\
+    \n  static std::false_type test(...);\r\n  using type = decltype(test<T>(nullptr));\r\
     \n  static constexpr bool value = type::value;\r\n};\r\n\r\ntemplate <typename\
     \ T>\r\ntypename enable_if<has_print_method<T>::value, void>::type wt(T x) {\r\
-    \n  x.print();\r\n}\r\n\r\nvoid print() { wt('\\n'); }\r\ntemplate <class Head,\
-    \ class... Tail>\r\nvoid print(Head &&head, Tail &&... tail) {\r\n  wt(head);\r\
-    \n  if (sizeof...(Tail)) wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\
-    \r\n// gcc expansion. called automaticall after main.\r\nvoid __attribute__((destructor))\
+    \n  x.print();\r\n}\r\n\r\nvoid wt(bool x) { wt_integer(int(x)); }\r\nvoid wt(int\
+    \ x) { wt_integer(x); }\r\nvoid wt(ll x) { wt_integer(x); }\r\nvoid wt(i128 x)\
+    \ { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\nvoid wt(u64 x) {\
+    \ wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\nvoid wt(double x)\
+    \ { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\nvoid wt(f128 x)\
+    \ { wt_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid wt(const pair<T,\
+    \ U> val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n  wt(val.second);\r\n}\r\ntemplate\
+    \ <size_t N = 0, typename T>\r\nvoid wt_tuple(const T t) {\r\n  if constexpr (N\
+    \ < std::tuple_size<T>::value) {\r\n    if constexpr (N > 0) { wt(' '); }\r\n\
+    \    const auto x = std::get<N>(t);\r\n    wt(x);\r\n    wt_tuple<N + 1>(t);\r\
+    \n  }\r\n}\r\ntemplate <class... T>\r\nvoid wt(tuple<T...> tpl) {\r\n  wt_tuple(tpl);\r\
+    \n}\r\ntemplate <class T, size_t S>\r\nvoid wt(const array<T, S> val) {\r\n  auto\
+    \ n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n    if (i) wt(' ');\r\
+    \n    wt(val[i]);\r\n  }\r\n}\r\ntemplate <class T>\r\nvoid wt(const vector<T>\
+    \ val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n \
+    \   if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\n\r\nvoid print() { wt('\\\
+    n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head, Tail\
+    \ &&... tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail)) wt(' ');\r\n  print(forward<Tail>(tail)...);\r\
+    \n}\r\n\r\n// gcc expansion. called automaticall after main.\r\nvoid __attribute__((destructor))\
     \ _d() { flush(); }\r\n} // namespace fastio\r\n\r\nusing fastio::read;\r\nusing\
     \ fastio::print;\r\nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int\
     \ __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__;\
@@ -212,29 +212,29 @@ data:
     \ angle() { return atan2(y, x); }\n\n  Point rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n\
     \    double c = cos(theta), s = sin(theta);\n    return Point{c * x - s * y, s\
     \ * x + c * y};\n  }\n#ifdef FASTIO\n  void read() { fastio::read(x), fastio::read(y);\
-    \ }\n  void write() { fastio::printer.write(pair<T, T>({x, y})); }\n#endif\n};\n\
-    \n// A -> B -> C \u3068\u9032\u3080\u3068\u304D\u306B\u3001\u5DE6\u306B\u66F2\u304C\
-    \u308B\u306A\u3089\u3070 +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\u3089\u3070\
-    \ -1\ntemplate <typename T>\nint ccw(Point<T> A, Point<T> B, Point<T> C) {\n \
-    \ T x = (B - A).det(C - A);\n  if (x > 0) return 1;\n  if (x < 0) return -1;\n\
-    \  return 0;\n}\n\ntemplate <typename REAL, typename T>\nREAL dist(Point<T> A,\
-    \ Point<T> B) {\n  A = A - B;\n  T p = A.dot(A);\n  return sqrt(REAL(p));\n}\n\
-    \ntemplate <typename T>\nstruct Line {\n  T a, b, c;\n\n  Line(T a, T b, T c)\
-    \ : a(a), b(b), c(c) {}\n  Line(Point<T> A, Point<T> B) {\n    a = A.y - B.y,\
-    \ b = B.x - A.x, c = A.x * B.y - A.y * B.x;\n  }\n  Line(T x1, T y1, T x2, T y2)\
-    \ : Line(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n  template <typename U>\n \
-    \ U eval(Point<U> P) {\n    return a * P.x + b * P.y + c;\n  }\n\n  template <typename\
-    \ U>\n  T eval(U x, U y) {\n    return a * x + b * y + c;\n  }\n\n  // \u540C\u3058\
-    \u76F4\u7DDA\u304C\u540C\u3058 a,b,c \u3067\u8868\u73FE\u3055\u308C\u308B\u3088\
-    \u3046\u306B\u3059\u308B\n  void normalize() {\n    static_assert(is_same_v<T,\
-    \ int> || is_same_v<T, long long>);\n    T g = gcd(gcd(abs(a), abs(b)), abs(c));\n\
-    \    a /= g, b /= g, c /= g;\n    if (b < 0) { a = -a, b = -b, c = -c; }\n   \
-    \ if (b == 0 && a < 0) { a = -a, b = -b, c = -c; }\n  }\n\n  bool is_parallel(Line\
-    \ other) { return a * other.b - b * other.a == 0; }\n  bool is_orthogonal(Line\
-    \ other) { return a * other.a + b * other.b == 0; }\n};\n\ntemplate <typename\
-    \ T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B)\
-    \ : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
-    \ y1), Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    static_assert(is_integral<T>::value);\n\
+    \ }\n  void write() { fastio::wt(pair<T, T>({x, y})); }\n#endif\n};\n\n// A ->\
+    \ B -> C \u3068\u9032\u3080\u3068\u304D\u306B\u3001\u5DE6\u306B\u66F2\u304C\u308B\
+    \u306A\u3089\u3070 +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\u3089\u3070 -1\n\
+    template <typename T>\nint ccw(Point<T> A, Point<T> B, Point<T> C) {\n  T x =\
+    \ (B - A).det(C - A);\n  if (x > 0) return 1;\n  if (x < 0) return -1;\n  return\
+    \ 0;\n}\n\ntemplate <typename REAL, typename T>\nREAL dist(Point<T> A, Point<T>\
+    \ B) {\n  A = A - B;\n  T p = A.dot(A);\n  return sqrt(REAL(p));\n}\n\ntemplate\
+    \ <typename T>\nstruct Line {\n  T a, b, c;\n\n  Line(T a, T b, T c) : a(a), b(b),\
+    \ c(c) {}\n  Line(Point<T> A, Point<T> B) {\n    a = A.y - B.y, b = B.x - A.x,\
+    \ c = A.x * B.y - A.y * B.x;\n  }\n  Line(T x1, T y1, T x2, T y2) : Line(Point<T>(x1,\
+    \ y1), Point<T>(x2, y2)) {}\n\n  template <typename U>\n  U eval(Point<U> P) {\n\
+    \    return a * P.x + b * P.y + c;\n  }\n\n  template <typename U>\n  T eval(U\
+    \ x, U y) {\n    return a * x + b * y + c;\n  }\n\n  // \u540C\u3058\u76F4\u7DDA\
+    \u304C\u540C\u3058 a,b,c \u3067\u8868\u73FE\u3055\u308C\u308B\u3088\u3046\u306B\
+    \u3059\u308B\n  void normalize() {\n    static_assert(is_same_v<T, int> || is_same_v<T,\
+    \ long long>);\n    T g = gcd(gcd(abs(a), abs(b)), abs(c));\n    a /= g, b /=\
+    \ g, c /= g;\n    if (b < 0) { a = -a, b = -b, c = -c; }\n    if (b == 0 && a\
+    \ < 0) { a = -a, b = -b, c = -c; }\n  }\n\n  bool is_parallel(Line other) { return\
+    \ a * other.b - b * other.a == 0; }\n  bool is_orthogonal(Line other) { return\
+    \ a * other.a + b * other.b == 0; }\n};\n\ntemplate <typename T>\nstruct Segment\
+    \ {\n  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n \
+    \ Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2,\
+    \ y2)) {}\n\n  bool contain(Point<T> C) {\n    static_assert(is_integral<T>::value);\n\
     \    T det = (C - A).det(B - A);\n    if (det != 0) return 0;\n    return (C -\
     \ A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_Line() {\
     \ return Line(A, B); }\n};\n\ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL>\
@@ -284,7 +284,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_7_C.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 16:40:17+09:00'
+  timestamp: '2023-11-06 17:27:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_7_C.test.cpp

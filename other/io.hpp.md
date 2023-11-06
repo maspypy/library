@@ -48,7 +48,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_12_B.test.cpp
     title: test/aoj/ALDS1_12_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ALDS1_14_C.test.cpp
     title: test/aoj/ALDS1_14_C.test.cpp
   - icon: ':heavy_check_mark:'
@@ -81,7 +81,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_3_B.test.cpp
     title: test/aoj/CGL_3_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_5_A.test.cpp
     title: test/aoj/CGL_5_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -793,146 +793,17 @@ data:
     path: test/library_checker/tree/tree_diameter.test.cpp
     title: test/library_checker/tree/tree_diameter.test.cpp
   - icon: ':x:'
-    path: test/mytest/31bit_modint.test.cpp
-    title: test/mytest/31bit_modint.test.cpp
-  - icon: ':x:'
-    path: test/mytest/ARC30D.test.cpp
-    title: test/mytest/ARC30D.test.cpp
-  - icon: ':x:'
-    path: test/mytest/QOJ5445.test.cpp
-    title: test/mytest/QOJ5445.test.cpp
-  - icon: ':x:'
-    path: test/mytest/add_chmin.test.cpp
-    title: test/mytest/add_chmin.test.cpp
-  - icon: ':x:'
-    path: test/mytest/add_chmin_chmax.test.cpp
-    title: test/mytest/add_chmin_chmax.test.cpp
-  - icon: ':x:'
-    path: test/mytest/all_but_one_products.test.cpp
-    title: test/mytest/all_but_one_products.test.cpp
-  - icon: ':x:'
-    path: test/mytest/all_inverse.test.cpp
-    title: test/mytest/all_inverse.test.cpp
-  - icon: ':x:'
-    path: test/mytest/bell.test.cpp
-    title: test/mytest/bell.test.cpp
-  - icon: ':x:'
-    path: test/mytest/binary_trie.test.cpp
-    title: test/mytest/binary_trie.test.cpp
-  - icon: ':x:'
-    path: test/mytest/binom.test.cpp
-    title: test/mytest/binom.test.cpp
-  - icon: ':x:'
-    path: test/mytest/catalan_convolution.test.cpp
-    title: test/mytest/catalan_convolution.test.cpp
-  - icon: ':x:'
-    path: test/mytest/cf702_F.test.cpp
-    title: test/mytest/cf702_F.test.cpp
-  - icon: ':x:'
-    path: test/mytest/cf702_F_splay.test.cpp
-    title: test/mytest/cf702_F_splay.test.cpp
-  - icon: ':x:'
-    path: test/mytest/cf940f.test.cpp
-    title: test/mytest/cf940f.test.cpp
-  - icon: ':x:'
-    path: test/mytest/chirp_z.test.cpp
-    title: test/mytest/chirp_z.test.cpp
-  - icon: ':x:'
-    path: test/mytest/composition_1_minus_ex.test.cpp
-    title: test/mytest/composition_1_minus_ex.test.cpp
-  - icon: ':x:'
-    path: test/mytest/composition_ex_minus_1.test.cpp
-    title: test/mytest/composition_ex_minus_1.test.cpp
-  - icon: ':x:'
-    path: test/mytest/composition_log_1_minus_x.test.cpp
-    title: test/mytest/composition_log_1_minus_x.test.cpp
-  - icon: ':x:'
-    path: test/mytest/conv2d.test.cpp
-    title: test/mytest/conv2d.test.cpp
-  - icon: ':x:'
-    path: test/mytest/conv_leq.test.cpp
-    title: test/mytest/conv_leq.test.cpp
-  - icon: ':x:'
-    path: test/mytest/coprime_factorization.test.cpp
-    title: test/mytest/coprime_factorization.test.cpp
-  - icon: ':x:'
-    path: test/mytest/count_bipartite.test.cpp
-    title: test/mytest/count_bipartite.test.cpp
-  - icon: ':x:'
-    path: test/mytest/count_clique.test.cpp
-    title: test/mytest/count_clique.test.cpp
-  - icon: ':x:'
-    path: test/mytest/count_indep_set.test.cpp
-    title: test/mytest/count_indep_set.test.cpp
-  - icon: ':x:'
-    path: test/mytest/count_points_in_triangles.test.cpp
-    title: test/mytest/count_points_in_triangles.test.cpp
-  - icon: ':x:'
-    path: test/mytest/datetime.test.cpp
-    title: test/mytest/datetime.test.cpp
-  - icon: ':x:'
     path: test/mytest/digit_sum.test.cpp
     title: test/mytest/digit_sum.test.cpp
-  - icon: ':x:'
-    path: test/mytest/dyadic_rational.test.cpp
-    title: test/mytest/dyadic_rational.test.cpp
-  - icon: ':x:'
-    path: test/mytest/dynamic_lazy_segtree.test.cpp
-    title: test/mytest/dynamic_lazy_segtree.test.cpp
   - icon: ':x:'
     path: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
     title: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
   - icon: ':x:'
-    path: test/mytest/dynamic_segtree_sparse.test.cpp
-    title: test/mytest/dynamic_segtree_sparse.test.cpp
-  - icon: ':x:'
-    path: test/mytest/enum_partitions.test.cpp
-    title: test/mytest/enum_partitions.test.cpp
-  - icon: ':x:'
     path: test/mytest/enumerate_multisets.test.cpp
     title: test/mytest/enumerate_multisets.test.cpp
   - icon: ':x:'
-    path: test/mytest/enumerate_products.test.cpp
-    title: test/mytest/enumerate_products.test.cpp
-  - icon: ':x:'
-    path: test/mytest/eulerian_number.test.cpp
-    title: test/mytest/eulerian_number.test.cpp
-  - icon: ':x:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
-  - icon: ':x:'
-    path: test/mytest/factorial_digit.test.cpp
-    title: test/mytest/factorial_digit.test.cpp
-  - icon: ':x:'
-    path: test/mytest/fenwick_raq.test.cpp
-    title: test/mytest/fenwick_raq.test.cpp
-  - icon: ':x:'
-    path: test/mytest/fibonacci_search.test.cpp
-    title: test/mytest/fibonacci_search.test.cpp
-  - icon: ':x:'
-    path: test/mytest/find_odd_cycle.test.cpp
-    title: test/mytest/find_odd_cycle.test.cpp
-  - icon: ':x:'
-    path: test/mytest/floor_ceil.test.cpp
-    title: test/mytest/floor_ceil.test.cpp
-  - icon: ':x:'
-    path: test/mytest/floor_ceil_ranges.test.cpp
-    title: test/mytest/floor_ceil_ranges.test.cpp
-  - icon: ':x:'
-    path: test/mytest/four_square.test.cpp
-    title: test/mytest/four_square.test.cpp
-  - icon: ':x:'
-    path: test/mytest/geometric_sequence_sum.test.cpp
-    title: test/mytest/geometric_sequence_sum.test.cpp
-  - icon: ':x:'
-    path: test/mytest/graph_count.test.cpp
-    title: test/mytest/graph_count.test.cpp
-  - icon: ':x:'
-    path: test/mytest/gray_code.test.cpp
-    title: test/mytest/gray_code.test.cpp
-  - icon: ':x:'
-    path: test/mytest/incremental_ch.test.cpp
-    title: test/mytest/incremental_ch.test.cpp
   - icon: ':x:'
     path: test/mytest/is_substring.test.cpp
     title: test/mytest/is_substring.test.cpp
@@ -2212,8 +2083,98 @@ data:
     links:
     - https://judge.yosupo.jp/submission/21623
     - https://judge.yosupo.jp/submission/70667
-  bundledCode: "#line 1 \"other/io.hpp\"\n#include <unistd.h>\r\n#include <sys/mman.h>\r\
-    \n#include <sys/stat.h>\r\n\r\nnamespace fastio {\r\n// https://judge.yosupo.jp/submission/21623\r\
+  bundledCode: "#line 1 \"other/io.hpp\"\n#define FASTIO\r\n#include <unistd.h>\r\n\
+    #include <sys/mman.h>\r\n#include <sys/stat.h>\r\n\r\nnamespace fastio {\r\n//\
+    \ https://judge.yosupo.jp/submission/21623\r\n// https://judge.yosupo.jp/submission/70667\r\
+    \n\r\nstruct Pre {\r\n  char num[10000][4];\r\n  constexpr Pre() : num() {\r\n\
+    \    for (int i = 0; i < 10000; i++) {\r\n      int n = i;\r\n      for (int j\
+    \ = 3; j >= 0; j--) {\r\n        num[i][j] = n % 10 | '0';\r\n        n /= 10;\r\
+    \n      }\r\n    }\r\n  }\r\n} constexpr pre;\r\n\r\nconstexpr int BSZ = 1 <<\
+    \ 19;\r\nchar *ibuf, obuf[BSZ], out[100];\r\nint outi, obufi;\r\n\r\n// gcc expansion.\
+    \ called automaticall before main.\r\nvoid __attribute__((constructor)) _c() {\r\
+    \n  struct stat sb;\r\n  fstat(0, &sb);\r\n  ibuf\r\n      = (char *)mmap(0, sb.st_size,\
+    \ PROT_READ, MAP_SHARED | MAP_POPULATE, 0, 0);\r\n}\r\n\r\nvoid flush() {\r\n\
+    \  assert(write(1, obuf, obufi) == obufi);\r\n  obufi = 0;\r\n}\r\n\r\nvoid rd(char\
+    \ &c) { c = *ibuf++; }\r\nvoid rd(string &x) {\r\n  x.clear();\r\n  char c;\r\n\
+    \  do { rd(c); } while (isspace(c));\r\n  do { x += c, rd(c); } while (!isspace(c));\r\
+    \n}\r\n\r\ntemplate <typename T>\r\nvoid rd_integer(T &x) {\r\n  char c;\r\n \
+    \ do\r\n    rd(c);\r\n  while (c < '-');\r\n  bool minus = 0;\r\n  if constexpr\
+    \ (is_signed<T>::value || is_same_v<T, i128>) {\r\n    if (c == '-') { minus =\
+    \ 1, rd(c); }\r\n  }\r\n  x = 0;\r\n  while (c >= '0') { x = x * 10 + (c & 15),\
+    \ rd(c); }\r\n  if constexpr (is_signed<T>::value || is_same_v<T, i128>) {\r\n\
+    \    if (minus) x = -x;\r\n  }\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_real(T\
+    \ &x) {\r\n  string s;\r\n  rd(s);\r\n  x = stod(s);\r\n}\r\n\r\ntemplate <typename\
+    \ T>\r\nstruct has_read_method {\r\n  template <typename U>\r\n  static std::true_type\
+    \ test(decltype(&U::read) *);\r\n  template <typename>\r\n  static std::false_type\
+    \ test(...);\r\n  using type = decltype(test<T>(nullptr));\r\n  static constexpr\
+    \ bool value = type::value;\r\n};\r\n\r\ntemplate <typename T>\r\ntypename enable_if<has_read_method<T>::value,\
+    \ void>::type rd(T &x) {\r\n  x.read();\r\n}\r\n\r\nvoid rd(int &x) { rd_integer(x);\
+    \ }\r\nvoid rd(ll &x) { rd_integer(x); }\r\nvoid rd(i128 &x) { rd_integer(x);\
+    \ }\r\nvoid rd(u32 &x) { rd_integer(x); }\r\nvoid rd(u64 &x) { rd_integer(x);\
+    \ }\r\nvoid rd(u128 &x) { rd_integer(x); }\r\nvoid rd(double &x) { rd_real(x);\
+    \ }\r\nvoid rd(long double &x) { rd_real(x); }\r\nvoid rd(f128 &x) { rd_real(x);\
+    \ }\r\ntemplate <class T, class U>\r\nvoid rd(pair<T, U> &p) {\r\n  return rd(p.first),\
+    \ rd(p.second);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd_tuple(T\
+    \ &t) {\r\n  if constexpr (N < std::tuple_size<T>::value) {\r\n    auto &x = std::get<N>(t);\r\
+    \n    rd(x);\r\n    rd_tuple<N + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\
+    \nvoid rd(tuple<T...> &tpl) {\r\n  rd_tuple(tpl);\r\n}\r\ntemplate <class T>\r\
+    \nvoid rd(vc<T> &x) {\r\n  for (auto &d: x) rd(d);\r\n}\r\ntemplate <size_t N\
+    \ = 0, typename T>\r\nvoid rd(array<T, N> &x) {\r\n  for (auto &d: x) rd(d);\r\
+    \n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class... T>\r\nvoid read(H &h,\
+    \ T &... t) {\r\n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const char c) {\r\n\
+    \  if (obufi == BSZ) flush();\r\n  obuf[obufi++] = c;\r\n}\r\nvoid wt(const string\
+    \ &s) {\r\n  for (char c: s) wt(c);\r\n}\r\nvoid wt(const char *s) {\r\n  size_t\
+    \ len = strlen(s);\r\n  for (size_t i = 0; i < len; i++) wt(s[i]);\r\n}\r\n\r\n\
+    template <typename T>\r\nvoid wt_integer(T x) {\r\n  if (obufi > BSZ - 100) flush();\r\
+    \n  if (x < 0) { obuf[obufi++] = '-', x = -x; }\r\n  for (outi = 96; x >= 10000;\
+    \ outi -= 4) {\r\n    memcpy(out + outi, pre.num[x % 10000], 4);\r\n    x /= 10000;\r\
+    \n  }\r\n  if (x >= 1000) {\r\n    memcpy(obuf + obufi, pre.num[x], 4);\r\n  \
+    \  obufi += 4;\r\n  } else if (x >= 100) {\r\n    memcpy(obuf + obufi, pre.num[x]\
+    \ + 1, 3);\r\n    obufi += 3;\r\n  } else if (x >= 10) {\r\n    int q = (x * 103)\
+    \ >> 10;\r\n    obuf[obufi] = q | '0';\r\n    obuf[obufi + 1] = (x - q * 10) |\
+    \ '0';\r\n    obufi += 2;\r\n  } else\r\n    obuf[obufi++] = x | '0';\r\n  memcpy(obuf\
+    \ + obufi, out + outi + 4, 96 - outi);\r\n  obufi += 96 - outi;\r\n}\r\n\r\ntemplate\
+    \ <typename T>\r\nvoid wt_real(T x) {\r\n  ostringstream oss;\r\n  oss << fixed\
+    \ << setprecision(15) << double(x);\r\n  string s = oss.str();\r\n  wt(s);\r\n\
+    }\r\n\r\ntemplate <typename T>\r\nstruct has_print_method {\r\n  template <typename\
+    \ U>\r\n  static std::true_type test(decltype(&U::print) *);\r\n  template <typename>\r\
+    \n  static std::false_type test(...);\r\n  using type = decltype(test<T>(nullptr));\r\
+    \n  static constexpr bool value = type::value;\r\n};\r\n\r\ntemplate <typename\
+    \ T>\r\ntypename enable_if<has_print_method<T>::value, void>::type wt(T x) {\r\
+    \n  x.print();\r\n}\r\n\r\nvoid wt(bool x) { wt_integer(int(x)); }\r\nvoid wt(int\
+    \ x) { wt_integer(x); }\r\nvoid wt(ll x) { wt_integer(x); }\r\nvoid wt(i128 x)\
+    \ { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\nvoid wt(u64 x) {\
+    \ wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\nvoid wt(double x)\
+    \ { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\nvoid wt(f128 x)\
+    \ { wt_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid wt(const pair<T,\
+    \ U> val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n  wt(val.second);\r\n}\r\ntemplate\
+    \ <size_t N = 0, typename T>\r\nvoid wt_tuple(const T t) {\r\n  if constexpr (N\
+    \ < std::tuple_size<T>::value) {\r\n    if constexpr (N > 0) { wt(' '); }\r\n\
+    \    const auto x = std::get<N>(t);\r\n    wt(x);\r\n    wt_tuple<N + 1>(t);\r\
+    \n  }\r\n}\r\ntemplate <class... T>\r\nvoid wt(tuple<T...> tpl) {\r\n  wt_tuple(tpl);\r\
+    \n}\r\ntemplate <class T, size_t S>\r\nvoid wt(const array<T, S> val) {\r\n  auto\
+    \ n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n    if (i) wt(' ');\r\
+    \n    wt(val[i]);\r\n  }\r\n}\r\ntemplate <class T>\r\nvoid wt(const vector<T>\
+    \ val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n \
+    \   if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\n\r\nvoid print() { wt('\\\
+    n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head, Tail\
+    \ &&... tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail)) wt(' ');\r\n  print(forward<Tail>(tail)...);\r\
+    \n}\r\n\r\n// gcc expansion. called automaticall after main.\r\nvoid __attribute__((destructor))\
+    \ _d() { flush(); }\r\n} // namespace fastio\r\n\r\nusing fastio::read;\r\nusing\
+    \ fastio::print;\r\nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int\
+    \ __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__;\
+    \ \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n  string __VA_ARGS__;\
+    \ \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\
+    \r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n  double __VA_ARGS__; \\\
+    \r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name, size) \\\r\n  vector<type>\
+    \ name(size);    \\\r\n  read(name)\r\n#define VV(type, name, h, w)          \
+    \           \\\r\n  vector<vector<type>> name(h, vector<type>(w)); \\\r\n  read(name)\r\
+    \n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t\
+    \ = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\
+    \nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\"\
+    \ : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\n"
+  code: "#define FASTIO\r\n#include <unistd.h>\r\n#include <sys/mman.h>\r\n#include\
+    \ <sys/stat.h>\r\n\r\nnamespace fastio {\r\n// https://judge.yosupo.jp/submission/21623\r\
     \n// https://judge.yosupo.jp/submission/70667\r\n\r\nstruct Pre {\r\n  char num[10000][4];\r\
     \n  constexpr Pre() : num() {\r\n    for (int i = 0; i < 10000; i++) {\r\n   \
     \   int n = i;\r\n      for (int j = 3; j >= 0; j--) {\r\n        num[i][j] =\
@@ -2232,153 +2193,63 @@ data:
     \n  x = 0;\r\n  while (c >= '0') { x = x * 10 + (c & 15), rd(c); }\r\n  if constexpr\
     \ (is_signed<T>::value || is_same_v<T, i128>) {\r\n    if (minus) x = -x;\r\n\
     \  }\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_real(T &x) {\r\n  string s;\r\
-    \n  rd(s);\r\n  x = stod(s);\r\n}\r\n\r\nvoid rd(int &x) { rd_integer(x); }\r\n\
-    void rd(ll &x) { rd_integer(x); }\r\nvoid rd(i128 &x) { rd_integer(x); }\r\nvoid\
-    \ rd(u32 &x) { rd_integer(x); }\r\nvoid rd(u64 &x) { rd_integer(x); }\r\nvoid\
-    \ rd(u128 &x) { rd_integer(x); }\r\nvoid rd(double &x) { rd_real(x); }\r\nvoid\
-    \ rd(long double &x) { rd_real(x); }\r\nvoid rd(f128 &x) { rd_real(x); }\r\ntemplate\
-    \ <class T, class U>\r\nvoid rd(pair<T, U> &p) {\r\n  return rd(p.first), rd(p.second);\r\
-    \n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd(T &t) {\r\n  if constexpr\
-    \ (N < std::tuple_size<T>::value) {\r\n    auto &x = std::get<N>(t);\r\n    rd(x);\r\
-    \n    rd<N + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...>\
-    \ &tpl) {\r\n  rd(tpl);\r\n}\r\ntemplate <class T>\r\nvoid rd(vc<T> &x) {\r\n\
-    \  for (auto &d: x) rd(d);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid\
-    \ rd(array<T, N> &x) {\r\n  for (auto &d: x) rd(d);\r\n}\r\n\r\ntemplate <typename\
-    \ T>\r\nstruct has_read_method {\r\n  template <typename U>\r\n  static std::true_type\
-    \ test(decltype(&U::read) *);\r\n  template <typename>\r\n  static std::false_type\
-    \ test(...);\r\n  using type = decltype(test<T>(nullptr));\r\n  static constexpr\
-    \ bool value = type::value;\r\n};\r\n\r\ntemplate <typename T>\r\ntypename enable_if<has_read_method<T>::value,\
-    \ void>::type rd(T &x) {\r\n  x.read();\r\n}\r\n\r\nvoid read() {}\r\ntemplate\
-    \ <class H, class... T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\
-    \n}\r\n\r\nvoid wt(const char c) {\r\n  if (obufi == BSZ) flush();\r\n  obuf[obufi++]\
-    \ = c;\r\n}\r\nvoid wt(const string &s) {\r\n  for (char c: s) wt(c);\r\n}\r\n\
-    void wt(const char *s) {\r\n  size_t len = strlen(s);\r\n  for (size_t i = 0;\
-    \ i < len; i++) wt(s[i]);\r\n}\r\n\r\ntemplate <typename T>\r\nvoid wt_integer(T\
-    \ x) {\r\n  if (obufi > BSZ - 100) flush();\r\n  if (x < 0) { obuf[obufi++] =\
-    \ '-', x = -x; }\r\n  for (outi = 96; x >= 10000; outi -= 4) {\r\n    memcpy(out\
-    \ + outi, pre.num[x % 10000], 4);\r\n    x /= 10000;\r\n  }\r\n  if (x >= 1000)\
-    \ {\r\n    memcpy(obuf + obufi, pre.num[x], 4);\r\n    obufi += 4;\r\n  } else\
-    \ if (x >= 100) {\r\n    memcpy(obuf + obufi, pre.num[x] + 1, 3);\r\n    obufi\
-    \ += 3;\r\n  } else if (x >= 10) {\r\n    int q = (x * 103) >> 10;\r\n    obuf[obufi]\
-    \ = q | '0';\r\n    obuf[obufi + 1] = (x - q * 10) | '0';\r\n    obufi += 2;\r\
-    \n  } else\r\n    obuf[obufi++] = x | '0';\r\n  memcpy(obuf + obufi, out + outi\
-    \ + 4, 96 - outi);\r\n  obufi += 96 - outi;\r\n}\r\n\r\ntemplate <typename T>\r\
-    \nvoid wt_real(T x) {\r\n  ostringstream oss;\r\n  oss << fixed << setprecision(15)\
-    \ << double(x);\r\n  string s = oss.str();\r\n  wt(s);\r\n}\r\n\r\nvoid wt(bool\
-    \ x) { wt_integer(int(x)); }\r\nvoid wt(int x) { wt_integer(x); }\r\nvoid wt(ll\
-    \ x) { wt_integer(x); }\r\nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x)\
-    \ { wt_integer(x); }\r\nvoid wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) {\
-    \ wt_integer(x); }\r\nvoid wt(double x) { wt_real(x); }\r\nvoid wt(long double\
-    \ x) { wt_real(x); }\r\nvoid wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class\
-    \ T, class U>\r\nvoid wt(const pair<T, U> val) {\r\n  wt(val.first);\r\n  wt('\
-    \ ');\r\n  wt(val.second);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid\
-    \ wt_tuple(const T t) {\r\n  if constexpr (N < std::tuple_size<T>::value) {\r\n\
-    \    if constexpr (N > 0) { wt(' '); }\r\n    const auto x = std::get<N>(t);\r\
-    \n    wt(x);\r\n    wt_tuple<N + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\
-    \nvoid wt(tuple<T...> tpl) {\r\n  wt_tuple(tpl);\r\n}\r\ntemplate <class T, size_t\
-    \ S>\r\nvoid wt(const array<T, S> val) {\r\n  auto n = val.size();\r\n  for (size_t\
-    \ i = 0; i < n; i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\
-    \ntemplate <class T>\r\nvoid wt(const vector<T> val) {\r\n  auto n = val.size();\r\
-    \n  for (size_t i = 0; i < n; i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\
-    \n  }\r\n}\r\n\r\ntemplate <typename T>\r\nstruct has_print_method {\r\n  template\
-    \ <typename U>\r\n  static std::true_type test(decltype(&U::print) *);\r\n  template\
-    \ <typename>\r\n  static std::false_type test(...);\r\n  using type = decltype(test<T>(nullptr));\r\
-    \n  static constexpr bool value = type::value;\r\n};\r\n\r\ntemplate <typename\
-    \ T>\r\ntypename enable_if<has_print_method<T>::value, void>::type wt(T x) {\r\
-    \n  x.print();\r\n}\r\n\r\nvoid print() { wt('\\n'); }\r\ntemplate <class Head,\
-    \ class... Tail>\r\nvoid print(Head &&head, Tail &&... tail) {\r\n  wt(head);\r\
-    \n  if (sizeof...(Tail)) wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\
-    \r\n// gcc expansion. called automaticall after main.\r\nvoid __attribute__((destructor))\
-    \ _d() { flush(); }\r\n} // namespace fastio\r\n\r\nusing fastio::read;\r\nusing\
-    \ fastio::print;\r\nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int\
-    \ __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__;\
-    \ \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n  string __VA_ARGS__;\
-    \ \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\
-    \r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n  double __VA_ARGS__; \\\
-    \r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name, size) \\\r\n  vector<type>\
-    \ name(size);    \\\r\n  read(name)\r\n#define VV(type, name, h, w)          \
-    \           \\\r\n  vector<vector<type>> name(h, vector<type>(w)); \\\r\n  read(name)\r\
-    \n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t\
-    \ = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\
-    \nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\"\
-    \ : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\n"
-  code: "#include <unistd.h>\r\n#include <sys/mman.h>\r\n#include <sys/stat.h>\r\n\
-    \r\nnamespace fastio {\r\n// https://judge.yosupo.jp/submission/21623\r\n// https://judge.yosupo.jp/submission/70667\r\
-    \n\r\nstruct Pre {\r\n  char num[10000][4];\r\n  constexpr Pre() : num() {\r\n\
-    \    for (int i = 0; i < 10000; i++) {\r\n      int n = i;\r\n      for (int j\
-    \ = 3; j >= 0; j--) {\r\n        num[i][j] = n % 10 | '0';\r\n        n /= 10;\r\
-    \n      }\r\n    }\r\n  }\r\n} constexpr pre;\r\n\r\nconstexpr int BSZ = 1 <<\
-    \ 19;\r\nchar *ibuf, obuf[BSZ], out[100];\r\nint outi, obufi;\r\n\r\n// gcc expansion.\
-    \ called automaticall before main.\r\nvoid __attribute__((constructor)) _c() {\r\
-    \n  struct stat sb;\r\n  fstat(0, &sb);\r\n  ibuf\r\n      = (char *)mmap(0, sb.st_size,\
-    \ PROT_READ, MAP_SHARED | MAP_POPULATE, 0, 0);\r\n}\r\n\r\nvoid flush() {\r\n\
-    \  assert(write(1, obuf, obufi) == obufi);\r\n  obufi = 0;\r\n}\r\n\r\nvoid rd(char\
-    \ &c) { c = *ibuf++; }\r\nvoid rd(string &x) {\r\n  x.clear();\r\n  char c;\r\n\
-    \  do { rd(c); } while (isspace(c));\r\n  do { x += c, rd(c); } while (!isspace(c));\r\
-    \n}\r\n\r\ntemplate <typename T>\r\nvoid rd_integer(T &x) {\r\n  char c;\r\n \
-    \ do\r\n    rd(c);\r\n  while (c < '-');\r\n  bool minus = 0;\r\n  if constexpr\
-    \ (is_signed<T>::value || is_same_v<T, i128>) {\r\n    if (c == '-') { minus =\
-    \ 1, rd(c); }\r\n  }\r\n  x = 0;\r\n  while (c >= '0') { x = x * 10 + (c & 15),\
-    \ rd(c); }\r\n  if constexpr (is_signed<T>::value || is_same_v<T, i128>) {\r\n\
-    \    if (minus) x = -x;\r\n  }\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_real(T\
-    \ &x) {\r\n  string s;\r\n  rd(s);\r\n  x = stod(s);\r\n}\r\n\r\nvoid rd(int &x)\
-    \ { rd_integer(x); }\r\nvoid rd(ll &x) { rd_integer(x); }\r\nvoid rd(i128 &x)\
-    \ { rd_integer(x); }\r\nvoid rd(u32 &x) { rd_integer(x); }\r\nvoid rd(u64 &x)\
-    \ { rd_integer(x); }\r\nvoid rd(u128 &x) { rd_integer(x); }\r\nvoid rd(double\
-    \ &x) { rd_real(x); }\r\nvoid rd(long double &x) { rd_real(x); }\r\nvoid rd(f128\
-    \ &x) { rd_real(x); }\r\ntemplate <class T, class U>\r\nvoid rd(pair<T, U> &p)\
-    \ {\r\n  return rd(p.first), rd(p.second);\r\n}\r\ntemplate <size_t N = 0, typename\
-    \ T>\r\nvoid rd(T &t) {\r\n  if constexpr (N < std::tuple_size<T>::value) {\r\n\
-    \    auto &x = std::get<N>(t);\r\n    rd(x);\r\n    rd<N + 1>(t);\r\n  }\r\n}\r\
-    \ntemplate <class... T>\r\nvoid rd(tuple<T...> &tpl) {\r\n  rd(tpl);\r\n}\r\n\
-    template <class T>\r\nvoid rd(vc<T> &x) {\r\n  for (auto &d: x) rd(d);\r\n}\r\n\
-    template <size_t N = 0, typename T>\r\nvoid rd(array<T, N> &x) {\r\n  for (auto\
-    \ &d: x) rd(d);\r\n}\r\n\r\ntemplate <typename T>\r\nstruct has_read_method {\r\
-    \n  template <typename U>\r\n  static std::true_type test(decltype(&U::read) *);\r\
-    \n  template <typename>\r\n  static std::false_type test(...);\r\n  using type\
-    \ = decltype(test<T>(nullptr));\r\n  static constexpr bool value = type::value;\r\
+    \n  rd(s);\r\n  x = stod(s);\r\n}\r\n\r\ntemplate <typename T>\r\nstruct has_read_method\
+    \ {\r\n  template <typename U>\r\n  static std::true_type test(decltype(&U::read)\
+    \ *);\r\n  template <typename>\r\n  static std::false_type test(...);\r\n  using\
+    \ type = decltype(test<T>(nullptr));\r\n  static constexpr bool value = type::value;\r\
     \n};\r\n\r\ntemplate <typename T>\r\ntypename enable_if<has_read_method<T>::value,\
-    \ void>::type rd(T &x) {\r\n  x.read();\r\n}\r\n\r\nvoid read() {}\r\ntemplate\
-    \ <class H, class... T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\
-    \n}\r\n\r\nvoid wt(const char c) {\r\n  if (obufi == BSZ) flush();\r\n  obuf[obufi++]\
-    \ = c;\r\n}\r\nvoid wt(const string &s) {\r\n  for (char c: s) wt(c);\r\n}\r\n\
-    void wt(const char *s) {\r\n  size_t len = strlen(s);\r\n  for (size_t i = 0;\
-    \ i < len; i++) wt(s[i]);\r\n}\r\n\r\ntemplate <typename T>\r\nvoid wt_integer(T\
-    \ x) {\r\n  if (obufi > BSZ - 100) flush();\r\n  if (x < 0) { obuf[obufi++] =\
-    \ '-', x = -x; }\r\n  for (outi = 96; x >= 10000; outi -= 4) {\r\n    memcpy(out\
-    \ + outi, pre.num[x % 10000], 4);\r\n    x /= 10000;\r\n  }\r\n  if (x >= 1000)\
-    \ {\r\n    memcpy(obuf + obufi, pre.num[x], 4);\r\n    obufi += 4;\r\n  } else\
-    \ if (x >= 100) {\r\n    memcpy(obuf + obufi, pre.num[x] + 1, 3);\r\n    obufi\
-    \ += 3;\r\n  } else if (x >= 10) {\r\n    int q = (x * 103) >> 10;\r\n    obuf[obufi]\
-    \ = q | '0';\r\n    obuf[obufi + 1] = (x - q * 10) | '0';\r\n    obufi += 2;\r\
-    \n  } else\r\n    obuf[obufi++] = x | '0';\r\n  memcpy(obuf + obufi, out + outi\
-    \ + 4, 96 - outi);\r\n  obufi += 96 - outi;\r\n}\r\n\r\ntemplate <typename T>\r\
-    \nvoid wt_real(T x) {\r\n  ostringstream oss;\r\n  oss << fixed << setprecision(15)\
-    \ << double(x);\r\n  string s = oss.str();\r\n  wt(s);\r\n}\r\n\r\nvoid wt(bool\
-    \ x) { wt_integer(int(x)); }\r\nvoid wt(int x) { wt_integer(x); }\r\nvoid wt(ll\
-    \ x) { wt_integer(x); }\r\nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x)\
-    \ { wt_integer(x); }\r\nvoid wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) {\
-    \ wt_integer(x); }\r\nvoid wt(double x) { wt_real(x); }\r\nvoid wt(long double\
-    \ x) { wt_real(x); }\r\nvoid wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class\
-    \ T, class U>\r\nvoid wt(const pair<T, U> val) {\r\n  wt(val.first);\r\n  wt('\
-    \ ');\r\n  wt(val.second);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid\
-    \ wt_tuple(const T t) {\r\n  if constexpr (N < std::tuple_size<T>::value) {\r\n\
-    \    if constexpr (N > 0) { wt(' '); }\r\n    const auto x = std::get<N>(t);\r\
-    \n    wt(x);\r\n    wt_tuple<N + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\
-    \nvoid wt(tuple<T...> tpl) {\r\n  wt_tuple(tpl);\r\n}\r\ntemplate <class T, size_t\
-    \ S>\r\nvoid wt(const array<T, S> val) {\r\n  auto n = val.size();\r\n  for (size_t\
-    \ i = 0; i < n; i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\
-    \ntemplate <class T>\r\nvoid wt(const vector<T> val) {\r\n  auto n = val.size();\r\
-    \n  for (size_t i = 0; i < n; i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\
-    \n  }\r\n}\r\n\r\ntemplate <typename T>\r\nstruct has_print_method {\r\n  template\
-    \ <typename U>\r\n  static std::true_type test(decltype(&U::print) *);\r\n  template\
-    \ <typename>\r\n  static std::false_type test(...);\r\n  using type = decltype(test<T>(nullptr));\r\
+    \ void>::type rd(T &x) {\r\n  x.read();\r\n}\r\n\r\nvoid rd(int &x) { rd_integer(x);\
+    \ }\r\nvoid rd(ll &x) { rd_integer(x); }\r\nvoid rd(i128 &x) { rd_integer(x);\
+    \ }\r\nvoid rd(u32 &x) { rd_integer(x); }\r\nvoid rd(u64 &x) { rd_integer(x);\
+    \ }\r\nvoid rd(u128 &x) { rd_integer(x); }\r\nvoid rd(double &x) { rd_real(x);\
+    \ }\r\nvoid rd(long double &x) { rd_real(x); }\r\nvoid rd(f128 &x) { rd_real(x);\
+    \ }\r\ntemplate <class T, class U>\r\nvoid rd(pair<T, U> &p) {\r\n  return rd(p.first),\
+    \ rd(p.second);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd_tuple(T\
+    \ &t) {\r\n  if constexpr (N < std::tuple_size<T>::value) {\r\n    auto &x = std::get<N>(t);\r\
+    \n    rd(x);\r\n    rd_tuple<N + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\
+    \nvoid rd(tuple<T...> &tpl) {\r\n  rd_tuple(tpl);\r\n}\r\ntemplate <class T>\r\
+    \nvoid rd(vc<T> &x) {\r\n  for (auto &d: x) rd(d);\r\n}\r\ntemplate <size_t N\
+    \ = 0, typename T>\r\nvoid rd(array<T, N> &x) {\r\n  for (auto &d: x) rd(d);\r\
+    \n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class... T>\r\nvoid read(H &h,\
+    \ T &... t) {\r\n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const char c) {\r\n\
+    \  if (obufi == BSZ) flush();\r\n  obuf[obufi++] = c;\r\n}\r\nvoid wt(const string\
+    \ &s) {\r\n  for (char c: s) wt(c);\r\n}\r\nvoid wt(const char *s) {\r\n  size_t\
+    \ len = strlen(s);\r\n  for (size_t i = 0; i < len; i++) wt(s[i]);\r\n}\r\n\r\n\
+    template <typename T>\r\nvoid wt_integer(T x) {\r\n  if (obufi > BSZ - 100) flush();\r\
+    \n  if (x < 0) { obuf[obufi++] = '-', x = -x; }\r\n  for (outi = 96; x >= 10000;\
+    \ outi -= 4) {\r\n    memcpy(out + outi, pre.num[x % 10000], 4);\r\n    x /= 10000;\r\
+    \n  }\r\n  if (x >= 1000) {\r\n    memcpy(obuf + obufi, pre.num[x], 4);\r\n  \
+    \  obufi += 4;\r\n  } else if (x >= 100) {\r\n    memcpy(obuf + obufi, pre.num[x]\
+    \ + 1, 3);\r\n    obufi += 3;\r\n  } else if (x >= 10) {\r\n    int q = (x * 103)\
+    \ >> 10;\r\n    obuf[obufi] = q | '0';\r\n    obuf[obufi + 1] = (x - q * 10) |\
+    \ '0';\r\n    obufi += 2;\r\n  } else\r\n    obuf[obufi++] = x | '0';\r\n  memcpy(obuf\
+    \ + obufi, out + outi + 4, 96 - outi);\r\n  obufi += 96 - outi;\r\n}\r\n\r\ntemplate\
+    \ <typename T>\r\nvoid wt_real(T x) {\r\n  ostringstream oss;\r\n  oss << fixed\
+    \ << setprecision(15) << double(x);\r\n  string s = oss.str();\r\n  wt(s);\r\n\
+    }\r\n\r\ntemplate <typename T>\r\nstruct has_print_method {\r\n  template <typename\
+    \ U>\r\n  static std::true_type test(decltype(&U::print) *);\r\n  template <typename>\r\
+    \n  static std::false_type test(...);\r\n  using type = decltype(test<T>(nullptr));\r\
     \n  static constexpr bool value = type::value;\r\n};\r\n\r\ntemplate <typename\
     \ T>\r\ntypename enable_if<has_print_method<T>::value, void>::type wt(T x) {\r\
-    \n  x.print();\r\n}\r\n\r\nvoid print() { wt('\\n'); }\r\ntemplate <class Head,\
-    \ class... Tail>\r\nvoid print(Head &&head, Tail &&... tail) {\r\n  wt(head);\r\
-    \n  if (sizeof...(Tail)) wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\
-    \r\n// gcc expansion. called automaticall after main.\r\nvoid __attribute__((destructor))\
+    \n  x.print();\r\n}\r\n\r\nvoid wt(bool x) { wt_integer(int(x)); }\r\nvoid wt(int\
+    \ x) { wt_integer(x); }\r\nvoid wt(ll x) { wt_integer(x); }\r\nvoid wt(i128 x)\
+    \ { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\nvoid wt(u64 x) {\
+    \ wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\nvoid wt(double x)\
+    \ { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\nvoid wt(f128 x)\
+    \ { wt_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid wt(const pair<T,\
+    \ U> val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n  wt(val.second);\r\n}\r\ntemplate\
+    \ <size_t N = 0, typename T>\r\nvoid wt_tuple(const T t) {\r\n  if constexpr (N\
+    \ < std::tuple_size<T>::value) {\r\n    if constexpr (N > 0) { wt(' '); }\r\n\
+    \    const auto x = std::get<N>(t);\r\n    wt(x);\r\n    wt_tuple<N + 1>(t);\r\
+    \n  }\r\n}\r\ntemplate <class... T>\r\nvoid wt(tuple<T...> tpl) {\r\n  wt_tuple(tpl);\r\
+    \n}\r\ntemplate <class T, size_t S>\r\nvoid wt(const array<T, S> val) {\r\n  auto\
+    \ n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n    if (i) wt(' ');\r\
+    \n    wt(val[i]);\r\n  }\r\n}\r\ntemplate <class T>\r\nvoid wt(const vector<T>\
+    \ val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n \
+    \   if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\n\r\nvoid print() { wt('\\\
+    n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head, Tail\
+    \ &&... tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail)) wt(' ');\r\n  print(forward<Tail>(tail)...);\r\
+    \n}\r\n\r\n// gcc expansion. called automaticall after main.\r\nvoid __attribute__((destructor))\
     \ _d() { flush(); }\r\n} // namespace fastio\r\n\r\nusing fastio::read;\r\nusing\
     \ fastio::print;\r\nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int\
     \ __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__;\
@@ -2396,7 +2267,7 @@ data:
   isVerificationFile: false
   path: other/io.hpp
   requiredBy: []
-  timestamp: '2023-11-06 16:40:17+09:00'
+  timestamp: '2023-11-06 17:27:58+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1038.test.cpp
@@ -2621,23 +2492,15 @@ data:
   - test/yukicoder/2119.test.cpp
   - test/yukicoder/2231.test.cpp
   - test/mytest/online_division.test.cpp
-  - test/mytest/cf940f.test.cpp
-  - test/mytest/four_square.test.cpp
   - test/mytest/min_poly.test.cpp
   - test/mytest/summax_add.test.cpp
-  - test/mytest/cf702_F.test.cpp
   - test/mytest/three_triangular.test.cpp
   - test/mytest/rbst_am_2.test.cpp
-  - test/mytest/factorial_digit.test.cpp
   - test/mytest/range_closest_pair.test.cpp
   - test/mytest/kdtree_am.test.cpp
   - test/mytest/minplus_conv_triple.test.cpp
-  - test/mytest/enumerate_products.test.cpp
   - test/mytest/rbst_am_persistent.test.cpp
   - test/mytest/minplus_convex.test.cpp
-  - test/mytest/floor_ceil_ranges.test.cpp
-  - test/mytest/count_clique.test.cpp
-  - test/mytest/binom.test.cpp
   - test/mytest/min_min.test.cpp
   - test/mytest/online_square.test.cpp
   - test/mytest/mo_on_tree.test.cpp
@@ -2650,65 +2513,45 @@ data:
   - test/mytest/rbst.test.cpp
   - test/mytest/partial_frac.test.cpp
   - test/mytest/rbst_monoid.test.cpp
-  - test/mytest/bell.test.cpp
   - test/mytest/max_assign.test.cpp
   - test/mytest/max_max.test.cpp
-  - test/mytest/find_odd_cycle.test.cpp
   - test/mytest/pascal.test.cpp
-  - test/mytest/datetime.test.cpp
   - test/mytest/stern_brocot.test.cpp
   - test/mytest/rbst_am.test.cpp
   - test/mytest/magic_square.test.cpp
   - test/mytest/sparse_pow_2d.test.cpp
-  - test/mytest/graph_count.test.cpp
-  - test/mytest/eulerian_number.test.cpp
   - test/mytest/prime_sum.test.cpp
   - test/mytest/splay_am.test.cpp
   - test/mytest/substring_abundant.test.cpp
   - test/mytest/vandermonde.test.cpp
-  - test/mytest/conv2d.test.cpp
-  - test/mytest/binary_trie.test.cpp
-  - test/mytest/gray_code.test.cpp
   - test/mytest/primesum_mod4.test.cpp
-  - test/mytest/fenwick_raq.test.cpp
   - test/mytest/xor_transpose.test.cpp
-  - test/mytest/all_inverse.test.cpp
   - test/mytest/is_substring.test.cpp
-  - test/mytest/count_indep_set.test.cpp
   - test/mytest/min_max.test.cpp
   - test/mytest/summax_assign.test.cpp
   - test/mytest/mybitset.test.cpp
   - test/mytest/rbst_commutative_persistent.test.cpp
   - test/mytest/manhattan_nns.test.cpp
-  - test/mytest/chirp_z.test.cpp
-  - test/mytest/geometric_sequence_sum.test.cpp
-  - test/mytest/floor_ceil.test.cpp
   - test/mytest/minidx_add.test.cpp
-  - test/mytest/composition_log_1_minus_x.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
   - test/mytest/splay.test.cpp
   - test/mytest/rbst_test.test.cpp
   - test/mytest/tutte.test.cpp
   - test/mytest/online_log.test.cpp
-  - test/mytest/conv_leq.test.cpp
   - test/mytest/splay_monoid.test.cpp
   - test/mytest/enumerate_multisets.test.cpp
   - test/mytest/maxidx_add.test.cpp
   - test/mytest/online_pow.test.cpp
   - test/mytest/matching_line_graph.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
-  - test/mytest/enum_partitions.test.cpp
   - test/mytest/non_adj.test.cpp
-  - test/mytest/coprime_factorization.test.cpp
   - test/mytest/range_mex.test.cpp
   - test/mytest/wavelet_matrix.test.cpp
   - test/mytest/online_inv.test.cpp
   - test/mytest/knight_distance.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
-  - test/mytest/incremental_ch.test.cpp
   - test/mytest/digit_sum.test.cpp
-  - test/mytest/composition_ex_minus_1.test.cpp
   - test/mytest/rbst_monoid_persistent.test.cpp
   - test/mytest/summin_assign.test.cpp
   - test/mytest/factorial_998.test.cpp
@@ -2717,17 +2560,10 @@ data:
   - test/mytest/minmax_add.test.cpp
   - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/longest_common_substr.test.cpp
-  - test/mytest/fibonacci_search.test.cpp
   - test/mytest/pytagorean_triples.test.cpp
-  - test/mytest/dynamic_lazy_segtree.test.cpp
   - test/mytest/three_square.test.cpp
-  - test/mytest/ARC30D.test.cpp
-  - test/mytest/all_but_one_products.test.cpp
-  - test/mytest/QOJ5445.test.cpp
   - test/mytest/online_exp.test.cpp
   - test/mytest/maxplus_concave.test.cpp
-  - test/mytest/catalan_convolution.test.cpp
-  - test/mytest/add_chmin_chmax.test.cpp
   - test/mytest/matching_ve.test.cpp
   - test/mytest/matching.test.cpp
   - test/mytest/tournament.test.cpp
@@ -2737,24 +2573,16 @@ data:
   - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
   - test/mytest/partizan.test.cpp
   - test/mytest/multinomial.test.cpp
-  - test/mytest/dynamic_segtree_sparse.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
-  - test/mytest/count_points_in_triangles.test.cpp
-  - test/mytest/cf702_F_splay.test.cpp
   - test/mytest/summin_add.test.cpp
-  - test/mytest/composition_1_minus_ex.test.cpp
   - test/mytest/smawk.test.cpp
   - test/mytest/simple_perm.test.cpp
   - test/mytest/kdtree_nns.test.cpp
-  - test/mytest/31bit_modint.test.cpp
   - test/mytest/segtree_xor_prod.test.cpp
-  - test/mytest/add_chmin.test.cpp
   - test/mytest/subset_sum.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/kdtree_monoid.test.cpp
-  - test/mytest/count_bipartite.test.cpp
-  - test/mytest/dyadic_rational.test.cpp
   - test/library_checker/multiplication_of_bigintegers.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
   - test/library_checker/graph/biconnected_component.test.cpp

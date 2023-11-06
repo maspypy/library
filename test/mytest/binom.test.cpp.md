@@ -11,9 +11,6 @@ data:
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
-    path: other/io.hpp
-    title: other/io.hpp
-  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -106,101 +103,12 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 1 \"other/io.hpp\"\n#include <unistd.h>\r\n#include\
-    \ <sys/mman.h>\r\n#include <sys/stat.h>\r\n\r\nnamespace fastio {\r\n// https://judge.yosupo.jp/submission/21623\r\
-    \n// https://judge.yosupo.jp/submission/70667\r\n\r\nstruct Pre {\r\n  char num[10000][4];\r\
-    \n  constexpr Pre() : num() {\r\n    for (int i = 0; i < 10000; i++) {\r\n   \
-    \   int n = i;\r\n      for (int j = 3; j >= 0; j--) {\r\n        num[i][j] =\
-    \ n % 10 | '0';\r\n        n /= 10;\r\n      }\r\n    }\r\n  }\r\n} constexpr\
-    \ pre;\r\n\r\nconstexpr int BSZ = 1 << 19;\r\nchar *ibuf, obuf[BSZ], out[100];\r\
-    \nint outi, obufi;\r\n\r\n// gcc expansion. called automaticall before main.\r\
-    \nvoid __attribute__((constructor)) _c() {\r\n  struct stat sb;\r\n  fstat(0,\
-    \ &sb);\r\n  ibuf\r\n      = (char *)mmap(0, sb.st_size, PROT_READ, MAP_SHARED\
-    \ | MAP_POPULATE, 0, 0);\r\n}\r\n\r\nvoid flush() {\r\n  assert(write(1, obuf,\
-    \ obufi) == obufi);\r\n  obufi = 0;\r\n}\r\n\r\nvoid rd(char &c) { c = *ibuf++;\
-    \ }\r\nvoid rd(string &x) {\r\n  x.clear();\r\n  char c;\r\n  do { rd(c); } while\
-    \ (isspace(c));\r\n  do { x += c, rd(c); } while (!isspace(c));\r\n}\r\n\r\ntemplate\
-    \ <typename T>\r\nvoid rd_integer(T &x) {\r\n  char c;\r\n  do\r\n    rd(c);\r\
-    \n  while (c < '-');\r\n  bool minus = 0;\r\n  if constexpr (is_signed<T>::value\
-    \ || is_same_v<T, i128>) {\r\n    if (c == '-') { minus = 1, rd(c); }\r\n  }\r\
-    \n  x = 0;\r\n  while (c >= '0') { x = x * 10 + (c & 15), rd(c); }\r\n  if constexpr\
-    \ (is_signed<T>::value || is_same_v<T, i128>) {\r\n    if (minus) x = -x;\r\n\
-    \  }\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_real(T &x) {\r\n  string s;\r\
-    \n  rd(s);\r\n  x = stod(s);\r\n}\r\n\r\nvoid rd(int &x) { rd_integer(x); }\r\n\
-    void rd(ll &x) { rd_integer(x); }\r\nvoid rd(i128 &x) { rd_integer(x); }\r\nvoid\
-    \ rd(u32 &x) { rd_integer(x); }\r\nvoid rd(u64 &x) { rd_integer(x); }\r\nvoid\
-    \ rd(u128 &x) { rd_integer(x); }\r\nvoid rd(double &x) { rd_real(x); }\r\nvoid\
-    \ rd(long double &x) { rd_real(x); }\r\nvoid rd(f128 &x) { rd_real(x); }\r\ntemplate\
-    \ <class T, class U>\r\nvoid rd(pair<T, U> &p) {\r\n  return rd(p.first), rd(p.second);\r\
-    \n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd(T &t) {\r\n  if constexpr\
-    \ (N < std::tuple_size<T>::value) {\r\n    auto &x = std::get<N>(t);\r\n    rd(x);\r\
-    \n    rd<N + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...>\
-    \ &tpl) {\r\n  rd(tpl);\r\n}\r\ntemplate <class T>\r\nvoid rd(vc<T> &x) {\r\n\
-    \  for (auto &d: x) rd(d);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid\
-    \ rd(array<T, N> &x) {\r\n  for (auto &d: x) rd(d);\r\n}\r\n\r\ntemplate <typename\
-    \ T>\r\nstruct has_read_method {\r\n  template <typename U>\r\n  static std::true_type\
-    \ test(decltype(&U::read) *);\r\n  template <typename>\r\n  static std::false_type\
-    \ test(...);\r\n  using type = decltype(test<T>(nullptr));\r\n  static constexpr\
-    \ bool value = type::value;\r\n};\r\n\r\ntemplate <typename T>\r\ntypename enable_if<has_read_method<T>::value,\
-    \ void>::type rd(T &x) {\r\n  x.read();\r\n}\r\n\r\nvoid read() {}\r\ntemplate\
-    \ <class H, class... T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\
-    \n}\r\n\r\nvoid wt(const char c) {\r\n  if (obufi == BSZ) flush();\r\n  obuf[obufi++]\
-    \ = c;\r\n}\r\nvoid wt(const string &s) {\r\n  for (char c: s) wt(c);\r\n}\r\n\
-    void wt(const char *s) {\r\n  size_t len = strlen(s);\r\n  for (size_t i = 0;\
-    \ i < len; i++) wt(s[i]);\r\n}\r\n\r\ntemplate <typename T>\r\nvoid wt_integer(T\
-    \ x) {\r\n  if (obufi > BSZ - 100) flush();\r\n  if (x < 0) { obuf[obufi++] =\
-    \ '-', x = -x; }\r\n  for (outi = 96; x >= 10000; outi -= 4) {\r\n    memcpy(out\
-    \ + outi, pre.num[x % 10000], 4);\r\n    x /= 10000;\r\n  }\r\n  if (x >= 1000)\
-    \ {\r\n    memcpy(obuf + obufi, pre.num[x], 4);\r\n    obufi += 4;\r\n  } else\
-    \ if (x >= 100) {\r\n    memcpy(obuf + obufi, pre.num[x] + 1, 3);\r\n    obufi\
-    \ += 3;\r\n  } else if (x >= 10) {\r\n    int q = (x * 103) >> 10;\r\n    obuf[obufi]\
-    \ = q | '0';\r\n    obuf[obufi + 1] = (x - q * 10) | '0';\r\n    obufi += 2;\r\
-    \n  } else\r\n    obuf[obufi++] = x | '0';\r\n  memcpy(obuf + obufi, out + outi\
-    \ + 4, 96 - outi);\r\n  obufi += 96 - outi;\r\n}\r\n\r\ntemplate <typename T>\r\
-    \nvoid wt_real(T x) {\r\n  ostringstream oss;\r\n  oss << fixed << setprecision(15)\
-    \ << double(x);\r\n  string s = oss.str();\r\n  wt(s);\r\n}\r\n\r\nvoid wt(bool\
-    \ x) { wt_integer(int(x)); }\r\nvoid wt(int x) { wt_integer(x); }\r\nvoid wt(ll\
-    \ x) { wt_integer(x); }\r\nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x)\
-    \ { wt_integer(x); }\r\nvoid wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) {\
-    \ wt_integer(x); }\r\nvoid wt(double x) { wt_real(x); }\r\nvoid wt(long double\
-    \ x) { wt_real(x); }\r\nvoid wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class\
-    \ T, class U>\r\nvoid wt(const pair<T, U> val) {\r\n  wt(val.first);\r\n  wt('\
-    \ ');\r\n  wt(val.second);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid\
-    \ wt_tuple(const T t) {\r\n  if constexpr (N < std::tuple_size<T>::value) {\r\n\
-    \    if constexpr (N > 0) { wt(' '); }\r\n    const auto x = std::get<N>(t);\r\
-    \n    wt(x);\r\n    wt_tuple<N + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\
-    \nvoid wt(tuple<T...> tpl) {\r\n  wt_tuple(tpl);\r\n}\r\ntemplate <class T, size_t\
-    \ S>\r\nvoid wt(const array<T, S> val) {\r\n  auto n = val.size();\r\n  for (size_t\
-    \ i = 0; i < n; i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\
-    \ntemplate <class T>\r\nvoid wt(const vector<T> val) {\r\n  auto n = val.size();\r\
-    \n  for (size_t i = 0; i < n; i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\
-    \n  }\r\n}\r\n\r\ntemplate <typename T>\r\nstruct has_print_method {\r\n  template\
-    \ <typename U>\r\n  static std::true_type test(decltype(&U::print) *);\r\n  template\
-    \ <typename>\r\n  static std::false_type test(...);\r\n  using type = decltype(test<T>(nullptr));\r\
-    \n  static constexpr bool value = type::value;\r\n};\r\n\r\ntemplate <typename\
-    \ T>\r\ntypename enable_if<has_print_method<T>::value, void>::type wt(T x) {\r\
-    \n  x.print();\r\n}\r\n\r\nvoid print() { wt('\\n'); }\r\ntemplate <class Head,\
-    \ class... Tail>\r\nvoid print(Head &&head, Tail &&... tail) {\r\n  wt(head);\r\
-    \n  if (sizeof...(Tail)) wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\
-    \r\n// gcc expansion. called automaticall after main.\r\nvoid __attribute__((destructor))\
-    \ _d() { flush(); }\r\n} // namespace fastio\r\n\r\nusing fastio::read;\r\nusing\
-    \ fastio::print;\r\nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int\
-    \ __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__;\
-    \ \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n  string __VA_ARGS__;\
-    \ \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\
-    \r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n  double __VA_ARGS__; \\\
-    \r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name, size) \\\r\n  vector<type>\
-    \ name(size);    \\\r\n  read(name)\r\n#define VV(type, name, h, w)          \
-    \           \\\r\n  vector<vector<type>> name(h, vector<type>(w)); \\\r\n  read(name)\r\
-    \n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t\
-    \ = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\
-    \nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\"\
-    \ : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\n#line 2 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \  return B;\n}\n#endif\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
+    \ uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 5 \"test/mytest/binom.test.cpp\"\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 4 \"test/mytest/binom.test.cpp\"\
     \n\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
     \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
     \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
@@ -271,31 +179,30 @@ data:
     \ 1045430273) return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n\
     \    if (mod == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static\
     \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\nusing modint107\
-    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 7 \"test/mytest/binom.test.cpp\"\
+    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 6 \"test/mytest/binom.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid test() {\n  FOR(100000) {\n    int n = RNG(0,\
     \ 1000);\n    int k = RNG(0, 1000);\n    mint a = C<mint>(n, k);\n    mint b =\
     \ C<mint, 0, 1>(n, k);\n    mint c = C<mint, 1, 0>(n, k);\n    assert(a == b &&\
-    \ b == c);\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned\
-    \ main() {\n  cout << fixed << setprecision(15);\n\n  solve();\n\n  return 0;\n\
-    }\n"
+    \ b == c);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout <<\
+    \ a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"random/base.hpp\"\n\n#include \"mod/modint.hpp\"\
-    \n\nusing mint = modint998;\n\nvoid test() {\n  FOR(100000) {\n    int n = RNG(0,\
-    \ 1000);\n    int k = RNG(0, 1000);\n    mint a = C<mint>(n, k);\n    mint b =\
-    \ C<mint, 0, 1>(n, k);\n    mint c = C<mint, 1, 0>(n, k);\n    assert(a == b &&\
-    \ b == c);\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned\
-    \ main() {\n  cout << fixed << setprecision(15);\n\n  solve();\n\n  return 0;\n\
+    \n#include \"random/base.hpp\"\n\n#include \"mod/modint.hpp\"\n\nusing mint =\
+    \ modint998;\n\nvoid test() {\n  FOR(100000) {\n    int n = RNG(0, 1000);\n  \
+    \  int k = RNG(0, 1000);\n    mint a = C<mint>(n, k);\n    mint b = C<mint, 0,\
+    \ 1>(n, k);\n    mint c = C<mint, 1, 0>(n, k);\n    assert(a == b && b == c);\n\
+    \  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a << \" \"\
+    \ << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n\
     }\n"
   dependsOn:
   - my_template.hpp
-  - other/io.hpp
   - random/base.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
   isVerificationFile: true
   path: test/mytest/binom.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 16:40:17+09:00'
+  timestamp: '2023-11-06 17:24:00+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/binom.test.cpp

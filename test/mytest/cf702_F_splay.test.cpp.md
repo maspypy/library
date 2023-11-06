@@ -13,9 +13,6 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
-    path: other/io.hpp
-    title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
@@ -106,165 +103,75 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 1 \"other/io.hpp\"\n#include <unistd.h>\r\n#include\
-    \ <sys/mman.h>\r\n#include <sys/stat.h>\r\n\r\nnamespace fastio {\r\n// https://judge.yosupo.jp/submission/21623\r\
-    \n// https://judge.yosupo.jp/submission/70667\r\n\r\nstruct Pre {\r\n  char num[10000][4];\r\
-    \n  constexpr Pre() : num() {\r\n    for (int i = 0; i < 10000; i++) {\r\n   \
-    \   int n = i;\r\n      for (int j = 3; j >= 0; j--) {\r\n        num[i][j] =\
-    \ n % 10 | '0';\r\n        n /= 10;\r\n      }\r\n    }\r\n  }\r\n} constexpr\
-    \ pre;\r\n\r\nconstexpr int BSZ = 1 << 19;\r\nchar *ibuf, obuf[BSZ], out[100];\r\
-    \nint outi, obufi;\r\n\r\n// gcc expansion. called automaticall before main.\r\
-    \nvoid __attribute__((constructor)) _c() {\r\n  struct stat sb;\r\n  fstat(0,\
-    \ &sb);\r\n  ibuf\r\n      = (char *)mmap(0, sb.st_size, PROT_READ, MAP_SHARED\
-    \ | MAP_POPULATE, 0, 0);\r\n}\r\n\r\nvoid flush() {\r\n  assert(write(1, obuf,\
-    \ obufi) == obufi);\r\n  obufi = 0;\r\n}\r\n\r\nvoid rd(char &c) { c = *ibuf++;\
-    \ }\r\nvoid rd(string &x) {\r\n  x.clear();\r\n  char c;\r\n  do { rd(c); } while\
-    \ (isspace(c));\r\n  do { x += c, rd(c); } while (!isspace(c));\r\n}\r\n\r\ntemplate\
-    \ <typename T>\r\nvoid rd_integer(T &x) {\r\n  char c;\r\n  do\r\n    rd(c);\r\
-    \n  while (c < '-');\r\n  bool minus = 0;\r\n  if constexpr (is_signed<T>::value\
-    \ || is_same_v<T, i128>) {\r\n    if (c == '-') { minus = 1, rd(c); }\r\n  }\r\
-    \n  x = 0;\r\n  while (c >= '0') { x = x * 10 + (c & 15), rd(c); }\r\n  if constexpr\
-    \ (is_signed<T>::value || is_same_v<T, i128>) {\r\n    if (minus) x = -x;\r\n\
-    \  }\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_real(T &x) {\r\n  string s;\r\
-    \n  rd(s);\r\n  x = stod(s);\r\n}\r\n\r\nvoid rd(int &x) { rd_integer(x); }\r\n\
-    void rd(ll &x) { rd_integer(x); }\r\nvoid rd(i128 &x) { rd_integer(x); }\r\nvoid\
-    \ rd(u32 &x) { rd_integer(x); }\r\nvoid rd(u64 &x) { rd_integer(x); }\r\nvoid\
-    \ rd(u128 &x) { rd_integer(x); }\r\nvoid rd(double &x) { rd_real(x); }\r\nvoid\
-    \ rd(long double &x) { rd_real(x); }\r\nvoid rd(f128 &x) { rd_real(x); }\r\ntemplate\
-    \ <class T, class U>\r\nvoid rd(pair<T, U> &p) {\r\n  return rd(p.first), rd(p.second);\r\
-    \n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd(T &t) {\r\n  if constexpr\
-    \ (N < std::tuple_size<T>::value) {\r\n    auto &x = std::get<N>(t);\r\n    rd(x);\r\
-    \n    rd<N + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...>\
-    \ &tpl) {\r\n  rd(tpl);\r\n}\r\ntemplate <class T>\r\nvoid rd(vc<T> &x) {\r\n\
-    \  for (auto &d: x) rd(d);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid\
-    \ rd(array<T, N> &x) {\r\n  for (auto &d: x) rd(d);\r\n}\r\n\r\ntemplate <typename\
-    \ T>\r\nstruct has_read_method {\r\n  template <typename U>\r\n  static std::true_type\
-    \ test(decltype(&U::read) *);\r\n  template <typename>\r\n  static std::false_type\
-    \ test(...);\r\n  using type = decltype(test<T>(nullptr));\r\n  static constexpr\
-    \ bool value = type::value;\r\n};\r\n\r\ntemplate <typename T>\r\ntypename enable_if<has_read_method<T>::value,\
-    \ void>::type rd(T &x) {\r\n  x.read();\r\n}\r\n\r\nvoid read() {}\r\ntemplate\
-    \ <class H, class... T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\
-    \n}\r\n\r\nvoid wt(const char c) {\r\n  if (obufi == BSZ) flush();\r\n  obuf[obufi++]\
-    \ = c;\r\n}\r\nvoid wt(const string &s) {\r\n  for (char c: s) wt(c);\r\n}\r\n\
-    void wt(const char *s) {\r\n  size_t len = strlen(s);\r\n  for (size_t i = 0;\
-    \ i < len; i++) wt(s[i]);\r\n}\r\n\r\ntemplate <typename T>\r\nvoid wt_integer(T\
-    \ x) {\r\n  if (obufi > BSZ - 100) flush();\r\n  if (x < 0) { obuf[obufi++] =\
-    \ '-', x = -x; }\r\n  for (outi = 96; x >= 10000; outi -= 4) {\r\n    memcpy(out\
-    \ + outi, pre.num[x % 10000], 4);\r\n    x /= 10000;\r\n  }\r\n  if (x >= 1000)\
-    \ {\r\n    memcpy(obuf + obufi, pre.num[x], 4);\r\n    obufi += 4;\r\n  } else\
-    \ if (x >= 100) {\r\n    memcpy(obuf + obufi, pre.num[x] + 1, 3);\r\n    obufi\
-    \ += 3;\r\n  } else if (x >= 10) {\r\n    int q = (x * 103) >> 10;\r\n    obuf[obufi]\
-    \ = q | '0';\r\n    obuf[obufi + 1] = (x - q * 10) | '0';\r\n    obufi += 2;\r\
-    \n  } else\r\n    obuf[obufi++] = x | '0';\r\n  memcpy(obuf + obufi, out + outi\
-    \ + 4, 96 - outi);\r\n  obufi += 96 - outi;\r\n}\r\n\r\ntemplate <typename T>\r\
-    \nvoid wt_real(T x) {\r\n  ostringstream oss;\r\n  oss << fixed << setprecision(15)\
-    \ << double(x);\r\n  string s = oss.str();\r\n  wt(s);\r\n}\r\n\r\nvoid wt(bool\
-    \ x) { wt_integer(int(x)); }\r\nvoid wt(int x) { wt_integer(x); }\r\nvoid wt(ll\
-    \ x) { wt_integer(x); }\r\nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x)\
-    \ { wt_integer(x); }\r\nvoid wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) {\
-    \ wt_integer(x); }\r\nvoid wt(double x) { wt_real(x); }\r\nvoid wt(long double\
-    \ x) { wt_real(x); }\r\nvoid wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class\
-    \ T, class U>\r\nvoid wt(const pair<T, U> val) {\r\n  wt(val.first);\r\n  wt('\
-    \ ');\r\n  wt(val.second);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid\
-    \ wt_tuple(const T t) {\r\n  if constexpr (N < std::tuple_size<T>::value) {\r\n\
-    \    if constexpr (N > 0) { wt(' '); }\r\n    const auto x = std::get<N>(t);\r\
-    \n    wt(x);\r\n    wt_tuple<N + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\
-    \nvoid wt(tuple<T...> tpl) {\r\n  wt_tuple(tpl);\r\n}\r\ntemplate <class T, size_t\
-    \ S>\r\nvoid wt(const array<T, S> val) {\r\n  auto n = val.size();\r\n  for (size_t\
-    \ i = 0; i < n; i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\
-    \ntemplate <class T>\r\nvoid wt(const vector<T> val) {\r\n  auto n = val.size();\r\
-    \n  for (size_t i = 0; i < n; i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\
-    \n  }\r\n}\r\n\r\ntemplate <typename T>\r\nstruct has_print_method {\r\n  template\
-    \ <typename U>\r\n  static std::true_type test(decltype(&U::print) *);\r\n  template\
-    \ <typename>\r\n  static std::false_type test(...);\r\n  using type = decltype(test<T>(nullptr));\r\
-    \n  static constexpr bool value = type::value;\r\n};\r\n\r\ntemplate <typename\
-    \ T>\r\ntypename enable_if<has_print_method<T>::value, void>::type wt(T x) {\r\
-    \n  x.print();\r\n}\r\n\r\nvoid print() { wt('\\n'); }\r\ntemplate <class Head,\
-    \ class... Tail>\r\nvoid print(Head &&head, Tail &&... tail) {\r\n  wt(head);\r\
-    \n  if (sizeof...(Tail)) wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\
-    \r\n// gcc expansion. called automaticall after main.\r\nvoid __attribute__((destructor))\
-    \ _d() { flush(); }\r\n} // namespace fastio\r\n\r\nusing fastio::read;\r\nusing\
-    \ fastio::print;\r\nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int\
-    \ __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__;\
-    \ \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n  string __VA_ARGS__;\
-    \ \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\
-    \r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n  double __VA_ARGS__; \\\
-    \r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name, size) \\\r\n  vector<type>\
-    \ name(size);    \\\r\n  read(name)\r\n#define VV(type, name, h, w)          \
-    \           \\\r\n  vector<vector<type>> name(h, vector<type>(w)); \\\r\n  read(name)\r\
-    \n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t\
-    \ = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\
-    \nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\"\
-    \ : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\n#line 2 \"alg/monoid/add_pair.hpp\"\
-    \n\r\ntemplate <typename E>\r\nstruct Monoid_Add_Pair {\r\n  using value_type\
-    \ = pair<E, E>;\r\n  using X = value_type;\r\n  static constexpr X op(const X\
-    \ &x, const X &y) {\r\n    return {x.fi + y.fi, x.se + y.se};\r\n  }\r\n  static\
-    \ constexpr X inverse(const X &x) { return {-x.fi, -x.se}; }\r\n  static constexpr\
-    \ X unit() { return {0, 0}; }\r\n  static constexpr bool commute = true;\r\n};\r\
-    \n#line 2 \"ds/splaytree/splaytree.hpp\"\n// Node \u578B\u3092\u5225\u306B\u5B9A\
-    \u7FA9\u3057\u3066\u4F7F\u3046\ntemplate <typename Node, int NODES = 1'000'000>\n\
-    struct SplayTree {\n  Node *pool;\n  int pid;\n  using np = Node *;\n  using X\
-    \ = typename Node::value_type;\n  using A = typename Node::operator_type;\n\n\
-    \  SplayTree() : pid(0) { pool = new Node[NODES]; }\n\n  void reset() { pid =\
-    \ 0; }\n\n  np new_root() { return nullptr; }\n\n  np new_node(const X &x) {\n\
-    \    np n = &(pool[pid++]);\n    Node::new_node(n, x);\n    return n;\n  }\n\n\
-    \  np new_node(const vc<X> &dat) {\n    auto dfs = [&](auto &dfs, int l, int r)\
-    \ -> np {\n      if (l == r) return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n\
-    \      int m = (l + r) / 2;\n      np l_root = dfs(dfs, l, m);\n      np r_root\
-    \ = dfs(dfs, m + 1, r);\n      np root = new_node(dat[m]);\n      root->l = l_root,\
-    \ root->r = r_root;\n      if (l_root) l_root->p = root;\n      if (r_root) r_root->p\
-    \ = root;\n      root->update();\n      return root;\n    };\n    return dfs(dfs,\
-    \ 0, len(dat));\n  }\n\n  u32 get_size(np root) { return (root ? root->size :\
-    \ 0); }\n\n  np merge(np l_root, np r_root) {\n    if (!l_root) return r_root;\n\
-    \    if (!r_root) return l_root;\n    splay_kth(r_root, 0); // splay \u3057\u305F\
-    \u306E\u3067 prop \u6E08\n    r_root->l = l_root;\n    l_root->p = r_root;\n \
-    \   r_root->update();\n    return r_root;\n  }\n  np merge3(np a, np b, np c)\
-    \ { return merge(merge(a, b), c); }\n  np merge4(np a, np b, np c, np d) { return\
-    \ merge(merge(merge(a, b), c), d); }\n\n  pair<np, np> split(np root, u32 k) {\n\
-    \    if (k == 0) return {nullptr, root};\n    if (k == (root->size)) return {root,\
-    \ nullptr};\n    splay_kth(root, k - 1);\n    np right = root->r;\n    root->r\
-    \ = nullptr, right->p = nullptr;\n    root->update();\n    return {root, right};\n\
-    \  }\n  tuple<np, np, np> split3(np root, u32 l, u32 r) {\n    np nm, nr;\n  \
-    \  tie(root, nr) = split(root, r);\n    tie(root, nm) = split(root, l);\n    return\
-    \ {root, nm, nr};\n  }\n  tuple<np, np, np, np> split4(np root, u32 i, u32 j,\
-    \ u32 k) {\n    np d;\n    tie(root, d) = split(root, k);\n    auto [a, b, c]\
-    \ = split3(root, i, j);\n    return {a, b, c, d};\n  }\n\n  // \u90E8\u5206\u6728\
-    \u304C\u533A\u9593 [l,r) \u306B\u5BFE\u5FDC\u3059\u308B\u3088\u3046\u306A\u30CE\
-    \u30FC\u30C9\u3092\u4F5C\u3063\u3066\u8FD4\u3059\n  // \u305D\u306E\u30CE\u30FC\
-    \u30C9\u304C root \u306B\u306A\u308B\u308F\u3051\u3067\u306F\u306A\u3044\u306E\
-    \u3067\u3001\n  // \u3053\u306E\u30CE\u30FC\u30C9\u3092\u53C2\u7167\u3057\u305F\
-    \u5F8C\u306B\u3059\u3050\u306B splay \u3057\u3066\u6839\u306B\u6301\u3061\u4E0A\
-    \u3052\u308B\u3053\u3068\n  void goto_between(np &root, u32 l, u32 r) {\n    if\
-    \ (l == 0 && r == root->size) return;\n    if (l == 0) {\n      splay_kth(root,\
-    \ r);\n      root = root->l;\n      return;\n    }\n    if (r == root->size) {\n\
-    \      splay_kth(root, l - 1);\n      root = root->r;\n      return;\n    }\n\
-    \    splay_kth(root, r);\n    np rp = root;\n    root = rp->l;\n    root->p =\
-    \ nullptr;\n    splay_kth(root, l - 1);\n    root->p = rp;\n    rp->l = root;\n\
-    \    rp->update();\n    root = root->r;\n  }\n\n  vc<X> get_all(const np &root)\
-    \ {\n    vc<X> res;\n    auto dfs = [&](auto &dfs, np root) -> void {\n      if\
-    \ (!root) return;\n      root->prop();\n      dfs(dfs, root->l);\n      res.eb(root->get());\n\
-    \      dfs(dfs, root->r);\n    };\n    dfs(dfs, root);\n    return res;\n  }\n\
-    \n  X get(np &root, u32 k) {\n    splay_kth(root, k);\n    return root->get();\n\
-    \  }\n\n  void set(np &root, u32 k, const X &x) {\n    splay_kth(root, k);\n \
-    \   root->set(x);\n  }\n\n  void multiply(np &root, u32 k, const X &x) {\n   \
-    \ splay_kth(root, k);\n    root->multiply(x);\n  }\n\n  X prod(np &root, u32 l,\
-    \ u32 r) {\n    using Mono = typename Node::Monoid_X;\n    if (l == r) return\
-    \ Mono::unit();\n    assert(0 <= l && l < r && r <= root->size);\n    goto_between(root,\
-    \ l, r);\n    X res = root->prod;\n    splay(root);\n    return res;\n  }\n\n\
-    \  X prod(np &root) {\n    using Mono = typename Node::Monoid_X;\n    return (root\
-    \ ? root->prod : Mono::unit());\n  }\n\n  void apply(np &root, u32 l, u32 r, const\
-    \ A &a) {\n    if (l == r) return;\n    assert(0 <= l && l < r && r <= root->size);\n\
-    \    goto_between(root, l, r);\n    root->apply(a);\n    splay(root);\n  }\n \
-    \ void apply(np &root, const A &a) {\n    if (!root) return;\n    root->apply(a);\n\
-    \  }\n\n  void reverse(np &root, u32 l, u32 r) {\n    if (l == r) return;\n  \
-    \  assert(0 <= l && l < r && r <= root->size);\n    goto_between(root, l, r);\n\
-    \    root->reverse();\n    splay(root);\n  }\n  void reverse(np root) {\n    if\
-    \ (!root) return;\n    root->reverse();\n  }\n\n  void rotate(Node *n) {\n   \
-    \ // n \u3092\u6839\u306B\u8FD1\u3065\u3051\u308B\u3002prop, update \u306F rotate\
-    \ \u306E\u5916\u3067\u884C\u3046\u3002\n    Node *pp, *p, *c;\n    p = n->p;\n\
-    \    pp = p->p;\n    if (p->l == n) {\n      c = n->r;\n      n->r = p;\n    \
-    \  p->l = c;\n    } else {\n      c = n->l;\n      n->l = p;\n      p->r = c;\n\
-    \    }\n    if (pp && pp->l == p) pp->l = n;\n    if (pp && pp->r == p) pp->r\
+    \  return B;\n}\n#endif\n#line 2 \"alg/monoid/add_pair.hpp\"\n\r\ntemplate <typename\
+    \ E>\r\nstruct Monoid_Add_Pair {\r\n  using value_type = pair<E, E>;\r\n  using\
+    \ X = value_type;\r\n  static constexpr X op(const X &x, const X &y) {\r\n   \
+    \ return {x.fi + y.fi, x.se + y.se};\r\n  }\r\n  static constexpr X inverse(const\
+    \ X &x) { return {-x.fi, -x.se}; }\r\n  static constexpr X unit() { return {0,\
+    \ 0}; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/splaytree/splaytree.hpp\"\
+    \n// Node \u578B\u3092\u5225\u306B\u5B9A\u7FA9\u3057\u3066\u4F7F\u3046\ntemplate\
+    \ <typename Node, int NODES = 1'000'000>\nstruct SplayTree {\n  Node *pool;\n\
+    \  int pid;\n  using np = Node *;\n  using X = typename Node::value_type;\n  using\
+    \ A = typename Node::operator_type;\n\n  SplayTree() : pid(0) { pool = new Node[NODES];\
+    \ }\n\n  void reset() { pid = 0; }\n\n  np new_root() { return nullptr; }\n\n\
+    \  np new_node(const X &x) {\n    np n = &(pool[pid++]);\n    Node::new_node(n,\
+    \ x);\n    return n;\n  }\n\n  np new_node(const vc<X> &dat) {\n    auto dfs =\
+    \ [&](auto &dfs, int l, int r) -> np {\n      if (l == r) return nullptr;\n  \
+    \    if (r == l + 1) return new_node(dat[l]);\n      int m = (l + r) / 2;\n  \
+    \    np l_root = dfs(dfs, l, m);\n      np r_root = dfs(dfs, m + 1, r);\n    \
+    \  np root = new_node(dat[m]);\n      root->l = l_root, root->r = r_root;\n  \
+    \    if (l_root) l_root->p = root;\n      if (r_root) r_root->p = root;\n    \
+    \  root->update();\n      return root;\n    };\n    return dfs(dfs, 0, len(dat));\n\
+    \  }\n\n  u32 get_size(np root) { return (root ? root->size : 0); }\n\n  np merge(np\
+    \ l_root, np r_root) {\n    if (!l_root) return r_root;\n    if (!r_root) return\
+    \ l_root;\n    splay_kth(r_root, 0); // splay \u3057\u305F\u306E\u3067 prop \u6E08\
+    \n    r_root->l = l_root;\n    l_root->p = r_root;\n    r_root->update();\n  \
+    \  return r_root;\n  }\n  np merge3(np a, np b, np c) { return merge(merge(a,\
+    \ b), c); }\n  np merge4(np a, np b, np c, np d) { return merge(merge(merge(a,\
+    \ b), c), d); }\n\n  pair<np, np> split(np root, u32 k) {\n    if (k == 0) return\
+    \ {nullptr, root};\n    if (k == (root->size)) return {root, nullptr};\n    splay_kth(root,\
+    \ k - 1);\n    np right = root->r;\n    root->r = nullptr, right->p = nullptr;\n\
+    \    root->update();\n    return {root, right};\n  }\n  tuple<np, np, np> split3(np\
+    \ root, u32 l, u32 r) {\n    np nm, nr;\n    tie(root, nr) = split(root, r);\n\
+    \    tie(root, nm) = split(root, l);\n    return {root, nm, nr};\n  }\n  tuple<np,\
+    \ np, np, np> split4(np root, u32 i, u32 j, u32 k) {\n    np d;\n    tie(root,\
+    \ d) = split(root, k);\n    auto [a, b, c] = split3(root, i, j);\n    return {a,\
+    \ b, c, d};\n  }\n\n  // \u90E8\u5206\u6728\u304C\u533A\u9593 [l,r) \u306B\u5BFE\
+    \u5FDC\u3059\u308B\u3088\u3046\u306A\u30CE\u30FC\u30C9\u3092\u4F5C\u3063\u3066\
+    \u8FD4\u3059\n  // \u305D\u306E\u30CE\u30FC\u30C9\u304C root \u306B\u306A\u308B\
+    \u308F\u3051\u3067\u306F\u306A\u3044\u306E\u3067\u3001\n  // \u3053\u306E\u30CE\
+    \u30FC\u30C9\u3092\u53C2\u7167\u3057\u305F\u5F8C\u306B\u3059\u3050\u306B splay\
+    \ \u3057\u3066\u6839\u306B\u6301\u3061\u4E0A\u3052\u308B\u3053\u3068\n  void goto_between(np\
+    \ &root, u32 l, u32 r) {\n    if (l == 0 && r == root->size) return;\n    if (l\
+    \ == 0) {\n      splay_kth(root, r);\n      root = root->l;\n      return;\n \
+    \   }\n    if (r == root->size) {\n      splay_kth(root, l - 1);\n      root =\
+    \ root->r;\n      return;\n    }\n    splay_kth(root, r);\n    np rp = root;\n\
+    \    root = rp->l;\n    root->p = nullptr;\n    splay_kth(root, l - 1);\n    root->p\
+    \ = rp;\n    rp->l = root;\n    rp->update();\n    root = root->r;\n  }\n\n  vc<X>\
+    \ get_all(const np &root) {\n    vc<X> res;\n    auto dfs = [&](auto &dfs, np\
+    \ root) -> void {\n      if (!root) return;\n      root->prop();\n      dfs(dfs,\
+    \ root->l);\n      res.eb(root->get());\n      dfs(dfs, root->r);\n    };\n  \
+    \  dfs(dfs, root);\n    return res;\n  }\n\n  X get(np &root, u32 k) {\n    splay_kth(root,\
+    \ k);\n    return root->get();\n  }\n\n  void set(np &root, u32 k, const X &x)\
+    \ {\n    splay_kth(root, k);\n    root->set(x);\n  }\n\n  void multiply(np &root,\
+    \ u32 k, const X &x) {\n    splay_kth(root, k);\n    root->multiply(x);\n  }\n\
+    \n  X prod(np &root, u32 l, u32 r) {\n    using Mono = typename Node::Monoid_X;\n\
+    \    if (l == r) return Mono::unit();\n    assert(0 <= l && l < r && r <= root->size);\n\
+    \    goto_between(root, l, r);\n    X res = root->prod;\n    splay(root);\n  \
+    \  return res;\n  }\n\n  X prod(np &root) {\n    using Mono = typename Node::Monoid_X;\n\
+    \    return (root ? root->prod : Mono::unit());\n  }\n\n  void apply(np &root,\
+    \ u32 l, u32 r, const A &a) {\n    if (l == r) return;\n    assert(0 <= l && l\
+    \ < r && r <= root->size);\n    goto_between(root, l, r);\n    root->apply(a);\n\
+    \    splay(root);\n  }\n  void apply(np &root, const A &a) {\n    if (!root) return;\n\
+    \    root->apply(a);\n  }\n\n  void reverse(np &root, u32 l, u32 r) {\n    if\
+    \ (l == r) return;\n    assert(0 <= l && l < r && r <= root->size);\n    goto_between(root,\
+    \ l, r);\n    root->reverse();\n    splay(root);\n  }\n  void reverse(np root)\
+    \ {\n    if (!root) return;\n    root->reverse();\n  }\n\n  void rotate(Node *n)\
+    \ {\n    // n \u3092\u6839\u306B\u8FD1\u3065\u3051\u308B\u3002prop, update \u306F\
+    \ rotate \u306E\u5916\u3067\u884C\u3046\u3002\n    Node *pp, *p, *c;\n    p =\
+    \ n->p;\n    pp = p->p;\n    if (p->l == n) {\n      c = n->r;\n      n->r = p;\n\
+    \      p->l = c;\n    } else {\n      c = n->l;\n      n->l = p;\n      p->r =\
+    \ c;\n    }\n    if (pp && pp->l == p) pp->l = n;\n    if (pp && pp->r == p) pp->r\
     \ = n;\n    n->p = pp;\n    p->p = n;\n    if (c) c->p = p;\n  }\n\n  void splay(Node\
     \ *me) {\n    // \u3053\u308C\u3092\u547C\u3076\u6642\u70B9\u3067\u3001me \u306E\
     \u7956\u5148\uFF08me \u3092\u9664\u304F\uFF09\u306F\u65E2\u306B prop \u6E08\u3067\
@@ -331,7 +238,7 @@ data:
     \ a);\n  }\n  void reverse() {\n    swap(l, r);\n    rev ^= 1;\n  }\n};\ntemplate\
     \ <typename ActedSet, int NODES>\nusing SplayTree_ActedSet = SplayTree<Node_AS<ActedSet>,\
     \ NODES>;\n} // namespace SplayTreeNodes\n\nusing SplayTreeNodes::SplayTree_ActedSet;\n\
-    #line 6 \"test/mytest/cf702_F_splay.test.cpp\"\n\n// (\u6240\u6301\u91D1, \u64CD\
+    #line 5 \"test/mytest/cf702_F_splay.test.cpp\"\n\n// (\u6240\u6301\u91D1, \u64CD\
     \u4F5C\u56DE\u6570, query index)\nstruct AS {\n  using Monoid_A = Monoid_Add_Pair<int>;\n\
     \  using A = Monoid_A::value_type;\n  using S = tuple<int, int, int>;\n  static\
     \ S act(const S& s, const A& x) {\n    auto [a, b, c] = s;\n    return {a + x.fi,\
@@ -356,51 +263,48 @@ data:
     \ 14};\n  vc<int> ANS = solve_cf702F(CQ, query);\n  assert(ANS == vc<int>({2,\
     \ 3}));\n}\n\nvoid test_2() {\n  vc<pair<int, int>> CQ;\n  CQ.eb(100, 500);\n\
     \  CQ.eb(50, 499);\n  vc<int> query = {50, 200, 150, 100};\n  vc<int> ANS = solve_cf702F(CQ,\
-    \ query);\n  assert(ANS == vc<int>({1, 2, 2, 1}));\n}\n\nvoid solve() {\n  LL(a,\
-    \ b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n  test_1();\n  test_2();\n  solve();\n\n  return\
-    \ 0;\n}\n"
+    \ query);\n  assert(ANS == vc<int>({1, 2, 2, 1}));\n}\n\nvoid solve() {\n  int\
+    \ a, b;\n  cin >> a >> b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned\
+    \ main() {\n  test_1();\n  test_2();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"alg/monoid/add_pair.hpp\"\n#include \"\
-    ds/splaytree/splaytree_acted_set.hpp\"\n\n// (\u6240\u6301\u91D1, \u64CD\u4F5C\
-    \u56DE\u6570, query index)\nstruct AS {\n  using Monoid_A = Monoid_Add_Pair<int>;\n\
-    \  using A = Monoid_A::value_type;\n  using S = tuple<int, int, int>;\n  static\
-    \ S act(const S& s, const A& x) {\n    auto [a, b, c] = s;\n    return {a + x.fi,\
-    \ b + x.se, c};\n  }\n};\n\nvc<int> solve_cf702F(vc<pair<int, int>> CQ, vc<int>\
-    \ query) {\n  const int Q = len(query);\n  sort(all(CQ), [&](auto& a, auto& b)\
-    \ -> bool {\n    if (a.se != b.se) return a.se > b.se;\n    return a.fi < b.fi;\n\
-    \  });\n  using T = tuple<int, int, int>;\n  vc<T> dat(Q);\n  FOR(q, Q) {\n  \
-    \  int x = query[q];\n    dat[q] = {x, 0, q};\n  }\n  sort(all(dat));\n\n  const\
-    \ int MAX = 500'000;\n\n  SplayTree_ActedSet<AS, MAX> X;\n  using np = decltype(X)::np;\n\
-    \  using S = typename AS::S;\n  np root = X.new_node(dat);\n\n  FOR(i, len(CQ))\
-    \ {\n    ll c = CQ[i].fi;\n    np nm, nr;\n    tie(root, nr)\n        = X.split_max_right(root,\
-    \ [&](S& s) { return get<0>(s) < c; });\n    X.apply(nr, {-c, 1});\n    tie(nm,\
-    \ nr) = X.split_max_right(nr, [&](S& s) { return get<0>(s) < c; });\n    for (auto&&\
-    \ [aa, bb, cc]: X.get_all(nm)) assert(aa < c);\n    for (auto&& [aa, bb, cc]:\
-    \ X.get_all(nr)) assert(aa >= c);\n    for (auto [val, cnt, idx]: X.get_all(nm))\
-    \ {\n      ll t = val;\n      auto [l_root, r_root]\n          = X.split_max_right(root,\
-    \ [&](S& s) { return get<0>(s) < t; });\n      root = X.merge(l_root, X.new_node({val,\
-    \ cnt, idx}));\n      root = X.merge(root, r_root);\n    }\n    root = X.merge(root,\
-    \ nr);\n  }\n  vc<int> ANS(Q);\n  for (auto [val, cnt, idx]: X.get_all(root))\
-    \ { ANS[idx] = cnt; }\n  return ANS;\n}\n\nvoid test_1() {\n  vc<pair<int, int>>\
-    \ CQ;\n  CQ.eb(7, 5);\n  CQ.eb(3, 5);\n  CQ.eb(4, 3);\n  vc<int> query = {13,\
-    \ 14};\n  vc<int> ANS = solve_cf702F(CQ, query);\n  assert(ANS == vc<int>({2,\
-    \ 3}));\n}\n\nvoid test_2() {\n  vc<pair<int, int>> CQ;\n  CQ.eb(100, 500);\n\
-    \  CQ.eb(50, 499);\n  vc<int> query = {50, 200, 150, 100};\n  vc<int> ANS = solve_cf702F(CQ,\
-    \ query);\n  assert(ANS == vc<int>({1, 2, 2, 1}));\n}\n\nvoid solve() {\n  LL(a,\
-    \ b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n  test_1();\n  test_2();\n  solve();\n\n  return\
-    \ 0;\n}\n"
+    \n#include \"alg/monoid/add_pair.hpp\"\n#include \"ds/splaytree/splaytree_acted_set.hpp\"\
+    \n\n// (\u6240\u6301\u91D1, \u64CD\u4F5C\u56DE\u6570, query index)\nstruct AS\
+    \ {\n  using Monoid_A = Monoid_Add_Pair<int>;\n  using A = Monoid_A::value_type;\n\
+    \  using S = tuple<int, int, int>;\n  static S act(const S& s, const A& x) {\n\
+    \    auto [a, b, c] = s;\n    return {a + x.fi, b + x.se, c};\n  }\n};\n\nvc<int>\
+    \ solve_cf702F(vc<pair<int, int>> CQ, vc<int> query) {\n  const int Q = len(query);\n\
+    \  sort(all(CQ), [&](auto& a, auto& b) -> bool {\n    if (a.se != b.se) return\
+    \ a.se > b.se;\n    return a.fi < b.fi;\n  });\n  using T = tuple<int, int, int>;\n\
+    \  vc<T> dat(Q);\n  FOR(q, Q) {\n    int x = query[q];\n    dat[q] = {x, 0, q};\n\
+    \  }\n  sort(all(dat));\n\n  const int MAX = 500'000;\n\n  SplayTree_ActedSet<AS,\
+    \ MAX> X;\n  using np = decltype(X)::np;\n  using S = typename AS::S;\n  np root\
+    \ = X.new_node(dat);\n\n  FOR(i, len(CQ)) {\n    ll c = CQ[i].fi;\n    np nm,\
+    \ nr;\n    tie(root, nr)\n        = X.split_max_right(root, [&](S& s) { return\
+    \ get<0>(s) < c; });\n    X.apply(nr, {-c, 1});\n    tie(nm, nr) = X.split_max_right(nr,\
+    \ [&](S& s) { return get<0>(s) < c; });\n    for (auto&& [aa, bb, cc]: X.get_all(nm))\
+    \ assert(aa < c);\n    for (auto&& [aa, bb, cc]: X.get_all(nr)) assert(aa >= c);\n\
+    \    for (auto [val, cnt, idx]: X.get_all(nm)) {\n      ll t = val;\n      auto\
+    \ [l_root, r_root]\n          = X.split_max_right(root, [&](S& s) { return get<0>(s)\
+    \ < t; });\n      root = X.merge(l_root, X.new_node({val, cnt, idx}));\n     \
+    \ root = X.merge(root, r_root);\n    }\n    root = X.merge(root, nr);\n  }\n \
+    \ vc<int> ANS(Q);\n  for (auto [val, cnt, idx]: X.get_all(root)) { ANS[idx] =\
+    \ cnt; }\n  return ANS;\n}\n\nvoid test_1() {\n  vc<pair<int, int>> CQ;\n  CQ.eb(7,\
+    \ 5);\n  CQ.eb(3, 5);\n  CQ.eb(4, 3);\n  vc<int> query = {13, 14};\n  vc<int>\
+    \ ANS = solve_cf702F(CQ, query);\n  assert(ANS == vc<int>({2, 3}));\n}\n\nvoid\
+    \ test_2() {\n  vc<pair<int, int>> CQ;\n  CQ.eb(100, 500);\n  CQ.eb(50, 499);\n\
+    \  vc<int> query = {50, 200, 150, 100};\n  vc<int> ANS = solve_cf702F(CQ, query);\n\
+    \  assert(ANS == vc<int>({1, 2, 2, 1}));\n}\n\nvoid solve() {\n  int a, b;\n \
+    \ cin >> a >> b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n\
+    \  test_1();\n  test_2();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
-  - other/io.hpp
   - alg/monoid/add_pair.hpp
   - ds/splaytree/splaytree_acted_set.hpp
   - ds/splaytree/splaytree.hpp
   isVerificationFile: true
   path: test/mytest/cf702_F_splay.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 16:40:17+09:00'
+  timestamp: '2023-11-06 17:24:00+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/cf702_F_splay.test.cpp

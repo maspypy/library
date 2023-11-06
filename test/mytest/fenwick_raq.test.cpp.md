@@ -20,9 +20,6 @@ data:
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
-    path: other/io.hpp
-    title: other/io.hpp
-  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -115,98 +112,9 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 1 \"other/io.hpp\"\n#include <unistd.h>\r\n#include\
-    \ <sys/mman.h>\r\n#include <sys/stat.h>\r\n\r\nnamespace fastio {\r\n// https://judge.yosupo.jp/submission/21623\r\
-    \n// https://judge.yosupo.jp/submission/70667\r\n\r\nstruct Pre {\r\n  char num[10000][4];\r\
-    \n  constexpr Pre() : num() {\r\n    for (int i = 0; i < 10000; i++) {\r\n   \
-    \   int n = i;\r\n      for (int j = 3; j >= 0; j--) {\r\n        num[i][j] =\
-    \ n % 10 | '0';\r\n        n /= 10;\r\n      }\r\n    }\r\n  }\r\n} constexpr\
-    \ pre;\r\n\r\nconstexpr int BSZ = 1 << 19;\r\nchar *ibuf, obuf[BSZ], out[100];\r\
-    \nint outi, obufi;\r\n\r\n// gcc expansion. called automaticall before main.\r\
-    \nvoid __attribute__((constructor)) _c() {\r\n  struct stat sb;\r\n  fstat(0,\
-    \ &sb);\r\n  ibuf\r\n      = (char *)mmap(0, sb.st_size, PROT_READ, MAP_SHARED\
-    \ | MAP_POPULATE, 0, 0);\r\n}\r\n\r\nvoid flush() {\r\n  assert(write(1, obuf,\
-    \ obufi) == obufi);\r\n  obufi = 0;\r\n}\r\n\r\nvoid rd(char &c) { c = *ibuf++;\
-    \ }\r\nvoid rd(string &x) {\r\n  x.clear();\r\n  char c;\r\n  do { rd(c); } while\
-    \ (isspace(c));\r\n  do { x += c, rd(c); } while (!isspace(c));\r\n}\r\n\r\ntemplate\
-    \ <typename T>\r\nvoid rd_integer(T &x) {\r\n  char c;\r\n  do\r\n    rd(c);\r\
-    \n  while (c < '-');\r\n  bool minus = 0;\r\n  if constexpr (is_signed<T>::value\
-    \ || is_same_v<T, i128>) {\r\n    if (c == '-') { minus = 1, rd(c); }\r\n  }\r\
-    \n  x = 0;\r\n  while (c >= '0') { x = x * 10 + (c & 15), rd(c); }\r\n  if constexpr\
-    \ (is_signed<T>::value || is_same_v<T, i128>) {\r\n    if (minus) x = -x;\r\n\
-    \  }\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_real(T &x) {\r\n  string s;\r\
-    \n  rd(s);\r\n  x = stod(s);\r\n}\r\n\r\nvoid rd(int &x) { rd_integer(x); }\r\n\
-    void rd(ll &x) { rd_integer(x); }\r\nvoid rd(i128 &x) { rd_integer(x); }\r\nvoid\
-    \ rd(u32 &x) { rd_integer(x); }\r\nvoid rd(u64 &x) { rd_integer(x); }\r\nvoid\
-    \ rd(u128 &x) { rd_integer(x); }\r\nvoid rd(double &x) { rd_real(x); }\r\nvoid\
-    \ rd(long double &x) { rd_real(x); }\r\nvoid rd(f128 &x) { rd_real(x); }\r\ntemplate\
-    \ <class T, class U>\r\nvoid rd(pair<T, U> &p) {\r\n  return rd(p.first), rd(p.second);\r\
-    \n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd(T &t) {\r\n  if constexpr\
-    \ (N < std::tuple_size<T>::value) {\r\n    auto &x = std::get<N>(t);\r\n    rd(x);\r\
-    \n    rd<N + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...>\
-    \ &tpl) {\r\n  rd(tpl);\r\n}\r\ntemplate <class T>\r\nvoid rd(vc<T> &x) {\r\n\
-    \  for (auto &d: x) rd(d);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid\
-    \ rd(array<T, N> &x) {\r\n  for (auto &d: x) rd(d);\r\n}\r\n\r\ntemplate <typename\
-    \ T>\r\nstruct has_read_method {\r\n  template <typename U>\r\n  static std::true_type\
-    \ test(decltype(&U::read) *);\r\n  template <typename>\r\n  static std::false_type\
-    \ test(...);\r\n  using type = decltype(test<T>(nullptr));\r\n  static constexpr\
-    \ bool value = type::value;\r\n};\r\n\r\ntemplate <typename T>\r\ntypename enable_if<has_read_method<T>::value,\
-    \ void>::type rd(T &x) {\r\n  x.read();\r\n}\r\n\r\nvoid read() {}\r\ntemplate\
-    \ <class H, class... T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\
-    \n}\r\n\r\nvoid wt(const char c) {\r\n  if (obufi == BSZ) flush();\r\n  obuf[obufi++]\
-    \ = c;\r\n}\r\nvoid wt(const string &s) {\r\n  for (char c: s) wt(c);\r\n}\r\n\
-    void wt(const char *s) {\r\n  size_t len = strlen(s);\r\n  for (size_t i = 0;\
-    \ i < len; i++) wt(s[i]);\r\n}\r\n\r\ntemplate <typename T>\r\nvoid wt_integer(T\
-    \ x) {\r\n  if (obufi > BSZ - 100) flush();\r\n  if (x < 0) { obuf[obufi++] =\
-    \ '-', x = -x; }\r\n  for (outi = 96; x >= 10000; outi -= 4) {\r\n    memcpy(out\
-    \ + outi, pre.num[x % 10000], 4);\r\n    x /= 10000;\r\n  }\r\n  if (x >= 1000)\
-    \ {\r\n    memcpy(obuf + obufi, pre.num[x], 4);\r\n    obufi += 4;\r\n  } else\
-    \ if (x >= 100) {\r\n    memcpy(obuf + obufi, pre.num[x] + 1, 3);\r\n    obufi\
-    \ += 3;\r\n  } else if (x >= 10) {\r\n    int q = (x * 103) >> 10;\r\n    obuf[obufi]\
-    \ = q | '0';\r\n    obuf[obufi + 1] = (x - q * 10) | '0';\r\n    obufi += 2;\r\
-    \n  } else\r\n    obuf[obufi++] = x | '0';\r\n  memcpy(obuf + obufi, out + outi\
-    \ + 4, 96 - outi);\r\n  obufi += 96 - outi;\r\n}\r\n\r\ntemplate <typename T>\r\
-    \nvoid wt_real(T x) {\r\n  ostringstream oss;\r\n  oss << fixed << setprecision(15)\
-    \ << double(x);\r\n  string s = oss.str();\r\n  wt(s);\r\n}\r\n\r\nvoid wt(bool\
-    \ x) { wt_integer(int(x)); }\r\nvoid wt(int x) { wt_integer(x); }\r\nvoid wt(ll\
-    \ x) { wt_integer(x); }\r\nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x)\
-    \ { wt_integer(x); }\r\nvoid wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) {\
-    \ wt_integer(x); }\r\nvoid wt(double x) { wt_real(x); }\r\nvoid wt(long double\
-    \ x) { wt_real(x); }\r\nvoid wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class\
-    \ T, class U>\r\nvoid wt(const pair<T, U> val) {\r\n  wt(val.first);\r\n  wt('\
-    \ ');\r\n  wt(val.second);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid\
-    \ wt_tuple(const T t) {\r\n  if constexpr (N < std::tuple_size<T>::value) {\r\n\
-    \    if constexpr (N > 0) { wt(' '); }\r\n    const auto x = std::get<N>(t);\r\
-    \n    wt(x);\r\n    wt_tuple<N + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\
-    \nvoid wt(tuple<T...> tpl) {\r\n  wt_tuple(tpl);\r\n}\r\ntemplate <class T, size_t\
-    \ S>\r\nvoid wt(const array<T, S> val) {\r\n  auto n = val.size();\r\n  for (size_t\
-    \ i = 0; i < n; i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\
-    \ntemplate <class T>\r\nvoid wt(const vector<T> val) {\r\n  auto n = val.size();\r\
-    \n  for (size_t i = 0; i < n; i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\
-    \n  }\r\n}\r\n\r\ntemplate <typename T>\r\nstruct has_print_method {\r\n  template\
-    \ <typename U>\r\n  static std::true_type test(decltype(&U::print) *);\r\n  template\
-    \ <typename>\r\n  static std::false_type test(...);\r\n  using type = decltype(test<T>(nullptr));\r\
-    \n  static constexpr bool value = type::value;\r\n};\r\n\r\ntemplate <typename\
-    \ T>\r\ntypename enable_if<has_print_method<T>::value, void>::type wt(T x) {\r\
-    \n  x.print();\r\n}\r\n\r\nvoid print() { wt('\\n'); }\r\ntemplate <class Head,\
-    \ class... Tail>\r\nvoid print(Head &&head, Tail &&... tail) {\r\n  wt(head);\r\
-    \n  if (sizeof...(Tail)) wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\
-    \r\n// gcc expansion. called automaticall after main.\r\nvoid __attribute__((destructor))\
-    \ _d() { flush(); }\r\n} // namespace fastio\r\n\r\nusing fastio::read;\r\nusing\
-    \ fastio::print;\r\nusing fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int\
-    \ __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__;\
-    \ \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n  string __VA_ARGS__;\
-    \ \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n  char __VA_ARGS__; \\\
-    \r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n  double __VA_ARGS__; \\\
-    \r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name, size) \\\r\n  vector<type>\
-    \ name(size);    \\\r\n  read(name)\r\n#define VV(type, name, h, w)          \
-    \           \\\r\n  vector<vector<type>> name(h, vector<type>(w)); \\\r\n  read(name)\r\
-    \n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t\
-    \ = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\
-    \nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\"\
-    \ : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\n#line 4 \"test/mytest/fenwick_raq.test.cpp\"\
-    \n\n#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
-    struct Lazy_SegTree {\n  using AM = ActedMonoid;\n  using MX = typename AM::Monoid_X;\n\
+    \  return B;\n}\n#endif\n#line 3 \"test/mytest/fenwick_raq.test.cpp\"\n\n#line\
+    \ 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\nstruct\
+    \ Lazy_SegTree {\n  using AM = ActedMonoid;\n  using MX = typename AM::Monoid_X;\n\
     \  using MA = typename AM::Monoid_A;\n  using X = typename MX::value_type;\n \
     \ using A = typename MA::value_type;\n  int n, log, size;\n  vc<X> dat;\n  vc<A>\
     \ laz;\n\n  Lazy_SegTree() {}\n  Lazy_SegTree(int n) { build(n); }\n  template\
@@ -327,7 +235,7 @@ data:
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 9 \"test/mytest/fenwick_raq.test.cpp\"\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 8 \"test/mytest/fenwick_raq.test.cpp\"\
     \n\nvc<int> solve_seg(ll N, ll Q, vc<int> A, vc<tuple<int, int, int>> query) {\n\
     \  Lazy_SegTree<ActedMonoid_Sum_Add<int>> seg(A);\n  vc<int> ANS;\n  for (auto&\
     \ [L, R, x]: query) {\n    if (x == 0)\n      ANS.eb(seg.prod(L, R));\n    else\n\
@@ -344,16 +252,17 @@ data:
     \ a = clock();\n  FOR(100) solve_seg(N, Q, A, query);\n  int b = clock();\n  FOR(100)\
     \ solve_bit(N, Q, A, query);\n  int c = clock();\n  print(b - a, c - b);\n  print(double(b\
     \ - a) / double(c - b));\n  4.4 \u500D\u304F\u3089\u3044\u9AD8\u901F\u3068\u3044\
-    \u3046\u3053\u3068\u306B\n  */\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a +\
-    \ b);\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    \u3046\u3053\u3068\u306B\n  */\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
+    \ b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
+    \  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n\n#include \"ds/segtree/lazy_segtree.hpp\"\n#include\
-    \ \"alg/acted_monoid/sum_add.hpp\"\n#include \"ds/fenwicktree/fenwicktree_range_add.hpp\"\
-    \n#include \"random/base.hpp\"\n\nvc<int> solve_seg(ll N, ll Q, vc<int> A, vc<tuple<int,\
-    \ int, int>> query) {\n  Lazy_SegTree<ActedMonoid_Sum_Add<int>> seg(A);\n  vc<int>\
-    \ ANS;\n  for (auto& [L, R, x]: query) {\n    if (x == 0)\n      ANS.eb(seg.prod(L,\
-    \ R));\n    else\n      seg.apply(L, R, x);\n  }\n  return ANS;\n}\n\nvc<int>\
-    \ solve_bit(ll N, ll Q, vc<int> A, vc<tuple<int, int, int>> query) {\n  FenwickTree_Range_Add<Monoid_Add<int>>\
+    \n\n#include \"ds/segtree/lazy_segtree.hpp\"\n#include \"alg/acted_monoid/sum_add.hpp\"\
+    \n#include \"ds/fenwicktree/fenwicktree_range_add.hpp\"\n#include \"random/base.hpp\"\
+    \n\nvc<int> solve_seg(ll N, ll Q, vc<int> A, vc<tuple<int, int, int>> query) {\n\
+    \  Lazy_SegTree<ActedMonoid_Sum_Add<int>> seg(A);\n  vc<int> ANS;\n  for (auto&\
+    \ [L, R, x]: query) {\n    if (x == 0)\n      ANS.eb(seg.prod(L, R));\n    else\n\
+    \      seg.apply(L, R, x);\n  }\n  return ANS;\n}\n\nvc<int> solve_bit(ll N, ll\
+    \ Q, vc<int> A, vc<tuple<int, int, int>> query) {\n  FenwickTree_Range_Add<Monoid_Add<int>>\
     \ seg(A);\n  vc<int> ANS;\n  for (auto& [L, R, x]: query) {\n    if (x == 0)\n\
     \      ANS.eb(seg.prod(L, R));\n    else\n      seg.add(L, R, x);\n  }\n  return\
     \ ANS;\n}\n\nvoid test() {\n  ll N = 1 << 18, Q = 1 << 18;\n  vc<int> A(N);\n\
@@ -365,11 +274,11 @@ data:
     \ a = clock();\n  FOR(100) solve_seg(N, Q, A, query);\n  int b = clock();\n  FOR(100)\
     \ solve_bit(N, Q, A, query);\n  int c = clock();\n  print(b - a, c - b);\n  print(double(b\
     \ - a) / double(c - b));\n  4.4 \u500D\u304F\u3089\u3044\u9AD8\u901F\u3068\u3044\
-    \u3046\u3053\u3068\u306B\n  */\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a +\
-    \ b);\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}"
+    \u3046\u3053\u3068\u306B\n  */\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
+    \ b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
+    \  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
-  - other/io.hpp
   - ds/segtree/lazy_segtree.hpp
   - alg/acted_monoid/sum_add.hpp
   - alg/monoid/add.hpp
@@ -379,7 +288,7 @@ data:
   isVerificationFile: true
   path: test/mytest/fenwick_raq.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 16:40:17+09:00'
+  timestamp: '2023-11-06 17:24:00+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/fenwick_raq.test.cpp

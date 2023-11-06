@@ -251,7 +251,7 @@ data:
     - icon: ':question:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
     - icon: ':warning:'
@@ -575,7 +575,7 @@ data:
     - icon: ':question:'
       path: geo/base.hpp
       title: geo/base.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo/closest_pair.hpp
       title: geo/closest_pair.hpp
     - icon: ':x:'
@@ -1111,7 +1111,7 @@ data:
     - icon: ':x:'
       path: mod/modint.hpp
       title: mod/modint.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: mod/modint61.hpp
       title: mod/modint61.hpp
     - icon: ':x:'
@@ -1491,7 +1491,7 @@ data:
     - icon: ':question:'
       path: random/base.hpp
       title: random/base.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: random/hash_pair.hpp
       title: random/hash_pair.hpp
     - icon: ':x:'
@@ -1500,7 +1500,7 @@ data:
     - icon: ':x:'
       path: random/random_graph.hpp
       title: random/random_graph.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: random/shuffle.hpp
       title: random/shuffle.hpp
   - name: seq
@@ -1676,7 +1676,7 @@ data:
     - icon: ':x:'
       path: string/rollinghash.hpp
       title: string/rollinghash.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: string/rollinghash_2d.hpp
       title: string/rollinghash_2d.hpp
     - icon: ':x:'
@@ -1766,7 +1766,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_12_B.test.cpp
       title: test/aoj/ALDS1_12_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/ALDS1_14_C.test.cpp
       title: test/aoj/ALDS1_14_C.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1799,7 +1799,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_3_B.test.cpp
       title: test/aoj/CGL_3_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_5_A.test.cpp
       title: test/aoj/CGL_5_A.test.cpp
     - icon: ':heavy_check_mark:'
