@@ -87,7 +87,7 @@ void rd(modint<mod> &x) {
 }
 template <int mod>
 void wt(modint<mod> x) {
-  wt(x.val);
+  fastio::wt(x.val);
 }
 #endif
 
