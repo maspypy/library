@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -228,29 +228,29 @@ data:
     \n  }\r\n  modint61 pow(ll n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1),\
     \ mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul\
     \ *= mul, n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n#ifdef FASTIO\r\n  void\
-    \ write() { fastio::printer.write(val); }\r\n  void read() {\r\n    ll x;\r\n\
-    \    fastio::scanner.read(x);\r\n    val = (val >= 0 ? val % mod : (mod - (-val)\
-    \ % mod) % mod);\r\n  }\r\n#endif\r\n};\n#line 4 \"string/rollinghash.hpp\"\n\n\
-    struct RollingHash {\n  using mint = modint61;\n  static constexpr u64 mod = mint::get_mod();\n\
-    \  const mint base;\n  vc<mint> power;\n\n  static inline mint generate_base()\
-    \ { return RNG(mod); }\n\n  inline void expand(size_t sz) {\n    if (power.size()\
-    \ < sz + 1) {\n      int pre_sz = (int)power.size();\n      power.resize(sz +\
-    \ 1);\n      FOR(i, pre_sz - 1, sz) power[i + 1] = power[i] * base;\n    }\n \
-    \ }\n\n  explicit RollingHash(mint base = generate_base()) : base(base), power{1}\
-    \ {}\n\n  template <typename STRING>\n  vector<mint> build(const STRING& s) const\
-    \ {\n    int sz = s.size();\n    vector<mint> hashed(sz + 1, mint(0));\n    for\
-    \ (int i = 0; i < sz; i++) { hashed[i + 1] = hashed[i] * base + s[i]; }\n    return\
-    \ hashed;\n  }\n\n  template <typename STRING>\n  mint eval(string& s) {\n   \
-    \ mint x = 0;\n    for (auto& ch: s) x = base * x + ch;\n    return x;\n  }\n\n\
-    \  mint query(const vc<mint>& s, int l, int r) {\n    expand(r - l);\n    return\
-    \ (s[r] - s[l] * power[r - l]);\n  }\n\n  mint combine(mint h1, mint h2, int h2len)\
-    \ {\n    expand(h2len);\n    return h1 * power[h2len] + h2;\n  }\n\n  mint add_char(mint\
-    \ h, int x) { return h * base + mint(x); }\n\n  int lcp(const vc<mint>& a, int\
-    \ l1, int r1, const vc<mint>& b, int l2,\n          int r2) {\n    int len = min(r1\
-    \ - l1, r2 - l2);\n    int low = 0, high = len + 1;\n    while (high - low > 1)\
-    \ {\n      int mid = (low + high) / 2;\n      if (query(a, l1, l1 + mid) == query(b,\
-    \ l2, l2 + mid))\n        low = mid;\n      else\n        high = mid;\n    }\n\
-    \    return low;\n  }\n};\n#line 6 \"test/library_checker/string/zalgorithm_by_rollinghash.test.cpp\"\
+    \ write() { fastio::wt(val); }\r\n  void read() {\r\n    ll x;\r\n    fastio::read(x);\r\
+    \n    val = (val >= 0 ? val % mod : (mod - (-val) % mod) % mod);\r\n  }\r\n#endif\r\
+    \n};\n#line 4 \"string/rollinghash.hpp\"\n\nstruct RollingHash {\n  using mint\
+    \ = modint61;\n  static constexpr u64 mod = mint::get_mod();\n  const mint base;\n\
+    \  vc<mint> power;\n\n  static inline mint generate_base() { return RNG(mod);\
+    \ }\n\n  inline void expand(size_t sz) {\n    if (power.size() < sz + 1) {\n \
+    \     int pre_sz = (int)power.size();\n      power.resize(sz + 1);\n      FOR(i,\
+    \ pre_sz - 1, sz) power[i + 1] = power[i] * base;\n    }\n  }\n\n  explicit RollingHash(mint\
+    \ base = generate_base()) : base(base), power{1} {}\n\n  template <typename STRING>\n\
+    \  vector<mint> build(const STRING& s) const {\n    int sz = s.size();\n    vector<mint>\
+    \ hashed(sz + 1, mint(0));\n    for (int i = 0; i < sz; i++) { hashed[i + 1] =\
+    \ hashed[i] * base + s[i]; }\n    return hashed;\n  }\n\n  template <typename\
+    \ STRING>\n  mint eval(string& s) {\n    mint x = 0;\n    for (auto& ch: s) x\
+    \ = base * x + ch;\n    return x;\n  }\n\n  mint query(const vc<mint>& s, int\
+    \ l, int r) {\n    expand(r - l);\n    return (s[r] - s[l] * power[r - l]);\n\
+    \  }\n\n  mint combine(mint h1, mint h2, int h2len) {\n    expand(h2len);\n  \
+    \  return h1 * power[h2len] + h2;\n  }\n\n  mint add_char(mint h, int x) { return\
+    \ h * base + mint(x); }\n\n  int lcp(const vc<mint>& a, int l1, int r1, const\
+    \ vc<mint>& b, int l2,\n          int r2) {\n    int len = min(r1 - l1, r2 - l2);\n\
+    \    int low = 0, high = len + 1;\n    while (high - low > 1) {\n      int mid\
+    \ = (low + high) / 2;\n      if (query(a, l1, l1 + mid) == query(b, l2, l2 + mid))\n\
+    \        low = mid;\n      else\n        high = mid;\n    }\n    return low;\n\
+    \  }\n};\n#line 6 \"test/library_checker/string/zalgorithm_by_rollinghash.test.cpp\"\
     \n\r\nvoid solve() {\r\n  STR(S);\r\n  ll N = len(S);\r\n  RollingHash RH;\r\n\
     \  auto RS = RH.build(S);\r\n  vi Z(N);\r\n  FOR(i, N) { Z[i] = RH.lcp(RS, 0,\
     \ N, RS, i, N); }\r\n  print(Z);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
@@ -272,7 +272,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 17:27:58+09:00'
+  timestamp: '2023-11-06 17:38:34+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp

@@ -4,10 +4,10 @@ data:
   - icon: ':x:'
     path: mod/all_inverse.hpp
     title: mod/all_inverse.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -172,24 +172,24 @@ data:
     \ return modint(u);\n  }\n  modint pow(ll n) const {\n    assert(n >= 0);\n  \
     \  modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
     \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n#ifdef FASTIO\n\
-    \  void write() { fastio::printer.write(val); }\n  void read() {\n    fastio::scanner.read(val);\n\
-    \    val %= mod;\n  }\n#endif\n  static constexpr int get_mod() { return mod;\
-    \ }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int,\
-    \ int> ntt_info() {\n    if (mod == 167772161) return {25, 17};\n    if (mod ==\
-    \ 469762049) return {26, 30};\n    if (mod == 754974721) return {24, 362};\n \
-    \   if (mod == 880803841) return {23, 211};\n    if (mod == 943718401) return\
-    \ {22, 663003469};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
-    \ 1045430273) return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n\
-    \    if (mod == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static\
-    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\nusing modint107\
-    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 2 \"mod/all_inverse.hpp\"\
-    \ntemplate <typename mint>\nvc<mint> all_inverse(vc<mint>& X) {\n  for (auto&&\
-    \ x: X) assert(x != mint(0));\n  int N = len(X);\n  vc<mint> res(N + 1);\n  res[0]\
-    \ = mint(1);\n  FOR(i, N) res[i + 1] = res[i] * X[i];\n  mint t = res.back().inverse();\n\
-    \  res.pop_back();\n  FOR_R(i, N) {\n    res[i] *= t;\n    t *= X[i];\n  }\n \
-    \ return res;\n}\n#line 7 \"test/mytest/all_inverse.test.cpp\"\n\nvoid test()\
-    \ {\n  using mint = modint998;\n  vc<int> ns = {1, 2, 3, 4, 5, 100000};\n\n  for\
-    \ (auto&& N: ns) {\n    vc<mint> X(N);\n    FOR(i, N) { X[i] = RNG(1, mint::get_mod());\
+    \  void write() { fastio::wt(val); }\n  void read() {\n    ll x;\n    fastio::read(x);\n\
+    \    val = (x >= 0 ? x % mod : (mod - (-x) % mod) % mod);\n  }\n#endif\n  static\
+    \ constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n\
+    \ \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n    if (mod ==\
+    \ 167772161) return {25, 17};\n    if (mod == 469762049) return {26, 30};\n  \
+    \  if (mod == 754974721) return {24, 362};\n    if (mod == 880803841) return {23,\
+    \ 211};\n    if (mod == 943718401) return {22, 663003469};\n    if (mod == 998244353)\
+    \ return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod\
+    \ == 1051721729) return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n\
+    \    return {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi\
+    \ != -1; }\n};\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 2 \"mod/all_inverse.hpp\"\ntemplate <typename mint>\nvc<mint> all_inverse(vc<mint>&\
+    \ X) {\n  for (auto&& x: X) assert(x != mint(0));\n  int N = len(X);\n  vc<mint>\
+    \ res(N + 1);\n  res[0] = mint(1);\n  FOR(i, N) res[i + 1] = res[i] * X[i];\n\
+    \  mint t = res.back().inverse();\n  res.pop_back();\n  FOR_R(i, N) {\n    res[i]\
+    \ *= t;\n    t *= X[i];\n  }\n  return res;\n}\n#line 7 \"test/mytest/all_inverse.test.cpp\"\
+    \n\nvoid test() {\n  using mint = modint998;\n  vc<int> ns = {1, 2, 3, 4, 5, 100000};\n\
+    \n  for (auto&& N: ns) {\n    vc<mint> X(N);\n    FOR(i, N) { X[i] = RNG(1, mint::get_mod());\
     \ }\n    auto Y = all_inverse(X);\n    FOR(i, N) assert(X[i] * Y[i] == mint(1));\n\
     \  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a << \" \"\
     \ << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n\
@@ -211,7 +211,7 @@ data:
   isVerificationFile: true
   path: test/mytest/all_inverse.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 17:24:00+09:00'
+  timestamp: '2023-11-06 17:38:34+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/all_inverse.test.cpp

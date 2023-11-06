@@ -10,7 +10,7 @@ data:
   - icon: ':x:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':question:'
@@ -287,23 +287,24 @@ data:
     \ mint(lhs) /= rhs;\n  }\n  friend bool operator==(const mint& lhs, const mint&\
     \ rhs) {\n    return lhs.val == rhs.val;\n  }\n  friend bool operator!=(const\
     \ mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n  }\n#ifdef FASTIO\n\
-    \  void write() { fastio::printer.write(val); }\n  void read() {\n    fastio::scanner.read(val);\n\
-    \    val = bt.modulo(val);\n  }\n#endif\n  static pair<int, int>& get_ntt() {\n\
-    \    static pair<int, int> p = {-1, -1};\n    return p;\n  }\n  static void set_ntt_info()\
-    \ {\n    int mod = get_mod();\n    int k = lowbit(mod - 1);\n    int r = primitive_root(mod);\n\
-    \    r = mod_pow(r, (mod - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static\
-    \ pair<int, int> ntt_info() { return get_ntt(); }\n  static bool can_ntt() { return\
-    \ ntt_info().fi != -1; }\n};\n\nusing dmint = Dynamic_Modint<-1>;\ntemplate <int\
-    \ id>\nBarrett Dynamic_Modint<id>::bt;\n#line 1 \"seq/geometric_sequence_sum.hpp\"\
-    \n\n// sum_{i=0}^{n-1}r^i\ntemplate <typename T>\nT geometic_sequence_sum(T r,\
-    \ ll n) {\n  // (r^n, 1+...+r^{n-1})\n  auto dfs = [&](auto& dfs, ll n) -> pair<T,\
-    \ T> {\n    if (n == 0) return {r, T(0)};\n    auto [x, y] = dfs(dfs, n / 2);\n\
-    \    tie(x, y) = mp(x * x, x * y + y);\n    if (n & 1) { tie(x, y) = mp(x * r,\
-    \ y + x); }\n    return {x, y};\n  };\n  return dfs(dfs, n).se;\n}\n\n// sum_{i=0}^{n-1}i^kr^i\
-    \ \u3092 k=0,1,...,K\ntemplate <typename T, int K>\narray<T, K + 1> geometic_sequence_sum_K(T\
-    \ r, ll n) {\n  array<array<T, K + 1>, K + 1> comb{};\n  comb[0][0] = 1;\n  FOR(i,\
-    \ K) {\n    FOR(j, i + 1) {\n      comb[i + 1][j] += comb[i][j], comb[i + 1][j\
-    \ + 1] += comb[i][j];\n    }\n  }\n\n  // (n, r^n, sum i^kr^i)\n  using X = tuple<T,\
+    \  void write() { fastio::wt(val); }\n  void read() {\n    ll x;\n    fastio::read(x);\n\
+    \    val = (x >= 0 ? x % mod : (mod - (-x) % mod) % mod);\n  }\n#endif\n  static\
+    \ pair<int, int>& get_ntt() {\n    static pair<int, int> p = {-1, -1};\n    return\
+    \ p;\n  }\n  static void set_ntt_info() {\n    int mod = get_mod();\n    int k\
+    \ = lowbit(mod - 1);\n    int r = primitive_root(mod);\n    r = mod_pow(r, (mod\
+    \ - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static pair<int, int> ntt_info()\
+    \ { return get_ntt(); }\n  static bool can_ntt() { return ntt_info().fi != -1;\
+    \ }\n};\n\nusing dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n\
+    #line 1 \"seq/geometric_sequence_sum.hpp\"\n\n// sum_{i=0}^{n-1}r^i\ntemplate\
+    \ <typename T>\nT geometic_sequence_sum(T r, ll n) {\n  // (r^n, 1+...+r^{n-1})\n\
+    \  auto dfs = [&](auto& dfs, ll n) -> pair<T, T> {\n    if (n == 0) return {r,\
+    \ T(0)};\n    auto [x, y] = dfs(dfs, n / 2);\n    tie(x, y) = mp(x * x, x * y\
+    \ + y);\n    if (n & 1) { tie(x, y) = mp(x * r, y + x); }\n    return {x, y};\n\
+    \  };\n  return dfs(dfs, n).se;\n}\n\n// sum_{i=0}^{n-1}i^kr^i \u3092 k=0,1,...,K\n\
+    template <typename T, int K>\narray<T, K + 1> geometic_sequence_sum_K(T r, ll\
+    \ n) {\n  array<array<T, K + 1>, K + 1> comb{};\n  comb[0][0] = 1;\n  FOR(i, K)\
+    \ {\n    FOR(j, i + 1) {\n      comb[i + 1][j] += comb[i][j], comb[i + 1][j +\
+    \ 1] += comb[i][j];\n    }\n  }\n\n  // (n, r^n, sum i^kr^i)\n  using X = tuple<T,\
     \ T, array<T, K + 1>>;\n  auto mul = [&](X& l, X& r) -> X {\n    auto& [n1, r1,\
     \ A] = l;\n    auto& [n2, r2, B] = r;\n    array<T, K + 1> C;\n    FOR(k, K +\
     \ 1) {\n      C[k] = A[k];\n      T c = r1;\n      FOR(j, k + 1) { C[k] += comb[k][j]\
@@ -346,7 +347,7 @@ data:
   isVerificationFile: true
   path: test/mytest/geometric_sequence_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 17:24:00+09:00'
+  timestamp: '2023-11-06 17:38:34+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/geometric_sequence_sum.test.cpp

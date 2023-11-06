@@ -10,10 +10,10 @@ data:
   - icon: ':x:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -25,7 +25,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':question:'
@@ -189,28 +189,29 @@ data:
     \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll\
     \ n) const {\n    assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n\
     \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
-    \  }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
-    \ }\n  void read() {\n    fastio::scanner.read(val);\n    val %= mod;\n  }\n#endif\n\
-    \  static constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E\
-    \ 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n    if (mod\
-    \ == 167772161) return {25, 17};\n    if (mod == 469762049) return {26, 30};\n\
-    \    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841) return\
-    \ {23, 211};\n    if (mod == 943718401) return {22, 663003469};\n    if (mod ==\
-    \ 998244353) return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n\
-    \    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881) return\
-    \ {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
-    \ return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 2 \"mod/dynamic_modint.hpp\"\n\n#line\
-    \ 2 \"mod/primitive_root.hpp\"\n\r\n#line 2 \"nt/factor.hpp\"\n\n#line 2 \"mod/mongomery_modint.hpp\"\
-    \n\n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
-    \ <int id, typename U1, typename U2>\nstruct Mongomery_modint {\n  using mint\
-    \ = Mongomery_modint;\n  inline static U1 m, r, n2;\n  static constexpr int W\
-    \ = numeric_limits<U1>::digits;\n\n  static void set_mod(U1 mod) {\n    assert(mod\
-    \ & 1 && mod <= U1(1) << (W - 2));\n    m = mod, n2 = -U2(m) % m, r = m;\n   \
-    \ FOR(5) r *= 2 - m * r;\n    r = -r;\n    assert(r * m == U1(-1));\n  }\n  static\
-    \ U1 reduce(U2 b) { return (b + U2(U1(b) * r) * m) >> W; }\n\n  U1 x;\n  Mongomery_modint()\
-    \ : x(0) {}\n  Mongomery_modint(U1 x) : x(reduce(U2(x) * n2)){};\n  U1 val() const\
-    \ {\n    U1 y = reduce(x);\n    return y >= m ? y - m : y;\n  }\n  mint &operator+=(mint\
+    \  }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::wt(val); }\n\
+    \  void read() {\n    ll x;\n    fastio::read(x);\n    val = (x >= 0 ? x % mod\
+    \ : (mod - (-x) % mod) % mod);\n  }\n#endif\n  static constexpr int get_mod()\
+    \ { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr\
+    \ pair<int, int> ntt_info() {\n    if (mod == 167772161) return {25, 17};\n  \
+    \  if (mod == 469762049) return {26, 30};\n    if (mod == 754974721) return {24,\
+    \ 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod == 943718401)\
+    \ return {22, 663003469};\n    if (mod == 998244353) return {23, 31};\n    if\
+    \ (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729) return {20,\
+    \ 330};\n    if (mod == 1053818881) return {20, 2789};\n    return {-1, -1};\n\
+    \  }\n  static constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n\
+    using modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 2 \"mod/dynamic_modint.hpp\"\n\n#line 2 \"mod/primitive_root.hpp\"\n\r\n\
+    #line 2 \"nt/factor.hpp\"\n\n#line 2 \"mod/mongomery_modint.hpp\"\n\n// odd mod.\n\
+    // x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate <int id, typename\
+    \ U1, typename U2>\nstruct Mongomery_modint {\n  using mint = Mongomery_modint;\n\
+    \  inline static U1 m, r, n2;\n  static constexpr int W = numeric_limits<U1>::digits;\n\
+    \n  static void set_mod(U1 mod) {\n    assert(mod & 1 && mod <= U1(1) << (W -\
+    \ 2));\n    m = mod, n2 = -U2(m) % m, r = m;\n    FOR(5) r *= 2 - m * r;\n   \
+    \ r = -r;\n    assert(r * m == U1(-1));\n  }\n  static U1 reduce(U2 b) { return\
+    \ (b + U2(U1(b) * r) * m) >> W; }\n\n  U1 x;\n  Mongomery_modint() : x(0) {}\n\
+    \  Mongomery_modint(U1 x) : x(reduce(U2(x) * n2)){};\n  U1 val() const {\n   \
+    \ U1 y = reduce(x);\n    return y >= m ? y - m : y;\n  }\n  mint &operator+=(mint\
     \ y) {\n    x = ((x += y.x) >= m ? x - m : x);\n    return *this;\n  }\n  mint\
     \ &operator-=(mint y) {\n    x -= (x >= y.x ? y.x : y.x - m);\n    return *this;\n\
     \  }\n  mint &operator*=(mint y) {\n    x = reduce(U2(x) * y.x);\n    return *this;\n\
@@ -322,24 +323,25 @@ data:
     \ mint(lhs) /= rhs;\n  }\n  friend bool operator==(const mint& lhs, const mint&\
     \ rhs) {\n    return lhs.val == rhs.val;\n  }\n  friend bool operator!=(const\
     \ mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n  }\n#ifdef FASTIO\n\
-    \  void write() { fastio::printer.write(val); }\n  void read() {\n    fastio::scanner.read(val);\n\
-    \    val = bt.modulo(val);\n  }\n#endif\n  static pair<int, int>& get_ntt() {\n\
-    \    static pair<int, int> p = {-1, -1};\n    return p;\n  }\n  static void set_ntt_info()\
-    \ {\n    int mod = get_mod();\n    int k = lowbit(mod - 1);\n    int r = primitive_root(mod);\n\
-    \    r = mod_pow(r, (mod - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static\
-    \ pair<int, int> ntt_info() { return get_ntt(); }\n  static bool can_ntt() { return\
-    \ ntt_info().fi != -1; }\n};\n\nusing dmint = Dynamic_Modint<-1>;\ntemplate <int\
-    \ id>\nBarrett Dynamic_Modint<id>::bt;\n#line 7 \"test/mytest/31bit_modint.test.cpp\"\
-    \n\ntemplate <typename mint>\nvoid test() {\n  const u32 mod = mint::get_mod();\n\
-    \  auto check = [&](ll x, ll y) -> void {\n    mint mx = x, my = y;\n    assert((x\
-    \ + y) % mod == (mx + my).val);\n    assert((x + mod - y) % mod == (mx - my).val);\n\
-    \    assert((x * y) % mod == (mx * my).val);\n    mint mz = mx / my;\n    ll z\
-    \ = mz.val;\n    assert(y * z % mod == x);\n  };\n  FOR(10000) {\n    ll x = RNG(0,\
-    \ mint::get_mod());\n    ll y = RNG(0, mint::get_mod());\n    check(x, y);\n \
-    \ }\n  FOR(i, 1, 100) FOR(j, 1, 100) { check(mod - i, mod - j); }\n}\n\nvoid solve()\
-    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\
-    \nsigned main() {\n  constexpr u32 mod = (u32(1) << 31) - 19;\n  dmint::set_mod(mod);\n\
-    \  test<modint<mod>>();\n  test<dmint>();\n\n  solve();\n  return 0;\n}\n"
+    \  void write() { fastio::wt(val); }\n  void read() {\n    ll x;\n    fastio::read(x);\n\
+    \    val = (x >= 0 ? x % mod : (mod - (-x) % mod) % mod);\n  }\n#endif\n  static\
+    \ pair<int, int>& get_ntt() {\n    static pair<int, int> p = {-1, -1};\n    return\
+    \ p;\n  }\n  static void set_ntt_info() {\n    int mod = get_mod();\n    int k\
+    \ = lowbit(mod - 1);\n    int r = primitive_root(mod);\n    r = mod_pow(r, (mod\
+    \ - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static pair<int, int> ntt_info()\
+    \ { return get_ntt(); }\n  static bool can_ntt() { return ntt_info().fi != -1;\
+    \ }\n};\n\nusing dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n\
+    #line 7 \"test/mytest/31bit_modint.test.cpp\"\n\ntemplate <typename mint>\nvoid\
+    \ test() {\n  const u32 mod = mint::get_mod();\n  auto check = [&](ll x, ll y)\
+    \ -> void {\n    mint mx = x, my = y;\n    assert((x + y) % mod == (mx + my).val);\n\
+    \    assert((x + mod - y) % mod == (mx - my).val);\n    assert((x * y) % mod ==\
+    \ (mx * my).val);\n    mint mz = mx / my;\n    ll z = mz.val;\n    assert(y *\
+    \ z % mod == x);\n  };\n  FOR(10000) {\n    ll x = RNG(0, mint::get_mod());\n\
+    \    ll y = RNG(0, mint::get_mod());\n    check(x, y);\n  }\n  FOR(i, 1, 100)\
+    \ FOR(j, 1, 100) { check(mod - i, mod - j); }\n}\n\nvoid solve() {\n  int a, b;\n\
+    \  cin >> a >> b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n\
+    \  constexpr u32 mod = (u32(1) << 31) - 19;\n  dmint::set_mod(mod);\n  test<modint<mod>>();\n\
+    \  test<dmint>();\n\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"random/base.hpp\"\n#include \"mod/modint.hpp\"\n#include \"mod/dynamic_modint.hpp\"\
     \n\ntemplate <typename mint>\nvoid test() {\n  const u32 mod = mint::get_mod();\n\
@@ -367,7 +369,7 @@ data:
   isVerificationFile: true
   path: test/mytest/31bit_modint.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 17:24:00+09:00'
+  timestamp: '2023-11-06 17:38:34+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/31bit_modint.test.cpp

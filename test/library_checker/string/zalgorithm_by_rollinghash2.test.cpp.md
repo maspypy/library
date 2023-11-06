@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: ds/sparse_table/disjoint_sparse_table.hpp
     title: ds/sparse_table/disjoint_sparse_table.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -230,44 +230,43 @@ data:
     \n  }\r\n  modint61 pow(ll n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1),\
     \ mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul\
     \ *= mul, n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n#ifdef FASTIO\r\n  void\
-    \ write() { fastio::printer.write(val); }\r\n  void read() {\r\n    ll x;\r\n\
-    \    fastio::scanner.read(x);\r\n    val = (val >= 0 ? val % mod : (mod - (-val)\
-    \ % mod) % mod);\r\n  }\r\n#endif\r\n};\n#line 5 \"alg/monoid/rollinghash.hpp\"\
-    \n\r\n// pow of base, val\r\nstruct Monoid_Rolling_Hash {\r\n  using value_type\
-    \ = pair<modint61, modint61>;\r\n  using X = value_type;\r\n\r\n  static u64 &get_param()\
-    \ {\r\n    static u64 base = 0;\r\n    return base;\r\n  }\r\n  static void set_param(u64\
-    \ base) { get_param() = base; }\r\n\r\n  static X from_element(u64 x) {\r\n  \
-    \  while (get_param() == 0) set_param(RNG_64());\r\n    return {get_param(), x};\r\
-    \n  }\r\n  static X op(X x, X y) { return {x.fi * y.fi, x.se * y.fi + y.se}; }\r\
-    \n  static constexpr X unit() { return {1, 0}; }\r\n  static constexpr bool commute\
-    \ = false;\r\n};\n#line 2 \"ds/sparse_table/disjoint_sparse_table.hpp\"\n\r\n\
-    template <class Monoid>\r\nstruct Disjoint_Sparse_Table {\r\n  using MX = Monoid;\r\
-    \n  using X = typename MX::value_type;\r\n  int n, log;\r\n  vvc<X> dat;\r\n\r\
-    \n  Disjoint_Sparse_Table() {}\r\n  Disjoint_Sparse_Table(int n) { build(n); }\r\
-    \n  template <typename F>\r\n  Disjoint_Sparse_Table(int n, F f) {\r\n    build(n,\
-    \ f);\r\n  }\r\n  Disjoint_Sparse_Table(const vc<X>& v) { build(v); }\r\n\r\n\
-    \  void build(int m) {\r\n    build(m, [](int i) -> X { return MX::unit(); });\r\
-    \n  }\r\n  void build(const vc<X>& v) {\r\n    build(len(v), [&](int i) -> X {\
-    \ return v[i]; });\r\n  }\r\n  template <typename F>\r\n  void build(int m, F\
-    \ f) {\r\n    n = m, log = 1;\r\n    while ((1 << log) < n) ++log;\r\n    dat.resize(log);\r\
-    \n    dat[0].reserve(n);\r\n    FOR(i, n) dat[0].eb(f(i));\r\n    FOR(i, 1, log)\
-    \ {\r\n      auto& v = dat[i];\r\n      v = dat[0];\r\n      int b = 1 << i;\r\
-    \n      for (int m = b; m <= n; m += 2 * b) {\r\n        int L = m - b, R = min(n,\
-    \ m + b);\r\n        FOR_R(j, L + 1, m) v[j - 1] = MX::op(v[j - 1], v[j]);\r\n\
-    \        FOR(j, m, R - 1) v[j + 1] = MX::op(v[j], v[j + 1]);\r\n      }\r\n  \
-    \  }\r\n  }\r\n\r\n  X prod(int L, int R) {\r\n    if (L == R) return MX::unit();\r\
-    \n    --R;\r\n    if (L == R) return dat[0][L];\r\n    int k = 31 - __builtin_clz(L\
-    \ ^ R);\r\n    return MX::op(dat[k][L], dat[k][R]);\r\n  }\r\n\r\n  template <class\
-    \ F>\r\n  int max_right(const F check, int L) {\r\n    assert(0 <= L && L <= n\
-    \ && check(MX::unit()));\r\n    if (L == n) return n;\r\n    int ok = L, ng =\
-    \ n + 1;\r\n    while (ok + 1 < ng) {\r\n      int k = (ok + ng) / 2;\r\n    \
-    \  bool bl = check(prod(L, k));\r\n      if (bl) ok = k;\r\n      if (!bl) ng\
-    \ = k;\r\n    }\r\n    return ok;\r\n  }\r\n\r\n  template <class F>\r\n  int\
-    \ min_left(const F check, int R) {\r\n    assert(0 <= R && R <= n && check(MX::unit()));\r\
-    \n    if (R == 0) return 0;\r\n    int ok = R, ng = -1;\r\n    while (ng + 1 <\
-    \ ok) {\r\n      int k = (ok + ng) / 2;\r\n      bool bl = check(prod(k, R));\r\
+    \ write() { fastio::wt(val); }\r\n  void read() {\r\n    ll x;\r\n    fastio::read(x);\r\
+    \n    val = (val >= 0 ? val % mod : (mod - (-val) % mod) % mod);\r\n  }\r\n#endif\r\
+    \n};\n#line 5 \"alg/monoid/rollinghash.hpp\"\n\r\n// pow of base, val\r\nstruct\
+    \ Monoid_Rolling_Hash {\r\n  using value_type = pair<modint61, modint61>;\r\n\
+    \  using X = value_type;\r\n\r\n  static u64 &get_param() {\r\n    static u64\
+    \ base = 0;\r\n    return base;\r\n  }\r\n  static void set_param(u64 base) {\
+    \ get_param() = base; }\r\n\r\n  static X from_element(u64 x) {\r\n    while (get_param()\
+    \ == 0) set_param(RNG_64());\r\n    return {get_param(), x};\r\n  }\r\n  static\
+    \ X op(X x, X y) { return {x.fi * y.fi, x.se * y.fi + y.se}; }\r\n  static constexpr\
+    \ X unit() { return {1, 0}; }\r\n  static constexpr bool commute = false;\r\n\
+    };\n#line 2 \"ds/sparse_table/disjoint_sparse_table.hpp\"\n\r\ntemplate <class\
+    \ Monoid>\r\nstruct Disjoint_Sparse_Table {\r\n  using MX = Monoid;\r\n  using\
+    \ X = typename MX::value_type;\r\n  int n, log;\r\n  vvc<X> dat;\r\n\r\n  Disjoint_Sparse_Table()\
+    \ {}\r\n  Disjoint_Sparse_Table(int n) { build(n); }\r\n  template <typename F>\r\
+    \n  Disjoint_Sparse_Table(int n, F f) {\r\n    build(n, f);\r\n  }\r\n  Disjoint_Sparse_Table(const\
+    \ vc<X>& v) { build(v); }\r\n\r\n  void build(int m) {\r\n    build(m, [](int\
+    \ i) -> X { return MX::unit(); });\r\n  }\r\n  void build(const vc<X>& v) {\r\n\
+    \    build(len(v), [&](int i) -> X { return v[i]; });\r\n  }\r\n  template <typename\
+    \ F>\r\n  void build(int m, F f) {\r\n    n = m, log = 1;\r\n    while ((1 <<\
+    \ log) < n) ++log;\r\n    dat.resize(log);\r\n    dat[0].reserve(n);\r\n    FOR(i,\
+    \ n) dat[0].eb(f(i));\r\n    FOR(i, 1, log) {\r\n      auto& v = dat[i];\r\n \
+    \     v = dat[0];\r\n      int b = 1 << i;\r\n      for (int m = b; m <= n; m\
+    \ += 2 * b) {\r\n        int L = m - b, R = min(n, m + b);\r\n        FOR_R(j,\
+    \ L + 1, m) v[j - 1] = MX::op(v[j - 1], v[j]);\r\n        FOR(j, m, R - 1) v[j\
+    \ + 1] = MX::op(v[j], v[j + 1]);\r\n      }\r\n    }\r\n  }\r\n\r\n  X prod(int\
+    \ L, int R) {\r\n    if (L == R) return MX::unit();\r\n    --R;\r\n    if (L ==\
+    \ R) return dat[0][L];\r\n    int k = 31 - __builtin_clz(L ^ R);\r\n    return\
+    \ MX::op(dat[k][L], dat[k][R]);\r\n  }\r\n\r\n  template <class F>\r\n  int max_right(const\
+    \ F check, int L) {\r\n    assert(0 <= L && L <= n && check(MX::unit()));\r\n\
+    \    if (L == n) return n;\r\n    int ok = L, ng = n + 1;\r\n    while (ok + 1\
+    \ < ng) {\r\n      int k = (ok + ng) / 2;\r\n      bool bl = check(prod(L, k));\r\
     \n      if (bl) ok = k;\r\n      if (!bl) ng = k;\r\n    }\r\n    return ok;\r\
-    \n  }\r\n};\n#line 7 \"test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp\"\
+    \n  }\r\n\r\n  template <class F>\r\n  int min_left(const F check, int R) {\r\n\
+    \    assert(0 <= R && R <= n && check(MX::unit()));\r\n    if (R == 0) return\
+    \ 0;\r\n    int ok = R, ng = -1;\r\n    while (ng + 1 < ok) {\r\n      int k =\
+    \ (ok + ng) / 2;\r\n      bool bl = check(prod(k, R));\r\n      if (bl) ok = k;\r\
+    \n      if (!bl) ng = k;\r\n    }\r\n    return ok;\r\n  }\r\n};\n#line 7 \"test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp\"\
     \n\nvoid solve() {\n  STR(S);\n  ll N = len(S);\n  using Mono = Monoid_Rolling_Hash;\n\
     \  Disjoint_Sparse_Table<Mono> seg(\n      N, [&](int i) { return Mono::from_element(S[i]);\
     \ });\n  vi Z(N);\n  FOR(i, N) {\n    auto check = [&](int n) -> bool {\n    \
@@ -295,7 +294,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 17:27:58+09:00'
+  timestamp: '2023-11-06 17:38:34+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp

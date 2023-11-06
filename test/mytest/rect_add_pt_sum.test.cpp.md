@@ -10,10 +10,10 @@ data:
   - icon: ':x:'
     path: ds/offline_query/rectangle_add_point_sum.hpp
     title: ds/offline_query/rectangle_add_point_sum.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -333,33 +333,34 @@ data:
     \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll\
     \ n) const {\n    assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n\
     \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
-    \  }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
-    \ }\n  void read() {\n    fastio::scanner.read(val);\n    val %= mod;\n  }\n#endif\n\
-    \  static constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E\
-    \ 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n    if (mod\
-    \ == 167772161) return {25, 17};\n    if (mod == 469762049) return {26, 30};\n\
-    \    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841) return\
-    \ {23, 211};\n    if (mod == 943718401) return {22, 663003469};\n    if (mod ==\
-    \ 998244353) return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n\
-    \    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881) return\
-    \ {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
-    \ return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 8 \"test/mytest/rect_add_pt_sum.test.cpp\"\
-    \n\nusing mint = modint998;\nusing QT = tuple<ll, ll, ll, ll, ll>;\n\npair<vc<QT>,\
-    \ vc<pi>> gen(int H, int W, int Q) {\n  vc<tuple<ll, ll, ll, ll, ll>> add_query;\n\
-    \  FOR(Q) {\n    ll a = RNG(0, H);\n    ll b = RNG(a + 1, H + 1);\n    ll c =\
-    \ RNG(0, W);\n    ll d = RNG(c + 1, W + 1);\n    ll x = RNG(0, mint::get_mod());\n\
-    \    add_query.eb(a, b, c, d, x);\n  }\n\n  vc<pi> sum_query;\n  FOR(Q) {\n  \
-    \  ll x = RNG(0, H), y = RNG(0, W);\n    sum_query.eb(x, y);\n  }\n  return {add_query,\
-    \ sum_query};\n}\n\nvc<mint> sol_1(int H, int W, vc<QT> add_query, vc<pi> sum_query)\
-    \ {\n  vv(mint, A, H, W);\n  for (auto&& [a, b, c, d, x]: add_query) {\n    FOR(i,\
-    \ a, b) FOR(j, c, d) { A[i][j] += mint(x); }\n  }\n  vc<mint> ANS;\n  for (auto&&\
-    \ [x, y]: sum_query) ANS.eb(A[x][y]);\n  return ANS;\n}\n\nvc<mint> sol_2(int\
-    \ H, int W, vc<QT> add_query, vc<pi> sum_query) {\n  vc<mint> ANS;\n  for (auto&&\
-    \ [x, y]: sum_query) {\n    mint ans = 0;\n    for (auto&& [a, b, c, d, v]: add_query)\
-    \ {\n      if (a <= x && x < b && c <= y && y < d) ans += mint(v);\n    }\n  \
-    \  ANS.eb(ans);\n  }\n  return ANS;\n}\n\nvoid test() {\n  FOR(H, 1, 10) FOR(W,\
-    \ 1, 10) FOR(Q, 10) {\n    auto [add_query, sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Monoid_Add<mint>,\
+    \  }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::wt(val); }\n\
+    \  void read() {\n    ll x;\n    fastio::read(x);\n    val = (x >= 0 ? x % mod\
+    \ : (mod - (-x) % mod) % mod);\n  }\n#endif\n  static constexpr int get_mod()\
+    \ { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr\
+    \ pair<int, int> ntt_info() {\n    if (mod == 167772161) return {25, 17};\n  \
+    \  if (mod == 469762049) return {26, 30};\n    if (mod == 754974721) return {24,\
+    \ 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod == 943718401)\
+    \ return {22, 663003469};\n    if (mod == 998244353) return {23, 31};\n    if\
+    \ (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729) return {20,\
+    \ 330};\n    if (mod == 1053818881) return {20, 2789};\n    return {-1, -1};\n\
+    \  }\n  static constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n\
+    using modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 8 \"test/mytest/rect_add_pt_sum.test.cpp\"\n\nusing mint = modint998;\n\
+    using QT = tuple<ll, ll, ll, ll, ll>;\n\npair<vc<QT>, vc<pi>> gen(int H, int W,\
+    \ int Q) {\n  vc<tuple<ll, ll, ll, ll, ll>> add_query;\n  FOR(Q) {\n    ll a =\
+    \ RNG(0, H);\n    ll b = RNG(a + 1, H + 1);\n    ll c = RNG(0, W);\n    ll d =\
+    \ RNG(c + 1, W + 1);\n    ll x = RNG(0, mint::get_mod());\n    add_query.eb(a,\
+    \ b, c, d, x);\n  }\n\n  vc<pi> sum_query;\n  FOR(Q) {\n    ll x = RNG(0, H),\
+    \ y = RNG(0, W);\n    sum_query.eb(x, y);\n  }\n  return {add_query, sum_query};\n\
+    }\n\nvc<mint> sol_1(int H, int W, vc<QT> add_query, vc<pi> sum_query) {\n  vv(mint,\
+    \ A, H, W);\n  for (auto&& [a, b, c, d, x]: add_query) {\n    FOR(i, a, b) FOR(j,\
+    \ c, d) { A[i][j] += mint(x); }\n  }\n  vc<mint> ANS;\n  for (auto&& [x, y]: sum_query)\
+    \ ANS.eb(A[x][y]);\n  return ANS;\n}\n\nvc<mint> sol_2(int H, int W, vc<QT> add_query,\
+    \ vc<pi> sum_query) {\n  vc<mint> ANS;\n  for (auto&& [x, y]: sum_query) {\n \
+    \   mint ans = 0;\n    for (auto&& [a, b, c, d, v]: add_query) {\n      if (a\
+    \ <= x && x < b && c <= y && y < d) ans += mint(v);\n    }\n    ANS.eb(ans);\n\
+    \  }\n  return ANS;\n}\n\nvoid test() {\n  FOR(H, 1, 10) FOR(W, 1, 10) FOR(Q,\
+    \ 10) {\n    auto [add_query, sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Monoid_Add<mint>,\
     \ int, 0> X;\n    for (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c,\
     \ d, v);\n    for (auto&& [a, b]: sum_query) X.sum_query(a, b);\n    assert(X.calc()\
     \ == sol_1(H, W, add_query, sum_query));\n  }\n  FOR(H, 1, 10) FOR(W, 1, 10) FOR(Q,\
@@ -418,7 +419,7 @@ data:
   isVerificationFile: true
   path: test/mytest/rect_add_pt_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 17:27:58+09:00'
+  timestamp: '2023-11-06 17:38:34+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/rect_add_pt_sum.test.cpp

@@ -4,10 +4,10 @@ data:
   - icon: ':x:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -255,25 +255,26 @@ data:
     \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll\
     \ n) const {\n    assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n\
     \ > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n  \
-    \  }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::printer.write(val);\
-    \ }\n  void read() {\n    fastio::scanner.read(val);\n    val %= mod;\n  }\n#endif\n\
-    \  static constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E\
-    \ 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n    if (mod\
-    \ == 167772161) return {25, 17};\n    if (mod == 469762049) return {26, 30};\n\
-    \    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841) return\
-    \ {23, 211};\n    if (mod == 943718401) return {22, 663003469};\n    if (mod ==\
-    \ 998244353) return {23, 31};\n    if (mod == 1045430273) return {20, 363};\n\
-    \    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881) return\
-    \ {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
-    \ return ntt_info().fi != -1; }\n};\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 1 \"alg/monoid_pow.hpp\"\ntemplate\
-    \ <typename Monoid>\ntypename Monoid::X monoid_pow(typename Monoid::X x, u64 exp)\
-    \ {\n  using X = typename Monoid::X;\n  assert(exp >= 0);\n  X res = Monoid::unit();\n\
-    \  while (exp) {\n    if (exp & 1) res = Monoid::op(res, x);\n    x = Monoid::op(x,\
-    \ x);\n    exp >>= 1;\n  }\n  return res;\n}\n#line 7 \"test_atcoder/abc200f.test.cpp\"\
-    \n\nusing mint = modint107;\n\nusing P = pair<mint, mint>;\nusing ARR = array<array<P,\
-    \ 2>, 2>;\n\nstruct Mono {\n  using value_type = ARR;\n  using X = value_type;\n\
-    \  static X op(X x, X y) {\n    if (x == unit()) return y;\n    if (y == unit())\
+    \  }\n    return ret;\n  }\n#ifdef FASTIO\n  void write() { fastio::wt(val); }\n\
+    \  void read() {\n    ll x;\n    fastio::read(x);\n    val = (x >= 0 ? x % mod\
+    \ : (mod - (-x) % mod) % mod);\n  }\n#endif\n  static constexpr int get_mod()\
+    \ { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr\
+    \ pair<int, int> ntt_info() {\n    if (mod == 167772161) return {25, 17};\n  \
+    \  if (mod == 469762049) return {26, 30};\n    if (mod == 754974721) return {24,\
+    \ 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod == 943718401)\
+    \ return {22, 663003469};\n    if (mod == 998244353) return {23, 31};\n    if\
+    \ (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729) return {20,\
+    \ 330};\n    if (mod == 1053818881) return {20, 2789};\n    return {-1, -1};\n\
+    \  }\n  static constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n\
+    using modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 1 \"alg/monoid_pow.hpp\"\ntemplate <typename Monoid>\ntypename Monoid::X\
+    \ monoid_pow(typename Monoid::X x, u64 exp) {\n  using X = typename Monoid::X;\n\
+    \  assert(exp >= 0);\n  X res = Monoid::unit();\n  while (exp) {\n    if (exp\
+    \ & 1) res = Monoid::op(res, x);\n    x = Monoid::op(x, x);\n    exp >>= 1;\n\
+    \  }\n  return res;\n}\n#line 7 \"test_atcoder/abc200f.test.cpp\"\n\nusing mint\
+    \ = modint107;\n\nusing P = pair<mint, mint>;\nusing ARR = array<array<P, 2>,\
+    \ 2>;\n\nstruct Mono {\n  using value_type = ARR;\n  using X = value_type;\n \
+    \ static X op(X x, X y) {\n    if (x == unit()) return y;\n    if (y == unit())\
     \ return x;\n    X z = unit();\n    FOR(i, 2) FOR(j, 2) z[i][j] = {mint(0), mint(0)};\n\
     \    FOR(a, 2) FOR(b, 2) FOR(c, 2) FOR(d, 2) {\n      auto& dp1 = x[a][b];\n \
     \     auto& dp2 = y[c][d];\n      z[a][d].fi += dp1.fi * dp2.fi;\n      z[a][d].se\
@@ -317,7 +318,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc200f.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 17:27:58+09:00'
+  timestamp: '2023-11-06 17:38:34+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc200f.test.cpp

@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
   - icon: ':question:'
@@ -21,12 +21,12 @@ data:
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2636.test.cpp
     title: test/aoj/2636.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -274,12 +274,12 @@ data:
     \      int a = tree.jump(cent, v, 1);\n      int L = tree.LID[a], R = tree.RID[a];\n\
     \      L = ss.next(L), R = ss.prev(R - 1);\n      int x = tree.V[L], y = tree.V[R];\n\
     \      return tree.lca(x, y);\n    }\n    int L = tree.LID[cent], R = tree.RID[cent];\n\
-    \    int x = v;\n    vc<int> I;\n    I.eb(ss.next(0)), I.eb(ss.prev(L - 1));\n\
-    \    I.eb(ss.next(R)), I.eb(ss.prev(N - 1));\n    for (auto&& idx: I) {\n    \
-    \  if (idx == -1 || idx == N) continue;\n      if (L <= idx && idx < R) continue;\n\
-    \      int y = tree.V[idx];\n      x = tree.lca_root(x, y, cent);\n    }\n   \
-    \ return x;\n  }\n\n  void add(int v) {\n    ss.insert(tree.LID[v]), TA.add(v,\
-    \ 1), wt_sm++;\n    if (v == cent) return;\n    int wt = get_subtree_wt(v);\n\
+    \    int x = v;\n    vc<int> I;\n    I.eb(ss.next(0));\n    if (1 < L) I.eb(ss.prev(L\
+    \ - 1));\n    if (R < N - 1) I.eb(ss.next(R));\n    I.eb(ss.prev(N - 1));\n  \
+    \  for (auto&& idx: I) {\n      if (idx == -1 || idx == N) continue;\n      if\
+    \ (L <= idx && idx < R) continue;\n      int y = tree.V[idx];\n      x = tree.lca_root(x,\
+    \ y, cent);\n    }\n    return x;\n  }\n\n  void add(int v) {\n    ss.insert(tree.LID[v]),\
+    \ TA.add(v, 1), wt_sm++;\n    if (v == cent) return;\n    int wt = get_subtree_wt(v);\n\
     \    if (max_subtree.se < wt) max_subtree = {tree.jump(cent, v, 1), wt};\n   \
     \ if (2 * wt <= wt_sm) return;\n    int k = wt;\n    assert(wt_sm == 2 * k - 1);\n\
     \    int to = move_to(v);\n    max_subtree = {tree.jump(to, cent, 1), k - 1};\n\
@@ -300,12 +300,12 @@ data:
     \      int a = tree.jump(cent, v, 1);\n      int L = tree.LID[a], R = tree.RID[a];\n\
     \      L = ss.next(L), R = ss.prev(R - 1);\n      int x = tree.V[L], y = tree.V[R];\n\
     \      return tree.lca(x, y);\n    }\n    int L = tree.LID[cent], R = tree.RID[cent];\n\
-    \    int x = v;\n    vc<int> I;\n    I.eb(ss.next(0)), I.eb(ss.prev(L - 1));\n\
-    \    I.eb(ss.next(R)), I.eb(ss.prev(N - 1));\n    for (auto&& idx: I) {\n    \
-    \  if (idx == -1 || idx == N) continue;\n      if (L <= idx && idx < R) continue;\n\
-    \      int y = tree.V[idx];\n      x = tree.lca_root(x, y, cent);\n    }\n   \
-    \ return x;\n  }\n\n  void add(int v) {\n    ss.insert(tree.LID[v]), TA.add(v,\
-    \ 1), wt_sm++;\n    if (v == cent) return;\n    int wt = get_subtree_wt(v);\n\
+    \    int x = v;\n    vc<int> I;\n    I.eb(ss.next(0));\n    if (1 < L) I.eb(ss.prev(L\
+    \ - 1));\n    if (R < N - 1) I.eb(ss.next(R));\n    I.eb(ss.prev(N - 1));\n  \
+    \  for (auto&& idx: I) {\n      if (idx == -1 || idx == N) continue;\n      if\
+    \ (L <= idx && idx < R) continue;\n      int y = tree.V[idx];\n      x = tree.lca_root(x,\
+    \ y, cent);\n    }\n    return x;\n  }\n\n  void add(int v) {\n    ss.insert(tree.LID[v]),\
+    \ TA.add(v, 1), wt_sm++;\n    if (v == cent) return;\n    int wt = get_subtree_wt(v);\n\
     \    if (max_subtree.se < wt) max_subtree = {tree.jump(cent, v, 1), wt};\n   \
     \ if (2 * wt <= wt_sm) return;\n    int k = wt;\n    assert(wt_sm == 2 * k - 1);\n\
     \    int to = move_to(v);\n    max_subtree = {tree.jump(to, cent, 1), k - 1};\n\
@@ -320,8 +320,8 @@ data:
   isVerificationFile: false
   path: graph/ds/incremental_centroid.hpp
   requiredBy: []
-  timestamp: '2023-11-06 14:40:18+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-11-06 17:47:04+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/2636.test.cpp
 documentation_of: graph/ds/incremental_centroid.hpp
