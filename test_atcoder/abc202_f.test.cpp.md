@@ -10,10 +10,10 @@ data:
   - icon: ':x:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':x:'
@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   - icon: ':question:'
@@ -158,7 +158,7 @@ data:
     \ <class T>\r\nvoid rd(vc<T> &x) {\r\n  for (auto &d: x) rd(d);\r\n}\r\n\r\nvoid\
     \ read() {}\r\ntemplate <class H, class... T>\r\nvoid read(H &h, T &... t) {\r\
     \n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const char c) {\r\n  if (por == SZ)\
-    \ flush();\r\n  obuf[por++] = c;\r\n}\r\nvoid wt(const string &s) {\r\n  for (char\
+    \ flush();\r\n  obuf[por++] = c;\r\n}\r\nvoid wt(const string s) {\r\n  for (char\
     \ c: s) wt(c);\r\n}\r\nvoid wt(const char *s) {\r\n  size_t len = strlen(s);\r\
     \n  for (size_t i = 0; i < len; i++) wt(s[i]);\r\n}\r\n\r\ntemplate <typename\
     \ T>\r\nvoid wt_integer(T x) {\r\n  if (por > SZ - 100) flush();\r\n  if (x <\
@@ -221,7 +221,7 @@ data:
     \ theta) {\n    static_assert(!is_integral<T>::value);\n    double c = cos(theta),\
     \ s = sin(theta);\n    return Point{c * x - s * y, s * x + c * y};\n  }\n};\n\n\
     #ifdef FASTIO\ntemplate <typename T>\nvoid rd(Point<T>& p) {\n  fastio::rd(p.x),\
-    \ fastio::rd(p.y);\n}\ntemplate <typename T>\nvoid print(Point<T>& p) {\n  fastio::wt(p.x);\n\
+    \ fastio::rd(p.y);\n}\ntemplate <typename T>\nvoid wt(Point<T>& p) {\n  fastio::wt(p.x);\n\
     \  fastio::wt(' ');\n  fastio::wt(p.y);\n}\n#endif\n\n// A -> B -> C \u3068\u9032\
     \u3080\u3068\u304D\u306B\u3001\u5DE6\u306B\u66F2\u304C\u308B\u306A\u3089\u3070\
     \ +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\u3089\u3070 -1\ntemplate <typename\
@@ -449,7 +449,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc202_f.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 00:41:09+09:00'
+  timestamp: '2023-11-07 01:10:45+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc202_f.test.cpp

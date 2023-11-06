@@ -7,13 +7,13 @@ data:
   - icon: ':x:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
   - icon: ':x:'
     path: ds/offline_query/mo.hpp
     title: ds/offline_query/mo.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   - icon: ':question:'
@@ -22,16 +22,16 @@ data:
   - icon: ':x:'
     path: graph/ds/mo_on_tree.hpp
     title: graph/ds/mo_on_tree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -170,7 +170,7 @@ data:
     \ <class T>\r\nvoid rd(vc<T> &x) {\r\n  for (auto &d: x) rd(d);\r\n}\r\n\r\nvoid\
     \ read() {}\r\ntemplate <class H, class... T>\r\nvoid read(H &h, T &... t) {\r\
     \n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const char c) {\r\n  if (por == SZ)\
-    \ flush();\r\n  obuf[por++] = c;\r\n}\r\nvoid wt(const string &s) {\r\n  for (char\
+    \ flush();\r\n  obuf[por++] = c;\r\n}\r\nvoid wt(const string s) {\r\n  for (char\
     \ c: s) wt(c);\r\n}\r\nvoid wt(const char *s) {\r\n  size_t len = strlen(s);\r\
     \n  for (size_t i = 0; i < len; i++) wt(s[i]);\r\n}\r\n\r\ntemplate <typename\
     \ T>\r\nvoid wt_integer(T x) {\r\n  if (por > SZ - 100) flush();\r\n  if (x <\
@@ -717,7 +717,7 @@ data:
   isVerificationFile: true
   path: test/mytest/mo_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 00:41:09+09:00'
+  timestamp: '2023-11-07 01:10:45+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/mo_on_tree.test.cpp

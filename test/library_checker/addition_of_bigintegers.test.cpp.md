@@ -4,16 +4,16 @@ data:
   - icon: ':x:'
     path: bigint/base.hpp
     title: bigint/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -22,19 +22,19 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -165,7 +165,7 @@ data:
     \ <class T>\r\nvoid rd(vc<T> &x) {\r\n  for (auto &d: x) rd(d);\r\n}\r\n\r\nvoid\
     \ read() {}\r\ntemplate <class H, class... T>\r\nvoid read(H &h, T &... t) {\r\
     \n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const char c) {\r\n  if (por == SZ)\
-    \ flush();\r\n  obuf[por++] = c;\r\n}\r\nvoid wt(const string &s) {\r\n  for (char\
+    \ flush();\r\n  obuf[por++] = c;\r\n}\r\nvoid wt(const string s) {\r\n  for (char\
     \ c: s) wt(c);\r\n}\r\nvoid wt(const char *s) {\r\n  size_t len = strlen(s);\r\
     \n  for (size_t i = 0; i < len; i++) wt(s[i]);\r\n}\r\n\r\ntemplate <typename\
     \ T>\r\nvoid wt_integer(T x) {\r\n  if (por > SZ - 100) flush();\r\n  if (x <\
@@ -568,9 +568,9 @@ data:
     \ 3) {\n      double x = 0;\n      FOR_R(i, len(dat)) x = MOD * x + dat[i];\n\
     \      return std::log10(x);\n    }\n    double x = 0;\n    FOR(i, 4) x = MOD\
     \ * x + dat[len(dat) - 1 - i];\n    x = std::log10(x);\n    x += double(LOG) *\
-    \ (len(dat) - 4);\n    return x;\n  }\n\n#ifdef FASTIO\n  void write() { fastio::printer.write(to_string());\
-    \ }\n  void read() {\n    string s;\n    fastio::scanner.read(s);\n    *this =\
-    \ bint(s);\n  }\n#endif\n};\n#line 6 \"test/library_checker/addition_of_bigintegers.test.cpp\"\
+    \ (len(dat) - 4);\n    return x;\n  }\n};\n\n#ifdef FASTIO\nvoid wt(BigInteger\
+    \ x) { fastio::wt(x.to_string()); }\nvoid rd(BigInteger &x) {\n  string s;\n \
+    \ fastio::rd(s);\n  x = BigInteger(s);\n}\n#endif\n#line 6 \"test/library_checker/addition_of_bigintegers.test.cpp\"\
     \n\nusing B = BigInteger;\n\nvoid solve() {\n  B a, b;\n  read(a, b);\n  print(a\
     \ + b);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/addition_of_big_integers\"\
@@ -593,7 +593,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/addition_of_bigintegers.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 00:41:09+09:00'
+  timestamp: '2023-11-07 01:10:45+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/addition_of_bigintegers.test.cpp

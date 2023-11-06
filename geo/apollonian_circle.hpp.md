@@ -28,7 +28,7 @@ data:
     \ theta) {\n    static_assert(!is_integral<T>::value);\n    double c = cos(theta),\
     \ s = sin(theta);\n    return Point{c * x - s * y, s * x + c * y};\n  }\n};\n\n\
     #ifdef FASTIO\ntemplate <typename T>\nvoid rd(Point<T>& p) {\n  fastio::rd(p.x),\
-    \ fastio::rd(p.y);\n}\ntemplate <typename T>\nvoid print(Point<T>& p) {\n  fastio::wt(p.x);\n\
+    \ fastio::rd(p.y);\n}\ntemplate <typename T>\nvoid wt(Point<T>& p) {\n  fastio::wt(p.x);\n\
     \  fastio::wt(' ');\n  fastio::wt(p.y);\n}\n#endif\n\n// A -> B -> C \u3068\u9032\
     \u3080\u3068\u304D\u306B\u3001\u5DE6\u306B\u66F2\u304C\u308B\u306A\u3089\u3070\
     \ +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\u3089\u3070 -1\ntemplate <typename\
@@ -88,7 +88,7 @@ data:
   isVerificationFile: false
   path: geo/apollonian_circle.hpp
   requiredBy: []
-  timestamp: '2023-11-07 00:08:42+09:00'
+  timestamp: '2023-11-07 01:10:45+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/apollonian_circle.hpp

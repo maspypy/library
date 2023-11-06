@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -422,9 +422,9 @@ data:
     \ 3) {\n      double x = 0;\n      FOR_R(i, len(dat)) x = MOD * x + dat[i];\n\
     \      return std::log10(x);\n    }\n    double x = 0;\n    FOR(i, 4) x = MOD\
     \ * x + dat[len(dat) - 1 - i];\n    x = std::log10(x);\n    x += double(LOG) *\
-    \ (len(dat) - 4);\n    return x;\n  }\n\n#ifdef FASTIO\n  void write() { fastio::printer.write(to_string());\
-    \ }\n  void read() {\n    string s;\n    fastio::scanner.read(s);\n    *this =\
-    \ bint(s);\n  }\n#endif\n};\n"
+    \ (len(dat) - 4);\n    return x;\n  }\n};\n\n#ifdef FASTIO\nvoid wt(BigInteger\
+    \ x) { fastio::wt(x.to_string()); }\nvoid rd(BigInteger &x) {\n  string s;\n \
+    \ fastio::rd(s);\n  x = BigInteger(s);\n}\n#endif\n"
   code: "#include \"poly/convolution.hpp\"\n\n// 10^9 \u305A\u3064\u533A\u5207\u3063\
     \u3066\nstruct BigInteger {\n  static constexpr int TEN[]\n      = {1,      10,\
     \      100,      1000,      10000,\n         100000, 1000000, 10000000, 100000000,\
@@ -514,9 +514,9 @@ data:
     \ 3) {\n      double x = 0;\n      FOR_R(i, len(dat)) x = MOD * x + dat[i];\n\
     \      return std::log10(x);\n    }\n    double x = 0;\n    FOR(i, 4) x = MOD\
     \ * x + dat[len(dat) - 1 - i];\n    x = std::log10(x);\n    x += double(LOG) *\
-    \ (len(dat) - 4);\n    return x;\n  }\n\n#ifdef FASTIO\n  void write() { fastio::printer.write(to_string());\
-    \ }\n  void read() {\n    string s;\n    fastio::scanner.read(s);\n    *this =\
-    \ bint(s);\n  }\n#endif\n};"
+    \ (len(dat) - 4);\n    return x;\n  }\n};\n\n#ifdef FASTIO\nvoid wt(BigInteger\
+    \ x) { fastio::wt(x.to_string()); }\nvoid rd(BigInteger &x) {\n  string s;\n \
+    \ fastio::rd(s);\n  x = BigInteger(s);\n}\n#endif\n"
   dependsOn:
   - poly/convolution.hpp
   - mod/modint.hpp
@@ -530,7 +530,7 @@ data:
   isVerificationFile: false
   path: bigint/base.hpp
   requiredBy: []
-  timestamp: '2023-11-07 00:41:09+09:00'
+  timestamp: '2023-11-07 01:10:45+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/2508.test.cpp
