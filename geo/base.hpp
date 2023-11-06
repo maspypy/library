@@ -34,11 +34,20 @@ struct Point {
     double c = cos(theta), s = sin(theta);
     return Point{c * x - s * y, s * x + c * y};
   }
-#ifdef FASTIO
-  void read() { fastio::read(x), fastio::read(y); }
-  void print() { fastio::wt(pair<T, T>({x, y})); }
-#endif
 };
+
+#ifdef FASTIO
+template <typename T>
+void rd(Point<T>& p) {
+  fastio::rd(p.x), fastio::rd(p.y);
+}
+template <typename T>
+void print(Point<T>& p) {
+  fastio::wt(p.x);
+  fastio::wt(' ');
+  fastio::wt(p.y);
+}
+#endif
 
 // A -> B -> C と進むときに、左に曲がるならば +1、右に曲がるならば -1
 template <typename T>
