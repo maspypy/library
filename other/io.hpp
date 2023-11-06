@@ -1,274 +1,212 @@
-// based on yosupo's fastio
 #include <unistd.h>
+#include <sys/mman.h>
+#include <sys/stat.h>
 
 namespace fastio {
-#define FASTIO
-struct has_write_impl {
-  template <class T>
-  static auto check(T &&x) -> decltype(x.write(), std::true_type{});
+// https://judge.yosupo.jp/submission/21623
+// https://judge.yosupo.jp/submission/70667
 
-  template <class T>
-  static auto check(...) -> std::false_type;
-};
-
-template <class T>
-class has_write : public decltype(has_write_impl::check<T>(std::declval<T>())) {
-};
-
-struct has_read_impl {
-  template <class T>
-  static auto check(T &&x) -> decltype(x.read(), std::true_type{});
-
-  template <class T>
-  static auto check(...) -> std::false_type;
-};
-
-template <class T>
-class has_read : public decltype(has_read_impl::check<T>(std::declval<T>())) {};
-
-struct Scanner {
-  FILE *fp;
-  char line[(1 << 15) + 1];
-  size_t st = 0, ed = 0;
-  void reread() {
-    memmove(line, line + st, ed - st);
-    ed -= st;
-    st = 0;
-    ed += fread(line + ed, 1, (1 << 15) - ed, fp);
-    line[ed] = '\0';
-  }
-  bool succ() {
-    while (true) {
-      if (st == ed) {
-        reread();
-        if (st == ed) return false;
+struct Pre {
+  char num[10000][4];
+  constexpr Pre() : num() {
+    for (int i = 0; i < 10000; i++) {
+      int n = i;
+      for (int j = 3; j >= 0; j--) {
+        num[i][j] = n % 10 | '0';
+        n /= 10;
       }
-      while (st != ed && isspace(line[st])) st++;
-      if (st != ed) break;
-    }
-    if (ed - st <= 50) {
-      bool sep = false;
-      for (size_t i = st; i < ed; i++) {
-        if (isspace(line[i])) {
-          sep = true;
-          break;
-        }
-      }
-      if (!sep) reread();
-    }
-    return true;
-  }
-  template <class T, enable_if_t<is_same<T, string>::value, int> = 0>
-  bool read_single(T &ref) {
-    if (!succ()) return false;
-    while (true) {
-      size_t sz = 0;
-      while (st + sz < ed && !isspace(line[st + sz])) sz++;
-      ref.append(line + st, sz);
-      st += sz;
-      if (!sz || st != ed) break;
-      reread();
-    }
-    return true;
-  }
-  template <class T, enable_if_t<is_integral<T>::value, int> = 0>
-  bool read_single(T &ref) {
-    if (!succ()) return false;
-    bool neg = false;
-    if (line[st] == '-') {
-      neg = true;
-      st++;
-    }
-    ref = T(0);
-    while (isdigit(line[st])) { ref = 10 * ref + (line[st++] & 0xf); }
-    if (neg) ref = -ref;
-    return true;
-  }
-  template <typename T,
-            typename enable_if<has_read<T>::value>::type * = nullptr>
-  inline bool read_single(T &x) {
-    x.read();
-    return true;
-  }
-  bool read_single(double &ref) {
-    string s;
-    if (!read_single(s)) return false;
-    ref = std::stod(s);
-    return true;
-  }
-  bool read_single(char &ref) {
-    string s;
-    if (!read_single(s) || s.size() != 1) return false;
-    ref = s[0];
-    return true;
-  }
-  template <class T>
-  bool read_single(vector<T> &ref) {
-    for (auto &d: ref) {
-      if (!read_single(d)) return false;
-    }
-    return true;
-  }
-  template <class T, class U>
-  bool read_single(pair<T, U> &p) {
-    return (read_single(p.first) && read_single(p.second));
-  }
-  template <size_t N = 0, typename T>
-  void read_single_tuple(T &t) {
-    if constexpr (N < std::tuple_size<T>::value) {
-      auto &x = std::get<N>(t);
-      read_single(x);
-      read_single_tuple<N + 1>(t);
     }
   }
-  template <class... T>
-  bool read_single(tuple<T...> &tpl) {
-    read_single_tuple(tpl);
-    return true;
-  }
-  void read() {}
-  template <class H, class... T>
-  void read(H &h, T &... t) {
-    bool f = read_single(h);
-    assert(f);
-    read(t...);
-  }
-  Scanner(FILE *fp) : fp(fp) {}
-};
+} constexpr pre;
 
-struct Printer {
-  Printer(FILE *_fp) : fp(_fp) {}
-  ~Printer() { flush(); }
+constexpr int BSZ = 1 << 19;
+char *ibuf, obuf[BSZ], out[100];
+int outi, obufi;
 
-  static constexpr size_t SIZE = 1 << 15;
-  FILE *fp;
-  char line[SIZE], small[50];
-  size_t pos = 0;
-  void flush() {
-    fwrite(line, 1, pos, fp);
-    pos = 0;
+// gcc expansion. called automaticall before main.
+void __attribute__((constructor)) _c() {
+  struct stat sb;
+  fstat(0, &sb);
+  ibuf
+      = (char *)mmap(0, sb.st_size, PROT_READ, MAP_SHARED | MAP_POPULATE, 0, 0);
+}
+
+void flush() { write(1, obuf, obufi), obufi = 0; }
+
+void rd(char &c) { c = *ibuf++; }
+void rd(string &x) {
+  x.clear();
+  char c;
+  do { rd(c); } while (isspace(c));
+  do { x += c, rd(c); } while (!isspace(c));
+}
+
+template <typename T>
+void rd_integer(T &x) {
+  char c;
+  do
+    rd(c);
+  while (c < '-');
+  bool minus = 0;
+  if constexpr (is_signed<T>::value || is_same_v<T, i128>) {
+    if (c == '-') { minus = 1, rd(c); }
   }
-  void write(const char val) {
-    if (pos == SIZE) flush();
-    line[pos++] = val;
+  x = 0;
+  while (c >= '0') { x = x * 10 + (c & 15), rd(c); }
+  if constexpr (is_signed<T>::value || is_same_v<T, i128>) {
+    if (minus) x = -x;
   }
-  template <class T, enable_if_t<is_integral<T>::value, int> = 0>
-  void write(T val) {
-    if (pos > (1 << 15) - 50) flush();
-    if (val == 0) {
-      write('0');
-      return;
-    }
-    if (val < 0) {
-      write('-');
-      val = -val; // todo min
-    }
-    size_t len = 0;
-    while (val) {
-      small[len++] = char(0x30 | (val % 10));
-      val /= 10;
-    }
-    for (size_t i = 0; i < len; i++) { line[pos + i] = small[len - 1 - i]; }
-    pos += len;
+}
+
+template <typename T>
+void rd_real(T &x) {
+  string s;
+  rd(s);
+  x = stod(s);
+}
+
+void rd(int &x) { rd_integer(x); }
+void rd(ll &x) { rd_integer(x); }
+void rd(i128 &x) { rd_integer(x); }
+void rd(u32 &x) { rd_integer(x); }
+void rd(u64 &x) { rd_integer(x); }
+void rd(u128 &x) { rd_integer(x); }
+void rd(double &x) { rd_real(x); }
+void rd(long double &x) { rd_real(x); }
+void rd(f128 &x) { rd_real(x); }
+template <class T>
+void rd(vc<T> &x) {
+  for (auto &d: x) rd(d);
+}
+template <size_t N = 0, typename T>
+void rd(array<T, N> &x) {
+  for (auto &d: x) rd(d);
+}
+template <class T, class U>
+void rd(pair<T, U> &p) {
+  return rd(p.first), rd(p.second);
+}
+template <size_t N = 0, typename T>
+void rd(T &t) {
+  if constexpr (N < std::tuple_size<T>::value) {
+    auto &x = std::get<N>(t);
+    rd(x);
+    rd<N + 1>(t);
   }
-  void write(const string s) {
-    for (char c: s) write(c);
-  }
-  void write(const char *s) {
-    size_t len = strlen(s);
-    for (size_t i = 0; i < len; i++) write(s[i]);
-  }
-  void write(const double x) {
-    ostringstream oss;
-    oss << fixed << setprecision(15) << x;
-    string s = oss.str();
-    write(s);
-  }
-  void write(const long double x) {
-    ostringstream oss;
-    oss << fixed << setprecision(15) << x;
-    string s = oss.str();
-    write(s);
-  }
-  template <typename T,
-            typename enable_if<has_write<T>::value>::type * = nullptr>
-  inline void write(T x) {
-    x.write();
-  }
-  template <class T>
-  void write(const vector<T> val) {
-    auto n = val.size();
-    for (size_t i = 0; i < n; i++) {
-      if (i) write(' ');
-      write(val[i]);
-    }
-  }
-  template <class T, class U>
-  void write(const pair<T, U> val) {
-    write(val.first);
-    write(' ');
-    write(val.second);
-  }
-  template <size_t N = 0, typename T>
-  void write_tuple(const T t) {
-    if constexpr (N < std::tuple_size<T>::value) {
-      if constexpr (N > 0) { write(' '); }
-      const auto x = std::get<N>(t);
-      write(x);
-      write_tuple<N + 1>(t);
-    }
-  }
-  template <class... T>
-  bool write(tuple<T...> tpl) {
-    write_tuple(tpl);
-    return true;
-  }
-  template <class T, size_t S>
-  void write(const array<T, S> val) {
-    auto n = val.size();
-    for (size_t i = 0; i < n; i++) {
-      if (i) write(' ');
-      write(val[i]);
-    }
-  }
-  void write(i128 val) {
-    string s;
-    bool negative = 0;
-    if (val < 0) {
-      negative = 1;
-      val = -val;
-    }
-    while (val) {
-      s += '0' + int(val % 10);
-      val /= 10;
-    }
-    if (negative) s += "-";
-    reverse(all(s));
-    if (len(s) == 0) s = "0";
-    write(s);
-  }
-};
-Scanner scanner = Scanner(stdin);
-Printer printer = Printer(stdout);
-void flush() { printer.flush(); }
-void print() { printer.write('\n'); }
-template <class Head, class... Tail>
-void print(Head &&head, Tail &&... tail) {
-  printer.write(head);
-  if (sizeof...(Tail)) printer.write(' ');
-  print(forward<Tail>(tail)...);
+}
+template <class... T>
+void rd(tuple<T...> &tpl) {
+  rd(tpl);
 }
 
 void read() {}
-template <class Head, class... Tail>
-void read(Head &head, Tail &... tail) {
-  scanner.read(head);
-  read(tail...);
+template <class H, class... T>
+void read(H &h, T &... t) {
+  rd(h), read(t...);
 }
+
+void wt(const char c) {
+  if (obufi == BSZ) flush();
+  obuf[obufi++] = c;
+}
+void wt(const string &s) {
+  for (char c: s) wt(c);
+}
+
+template <typename T>
+void wt_integer(T x) {
+  if (obufi > BSZ - 100) flush();
+  if (x < 0) { obuf[obufi++] = '-', x = -x; }
+  for (outi = 96; x >= 10000; outi -= 4) {
+    memcpy(out + outi, pre.num[x % 10000], 4);
+    x /= 10000;
+  }
+  if (x >= 1000) {
+    memcpy(obuf + obufi, pre.num[x], 4);
+    obufi += 4;
+  } else if (x >= 100) {
+    memcpy(obuf + obufi, pre.num[x] + 1, 3);
+    obufi += 3;
+  } else if (x >= 10) {
+    int q = (x * 103) >> 10;
+    obuf[obufi] = q | '0';
+    obuf[obufi + 1] = (x - q * 10) | '0';
+    obufi += 2;
+  } else
+    obuf[obufi++] = x | '0';
+  memcpy(obuf + obufi, out + outi + 4, 96 - outi);
+  obufi += 96 - outi;
+}
+
+template <typename T>
+void wt_real(T x) {
+  ostringstream oss;
+  oss << fixed << setprecision(15) << double(x);
+  string s = oss.str();
+  wt(s);
+}
+
+void wt(int x) { wt_integer(x); }
+void wt(ll x) { wt_integer(x); }
+void wt(i128 x) { wt_integer(x); }
+void wt(u32 x) { wt_integer(x); }
+void wt(u64 x) { wt_integer(x); }
+void wt(u128 x) { wt_integer(x); }
+void wt(double x) { wt_real(x); }
+void wt(long double x) { wt_real(x); }
+void wt(f128 x) { wt_real(x); }
+
+template <class T>
+void wt(const vector<T> val) {
+  auto n = val.size();
+  for (size_t i = 0; i < n; i++) {
+    if (i) wt(' ');
+    wt(val[i]);
+  }
+}
+template <class T, class U>
+void wt(const pair<T, U> val) {
+  wt(val.first);
+  wt(' ');
+  wt(val.second);
+}
+template <size_t N = 0, typename T>
+void wt_tuple(const T t) {
+  if constexpr (N < std::tuple_size<T>::value) {
+    if constexpr (N > 0) { wt(' '); }
+    const auto x = std::get<N>(t);
+    wt(x);
+    wt_tuple<N + 1>(t);
+  }
+}
+template <class... T>
+void wt(tuple<T...> tpl) {
+  wt_tuple(tpl);
+}
+template <class T, size_t S>
+void wt(const array<T, S> val) {
+  auto n = val.size();
+  for (size_t i = 0; i < n; i++) {
+    if (i) wt(' ');
+    wt(val[i]);
+  }
+}
+
+void print() { wt('\n'); }
+template <class Head, class... Tail>
+void print(Head &&head, Tail &&... tail) {
+  wt(head);
+  if (sizeof...(Tail)) wt(' ');
+  print(forward<Tail>(tail)...);
+}
+
+// gcc expansion. called automaticall after main.
+void __attribute__((destructor)) _d() { flush(); }
 } // namespace fastio
+
+using fastio::read;
 using fastio::print;
 using fastio::flush;
-using fastio::read;
 
 #define INT(...)   \
   int __VA_ARGS__; \
