@@ -53,7 +53,7 @@ struct FastSet {
 
   // min[x,n) or n
   int next(int i) {
-    assert(i < n);
+    assert(i <= n);
     chmax(i, 0);
     for (int h = 0; h < log; h++) {
       if (i / B == seg[h].size()) break;
@@ -74,7 +74,7 @@ struct FastSet {
 
   // max [0,x], or -1
   int prev(int i) {
-    assert(i >= 0);
+    assert(i >= -1);
     if (i >= n) i = n - 1;
     for (int h = 0; h < log; h++) {
       if (i == -1) break;

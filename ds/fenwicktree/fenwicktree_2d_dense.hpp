@@ -9,7 +9,33 @@ struct FenwickTree_2D_Dense {
   vc<E> dat;
 
   FenwickTree_2D_Dense() {}
-  FenwickTree_2D_Dense(int H, int W) : H(H), W(W), dat(H * W) {}
+  FenwickTree_2D_Dense(int H, int W) : H(H), W(W), dat(H * W, G::unit()) {}
+  FenwickTree_2D_Dense(int H, int W, vvc<E>& dat_raw) : H(H), W(W) {
+    build(H, W, [&](int x, int y) -> E { return dat_raw[x][y]; });
+  }
+  template <typename F>
+  FenwickTree_2D_Dense(int H, int W, F f) : H(H), W(W) {
+    build(H, W, f);
+  }
+
+  template <typename F>
+  void build(int H0, int W0, F f) {
+    H = H0, W = W0;
+    dat.assign(H * W, 0);
+    FOR(x, H) FOR(y, W) { dat[W * x + y] = f(x, y); }
+    FOR(x, 1, H + 1) {
+      FOR(y, 1, W + 1) {
+        int ny = y + (y & -y);
+        if (ny <= W) dat[idx(x, ny)] = G::op(dat[idx(x, ny)], dat[idx(x, y)]);
+      }
+    }
+    FOR(x, 1, H + 1) {
+      FOR(y, 1, W + 1) {
+        int nx = x + (x & -x);
+        if (nx <= H) dat[idx(nx, y)] = G::op(dat[idx(nx, y)], dat[idx(x, y)]);
+      }
+    }
+  }
 
   void add(int x, int y, E val) {
     ++x;
