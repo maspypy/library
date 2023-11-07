@@ -140,7 +140,7 @@ data:
   - icon: ':x:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
   - icon: ':question:'
@@ -215,7 +215,7 @@ data:
   - icon: ':question:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   - icon: ':x:'
@@ -224,13 +224,13 @@ data:
   - icon: ':x:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
   - icon: ':x:'
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/limit_poly_exp_sum.hpp
     title: seq/limit_poly_exp_sum.hpp
   - icon: ':x:'
@@ -375,28 +375,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
     title: test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
     title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
     title: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/totient_sum.test.cpp
     title: test/library_checker/math/totient_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/charactereistic_poly.test.cpp
     title: test/library_checker/matrix/charactereistic_poly.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/hafnian_of_matrix.test.cpp
     title: test/library_checker/matrix/hafnian_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/implicit_matrix.test.cpp
     title: test/library_checker/matrix/implicit_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/inverse_matrix.test.cpp
     title: test/library_checker/matrix/inverse_matrix.test.cpp
   - icon: ':x:'
