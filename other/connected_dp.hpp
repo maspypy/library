@@ -50,7 +50,7 @@ vc<int> reverse_state(const vc<int>& now) {
 // [states, edges]
 pair<vvc<int>, vc<pair<int, int>>> connedted_dp_graph(int N,
                                                       bool merge_reverse) {
-  static HashMap<int> MP;
+  static HashMap<int, 20, true> MP;
   MP.reset();
   vvc<int> states;
   vc<pair<int, int>> edges;

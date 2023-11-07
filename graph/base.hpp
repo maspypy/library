@@ -131,6 +131,7 @@ struct Graph {
     return vc_outdeg[v];
   }
 
+#ifdef FASTIO
   void debug() {
     print("Graph");
     if (!prepared) {
@@ -142,6 +143,7 @@ struct Graph {
       FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);
     }
   }
+#endif
 
   vc<int> new_idx;
   vc<bool> used_e;
