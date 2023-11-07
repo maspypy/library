@@ -5,6 +5,8 @@
 
 // mod は int
 int mod_kth_root(ll k, ll a, int mod) {
+  static HashMap<int, 20, true> MP;
+  MP.reset();
   assert(primetest(mod) && 0 <= a && a < mod);
   if (k == 0) return (a == 1 ? 1 : -1);
   if (a == 0) return 0;
@@ -40,11 +42,10 @@ int mod_kth_root(ll k, ll a, int mod) {
     // 必要ならば原始 p 乗根に関する離散対数問題のセットアップ
     ll G = mod_pow(g, (mod - 1) / p, mod);
     int M = 0;
-    unordered_map<ll, int> MP;
+    MP.reset();
     ll GM_inv = -1;
     if (c) {
       while (M * M < p) ++M;
-      MP.reserve(M + 1);
       ll Gpow = 1;
       FOR(m, M) {
         MP[Gpow] = m;
@@ -85,7 +86,8 @@ int mod_kth_root(ll k, ll a, int mod) {
 }
 
 ll mod_kth_root_64(ll k, ll a, ll mod) {
-  static HashMap<ll, 20> MP;
+  static HashMap<ll, 20, true> MP;
+  MP.reset();
 
   assert(primetest(mod) && 0 <= a && a < mod);
   if (k == 0) return (a == 1 ? 1 : -1);
