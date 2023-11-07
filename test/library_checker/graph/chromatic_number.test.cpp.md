@@ -7,13 +7,13 @@ data:
   - icon: ':x:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':question:'

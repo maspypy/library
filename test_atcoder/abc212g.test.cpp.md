@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
   - icon: ':question:'
@@ -13,7 +13,7 @@ data:
   - icon: ':x:'
     path: nt/function_on_divisors.hpp
     title: nt/function_on_divisors.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':question:'

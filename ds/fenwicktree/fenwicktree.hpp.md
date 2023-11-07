@@ -32,17 +32,17 @@ data:
   - icon: ':x:'
     path: seq/factorial_digit_system.hpp
     title: seq/factorial_digit_system.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2636.test.cpp
     title: test/aoj/2636.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_2_A.test.cpp
     title: test/aoj/ALDS1_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_5.test.cpp
     title: test/aoj/ALDS1_5.test.cpp
   - icon: ':x:'

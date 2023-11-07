@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
   - icon: ':x:'
@@ -16,7 +16,7 @@ data:
   - icon: ':x:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':question:'

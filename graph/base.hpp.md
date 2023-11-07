@@ -134,7 +134,7 @@ data:
   - icon: ':x:'
     path: graph/minimum_cost_cycle.hpp
     title: graph/minimum_cost_cycle.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/minimum_hamiltonian_cycle.hpp
     title: graph/minimum_hamiltonian_cycle.hpp
   - icon: ':x:'
@@ -264,7 +264,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_12_B.test.cpp
     title: test/aoj/ALDS1_12_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_2_A.test.cpp
     title: test/aoj/DPL_2_A.test.cpp
   - icon: ':x:'

@@ -7,16 +7,16 @@ data:
   - icon: ':x:'
     path: convex/fenchel.hpp
     title: convex/fenchel.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':x:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
