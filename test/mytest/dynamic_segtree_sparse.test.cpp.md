@@ -198,9 +198,8 @@ data:
     \     ll mi = unit;\n          FOR(i, L, N) {\n            chmin(mi, A[i]);\n\
     \            if (mi < LIM) return i;\n          }\n          return N;\n     \
     \   }();\n        assert(naive == X.max_right(root, check, L));\n      }\n   \
-    \ }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a << \"\
-    \ \" << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return\
-    \ 0;\n}\n"
+    \ }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b\
+    \ << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"alg/monoid/min.hpp\"\n#include \"ds/segtree/dynamic_segtree_sparse.hpp\"\
     \n#include \"random/base.hpp\"\n\nvoid test() {\n  using Mono = Monoid_Min<int>;\n\
@@ -220,8 +219,8 @@ data:
     \ N) {\n            chmin(mi, A[i]);\n            if (mi < LIM) return i;\n  \
     \        }\n          return N;\n        }();\n        assert(naive == X.max_right(root,\
     \ check, L));\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
-    \ a >> b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
-    \  solve();\n\n  return 0;\n}\n"
+    \ a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - alg/monoid/min.hpp
@@ -230,7 +229,7 @@ data:
   isVerificationFile: true
   path: test/mytest/dynamic_segtree_sparse.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 17:24:00+09:00'
+  timestamp: '2023-11-07 22:29:27+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/dynamic_segtree_sparse.test.cpp

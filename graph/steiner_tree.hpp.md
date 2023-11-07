@@ -54,38 +54,38 @@ data:
     \ calc_deg();\n    return vc_deg[v];\n  }\n\n  int in_deg(int v) {\n    if (vc_indeg.empty())\
     \ calc_deg_inout();\n    return vc_indeg[v];\n  }\n\n  int out_deg(int v) {\n\
     \    if (vc_outdeg.empty()) calc_deg_inout();\n    return vc_outdeg[v];\n  }\n\
-    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
-    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
-    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
-    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
-    \    }\n  }\n\n  vc<int> new_idx;\n  vc<bool> used_e;\n\n  // G \u306B\u304A\u3051\
-    \u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\u30B0\u30E9\u30D5\u3067\
-    \ i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\n  // {G, es}\n  Graph<T,\
-    \ directed> rearrange(vc<int> V, bool keep_eid = 0) {\n    if (len(new_idx) !=\
-    \ N) new_idx.assign(N, -1);\n    if (len(used_e) != M) used_e.assign(M, 0);\n\
-    \    int n = len(V);\n    FOR(i, n) new_idx[V[i]] = i;\n    Graph<T, directed>\
-    \ G(n);\n    vc<int> history;\n    FOR(i, n) {\n      for (auto&& e: (*this)[V[i]])\
-    \ {\n        if (used_e[e.id]) continue;\n        int a = e.frm, b = e.to;\n \
-    \       if (new_idx[a] != -1 && new_idx[b] != -1) {\n          history.eb(e.id);\n\
-    \          used_e[e.id] = 1;\n          int eid = (keep_eid ? e.id : -1);\n  \
-    \        G.add(new_idx[a], new_idx[b], e.cost, eid);\n        }\n      }\n   \
-    \ }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for (auto&& eid: history) used_e[eid]\
-    \ = 0;\n    G.build();\n    return G;\n  }\n\nprivate:\n  void calc_deg() {\n\
-    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
-    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
-    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
-    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 1 \"enumerate/bits.hpp\"\
-    \ntemplate <typename F>\nvoid enumerate_bits_32(u32 s, F f) {\n  while (s) {\n\
-    \    int i = __builtin_ctz(s);\n    f(i);\n    s ^= 1 << i;\n  }\n}\n\ntemplate\
-    \ <typename F>\nvoid enumerate_bits_64(u64 s, F f) {\n  while (s) {\n    int i\
-    \ = __builtin_ctzll(s);\n    f(i);\n    s ^= u64(1) << i;\n  }\n}\n\ntemplate\
-    \ <typename BS, typename F>\nvoid enumerate_bits_bitset(BS& b, int L, int R, F\
-    \ f) {\n  int p = (b[L] ? L : b._Find_next(L));\n  while (p < R) {\n    f(p);\n\
-    \    p = b._Find_next(p);\n  }\n}\n#line 3 \"graph/steiner_tree.hpp\"\n\n// \u8FBA\
-    \u91CD\u307F\u306F e.cost\u3001\u9802\u70B9\u91CD\u307F\u306F vector \u3067\u6E21\
-    \u3059\u3002\u8FD4\u308A\u5024\uFF1A{cost, vs, es}\n// O(3^kn + 2^k(n+m)log n),\
-    \ k: terminal size\ntemplate <typename T, typename GT>\ntuple<T, vc<int>, vc<int>>\
-    \ steiner_tree(GT& G, vc<int> S, vc<T> v_wt = {}) {\n  static_assert(!GT::is_directed);\n\
+    \n#ifdef FASTIO\n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n\
+    \      print(\"frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to,\
+    \ e.cost, e.id);\n    } else {\n      print(\"indptr\", indptr);\n      print(\"\
+    frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to,\
+    \ e.cost, e.id);\n    }\n  }\n#endif\n\n  vc<int> new_idx;\n  vc<bool> used_e;\n\
+    \n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\
+    \u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\n\
+    \  // {G, es}\n  Graph<T, directed> rearrange(vc<int> V, bool keep_eid = 0) {\n\
+    \    if (len(new_idx) != N) new_idx.assign(N, -1);\n    if (len(used_e) != M)\
+    \ used_e.assign(M, 0);\n    int n = len(V);\n    FOR(i, n) new_idx[V[i]] = i;\n\
+    \    Graph<T, directed> G(n);\n    vc<int> history;\n    FOR(i, n) {\n      for\
+    \ (auto&& e: (*this)[V[i]]) {\n        if (used_e[e.id]) continue;\n        int\
+    \ a = e.frm, b = e.to;\n        if (new_idx[a] != -1 && new_idx[b] != -1) {\n\
+    \          history.eb(e.id);\n          used_e[e.id] = 1;\n          int eid =\
+    \ (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b], e.cost, eid);\n\
+    \        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for (auto&&\
+    \ eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\nprivate:\n\
+    \  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n   \
+    \ for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
+    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
+    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
+    #line 1 \"enumerate/bits.hpp\"\ntemplate <typename F>\nvoid enumerate_bits_32(u32\
+    \ s, F f) {\n  while (s) {\n    int i = __builtin_ctz(s);\n    f(i);\n    s ^=\
+    \ 1 << i;\n  }\n}\n\ntemplate <typename F>\nvoid enumerate_bits_64(u64 s, F f)\
+    \ {\n  while (s) {\n    int i = __builtin_ctzll(s);\n    f(i);\n    s ^= u64(1)\
+    \ << i;\n  }\n}\n\ntemplate <typename BS, typename F>\nvoid enumerate_bits_bitset(BS&\
+    \ b, int L, int R, F f) {\n  int p = (b[L] ? L : b._Find_next(L));\n  while (p\
+    \ < R) {\n    f(p);\n    p = b._Find_next(p);\n  }\n}\n#line 3 \"graph/steiner_tree.hpp\"\
+    \n\n// \u8FBA\u91CD\u307F\u306F e.cost\u3001\u9802\u70B9\u91CD\u307F\u306F vector\
+    \ \u3067\u6E21\u3059\u3002\u8FD4\u308A\u5024\uFF1A{cost, vs, es}\n// O(3^kn +\
+    \ 2^k(n+m)log n), k: terminal size\ntemplate <typename T, typename GT>\ntuple<T,\
+    \ vc<int>, vc<int>> steiner_tree(GT& G, vc<int> S, vc<T> v_wt = {}) {\n  static_assert(!GT::is_directed);\n\
     \  assert(!S.empty());\n  const int N = G.N, M = G.M, K = len(S);\n  if (v_wt.empty())\
     \ v_wt.assign(N, 0);\n\n  // \u30BF\u30FC\u30DF\u30CA\u30EB\u96C6\u5408, root\
     \ -> cost\n  vv(T, DP, 1 << K, N, infty<T>);\n  FOR(v, N) DP[0][v] = v_wt[v];\n\
@@ -151,7 +151,7 @@ data:
   isVerificationFile: false
   path: graph/steiner_tree.hpp
   requiredBy: []
-  timestamp: '2023-11-07 20:53:19+09:00'
+  timestamp: '2023-11-07 22:29:27+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/114.test.cpp

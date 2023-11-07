@@ -229,15 +229,15 @@ data:
     \ {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n  int\
     \ in_deg(int v) {\n    if (vc_indeg.empty()) calc_deg_inout();\n    return vc_indeg[v];\n\
     \  }\n\n  int out_deg(int v) {\n    if (vc_outdeg.empty()) calc_deg_inout();\n\
-    \    return vc_outdeg[v];\n  }\n\n  void debug() {\n    print(\"Graph\");\n  \
-    \  if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e: edges)\
-    \ print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\", indptr);\n\
-    \      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
-    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\n  vc<int> new_idx;\n  vc<bool>\
-    \ used_e;\n\n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\
-    \u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\
-    \u308B\n  // {G, es}\n  Graph<T, directed> rearrange(vc<int> V, bool keep_eid\
-    \ = 0) {\n    if (len(new_idx) != N) new_idx.assign(N, -1);\n    if (len(used_e)\
+    \    return vc_outdeg[v];\n  }\n\n#ifdef FASTIO\n  void debug() {\n    print(\"\
+    Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&&\
+    \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
+    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n#endif\n\n  vc<int> new_idx;\n\
+    \  vc<bool> used_e;\n\n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\
+    \u3001\u65B0\u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\
+    \u306B\u3059\u308B\n  // {G, es}\n  Graph<T, directed> rearrange(vc<int> V, bool\
+    \ keep_eid = 0) {\n    if (len(new_idx) != N) new_idx.assign(N, -1);\n    if (len(used_e)\
     \ != M) used_e.assign(M, 0);\n    int n = len(V);\n    FOR(i, n) new_idx[V[i]]\
     \ = i;\n    Graph<T, directed> G(n);\n    vc<int> history;\n    FOR(i, n) {\n\
     \      for (auto&& e: (*this)[V[i]]) {\n        if (used_e[e.id]) continue;\n\
@@ -252,13 +252,13 @@ data:
     \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
     #line 2 \"graph/implicit_graph/cograph_bfs.hpp\"\n\ntemplate <typename GT>\npair<vc<int>,\
     \ vc<int>> cograph_bfs(GT& G, int s) {\n  const int N = G.N;\n  vc<int> dist(N,\
-    \ infty<int>);\n  vc<int> par(N, -1);\n  dist[s] = 0;\n  vc<int> yet;\n  FOR(v,\
-    \ N) if (v != s) yet.eb(v);\n  vc<int> que(N);\n  vc<bool> NG(N);\n  int ql =\
-    \ 0, qr = 1;\n  while (ql < qr) {\n    int v = que[ql++];\n    for (auto& e: G[v])\
-    \ NG[e.to] = 1;\n    vc<int> rest;\n    for (auto& to: yet) {\n      if (NG[to])\
-    \ {\n        rest.eb(to);\n      } else {\n        dist[to] = dist[v] + 1, par[to]\
-    \ = v, que[qr++] = to;\n      }\n    }\n    for (auto& e: G[v]) NG[e.to] = 0;\n\
-    \    yet = rest;\n  }\n  return {dist, par};\n}\n#line 2 \"mod/modint_common.hpp\"\
+    \ infty<int>);\n  vc<int> par(N, -1);\n  vc<int> yet;\n  FOR(v, N) if (v != s)\
+    \ yet.eb(v);\n  vc<int> que(N);\n  vc<bool> NG(N);\n  int ql = 0, qr = 0;\n  dist[s]\
+    \ = 0, que[qr++] = s;\n  while (ql < qr) {\n    int v = que[ql++];\n    for (auto&\
+    \ e: G[v]) NG[e.to] = 1;\n    vc<int> rest;\n    for (auto& to: yet) {\n     \
+    \ if (NG[to]) {\n        rest.eb(to);\n      } else {\n        dist[to] = dist[v]\
+    \ + 1, par[to] = v, que[qr++] = to;\n      }\n    }\n    for (auto& e: G[v]) NG[e.to]\
+    \ = 0;\n    yet = rest;\n  }\n  return {dist, par};\n}\n#line 2 \"mod/modint_common.hpp\"\
     \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
     \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
     \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
@@ -363,7 +363,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc319g.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 20:53:19+09:00'
+  timestamp: '2023-11-07 22:29:27+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc319g.test.cpp

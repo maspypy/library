@@ -129,9 +129,9 @@ data:
     \        continue;\n      }\n      if (len(tmp[x])) {\n        ll lo = tmp[x][0];\n\
     \        ll hi = tmp[x].back();\n        dat.eb(x, lo, hi + 1);\n      }\n   \
     \ }\n    return dat;\n  };\n  FOR(N, 1, 100) { assert(F(N) == G(N)); }\n}\n\n\
-    void solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a << \" \" << b << \"\
-    \\n\";\n}\n\nsigned main() {\n  test_floor();\n  test_ceil();\n  solve();\n\n\
-    \  return 0;\n}\n"
+    void solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\
+    \nsigned main() {\n  test_floor();\n  test_ceil();\n  solve();\n\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"enumerate/ceil_range.hpp\"\n#include \"enumerate/floor_range.hpp\"\
     \n\nvoid test_floor() {\n  using T = tuple<ll, ll, ll>;\n  auto F = [&](ll N)\
@@ -150,7 +150,7 @@ data:
     \  if (len(tmp[x])) {\n        ll lo = tmp[x][0];\n        ll hi = tmp[x].back();\n\
     \        dat.eb(x, lo, hi + 1);\n      }\n    }\n    return dat;\n  };\n  FOR(N,\
     \ 1, 100) { assert(F(N) == G(N)); }\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
-    \ a >> b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test_floor();\n\
+    \ a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test_floor();\n\
     \  test_ceil();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
@@ -159,7 +159,7 @@ data:
   isVerificationFile: true
   path: test/mytest/floor_ceil_ranges.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 17:24:00+09:00'
+  timestamp: '2023-11-07 22:29:27+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/floor_ceil_ranges.test.cpp

@@ -125,9 +125,8 @@ data:
     \ == 1) {\n      FOR(i, N) chmin(Y[i], a);\n      f = Mono::op(f, Mono::chmin(a));\n\
     \    }\n    if (t == 2) {\n      FOR(i, N) chmax(Y[i], a);\n      f = Mono::op(f,\
     \ Mono::chmax(a));\n    }\n  }\n  FOR(i, N) assert(Y[i] == Mono::eval(f, X[i]));\n\
-    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a << \" \" << b\
-    \ << \"\\n\";\n}\n\nsigned main() {\n  FOR(100) test();\n  solve();\n  return\
-    \ 0;\n}\n"
+    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
+    ;\n}\n\nsigned main() {\n  FOR(100) test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"random/base.hpp\"\n#include \"alg/monoid/add_chmin_chmax.hpp\"\n\n\
     void test() {\n  int N = RNG(1, 100);\n  vc<int> X(N);\n  FOR(i, N) X[i] = RNG(-100,\
@@ -138,9 +137,8 @@ data:
     \ == 1) {\n      FOR(i, N) chmin(Y[i], a);\n      f = Mono::op(f, Mono::chmin(a));\n\
     \    }\n    if (t == 2) {\n      FOR(i, N) chmax(Y[i], a);\n      f = Mono::op(f,\
     \ Mono::chmax(a));\n    }\n  }\n  FOR(i, N) assert(Y[i] == Mono::eval(f, X[i]));\n\
-    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a << \" \" << b\
-    \ << \"\\n\";\n}\n\nsigned main() {\n  FOR(100) test();\n  solve();\n  return\
-    \ 0;\n}"
+    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
+    ;\n}\n\nsigned main() {\n  FOR(100) test();\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - random/base.hpp
@@ -148,7 +146,7 @@ data:
   isVerificationFile: true
   path: test/mytest/add_chmin_chmax.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 17:24:00+09:00'
+  timestamp: '2023-11-07 22:29:27+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/add_chmin_chmax.test.cpp

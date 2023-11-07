@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/maximum_matching.hpp
     title: graph/maximum_matching.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/maximum_matching_size.hpp
     title: graph/maximum_matching_size.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/general_matching
@@ -237,75 +237,76 @@ data:
     \ calc_deg();\n    return vc_deg[v];\n  }\n\n  int in_deg(int v) {\n    if (vc_indeg.empty())\
     \ calc_deg_inout();\n    return vc_indeg[v];\n  }\n\n  int out_deg(int v) {\n\
     \    if (vc_outdeg.empty()) calc_deg_inout();\n    return vc_outdeg[v];\n  }\n\
-    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
-    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
-    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
-    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
-    \    }\n  }\n\n  vc<int> new_idx;\n  vc<bool> used_e;\n\n  // G \u306B\u304A\u3051\
-    \u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\u30B0\u30E9\u30D5\u3067\
-    \ i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\n  // {G, es}\n  Graph<T,\
-    \ directed> rearrange(vc<int> V, bool keep_eid = 0) {\n    if (len(new_idx) !=\
-    \ N) new_idx.assign(N, -1);\n    if (len(used_e) != M) used_e.assign(M, 0);\n\
-    \    int n = len(V);\n    FOR(i, n) new_idx[V[i]] = i;\n    Graph<T, directed>\
-    \ G(n);\n    vc<int> history;\n    FOR(i, n) {\n      for (auto&& e: (*this)[V[i]])\
-    \ {\n        if (used_e[e.id]) continue;\n        int a = e.frm, b = e.to;\n \
-    \       if (new_idx[a] != -1 && new_idx[b] != -1) {\n          history.eb(e.id);\n\
-    \          used_e[e.id] = 1;\n          int eid = (keep_eid ? e.id : -1);\n  \
-    \        G.add(new_idx[a], new_idx[b], e.cost, eid);\n        }\n      }\n   \
-    \ }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for (auto&& eid: history) used_e[eid]\
-    \ = 0;\n    G.build();\n    return G;\n  }\n\nprivate:\n  void calc_deg() {\n\
-    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
-    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
-    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
-    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/maximum_matching.hpp\"\
-    \n\n// return : (match size, match)\n// match[v] : \u30DE\u30C3\u30C1\u30F3\u30B0\
-    \u76F8\u624B OR 0\n// O(N^3)\n// \u300C\u7D44\u5408\u305B\u6700\u9069\u5316\u300D\
-    \u7B2C2\u7248, \u30A2\u30EB\u30B4\u30EA\u30BA\u30E0 10.2\ntemplate <typename GT>\n\
-    pair<int, vc<int>> maximum_matching(const GT& G) {\n  const int N = G.N;\n  vc<int>\
-    \ mu(N), phi(N), rho(N);\n  vc<bool> scanned(N);\n  FOR(v, N) mu[v] = v;\n  ll\
-    \ ans = 0;\n  for (auto&& e: G.edges) {\n    if (e.frm != e.to && mu[e.frm] ==\
-    \ e.frm && mu[e.to] == e.to) {\n      mu[e.frm] = e.to, mu[e.to] = e.frm, ++ans;\n\
-    \    }\n  }\n\n  auto odd = [&](int x) -> bool {\n    return mu[x] != x && phi[mu[x]]\
-    \ == mu[x] && mu[x] != x;\n  };\n  auto out_of_forest = [&](int x) -> bool {\n\
-    \    return mu[x] != x && phi[mu[x]] == mu[x] && phi[x] == x;\n  };\n  auto P\
-    \ = [&](int x) -> vc<int> {\n    vc<int> P;\n    P.eb(x);\n    while (mu[x] !=\
-    \ x) {\n      P.eb(mu[x]);\n      P.eb(phi[mu[x]]);\n      x = phi[mu[x]];\n \
-    \   }\n    return P;\n  };\n\n  vc<bool> on_path(N);\n  while (1) {\n    FOR(v,\
-    \ N) phi[v] = rho[v] = v, scanned[v] = 0;\n    bool aug = 0;\n    while (1) {\n\
-    \      bool upd = 0;\n      FOR(x, N) {\n        if (upd) break;\n        if (scanned[x]\
-    \ || odd(x)) continue;\n        for (auto&& e: G[x]) {\n          int y = e.to;\n\
-    \          if (out_of_forest(y)) {\n            upd = 1;\n            // grow\n\
-    \            phi[y] = x;\n          }\n          elif (rho[y] != rho[x] && !odd(y))\
-    \ {\n            vc<int> F;\n            FOR(v, N) if (!out_of_forest(v)) F.eb(v);\n\
-    \            upd = 1;\n            // augument OR shrink\n            vc<int>\
-    \ Px = P(x);\n            vc<int> Py = P(y);\n            if (Px.back() != Py.back())\
-    \ {\n              aug = 1;\n              // augument\n              FOR(2) {\n\
-    \                swap(Px, Py);\n                for (int i = 1; i < len(Px); i\
-    \ += 2) {\n                  int v = Px[i];\n                  mu[phi[v]] = v,\
-    \ mu[v] = phi[v];\n                }\n              }\n              mu[x] = y,\
-    \ mu[y] = x, ++ans;\n              break;\n            } else {\n            \
-    \  // shrink\n              int r = -1;\n              int Nx = len(Px), Ny =\
-    \ len(Py);\n              for (int i = 0; i < Nx; i += 2) {\n                int\
-    \ v = Px[i];\n                int j = i + Ny - Nx;\n                if (0 <= j\
-    \ && j < Ny && Py[j] == v && rho[v] == v) {\n                  r = v;\n      \
-    \            break;\n                }\n              }\n              while (Px.back()\
-    \ != r) Px.pop_back();\n              while (Py.back() != r) Py.pop_back();\n\
-    \              vc<int> change;\n              FOR(2) {\n                swap(Px,\
-    \ Py);\n                for (int i = 1; i < len(Px); i += 2) {\n             \
-    \     int v = Px[i];\n                  if (rho[phi[v]] != r) change.eb(v);\n\
-    \                }\n              }\n              for (auto&& v: change) phi[phi[v]]\
-    \ = v;\n\n              if (rho[x] != r) phi[x] = y;\n              if (rho[y]\
-    \ != r) phi[y] = x;\n              for (auto&& v: Px) on_path[v] = 1;\n      \
-    \        for (auto&& v: Py) on_path[v] = 1;\n              FOR(v, N) if (on_path[rho[v]])\
-    \ { rho[v] = r; }\n              fill(all(on_path), 0);\n            }\n     \
-    \     }\n        }\n        scanned[x] = 1;\n      }\n      if (!upd || aug) break;\n\
-    \    }\n    if (!aug) break;\n  }\n  FOR(v, N) if (mu[v] == v) mu[v] = -1;\n \
-    \ return {ans, mu};\n}\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
-    \ uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/modint61.hpp\"\
+    \n#ifdef FASTIO\n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n\
+    \      print(\"frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to,\
+    \ e.cost, e.id);\n    } else {\n      print(\"indptr\", indptr);\n      print(\"\
+    frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to,\
+    \ e.cost, e.id);\n    }\n  }\n#endif\n\n  vc<int> new_idx;\n  vc<bool> used_e;\n\
+    \n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\
+    \u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\n\
+    \  // {G, es}\n  Graph<T, directed> rearrange(vc<int> V, bool keep_eid = 0) {\n\
+    \    if (len(new_idx) != N) new_idx.assign(N, -1);\n    if (len(used_e) != M)\
+    \ used_e.assign(M, 0);\n    int n = len(V);\n    FOR(i, n) new_idx[V[i]] = i;\n\
+    \    Graph<T, directed> G(n);\n    vc<int> history;\n    FOR(i, n) {\n      for\
+    \ (auto&& e: (*this)[V[i]]) {\n        if (used_e[e.id]) continue;\n        int\
+    \ a = e.frm, b = e.to;\n        if (new_idx[a] != -1 && new_idx[b] != -1) {\n\
+    \          history.eb(e.id);\n          used_e[e.id] = 1;\n          int eid =\
+    \ (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b], e.cost, eid);\n\
+    \        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for (auto&&\
+    \ eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\nprivate:\n\
+    \  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n   \
+    \ for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
+    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
+    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
+    #line 2 \"graph/maximum_matching.hpp\"\n\n// return : (match size, match)\n//\
+    \ match[v] : \u30DE\u30C3\u30C1\u30F3\u30B0\u76F8\u624B OR 0\n// O(N^3)\n// \u300C\
+    \u7D44\u5408\u305B\u6700\u9069\u5316\u300D\u7B2C2\u7248, \u30A2\u30EB\u30B4\u30EA\
+    \u30BA\u30E0 10.2\ntemplate <typename GT>\npair<int, vc<int>> maximum_matching(const\
+    \ GT& G) {\n  const int N = G.N;\n  vc<int> mu(N), phi(N), rho(N);\n  vc<bool>\
+    \ scanned(N);\n  FOR(v, N) mu[v] = v;\n  ll ans = 0;\n  for (auto&& e: G.edges)\
+    \ {\n    if (e.frm != e.to && mu[e.frm] == e.frm && mu[e.to] == e.to) {\n    \
+    \  mu[e.frm] = e.to, mu[e.to] = e.frm, ++ans;\n    }\n  }\n\n  auto odd = [&](int\
+    \ x) -> bool {\n    return mu[x] != x && phi[mu[x]] == mu[x] && mu[x] != x;\n\
+    \  };\n  auto out_of_forest = [&](int x) -> bool {\n    return mu[x] != x && phi[mu[x]]\
+    \ == mu[x] && phi[x] == x;\n  };\n  auto P = [&](int x) -> vc<int> {\n    vc<int>\
+    \ P;\n    P.eb(x);\n    while (mu[x] != x) {\n      P.eb(mu[x]);\n      P.eb(phi[mu[x]]);\n\
+    \      x = phi[mu[x]];\n    }\n    return P;\n  };\n\n  vc<bool> on_path(N);\n\
+    \  while (1) {\n    FOR(v, N) phi[v] = rho[v] = v, scanned[v] = 0;\n    bool aug\
+    \ = 0;\n    while (1) {\n      bool upd = 0;\n      FOR(x, N) {\n        if (upd)\
+    \ break;\n        if (scanned[x] || odd(x)) continue;\n        for (auto&& e:\
+    \ G[x]) {\n          int y = e.to;\n          if (out_of_forest(y)) {\n      \
+    \      upd = 1;\n            // grow\n            phi[y] = x;\n          }\n \
+    \         elif (rho[y] != rho[x] && !odd(y)) {\n            vc<int> F;\n     \
+    \       FOR(v, N) if (!out_of_forest(v)) F.eb(v);\n            upd = 1;\n    \
+    \        // augument OR shrink\n            vc<int> Px = P(x);\n            vc<int>\
+    \ Py = P(y);\n            if (Px.back() != Py.back()) {\n              aug = 1;\n\
+    \              // augument\n              FOR(2) {\n                swap(Px, Py);\n\
+    \                for (int i = 1; i < len(Px); i += 2) {\n                  int\
+    \ v = Px[i];\n                  mu[phi[v]] = v, mu[v] = phi[v];\n            \
+    \    }\n              }\n              mu[x] = y, mu[y] = x, ++ans;\n        \
+    \      break;\n            } else {\n              // shrink\n              int\
+    \ r = -1;\n              int Nx = len(Px), Ny = len(Py);\n              for (int\
+    \ i = 0; i < Nx; i += 2) {\n                int v = Px[i];\n                int\
+    \ j = i + Ny - Nx;\n                if (0 <= j && j < Ny && Py[j] == v && rho[v]\
+    \ == v) {\n                  r = v;\n                  break;\n              \
+    \  }\n              }\n              while (Px.back() != r) Px.pop_back();\n \
+    \             while (Py.back() != r) Py.pop_back();\n              vc<int> change;\n\
+    \              FOR(2) {\n                swap(Px, Py);\n                for (int\
+    \ i = 1; i < len(Px); i += 2) {\n                  int v = Px[i];\n          \
+    \        if (rho[phi[v]] != r) change.eb(v);\n                }\n            \
+    \  }\n              for (auto&& v: change) phi[phi[v]] = v;\n\n              if\
+    \ (rho[x] != r) phi[x] = y;\n              if (rho[y] != r) phi[y] = x;\n    \
+    \          for (auto&& v: Px) on_path[v] = 1;\n              for (auto&& v: Py)\
+    \ on_path[v] = 1;\n              FOR(v, N) if (on_path[rho[v]]) { rho[v] = r;\
+    \ }\n              fill(all(on_path), 0);\n            }\n          }\n      \
+    \  }\n        scanned[x] = 1;\n      }\n      if (!upd || aug) break;\n    }\n\
+    \    if (!aug) break;\n  }\n  FOR(v, N) if (mu[v] == v) mu[v] = -1;\n  return\
+    \ {ans, mu};\n}\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t\
+    \ x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n         \
+    \            chrono::high_resolution_clock::now().time_since_epoch())\n      \
+    \               .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n\
+    \  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
+    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/modint61.hpp\"\
     \n\r\nstruct modint61 {\r\n  static constexpr u64 mod = (1ULL << 61) - 1;\r\n\
     \  u64 val;\r\n  constexpr modint61() : val(0ULL) {}\r\n  constexpr modint61(u32\
     \ x) : val(x) {}\r\n  constexpr modint61(u64 x) : val(x % mod) {}\r\n  constexpr\
@@ -367,8 +368,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/general_matching.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 20:53:19+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-07 22:29:27+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/general_matching.test.cpp
 layout: document

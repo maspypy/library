@@ -115,7 +115,7 @@ data:
     \u3044\u30020,1,2,3 \u7B49\u306F\u540C\u3058\u6210\u5206\u306B\u306F\u540C\u3058\
     \u5024\u304C\u5165\u308B\u3002\n// [states, edges]\npair<vvc<int>, vc<pair<int,\
     \ int>>> connedted_dp_graph(int N,\n                                         \
-    \             bool merge_reverse) {\n  static HashMap<int> MP;\n  MP.reset();\n\
+    \             bool merge_reverse) {\n  static HashMap<int, 20, true> MP;\n  MP.reset();\n\
     \  vvc<int> states;\n  vc<pair<int, int>> edges;\n\n  states.eb(vc<int>(N, -1));\n\
     \  states.eb(vc<int>(N, -1));\n  MP[hash_vector<int>(states[0])] = 0;\n\n  int\
     \ p = -1;\n  while (1) {\n    if (++p == len(states)) break;\n    if (p == 1)\
@@ -189,7 +189,7 @@ data:
     \u3044\u30020,1,2,3 \u7B49\u306F\u540C\u3058\u6210\u5206\u306B\u306F\u540C\u3058\
     \u5024\u304C\u5165\u308B\u3002\n// [states, edges]\npair<vvc<int>, vc<pair<int,\
     \ int>>> connedted_dp_graph(int N,\n                                         \
-    \             bool merge_reverse) {\n  static HashMap<int> MP;\n  MP.reset();\n\
+    \             bool merge_reverse) {\n  static HashMap<int, 20, true> MP;\n  MP.reset();\n\
     \  vvc<int> states;\n  vc<pair<int, int>> edges;\n\n  states.eb(vc<int>(N, -1));\n\
     \  states.eb(vc<int>(N, -1));\n  MP[hash_vector<int>(states[0])] = 0;\n\n  int\
     \ p = -1;\n  while (1) {\n    if (++p == len(states)) break;\n    if (p == 1)\
@@ -247,7 +247,7 @@ data:
   isVerificationFile: false
   path: other/connected_dp.hpp
   requiredBy: []
-  timestamp: '2023-11-06 23:45:48+09:00'
+  timestamp: '2023-11-07 22:29:27+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/578.test.cpp

@@ -296,8 +296,8 @@ data:
     \ TEN.eb(TEN.back() * 10);\n  FOR(100000) {\n    ll K = RNG(0, 18);\n    ll N\
     \ = RNG(TEN[K], TEN[K + 1]);\n    auto [a, b, c, d] = four_square(N);\n    assert(N\
     \ == a * a + b * b + c * c + d * d);\n  }\n}\n\nvoid solve() {\n  int a, b;\n\
-    \  cin >> a >> b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n\
-    \  test();\n  solve();\n\n  return 0;\n}\n"
+    \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
+    \  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"random/base.hpp\"\n#include \"nt/four_square.hpp\"\n\nvoid test()\
     \ {\n  FOR(N, 1000000) {\n    auto [a, b, c, d] = four_square(N);\n    assert(N\
@@ -305,8 +305,8 @@ data:
     \ * 10);\n  FOR(100000) {\n    ll K = RNG(0, 18);\n    ll N = RNG(TEN[K], TEN[K\
     \ + 1]);\n    auto [a, b, c, d] = four_square(N);\n    assert(N == a * a + b *\
     \ b + c * c + d * d);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
-    \  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
-    \n  return 0;\n}"
+    \  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n\
+    \  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - random/base.hpp
@@ -321,7 +321,7 @@ data:
   isVerificationFile: true
   path: test/mytest/four_square.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 17:24:00+09:00'
+  timestamp: '2023-11-07 22:29:27+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/four_square.test.cpp
