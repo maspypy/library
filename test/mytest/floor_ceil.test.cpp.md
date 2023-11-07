@@ -6,9 +6,9 @@ data:
     title: my_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -102,8 +102,8 @@ data:
     \ (y <= 0) continue;\n      T k = floor(x, y);\n      assert(0 <= x - k * y &&\
     \ x - k * y < y);\n      k = ceil(x, y);\n      assert(0 <= k * y - x && k * y\
     \ - x < y);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
-    \  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test<int>();\n\
-    \  test<u32>();\n  test<ll>();\n  test<u64>();\n  solve();\n  return 0;\n}\n"
+    \  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test<int>();\n  test<u32>();\n\
+    \  test<ll>();\n  test<u64>();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\ntemplate <typename T>\nvoid test() {\n  vc<T> X;\n  T mi = numeric_limits<T>::min();\n\
     \  T ma = numeric_limits<T>::max();\n  for (int x = -100; x <= 100; ++x) X.eb(T(x));\n\
@@ -112,15 +112,15 @@ data:
     \ (y <= 0) continue;\n      T k = floor(x, y);\n      assert(0 <= x - k * y &&\
     \ x - k * y < y);\n      k = ceil(x, y);\n      assert(0 <= k * y - x && k * y\
     \ - x < y);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
-    \  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test<int>();\n\
-    \  test<u32>();\n  test<ll>();\n  test<u64>();\n  solve();\n  return 0;\n}"
+    \  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test<int>();\n  test<u32>();\n\
+    \  test<ll>();\n  test<u64>();\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   isVerificationFile: true
   path: test/mytest/floor_ceil.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 17:24:00+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-07 20:28:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/floor_ceil.test.cpp
 layout: document

@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_leq.hpp
     title: poly/convolution_leq.hpp
   - icon: ':question:'
@@ -39,9 +39,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -424,9 +424,9 @@ data:
     \ = RNG(1000, 10000);\n  ll m = RNG(1000, 10000);\n  auto f = gen(n), g = gen(m);\n\
     \  vc<mint> h(len(f) + len(g) - 1);\n  FOR(i, len(f)) FOR(j, len(g)) if (i < j)\
     \ h[i + j] += f[i] * g[j];\n  assert(convolution_leq(f, g, 1) == h);\n}\n\nvoid\
-    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a << \" \" << b << \"\\\
-    n\";\n}\n\nsigned main() {\n  test_0();\n  test_1();\n  test_2();\n  solve();\n\
-    \n  return 0;\n}\n"
+    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
+    signed main() {\n  test_0();\n  test_1();\n  test_2();\n  solve();\n\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"mod/modint.hpp\"\n#include \"poly/convolution_leq.hpp\"\n#include\
     \ \"random/base.hpp\"\n\nusing mint = modint998;\n\nvc<mint> gen(int n) {\n  vc<mint>\
@@ -441,9 +441,9 @@ data:
     \ {\n  ll n = RNG(1000, 10000);\n  ll m = RNG(1000, 10000);\n  auto f = gen(n),\
     \ g = gen(m);\n  vc<mint> h(len(f) + len(g) - 1);\n  FOR(i, len(f)) FOR(j, len(g))\
     \ if (i < j) h[i + j] += f[i] * g[j];\n  assert(convolution_leq(f, g, 1) == h);\n\
-    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a << \" \" << b\
-    \ << \"\\n\";\n}\n\nsigned main() {\n  test_0();\n  test_1();\n  test_2();\n \
-    \ solve();\n\n  return 0;\n}\n"
+    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
+    ;\n}\n\nsigned main() {\n  test_0();\n  test_1();\n  test_2();\n  solve();\n\n\
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - mod/modint.hpp
@@ -460,8 +460,8 @@ data:
   isVerificationFile: true
   path: test/mytest/conv_leq.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 13:03:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-07 20:28:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/conv_leq.test.cpp
 layout: document

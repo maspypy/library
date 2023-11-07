@@ -37,14 +37,14 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/famous/eulerian_number.hpp
     title: seq/famous/eulerian_number.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -429,16 +429,15 @@ data:
     \ = modint998;\n\nvoid test() {\n  const int LIM = 100;\n  auto dp = eulerian_number_2d<mint>(LIM,\
     \ LIM);\n\n  FOR(N, LIM + 1) {\n    auto f = eulerian_number_n<mint>(N);\n   \
     \ assert(len(f) == N + 1);\n    FOR(i, N + 1) assert(f[i] == dp[N][i]);\n  }\n\
-    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a << \" \" << b\
-    \ << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
+    ;\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"mod/modint.hpp\"\n#include \"seq/famous/eulerian_number.hpp\"\n\n\
     using mint = modint998;\n\nvoid test() {\n  const int LIM = 100;\n  auto dp =\
     \ eulerian_number_2d<mint>(LIM, LIM);\n\n  FOR(N, LIM + 1) {\n    auto f = eulerian_number_n<mint>(N);\n\
     \    assert(len(f) == N + 1);\n    FOR(i, N + 1) assert(f[i] == dp[N][i]);\n \
-    \ }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a << \" \"\
-    \ << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n\
-    }"
+    \ }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\
+    \\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - mod/modint.hpp
@@ -456,8 +455,8 @@ data:
   isVerificationFile: true
   path: test/mytest/eulerian_number.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 13:03:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-07 20:28:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/eulerian_number.test.cpp
 layout: document

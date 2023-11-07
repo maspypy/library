@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: enumerate/partition.hpp
     title: enumerate/partition.hpp
   - icon: ':question:'
@@ -43,14 +43,14 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/partition_number.hpp
     title: seq/famous/partition_number.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -467,8 +467,8 @@ data:
     \ MAX(P) <= LIM_val);\n        ++b;\n      };\n      enumerate_partition<decltype(f)>(N,\
     \ f);\n      enumerate_partition<decltype(g)>(N, g, LIM_len, LIM_val);\n     \
     \ assert(a == b);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
-    \ b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
-    \  solve();\n\n  return 0;\n}\n"
+    \ b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
+    \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"random/base.hpp\"\n\n#include \"enumerate/partition.hpp\"\n#include\
     \ \"seq/famous/partition_number.hpp\"\n\nusing mint = modint998;\n\nvoid test()\
@@ -482,8 +482,8 @@ data:
     \ <= LIM_len && MAX(P) <= LIM_val);\n        ++b;\n      };\n      enumerate_partition<decltype(f)>(N,\
     \ f);\n      enumerate_partition<decltype(g)>(N, g, LIM_len, LIM_val);\n     \
     \ assert(a == b);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
-    \ b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
-    \  solve();\n\n  return 0;\n}\n"
+    \ b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - random/base.hpp
@@ -503,8 +503,8 @@ data:
   isVerificationFile: true
   path: test/mytest/enum_partitions.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 13:03:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-07 20:28:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/enum_partitions.test.cpp
 layout: document

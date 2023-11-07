@@ -11,6 +11,9 @@ data:
   - icon: ':question:'
     path: ds/rectangle_union.hpp
     title: ds/rectangle_union.hpp
+  - icon: ':warning:'
+    path: graph/count/count_connected_intervals.hpp
+    title: graph/count/count_connected_intervals.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_4_A.test.cpp
@@ -58,6 +61,7 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/minmincnt_add.hpp
   requiredBy:
+  - graph/count/count_connected_intervals.hpp
   - ds/rectangle_union.hpp
   timestamp: '2023-04-02 02:09:38+09:00'
   verificationStatus: LIBRARY_SOME_WA

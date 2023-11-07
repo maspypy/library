@@ -229,8 +229,8 @@ data:
     \ 1));\n    X.add(Point<ll>(4, 1));\n    X.add(Point<ll>(6, 1));\n    assert(X.side(Point<ll>(1,\
     \ 1)) == -1);\n    assert(X.side(Point<ll>(3, 1)) == 0);\n    assert(X.side(Point<ll>(5,\
     \ 1)) == 0);\n    assert(X.side(Point<ll>(7, 1)) == -1);\n  }\n}\n\nvoid solve()\
-    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\
-    \nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
+    \ {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"geo/incremental_convexhull.hpp\"\n\n// geocon2013 c sample \u3088\
     \u308A\nvoid test() {\n  {\n    Incremental_ConvexHull<ll> X;\n    assert(X.area_2()\
@@ -249,8 +249,8 @@ data:
     \ 1));\n    assert(X.side(Point<ll>(1, 1)) == -1);\n    assert(X.side(Point<ll>(3,\
     \ 1)) == 0);\n    assert(X.side(Point<ll>(5, 1)) == 0);\n    assert(X.side(Point<ll>(7,\
     \ 1)) == -1);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
-    \ << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
-    \  return 0;\n}\n"
+    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
+    \ 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - geo/incremental_convexhull.hpp
@@ -258,7 +258,7 @@ data:
   isVerificationFile: true
   path: test/mytest/incremental_ch.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 01:10:45+09:00'
+  timestamp: '2023-11-07 20:28:52+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/incremental_ch.test.cpp

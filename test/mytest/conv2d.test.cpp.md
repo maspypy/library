@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution2d.hpp
     title: poly/convolution2d.hpp
   - icon: ':question:'
@@ -39,9 +39,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -422,8 +422,8 @@ data:
     \ RNG(50, 100);\n  ll W2 = RNG(50, 100);\n  auto A = gen(H1, W1);\n  auto B =\
     \ gen(H2, W2);\n  auto C1 = naive_conv(A, B);\n  auto C2 = convolution2d<mint>(A,\
     \ B);\n  assert(C1 == C2);\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
-    \  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
-    \  return 0;\n}\n"
+    \  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"random/base.hpp\"\n#include \"mod/modint.hpp\"\n#include \"poly/convolution2d.hpp\"\
     \n\nusing mint = modint998;\n\nvoid test() {\n  auto gen = [&](ll H, ll W) ->\
@@ -439,8 +439,8 @@ data:
     \  ll H2 = RNG(50, 100);\n  ll W2 = RNG(50, 100);\n  auto A = gen(H1, W1);\n \
     \ auto B = gen(H2, W2);\n  auto C1 = naive_conv(A, B);\n  auto C2 = convolution2d<mint>(A,\
     \ B);\n  assert(C1 == C2);\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
-    \  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
-    \  return 0;\n}"
+    \  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
+    \ 0;\n}"
   dependsOn:
   - my_template.hpp
   - random/base.hpp
@@ -457,8 +457,8 @@ data:
   isVerificationFile: true
   path: test/mytest/conv2d.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 13:03:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-07 20:28:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/conv2d.test.cpp
 layout: document

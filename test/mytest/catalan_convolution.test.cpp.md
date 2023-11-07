@@ -31,14 +31,14 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/catalan_convolution.hpp
     title: seq/famous/catalan_convolution.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -399,8 +399,8 @@ data:
     \  A[0] = 1;\n  vc<mint> B(N);\n  FOR(i, N) B[i] = C<mint>(i + i, i) * inv<mint>(1\
     \ + i);\n  FOR(k, 10) {\n    FOR(n, N) { assert(A[n] == catalan_convolution<mint>(k,\
     \ n)); }\n    A = convolution<mint>(A, B);\n    A.resize(N);\n  }\n}\n\nvoid solve()\
-    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\
-    \nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
+    \ {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"mod/modint.hpp\"\n#include \"poly/convolution.hpp\"\n#include \"\
     seq/famous/catalan_convolution.hpp\"\n\nusing mint = modint998;\n\nvoid test()\
@@ -408,8 +408,8 @@ data:
     \ B[i] = C<mint>(i + i, i) * inv<mint>(1 + i);\n  FOR(k, 10) {\n    FOR(n, N)\
     \ { assert(A[n] == catalan_convolution<mint>(k, n)); }\n    A = convolution<mint>(A,\
     \ B);\n    A.resize(N);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
-    \ b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
-    \  solve();\n  return 0;\n}"
+    \ b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
+    \  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - mod/modint.hpp
@@ -425,8 +425,8 @@ data:
   isVerificationFile: true
   path: test/mytest/catalan_convolution.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 13:03:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-07 20:28:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/catalan_convolution.test.cpp
 layout: document

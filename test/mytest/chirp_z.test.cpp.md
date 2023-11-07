@@ -51,9 +51,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -537,8 +537,8 @@ data:
     \    assert(A == B);\n  }\n  FOR(n, 1, 100) FOR(m, 1, 100) {\n    vc<mint> f =\
     \ gen(n);\n    mint a = 0;\n    mint r = RNG(1, mod);\n    auto A = multipoint_eval_on_geom_seq(f,\
     \ a, r, m);\n    auto B = naive(f, a, r, m);\n    assert(A == B);\n  }\n}\n\n\
-    void solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a << \" \" << b << \"\
-    \\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    void solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\
+    \nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"mod/modint.hpp\"\n#include \"random/base.hpp\"\n#include \"poly/multipoint.hpp\"\
     \n\nvoid test() {\n  using mint = modint998;\n  const int mod = mint::get_mod();\n\
@@ -552,8 +552,8 @@ data:
     \    assert(A == B);\n  }\n  FOR(n, 1, 100) FOR(m, 1, 100) {\n    vc<mint> f =\
     \ gen(n);\n    mint a = 0;\n    mint r = RNG(1, mod);\n    auto A = multipoint_eval_on_geom_seq(f,\
     \ a, r, m);\n    auto B = naive(f, a, r, m);\n    assert(A == B);\n  }\n}\n\n\
-    void solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a << \" \" << b << \"\
-    \\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    void solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\
+    \nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - mod/modint.hpp
@@ -574,8 +574,8 @@ data:
   isVerificationFile: true
   path: test/mytest/chirp_z.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 13:03:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-07 20:28:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/chirp_z.test.cpp
 layout: document

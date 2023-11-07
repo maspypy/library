@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/coprime_factorization.hpp
     title: nt/coprime_factorization.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -134,9 +134,8 @@ data:
     \ pfs] = coprime_factorization(dat);\n    FOR(j, len(basis)) FOR(i, j) { assert(gcd(basis[i],\
     \ basis[j]) == 1); }\n    FOR(i, N) {\n      ll x = 1;\n      for (auto&& [pid,\
     \ exp]: pfs[i]) { FOR(exp) x *= basis[pid]; }\n      assert(x == dat[i]);\n  \
-    \  }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a <<\
-    \ \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return\
-    \ 0;\n}\n"
+    \  }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b\
+    \ << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"random/base.hpp\"\n#include \"nt/coprime_factorization.hpp\"\n\n\
     void test() {\n  FOR(N, 0, 100) {\n    vc<ll> dat(N);\n    FOR(i, N) dat[i] =\
@@ -148,9 +147,8 @@ data:
     \ pfs] = coprime_factorization(dat);\n    FOR(j, len(basis)) FOR(i, j) { assert(gcd(basis[i],\
     \ basis[j]) == 1); }\n    FOR(i, N) {\n      ll x = 1;\n      for (auto&& [pid,\
     \ exp]: pfs[i]) { FOR(exp) x *= basis[pid]; }\n      assert(x == dat[i]);\n  \
-    \  }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a <<\
-    \ \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return\
-    \ 0;\n}\n"
+    \  }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b\
+    \ << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - random/base.hpp
@@ -158,8 +156,8 @@ data:
   isVerificationFile: true
   path: test/mytest/coprime_factorization.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 17:24:00+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-07 20:28:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/coprime_factorization.test.cpp
 layout: document

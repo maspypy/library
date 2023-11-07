@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_acted_set.hpp
     title: ds/splaytree/splaytree_acted_set.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: my_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -264,8 +264,8 @@ data:
     \ 3}));\n}\n\nvoid test_2() {\n  vc<pair<int, int>> CQ;\n  CQ.eb(100, 500);\n\
     \  CQ.eb(50, 499);\n  vc<int> query = {50, 200, 150, 100};\n  vc<int> ANS = solve_cf702F(CQ,\
     \ query);\n  assert(ANS == vc<int>({1, 2, 2, 1}));\n}\n\nvoid solve() {\n  int\
-    \ a, b;\n  cin >> a >> b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned\
-    \ main() {\n  test_1();\n  test_2();\n  solve();\n\n  return 0;\n}\n"
+    \ a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n\
+    \  test_1();\n  test_2();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"alg/monoid/add_pair.hpp\"\n#include \"ds/splaytree/splaytree_acted_set.hpp\"\
     \n\n// (\u6240\u6301\u91D1, \u64CD\u4F5C\u56DE\u6570, query index)\nstruct AS\
@@ -294,8 +294,8 @@ data:
     \ test_2() {\n  vc<pair<int, int>> CQ;\n  CQ.eb(100, 500);\n  CQ.eb(50, 499);\n\
     \  vc<int> query = {50, 200, 150, 100};\n  vc<int> ANS = solve_cf702F(CQ, query);\n\
     \  assert(ANS == vc<int>({1, 2, 2, 1}));\n}\n\nvoid solve() {\n  int a, b;\n \
-    \ cin >> a >> b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n\
-    \  test_1();\n  test_2();\n  solve();\n\n  return 0;\n}\n"
+    \ cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test_1();\n\
+    \  test_2();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - alg/monoid/add_pair.hpp
@@ -304,8 +304,8 @@ data:
   isVerificationFile: true
   path: test/mytest/cf702_F_splay.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 17:24:00+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-07 20:28:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/cf702_F_splay.test.cpp
 layout: document

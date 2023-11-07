@@ -15,9 +15,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -186,16 +186,15 @@ data:
     \ {\n  FOR(100000) {\n    int n = RNG(0, 1000);\n    int k = RNG(0, 1000);\n \
     \   mint a = C<mint>(n, k);\n    mint b = C<mint, 0, 1>(n, k);\n    mint c = C<mint,\
     \ 1, 0>(n, k);\n    assert(a == b && b == c);\n  }\n}\n\nvoid solve() {\n  int\
-    \ a, b;\n  cin >> a >> b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned\
-    \ main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
+    \ a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n\
+    \  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"random/base.hpp\"\n\n#include \"mod/modint.hpp\"\n\nusing mint =\
     \ modint998;\n\nvoid test() {\n  FOR(100000) {\n    int n = RNG(0, 1000);\n  \
     \  int k = RNG(0, 1000);\n    mint a = C<mint>(n, k);\n    mint b = C<mint, 0,\
     \ 1>(n, k);\n    mint c = C<mint, 1, 0>(n, k);\n    assert(a == b && b == c);\n\
-    \  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a << \" \"\
-    \ << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n\
-    }\n"
+    \  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\
+    \\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - random/base.hpp
@@ -204,8 +203,8 @@ data:
   isVerificationFile: true
   path: test/mytest/binom.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 13:03:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-07 20:28:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/binom.test.cpp
 layout: document

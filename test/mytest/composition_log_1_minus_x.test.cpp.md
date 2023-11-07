@@ -25,7 +25,7 @@ data:
   - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
   - icon: ':question:'
@@ -46,7 +46,7 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_composition.hpp
     title: poly/fps_composition.hpp
   - icon: ':question:'
@@ -82,14 +82,14 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -748,8 +748,8 @@ data:
     \    return f;\n  };\n  FOR(n, 100) {\n    vc<mint> f = gen(n);\n    vc<mint>\
     \ g(n + 1);\n    FOR(i, 1, n + 1) g[i] = -inv<mint>(i);\n    vc<mint> F = composition_f_log_1_minus_x(f);\n\
     \    vc<mint> G = fps_composition(f, g);\n    assert(F == G);\n  }\n}\n\nvoid\
-    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a << \" \" << b << \"\\\
-    n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
+    signed main() {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"random/base.hpp\"\n#include \"poly/composition_f_log_1_minus_x.hpp\"\
     \n#include \"poly/fps_composition.hpp\"\n#include \"mod/modint.hpp\"\n\nusing\
@@ -758,8 +758,8 @@ data:
     \ f;\n  };\n  FOR(n, 100) {\n    vc<mint> f = gen(n);\n    vc<mint> g(n + 1);\n\
     \    FOR(i, 1, n + 1) g[i] = -inv<mint>(i);\n    vc<mint> F = composition_f_log_1_minus_x(f);\n\
     \    vc<mint> G = fps_composition(f, g);\n    assert(F == G);\n  }\n}\n\nvoid\
-    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a << \" \" << b << \"\\\
-    n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}"
+    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
+    signed main() {\n  test();\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - random/base.hpp
@@ -792,8 +792,8 @@ data:
   isVerificationFile: true
   path: test/mytest/composition_log_1_minus_x.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 13:03:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-07 20:28:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/composition_log_1_minus_x.test.cpp
 layout: document

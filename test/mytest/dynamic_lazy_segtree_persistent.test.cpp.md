@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/summax_assign.hpp
     title: alg/acted_monoid/summax_assign.hpp
   - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/summax.hpp
     title: alg/monoid/summax.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/dynamic_lazy_segtree.hpp
     title: ds/segtree/dynamic_lazy_segtree.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -321,9 +321,9 @@ data:
     \     FOR(i, L, N) {\n            chmax(mx, A[i]);\n            if (mx > LIM)\
     \ return i;\n          }\n          return N;\n        }();\n\n        assert(naive\
     \ == X.max_right(root, check, L));\n      }\n\n      AA.eb(A);\n      roots.eb(root);\n\
-    \    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a <<\
-    \ \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return\
-    \ 0;\n}\n"
+    \    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a +\
+    \ b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"alg/acted_monoid/summax_assign.hpp\"\n\
     #include \"ds/segtree/dynamic_lazy_segtree.hpp\"\n#include \"random/base.hpp\"\
@@ -347,9 +347,9 @@ data:
     \     FOR(i, L, N) {\n            chmax(mx, A[i]);\n            if (mx > LIM)\
     \ return i;\n          }\n          return N;\n        }();\n\n        assert(naive\
     \ == X.max_right(root, check, L));\n      }\n\n      AA.eb(A);\n      roots.eb(root);\n\
-    \    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a <<\
-    \ \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return\
-    \ 0;\n}\n"
+    \    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a +\
+    \ b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n\
+    }\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -361,8 +361,8 @@ data:
   isVerificationFile: true
   path: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 08:39:48+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-07 20:28:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
 layout: document

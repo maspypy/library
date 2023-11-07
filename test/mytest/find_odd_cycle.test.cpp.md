@@ -264,8 +264,8 @@ data:
     \      FOR(i, n) {\n        int a = vs[i], b = vs[i + 1];\n        auto& e = G.edges[es[i]];\n\
     \        assert(e.frm == a && e.to == b);\n      }\n      UNIQUE(vs);\n      assert(len(vs)\
     \ == n);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
-    \ << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
-    \  return 0;\n}\n"
+    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     my_template.hpp\"\n#include \"random/random_graph.hpp\"\n#include \"graph/bipartite_vertex_coloring.hpp\"\
     \n#include \"graph/find_odd_cycle.hpp\"\n\nvc<int> find_odd_cycle_naive(Graph<int,\
@@ -292,8 +292,8 @@ data:
     \      FOR(i, n) {\n        int a = vs[i], b = vs[i + 1];\n        auto& e = G.edges[es[i]];\n\
     \        assert(e.frm == a && e.to == b);\n      }\n      UNIQUE(vs);\n      assert(len(vs)\
     \ == n);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
-    \ << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
-    \  return 0;\n}\n"
+    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
+    \ 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - random/random_graph.hpp
@@ -306,7 +306,7 @@ data:
   isVerificationFile: true
   path: test/mytest/find_odd_cycle.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 17:24:00+09:00'
+  timestamp: '2023-11-07 20:28:52+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/find_odd_cycle.test.cpp

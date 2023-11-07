@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: datetime/datetime.hpp
     title: datetime/datetime.hpp
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: my_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -138,9 +138,8 @@ data:
     \ == f(1988, 7, 3));\n  assert(735369 == f(1, 1, 1));\n}\n\nvoid test_from_int()\
     \ {\n  DT A(1, 1, 1);\n  FOR(x, 1000000) {\n    DT B = DT::from_int(x);\n    assert(A\
     \ == B);\n    assert(A.to_int() == x);\n    ++A;\n  }\n}\n\nvoid solve() {\n \
-    \ int a, b;\n  cin >> a >> b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned\
-    \ main() {\n  test_ARC23_A();\n  test_from_int();\n  solve();\n\n  return 0;\n\
-    }\n"
+    \ int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
+    \ {\n  test_ARC23_A();\n  test_from_int();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"datetime/datetime.hpp\"\n\nusing DT = DateTime;\n\nvoid test_ARC23_A()\
     \ {\n  auto f = [&](int y, int m, int d) -> int {\n    return DateTime(2014, 5,\
@@ -148,16 +147,16 @@ data:
     \ 3));\n  assert(735369 == f(1, 1, 1));\n}\n\nvoid test_from_int() {\n  DT A(1,\
     \ 1, 1);\n  FOR(x, 1000000) {\n    DT B = DT::from_int(x);\n    assert(A == B);\n\
     \    assert(A.to_int() == x);\n    ++A;\n  }\n}\n\nvoid solve() {\n  int a, b;\n\
-    \  cin >> a >> b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n\
-    \  test_ARC23_A();\n  test_from_int();\n  solve();\n\n  return 0;\n}\n"
+    \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test_ARC23_A();\n\
+    \  test_from_int();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - datetime/datetime.hpp
   isVerificationFile: true
   path: test/mytest/datetime.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 17:24:00+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-07 20:28:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/datetime.test.cpp
 layout: document

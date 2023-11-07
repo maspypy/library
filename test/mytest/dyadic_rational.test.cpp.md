@@ -9,9 +9,9 @@ data:
     title: my_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -150,8 +150,8 @@ data:
     \  assert(X::simplest(X(1, 8), X(5, 8)) == X(1, 2));\n  assert(X::simplest(X(-91,\
     \ 64), X(-41, 32)) == X(-11, 8));\n  assert(X::simplest(X(-3, 2), X(-1, 1)) ==\
     \ X(-5, 4));\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a\
-    \ << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
-    \ 0;\n}\n"
+    \ + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"game/dyadic_rational.hpp\"\n\nvoid test() {\n  using X = Dyadic_Rational<ll>;\n\
     \  // \u8DB3\u3057\n  assert(X(1) + X(2) == X(3));\n  assert(X(-3) + X(2) == X(-1));\n\
@@ -170,16 +170,15 @@ data:
     \  assert(X::simplest(X(1, 8), X(5, 8)) == X(1, 2));\n  assert(X::simplest(X(-91,\
     \ 64), X(-41, 32)) == X(-11, 8));\n  assert(X::simplest(X(-3, 2), X(-1, 1)) ==\
     \ X(-5, 4));\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a\
-    \ << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
-    \ 0;\n}"
+    \ + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - game/dyadic_rational.hpp
   isVerificationFile: true
   path: test/mytest/dyadic_rational.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 17:24:00+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-07 20:28:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/dyadic_rational.test.cpp
 layout: document

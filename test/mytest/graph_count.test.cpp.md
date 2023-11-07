@@ -534,8 +534,8 @@ data:
     \ 4782969, 100000000}));\n  auto forest = count_forest<mint>(N);\n  assert(forest\n\
     \         == vc<mint>(\n             {1, 1, 2, 7, 38, 291, 2932, 36961, 561948,\
     \ 10026505, 205608536}));\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
-    \  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
-    \  return 0;\n}\n"
+    \  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"graph/count/count_unicyclic.hpp\"\n#include \"graph/count/count_tree.hpp\"\
     \n#include \"graph/count/count_forest.hpp\"\n#include \"mod/modint.hpp\"\n\nusing\
@@ -546,8 +546,8 @@ data:
     \ 16807, 262144, 4782969, 100000000}));\n  auto forest = count_forest<mint>(N);\n\
     \  assert(forest\n         == vc<mint>(\n             {1, 1, 2, 7, 38, 291, 2932,\
     \ 36961, 561948, 10026505, 205608536}));\n}\n\nvoid solve() {\n  int a, b;\n \
-    \ cin >> a >> b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n\
-    \  test();\n  solve();\n  return 0;\n}\n"
+    \ cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
+    \  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - graph/count/count_unicyclic.hpp
@@ -571,7 +571,7 @@ data:
   isVerificationFile: true
   path: test/mytest/graph_count.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 13:03:11+09:00'
+  timestamp: '2023-11-07 20:28:52+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/graph_count.test.cpp

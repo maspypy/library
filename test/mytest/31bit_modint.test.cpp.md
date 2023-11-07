@@ -36,9 +36,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -341,8 +341,8 @@ data:
     \ z % mod == x);\n  };\n  FOR(10000) {\n    ll x = RNG(0, mint::get_mod());\n\
     \    ll y = RNG(0, mint::get_mod());\n    check(x, y);\n  }\n  FOR(i, 1, 100)\
     \ FOR(j, 1, 100) { check(mod - i, mod - j); }\n}\n\nvoid solve() {\n  int a, b;\n\
-    \  cin >> a >> b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n\
-    \  constexpr u32 mod = (u32(1) << 31) - 19;\n  dmint::set_mod(mod);\n  test<modint<mod>>();\n\
+    \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  constexpr\
+    \ u32 mod = (u32(1) << 31) - 19;\n  dmint::set_mod(mod);\n  test<modint<mod>>();\n\
     \  test<dmint>();\n\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"random/base.hpp\"\n#include \"mod/modint.hpp\"\n#include \"mod/dynamic_modint.hpp\"\
@@ -353,9 +353,9 @@ data:
     \ = mz.val;\n    assert(y * z % mod == x);\n  };\n  FOR(10000) {\n    ll x = RNG(0,\
     \ mint::get_mod());\n    ll y = RNG(0, mint::get_mod());\n    check(x, y);\n \
     \ }\n  FOR(i, 1, 100) FOR(j, 1, 100) { check(mod - i, mod - j); }\n}\n\nvoid solve()\
-    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\
-    \nsigned main() {\n  constexpr u32 mod = (u32(1) << 31) - 19;\n  dmint::set_mod(mod);\n\
-    \  test<modint<mod>>();\n  test<dmint>();\n\n  solve();\n  return 0;\n}"
+    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
+    \ {\n  constexpr u32 mod = (u32(1) << 31) - 19;\n  dmint::set_mod(mod);\n  test<modint<mod>>();\n\
+    \  test<dmint>();\n\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - random/base.hpp
@@ -371,8 +371,8 @@ data:
   isVerificationFile: true
   path: test/mytest/31bit_modint.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 13:52:38+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-07 20:28:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/31bit_modint.test.cpp
 layout: document

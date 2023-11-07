@@ -192,7 +192,7 @@ data:
     \ funcs;\n\n  static inline T evaluate(FUNC& f, ll x) { return f.fi * x + f.se;\
     \ }\n\n  vc<ll> X;\n  ll lo, hi;\n  vc<int> FID;\n  int n, log, size;\n\n  inline\
     \ int get_idx(ll x) {\n    if constexpr (COMPRESS) { return LB(X, x); }\n    assert(lo\
-    \ <= x && x < hi);\n    return x - lo;\n  }\n\n  template <typename XY>\n  LiChao_Tree(const\
+    \ <= x && x <= hi);\n    return x - lo;\n  }\n\n  template <typename XY>\n  LiChao_Tree(const\
     \ vc<XY>& pts) {\n    static_assert(COMPRESS);\n    for (auto&& x: pts) X.eb(x);\n\
     \    UNIQUE(X);\n    n = len(X), log = 1;\n    while ((1 << log) < n) ++log;\n\
     \    size = 1 << log;\n    FID.assign(size << 1, -1);\n  }\n\n  LiChao_Tree(ll\
@@ -254,7 +254,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/segment_add_get_min_2.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 08:39:48+09:00'
+  timestamp: '2023-11-07 20:28:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/segment_add_get_min_2.test.cpp

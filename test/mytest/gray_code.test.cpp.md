@@ -106,23 +106,23 @@ data:
     \   int j = (i + 1 == len(G) ? 0 : i + 1);\n      int x = G[i] ^ G[j];\n     \
     \ assert(popcnt(x) == 1);\n    }\n    assert(len(G) == 1 << LOG);\n    UNIQUE(G);\n\
     \    assert(len(G) == 1 << LOG);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin\
-    \ >> a >> b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
-    \  solve();\n  return 0;\n}\n"
+    \ >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n \
+    \ solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"seq/famous/gray_code.hpp\"\n\nvoid test() {\n  FOR(LOG, 10) {\n \
     \   auto G = gray_code(LOG);\n    FOR(i, len(G) - 1) {\n      int j = (i + 1 ==\
     \ len(G) ? 0 : i + 1);\n      int x = G[i] ^ G[j];\n      assert(popcnt(x) ==\
     \ 1);\n    }\n    assert(len(G) == 1 << LOG);\n    UNIQUE(G);\n    assert(len(G)\
     \ == 1 << LOG);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
-    \ << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
-    \  return 0;\n}\n"
+    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
+    \ 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - seq/famous/gray_code.hpp
   isVerificationFile: true
   path: test/mytest/gray_code.test.cpp
   requiredBy: []
-  timestamp: '2023-11-06 17:24:00+09:00'
+  timestamp: '2023-11-07 20:28:52+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/gray_code.test.cpp

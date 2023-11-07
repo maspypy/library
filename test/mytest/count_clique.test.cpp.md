@@ -595,8 +595,8 @@ data:
     \      if ((s >> i & 1) && (s >> j & 1)) {\n            if (!(nbd[i] >> j & 1))\
     \ ok = 0;\n          }\n        }\n        n += ok;\n      }\n      assert(n ==\
     \ count_clique(G));\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a\
-    \ >> b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
-    \  solve();\n  return 0;\n}\n"
+    \ >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     my_template.hpp\"\n\n#include \"random/random_graph.hpp\"\n#include \"graph/count/count_clique.hpp\"\
     \n\nvoid test() {\n  FOR(N, 15) {\n    FOR(100) {\n      Graph<int, 0> G = random_graph<0>(N,\
@@ -606,8 +606,8 @@ data:
     \          if ((s >> i & 1) && (s >> j & 1)) {\n            if (!(nbd[i] >> j\
     \ & 1)) ok = 0;\n          }\n        }\n        n += ok;\n      }\n      assert(n\
     \ == count_clique(G));\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
-    \ a >> b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
-    \  solve();\n  return 0;\n}"
+    \ a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
+    \  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - random/random_graph.hpp
@@ -628,7 +628,7 @@ data:
   isVerificationFile: true
   path: test/mytest/count_clique.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 13:03:11+09:00'
+  timestamp: '2023-11-07 20:28:52+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/count_clique.test.cpp

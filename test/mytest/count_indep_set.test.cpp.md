@@ -578,9 +578,8 @@ data:
     \ >> i & 1) && (s >> j & 1) && adj[i][j]) ok = 0;\n        }\n        if (!ok)\
     \ continue;\n        --X;\n        --Y[popcnt(s)];\n      }\n      assert(X ==\
     \ 0);\n      assert(len(Y) == n + 1);\n      FOR(i, n + 1) assert(Y[i] == 0);\n\
-    \    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a <<\
-    \ \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
-    \ 0;\n}\n"
+    \    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a +\
+    \ b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"random/random_graph.hpp\"\n#include \"graph/base.hpp\"\n#include\
     \ \"graph/count/count_independent_set.hpp\"\n\nvoid test() {\n  FOR(100) {\n \
@@ -592,8 +591,8 @@ data:
     \        if (!ok) continue;\n        --X;\n        --Y[popcnt(s)];\n      }\n\
     \      assert(X == 0);\n      assert(len(Y) == n + 1);\n      FOR(i, n + 1) assert(Y[i]\
     \ == 0);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
-    \ << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
-    \  return 0;\n}\n"
+    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
+    \ 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - random/random_graph.hpp
@@ -613,7 +612,7 @@ data:
   isVerificationFile: true
   path: test/mytest/count_indep_set.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 13:03:11+09:00'
+  timestamp: '2023-11-07 20:28:52+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/count_indep_set.test.cpp

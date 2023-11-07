@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -230,8 +230,8 @@ data:
     \ A[k]).det(p - A[k]);\n      ll s = (A[k] - A[i]).det(A[j] - A[i]);\n      if\
     \ (s1 == 0 || s2 == 0 || s3 == 0 || s == 0) continue;\n      if (abs(s1) + abs(s2)\
     \ + abs(s3) == abs(s)) ++naive;\n    }\n    assert(me == naive);\n  }\n}\n\nvoid\
-    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a << \" \" << b << \"\\\
-    n\";\n}\n\nsigned main() {\n  FOR(100) test();\n  solve();\n\n  return 0;\n}\n"
+    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
+    signed main() {\n  FOR(100) test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"geo/count_points_in_triangles.hpp\"\n#include \"random/base.hpp\"\
     \n\nvoid test() {\n  using P = Point<ll>;\n  vc<P> A, B;\n  int K = 1'000'000'000;\n\
@@ -246,8 +246,8 @@ data:
     \ A[k]).det(p - A[k]);\n      ll s = (A[k] - A[i]).det(A[j] - A[i]);\n      if\
     \ (s1 == 0 || s2 == 0 || s3 == 0 || s == 0) continue;\n      if (abs(s1) + abs(s2)\
     \ + abs(s3) == abs(s)) ++naive;\n    }\n    assert(me == naive);\n  }\n}\n\nvoid\
-    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a << \" \" << b << \"\\\
-    n\";\n}\n\nsigned main() {\n  FOR(100) test();\n  solve();\n\n  return 0;\n}\n"
+    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
+    signed main() {\n  FOR(100) test();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - geo/count_points_in_triangles.hpp
@@ -257,8 +257,8 @@ data:
   isVerificationFile: true
   path: test/mytest/count_points_in_triangles.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 01:10:45+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-07 20:28:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/count_points_in_triangles.test.cpp
 layout: document

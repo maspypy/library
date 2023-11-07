@@ -67,7 +67,7 @@ data:
   - icon: ':question:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
   - icon: ':question:'
@@ -75,9 +75,9 @@ data:
     title: seq/famous/stirling_number_2.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -671,17 +671,16 @@ data:
     \n\nvoid test() {\n  const int P = 13, N = 100;\n  using mint = modint<P>;\n \
     \ auto S = stirling_number_2_2d<mint>(N, N);\n  vc<mint> B(N);\n  FOR(i, N) B[i]\
     \ = SUM<mint>(S[i]);\n  FOR(i, N) { assert(B[i] == Bell_Number_large<mint>(i));\
-    \ }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a << \" \"\
-    \ << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n\
-    }\n"
+    \ }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\
+    \\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"mod/modint.hpp\"\n#include \"seq/famous/stirling_number_2.hpp\"\
     \n#include \"seq/famous/bell_number_large.hpp\"\n\nvoid test() {\n  const int\
     \ P = 13, N = 100;\n  using mint = modint<P>;\n  auto S = stirling_number_2_2d<mint>(N,\
     \ N);\n  vc<mint> B(N);\n  FOR(i, N) B[i] = SUM<mint>(S[i]);\n  FOR(i, N) { assert(B[i]\
     \ == Bell_Number_large<mint>(i)); }\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
-    \ a >> b;\n  cout << a << \" \" << b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
-    \  solve();\n  return 0;\n}\n"
+    \ a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - mod/modint.hpp
@@ -710,8 +709,8 @@ data:
   isVerificationFile: true
   path: test/mytest/bell.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 13:03:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-07 20:28:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/bell.test.cpp
 layout: document
