@@ -7,7 +7,7 @@
 
 void solve() {
   LL(N, M);
-  Graph<bool, 0> G(N);
+  Graph<int, 0> G(N);
   G.read_graph(M, 0, 0);
   auto [vs, es] = find_cycle_undirected(G);
   int L = len(vs);
@@ -18,9 +18,6 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
   solve();
-
   return 0;
 }

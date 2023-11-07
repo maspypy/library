@@ -5,7 +5,7 @@
 
 void solve() {
   LL(N, M);
-  Graph<bool, 0> G(N);
+  Graph<int, 0> G(N);
   G.read_graph(M, 0, 0);
   vc<int> wt(N, 1);
   vc<int> V = maximum_independent_set_weighted(G, wt);
