@@ -12,6 +12,8 @@ struct Array_On_Floor {
     dat.resize(n + sq, default_value);
   }
 
+  int size() { return dat.size(); }
+
   T& operator[](ll d) {
     int i = get_index(d);
     return dat[i];
