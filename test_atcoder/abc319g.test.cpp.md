@@ -7,10 +7,10 @@ data:
   - icon: ':x:'
     path: graph/implicit_graph/cograph_bfs.hpp
     title: graph/implicit_graph/cograph_bfs.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -138,24 +138,24 @@ data:
     \ rd(u128 &x) { rd_integer(x); }\r\nvoid rd(double &x) { rd_real(x); }\r\nvoid\
     \ rd(long double &x) { rd_real(x); }\r\nvoid rd(f128 &x) { rd_real(x); }\r\n\r\
     \ntemplate <class T, class U>\r\nvoid rd(pair<T, U> &p) {\r\n  return rd(p.first),\
-    \ rd(p.second);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd(T &t) {\r\
-    \n  if constexpr (N < std::tuple_size<T>::value) {\r\n    auto &x = std::get<N>(t);\r\
-    \n    rd(x);\r\n    rd<N + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid\
-    \ rd(tuple<T...> &tpl) {\r\n  rd(tpl);\r\n}\r\n\r\ntemplate <size_t N = 0, typename\
-    \ T>\r\nvoid rd(array<T, N> &x) {\r\n  for (auto &d: x) rd(d);\r\n}\r\ntemplate\
-    \ <class T>\r\nvoid rd(vc<T> &x) {\r\n  for (auto &d: x) rd(d);\r\n}\r\n\r\nvoid\
-    \ read() {}\r\ntemplate <class H, class... T>\r\nvoid read(H &h, T &... t) {\r\
-    \n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const char c) {\r\n  if (por == SZ)\
-    \ flush();\r\n  obuf[por++] = c;\r\n}\r\nvoid wt(const string s) {\r\n  for (char\
-    \ c: s) wt(c);\r\n}\r\nvoid wt(const char *s) {\r\n  size_t len = strlen(s);\r\
-    \n  for (size_t i = 0; i < len; i++) wt(s[i]);\r\n}\r\n\r\ntemplate <typename\
-    \ T>\r\nvoid wt_integer(T x) {\r\n  if (por > SZ - 100) flush();\r\n  if (x <\
-    \ 0) { obuf[por++] = '-', x = -x; }\r\n  int outi;\r\n  for (outi = 96; x >= 10000;\
-    \ outi -= 4) {\r\n    memcpy(out + outi, pre.num[x % 10000], 4);\r\n    x /= 10000;\r\
-    \n  }\r\n  if (x >= 1000) {\r\n    memcpy(obuf + por, pre.num[x], 4);\r\n    por\
-    \ += 4;\r\n  } else if (x >= 100) {\r\n    memcpy(obuf + por, pre.num[x] + 1,\
-    \ 3);\r\n    por += 3;\r\n  } else if (x >= 10) {\r\n    int q = (x * 103) >>\
-    \ 10;\r\n    obuf[por] = q | '0';\r\n    obuf[por + 1] = (x - q * 10) | '0';\r\
+    \ rd(p.second);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd_tuple(T\
+    \ &t) {\r\n  if constexpr (N < std::tuple_size<T>::value) {\r\n    auto &x = std::get<N>(t);\r\
+    \n    rd(x);\r\n    rd_tuple<N + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\
+    \nvoid rd(tuple<T...> &tpl) {\r\n  rd_tuple(tpl);\r\n}\r\n\r\ntemplate <size_t\
+    \ N = 0, typename T>\r\nvoid rd(array<T, N> &x) {\r\n  for (auto &d: x) rd(d);\r\
+    \n}\r\ntemplate <class T>\r\nvoid rd(vc<T> &x) {\r\n  for (auto &d: x) rd(d);\r\
+    \n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class... T>\r\nvoid read(H &h,\
+    \ T &... t) {\r\n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const char c) {\r\n\
+    \  if (por == SZ) flush();\r\n  obuf[por++] = c;\r\n}\r\nvoid wt(const string\
+    \ s) {\r\n  for (char c: s) wt(c);\r\n}\r\nvoid wt(const char *s) {\r\n  size_t\
+    \ len = strlen(s);\r\n  for (size_t i = 0; i < len; i++) wt(s[i]);\r\n}\r\n\r\n\
+    template <typename T>\r\nvoid wt_integer(T x) {\r\n  if (por > SZ - 100) flush();\r\
+    \n  if (x < 0) { obuf[por++] = '-', x = -x; }\r\n  int outi;\r\n  for (outi =\
+    \ 96; x >= 10000; outi -= 4) {\r\n    memcpy(out + outi, pre.num[x % 10000], 4);\r\
+    \n    x /= 10000;\r\n  }\r\n  if (x >= 1000) {\r\n    memcpy(obuf + por, pre.num[x],\
+    \ 4);\r\n    por += 4;\r\n  } else if (x >= 100) {\r\n    memcpy(obuf + por, pre.num[x]\
+    \ + 1, 3);\r\n    por += 3;\r\n  } else if (x >= 10) {\r\n    int q = (x * 103)\
+    \ >> 10;\r\n    obuf[por] = q | '0';\r\n    obuf[por + 1] = (x - q * 10) | '0';\r\
     \n    por += 2;\r\n  } else\r\n    obuf[por++] = x | '0';\r\n  memcpy(obuf + por,\
     \ out + outi + 4, 96 - outi);\r\n  por += 96 - outi;\r\n}\r\n\r\ntemplate <typename\
     \ T>\r\nvoid wt_real(T x) {\r\n  ostringstream oss;\r\n  oss << fixed << setprecision(15)\
@@ -363,7 +363,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc319g.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 01:10:45+09:00'
+  timestamp: '2023-11-07 08:39:48+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc319g.test.cpp
