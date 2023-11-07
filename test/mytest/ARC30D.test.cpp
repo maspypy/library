@@ -96,7 +96,7 @@ void test_ARC30D_case2() {
 void solve() {
   int a, b;
   cin >> a >> b;
-  cout << a << " " << b << "\n";
+  cout << a + b << "\n";
 }
 
 signed main() {

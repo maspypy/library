@@ -31,13 +31,10 @@ void test() {
 void solve() {
   int a, b;
   cin >> a >> b;
-  cout << a << " " << b << "\n";
+  cout << a + b << "\n";
 }
-signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
 
+signed main() {
   FOR(100) test();
   solve();
 

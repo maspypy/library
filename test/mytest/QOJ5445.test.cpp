@@ -121,7 +121,7 @@ void test_QOJ_5445() {
 void solve() {
   int a, b;
   cin >> a >> b;
-  cout << a << " " << b << "\n";
+  cout << a + b << "\n";
 }
 
 signed main() {

@@ -14,7 +14,7 @@ struct LiChao_Tree {
 
   inline int get_idx(ll x) {
     if constexpr (COMPRESS) { return LB(X, x); }
-    assert(lo <= x && x < hi);
+    assert(lo <= x && x <= hi);
     return x - lo;
   }
 
