@@ -63,6 +63,7 @@ struct Graph {
     ++M;
   }
 
+#ifdef FASTIO
   // wt, off
   void read_tree(bool wt = false, int off = 1) { read_graph(N - 1, wt, off); }
 
@@ -80,6 +81,7 @@ struct Graph {
     }
     build();
   }
+#endif
 
   void build() {
     assert(!prepared);
