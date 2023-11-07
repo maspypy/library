@@ -82,9 +82,8 @@ struct Dynamic_Modint_64 {
 #ifdef FASTIO
 template <int id>
 void rd(Dynamic_Modint_64<id>& x) {
-  ll v;
-  fastio::rd(v);
-  x = Dynamic_Modint_64<id>(v);
+  fastio::rd(x.val);
+  assert(0 <= x.val && x.val < mod);
 }
 template <int id>
 void wt(Dynamic_Modint_64<id> x) {

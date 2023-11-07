@@ -81,9 +81,8 @@ struct modint {
 #ifdef FASTIO
 template <int mod>
 void rd(modint<mod> &x) {
-  ll v;
-  fastio::rd(v);
-  x = modint<mod>(v);
+  fastio::rd(x.val);
+  assert(0 <= x.val && x.val < mod);
 }
 template <int mod>
 void wt(modint<mod> x) {

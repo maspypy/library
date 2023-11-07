@@ -87,8 +87,8 @@ struct Sortable_Array {
 private:
   void init(vector<int>& key) {
     rev.assign(N, 0), root.clear(), root.reserve(N);
+    ss.build(N, [&](int i) -> int { return 1; });
     for (int i = 0; i < N; ++i) {
-      ss.insert(i);
       root.eb(new_node(0));
       assert(key[i] < KEY_MAX);
       set_rec(root[i], 0, KEY_MAX, key[i]);
