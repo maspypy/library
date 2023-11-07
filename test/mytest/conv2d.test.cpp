@@ -47,7 +47,7 @@ void test() {
 void solve() {
   int a, b;
   cin >> a >> b;
-  cout << a << " " << b << "\n";
+  cout << a + b << "\n";
 }
 
 signed main() {
