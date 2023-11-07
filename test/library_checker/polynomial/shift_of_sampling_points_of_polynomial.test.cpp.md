@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/sliding_window_aggregation.hpp
     title: ds/sliding_window_aggregation.hpp
   - icon: ':question:'
@@ -288,8 +288,8 @@ data:
     \ 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881)\
     \ return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt()\
     \ { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
-    \ rd(modint<mod> &x) {\n  ll v;\n  fastio::rd(v);\n  x = modint<mod>(v);\n}\n\
-    template <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \ rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  assert(0 <= x.val && x.val < mod);\n\
+    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     #line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Monoid_Mul {\r\
     \n  using value_type = T;\r\n  using X = T;\r\n  static constexpr X op(const X\
@@ -588,7 +588,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 08:39:48+09:00'
+  timestamp: '2023-11-07 13:03:11+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp

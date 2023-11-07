@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
   - icon: ':question:'
@@ -216,14 +216,14 @@ data:
     \n    for (int h = 0; h < log; h++) {\r\n      seg[h][i / B] &= ~(u64(1) << (i\
     \ % B));\r\n      seg[h][i / B] |= x << (i % B);\r\n      x = bool(seg[h][i /\
     \ B]);\r\n      i /= B;\r\n    }\r\n  }\r\n  void remove(int i) { erase(i); }\r\
-    \n\r\n  // min[x,n) or n\r\n  int next(int i) {\r\n    assert(i < n);\r\n    chmax(i,\
-    \ 0);\r\n    for (int h = 0; h < log; h++) {\r\n      if (i / B == seg[h].size())\
+    \n\r\n  // min[x,n) or n\r\n  int next(int i) {\r\n    assert(i <= n);\r\n   \
+    \ chmax(i, 0);\r\n    for (int h = 0; h < log; h++) {\r\n      if (i / B == seg[h].size())\
     \ break;\r\n      u64 d = seg[h][i / B] >> (i % B);\r\n      if (!d) {\r\n   \
     \     i = i / B + 1;\r\n        continue;\r\n      }\r\n      i += lowbit(d);\r\
     \n      for (int g = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i +=\
     \ lowbit(seg[g][i / B]);\r\n      }\r\n      return i;\r\n    }\r\n    return\
     \ n;\r\n  }\r\n\r\n  // max [0,x], or -1\r\n  int prev(int i) {\r\n    assert(i\
-    \ >= 0);\r\n    if (i >= n) i = n - 1;\r\n    for (int h = 0; h < log; h++) {\r\
+    \ >= -1);\r\n    if (i >= n) i = n - 1;\r\n    for (int h = 0; h < log; h++) {\r\
     \n      if (i == -1) break;\r\n      u64 d = seg[h][i / B] << (63 - i % B);\r\n\
     \      if (!d) {\r\n        i = i / B - 1;\r\n        continue;\r\n      }\r\n\
     \      i -= __builtin_clzll(d);\r\n      for (int g = h - 1; g >= 0; g--) {\r\n\
@@ -414,8 +414,8 @@ data:
     \ 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881)\
     \ return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt()\
     \ { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
-    \ rd(modint<mod> &x) {\n  ll v;\n  fastio::rd(v);\n  x = modint<mod>(v);\n}\n\
-    template <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \ rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  assert(0 <= x.val && x.val < mod);\n\
+    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     #line 8 \"test/library_checker/datastructure/sort_segtree_1.test.cpp\"\n\nusing\
     \ mint = modint998;\n\nvoid solve() {\n  // \u30AF\u30A8\u30EA\u5148\u8AAD\u307F\
@@ -465,7 +465,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/sort_segtree_1.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 08:39:48+09:00'
+  timestamp: '2023-11-07 13:03:11+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/sort_segtree_1.test.cpp

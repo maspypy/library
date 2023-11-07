@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: linalg/det.hpp
     title: linalg/det.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
   - icon: ':question:'
@@ -262,8 +262,8 @@ data:
     \ 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881)\
     \ return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt()\
     \ { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
-    \ rd(modint<mod> &x) {\n  ll v;\n  fastio::rd(v);\n  x = modint<mod>(v);\n}\n\
-    template <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \ rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  assert(0 <= x.val && x.val < mod);\n\
+    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     #line 2 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
     struct Barrett {\n  u32 m;\n  u64 im;\n  explicit Barrett(u32 m = 1) : m(m), im(u64(-1)\
@@ -313,7 +313,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/matrix_det.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 08:39:48+09:00'
+  timestamp: '2023-11-07 13:03:11+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/matrix/matrix_det.test.cpp

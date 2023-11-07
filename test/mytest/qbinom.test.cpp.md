@@ -260,15 +260,15 @@ data:
     \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
     \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
     \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
-    \  ll v;\n  fastio::rd(v);\n  x = modint<mod>(v);\n}\ntemplate <int mod>\nvoid\
-    \ wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 2 \"mod/all_inverse.hpp\"\ntemplate\
-    \ <typename mint>\nvc<mint> all_inverse(vc<mint>& X) {\n  for (auto&& x: X) assert(x\
-    \ != mint(0));\n  int N = len(X);\n  vc<mint> res(N + 1);\n  res[0] = mint(1);\n\
-    \  FOR(i, N) res[i + 1] = res[i] * X[i];\n  mint t = res.back().inverse();\n \
-    \ res.pop_back();\n  FOR_R(i, N) {\n    res[i] *= t;\n    t *= X[i];\n  }\n  return\
-    \ res;\n}\n#line 3 \"mod/q_analogue.hpp\"\n\ntemplate <typename mint>\nstruct\
-    \ q_Analogue {\n  const mint q;\n  const int LIM;\n  int D;\n  vc<mint> factorial,\
+    \  fastio::rd(x.val);\n  assert(0 <= x.val && x.val < mod);\n}\ntemplate <int\
+    \ mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107\
+    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 2 \"mod/all_inverse.hpp\"\
+    \ntemplate <typename mint>\nvc<mint> all_inverse(vc<mint>& X) {\n  for (auto&&\
+    \ x: X) assert(x != mint(0));\n  int N = len(X);\n  vc<mint> res(N + 1);\n  res[0]\
+    \ = mint(1);\n  FOR(i, N) res[i + 1] = res[i] * X[i];\n  mint t = res.back().inverse();\n\
+    \  res.pop_back();\n  FOR_R(i, N) {\n    res[i] *= t;\n    t *= X[i];\n  }\n \
+    \ return res;\n}\n#line 3 \"mod/q_analogue.hpp\"\n\ntemplate <typename mint>\n\
+    struct q_Analogue {\n  const mint q;\n  const int LIM;\n  int D;\n  vc<mint> factorial,\
     \ ifactorial;\n\n  q_Analogue(mint q, int LIM) : q(q), LIM(LIM) {\n    assert(LIM\
     \ < mint::get_mod());\n    build();\n  }\n\n  void build() {\n    factorial.reserve(LIM\
     \ + 1);\n    factorial.eb(1);\n    mint x = 1;\n    FOR(i, 1, LIM + 1) {\n   \
@@ -311,7 +311,7 @@ data:
   isVerificationFile: true
   path: test/mytest/qbinom.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 08:39:48+09:00'
+  timestamp: '2023-11-07 13:03:11+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/qbinom.test.cpp

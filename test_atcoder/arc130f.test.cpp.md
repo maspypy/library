@@ -269,22 +269,22 @@ data:
     \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
     \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
     \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
-    \  ll v;\n  fastio::rd(v);\n  x = modint<mod>(v);\n}\ntemplate <int mod>\nvoid\
-    \ wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 2 \"geo/base.hpp\"\ntemplate <typename\
-    \ T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template <typename\
-    \ A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename A,\
-    \ typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+(Point\
-    \ p) const { return {x + p.x, y + p.y}; }\n  Point operator-(Point p) const {\
-    \ return {x - p.x, y - p.y}; }\n  bool operator==(Point p) const { return x ==\
-    \ p.x && y == p.y; }\n  bool operator!=(Point p) const { return x != p.x || y\
-    \ != p.y; }\n  Point operator-() const { return {-x, -y}; }\n  Point operator*(T\
-    \ t) const { return {x * t, y * t}; }\n  Point operator/(T t) const { return {x\
-    \ / t, y / t}; }\n\n  bool operator<(Point p) const {\n    if (x != p.x) return\
-    \ x < p.x;\n    return y < p.y;\n  }\n  T dot(Point other) { return x * other.x\
-    \ + y * other.y; }\n  T det(Point other) { return x * other.y - y * other.x; }\n\
-    \n  double norm() { return sqrtl(x * x + y * y); }\n  double angle() { return\
-    \ atan2(y, x); }\n\n  Point rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n\
+    \  fastio::rd(x.val);\n  assert(0 <= x.val && x.val < mod);\n}\ntemplate <int\
+    \ mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107\
+    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 2 \"geo/base.hpp\"\
+    \ntemplate <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\
+    \n  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n \
+    \ template <typename A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se)\
+    \ {}\n\n  Point operator+(Point p) const { return {x + p.x, y + p.y}; }\n  Point\
+    \ operator-(Point p) const { return {x - p.x, y - p.y}; }\n  bool operator==(Point\
+    \ p) const { return x == p.x && y == p.y; }\n  bool operator!=(Point p) const\
+    \ { return x != p.x || y != p.y; }\n  Point operator-() const { return {-x, -y};\
+    \ }\n  Point operator*(T t) const { return {x * t, y * t}; }\n  Point operator/(T\
+    \ t) const { return {x / t, y / t}; }\n\n  bool operator<(Point p) const {\n \
+    \   if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n  T dot(Point other)\
+    \ { return x * other.x + y * other.y; }\n  T det(Point other) { return x * other.y\
+    \ - y * other.x; }\n\n  double norm() { return sqrtl(x * x + y * y); }\n  double\
+    \ angle() { return atan2(y, x); }\n\n  Point rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n\
     \    double c = cos(theta), s = sin(theta);\n    return Point{c * x - s * y, s\
     \ * x + c * y};\n  }\n};\n\n#ifdef FASTIO\ntemplate <typename T>\nvoid rd(Point<T>&\
     \ p) {\n  fastio::rd(p.x), fastio::rd(p.y);\n}\ntemplate <typename T>\nvoid wt(Point<T>&\
@@ -438,7 +438,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/arc130f.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 08:39:48+09:00'
+  timestamp: '2023-11-07 13:03:11+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/arc130f.test.cpp

@@ -204,13 +204,13 @@ data:
     \ / B] &= ~(u64(1) << (i % B));\r\n      seg[h][i / B] |= x << (i % B);\r\n  \
     \    x = bool(seg[h][i / B]);\r\n      i /= B;\r\n    }\r\n  }\r\n  void remove(int\
     \ i) { erase(i); }\r\n\r\n  // min[x,n) or n\r\n  int next(int i) {\r\n    assert(i\
-    \ < n);\r\n    chmax(i, 0);\r\n    for (int h = 0; h < log; h++) {\r\n      if\
+    \ <= n);\r\n    chmax(i, 0);\r\n    for (int h = 0; h < log; h++) {\r\n      if\
     \ (i / B == seg[h].size()) break;\r\n      u64 d = seg[h][i / B] >> (i % B);\r\
     \n      if (!d) {\r\n        i = i / B + 1;\r\n        continue;\r\n      }\r\n\
     \      i += lowbit(d);\r\n      for (int g = h - 1; g >= 0; g--) {\r\n       \
     \ i *= B;\r\n        i += lowbit(seg[g][i / B]);\r\n      }\r\n      return i;\r\
     \n    }\r\n    return n;\r\n  }\r\n\r\n  // max [0,x], or -1\r\n  int prev(int\
-    \ i) {\r\n    assert(i >= 0);\r\n    if (i >= n) i = n - 1;\r\n    for (int h\
+    \ i) {\r\n    assert(i >= -1);\r\n    if (i >= n) i = n - 1;\r\n    for (int h\
     \ = 0; h < log; h++) {\r\n      if (i == -1) break;\r\n      u64 d = seg[h][i\
     \ / B] << (63 - i % B);\r\n      if (!d) {\r\n        i = i / B - 1;\r\n     \
     \   continue;\r\n      }\r\n      i -= __builtin_clzll(d);\r\n      for (int g\
@@ -250,44 +250,45 @@ data:
     \ m, k);\n      return dfs(dfs, n->r, m, r, k - s);\n    };\n    int i = ss.prev(idx);\n\
     \    int k = idx - i;\n    int s = root[i]->size;\n    if (rev[i]) k = s - 1 -\
     \ k;\n    return dfs(dfs, root[i], 0, KEY_MAX, k);\n  }\n\nprivate:\n  void init(vector<int>&\
-    \ key) {\n    rev.assign(N, 0), root.clear(), root.reserve(N);\n    for (int i\
-    \ = 0; i < N; ++i) {\n      ss.insert(i);\n      root.eb(new_node(0));\n     \
-    \ assert(key[i] < KEY_MAX);\n      set_rec(root[i], 0, KEY_MAX, key[i]);\n   \
-    \ }\n  }\n\n  // x \u304C\u5DE6\u7AEF\u306B\u306A\u308B\u3088\u3046\u306B\u3059\
-    \u308B\n  void split_at(int x) {\n    if (x == N || ss[x]) return;\n    int a\
-    \ = ss.prev(x), b = ss.next(a + 1);\n    ss.insert(x);\n    if (!rev[a]) {\n \
-    \     auto [nl, nr] = split(root[a], 0, KEY_MAX, x - a);\n      root[a] = nl,\
-    \ root[x] = nr;\n      rev[a] = rev[x] = 0;\n    } else {\n      auto [nl, nr]\
-    \ = split(root[a], 0, KEY_MAX, b - x);\n      root[a] = nr, root[x] = nl;\n  \
-    \    rev[a] = rev[x] = 1;\n    }\n  }\n\n  void rebuild() {\n    auto key = get_all();\n\
-    \    pid = 0;\n    init(key);\n  }\n\n  np new_node(int size) {\n    assert(pid\
-    \ < NODES);\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].size = size;\n\
-    \    return &(pool[pid++]);\n  }\n\n  pair<np, np> split(np n, int l, int r, int\
-    \ k) {\n    if (k == 0) { return {nullptr, n}; }\n    if (k == n->size) { return\
-    \ {n, nullptr}; }\n    if (r == l + 1) {\n      int s = n->size;\n      n->size\
-    \ = k;\n      Node* b = new_node(s - k);\n      return {n, b};\n    }\n    int\
-    \ s = (n->l ? n->l->size : 0);\n    Node* b = new_node(0);\n    int m = (l + r)\
-    \ / 2;\n    if (k <= s) {\n      auto [nl, nr] = split(n->l, l, m, k);\n     \
-    \ b->l = nr, b->r = n->r, n->l = nl, n->r = nullptr;\n    }\n    if (k > s) {\n\
-    \      auto [nl, nr] = split(n->r, m, r, k - s);\n      n->l = n->l, n->r = nl,\
-    \ b->l = nullptr, b->r = nr;\n    }\n    update(n), update(b);\n    return {n,\
-    \ b};\n  }\n\n  np merge(int l, int r, np a, np b) {\n    if (!a) return b;\n\
-    \    if (!b) return a;\n    if (r == l + 1) {\n      a->size += b->size;\n   \
-    \   return a;\n    }\n    int m = (l + r) / 2;\n    a->l = merge(l, m, a->l, b->l),\
-    \ a->r = merge(m, r, a->r, b->r);\n    update(a);\n    return a;\n  }\n\n  void\
-    \ update(np n) {\n    if (!(n->l) && !(n->r)) { return; }\n    if (!(n->l)) {\n\
-    \      n->size = n->r->size;\n      return;\n    }\n    if (!(n->r)) {\n     \
-    \ n->size = n->l->size;\n      return;\n    }\n    n->size = n->l->size + n->r->size;\n\
-    \  }\n\n  void set_rec(np n, int l, int r, int k) {\n    if (r == l + 1) {\n \
-    \     n->size = 1;\n      return;\n    }\n    int m = (l + r) / 2;\n    if (k\
-    \ < m) {\n      if (!(n->l)) n->l = new_node(0);\n      set_rec(n->l, l, m, k);\n\
-    \    }\n    if (m <= k) {\n      if (!(n->r)) n->r = new_node(0);\n      set_rec(n->r,\
-    \ m, r, k);\n    }\n    update(n);\n  }\n};\n#line 7 \"test_atcoder/abc217e.test.cpp\"\
-    \n\nvoid solve() {\n  LL(Q);\n  int L = 0, R = 0;\n  Sortable_Array<15'000'000>\
-    \ X(infty<int> + 1, vc<int>(Q));\n  FOR(Q) {\n    INT(t);\n    if (t == 1) {\n\
-    \      INT(x);\n      X.set(R++, x);\n    }\n    if (t == 2) {\n      print(X.get(L));\n\
-    \      L++;\n    }\n    if (t == 3) {\n      if (L < R) X.sort_inc(L, R);\n  \
-    \  }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ key) {\n    rev.assign(N, 0), root.clear(), root.reserve(N);\n    ss.build(N,\
+    \ [&](int i) -> int { return 1; });\n    for (int i = 0; i < N; ++i) {\n     \
+    \ root.eb(new_node(0));\n      assert(key[i] < KEY_MAX);\n      set_rec(root[i],\
+    \ 0, KEY_MAX, key[i]);\n    }\n  }\n\n  // x \u304C\u5DE6\u7AEF\u306B\u306A\u308B\
+    \u3088\u3046\u306B\u3059\u308B\n  void split_at(int x) {\n    if (x == N || ss[x])\
+    \ return;\n    int a = ss.prev(x), b = ss.next(a + 1);\n    ss.insert(x);\n  \
+    \  if (!rev[a]) {\n      auto [nl, nr] = split(root[a], 0, KEY_MAX, x - a);\n\
+    \      root[a] = nl, root[x] = nr;\n      rev[a] = rev[x] = 0;\n    } else {\n\
+    \      auto [nl, nr] = split(root[a], 0, KEY_MAX, b - x);\n      root[a] = nr,\
+    \ root[x] = nl;\n      rev[a] = rev[x] = 1;\n    }\n  }\n\n  void rebuild() {\n\
+    \    auto key = get_all();\n    pid = 0;\n    init(key);\n  }\n\n  np new_node(int\
+    \ size) {\n    assert(pid < NODES);\n    pool[pid].l = pool[pid].r = nullptr;\n\
+    \    pool[pid].size = size;\n    return &(pool[pid++]);\n  }\n\n  pair<np, np>\
+    \ split(np n, int l, int r, int k) {\n    if (k == 0) { return {nullptr, n}; }\n\
+    \    if (k == n->size) { return {n, nullptr}; }\n    if (r == l + 1) {\n     \
+    \ int s = n->size;\n      n->size = k;\n      Node* b = new_node(s - k);\n   \
+    \   return {n, b};\n    }\n    int s = (n->l ? n->l->size : 0);\n    Node* b =\
+    \ new_node(0);\n    int m = (l + r) / 2;\n    if (k <= s) {\n      auto [nl, nr]\
+    \ = split(n->l, l, m, k);\n      b->l = nr, b->r = n->r, n->l = nl, n->r = nullptr;\n\
+    \    }\n    if (k > s) {\n      auto [nl, nr] = split(n->r, m, r, k - s);\n  \
+    \    n->l = n->l, n->r = nl, b->l = nullptr, b->r = nr;\n    }\n    update(n),\
+    \ update(b);\n    return {n, b};\n  }\n\n  np merge(int l, int r, np a, np b)\
+    \ {\n    if (!a) return b;\n    if (!b) return a;\n    if (r == l + 1) {\n   \
+    \   a->size += b->size;\n      return a;\n    }\n    int m = (l + r) / 2;\n  \
+    \  a->l = merge(l, m, a->l, b->l), a->r = merge(m, r, a->r, b->r);\n    update(a);\n\
+    \    return a;\n  }\n\n  void update(np n) {\n    if (!(n->l) && !(n->r)) { return;\
+    \ }\n    if (!(n->l)) {\n      n->size = n->r->size;\n      return;\n    }\n \
+    \   if (!(n->r)) {\n      n->size = n->l->size;\n      return;\n    }\n    n->size\
+    \ = n->l->size + n->r->size;\n  }\n\n  void set_rec(np n, int l, int r, int k)\
+    \ {\n    if (r == l + 1) {\n      n->size = 1;\n      return;\n    }\n    int\
+    \ m = (l + r) / 2;\n    if (k < m) {\n      if (!(n->l)) n->l = new_node(0);\n\
+    \      set_rec(n->l, l, m, k);\n    }\n    if (m <= k) {\n      if (!(n->r)) n->r\
+    \ = new_node(0);\n      set_rec(n->r, m, r, k);\n    }\n    update(n);\n  }\n\
+    };\n#line 7 \"test_atcoder/abc217e.test.cpp\"\n\nvoid solve() {\n  LL(Q);\n  int\
+    \ L = 0, R = 0;\n  Sortable_Array<15'000'000> X(infty<int> + 1, vc<int>(Q));\n\
+    \  FOR(Q) {\n    INT(t);\n    if (t == 1) {\n      INT(x);\n      X.set(R++, x);\n\
+    \    }\n    if (t == 2) {\n      print(X.get(L));\n      L++;\n    }\n    if (t\
+    \ == 3) {\n      if (L < R) X.sort_inc(L, R);\n    }\n  }\n}\n\nsigned main()\
+    \ {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc217/tasks/abc217_e\"\n\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/sortable_array.hpp\"\
     \n\nvoid solve() {\n  LL(Q);\n  int L = 0, R = 0;\n  Sortable_Array<15'000'000>\
@@ -303,7 +304,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc217e.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 08:39:48+09:00'
+  timestamp: '2023-11-07 13:03:11+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc217e.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
   - icon: ':question:'
@@ -98,7 +98,7 @@ data:
     \ lhs, const mint& rhs) {\n    return lhs.val == rhs.val;\n  }\n  friend bool\
     \ operator!=(const mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n\
     \  }\n};\n\n#ifdef FASTIO\ntemplate <int id>\nvoid rd(Dynamic_Modint_64<id>& x)\
-    \ {\n  ll v;\n  fastio::rd(v);\n  x = Dynamic_Modint_64<id>(v);\n}\ntemplate <int\
+    \ {\n  fastio::rd(x.val);\n  assert(0 <= x.val && x.val < mod);\n}\ntemplate <int\
     \ id>\nvoid wt(Dynamic_Modint_64<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\n\
     using dmint64 = Dynamic_Modint_64<-1>;\ntemplate <int id>\nBarrett_64 Dynamic_Modint_64<id>::bt;\n"
   code: "#pragma once\n\n#include \"mod/modint_common.hpp\"\n#include \"mod/barrett.hpp\"\
@@ -131,17 +131,17 @@ data:
     \  }\n  friend bool operator==(const mint& lhs, const mint& rhs) {\n    return\
     \ lhs.val == rhs.val;\n  }\n  friend bool operator!=(const mint& lhs, const mint&\
     \ rhs) {\n    return lhs.val != rhs.val;\n  }\n};\n\n#ifdef FASTIO\ntemplate <int\
-    \ id>\nvoid rd(Dynamic_Modint_64<id>& x) {\n  ll v;\n  fastio::rd(v);\n  x = Dynamic_Modint_64<id>(v);\n\
-    }\ntemplate <int id>\nvoid wt(Dynamic_Modint_64<id> x) {\n  fastio::wt(x.val);\n\
-    }\n#endif\n\nusing dmint64 = Dynamic_Modint_64<-1>;\ntemplate <int id>\nBarrett_64\
-    \ Dynamic_Modint_64<id>::bt;\n"
+    \ id>\nvoid rd(Dynamic_Modint_64<id>& x) {\n  fastio::rd(x.val);\n  assert(0 <=\
+    \ x.val && x.val < mod);\n}\ntemplate <int id>\nvoid wt(Dynamic_Modint_64<id>\
+    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing dmint64 = Dynamic_Modint_64<-1>;\n\
+    template <int id>\nBarrett_64 Dynamic_Modint_64<id>::bt;\n"
   dependsOn:
   - mod/modint_common.hpp
   - mod/barrett.hpp
   isVerificationFile: false
   path: mod/dynamic_modint_64.hpp
   requiredBy: []
-  timestamp: '2023-11-07 00:41:09+09:00'
+  timestamp: '2023-11-07 13:03:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: mod/dynamic_modint_64.hpp
