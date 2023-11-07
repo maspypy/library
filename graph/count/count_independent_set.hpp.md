@@ -68,64 +68,65 @@ data:
     \    vc_outdeg.clear();\n  }\n\n  void add(int frm, int to, T cost = 1, int i\
     \ = -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <= to && to < N);\n\
     \    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n\
-    \    ++M;\n  }\n\n  // wt, off\n  void read_tree(bool wt = false, int off = 1)\
-    \ { read_graph(N - 1, wt, off); }\n\n  void read_graph(int M, bool wt = false,\
-    \ int off = 1) {\n    for (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a\
-    \ -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n      } else {\n  \
-    \      T c;\n        read(c);\n        add(a, b, c);\n      }\n    }\n    build();\n\
-    \  }\n\n  void build() {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N\
-    \ + 1, 0);\n    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if\
-    \ (!directed) indptr[e.to + 1]++;\n    }\n    for (int v = 0; v < N; ++v) { indptr[v\
-    \ + 1] += indptr[v]; }\n    auto counter = indptr;\n    csr_edges.resize(indptr.back()\
-    \ + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n\
-    \      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm,\
-    \ e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n \
-    \   assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\n \
-    \ vc<int> deg_array() {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n\
-    \  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n    if (vc_indeg.empty())\
-    \ calc_deg_inout();\n    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v)\
-    \ {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n  int\
-    \ in_deg(int v) {\n    if (vc_indeg.empty()) calc_deg_inout();\n    return vc_indeg[v];\n\
-    \  }\n\n  int out_deg(int v) {\n    if (vc_outdeg.empty()) calc_deg_inout();\n\
-    \    return vc_outdeg[v];\n  }\n\n  void debug() {\n    print(\"Graph\");\n  \
-    \  if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&& e: edges)\
-    \ print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\", indptr);\n\
-    \      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
-    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n\n  vc<int> new_idx;\n  vc<bool>\
-    \ used_e;\n\n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\
-    \u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\
-    \u308B\n  // {G, es}\n  Graph<T, directed> rearrange(vc<int> V, bool keep_eid\
-    \ = 0) {\n    if (len(new_idx) != N) new_idx.assign(N, -1);\n    if (len(used_e)\
-    \ != M) used_e.assign(M, 0);\n    int n = len(V);\n    FOR(i, n) new_idx[V[i]]\
-    \ = i;\n    Graph<T, directed> G(n);\n    vc<int> history;\n    FOR(i, n) {\n\
-    \      for (auto&& e: (*this)[V[i]]) {\n        if (used_e[e.id]) continue;\n\
-    \        int a = e.frm, b = e.to;\n        if (new_idx[a] != -1 && new_idx[b]\
-    \ != -1) {\n          history.eb(e.id);\n          used_e[e.id] = 1;\n       \
-    \   int eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b],\
-    \ e.cost, eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n\
-    \    for (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n\
-    \  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n\
-    \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
-    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
-    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 2 \"graph/path_cycle.hpp\"\n\n// \u3069\u306E\u70B9\u306E\u6B21\u6570\u3082\
-    \ 2 \u4EE5\u4E0B\u306E\u30B0\u30E9\u30D5\u304C\u3042\u308B\u3068\u304D\u306B\u3001\
-    \n// \u30D1\u30B9\u306E\u9802\u70B9\u5217, \u30B5\u30A4\u30AF\u30EB\u306E\u9802\
-    \u70B9\u5217\n// \u306B\u5206\u89E3\u3059\u308B\ntemplate <typename GT>\npair<vvc<int>,\
-    \ vvc<int>> path_cycle(GT& G) {\n  static_assert(!GT::is_directed);\n  int N =\
-    \ G.N;\n  auto deg = G.deg_array();\n  assert(MAX(deg) <= 2);\n\n  vc<bool> done(N);\n\
-    \  auto calc_frm = [&](int v) -> vc<int> {\n    vc<int> P = {v};\n    done[v]\
-    \ = 1;\n    while (1) {\n      bool ok = 0;\n      for (auto&& e: G[P.back()])\
-    \ {\n        if (done[e.to]) continue;\n        P.eb(e.to);\n        done[e.to]\
-    \ = 1;\n        ok = 1;\n        break;\n      }\n      if (!ok) break;\n    }\n\
-    \    return P;\n  };\n  vvc<int> paths, cycs;\n  FOR(v, N) {\n    if (deg[v] ==\
-    \ 0) {\n      done[v] = 1;\n      paths.eb(vc<int>({int(v)}));\n    }\n    if\
-    \ (done[v] || deg[v] != 1) continue;\n    paths.eb(calc_frm(v));\n  }\n  FOR(v,\
-    \ N) {\n    if (done[v]) continue;\n    cycs.eb(calc_frm(v));\n  }\n  return {paths,\
-    \ cycs};\n}\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
-    \ <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
-    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
-    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \    ++M;\n  }\n\n#ifdef FASTIO\n  // wt, off\n  void read_tree(bool wt = false,\
+    \ int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int M, bool\
+    \ wt = false, int off = 1) {\n    for (int m = 0; m < M; ++m) {\n      INT(a,\
+    \ b);\n      a -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n     \
+    \ } else {\n        T c;\n        read(c);\n        add(a, b, c);\n      }\n \
+    \   }\n    build();\n  }\n#endif\n\n  void build() {\n    assert(!prepared);\n\
+    \    prepared = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges)\
+    \ {\n      indptr[e.frm + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n  \
+    \  }\n    for (int v = 0; v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto\
+    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
+    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
+    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
+    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
+    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  vc<int> deg_array() {\n\
+    \    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n  }\n\n  pair<vc<int>,\
+    \ vc<int>> deg_array_inout() {\n    if (vc_indeg.empty()) calc_deg_inout();\n\
+    \    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v) {\n    if (vc_deg.empty())\
+    \ calc_deg();\n    return vc_deg[v];\n  }\n\n  int in_deg(int v) {\n    if (vc_indeg.empty())\
+    \ calc_deg_inout();\n    return vc_indeg[v];\n  }\n\n  int out_deg(int v) {\n\
+    \    if (vc_outdeg.empty()) calc_deg_inout();\n    return vc_outdeg[v];\n  }\n\
+    \n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
+    frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to, e.cost, e.id);\n\
+    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
+    );\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
+    \    }\n  }\n\n  vc<int> new_idx;\n  vc<bool> used_e;\n\n  // G \u306B\u304A\u3051\
+    \u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\u30B0\u30E9\u30D5\u3067\
+    \ i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\n  // {G, es}\n  Graph<T,\
+    \ directed> rearrange(vc<int> V, bool keep_eid = 0) {\n    if (len(new_idx) !=\
+    \ N) new_idx.assign(N, -1);\n    if (len(used_e) != M) used_e.assign(M, 0);\n\
+    \    int n = len(V);\n    FOR(i, n) new_idx[V[i]] = i;\n    Graph<T, directed>\
+    \ G(n);\n    vc<int> history;\n    FOR(i, n) {\n      for (auto&& e: (*this)[V[i]])\
+    \ {\n        if (used_e[e.id]) continue;\n        int a = e.frm, b = e.to;\n \
+    \       if (new_idx[a] != -1 && new_idx[b] != -1) {\n          history.eb(e.id);\n\
+    \          used_e[e.id] = 1;\n          int eid = (keep_eid ? e.id : -1);\n  \
+    \        G.add(new_idx[a], new_idx[b], e.cost, eid);\n        }\n      }\n   \
+    \ }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for (auto&& eid: history) used_e[eid]\
+    \ = 0;\n    G.build();\n    return G;\n  }\n\nprivate:\n  void calc_deg() {\n\
+    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
+    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
+    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/path_cycle.hpp\"\
+    \n\n// \u3069\u306E\u70B9\u306E\u6B21\u6570\u3082 2 \u4EE5\u4E0B\u306E\u30B0\u30E9\
+    \u30D5\u304C\u3042\u308B\u3068\u304D\u306B\u3001\n// \u30D1\u30B9\u306E\u9802\u70B9\
+    \u5217, \u30B5\u30A4\u30AF\u30EB\u306E\u9802\u70B9\u5217\n// \u306B\u5206\u89E3\
+    \u3059\u308B\ntemplate <typename GT>\npair<vvc<int>, vvc<int>> path_cycle(GT&\
+    \ G) {\n  static_assert(!GT::is_directed);\n  int N = G.N;\n  auto deg = G.deg_array();\n\
+    \  assert(MAX(deg) <= 2);\n\n  vc<bool> done(N);\n  auto calc_frm = [&](int v)\
+    \ -> vc<int> {\n    vc<int> P = {v};\n    done[v] = 1;\n    while (1) {\n    \
+    \  bool ok = 0;\n      for (auto&& e: G[P.back()]) {\n        if (done[e.to])\
+    \ continue;\n        P.eb(e.to);\n        done[e.to] = 1;\n        ok = 1;\n \
+    \       break;\n      }\n      if (!ok) break;\n    }\n    return P;\n  };\n \
+    \ vvc<int> paths, cycs;\n  FOR(v, N) {\n    if (deg[v] == 0) {\n      done[v]\
+    \ = 1;\n      paths.eb(vc<int>({int(v)}));\n    }\n    if (done[v] || deg[v] !=\
+    \ 1) continue;\n    paths.eb(calc_frm(v));\n  }\n  FOR(v, N) {\n    if (done[v])\
+    \ continue;\n    cycs.eb(calc_frm(v));\n  }\n  return {paths, cycs};\n}\n#line\
+    \ 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class T>\n\
+    \  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n  template\
+    \ <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate <class\
+    \ T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
     \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
     \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
@@ -572,7 +573,7 @@ data:
   path: graph/count/count_independent_set.hpp
   requiredBy:
   - graph/count/count_clique.hpp
-  timestamp: '2023-11-07 13:03:11+09:00'
+  timestamp: '2023-11-07 20:53:19+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/count_clique.test.cpp

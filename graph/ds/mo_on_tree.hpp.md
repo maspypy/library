@@ -12,12 +12,12 @@ data:
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/mo_on_tree.test.cpp
     title: test/mytest/mo_on_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/852/problem/I
@@ -38,13 +38,13 @@ data:
     \    vc_deg.clear();\n    vc_indeg.clear();\n    vc_outdeg.clear();\n  }\n\n \
     \ void add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n\
     \    assert(0 <= frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto\
-    \ e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n  //\
-    \ wt, off\n  void read_tree(bool wt = false, int off = 1) { read_graph(N - 1,\
-    \ wt, off); }\n\n  void read_graph(int M, bool wt = false, int off = 1) {\n  \
-    \  for (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a -= off, b -= off;\n\
+    \ e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n#ifdef\
+    \ FASTIO\n  // wt, off\n  void read_tree(bool wt = false, int off = 1) { read_graph(N\
+    \ - 1, wt, off); }\n\n  void read_graph(int M, bool wt = false, int off = 1) {\n\
+    \    for (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a -= off, b -= off;\n\
     \      if (!wt) {\n        add(a, b);\n      } else {\n        T c;\n        read(c);\n\
-    \        add(a, b, c);\n      }\n    }\n    build();\n  }\n\n  void build() {\n\
-    \    assert(!prepared);\n    prepared = true;\n    indptr.assign(N + 1, 0);\n\
+    \        add(a, b, c);\n      }\n    }\n    build();\n  }\n#endif\n\n  void build()\
+    \ {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N + 1, 0);\n\
     \    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if (!directed)\
     \ indptr[e.to + 1]++;\n    }\n    for (int v = 0; v < N; ++v) { indptr[v + 1]\
     \ += indptr[v]; }\n    auto counter = indptr;\n    csr_edges.resize(indptr.back()\
@@ -288,8 +288,8 @@ data:
   isVerificationFile: false
   path: graph/ds/mo_on_tree.hpp
   requiredBy: []
-  timestamp: '2023-11-04 05:26:59+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-11-07 20:53:19+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/mo_on_tree.test.cpp
 documentation_of: graph/ds/mo_on_tree.hpp
