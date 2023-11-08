@@ -27,6 +27,7 @@ inline void load() {
   memcpy(ibuf, ibuf + pil, pir - pil);
   pir = pir - pil + fread(ibuf + pir - pil, 1, SZ - pir + pil, stdin);
   pil = 0;
+  if (pir < SZ) ibuf[pir++] = '\n';
 }
 
 inline void flush() {
@@ -51,7 +52,6 @@ void rd(string &x) {
   do {
     x += c;
     if (pil == pir) load();
-    if (pil == pir) break;
     c = ibuf[pil++];
   } while (!isspace(c));
 }
@@ -75,7 +75,7 @@ void rd_integer(T &x) {
     if (c == '-') { minus = 1, c = ibuf[pil++]; }
   }
   x = 0;
-  while (c >= '0') { x = x * 10 + (c & 15), c = ibuf[pil++]; }
+  while ('0' <= c) { x = x * 10 + (c & 15), c = ibuf[pil++]; }
   if constexpr (is_signed<T>::value || is_same_v<T, i128>) {
     if (minus) x = -x;
   }
