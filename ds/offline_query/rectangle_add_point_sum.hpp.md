@@ -15,6 +15,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/2338.test.cpp
     title: test/yukicoder/2338.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2491.test.cpp
+    title: test/yukicoder/2491.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -118,6 +121,7 @@ data:
   timestamp: '2023-11-01 01:33:38+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/yukicoder/2491.test.cpp
   - test/yukicoder/2338.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
 documentation_of: ds/offline_query/rectangle_add_point_sum.hpp

@@ -19,6 +19,9 @@ data:
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/2491.test.cpp
+    title: test/yukicoder/2491.test.cpp
+  - icon: ':x:'
     path: test_atcoder/abc270_f.test.cpp
     title: test_atcoder/abc270_f.test.cpp
   - icon: ':x:'
@@ -223,6 +226,7 @@ data:
   timestamp: '2023-11-07 22:29:27+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/2491.test.cpp
   - test/aoj/GRL_2_A.test.cpp
   - test_atcoder/abc270_f.test.cpp
   - test_atcoder/abc301h.test.cpp

@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/centroid_decomposition.hpp
     title: graph/centroid_decomposition.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
   - icon: ':question:'
@@ -296,50 +296,50 @@ data:
     \ = root[e.frm];\n        par[e.to] = e.frm;\n        if (e.cost == 0)\n     \
     \     que.push_front(e.to);\n        else\n          que.push_back(e.to);\n  \
     \    }\n    }\n  }\n  return {dist, par, root};\n}\n#line 3 \"graph/centroid_decomposition.hpp\"\
-    \n\ntemplate <typename F>\nvoid centroid_decomposition_0_dfs(vc<int>& par, vc<int>&\
-    \ vs, F f) {\n  const int N = len(par);\n  assert(N >= 1);\n  int c = -1;\n  vc<int>\
-    \ sz(N, 1);\n  FOR_R(i, N) {\n    if (sz[i] >= ceil<int>(N, 2)) {\n      c = i;\n\
-    \      break;\n    }\n    sz[par[i]] += sz[i];\n  }\n  vc<int> color(N);\n  vc<int>\
-    \ V = {c};\n  int nc = 1;\n  FOR(v, 1, N) {\n    if (par[v] == c) { V.eb(v), color[v]\
-    \ = nc++; }\n  }\n  if (c > 0) {\n    for (int a = par[c]; a != -1; a = par[a])\
-    \ { color[a] = nc, V.eb(a); }\n    ++nc;\n  }\n  FOR(i, N) {\n    if (i != c &&\
-    \ color[i] == 0) color[i] = color[par[i]], V.eb(i);\n  }\n  vc<int> indptr(nc\
-    \ + 1);\n  FOR(i, N) indptr[1 + color[i]]++;\n  FOR(i, nc) indptr[i + 1] += indptr[i];\n\
-    \  vc<int> counter = indptr;\n  vc<int> ord(N);\n  for (auto& v: V) { ord[counter[color[v]]++]\
-    \ = v; }\n  vc<int> new_idx(N);\n  FOR(i, N) new_idx[ord[i]] = i;\n  vc<int> name(N);\n\
-    \  FOR(i, N) name[new_idx[i]] = vs[i];\n  {\n    vc<int> tmp(N, -1);\n    FOR(i,\
-    \ 1, N) {\n      int a = new_idx[i], b = new_idx[par[i]];\n      if (a > b) swap(a,\
-    \ b);\n      tmp[b] = a;\n    }\n    swap(par, tmp);\n  }\n  f(par, name, indptr);\n\
-    \  FOR(k, 1, nc) {\n    int L = indptr[k], R = indptr[k + 1];\n    vc<int> par1(R\
-    \ - L, -1);\n    vc<int> name1(R - L, -1);\n    name1[0] = name[0];\n    FOR(i,\
-    \ L, R) name1[i - L] = name[i];\n    FOR(i, L, R) { par1[i - L] = max(par[i] -\
-    \ L, -1); }\n    centroid_decomposition_0_dfs(par1, name1, f);\n  }\n}\n\n/*\n\
-    https://maspypy.com/%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%83%bb1-3%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%81%ae%e3%81%8a%e7%b5%b5%e6%8f%8f%e3%81%8d\n\
-    1/3 CD \u306E\u307F\u6271\u3046\ncentroid_decomposition_1\uFF1A\u9577\u3055 2\
-    \ \u4EE5\u4E0A\u306E\u30D1\u30B9\u5168\u4F53\n*/\ntemplate <typename F>\nvoid\
-    \ centroid_decomposition_1_dfs(vc<int>& par, vc<int> vs, F f) {\n  const int N\
-    \ = len(par);\n  assert(N > 1);\n  if (N == 2) { return; }\n  int c = -1;\n  vc<int>\
-    \ sz(N, 1);\n  FOR_R(i, N) {\n    if (sz[i] >= ceil<int>(N, 2)) {\n      c = i;\n\
-    \      break;\n    }\n    sz[par[i]] += sz[i];\n  }\n  vc<int> color(N, -1);\n\
-    \  int take = 0;\n  vc<int> ord(N, -1);\n  ord[c] = 0;\n  int p = 1;\n  FOR(v,\
-    \ 1, N) {\n    if (par[v] == c && take + sz[v] <= floor<int>(N - 1, 2)) {\n  \
-    \    color[v] = 0, ord[v] = p++, take += sz[v];\n    }\n  }\n  FOR(i, 1, N) {\n\
-    \    if (color[par[i]] == 0) color[i] = 0, ord[i] = p++;\n  }\n  int n0 = p -\
-    \ 1;\n  for (int a = par[c]; a != -1; a = par[a]) { color[a] = 1, ord[a] = p++;\
-    \ }\n  FOR(i, N) {\n    if (i != c && color[i] == -1) color[i] = 1, ord[i] = p++;\n\
-    \  }\n  assert(p == N);\n  int n1 = N - 1 - n0;\n  vc<int> par0(n0 + 1, -1), par1(n1\
-    \ + 1, -1), par2(N, -1);\n  vc<int> V0(n0 + 1), V1(n1 + 1), V2(N);\n  FOR(v, N)\
-    \ {\n    int i = ord[v];\n    V2[i] = vs[v];\n    if (color[v] != 1) { V0[i] =\
-    \ vs[v]; }\n    if (color[v] != 0) { V1[max(i - n0, 0)] = vs[v]; }\n  }\n  FOR(v,\
-    \ 1, N) {\n    int a = ord[v], b = ord[par[v]];\n    if (a > b) swap(a, b);\n\
-    \    par2[b] = a;\n    if (color[v] != 1 && color[par[v]] != 1) par0[b] = a;\n\
-    \    if (color[v] != 0 && color[par[v]] != 0)\n      par1[max(b - n0, 0)] = max(a\
-    \ - n0, 0);\n  }\n  f(par2, V2, n0, n1);\n  centroid_decomposition_1_dfs(par0,\
+    \n\n/*\n\u9802\u70B9\u30D9\u30FC\u30B9\u306E\u91CD\u5FC3\u5206\u89E3\nf(par, V,\
+    \ indptr)\n*/\ntemplate <typename F>\nvoid centroid_decomposition_0_dfs(vc<int>&\
+    \ par, vc<int>& vs, F f) {\n  const int N = len(par);\n  assert(N >= 1);\n  int\
+    \ c = -1;\n  vc<int> sz(N, 1);\n  FOR_R(i, N) {\n    if (sz[i] >= ceil<int>(N,\
+    \ 2)) {\n      c = i;\n      break;\n    }\n    sz[par[i]] += sz[i];\n  }\n  vc<int>\
+    \ color(N);\n  vc<int> V = {c};\n  int nc = 1;\n  FOR(v, 1, N) {\n    if (par[v]\
+    \ == c) { V.eb(v), color[v] = nc++; }\n  }\n  if (c > 0) {\n    for (int a = par[c];\
+    \ a != -1; a = par[a]) { color[a] = nc, V.eb(a); }\n    ++nc;\n  }\n  FOR(i, N)\
+    \ {\n    if (i != c && color[i] == 0) color[i] = color[par[i]], V.eb(i);\n  }\n\
+    \  vc<int> indptr(nc + 1);\n  FOR(i, N) indptr[1 + color[i]]++;\n  FOR(i, nc)\
+    \ indptr[i + 1] += indptr[i];\n  vc<int> counter = indptr;\n  vc<int> ord(N);\n\
+    \  for (auto& v: V) { ord[counter[color[v]]++] = v; }\n  vc<int> new_idx(N);\n\
+    \  FOR(i, N) new_idx[ord[i]] = i;\n  vc<int> name(N);\n  FOR(i, N) name[new_idx[i]]\
+    \ = vs[i];\n  {\n    vc<int> tmp(N, -1);\n    FOR(i, 1, N) {\n      int a = new_idx[i],\
+    \ b = new_idx[par[i]];\n      if (a > b) swap(a, b);\n      tmp[b] = a;\n    }\n\
+    \    swap(par, tmp);\n  }\n  f(par, name, indptr);\n  FOR(k, 1, nc) {\n    int\
+    \ L = indptr[k], R = indptr[k + 1];\n    vc<int> par1(R - L, -1);\n    vc<int>\
+    \ name1(R - L, -1);\n    name1[0] = name[0];\n    FOR(i, L, R) name1[i - L] =\
+    \ name[i];\n    FOR(i, L, R) { par1[i - L] = max(par[i] - L, -1); }\n    centroid_decomposition_0_dfs(par1,\
+    \ name1, f);\n  }\n}\n\n/*\nhttps://maspypy.com/%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%83%bb1-3%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%81%ae%e3%81%8a%e7%b5%b5%e6%8f%8f%e3%81%8d\n\
+    centroid_decomposition_1\uFF1A\u9577\u3055 2 \u4EE5\u4E0A\u306E\u30D1\u30B9\u5168\
+    \u4F53\nf(par, V, n1, n2)\n[1,1+n1]: color 1\n[1+n1,1+n1+n2]: color 2\n*/\ntemplate\
+    \ <typename F>\nvoid centroid_decomposition_1_dfs(vc<int>& par, vc<int> vs, F\
+    \ f) {\n  const int N = len(par);\n  assert(N > 1);\n  if (N == 2) { return; }\n\
+    \  int c = -1;\n  vc<int> sz(N, 1);\n  FOR_R(i, N) {\n    if (sz[i] >= ceil<int>(N,\
+    \ 2)) {\n      c = i;\n      break;\n    }\n    sz[par[i]] += sz[i];\n  }\n  vc<int>\
+    \ color(N, -1);\n  int take = 0;\n  vc<int> ord(N, -1);\n  ord[c] = 0;\n  int\
+    \ p = 1;\n  FOR(v, 1, N) {\n    if (par[v] == c && take + sz[v] <= floor<int>(N\
+    \ - 1, 2)) {\n      color[v] = 0, ord[v] = p++, take += sz[v];\n    }\n  }\n \
+    \ FOR(i, 1, N) {\n    if (color[par[i]] == 0) color[i] = 0, ord[i] = p++;\n  }\n\
+    \  int n0 = p - 1;\n  for (int a = par[c]; a != -1; a = par[a]) { color[a] = 1,\
+    \ ord[a] = p++; }\n  FOR(i, N) {\n    if (i != c && color[i] == -1) color[i] =\
+    \ 1, ord[i] = p++;\n  }\n  assert(p == N);\n  int n1 = N - 1 - n0;\n  vc<int>\
+    \ par0(n0 + 1, -1), par1(n1 + 1, -1), par2(N, -1);\n  vc<int> V0(n0 + 1), V1(n1\
+    \ + 1), V2(N);\n  FOR(v, N) {\n    int i = ord[v];\n    V2[i] = vs[v];\n    if\
+    \ (color[v] != 1) { V0[i] = vs[v]; }\n    if (color[v] != 0) { V1[max(i - n0,\
+    \ 0)] = vs[v]; }\n  }\n  FOR(v, 1, N) {\n    int a = ord[v], b = ord[par[v]];\n\
+    \    if (a > b) swap(a, b);\n    par2[b] = a;\n    if (color[v] != 1 && color[par[v]]\
+    \ != 1) par0[b] = a;\n    if (color[v] != 0 && color[par[v]] != 0)\n      par1[max(b\
+    \ - n0, 0)] = max(a - n0, 0);\n  }\n  f(par2, V2, n0, n1);\n  centroid_decomposition_1_dfs(par0,\
     \ V0, f);\n  centroid_decomposition_1_dfs(par1, V1, f);\n}\n\n/*\nhttps://maspypy.com/%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%83%bb1-3%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%81%ae%e3%81%8a%e7%b5%b5%e6%8f%8f%e3%81%8d\n\
-    1/3 CD \u306E\u307F\u6271\u3046\ncentroid_decomposition_1\uFF1A\u9577\u3055 2\
-    \ \u4EE5\u4E0A\u306E\u30D1\u30B9\u5168\u4F53\n*/\n\ntemplate <typename F>\nvoid\
-    \ centroid_decomposition_2_dfs(vc<int>& par, vc<int>& vs, vc<int>& real,\n   \
-    \                               F f) {\n  const int N = len(par);\n  assert(N\
+    f(par2, V2, color)\ncolor in [-1,0,1], -1 is virtual.\n*/\ntemplate <typename\
+    \ F>\nvoid centroid_decomposition_2_dfs(vc<int>& par, vc<int>& vs, vc<int>& real,\n\
+    \                                  F f) {\n  const int N = len(par);\n  assert(N\
     \ > 1);\n  if (N == 2) {\n    if (real[0] && real[1]) {\n      vc<int> color =\
     \ {0, 1};\n      f(par, vs, color);\n    }\n    return;\n  }\n  int c = -1;\n\
     \  vc<int> sz(N, 1);\n  FOR_R(i, N) {\n    if (sz[i] >= ceil<int>(N, 2)) {\n \
@@ -680,7 +680,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
+  timestamp: '2023-11-09 04:05:29+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp

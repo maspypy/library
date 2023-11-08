@@ -25,6 +25,9 @@ data:
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/2491.test.cpp
+    title: test/yukicoder/2491.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/255.test.cpp
     title: test/yukicoder/255.test.cpp
   - icon: ':x:'
@@ -56,6 +59,7 @@ data:
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/2491.test.cpp
   - test/yukicoder/1919.test.cpp
   - test/yukicoder/255.test.cpp
   - test/yukicoder/749.test.cpp
