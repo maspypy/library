@@ -271,21 +271,21 @@ data:
     \ y; };\n      int off = len(nbd);\n      int p = off;\n      MP.reset();\n  \
     \    FOR(i, N) {\n        int x = point[i].fi >> (k);\n        int y = point[i].se\
     \ >> (k);\n        u64 key = to_64(x, y);\n        int idx = MP.index(key);\n\
-    \        if (MP.used[idx]) {\n          IDX[k][i] = MP.dat[idx].se;\n        }\
-    \ else {\n          MP.used[idx] = 1;\n          MP.dat[idx] = {key, p++};\n \
-    \       }\n      }\n      nbd.resize(p);\n      FOR(i, N) {\n        int x = point[i].fi\
-    \ >> (k);\n        int y = point[i].se >> (k);\n        int me = MP[to_64(x, y)];\n\
-    \        int s = 0;\n        FOR(dx, -1, 2) FOR(dy, -1, 2) {\n          u64 key\
-    \ = to_64(x + dx, y + dy);\n          nbd[me][s++] = MP.get(key, -1);\n      \
-    \  }\n      }\n    }\n\n    vc<array<int, 8>> dat(len(nbd), {-1, -1, -1, -1, -1,\
-    \ -1, -1, -1});\n    auto add = [&](int k, int i) -> void {\n      int idx = IDX[k][i];\n\
-    \      for (auto&& j: dat[idx]) {\n        if (j == -1) {\n          j = i;\n\
-    \          return;\n        }\n      }\n    };\n    auto rm = [&](int k, int i)\
-    \ -> void {\n      int idx = IDX[k][i];\n      for (auto&& j: dat[idx]) {\n  \
-    \      if (j == i) {\n          j = -1;\n          return;\n        }\n      }\n\
-    \    };\n\n    auto solve_level = [&](int k, int i) -> vc<pair<int, ll>> {\n \
-    \     // \u30EC\u30D9\u30EB k \u306E\u70B9\u7FA4\u306B\u5BFE\u3059\u308B\u7B54\
-    \u306E\u8A08\u7B97\n      vc<pair<int, ll>> res;\n      int me = IDX[k][i];\n\
+    \        if (MP.used[idx]) {\n          IDX[k][i] = MP.val[idx];\n        } else\
+    \ {\n          MP.used[idx] = 1;\n          MP.key[idx] = key, MP.val[idx] = p++;\n\
+    \        }\n      }\n      nbd.resize(p);\n      FOR(i, N) {\n        int x =\
+    \ point[i].fi >> (k);\n        int y = point[i].se >> (k);\n        int me = MP[to_64(x,\
+    \ y)];\n        int s = 0;\n        FOR(dx, -1, 2) FOR(dy, -1, 2) {\n        \
+    \  u64 key = to_64(x + dx, y + dy);\n          nbd[me][s++] = MP.get(key, -1);\n\
+    \        }\n      }\n    }\n\n    vc<array<int, 8>> dat(len(nbd), {-1, -1, -1,\
+    \ -1, -1, -1, -1, -1});\n    auto add = [&](int k, int i) -> void {\n      int\
+    \ idx = IDX[k][i];\n      for (auto&& j: dat[idx]) {\n        if (j == -1) {\n\
+    \          j = i;\n          return;\n        }\n      }\n    };\n    auto rm\
+    \ = [&](int k, int i) -> void {\n      int idx = IDX[k][i];\n      for (auto&&\
+    \ j: dat[idx]) {\n        if (j == i) {\n          j = -1;\n          return;\n\
+    \        }\n      }\n    };\n\n    auto solve_level = [&](int k, int i) -> vc<pair<int,\
+    \ ll>> {\n      // \u30EC\u30D9\u30EB k \u306E\u70B9\u7FA4\u306B\u5BFE\u3059\u308B\
+    \u7B54\u306E\u8A08\u7B97\n      vc<pair<int, ll>> res;\n      int me = IDX[k][i];\n\
     \      for (auto&& idx: nbd[me]) {\n        if (idx == -1) continue;\n       \
     \ for (auto&& j: dat[idx]) {\n          if (j == -1) continue;\n          res.eb(j,\
     \ dist(i, j));\n        }\n      }\n      return res;\n    };\n    Dual_SegTree<Monoid_Min<ll>>\
@@ -345,7 +345,7 @@ data:
   isVerificationFile: true
   path: test/mytest/range_closest_pair.test.cpp
   requiredBy: []
-  timestamp: '2023-11-08 12:09:23+09:00'
+  timestamp: '2023-11-08 23:23:17+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/range_closest_pair.test.cpp
