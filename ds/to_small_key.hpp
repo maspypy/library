@@ -10,9 +10,10 @@ struct To_Small_Key {
     int idx = MP.index(x);
     if (!MP.used[idx]) {
       MP.used[idx] = 1;
-      MP.dat[idx] = {u64(x), kind++};
+      MP.key[idx] = x;
+      MP.val[idx] = kind++;
     }
-    return MP.dat[idx].se;
+    return MP.val[idx];
   }
 
   int query(u64 x) { return MP.get(x, -1); }
