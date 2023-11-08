@@ -1,6 +1,10 @@
 #include "graph/base.hpp"
 #include "graph/shortest_path/bfs01.hpp"
 
+/*
+頂点ベースの重心分解
+f(par, V, indptr)
+*/
 template <typename F>
 void centroid_decomposition_0_dfs(vc<int>& par, vc<int>& vs, F f) {
   const int N = len(par);
@@ -60,8 +64,10 @@ void centroid_decomposition_0_dfs(vc<int>& par, vc<int>& vs, F f) {
 
 /*
 https://maspypy.com/%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%83%bb1-3%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%81%ae%e3%81%8a%e7%b5%b5%e6%8f%8f%e3%81%8d
-1/3 CD のみ扱う
 centroid_decomposition_1：長さ 2 以上のパス全体
+f(par, V, n1, n2)
+[1,1+n1]: color 1
+[1+n1,1+n1+n2]: color 2
 */
 template <typename F>
 void centroid_decomposition_1_dfs(vc<int>& par, vc<int> vs, F f) {
@@ -120,10 +126,9 @@ void centroid_decomposition_1_dfs(vc<int>& par, vc<int> vs, F f) {
 
 /*
 https://maspypy.com/%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%83%bb1-3%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%81%ae%e3%81%8a%e7%b5%b5%e6%8f%8f%e3%81%8d
-1/3 CD のみ扱う
-centroid_decomposition_1：長さ 2 以上のパス全体
+f(par2, V2, color)
+color in [-1,0,1], -1 is virtual.
 */
-
 template <typename F>
 void centroid_decomposition_2_dfs(vc<int>& par, vc<int>& vs, vc<int>& real,
                                   F f) {
