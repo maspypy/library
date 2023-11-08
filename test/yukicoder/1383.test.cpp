@@ -6,7 +6,7 @@
 void solve() {
   LL(N, K, M);
 
-  HashMap<int, 21> MP;
+  HashMap<int, 21, true> MP;
   FOR(A, 1, 1 << 20) {
     vi X;
     ll prod = A;
@@ -43,11 +43,6 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }

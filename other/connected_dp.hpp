@@ -81,13 +81,14 @@ pair<vvc<int>, vc<pair<int, int>>> connedted_dp_graph(int N,
         edges.eb(p, 1);
         continue;
       }
-      ll h = hash_vector<int>(nxt);
+      u64 h = hash_vector<int>(nxt);
       if (merge_reverse) { chmin(h, hash_vector<int>(reverse_state(nxt))); }
-      if (!MP.count(h)) {
-        MP[h] = len(states);
+      int idx = MP.index(h);
+      if (!MP.used[idx]) {
+        MP.key[idx] = h, MP.val[idx] = len(states);
         states.eb(nxt);
       }
-      edges.eb(p, MP[h]);
+      edges.eb(p, MP.val[idx]);
     }
   }
   return {states, edges};
@@ -98,7 +99,7 @@ pair<vvc<int>, vc<pair<int, int>>> connedted_dp_graph(int N,
 // 状態：-1 が選んでいない。0,1,2,3 等は同じ成分には同じ値が入る。
 // [states, edges]
 pair<vvc<int>, vc<pair<int, int>>> polygon_dp_graph(int N) {
-  static HashMap<int> MP;
+  static HashMap<int, 20, true> MP;
   MP.reset();
   vvc<int> states;
   vc<pair<int, int>> edges;
@@ -155,12 +156,13 @@ pair<vvc<int>, vc<pair<int, int>>> polygon_dp_graph(int N) {
         return a - close == after;
       }(now, nxt, convert);
       if (!ok) continue;
-      ll h = hash_vector<int>(nxt);
-      if (!MP.count(h)) {
-        MP[h] = len(states);
+      u64 h = hash_vector<int>(nxt);
+      int idx = MP.index(h);
+      if (!MP.used[idx]) {
+        MP.key[idx] = h, MP.val[idx] = len(states);
         states.eb(nxt);
       }
-      edges.eb(p, MP[h]);
+      edges.eb(p, MP.val[idx]);
     }
   }
   return {states, edges};

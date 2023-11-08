@@ -52,7 +52,7 @@ struct Range_Closest_Pair_Query {
       FOR(i, N) {
         int x = point[i].fi >> (k);
         int y = point[i].se >> (k);
-        u64 key = to_ll(x, y);
+        u64 key = to_64(x, y);
         int idx = MP.index(key);
         if (MP.used[idx]) {
           IDX[k][i] = MP.dat[idx].se;

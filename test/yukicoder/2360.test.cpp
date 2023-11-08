@@ -10,7 +10,7 @@ using mint = modint998;
 void solve() {
   LL(N);
   VEC(string, A, N);
-  Graph<bool, 0> G(N);
+  Graph<int, 0> G(N);
   G.read_tree();
   Tree<decltype(G)> tree(G);
 
