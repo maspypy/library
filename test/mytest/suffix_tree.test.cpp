@@ -1,6 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
-#include "other/io.hpp"
 
 #include "random/base.hpp"
 #include "string/suffix_tree.hpp"
@@ -146,8 +145,9 @@ void test2() {
 }
 
 void solve() {
-  INT(a, b);
-  print(a + b);
+  int a, b;
+  cin >> a >> b;
+  cout << a + b << "\n";
 }
 
 signed main() {

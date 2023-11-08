@@ -1,6 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
-#include "other/io.hpp"
 
 #include "knapsack/subset_sum.hpp"
 #include "random/base.hpp"
@@ -35,8 +34,9 @@ void test() {
 }
 
 void solve() {
-  INT(a, b);
-  print(a + b);
+  int a, b;
+  cin >> a >> b;
+  cout << a + b << "\n";
 }
 
 signed main() {
