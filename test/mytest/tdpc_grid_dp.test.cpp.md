@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: random/hash_vector.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -203,33 +203,32 @@ data:
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\n#line 4 \"test/mytest/tdpc_grid_dp.test.cpp\"\n\n#line 2 \"ds/hashmap.hpp\"\
     \n\r\n// u64 -> Val\r\ntemplate <typename Val, int LOG = 20, bool KEEP_IDS = false>\r\
-    \nstruct HashMap {\r\n  using P = pair<u64, Val>;\r\n  static constexpr int N\
-    \ = (1 << LOG);\r\n  P* dat;\r\n  vc<int> IDS;\r\n  bitset<N> used;\r\n  const\
-    \ int shift;\r\n  const u64 r = 11995408973635179863ULL;\r\n  HashMap() : dat(new\
-    \ P[N]), shift(64 - LOG) {}\r\n  int hash(ll x) {\r\n    static const u64 FIXED_RANDOM\r\
+    \nstruct HashMap {\r\n  static constexpr int N = (1 << LOG);\r\n  u64* key;\r\n\
+    \  Val* val;\r\n  vc<int> IDS;\r\n  bitset<N> used;\r\n  const int shift;\r\n\
+    \  const u64 r = 11995408973635179863ULL;\r\n  HashMap() : key(new u64[N]), val(new\
+    \ Val[N]), shift(64 - LOG) {}\r\n  u32 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\r\
     \n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\n \
     \   return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
-    \ u64& key) {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && dat[i].fi\
-    \ != key; (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
-    \ u64& key) {\r\n    int i = index(key);\r\n    if (!used[i]) {\r\n      used[i]\
-    \ = 1, dat[i] = {key, Val{}};\r\n      if constexpr (KEEP_IDS) IDS.eb(i);\r\n\
-    \    }\r\n    return dat[i].se;\r\n  }\r\n\r\n  Val get(const u64& key, Val default_value)\
-    \ {\r\n    int i = index(key);\r\n    if (!used[i]) return default_value;\r\n\
-    \    return dat[i].se;\r\n  }\r\n\r\n  bool count(const u64& key) {\r\n    int\
-    \ i = index(key);\r\n    return used[i] && dat[i].fi == key;\r\n  }\r\n\r\n  void\
-    \ reset() {\r\n    static_assert(KEEP_IDS);\r\n    for (auto&& i: IDS) used[i]\
-    \ = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  // f(key, val)\r\n  template <typename\
-    \ F>\r\n  void enumerate_all(F f) {\r\n    static_assert(KEEP_IDS);\r\n    for\
-    \ (auto&& i: IDS) f(dat[i].fi, dat[i].se);\r\n  }\r\n};\r\n#line 2 \"random/hash_vector.hpp\"\
-    \n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n    \
-    \  = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n                  \
-    \   chrono::high_resolution_clock::now().time_since_epoch())\n               \
-    \      .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return\
-    \ x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll\
-    \ l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/modint61.hpp\"\n\r\
-    \nstruct modint61 {\r\n  static constexpr u64 mod = (1ULL << 61) - 1;\r\n  u64\
-    \ val;\r\n  constexpr modint61() : val(0ULL) {}\r\n  constexpr modint61(u32 x)\
-    \ : val(x) {}\r\n  constexpr modint61(u64 x) : val(x % mod) {}\r\n  constexpr\
+    \ u64& k) {\r\n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k;\
+    \ (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
+    \ u64& k) {\r\n    int i = index(k);\r\n    if (!used[i]) {\r\n      used[i] =\
+    \ 1, key[i] = k, val[i] = Val{};\r\n      if constexpr (KEEP_IDS) IDS.eb(i);\r\
+    \n    }\r\n    return val[i];\r\n  }\r\n\r\n  Val get(const u64& k, Val default_value)\
+    \ {\r\n    int i = index(k);\r\n    if (!used[i]) return default_value;\r\n  \
+    \  return val[i];\r\n  }\r\n\r\n  bool count(const u64& k) {\r\n    int i = index(k);\r\
+    \n    return used[i] && key[i] == k;\r\n  }\r\n\r\n  void reset() {\r\n    static_assert(KEEP_IDS);\r\
+    \n    for (auto&& i: IDS) used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  //\
+    \ f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F f) {\r\n  \
+    \  static_assert(KEEP_IDS);\r\n    for (auto&& i: IDS) f(key[i], val[i]);\r\n\
+    \  }\r\n};\r\n#line 2 \"random/hash_vector.hpp\"\n\n#line 2 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/modint61.hpp\"\
+    \n\r\nstruct modint61 {\r\n  static constexpr u64 mod = (1ULL << 61) - 1;\r\n\
+    \  u64 val;\r\n  constexpr modint61() : val(0ULL) {}\r\n  constexpr modint61(u32\
+    \ x) : val(x) {}\r\n  constexpr modint61(u64 x) : val(x % mod) {}\r\n  constexpr\
     \ modint61(int x) : val((x < 0) ? (x + static_cast<ll>(mod)) : x) {}\r\n  constexpr\
     \ modint61(ll x)\r\n      : val(((x %= static_cast<ll>(mod)) < 0) ? (x + static_cast<ll>(mod))\r\
     \n                                              : x) {}\r\n  static constexpr\
@@ -364,54 +363,56 @@ data:
     \u3088\u3044\u306E\u306F\u3001\u7D42\u72B6\u614B\u306B\u3044\u304F\u3068\u304D\
     \u306E\u307F\n      if (b >= 2) continue;\n      if (b == 1) {\n        if (MAX(nxt)\
     \ != -1) continue;\n        edges.eb(p, 1);\n        continue;\n      }\n    \
-    \  ll h = hash_vector<int>(nxt);\n      if (merge_reverse) { chmin(h, hash_vector<int>(reverse_state(nxt)));\
-    \ }\n      if (!MP.count(h)) {\n        MP[h] = len(states);\n        states.eb(nxt);\n\
-    \      }\n      edges.eb(p, MP[h]);\n    }\n  }\n  return {states, edges};\n}\n\
-    \n// 0, 1 \uFF1A\u7A7A\u306E\u5217\u3001\u9818\u57DF\u306E\u624B\u524D\u3001\u5F8C\
-    \u308D\n// \u591A\u89D2\u5F62\uFF08\u7A7A\u6D1E\u306A\u3057\uFF09\u3092\u3072\u3068\
-    \u3064\u4F5C\u308B\u3002\n// \u72B6\u614B\uFF1A-1 \u304C\u9078\u3093\u3067\u3044\
-    \u306A\u3044\u30020,1,2,3 \u7B49\u306F\u540C\u3058\u6210\u5206\u306B\u306F\u540C\
-    \u3058\u5024\u304C\u5165\u308B\u3002\n// [states, edges]\npair<vvc<int>, vc<pair<int,\
-    \ int>>> polygon_dp_graph(int N) {\n  static HashMap<int> MP;\n  MP.reset();\n\
-    \  vvc<int> states;\n  vc<pair<int, int>> edges;\n\n  states.eb(vc<int>(N, -1));\n\
-    \  states.eb(vc<int>(N, -1));\n  MP[hash_vector<int>(states[0])] = 0;\n\n  int\
-    \ p = -1;\n  while (1) {\n    if (++p == len(states)) break;\n    if (p == 1)\
-    \ {\n      edges.eb(1, 1);\n      continue;\n    }\n    vc<int> now = states[p];\n\
-    \    for (auto&& [nxt, convert]: next_states(now)) {\n      // \u4ECA\u306E\u6210\
-    \u5206\u6570\u3001\u6D88\u3048\u308B\u6210\u5206\u6570\n      int a = 0, b = 0;\n\
-    \      FOR(v, N) if (now[v] == v) {\n        ++a;\n        if (convert[v] == -1)\
-    \ ++b;\n      }\n      // \u6D88\u3048\u308B\u6210\u5206\u304C\u3042\u3063\u3066\
-    \u3088\u3044\u306E\u306F\u3001\u7D42\u72B6\u614B\u306B\u3044\u304F\u3068\u304D\
-    \u306E\u307F\n      if (b >= 2) continue;\n      if (b == 1) {\n        if (MAX(nxt)\
-    \ != -1) continue;\n        edges.eb(p, 1);\n        continue;\n      }\n    \
-    \  bool ok = [&](vc<int>& now, vc<int>& nxt, vc<int>& convert) -> bool {\n   \
-    \     // \u9802\u70B9\u306E\u307F\u3067\u63A5\u3059\u308B\u306E\u306F\u30C0\u30E1\
-    \n        FOR(i, N - 1) {\n          bool a1 = now[i] != -1, a2 = now[i + 1] !=\
-    \ -1;\n          bool b1 = nxt[i] != -1, b2 = nxt[i + 1] != -1;\n          if\
-    \ (a1 && !a2 && !b1 && b2) return false;\n          if (!a1 && a2 && b1 && !b2)\
-    \ return false;\n        }\n        // empty region \u3092\u9589\u3058\u308B\u3053\
-    \u3068\u3068\u3001\u7570\u306A\u308B\u9023\u7D50\u6210\u5206\u304C\u30DE\u30FC\
-    \u30B8\u3055\u308C\u308B\u3053\u3068\u304C\u540C\u5024\n        int close = 0;\n\
-    \        int after = 0;\n        vc<bool> is_new(N, 1);\n        FOR(i, N) if\
-    \ (convert[i] != -1) is_new[convert[i]] = 0;\n        FOR(i, N) if (nxt[i] ==\
-    \ i && !is_new[i])++ after;\n        vc<int> I;\n        FOR(i, N) if (now[i]\
-    \ != -1) I.eb(i);\n        FOR(k, len(I) - 1) {\n          int i = I[k], j = I[k\
-    \ + 1];\n          if (j == i + 1) continue;\n          bool cl = 1;\n       \
-    \   FOR(p, i + 1, j) if (nxt[p] == -1) cl = 0;\n          if (cl) close++;\n \
-    \       }\n        return a - close == after;\n      }(now, nxt, convert);\n \
-    \     if (!ok) continue;\n      ll h = hash_vector<int>(nxt);\n      if (!MP.count(h))\
-    \ {\n        MP[h] = len(states);\n        states.eb(nxt);\n      }\n      edges.eb(p,\
-    \ MP[h]);\n    }\n  }\n  return {states, edges};\n}\n\n} // namespace connected_dp_squares\n\
-    #line 9 \"test/mytest/tdpc_grid_dp.test.cpp\"\n\nusing mint = modint107;\n\nmint\
-    \ calc_tdpc_grid(int H, int W) {\n  HashMap<int> MP;\n\n  using P = pair<vc<int>,\
-    \ int>;\n  vc<P> states;\n\n  auto get_hash = [&](vc<int> a, int b) -> ll {\n\
-    \    a.eb(b);\n    return hash_vector<int>(a);\n  };\n\n  vc<int> init(H, -1);\n\
-    \  init[0] = 0;\n  states.eb(init, 0);\n  vc<int> end(H, -1);\n  end[H - 1] =\
-    \ H - 1;\n  states.eb(end, H - 1);\n  FOR(i, 2) {\n    auto [a, b] = states[i];\n\
-    \    ll h = get_hash(a, b);\n    MP[h] = i;\n  }\n\n  vc<pi> edges;\n\n  int p\
-    \ = -1;\n  while (1) {\n    ++p;\n    if (p >= len(states)) break;\n    auto [now,\
-    \ r] = states[p];\n    for (auto&& [nxt, convert]: connected_dp_squares::next_states(now))\
-    \ {\n      int s = convert[r];\n      if (s == -1) continue;\n      ll h = get_hash(nxt,\
+    \  u64 h = hash_vector<int>(nxt);\n      if (merge_reverse) { chmin(h, hash_vector<int>(reverse_state(nxt)));\
+    \ }\n      int idx = MP.index(h);\n      if (!MP.used[idx]) {\n        MP.key[idx]\
+    \ = h, MP.val[idx] = len(states);\n        states.eb(nxt);\n      }\n      edges.eb(p,\
+    \ MP.val[idx]);\n    }\n  }\n  return {states, edges};\n}\n\n// 0, 1 \uFF1A\u7A7A\
+    \u306E\u5217\u3001\u9818\u57DF\u306E\u624B\u524D\u3001\u5F8C\u308D\n// \u591A\u89D2\
+    \u5F62\uFF08\u7A7A\u6D1E\u306A\u3057\uFF09\u3092\u3072\u3068\u3064\u4F5C\u308B\
+    \u3002\n// \u72B6\u614B\uFF1A-1 \u304C\u9078\u3093\u3067\u3044\u306A\u3044\u3002\
+    0,1,2,3 \u7B49\u306F\u540C\u3058\u6210\u5206\u306B\u306F\u540C\u3058\u5024\u304C\
+    \u5165\u308B\u3002\n// [states, edges]\npair<vvc<int>, vc<pair<int, int>>> polygon_dp_graph(int\
+    \ N) {\n  static HashMap<int, 20, true> MP;\n  MP.reset();\n  vvc<int> states;\n\
+    \  vc<pair<int, int>> edges;\n\n  states.eb(vc<int>(N, -1));\n  states.eb(vc<int>(N,\
+    \ -1));\n  MP[hash_vector<int>(states[0])] = 0;\n\n  int p = -1;\n  while (1)\
+    \ {\n    if (++p == len(states)) break;\n    if (p == 1) {\n      edges.eb(1,\
+    \ 1);\n      continue;\n    }\n    vc<int> now = states[p];\n    for (auto&& [nxt,\
+    \ convert]: next_states(now)) {\n      // \u4ECA\u306E\u6210\u5206\u6570\u3001\
+    \u6D88\u3048\u308B\u6210\u5206\u6570\n      int a = 0, b = 0;\n      FOR(v, N)\
+    \ if (now[v] == v) {\n        ++a;\n        if (convert[v] == -1) ++b;\n     \
+    \ }\n      // \u6D88\u3048\u308B\u6210\u5206\u304C\u3042\u3063\u3066\u3088\u3044\
+    \u306E\u306F\u3001\u7D42\u72B6\u614B\u306B\u3044\u304F\u3068\u304D\u306E\u307F\
+    \n      if (b >= 2) continue;\n      if (b == 1) {\n        if (MAX(nxt) != -1)\
+    \ continue;\n        edges.eb(p, 1);\n        continue;\n      }\n      bool ok\
+    \ = [&](vc<int>& now, vc<int>& nxt, vc<int>& convert) -> bool {\n        // \u9802\
+    \u70B9\u306E\u307F\u3067\u63A5\u3059\u308B\u306E\u306F\u30C0\u30E1\n        FOR(i,\
+    \ N - 1) {\n          bool a1 = now[i] != -1, a2 = now[i + 1] != -1;\n       \
+    \   bool b1 = nxt[i] != -1, b2 = nxt[i + 1] != -1;\n          if (a1 && !a2 &&\
+    \ !b1 && b2) return false;\n          if (!a1 && a2 && b1 && !b2) return false;\n\
+    \        }\n        // empty region \u3092\u9589\u3058\u308B\u3053\u3068\u3068\
+    \u3001\u7570\u306A\u308B\u9023\u7D50\u6210\u5206\u304C\u30DE\u30FC\u30B8\u3055\
+    \u308C\u308B\u3053\u3068\u304C\u540C\u5024\n        int close = 0;\n        int\
+    \ after = 0;\n        vc<bool> is_new(N, 1);\n        FOR(i, N) if (convert[i]\
+    \ != -1) is_new[convert[i]] = 0;\n        FOR(i, N) if (nxt[i] == i && !is_new[i])++\
+    \ after;\n        vc<int> I;\n        FOR(i, N) if (now[i] != -1) I.eb(i);\n \
+    \       FOR(k, len(I) - 1) {\n          int i = I[k], j = I[k + 1];\n        \
+    \  if (j == i + 1) continue;\n          bool cl = 1;\n          FOR(p, i + 1,\
+    \ j) if (nxt[p] == -1) cl = 0;\n          if (cl) close++;\n        }\n      \
+    \  return a - close == after;\n      }(now, nxt, convert);\n      if (!ok) continue;\n\
+    \      u64 h = hash_vector<int>(nxt);\n      int idx = MP.index(h);\n      if\
+    \ (!MP.used[idx]) {\n        MP.key[idx] = h, MP.val[idx] = len(states);\n   \
+    \     states.eb(nxt);\n      }\n      edges.eb(p, MP.val[idx]);\n    }\n  }\n\
+    \  return {states, edges};\n}\n\n} // namespace connected_dp_squares\n#line 9\
+    \ \"test/mytest/tdpc_grid_dp.test.cpp\"\n\nusing mint = modint107;\n\nmint calc_tdpc_grid(int\
+    \ H, int W) {\n  HashMap<int> MP;\n\n  using P = pair<vc<int>, int>;\n  vc<P>\
+    \ states;\n\n  auto get_hash = [&](vc<int> a, int b) -> ll {\n    a.eb(b);\n \
+    \   return hash_vector<int>(a);\n  };\n\n  vc<int> init(H, -1);\n  init[0] = 0;\n\
+    \  states.eb(init, 0);\n  vc<int> end(H, -1);\n  end[H - 1] = H - 1;\n  states.eb(end,\
+    \ H - 1);\n  FOR(i, 2) {\n    auto [a, b] = states[i];\n    ll h = get_hash(a,\
+    \ b);\n    MP[h] = i;\n  }\n\n  vc<pi> edges;\n\n  int p = -1;\n  while (1) {\n\
+    \    ++p;\n    if (p >= len(states)) break;\n    auto [now, r] = states[p];\n\
+    \    for (auto&& [nxt, convert]: connected_dp_squares::next_states(now)) {\n \
+    \     int s = convert[r];\n      if (s == -1) continue;\n      ll h = get_hash(nxt,\
     \ s);\n      if (!MP.count(h)) {\n        MP[h] = len(states);\n        states.eb(nxt,\
     \ s);\n      }\n      edges.eb(p, MP[h]);\n    }\n  }\n\n  int S = len(states);\n\
     \  vc<mint> dp(S);\n  dp[0] = mint(1);\n  FOR(W + 1) {\n    vc<mint> newdp(S);\n\
@@ -453,8 +454,8 @@ data:
   isVerificationFile: true
   path: test/mytest/tdpc_grid_dp.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 22:29:27+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-08 12:09:23+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/tdpc_grid_dp.test.cpp
 layout: document

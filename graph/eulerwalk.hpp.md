@@ -80,51 +80,51 @@ data:
     \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
     #line 2 \"graph/vs_to_es.hpp\"\n\n#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\
     \ntemplate <typename Val, int LOG = 20, bool KEEP_IDS = false>\r\nstruct HashMap\
-    \ {\r\n  using P = pair<u64, Val>;\r\n  static constexpr int N = (1 << LOG);\r\
-    \n  P* dat;\r\n  vc<int> IDS;\r\n  bitset<N> used;\r\n  const int shift;\r\n \
-    \ const u64 r = 11995408973635179863ULL;\r\n  HashMap() : dat(new P[N]), shift(64\
-    \ - LOG) {}\r\n  int hash(ll x) {\r\n    static const u64 FIXED_RANDOM\r\n   \
-    \     = std::chrono::steady_clock::now().time_since_epoch().count();\r\n    return\
-    \ (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const u64& key)\
-    \ {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && dat[i].fi != key;\
+    \ {\r\n  static constexpr int N = (1 << LOG);\r\n  u64* key;\r\n  Val* val;\r\n\
+    \  vc<int> IDS;\r\n  bitset<N> used;\r\n  const int shift;\r\n  const u64 r =\
+    \ 11995408973635179863ULL;\r\n  HashMap() : key(new u64[N]), val(new Val[N]),\
+    \ shift(64 - LOG) {}\r\n  u32 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\r\
+    \n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\n \
+    \   return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
+    \ u64& k) {\r\n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k;\
     \ (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
-    \ u64& key) {\r\n    int i = index(key);\r\n    if (!used[i]) {\r\n      used[i]\
-    \ = 1, dat[i] = {key, Val{}};\r\n      if constexpr (KEEP_IDS) IDS.eb(i);\r\n\
-    \    }\r\n    return dat[i].se;\r\n  }\r\n\r\n  Val get(const u64& key, Val default_value)\
-    \ {\r\n    int i = index(key);\r\n    if (!used[i]) return default_value;\r\n\
-    \    return dat[i].se;\r\n  }\r\n\r\n  bool count(const u64& key) {\r\n    int\
-    \ i = index(key);\r\n    return used[i] && dat[i].fi == key;\r\n  }\r\n\r\n  void\
-    \ reset() {\r\n    static_assert(KEEP_IDS);\r\n    for (auto&& i: IDS) used[i]\
-    \ = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  // f(key, val)\r\n  template <typename\
-    \ F>\r\n  void enumerate_all(F f) {\r\n    static_assert(KEEP_IDS);\r\n    for\
-    \ (auto&& i: IDS) f(dat[i].fi, dat[i].se);\r\n  }\r\n};\r\n#line 4 \"graph/vs_to_es.hpp\"\
-    \n\ntemplate <typename GT>\nvc<int> vs_to_es(GT& G, vc<int>& vs, bool allow_use_twice\
-    \ = false) {\n  assert(!vs.empty());\n\n  static HashMap<int> MP;\n  MP.reset();\n\
-    \  vc<int> nxt(G.M, -1);\n\n  auto get = [&](ll a, ll b) -> u64 {\n    if (GT::is_directed\
-    \ && a > b) swap(a, b);\n    return a * G.N + b;\n  };\n\n  FOR(eid, G.M) {\n\
-    \    u64 k = get(G.edges[eid].frm, G.edges[eid].to);\n    int x = MP[k];\n   \
-    \ nxt[eid] = x, MP[k] = eid;\n  }\n  int n = len(vs);\n  vc<int> es(n - 1);\n\
-    \  FOR(i, n - 1) {\n    u64 k = get(vs[i], vs[i + 1]);\n    int eid = MP.get(k,\
-    \ -1);\n    assert(eid != -1);\n    es[i] = eid;\n    if (!allow_use_twice) {\
-    \ MP[k] = nxt[eid]; }\n  }\n  return es;\n}\n#line 3 \"graph/eulerwalk.hpp\"\n\
-    \r\n// (vs, es) or empty\r\ntemplate <typename GT>\r\npair<vc<int>, vc<int>> euler_walk(GT&\
-    \ G, int s = -1) {\r\n  const int N = G.N, M = G.M;\r\n  assert(G.is_prepared());\r\
-    \n  assert(N > 0);\r\n\r\n  if (s == -1) {\r\n    vc<int> deg(N);\r\n    for (auto&&\
-    \ e: G.edges) {\r\n      if constexpr (GT::is_directed) {\r\n        deg[e.frm]++,\
-    \ deg[e.to]--;\r\n      } else {\r\n        deg[e.frm]++, deg[e.to]++;\r\n   \
-    \   }\r\n    }\r\n    if constexpr (GT::is_directed) {\r\n      s = max_element(all(deg))\
-    \ - deg.begin();\r\n      if (deg[s] == 0) s = (M == 0 ? 0 : G.edges[0].frm);\r\
-    \n    } else {\r\n      s = [&]() -> int {\r\n        FOR(v, N) if (deg[v] & 1)\
-    \ return v;\r\n        return (M == 0 ? 0 : G.edges[0].frm);\r\n      }();\r\n\
-    \    }\r\n  }\r\n\r\n  if (M == 0) return {{s}, {}};\r\n  vc<int> D(N), its(N),\
-    \ eu(M), vs, st = {s};\r\n  FOR(v, N) its[v] = G.indptr[v];\r\n  ++D[s];\r\n \
-    \ while (!st.empty()) {\r\n    int x = st.back(), y, e, &it = its[x], end = G.indptr[x\
-    \ + 1];\r\n    if (it == end) {\r\n      vs.eb(x);\r\n      st.pop_back();\r\n\
-    \      continue;\r\n    }\r\n    auto& ee = G.csr_edges[it++];\r\n    y = ee.to,\
-    \ e = ee.id;\r\n    if (!eu[e]) {\r\n      D[x]--, D[y]++;\r\n      eu[e] = 1;\r\
-    \n      st.eb(y);\r\n    }\r\n  }\r\n  for (auto&& x: D)\r\n    if (x < 0) return\
-    \ {{}, {}};\r\n  if (len(vs) != M + 1) return {{}, {}};\r\n  reverse(all(vs));\r\
-    \n  auto es = vs_to_es(G, vs, false);\r\n  return {vs, es};\r\n}\r\n"
+    \ u64& k) {\r\n    int i = index(k);\r\n    if (!used[i]) {\r\n      used[i] =\
+    \ 1, key[i] = k, val[i] = Val{};\r\n      if constexpr (KEEP_IDS) IDS.eb(i);\r\
+    \n    }\r\n    return val[i];\r\n  }\r\n\r\n  Val get(const u64& k, Val default_value)\
+    \ {\r\n    int i = index(k);\r\n    if (!used[i]) return default_value;\r\n  \
+    \  return val[i];\r\n  }\r\n\r\n  bool count(const u64& k) {\r\n    int i = index(k);\r\
+    \n    return used[i] && key[i] == k;\r\n  }\r\n\r\n  void reset() {\r\n    static_assert(KEEP_IDS);\r\
+    \n    for (auto&& i: IDS) used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  //\
+    \ f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F f) {\r\n  \
+    \  static_assert(KEEP_IDS);\r\n    for (auto&& i: IDS) f(key[i], val[i]);\r\n\
+    \  }\r\n};\r\n#line 4 \"graph/vs_to_es.hpp\"\n\ntemplate <typename GT>\nvc<int>\
+    \ vs_to_es(GT& G, vc<int>& vs, bool allow_use_twice = false) {\n  assert(!vs.empty());\n\
+    \n  static HashMap<int> MP;\n  MP.reset();\n  vc<int> nxt(G.M, -1);\n\n  auto\
+    \ get = [&](ll a, ll b) -> u64 {\n    if (GT::is_directed && a > b) swap(a, b);\n\
+    \    return a * G.N + b;\n  };\n\n  FOR(eid, G.M) {\n    u64 k = get(G.edges[eid].frm,\
+    \ G.edges[eid].to);\n    int x = MP[k];\n    nxt[eid] = x, MP[k] = eid;\n  }\n\
+    \  int n = len(vs);\n  vc<int> es(n - 1);\n  FOR(i, n - 1) {\n    u64 k = get(vs[i],\
+    \ vs[i + 1]);\n    int eid = MP.get(k, -1);\n    assert(eid != -1);\n    es[i]\
+    \ = eid;\n    if (!allow_use_twice) { MP[k] = nxt[eid]; }\n  }\n  return es;\n\
+    }\n#line 3 \"graph/eulerwalk.hpp\"\n\r\n// (vs, es) or empty\r\ntemplate <typename\
+    \ GT>\r\npair<vc<int>, vc<int>> euler_walk(GT& G, int s = -1) {\r\n  const int\
+    \ N = G.N, M = G.M;\r\n  assert(G.is_prepared());\r\n  assert(N > 0);\r\n\r\n\
+    \  if (s == -1) {\r\n    vc<int> deg(N);\r\n    for (auto&& e: G.edges) {\r\n\
+    \      if constexpr (GT::is_directed) {\r\n        deg[e.frm]++, deg[e.to]--;\r\
+    \n      } else {\r\n        deg[e.frm]++, deg[e.to]++;\r\n      }\r\n    }\r\n\
+    \    if constexpr (GT::is_directed) {\r\n      s = max_element(all(deg)) - deg.begin();\r\
+    \n      if (deg[s] == 0) s = (M == 0 ? 0 : G.edges[0].frm);\r\n    } else {\r\n\
+    \      s = [&]() -> int {\r\n        FOR(v, N) if (deg[v] & 1) return v;\r\n \
+    \       return (M == 0 ? 0 : G.edges[0].frm);\r\n      }();\r\n    }\r\n  }\r\n\
+    \r\n  if (M == 0) return {{s}, {}};\r\n  vc<int> D(N), its(N), eu(M), vs, st =\
+    \ {s};\r\n  FOR(v, N) its[v] = G.indptr[v];\r\n  ++D[s];\r\n  while (!st.empty())\
+    \ {\r\n    int x = st.back(), y, e, &it = its[x], end = G.indptr[x + 1];\r\n \
+    \   if (it == end) {\r\n      vs.eb(x);\r\n      st.pop_back();\r\n      continue;\r\
+    \n    }\r\n    auto& ee = G.csr_edges[it++];\r\n    y = ee.to, e = ee.id;\r\n\
+    \    if (!eu[e]) {\r\n      D[x]--, D[y]++;\r\n      eu[e] = 1;\r\n      st.eb(y);\r\
+    \n    }\r\n  }\r\n  for (auto&& x: D)\r\n    if (x < 0) return {{}, {}};\r\n \
+    \ if (len(vs) != M + 1) return {{}, {}};\r\n  reverse(all(vs));\r\n  auto es =\
+    \ vs_to_es(G, vs, false);\r\n  return {vs, es};\r\n}\r\n"
   code: "#include \"graph/base.hpp\"\r\n#include \"graph/vs_to_es.hpp\"\r\n\r\n//\
     \ (vs, es) or empty\r\ntemplate <typename GT>\r\npair<vc<int>, vc<int>> euler_walk(GT&\
     \ G, int s = -1) {\r\n  const int N = G.N, M = G.M;\r\n  assert(G.is_prepared());\r\
@@ -151,7 +151,7 @@ data:
   isVerificationFile: false
   path: graph/eulerwalk.hpp
   requiredBy: []
-  timestamp: '2023-11-07 22:29:27+09:00'
+  timestamp: '2023-11-08 12:09:23+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/arc157a.test.cpp

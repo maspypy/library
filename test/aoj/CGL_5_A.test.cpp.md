@@ -266,34 +266,32 @@ data:
     \n\ntemplate <typename T>\nvoid shuffle(vc<T>& A) {\n  FOR(i, len(A)) swap(A[i],\
     \ A[RNG(0, i + 1)]);\n}\n#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate\
     \ <typename Val, int LOG = 20, bool KEEP_IDS = false>\r\nstruct HashMap {\r\n\
-    \  using P = pair<u64, Val>;\r\n  static constexpr int N = (1 << LOG);\r\n  P*\
-    \ dat;\r\n  vc<int> IDS;\r\n  bitset<N> used;\r\n  const int shift;\r\n  const\
-    \ u64 r = 11995408973635179863ULL;\r\n  HashMap() : dat(new P[N]), shift(64 -\
-    \ LOG) {}\r\n  int hash(ll x) {\r\n    static const u64 FIXED_RANDOM\r\n     \
-    \   = std::chrono::steady_clock::now().time_since_epoch().count();\r\n    return\
-    \ (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const u64& key)\
-    \ {\r\n    int i = 0;\r\n    for (i = hash(key); used[i] && dat[i].fi != key;\
+    \  static constexpr int N = (1 << LOG);\r\n  u64* key;\r\n  Val* val;\r\n  vc<int>\
+    \ IDS;\r\n  bitset<N> used;\r\n  const int shift;\r\n  const u64 r = 11995408973635179863ULL;\r\
+    \n  HashMap() : key(new u64[N]), val(new Val[N]), shift(64 - LOG) {}\r\n  u32\
+    \ hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\r\n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\
+    \n    return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
+    \ u64& k) {\r\n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k;\
     \ (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
-    \ u64& key) {\r\n    int i = index(key);\r\n    if (!used[i]) {\r\n      used[i]\
-    \ = 1, dat[i] = {key, Val{}};\r\n      if constexpr (KEEP_IDS) IDS.eb(i);\r\n\
-    \    }\r\n    return dat[i].se;\r\n  }\r\n\r\n  Val get(const u64& key, Val default_value)\
-    \ {\r\n    int i = index(key);\r\n    if (!used[i]) return default_value;\r\n\
-    \    return dat[i].se;\r\n  }\r\n\r\n  bool count(const u64& key) {\r\n    int\
-    \ i = index(key);\r\n    return used[i] && dat[i].fi == key;\r\n  }\r\n\r\n  void\
-    \ reset() {\r\n    static_assert(KEEP_IDS);\r\n    for (auto&& i: IDS) used[i]\
-    \ = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  // f(key, val)\r\n  template <typename\
-    \ F>\r\n  void enumerate_all(F f) {\r\n    static_assert(KEEP_IDS);\r\n    for\
-    \ (auto&& i: IDS) f(dat[i].fi, dat[i].se);\r\n  }\r\n};\r\n#line 2 \"random/hash_pair.hpp\"\
-    \n\ntemplate <typename T>\nu64 hash_pair(pair<T, T> X) {\n  static ll hash_base\
-    \ = 0;\n  if (hash_base == 0) hash_base = RNG_64();\n  return hash_base * X.fi\
-    \ + X.se;\n}\n#line 6 \"geo/closest_pair.hpp\"\n\ntemplate <typename T, int LOG\
-    \ = 20>\npair<int, int> closest_pair(vc<Point<T>> points) {\n  static HashMap<int,\
-    \ LOG, true> MP;\n  MP.reset();\n  int N = len(points);\n  assert(N >= 2 && N\
-    \ < (1 << LOG));\n  vc<int> I(N);\n  iota(all(I), 0);\n  shuffle(I);\n  points\
-    \ = rearrange(points, I);\n\n  auto calc = [&](int i, int j) -> T {\n    return\
-    \ (points[j] - points[i]).dot(points[j] - points[i]);\n  };\n\n  T best = calc(0,\
-    \ 1);\n  pair<int, int> res = {0, 1};\n  T w = sqrtl(best);\n\n  vc<int> nxt(N,\
-    \ -1);\n\n  auto insert = [&](int i) -> void {\n    u64 k = hash_pair<ll>({points[i].x\
+    \ u64& k) {\r\n    int i = index(k);\r\n    if (!used[i]) {\r\n      used[i] =\
+    \ 1, key[i] = k, val[i] = Val{};\r\n      if constexpr (KEEP_IDS) IDS.eb(i);\r\
+    \n    }\r\n    return val[i];\r\n  }\r\n\r\n  Val get(const u64& k, Val default_value)\
+    \ {\r\n    int i = index(k);\r\n    if (!used[i]) return default_value;\r\n  \
+    \  return val[i];\r\n  }\r\n\r\n  bool count(const u64& k) {\r\n    int i = index(k);\r\
+    \n    return used[i] && key[i] == k;\r\n  }\r\n\r\n  void reset() {\r\n    static_assert(KEEP_IDS);\r\
+    \n    for (auto&& i: IDS) used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  //\
+    \ f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F f) {\r\n  \
+    \  static_assert(KEEP_IDS);\r\n    for (auto&& i: IDS) f(key[i], val[i]);\r\n\
+    \  }\r\n};\r\n#line 2 \"random/hash_pair.hpp\"\n\ntemplate <typename T>\nu64 hash_pair(pair<T,\
+    \ T> X) {\n  static ll hash_base = 0;\n  if (hash_base == 0) hash_base = RNG_64();\n\
+    \  return hash_base * X.fi + X.se;\n}\n#line 6 \"geo/closest_pair.hpp\"\n\ntemplate\
+    \ <typename T, int LOG = 20>\npair<int, int> closest_pair(vc<Point<T>> points)\
+    \ {\n  static HashMap<int, LOG, true> MP;\n  MP.reset();\n  int N = len(points);\n\
+    \  assert(N >= 2 && N < (1 << LOG));\n  vc<int> I(N);\n  iota(all(I), 0);\n  shuffle(I);\n\
+    \  points = rearrange(points, I);\n\n  auto calc = [&](int i, int j) -> T {\n\
+    \    return (points[j] - points[i]).dot(points[j] - points[i]);\n  };\n\n  T best\
+    \ = calc(0, 1);\n  pair<int, int> res = {0, 1};\n  T w = sqrtl(best);\n\n  vc<int>\
+    \ nxt(N, -1);\n\n  auto insert = [&](int i) -> void {\n    u64 k = hash_pair<ll>({points[i].x\
     \ / w, points[i].y / w});\n    nxt[i] = MP.get(k, -1);\n    MP[k] = i;\n  };\n\
     \n  auto query = [&](int i) -> bool {\n    ll a = points[i].x / w;\n    ll b =\
     \ points[i].y / w;\n    bool upd = 0;\n    FOR(dx, -1, 2) FOR(dy, -1, 2) {\n \
@@ -325,7 +323,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_5_A.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 08:39:48+09:00'
+  timestamp: '2023-11-08 12:09:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_5_A.test.cpp
