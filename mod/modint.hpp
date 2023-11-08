@@ -80,13 +80,13 @@ struct modint {
 
 #ifdef FASTIO
 template <int mod>
-void rd(modint<mod> &x) {
-  fastio::rd(x.val);
+void read(modint<mod> &x) {
+  fastio::read(x.val);
   assert(0 <= x.val && x.val < mod);
 }
 template <int mod>
-void wt(modint<mod> x) {
-  fastio::wt(x.val);
+void write(modint<mod> x) {
+  fastio::write(x.val);
 }
 #endif
 

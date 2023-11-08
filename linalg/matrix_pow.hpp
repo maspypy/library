@@ -12,3 +12,15 @@ vc<vc<T>> matrix_pow(vc<vc<T>> A, ll n) {
   }
   return ret;
 }
+
+template <typename T, int N>
+array<array<T, N>, N> matrix_pow(array<array<T, N>, N> A, ll n) {
+  array<array<T, N>, N> ret{};
+  FOR(i, N) ret[i][i] = T(1);
+  while (n) {
+    if (n & 1) ret = matrix_mul(ret, A);
+    n /= 2;
+    if (n) A = matrix_mul(A, A);
+  }
+  return ret;
+}
