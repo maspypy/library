@@ -38,13 +38,12 @@ void test_sum() {
 }
 
 void solve() {
-  LL(a, b);
-  print(a + b);
+  int a, b;
+  cin >> a >> b;
+  cout << a + b << "\n";
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
   test_count();
   test_sum();
   solve();

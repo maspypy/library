@@ -1,6 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
-#include "other/io.hpp"
 #include "alg/monoid/add.hpp"
 #include "mod/modint.hpp"
 #include "ds/splaytree/splaytree_commutative_monoid.hpp"
@@ -65,8 +64,10 @@ void test() {
 }
 
 void solve() {
-  LL(a, b);
-  print(a + b);
+  int a, b;
+  cin >> a >> b;
+  cout << a + b << "\n";
+}
 }
 
 signed main() {

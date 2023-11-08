@@ -1,6 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
-#include "other/io.hpp"
 #include "flow/min_cost_matching_on_line.hpp"
 
 void test() {
@@ -26,8 +25,9 @@ void test() {
 }
 
 void solve() {
-  LL(a, b);
-  print(a + b);
+  int a, b;
+  cin >> a >> b;
+  cout << a + b << "\n";
 }
 
 signed main() {

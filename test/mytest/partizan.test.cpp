@@ -1,7 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
 #include "my_template.hpp"
-#include "other/io.hpp"
 #include "game/solve_partizan_game.hpp"
 
 void test_push() {
@@ -145,19 +144,13 @@ void test() {
 }
 
 void solve() {
-  LL(a, b);
-  print(a + b);
+  int a, b;
+  cin >> a >> b;
+  cout << a + b << "\n";
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
   test();
-
-  ll T = 1;
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
