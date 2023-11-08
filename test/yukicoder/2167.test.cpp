@@ -5,7 +5,7 @@
 #include "random/base.hpp"
 #include "random/hash_pair.hpp"
 
-HashMap<ll> MP;
+HashMap<ll, 20, true> MP;
 
 void solve() {
   MP.reset();

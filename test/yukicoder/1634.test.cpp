@@ -57,7 +57,7 @@ void solve() {
   auto Y = calc(N / 2, N, 1);
 
   ll ANS = 0;
-  HashMap<int, 14> MP;
+  HashMap<int, 14, true> MP;
   FOR(s, 1 << N) {
     if (X[s].empty() || Y[s].empty()) continue;
     MP.reset();
@@ -71,11 +71,6 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
