@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: enumerate/partition.hpp
     title: enumerate/partition.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -270,17 +270,17 @@ data:
     \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
     \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
     \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
-    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
-    \  fastio::rd(x.val);\n  assert(0 <= x.val && x.val < mod);\n}\ntemplate <int\
-    \ mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107\
-    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 6 \"test_atcoder/abc226f.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, K);\n  mint ANS = 0;\n\
-    \  enumerate_partition(N, [&](vc<int> P) {\n    mint x = fact<mint>(N);\n    for\
-    \ (auto&& a: P) x *= inv<mint>(a);\n    map<int, int> MP;\n    for (auto&& a:\
-    \ P) MP[a]++;\n    for (auto&& [a, b]: MP) x *= fact_inv<mint>(b);\n\n    ll lcm\
-    \ = 1;\n    for (auto&& [a, b]: MP) { lcm = lcm / gcd<ll>(a, lcm) * a; }\n   \
-    \ ANS += mint(lcm).pow(K) * x;\n  });\n  print(ANS);\n}\n\nsigned main() {\n \
-    \ solve();\n  return 0;\n}\n"
+    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid read(modint<mod> &x) {\n\
+    \  fastio::read(x.val);\n  assert(0 <= x.val && x.val < mod);\n}\ntemplate <int\
+    \ mod>\nvoid write(modint<mod> x) {\n  fastio::write(x.val);\n}\n#endif\n\nusing\
+    \ modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line\
+    \ 6 \"test_atcoder/abc226f.test.cpp\"\n\nusing mint = modint998;\n\nvoid solve()\
+    \ {\n  LL(N, K);\n  mint ANS = 0;\n  enumerate_partition(N, [&](vc<int> P) {\n\
+    \    mint x = fact<mint>(N);\n    for (auto&& a: P) x *= inv<mint>(a);\n    map<int,\
+    \ int> MP;\n    for (auto&& a: P) MP[a]++;\n    for (auto&& [a, b]: MP) x *= fact_inv<mint>(b);\n\
+    \n    ll lcm = 1;\n    for (auto&& [a, b]: MP) { lcm = lcm / gcd<ll>(a, lcm) *\
+    \ a; }\n    ANS += mint(lcm).pow(K) * x;\n  });\n  print(ANS);\n}\n\nsigned main()\
+    \ {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc226/tasks/abc226_f\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"enumerate/partition.hpp\"\
     \n#include \"mod/modint.hpp\"\n\nusing mint = modint998;\n\nvoid solve() {\n \
@@ -299,7 +299,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc226f.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 13:03:11+09:00'
+  timestamp: '2023-11-08 16:50:01+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc226f.test.cpp

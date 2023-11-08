@@ -24,7 +24,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/is_substring.test.cpp
     title: test/mytest/is_substring.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1848.test.cpp
     title: test/yukicoder/1848.test.cpp
   - icon: ':x:'

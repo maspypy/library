@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/implicit_matrix/min_poly.hpp
     title: linalg/implicit_matrix/min_poly.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/spmat_min_poly.hpp
     title: linalg/spmat_min_poly.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -25,14 +25,14 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -271,20 +271,20 @@ data:
     \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
     \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
     \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
-    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
-    \  fastio::rd(x.val);\n  assert(0 <= x.val && x.val < mod);\n}\ntemplate <int\
-    \ mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107\
-    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 2 \"seq/find_linear_rec.hpp\"\
-    \n\r\ntemplate <typename mint>\r\nvector<mint> find_linear_rec(vector<mint>& A)\
-    \ {\r\n  int N = len(A);\r\n  vc<mint> B = {1}, C = {1};\r\n  int l = 0, m = 1;\r\
-    \n  mint p = 1;\r\n  FOR(i, N) {\r\n    mint d = A[i];\r\n    FOR3(j, 1, l + 1)\
-    \ { d += C[j] * A[i - j]; }\r\n    if (d == 0) {\r\n      ++m;\r\n      continue;\r\
-    \n    }\r\n    auto tmp = C;\r\n    mint q = d / p;\r\n    if (len(C) < len(B)\
-    \ + m) C.insert(C.end(), len(B) + m - len(C), 0);\r\n    FOR(j, len(B)) C[j +\
-    \ m] -= q * B[j];\r\n    if (l + l <= i) {\r\n      B = tmp;\r\n      l = i +\
-    \ 1 - l, m = 1;\r\n      p = d;\r\n    } else {\r\n      ++m;\r\n    }\r\n  }\r\
-    \n  return C;\r\n}\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
-    \ uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid read(modint<mod> &x) {\n\
+    \  fastio::read(x.val);\n  assert(0 <= x.val && x.val < mod);\n}\ntemplate <int\
+    \ mod>\nvoid write(modint<mod> x) {\n  fastio::write(x.val);\n}\n#endif\n\nusing\
+    \ modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line\
+    \ 2 \"seq/find_linear_rec.hpp\"\n\r\ntemplate <typename mint>\r\nvector<mint>\
+    \ find_linear_rec(vector<mint>& A) {\r\n  int N = len(A);\r\n  vc<mint> B = {1},\
+    \ C = {1};\r\n  int l = 0, m = 1;\r\n  mint p = 1;\r\n  FOR(i, N) {\r\n    mint\
+    \ d = A[i];\r\n    FOR3(j, 1, l + 1) { d += C[j] * A[i - j]; }\r\n    if (d ==\
+    \ 0) {\r\n      ++m;\r\n      continue;\r\n    }\r\n    auto tmp = C;\r\n    mint\
+    \ q = d / p;\r\n    if (len(C) < len(B) + m) C.insert(C.end(), len(B) + m - len(C),\
+    \ 0);\r\n    FOR(j, len(B)) C[j + m] -= q * B[j];\r\n    if (l + l <= i) {\r\n\
+    \      B = tmp;\r\n      l = i + 1 - l, m = 1;\r\n      p = d;\r\n    } else {\r\
+    \n      ++m;\r\n    }\r\n  }\r\n  return C;\r\n}\r\n#line 2 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
@@ -319,14 +319,21 @@ data:
     \ -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\r\n  vv(T, b, N2, N3);\r\n\
     \  FOR(i, N2) FOR(j, N3) b[j][i] = B[i][j];\r\n  vv(T, C, N1, N3);\r\n  FOR(n,\
     \ N1) FOR(m, N2) FOR(k, N3) C[n][k] += A[n][m] * b[k][m];\r\n  return C;\r\n}\r\
-    \n#line 9 \"test/mytest/min_poly.test.cpp\"\n\nusing mint = modint998;\n\nvoid\
-    \ test() {\n  vc<tuple<int, int, mint>> A;\n  A.eb(0, 0, 1);\n  A.eb(0, 1, 2);\n\
-    \  A.eb(1, 0, 3);\n  A.eb(1, 1, 4);\n  vc<mint> f = spmat_min_poly<mint>(2, A);\n\
-    \  assert(f == vc<mint>({mint(-2), mint(-5), mint(1)}));\n\n  A.clear();\n  A.eb(0,\
-    \ 1, 1);\n  f = spmat_min_poly<mint>(2, A);\n  assert(f == vc<mint>({mint(0),\
-    \ mint(0), mint(1)}));\n  assert(f == implicit_matrix_min_poly<mint>(2, [&](vc<mint>\
-    \ a) -> vc<mint> {\n           vc<mint> b(2);\n           for (auto&& [i, j, x]:\
-    \ A) b[j] += a[i] * x;\n           return b;\n         }));\n\n  A.clear();\n\
+    \n\r\n// square-matrix defined as array\r\ntemplate <class T, int N>\r\narray<array<T,\
+    \ N>, N> matrix_mul(const array<array<T, N>, N>& A,\r\n                      \
+    \           const array<array<T, N>, N>& B) {\r\n  array<array<T, N>, N> C{};\r\
+    \n\r\n  if ((T::get_mod() < (1 << 30)) && N <= 16) {\r\n    FOR(i, N) FOR(k, N)\
+    \ {\r\n      u64 sm = 0;\r\n      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\r\
+    \n      C[i][k] = sm;\r\n    }\r\n  } else {\r\n    FOR(i, N) FOR(k, N) {\r\n\
+    \      u128 sm = 0;\r\n      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\r\
+    \n      C[i][k] = sm;\r\n    }\r\n  }\r\n  return C;\r\n}\r\n#line 9 \"test/mytest/min_poly.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid test() {\n  vc<tuple<int, int, mint>> A;\n\
+    \  A.eb(0, 0, 1);\n  A.eb(0, 1, 2);\n  A.eb(1, 0, 3);\n  A.eb(1, 1, 4);\n  vc<mint>\
+    \ f = spmat_min_poly<mint>(2, A);\n  assert(f == vc<mint>({mint(-2), mint(-5),\
+    \ mint(1)}));\n\n  A.clear();\n  A.eb(0, 1, 1);\n  f = spmat_min_poly<mint>(2,\
+    \ A);\n  assert(f == vc<mint>({mint(0), mint(0), mint(1)}));\n  assert(f == implicit_matrix_min_poly<mint>(2,\
+    \ [&](vc<mint> a) -> vc<mint> {\n           vc<mint> b(2);\n           for (auto&&\
+    \ [i, j, x]: A) b[j] += a[i] * x;\n           return b;\n         }));\n\n  A.clear();\n\
     \  f = spmat_min_poly<mint>(2, A);\n  assert(f == vc<mint>({mint(0), mint(1)}));\n\
     \  assert(f == implicit_matrix_min_poly<mint>(2, [&](vc<mint> a) -> vc<mint> {\n\
     \           vc<mint> b(2);\n           for (auto&& [i, j, x]: A) b[j] += a[i]\
@@ -408,8 +415,8 @@ data:
   isVerificationFile: true
   path: test/mytest/min_poly.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 13:03:11+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-08 16:50:01+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/min_poly.test.cpp
 layout: document

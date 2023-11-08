@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -87,9 +87,9 @@ data:
     \ 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881)\
     \ return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt()\
     \ { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
-    \ rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  assert(0 <= x.val && x.val < mod);\n\
-    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
-    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    \ read(modint<mod> &x) {\n  fastio::read(x.val);\n  assert(0 <= x.val && x.val\
+    \ < mod);\n}\ntemplate <int mod>\nvoid write(modint<mod> x) {\n  fastio::write(x.val);\n\
+    }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     #line 2 \"other/count_seq_with_fixed_xor_value.hpp\"\n\n// [0, LIM)^N \u306E\u3046\
     \u3061\u3067\u3001xor = X \u3068\u306A\u308B\u3082\u306E\u306E\u500B\u6570\ntemplate\
     \ <typename mint>\nmint count_seq_with_fixed_xor(ll N, ll LIM, ll X) {\n  assert(LIM\
@@ -152,7 +152,7 @@ data:
   isVerificationFile: false
   path: other/count_seq_with_fixed_xor_value.hpp
   requiredBy: []
-  timestamp: '2023-11-07 13:03:11+09:00'
+  timestamp: '2023-11-08 16:50:01+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc288ex.test.cpp

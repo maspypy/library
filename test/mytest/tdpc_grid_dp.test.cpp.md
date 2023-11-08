@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
   - icon: ':question:'
@@ -25,14 +25,14 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -324,47 +324,48 @@ data:
     \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
     \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
     \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
-    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
-    \  fastio::rd(x.val);\n  assert(0 <= x.val && x.val < mod);\n}\ntemplate <int\
-    \ mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107\
-    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 3 \"other/connected_dp.hpp\"\
-    \n\nnamespace connected_dp_squares {\n// pair<\u65B0\u3057\u3044\u72B6\u614B\u3001\
-    \u4ECA\u306E\u6210\u5206 \u2192 \u65B0\u3057\u3044\u6210\u5206>\nvc<pair<vc<int>,\
-    \ vc<int>>> next_states(const vc<int>& now) {\n  int N = len(now);\n  vc<pair<vc<int>,\
-    \ vc<int>>> res;\n  FOR(s, 1 << N) {\n    vc<int> par(N + N);\n    FOR(i, N) par[i]\
-    \ = (s & 1 << i ? i : -1);\n    FOR(i, N) par[N + i] = (now[i] == -1 ? -1 : now[i]\
-    \ + N);\n    auto find = [&](int x) -> int {\n      while (par[x] != x) { x =\
-    \ par[x] = par[par[x]]; }\n      return x;\n    };\n    auto merge = [&](int a,\
-    \ int b) -> void {\n      a = find(a), b = find(b);\n      if (a == b) return;\n\
-    \      if (a > b) swap(a, b);\n      par[b] = a;\n    };\n\n    FOR(i, N - 1)\
-    \ if (par[i] != -1 && par[i + 1] != -1) merge(i, i + 1);\n    FOR(i, N) if (par[i]\
-    \ != -1 && par[N + i] != -1) merge(i, N + i);\n    FOR(i, N + N) if (par[i] !=\
-    \ -1) par[i] = find(i);\n    FOR(i, N, N + N) if (par[i] >= N) par[i] = -1;\n\
-    \    res.eb(vc<int>(par.begin(), par.begin() + N),\n           vc<int>(par.begin()\
-    \ + N, par.end()));\n  }\n  return res;\n}\n\nvc<int> reverse_state(const vc<int>&\
-    \ now) {\n  int N = len(now);\n  vc<int> max_i(N, -1);\n  FOR(i, N) if (now[i]\
-    \ != -1) max_i[now[i]] = i;\n  vc<int> rev(N, -1);\n  FOR(i, N) {\n    if (now[i]\
-    \ == -1) continue;\n    int x = max_i[now[i]];\n    rev[N - 1 - i] = N - 1 - x;\n\
-    \  }\n  return rev;\n}\n\n// 0, 1 \uFF1A\u7A7A\u306E\u5217\u3001\u9818\u57DF\u306E\
-    \u624B\u524D\u3001\u5F8C\u308D\n// \u9023\u7D50\u9818\u57DF\u3092\u3072\u3068\u3064\
-    \u4F5C\u308B\u3002\n// \u72B6\u614B\uFF1A-1 \u304C\u9078\u3093\u3067\u3044\u306A\
-    \u3044\u30020,1,2,3 \u7B49\u306F\u540C\u3058\u6210\u5206\u306B\u306F\u540C\u3058\
-    \u5024\u304C\u5165\u308B\u3002\n// [states, edges]\npair<vvc<int>, vc<pair<int,\
-    \ int>>> connedted_dp_graph(int N,\n                                         \
-    \             bool merge_reverse) {\n  static HashMap<int, 20, true> MP;\n  MP.reset();\n\
-    \  vvc<int> states;\n  vc<pair<int, int>> edges;\n\n  states.eb(vc<int>(N, -1));\n\
-    \  states.eb(vc<int>(N, -1));\n  MP[hash_vector<int>(states[0])] = 0;\n\n  int\
-    \ p = -1;\n  while (1) {\n    if (++p == len(states)) break;\n    if (p == 1)\
-    \ {\n      edges.eb(1, 1);\n      continue;\n    }\n    vc<int> now = states[p];\n\
-    \    for (auto&& [nxt, convert]: next_states(now)) {\n      // \u4ECA\u306E\u6210\
-    \u5206\u6570\u3001\u6D88\u3048\u308B\u6210\u5206\u6570\n      int a = 0, b = 0;\n\
-    \      FOR(v, N) if (now[v] == v) {\n        ++a;\n        if (convert[v] == -1)\
-    \ ++b;\n      }\n      // \u6D88\u3048\u308B\u6210\u5206\u304C\u3042\u3063\u3066\
-    \u3088\u3044\u306E\u306F\u3001\u7D42\u72B6\u614B\u306B\u3044\u304F\u3068\u304D\
-    \u306E\u307F\n      if (b >= 2) continue;\n      if (b == 1) {\n        if (MAX(nxt)\
-    \ != -1) continue;\n        edges.eb(p, 1);\n        continue;\n      }\n    \
-    \  u64 h = hash_vector<int>(nxt);\n      if (merge_reverse) { chmin(h, hash_vector<int>(reverse_state(nxt)));\
-    \ }\n      int idx = MP.index(h);\n      if (!MP.used[idx]) {\n        MP.key[idx]\
+    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid read(modint<mod> &x) {\n\
+    \  fastio::read(x.val);\n  assert(0 <= x.val && x.val < mod);\n}\ntemplate <int\
+    \ mod>\nvoid write(modint<mod> x) {\n  fastio::write(x.val);\n}\n#endif\n\nusing\
+    \ modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line\
+    \ 3 \"other/connected_dp.hpp\"\n\nnamespace connected_dp_squares {\n// pair<\u65B0\
+    \u3057\u3044\u72B6\u614B\u3001\u4ECA\u306E\u6210\u5206 \u2192 \u65B0\u3057\u3044\
+    \u6210\u5206>\nvc<pair<vc<int>, vc<int>>> next_states(const vc<int>& now) {\n\
+    \  int N = len(now);\n  vc<pair<vc<int>, vc<int>>> res;\n  FOR(s, 1 << N) {\n\
+    \    vc<int> par(N + N);\n    FOR(i, N) par[i] = (s & 1 << i ? i : -1);\n    FOR(i,\
+    \ N) par[N + i] = (now[i] == -1 ? -1 : now[i] + N);\n    auto find = [&](int x)\
+    \ -> int {\n      while (par[x] != x) { x = par[x] = par[par[x]]; }\n      return\
+    \ x;\n    };\n    auto merge = [&](int a, int b) -> void {\n      a = find(a),\
+    \ b = find(b);\n      if (a == b) return;\n      if (a > b) swap(a, b);\n    \
+    \  par[b] = a;\n    };\n\n    FOR(i, N - 1) if (par[i] != -1 && par[i + 1] !=\
+    \ -1) merge(i, i + 1);\n    FOR(i, N) if (par[i] != -1 && par[N + i] != -1) merge(i,\
+    \ N + i);\n    FOR(i, N + N) if (par[i] != -1) par[i] = find(i);\n    FOR(i, N,\
+    \ N + N) if (par[i] >= N) par[i] = -1;\n    res.eb(vc<int>(par.begin(), par.begin()\
+    \ + N),\n           vc<int>(par.begin() + N, par.end()));\n  }\n  return res;\n\
+    }\n\nvc<int> reverse_state(const vc<int>& now) {\n  int N = len(now);\n  vc<int>\
+    \ max_i(N, -1);\n  FOR(i, N) if (now[i] != -1) max_i[now[i]] = i;\n  vc<int> rev(N,\
+    \ -1);\n  FOR(i, N) {\n    if (now[i] == -1) continue;\n    int x = max_i[now[i]];\n\
+    \    rev[N - 1 - i] = N - 1 - x;\n  }\n  return rev;\n}\n\n// 0, 1 \uFF1A\u7A7A\
+    \u306E\u5217\u3001\u9818\u57DF\u306E\u624B\u524D\u3001\u5F8C\u308D\n// \u9023\u7D50\
+    \u9818\u57DF\u3092\u3072\u3068\u3064\u4F5C\u308B\u3002\n// \u72B6\u614B\uFF1A\
+    -1 \u304C\u9078\u3093\u3067\u3044\u306A\u3044\u30020,1,2,3 \u7B49\u306F\u540C\u3058\
+    \u6210\u5206\u306B\u306F\u540C\u3058\u5024\u304C\u5165\u308B\u3002\n// [states,\
+    \ edges]\npair<vvc<int>, vc<pair<int, int>>> connedted_dp_graph(int N,\n     \
+    \                                                 bool merge_reverse) {\n  static\
+    \ HashMap<int, 20, true> MP;\n  MP.reset();\n  vvc<int> states;\n  vc<pair<int,\
+    \ int>> edges;\n\n  states.eb(vc<int>(N, -1));\n  states.eb(vc<int>(N, -1));\n\
+    \  MP[hash_vector<int>(states[0])] = 0;\n\n  int p = -1;\n  while (1) {\n    if\
+    \ (++p == len(states)) break;\n    if (p == 1) {\n      edges.eb(1, 1);\n    \
+    \  continue;\n    }\n    vc<int> now = states[p];\n    for (auto&& [nxt, convert]:\
+    \ next_states(now)) {\n      // \u4ECA\u306E\u6210\u5206\u6570\u3001\u6D88\u3048\
+    \u308B\u6210\u5206\u6570\n      int a = 0, b = 0;\n      FOR(v, N) if (now[v]\
+    \ == v) {\n        ++a;\n        if (convert[v] == -1) ++b;\n      }\n      //\
+    \ \u6D88\u3048\u308B\u6210\u5206\u304C\u3042\u3063\u3066\u3088\u3044\u306E\u306F\
+    \u3001\u7D42\u72B6\u614B\u306B\u3044\u304F\u3068\u304D\u306E\u307F\n      if (b\
+    \ >= 2) continue;\n      if (b == 1) {\n        if (MAX(nxt) != -1) continue;\n\
+    \        edges.eb(p, 1);\n        continue;\n      }\n      u64 h = hash_vector<int>(nxt);\n\
+    \      if (merge_reverse) { chmin(h, hash_vector<int>(reverse_state(nxt))); }\n\
+    \      int idx = MP.index(h);\n      if (!MP.used[idx]) {\n        MP.key[idx]\
     \ = h, MP.val[idx] = len(states);\n        states.eb(nxt);\n      }\n      edges.eb(p,\
     \ MP.val[idx]);\n    }\n  }\n  return {states, edges};\n}\n\n// 0, 1 \uFF1A\u7A7A\
     \u306E\u5217\u3001\u9818\u57DF\u306E\u624B\u524D\u3001\u5F8C\u308D\n// \u591A\u89D2\
@@ -454,8 +455,8 @@ data:
   isVerificationFile: true
   path: test/mytest/tdpc_grid_dp.test.cpp
   requiredBy: []
-  timestamp: '2023-11-08 12:09:23+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-08 16:50:01+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/tdpc_grid_dp.test.cpp
 layout: document
