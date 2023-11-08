@@ -124,6 +124,7 @@
 "test/library_checker/datastructure/set_xor_min.test.cpp": "2023-11-08 12:09:23 +0900",
 "test/library_checker/datastructure/sort_segtree.test.cpp": "2023-11-08 18:58:48 +0900",
 "test/library_checker/datastructure/sort_segtree_1.test.cpp": "2023-11-08 18:58:48 +0900",
+"test/library_checker/datastructure/static_range_freq.test.cpp": "2023-11-08 21:50:37 +0900",
 "test/library_checker/datastructure/static_range_inversions_mo.test.cpp": "2023-11-07 08:39:48 +0900",
 "test/library_checker/datastructure/static_range_inversions_mo2.test.cpp": "2023-11-07 08:39:48 +0900",
 "test/library_checker/datastructure/static_range_sum.test.cpp": "2023-11-07 08:39:48 +0900",
