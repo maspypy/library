@@ -15,10 +15,10 @@ data:
     path: setfunc/transposed_sps_composition.hpp
     title: setfunc/transposed_sps_composition.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution.test.cpp
     title: test/library_checker/convolution/subset_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sps_exp.test.cpp
     title: test/library_checker/math/sps_exp.test.cpp
   - icon: ':x:'

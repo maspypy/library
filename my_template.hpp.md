@@ -222,22 +222,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_huge.test.cpp
     title: test/library_checker/convolution/convolution_huge.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod.test.cpp
     title: test/library_checker/convolution/convolution_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_107.test.cpp
     title: test/library_checker/convolution/convolution_mod_107.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
     title: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_2_64.test.cpp
     title: test/library_checker/convolution/convolution_mod_2_64.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_dmint.test.cpp
     title: test/library_checker/convolution/convolution_mod_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_setntt.test.cpp
     title: test/library_checker/convolution/convolution_mod_setntt.test.cpp
   - icon: ':heavy_check_mark:'
@@ -246,19 +246,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
     title: test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
     title: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/multivariate_convolution.test.cpp
     title: test/library_checker/convolution/multivariate_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/online_convolution.test.cpp
     title: test/library_checker/convolution/online_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution.test.cpp
     title: test/library_checker/convolution/subset_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
     title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
   - icon: ':heavy_check_mark:'
@@ -282,10 +282,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
     title: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - icon: ':heavy_check_mark:'
@@ -315,22 +315,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
     title: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
     title: test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
     title: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/predecessor_problem.test.cpp
     title: test/library_checker/datastructure/predecessor_problem.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
     title: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_point_add.test.cpp
     title: test/library_checker/datastructure/range_affine_point_add.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
     title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -372,10 +372,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/set_xor_min.test.cpp
     title: test/library_checker/datastructure/set_xor_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/sort_segtree.test.cpp
     title: test/library_checker/datastructure/sort_segtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/sort_segtree_1.test.cpp
     title: test/library_checker/datastructure/sort_segtree_1.test.cpp
   - icon: ':x:'
@@ -390,7 +390,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_sum.test.cpp
     title: test/library_checker/datastructure/static_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -426,7 +426,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
     title: test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -477,7 +477,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/domninator_tree.test.cpp
     title: test/library_checker/graph/domninator_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/enumerate_cliques.test.cpp
     title: test/library_checker/graph/enumerate_cliques.test.cpp
   - icon: ':heavy_check_mark:'
@@ -510,7 +510,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/binomial_coefficient.test.cpp
     title: test/library_checker/math/binomial_coefficient.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/composition_sps.test.cpp
     title: test/library_checker/math/composition_sps.test.cpp
   - icon: ':heavy_check_mark:'
@@ -528,10 +528,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/factorize.test.cpp
     title: test/library_checker/math/factorize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/find_linear_recurrence.test.cpp
     title: test/library_checker/math/find_linear_recurrence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/gcd_convolution.test.cpp
     title: test/library_checker/math/gcd_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -540,10 +540,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/lcm_convolution.test.cpp
     title: test/library_checker/math/lcm_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -555,13 +555,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
     title: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/nim_product.test.cpp
     title: test/library_checker/math/nim_product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/partition.test.cpp
     title: test/library_checker/math/partition.test.cpp
   - icon: ':heavy_check_mark:'
@@ -570,10 +570,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/primitive_root.test.cpp
     title: test/library_checker/math/primitive_root.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sharp_p_subset_sum.test.cpp
     title: test/library_checker/math/sharp_p_subset_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sps_exp.test.cpp
     title: test/library_checker/math/sps_exp.test.cpp
   - icon: ':heavy_check_mark:'
@@ -588,19 +588,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_mod_p_2.test.cpp
     title: test/library_checker/math/stirling_mod_p_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
     title: test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
     title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
     title: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
   - icon: ':heavy_check_mark:'
@@ -609,7 +609,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/totient_sum.test.cpp
     title: test/library_checker/math/totient_sum.test.cpp
   - icon: ':heavy_check_mark:'
