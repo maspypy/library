@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/spmat_min_poly.hpp
     title: linalg/spmat_min_poly.hpp
   - icon: ':question:'
@@ -12,12 +12,12 @@ data:
     title: seq/find_linear_rec.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/sparse_matrix_det.test.cpp
     title: test/library_checker/matrix/sparse_matrix_det.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"seq/find_linear_rec.hpp\"\n\r\ntemplate <typename mint>\r\
@@ -60,7 +60,7 @@ data:
   path: linalg/spmat_det.hpp
   requiredBy: []
   timestamp: '2023-05-20 12:35:33+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
 documentation_of: linalg/spmat_det.hpp

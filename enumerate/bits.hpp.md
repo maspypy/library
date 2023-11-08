@@ -14,14 +14,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: knapsack/subset_sum.hpp
     title: knapsack/subset_sum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/hafnian.hpp
     title: linalg/hafnian.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_2_A.test.cpp
     title: test/aoj/DPL_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/hafnian_of_matrix.test.cpp
     title: test/library_checker/matrix/hafnian_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
