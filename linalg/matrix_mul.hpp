@@ -35,3 +35,25 @@ vc<vc<T>> matrix_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int N1 = -1,
   FOR(n, N1) FOR(m, N2) FOR(k, N3) C[n][k] += A[n][m] * b[k][m];
   return C;
 }
+
+// square-matrix defined as array
+template <class T, int N>
+array<array<T, N>, N> matrix_mul(const array<array<T, N>, N>& A,
+                                 const array<array<T, N>, N>& B) {
+  array<array<T, N>, N> C{};
+
+  if ((T::get_mod() < (1 << 30)) && N <= 16) {
+    FOR(i, N) FOR(k, N) {
+      u64 sm = 0;
+      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);
+      C[i][k] = sm;
+    }
+  } else {
+    FOR(i, N) FOR(k, N) {
+      u128 sm = 0;
+      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);
+      C[i][k] = sm;
+    }
+  }
+  return C;
+}
