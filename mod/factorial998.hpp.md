@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: test/library_checker/math/factori998.test.cpp
+    title: test/library_checker/math/factori998.test.cpp
+  - icon: ':x:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
   _isVerificationFailed: true
@@ -28,6 +31,7 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/factorial_998.test.cpp
+  - test/library_checker/math/factori998.test.cpp
 documentation_of: mod/factorial998.hpp
 layout: document
 redirect_from:

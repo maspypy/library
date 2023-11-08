@@ -39,16 +39,16 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/multiplication_of_big_integers
+    PROBLEM: https://judge.yosupo.jp/problem/addition_of_big_integers
     links:
-    - https://judge.yosupo.jp/problem/multiplication_of_big_integers
-  bundledCode: "#line 1 \"test/library_checker/multiplication_of_bigintegers.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/multiplication_of_big_integers\"\
+    - https://judge.yosupo.jp/problem/addition_of_big_integers
+  bundledCode: "#line 1 \"test/library_checker/bigint/addition_of_bigintegers.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/addition_of_big_integers\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -212,7 +212,7 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 4 \"test/library_checker/multiplication_of_bigintegers.test.cpp\"\
+    \ yes(!t); }\r\n#line 4 \"test/library_checker/bigint/addition_of_bigintegers.test.cpp\"\
     \n\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
     \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
     \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
@@ -571,13 +571,13 @@ data:
     \ * x + dat[len(dat) - 1 - i];\n    x = std::log10(x);\n    x += double(LOG) *\
     \ (len(dat) - 4);\n    return x;\n  }\n};\n\n#ifdef FASTIO\nvoid wt(BigInteger\
     \ x) { fastio::wt(x.to_string()); }\nvoid rd(BigInteger &x) {\n  string s;\n \
-    \ fastio::rd(s);\n  x = BigInteger(s);\n}\n#endif\n#line 6 \"test/library_checker/multiplication_of_bigintegers.test.cpp\"\
+    \ fastio::rd(s);\n  x = BigInteger(s);\n}\n#endif\n#line 6 \"test/library_checker/bigint/addition_of_bigintegers.test.cpp\"\
     \n\nusing B = BigInteger;\n\nvoid solve() {\n  B a, b;\n  read(a, b);\n  print(a\
-    \ * b);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/multiplication_of_big_integers\"\
+    \ + b);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/addition_of_big_integers\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"bigint/base.hpp\"\
     \n\nusing B = BigInteger;\n\nvoid solve() {\n  B a, b;\n  read(a, b);\n  print(a\
-    \ * b);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ + b);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -592,15 +592,15 @@ data:
   - poly/ntt.hpp
   - poly/fft.hpp
   isVerificationFile: true
-  path: test/library_checker/multiplication_of_bigintegers.test.cpp
+  path: test/library_checker/bigint/addition_of_bigintegers.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-09 02:49:41+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library_checker/multiplication_of_bigintegers.test.cpp
+documentation_of: test/library_checker/bigint/addition_of_bigintegers.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/multiplication_of_bigintegers.test.cpp
-- /verify/test/library_checker/multiplication_of_bigintegers.test.cpp.html
-title: test/library_checker/multiplication_of_bigintegers.test.cpp
+- /verify/test/library_checker/bigint/addition_of_bigintegers.test.cpp
+- /verify/test/library_checker/bigint/addition_of_bigintegers.test.cpp.html
+title: test/library_checker/bigint/addition_of_bigintegers.test.cpp
 ---

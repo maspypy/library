@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: convex/cht.hpp
-    title: convex/cht.hpp
+    path: mod/mongomery_modint.hpp
+    title: mod/mongomery_modint.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -17,31 +17,31 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc244/tasks/abc244_Ex
+    PROBLEM: https://judge.yosupo.jp/problem/factorial
     links:
-    - https://atcoder.jp/contests/abc244/tasks/abc244_Ex
-  bundledCode: "#line 1 \"test_atcoder/abc244h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc244/tasks/abc244_Ex\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
-    )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
-    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    using u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class T>\n\
-    constexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int> = 1'000'000'000;\n\
-    template <>\nconstexpr ll infty<ll> = ll(infty<int>) * infty<int> * 2;\ntemplate\
-    \ <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\n\
-    template <>\nconstexpr double infty<double> = infty<ll>;\ntemplate <>\nconstexpr\
-    \ long double infty<long double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing\
-    \ vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
-    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
-    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
-    \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
-    template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
-    #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
-    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
-    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
-    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
-    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    - https://judge.yosupo.jp/problem/factorial
+  bundledCode: "#line 1 \"test/library_checker/math/factorial_mongomery.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/factorial\"\n#line 1 \"my_template.hpp\"\
+    \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n#pragma GCC\
+    \ optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\
+    \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
+    \ u64 = unsigned long long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
+    using f128 = __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate\
+    \ <>\nconstexpr int infty<int> = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll>\
+    \ = ll(infty<int>) * infty<int> * 2;\ntemplate <>\nconstexpr u32 infty<u32> =\
+    \ infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\ntemplate <>\n\
+    constexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\ntemplate <>\nconstexpr\
+    \ double infty<double> = infty<ll>;\ntemplate <>\nconstexpr long double infty<long\
+    \ double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
+    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
+    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
+    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
+    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
+    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
@@ -184,69 +184,55 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 4 \"test_atcoder/abc244h.test.cpp\"\n\n#line 1 \"convex/cht.hpp\"\
-    \nnamespace CHT {\r\ntemplate <typename T>\r\nstruct Line {\r\n  mutable T k,\
-    \ m, p;\r\n  bool operator<(const Line& o) const { return k < o.k; }\r\n  bool\
-    \ operator<(T x) const { return p < x; }\r\n};\r\n\r\ntemplate <typename T>\r\n\
-    T lc_inf() {\r\n  return numeric_limits<T>::max();\r\n}\r\ntemplate <>\r\nlong\
-    \ double lc_inf<long double>() {\r\n  return 1 / .0;\r\n}\r\n\r\ntemplate <typename\
-    \ T>\r\nT lc_div(T a, T b) {\r\n  return a / b - ((a ^ b) < 0 and a % b);\r\n\
-    }\r\ntemplate <>\r\nlong double lc_div(long double a, long double b) {\r\n  return\
-    \ a / b;\r\n};\r\ntemplate <>\r\ndouble lc_div(double a, double b) {\r\n  return\
-    \ a / b;\r\n};\r\n\r\ntemplate <typename T, bool MINIMIZE = true>\r\nstruct LineContainer\
-    \ : multiset<Line<T>, less<>> {\r\n  using super = multiset<Line<T>, less<>>;\r\
-    \n  using super::begin, super::end, super::insert, super::erase;\r\n  using super::empty,\
-    \ super::lower_bound;\r\n  T inf = lc_inf<T>();\r\n  bool insect(typename super::iterator\
-    \ x, typename super::iterator y) {\r\n    if (y == end()) return x->p = inf, false;\r\
-    \n    if (x->k == y->k)\r\n      x->p = (x->m > y->m ? inf : -inf);\r\n    else\r\
-    \n      x->p = lc_div(y->m - x->m, x->k - y->k);\r\n    return x->p >= y->p;\r\
-    \n  }\r\n  void add(T k, T m) {\r\n    if (MINIMIZE) { k = -k, m = -m; }\r\n \
-    \   auto z = insert({k, m, 0}), y = z++, x = y;\r\n    while (insect(y, z)) z\
-    \ = erase(z);\r\n    if (x != begin() and insect(--x, y)) insect(x, y = erase(y));\r\
-    \n    while ((y = x) != begin() and (--x)->p >= y->p) insect(x, erase(y));\r\n\
-    \  }\r\n  T query(T x) {\r\n    assert(!empty());\r\n    auto l = *lower_bound(x);\r\
-    \n    T v = (l.k * x + l.m);\r\n    return (MINIMIZE ? -v : v);\r\n  }\r\n};\r\
-    \n}; // namespace CHT\r\n\r\nusing namespace CHT;\r\ntemplate <typename T>\r\n\
-    using CHT_min = LineContainer<T, true>;\r\ntemplate <typename T>\r\nusing CHT_max\
-    \ = LineContainer<T, false>;\r\n\r\n/*\r\nlong long / double \u3067\u52D5\u304F\
-    \u3068\u601D\u3046\u3002\u30AF\u30A8\u30EA\u3042\u305F\u308A O(log N)\r\n\u30FB\
-    add(a, b)\uFF1Aax + by \u306E\u8FFD\u52A0\r\n\u30FBget_max(x,y)\uFF1Amax_{a,b}\
-    \ (ax + by)\r\n\u30FBget_min(x,y)\uFF1Amax_{a,b} (ax + by)\r\n*/\r\ntemplate <typename\
-    \ T>\r\nstruct CHT_xy {\r\n  using ld = long double;\r\n  CHT_min<ld> cht_min;\r\
-    \n  CHT_max<ld> cht_max;\r\n  T amax = -infty<T>, amin = infty<T>;\r\n  T bmax\
-    \ = -infty<T>, bmin = infty<T>;\r\n  bool empty = true;\r\n\r\n  void clear()\
-    \ {\r\n    empty = true;\r\n    cht_min.clear();\r\n    cht_max.clear();\r\n \
-    \ }\r\n  void add(T a, T b) {\r\n    empty = false;\r\n    cht_min.add(b, a);\r\
-    \n    cht_max.add(b, a);\r\n    chmax(amax, a), chmin(amin, a), chmax(bmax, b),\
-    \ chmin(bmin, b);\r\n  }\r\n\r\n  T get_max(T x, T y) {\r\n    if (cht_min.empty())\
-    \ return -infty<T>;\r\n    if (x == 0) { return max(bmax * y, bmin * y); }\r\n\
-    \    ld z = ld(y) / x;\r\n    if (x > 0) {\r\n      auto l = cht_max.lower_bound(z);\r\
-    \n      ll a = l->m, b = l->k;\r\n      return a * x + b * y;\r\n    }\r\n   \
-    \ auto l = cht_min.lower_bound(z);\r\n    ll a = -(l->m), b = -(l->k);\r\n   \
-    \ return a * x + b * y;\r\n  }\r\n\r\n  T get_min(T x, T y) { return -get_max(-x,\
-    \ -y); }\r\n};\r\n#line 6 \"test_atcoder/abc244h.test.cpp\"\n\nvoid solve() {\n\
-    \  LL(Q);\n  CHT_xy<ll> cht;\n  FOR(Q) {\n    LL(a, b, x, y);\n    cht.add(a,\
-    \ b);\n    print(cht.get_max(x, y));\n  }\n}\n\nsigned main() {\n  solve();\n\n\
-    \  return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc244/tasks/abc244_Ex\"\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"convex/cht.hpp\"\
-    \n\nvoid solve() {\n  LL(Q);\n  CHT_xy<ll> cht;\n  FOR(Q) {\n    LL(a, b, x, y);\n\
-    \    cht.add(a, b);\n    print(cht.get_max(x, y));\n  }\n}\n\nsigned main() {\n\
-    \  solve();\n\n  return 0;\n}\n"
+    \ yes(!t); }\r\n#line 4 \"test/library_checker/math/factorial_mongomery.test.cpp\"\
+    \n\n#line 2 \"mod/mongomery_modint.hpp\"\n\n// odd mod.\n// x \u306E\u4EE3\u308F\
+    \u308A\u306B rx \u3092\u6301\u3064\ntemplate <int id, typename U1, typename U2>\n\
+    struct Mongomery_modint {\n  using mint = Mongomery_modint;\n  inline static U1\
+    \ m, r, n2;\n  static constexpr int W = numeric_limits<U1>::digits;\n\n  static\
+    \ void set_mod(U1 mod) {\n    assert(mod & 1 && mod <= U1(1) << (W - 2));\n  \
+    \  m = mod, n2 = -U2(m) % m, r = m;\n    FOR(5) r *= 2 - m * r;\n    r = -r;\n\
+    \    assert(r * m == U1(-1));\n  }\n  static U1 reduce(U2 b) { return (b + U2(U1(b)\
+    \ * r) * m) >> W; }\n\n  U1 x;\n  Mongomery_modint() : x(0) {}\n  Mongomery_modint(U1\
+    \ x) : x(reduce(U2(x) * n2)){};\n  U1 val() const {\n    U1 y = reduce(x);\n \
+    \   return y >= m ? y - m : y;\n  }\n  mint &operator+=(mint y) {\n    x = ((x\
+    \ += y.x) >= m ? x - m : x);\n    return *this;\n  }\n  mint &operator-=(mint\
+    \ y) {\n    x -= (x >= y.x ? y.x : y.x - m);\n    return *this;\n  }\n  mint &operator*=(mint\
+    \ y) {\n    x = reduce(U2(x) * y.x);\n    return *this;\n  }\n  mint operator+(mint\
+    \ y) const { return mint(*this) += y; }\n  mint operator-(mint y) const { return\
+    \ mint(*this) -= y; }\n  mint operator*(mint y) const { return mint(*this) *=\
+    \ y; }\n  bool operator==(mint y) const {\n    return (x >= m ? x - m : x) ==\
+    \ (y.x >= m ? y.x - m : y.x);\n  }\n  bool operator!=(mint y) const { return not\
+    \ operator==(y); }\n  mint pow(ll n) const {\n    assert(n >= 0);\n    mint y\
+    \ = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if (n & 1) y *= z;\n\
+    \    return y;\n  }\n};\n\ntemplate <int id>\nusing Mongomery_modint_32 = Mongomery_modint<id,\
+    \ u32, u64>;\ntemplate <int id>\nusing Mongomery_modint_64 = Mongomery_modint<id,\
+    \ u64, u128>;\n#line 6 \"test/library_checker/math/factorial_mongomery.test.cpp\"\
+    \n\nusing mint = Mongomery_modint_32<0>;\n\nvoid solve() {\n  mint::set_mod(mod);\n\
+    \  INT(N);\n  if (2 * N < mod) {\n    mint x = 1;\n    FOR(i, 1, N + 1) x *= mint(i);\n\
+    \    return print(x.val());\n  }\n  mint div = mod - 1;\n  FOR_R(i, N + 1, mod)\
+    \ { div *= mint(i); }\n  mint x = div.pow(mod - 2);\n  print(x.val());\n}\n\n\
+    signed main() {\n  INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/factorial\"\n#include \"\
+    my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/mongomery_modint.hpp\"\
+    \n\nusing mint = Mongomery_modint_32<0>;\n\nvoid solve() {\n  mint::set_mod(mod);\n\
+    \  INT(N);\n  if (2 * N < mod) {\n    mint x = 1;\n    FOR(i, 1, N + 1) x *= mint(i);\n\
+    \    return print(x.val());\n  }\n  mint div = mod - 1;\n  FOR_R(i, N + 1, mod)\
+    \ { div *= mint(i); }\n  mint x = div.pow(mod - 2);\n  print(x.val());\n}\n\n\
+    signed main() {\n  INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - convex/cht.hpp
+  - mod/mongomery_modint.hpp
   isVerificationFile: true
-  path: test_atcoder/abc244h.test.cpp
+  path: test/library_checker/math/factorial_mongomery.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
+  timestamp: '2023-11-09 02:49:41+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test_atcoder/abc244h.test.cpp
+documentation_of: test/library_checker/math/factorial_mongomery.test.cpp
 layout: document
 redirect_from:
-- /verify/test_atcoder/abc244h.test.cpp
-- /verify/test_atcoder/abc244h.test.cpp.html
-title: test_atcoder/abc244h.test.cpp
+- /verify/test/library_checker/math/factorial_mongomery.test.cpp
+- /verify/test/library_checker/math/factorial_mongomery.test.cpp.html
+title: test/library_checker/math/factorial_mongomery.test.cpp
 ---

@@ -103,6 +103,9 @@ data:
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
   - icon: ':x:'
+    path: test/library_checker/math/factorial_mongomery.test.cpp
+    title: test/library_checker/math/factorial_mongomery.test.cpp
+  - icon: ':x:'
     path: test/library_checker/math/factorize.test.cpp
     title: test/library_checker/math/factorize.test.cpp
   - icon: ':x:'
@@ -348,6 +351,7 @@ data:
   - test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
   - test/library_checker/convolution/convolution_mod_dmint.test.cpp
   - test/library_checker/convolution/convolution_mod_setntt.test.cpp
+  - test/library_checker/math/factorial_mongomery.test.cpp
   - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/tetration.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp

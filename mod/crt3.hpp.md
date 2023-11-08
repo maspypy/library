@@ -122,7 +122,7 @@ data:
   - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution.hpp
     title: poly/multivar_convolution.hpp
   - icon: ':x:'
@@ -220,8 +220,11 @@ data:
     path: test/aoj/NTL_2_C.test.cpp
     title: test/aoj/NTL_2_C.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/addition_of_bigintegers.test.cpp
-    title: test/library_checker/addition_of_bigintegers.test.cpp
+    path: test/library_checker/bigint/addition_of_bigintegers.test.cpp
+    title: test/library_checker/bigint/addition_of_bigintegers.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/bigint/multiplication_of_bigintegers.test.cpp
+    title: test/library_checker/bigint/multiplication_of_bigintegers.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_huge.test.cpp
     title: test/library_checker/convolution/convolution_huge.test.cpp
@@ -249,9 +252,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/multivariate_convolution.test.cpp
     title: test/library_checker/convolution/multivariate_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
     title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/math/factorial.test.cpp
+    title: test/library_checker/math/factorial.test.cpp
   - icon: ':x:'
     path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
@@ -276,9 +282,6 @@ data:
   - icon: ':x:'
     path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
     title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/multiplication_of_bigintegers.test.cpp
-    title: test/library_checker/multiplication_of_bigintegers.test.cpp
   - icon: ':x:'
     path: test/library_checker/polynomial/composition_of_fps.test.cpp
     title: test/library_checker/polynomial/composition_of_fps.test.cpp
@@ -814,11 +817,9 @@ data:
   - test/mytest/composition_1_minus_ex.test.cpp
   - test/mytest/simple_perm.test.cpp
   - test/mytest/count_bipartite.test.cpp
-  - test/library_checker/multiplication_of_bigintegers.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
-  - test/library_checker/addition_of_bigintegers.test.cpp
   - test/library_checker/sample/aplusb128.test.cpp
   - test/library_checker/convolution/multivariate_convolution.test.cpp
   - test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
@@ -835,6 +836,7 @@ data:
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
+  - test/library_checker/math/factorial.test.cpp
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/library_checker/math/partition.test.cpp
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
@@ -867,6 +869,8 @@ data:
   - test/library_checker/polynomial/inv_of_fps.test.cpp
   - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
+  - test/library_checker/bigint/multiplication_of_bigintegers.test.cpp
+  - test/library_checker/bigint/addition_of_bigintegers.test.cpp
   - test/aoj/NTL_2_B.test.cpp
   - test/aoj/NTL_2_A.test.cpp
   - test/aoj/NTL_2_C.test.cpp

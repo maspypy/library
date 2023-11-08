@@ -52,6 +52,9 @@ data:
     title: seq/kth_term_of_p_recursive.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: test/library_checker/math/factorial.test.cpp
+    title: test/library_checker/math/factorial.test.cpp
+  - icon: ':x:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
   - icon: ':x:'
@@ -526,6 +529,7 @@ data:
   - test/yukicoder/502_2.test.cpp
   - test/yukicoder/2166.test.cpp
   - test/mytest/factorial_998.test.cpp
+  - test/library_checker/math/factorial.test.cpp
   - test_atcoder/abc276_g.test.cpp
   - test_atcoder/abc276_g_2.test.cpp
   - test_atcoder/abc222h_2.test.cpp

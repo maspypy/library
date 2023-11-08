@@ -137,7 +137,7 @@ data:
   - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution.hpp
     title: poly/multivar_convolution.hpp
   - icon: ':x:'
@@ -247,8 +247,11 @@ data:
     path: test/aoj/NTL_2_C.test.cpp
     title: test/aoj/NTL_2_C.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/addition_of_bigintegers.test.cpp
-    title: test/library_checker/addition_of_bigintegers.test.cpp
+    path: test/library_checker/bigint/addition_of_bigintegers.test.cpp
+    title: test/library_checker/bigint/addition_of_bigintegers.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/bigint/multiplication_of_bigintegers.test.cpp
+    title: test/library_checker/bigint/multiplication_of_bigintegers.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/bitwise_and_convolution.test.cpp
     title: test/library_checker/convolution/bitwise_and_convolution.test.cpp
@@ -288,22 +291,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/online_convolution.test.cpp
     title: test/library_checker/convolution/online_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution.test.cpp
     title: test/library_checker/convolution/subset_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
     title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
     title: test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
     title: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
   - icon: ':x:'
@@ -333,6 +336,12 @@ data:
   - icon: ':x:'
     path: test/library_checker/math/composition_sps.test.cpp
     title: test/library_checker/math/composition_sps.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/math/factori998.test.cpp
+    title: test/library_checker/math/factori998.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/math/factorial.test.cpp
+    title: test/library_checker/math/factorial.test.cpp
   - icon: ':x:'
     path: test/library_checker/math/find_linear_recurrence.test.cpp
     title: test/library_checker/math/find_linear_recurrence.test.cpp
@@ -399,9 +408,6 @@ data:
   - icon: ':x:'
     path: test/library_checker/matrix/sparse_matrix_det.test.cpp
     title: test/library_checker/matrix/sparse_matrix_det.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/multiplication_of_bigintegers.test.cpp
-    title: test/library_checker/multiplication_of_bigintegers.test.cpp
   - icon: ':x:'
     path: test/library_checker/polynomial/composition_of_fps.test.cpp
     title: test/library_checker/polynomial/composition_of_fps.test.cpp
@@ -1380,13 +1386,11 @@ data:
   - test/mytest/31bit_modint.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/count_bipartite.test.cpp
-  - test/library_checker/multiplication_of_bigintegers.test.cpp
   - test/library_checker/graph/enumerate_cliques.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
   - test/library_checker/tree/rerooting_dp.test.cpp
-  - test/library_checker/addition_of_bigintegers.test.cpp
   - test/library_checker/sample/aplusb128.test.cpp
   - test/library_checker/matrix/implicit_matrix.test.cpp
   - test/library_checker/matrix/inverse_matrix.test.cpp
@@ -1419,7 +1423,9 @@ data:
   - test/library_checker/math/totient_sum.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/composition_sps.test.cpp
+  - test/library_checker/math/factorial.test.cpp
   - test/library_checker/math/lcm_convolution.test.cpp
+  - test/library_checker/math/factori998.test.cpp
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/library_checker/math/gcd_convolution.test.cpp
   - test/library_checker/math/find_linear_recurrence.test.cpp
@@ -1455,6 +1461,8 @@ data:
   - test/library_checker/polynomial/inv_of_fps.test.cpp
   - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
+  - test/library_checker/bigint/multiplication_of_bigintegers.test.cpp
+  - test/library_checker/bigint/addition_of_bigintegers.test.cpp
   - test/library_checker/string/number_of_subsequences.test.cpp
   - test/library_checker/datastructure/sort_segtree_1.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp

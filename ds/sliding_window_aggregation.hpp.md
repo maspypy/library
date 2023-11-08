@@ -28,6 +28,9 @@ data:
     path: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
     title: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
   - icon: ':x:'
+    path: test/library_checker/math/factorial.test.cpp
+    title: test/library_checker/math/factorial.test.cpp
+  - icon: ':x:'
     path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
     title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - icon: ':x:'
@@ -170,6 +173,7 @@ data:
   - test/yukicoder/2166.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
+  - test/library_checker/math/factorial.test.cpp
   - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/library_checker/datastructure/queue_operate_all_composite.test.cpp
   - test_atcoder/abc276_g.test.cpp
