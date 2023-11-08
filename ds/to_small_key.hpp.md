@@ -9,12 +9,12 @@ data:
     path: ds/static_range_frequency.hpp
     title: ds/static_range_frequency.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_freq.test.cpp
     title: test/library_checker/datastructure/static_range_freq.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
@@ -39,24 +39,24 @@ data:
     \ etc.\ntemplate <int LOG = 20, bool USE_RESET = false>\nstruct To_Small_Key {\n\
     \  int kind = 0;\n  HashMap<int, LOG, true> MP;\n\n  int set_key(u64 x) {\n  \
     \  int idx = MP.index(x);\n    if (!MP.used[idx]) {\n      MP.used[idx] = 1;\n\
-    \      MP.dat[idx] = {u64(x), kind++};\n    }\n    return MP.dat[idx].se;\n  }\n\
-    \n  int query(u64 x) { return MP.get(x, -1); }\n\n  void reset() {\n    static_assert(USE_RESET);\n\
-    \    MP.reset();\n  }\n};\n"
+    \      MP.key[idx] = x;\n      MP.val[idx] = kind++;\n    }\n    return MP.val[idx];\n\
+    \  }\n\n  int query(u64 x) { return MP.get(x, -1); }\n\n  void reset() {\n   \
+    \ static_assert(USE_RESET);\n    MP.reset();\n  }\n};\n"
   code: "#include \"ds/hashmap.hpp\"\n\n// [30,10,20,30] -> [0,1,2,0] etc.\ntemplate\
     \ <int LOG = 20, bool USE_RESET = false>\nstruct To_Small_Key {\n  int kind =\
     \ 0;\n  HashMap<int, LOG, true> MP;\n\n  int set_key(u64 x) {\n    int idx = MP.index(x);\n\
-    \    if (!MP.used[idx]) {\n      MP.used[idx] = 1;\n      MP.dat[idx] = {u64(x),\
-    \ kind++};\n    }\n    return MP.dat[idx].se;\n  }\n\n  int query(u64 x) { return\
-    \ MP.get(x, -1); }\n\n  void reset() {\n    static_assert(USE_RESET);\n    MP.reset();\n\
-    \  }\n};"
+    \    if (!MP.used[idx]) {\n      MP.used[idx] = 1;\n      MP.key[idx] = x;\n \
+    \     MP.val[idx] = kind++;\n    }\n    return MP.val[idx];\n  }\n\n  int query(u64\
+    \ x) { return MP.get(x, -1); }\n\n  void reset() {\n    static_assert(USE_RESET);\n\
+    \    MP.reset();\n  }\n};"
   dependsOn:
   - ds/hashmap.hpp
   isVerificationFile: false
   path: ds/to_small_key.hpp
   requiredBy:
   - ds/static_range_frequency.hpp
-  timestamp: '2023-11-08 12:09:23+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-11-08 21:50:37+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/static_range_freq.test.cpp
 documentation_of: ds/to_small_key.hpp

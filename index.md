@@ -109,6 +109,9 @@ data:
     - icon: ':question:'
       path: alg/monoid/assign.hpp
       title: alg/monoid/assign.hpp
+    - icon: ':x:'
+      path: alg/monoid/bitwise_function.hpp
+      title: alg/monoid/bitwise_function.hpp
     - icon: ':heavy_check_mark:'
       path: alg/monoid/gcd.hpp
       title: alg/monoid/gcd.hpp
@@ -305,7 +308,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/static_range_product.hpp
       title: ds/static_range_product.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/to_small_key.hpp
       title: ds/to_small_key.hpp
     - icon: ':question:'
@@ -2114,7 +2117,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/sort_segtree_1.test.cpp
       title: test/library_checker/datastructure/sort_segtree_1.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/static_range_freq.test.cpp
       title: test/library_checker/datastructure/static_range_freq.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3532,6 +3535,9 @@ data:
     - icon: ':x:'
       path: test/yukicoder/2459.test.cpp
       title: test/yukicoder/2459.test.cpp
+    - icon: ':x:'
+      path: test/yukicoder/2498.test.cpp
+      title: test/yukicoder/2498.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/2507.test.cpp
       title: test/yukicoder/2507.test.cpp

@@ -27,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1524.test.cpp
     title: test/yukicoder/1524.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2498.test.cpp
+    title: test/yukicoder/2498.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/913.test.cpp
     title: test/yukicoder/913.test.cpp
@@ -86,6 +89,7 @@ data:
   timestamp: '2022-12-04 02:25:39+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/2498.test.cpp
   - test/yukicoder/1524.test.cpp
   - test/yukicoder/913.test.cpp
   - test/mytest/range_closest_pair.test.cpp

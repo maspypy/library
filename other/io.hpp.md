@@ -375,7 +375,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/sort_segtree_1.test.cpp
     title: test/library_checker/datastructure/sort_segtree_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_freq.test.cpp
     title: test/library_checker/datastructure/static_range_freq.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1638,6 +1638,9 @@ data:
   - icon: ':x:'
     path: test/yukicoder/2459.test.cpp
     title: test/yukicoder/2459.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2498.test.cpp
+    title: test/yukicoder/2498.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2507.test.cpp
     title: test/yukicoder/2507.test.cpp
@@ -2295,6 +2298,7 @@ data:
   - test/yukicoder/1643.test.cpp
   - test/yukicoder/1649_2.test.cpp
   - test/yukicoder/4_1.test.cpp
+  - test/yukicoder/2498.test.cpp
   - test/yukicoder/1212.test.cpp
   - test/yukicoder/626.test.cpp
   - test/yukicoder/1547.test.cpp
