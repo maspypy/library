@@ -26,7 +26,7 @@ struct Array_On_Floor {
   }
 
   // dat[i] に対応する floor
-  u64 get_floor(int i) { return (i < n ? 1 + i : double(N) / (n + sq - i)); }
+  u64 get_floor(u32 i) { return (i < n ? 1 + i : double(N) / (n + sq - i)); }
 
   template <typename F>
   void enumerate_all(F f) {
