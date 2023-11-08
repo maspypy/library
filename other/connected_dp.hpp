@@ -85,6 +85,7 @@ pair<vvc<int>, vc<pair<int, int>>> connedted_dp_graph(int N,
       if (merge_reverse) { chmin(h, hash_vector<int>(reverse_state(nxt))); }
       int idx = MP.index(h);
       if (!MP.used[idx]) {
+        MP.set_used(idx);
         MP.key[idx] = h, MP.val[idx] = len(states);
         states.eb(nxt);
       }
@@ -159,6 +160,7 @@ pair<vvc<int>, vc<pair<int, int>>> polygon_dp_graph(int N) {
       u64 h = hash_vector<int>(nxt);
       int idx = MP.index(h);
       if (!MP.used[idx]) {
+        MP.set_used(idx);
         MP.key[idx] = h, MP.val[idx] = len(states);
         states.eb(nxt);
       }
