@@ -1,6 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
-#include "other/io.hpp"
 #include "random/random_graph.hpp"
 #include "graph/maximum_matching_size.hpp"
 #include "graph/maximum_matching_of_line_graph.hpp"
@@ -43,8 +42,9 @@ void test() {
 }
 
 void solve() {
-  LL(a, b);
-  print(a + b);
+  int a, b;
+  cin >> a >> b;
+  cout << a + b << "\n";
 }
 
 signed main() {

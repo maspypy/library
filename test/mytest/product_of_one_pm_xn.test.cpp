@@ -1,6 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
-#include "other/io.hpp"
 #include "mod/modint.hpp"
 #include "random/base.hpp"
 #include "poly/product_of_one_minus_xn.hpp"
@@ -36,8 +35,9 @@ void test() {
 }
 
 void solve() {
-  LL(a, b);
-  print(a + b);
+  int a, b;
+  cin >> a >> b;
+  cout << a + b << "\n";
 }
 
 signed main() {

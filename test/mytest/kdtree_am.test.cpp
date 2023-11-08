@@ -1,6 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
-#include "other/io.hpp"
 
 #include "ds/kdtree/kdtree_acted_monoid.hpp"
 #include "alg/acted_monoid/summax_add.hpp"
@@ -69,13 +68,13 @@ void test() {
 }
 
 void solve() {
-  LL(a, b);
-  print(a + b);
+  int a, b;
+  cin >> a >> b;
+  cout << a + b << "\n";
 }
 
 signed main() {
   FOR(100) test();
   solve();
-
   return 0;
 }

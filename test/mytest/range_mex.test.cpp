@@ -1,6 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
-#include "other/io.hpp"
 #include "random/base.hpp"
 
 #include "ds/offline_query/range_mex_query.hpp"
@@ -52,13 +51,12 @@ void test_1() {
 }
 
 void solve() {
-  LL(a, b);
-  print(a + b);
+  int a, b;
+  cin >> a >> b;
+  cout << a + b << "\n";
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
   test_0();
   test_1();
   solve();

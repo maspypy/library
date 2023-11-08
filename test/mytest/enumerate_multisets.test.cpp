@@ -1,6 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
-#include "other/io.hpp"
 
 #include "enumerate/multiset.hpp"
 #include "mod/modint.hpp"

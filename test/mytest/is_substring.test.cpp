@@ -1,6 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
-#include "other/io.hpp"
 
 #include "random/base.hpp"
 #include "string/is_substring.hpp"
@@ -28,15 +27,13 @@ void test() {
 }
 
 void solve() {
-  LL(A, B);
-  print(A + B);
+  int a, b;
+  cin >> a >> b;
+  cout << a + b << "\n";
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
   test();
   solve();
-
   return 0;
 }

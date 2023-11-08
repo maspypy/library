@@ -1,6 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
-#include "other/io.hpp"
 #include "mod/modint.hpp"
 #include "random/base.hpp"
 #include "poly/fps_pow.hpp"
@@ -22,11 +21,6 @@ void test() {
     Online_Pow<mint> X(K);
     FOR(i, n + 1) { assert(g[i] == X.query(i, f[i])); }
   }
-}
-
-void solve() {
-  LL(a, b);
-  print(a + b);
 }
 
 signed main() {
