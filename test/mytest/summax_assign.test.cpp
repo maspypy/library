@@ -1,6 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
-#include "other/io.hpp"
 #include "alg/acted_monoid/summax_assign.hpp"
 #include "random/base.hpp"
 #include "ds/segtree/lazy_segtree.hpp"
@@ -40,9 +39,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
   FOR(100) test();
   solve();
 

@@ -1,6 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
-#include "other/io.hpp"
 
 #include "graph/maximum_matching_size.hpp"
 #include "flow/bipartite.hpp"
@@ -25,13 +24,12 @@ void test_bipartite() {
 }
 
 void solve() {
-  LL(a, b);
-  print(a + b);
+  int a, b;
+  cin >> a >> b;
+  cout << a + b << "\n";
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
   test_bipartite();
   solve();
 
