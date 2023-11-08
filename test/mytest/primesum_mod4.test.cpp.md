@@ -246,9 +246,9 @@ data:
     \    if (p % 4 == 3) { A3[p] += p; }\n  A1 = cumsum<int>(A1, 0);\n  A3 = cumsum<int>(A3,\
     \ 0);\n\n  FOR(N, LIM) {\n    PrimeSum_Mod_4<int> X(N);\n    X.calc_sum();\n \
     \   FOR(K, 1, N + 10) { assert(X[N / K] == mp(A1[N / K], A3[N / K])); }\n  }\n\
-    }\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout\
-    \ << fixed << setprecision(15);\n\n  test_count();\n  test_sum();\n  solve();\n\
-    \n  return 0;\n}\n"
+    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
+    ;\n}\n\nsigned main() {\n  test_count();\n  test_sum();\n  solve();\n\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n#include \"nt/primesum_mod4.hpp\"\n\nvoid test_count()\
     \ {\n  ll LIM = 10000;\n  vc<int> A1(LIM), A3(LIM);\n  for (auto&& p: primetable(LIM))\n\
@@ -261,9 +261,9 @@ data:
     \    if (p % 4 == 3) { A3[p] += p; }\n  A1 = cumsum<int>(A1, 0);\n  A3 = cumsum<int>(A3,\
     \ 0);\n\n  FOR(N, LIM) {\n    PrimeSum_Mod_4<int> X(N);\n    X.calc_sum();\n \
     \   FOR(K, 1, N + 10) { assert(X[N / K] == mp(A1[N / K], A3[N / K])); }\n  }\n\
-    }\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cout\
-    \ << fixed << setprecision(15);\n\n  test_count();\n  test_sum();\n  solve();\n\
-    \n  return 0;\n}\n"
+    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
+    ;\n}\n\nsigned main() {\n  test_count();\n  test_sum();\n  solve();\n\n  return\
+    \ 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -273,7 +273,7 @@ data:
   isVerificationFile: true
   path: test/mytest/primesum_mod4.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
+  timestamp: '2023-11-09 01:44:55+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/primesum_mod4.test.cpp

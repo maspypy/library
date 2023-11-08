@@ -14,9 +14,6 @@ data:
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
-    path: other/io.hpp
-    title: other/io.hpp
-  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -109,94 +106,10 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 1 \"other/io.hpp\"\n#define FASTIO\r\n#include\
-    \ <unistd.h>\r\n\r\n// https://judge.yosupo.jp/submission/21623\r\nnamespace fastio\
-    \ {\r\nstatic constexpr uint32_t SZ = 1 << 17;\r\nchar ibuf[SZ];\r\nchar obuf[SZ];\r\
-    \nchar out[100];\r\n// pointer of ibuf, obuf\r\nuint32_t pil = 0, pir = 0, por\
-    \ = 0;\r\n\r\nstruct Pre {\r\n  char num[10000][4];\r\n  constexpr Pre() : num()\
-    \ {\r\n    for (int i = 0; i < 10000; i++) {\r\n      int n = i;\r\n      for\
-    \ (int j = 3; j >= 0; j--) {\r\n        num[i][j] = n % 10 | '0';\r\n        n\
-    \ /= 10;\r\n      }\r\n    }\r\n  }\r\n} constexpr pre;\r\n\r\ninline void load()\
-    \ {\r\n  memcpy(ibuf, ibuf + pil, pir - pil);\r\n  pir = pir - pil + fread(ibuf\
-    \ + pir - pil, 1, SZ - pir + pil, stdin);\r\n  pil = 0;\r\n  if (pir < SZ) ibuf[pir++]\
-    \ = '\\n';\r\n}\r\n\r\ninline void flush() {\r\n  fwrite(obuf, 1, por, stdout);\r\
-    \n  por = 0;\r\n}\r\n\r\nvoid rd(char &c) {\r\n  do {\r\n    if (pil + 1 > pir)\
-    \ load();\r\n    c = ibuf[pil++];\r\n  } while (isspace(c));\r\n}\r\n\r\nvoid\
-    \ rd(string &x) {\r\n  x.clear();\r\n  char c;\r\n  do {\r\n    if (pil + 1 >\
-    \ pir) load();\r\n    c = ibuf[pil++];\r\n  } while (isspace(c));\r\n  do {\r\n\
-    \    x += c;\r\n    if (pil == pir) load();\r\n    c = ibuf[pil++];\r\n  } while\
-    \ (!isspace(c));\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_real(T &x) {\r\n\
-    \  string s;\r\n  rd(s);\r\n  x = stod(s);\r\n}\r\n\r\ntemplate <typename T>\r\
-    \nvoid rd_integer(T &x) {\r\n  if (pil + 100 > pir) load();\r\n  char c;\r\n \
-    \ do\r\n    c = ibuf[pil++];\r\n  while (c < '-');\r\n  bool minus = 0;\r\n  if\
-    \ constexpr (is_signed<T>::value || is_same_v<T, i128>) {\r\n    if (c == '-')\
-    \ { minus = 1, c = ibuf[pil++]; }\r\n  }\r\n  x = 0;\r\n  while ('0' <= c) { x\
-    \ = x * 10 + (c & 15), c = ibuf[pil++]; }\r\n  if constexpr (is_signed<T>::value\
-    \ || is_same_v<T, i128>) {\r\n    if (minus) x = -x;\r\n  }\r\n}\r\n\r\nvoid rd(int\
-    \ &x) { rd_integer(x); }\r\nvoid rd(ll &x) { rd_integer(x); }\r\nvoid rd(i128\
-    \ &x) { rd_integer(x); }\r\nvoid rd(u32 &x) { rd_integer(x); }\r\nvoid rd(u64\
-    \ &x) { rd_integer(x); }\r\nvoid rd(u128 &x) { rd_integer(x); }\r\nvoid rd(double\
-    \ &x) { rd_real(x); }\r\nvoid rd(long double &x) { rd_real(x); }\r\nvoid rd(f128\
-    \ &x) { rd_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid rd(pair<T, U>\
-    \ &p) {\r\n  return rd(p.first), rd(p.second);\r\n}\r\ntemplate <size_t N = 0,\
-    \ typename T>\r\nvoid rd_tuple(T &t) {\r\n  if constexpr (N < std::tuple_size<T>::value)\
-    \ {\r\n    auto &x = std::get<N>(t);\r\n    rd(x);\r\n    rd_tuple<N + 1>(t);\r\
-    \n  }\r\n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...> &tpl) {\r\n  rd_tuple(tpl);\r\
-    \n}\r\n\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd(array<T, N> &x) {\r\n\
-    \  for (auto &d: x) rd(d);\r\n}\r\ntemplate <class T>\r\nvoid rd(vc<T> &x) {\r\
-    \n  for (auto &d: x) rd(d);\r\n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class...\
-    \ T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const\
-    \ char c) {\r\n  if (por == SZ) flush();\r\n  obuf[por++] = c;\r\n}\r\nvoid wt(const\
-    \ string s) {\r\n  for (char c: s) wt(c);\r\n}\r\nvoid wt(const char *s) {\r\n\
-    \  size_t len = strlen(s);\r\n  for (size_t i = 0; i < len; i++) wt(s[i]);\r\n\
-    }\r\n\r\ntemplate <typename T>\r\nvoid wt_integer(T x) {\r\n  if (por > SZ - 100)\
-    \ flush();\r\n  if (x < 0) { obuf[por++] = '-', x = -x; }\r\n  int outi;\r\n \
-    \ for (outi = 96; x >= 10000; outi -= 4) {\r\n    memcpy(out + outi, pre.num[x\
-    \ % 10000], 4);\r\n    x /= 10000;\r\n  }\r\n  if (x >= 1000) {\r\n    memcpy(obuf\
-    \ + por, pre.num[x], 4);\r\n    por += 4;\r\n  } else if (x >= 100) {\r\n    memcpy(obuf\
-    \ + por, pre.num[x] + 1, 3);\r\n    por += 3;\r\n  } else if (x >= 10) {\r\n \
-    \   int q = (x * 103) >> 10;\r\n    obuf[por] = q | '0';\r\n    obuf[por + 1]\
-    \ = (x - q * 10) | '0';\r\n    por += 2;\r\n  } else\r\n    obuf[por++] = x |\
-    \ '0';\r\n  memcpy(obuf + por, out + outi + 4, 96 - outi);\r\n  por += 96 - outi;\r\
-    \n}\r\n\r\ntemplate <typename T>\r\nvoid wt_real(T x) {\r\n  ostringstream oss;\r\
-    \n  oss << fixed << setprecision(15) << double(x);\r\n  string s = oss.str();\r\
-    \n  wt(s);\r\n}\r\n\r\nvoid wt(int x) { wt_integer(x); }\r\nvoid wt(ll x) { wt_integer(x);\
-    \ }\r\nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\
-    \nvoid wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\n\
-    void wt(double x) { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\n\
-    void wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid wt(const\
-    \ pair<T, U> val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n  wt(val.second);\r\n\
-    }\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const T t) {\r\n  if\
-    \ constexpr (N < std::tuple_size<T>::value) {\r\n    if constexpr (N > 0) { wt('\
-    \ '); }\r\n    const auto x = std::get<N>(t);\r\n    wt(x);\r\n    wt_tuple<N\
-    \ + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid wt(tuple<T...> tpl) {\r\
-    \n  wt_tuple(tpl);\r\n}\r\ntemplate <class T, size_t S>\r\nvoid wt(const array<T,\
-    \ S> val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n\
-    \    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\ntemplate <class T>\r\n\
-    void wt(const vector<T> val) {\r\n  auto n = val.size();\r\n  for (size_t i =\
-    \ 0; i < n; i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\n\r\
-    \nvoid print() { wt('\\n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid\
-    \ print(Head &&head, Tail &&... tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail))\
-    \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
-    \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
-    \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
-    using fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n\
-    \  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ U64(...)   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)\
-    \      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
-    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
-    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
-    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
-    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
-    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
-    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
-    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
-    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  vc<pair<u32,\
-    \ u32>> dat;\n  Bit_Vector(int n) { dat.assign((n + 63) >> 5, {0, 0}); }\n\n \
-    \ void set(int i) { dat[i >> 5].fi |= u32(1) << (i & 31); }\n\n  void build()\
-    \ {\n    FOR(i, len(dat) - 1) dat[i + 1].se = dat[i].se + popcnt(dat[i].fi);\n\
+    \  return B;\n}\n#endif\n#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n\
+    \  vc<pair<u32, u32>> dat;\n  Bit_Vector(int n) { dat.assign((n + 63) >> 5, {0,\
+    \ 0}); }\n\n  void set(int i) { dat[i >> 5].fi |= u32(1) << (i & 31); }\n\n  void\
+    \ build() {\n    FOR(i, len(dat) - 1) dat[i + 1].se = dat[i].se + popcnt(dat[i].fi);\n\
     \  }\n\n  // [0, k) \u5185\u306E 1 \u306E\u500B\u6570\n  int rank(int k, bool\
     \ f = 1) {\n    auto [a, b] = dat[k >> 5];\n    int ret = b + popcnt(a & ((u32(1)\
     \ << (k & 31)) - 1));\n    return (f ? ret : k - ret);\n  }\n};\n#line 2 \"alg/monoid/add.hpp\"\
@@ -352,7 +265,7 @@ data:
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 6 \"test/mytest/wavelet_matrix.test.cpp\"\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 5 \"test/mytest/wavelet_matrix.test.cpp\"\
     \n\nvoid test_compress() {\n  int N = RNG(1, 64);\n  int MAX = RNG(2, 1 << 10);\n\
     \  vc<int> A(N);\n  vc<int> X(N);\n  FOR(i, N) X[i] = RNG(MAX);\n  FOR(i, N) A[i]\
     \ = RNG(MAX);\n\n  Wavelet_Matrix<int, true> WM(A, X);\n\n  int Q = 100;\n  FOR(Q)\
@@ -405,67 +318,67 @@ data:
     \      auto I = argsort(B);\n      int val = B[I[k]];\n      int sm = 0;\n   \
     \   FOR(i, k) sm += Y[I[i]];\n      auto p = WM.kth_value_and_sum(L, R, k, xor_val);\n\
     \      assert(p.fi == val && p.se == sm);\n    }\n  }\n}\n\nvoid solve() {\n \
-    \ LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  FOR(1000) test_compress();\n\
-    \  FOR(1000) test_not_compress();\n  solve();\n\n  return 0;\n}\n"
+    \ int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
+    \ {\n  FOR(1000) test_compress();\n  FOR(1000) test_not_compress();\n  solve();\n\
+    \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"ds/wavelet_matrix.hpp\"\n#include \"random/base.hpp\"\
-    \n\nvoid test_compress() {\n  int N = RNG(1, 64);\n  int MAX = RNG(2, 1 << 10);\n\
-    \  vc<int> A(N);\n  vc<int> X(N);\n  FOR(i, N) X[i] = RNG(MAX);\n  FOR(i, N) A[i]\
-    \ = RNG(MAX);\n\n  Wavelet_Matrix<int, true> WM(A, X);\n\n  int Q = 100;\n  FOR(Q)\
-    \ {\n    int L = RNG(0, N);\n    int R = RNG(0, N);\n    if (L > R) swap(L, R);\n\
-    \    ++R;\n    int lo = RNG(0, MAX);\n    int hi = RNG(0, MAX);\n    if (lo >\
-    \ hi) swap(lo, hi);\n    ++hi;\n    vc<int> B = {A.begin() + L, A.begin() + R};\n\
-    \    vc<int> Y = {X.begin() + L, X.begin() + R};\n\n    int t = RNG(0, 5);\n \
-    \   if (t == 0) { // count\n      int cnt = 0;\n      for (auto&& x: B)\n    \
-    \    if (lo <= x && x < hi) cnt += 1;\n      assert(WM.count(L, R, lo, hi) ==\
-    \ cnt);\n    }\n    if (t == 1) { // sm\n      int sm = 0;\n      int k1 = RNG(R\
-    \ - L + 1);\n      int k2 = RNG(R - L + 1);\n      if (k1 > k2) swap(k1, k2);\n\
-    \      auto I = argsort(B);\n      FOR(i, k1, k2) sm += Y[I[i]];\n      assert(WM.sum(L,\
-    \ R, k1, k2) == sm);\n    }\n    if (t == 2) { // kth\n      int k = RNG(R - L);\n\
-    \      sort(all(B));\n      assert(WM.kth(L, R, k) == B[k]);\n    }\n    if (t\
-    \ == 3) { // max_right\n      int a = RNG(0, 10);\n      int b = RNG(0, 10);\n\
-    \      int c = RNG(0, a * (R - L) + b * MAX * (R - L) + 1);\n      auto check\n\
-    \          = [&](int cnt, int sm) -> bool { return a * cnt + b * sm <= c; };\n\
-    \      auto p = WM.max_right(check, L, R);\n      int k = binary_search(\n   \
-    \       [&](int k) -> bool {\n            int sm = WM.sum(L, R, 0, k);\n     \
-    \       return check(k, sm);\n          },\n          0, R - L + 1);\n      int\
-    \ sm = WM.sum(L, R, 0, k);\n      assert(p.fi == k && p.se == sm);\n    }\n  \
-    \  if (t == 4) { // k-th value and sum\n      int k = RNG(0, R - L + 1);\n   \
-    \   B.eb(infty<int>);\n      auto I = argsort(B);\n      int val = B[I[k]];\n\
-    \      int sm = 0;\n      FOR(i, k) sm += Y[I[i]];\n      auto p = WM.kth_value_and_sum(L,\
-    \ R, k);\n      assert(p.fi == val && p.se == sm);\n    }\n  }\n}\n\nvoid test_not_compress()\
-    \ {\n  int N = RNG(1, 64);\n  int log = RNG(1, 7);\n  int MAX = 1 << log;\n  vc<int>\
-    \ A(N);\n  vc<int> X(N);\n  FOR(i, N) X[i] = RNG(0, MAX);\n  FOR(i, N) A[i] =\
-    \ RNG(MAX);\n  Wavelet_Matrix<int, false> WM(A, X, log);\n\n  int Q = 100;\n \
-    \ FOR(Q) {\n    int L = RNG(0, N);\n    int R = RNG(0, N);\n    if (L > R) swap(L,\
-    \ R);\n    ++R;\n    int lo = RNG(0, MAX);\n    int hi = RNG(0, MAX);\n    int\
-    \ xor_val = RNG(0, MAX);\n    if (lo > hi) swap(lo, hi);\n    ++hi;\n    vc<int>\
+    \n#include \"ds/wavelet_matrix.hpp\"\n#include \"random/base.hpp\"\n\nvoid test_compress()\
+    \ {\n  int N = RNG(1, 64);\n  int MAX = RNG(2, 1 << 10);\n  vc<int> A(N);\n  vc<int>\
+    \ X(N);\n  FOR(i, N) X[i] = RNG(MAX);\n  FOR(i, N) A[i] = RNG(MAX);\n\n  Wavelet_Matrix<int,\
+    \ true> WM(A, X);\n\n  int Q = 100;\n  FOR(Q) {\n    int L = RNG(0, N);\n    int\
+    \ R = RNG(0, N);\n    if (L > R) swap(L, R);\n    ++R;\n    int lo = RNG(0, MAX);\n\
+    \    int hi = RNG(0, MAX);\n    if (lo > hi) swap(lo, hi);\n    ++hi;\n    vc<int>\
     \ B = {A.begin() + L, A.begin() + R};\n    vc<int> Y = {X.begin() + L, X.begin()\
-    \ + R};\n    for (auto&& x: B) x ^= xor_val;\n\n    int t = RNG(0, 5);\n    if\
-    \ (t == 0) { // count\n      int cnt = 0;\n      for (auto&& x: B) {\n       \
-    \ if (lo <= x && x < hi) cnt += 1;\n      }\n      assert(WM.count(L, R, lo, hi,\
-    \ xor_val) == cnt);\n    }\n    if (t == 1) { // sm\n      int sm = 0;\n     \
-    \ int k1 = RNG(R - L + 1);\n      int k2 = RNG(R - L + 1);\n      if (k1 > k2)\
-    \ swap(k1, k2);\n      auto I = argsort(B);\n      FOR(i, k1, k2) sm += Y[I[i]];\n\
-    \      assert(WM.sum(L, R, k1, k2, xor_val) == sm);\n    }\n    if (t == 2) {\
-    \ // kth\n      int k = RNG(R - L);\n      sort(all(B));\n      assert(WM.kth(L,\
-    \ R, k, xor_val) == B[k]);\n    }\n    if (t == 3) { // max_right\n      int a\
-    \ = RNG(0, 10);\n      int b = RNG(0, 10);\n      int c = RNG(0, a * (R - L) +\
-    \ b * MAX * (R - L) + 1);\n      auto check\n          = [&](int cnt, int sm)\
-    \ -> bool { return a * cnt + b * sm <= c; };\n      auto p = WM.max_right(check,\
-    \ L, R, xor_val);\n      int k = binary_search(\n          [&](int k) -> bool\
-    \ {\n            int sm = WM.sum(L, R, 0, k, xor_val);\n            return check(k,\
-    \ sm);\n          },\n          0, R - L + 1);\n      int sm = WM.sum(L, R, 0,\
-    \ k, xor_val);\n      assert(k == p.fi && sm == p.se);\n    }\n    if (t == 4)\
-    \ { // k-th value and sum\n      int k = RNG(0, R - L + 1);\n      B.eb(infty<int>);\n\
-    \      auto I = argsort(B);\n      int val = B[I[k]];\n      int sm = 0;\n   \
-    \   FOR(i, k) sm += Y[I[i]];\n      auto p = WM.kth_value_and_sum(L, R, k, xor_val);\n\
-    \      assert(p.fi == val && p.se == sm);\n    }\n  }\n}\n\nvoid solve() {\n \
-    \ LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  FOR(1000) test_compress();\n\
-    \  FOR(1000) test_not_compress();\n  solve();\n\n  return 0;\n}\n"
+    \ + R};\n\n    int t = RNG(0, 5);\n    if (t == 0) { // count\n      int cnt =\
+    \ 0;\n      for (auto&& x: B)\n        if (lo <= x && x < hi) cnt += 1;\n    \
+    \  assert(WM.count(L, R, lo, hi) == cnt);\n    }\n    if (t == 1) { // sm\n  \
+    \    int sm = 0;\n      int k1 = RNG(R - L + 1);\n      int k2 = RNG(R - L + 1);\n\
+    \      if (k1 > k2) swap(k1, k2);\n      auto I = argsort(B);\n      FOR(i, k1,\
+    \ k2) sm += Y[I[i]];\n      assert(WM.sum(L, R, k1, k2) == sm);\n    }\n    if\
+    \ (t == 2) { // kth\n      int k = RNG(R - L);\n      sort(all(B));\n      assert(WM.kth(L,\
+    \ R, k) == B[k]);\n    }\n    if (t == 3) { // max_right\n      int a = RNG(0,\
+    \ 10);\n      int b = RNG(0, 10);\n      int c = RNG(0, a * (R - L) + b * MAX\
+    \ * (R - L) + 1);\n      auto check\n          = [&](int cnt, int sm) -> bool\
+    \ { return a * cnt + b * sm <= c; };\n      auto p = WM.max_right(check, L, R);\n\
+    \      int k = binary_search(\n          [&](int k) -> bool {\n            int\
+    \ sm = WM.sum(L, R, 0, k);\n            return check(k, sm);\n          },\n \
+    \         0, R - L + 1);\n      int sm = WM.sum(L, R, 0, k);\n      assert(p.fi\
+    \ == k && p.se == sm);\n    }\n    if (t == 4) { // k-th value and sum\n     \
+    \ int k = RNG(0, R - L + 1);\n      B.eb(infty<int>);\n      auto I = argsort(B);\n\
+    \      int val = B[I[k]];\n      int sm = 0;\n      FOR(i, k) sm += Y[I[i]];\n\
+    \      auto p = WM.kth_value_and_sum(L, R, k);\n      assert(p.fi == val && p.se\
+    \ == sm);\n    }\n  }\n}\n\nvoid test_not_compress() {\n  int N = RNG(1, 64);\n\
+    \  int log = RNG(1, 7);\n  int MAX = 1 << log;\n  vc<int> A(N);\n  vc<int> X(N);\n\
+    \  FOR(i, N) X[i] = RNG(0, MAX);\n  FOR(i, N) A[i] = RNG(MAX);\n  Wavelet_Matrix<int,\
+    \ false> WM(A, X, log);\n\n  int Q = 100;\n  FOR(Q) {\n    int L = RNG(0, N);\n\
+    \    int R = RNG(0, N);\n    if (L > R) swap(L, R);\n    ++R;\n    int lo = RNG(0,\
+    \ MAX);\n    int hi = RNG(0, MAX);\n    int xor_val = RNG(0, MAX);\n    if (lo\
+    \ > hi) swap(lo, hi);\n    ++hi;\n    vc<int> B = {A.begin() + L, A.begin() +\
+    \ R};\n    vc<int> Y = {X.begin() + L, X.begin() + R};\n    for (auto&& x: B)\
+    \ x ^= xor_val;\n\n    int t = RNG(0, 5);\n    if (t == 0) { // count\n      int\
+    \ cnt = 0;\n      for (auto&& x: B) {\n        if (lo <= x && x < hi) cnt += 1;\n\
+    \      }\n      assert(WM.count(L, R, lo, hi, xor_val) == cnt);\n    }\n    if\
+    \ (t == 1) { // sm\n      int sm = 0;\n      int k1 = RNG(R - L + 1);\n      int\
+    \ k2 = RNG(R - L + 1);\n      if (k1 > k2) swap(k1, k2);\n      auto I = argsort(B);\n\
+    \      FOR(i, k1, k2) sm += Y[I[i]];\n      assert(WM.sum(L, R, k1, k2, xor_val)\
+    \ == sm);\n    }\n    if (t == 2) { // kth\n      int k = RNG(R - L);\n      sort(all(B));\n\
+    \      assert(WM.kth(L, R, k, xor_val) == B[k]);\n    }\n    if (t == 3) { //\
+    \ max_right\n      int a = RNG(0, 10);\n      int b = RNG(0, 10);\n      int c\
+    \ = RNG(0, a * (R - L) + b * MAX * (R - L) + 1);\n      auto check\n         \
+    \ = [&](int cnt, int sm) -> bool { return a * cnt + b * sm <= c; };\n      auto\
+    \ p = WM.max_right(check, L, R, xor_val);\n      int k = binary_search(\n    \
+    \      [&](int k) -> bool {\n            int sm = WM.sum(L, R, 0, k, xor_val);\n\
+    \            return check(k, sm);\n          },\n          0, R - L + 1);\n  \
+    \    int sm = WM.sum(L, R, 0, k, xor_val);\n      assert(k == p.fi && sm == p.se);\n\
+    \    }\n    if (t == 4) { // k-th value and sum\n      int k = RNG(0, R - L +\
+    \ 1);\n      B.eb(infty<int>);\n      auto I = argsort(B);\n      int val = B[I[k]];\n\
+    \      int sm = 0;\n      FOR(i, k) sm += Y[I[i]];\n      auto p = WM.kth_value_and_sum(L,\
+    \ R, k, xor_val);\n      assert(p.fi == val && p.se == sm);\n    }\n  }\n}\n\n\
+    void solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\
+    \nsigned main() {\n  FOR(1000) test_compress();\n  FOR(1000) test_not_compress();\n\
+    \  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
-  - other/io.hpp
   - ds/wavelet_matrix.hpp
   - ds/bit_vector.hpp
   - alg/monoid/add.hpp
@@ -473,7 +386,7 @@ data:
   isVerificationFile: true
   path: test/mytest/wavelet_matrix.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
+  timestamp: '2023-11-09 02:18:09+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/wavelet_matrix.test.cpp

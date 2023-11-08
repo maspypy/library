@@ -120,136 +120,136 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_1_B.test.cpp
     title: test/aoj/DSL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_C.test.cpp
     title: test/aoj/DSL_2_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_D.test.cpp
     title: test/aoj/DSL_2_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_E.test.cpp
     title: test/aoj/DSL_2_E.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_F.test.cpp
     title: test/aoj/DSL_2_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_G.test.cpp
     title: test/aoj/DSL_2_G.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_H.test.cpp
     title: test/aoj/DSL_2_H.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_I.test.cpp
     title: test/aoj/DSL_2_I.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_4_A.test.cpp
     title: test/aoj/DSL_4_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_B.test.cpp
     title: test/aoj/GRL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_C.test.cpp
     title: test/aoj/GRL_1_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_A.test.cpp
     title: test/aoj/GRL_3_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_B.test.cpp
     title: test/aoj/GRL_3_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_6_A.test.cpp
     title: test/aoj/GRL_6_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_6_B.test.cpp
     title: test/aoj/GRL_6_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ITP1_11_A.test.cpp
     title: test/aoj/ITP1_11_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ITP1_11_B.test.cpp
     title: test/aoj/ITP1_11_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ITP1_11_C.test.cpp
     title: test/aoj/ITP1_11_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ITP1_11_D.test.cpp
     title: test/aoj/ITP1_11_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ITP1_D_D.test.cpp
     title: test/aoj/ITP1_D_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ITP2_11_D.test.cpp
     title: test/aoj/ITP2_11_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ITP2_3_B.test.cpp
     title: test/aoj/ITP2_3_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_1_D.test.cpp
     title: test/aoj/NTL_1_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_1_E.test.cpp
     title: test/aoj/NTL_1_E.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_2_A.test.cpp
     title: test/aoj/NTL_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_2_B.test.cpp
     title: test/aoj/NTL_2_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_2_C.test.cpp
     title: test/aoj/NTL_2_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/addition_of_bigintegers.test.cpp
     title: test/library_checker/addition_of_bigintegers.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/bitwise_and_convolution.test.cpp
     title: test/library_checker/convolution/bitwise_and_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/bitwise_or_convolution.test.cpp
     title: test/library_checker/convolution/bitwise_or_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/bitwise_xor_convolution.test.cpp
     title: test/library_checker/convolution/bitwise_xor_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_huge.test.cpp
     title: test/library_checker/convolution/convolution_huge.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod.test.cpp
     title: test/library_checker/convolution/convolution_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_107.test.cpp
     title: test/library_checker/convolution/convolution_mod_107.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
     title: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_2_64.test.cpp
     title: test/library_checker/convolution/convolution_mod_2_64.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_dmint.test.cpp
     title: test/library_checker/convolution/convolution_mod_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_setntt.test.cpp
     title: test/library_checker/convolution/convolution_mod_setntt.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
     title: test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
     title: test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
     title: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/multivariate_convolution.test.cpp
     title: test/library_checker/convolution/multivariate_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/online_convolution.test.cpp
     title: test/library_checker/convolution/online_convolution.test.cpp
   - icon: ':x:'
@@ -802,281 +802,11 @@ data:
     path: test/library_checker/tree/tree_diameter.test.cpp
     title: test/library_checker/tree/tree_diameter.test.cpp
   - icon: ':x:'
-    path: test/mytest/digit_sum.test.cpp
-    title: test/mytest/digit_sum.test.cpp
-  - icon: ':x:'
-    path: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
-    title: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
-  - icon: ':x:'
-    path: test/mytest/enumerate_multisets.test.cpp
-    title: test/mytest/enumerate_multisets.test.cpp
-  - icon: ':x:'
-    path: test/mytest/factorial_998.test.cpp
-    title: test/mytest/factorial_998.test.cpp
-  - icon: ':x:'
-    path: test/mytest/is_substring.test.cpp
-    title: test/mytest/is_substring.test.cpp
-  - icon: ':x:'
-    path: test/mytest/kdtree_am.test.cpp
-    title: test/mytest/kdtree_am.test.cpp
-  - icon: ':x:'
-    path: test/mytest/kdtree_monoid.test.cpp
-    title: test/mytest/kdtree_monoid.test.cpp
-  - icon: ':x:'
-    path: test/mytest/kdtree_nns.test.cpp
-    title: test/mytest/kdtree_nns.test.cpp
-  - icon: ':x:'
-    path: test/mytest/knight_distance.test.cpp
-    title: test/mytest/knight_distance.test.cpp
-  - icon: ':x:'
-    path: test/mytest/longest_common_substr.test.cpp
-    title: test/mytest/longest_common_substr.test.cpp
-  - icon: ':x:'
-    path: test/mytest/magic_square.test.cpp
-    title: test/mytest/magic_square.test.cpp
-  - icon: ':x:'
-    path: test/mytest/manhattan_nns.test.cpp
-    title: test/mytest/manhattan_nns.test.cpp
-  - icon: ':x:'
-    path: test/mytest/matching.test.cpp
-    title: test/mytest/matching.test.cpp
-  - icon: ':x:'
-    path: test/mytest/matching_line_graph.test.cpp
-    title: test/mytest/matching_line_graph.test.cpp
-  - icon: ':x:'
-    path: test/mytest/matching_ve.test.cpp
-    title: test/mytest/matching_ve.test.cpp
-  - icon: ':x:'
-    path: test/mytest/max_assign.test.cpp
-    title: test/mytest/max_assign.test.cpp
-  - icon: ':x:'
-    path: test/mytest/max_max.test.cpp
-    title: test/mytest/max_max.test.cpp
-  - icon: ':x:'
-    path: test/mytest/max_min.test.cpp
-    title: test/mytest/max_min.test.cpp
-  - icon: ':x:'
-    path: test/mytest/max_of_linear_segments.test.cpp
-    title: test/mytest/max_of_linear_segments.test.cpp
-  - icon: ':x:'
-    path: test/mytest/maxidx_add.test.cpp
-    title: test/mytest/maxidx_add.test.cpp
-  - icon: ':x:'
-    path: test/mytest/maxplus_concave.test.cpp
-    title: test/mytest/maxplus_concave.test.cpp
-  - icon: ':x:'
-    path: test/mytest/min_cost_matching_on_line.test.cpp
-    title: test/mytest/min_cost_matching_on_line.test.cpp
-  - icon: ':x:'
-    path: test/mytest/min_max.test.cpp
-    title: test/mytest/min_max.test.cpp
-  - icon: ':x:'
     path: test/mytest/min_min.test.cpp
     title: test/mytest/min_min.test.cpp
   - icon: ':x:'
-    path: test/mytest/min_of_linear_segments.test.cpp
-    title: test/mytest/min_of_linear_segments.test.cpp
-  - icon: ':x:'
-    path: test/mytest/min_poly.test.cpp
-    title: test/mytest/min_poly.test.cpp
-  - icon: ':x:'
-    path: test/mytest/minidx_add.test.cpp
-    title: test/mytest/minidx_add.test.cpp
-  - icon: ':x:'
-    path: test/mytest/minmax_add.test.cpp
-    title: test/mytest/minmax_add.test.cpp
-  - icon: ':x:'
-    path: test/mytest/minplus_conv_triple.test.cpp
-    title: test/mytest/minplus_conv_triple.test.cpp
-  - icon: ':x:'
-    path: test/mytest/minplus_convex.test.cpp
-    title: test/mytest/minplus_convex.test.cpp
-  - icon: ':x:'
-    path: test/mytest/mo_on_tree.test.cpp
-    title: test/mytest/mo_on_tree.test.cpp
-  - icon: ':x:'
-    path: test/mytest/mod_sum_of_linear.test.cpp
-    title: test/mytest/mod_sum_of_linear.test.cpp
-  - icon: ':x:'
-    path: test/mytest/multinomial.test.cpp
-    title: test/mytest/multinomial.test.cpp
-  - icon: ':x:'
-    path: test/mytest/mybitset.test.cpp
-    title: test/mytest/mybitset.test.cpp
-  - icon: ':x:'
-    path: test/mytest/non_adj.test.cpp
-    title: test/mytest/non_adj.test.cpp
-  - icon: ':x:'
-    path: test/mytest/online_division.test.cpp
-    title: test/mytest/online_division.test.cpp
-  - icon: ':x:'
-    path: test/mytest/online_exp.test.cpp
-    title: test/mytest/online_exp.test.cpp
-  - icon: ':x:'
-    path: test/mytest/online_inv.test.cpp
-    title: test/mytest/online_inv.test.cpp
-  - icon: ':x:'
-    path: test/mytest/online_log.test.cpp
-    title: test/mytest/online_log.test.cpp
-  - icon: ':x:'
-    path: test/mytest/online_pow.test.cpp
-    title: test/mytest/online_pow.test.cpp
-  - icon: ':x:'
-    path: test/mytest/online_square.test.cpp
-    title: test/mytest/online_square.test.cpp
-  - icon: ':x:'
-    path: test/mytest/partial_frac.test.cpp
-    title: test/mytest/partial_frac.test.cpp
-  - icon: ':x:'
-    path: test/mytest/partizan.test.cpp
-    title: test/mytest/partizan.test.cpp
-  - icon: ':x:'
-    path: test/mytest/pascal.test.cpp
-    title: test/mytest/pascal.test.cpp
-  - icon: ':x:'
-    path: test/mytest/powerquery.test.cpp
-    title: test/mytest/powerquery.test.cpp
-  - icon: ':x:'
-    path: test/mytest/prime_sum.test.cpp
-    title: test/mytest/prime_sum.test.cpp
-  - icon: ':x:'
     path: test/mytest/primesum_mod4.test.cpp
     title: test/mytest/primesum_mod4.test.cpp
-  - icon: ':x:'
-    path: test/mytest/primesum_mod6.test.cpp
-    title: test/mytest/primesum_mod6.test.cpp
-  - icon: ':x:'
-    path: test/mytest/product_of_one_pm_xn.test.cpp
-    title: test/mytest/product_of_one_pm_xn.test.cpp
-  - icon: ':x:'
-    path: test/mytest/pytagorean_triples.test.cpp
-    title: test/mytest/pytagorean_triples.test.cpp
-  - icon: ':x:'
-    path: test/mytest/range_closest_pair.test.cpp
-    title: test/mytest/range_closest_pair.test.cpp
-  - icon: ':x:'
-    path: test/mytest/range_freq_of_linear.test.cpp
-    title: test/mytest/range_freq_of_linear.test.cpp
-  - icon: ':x:'
-    path: test/mytest/range_mex.test.cpp
-    title: test/mytest/range_mex.test.cpp
-  - icon: ':x:'
-    path: test/mytest/rbst.test.cpp
-    title: test/mytest/rbst.test.cpp
-  - icon: ':x:'
-    path: test/mytest/rbst_am.test.cpp
-    title: test/mytest/rbst_am.test.cpp
-  - icon: ':x:'
-    path: test/mytest/rbst_am_2.test.cpp
-    title: test/mytest/rbst_am_2.test.cpp
-  - icon: ':x:'
-    path: test/mytest/rbst_am_persistent.test.cpp
-    title: test/mytest/rbst_am_persistent.test.cpp
-  - icon: ':x:'
-    path: test/mytest/rbst_commutative_persistent.test.cpp
-    title: test/mytest/rbst_commutative_persistent.test.cpp
-  - icon: ':x:'
-    path: test/mytest/rbst_monoid.test.cpp
-    title: test/mytest/rbst_monoid.test.cpp
-  - icon: ':x:'
-    path: test/mytest/rbst_monoid_2.test.cpp
-    title: test/mytest/rbst_monoid_2.test.cpp
-  - icon: ':x:'
-    path: test/mytest/rbst_monoid_persistent.test.cpp
-    title: test/mytest/rbst_monoid_persistent.test.cpp
-  - icon: ':x:'
-    path: test/mytest/rbst_test.test.cpp
-    title: test/mytest/rbst_test.test.cpp
-  - icon: ':x:'
-    path: test/mytest/rect_add_pt_sum.test.cpp
-    title: test/mytest/rect_add_pt_sum.test.cpp
-  - icon: ':x:'
-    path: test/mytest/run_length.test.cpp
-    title: test/mytest/run_length.test.cpp
-  - icon: ':x:'
-    path: test/mytest/scc_tournament.test.cpp
-    title: test/mytest/scc_tournament.test.cpp
-  - icon: ':x:'
-    path: test/mytest/seg2d.test.cpp
-    title: test/mytest/seg2d.test.cpp
-  - icon: ':x:'
-    path: test/mytest/segtree_xor_prod.test.cpp
-    title: test/mytest/segtree_xor_prod.test.cpp
-  - icon: ':x:'
-    path: test/mytest/simple_perm.test.cpp
-    title: test/mytest/simple_perm.test.cpp
-  - icon: ':x:'
-    path: test/mytest/slice_rational_fps.test.cpp
-    title: test/mytest/slice_rational_fps.test.cpp
-  - icon: ':x:'
-    path: test/mytest/smawk.test.cpp
-    title: test/mytest/smawk.test.cpp
-  - icon: ':x:'
-    path: test/mytest/sortable_array.test.cpp
-    title: test/mytest/sortable_array.test.cpp
-  - icon: ':x:'
-    path: test/mytest/sparse_pow_2d.test.cpp
-    title: test/mytest/sparse_pow_2d.test.cpp
-  - icon: ':x:'
-    path: test/mytest/splay.test.cpp
-    title: test/mytest/splay.test.cpp
-  - icon: ':x:'
-    path: test/mytest/splay_am.test.cpp
-    title: test/mytest/splay_am.test.cpp
-  - icon: ':x:'
-    path: test/mytest/splay_cm.test.cpp
-    title: test/mytest/splay_cm.test.cpp
-  - icon: ':x:'
-    path: test/mytest/splay_monoid.test.cpp
-    title: test/mytest/splay_monoid.test.cpp
-  - icon: ':x:'
-    path: test/mytest/stern_brocot.test.cpp
-    title: test/mytest/stern_brocot.test.cpp
-  - icon: ':x:'
-    path: test/mytest/subset_sum.test.cpp
-    title: test/mytest/subset_sum.test.cpp
-  - icon: ':x:'
-    path: test/mytest/substring_abundant.test.cpp
-    title: test/mytest/substring_abundant.test.cpp
-  - icon: ':x:'
-    path: test/mytest/suffix_tree.test.cpp
-    title: test/mytest/suffix_tree.test.cpp
-  - icon: ':x:'
-    path: test/mytest/summax_add.test.cpp
-    title: test/mytest/summax_add.test.cpp
-  - icon: ':x:'
-    path: test/mytest/summax_assign.test.cpp
-    title: test/mytest/summax_assign.test.cpp
-  - icon: ':x:'
-    path: test/mytest/summin_add.test.cpp
-    title: test/mytest/summin_add.test.cpp
-  - icon: ':x:'
-    path: test/mytest/summin_assign.test.cpp
-    title: test/mytest/summin_assign.test.cpp
-  - icon: ':x:'
-    path: test/mytest/tdpc_grid_dp.test.cpp
-    title: test/mytest/tdpc_grid_dp.test.cpp
-  - icon: ':x:'
-    path: test/mytest/three_square.test.cpp
-    title: test/mytest/three_square.test.cpp
-  - icon: ':x:'
-    path: test/mytest/three_triangular.test.cpp
-    title: test/mytest/three_triangular.test.cpp
-  - icon: ':x:'
-    path: test/mytest/tournament.test.cpp
-    title: test/mytest/tournament.test.cpp
-  - icon: ':x:'
-    path: test/mytest/tutte.test.cpp
-    title: test/mytest/tutte.test.cpp
-  - icon: ':x:'
-    path: test/mytest/vandermonde.test.cpp
-    title: test/mytest/vandermonde.test.cpp
-  - icon: ':x:'
-    path: test/mytest/wavelet_matrix.test.cpp
-    title: test/mytest/wavelet_matrix.test.cpp
-  - icon: ':x:'
-    path: test/mytest/xor_transpose.test.cpp
-    title: test/mytest/xor_transpose.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
@@ -2500,98 +2230,8 @@ data:
   - test/yukicoder/1383.test.cpp
   - test/yukicoder/2119.test.cpp
   - test/yukicoder/2231.test.cpp
-  - test/mytest/online_division.test.cpp
-  - test/mytest/min_poly.test.cpp
-  - test/mytest/summax_add.test.cpp
-  - test/mytest/three_triangular.test.cpp
-  - test/mytest/rbst_am_2.test.cpp
-  - test/mytest/range_closest_pair.test.cpp
-  - test/mytest/kdtree_am.test.cpp
-  - test/mytest/minplus_conv_triple.test.cpp
-  - test/mytest/rbst_am_persistent.test.cpp
-  - test/mytest/minplus_convex.test.cpp
   - test/mytest/min_min.test.cpp
-  - test/mytest/online_square.test.cpp
-  - test/mytest/mo_on_tree.test.cpp
-  - test/mytest/min_cost_matching_on_line.test.cpp
-  - test/mytest/powerquery.test.cpp
-  - test/mytest/rbst_monoid_2.test.cpp
-  - test/mytest/sortable_array.test.cpp
-  - test/mytest/seg2d.test.cpp
-  - test/mytest/product_of_one_pm_xn.test.cpp
-  - test/mytest/rbst.test.cpp
-  - test/mytest/partial_frac.test.cpp
-  - test/mytest/rbst_monoid.test.cpp
-  - test/mytest/max_assign.test.cpp
-  - test/mytest/max_max.test.cpp
-  - test/mytest/pascal.test.cpp
-  - test/mytest/stern_brocot.test.cpp
-  - test/mytest/rbst_am.test.cpp
-  - test/mytest/magic_square.test.cpp
-  - test/mytest/sparse_pow_2d.test.cpp
-  - test/mytest/prime_sum.test.cpp
-  - test/mytest/splay_am.test.cpp
-  - test/mytest/substring_abundant.test.cpp
-  - test/mytest/vandermonde.test.cpp
   - test/mytest/primesum_mod4.test.cpp
-  - test/mytest/xor_transpose.test.cpp
-  - test/mytest/is_substring.test.cpp
-  - test/mytest/min_max.test.cpp
-  - test/mytest/summax_assign.test.cpp
-  - test/mytest/mybitset.test.cpp
-  - test/mytest/rbst_commutative_persistent.test.cpp
-  - test/mytest/manhattan_nns.test.cpp
-  - test/mytest/minidx_add.test.cpp
-  - test/mytest/mod_sum_of_linear.test.cpp
-  - test/mytest/range_freq_of_linear.test.cpp
-  - test/mytest/splay.test.cpp
-  - test/mytest/rbst_test.test.cpp
-  - test/mytest/tutte.test.cpp
-  - test/mytest/online_log.test.cpp
-  - test/mytest/splay_monoid.test.cpp
-  - test/mytest/enumerate_multisets.test.cpp
-  - test/mytest/maxidx_add.test.cpp
-  - test/mytest/online_pow.test.cpp
-  - test/mytest/matching_line_graph.test.cpp
-  - test/mytest/max_of_linear_segments.test.cpp
-  - test/mytest/non_adj.test.cpp
-  - test/mytest/range_mex.test.cpp
-  - test/mytest/wavelet_matrix.test.cpp
-  - test/mytest/online_inv.test.cpp
-  - test/mytest/knight_distance.test.cpp
-  - test/mytest/min_of_linear_segments.test.cpp
-  - test/mytest/digit_sum.test.cpp
-  - test/mytest/rbst_monoid_persistent.test.cpp
-  - test/mytest/summin_assign.test.cpp
-  - test/mytest/factorial_998.test.cpp
-  - test/mytest/splay_cm.test.cpp
-  - test/mytest/scc_tournament.test.cpp
-  - test/mytest/minmax_add.test.cpp
-  - test/mytest/slice_rational_fps.test.cpp
-  - test/mytest/longest_common_substr.test.cpp
-  - test/mytest/pytagorean_triples.test.cpp
-  - test/mytest/three_square.test.cpp
-  - test/mytest/online_exp.test.cpp
-  - test/mytest/maxplus_concave.test.cpp
-  - test/mytest/matching_ve.test.cpp
-  - test/mytest/matching.test.cpp
-  - test/mytest/tournament.test.cpp
-  - test/mytest/run_length.test.cpp
-  - test/mytest/primesum_mod6.test.cpp
-  - test/mytest/max_min.test.cpp
-  - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
-  - test/mytest/partizan.test.cpp
-  - test/mytest/multinomial.test.cpp
-  - test/mytest/tdpc_grid_dp.test.cpp
-  - test/mytest/summin_add.test.cpp
-  - test/mytest/smawk.test.cpp
-  - test/mytest/simple_perm.test.cpp
-  - test/mytest/kdtree_nns.test.cpp
-  - test/mytest/segtree_xor_prod.test.cpp
-  - test/mytest/subset_sum.test.cpp
-  - test/mytest/suffix_tree.test.cpp
-  - test/mytest/rect_add_pt_sum.test.cpp
-  - test/mytest/kdtree_monoid.test.cpp
   - test/library_checker/multiplication_of_bigintegers.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
   - test/library_checker/graph/biconnected_component.test.cpp

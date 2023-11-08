@@ -20,9 +20,6 @@ data:
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
-    path: other/io.hpp
-    title: other/io.hpp
-  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -115,91 +112,7 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 1 \"other/io.hpp\"\n#define FASTIO\r\n#include\
-    \ <unistd.h>\r\n\r\n// https://judge.yosupo.jp/submission/21623\r\nnamespace fastio\
-    \ {\r\nstatic constexpr uint32_t SZ = 1 << 17;\r\nchar ibuf[SZ];\r\nchar obuf[SZ];\r\
-    \nchar out[100];\r\n// pointer of ibuf, obuf\r\nuint32_t pil = 0, pir = 0, por\
-    \ = 0;\r\n\r\nstruct Pre {\r\n  char num[10000][4];\r\n  constexpr Pre() : num()\
-    \ {\r\n    for (int i = 0; i < 10000; i++) {\r\n      int n = i;\r\n      for\
-    \ (int j = 3; j >= 0; j--) {\r\n        num[i][j] = n % 10 | '0';\r\n        n\
-    \ /= 10;\r\n      }\r\n    }\r\n  }\r\n} constexpr pre;\r\n\r\ninline void load()\
-    \ {\r\n  memcpy(ibuf, ibuf + pil, pir - pil);\r\n  pir = pir - pil + fread(ibuf\
-    \ + pir - pil, 1, SZ - pir + pil, stdin);\r\n  pil = 0;\r\n  if (pir < SZ) ibuf[pir++]\
-    \ = '\\n';\r\n}\r\n\r\ninline void flush() {\r\n  fwrite(obuf, 1, por, stdout);\r\
-    \n  por = 0;\r\n}\r\n\r\nvoid rd(char &c) {\r\n  do {\r\n    if (pil + 1 > pir)\
-    \ load();\r\n    c = ibuf[pil++];\r\n  } while (isspace(c));\r\n}\r\n\r\nvoid\
-    \ rd(string &x) {\r\n  x.clear();\r\n  char c;\r\n  do {\r\n    if (pil + 1 >\
-    \ pir) load();\r\n    c = ibuf[pil++];\r\n  } while (isspace(c));\r\n  do {\r\n\
-    \    x += c;\r\n    if (pil == pir) load();\r\n    c = ibuf[pil++];\r\n  } while\
-    \ (!isspace(c));\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_real(T &x) {\r\n\
-    \  string s;\r\n  rd(s);\r\n  x = stod(s);\r\n}\r\n\r\ntemplate <typename T>\r\
-    \nvoid rd_integer(T &x) {\r\n  if (pil + 100 > pir) load();\r\n  char c;\r\n \
-    \ do\r\n    c = ibuf[pil++];\r\n  while (c < '-');\r\n  bool minus = 0;\r\n  if\
-    \ constexpr (is_signed<T>::value || is_same_v<T, i128>) {\r\n    if (c == '-')\
-    \ { minus = 1, c = ibuf[pil++]; }\r\n  }\r\n  x = 0;\r\n  while ('0' <= c) { x\
-    \ = x * 10 + (c & 15), c = ibuf[pil++]; }\r\n  if constexpr (is_signed<T>::value\
-    \ || is_same_v<T, i128>) {\r\n    if (minus) x = -x;\r\n  }\r\n}\r\n\r\nvoid rd(int\
-    \ &x) { rd_integer(x); }\r\nvoid rd(ll &x) { rd_integer(x); }\r\nvoid rd(i128\
-    \ &x) { rd_integer(x); }\r\nvoid rd(u32 &x) { rd_integer(x); }\r\nvoid rd(u64\
-    \ &x) { rd_integer(x); }\r\nvoid rd(u128 &x) { rd_integer(x); }\r\nvoid rd(double\
-    \ &x) { rd_real(x); }\r\nvoid rd(long double &x) { rd_real(x); }\r\nvoid rd(f128\
-    \ &x) { rd_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid rd(pair<T, U>\
-    \ &p) {\r\n  return rd(p.first), rd(p.second);\r\n}\r\ntemplate <size_t N = 0,\
-    \ typename T>\r\nvoid rd_tuple(T &t) {\r\n  if constexpr (N < std::tuple_size<T>::value)\
-    \ {\r\n    auto &x = std::get<N>(t);\r\n    rd(x);\r\n    rd_tuple<N + 1>(t);\r\
-    \n  }\r\n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...> &tpl) {\r\n  rd_tuple(tpl);\r\
-    \n}\r\n\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd(array<T, N> &x) {\r\n\
-    \  for (auto &d: x) rd(d);\r\n}\r\ntemplate <class T>\r\nvoid rd(vc<T> &x) {\r\
-    \n  for (auto &d: x) rd(d);\r\n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class...\
-    \ T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const\
-    \ char c) {\r\n  if (por == SZ) flush();\r\n  obuf[por++] = c;\r\n}\r\nvoid wt(const\
-    \ string s) {\r\n  for (char c: s) wt(c);\r\n}\r\nvoid wt(const char *s) {\r\n\
-    \  size_t len = strlen(s);\r\n  for (size_t i = 0; i < len; i++) wt(s[i]);\r\n\
-    }\r\n\r\ntemplate <typename T>\r\nvoid wt_integer(T x) {\r\n  if (por > SZ - 100)\
-    \ flush();\r\n  if (x < 0) { obuf[por++] = '-', x = -x; }\r\n  int outi;\r\n \
-    \ for (outi = 96; x >= 10000; outi -= 4) {\r\n    memcpy(out + outi, pre.num[x\
-    \ % 10000], 4);\r\n    x /= 10000;\r\n  }\r\n  if (x >= 1000) {\r\n    memcpy(obuf\
-    \ + por, pre.num[x], 4);\r\n    por += 4;\r\n  } else if (x >= 100) {\r\n    memcpy(obuf\
-    \ + por, pre.num[x] + 1, 3);\r\n    por += 3;\r\n  } else if (x >= 10) {\r\n \
-    \   int q = (x * 103) >> 10;\r\n    obuf[por] = q | '0';\r\n    obuf[por + 1]\
-    \ = (x - q * 10) | '0';\r\n    por += 2;\r\n  } else\r\n    obuf[por++] = x |\
-    \ '0';\r\n  memcpy(obuf + por, out + outi + 4, 96 - outi);\r\n  por += 96 - outi;\r\
-    \n}\r\n\r\ntemplate <typename T>\r\nvoid wt_real(T x) {\r\n  ostringstream oss;\r\
-    \n  oss << fixed << setprecision(15) << double(x);\r\n  string s = oss.str();\r\
-    \n  wt(s);\r\n}\r\n\r\nvoid wt(int x) { wt_integer(x); }\r\nvoid wt(ll x) { wt_integer(x);\
-    \ }\r\nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\
-    \nvoid wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\n\
-    void wt(double x) { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\n\
-    void wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid wt(const\
-    \ pair<T, U> val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n  wt(val.second);\r\n\
-    }\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const T t) {\r\n  if\
-    \ constexpr (N < std::tuple_size<T>::value) {\r\n    if constexpr (N > 0) { wt('\
-    \ '); }\r\n    const auto x = std::get<N>(t);\r\n    wt(x);\r\n    wt_tuple<N\
-    \ + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid wt(tuple<T...> tpl) {\r\
-    \n  wt_tuple(tpl);\r\n}\r\ntemplate <class T, size_t S>\r\nvoid wt(const array<T,\
-    \ S> val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n\
-    \    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\ntemplate <class T>\r\n\
-    void wt(const vector<T> val) {\r\n  auto n = val.size();\r\n  for (size_t i =\
-    \ 0; i < n; i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\n\r\
-    \nvoid print() { wt('\\n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid\
-    \ print(Head &&head, Tail &&... tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail))\
-    \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
-    \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
-    \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
-    using fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n\
-    \  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ U64(...)   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)\
-    \      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
-    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
-    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
-    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
-    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
-    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
-    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
-    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
-    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 2 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F),\
+    \  return B;\n}\n#endif\n#line 2 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F),\
     \ F \u306E\u3042\u3068\u3067 G\ntemplate <typename K>\nstruct Monoid_Affine {\n\
     \  using F = pair<K, K>;\n  using value_type = F;\n  using X = value_type;\n \
     \ static constexpr F op(const F &x, const F &y) noexcept {\n    return F({x.first\
@@ -417,7 +330,7 @@ data:
     \  }\n  void reverse() {\n    swap(prod, rev_prod);\n    swap(l, r);\n    rev\
     \ ^= 1;\n  }\n};\ntemplate <typename Monoid, int NODES>\nusing SplayTree_Monoid\
     \ = SplayTree<Node_Monoid<Monoid>, NODES>;\n} // namespace SplayTreeNodes\n\n\
-    using SplayTreeNodes::SplayTree_Monoid;\n#line 8 \"test/mytest/splay.test.cpp\"\
+    using SplayTreeNodes::SplayTree_Monoid;\n#line 7 \"test/mytest/splay.test.cpp\"\
     \n\nvoid test() {\n  // reverse, set, prod \u306E\u52D5\u4F5C\u3092\u78BA\u8A8D\
     \n  using mint = modint998;\n  using Mono = Monoid_Affine<mint>;\n  using X =\
     \ Mono::value_type;\n  SplayTree_Monoid<Mono, 1000> ST;\n\n  auto rnd_X = [&]()\
@@ -433,33 +346,30 @@ data:
     \ l, r);\n      }\n      if (t == 2) {\n        // prod\n        auto [l, r] =\
     \ get_lr(N);\n        X a = Mono::unit();\n        FOR(i, l, r) a = Mono::op(a,\
     \ A[i]);\n        X b = ST.prod(root, l, r);\n        assert(a == b);\n      }\n\
-    \    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main()\
-    \ {\n  cout << fixed << setprecision(15);\n\n  test();\n\n  ll T = 1;\n  FOR(T)\
-    \ solve();\n\n  return 0;\n}\n"
+    \    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a +\
+    \ b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"alg/monoid/affine.hpp\"\n#include \"mod/modint.hpp\"\
-    \n#include \"random/base.hpp\"\n#include \"ds/splaytree/splaytree_monoid.hpp\"\
-    \n\nvoid test() {\n  // reverse, set, prod \u306E\u52D5\u4F5C\u3092\u78BA\u8A8D\
-    \n  using mint = modint998;\n  using Mono = Monoid_Affine<mint>;\n  using X =\
-    \ Mono::value_type;\n  SplayTree_Monoid<Mono, 1000> ST;\n\n  auto rnd_X = [&]()\
-    \ -> X {\n    ll a = RNG(0, 1 << 30);\n    ll b = RNG(0, 1 << 30);\n    return\
-    \ {mint(a), mint(b)};\n  };\n  auto get_lr = [&](int N) -> pi {\n    int l = RNG(0,\
-    \ N);\n    int r = RNG(0, N);\n    if (l > r) swap(l, r);\n    ++r;\n    return\
-    \ {l, r};\n  };\n\n  FOR(N, 1, 10) {\n    ST.reset();\n\n    vc<X> A(N);\n   \
-    \ FOR(i, N) { A[i] = rnd_X(); }\n\n    auto root = ST.new_node(A);\n    FOR(100)\
-    \ {\n      int t = RNG(0, 3);\n      if (t == 0) {\n        // set\n        int\
-    \ i = RNG(0, N);\n        X x = rnd_X();\n        A[i] = x;\n        ST.set(root,\
-    \ i, x);\n      }\n      if (t == 1) {\n        // reverse\n        auto [l, r]\
-    \ = get_lr(N);\n        reverse(A.begin() + l, A.begin() + r);\n        ST.reverse(root,\
-    \ l, r);\n      }\n      if (t == 2) {\n        // prod\n        auto [l, r] =\
-    \ get_lr(N);\n        X a = Mono::unit();\n        FOR(i, l, r) a = Mono::op(a,\
-    \ A[i]);\n        X b = ST.prod(root, l, r);\n        assert(a == b);\n      }\n\
-    \    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main()\
-    \ {\n  cout << fixed << setprecision(15);\n\n  test();\n\n  ll T = 1;\n  FOR(T)\
-    \ solve();\n\n  return 0;\n}\n"
+    \n#include \"alg/monoid/affine.hpp\"\n#include \"mod/modint.hpp\"\n#include \"\
+    random/base.hpp\"\n#include \"ds/splaytree/splaytree_monoid.hpp\"\n\nvoid test()\
+    \ {\n  // reverse, set, prod \u306E\u52D5\u4F5C\u3092\u78BA\u8A8D\n  using mint\
+    \ = modint998;\n  using Mono = Monoid_Affine<mint>;\n  using X = Mono::value_type;\n\
+    \  SplayTree_Monoid<Mono, 1000> ST;\n\n  auto rnd_X = [&]() -> X {\n    ll a =\
+    \ RNG(0, 1 << 30);\n    ll b = RNG(0, 1 << 30);\n    return {mint(a), mint(b)};\n\
+    \  };\n  auto get_lr = [&](int N) -> pi {\n    int l = RNG(0, N);\n    int r =\
+    \ RNG(0, N);\n    if (l > r) swap(l, r);\n    ++r;\n    return {l, r};\n  };\n\
+    \n  FOR(N, 1, 10) {\n    ST.reset();\n\n    vc<X> A(N);\n    FOR(i, N) { A[i]\
+    \ = rnd_X(); }\n\n    auto root = ST.new_node(A);\n    FOR(100) {\n      int t\
+    \ = RNG(0, 3);\n      if (t == 0) {\n        // set\n        int i = RNG(0, N);\n\
+    \        X x = rnd_X();\n        A[i] = x;\n        ST.set(root, i, x);\n    \
+    \  }\n      if (t == 1) {\n        // reverse\n        auto [l, r] = get_lr(N);\n\
+    \        reverse(A.begin() + l, A.begin() + r);\n        ST.reverse(root, l, r);\n\
+    \      }\n      if (t == 2) {\n        // prod\n        auto [l, r] = get_lr(N);\n\
+    \        X a = Mono::unit();\n        FOR(i, l, r) a = Mono::op(a, A[i]);\n  \
+    \      X b = ST.prod(root, l, r);\n        assert(a == b);\n      }\n    }\n \
+    \ }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\
+    \\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
-  - other/io.hpp
   - alg/monoid/affine.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
@@ -469,7 +379,7 @@ data:
   isVerificationFile: true
   path: test/mytest/splay.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
+  timestamp: '2023-11-09 01:44:55+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/splay.test.cpp

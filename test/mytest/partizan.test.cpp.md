@@ -10,9 +10,6 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
-    path: other/io.hpp
-    title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
@@ -103,133 +100,49 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 1 \"other/io.hpp\"\n#define FASTIO\r\n#include\
-    \ <unistd.h>\r\n\r\n// https://judge.yosupo.jp/submission/21623\r\nnamespace fastio\
-    \ {\r\nstatic constexpr uint32_t SZ = 1 << 17;\r\nchar ibuf[SZ];\r\nchar obuf[SZ];\r\
-    \nchar out[100];\r\n// pointer of ibuf, obuf\r\nuint32_t pil = 0, pir = 0, por\
-    \ = 0;\r\n\r\nstruct Pre {\r\n  char num[10000][4];\r\n  constexpr Pre() : num()\
-    \ {\r\n    for (int i = 0; i < 10000; i++) {\r\n      int n = i;\r\n      for\
-    \ (int j = 3; j >= 0; j--) {\r\n        num[i][j] = n % 10 | '0';\r\n        n\
-    \ /= 10;\r\n      }\r\n    }\r\n  }\r\n} constexpr pre;\r\n\r\ninline void load()\
-    \ {\r\n  memcpy(ibuf, ibuf + pil, pir - pil);\r\n  pir = pir - pil + fread(ibuf\
-    \ + pir - pil, 1, SZ - pir + pil, stdin);\r\n  pil = 0;\r\n  if (pir < SZ) ibuf[pir++]\
-    \ = '\\n';\r\n}\r\n\r\ninline void flush() {\r\n  fwrite(obuf, 1, por, stdout);\r\
-    \n  por = 0;\r\n}\r\n\r\nvoid rd(char &c) {\r\n  do {\r\n    if (pil + 1 > pir)\
-    \ load();\r\n    c = ibuf[pil++];\r\n  } while (isspace(c));\r\n}\r\n\r\nvoid\
-    \ rd(string &x) {\r\n  x.clear();\r\n  char c;\r\n  do {\r\n    if (pil + 1 >\
-    \ pir) load();\r\n    c = ibuf[pil++];\r\n  } while (isspace(c));\r\n  do {\r\n\
-    \    x += c;\r\n    if (pil == pir) load();\r\n    c = ibuf[pil++];\r\n  } while\
-    \ (!isspace(c));\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_real(T &x) {\r\n\
-    \  string s;\r\n  rd(s);\r\n  x = stod(s);\r\n}\r\n\r\ntemplate <typename T>\r\
-    \nvoid rd_integer(T &x) {\r\n  if (pil + 100 > pir) load();\r\n  char c;\r\n \
-    \ do\r\n    c = ibuf[pil++];\r\n  while (c < '-');\r\n  bool minus = 0;\r\n  if\
-    \ constexpr (is_signed<T>::value || is_same_v<T, i128>) {\r\n    if (c == '-')\
-    \ { minus = 1, c = ibuf[pil++]; }\r\n  }\r\n  x = 0;\r\n  while ('0' <= c) { x\
-    \ = x * 10 + (c & 15), c = ibuf[pil++]; }\r\n  if constexpr (is_signed<T>::value\
-    \ || is_same_v<T, i128>) {\r\n    if (minus) x = -x;\r\n  }\r\n}\r\n\r\nvoid rd(int\
-    \ &x) { rd_integer(x); }\r\nvoid rd(ll &x) { rd_integer(x); }\r\nvoid rd(i128\
-    \ &x) { rd_integer(x); }\r\nvoid rd(u32 &x) { rd_integer(x); }\r\nvoid rd(u64\
-    \ &x) { rd_integer(x); }\r\nvoid rd(u128 &x) { rd_integer(x); }\r\nvoid rd(double\
-    \ &x) { rd_real(x); }\r\nvoid rd(long double &x) { rd_real(x); }\r\nvoid rd(f128\
-    \ &x) { rd_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid rd(pair<T, U>\
-    \ &p) {\r\n  return rd(p.first), rd(p.second);\r\n}\r\ntemplate <size_t N = 0,\
-    \ typename T>\r\nvoid rd_tuple(T &t) {\r\n  if constexpr (N < std::tuple_size<T>::value)\
-    \ {\r\n    auto &x = std::get<N>(t);\r\n    rd(x);\r\n    rd_tuple<N + 1>(t);\r\
-    \n  }\r\n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...> &tpl) {\r\n  rd_tuple(tpl);\r\
-    \n}\r\n\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd(array<T, N> &x) {\r\n\
-    \  for (auto &d: x) rd(d);\r\n}\r\ntemplate <class T>\r\nvoid rd(vc<T> &x) {\r\
-    \n  for (auto &d: x) rd(d);\r\n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class...\
-    \ T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const\
-    \ char c) {\r\n  if (por == SZ) flush();\r\n  obuf[por++] = c;\r\n}\r\nvoid wt(const\
-    \ string s) {\r\n  for (char c: s) wt(c);\r\n}\r\nvoid wt(const char *s) {\r\n\
-    \  size_t len = strlen(s);\r\n  for (size_t i = 0; i < len; i++) wt(s[i]);\r\n\
-    }\r\n\r\ntemplate <typename T>\r\nvoid wt_integer(T x) {\r\n  if (por > SZ - 100)\
-    \ flush();\r\n  if (x < 0) { obuf[por++] = '-', x = -x; }\r\n  int outi;\r\n \
-    \ for (outi = 96; x >= 10000; outi -= 4) {\r\n    memcpy(out + outi, pre.num[x\
-    \ % 10000], 4);\r\n    x /= 10000;\r\n  }\r\n  if (x >= 1000) {\r\n    memcpy(obuf\
-    \ + por, pre.num[x], 4);\r\n    por += 4;\r\n  } else if (x >= 100) {\r\n    memcpy(obuf\
-    \ + por, pre.num[x] + 1, 3);\r\n    por += 3;\r\n  } else if (x >= 10) {\r\n \
-    \   int q = (x * 103) >> 10;\r\n    obuf[por] = q | '0';\r\n    obuf[por + 1]\
-    \ = (x - q * 10) | '0';\r\n    por += 2;\r\n  } else\r\n    obuf[por++] = x |\
-    \ '0';\r\n  memcpy(obuf + por, out + outi + 4, 96 - outi);\r\n  por += 96 - outi;\r\
-    \n}\r\n\r\ntemplate <typename T>\r\nvoid wt_real(T x) {\r\n  ostringstream oss;\r\
-    \n  oss << fixed << setprecision(15) << double(x);\r\n  string s = oss.str();\r\
-    \n  wt(s);\r\n}\r\n\r\nvoid wt(int x) { wt_integer(x); }\r\nvoid wt(ll x) { wt_integer(x);\
-    \ }\r\nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\
-    \nvoid wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\n\
-    void wt(double x) { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\n\
-    void wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid wt(const\
-    \ pair<T, U> val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n  wt(val.second);\r\n\
-    }\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const T t) {\r\n  if\
-    \ constexpr (N < std::tuple_size<T>::value) {\r\n    if constexpr (N > 0) { wt('\
-    \ '); }\r\n    const auto x = std::get<N>(t);\r\n    wt(x);\r\n    wt_tuple<N\
-    \ + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid wt(tuple<T...> tpl) {\r\
-    \n  wt_tuple(tpl);\r\n}\r\ntemplate <class T, size_t S>\r\nvoid wt(const array<T,\
-    \ S> val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n\
-    \    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\ntemplate <class T>\r\n\
-    void wt(const vector<T> val) {\r\n  auto n = val.size();\r\n  for (size_t i =\
-    \ 0; i < n; i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\n\r\
-    \nvoid print() { wt('\\n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid\
-    \ print(Head &&head, Tail &&... tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail))\
-    \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
-    \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
-    \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
-    using fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n\
-    \  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ U64(...)   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)\
-    \      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
-    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
-    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
-    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
-    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
-    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
-    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
-    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
-    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"game/dyadic_rational.hpp\"\n// a+b/2^M \u306E\u5F62\u3067\
-    \u6301\u3064\ntemplate <typename INTEGER>\nstruct Dyadic_Rational {\n  using X\
-    \ = Dyadic_Rational;\n  INTEGER a, b;\n  static constexpr int M = std::numeric_limits<INTEGER>::digits\
-    \ - 2;\n\n  Dyadic_Rational(INTEGER a = 0) : a(a), b(0) {}\n\n  // x + y / z\n\
-    \  Dyadic_Rational(INTEGER x, INTEGER y, INTEGER z) : a(x), b(y) {\n    auto [q,\
-    \ r] = divmod(b, z);\n    a += q;\n    b = r;\n    b *= (INTEGER(1) << M) / z;\n\
-    \  }\n\n  // x/y\n  Dyadic_Rational(INTEGER x, INTEGER y) : Dyadic_Rational(0,\
-    \ x, y) {}\n\n  static X from_ab(INTEGER a, INTEGER b) {\n    X x(a);\n    x.b\
-    \ = b;\n    return x;\n  }\n\n  // \u6BD4\u8F03\n  bool operator==(X const& rhs)\
-    \ const { return (a == rhs.a && b == rhs.b); }\n  bool operator!=(X const& rhs)\
-    \ const { return !(*this == rhs); }\n  bool operator<(X const& rhs) const {\n\
-    \    return (a < rhs.a) || (a == rhs.a && b < rhs.b);\n  }\n  bool operator<=(X\
-    \ const& rhs) const {\n    return (a < rhs.a) || (a == rhs.a && b <= rhs.b);\n\
-    \  }\n  bool operator>(X const& rhs) const {\n    return (a > rhs.a) || (a ==\
-    \ rhs.a && b > rhs.b);\n  }\n  bool operator>=(X const& rhs) const {\n    return\
-    \ (a > rhs.a) || (a == rhs.a && b >= rhs.b);\n  }\n\n  // \u52A0\u6CD5\n  friend\
-    \ X operator+(const X& x, const X& y) {\n    INTEGER a = x.a + y.a, b = x.b +\
-    \ y.b;\n    while (b >= INTEGER(1) << M) {\n      ++a;\n      b -= INTEGER(1)\
-    \ << M;\n    }\n    return from_ab(a, b);\n  }\n  friend X operator-(const X&\
-    \ x, const X& y) {\n    INTEGER a = x.a - y.a, b = x.b - y.b;\n    while (b <\
-    \ 0) {\n      --a;\n      b += INTEGER(1) << M;\n    }\n    return from_ab(a,\
-    \ b);\n  }\n  friend X operator-(const X& x) {\n    INTEGER a = -x.a, b = -x.b;\n\
-    \    while (b < 0) {\n      --a;\n      b += INTEGER(1) << M;\n    }\n    return\
-    \ from_ab(a, b);\n  }\n  X& operator+=(const X& x) { return (*this) = (*this)\
-    \ + x; }\n  X& operator-=(const X& x) { return (*this) = (*this) - x; }\n\n  static\
-    \ X simplest(const X& x, const X& y) {\n    assert(x < y);\n    if (y.a < 0) return\
-    \ -simplest(-y, -x);\n    {\n      INTEGER l = x.a + 1;\n      INTEGER r = (y.b\
-    \ == 0 ? y.a - 1 : y.a);\n      if (l <= 0 && 0 <= r) return X(0);\n      if (l\
-    \ <= r && 0 <= l) return X(l);\n      if (l <= r && r <= 0) return X(r);\n   \
-    \ }\n\n    INTEGER l = x.b + 1;\n    INTEGER r = (y.b == 0 ? (INTEGER(1) << M)\
-    \ - 1 : y.b - 1);\n    if (l == r) return from_ab(x.a, l);\n    int k = topbit(l\
-    \ ^ r);\n    r &= ~((INTEGER(1) << k) - 1);\n    return from_ab(x.a, r);\n  }\n\
-    \n  static constexpr X infinity() { return from_ab(INTEGER(1) << M, 0); }\n\n\
-    \  string to_string() {\n    ll x = a, y = b, z = INTEGER(1) << M;\n    while\
-    \ (y % 2 == 0 && z % 2 == 0) { y /= 2, z /= 2; }\n    y += x * z;\n    return\
-    \ std::to_string(y) + \"/\" + std::to_string(z);\n  }\n};\n#line 2 \"game/solve_partizan_game.hpp\"\
-    \n\n// \u5168\u90E8 dyadic rational number \u306B\u306A\u308B\u3068\u304D\u3060\
-    \u3051\u89E3\u3051\u308B\n// \u5931\u6557\u3057\u305F\u3068\u304D\u306F\u3001\
-    empty map \u304C\u8FD4\u308B\n// \u30FBstates\uFF1A\u8208\u5473\u306E\u3042\u308B\
-    \ state \u5168\u4F53\n// \u30FBget_options\uFF1Apair<vc<STATE>, vc<STATE>>(STATE),\
-    \ left ops / right ops\ntemplate <typename STATE, typename INTEGER, typename F>\n\
-    unordered_map<STATE, Dyadic_Rational<INTEGER>> solve_partizan_game(\n    const\
-    \ vector<STATE>& states, F get_options) {\n  using X = Dyadic_Rational<INTEGER>;\n\
+    \  return B;\n}\n#endif\n#line 1 \"game/dyadic_rational.hpp\"\n// a+b/2^M \u306E\
+    \u5F62\u3067\u6301\u3064\ntemplate <typename INTEGER>\nstruct Dyadic_Rational\
+    \ {\n  using X = Dyadic_Rational;\n  INTEGER a, b;\n  static constexpr int M =\
+    \ std::numeric_limits<INTEGER>::digits - 2;\n\n  Dyadic_Rational(INTEGER a = 0)\
+    \ : a(a), b(0) {}\n\n  // x + y / z\n  Dyadic_Rational(INTEGER x, INTEGER y, INTEGER\
+    \ z) : a(x), b(y) {\n    auto [q, r] = divmod(b, z);\n    a += q;\n    b = r;\n\
+    \    b *= (INTEGER(1) << M) / z;\n  }\n\n  // x/y\n  Dyadic_Rational(INTEGER x,\
+    \ INTEGER y) : Dyadic_Rational(0, x, y) {}\n\n  static X from_ab(INTEGER a, INTEGER\
+    \ b) {\n    X x(a);\n    x.b = b;\n    return x;\n  }\n\n  // \u6BD4\u8F03\n \
+    \ bool operator==(X const& rhs) const { return (a == rhs.a && b == rhs.b); }\n\
+    \  bool operator!=(X const& rhs) const { return !(*this == rhs); }\n  bool operator<(X\
+    \ const& rhs) const {\n    return (a < rhs.a) || (a == rhs.a && b < rhs.b);\n\
+    \  }\n  bool operator<=(X const& rhs) const {\n    return (a < rhs.a) || (a ==\
+    \ rhs.a && b <= rhs.b);\n  }\n  bool operator>(X const& rhs) const {\n    return\
+    \ (a > rhs.a) || (a == rhs.a && b > rhs.b);\n  }\n  bool operator>=(X const& rhs)\
+    \ const {\n    return (a > rhs.a) || (a == rhs.a && b >= rhs.b);\n  }\n\n  //\
+    \ \u52A0\u6CD5\n  friend X operator+(const X& x, const X& y) {\n    INTEGER a\
+    \ = x.a + y.a, b = x.b + y.b;\n    while (b >= INTEGER(1) << M) {\n      ++a;\n\
+    \      b -= INTEGER(1) << M;\n    }\n    return from_ab(a, b);\n  }\n  friend\
+    \ X operator-(const X& x, const X& y) {\n    INTEGER a = x.a - y.a, b = x.b -\
+    \ y.b;\n    while (b < 0) {\n      --a;\n      b += INTEGER(1) << M;\n    }\n\
+    \    return from_ab(a, b);\n  }\n  friend X operator-(const X& x) {\n    INTEGER\
+    \ a = -x.a, b = -x.b;\n    while (b < 0) {\n      --a;\n      b += INTEGER(1)\
+    \ << M;\n    }\n    return from_ab(a, b);\n  }\n  X& operator+=(const X& x) {\
+    \ return (*this) = (*this) + x; }\n  X& operator-=(const X& x) { return (*this)\
+    \ = (*this) - x; }\n\n  static X simplest(const X& x, const X& y) {\n    assert(x\
+    \ < y);\n    if (y.a < 0) return -simplest(-y, -x);\n    {\n      INTEGER l =\
+    \ x.a + 1;\n      INTEGER r = (y.b == 0 ? y.a - 1 : y.a);\n      if (l <= 0 &&\
+    \ 0 <= r) return X(0);\n      if (l <= r && 0 <= l) return X(l);\n      if (l\
+    \ <= r && r <= 0) return X(r);\n    }\n\n    INTEGER l = x.b + 1;\n    INTEGER\
+    \ r = (y.b == 0 ? (INTEGER(1) << M) - 1 : y.b - 1);\n    if (l == r) return from_ab(x.a,\
+    \ l);\n    int k = topbit(l ^ r);\n    r &= ~((INTEGER(1) << k) - 1);\n    return\
+    \ from_ab(x.a, r);\n  }\n\n  static constexpr X infinity() { return from_ab(INTEGER(1)\
+    \ << M, 0); }\n\n  string to_string() {\n    ll x = a, y = b, z = INTEGER(1) <<\
+    \ M;\n    while (y % 2 == 0 && z % 2 == 0) { y /= 2, z /= 2; }\n    y += x * z;\n\
+    \    return std::to_string(y) + \"/\" + std::to_string(z);\n  }\n};\n#line 2 \"\
+    game/solve_partizan_game.hpp\"\n\n// \u5168\u90E8 dyadic rational number \u306B\
+    \u306A\u308B\u3068\u304D\u3060\u3051\u89E3\u3051\u308B\n// \u5931\u6557\u3057\u305F\
+    \u3068\u304D\u306F\u3001empty map \u304C\u8FD4\u308B\n// \u30FBstates\uFF1A\u8208\
+    \u5473\u306E\u3042\u308B state \u5168\u4F53\n// \u30FBget_options\uFF1Apair<vc<STATE>,\
+    \ vc<STATE>>(STATE), left ops / right ops\ntemplate <typename STATE, typename\
+    \ INTEGER, typename F>\nunordered_map<STATE, Dyadic_Rational<INTEGER>> solve_partizan_game(\n\
+    \    const vector<STATE>& states, F get_options) {\n  using X = Dyadic_Rational<INTEGER>;\n\
     \  unordered_map<STATE, X> MP;\n\n  bool success = 1;\n\n  auto dfs = [&](auto&\
     \ dfs, const STATE& s) -> X {\n    if (!success) return X();\n    if (MP.count(s))\
     \ return MP[s];\n    vc<X> left, right;\n    X xl = -X::infinity(), xr = X::infinity();\n\
@@ -237,7 +150,7 @@ data:
     \ chmax(xl, dfs(dfs, t));\n    for (auto&& t: right_ops) chmin(xr, dfs(dfs, t));\n\
     \n    if (xl >= xr) {\n      // switch\n      success = 0;\n      MP.clear();\n\
     \      return X();\n    }\n    return (MP[s] = X::simplest(xl, xr));\n  };\n\n\
-    \  for (auto&& s: states) dfs(dfs, s);\n  return MP;\n}\n#line 6 \"test/mytest/partizan.test.cpp\"\
+    \  for (auto&& s: states) dfs(dfs, s);\n  return MP;\n}\n#line 5 \"test/mytest/partizan.test.cpp\"\
     \n\nvoid test_push() {\n  // LESSONS IN PLAY p.113\n  vc<string> states = {\"\
     LR\", \".RL\", \".R\", \"RRL\"};\n  auto get_options = [&](string s) -> pair<vc<string>,\
     \ vc<string>> {\n    vc<string> left_ops, right_ops;\n    FOR(i, len(s)) {\n \
@@ -287,31 +200,30 @@ data:
     \ ll>(states, get_options);\n\n  for (auto&& [s, x]: MP) {\n    int my_ans = solve_cherries(s);\n\
     \    assert(x == Dyadic_Rational<ll>(my_ans, 1));\n  }\n}\n\nvoid test() {\n \
     \ test_push();\n  test_problem_5_2();\n  test_problem_5_3();\n  test_cherries();\n\
-    }\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  test();\n\n\
-    \  ll T = 1;\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
+    ;\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
-    my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"game/solve_partizan_game.hpp\"\
-    \n\nvoid test_push() {\n  // LESSONS IN PLAY p.113\n  vc<string> states = {\"\
-    LR\", \".RL\", \".R\", \"RRL\"};\n  auto get_options = [&](string s) -> pair<vc<string>,\
-    \ vc<string>> {\n    vc<string> left_ops, right_ops;\n    FOR(i, len(s)) {\n \
-    \     if (s[i] == '.') continue;\n      string t = s;\n      char x = '.';\n \
-    \     int p = i;\n      while (p >= 0) {\n        swap(x, t[p--]);\n        if\
-    \ (x == '.') break;\n      }\n      if (s[i] == 'L') left_ops.eb(t);\n      if\
-    \ (s[i] == 'R') right_ops.eb(t);\n    }\n    return {left_ops, right_ops};\n \
-    \ };\n\n  auto MP = solve_partizan_game<string, ll>(states, get_options);\n  //\
-    \ for (auto&& [s, x]: MP) { print(s, x.to_string()); }\n  assert(MP[\"LR\"].to_string()\
-    \ == \"-3/2\");\n  assert(MP[\".RL\"].to_string() == \"7/4\");\n  assert(MP[\"\
-    .R\"].to_string() == \"-2/1\");\n  assert(MP[\"RRL\"].to_string() == \"13/8\"\
-    );\n}\n\nvoid test_problem_5_2() {\n  // switch \u306B\u306A\u308B\u306E\u3067\
-    \u89E3\u3051\u306A\u3044\n  int LIM = 10;\n  vc<int> states(LIM);\n  iota(all(states),\
-    \ 0);\n\n  auto get_options = [&](int s) -> pair<vc<int>, vc<int>> {\n    vc<int>\
-    \ left_ops, right_ops;\n    if (s % 3 == 0 && s >= 1) left_ops.eb(s - 1), right_ops.eb(s\
-    \ - 1);\n    if (s % 3 == 0 && s >= 2) left_ops.eb(s - 2), right_ops.eb(s - 2);\n\
-    \    if (s % 3 == 1 && s >= 1) left_ops.eb(s - 1);\n    if (s % 3 == 1 && s >=\
-    \ 2) left_ops.eb(s - 2);\n    if (s % 3 == 2 && s >= 1) right_ops.eb(s - 1);\n\
-    \    if (s % 3 == 2 && s >= 2) right_ops.eb(s - 2);\n    return {left_ops, right_ops};\n\
-    \  };\n\n  auto MP = solve_partizan_game<int, ll>(states, get_options);\n  assert(MP.empty());\n\
+    my_template.hpp\"\n#include \"game/solve_partizan_game.hpp\"\n\nvoid test_push()\
+    \ {\n  // LESSONS IN PLAY p.113\n  vc<string> states = {\"LR\", \".RL\", \".R\"\
+    , \"RRL\"};\n  auto get_options = [&](string s) -> pair<vc<string>, vc<string>>\
+    \ {\n    vc<string> left_ops, right_ops;\n    FOR(i, len(s)) {\n      if (s[i]\
+    \ == '.') continue;\n      string t = s;\n      char x = '.';\n      int p = i;\n\
+    \      while (p >= 0) {\n        swap(x, t[p--]);\n        if (x == '.') break;\n\
+    \      }\n      if (s[i] == 'L') left_ops.eb(t);\n      if (s[i] == 'R') right_ops.eb(t);\n\
+    \    }\n    return {left_ops, right_ops};\n  };\n\n  auto MP = solve_partizan_game<string,\
+    \ ll>(states, get_options);\n  // for (auto&& [s, x]: MP) { print(s, x.to_string());\
+    \ }\n  assert(MP[\"LR\"].to_string() == \"-3/2\");\n  assert(MP[\".RL\"].to_string()\
+    \ == \"7/4\");\n  assert(MP[\".R\"].to_string() == \"-2/1\");\n  assert(MP[\"\
+    RRL\"].to_string() == \"13/8\");\n}\n\nvoid test_problem_5_2() {\n  // switch\
+    \ \u306B\u306A\u308B\u306E\u3067\u89E3\u3051\u306A\u3044\n  int LIM = 10;\n  vc<int>\
+    \ states(LIM);\n  iota(all(states), 0);\n\n  auto get_options = [&](int s) ->\
+    \ pair<vc<int>, vc<int>> {\n    vc<int> left_ops, right_ops;\n    if (s % 3 ==\
+    \ 0 && s >= 1) left_ops.eb(s - 1), right_ops.eb(s - 1);\n    if (s % 3 == 0 &&\
+    \ s >= 2) left_ops.eb(s - 2), right_ops.eb(s - 2);\n    if (s % 3 == 1 && s >=\
+    \ 1) left_ops.eb(s - 1);\n    if (s % 3 == 1 && s >= 2) left_ops.eb(s - 2);\n\
+    \    if (s % 3 == 2 && s >= 1) right_ops.eb(s - 1);\n    if (s % 3 == 2 && s >=\
+    \ 2) right_ops.eb(s - 2);\n    return {left_ops, right_ops};\n  };\n\n  auto MP\
+    \ = solve_partizan_game<int, ll>(states, get_options);\n  assert(MP.empty());\n\
     }\n\nvoid test_problem_5_3() {\n  int LIM = 10;\n  vc<int> states(LIM);\n  iota(all(states),\
     \ 0);\n\n  auto get_options = [&](int s) -> pair<vc<int>, vc<int>> {\n    vc<int>\
     \ left_ops, right_ops;\n    if (s % 2 == 0 && s >= 2) left_ops.eb(s - 2);\n  \
@@ -341,18 +253,16 @@ data:
     \ ll>(states, get_options);\n\n  for (auto&& [s, x]: MP) {\n    int my_ans = solve_cherries(s);\n\
     \    assert(x == Dyadic_Rational<ll>(my_ans, 1));\n  }\n}\n\nvoid test() {\n \
     \ test_push();\n  test_problem_5_2();\n  test_problem_5_3();\n  test_cherries();\n\
-    }\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  test();\n\n\
-    \  ll T = 1;\n  FOR(T) solve();\n\n  return 0;\n}"
+    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
+    ;\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
-  - other/io.hpp
   - game/solve_partizan_game.hpp
   - game/dyadic_rational.hpp
   isVerificationFile: true
   path: test/mytest/partizan.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
+  timestamp: '2023-11-09 01:44:55+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/partizan.test.cpp

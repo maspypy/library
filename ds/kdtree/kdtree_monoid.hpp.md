@@ -4,9 +4,6 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/aoj/DSL_2_C.test.cpp
-    title: test/aoj/DSL_2_C.test.cpp
-  - icon: ':x:'
     path: test/mytest/kdtree_monoid.test.cpp
     title: test/mytest/kdtree_monoid.test.cpp
   - icon: ':x:'
@@ -117,7 +114,6 @@ data:
   verifiedWith:
   - test/yukicoder/1625.test.cpp
   - test/mytest/kdtree_monoid.test.cpp
-  - test/aoj/DSL_2_C.test.cpp
 documentation_of: ds/kdtree/kdtree_monoid.hpp
 layout: document
 redirect_from:
