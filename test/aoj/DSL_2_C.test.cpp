@@ -2,18 +2,7 @@
   "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/kdtree/kdtree_monoid.hpp"
-
-struct Mono {
-  using value_type = vc<int>;
-  using X = value_type;
-  static X op(X x, X y) {
-    x.insert(x.end(), all(y));
-    return x;
-  }
-  static X unit() { return {}; }
-  static constexpr bool commute = 1;
-};
+#include "ds/kdtree/kdtree.hpp"
 
 void solve() {
   LL(N);
@@ -25,14 +14,14 @@ void solve() {
     Y.eb(y);
     idx[i].eb(i);
   }
-  KDTree_Monoid<Mono, ll> KDT(X, Y, idx);
+  KDTree<ll> KDT(X, Y);
 
   LL(Q);
   FOR(Q) {
     LL(xl, xr, yl, yr);
-    auto e = KDT.prod(xl, xr + 1, yl, yr + 1);
-    sort(all(e));
-    for (auto&& v: e) print(v);
+    auto ids = KDT.collect_rect(xl, xr + 1, yl, yr + 1);
+    sort(all(ids));
+    for (auto& x: ids) print(x);
     print();
   }
 }
