@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: ds/randomized_bst/rbst_commutative_monoid.hpp
     title: ds/randomized_bst/rbst_commutative_monoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -270,23 +270,22 @@ data:
     \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
     \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
     \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
-    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid read(modint<mod> &x) {\n\
-    \  fastio::read(x.val);\n  assert(0 <= x.val && x.val < mod);\n}\ntemplate <int\
-    \ mod>\nvoid write(modint<mod> x) {\n  fastio::write(x.val);\n}\n#endif\n\nusing\
-    \ modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line\
-    \ 1 \"ds/randomized_bst/rbst_commutative_monoid.hpp\"\ntemplate <typename CommutativeMonoid,\
-    \ bool PERSISTENT, int NODES>\nstruct RBST_CommutativeMonoid {\n  using Monoid\
-    \ = CommutativeMonoid;\n  using X = typename Monoid::value_type;\n\n  struct Node\
-    \ {\n    Node *l, *r;\n    X x, prod; // rev \u53CD\u6620\u6E08\n    u32 size;\n\
-    \    bool rev;\n  };\n\n  Node *pool;\n  int pid;\n  using np = Node *;\n\n  RBST_CommutativeMonoid()\
-    \ : pid(0) {\n    assert(Monoid::commute);\n    pool = new Node[NODES];\n  }\n\
-    \n  void reset() { pid = 0; }\n\n  np new_node(const X &x) {\n    pool[pid].l\
-    \ = pool[pid].r = nullptr;\n    pool[pid].x = x;\n    pool[pid].prod = x;\n  \
-    \  pool[pid].size = 1;\n    pool[pid].rev = 0;\n    return &(pool[pid++]);\n \
-    \ }\n\n  np new_node(const vc<X> &dat) {\n    auto dfs = [&](auto &dfs, u32 l,\
-    \ u32 r) -> np {\n      if (l == r) return nullptr;\n      if (r == l + 1) return\
-    \ new_node(dat[l]);\n      u32 m = (l + r) / 2;\n      np l_root = dfs(dfs, l,\
-    \ m);\n      np r_root = dfs(dfs, m + 1, r);\n      np root = new_node(dat[m]);\n\
+    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
+    \  fastio::rd(x.val);\n  assert(0 <= x.val && x.val < mod);\n}\ntemplate <int\
+    \ mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107\
+    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 1 \"ds/randomized_bst/rbst_commutative_monoid.hpp\"\
+    \ntemplate <typename CommutativeMonoid, bool PERSISTENT, int NODES>\nstruct RBST_CommutativeMonoid\
+    \ {\n  using Monoid = CommutativeMonoid;\n  using X = typename Monoid::value_type;\n\
+    \n  struct Node {\n    Node *l, *r;\n    X x, prod; // rev \u53CD\u6620\u6E08\n\
+    \    u32 size;\n    bool rev;\n  };\n\n  Node *pool;\n  int pid;\n  using np =\
+    \ Node *;\n\n  RBST_CommutativeMonoid() : pid(0) {\n    assert(Monoid::commute);\n\
+    \    pool = new Node[NODES];\n  }\n\n  void reset() { pid = 0; }\n\n  np new_node(const\
+    \ X &x) {\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x = x;\n  \
+    \  pool[pid].prod = x;\n    pool[pid].size = 1;\n    pool[pid].rev = 0;\n    return\
+    \ &(pool[pid++]);\n  }\n\n  np new_node(const vc<X> &dat) {\n    auto dfs = [&](auto\
+    \ &dfs, u32 l, u32 r) -> np {\n      if (l == r) return nullptr;\n      if (r\
+    \ == l + 1) return new_node(dat[l]);\n      u32 m = (l + r) / 2;\n      np l_root\
+    \ = dfs(dfs, l, m);\n      np r_root = dfs(dfs, m + 1, r);\n      np root = new_node(dat[m]);\n\
     \      root->l = l_root, root->r = r_root;\n      update(root);\n      return\
     \ root;\n    };\n    return dfs(dfs, 0, len(dat));\n  }\n\n  np copy_node(np &n)\
     \ {\n    if (!n || !PERSISTENT) return n;\n    pool[pid].l = n->l, pool[pid].r\
@@ -445,7 +444,7 @@ data:
   isVerificationFile: true
   path: test/mytest/rbst_commutative_persistent.test.cpp
   requiredBy: []
-  timestamp: '2023-11-08 16:50:01+09:00'
+  timestamp: '2023-11-08 18:58:48+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/rbst_commutative_persistent.test.cpp

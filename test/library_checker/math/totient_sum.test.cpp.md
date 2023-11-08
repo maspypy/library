@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -316,16 +316,15 @@ data:
     \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
     \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
     \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
-    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid read(modint<mod> &x) {\n\
-    \  fastio::read(x.val);\n  assert(0 <= x.val && x.val < mod);\n}\ntemplate <int\
-    \ mod>\nvoid write(modint<mod> x) {\n  fastio::write(x.val);\n}\n#endif\n\nusing\
-    \ modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line\
-    \ 8 \"test/library_checker/math/totient_sum.test.cpp\"\n\nusing mint = modint998;\n\
-    \nvoid solve() {\n  LL(N);\n  PrimeSum<mint> A(N), B(N);\n  A.calc_sum();\n  B.calc_count();\n\
-    \n  auto f_pe = [&](ll p, ll e) -> mint {\n    mint x = p - 1;\n    FOR(e - 1)\
-    \ x *= mint(p);\n    return x;\n  };\n  auto f_psum = [&](ll x) -> mint { return\
-    \ A[x] - B[x]; };\n  print(multiplicative_sum<mint>(N, f_pe, f_psum));\n}\n\n\
-    signed main() {\n  solve();\n\n  return 0;\n}\n"
+    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
+    \  fastio::rd(x.val);\n  assert(0 <= x.val && x.val < mod);\n}\ntemplate <int\
+    \ mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107\
+    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 8 \"test/library_checker/math/totient_sum.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  PrimeSum<mint> A(N),\
+    \ B(N);\n  A.calc_sum();\n  B.calc_count();\n\n  auto f_pe = [&](ll p, ll e) ->\
+    \ mint {\n    mint x = p - 1;\n    FOR(e - 1) x *= mint(p);\n    return x;\n \
+    \ };\n  auto f_psum = [&](ll x) -> mint { return A[x] - B[x]; };\n  print(multiplicative_sum<mint>(N,\
+    \ f_pe, f_psum));\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sum_of_totient_function\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"nt/primesum.hpp\"\
     \n#include \"nt/multiplicative_sum.hpp\"\n#include \"mod/modint.hpp\"\n\nusing\
@@ -345,7 +344,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/totient_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-11-08 16:50:01+09:00'
+  timestamp: '2023-11-08 18:58:48+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/totient_sum.test.cpp
