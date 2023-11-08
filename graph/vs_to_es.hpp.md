@@ -27,25 +27,25 @@ data:
     \   return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
     \ u64& k) {\r\n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k;\
     \ (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
-    \ u64& k) {\r\n    int i = index(k);\r\n    if (!used[i]) {\r\n      used[i] =\
-    \ 1, key[i] = k, val[i] = Val{};\r\n      if constexpr (KEEP_IDS) IDS.eb(i);\r\
-    \n    }\r\n    return val[i];\r\n  }\r\n\r\n  Val get(const u64& k, Val default_value)\
-    \ {\r\n    int i = index(k);\r\n    if (!used[i]) return default_value;\r\n  \
-    \  return val[i];\r\n  }\r\n\r\n  bool count(const u64& k) {\r\n    int i = index(k);\r\
-    \n    return used[i] && key[i] == k;\r\n  }\r\n\r\n  void reset() {\r\n    static_assert(KEEP_IDS);\r\
-    \n    for (auto&& i: IDS) used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  //\
-    \ f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F f) {\r\n  \
-    \  static_assert(KEEP_IDS);\r\n    for (auto&& i: IDS) f(key[i], val[i]);\r\n\
-    \  }\r\n};\r\n#line 4 \"graph/vs_to_es.hpp\"\n\ntemplate <typename GT>\nvc<int>\
-    \ vs_to_es(GT& G, vc<int>& vs, bool allow_use_twice = false) {\n  assert(!vs.empty());\n\
-    \n  static HashMap<int> MP;\n  MP.reset();\n  vc<int> nxt(G.M, -1);\n\n  auto\
-    \ get = [&](ll a, ll b) -> u64 {\n    if (GT::is_directed && a > b) swap(a, b);\n\
-    \    return a * G.N + b;\n  };\n\n  FOR(eid, G.M) {\n    u64 k = get(G.edges[eid].frm,\
-    \ G.edges[eid].to);\n    int x = MP[k];\n    nxt[eid] = x, MP[k] = eid;\n  }\n\
-    \  int n = len(vs);\n  vc<int> es(n - 1);\n  FOR(i, n - 1) {\n    u64 k = get(vs[i],\
-    \ vs[i + 1]);\n    int eid = MP.get(k, -1);\n    assert(eid != -1);\n    es[i]\
-    \ = eid;\n    if (!allow_use_twice) { MP[k] = nxt[eid]; }\n  }\n  return es;\n\
-    }\n"
+    \ u64& k) {\r\n    int i = index(k);\r\n    if (!used[i]) { set_used(i), key[i]\
+    \ = k, val[i] = Val{}; }\r\n    return val[i];\r\n  }\r\n\r\n  Val get(const u64&\
+    \ k, Val default_value) {\r\n    int i = index(k);\r\n    if (!used[i]) return\
+    \ default_value;\r\n    return val[i];\r\n  }\r\n\r\n  bool count(const u64& k)\
+    \ {\r\n    int i = index(k);\r\n    return used[i] && key[i] == k;\r\n  }\r\n\r\
+    \n  void set_used(int i) {\r\n    used[i] = 1;\r\n    if constexpr (KEEP_IDS)\
+    \ IDS.eb(i);\r\n  }\r\n\r\n  void reset() {\r\n    static_assert(KEEP_IDS);\r\n\
+    \    for (auto&& i: IDS) used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  // f(key,\
+    \ val)\r\n  template <typename F>\r\n  void enumerate_all(F f) {\r\n    static_assert(KEEP_IDS);\r\
+    \n    for (auto&& i: IDS) f(key[i], val[i]);\r\n  }\r\n};\r\n#line 4 \"graph/vs_to_es.hpp\"\
+    \n\ntemplate <typename GT>\nvc<int> vs_to_es(GT& G, vc<int>& vs, bool allow_use_twice\
+    \ = false) {\n  assert(!vs.empty());\n\n  static HashMap<int> MP;\n  MP.reset();\n\
+    \  vc<int> nxt(G.M, -1);\n\n  auto get = [&](ll a, ll b) -> u64 {\n    if (GT::is_directed\
+    \ && a > b) swap(a, b);\n    return a * G.N + b;\n  };\n\n  FOR(eid, G.M) {\n\
+    \    u64 k = get(G.edges[eid].frm, G.edges[eid].to);\n    int x = MP[k];\n   \
+    \ nxt[eid] = x, MP[k] = eid;\n  }\n  int n = len(vs);\n  vc<int> es(n - 1);\n\
+    \  FOR(i, n - 1) {\n    u64 k = get(vs[i], vs[i + 1]);\n    int eid = MP.get(k,\
+    \ -1);\n    assert(eid != -1);\n    es[i] = eid;\n    if (!allow_use_twice) {\
+    \ MP[k] = nxt[eid]; }\n  }\n  return es;\n}\n"
   code: "#pragma once\n\n#include \"ds/hashmap.hpp\"\n\ntemplate <typename GT>\nvc<int>\
     \ vs_to_es(GT& G, vc<int>& vs, bool allow_use_twice = false) {\n  assert(!vs.empty());\n\
     \n  static HashMap<int> MP;\n  MP.reset();\n  vc<int> nxt(G.M, -1);\n\n  auto\
@@ -62,7 +62,7 @@ data:
   path: graph/vs_to_es.hpp
   requiredBy:
   - graph/eulerwalk.hpp
-  timestamp: '2023-11-08 12:09:23+09:00'
+  timestamp: '2023-11-09 00:12:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/arc157a.test.cpp

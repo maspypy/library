@@ -2,26 +2,27 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: ds/hashmap.hpp
-    title: ds/hashmap.hpp
-  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/array_on_floor.hpp
+    title: nt/array_on_floor.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1634
+    PROBLEM: https://judge.yosupo.jp/problem/enumerate_quotients
     links:
-    - https://yukicoder.me/problems/no/1634
-  bundledCode: "#line 1 \"test/yukicoder/1634.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/1634\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    - https://judge.yosupo.jp/problem/enumerate_quotients
+  bundledCode: "#line 1 \"test/library_checker/math/enumerate_quotients2.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_quotients\"\n#line\
+    \ 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
     using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
@@ -183,77 +184,41 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
-    \ Val, int LOG = 20, bool KEEP_IDS = false>\r\nstruct HashMap {\r\n  static constexpr\
-    \ int N = (1 << LOG);\r\n  u64* key;\r\n  Val* val;\r\n  vc<int> IDS;\r\n  bitset<N>\
-    \ used;\r\n  const int shift;\r\n  const u64 r = 11995408973635179863ULL;\r\n\
-    \  HashMap() : key(new u64[N]), val(new Val[N]), shift(64 - LOG) {}\r\n  u32 hash(u64\
-    \ x) {\r\n    static const u64 FIXED_RANDOM\r\n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\
-    \n    return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
-    \ u64& k) {\r\n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k;\
-    \ (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
-    \ u64& k) {\r\n    int i = index(k);\r\n    if (!used[i]) { set_used(i), key[i]\
-    \ = k, val[i] = Val{}; }\r\n    return val[i];\r\n  }\r\n\r\n  Val get(const u64&\
-    \ k, Val default_value) {\r\n    int i = index(k);\r\n    if (!used[i]) return\
-    \ default_value;\r\n    return val[i];\r\n  }\r\n\r\n  bool count(const u64& k)\
-    \ {\r\n    int i = index(k);\r\n    return used[i] && key[i] == k;\r\n  }\r\n\r\
-    \n  void set_used(int i) {\r\n    used[i] = 1;\r\n    if constexpr (KEEP_IDS)\
-    \ IDS.eb(i);\r\n  }\r\n\r\n  void reset() {\r\n    static_assert(KEEP_IDS);\r\n\
-    \    for (auto&& i: IDS) used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  // f(key,\
-    \ val)\r\n  template <typename F>\r\n  void enumerate_all(F f) {\r\n    static_assert(KEEP_IDS);\r\
-    \n    for (auto&& i: IDS) f(key[i], val[i]);\r\n  }\r\n};\r\n#line 5 \"test/yukicoder/1634.test.cpp\"\
-    \n\nvoid solve() {\n  INT(N, mod);\n  vi F(20, 1);\n  FOR(i, 19) F[i + 1] = F[i]\
-    \ * (i + 1);\n\n  vi A;\n  ll cf = 1;\n  FOR(i, 1, 10) {\n    LL(x);\n    FOR(x)\
-    \ A.eb(i);\n    cf *= F[x];\n  }\n\n  N = len(A);\n  vi POW(N + 1, 1);\n  FOR(i,\
-    \ N) POW[i + 1] = POW[i] * 10 % mod;\n\n  using P = pair<int, int>;\n\n  // \u3068\
-    \u308B\u96C6\u5408, mod\n  auto calc = [&](ll L, ll R, bool bl) -> vvc<int> {\n\
-    \    vc<P> dp;\n    dp.eb(0, 0);\n    FOR(i, L, R) {\n      ll n = len(dp);\n\
-    \      vc<P> newdp;\n      newdp.reserve(n * (N - (i - L)));\n      FOR(j, n)\
-    \ {\n        auto [s, x] = dp[j];\n        FOR(k, N) {\n          ll t = s | 1\
-    \ << k;\n          if (s == t) continue;\n          int y = (x + A[i] * POW[k])\
-    \ % mod;\n          newdp.eb(t, y);\n        }\n      }\n      swap(dp, newdp);\n\
-    \    }\n    vvc<int> res(1 << N);\n    int full = (1 << N) - 1;\n    for (auto&&\
-    \ [s, x]: dp) {\n      if (bl) {\n        s = full - s;\n        if (x) x = mod\
-    \ - x;\n      }\n      res[s].eb(x);\n    }\n    return res;\n  };\n\n  auto X\
-    \ = calc(0, N / 2, 0);\n  auto Y = calc(N / 2, N, 1);\n\n  ll ANS = 0;\n  HashMap<int,\
-    \ 14, true> MP;\n  FOR(s, 1 << N) {\n    if (X[s].empty() || Y[s].empty()) continue;\n\
-    \    MP.reset();\n    auto &P = X[s], &Q = Y[s];\n    for (auto&& x: P) MP[x]++;\n\
-    \    for (auto&& x: Q)\n      if (MP.count(x)) ANS += MP[x];\n  }\n  ANS /= cf;\n\
-    \  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1634\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"ds/hashmap.hpp\"\n\nvoid solve() {\n \
-    \ INT(N, mod);\n  vi F(20, 1);\n  FOR(i, 19) F[i + 1] = F[i] * (i + 1);\n\n  vi\
-    \ A;\n  ll cf = 1;\n  FOR(i, 1, 10) {\n    LL(x);\n    FOR(x) A.eb(i);\n    cf\
-    \ *= F[x];\n  }\n\n  N = len(A);\n  vi POW(N + 1, 1);\n  FOR(i, N) POW[i + 1]\
-    \ = POW[i] * 10 % mod;\n\n  using P = pair<int, int>;\n\n  // \u3068\u308B\u96C6\
-    \u5408, mod\n  auto calc = [&](ll L, ll R, bool bl) -> vvc<int> {\n    vc<P> dp;\n\
-    \    dp.eb(0, 0);\n    FOR(i, L, R) {\n      ll n = len(dp);\n      vc<P> newdp;\n\
-    \      newdp.reserve(n * (N - (i - L)));\n      FOR(j, n) {\n        auto [s,\
-    \ x] = dp[j];\n        FOR(k, N) {\n          ll t = s | 1 << k;\n          if\
-    \ (s == t) continue;\n          int y = (x + A[i] * POW[k]) % mod;\n         \
-    \ newdp.eb(t, y);\n        }\n      }\n      swap(dp, newdp);\n    }\n    vvc<int>\
-    \ res(1 << N);\n    int full = (1 << N) - 1;\n    for (auto&& [s, x]: dp) {\n\
-    \      if (bl) {\n        s = full - s;\n        if (x) x = mod - x;\n      }\n\
-    \      res[s].eb(x);\n    }\n    return res;\n  };\n\n  auto X = calc(0, N / 2,\
-    \ 0);\n  auto Y = calc(N / 2, N, 1);\n\n  ll ANS = 0;\n  HashMap<int, 14, true>\
-    \ MP;\n  FOR(s, 1 << N) {\n    if (X[s].empty() || Y[s].empty()) continue;\n \
-    \   MP.reset();\n    auto &P = X[s], &Q = Y[s];\n    for (auto&& x: P) MP[x]++;\n\
-    \    for (auto&& x: Q)\n      if (MP.count(x)) ANS += MP[x];\n  }\n  ANS /= cf;\n\
-    \  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
+    \ yes(!t); }\r\n#line 1 \"nt/array_on_floor.hpp\"\n// N=10 \u3060\u3068 dat =\
+    \ {dp[1], dp[2], dp[3], dp[5], dp[10]} \u307F\u305F\u3044\u306B\u306A\u308B\n\
+    // hashmap \u3088\u308A\u6570\u500D\u9AD8\u901F\ntemplate <typename T>\nstruct\
+    \ Array_On_Floor {\n  u64 N;\n  u32 n, sq;\n  vc<T> dat;\n  Array_On_Floor(u64\
+    \ N, T default_value = T{}) : N(N) {\n    assert(N <= u64(1) << 50);\n    sq =\
+    \ sqrtl(N);\n    n = (u64(sq) * sq + sq <= N ? sq : sq - 1);\n    dat.resize(n\
+    \ + sq, default_value);\n  }\n\n  u32 size() { return dat.size(); }\n\n  T& operator[](u64\
+    \ d) {\n    int i = get_index(d);\n    return dat[i];\n  }\n\n  inline u32 get_index(u64\
+    \ d) {\n    assert(d > 0);\n    if (d <= n) return d - 1;\n    return dat.size()\
+    \ - u32(double(N) / d);\n  }\n\n  // dat[i] \u306B\u5BFE\u5FDC\u3059\u308B floor\n\
+    \  u64 get_floor(u32 i) { return (i < n ? 1 + i : double(N) / (n + sq - i)); }\n\
+    \n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(dat)) {\
+    \ f(get_floor(i), dat[i]); }\n  }\n};\n#line 5 \"test/library_checker/math/enumerate_quotients2.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  Array_On_Floor<int> A(N);\n  print(len(A));\n\
+    \  FOR(i, len(A)) print(A.get_floor(i));\n}\n\nsigned main() {\n  solve();\n \
+    \ return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_quotients\"\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/array_on_floor.hpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  Array_On_Floor<int> A(N);\n  print(len(A));\n\
+    \  FOR(i, len(A)) print(A.get_floor(i));\n}\n\nsigned main() {\n  solve();\n \
+    \ return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/hashmap.hpp
+  - nt/array_on_floor.hpp
   isVerificationFile: true
-  path: test/yukicoder/1634.test.cpp
+  path: test/library_checker/math/enumerate_quotients2.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:12:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-09 00:32:24+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yukicoder/1634.test.cpp
+documentation_of: test/library_checker/math/enumerate_quotients2.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/1634.test.cpp
-- /verify/test/yukicoder/1634.test.cpp.html
-title: test/yukicoder/1634.test.cpp
+- /verify/test/library_checker/math/enumerate_quotients2.test.cpp
+- /verify/test/library_checker/math/enumerate_quotients2.test.cpp.html
+title: test/library_checker/math/enumerate_quotients2.test.cpp
 ---
