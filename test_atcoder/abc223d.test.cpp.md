@@ -289,14 +289,14 @@ data:
     \    int v = que.next(0);\n    if (v == N) break;\n    que.erase(v), V.eb(v);\n\
     \    for (auto&& e: G[v]) {\n      if (--indeg[e.to] == 0) que.insert(e.to);\n\
     \    }\n  }\n  return (len(V) < N ? vc<int>{} : V);\n}\n#line 5 \"test_atcoder/abc223d.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, M);\n  Graph<bool, 1> G(N);\n  G.read_graph(M);\n\
-    \  auto I = toposort(G);\n  if (I.empty()) return print(-1);\n  for (auto&& x:\
+    \n\nvoid solve() {\n  LL(N, M);\n  Graph<int, 1> G(N);\n  G.read_graph(M);\n \
+    \ auto I = toposort(G);\n  if (I.empty()) return print(-1);\n  for (auto&& x:\
     \ I) ++x;\n  print(I);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc223/tasks/abc223_d\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/toposort.hpp\"\
-    \n\nvoid solve() {\n  LL(N, M);\n  Graph<bool, 1> G(N);\n  G.read_graph(M);\n\
-    \  auto I = toposort(G);\n  if (I.empty()) return print(-1);\n  for (auto&& x:\
-    \ I) ++x;\n  print(I);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \n\nvoid solve() {\n  LL(N, M);\n  Graph<int, 1> G(N);\n  G.read_graph(M);\n \
+    \ auto I = toposort(G);\n  if (I.empty()) return print(-1);\n  for (auto&& x:\
+    \ I) ++x;\n  print(I);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -306,7 +306,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc223d.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
+  timestamp: '2023-11-11 05:58:21+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc223d.test.cpp
