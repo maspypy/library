@@ -90,6 +90,7 @@ struct Slope_Trick {
     return res;
   }
 
+#ifdef FASTIO
   void debug() {
     vi left, right;
     pq<ll> que_l_copy = que_l;
@@ -100,4 +101,5 @@ struct Slope_Trick {
     sort(all(right));
     print("min_f", min_f, "left", left, "right", right);
   }
+#endif
 };
