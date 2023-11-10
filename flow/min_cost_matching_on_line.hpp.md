@@ -6,12 +6,12 @@ data:
     title: convex/slope.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/min_cost_matching_on_line.test.cpp
     title: test/mytest/min_cost_matching_on_line.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/slope.hpp\"\nstruct Slope_Trick {\r\n  static constexpr\
@@ -47,12 +47,12 @@ data:
     \ + add_r;\r\n  }\r\n  ll top_L() {\r\n    if (que_l.empty()) que_l.emplace(LMIN);\r\
     \n    return que_l.top() + add_l;\r\n  }\r\n  ll pop_R() {\r\n    ll res = top_R();\r\
     \n    que_r.pop();\r\n    return res;\r\n  }\r\n  ll pop_L() {\r\n    ll res =\
-    \ top_L();\r\n    que_l.pop();\r\n    return res;\r\n  }\r\n\r\n  void debug()\
-    \ {\r\n    vi left, right;\r\n    pq<ll> que_l_copy = que_l;\r\n    pqg<ll> que_r_copy\
-    \ = que_r;\r\n    while (len(que_l_copy)) { left.eb(POP(que_l_copy) + add_l);\
-    \ }\r\n    while (len(que_r_copy)) { right.eb(POP(que_r_copy) + add_r); }\r\n\
-    \    sort(all(left));\r\n    sort(all(right));\r\n    print(\"min_f\", min_f,\
-    \ \"left\", left, \"right\", right);\r\n  }\r\n};\n#line 2 \"flow/min_cost_matching_on_line.hpp\"\
+    \ top_L();\r\n    que_l.pop();\r\n    return res;\r\n  }\r\n\r\n#ifdef FASTIO\r\
+    \n  void debug() {\r\n    vi left, right;\r\n    pq<ll> que_l_copy = que_l;\r\n\
+    \    pqg<ll> que_r_copy = que_r;\r\n    while (len(que_l_copy)) { left.eb(POP(que_l_copy)\
+    \ + add_l); }\r\n    while (len(que_r_copy)) { right.eb(POP(que_r_copy) + add_r);\
+    \ }\r\n    sort(all(left));\r\n    sort(all(right));\r\n    print(\"min_f\", min_f,\
+    \ \"left\", left, \"right\", right);\r\n  }\r\n#endif\r\n};\n#line 2 \"flow/min_cost_matching_on_line.hpp\"\
     \n\n// \u5EA7\u6A19 0, ..., N-1 \u306B A_i \u500B\u3042\u308B\n// \u5EA7\u6A19\
     \ 0, ..., N-1 \u3067 B_i \u500B\u307E\u3067\u53D7\u3051\u5165\u308C\u3089\u308C\
     \u308B\nll min_cost_matching_on_line_1(vi A, vi B) {\n  assert(SUM<ll>(A) <= SUM<ll>(B));\n\
@@ -70,8 +70,8 @@ data:
   isVerificationFile: false
   path: flow/min_cost_matching_on_line.hpp
   requiredBy: []
-  timestamp: '2023-02-02 01:52:11+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-11-10 12:48:50+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/min_cost_matching_on_line.test.cpp
 documentation_of: flow/min_cost_matching_on_line.hpp

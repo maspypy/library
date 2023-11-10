@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: flow/min_cost_matching_on_line.hpp
     title: flow/min_cost_matching_on_line.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/min_cost_matching_on_line.test.cpp
     title: test/mytest/min_cost_matching_on_line.test.cpp
   - icon: ':heavy_check_mark:'
@@ -59,12 +59,12 @@ data:
     \ + add_r;\r\n  }\r\n  ll top_L() {\r\n    if (que_l.empty()) que_l.emplace(LMIN);\r\
     \n    return que_l.top() + add_l;\r\n  }\r\n  ll pop_R() {\r\n    ll res = top_R();\r\
     \n    que_r.pop();\r\n    return res;\r\n  }\r\n  ll pop_L() {\r\n    ll res =\
-    \ top_L();\r\n    que_l.pop();\r\n    return res;\r\n  }\r\n\r\n  void debug()\
-    \ {\r\n    vi left, right;\r\n    pq<ll> que_l_copy = que_l;\r\n    pqg<ll> que_r_copy\
-    \ = que_r;\r\n    while (len(que_l_copy)) { left.eb(POP(que_l_copy) + add_l);\
-    \ }\r\n    while (len(que_r_copy)) { right.eb(POP(que_r_copy) + add_r); }\r\n\
-    \    sort(all(left));\r\n    sort(all(right));\r\n    print(\"min_f\", min_f,\
-    \ \"left\", left, \"right\", right);\r\n  }\r\n};\n"
+    \ top_L();\r\n    que_l.pop();\r\n    return res;\r\n  }\r\n\r\n#ifdef FASTIO\r\
+    \n  void debug() {\r\n    vi left, right;\r\n    pq<ll> que_l_copy = que_l;\r\n\
+    \    pqg<ll> que_r_copy = que_r;\r\n    while (len(que_l_copy)) { left.eb(POP(que_l_copy)\
+    \ + add_l); }\r\n    while (len(que_r_copy)) { right.eb(POP(que_r_copy) + add_r);\
+    \ }\r\n    sort(all(left));\r\n    sort(all(right));\r\n    print(\"min_f\", min_f,\
+    \ \"left\", left, \"right\", right);\r\n  }\r\n#endif\r\n};\n"
   code: "struct Slope_Trick {\r\n  static constexpr ll LMIN = -infty<ll>;\r\n  static\
     \ constexpr ll RMAX = infty<ll>;\r\n  pq<ll> que_l;\r\n  pqg<ll> que_r;\r\n\r\n\
     \  ll add_l, add_r;\r\n  i128 min_f; // infty \u3092\u8DB3\u3057\u5F15\u304D\u3057\
@@ -98,18 +98,18 @@ data:
     \ + add_r;\r\n  }\r\n  ll top_L() {\r\n    if (que_l.empty()) que_l.emplace(LMIN);\r\
     \n    return que_l.top() + add_l;\r\n  }\r\n  ll pop_R() {\r\n    ll res = top_R();\r\
     \n    que_r.pop();\r\n    return res;\r\n  }\r\n  ll pop_L() {\r\n    ll res =\
-    \ top_L();\r\n    que_l.pop();\r\n    return res;\r\n  }\r\n\r\n  void debug()\
-    \ {\r\n    vi left, right;\r\n    pq<ll> que_l_copy = que_l;\r\n    pqg<ll> que_r_copy\
-    \ = que_r;\r\n    while (len(que_l_copy)) { left.eb(POP(que_l_copy) + add_l);\
-    \ }\r\n    while (len(que_r_copy)) { right.eb(POP(que_r_copy) + add_r); }\r\n\
-    \    sort(all(left));\r\n    sort(all(right));\r\n    print(\"min_f\", min_f,\
-    \ \"left\", left, \"right\", right);\r\n  }\r\n};"
+    \ top_L();\r\n    que_l.pop();\r\n    return res;\r\n  }\r\n\r\n#ifdef FASTIO\r\
+    \n  void debug() {\r\n    vi left, right;\r\n    pq<ll> que_l_copy = que_l;\r\n\
+    \    pqg<ll> que_r_copy = que_r;\r\n    while (len(que_l_copy)) { left.eb(POP(que_l_copy)\
+    \ + add_l); }\r\n    while (len(que_r_copy)) { right.eb(POP(que_r_copy) + add_r);\
+    \ }\r\n    sort(all(left));\r\n    sort(all(right));\r\n    print(\"min_f\", min_f,\
+    \ \"left\", left, \"right\", right);\r\n  }\r\n#endif\r\n};"
   dependsOn: []
   isVerificationFile: false
   path: convex/slope.hpp
   requiredBy:
   - flow/min_cost_matching_on_line.hpp
-  timestamp: '2023-02-02 01:52:11+09:00'
+  timestamp: '2023-11-10 12:48:50+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1077.test.cpp

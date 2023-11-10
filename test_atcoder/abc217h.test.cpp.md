@@ -218,18 +218,18 @@ data:
     \ {\r\n    if (que_l.empty()) que_l.emplace(LMIN);\r\n    return que_l.top() +\
     \ add_l;\r\n  }\r\n  ll pop_R() {\r\n    ll res = top_R();\r\n    que_r.pop();\r\
     \n    return res;\r\n  }\r\n  ll pop_L() {\r\n    ll res = top_L();\r\n    que_l.pop();\r\
-    \n    return res;\r\n  }\r\n\r\n  void debug() {\r\n    vi left, right;\r\n  \
-    \  pq<ll> que_l_copy = que_l;\r\n    pqg<ll> que_r_copy = que_r;\r\n    while\
-    \ (len(que_l_copy)) { left.eb(POP(que_l_copy) + add_l); }\r\n    while (len(que_r_copy))\
-    \ { right.eb(POP(que_r_copy) + add_r); }\r\n    sort(all(left));\r\n    sort(all(right));\r\
-    \n    print(\"min_f\", min_f, \"left\", left, \"right\", right);\r\n  }\r\n};\n\
-    #line 5 \"test_atcoder/abc217h.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  Slope_Trick\
-    \ f(vi(N, 0), vi(N, 0));\n\n  ll pt = 0;\n  FOR(N) {\n    LL(t, d, x);\n    ll\
-    \ dt = t - pt;\n    pt = t;\n    f.sliding_window_minimum(-dt, dt);\n    if (d\
-    \ == 0) f.add_a_minus_x(x);\n    if (d == 1) f.add_x_minus_a(x);\n  }\n  auto\
-    \ [xl, xr, min_f] = f.get_min();\n  print(min_f);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \n    return res;\r\n  }\r\n\r\n#ifdef FASTIO\r\n  void debug() {\r\n    vi left,\
+    \ right;\r\n    pq<ll> que_l_copy = que_l;\r\n    pqg<ll> que_r_copy = que_r;\r\
+    \n    while (len(que_l_copy)) { left.eb(POP(que_l_copy) + add_l); }\r\n    while\
+    \ (len(que_r_copy)) { right.eb(POP(que_r_copy) + add_r); }\r\n    sort(all(left));\r\
+    \n    sort(all(right));\r\n    print(\"min_f\", min_f, \"left\", left, \"right\"\
+    , right);\r\n  }\r\n#endif\r\n};\n#line 5 \"test_atcoder/abc217h.test.cpp\"\n\n\
+    void solve() {\n  LL(N);\n  Slope_Trick f(vi(N, 0), vi(N, 0));\n\n  ll pt = 0;\n\
+    \  FOR(N) {\n    LL(t, d, x);\n    ll dt = t - pt;\n    pt = t;\n    f.sliding_window_minimum(-dt,\
+    \ dt);\n    if (d == 0) f.add_a_minus_x(x);\n    if (d == 1) f.add_x_minus_a(x);\n\
+    \  }\n  auto [xl, xr, min_f] = f.get_min();\n  print(min_f);\n}\n\nsigned main()\
+    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc217/tasks/abc217_h\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"convex/slope.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  Slope_Trick f(vi(N, 0), vi(N, 0));\n\n  ll pt\
@@ -245,7 +245,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc217h.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
+  timestamp: '2023-11-10 12:48:50+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc217h.test.cpp

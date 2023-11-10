@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: convex/slope.hpp
     title: convex/slope.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: flow/min_cost_matching_on_line.hpp
     title: flow/min_cost_matching_on_line.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: my_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -135,24 +135,24 @@ data:
     \ {\r\n    if (que_l.empty()) que_l.emplace(LMIN);\r\n    return que_l.top() +\
     \ add_l;\r\n  }\r\n  ll pop_R() {\r\n    ll res = top_R();\r\n    que_r.pop();\r\
     \n    return res;\r\n  }\r\n  ll pop_L() {\r\n    ll res = top_L();\r\n    que_l.pop();\r\
-    \n    return res;\r\n  }\r\n\r\n  void debug() {\r\n    vi left, right;\r\n  \
-    \  pq<ll> que_l_copy = que_l;\r\n    pqg<ll> que_r_copy = que_r;\r\n    while\
-    \ (len(que_l_copy)) { left.eb(POP(que_l_copy) + add_l); }\r\n    while (len(que_r_copy))\
-    \ { right.eb(POP(que_r_copy) + add_r); }\r\n    sort(all(left));\r\n    sort(all(right));\r\
-    \n    print(\"min_f\", min_f, \"left\", left, \"right\", right);\r\n  }\r\n};\n\
-    #line 2 \"flow/min_cost_matching_on_line.hpp\"\n\n// \u5EA7\u6A19 0, ..., N-1\
-    \ \u306B A_i \u500B\u3042\u308B\n// \u5EA7\u6A19 0, ..., N-1 \u3067 B_i \u500B\
-    \u307E\u3067\u53D7\u3051\u5165\u308C\u3089\u308C\u308B\nll min_cost_matching_on_line_1(vi\
-    \ A, vi B) {\n  assert(SUM<ll>(A) <= SUM<ll>(B));\n  const int N = len(A);\n \
-    \ Slope_Trick f(vi(N + 1, 0), vi());\n  FOR(i, N) {\n    ll c = A[i] - B[i];\n\
-    \    f.shift(c);\n    f.clear_right();\n    f.add_abs(0);\n  }\n  return f.eval(0);\n\
-    }\n#line 4 \"test/mytest/min_cost_matching_on_line.test.cpp\"\n\nvoid test() {\n\
-    \  // https://atcoder.jp/contests/kupc2016/tasks/kupc2016_h\n  vi A = {3, 1},\
-    \ B = {1, 5};\n  assert(min_cost_matching_on_line_1(A, B) == 2);\n  A = {3, 3,\
-    \ 1, 1, 1}, B = {1, 2, 3, 4, 5};\n  assert(min_cost_matching_on_line_1(A, B) ==\
-    \ 6);\n  A = {10, 2, 5, 6, 2, 6, 3,  2, 2,  5, 3, 11, 13, 2,\n       2,  7, 7,\
-    \ 3, 9, 5, 13, 4, 17, 2, 2, 2,  4},\n  B = {46, 3, 4, 2, 10, 2, 5, 2, 6, 7,  20,\
-    \ 13, 9, 49,\n       3,  8, 4, 3, 19, 9, 3, 5, 4, 13, 9,  5,  7};\n  assert(min_cost_matching_on_line_1(A,\
+    \n    return res;\r\n  }\r\n\r\n#ifdef FASTIO\r\n  void debug() {\r\n    vi left,\
+    \ right;\r\n    pq<ll> que_l_copy = que_l;\r\n    pqg<ll> que_r_copy = que_r;\r\
+    \n    while (len(que_l_copy)) { left.eb(POP(que_l_copy) + add_l); }\r\n    while\
+    \ (len(que_r_copy)) { right.eb(POP(que_r_copy) + add_r); }\r\n    sort(all(left));\r\
+    \n    sort(all(right));\r\n    print(\"min_f\", min_f, \"left\", left, \"right\"\
+    , right);\r\n  }\r\n#endif\r\n};\n#line 2 \"flow/min_cost_matching_on_line.hpp\"\
+    \n\n// \u5EA7\u6A19 0, ..., N-1 \u306B A_i \u500B\u3042\u308B\n// \u5EA7\u6A19\
+    \ 0, ..., N-1 \u3067 B_i \u500B\u307E\u3067\u53D7\u3051\u5165\u308C\u3089\u308C\
+    \u308B\nll min_cost_matching_on_line_1(vi A, vi B) {\n  assert(SUM<ll>(A) <= SUM<ll>(B));\n\
+    \  const int N = len(A);\n  Slope_Trick f(vi(N + 1, 0), vi());\n  FOR(i, N) {\n\
+    \    ll c = A[i] - B[i];\n    f.shift(c);\n    f.clear_right();\n    f.add_abs(0);\n\
+    \  }\n  return f.eval(0);\n}\n#line 4 \"test/mytest/min_cost_matching_on_line.test.cpp\"\
+    \n\nvoid test() {\n  // https://atcoder.jp/contests/kupc2016/tasks/kupc2016_h\n\
+    \  vi A = {3, 1}, B = {1, 5};\n  assert(min_cost_matching_on_line_1(A, B) == 2);\n\
+    \  A = {3, 3, 1, 1, 1}, B = {1, 2, 3, 4, 5};\n  assert(min_cost_matching_on_line_1(A,\
+    \ B) == 6);\n  A = {10, 2, 5, 6, 2, 6, 3,  2, 2,  5, 3, 11, 13, 2,\n       2,\
+    \  7, 7, 3, 9, 5, 13, 4, 17, 2, 2, 2,  4},\n  B = {46, 3, 4, 2, 10, 2, 5, 2, 6,\
+    \ 7,  20, 13, 9, 49,\n       3,  8, 4, 3, 19, 9, 3, 5, 4, 13, 9,  5,  7};\n  assert(min_cost_matching_on_line_1(A,\
     \ B) == 48);\n  A = {1236501, 770807,  4003004, 131688,  1965412, 266841,\n  \
     \     3980782, 565060,  816313,  192940,  541896,  250801,\n       217586,  3806049,\
     \ 1220252, 1161079, 31168,   2008961},\n  B = {3878348, 423911,  8031742, 1035156,\
@@ -185,8 +185,8 @@ data:
   isVerificationFile: true
   path: test/mytest/min_cost_matching_on_line.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 01:44:55+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-10 12:48:50+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/min_cost_matching_on_line.test.cpp
 layout: document
