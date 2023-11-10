@@ -68,7 +68,6 @@ void solve() {
   cin >> a >> b;
   cout << a + b << "\n";
 }
-}
 
 signed main() {
   test();

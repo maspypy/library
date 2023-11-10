@@ -163,10 +163,12 @@ struct BipartiteMatching {
     return {K, W};
   }
 
+#ifdef FASTIO
   void debug() {
     print("match", match);
     print("min vertex covor", vertex_cover());
     print("max indep set", independent_set());
     print("min edge cover", edge_cover());
   }
+#endif
 };
