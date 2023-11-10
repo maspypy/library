@@ -117,7 +117,9 @@ data:
     \ -= t * v, v);\r\n    }\r\n    return modint61(u);\r\n  }\r\n  modint61 pow(ll\
     \ n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1), mul(val);\r\n    while\
     \ (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul *= mul, n >>= 1;\r\n\
-    \    }\r\n    return ret;\r\n  }\r\n};\n"
+    \    }\r\n    return ret;\r\n  }\r\n};\r\n\r\n#ifdef FASTIO\r\nvoid rd(modint61\
+    \ &x) {\r\n  fastio::rd(x.val);\r\n  assert(0 <= x.val && x.val < modint61::mod);\r\
+    \n}\r\n\r\nvoid wt(modint61 x) { fastio::wt(x.val); }\r\n#endif\n"
   code: "#pragma once\r\n\r\nstruct modint61 {\r\n  static constexpr u64 mod = (1ULL\
     \ << 61) - 1;\r\n  u64 val;\r\n  constexpr modint61() : val(0ULL) {}\r\n  constexpr\
     \ modint61(u32 x) : val(x) {}\r\n  constexpr modint61(u64 x) : val(x % mod) {}\r\
@@ -143,7 +145,9 @@ data:
     \ -= t * v, v);\r\n    }\r\n    return modint61(u);\r\n  }\r\n  modint61 pow(ll\
     \ n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1), mul(val);\r\n    while\
     \ (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul *= mul, n >>= 1;\r\n\
-    \    }\r\n    return ret;\r\n  }\r\n};"
+    \    }\r\n    return ret;\r\n  }\r\n};\r\n\r\n#ifdef FASTIO\r\nvoid rd(modint61\
+    \ &x) {\r\n  fastio::rd(x.val);\r\n  assert(0 <= x.val && x.val < modint61::mod);\r\
+    \n}\r\n\r\nvoid wt(modint61 x) { fastio::wt(x.val); }\r\n#endif"
   dependsOn: []
   isVerificationFile: false
   path: mod/modint61.hpp
@@ -157,7 +161,7 @@ data:
   - string/rollinghash_2d.hpp
   - string/rollinghash.hpp
   - ds/unionfind/parallel_unionfind.hpp
-  timestamp: '2023-11-06 23:45:48+09:00'
+  timestamp: '2023-11-10 11:44:35+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/578.test.cpp

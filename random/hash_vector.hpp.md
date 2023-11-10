@@ -68,11 +68,14 @@ data:
     \   swap(a -= t * b, b), swap(u -= t * v, v);\r\n    }\r\n    return modint61(u);\r\
     \n  }\r\n  modint61 pow(ll n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1),\
     \ mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul\
-    \ *= mul, n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n};\n#line 5 \"random/hash_vector.hpp\"\
-    \n\ntemplate <typename T>\nu64 hash_vector(vc<T> X) {\n  using mint = modint61;\n\
-    \  static vc<mint> hash_base;\n  int n = len(X);\n  while (len(hash_base) <= n)\
-    \ { hash_base.eb(RNG(mint::get_mod())); }\n  mint H = 0;\n  FOR(i, n) H += hash_base[i]\
-    \ * mint(X[i]);\n  H += hash_base[n];\n  return H.val;\n}\n"
+    \ *= mul, n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n};\r\n\r\n#ifdef FASTIO\r\
+    \nvoid rd(modint61 &x) {\r\n  fastio::rd(x.val);\r\n  assert(0 <= x.val && x.val\
+    \ < modint61::mod);\r\n}\r\n\r\nvoid wt(modint61 x) { fastio::wt(x.val); }\r\n\
+    #endif\n#line 5 \"random/hash_vector.hpp\"\n\ntemplate <typename T>\nu64 hash_vector(vc<T>\
+    \ X) {\n  using mint = modint61;\n  static vc<mint> hash_base;\n  int n = len(X);\n\
+    \  while (len(hash_base) <= n) { hash_base.eb(RNG(mint::get_mod())); }\n  mint\
+    \ H = 0;\n  FOR(i, n) H += hash_base[i] * mint(X[i]);\n  H += hash_base[n];\n\
+    \  return H.val;\n}\n"
   code: "#pragma once\n\n#include \"random/base.hpp\"\n#include \"mod/modint61.hpp\"\
     \n\ntemplate <typename T>\nu64 hash_vector(vc<T> X) {\n  using mint = modint61;\n\
     \  static vc<mint> hash_base;\n  int n = len(X);\n  while (len(hash_base) <= n)\
@@ -85,7 +88,7 @@ data:
   path: random/hash_vector.hpp
   requiredBy:
   - other/connected_dp.hpp
-  timestamp: '2023-11-06 23:45:48+09:00'
+  timestamp: '2023-11-10 11:44:35+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/578.test.cpp

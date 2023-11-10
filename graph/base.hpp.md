@@ -29,7 +29,7 @@ data:
   - icon: ':question:'
     path: graph/centroid_decomposition.hpp
     title: graph/centroid_decomposition.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/centroid_decomposition_old.hpp
     title: graph/centroid_decomposition_old.hpp
   - icon: ':warning:'
@@ -98,7 +98,7 @@ data:
   - icon: ':warning:'
     path: graph/find_C4.hpp
     title: graph/find_C4.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/find_centroid.hpp
     title: graph/find_centroid.hpp
   - icon: ':heavy_check_mark:'
@@ -113,12 +113,15 @@ data:
   - icon: ':question:'
     path: graph/functional.hpp
     title: graph/functional.hpp
-  - icon: ':x:'
-    path: graph/implicit_graph/cograph_bfs.hpp
-    title: graph/implicit_graph/cograph_bfs.hpp
   - icon: ':warning:'
-    path: graph/implicit_graph/cograph_unionfind.hpp
-    title: graph/implicit_graph/cograph_unionfind.hpp
+    path: graph/implicit_graph/complement_graph_bfs.hpp
+    title: graph/implicit_graph/complement_graph_bfs.hpp
+  - icon: ':warning:'
+    path: graph/implicit_graph/complement_graph_distance.hpp
+    title: graph/implicit_graph/complement_graph_distance.hpp
+  - icon: ':warning:'
+    path: graph/implicit_graph/complement_graph_unionfind.hpp
+    title: graph/implicit_graph/complement_graph_unionfind.hpp
   - icon: ':question:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
@@ -149,7 +152,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/path_cycle.hpp
     title: graph/path_cycle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/range_to_range_graph.hpp
     title: graph/range_to_range_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -534,19 +537,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1778.test.cpp
     title: test/yukicoder/1778.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1790.test.cpp
     title: test/yukicoder/1790.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1796.test.cpp
     title: test/yukicoder/1796.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1796_1.test.cpp
     title: test/yukicoder/1796_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1813.test.cpp
     title: test/yukicoder/1813.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1868.test.cpp
     title: test/yukicoder/1868.test.cpp
   - icon: ':x:'
@@ -642,9 +645,6 @@ data:
   - icon: ':x:'
     path: test_atcoder/abc314f.test.cpp
     title: test_atcoder/abc314f.test.cpp
-  - icon: ':x:'
-    path: test_atcoder/abc319g.test.cpp
-    title: test_atcoder/abc319g.test.cpp
   - icon: ':x:'
     path: test_atcoder/agc023f.test.cpp
     title: test_atcoder/agc023f.test.cpp
@@ -825,8 +825,9 @@ data:
   - graph/maximum_independent_set_weighted.hpp
   - graph/maximum_matching.hpp
   - graph/path_cycle.hpp
-  - graph/implicit_graph/cograph_unionfind.hpp
-  - graph/implicit_graph/cograph_bfs.hpp
+  - graph/implicit_graph/complement_graph_bfs.hpp
+  - graph/implicit_graph/complement_graph_unionfind.hpp
+  - graph/implicit_graph/complement_graph_distance.hpp
   - graph/tree.hpp
   - graph/tree_dp/rerooting_dp.hpp
   - graph/tree_dp/subtree_depth_sum.hpp
@@ -998,7 +999,6 @@ data:
   - test_atcoder/abc223d.test.cpp
   - test_atcoder/arc157a.test.cpp
   - test_atcoder/abc274g.test.cpp
-  - test_atcoder/abc319g.test.cpp
   - test_atcoder/abc301h.test.cpp
   - test_atcoder/abc298ex.test.cpp
   - test_atcoder/abc314f.test.cpp

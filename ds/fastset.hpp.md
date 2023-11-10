@@ -18,8 +18,8 @@ data:
     path: graph/ds/incremental_centroid.hpp
     title: graph/ds/incremental_centroid.hpp
   - icon: ':warning:'
-    path: graph/implicit_graph/cograph_unionfind.hpp
-    title: graph/implicit_graph/cograph_unionfind.hpp
+    path: graph/implicit_graph/complement_graph_unionfind.hpp
+    title: graph/implicit_graph/complement_graph_unionfind.hpp
   - icon: ':question:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
@@ -143,7 +143,7 @@ data:
   path: ds/fastset.hpp
   requiredBy:
   - graph/toposort.hpp
-  - graph/implicit_graph/cograph_unionfind.hpp
+  - graph/implicit_graph/complement_graph_unionfind.hpp
   - graph/ds/incremental_centroid.hpp
   - other/cuboid_union_volume.hpp
   - ds/segtree/sortable_segtree.hpp

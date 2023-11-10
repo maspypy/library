@@ -24,8 +24,8 @@ data:
     path: graph/functional.hpp
     title: graph/functional.hpp
   - icon: ':warning:'
-    path: graph/implicit_graph/cograph_unionfind.hpp
-    title: graph/implicit_graph/cograph_unionfind.hpp
+    path: graph/implicit_graph/complement_graph_unionfind.hpp
+    title: graph/implicit_graph/complement_graph_unionfind.hpp
   - icon: ':warning:'
     path: graph/implicit_graph/mst.hpp
     title: graph/implicit_graph/mst.hpp
@@ -202,7 +202,7 @@ data:
   - graph/functional.hpp
   - graph/implicit_graph/mst.hpp
   - graph/implicit_graph/unionfind.hpp
-  - graph/implicit_graph/cograph_unionfind.hpp
+  - graph/implicit_graph/complement_graph_unionfind.hpp
   - graph/unicyclic.hpp
   - graph/maximum_antichain.hpp
   - graph/directed_mst.hpp

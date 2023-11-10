@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/factorial
@@ -207,18 +207,20 @@ data:
     \    return y;\n  }\n};\n\ntemplate <int id>\nusing Mongomery_modint_32 = Mongomery_modint<id,\
     \ u32, u64>;\ntemplate <int id>\nusing Mongomery_modint_64 = Mongomery_modint<id,\
     \ u64, u128>;\n#line 6 \"test/library_checker/math/factorial_mongomery.test.cpp\"\
-    \n\nusing mint = Mongomery_modint_32<0>;\n\nvoid solve() {\n  mint::set_mod(mod);\n\
-    \  INT(N);\n  if (2 * N < mod) {\n    mint x = 1;\n    FOR(i, 1, N + 1) x *= mint(i);\n\
-    \    return print(x.val());\n  }\n  mint div = mod - 1;\n  FOR_R(i, N + 1, mod)\
-    \ { div *= mint(i); }\n  mint x = div.pow(mod - 2);\n  print(x.val());\n}\n\n\
-    signed main() {\n  INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
+    \n\nusing mint = Mongomery_modint_32<0>;\nconstexpr int mod = 998244353;\n\nvoid\
+    \ solve() {\n  mint::set_mod(mod);\n  INT(N);\n  if (2 * N < mod) {\n    mint\
+    \ x = 1;\n    FOR(i, 1, N + 1) x *= mint(i);\n    return print(x.val());\n  }\n\
+    \  mint div = mod - 1;\n  FOR_R(i, N + 1, mod) { div *= mint(i); }\n  mint x =\
+    \ div.pow(mod - 2);\n  print(x.val());\n}\n\nsigned main() {\n  INT(T);\n  FOR(T)\
+    \ solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/factorial\"\n#include \"\
     my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/mongomery_modint.hpp\"\
-    \n\nusing mint = Mongomery_modint_32<0>;\n\nvoid solve() {\n  mint::set_mod(mod);\n\
-    \  INT(N);\n  if (2 * N < mod) {\n    mint x = 1;\n    FOR(i, 1, N + 1) x *= mint(i);\n\
-    \    return print(x.val());\n  }\n  mint div = mod - 1;\n  FOR_R(i, N + 1, mod)\
-    \ { div *= mint(i); }\n  mint x = div.pow(mod - 2);\n  print(x.val());\n}\n\n\
-    signed main() {\n  INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
+    \n\nusing mint = Mongomery_modint_32<0>;\nconstexpr int mod = 998244353;\n\nvoid\
+    \ solve() {\n  mint::set_mod(mod);\n  INT(N);\n  if (2 * N < mod) {\n    mint\
+    \ x = 1;\n    FOR(i, 1, N + 1) x *= mint(i);\n    return print(x.val());\n  }\n\
+    \  mint div = mod - 1;\n  FOR_R(i, N + 1, mod) { div *= mint(i); }\n  mint x =\
+    \ div.pow(mod - 2);\n  print(x.val());\n}\n\nsigned main() {\n  INT(T);\n  FOR(T)\
+    \ solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -226,8 +228,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/factorial_mongomery.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 02:49:41+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-10 11:44:35+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/factorial_mongomery.test.cpp
 layout: document

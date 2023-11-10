@@ -4,17 +4,14 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1170.test.cpp
-    title: test/yukicoder/1170.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1868.test.cpp
-    title: test/yukicoder/1868.test.cpp
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/implicit_graph/complement_graph_distance.hpp
+    title: graph/implicit_graph/complement_graph_distance.hpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -75,58 +72,41 @@ data:
     \ for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 3 \"graph/range_to_range_graph.hpp\"\n\ntemplate <typename T>\nstruct Range_to_Range_Graph\
-    \ {\n  int n;\n  int n_node;\n  vc<tuple<int, int, T>> edges;\n\n  Range_to_Range_Graph(int\
-    \ n) : n(n), n_node(n * 3) {\n    FOR3(i, 2, n + n) { edges.eb(to_upper_idx(i\
-    \ / 2), to_upper_idx(i), 0); }\n    FOR3(i, 2, n + n) { edges.eb(to_lower_idx(i),\
-    \ to_lower_idx(i / 2), 0); }\n  }\n\n  inline int to_upper_idx(const int& i) {\n\
-    \    if (i >= n) return i - n;\n    return n + i;\n  }\n\n  inline int to_lower_idx(const\
-    \ int& i) {\n    if (i >= n) return i - n;\n    return n + n + i;\n  }\n\n  void\
-    \ add(int frm, int to, T wt) { edges.eb(frm, to, wt); }\n\n  void add_frm_range(int\
-    \ frm_l, int frm_r, int to, T wt) {\n    int l = frm_l + n, r = frm_r + n;\n \
-    \   while (l < r) {\n      if (l & 1) add(to_lower_idx(l++), to, wt);\n      if\
-    \ (r & 1) add(to_lower_idx(--r), to, wt);\n      l >>= 1, r >>= 1;\n    }\n  }\n\
-    \n  void add_to_range(int frm, int to_l, int to_r, T wt) {\n    int l = to_l +\
-    \ n, r = to_r + n;\n    while (l < r) {\n      if (l & 1) add(frm, to_upper_idx(l++),\
-    \ wt);\n      if (r & 1) add(frm, to_upper_idx(--r), wt);\n      l >>= 1, r >>=\
-    \ 1;\n    }\n  }\n\n  void add_range_to_range(int frm_l, int frm_r, int to_l,\
-    \ int to_r, T wt) {\n    int new_node = n_node++;\n    add_frm_range(frm_l, frm_r,\
-    \ new_node, wt);\n    add_to_range(new_node, to_l, to_r, T(0));\n  }\n\n  Graph<T,\
-    \ 1> build() {\n    Graph<T, 1> G(n_node);\n    for (auto&& [a, b, c]: edges)\
-    \ G.add(a, b, c);\n    G.build();\n    return G;\n  }\n};\n"
-  code: "#pragma once\n#include \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct\
-    \ Range_to_Range_Graph {\n  int n;\n  int n_node;\n  vc<tuple<int, int, T>> edges;\n\
-    \n  Range_to_Range_Graph(int n) : n(n), n_node(n * 3) {\n    FOR3(i, 2, n + n)\
-    \ { edges.eb(to_upper_idx(i / 2), to_upper_idx(i), 0); }\n    FOR3(i, 2, n + n)\
-    \ { edges.eb(to_lower_idx(i), to_lower_idx(i / 2), 0); }\n  }\n\n  inline int\
-    \ to_upper_idx(const int& i) {\n    if (i >= n) return i - n;\n    return n +\
-    \ i;\n  }\n\n  inline int to_lower_idx(const int& i) {\n    if (i >= n) return\
-    \ i - n;\n    return n + n + i;\n  }\n\n  void add(int frm, int to, T wt) { edges.eb(frm,\
-    \ to, wt); }\n\n  void add_frm_range(int frm_l, int frm_r, int to, T wt) {\n \
-    \   int l = frm_l + n, r = frm_r + n;\n    while (l < r) {\n      if (l & 1) add(to_lower_idx(l++),\
-    \ to, wt);\n      if (r & 1) add(to_lower_idx(--r), to, wt);\n      l >>= 1, r\
-    \ >>= 1;\n    }\n  }\n\n  void add_to_range(int frm, int to_l, int to_r, T wt)\
-    \ {\n    int l = to_l + n, r = to_r + n;\n    while (l < r) {\n      if (l & 1)\
-    \ add(frm, to_upper_idx(l++), wt);\n      if (r & 1) add(frm, to_upper_idx(--r),\
-    \ wt);\n      l >>= 1, r >>= 1;\n    }\n  }\n\n  void add_range_to_range(int frm_l,\
-    \ int frm_r, int to_l, int to_r, T wt) {\n    int new_node = n_node++;\n    add_frm_range(frm_l,\
-    \ frm_r, new_node, wt);\n    add_to_range(new_node, to_l, to_r, T(0));\n  }\n\n\
-    \  Graph<T, 1> build() {\n    Graph<T, 1> G(n_node);\n    for (auto&& [a, b, c]:\
-    \ edges) G.add(a, b, c);\n    G.build();\n    return G;\n  }\n};"
+    #line 2 \"graph/implicit_graph/complement_graph_bfs.hpp\"\n\ntemplate <typename\
+    \ GT>\npair<vc<int>, vc<int>> complement_graph_bfs(GT& G, int s) {\n  static vc<int>\
+    \ que, NG, dist, par, yet;\n  const int N = G.N;\n  if (len(que) < N) que.resize(N);\n\
+    \  if (len(NG) < N) NG.resize(N);\n  if (len(yet) < N) yet.resize(N);\n  dist.assign(N,\
+    \ infty<int>);\n  par.assign(N, -1);\n  int ql = 0, qr = 0;\n  dist[s] = 0, que[qr++]\
+    \ = s;\n  int p = 0;\n  FOR(v, N) if (v != s) yet[p++] = v;\n  while (ql < qr)\
+    \ {\n    int v = que[ql++];\n    for (auto& e: G[v]) NG[e.to] = 1;\n    for (int\
+    \ i = p - 1; i >= 0; --i) {\n      int to = yet[i];\n      if (NG[to]) continue;\n\
+    \      dist[to] = dist[v] + 1, par[to] = v, que[qr++] = to;\n      swap(yet[i],\
+    \ yet[--p]);\n    }\n    for (auto& e: G[v]) NG[e.to] = 0;\n  }\n  return {dist,\
+    \ par};\n}\n"
+  code: "#include \"graph/base.hpp\"\n\ntemplate <typename GT>\npair<vc<int>, vc<int>>\
+    \ complement_graph_bfs(GT& G, int s) {\n  static vc<int> que, NG, dist, par, yet;\n\
+    \  const int N = G.N;\n  if (len(que) < N) que.resize(N);\n  if (len(NG) < N)\
+    \ NG.resize(N);\n  if (len(yet) < N) yet.resize(N);\n  dist.assign(N, infty<int>);\n\
+    \  par.assign(N, -1);\n  int ql = 0, qr = 0;\n  dist[s] = 0, que[qr++] = s;\n\
+    \  int p = 0;\n  FOR(v, N) if (v != s) yet[p++] = v;\n  while (ql < qr) {\n  \
+    \  int v = que[ql++];\n    for (auto& e: G[v]) NG[e.to] = 1;\n    for (int i =\
+    \ p - 1; i >= 0; --i) {\n      int to = yet[i];\n      if (NG[to]) continue;\n\
+    \      dist[to] = dist[v] + 1, par[to] = v, que[qr++] = to;\n      swap(yet[i],\
+    \ yet[--p]);\n    }\n    for (auto& e: G[v]) NG[e.to] = 0;\n  }\n  return {dist,\
+    \ par};\n}\n"
   dependsOn:
   - graph/base.hpp
   isVerificationFile: false
-  path: graph/range_to_range_graph.hpp
-  requiredBy: []
-  timestamp: '2023-11-07 22:29:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yukicoder/1868.test.cpp
-  - test/yukicoder/1170.test.cpp
-documentation_of: graph/range_to_range_graph.hpp
+  path: graph/implicit_graph/complement_graph_bfs.hpp
+  requiredBy:
+  - graph/implicit_graph/complement_graph_distance.hpp
+  timestamp: '2023-11-10 11:44:35+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: graph/implicit_graph/complement_graph_bfs.hpp
 layout: document
 redirect_from:
-- /library/graph/range_to_range_graph.hpp
-- /library/graph/range_to_range_graph.hpp.html
-title: graph/range_to_range_graph.hpp
+- /library/graph/implicit_graph/complement_graph_bfs.hpp
+- /library/graph/implicit_graph/complement_graph_bfs.hpp.html
+title: graph/implicit_graph/complement_graph_bfs.hpp
 ---

@@ -47,15 +47,18 @@ data:
     \   swap(a -= t * b, b), swap(u -= t * v, v);\r\n    }\r\n    return modint61(u);\r\
     \n  }\r\n  modint61 pow(ll n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1),\
     \ mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul\
-    \ *= mul, n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n};\n#line 5 \"alg/monoid/rollinghash.hpp\"\
-    \n\r\n// pow of base, val\r\nstruct Monoid_Rolling_Hash {\r\n  using value_type\
-    \ = pair<modint61, modint61>;\r\n  using X = value_type;\r\n\r\n  static u64 &get_param()\
-    \ {\r\n    static u64 base = 0;\r\n    return base;\r\n  }\r\n  static void set_param(u64\
-    \ base) { get_param() = base; }\r\n\r\n  static X from_element(u64 x) {\r\n  \
-    \  while (get_param() == 0) set_param(RNG_64());\r\n    return {get_param(), x};\r\
-    \n  }\r\n  static X op(X x, X y) { return {x.fi * y.fi, x.se * y.fi + y.se}; }\r\
-    \n  static constexpr X unit() { return {1, 0}; }\r\n  static constexpr bool commute\
-    \ = false;\r\n};\n"
+    \ *= mul, n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n};\r\n\r\n#ifdef FASTIO\r\
+    \nvoid rd(modint61 &x) {\r\n  fastio::rd(x.val);\r\n  assert(0 <= x.val && x.val\
+    \ < modint61::mod);\r\n}\r\n\r\nvoid wt(modint61 x) { fastio::wt(x.val); }\r\n\
+    #endif\n#line 5 \"alg/monoid/rollinghash.hpp\"\n\r\n// pow of base, val\r\nstruct\
+    \ Monoid_Rolling_Hash {\r\n  using value_type = pair<modint61, modint61>;\r\n\
+    \  using X = value_type;\r\n\r\n  static u64 &get_param() {\r\n    static u64\
+    \ base = 0;\r\n    return base;\r\n  }\r\n  static void set_param(u64 base) {\
+    \ get_param() = base; }\r\n\r\n  static X from_element(u64 x) {\r\n    while (get_param()\
+    \ == 0) set_param(RNG_64());\r\n    return {get_param(), x};\r\n  }\r\n  static\
+    \ X op(X x, X y) { return {x.fi * y.fi, x.se * y.fi + y.se}; }\r\n  static constexpr\
+    \ X unit() { return {1, 0}; }\r\n  static constexpr bool commute = false;\r\n\
+    };\n"
   code: "#pragma once\r\n\r\n#include \"random/base.hpp\"\r\n#include \"mod/modint61.hpp\"\
     \r\n\r\n// pow of base, val\r\nstruct Monoid_Rolling_Hash {\r\n  using value_type\
     \ = pair<modint61, modint61>;\r\n  using X = value_type;\r\n\r\n  static u64 &get_param()\
@@ -71,7 +74,7 @@ data:
   isVerificationFile: false
   path: alg/monoid/rollinghash.hpp
   requiredBy: []
-  timestamp: '2023-11-06 23:45:48+09:00'
+  timestamp: '2023-11-10 11:44:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp

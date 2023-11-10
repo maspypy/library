@@ -117,17 +117,17 @@ data:
     \ l, int r, F f) {\r\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\r\
     \n  }\r\n\r\n  string to_string() {\r\n    string s(n, '?');\r\n    for (int i\
     \ = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\r\n    return s;\r\n  }\r\n\
-    };\n#line 4 \"graph/implicit_graph/cograph_unionfind.hpp\"\n\ntemplate <typename\
-    \ GT>\nUnionFind cograph_unionfind(GT& G) {\n  const int N = G.N;\n  UnionFind\
-    \ uf(N);\n  FastSet ss(N);\n  FOR(v, N) ss.insert(v);\n\n  vc<int> que;\n  FOR(v,\
-    \ N) {\n    if (!ss[v]) continue;\n    que.eb(v);\n    while (len(que)) {\n  \
-    \    int a = POP(que);\n      vc<int> tmp;\n      for (auto&& e: G[a]) {\n   \
-    \     if (ss[e.to]) tmp.eb(e.to);\n      }\n      for (auto&& x: tmp) ss.erase(x);\n\
-    \      ss.enumerate(0, N, [&](int to) -> void {\n        ss.erase(to);\n     \
-    \   que.eb(to);\n        uf.merge(a, to);\n      });\n      for (auto&& x: tmp)\
-    \ ss.insert(x);\n    }\n  }\n  return uf;\n}\n"
+    };\n#line 4 \"graph/implicit_graph/complement_graph_unionfind.hpp\"\n\ntemplate\
+    \ <typename GT>\nUnionFind complement_graph_unionfind(GT& G) {\n  const int N\
+    \ = G.N;\n  UnionFind uf(N);\n  FastSet ss(N);\n  FOR(v, N) ss.insert(v);\n\n\
+    \  vc<int> que;\n  FOR(v, N) {\n    if (!ss[v]) continue;\n    que.eb(v);\n  \
+    \  while (len(que)) {\n      int a = POP(que);\n      vc<int> tmp;\n      for\
+    \ (auto&& e: G[a]) {\n        if (ss[e.to]) tmp.eb(e.to);\n      }\n      for\
+    \ (auto&& x: tmp) ss.erase(x);\n      ss.enumerate(0, N, [&](int to) -> void {\n\
+    \        ss.erase(to);\n        que.eb(to);\n        uf.merge(a, to);\n      });\n\
+    \      for (auto&& x: tmp) ss.insert(x);\n    }\n  }\n  return uf;\n}\n"
   code: "#include \"graph/base.hpp\"\n#include \"ds/unionfind/unionfind.hpp\"\n#include\
-    \ \"ds/fastset.hpp\"\n\ntemplate <typename GT>\nUnionFind cograph_unionfind(GT&\
+    \ \"ds/fastset.hpp\"\n\ntemplate <typename GT>\nUnionFind complement_graph_unionfind(GT&\
     \ G) {\n  const int N = G.N;\n  UnionFind uf(N);\n  FastSet ss(N);\n  FOR(v, N)\
     \ ss.insert(v);\n\n  vc<int> que;\n  FOR(v, N) {\n    if (!ss[v]) continue;\n\
     \    que.eb(v);\n    while (len(que)) {\n      int a = POP(que);\n      vc<int>\
@@ -141,15 +141,15 @@ data:
   - ds/unionfind/unionfind.hpp
   - ds/fastset.hpp
   isVerificationFile: false
-  path: graph/implicit_graph/cograph_unionfind.hpp
+  path: graph/implicit_graph/complement_graph_unionfind.hpp
   requiredBy: []
-  timestamp: '2023-11-07 22:29:27+09:00'
+  timestamp: '2023-11-10 11:44:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: graph/implicit_graph/cograph_unionfind.hpp
+documentation_of: graph/implicit_graph/complement_graph_unionfind.hpp
 layout: document
 redirect_from:
-- /library/graph/implicit_graph/cograph_unionfind.hpp
-- /library/graph/implicit_graph/cograph_unionfind.hpp.html
-title: graph/implicit_graph/cograph_unionfind.hpp
+- /library/graph/implicit_graph/complement_graph_unionfind.hpp
+- /library/graph/implicit_graph/complement_graph_unionfind.hpp.html
+title: graph/implicit_graph/complement_graph_unionfind.hpp
 ---

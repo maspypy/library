@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
+  - icon: ':warning:'
+    path: graph/implicit_graph/complement_graph_bfs.hpp
+    title: graph/implicit_graph/complement_graph_bfs.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test_atcoder/abc319g.test.cpp
-    title: test_atcoder/abc319g.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -72,37 +72,49 @@ data:
     \ for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 2 \"graph/implicit_graph/cograph_bfs.hpp\"\n\ntemplate <typename GT>\npair<vc<int>,\
-    \ vc<int>> cograph_bfs(GT& G, int s) {\n  const int N = G.N;\n  vc<int> dist(N,\
-    \ infty<int>);\n  vc<int> par(N, -1);\n  vc<int> yet;\n  FOR(v, N) if (v != s)\
-    \ yet.eb(v);\n  vc<int> que(N);\n  vc<bool> NG(N);\n  int ql = 0, qr = 0;\n  dist[s]\
-    \ = 0, que[qr++] = s;\n  while (ql < qr) {\n    int v = que[ql++];\n    for (auto&\
-    \ e: G[v]) NG[e.to] = 1;\n    vc<int> rest;\n    for (auto& to: yet) {\n     \
-    \ if (NG[to]) {\n        rest.eb(to);\n      } else {\n        dist[to] = dist[v]\
-    \ + 1, par[to] = v, que[qr++] = to;\n      }\n    }\n    for (auto& e: G[v]) NG[e.to]\
-    \ = 0;\n    yet = rest;\n  }\n  return {dist, par};\n}\n"
-  code: "#include \"graph/base.hpp\"\n\ntemplate <typename GT>\npair<vc<int>, vc<int>>\
-    \ cograph_bfs(GT& G, int s) {\n  const int N = G.N;\n  vc<int> dist(N, infty<int>);\n\
-    \  vc<int> par(N, -1);\n  vc<int> yet;\n  FOR(v, N) if (v != s) yet.eb(v);\n \
-    \ vc<int> que(N);\n  vc<bool> NG(N);\n  int ql = 0, qr = 0;\n  dist[s] = 0, que[qr++]\
-    \ = s;\n  while (ql < qr) {\n    int v = que[ql++];\n    for (auto& e: G[v]) NG[e.to]\
-    \ = 1;\n    vc<int> rest;\n    for (auto& to: yet) {\n      if (NG[to]) {\n  \
-    \      rest.eb(to);\n      } else {\n        dist[to] = dist[v] + 1, par[to] =\
-    \ v, que[qr++] = to;\n      }\n    }\n    for (auto& e: G[v]) NG[e.to] = 0;\n\
-    \    yet = rest;\n  }\n  return {dist, par};\n}"
+    #line 2 \"graph/implicit_graph/complement_graph_bfs.hpp\"\n\ntemplate <typename\
+    \ GT>\npair<vc<int>, vc<int>> complement_graph_bfs(GT& G, int s) {\n  static vc<int>\
+    \ que, NG, dist, par, yet;\n  const int N = G.N;\n  if (len(que) < N) que.resize(N);\n\
+    \  if (len(NG) < N) NG.resize(N);\n  if (len(yet) < N) yet.resize(N);\n  dist.assign(N,\
+    \ infty<int>);\n  par.assign(N, -1);\n  int ql = 0, qr = 0;\n  dist[s] = 0, que[qr++]\
+    \ = s;\n  int p = 0;\n  FOR(v, N) if (v != s) yet[p++] = v;\n  while (ql < qr)\
+    \ {\n    int v = que[ql++];\n    for (auto& e: G[v]) NG[e.to] = 1;\n    for (int\
+    \ i = p - 1; i >= 0; --i) {\n      int to = yet[i];\n      if (NG[to]) continue;\n\
+    \      dist[to] = dist[v] + 1, par[to] = v, que[qr++] = to;\n      swap(yet[i],\
+    \ yet[--p]);\n    }\n    for (auto& e: G[v]) NG[e.to] = 0;\n  }\n  return {dist,\
+    \ par};\n}\n#line 2 \"graph/implicit_graph/complement_graph_distance.hpp\"\n\n\
+    // {v,w,dvw}, dvw>=2\ntemplate <typename GT>\nvc<tuple<int, int, int>> complement_graph_distance(GT&\
+    \ G) {\n  const int N = G.N;\n  auto deg = G.deg_array();\n  int S = min_element(all(deg))\
+    \ - deg.begin();\n  vc<int> nbd(N);\n  for (auto& e: G[S]) { nbd[e.to] = 1; }\n\
+    \n  vc<tuple<int, int, int>> res;\n  for (auto& e: G.edges) {\n    if (nbd[e.frm]\
+    \ || nbd[e.to]) continue;\n    // a -> S -> b\n    int a = e.frm, b = e.to;\n\
+    \    res.eb(a, b, 2);\n  }\n\n  for (auto& e: G[S]) {\n    int a = e.to;\n   \
+    \ auto dist = complement_graph_bfs(G, a).fi;\n    FOR(b, N) {\n      if (dist[b]\
+    \ <= 1) continue;\n      if (nbd[b] && a >= b) continue;\n      res.eb(a, b, dist[b]);\n\
+    \    }\n  }\n  return res;\n}\n"
+  code: "#include \"graph/implicit_graph/complement_graph_bfs.hpp\"\n\n// {v,w,dvw},\
+    \ dvw>=2\ntemplate <typename GT>\nvc<tuple<int, int, int>> complement_graph_distance(GT&\
+    \ G) {\n  const int N = G.N;\n  auto deg = G.deg_array();\n  int S = min_element(all(deg))\
+    \ - deg.begin();\n  vc<int> nbd(N);\n  for (auto& e: G[S]) { nbd[e.to] = 1; }\n\
+    \n  vc<tuple<int, int, int>> res;\n  for (auto& e: G.edges) {\n    if (nbd[e.frm]\
+    \ || nbd[e.to]) continue;\n    // a -> S -> b\n    int a = e.frm, b = e.to;\n\
+    \    res.eb(a, b, 2);\n  }\n\n  for (auto& e: G[S]) {\n    int a = e.to;\n   \
+    \ auto dist = complement_graph_bfs(G, a).fi;\n    FOR(b, N) {\n      if (dist[b]\
+    \ <= 1) continue;\n      if (nbd[b] && a >= b) continue;\n      res.eb(a, b, dist[b]);\n\
+    \    }\n  }\n  return res;\n}\n"
   dependsOn:
+  - graph/implicit_graph/complement_graph_bfs.hpp
   - graph/base.hpp
   isVerificationFile: false
-  path: graph/implicit_graph/cograph_bfs.hpp
+  path: graph/implicit_graph/complement_graph_distance.hpp
   requiredBy: []
-  timestamp: '2023-11-07 22:29:27+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test_atcoder/abc319g.test.cpp
-documentation_of: graph/implicit_graph/cograph_bfs.hpp
+  timestamp: '2023-11-10 11:44:35+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: graph/implicit_graph/complement_graph_distance.hpp
 layout: document
 redirect_from:
-- /library/graph/implicit_graph/cograph_bfs.hpp
-- /library/graph/implicit_graph/cograph_bfs.hpp.html
-title: graph/implicit_graph/cograph_bfs.hpp
+- /library/graph/implicit_graph/complement_graph_distance.hpp
+- /library/graph/implicit_graph/complement_graph_distance.hpp.html
+title: graph/implicit_graph/complement_graph_distance.hpp
 ---
