@@ -356,32 +356,33 @@ data:
     \ e.to);\r\n          DG.add(i, j);\r\n        }\r\n      }\r\n    }\r\n    DG.build();\r\
     \n    auto [K, comp] = strongly_connected_component(DG);\r\n    K += 1;\r\n  \
     \  // \u7B54\r\n    FOR(i, n) { W[V[i]] = 1 + comp[i]; }\r\n    FOR(v, N) if (W[v]\
-    \ == infty<int>) W[v] = K;\r\n    return {K, W};\r\n  }\r\n\r\n  void debug()\
-    \ {\r\n    print(\"match\", match);\r\n    print(\"min vertex covor\", vertex_cover());\r\
-    \n    print(\"max indep set\", independent_set());\r\n    print(\"min edge cover\"\
-    , edge_cover());\r\n  }\r\n};\r\n#line 4 \"graph/bipartite_edge_coloring.hpp\"\
-    \n\nstruct RegularBipartiteColoring {\n  using P = pair<int, int>;\n  int N, M;\n\
-    \  vc<P> edges;\n\n  vvc<int> solve(int n, int k, vc<P> G) {\n    N = n;\n   \
-    \ M = len(G);\n    edges = G;\n    vc<int> A(M);\n    iota(all(A), 0);\n    return\
-    \ solve_inner(M / N, A);\n  }\n\n  vvc<int> solve_inner(int k, vc<int> A) {\n\
-    \    return (k % 2 == 0 ? solve_even(k, A) : solve_odd(k, A));\n  }\n\n  vvc<int>\
-    \ solve_even(int k, vc<int> A) {\n    assert(k % 2 == 0);\n    if (k == 0) return\
-    \ {};\n    // 2^m <= k < 2^{m+1}\n    int m = 0;\n    while (1 << (m + 1) <= k)\
-    \ ++m;\n    vvc<int> res;\n    if (k != 1 << m) {\n      auto [B, C] = split(k,\
-    \ A);\n      auto dat = solve_inner(k / 2, C);\n      FOR(j, k - (1 << m)) { res.eb(dat[j]);\
-    \ }\n      FOR(j, k - (1 << m), len(dat)) {\n        for (auto&& idx: dat[j])\
-    \ B.eb(idx);\n      }\n      k = 1 << m;\n      swap(A, B);\n    }\n    auto dfs\
-    \ = [&](auto& dfs, int K, vc<int> A) -> void {\n      if (K == 1) {\n        res.eb(A);\n\
-    \        return;\n      }\n      auto [B, C] = split(k, A);\n      dfs(dfs, K\
-    \ / 2, B);\n      dfs(dfs, K / 2, C);\n    };\n    dfs(dfs, k, A);\n    return\
-    \ res;\n  }\n\n  vvc<int> solve_odd(int k, vc<int> A) {\n    assert(k % 2 == 1);\n\
-    \    if (k == 1) { return {A}; }\n    vc<bool> match = matching(k, A);\n    vc<int>\
-    \ B;\n    B.reserve(len(A) - N);\n    vc<int> es;\n    FOR(i, len(A)) {\n    \
-    \  if (match[i]) es.eb(A[i]);\n      if (!match[i]) B.eb(A[i]);\n    }\n    vvc<int>\
-    \ res = solve_inner(k - 1, B);\n    res.eb(es);\n    return res;\n  }\n\n  vc<bool>\
-    \ matching(int k, vc<int> A) {\n    Graph<bool, 0> G(N + N);\n    vc<int> color(N\
-    \ + N);\n    FOR(v, N) color[v] = 0;\n    for (auto&& eid: A) {\n      auto [a,\
-    \ b] = edges[eid];\n      G.add(a, b);\n    }\n    G.build();\n    BipartiteMatching<decltype(G)>\
+    \ == infty<int>) W[v] = K;\r\n    return {K, W};\r\n  }\r\n\r\n#ifdef FASTIO\r\
+    \n  void debug() {\r\n    print(\"match\", match);\r\n    print(\"min vertex covor\"\
+    , vertex_cover());\r\n    print(\"max indep set\", independent_set());\r\n   \
+    \ print(\"min edge cover\", edge_cover());\r\n  }\r\n#endif\r\n};\r\n#line 4 \"\
+    graph/bipartite_edge_coloring.hpp\"\n\nstruct RegularBipartiteColoring {\n  using\
+    \ P = pair<int, int>;\n  int N, M;\n  vc<P> edges;\n\n  vvc<int> solve(int n,\
+    \ int k, vc<P> G) {\n    N = n;\n    M = len(G);\n    edges = G;\n    vc<int>\
+    \ A(M);\n    iota(all(A), 0);\n    return solve_inner(M / N, A);\n  }\n\n  vvc<int>\
+    \ solve_inner(int k, vc<int> A) {\n    return (k % 2 == 0 ? solve_even(k, A) :\
+    \ solve_odd(k, A));\n  }\n\n  vvc<int> solve_even(int k, vc<int> A) {\n    assert(k\
+    \ % 2 == 0);\n    if (k == 0) return {};\n    // 2^m <= k < 2^{m+1}\n    int m\
+    \ = 0;\n    while (1 << (m + 1) <= k) ++m;\n    vvc<int> res;\n    if (k != 1\
+    \ << m) {\n      auto [B, C] = split(k, A);\n      auto dat = solve_inner(k /\
+    \ 2, C);\n      FOR(j, k - (1 << m)) { res.eb(dat[j]); }\n      FOR(j, k - (1\
+    \ << m), len(dat)) {\n        for (auto&& idx: dat[j]) B.eb(idx);\n      }\n \
+    \     k = 1 << m;\n      swap(A, B);\n    }\n    auto dfs = [&](auto& dfs, int\
+    \ K, vc<int> A) -> void {\n      if (K == 1) {\n        res.eb(A);\n        return;\n\
+    \      }\n      auto [B, C] = split(k, A);\n      dfs(dfs, K / 2, B);\n      dfs(dfs,\
+    \ K / 2, C);\n    };\n    dfs(dfs, k, A);\n    return res;\n  }\n\n  vvc<int>\
+    \ solve_odd(int k, vc<int> A) {\n    assert(k % 2 == 1);\n    if (k == 1) { return\
+    \ {A}; }\n    vc<bool> match = matching(k, A);\n    vc<int> B;\n    B.reserve(len(A)\
+    \ - N);\n    vc<int> es;\n    FOR(i, len(A)) {\n      if (match[i]) es.eb(A[i]);\n\
+    \      if (!match[i]) B.eb(A[i]);\n    }\n    vvc<int> res = solve_inner(k - 1,\
+    \ B);\n    res.eb(es);\n    return res;\n  }\n\n  vc<bool> matching(int k, vc<int>\
+    \ A) {\n    Graph<bool, 0> G(N + N);\n    vc<int> color(N + N);\n    FOR(v, N)\
+    \ color[v] = 0;\n    for (auto&& eid: A) {\n      auto [a, b] = edges[eid];\n\
+    \      G.add(a, b);\n    }\n    G.build();\n    BipartiteMatching<decltype(G)>\
     \ BM(G);\n    auto& match = BM.match;\n    vc<bool> res(len(A));\n    FOR(i, len(A))\
     \ {\n      auto idx = A[i];\n      auto [a, b] = edges[idx];\n      if (match[a]\
     \ == b) {\n        match[a] = -1;\n        res[i] = 1;\n      }\n    }\n    return\
@@ -436,7 +437,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/bipartite_edge_coloring.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
+  timestamp: '2023-11-10 11:57:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/bipartite_edge_coloring.test.cpp

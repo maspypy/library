@@ -11,7 +11,7 @@ data:
   - icon: ':x:'
     path: ds/splaytree/splaytree_basic.hpp
     title: ds/splaytree/splaytree_basic.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_commutative_monoid.hpp
     title: ds/splaytree/splaytree_commutative_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -36,7 +36,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/splay_am.test.cpp
     title: test/mytest/splay_am.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/splay_cm.test.cpp
     title: test/mytest/splay_cm.test.cpp
   - icon: ':heavy_check_mark:'

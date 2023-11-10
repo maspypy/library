@@ -352,15 +352,15 @@ data:
     \ e.to);\r\n          DG.add(i, j);\r\n        }\r\n      }\r\n    }\r\n    DG.build();\r\
     \n    auto [K, comp] = strongly_connected_component(DG);\r\n    K += 1;\r\n  \
     \  // \u7B54\r\n    FOR(i, n) { W[V[i]] = 1 + comp[i]; }\r\n    FOR(v, N) if (W[v]\
-    \ == infty<int>) W[v] = K;\r\n    return {K, W};\r\n  }\r\n\r\n  void debug()\
-    \ {\r\n    print(\"match\", match);\r\n    print(\"min vertex covor\", vertex_cover());\r\
-    \n    print(\"max indep set\", independent_set());\r\n    print(\"min edge cover\"\
-    , edge_cover());\r\n  }\r\n};\r\n#line 5 \"test/library_checker/graph/bipartitematching.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(L, R, M);\r\n  Graph G(L + R);\r\n  FOR(M) {\r\n\
-    \    LL(a, b);\r\n    G.add(a, b + L);\r\n  }\r\n  G.build();\r\n  BipartiteMatching\
-    \ BM(G);\r\n\r\n  auto match = BM.matching();\r\n  print(len(match));\r\n  for\
-    \ (auto&& [a, b]: match) print(a, b - L);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\
-    \n\r\n  return 0;\r\n}\r\n"
+    \ == infty<int>) W[v] = K;\r\n    return {K, W};\r\n  }\r\n\r\n#ifdef FASTIO\r\
+    \n  void debug() {\r\n    print(\"match\", match);\r\n    print(\"min vertex covor\"\
+    , vertex_cover());\r\n    print(\"max indep set\", independent_set());\r\n   \
+    \ print(\"min edge cover\", edge_cover());\r\n  }\r\n#endif\r\n};\r\n#line 5 \"\
+    test/library_checker/graph/bipartitematching.test.cpp\"\n\r\nvoid solve() {\r\n\
+    \  LL(L, R, M);\r\n  Graph G(L + R);\r\n  FOR(M) {\r\n    LL(a, b);\r\n    G.add(a,\
+    \ b + L);\r\n  }\r\n  G.build();\r\n  BipartiteMatching BM(G);\r\n\r\n  auto match\
+    \ = BM.matching();\r\n  print(len(match));\r\n  for (auto&& [a, b]: match) print(a,\
+    \ b - L);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bipartitematching\"\r\n\
     #include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"flow/bipartite.hpp\"\
     \r\n\r\nvoid solve() {\r\n  LL(L, R, M);\r\n  Graph G(L + R);\r\n  FOR(M) {\r\n\
@@ -379,7 +379,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/bipartitematching.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
+  timestamp: '2023-11-10 11:57:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/bipartitematching.test.cpp

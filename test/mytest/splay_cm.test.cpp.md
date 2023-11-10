@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_commutative_monoid.hpp
     title: ds/splaytree/splaytree_commutative_monoid.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -343,7 +343,7 @@ data:
     \ R);\n        reverse(A.begin() + L, A.begin() + R);\n      }\n      if (t ==\
     \ 5) {\n        vc<int> B = X.get_all(root);\n        assert(A == B);\n      }\n\
     \    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a +\
-    \ b << \"\\n\";\n}\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n\
+    \ b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n\
     }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"alg/monoid/add.hpp\"\n#include \"mod/modint.hpp\"\n#include \"ds/splaytree/splaytree_commutative_monoid.hpp\"\
@@ -365,7 +365,7 @@ data:
     \ R);\n        ++R;\n        X.reverse(root, L, R);\n        reverse(A.begin()\
     \ + L, A.begin() + R);\n      }\n      if (t == 5) {\n        vc<int> B = X.get_all(root);\n\
     \        assert(A == B);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n\
-    \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n}\n\nsigned main() {\n  test();\n\
+    \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
     \  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
@@ -378,8 +378,8 @@ data:
   isVerificationFile: true
   path: test/mytest/splay_cm.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 01:44:55+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-10 11:57:47+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/splay_cm.test.cpp
 layout: document

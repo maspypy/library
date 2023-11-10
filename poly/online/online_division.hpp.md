@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/online/online_log.hpp
     title: poly/online/online_log.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/online/online_pow.hpp
     title: poly/online/online_pow.hpp
   _extendedVerifiedWith:
@@ -27,7 +27,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/online_log.test.cpp
     title: test/mytest/online_log.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/online_pow.test.cpp
     title: test/mytest/online_pow.test.cpp
   _isVerificationFailed: true

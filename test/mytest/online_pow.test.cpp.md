@@ -58,7 +58,7 @@ data:
   - icon: ':question:'
     path: poly/online/online_division.hpp
     title: poly/online/online_division.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/online/online_pow.hpp
     title: poly/online/online_pow.hpp
   - icon: ':question:'
@@ -66,9 +66,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -590,8 +590,9 @@ data:
     \ f(n + 1);\n    FOR(i, n + 1) f[i] = RNG(mint::get_mod());\n    return f;\n \
     \ };\n  FOR(n, 1000) {\n    vc<mint> f = gen(n);\n    f[0] = mint(1);\n    mint\
     \ K = RNG(mint::get_mod());\n    vc<mint> g = fps_pow_1<mint>(f, K);\n    Online_Pow<mint>\
-    \ X(K);\n    FOR(i, n + 1) { assert(g[i] == X.query(i, f[i])); }\n  }\n}\n\nsigned\
-    \ main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
+    \ X(K);\n    FOR(i, n + 1) { assert(g[i] == X.query(i, f[i])); }\n  }\n}\n\nvoid\
+    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
+    signed main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"mod/modint.hpp\"\n#include \"random/base.hpp\"\n#include \"poly/fps_pow.hpp\"\
     \n#include \"poly/online/online_pow.hpp\"\n\nusing mint = modint998;\n\nvoid test()\
@@ -599,8 +600,9 @@ data:
     \ n + 1) f[i] = RNG(mint::get_mod());\n    return f;\n  };\n  FOR(n, 1000) {\n\
     \    vc<mint> f = gen(n);\n    f[0] = mint(1);\n    mint K = RNG(mint::get_mod());\n\
     \    vc<mint> g = fps_pow_1<mint>(f, K);\n    Online_Pow<mint> X(K);\n    FOR(i,\
-    \ n + 1) { assert(g[i] == X.query(i, f[i])); }\n  }\n}\n\nsigned main() {\n  test();\n\
-    \  solve();\n\n  return 0;\n}\n"
+    \ n + 1) { assert(g[i] == X.query(i, f[i])); }\n  }\n}\n\nvoid solve() {\n  int\
+    \ a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n\
+    \  test();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - mod/modint.hpp
@@ -626,8 +628,8 @@ data:
   isVerificationFile: true
   path: test/mytest/online_pow.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 01:44:55+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-10 11:57:47+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/online_pow.test.cpp
 layout: document

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/summax_assign.hpp
     title: alg/acted_monoid/summax_assign.hpp
   - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/summax.hpp
     title: alg/monoid/summax.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -194,8 +194,9 @@ data:
     \     FOR(i, L, R) A[i] = x;\n      seg.apply(L, R, x);\n    }\n    if (t == 2)\
     \ {\n      vc<int> B = {A.begin() + L, A.begin() + R};\n      auto [sm, mx] =\
     \ seg.prod(L, R);\n      assert(sm == SUM<ll>(B));\n      assert(mx == MAX(B));\n\
-    \    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n  print(a + b);\n}\n\nsigned main()\
-    \ {\n  FOR(100) test();\n  solve();\n\n  return 0;\n}\n"
+    \    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a +\
+    \ b << \"\\n\";\n}\n\nsigned main() {\n  FOR(100) test();\n  solve();\n\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"alg/acted_monoid/summax_assign.hpp\"\n#include \"random/base.hpp\"\
     \n#include \"ds/segtree/lazy_segtree.hpp\"\n\nvoid test() {\n  int N = RNG(1,\
@@ -207,9 +208,9 @@ data:
     \ {\n      ll x = RNG(1, 100);\n      FOR(i, L, R) A[i] = x;\n      seg.apply(L,\
     \ R, x);\n    }\n    if (t == 2) {\n      vc<int> B = {A.begin() + L, A.begin()\
     \ + R};\n      auto [sm, mx] = seg.prod(L, R);\n      assert(sm == SUM<ll>(B));\n\
-    \      assert(mx == MAX(B));\n    }\n  }\n}\n\nvoid solve() {\n  LL(a, b);\n \
-    \ print(a + b);\n}\n\nsigned main() {\n  FOR(100) test();\n  solve();\n\n  return\
-    \ 0;\n}\n"
+    \      assert(mx == MAX(B));\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n \
+    \ cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(100)\
+    \ test();\n  solve();\n\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - alg/acted_monoid/summax_assign.hpp
@@ -220,8 +221,8 @@ data:
   isVerificationFile: true
   path: test/mytest/summax_assign.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 02:18:09+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-10 11:57:47+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/summax_assign.test.cpp
 layout: document

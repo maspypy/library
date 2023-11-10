@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/maximum_matching_between_vertex_edge.hpp
     title: graph/maximum_matching_between_vertex_edge.hpp
   - icon: ':question:'
@@ -25,14 +25,14 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -289,11 +289,11 @@ data:
     \ e.to);\r\n          DG.add(i, j);\r\n        }\r\n      }\r\n    }\r\n    DG.build();\r\
     \n    auto [K, comp] = strongly_connected_component(DG);\r\n    K += 1;\r\n  \
     \  // \u7B54\r\n    FOR(i, n) { W[V[i]] = 1 + comp[i]; }\r\n    FOR(v, N) if (W[v]\
-    \ == infty<int>) W[v] = K;\r\n    return {K, W};\r\n  }\r\n\r\n  void debug()\
-    \ {\r\n    print(\"match\", match);\r\n    print(\"min vertex covor\", vertex_cover());\r\
-    \n    print(\"max indep set\", independent_set());\r\n    print(\"min edge cover\"\
-    , edge_cover());\r\n  }\r\n};\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n\
-    \  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \ == infty<int>) W[v] = K;\r\n    return {K, W};\r\n  }\r\n\r\n#ifdef FASTIO\r\
+    \n  void debug() {\r\n    print(\"match\", match);\r\n    print(\"min vertex covor\"\
+    , vertex_cover());\r\n    print(\"max indep set\", independent_set());\r\n   \
+    \ print(\"min edge cover\", edge_cover());\r\n  }\r\n#endif\r\n};\r\n#line 2 \"\
+    random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
@@ -342,8 +342,8 @@ data:
   isVerificationFile: true
   path: test/mytest/matching_ve.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 01:44:55+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-10 11:57:47+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/matching_ve.test.cpp
 layout: document

@@ -13,13 +13,13 @@ data:
   - icon: ':question:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/maximum_matching_size.hpp
     title: graph/maximum_matching_size.hpp
   - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -321,18 +321,18 @@ data:
     \ e.to);\r\n          DG.add(i, j);\r\n        }\r\n      }\r\n    }\r\n    DG.build();\r\
     \n    auto [K, comp] = strongly_connected_component(DG);\r\n    K += 1;\r\n  \
     \  // \u7B54\r\n    FOR(i, n) { W[V[i]] = 1 + comp[i]; }\r\n    FOR(v, N) if (W[v]\
-    \ == infty<int>) W[v] = K;\r\n    return {K, W};\r\n  }\r\n\r\n  void debug()\
-    \ {\r\n    print(\"match\", match);\r\n    print(\"min vertex covor\", vertex_cover());\r\
-    \n    print(\"max indep set\", independent_set());\r\n    print(\"min edge cover\"\
-    , edge_cover());\r\n  }\r\n};\r\n#line 6 \"test/mytest/tutte.test.cpp\"\n\nvoid\
-    \ test_bipartite() {\n  FOR(N, 1, 50) {\n    FOR(M, RNG(0, N * (N - 1) / 2 + 1))\
-    \ {\n      Graph<bool, 0> G(N);\n      FOR(M) {\n        int a = RNG(0, N);\n\
-    \        int b = RNG(0, N);\n        if (a % 2 == b % 2) continue;\n        G.add(a,\
-    \ b);\n      }\n      G.build();\n      BipartiteMatching<decltype(G)> X(G);\n\
-    \      int a = len(X.matching());\n      int b = maximum_matching_size(G);\n \
-    \     assert(a == b);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
-    \ a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test_bipartite();\n\
-    \  solve();\n\n  return 0;\n}\n"
+    \ == infty<int>) W[v] = K;\r\n    return {K, W};\r\n  }\r\n\r\n#ifdef FASTIO\r\
+    \n  void debug() {\r\n    print(\"match\", match);\r\n    print(\"min vertex covor\"\
+    , vertex_cover());\r\n    print(\"max indep set\", independent_set());\r\n   \
+    \ print(\"min edge cover\", edge_cover());\r\n  }\r\n#endif\r\n};\r\n#line 6 \"\
+    test/mytest/tutte.test.cpp\"\n\nvoid test_bipartite() {\n  FOR(N, 1, 50) {\n \
+    \   FOR(M, RNG(0, N * (N - 1) / 2 + 1)) {\n      Graph<bool, 0> G(N);\n      FOR(M)\
+    \ {\n        int a = RNG(0, N);\n        int b = RNG(0, N);\n        if (a % 2\
+    \ == b % 2) continue;\n        G.add(a, b);\n      }\n      G.build();\n     \
+    \ BipartiteMatching<decltype(G)> X(G);\n      int a = len(X.matching());\n   \
+    \   int b = maximum_matching_size(G);\n      assert(a == b);\n    }\n  }\n}\n\n\
+    void solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\
+    \nsigned main() {\n  test_bipartite();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"graph/maximum_matching_size.hpp\"\n#include \"flow/bipartite.hpp\"\
     \n\nvoid test_bipartite() {\n  FOR(N, 1, 50) {\n    FOR(M, RNG(0, N * (N - 1)\
@@ -357,8 +357,8 @@ data:
   isVerificationFile: true
   path: test/mytest/tutte.test.cpp
   requiredBy: []
-  timestamp: '2023-11-10 11:44:35+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-10 11:57:47+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/tutte.test.cpp
 layout: document

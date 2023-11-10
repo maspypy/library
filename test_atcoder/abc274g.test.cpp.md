@@ -351,18 +351,19 @@ data:
     \ e.to);\r\n          DG.add(i, j);\r\n        }\r\n      }\r\n    }\r\n    DG.build();\r\
     \n    auto [K, comp] = strongly_connected_component(DG);\r\n    K += 1;\r\n  \
     \  // \u7B54\r\n    FOR(i, n) { W[V[i]] = 1 + comp[i]; }\r\n    FOR(v, N) if (W[v]\
-    \ == infty<int>) W[v] = K;\r\n    return {K, W};\r\n  }\r\n\r\n  void debug()\
-    \ {\r\n    print(\"match\", match);\r\n    print(\"min vertex covor\", vertex_cover());\r\
-    \n    print(\"max indep set\", independent_set());\r\n    print(\"min edge cover\"\
-    , edge_cover());\r\n  }\r\n};\r\n#line 5 \"test_atcoder/abc274g.test.cpp\"\n\n\
-    void solve() {\n  LL(H, W);\n  VEC(string, S, H);\n  Graph<bool, 0> G(2 * H *\
-    \ W);\n\n  FOR(x, H) FOR(y, W) {\n    if (S[x][y] == '#') continue;\n    ll px\
-    \ = x;\n    ll py = y;\n    while (px > 0 && S[px - 1][y] == '.') --px;\n    while\
-    \ (py > 0 && S[x][py - 1] == '.') --py;\n    // (px,y), (x, py)\n    ll a = W\
-    \ * px + y;\n    ll b = W * x + py;\n    G.add(a, b + H * W);\n  }\n  G.build();\n\
-    \n  BipartiteMatching<decltype(G)> X(G);\n  auto cov = X.vertex_cover();\n  print(len(cov));\n\
-    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  //\
-    \ LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ == infty<int>) W[v] = K;\r\n    return {K, W};\r\n  }\r\n\r\n#ifdef FASTIO\r\
+    \n  void debug() {\r\n    print(\"match\", match);\r\n    print(\"min vertex covor\"\
+    , vertex_cover());\r\n    print(\"max indep set\", independent_set());\r\n   \
+    \ print(\"min edge cover\", edge_cover());\r\n  }\r\n#endif\r\n};\r\n#line 5 \"\
+    test_atcoder/abc274g.test.cpp\"\n\nvoid solve() {\n  LL(H, W);\n  VEC(string,\
+    \ S, H);\n  Graph<bool, 0> G(2 * H * W);\n\n  FOR(x, H) FOR(y, W) {\n    if (S[x][y]\
+    \ == '#') continue;\n    ll px = x;\n    ll py = y;\n    while (px > 0 && S[px\
+    \ - 1][y] == '.') --px;\n    while (py > 0 && S[x][py - 1] == '.') --py;\n   \
+    \ // (px,y), (x, py)\n    ll a = W * px + y;\n    ll b = W * x + py;\n    G.add(a,\
+    \ b + H * W);\n  }\n  G.build();\n\n  BipartiteMatching<decltype(G)> X(G);\n \
+    \ auto cov = X.vertex_cover();\n  print(len(cov));\n}\n\nsigned main() {\n  cout\
+    \ << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\
+    \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc274/tasks/abc274_g\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"flow/bipartite.hpp\"\
     \n\nvoid solve() {\n  LL(H, W);\n  VEC(string, S, H);\n  Graph<bool, 0> G(2 *\
@@ -384,7 +385,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc274g.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
+  timestamp: '2023-11-10 11:57:47+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc274g.test.cpp

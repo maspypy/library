@@ -360,15 +360,15 @@ data:
     \ e.to);\r\n          DG.add(i, j);\r\n        }\r\n      }\r\n    }\r\n    DG.build();\r\
     \n    auto [K, comp] = strongly_connected_component(DG);\r\n    K += 1;\r\n  \
     \  // \u7B54\r\n    FOR(i, n) { W[V[i]] = 1 + comp[i]; }\r\n    FOR(v, N) if (W[v]\
-    \ == infty<int>) W[v] = K;\r\n    return {K, W};\r\n  }\r\n\r\n  void debug()\
-    \ {\r\n    print(\"match\", match);\r\n    print(\"min vertex covor\", vertex_cover());\r\
-    \n    print(\"max indep set\", independent_set());\r\n    print(\"min edge cover\"\
-    , edge_cover());\r\n  }\r\n};\r\n#line 2 \"graph/maximum_antichain.hpp\"\n\n//\
-    \ \u6BD4\u8F03\u53EF\u80FD\u30B0\u30E9\u30D5\u3092\u4E0E\u3048\u308B\u3002DAG\
-    \ \u306A\u3060\u3051\u3067\u306F\u30C0\u30E1\u3002\ntemplate <typename GT>\nvc<int>\
-    \ maximum_antichain(GT& G) {\n  static_assert(GT::is_directed);\n  int n = G.N;\n\
-    \n  Graph H(n + n);\n  for (auto&& e: G.edges) { H.add(e.frm, e.to + n); }\n \
-    \ H.build();\n  BipartiteMatching BM(H);\n  auto cover = BM.vertex_cover();\n\
+    \ == infty<int>) W[v] = K;\r\n    return {K, W};\r\n  }\r\n\r\n#ifdef FASTIO\r\
+    \n  void debug() {\r\n    print(\"match\", match);\r\n    print(\"min vertex covor\"\
+    , vertex_cover());\r\n    print(\"max indep set\", independent_set());\r\n   \
+    \ print(\"min edge cover\", edge_cover());\r\n  }\r\n#endif\r\n};\r\n#line 2 \"\
+    graph/maximum_antichain.hpp\"\n\n// \u6BD4\u8F03\u53EF\u80FD\u30B0\u30E9\u30D5\
+    \u3092\u4E0E\u3048\u308B\u3002DAG \u306A\u3060\u3051\u3067\u306F\u30C0\u30E1\u3002\
+    \ntemplate <typename GT>\nvc<int> maximum_antichain(GT& G) {\n  static_assert(GT::is_directed);\n\
+    \  int n = G.N;\n\n  Graph H(n + n);\n  for (auto&& e: G.edges) { H.add(e.frm,\
+    \ e.to + n); }\n  H.build();\n  BipartiteMatching BM(H);\n  auto cover = BM.vertex_cover();\n\
     \  auto match = BM.matching();\n  assert(len(cover) == len(match));\n  vc<bool>\
     \ ok(n, 1);\n  for (auto&& v: cover) { ok[v % n] = 0; }\n  vc<int> antichain;\n\
     \  FOR(v, n) if (ok[v]) antichain.eb(v);\n  for (auto&& e: G.edges) { assert(!ok[e.frm]\
@@ -415,7 +415,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc237ex.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
+  timestamp: '2023-11-10 11:57:47+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc237ex.test.cpp
