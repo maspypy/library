@@ -36,13 +36,6 @@ struct Sliding_Window_Aggregation {
   X rprod() { return cum_r; }
 
   X prod() { return Monoid::op(cum_l.back(), cum_r); }
-
-  void debug() {
-    print("swag");
-    print("dat", dat);
-    print("cum_l", cum_l);
-    print("cum_r", cum_r);
-  }
 };
 
 // 定数倍は目に見えて遅くなるので、queue でよいときは使わない
@@ -100,14 +93,6 @@ struct SWAG_deque {
   X rprod() { return cum_r.back(); }
   X prod() { return Monoid::op(cum_l.back(), cum_r.back()); }
   X prod_all() { return prod(); }
-
-  void debug() {
-    print("swag");
-    print("dat_l", dat_l);
-    print("dat_r", dat_r);
-    print("cum_l", cum_l);
-    print("cum_r", cum_r);
-  }
 
 private:
   void rebuild() {
