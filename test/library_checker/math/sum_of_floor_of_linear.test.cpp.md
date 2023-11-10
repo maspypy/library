@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sum_of_floor_of_linear
@@ -197,14 +197,14 @@ data:
     \ mod) {\n      tie(q, b) = divmod(b, mod);\n      res += O(N) * q;\n    }\n \
     \   tie(N, b) = divmod(a * N + b, mod);\n    tie(a, mod) = mp(mod, a);\n  }\n\
     \  return res;\n}\n#line 6 \"test/library_checker/math/sum_of_floor_of_linear.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, mod, a, b);\n  print(floor_sum_of_linear(0, N, a,\
-    \ b, mod));\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  LL(T);\n\
-    \  FOR(T) solve();\n\n  return 0;\n}\n"
+    \n\nvoid solve() {\n  U32(N, mod, a, b);\n  print(floor_sum_of_linear<u64, u64>(0,\
+    \ N, a, b, mod));\n}\n\nsigned main() {\n  LL(T);\n  FOR(T) solve();\n\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sum_of_floor_of_linear\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/floor_sum_of_linear.hpp\"\
-    \n\nvoid solve() {\n  LL(N, mod, a, b);\n  print(floor_sum_of_linear(0, N, a,\
-    \ b, mod));\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  LL(T);\n\
-    \  FOR(T) solve();\n\n  return 0;\n}\n"
+    \n\nvoid solve() {\n  U32(N, mod, a, b);\n  print(floor_sum_of_linear<u64, u64>(0,\
+    \ N, a, b, mod));\n}\n\nsigned main() {\n  LL(T);\n  FOR(T) solve();\n\n  return\
+    \ 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -212,8 +212,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/sum_of_floor_of_linear.test.cpp
   requiredBy: []
-  timestamp: '2023-11-10 22:48:13+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-11 04:37:12+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/sum_of_floor_of_linear.test.cpp
 layout: document

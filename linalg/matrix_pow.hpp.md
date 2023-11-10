@@ -126,8 +126,9 @@ data:
     \ 2;\r\n    if (n) A = matrix_mul(A, A, N, N, N);\r\n  }\r\n  return ret;\r\n\
     }\r\n\r\ntemplate <typename T, int N>\r\narray<array<T, N>, N> matrix_pow(array<array<T,\
     \ N>, N> A, ll n) {\r\n  array<array<T, N>, N> ret{};\r\n  FOR(i, N) ret[i][i]\
-    \ = T(1);\r\n  while (n) {\r\n    if (n & 1) ret = matrix_mul(ret, A);\r\n   \
-    \ n /= 2;\r\n    if (n) A = matrix_mul(A, A);\r\n  }\r\n  return ret;\r\n}\n"
+    \ = T(1);\r\n  while (n) {\r\n    if (n & 1) ret = matrix_mul<T, N>(ret, A);\r\
+    \n    n /= 2;\r\n    if (n) A = matrix_mul<T, N>(A, A);\r\n  }\r\n  return ret;\r\
+    \n}\n"
   code: "#include \"linalg/matrix_mul.hpp\"\r\n\r\ntemplate <typename T>\r\nvc<vc<T>>\
     \ matrix_pow(vc<vc<T>> A, ll n) {\r\n  int N = len(A);\r\n  vv(T, ret, N, N);\r\
     \n  FOR(i, N) ret[i][i] = T(1);\r\n  while (n) {\r\n    if (n & 1) ret = matrix_mul(ret,\
@@ -135,8 +136,8 @@ data:
     \  }\r\n  return ret;\r\n}\r\n\r\ntemplate <typename T, int N>\r\narray<array<T,\
     \ N>, N> matrix_pow(array<array<T, N>, N> A, ll n) {\r\n  array<array<T, N>, N>\
     \ ret{};\r\n  FOR(i, N) ret[i][i] = T(1);\r\n  while (n) {\r\n    if (n & 1) ret\
-    \ = matrix_mul(ret, A);\r\n    n /= 2;\r\n    if (n) A = matrix_mul(A, A);\r\n\
-    \  }\r\n  return ret;\r\n}"
+    \ = matrix_mul<T, N>(ret, A);\r\n    n /= 2;\r\n    if (n) A = matrix_mul<T, N>(A,\
+    \ A);\r\n  }\r\n  return ret;\r\n}"
   dependsOn:
   - linalg/matrix_mul.hpp
   - mod/modint.hpp
@@ -144,7 +145,7 @@ data:
   isVerificationFile: false
   path: linalg/matrix_pow.hpp
   requiredBy: []
-  timestamp: '2023-11-08 18:58:48+09:00'
+  timestamp: '2023-11-11 04:37:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1750.test.cpp
