@@ -9,7 +9,7 @@ using mint = modint107;
 
 void solve() {
   LL(N);
-  Graph<bool, 0> G(N);
+  Graph<int, 0> G(N);
   G.read_tree();
   Tree<decltype(G)> tree(G);
 
