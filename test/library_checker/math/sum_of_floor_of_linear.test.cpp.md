@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/floor_sum_of_linear.hpp
     title: mod/floor_sum_of_linear.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sum_of_floor_of_linear
@@ -187,13 +187,16 @@ data:
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\n#line 4 \"test/library_checker/math/sum_of_floor_of_linear.test.cpp\"\
     \n\n#line 2 \"mod/floor_sum_of_linear.hpp\"\n\n// sum_{x in [L,R)} floor(ax +\
-    \ b, mod)\ni128 floor_sum_of_linear(ll L, ll R, ll a, ll b, ll mod) {\n  assert(L\
-    \ <= R);\n  i128 res = 0;\n  b += L * a;\n  ll N = R - L;\n\n  if (b < 0) {\n\
-    \    ll k = ceil(-b, mod);\n    b += k * mod;\n    res -= i128(N) * k;\n  }\n\n\
-    \  while (N) {\n    ll q;\n    tie(q, a) = divmod(a, mod);\n    res += i128(N)\
-    \ * (N - 1) / 2 * q;\n    if (b >= mod) {\n      tie(q, b) = divmod(b, mod);\n\
-    \      res += i128(N) * q;\n    }\n    tie(N, b) = divmod(a * N + b, mod);\n \
-    \   tie(a, mod) = mp(mod, a);\n  }\n  return res;\n}\n#line 6 \"test/library_checker/math/sum_of_floor_of_linear.test.cpp\"\
+    \ b, mod)\n// I \u306F\u7BC4\u56F2\u5185\u3067 ax+b \u304C\u30AA\u30FC\u30D0\u30FC\
+    \u30D5\u30ED\u30FC\u3057\u306A\u3044\u7A0B\u5EA6\ntemplate <typename O = i128,\
+    \ typename I = long long>\nO floor_sum_of_linear(I L, I R, I a, I b, I mod) {\n\
+    \  assert(L <= R);\n  O res = 0;\n  b += L * a;\n  I N = R - L;\n\n  if (b < 0)\
+    \ {\n    I k = ceil(-b, mod);\n    b += k * mod;\n    res -= O(N) * O(k);\n  }\n\
+    \n  while (N) {\n    I q;\n    tie(q, a) = divmod(a, mod);\n    res += (N & 1\
+    \ ? O(N) * O((N - 1) / 2) * O(q) : O(N / 2) * O(N - 1) * O(q));\n    if (b >=\
+    \ mod) {\n      tie(q, b) = divmod(b, mod);\n      res += O(N) * q;\n    }\n \
+    \   tie(N, b) = divmod(a * N + b, mod);\n    tie(a, mod) = mp(mod, a);\n  }\n\
+    \  return res;\n}\n#line 6 \"test/library_checker/math/sum_of_floor_of_linear.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, mod, a, b);\n  print(floor_sum_of_linear(0, N, a,\
     \ b, mod));\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  LL(T);\n\
     \  FOR(T) solve();\n\n  return 0;\n}\n"
@@ -209,8 +212,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/sum_of_floor_of_linear.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-10 22:48:13+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/sum_of_floor_of_linear.test.cpp
 layout: document

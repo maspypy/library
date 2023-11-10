@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/floor_sum_of_linear.hpp
     title: mod/floor_sum_of_linear.hpp
   - icon: ':heavy_check_mark:'
@@ -110,18 +110,21 @@ data:
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
     \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 4 \"test/mytest/mod_sum_of_linear.test.cpp\"\
     \n\n#line 2 \"mod/floor_sum_of_linear.hpp\"\n\n// sum_{x in [L,R)} floor(ax +\
-    \ b, mod)\ni128 floor_sum_of_linear(ll L, ll R, ll a, ll b, ll mod) {\n  assert(L\
-    \ <= R);\n  i128 res = 0;\n  b += L * a;\n  ll N = R - L;\n\n  if (b < 0) {\n\
-    \    ll k = ceil(-b, mod);\n    b += k * mod;\n    res -= i128(N) * k;\n  }\n\n\
-    \  while (N) {\n    ll q;\n    tie(q, a) = divmod(a, mod);\n    res += i128(N)\
-    \ * (N - 1) / 2 * q;\n    if (b >= mod) {\n      tie(q, b) = divmod(b, mod);\n\
-    \      res += i128(N) * q;\n    }\n    tie(N, b) = divmod(a * N + b, mod);\n \
-    \   tie(a, mod) = mp(mod, a);\n  }\n  return res;\n}\n#line 2 \"mod/mod_sum_of_linear.hpp\"\
-    \n\ni128 mod_sum_of_linear(ll L, ll R, ll a, ll b, ll mod) {\n  /*\n  sum_{x in\
-    \ [L,R)} (ax + b mod mod)\n  */\n  i128 s = a * L + b;\n  i128 t = a * (R - 1)\
-    \ + b;\n  i128 sum = (s + t) * (R - L) / 2;\n  i128 fsum = floor_sum_of_linear(L,\
-    \ R, a, b, mod);\n  return sum - fsum * mod;\n}\n#line 6 \"test/mytest/mod_sum_of_linear.test.cpp\"\
-    \n\nvoid test() {\n  FOR(100) {\n    int L = RNG(1000);\n    int R = RNG(1000);\n\
+    \ b, mod)\n// I \u306F\u7BC4\u56F2\u5185\u3067 ax+b \u304C\u30AA\u30FC\u30D0\u30FC\
+    \u30D5\u30ED\u30FC\u3057\u306A\u3044\u7A0B\u5EA6\ntemplate <typename O = i128,\
+    \ typename I = long long>\nO floor_sum_of_linear(I L, I R, I a, I b, I mod) {\n\
+    \  assert(L <= R);\n  O res = 0;\n  b += L * a;\n  I N = R - L;\n\n  if (b < 0)\
+    \ {\n    I k = ceil(-b, mod);\n    b += k * mod;\n    res -= O(N) * O(k);\n  }\n\
+    \n  while (N) {\n    I q;\n    tie(q, a) = divmod(a, mod);\n    res += (N & 1\
+    \ ? O(N) * O((N - 1) / 2) * O(q) : O(N / 2) * O(N - 1) * O(q));\n    if (b >=\
+    \ mod) {\n      tie(q, b) = divmod(b, mod);\n      res += O(N) * q;\n    }\n \
+    \   tie(N, b) = divmod(a * N + b, mod);\n    tie(a, mod) = mp(mod, a);\n  }\n\
+    \  return res;\n}\n#line 2 \"mod/mod_sum_of_linear.hpp\"\n\ni128 mod_sum_of_linear(ll\
+    \ L, ll R, ll a, ll b, ll mod) {\n  /*\n  sum_{x in [L,R)} (ax + b mod mod)\n\
+    \  */\n  i128 s = a * L + b;\n  i128 t = a * (R - 1) + b;\n  i128 sum = (s + t)\
+    \ * (R - L) / 2;\n  i128 fsum = floor_sum_of_linear(L, R, a, b, mod);\n  return\
+    \ sum - fsum * mod;\n}\n#line 6 \"test/mytest/mod_sum_of_linear.test.cpp\"\n\n\
+    void test() {\n  FOR(100) {\n    int L = RNG(1000);\n    int R = RNG(1000);\n\
     \    if (L > R) swap(L, R);\n    int a = RNG(-1000, 1000);\n    int b = RNG(-1000,\
     \ 1000);\n    int mod = RNG(1, 1000);\n\n    ll ANS = 0;\n    FOR(x, L, R) {\n\
     \      ll v = a * x + b;\n      v %= mod;\n      if (v < 0) v += mod;\n      ANS\
@@ -145,7 +148,7 @@ data:
   isVerificationFile: true
   path: test/mytest/mod_sum_of_linear.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 01:44:55+09:00'
+  timestamp: '2023-11-10 22:48:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/mod_sum_of_linear.test.cpp

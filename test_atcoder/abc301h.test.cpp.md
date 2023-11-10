@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
   - icon: ':question:'
@@ -498,7 +498,9 @@ data:
     \ b]: pd) {\r\n      (a <= b ? seg.apply(a, b + 1, x) : seg.apply(b, a + 1, x));\r\
     \n    }\r\n    return;\r\n  }\r\n\r\n  void apply_subtree(int u, X x) {\r\n  \
     \  int l = tree.LID[u], r = tree.RID[u];\r\n    return seg.apply(l + edge, r,\
-    \ x);\r\n  }\r\n};\r\n#line 10 \"test_atcoder/abc301h.test.cpp\"\n\nvoid solve()\
+    \ x);\r\n  }\r\n\r\n  void apply_outtree(int u, A a) {\r\n    int l = tree.LID[u],\
+    \ r = tree.RID[u];\r\n    seg.apply(0 + edge, l + edge, a);\r\n    seg.apply(r,\
+    \ N, a);\r\n  }\r\n};\r\n#line 10 \"test_atcoder/abc301h.test.cpp\"\n\nvoid solve()\
     \ {\n  LL(N, M);\n  using T = tuple<int, int, int>;\n  vc<T> dat;\n  FOR(i, M)\
     \ {\n    LL(a, b, c);\n    --a, --b;\n    dat.eb(c, a, b);\n  }\n  auto I = argsort(dat);\n\
     \  dat = rearrange(dat, I);\n  auto new_idx = argsort(I);\n\n  vc<bool> used(M);\n\
@@ -571,7 +573,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc301h.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
+  timestamp: '2023-11-10 22:48:13+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc301h.test.cpp

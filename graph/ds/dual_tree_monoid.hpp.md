@@ -11,14 +11,14 @@ data:
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2491.test.cpp
     title: test/yukicoder/2491.test.cpp
   - icon: ':x:'
@@ -29,7 +29,7 @@ data:
     title: test_atcoder/abc301h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate\
@@ -197,7 +197,9 @@ data:
     \ {\r\n      (a <= b ? seg.apply(a, b + 1, x) : seg.apply(b, a + 1, x));\r\n \
     \   }\r\n    return;\r\n  }\r\n\r\n  void apply_subtree(int u, X x) {\r\n    int\
     \ l = tree.LID[u], r = tree.RID[u];\r\n    return seg.apply(l + edge, r, x);\r\
-    \n  }\r\n};\r\n"
+    \n  }\r\n\r\n  void apply_outtree(int u, A a) {\r\n    int l = tree.LID[u], r\
+    \ = tree.RID[u];\r\n    seg.apply(0 + edge, l + edge, a);\r\n    seg.apply(r,\
+    \ N, a);\r\n  }\r\n};\r\n"
   code: "#include \"graph/tree.hpp\"\r\n#include \"ds/segtree/dual_segtree.hpp\"\r\
     \n\r\ntemplate <typename TREE, typename Monoid, bool edge>\r\nstruct Dual_Tree_Monoid\
     \ {\r\n  using MX = Monoid;\r\n  using X = typename MX::value_type;\r\n  TREE\
@@ -214,7 +216,9 @@ data:
     \ &&[a, b]: pd) {\r\n      (a <= b ? seg.apply(a, b + 1, x) : seg.apply(b, a +\
     \ 1, x));\r\n    }\r\n    return;\r\n  }\r\n\r\n  void apply_subtree(int u, X\
     \ x) {\r\n    int l = tree.LID[u], r = tree.RID[u];\r\n    return seg.apply(l\
-    \ + edge, r, x);\r\n  }\r\n};\r\n"
+    \ + edge, r, x);\r\n  }\r\n\r\n  void apply_outtree(int u, A a) {\r\n    int l\
+    \ = tree.LID[u], r = tree.RID[u];\r\n    seg.apply(0 + edge, l + edge, a);\r\n\
+    \    seg.apply(r, N, a);\r\n  }\r\n};\r\n"
   dependsOn:
   - graph/tree.hpp
   - graph/base.hpp
@@ -223,8 +227,8 @@ data:
   path: graph/ds/dual_tree_monoid.hpp
   requiredBy:
   - graph/minimum_spanning_tree.hpp
-  timestamp: '2023-11-07 22:29:27+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-11-10 22:48:13+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/2491.test.cpp
   - test/aoj/GRL_2_A.test.cpp

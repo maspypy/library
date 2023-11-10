@@ -22,13 +22,13 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
   - icon: ':question:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':question:'
@@ -490,35 +490,37 @@ data:
     \ b]: pd) {\r\n      (a <= b ? seg.apply(a, b + 1, x) : seg.apply(b, a + 1, x));\r\
     \n    }\r\n    return;\r\n  }\r\n\r\n  void apply_subtree(int u, X x) {\r\n  \
     \  int l = tree.LID[u], r = tree.RID[u];\r\n    return seg.apply(l + edge, r,\
-    \ x);\r\n  }\r\n};\r\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\
-    \nstruct Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n  static\
-    \ constexpr X op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static\
-    \ constexpr X unit() { return infty<E>; }\r\n  static constexpr bool commute =\
-    \ true;\r\n};\r\n#line 2 \"alg/monoid/max.hpp\"\n\r\ntemplate <typename E>\r\n\
-    struct Monoid_Max {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return max(x, y); }\r\n  static constexpr\
-    \ X unit() { return -infty<E>; }\r\n  static constexpr bool commute = true;\r\n\
-    };\r\n#line 8 \"graph/minimum_spanning_tree.hpp\"\n\r\n// return : {T mst_cost,\
-    \ vc<bool> in_mst, Graph MST}\r\ntemplate <typename T>\r\ntuple<T, vc<bool>, Graph<T>>\
-    \ minimum_spanning_tree(Graph<T>& G) {\r\n  int N = G.N;\r\n  int M = len(G.edges);\r\
-    \n  vc<pair<T, int>> edges;\r\n  FOR(i, M) {\r\n    auto& e = G.edges[i];\r\n\
-    \    edges.eb(e.cost, i);\r\n  }\r\n  sort(all(edges));\r\n  vc<bool> in_mst(M);\r\
-    \n  UnionFind uf(N);\r\n  T mst_cost = T(0);\r\n  Graph<T> MST(N);\r\n  for (auto&&\
-    \ [cost, i]: edges) {\r\n    auto& e = G.edges[i];\r\n    if (uf.merge(e.frm,\
-    \ e.to)) {\r\n      in_mst[i] = 1;\r\n      mst_cost += e.cost;\r\n    }\r\n \
-    \ }\r\n  FOR(i, M) if (in_mst[i]) {\r\n    auto& e = G.edges[i];\r\n    MST.add(e.frm,\
-    \ e.to, e.cost);\r\n  }\r\n  MST.build();\r\n  return {mst_cost, in_mst, MST};\r\
-    \n}\r\n\r\n// https://codeforces.com/contest/828/problem/F\r\n// return : {T mst_cost,\
-    \ vc<bool> in_mst, Graph MST, vc<T> dat}\r\n// dat : \u8FBA\u3054\u3068\u306B\u3001\
-    \u4ED6\u306E\u8FBA\u3092\u4FDD\u3063\u305F\u3068\u304D\u306B MST \u8FBA\u306B\u306A\
-    \u308B\u6700\u5927\u91CD\u307F\r\ntemplate <typename T>\r\ntuple<T, vc<bool>,\
-    \ Graph<T>, vc<T>> minimum_spanning_tree_cycle_data(\r\n    Graph<T> G) {\r\n\
-    \  int M = len(G.edges);\r\n  auto [mst_cost, in_mst, MST] = minimum_spanning_tree(G);\r\
-    \n  Tree<decltype(G)> tree(MST);\r\n  vc<T> dat;\r\n  FOR(i, M) if (in_mst[i])\
-    \ dat.eb(G.edges[i].cost);\r\n  Tree_Monoid<decltype(tree), Monoid_Max<T>, 1>\
-    \ TM1(tree, dat);\r\n  Dual_Tree_Monoid<decltype(tree), Monoid_Min<T>, 1> TM2(tree);\r\
-    \n  FOR(i, M) {\r\n    if (!in_mst[i]) {\r\n      auto& e = G.edges[i];\r\n  \
-    \    TM2.apply_path(e.frm, e.to, e.cost);\r\n    }\r\n  }\r\n  vc<T> ANS(M);\r\
+    \ x);\r\n  }\r\n\r\n  void apply_outtree(int u, A a) {\r\n    int l = tree.LID[u],\
+    \ r = tree.RID[u];\r\n    seg.apply(0 + edge, l + edge, a);\r\n    seg.apply(r,\
+    \ N, a);\r\n  }\r\n};\r\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename\
+    \ E>\r\nstruct Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n \
+    \ static constexpr X op(const X &x, const X &y) noexcept { return min(x, y); }\r\
+    \n  static constexpr X unit() { return infty<E>; }\r\n  static constexpr bool\
+    \ commute = true;\r\n};\r\n#line 2 \"alg/monoid/max.hpp\"\n\r\ntemplate <typename\
+    \ E>\r\nstruct Monoid_Max {\r\n  using X = E;\r\n  using value_type = X;\r\n \
+    \ static constexpr X op(const X &x, const X &y) noexcept { return max(x, y); }\r\
+    \n  static constexpr X unit() { return -infty<E>; }\r\n  static constexpr bool\
+    \ commute = true;\r\n};\r\n#line 8 \"graph/minimum_spanning_tree.hpp\"\n\r\n//\
+    \ return : {T mst_cost, vc<bool> in_mst, Graph MST}\r\ntemplate <typename T>\r\
+    \ntuple<T, vc<bool>, Graph<T>> minimum_spanning_tree(Graph<T>& G) {\r\n  int N\
+    \ = G.N;\r\n  int M = len(G.edges);\r\n  vc<pair<T, int>> edges;\r\n  FOR(i, M)\
+    \ {\r\n    auto& e = G.edges[i];\r\n    edges.eb(e.cost, i);\r\n  }\r\n  sort(all(edges));\r\
+    \n  vc<bool> in_mst(M);\r\n  UnionFind uf(N);\r\n  T mst_cost = T(0);\r\n  Graph<T>\
+    \ MST(N);\r\n  for (auto&& [cost, i]: edges) {\r\n    auto& e = G.edges[i];\r\n\
+    \    if (uf.merge(e.frm, e.to)) {\r\n      in_mst[i] = 1;\r\n      mst_cost +=\
+    \ e.cost;\r\n    }\r\n  }\r\n  FOR(i, M) if (in_mst[i]) {\r\n    auto& e = G.edges[i];\r\
+    \n    MST.add(e.frm, e.to, e.cost);\r\n  }\r\n  MST.build();\r\n  return {mst_cost,\
+    \ in_mst, MST};\r\n}\r\n\r\n// https://codeforces.com/contest/828/problem/F\r\n\
+    // return : {T mst_cost, vc<bool> in_mst, Graph MST, vc<T> dat}\r\n// dat : \u8FBA\
+    \u3054\u3068\u306B\u3001\u4ED6\u306E\u8FBA\u3092\u4FDD\u3063\u305F\u3068\u304D\
+    \u306B MST \u8FBA\u306B\u306A\u308B\u6700\u5927\u91CD\u307F\r\ntemplate <typename\
+    \ T>\r\ntuple<T, vc<bool>, Graph<T>, vc<T>> minimum_spanning_tree_cycle_data(\r\
+    \n    Graph<T> G) {\r\n  int M = len(G.edges);\r\n  auto [mst_cost, in_mst, MST]\
+    \ = minimum_spanning_tree(G);\r\n  Tree<decltype(G)> tree(MST);\r\n  vc<T> dat;\r\
+    \n  FOR(i, M) if (in_mst[i]) dat.eb(G.edges[i].cost);\r\n  Tree_Monoid<decltype(tree),\
+    \ Monoid_Max<T>, 1> TM1(tree, dat);\r\n  Dual_Tree_Monoid<decltype(tree), Monoid_Min<T>,\
+    \ 1> TM2(tree);\r\n  FOR(i, M) {\r\n    if (!in_mst[i]) {\r\n      auto& e = G.edges[i];\r\
+    \n      TM2.apply_path(e.frm, e.to, e.cost);\r\n    }\r\n  }\r\n  vc<T> ANS(M);\r\
     \n  int m = 0;\r\n  FOR(i, M) {\r\n    auto& e = G.edges[i];\r\n    if (in_mst[i])\r\
     \n      ANS[i] = TM2.get(m++);\r\n    else\r\n      ANS[i] = TM1.prod_path(e.frm,\
     \ e.to);\r\n  }\r\n  return {mst_cost, in_mst, MST, ANS};\r\n}\n#line 6 \"test_atcoder/abc270_f.test.cpp\"\
@@ -576,7 +578,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc270_f.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
+  timestamp: '2023-11-10 22:48:13+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc270_f.test.cpp
