@@ -5,13 +5,11 @@
 #include "mod/floor_sum_of_linear.hpp"
 
 void solve() {
-  LL(N, mod, a, b);
-  print(floor_sum_of_linear(0, N, a, b, mod));
+  U32(N, mod, a, b);
+  print(floor_sum_of_linear<u64, u64>(0, N, a, b, mod));
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
   LL(T);
   FOR(T) solve();
 

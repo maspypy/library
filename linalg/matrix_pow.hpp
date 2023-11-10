@@ -18,9 +18,9 @@ array<array<T, N>, N> matrix_pow(array<array<T, N>, N> A, ll n) {
   array<array<T, N>, N> ret{};
   FOR(i, N) ret[i][i] = T(1);
   while (n) {
-    if (n & 1) ret = matrix_mul(ret, A);
+    if (n & 1) ret = matrix_mul<T, N>(ret, A);
     n /= 2;
-    if (n) A = matrix_mul(A, A);
+    if (n) A = matrix_mul<T, N>(A, A);
   }
   return ret;
 }
