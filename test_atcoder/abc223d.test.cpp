@@ -5,7 +5,7 @@
 
 void solve() {
   LL(N, M);
-  Graph<bool, 1> G(N);
+  Graph<int, 1> G(N);
   G.read_graph(M);
   auto I = toposort(G);
   if (I.empty()) return print(-1);

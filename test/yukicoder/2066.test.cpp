@@ -9,7 +9,7 @@ void solve() {
     // Px+Qy<=N かつ 0 <= x < Q が K 個以上
     ll LIM = min(Q, N / P + 1);
     // 0 <= x < LIM で、floor(N-Px,Q)+1 を和
-    return floor_sum_of_linear(0, LIM, -P, N + Q, Q) - 1 >= K;
+    return floor_sum_of_linear<i128, ll>(0, LIM, -P, N + Q, Q) - 1 >= K;
   };
 
   ll g = gcd(P, Q);
@@ -21,8 +21,6 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
   LL(T);
   FOR(T) solve();
 
