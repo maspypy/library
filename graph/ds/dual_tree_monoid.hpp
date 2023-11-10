@@ -48,7 +48,7 @@ struct Dual_Tree_Monoid {
     return seg.apply(l + edge, r, x);
   }
 
-  void apply_outtree(int u, A a) {
+  void apply_outtree(int u, X a) {
     int l = tree.LID[u], r = tree.RID[u];
     seg.apply(0 + edge, l + edge, a);
     seg.apply(r, N, a);
