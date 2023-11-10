@@ -3,7 +3,7 @@
 #include "ds/fastset.hpp"
 
 template <typename GT>
-UnionFind cograph_unionfind(GT& G) {
+UnionFind complement_graph_unionfind(GT& G) {
   const int N = G.N;
   UnionFind uf(N);
   FastSet ss(N);
