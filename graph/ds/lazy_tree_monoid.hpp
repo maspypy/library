@@ -87,6 +87,12 @@ struct Lazy_Tree_Monoid {
     return seg.apply(l + edge, r, a);
   }
 
+  void apply_outtree(int u, A a) {
+    int l = tree.LID[u], r = tree.RID[u];
+    seg.apply(0 + edge, l + edge, a);
+    seg.apply(r, N, a);
+  }
+
   template <class F>
   int max_path(F check, int u, int v) {
     if constexpr (edge) return max_path_edge(check, u, v);
