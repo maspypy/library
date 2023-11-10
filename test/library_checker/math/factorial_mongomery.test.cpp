@@ -5,6 +5,7 @@
 #include "mod/mongomery_modint.hpp"
 
 using mint = Mongomery_modint_32<0>;
+constexpr int mod = 998244353;
 
 void solve() {
   mint::set_mod(mod);

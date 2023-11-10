@@ -50,3 +50,12 @@ struct modint61 {
     return ret;
   }
 };
+
+#ifdef FASTIO
+void rd(modint61 &x) {
+  fastio::rd(x.val);
+  assert(0 <= x.val && x.val < modint61::mod);
+}
+
+void wt(modint61 x) { fastio::wt(x.val); }
+#endif
