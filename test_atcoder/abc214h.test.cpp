@@ -6,7 +6,7 @@
 
 void solve() {
   LL(N, M, K);
-  Graph<bool, 1> G0(N);
+  Graph<int, 1> G0(N);
   G0.read_graph(M);
 
   auto [nc, comp] = strongly_connected_component(G0);

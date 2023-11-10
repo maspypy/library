@@ -20,7 +20,7 @@ void solve() {
 
   using Mono = Monoid_Max2<ll, ll>;
   using Data = typename Mono::Data;
-  HashMap<Data> MP;
+  HashMap<Data, 20, true> MP;
 
   FOR(j, N) FOR(i, j) {
     Line<ll> L = perpendicular_bisector(point[i], point[j]);
