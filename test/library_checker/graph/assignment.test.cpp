@@ -7,7 +7,7 @@
 void solve() {
   LL(N);
   VV(ll, A, N, N);
-  auto [ans, match, X, Y] = hungarian(A);
+  auto [ans, match, X, Y] = hungarian<ll, true>(A);
   print(ans);
   print(match);
 
