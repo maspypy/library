@@ -441,7 +441,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/K_shortest_walk.test.cpp
     title: test/library_checker/graph/K_shortest_walk.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/assignment.test.cpp
     title: test/library_checker/graph/assignment.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1159,6 +1159,9 @@ data:
     path: test/yukicoder/1781.test.cpp
     title: test/yukicoder/1781.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1789.test.cpp
+    title: test/yukicoder/1789.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1790.test.cpp
     title: test/yukicoder/1790.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1743,16 +1746,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc298ex.test.cpp
     title: test_atcoder/abc298ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc301e.test.cpp
     title: test_atcoder/abc301e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc301h.test.cpp
     title: test_atcoder/abc301h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc312f.test.cpp
     title: test_atcoder/abc312f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc314.test.cpp
     title: test_atcoder/abc314.test.cpp
   - icon: ':x:'
@@ -2111,6 +2114,7 @@ data:
   - test/yukicoder/4_2.test.cpp
   - test/yukicoder/2026.test.cpp
   - test/yukicoder/2305.test.cpp
+  - test/yukicoder/1789.test.cpp
   - test/yukicoder/2342_2.test.cpp
   - test/yukicoder/1678.test.cpp
   - test/yukicoder/1242.test.cpp

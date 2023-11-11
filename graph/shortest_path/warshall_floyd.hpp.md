@@ -15,6 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/17.test.cpp
     title: test/yukicoder/17.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1789.test.cpp
+    title: test/yukicoder/1789.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -108,6 +111,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1344.test.cpp
+  - test/yukicoder/1789.test.cpp
   - test/yukicoder/17.test.cpp
   - test/aoj/GRL_1_C.test.cpp
 documentation_of: graph/shortest_path/warshall_floyd.hpp
