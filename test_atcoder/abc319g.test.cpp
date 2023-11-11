@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "graph/implicit_graph/cograph_bfs.hpp"
+#include "graph/implicit_graph/complement_graph_bfs.hpp"
 #include "mod/modint.hpp"
 using mint = modint998;
 
@@ -11,7 +11,7 @@ void solve() {
   Graph<int, 0> G(N);
   G.read_graph(M);
 
-  auto dist = cograph_bfs(G, 0).fi;
+  auto dist = complement_graph_bfs(G, 0).fi;
 
   ll d = dist[N - 1];
   if (d == infty<int>) return print(-1);
