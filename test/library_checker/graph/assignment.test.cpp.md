@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: flow/hungarian.hpp
     title: flow/hungarian.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/assignment
@@ -208,17 +208,18 @@ data:
     \  Y.erase(Y.begin());\n  vc<int> match(N);\n  FOR(i, N) match[P[i]] = i;\n  match.erase(match.begin());\n\
     \  for (auto&& i: match) --i;\n  if (!MINIMIZE) res = -res;\n  return {res, match,\
     \ X, Y};\n}\n#line 6 \"test/library_checker/graph/assignment.test.cpp\"\n\nvoid\
-    \ solve() {\n  LL(N);\n  VV(ll, A, N, N);\n  auto [ans, match, X, Y] = hungarian(A);\n\
-    \  print(ans);\n  print(match);\n\n  assert(SUM<ll>(X) + SUM<ll>(Y) == ans);\n\
-    \  FOR(i, N) FOR(j, N) assert(X[i] + Y[j] <= A[i][j]);\n}\n\nsigned main() {\n\
-    \  cout << fixed << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/assignment\"\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"flow/hungarian.hpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VV(ll, A, N, N);\n  auto [ans, match, X, Y] =\
-    \ hungarian(A);\n  print(ans);\n  print(match);\n\n  assert(SUM<ll>(X) + SUM<ll>(Y)\
+    \ solve() {\n  LL(N);\n  VV(ll, A, N, N);\n  auto [ans, match, X, Y] = hungarian<ll,\
+    \ true>(A);\n  print(ans);\n  print(match);\n\n  assert(SUM<ll>(X) + SUM<ll>(Y)\
     \ == ans);\n  FOR(i, N) FOR(j, N) assert(X[i] + Y[j] <= A[i][j]);\n}\n\nsigned\
     \ main() {\n  cout << fixed << setprecision(15);\n\n  solve();\n\n  return 0;\n\
     }\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/assignment\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"flow/hungarian.hpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  VV(ll, A, N, N);\n  auto [ans, match, X, Y] =\
+    \ hungarian<ll, true>(A);\n  print(ans);\n  print(match);\n\n  assert(SUM<ll>(X)\
+    \ + SUM<ll>(Y) == ans);\n  FOR(i, N) FOR(j, N) assert(X[i] + Y[j] <= A[i][j]);\n\
+    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  solve();\n\n \
+    \ return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -226,8 +227,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/assignment.test.cpp
   requiredBy: []
-  timestamp: '2023-11-12 00:09:13+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-12 00:46:09+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/assignment.test.cpp
 layout: document
