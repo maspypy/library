@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/my_multiset.hpp
     title: ds/my_multiset.hpp
   - icon: ':question:'
