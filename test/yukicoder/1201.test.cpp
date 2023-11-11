@@ -14,7 +14,7 @@ void solve() {
   for (auto&& a: A) {
     for (auto&& b: B) {
       // FOR(k, 1, b + 1) ANS += mint(floor(a * k, b));
-      i128 x = floor_sum_of_linear(1, b + 1, a, 0, b);
+      i128 x = floor_sum_of_linear<i128, ll>(1, b + 1, a, 0, b);
       ANS += x;
     }
   }
