@@ -1,15 +1,16 @@
 // (ans, match, X, Y)
+// N<=M を仮定, infty も valid として計算している
 // 最小重み最大マッチング。O(N^2M) time。
 // ポテンシャルは次の双対問題の解である：
 //   maximize \sum x_i + \sum y_j, subj to x_i + y_j\leq C_{ij}
 // returns:
-template <typename T>
+template <typename T, bool MINIMIZE>
 tuple<T, vc<int>, vc<T>, vc<T>> hungarian(vvc<T>& C) {
   int N = len(C);
   int M = len(C[0]);
   assert(N <= M);
   vv(T, A, N + 1, M + 1);
-  FOR(i, N) FOR(j, M) A[1 + i][1 + j] = C[i][j];
+  FOR(i, N) FOR(j, M) A[1 + i][1 + j] = (MINIMIZE ? 1 : -1) * C[i][j];
   ++N, ++M;
 
   vector<int> P(M), way(M);
@@ -52,5 +53,6 @@ tuple<T, vc<int>, vc<T>, vc<T>> hungarian(vvc<T>& C) {
   FOR(i, N) match[P[i]] = i;
   match.erase(match.begin());
   for (auto&& i: match) --i;
+  if (!MINIMIZE) res = -res;
   return {res, match, X, Y};
 }
