@@ -4,7 +4,9 @@
 解なし = empty
 */
 template <typename T>
-vc<vc<T>> solve_linear(const int n, const int m, vc<vc<T>> a, vc<T> b) {
+vc<vc<T>> solve_linear(vc<vc<T>> a, vc<T> b, int n = -1, int m = -1) {
+  if (n == -1) { n = len(a), m = len(b); }
+  assert(n == len(a) && m == len(b));
   int rk = 0;
   FOR(j, m) {
     if (rk == n) break;
