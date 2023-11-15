@@ -100,7 +100,7 @@ struct Dynamic_Modint {
 template <int id>
 void rd(Dynamic_Modint<id>& x) {
   fastio::rd(x.val);
-  assert(0 <= x.val && x.val < Dynamic_Modint<id>::get_mod());
+  assert(x.val < Dynamic_Modint<id>::umod());
 }
 template <int id>
 void wt(Dynamic_Modint<id> x) {
