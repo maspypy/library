@@ -12,9 +12,9 @@ data:
     title: my_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -164,24 +164,24 @@ data:
     \ (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
     \  }\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F\
     \ 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n\
-    \    if (mod == 167772161) return {25, 17};\n    if (mod == 469762049) return\
-    \ {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841)\
-    \ return {23, 211};\n    if (mod == 943718401) return {22, 663003469};\n    if\
-    \ (mod == 998244353) return {23, 31};\n    if (mod == 1045430273) return {20,\
-    \ 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881)\
-    \ return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt()\
-    \ { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
-    \ rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  assert(0 <= x.val && x.val < mod);\n\
-    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
-    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 5 \"test/mytest/multinomial.test.cpp\"\nusing mint = modint998;\n\nvoid\
-    \ test() {\n  assert(fact_invs<mint>() == mint(1));\n  assert(fact_invs<mint>(3)\
-    \ == mint(6).inverse());\n  assert(fact_invs<mint>(3, 4, 5) == mint(6 * 24 * 120).inverse());\n\
-    \n  assert(multinomial<mint>(10, 10) == mint(1));\n  assert(multinomial<mint>(10,\
-    \ 2, 8) == mint(45));\n  assert(multinomial<mint>(10, 2, 3, 5) == mint(2520));\n\
-    \  assert(multinomial<mint>(10, 1, 2, 3, 4) == mint(12600));\n}\n\nvoid solve()\
-    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
-    \ {\n  test();\n  solve();\n\n  return 0;\n}\n"
+    \    if (mod == 120586241) return {20, 74066978};\n    if (mod == 167772161) return\
+    \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
+    \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
+    \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
+    \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
+    \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
+    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
+    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
+    \  fastio::rd(x.val);\n  assert(0 <= x.val && x.val < mod);\n}\ntemplate <int\
+    \ mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107\
+    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 5 \"test/mytest/multinomial.test.cpp\"\
+    \nusing mint = modint998;\n\nvoid test() {\n  assert(fact_invs<mint>() == mint(1));\n\
+    \  assert(fact_invs<mint>(3) == mint(6).inverse());\n  assert(fact_invs<mint>(3,\
+    \ 4, 5) == mint(6 * 24 * 120).inverse());\n\n  assert(multinomial<mint>(10, 10)\
+    \ == mint(1));\n  assert(multinomial<mint>(10, 2, 8) == mint(45));\n  assert(multinomial<mint>(10,\
+    \ 2, 3, 5) == mint(2520));\n  assert(multinomial<mint>(10, 1, 2, 3, 4) == mint(12600));\n\
+    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
+    ;\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"mod/modint.hpp\"\nusing mint = modint998;\n\nvoid test() {\n  assert(fact_invs<mint>()\
     \ == mint(1));\n  assert(fact_invs<mint>(3) == mint(6).inverse());\n  assert(fact_invs<mint>(3,\
@@ -197,8 +197,8 @@ data:
   isVerificationFile: true
   path: test/mytest/multinomial.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 01:44:55+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-15 20:12:22+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/multinomial.test.cpp
 layout: document

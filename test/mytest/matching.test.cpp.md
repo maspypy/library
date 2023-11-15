@@ -4,29 +4,29 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/maximum_matching.hpp
     title: graph/maximum_matching.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/maximum_matching_size.hpp
     title: graph/maximum_matching_size.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -247,25 +247,27 @@ data:
     \ *= mul, n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n};\r\n\r\n#ifdef FASTIO\r\
     \nvoid rd(modint61 &x) {\r\n  fastio::rd(x.val);\r\n  assert(0 <= x.val && x.val\
     \ < modint61::mod);\r\n}\r\n\r\nvoid wt(modint61 x) { fastio::wt(x.val); }\r\n\
-    #endif\n#line 1 \"linalg/matrix_rank.hpp\"\ntemplate <typename T>\nint matrix_rank(const\
-    \ int n, const int m, vc<vc<T>> a) {\n  int rk = 0;\n  FOR(j, m) {\n    if (rk\
-    \ == n) break;\n    if (a[rk][j] == 0) {\n      FOR3(i, rk + 1, n) if (a[i][j]\
-    \ != T(0)) {\n        swap(a[rk], a[i]);\n        break;\n      }\n    }\n   \
-    \ if (a[rk][j] == 0) continue;\n    T c = T(1) / a[rk][j];\n    FOR(k, j, m) a[rk][k]\
-    \ *= c;\n    FOR(i, rk + 1, n) {\n      T c = a[i][j];\n      FOR3(k, j, m) {\
-    \ a[i][k] -= a[rk][k] * c; }\n    }\n    ++rk;\n  }\n  return rk;\n}\n#line 4\
-    \ \"graph/maximum_matching_size.hpp\"\n\ntemplate <typename GT>\nint maximum_matching_size(GT&\
-    \ G) {\n  static_assert(!GT::is_directed);\n  using mint = modint61;\n  int N\
-    \ = G.N;\n  vv(mint, tutte, N, N);\n  for (auto&& e: G.edges) {\n    mint x =\
-    \ RNG(mint::get_mod());\n    int i = e.frm, j = e.to;\n    tutte[i][j] += x;\n\
-    \    tutte[j][i] -= x;\n  }\n  return matrix_rank(N, N, tutte) / 2;\n}\n#line\
-    \ 7 \"test/mytest/matching.test.cpp\"\n\nvoid test() {\n  FOR(N, 0, 100) {\n \
-    \   FOR(M, 0, 100) {\n      if (N == 0 && M > 0) break;\n      Graph<int, 0> G(N);\n\
-    \      FOR(M) {\n        int a = RNG(0, N);\n        int b = RNG(0, N);\n    \
-    \    G.add(a, b);\n      }\n      G.build();\n      int x = maximum_matching(G).fi;\n\
-    \      int y = maximum_matching_size(G);\n      assert(x == y);\n    }\n  }\n\
-    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
-    ;\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    #endif\n#line 1 \"linalg/matrix_rank.hpp\"\ntemplate <typename T>\nint matrix_rank(vc<vc<T>>\
+    \ a, int n = -1, int m = -1) {\n  if (n == 0) return 0;\n  if (n == -1) { n =\
+    \ len(a), m = len(a[0]); }\n  assert(n == len(a) && m == len(a[0]));\n  int rk\
+    \ = 0;\n  FOR(j, m) {\n    if (rk == n) break;\n    if (a[rk][j] == 0) {\n   \
+    \   FOR3(i, rk + 1, n) if (a[i][j] != T(0)) {\n        swap(a[rk], a[i]);\n  \
+    \      break;\n      }\n    }\n    if (a[rk][j] == 0) continue;\n    T c = T(1)\
+    \ / a[rk][j];\n    FOR(k, j, m) a[rk][k] *= c;\n    FOR(i, rk + 1, n) {\n    \
+    \  T c = a[i][j];\n      FOR3(k, j, m) { a[i][k] -= a[rk][k] * c; }\n    }\n \
+    \   ++rk;\n  }\n  return rk;\n}\n#line 4 \"graph/maximum_matching_size.hpp\"\n\
+    \ntemplate <typename GT>\nint maximum_matching_size(GT& G) {\n  static_assert(!GT::is_directed);\n\
+    \  using mint = modint61;\n  int N = G.N;\n  vv(mint, tutte, N, N);\n  for (auto&&\
+    \ e: G.edges) {\n    mint x = RNG(mint::get_mod());\n    int i = e.frm, j = e.to;\n\
+    \    tutte[i][j] += x;\n    tutte[j][i] -= x;\n  }\n  return matrix_rank(N, N,\
+    \ tutte) / 2;\n}\n#line 7 \"test/mytest/matching.test.cpp\"\n\nvoid test() {\n\
+    \  FOR(N, 0, 100) {\n    FOR(M, 0, 100) {\n      if (N == 0 && M > 0) break;\n\
+    \      Graph<int, 0> G(N);\n      FOR(M) {\n        int a = RNG(0, N);\n     \
+    \   int b = RNG(0, N);\n        G.add(a, b);\n      }\n      G.build();\n    \
+    \  int x = maximum_matching(G).fi;\n      int y = maximum_matching_size(G);\n\
+    \      assert(x == y);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
+    \ a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"graph/maximum_matching.hpp\"\n#include \"graph/maximum_matching_size.hpp\"\
     \n#include \"random/base.hpp\"\n\nvoid test() {\n  FOR(N, 0, 100) {\n    FOR(M,\
@@ -286,8 +288,8 @@ data:
   isVerificationFile: true
   path: test/mytest/matching.test.cpp
   requiredBy: []
-  timestamp: '2023-11-10 11:44:35+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-15 20:12:22+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/matching.test.cpp
 layout: document

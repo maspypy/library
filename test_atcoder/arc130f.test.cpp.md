@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/cht_monotone.hpp
     title: convex/cht_monotone.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/fenchel.hpp
     title: convex/fenchel.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/arc130/tasks/arc130_f
@@ -262,30 +262,31 @@ data:
     \  modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
     \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr\
     \ int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\
-    \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 167772161) return\
-    \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
-    \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
-    \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
-    \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
-    \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
-    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
-    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
-    \  fastio::rd(x.val);\n  assert(0 <= x.val && x.val < mod);\n}\ntemplate <int\
-    \ mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107\
-    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 2 \"geo/base.hpp\"\
-    \ntemplate <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\
-    \n  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n \
-    \ template <typename A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se)\
-    \ {}\n\n  Point operator+(Point p) const { return {x + p.x, y + p.y}; }\n  Point\
-    \ operator-(Point p) const { return {x - p.x, y - p.y}; }\n  bool operator==(Point\
-    \ p) const { return x == p.x && y == p.y; }\n  bool operator!=(Point p) const\
-    \ { return x != p.x || y != p.y; }\n  Point operator-() const { return {-x, -y};\
-    \ }\n  Point operator*(T t) const { return {x * t, y * t}; }\n  Point operator/(T\
-    \ t) const { return {x / t, y / t}; }\n\n  bool operator<(Point p) const {\n \
-    \   if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n  T dot(Point other)\
-    \ { return x * other.x + y * other.y; }\n  T det(Point other) { return x * other.y\
-    \ - y * other.x; }\n\n  double norm() { return sqrtl(x * x + y * y); }\n  double\
-    \ angle() { return atan2(y, x); }\n\n  Point rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n\
+    \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 120586241) return\
+    \ {20, 74066978};\n    if (mod == 167772161) return {25, 17};\n    if (mod ==\
+    \ 469762049) return {26, 30};\n    if (mod == 754974721) return {24, 362};\n \
+    \   if (mod == 880803841) return {23, 211};\n    if (mod == 943718401) return\
+    \ {22, 663003469};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
+    \ 1045430273) return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n\
+    \    if (mod == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static\
+    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\n\
+    template <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  assert(0\
+    \ <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n\
+    \  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\nusing\
+    \ modint998 = modint<998244353>;\n#line 2 \"geo/base.hpp\"\ntemplate <typename\
+    \ T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template <typename\
+    \ A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename A,\
+    \ typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+(Point\
+    \ p) const { return {x + p.x, y + p.y}; }\n  Point operator-(Point p) const {\
+    \ return {x - p.x, y - p.y}; }\n  bool operator==(Point p) const { return x ==\
+    \ p.x && y == p.y; }\n  bool operator!=(Point p) const { return x != p.x || y\
+    \ != p.y; }\n  Point operator-() const { return {-x, -y}; }\n  Point operator*(T\
+    \ t) const { return {x * t, y * t}; }\n  Point operator/(T t) const { return {x\
+    \ / t, y / t}; }\n\n  bool operator<(Point p) const {\n    if (x != p.x) return\
+    \ x < p.x;\n    return y < p.y;\n  }\n  T dot(Point other) { return x * other.x\
+    \ + y * other.y; }\n  T det(Point other) { return x * other.y - y * other.x; }\n\
+    \n  double norm() { return sqrtl(x * x + y * y); }\n  double angle() { return\
+    \ atan2(y, x); }\n\n  Point rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n\
     \    double c = cos(theta), s = sin(theta);\n    return Point{c * x - s * y, s\
     \ * x + c * y};\n  }\n};\n\n#ifdef FASTIO\ntemplate <typename T>\nvoid rd(Point<T>&\
     \ p) {\n  fastio::rd(p.x), fastio::rd(p.y);\n}\ntemplate <typename T>\nvoid wt(Point<T>&\
@@ -439,8 +440,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/arc130f.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-15 20:12:22+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/arc130f.test.cpp
 layout: document

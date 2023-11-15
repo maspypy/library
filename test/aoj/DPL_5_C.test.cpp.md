@@ -253,24 +253,24 @@ data:
     \ (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
     \  }\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F\
     \ 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n\
-    \    if (mod == 167772161) return {25, 17};\n    if (mod == 469762049) return\
-    \ {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841)\
-    \ return {23, 211};\n    if (mod == 943718401) return {22, 663003469};\n    if\
-    \ (mod == 998244353) return {23, 31};\n    if (mod == 1045430273) return {20,\
-    \ 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881)\
-    \ return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt()\
-    \ { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
-    \ rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  assert(0 <= x.val && x.val < mod);\n\
-    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
-    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 1 \"setfunc/count_surjection.hpp\"\ntemplate<typename mint>\r\nmint count_surjection(ll\
-    \ n, ll m) {\r\n  if (n < m) return 0;\r\n  mint res = 0;\r\n  FOR(i, m + 1) {\r\
-    \n    mint sgn = ((m - i) & 1 ? -1 : 1);\r\n    res += mint(i).pow(n) * C<mint>(m,\
-    \ i) * sgn;\r\n  }\r\n  return res;\r\n}\n#line 7 \"test/aoj/DPL_5_C.test.cpp\"\
-    \n\nusing mint = modint107;\n\nvoid solve() {\n  LL(N, K);\n  print(count_surjection<mint>(N,\
-    \ K));\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
+    \    if (mod == 120586241) return {20, 74066978};\n    if (mod == 167772161) return\
+    \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
+    \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
+    \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
+    \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
+    \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
+    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
+    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
+    \  fastio::rd(x.val);\n  assert(0 <= x.val && x.val < mod);\n}\ntemplate <int\
+    \ mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107\
+    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 1 \"setfunc/count_surjection.hpp\"\
+    \ntemplate<typename mint>\r\nmint count_surjection(ll n, ll m) {\r\n  if (n <\
+    \ m) return 0;\r\n  mint res = 0;\r\n  FOR(i, m + 1) {\r\n    mint sgn = ((m -\
+    \ i) & 1 ? -1 : 1);\r\n    res += mint(i).pow(n) * C<mint>(m, i) * sgn;\r\n  }\r\
+    \n  return res;\r\n}\n#line 7 \"test/aoj/DPL_5_C.test.cpp\"\n\nusing mint = modint107;\n\
+    \nvoid solve() {\n  LL(N, K);\n  print(count_surjection<mint>(N, K));\n}\n\nsigned\
+    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_5_C\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\
     \n#include \"setfunc/count_surjection.hpp\"\n\nusing mint = modint107;\n\nvoid\
@@ -286,7 +286,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL_5_C.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
+  timestamp: '2023-11-15 20:12:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL_5_C.test.cpp

@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/centroid_decomposition.hpp
     title: graph/centroid_decomposition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/contour_query_range.hpp
     title: graph/ds/contour_query_range.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_get_range_contour_add_on_tree
@@ -396,14 +396,16 @@ data:
     \ 1 || MODE == 2);\n  if constexpr (MODE == 0) { centroid_decomposition_0_dfs(par,\
     \ V, f); }\n  elif constexpr(MODE == 1) { centroid_decomposition_1_dfs(par, V,\
     \ f); }\n  else {\n    vc<int> real(N, 1);\n    centroid_decomposition_2_dfs(par,\
-    \ V, real, f);\n  }\n}\n#line 2 \"graph/ds/contour_query_range.hpp\"\n\ntemplate\
-    \ <typename GT, bool WEIGHTED>\nstruct Contour_Query_Range {\n  using WT = std::conditional_t<WEIGHTED,\
-    \ typename GT::cost_type, int>;\n  int N;\n  vc<int> V;\n  vc<int> comp;\n  vc<WT>\
-    \ dep;\n  vc<int> info_idx, info_indptr;\n  vc<int> comp_range;\n\n  Contour_Query_Range(GT&\
-    \ G0) : N(G0.N) {\n    int p = 0;\n    comp_range = {0};\n    auto f = [&](vc<int>&\
-    \ par, vc<int>& vs, vc<int>& color) -> void {\n      const int n = len(par);\n\
-    \      vc<WT> dist(n);\n      vc<int> A, B;\n      FOR(v, 1, n) {\n        static_assert(!WEIGHTED);\n\
-    \        dist[v] = dist[par[v]] + 1;\n      }\n      FOR(v, n) {\n        if (color[v]\
+    \ V, real, f);\n  }\n}\n#line 2 \"graph/ds/contour_query_range.hpp\"\n\n// \u8DDD\
+    \u96E2 0 \u306F\u542B\u3081\u3066\u3044\u306A\u3044\u3053\u3068\u306B\u6CE8\u610F\
+    \uFF01\ntemplate <typename GT, bool WEIGHTED>\nstruct Contour_Query_Range {\n\
+    \  using WT = std::conditional_t<WEIGHTED, typename GT::cost_type, int>;\n  int\
+    \ N;\n  vc<int> V;\n  vc<int> comp;\n  vc<WT> dep;\n  vc<int> info_idx, info_indptr;\n\
+    \  vc<int> comp_range;\n\n  Contour_Query_Range(GT& G0) : N(G0.N) {\n    int p\
+    \ = 0;\n    comp_range = {0};\n    auto f = [&](vc<int>& par, vc<int>& vs, vc<int>&\
+    \ color) -> void {\n      const int n = len(par);\n      vc<WT> dist(n);\n   \
+    \   vc<int> A, B;\n      FOR(v, 1, n) {\n        static_assert(!WEIGHTED);\n \
+    \       dist[v] = dist[par[v]] + 1;\n      }\n      FOR(v, n) {\n        if (color[v]\
     \ == 0) A.eb(v);\n        if (color[v] == 1) B.eb(v);\n      }\n      if (A.empty()\
     \ || B.empty()) return;\n      int mx_A = 0, mx_B = 0;\n      for (auto& v: A)\
     \ {\n        V.eb(vs[v]), comp.eb(p), dep.eb(dist[v]), chmax(mx_A, dist[v]);\n\
@@ -460,8 +462,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 04:05:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-15 20:12:22+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
 layout: document
