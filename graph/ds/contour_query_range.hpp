@@ -1,5 +1,6 @@
 #include "graph/centroid_decomposition.hpp"
 
+// 距離 0 は含めていないことに注意！
 template <typename GT, bool WEIGHTED>
 struct Contour_Query_Range {
   using WT = std::conditional_t<WEIGHTED, typename GT::cost_type, int>;
