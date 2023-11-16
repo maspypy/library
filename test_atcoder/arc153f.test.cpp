@@ -9,7 +9,7 @@
 
 using mint = modint998;
 
-void naive(Graph<bool, 0> G) {
+void naive(Graph<int, 0> G) {
   const int N = G.N;
   const int M = G.M;
 
@@ -44,7 +44,7 @@ void naive(Graph<bool, 0> G) {
 
 void solve() {
   LL(N, M);
-  Graph<bool, 0> G(N);
+  Graph<int, 0> G(N);
   G.read_graph(M);
   if (N <= 4) return naive(G);
 
