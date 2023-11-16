@@ -4,16 +4,16 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/maximum_matching.hpp
     title: graph/maximum_matching.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/maximum_matching_size.hpp
     title: graph/maximum_matching_size.hpp
   - icon: ':question:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -259,8 +259,8 @@ data:
     \ntemplate <typename GT>\nint maximum_matching_size(GT& G) {\n  static_assert(!GT::is_directed);\n\
     \  using mint = modint61;\n  int N = G.N;\n  vv(mint, tutte, N, N);\n  for (auto&&\
     \ e: G.edges) {\n    mint x = RNG(mint::get_mod());\n    int i = e.frm, j = e.to;\n\
-    \    tutte[i][j] += x;\n    tutte[j][i] -= x;\n  }\n  return matrix_rank(N, N,\
-    \ tutte) / 2;\n}\n#line 7 \"test/mytest/matching.test.cpp\"\n\nvoid test() {\n\
+    \    tutte[i][j] += x;\n    tutte[j][i] -= x;\n  }\n  return matrix_rank(tutte,\
+    \ N, N) / 2;\n}\n#line 7 \"test/mytest/matching.test.cpp\"\n\nvoid test() {\n\
     \  FOR(N, 0, 100) {\n    FOR(M, 0, 100) {\n      if (N == 0 && M > 0) break;\n\
     \      Graph<int, 0> G(N);\n      FOR(M) {\n        int a = RNG(0, N);\n     \
     \   int b = RNG(0, N);\n        G.add(a, b);\n      }\n      G.build();\n    \
@@ -288,8 +288,8 @@ data:
   isVerificationFile: true
   path: test/mytest/matching.test.cpp
   requiredBy: []
-  timestamp: '2023-11-15 20:12:22+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-16 08:58:57+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/matching.test.cpp
 layout: document

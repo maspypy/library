@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -12,21 +12,21 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/general_matching.test.cpp
     title: test/library_checker/graph/general_matching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/matching.test.cpp
     title: test/mytest/matching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/matching_line_graph.test.cpp
     title: test/mytest/matching_line_graph.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -74,14 +74,14 @@ data:
     \ntemplate <typename GT>\nint maximum_matching_size(GT& G) {\n  static_assert(!GT::is_directed);\n\
     \  using mint = modint61;\n  int N = G.N;\n  vv(mint, tutte, N, N);\n  for (auto&&\
     \ e: G.edges) {\n    mint x = RNG(mint::get_mod());\n    int i = e.frm, j = e.to;\n\
-    \    tutte[i][j] += x;\n    tutte[j][i] -= x;\n  }\n  return matrix_rank(N, N,\
-    \ tutte) / 2;\n}\n"
+    \    tutte[i][j] += x;\n    tutte[j][i] -= x;\n  }\n  return matrix_rank(tutte,\
+    \ N, N) / 2;\n}\n"
   code: "#include \"random/base.hpp\"\n#include \"mod/modint61.hpp\"\n#include \"\
     linalg/matrix_rank.hpp\"\n\ntemplate <typename GT>\nint maximum_matching_size(GT&\
     \ G) {\n  static_assert(!GT::is_directed);\n  using mint = modint61;\n  int N\
     \ = G.N;\n  vv(mint, tutte, N, N);\n  for (auto&& e: G.edges) {\n    mint x =\
     \ RNG(mint::get_mod());\n    int i = e.frm, j = e.to;\n    tutte[i][j] += x;\n\
-    \    tutte[j][i] -= x;\n  }\n  return matrix_rank(N, N, tutte) / 2;\n}\n"
+    \    tutte[j][i] -= x;\n  }\n  return matrix_rank(tutte, N, N) / 2;\n}\n"
   dependsOn:
   - random/base.hpp
   - mod/modint61.hpp
@@ -89,8 +89,8 @@ data:
   isVerificationFile: false
   path: graph/maximum_matching_size.hpp
   requiredBy: []
-  timestamp: '2023-11-15 20:12:22+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-11-16 08:58:57+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/tutte.test.cpp
   - test/mytest/matching_line_graph.test.cpp
