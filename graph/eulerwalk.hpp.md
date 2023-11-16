@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/vs_to_es.hpp
     title: graph/vs_to_es.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc157a.test.cpp
     title: test_atcoder/arc157a.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -99,16 +99,16 @@ data:
     \ val)\r\n  template <typename F>\r\n  void enumerate_all(F f) {\r\n    static_assert(KEEP_IDS);\r\
     \n    for (auto&& i: IDS) f(key[i], val[i]);\r\n  }\r\n};\r\n#line 4 \"graph/vs_to_es.hpp\"\
     \n\ntemplate <typename GT>\nvc<int> vs_to_es(GT& G, vc<int>& vs, bool allow_use_twice\
-    \ = false) {\n  assert(!vs.empty());\n\n  static HashMap<int> MP;\n  MP.reset();\n\
-    \  vc<int> nxt(G.M, -1);\n\n  auto get = [&](ll a, ll b) -> u64 {\n    if (GT::is_directed\
-    \ && a > b) swap(a, b);\n    return a * G.N + b;\n  };\n\n  FOR(eid, G.M) {\n\
-    \    u64 k = get(G.edges[eid].frm, G.edges[eid].to);\n    int x = MP[k];\n   \
-    \ nxt[eid] = x, MP[k] = eid;\n  }\n  int n = len(vs);\n  vc<int> es(n - 1);\n\
-    \  FOR(i, n - 1) {\n    u64 k = get(vs[i], vs[i + 1]);\n    int eid = MP.get(k,\
-    \ -1);\n    assert(eid != -1);\n    es[i] = eid;\n    if (!allow_use_twice) {\
-    \ MP[k] = nxt[eid]; }\n  }\n  return es;\n}\n#line 3 \"graph/eulerwalk.hpp\"\n\
-    \r\n// (vs, es) or empty\r\ntemplate <typename GT>\r\npair<vc<int>, vc<int>> euler_walk(GT&\
-    \ G, int s = -1) {\r\n  const int N = G.N, M = G.M;\r\n  assert(G.is_prepared());\r\
+    \ = false) {\n  assert(!vs.empty());\n\n  static HashMap<int, 20, true> MP;\n\
+    \  MP.reset();\n  vc<int> nxt(G.M, -1);\n\n  auto get = [&](ll a, ll b) -> u64\
+    \ {\n    if (GT::is_directed && a > b) swap(a, b);\n    return a * G.N + b;\n\
+    \  };\n\n  FOR(eid, G.M) {\n    u64 k = get(G.edges[eid].frm, G.edges[eid].to);\n\
+    \    int x = MP[k];\n    nxt[eid] = x, MP[k] = eid;\n  }\n  int n = len(vs);\n\
+    \  vc<int> es(n - 1);\n  FOR(i, n - 1) {\n    u64 k = get(vs[i], vs[i + 1]);\n\
+    \    int eid = MP.get(k, -1);\n    assert(eid != -1);\n    es[i] = eid;\n    if\
+    \ (!allow_use_twice) { MP[k] = nxt[eid]; }\n  }\n  return es;\n}\n#line 3 \"graph/eulerwalk.hpp\"\
+    \n\r\n// (vs, es) or empty\r\ntemplate <typename GT>\r\npair<vc<int>, vc<int>>\
+    \ euler_walk(GT& G, int s = -1) {\r\n  const int N = G.N, M = G.M;\r\n  assert(G.is_prepared());\r\
     \n  assert(N > 0);\r\n\r\n  if (s == -1) {\r\n    vc<int> deg(N);\r\n    for (auto&&\
     \ e: G.edges) {\r\n      if constexpr (GT::is_directed) {\r\n        deg[e.frm]++,\
     \ deg[e.to]--;\r\n      } else {\r\n        deg[e.frm]++, deg[e.to]++;\r\n   \
@@ -151,8 +151,8 @@ data:
   isVerificationFile: false
   path: graph/eulerwalk.hpp
   requiredBy: []
-  timestamp: '2023-11-09 00:12:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-11-16 17:28:27+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/arc157a.test.cpp
 documentation_of: graph/eulerwalk.hpp
