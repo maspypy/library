@@ -53,7 +53,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: poly/composition_f_rational.hpp
     title: poly/composition_f_rational.hpp
   - icon: ':heavy_check_mark:'
@@ -138,9 +138,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc288ex.test.cpp
     title: test_atcoder/abc288ex.test.cpp
-  - icon: ':x:'
-    path: test_atcoder/arc133f.test.cpp
-    title: test_atcoder/arc133f.test.cpp
   - icon: ':x:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
@@ -638,7 +635,6 @@ data:
   - test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
   - test_atcoder/abc222h.test.cpp
   - test_atcoder/abc285h.test.cpp
-  - test_atcoder/arc133f.test.cpp
   - test_atcoder/arc160d.test.cpp
   - test_atcoder/abc288ex.test.cpp
   - test_atcoder/arc153f.test.cpp

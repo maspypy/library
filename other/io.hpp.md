@@ -1830,9 +1830,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc130f.test.cpp
     title: test_atcoder/arc130f.test.cpp
-  - icon: ':x:'
-    path: test_atcoder/arc133f.test.cpp
-    title: test_atcoder/arc133f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc144d.test.cpp
     title: test_atcoder/arc144d.test.cpp
@@ -2619,7 +2616,6 @@ data:
   - test_atcoder/abc272_h.test.cpp
   - test_atcoder/abc270_g.test.cpp
   - test_atcoder/arc162f.test.cpp
-  - test_atcoder/arc133f.test.cpp
   - test_atcoder/abc256ex.test.cpp
   - test_atcoder/abc321g.test.cpp
   - test_atcoder/abc301h.test.cpp

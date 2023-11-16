@@ -17,13 +17,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: poly/composition_f_polynomial.hpp
     title: poly/composition_f_polynomial.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: poly/composition_f_rational.hpp
     title: poly/composition_f_rational.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   - icon: ':heavy_check_mark:'
@@ -109,9 +109,6 @@ data:
     path: test_atcoder/abc281g.test.cpp
     title: test_atcoder/abc281g.test.cpp
   - icon: ':x:'
-    path: test_atcoder/arc133f.test.cpp
-    title: test_atcoder/arc133f.test.cpp
-  - icon: ':x:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
   _isVerificationFailed: true
@@ -189,7 +186,6 @@ data:
   - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
   - test_atcoder/abc249_ex.test.cpp
   - test_atcoder/abc202_f.test.cpp
-  - test_atcoder/arc133f.test.cpp
   - test_atcoder/abc281g.test.cpp
   - test_atcoder/arc153f.test.cpp
 documentation_of: mod/powertable.hpp
