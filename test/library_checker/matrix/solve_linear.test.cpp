@@ -13,7 +13,7 @@ void solve() {
   auto xs = solve_linear(A, b);
   if (len(xs) == 0) return print(-1);
 
-  assert(len(xs) - 1 == M - matrix_rank(N, M, A));
+  assert(len(xs) - 1 == M - matrix_rank(A));
 
   print(len(xs) - 1);
   FOR(r, len(xs)) print(xs[r]);
