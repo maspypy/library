@@ -5,8 +5,12 @@
 */
 template <typename T>
 vc<vc<T>> solve_linear(vc<vc<T>> a, vc<T> b, int n = -1, int m = -1) {
-  if (n == -1) { n = len(a), m = len(b); }
-  assert(n == len(a) && m == len(b));
+  if (n == -1) {
+    n = len(a);
+    assert(n > 0);
+    m = len(a[0]);
+  }
+  assert(n == len(a) && n == len(b));
   int rk = 0;
   FOR(j, m) {
     if (rk == n) break;
