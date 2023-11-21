@@ -25,7 +25,10 @@ struct HashMap {
 
   Val& operator[](const u64& k) {
     int i = index(k);
-    if (!used[i]) { set_used(i), key[i] = k, val[i] = Val{}; }
+    if (!used[i]) {
+      used[i] = 1, key[i] = k, val[i] = Val{};
+      if constexpr (KEEP_IDS) IDS.eb(i);
+    }
     return val[i];
   }
 
@@ -38,11 +41,6 @@ struct HashMap {
   bool count(const u64& k) {
     int i = index(k);
     return used[i] && key[i] == k;
-  }
-
-  void set_used(int i) {
-    used[i] = 1;
-    if constexpr (KEEP_IDS) IDS.eb(i);
   }
 
   void reset() {
