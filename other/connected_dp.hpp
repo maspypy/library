@@ -155,8 +155,8 @@ pair<vvc<int>, vc<pair<int, int>>> polygon_dp_graph(int N) {
       u64 h = hash_vector<int>(nxt);
       int idx = MP.index(h);
       if (!MP.used[idx]) {
-        MP.set_used(idx);
-        MP.key[idx] = h, MP.val[idx] = len(states);
+        MP.used[idx] = 1, MP.IDS.eb(idx), MP.key[idx] = h,
+        MP.val[idx] = len(states);
         states.eb(nxt);
       }
       edges.eb(p, MP.val[idx]);

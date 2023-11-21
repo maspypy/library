@@ -56,8 +56,8 @@ struct Range_Closest_Pair_Query {
         u64 key = to_64(x, y);
         int idx = MP.index(key);
         if (!MP.used[idx]) {
-          MP.set_used(idx);
-          MP.key[idx] = key, MP.val[idx] = p++;
+          MP.used[idx] = 1, MP.IDS.eb(idx), MP.key[idx] = key,
+          MP.val[idx] = p++;
         }
         IDX[k][i] = MP.val[idx];
       }
