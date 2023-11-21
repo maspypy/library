@@ -771,6 +771,9 @@ data:
     - icon: ':x:'
       path: graph/path_cycle.hpp
       title: graph/path_cycle.hpp
+    - icon: ':x:'
+      path: graph/planar_graph.hpp
+      title: graph/planar_graph.hpp
     - icon: ':heavy_check_mark:'
       path: graph/range_to_range_graph.hpp
       title: graph/range_to_range_graph.hpp
@@ -1550,7 +1553,7 @@ data:
     - icon: ':question:'
       path: seq/find_linear_rec.hpp
       title: seq/find_linear_rec.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: seq/geometric_sequence_sum.hpp
       title: seq/geometric_sequence_sum.hpp
     - icon: ':x:'
@@ -2734,7 +2737,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/four_square.test.cpp
       title: test/mytest/four_square.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/mytest/geometric_sequence_sum.test.cpp
       title: test/mytest/geometric_sequence_sum.test.cpp
     - icon: ':x:'
@@ -3315,7 +3318,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1666.test.cpp
       title: test/yukicoder/1666.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/1667.test.cpp
       title: test/yukicoder/1667.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3372,6 +3375,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1775.test.cpp
       title: test/yukicoder/1775.test.cpp
+    - icon: ':x:'
+      path: test/yukicoder/1777.test.cpp
+      title: test/yukicoder/1777.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1778.test.cpp
       title: test/yukicoder/1778.test.cpp

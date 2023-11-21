@@ -954,7 +954,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/geometric_sequence_sum.test.cpp
     title: test/mytest/geometric_sequence_sum.test.cpp
   - icon: ':x:'
@@ -1527,7 +1527,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1666.test.cpp
     title: test/yukicoder/1666.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1667.test.cpp
     title: test/yukicoder/1667.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1584,6 +1584,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1775.test.cpp
     title: test/yukicoder/1775.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1777.test.cpp
+    title: test/yukicoder/1777.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1778.test.cpp
     title: test/yukicoder/1778.test.cpp
@@ -3071,6 +3074,7 @@ data:
   - test/yukicoder/1260.test.cpp
   - test/yukicoder/1666.test.cpp
   - test/yukicoder/1561.test.cpp
+  - test/yukicoder/1777.test.cpp
   - test/yukicoder/1649.test.cpp
   - test/yukicoder/1270.test.cpp
   - test/yukicoder/1216.test.cpp

@@ -219,9 +219,9 @@ data:
     \ - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static pair<int, int> ntt_info()\
     \ { return get_ntt(); }\n  static bool can_ntt() { return ntt_info().fi != -1;\
     \ }\n};\n\n#ifdef FASTIO\ntemplate <int id>\nvoid rd(Dynamic_Modint<id>& x) {\n\
-    \  fastio::rd(x.val);\n  assert(x.val < Dynamic_Modint<id>::umod());\n}\ntemplate\
-    \ <int id>\nvoid wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
-    \nusing dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n\
+    \  fastio::rd(x.val);\n  x.val %= Dynamic_Modint<id>::umod();\n}\ntemplate <int\
+    \ id>\nvoid wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing\
+    \ dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n\
     #line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Monoid_Mul {\r\
     \n  using value_type = T;\r\n  using X = T;\r\n  static constexpr X op(const X\
     \ &x, const X &y) noexcept { return x * y; }\r\n  static constexpr X inverse(const\
@@ -299,7 +299,7 @@ data:
   isVerificationFile: false
   path: mod/mod_log.hpp
   requiredBy: []
-  timestamp: '2023-11-21 19:08:32+09:00'
+  timestamp: '2023-11-21 22:50:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/discrete_logarithm_mod.test.cpp

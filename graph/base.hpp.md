@@ -155,6 +155,9 @@ data:
   - icon: ':x:'
     path: graph/path_cycle.hpp
     title: graph/path_cycle.hpp
+  - icon: ':x:'
+    path: graph/planar_graph.hpp
+    title: graph/planar_graph.hpp
   - icon: ':heavy_check_mark:'
     path: graph/range_to_range_graph.hpp
     title: graph/range_to_range_graph.hpp
@@ -546,6 +549,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1775.test.cpp
     title: test/yukicoder/1775.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1777.test.cpp
+    title: test/yukicoder/1777.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1778.test.cpp
     title: test/yukicoder/1778.test.cpp
@@ -832,6 +838,7 @@ data:
   - graph/maximum_independent_set.hpp
   - graph/dag_path_cover.hpp
   - graph/steiner_tree.hpp
+  - graph/planar_graph.hpp
   - graph/find_cycle.hpp
   - graph/minimum_spanning_tree.hpp
   - graph/compress_tree.hpp
@@ -1001,6 +1008,7 @@ data:
   - test/yukicoder/1170.test.cpp
   - test/yukicoder/1615.test.cpp
   - test/yukicoder/2342.test.cpp
+  - test/yukicoder/1777.test.cpp
   - test/yukicoder/1216.test.cpp
   - test/yukicoder/1718.test.cpp
   - test/yukicoder/1494.test.cpp

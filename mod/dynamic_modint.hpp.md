@@ -75,13 +75,13 @@ data:
   - icon: ':x:'
     path: test/mytest/31bit_modint.test.cpp
     title: test/mytest/31bit_modint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/geometric_sequence_sum.test.cpp
     title: test/mytest/geometric_sequence_sum.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1667.test.cpp
     title: test/yukicoder/1667.test.cpp
   - icon: ':x:'
@@ -267,9 +267,9 @@ data:
     \ - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static pair<int, int> ntt_info()\
     \ { return get_ntt(); }\n  static bool can_ntt() { return ntt_info().fi != -1;\
     \ }\n};\n\n#ifdef FASTIO\ntemplate <int id>\nvoid rd(Dynamic_Modint<id>& x) {\n\
-    \  fastio::rd(x.val);\n  assert(x.val < Dynamic_Modint<id>::umod());\n}\ntemplate\
-    \ <int id>\nvoid wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
-    \nusing dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n"
+    \  fastio::rd(x.val);\n  x.val %= Dynamic_Modint<id>::umod();\n}\ntemplate <int\
+    \ id>\nvoid wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing\
+    \ dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n"
   code: "#pragma once\n\n#include \"mod/modint_common.hpp\"\n#include \"mod/primitive_root.hpp\"\
     \n#include \"mod/barrett.hpp\"\n\ntemplate <int id>\nstruct Dynamic_Modint {\n\
     \  static constexpr bool is_modint = true;\n  using mint = Dynamic_Modint;\n \
@@ -305,9 +305,9 @@ data:
     \ (mod - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static pair<int, int>\
     \ ntt_info() { return get_ntt(); }\n  static bool can_ntt() { return ntt_info().fi\
     \ != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int id>\nvoid rd(Dynamic_Modint<id>&\
-    \ x) {\n  fastio::rd(x.val);\n  assert(x.val < Dynamic_Modint<id>::umod());\n\
-    }\ntemplate <int id>\nvoid wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n\
-    }\n#endif\n\nusing dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n"
+    \ x) {\n  fastio::rd(x.val);\n  x.val %= Dynamic_Modint<id>::umod();\n}\ntemplate\
+    \ <int id>\nvoid wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \nusing dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n"
   dependsOn:
   - mod/modint_common.hpp
   - mod/primitive_root.hpp
@@ -321,7 +321,7 @@ data:
   path: mod/dynamic_modint.hpp
   requiredBy:
   - mod/mod_log.hpp
-  timestamp: '2023-11-15 20:12:22+09:00'
+  timestamp: '2023-11-21 22:50:38+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc270_g.test.cpp

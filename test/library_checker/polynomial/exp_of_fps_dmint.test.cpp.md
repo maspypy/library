@@ -700,9 +700,9 @@ data:
     \ - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static pair<int, int> ntt_info()\
     \ { return get_ntt(); }\n  static bool can_ntt() { return ntt_info().fi != -1;\
     \ }\n};\n\n#ifdef FASTIO\ntemplate <int id>\nvoid rd(Dynamic_Modint<id>& x) {\n\
-    \  fastio::rd(x.val);\n  assert(x.val < Dynamic_Modint<id>::umod());\n}\ntemplate\
-    \ <int id>\nvoid wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
-    \nusing dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n\
+    \  fastio::rd(x.val);\n  x.val %= Dynamic_Modint<id>::umod();\n}\ntemplate <int\
+    \ id>\nvoid wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing\
+    \ dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n\
     #line 7 \"test/library_checker/polynomial/exp_of_fps_dmint.test.cpp\"\n\nusing\
     \ mint = dmint;\n\nvoid solve() {\n  mint::set_mod(998244353);\n  LL(N);\n  VEC(mint,\
     \ A, N);\n  print(fps_exp(A));\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
@@ -739,7 +739,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
   requiredBy: []
-  timestamp: '2023-11-21 19:08:32+09:00'
+  timestamp: '2023-11-21 22:50:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/polynomial/exp_of_fps_dmint.test.cpp

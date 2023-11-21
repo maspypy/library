@@ -462,9 +462,9 @@ data:
     \ - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static pair<int, int> ntt_info()\
     \ { return get_ntt(); }\n  static bool can_ntt() { return ntt_info().fi != -1;\
     \ }\n};\n\n#ifdef FASTIO\ntemplate <int id>\nvoid rd(Dynamic_Modint<id>& x) {\n\
-    \  fastio::rd(x.val);\n  assert(x.val < Dynamic_Modint<id>::umod());\n}\ntemplate\
-    \ <int id>\nvoid wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
-    \nusing dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n\
+    \  fastio::rd(x.val);\n  x.val %= Dynamic_Modint<id>::umod();\n}\ntemplate <int\
+    \ id>\nvoid wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing\
+    \ dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n\
     #line 8 \"test_atcoder/abc222g.test.cpp\"\n\nusing mint = dmint;\nusing AS = ActedSet_Affine<mint>;\n\
     \nvoid solve() {\n  LL(mod);\n  mint::set_mod(mod);\n  pair<mint, mint> a = {mint(10),\
     \ mint(2)};\n  auto H = [&](mint x) -> int { return x.val; };\n  ll ANS = discrete_log_acted<AS>(a,\
@@ -499,7 +499,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc222g.test.cpp
   requiredBy: []
-  timestamp: '2023-11-21 19:08:32+09:00'
+  timestamp: '2023-11-21 22:50:38+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc222g.test.cpp

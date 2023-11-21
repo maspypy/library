@@ -53,6 +53,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/reflection.hpp
     title: geo/reflection.hpp
+  - icon: ':x:'
+    path: graph/planar_graph.hpp
+    title: graph/planar_graph.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_1_A.test.cpp
@@ -99,6 +102,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/incremental_ch.test.cpp
     title: test/mytest/incremental_ch.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1777.test.cpp
+    title: test/yukicoder/1777.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc139f.test.cpp
     title: test_atcoder/abc139f.test.cpp
@@ -266,6 +272,7 @@ data:
   - geo/distance.hpp
   - geo/incircle.hpp
   - geo/projection.hpp
+  - graph/planar_graph.hpp
   - convex/fenchel.hpp
   timestamp: '2023-11-07 01:10:45+09:00'
   verificationStatus: LIBRARY_SOME_WA
@@ -283,6 +290,7 @@ data:
   - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - test/mytest/incremental_ch.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp
+  - test/yukicoder/1777.test.cpp
   - test/aoj/CGL_3_B.test.cpp
   - test/aoj/CGL_1_A.test.cpp
   - test/aoj/CGL_2_D.test.cpp

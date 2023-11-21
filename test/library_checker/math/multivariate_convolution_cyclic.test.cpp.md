@@ -792,9 +792,9 @@ data:
     \ (mod - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static pair<int, int>\
     \ ntt_info() { return get_ntt(); }\n  static bool can_ntt() { return ntt_info().fi\
     \ != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int id>\nvoid rd(Dynamic_Modint<id>&\
-    \ x) {\n  fastio::rd(x.val);\n  assert(x.val < Dynamic_Modint<id>::umod());\n\
-    }\ntemplate <int id>\nvoid wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n\
-    }\n#endif\n\nusing dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n\
+    \ x) {\n  fastio::rd(x.val);\n  x.val %= Dynamic_Modint<id>::umod();\n}\ntemplate\
+    \ <int id>\nvoid wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \nusing dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n\
     #line 7 \"test/library_checker/math/multivariate_convolution_cyclic.test.cpp\"\
     \n\nusing mint = dmint;\n\nvoid solve() {\n  INT(p, K);\n  mint::set_mod(p);\n\
     \  VEC(int, ns, K);\n  int N = 1;\n  for (auto&& n: ns) N *= n;\n  VEC(mint, f,\
@@ -835,7 +835,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   requiredBy: []
-  timestamp: '2023-11-21 19:08:32+09:00'
+  timestamp: '2023-11-21 22:50:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/multivariate_convolution_cyclic.test.cpp

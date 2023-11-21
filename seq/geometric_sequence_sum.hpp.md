@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/geometric_sequence_sum.test.cpp
     title: test/mytest/geometric_sequence_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"seq/geometric_sequence_sum.hpp\"\n\n// sum_{i=0}^{n-1}r^i\n\
@@ -50,7 +50,7 @@ data:
   path: seq/geometric_sequence_sum.hpp
   requiredBy: []
   timestamp: '2023-10-25 17:42:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/geometric_sequence_sum.test.cpp
 documentation_of: seq/geometric_sequence_sum.hpp

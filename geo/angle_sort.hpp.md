@@ -11,6 +11,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/max_norm_sum.hpp
     title: geo/max_norm_sum.hpp
+  - icon: ':x:'
+    path: graph/planar_graph.hpp
+    title: graph/planar_graph.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/sort_points_by_argument.test.cpp
@@ -21,6 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_points_in_triangles.test.cpp
     title: test/mytest/count_points_in_triangles.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1777.test.cpp
+    title: test/yukicoder/1777.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc139f.test.cpp
     title: test_atcoder/abc139f.test.cpp
@@ -122,6 +128,7 @@ data:
   requiredBy:
   - geo/max_norm_sum.hpp
   - geo/count_points_in_triangles.hpp
+  - graph/planar_graph.hpp
   timestamp: '2023-11-07 01:10:45+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -130,6 +137,7 @@ data:
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
   - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp
+  - test/yukicoder/1777.test.cpp
 documentation_of: geo/angle_sort.hpp
 layout: document
 redirect_from:
