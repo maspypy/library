@@ -11,9 +11,8 @@ struct BipartiteMatching {
   vc<int> vis;
 
   BipartiteMatching(GT& G) : N(G.N), G(G), dist(G.N, -1), match(G.N, -1) {
-    if (N == 0) return;
     color = bipartite_vertex_coloring(G);
-    assert(!color.empty());
+    if (N > 0) assert(!color.empty());
     while (1) {
       bfs();
       vis.assign(N, false);
