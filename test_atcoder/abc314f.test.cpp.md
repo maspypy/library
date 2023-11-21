@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc314/tasks/abc314_f
@@ -347,23 +347,24 @@ data:
     \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
     \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
     \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
-    \  fastio::rd(x.val);\n  assert(0 <= x.val && x.val < mod);\n}\ntemplate <int\
-    \ mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107\
-    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 8 \"test_atcoder/abc314f.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  vc<pair<int, int>>\
-    \ query;\n  FOR(N - 1) {\n    LL(a, b);\n    query.eb(--a, --b);\n  }\n\n  auto\
-    \ G = tree_of_unionfind(N, query, false);\n  int root = N + N - 2;\n  vc<int>\
-    \ sz(N + N - 1);\n\n  {\n    auto dfs = [&](auto& dfs, int v) -> void {\n    \
-    \  if (0 <= v && v < N) sz[v]++;\n      for (auto&& e: G[v]) {\n        dfs(dfs,\
-    \ e.to);\n        sz[v] += sz[e.to];\n      }\n    };\n    dfs(dfs, root);\n \
-    \ }\n\n  vc<mint> dp(N + N - 1);\n  {\n    auto dfs = [&](auto& dfs, int v) ->\
-    \ void {\n      if (v < N) return;\n      vc<int> ch;\n      for (auto&& e: G[v])\
-    \ ch.eb(e.to);\n      assert(len(ch) == 2);\n      int s = ch[0], t = ch[1];\n\
-    \      ll a = sz[s], b = sz[t];\n      mint ps = mint(a) / mint(a + b);\n    \
-    \  mint qs = mint(1) - ps;\n      dp[s] += dp[v] + ps;\n      dp[t] += dp[v] +\
-    \ qs;\n      dfs(dfs, s);\n      dfs(dfs, t);\n    };\n    dfs(dfs, root);\n \
-    \ }\n  // print(sz);\n  dp.resize(N);\n  print(dp);\n}\n\nsigned main() {\n  int\
-    \ T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
+    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
+    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 8 \"test_atcoder/abc314f.test.cpp\"\n\nusing mint = modint998;\n\nvoid solve()\
+    \ {\n  LL(N);\n  vc<pair<int, int>> query;\n  FOR(N - 1) {\n    LL(a, b);\n  \
+    \  query.eb(--a, --b);\n  }\n\n  auto G = tree_of_unionfind(N, query, false);\n\
+    \  int root = N + N - 2;\n  vc<int> sz(N + N - 1);\n\n  {\n    auto dfs = [&](auto&\
+    \ dfs, int v) -> void {\n      if (0 <= v && v < N) sz[v]++;\n      for (auto&&\
+    \ e: G[v]) {\n        dfs(dfs, e.to);\n        sz[v] += sz[e.to];\n      }\n \
+    \   };\n    dfs(dfs, root);\n  }\n\n  vc<mint> dp(N + N - 1);\n  {\n    auto dfs\
+    \ = [&](auto& dfs, int v) -> void {\n      if (v < N) return;\n      vc<int> ch;\n\
+    \      for (auto&& e: G[v]) ch.eb(e.to);\n      assert(len(ch) == 2);\n      int\
+    \ s = ch[0], t = ch[1];\n      ll a = sz[s], b = sz[t];\n      mint ps = mint(a)\
+    \ / mint(a + b);\n      mint qs = mint(1) - ps;\n      dp[s] += dp[v] + ps;\n\
+    \      dp[t] += dp[v] + qs;\n      dfs(dfs, s);\n      dfs(dfs, t);\n    };\n\
+    \    dfs(dfs, root);\n  }\n  // print(sz);\n  dp.resize(N);\n  print(dp);\n}\n\
+    \nsigned main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc314/tasks/abc314_f\"\n\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/tree_of_unionfind.hpp\"\
     \n#include \"mod/modint.hpp\"\n\nusing mint = modint998;\n\nvoid solve() {\n \
@@ -391,8 +392,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc314f.test.cpp
   requiredBy: []
-  timestamp: '2023-11-15 20:12:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-21 19:08:32+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc314f.test.cpp
 layout: document

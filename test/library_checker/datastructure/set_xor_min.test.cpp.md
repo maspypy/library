@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/binary_trie.hpp
     title: ds/binary_trie.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/set_xor_min
@@ -259,16 +259,16 @@ data:
     \   return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
     \ u64& k) {\r\n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k;\
     \ (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
-    \ u64& k) {\r\n    int i = index(k);\r\n    if (!used[i]) { set_used(i), key[i]\
-    \ = k, val[i] = Val{}; }\r\n    return val[i];\r\n  }\r\n\r\n  Val get(const u64&\
-    \ k, Val default_value) {\r\n    int i = index(k);\r\n    if (!used[i]) return\
-    \ default_value;\r\n    return val[i];\r\n  }\r\n\r\n  bool count(const u64& k)\
-    \ {\r\n    int i = index(k);\r\n    return used[i] && key[i] == k;\r\n  }\r\n\r\
-    \n  void set_used(int i) {\r\n    used[i] = 1;\r\n    if constexpr (KEEP_IDS)\
-    \ IDS.eb(i);\r\n  }\r\n\r\n  void reset() {\r\n    static_assert(KEEP_IDS);\r\n\
-    \    for (auto&& i: IDS) used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  // f(key,\
-    \ val)\r\n  template <typename F>\r\n  void enumerate_all(F f) {\r\n    static_assert(KEEP_IDS);\r\
-    \n    for (auto&& i: IDS) f(key[i], val[i]);\r\n  }\r\n};\r\n#line 6 \"test/library_checker/datastructure/set_xor_min.test.cpp\"\
+    \ u64& k) {\r\n    int i = index(k);\r\n    if (!used[i]) {\r\n      used[i] =\
+    \ 1, key[i] = k, val[i] = Val{};\r\n      if constexpr (KEEP_IDS) IDS.eb(i);\r\
+    \n    }\r\n    return val[i];\r\n  }\r\n\r\n  Val get(const u64& k, Val default_value)\
+    \ {\r\n    int i = index(k);\r\n    if (!used[i]) return default_value;\r\n  \
+    \  return val[i];\r\n  }\r\n\r\n  bool count(const u64& k) {\r\n    int i = index(k);\r\
+    \n    return used[i] && key[i] == k;\r\n  }\r\n\r\n  void reset() {\r\n    static_assert(KEEP_IDS);\r\
+    \n    for (auto&& i: IDS) used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  //\
+    \ f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F f) {\r\n  \
+    \  static_assert(KEEP_IDS);\r\n    for (auto&& i: IDS) f(key[i], val[i]);\r\n\
+    \  }\r\n};\r\n#line 6 \"test/library_checker/datastructure/set_xor_min.test.cpp\"\
     \n\nvoid solve() {\n  HashMap<bool, 20> MP;\n  Binary_Trie<30, false, 1'000'000,\
     \ int, int> X;\n  using np = decltype(X)::np;\n  np root = nullptr;\n\n  INT(Q);\n\
     \  FOR(Q) {\n    INT(t, x);\n    if (t == 0) {\n      if (MP[x] == 0) {\n    \
@@ -293,8 +293,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/set_xor_min.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-21 19:08:32+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/set_xor_min.test.cpp
 layout: document

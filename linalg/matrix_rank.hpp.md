@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/maximum_matching_size.hpp
     title: graph/maximum_matching_size.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/lowrank_update.hpp
     title: linalg/lowrank_update.hpp
   - icon: ':warning:'
@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/general_matching.test.cpp
     title: test/library_checker/graph/general_matching.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/matrix/solve_linear.test.cpp
     title: test/library_checker/matrix/solve_linear.test.cpp
   - icon: ':heavy_check_mark:'
@@ -24,15 +24,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/matching_line_graph.test.cpp
     title: test/mytest/matching_line_graph.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1774.test.cpp
     title: test/yukicoder/1774.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/matrix_rank.hpp\"\ntemplate <typename T>\nint matrix_rank(vc<vc<T>>\
@@ -57,17 +57,17 @@ data:
   path: linalg/matrix_rank.hpp
   requiredBy:
   - graph/maximum_matching_size.hpp
-  - linalg/lowrank_update.hpp
   - linalg/matrix_lowrank_update.hpp
+  - linalg/lowrank_update.hpp
   timestamp: '2023-11-15 20:12:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1774.test.cpp
+  - test/library_checker/matrix/solve_linear.test.cpp
+  - test/library_checker/graph/general_matching.test.cpp
   - test/mytest/tutte.test.cpp
   - test/mytest/matching_line_graph.test.cpp
   - test/mytest/matching.test.cpp
-  - test/library_checker/graph/general_matching.test.cpp
-  - test/library_checker/matrix/solve_linear.test.cpp
+  - test/yukicoder/1774.test.cpp
 documentation_of: linalg/matrix_rank.hpp
 layout: document
 redirect_from:

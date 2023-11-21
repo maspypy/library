@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc273/tasks/abc273_e
@@ -214,26 +214,26 @@ data:
     \n    return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
     \ u64& k) {\r\n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k;\
     \ (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
-    \ u64& k) {\r\n    int i = index(k);\r\n    if (!used[i]) { set_used(i), key[i]\
-    \ = k, val[i] = Val{}; }\r\n    return val[i];\r\n  }\r\n\r\n  Val get(const u64&\
-    \ k, Val default_value) {\r\n    int i = index(k);\r\n    if (!used[i]) return\
-    \ default_value;\r\n    return val[i];\r\n  }\r\n\r\n  bool count(const u64& k)\
-    \ {\r\n    int i = index(k);\r\n    return used[i] && key[i] == k;\r\n  }\r\n\r\
-    \n  void set_used(int i) {\r\n    used[i] = 1;\r\n    if constexpr (KEEP_IDS)\
-    \ IDS.eb(i);\r\n  }\r\n\r\n  void reset() {\r\n    static_assert(KEEP_IDS);\r\n\
-    \    for (auto&& i: IDS) used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  // f(key,\
-    \ val)\r\n  template <typename F>\r\n  void enumerate_all(F f) {\r\n    static_assert(KEEP_IDS);\r\
-    \n    for (auto&& i: IDS) f(key[i], val[i]);\r\n  }\r\n};\r\n#line 6 \"test_atcoder/abc273_e.test.cpp\"\
-    \n\nvoid solve() {\n  Dynamic_Array<int, true, 3'000'000> X(0);\n  using np =\
-    \ typename decltype(X)::np;\n\n  LL(Q);\n  vi ANS;\n\n  np A = X.new_root();\n\
-    \  int A_size = 0;\n  HashMap<pair<np, int>> note;\n\n  FOR(Q) {\n    STR(S);\n\
-    \    if (S == \"ADD\") {\n      INT(x);\n      A = X.set(A, A_size++, x);\n  \
-    \  }\n    if (S == \"DELETE\") {\n      if (A_size) --A_size;\n    }\n    if (S\
-    \ == \"SAVE\") {\n      INT(y);\n      note[y] = {A, A_size};\n    }\n    if (S\
-    \ == \"LOAD\") {\n      INT(z);\n      tie(A, A_size) = note[z];\n    }\n    ll\
-    \ x = -1;\n    if (A_size) x = X.get(A, A_size - 1);\n    ANS.eb(x);\n  }\n  print(ANS);\n\
-    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  //\
-    \ LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ u64& k) {\r\n    int i = index(k);\r\n    if (!used[i]) {\r\n      used[i] =\
+    \ 1, key[i] = k, val[i] = Val{};\r\n      if constexpr (KEEP_IDS) IDS.eb(i);\r\
+    \n    }\r\n    return val[i];\r\n  }\r\n\r\n  Val get(const u64& k, Val default_value)\
+    \ {\r\n    int i = index(k);\r\n    if (!used[i]) return default_value;\r\n  \
+    \  return val[i];\r\n  }\r\n\r\n  bool count(const u64& k) {\r\n    int i = index(k);\r\
+    \n    return used[i] && key[i] == k;\r\n  }\r\n\r\n  void reset() {\r\n    static_assert(KEEP_IDS);\r\
+    \n    for (auto&& i: IDS) used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  //\
+    \ f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F f) {\r\n  \
+    \  static_assert(KEEP_IDS);\r\n    for (auto&& i: IDS) f(key[i], val[i]);\r\n\
+    \  }\r\n};\r\n#line 6 \"test_atcoder/abc273_e.test.cpp\"\n\nvoid solve() {\n \
+    \ Dynamic_Array<int, true, 3'000'000> X(0);\n  using np = typename decltype(X)::np;\n\
+    \n  LL(Q);\n  vi ANS;\n\n  np A = X.new_root();\n  int A_size = 0;\n  HashMap<pair<np,\
+    \ int>> note;\n\n  FOR(Q) {\n    STR(S);\n    if (S == \"ADD\") {\n      INT(x);\n\
+    \      A = X.set(A, A_size++, x);\n    }\n    if (S == \"DELETE\") {\n      if\
+    \ (A_size) --A_size;\n    }\n    if (S == \"SAVE\") {\n      INT(y);\n      note[y]\
+    \ = {A, A_size};\n    }\n    if (S == \"LOAD\") {\n      INT(z);\n      tie(A,\
+    \ A_size) = note[z];\n    }\n    ll x = -1;\n    if (A_size) x = X.get(A, A_size\
+    \ - 1);\n    ANS.eb(x);\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed\
+    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc273/tasks/abc273_e\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/dynamic_array.hpp\"\
     \n#include \"ds/hashmap.hpp\"\n\nvoid solve() {\n  Dynamic_Array<int, true, 3'000'000>\
@@ -254,8 +254,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc273_e.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-21 19:08:32+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc273_e.test.cpp
 layout: document

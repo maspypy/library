@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   _extendedRequiredBy: []
@@ -189,9 +189,9 @@ data:
   timestamp: '2023-11-07 13:03:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/sortable_array.test.cpp
-  - test_atcoder/abc237g1.test.cpp
   - test_atcoder/abc217e.test.cpp
+  - test_atcoder/abc237g1.test.cpp
+  - test/mytest/sortable_array.test.cpp
 documentation_of: ds/sortable_array.hpp
 layout: document
 redirect_from:

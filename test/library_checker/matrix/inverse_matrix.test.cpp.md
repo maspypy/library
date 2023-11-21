@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/matrix_inv.hpp
     title: linalg/matrix_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/inverse_matrix
@@ -262,24 +262,24 @@ data:
     \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
     \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
     \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
-    \  fastio::rd(x.val);\n  assert(0 <= x.val && x.val < mod);\n}\ntemplate <int\
-    \ mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107\
-    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 1 \"linalg/matrix_inv.hpp\"\
-    \n// (det, invA) \u3092\u304B\u3048\u3059\r\ntemplate <typename T>\r\npair<T,\
-    \ vc<vc<T>>> matrix_inv(vc<vc<T>> A) {\r\n  T det = 1;\r\n  int N = len(A);\r\n\
-    \  vv(T, B, N, N);\r\n  FOR(n, N) B[n][n] = 1;\r\n  FOR(i, N) {\r\n    FOR(k,\
-    \ i, N) if (A[k][i] != 0) {\r\n      if (k != i) {\r\n        swap(A[i], A[k]),\
-    \ swap(B[i], B[k]);\r\n        det = -det;\r\n      }\r\n      break;\r\n    }\r\
-    \n    if (A[i][i] == 0) return {T(0), {}};\r\n    T c = T(1) / A[i][i];\r\n  \
-    \  det *= A[i][i];\r\n    FOR(j, i, N) A[i][j] *= c;\r\n    FOR(j, N) B[i][j]\
-    \ *= c;\r\n    FOR(k, N) if (i != k) {\r\n      T c = A[k][i];\r\n      FOR(j,\
-    \ i, N) A[k][j] -= A[i][j] * c;\r\n      FOR(j, N) B[k][j] -= B[i][j] * c;\r\n\
-    \    }\r\n  }\r\n  return {det, B};\r\n}\r\n#line 6 \"test/library_checker/matrix/inverse_matrix.test.cpp\"\
-    \n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N);\r\n  VV(mint, A, N,\
-    \ N);\r\n  auto [det, inv] = matrix_inv(A);\r\n  if (inv.empty()) return print(-1);\r\
-    \n  FOR(n, N) print(inv[n]);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
-    \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
-    \n\r\n  return 0;\r\n}\r\n"
+    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
+    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 1 \"linalg/matrix_inv.hpp\"\n// (det, invA) \u3092\u304B\u3048\u3059\r\n\
+    template <typename T>\r\npair<T, vc<vc<T>>> matrix_inv(vc<vc<T>> A) {\r\n  T det\
+    \ = 1;\r\n  int N = len(A);\r\n  vv(T, B, N, N);\r\n  FOR(n, N) B[n][n] = 1;\r\
+    \n  FOR(i, N) {\r\n    FOR(k, i, N) if (A[k][i] != 0) {\r\n      if (k != i) {\r\
+    \n        swap(A[i], A[k]), swap(B[i], B[k]);\r\n        det = -det;\r\n     \
+    \ }\r\n      break;\r\n    }\r\n    if (A[i][i] == 0) return {T(0), {}};\r\n \
+    \   T c = T(1) / A[i][i];\r\n    det *= A[i][i];\r\n    FOR(j, i, N) A[i][j] *=\
+    \ c;\r\n    FOR(j, N) B[i][j] *= c;\r\n    FOR(k, N) if (i != k) {\r\n      T\
+    \ c = A[k][i];\r\n      FOR(j, i, N) A[k][j] -= A[i][j] * c;\r\n      FOR(j, N)\
+    \ B[k][j] -= B[i][j] * c;\r\n    }\r\n  }\r\n  return {det, B};\r\n}\r\n#line\
+    \ 6 \"test/library_checker/matrix/inverse_matrix.test.cpp\"\n\r\nusing mint =\
+    \ modint998;\r\nvoid solve() {\r\n  LL(N);\r\n  VV(mint, A, N, N);\r\n  auto [det,\
+    \ inv] = matrix_inv(A);\r\n  if (inv.empty()) return print(-1);\r\n  FOR(n, N)\
+    \ print(inv[n]);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inverse_matrix\"\r\n#include\
     \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"mod/modint.hpp\"\
     \r\n#include \"linalg/matrix_inv.hpp\"\r\n\r\nusing mint = modint998;\r\nvoid\
@@ -296,8 +296,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/inverse_matrix.test.cpp
   requiredBy: []
-  timestamp: '2023-11-15 20:12:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-21 19:08:32+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/matrix/inverse_matrix.test.cpp
 layout: document

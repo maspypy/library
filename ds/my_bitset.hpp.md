@@ -36,6 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1421.test.cpp
     title: test/yukicoder/1421.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2490.test.cpp
+    title: test/yukicoder/2490.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/421.test.cpp
     title: test/yukicoder/421.test.cpp
@@ -45,9 +48,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_2.test.cpp
     title: test/yukicoder/4_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/contest/914/problem/F
@@ -230,23 +233,24 @@ data:
   isVerificationFile: false
   path: ds/my_bitset.hpp
   requiredBy:
-  - graph/shortest_path/bfs_bitset.hpp
+  - ds/counter.hpp
   - knapsack/subset_sum.hpp
+  - graph/shortest_path/bfs_bitset.hpp
   - linalg/bitset/solve_linear.hpp
   - linalg/bitset/mat_inv.hpp
-  - ds/counter.hpp
   timestamp: '2023-11-03 05:38:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/421_2.test.cpp
-  - test/yukicoder/4_2.test.cpp
-  - test/yukicoder/1400_2.test.cpp
-  - test/yukicoder/1400.test.cpp
-  - test/yukicoder/421.test.cpp
-  - test/yukicoder/1421.test.cpp
-  - test/yukicoder/142.test.cpp
   - test/mytest/mybitset.test.cpp
   - test/mytest/subset_sum.test.cpp
+  - test/yukicoder/142.test.cpp
+  - test/yukicoder/421.test.cpp
+  - test/yukicoder/421_2.test.cpp
+  - test/yukicoder/4_2.test.cpp
+  - test/yukicoder/2490.test.cpp
+  - test/yukicoder/1421.test.cpp
+  - test/yukicoder/1400.test.cpp
+  - test/yukicoder/1400_2.test.cpp
 documentation_of: ds/my_bitset.hpp
 layout: document
 redirect_from:

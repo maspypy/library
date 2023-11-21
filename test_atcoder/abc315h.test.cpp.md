@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc315/tasks/abc315_Ex
@@ -335,15 +335,15 @@ data:
     \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
     \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
     \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
-    \  fastio::rd(x.val);\n  assert(0 <= x.val && x.val < mod);\n}\ntemplate <int\
-    \ mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107\
-    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 8 \"test_atcoder/abc315h.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  Online_Convolution<mint>\
-    \ X;\n  VEC(mint, A, N);\n  A.insert(A.begin(), mint(0));\n\n  // F^2\n  mint\
-    \ sm = 0;\n  mint f = 1;\n  vc<mint> ANS(N);\n\n  FOR(i, 1, N + 1) {\n    mint\
-    \ v = X.query(i - 1, f, f);\n    sm += v;\n    f = sm * A[i];\n    ANS[i - 1]\
-    \ = f;\n  }\n  print(ANS);\n}\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n\
-    \  FOR(T) solve();\n  return 0;\n}\n"
+    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
+    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 8 \"test_atcoder/abc315h.test.cpp\"\n\nusing mint = modint998;\n\nvoid solve()\
+    \ {\n  LL(N);\n  Online_Convolution<mint> X;\n  VEC(mint, A, N);\n  A.insert(A.begin(),\
+    \ mint(0));\n\n  // F^2\n  mint sm = 0;\n  mint f = 1;\n  vc<mint> ANS(N);\n\n\
+    \  FOR(i, 1, N + 1) {\n    mint v = X.query(i - 1, f, f);\n    sm += v;\n    f\
+    \ = sm * A[i];\n    ANS[i - 1] = f;\n  }\n  print(ANS);\n}\n\nsigned main() {\n\
+    \  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc315/tasks/abc315_Ex\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"poly/online/online_convolution.hpp\"\
     \n#include \"mod/modint.hpp\"\n#include \"poly/ntt.hpp\"\n\nusing mint = modint998;\n\
@@ -363,8 +363,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc315h.test.cpp
   requiredBy: []
-  timestamp: '2023-11-15 20:12:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-21 19:08:32+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc315h.test.cpp
 layout: document

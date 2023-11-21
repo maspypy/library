@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/max2.hpp
     title: alg/monoid/max2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/perpendicular_bisector.hpp
     title: geo/perpendicular_bisector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc220/tasks/abc220_g
@@ -273,40 +273,39 @@ data:
     \   return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
     \ u64& k) {\r\n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k;\
     \ (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
-    \ u64& k) {\r\n    int i = index(k);\r\n    if (!used[i]) { set_used(i), key[i]\
-    \ = k, val[i] = Val{}; }\r\n    return val[i];\r\n  }\r\n\r\n  Val get(const u64&\
-    \ k, Val default_value) {\r\n    int i = index(k);\r\n    if (!used[i]) return\
-    \ default_value;\r\n    return val[i];\r\n  }\r\n\r\n  bool count(const u64& k)\
-    \ {\r\n    int i = index(k);\r\n    return used[i] && key[i] == k;\r\n  }\r\n\r\
-    \n  void set_used(int i) {\r\n    used[i] = 1;\r\n    if constexpr (KEEP_IDS)\
-    \ IDS.eb(i);\r\n  }\r\n\r\n  void reset() {\r\n    static_assert(KEEP_IDS);\r\n\
-    \    for (auto&& i: IDS) used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  // f(key,\
-    \ val)\r\n  template <typename F>\r\n  void enumerate_all(F f) {\r\n    static_assert(KEEP_IDS);\r\
-    \n    for (auto&& i: IDS) f(key[i], val[i]);\r\n  }\r\n};\r\n#line 2 \"alg/monoid/max2.hpp\"\
-    \n\ntemplate <typename T, typename KEY>\nstruct Monoid_Max2 {\n  struct Data {\n\
-    \    T max1, max2;\n    KEY key1, key2;\n    bool add_element(T x, KEY key) {\n\
-    \      if (key1 == key) { return chmax(max1, x); }\n      if (key2 == key) {\n\
-    \        bool upd = chmax(max2, x);\n        if (max1 < max2) swap(max1, max2),\
-    \ swap(key1, key2);\n        return upd;\n      }\n      if (max1 < x) {\n   \
-    \     max2 = max1, key2 = key1, max1 = x, key1 = key;\n        return 1;\n   \
-    \   }\n      elif (max2 < x) {\n        max2 = x, key2 = key;\n        return\
-    \ 1;\n      }\n      return 0;\n    }\n  };\n  using value_type = Data;\n  using\
-    \ X = value_type;\n\n  static X op(X x, X y) {\n    x.add_element(y.max1, y.key1);\n\
-    \    x.add_element(y.max2, y.key2);\n    return x;\n  }\n  static constexpr X\
-    \ unit() { return {-infty<T>, -infty<T>, 0, 0}; }\n  static constexpr bool commute\
-    \ = true;\n};\n#line 10 \"test_atcoder/abc220g.test.cpp\"\n\nusing P = Point<ll>;\n\
-    \nvoid solve() {\n  LL(N);\n  vc<P> point(N);\n  vi C(N);\n  FOR(i, N) read(point[i],\
-    \ C[i]);\n\n  u64 aa = RNG_64(), bb = RNG_64(), cc = RNG_64();\n\n  using Mono\
-    \ = Monoid_Max2<ll, ll>;\n  using Data = typename Mono::Data;\n  HashMap<Data,\
-    \ 20, true> MP;\n\n  FOR(j, N) FOR(i, j) {\n    Line<ll> L = perpendicular_bisector(point[i],\
-    \ point[j]);\n    L.normalize();\n    u64 key = 0;\n    key += u64(L.a + infty<ll>)\
-    \ * aa;\n    key += u64(L.b + infty<ll>) * bb;\n    key += u64(L.c + infty<ll>)\
-    \ * cc;\n    if (!MP.count(key)) MP[key] = Mono::unit();\n    ll g = gcd(L.a,\
-    \ L.b);\n    Point<ll> normal = {L.b / g, -L.a / g};\n    ll t = normal.dot(point[i]);\n\
-    \    MP[key].add_element(C[i] + C[j], t);\n  }\n\n  ll ANS = -1;\n  MP.enumerate_all([&](auto\
-    \ key, auto dat) -> void {\n    ll ans = dat.max1 + dat.max2;\n    chmax(ANS,\
-    \ ans);\n  });\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
-    }\n"
+    \ u64& k) {\r\n    int i = index(k);\r\n    if (!used[i]) {\r\n      used[i] =\
+    \ 1, key[i] = k, val[i] = Val{};\r\n      if constexpr (KEEP_IDS) IDS.eb(i);\r\
+    \n    }\r\n    return val[i];\r\n  }\r\n\r\n  Val get(const u64& k, Val default_value)\
+    \ {\r\n    int i = index(k);\r\n    if (!used[i]) return default_value;\r\n  \
+    \  return val[i];\r\n  }\r\n\r\n  bool count(const u64& k) {\r\n    int i = index(k);\r\
+    \n    return used[i] && key[i] == k;\r\n  }\r\n\r\n  void reset() {\r\n    static_assert(KEEP_IDS);\r\
+    \n    for (auto&& i: IDS) used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  //\
+    \ f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F f) {\r\n  \
+    \  static_assert(KEEP_IDS);\r\n    for (auto&& i: IDS) f(key[i], val[i]);\r\n\
+    \  }\r\n};\r\n#line 2 \"alg/monoid/max2.hpp\"\n\ntemplate <typename T, typename\
+    \ KEY>\nstruct Monoid_Max2 {\n  struct Data {\n    T max1, max2;\n    KEY key1,\
+    \ key2;\n    bool add_element(T x, KEY key) {\n      if (key1 == key) { return\
+    \ chmax(max1, x); }\n      if (key2 == key) {\n        bool upd = chmax(max2,\
+    \ x);\n        if (max1 < max2) swap(max1, max2), swap(key1, key2);\n        return\
+    \ upd;\n      }\n      if (max1 < x) {\n        max2 = max1, key2 = key1, max1\
+    \ = x, key1 = key;\n        return 1;\n      }\n      elif (max2 < x) {\n    \
+    \    max2 = x, key2 = key;\n        return 1;\n      }\n      return 0;\n    }\n\
+    \  };\n  using value_type = Data;\n  using X = value_type;\n\n  static X op(X\
+    \ x, X y) {\n    x.add_element(y.max1, y.key1);\n    x.add_element(y.max2, y.key2);\n\
+    \    return x;\n  }\n  static constexpr X unit() { return {-infty<T>, -infty<T>,\
+    \ 0, 0}; }\n  static constexpr bool commute = true;\n};\n#line 10 \"test_atcoder/abc220g.test.cpp\"\
+    \n\nusing P = Point<ll>;\n\nvoid solve() {\n  LL(N);\n  vc<P> point(N);\n  vi\
+    \ C(N);\n  FOR(i, N) read(point[i], C[i]);\n\n  u64 aa = RNG_64(), bb = RNG_64(),\
+    \ cc = RNG_64();\n\n  using Mono = Monoid_Max2<ll, ll>;\n  using Data = typename\
+    \ Mono::Data;\n  HashMap<Data, 20, true> MP;\n\n  FOR(j, N) FOR(i, j) {\n    Line<ll>\
+    \ L = perpendicular_bisector(point[i], point[j]);\n    L.normalize();\n    u64\
+    \ key = 0;\n    key += u64(L.a + infty<ll>) * aa;\n    key += u64(L.b + infty<ll>)\
+    \ * bb;\n    key += u64(L.c + infty<ll>) * cc;\n    if (!MP.count(key)) MP[key]\
+    \ = Mono::unit();\n    ll g = gcd(L.a, L.b);\n    Point<ll> normal = {L.b / g,\
+    \ -L.a / g};\n    ll t = normal.dot(point[i]);\n    MP[key].add_element(C[i] +\
+    \ C[j], t);\n  }\n\n  ll ANS = -1;\n  MP.enumerate_all([&](auto key, auto dat)\
+    \ -> void {\n    ll ans = dat.max1 + dat.max2;\n    chmax(ANS, ans);\n  });\n\
+    \  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc220/tasks/abc220_g\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/base.hpp\"\n\
     #include \"geo/perpendicular_bisector.hpp\"\n#include \"random/base.hpp\"\n#include\
@@ -334,8 +333,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc220g.test.cpp
   requiredBy: []
-  timestamp: '2023-11-10 22:50:04+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-21 19:08:32+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc220g.test.cpp
 layout: document

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy:
@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/classify_tree.test.cpp
     title: test/library_checker/graph/classify_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/tree/rerooting_dp.test.cpp
     title: test/library_checker/tree/rerooting_dp.test.cpp
   - icon: ':heavy_check_mark:'
@@ -42,10 +42,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1976.test.cpp
     title: test/yukicoder/1976.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2360.test.cpp
     title: test/yukicoder/2360.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc160f.test.cpp
     title: test_atcoder/abc160f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -54,9 +54,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc298ex.test.cpp
     title: test_atcoder/abc298ex.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -262,20 +262,20 @@ data:
   - graph/tree_dp/subtree_diameter.hpp
   - graph/tree_dp/subtree_hash.hpp
   timestamp: '2023-11-07 22:29:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1295.test.cpp
-  - test/yukicoder/1494.test.cpp
-  - test/yukicoder/2360.test.cpp
-  - test/yukicoder/1976.test.cpp
-  - test/yukicoder/1418.test.cpp
-  - test/yukicoder/1718.test.cpp
-  - test/mytest/QOJ5445.test.cpp
-  - test/library_checker/graph/classify_tree.test.cpp
-  - test/library_checker/tree/rerooting_dp.test.cpp
   - test_atcoder/abc160f.test.cpp
   - test_atcoder/abc298ex.test.cpp
   - test_atcoder/abc220f.test.cpp
+  - test/library_checker/tree/rerooting_dp.test.cpp
+  - test/library_checker/graph/classify_tree.test.cpp
+  - test/mytest/QOJ5445.test.cpp
+  - test/yukicoder/1418.test.cpp
+  - test/yukicoder/1295.test.cpp
+  - test/yukicoder/1718.test.cpp
+  - test/yukicoder/1494.test.cpp
+  - test/yukicoder/2360.test.cpp
+  - test/yukicoder/1976.test.cpp
 documentation_of: graph/tree_dp/rerooting_dp.hpp
 layout: document
 redirect_from:

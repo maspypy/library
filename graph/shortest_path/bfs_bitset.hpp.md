@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
   _extendedRequiredBy: []
@@ -137,8 +137,8 @@ data:
   timestamp: '2023-11-03 05:38:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1400_2.test.cpp
   - test/yukicoder/1400.test.cpp
+  - test/yukicoder/1400_2.test.cpp
 documentation_of: graph/shortest_path/bfs_bitset.hpp
 layout: document
 redirect_from:

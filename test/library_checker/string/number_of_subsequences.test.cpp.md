@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/count_subseq.hpp
     title: string/count_subseq.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/number_of_subsequences
@@ -262,15 +262,15 @@ data:
     \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
     \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
     \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
-    \  fastio::rd(x.val);\n  assert(0 <= x.val && x.val < mod);\n}\ntemplate <int\
-    \ mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107\
-    \ = modint<1000000007>;\nusing modint998 = modint<998244353>;\n#line 1 \"string/count_subseq.hpp\"\
-    \n// https://noshi91.hatenablog.com/entry/2023/02/26/135340\ntemplate <typename\
-    \ mint, typename STRING>\nmint count_subseq(STRING& S) {\n  map<int, mint> dp;\n\
-    \  mint sm = 1;\n  for (auto&& x: S) {\n    auto it = dp.find(x);\n    if (it\
-    \ == dp.end()) {\n      dp[x] = sm;\n      sm += sm;\n    } else {\n      mint\
-    \ d = (*it).se;\n      (*it).se = sm;\n      sm += sm - d;\n    }\n  }\n  return\
-    \ sm;\n}\n#line 6 \"test/library_checker/string/number_of_subsequences.test.cpp\"\
+    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
+    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 1 \"string/count_subseq.hpp\"\n// https://noshi91.hatenablog.com/entry/2023/02/26/135340\n\
+    template <typename mint, typename STRING>\nmint count_subseq(STRING& S) {\n  map<int,\
+    \ mint> dp;\n  mint sm = 1;\n  for (auto&& x: S) {\n    auto it = dp.find(x);\n\
+    \    if (it == dp.end()) {\n      dp[x] = sm;\n      sm += sm;\n    } else {\n\
+    \      mint d = (*it).se;\n      (*it).se = sm;\n      sm += sm - d;\n    }\n\
+    \  }\n  return sm;\n}\n#line 6 \"test/library_checker/string/number_of_subsequences.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n \
     \ mint ANS = count_subseq<mint>(A);\n  ANS -= mint(1);\n  print(ANS);\n}\n\nsigned\
     \ main() {\n  solve();\n  return 0;\n}\n"
@@ -288,8 +288,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/number_of_subsequences.test.cpp
   requiredBy: []
-  timestamp: '2023-11-15 20:12:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-21 19:08:32+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/string/number_of_subsequences.test.cpp
 layout: document

@@ -67,8 +67,8 @@ data:
   timestamp: '2023-11-12 00:09:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1789.test.cpp
   - test/library_checker/graph/assignment.test.cpp
+  - test/yukicoder/1789.test.cpp
 documentation_of: flow/hungarian.hpp
 layout: document
 redirect_from:

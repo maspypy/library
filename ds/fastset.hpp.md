@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/intervals.hpp
     title: ds/intervals.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
   - icon: ':heavy_check_mark:'
@@ -36,10 +36,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/predecessor_problem.test.cpp
     title: test/library_checker/datastructure/predecessor_problem.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/sort_segtree.test.cpp
     title: test/library_checker/datastructure/sort_segtree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/sort_segtree_1.test.cpp
     title: test/library_checker/datastructure/sort_segtree_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -66,9 +66,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc256ex2.test.cpp
     title: test_atcoder/abc256ex2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/fastset.hpp\"\n// 64-ary tree\r\n// space: (N/63) * u64\r\
@@ -142,30 +142,30 @@ data:
   isVerificationFile: false
   path: ds/fastset.hpp
   requiredBy:
-  - graph/toposort.hpp
-  - graph/implicit_graph/complement_graph_unionfind.hpp
-  - graph/ds/incremental_centroid.hpp
-  - other/cuboid_union_volume.hpp
-  - ds/segtree/sortable_segtree.hpp
+  - ds/sortable_array.hpp
   - ds/intervals.hpp
   - ds/incremental_rectangle_union.hpp
-  - ds/sortable_array.hpp
+  - ds/segtree/sortable_segtree.hpp
+  - graph/ds/incremental_centroid.hpp
+  - graph/toposort.hpp
+  - graph/implicit_graph/complement_graph_unionfind.hpp
+  - other/cuboid_union_volume.hpp
   timestamp: '2023-11-07 13:03:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/sortable_array.test.cpp
+  - test_atcoder/abc256ex2.test.cpp
+  - test_atcoder/abc256ex.test.cpp
+  - test_atcoder/abc217e.test.cpp
+  - test_atcoder/abc237g1.test.cpp
+  - test_atcoder/abc223d.test.cpp
+  - test_atcoder/abc237g.test.cpp
+  - test_atcoder/abc256d.test.cpp
+  - test/library_checker/datastructure/sort_segtree.test.cpp
   - test/library_checker/datastructure/predecessor_problem.test.cpp
   - test/library_checker/datastructure/sort_segtree_1.test.cpp
-  - test/library_checker/datastructure/sort_segtree.test.cpp
-  - test/aoj/2636.test.cpp
+  - test/mytest/sortable_array.test.cpp
   - test/aoj/2251_1.test.cpp
-  - test_atcoder/abc237g.test.cpp
-  - test_atcoder/abc223d.test.cpp
-  - test_atcoder/abc237g1.test.cpp
-  - test_atcoder/abc217e.test.cpp
-  - test_atcoder/abc256ex.test.cpp
-  - test_atcoder/abc256d.test.cpp
-  - test_atcoder/abc256ex2.test.cpp
+  - test/aoj/2636.test.cpp
 documentation_of: ds/fastset.hpp
 layout: document
 redirect_from:
