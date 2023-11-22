@@ -1,3 +1,5 @@
+#include "seq/famous/bernoulli.hpp"
+
 // 2 以上 N 以下の偶数に対して, zeta(n) = c pi^n となる c
 // [0,0,1/6,0,1/90,...]
 template <typename mint>
