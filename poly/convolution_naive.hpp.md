@@ -195,6 +195,9 @@ data:
     path: seq/famous/partition_number.hpp
     title: seq/famous/partition_number.hpp
   - icon: ':heavy_check_mark:'
+    path: seq/famous/riemann_zeta_even.hpp
+    title: seq/famous/riemann_zeta_even.hpp
+  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
   - icon: ':question:'
@@ -490,6 +493,9 @@ data:
     path: test/yukicoder/1321.test.cpp
     title: test/yukicoder/1321.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1357.test.cpp
+    title: test/yukicoder/1357.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1392.test.cpp
     title: test/yukicoder/1392.test.cpp
   - icon: ':heavy_check_mark:'
@@ -713,6 +719,7 @@ data:
   - seq/famous/stirling_number_1.hpp
   - seq/famous/surjection.hpp
   - seq/famous/bernoulli.hpp
+  - seq/famous/riemann_zeta_even.hpp
   - seq/famous/stirling_number_2.hpp
   - seq/famous/partition_number.hpp
   - seq/famous/indecomposable_permutations.hpp
@@ -917,6 +924,7 @@ data:
   - test/yukicoder/1561.test.cpp
   - test/yukicoder/1755.test.cpp
   - test/yukicoder/2097.test.cpp
+  - test/yukicoder/1357.test.cpp
   - test/yukicoder/2062.test.cpp
   - test/yukicoder/2305.test.cpp
   - test/yukicoder/2108.test.cpp

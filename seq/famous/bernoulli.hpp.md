@@ -34,11 +34,17 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: seq/famous/riemann_zeta_even.hpp
+    title: seq/famous/riemann_zeta_even.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/bernoulli.test.cpp
     title: test/library_checker/math/bernoulli.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1357.test.cpp
+    title: test/yukicoder/1357.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -359,11 +365,13 @@ data:
   - poly/fft.hpp
   isVerificationFile: false
   path: seq/famous/bernoulli.hpp
-  requiredBy: []
+  requiredBy:
+  - seq/famous/riemann_zeta_even.hpp
   timestamp: '2023-11-21 19:08:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/bernoulli.test.cpp
+  - test/yukicoder/1357.test.cpp
 documentation_of: seq/famous/bernoulli.hpp
 layout: document
 redirect_from:
