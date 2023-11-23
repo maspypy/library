@@ -116,7 +116,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/functional.hpp
     title: graph/functional.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/implicit_graph/complement_graph_bfs.hpp
     title: graph/implicit_graph/complement_graph_bfs.hpp
   - icon: ':warning:'
@@ -230,7 +230,7 @@ data:
   - icon: ':warning:'
     path: graph/tree_dp/tree_dp.hpp
     title: graph/tree_dp/tree_dp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
   - icon: ':heavy_check_mark:'
@@ -663,10 +663,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc301h.test.cpp
     title: test_atcoder/abc301h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc314f.test.cpp
     title: test_atcoder/abc314f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc319g.test.cpp
     title: test_atcoder/abc319g.test.cpp
   - icon: ':heavy_check_mark:'
