@@ -19,7 +19,6 @@ struct Palindromic_Tree {
   Palindromic_Tree(const STRING& S, char off) {
     nodes.eb(Node(-1, -1, 0, -1));
     nodes.eb(Node(0, 0, 0, 0));
-    path = {0};
     int p = 0;
     FOR(i, len(S)) {
       path.eb(p);
