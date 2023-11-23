@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: setfunc/and_convolution.hpp
     title: setfunc/and_convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/zeta.hpp
     title: setfunc/zeta.hpp
   _extendedRequiredBy: []
