@@ -583,6 +583,9 @@ data:
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/floor_sum_of_polynomial.test.cpp
+    title: test/mytest/floor_sum_of_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/graph_count.test.cpp
     title: test/mytest/graph_count.test.cpp
   - icon: ':heavy_check_mark:'
@@ -954,7 +957,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc160f.test.cpp
     title: test_atcoder/abc160f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc200f.test.cpp
     title: test_atcoder/abc200f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1424,6 +1427,7 @@ data:
   - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/rbst_commutative_persistent.test.cpp
   - test/mytest/eulerian_number.test.cpp
+  - test/mytest/floor_sum_of_polynomial.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/online_inv.test.cpp
   - test/mytest/31bit_modint.test.cpp

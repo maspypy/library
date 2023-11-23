@@ -146,6 +146,9 @@ data:
       path: alg/monoid/minmincnt.hpp
       title: alg/monoid/minmincnt.hpp
     - icon: ':heavy_check_mark:'
+      path: alg/monoid/monoid_for_floor_sum.hpp
+      title: alg/monoid/monoid_for_floor_sum.hpp
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/monoid_reverse.hpp
       title: alg/monoid/monoid_reverse.hpp
     - icon: ':question:'
@@ -168,7 +171,7 @@ data:
       title: alg/monoid/xor.hpp
   - name: alg
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid_pow.hpp
       title: alg/monoid_pow.hpp
   - name: bigint
@@ -1109,8 +1112,14 @@ data:
       path: mod/factorial998.hpp
       title: mod/factorial998.hpp
     - icon: ':heavy_check_mark:'
+      path: mod/floor_monoid_product.hpp
+      title: mod/floor_monoid_product.hpp
+    - icon: ':heavy_check_mark:'
       path: mod/floor_sum_of_linear.hpp
       title: mod/floor_sum_of_linear.hpp
+    - icon: ':heavy_check_mark:'
+      path: mod/floor_sum_of_linear_polynomial.hpp
+      title: mod/floor_sum_of_linear_polynomial.hpp
     - icon: ':heavy_check_mark:'
       path: mod/max_of_linear_segments.hpp
       title: mod/max_of_linear_segments.hpp
@@ -2394,6 +2403,9 @@ data:
       path: test/library_checker/math/sum_of_floor_of_linear.test.cpp
       title: test/library_checker/math/sum_of_floor_of_linear.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library_checker/math/sum_of_floor_of_linear_2.test.cpp
+      title: test/library_checker/math/sum_of_floor_of_linear_2.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/tetration.test.cpp
       title: test/library_checker/math/tetration.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2734,6 +2746,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/floor_ceil_ranges.test.cpp
       title: test/mytest/floor_ceil_ranges.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/floor_sum_of_polynomial.test.cpp
+      title: test/mytest/floor_sum_of_polynomial.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/four_square.test.cpp
       title: test/mytest/four_square.test.cpp
@@ -3613,6 +3628,9 @@ data:
       path: test/yukicoder/2361.test.cpp
       title: test/yukicoder/2361.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yukicoder/2362.test.cpp
+      title: test/yukicoder/2362.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/2440.test.cpp
       title: test/yukicoder/2440.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3776,7 +3794,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc200a.test.cpp
       title: test_atcoder/abc200a.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_atcoder/abc200f.test.cpp
       title: test_atcoder/abc200f.test.cpp
     - icon: ':heavy_check_mark:'

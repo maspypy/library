@@ -1,15 +1,18 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: alg/monoid/monoid_for_floor_sum.hpp
+    title: alg/monoid/monoid_for_floor_sum.hpp
   - icon: ':question:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
-  - icon: ':question:'
-    path: mod/modint.hpp
-    title: mod/modint.hpp
-  - icon: ':question:'
-    path: mod/modint_common.hpp
-    title: mod/modint_common.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/floor_monoid_product.hpp
+    title: mod/floor_monoid_product.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/floor_sum_of_linear_polynomial.hpp
+    title: mod/floor_sum_of_linear_polynomial.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -18,16 +21,17 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc200/tasks/abc200_f
+    PROBLEM: https://judge.yosupo.jp/problem/sum_of_floor_of_linear
     links:
-    - https://atcoder.jp/contests/abc200/tasks/abc200_f
-  bundledCode: "#line 1 \"test_atcoder/abc200f.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc200/tasks/abc200_f\"\
-    \n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    - https://judge.yosupo.jp/problem/sum_of_floor_of_linear
+  bundledCode: "#line 1 \"test/library_checker/math/sum_of_floor_of_linear_2.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/sum_of_floor_of_linear\"\n\
+    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
     using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
@@ -190,138 +194,72 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n \
-    \ template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
-    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
-    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
-    \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
-    \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
-    \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
-    \    int q = (mod + k - 1) / k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
-    \ const int mod = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint>\
-    \ dat = {1, 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * mint::raw(len(dat)));\n\
-    \  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static\
-    \ vector<mint> dat = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat)\
-    \ <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\
-    \ntemplate <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1)\
-    \ * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint, class Head, class...\
-    \ Tail>\nmint multinomial(Head &&head, Tail &&... tail) {\n  return fact<mint>(head)\
-    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
-    mint C_dense(int n, int k) {\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n\
-    \  auto calc = [&](int i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1)\
-    \ : mint(0));\n    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n  if\
-    \ (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k +\
-    \ 1) { C[i][j] = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n\
-    \    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n      FOR(j,\
-    \ W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return C[n][k];\n\
-    }\n\ntemplate <typename mint, bool large = false, bool dense = false>\nmint C(ll\
-    \ n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if constexpr\
-    \ (dense) return C_dense<mint>(n, k);\n  if constexpr (!large) return multinomial<mint>(n,\
-    \ k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n\
-    \  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename mint, bool large = false>\n\
-    mint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if\
-    \ (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return\
-    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint,\
-    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
-    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
-    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 3 \"\
-    mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n  static constexpr u32\
-    \ umod = u32(mod);\n  static_assert(umod < u32(1) << 31);\n  u32 val;\n\n  static\
-    \ modint raw(u32 v) {\n    modint x;\n    x.val = v;\n    return x;\n  }\n  constexpr\
-    \ modint() : val(0) {}\n  constexpr modint(u32 x) : val(x % umod) {}\n  constexpr\
-    \ modint(u64 x) : val(x % umod) {}\n  constexpr modint(u128 x) : val(x % umod)\
-    \ {}\n  constexpr modint(int x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr\
-    \ modint(ll x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(i128\
-    \ x) : val((x %= mod) < 0 ? x + mod : x){};\n  bool operator<(const modint &other)\
-    \ const { return val < other.val; }\n  modint &operator+=(const modint &p) {\n\
-    \    if ((val += p.val) >= umod) val -= umod;\n    return *this;\n  }\n  modint\
-    \ &operator-=(const modint &p) {\n    if ((val += umod - p.val) >= umod) val -=\
-    \ umod;\n    return *this;\n  }\n  modint &operator*=(const modint &p) {\n   \
-    \ val = u64(val) * p.val % umod;\n    return *this;\n  }\n  modint &operator/=(const\
-    \ modint &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n  modint operator-()\
-    \ const { return modint::raw(val ? mod - val : u32(0)); }\n  modint operator+(const\
-    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
-    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
-    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
-    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
-    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
-    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
-    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
-    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
-    \  assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if\
-    \ (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
-    \  }\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F\
-    \ 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n\
-    \    if (mod == 120586241) return {20, 74066978};\n    if (mod == 167772161) return\
-    \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
-    \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
-    \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
-    \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
-    \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
-    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
-    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
-    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
-    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
-    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 2 \"alg/monoid_pow.hpp\"\n\ntemplate <typename Monoid>\ntypename Monoid::X\
-    \ monoid_pow(typename Monoid::X x, u64 exp) {\n  using X = typename Monoid::X;\n\
-    \  assert(exp >= 0);\n  X res = Monoid::unit();\n  while (exp) {\n    if (exp\
-    \ & 1) res = Monoid::op(res, x);\n    x = Monoid::op(x, x);\n    exp >>= 1;\n\
-    \  }\n  return res;\n}\n#line 7 \"test_atcoder/abc200f.test.cpp\"\n\nusing mint\
-    \ = modint107;\n\nusing P = pair<mint, mint>;\nusing ARR = array<array<P, 2>,\
-    \ 2>;\n\nstruct Mono {\n  using value_type = ARR;\n  using X = value_type;\n \
-    \ static X op(X x, X y) {\n    if (x == unit()) return y;\n    if (y == unit())\
-    \ return x;\n    X z = unit();\n    FOR(i, 2) FOR(j, 2) z[i][j] = {mint(0), mint(0)};\n\
-    \    FOR(a, 2) FOR(b, 2) FOR(c, 2) FOR(d, 2) {\n      auto& dp1 = x[a][b];\n \
-    \     auto& dp2 = y[c][d];\n      z[a][d].fi += dp1.fi * dp2.fi;\n      z[a][d].se\
-    \ += dp1.fi * dp2.se + dp2.fi * dp1.se;\n      if (b != c) z[a][b].se += dp1.fi\
-    \ * dp2.fi;\n    }\n    return z;\n  }\n  static X unit() {\n    X x;\n    FOR(i,\
-    \ 2) FOR(j, 2) x[i][j] = {mint(0), mint(0)};\n    return x;\n  }\n  static X from_element(char\
-    \ c) {\n    X t = unit();\n    FOR(x, 2) {\n      if (x == 0 && c == '1') continue;\n\
-    \      if (x == 1 && c == '0') continue;\n      t[x][x] = {1, 0};\n    }\n   \
-    \ return t;\n  }\n  static constexpr bool commute = 0;\n};\n\nvoid solve() {\n\
-    \  STR(S);\n  INT(K);\n  ARR x = Mono::unit();\n  for (auto&& c: S) x = Mono::op(x,\
-    \ Mono::from_element(c));\n\n  ARR e = monoid_pow<Mono>(x, K);\n  mint ANS = 0;\n\
-    \  FOR(a, 2) FOR(b, 2) {\n    auto [cnt, sm] = e[a][b];\n    if (a != b) ANS +=\
-    \ (sm + cnt) * inv<mint>(2);\n    if (a == b) ANS += sm * inv<mint>(2);\n  }\n\
-    \  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc200/tasks/abc200_f\"\n\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\
-    \n#include \"alg/monoid_pow.hpp\"\n\nusing mint = modint107;\n\nusing P = pair<mint,\
-    \ mint>;\nusing ARR = array<array<P, 2>, 2>;\n\nstruct Mono {\n  using value_type\
-    \ = ARR;\n  using X = value_type;\n  static X op(X x, X y) {\n    if (x == unit())\
-    \ return y;\n    if (y == unit()) return x;\n    X z = unit();\n    FOR(i, 2)\
-    \ FOR(j, 2) z[i][j] = {mint(0), mint(0)};\n    FOR(a, 2) FOR(b, 2) FOR(c, 2) FOR(d,\
-    \ 2) {\n      auto& dp1 = x[a][b];\n      auto& dp2 = y[c][d];\n      z[a][d].fi\
-    \ += dp1.fi * dp2.fi;\n      z[a][d].se += dp1.fi * dp2.se + dp2.fi * dp1.se;\n\
-    \      if (b != c) z[a][b].se += dp1.fi * dp2.fi;\n    }\n    return z;\n  }\n\
-    \  static X unit() {\n    X x;\n    FOR(i, 2) FOR(j, 2) x[i][j] = {mint(0), mint(0)};\n\
-    \    return x;\n  }\n  static X from_element(char c) {\n    X t = unit();\n  \
-    \  FOR(x, 2) {\n      if (x == 0 && c == '1') continue;\n      if (x == 1 && c\
-    \ == '0') continue;\n      t[x][x] = {1, 0};\n    }\n    return t;\n  }\n  static\
-    \ constexpr bool commute = 0;\n};\n\nvoid solve() {\n  STR(S);\n  INT(K);\n  ARR\
-    \ x = Mono::unit();\n  for (auto&& c: S) x = Mono::op(x, Mono::from_element(c));\n\
-    \n  ARR e = monoid_pow<Mono>(x, K);\n  mint ANS = 0;\n  FOR(a, 2) FOR(b, 2) {\n\
-    \    auto [cnt, sm] = e[a][b];\n    if (a != b) ANS += (sm + cnt) * inv<mint>(2);\n\
-    \    if (a == b) ANS += sm * inv<mint>(2);\n  }\n  print(ANS);\n}\n\nsigned main()\
-    \ {\n  solve();\n  return 0;\n}\n"
+    \ yes(!t); }\r\n#line 4 \"test/library_checker/math/sum_of_floor_of_linear_2.test.cpp\"\
+    \n\n#line 1 \"mod/floor_sum_of_linear_polynomial.hpp\"\n\n#line 2 \"alg/monoid_pow.hpp\"\
+    \n\ntemplate <typename Monoid>\ntypename Monoid::X monoid_pow(typename Monoid::X\
+    \ x, u64 exp) {\n  using X = typename Monoid::X;\n  assert(exp >= 0);\n  X res\
+    \ = Monoid::unit();\n  while (exp) {\n    if (exp & 1) res = Monoid::op(res, x);\n\
+    \    x = Monoid::op(x, x);\n    exp >>= 1;\n  }\n  return res;\n}\n#line 2 \"\
+    mod/floor_monoid_product.hpp\"\n\n// https://yukicoder.me/submissions/883884\n\
+    // U \u306F\u7BC4\u56F2\u5185\u3067 ax+b \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\
+    \u30FC\u3057\u306A\u3044\u7A0B\u5EA6\n// yyy x yyyy x ... yyy x yyy\n// k \u500B\
+    \u76EE\u306E x \u307E\u3067\u306B floor(ak+b,m) \u500B\u306E y \u304C\u3042\u308B\
+    \n// my<=ax+b \u306B\u304A\u3051\u308B lattice path \u306B\u304A\u3051\u308B\u8FBA\
+    \u306E\u5217\u3068\u898B\u306A\u305B\u308B\ntemplate <typename Monoid, typename\
+    \ X, typename U>\nX floor_monoid_product(X x, X y, U N, U a, U b, U m) {\n  U\
+    \ c = (a * N + b) / m;\n  X pre = Monoid::unit(), suf = Monoid::unit();\n  while\
+    \ (1) {\n    const U p = a / m, q = b / m;\n    a %= m, b %= m;\n    x = Monoid::op(x,\
+    \ monoid_pow<Monoid>(y, p));\n    pre = Monoid::op(pre, monoid_pow<Monoid>(y,\
+    \ q));\n    c -= (p * N + q);\n    if (c == 0) break;\n    const U d = (m * c\
+    \ - b - 1) / a + 1;\n    suf = Monoid::op(y, Monoid::op(monoid_pow<Monoid>(x,\
+    \ N - d), suf));\n    b = m - b - 1 + a, N = c - 1, c = d;\n    swap(m, a), swap(x,\
+    \ y);\n  }\n  x = monoid_pow<Monoid>(x, N);\n  return Monoid::op(Monoid::op(pre,\
+    \ x), suf);\n}\n#line 1 \"alg/monoid/monoid_for_floor_sum.hpp\"\n\n// sum i^kfloor:\
+    \ floor path \u3067 (x,y) \u304B\u3089 x \u65B9\u5411\u306B\u9032\u3080\u3068\u304D\
+    \u306B x^ky \u3092\u8DB3\u3059\ntemplate <typename T, int K>\nstruct Monoid_for_floor_sum\
+    \ {\n  using ARR = array<array<T, K + 1>, 2>;\n  struct Data {\n    ARR dp;\n\
+    \    T dx, dy;\n  };\n\n  using value_type = Data;\n  using X = value_type;\n\
+    \  static X op(X a, X b) {\n    static T comb[K + 1][K + 1];\n    if (comb[0][0]\
+    \ != T(1)) {\n      comb[0][0] = T(1);\n      FOR(i, K) FOR(j, i + 1) {\n    \
+    \    comb[i + 1][j] += comb[i][j], comb[i + 1][j + 1] += comb[i][j];\n      }\n\
+    \    }\n    T pow = 1;\n    FOR(j, K + 1) {\n      FOR(i, K - j + 1) {\n     \
+    \   T x = comb[i + j][i];\n        a.dp[0][i + j] += b.dp[0][i] * pow * x;\n \
+    \       a.dp[1][i + j] += (b.dp[0][i] * a.dy + b.dp[1][i]) * pow * x;\n      }\n\
+    \      pow *= a.dx;\n    }\n    a.dx += b.dx, a.dy += b.dy;\n    return a;\n \
+    \ }\n\n  static X to_x() {\n    X x = unit();\n    x.dp[0][0] = 1, x.dx = 1;\n\
+    \    return x;\n  }\n  static X to_y() {\n    X x = unit();\n    x.dy = 1;\n \
+    \   return x;\n  }\n  static constexpr X unit() { return {ARR{}, T(0), T(0)};\
+    \ }\n  static constexpr bool commute = 0;\n};\n#line 4 \"mod/floor_sum_of_linear_polynomial.hpp\"\
+    \n\n// sum(i^k*floor) for k=0,1,...,K\ntemplate <typename T, int K, typename U>\n\
+    array<T, K + 1> floor_sum_of_linear_polynomial(U N, U a, U b, U mod) {\n  static_assert(is_same_v<U,\
+    \ u64> || is_same_v<U, u128>);\n  assert(a == 0 || N < (U(-1) - b) / a);\n  using\
+    \ Mono = Monoid_for_floor_sum<T, K>;\n  auto z = floor_monoid_product<Mono>(Mono::to_x(),\
+    \ Mono::to_y(), N, a, b, mod);\n  return z.dp[1];\n};\n#line 6 \"test/library_checker/math/sum_of_floor_of_linear_2.test.cpp\"\
+    \n\nvoid solve() {\n  u32 n, m, a, b;\n  read(n, m, a, b);\n  print(floor_sum_of_linear_polynomial<u64,\
+    \ 0, u64>(n, a, b, m));\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n\
+    \  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sum_of_floor_of_linear\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/floor_sum_of_linear_polynomial.hpp\"\
+    \n\nvoid solve() {\n  u32 n, m, a, b;\n  read(n, m, a, b);\n  print(floor_sum_of_linear_polynomial<u64,\
+    \ 0, u64>(n, a, b, m));\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n\
+    \  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - mod/modint.hpp
-  - mod/modint_common.hpp
+  - mod/floor_sum_of_linear_polynomial.hpp
+  - mod/floor_monoid_product.hpp
   - alg/monoid_pow.hpp
+  - alg/monoid/monoid_for_floor_sum.hpp
   isVerificationFile: true
-  path: test_atcoder/abc200f.test.cpp
+  path: test/library_checker/math/sum_of_floor_of_linear_2.test.cpp
   requiredBy: []
   timestamp: '2023-11-23 14:15:12+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test_atcoder/abc200f.test.cpp
+documentation_of: test/library_checker/math/sum_of_floor_of_linear_2.test.cpp
 layout: document
 redirect_from:
-- /verify/test_atcoder/abc200f.test.cpp
-- /verify/test_atcoder/abc200f.test.cpp.html
-title: test_atcoder/abc200f.test.cpp
+- /verify/test/library_checker/math/sum_of_floor_of_linear_2.test.cpp
+- /verify/test/library_checker/math/sum_of_floor_of_linear_2.test.cpp.html
+title: test/library_checker/math/sum_of_floor_of_linear_2.test.cpp
 ---

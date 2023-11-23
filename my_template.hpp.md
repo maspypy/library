@@ -625,6 +625,9 @@ data:
     path: test/library_checker/math/sum_of_floor_of_linear.test.cpp
     title: test/library_checker/math/sum_of_floor_of_linear.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/sum_of_floor_of_linear_2.test.cpp
+    title: test/library_checker/math/sum_of_floor_of_linear_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
   - icon: ':heavy_check_mark:'
@@ -951,6 +954,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/floor_ceil_ranges.test.cpp
     title: test/mytest/floor_ceil_ranges.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/floor_sum_of_polynomial.test.cpp
+    title: test/mytest/floor_sum_of_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
@@ -1822,6 +1828,9 @@ data:
     path: test/yukicoder/2361.test.cpp
     title: test/yukicoder/2361.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2362.test.cpp
+    title: test/yukicoder/2362.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2440.test.cpp
     title: test/yukicoder/2440.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1983,7 +1992,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc200a.test.cpp
     title: test_atcoder/abc200a.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc200f.test.cpp
     title: test_atcoder/abc200f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2761,6 +2770,7 @@ data:
   - test/library_checker/math/partition.test.cpp
   - test/library_checker/math/twosat.test.cpp
   - test/library_checker/math/factori998.test.cpp
+  - test/library_checker/math/sum_of_floor_of_linear_2.test.cpp
   - test/library_checker/math/enumerate_quotients.test.cpp
   - test/library_checker/math/sum_of_floor_of_linear.test.cpp
   - test/library_checker/math/gcd_convolution.test.cpp
@@ -2805,6 +2815,7 @@ data:
   - test/mytest/three_square.test.cpp
   - test/mytest/max_assign.test.cpp
   - test/mytest/min_max.test.cpp
+  - test/mytest/floor_sum_of_polynomial.test.cpp
   - test/mytest/QOJ5445.test.cpp
   - test/mytest/floor_ceil_ranges.test.cpp
   - test/mytest/binary_trie.test.cpp
@@ -2998,6 +3009,7 @@ data:
   - test/yukicoder/1319.test.cpp
   - test/yukicoder/1321.test.cpp
   - test/yukicoder/2181.test.cpp
+  - test/yukicoder/2362.test.cpp
   - test/yukicoder/2026.test.cpp
   - test/yukicoder/2294.test.cpp
   - test/yukicoder/421.test.cpp
