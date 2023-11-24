@@ -441,7 +441,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/K_shortest_walk.test.cpp
     title: test/library_checker/graph/K_shortest_walk.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1285,6 +1285,9 @@ data:
     path: test/yukicoder/1145.test.cpp
     title: test/yukicoder/1145.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1154.test.cpp
+    title: test/yukicoder/1154.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1167.test.cpp
     title: test/yukicoder/1167.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1783,6 +1786,9 @@ data:
     path: test/yukicoder/2265.test.cpp
     title: test/yukicoder/2265.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2266.test.cpp
+    title: test/yukicoder/2266.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2276.test.cpp
     title: test/yukicoder/2276.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2277,24 +2283,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc153b.test.cpp
     title: test_atcoder/arc153b.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc154f.test.cpp
     title: test_atcoder/arc154f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc157a.test.cpp
     title: test_atcoder/arc157a.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc160d.test.cpp
     title: test_atcoder/arc160d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://trap.jp/post/1224/
@@ -2462,7 +2468,7 @@ data:
   path: my_template.hpp
   requiredBy: []
   timestamp: '2023-10-29 16:21:41+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc268_ex.test.cpp
   - test_atcoder/abc288ex.test.cpp
@@ -2989,6 +2995,7 @@ data:
   - test/yukicoder/1813.test.cpp
   - test/yukicoder/142.test.cpp
   - test/yukicoder/2066.test.cpp
+  - test/yukicoder/2266.test.cpp
   - test/yukicoder/1344.test.cpp
   - test/yukicoder/1341.test.cpp
   - test/yukicoder/1881.test.cpp
@@ -3073,6 +3080,7 @@ data:
   - test/yukicoder/303.test.cpp
   - test/yukicoder/4_2.test.cpp
   - test/yukicoder/1790.test.cpp
+  - test/yukicoder/1154.test.cpp
   - test/yukicoder/2296.test.cpp
   - test/yukicoder/1796.test.cpp
   - test/yukicoder/1301.test.cpp

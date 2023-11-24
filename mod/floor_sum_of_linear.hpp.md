@@ -8,6 +8,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/range_freq_of_linear.hpp
     title: mod/range_freq_of_linear.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/range_rational_count.hpp
+    title: nt/range_rational_count.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
@@ -27,6 +30,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2066.test.cpp
     title: test/yukicoder/2066.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2266.test.cpp
+    title: test/yukicoder/2266.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2280.test.cpp
     title: test/yukicoder/2280.test.cpp
@@ -65,6 +71,7 @@ data:
   requiredBy:
   - mod/range_freq_of_linear.hpp
   - mod/mod_sum_of_linear.hpp
+  - nt/range_rational_count.hpp
   timestamp: '2023-11-10 22:48:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -73,6 +80,7 @@ data:
   - test/mytest/range_freq_of_linear.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
   - test/yukicoder/2066.test.cpp
+  - test/yukicoder/2266.test.cpp
   - test/yukicoder/2440.test.cpp
   - test/yukicoder/1201.test.cpp
   - test/yukicoder/2280.test.cpp

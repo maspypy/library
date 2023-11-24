@@ -1,17 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   - icon: ':heavy_check_mark:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: nt/mertens.hpp
+    title: nt/mertens.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/range_rational_count.hpp
+    title: nt/range_rational_count.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1760.test.cpp
     title: test/yukicoder/1760.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2266.test.cpp
+    title: test/yukicoder/2266.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -50,10 +59,13 @@ data:
   - nt/primetable.hpp
   isVerificationFile: false
   path: nt/mobius_table.hpp
-  requiredBy: []
+  requiredBy:
+  - nt/range_rational_count.hpp
+  - nt/mertens.hpp
   timestamp: '2023-08-06 03:59:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/2266.test.cpp
   - test/yukicoder/1760.test.cpp
 documentation_of: nt/mobius_table.hpp
 layout: document

@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: enumerate/floor_range.hpp
     title: enumerate/floor_range.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
   _extendedRequiredBy: []
@@ -108,12 +108,12 @@ data:
     \ = (N <= sq * sq + sq ? sq : sq + 1);\n  if (N == sq * sq) --n;\n  for (int l\
     \ = n; l >= 1; --l) { f(double(N + l - 1) / l, l, l + 1); }\n}\n#line 1 \"enumerate/floor_range.hpp\"\
     \n// \u5546\u304C q \u306E\u533A\u9593 [l,r) \u3092 q \u306B\u3064\u3044\u3066\
-    \u6607\u9806\r\ntemplate <typename F>\r\nvoid floor_range(ll N, F f) {\r\n  assert(N\
-    \ <= (1LL << 50));\r\n  ll sq = sqrtl(N);\r\n  int n = (sq * sq + sq <= N ? sq\
-    \ : sq - 1);\r\n  ll prev = N + 1;\r\n  for (int q = 1; q <= n; ++q) {\r\n   \
-    \ ll x = double(N) / (q + 1) + 1;\r\n    f(q, x, prev), prev = x;\r\n  }\r\n \
-    \ for (int l = sq; l >= 1; --l) { f(double(N) / l, l, l + 1); }\r\n}\r\n#line\
-    \ 5 \"test/mytest/floor_ceil_ranges.test.cpp\"\n\nvoid test_floor() {\n  using\
+    \u6607\u9806\r\ntemplate <typename F>\r\nvoid floor_range(u64 N, F f) {\r\n  assert(N\
+    \ <= (u64(1) << 50));\r\n  u64 sq = sqrtl(N);\r\n  u32 n = (sq * sq + sq <= N\
+    \ ? sq : sq - 1);\r\n  u64 prev = N + 1;\r\n  for (u32 q = 1; q <= n; ++q) {\r\
+    \n    u64 x = double(N) / (q + 1) + 1;\r\n    f(q, x, prev), prev = x;\r\n  }\r\
+    \n  for (u32 l = sq; l >= 1; --l) { f(u64(double(N) / l), l, l + 1); }\r\n}\r\n\
+    #line 5 \"test/mytest/floor_ceil_ranges.test.cpp\"\n\nvoid test_floor() {\n  using\
     \ T = tuple<ll, ll, ll>;\n  auto F = [&](ll N) -> vc<T> {\n    vc<T> dat;\n  \
     \  auto f = [&](ll q, ll l, ll r) -> void { dat.eb(q, l, r); };\n    floor_range(N,\
     \ f);\n    return dat;\n  };\n  auto G = [&](ll N) -> vc<T> {\n    vvc<ll> tmp(N\
@@ -159,7 +159,7 @@ data:
   isVerificationFile: true
   path: test/mytest/floor_ceil_ranges.test.cpp
   requiredBy: []
-  timestamp: '2023-11-07 22:29:27+09:00'
+  timestamp: '2023-11-24 15:08:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/floor_ceil_ranges.test.cpp

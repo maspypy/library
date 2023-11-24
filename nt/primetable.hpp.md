@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':heavy_check_mark:'
@@ -30,6 +30,9 @@ data:
     path: nt/lpf_table.hpp
     title: nt/lpf_table.hpp
   - icon: ':heavy_check_mark:'
+    path: nt/mertens.hpp
+    title: nt/mertens.hpp
+  - icon: ':heavy_check_mark:'
     path: nt/mobius_table.hpp
     title: nt/mobius_table.hpp
   - icon: ':heavy_check_mark:'
@@ -44,6 +47,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/primesum_mod6.hpp
     title: nt/primesum_mod6.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/range_rational_count.hpp
+    title: nt/range_rational_count.hpp
   - icon: ':heavy_check_mark:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
@@ -71,7 +77,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   - icon: ':heavy_check_mark:'
@@ -190,6 +196,9 @@ data:
     path: test/yukicoder/2206.test.cpp
     title: test/yukicoder/2206.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2266.test.cpp
+    title: test/yukicoder/2266.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc152e.test.cpp
     title: test_atcoder/abc152e.test.cpp
   - icon: ':heavy_check_mark:'
@@ -204,12 +213,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc281g.test.cpp
     title: test_atcoder/abc281g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
@@ -251,7 +260,9 @@ data:
   - nt/lcm_convolution.hpp
   - nt/primesum_mod4.hpp
   - nt/mobius_table.hpp
+  - nt/range_rational_count.hpp
   - nt/factor_interval.hpp
+  - nt/mertens.hpp
   - nt/primesum.hpp
   - nt/zeta.hpp
   - nt/all_lcm.hpp
@@ -266,7 +277,7 @@ data:
   - poly/composition_f_rational.hpp
   - linalg/det_A_plus_xB.hpp
   timestamp: '2023-08-06 03:59:07+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc152e.test.cpp
   - test_atcoder/arc153f.test.cpp
@@ -302,6 +313,7 @@ data:
   - test/yukicoder/1262.test.cpp
   - test/yukicoder/1907.test.cpp
   - test/yukicoder/1821.test.cpp
+  - test/yukicoder/2266.test.cpp
   - test/yukicoder/1881.test.cpp
   - test/yukicoder/2206.test.cpp
   - test/yukicoder/1321.test.cpp
