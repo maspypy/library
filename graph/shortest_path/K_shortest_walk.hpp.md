@@ -1,57 +1,60 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/meldable_heap.hpp
     title: ds/meldable_heap.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/K_shortest_walk.test.cpp
     title: test/library_checker/graph/K_shortest_walk.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/meldable_heap.hpp\"\n\ntemplate <typename VAL, bool PERSISTENT,\
-    \ int NODES>\nstruct Meldable_Heap {\n  struct Node {\n    Node *l, *r;\n    VAL\
-    \ x;\n    int s;\n  };\n  Node *pool;\n  int pid;\n  using np = Node *;\n\n  Meldable_Heap()\
-    \ : pid(0) { pool = new Node[NODES]; }\n\n  np new_node(const VAL &x) {\n    pool[pid].l\
-    \ = pool[pid].r = nullptr;\n    pool[pid].x = x;\n    pool[pid].s = 1;\n    return\
-    \ &(pool[pid++]);\n  }\n  np copy_node(np a) {\n    if (!a || !PERSISTENT) return\
-    \ a;\n    np b = new_node(a->x);\n    b->s = a->s;\n    b->l = a->l;\n    b->r\
-    \ = a->r;\n    return b;\n  }\n  np meld(np a, np b) {\n    if (!a) return b;\n\
-    \    if (!b) return a;\n    a = copy_node(a);\n    b = copy_node(b);\n    if ((a->x)\
-    \ > (b->x)) swap(a, b);\n    a->r = (a->r ? meld(a->r, b) : b);\n    if (!(a->l)\
-    \ || (a->l->s < a->r->s)) swap(a->l, a->r);\n    a->s = (a->r ? a->r->s : 0) +\
-    \ 1;\n    return a;\n  }\n  np push(np a, VAL x) { return meld(a, new_node(x));\
-    \ }\n  np pop(np a) { return meld(a->l, a->r); }\n  VAL top(np a) { return a->x;\
-    \ }\n  vc<VAL> get_all(np a) {\n    vc<VAL> A;\n    auto dfs = [&](auto &dfs,\
-    \ np a) -> void {\n      if (!a) return;\n      A.eb(a->x);\n      dfs(dfs, a->l);\n\
-    \      dfs(dfs, a->r);\n    };\n    dfs(dfs, a);\n    return A;\n  }\n};\n#line\
-    \ 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n\
-    \  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool directed = false>\n\
-    struct Graph {\n  static constexpr bool is_directed = directed;\n  int N, M;\n\
-    \  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n\
-    \  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg, vc_indeg,\
-    \ vc_outdeg;\n  bool prepared;\n\n  class OutgoingEdges {\n  public:\n    OutgoingEdges(const\
-    \ Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin()\
-    \ const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[l];\n \
-    \   }\n\n    const edge_type* end() const {\n      if (l == r) { return 0; }\n\
-    \      return &G->csr_edges[r];\n    }\n\n  private:\n    const Graph* G;\n  \
-    \  int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n\n  Graph() :\
-    \ N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n\
-    \  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
+    \ int NODES, bool TOP_IS_MIN>\nstruct Meldable_Heap {\n  struct Node {\n    Node\
+    \ *l, *r;\n    VAL x;\n    int size;\n  };\n  Node *pool;\n  int pid;\n  using\
+    \ np = Node *;\n\n  Meldable_Heap() : pid(0) { pool = new Node[NODES]; }\n\n \
+    \ np new_root() { return nullptr; }\n  np new_node(const VAL &x) {\n    pool[pid].l\
+    \ = pool[pid].r = nullptr;\n    pool[pid].x = x;\n    pool[pid].size = 1;\n  \
+    \  return &(pool[pid++]);\n  }\n  np copy_node(np a) {\n    if (!a || !PERSISTENT)\
+    \ return a;\n    np b = new_node(a->x);\n    b->size = a->size;\n    b->l = a->l;\n\
+    \    b->r = a->r;\n    return b;\n  }\n  np meld(np a, np b) {\n    if (!a) return\
+    \ b;\n    if (!b) return a;\n    a = copy_node(a);\n    b = copy_node(b);\n  \
+    \  if constexpr (TOP_IS_MIN) {\n      if ((a->x) > (b->x)) swap(a, b);\n    }\
+    \ else {\n      if ((a->x) < (b->x)) swap(a, b);\n    }\n    a->r = meld(a->r,\
+    \ b);\n    swap(a->l, a->r);\n    (a->size) = 1;\n    if (a->l) a->size += a->l->size;\n\
+    \    if (a->r) a->size += a->r->size;\n    return a;\n  }\n  np push(np a, VAL\
+    \ x) { return meld(a, new_node(x)); }\n  np pop(np a) { return meld(a->l, a->r);\
+    \ }\n  VAL top(np a) { return a->x; }\n\n  // \u30BD\u30FC\u30C8\u3068\u304B\u306F\
+    \u3055\u308C\u306A\u3044\n  vc<VAL> get_all(np a) {\n    vc<VAL> A;\n    auto\
+    \ dfs = [&](auto &dfs, np a) -> void {\n      if (!a) return;\n      A.eb(a->x);\n\
+    \      dfs(dfs, a->l);\n      dfs(dfs, a->r);\n    };\n    dfs(dfs, a);\n    return\
+    \ A;\n  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge\
+    \ {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
+    \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
+    \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
+    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg,\
+    \ vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class OutgoingEdges {\n  public:\n\
+    \    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n   \
+    \ const edge_type* begin() const {\n      if (l == r) { return 0; }\n      return\
+    \ &G->csr_edges[l];\n    }\n\n    const edge_type* end() const {\n      if (l\
+    \ == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n  private:\n \
+    \   const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared;\
+    \ }\n\n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
+    \ {}\n\n  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
     \    indptr.clear();\n    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n\
     \    vc_outdeg.clear();\n  }\n\n  void add(int frm, int to, T cost = 1, int i\
     \ = -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <= to && to < N);\n\
@@ -183,8 +186,8 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/K_shortest_walk.hpp
   requiredBy: []
-  timestamp: '2023-11-07 22:29:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-11-24 12:43:53+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/graph/K_shortest_walk.test.cpp
 documentation_of: graph/shortest_path/K_shortest_walk.hpp

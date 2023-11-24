@@ -266,7 +266,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/intervals.hpp
       title: ds/intervals.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: ds/meldable_heap.hpp
       title: ds/meldable_heap.hpp
     - icon: ':heavy_check_mark:'
@@ -783,7 +783,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/reachability.hpp
       title: graph/reachability.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/reverse_graph.hpp
       title: graph/reverse_graph.hpp
     - icon: ':heavy_check_mark:'
@@ -941,7 +941,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/shortest_path/K_shortest_path.hpp
       title: graph/shortest_path/K_shortest_path.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/shortest_path/K_shortest_walk.hpp
       title: graph/shortest_path/K_shortest_walk.hpp
     - icon: ':heavy_check_mark:'
@@ -956,7 +956,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/shortest_path/dial.hpp
       title: graph/shortest_path/dial.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/shortest_path/dijkstra.hpp
       title: graph/shortest_path/dijkstra.hpp
     - icon: ':heavy_check_mark:'
@@ -2217,7 +2217,7 @@ data:
       title: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - name: test/library_checker/graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/graph/K_shortest_walk.test.cpp
       title: test/library_checker/graph/K_shortest_walk.test.cpp
     - icon: ':heavy_check_mark:'
