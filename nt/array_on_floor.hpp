@@ -5,6 +5,7 @@ struct Array_On_Floor {
   u64 N;
   u32 n, sq;
   vc<T> dat;
+  Array_On_Floor() {}
   Array_On_Floor(u64 N, T default_value = T{}) : N(N) {
     assert(N <= u64(1) << 50);
     sq = sqrtl(N);

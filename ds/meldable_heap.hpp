@@ -4,7 +4,7 @@ struct Meldable_Heap {
   struct Node {
     Node *l, *r;
     VAL x;
-    int size;
+    u32 size, dist; // dist: leaf までの距離
   };
   Node *pool;
   int pid;
@@ -15,16 +15,14 @@ struct Meldable_Heap {
   np new_root() { return nullptr; }
   np new_node(const VAL &x) {
     pool[pid].l = pool[pid].r = nullptr;
-    pool[pid].x = x;
-    pool[pid].size = 1;
+    pool[pid].x = x, pool[pid].size = 1, pool[pid].dist = 1;
     return &(pool[pid++]);
   }
   np copy_node(np a) {
     if (!a || !PERSISTENT) return a;
     np b = new_node(a->x);
-    b->size = a->size;
-    b->l = a->l;
-    b->r = a->r;
+    b->l = a->l, b->r = a->r;
+    b->size = a->size, b->dist = a->dist;
     return b;
   }
   np meld(np a, np b) {
@@ -38,8 +36,9 @@ struct Meldable_Heap {
       if ((a->x) < (b->x)) swap(a, b);
     }
     a->r = meld(a->r, b);
-    swap(a->l, a->r);
-    (a->size) = 1;
+    if (!(a->l) || (a->l->dist < a->r->dist)) swap(a->l, a->r);
+    a->dist = (a->r ? a->r->dist : 0) + 1;
+    a->size = 1;
     if (a->l) a->size += a->l->size;
     if (a->r) a->size += a->r->size;
     return a;
@@ -47,17 +46,15 @@ struct Meldable_Heap {
   np push(np a, VAL x) { return meld(a, new_node(x)); }
   np pop(np a) { return meld(a->l, a->r); }
   VAL top(np a) { return a->x; }
-
-  // ソートとかはされない
   vc<VAL> get_all(np a) {
     vc<VAL> A;
     auto dfs = [&](auto &dfs, np a) -> void {
       if (!a) return;
-      A.eb(a->x);
-      dfs(dfs, a->l);
-      dfs(dfs, a->r);
+      A.eb(a->x), dfs(dfs, a->l), dfs(dfs, a->r);
     };
     dfs(dfs, a);
+    sort(all(A));
+    if (!TOP_IS_MIN) reverse(all(A));
     return A;
   }
 };
