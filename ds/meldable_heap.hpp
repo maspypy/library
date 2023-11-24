@@ -1,10 +1,10 @@
 
-template <typename VAL, bool PERSISTENT, int NODES>
+template <typename VAL, bool PERSISTENT, int NODES, bool TOP_IS_MIN>
 struct Meldable_Heap {
   struct Node {
     Node *l, *r;
     VAL x;
-    int s;
+    int size;
   };
   Node *pool;
   int pid;
@@ -12,16 +12,17 @@ struct Meldable_Heap {
 
   Meldable_Heap() : pid(0) { pool = new Node[NODES]; }
 
+  np new_root() { return nullptr; }
   np new_node(const VAL &x) {
     pool[pid].l = pool[pid].r = nullptr;
     pool[pid].x = x;
-    pool[pid].s = 1;
+    pool[pid].size = 1;
     return &(pool[pid++]);
   }
   np copy_node(np a) {
     if (!a || !PERSISTENT) return a;
     np b = new_node(a->x);
-    b->s = a->s;
+    b->size = a->size;
     b->l = a->l;
     b->r = a->r;
     return b;
@@ -31,15 +32,23 @@ struct Meldable_Heap {
     if (!b) return a;
     a = copy_node(a);
     b = copy_node(b);
-    if ((a->x) > (b->x)) swap(a, b);
-    a->r = (a->r ? meld(a->r, b) : b);
-    if (!(a->l) || (a->l->s < a->r->s)) swap(a->l, a->r);
-    a->s = (a->r ? a->r->s : 0) + 1;
+    if constexpr (TOP_IS_MIN) {
+      if ((a->x) > (b->x)) swap(a, b);
+    } else {
+      if ((a->x) < (b->x)) swap(a, b);
+    }
+    a->r = meld(a->r, b);
+    swap(a->l, a->r);
+    (a->size) = 1;
+    if (a->l) a->size += a->l->size;
+    if (a->r) a->size += a->r->size;
     return a;
   }
   np push(np a, VAL x) { return meld(a, new_node(x)); }
   np pop(np a) { return meld(a->l, a->r); }
   VAL top(np a) { return a->x; }
+
+  // ソートとかはされない
   vc<VAL> get_all(np a) {
     vc<VAL> A;
     auto dfs = [&](auto &dfs, np a) -> void {
