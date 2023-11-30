@@ -160,6 +160,17 @@ struct Tree {
     return res;
   }
 
+  vc<int> collect_light(int v) {
+    vc<int> res;
+    bool skip = true;
+    for (auto &&e: G[v])
+      if (e.to != parent[v]) {
+        if (!skip) res.eb(e.to);
+        skip = false;
+      }
+    return res;
+  }
+
   vc<pair<int, int>> get_path_decomposition(int u, int v, bool edge) {
     // [始点, 終点] の"閉"区間列。
     vc<pair<int, int>> up, down;
