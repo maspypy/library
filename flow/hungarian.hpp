@@ -1,9 +1,8 @@
-// (ans, match, X, Y)
-// N<=M を仮定, infty も valid として計算している
-// 最小重み最大マッチング。O(N^2M) time。
+// returns: (ans, match, X, Y)
+// N<=M を仮定, infty も valid として計算している, O(N^2M) time。
 // ポテンシャルは次の双対問題の解である：
 //   maximize \sum x_i + \sum y_j, subj to x_i + y_j\leq C_{ij}
-// returns:
+// n ループで打ち切っても大きさ n のマッチングの最適解ではない
 template <typename T, bool MINIMIZE>
 tuple<T, vc<int>, vc<T>, vc<T>> hungarian(vvc<T>& C) {
   int N = len(C);
