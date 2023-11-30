@@ -9,12 +9,15 @@ data:
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2258.test.cpp
+    title: test/yukicoder/2258.test.cpp
   - icon: ':x:'
     path: test_atcoder/abc269ex2.test.cpp
     title: test_atcoder/abc269ex2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://yukicoder.me/submissions/838092
@@ -254,9 +257,10 @@ data:
   path: graph/ds/static_toptree.hpp
   requiredBy: []
   timestamp: '2023-11-30 16:32:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc269ex2.test.cpp
+  - test/yukicoder/2258.test.cpp
 documentation_of: graph/ds/static_toptree.hpp
 layout: document
 redirect_from:
