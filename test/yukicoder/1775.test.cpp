@@ -1,35 +1,29 @@
-#define PROBLEM "https://yukicoder.me/problems/no/1775"
+#define PROBLEM "https://yukicoder.me/problems/no/1776"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "graph/base.hpp"
-#include "graph/minimum_cycle_length_through_specified.hpp"
+
+#include "graph/find_path_through_specified.hpp"
 
 void solve() {
   LL(N, M);
-  vv(bool, can, N, N, 1);
   INT(X, Y, Z);
   --X, --Y, --Z;
+  vv(bool, can, N, N, 1);
   FOR(M) {
     LL(a, b);
     --a, --b;
     can[a][b] = can[b][a] = 0;
   }
 
-  Graph<bool, 0> G(N);
-  FOR(i, N) FOR(j, i) if (can[i][j]) G.add(i, j);
+  Graph<int, 0> G(N);
+  FOR(a, N) FOR(b, a) if (can[a][b]) G.add(a, b);
   G.build();
-
-  vc<int> use = {X, Y, Z};
-  int ANS = minimum_cycle_length_through_specified(G, use);
-  print(ANS);
+  vc<int> need = {Y, Z};
+  auto [L, nxt] = find_path_through_specified(G, X, X, need);
+  print(L);
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
