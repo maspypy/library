@@ -23,12 +23,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_bipartite.hpp
     title: graph/count/count_bipartite.hpp
+  - icon: ':x:'
+    path: graph/find_path_through_specified.hpp
+    title: graph/find_path_through_specified.hpp
   - icon: ':heavy_check_mark:'
     path: graph/maximum_matching_size.hpp
     title: graph/maximum_matching_size.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/minimum_cycle_length_through_specified.hpp
-    title: graph/minimum_cycle_length_through_specified.hpp
   - icon: ':heavy_check_mark:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
@@ -77,7 +77,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/all_lcm.hpp
     title: nt/all_lcm.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/crt.hpp
     title: nt/crt.hpp
   - icon: ':heavy_check_mark:'
@@ -86,7 +86,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':heavy_check_mark:'
@@ -576,9 +576,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1774.test.cpp
     title: test/yukicoder/1774.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1775.test.cpp
     title: test/yukicoder/1775.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1776.test.cpp
+    title: test/yukicoder/1776.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1783.test.cpp
     title: test/yukicoder/1783.test.cpp
@@ -636,7 +639,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
   - icon: ':heavy_check_mark:'
@@ -660,7 +663,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc270_g.test.cpp
     title: test_atcoder/abc270_g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc274_h.test.cpp
     title: test_atcoder/abc274_h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -669,9 +672,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -716,8 +719,8 @@ data:
   - nt/crt.hpp
   - poly/fps_sqrt.hpp
   - poly/multivar_convolution_cyclic.hpp
-  - graph/minimum_cycle_length_through_specified.hpp
   - graph/maximum_matching_size.hpp
+  - graph/find_path_through_specified.hpp
   - graph/tree_dp/subtree_hash.hpp
   - graph/chromatic.hpp
   - graph/count/count_bipartite.hpp
@@ -733,7 +736,7 @@ data:
   - linalg/lowrank_update.hpp
   - other/connected_dp.hpp
   timestamp: '2022-10-23 11:21:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc152e.test.cpp
   - test_atcoder/abc270_g.test.cpp
@@ -883,6 +886,7 @@ data:
   - test/yukicoder/579.test.cpp
   - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/2264.test.cpp
+  - test/yukicoder/1776.test.cpp
   - test/yukicoder/2102.test.cpp
   - test/yukicoder/1728.test.cpp
   - test/yukicoder/1262.test.cpp

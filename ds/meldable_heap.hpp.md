@@ -12,9 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1154.test.cpp
     title: test/yukicoder/1154.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yukicoder/1752.test.cpp
+    title: test/yukicoder/1752.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/meldable_heap.hpp\"\n\ntemplate <typename VAL, bool PERSISTENT,\
@@ -66,9 +69,10 @@ data:
   requiredBy:
   - graph/shortest_path/K_shortest_walk.hpp
   timestamp: '2023-11-24 15:08:08+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/graph/K_shortest_walk.test.cpp
+  - test/yukicoder/1752.test.cpp
   - test/yukicoder/1154.test.cpp
 documentation_of: ds/meldable_heap.hpp
 layout: document

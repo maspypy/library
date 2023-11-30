@@ -2,19 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: graph/minimum_cycle_length_through_specified.hpp
-    title: graph/minimum_cycle_length_through_specified.hpp
+  - icon: ':x:'
+    path: graph/find_path_through_specified.hpp
+    title: graph/find_path_through_specified.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1775.test.cpp
     title: test/yukicoder/1775.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/yukicoder/1776.test.cpp
+    title: test/yukicoder/1776.test.cpp
+  - icon: ':x:'
     path: test_atcoder/abc274_h.test.cpp
     title: test_atcoder/abc274_h.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://oeis.org/A344141
@@ -57,7 +60,9 @@ data:
     \ GF2 &p) const { return val != p.val; }\n  GF2 inverse() const { return pow((u64(1)\
     \ << K) - 2); }\n  GF2 pow(u64 n) const {\n    GF2 ret(1), mul(val);\n    while\
     \ (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n\
-    \    }\n    return ret;\n  }\n};\n"
+    \    }\n    return ret;\n  }\n};\n\n#ifdef FASTIO\ntemplate <int K>\nvoid rd(GF2<K>\
+    \ &x) {\n  fastio::rd(x.val);\n  x &= GF2<K>::mask;\n}\ntemplate <int K>\nvoid\
+    \ wt(GF2<K> x) {\n  fastio::wt(x.val);\n}\n#endif\n"
   code: "#include <emmintrin.h>\n#include <smmintrin.h>\n#include <wmmintrin.h>\n\n\
     __attribute__((target(\"pclmul\"))) inline __m128i myclmul(const __m128i &a,\n\
     \                                                         const __m128i &b) {\n\
@@ -97,17 +102,20 @@ data:
     \ != p.val; }\n  GF2 inverse() const { return pow((u64(1) << K) - 2); }\n  GF2\
     \ pow(u64 n) const {\n    GF2 ret(1), mul(val);\n    while (n > 0) {\n      if\
     \ (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
-    \  }\n};\n"
+    \  }\n};\n\n#ifdef FASTIO\ntemplate <int K>\nvoid rd(GF2<K> &x) {\n  fastio::rd(x.val);\n\
+    \  x &= GF2<K>::mask;\n}\ntemplate <int K>\nvoid wt(GF2<K> x) {\n  fastio::wt(x.val);\n\
+    }\n#endif\n"
   dependsOn: []
   isVerificationFile: false
   path: nt/GF2.hpp
   requiredBy:
-  - graph/minimum_cycle_length_through_specified.hpp
-  timestamp: '2023-10-06 05:10:13+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - graph/find_path_through_specified.hpp
+  timestamp: '2023-11-30 16:31:51+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc274_h.test.cpp
   - test/yukicoder/1775.test.cpp
+  - test/yukicoder/1776.test.cpp
 documentation_of: nt/GF2.hpp
 layout: document
 redirect_from:

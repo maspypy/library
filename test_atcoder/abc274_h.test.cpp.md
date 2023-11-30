@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/GF2.hpp
     title: nt/GF2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/rollinghash_field.hpp
     title: string/rollinghash_field.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc274/tasks/abc274_Ex
@@ -234,9 +234,11 @@ data:
     \ GF2 &p) const { return val != p.val; }\n  GF2 inverse() const { return pow((u64(1)\
     \ << K) - 2); }\n  GF2 pow(u64 n) const {\n    GF2 ret(1), mul(val);\n    while\
     \ (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n\
-    \    }\n    return ret;\n  }\n};\n#line 1 \"string/rollinghash_field.hpp\"\n//\
-    \ +, -, * \u304C\u5B9A\u7FA9\u3055\u308C\u305F\u69CB\u9020\u4F53\u3092\u6E21\u3059\
-    \ntemplate <typename Field>\nstruct RollingHash_Field {\n  using F = Field;\n\
+    \    }\n    return ret;\n  }\n};\n\n#ifdef FASTIO\ntemplate <int K>\nvoid rd(GF2<K>\
+    \ &x) {\n  fastio::rd(x.val);\n  x &= GF2<K>::mask;\n}\ntemplate <int K>\nvoid\
+    \ wt(GF2<K> x) {\n  fastio::wt(x.val);\n}\n#endif\n#line 1 \"string/rollinghash_field.hpp\"\
+    \n// +, -, * \u304C\u5B9A\u7FA9\u3055\u308C\u305F\u69CB\u9020\u4F53\u3092\u6E21\
+    \u3059\ntemplate <typename Field>\nstruct RollingHash_Field {\n  using F = Field;\n\
     \  const F base;\n  vector<F> power;\n\n  static inline F generate_base() { return\
     \ RNG(1LL << 60); }\n\n  inline void expand(int sz) {\n    if (int(power.size())\
     \ < sz + 1) {\n      int pre_sz = (int)power.size();\n      power.resize(sz +\
@@ -288,8 +290,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc274_h.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-11-30 16:31:51+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc274_h.test.cpp
 layout: document
