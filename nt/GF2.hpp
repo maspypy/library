@@ -98,3 +98,15 @@ struct GF2 {
     return ret;
   }
 };
+
+#ifdef FASTIO
+template <int K>
+void rd(GF2<K> &x) {
+  fastio::rd(x.val);
+  x &= GF2<K>::mask;
+}
+template <int K>
+void wt(GF2<K> x) {
+  fastio::wt(x.val);
+}
+#endif
