@@ -155,6 +155,20 @@ struct Link_Cut_Tree {
     return (*this)[b]->x;
   }
 
+  // subtree 用の node を使う
+  typename Node::X prod_subtree(int v, int root) {
+    static_assert(Node::NODE_FOR_SUBTREE);
+    if (v == root) {
+      evert(root);
+      return (*this)[root]->x;
+    }
+    root = jump(v, root, 1);
+    cut(v, root);
+    typename Node::X res = (*this)[v]->x;
+    link(v, root);
+    return res;
+  }
+
   vc<int> collect_heavy_path(int v) {
     np c = (*this)[v];
     while (!is_root(c)) c = c->p;
