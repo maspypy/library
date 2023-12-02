@@ -620,41 +620,51 @@ data:
     \ restore_path(int u, int v) {\r\n    vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u,\
     \ v, 0)) {\r\n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n\
     \      } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\
-    \n    return P;\r\n  }\r\n};\r\n#line 2 \"graph/ds/static_toptree.hpp\"\n\n//\
-    \ tute \u3055\u3093\u306E\u5B9F\u88C5 https://yukicoder.me/submissions/838092\
-    \ \u3092\u53C2\u8003\u306B\u3057\u3066\u3044\u308B\n// \u3044\u308F\u3086\u308B\
-    \ toptree \uFF08\u8FBA\u304B\u3089\u306F\u3058\u3081\u3066\u30DE\u30FC\u30B8\u904E\
-    \u7A0B\u3092\u6728\u306B\u3059\u308B\uFF09\u3068\u306F\u5C11\u3057\u7570\u306A\
-    \u308B\u306F\u305A\n// \u6728\u3092\u300Cheavy path \u4E0A\u306E\u8FBA\u3067\u5206\
-    \u5272\u300D\u300C\u6839\u3092 virtual \u306B\u3059\u308B\u300D\n// \u300Clight\
-    \ edges \u306E\u5206\u5272\u300D\u300Clight edge \u3092\u6D88\u3059\u300D\u3067\
-    \u9802\u70B9\u306B\u5206\u5272\u3057\u3066\u3044\u304F.\n// \u9006\u306B\u305F\
-    \u3069\u308C\u3070\uFF0C1 \u9802\u70B9\u304B\u3089\u306F\u3058\u3081\u3066\u6728\
-    \u5168\u4F53\u3092\u4F5C\u308B\u9AD8\u3055 O(logN) \u306E\u6728\u306B\u306A\u308B\
-    .\n// \u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u9006\u9806\u306B\u30CE\u30FC\u30C9\
-    \u304C\u4F5C\u3089\u308C\u308B, \u6700\u5F8C\u304C\u6728\u5168\u4F53.\ntemplate\
-    \ <typename TREE>\nstruct Static_TopTree {\n  TREE &tree;\n\n  vc<int> par, lch,\
-    \ rch, A, B;\n  vc<bool> heavy;\n\n  Static_TopTree(TREE &tree) : tree(tree) {\n\
-    \    int root = tree.V[0];\n    build(root);\n  }\n\n  // \u6728\u5168\u4F53\u3067\
-    \u306E\u96C6\u7D04\u5024\u3092\u5F97\u308B\n  // from_vertex(v)\n  // add_vertex(x,\
-    \ v)\n  // add_edge(x, u, v)  : u \u304C\u89AA\n  // merge_light(x, y)\n  // merge_heavy(x,\
-    \ y, a, b, c, d)  : [a,b] + [c,d] = [a,d]\n  template <typename Data, typename\
-    \ F1, typename F2, typename F3, typename F4,\n            typename F5>\n  Data\
-    \ tree_dp(F1 from_vertex, F2 add_vertex, F3 add_edge, F4 merge_light,\n      \
-    \         F5 merge_heavy) {\n    auto dfs = [&](auto &dfs, int k) -> Data {\n\
-    \      if (lch[k] == -1 && rch[k] == -1) { return from_vertex(A[k]); }\n     \
-    \ if (rch[k] == -1) {\n        Data x = dfs(dfs, lch[k]);\n        if (heavy[k])\
-    \ {\n          return add_vertex(x, A[k]);\n        } else {\n          return\
-    \ add_edge(x, A[k], B[lch[k]]);\n        }\n      }\n      Data x = dfs(dfs, lch[k]);\n\
-    \      Data y = dfs(dfs, rch[k]);\n      if (heavy[k]) {\n        return merge_heavy(x,\
-    \ y, A[lch[k]], B[lch[k]], A[rch[k]], B[rch[k]]);\n      }\n      return merge_light(x,\
-    \ y);\n    };\n    return dfs(dfs, len(par) - 1);\n  }\n\nprivate:\n  int add_node(int\
-    \ l, int r, int a, int b, bool h) {\n    int ret = len(par);\n    par.eb(-1),\
-    \ lch.eb(l), rch.eb(r), A.eb(a), B.eb(b), heavy.eb(h);\n    if (l != -1) par[l]\
-    \ = ret;\n    if (r != -1) par[r] = ret;\n    return ret;\n  }\n\n  int build(int\
-    \ v) {\n    // v \u306F heavy path \u306E\u6839\u306A\u306E\u3067 v \u3092\u6839\
-    \u3068\u3059\u308B\u90E8\u5206\u6728\u306B\u5BFE\u5FDC\u3059\u308B\u30CE\u30FC\
-    \u30C9\u3092\u4F5C\u308B\n    assert(tree.head[v] == v);\n    auto path = tree.heavy_path_at(v);\n\
+    \n    return P;\r\n  }\r\n};\r\n#line 2 \"graph/ds/static_toptree.hpp\"\n\n/*\n\
+    tute \u3055\u3093\u306E\u5B9F\u88C5 https://yukicoder.me/submissions/838092 \u3092\
+    \u53C2\u8003\u306B\u3057\u3066\u3044\u308B.\n\u3044\u308F\u3086\u308B toptree\
+    \ \uFF08\u8FBA\u304B\u3089\u306F\u3058\u3081\u3066\u30DE\u30FC\u30B8\u904E\u7A0B\
+    \u3092\u6728\u306B\u3059\u308B\uFF09\u3068\u306F\u5C11\u3057\u7570\u306A\u308B\
+    \u306F\u305A.\n\u6728\u3092\u300Cheavy path \u4E0A\u306E\u8FBA\u3067\u5206\u5272\
+    \u300D\u300C\u6839\u3092 virtual \u306B\u3059\u308B\u300D\n\u300Clight edges \u306E\
+    \u5206\u5272\u300D\u300Clight edge \u3092\u6D88\u3059\u300D\u3067\u9802\u70B9\u306B\
+    \u5206\u5272\u3057\u3066\u3044\u304F.\n\u9006\u306B\u305F\u3069\u308C\u3070\uFF0C\
+    1 \u9802\u70B9\u304B\u3089\u306F\u3058\u3081\u3066\u6728\u5168\u4F53\u3092\u4F5C\
+    \u308B\u9AD8\u3055 O(logN) \u306E\u6728\u306B\u306A\u308B.\n\u9AD8\u3055\u306B\
+    \u3064\u3044\u3066\uFF1Ahttps://www.mathenachia.blog/mergetech-and-logn/\n\u30FB\
+    lch == rch == -1\uFF1A\u9802\u70B9\n\u30FBrch == -1\uFF1A\n  \u30FBheavy \u306A\
+    \u3089 light \u306E\u96C6\u7D04\u306B\u9802\u70B9\u3092\u4ED8\u52A0\u3057\u305F\
+    \u3082\u306E\n  \u30FBlight \u306A\u3089 \u6839\u4ED8\u304D\u6728\u306B light\
+    \ edge \u3092\u4ED8\u52A0\u3057\u305F\u3082\u306E\n\u30FB\u5B50\u304C 2 \u3064\
+    \n  \u30FBheavy \u306A\u3089 heavy path \u3092\u8FBA\u3067\u7D50\u5408\u3057\u305F\
+    \u3082\u306E\n  \u30FBlight \u306A\u3089 light edge \u305F\u3061\u306E\u30DE\u30FC\
+    \u30B8\n*/\ntemplate <typename TREE>\nstruct Static_TopTree {\n  TREE &tree;\n\
+    \n  vc<int> par, lch, rch, A, B;\n  vc<bool> heavy;\n\n  Static_TopTree(TREE &tree)\
+    \ : tree(tree) {\n    int root = tree.V[0];\n    build(root);\n    // relabel\n\
+    \    int n = len(par);\n    reverse(all(par)), reverse(all(lch)), reverse(all(rch)),\
+    \ reverse(all(A)),\n        reverse(all(B)), reverse(all(heavy));\n    for (auto\
+    \ &x: par) x = (x == -1 ? -1 : n - 1 - x);\n    for (auto &x: lch) x = (x == -1\
+    \ ? -1 : n - 1 - x);\n    for (auto &x: rch) x = (x == -1 ? -1 : n - 1 - x);\n\
+    \  }\n\n  // \u6728\u5168\u4F53\u3067\u306E\u96C6\u7D04\u5024\u3092\u5F97\u308B\
+    \n  // from_vertex(v)\n  // add_vertex(x, v)\n  // add_edge(x, u, v)  : u \u304C\
+    \u89AA\n  // merge_light(x, y)\n  // merge_heavy(x, y, a, b, c, d)  : [a,b] +\
+    \ [c,d] = [a,d]\n  template <typename Data, typename F1, typename F2, typename\
+    \ F3, typename F4,\n            typename F5>\n  Data tree_dp(F1 from_vertex, F2\
+    \ add_vertex, F3 add_edge, F4 merge_light,\n               F5 merge_heavy) {\n\
+    \    auto dfs = [&](auto &dfs, int k) -> Data {\n      if (lch[k] == -1 && rch[k]\
+    \ == -1) { return from_vertex(A[k]); }\n      if (rch[k] == -1) {\n        Data\
+    \ x = dfs(dfs, lch[k]);\n        if (heavy[k]) {\n          return add_vertex(x,\
+    \ A[k]);\n        } else {\n          return add_edge(x, A[k], B[lch[k]]);\n \
+    \       }\n      }\n      Data x = dfs(dfs, lch[k]);\n      Data y = dfs(dfs,\
+    \ rch[k]);\n      if (heavy[k]) {\n        return merge_heavy(x, y, A[lch[k]],\
+    \ B[lch[k]], A[rch[k]], B[rch[k]]);\n      }\n      return merge_light(x, y);\n\
+    \    };\n    return dfs(dfs, 0);\n  }\n\nprivate:\n  int add_node(int l, int r,\
+    \ int a, int b, bool h) {\n    int ret = len(par);\n    par.eb(-1), lch.eb(l),\
+    \ rch.eb(r), A.eb(a), B.eb(b), heavy.eb(h);\n    if (l != -1) par[l] = ret;\n\
+    \    if (r != -1) par[r] = ret;\n    return ret;\n  }\n\n  int build(int v) {\n\
+    \    // v \u306F heavy path \u306E\u6839\u306A\u306E\u3067 v \u3092\u6839\u3068\
+    \u3059\u308B\u90E8\u5206\u6728\u306B\u5BFE\u5FDC\u3059\u308B\u30CE\u30FC\u30C9\
+    \u3092\u4F5C\u308B\n    assert(tree.head[v] == v);\n    auto path = tree.heavy_path_at(v);\n\
     \    reverse(all(path));\n\n    auto dfs = [&](auto &dfs, int l, int r) -> int\
     \ {\n      // path[l:r)\n      if (l + 1 < r) {\n        int m = (l + r) / 2;\n\
     \        int x = dfs(dfs, l, m);\n        int y = dfs(dfs, m, r);\n        return\
@@ -730,7 +740,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc269ex2.test.cpp
   requiredBy: []
-  timestamp: '2023-11-30 16:32:50+09:00'
+  timestamp: '2023-12-03 00:05:57+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc269ex2.test.cpp

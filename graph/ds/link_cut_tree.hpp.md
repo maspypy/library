@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/772.test.cpp
+    title: test/yukicoder/772.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/902.test.cpp
     title: test/yukicoder/902.test.cpp
   _isVerificationFailed: false
@@ -197,6 +200,7 @@ data:
   timestamp: '2023-12-02 22:12:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/772.test.cpp
   - test/yukicoder/902.test.cpp
 documentation_of: graph/ds/link_cut_tree.hpp
 layout: document
