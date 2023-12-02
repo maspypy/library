@@ -33,6 +33,7 @@ struct Link_Cut_Tree {
   void link(Node *c, Node *p) {
     evert(c);
     expose(p);
+    p->push();
     // no edge -> heavy edge
     assert(!(c->p));
     assert(!(p->r));
@@ -59,10 +60,11 @@ struct Link_Cut_Tree {
 
   // c を underlying tree の根とする.
   // c は splay tree の根にもなる.
+  // c は push 済になる
   void evert(Node *c) {
     expose(c);
     c->reverse();
-    assert(!(c->p));
+    c->push();
   }
 
   // c を underlying tree の根とする.
@@ -104,6 +106,7 @@ struct Link_Cut_Tree {
   // [root, c] がひとつの splay tree になるように変更する.
   // c が右端で splay tree の根という状態になる.
   // path query はこの状態で c の data を見る.
+  // c は push 済になる
   virtual Node *expose(Node *c) {
     Node *now = c;
     Node *rp = nullptr; // 今まで作ったパス
@@ -205,6 +208,7 @@ struct Link_Cut_Tree {
 private:
   // splay tree 内で完結する操作. 特に heavy, light 構造は変わらない.
   // light pointer は rotate 内でケア
+  // c は push 済になる
   void splay(Node *c) {
     c->push();
     while (!is_root(c)) {
