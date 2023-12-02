@@ -141,12 +141,12 @@ struct Link_Cut_Tree {
     return (p ? p->idx : -1);
   }
 
-  void set_vdata(Node *c, typename Node::VX x) {
+  void set(Node *c, typename Node::VX x) {
     evert(c);
-    c->set_vdata(x);
+    c->set(x);
   }
 
-  void set_vdata(int c, typename Node::VX x) { set_vdata((*this)[c], x); }
+  void set(int c, typename Node::VX x) { set((*this)[c], x); }
 
   typename Node::X prod_path(int a, int b) {
     evert(a), expose(b);
