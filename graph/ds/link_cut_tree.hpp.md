@@ -6,15 +6,18 @@ data:
   - icon: ':x:'
     path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
     title: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp
+    title: test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/772.test.cpp
     title: test/yukicoder/772.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/902.test.cpp
     title: test/yukicoder/902.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/ds/link_cut_tree.hpp\"\n/*\n\u5404 heavy path \u3092\
@@ -67,46 +70,46 @@ data:
     \    if (!x) return -1;\n    return x->idx;\n  }\n\n  Node *get_parent(Node *x)\
     \ {\n    expose(x);\n    if (!x->l) return nullptr;\n    x = x->l;\n    while\
     \ (x->r) x = x->r;\n    return x;\n  }\n\n  int get_parent(int x) {\n    Node\
-    \ *p = get_parent((*this)[x]);\n    return (p ? p->idx : -1);\n  }\n\n  void set_vdata(Node\
-    \ *c, typename Node::VX x) {\n    evert(c);\n    c->set_vdata(x);\n  }\n\n  void\
-    \ set_vdata(int c, typename Node::VX x) { set_vdata((*this)[c], x); }\n\n  typename\
-    \ Node::X prod_path(int a, int b) {\n    evert(a), expose(b);\n    return (*this)[b]->x;\n\
-    \  }\n\n  vc<int> collect_heavy_path(int v) {\n    np c = (*this)[v];\n    while\
-    \ (!is_root(c)) c = c->p;\n    vc<int> res;\n    auto dfs = [&](auto &dfs, np\
-    \ c, bool rev) -> void {\n      if (!rev) {\n        if (c->l) dfs(dfs, c->l,\
-    \ rev ^ c->rev);\n        res.eb(c->idx);\n        if (c->r) dfs(dfs, c->r, rev\
-    \ ^ c->rev);\n      } else {\n        if (c->r) dfs(dfs, c->r, rev ^ c->rev);\n\
-    \        res.eb(c->idx);\n        if (c->l) dfs(dfs, c->l, rev ^ c->rev);\n  \
-    \    }\n    };\n    dfs(dfs, c, false);\n    return res;\n  }\n\n  void debug()\
-    \ {\n    print(\"p, l, r, rev\");\n    auto f = [&](np c) -> int { return (c ?\
-    \ c->idx : -1); };\n    FOR(i, len(nodes)) {\n      print(i, \",\", f((*this)[i]->p),\
-    \ f((*this)[i]->l), f((*this)[i]->r),\n            (*this)[i]->rev);\n    }\n\
-    \  }\n\nprivate:\n  // splay tree \u5185\u3067\u5B8C\u7D50\u3059\u308B\u64CD\u4F5C\
-    . \u7279\u306B heavy, light \u69CB\u9020\u306F\u5909\u308F\u3089\u306A\u3044.\n\
-    \  // light pointer \u306F rotate \u5185\u3067\u30B1\u30A2\n  void splay(Node\
-    \ *c) {\n    c->push();\n    while (!is_root(c)) {\n      Node *p = c->p;\n  \
-    \    Node *pp = (p ? p->p : nullptr);\n      if (state(p) == 0) {\n        p->push(),\
-    \ c->push();\n        rotate(c);\n      }\n      elif (state(c) == state(p)) {\n\
-    \        pp->push(), p->push(), c->push();\n        rotate(p);\n        rotate(c);\n\
-    \      }\n      else {\n        pp->push(), p->push(), c->push();\n        rotate(c);\n\
-    \        rotate(c);\n      }\n    }\n  }\n\n  // \u30D1\u30B9\u3092\u8868\u3059\
-    \ splay tree \u306E\u6839\u306B\u306A\u3063\u3066\u3044\u308B\u304B\u3069\u3046\
-    \u304B\n  // underlying tree \u3067\u306F\u306A\u3044\n  bool is_root(Node *c)\
-    \ { return state(c) == 0; }\n\n  // splay tree \u5185\u3067\u5B8C\u7D50\u3059\u308B\
-    \u64CD\u4F5C. \u7279\u306B heavy, light \u69CB\u9020\u306F\u5909\u308F\u3089\u306A\
-    \u3044.\n  // light edge \u306E\u30DD\u30A4\u30F3\u30BF\u306F\u5909\u66F4\u3055\
-    \u308C\u3046\u308B\n  void rotate(Node *n) {\n    // n \u3092\u6839\u306B\u8FD1\
-    \u3065\u3051\u308B\n    Node *pp, *p, *c;\n    p = n->p;\n    pp = p->p;\n   \
-    \ if (p->l == n) {\n      c = n->r;\n      n->r = p;\n      p->l = c;\n    } else\
-    \ {\n      c = n->l;\n      n->l = p;\n      p->r = c;\n    }\n    p->update(),\
-    \ n->update();\n\n    if (pp) {\n      if (pp->l == p) pp->l = n;\n      elif\
-    \ (pp->r == p) pp->r = n;\n      else {\n        // light edge pointer \u304C\
-    \ p \u304B\u3089 n \u306B\u5909\u308F\u308B\n        // \u96C6\u7D04\u5024\u306F\
-    \u5909\u308F\u3089\u306A\u3044\u306E\u3067\u5834\u5408\u306B\u3088\u3063\u3066\
-    \u306F\u7701\u7565\u53EF\u80FD\n        pp->erase_light(p, n->x);\n        pp->add_light(n,\
-    \ n->x);\n      }\n    }\n    n->p = pp;\n    p->p = n;\n    if (c) c->p = p;\n\
-    \  }\n\n  inline int state(Node *n) {\n    if (!n->p) return 0;\n    if (n->p->l\
-    \ == n) return 1;\n    if (n->p->r == n) return -1;\n    return 0;\n  }\n};\n"
+    \ *p = get_parent((*this)[x]);\n    return (p ? p->idx : -1);\n  }\n\n  void set(Node\
+    \ *c, typename Node::VX x) {\n    evert(c);\n    c->set(x);\n  }\n\n  void set(int\
+    \ c, typename Node::VX x) { set((*this)[c], x); }\n\n  typename Node::X prod_path(int\
+    \ a, int b) {\n    evert(a), expose(b);\n    return (*this)[b]->x;\n  }\n\n  vc<int>\
+    \ collect_heavy_path(int v) {\n    np c = (*this)[v];\n    while (!is_root(c))\
+    \ c = c->p;\n    vc<int> res;\n    auto dfs = [&](auto &dfs, np c, bool rev) ->\
+    \ void {\n      if (!rev) {\n        if (c->l) dfs(dfs, c->l, rev ^ c->rev);\n\
+    \        res.eb(c->idx);\n        if (c->r) dfs(dfs, c->r, rev ^ c->rev);\n  \
+    \    } else {\n        if (c->r) dfs(dfs, c->r, rev ^ c->rev);\n        res.eb(c->idx);\n\
+    \        if (c->l) dfs(dfs, c->l, rev ^ c->rev);\n      }\n    };\n    dfs(dfs,\
+    \ c, false);\n    return res;\n  }\n\n  void debug() {\n    print(\"p, l, r, rev\"\
+    );\n    auto f = [&](np c) -> int { return (c ? c->idx : -1); };\n    FOR(i, len(nodes))\
+    \ {\n      print(i, \",\", f((*this)[i]->p), f((*this)[i]->l), f((*this)[i]->r),\n\
+    \            (*this)[i]->rev);\n    }\n  }\n\nprivate:\n  // splay tree \u5185\
+    \u3067\u5B8C\u7D50\u3059\u308B\u64CD\u4F5C. \u7279\u306B heavy, light \u69CB\u9020\
+    \u306F\u5909\u308F\u3089\u306A\u3044.\n  // light pointer \u306F rotate \u5185\
+    \u3067\u30B1\u30A2\n  void splay(Node *c) {\n    c->push();\n    while (!is_root(c))\
+    \ {\n      Node *p = c->p;\n      Node *pp = (p ? p->p : nullptr);\n      if (state(p)\
+    \ == 0) {\n        p->push(), c->push();\n        rotate(c);\n      }\n      elif\
+    \ (state(c) == state(p)) {\n        pp->push(), p->push(), c->push();\n      \
+    \  rotate(p);\n        rotate(c);\n      }\n      else {\n        pp->push(),\
+    \ p->push(), c->push();\n        rotate(c);\n        rotate(c);\n      }\n   \
+    \ }\n  }\n\n  // \u30D1\u30B9\u3092\u8868\u3059 splay tree \u306E\u6839\u306B\u306A\
+    \u3063\u3066\u3044\u308B\u304B\u3069\u3046\u304B\n  // underlying tree \u3067\u306F\
+    \u306A\u3044\n  bool is_root(Node *c) { return state(c) == 0; }\n\n  // splay\
+    \ tree \u5185\u3067\u5B8C\u7D50\u3059\u308B\u64CD\u4F5C. \u7279\u306B heavy, light\
+    \ \u69CB\u9020\u306F\u5909\u308F\u3089\u306A\u3044.\n  // light edge \u306E\u30DD\
+    \u30A4\u30F3\u30BF\u306F\u5909\u66F4\u3055\u308C\u3046\u308B\n  void rotate(Node\
+    \ *n) {\n    // n \u3092\u6839\u306B\u8FD1\u3065\u3051\u308B\n    Node *pp, *p,\
+    \ *c;\n    p = n->p;\n    pp = p->p;\n    if (p->l == n) {\n      c = n->r;\n\
+    \      n->r = p;\n      p->l = c;\n    } else {\n      c = n->l;\n      n->l =\
+    \ p;\n      p->r = c;\n    }\n    p->update(), n->update();\n\n    if (pp) {\n\
+    \      if (pp->l == p) pp->l = n;\n      elif (pp->r == p) pp->r = n;\n      else\
+    \ {\n        // light edge pointer \u304C p \u304B\u3089 n \u306B\u5909\u308F\u308B\
+    \n        // \u96C6\u7D04\u5024\u306F\u5909\u308F\u3089\u306A\u3044\u306E\u3067\
+    \u5834\u5408\u306B\u3088\u3063\u3066\u306F\u7701\u7565\u53EF\u80FD\n        pp->erase_light(p,\
+    \ n->x);\n        pp->add_light(n, n->x);\n      }\n    }\n    n->p = pp;\n  \
+    \  p->p = n;\n    if (c) c->p = p;\n  }\n\n  inline int state(Node *n) {\n   \
+    \ if (!n->p) return 0;\n    if (n->p->l == n) return 1;\n    if (n->p->r == n)\
+    \ return -1;\n    return 0;\n  }\n};\n"
   code: "/*\n\u5404 heavy path \u3092 head \u304C\u5DE6, tail \u304C\u53F3\u3068\u306A\
     \u308B\u3088\u3046\u306B splay tree \u3067\u6301\u3064.\n\u30E6\u30FC\u30B6\u30FC\
     \u304C\u76F4\u63A5\u547C\u3076\u53EF\u80FD\u6027\u304C\u3042\u308B\u3082\u306E\
@@ -157,53 +160,54 @@ data:
     \    if (!x) return -1;\n    return x->idx;\n  }\n\n  Node *get_parent(Node *x)\
     \ {\n    expose(x);\n    if (!x->l) return nullptr;\n    x = x->l;\n    while\
     \ (x->r) x = x->r;\n    return x;\n  }\n\n  int get_parent(int x) {\n    Node\
-    \ *p = get_parent((*this)[x]);\n    return (p ? p->idx : -1);\n  }\n\n  void set_vdata(Node\
-    \ *c, typename Node::VX x) {\n    evert(c);\n    c->set_vdata(x);\n  }\n\n  void\
-    \ set_vdata(int c, typename Node::VX x) { set_vdata((*this)[c], x); }\n\n  typename\
-    \ Node::X prod_path(int a, int b) {\n    evert(a), expose(b);\n    return (*this)[b]->x;\n\
-    \  }\n\n  vc<int> collect_heavy_path(int v) {\n    np c = (*this)[v];\n    while\
-    \ (!is_root(c)) c = c->p;\n    vc<int> res;\n    auto dfs = [&](auto &dfs, np\
-    \ c, bool rev) -> void {\n      if (!rev) {\n        if (c->l) dfs(dfs, c->l,\
-    \ rev ^ c->rev);\n        res.eb(c->idx);\n        if (c->r) dfs(dfs, c->r, rev\
-    \ ^ c->rev);\n      } else {\n        if (c->r) dfs(dfs, c->r, rev ^ c->rev);\n\
-    \        res.eb(c->idx);\n        if (c->l) dfs(dfs, c->l, rev ^ c->rev);\n  \
-    \    }\n    };\n    dfs(dfs, c, false);\n    return res;\n  }\n\n  void debug()\
-    \ {\n    print(\"p, l, r, rev\");\n    auto f = [&](np c) -> int { return (c ?\
-    \ c->idx : -1); };\n    FOR(i, len(nodes)) {\n      print(i, \",\", f((*this)[i]->p),\
-    \ f((*this)[i]->l), f((*this)[i]->r),\n            (*this)[i]->rev);\n    }\n\
-    \  }\n\nprivate:\n  // splay tree \u5185\u3067\u5B8C\u7D50\u3059\u308B\u64CD\u4F5C\
-    . \u7279\u306B heavy, light \u69CB\u9020\u306F\u5909\u308F\u3089\u306A\u3044.\n\
-    \  // light pointer \u306F rotate \u5185\u3067\u30B1\u30A2\n  void splay(Node\
-    \ *c) {\n    c->push();\n    while (!is_root(c)) {\n      Node *p = c->p;\n  \
-    \    Node *pp = (p ? p->p : nullptr);\n      if (state(p) == 0) {\n        p->push(),\
-    \ c->push();\n        rotate(c);\n      }\n      elif (state(c) == state(p)) {\n\
-    \        pp->push(), p->push(), c->push();\n        rotate(p);\n        rotate(c);\n\
-    \      }\n      else {\n        pp->push(), p->push(), c->push();\n        rotate(c);\n\
-    \        rotate(c);\n      }\n    }\n  }\n\n  // \u30D1\u30B9\u3092\u8868\u3059\
-    \ splay tree \u306E\u6839\u306B\u306A\u3063\u3066\u3044\u308B\u304B\u3069\u3046\
-    \u304B\n  // underlying tree \u3067\u306F\u306A\u3044\n  bool is_root(Node *c)\
-    \ { return state(c) == 0; }\n\n  // splay tree \u5185\u3067\u5B8C\u7D50\u3059\u308B\
-    \u64CD\u4F5C. \u7279\u306B heavy, light \u69CB\u9020\u306F\u5909\u308F\u3089\u306A\
-    \u3044.\n  // light edge \u306E\u30DD\u30A4\u30F3\u30BF\u306F\u5909\u66F4\u3055\
-    \u308C\u3046\u308B\n  void rotate(Node *n) {\n    // n \u3092\u6839\u306B\u8FD1\
-    \u3065\u3051\u308B\n    Node *pp, *p, *c;\n    p = n->p;\n    pp = p->p;\n   \
-    \ if (p->l == n) {\n      c = n->r;\n      n->r = p;\n      p->l = c;\n    } else\
-    \ {\n      c = n->l;\n      n->l = p;\n      p->r = c;\n    }\n    p->update(),\
-    \ n->update();\n\n    if (pp) {\n      if (pp->l == p) pp->l = n;\n      elif\
-    \ (pp->r == p) pp->r = n;\n      else {\n        // light edge pointer \u304C\
-    \ p \u304B\u3089 n \u306B\u5909\u308F\u308B\n        // \u96C6\u7D04\u5024\u306F\
-    \u5909\u308F\u3089\u306A\u3044\u306E\u3067\u5834\u5408\u306B\u3088\u3063\u3066\
-    \u306F\u7701\u7565\u53EF\u80FD\n        pp->erase_light(p, n->x);\n        pp->add_light(n,\
-    \ n->x);\n      }\n    }\n    n->p = pp;\n    p->p = n;\n    if (c) c->p = p;\n\
-    \  }\n\n  inline int state(Node *n) {\n    if (!n->p) return 0;\n    if (n->p->l\
-    \ == n) return 1;\n    if (n->p->r == n) return -1;\n    return 0;\n  }\n};\n"
+    \ *p = get_parent((*this)[x]);\n    return (p ? p->idx : -1);\n  }\n\n  void set(Node\
+    \ *c, typename Node::VX x) {\n    evert(c);\n    c->set(x);\n  }\n\n  void set(int\
+    \ c, typename Node::VX x) { set((*this)[c], x); }\n\n  typename Node::X prod_path(int\
+    \ a, int b) {\n    evert(a), expose(b);\n    return (*this)[b]->x;\n  }\n\n  vc<int>\
+    \ collect_heavy_path(int v) {\n    np c = (*this)[v];\n    while (!is_root(c))\
+    \ c = c->p;\n    vc<int> res;\n    auto dfs = [&](auto &dfs, np c, bool rev) ->\
+    \ void {\n      if (!rev) {\n        if (c->l) dfs(dfs, c->l, rev ^ c->rev);\n\
+    \        res.eb(c->idx);\n        if (c->r) dfs(dfs, c->r, rev ^ c->rev);\n  \
+    \    } else {\n        if (c->r) dfs(dfs, c->r, rev ^ c->rev);\n        res.eb(c->idx);\n\
+    \        if (c->l) dfs(dfs, c->l, rev ^ c->rev);\n      }\n    };\n    dfs(dfs,\
+    \ c, false);\n    return res;\n  }\n\n  void debug() {\n    print(\"p, l, r, rev\"\
+    );\n    auto f = [&](np c) -> int { return (c ? c->idx : -1); };\n    FOR(i, len(nodes))\
+    \ {\n      print(i, \",\", f((*this)[i]->p), f((*this)[i]->l), f((*this)[i]->r),\n\
+    \            (*this)[i]->rev);\n    }\n  }\n\nprivate:\n  // splay tree \u5185\
+    \u3067\u5B8C\u7D50\u3059\u308B\u64CD\u4F5C. \u7279\u306B heavy, light \u69CB\u9020\
+    \u306F\u5909\u308F\u3089\u306A\u3044.\n  // light pointer \u306F rotate \u5185\
+    \u3067\u30B1\u30A2\n  void splay(Node *c) {\n    c->push();\n    while (!is_root(c))\
+    \ {\n      Node *p = c->p;\n      Node *pp = (p ? p->p : nullptr);\n      if (state(p)\
+    \ == 0) {\n        p->push(), c->push();\n        rotate(c);\n      }\n      elif\
+    \ (state(c) == state(p)) {\n        pp->push(), p->push(), c->push();\n      \
+    \  rotate(p);\n        rotate(c);\n      }\n      else {\n        pp->push(),\
+    \ p->push(), c->push();\n        rotate(c);\n        rotate(c);\n      }\n   \
+    \ }\n  }\n\n  // \u30D1\u30B9\u3092\u8868\u3059 splay tree \u306E\u6839\u306B\u306A\
+    \u3063\u3066\u3044\u308B\u304B\u3069\u3046\u304B\n  // underlying tree \u3067\u306F\
+    \u306A\u3044\n  bool is_root(Node *c) { return state(c) == 0; }\n\n  // splay\
+    \ tree \u5185\u3067\u5B8C\u7D50\u3059\u308B\u64CD\u4F5C. \u7279\u306B heavy, light\
+    \ \u69CB\u9020\u306F\u5909\u308F\u3089\u306A\u3044.\n  // light edge \u306E\u30DD\
+    \u30A4\u30F3\u30BF\u306F\u5909\u66F4\u3055\u308C\u3046\u308B\n  void rotate(Node\
+    \ *n) {\n    // n \u3092\u6839\u306B\u8FD1\u3065\u3051\u308B\n    Node *pp, *p,\
+    \ *c;\n    p = n->p;\n    pp = p->p;\n    if (p->l == n) {\n      c = n->r;\n\
+    \      n->r = p;\n      p->l = c;\n    } else {\n      c = n->l;\n      n->l =\
+    \ p;\n      p->r = c;\n    }\n    p->update(), n->update();\n\n    if (pp) {\n\
+    \      if (pp->l == p) pp->l = n;\n      elif (pp->r == p) pp->r = n;\n      else\
+    \ {\n        // light edge pointer \u304C p \u304B\u3089 n \u306B\u5909\u308F\u308B\
+    \n        // \u96C6\u7D04\u5024\u306F\u5909\u308F\u3089\u306A\u3044\u306E\u3067\
+    \u5834\u5408\u306B\u3088\u3063\u3066\u306F\u7701\u7565\u53EF\u80FD\n        pp->erase_light(p,\
+    \ n->x);\n        pp->add_light(n, n->x);\n      }\n    }\n    n->p = pp;\n  \
+    \  p->p = n;\n    if (c) c->p = p;\n  }\n\n  inline int state(Node *n) {\n   \
+    \ if (!n->p) return 0;\n    if (n->p->l == n) return 1;\n    if (n->p->r == n)\
+    \ return -1;\n    return 0;\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: graph/ds/link_cut_tree.hpp
   requiredBy: []
-  timestamp: '2023-12-03 01:16:01+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-12-03 01:32:09+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp
   - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/yukicoder/772.test.cpp
   - test/yukicoder/902.test.cpp

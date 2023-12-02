@@ -294,6 +294,9 @@ data:
   - icon: ':x:'
     path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
     title: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp
+    title: test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/line_add_get_min.test.cpp
     title: test/library_checker/datastructure/line_add_get_min.test.cpp
@@ -1938,7 +1941,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/749.test.cpp
     title: test/yukicoder/749.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/772.test.cpp
     title: test/yukicoder/772.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1956,7 +1959,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/902.test.cpp
     title: test/yukicoder/902.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2654,6 +2657,7 @@ data:
   - test/library_checker/datastructure/static_range_inversions_mo.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
+  - test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp
   - test/library_checker/datastructure/range_reverse_range_sum.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/library_checker/datastructure/line_add_get_min_lichao_2.test.cpp

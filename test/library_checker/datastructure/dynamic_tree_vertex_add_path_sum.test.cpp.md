@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: graph/ds/link_cut_commutative_monoid.hpp
     title: graph/ds/link_cut_commutative_monoid.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/ds/link_cut_tree.hpp
     title: graph/ds/link_cut_tree.hpp
   - icon: ':question:'
@@ -242,72 +242,71 @@ data:
     \    if (!x) return -1;\n    return x->idx;\n  }\n\n  Node *get_parent(Node *x)\
     \ {\n    expose(x);\n    if (!x->l) return nullptr;\n    x = x->l;\n    while\
     \ (x->r) x = x->r;\n    return x;\n  }\n\n  int get_parent(int x) {\n    Node\
-    \ *p = get_parent((*this)[x]);\n    return (p ? p->idx : -1);\n  }\n\n  void set_vdata(Node\
-    \ *c, typename Node::VX x) {\n    evert(c);\n    c->set_vdata(x);\n  }\n\n  void\
-    \ set_vdata(int c, typename Node::VX x) { set_vdata((*this)[c], x); }\n\n  typename\
-    \ Node::X prod_path(int a, int b) {\n    evert(a), expose(b);\n    return (*this)[b]->x;\n\
-    \  }\n\n  vc<int> collect_heavy_path(int v) {\n    np c = (*this)[v];\n    while\
-    \ (!is_root(c)) c = c->p;\n    vc<int> res;\n    auto dfs = [&](auto &dfs, np\
-    \ c, bool rev) -> void {\n      if (!rev) {\n        if (c->l) dfs(dfs, c->l,\
-    \ rev ^ c->rev);\n        res.eb(c->idx);\n        if (c->r) dfs(dfs, c->r, rev\
-    \ ^ c->rev);\n      } else {\n        if (c->r) dfs(dfs, c->r, rev ^ c->rev);\n\
-    \        res.eb(c->idx);\n        if (c->l) dfs(dfs, c->l, rev ^ c->rev);\n  \
-    \    }\n    };\n    dfs(dfs, c, false);\n    return res;\n  }\n\n  void debug()\
-    \ {\n    print(\"p, l, r, rev\");\n    auto f = [&](np c) -> int { return (c ?\
-    \ c->idx : -1); };\n    FOR(i, len(nodes)) {\n      print(i, \",\", f((*this)[i]->p),\
-    \ f((*this)[i]->l), f((*this)[i]->r),\n            (*this)[i]->rev);\n    }\n\
-    \  }\n\nprivate:\n  // splay tree \u5185\u3067\u5B8C\u7D50\u3059\u308B\u64CD\u4F5C\
-    . \u7279\u306B heavy, light \u69CB\u9020\u306F\u5909\u308F\u3089\u306A\u3044.\n\
-    \  // light pointer \u306F rotate \u5185\u3067\u30B1\u30A2\n  void splay(Node\
-    \ *c) {\n    c->push();\n    while (!is_root(c)) {\n      Node *p = c->p;\n  \
-    \    Node *pp = (p ? p->p : nullptr);\n      if (state(p) == 0) {\n        p->push(),\
-    \ c->push();\n        rotate(c);\n      }\n      elif (state(c) == state(p)) {\n\
-    \        pp->push(), p->push(), c->push();\n        rotate(p);\n        rotate(c);\n\
-    \      }\n      else {\n        pp->push(), p->push(), c->push();\n        rotate(c);\n\
-    \        rotate(c);\n      }\n    }\n  }\n\n  // \u30D1\u30B9\u3092\u8868\u3059\
-    \ splay tree \u306E\u6839\u306B\u306A\u3063\u3066\u3044\u308B\u304B\u3069\u3046\
-    \u304B\n  // underlying tree \u3067\u306F\u306A\u3044\n  bool is_root(Node *c)\
-    \ { return state(c) == 0; }\n\n  // splay tree \u5185\u3067\u5B8C\u7D50\u3059\u308B\
-    \u64CD\u4F5C. \u7279\u306B heavy, light \u69CB\u9020\u306F\u5909\u308F\u3089\u306A\
-    \u3044.\n  // light edge \u306E\u30DD\u30A4\u30F3\u30BF\u306F\u5909\u66F4\u3055\
-    \u308C\u3046\u308B\n  void rotate(Node *n) {\n    // n \u3092\u6839\u306B\u8FD1\
-    \u3065\u3051\u308B\n    Node *pp, *p, *c;\n    p = n->p;\n    pp = p->p;\n   \
-    \ if (p->l == n) {\n      c = n->r;\n      n->r = p;\n      p->l = c;\n    } else\
-    \ {\n      c = n->l;\n      n->l = p;\n      p->r = c;\n    }\n    p->update(),\
-    \ n->update();\n\n    if (pp) {\n      if (pp->l == p) pp->l = n;\n      elif\
-    \ (pp->r == p) pp->r = n;\n      else {\n        // light edge pointer \u304C\
-    \ p \u304B\u3089 n \u306B\u5909\u308F\u308B\n        // \u96C6\u7D04\u5024\u306F\
-    \u5909\u308F\u3089\u306A\u3044\u306E\u3067\u5834\u5408\u306B\u3088\u3063\u3066\
-    \u306F\u7701\u7565\u53EF\u80FD\n        pp->erase_light(p, n->x);\n        pp->add_light(n,\
-    \ n->x);\n      }\n    }\n    n->p = pp;\n    p->p = n;\n    if (c) c->p = p;\n\
-    \  }\n\n  inline int state(Node *n) {\n    if (!n->p) return 0;\n    if (n->p->l\
-    \ == n) return 1;\n    if (n->p->r == n) return -1;\n    return 0;\n  }\n};\n\
-    #line 1 \"graph/ds/link_cut_commutative_monoid.hpp\"\n\ntemplate <typename Monoid>\n\
-    struct LCT_Node_Commutative_Monoid {\n  using np = LCT_Node_Commutative_Monoid\
-    \ *;\n  // \u30C7\u30D5\u30A9\u30EB\u30C8\n  np l, r, p;\n  int idx, size; //\
-    \ size \u306F heavy path \u306E\u9802\u70B9\u6570\n  bool rev;\n  // \u76EE\u7684\
-    \u3054\u3068\u306B\u5B9A\u7FA9\u3059\u308B.\n  using MX = Monoid;\n  using X =\
-    \ MX::value_type;\n  using VX = X;\n\n  X x, vx;\n\n  LCT_Node_Commutative_Monoid(int\
-    \ i = 0)\n      : l(nullptr), r(nullptr), p(nullptr), idx(i), size(1), rev(0)\
-    \ {}\n\n  void update() {\n    size = 1;\n    x = vx;\n    if (l) { size += l->size,\
-    \ x = Monoid::op(l->x, x); }\n    if (r) { size += r->size, x = Monoid::op(x,\
-    \ r->x); }\n  }\n\n  void push() {\n    if (rev) {\n      if (l) l->reverse();\n\
-    \      if (r) r->reverse();\n      rev = 0;\n    }\n  }\n\n  // data \u306E reverse\
-    \ \u3082\u884C\u3046\n  void reverse() {\n    rev ^= 1;\n    swap(l, r);\n  }\n\
-    \n  // LCT \u5185\u3067 expose, update \u3092\u884C\u3046\u306E\u3067\u3053\u3053\
-    \u306F\u5909\u66F4\u3060\u3051\n  void set_vdata(VX x) { vx = x; }\n\n  // c \u304C\
-    \u3053\u306E\u6642\u70B9\u3067\u306F update \u3055\u308C\u3066\u3044\u306A\u3044\
-    \u304B\u3082\u3057\u308C\u306A\u3044\u304C, x \u306F\u6B63\u5E38\u306A\u3082\u306E\
-    \u304C\u5165\u308B\n  // c->x \u7B49\u306F\u4F7F\u308F\u306A\u3044\u3088\u3046\
-    \u306B\u6CE8\u610F\u3059\u308B\n  // c->idx \u3092\u6301\u3063\u3066\u304A\u304F\
-    \u3068\u63A2\u7D22\u3067\u304D\u308B\u3053\u3068\u304C\u3042\u308B\n  void add_light(np\
-    \ c, X x) {}\n  void erase_light(np c, X x) {}\n};\n#line 2 \"alg/monoid/add.hpp\"\
-    \n\r\ntemplate <typename X>\r\nstruct Monoid_Add {\r\n  using value_type = X;\r\
-    \n  static constexpr X op(const X &x, const X &y) noexcept { return x + y; }\r\
-    \n  static constexpr X inverse(const X &x) noexcept { return -x; }\r\n  static\
-    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\n  static\
-    \ constexpr X unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\
-    \n};\r\n#line 9 \"test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp\"\
+    \ *p = get_parent((*this)[x]);\n    return (p ? p->idx : -1);\n  }\n\n  void set(Node\
+    \ *c, typename Node::VX x) {\n    evert(c);\n    c->set(x);\n  }\n\n  void set(int\
+    \ c, typename Node::VX x) { set((*this)[c], x); }\n\n  typename Node::X prod_path(int\
+    \ a, int b) {\n    evert(a), expose(b);\n    return (*this)[b]->x;\n  }\n\n  vc<int>\
+    \ collect_heavy_path(int v) {\n    np c = (*this)[v];\n    while (!is_root(c))\
+    \ c = c->p;\n    vc<int> res;\n    auto dfs = [&](auto &dfs, np c, bool rev) ->\
+    \ void {\n      if (!rev) {\n        if (c->l) dfs(dfs, c->l, rev ^ c->rev);\n\
+    \        res.eb(c->idx);\n        if (c->r) dfs(dfs, c->r, rev ^ c->rev);\n  \
+    \    } else {\n        if (c->r) dfs(dfs, c->r, rev ^ c->rev);\n        res.eb(c->idx);\n\
+    \        if (c->l) dfs(dfs, c->l, rev ^ c->rev);\n      }\n    };\n    dfs(dfs,\
+    \ c, false);\n    return res;\n  }\n\n  void debug() {\n    print(\"p, l, r, rev\"\
+    );\n    auto f = [&](np c) -> int { return (c ? c->idx : -1); };\n    FOR(i, len(nodes))\
+    \ {\n      print(i, \",\", f((*this)[i]->p), f((*this)[i]->l), f((*this)[i]->r),\n\
+    \            (*this)[i]->rev);\n    }\n  }\n\nprivate:\n  // splay tree \u5185\
+    \u3067\u5B8C\u7D50\u3059\u308B\u64CD\u4F5C. \u7279\u306B heavy, light \u69CB\u9020\
+    \u306F\u5909\u308F\u3089\u306A\u3044.\n  // light pointer \u306F rotate \u5185\
+    \u3067\u30B1\u30A2\n  void splay(Node *c) {\n    c->push();\n    while (!is_root(c))\
+    \ {\n      Node *p = c->p;\n      Node *pp = (p ? p->p : nullptr);\n      if (state(p)\
+    \ == 0) {\n        p->push(), c->push();\n        rotate(c);\n      }\n      elif\
+    \ (state(c) == state(p)) {\n        pp->push(), p->push(), c->push();\n      \
+    \  rotate(p);\n        rotate(c);\n      }\n      else {\n        pp->push(),\
+    \ p->push(), c->push();\n        rotate(c);\n        rotate(c);\n      }\n   \
+    \ }\n  }\n\n  // \u30D1\u30B9\u3092\u8868\u3059 splay tree \u306E\u6839\u306B\u306A\
+    \u3063\u3066\u3044\u308B\u304B\u3069\u3046\u304B\n  // underlying tree \u3067\u306F\
+    \u306A\u3044\n  bool is_root(Node *c) { return state(c) == 0; }\n\n  // splay\
+    \ tree \u5185\u3067\u5B8C\u7D50\u3059\u308B\u64CD\u4F5C. \u7279\u306B heavy, light\
+    \ \u69CB\u9020\u306F\u5909\u308F\u3089\u306A\u3044.\n  // light edge \u306E\u30DD\
+    \u30A4\u30F3\u30BF\u306F\u5909\u66F4\u3055\u308C\u3046\u308B\n  void rotate(Node\
+    \ *n) {\n    // n \u3092\u6839\u306B\u8FD1\u3065\u3051\u308B\n    Node *pp, *p,\
+    \ *c;\n    p = n->p;\n    pp = p->p;\n    if (p->l == n) {\n      c = n->r;\n\
+    \      n->r = p;\n      p->l = c;\n    } else {\n      c = n->l;\n      n->l =\
+    \ p;\n      p->r = c;\n    }\n    p->update(), n->update();\n\n    if (pp) {\n\
+    \      if (pp->l == p) pp->l = n;\n      elif (pp->r == p) pp->r = n;\n      else\
+    \ {\n        // light edge pointer \u304C p \u304B\u3089 n \u306B\u5909\u308F\u308B\
+    \n        // \u96C6\u7D04\u5024\u306F\u5909\u308F\u3089\u306A\u3044\u306E\u3067\
+    \u5834\u5408\u306B\u3088\u3063\u3066\u306F\u7701\u7565\u53EF\u80FD\n        pp->erase_light(p,\
+    \ n->x);\n        pp->add_light(n, n->x);\n      }\n    }\n    n->p = pp;\n  \
+    \  p->p = n;\n    if (c) c->p = p;\n  }\n\n  inline int state(Node *n) {\n   \
+    \ if (!n->p) return 0;\n    if (n->p->l == n) return 1;\n    if (n->p->r == n)\
+    \ return -1;\n    return 0;\n  }\n};\n#line 1 \"graph/ds/link_cut_commutative_monoid.hpp\"\
+    \n\ntemplate <typename Monoid>\nstruct LCT_Node_Commutative_Monoid {\n  using\
+    \ np = LCT_Node_Commutative_Monoid *;\n  // \u30C7\u30D5\u30A9\u30EB\u30C8\n \
+    \ np l, r, p;\n  int idx, size; // size \u306F heavy path \u306E\u9802\u70B9\u6570\
+    \n  bool rev;\n  // \u76EE\u7684\u3054\u3068\u306B\u5B9A\u7FA9\u3059\u308B.\n\
+    \  using MX = Monoid;\n  using X = MX::value_type;\n  using VX = X;\n\n  X x,\
+    \ vx;\n\n  LCT_Node_Commutative_Monoid(int i = 0)\n      : l(nullptr), r(nullptr),\
+    \ p(nullptr), idx(i), size(1), rev(0) {}\n\n  void update() {\n    size = 1;\n\
+    \    x = vx;\n    if (l) { size += l->size, x = Monoid::op(l->x, x); }\n    if\
+    \ (r) { size += r->size, x = Monoid::op(x, r->x); }\n  }\n\n  void push() {\n\
+    \    if (rev) {\n      if (l) l->reverse();\n      if (r) r->reverse();\n    \
+    \  rev = 0;\n    }\n  }\n\n  // data \u306E reverse \u3082\u884C\u3046\n  void\
+    \ reverse() {\n    rev ^= 1;\n    swap(l, r);\n  }\n\n  // LCT \u5185\u3067 expose,\
+    \ update \u3092\u884C\u3046\u306E\u3067\u3053\u3053\u306F\u5909\u66F4\u3060\u3051\
+    \n  void set(VX x) { vx = x; }\n\n  // c \u304C\u3053\u306E\u6642\u70B9\u3067\u306F\
+    \ update \u3055\u308C\u3066\u3044\u306A\u3044\u304B\u3082\u3057\u308C\u306A\u3044\
+    \u304C, x \u306F\u6B63\u5E38\u306A\u3082\u306E\u304C\u5165\u308B\n  // c->x \u7B49\
+    \u306F\u4F7F\u308F\u306A\u3044\u3088\u3046\u306B\u6CE8\u610F\u3059\u308B\n  //\
+    \ c->idx \u3092\u6301\u3063\u3066\u304A\u304F\u3068\u63A2\u7D22\u3067\u304D\u308B\
+    \u3053\u3068\u304C\u3042\u308B\n  void add_light(np c, X x) {}\n  void erase_light(np\
+    \ c, X x) {}\n};\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\n\
+    struct Monoid_Add {\r\n  using value_type = X;\r\n  static constexpr X op(const\
+    \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
+    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
+    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 9 \"test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp\"\
     \n\nusing Node = LCT_Node_Commutative_Monoid<Monoid_Add<ll>>;\n\nvoid solve()\
     \ {\n  LL(N, Q);\n  VEC(u64, A, N);\n  Link_Cut_Tree<Node> LCT(N);\n  FOR(i, N)\
     \ LCT.set_vdata(i, A[i]);\n  FOR(N - 1) {\n    INT(a, b);\n    LCT.link(a, b);\n\
@@ -338,7 +337,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-12-03 01:16:01+09:00'
+  timestamp: '2023-12-03 01:32:09+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp

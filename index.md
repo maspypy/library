@@ -100,7 +100,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/add_pair.hpp
       title: alg/monoid/add_pair.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/affine.hpp
       title: alg/monoid/affine.hpp
     - icon: ':warning:'
@@ -287,7 +287,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/rectangle_union.hpp
       title: ds/rectangle_union.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/removable_queue.hpp
       title: ds/removable_queue.hpp
     - icon: ':heavy_check_mark:'
@@ -892,7 +892,10 @@ data:
     - icon: ':x:'
       path: graph/ds/link_cut_commutative_monoid.hpp
       title: graph/ds/link_cut_commutative_monoid.hpp
-    - icon: ':question:'
+    - icon: ':x:'
+      path: graph/ds/link_cut_monoid.hpp
+      title: graph/ds/link_cut_monoid.hpp
+    - icon: ':x:'
       path: graph/ds/link_cut_tree.hpp
       title: graph/ds/link_cut_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -2086,6 +2089,9 @@ data:
     - icon: ':x:'
       path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
       title: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
+    - icon: ':x:'
+      path: test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp
+      title: test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/line_add_get_min.test.cpp
       title: test/library_checker/datastructure/line_add_get_min.test.cpp
@@ -3764,7 +3770,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/749.test.cpp
       title: test/yukicoder/749.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/772.test.cpp
       title: test/yukicoder/772.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3782,7 +3788,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/899.test.cpp
       title: test/yukicoder/899.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/902.test.cpp
       title: test/yukicoder/902.test.cpp
     - icon: ':heavy_check_mark:'

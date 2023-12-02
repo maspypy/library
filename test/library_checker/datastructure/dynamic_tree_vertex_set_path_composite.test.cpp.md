@@ -1,18 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: alg/acted_monoid/sum_affine.hpp
-    title: alg/acted_monoid/sum_affine.hpp
-  - icon: ':question:'
-    path: alg/monoid/add.hpp
-    title: alg/monoid/add.hpp
   - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/randomized_bst/rbst_acted_monoid.hpp
-    title: ds/randomized_bst/rbst_acted_monoid.hpp
+  - icon: ':x:'
+    path: graph/ds/link_cut_monoid.hpp
+    title: graph/ds/link_cut_monoid.hpp
+  - icon: ':x:'
+    path: graph/ds/link_cut_tree.hpp
+    title: graph/ds/link_cut_tree.hpp
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
@@ -27,16 +24,16 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
+    PROBLEM: https://judge.yosupo.jp/problem/dynamic_tree_vertex_set_path_composite
     links:
-    - https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
-  bundledCode: "#line 1 \"test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp\"\
-    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
+    - https://judge.yosupo.jp/problem/dynamic_tree_vertex_set_path_composite
+  bundledCode: "#line 1 \"test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp\"\
+    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_tree_vertex_set_path_composite\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -200,27 +197,127 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 5 \"test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp\"\
-    \n\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct Monoid_Add\
-    \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
-    \ &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept\
-    \ { return -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return\
-    \ X(n) * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 2 \"alg/monoid/affine.hpp\"\n\n// op(F,\
-    \ G) = comp(G,F), F \u306E\u3042\u3068\u3067 G\ntemplate <typename K>\nstruct\
-    \ Monoid_Affine {\n  using F = pair<K, K>;\n  using value_type = F;\n  using X\
-    \ = value_type;\n  static constexpr F op(const F &x, const F &y) noexcept {\n\
-    \    return F({x.first * y.first, x.second * y.first + y.second});\n  }\n  static\
-    \ constexpr F inverse(const F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n\
-    \    return {a, a * (-b)};\n  }\n  static constexpr K eval(const F &f, K x) noexcept\
-    \ {\n    return f.first * x + f.second;\n  }\n  static constexpr F unit() { return\
-    \ {K(1), K(0)}; }\n  static constexpr bool commute = false;\n};\n#line 3 \"alg/acted_monoid/sum_affine.hpp\"\
-    \n\r\ntemplate <typename E>\r\nstruct ActedMonoid_Sum_Affine {\r\n  using Monoid_X\
-    \ = Monoid_Add<E>;\r\n  using Monoid_A = Monoid_Affine<E>;\r\n  using X = typename\
-    \ Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\n  static\
-    \ constexpr X act(const X &x, const A &a, const ll &size) {\r\n    return x *\
-    \ a.fi + E(size) * a.se;\r\n  }\r\n};\r\n#line 2 \"mod/modint_common.hpp\"\n\n\
-    struct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ yes(!t); }\r\n#line 5 \"test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp\"\
+    \n\n#line 1 \"graph/ds/link_cut_tree.hpp\"\n/*\n\u5404 heavy path \u3092 head\
+    \ \u304C\u5DE6, tail \u304C\u53F3\u3068\u306A\u308B\u3088\u3046\u306B splay tree\
+    \ \u3067\u6301\u3064.\n\u30E6\u30FC\u30B6\u30FC\u304C\u76F4\u63A5\u547C\u3076\u53EF\
+    \u80FD\u6027\u304C\u3042\u308B\u3082\u306E\u3060\u3051 int \u3067\u3082\u5B9F\u88C5\
+    .\nLCT \u5916\u3067\u63A2\u7D22\u3059\u308B\u3068\u304D\u306A\u3069\uFF0Cpush\
+    \ \u3092\u5FD8\u308C\u306A\u3044\u3088\u3046\u306B\u6CE8\u610F.\n*/\n\ntemplate\
+    \ <typename Node>\nstruct Link_Cut_Tree {\n  using np = Node *;\n  int n;\n  vc<Node>\
+    \ nodes;\n\n  Link_Cut_Tree(int n = 0) : n(n), nodes(n) { FOR(i, n) nodes[i] =\
+    \ Node(i); }\n\n  Node *operator[](int v) { return &nodes[v]; }\n\n  // underlying\
+    \ tree \u306E\u6839\n  Node *get_root(Node *c) {\n    expose(c);\n    while (c->l)\
+    \ {\n      c->push();\n      c = c->l;\n    }\n    splay(c);\n    return c;\n\
+    \  }\n\n  // underlying tree \u306E\u6839\n  int get_root(int c) { return get_root(&nodes[c])->idx;\
+    \ }\n\n  // parent(c)==p \u3068\u306A\u308B\u3088\u3046\u306B link.\n  void link(Node\
+    \ *c, Node *p) {\n    evert(c);\n    evert(p);\n    // no edge -> heavy edge\n\
+    \    c->p = p;\n    p->r = c;\n    p->update();\n  }\n\n  // parent(c)==p \u3068\
+    \u306A\u308B\u3088\u3046\u306B link.\n  void link(int c, int p) { return link(&nodes[c],\
+    \ &nodes[p]); }\n\n  void cut(Node *a, Node *b) {\n    evert(a);\n    expose(b);\n\
+    \    assert(!b->p);\n    assert((b->l) == a);\n    // heavy edge -> no edge\n\
+    \    b->l->p = nullptr;\n    b->l = nullptr;\n    b->update();\n  }\n\n  void\
+    \ cut(int a, int b) { return cut(&nodes[a], &nodes[b]); }\n\n  // c \u3092 underlying\
+    \ tree \u306E\u6839\u3068\u3059\u308B.\n  // c \u306F splay tree \u306E\u6839\u306B\
+    \u3082\u306A\u308B.\n  void evert(Node *c) {\n    expose(c);\n    c->reverse();\n\
+    \    c->push();\n  }\n\n  // c \u3092 underlying tree \u306E\u6839\u3068\u3059\
+    \u308B.\n  // c \u306F splay tree \u306E\u6839\u306B\u3082\u306A\u308B.\n  void\
+    \ evert(int c) { evert(&nodes[c]); }\n\n  Node *lca(Node *u, Node *v) {\n    assert(get_root(u)\
+    \ == get_root(v));\n    expose(u);\n    return expose(v);\n  }\n\n  int lca(int\
+    \ u, int v) { return lca(&nodes[u], &nodes[v])->idx; }\n\n  Node *jump(Node *u,\
+    \ Node *v, int k) {\n    evert(v);\n    expose(u);\n    assert(0 <= k && k < (u->size));\n\
+    \    while (1) {\n      u->push();\n      int rs = (u->r ? u->r->size : 0);\n\
+    \      if (k < rs) {\n        u = u->r;\n        continue;\n      }\n      if\
+    \ (k == rs) { break; }\n      k -= rs + 1;\n      u = u->l;\n    }\n    splay(u);\n\
+    \    return u;\n  }\n\n  int jump(int u, int v, int k) {\n    auto c = jump((*this)[u],\
+    \ (*this)[v], k);\n    return c->idx;\n  }\n\n  // [root, c] \u304C\u3072\u3068\
+    \u3064\u306E splay tree \u306B\u306A\u308B\u3088\u3046\u306B\u5909\u66F4\u3059\
+    \u308B.\n  // c \u304C\u53F3\u7AEF\u3067 splay tree \u306E\u6839\u3068\u3044\u3046\
+    \u72B6\u614B\u306B\u306A\u308B.\n  // path query \u306F\u3053\u306E\u72B6\u614B\
+    \u3067 c \u306E data \u3092\u898B\u308B.\n  virtual Node *expose(Node *c) {\n\
+    \    Node *now = c;\n    Node *rp = nullptr; // \u4ECA\u307E\u3067\u4F5C\u3063\
+    \u305F\u30D1\u30B9\n\n    while (now) {\n      splay(now);\n      // heavy ->\
+    \ light, light -> heavy.\n      if (now->r) { now->add_light(now->r, now->r->x);\
+    \ }\n      if (rp) { now->erase_light(rp, rp->x); }\n      now->r = rp;\n    \
+    \  now->update();\n      rp = now;\n      now = now->p;\n    }\n    splay(c);\n\
+    \    return rp;\n  }\n\n  // [root, c] \u304C\u3072\u3068\u3064\u306E splay tree\
+    \ \u306B\u306A\u308B\u3088\u3046\u306B\u5909\u66F4\u3059\u308B.\n  // c \u304C\
+    \u53F3\u7AEF\u3067 splay tree \u306E\u6839\u3068\u3044\u3046\u72B6\u614B\u306B\
+    \u306A\u308B.\n  // path query \u306F\u3053\u306E\u72B6\u614B\u3067 c \u306E data\
+    \ \u3092\u898B\u308B.\n  int expose(int c) {\n    Node *x = expose(&nodes[c]);\n\
+    \    if (!x) return -1;\n    return x->idx;\n  }\n\n  Node *get_parent(Node *x)\
+    \ {\n    expose(x);\n    if (!x->l) return nullptr;\n    x = x->l;\n    while\
+    \ (x->r) x = x->r;\n    return x;\n  }\n\n  int get_parent(int x) {\n    Node\
+    \ *p = get_parent((*this)[x]);\n    return (p ? p->idx : -1);\n  }\n\n  void set(Node\
+    \ *c, typename Node::VX x) {\n    evert(c);\n    c->set(x);\n  }\n\n  void set(int\
+    \ c, typename Node::VX x) { set((*this)[c], x); }\n\n  typename Node::X prod_path(int\
+    \ a, int b) {\n    evert(a), expose(b);\n    return (*this)[b]->x;\n  }\n\n  vc<int>\
+    \ collect_heavy_path(int v) {\n    np c = (*this)[v];\n    while (!is_root(c))\
+    \ c = c->p;\n    vc<int> res;\n    auto dfs = [&](auto &dfs, np c, bool rev) ->\
+    \ void {\n      if (!rev) {\n        if (c->l) dfs(dfs, c->l, rev ^ c->rev);\n\
+    \        res.eb(c->idx);\n        if (c->r) dfs(dfs, c->r, rev ^ c->rev);\n  \
+    \    } else {\n        if (c->r) dfs(dfs, c->r, rev ^ c->rev);\n        res.eb(c->idx);\n\
+    \        if (c->l) dfs(dfs, c->l, rev ^ c->rev);\n      }\n    };\n    dfs(dfs,\
+    \ c, false);\n    return res;\n  }\n\n  void debug() {\n    print(\"p, l, r, rev\"\
+    );\n    auto f = [&](np c) -> int { return (c ? c->idx : -1); };\n    FOR(i, len(nodes))\
+    \ {\n      print(i, \",\", f((*this)[i]->p), f((*this)[i]->l), f((*this)[i]->r),\n\
+    \            (*this)[i]->rev);\n    }\n  }\n\nprivate:\n  // splay tree \u5185\
+    \u3067\u5B8C\u7D50\u3059\u308B\u64CD\u4F5C. \u7279\u306B heavy, light \u69CB\u9020\
+    \u306F\u5909\u308F\u3089\u306A\u3044.\n  // light pointer \u306F rotate \u5185\
+    \u3067\u30B1\u30A2\n  void splay(Node *c) {\n    c->push();\n    while (!is_root(c))\
+    \ {\n      Node *p = c->p;\n      Node *pp = (p ? p->p : nullptr);\n      if (state(p)\
+    \ == 0) {\n        p->push(), c->push();\n        rotate(c);\n      }\n      elif\
+    \ (state(c) == state(p)) {\n        pp->push(), p->push(), c->push();\n      \
+    \  rotate(p);\n        rotate(c);\n      }\n      else {\n        pp->push(),\
+    \ p->push(), c->push();\n        rotate(c);\n        rotate(c);\n      }\n   \
+    \ }\n  }\n\n  // \u30D1\u30B9\u3092\u8868\u3059 splay tree \u306E\u6839\u306B\u306A\
+    \u3063\u3066\u3044\u308B\u304B\u3069\u3046\u304B\n  // underlying tree \u3067\u306F\
+    \u306A\u3044\n  bool is_root(Node *c) { return state(c) == 0; }\n\n  // splay\
+    \ tree \u5185\u3067\u5B8C\u7D50\u3059\u308B\u64CD\u4F5C. \u7279\u306B heavy, light\
+    \ \u69CB\u9020\u306F\u5909\u308F\u3089\u306A\u3044.\n  // light edge \u306E\u30DD\
+    \u30A4\u30F3\u30BF\u306F\u5909\u66F4\u3055\u308C\u3046\u308B\n  void rotate(Node\
+    \ *n) {\n    // n \u3092\u6839\u306B\u8FD1\u3065\u3051\u308B\n    Node *pp, *p,\
+    \ *c;\n    p = n->p;\n    pp = p->p;\n    if (p->l == n) {\n      c = n->r;\n\
+    \      n->r = p;\n      p->l = c;\n    } else {\n      c = n->l;\n      n->l =\
+    \ p;\n      p->r = c;\n    }\n    p->update(), n->update();\n\n    if (pp) {\n\
+    \      if (pp->l == p) pp->l = n;\n      elif (pp->r == p) pp->r = n;\n      else\
+    \ {\n        // light edge pointer \u304C p \u304B\u3089 n \u306B\u5909\u308F\u308B\
+    \n        // \u96C6\u7D04\u5024\u306F\u5909\u308F\u3089\u306A\u3044\u306E\u3067\
+    \u5834\u5408\u306B\u3088\u3063\u3066\u306F\u7701\u7565\u53EF\u80FD\n        pp->erase_light(p,\
+    \ n->x);\n        pp->add_light(n, n->x);\n      }\n    }\n    n->p = pp;\n  \
+    \  p->p = n;\n    if (c) c->p = p;\n  }\n\n  inline int state(Node *n) {\n   \
+    \ if (!n->p) return 0;\n    if (n->p->l == n) return 1;\n    if (n->p->r == n)\
+    \ return -1;\n    return 0;\n  }\n};\n#line 1 \"graph/ds/link_cut_monoid.hpp\"\
+    \n\ntemplate <typename Monoid>\nstruct LCT_Node_Monoid {\n  using np = LCT_Node_Monoid\
+    \ *;\n  // \u30C7\u30D5\u30A9\u30EB\u30C8\n  np l, r, p;\n  int idx, size; //\
+    \ size \u306F heavy path \u306E\u9802\u70B9\u6570\n  bool rev;\n  // \u76EE\u7684\
+    \u3054\u3068\u306B\u5B9A\u7FA9\u3059\u308B.\n  using MX = Monoid;\n  using X =\
+    \ MX::value_type;\n  using VX = X;\n\n  X x, rx, vx;\n\n  LCT_Node_Monoid(int\
+    \ i = 0)\n      : l(nullptr), r(nullptr), p(nullptr), idx(i), size(1), rev(0)\
+    \ {}\n\n  void update() {\n    size = 1;\n    x = vx, rx = vx;\n    if (l) {\n\
+    \      size += l->size, x = Monoid::op(l->x, x), rx = Monoid::op(rx, l->rx);\n\
+    \    }\n    if (r) {\n      size += r->size, x = Monoid::op(x, r->x), rx = Monoid::op(r->rx,\
+    \ rx);\n    }\n  }\n\n  void push() {\n    if (rev) {\n      if (l) l->reverse();\n\
+    \      if (r) r->reverse();\n      rev = 0;\n    }\n  }\n\n  // data \u306E reverse\
+    \ \u3082\u884C\u3046\n  void reverse() {\n    rev ^= 1;\n    swap(l, r);\n   \
+    \ swap(x, rx);\n  }\n\n  // LCT \u5185\u3067 expose, update \u3092\u884C\u3046\
+    \u306E\u3067\u3053\u3053\u306F\u5909\u66F4\u3060\u3051\n  void set(VX x) { vx\
+    \ = x; }\n\n  // c \u304C\u3053\u306E\u6642\u70B9\u3067\u306F update \u3055\u308C\
+    \u3066\u3044\u306A\u3044\u304B\u3082\u3057\u308C\u306A\u3044\u304C, x \u306F\u6B63\
+    \u5E38\u306A\u3082\u306E\u304C\u5165\u308B\n  // c->x \u7B49\u306F\u4F7F\u308F\
+    \u306A\u3044\u3088\u3046\u306B\u6CE8\u610F\u3059\u308B\n  // c->idx \u3092\u6301\
+    \u3063\u3066\u304A\u304F\u3068\u63A2\u7D22\u3067\u304D\u308B\u3053\u3068\u304C\
+    \u3042\u308B\n  void add_light(np c, X x) {}\n  void erase_light(np c, X x) {}\n\
+    };\n#line 2 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F), F \u306E\u3042\
+    \u3068\u3067 G\ntemplate <typename K>\nstruct Monoid_Affine {\n  using F = pair<K,\
+    \ K>;\n  using value_type = F;\n  using X = value_type;\n  static constexpr F\
+    \ op(const F &x, const F &y) noexcept {\n    return F({x.first * y.first, x.second\
+    \ * y.first + y.second});\n  }\n  static constexpr F inverse(const F &x) {\n \
+    \   auto [a, b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n  }\n  static\
+    \ constexpr K eval(const F &f, K x) noexcept {\n    return f.first * x + f.second;\n\
+    \  }\n  static constexpr F unit() { return {K(1), K(0)}; }\n  static constexpr\
+    \ bool commute = false;\n};\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
     \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
     };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
@@ -293,181 +390,48 @@ data:
     \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
     }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 1 \"ds/randomized_bst/rbst_acted_monoid.hpp\"\ntemplate <typename ActedMonoid,\
-    \ bool PERSISTENT, int NODES>\nstruct RBST_ActedMonoid {\n  using Monoid_X = typename\
-    \ ActedMonoid::Monoid_X;\n  using Monoid_A = typename ActedMonoid::Monoid_A;\n\
-    \  using X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
-    \n  struct Node {\n    Node *l, *r;\n    X x, prod; // lazy, rev \u53CD\u6620\u6E08\
-    \n    A lazy;\n    u32 size;\n    bool rev;\n  };\n\n  Node *pool;\n  int pid;\n\
-    \  using np = Node *;\n\n  RBST_ActedMonoid() : pid(0) { pool = new Node[NODES];\
-    \ }\n\n  void reset() { pid = 0; }\n\n  np new_node(const X &x) {\n    pool[pid].l\
-    \ = pool[pid].r = nullptr;\n    pool[pid].x = x;\n    pool[pid].prod = x;\n  \
-    \  pool[pid].lazy = Monoid_A::unit();\n    pool[pid].size = 1;\n    pool[pid].rev\
-    \ = 0;\n    return &(pool[pid++]);\n  }\n\n  np new_node(const vc<X> &dat) {\n\
-    \    auto dfs = [&](auto &dfs, u32 l, u32 r) -> np {\n      if (l == r) return\
-    \ nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n      u32 m = (l +\
-    \ r) / 2;\n      np l_root = dfs(dfs, l, m);\n      np r_root = dfs(dfs, m + 1,\
-    \ r);\n      np root = new_node(dat[m]);\n      root->l = l_root, root->r = r_root;\n\
-    \      update(root);\n      return root;\n    };\n    return dfs(dfs, 0, len(dat));\n\
-    \  }\n\n  np copy_node(np &n) {\n    if (!n || !PERSISTENT) return n;\n    pool[pid].l\
-    \ = n->l, pool[pid].r = n->r;\n    pool[pid].x = n->x;\n    pool[pid].prod = n->prod;\n\
-    \    pool[pid].lazy = n->lazy;\n    pool[pid].size = n->size;\n    pool[pid].rev\
-    \ = n->rev;\n    return &(pool[pid++]);\n  }\n\n  np merge(np l_root, np r_root)\
-    \ { return merge_rec(l_root, r_root); }\n  np merge3(np a, np b, np c) { return\
-    \ merge(merge(a, b), c); }\n  np merge4(np a, np b, np c, np d) { return merge(merge(merge(a,\
-    \ b), c), d); }\n  pair<np, np> split(np root, u32 k) {\n    if (!root) {\n  \
-    \    assert(k == 0);\n      return {nullptr, nullptr};\n    }\n    assert(0 <=\
-    \ k && k <= root->size);\n    return split_rec(root, k);\n  }\n  tuple<np, np,\
-    \ np> split3(np root, u32 l, u32 r) {\n    np nm, nr;\n    tie(root, nr) = split(root,\
-    \ r);\n    tie(root, nm) = split(root, l);\n    return {root, nm, nr};\n  }\n\
-    \  tuple<np, np, np, np> split4(np root, u32 i, u32 j, u32 k) {\n    np d;\n \
-    \   tie(root, d) = split(root, k);\n    auto [a, b, c] = split3(root, i, j);\n\
-    \    return {a, b, c, d};\n  }\n\n  X prod(np root, u32 l, u32 r) {\n    if (l\
-    \ == r) return Monoid_X::unit();\n    return prod_rec(root, l, r, false);\n  }\n\
-    \  X prod(np root) { return (root ? root->prod : Monoid_X::unit()); }\n\n  np\
-    \ reverse(np root, u32 l, u32 r) {\n    assert(Monoid_X::commute);\n    assert(0\
-    \ <= l && l <= r && r <= root->size);\n    if (r - l <= 1) return root;\n    auto\
-    \ [nl, nm, nr] = split3(root, l, r);\n    nm->rev ^= 1;\n    swap(nm->l, nm->r);\n\
-    \    return merge3(nl, nm, nr);\n  }\n\n  np apply(np root, u32 l, u32 r, const\
-    \ A a) {\n    assert(0 <= l && l <= r && r <= root->size);\n    return apply_rec(root,\
-    \ l, r, a);\n  }\n  np apply(np root, const A a) {\n    if (!root) return root;\n\
-    \    return apply_rec(root, 0, root->size, a);\n  }\n\n  np set(np root, u32 k,\
-    \ const X &x) { return set_rec(root, k, x); }\n  np multiply(np root, u32 k, const\
-    \ X &x) { return multiply_rec(root, k, x); }\n  X get(np root, u32 k) { return\
-    \ get_rec(root, k, false, Monoid_A::unit()); }\n\n  vc<X> get_all(np root) {\n\
-    \    vc<X> res;\n    auto dfs = [&](auto &dfs, np root, bool rev, A lazy) -> void\
-    \ {\n      if (!root) return;\n      X me = ActedMonoid::act(root->x, lazy, 1);\n\
-    \      lazy = Monoid_A::op(root->lazy, lazy);\n      dfs(dfs, (rev ? root->r :\
-    \ root->l), rev ^ root->rev, lazy);\n      res.eb(me);\n      dfs(dfs, (rev ?\
-    \ root->l : root->r), rev ^ root->rev, lazy);\n    };\n    dfs(dfs, root, 0, Monoid_A::unit());\n\
-    \    return res;\n  }\n\n  template <typename F>\n  pair<np, np> split_max_right(np\
-    \ root, const F check) {\n    assert(check(Monoid_X::unit()));\n    X x = Monoid_X::unit();\n\
-    \    return split_max_right_rec(root, check, x);\n  }\n\nprivate:\n  inline u32\
-    \ xor128() {\n    static u32 x = 123456789;\n    static u32 y = 362436069;\n \
-    \   static u32 z = 521288629;\n    static u32 w = 88675123;\n    u32 t = x ^ (x\
-    \ << 11);\n    x = y;\n    y = z;\n    z = w;\n    return w = (w ^ (w >> 19))\
-    \ ^ (t ^ (t >> 8));\n  }\n\n  void prop(np c) {\n    // \u81EA\u8EAB\u3092\u30B3\
-    \u30D4\u30FC\u3059\u308B\u5FC5\u8981\u306F\u306A\u3044\u3002\n    // \u5B50\u3092\
-    \u30B3\u30D4\u30FC\u3059\u308B\u5FC5\u8981\u304C\u3042\u308B\u3002\u8907\u6570\
-    \u306E\u89AA\u3092\u6301\u3064\u53EF\u80FD\u6027\u304C\u3042\u308B\u305F\u3081\
-    \u3002\n    bool bl_lazy = (c->lazy != Monoid_A::unit());\n    bool bl_rev = c->rev;\n\
-    \    if (bl_lazy || bl_rev) {\n      c->l = copy_node(c->l);\n      c->r = copy_node(c->r);\n\
-    \    }\n    if (c->lazy != Monoid_A::unit()) {\n      if (c->l) {\n        c->l->x\
-    \ = ActedMonoid::act(c->l->x, c->lazy, 1);\n        c->l->prod = ActedMonoid::act(c->l->prod,\
-    \ c->lazy, c->l->size);\n        c->l->lazy = Monoid_A::op(c->l->lazy, c->lazy);\n\
-    \      }\n      if (c->r) {\n        c->r->x = ActedMonoid::act(c->r->x, c->lazy,\
-    \ 1);\n        c->r->prod = ActedMonoid::act(c->r->prod, c->lazy, c->r->size);\n\
-    \        c->r->lazy = Monoid_A::op(c->r->lazy, c->lazy);\n      }\n      c->lazy\
-    \ = Monoid_A::unit();\n    }\n    if (c->rev) {\n      if (c->l) {\n        c->l->rev\
-    \ ^= 1;\n        swap(c->l->l, c->l->r);\n      }\n      if (c->r) {\n       \
-    \ c->r->rev ^= 1;\n        swap(c->r->l, c->r->r);\n      }\n      c->rev = 0;\n\
-    \    }\n  }\n\n  void update(np c) {\n    // \u30C7\u30FC\u30BF\u3092\u4FDD\u3063\
-    \u305F\u307E\u307E\u6B63\u5E38\u5316\u3059\u308B\u3060\u3051\u306A\u306E\u3067\
-    \u3001\u30B3\u30D4\u30FC\u4E0D\u8981\n    c->size = 1;\n    c->prod = c->x;\n\
-    \    if (c->l) {\n      c->size += c->l->size;\n      c->prod = Monoid_X::op(c->l->prod,\
-    \ c->prod);\n    }\n    if (c->r) {\n      c->size += c->r->size;\n      c->prod\
-    \ = Monoid_X::op(c->prod, c->r->prod);\n    }\n  }\n\n  np merge_rec(np l_root,\
-    \ np r_root) {\n    if (!l_root) return r_root;\n    if (!r_root) return l_root;\n\
-    \    u32 sl = l_root->size, sr = r_root->size;\n    if (xor128() % (sl + sr) <\
-    \ sl) {\n      prop(l_root);\n      l_root = copy_node(l_root);\n      l_root->r\
-    \ = merge_rec(l_root->r, r_root);\n      update(l_root);\n      return l_root;\n\
-    \    }\n    prop(r_root);\n    r_root = copy_node(r_root);\n    r_root->l = merge_rec(l_root,\
-    \ r_root->l);\n    update(r_root);\n    return r_root;\n  }\n\n  pair<np, np>\
-    \ split_rec(np root, u32 k) {\n    if (!root) return {nullptr, nullptr};\n   \
-    \ prop(root);\n    u32 sl = (root->l ? root->l->size : 0);\n    if (k <= sl) {\n\
-    \      auto [nl, nr] = split_rec(root->l, k);\n      root = copy_node(root);\n\
-    \      root->l = nr;\n      update(root);\n      return {nl, root};\n    }\n \
-    \   auto [nl, nr] = split_rec(root->r, k - (1 + sl));\n    root = copy_node(root);\n\
-    \    root->r = nl;\n    update(root);\n    return {root, nr};\n  }\n\n  np set_rec(np\
-    \ root, u32 k, const X &x) {\n    if (!root) return root;\n    prop(root);\n \
-    \   u32 sl = (root->l ? root->l->size : 0);\n    if (k < sl) {\n      root = copy_node(root);\n\
-    \      root->l = set_rec(root->l, k, x);\n      update(root);\n      return root;\n\
-    \    }\n    if (k == sl) {\n      root = copy_node(root);\n      root->x = x;\n\
-    \      update(root);\n      return root;\n    }\n    root = copy_node(root);\n\
-    \    root->r = set_rec(root->r, k - (1 + sl), x);\n    update(root);\n    return\
-    \ root;\n  }\n\n  np multiply_rec(np root, u32 k, const X &x) {\n    if (!root)\
-    \ return root;\n    prop(root);\n    u32 sl = (root->l ? root->l->size : 0);\n\
-    \    if (k < sl) {\n      root = copy_node(root);\n      root->l = multiply_rec(root->l,\
-    \ k, x);\n      update(root);\n      return root;\n    }\n    if (k == sl) {\n\
-    \      root = copy_node(root);\n      root->x = Monoid_X::op(root->x, x);\n  \
-    \    update(root);\n      return root;\n    }\n    root = copy_node(root);\n \
-    \   root->r = multiply_rec(root->r, k - (1 + sl), x);\n    update(root);\n   \
-    \ return root;\n  }\n\n  X prod_rec(np root, u32 l, u32 r, bool rev) {\n    if\
-    \ (l == 0 && r == root->size) { return root->prod; }\n    np left = (rev ? root->r\
-    \ : root->l);\n    np right = (rev ? root->l : root->r);\n    u32 sl = (left ?\
-    \ left->size : 0);\n    X res = Monoid_X::unit();\n    if (l < sl) {\n      X\
-    \ y = prod_rec(left, l, min(r, sl), rev ^ root->rev);\n      res = Monoid_X::op(res,\
-    \ ActedMonoid::act(y, root->lazy, min(r, sl) - l));\n    }\n    if (l <= sl &&\
-    \ sl < r) res = Monoid_X::op(res, root->x);\n    u32 k = 1 + sl;\n    if (k <\
-    \ r) {\n      X y = prod_rec(right, max(k, l) - k, r - k, rev ^ root->rev);\n\
-    \      res = Monoid_X::op(res, ActedMonoid::act(y, root->lazy, r - max(k, l)));\n\
-    \    }\n    return res;\n  }\n\n  X get_rec(np root, u32 k, bool rev, A lazy)\
-    \ {\n    np left = (rev ? root->r : root->l);\n    np right = (rev ? root->l :\
-    \ root->r);\n    u32 sl = (left ? left->size : 0);\n    if (k == sl) return ActedMonoid::act(root->x,\
-    \ lazy, 1);\n    lazy = Monoid_A::op(root->lazy, lazy);\n    rev ^= root->rev;\n\
-    \    if (k < sl) return get_rec(left, k, rev, lazy);\n    return get_rec(right,\
-    \ k - (1 + sl), rev, lazy);\n  }\n\n  np apply_rec(np root, u32 l, u32 r, const\
-    \ A &a) {\n    prop(root);\n    root = copy_node(root);\n    if (l == 0 && r ==\
-    \ root->size) {\n      root->x = ActedMonoid::act(root->x, a, 1);\n      root->prod\
-    \ = ActedMonoid::act(root->prod, a, root->size);\n      root->lazy = a;\n    \
-    \  return root;\n    }\n    u32 sl = (root->l ? root->l->size : 0);\n    if (l\
-    \ < sl) root->l = apply_rec(root->l, l, min(r, sl), a);\n    if (l <= sl && sl\
-    \ < r) root->x = ActedMonoid::act(root->x, a, 1);\n    u32 k = 1 + sl;\n    if\
-    \ (k < r) root->r = apply_rec(root->r, max(k, l) - k, r - k, a);\n    update(root);\n\
-    \    return root;\n  }\n\n  template <typename F>\n  pair<np, np> split_max_right_rec(np\
-    \ root, F check, X &x) {\n    if (!root) return {nullptr, nullptr};\n    prop(root);\n\
-    \    root = copy_node(root);\n    X y = Monoid_X::op(x, root->prod);\n    if (check(y))\
-    \ {\n      x = y;\n      return {root, nullptr};\n    }\n    np left = root->l,\
-    \ right = root->r;\n    if (left) {\n      X y = Monoid_X::op(x, root->l->prod);\n\
-    \      if (!check(y)) {\n        auto [n1, n2] = split_max_right_rec(left, check,\
-    \ x);\n        root->l = n2;\n        update(root);\n        return {n1, root};\n\
-    \      }\n      x = y;\n    }\n    y = Monoid_X::op(x, root->x);\n    if (!check(y))\
-    \ {\n      root->l = nullptr;\n      update(root);\n      return {left, root};\n\
-    \    }\n    x = y;\n    auto [n1, n2] = split_max_right_rec(right, check, x);\n\
-    \    root->r = n1;\n    update(root);\n    return {root, n2};\n  }\n};\n#line\
-    \ 9 \"test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  VEC(mint, A, N);\n\
-    \  RBST_ActedMonoid<ActedMonoid_Sum_Affine<mint>, false, 1'000'000> X;\n  auto\
-    \ root = X.new_node(A);\n\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(i,\
-    \ x);\n      auto [a, b] = X.split(root, i);\n      root = X.merge3(a, X.new_node(mint(x)),\
-    \ b);\n    }\n    if (t == 1) {\n      LL(i);\n      auto [a, b, c] = X.split3(root,\
-    \ i, i + 1);\n      root = X.merge(a, c);\n    }\n    if (t == 2) {\n      LL(l,\
-    \ r);\n      root = X.reverse(root, l, r);\n    }\n    if (t == 3) {\n      LL(l,\
-    \ r, b, c);\n      root = X.apply(root, l, r, {mint(b), mint(c)});\n    }\n  \
-    \  if (t == 4) {\n      LL(l, r);\n      print(X.prod(root, l, r));\n    }\n \
-    \ }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"alg/acted_monoid/sum_affine.hpp\"\
-    \n#include \"mod/modint.hpp\"\n#include \"ds/randomized_bst/rbst_acted_monoid.hpp\"\
-    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  VEC(mint, A, N);\n\
-    \  RBST_ActedMonoid<ActedMonoid_Sum_Affine<mint>, false, 1'000'000> X;\n  auto\
-    \ root = X.new_node(A);\n\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(i,\
-    \ x);\n      auto [a, b] = X.split(root, i);\n      root = X.merge3(a, X.new_node(mint(x)),\
-    \ b);\n    }\n    if (t == 1) {\n      LL(i);\n      auto [a, b, c] = X.split3(root,\
-    \ i, i + 1);\n      root = X.merge(a, c);\n    }\n    if (t == 2) {\n      LL(l,\
-    \ r);\n      root = X.reverse(root, l, r);\n    }\n    if (t == 3) {\n      LL(l,\
-    \ r, b, c);\n      root = X.apply(root, l, r, {mint(b), mint(c)});\n    }\n  \
-    \  if (t == 4) {\n      LL(l, r);\n      print(X.prod(root, l, r));\n    }\n \
-    \ }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+    #line 10 \"test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp\"\
+    \n\nusing mint = modint998;\n\nusing Mono = Monoid_Affine<mint>;\nusing Node =\
+    \ LCT_Node_Monoid<Mono>;\n\nvoid solve() {\n  LL(N, Q);\n  Link_Cut_Tree<Node>\
+    \ LCT(N);\n  FOR(i, N) {\n    mint a, b;\n    read(a, b);\n    LCT.set(i, {a,\
+    \ b});\n  }\n  FOR(N - 1) {\n    INT(a, b);\n    LCT.link(a, b);\n  }\n\n  FOR(Q)\
+    \ {\n    LL(t);\n    if (t == 0) {\n      LL(a, b, c, d);\n      LCT.cut(a, b),\
+    \ LCT.link(c, d);\n    }\n    if (t == 1) {\n      LL(i);\n      mint a, b;\n\
+    \      read(a, b);\n      LCT.set(i, {a, b});\n    }\n    if (t == 2) {\n    \
+    \  LL(a, b);\n      auto f = LCT.prod_path(a, b);\n      u32 x;\n      read(x);\n\
+    \      mint ans = Mono::eval(f, mint::raw(x));\n      print(ans);\n    }\n  }\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_tree_vertex_set_path_composite\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/ds/link_cut_tree.hpp\"\
+    \n#include \"graph/ds/link_cut_monoid.hpp\"\n#include \"alg/monoid/affine.hpp\"\
+    \n#include \"mod/modint.hpp\"\n\nusing mint = modint998;\n\nusing Mono = Monoid_Affine<mint>;\n\
+    using Node = LCT_Node_Monoid<Mono>;\n\nvoid solve() {\n  LL(N, Q);\n  Link_Cut_Tree<Node>\
+    \ LCT(N);\n  FOR(i, N) {\n    mint a, b;\n    read(a, b);\n    LCT.set(i, {a,\
+    \ b});\n  }\n  FOR(N - 1) {\n    INT(a, b);\n    LCT.link(a, b);\n  }\n\n  FOR(Q)\
+    \ {\n    LL(t);\n    if (t == 0) {\n      LL(a, b, c, d);\n      LCT.cut(a, b),\
+    \ LCT.link(c, d);\n    }\n    if (t == 1) {\n      LL(i);\n      mint a, b;\n\
+    \      read(a, b);\n      LCT.set(i, {a, b});\n    }\n    if (t == 2) {\n    \
+    \  LL(a, b);\n      auto f = LCT.prod_path(a, b);\n      u32 x;\n      read(x);\n\
+    \      mint ans = Mono::eval(f, mint::raw(x));\n      print(ans);\n    }\n  }\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - alg/acted_monoid/sum_affine.hpp
-  - alg/monoid/add.hpp
+  - graph/ds/link_cut_tree.hpp
+  - graph/ds/link_cut_monoid.hpp
   - alg/monoid/affine.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
-  - ds/randomized_bst/rbst_acted_monoid.hpp
   isVerificationFile: true
-  path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+  path: test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp
   requiredBy: []
-  timestamp: '2023-11-21 19:08:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-12-03 01:32:09+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+documentation_of: test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-- /verify/test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp.html
-title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+- /verify/test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp
+- /verify/test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp.html
+title: test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp
 ---
