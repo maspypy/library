@@ -9,9 +9,11 @@ pair<int, vc<int>> implicit_graph_scc(int N, F1 set_used, F2 find_unused) {
     int nxt = N;
     vc<bool> vis(N);
     auto dfs = [&](auto& dfs, int v) -> void {
+      assert(v < N && !vis[v]);
       vis[v] = 1, set_used(v, false);
       while (1) {
         int to = find_unused(v, false);
+        assert(to < N);
         if (to == -1) break;
         dfs(dfs, to);
       }
