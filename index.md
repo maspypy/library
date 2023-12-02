@@ -890,14 +890,8 @@ data:
       path: graph/ds/lazy_tree_monoid.hpp
       title: graph/ds/lazy_tree_monoid.hpp
     - icon: ':heavy_check_mark:'
-      path: graph/ds/link_cut.hpp
-      title: graph/ds/link_cut.hpp
-    - icon: ':heavy_check_mark:'
-      path: graph/ds/link_cut_path.hpp
-      title: graph/ds/link_cut_path.hpp
-    - icon: ':warning:'
-      path: graph/ds/link_cut_subtree.hpp
-      title: graph/ds/link_cut_subtree.hpp
+      path: graph/ds/link_cut_tree.hpp
+      title: graph/ds/link_cut_tree.hpp
     - icon: ':heavy_check_mark:'
       path: graph/ds/mo_on_tree.hpp
       title: graph/ds/mo_on_tree.hpp
@@ -916,6 +910,17 @@ data:
     - icon: ':warning:'
       path: graph/ds/tree_wavelet_matrix.hpp
       title: graph/ds/tree_wavelet_matrix.hpp
+  - name: graph/ds/link_cut_old
+    pages:
+    - icon: ':warning:'
+      path: graph/ds/link_cut_old/link_cut.hpp
+      title: graph/ds/link_cut_old/link_cut.hpp
+    - icon: ':warning:'
+      path: graph/ds/link_cut_old/link_cut_path.hpp
+      title: graph/ds/link_cut_old/link_cut_path.hpp
+    - icon: ':warning:'
+      path: graph/ds/link_cut_old/link_cut_subtree.hpp
+      title: graph/ds/link_cut_old/link_cut_subtree.hpp
   - name: graph/implicit_graph
     pages:
     - icon: ':warning:'
@@ -2075,7 +2080,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
       title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
       title: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3627,10 +3632,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/2294.test.cpp
       title: test/yukicoder/2294.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/2295.test.cpp
       title: test/yukicoder/2295.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/2296.test.cpp
       title: test/yukicoder/2296.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3771,6 +3776,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/899.test.cpp
       title: test/yukicoder/899.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/902.test.cpp
+      title: test/yukicoder/902.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/913.test.cpp
       title: test/yukicoder/913.test.cpp

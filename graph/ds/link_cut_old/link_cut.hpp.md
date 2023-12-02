@@ -1,30 +1,15 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: graph/ds/link_cut_path.hpp
-    title: graph/ds/link_cut_path.hpp
-  - icon: ':warning:'
-    path: graph/ds/link_cut_subtree.hpp
-    title: graph/ds/link_cut_subtree.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
-    title: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2295.test.cpp
-    title: test/yukicoder/2295.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2296.test.cpp
-    title: test/yukicoder/2296.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"graph/ds/link_cut.hpp\"\n\ntemplate <typename Node, int\
-    \ NODES>\nstruct LinkCutTree_base {\n  int n;\n  Node *nodes;\n\n  LinkCutTree_base(int\
+  bundledCode: "#line 2 \"graph/ds/link_cut_old/link_cut.hpp\"\n\ntemplate <typename\
+    \ Node, int NODES>\nstruct LinkCutTree_base {\n  int n;\n  Node *nodes;\n\n  LinkCutTree_base(int\
     \ n = 0) : n(n) {\n    nodes = new Node[NODES];\n    FOR(i, n) nodes[i] = Node(i);\n\
     \  }\n\n  Node *operator[](int v) { return &nodes[v]; }\n\n  // \u30D1\u30B9\u3092\
     \u8868\u3059 splay tree \u306E\u6839\u306B\u306A\u3063\u3066\u3044\u308B\u304B\
@@ -136,20 +121,15 @@ data:
     \ = LinkCutTree_base<LCT_Node_base, NODES>;"
   dependsOn: []
   isVerificationFile: false
-  path: graph/ds/link_cut.hpp
-  requiredBy:
-  - graph/ds/link_cut_path.hpp
-  - graph/ds/link_cut_subtree.hpp
-  timestamp: '2023-06-11 17:11:06+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
-  - test/yukicoder/2295.test.cpp
-  - test/yukicoder/2296.test.cpp
-documentation_of: graph/ds/link_cut.hpp
+  path: graph/ds/link_cut_old/link_cut.hpp
+  requiredBy: []
+  timestamp: '2023-12-02 22:12:23+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: graph/ds/link_cut_old/link_cut.hpp
 layout: document
 redirect_from:
-- /library/graph/ds/link_cut.hpp
-- /library/graph/ds/link_cut.hpp.html
-title: graph/ds/link_cut.hpp
+- /library/graph/ds/link_cut_old/link_cut.hpp
+- /library/graph/ds/link_cut_old/link_cut.hpp.html
+title: graph/ds/link_cut_old/link_cut.hpp
 ---
