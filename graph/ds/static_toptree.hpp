@@ -1,11 +1,20 @@
 #include "graph/tree.hpp"
 
-// tute さんの実装 https://yukicoder.me/submissions/838092 を参考にしている
-// いわゆる toptree （辺からはじめてマージ過程を木にする）とは少し異なるはず
-// 木を「heavy path 上の辺で分割」「根を virtual にする」
-// 「light edges の分割」「light edge を消す」で頂点に分割していく.
-// 逆にたどれば，1 頂点からはじめて木全体を作る高さ O(logN) の木になる.
-// トポロジカル逆順にノードが作られる, 最後が木全体.
+/*
+tute さんの実装 https://yukicoder.me/submissions/838092 を参考にしている.
+いわゆる toptree （辺からはじめてマージ過程を木にする）とは少し異なるはず.
+木を「heavy path 上の辺で分割」「根を virtual にする」
+「light edges の分割」「light edge を消す」で頂点に分割していく.
+逆にたどれば，1 頂点からはじめて木全体を作る高さ O(logN) の木になる.
+高さについて：https://www.mathenachia.blog/mergetech-and-logn/
+・lch == rch == -1：頂点
+・rch == -1：
+  ・heavy なら light の集約に頂点を付加したもの
+  ・light なら 根付き木に light edge を付加したもの
+・子が 2 つ
+  ・heavy なら heavy path を辺で結合したもの
+  ・light なら light edge たちのマージ
+*/
 template <typename TREE>
 struct Static_TopTree {
   TREE &tree;
@@ -16,6 +25,13 @@ struct Static_TopTree {
   Static_TopTree(TREE &tree) : tree(tree) {
     int root = tree.V[0];
     build(root);
+    // relabel
+    int n = len(par);
+    reverse(all(par)), reverse(all(lch)), reverse(all(rch)), reverse(all(A)),
+        reverse(all(B)), reverse(all(heavy));
+    for (auto &x: par) x = (x == -1 ? -1 : n - 1 - x);
+    for (auto &x: lch) x = (x == -1 ? -1 : n - 1 - x);
+    for (auto &x: rch) x = (x == -1 ? -1 : n - 1 - x);
   }
 
   // 木全体での集約値を得る
@@ -45,7 +61,7 @@ struct Static_TopTree {
       }
       return merge_light(x, y);
     };
-    return dfs(dfs, len(par) - 1);
+    return dfs(dfs, 0);
   }
 
 private:
