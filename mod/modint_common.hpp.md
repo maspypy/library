@@ -318,9 +318,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp
-    title: test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
     title: test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
@@ -1334,7 +1331,6 @@ data:
   - test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
   - test/library_checker/datastructure/range_affine_point_add.test.cpp
-  - test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/library_checker/datastructure/sort_segtree_1.test.cpp
   - test/library_checker/matix/pow_of_matrix.test.cpp

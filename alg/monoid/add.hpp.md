@@ -156,9 +156,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
-    title: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_add_range_sum.test.cpp
     title: test/library_checker/datastructure/point_add_range_sum.test.cpp
@@ -438,9 +435,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc324g2.test.cpp
     title: test_atcoder/abc324g2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -495,7 +492,7 @@ data:
   - graph/ds/incremental_centroid.hpp
   - graph/count/count_connected_intervals.hpp
   timestamp: '2022-11-28 14:51:10+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc268_ex.test.cpp
   - test_atcoder/abc324g2.test.cpp
@@ -534,7 +531,6 @@ data:
   - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
   - test/library_checker/datastructure/range_reverse_range_sum.test.cpp
-  - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
