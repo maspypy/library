@@ -17,9 +17,10 @@ struct Link_Cut_Tree {
   // underlying tree の根
   Node *get_root(Node *c) {
     expose(c);
+    c->push();
     while (c->l) {
-      c->push();
       c = c->l;
+      c->push();
     }
     splay(c);
     return c;
@@ -31,8 +32,10 @@ struct Link_Cut_Tree {
   // parent(c)==p となるように link.
   void link(Node *c, Node *p) {
     evert(c);
-    evert(p);
+    expose(p);
     // no edge -> heavy edge
+    assert(!(c->p));
+    assert(!(p->r));
     c->p = p;
     p->r = c;
     p->update();
@@ -59,7 +62,7 @@ struct Link_Cut_Tree {
   void evert(Node *c) {
     expose(c);
     c->reverse();
-    c->push();
+    assert(!(c->p));
   }
 
   // c を underlying tree の根とする.
@@ -104,7 +107,6 @@ struct Link_Cut_Tree {
   virtual Node *expose(Node *c) {
     Node *now = c;
     Node *rp = nullptr; // 今まで作ったパス
-
     while (now) {
       splay(now);
       // heavy -> light, light -> heavy.
@@ -178,6 +180,11 @@ struct Link_Cut_Tree {
     FOR(i, len(nodes)) {
       print(i, ",", f((*this)[i]->p), f((*this)[i]->l), f((*this)[i]->r),
             (*this)[i]->rev);
+    }
+    FOR(i, len(nodes)) {
+      np c = (*this)[i];
+      if (c->l) assert(c->l->p == c);
+      if (c->r) assert(c->r->p == c);
     }
   }
 
