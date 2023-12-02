@@ -82,7 +82,7 @@ data:
       title: alg/acted_set/from_monoid.hpp
   - name: alg/monoid
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/add.hpp
       title: alg/monoid/add.hpp
     - icon: ':heavy_check_mark:'
@@ -889,7 +889,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/ds/lazy_tree_monoid.hpp
       title: graph/ds/lazy_tree_monoid.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: graph/ds/lct_node_commutative_monoid.hpp
       title: graph/ds/lct_node_commutative_monoid.hpp
     - icon: ':warning:'
@@ -2089,6 +2089,9 @@ data:
     - icon: ':x:'
       path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
       title: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
+    - icon: ':x:'
+      path: test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
+      title: test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
     - icon: ':x:'
       path: test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp
       title: test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp

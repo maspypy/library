@@ -291,6 +291,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
+    title: test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/line_add_get_min.test.cpp
     title: test/library_checker/datastructure/line_add_get_min.test.cpp
@@ -2619,6 +2622,7 @@ data:
   - test/library_checker/datastructure/unionfind.test.cpp
   - test/library_checker/datastructure/staticrmq_seg.test.cpp
   - test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
+  - test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
   - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
   - test/library_checker/datastructure/associative_array_hashmap.test.cpp
   - test/library_checker/datastructure/line_add_get_min.test.cpp
