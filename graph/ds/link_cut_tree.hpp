@@ -6,7 +6,6 @@ LCT 外で探索するときなど，push を忘れないように注意.
 
 template <typename Node>
 struct Link_Cut_Tree {
-  using VX = typename Node::VX;
   using np = Node *;
   int n;
   vc<Node> nodes;
@@ -14,10 +13,6 @@ struct Link_Cut_Tree {
   Link_Cut_Tree(int n = 0) : n(n), nodes(n) { FOR(i, n) nodes[i] = Node(i); }
 
   Node *operator[](int v) { return &nodes[v]; }
-
-  // パスを表す splay tree の根になっているかどうか
-  // underlying tree ではない
-  bool is_root(Node *c) { return state(c) == 0; }
 
   // underlying tree の根
   Node *get_root(Node *c) {
@@ -146,6 +141,75 @@ struct Link_Cut_Tree {
     return (p ? p->idx : -1);
   }
 
+  void set_vdata(Node *c, typename Node::VX x) {
+    evert(c);
+    c->set_vdata(x);
+  }
+
+  void set_vdata(int c, typename Node::VX x) { set_vdata((*this)[c], x); }
+
+  typename Node::X prod_path(int a, int b) {
+    evert(a), expose(b);
+    return (*this)[b]->x;
+  }
+
+  vc<int> collect_heavy_path(int v) {
+    np c = (*this)[v];
+    while (!is_root(c)) c = c->p;
+    vc<int> res;
+    auto dfs = [&](auto &dfs, np c, bool rev) -> void {
+      if (!rev) {
+        if (c->l) dfs(dfs, c->l, rev ^ c->rev);
+        res.eb(c->idx);
+        if (c->r) dfs(dfs, c->r, rev ^ c->rev);
+      } else {
+        if (c->r) dfs(dfs, c->r, rev ^ c->rev);
+        res.eb(c->idx);
+        if (c->l) dfs(dfs, c->l, rev ^ c->rev);
+      }
+    };
+    dfs(dfs, c, false);
+    return res;
+  }
+
+  void debug() {
+    print("p, l, r, rev");
+    auto f = [&](np c) -> int { return (c ? c->idx : -1); };
+    FOR(i, len(nodes)) {
+      print(i, ",", f((*this)[i]->p), f((*this)[i]->l), f((*this)[i]->r),
+            (*this)[i]->rev);
+    }
+  }
+
+private:
+  // splay tree 内で完結する操作. 特に heavy, light 構造は変わらない.
+  // light pointer は rotate 内でケア
+  void splay(Node *c) {
+    c->push();
+    while (!is_root(c)) {
+      Node *p = c->p;
+      Node *pp = (p ? p->p : nullptr);
+      if (state(p) == 0) {
+        p->push(), c->push();
+        rotate(c);
+      }
+      elif (state(c) == state(p)) {
+        pp->push(), p->push(), c->push();
+        rotate(p);
+        rotate(c);
+      }
+      else {
+        pp->push(), p->push(), c->push();
+        rotate(c);
+        rotate(c);
+      }
+    }
+  }
+
+  // パスを表す splay tree の根になっているかどうか
+  // underlying tree ではない
+  bool is_root(Node *c) { return state(c) == 0; }
+
   // splay tree 内で完結する操作. 特に heavy, light 構造は変わらない.
   // light edge のポインタは変更されうる
   void rotate(Node *n) {
@@ -184,62 +248,5 @@ struct Link_Cut_Tree {
     if (n->p->l == n) return 1;
     if (n->p->r == n) return -1;
     return 0;
-  }
-
-  // splay tree 内で完結する操作. 特に heavy, light 構造は変わらない.
-  // light pointer は rotate 内でケア
-  void splay(Node *c) {
-    c->push();
-    while (!is_root(c)) {
-      Node *p = c->p;
-      Node *pp = (p ? p->p : nullptr);
-      if (state(p) == 0) {
-        p->push(), c->push();
-        rotate(c);
-      }
-      elif (state(c) == state(p)) {
-        pp->push(), p->push(), c->push();
-        rotate(p);
-        rotate(c);
-      }
-      else {
-        pp->push(), p->push(), c->push();
-        rotate(c);
-        rotate(c);
-      }
-    }
-  }
-
-  void set_vdata(Node *c, VX x) {
-    evert(c);
-    c->set_vdata(x);
-  }
-  void set_vdata(int c, VX x) { set_vdata((*this)[c], x); }
-
-  vc<int> collect_heavy_path(int v) {
-    np c = (*this)[v];
-    while (!is_root(c)) c = c->p;
-    vc<int> res;
-    auto dfs = [&](auto &dfs, np c, bool rev) -> void {
-      if (!rev) {
-        if (c->l) dfs(dfs, c->l, rev ^ c->rev);
-        res.eb(c->idx);
-        if (c->r) dfs(dfs, c->r, rev ^ c->rev);
-      } else {
-        if (c->r) dfs(dfs, c->r, rev ^ c->rev);
-        res.eb(c->idx);
-        if (c->l) dfs(dfs, c->l, rev ^ c->rev);
-      }
-    };
-    dfs(dfs, c, false);
-    return res;
-  }
-  void debug(int N) {
-    print("idx,p,lch,rch,rev");
-    auto f = [&](np c) -> int { return (c ? c->idx : -1); };
-    FOR(i, N) {
-      print(i, f((*this)[i]->p), f((*this)[i]->l), f((*this)[i]->r),
-            (*this)[i]->rev);
-    }
   }
 };

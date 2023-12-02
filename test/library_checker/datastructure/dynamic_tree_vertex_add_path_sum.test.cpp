@@ -3,46 +3,43 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
+#include "graph/ds/link_cut_tree.hpp"
+#include "graph/ds/link_cut_commutative_monoid.hpp"
 #include "alg/monoid/add.hpp"
-#include "graph/ds/link_cut_path.hpp"
+
+using Node = LCT_Node_Commutative_Monoid<Monoid_Add<ll>>;
 
 void solve() {
   LL(N, Q);
-  VEC(ll, A, N);
-
-  LinkCutTree_Path<Monoid_Add<ll>, 200000> X(A);
-
+  VEC(u64, A, N);
+  Link_Cut_Tree<Node> LCT(N);
+  FOR(i, N) LCT.set_vdata(i, A[i]);
   FOR(N - 1) {
-    LL(u, v);
-    X.link(u, v);
+    INT(a, b);
+    LCT.link(a, b);
   }
-
   FOR(Q) {
     LL(t);
     if (t == 0) {
       LL(a, b, c, d);
-      X.cut(a, b);
-      X.link(c, d);
+      LCT.cut(a, b), LCT.link(c, d);
     }
     if (t == 1) {
-      LL(p, x);
-      X.multiply(p, x);
+      LL(i);
+      u32 x;
+      read(x);
+      A[i] += x;
+      LCT.set_vdata(i, A[i]);
     }
     if (t == 2) {
       LL(a, b);
-      print(X.prod_path(a, b));
+      u64 ans = LCT.prod_path(a, b);
+      print(ans);
     }
   }
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }
