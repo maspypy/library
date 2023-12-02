@@ -13,12 +13,29 @@ void solve() {
   Tree<decltype(G)> tree(G);
   Static_TopTree<decltype(tree)> STT(tree);
 
+  auto merge = [&](vc<int>& A, vc<int>& B) -> pair<vc<int>, vc<int>> {
+    vc<int> C;
+    vc<int> left;
+    int a = 0, b = 0;
+    A.eb(infty<int>), B.eb(infty<int>);
+    FOR(len(A) + len(B) - 2) {
+      if (A[a] < B[b]) {
+        C.eb(A[a++]), left.eb(1);
+      } else {
+        C.eb(B[b++]), left.eb(0);
+      }
+    }
+    POP(A), POP(B);
+    return {C, left};
+  };
+
   int n = len(STT.par);
   vvc<int> V(n);
+  vvc<int> LEFT(n);
   vvc<ll> Ac(n);
   {
     auto dfs = [&](auto& dfs, int k) -> void {
-      int l = STT.lch[k], r = STT.rch[k], a = STT.A[k], b = STT.B[k];
+      int l = STT.lch[k], r = STT.rch[k], a = STT.A[k];
       if (l != -1) dfs(dfs, l);
       if (r != -1) dfs(dfs, r);
       if (l == -1 && r == -1) {
@@ -27,73 +44,76 @@ void solve() {
       }
       if (r == -1) {
         if (STT.heavy[k]) {
-          V[k] = V[l];
-          V[k].eb(a);
+          vc<int> B = {a};
+          auto [C, left] = merge(V[l], B);
+          V[k] = C;
+          LEFT[k] = left;
           return;
         }
         V[k] = V[l];
+        LEFT[k] = vc<int>(len(V[k]), 1);
         return;
       }
-      V[k] = V[l];
-      V[k].insert(V[k].end(), all(V[r]));
+      auto [C, left] = merge(V[l], V[r]);
+      V[k] = C;
+      LEFT[k] = left;
     };
-    dfs(dfs, n - 1);
+    dfs(dfs, 0);
   }
+
   FOR(i, n) {
-    sort(all(V[i]));
     Ac[i] = {0};
     for (auto& v: V[i]) Ac[i].eb(Ac[i].back() + A[v]);
+    LEFT[i] = cumsum<int>(LEFT[i]);
   }
 
   auto get = [&](int k, ll K, ll L, ll R, ll delta) -> ll {
-    int a = LB(V[k], L);
-    int b = LB(V[k], R);
-    ll cnt = b - a;
-    ll sm = Ac[k][b] - Ac[k][a];
+    ll cnt = R - L;
+    ll sm = Ac[k][R] - Ac[k][L];
     ll val = K * cnt + sm;
-    val = 10 * val + binary_search(all(V[k]), delta);
-    return val;
-  };
-
-  auto get_v = [&](int v, ll K, ll L, ll R, ll delta) -> ll {
-    ll val = 0;
-    if (L <= v && v < R) val += A[v] + K;
-    val *= 10;
-    if (v == delta) ++val;
+    val = 10 * val + (delta != -1);
     return val;
   };
 
   auto solve = [&](ll L, ll R, ll delta, ll K) -> int {
-    ll total = get(n - 1, K, L, R, delta);
+    ll total = get(0, K, L, R, true);
     ll need = ceil<ll>(total, 2);
-    auto dfs = [&](auto& dfs, int k, ll need_path) -> int {
-      if (get(k, K, L, R, delta) < need_path) return -1;
+    auto dfs = [&](auto& dfs, int k, ll L, ll R, ll d, ll need_path) -> int {
+      if (get(k, K, L, R, d) < need_path) return -1;
       int l = STT.lch[k], r = STT.rch[k], a = STT.A[k], b = STT.B[k];
-      if (l == -1 && r == -1) {
-        return (get_v(a, K, L, R, delta) >= need_path ? a : -1);
+      if (l == -1 && r == -1) { return a; }
+      ll L1 = LEFT[k][L], R1 = LEFT[k][R];
+      ll L2 = L - L1, R2 = R - R1;
+      ll d1 = -1, d2 = -1;
+      if (d != -1) {
+        if (LEFT[k][d] < LEFT[k][d + 1]) {
+          d1 = LEFT[k][d];
+        } else {
+          d2 = d - LEFT[k][d];
+        }
       }
       if (r == -1) {
         if (STT.heavy[k]) {
           // light に根を足したもの
-          int v = dfs(dfs, l, need);
+          int v = dfs(dfs, l, L1, R1, d1, need);
           if (v != -1) return v;
-          return (get(k, K, L, R, delta) >= need_path ? a : -1);
+          return a;
         }
         // heavy に light edge を足したもの
-        return dfs(dfs, l, need);
+        return dfs(dfs, l, L1, R1, d1, need);
       }
       if (STT.heavy[k]) {
         // heavy path をマージしたもの
-        int v1 = dfs(dfs, l, need_path);
+        int v1 = dfs(dfs, l, L1, R1, d1, need_path);
         if (v1 != -1) return v1;
-        return dfs(dfs, r, need_path - get(l, K, L, R, delta));
+        return dfs(dfs, r, L2, R2, d2, need_path - get(l, K, L1, R1, d1));
       }
       // light をマージしたもの
-      int v = dfs(dfs, l, need);
+      int v = dfs(dfs, l, L1, R1, d1, need);
       if (v != -1) return v;
-      return dfs(dfs, r, need);
+      return dfs(dfs, r, L2, R2, d2, need);
     };
-    return dfs(dfs, n - 1, need);
+    return dfs(dfs, 0, L, R, delta, need);
   };
 
   ll X_SUM = 0;
