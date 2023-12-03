@@ -4,7 +4,7 @@
 #include "other/io.hpp"
 
 #include "graph/ds/link_cut_tree.hpp"
-#include "graph/ds/link_cut_commutative_monoid.hpp"
+#include "graph/ds/lct_node_commutative_monoid.hpp"
 #include "alg/monoid/add.hpp"
 
 using Node = LCT_Node_Commutative_Monoid<Monoid_Add<ll>>;
@@ -13,7 +13,7 @@ void solve() {
   LL(N, Q);
   VEC(u64, A, N);
   Link_Cut_Tree<Node> LCT(N);
-  FOR(i, N) LCT.set_vdata(i, A[i]);
+  FOR(i, N) LCT.set(i, A[i]);
   FOR(N - 1) {
     INT(a, b);
     LCT.link(a, b);
@@ -29,7 +29,7 @@ void solve() {
       u32 x;
       read(x);
       A[i] += x;
-      LCT.set_vdata(i, A[i]);
+      LCT.set(i, A[i]);
     }
     if (t == 2) {
       LL(a, b);
