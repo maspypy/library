@@ -257,10 +257,8 @@ private:
       if (pp->l == p) pp->l = n;
       elif (pp->r == p) pp->r = n;
       else {
-        // light edge pointer が p から n に変わる
-        // 集約値は変わらないので場合によっては省略可能
-        pp->erase_light(p, n->x);
-        pp->add_light(n, n->x);
+        // light edge pointer が (pp-p) から (pp-n) に変わる
+        pp->change_light(p, n, n->x);
       }
     }
     n->p = pp;
