@@ -9,9 +9,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/double_ended_pq.test.cpp
     title: test/library_checker/datastructure/double_ended_pq.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/772.test.cpp
-    title: test/yukicoder/772.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/902.test.cpp
     title: test/yukicoder/902.test.cpp
@@ -21,9 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc314g.test.cpp
     title: test_atcoder/abc314g.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/removable_queue.hpp\"\ntemplate <typename QUE_TYPE>\n\
@@ -50,12 +47,11 @@ data:
   requiredBy:
   - ds/slide_split_sum.hpp
   timestamp: '2023-09-22 01:21:11+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc312f.test.cpp
   - test_atcoder/abc314g.test.cpp
   - test/library_checker/datastructure/double_ended_pq.test.cpp
-  - test/yukicoder/772.test.cpp
   - test/yukicoder/902.test.cpp
 documentation_of: ds/removable_queue.hpp
 layout: document
