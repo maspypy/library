@@ -62,16 +62,16 @@ data:
     \u308B\n  virtual Node *expose(Node *c) {\n    Node *now = c;\n    Node *rp =\
     \ nullptr; // \u4ECA\u307E\u3067\u4F5C\u3063\u305F\u30D1\u30B9\n    while (now)\
     \ {\n      splay(now);\n      // heavy -> light, light -> heavy.\n      if (now->r)\
-    \ { now->add_light(now->r, now->r->x); }\n      if (rp) { now->erase_light(rp,\
-    \ rp->x); }\n      now->r = rp;\n      now->update();\n      rp = now;\n     \
-    \ now = now->p;\n    }\n    splay(c);\n    return rp;\n  }\n\n  // [root, c] \u304C\
-    \u3072\u3068\u3064\u306E splay tree \u306B\u306A\u308B\u3088\u3046\u306B\u5909\
-    \u66F4\u3059\u308B.\n  // c \u304C\u53F3\u7AEF\u3067 splay tree \u306E\u6839\u3068\
-    \u3044\u3046\u72B6\u614B\u306B\u306A\u308B.\n  // path query \u306F\u3053\u306E\
-    \u72B6\u614B\u3067 c \u306E data \u3092\u898B\u308B.\n  int expose(int c) {\n\
-    \    Node *x = expose(&nodes[c]);\n    if (!x) return -1;\n    return x->idx;\n\
-    \  }\n\n  Node *get_parent(Node *x) {\n    expose(x);\n    if (!x->l) return nullptr;\n\
-    \    x = x->l;\n    while (x->r) x = x->r;\n    return x;\n  }\n\n  int get_parent(int\
+    \ { now->add_light(now->r); }\n      if (rp) { now->erase_light(rp); }\n     \
+    \ now->r = rp;\n      now->update();\n      rp = now;\n      now = now->p;\n \
+    \   }\n    splay(c);\n    return rp;\n  }\n\n  // [root, c] \u304C\u3072\u3068\
+    \u3064\u306E splay tree \u306B\u306A\u308B\u3088\u3046\u306B\u5909\u66F4\u3059\
+    \u308B.\n  // c \u304C\u53F3\u7AEF\u3067 splay tree \u306E\u6839\u3068\u3044\u3046\
+    \u72B6\u614B\u306B\u306A\u308B.\n  // path query \u306F\u3053\u306E\u72B6\u614B\
+    \u3067 c \u306E data \u3092\u898B\u308B.\n  int expose(int c) {\n    Node *x =\
+    \ expose(&nodes[c]);\n    if (!x) return -1;\n    return x->idx;\n  }\n\n  Node\
+    \ *get_parent(Node *x) {\n    expose(x);\n    if (!x->l) return nullptr;\n   \
+    \ x = x->l;\n    while (x->r) x = x->r;\n    return x;\n  }\n\n  int get_parent(int\
     \ x) {\n    Node *p = get_parent((*this)[x]);\n    return (p ? p->idx : -1);\n\
     \  }\n\n  void set(Node *c, typename Node::VX x) {\n    evert(c);\n    c->set(x);\n\
     \  }\n\n  void set(int c, typename Node::VX x) { set((*this)[c], x); }\n\n  typename\
@@ -113,10 +113,10 @@ data:
     \ p;\n      p->r = c;\n    }\n    p->update(), n->update();\n\n    if (pp) {\n\
     \      if (pp->l == p) pp->l = n;\n      elif (pp->r == p) pp->r = n;\n      else\
     \ {\n        // light edge pointer \u304C (pp-p) \u304B\u3089 (pp-n) \u306B\u5909\
-    \u308F\u308B\n        pp->change_light(p, n, n->x);\n      }\n    }\n    n->p\
-    \ = pp;\n    p->p = n;\n    if (c) c->p = p;\n  }\n\n  inline int state(Node *n)\
-    \ {\n    if (!n->p) return 0;\n    if (n->p->l == n) return 1;\n    if (n->p->r\
-    \ == n) return -1;\n    return 0;\n  }\n};\n"
+    \u308F\u308B\n        pp->change_light(p, n);\n      }\n    }\n    n->p = pp;\n\
+    \    p->p = n;\n    if (c) c->p = p;\n  }\n\n  inline int state(Node *n) {\n \
+    \   if (!n->p) return 0;\n    if (n->p->l == n) return 1;\n    if (n->p->r ==\
+    \ n) return -1;\n    return 0;\n  }\n};\n"
   code: "/*\n\u5404 heavy path \u3092 head \u304C\u5DE6, tail \u304C\u53F3\u3068\u306A\
     \u308B\u3088\u3046\u306B splay tree \u3067\u6301\u3064.\n\u30E6\u30FC\u30B6\u30FC\
     \u304C\u76F4\u63A5\u547C\u3076\u53EF\u80FD\u6027\u304C\u3042\u308B\u3082\u306E\
@@ -158,17 +158,17 @@ data:
     \ c \u306F push \u6E08\u306B\u306A\u308B\n  virtual Node *expose(Node *c) {\n\
     \    Node *now = c;\n    Node *rp = nullptr; // \u4ECA\u307E\u3067\u4F5C\u3063\
     \u305F\u30D1\u30B9\n    while (now) {\n      splay(now);\n      // heavy -> light,\
-    \ light -> heavy.\n      if (now->r) { now->add_light(now->r, now->r->x); }\n\
-    \      if (rp) { now->erase_light(rp, rp->x); }\n      now->r = rp;\n      now->update();\n\
-    \      rp = now;\n      now = now->p;\n    }\n    splay(c);\n    return rp;\n\
-    \  }\n\n  // [root, c] \u304C\u3072\u3068\u3064\u306E splay tree \u306B\u306A\u308B\
-    \u3088\u3046\u306B\u5909\u66F4\u3059\u308B.\n  // c \u304C\u53F3\u7AEF\u3067 splay\
-    \ tree \u306E\u6839\u3068\u3044\u3046\u72B6\u614B\u306B\u306A\u308B.\n  // path\
-    \ query \u306F\u3053\u306E\u72B6\u614B\u3067 c \u306E data \u3092\u898B\u308B\
-    .\n  int expose(int c) {\n    Node *x = expose(&nodes[c]);\n    if (!x) return\
-    \ -1;\n    return x->idx;\n  }\n\n  Node *get_parent(Node *x) {\n    expose(x);\n\
-    \    if (!x->l) return nullptr;\n    x = x->l;\n    while (x->r) x = x->r;\n \
-    \   return x;\n  }\n\n  int get_parent(int x) {\n    Node *p = get_parent((*this)[x]);\n\
+    \ light -> heavy.\n      if (now->r) { now->add_light(now->r); }\n      if (rp)\
+    \ { now->erase_light(rp); }\n      now->r = rp;\n      now->update();\n      rp\
+    \ = now;\n      now = now->p;\n    }\n    splay(c);\n    return rp;\n  }\n\n \
+    \ // [root, c] \u304C\u3072\u3068\u3064\u306E splay tree \u306B\u306A\u308B\u3088\
+    \u3046\u306B\u5909\u66F4\u3059\u308B.\n  // c \u304C\u53F3\u7AEF\u3067 splay tree\
+    \ \u306E\u6839\u3068\u3044\u3046\u72B6\u614B\u306B\u306A\u308B.\n  // path query\
+    \ \u306F\u3053\u306E\u72B6\u614B\u3067 c \u306E data \u3092\u898B\u308B.\n  int\
+    \ expose(int c) {\n    Node *x = expose(&nodes[c]);\n    if (!x) return -1;\n\
+    \    return x->idx;\n  }\n\n  Node *get_parent(Node *x) {\n    expose(x);\n  \
+    \  if (!x->l) return nullptr;\n    x = x->l;\n    while (x->r) x = x->r;\n   \
+    \ return x;\n  }\n\n  int get_parent(int x) {\n    Node *p = get_parent((*this)[x]);\n\
     \    return (p ? p->idx : -1);\n  }\n\n  void set(Node *c, typename Node::VX x)\
     \ {\n    evert(c);\n    c->set(x);\n  }\n\n  void set(int c, typename Node::VX\
     \ x) { set((*this)[c], x); }\n\n  typename Node::X prod_path(int a, int b) {\n\
@@ -210,15 +210,15 @@ data:
     \ p;\n      p->r = c;\n    }\n    p->update(), n->update();\n\n    if (pp) {\n\
     \      if (pp->l == p) pp->l = n;\n      elif (pp->r == p) pp->r = n;\n      else\
     \ {\n        // light edge pointer \u304C (pp-p) \u304B\u3089 (pp-n) \u306B\u5909\
-    \u308F\u308B\n        pp->change_light(p, n, n->x);\n      }\n    }\n    n->p\
-    \ = pp;\n    p->p = n;\n    if (c) c->p = p;\n  }\n\n  inline int state(Node *n)\
-    \ {\n    if (!n->p) return 0;\n    if (n->p->l == n) return 1;\n    if (n->p->r\
-    \ == n) return -1;\n    return 0;\n  }\n};\n"
+    \u308F\u308B\n        pp->change_light(p, n);\n      }\n    }\n    n->p = pp;\n\
+    \    p->p = n;\n    if (c) c->p = p;\n  }\n\n  inline int state(Node *n) {\n \
+    \   if (!n->p) return 0;\n    if (n->p->l == n) return 1;\n    if (n->p->r ==\
+    \ n) return -1;\n    return 0;\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: graph/ds/link_cut_tree.hpp
   requiredBy: []
-  timestamp: '2023-12-03 12:50:53+09:00'
+  timestamp: '2023-12-03 13:02:06+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp

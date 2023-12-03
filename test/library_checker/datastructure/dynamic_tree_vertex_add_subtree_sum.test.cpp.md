@@ -234,16 +234,16 @@ data:
     \u308B\n  virtual Node *expose(Node *c) {\n    Node *now = c;\n    Node *rp =\
     \ nullptr; // \u4ECA\u307E\u3067\u4F5C\u3063\u305F\u30D1\u30B9\n    while (now)\
     \ {\n      splay(now);\n      // heavy -> light, light -> heavy.\n      if (now->r)\
-    \ { now->add_light(now->r, now->r->x); }\n      if (rp) { now->erase_light(rp,\
-    \ rp->x); }\n      now->r = rp;\n      now->update();\n      rp = now;\n     \
-    \ now = now->p;\n    }\n    splay(c);\n    return rp;\n  }\n\n  // [root, c] \u304C\
-    \u3072\u3068\u3064\u306E splay tree \u306B\u306A\u308B\u3088\u3046\u306B\u5909\
-    \u66F4\u3059\u308B.\n  // c \u304C\u53F3\u7AEF\u3067 splay tree \u306E\u6839\u3068\
-    \u3044\u3046\u72B6\u614B\u306B\u306A\u308B.\n  // path query \u306F\u3053\u306E\
-    \u72B6\u614B\u3067 c \u306E data \u3092\u898B\u308B.\n  int expose(int c) {\n\
-    \    Node *x = expose(&nodes[c]);\n    if (!x) return -1;\n    return x->idx;\n\
-    \  }\n\n  Node *get_parent(Node *x) {\n    expose(x);\n    if (!x->l) return nullptr;\n\
-    \    x = x->l;\n    while (x->r) x = x->r;\n    return x;\n  }\n\n  int get_parent(int\
+    \ { now->add_light(now->r); }\n      if (rp) { now->erase_light(rp); }\n     \
+    \ now->r = rp;\n      now->update();\n      rp = now;\n      now = now->p;\n \
+    \   }\n    splay(c);\n    return rp;\n  }\n\n  // [root, c] \u304C\u3072\u3068\
+    \u3064\u306E splay tree \u306B\u306A\u308B\u3088\u3046\u306B\u5909\u66F4\u3059\
+    \u308B.\n  // c \u304C\u53F3\u7AEF\u3067 splay tree \u306E\u6839\u3068\u3044\u3046\
+    \u72B6\u614B\u306B\u306A\u308B.\n  // path query \u306F\u3053\u306E\u72B6\u614B\
+    \u3067 c \u306E data \u3092\u898B\u308B.\n  int expose(int c) {\n    Node *x =\
+    \ expose(&nodes[c]);\n    if (!x) return -1;\n    return x->idx;\n  }\n\n  Node\
+    \ *get_parent(Node *x) {\n    expose(x);\n    if (!x->l) return nullptr;\n   \
+    \ x = x->l;\n    while (x->r) x = x->r;\n    return x;\n  }\n\n  int get_parent(int\
     \ x) {\n    Node *p = get_parent((*this)[x]);\n    return (p ? p->idx : -1);\n\
     \  }\n\n  void set(Node *c, typename Node::VX x) {\n    evert(c);\n    c->set(x);\n\
     \  }\n\n  void set(int c, typename Node::VX x) { set((*this)[c], x); }\n\n  typename\
@@ -285,16 +285,16 @@ data:
     \ p;\n      p->r = c;\n    }\n    p->update(), n->update();\n\n    if (pp) {\n\
     \      if (pp->l == p) pp->l = n;\n      elif (pp->r == p) pp->r = n;\n      else\
     \ {\n        // light edge pointer \u304C (pp-p) \u304B\u3089 (pp-n) \u306B\u5909\
-    \u308F\u308B\n        pp->change_light(p, n, n->x);\n      }\n    }\n    n->p\
-    \ = pp;\n    p->p = n;\n    if (c) c->p = p;\n  }\n\n  inline int state(Node *n)\
-    \ {\n    if (!n->p) return 0;\n    if (n->p->l == n) return 1;\n    if (n->p->r\
-    \ == n) return -1;\n    return 0;\n  }\n};\n#line 2 \"alg/monoid/add.hpp\"\n\r\
-    \ntemplate <typename X>\r\nstruct Monoid_Add {\r\n  using value_type = X;\r\n\
-    \  static constexpr X op(const X &x, const X &y) noexcept { return x + y; }\r\n\
-    \  static constexpr X inverse(const X &x) noexcept { return -x; }\r\n  static\
-    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\n  static\
-    \ constexpr X unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\
-    \n};\r\n#line 1 \"graph/ds/lct_node_commutative_monoid.hpp\"\n\n// SUBTREE : cluster\
+    \u308F\u308B\n        pp->change_light(p, n);\n      }\n    }\n    n->p = pp;\n\
+    \    p->p = n;\n    if (c) c->p = p;\n  }\n\n  inline int state(Node *n) {\n \
+    \   if (!n->p) return 0;\n    if (n->p->l == n) return 1;\n    if (n->p->r ==\
+    \ n) return -1;\n    return 0;\n  }\n};\n#line 2 \"alg/monoid/add.hpp\"\n\r\n\
+    template <typename X>\r\nstruct Monoid_Add {\r\n  using value_type = X;\r\n  static\
+    \ constexpr X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static\
+    \ constexpr X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr\
+    \ X power(const X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr\
+    \ X unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\
+    \n#line 1 \"graph/ds/lct_node_commutative_monoid.hpp\"\n\n// SUBTREE : cluster\
     \ \u304C subtree \u60C5\u5831\u3092\u6301\u3064\u5834\u5408\ntemplate <typename\
     \ Monoid, bool SUBTREE = false>\nstruct LCT_Node_Commutative_Monoid {\n  static_assert(Monoid::commute);\n\
     \  static constexpr bool NODE_FOR_SUBTREE = SUBTREE;\n  using np = LCT_Node_Commutative_Monoid\
@@ -348,7 +348,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-12-03 12:50:53+09:00'
+  timestamp: '2023-12-03 13:02:06+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp

@@ -228,16 +228,16 @@ data:
     \u308B\n  virtual Node *expose(Node *c) {\n    Node *now = c;\n    Node *rp =\
     \ nullptr; // \u4ECA\u307E\u3067\u4F5C\u3063\u305F\u30D1\u30B9\n    while (now)\
     \ {\n      splay(now);\n      // heavy -> light, light -> heavy.\n      if (now->r)\
-    \ { now->add_light(now->r, now->r->x); }\n      if (rp) { now->erase_light(rp,\
-    \ rp->x); }\n      now->r = rp;\n      now->update();\n      rp = now;\n     \
-    \ now = now->p;\n    }\n    splay(c);\n    return rp;\n  }\n\n  // [root, c] \u304C\
-    \u3072\u3068\u3064\u306E splay tree \u306B\u306A\u308B\u3088\u3046\u306B\u5909\
-    \u66F4\u3059\u308B.\n  // c \u304C\u53F3\u7AEF\u3067 splay tree \u306E\u6839\u3068\
-    \u3044\u3046\u72B6\u614B\u306B\u306A\u308B.\n  // path query \u306F\u3053\u306E\
-    \u72B6\u614B\u3067 c \u306E data \u3092\u898B\u308B.\n  int expose(int c) {\n\
-    \    Node *x = expose(&nodes[c]);\n    if (!x) return -1;\n    return x->idx;\n\
-    \  }\n\n  Node *get_parent(Node *x) {\n    expose(x);\n    if (!x->l) return nullptr;\n\
-    \    x = x->l;\n    while (x->r) x = x->r;\n    return x;\n  }\n\n  int get_parent(int\
+    \ { now->add_light(now->r); }\n      if (rp) { now->erase_light(rp); }\n     \
+    \ now->r = rp;\n      now->update();\n      rp = now;\n      now = now->p;\n \
+    \   }\n    splay(c);\n    return rp;\n  }\n\n  // [root, c] \u304C\u3072\u3068\
+    \u3064\u306E splay tree \u306B\u306A\u308B\u3088\u3046\u306B\u5909\u66F4\u3059\
+    \u308B.\n  // c \u304C\u53F3\u7AEF\u3067 splay tree \u306E\u6839\u3068\u3044\u3046\
+    \u72B6\u614B\u306B\u306A\u308B.\n  // path query \u306F\u3053\u306E\u72B6\u614B\
+    \u3067 c \u306E data \u3092\u898B\u308B.\n  int expose(int c) {\n    Node *x =\
+    \ expose(&nodes[c]);\n    if (!x) return -1;\n    return x->idx;\n  }\n\n  Node\
+    \ *get_parent(Node *x) {\n    expose(x);\n    if (!x->l) return nullptr;\n   \
+    \ x = x->l;\n    while (x->r) x = x->r;\n    return x;\n  }\n\n  int get_parent(int\
     \ x) {\n    Node *p = get_parent((*this)[x]);\n    return (p ? p->idx : -1);\n\
     \  }\n\n  void set(Node *c, typename Node::VX x) {\n    evert(c);\n    c->set(x);\n\
     \  }\n\n  void set(int c, typename Node::VX x) { set((*this)[c], x); }\n\n  typename\
@@ -279,10 +279,10 @@ data:
     \ p;\n      p->r = c;\n    }\n    p->update(), n->update();\n\n    if (pp) {\n\
     \      if (pp->l == p) pp->l = n;\n      elif (pp->r == p) pp->r = n;\n      else\
     \ {\n        // light edge pointer \u304C (pp-p) \u304B\u3089 (pp-n) \u306B\u5909\
-    \u308F\u308B\n        pp->change_light(p, n, n->x);\n      }\n    }\n    n->p\
-    \ = pp;\n    p->p = n;\n    if (c) c->p = p;\n  }\n\n  inline int state(Node *n)\
-    \ {\n    if (!n->p) return 0;\n    if (n->p->l == n) return 1;\n    if (n->p->r\
-    \ == n) return -1;\n    return 0;\n  }\n};\n#line 7 \"test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp\"\
+    \u308F\u308B\n        pp->change_light(p, n);\n      }\n    }\n    n->p = pp;\n\
+    \    p->p = n;\n    if (c) c->p = p;\n  }\n\n  inline int state(Node *n) {\n \
+    \   if (!n->p) return 0;\n    if (n->p->l == n) return 1;\n    if (n->p->r ==\
+    \ n) return -1;\n    return 0;\n  }\n};\n#line 7 \"test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp\"\
     \n\n/*\nsm \u306F lazy \u53CD\u6620\u6E08\n\u305F\u3060\u3057 light edge \u304B\
     \u3089\u306E lazy_light - cancel \u306F\u672A\u53CD\u6620\n*/\nstruct Node {\n\
     \  using np = Node *;\n  // \u30C7\u30D5\u30A9\u30EB\u30C8\n  np l, r, p;\n  int\
@@ -303,19 +303,14 @@ data:
     \ * a);\n  }\n\n  // data \u306E reverse \u3082\u884C\u3046\n  void reverse()\
     \ {\n    rev ^= 1;\n    swap(l, r);\n  }\n\n  // LCT \u5185\u3067 expose, update\
     \ \u3092\u884C\u3046\u306E\u3067\u3053\u3053\u306F\u5909\u66F4\u3060\u3051\n \
-    \ void set(X x) { vx = x; }\n\n  // c \u304C\u3053\u306E\u6642\u70B9\u3067\u306F\
-    \ update \u3055\u308C\u3066\u3044\u306A\u3044\u304B\u3082\u3057\u308C\u306A\u3044\
-    \u304C, x \u306F\u6B63\u5E38\u306A\u3082\u306E\u304C\u5165\u308B\n  // c->x \u7B49\
-    \u306F\u4F7F\u308F\u306A\u3044\u3088\u3046\u306B\u6CE8\u610F\u3059\u308B\n  //\
-    \ c->idx \u3092\u6301\u3063\u3066\u304A\u304F\u3068\u63A2\u7D22\u3067\u304D\u308B\
-    \u3053\u3068\u304C\u3042\u308B\n  void add_light(np c, X x) {\n    mid.cnt +=\
-    \ x.cnt, mid.sum += x.sum;\n    assert(c->cancel == 0);\n    c->cancel = lazy_light;\n\
-    \  }\n  void erase_light(np c, X x) {\n    mid.cnt -= x.cnt, mid.sum -= x.sum\
-    \ + (lazy_light - c->cancel) * x.cnt;\n    ll a = lazy_light - (c->cancel);\n\
-    \    c->apply(a);\n    c->cancel = 0;\n  }\n  void change_light(np a, np b, X\
-    \ x) {\n    b->cancel = a->cancel;\n    a->cancel = 0;\n  }\n};\n\nvoid solve()\
-    \ {\n  LL(N, Q);\n  Link_Cut_Tree<Node> LCT(N);\n  VEC(ll, A, N);\n  FOR(i, N)\
-    \ { LCT.set(i, {1, A[i]}); }\n  FOR(N - 1) {\n    INT(a, b);\n    LCT.link(a,\
+    \ void set(X x) { vx = x; }\n\n  void add_light(np c) {\n    mid.cnt += c->x.cnt,\
+    \ mid.sum += c->x.sum;\n    assert(c->cancel == 0);\n    c->cancel = lazy_light;\n\
+    \  }\n  void erase_light(np c) {\n    c->apply(lazy_light - (c->cancel));\n  \
+    \  c->cancel = 0;\n    mid.cnt -= c->x.cnt, mid.sum -= c->x.sum;\n  }\n\n  //\
+    \ b->x \u306B subtree value \u304C\u5165\u3063\u3066\u3044\u308B.\n  void change_light(np\
+    \ a, np b) {\n    b->cancel = a->cancel;\n    a->cancel = 0;\n  }\n};\n\nvoid\
+    \ solve() {\n  LL(N, Q);\n  Link_Cut_Tree<Node> LCT(N);\n  VEC(ll, A, N);\n  FOR(i,\
+    \ N) { LCT.set(i, {1, A[i]}); }\n  FOR(N - 1) {\n    INT(a, b);\n    LCT.link(a,\
     \ b);\n  }\n\n  FOR(q, Q) {\n    LL(t);\n    if (t == 0) {\n      LL(a, b, c,\
     \ d);\n      LCT.cut(a, b);\n      LCT.link(c, d);\n    }\n    if (t == 1) {\n\
     \      LL(v, p, x);\n      LCT.cut(v, p);\n      LCT[v]->apply(x);\n      LCT[v]->push();\n\
@@ -344,19 +339,14 @@ data:
     \ * a);\n  }\n\n  // data \u306E reverse \u3082\u884C\u3046\n  void reverse()\
     \ {\n    rev ^= 1;\n    swap(l, r);\n  }\n\n  // LCT \u5185\u3067 expose, update\
     \ \u3092\u884C\u3046\u306E\u3067\u3053\u3053\u306F\u5909\u66F4\u3060\u3051\n \
-    \ void set(X x) { vx = x; }\n\n  // c \u304C\u3053\u306E\u6642\u70B9\u3067\u306F\
-    \ update \u3055\u308C\u3066\u3044\u306A\u3044\u304B\u3082\u3057\u308C\u306A\u3044\
-    \u304C, x \u306F\u6B63\u5E38\u306A\u3082\u306E\u304C\u5165\u308B\n  // c->x \u7B49\
-    \u306F\u4F7F\u308F\u306A\u3044\u3088\u3046\u306B\u6CE8\u610F\u3059\u308B\n  //\
-    \ c->idx \u3092\u6301\u3063\u3066\u304A\u304F\u3068\u63A2\u7D22\u3067\u304D\u308B\
-    \u3053\u3068\u304C\u3042\u308B\n  void add_light(np c, X x) {\n    mid.cnt +=\
-    \ x.cnt, mid.sum += x.sum;\n    assert(c->cancel == 0);\n    c->cancel = lazy_light;\n\
-    \  }\n  void erase_light(np c, X x) {\n    mid.cnt -= x.cnt, mid.sum -= x.sum\
-    \ + (lazy_light - c->cancel) * x.cnt;\n    ll a = lazy_light - (c->cancel);\n\
-    \    c->apply(a);\n    c->cancel = 0;\n  }\n  void change_light(np a, np b, X\
-    \ x) {\n    b->cancel = a->cancel;\n    a->cancel = 0;\n  }\n};\n\nvoid solve()\
-    \ {\n  LL(N, Q);\n  Link_Cut_Tree<Node> LCT(N);\n  VEC(ll, A, N);\n  FOR(i, N)\
-    \ { LCT.set(i, {1, A[i]}); }\n  FOR(N - 1) {\n    INT(a, b);\n    LCT.link(a,\
+    \ void set(X x) { vx = x; }\n\n  void add_light(np c) {\n    mid.cnt += c->x.cnt,\
+    \ mid.sum += c->x.sum;\n    assert(c->cancel == 0);\n    c->cancel = lazy_light;\n\
+    \  }\n  void erase_light(np c) {\n    c->apply(lazy_light - (c->cancel));\n  \
+    \  c->cancel = 0;\n    mid.cnt -= c->x.cnt, mid.sum -= c->x.sum;\n  }\n\n  //\
+    \ b->x \u306B subtree value \u304C\u5165\u3063\u3066\u3044\u308B.\n  void change_light(np\
+    \ a, np b) {\n    b->cancel = a->cancel;\n    a->cancel = 0;\n  }\n};\n\nvoid\
+    \ solve() {\n  LL(N, Q);\n  Link_Cut_Tree<Node> LCT(N);\n  VEC(ll, A, N);\n  FOR(i,\
+    \ N) { LCT.set(i, {1, A[i]}); }\n  FOR(N - 1) {\n    INT(a, b);\n    LCT.link(a,\
     \ b);\n  }\n\n  FOR(q, Q) {\n    LL(t);\n    if (t == 0) {\n      LL(a, b, c,\
     \ d);\n      LCT.cut(a, b);\n      LCT.link(c, d);\n    }\n    if (t == 1) {\n\
     \      LL(v, p, x);\n      LCT.cut(v, p);\n      LCT[v]->apply(x);\n      LCT[v]->push();\n\
@@ -370,7 +360,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-12-03 12:50:53+09:00'
+  timestamp: '2023-12-03 13:02:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp
