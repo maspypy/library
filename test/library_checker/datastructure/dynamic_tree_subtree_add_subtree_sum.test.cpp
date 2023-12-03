@@ -75,21 +75,19 @@ struct Node {
   // LCT 内で expose, update を行うのでここは変更だけ
   void set(X x) { vx = x; }
 
-  // c がこの時点では update されていないかもしれないが, x は正常なものが入る
-  // c->x 等は使わないように注意する
-  // c->idx を持っておくと探索できることがある
-  void add_light(np c, X x) {
-    mid.cnt += x.cnt, mid.sum += x.sum;
+  void add_light(np c) {
+    mid.cnt += c->x.cnt, mid.sum += c->x.sum;
     assert(c->cancel == 0);
     c->cancel = lazy_light;
   }
-  void erase_light(np c, X x) {
-    mid.cnt -= x.cnt, mid.sum -= x.sum + (lazy_light - c->cancel) * x.cnt;
-    ll a = lazy_light - (c->cancel);
-    c->apply(a);
+  void erase_light(np c) {
+    c->apply(lazy_light - (c->cancel));
     c->cancel = 0;
+    mid.cnt -= c->x.cnt, mid.sum -= c->x.sum;
   }
-  void change_light(np a, np b, X x) {
+
+  // b->x に subtree value が入っている.
+  void change_light(np a, np b) {
     b->cancel = a->cancel;
     a->cancel = 0;
   }

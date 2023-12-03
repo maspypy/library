@@ -113,8 +113,8 @@ struct Link_Cut_Tree {
     while (now) {
       splay(now);
       // heavy -> light, light -> heavy.
-      if (now->r) { now->add_light(now->r, now->r->x); }
-      if (rp) { now->erase_light(rp, rp->x); }
+      if (now->r) { now->add_light(now->r); }
+      if (rp) { now->erase_light(rp); }
       now->r = rp;
       now->update();
       rp = now;
@@ -258,7 +258,7 @@ private:
       elif (pp->r == p) pp->r = n;
       else {
         // light edge pointer が (pp-p) から (pp-n) に変わる
-        pp->change_light(p, n, n->x);
+        pp->change_light(p, n);
       }
     }
     n->p = pp;
