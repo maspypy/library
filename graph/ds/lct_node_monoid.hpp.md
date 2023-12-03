@@ -3,20 +3,20 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp
     title: test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/ds/lct_node_monoid.hpp\"\n\ntemplate <typename Monoid>\n\
     struct LCT_Node_Monoid {\n  using np = LCT_Node_Monoid *;\n  // \u30C7\u30D5\u30A9\
     \u30EB\u30C8\n  np l, r, p;\n  int idx, size; // size \u306F heavy path \u306E\
     \u9802\u70B9\u6570\n  bool rev;\n  // \u76EE\u7684\u3054\u3068\u306B\u5B9A\u7FA9\
-    \u3059\u308B.\n  using MX = Monoid;\n  using X = MX::value_type;\n  using VX =\
-    \ X;\n\n  X x, rx, vx;\n\n  LCT_Node_Monoid(int i = 0)\n      : l(nullptr),\n\
+    \u3059\u308B.\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  using\
+    \ VX = X;\n\n  X x, rx, vx;\n\n  LCT_Node_Monoid(int i = 0)\n      : l(nullptr),\n\
     \        r(nullptr),\n        p(nullptr),\n        idx(i),\n        size(1),\n\
     \        rev(0),\n        x(MX::unit()),\n        rx(MX::unit()),\n        vx(MX::unit())\
     \ {}\n\n  void update() {\n    size = 1;\n    x = vx, rx = vx;\n    if (l) {\n\
@@ -33,7 +33,7 @@ data:
     \ *;\n  // \u30C7\u30D5\u30A9\u30EB\u30C8\n  np l, r, p;\n  int idx, size; //\
     \ size \u306F heavy path \u306E\u9802\u70B9\u6570\n  bool rev;\n  // \u76EE\u7684\
     \u3054\u3068\u306B\u5B9A\u7FA9\u3059\u308B.\n  using MX = Monoid;\n  using X =\
-    \ MX::value_type;\n  using VX = X;\n\n  X x, rx, vx;\n\n  LCT_Node_Monoid(int\
+    \ typename MX::value_type;\n  using VX = X;\n\n  X x, rx, vx;\n\n  LCT_Node_Monoid(int\
     \ i = 0)\n      : l(nullptr),\n        r(nullptr),\n        p(nullptr),\n    \
     \    idx(i),\n        size(1),\n        rev(0),\n        x(MX::unit()),\n    \
     \    rx(MX::unit()),\n        vx(MX::unit()) {}\n\n  void update() {\n    size\
@@ -50,8 +50,8 @@ data:
   isVerificationFile: false
   path: graph/ds/lct_node_monoid.hpp
   requiredBy: []
-  timestamp: '2023-12-03 13:37:24+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-12-03 14:26:27+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp
 documentation_of: graph/ds/lct_node_monoid.hpp

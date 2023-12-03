@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/lct_node_commutative_monoid.hpp
     title: graph/ds/lct_node_commutative_monoid.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_subtree_sum
@@ -301,7 +301,7 @@ data:
     \ *;\n  // \u30C7\u30D5\u30A9\u30EB\u30C8\n  np l, r, p;\n  int idx, size; //\
     \ size \u306F heavy path \u306E\u9802\u70B9\u6570\n  bool rev;\n  // \u76EE\u7684\
     \u3054\u3068\u306B\u5B9A\u7FA9\u3059\u308B.\n  using MX = Monoid;\n  using X =\
-    \ MX::value_type;\n  using VX = X;\n  X x, vx, mid;\n\n  LCT_Node_Commutative_Monoid(int\
+    \ typename MX::value_type;\n  using VX = X;\n  X x, vx, mid;\n\n  LCT_Node_Commutative_Monoid(int\
     \ i = 0)\n      : l(nullptr),\n        r(nullptr),\n        p(nullptr),\n    \
     \    idx(i),\n        size(1),\n        rev(0),\n        x(MX::unit()),\n    \
     \    vx(MX::unit()),\n        mid(MX::unit()) {}\n\n  void update() {\n    size\
@@ -344,8 +344,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-12-03 13:37:24+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-12-03 14:24:05+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
 layout: document
