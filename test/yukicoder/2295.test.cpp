@@ -5,10 +5,14 @@
 #include "ds/unionfind/unionfind.hpp"
 #include "mod/modint.hpp"
 
-#include "graph/ds/link_cut_path.hpp"
+#include "graph/ds/link_cut_tree.hpp"
+#include "graph/ds/lct_node_commutative_monoid.hpp"
 #include "alg/monoid/max.hpp"
 
+using Node = LCT_Node_Commutative_Monoid<Monoid_Max<int>>;
+
 using mint = modint998;
+
 void solve() {
   LL(N, X, Q);
 
@@ -17,7 +21,7 @@ void solve() {
   // root ごとに、直径頂点番号
   vc<pair<int, int>> dat(N + N - 1);
   FOR(i, N + N - 1) dat[i] = {i, i};
-  LinkCutTree_Path<Monoid_Max<int>, 500000> tree(N + N - 1);
+  Link_Cut_Tree<Node> tree(2 * N - 1);
 
   vc<mint> dp(N + N - 1);
 
