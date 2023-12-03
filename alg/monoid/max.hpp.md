@@ -60,6 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2242.test.cpp
     title: test/yukicoder/2242.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2295.test.cpp
+    title: test/yukicoder/2295.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/686.test.cpp
     title: test/yukicoder/686.test.cpp
@@ -120,6 +123,7 @@ data:
   - test/mytest/max_min.test.cpp
   - test/yukicoder/2242.test.cpp
   - test/yukicoder/2026.test.cpp
+  - test/yukicoder/2295.test.cpp
   - test/yukicoder/686.test.cpp
   - test/yukicoder/1826_2.test.cpp
   - test/yukicoder/1790.test.cpp
