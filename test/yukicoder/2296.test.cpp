@@ -2,9 +2,12 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "graph/ds/link_cut_path.hpp"
+#include "graph/ds/link_cut_tree.hpp"
+#include "graph/ds/lct_node_commutative_monoid.hpp"
 #include "alg/monoid/add.hpp"
 #include "ds/unionfind/unionfind.hpp"
+
+using Node = LCT_Node_Commutative_Monoid<Monoid_Add<ll>, false>;
 
 void solve() {
   LL(N, X, Q);
@@ -15,7 +18,7 @@ void solve() {
   vc<pair<int, int>> dat(N + N - 1);
   FOR(i, N + N - 1) dat[i] = {i, i};
 
-  LinkCutTree_Path<Monoid_Add<ll>, 500000> tree(N + N - 1);
+  Link_Cut_Tree<Node> tree(N + N - 1);
 
   auto add = [&](pair<int, int> p, int c) -> pair<int, int> {
     auto [a, b] = p;

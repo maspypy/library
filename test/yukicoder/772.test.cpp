@@ -7,6 +7,7 @@
 #include "ds/removable_queue.hpp"
 
 struct Node {
+  using np = Node *;
   struct VX {
     bool is_edge = false;
     ll x = 0; // 頂点なら X[v], 辺なら長さ
@@ -82,20 +83,27 @@ struct Node {
   }
 
   // LCT 内で expose, update を行うのでここは変更だけ
-  void set_vdata(VX x) { vx = x; }
+  void set(VX x) { vx = x; }
 
   // c がこの時点では update されていないかもしれないが, x は正常なものが入る
   // c->x 等は使わないように注意する
   // c->idx を持っておくと探索できることがある
-  void add_light(Node *c, X x) {
+  void add_light(Node *c) {
+    auto x = c->x;
     mx.sm += x.wt_sum;
     mx.que.push(mp(x.wt_sum, c->idx));
     mx.dist_sum += x.sum1;
   }
-  void erase_light(Node *c, X x) {
+  void erase_light(Node *c) {
+    auto x = c->x;
     mx.sm -= x.wt_sum;
     mx.que.remove(mp(x.wt_sum, c->idx));
     mx.dist_sum -= x.sum1;
+  }
+  void change_light(np a, np b) {
+    auto sm = b->x.wt_sum;
+    mx.que.remove(mp(sm, a->idx));
+    mx.que.push(mp(sm, a->idx));
   }
 };
 
@@ -103,7 +111,7 @@ void solve() {
   LL(N, Q);
   Link_Cut_Tree<Node> LCT(N + Q);
   vi X(N, 1);
-  FOR(i, N) { LCT.set_vdata(i, {false, 1}); }
+  FOR(i, N) { LCT.set(i, {false, 1}); }
 
   int pid = N;
 
@@ -115,7 +123,7 @@ void solve() {
 
   auto solve_1 = [&](int a, int b, int c) -> void {
     int idx = pid++;
-    LCT.set_vdata(idx, {true, c});
+    LCT.set(idx, {true, c});
     LCT.link(a, idx), LCT.link(b, idx);
   };
   auto solve_2 = [&](int a, int b) -> void {
@@ -124,7 +132,7 @@ void solve() {
   };
   auto solve_3 = [&](int a) -> ll {
     X[a] ^= 1;
-    LCT.set_vdata(a, {false, X[a]});
+    LCT.set(a, {false, X[a]});
     LCT.evert(a);
     ll total = LCT[a]->x.wt_sum;
     if (total == 0) return 0;

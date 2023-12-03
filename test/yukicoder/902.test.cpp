@@ -9,6 +9,7 @@
 // VX: vertex data
 // MX: light child data
 struct Node {
+  using np = Node *;
   using VX = ll;
   using X = ll;
 
@@ -43,13 +44,11 @@ struct Node {
   }
 
   // LCT 内で expose, update を行うのでここは変更だけ
-  void set_vdata(VX x) { vx = x; }
+  void set(VX x) { vx = x; }
 
-  // c がこの時点では update されていないかもしれないが, x は正常なものが入る
-  // c->x 等は使わないように注意する
-  // c->idx を持っておいて探索で利用することがある（重心の探索）
-  void add_light(Node *c, X x) {}
-  void erase_light(Node *c, X x) {}
+  void add_light(np c) {}
+  void erase_light(np c) {}
+  void change_light(np a, np b) {}
 };
 
 void solve() {
@@ -59,7 +58,7 @@ void solve() {
   FOR(e, N - 1) {
     LL(a, b, c);
     int idx = N + e;
-    LCT.set_vdata(idx, c);
+    LCT.set(idx, c);
     LCT.link(a, idx), LCT.link(b, idx);
   }
 
@@ -74,7 +73,7 @@ void solve() {
     // uv -> vw(x)
     ll e = LCT.jump(u, v, 1);
     LCT.cut(u, e), LCT.cut(e, v);
-    LCT.set_vdata(e, x);
+    LCT.set(e, x);
     LCT.link(v, e), LCT.link(e, w);
   };
 
