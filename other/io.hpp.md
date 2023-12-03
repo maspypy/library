@@ -288,6 +288,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp
+    title: test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp
   - icon: ':x:'
     path: test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
     title: test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
@@ -2235,6 +2238,7 @@ data:
   - test/library_checker/datastructure/add_remove_query.test.cpp
   - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
   - test/library_checker/datastructure/static_range_sum.test.cpp
+  - test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp
   - test/library_checker/datastructure/staticrmq_sparse.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
   - test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp

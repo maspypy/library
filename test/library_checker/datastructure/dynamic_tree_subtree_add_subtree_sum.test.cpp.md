@@ -2,9 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: ds/removable_queue.hpp
-    title: ds/removable_queue.hpp
-  - icon: ':question:'
     path: graph/ds/link_cut_tree.hpp
     title: graph/ds/link_cut_tree.hpp
   - icon: ':question:'
@@ -15,15 +12,16 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/902
+    PROBLEM: https://judge.yosupo.jp/problem/dynamic_tree_subtree_add_subtree_sum
     links:
-    - https://yukicoder.me/problems/no/902
-  bundledCode: "#line 1 \"test/yukicoder/902.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/902\"\
+    - https://judge.yosupo.jp/problem/dynamic_tree_subtree_add_subtree_sum
+  bundledCode: "#line 1 \"test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp\"\
+    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_tree_subtree_add_subtree_sum\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -187,78 +185,78 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 4 \"test/yukicoder/902.test.cpp\"\n\n#line 1 \"graph/ds/link_cut_tree.hpp\"\
-    \n/*\n\u5404 heavy path \u3092 head \u304C\u5DE6, tail \u304C\u53F3\u3068\u306A\
-    \u308B\u3088\u3046\u306B splay tree \u3067\u6301\u3064.\n\u30E6\u30FC\u30B6\u30FC\
-    \u304C\u76F4\u63A5\u547C\u3076\u53EF\u80FD\u6027\u304C\u3042\u308B\u3082\u306E\
-    \u3060\u3051 int \u3067\u3082\u5B9F\u88C5.\nLCT \u5916\u3067\u63A2\u7D22\u3059\
-    \u308B\u3068\u304D\u306A\u3069\uFF0Cpush \u3092\u5FD8\u308C\u306A\u3044\u3088\u3046\
-    \u306B\u6CE8\u610F.\n*/\n\ntemplate <typename Node>\nstruct Link_Cut_Tree {\n\
-    \  using np = Node *;\n  int n;\n  vc<Node> nodes;\n\n  Link_Cut_Tree(int n =\
-    \ 0) : n(n), nodes(n) { FOR(i, n) nodes[i] = Node(i); }\n\n  Node *operator[](int\
-    \ v) { return &nodes[v]; }\n\n  // underlying tree \u306E\u6839\n  Node *get_root(Node\
-    \ *c) {\n    expose(c);\n    c->push();\n    while (c->l) {\n      c = c->l;\n\
-    \      c->push();\n    }\n    splay(c);\n    return c;\n  }\n\n  // underlying\
-    \ tree \u306E\u6839\n  int get_root(int c) { return get_root(&nodes[c])->idx;\
-    \ }\n\n  // parent(c)==p \u3068\u306A\u308B\u3088\u3046\u306B link.\n  void link(Node\
-    \ *c, Node *p) {\n    evert(c);\n    expose(p);\n    p->push();\n    // no edge\
-    \ -> heavy edge\n    assert(!(c->p));\n    assert(!(p->r));\n    c->p = p;\n \
-    \   p->r = c;\n    p->update();\n  }\n\n  // parent(c)==p \u3068\u306A\u308B\u3088\
-    \u3046\u306B link.\n  void link(int c, int p) { return link(&nodes[c], &nodes[p]);\
-    \ }\n\n  void cut(Node *a, Node *b) {\n    evert(a);\n    expose(b);\n    assert(!b->p);\n\
-    \    assert((b->l) == a);\n    // heavy edge -> no edge\n    b->l->p = nullptr;\n\
-    \    b->l = nullptr;\n    b->update();\n  }\n\n  void cut(int a, int b) { return\
-    \ cut(&nodes[a], &nodes[b]); }\n\n  // c \u3092 underlying tree \u306E\u6839\u3068\
-    \u3059\u308B.\n  // c \u306F splay tree \u306E\u6839\u306B\u3082\u306A\u308B.\n\
-    \  // c \u306F push \u6E08\u306B\u306A\u308B\n  void evert(Node *c) {\n    expose(c);\n\
-    \    c->reverse();\n    c->push();\n  }\n\n  // c \u3092 underlying tree \u306E\
-    \u6839\u3068\u3059\u308B.\n  // c \u306F splay tree \u306E\u6839\u306B\u3082\u306A\
-    \u308B.\n  void evert(int c) { evert(&nodes[c]); }\n\n  Node *lca(Node *u, Node\
-    \ *v) {\n    assert(get_root(u) == get_root(v));\n    expose(u);\n    return expose(v);\n\
-    \  }\n\n  int lca(int u, int v) { return lca(&nodes[u], &nodes[v])->idx; }\n\n\
-    \  Node *jump(Node *u, Node *v, int k) {\n    evert(v);\n    expose(u);\n    assert(0\
-    \ <= k && k < (u->size));\n    while (1) {\n      u->push();\n      int rs = (u->r\
-    \ ? u->r->size : 0);\n      if (k < rs) {\n        u = u->r;\n        continue;\n\
-    \      }\n      if (k == rs) { break; }\n      k -= rs + 1;\n      u = u->l;\n\
-    \    }\n    splay(u);\n    return u;\n  }\n\n  int jump(int u, int v, int k) {\n\
-    \    auto c = jump((*this)[u], (*this)[v], k);\n    return c->idx;\n  }\n\n  //\
-    \ [root, c] \u304C\u3072\u3068\u3064\u306E splay tree \u306B\u306A\u308B\u3088\
-    \u3046\u306B\u5909\u66F4\u3059\u308B.\n  // c \u304C\u53F3\u7AEF\u3067 splay tree\
-    \ \u306E\u6839\u3068\u3044\u3046\u72B6\u614B\u306B\u306A\u308B.\n  // path query\
-    \ \u306F\u3053\u306E\u72B6\u614B\u3067 c \u306E data \u3092\u898B\u308B.\n  //\
-    \ c \u306F push \u6E08\u306B\u306A\u308B\n  virtual Node *expose(Node *c) {\n\
-    \    Node *now = c;\n    Node *rp = nullptr; // \u4ECA\u307E\u3067\u4F5C\u3063\
-    \u305F\u30D1\u30B9\n    while (now) {\n      splay(now);\n      // heavy -> light,\
-    \ light -> heavy.\n      if (now->r) { now->add_light(now->r, now->r->x); }\n\
-    \      if (rp) { now->erase_light(rp, rp->x); }\n      now->r = rp;\n      now->update();\n\
-    \      rp = now;\n      now = now->p;\n    }\n    splay(c);\n    return rp;\n\
-    \  }\n\n  // [root, c] \u304C\u3072\u3068\u3064\u306E splay tree \u306B\u306A\u308B\
-    \u3088\u3046\u306B\u5909\u66F4\u3059\u308B.\n  // c \u304C\u53F3\u7AEF\u3067 splay\
-    \ tree \u306E\u6839\u3068\u3044\u3046\u72B6\u614B\u306B\u306A\u308B.\n  // path\
-    \ query \u306F\u3053\u306E\u72B6\u614B\u3067 c \u306E data \u3092\u898B\u308B\
-    .\n  int expose(int c) {\n    Node *x = expose(&nodes[c]);\n    if (!x) return\
-    \ -1;\n    return x->idx;\n  }\n\n  Node *get_parent(Node *x) {\n    expose(x);\n\
-    \    if (!x->l) return nullptr;\n    x = x->l;\n    while (x->r) x = x->r;\n \
-    \   return x;\n  }\n\n  int get_parent(int x) {\n    Node *p = get_parent((*this)[x]);\n\
-    \    return (p ? p->idx : -1);\n  }\n\n  void set(Node *c, typename Node::VX x)\
-    \ {\n    evert(c);\n    c->set(x);\n  }\n\n  void set(int c, typename Node::VX\
-    \ x) { set((*this)[c], x); }\n\n  typename Node::X prod_path(int a, int b) {\n\
-    \    evert(a), expose(b);\n    return (*this)[b]->x;\n  }\n\n  // subtree \u7528\
-    \u306E node \u3092\u4F7F\u3046\n  typename Node::X prod_subtree(int v, int root)\
-    \ {\n    static_assert(Node::NODE_FOR_SUBTREE);\n    if (v == root) {\n      evert(root);\n\
-    \      return (*this)[root]->x;\n    }\n    root = jump(v, root, 1);\n    cut(v,\
-    \ root);\n    typename Node::X res = (*this)[v]->x;\n    link(v, root);\n    return\
-    \ res;\n  }\n\n  vc<int> collect_heavy_path(int v) {\n    np c = (*this)[v];\n\
-    \    while (!is_root(c)) c = c->p;\n    vc<int> res;\n    auto dfs = [&](auto\
-    \ &dfs, np c, bool rev) -> void {\n      if (!rev) {\n        if (c->l) dfs(dfs,\
-    \ c->l, rev ^ c->rev);\n        res.eb(c->idx);\n        if (c->r) dfs(dfs, c->r,\
-    \ rev ^ c->rev);\n      } else {\n        if (c->r) dfs(dfs, c->r, rev ^ c->rev);\n\
-    \        res.eb(c->idx);\n        if (c->l) dfs(dfs, c->l, rev ^ c->rev);\n  \
-    \    }\n    };\n    dfs(dfs, c, false);\n    return res;\n  }\n\n  void debug()\
-    \ {\n    print(\"p, l, r, rev\");\n    auto f = [&](np c) -> int { return (c ?\
-    \ c->idx : -1); };\n    FOR(i, len(nodes)) {\n      print(i, \",\", f((*this)[i]->p),\
-    \ f((*this)[i]->l), f((*this)[i]->r),\n            (*this)[i]->rev);\n    }\n\
-    \    FOR(i, len(nodes)) {\n      np c = (*this)[i];\n      if (c->l) assert(c->l->p\
+    \ yes(!t); }\r\n#line 5 \"test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp\"\
+    \n\n#line 1 \"graph/ds/link_cut_tree.hpp\"\n/*\n\u5404 heavy path \u3092 head\
+    \ \u304C\u5DE6, tail \u304C\u53F3\u3068\u306A\u308B\u3088\u3046\u306B splay tree\
+    \ \u3067\u6301\u3064.\n\u30E6\u30FC\u30B6\u30FC\u304C\u76F4\u63A5\u547C\u3076\u53EF\
+    \u80FD\u6027\u304C\u3042\u308B\u3082\u306E\u3060\u3051 int \u3067\u3082\u5B9F\u88C5\
+    .\nLCT \u5916\u3067\u63A2\u7D22\u3059\u308B\u3068\u304D\u306A\u3069\uFF0Cpush\
+    \ \u3092\u5FD8\u308C\u306A\u3044\u3088\u3046\u306B\u6CE8\u610F.\n*/\n\ntemplate\
+    \ <typename Node>\nstruct Link_Cut_Tree {\n  using np = Node *;\n  int n;\n  vc<Node>\
+    \ nodes;\n\n  Link_Cut_Tree(int n = 0) : n(n), nodes(n) { FOR(i, n) nodes[i] =\
+    \ Node(i); }\n\n  Node *operator[](int v) { return &nodes[v]; }\n\n  // underlying\
+    \ tree \u306E\u6839\n  Node *get_root(Node *c) {\n    expose(c);\n    c->push();\n\
+    \    while (c->l) {\n      c = c->l;\n      c->push();\n    }\n    splay(c);\n\
+    \    return c;\n  }\n\n  // underlying tree \u306E\u6839\n  int get_root(int c)\
+    \ { return get_root(&nodes[c])->idx; }\n\n  // parent(c)==p \u3068\u306A\u308B\
+    \u3088\u3046\u306B link.\n  void link(Node *c, Node *p) {\n    evert(c);\n   \
+    \ expose(p);\n    p->push();\n    // no edge -> heavy edge\n    assert(!(c->p));\n\
+    \    assert(!(p->r));\n    c->p = p;\n    p->r = c;\n    p->update();\n  }\n\n\
+    \  // parent(c)==p \u3068\u306A\u308B\u3088\u3046\u306B link.\n  void link(int\
+    \ c, int p) { return link(&nodes[c], &nodes[p]); }\n\n  void cut(Node *a, Node\
+    \ *b) {\n    evert(a);\n    expose(b);\n    assert(!b->p);\n    assert((b->l)\
+    \ == a);\n    // heavy edge -> no edge\n    b->l->p = nullptr;\n    b->l = nullptr;\n\
+    \    b->update();\n  }\n\n  void cut(int a, int b) { return cut(&nodes[a], &nodes[b]);\
+    \ }\n\n  // c \u3092 underlying tree \u306E\u6839\u3068\u3059\u308B.\n  // c \u306F\
+    \ splay tree \u306E\u6839\u306B\u3082\u306A\u308B.\n  // c \u306F push \u6E08\u306B\
+    \u306A\u308B\n  void evert(Node *c) {\n    expose(c);\n    c->reverse();\n   \
+    \ c->push();\n  }\n\n  // c \u3092 underlying tree \u306E\u6839\u3068\u3059\u308B\
+    .\n  // c \u306F splay tree \u306E\u6839\u306B\u3082\u306A\u308B.\n  void evert(int\
+    \ c) { evert(&nodes[c]); }\n\n  Node *lca(Node *u, Node *v) {\n    assert(get_root(u)\
+    \ == get_root(v));\n    expose(u);\n    return expose(v);\n  }\n\n  int lca(int\
+    \ u, int v) { return lca(&nodes[u], &nodes[v])->idx; }\n\n  Node *jump(Node *u,\
+    \ Node *v, int k) {\n    evert(v);\n    expose(u);\n    assert(0 <= k && k < (u->size));\n\
+    \    while (1) {\n      u->push();\n      int rs = (u->r ? u->r->size : 0);\n\
+    \      if (k < rs) {\n        u = u->r;\n        continue;\n      }\n      if\
+    \ (k == rs) { break; }\n      k -= rs + 1;\n      u = u->l;\n    }\n    splay(u);\n\
+    \    return u;\n  }\n\n  int jump(int u, int v, int k) {\n    auto c = jump((*this)[u],\
+    \ (*this)[v], k);\n    return c->idx;\n  }\n\n  // [root, c] \u304C\u3072\u3068\
+    \u3064\u306E splay tree \u306B\u306A\u308B\u3088\u3046\u306B\u5909\u66F4\u3059\
+    \u308B.\n  // c \u304C\u53F3\u7AEF\u3067 splay tree \u306E\u6839\u3068\u3044\u3046\
+    \u72B6\u614B\u306B\u306A\u308B.\n  // path query \u306F\u3053\u306E\u72B6\u614B\
+    \u3067 c \u306E data \u3092\u898B\u308B.\n  // c \u306F push \u6E08\u306B\u306A\
+    \u308B\n  virtual Node *expose(Node *c) {\n    Node *now = c;\n    Node *rp =\
+    \ nullptr; // \u4ECA\u307E\u3067\u4F5C\u3063\u305F\u30D1\u30B9\n    while (now)\
+    \ {\n      splay(now);\n      // heavy -> light, light -> heavy.\n      if (now->r)\
+    \ { now->add_light(now->r, now->r->x); }\n      if (rp) { now->erase_light(rp,\
+    \ rp->x); }\n      now->r = rp;\n      now->update();\n      rp = now;\n     \
+    \ now = now->p;\n    }\n    splay(c);\n    return rp;\n  }\n\n  // [root, c] \u304C\
+    \u3072\u3068\u3064\u306E splay tree \u306B\u306A\u308B\u3088\u3046\u306B\u5909\
+    \u66F4\u3059\u308B.\n  // c \u304C\u53F3\u7AEF\u3067 splay tree \u306E\u6839\u3068\
+    \u3044\u3046\u72B6\u614B\u306B\u306A\u308B.\n  // path query \u306F\u3053\u306E\
+    \u72B6\u614B\u3067 c \u306E data \u3092\u898B\u308B.\n  int expose(int c) {\n\
+    \    Node *x = expose(&nodes[c]);\n    if (!x) return -1;\n    return x->idx;\n\
+    \  }\n\n  Node *get_parent(Node *x) {\n    expose(x);\n    if (!x->l) return nullptr;\n\
+    \    x = x->l;\n    while (x->r) x = x->r;\n    return x;\n  }\n\n  int get_parent(int\
+    \ x) {\n    Node *p = get_parent((*this)[x]);\n    return (p ? p->idx : -1);\n\
+    \  }\n\n  void set(Node *c, typename Node::VX x) {\n    evert(c);\n    c->set(x);\n\
+    \  }\n\n  void set(int c, typename Node::VX x) { set((*this)[c], x); }\n\n  typename\
+    \ Node::X prod_path(int a, int b) {\n    evert(a), expose(b);\n    return (*this)[b]->x;\n\
+    \  }\n\n  // subtree \u7528\u306E node \u3092\u4F7F\u3046\n  typename Node::X\
+    \ prod_subtree(int v, int root) {\n    static_assert(Node::NODE_FOR_SUBTREE);\n\
+    \    if (v == root) {\n      evert(root);\n      return (*this)[root]->x;\n  \
+    \  }\n    root = jump(v, root, 1);\n    cut(v, root);\n    typename Node::X res\
+    \ = (*this)[v]->x;\n    link(v, root);\n    return res;\n  }\n\n  vc<int> collect_heavy_path(int\
+    \ v) {\n    np c = (*this)[v];\n    while (!is_root(c)) c = c->p;\n    vc<int>\
+    \ res;\n    auto dfs = [&](auto &dfs, np c, bool rev) -> void {\n      if (!rev)\
+    \ {\n        if (c->l) dfs(dfs, c->l, rev ^ c->rev);\n        res.eb(c->idx);\n\
+    \        if (c->r) dfs(dfs, c->r, rev ^ c->rev);\n      } else {\n        if (c->r)\
+    \ dfs(dfs, c->r, rev ^ c->rev);\n        res.eb(c->idx);\n        if (c->l) dfs(dfs,\
+    \ c->l, rev ^ c->rev);\n      }\n    };\n    dfs(dfs, c, false);\n    return res;\n\
+    \  }\n\n  void debug() {\n    print(\"p, l, r, rev\");\n    auto f = [&](np c)\
+    \ -> int { return (c ? c->idx : -1); };\n    FOR(i, len(nodes)) {\n      print(i,\
+    \ \",\", f((*this)[i]->p), f((*this)[i]->l), f((*this)[i]->r),\n            (*this)[i]->rev);\n\
+    \    }\n    FOR(i, len(nodes)) {\n      np c = (*this)[i];\n      if (c->l) assert(c->l->p\
     \ == c);\n      if (c->r) assert(c->r->p == c);\n    }\n  }\n\nprivate:\n  //\
     \ splay tree \u5185\u3067\u5B8C\u7D50\u3059\u308B\u64CD\u4F5C. \u7279\u306B heavy,\
     \ light \u69CB\u9020\u306F\u5909\u308F\u3089\u306A\u3044.\n  // light pointer\
@@ -284,107 +282,101 @@ data:
     \u308F\u308B\n        pp->change_light(p, n, n->x);\n      }\n    }\n    n->p\
     \ = pp;\n    p->p = n;\n    if (c) c->p = p;\n  }\n\n  inline int state(Node *n)\
     \ {\n    if (!n->p) return 0;\n    if (n->p->l == n) return 1;\n    if (n->p->r\
-    \ == n) return -1;\n    return 0;\n  }\n};\n#line 1 \"ds/removable_queue.hpp\"\
-    \ntemplate <typename QUE_TYPE>\nstruct Removable_Queue {\n  using QUE = QUE_TYPE;\n\
-    \  using T = typename QUE::value_type;\n\n  QUE que, rm_que;\n\n  Removable_Queue()\
-    \ {}\n  Removable_Queue(vc<T>& dat) : que(all(dat)) {}\n\n  void push(T x) { que.push(x);\
-    \ }\n  int size() { return len(que) - len(rm_que); }\n  bool empty() { return\
-    \ size() == 0; }\n\n  T pop() {\n    refresh();\n    return POP(que);\n  }\n \
-    \ T top() {\n    refresh();\n    return que.top();\n  }\n\n  void remove(T x)\
-    \ { rm_que.push(x); }\n\nprivate:\n  void refresh() {\n    while (len(rm_que)\
-    \ && rm_que.top() == que.top()) {\n      rm_que.pop(), que.pop();\n    }\n  }\n\
-    };\n#line 7 \"test/yukicoder/902.test.cpp\"\n\n// X: cluster data\n// VX: vertex\
-    \ data\n// MX: light child data\nstruct Node {\n  using VX = ll;\n  using X =\
-    \ ll;\n\n  Node *l, *r, *p;\n  int idx, size; // size \u306F heavy path \u306E\
-    \u9802\u70B9\u6570\n  bool rev;\n  VX vx = 0;\n  X x = 0;\n\n  Node(int i = 0)\n\
-    \      : l(nullptr), r(nullptr), p(nullptr), idx(i), size(1), rev(0) {}\n\n  void\
-    \ update() {\n    size = 1;\n    x = vx;\n    if (l) { size += l->size, x += l->x;\
-    \ }\n    if (r) { size += r->size, x += r->x; }\n  }\n\n  void push() {\n    if\
-    \ (rev) {\n      if (l) l->reverse();\n      if (r) r->reverse();\n      rev =\
-    \ 0;\n    }\n  }\n\n  // data \u306E reverse \u3082\u884C\u3046\n  void reverse()\
+    \ == n) return -1;\n    return 0;\n  }\n};\n#line 7 \"test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp\"\
+    \n\n/*\nsm \u306F lazy \u53CD\u6620\u6E08\n\u305F\u3060\u3057 light edge \u304B\
+    \u3089\u306E lazy_light - cancel \u306F\u672A\u53CD\u6620\n*/\nstruct Node {\n\
+    \  using np = Node *;\n  // \u30C7\u30D5\u30A9\u30EB\u30C8\n  np l, r, p;\n  int\
+    \ idx, size; // size \u306F heavy path \u306E\u9802\u70B9\u6570\n  bool rev;\n\
+    \  struct X {\n    ll cnt, sum;\n  };\n\n  using VX = X;\n  // \u76EE\u7684\u3054\
+    \u3068\u306B\u5B9A\u7FA9\u3059\u308B.\n  X x, vx, mid;\n  ll lazy, lazy_light,\
+    \ cancel;\n\n  Node(int i = 0)\n      : l(nullptr),\n        r(nullptr),\n   \
+    \     p(nullptr),\n        idx(i),\n        size(1),\n        rev(0),\n      \
+    \  x({1, 0}),\n        vx({1, 0}),\n        mid({0, 0}),\n        lazy(0),\n \
+    \       lazy_light(0),\n        cancel(0) {}\n\n  void update() {\n    size =\
+    \ 1;\n    x.cnt = vx.cnt + mid.cnt, x.sum = vx.sum + mid.sum;\n    if (l) { size\
+    \ += l->size, x.sum += l->x.sum, x.cnt += l->x.cnt; }\n    if (r) { size += r->size,\
+    \ x.sum += r->x.sum, x.cnt += r->x.cnt; }\n  }\n\n  void push() {\n    if (rev)\
+    \ {\n      if (l) l->reverse();\n      if (r) r->reverse();\n    }\n    if (lazy)\
+    \ {\n      if (l) l->apply(lazy);\n      if (r) r->apply(lazy);\n    }\n    rev\
+    \ = 0;\n    lazy = 0;\n  }\n\n  void apply(ll a) {\n    vx.sum += a;\n    x.sum\
+    \ += a * (x.cnt);\n    lazy += a;\n    lazy_light += a;\n    mid.sum += (mid.cnt\
+    \ * a);\n  }\n\n  // data \u306E reverse \u3082\u884C\u3046\n  void reverse()\
     \ {\n    rev ^= 1;\n    swap(l, r);\n  }\n\n  // LCT \u5185\u3067 expose, update\
     \ \u3092\u884C\u3046\u306E\u3067\u3053\u3053\u306F\u5909\u66F4\u3060\u3051\n \
-    \ void set_vdata(VX x) { vx = x; }\n\n  // c \u304C\u3053\u306E\u6642\u70B9\u3067\
-    \u306F update \u3055\u308C\u3066\u3044\u306A\u3044\u304B\u3082\u3057\u308C\u306A\
-    \u3044\u304C, x \u306F\u6B63\u5E38\u306A\u3082\u306E\u304C\u5165\u308B\n  // c->x\
-    \ \u7B49\u306F\u4F7F\u308F\u306A\u3044\u3088\u3046\u306B\u6CE8\u610F\u3059\u308B\
-    \n  // c->idx \u3092\u6301\u3063\u3066\u304A\u3044\u3066\u63A2\u7D22\u3067\u5229\
-    \u7528\u3059\u308B\u3053\u3068\u304C\u3042\u308B\uFF08\u91CD\u5FC3\u306E\u63A2\
-    \u7D22\uFF09\n  void add_light(Node *c, X x) {}\n  void erase_light(Node *c, X\
-    \ x) {}\n};\n\nvoid solve() {\n  LL(N);\n  Link_Cut_Tree<Node> LCT(2 * N - 1);\n\
-    \n  FOR(e, N - 1) {\n    LL(a, b, c);\n    int idx = N + e;\n    LCT.set_vdata(idx,\
-    \ c);\n    LCT.link(a, idx), LCT.link(b, idx);\n  }\n\n  auto dist = [&](int a,\
-    \ int b) -> ll {\n    LCT.evert(a);\n    LCT.expose(b);\n    return LCT[b]->x;\n\
-    \  };\n\n  auto solve_1 = [&]() -> void {\n    LL(u, v, w, x);\n    // uv -> vw(x)\n\
-    \    ll e = LCT.jump(u, v, 1);\n    LCT.cut(u, e), LCT.cut(e, v);\n    LCT.set_vdata(e,\
-    \ x);\n    LCT.link(v, e), LCT.link(e, w);\n  };\n\n  auto solve_2 = [&]() ->\
-    \ void {\n    LL(K);\n    VEC(int, X, K);\n    // \u9802\u70B9\u30A4\u30F3\u30C7\
-    \u30C3\u30AF\u30B9\u9806\u3067 dfs \u3057\u305F\u3068\u304D\u306E euler \u9806\
-    \u306B\u30BD\u30FC\u30C8\u3067\u304D\u308B\n    // jump \u306E\u8A08\u7B97\u306E\
-    \u3068\u304D\u306B evert \u3057\u3066\u3044\u308B\u306E\u3067 LCA \u53D6\u5F97\
-    \u524D\u306B evert \u3057\u306A\u304A\u3059\u3053\u3068\n    int r = X[0];\n \
-    \   sort(all(X), [&](auto a, auto b) -> bool {\n      if (a == b) return false;\n\
-    \      LCT.evert(r);\n      int c = LCT.lca(a, b);\n      if (a == c) return true;\n\
-    \      if (b == c) return false;\n      int x = LCT.jump(c, a, 1);\n      int\
-    \ y = LCT.jump(c, b, 1);\n      return x < y;\n    });\n    X.eb(X[0]);\n    ll\
-    \ ANS = 0;\n    FOR(k, K) { ANS += dist(X[k], X[k + 1]); }\n    ANS /= 2;\n  \
-    \  print(ANS);\n  };\n\n  LL(Q);\n  FOR(Q) {\n    LL(t);\n    if (t == 1) solve_1();\n\
-    \    if (t == 2) solve_2();\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
-    }\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/902\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n\n#include \"graph/ds/link_cut_tree.hpp\"\n#include\
-    \ \"ds/removable_queue.hpp\"\n\n// X: cluster data\n// VX: vertex data\n// MX:\
-    \ light child data\nstruct Node {\n  using VX = ll;\n  using X = ll;\n\n  Node\
-    \ *l, *r, *p;\n  int idx, size; // size \u306F heavy path \u306E\u9802\u70B9\u6570\
-    \n  bool rev;\n  VX vx = 0;\n  X x = 0;\n\n  Node(int i = 0)\n      : l(nullptr),\
-    \ r(nullptr), p(nullptr), idx(i), size(1), rev(0) {}\n\n  void update() {\n  \
-    \  size = 1;\n    x = vx;\n    if (l) { size += l->size, x += l->x; }\n    if\
-    \ (r) { size += r->size, x += r->x; }\n  }\n\n  void push() {\n    if (rev) {\n\
-    \      if (l) l->reverse();\n      if (r) r->reverse();\n      rev = 0;\n    }\n\
-    \  }\n\n  // data \u306E reverse \u3082\u884C\u3046\n  void reverse() {\n    rev\
-    \ ^= 1;\n    swap(l, r);\n  }\n\n  // LCT \u5185\u3067 expose, update \u3092\u884C\
-    \u3046\u306E\u3067\u3053\u3053\u306F\u5909\u66F4\u3060\u3051\n  void set_vdata(VX\
-    \ x) { vx = x; }\n\n  // c \u304C\u3053\u306E\u6642\u70B9\u3067\u306F update \u3055\
-    \u308C\u3066\u3044\u306A\u3044\u304B\u3082\u3057\u308C\u306A\u3044\u304C, x \u306F\
-    \u6B63\u5E38\u306A\u3082\u306E\u304C\u5165\u308B\n  // c->x \u7B49\u306F\u4F7F\
-    \u308F\u306A\u3044\u3088\u3046\u306B\u6CE8\u610F\u3059\u308B\n  // c->idx \u3092\
-    \u6301\u3063\u3066\u304A\u3044\u3066\u63A2\u7D22\u3067\u5229\u7528\u3059\u308B\
-    \u3053\u3068\u304C\u3042\u308B\uFF08\u91CD\u5FC3\u306E\u63A2\u7D22\uFF09\n  void\
-    \ add_light(Node *c, X x) {}\n  void erase_light(Node *c, X x) {}\n};\n\nvoid\
-    \ solve() {\n  LL(N);\n  Link_Cut_Tree<Node> LCT(2 * N - 1);\n\n  FOR(e, N - 1)\
-    \ {\n    LL(a, b, c);\n    int idx = N + e;\n    LCT.set_vdata(idx, c);\n    LCT.link(a,\
-    \ idx), LCT.link(b, idx);\n  }\n\n  auto dist = [&](int a, int b) -> ll {\n  \
-    \  LCT.evert(a);\n    LCT.expose(b);\n    return LCT[b]->x;\n  };\n\n  auto solve_1\
-    \ = [&]() -> void {\n    LL(u, v, w, x);\n    // uv -> vw(x)\n    ll e = LCT.jump(u,\
-    \ v, 1);\n    LCT.cut(u, e), LCT.cut(e, v);\n    LCT.set_vdata(e, x);\n    LCT.link(v,\
-    \ e), LCT.link(e, w);\n  };\n\n  auto solve_2 = [&]() -> void {\n    LL(K);\n\
-    \    VEC(int, X, K);\n    // \u9802\u70B9\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\u9806\
-    \u3067 dfs \u3057\u305F\u3068\u304D\u306E euler \u9806\u306B\u30BD\u30FC\u30C8\
-    \u3067\u304D\u308B\n    // jump \u306E\u8A08\u7B97\u306E\u3068\u304D\u306B evert\
-    \ \u3057\u3066\u3044\u308B\u306E\u3067 LCA \u53D6\u5F97\u524D\u306B evert \u3057\
-    \u306A\u304A\u3059\u3053\u3068\n    int r = X[0];\n    sort(all(X), [&](auto a,\
-    \ auto b) -> bool {\n      if (a == b) return false;\n      LCT.evert(r);\n  \
-    \    int c = LCT.lca(a, b);\n      if (a == c) return true;\n      if (b == c)\
-    \ return false;\n      int x = LCT.jump(c, a, 1);\n      int y = LCT.jump(c, b,\
-    \ 1);\n      return x < y;\n    });\n    X.eb(X[0]);\n    ll ANS = 0;\n    FOR(k,\
-    \ K) { ANS += dist(X[k], X[k + 1]); }\n    ANS /= 2;\n    print(ANS);\n  };\n\n\
-    \  LL(Q);\n  FOR(Q) {\n    LL(t);\n    if (t == 1) solve_1();\n    if (t == 2)\
-    \ solve_2();\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
+    \ void set(X x) { vx = x; }\n\n  // c \u304C\u3053\u306E\u6642\u70B9\u3067\u306F\
+    \ update \u3055\u308C\u3066\u3044\u306A\u3044\u304B\u3082\u3057\u308C\u306A\u3044\
+    \u304C, x \u306F\u6B63\u5E38\u306A\u3082\u306E\u304C\u5165\u308B\n  // c->x \u7B49\
+    \u306F\u4F7F\u308F\u306A\u3044\u3088\u3046\u306B\u6CE8\u610F\u3059\u308B\n  //\
+    \ c->idx \u3092\u6301\u3063\u3066\u304A\u304F\u3068\u63A2\u7D22\u3067\u304D\u308B\
+    \u3053\u3068\u304C\u3042\u308B\n  void add_light(np c, X x) {\n    mid.cnt +=\
+    \ x.cnt, mid.sum += x.sum;\n    assert(c->cancel == 0);\n    c->cancel = lazy_light;\n\
+    \  }\n  void erase_light(np c, X x) {\n    mid.cnt -= x.cnt, mid.sum -= x.sum\
+    \ + (lazy_light - c->cancel) * x.cnt;\n    ll a = lazy_light - (c->cancel);\n\
+    \    c->apply(a);\n    c->cancel = 0;\n  }\n  void change_light(np a, np b, X\
+    \ x) {\n    b->cancel = a->cancel;\n    a->cancel = 0;\n  }\n};\n\nvoid solve()\
+    \ {\n  LL(N, Q);\n  Link_Cut_Tree<Node> LCT(N);\n  VEC(ll, A, N);\n  FOR(i, N)\
+    \ { LCT.set(i, {1, A[i]}); }\n  FOR(N - 1) {\n    INT(a, b);\n    LCT.link(a,\
+    \ b);\n  }\n\n  FOR(q, Q) {\n    LL(t);\n    if (t == 0) {\n      LL(a, b, c,\
+    \ d);\n      LCT.cut(a, b);\n      LCT.link(c, d);\n    }\n    if (t == 1) {\n\
+    \      LL(v, p, x);\n      LCT.cut(v, p);\n      LCT[v]->apply(x);\n      LCT[v]->push();\n\
+    \      LCT.link(v, p);\n    }\n    if (t == 2) {\n      LL(c, p);\n      LCT.cut(c,\
+    \ p);\n      print(LCT[c]->x.sum);\n      LCT.link(c, p);\n    }\n  }\n}\n\nsigned\
+    \ main() {\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_tree_subtree_add_subtree_sum\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/ds/link_cut_tree.hpp\"\
+    \n\n/*\nsm \u306F lazy \u53CD\u6620\u6E08\n\u305F\u3060\u3057 light edge \u304B\
+    \u3089\u306E lazy_light - cancel \u306F\u672A\u53CD\u6620\n*/\nstruct Node {\n\
+    \  using np = Node *;\n  // \u30C7\u30D5\u30A9\u30EB\u30C8\n  np l, r, p;\n  int\
+    \ idx, size; // size \u306F heavy path \u306E\u9802\u70B9\u6570\n  bool rev;\n\
+    \  struct X {\n    ll cnt, sum;\n  };\n\n  using VX = X;\n  // \u76EE\u7684\u3054\
+    \u3068\u306B\u5B9A\u7FA9\u3059\u308B.\n  X x, vx, mid;\n  ll lazy, lazy_light,\
+    \ cancel;\n\n  Node(int i = 0)\n      : l(nullptr),\n        r(nullptr),\n   \
+    \     p(nullptr),\n        idx(i),\n        size(1),\n        rev(0),\n      \
+    \  x({1, 0}),\n        vx({1, 0}),\n        mid({0, 0}),\n        lazy(0),\n \
+    \       lazy_light(0),\n        cancel(0) {}\n\n  void update() {\n    size =\
+    \ 1;\n    x.cnt = vx.cnt + mid.cnt, x.sum = vx.sum + mid.sum;\n    if (l) { size\
+    \ += l->size, x.sum += l->x.sum, x.cnt += l->x.cnt; }\n    if (r) { size += r->size,\
+    \ x.sum += r->x.sum, x.cnt += r->x.cnt; }\n  }\n\n  void push() {\n    if (rev)\
+    \ {\n      if (l) l->reverse();\n      if (r) r->reverse();\n    }\n    if (lazy)\
+    \ {\n      if (l) l->apply(lazy);\n      if (r) r->apply(lazy);\n    }\n    rev\
+    \ = 0;\n    lazy = 0;\n  }\n\n  void apply(ll a) {\n    vx.sum += a;\n    x.sum\
+    \ += a * (x.cnt);\n    lazy += a;\n    lazy_light += a;\n    mid.sum += (mid.cnt\
+    \ * a);\n  }\n\n  // data \u306E reverse \u3082\u884C\u3046\n  void reverse()\
+    \ {\n    rev ^= 1;\n    swap(l, r);\n  }\n\n  // LCT \u5185\u3067 expose, update\
+    \ \u3092\u884C\u3046\u306E\u3067\u3053\u3053\u306F\u5909\u66F4\u3060\u3051\n \
+    \ void set(X x) { vx = x; }\n\n  // c \u304C\u3053\u306E\u6642\u70B9\u3067\u306F\
+    \ update \u3055\u308C\u3066\u3044\u306A\u3044\u304B\u3082\u3057\u308C\u306A\u3044\
+    \u304C, x \u306F\u6B63\u5E38\u306A\u3082\u306E\u304C\u5165\u308B\n  // c->x \u7B49\
+    \u306F\u4F7F\u308F\u306A\u3044\u3088\u3046\u306B\u6CE8\u610F\u3059\u308B\n  //\
+    \ c->idx \u3092\u6301\u3063\u3066\u304A\u304F\u3068\u63A2\u7D22\u3067\u304D\u308B\
+    \u3053\u3068\u304C\u3042\u308B\n  void add_light(np c, X x) {\n    mid.cnt +=\
+    \ x.cnt, mid.sum += x.sum;\n    assert(c->cancel == 0);\n    c->cancel = lazy_light;\n\
+    \  }\n  void erase_light(np c, X x) {\n    mid.cnt -= x.cnt, mid.sum -= x.sum\
+    \ + (lazy_light - c->cancel) * x.cnt;\n    ll a = lazy_light - (c->cancel);\n\
+    \    c->apply(a);\n    c->cancel = 0;\n  }\n  void change_light(np a, np b, X\
+    \ x) {\n    b->cancel = a->cancel;\n    a->cancel = 0;\n  }\n};\n\nvoid solve()\
+    \ {\n  LL(N, Q);\n  Link_Cut_Tree<Node> LCT(N);\n  VEC(ll, A, N);\n  FOR(i, N)\
+    \ { LCT.set(i, {1, A[i]}); }\n  FOR(N - 1) {\n    INT(a, b);\n    LCT.link(a,\
+    \ b);\n  }\n\n  FOR(q, Q) {\n    LL(t);\n    if (t == 0) {\n      LL(a, b, c,\
+    \ d);\n      LCT.cut(a, b);\n      LCT.link(c, d);\n    }\n    if (t == 1) {\n\
+    \      LL(v, p, x);\n      LCT.cut(v, p);\n      LCT[v]->apply(x);\n      LCT[v]->push();\n\
+    \      LCT.link(v, p);\n    }\n    if (t == 2) {\n      LL(c, p);\n      LCT.cut(c,\
+    \ p);\n      print(LCT[c]->x.sum);\n      LCT.link(c, p);\n    }\n  }\n}\n\nsigned\
+    \ main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - graph/ds/link_cut_tree.hpp
-  - ds/removable_queue.hpp
   isVerificationFile: true
-  path: test/yukicoder/902.test.cpp
+  path: test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp
   requiredBy: []
   timestamp: '2023-12-03 12:50:53+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yukicoder/902.test.cpp
+documentation_of: test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/902.test.cpp
-- /verify/test/yukicoder/902.test.cpp.html
-title: test/yukicoder/902.test.cpp
+- /verify/test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp
+- /verify/test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp.html
+title: test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp
 ---

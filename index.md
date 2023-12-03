@@ -895,7 +895,7 @@ data:
     - icon: ':warning:'
       path: graph/ds/lct_node_monoid.hpp
       title: graph/ds/lct_node_monoid.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/ds/link_cut_tree.hpp
       title: graph/ds/link_cut_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -2086,6 +2086,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
       title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp
+      title: test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp
     - icon: ':x:'
       path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
       title: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
