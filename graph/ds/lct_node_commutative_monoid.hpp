@@ -51,13 +51,13 @@ struct LCT_Node_Commutative_Monoid {
   // LCT 内で expose, update を行うのでここは変更だけ
   void set(VX x) { vx = x; }
 
-  // c がこの時点では update されていないかもしれないが, x は正常なものが入る
-  // c->x 等は使わないように注意する
-  // c->idx を持っておくと探索できることがある
-  void add_light(np c, X x) {
-    if constexpr (SUBTREE) mid = MX::op(mid, x);
+  void add_light(np c) {
+    if constexpr (SUBTREE) mid = MX::op(mid, c->x);
   }
-  void erase_light(np c, X x) {
-    if constexpr (SUBTREE) mid = MX::op(mid, MX::inverse(x));
+  void erase_light(np c) {
+    if constexpr (SUBTREE) mid = MX::op(mid, MX::inverse(c->x));
   }
+
+  // b->x に subtree value が入っている.
+  void change_light(np a, np b) {}
 };

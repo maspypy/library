@@ -53,9 +53,7 @@ struct LCT_Node_Monoid {
   // LCT 内で expose, update を行うのでここは変更だけ
   void set(VX x) { vx = x; }
 
-  // c がこの時点では update されていないかもしれないが, x は正常なものが入る
-  // c->x 等は使わないように注意する
-  // c->idx を持っておくと探索できることがある
-  void add_light(np c, X x) {}
-  void erase_light(np c, X x) {}
+  void add_light(np c) {}
+  void erase_light(np c) {}
+  void change_light(np a, np b) {}
 };

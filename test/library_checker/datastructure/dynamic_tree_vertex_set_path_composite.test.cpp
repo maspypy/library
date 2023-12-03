@@ -4,7 +4,7 @@
 #include "other/io.hpp"
 
 #include "graph/ds/link_cut_tree.hpp"
-#include "graph/ds/link_cut_monoid.hpp"
+#include "graph/ds/lct_node_monoid.hpp"
 #include "alg/monoid/affine.hpp"
 #include "mod/modint.hpp"
 
