@@ -8,7 +8,7 @@ struct LCT_Node_Monoid {
   bool rev;
   // 目的ごとに定義する.
   using MX = Monoid;
-  using X = MX::value_type;
+  using X = typename MX::value_type;
   using VX = X;
 
   X x, rx, vx;
