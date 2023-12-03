@@ -7,8 +7,14 @@ data:
     path: test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp
     title: test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp
   - icon: ':x:'
+    path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
+    title: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
+  - icon: ':x:'
     path: test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
     title: test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp
+    title: test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp
   - icon: ':x:'
     path: test/yukicoder/772.test.cpp
     title: test/yukicoder/772.test.cpp
@@ -223,6 +229,8 @@ data:
   verifiedWith:
   - test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
   - test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp
+  - test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp
+  - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/yukicoder/772.test.cpp
   - test/yukicoder/902.test.cpp
 documentation_of: graph/ds/link_cut_tree.hpp

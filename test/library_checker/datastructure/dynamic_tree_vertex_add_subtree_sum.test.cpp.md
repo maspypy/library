@@ -312,14 +312,10 @@ data:
     \  // data \u306E reverse \u3082\u884C\u3046\n  void reverse() {\n    rev ^= 1;\n\
     \    swap(l, r);\n  }\n\n  // LCT \u5185\u3067 expose, update \u3092\u884C\u3046\
     \u306E\u3067\u3053\u3053\u306F\u5909\u66F4\u3060\u3051\n  void set(VX x) { vx\
-    \ = x; }\n\n  // c \u304C\u3053\u306E\u6642\u70B9\u3067\u306F update \u3055\u308C\
-    \u3066\u3044\u306A\u3044\u304B\u3082\u3057\u308C\u306A\u3044\u304C, x \u306F\u6B63\
-    \u5E38\u306A\u3082\u306E\u304C\u5165\u308B\n  // c->x \u7B49\u306F\u4F7F\u308F\
-    \u306A\u3044\u3088\u3046\u306B\u6CE8\u610F\u3059\u308B\n  // c->idx \u3092\u6301\
-    \u3063\u3066\u304A\u304F\u3068\u63A2\u7D22\u3067\u304D\u308B\u3053\u3068\u304C\
-    \u3042\u308B\n  void add_light(np c, X x) {\n    if constexpr (SUBTREE) mid =\
-    \ MX::op(mid, x);\n  }\n  void erase_light(np c, X x) {\n    if constexpr (SUBTREE)\
-    \ mid = MX::op(mid, MX::inverse(x));\n  }\n};\n#line 9 \"test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp\"\
+    \ = x; }\n\n  void add_light(np c) {\n    if constexpr (SUBTREE) mid = MX::op(mid,\
+    \ c->x);\n  }\n  void erase_light(np c) {\n    if constexpr (SUBTREE) mid = MX::op(mid,\
+    \ MX::inverse(c->x));\n  }\n\n  // b->x \u306B subtree value \u304C\u5165\u3063\
+    \u3066\u3044\u308B.\n  void change_light(np a, np b) {}\n};\n#line 9 \"test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp\"\
     \n\nusing Node = LCT_Node_Commutative_Monoid<Monoid_Add<ll>, true>;\n\nvoid solve()\
     \ {\n  LL(N, Q);\n  Link_Cut_Tree<Node> LCT(N);\n\n  VEC(ll, A, N);\n  FOR(i,\
     \ N) { LCT.set(i, A[i]); }\n  FOR(N - 1) {\n    INT(a, b);\n    LCT.link(a, b);\n\
@@ -348,7 +344,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-12-03 13:02:06+09:00'
+  timestamp: '2023-12-03 13:37:24+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
