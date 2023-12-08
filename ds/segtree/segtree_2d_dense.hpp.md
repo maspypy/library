@@ -71,8 +71,8 @@ data:
   timestamp: '2023-01-31 19:51:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc228f.test.cpp
   - test/aoj/2842_2.test.cpp
+  - test_atcoder/abc228f.test.cpp
 documentation_of: ds/segtree/segtree_2d_dense.hpp
 layout: document
 redirect_from:

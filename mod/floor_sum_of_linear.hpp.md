@@ -69,9 +69,9 @@ data:
   isVerificationFile: false
   path: mod/floor_sum_of_linear.hpp
   requiredBy:
-  - mod/range_freq_of_linear.hpp
-  - mod/mod_sum_of_linear.hpp
   - nt/range_rational_count.hpp
+  - mod/mod_sum_of_linear.hpp
+  - mod/range_freq_of_linear.hpp
   timestamp: '2023-11-10 22:48:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -79,11 +79,11 @@ data:
   - test/library_checker/math/sum_of_floor_of_linear.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
-  - test/yukicoder/2066.test.cpp
-  - test/yukicoder/2266.test.cpp
-  - test/yukicoder/2440.test.cpp
   - test/yukicoder/1201.test.cpp
   - test/yukicoder/2280.test.cpp
+  - test/yukicoder/2440.test.cpp
+  - test/yukicoder/2066.test.cpp
+  - test/yukicoder/2266.test.cpp
 documentation_of: mod/floor_sum_of_linear.hpp
 layout: document
 redirect_from:

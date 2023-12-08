@@ -577,8 +577,8 @@ data:
   timestamp: '2023-11-21 19:08:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/count_indep_set.test.cpp
   - test/mytest/count_clique.test.cpp
+  - test/mytest/count_indep_set.test.cpp
 documentation_of: graph/count/count_independent_set.hpp
 layout: document
 redirect_from:

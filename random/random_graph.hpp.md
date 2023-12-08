@@ -116,9 +116,9 @@ data:
   timestamp: '2023-11-07 22:29:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/count_indep_set.test.cpp
   - test/mytest/count_clique.test.cpp
   - test/mytest/find_odd_cycle.test.cpp
+  - test/mytest/count_indep_set.test.cpp
   - test/mytest/matching_line_graph.test.cpp
   - test/mytest/matching_ve.test.cpp
 documentation_of: random/random_graph.hpp

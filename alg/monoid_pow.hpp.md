@@ -44,10 +44,10 @@ data:
   timestamp: '2023-11-23 14:15:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc200f.test.cpp
   - test/library_checker/math/sum_of_floor_of_linear_2.test.cpp
   - test/mytest/floor_sum_of_polynomial.test.cpp
   - test/yukicoder/2362.test.cpp
+  - test_atcoder/abc200f.test.cpp
 documentation_of: alg/monoid_pow.hpp
 layout: document
 redirect_from:

@@ -540,13 +540,13 @@ data:
   - test/library_checker/bigint/multiplication_of_bigintegers.test.cpp
   - test/library_checker/bigint/addition_of_bigintegers.test.cpp
   - test/library_checker/sample/aplusb128.test.cpp
-  - test/yukicoder/2440.test.cpp
-  - test/yukicoder/303.test.cpp
+  - test/aoj/NTL_2_A.test.cpp
+  - test/aoj/NTL_2_C.test.cpp
+  - test/aoj/NTL_2_B.test.cpp
   - test/yukicoder/2508.test.cpp
   - test/yukicoder/2525.test.cpp
-  - test/aoj/NTL_2_C.test.cpp
-  - test/aoj/NTL_2_A.test.cpp
-  - test/aoj/NTL_2_B.test.cpp
+  - test/yukicoder/2440.test.cpp
+  - test/yukicoder/303.test.cpp
 documentation_of: bigint/base.hpp
 layout: document
 redirect_from:

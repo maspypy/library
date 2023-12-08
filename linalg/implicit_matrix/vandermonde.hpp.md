@@ -527,8 +527,8 @@ data:
   timestamp: '2023-11-21 19:08:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc260h.test.cpp
   - test/mytest/vandermonde.test.cpp
+  - test_atcoder/abc260h.test.cpp
 documentation_of: linalg/implicit_matrix/vandermonde.hpp
 layout: document
 redirect_from:

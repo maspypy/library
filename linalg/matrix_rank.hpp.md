@@ -56,14 +56,14 @@ data:
   isVerificationFile: false
   path: linalg/matrix_rank.hpp
   requiredBy:
-  - graph/maximum_matching_size.hpp
-  - linalg/matrix_lowrank_update.hpp
   - linalg/lowrank_update.hpp
+  - linalg/matrix_lowrank_update.hpp
+  - graph/maximum_matching_size.hpp
   timestamp: '2023-11-15 20:12:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/matrix/solve_linear.test.cpp
   - test/library_checker/graph/general_matching.test.cpp
+  - test/library_checker/matrix/solve_linear.test.cpp
   - test/mytest/tutte.test.cpp
   - test/mytest/matching_line_graph.test.cpp
   - test/mytest/matching.test.cpp

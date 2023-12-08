@@ -292,41 +292,16 @@ data:
     \ idx: I) {\r\n      while (l > LR[idx].fi) add_l(--l);\r\n      while (r < LR[idx].se)\
     \ add_r(r++);\r\n      while (l < LR[idx].fi) rm_l(l++);\r\n      while (r > LR[idx].se)\
     \ rm_r(--r);\r\n      query(idx);\r\n    }\r\n  }\r\n};\r\n#line 3 \"graph/ds/mo_on_tree.hpp\"\
-    \n\n// https://codeforces.com/contest/852/problem/I\n// \u3068\u308A\u3042\u3048\
-    \u305A\u30D1\u30B9\u306E\u5411\u304D\u304C\u306A\u3044\u3082\u306E\u3068\u3057\
-    \u3066\u4F5C\u6210\n// \u672A\u5BFE\u5FDC\uFF1A\u30D1\u30B9\u306E\u5411\u304D\u3042\
-    \u308A / \u8FBA\u30C7\u30FC\u30BF\ntemplate <typename TREE, bool ORIENTED = false>\n\
-    struct Mo_on_Tree {\n  TREE& tree;\n  vc<pair<int, int>> LR;\n\n  Mo mo;\n  Mo_on_Tree(TREE&\
-    \ tree) : tree(tree) {}\n  void add(int u, int v) {\n    if constexpr (!ORIENTED)\
-    \ {\n      if (tree.LID[u] > tree.LID[v]) swap(u, v);\n    }\n    LR.eb(tree.ELID(u)\
-    \ + 1, tree.ELID(v) + 1);\n  }\n\n  // init(): root \u3060\u3051\u304B\u3089\u306A\
-    \u308B path\n  // add_l(v), add_r(v)\uFF1A\u30D1\u30B9\u306E\u5148\u982D / \u672B\
-    \u5C3E\u306B v \u3092\u8FFD\u52A0\n  // rm_l(v), rm_r(v)\uFF1A\u30D1\u30B9\u306E\
-    \u5148\u982D / \u672B\u5C3E\u304B\u3089 v \u3092\u524A\u9664\n  // query(qid)\n\
-    \  template <typename F1, typename F2, typename F3, typename F4, typename F5,\n\
-    \            typename F6>\n  void calc_vertex(F1 init, F2 add_l, F3 add_r, F4\
-    \ rm_l, F5 rm_r, F6 query) {\n    const int N = tree.G.N;\n    auto I = Mo::get_mo_order(LR);\n\
-    \n    vc<int> FRM(2 * N), TO(2 * N), idx(2 * N);\n    vc<int> cnt(N);\n    deque<int>\
-    \ path = {0};\n    FOR(v, N) {\n      int a = tree.ELID(v), b = tree.ERID(v);\n\
-    \      FRM[a] = tree.parent[v], TO[a] = v;\n      FRM[b] = v, TO[b] = tree.parent[v];\n\
-    \      idx[a] = idx[b] = v;\n    }\n\n    auto flip_left = [&](int i) -> void\
-    \ {\n      const int a = FRM[i], b = TO[i], c = idx[i];\n      if (cnt[c] == 0)\
-    \ {\n        int v = path.front() ^ a ^ b;\n        path.emplace_front(v), add_l(v);\n\
-    \      } else {\n        int v = path.front();\n        path.pop_front(), rm_l(v);\n\
-    \      }\n      cnt[c] ^= 1;\n    };\n    auto flip_right = [&](int i) -> void\
-    \ {\n      const int a = FRM[i], b = TO[i], c = idx[i];\n      if (cnt[c] == 0)\
-    \ {\n        int v = path.back() ^ a ^ b;\n        path.emplace_back(v), add_r(v);\n\
-    \      } else {\n        int v = path.back();\n        path.pop_back(), rm_r(v);\n\
-    \      }\n      cnt[c] ^= 1;\n    };\n\n    init();\n\n    int l = 1, r = 1;\n\
-    \    for (auto idx: I) {\n      int L = LR[idx].fi, R = LR[idx].se;\n      while\
-    \ (l > L) { flip_left(--l); }\n      while (r < R) { flip_right(r++); }\n    \
-    \  while (l < L) { flip_left(l++); }\n      while (r > R) { flip_right(--r); }\n\
-    \      query(idx);\n    }\n  }\n\n  // init(): root \u3060\u3051\u304B\u3089\u306A\
-    \u308B path\n  // add_l(frm, to), add_r(frm, to)\uFF1A\u30D1\u30B9\u306E\u5148\
-    \u982D / \u672B\u5C3E\u306B (frm,to) \u3092\u8FFD\u52A0\n  // rm_l(frm, to), rm_r(frm,\
-    \ to)\uFF1A\u30D1\u30B9\u306E\u5148\u982D / \u672B\u5C3E\u306B (frm,to) \u3092\
-    \u8FFD\u52A0\n  // query(qid)\n  template <typename F1, typename F2, typename\
-    \ F3, typename F4, typename F5,\n            typename F6>\n  void calc_edge(F1\
+    \n\n// https://codeforces.com/contest/852/problem/I\ntemplate <typename TREE,\
+    \ bool ORIENTED = false>\nstruct Mo_on_Tree {\n  TREE& tree;\n  vc<pair<int, int>>\
+    \ LR;\n\n  Mo mo;\n  Mo_on_Tree(TREE& tree) : tree(tree) {}\n  void add(int u,\
+    \ int v) {\n    if constexpr (!ORIENTED) {\n      if (tree.LID[u] > tree.LID[v])\
+    \ swap(u, v);\n    }\n    LR.eb(tree.ELID(u) + 1, tree.ELID(v) + 1);\n  }\n\n\
+    \  // init(): root \u3060\u3051\u304B\u3089\u306A\u308B path\n  // add_l(v), add_r(v)\uFF1A\
+    \u30D1\u30B9\u306E\u5148\u982D / \u672B\u5C3E\u306B v \u3092\u8FFD\u52A0\n  //\
+    \ rm_l(v), rm_r(v)\uFF1A\u30D1\u30B9\u306E\u5148\u982D / \u672B\u5C3E\u304B\u3089\
+    \ v \u3092\u524A\u9664\n  // query(qid)\n  template <typename F1, typename F2,\
+    \ typename F3, typename F4, typename F5,\n            typename F6>\n  void calc_vertex(F1\
     \ init, F2 add_l, F3 add_r, F4 rm_l, F5 rm_r, F6 query) {\n    const int N = tree.G.N;\n\
     \    auto I = Mo::get_mo_order(LR);\n\n    vc<int> FRM(2 * N), TO(2 * N), idx(2\
     \ * N);\n    vc<int> cnt(N);\n    deque<int> path = {0};\n    FOR(v, N) {\n  \
@@ -334,33 +309,55 @@ data:
     \ = v;\n      FRM[b] = v, TO[b] = tree.parent[v];\n      idx[a] = idx[b] = v;\n\
     \    }\n\n    auto flip_left = [&](int i) -> void {\n      const int a = FRM[i],\
     \ b = TO[i], c = idx[i];\n      if (cnt[c] == 0) {\n        int v = path.front()\
-    \ ^ a ^ b;\n        path.emplace_front(v), add_l(v, v ^ a ^ b);\n      } else\
-    \ {\n        int v = path.front();\n        path.pop_front(), rm_l(v, v ^ a ^\
-    \ b);\n      }\n      cnt[c] ^= 1;\n    };\n    auto flip_right = [&](int i) ->\
-    \ void {\n      const int a = FRM[i], b = TO[i], c = idx[i];\n      if (cnt[c]\
-    \ == 0) {\n        int v = path.back() ^ a ^ b;\n        path.emplace_back(v),\
-    \ add_r(v ^ a ^ b, v);\n      } else {\n        int v = path.back();\n       \
-    \ path.pop_back(), rm_r(v ^ a ^ b, v);\n      }\n      cnt[c] ^= 1;\n    };\n\n\
-    \    init();\n\n    int l = 1, r = 1;\n    for (auto idx: I) {\n      int L =\
-    \ LR[idx].fi, R = LR[idx].se;\n      while (l > L) { flip_left(--l); }\n     \
-    \ while (r < R) { flip_right(r++); }\n      while (l < L) { flip_left(l++); }\n\
-    \      while (r > R) { flip_right(--r); }\n      query(idx);\n    }\n  }\n};\n\
-    #line 2 \"graph/ds/tree_monoid.hpp\"\n\r\n#line 2 \"ds/segtree/segtree.hpp\"\n\
-    \ntemplate <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X =\
-    \ typename MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n, log,\
-    \ size;\n\n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename\
-    \ F>\n  SegTree(int n, F f) {\n    build(n, f);\n  }\n  SegTree(const vc<X>& v)\
-    \ { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return\
-    \ MX::unit(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int\
-    \ i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int m,\
-    \ F f) {\n    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1\
-    \ << log;\n    dat.assign(size << 1, MX::unit());\n    FOR(i, n) dat[size + i]\
-    \ = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n  X get(int i) { return dat[size\
-    \ + i]; }\n  vc<X> get_all() { return {dat.begin() + size, dat.begin() + size\
-    \ + n}; }\n\n  void update(int i) { dat[i] = Monoid::op(dat[2 * i], dat[2 * i\
-    \ + 1]); }\n  void set(int i, const X& x) {\n    assert(i < n);\n    dat[i +=\
-    \ size] = x;\n    while (i >>= 1) update(i);\n  }\n\n  void multiply(int i, const\
-    \ X& x) {\n    assert(i < n);\n    i += size;\n    dat[i] = Monoid::op(dat[i],\
+    \ ^ a ^ b;\n        path.emplace_front(v), add_l(v);\n      } else {\n       \
+    \ int v = path.front();\n        path.pop_front(), rm_l(v);\n      }\n      cnt[c]\
+    \ ^= 1;\n    };\n    auto flip_right = [&](int i) -> void {\n      const int a\
+    \ = FRM[i], b = TO[i], c = idx[i];\n      if (cnt[c] == 0) {\n        int v =\
+    \ path.back() ^ a ^ b;\n        path.emplace_back(v), add_r(v);\n      } else\
+    \ {\n        int v = path.back();\n        path.pop_back(), rm_r(v);\n      }\n\
+    \      cnt[c] ^= 1;\n    };\n\n    init();\n\n    int l = 1, r = 1;\n    for (auto\
+    \ idx: I) {\n      int L = LR[idx].fi, R = LR[idx].se;\n      while (l > L) {\
+    \ flip_left(--l); }\n      while (r < R) { flip_right(r++); }\n      while (l\
+    \ < L) { flip_left(l++); }\n      while (r > R) { flip_right(--r); }\n      query(idx);\n\
+    \    }\n  }\n\n  // init(): root \u3060\u3051\u304B\u3089\u306A\u308B path\n \
+    \ // add_l(frm, to), add_r(frm, to)\uFF1A\u30D1\u30B9\u306E\u5148\u982D / \u672B\
+    \u5C3E\u306B (frm,to) \u3092\u8FFD\u52A0\n  // rm_l(frm, to), rm_r(frm, to)\uFF1A\
+    \u30D1\u30B9\u306E\u5148\u982D / \u672B\u5C3E\u306B (frm,to) \u3092\u8FFD\u52A0\
+    \n  // query(qid)\n  template <typename F1, typename F2, typename F3, typename\
+    \ F4, typename F5,\n            typename F6>\n  void calc_edge(F1 init, F2 add_l,\
+    \ F3 add_r, F4 rm_l, F5 rm_r, F6 query) {\n    const int N = tree.G.N;\n    auto\
+    \ I = Mo::get_mo_order(LR);\n\n    vc<int> FRM(2 * N), TO(2 * N), idx(2 * N);\n\
+    \    vc<int> cnt(N);\n    deque<int> path = {0};\n    FOR(v, N) {\n      int a\
+    \ = tree.ELID(v), b = tree.ERID(v);\n      FRM[a] = tree.parent[v], TO[a] = v;\n\
+    \      FRM[b] = v, TO[b] = tree.parent[v];\n      idx[a] = idx[b] = v;\n    }\n\
+    \n    auto flip_left = [&](int i) -> void {\n      const int a = FRM[i], b = TO[i],\
+    \ c = idx[i];\n      if (cnt[c] == 0) {\n        int v = path.front() ^ a ^ b;\n\
+    \        path.emplace_front(v), add_l(v, v ^ a ^ b);\n      } else {\n       \
+    \ int v = path.front();\n        path.pop_front(), rm_l(v, v ^ a ^ b);\n     \
+    \ }\n      cnt[c] ^= 1;\n    };\n    auto flip_right = [&](int i) -> void {\n\
+    \      const int a = FRM[i], b = TO[i], c = idx[i];\n      if (cnt[c] == 0) {\n\
+    \        int v = path.back() ^ a ^ b;\n        path.emplace_back(v), add_r(v ^\
+    \ a ^ b, v);\n      } else {\n        int v = path.back();\n        path.pop_back(),\
+    \ rm_r(v ^ a ^ b, v);\n      }\n      cnt[c] ^= 1;\n    };\n\n    init();\n\n\
+    \    int l = 1, r = 1;\n    for (auto idx: I) {\n      int L = LR[idx].fi, R =\
+    \ LR[idx].se;\n      while (l > L) { flip_left(--l); }\n      while (r < R) {\
+    \ flip_right(r++); }\n      while (l < L) { flip_left(l++); }\n      while (r\
+    \ > R) { flip_right(--r); }\n      query(idx);\n    }\n  }\n};\n#line 2 \"graph/ds/tree_monoid.hpp\"\
+    \n\r\n#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct SegTree\
+    \ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  using value_type\
+    \ = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() {}\n  SegTree(int n)\
+    \ { build(n); }\n  template <typename F>\n  SegTree(int n, F f) {\n    build(n,\
+    \ f);\n  }\n  SegTree(const vc<X>& v) { build(v); }\n\n  void build(int m) {\n\
+    \    build(m, [](int i) -> X { return MX::unit(); });\n  }\n  void build(const\
+    \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
+    \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1\
+    \ << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, MX::unit());\n\
+    \    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n\
+    \  X get(int i) { return dat[size + i]; }\n  vc<X> get_all() { return {dat.begin()\
+    \ + size, dat.begin() + size + n}; }\n\n  void update(int i) { dat[i] = Monoid::op(dat[2\
+    \ * i], dat[2 * i + 1]); }\n  void set(int i, const X& x) {\n    assert(i < n);\n\
+    \    dat[i += size] = x;\n    while (i >>= 1) update(i);\n  }\n\n  void multiply(int\
+    \ i, const X& x) {\n    assert(i < n);\n    i += size;\n    dat[i] = Monoid::op(dat[i],\
     \ x);\n    while (i >>= 1) update(i);\n  }\n\n  X prod(int L, int R) {\n    assert(0\
     \ <= L && L <= R && R <= n);\n    X vl = Monoid::unit(), vr = Monoid::unit();\n\
     \    L += size, R += size;\n    while (L < R) {\n      if (L & 1) vl = Monoid::op(vl,\
@@ -637,7 +634,7 @@ data:
   isVerificationFile: true
   path: test/mytest/mo_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2023-11-30 16:31:51+09:00'
+  timestamp: '2023-12-08 22:46:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/mo_on_tree.test.cpp

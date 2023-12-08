@@ -280,8 +280,8 @@ data:
   timestamp: '2023-12-03 00:05:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc269ex2.test.cpp
   - test/yukicoder/2258.test.cpp
+  - test_atcoder/abc269ex2.test.cpp
 documentation_of: graph/ds/static_toptree.hpp
 layout: document
 redirect_from:
