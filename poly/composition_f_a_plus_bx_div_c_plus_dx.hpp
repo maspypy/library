@@ -1,16 +1,16 @@
-#include "poly/composition_f_polynomial.hpp"
+#include "poly/composition_f_a_plus_bx.hpp"
 #include "poly/fps_pow.hpp"
 
 // f((a+bx)/(c+dx))
 // only_numerator = true
 //    -> (c+dx)^N f((a+bx)/(c+dx)) = sum f[i](a+bx)^i(c+dx)^{N-i}
 template <typename mint, bool only_numerator>
-vc<mint> composition_f_rational_1(vc<mint> f, mint a, mint b, mint c, mint d) {
+vc<mint> composition_f_a_plus_bx_div_c_plus_dx(vc<mint> f, mint a, mint b, mint c, mint d) {
   int N = len(f) - 1;
 
   if constexpr (!only_numerator) {
     assert(c != mint(0));
-    vc<mint> F = composition_f_rational_1<mint, true>(f, a, b, c, d);
+    vc<mint> F = composition_f_a_plus_bx_div_c_plus_dx<mint, true>(f, a, b, c, d);
     d /= c;
     c = c.inverse().pow(N);
     // c(1+dx)^{-N}
@@ -26,12 +26,12 @@ vc<mint> composition_f_rational_1(vc<mint> f, mint a, mint b, mint c, mint d) {
   if (mint(d) == 0) {
     mint pow_c = 1;
     FOR_R(i, N + 1) f[i] *= pow_c, pow_c *= c;
-    return composition_f_polynomial_1<mint>(f, a, b);
+    return composition_f_a_plus_bx<mint>(f, a, b);
   }
   // t = c+dx
   a = (a * d - b * c) / d, b = b / d;
   // sum f[i] (a+bt)^i t^{N-i}
-  f = composition_f_polynomial_1(f, b, a);
+  f = composition_f_a_plus_bx(f, b, a);
   reverse(all(f));
-  return composition_f_polynomial_1(f, c, d);
+  return composition_f_a_plus_bx(f, c, d);
 }
