@@ -201,22 +201,23 @@ data:
     \ = Monoid::unit();\n  while (exp) {\n    if (exp & 1) res = Monoid::op(res, x);\n\
     \    x = Monoid::op(x, x);\n    exp >>= 1;\n  }\n  return res;\n}\n#line 2 \"\
     mod/floor_monoid_product.hpp\"\n\n// https://yukicoder.me/submissions/883884\n\
-    // U \u306F\u7BC4\u56F2\u5185\u3067 ax+b \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\
-    \u30FC\u3057\u306A\u3044\u7A0B\u5EA6\n// yyy x yyyy x ... yyy x yyy\n// k \u500B\
-    \u76EE\u306E x \u307E\u3067\u306B floor(ak+b,m) \u500B\u306E y \u304C\u3042\u308B\
-    \n// my<=ax+b \u306B\u304A\u3051\u308B lattice path \u306B\u304A\u3051\u308B\u8FBA\
-    \u306E\u5217\u3068\u898B\u306A\u305B\u308B\ntemplate <typename Monoid, typename\
-    \ X, typename U>\nX floor_monoid_product(X x, X y, U N, U a, U b, U m) {\n  U\
-    \ c = (a * N + b) / m;\n  X pre = Monoid::unit(), suf = Monoid::unit();\n  while\
-    \ (1) {\n    const U p = a / m, q = b / m;\n    a %= m, b %= m;\n    x = Monoid::op(x,\
-    \ monoid_pow<Monoid>(y, p));\n    pre = Monoid::op(pre, monoid_pow<Monoid>(y,\
-    \ q));\n    c -= (p * N + q);\n    if (c == 0) break;\n    const U d = (m * c\
-    \ - b - 1) / a + 1;\n    suf = Monoid::op(y, Monoid::op(monoid_pow<Monoid>(x,\
-    \ N - d), suf));\n    b = m - b - 1 + a, N = c - 1, c = d;\n    swap(m, a), swap(x,\
-    \ y);\n  }\n  x = monoid_pow<Monoid>(x, N);\n  return Monoid::op(Monoid::op(pre,\
-    \ x), suf);\n}\n#line 1 \"alg/monoid/monoid_for_floor_sum.hpp\"\n\n// sum i^kfloor:\
-    \ floor path \u3067 (x,y) \u304B\u3089 x \u65B9\u5411\u306B\u9032\u3080\u3068\u304D\
-    \u306B x^ky \u3092\u8DB3\u3059\ntemplate <typename T, int K>\nstruct Monoid_for_floor_sum\
+    // https://qoj.ac/contest/1411/problem/7620\n// U \u306F\u7BC4\u56F2\u5185\u3067\
+    \ ax+b \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u7A0B\
+    \u5EA6\n// yyy x yyyy x ... yyy x yyy (x \u3092 N \u500B)\n// k \u500B\u76EE\u306E\
+    \ x \u307E\u3067\u306B floor(ak+b,m) \u500B\u306E y \u304C\u3042\u308B\n// my<=ax+b\
+    \ \u306B\u304A\u3051\u308B lattice path \u306B\u304A\u3051\u308B\u8FBA\u306E\u5217\
+    \u3068\u898B\u306A\u305B\u308B\ntemplate <typename Monoid, typename X, typename\
+    \ U>\nX floor_monoid_product(X x, X y, U N, U a, U b, U m) {\n  U c = (a * N +\
+    \ b) / m;\n  X pre = Monoid::unit(), suf = Monoid::unit();\n  while (1) {\n  \
+    \  const U p = a / m, q = b / m;\n    a %= m, b %= m;\n    x = Monoid::op(x, monoid_pow<Monoid>(y,\
+    \ p));\n    pre = Monoid::op(pre, monoid_pow<Monoid>(y, q));\n    c -= (p * N\
+    \ + q);\n    if (c == 0) break;\n    const U d = (m * c - b - 1) / a + 1;\n  \
+    \  suf = Monoid::op(y, Monoid::op(monoid_pow<Monoid>(x, N - d), suf));\n    b\
+    \ = m - b - 1 + a, N = c - 1, c = d;\n    swap(m, a), swap(x, y);\n  }\n  x =\
+    \ monoid_pow<Monoid>(x, N);\n  return Monoid::op(Monoid::op(pre, x), suf);\n}\n\
+    #line 1 \"alg/monoid/monoid_for_floor_sum.hpp\"\n\n// sum i^kfloor: floor path\
+    \ \u3067 (x,y) \u304B\u3089 x \u65B9\u5411\u306B\u9032\u3080\u3068\u304D\u306B\
+    \ x^ky \u3092\u8DB3\u3059\ntemplate <typename T, int K>\nstruct Monoid_for_floor_sum\
     \ {\n  using ARR = array<array<T, K + 1>, 2>;\n  struct Data {\n    ARR dp;\n\
     \    T dx, dy;\n  };\n\n  using value_type = Data;\n  using X = value_type;\n\
     \  static X op(X a, X b) {\n    static T comb[K + 1][K + 1];\n    if (comb[0][0]\
@@ -253,7 +254,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/sum_of_floor_of_linear_2.test.cpp
   requiredBy: []
-  timestamp: '2023-11-23 14:15:12+09:00'
+  timestamp: '2023-12-09 23:29:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/sum_of_floor_of_linear_2.test.cpp
