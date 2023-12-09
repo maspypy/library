@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 
 #include "mod/modint.hpp"
-#include "nt/function_on_divisors.hpp"
+#include "nt/array_on_divisors.hpp"
 #include "mod/modint.hpp"
 
 using mint = modint998;
@@ -14,7 +14,7 @@ void solve() {
   ll lcm = 1;
   for (auto&& x: A) lcm = lcm / gcd(lcm, x) * x;
 
-  Function_on_Divisors<int> X(lcm);
+  Array_On_Divisors<int> X(lcm);
   X.set_euler_phi();
 
   mint ANS = 0;
