@@ -50,12 +50,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_bipartite.hpp
     title: graph/count/count_bipartite.hpp
+  - icon: ':warning:'
+    path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
+    title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
-  - icon: ':warning:'
-    path: poly/composition_f_rational.hpp
-    title: poly/composition_f_rational.hpp
   - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
@@ -603,9 +603,9 @@ data:
   isVerificationFile: false
   path: poly/fps_pow.hpp
   requiredBy:
+  - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - poly/fps_sqrt.hpp
   - poly/composition_f_log_1_minus_x.hpp
-  - poly/composition_f_rational.hpp
   - seq/famous/stirling_number_1.hpp
   - seq/famous/surjection.hpp
   - seq/famous/stirling_number_2.hpp

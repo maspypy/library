@@ -26,6 +26,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
+  - icon: ':warning:'
+    path: nt/array_on_divisors.hpp
+    title: nt/array_on_divisors.hpp
   - icon: ':heavy_check_mark:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
@@ -168,6 +171,7 @@ data:
   - ds/static_range_frequency.hpp
   - ds/to_small_key.hpp
   - nt/discrete_log.hpp
+  - nt/array_on_divisors.hpp
   - mod/mod_kth_root.hpp
   - mod/mod_log.hpp
   - geo/range_closest_pair_query.hpp

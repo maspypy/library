@@ -883,6 +883,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/ds/dual_tree_monoid.hpp
       title: graph/ds/dual_tree_monoid.hpp
+    - icon: ':warning:'
+      path: graph/ds/dynamic_tree_dp.hpp
+      title: graph/ds/dynamic_tree_dp.hpp
     - icon: ':heavy_check_mark:'
       path: graph/ds/incremental_centroid.hpp
       title: graph/ds/incremental_centroid.hpp
@@ -1204,6 +1207,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/all_lcm.hpp
       title: nt/all_lcm.hpp
+    - icon: ':warning:'
+      path: nt/array_on_divisors.hpp
+      title: nt/array_on_divisors.hpp
     - icon: ':heavy_check_mark:'
       path: nt/array_on_floor.hpp
       title: nt/array_on_floor.hpp
@@ -1237,9 +1243,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/four_square.hpp
       title: nt/four_square.hpp
-    - icon: ':heavy_check_mark:'
-      path: nt/function_on_divisors.hpp
-      title: nt/function_on_divisors.hpp
     - icon: ':heavy_check_mark:'
       path: nt/gaussian_integers.hpp
       title: nt/gaussian_integers.hpp
@@ -1367,6 +1370,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/composition_f_1_minus_ex.hpp
       title: poly/composition_f_1_minus_ex.hpp
+    - icon: ':warning:'
+      path: poly/composition_f_a_plus_bx.hpp
+      title: poly/composition_f_a_plus_bx.hpp
+    - icon: ':warning:'
+      path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
+      title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
     - icon: ':heavy_check_mark:'
       path: poly/composition_f_ex.hpp
       title: poly/composition_f_ex.hpp
@@ -1376,12 +1385,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/composition_f_log_1_minus_x.hpp
       title: poly/composition_f_log_1_minus_x.hpp
-    - icon: ':warning:'
-      path: poly/composition_f_polynomial.hpp
-      title: poly/composition_f_polynomial.hpp
-    - icon: ':warning:'
-      path: poly/composition_f_rational.hpp
-      title: poly/composition_f_rational.hpp
     - icon: ':heavy_check_mark:'
       path: poly/convolution.hpp
       title: poly/convolution.hpp
@@ -1481,6 +1484,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/prefix_product_of_poly.hpp
       title: poly/prefix_product_of_poly.hpp
+    - icon: ':warning:'
+      path: poly/prefix_sum_of_polynomial.hpp
+      title: poly/prefix_sum_of_polynomial.hpp
     - icon: ':heavy_check_mark:'
       path: poly/product_of_f_rk_x.hpp
       title: poly/product_of_f_rk_x.hpp
@@ -2348,6 +2354,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/find_linear_recurrence.test.cpp
       title: test/library_checker/math/find_linear_recurrence.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/math/gaussian_integers.test.cpp
+      title: test/library_checker/math/gaussian_integers.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/gcd_convolution.test.cpp
       title: test/library_checker/math/gcd_convolution.test.cpp
@@ -3381,7 +3390,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1726.test.cpp
       title: test/yukicoder/1726.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/1728.test.cpp
       title: test/yukicoder/1728.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3609,7 +3618,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/2259.test.cpp
       title: test/yukicoder/2259.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/2264.test.cpp
       title: test/yukicoder/2264.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3696,6 +3705,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/255.test.cpp
       title: test/yukicoder/255.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/2573.test.cpp
+      title: test/yukicoder/2573.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/2574.test.cpp
+      title: test/yukicoder/2574.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/263.test.cpp
       title: test/yukicoder/263.test.cpp
@@ -3851,7 +3866,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc209e.test.cpp
       title: test_atcoder/abc209e.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_atcoder/abc212g.test.cpp
       title: test_atcoder/abc212g.test.cpp
     - icon: ':heavy_check_mark:'

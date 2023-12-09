@@ -50,12 +50,12 @@ data:
   - icon: ':warning:'
     path: poly/composed_sum.hpp
     title: poly/composed_sum.hpp
+  - icon: ':warning:'
+    path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
+    title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
-  - icon: ':warning:'
-    path: poly/composition_f_rational.hpp
-    title: poly/composition_f_rational.hpp
   - icon: ':heavy_check_mark:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
@@ -587,6 +587,7 @@ data:
   isVerificationFile: false
   path: poly/fps_exp.hpp
   requiredBy:
+  - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - poly/fps_pow.hpp
   - poly/product_of_one_minus_xn.hpp
   - poly/product_of_pow_of_linear.hpp
@@ -595,7 +596,6 @@ data:
   - poly/product_of_f_rk_x.hpp
   - poly/composed_product.hpp
   - poly/composed_sum.hpp
-  - poly/composition_f_rational.hpp
   - poly/product_of_one_plus_xn.hpp
   - seq/famous/stirling_number_1.hpp
   - seq/famous/surjection.hpp

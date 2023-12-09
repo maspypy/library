@@ -65,6 +65,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
+  - icon: ':warning:'
+    path: poly/composition_f_a_plus_bx.hpp
+    title: poly/composition_f_a_plus_bx.hpp
+  - icon: ':warning:'
+    path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
+    title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
@@ -74,12 +80,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
-  - icon: ':warning:'
-    path: poly/composition_f_polynomial.hpp
-    title: poly/composition_f_polynomial.hpp
-  - icon: ':warning:'
-    path: poly/composition_f_rational.hpp
-    title: poly/composition_f_rational.hpp
   - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
@@ -152,6 +152,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
+  - icon: ':warning:'
+    path: poly/prefix_sum_of_polynomial.hpp
+    title: poly/prefix_sum_of_polynomial.hpp
   - icon: ':heavy_check_mark:'
     path: poly/product_of_f_rk_x.hpp
     title: poly/product_of_f_rk_x.hpp
@@ -731,6 +734,7 @@ data:
   requiredBy:
   - poly/sum_of_prefix_suffix_products.hpp
   - poly/convolution.hpp
+  - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - poly/fps_composition.hpp
   - poly/fps_pow.hpp
   - poly/composition_f_ex_minus_1.hpp
@@ -740,6 +744,7 @@ data:
   - poly/product_of_pow_of_linear.hpp
   - poly/fps_sqrt.hpp
   - poly/poly_gcd.hpp
+  - poly/composition_f_a_plus_bx.hpp
   - poly/from_log_differentiation.hpp
   - poly/prefix_product_of_poly.hpp
   - poly/fps_div.hpp
@@ -747,7 +752,6 @@ data:
   - poly/sum_of_exp_bx.hpp
   - poly/convolution2d.hpp
   - poly/poly_taylor_shift.hpp
-  - poly/composition_f_polynomial.hpp
   - poly/convolution_all.hpp
   - poly/composition_f_1_minus_ex.hpp
   - poly/composition_f_ex.hpp
@@ -765,9 +769,9 @@ data:
   - poly/multipoint.hpp
   - poly/multivar_convolution_cyclic.hpp
   - poly/fps_log.hpp
+  - poly/prefix_sum_of_polynomial.hpp
   - poly/composed_sum.hpp
   - poly/sum_of_power_of_roots.hpp
-  - poly/composition_f_rational.hpp
   - poly/product_of_one_plus_xn.hpp
   - poly/convolution_leq.hpp
   - poly/fps_exp.hpp

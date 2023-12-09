@@ -26,6 +26,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
+  - icon: ':warning:'
+    path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
+    title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
@@ -35,9 +38,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
-  - icon: ':warning:'
-    path: poly/composition_f_rational.hpp
-    title: poly/composition_f_rational.hpp
   - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
@@ -74,6 +74,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/poly_gcd.hpp
     title: poly/poly_gcd.hpp
+  - icon: ':warning:'
+    path: poly/prefix_sum_of_polynomial.hpp
+    title: poly/prefix_sum_of_polynomial.hpp
   - icon: ':heavy_check_mark:'
     path: poly/product_of_f_rk_x.hpp
     title: poly/product_of_f_rk_x.hpp
@@ -429,6 +432,7 @@ data:
   isVerificationFile: false
   path: poly/count_terms.hpp
   requiredBy:
+  - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - poly/fps_pow.hpp
   - poly/composition_f_ex_minus_1.hpp
   - poly/product_of_one_minus_xn.hpp
@@ -450,9 +454,9 @@ data:
   - poly/multipoint.hpp
   - poly/multivar_convolution_cyclic.hpp
   - poly/fps_log.hpp
+  - poly/prefix_sum_of_polynomial.hpp
   - poly/composed_sum.hpp
   - poly/sum_of_power_of_roots.hpp
-  - poly/composition_f_rational.hpp
   - poly/product_of_one_plus_xn.hpp
   - poly/fps_exp.hpp
   - poly/coef_of_rational_fps.hpp

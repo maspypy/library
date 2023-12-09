@@ -11,6 +11,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
+  - icon: ':warning:'
+    path: graph/ds/dynamic_tree_dp.hpp
+    title: graph/ds/dynamic_tree_dp.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/incremental_centroid.hpp
     title: graph/ds/incremental_centroid.hpp
@@ -465,6 +468,7 @@ data:
   - graph/unicyclic.hpp
   - graph/functional.hpp
   - graph/compress_tree.hpp
+  - graph/ds/dynamic_tree_dp.hpp
   - graph/ds/static_toptree.hpp
   - graph/ds/dual_tree_monoid.hpp
   - graph/ds/tree_abelgroup.hpp

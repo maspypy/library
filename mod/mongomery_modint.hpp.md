@@ -35,6 +35,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/all_lcm.hpp
     title: nt/all_lcm.hpp
+  - icon: ':warning:'
+    path: nt/array_on_divisors.hpp
+    title: nt/array_on_divisors.hpp
   - icon: ':heavy_check_mark:'
     path: nt/crt.hpp
     title: nt/crt.hpp
@@ -50,9 +53,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/four_square.hpp
     title: nt/four_square.hpp
-  - icon: ':heavy_check_mark:'
-    path: nt/function_on_divisors.hpp
-    title: nt/function_on_divisors.hpp
   - icon: ':heavy_check_mark:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
@@ -108,6 +108,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/factorize.test.cpp
     title: test/library_checker/math/factorize.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/gaussian_integers.test.cpp
+    title: test/library_checker/math/gaussian_integers.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
@@ -205,9 +208,6 @@ data:
     path: test/yukicoder/1667.test.cpp
     title: test/yukicoder/1667.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1728.test.cpp
-    title: test/yukicoder/1728.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1783.test.cpp
     title: test/yukicoder/1783.test.cpp
   - icon: ':heavy_check_mark:'
@@ -229,17 +229,11 @@ data:
     path: test/yukicoder/2181.test.cpp
     title: test/yukicoder/2181.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2264.test.cpp
-    title: test/yukicoder/2264.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc152e.test.cpp
     title: test_atcoder/abc152e.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test_atcoder/abc212g.test.cpp
-    title: test_atcoder/abc212g.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc222g.test.cpp
     title: test_atcoder/abc222g.test.cpp
@@ -312,7 +306,7 @@ data:
   - nt/three_square.hpp
   - nt/primetest.hpp
   - nt/all_lcm.hpp
-  - nt/function_on_divisors.hpp
+  - nt/array_on_divisors.hpp
   - nt/crt.hpp
   - nt/euler_phi.hpp
   - nt/gaussian_integers.hpp
@@ -337,6 +331,7 @@ data:
   - test/library_checker/math/binomial_coefficient.test.cpp
   - test/library_checker/math/factorize.test.cpp
   - test/library_checker/math/primitive_root.test.cpp
+  - test/library_checker/math/gaussian_integers.test.cpp
   - test/library_checker/math/stirling_mod_p_2.test.cpp
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/library_checker/math/factorial_mongomery.test.cpp
@@ -369,9 +364,7 @@ data:
   - test/aoj/NTL_1_D.test.cpp
   - test/aoj/ITP1_D_D.test.cpp
   - test/yukicoder/2120.test.cpp
-  - test/yukicoder/2264.test.cpp
   - test/yukicoder/2181.test.cpp
-  - test/yukicoder/1728.test.cpp
   - test/yukicoder/1881.test.cpp
   - test/yukicoder/1593.test.cpp
   - test/yukicoder/1262.test.cpp
@@ -390,7 +383,6 @@ data:
   - test_atcoder/abc222g.test.cpp
   - test_atcoder/abc152e.test.cpp
   - test_atcoder/abc270_g.test.cpp
-  - test_atcoder/abc212g.test.cpp
 documentation_of: mod/mongomery_modint.hpp
 layout: document
 redirect_from:

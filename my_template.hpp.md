@@ -559,6 +559,9 @@ data:
     path: test/library_checker/math/find_linear_recurrence.test.cpp
     title: test/library_checker/math/find_linear_recurrence.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/gaussian_integers.test.cpp
+    title: test/library_checker/math/gaussian_integers.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/gcd_convolution.test.cpp
     title: test/library_checker/math/gcd_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1570,9 +1573,6 @@ data:
     path: test/yukicoder/1726.test.cpp
     title: test/yukicoder/1726.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1728.test.cpp
-    title: test/yukicoder/1728.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1744.test.cpp
     title: test/yukicoder/1744.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1798,9 +1798,6 @@ data:
     path: test/yukicoder/2259.test.cpp
     title: test/yukicoder/2259.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2264.test.cpp
-    title: test/yukicoder/2264.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2265.test.cpp
     title: test/yukicoder/2265.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1884,6 +1881,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/255.test.cpp
     title: test/yukicoder/255.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2573.test.cpp
+    title: test/yukicoder/2573.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2574.test.cpp
+    title: test/yukicoder/2574.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/263.test.cpp
     title: test/yukicoder/263.test.cpp
@@ -2034,9 +2037,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc209e.test.cpp
     title: test_atcoder/abc209e.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test_atcoder/abc212g.test.cpp
-    title: test_atcoder/abc212g.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc212h.test.cpp
     title: test_atcoder/abc212h.test.cpp
@@ -2508,6 +2508,7 @@ data:
   - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
   - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/min_of_mod_of_linear.test.cpp
+  - test/library_checker/math/gaussian_integers.test.cpp
   - test/library_checker/math/gcd_convolution.test.cpp
   - test/library_checker/math/partition.test.cpp
   - test/library_checker/math/factorial.test.cpp
@@ -2925,7 +2926,6 @@ data:
   - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/1216_2.test.cpp
   - test/yukicoder/1561.test.cpp
-  - test/yukicoder/2264.test.cpp
   - test/yukicoder/1818.test.cpp
   - test/yukicoder/2003.test.cpp
   - test/yukicoder/1573.test.cpp
@@ -2936,6 +2936,7 @@ data:
   - test/yukicoder/1649_2.test.cpp
   - test/yukicoder/114.test.cpp
   - test/yukicoder/1311.test.cpp
+  - test/yukicoder/2573.test.cpp
   - test/yukicoder/2181.test.cpp
   - test/yukicoder/2293.test.cpp
   - test/yukicoder/1036_3.test.cpp
@@ -2949,7 +2950,6 @@ data:
   - test/yukicoder/502.test.cpp
   - test/yukicoder/1270.test.cpp
   - test/yukicoder/1212.test.cpp
-  - test/yukicoder/1728.test.cpp
   - test/yukicoder/1167.test.cpp
   - test/yukicoder/1303.test.cpp
   - test/yukicoder/1547.test.cpp
@@ -3054,6 +3054,7 @@ data:
   - test/yukicoder/1036_2.test.cpp
   - test/yukicoder/1962.test.cpp
   - test/yukicoder/502_2.test.cpp
+  - test/yukicoder/2574.test.cpp
   - test/yukicoder/2320.test.cpp
   - test/yukicoder/578.test.cpp
   - test/yukicoder/1263.test.cpp
@@ -3255,7 +3256,6 @@ data:
   - test_atcoder/abc274_h.test.cpp
   - test_atcoder/abc223h.test.cpp
   - test_atcoder/arc123d.test.cpp
-  - test_atcoder/abc212g.test.cpp
   - test_atcoder/abc301e.test.cpp
   - test_atcoder/abc274g.test.cpp
   - test_atcoder/abc256d.test.cpp

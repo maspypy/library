@@ -68,6 +68,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
+  - icon: ':warning:'
+    path: graph/ds/dynamic_tree_dp.hpp
+    title: graph/ds/dynamic_tree_dp.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/incremental_centroid.hpp
     title: graph/ds/incremental_centroid.hpp
@@ -862,6 +865,7 @@ data:
   - graph/minimum_hamiltonian_cycle.hpp
   - graph/find_nontransitive_triple.hpp
   - graph/maximum_independent_set_weighted.hpp
+  - graph/ds/dynamic_tree_dp.hpp
   - graph/ds/static_toptree.hpp
   - graph/ds/dual_tree_monoid.hpp
   - graph/ds/tree_abelgroup.hpp

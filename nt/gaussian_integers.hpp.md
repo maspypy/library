@@ -31,6 +31,9 @@ data:
     title: nt/three_triangular.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/gaussian_integers.test.cpp
+    title: test/library_checker/math/gaussian_integers.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
   - icon: ':heavy_check_mark:'
@@ -263,6 +266,7 @@ data:
   timestamp: '2023-11-02 05:38:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/library_checker/math/gaussian_integers.test.cpp
   - test/mytest/three_triangular.test.cpp
   - test/mytest/four_square.test.cpp
   - test/mytest/three_square.test.cpp

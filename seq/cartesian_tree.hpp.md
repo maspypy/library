@@ -22,6 +22,9 @@ data:
     path: test/yukicoder/2361.test.cpp
     title: test/yukicoder/2361.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2574.test.cpp
+    title: test/yukicoder/2574.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc234g.test.cpp
     title: test_atcoder/abc234g.test.cpp
   _isVerificationFailed: false
@@ -98,6 +101,7 @@ data:
   - test/aoj/DPL_3_B.test.cpp
   - test/aoj/DPL_3_C.test.cpp
   - test/yukicoder/2361.test.cpp
+  - test/yukicoder/2574.test.cpp
   - test_atcoder/abc234g.test.cpp
 documentation_of: seq/cartesian_tree.hpp
 layout: document

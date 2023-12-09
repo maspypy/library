@@ -5,26 +5,19 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/ds/static_toptree.hpp
+    title: graph/ds/static_toptree.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: graph/ds/dynamic_tree_dp.hpp
-    title: graph/ds/dynamic_tree_dp.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2258.test.cpp
-    title: test/yukicoder/2258.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test_atcoder/abc269ex2.test.cpp
-    title: test_atcoder/abc269ex2.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links:
-    - https://www.mathenachia.blog/mergetech-and-logn/
-    - https://yukicoder.me/submissions/838092
+    - https://codeforces.com/contest/1172/problem/E
   bundledCode: "#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate\
     \ <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate\
     \ <typename T = int, bool directed = false>\nstruct Graph {\n  static constexpr\
@@ -216,80 +209,72 @@ data:
     \ auto [s2, y] = POP(que);\n        int z = add_node(x, y, me, me, false);\n \
     \       que.emplace(s1 + s2, z);\n      }\n      auto [s, x] = POP(que);\n   \
     \   return add_node(x, -1, me, me, true);\n    };\n    return dfs(dfs, 0, len(path));\n\
-    \  }\n};\n"
-  code: "#include \"graph/tree.hpp\"\n\n/*\ntute \u3055\u3093\u306E\u5B9F\u88C5 https://yukicoder.me/submissions/838092\
-    \ \u3092\u53C2\u8003\u306B\u3057\u3066\u3044\u308B.\n\u3044\u308F\u3086\u308B\
-    \ toptree \uFF08\u8FBA\u304B\u3089\u306F\u3058\u3081\u3066\u30DE\u30FC\u30B8\u904E\
-    \u7A0B\u3092\u6728\u306B\u3059\u308B\uFF09\u3068\u306F\u5C11\u3057\u7570\u306A\
-    \u308B\u306F\u305A.\n\u6728\u3092\u300Cheavy path \u4E0A\u306E\u8FBA\u3067\u5206\
-    \u5272\u300D\u300C\u6839\u3092 virtual \u306B\u3059\u308B\u300D\n\u300Clight edges\
-    \ \u306E\u5206\u5272\u300D\u300Clight edge \u3092\u6D88\u3059\u300D\u3067\u9802\
-    \u70B9\u306B\u5206\u5272\u3057\u3066\u3044\u304F.\n\u9006\u306B\u305F\u3069\u308C\
-    \u3070\uFF0C1 \u9802\u70B9\u304B\u3089\u306F\u3058\u3081\u3066\u6728\u5168\u4F53\
-    \u3092\u4F5C\u308B\u9AD8\u3055 O(logN) \u306E\u6728\u306B\u306A\u308B.\n\u9AD8\
-    \u3055\u306B\u3064\u3044\u3066\uFF1Ahttps://www.mathenachia.blog/mergetech-and-logn/\n\
-    \u30FBlch == rch == -1\uFF1A\u9802\u70B9\n\u30FBrch == -1\uFF1A\n  \u30FBheavy\
-    \ \u306A\u3089 light \u306E\u96C6\u7D04\u306B\u9802\u70B9\u3092\u4ED8\u52A0\u3057\
-    \u305F\u3082\u306E\n  \u30FBlight \u306A\u3089 \u6839\u4ED8\u304D\u6728\u306B\
-    \ light edge \u3092\u4ED8\u52A0\u3057\u305F\u3082\u306E\n\u30FB\u5B50\u304C 2\
-    \ \u3064\n  \u30FBheavy \u306A\u3089 heavy path \u3092\u8FBA\u3067\u7D50\u5408\
-    \u3057\u305F\u3082\u306E\n  \u30FBlight \u306A\u3089 light edge \u305F\u3061\u306E\
-    \u30DE\u30FC\u30B8\n*/\ntemplate <typename TREE>\nstruct Static_TopTree {\n  TREE\
-    \ &tree;\n\n  vc<int> par, lch, rch, A, B;\n  vc<bool> heavy;\n\n  Static_TopTree(TREE\
-    \ &tree) : tree(tree) {\n    int root = tree.V[0];\n    build(root);\n    // relabel\n\
-    \    int n = len(par);\n    reverse(all(par)), reverse(all(lch)), reverse(all(rch)),\
-    \ reverse(all(A)),\n        reverse(all(B)), reverse(all(heavy));\n    for (auto\
-    \ &x: par) x = (x == -1 ? -1 : n - 1 - x);\n    for (auto &x: lch) x = (x == -1\
-    \ ? -1 : n - 1 - x);\n    for (auto &x: rch) x = (x == -1 ? -1 : n - 1 - x);\n\
-    \  }\n\n  // \u6728\u5168\u4F53\u3067\u306E\u96C6\u7D04\u5024\u3092\u5F97\u308B\
-    \n  // from_vertex(v)\n  // add_vertex(x, v)\n  // add_edge(x, u, v)  : u \u304C\
-    \u89AA\n  // merge_light(x, y)\n  // merge_heavy(x, y, a, b, c, d)  : [a,b] +\
-    \ [c,d] = [a,d]\n  template <typename Data, typename F1, typename F2, typename\
-    \ F3, typename F4,\n            typename F5>\n  Data tree_dp(F1 from_vertex, F2\
-    \ add_vertex, F3 add_edge, F4 merge_light,\n               F5 merge_heavy) {\n\
-    \    auto dfs = [&](auto &dfs, int k) -> Data {\n      if (lch[k] == -1 && rch[k]\
-    \ == -1) { return from_vertex(A[k]); }\n      if (rch[k] == -1) {\n        Data\
-    \ x = dfs(dfs, lch[k]);\n        if (heavy[k]) {\n          return add_vertex(x,\
-    \ A[k]);\n        } else {\n          return add_edge(x, A[k], B[lch[k]]);\n \
-    \       }\n      }\n      Data x = dfs(dfs, lch[k]);\n      Data y = dfs(dfs,\
-    \ rch[k]);\n      if (heavy[k]) {\n        return merge_heavy(x, y, A[lch[k]],\
-    \ B[lch[k]], A[rch[k]], B[rch[k]]);\n      }\n      return merge_light(x, y);\n\
-    \    };\n    return dfs(dfs, 0);\n  }\n\nprivate:\n  int add_node(int l, int r,\
-    \ int a, int b, bool h) {\n    int ret = len(par);\n    par.eb(-1), lch.eb(l),\
-    \ rch.eb(r), A.eb(a), B.eb(b), heavy.eb(h);\n    if (l != -1) par[l] = ret;\n\
-    \    if (r != -1) par[r] = ret;\n    return ret;\n  }\n\n  int build(int v) {\n\
-    \    // v \u306F heavy path \u306E\u6839\u306A\u306E\u3067 v \u3092\u6839\u3068\
-    \u3059\u308B\u90E8\u5206\u6728\u306B\u5BFE\u5FDC\u3059\u308B\u30CE\u30FC\u30C9\
-    \u3092\u4F5C\u308B\n    assert(tree.head[v] == v);\n    auto path = tree.heavy_path_at(v);\n\
-    \    reverse(all(path));\n\n    auto dfs = [&](auto &dfs, int l, int r) -> int\
-    \ {\n      // path[l:r)\n      if (l + 1 < r) {\n        int m = (l + r) / 2;\n\
-    \        int x = dfs(dfs, l, m);\n        int y = dfs(dfs, m, r);\n        return\
-    \ add_node(x, y, path[l], path[r - 1], true);\n      }\n      assert(r == l +\
-    \ 1);\n      int me = path[l];\n      // sz, idx\n      pqg<pair<int, int>> que;\n\
-    \      for (auto &to: tree.collect_light(me)) {\n        int x = build(to);\n\
-    \        int y = add_node(x, -1, me, me, false);\n        que.emplace(tree.subtree_size(to),\
-    \ y);\n      }\n      if (que.empty()) { return add_node(-1, -1, me, me, true);\
-    \ }\n      while (len(que) >= 2) {\n        auto [s1, x] = POP(que);\n       \
-    \ auto [s2, y] = POP(que);\n        int z = add_node(x, y, me, me, false);\n \
-    \       que.emplace(s1 + s2, z);\n      }\n      auto [s, x] = POP(que);\n   \
-    \   return add_node(x, -1, me, me, true);\n    };\n    return dfs(dfs, 0, len(path));\n\
-    \  }\n};"
+    \  }\n};\n#line 2 \"graph/ds/dynamic_tree_dp.hpp\"\n\n// https://codeforces.com/contest/1172/problem/E\n\
+    // function \u3092\u6301\u305F\u305B\u308B\u3068 1.5 \u500D\u9045\u3044\u3093\u3060\
+    \u304C\u3069\u3046\u3057\u3088\u3046\ntemplate <typename TREE, typename Data>\n\
+    struct Dynamic_Tree_Dp {\n  Static_TopTree<TREE> STT;\n  int n;\n  vc<Data> dp;\n\
+    \  vc<int> v_to_k;\n\n  template <typename F1, typename F2, typename F3, typename\
+    \ F4, typename F5>\n  Dynamic_Tree_Dp(TREE& tree, F1 from_vertex, F2 add_vertex,\
+    \ F3 add_edge,\n                  F4 merge_light, F5 merge_heavy)\n      : STT(tree)\
+    \ {\n    n = len(STT.par);\n    dp.resize(n);\n    FOR_R(i, n) {\n      upd(i,\
+    \ from_vertex, add_vertex, add_edge, merge_light, merge_heavy);\n    }\n    int\
+    \ N = tree.N;\n    v_to_k.assign(N, -1);\n    FOR(k, n) {\n      if (STT.lch[k]\
+    \ == -1 && STT.rch[k] == -1) { v_to_k[STT.A[k]] = k; }\n      elif (STT.rch[k]\
+    \ == -1 && STT.heavy[k]) { v_to_k[STT.A[k]] = k; }\n    }\n  }\n\n  template <typename\
+    \ F1, typename F2, typename F3, typename F4, typename F5>\n  void upd(int k, F1\
+    \ from_vertex, F2 add_vertex, F3 add_edge, F4 merge_light,\n           F5 merge_heavy)\
+    \ {\n    int l = STT.lch[k], r = STT.rch[k], a = STT.A[k];\n    if (l == -1 &&\
+    \ r == -1) { dp[k] = from_vertex(a); }\n    elif (r == -1) {\n      if (STT.heavy[k])\
+    \ {\n        dp[k] = add_vertex(dp[l], a);\n      } else {\n        dp[k] = add_edge(dp[l],\
+    \ a, STT.B[l]);\n      }\n    }\n    else {\n      if (STT.heavy[k]) {\n     \
+    \   dp[k]\n            = merge_heavy(dp[l], dp[r], STT.A[l], STT.B[l], STT.A[r],\
+    \ STT.B[r]);\n      } else {\n        dp[k] = merge_light(dp[l], dp[r]);\n   \
+    \   }\n    }\n  }\n\n  template <typename F1, typename F2, typename F3, typename\
+    \ F4, typename F5>\n  void recalc_vertex(int v, F1 from_vertex, F2 add_vertex,\
+    \ F3 add_edge,\n                     F4 merge_light, F5 merge_heavy) {\n    int\
+    \ k = v_to_k[v];\n    while (k != -1) {\n      upd(k, from_vertex, add_vertex,\
+    \ add_edge, merge_light, merge_heavy),\n          k = STT.par[k];\n    }\n  }\n\
+    \n  Data get() { return dp[0]; }\n};\n"
+  code: "#include \"graph/ds/static_toptree.hpp\"\n\n// https://codeforces.com/contest/1172/problem/E\n\
+    // function \u3092\u6301\u305F\u305B\u308B\u3068 1.5 \u500D\u9045\u3044\u3093\u3060\
+    \u304C\u3069\u3046\u3057\u3088\u3046\ntemplate <typename TREE, typename Data>\n\
+    struct Dynamic_Tree_Dp {\n  Static_TopTree<TREE> STT;\n  int n;\n  vc<Data> dp;\n\
+    \  vc<int> v_to_k;\n\n  template <typename F1, typename F2, typename F3, typename\
+    \ F4, typename F5>\n  Dynamic_Tree_Dp(TREE& tree, F1 from_vertex, F2 add_vertex,\
+    \ F3 add_edge,\n                  F4 merge_light, F5 merge_heavy)\n      : STT(tree)\
+    \ {\n    n = len(STT.par);\n    dp.resize(n);\n    FOR_R(i, n) {\n      upd(i,\
+    \ from_vertex, add_vertex, add_edge, merge_light, merge_heavy);\n    }\n    int\
+    \ N = tree.N;\n    v_to_k.assign(N, -1);\n    FOR(k, n) {\n      if (STT.lch[k]\
+    \ == -1 && STT.rch[k] == -1) { v_to_k[STT.A[k]] = k; }\n      elif (STT.rch[k]\
+    \ == -1 && STT.heavy[k]) { v_to_k[STT.A[k]] = k; }\n    }\n  }\n\n  template <typename\
+    \ F1, typename F2, typename F3, typename F4, typename F5>\n  void upd(int k, F1\
+    \ from_vertex, F2 add_vertex, F3 add_edge, F4 merge_light,\n           F5 merge_heavy)\
+    \ {\n    int l = STT.lch[k], r = STT.rch[k], a = STT.A[k];\n    if (l == -1 &&\
+    \ r == -1) { dp[k] = from_vertex(a); }\n    elif (r == -1) {\n      if (STT.heavy[k])\
+    \ {\n        dp[k] = add_vertex(dp[l], a);\n      } else {\n        dp[k] = add_edge(dp[l],\
+    \ a, STT.B[l]);\n      }\n    }\n    else {\n      if (STT.heavy[k]) {\n     \
+    \   dp[k]\n            = merge_heavy(dp[l], dp[r], STT.A[l], STT.B[l], STT.A[r],\
+    \ STT.B[r]);\n      } else {\n        dp[k] = merge_light(dp[l], dp[r]);\n   \
+    \   }\n    }\n  }\n\n  template <typename F1, typename F2, typename F3, typename\
+    \ F4, typename F5>\n  void recalc_vertex(int v, F1 from_vertex, F2 add_vertex,\
+    \ F3 add_edge,\n                     F4 merge_light, F5 merge_heavy) {\n    int\
+    \ k = v_to_k[v];\n    while (k != -1) {\n      upd(k, from_vertex, add_vertex,\
+    \ add_edge, merge_light, merge_heavy),\n          k = STT.par[k];\n    }\n  }\n\
+    \n  Data get() { return dp[0]; }\n};"
   dependsOn:
+  - graph/ds/static_toptree.hpp
   - graph/tree.hpp
   - graph/base.hpp
   isVerificationFile: false
-  path: graph/ds/static_toptree.hpp
-  requiredBy:
-  - graph/ds/dynamic_tree_dp.hpp
-  timestamp: '2023-12-03 00:05:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yukicoder/2258.test.cpp
-  - test_atcoder/abc269ex2.test.cpp
-documentation_of: graph/ds/static_toptree.hpp
+  path: graph/ds/dynamic_tree_dp.hpp
+  requiredBy: []
+  timestamp: '2023-12-09 16:27:58+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: graph/ds/dynamic_tree_dp.hpp
 layout: document
 redirect_from:
-- /library/graph/ds/static_toptree.hpp
-- /library/graph/ds/static_toptree.hpp.html
-title: graph/ds/static_toptree.hpp
+- /library/graph/ds/dynamic_tree_dp.hpp
+- /library/graph/ds/dynamic_tree_dp.hpp.html
+title: graph/ds/dynamic_tree_dp.hpp
 ---

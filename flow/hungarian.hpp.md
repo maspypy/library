@@ -9,6 +9,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1789.test.cpp
     title: test/yukicoder/1789.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2573.test.cpp
+    title: test/yukicoder/2573.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -70,6 +73,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/graph/assignment.test.cpp
+  - test/yukicoder/2573.test.cpp
   - test/yukicoder/1789.test.cpp
 documentation_of: flow/hungarian.hpp
 layout: document

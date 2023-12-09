@@ -56,18 +56,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
+  - icon: ':warning:'
+    path: poly/composition_f_a_plus_bx.hpp
+    title: poly/composition_f_a_plus_bx.hpp
+  - icon: ':warning:'
+    path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
+    title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex_minus_1.hpp
     title: poly/composition_f_ex_minus_1.hpp
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
-  - icon: ':warning:'
-    path: poly/composition_f_polynomial.hpp
-    title: poly/composition_f_polynomial.hpp
-  - icon: ':warning:'
-    path: poly/composition_f_rational.hpp
-    title: poly/composition_f_rational.hpp
   - icon: ':heavy_check_mark:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
@@ -249,12 +249,12 @@ data:
   isVerificationFile: false
   path: nt/primetable.hpp
   requiredBy:
+  - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - poly/composition_f_ex_minus_1.hpp
+  - poly/composition_f_a_plus_bx.hpp
   - poly/poly_taylor_shift.hpp
-  - poly/composition_f_polynomial.hpp
   - poly/composition_f_1_minus_ex.hpp
   - poly/composition_f_log_1_minus_x.hpp
-  - poly/composition_f_rational.hpp
   - nt/multiplicative_sum.hpp
   - nt/range_rational_count.hpp
   - nt/lpf_table.hpp

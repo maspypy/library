@@ -41,18 +41,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
+  - icon: ':warning:'
+    path: poly/composition_f_a_plus_bx.hpp
+    title: poly/composition_f_a_plus_bx.hpp
+  - icon: ':warning:'
+    path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
+    title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex_minus_1.hpp
     title: poly/composition_f_ex_minus_1.hpp
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
-  - icon: ':warning:'
-    path: poly/composition_f_polynomial.hpp
-    title: poly/composition_f_polynomial.hpp
-  - icon: ':warning:'
-    path: poly/composition_f_rational.hpp
-    title: poly/composition_f_rational.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
@@ -404,11 +404,11 @@ data:
   isVerificationFile: false
   path: poly/poly_taylor_shift.hpp
   requiredBy:
+  - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - poly/composition_f_ex_minus_1.hpp
-  - poly/composition_f_polynomial.hpp
+  - poly/composition_f_a_plus_bx.hpp
   - poly/composition_f_1_minus_ex.hpp
   - poly/composition_f_log_1_minus_x.hpp
-  - poly/composition_f_rational.hpp
   - linalg/det_A_plus_xB.hpp
   - seq/famous/stirling_number_1.hpp
   timestamp: '2023-11-21 19:08:32+09:00'
