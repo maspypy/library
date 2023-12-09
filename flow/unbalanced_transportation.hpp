@@ -2,6 +2,7 @@
 左側に K 頂点、右側に N 頂点、流量 N の二部最小費用流を
 O((K^2logN+K^3)N) で解く
 https://ac.nowcoder.com/acm/contest/33188/B
+https://qoj.ac/contest/1356/problem/7185
 */
 template <typename T>
 struct Unbalanced_Transportation_Problem {
@@ -11,7 +12,7 @@ struct Unbalanced_Transportation_Problem {
   vc<int> FRM;
   Unbalanced_Transportation_Problem(int K, int N, vc<int>& supply)
       : K(K), N(N), supply(supply) {
-    assert(SUM(supply) == N);
+    assert(SUM<ll>(supply) >= N);
     cost.assign(K, vc<T>(N, infty<T>));
     FRM.assign(N, -1);
   }
@@ -35,6 +36,7 @@ struct Unbalanced_Transportation_Problem {
       unused[a].emplace(c, b);
     }
     while (1) {
+      if (len(res) == N + 1) break;
       // update prique
       FOR(a, K) {
         auto& que = unused[a];
@@ -100,7 +102,6 @@ struct Unbalanced_Transportation_Problem {
           edge[v][a].emplace(cost[v][b] - cost[a][b], b);
         }
       };
-
       int v = best;
       match(v, unused[v].top().se);
       while (par[v] != -1) {

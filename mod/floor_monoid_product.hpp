@@ -1,8 +1,9 @@
 #include "alg/monoid_pow.hpp"
 
 // https://yukicoder.me/submissions/883884
+// https://qoj.ac/contest/1411/problem/7620
 // U は範囲内で ax+b がオーバーフローしない程度
-// yyy x yyyy x ... yyy x yyy
+// yyy x yyyy x ... yyy x yyy (x を N 個)
 // k 個目の x までに floor(ak+b,m) 個の y がある
 // my<=ax+b における lattice path における辺の列と見なせる
 template <typename Monoid, typename X, typename U>
