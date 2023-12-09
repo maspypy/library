@@ -2,8 +2,6 @@
 #include "ds/offline_query/mo.hpp"
 
 // https://codeforces.com/contest/852/problem/I
-// とりあえずパスの向きがないものとして作成
-// 未対応：パスの向きあり / 辺データ
 template <typename TREE, bool ORIENTED = false>
 struct Mo_on_Tree {
   TREE& tree;
