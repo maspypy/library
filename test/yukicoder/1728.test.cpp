@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1728"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "nt/function_on_divisors.hpp"
+#include "nt/array_on_divisors.hpp"
 #include "mod/modint.hpp"
 
 using mint = modint107;
@@ -11,7 +11,7 @@ void solve() {
 
   mint ANS = 0;
   // 回転
-  Function_on_Divisors<mint> f(N);
+  Array_On_Divisors<mint> f(N);
   f.set_euler_phi();
   f.enumerate(
       [&](ll d, mint phi) -> void { ANS += phi * mint(C).pow(2 * N / d); });
@@ -21,10 +21,7 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  LL(T);
+  INT(T);
   FOR(T) solve();
-
   return 0;
 }
