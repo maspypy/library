@@ -43,7 +43,10 @@ struct BigInteger {
     return *this;
   }
   bool operator<(const bint &p) const {
-    if (sgn != p.sgn) return sgn < p.sgn;
+    if (sgn != p.sgn) {
+      if (dat.empty() && p.dat.empty()) return false;
+      return sgn < p.sgn;
+    }
     if (len(dat) != len(p.dat)) {
       if (sgn == 1) return len(dat) < len(p.dat);
       if (sgn == -1) return len(dat) > len(p.dat);
@@ -105,11 +108,10 @@ struct BigInteger {
   bint operator*(const bint &p) const { return bint(*this) *= p; }
   // bint operator/(const modint &p) const { return modint(*this) /= p; }
   bool operator==(const bint &p) const {
+    if (dat.empty() && p.dat.empty()) return true;
     return (sgn == p.sgn && dat == p.dat);
   }
-  bool operator!=(const bint &p) const {
-    return (sgn != p.sgn || dat != p.dat);
-  }
+  bool operator!=(const bint &p) const { return !((*this) == p); }
 
   vc<int> convolve(const vc<int> &a, const vc<int> &b) {
     int n = len(a), m = len(b);
