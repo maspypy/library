@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest_path/bfs_bitset.hpp
     title: graph/shortest_path/bfs_bitset.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: knapsack/subset_sum.hpp
     title: knapsack/subset_sum.hpp
   - icon: ':warning:'
@@ -48,12 +48,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_2.test.cpp
     title: test/yukicoder/4_2.test.cpp
-  - icon: ':x:'
-    path: test_atcoder/abc326f.test.cpp
-    title: test_atcoder/abc326f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/contest/914/problem/F
@@ -242,7 +239,7 @@ data:
   - knapsack/subset_sum.hpp
   - graph/shortest_path/bfs_bitset.hpp
   timestamp: '2023-11-03 05:38:01+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/mybitset.test.cpp
   - test/mytest/subset_sum.test.cpp
@@ -254,7 +251,6 @@ data:
   - test/yukicoder/4_2.test.cpp
   - test/yukicoder/142.test.cpp
   - test/yukicoder/1400_2.test.cpp
-  - test_atcoder/abc326f.test.cpp
 documentation_of: ds/my_bitset.hpp
 layout: document
 redirect_from:

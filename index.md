@@ -269,7 +269,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/meldable_heap.hpp
       title: ds/meldable_heap.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/my_bitset.hpp
       title: ds/my_bitset.hpp
     - icon: ':heavy_check_mark:'
@@ -503,7 +503,7 @@ data:
       title: ds/unionfind/weighted_unionfind.hpp
   - name: enumerate
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: enumerate/bits.hpp
       title: enumerate/bits.hpp
     - icon: ':heavy_check_mark:'
@@ -1005,7 +1005,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: knapsack/knapsack_branch_bound.hpp
       title: knapsack/knapsack_branch_bound.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: knapsack/subset_sum.hpp
       title: knapsack/subset_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -1191,7 +1191,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
   - name: new_poly
@@ -1332,7 +1332,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/fibonacci_search.hpp
       title: other/fibonacci_search.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -4115,9 +4115,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc324g2.test.cpp
       title: test_atcoder/abc324g2.test.cpp
-    - icon: ':x:'
-      path: test_atcoder/abc326f.test.cpp
-      title: test_atcoder/abc326f.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc326g.test.cpp
       title: test_atcoder/abc326g.test.cpp
