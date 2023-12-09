@@ -41,7 +41,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_a_plus_bx.hpp
     title: poly/composition_f_a_plus_bx.hpp
   - icon: ':warning:'
@@ -84,6 +84,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1907.test.cpp
     title: test/yukicoder/1907.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2580.test.cpp
+    title: test/yukicoder/2580.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -420,6 +423,7 @@ data:
   - test/mytest/composition_1_minus_ex.test.cpp
   - test/mytest/composition_log_1_minus_x.test.cpp
   - test/mytest/composition_ex_minus_1.test.cpp
+  - test/yukicoder/2580.test.cpp
   - test/yukicoder/1303.test.cpp
   - test/yukicoder/1907.test.cpp
   - test/yukicoder/1875.test.cpp

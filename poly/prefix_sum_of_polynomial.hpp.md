@@ -38,10 +38,13 @@ data:
     path: seq/famous/bernoulli.hpp
     title: seq/famous/bernoulli.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2580.test.cpp
+    title: test/yukicoder/2580.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
@@ -381,8 +384,9 @@ data:
   path: poly/prefix_sum_of_polynomial.hpp
   requiredBy: []
   timestamp: '2023-12-09 16:27:58+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yukicoder/2580.test.cpp
 documentation_of: poly/prefix_sum_of_polynomial.hpp
 layout: document
 redirect_from:

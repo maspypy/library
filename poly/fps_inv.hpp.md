@@ -95,7 +95,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/poly_gcd.hpp
     title: poly/poly_gcd.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: poly/prefix_sum_of_polynomial.hpp
     title: poly/prefix_sum_of_polynomial.hpp
   - icon: ':heavy_check_mark:'
@@ -351,6 +351,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2459.test.cpp
     title: test/yukicoder/2459.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2580.test.cpp
+    title: test/yukicoder/2580.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/541.test.cpp
     title: test/yukicoder/541.test.cpp
@@ -824,6 +827,7 @@ data:
   - test/mytest/online_log.test.cpp
   - test/mytest/online_pow.test.cpp
   - test/mytest/composition_ex_minus_1.test.cpp
+  - test/yukicoder/2580.test.cpp
   - test/yukicoder/1561.test.cpp
   - test/yukicoder/1080.test.cpp
   - test/yukicoder/2122.test.cpp

@@ -26,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: nt/array_on_divisors.hpp
     title: nt/array_on_divisors.hpp
   - icon: ':heavy_check_mark:'
@@ -79,6 +79,9 @@ data:
     path: test/yukicoder/1726.test.cpp
     title: test/yukicoder/1726.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1728.test.cpp
+    title: test/yukicoder/1728.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1769.test.cpp
     title: test/yukicoder/1769.test.cpp
   - icon: ':heavy_check_mark:'
@@ -91,6 +94,12 @@ data:
     path: test/yukicoder/2167.test.cpp
     title: test/yukicoder/2167.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2264.test.cpp
+    title: test/yukicoder/2264.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2578.test.cpp
+    title: test/yukicoder/2578.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/263.test.cpp
     title: test/yukicoder/263.test.cpp
   - icon: ':heavy_check_mark:'
@@ -102,6 +111,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc212g.test.cpp
+    title: test_atcoder/abc212g.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc220g.test.cpp
     title: test_atcoder/abc220g.test.cpp
@@ -190,7 +202,10 @@ data:
   - test/mytest/range_closest_pair.test.cpp
   - test/aoj/CGL_5_A.test.cpp
   - test/yukicoder/1561.test.cpp
+  - test/yukicoder/2264.test.cpp
+  - test/yukicoder/1728.test.cpp
   - test/yukicoder/1881.test.cpp
+  - test/yukicoder/2578.test.cpp
   - test/yukicoder/1383.test.cpp
   - test/yukicoder/541.test.cpp
   - test/yukicoder/2102.test.cpp
@@ -207,6 +222,7 @@ data:
   - test_atcoder/abc273_e.test.cpp
   - test_atcoder/abc222g.test.cpp
   - test_atcoder/abc270_g.test.cpp
+  - test_atcoder/abc212g.test.cpp
   - test_atcoder/abc220g.test.cpp
   - test_atcoder/abc227g.test.cpp
 documentation_of: ds/hashmap.hpp

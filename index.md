@@ -269,7 +269,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/meldable_heap.hpp
       title: ds/meldable_heap.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/my_bitset.hpp
       title: ds/my_bitset.hpp
     - icon: ':heavy_check_mark:'
@@ -503,7 +503,7 @@ data:
       title: ds/unionfind/weighted_unionfind.hpp
   - name: enumerate
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: enumerate/bits.hpp
       title: enumerate/bits.hpp
     - icon: ':heavy_check_mark:'
@@ -1005,7 +1005,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: knapsack/knapsack_branch_bound.hpp
       title: knapsack/knapsack_branch_bound.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: knapsack/subset_sum.hpp
       title: knapsack/subset_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -1191,7 +1191,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
   - name: new_poly
@@ -1207,7 +1207,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/all_lcm.hpp
       title: nt/all_lcm.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: nt/array_on_divisors.hpp
       title: nt/array_on_divisors.hpp
     - icon: ':heavy_check_mark:'
@@ -1332,7 +1332,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/fibonacci_search.hpp
       title: other/fibonacci_search.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -1370,7 +1370,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/composition_f_1_minus_ex.hpp
       title: poly/composition_f_1_minus_ex.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: poly/composition_f_a_plus_bx.hpp
       title: poly/composition_f_a_plus_bx.hpp
     - icon: ':warning:'
@@ -1484,7 +1484,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/prefix_product_of_poly.hpp
       title: poly/prefix_product_of_poly.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: poly/prefix_sum_of_polynomial.hpp
       title: poly/prefix_sum_of_polynomial.hpp
     - icon: ':heavy_check_mark:'
@@ -3390,7 +3390,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1726.test.cpp
       title: test/yukicoder/1726.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1728.test.cpp
       title: test/yukicoder/1728.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3618,7 +3618,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/2259.test.cpp
       title: test/yukicoder/2259.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/2264.test.cpp
       title: test/yukicoder/2264.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3711,6 +3711,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/2574.test.cpp
       title: test/yukicoder/2574.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/2578.test.cpp
+      title: test/yukicoder/2578.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/2580.test.cpp
+      title: test/yukicoder/2580.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/263.test.cpp
       title: test/yukicoder/263.test.cpp
@@ -3866,7 +3872,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc209e.test.cpp
       title: test_atcoder/abc209e.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc212g.test.cpp
       title: test_atcoder/abc212g.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4109,6 +4115,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc324g2.test.cpp
       title: test_atcoder/abc324g2.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/abc326f.test.cpp
+      title: test_atcoder/abc326f.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_atcoder/abc326g.test.cpp
+      title: test_atcoder/abc326g.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_atcoder/agc013e.test.cpp
       title: test_atcoder/agc013e.test.cpp

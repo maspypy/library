@@ -32,7 +32,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/all_lcm.hpp
     title: nt/all_lcm.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: nt/array_on_divisors.hpp
     title: nt/array_on_divisors.hpp
   - icon: ':heavy_check_mark:'
@@ -163,6 +163,9 @@ data:
     path: test/yukicoder/1667.test.cpp
     title: test/yukicoder/1667.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1728.test.cpp
+    title: test/yukicoder/1728.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1783.test.cpp
     title: test/yukicoder/1783.test.cpp
   - icon: ':heavy_check_mark:'
@@ -184,11 +187,20 @@ data:
     path: test/yukicoder/2181.test.cpp
     title: test/yukicoder/2181.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2264.test.cpp
+    title: test/yukicoder/2264.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2578.test.cpp
+    title: test/yukicoder/2578.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc152e.test.cpp
     title: test_atcoder/abc152e.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc212g.test.cpp
+    title: test_atcoder/abc212g.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc222g.test.cpp
     title: test_atcoder/abc222g.test.cpp
@@ -344,8 +356,11 @@ data:
   - test/aoj/NTL_1_D.test.cpp
   - test/aoj/ITP1_D_D.test.cpp
   - test/yukicoder/2120.test.cpp
+  - test/yukicoder/2264.test.cpp
   - test/yukicoder/2181.test.cpp
+  - test/yukicoder/1728.test.cpp
   - test/yukicoder/1881.test.cpp
+  - test/yukicoder/2578.test.cpp
   - test/yukicoder/1593.test.cpp
   - test/yukicoder/1262.test.cpp
   - test/yukicoder/1411.test.cpp
@@ -363,6 +378,7 @@ data:
   - test_atcoder/abc222g.test.cpp
   - test_atcoder/abc152e.test.cpp
   - test_atcoder/abc270_g.test.cpp
+  - test_atcoder/abc212g.test.cpp
 documentation_of: nt/factor.hpp
 layout: document
 redirect_from:

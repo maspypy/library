@@ -41,10 +41,13 @@ data:
   - icon: ':warning:'
     path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
     title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2580.test.cpp
+    title: test/yukicoder/2580.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/poly_taylor_shift.hpp\"\n\r\n#line 2 \"nt/primetable.hpp\"\
@@ -366,8 +369,9 @@ data:
   requiredBy:
   - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   timestamp: '2023-12-09 16:27:58+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yukicoder/2580.test.cpp
 documentation_of: poly/composition_f_a_plus_bx.hpp
 layout: document
 redirect_from:

@@ -35,7 +35,7 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: poly/prefix_sum_of_polynomial.hpp
     title: poly/prefix_sum_of_polynomial.hpp
   - icon: ':heavy_check_mark:'
@@ -48,6 +48,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1357.test.cpp
     title: test/yukicoder/1357.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2580.test.cpp
+    title: test/yukicoder/2580.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -375,6 +378,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/bernoulli.test.cpp
+  - test/yukicoder/2580.test.cpp
   - test/yukicoder/1357.test.cpp
 documentation_of: seq/famous/bernoulli.hpp
 layout: document

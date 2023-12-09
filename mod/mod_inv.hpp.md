@@ -65,7 +65,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_a_plus_bx.hpp
     title: poly/composition_f_a_plus_bx.hpp
   - icon: ':warning:'
@@ -152,7 +152,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: poly/prefix_sum_of_polynomial.hpp
     title: poly/prefix_sum_of_polynomial.hpp
   - icon: ':heavy_check_mark:'
@@ -625,6 +625,9 @@ data:
     path: test/yukicoder/2525.test.cpp
     title: test/yukicoder/2525.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2580.test.cpp
+    title: test/yukicoder/2580.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/303.test.cpp
     title: test/yukicoder/303.test.cpp
   - icon: ':heavy_check_mark:'
@@ -900,6 +903,7 @@ data:
   - test/aoj/NTL_2_B.test.cpp
   - test/yukicoder/2120.test.cpp
   - test/yukicoder/1080_2.test.cpp
+  - test/yukicoder/2580.test.cpp
   - test/yukicoder/1561.test.cpp
   - test/yukicoder/2181.test.cpp
   - test/yukicoder/1080.test.cpp

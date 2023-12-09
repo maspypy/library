@@ -33,6 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc318g.test.cpp
     title: test_atcoder/abc318g.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc326g.test.cpp
+    title: test_atcoder/abc326g.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -151,6 +154,7 @@ data:
   - test/yukicoder/1541.test.cpp
   - test/yukicoder/2320.test.cpp
   - test_atcoder/abc193f.test.cpp
+  - test_atcoder/abc326g.test.cpp
   - test_atcoder/abc259g.test.cpp
   - test_atcoder/abc318g.test.cpp
 documentation_of: flow/maxflow.hpp

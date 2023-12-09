@@ -77,7 +77,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/all_lcm.hpp
     title: nt/all_lcm.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: nt/array_on_divisors.hpp
     title: nt/array_on_divisors.hpp
   - icon: ':heavy_check_mark:'
@@ -574,6 +574,9 @@ data:
     path: test/yukicoder/1667.test.cpp
     title: test/yukicoder/1667.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1728.test.cpp
+    title: test/yukicoder/1728.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1774.test.cpp
     title: test/yukicoder/1774.test.cpp
   - icon: ':heavy_check_mark:'
@@ -616,8 +619,14 @@ data:
     path: test/yukicoder/2231.test.cpp
     title: test/yukicoder/2231.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2264.test.cpp
+    title: test/yukicoder/2264.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2305.test.cpp
     title: test/yukicoder/2305.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2578.test.cpp
+    title: test/yukicoder/2578.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/263.test.cpp
     title: test/yukicoder/263.test.cpp
@@ -648,6 +657,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc212g.test.cpp
+    title: test_atcoder/abc212g.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc220g.test.cpp
     title: test_atcoder/abc220g.test.cpp
@@ -870,11 +882,14 @@ data:
   - test/yukicoder/2120.test.cpp
   - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/1561.test.cpp
+  - test/yukicoder/2264.test.cpp
   - test/yukicoder/2181.test.cpp
   - test/yukicoder/1080.test.cpp
+  - test/yukicoder/1728.test.cpp
   - test/yukicoder/1303.test.cpp
   - test/yukicoder/1881.test.cpp
   - test/yukicoder/1774.test.cpp
+  - test/yukicoder/2578.test.cpp
   - test/yukicoder/1593.test.cpp
   - test/yukicoder/1775.test.cpp
   - test/yukicoder/1262.test.cpp
@@ -909,6 +924,7 @@ data:
   - test_atcoder/abc152e.test.cpp
   - test_atcoder/abc270_g.test.cpp
   - test_atcoder/abc274_h.test.cpp
+  - test_atcoder/abc212g.test.cpp
   - test_atcoder/abc220g.test.cpp
 documentation_of: random/base.hpp
 layout: document
