@@ -8,7 +8,7 @@ void test() {
   FOR(100) {
     FOR(n, 10) {
       Graph<int, 0> G(n);
-      for (auto& [a, b]: random_graph<false>(N, true)) G.add(a, b);
+      for (auto& [a, b]: random_graph<false>(n, true)) G.add(a, b);
       G.build();
       int m = G.M;
       Graph<int, 0> LG(m);
