@@ -7,16 +7,16 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/maximum_matching_of_line_graph.hpp
     title: graph/maximum_matching_of_line_graph.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/maximum_matching_size.hpp
     title: graph/maximum_matching_size.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -295,7 +295,7 @@ data:
     \    if (up != -1) {\n      int x = up;\n      int y = down[0];\n      done[x]\
     \ = done[y] = 1;\n      ANS.eb(x, y);\n    }\n  }\n  return ANS;\n}\n#line 6 \"\
     test/mytest/matching_line_graph.test.cpp\"\n\nvoid test() {\n  FOR(100) {\n  \
-    \  FOR(n, 10) {\n      Graph<int, 0> G(n);\n      for (auto& [a, b]: random_graph<false>(N,\
+    \  FOR(n, 10) {\n      Graph<int, 0> G(n);\n      for (auto& [a, b]: random_graph<false>(n,\
     \ true)) G.add(a, b);\n      G.build();\n      int m = G.M;\n      Graph<int,\
     \ 0> LG(m);\n      FOR(i, m) FOR(j, i) if (i != j) {\n        auto ei = G.edges[i];\n\
     \        auto ej = G.edges[j];\n        bool ok = 0;\n        if (ei.frm == ej.frm)\
@@ -313,7 +313,7 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"random/random_graph.hpp\"\n#include \"graph/maximum_matching_size.hpp\"\
     \n#include \"graph/maximum_matching_of_line_graph.hpp\"\n\nvoid test() {\n  FOR(100)\
-    \ {\n    FOR(n, 10) {\n      Graph<int, 0> G(n);\n      for (auto& [a, b]: random_graph<false>(N,\
+    \ {\n    FOR(n, 10) {\n      Graph<int, 0> G(n);\n      for (auto& [a, b]: random_graph<false>(n,\
     \ true)) G.add(a, b);\n      G.build();\n      int m = G.M;\n      Graph<int,\
     \ 0> LG(m);\n      FOR(i, m) FOR(j, i) if (i != j) {\n        auto ei = G.edges[i];\n\
     \        auto ej = G.edges[j];\n        bool ok = 0;\n        if (ei.frm == ej.frm)\
@@ -327,7 +327,7 @@ data:
     \        if (ei.frm == ej.to) ok = 1;\n        if (ei.to == ej.frm) ok = 1;\n\
     \        if (ei.to == ej.to) ok = 1;\n        assert(ok);\n      }\n    }\n  }\n\
     }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
-    ;\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    ;\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - random/random_graph.hpp
@@ -342,8 +342,8 @@ data:
   isVerificationFile: true
   path: test/mytest/matching_line_graph.test.cpp
   requiredBy: []
-  timestamp: '2023-12-14 01:05:30+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-12-14 01:51:59+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/matching_line_graph.test.cpp
 layout: document
