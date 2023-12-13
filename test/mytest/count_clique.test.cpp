@@ -8,7 +8,9 @@
 void test() {
   FOR(N, 15) {
     FOR(100) {
-      Graph<int, 0> G = random_graph<0>(N, true);
+      Graph<int, 0> G(N);
+      for (auto& [a, b]: random_graph<0>(N, true)) G.add(a, b);
+      G.build();
       vc<int> nbd(N);
       for (auto& e: G.edges) {
         nbd[e.frm] |= 1 << e.to;

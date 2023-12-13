@@ -39,7 +39,9 @@ vc<int> find_odd_cycle_naive(Graph<int, 1> G) {
 void test() {
   FOR(N, 1, 30) {
     FOR(100) {
-      auto G = random_graph<0>(N, false);
+      Graph<int, 0> G(N);
+      for (auto& [a, b]: random_graph<0>(N, false)) G.add(a, b);
+      G.build();
       auto color = bipartite_vertex_coloring(G);
       if (!color.empty()) continue;
       auto [vs, es] = find_odd_cycle(G);
@@ -58,7 +60,9 @@ void test() {
   }
   FOR(N, 1, 20) {
     FOR(100) {
-      auto G = random_graph<1>(N, true);
+      Graph<int, 1> G(N);
+      for (auto& [a, b]: random_graph<1>(N, false)) G.add(a, b);
+      G.build();
       auto [vs, es] = find_odd_cycle(G);
       vc<int> ans = find_odd_cycle_naive(G);
       if (vs.empty()) {

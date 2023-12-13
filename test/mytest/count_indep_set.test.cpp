@@ -7,7 +7,9 @@
 void test() {
   FOR(100) {
     FOR(n, 10) {
-      auto G = random_graph<0>(n, 1);
+      Graph<int, 0> G(N);
+      for (auto& [a, b]: random_graph<0>(N, true)) G.add(a, b);
+      G.build();
       vv(int, adj, n, n);
 
       for (auto&& e: G.edges) adj[e.frm][e.to] = adj[e.to][e.frm] = 1;
