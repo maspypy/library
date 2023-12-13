@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/count/count_independent_set.hpp
     title: graph/count/count_independent_set.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/path_cycle.hpp
     title: graph/path_cycle.hpp
   - icon: ':question:'
@@ -46,7 +46,7 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
   - icon: ':question:'
@@ -621,9 +621,10 @@ data:
     \ {\n      vc<T> A;\n      for (auto& i: P) A.eb(wt[V[i]]);\n      res = convolution(res,\
     \ solve_cycle(A));\n    }\n    return res;\n  };\n  auto res = dfs(dfs, (U(1)\
     \ << N) - 1);\n  res.resize(N + 1);\n  return res;\n}\n#line 6 \"test/mytest/count_indep_set.test.cpp\"\
-    \n\nvoid test() {\n  FOR(100) {\n    FOR(n, 10) {\n      auto G = random_graph<0>(n,\
-    \ 1);\n      vv(int, adj, n, n);\n\n      for (auto&& e: G.edges) adj[e.frm][e.to]\
-    \ = adj[e.to][e.frm] = 1;\n      auto X = count_independent_set<decltype(G)>(G);\n\
+    \n\nvoid test() {\n  FOR(100) {\n    FOR(n, 10) {\n      Graph<int, 0> G(N);\n\
+    \      for (auto& [a, b]: random_graph<0>(N, true)) G.add(a, b);\n      G.build();\n\
+    \      vv(int, adj, n, n);\n\n      for (auto&& e: G.edges) adj[e.frm][e.to] =\
+    \ adj[e.to][e.frm] = 1;\n      auto X = count_independent_set<decltype(G)>(G);\n\
     \      auto Y = count_independent_set_by_size<decltype(G)>(G);\n      FOR(s, 1\
     \ << n) {\n        bool ok = 1;\n        FOR(i, n) FOR(j, n) {\n          if ((s\
     \ >> i & 1) && (s >> j & 1) && adj[i][j]) ok = 0;\n        }\n        if (!ok)\
@@ -634,9 +635,10 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"random/random_graph.hpp\"\n#include \"graph/base.hpp\"\n#include\
     \ \"graph/count/count_independent_set.hpp\"\n\nvoid test() {\n  FOR(100) {\n \
-    \   FOR(n, 10) {\n      auto G = random_graph<0>(n, 1);\n      vv(int, adj, n,\
-    \ n);\n\n      for (auto&& e: G.edges) adj[e.frm][e.to] = adj[e.to][e.frm] = 1;\n\
-    \      auto X = count_independent_set<decltype(G)>(G);\n      auto Y = count_independent_set_by_size<decltype(G)>(G);\n\
+    \   FOR(n, 10) {\n      Graph<int, 0> G(N);\n      for (auto& [a, b]: random_graph<0>(N,\
+    \ true)) G.add(a, b);\n      G.build();\n      vv(int, adj, n, n);\n\n      for\
+    \ (auto&& e: G.edges) adj[e.frm][e.to] = adj[e.to][e.frm] = 1;\n      auto X =\
+    \ count_independent_set<decltype(G)>(G);\n      auto Y = count_independent_set_by_size<decltype(G)>(G);\n\
     \      FOR(s, 1 << n) {\n        bool ok = 1;\n        FOR(i, n) FOR(j, n) {\n\
     \          if ((s >> i & 1) && (s >> j & 1) && adj[i][j]) ok = 0;\n        }\n\
     \        if (!ok) continue;\n        --X;\n        --Y[popcnt(s)];\n      }\n\
@@ -665,7 +667,7 @@ data:
   isVerificationFile: true
   path: test/mytest/count_indep_set.test.cpp
   requiredBy: []
-  timestamp: '2023-12-14 00:43:16+09:00'
+  timestamp: '2023-12-14 01:04:11+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/count_indep_set.test.cpp

@@ -4,19 +4,19 @@ data:
   - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/maximum_matching_between_vertex_edge.hpp
     title: graph/maximum_matching_between_vertex_edge.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   - icon: ':question:'
@@ -25,7 +25,7 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -342,9 +342,10 @@ data:
     \ == 2) {\n      G.eb(V[0], V[1]);\n    } else {\n      FOR(k, len(V)) { G.eb(V[k],\
     \ V[(1 + k) % len(V)]); }\n    }\n  }\n  random_relabel(N, G);\n  return G;\n\
     }\n#line 7 \"test/mytest/matching_ve.test.cpp\"\n\nvoid test() {\n  FOR(N, 50)\
-    \ {\n    FOR(100) {\n      Graph<int, 0> G = random_graph<0>(N, 0);\n      Graph<int,\
-    \ 0> VE(G.N + G.M);\n      for (auto& e: G.edges) {\n        VE.add(e.frm, N +\
-    \ e.id);\n        VE.add(e.to, N + e.id);\n      }\n      VE.build();\n      BipartiteMatching<decltype(G)>\
+    \ {\n    FOR(100) {\n      Graph<int, 0> G(N);\n      for (auto& [a, b]: random_graph<0>(N,\
+    \ false)) G.add(a, b);\n      G.build();\n      Graph<int, 0> VE(G.N + G.M);\n\
+    \      for (auto& e: G.edges) {\n        VE.add(e.frm, N + e.id);\n        VE.add(e.to,\
+    \ N + e.id);\n      }\n      VE.build();\n      BipartiteMatching<decltype(G)>\
     \ BM(VE);\n      int n = len(BM.matching());\n\n      auto match = maximum_matching_between_vertex_edge(G);\n\
     \      assert(len(match) == n);\n      vc<int> used_v(N), used_e(G.M);\n     \
     \ for (auto& [v, e]: match) {\n        assert(!used_v[v]);\n        assert(!used_e[e]);\n\
@@ -355,9 +356,10 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"graph/maximum_matching_between_vertex_edge.hpp\"\n#include \"flow/bipartite.hpp\"\
     \n#include \"random/random_graph.hpp\"\n\nvoid test() {\n  FOR(N, 50) {\n    FOR(100)\
-    \ {\n      Graph<int, 0> G = random_graph<0>(N, 0);\n      Graph<int, 0> VE(G.N\
-    \ + G.M);\n      for (auto& e: G.edges) {\n        VE.add(e.frm, N + e.id);\n\
-    \        VE.add(e.to, N + e.id);\n      }\n      VE.build();\n      BipartiteMatching<decltype(G)>\
+    \ {\n      Graph<int, 0> G(N);\n      for (auto& [a, b]: random_graph<0>(N, false))\
+    \ G.add(a, b);\n      G.build();\n      Graph<int, 0> VE(G.N + G.M);\n      for\
+    \ (auto& e: G.edges) {\n        VE.add(e.frm, N + e.id);\n        VE.add(e.to,\
+    \ N + e.id);\n      }\n      VE.build();\n      BipartiteMatching<decltype(G)>\
     \ BM(VE);\n      int n = len(BM.matching());\n\n      auto match = maximum_matching_between_vertex_edge(G);\n\
     \      assert(len(match) == n);\n      vc<int> used_v(N), used_e(G.M);\n     \
     \ for (auto& [v, e]: match) {\n        assert(!used_v[v]);\n        assert(!used_e[e]);\n\
@@ -379,8 +381,8 @@ data:
   isVerificationFile: true
   path: test/mytest/matching_ve.test.cpp
   requiredBy: []
-  timestamp: '2023-12-14 00:43:16+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-12-14 01:05:30+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/matching_ve.test.cpp
 layout: document

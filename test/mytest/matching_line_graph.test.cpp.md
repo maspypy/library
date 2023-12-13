@@ -25,7 +25,7 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
   - icon: ':question:'
@@ -295,39 +295,39 @@ data:
     \    if (up != -1) {\n      int x = up;\n      int y = down[0];\n      done[x]\
     \ = done[y] = 1;\n      ANS.eb(x, y);\n    }\n  }\n  return ANS;\n}\n#line 6 \"\
     test/mytest/matching_line_graph.test.cpp\"\n\nvoid test() {\n  FOR(100) {\n  \
-    \  FOR(n, 10) {\n      auto G = random_graph<false>(n, 1);\n      int m = G.M;\n\
-    \      Graph<int, 0> LG(m);\n      FOR(i, m) FOR(j, i) if (i != j) {\n       \
-    \ auto ei = G.edges[i];\n        auto ej = G.edges[j];\n        bool ok = 0;\n\
-    \        if (ei.frm == ej.frm) ok = 1;\n        if (ei.frm == ej.to) ok = 1;\n\
-    \        if (ei.to == ej.frm) ok = 1;\n        if (ei.to == ej.to) ok = 1;\n \
-    \       if (ok) LG.add(i, j);\n      }\n      LG.build();\n      vc<pair<int,\
-    \ int>> res = maximum_matching_of_line_graph(G);\n      assert(len(res) == maximum_matching_size(LG));\n\
-    \      vc<int> done(m);\n      for (auto&& [a, b]: res) {\n        assert(!done[a]);\n\
-    \        assert(!done[b]);\n        done[a] = done[b] = 1;\n        auto ei =\
-    \ G.edges[a];\n        auto ej = G.edges[b];\n        bool ok = 0;\n        if\
-    \ (ei.frm == ej.frm) ok = 1;\n        if (ei.frm == ej.to) ok = 1;\n        if\
-    \ (ei.to == ej.frm) ok = 1;\n        if (ei.to == ej.to) ok = 1;\n        assert(ok);\n\
-    \      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
-    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
-    \ 0;\n}\n"
+    \  FOR(n, 10) {\n      Graph<int, 0> G(n);\n      for (auto& [a, b]: random_graph<false>(N,\
+    \ true)) G.add(a, b);\n      G.build();\n      int m = G.M;\n      Graph<int,\
+    \ 0> LG(m);\n      FOR(i, m) FOR(j, i) if (i != j) {\n        auto ei = G.edges[i];\n\
+    \        auto ej = G.edges[j];\n        bool ok = 0;\n        if (ei.frm == ej.frm)\
+    \ ok = 1;\n        if (ei.frm == ej.to) ok = 1;\n        if (ei.to == ej.frm)\
+    \ ok = 1;\n        if (ei.to == ej.to) ok = 1;\n        if (ok) LG.add(i, j);\n\
+    \      }\n      LG.build();\n      vc<pair<int, int>> res = maximum_matching_of_line_graph(G);\n\
+    \      assert(len(res) == maximum_matching_size(LG));\n      vc<int> done(m);\n\
+    \      for (auto&& [a, b]: res) {\n        assert(!done[a]);\n        assert(!done[b]);\n\
+    \        done[a] = done[b] = 1;\n        auto ei = G.edges[a];\n        auto ej\
+    \ = G.edges[b];\n        bool ok = 0;\n        if (ei.frm == ej.frm) ok = 1;\n\
+    \        if (ei.frm == ej.to) ok = 1;\n        if (ei.to == ej.frm) ok = 1;\n\
+    \        if (ei.to == ej.to) ok = 1;\n        assert(ok);\n      }\n    }\n  }\n\
+    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
+    ;\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"random/random_graph.hpp\"\n#include \"graph/maximum_matching_size.hpp\"\
     \n#include \"graph/maximum_matching_of_line_graph.hpp\"\n\nvoid test() {\n  FOR(100)\
-    \ {\n    FOR(n, 10) {\n      auto G = random_graph<false>(n, 1);\n      int m\
-    \ = G.M;\n      Graph<int, 0> LG(m);\n      FOR(i, m) FOR(j, i) if (i != j) {\n\
-    \        auto ei = G.edges[i];\n        auto ej = G.edges[j];\n        bool ok\
-    \ = 0;\n        if (ei.frm == ej.frm) ok = 1;\n        if (ei.frm == ej.to) ok\
-    \ = 1;\n        if (ei.to == ej.frm) ok = 1;\n        if (ei.to == ej.to) ok =\
-    \ 1;\n        if (ok) LG.add(i, j);\n      }\n      LG.build();\n      vc<pair<int,\
-    \ int>> res = maximum_matching_of_line_graph(G);\n      assert(len(res) == maximum_matching_size(LG));\n\
-    \      vc<int> done(m);\n      for (auto&& [a, b]: res) {\n        assert(!done[a]);\n\
-    \        assert(!done[b]);\n        done[a] = done[b] = 1;\n        auto ei =\
-    \ G.edges[a];\n        auto ej = G.edges[b];\n        bool ok = 0;\n        if\
-    \ (ei.frm == ej.frm) ok = 1;\n        if (ei.frm == ej.to) ok = 1;\n        if\
-    \ (ei.to == ej.frm) ok = 1;\n        if (ei.to == ej.to) ok = 1;\n        assert(ok);\n\
-    \      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
-    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
-    \ 0;\n}\n"
+    \ {\n    FOR(n, 10) {\n      Graph<int, 0> G(n);\n      for (auto& [a, b]: random_graph<false>(N,\
+    \ true)) G.add(a, b);\n      G.build();\n      int m = G.M;\n      Graph<int,\
+    \ 0> LG(m);\n      FOR(i, m) FOR(j, i) if (i != j) {\n        auto ei = G.edges[i];\n\
+    \        auto ej = G.edges[j];\n        bool ok = 0;\n        if (ei.frm == ej.frm)\
+    \ ok = 1;\n        if (ei.frm == ej.to) ok = 1;\n        if (ei.to == ej.frm)\
+    \ ok = 1;\n        if (ei.to == ej.to) ok = 1;\n        if (ok) LG.add(i, j);\n\
+    \      }\n      LG.build();\n      vc<pair<int, int>> res = maximum_matching_of_line_graph(G);\n\
+    \      assert(len(res) == maximum_matching_size(LG));\n      vc<int> done(m);\n\
+    \      for (auto&& [a, b]: res) {\n        assert(!done[a]);\n        assert(!done[b]);\n\
+    \        done[a] = done[b] = 1;\n        auto ei = G.edges[a];\n        auto ej\
+    \ = G.edges[b];\n        bool ok = 0;\n        if (ei.frm == ej.frm) ok = 1;\n\
+    \        if (ei.frm == ej.to) ok = 1;\n        if (ei.to == ej.frm) ok = 1;\n\
+    \        if (ei.to == ej.to) ok = 1;\n        assert(ok);\n      }\n    }\n  }\n\
+    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
+    ;\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - random/random_graph.hpp
@@ -342,7 +342,7 @@ data:
   isVerificationFile: true
   path: test/mytest/matching_line_graph.test.cpp
   requiredBy: []
-  timestamp: '2023-12-14 00:43:16+09:00'
+  timestamp: '2023-12-14 01:05:30+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/matching_line_graph.test.cpp

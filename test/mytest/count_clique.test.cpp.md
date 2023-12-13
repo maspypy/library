@@ -7,13 +7,13 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_clique.hpp
     title: graph/count/count_clique.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/count/count_independent_set.hpp
     title: graph/count/count_independent_set.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/path_cycle.hpp
     title: graph/path_cycle.hpp
   - icon: ':question:'
@@ -49,7 +49,7 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
   - icon: ':question:'
@@ -57,9 +57,9 @@ data:
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -639,23 +639,24 @@ data:
     \ j);\n    G1.build();\n    u64 cnt = count_independent_set(G1);\n    ANS += cnt;\n\
     \    G = G.rearrange(other);\n    assert(G.N == N - 1);\n    --N;\n  }\n  return\
     \ ANS;\n}\n#line 7 \"test/mytest/count_clique.test.cpp\"\n\nvoid test() {\n  FOR(N,\
-    \ 15) {\n    FOR(100) {\n      Graph<int, 0> G = random_graph<0>(N, true);\n \
-    \     vc<int> nbd(N);\n      for (auto& e: G.edges) {\n        nbd[e.frm] |= 1\
-    \ << e.to;\n        nbd[e.to] |= 1 << e.frm;\n      }\n      u64 n = 0;\n    \
-    \  FOR(s, 1 << N) {\n        int ok = 1;\n        FOR(j, N) FOR(i, j) {\n    \
-    \      if ((s >> i & 1) && (s >> j & 1)) {\n            if (!(nbd[i] >> j & 1))\
-    \ ok = 0;\n          }\n        }\n        n += ok;\n      }\n      assert(n ==\
-    \ count_clique(G));\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a\
-    \ >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
-    \  return 0;\n}\n"
+    \ 15) {\n    FOR(100) {\n      Graph<int, 0> G(N);\n      for (auto& [a, b]: random_graph<0>(N,\
+    \ true)) G.add(a, b);\n      G.build();\n      vc<int> nbd(N);\n      for (auto&\
+    \ e: G.edges) {\n        nbd[e.frm] |= 1 << e.to;\n        nbd[e.to] |= 1 << e.frm;\n\
+    \      }\n      u64 n = 0;\n      FOR(s, 1 << N) {\n        int ok = 1;\n    \
+    \    FOR(j, N) FOR(i, j) {\n          if ((s >> i & 1) && (s >> j & 1)) {\n  \
+    \          if (!(nbd[i] >> j & 1)) ok = 0;\n          }\n        }\n        n\
+    \ += ok;\n      }\n      assert(n == count_clique(G));\n    }\n  }\n}\n\nvoid\
+    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
+    signed main() {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     my_template.hpp\"\n\n#include \"random/random_graph.hpp\"\n#include \"graph/count/count_clique.hpp\"\
-    \n\nvoid test() {\n  FOR(N, 15) {\n    FOR(100) {\n      Graph<int, 0> G = random_graph<0>(N,\
-    \ true);\n      vc<int> nbd(N);\n      for (auto& e: G.edges) {\n        nbd[e.frm]\
-    \ |= 1 << e.to;\n        nbd[e.to] |= 1 << e.frm;\n      }\n      u64 n = 0;\n\
-    \      FOR(s, 1 << N) {\n        int ok = 1;\n        FOR(j, N) FOR(i, j) {\n\
-    \          if ((s >> i & 1) && (s >> j & 1)) {\n            if (!(nbd[i] >> j\
-    \ & 1)) ok = 0;\n          }\n        }\n        n += ok;\n      }\n      assert(n\
+    \n\nvoid test() {\n  FOR(N, 15) {\n    FOR(100) {\n      Graph<int, 0> G(N);\n\
+    \      for (auto& [a, b]: random_graph<0>(N, true)) G.add(a, b);\n      G.build();\n\
+    \      vc<int> nbd(N);\n      for (auto& e: G.edges) {\n        nbd[e.frm] |=\
+    \ 1 << e.to;\n        nbd[e.to] |= 1 << e.frm;\n      }\n      u64 n = 0;\n  \
+    \    FOR(s, 1 << N) {\n        int ok = 1;\n        FOR(j, N) FOR(i, j) {\n  \
+    \        if ((s >> i & 1) && (s >> j & 1)) {\n            if (!(nbd[i] >> j &\
+    \ 1)) ok = 0;\n          }\n        }\n        n += ok;\n      }\n      assert(n\
     \ == count_clique(G));\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
     \ a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
     \  return 0;\n}"
@@ -681,8 +682,8 @@ data:
   isVerificationFile: true
   path: test/mytest/count_clique.test.cpp
   requiredBy: []
-  timestamp: '2023-12-14 00:43:16+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-12-14 01:04:11+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/count_clique.test.cpp
 layout: document
