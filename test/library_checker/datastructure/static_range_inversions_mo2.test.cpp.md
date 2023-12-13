@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/rollback_mo.hpp
     title: ds/offline_query/rollback_mo.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'

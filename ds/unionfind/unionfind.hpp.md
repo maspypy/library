@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
   - icon: ':heavy_check_mark:'
@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
   - icon: ':heavy_check_mark:'
@@ -50,6 +50,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/unicyclic.hpp
     title: graph/unicyclic.hpp
+  - icon: ':x:'
+    path: random/random_graph.hpp
+    title: random/random_graph.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1566.test.cpp
@@ -81,10 +84,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/manhattan_mst.test.cpp
     title: test/library_checker/graph/manhattan_mst.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/mytest/count_clique.test.cpp
+    title: test/mytest/count_clique.test.cpp
+  - icon: ':x:'
+    path: test/mytest/count_indep_set.test.cpp
+    title: test/mytest/count_indep_set.test.cpp
+  - icon: ':x:'
     path: test/mytest/find_odd_cycle.test.cpp
     title: test/mytest/find_odd_cycle.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/mytest/matching_line_graph.test.cpp
+    title: test/mytest/matching_line_graph.test.cpp
+  - icon: ':x:'
     path: test/mytest/matching_ve.test.cpp
     title: test/mytest/matching_ve.test.cpp
   - icon: ':heavy_check_mark:'
@@ -171,9 +183,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc023f.test.cpp
     title: test_atcoder/agc023f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int\
@@ -199,6 +211,7 @@ data:
   isVerificationFile: false
   path: ds/unionfind/unionfind.hpp
   requiredBy:
+  - random/random_graph.hpp
   - flow/rank_maximal_bipartite_matching.hpp
   - flow/bipartite.hpp
   - geo/manhattan_mst.hpp
@@ -216,15 +229,18 @@ data:
   - graph/maximum_antichain.hpp
   - graph/bipartite_vertex_coloring.hpp
   timestamp: '2023-06-11 17:06:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/datastructure/unionfind.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/graph/bipartite_edge_coloring.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp
   - test/library_checker/graph/directed_mst.test.cpp
+  - test/mytest/count_clique.test.cpp
   - test/mytest/find_odd_cycle.test.cpp
+  - test/mytest/count_indep_set.test.cpp
   - test/mytest/tutte.test.cpp
+  - test/mytest/matching_line_graph.test.cpp
   - test/mytest/matching_ve.test.cpp
   - test/aoj/2251_1.test.cpp
   - test/aoj/GRL_2_A.test.cpp
