@@ -300,12 +300,12 @@ data:
   timestamp: '2023-11-21 19:08:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/graph/bipartitematching.test.cpp
-  - test/library_checker/graph/bipartite_edge_coloring.test.cpp
-  - test/mytest/tutte.test.cpp
-  - test/mytest/matching_ve.test.cpp
   - test/aoj/2251_2.test.cpp
   - test/aoj/1566.test.cpp
+  - test/library_checker/graph/bipartite_edge_coloring.test.cpp
+  - test/library_checker/graph/bipartitematching.test.cpp
+  - test/mytest/tutte.test.cpp
+  - test/mytest/matching_ve.test.cpp
   - test/yukicoder/1745.test.cpp
   - test/yukicoder/1744.test.cpp
   - test/yukicoder/1479.test.cpp

@@ -516,9 +516,9 @@ data:
   isVerificationFile: false
   path: poly/prefix_product_of_poly.hpp
   requiredBy:
-  - poly/sparse_exp_of_div.hpp
-  - poly/from_log_differentiation.hpp
   - seq/kth_term_of_p_recursive.hpp
+  - poly/from_log_differentiation.hpp
+  - poly/sparse_exp_of_div.hpp
   timestamp: '2023-11-21 19:08:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

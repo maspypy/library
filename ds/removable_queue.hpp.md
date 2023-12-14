@@ -51,8 +51,8 @@ data:
   verifiedWith:
   - test/library_checker/datastructure/double_ended_pq.test.cpp
   - test/yukicoder/902.test.cpp
-  - test_atcoder/abc312f.test.cpp
   - test_atcoder/abc314g.test.cpp
+  - test_atcoder/abc312f.test.cpp
 documentation_of: ds/removable_queue.hpp
 layout: document
 redirect_from:

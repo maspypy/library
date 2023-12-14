@@ -273,9 +273,6 @@ data:
       path: ds/my_bitset.hpp
       title: ds/my_bitset.hpp
     - icon: ':heavy_check_mark:'
-      path: ds/my_multiset.hpp
-      title: ds/my_multiset.hpp
-    - icon: ':heavy_check_mark:'
       path: ds/pbds.hpp
       title: ds/pbds.hpp
     - icon: ':heavy_check_mark:'
@@ -3959,7 +3956,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc240ex.test.cpp
       title: test_atcoder/abc240ex.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_atcoder/abc241d.test.cpp
       title: test_atcoder/abc241d.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4052,7 +4049,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc280f.test.cpp
       title: test_atcoder/abc280f.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_atcoder/abc281e.test.cpp
       title: test_atcoder/abc281e.test.cpp
     - icon: ':heavy_check_mark:'

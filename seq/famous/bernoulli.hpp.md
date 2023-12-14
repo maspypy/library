@@ -372,14 +372,14 @@ data:
   isVerificationFile: false
   path: seq/famous/bernoulli.hpp
   requiredBy:
-  - poly/prefix_sum_of_polynomial.hpp
   - seq/famous/riemann_zeta_even.hpp
+  - poly/prefix_sum_of_polynomial.hpp
   timestamp: '2023-11-21 19:08:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/bernoulli.test.cpp
-  - test/yukicoder/2580.test.cpp
   - test/yukicoder/1357.test.cpp
+  - test/yukicoder/2580.test.cpp
 documentation_of: seq/famous/bernoulli.hpp
 layout: document
 redirect_from:

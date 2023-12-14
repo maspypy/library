@@ -57,17 +57,17 @@ data:
   path: random/shuffle.hpp
   requiredBy:
   - random/random_graph.hpp
-  - geo/minimum_enclosing_circle.hpp
   - geo/closest_pair.hpp
+  - geo/minimum_enclosing_circle.hpp
   timestamp: '2023-02-17 09:47:57+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/aoj/CGL_5_A.test.cpp
   - test/mytest/count_clique.test.cpp
+  - test/mytest/matching_ve.test.cpp
+  - test/mytest/matching_line_graph.test.cpp
   - test/mytest/find_odd_cycle.test.cpp
   - test/mytest/count_indep_set.test.cpp
-  - test/mytest/matching_line_graph.test.cpp
-  - test/mytest/matching_ve.test.cpp
-  - test/aoj/CGL_5_A.test.cpp
   - test_atcoder/abc151f.test.cpp
 documentation_of: random/shuffle.hpp
 layout: document

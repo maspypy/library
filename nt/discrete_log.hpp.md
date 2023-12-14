@@ -128,8 +128,8 @@ data:
   verifiedWith:
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/yukicoder/1339.test.cpp
-  - test_atcoder/abc222g.test.cpp
   - test_atcoder/abc270_g.test.cpp
+  - test_atcoder/abc222g.test.cpp
 documentation_of: nt/discrete_log.hpp
 layout: document
 redirect_from:

@@ -97,8 +97,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/composition_sps.test.cpp
-  - test_atcoder/abc213g.test.cpp
   - test_atcoder/abc321g.test.cpp
+  - test_atcoder/abc213g.test.cpp
   - test_atcoder/arc105.test.cpp
 documentation_of: setfunc/sps_composition.hpp
 layout: document

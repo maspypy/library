@@ -126,9 +126,9 @@ data:
   isVerificationFile: false
   path: geo/angle_sort.hpp
   requiredBy:
+  - graph/planar_graph.hpp
   - geo/max_norm_sum.hpp
   - geo/count_points_in_triangles.hpp
-  - graph/planar_graph.hpp
   timestamp: '2023-11-07 01:10:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -136,8 +136,8 @@ data:
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp
   - test/yukicoder/1777.test.cpp
-  - test_atcoder/abc202_f.test.cpp
   - test_atcoder/abc139f.test.cpp
+  - test_atcoder/abc202_f.test.cpp
 documentation_of: geo/angle_sort.hpp
 layout: document
 redirect_from:
