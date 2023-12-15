@@ -30,12 +30,14 @@ data:
     \ >> 6] |= (value & 1) << (index & 63);\n      return *this;\n    }\n    void\
     \ flip() {\n      dat[index >> 6] ^= (u64(1) << (index & 63)); // XOR to flip\
     \ the bit\n    }\n\n  private:\n    vc<u64> &dat;\n    int index;\n  };\n\n  Proxy\
-    \ operator[](int i) { return Proxy(dat, i); }\n\n  T &operator&=(const T &p) {\n\
-    \    assert(N == p.N);\n    FOR(i, len(dat)) dat[i] &= p.dat[i];\n    return *this;\n\
-    \  }\n  T &operator|=(const T &p) {\n    assert(N == p.N);\n    FOR(i, len(dat))\
-    \ dat[i] |= p.dat[i];\n    return *this;\n  }\n  T &operator^=(const T &p) {\n\
-    \    assert(N == p.N);\n    FOR(i, len(dat)) dat[i] ^= p.dat[i];\n    return *this;\n\
-    \  }\n  T operator&(const T &p) const { return T(*this) &= p; }\n  T operator|(const\
+    \ operator[](int i) { return Proxy(dat, i); }\n\n  bool operator==(const T &p)\
+    \ {\n    assert(N == p.N);\n    FOR(i, len(dat)) if (dat[i] != p.dat[i]) return\
+    \ false;\n    return true;\n  }\n\n  T &operator&=(const T &p) {\n    assert(N\
+    \ == p.N);\n    FOR(i, len(dat)) dat[i] &= p.dat[i];\n    return *this;\n  }\n\
+    \  T &operator|=(const T &p) {\n    assert(N == p.N);\n    FOR(i, len(dat)) dat[i]\
+    \ |= p.dat[i];\n    return *this;\n  }\n  T &operator^=(const T &p) {\n    assert(N\
+    \ == p.N);\n    FOR(i, len(dat)) dat[i] ^= p.dat[i];\n    return *this;\n  }\n\
+    \  T operator&(const T &p) const { return T(*this) &= p; }\n  T operator|(const\
     \ T &p) const { return T(*this) |= p; }\n  T operator^(const T &p) const { return\
     \ T(*this) ^= p; }\n\n  int count() {\n    int ans = 0;\n    for (u64 val: dat)\
     \ ans += popcnt(val);\n    return ans;\n  }\n\n  int next(int i) {\n    chmax(i,\
@@ -96,31 +98,32 @@ data:
     \u4ED5\u69D8\u3092\u5408\u308F\u305B\u308B\n  void set(int i) { (*this)[i] = 1;\
     \ }\n  void reset(int i) { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip();\
     \ }\n  void set() {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n  void\
-    \ reset() { fill(all(dat), 0); }\n\n  int _Find_first() { return next(0); }\n\
-    \  int _Find_next(int p) { return next(p + 1); }\n};\n#line 2 \"ds/counter.hpp\"\
-    \n\n// mo + \u6700\u983B\u5024\u30AF\u30A8\u30EA\u3067\u4F7F\u3048\u308B\n// most_freq_key\uFF1A\
-    O(sqrt(N)+KEY_MAX/w)\n// \u305D\u308C\u4EE5\u5916\u306F O(1)\ntemplate <int USE_MAX_FREQ_KEY>\n\
-    struct Counter {\n  int N;\n  int thresh;\n  int ma;\n  vc<int> freq;\n  vc<int>\
-    \ freq_cnt;\n  vc<My_Bitset> freq_to_key;\n\n  // key \u304C [0, N), \u8981\u7D20\
-    \u6570\u304C\u5E38\u306B [0, N]\n  Counter(int N) : N(N) {\n    thresh = sqrtl(N);\n\
-    \    ma = 0;\n    freq.assign(N, 0);\n    freq_cnt.assign(N + 1, 0);\n    freq_cnt[0]\
-    \ = N;\n    if constexpr (USE_MAX_FREQ_KEY) {\n      freq_to_key.assign(thresh\
-    \ + 1, My_Bitset(N));\n    }\n  }\n\n  void insert(int k) {\n    assert(0 <= k\
-    \ && k < N);\n    if (ma == freq[k]) ++ma;\n    if constexpr (USE_MAX_FREQ_KEY)\
-    \ {\n      freq_to_key[min(thresh, freq[k])][k] = 0;\n    }\n    freq_cnt[freq[k]]--,\
-    \ freq[k]++, freq_cnt[freq[k]]++;\n    if constexpr (USE_MAX_FREQ_KEY) {\n   \
-    \   freq_to_key[min(thresh, freq[k])][k] = 1;\n    }\n  }\n  void add(int k) {\
-    \ insert(k); }\n\n  void erase(int k) {\n    assert(0 <= k && k < N);\n    if\
-    \ (ma == freq[k] && freq_cnt[freq[k]] == 1) --ma;\n    if constexpr (USE_MAX_FREQ_KEY)\
-    \ {\n      freq_to_key[min(thresh, freq[k])][k] = 0;\n    }\n    freq_cnt[freq[k]]--,\
-    \ freq[k]--, freq_cnt[freq[k]]++;\n    if constexpr (USE_MAX_FREQ_KEY) {\n   \
-    \   freq_to_key[min(thresh, freq[k])][k] = 1;\n    }\n  }\n  void remove(int k)\
-    \ { erase(k); }\n\n  int operator[](int x) { return freq[x]; }\n\n  int max_freq()\
-    \ { return ma; }\n  int max_freq_key() {\n    static_assert(USE_MAX_FREQ_KEY);\n\
-    \    if (ma < thresh) return freq_to_key[mx]._Find_first();\n    My_Bitset& b\
-    \ = freq_to_key[thresh];\n    int p = b._Find_first();\n    while (1) {\n    \
-    \  if (freq[p] == mx) return p;\n      p = b._Find_next(p);\n    }\n    assert(0);\n\
-    \    return -1;\n  }\n};\n"
+    \ reset() { fill(all(dat), 0); }\n  bool any() {\n    FOR(i, len(dat)) {\n   \
+    \   if (dat[i]) return true;\n    }\n    return false;\n  }\n\n  int _Find_first()\
+    \ { return next(0); }\n  int _Find_next(int p) { return next(p + 1); }\n};\n#line\
+    \ 2 \"ds/counter.hpp\"\n\n// mo + \u6700\u983B\u5024\u30AF\u30A8\u30EA\u3067\u4F7F\
+    \u3048\u308B\n// most_freq_key\uFF1AO(sqrt(N)+KEY_MAX/w)\n// \u305D\u308C\u4EE5\
+    \u5916\u306F O(1)\ntemplate <int USE_MAX_FREQ_KEY>\nstruct Counter {\n  int N;\n\
+    \  int thresh;\n  int ma;\n  vc<int> freq;\n  vc<int> freq_cnt;\n  vc<My_Bitset>\
+    \ freq_to_key;\n\n  // key \u304C [0, N), \u8981\u7D20\u6570\u304C\u5E38\u306B\
+    \ [0, N]\n  Counter(int N) : N(N) {\n    thresh = sqrtl(N);\n    ma = 0;\n   \
+    \ freq.assign(N, 0);\n    freq_cnt.assign(N + 1, 0);\n    freq_cnt[0] = N;\n \
+    \   if constexpr (USE_MAX_FREQ_KEY) {\n      freq_to_key.assign(thresh + 1, My_Bitset(N));\n\
+    \    }\n  }\n\n  void insert(int k) {\n    assert(0 <= k && k < N);\n    if (ma\
+    \ == freq[k]) ++ma;\n    if constexpr (USE_MAX_FREQ_KEY) {\n      freq_to_key[min(thresh,\
+    \ freq[k])][k] = 0;\n    }\n    freq_cnt[freq[k]]--, freq[k]++, freq_cnt[freq[k]]++;\n\
+    \    if constexpr (USE_MAX_FREQ_KEY) {\n      freq_to_key[min(thresh, freq[k])][k]\
+    \ = 1;\n    }\n  }\n  void add(int k) { insert(k); }\n\n  void erase(int k) {\n\
+    \    assert(0 <= k && k < N);\n    if (ma == freq[k] && freq_cnt[freq[k]] == 1)\
+    \ --ma;\n    if constexpr (USE_MAX_FREQ_KEY) {\n      freq_to_key[min(thresh,\
+    \ freq[k])][k] = 0;\n    }\n    freq_cnt[freq[k]]--, freq[k]--, freq_cnt[freq[k]]++;\n\
+    \    if constexpr (USE_MAX_FREQ_KEY) {\n      freq_to_key[min(thresh, freq[k])][k]\
+    \ = 1;\n    }\n  }\n  void remove(int k) { erase(k); }\n\n  int operator[](int\
+    \ x) { return freq[x]; }\n\n  int max_freq() { return ma; }\n  int max_freq_key()\
+    \ {\n    static_assert(USE_MAX_FREQ_KEY);\n    if (ma < thresh) return freq_to_key[mx]._Find_first();\n\
+    \    My_Bitset& b = freq_to_key[thresh];\n    int p = b._Find_first();\n    while\
+    \ (1) {\n      if (freq[p] == mx) return p;\n      p = b._Find_next(p);\n    }\n\
+    \    assert(0);\n    return -1;\n  }\n};\n"
   code: "#include \"ds/my_bitset.hpp\"\n\n// mo + \u6700\u983B\u5024\u30AF\u30A8\u30EA\
     \u3067\u4F7F\u3048\u308B\n// most_freq_key\uFF1AO(sqrt(N)+KEY_MAX/w)\n// \u305D\
     \u308C\u4EE5\u5916\u306F O(1)\ntemplate <int USE_MAX_FREQ_KEY>\nstruct Counter\
@@ -150,7 +153,7 @@ data:
   isVerificationFile: false
   path: ds/counter.hpp
   requiredBy: []
-  timestamp: '2023-11-03 05:38:01+09:00'
+  timestamp: '2023-12-15 23:42:47+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/counter.hpp

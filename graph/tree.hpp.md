@@ -5,9 +5,15 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
+  - icon: ':question:'
+    path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
+    title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - icon: ':warning:'
     path: graph/compress_tree.hpp
     title: graph/compress_tree.hpp
+  - icon: ':warning:'
+    path: graph/count_matching_on_tree.hpp
+    title: graph/count_matching_on_tree.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
@@ -23,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/mo_on_tree.hpp
     title: graph/ds/mo_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
   - icon: ':heavy_check_mark:'
@@ -68,6 +74,9 @@ data:
   - icon: ':warning:'
     path: graph/tree_dp/tree_dp.hpp
     title: graph/tree_dp/tree_dp.hpp
+  - icon: ':question:'
+    path: graph/tree_walk_generating_function.hpp
+    title: graph/tree_walk_generating_function.hpp
   - icon: ':heavy_check_mark:'
     path: graph/unicyclic.hpp
     title: graph/unicyclic.hpp
@@ -123,6 +132,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/mo_on_tree.test.cpp
     title: test/mytest/mo_on_tree.test.cpp
+  - icon: ':x:'
+    path: test/mytest/tree_walk_gf.test.cpp
+    title: test/mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
@@ -208,6 +220,12 @@ data:
     path: test/yukicoder/2491.test.cpp
     title: test/yukicoder/2491.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2587.test.cpp
+    title: test/yukicoder/2587.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2587_2.test.cpp
+    title: test/yukicoder/2587_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
   - icon: ':heavy_check_mark:'
@@ -240,9 +258,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc023f.test.cpp
     title: test_atcoder/agc023f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate\
@@ -482,10 +500,13 @@ data:
   - graph/tree_dp/subtree_hash.hpp
   - graph/tree_dp/rerooting_dp.hpp
   - graph/tree_dp/subtree_depth_sum.hpp
+  - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
+  - graph/count_matching_on_tree.hpp
   - graph/compress_tree.hpp
+  - graph/tree_walk_generating_function.hpp
   - graph/dsu_on_tree.hpp
   timestamp: '2023-11-30 16:31:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/2995.test.cpp
   - test/aoj/GRL_5_E.test.cpp
@@ -504,6 +525,7 @@ data:
   - test/library_checker/graph/classify_tree.test.cpp
   - test/mytest/QOJ5445.test.cpp
   - test/mytest/mo_on_tree.test.cpp
+  - test/mytest/tree_walk_gf.test.cpp
   - test/yukicoder/1326.test.cpp
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1976.test.cpp
@@ -523,8 +545,10 @@ data:
   - test/yukicoder/1790.test.cpp
   - test/yukicoder/2491.test.cpp
   - test/yukicoder/1197.test.cpp
+  - test/yukicoder/2587.test.cpp
   - test/yukicoder/2342_2.test.cpp
   - test/yukicoder/590.test.cpp
+  - test/yukicoder/2587_2.test.cpp
   - test/yukicoder/1295.test.cpp
   - test/yukicoder/2258.test.cpp
   - test/yukicoder/1216.test.cpp

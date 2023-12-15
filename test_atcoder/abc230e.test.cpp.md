@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/sigma_0_sum.hpp
     title: nt/sigma_0_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []

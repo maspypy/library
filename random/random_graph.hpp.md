@@ -27,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/matching_ve.test.cpp
     title: test/mytest/matching_ve.test.cpp
+  - icon: ':x:'
+    path: test/mytest/tree_walk_gf.test.cpp
+    title: test/mytest/tree_walk_gf.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -146,6 +149,7 @@ data:
   - test/mytest/matching_line_graph.test.cpp
   - test/mytest/find_odd_cycle.test.cpp
   - test/mytest/count_indep_set.test.cpp
+  - test/mytest/tree_walk_gf.test.cpp
 documentation_of: random/random_graph.hpp
 layout: document
 redirect_from:

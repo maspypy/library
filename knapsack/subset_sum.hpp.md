@@ -40,12 +40,14 @@ data:
     \ >> 6] |= (value & 1) << (index & 63);\n      return *this;\n    }\n    void\
     \ flip() {\n      dat[index >> 6] ^= (u64(1) << (index & 63)); // XOR to flip\
     \ the bit\n    }\n\n  private:\n    vc<u64> &dat;\n    int index;\n  };\n\n  Proxy\
-    \ operator[](int i) { return Proxy(dat, i); }\n\n  T &operator&=(const T &p) {\n\
-    \    assert(N == p.N);\n    FOR(i, len(dat)) dat[i] &= p.dat[i];\n    return *this;\n\
-    \  }\n  T &operator|=(const T &p) {\n    assert(N == p.N);\n    FOR(i, len(dat))\
-    \ dat[i] |= p.dat[i];\n    return *this;\n  }\n  T &operator^=(const T &p) {\n\
-    \    assert(N == p.N);\n    FOR(i, len(dat)) dat[i] ^= p.dat[i];\n    return *this;\n\
-    \  }\n  T operator&(const T &p) const { return T(*this) &= p; }\n  T operator|(const\
+    \ operator[](int i) { return Proxy(dat, i); }\n\n  bool operator==(const T &p)\
+    \ {\n    assert(N == p.N);\n    FOR(i, len(dat)) if (dat[i] != p.dat[i]) return\
+    \ false;\n    return true;\n  }\n\n  T &operator&=(const T &p) {\n    assert(N\
+    \ == p.N);\n    FOR(i, len(dat)) dat[i] &= p.dat[i];\n    return *this;\n  }\n\
+    \  T &operator|=(const T &p) {\n    assert(N == p.N);\n    FOR(i, len(dat)) dat[i]\
+    \ |= p.dat[i];\n    return *this;\n  }\n  T &operator^=(const T &p) {\n    assert(N\
+    \ == p.N);\n    FOR(i, len(dat)) dat[i] ^= p.dat[i];\n    return *this;\n  }\n\
+    \  T operator&(const T &p) const { return T(*this) &= p; }\n  T operator|(const\
     \ T &p) const { return T(*this) |= p; }\n  T operator^(const T &p) const { return\
     \ T(*this) ^= p; }\n\n  int count() {\n    int ans = 0;\n    for (u64 val: dat)\
     \ ans += popcnt(val);\n    return ans;\n  }\n\n  int next(int i) {\n    chmax(i,\
@@ -106,32 +108,33 @@ data:
     \u4ED5\u69D8\u3092\u5408\u308F\u305B\u308B\n  void set(int i) { (*this)[i] = 1;\
     \ }\n  void reset(int i) { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip();\
     \ }\n  void set() {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n  void\
-    \ reset() { fill(all(dat), 0); }\n\n  int _Find_first() { return next(0); }\n\
-    \  int _Find_next(int p) { return next(p + 1); }\n};\n#line 1 \"enumerate/bits.hpp\"\
-    \ntemplate <typename F>\nvoid enumerate_bits_32(u32 s, F f) {\n  while (s) {\n\
-    \    int i = __builtin_ctz(s);\n    f(i);\n    s ^= 1 << i;\n  }\n}\n\ntemplate\
-    \ <typename F>\nvoid enumerate_bits_64(u64 s, F f) {\n  while (s) {\n    int i\
-    \ = __builtin_ctzll(s);\n    f(i);\n    s ^= u64(1) << i;\n  }\n}\n\ntemplate\
-    \ <typename BS, typename F>\nvoid enumerate_bits_bitset(BS& b, int L, int R, F\
-    \ f) {\n  int p = (b[L] ? L : b._Find_next(L));\n  while (p < R) {\n    f(p);\n\
-    \    p = b._Find_next(p);\n  }\n}\n#line 3 \"knapsack/subset_sum.hpp\"\n\n// O(N\
-    \ MAX(vals))\ntemplate <typename T>\nvc<int> subset_sum_solution_1(vc<T>& vals,\
-    \ int target) {\n  int n = len(vals);\n  if (n == 0) return {};\n  int mx = MAX(vals);\n\
-    \  int b = 0, sb = 0;\n  while (b < n && sb + vals[b] <= target) { sb += vals[b++];\
-    \ }\n  if (b == n && sb != target) return {};\n\n  int off = target - mx + 1;\n\
-    \  vc<int> dp(2 * mx, -1);\n  vv(int, PAR, n, 2 * mx, -1);\n  dp[sb - off] = b;\n\
-    \  FOR3(i, b, n) {\n    auto newdp = dp;\n    auto& par = PAR[i];\n    int a =\
-    \ vals[i];\n    FOR(j, mx) {\n      if (chmax(newdp[j + a], dp[j])) { par[j +\
-    \ a] = -2; }\n    }\n    FOR3_R(j, mx, 2 * mx) {\n      FOR3_R(k, max(dp[j], 0),\
-    \ newdp[j]) {\n        if (chmax(newdp[j - vals[k]], k)) par[j - vals[k]] = k;\n\
-    \      }\n    }\n    swap(dp, newdp);\n  }\n  if (dp[mx - 1] == -1) return {};\n\
-    \  vc<bool> use(n);\n  int i = n - 1, j = mx - 1;\n  while (i >= b) {\n    int\
-    \ p = PAR[i][j];\n    if (p == -2) {\n      use[i] = !use[i];\n      j -= vals[i--];\n\
-    \    }\n    elif (p == -1) { --i; }\n    else {\n      use[p] = !use[p];\n   \
-    \   j += vals[p];\n    }\n  }\n  while (i >= 0) {\n    use[i] = !use[i];\n   \
-    \ --i;\n  }\n  vc<int> I;\n  FOR(i, n) if (use[i]) I.eb(i);\n\n  ll sm = 0;\n\
-    \  for (auto&& i: I) sm += vals[i];\n  assert(sm == target);\n\n  return I;\n\
-    }\n\n// O(N target / w)\ntemplate <typename T>\nvc<int> subset_sum_solution_2(vc<T>&\
+    \ reset() { fill(all(dat), 0); }\n  bool any() {\n    FOR(i, len(dat)) {\n   \
+    \   if (dat[i]) return true;\n    }\n    return false;\n  }\n\n  int _Find_first()\
+    \ { return next(0); }\n  int _Find_next(int p) { return next(p + 1); }\n};\n#line\
+    \ 1 \"enumerate/bits.hpp\"\ntemplate <typename F>\nvoid enumerate_bits_32(u32\
+    \ s, F f) {\n  while (s) {\n    int i = __builtin_ctz(s);\n    f(i);\n    s ^=\
+    \ 1 << i;\n  }\n}\n\ntemplate <typename F>\nvoid enumerate_bits_64(u64 s, F f)\
+    \ {\n  while (s) {\n    int i = __builtin_ctzll(s);\n    f(i);\n    s ^= u64(1)\
+    \ << i;\n  }\n}\n\ntemplate <typename BS, typename F>\nvoid enumerate_bits_bitset(BS&\
+    \ b, int L, int R, F f) {\n  int p = (b[L] ? L : b._Find_next(L));\n  while (p\
+    \ < R) {\n    f(p);\n    p = b._Find_next(p);\n  }\n}\n#line 3 \"knapsack/subset_sum.hpp\"\
+    \n\n// O(N MAX(vals))\ntemplate <typename T>\nvc<int> subset_sum_solution_1(vc<T>&\
+    \ vals, int target) {\n  int n = len(vals);\n  if (n == 0) return {};\n  int mx\
+    \ = MAX(vals);\n  int b = 0, sb = 0;\n  while (b < n && sb + vals[b] <= target)\
+    \ { sb += vals[b++]; }\n  if (b == n && sb != target) return {};\n\n  int off\
+    \ = target - mx + 1;\n  vc<int> dp(2 * mx, -1);\n  vv(int, PAR, n, 2 * mx, -1);\n\
+    \  dp[sb - off] = b;\n  FOR3(i, b, n) {\n    auto newdp = dp;\n    auto& par =\
+    \ PAR[i];\n    int a = vals[i];\n    FOR(j, mx) {\n      if (chmax(newdp[j + a],\
+    \ dp[j])) { par[j + a] = -2; }\n    }\n    FOR3_R(j, mx, 2 * mx) {\n      FOR3_R(k,\
+    \ max(dp[j], 0), newdp[j]) {\n        if (chmax(newdp[j - vals[k]], k)) par[j\
+    \ - vals[k]] = k;\n      }\n    }\n    swap(dp, newdp);\n  }\n  if (dp[mx - 1]\
+    \ == -1) return {};\n  vc<bool> use(n);\n  int i = n - 1, j = mx - 1;\n  while\
+    \ (i >= b) {\n    int p = PAR[i][j];\n    if (p == -2) {\n      use[i] = !use[i];\n\
+    \      j -= vals[i--];\n    }\n    elif (p == -1) { --i; }\n    else {\n     \
+    \ use[p] = !use[p];\n      j += vals[p];\n    }\n  }\n  while (i >= 0) {\n   \
+    \ use[i] = !use[i];\n    --i;\n  }\n  vc<int> I;\n  FOR(i, n) if (use[i]) I.eb(i);\n\
+    \n  ll sm = 0;\n  for (auto&& i: I) sm += vals[i];\n  assert(sm == target);\n\n\
+    \  return I;\n}\n\n// O(N target / w)\ntemplate <typename T>\nvc<int> subset_sum_solution_2(vc<T>&\
     \ vals, int target) {\n  int n = len(vals);\n  auto I = argsort(vals);\n  My_Bitset\
     \ dp(1, 1);\n  vc<int> last(target + 1, -1);\n  FOR(k, n) {\n    int v = vals[I[k]];\n\
     \    if (v > target) continue;\n    My_Bitset newdp = dp;\n    int new_size =\
@@ -252,7 +255,7 @@ data:
   isVerificationFile: false
   path: knapsack/subset_sum.hpp
   requiredBy: []
-  timestamp: '2023-11-03 05:38:01+09:00'
+  timestamp: '2023-12-15 23:42:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/subset_sum.test.cpp

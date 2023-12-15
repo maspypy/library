@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/block_cut.hpp
     title: graph/block_cut.hpp
   - icon: ':heavy_check_mark:'
@@ -35,6 +35,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/centroid_decomposition_old.hpp
     title: graph/centroid_decomposition_old.hpp
+  - icon: ':question:'
+    path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
+    title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - icon: ':warning:'
     path: graph/compress_tree.hpp
     title: graph/compress_tree.hpp
@@ -50,6 +53,9 @@ data:
   - icon: ':question:'
     path: graph/count/count_independent_set.hpp
     title: graph/count/count_independent_set.hpp
+  - icon: ':warning:'
+    path: graph/count_matching_on_tree.hpp
+    title: graph/count_matching_on_tree.hpp
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
@@ -80,7 +86,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/mo_on_tree.hpp
     title: graph/ds/mo_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
   - icon: ':heavy_check_mark:'
@@ -185,7 +191,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest_path/bellmanford.hpp
     title: graph/shortest_path/bellmanford.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
   - icon: ':heavy_check_mark:'
@@ -212,7 +218,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
@@ -242,6 +248,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
+  - icon: ':question:'
+    path: graph/tree_walk_generating_function.hpp
+    title: graph/tree_walk_generating_function.hpp
   - icon: ':heavy_check_mark:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
@@ -456,6 +465,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
+  - icon: ':x:'
+    path: test/mytest/tree_walk_gf.test.cpp
+    title: test/mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
@@ -628,6 +640,12 @@ data:
     path: test/yukicoder/2507.test.cpp
     title: test/yukicoder/2507.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2587.test.cpp
+    title: test/yukicoder/2587.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2587_2.test.cpp
+    title: test/yukicoder/2587_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
   - icon: ':heavy_check_mark:'
@@ -699,7 +717,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc151_e.test.cpp
     title: test_atcoder/arc151_e.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -874,6 +892,7 @@ data:
   - graph/tree_dp/subtree_depth_sum.hpp
   - graph/find_C4.hpp
   - graph/tree.hpp
+  - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - graph/tree_center.hpp
   - graph/maximum_independent_set.hpp
   - graph/strongly_connected_component.hpp
@@ -881,11 +900,13 @@ data:
   - graph/find_nontransitive_triple.hpp
   - graph/minimum_hamiltonian_cycle.hpp
   - graph/bipartite_vertex_coloring.hpp
+  - graph/count_matching_on_tree.hpp
   - graph/tree_of_unionfind.hpp
   - graph/directed_mst.hpp
   - graph/centroid_decomposition_old.hpp
   - graph/find_centroid.hpp
   - graph/compress_tree.hpp
+  - graph/tree_walk_generating_function.hpp
   - graph/minimum_cost_cycle.hpp
   - graph/range_to_range_graph.hpp
   - graph/implicit_graph/complement_graph_bfs.hpp
@@ -985,6 +1006,7 @@ data:
   - test/mytest/matching_line_graph.test.cpp
   - test/mytest/find_odd_cycle.test.cpp
   - test/mytest/count_indep_set.test.cpp
+  - test/mytest/tree_walk_gf.test.cpp
   - test/yukicoder/1796.test.cpp
   - test/yukicoder/1326.test.cpp
   - test/yukicoder/235.test.cpp
@@ -1015,11 +1037,13 @@ data:
   - test/yukicoder/2361.test.cpp
   - test/yukicoder/2491.test.cpp
   - test/yukicoder/1197.test.cpp
+  - test/yukicoder/2587.test.cpp
   - test/yukicoder/2342_2.test.cpp
   - test/yukicoder/2305.test.cpp
   - test/yukicoder/17.test.cpp
   - test/yukicoder/590.test.cpp
   - test/yukicoder/1320.test.cpp
+  - test/yukicoder/2587_2.test.cpp
   - test/yukicoder/1295.test.cpp
   - test/yukicoder/2258.test.cpp
   - test/yukicoder/1216.test.cpp

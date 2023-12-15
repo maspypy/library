@@ -17,6 +17,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
+  - icon: ':question:'
+    path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
+    title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
@@ -47,6 +50,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
+  - icon: ':question:'
+    path: graph/tree_walk_generating_function.hpp
+    title: graph/tree_walk_generating_function.hpp
   - icon: ':heavy_check_mark:'
     path: graph/unicyclic.hpp
     title: graph/unicyclic.hpp
@@ -99,6 +105,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/matching_ve.test.cpp
     title: test/mytest/matching_ve.test.cpp
+  - icon: ':x:'
+    path: test/mytest/tree_walk_gf.test.cpp
+    title: test/mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
@@ -156,6 +165,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2296.test.cpp
     title: test/yukicoder/2296.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2587.test.cpp
+    title: test/yukicoder/2587.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2587_2.test.cpp
+    title: test/yukicoder/2587_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
@@ -220,9 +235,11 @@ data:
   - graph/bipartite_edge_coloring.hpp
   - graph/maximum_antichain.hpp
   - graph/unicyclic.hpp
+  - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - graph/bipartite_vertex_coloring.hpp
   - graph/tree_of_unionfind.hpp
   - graph/directed_mst.hpp
+  - graph/tree_walk_generating_function.hpp
   - graph/implicit_graph/unionfind.hpp
   - graph/implicit_graph/mst.hpp
   - graph/implicit_graph/complement_graph_unionfind.hpp
@@ -247,6 +264,7 @@ data:
   - test/mytest/matching_line_graph.test.cpp
   - test/mytest/find_odd_cycle.test.cpp
   - test/mytest/count_indep_set.test.cpp
+  - test/mytest/tree_walk_gf.test.cpp
   - test/yukicoder/1392.test.cpp
   - test/yukicoder/1170_2.test.cpp
   - test/yukicoder/1745.test.cpp
@@ -254,8 +272,10 @@ data:
   - test/yukicoder/1451.test.cpp
   - test/yukicoder/114.test.cpp
   - test/yukicoder/1744.test.cpp
+  - test/yukicoder/2587.test.cpp
   - test/yukicoder/590.test.cpp
   - test/yukicoder/2296.test.cpp
+  - test/yukicoder/2587_2.test.cpp
   - test/yukicoder/1303.test.cpp
   - test/yukicoder/1254.test.cpp
   - test/yukicoder/1911.test.cpp

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/product.hpp
     title: enumerate/product.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/block_cut.hpp
     title: graph/block_cut.hpp
   - icon: ':question:'
@@ -22,16 +22,16 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':question:'
@@ -43,41 +43,41 @@ data:
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/arc153/tasks/arc153_f
@@ -756,16 +756,20 @@ data:
     \u5F35\u3057\u3066\u304A\u304F\nhttps://twitter.com/noshi91/status/1529858538650374144?s=20&t=eznpFbuD9BDhfTb4PplFUg\n\
     [0, n)\uFF1A\u3082\u3068\u306E\u9802\u70B9 [n, n + n_block)\uFF1Ablock\n\u95A2\
     \u7BC0\u70B9\uFF1A[0, n) \u306E\u3046\u3061\u3067\u3001degree >= 2 \u3092\u6E80\
-    \u305F\u3059\u3082\u306E\n\n\u5B64\u7ACB\u70B9\u306F\u30011 \u70B9\u3060\u3051\
-    \u304B\u3089\u306A\u308B block\n*/\ntemplate <typename GT>\nGraph<int, 0> block_cut(GT&\
-    \ G) {\n  int n = G.N;\n  vc<int> low(n), ord(n), st;\n  vc<bool> used(n);\n \
-    \ st.reserve(n);\n  int nxt = n;\n  int k = 0;\n  vc<pair<int, int>> edges;\n\n\
-    \  auto dfs = [&](auto& dfs, int v, int p) -> void {\n    st.eb(v);\n    used[v]\
-    \ = 1;\n    low[v] = ord[v] = k++;\n    int child = 0;\n    for (auto&& e: G[v])\
-    \ {\n      if (e.to == p) continue;\n      if (!used[e.to]) {\n        ++child;\n\
-    \        int s = len(st);\n        dfs(dfs, e.to, v);\n        chmin(low[v], low[e.to]);\n\
-    \        if ((p == -1 && child > 1) || (p != -1 && low[e.to] >= ord[v])) {\n \
-    \         edges.eb(nxt, v);\n          while (len(st) > s) {\n            edges.eb(nxt,\
+    \u305F\u3059\u3082\u306E\n\u5B64\u7ACB\u70B9\u306F\u30011 \u70B9\u3060\u3051\u304B\
+    \u3089\u306A\u308B block\n\u6210\u5206\u304C\u6B32\u3057\u3044\u5834\u5408\uFF1A\
+    \u8FD1\u508D\u3092\u898B\u308B\u3068\u70B9\u96C6\u5408. \u8FBA\u304B\u3089\u6210\
+    \u5206\u3092\u5F97\u308B\u306B\u306F tree.jump\n\u3068\u601D\u3063\u305F\u304C\
+    \u975E\u9023\u7D50\u306A\u3068\u304D\u306B\u6CE8\u610F\u304C\u3044\u308B\u306A\
+    \u2026\n*/\ntemplate <typename GT>\nGraph<int, 0> block_cut(GT& G) {\n  int n\
+    \ = G.N;\n  vc<int> low(n), ord(n), st;\n  vc<bool> used(n);\n  st.reserve(n);\n\
+    \  int nxt = n;\n  int k = 0;\n  vc<pair<int, int>> edges;\n\n  auto dfs = [&](auto&\
+    \ dfs, int v, int p) -> void {\n    st.eb(v);\n    used[v] = 1;\n    low[v] =\
+    \ ord[v] = k++;\n    int child = 0;\n    for (auto&& e: G[v]) {\n      if (e.to\
+    \ == p) continue;\n      if (!used[e.to]) {\n        ++child;\n        int s =\
+    \ len(st);\n        dfs(dfs, e.to, v);\n        chmin(low[v], low[e.to]);\n  \
+    \      if ((p == -1 && child > 1) || (p != -1 && low[e.to] >= ord[v])) {\n   \
+    \       edges.eb(nxt, v);\n          while (len(st) > s) {\n            edges.eb(nxt,\
     \ st.back());\n            st.pop_back();\n          }\n          ++nxt;\n   \
     \     }\n      } else {\n        chmin(low[v], ord[e.to]);\n      }\n    }\n \
     \ };\n  FOR(v, n) if (!used[v]) {\n    dfs(dfs, v, -1);\n    for (auto&& x: st)\
@@ -848,8 +852,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/arc153f.test.cpp
   requiredBy: []
-  timestamp: '2023-11-21 19:08:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-12-15 23:42:47+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/arc153f.test.cpp
 layout: document

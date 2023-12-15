@@ -525,6 +525,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/tournament.test.cpp
     title: test/mytest/tournament.test.cpp
+  - icon: ':x:'
+    path: test/mytest/tree_walk_gf.test.cpp
+    title: test/mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
@@ -878,6 +881,7 @@ data:
   - test/mytest/add_chmin.test.cpp
   - test/mytest/vandermonde.test.cpp
   - test/mytest/all_inverse.test.cpp
+  - test/mytest/tree_walk_gf.test.cpp
   - test/mytest/summin_add.test.cpp
   - test/yukicoder/2231.test.cpp
   - test/yukicoder/1667.test.cpp

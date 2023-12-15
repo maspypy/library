@@ -26,9 +26,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_unicyclic.hpp
     title: graph/count/count_unicyclic.hpp
+  - icon: ':warning:'
+    path: graph/count_matching_on_tree.hpp
+    title: graph/count_matching_on_tree.hpp
   - icon: ':heavy_check_mark:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
+  - icon: ':question:'
+    path: graph/tree_walk_generating_function.hpp
+    title: graph/tree_walk_generating_function.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
@@ -92,7 +98,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/convolution2d.hpp
     title: poly/convolution2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
   - icon: ':heavy_check_mark:'
@@ -107,22 +113,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_composition.hpp
     title: poly/fps_composition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':heavy_check_mark:'
     path: poly/fps_inv_2d.hpp
     title: poly/fps_inv_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -215,7 +221,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   - icon: ':heavy_check_mark:'
@@ -678,6 +684,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/tdpc_grid_dp.test.cpp
     title: test/mytest/tdpc_grid_dp.test.cpp
+  - icon: ':x:'
+    path: test/mytest/tree_walk_gf.test.cpp
+    title: test/mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
@@ -937,6 +946,12 @@ data:
     path: test/yukicoder/2580.test.cpp
     title: test/yukicoder/2580.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2587.test.cpp
+    title: test/yukicoder/2587.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2587_2.test.cpp
+    title: test/yukicoder/2587_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/303.test.cpp
     title: test/yukicoder/303.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1080,7 +1095,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc144d.test.cpp
     title: test_atcoder/arc144d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1241,6 +1256,8 @@ data:
   - seq/interpolate_poly_exp_sum.hpp
   - setfunc/sps_log.hpp
   - nt/multiplicative_convolution_mod2n.hpp
+  - graph/count_matching_on_tree.hpp
+  - graph/tree_walk_generating_function.hpp
   - graph/count/count_clique.hpp
   - graph/count/count_forest.hpp
   - graph/count/count_bipartite.hpp
@@ -1443,6 +1460,7 @@ data:
   - test/mytest/partial_frac.test.cpp
   - test/mytest/vandermonde.test.cpp
   - test/mytest/all_inverse.test.cpp
+  - test/mytest/tree_walk_gf.test.cpp
   - test/yukicoder/2231.test.cpp
   - test/yukicoder/1533.test.cpp
   - test/yukicoder/1810.test.cpp
@@ -1484,6 +1502,7 @@ data:
   - test/yukicoder/1321.test.cpp
   - test/yukicoder/1848.test.cpp
   - test/yukicoder/2498.test.cpp
+  - test/yukicoder/2587.test.cpp
   - test/yukicoder/1774.test.cpp
   - test/yukicoder/2342_2.test.cpp
   - test/yukicoder/1549.test.cpp
@@ -1500,6 +1519,7 @@ data:
   - test/yukicoder/2578.test.cpp
   - test/yukicoder/1685.test.cpp
   - test/yukicoder/1875.test.cpp
+  - test/yukicoder/2587_2.test.cpp
   - test/yukicoder/1821.test.cpp
   - test/yukicoder/1141.test.cpp
   - test/yukicoder/1493.test.cpp
