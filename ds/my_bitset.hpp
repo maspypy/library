@@ -51,6 +51,12 @@ struct My_Bitset {
 
   Proxy operator[](int i) { return Proxy(dat, i); }
 
+  bool operator==(const T &p) {
+    assert(N == p.N);
+    FOR(i, len(dat)) if (dat[i] != p.dat[i]) return false;
+    return true;
+  }
+
   T &operator&=(const T &p) {
     assert(N == p.N);
     FOR(i, len(dat)) dat[i] &= p.dat[i];
@@ -247,6 +253,12 @@ struct My_Bitset {
     resize(N);
   }
   void reset() { fill(all(dat), 0); }
+  bool any() {
+    FOR(i, len(dat)) {
+      if (dat[i]) return true;
+    }
+    return false;
+  }
 
   int _Find_first() { return next(0); }
   int _Find_next(int p) { return next(p + 1); }

@@ -5,8 +5,9 @@ block-cut tree を、block に通常の頂点を隣接させて拡張してお�
 https://twitter.com/noshi91/status/1529858538650374144?s=20&t=eznpFbuD9BDhfTb4PplFUg
 [0, n)：もとの頂点 [n, n + n_block)：block
 関節点：[0, n) のうちで、degree >= 2 を満たすもの
-
 孤立点は、1 点だけからなる block
+成分が欲しい場合：近傍を見ると点集合. 辺から成分を得るには tree.jump
+と思ったが非連結なときに注意がいるな…
 */
 template <typename GT>
 Graph<int, 0> block_cut(GT& G) {
