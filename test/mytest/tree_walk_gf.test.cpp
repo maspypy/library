@@ -1,6 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
-#include "other/io.hpp"
 
 #include "random/random_graph.hpp"
 #include "graph/tree_walk_generating_function.hpp"
@@ -43,7 +42,11 @@ void test() {
   }
 }
 
-void solve() {}
+void solve() {
+  int a, b;
+  cin >> a >> b;
+  cout << a + b << '\n';
+}
 
 signed main() {
   test<0>();
