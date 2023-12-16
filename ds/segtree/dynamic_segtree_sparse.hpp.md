@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: ds/my_multiset.hpp
+    title: ds/my_multiset.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/double_ended_pq_2.test.cpp
@@ -24,9 +27,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/789_3.test.cpp
     title: test/yukicoder/789_3.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test_atcoder/abc241d.test.cpp
+    title: test_atcoder/abc241d.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc281e_2.test.cpp
+    title: test_atcoder/abc281e_2.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/dynamic_segtree_sparse.hpp\"\n\n// \u5E38\u306B\
@@ -172,9 +181,10 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: ds/segtree/dynamic_segtree_sparse.hpp
-  requiredBy: []
+  requiredBy:
+  - ds/my_multiset.hpp
   timestamp: '2023-04-14 22:06:08+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/datastructure/double_ended_pq_2.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
@@ -183,6 +193,8 @@ data:
   - test/yukicoder/2242.test.cpp
   - test/yukicoder/1649_2.test.cpp
   - test/yukicoder/1826_2.test.cpp
+  - test_atcoder/abc281e_2.test.cpp
+  - test_atcoder/abc241d.test.cpp
 documentation_of: ds/segtree/dynamic_segtree_sparse.hpp
 layout: document
 redirect_from:
