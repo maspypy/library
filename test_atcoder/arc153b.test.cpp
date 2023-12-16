@@ -12,8 +12,8 @@ void solve() {
   iota(all(A), 0), iota(all(B), 0);
 
   using np = decltype(X)::np;
-  auto root_1 = X.new_node(A);
-  auto root_2 = X.new_node(B);
+  np root_1 = X.new_node(A);
+  np root_2 = X.new_node(B);
 
   LL(Q);
   FOR(Q) {
@@ -33,11 +33,6 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
