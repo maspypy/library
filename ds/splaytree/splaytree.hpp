@@ -42,6 +42,7 @@ struct SplayTree {
   np merge(np l_root, np r_root) {
     if (!l_root) return r_root;
     if (!r_root) return l_root;
+    assert((!l_root->p) && (!r_root->p));
     splay_kth(r_root, 0); // splay したので prop 済
     r_root->l = l_root;
     l_root->p = r_root;
@@ -52,6 +53,7 @@ struct SplayTree {
   np merge4(np a, np b, np c, np d) { return merge(merge(merge(a, b), c), d); }
 
   pair<np, np> split(np root, u32 k) {
+    assert(!root || !root->p);
     if (k == 0) return {nullptr, root};
     if (k == (root->size)) return {root, nullptr};
     splay_kth(root, k - 1);
@@ -113,21 +115,25 @@ struct SplayTree {
   }
 
   X get(np &root, u32 k) {
+    assert(root == nullptr || !root->p);
     splay_kth(root, k);
     return root->get();
   }
 
   void set(np &root, u32 k, const X &x) {
+    assert(root != nullptr && !root->p);
     splay_kth(root, k);
     root->set(x);
   }
 
   void multiply(np &root, u32 k, const X &x) {
+    assert(root != nullptr && !root->p);
     splay_kth(root, k);
     root->multiply(x);
   }
 
   X prod(np &root, u32 l, u32 r) {
+    assert(root == nullptr || !root->p);
     using Mono = typename Node::Monoid_X;
     if (l == r) return Mono::unit();
     assert(0 <= l && l < r && r <= root->size);
@@ -138,6 +144,7 @@ struct SplayTree {
   }
 
   X prod(np &root) {
+    assert(root == nullptr || !root->p);
     using Mono = typename Node::Monoid_X;
     return (root ? root->prod : Mono::unit());
   }
@@ -155,6 +162,7 @@ struct SplayTree {
   }
 
   void reverse(np &root, u32 l, u32 r) {
+    assert(root == nullptr || !root->p);
     if (l == r) return;
     assert(0 <= l && l < r && r <= root->size);
     goto_between(root, l, r);
@@ -228,6 +236,7 @@ struct SplayTree {
   template <typename F>
   pair<np, np> split_max_right(np root, F check) {
     if (!root) return {nullptr, nullptr};
+    assert(!root->p);
     np c = find_max_right(root, check);
     if (!c) {
       splay(root);
@@ -246,6 +255,7 @@ struct SplayTree {
   template <typename F>
   pair<np, np> split_max_right_prod(np root, F check) {
     if (!root) return {nullptr, nullptr};
+    assert(!root->p);
     np c = find_max_right_prod(root, check);
     if (!c) {
       splay(root);

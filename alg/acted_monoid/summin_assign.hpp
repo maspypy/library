@@ -2,7 +2,7 @@
 #include "alg/monoid/assign.hpp"
 
 template <typename E, ll none_val>
-struct ActedMonoid_CntSumMin_Assign {
+struct ActedMonoid_SumMin_Assign {
   using Monoid_X = Monoid_SumMin<E>;
   using Monoid_A = Monoid_Assign<ll, none_val>;
   using X = typename Monoid_X::value_type;
