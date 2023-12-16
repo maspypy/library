@@ -2,37 +2,40 @@
 
 #include "my_template.hpp"
 #include "other/io.hpp"
+
 #include "ds/my_multiset.hpp"
 
 void solve() {
   LL(Q);
-  My_Multiset<ll, int> X;
+  My_Multiset<200100> X;
+  auto c = X.new_root();
   FOR(Q) {
-    LL(t, x);
+    LL(t);
     if (t == 1) {
-      X.insert(x);
-      continue;
+      LL(x);
+      c = X.add(c, x);
     }
-    LL(k);
     if (t == 2) {
-      int n = X.get_range(-infty<int>, x + 1).fi - 1;
-      n -= k - 1;
-      if (0 <= n && n < len(X)) {
-        print(X.get_kth(n).fi);
-      } else {
+      LL(x, k);
+      auto [cnt, sm] = X.get_range(c, -infty<ll>, x + 1);
+      if (cnt < k) {
         print(-1);
+      } else {
+        ll ans = X.prefix_kth(c, cnt - k).fi;
+        print(ans);
       }
     }
     if (t == 3) {
-      int n = X.get_range(-infty<int>, x).fi;
-      n += k - 1;
-      if (0 <= n && n < len(X)) {
-        print(X.get_kth(n).fi);
-      } else {
+      LL(x, k);
+      auto [cnt, sm] = X.get_range(c, x, infty<ll>);
+      if (cnt < k) {
         print(-1);
+      } else {
+        ll ans = X.suffix_kth(c, cnt - k).fi;
+        print(ans);
       }
     }
-  };
+  }
 }
 
 signed main() {
