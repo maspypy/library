@@ -8,7 +8,7 @@ void test() {
   int N = RNG(1, 100);
   vc<int> A(N);
   FOR(i, N) A[i] = RNG(1, 100);
-  using AM = ActedMonoid_CntSumMin_Assign<ll, -1>;
+  using AM = ActedMonoid_SumMin_Assign<ll, -1>;
   using Mono = typename AM::Monoid_X;
   Lazy_SegTree<AM> seg(
       N, [&](int i) -> Mono::value_type { return Mono::from_element(A[i]); });
