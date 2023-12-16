@@ -342,7 +342,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/arc153b.test.cpp
   requiredBy: []
-  timestamp: '2023-12-17 01:33:11+09:00'
+  timestamp: '2023-12-17 02:29:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/arc153b.test.cpp

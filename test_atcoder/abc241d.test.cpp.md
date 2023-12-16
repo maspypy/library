@@ -262,30 +262,30 @@ data:
     \ {\n  struct Mono {\n    using value_type = pair<ll, i128>; // cnt, sum\n   \
     \ using X = value_type;\n    static X op(X x, X y) { return {x.fi + y.fi, x.se\
     \ + y.se}; }\n    static constexpr X unit() { return {0, 0}; }\n    static constexpr\
-    \ bool commute = 1;\n  };\n  using SEG = typename Dynamic_SegTree_Sparse<Mono,\
-    \ false, NODES>;\n  using np = typename SEG::np;\n  SEG seg;\n  My_Multiset()\
-    \ : seg(-infty<ll>, infty<ll>) {}\n\n  void reset() { seg.reset(); }\n  np new_root()\
-    \ { return seg.new_root(); }\n  np add(np c, ll k, ll cnt = 1) {\n    return seg.multiply(c,\
-    \ k, {cnt, i128(k) * cnt});\n  }\n\n  pair<ll, i128> get_range(np c, ll L, ll\
-    \ R) { return seg.prod(c, L, R); }\n  pair<ll, i128> get_all(np c) { return seg.prod_all(c);\
-    \ }\n\n  // (k-th val or infty), sum\n  pair<ll, i128> prefix_kth(np c, ll k)\
-    \ {\n    auto [cnt, sm] = seg.prod_all(c);\n    assert(k <= cnt);\n    if (k ==\
-    \ cnt) return {infty<ll>, sm};\n    ll key = seg.max_right(\n        c, [&](auto\
-    \ e) -> bool { return e.fi <= k; }, -infty<ll>);\n    tie(cnt, sm) = seg.prod(c,\
-    \ -infty<ll>, key);\n    return {key, sm + key * (k - cnt)};\n  }\n\n  // (k-th\
-    \ val or -infty), sum\n  pair<ll, i128> suffix_kth(np c, ll k) {\n    auto [cnt,\
-    \ sm] = seg.prod_all(c);\n    assert(k <= cnt);\n    if (k == cnt) return {-infty<ll>,\
-    \ sm};\n    auto [a, b] = prefix_kth(c, cnt - 1 - k);\n    return {a, sm - b -\
-    \ a};\n  }\n};\n#line 7 \"test_atcoder/abc241d.test.cpp\"\n\nvoid solve() {\n\
-    \  LL(Q);\n  My_Multiset<200100> X;\n  auto c = X.new_root();\n  FOR(Q) {\n  \
-    \  LL(t);\n    if (t == 1) {\n      LL(x);\n      c = X.add(c, x);\n    }\n  \
-    \  if (t == 2) {\n      LL(x, k);\n      auto [cnt, sm] = X.get_range(c, -infty<ll>,\
-    \ x + 1);\n      if (cnt < k) {\n        print(-1);\n      } else {\n        ll\
-    \ ans = X.prefix_kth(c, cnt - k).fi;\n        print(ans);\n      }\n    }\n  \
-    \  if (t == 3) {\n      LL(x, k);\n      auto [cnt, sm] = X.get_range(c, x, infty<ll>);\n\
-    \      if (cnt < k) {\n        print(-1);\n      } else {\n        ll ans = X.suffix_kth(c,\
-    \ cnt - k).fi;\n        print(ans);\n      }\n    }\n  }\n}\n\nsigned main() {\n\
-    \  solve();\n  return 0;\n}\n"
+    \ bool commute = 1;\n  };\n  Dynamic_SegTree_Sparse<Mono, false, NODES> seg;\n\
+    \  using np = decltype(seg)::np;\n\n  My_Multiset() : seg(-infty<ll>, infty<ll>)\
+    \ {}\n\n  void reset() { seg.reset(); }\n  np new_root() { return seg.new_root();\
+    \ }\n  np add(np c, ll k, ll cnt = 1) {\n    return seg.multiply(c, k, {cnt, i128(k)\
+    \ * cnt});\n  }\n\n  pair<ll, i128> get_range(np c, ll L, ll R) { return seg.prod(c,\
+    \ L, R); }\n  pair<ll, i128> get_all(np c) { return seg.prod_all(c); }\n\n  //\
+    \ (k-th val or infty), sum\n  pair<ll, i128> prefix_kth(np c, ll k) {\n    auto\
+    \ [cnt, sm] = seg.prod_all(c);\n    assert(k <= cnt);\n    if (k == cnt) return\
+    \ {infty<ll>, sm};\n    ll key = seg.max_right(\n        c, [&](auto e) -> bool\
+    \ { return e.fi <= k; }, -infty<ll>);\n    tie(cnt, sm) = seg.prod(c, -infty<ll>,\
+    \ key);\n    return {key, sm + key * (k - cnt)};\n  }\n\n  // (k-th val or -infty),\
+    \ sum\n  pair<ll, i128> suffix_kth(np c, ll k) {\n    auto [cnt, sm] = seg.prod_all(c);\n\
+    \    assert(k <= cnt);\n    if (k == cnt) return {-infty<ll>, sm};\n    auto [a,\
+    \ b] = prefix_kth(c, cnt - 1 - k);\n    return {a, sm - b - a};\n  }\n};\n#line\
+    \ 7 \"test_atcoder/abc241d.test.cpp\"\n\nvoid solve() {\n  LL(Q);\n  My_Multiset<200100>\
+    \ X;\n  auto c = X.new_root();\n  FOR(Q) {\n    LL(t);\n    if (t == 1) {\n  \
+    \    LL(x);\n      c = X.add(c, x);\n    }\n    if (t == 2) {\n      LL(x, k);\n\
+    \      auto [cnt, sm] = X.get_range(c, -infty<ll>, x + 1);\n      if (cnt < k)\
+    \ {\n        print(-1);\n      } else {\n        ll ans = X.prefix_kth(c, cnt\
+    \ - k).fi;\n        print(ans);\n      }\n    }\n    if (t == 3) {\n      LL(x,\
+    \ k);\n      auto [cnt, sm] = X.get_range(c, x, infty<ll>);\n      if (cnt < k)\
+    \ {\n        print(-1);\n      } else {\n        ll ans = X.suffix_kth(c, cnt\
+    \ - k).fi;\n        print(ans);\n      }\n    }\n  }\n}\n\nsigned main() {\n \
+    \ solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc241/tasks/abc241_d\"\n\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/my_multiset.hpp\"\
     \n\nvoid solve() {\n  LL(Q);\n  My_Multiset<200100> X;\n  auto c = X.new_root();\n\
@@ -305,7 +305,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc241d.test.cpp
   requiredBy: []
-  timestamp: '2023-12-17 02:29:06+09:00'
+  timestamp: '2023-12-17 02:37:25+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc241d.test.cpp
