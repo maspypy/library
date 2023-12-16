@@ -11,9 +11,9 @@ struct My_Multiset {
     static constexpr X unit() { return {0, 0}; }
     static constexpr bool commute = 1;
   };
-  using SEG = typename Dynamic_SegTree_Sparse<Mono, false, NODES>;
-  using np = typename SEG::np;
-  SEG seg;
+  Dynamic_SegTree_Sparse<Mono, false, NODES> seg;
+  using np = decltype(seg)::np;
+
   My_Multiset() : seg(-infty<ll>, infty<ll>) {}
 
   void reset() { seg.reset(); }
