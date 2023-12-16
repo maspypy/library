@@ -1,19 +1,19 @@
 #define PROBLEM "https://atcoder.jp/contests/abc281/tasks/abc281_e"
+
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/my_multiset.hpp"
+#include "ds/slide_split_sum.hpp"
 
 void solve() {
   LL(N, M, K);
-  My_Multiset<int, ll> X;
+  Slide_Split_Sum<ll> S;
   VEC(ll, A, N);
-  FOR(i, M) X.insert(A[i]);
   vi ANS;
-  FOR(i, M, N + 1) {
-    ANS.eb(X.get_kth(K).se);
-    if (i == N) break;
-    X.insert(A[i]), X.erase(A[i - M]);
+  FOR(i, N) {
+    S.insert(A[i]);
+    if (len(S) > M) S.erase(A[i - M]);
+    if (len(S) == M) ANS.eb(S.query_l(K));
   }
   print(ANS);
 }
