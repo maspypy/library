@@ -12,7 +12,7 @@ struct My_Multiset {
     static constexpr bool commute = 1;
   };
   Dynamic_SegTree_Sparse<Mono, false, NODES> seg;
-  using np = decltype(seg)::np;
+  using np = typename decltype(seg)::np;
 
   My_Multiset() : seg(-infty<ll>, infty<ll>) {}
 
