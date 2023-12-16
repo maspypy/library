@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/summin_assign.hpp
     title: alg/acted_monoid/summin_assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/summin.hpp
     title: alg/monoid/summin.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -119,7 +119,7 @@ data:
     \ { return (y == X(none_val) ? x : y); }\r\n  static constexpr X unit() { return\
     \ X(none_val); }\r\n  static constexpr bool commute = false;\r\n};\r\n#line 3\
     \ \"alg/acted_monoid/summin_assign.hpp\"\n\r\ntemplate <typename E, ll none_val>\r\
-    \nstruct ActedMonoid_CntSumMin_Assign {\r\n  using Monoid_X = Monoid_SumMin<E>;\r\
+    \nstruct ActedMonoid_SumMin_Assign {\r\n  using Monoid_X = Monoid_SumMin<E>;\r\
     \n  using Monoid_A = Monoid_Assign<ll, none_val>;\r\n  using X = typename Monoid_X::value_type;\r\
     \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
     \ X& x, const A& a, const ll& size) {\r\n    if (a == Monoid_A::unit()) return\
@@ -221,8 +221,8 @@ data:
   isVerificationFile: true
   path: test/mytest/summin_assign.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 02:18:09+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-12-17 01:33:11+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/summin_assign.test.cpp
 layout: document

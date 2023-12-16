@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   - icon: ':heavy_check_mark:'
@@ -206,11 +206,12 @@ data:
     \ = root;\n      root->update();\n      return root;\n    };\n    return dfs(dfs,\
     \ 0, len(dat));\n  }\n\n  u32 get_size(np root) { return (root ? root->size :\
     \ 0); }\n\n  np merge(np l_root, np r_root) {\n    if (!l_root) return r_root;\n\
-    \    if (!r_root) return l_root;\n    splay_kth(r_root, 0); // splay \u3057\u305F\
-    \u306E\u3067 prop \u6E08\n    r_root->l = l_root;\n    l_root->p = r_root;\n \
-    \   r_root->update();\n    return r_root;\n  }\n  np merge3(np a, np b, np c)\
-    \ { return merge(merge(a, b), c); }\n  np merge4(np a, np b, np c, np d) { return\
-    \ merge(merge(merge(a, b), c), d); }\n\n  pair<np, np> split(np root, u32 k) {\n\
+    \    if (!r_root) return l_root;\n    assert((!l_root->p) && (!r_root->p));\n\
+    \    splay_kth(r_root, 0); // splay \u3057\u305F\u306E\u3067 prop \u6E08\n   \
+    \ r_root->l = l_root;\n    l_root->p = r_root;\n    r_root->update();\n    return\
+    \ r_root;\n  }\n  np merge3(np a, np b, np c) { return merge(merge(a, b), c);\
+    \ }\n  np merge4(np a, np b, np c, np d) { return merge(merge(merge(a, b), c),\
+    \ d); }\n\n  pair<np, np> split(np root, u32 k) {\n    assert(!root || !root->p);\n\
     \    if (k == 0) return {nullptr, root};\n    if (k == (root->size)) return {root,\
     \ nullptr};\n    splay_kth(root, k - 1);\n    np right = root->r;\n    root->r\
     \ = nullptr, right->p = nullptr;\n    root->update();\n    return {root, right};\n\
@@ -234,63 +235,66 @@ data:
     \ {\n    vc<X> res;\n    auto dfs = [&](auto &dfs, np root) -> void {\n      if\
     \ (!root) return;\n      root->prop();\n      dfs(dfs, root->l);\n      res.eb(root->get());\n\
     \      dfs(dfs, root->r);\n    };\n    dfs(dfs, root);\n    return res;\n  }\n\
-    \n  X get(np &root, u32 k) {\n    splay_kth(root, k);\n    return root->get();\n\
-    \  }\n\n  void set(np &root, u32 k, const X &x) {\n    splay_kth(root, k);\n \
-    \   root->set(x);\n  }\n\n  void multiply(np &root, u32 k, const X &x) {\n   \
-    \ splay_kth(root, k);\n    root->multiply(x);\n  }\n\n  X prod(np &root, u32 l,\
-    \ u32 r) {\n    using Mono = typename Node::Monoid_X;\n    if (l == r) return\
-    \ Mono::unit();\n    assert(0 <= l && l < r && r <= root->size);\n    goto_between(root,\
-    \ l, r);\n    X res = root->prod;\n    splay(root);\n    return res;\n  }\n\n\
-    \  X prod(np &root) {\n    using Mono = typename Node::Monoid_X;\n    return (root\
-    \ ? root->prod : Mono::unit());\n  }\n\n  void apply(np &root, u32 l, u32 r, const\
-    \ A &a) {\n    if (l == r) return;\n    assert(0 <= l && l < r && r <= root->size);\n\
-    \    goto_between(root, l, r);\n    root->apply(a);\n    splay(root);\n  }\n \
-    \ void apply(np &root, const A &a) {\n    if (!root) return;\n    root->apply(a);\n\
-    \  }\n\n  void reverse(np &root, u32 l, u32 r) {\n    if (l == r) return;\n  \
-    \  assert(0 <= l && l < r && r <= root->size);\n    goto_between(root, l, r);\n\
-    \    root->reverse();\n    splay(root);\n  }\n  void reverse(np root) {\n    if\
-    \ (!root) return;\n    root->reverse();\n  }\n\n  void rotate(Node *n) {\n   \
-    \ // n \u3092\u6839\u306B\u8FD1\u3065\u3051\u308B\u3002prop, update \u306F rotate\
-    \ \u306E\u5916\u3067\u884C\u3046\u3002\n    Node *pp, *p, *c;\n    p = n->p;\n\
-    \    pp = p->p;\n    if (p->l == n) {\n      c = n->r;\n      n->r = p;\n    \
-    \  p->l = c;\n    } else {\n      c = n->l;\n      n->l = p;\n      p->r = c;\n\
-    \    }\n    if (pp && pp->l == p) pp->l = n;\n    if (pp && pp->r == p) pp->r\
-    \ = n;\n    n->p = pp;\n    p->p = n;\n    if (c) c->p = p;\n  }\n\n  void splay(Node\
-    \ *me) {\n    // \u3053\u308C\u3092\u547C\u3076\u6642\u70B9\u3067\u3001me \u306E\
-    \u7956\u5148\uFF08me \u3092\u9664\u304F\uFF09\u306F\u65E2\u306B prop \u6E08\u3067\
-    \u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\n    // \u7279\u306B\u3001splay \u7D42\
-    \u4E86\u6642\u70B9\u3067 me \u306F upd / prop \u6E08\u3067\u3042\u308B\n    me->prop();\n\
-    \    while (me->p) {\n      np p = me->p;\n      np pp = p->p;\n      if (!pp)\
-    \ {\n        rotate(me);\n        p->update();\n        break;\n      }\n    \
-    \  bool same = (p->l == me && pp->l == p) || (p->r == me && pp->r == p);\n   \
-    \   if (same) rotate(p), rotate(me);\n      if (!same) rotate(me), rotate(me);\n\
-    \      pp->update(), p->update();\n    }\n    // me \u306E update \u306F\u6700\
-    \u5F8C\u3060\u3051\u3067\u3088\u3044\n    me->update();\n  }\n\n  void splay_kth(np\
-    \ &root, u32 k) {\n    assert(0 <= k && k < (root->size));\n    while (1) {\n\
-    \      u32 sl = (root->l ? root->l->size : 0);\n      if (k == sl) break;\n  \
-    \    root->prop();\n      if (k < sl)\n        root = root->l;\n      else {\n\
-    \        k -= sl + 1;\n        root = root->r;\n      }\n    }\n    splay(root);\n\
-    \  }\n\n  // check(x), \u5DE6\u5074\u306E\u30CE\u30FC\u30C9\u5168\u4F53\u304C\
-    \ check \u3092\u6E80\u305F\u3059\u3088\u3046\u306B\u5207\u308B\n  template <typename\
-    \ F>\n  pair<np, np> split_max_right(np root, F check) {\n    if (!root) return\
-    \ {nullptr, nullptr};\n    np c = find_max_right(root, check);\n    if (!c) {\n\
+    \n  X get(np &root, u32 k) {\n    assert(root == nullptr || !root->p);\n    splay_kth(root,\
+    \ k);\n    return root->get();\n  }\n\n  void set(np &root, u32 k, const X &x)\
+    \ {\n    assert(root != nullptr && !root->p);\n    splay_kth(root, k);\n    root->set(x);\n\
+    \  }\n\n  void multiply(np &root, u32 k, const X &x) {\n    assert(root != nullptr\
+    \ && !root->p);\n    splay_kth(root, k);\n    root->multiply(x);\n  }\n\n  X prod(np\
+    \ &root, u32 l, u32 r) {\n    assert(root == nullptr || !root->p);\n    using\
+    \ Mono = typename Node::Monoid_X;\n    if (l == r) return Mono::unit();\n    assert(0\
+    \ <= l && l < r && r <= root->size);\n    goto_between(root, l, r);\n    X res\
+    \ = root->prod;\n    splay(root);\n    return res;\n  }\n\n  X prod(np &root)\
+    \ {\n    assert(root == nullptr || !root->p);\n    using Mono = typename Node::Monoid_X;\n\
+    \    return (root ? root->prod : Mono::unit());\n  }\n\n  void apply(np &root,\
+    \ u32 l, u32 r, const A &a) {\n    if (l == r) return;\n    assert(0 <= l && l\
+    \ < r && r <= root->size);\n    goto_between(root, l, r);\n    root->apply(a);\n\
+    \    splay(root);\n  }\n  void apply(np &root, const A &a) {\n    if (!root) return;\n\
+    \    root->apply(a);\n  }\n\n  void reverse(np &root, u32 l, u32 r) {\n    assert(root\
+    \ == nullptr || !root->p);\n    if (l == r) return;\n    assert(0 <= l && l <\
+    \ r && r <= root->size);\n    goto_between(root, l, r);\n    root->reverse();\n\
+    \    splay(root);\n  }\n  void reverse(np root) {\n    if (!root) return;\n  \
+    \  root->reverse();\n  }\n\n  void rotate(Node *n) {\n    // n \u3092\u6839\u306B\
+    \u8FD1\u3065\u3051\u308B\u3002prop, update \u306F rotate \u306E\u5916\u3067\u884C\
+    \u3046\u3002\n    Node *pp, *p, *c;\n    p = n->p;\n    pp = p->p;\n    if (p->l\
+    \ == n) {\n      c = n->r;\n      n->r = p;\n      p->l = c;\n    } else {\n \
+    \     c = n->l;\n      n->l = p;\n      p->r = c;\n    }\n    if (pp && pp->l\
+    \ == p) pp->l = n;\n    if (pp && pp->r == p) pp->r = n;\n    n->p = pp;\n   \
+    \ p->p = n;\n    if (c) c->p = p;\n  }\n\n  void splay(Node *me) {\n    // \u3053\
+    \u308C\u3092\u547C\u3076\u6642\u70B9\u3067\u3001me \u306E\u7956\u5148\uFF08me\
+    \ \u3092\u9664\u304F\uFF09\u306F\u65E2\u306B prop \u6E08\u3067\u3042\u308B\u3053\
+    \u3068\u3092\u4EEE\u5B9A\n    // \u7279\u306B\u3001splay \u7D42\u4E86\u6642\u70B9\
+    \u3067 me \u306F upd / prop \u6E08\u3067\u3042\u308B\n    me->prop();\n    while\
+    \ (me->p) {\n      np p = me->p;\n      np pp = p->p;\n      if (!pp) {\n    \
+    \    rotate(me);\n        p->update();\n        break;\n      }\n      bool same\
+    \ = (p->l == me && pp->l == p) || (p->r == me && pp->r == p);\n      if (same)\
+    \ rotate(p), rotate(me);\n      if (!same) rotate(me), rotate(me);\n      pp->update(),\
+    \ p->update();\n    }\n    // me \u306E update \u306F\u6700\u5F8C\u3060\u3051\u3067\
+    \u3088\u3044\n    me->update();\n  }\n\n  void splay_kth(np &root, u32 k) {\n\
+    \    assert(0 <= k && k < (root->size));\n    while (1) {\n      u32 sl = (root->l\
+    \ ? root->l->size : 0);\n      if (k == sl) break;\n      root->prop();\n    \
+    \  if (k < sl)\n        root = root->l;\n      else {\n        k -= sl + 1;\n\
+    \        root = root->r;\n      }\n    }\n    splay(root);\n  }\n\n  // check(x),\
+    \ \u5DE6\u5074\u306E\u30CE\u30FC\u30C9\u5168\u4F53\u304C check \u3092\u6E80\u305F\
+    \u3059\u3088\u3046\u306B\u5207\u308B\n  template <typename F>\n  pair<np, np>\
+    \ split_max_right(np root, F check) {\n    if (!root) return {nullptr, nullptr};\n\
+    \    assert(!root->p);\n    np c = find_max_right(root, check);\n    if (!c) {\n\
     \      splay(root);\n      return {nullptr, root};\n    }\n    splay(c);\n   \
     \ np right = c->r;\n    if (!right) return {c, nullptr};\n    right->p = nullptr;\n\
     \    c->r = nullptr;\n    c->update();\n    return {c, right};\n  }\n\n  // \u5DE6\
     \u5074\u306E\u30CE\u30FC\u30C9\u5168\u4F53\u306E prod \u304C check \u3092\u6E80\
     \u305F\u3059\u3088\u3046\u306B\u5207\u308B\n  template <typename F>\n  pair<np,\
     \ np> split_max_right_prod(np root, F check) {\n    if (!root) return {nullptr,\
-    \ nullptr};\n    np c = find_max_right_prod(root, check);\n    if (!c) {\n   \
-    \   splay(root);\n      return {nullptr, root};\n    }\n    splay(c);\n    np\
-    \ right = c->r;\n    if (!right) return {c, nullptr};\n    right->p = nullptr;\n\
-    \    c->r = nullptr;\n    c->update();\n    return {c, right};\n  }\n\n  template\
-    \ <typename F>\n  np find_max_right(np root, const F &check) {\n    // \u6700\u5F8C\
-    \u306B\u898B\u3064\u3051\u305F ok \u306E\u70B9\u3001\u6700\u5F8C\u306B\u63A2\u7D22\
-    \u3057\u305F\u70B9\n    np last_ok = nullptr, last = nullptr;\n    while (root)\
-    \ {\n      last = root;\n      root->prop();\n      if (check(root->x)) {\n  \
-    \      last_ok = root;\n        root = root->r;\n      } else {\n        root\
-    \ = root->l;\n      }\n    }\n    splay(last);\n    return last_ok;\n  }\n\n \
-    \ template <typename F>\n  np find_max_right_prod(np root, const F &check) {\n\
+    \ nullptr};\n    assert(!root->p);\n    np c = find_max_right_prod(root, check);\n\
+    \    if (!c) {\n      splay(root);\n      return {nullptr, root};\n    }\n   \
+    \ splay(c);\n    np right = c->r;\n    if (!right) return {c, nullptr};\n    right->p\
+    \ = nullptr;\n    c->r = nullptr;\n    c->update();\n    return {c, right};\n\
+    \  }\n\n  template <typename F>\n  np find_max_right(np root, const F &check)\
+    \ {\n    // \u6700\u5F8C\u306B\u898B\u3064\u3051\u305F ok \u306E\u70B9\u3001\u6700\
+    \u5F8C\u306B\u63A2\u7D22\u3057\u305F\u70B9\n    np last_ok = nullptr, last = nullptr;\n\
+    \    while (root) {\n      last = root;\n      root->prop();\n      if (check(root->x))\
+    \ {\n        last_ok = root;\n        root = root->r;\n      } else {\n      \
+    \  root = root->l;\n      }\n    }\n    splay(last);\n    return last_ok;\n  }\n\
+    \n  template <typename F>\n  np find_max_right_prod(np root, const F &check) {\n\
     \    using Mono = typename Node::Monoid_X;\n    X prod = Mono::unit();\n    //\
     \ \u6700\u5F8C\u306B\u898B\u3064\u3051\u305F ok \u306E\u70B9\u3001\u6700\u5F8C\
     \u306B\u63A2\u7D22\u3057\u305F\u70B9\n    np last_ok = nullptr, last = nullptr;\n\
@@ -347,7 +351,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/range_reverse_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
+  timestamp: '2023-12-17 01:33:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_reverse_range_sum.test.cpp

@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   - icon: ':heavy_check_mark:'
@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -220,12 +220,13 @@ data:
     \  root->update();\n      return root;\n    };\n    return dfs(dfs, 0, len(dat));\n\
     \  }\n\n  u32 get_size(np root) { return (root ? root->size : 0); }\n\n  np merge(np\
     \ l_root, np r_root) {\n    if (!l_root) return r_root;\n    if (!r_root) return\
-    \ l_root;\n    splay_kth(r_root, 0); // splay \u3057\u305F\u306E\u3067 prop \u6E08\
-    \n    r_root->l = l_root;\n    l_root->p = r_root;\n    r_root->update();\n  \
-    \  return r_root;\n  }\n  np merge3(np a, np b, np c) { return merge(merge(a,\
-    \ b), c); }\n  np merge4(np a, np b, np c, np d) { return merge(merge(merge(a,\
-    \ b), c), d); }\n\n  pair<np, np> split(np root, u32 k) {\n    if (k == 0) return\
-    \ {nullptr, root};\n    if (k == (root->size)) return {root, nullptr};\n    splay_kth(root,\
+    \ l_root;\n    assert((!l_root->p) && (!r_root->p));\n    splay_kth(r_root, 0);\
+    \ // splay \u3057\u305F\u306E\u3067 prop \u6E08\n    r_root->l = l_root;\n   \
+    \ l_root->p = r_root;\n    r_root->update();\n    return r_root;\n  }\n  np merge3(np\
+    \ a, np b, np c) { return merge(merge(a, b), c); }\n  np merge4(np a, np b, np\
+    \ c, np d) { return merge(merge(merge(a, b), c), d); }\n\n  pair<np, np> split(np\
+    \ root, u32 k) {\n    assert(!root || !root->p);\n    if (k == 0) return {nullptr,\
+    \ root};\n    if (k == (root->size)) return {root, nullptr};\n    splay_kth(root,\
     \ k - 1);\n    np right = root->r;\n    root->r = nullptr, right->p = nullptr;\n\
     \    root->update();\n    return {root, right};\n  }\n  tuple<np, np, np> split3(np\
     \ root, u32 l, u32 r) {\n    np nm, nr;\n    tie(root, nr) = split(root, r);\n\
@@ -247,27 +248,30 @@ data:
     \ get_all(const np &root) {\n    vc<X> res;\n    auto dfs = [&](auto &dfs, np\
     \ root) -> void {\n      if (!root) return;\n      root->prop();\n      dfs(dfs,\
     \ root->l);\n      res.eb(root->get());\n      dfs(dfs, root->r);\n    };\n  \
-    \  dfs(dfs, root);\n    return res;\n  }\n\n  X get(np &root, u32 k) {\n    splay_kth(root,\
-    \ k);\n    return root->get();\n  }\n\n  void set(np &root, u32 k, const X &x)\
-    \ {\n    splay_kth(root, k);\n    root->set(x);\n  }\n\n  void multiply(np &root,\
-    \ u32 k, const X &x) {\n    splay_kth(root, k);\n    root->multiply(x);\n  }\n\
-    \n  X prod(np &root, u32 l, u32 r) {\n    using Mono = typename Node::Monoid_X;\n\
+    \  dfs(dfs, root);\n    return res;\n  }\n\n  X get(np &root, u32 k) {\n    assert(root\
+    \ == nullptr || !root->p);\n    splay_kth(root, k);\n    return root->get();\n\
+    \  }\n\n  void set(np &root, u32 k, const X &x) {\n    assert(root != nullptr\
+    \ && !root->p);\n    splay_kth(root, k);\n    root->set(x);\n  }\n\n  void multiply(np\
+    \ &root, u32 k, const X &x) {\n    assert(root != nullptr && !root->p);\n    splay_kth(root,\
+    \ k);\n    root->multiply(x);\n  }\n\n  X prod(np &root, u32 l, u32 r) {\n   \
+    \ assert(root == nullptr || !root->p);\n    using Mono = typename Node::Monoid_X;\n\
     \    if (l == r) return Mono::unit();\n    assert(0 <= l && l < r && r <= root->size);\n\
     \    goto_between(root, l, r);\n    X res = root->prod;\n    splay(root);\n  \
-    \  return res;\n  }\n\n  X prod(np &root) {\n    using Mono = typename Node::Monoid_X;\n\
-    \    return (root ? root->prod : Mono::unit());\n  }\n\n  void apply(np &root,\
-    \ u32 l, u32 r, const A &a) {\n    if (l == r) return;\n    assert(0 <= l && l\
-    \ < r && r <= root->size);\n    goto_between(root, l, r);\n    root->apply(a);\n\
-    \    splay(root);\n  }\n  void apply(np &root, const A &a) {\n    if (!root) return;\n\
-    \    root->apply(a);\n  }\n\n  void reverse(np &root, u32 l, u32 r) {\n    if\
-    \ (l == r) return;\n    assert(0 <= l && l < r && r <= root->size);\n    goto_between(root,\
-    \ l, r);\n    root->reverse();\n    splay(root);\n  }\n  void reverse(np root)\
-    \ {\n    if (!root) return;\n    root->reverse();\n  }\n\n  void rotate(Node *n)\
-    \ {\n    // n \u3092\u6839\u306B\u8FD1\u3065\u3051\u308B\u3002prop, update \u306F\
-    \ rotate \u306E\u5916\u3067\u884C\u3046\u3002\n    Node *pp, *p, *c;\n    p =\
-    \ n->p;\n    pp = p->p;\n    if (p->l == n) {\n      c = n->r;\n      n->r = p;\n\
-    \      p->l = c;\n    } else {\n      c = n->l;\n      n->l = p;\n      p->r =\
-    \ c;\n    }\n    if (pp && pp->l == p) pp->l = n;\n    if (pp && pp->r == p) pp->r\
+    \  return res;\n  }\n\n  X prod(np &root) {\n    assert(root == nullptr || !root->p);\n\
+    \    using Mono = typename Node::Monoid_X;\n    return (root ? root->prod : Mono::unit());\n\
+    \  }\n\n  void apply(np &root, u32 l, u32 r, const A &a) {\n    if (l == r) return;\n\
+    \    assert(0 <= l && l < r && r <= root->size);\n    goto_between(root, l, r);\n\
+    \    root->apply(a);\n    splay(root);\n  }\n  void apply(np &root, const A &a)\
+    \ {\n    if (!root) return;\n    root->apply(a);\n  }\n\n  void reverse(np &root,\
+    \ u32 l, u32 r) {\n    assert(root == nullptr || !root->p);\n    if (l == r) return;\n\
+    \    assert(0 <= l && l < r && r <= root->size);\n    goto_between(root, l, r);\n\
+    \    root->reverse();\n    splay(root);\n  }\n  void reverse(np root) {\n    if\
+    \ (!root) return;\n    root->reverse();\n  }\n\n  void rotate(Node *n) {\n   \
+    \ // n \u3092\u6839\u306B\u8FD1\u3065\u3051\u308B\u3002prop, update \u306F rotate\
+    \ \u306E\u5916\u3067\u884C\u3046\u3002\n    Node *pp, *p, *c;\n    p = n->p;\n\
+    \    pp = p->p;\n    if (p->l == n) {\n      c = n->r;\n      n->r = p;\n    \
+    \  p->l = c;\n    } else {\n      c = n->l;\n      n->l = p;\n      p->r = c;\n\
+    \    }\n    if (pp && pp->l == p) pp->l = n;\n    if (pp && pp->r == p) pp->r\
     \ = n;\n    n->p = pp;\n    p->p = n;\n    if (c) c->p = p;\n  }\n\n  void splay(Node\
     \ *me) {\n    // \u3053\u308C\u3092\u547C\u3076\u6642\u70B9\u3067\u3001me \u306E\
     \u7956\u5148\uFF08me \u3092\u9664\u304F\uFF09\u306F\u65E2\u306B prop \u6E08\u3067\
@@ -286,79 +290,80 @@ data:
     \  }\n\n  // check(x), \u5DE6\u5074\u306E\u30CE\u30FC\u30C9\u5168\u4F53\u304C\
     \ check \u3092\u6E80\u305F\u3059\u3088\u3046\u306B\u5207\u308B\n  template <typename\
     \ F>\n  pair<np, np> split_max_right(np root, F check) {\n    if (!root) return\
-    \ {nullptr, nullptr};\n    np c = find_max_right(root, check);\n    if (!c) {\n\
-    \      splay(root);\n      return {nullptr, root};\n    }\n    splay(c);\n   \
-    \ np right = c->r;\n    if (!right) return {c, nullptr};\n    right->p = nullptr;\n\
-    \    c->r = nullptr;\n    c->update();\n    return {c, right};\n  }\n\n  // \u5DE6\
-    \u5074\u306E\u30CE\u30FC\u30C9\u5168\u4F53\u306E prod \u304C check \u3092\u6E80\
-    \u305F\u3059\u3088\u3046\u306B\u5207\u308B\n  template <typename F>\n  pair<np,\
-    \ np> split_max_right_prod(np root, F check) {\n    if (!root) return {nullptr,\
-    \ nullptr};\n    np c = find_max_right_prod(root, check);\n    if (!c) {\n   \
-    \   splay(root);\n      return {nullptr, root};\n    }\n    splay(c);\n    np\
-    \ right = c->r;\n    if (!right) return {c, nullptr};\n    right->p = nullptr;\n\
-    \    c->r = nullptr;\n    c->update();\n    return {c, right};\n  }\n\n  template\
-    \ <typename F>\n  np find_max_right(np root, const F &check) {\n    // \u6700\u5F8C\
-    \u306B\u898B\u3064\u3051\u305F ok \u306E\u70B9\u3001\u6700\u5F8C\u306B\u63A2\u7D22\
-    \u3057\u305F\u70B9\n    np last_ok = nullptr, last = nullptr;\n    while (root)\
-    \ {\n      last = root;\n      root->prop();\n      if (check(root->x)) {\n  \
-    \      last_ok = root;\n        root = root->r;\n      } else {\n        root\
-    \ = root->l;\n      }\n    }\n    splay(last);\n    return last_ok;\n  }\n\n \
-    \ template <typename F>\n  np find_max_right_prod(np root, const F &check) {\n\
-    \    using Mono = typename Node::Monoid_X;\n    X prod = Mono::unit();\n    //\
-    \ \u6700\u5F8C\u306B\u898B\u3064\u3051\u305F ok \u306E\u70B9\u3001\u6700\u5F8C\
-    \u306B\u63A2\u7D22\u3057\u305F\u70B9\n    np last_ok = nullptr, last = nullptr;\n\
-    \    while (root) {\n      last = root;\n      root->prop();\n      X lprod =\
-    \ prod;\n      if (root->l) lprod = Mono::op(lprod, root->l->prod);\n      lprod\
-    \ = Mono::op(lprod, root->x);\n      if (check(lprod)) {\n        prod = lprod;\n\
-    \        last_ok = root;\n        root = root->r;\n      } else {\n        root\
-    \ = root->l;\n      }\n    }\n    splay(last);\n    return last_ok;\n  }\n};\n\
-    #line 2 \"ds/splaytree/splaytree_acted_monoid.hpp\"\n\nnamespace SplayTreeNodes\
-    \ {\ntemplate <typename ActedMonoid>\nstruct Node_AM {\n  using Monoid_A = typename\
-    \ ActedMonoid::Monoid_A;\n  using Monoid_X = typename ActedMonoid::Monoid_X;\n\
-    \  using A = typename Monoid_A::value_type;\n  using X = typename Monoid_X::value_type;\n\
-    \  using value_type = X;\n  using operator_type = A;\n  using np = Node_AM *;\n\
-    \n  np p, l, r;\n  X x, prod;\n  A lazy;\n  u32 size;\n  bool rev;\n\n  static\
-    \ void new_node(np n, const X &x) {\n    n->p = n->l = n->r = nullptr;\n    n->x\
-    \ = n->prod = x;\n    n->lazy = Monoid_A::unit();\n    n->size = 1;\n    n->rev\
-    \ = 0;\n  }\n\n  void update() {\n    size = 1;\n    prod = x;\n    if (l) {\n\
-    \      size += l->size;\n      prod = Monoid_X::op(l->prod, prod);\n    }\n  \
-    \  if (r) {\n      size += r->size;\n      prod = Monoid_X::op(prod, r->prod);\n\
-    \    }\n  }\n\n  void prop() {\n    if (lazy != Monoid_A::unit()) {\n      if\
-    \ (l) { l->apply(lazy); }\n      if (r) { r->apply(lazy); }\n      lazy = Monoid_A::unit();\n\
-    \    }\n    if (rev) {\n      if (l) { l->reverse(); }\n      if (r) { r->reverse();\
-    \ }\n      rev = 0;\n    }\n  }\n\n  // update, prop \u4EE5\u5916\u3067\u547C\u3070\
-    \u308C\u308B\u3082\u306E\u306F\u3001splay \u5F8C\u3067\u3042\u308B\u3053\u3068\
-    \u304C\u60F3\u5B9A\u3055\u308C\u3066\u3044\u308B\u3002\n  // \u3057\u305F\u304C\
-    \u3063\u3066\u305D\u306E\u6642\u70B9\u3067 update, prop \u6E08\u3067\u3042\u308B\
-    \u3053\u3068\u3092\u4EEE\u5B9A\u3057\u3066\u3088\u3044\u3002\n  X get() { return\
-    \ x; }\n  void set(const X &xx) {\n    x = xx;\n    update();\n  }\n  void multiply(const\
-    \ X &xx) {\n    x = Monoid_X::op(x, xx);\n    update();\n  }\n  void apply(const\
-    \ A &a) {\n    x = ActedMonoid::act(x, a, 1);\n    prod = ActedMonoid::act(prod,\
-    \ a, size);\n    lazy = Monoid_A::op(lazy, a);\n  }\n  void reverse() {\n    swap(l,\
-    \ r);\n    rev ^= 1;\n  }\n};\ntemplate <typename ActedMonoid, int NODES>\nusing\
-    \ SplayTree_ActedMonoid = SplayTree<Node_AM<ActedMonoid>, NODES>;\n} // namespace\
-    \ SplayTreeNodes\n\nusing SplayTreeNodes::SplayTree_ActedMonoid;\n#line 8 \"test/mytest/splay_am.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid test() {\n  using AM = ActedMonoid_Sum_Add<int>;\n\
-    \n  SplayTree_ActedMonoid<AM, 100> X;\n\n  FOR(1000) {\n    X.reset();\n    int\
-    \ N = RNG(1, 10);\n    int Q = RNG(1, 1000);\n    vc<int> A(N);\n    FOR(i, N)\
-    \ A[i] = RNG(1, 10);\n\n    auto root = X.new_node(A);\n\n    FOR(Q) {\n     \
-    \ int t = RNG(0, 7);\n      if (t == 0) {\n        vc<int> B = X.get_all(root);\n\
-    \        FOR(i, N) assert(A[i] == B[i]);\n      }\n      if (t == 1) {\n     \
-    \   int i = RNG(0, N);\n        assert(A[i] == X.get(root, i));\n      }\n   \
-    \   if (t == 2) {\n        int i = RNG(0, N);\n        int x = RNG(1, 10);\n \
-    \       X.set(root, i, x);\n        A[i] = x;\n      }\n      if (t == 3) {\n\
-    \        int i = RNG(0, N);\n        int x = RNG(1, 10);\n        X.multiply(root,\
-    \ i, x);\n        A[i] += x;\n      }\n      if (t == 4) {\n        int L = RNG(0,\
-    \ N);\n        int R = RNG(0, N);\n        if (L > R) swap(L, R);\n        ++R;\n\
-    \        int sm = 0;\n        FOR(i, L, R) sm += A[i];\n        assert(X.prod(root,\
-    \ L, R) == sm);\n      }\n      if (t == 5) {\n        int L = RNG(0, N);\n  \
-    \      int R = RNG(0, N);\n        if (L > R) swap(L, R);\n        ++R;\n    \
-    \    X.reverse(root, L, R);\n        reverse(A.begin() + L, A.begin() + R);\n\
-    \      }\n      if (t == 6) {\n        int L = RNG(0, N);\n        int R = RNG(0,\
-    \ N);\n        if (L > R) swap(L, R);\n        int a = RNG(1, 10);\n        ++R;\n\
-    \        FOR(i, L, R) A[i] += a;\n        X.apply(root, L, R, a);\n      }\n \
-    \   }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a +\
-    \ b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    \ {nullptr, nullptr};\n    assert(!root->p);\n    np c = find_max_right(root,\
+    \ check);\n    if (!c) {\n      splay(root);\n      return {nullptr, root};\n\
+    \    }\n    splay(c);\n    np right = c->r;\n    if (!right) return {c, nullptr};\n\
+    \    right->p = nullptr;\n    c->r = nullptr;\n    c->update();\n    return {c,\
+    \ right};\n  }\n\n  // \u5DE6\u5074\u306E\u30CE\u30FC\u30C9\u5168\u4F53\u306E\
+    \ prod \u304C check \u3092\u6E80\u305F\u3059\u3088\u3046\u306B\u5207\u308B\n \
+    \ template <typename F>\n  pair<np, np> split_max_right_prod(np root, F check)\
+    \ {\n    if (!root) return {nullptr, nullptr};\n    assert(!root->p);\n    np\
+    \ c = find_max_right_prod(root, check);\n    if (!c) {\n      splay(root);\n \
+    \     return {nullptr, root};\n    }\n    splay(c);\n    np right = c->r;\n  \
+    \  if (!right) return {c, nullptr};\n    right->p = nullptr;\n    c->r = nullptr;\n\
+    \    c->update();\n    return {c, right};\n  }\n\n  template <typename F>\n  np\
+    \ find_max_right(np root, const F &check) {\n    // \u6700\u5F8C\u306B\u898B\u3064\
+    \u3051\u305F ok \u306E\u70B9\u3001\u6700\u5F8C\u306B\u63A2\u7D22\u3057\u305F\u70B9\
+    \n    np last_ok = nullptr, last = nullptr;\n    while (root) {\n      last =\
+    \ root;\n      root->prop();\n      if (check(root->x)) {\n        last_ok = root;\n\
+    \        root = root->r;\n      } else {\n        root = root->l;\n      }\n \
+    \   }\n    splay(last);\n    return last_ok;\n  }\n\n  template <typename F>\n\
+    \  np find_max_right_prod(np root, const F &check) {\n    using Mono = typename\
+    \ Node::Monoid_X;\n    X prod = Mono::unit();\n    // \u6700\u5F8C\u306B\u898B\
+    \u3064\u3051\u305F ok \u306E\u70B9\u3001\u6700\u5F8C\u306B\u63A2\u7D22\u3057\u305F\
+    \u70B9\n    np last_ok = nullptr, last = nullptr;\n    while (root) {\n      last\
+    \ = root;\n      root->prop();\n      X lprod = prod;\n      if (root->l) lprod\
+    \ = Mono::op(lprod, root->l->prod);\n      lprod = Mono::op(lprod, root->x);\n\
+    \      if (check(lprod)) {\n        prod = lprod;\n        last_ok = root;\n \
+    \       root = root->r;\n      } else {\n        root = root->l;\n      }\n  \
+    \  }\n    splay(last);\n    return last_ok;\n  }\n};\n#line 2 \"ds/splaytree/splaytree_acted_monoid.hpp\"\
+    \n\nnamespace SplayTreeNodes {\ntemplate <typename ActedMonoid>\nstruct Node_AM\
+    \ {\n  using Monoid_A = typename ActedMonoid::Monoid_A;\n  using Monoid_X = typename\
+    \ ActedMonoid::Monoid_X;\n  using A = typename Monoid_A::value_type;\n  using\
+    \ X = typename Monoid_X::value_type;\n  using value_type = X;\n  using operator_type\
+    \ = A;\n  using np = Node_AM *;\n\n  np p, l, r;\n  X x, prod;\n  A lazy;\n  u32\
+    \ size;\n  bool rev;\n\n  static void new_node(np n, const X &x) {\n    n->p =\
+    \ n->l = n->r = nullptr;\n    n->x = n->prod = x;\n    n->lazy = Monoid_A::unit();\n\
+    \    n->size = 1;\n    n->rev = 0;\n  }\n\n  void update() {\n    size = 1;\n\
+    \    prod = x;\n    if (l) {\n      size += l->size;\n      prod = Monoid_X::op(l->prod,\
+    \ prod);\n    }\n    if (r) {\n      size += r->size;\n      prod = Monoid_X::op(prod,\
+    \ r->prod);\n    }\n  }\n\n  void prop() {\n    if (lazy != Monoid_A::unit())\
+    \ {\n      if (l) { l->apply(lazy); }\n      if (r) { r->apply(lazy); }\n    \
+    \  lazy = Monoid_A::unit();\n    }\n    if (rev) {\n      if (l) { l->reverse();\
+    \ }\n      if (r) { r->reverse(); }\n      rev = 0;\n    }\n  }\n\n  // update,\
+    \ prop \u4EE5\u5916\u3067\u547C\u3070\u308C\u308B\u3082\u306E\u306F\u3001splay\
+    \ \u5F8C\u3067\u3042\u308B\u3053\u3068\u304C\u60F3\u5B9A\u3055\u308C\u3066\u3044\
+    \u308B\u3002\n  // \u3057\u305F\u304C\u3063\u3066\u305D\u306E\u6642\u70B9\u3067\
+    \ update, prop \u6E08\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3057\u3066\
+    \u3088\u3044\u3002\n  X get() { return x; }\n  void set(const X &xx) {\n    x\
+    \ = xx;\n    update();\n  }\n  void multiply(const X &xx) {\n    x = Monoid_X::op(x,\
+    \ xx);\n    update();\n  }\n  void apply(const A &a) {\n    x = ActedMonoid::act(x,\
+    \ a, 1);\n    prod = ActedMonoid::act(prod, a, size);\n    lazy = Monoid_A::op(lazy,\
+    \ a);\n  }\n  void reverse() {\n    swap(l, r);\n    rev ^= 1;\n  }\n};\ntemplate\
+    \ <typename ActedMonoid, int NODES>\nusing SplayTree_ActedMonoid = SplayTree<Node_AM<ActedMonoid>,\
+    \ NODES>;\n} // namespace SplayTreeNodes\n\nusing SplayTreeNodes::SplayTree_ActedMonoid;\n\
+    #line 8 \"test/mytest/splay_am.test.cpp\"\n\nusing mint = modint998;\n\nvoid test()\
+    \ {\n  using AM = ActedMonoid_Sum_Add<int>;\n\n  SplayTree_ActedMonoid<AM, 100>\
+    \ X;\n\n  FOR(1000) {\n    X.reset();\n    int N = RNG(1, 10);\n    int Q = RNG(1,\
+    \ 1000);\n    vc<int> A(N);\n    FOR(i, N) A[i] = RNG(1, 10);\n\n    auto root\
+    \ = X.new_node(A);\n\n    FOR(Q) {\n      int t = RNG(0, 7);\n      if (t == 0)\
+    \ {\n        vc<int> B = X.get_all(root);\n        FOR(i, N) assert(A[i] == B[i]);\n\
+    \      }\n      if (t == 1) {\n        int i = RNG(0, N);\n        assert(A[i]\
+    \ == X.get(root, i));\n      }\n      if (t == 2) {\n        int i = RNG(0, N);\n\
+    \        int x = RNG(1, 10);\n        X.set(root, i, x);\n        A[i] = x;\n\
+    \      }\n      if (t == 3) {\n        int i = RNG(0, N);\n        int x = RNG(1,\
+    \ 10);\n        X.multiply(root, i, x);\n        A[i] += x;\n      }\n      if\
+    \ (t == 4) {\n        int L = RNG(0, N);\n        int R = RNG(0, N);\n       \
+    \ if (L > R) swap(L, R);\n        ++R;\n        int sm = 0;\n        FOR(i, L,\
+    \ R) sm += A[i];\n        assert(X.prod(root, L, R) == sm);\n      }\n      if\
+    \ (t == 5) {\n        int L = RNG(0, N);\n        int R = RNG(0, N);\n       \
+    \ if (L > R) swap(L, R);\n        ++R;\n        X.reverse(root, L, R);\n     \
+    \   reverse(A.begin() + L, A.begin() + R);\n      }\n      if (t == 6) {\n   \
+    \     int L = RNG(0, N);\n        int R = RNG(0, N);\n        if (L > R) swap(L,\
+    \ R);\n        int a = RNG(1, 10);\n        ++R;\n        FOR(i, L, R) A[i] +=\
+    \ a;\n        X.apply(root, L, R, a);\n      }\n    }\n  }\n}\n\nvoid solve()\
+    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
+    \ {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"alg/acted_monoid/sum_add.hpp\"\n#include \"mod/modint.hpp\"\n#include\
     \ \"random/base.hpp\"\n#include \"ds/splaytree/splaytree_acted_monoid.hpp\"\n\n\
@@ -395,7 +400,7 @@ data:
   isVerificationFile: true
   path: test/mytest/splay_am.test.cpp
   requiredBy: []
-  timestamp: '2023-11-21 19:08:32+09:00'
+  timestamp: '2023-12-17 01:33:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/splay_am.test.cpp

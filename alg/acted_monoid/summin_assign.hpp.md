@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/summin.hpp
     title: alg/monoid/summin.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/summin_assign.test.cpp
     title: test/mytest/summin_assign.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/summin.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -26,15 +26,15 @@ data:
     \ Monoid_Assign {\r\n  using value_type = X;\r\n  static X op(X x, X y) { return\
     \ (y == X(none_val) ? x : y); }\r\n  static constexpr X unit() { return X(none_val);\
     \ }\r\n  static constexpr bool commute = false;\r\n};\r\n#line 3 \"alg/acted_monoid/summin_assign.hpp\"\
-    \n\r\ntemplate <typename E, ll none_val>\r\nstruct ActedMonoid_CntSumMin_Assign\
-    \ {\r\n  using Monoid_X = Monoid_SumMin<E>;\r\n  using Monoid_A = Monoid_Assign<ll,\
+    \n\r\ntemplate <typename E, ll none_val>\r\nstruct ActedMonoid_SumMin_Assign {\r\
+    \n  using Monoid_X = Monoid_SumMin<E>;\r\n  using Monoid_A = Monoid_Assign<ll,\
     \ none_val>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A = typename\
     \ Monoid_A::value_type;\r\n  static constexpr X act(const X& x, const A& a, const\
     \ ll& size) {\r\n    if (a == Monoid_A::unit()) return x;\r\n    return {E(size)\
     \ * a, a};\r\n  }\r\n};\r\n"
   code: "#include \"alg/monoid/summin.hpp\"\r\n#include \"alg/monoid/assign.hpp\"\r\
-    \n\r\ntemplate <typename E, ll none_val>\r\nstruct ActedMonoid_CntSumMin_Assign\
-    \ {\r\n  using Monoid_X = Monoid_SumMin<E>;\r\n  using Monoid_A = Monoid_Assign<ll,\
+    \n\r\ntemplate <typename E, ll none_val>\r\nstruct ActedMonoid_SumMin_Assign {\r\
+    \n  using Monoid_X = Monoid_SumMin<E>;\r\n  using Monoid_A = Monoid_Assign<ll,\
     \ none_val>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A = typename\
     \ Monoid_A::value_type;\r\n  static constexpr X act(const X& x, const A& a, const\
     \ ll& size) {\r\n    if (a == Monoid_A::unit()) return x;\r\n    return {E(size)\
@@ -45,8 +45,8 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/summin_assign.hpp
   requiredBy: []
-  timestamp: '2023-10-14 20:28:40+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-12-17 01:33:11+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/summin_assign.test.cpp
 documentation_of: alg/acted_monoid/summin_assign.hpp
