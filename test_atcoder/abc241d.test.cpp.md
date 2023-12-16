@@ -20,15 +20,16 @@ data:
     )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ds/my_multiset.hpp:\
     \ line -1: no such header\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc241/tasks/abc241_d\"\n\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/my_multiset.hpp\"\
-    \n\nvoid solve() {\n  LL(Q);\n  My_Multiset<ll, int> X;\n  FOR(Q) {\n    LL(t,\
-    \ x);\n    if (t == 1) {\n      X.insert(x);\n      continue;\n    }\n    LL(k);\n\
-    \    if (t == 2) {\n      int n = X.get_range(-infty<int>, x + 1).fi - 1;\n  \
-    \    n -= k - 1;\n      if (0 <= n && n < len(X)) {\n        print(X.get_kth(n).fi);\n\
-    \      } else {\n        print(-1);\n      }\n    }\n    if (t == 3) {\n     \
-    \ int n = X.get_range(-infty<int>, x).fi;\n      n += k - 1;\n      if (0 <= n\
-    \ && n < len(X)) {\n        print(X.get_kth(n).fi);\n      } else {\n        print(-1);\n\
-    \      }\n    }\n  };\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/my_multiset.hpp\"\
+    \n\nvoid solve() {\n  LL(Q);\n  My_Multiset<200100> X;\n  auto c = X.new_root();\n\
+    \  FOR(Q) {\n    LL(t);\n    if (t == 1) {\n      LL(x);\n      c = X.add(c, x);\n\
+    \    }\n    if (t == 2) {\n      LL(x, k);\n      auto [cnt, sm] = X.get_range(c,\
+    \ -infty<ll>, x + 1);\n      if (cnt < k) {\n        print(-1);\n      } else\
+    \ {\n        ll ans = X.prefix_kth(c, cnt - k).fi;\n        print(ans);\n    \
+    \  }\n    }\n    if (t == 3) {\n      LL(x, k);\n      auto [cnt, sm] = X.get_range(c,\
+    \ x, infty<ll>);\n      if (cnt < k) {\n        print(-1);\n      } else {\n \
+    \       ll ans = X.suffix_kth(c, cnt - k).fi;\n        print(ans);\n      }\n\
+    \    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn: []
   isVerificationFile: true
   path: test_atcoder/abc241d.test.cpp
