@@ -317,24 +317,23 @@ data:
     \ = SplayTree<Node_Basic<S>, NODES>;\n} // namespace SplayTreeNodes\n\nusing SplayTreeNodes::SplayTree_Basic;\n\
     #line 5 \"test_atcoder/arc153b.test.cpp\"\n\nvoid solve() {\n  LL(H, W);\n  VEC(string,\
     \ G, H);\n  SplayTree_Basic<int, 300'000> X;\n\n  vc<int> A(H), B(W);\n  iota(all(A),\
-    \ 0), iota(all(B), 0);\n\n  using np = decltype(X)::np;\n  auto root_1 = X.new_node(A);\n\
-    \  auto root_2 = X.new_node(B);\n\n  LL(Q);\n  FOR(Q) {\n    LL(a, b);\n    X.reverse(root_1,\
+    \ 0), iota(all(B), 0);\n\n  using np = decltype(X)::np;\n  np root_1 = X.new_node(A);\n\
+    \  np root_2 = X.new_node(B);\n\n  LL(Q);\n  FOR(Q) {\n    LL(a, b);\n    X.reverse(root_1,\
     \ 0, a);\n    X.reverse(root_1, a, H);\n    X.reverse(root_2, 0, b);\n    X.reverse(root_2,\
     \ b, W);\n  }\n\n  A = X.get_all(root_1);\n  B = X.get_all(root_2);\n\n  vc<string>\
     \ ANS(H, string(W, '?'));\n  FOR(i, H) FOR(j, W) { ANS[i][j] = G[A[i]][B[j]];\
-    \ }\n  FOR(i, H) print(ANS[i]);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ }\n  FOR(i, H) print(ANS[i]);\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/arc153/tasks/arc153_b\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/splaytree/splaytree_basic.hpp\"\
     \n\nvoid solve() {\n  LL(H, W);\n  VEC(string, G, H);\n  SplayTree_Basic<int,\
     \ 300'000> X;\n\n  vc<int> A(H), B(W);\n  iota(all(A), 0), iota(all(B), 0);\n\n\
-    \  using np = decltype(X)::np;\n  auto root_1 = X.new_node(A);\n  auto root_2\
-    \ = X.new_node(B);\n\n  LL(Q);\n  FOR(Q) {\n    LL(a, b);\n    X.reverse(root_1,\
-    \ 0, a);\n    X.reverse(root_1, a, H);\n    X.reverse(root_2, 0, b);\n    X.reverse(root_2,\
-    \ b, W);\n  }\n\n  A = X.get_all(root_1);\n  B = X.get_all(root_2);\n\n  vc<string>\
-    \ ANS(H, string(W, '?'));\n  FOR(i, H) FOR(j, W) { ANS[i][j] = G[A[i]][B[j]];\
-    \ }\n  FOR(i, H) print(ANS[i]);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}"
+    \  using np = decltype(X)::np;\n  np root_1 = X.new_node(A);\n  np root_2 = X.new_node(B);\n\
+    \n  LL(Q);\n  FOR(Q) {\n    LL(a, b);\n    X.reverse(root_1, 0, a);\n    X.reverse(root_1,\
+    \ a, H);\n    X.reverse(root_2, 0, b);\n    X.reverse(root_2, b, W);\n  }\n\n\
+    \  A = X.get_all(root_1);\n  B = X.get_all(root_2);\n\n  vc<string> ANS(H, string(W,\
+    \ '?'));\n  FOR(i, H) FOR(j, W) { ANS[i][j] = G[A[i]][B[j]]; }\n  FOR(i, H) print(ANS[i]);\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp

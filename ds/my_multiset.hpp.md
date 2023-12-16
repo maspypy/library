@@ -91,8 +91,28 @@ data:
     \ {\n  struct Mono {\n    using value_type = pair<ll, i128>; // cnt, sum\n   \
     \ using X = value_type;\n    static X op(X x, X y) { return {x.fi + y.fi, x.se\
     \ + y.se}; }\n    static constexpr X unit() { return {0, 0}; }\n    static constexpr\
-    \ bool commute = 1;\n  };\n  using SEG = Dynamic_SegTree_Sparse<Mono, false, NODES>;\n\
-    \  using np = SEG::np;\n  SEG seg;\n  My_Multiset() : seg(-infty<ll>, infty<ll>)\
+    \ bool commute = 1;\n  };\n  using SEG = typename Dynamic_SegTree_Sparse<Mono,\
+    \ false, NODES>;\n  using np = typename SEG::np;\n  SEG seg;\n  My_Multiset()\
+    \ : seg(-infty<ll>, infty<ll>) {}\n\n  void reset() { seg.reset(); }\n  np new_root()\
+    \ { return seg.new_root(); }\n  np add(np c, ll k, ll cnt = 1) {\n    return seg.multiply(c,\
+    \ k, {cnt, i128(k) * cnt});\n  }\n\n  pair<ll, i128> get_range(np c, ll L, ll\
+    \ R) { return seg.prod(c, L, R); }\n  pair<ll, i128> get_all(np c) { return seg.prod_all(c);\
+    \ }\n\n  // (k-th val or infty), sum\n  pair<ll, i128> prefix_kth(np c, ll k)\
+    \ {\n    auto [cnt, sm] = seg.prod_all(c);\n    assert(k <= cnt);\n    if (k ==\
+    \ cnt) return {infty<ll>, sm};\n    ll key = seg.max_right(\n        c, [&](auto\
+    \ e) -> bool { return e.fi <= k; }, -infty<ll>);\n    tie(cnt, sm) = seg.prod(c,\
+    \ -infty<ll>, key);\n    return {key, sm + key * (k - cnt)};\n  }\n\n  // (k-th\
+    \ val or -infty), sum\n  pair<ll, i128> suffix_kth(np c, ll k) {\n    auto [cnt,\
+    \ sm] = seg.prod_all(c);\n    assert(k <= cnt);\n    if (k == cnt) return {-infty<ll>,\
+    \ sm};\n    auto [a, b] = prefix_kth(c, cnt - 1 - k);\n    return {a, sm - b -\
+    \ a};\n  }\n};\n"
+  code: "\n#include \"ds/segtree/dynamic_segtree_sparse.hpp\"\n\n// key,cnt \u306F\
+    \ long long, sum \u306F i128\ntemplate <int NODES>\nstruct My_Multiset {\n  struct\
+    \ Mono {\n    using value_type = pair<ll, i128>; // cnt, sum\n    using X = value_type;\n\
+    \    static X op(X x, X y) { return {x.fi + y.fi, x.se + y.se}; }\n    static\
+    \ constexpr X unit() { return {0, 0}; }\n    static constexpr bool commute = 1;\n\
+    \  };\n  using SEG = typename Dynamic_SegTree_Sparse<Mono, false, NODES>;\n  using\
+    \ np = typename SEG::np;\n  SEG seg;\n  My_Multiset() : seg(-infty<ll>, infty<ll>)\
     \ {}\n\n  void reset() { seg.reset(); }\n  np new_root() { return seg.new_root();\
     \ }\n  np add(np c, ll k, ll cnt = 1) {\n    return seg.multiply(c, k, {cnt, i128(k)\
     \ * cnt});\n  }\n\n  pair<ll, i128> get_range(np c, ll L, ll R) { return seg.prod(c,\
@@ -104,32 +124,13 @@ data:
     \ key);\n    return {key, sm + key * (k - cnt)};\n  }\n\n  // (k-th val or -infty),\
     \ sum\n  pair<ll, i128> suffix_kth(np c, ll k) {\n    auto [cnt, sm] = seg.prod_all(c);\n\
     \    assert(k <= cnt);\n    if (k == cnt) return {-infty<ll>, sm};\n    auto [a,\
-    \ b] = prefix_kth(c, cnt - 1 - k);\n    return {a, sm - b - a};\n  }\n};\n"
-  code: "\n#include \"ds/segtree/dynamic_segtree_sparse.hpp\"\n\n// key,cnt \u306F\
-    \ long long, sum \u306F i128\ntemplate <int NODES>\nstruct My_Multiset {\n  struct\
-    \ Mono {\n    using value_type = pair<ll, i128>; // cnt, sum\n    using X = value_type;\n\
-    \    static X op(X x, X y) { return {x.fi + y.fi, x.se + y.se}; }\n    static\
-    \ constexpr X unit() { return {0, 0}; }\n    static constexpr bool commute = 1;\n\
-    \  };\n  using SEG = Dynamic_SegTree_Sparse<Mono, false, NODES>;\n  using np =\
-    \ SEG::np;\n  SEG seg;\n  My_Multiset() : seg(-infty<ll>, infty<ll>) {}\n\n  void\
-    \ reset() { seg.reset(); }\n  np new_root() { return seg.new_root(); }\n  np add(np\
-    \ c, ll k, ll cnt = 1) {\n    return seg.multiply(c, k, {cnt, i128(k) * cnt});\n\
-    \  }\n\n  pair<ll, i128> get_range(np c, ll L, ll R) { return seg.prod(c, L, R);\
-    \ }\n  pair<ll, i128> get_all(np c) { return seg.prod_all(c); }\n\n  // (k-th\
-    \ val or infty), sum\n  pair<ll, i128> prefix_kth(np c, ll k) {\n    auto [cnt,\
-    \ sm] = seg.prod_all(c);\n    assert(k <= cnt);\n    if (k == cnt) return {infty<ll>,\
-    \ sm};\n    ll key = seg.max_right(\n        c, [&](auto e) -> bool { return e.fi\
-    \ <= k; }, -infty<ll>);\n    tie(cnt, sm) = seg.prod(c, -infty<ll>, key);\n  \
-    \  return {key, sm + key * (k - cnt)};\n  }\n\n  // (k-th val or -infty), sum\n\
-    \  pair<ll, i128> suffix_kth(np c, ll k) {\n    auto [cnt, sm] = seg.prod_all(c);\n\
-    \    assert(k <= cnt);\n    if (k == cnt) return {-infty<ll>, sm};\n    auto [a,\
     \ b] = prefix_kth(c, cnt - 1 - k);\n    return {a, sm - b - a};\n  }\n};"
   dependsOn:
   - ds/segtree/dynamic_segtree_sparse.hpp
   isVerificationFile: false
   path: ds/my_multiset.hpp
   requiredBy: []
-  timestamp: '2023-12-16 12:35:34+09:00'
+  timestamp: '2023-12-17 02:29:06+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc281e_2.test.cpp
