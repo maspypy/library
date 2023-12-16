@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/summin_assign.hpp
     title: alg/acted_monoid/summin_assign.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/summin.hpp
     title: alg/monoid/summin.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -186,7 +186,7 @@ data:
     \ return;\n    apply_at(2 * k, laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k]\
     \ = MA::unit();\n  }\n};\n#line 6 \"test/mytest/summin_assign.test.cpp\"\n\nvoid\
     \ test() {\n  int N = RNG(1, 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1,\
-    \ 100);\n  using AM = ActedMonoid_CntSumMin_Assign<ll, -1>;\n  using Mono = typename\
+    \ 100);\n  using AM = ActedMonoid_SumMin_Assign<ll, -1>;\n  using Mono = typename\
     \ AM::Monoid_X;\n  Lazy_SegTree<AM> seg(\n      N, [&](int i) -> Mono::value_type\
     \ { return Mono::from_element(A[i]); });\n  int Q = RNG(1, 100);\n  FOR(Q) {\n\
     \    ll t = RNG(0, 2);\n    ll L = RNG(0, N);\n    ll R = RNG(0, N);\n    if (L\
@@ -200,7 +200,7 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"alg/acted_monoid/summin_assign.hpp\"\n#include \"random/base.hpp\"\
     \n#include \"ds/segtree/lazy_segtree.hpp\"\n\nvoid test() {\n  int N = RNG(1,\
-    \ 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1, 100);\n  using AM = ActedMonoid_CntSumMin_Assign<ll,\
+    \ 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1, 100);\n  using AM = ActedMonoid_SumMin_Assign<ll,\
     \ -1>;\n  using Mono = typename AM::Monoid_X;\n  Lazy_SegTree<AM> seg(\n     \
     \ N, [&](int i) -> Mono::value_type { return Mono::from_element(A[i]); });\n \
     \ int Q = RNG(1, 100);\n  FOR(Q) {\n    ll t = RNG(0, 2);\n    ll L = RNG(0, N);\n\
@@ -221,8 +221,8 @@ data:
   isVerificationFile: true
   path: test/mytest/summin_assign.test.cpp
   requiredBy: []
-  timestamp: '2023-12-17 01:33:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-12-17 01:52:18+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/summin_assign.test.cpp
 layout: document
