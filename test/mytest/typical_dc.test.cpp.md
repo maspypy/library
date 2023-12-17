@@ -1,53 +1,53 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/typical_divide_conquer.hpp
     title: poly/typical_divide_conquer.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -557,11 +557,11 @@ data:
     \        FOR(j, i) F = convolution(F, A[j]);\n        FOR(j, i + 1, N) F = convolution(F,\
     \ B[j]);\n        prod[i] = F;\n      }\n      Typical_Divide_Conquer<mint> X(N);\n\
     \      FOR(i, N - 1) X.set_L(i, A[i]);\n      FOR(i, 1, N) X.set_R(i, B[i]);\n\
-    \      FOR(K, 50) {\n        print(\"K\", K), flush();\n        auto ANS = X.calc(K,\
-    \ f);\n        vc<mint> naive(N);\n        FOR(i, N) naive[i] = (K < len(prod[i])\
-    \ ? prod[i][K] : mint(0));\n        assert(ANS == naive);\n      }\n    }\n  }\n\
-    }\n\nvoid solve() {\n  INT(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n\
-    \  solve();\n  return 0;\n}\n"
+    \      FOR(K, 50) {\n        auto ANS = X.calc(K, f);\n        vc<mint> naive(N);\n\
+    \        FOR(i, N) naive[i] = (K < len(prod[i]) ? prod[i][K] : mint(0));\n   \
+    \     assert(ANS == naive);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  INT(a,\
+    \ b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"random/base.hpp\"\n\n#include \"mod/modint.hpp\"\
     \n#include \"poly/typical_divide_conquer.hpp\"\n\nusing mint = modint998;\nusing\
@@ -573,11 +573,11 @@ data:
     \ i) F = convolution(F, A[j]);\n        FOR(j, i + 1, N) F = convolution(F, B[j]);\n\
     \        prod[i] = F;\n      }\n      Typical_Divide_Conquer<mint> X(N);\n   \
     \   FOR(i, N - 1) X.set_L(i, A[i]);\n      FOR(i, 1, N) X.set_R(i, B[i]);\n  \
-    \    FOR(K, 50) {\n        print(\"K\", K), flush();\n        auto ANS = X.calc(K,\
-    \ f);\n        vc<mint> naive(N);\n        FOR(i, N) naive[i] = (K < len(prod[i])\
-    \ ? prod[i][K] : mint(0));\n        assert(ANS == naive);\n      }\n    }\n  }\n\
-    }\n\nvoid solve() {\n  INT(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n\
-    \  solve();\n  return 0;\n}"
+    \    FOR(K, 50) {\n        auto ANS = X.calc(K, f);\n        vc<mint> naive(N);\n\
+    \        FOR(i, N) naive[i] = (K < len(prod[i]) ? prod[i][K] : mint(0));\n   \
+    \     assert(ANS == naive);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  INT(a,\
+    \ b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
+    \ 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -596,8 +596,8 @@ data:
   isVerificationFile: true
   path: test/mytest/typical_dc.test.cpp
   requiredBy: []
-  timestamp: '2023-12-17 17:27:37+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-12-17 17:38:22+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/typical_dc.test.cpp
 layout: document
