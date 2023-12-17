@@ -843,6 +843,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/primesum_mod4.test.cpp
     title: test/mytest/primesum_mod4.test.cpp
+  - icon: ':x:'
+    path: test/mytest/typical_dc.test.cpp
+    title: test/mytest/typical_dc.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
@@ -1944,9 +1947,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://judge.yosupo.jp/submission/21623
@@ -2124,7 +2127,7 @@ data:
   path: other/io.hpp
   requiredBy: []
   timestamp: '2023-11-09 00:59:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/0275.test.cpp
   - test/aoj/2842.test.cpp
@@ -2405,6 +2408,7 @@ data:
   - test/library_checker/string/run_enumerate.test.cpp
   - test/library_checker/string/number_of_substrings.test.cpp
   - test/mytest/min_min.test.cpp
+  - test/mytest/typical_dc.test.cpp
   - test/mytest/primesum_mod4.test.cpp
   - test/yukicoder/2231.test.cpp
   - test/yukicoder/1533.test.cpp

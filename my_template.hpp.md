@@ -1245,6 +1245,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
+  - icon: ':x:'
+    path: test/mytest/typical_dc.test.cpp
+    title: test/mytest/typical_dc.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
@@ -2355,9 +2358,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://trap.jp/post/1224/
@@ -2525,7 +2528,7 @@ data:
   path: my_template.hpp
   requiredBy: []
   timestamp: '2023-10-29 16:21:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/0275.test.cpp
   - test/aoj/2842.test.cpp
@@ -2874,6 +2877,7 @@ data:
   - test/mytest/count_clique.test.cpp
   - test/mytest/rbst_monoid.test.cpp
   - test/mytest/smawk.test.cpp
+  - test/mytest/typical_dc.test.cpp
   - test/mytest/non_adj.test.cpp
   - test/mytest/composition_ex_minus_1.test.cpp
   - test/mytest/maxplus_concave.test.cpp
