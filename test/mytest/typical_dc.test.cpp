@@ -36,7 +36,6 @@ void test() {
       FOR(i, N - 1) X.set_L(i, A[i]);
       FOR(i, 1, N) X.set_R(i, B[i]);
       FOR(K, 50) {
-        print("K", K), flush();
         auto ANS = X.calc(K, f);
         vc<mint> naive(N);
         FOR(i, N) naive[i] = (K < len(prod[i]) ? prod[i][K] : mint(0));
