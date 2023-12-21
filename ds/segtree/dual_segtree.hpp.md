@@ -30,7 +30,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2498.test.cpp
     title: test/yukicoder/2498.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/913.test.cpp
     title: test/yukicoder/913.test.cpp
   - icon: ':heavy_check_mark:'
@@ -39,9 +39,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc301h.test.cpp
     title: test_atcoder/abc301h.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/dual_segtree.hpp\"\n\ntemplate <typename Monoid>\n\
@@ -87,7 +87,7 @@ data:
   - graph/ds/dual_tree_monoid.hpp
   - geo/range_closest_pair_query.hpp
   timestamp: '2022-12-04 02:25:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/GRL_2_A.test.cpp
   - test/aoj/DSL_2_D.test.cpp

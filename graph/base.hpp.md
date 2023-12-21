@@ -86,6 +86,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/mo_on_tree.hpp
     title: graph/ds/mo_on_tree.hpp
+  - icon: ':warning:'
+    path: graph/ds/range_edge_connected_component_query.hpp
+    title: graph/ds/range_edge_connected_component_query.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
@@ -197,7 +200,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest_path/dial.hpp
     title: graph/shortest_path/dial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
   - icon: ':heavy_check_mark:'
@@ -711,7 +714,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc023f.test.cpp
     title: test_atcoder/agc023f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc064c.test.cpp
     title: test_atcoder/arc064c.test.cpp
   - icon: ':heavy_check_mark:'
@@ -723,9 +726,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc157a.test.cpp
     title: test_atcoder/arc157a.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -874,6 +877,7 @@ data:
   - graph/ds/tree_wavelet_matrix.hpp
   - graph/ds/mo_on_tree.hpp
   - graph/ds/lazy_tree_monoid.hpp
+  - graph/ds/range_edge_connected_component_query.hpp
   - graph/ds/dynamic_tree_dp.hpp
   - graph/ds/tree_abelgroup.hpp
   - graph/maximum_independent_set_weighted.hpp
@@ -938,7 +942,7 @@ data:
   - string/suffix_automaton.hpp
   - enumerate/triangle.hpp
   timestamp: '2023-11-07 22:29:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/0275.test.cpp
   - test/aoj/ITP1_11_D.test.cpp

@@ -48,6 +48,9 @@ data:
     path: ds/doubling.hpp
     title: ds/doubling.hpp
   - icon: ':heavy_check_mark:'
+    path: ds/fenwicktree/dual_fenwicktree.hpp
+    title: ds/fenwicktree/dual_fenwicktree.hpp
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':heavy_check_mark:'
@@ -86,6 +89,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/incremental_centroid.hpp
     title: graph/ds/incremental_centroid.hpp
+  - icon: ':warning:'
+    path: graph/ds/range_edge_connected_component_query.hpp
+    title: graph/ds/range_edge_connected_component_query.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
@@ -237,6 +243,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/ARC30D.test.cpp
     title: test/mytest/ARC30D.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/dual_fenwick.test.cpp
+    title: test/mytest/dual_fenwick.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_digit.test.cpp
     title: test/mytest/factorial_digit.test.cpp
@@ -475,6 +484,7 @@ data:
   - ds/offline_query/coeffient_query_2d.hpp
   - ds/range_add_range_sum.hpp
   - ds/fenwicktree/fenwicktree.hpp
+  - ds/fenwicktree/dual_fenwicktree.hpp
   - ds/fenwicktree/fenwicktree_range_add.hpp
   - ds/fenwicktree/fenwicktree_2d.hpp
   - ds/fenwicktree/fenwicktree_2d_dense.hpp
@@ -483,6 +493,7 @@ data:
   - seq/factorial_digit_system.hpp
   - graph/ds/incremental_centroid.hpp
   - graph/ds/tree_wavelet_matrix.hpp
+  - graph/ds/range_edge_connected_component_query.hpp
   - graph/ds/tree_abelgroup.hpp
   - graph/count/count_connected_intervals.hpp
   - string/trie.hpp
@@ -559,6 +570,7 @@ data:
   - test/mytest/fenwick_raq.test.cpp
   - test/mytest/ARC30D.test.cpp
   - test/mytest/maxidx_add.test.cpp
+  - test/mytest/dual_fenwick.test.cpp
   - test/mytest/factorial_digit.test.cpp
   - test/mytest/summin_add.test.cpp
   - test/yukicoder/1326.test.cpp

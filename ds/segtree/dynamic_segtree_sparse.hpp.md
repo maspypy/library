@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/my_multiset.hpp
     title: ds/my_multiset.hpp
   _extendedVerifiedWith:
@@ -27,17 +27,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/789_3.test.cpp
     title: test/yukicoder/789_3.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc241d.test.cpp
     title: test_atcoder/abc241d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc281e_2.test.cpp
     title: test_atcoder/abc281e_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
-    links: []
+    links:
+    - https://codeforces.com/problemset/problem/671/D
   bundledCode: "#line 2 \"ds/segtree/dynamic_segtree_sparse.hpp\"\n\n// \u5E38\u306B\
     \u307B\u3068\u3093\u3069\u306E\u8981\u7D20\u304C unit \u3067\u3042\u308B\u3053\
     \u3068\u304C\u4FDD\u8A3C\u3055\u308C\u308B\u3088\u3046\u306A\u52D5\u7684\u30BB\
@@ -49,43 +50,51 @@ data:
     \ bool PERSISTENT, int NODES>\nstruct Dynamic_SegTree_Sparse {\n  using MX = Monoid;\n\
     \  using X = typename MX::value_type;\n\n  struct Node {\n    ll idx;\n    Node\
     \ *l, *r;\n    X prod, x;\n  };\n\n  const ll L0, R0;\n  Node *pool;\n  int pid;\n\
-    \  using np = Node *;\n\n  Dynamic_SegTree_Sparse(ll L0, ll R0) : L0(L0), R0(R0),\
-    \ pid(0) {\n    pool = new Node[NODES];\n  }\n\n  np new_root() { return nullptr;\
-    \ }\n\n  np new_node(ll idx, const X x) {\n    pool[pid].idx = idx;\n    pool[pid].l\
-    \ = pool[pid].r = nullptr;\n    pool[pid].x = pool[pid].prod = x;\n    return\
-    \ &(pool[pid++]);\n  }\n\n  X prod(np root, ll l, ll r) {\n    assert(L0 <= l\
-    \ && l <= r && r <= R0);\n    if (l == r) return MX::unit();\n    X x = MX::unit();\n\
-    \    prod_rec(root, L0, R0, l, r, x);\n    return x;\n  }\n\n  X prod_all(np root)\
-    \ { return prod(root, L0, R0); }\n\n  np set(np root, ll i, const X &x) {\n  \
-    \  assert(L0 <= i && i < R0);\n    return set_rec(root, L0, R0, i, x);\n  }\n\n\
-    \  np multiply(np root, ll i, const X &x) {\n    assert(L0 <= i && i < R0);\n\
-    \    return multiply_rec(root, L0, R0, i, x);\n  }\n\n  template <typename F>\n\
-    \  ll max_right(np root, F check, ll L) {\n    assert(L0 <= L && L <= R0 && check(MX::unit()));\n\
-    \    X x = MX::unit();\n    return max_right_rec(root, check, L0, R0, L, x);\n\
-    \  }\n\n  template <typename F>\n  ll min_left(np root, F check, ll R) {\n   \
-    \ assert(L0 <= R && R <= R0 && check(MX::unit()));\n    X x = MX::unit();\n  \
-    \  return min_left_rec(root, check, L0, R0, R, x);\n  }\n\n  void reset() { pid\
-    \ = 0; }\n\n  vc<pair<ll, X>> get_all(np root) {\n    vc<pair<ll, X>> res;\n \
-    \   auto dfs = [&](auto &dfs, np c) -> void {\n      if (!c) return;\n      dfs(dfs,\
-    \ c->l);\n      res.eb(c->idx, c->x);\n      dfs(dfs, c->r);\n    };\n    dfs(dfs,\
-    \ root);\n    return res;\n  }\n\n  X get(np root, ll idx) {\n    auto dfs = [&](auto\
-    \ &dfs, np c) -> X {\n      if (!c) return Monoid::unit();\n      if (idx == c->idx)\
-    \ return c->x;\n      if (idx < (c->idx)) return dfs(dfs, c->l);\n      return\
-    \ dfs(dfs, c->r);\n    };\n    return dfs(dfs, root);\n  }\n\nprivate:\n  void\
-    \ update(np c) {\n    c->prod = c->x;\n    if (c->l) c->prod = MX::op(c->l->prod,\
-    \ c->prod);\n    if (c->r) c->prod = MX::op(c->prod, c->r->prod);\n  }\n\n  np\
-    \ copy_node(np c) {\n    if (!c || !PERSISTENT) return c;\n    pool[pid].idx =\
-    \ c->idx;\n    pool[pid].l = c->l;\n    pool[pid].r = c->r;\n    pool[pid].x =\
-    \ c->x;\n    pool[pid].prod = c->prod;\n    return &(pool[pid++]);\n  }\n\n  np\
-    \ set_rec(np c, ll l, ll r, ll i, X x) {\n    if (!c) {\n      c = new_node(i,\
-    \ x);\n      return c;\n    }\n    c = copy_node(c);\n    if (c->idx == i) {\n\
-    \      c->x = x;\n      update(c);\n      return c;\n    }\n    ll m = (l + r)\
-    \ / 2;\n    if (i < m) {\n      if (c->idx < i) swap(c->idx, i), swap(c->x, x);\n\
-    \      c->l = set_rec(c->l, l, m, i, x);\n    }\n    if (m <= i) {\n      if (i\
-    \ < c->idx) swap(c->idx, i), swap(c->x, x);\n      c->r = set_rec(c->r, m, r,\
-    \ i, x);\n    }\n    update(c);\n    return c;\n  }\n\n  np multiply_rec(np c,\
-    \ ll l, ll r, ll i, X x) {\n    if (!c) {\n      c = new_node(i, x);\n      return\
-    \ c;\n    }\n    c = copy_node(c);\n    if (c->idx == i) {\n      c->x = MX::op(c->x,\
+    \  using np = Node *;\n  vc<np> FREE;\n\n  Dynamic_SegTree_Sparse(ll L0, ll R0)\
+    \ : L0(L0), R0(R0), pid(0) {\n    pool = new Node[NODES];\n  }\n\n  // \u6728\
+    \ dp \u306E\u30DE\u30FC\u30B8\u306E\u3068\u304D\u306A\u3069\u306B\u4F7F\u7528\u3059\
+    \u308B\u3068 MLE \u56DE\u907F\u3067\u304D\u308B\u3053\u3068\u304C\u3042\u308B\n\
+    \  // https://codeforces.com/problemset/problem/671/D\n  void free_subtree(np\
+    \ c) {\n    auto dfs = [&](auto &dfs, np c) -> void {\n      if (c->l) dfs(dfs,\
+    \ c->l);\n      if (c->r) dfs(dfs, c->r);\n      FREE.eb(c);\n    };\n    dfs(dfs,\
+    \ c);\n  }\n\n  np new_root() { return nullptr; }\n\n  np new_node(ll idx, const\
+    \ X x) {\n    if (!FREE.empty()) {\n      np c = POP(FREE);\n      c->idx = idx,\
+    \ c->l = c->r = nullptr;\n      c->prod = c->x = x;\n      return c;\n    }\n\
+    \    pool[pid].idx = idx;\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x\
+    \ = pool[pid].prod = x;\n    return &(pool[pid++]);\n  }\n\n  X prod(np root,\
+    \ ll l, ll r) {\n    assert(L0 <= l && l <= r && r <= R0);\n    if (l == r) return\
+    \ MX::unit();\n    X x = MX::unit();\n    prod_rec(root, L0, R0, l, r, x);\n \
+    \   return x;\n  }\n\n  X prod_all(np root) { return prod(root, L0, R0); }\n\n\
+    \  np set(np root, ll i, const X &x) {\n    assert(L0 <= i && i < R0);\n    return\
+    \ set_rec(root, L0, R0, i, x);\n  }\n\n  np multiply(np root, ll i, const X &x)\
+    \ {\n    assert(L0 <= i && i < R0);\n    return multiply_rec(root, L0, R0, i,\
+    \ x);\n  }\n\n  template <typename F>\n  ll max_right(np root, F check, ll L)\
+    \ {\n    assert(L0 <= L && L <= R0 && check(MX::unit()));\n    X x = MX::unit();\n\
+    \    return max_right_rec(root, check, L0, R0, L, x);\n  }\n\n  template <typename\
+    \ F>\n  ll min_left(np root, F check, ll R) {\n    assert(L0 <= R && R <= R0 &&\
+    \ check(MX::unit()));\n    X x = MX::unit();\n    return min_left_rec(root, check,\
+    \ L0, R0, R, x);\n  }\n\n  void reset() { pid = 0; }\n\n  vc<pair<ll, X>> get_all(np\
+    \ root) {\n    vc<pair<ll, X>> res;\n    auto dfs = [&](auto &dfs, np c) -> void\
+    \ {\n      if (!c) return;\n      dfs(dfs, c->l);\n      res.eb(c->idx, c->x);\n\
+    \      dfs(dfs, c->r);\n    };\n    dfs(dfs, root);\n    return res;\n  }\n\n\
+    \  X get(np root, ll idx) {\n    auto dfs = [&](auto &dfs, np c) -> X {\n    \
+    \  if (!c) return Monoid::unit();\n      if (idx == c->idx) return c->x;\n   \
+    \   if (idx < (c->idx)) return dfs(dfs, c->l);\n      return dfs(dfs, c->r);\n\
+    \    };\n    return dfs(dfs, root);\n  }\n\nprivate:\n  void update(np c) {\n\
+    \    c->prod = c->x;\n    if (c->l) c->prod = MX::op(c->l->prod, c->prod);\n \
+    \   if (c->r) c->prod = MX::op(c->prod, c->r->prod);\n  }\n\n  np copy_node(np\
+    \ c) {\n    if (!c || !PERSISTENT) return c;\n    pool[pid].idx = c->idx;\n  \
+    \  pool[pid].l = c->l;\n    pool[pid].r = c->r;\n    pool[pid].x = c->x;\n   \
+    \ pool[pid].prod = c->prod;\n    return &(pool[pid++]);\n  }\n\n  np set_rec(np\
+    \ c, ll l, ll r, ll i, X x) {\n    if (!c) {\n      c = new_node(i, x);\n    \
+    \  return c;\n    }\n    c = copy_node(c);\n    if (c->idx == i) {\n      c->x\
+    \ = x;\n      update(c);\n      return c;\n    }\n    ll m = (l + r) / 2;\n  \
+    \  if (i < m) {\n      if (c->idx < i) swap(c->idx, i), swap(c->x, x);\n     \
+    \ c->l = set_rec(c->l, l, m, i, x);\n    }\n    if (m <= i) {\n      if (i < c->idx)\
+    \ swap(c->idx, i), swap(c->x, x);\n      c->r = set_rec(c->r, m, r, i, x);\n \
+    \   }\n    update(c);\n    return c;\n  }\n\n  np multiply_rec(np c, ll l, ll\
+    \ r, ll i, X x) {\n    if (!c) {\n      c = new_node(i, x);\n      return c;\n\
+    \    }\n    c = copy_node(c);\n    if (c->idx == i) {\n      c->x = MX::op(c->x,\
     \ x);\n      update(c);\n      return c;\n    }\n    ll m = (l + r) / 2;\n   \
     \ if (i < m) {\n      if (c->idx < i) swap(c->idx, i), swap(c->x, x);\n      c->l\
     \ = multiply_rec(c->l, l, m, i, x);\n    }\n    if (m <= i) {\n      if (i < c->idx)\
@@ -118,10 +127,17 @@ data:
     \u5229\u70B9\ntemplate <typename Monoid, bool PERSISTENT, int NODES>\nstruct Dynamic_SegTree_Sparse\
     \ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\n  struct Node\
     \ {\n    ll idx;\n    Node *l, *r;\n    X prod, x;\n  };\n\n  const ll L0, R0;\n\
-    \  Node *pool;\n  int pid;\n  using np = Node *;\n\n  Dynamic_SegTree_Sparse(ll\
+    \  Node *pool;\n  int pid;\n  using np = Node *;\n  vc<np> FREE;\n\n  Dynamic_SegTree_Sparse(ll\
     \ L0, ll R0) : L0(L0), R0(R0), pid(0) {\n    pool = new Node[NODES];\n  }\n\n\
-    \  np new_root() { return nullptr; }\n\n  np new_node(ll idx, const X x) {\n \
-    \   pool[pid].idx = idx;\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x\
+    \  // \u6728 dp \u306E\u30DE\u30FC\u30B8\u306E\u3068\u304D\u306A\u3069\u306B\u4F7F\
+    \u7528\u3059\u308B\u3068 MLE \u56DE\u907F\u3067\u304D\u308B\u3053\u3068\u304C\u3042\
+    \u308B\n  // https://codeforces.com/problemset/problem/671/D\n  void free_subtree(np\
+    \ c) {\n    auto dfs = [&](auto &dfs, np c) -> void {\n      if (c->l) dfs(dfs,\
+    \ c->l);\n      if (c->r) dfs(dfs, c->r);\n      FREE.eb(c);\n    };\n    dfs(dfs,\
+    \ c);\n  }\n\n  np new_root() { return nullptr; }\n\n  np new_node(ll idx, const\
+    \ X x) {\n    if (!FREE.empty()) {\n      np c = POP(FREE);\n      c->idx = idx,\
+    \ c->l = c->r = nullptr;\n      c->prod = c->x = x;\n      return c;\n    }\n\
+    \    pool[pid].idx = idx;\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x\
     \ = pool[pid].prod = x;\n    return &(pool[pid++]);\n  }\n\n  X prod(np root,\
     \ ll l, ll r) {\n    assert(L0 <= l && l <= r && r <= R0);\n    if (l == r) return\
     \ MX::unit();\n    X x = MX::unit();\n    prod_rec(root, L0, R0, l, r, x);\n \
@@ -183,8 +199,8 @@ data:
   path: ds/segtree/dynamic_segtree_sparse.hpp
   requiredBy:
   - ds/my_multiset.hpp
-  timestamp: '2023-04-14 22:06:08+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-12-21 22:18:31+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/datastructure/double_ended_pq_2.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp

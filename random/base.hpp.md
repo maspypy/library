@@ -11,10 +11,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/minimum_enclosing_circle.hpp
     title: geo/minimum_enclosing_circle.hpp
   - icon: ':heavy_check_mark:'
@@ -122,7 +122,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   - icon: ':heavy_check_mark:'
@@ -288,6 +288,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/digit_sum.test.cpp
     title: test/mytest/digit_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/dual_fenwick.test.cpp
+    title: test/mytest/dual_fenwick.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/dynamic_lazy_segtree.test.cpp
     title: test/mytest/dynamic_lazy_segtree.test.cpp
@@ -654,19 +657,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc151f.test.cpp
     title: test_atcoder/abc151f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc152e.test.cpp
     title: test_atcoder/abc152e.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc212g.test.cpp
     title: test_atcoder/abc212g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc220g.test.cpp
     title: test_atcoder/abc220g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -684,9 +687,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -748,7 +751,7 @@ data:
   - poly/fps_sqrt.hpp
   - alg/monoid/rollinghash.hpp
   timestamp: '2022-10-23 11:21:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/NTL_1_D.test.cpp
   - test/aoj/ITP1_D_D.test.cpp
@@ -877,6 +880,7 @@ data:
   - test/mytest/tournament.test.cpp
   - test/mytest/summax_assign.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
+  - test/mytest/dual_fenwick.test.cpp
   - test/mytest/count_indep_set.test.cpp
   - test/mytest/min_max.test.cpp
   - test/mytest/pascal.test.cpp

@@ -142,9 +142,12 @@ data:
     \u4ED5\u69D8\u3092\u5408\u308F\u305B\u308B\n  void set(int i) { (*this)[i] = 1;\
     \ }\n  void reset(int i) { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip();\
     \ }\n  void set() {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n  void\
-    \ reset() { fill(all(dat), 0); }\n  bool any() {\n    FOR(i, len(dat)) {\n   \
-    \   if (dat[i]) return true;\n    }\n    return false;\n  }\n\n  int _Find_first()\
-    \ { return next(0); }\n  int _Find_next(int p) { return next(p + 1); }\n};\n"
+    \ reset() { fill(all(dat), 0); }\n  void flip() {\n    FOR(i, len(dat) - 1) {\
+    \ dat[i] = u64(-1) ^ dat[i]; }\n    int i = len(dat) - 1;\n    FOR(k, 64) {\n\
+    \      if (64 * i + k >= size()) break;\n      flip(64 * i + k);\n    }\n  }\n\
+    \  bool any() {\n    FOR(i, len(dat)) {\n      if (dat[i]) return true;\n    }\n\
+    \    return false;\n  }\n\n  int _Find_first() { return next(0); }\n  int _Find_next(int\
+    \ p) { return next(p + 1); }\n};\n"
   code: "#pragma once\n\n// https://codeforces.com/contest/914/problem/F\n// https://yukicoder.me/problems/no/142\n\
     // \u308F\u305A\u304B\u306B\u666E\u901A\u306E bitset \u3088\u308A\u9045\u3044\u3068\
     \u304D\u3082\u3042\u308B\u3088\u3046\u3060\u304C\uFF0C\n// \u56FA\u5B9A\u9577\u306B\
@@ -231,10 +234,12 @@ data:
     \    return S;\n  }\n\n  // bitset \u306B\u4ED5\u69D8\u3092\u5408\u308F\u305B\u308B\
     \n  void set(int i) { (*this)[i] = 1; }\n  void reset(int i) { (*this)[i] = 0;\
     \ }\n  void flip(int i) { (*this)[i].flip(); }\n  void set() {\n    fill(all(dat),\
-    \ u64(-1));\n    resize(N);\n  }\n  void reset() { fill(all(dat), 0); }\n  bool\
-    \ any() {\n    FOR(i, len(dat)) {\n      if (dat[i]) return true;\n    }\n   \
-    \ return false;\n  }\n\n  int _Find_first() { return next(0); }\n  int _Find_next(int\
-    \ p) { return next(p + 1); }\n};"
+    \ u64(-1));\n    resize(N);\n  }\n  void reset() { fill(all(dat), 0); }\n  void\
+    \ flip() {\n    FOR(i, len(dat) - 1) { dat[i] = u64(-1) ^ dat[i]; }\n    int i\
+    \ = len(dat) - 1;\n    FOR(k, 64) {\n      if (64 * i + k >= size()) break;\n\
+    \      flip(64 * i + k);\n    }\n  }\n  bool any() {\n    FOR(i, len(dat)) {\n\
+    \      if (dat[i]) return true;\n    }\n    return false;\n  }\n\n  int _Find_first()\
+    \ { return next(0); }\n  int _Find_next(int p) { return next(p + 1); }\n};"
   dependsOn: []
   isVerificationFile: false
   path: ds/my_bitset.hpp
@@ -244,7 +249,7 @@ data:
   - linalg/bitset/solve_linear.hpp
   - graph/shortest_path/bfs_bitset.hpp
   - knapsack/subset_sum.hpp
-  timestamp: '2023-12-15 23:42:47+09:00'
+  timestamp: '2023-12-21 22:18:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/mybitset.test.cpp

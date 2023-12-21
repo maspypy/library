@@ -864,6 +864,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/bell.test.cpp
     title: test/mytest/bell.test.cpp
+  - icon: ':x:'
+    path: test/mytest/bell_number.test.cpp
+    title: test/mytest/bell_number.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/binary_trie.test.cpp
     title: test/mytest/binary_trie.test.cpp
@@ -915,12 +918,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_points_in_triangles.test.cpp
     title: test/mytest/count_points_in_triangles.test.cpp
+  - icon: ':x:'
+    path: test/mytest/count_unlabeled_tree.test.cpp
+    title: test/mytest/count_unlabeled_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/datetime.test.cpp
     title: test/mytest/datetime.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/digit_sum.test.cpp
     title: test/mytest/digit_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/dual_fenwick.test.cpp
+    title: test/mytest/dual_fenwick.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/dyadic_rational.test.cpp
     title: test/mytest/dyadic_rational.test.cpp
@@ -1374,7 +1383,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1295.test.cpp
     title: test/yukicoder/1295.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1297.test.cpp
     title: test/yukicoder/1297.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1998,7 +2007,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/902.test.cpp
     title: test/yukicoder/902.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/913.test.cpp
     title: test/yukicoder/913.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2013,7 +2022,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc127f_1.test.cpp
     title: test_atcoder/abc127f_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc139f.test.cpp
     title: test_atcoder/abc139f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2022,7 +2031,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc141f.test.cpp
     title: test_atcoder/abc141f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc151f.test.cpp
     title: test_atcoder/abc151f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2055,7 +2064,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc200f.test.cpp
     title: test_atcoder/abc200f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2085,7 +2094,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc220f.test.cpp
     title: test_atcoder/abc220f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc220g.test.cpp
     title: test_atcoder/abc220g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2148,7 +2157,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc240ex.test.cpp
     title: test_atcoder/abc240ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc241d.test.cpp
     title: test_atcoder/abc241d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2184,7 +2193,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc260h.test.cpp
     title: test_atcoder/abc260h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc266c.test.cpp
     title: test_atcoder/abc266c.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2244,7 +2253,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc281e.test.cpp
     title: test_atcoder/abc281e.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc281e_2.test.cpp
     title: test_atcoder/abc281e_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2271,7 +2280,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc312f.test.cpp
     title: test_atcoder/abc312f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc314.test.cpp
     title: test_atcoder/abc314.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2322,7 +2331,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc064c.test.cpp
     title: test_atcoder/arc064c.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2331,7 +2340,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc123d.test.cpp
     title: test_atcoder/arc123d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc130f.test.cpp
     title: test_atcoder/arc130f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2358,9 +2367,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://trap.jp/post/1224/
@@ -2528,7 +2537,7 @@ data:
   path: my_template.hpp
   requiredBy: []
   timestamp: '2023-10-29 16:21:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/0275.test.cpp
   - test/aoj/2842.test.cpp
@@ -2880,6 +2889,7 @@ data:
   - test/mytest/typical_dc.test.cpp
   - test/mytest/non_adj.test.cpp
   - test/mytest/composition_ex_minus_1.test.cpp
+  - test/mytest/bell_number.test.cpp
   - test/mytest/maxplus_concave.test.cpp
   - test/mytest/wavelet_matrix.test.cpp
   - test/mytest/rbst_monoid_2.test.cpp
@@ -2930,12 +2940,14 @@ data:
   - test/mytest/splay_monoid.test.cpp
   - test/mytest/run_length.test.cpp
   - test/mytest/graph_count.test.cpp
+  - test/mytest/count_unlabeled_tree.test.cpp
   - test/mytest/powerquery.test.cpp
   - test/mytest/tournament.test.cpp
   - test/mytest/summax_assign.test.cpp
   - test/mytest/substring_abundant.test.cpp
   - test/mytest/enumerate_products.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
+  - test/mytest/dual_fenwick.test.cpp
   - test/mytest/count_indep_set.test.cpp
   - test/mytest/min_max.test.cpp
   - test/mytest/pascal.test.cpp

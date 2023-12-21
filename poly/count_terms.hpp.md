@@ -41,7 +41,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
   - icon: ':heavy_check_mark:'
@@ -98,6 +98,9 @@ data:
   - icon: ':warning:'
     path: poly/sum_of_power_of_roots.hpp
     title: poly/sum_of_power_of_roots.hpp
+  - icon: ':x:'
+    path: seq/famous/bell_number.hpp
+    title: seq/famous/bell_number.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
@@ -231,6 +234,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/bell.test.cpp
     title: test/mytest/bell.test.cpp
+  - icon: ':x:'
+    path: test/mytest/bell_number.test.cpp
+    title: test/mytest/bell_number.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
@@ -429,9 +435,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
@@ -447,6 +453,7 @@ data:
   - linalg/implicit_matrix/vandermonde.hpp
   - seq/famous/riemann_zeta_even.hpp
   - seq/famous/partition_number.hpp
+  - seq/famous/bell_number.hpp
   - seq/famous/bernoulli.hpp
   - seq/famous/stirling_number_2.hpp
   - seq/famous/bell_number_large.hpp
@@ -487,7 +494,7 @@ data:
   - poly/fps_inv_2d.hpp
   - poly/fps_log.hpp
   timestamp: '2022-05-02 13:06:30+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/library_checker/math/partition.test.cpp
@@ -531,6 +538,7 @@ data:
   - test/mytest/online_square.test.cpp
   - test/mytest/count_bipartite.test.cpp
   - test/mytest/composition_ex_minus_1.test.cpp
+  - test/mytest/bell_number.test.cpp
   - test/mytest/simple_perm.test.cpp
   - test/mytest/online_exp.test.cpp
   - test/mytest/online_division.test.cpp

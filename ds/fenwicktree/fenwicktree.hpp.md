@@ -26,6 +26,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/incremental_centroid.hpp
     title: graph/ds/incremental_centroid.hpp
+  - icon: ':warning:'
+    path: graph/ds/range_edge_connected_component_query.hpp
+    title: graph/ds/range_edge_connected_component_query.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
@@ -226,6 +229,7 @@ data:
   - seq/inversion.hpp
   - seq/factorial_digit_system.hpp
   - graph/ds/incremental_centroid.hpp
+  - graph/ds/range_edge_connected_component_query.hpp
   - graph/ds/tree_abelgroup.hpp
   timestamp: '2023-11-01 01:33:38+09:00'
   verificationStatus: LIBRARY_ALL_AC

@@ -23,6 +23,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_unicyclic.hpp
     title: graph/count/count_unicyclic.hpp
+  - icon: ':x:'
+    path: graph/count/count_unlabeled_tree.hpp
+    title: graph/count/count_unlabeled_tree.hpp
   - icon: ':warning:'
     path: graph/count_matching_on_tree.hpp
     title: graph/count_matching_on_tree.hpp
@@ -56,7 +59,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':heavy_check_mark:'
@@ -101,7 +104,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -125,7 +128,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
   - icon: ':heavy_check_mark:'
@@ -212,6 +215,9 @@ data:
   - icon: ':warning:'
     path: seq/count_grid_path.hpp
     title: seq/count_grid_path.hpp
+  - icon: ':x:'
+    path: seq/famous/bell_number.hpp
+    title: seq/famous/bell_number.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
@@ -561,6 +567,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/bell.test.cpp
     title: test/mytest/bell.test.cpp
+  - icon: ':x:'
+    path: test/mytest/bell_number.test.cpp
+    title: test/mytest/bell_number.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/binom.test.cpp
     title: test/mytest/binom.test.cpp
@@ -594,6 +603,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_indep_set.test.cpp
     title: test/mytest/count_indep_set.test.cpp
+  - icon: ':x:'
+    path: test/mytest/count_unlabeled_tree.test.cpp
+    title: test/mytest/count_unlabeled_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
@@ -1014,7 +1026,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc200f.test.cpp
     title: test_atcoder/abc200f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1122,7 +1134,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc105.test.cpp
     title: test_atcoder/arc105.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc130f.test.cpp
     title: test_atcoder/arc130f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1140,9 +1152,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -1237,6 +1249,7 @@ data:
   - seq/famous/riemann_zeta_even.hpp
   - seq/famous/eulerian_number.hpp
   - seq/famous/partition_number.hpp
+  - seq/famous/bell_number.hpp
   - seq/famous/bernoulli.hpp
   - seq/famous/stirling_number_2.hpp
   - seq/famous/bell_number_large.hpp
@@ -1254,6 +1267,7 @@ data:
   - graph/count_matching_on_tree.hpp
   - graph/tree_walk_generating_function.hpp
   - graph/count/count_clique.hpp
+  - graph/count/count_unlabeled_tree.hpp
   - graph/count/count_forest.hpp
   - graph/count/count_bipartite.hpp
   - graph/count/count_unicyclic.hpp
@@ -1308,7 +1322,7 @@ data:
   - poly/fps_inv_2d.hpp
   - poly/fps_log.hpp
   timestamp: '2023-11-01 19:15:19+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/NTL_2_C.test.cpp
   - test/aoj/NTL_2_B.test.cpp
@@ -1433,6 +1447,7 @@ data:
   - test/mytest/rbst_monoid.test.cpp
   - test/mytest/typical_dc.test.cpp
   - test/mytest/composition_ex_minus_1.test.cpp
+  - test/mytest/bell_number.test.cpp
   - test/mytest/rbst_monoid_2.test.cpp
   - test/mytest/conv_leq.test.cpp
   - test/mytest/simple_perm.test.cpp
@@ -1452,6 +1467,7 @@ data:
   - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/splay_monoid.test.cpp
   - test/mytest/graph_count.test.cpp
+  - test/mytest/count_unlabeled_tree.test.cpp
   - test/mytest/powerquery.test.cpp
   - test/mytest/enumerate_products.test.cpp
   - test/mytest/count_indep_set.test.cpp

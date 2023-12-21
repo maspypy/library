@@ -1,40 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -74,6 +74,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/product_of_pow_of_linear.hpp
     title: poly/product_of_pow_of_linear.hpp
+  - icon: ':x:'
+    path: seq/famous/bell_number.hpp
+    title: seq/famous/bell_number.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
@@ -129,6 +132,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/bell.test.cpp
     title: test/mytest/bell.test.cpp
+  - icon: ':x:'
+    path: test/mytest/bell_number.test.cpp
+    title: test/mytest/bell_number.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/composition_log_1_minus_x.test.cpp
     title: test/mytest/composition_log_1_minus_x.test.cpp
@@ -201,9 +207,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc160d.test.cpp
     title: test_atcoder/arc160d.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -587,6 +593,7 @@ data:
   isVerificationFile: false
   path: poly/fps_exp.hpp
   requiredBy:
+  - seq/famous/bell_number.hpp
   - seq/famous/stirling_number_2.hpp
   - seq/famous/surjection.hpp
   - seq/famous/stirling_number_1.hpp
@@ -603,7 +610,7 @@ data:
   - poly/product_of_f_rk_x.hpp
   - poly/product_of_one_plus_xn.hpp
   timestamp: '2023-11-21 19:08:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
@@ -622,6 +629,7 @@ data:
   - test/mytest/online_pow.test.cpp
   - test/mytest/online_square.test.cpp
   - test/mytest/count_bipartite.test.cpp
+  - test/mytest/bell_number.test.cpp
   - test/mytest/online_exp.test.cpp
   - test/mytest/bell.test.cpp
   - test/mytest/composition_log_1_minus_x.test.cpp
