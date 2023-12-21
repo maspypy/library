@@ -1,5 +1,6 @@
 
 // G とその reverse graph に対して dfs を行う
+// 探索で見た辺を集めても scc_dag は得られないので注意
 // set_used(int v, bool rev)
 // find_used(int v, bool rev)
 template <typename F1, typename F2>

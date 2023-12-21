@@ -18,14 +18,32 @@ struct Dynamic_SegTree_Sparse {
   Node *pool;
   int pid;
   using np = Node *;
+  vc<np> FREE;
 
   Dynamic_SegTree_Sparse(ll L0, ll R0) : L0(L0), R0(R0), pid(0) {
     pool = new Node[NODES];
   }
 
+  // 木 dp のマージのときなどに使用すると MLE 回避できることがある
+  // https://codeforces.com/problemset/problem/671/D
+  void free_subtree(np c) {
+    auto dfs = [&](auto &dfs, np c) -> void {
+      if (c->l) dfs(dfs, c->l);
+      if (c->r) dfs(dfs, c->r);
+      FREE.eb(c);
+    };
+    dfs(dfs, c);
+  }
+
   np new_root() { return nullptr; }
 
   np new_node(ll idx, const X x) {
+    if (!FREE.empty()) {
+      np c = POP(FREE);
+      c->idx = idx, c->l = c->r = nullptr;
+      c->prod = c->x = x;
+      return c;
+    }
     pool[pid].idx = idx;
     pool[pid].l = pool[pid].r = nullptr;
     pool[pid].x = pool[pid].prod = x;

@@ -65,6 +65,7 @@ REAL dist(Point<T> A, Point<T> B) {
   return sqrt(REAL(p));
 }
 
+// ax+by+c
 template <typename T>
 struct Line {
   T a, b, c;

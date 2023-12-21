@@ -1,59 +1,57 @@
 // 挿入しながら query_monotone を使う場合、直線の挿入順と同じ方向の単調性が必要
 template <typename T, bool isMin>
 struct CHT_monotone {
-#define F first
-#define S second
-  using P = pair<T, T>;
-  deque<P> H;
+  struct Line {
+    T a, b;
+    int idx;
+  };
+  deque<Line> H;
+  int nxt_idx = 0;
 
   CHT_monotone() = default;
 
   bool empty() const { return H.empty(); }
-
   void clear() { H.clear(); }
 
   inline int sgn(T x) { return x == 0 ? 0 : (x < 0 ? -1 : 1); }
-
   using D = long double;
-
-  inline bool check(const P &a, const P &b, const P &c) {
-    if (b.S == a.S || c.S == b.S)
-      return sgn(b.F - a.F) * sgn(c.S - b.S) >= sgn(c.F - b.F) * sgn(b.S - a.S);
-
-    // return (b.F-a.F)*(c.S-b.S) >= (b.S-a.S)*(c.F-b.F);
-    return D(b.F - a.F) * sgn(c.S - b.S) / D(abs(b.S - a.S))
-           >= D(c.F - b.F) * sgn(b.S - a.S) / D(abs(c.S - b.S));
+  inline bool check(const Line &a, const Line &b, const Line &c) {
+    if (b.b == a.b || c.b == b.b)
+      return sgn(b.a - a.a) * sgn(c.b - b.b) >= sgn(c.a - b.a) * sgn(b.b - a.b);
+    // return (b.a-a.a)*(c.b-b.b) >= (b.b-a.b)*(c.a-b.a);
+    return D(b.a - a.a) * sgn(c.b - b.b) / D(abs(b.b - a.b))
+           >= D(c.a - b.a) * sgn(b.b - a.b) / D(abs(c.b - b.b));
   }
 
-  void add(T a, T b) {
+  void add(T a, T b, int idx = -1) {
+    if (idx == -1) { idx = nxt_idx++; }
     if (!isMin) a *= -1, b *= -1;
-    P line(a, b);
+    Line L{a, b, idx};
     if (empty()) {
-      H.emplace_front(line);
+      H.emplace_front(L);
       return;
     }
-    if (H.front().F <= a) {
-      if (H.front().F == a) {
-        if (H.front().S <= b) return;
+    if (H.front().a <= a) {
+      if (H.front().a == a) {
+        if (H.front().b <= b) return;
         H.pop_front();
       }
-      while (H.size() >= 2 && check(line, H.front(), H[1])) H.pop_front();
-      H.emplace_front(line);
+      while (H.size() >= 2 && check(L, H.front(), H[1])) { H.pop_front(); }
+      H.emplace_front(L);
     } else {
-      assert(a <= H.back().F);
-      if (H.back().F == a) {
-        if (H.back().S <= b) return;
+      assert(a <= H.back().a);
+      if (H.back().a == a) {
+        if (H.back().b <= b) return;
         H.pop_back();
       }
-      while (H.size() >= 2 && check(H[H.size() - 2], H.back(), line))
-        H.pop_back();
-      H.emplace_back(line);
+      while (H.size() >= 2 && check(H[H.size() - 2], H.back(), L)) H.pop_back();
+      H.emplace_back(L);
     }
   }
 
-  inline T get_y(const P &a, const T &x) { return a.F * x + a.S; }
+  inline T get_y(const Line &a, const T &x) { return a.a * x + a.b; }
 
-  T query(T x) {
+  pair<T, int> query(T x) {
     assert(!empty());
     int l = -1, r = H.size() - 1;
     while (l + 1 < r) {
@@ -63,26 +61,23 @@ struct CHT_monotone {
       else
         r = m;
     }
-    if (isMin) return get_y(H[r], x);
-    return -get_y(H[r], x);
+    if (isMin) return {get_y(H[r], x), H[r].idx};
+    return {-get_y(H[r], x), H[r].idx};
   }
 
-  T query_monotone_inc(T x) {
+  pair<T, int> query_monotone_inc(T x) {
     assert(!empty());
     while (H.size() >= 2 && get_y(H.front(), x) >= get_y(H[1], x))
       H.pop_front();
-    if (isMin) return get_y(H.front(), x);
-    return -get_y(H.front(), x);
+    if (isMin) return {get_y(H.front(), x), H.front().idx};
+    return {-get_y(H.front(), x), H.front().idx};
   }
 
-  T query_monotone_dec(T x) {
+  pair<T, int> query_monotone_dec(T x) {
     assert(!empty());
     while (H.size() >= 2 && get_y(H.back(), x) >= get_y(H[H.size() - 2], x))
       H.pop_back();
-    if (isMin) return get_y(H.back(), x);
-    return -get_y(H.back(), x);
+    if (isMin) return {get_y(H.back(), x), H.back().idx};
+    return {-get_y(H.back(), x), H.back().idx};
   }
-
-#undef F
-#undef S
 };
