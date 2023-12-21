@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "graph/ds/dual_tree_monoid.hpp"
+#include "graph/tree.hpp"
 #include "graph/centroid_decomposition.hpp"
 #include "ds/offline_query/rectangle_add_point_sum.hpp"
 #include "alg/monoid/add_pair.hpp"
