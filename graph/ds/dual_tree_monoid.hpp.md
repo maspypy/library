@@ -19,9 +19,6 @@ data:
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2491.test.cpp
-    title: test/yukicoder/2491.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc270_f.test.cpp
     title: test_atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -234,7 +231,6 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_2_A.test.cpp
-  - test/yukicoder/2491.test.cpp
   - test_atcoder/abc270_f.test.cpp
   - test_atcoder/abc301h.test.cpp
 documentation_of: graph/ds/dual_tree_monoid.hpp

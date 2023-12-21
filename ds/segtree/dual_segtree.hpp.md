@@ -28,9 +28,6 @@ data:
     path: test/yukicoder/1524.test.cpp
     title: test/yukicoder/1524.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2491.test.cpp
-    title: test/yukicoder/2491.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2498.test.cpp
     title: test/yukicoder/2498.test.cpp
   - icon: ':heavy_check_mark:'
@@ -99,7 +96,6 @@ data:
   - test/yukicoder/913.test.cpp
   - test/yukicoder/1524.test.cpp
   - test/yukicoder/2498.test.cpp
-  - test/yukicoder/2491.test.cpp
   - test_atcoder/abc270_f.test.cpp
   - test_atcoder/abc301h.test.cpp
 documentation_of: ds/segtree/dual_segtree.hpp
