@@ -1,4 +1,6 @@
 #include "graph/tree_dp/rerooting_dp.hpp"
+
+// https://codeforces.com/problemset/problem/1725/J
 template <typename TREE, typename WT>
 struct SubTree_Diameter {
   struct Data {
@@ -36,7 +38,7 @@ struct SubTree_Diameter {
       return A;
     };
 
-    Rerooting_dp<decltype(tree), Data> DP(tree, f_ee, f_ev, f_ve, unit);
+    Rerooting_dp<TREE, Data> DP(tree, f_ee, f_ev, f_ve, unit);
     dp.resize(N), dp_1.resize(N), dp_2.resize(N);
     FOR(v, N) {
       dp[v] = {DP.dp[v].left, DP.dp[v].right, DP.dp[v].diam};

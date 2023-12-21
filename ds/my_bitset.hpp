@@ -253,6 +253,14 @@ struct My_Bitset {
     resize(N);
   }
   void reset() { fill(all(dat), 0); }
+  void flip() {
+    FOR(i, len(dat) - 1) { dat[i] = u64(-1) ^ dat[i]; }
+    int i = len(dat) - 1;
+    FOR(k, 64) {
+      if (64 * i + k >= size()) break;
+      flip(64 * i + k);
+    }
+  }
   bool any() {
     FOR(i, len(dat)) {
       if (dat[i]) return true;
