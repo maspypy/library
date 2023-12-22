@@ -1372,6 +1372,9 @@ data:
       path: other/mex.hpp
       title: other/mex.hpp
     - icon: ':heavy_check_mark:'
+      path: other/reduce_intervals.hpp
+      title: other/reduce_intervals.hpp
+    - icon: ':heavy_check_mark:'
       path: other/solve_hukumenzan.hpp
       title: other/solve_hukumenzan.hpp
   - name: poly
@@ -3013,6 +3016,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/rect_add_pt_sum.test.cpp
       title: test/mytest/rect_add_pt_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/reduce_intervals.test.cpp
+      title: test/mytest/reduce_intervals.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/run_length.test.cpp
       title: test/mytest/run_length.test.cpp

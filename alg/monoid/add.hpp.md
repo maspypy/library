@@ -50,6 +50,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/dual_fenwicktree.hpp
     title: ds/fenwicktree/dual_fenwicktree.hpp
+  - icon: ':warning:'
+    path: ds/fenwicktree/dual_fenwicktree_2d.hpp
+    title: ds/fenwicktree/dual_fenwicktree_2d.hpp
   - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
@@ -488,6 +491,7 @@ data:
   - ds/fenwicktree/fenwicktree_range_add.hpp
   - ds/fenwicktree/fenwicktree_2d.hpp
   - ds/fenwicktree/fenwicktree_2d_dense.hpp
+  - ds/fenwicktree/dual_fenwicktree_2d.hpp
   - seq/inversion.hpp
   - seq/common_interval_decomposition.hpp
   - seq/factorial_digit_system.hpp

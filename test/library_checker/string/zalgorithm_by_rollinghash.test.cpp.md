@@ -210,16 +210,17 @@ data:
     \ >= mod) ? (val + mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 &operator*=(const\
     \ modint61 &a) {\r\n    const unsigned __int128 y = static_cast<unsigned __int128>(val)\
     \ * a.val;\r\n    val = (y >> 61) + (y & mod);\r\n    val = (val >= mod) ? (val\
-    \ - mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 &operator/=(const modint61\
-    \ &a) { return (*this *= a.inverse()); }\r\n  modint61 operator+(const modint61\
-    \ &p) const { return modint61(*this) += p; }\r\n  modint61 operator-(const modint61\
-    \ &p) const { return modint61(*this) -= p; }\r\n  modint61 operator*(const modint61\
-    \ &p) const { return modint61(*this) *= p; }\r\n  modint61 operator/(const modint61\
-    \ &p) const { return modint61(*this) /= p; }\r\n  bool operator==(const modint61\
-    \ &p) const { return val == p.val; }\r\n  bool operator!=(const modint61 &p) const\
-    \ { return val != p.val; }\r\n  modint61 inverse() const {\r\n    ll a = val,\
-    \ b = mod, u = 1, v = 0, t;\r\n    while (b > 0) {\r\n      t = a / b;\r\n   \
-    \   swap(a -= t * b, b), swap(u -= t * v, v);\r\n    }\r\n    return modint61(u);\r\
+    \ - mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 operator-() const {\
+    \ return modint61(val ? mod - val : u64(0)); }\r\n  modint61 &operator/=(const\
+    \ modint61 &a) { return (*this *= a.inverse()); }\r\n  modint61 operator+(const\
+    \ modint61 &p) const { return modint61(*this) += p; }\r\n  modint61 operator-(const\
+    \ modint61 &p) const { return modint61(*this) -= p; }\r\n  modint61 operator*(const\
+    \ modint61 &p) const { return modint61(*this) *= p; }\r\n  modint61 operator/(const\
+    \ modint61 &p) const { return modint61(*this) /= p; }\r\n  bool operator==(const\
+    \ modint61 &p) const { return val == p.val; }\r\n  bool operator!=(const modint61\
+    \ &p) const { return val != p.val; }\r\n  modint61 inverse() const {\r\n    ll\
+    \ a = val, b = mod, u = 1, v = 0, t;\r\n    while (b > 0) {\r\n      t = a / b;\r\
+    \n      swap(a -= t * b, b), swap(u -= t * v, v);\r\n    }\r\n    return modint61(u);\r\
     \n  }\r\n  modint61 pow(ll n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1),\
     \ mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul\
     \ *= mul, n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n};\r\n\r\n#ifdef FASTIO\r\
@@ -237,20 +238,20 @@ data:
     \ hashed[i] * base + s[i]; }\n    return hashed;\n  }\n\n  template <typename\
     \ STRING>\n  mint eval(string& s) {\n    mint x = 0;\n    for (auto& ch: s) x\
     \ = base * x + ch;\n    return x;\n  }\n\n  mint query(const vc<mint>& s, int\
-    \ l, int r) {\n    expand(r - l);\n    return (s[r] - s[l] * power[r - l]);\n\
-    \  }\n\n  mint combine(mint h1, mint h2, int h2len) {\n    expand(h2len);\n  \
-    \  return h1 * power[h2len] + h2;\n  }\n\n  mint add_char(mint h, int x) { return\
-    \ h * base + mint(x); }\n\n  int lcp(const vc<mint>& a, int l1, int r1, const\
-    \ vc<mint>& b, int l2,\n          int r2) {\n    int len = min(r1 - l1, r2 - l2);\n\
-    \    int low = 0, high = len + 1;\n    while (high - low > 1) {\n      int mid\
-    \ = (low + high) / 2;\n      if (query(a, l1, l1 + mid) == query(b, l2, l2 + mid))\n\
-    \        low = mid;\n      else\n        high = mid;\n    }\n    return low;\n\
-    \  }\n};\n#line 6 \"test/library_checker/string/zalgorithm_by_rollinghash.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  STR(S);\r\n  ll N = len(S);\r\n  RollingHash RH;\r\n\
-    \  auto RS = RH.build(S);\r\n  vi Z(N);\r\n  FOR(i, N) { Z[i] = RH.lcp(RS, 0,\
-    \ N, RS, i, N); }\r\n  print(Z);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
-    \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
-    \n\r\n  return 0;\r\n}\r\n"
+    \ l, int r) {\n    assert(0 <= l && l <= r && r < len(s));\n    expand(r - l);\n\
+    \    return (s[r] - s[l] * power[r - l]);\n  }\n\n  mint combine(mint h1, mint\
+    \ h2, int h2len) {\n    expand(h2len);\n    return h1 * power[h2len] + h2;\n \
+    \ }\n\n  mint add_char(mint h, int x) { return h * base + mint(x); }\n\n  int\
+    \ lcp(const vc<mint>& a, int l1, int r1, const vc<mint>& b, int l2,\n        \
+    \  int r2) {\n    int len = min(r1 - l1, r2 - l2);\n    int low = 0, high = len\
+    \ + 1;\n    while (high - low > 1) {\n      int mid = (low + high) / 2;\n    \
+    \  if (query(a, l1, l1 + mid) == query(b, l2, l2 + mid))\n        low = mid;\n\
+    \      else\n        high = mid;\n    }\n    return low;\n  }\n};\n#line 6 \"\
+    test/library_checker/string/zalgorithm_by_rollinghash.test.cpp\"\n\r\nvoid solve()\
+    \ {\r\n  STR(S);\r\n  ll N = len(S);\r\n  RollingHash RH;\r\n  auto RS = RH.build(S);\r\
+    \n  vi Z(N);\r\n  FOR(i, N) { Z[i] = RH.lcp(RS, 0, N, RS, i, N); }\r\n  print(Z);\r\
+    \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\"\r\n#include\
     \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"string/rollinghash.hpp\"\
     \r\n\r\nvoid solve() {\r\n  STR(S);\r\n  ll N = len(S);\r\n  RollingHash RH;\r\
@@ -267,7 +268,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   requiredBy: []
-  timestamp: '2023-11-10 11:44:35+09:00'
+  timestamp: '2023-12-22 20:53:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp

@@ -190,19 +190,20 @@ data:
     \ *this;\r\n  }\r\n  modint61 &operator*=(const modint61 &a) {\r\n    const unsigned\
     \ __int128 y = static_cast<unsigned __int128>(val) * a.val;\r\n    val = (y >>\
     \ 61) + (y & mod);\r\n    val = (val >= mod) ? (val - mod) : val;\r\n    return\
-    \ *this;\r\n  }\r\n  modint61 &operator/=(const modint61 &a) { return (*this *=\
-    \ a.inverse()); }\r\n  modint61 operator+(const modint61 &p) const { return modint61(*this)\
-    \ += p; }\r\n  modint61 operator-(const modint61 &p) const { return modint61(*this)\
-    \ -= p; }\r\n  modint61 operator*(const modint61 &p) const { return modint61(*this)\
-    \ *= p; }\r\n  modint61 operator/(const modint61 &p) const { return modint61(*this)\
-    \ /= p; }\r\n  bool operator==(const modint61 &p) const { return val == p.val;\
-    \ }\r\n  bool operator!=(const modint61 &p) const { return val != p.val; }\r\n\
-    \  modint61 inverse() const {\r\n    ll a = val, b = mod, u = 1, v = 0, t;\r\n\
-    \    while (b > 0) {\r\n      t = a / b;\r\n      swap(a -= t * b, b), swap(u\
-    \ -= t * v, v);\r\n    }\r\n    return modint61(u);\r\n  }\r\n  modint61 pow(ll\
-    \ n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1), mul(val);\r\n    while\
-    \ (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul *= mul, n >>= 1;\r\n\
-    \    }\r\n    return ret;\r\n  }\r\n};\r\n\r\n#ifdef FASTIO\r\nvoid rd(modint61\
+    \ *this;\r\n  }\r\n  modint61 operator-() const { return modint61(val ? mod -\
+    \ val : u64(0)); }\r\n  modint61 &operator/=(const modint61 &a) { return (*this\
+    \ *= a.inverse()); }\r\n  modint61 operator+(const modint61 &p) const { return\
+    \ modint61(*this) += p; }\r\n  modint61 operator-(const modint61 &p) const { return\
+    \ modint61(*this) -= p; }\r\n  modint61 operator*(const modint61 &p) const { return\
+    \ modint61(*this) *= p; }\r\n  modint61 operator/(const modint61 &p) const { return\
+    \ modint61(*this) /= p; }\r\n  bool operator==(const modint61 &p) const { return\
+    \ val == p.val; }\r\n  bool operator!=(const modint61 &p) const { return val !=\
+    \ p.val; }\r\n  modint61 inverse() const {\r\n    ll a = val, b = mod, u = 1,\
+    \ v = 0, t;\r\n    while (b > 0) {\r\n      t = a / b;\r\n      swap(a -= t *\
+    \ b, b), swap(u -= t * v, v);\r\n    }\r\n    return modint61(u);\r\n  }\r\n \
+    \ modint61 pow(ll n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1), mul(val);\r\
+    \n    while (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul *= mul, n >>=\
+    \ 1;\r\n    }\r\n    return ret;\r\n  }\r\n};\r\n\r\n#ifdef FASTIO\r\nvoid rd(modint61\
     \ &x) {\r\n  fastio::rd(x.val);\r\n  assert(0 <= x.val && x.val < modint61::mod);\r\
     \n}\r\n\r\nvoid wt(modint61 x) { fastio::wt(x.val); }\r\n#endif\n#line 1 \"linalg/matrix_rank.hpp\"\
     \ntemplate <typename T>\nint matrix_rank(vc<vc<T>> a, int n = -1, int m = -1)\
@@ -342,7 +343,7 @@ data:
   isVerificationFile: true
   path: test/mytest/matching_line_graph.test.cpp
   requiredBy: []
-  timestamp: '2023-12-14 01:51:59+09:00'
+  timestamp: '2023-12-22 20:53:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/matching_line_graph.test.cpp

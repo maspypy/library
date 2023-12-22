@@ -212,16 +212,17 @@ data:
     \ >= mod) ? (val + mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 &operator*=(const\
     \ modint61 &a) {\r\n    const unsigned __int128 y = static_cast<unsigned __int128>(val)\
     \ * a.val;\r\n    val = (y >> 61) + (y & mod);\r\n    val = (val >= mod) ? (val\
-    \ - mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 &operator/=(const modint61\
-    \ &a) { return (*this *= a.inverse()); }\r\n  modint61 operator+(const modint61\
-    \ &p) const { return modint61(*this) += p; }\r\n  modint61 operator-(const modint61\
-    \ &p) const { return modint61(*this) -= p; }\r\n  modint61 operator*(const modint61\
-    \ &p) const { return modint61(*this) *= p; }\r\n  modint61 operator/(const modint61\
-    \ &p) const { return modint61(*this) /= p; }\r\n  bool operator==(const modint61\
-    \ &p) const { return val == p.val; }\r\n  bool operator!=(const modint61 &p) const\
-    \ { return val != p.val; }\r\n  modint61 inverse() const {\r\n    ll a = val,\
-    \ b = mod, u = 1, v = 0, t;\r\n    while (b > 0) {\r\n      t = a / b;\r\n   \
-    \   swap(a -= t * b, b), swap(u -= t * v, v);\r\n    }\r\n    return modint61(u);\r\
+    \ - mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 operator-() const {\
+    \ return modint61(val ? mod - val : u64(0)); }\r\n  modint61 &operator/=(const\
+    \ modint61 &a) { return (*this *= a.inverse()); }\r\n  modint61 operator+(const\
+    \ modint61 &p) const { return modint61(*this) += p; }\r\n  modint61 operator-(const\
+    \ modint61 &p) const { return modint61(*this) -= p; }\r\n  modint61 operator*(const\
+    \ modint61 &p) const { return modint61(*this) *= p; }\r\n  modint61 operator/(const\
+    \ modint61 &p) const { return modint61(*this) /= p; }\r\n  bool operator==(const\
+    \ modint61 &p) const { return val == p.val; }\r\n  bool operator!=(const modint61\
+    \ &p) const { return val != p.val; }\r\n  modint61 inverse() const {\r\n    ll\
+    \ a = val, b = mod, u = 1, v = 0, t;\r\n    while (b > 0) {\r\n      t = a / b;\r\
+    \n      swap(a -= t * b, b), swap(u -= t * v, v);\r\n    }\r\n    return modint61(u);\r\
     \n  }\r\n  modint61 pow(ll n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1),\
     \ mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul\
     \ *= mul, n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n};\r\n\r\n#ifdef FASTIO\r\
@@ -289,7 +290,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   requiredBy: []
-  timestamp: '2023-11-10 11:44:35+09:00'
+  timestamp: '2023-12-22 20:53:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp

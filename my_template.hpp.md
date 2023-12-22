@@ -1174,6 +1174,9 @@ data:
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/reduce_intervals.test.cpp
+    title: test/mytest/reduce_intervals.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/run_length.test.cpp
     title: test/mytest/run_length.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2857,6 +2860,7 @@ data:
   - test/mytest/stern_brocot.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp
   - test/mytest/eulerian_number.test.cpp
+  - test/mytest/reduce_intervals.test.cpp
   - test/mytest/composition_1_minus_ex.test.cpp
   - test/mytest/xor_transpose.test.cpp
   - test/mytest/manhattan_nns.test.cpp
