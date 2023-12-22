@@ -1,3 +1,4 @@
+#include "alg/monoid/add.hpp"
 
 template <typename Monoid, typename XY, bool SMALL_X = false>
 struct Dual_FenwickTree_2D {
@@ -11,7 +12,7 @@ struct Dual_FenwickTree_2D {
   vc<XY> keyY;
   vc<E> dat;
 
-  FenwickTree_2D(vc<XY>& X, vc<XY>& Y) { build(X, Y); }
+  Dual_FenwickTree_2D(vc<XY>& X, vc<XY>& Y) { build(X, Y); }
 
   inline int xtoi(XY x) {
     return (SMALL_X ? clamp<int>(x - min_X, 0, N) : LB(keyX, x));
@@ -20,7 +21,7 @@ struct Dual_FenwickTree_2D {
   inline int prev(int i) { return i - ((i + 1) & -(i + 1)); }
 
   void build(vc<XY>& X, vc<XY>& Y) {
-    assert(len(X) == len(Y) && len(X) == len(wt));
+    assert(len(X) == len(Y));
     if (!SMALL_X) {
       keyX = X;
       UNIQUE(keyX);
@@ -45,13 +46,13 @@ struct Dual_FenwickTree_2D {
     indptr.assign(N + 1, 0);
     FOR(i, N) indptr[i + 1] = indptr[i] + len(keyY_raw[i]);
     keyY.resize(indptr.back());
-    dat.resize(indptr.back());
+    dat.assign(indptr.back(), G::unit());
     FOR(i, N) FOR(j, indptr[i + 1] - indptr[i]) {
       keyY[indptr[i] + j] = keyY_raw[i][j];
     }
   }
 
-  E get(XY x, XY y, E val) {
+  E get(XY x, XY y) {
     E val = G::unit();
     int i = xtoi(x);
     assert(keyX[i] == x);
@@ -72,6 +73,7 @@ private:
     int LID = indptr[i], n = indptr[i + 1] - indptr[i];
     auto it = keyY.begin() + LID;
     int j = lower_bound(it, it + n, y) - it;
+    vc<int> Y_sub = {it, it + n};
     while (j < n) { val = G::op(val, dat[LID + j]), j = nxt(j); }
     return val;
   }
