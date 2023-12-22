@@ -25,6 +25,7 @@ struct modint61 {
     val = (val >= mod) ? (val - mod) : val;
     return *this;
   }
+  modint61 operator-() const { return modint61(val ? mod - val : u64(0)); }
   modint61 &operator/=(const modint61 &a) { return (*this *= a.inverse()); }
   modint61 operator+(const modint61 &p) const { return modint61(*this) += p; }
   modint61 operator-(const modint61 &p) const { return modint61(*this) -= p; }
