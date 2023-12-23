@@ -21,7 +21,7 @@ void solve() {
     LL(A, B);
     A *= 2, B *= 2;
     ll x = -2 * C * i - A;
-    ll y = X2.query(x);
+    ll y = X2.query(x).fi;
     y += 2 * (i * i + i) * C + B;
     {
       ll a = A - 2 * C * i;
@@ -32,11 +32,6 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
