@@ -184,10 +184,10 @@ data:
       title: bigint/binary.hpp
   - name: convex
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: convex/cht.hpp
       title: convex/cht.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: convex/cht_monotone.hpp
       title: convex/cht_monotone.hpp
     - icon: ':heavy_check_mark:'
@@ -3234,7 +3234,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1295.test.cpp
       title: test/yukicoder/1295.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1297.test.cpp
       title: test/yukicoder/1297.test.cpp
     - icon: ':heavy_check_mark:'
