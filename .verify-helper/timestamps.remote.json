@@ -286,6 +286,7 @@
 "test/mytest/all_but_one_products.test.cpp": "2023-11-07 20:28:52 +0900",
 "test/mytest/all_inverse.test.cpp": "2023-11-21 19:08:32 +0900",
 "test/mytest/bell.test.cpp": "2023-11-21 19:08:32 +0900",
+"test/mytest/bell_number.test.cpp": "2023-12-23 11:49:46 +0900",
 "test/mytest/binary_trie.test.cpp": "2023-11-07 20:28:52 +0900",
 "test/mytest/binom.test.cpp": "2023-11-21 19:08:32 +0900",
 "test/mytest/catalan_convolution.test.cpp": "2023-11-21 19:08:32 +0900",
