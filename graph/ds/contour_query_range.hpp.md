@@ -103,8 +103,8 @@ data:
     \ = root[e.frm];\n        par[e.to] = e.frm;\n        if (e.cost == 0)\n     \
     \     que.push_front(e.to);\n        else\n          que.push_back(e.to);\n  \
     \    }\n    }\n  }\n  return {dist, par, root};\n}\n#line 3 \"graph/centroid_decomposition.hpp\"\
-    \n\n/*\n\u9802\u70B9\u30D9\u30FC\u30B9\u306E\u91CD\u5FC3\u5206\u89E3\nf(par, V,\
-    \ indptr)\n*/\ntemplate <typename F>\nvoid centroid_decomposition_0_dfs(vc<int>&\
+    \n\n// \u9802\u70B9\u30D9\u30FC\u30B9\u306E\u91CD\u5FC3\u5206\u89E3\n// f(par,\
+    \ V, indptr)\ntemplate <typename F>\nvoid centroid_decomposition_0_dfs(vc<int>&\
     \ par, vc<int>& vs, F f) {\n  const int N = len(par);\n  assert(N >= 1);\n  int\
     \ c = -1;\n  vc<int> sz(N, 1);\n  FOR_R(i, N) {\n    if (sz[i] >= ceil<int>(N,\
     \ 2)) {\n      c = i;\n      break;\n    }\n    sz[par[i]] += sz[i];\n  }\n  vc<int>\
@@ -246,7 +246,7 @@ data:
   isVerificationFile: false
   path: graph/ds/contour_query_range.hpp
   requiredBy: []
-  timestamp: '2023-11-15 20:12:22+09:00'
+  timestamp: '2023-12-23 11:53:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp

@@ -293,7 +293,7 @@ data:
     \  };\n  using value_type = Data;\n  using X = value_type;\n\n  static X op(X\
     \ x, X y) {\n    x.add_element(y.max1, y.key1);\n    x.add_element(y.max2, y.key2);\n\
     \    return x;\n  }\n  static constexpr X unit() { return {-infty<T>, -infty<T>,\
-    \ 0, 0}; }\n  static constexpr bool commute = true;\n};\n#line 10 \"test_atcoder/abc220g.test.cpp\"\
+    \ -1, -1}; }\n  static constexpr bool commute = true;\n};\n#line 10 \"test_atcoder/abc220g.test.cpp\"\
     \n\nusing P = Point<ll>;\n\nvoid solve() {\n  LL(N);\n  vc<P> point(N);\n  vi\
     \ C(N);\n  FOR(i, N) read(point[i], C[i]);\n\n  u64 aa = RNG_64(), bb = RNG_64(),\
     \ cc = RNG_64();\n\n  using Mono = Monoid_Max2<ll, ll>;\n  using Data = typename\
@@ -333,7 +333,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc220g.test.cpp
   requiredBy: []
-  timestamp: '2023-12-21 22:18:31+09:00'
+  timestamp: '2023-12-23 11:53:13+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc220g.test.cpp

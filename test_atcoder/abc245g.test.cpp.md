@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/min2.hpp
     title: alg/monoid/min2.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc245/tasks/abc245_g
@@ -256,7 +256,7 @@ data:
     \ using value_type = Data;\n  using X = value_type;\n\n  static X op(X x, X y)\
     \ {\n    x.add_element(y.min1, y.key1);\n    x.add_element(y.min2, y.key2);\n\
     \    return x;\n  }\n  static constexpr X unit() { return {infty<T>, infty<T>,\
-    \ 0, 0}; }\n  static constexpr bool commute = true;\n};\n#line 7 \"test_atcoder/abc245g.test.cpp\"\
+    \ -1, -1}; }\n  static constexpr bool commute = true;\n};\n#line 7 \"test_atcoder/abc245g.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, M, K, L);\n  VEC(ll, A, N);\n  for (auto&& a: A) --a;\n\
     \  VEC(ll, B, L);\n  for (auto&& b: B) --b;\n\n  Graph<int, 0> G(N);\n  G.read_graph(M,\
     \ 1);\n\n  using Mono = Monoid_Min2<ll, int>;\n  using Data = typename Mono::Data;\n\
@@ -296,8 +296,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc245g.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-12-23 11:53:13+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc245g.test.cpp
 layout: document

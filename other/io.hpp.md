@@ -838,6 +838,9 @@ data:
     path: test/library_checker/tree/tree_diameter.test.cpp
     title: test/library_checker/tree/tree_diameter.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/bell_number.test.cpp
+    title: test/mytest/bell_number.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/min_min.test.cpp
     title: test/mytest/min_min.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1710,7 +1713,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc230e.test.cpp
     title: test_atcoder/abc230e.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc230h.test.cpp
     title: test_atcoder/abc230h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1749,7 +1752,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc244h.test.cpp
     title: test_atcoder/abc244h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc245g.test.cpp
     title: test_atcoder/abc245g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1779,7 +1782,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc266f.test.cpp
     title: test_atcoder/abc266f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc266h.test.cpp
     title: test_atcoder/abc266h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1869,7 +1872,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc314g.test.cpp
     title: test_atcoder/abc314g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc315h.test.cpp
     title: test_atcoder/abc315h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1893,7 +1896,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc324g.test.cpp
     title: test_atcoder/abc324g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc324g2.test.cpp
     title: test_atcoder/abc324g2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2409,6 +2412,7 @@ data:
   - test/library_checker/string/number_of_substrings.test.cpp
   - test/mytest/min_min.test.cpp
   - test/mytest/typical_dc.test.cpp
+  - test/mytest/bell_number.test.cpp
   - test/mytest/primesum_mod4.test.cpp
   - test/yukicoder/2231.test.cpp
   - test/yukicoder/1533.test.cpp

@@ -26,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_unicyclic.hpp
     title: graph/count/count_unicyclic.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_unlabeled_tree.hpp
     title: graph/count/count_unlabeled_tree.hpp
   - icon: ':warning:'
@@ -95,7 +95,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -119,7 +119,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
   - icon: ':heavy_check_mark:'
@@ -152,6 +152,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
+  - icon: ':question:'
+    path: poly/online/online_convolution.hpp
+    title: poly/online/online_convolution.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/online/online_division.hpp
+    title: poly/online/online_division.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/online/online_exp.hpp
+    title: poly/online/online_exp.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/online/online_inv.hpp
+    title: poly/online/online_inv.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/online/online_log.hpp
+    title: poly/online/online_log.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/online/online_pow.hpp
+    title: poly/online/online_pow.hpp
   - icon: ':heavy_check_mark:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
@@ -206,7 +224,7 @@ data:
   - icon: ':warning:'
     path: seq/count_grid_path.hpp
     title: seq/count_grid_path.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/bell_number.hpp
     title: seq/famous/bell_number.hpp
   - icon: ':heavy_check_mark:'
@@ -227,6 +245,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/riemann_zeta_even.hpp
     title: seq/famous/riemann_zeta_even.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/famous/simple_permutations.hpp
+    title: seq/famous/simple_permutations.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
@@ -555,7 +576,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/bell.test.cpp
     title: test/mytest/bell.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/bell_number.test.cpp
     title: test/mytest/bell_number.test.cpp
   - icon: ':heavy_check_mark:'
@@ -591,7 +612,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_indep_set.test.cpp
     title: test/mytest/count_indep_set.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_unlabeled_tree.test.cpp
     title: test/mytest/count_unlabeled_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1026,7 +1047,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc227g.test.cpp
     title: test_atcoder/abc227g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc230h.test.cpp
     title: test_atcoder/abc230h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1080,7 +1101,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc314f.test.cpp
     title: test_atcoder/abc314f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc315h.test.cpp
     title: test_atcoder/abc315h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1264,6 +1285,7 @@ data:
   - seq/famous/bernoulli.hpp
   - seq/famous/stirling_number_2.hpp
   - seq/famous/bell_number_large.hpp
+  - seq/famous/simple_permutations.hpp
   - seq/famous/surjection.hpp
   - seq/famous/indecomposable_permutations.hpp
   - seq/famous/stirling_number_1.hpp
@@ -1313,6 +1335,12 @@ data:
   - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - poly/fps_exp.hpp
   - poly/poly_divmod.hpp
+  - poly/online/online_convolution.hpp
+  - poly/online/online_division.hpp
+  - poly/online/online_log.hpp
+  - poly/online/online_pow.hpp
+  - poly/online/online_inv.hpp
+  - poly/online/online_exp.hpp
   - poly/sparse_exp_of_div.hpp
   - poly/convolution.hpp
   - poly/fps_sqrt.hpp

@@ -21,9 +21,9 @@ data:
     title: poly/online/online_convolution.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc230/tasks/abc230_h
@@ -322,7 +322,7 @@ data:
     \n            a[i + offset + 2 * p] = (a0 + a1 + 2 * mod - a2 - a3) * irot2.val;\r\
     \n            a[i + offset + 3 * p] = (a0 + 2 * mod - a1 - x) * irot3.val;\r\n\
     \          }\r\n          irot *= irate3[topbit(~s & -~s)];\r\n        }\r\n \
-    \       len -= 2;\r\n      }\r\n    }\r\n  }\r\n}\r\n#line 3 \"poly/online/online_convolution.hpp\"\
+    \       len -= 2;\r\n      }\r\n    }\r\n  }\r\n}\r\n#line 4 \"poly/online/online_convolution.hpp\"\
     \n\n/*\nquery(i)\uFF1Aa[i], b[i] \u3092\u4E0E\u3048\u3066 ab[i] \u3092\u5F97\u308B\
     \u3002\n2^{17}\uFF1A127ms\n2^{18}\uFF1A277ms\n2^{19}\uFF1A570ms\n2^{20}\uFF1A\
     1220ms\n*/\ntemplate <class mint>\nstruct Online_Convolution {\n  vc<mint> f,\
@@ -378,8 +378,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc230h.test.cpp
   requiredBy: []
-  timestamp: '2023-11-21 19:08:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-12-23 11:53:13+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc230h.test.cpp
 layout: document
