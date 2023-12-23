@@ -1,4 +1,4 @@
-// 点の重複 OK
+// 点の重複があっても別の点として set などがされる
 template <typename Monoid, typename XY, bool SMALL_X = false>
 struct SegTree_2D {
   using MX = Monoid;

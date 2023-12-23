@@ -1,5 +1,6 @@
 #pragma once
 #include "poly/ntt.hpp"
+#include "mod/modint.hpp"
 
 /*
 query(i)：a[i], b[i] を与えて ab[i] を得る。

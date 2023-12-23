@@ -1,10 +1,8 @@
 #include "graph/base.hpp"
 #include "graph/shortest_path/bfs01.hpp"
 
-/*
-頂点ベースの重心分解
-f(par, V, indptr)
-*/
+// 頂点ベースの重心分解
+// f(par, V, indptr)
 template <typename F>
 void centroid_decomposition_0_dfs(vc<int>& par, vc<int>& vs, F f) {
   const int N = len(par);
