@@ -3,12 +3,15 @@
 // dp[i] := すべての n 個への分割に対する x^n の総和
 // dp[j] = sum_i dp[i]*x if [i,j) palindrome
 // https://arxiv.org/pdf/1403.2431.pdf
+// 偶数長のものに制限してやる：https://codeforces.com/contest/932/problem/G
 template <typename T, typename F1, typename F2>
 vc<T> palindrome_decomposition_dp(string S, T add_unit, T mul_unit, F1 add,
                                   F2 mul_x) {
   int N = len(S);
   Palindromic_Tree<26> X(S, 'a');
   int n = len(X.nodes);
+  // even length に制限
+
   /*
   各ノードに対して
   suffix との長さの差分
@@ -18,7 +21,7 @@ vc<T> palindrome_decomposition_dp(string S, T add_unit, T mul_unit, F1 add,
   vc<int> diff(n, infty<int>);
   vc<int> step(n);
   vc<int> up(n);
-  FOR(v, 2, n) {
+  vc<int> even_link FOR(v, 2, n) {
     int w = X.nodes[v].link;
     int d = X.nodes[v].length - X.nodes[w].length;
     diff[v] = d;
