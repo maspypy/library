@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/factori998.test.cpp
     title: test/library_checker/math/factori998.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"mod/factorial998.hpp\"\n// 1<<20\nint factorial998table[1024]\
@@ -28,7 +28,7 @@ data:
   path: mod/factorial998.hpp
   requiredBy: []
   timestamp: '2023-10-30 01:33:52+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/factori998.test.cpp
   - test/mytest/factorial_998.test.cpp
