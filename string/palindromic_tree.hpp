@@ -59,6 +59,7 @@ struct Palindromic_Tree {
     path.eb(p);
   }
 
+  // node ごとの出現回数
   vc<int> count() {
     vc<int> res(len(nodes));
     for (auto&& p: path) res[p]++;
