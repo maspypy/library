@@ -33,7 +33,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/multivariate_convolution.test.cpp
     title: test/library_checker/convolution/multivariate_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
     title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
   - icon: ':x:'

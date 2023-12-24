@@ -28,29 +28,29 @@ data:
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/poly_gcd.hpp
     title: poly/poly_gcd.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/inv_of_polynomials
@@ -592,7 +592,7 @@ data:
   path: test/library_checker/polynomial/inv_of_polynomials.test.cpp
   requiredBy: []
   timestamp: '2023-12-25 02:06:31+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/polynomial/inv_of_polynomials.test.cpp
 layout: document
