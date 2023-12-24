@@ -2,22 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: string/palindrome_decomposition_dp.hpp
     title: string/palindrome_decomposition_dp.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/mytest/palindrome_decomposition_dp.test.cpp
     title: test/mytest/palindrome_decomposition_dp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/263.test.cpp
     title: test/yukicoder/263.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/465.test.cpp
     title: test/yukicoder/465.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"string/palindromic_tree.hpp\"\n// palindromic tree \u3092\
@@ -39,10 +39,11 @@ data:
     \ nodes[p].length;\n          bool can = (j >= 0 && S[j] - off == x) || (p ==\
     \ 0);\n          if (can) break;\n        }\n        assert(nodes[p].TO[x] !=\
     \ -1);\n        link = nodes[p].TO[x];\n      }\n      nodes.eb(Node(link, r -\
-    \ l, l, r));\n      p = to;\n    }\n    path.eb(p);\n  }\n\n  vc<int> count()\
-    \ {\n    vc<int> res(len(nodes));\n    for (auto&& p: path) res[p]++;\n    FOR_R(k,\
-    \ 1, len(nodes)) {\n      int link = nodes[k].link;\n      res[link] += res[k];\n\
-    \    }\n    return res;\n  }\n};\n"
+    \ l, l, r));\n      p = to;\n    }\n    path.eb(p);\n  }\n\n  // node \u3054\u3068\
+    \u306E\u51FA\u73FE\u56DE\u6570\n  vc<int> count() {\n    vc<int> res(len(nodes));\n\
+    \    for (auto&& p: path) res[p]++;\n    FOR_R(k, 1, len(nodes)) {\n      int\
+    \ link = nodes[k].link;\n      res[link] += res[k];\n    }\n    return res;\n\
+    \  }\n};\n"
   code: "// palindromic tree \u3092\u4F5C\u308B\ntemplate <int sigma>\nstruct Palindromic_Tree\
     \ {\n  struct Node {\n    array<int, sigma> TO;\n    int link;\n    int length;\n\
     \    pair<int, int> pos; // position of first ocurrence\n    Node(int link, int\
@@ -61,17 +62,18 @@ data:
     \          int j = i - 1 - nodes[p].length;\n          bool can = (j >= 0 && S[j]\
     \ - off == x) || (p == 0);\n          if (can) break;\n        }\n        assert(nodes[p].TO[x]\
     \ != -1);\n        link = nodes[p].TO[x];\n      }\n      nodes.eb(Node(link,\
-    \ r - l, l, r));\n      p = to;\n    }\n    path.eb(p);\n  }\n\n  vc<int> count()\
-    \ {\n    vc<int> res(len(nodes));\n    for (auto&& p: path) res[p]++;\n    FOR_R(k,\
-    \ 1, len(nodes)) {\n      int link = nodes[k].link;\n      res[link] += res[k];\n\
-    \    }\n    return res;\n  }\n};"
+    \ r - l, l, r));\n      p = to;\n    }\n    path.eb(p);\n  }\n\n  // node \u3054\
+    \u3068\u306E\u51FA\u73FE\u56DE\u6570\n  vc<int> count() {\n    vc<int> res(len(nodes));\n\
+    \    for (auto&& p: path) res[p]++;\n    FOR_R(k, 1, len(nodes)) {\n      int\
+    \ link = nodes[k].link;\n      res[link] += res[k];\n    }\n    return res;\n\
+    \  }\n};"
   dependsOn: []
   isVerificationFile: false
   path: string/palindromic_tree.hpp
   requiredBy:
   - string/palindrome_decomposition_dp.hpp
-  timestamp: '2023-11-24 03:43:27+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-12-25 02:06:31+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/palindrome_decomposition_dp.test.cpp
   - test/yukicoder/263.test.cpp
