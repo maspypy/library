@@ -843,6 +843,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/min_min.test.cpp
     title: test/mytest/min_min.test.cpp
+  - icon: ':x:'
+    path: test/mytest/palindrome_decomposition_dp.test.cpp
+    title: test/mytest/palindrome_decomposition_dp.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/primesum_mod4.test.cpp
     title: test/mytest/primesum_mod4.test.cpp
@@ -2411,6 +2414,7 @@ data:
   - test/library_checker/string/run_enumerate.test.cpp
   - test/library_checker/string/number_of_substrings.test.cpp
   - test/mytest/min_min.test.cpp
+  - test/mytest/palindrome_decomposition_dp.test.cpp
   - test/mytest/typical_dc.test.cpp
   - test/mytest/bell_number.test.cpp
   - test/mytest/primesum_mod4.test.cpp

@@ -1,12 +1,6 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: ds/hashmap.hpp
-    title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
-    path: mod/modint61.hpp
-    title: mod/modint61.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -17,43 +11,43 @@ data:
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':question:'
+    path: string/palindrome_decomposition_dp.hpp
+    title: string/palindrome_decomposition_dp.hpp
+  - icon: ':question:'
     path: string/palindromic_tree.hpp
     title: string/palindromic_tree.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/rollinghash.hpp
-    title: string/rollinghash.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/263
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://yukicoder.me/problems/no/263
-  bundledCode: "#line 1 \"test/yukicoder/263.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/263\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
-    )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
-    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    using u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class T>\n\
-    constexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int> = 1'000'000'000;\n\
-    template <>\nconstexpr ll infty<ll> = ll(infty<int>) * infty<int> * 2;\ntemplate\
-    \ <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\n\
-    template <>\nconstexpr double infty<double> = infty<ll>;\ntemplate <>\nconstexpr\
-    \ long double infty<long double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing\
-    \ vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
-    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
-    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
-    \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
-    template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
-    #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
-    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
-    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
-    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
-    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/mytest/palindrome_decomposition_dp.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\
+    \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n#pragma GCC\
+    \ optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\
+    \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
+    \ u64 = unsigned long long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
+    using f128 = __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate\
+    \ <>\nconstexpr int infty<int> = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll>\
+    \ = ll(infty<int>) * infty<int> * 2;\ntemplate <>\nconstexpr u32 infty<u32> =\
+    \ infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\ntemplate <>\n\
+    constexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\ntemplate <>\nconstexpr\
+    \ double infty<double> = infty<ll>;\ntemplate <>\nconstexpr long double infty<long\
+    \ double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
+    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
+    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
+    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
+    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
+    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
@@ -196,141 +190,125 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 4 \"test/yukicoder/263.test.cpp\"\n\n#line 2 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \ yes(!t); }\r\n#line 4 \"test/mytest/palindrome_decomposition_dp.test.cpp\"\n\
+    \n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      =\
+    \ uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/modint61.hpp\"\
-    \n\r\nstruct modint61 {\r\n  static constexpr u64 mod = (1ULL << 61) - 1;\r\n\
-    \  u64 val;\r\n  constexpr modint61() : val(0ULL) {}\r\n  constexpr modint61(u32\
-    \ x) : val(x) {}\r\n  constexpr modint61(u64 x) : val(x % mod) {}\r\n  constexpr\
-    \ modint61(int x) : val((x < 0) ? (x + static_cast<ll>(mod)) : x) {}\r\n  constexpr\
-    \ modint61(ll x)\r\n      : val(((x %= static_cast<ll>(mod)) < 0) ? (x + static_cast<ll>(mod))\r\
-    \n                                              : x) {}\r\n  static constexpr\
-    \ u64 get_mod() { return mod; }\r\n  modint61 &operator+=(const modint61 &a) {\r\
-    \n    val = ((val += a.val) >= mod) ? (val - mod) : val;\r\n    return *this;\r\
-    \n  }\r\n  modint61 &operator-=(const modint61 &a) {\r\n    val = ((val -= a.val)\
-    \ >= mod) ? (val + mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 &operator*=(const\
-    \ modint61 &a) {\r\n    const unsigned __int128 y = static_cast<unsigned __int128>(val)\
-    \ * a.val;\r\n    val = (y >> 61) + (y & mod);\r\n    val = (val >= mod) ? (val\
-    \ - mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 operator-() const {\
-    \ return modint61(val ? mod - val : u64(0)); }\r\n  modint61 &operator/=(const\
-    \ modint61 &a) { return (*this *= a.inverse()); }\r\n  modint61 operator+(const\
-    \ modint61 &p) const { return modint61(*this) += p; }\r\n  modint61 operator-(const\
-    \ modint61 &p) const { return modint61(*this) -= p; }\r\n  modint61 operator*(const\
-    \ modint61 &p) const { return modint61(*this) *= p; }\r\n  modint61 operator/(const\
-    \ modint61 &p) const { return modint61(*this) /= p; }\r\n  bool operator==(const\
-    \ modint61 &p) const { return val == p.val; }\r\n  bool operator!=(const modint61\
-    \ &p) const { return val != p.val; }\r\n  modint61 inverse() const {\r\n    ll\
-    \ a = val, b = mod, u = 1, v = 0, t;\r\n    while (b > 0) {\r\n      t = a / b;\r\
-    \n      swap(a -= t * b, b), swap(u -= t * v, v);\r\n    }\r\n    return modint61(u);\r\
-    \n  }\r\n  modint61 pow(ll n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1),\
-    \ mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul\
-    \ *= mul, n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n};\r\n\r\n#ifdef FASTIO\r\
-    \nvoid rd(modint61 &x) {\r\n  fastio::rd(x.val);\r\n  assert(0 <= x.val && x.val\
-    \ < modint61::mod);\r\n}\r\n\r\nvoid wt(modint61 x) { fastio::wt(x.val); }\r\n\
-    #endif\n#line 4 \"string/rollinghash.hpp\"\n\nstruct RollingHash {\n  using mint\
-    \ = modint61;\n  static constexpr u64 mod = mint::get_mod();\n  const mint base;\n\
-    \  vc<mint> power;\n\n  static inline mint generate_base() { return RNG(mod);\
-    \ }\n\n  inline void expand(size_t sz) {\n    if (power.size() < sz + 1) {\n \
-    \     int pre_sz = (int)power.size();\n      power.resize(sz + 1);\n      FOR(i,\
-    \ pre_sz - 1, sz) power[i + 1] = power[i] * base;\n    }\n  }\n\n  explicit RollingHash(mint\
-    \ base = generate_base()) : base(base), power{1} {}\n\n  template <typename STRING>\n\
-    \  vector<mint> build(const STRING& s) const {\n    int sz = s.size();\n    vector<mint>\
-    \ hashed(sz + 1, mint(0));\n    for (int i = 0; i < sz; i++) { hashed[i + 1] =\
-    \ hashed[i] * base + s[i]; }\n    return hashed;\n  }\n\n  template <typename\
-    \ STRING>\n  mint eval(string& s) {\n    mint x = 0;\n    for (auto& ch: s) x\
-    \ = base * x + ch;\n    return x;\n  }\n\n  mint query(const vc<mint>& s, int\
-    \ l, int r) {\n    assert(0 <= l && l <= r && r < len(s));\n    expand(r - l);\n\
-    \    return (s[r] - s[l] * power[r - l]);\n  }\n\n  mint combine(mint h1, mint\
-    \ h2, int h2len) {\n    expand(h2len);\n    return h1 * power[h2len] + h2;\n \
-    \ }\n\n  mint add_char(mint h, int x) { return h * base + mint(x); }\n\n  int\
-    \ lcp(const vc<mint>& a, int l1, int r1, const vc<mint>& b, int l2,\n        \
-    \  int r2) {\n    int len = min(r1 - l1, r2 - l2);\n    int low = 0, high = len\
-    \ + 1;\n    while (high - low > 1) {\n      int mid = (low + high) / 2;\n    \
-    \  if (query(a, l1, l1 + mid) == query(b, l2, l2 + mid))\n        low = mid;\n\
-    \      else\n        high = mid;\n    }\n    return low;\n  }\n};\n#line 1 \"\
-    string/palindromic_tree.hpp\"\n// palindromic tree \u3092\u4F5C\u308B\ntemplate\
-    \ <int sigma>\nstruct Palindromic_Tree {\n  struct Node {\n    array<int, sigma>\
-    \ TO;\n    int link;\n    int length;\n    pair<int, int> pos; // position of\
-    \ first ocurrence\n    Node(int link, int length, int l, int r)\n        : link(link),\
-    \ length(length), pos({l, r}) {\n      fill(all(TO), -1);\n    }\n  };\n\n  vc<Node>\
-    \ nodes;\n  vc<int> path;\n\n  template <typename STRING>\n  Palindromic_Tree(const\
-    \ STRING& S, char off) {\n    nodes.eb(Node(-1, -1, 0, -1));\n    nodes.eb(Node(0,\
-    \ 0, 0, 0));\n    int p = 0;\n    FOR(i, len(S)) {\n      path.eb(p);\n      int\
-    \ x = S[i] - off;\n      while (p) {\n        int j = i - 1 - nodes[p].length;\n\
-    \        bool can = (j >= 0 && S[j] - off == x);\n        if (!can) {\n      \
-    \    p = nodes[p].link;\n          continue;\n        }\n        break;\n    \
-    \  }\n      if (nodes[p].TO[x] != -1) {\n        p = nodes[p].TO[x];\n       \
-    \ continue;\n      }\n      int to = len(nodes);\n      int l = i - 1 - nodes[p].length;\n\
-    \      int r = i + 1;\n      nodes[p].TO[x] = to;\n\n      int link;\n      if\
-    \ (p == 0) link = 1;\n      if (p != 0) {\n        while (1) {\n          p =\
-    \ nodes[p].link;\n          int j = i - 1 - nodes[p].length;\n          bool can\
-    \ = (j >= 0 && S[j] - off == x) || (p == 0);\n          if (can) break;\n    \
-    \    }\n        assert(nodes[p].TO[x] != -1);\n        link = nodes[p].TO[x];\n\
-    \      }\n      nodes.eb(Node(link, r - l, l, r));\n      p = to;\n    }\n   \
-    \ path.eb(p);\n  }\n\n  vc<int> count() {\n    vc<int> res(len(nodes));\n    for\
-    \ (auto&& p: path) res[p]++;\n    FOR_R(k, 1, len(nodes)) {\n      int link =\
-    \ nodes[k].link;\n      res[link] += res[k];\n    }\n    return res;\n  }\n};\n\
-    #line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename Val, int LOG\
-    \ = 20, bool KEEP_IDS = false>\r\nstruct HashMap {\r\n  static constexpr int N\
-    \ = (1 << LOG);\r\n  u64* key;\r\n  Val* val;\r\n  vc<int> IDS;\r\n  bitset<N>\
-    \ used;\r\n  const int shift;\r\n  const u64 r = 11995408973635179863ULL;\r\n\
-    \  HashMap() : key(new u64[N]), val(new Val[N]), shift(64 - LOG) {}\r\n  u32 hash(u64\
-    \ x) {\r\n    static const u64 FIXED_RANDOM\r\n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\
-    \n    return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
-    \ u64& k) {\r\n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k;\
-    \ (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
-    \ u64& k) {\r\n    int i = index(k);\r\n    if (!used[i]) {\r\n      used[i] =\
-    \ 1, key[i] = k, val[i] = Val{};\r\n      if constexpr (KEEP_IDS) IDS.eb(i);\r\
-    \n    }\r\n    return val[i];\r\n  }\r\n\r\n  Val get(const u64& k, Val default_value)\
-    \ {\r\n    int i = index(k);\r\n    if (!used[i]) return default_value;\r\n  \
-    \  return val[i];\r\n  }\r\n\r\n  bool count(const u64& k) {\r\n    int i = index(k);\r\
-    \n    return used[i] && key[i] == k;\r\n  }\r\n\r\n  void reset() {\r\n    static_assert(KEEP_IDS);\r\
-    \n    for (auto&& i: IDS) used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  //\
-    \ f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F f) {\r\n  \
-    \  static_assert(KEEP_IDS);\r\n    for (auto&& i: IDS) f(key[i], val[i]);\r\n\
-    \  }\r\n};\r\n#line 8 \"test/yukicoder/263.test.cpp\"\n\nvoid solve() {\n  RollingHash\
-    \ RH;\n  using M61 = modint61;\n\n  auto get = [&]() -> vc<pair<ll, int>> {\n\
-    \    vc<pair<ll, int>> res;\n    STR(S);\n    Palindromic_Tree<26> X(S, 'A');\n\
-    \    auto SH = RH.build(S);\n    auto CNT = X.count();\n    FOR(i, len(X.nodes))\
-    \ {\n      if (X.nodes[i].length <= 0) continue;\n      auto [l, r] = X.nodes[i].pos;\n\
-    \      M61 x = RH.query(SH, l, r);\n      res.eb(x.val, CNT[i]);\n    }\n    return\
-    \ res;\n  };\n\n  auto A = get();\n  auto B = get();\n\n  HashMap<int, 20> MP;\n\
-    \  for (auto&& [x, cnt]: A) MP[x] += cnt;\n  ll ANS = 0;\n  for (auto&& [y, cnt]:\
-    \ B) { ANS += MP.get(y, 0) * ll(cnt); }\n  print(ANS);\n}\n\nsigned main() {\n\
-    \  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/263\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n\n#include \"string/rollinghash.hpp\"\n#include \"\
-    string/palindromic_tree.hpp\"\n#include \"ds/hashmap.hpp\"\n\nvoid solve() {\n\
-    \  RollingHash RH;\n  using M61 = modint61;\n\n  auto get = [&]() -> vc<pair<ll,\
-    \ int>> {\n    vc<pair<ll, int>> res;\n    STR(S);\n    Palindromic_Tree<26> X(S,\
-    \ 'A');\n    auto SH = RH.build(S);\n    auto CNT = X.count();\n    FOR(i, len(X.nodes))\
-    \ {\n      if (X.nodes[i].length <= 0) continue;\n      auto [l, r] = X.nodes[i].pos;\n\
-    \      M61 x = RH.query(SH, l, r);\n      res.eb(x.val, CNT[i]);\n    }\n    return\
-    \ res;\n  };\n\n  auto A = get();\n  auto B = get();\n\n  HashMap<int, 20> MP;\n\
-    \  for (auto&& [x, cnt]: A) MP[x] += cnt;\n  ll ANS = 0;\n  for (auto&& [y, cnt]:\
-    \ B) { ANS += MP.get(y, 0) * ll(cnt); }\n  print(ANS);\n}\n\nsigned main() {\n\
-    \  solve();\n  return 0;\n}\n"
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 1 \"string/palindromic_tree.hpp\"\
+    \n// palindromic tree \u3092\u4F5C\u308B\ntemplate <int sigma>\nstruct Palindromic_Tree\
+    \ {\n  struct Node {\n    array<int, sigma> TO;\n    int link;\n    int length;\n\
+    \    pair<int, int> pos; // position of first ocurrence\n    Node(int link, int\
+    \ length, int l, int r)\n        : link(link), length(length), pos({l, r}) {\n\
+    \      fill(all(TO), -1);\n    }\n  };\n\n  vc<Node> nodes;\n  vc<int> path;\n\
+    \n  template <typename STRING>\n  Palindromic_Tree(const STRING& S, char off)\
+    \ {\n    nodes.eb(Node(-1, -1, 0, -1));\n    nodes.eb(Node(0, 0, 0, 0));\n   \
+    \ int p = 0;\n    FOR(i, len(S)) {\n      path.eb(p);\n      int x = S[i] - off;\n\
+    \      while (p) {\n        int j = i - 1 - nodes[p].length;\n        bool can\
+    \ = (j >= 0 && S[j] - off == x);\n        if (!can) {\n          p = nodes[p].link;\n\
+    \          continue;\n        }\n        break;\n      }\n      if (nodes[p].TO[x]\
+    \ != -1) {\n        p = nodes[p].TO[x];\n        continue;\n      }\n      int\
+    \ to = len(nodes);\n      int l = i - 1 - nodes[p].length;\n      int r = i +\
+    \ 1;\n      nodes[p].TO[x] = to;\n\n      int link;\n      if (p == 0) link =\
+    \ 1;\n      if (p != 0) {\n        while (1) {\n          p = nodes[p].link;\n\
+    \          int j = i - 1 - nodes[p].length;\n          bool can = (j >= 0 && S[j]\
+    \ - off == x) || (p == 0);\n          if (can) break;\n        }\n        assert(nodes[p].TO[x]\
+    \ != -1);\n        link = nodes[p].TO[x];\n      }\n      nodes.eb(Node(link,\
+    \ r - l, l, r));\n      p = to;\n    }\n    path.eb(p);\n  }\n\n  vc<int> count()\
+    \ {\n    vc<int> res(len(nodes));\n    for (auto&& p: path) res[p]++;\n    FOR_R(k,\
+    \ 1, len(nodes)) {\n      int link = nodes[k].link;\n      res[link] += res[k];\n\
+    \    }\n    return res;\n  }\n};\n#line 2 \"string/palindrome_decomposition_dp.hpp\"\
+    \n\n// dp[i] := \u3059\u3079\u3066\u306E n \u500B\u3078\u306E\u5206\u5272\u306B\
+    \u5BFE\u3059\u308B x^n \u306E\u7DCF\u548C\n// dp[j] = sum_i dp[i]*x if [i,j) palindrome\n\
+    // https://arxiv.org/pdf/1403.2431.pdf\ntemplate <typename T, typename F1, typename\
+    \ F2>\nvc<T> palindrome_decomposition_dp(string S, T add_unit, T mul_unit, F1\
+    \ add,\n                                  F2 mul_x) {\n  int N = len(S);\n  Palindromic_Tree<26>\
+    \ X(S, 'a');\n  int n = len(X.nodes);\n  /*\n  \u5404\u30CE\u30FC\u30C9\u306B\u5BFE\
+    \u3057\u3066\n  suffix \u3068\u306E\u9577\u3055\u306E\u5DEE\u5206\n  \u540C\u3058\
+    \u5DEE\u5206\u3067\u4F55\u30B9\u30C6\u30C3\u30D7\u9061\u308C\u308B\u304B\uFF1F\
+    \n  \u9061\u3063\u305F\u5148\u306E node\n  */\n  vc<int> diff(n, infty<int>);\n\
+    \  vc<int> step(n);\n  vc<int> up(n);\n  FOR(v, 2, n) {\n    int w = X.nodes[v].link;\n\
+    \    int d = X.nodes[v].length - X.nodes[w].length;\n    diff[v] = d;\n    step[v]\
+    \ = (diff[v] == diff[w] ? step[w] : 0) + 1;\n    up[v] = (diff[v] == diff[w] ?\
+    \ up[w] : w);\n  }\n\n  vc<T> dp(N + 1, add_unit);\n  vc<T> gdp(N + 1, add_unit);\n\
+    \  dp[0] = mul_unit;\n\n  auto& path = X.path;\n  FOR(j, 1, N + 1) {\n    int\
+    \ v = path[j];\n    int i = j - X.nodes[v].length;\n    while (v >= 2) {\n   \
+    \   if (step[v] == 1) {\n        // 1 \u9805\u3060\u3051\u304B\u3089\u306A\u308B\
+    \u7B49\u5DEE\u6570\u5217\u306E\u96C6\u7D04\u3067\u521D\u671F\u5316\n        gdp[i]\
+    \ = dp[i];\n      } else {\n        // \u7B49\u5DEE\u6570\u5217\u306E\u672B\u5C3E\
+    \u3092\u8FFD\u52A0\n        gdp[i] = add(gdp[i], dp[i + diff[v] * (step[v] - 1)]);\n\
+    \      }\n      dp[j] = add(dp[j], mul_x(gdp[i])), i += diff[v] * step[v], v =\
+    \ up[v];\n    }\n  }\n  return dp;\n}\n#line 7 \"test/mytest/palindrome_decomposition_dp.test.cpp\"\
+    \n\nvoid test_min_palindrome_decomposition() {\n  FOR(N, 30) {\n    FOR(K, 1,\
+    \ 5) {\n      FOR(10) {\n        string S;\n        FOR(N) {\n          char c\
+    \ = 'a' + RNG(0, K);\n          S += c;\n        }\n        vv(int, is_pal, N\
+    \ + 1, N + 1);\n        FOR_R(L, N + 1) {\n          FOR(R, N + 1) {\n       \
+    \     if (R - L <= 1) {\n              is_pal[L][R] = 1;\n              continue;\n\
+    \            }\n            is_pal[L][R] = (S[L] == S[R - 1]) && is_pal[L + 1][R\
+    \ - 1];\n          }\n        }\n        vc<int> DP(N + 1, infty<int>);\n    \
+    \    DP[0] = 0;\n        FOR(R, 1, N + 1) {\n          FOR(L, R) {\n         \
+    \   if (is_pal[L][R]) chmin(DP[R], DP[L] + 1);\n          }\n        }\n     \
+    \   vc<int> dp = palindrome_decomposition_dp<int>(\n            S, infty<int>,\
+    \ 0, [&](int x, int y) -> int { return min(x, y); },\n            [&](int x) ->\
+    \ int { return x + 1; });\n        assert(dp == DP);\n      }\n    }\n  }\n}\n\
+    \nvoid test_cnt_palindrome_decomposition() {\n  FOR(N, 30) {\n    FOR(K, 1, 5)\
+    \ {\n      FOR(10) {\n        string S;\n        FOR(N) {\n          char c =\
+    \ 'a' + RNG(0, K);\n          S += c;\n        }\n        vv(int, is_pal, N +\
+    \ 1, N + 1);\n        FOR_R(L, N + 1) {\n          FOR(R, N + 1) {\n         \
+    \   if (R - L <= 1) {\n              is_pal[L][R] = 1;\n              continue;\n\
+    \            }\n            is_pal[L][R] = (S[L] == S[R - 1]) && is_pal[L + 1][R\
+    \ - 1];\n          }\n        }\n        vc<int> DP(N + 1, 0);\n        DP[0]\
+    \ = 1;\n        FOR(R, 1, N + 1) {\n          FOR(L, R) {\n            if (is_pal[L][R])\
+    \ DP[R] += DP[L];\n          }\n        }\n        vc<int> dp = palindrome_decomposition_dp<int>(\n\
+    \            S, 0, 1, [&](int x, int y) -> int { return x + y; },\n          \
+    \  [&](int x) -> int { return x; });\n        assert(dp == DP);\n      }\n   \
+    \ }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a << b\
+    \ << \"\\n\";\n}\n\nsigned main() {\n  test_min_palindrome_decomposition();\n\
+    \  test_cnt_palindrome_decomposition();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/io.hpp\"\n\n#include \"random/base.hpp\"\n#include \"string/palindrome_decomposition_dp.hpp\"\
+    \n\nvoid test_min_palindrome_decomposition() {\n  FOR(N, 30) {\n    FOR(K, 1,\
+    \ 5) {\n      FOR(10) {\n        string S;\n        FOR(N) {\n          char c\
+    \ = 'a' + RNG(0, K);\n          S += c;\n        }\n        vv(int, is_pal, N\
+    \ + 1, N + 1);\n        FOR_R(L, N + 1) {\n          FOR(R, N + 1) {\n       \
+    \     if (R - L <= 1) {\n              is_pal[L][R] = 1;\n              continue;\n\
+    \            }\n            is_pal[L][R] = (S[L] == S[R - 1]) && is_pal[L + 1][R\
+    \ - 1];\n          }\n        }\n        vc<int> DP(N + 1, infty<int>);\n    \
+    \    DP[0] = 0;\n        FOR(R, 1, N + 1) {\n          FOR(L, R) {\n         \
+    \   if (is_pal[L][R]) chmin(DP[R], DP[L] + 1);\n          }\n        }\n     \
+    \   vc<int> dp = palindrome_decomposition_dp<int>(\n            S, infty<int>,\
+    \ 0, [&](int x, int y) -> int { return min(x, y); },\n            [&](int x) ->\
+    \ int { return x + 1; });\n        assert(dp == DP);\n      }\n    }\n  }\n}\n\
+    \nvoid test_cnt_palindrome_decomposition() {\n  FOR(N, 30) {\n    FOR(K, 1, 5)\
+    \ {\n      FOR(10) {\n        string S;\n        FOR(N) {\n          char c =\
+    \ 'a' + RNG(0, K);\n          S += c;\n        }\n        vv(int, is_pal, N +\
+    \ 1, N + 1);\n        FOR_R(L, N + 1) {\n          FOR(R, N + 1) {\n         \
+    \   if (R - L <= 1) {\n              is_pal[L][R] = 1;\n              continue;\n\
+    \            }\n            is_pal[L][R] = (S[L] == S[R - 1]) && is_pal[L + 1][R\
+    \ - 1];\n          }\n        }\n        vc<int> DP(N + 1, 0);\n        DP[0]\
+    \ = 1;\n        FOR(R, 1, N + 1) {\n          FOR(L, R) {\n            if (is_pal[L][R])\
+    \ DP[R] += DP[L];\n          }\n        }\n        vc<int> dp = palindrome_decomposition_dp<int>(\n\
+    \            S, 0, 1, [&](int x, int y) -> int { return x + y; },\n          \
+    \  [&](int x) -> int { return x; });\n        assert(dp == DP);\n      }\n   \
+    \ }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a << b\
+    \ << \"\\n\";\n}\n\nsigned main() {\n  test_min_palindrome_decomposition();\n\
+    \  test_cnt_palindrome_decomposition();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - string/rollinghash.hpp
   - random/base.hpp
-  - mod/modint61.hpp
+  - string/palindrome_decomposition_dp.hpp
   - string/palindromic_tree.hpp
-  - ds/hashmap.hpp
   isVerificationFile: true
-  path: test/yukicoder/263.test.cpp
+  path: test/mytest/palindrome_decomposition_dp.test.cpp
   requiredBy: []
-  timestamp: '2023-12-22 20:53:57+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-12-24 13:20:10+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yukicoder/263.test.cpp
+documentation_of: test/mytest/palindrome_decomposition_dp.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/263.test.cpp
-- /verify/test/yukicoder/263.test.cpp.html
-title: test/yukicoder/263.test.cpp
+- /verify/test/mytest/palindrome_decomposition_dp.test.cpp
+- /verify/test/mytest/palindrome_decomposition_dp.test.cpp.html
+title: test/mytest/palindrome_decomposition_dp.test.cpp
 ---

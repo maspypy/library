@@ -1104,6 +1104,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/online_square.test.cpp
     title: test/mytest/online_square.test.cpp
+  - icon: ':x:'
+    path: test/mytest/palindrome_decomposition_dp.test.cpp
+    title: test/mytest/palindrome_decomposition_dp.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/partial_frac.test.cpp
     title: test/mytest/partial_frac.test.cpp
@@ -2890,6 +2893,7 @@ data:
   - test/mytest/count_clique.test.cpp
   - test/mytest/rbst_monoid.test.cpp
   - test/mytest/smawk.test.cpp
+  - test/mytest/palindrome_decomposition_dp.test.cpp
   - test/mytest/typical_dc.test.cpp
   - test/mytest/non_adj.test.cpp
   - test/mytest/composition_ex_minus_1.test.cpp
