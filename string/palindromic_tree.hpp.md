@@ -9,7 +9,7 @@ data:
   - icon: ':x:'
     path: test/mytest/palindrome_decomposition_dp.test.cpp
     title: test/mytest/palindrome_decomposition_dp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/263.test.cpp
     title: test/yukicoder/263.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: test/yukicoder/465.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"string/palindromic_tree.hpp\"\n// palindromic tree \u3092\
@@ -73,7 +73,7 @@ data:
   requiredBy:
   - string/palindrome_decomposition_dp.hpp
   timestamp: '2023-12-25 02:06:31+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/palindrome_decomposition_dp.test.cpp
   - test/yukicoder/263.test.cpp
