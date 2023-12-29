@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/mo_on_tree.hpp
     title: graph/ds/mo_on_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
   - icon: ':heavy_check_mark:'
@@ -240,10 +240,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc266f.test.cpp
     title: test_atcoder/abc266f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc269ex.test.cpp
     title: test_atcoder/abc269ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc269ex2.test.cpp
     title: test_atcoder/abc269ex2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -258,9 +258,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc023f.test.cpp
     title: test_atcoder/agc023f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate\
@@ -506,7 +506,7 @@ data:
   - graph/tree_walk_generating_function.hpp
   - graph/dsu_on_tree.hpp
   timestamp: '2023-11-30 16:31:51+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/2995.test.cpp
   - test/aoj/GRL_5_E.test.cpp
