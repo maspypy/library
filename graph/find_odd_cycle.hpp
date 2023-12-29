@@ -1,6 +1,6 @@
 #include "graph/strongly_connected_component.hpp"
 
-// (vs, es)
+// (vs, es), size=(n+1,n)
 // https://yukicoder.me/problems/no/1436
 template <typename GT>
 pair<vc<int>, vc<int>> find_odd_cycle(GT& G) {
