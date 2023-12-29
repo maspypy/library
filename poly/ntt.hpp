@@ -9,7 +9,7 @@ void ntt(vector<mint>& a, bool inverse) {
   static array<mint, 30> rate2, irate2;
   static array<mint, 30> rate3, irate3;
 
-  assert(len(a) <= (1 << rank2));
+  assert(rank2 != -1 && len(a) <= (1 << max(0, rank2)));
 
   static bool prepared = 0;
   if (!prepared) {
