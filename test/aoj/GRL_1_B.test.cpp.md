@@ -254,10 +254,11 @@ data:
     \ dist(N, infty<T>);\n  vc<int> par(N, -1);\n  dist[s] = 0;\n  int loop = 0;\n\
     \  while (1) {\n    ++loop;\n    bool upd = 0;\n    FOR(v, N) {\n      if (dist[v]\
     \ == infty<T>) continue;\n      for (auto&& e: G[v]) {\n        T before = dist[e.to];\n\
-    \        T after = dist[v] + e.cost;\n        chmax(after, -infty<T>);\n     \
-    \   if (before > after) {\n          par[e.to] = v;\n          upd = 1;\n    \
-    \      if (loop >= N) after = -infty<T>;\n          dist[e.to] = after;\n    \
-    \    }\n      }\n    }\n    if (!upd) break;\n  }\n  return {dist, par};\n}\n\
+    \        T after = dist[v] + e.cost;\n        if (dist[v] == -infty<T>) {\n  \
+    \        after = -infty<T>;\n        }\n        chmax(after, -infty<T>);\n   \
+    \     if (before > after) {\n          par[e.to] = v;\n          upd = 1;\n  \
+    \        if (loop >= N) after = -infty<T>;\n          dist[e.to] = after;\n  \
+    \      }\n      }\n    }\n    if (!upd) break;\n  }\n  return {dist, par};\n}\n\
     #line 6 \"test/aoj/GRL_1_B.test.cpp\"\n\nvoid solve() {\n  LL(N, M, s);\n  Graph<int,\
     \ 1> G(N);\n  G.read_graph(M, 1, 0);\n\n  auto [dist, par] = BellmanFord<int>(G,\
     \ s);\n  if (MIN(dist) == -infty<int>) { return print(\"NEGATIVE CYCLE\"); }\n\
@@ -281,7 +282,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
+  timestamp: '2023-12-30 00:01:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_1_B.test.cpp

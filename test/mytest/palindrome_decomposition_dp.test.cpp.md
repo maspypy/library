@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/palindrome_decomposition_dp.hpp
     title: string/palindrome_decomposition_dp.hpp
   - icon: ':question:'
@@ -267,7 +267,7 @@ data:
     \  [&](int x) -> int { return x; });\n        assert(dp == DP);\n      }\n   \
     \ }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a << b\
     \ << \"\\n\";\n}\n\nsigned main() {\n  test_min_palindrome_decomposition();\n\
-    \  test_cnt_palindrome_decomposition();\n  return 0;\n}\n"
+    \  test_cnt_palindrome_decomposition();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"random/base.hpp\"\n#include \"string/palindrome_decomposition_dp.hpp\"\
     \n\nvoid test_min_palindrome_decomposition() {\n  FOR(N, 30) {\n    FOR(K, 1,\
@@ -295,7 +295,7 @@ data:
     \  [&](int x) -> int { return x; });\n        assert(dp == DP);\n      }\n   \
     \ }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a << b\
     \ << \"\\n\";\n}\n\nsigned main() {\n  test_min_palindrome_decomposition();\n\
-    \  test_cnt_palindrome_decomposition();\n  return 0;\n}"
+    \  test_cnt_palindrome_decomposition();\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -305,7 +305,7 @@ data:
   isVerificationFile: true
   path: test/mytest/palindrome_decomposition_dp.test.cpp
   requiredBy: []
-  timestamp: '2023-12-29 11:33:39+09:00'
+  timestamp: '2023-12-30 02:02:40+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/palindrome_decomposition_dp.test.cpp
