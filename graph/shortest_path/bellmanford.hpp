@@ -19,6 +19,9 @@ pair<vc<T>, vc<int>> BellmanFord(GT& G, int s) {
       for (auto&& e: G[v]) {
         T before = dist[e.to];
         T after = dist[v] + e.cost;
+        if (dist[v] == -infty<T>) {
+          after = -infty<T>;
+        }
         chmax(after, -infty<T>);
         if (before > after) {
           par[e.to] = v;
