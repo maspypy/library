@@ -10,17 +10,17 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/palindrome_decomposition_dp.hpp
     title: string/palindrome_decomposition_dp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/palindromic_tree.hpp
     title: string/palindromic_tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -265,7 +265,7 @@ data:
     \ DP[R] += DP[L];\n          }\n        }\n        vc<int> dp = palindrome_decomposition_dp<int>(\n\
     \            S, 0, 1, [&](int x, int y) -> int { return x + y; },\n          \
     \  [&](int x) -> int { return x; });\n        assert(dp == DP);\n      }\n   \
-    \ }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a << b\
+    \ }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b\
     \ << \"\\n\";\n}\n\nsigned main() {\n  test_min_palindrome_decomposition();\n\
     \  test_cnt_palindrome_decomposition();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
@@ -293,7 +293,7 @@ data:
     \ DP[R] += DP[L];\n          }\n        }\n        vc<int> dp = palindrome_decomposition_dp<int>(\n\
     \            S, 0, 1, [&](int x, int y) -> int { return x + y; },\n          \
     \  [&](int x) -> int { return x; });\n        assert(dp == DP);\n      }\n   \
-    \ }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a << b\
+    \ }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b\
     \ << \"\\n\";\n}\n\nsigned main() {\n  test_min_palindrome_decomposition();\n\
     \  test_cnt_palindrome_decomposition();\n  solve();\n  return 0;\n}\n"
   dependsOn:
@@ -305,8 +305,8 @@ data:
   isVerificationFile: true
   path: test/mytest/palindrome_decomposition_dp.test.cpp
   requiredBy: []
-  timestamp: '2023-12-30 02:02:40+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-12-30 02:29:07+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/palindrome_decomposition_dp.test.cpp
 layout: document
