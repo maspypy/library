@@ -22,23 +22,23 @@ data:
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: linalg/implicit_matrix/vandermonde.hpp
     title: linalg/implicit_matrix/vandermonde.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
   - icon: ':warning:'
@@ -47,86 +47,104 @@ data:
   - icon: ':warning:'
     path: poly/composed_sum.hpp
     title: poly/composed_sum.hpp
-  - icon: ':question:'
+  - icon: ':x:'
+    path: poly/prefix_sum_of_polynomial.hpp
+    title: poly/prefix_sum_of_polynomial.hpp
+  - icon: ':x:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
   - icon: ':warning:'
     path: poly/sum_of_power_of_roots.hpp
     title: poly/sum_of_power_of_roots.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: seq/famous/bernoulli.hpp
+    title: seq/famous/bernoulli.hpp
+  - icon: ':x:'
+    path: seq/famous/riemann_zeta_even.hpp
+    title: seq/famous/riemann_zeta_even.hpp
+  - icon: ':x:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/library_checker/math/bernoulli.test.cpp
+    title: test/library_checker/math/bernoulli.test.cpp
+  - icon: ':x:'
     path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/bell.test.cpp
     title: test/mytest/bell.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/slice_rational_fps.test.cpp
     title: test/mytest/slice_rational_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/tree_walk_gf.test.cpp
     title: test/mytest/tree_walk_gf.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1145.test.cpp
     title: test/yukicoder/1145.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/yukicoder/1357.test.cpp
+    title: test/yukicoder/1357.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/1500.test.cpp
     title: test/yukicoder/1500.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1516.test.cpp
     title: test/yukicoder/1516.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1533.test.cpp
     title: test/yukicoder/1533.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1547.test.cpp
     title: test/yukicoder/1547.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1575.test.cpp
     title: test/yukicoder/1575.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1844.test.cpp
     title: test/yukicoder/1844.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1962.test.cpp
     title: test/yukicoder/1962.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2305.test.cpp
     title: test/yukicoder/2305.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2459.test.cpp
     title: test/yukicoder/2459.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/yukicoder/2580.test.cpp
+    title: test/yukicoder/2580.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/2587.test.cpp
     title: test/yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2587_2.test.cpp
     title: test/yukicoder/2587_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/541.test.cpp
     title: test/yukicoder/541.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/578.test.cpp
     title: test/yukicoder/578.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
   - icon: ':x:'
@@ -146,7 +164,7 @@ data:
     title: test_atcoder/arc154f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/fps_div.hpp\"\n\n#line 2 \"poly/count_terms.hpp\"\n\
@@ -377,7 +395,7 @@ data:
     \ vc<R>& b) {\r\n  using C = CFFT::C;\r\n  int need = (int)a.size() + (int)b.size()\
     \ - 1;\r\n  int nbase = 1;\r\n  while ((1 << nbase) < need) nbase++;\r\n  CFFT::ensure_base(nbase);\r\
     \n  int sz = 1 << nbase;\r\n  vector<C> fa(sz);\r\n  for (int i = 0; i < sz; i++)\
-    \ {\r\n    int x = (i < (int)a.size() ? a[i] : 0);\r\n    int y = (i < (int)b.size()\
+    \ {\r\n    double x = (i < (int)a.size() ? a[i] : 0);\r\n    double y = (i < (int)b.size()\
     \ ? b[i] : 0);\r\n    fa[i] = C(x, y);\r\n  }\r\n  CFFT::fft(fa, sz);\r\n  C r(0,\
     \ -0.25 / (sz >> 1)), s(0, 1), t(0.5, 0);\r\n  for (int i = 0; i <= (sz >> 1);\
     \ i++) {\r\n    int j = (sz - i) & (sz - 1);\r\n    C z = (fa[j] * fa[j] - (fa[i]\
@@ -482,6 +500,8 @@ data:
   path: poly/fps_div.hpp
   requiredBy:
   - linalg/implicit_matrix/vandermonde.hpp
+  - seq/famous/riemann_zeta_even.hpp
+  - seq/famous/bernoulli.hpp
   - seq/famous/bell_number_large.hpp
   - seq/interpolate_linear_rec.hpp
   - seq/sum_of_powers.hpp
@@ -490,10 +510,12 @@ data:
   - poly/slice_rational_fps.hpp
   - poly/composed_product.hpp
   - poly/sum_of_power_of_roots.hpp
-  timestamp: '2023-12-25 02:06:31+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  - poly/prefix_sum_of_polynomial.hpp
+  timestamp: '2023-12-29 11:33:39+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/library_checker/math/bernoulli.test.cpp
   - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/bell.test.cpp
   - test/mytest/vandermonde.test.cpp
@@ -507,12 +529,14 @@ data:
   - test/yukicoder/579.test.cpp
   - test/yukicoder/2587.test.cpp
   - test/yukicoder/2305.test.cpp
+  - test/yukicoder/1357.test.cpp
   - test/yukicoder/1500.test.cpp
   - test/yukicoder/2459.test.cpp
   - test/yukicoder/2587_2.test.cpp
   - test/yukicoder/578.test.cpp
   - test/yukicoder/1575.test.cpp
   - test/yukicoder/1844.test.cpp
+  - test/yukicoder/2580.test.cpp
   - test/yukicoder/1962.test.cpp
   - test/yukicoder/2122.test.cpp
   - test_atcoder/arc154f.test.cpp

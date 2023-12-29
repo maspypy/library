@@ -54,18 +54,18 @@ data:
     \u3066\n  suffix \u3068\u306E\u9577\u3055\u306E\u5DEE\u5206\n  \u540C\u3058\u5DEE\
     \u5206\u3067\u4F55\u30B9\u30C6\u30C3\u30D7\u9061\u308C\u308B\u304B\uFF1F\n  \u9061\
     \u3063\u305F\u5148\u306E node\n  */\n  vc<int> diff(n, infty<int>);\n  vc<int>\
-    \ step(n);\n  vc<int> up(n);\n  vc<int> even_link FOR(v, 2, n) {\n    int w =\
-    \ X.nodes[v].link;\n    int d = X.nodes[v].length - X.nodes[w].length;\n    diff[v]\
-    \ = d;\n    step[v] = (diff[v] == diff[w] ? step[w] : 0) + 1;\n    up[v] = (diff[v]\
-    \ == diff[w] ? up[w] : w);\n  }\n\n  vc<T> dp(N + 1, add_unit);\n  vc<T> gdp(N\
-    \ + 1, add_unit);\n  dp[0] = mul_unit;\n\n  auto& path = X.path;\n  FOR(j, 1,\
-    \ N + 1) {\n    int v = path[j];\n    int i = j - X.nodes[v].length;\n    while\
-    \ (v >= 2) {\n      if (step[v] == 1) {\n        // 1 \u9805\u3060\u3051\u304B\
-    \u3089\u306A\u308B\u7B49\u5DEE\u6570\u5217\u306E\u96C6\u7D04\u3067\u521D\u671F\
-    \u5316\n        gdp[i] = dp[i];\n      } else {\n        // \u7B49\u5DEE\u6570\
-    \u5217\u306E\u672B\u5C3E\u3092\u8FFD\u52A0\n        gdp[i] = add(gdp[i], dp[i\
-    \ + diff[v] * (step[v] - 1)]);\n      }\n      dp[j] = add(dp[j], mul_x(gdp[i])),\
-    \ i += diff[v] * step[v], v = up[v];\n    }\n  }\n  return dp;\n}\n"
+    \ step(n);\n  vc<int> up(n);\n  FOR(v, 2, n) {\n    int w = X.nodes[v].link;\n\
+    \    int d = X.nodes[v].length - X.nodes[w].length;\n    diff[v] = d;\n    step[v]\
+    \ = (diff[v] == diff[w] ? step[w] : 0) + 1;\n    up[v] = (diff[v] == diff[w] ?\
+    \ up[w] : w);\n  }\n\n  vc<T> dp(N + 1, add_unit);\n  vc<T> gdp(N + 1, add_unit);\n\
+    \  dp[0] = mul_unit;\n\n  auto& path = X.path;\n  FOR(j, 1, N + 1) {\n    int\
+    \ v = path[j];\n    int i = j - X.nodes[v].length;\n    while (v >= 2) {\n   \
+    \   if (step[v] == 1) {\n        // 1 \u9805\u3060\u3051\u304B\u3089\u306A\u308B\
+    \u7B49\u5DEE\u6570\u5217\u306E\u96C6\u7D04\u3067\u521D\u671F\u5316\n        gdp[i]\
+    \ = dp[i];\n      } else {\n        // \u7B49\u5DEE\u6570\u5217\u306E\u672B\u5C3E\
+    \u3092\u8FFD\u52A0\n        gdp[i] = add(gdp[i], dp[i + diff[v] * (step[v] - 1)]);\n\
+    \      }\n      dp[j] = add(dp[j], mul_x(gdp[i])), i += diff[v] * step[v], v =\
+    \ up[v];\n    }\n  }\n  return dp;\n}\n"
   code: "#include \"string/palindromic_tree.hpp\"\n\n// dp[i] := \u3059\u3079\u3066\
     \u306E n \u500B\u3078\u306E\u5206\u5272\u306B\u5BFE\u3059\u308B x^n \u306E\u7DCF\
     \u548C\n// dp[j] = sum_i dp[i]*x if [i,j) palindrome\n// https://arxiv.org/pdf/1403.2431.pdf\n\
@@ -78,24 +78,24 @@ data:
     \u3066\n  suffix \u3068\u306E\u9577\u3055\u306E\u5DEE\u5206\n  \u540C\u3058\u5DEE\
     \u5206\u3067\u4F55\u30B9\u30C6\u30C3\u30D7\u9061\u308C\u308B\u304B\uFF1F\n  \u9061\
     \u3063\u305F\u5148\u306E node\n  */\n  vc<int> diff(n, infty<int>);\n  vc<int>\
-    \ step(n);\n  vc<int> up(n);\n  vc<int> even_link FOR(v, 2, n) {\n    int w =\
-    \ X.nodes[v].link;\n    int d = X.nodes[v].length - X.nodes[w].length;\n    diff[v]\
-    \ = d;\n    step[v] = (diff[v] == diff[w] ? step[w] : 0) + 1;\n    up[v] = (diff[v]\
-    \ == diff[w] ? up[w] : w);\n  }\n\n  vc<T> dp(N + 1, add_unit);\n  vc<T> gdp(N\
-    \ + 1, add_unit);\n  dp[0] = mul_unit;\n\n  auto& path = X.path;\n  FOR(j, 1,\
-    \ N + 1) {\n    int v = path[j];\n    int i = j - X.nodes[v].length;\n    while\
-    \ (v >= 2) {\n      if (step[v] == 1) {\n        // 1 \u9805\u3060\u3051\u304B\
-    \u3089\u306A\u308B\u7B49\u5DEE\u6570\u5217\u306E\u96C6\u7D04\u3067\u521D\u671F\
-    \u5316\n        gdp[i] = dp[i];\n      } else {\n        // \u7B49\u5DEE\u6570\
-    \u5217\u306E\u672B\u5C3E\u3092\u8FFD\u52A0\n        gdp[i] = add(gdp[i], dp[i\
-    \ + diff[v] * (step[v] - 1)]);\n      }\n      dp[j] = add(dp[j], mul_x(gdp[i])),\
-    \ i += diff[v] * step[v], v = up[v];\n    }\n  }\n  return dp;\n}\n"
+    \ step(n);\n  vc<int> up(n);\n  FOR(v, 2, n) {\n    int w = X.nodes[v].link;\n\
+    \    int d = X.nodes[v].length - X.nodes[w].length;\n    diff[v] = d;\n    step[v]\
+    \ = (diff[v] == diff[w] ? step[w] : 0) + 1;\n    up[v] = (diff[v] == diff[w] ?\
+    \ up[w] : w);\n  }\n\n  vc<T> dp(N + 1, add_unit);\n  vc<T> gdp(N + 1, add_unit);\n\
+    \  dp[0] = mul_unit;\n\n  auto& path = X.path;\n  FOR(j, 1, N + 1) {\n    int\
+    \ v = path[j];\n    int i = j - X.nodes[v].length;\n    while (v >= 2) {\n   \
+    \   if (step[v] == 1) {\n        // 1 \u9805\u3060\u3051\u304B\u3089\u306A\u308B\
+    \u7B49\u5DEE\u6570\u5217\u306E\u96C6\u7D04\u3067\u521D\u671F\u5316\n        gdp[i]\
+    \ = dp[i];\n      } else {\n        // \u7B49\u5DEE\u6570\u5217\u306E\u672B\u5C3E\
+    \u3092\u8FFD\u52A0\n        gdp[i] = add(gdp[i], dp[i + diff[v] * (step[v] - 1)]);\n\
+    \      }\n      dp[j] = add(dp[j], mul_x(gdp[i])), i += diff[v] * step[v], v =\
+    \ up[v];\n    }\n  }\n  return dp;\n}\n"
   dependsOn:
   - string/palindromic_tree.hpp
   isVerificationFile: false
   path: string/palindrome_decomposition_dp.hpp
   requiredBy: []
-  timestamp: '2023-12-25 02:06:31+09:00'
+  timestamp: '2023-12-29 11:33:39+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/palindrome_decomposition_dp.test.cpp

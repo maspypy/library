@@ -28,44 +28,44 @@ data:
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1321.test.cpp
     title: test/yukicoder/1321.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -293,7 +293,7 @@ data:
     \ vc<R>& b) {\r\n  using C = CFFT::C;\r\n  int need = (int)a.size() + (int)b.size()\
     \ - 1;\r\n  int nbase = 1;\r\n  while ((1 << nbase) < need) nbase++;\r\n  CFFT::ensure_base(nbase);\r\
     \n  int sz = 1 << nbase;\r\n  vector<C> fa(sz);\r\n  for (int i = 0; i < sz; i++)\
-    \ {\r\n    int x = (i < (int)a.size() ? a[i] : 0);\r\n    int y = (i < (int)b.size()\
+    \ {\r\n    double x = (i < (int)a.size() ? a[i] : 0);\r\n    double y = (i < (int)b.size()\
     \ ? b[i] : 0);\r\n    fa[i] = C(x, y);\r\n  }\r\n  CFFT::fft(fa, sz);\r\n  C r(0,\
     \ -0.25 / (sz >> 1)), s(0, 1), t(0.5, 0);\r\n  for (int i = 0; i <= (sz >> 1);\
     \ i++) {\r\n    int j = (sz - i) & (sz - 1);\r\n    C z = (fa[j] * fa[j] - (fa[i]\
@@ -512,19 +512,27 @@ data:
     \n}\r\n#line 2 \"seq/famous/surjection.hpp\"\n\r\n// n \u5143\u96C6\u5408\u304B\
     \u3089\u306E\u5168\u5C04\u306E\u6570\u3048\u4E0A\u3052\r\ntemplate <typename mint>\r\
     \nvc<mint> surjection_n(int n, int k_max) {\r\n  auto f = stirling_number_2_n<mint>(n,\
-    \ k_max);\r\n  FOR(i, k_max + 1) f[i] *= fact<mint>(i);\r\n  return f;\r\n}\r\n\
-    \r\n// k \u5143\u96C6\u5408\u3078\u306E\u306E\u5168\u5C04\u306E\u6570\u3048\u4E0A\
-    \u3052\r\ntemplate <typename mint>\r\nvc<mint> surjection_k(int k, int n_max)\
-    \ {\r\n  auto f = stirling_number_2_k<mint>(k, n_max);\r\n  FOR(i, n_max + 1)\
-    \ f[i] *= fact<mint>(k);\r\n  return f;\r\n}\r\n"
+    \ k_max);\r\n  mint fc = 1;\r\n  FOR(i, k_max + 1) { f[i] *= fc, fc *= mint(1\
+    \ + i); }\r\n  return f;\r\n}\r\n\r\n// k \u5143\u96C6\u5408\u3078\u306E\u306E\
+    \u5168\u5C04\u306E\u6570\u3048\u4E0A\u3052\r\ntemplate <typename mint>\r\nvc<mint>\
+    \ surjection_k(int k, int n_max) {\r\n  auto f = stirling_number_2_k<mint>(k,\
+    \ n_max);\r\n  mint fc = 1;\r\n  FOR(i, 1, k + 1) fc *= i;\r\n  FOR(i, n_max +\
+    \ 1) f[i] *= fc;\r\n  return f;\r\n}\r\n\r\ntemplate <typename mint>\r\nvvc<mint>\
+    \ surjection_2d(int nmax, int kmax) {\r\n  auto A = stirling_number_2_2d<mint>(nmax,\
+    \ kmax);\r\n  mint fc = 1;\r\n  FOR(k, kmax + 1) {\r\n    FOR(n, nmax + 1) { A[n][k]\
+    \ *= fc; }\r\n    fc *= 1 + k;\r\n  }\r\n  return A;\r\n}\n"
   code: "#include \"seq/famous/stirling_number_2.hpp\"\r\n\r\n// n \u5143\u96C6\u5408\
     \u304B\u3089\u306E\u5168\u5C04\u306E\u6570\u3048\u4E0A\u3052\r\ntemplate <typename\
     \ mint>\r\nvc<mint> surjection_n(int n, int k_max) {\r\n  auto f = stirling_number_2_n<mint>(n,\
-    \ k_max);\r\n  FOR(i, k_max + 1) f[i] *= fact<mint>(i);\r\n  return f;\r\n}\r\n\
-    \r\n// k \u5143\u96C6\u5408\u3078\u306E\u306E\u5168\u5C04\u306E\u6570\u3048\u4E0A\
-    \u3052\r\ntemplate <typename mint>\r\nvc<mint> surjection_k(int k, int n_max)\
-    \ {\r\n  auto f = stirling_number_2_k<mint>(k, n_max);\r\n  FOR(i, n_max + 1)\
-    \ f[i] *= fact<mint>(k);\r\n  return f;\r\n}\r\n"
+    \ k_max);\r\n  mint fc = 1;\r\n  FOR(i, k_max + 1) { f[i] *= fc, fc *= mint(1\
+    \ + i); }\r\n  return f;\r\n}\r\n\r\n// k \u5143\u96C6\u5408\u3078\u306E\u306E\
+    \u5168\u5C04\u306E\u6570\u3048\u4E0A\u3052\r\ntemplate <typename mint>\r\nvc<mint>\
+    \ surjection_k(int k, int n_max) {\r\n  auto f = stirling_number_2_k<mint>(k,\
+    \ n_max);\r\n  mint fc = 1;\r\n  FOR(i, 1, k + 1) fc *= i;\r\n  FOR(i, n_max +\
+    \ 1) f[i] *= fc;\r\n  return f;\r\n}\r\n\r\ntemplate <typename mint>\r\nvvc<mint>\
+    \ surjection_2d(int nmax, int kmax) {\r\n  auto A = stirling_number_2_2d<mint>(nmax,\
+    \ kmax);\r\n  mint fc = 1;\r\n  FOR(k, kmax + 1) {\r\n    FOR(n, nmax + 1) { A[n][k]\
+    \ *= fc; }\r\n    fc *= 1 + k;\r\n  }\r\n  return A;\r\n}"
   dependsOn:
   - seq/famous/stirling_number_2.hpp
   - poly/convolution.hpp
@@ -548,8 +556,8 @@ data:
   isVerificationFile: false
   path: seq/famous/surjection.hpp
   requiredBy: []
-  timestamp: '2023-12-25 02:06:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-12-29 11:33:39+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1321.test.cpp
 documentation_of: seq/famous/surjection.hpp

@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/find_odd_cycle.hpp
     title: graph/find_odd_cycle.hpp
   - icon: ':heavy_check_mark:'
@@ -45,7 +45,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/twosat.test.cpp
     title: test/library_checker/math/twosat.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/find_odd_cycle.test.cpp
     title: test/mytest/find_odd_cycle.test.cpp
   - icon: ':heavy_check_mark:'
@@ -84,9 +84,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc274g.test.cpp
     title: test_atcoder/abc274g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -191,7 +191,7 @@ data:
   - graph/maximum_antichain.hpp
   - graph/reachability.hpp
   timestamp: '2023-11-07 22:29:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/0275.test.cpp
   - test/aoj/2251_2.test.cpp

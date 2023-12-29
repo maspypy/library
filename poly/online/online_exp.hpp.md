@@ -14,19 +14,19 @@ data:
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_unlabeled_tree.hpp
     title: graph/count/count_unlabeled_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/count_unlabeled_tree.test.cpp
     title: test/mytest/count_unlabeled_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/online_exp.test.cpp
     title: test/mytest/online_exp.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>&\
@@ -197,7 +197,7 @@ data:
   requiredBy:
   - graph/count/count_unlabeled_tree.hpp
   timestamp: '2023-12-25 02:06:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/online_exp.test.cpp
   - test/mytest/count_unlabeled_tree.test.cpp

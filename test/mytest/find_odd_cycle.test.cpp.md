@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/find_odd_cycle.hpp
     title: graph/find_odd_cycle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   - icon: ':question:'
@@ -22,17 +22,17 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -257,9 +257,9 @@ data:
     \    int x = comp[e.frm], y = comp[e.to];\n    if (x == y) continue;\n    edges[x].eb(y);\n\
     \  }\n  FOR(c, C) {\n    UNIQUE(edges[c]);\n    for (auto&& to: edges[c]) DAG.add(c,\
     \ to);\n  }\n  DAG.build();\n  return DAG;\n}\n#line 2 \"graph/find_odd_cycle.hpp\"\
-    \n\n// (vs, es)\n// https://yukicoder.me/problems/no/1436\ntemplate <typename\
-    \ GT>\npair<vc<int>, vc<int>> find_odd_cycle(GT& G) {\n  int N = G.N;\n  vc<int>\
-    \ comp(N);\n  if constexpr (GT::is_directed) {\n    comp = strongly_connected_component<GT>(G).se;\n\
+    \n\n// (vs, es), size=(n+1,n)\n// https://yukicoder.me/problems/no/1436\ntemplate\
+    \ <typename GT>\npair<vc<int>, vc<int>> find_odd_cycle(GT& G) {\n  int N = G.N;\n\
+    \  vc<int> comp(N);\n  if constexpr (GT::is_directed) {\n    comp = strongly_connected_component<GT>(G).se;\n\
     \  }\n  vc<int> dist(2 * N, infty<int>);\n  vc<int> par(2 * N, -1); // edge index\n\
     \  deque<int> que;\n  auto add = [&](int v, int d, int p) -> void {\n    if (chmin(dist[v],\
     \ d)) { que.eb(v), par[v] = p; }\n  };\n  FOR(root, N) {\n    if (dist[2 * root\
@@ -346,8 +346,8 @@ data:
   isVerificationFile: true
   path: test/mytest/find_odd_cycle.test.cpp
   requiredBy: []
-  timestamp: '2023-12-14 01:04:11+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-12-29 11:33:39+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/find_odd_cycle.test.cpp
 layout: document
