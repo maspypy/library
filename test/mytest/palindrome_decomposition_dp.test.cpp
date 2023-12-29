@@ -84,5 +84,6 @@ void solve() {
 signed main() {
   test_min_palindrome_decomposition();
   test_cnt_palindrome_decomposition();
+  solve();
   return 0;
 }
