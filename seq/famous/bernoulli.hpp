@@ -1,4 +1,4 @@
-#include "poly/fps_inv.hpp"
+#include "poly/fps_div.hpp"
 
 template <typename mint>
 vc<mint> bernoulli_number(int N) {

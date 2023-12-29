@@ -27,7 +27,7 @@ void solve() {
       FOR3(i, M, R) {
         ++c;
         s += A[i];
-        ll y = cht.query_monotone_inc(c) + c * c + s;
+        ll y = cht.query_monotone_inc(c).fi + c * c + s;
         seg.apply(M, i + 1, y);
       }
     }
@@ -45,7 +45,7 @@ void solve() {
       FOR3_R(i, L, M + 1) {
         ++c;
         s += A[i];
-        ll y = cht.query_monotone_inc(c) + c * c + s;
+        ll y = cht.query_monotone_inc(c).fi + c * c + s;
         seg.apply(i, M + 1, y);
       }
     }
@@ -64,13 +64,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }
