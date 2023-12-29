@@ -75,8 +75,8 @@ vc<double> convolution_fft(const vc<R>& a, const vc<R>& b) {
   int sz = 1 << nbase;
   vector<C> fa(sz);
   for (int i = 0; i < sz; i++) {
-    int x = (i < (int)a.size() ? a[i] : 0);
-    int y = (i < (int)b.size() ? b[i] : 0);
+    double x = (i < (int)a.size() ? a[i] : 0);
+    double y = (i < (int)b.size() ? b[i] : 0);
     fa[i] = C(x, y);
   }
   CFFT::fft(fa, sz);

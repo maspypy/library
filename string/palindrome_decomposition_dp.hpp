@@ -21,7 +21,7 @@ vc<T> palindrome_decomposition_dp(string S, T add_unit, T mul_unit, F1 add,
   vc<int> diff(n, infty<int>);
   vc<int> step(n);
   vc<int> up(n);
-  vc<int> even_link FOR(v, 2, n) {
+  FOR(v, 2, n) {
     int w = X.nodes[v].link;
     int d = X.nodes[v].length - X.nodes[w].length;
     diff[v] = d;

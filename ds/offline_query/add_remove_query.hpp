@@ -1,10 +1,9 @@
 /*
 ・時刻 t に x を追加する
 ・時刻 t に x を削除する
-があるときに、
+があるときに,
 ・時刻 [l, r) に x を追加する
-に変換する。
-クエリが時系列順に来ることが分かっているときは monotone = true の方が高速。
+に変換する. 同じキーが複数回来ると困るので適当なラベルをつけておこう.
 */
 template <typename X, bool monotone>
 struct Add_Remove_Query {
