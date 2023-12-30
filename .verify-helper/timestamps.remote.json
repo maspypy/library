@@ -776,12 +776,17 @@
 "test_atcoder/abc324g.test.cpp": "2023-11-09 00:59:01 +0900",
 "test_atcoder/abc324g2.test.cpp": "2023-12-23 11:53:13 +0900",
 "test_atcoder/abc326g.test.cpp": "2023-12-09 17:16:57 +0900",
+"test_atcoder/agc013e.test.cpp": "2023-12-29 16:32:29 +0900",
 "test_atcoder/agc023f.test.cpp": "2023-11-30 16:31:51 +0900",
+"test_atcoder/agc058d.test.cpp": "2023-12-29 16:32:29 +0900",
+"test_atcoder/agc058d2.test.cpp": "2023-12-29 16:32:29 +0900",
+"test_atcoder/arc064c.test.cpp": "2023-12-21 22:18:31 +0900",
 "test_atcoder/arc105.test.cpp": "2023-11-21 19:08:32 +0900",
 "test_atcoder/arc123d.test.cpp": "2023-11-10 12:48:50 +0900",
 "test_atcoder/arc133f.test.cpp": "2023-11-16 16:56:46 +0900",
 "test_atcoder/arc144d.test.cpp": "2023-11-21 19:08:32 +0900",
 "test_atcoder/arc151_e.test.cpp": "2023-11-09 00:59:01 +0900",
 "test_atcoder/arc153b.test.cpp": "2023-12-17 02:29:06 +0900",
+"test_atcoder/arc153f.test.cpp": "2023-12-29 16:32:29 +0900",
 "test_atcoder/arc157a.test.cpp": "2023-11-21 19:08:32 +0900"
 }
