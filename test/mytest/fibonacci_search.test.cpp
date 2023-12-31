@@ -10,7 +10,7 @@ void test() {
     iota(all(A), 0);
     do {
       auto f = [&](int i) -> int { return A[i]; };
-      auto [i, y] = fibonacci_search<int, true>(f, 0, N);
+      auto [y, i] = fibonacci_search<int, true>(f, 0, N);
       assert(0 <= i && i < N);
       if (0 < i) assert(A[i] < A[i - 1]);
       if (i + 1 < N) assert(A[i] < A[i + 1]);
@@ -22,7 +22,7 @@ void test() {
       vc<int> A(N);
       FOR(i, N) A[i] = s >> i & 1;
       auto f = [&](int i) -> int { return A[i]; };
-      auto [i, y] = fibonacci_search<int, true>(f, 0, N);
+      auto [y, i] = fibonacci_search<int, true>(f, 0, N);
       assert(0 <= i && i < N);
       if (0 < i) assert(A[i] <= A[i - 1]);
       if (i + 1 < N) assert(A[i] <= A[i + 1]);
@@ -32,7 +32,7 @@ void test() {
   FOR(N, 1, 13) {
     enumerate_product(vc<int>(N, 3), [&](vc<int> A) -> void {
       auto f = [&](int i) -> int { return A[i]; };
-      auto [i, y] = fibonacci_search<int, true>(f, 0, N);
+      auto [y, i] = fibonacci_search<int, true>(f, 0, N);
       assert(0 <= i && i < N);
       if (0 < i) assert(A[i] <= A[i - 1]);
       if (i + 1 < N) assert(A[i] <= A[i + 1]);
