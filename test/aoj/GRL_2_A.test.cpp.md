@@ -1,37 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dual_segtree.hpp
     title: ds/segtree/dual_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':question:'
@@ -42,9 +42,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A
@@ -504,33 +504,33 @@ data:
     \ static constexpr X op(const X &x, const X &y) noexcept { return max(x, y); }\r\
     \n  static constexpr X unit() { return -infty<E>; }\r\n  static constexpr bool\
     \ commute = true;\r\n};\r\n#line 8 \"graph/minimum_spanning_tree.hpp\"\n\r\n//\
-    \ return : {T mst_cost, vc<bool> in_mst, Graph MST}\r\ntemplate <typename T>\r\
-    \ntuple<T, vc<bool>, Graph<T>> minimum_spanning_tree(Graph<T>& G) {\r\n  int N\
-    \ = G.N;\r\n  int M = len(G.edges);\r\n  vc<pair<T, int>> edges;\r\n  FOR(i, M)\
-    \ {\r\n    auto& e = G.edges[i];\r\n    edges.eb(e.cost, i);\r\n  }\r\n  sort(all(edges));\r\
-    \n  vc<bool> in_mst(M);\r\n  UnionFind uf(N);\r\n  T mst_cost = T(0);\r\n  Graph<T>\
-    \ MST(N);\r\n  for (auto&& [cost, i]: edges) {\r\n    auto& e = G.edges[i];\r\n\
-    \    if (uf.merge(e.frm, e.to)) {\r\n      in_mst[i] = 1;\r\n      mst_cost +=\
-    \ e.cost;\r\n    }\r\n  }\r\n  FOR(i, M) if (in_mst[i]) {\r\n    auto& e = G.edges[i];\r\
-    \n    MST.add(e.frm, e.to, e.cost);\r\n  }\r\n  MST.build();\r\n  return {mst_cost,\
+    \ return : {T mst_cost, vc<bool> in_mst, Graph MST}\r\ntemplate <typename T, typename\
+    \ GT>\r\ntuple<T, vc<bool>, GT> minimum_spanning_tree(GT& G) {\r\n  int N = G.N;\r\
+    \n  int M = len(G.edges);\r\n  vc<int> I(M);\r\n  FOR(i, M) I[i] = i;\r\n  sort(all(I),\
+    \ [&](auto& a, auto& b) -> bool {\r\n    return (G.edges[a].cost) < (G.edges[b].cost);\r\
+    \n  });\r\n\r\n  vc<bool> in_mst(M);\r\n  UnionFind uf(N);\r\n  T mst_cost = T(0);\r\
+    \n  GT MST(N);\r\n  for (auto& i: I) {\r\n    auto& e = G.edges[i];\r\n    if\
+    \ (uf.merge(e.frm, e.to)) {\r\n      in_mst[i] = 1;\r\n      mst_cost += e.cost;\r\
+    \n    }\r\n  }\r\n  FOR(i, M) if (in_mst[i]) {\r\n    auto& e = G.edges[i];\r\n\
+    \    MST.add(e.frm, e.to, e.cost);\r\n  }\r\n  MST.build();\r\n  return {mst_cost,\
     \ in_mst, MST};\r\n}\r\n\r\n// https://codeforces.com/contest/828/problem/F\r\n\
     // return : {T mst_cost, vc<bool> in_mst, Graph MST, vc<T> dat}\r\n// dat : \u8FBA\
     \u3054\u3068\u306B\u3001\u4ED6\u306E\u8FBA\u3092\u4FDD\u3063\u305F\u3068\u304D\
     \u306B MST \u8FBA\u306B\u306A\u308B\u6700\u5927\u91CD\u307F\r\ntemplate <typename\
-    \ T>\r\ntuple<T, vc<bool>, Graph<T>, vc<T>> minimum_spanning_tree_cycle_data(\r\
-    \n    Graph<T> G) {\r\n  int M = len(G.edges);\r\n  auto [mst_cost, in_mst, MST]\
-    \ = minimum_spanning_tree(G);\r\n  Tree<decltype(G)> tree(MST);\r\n  vc<T> dat;\r\
-    \n  FOR(i, M) if (in_mst[i]) dat.eb(G.edges[i].cost);\r\n  Tree_Monoid<decltype(tree),\
-    \ Monoid_Max<T>, 1> TM1(tree, dat);\r\n  Dual_Tree_Monoid<decltype(tree), Monoid_Min<T>,\
-    \ 1> TM2(tree);\r\n  FOR(i, M) {\r\n    if (!in_mst[i]) {\r\n      auto& e = G.edges[i];\r\
-    \n      TM2.apply_path(e.frm, e.to, e.cost);\r\n    }\r\n  }\r\n  vc<T> ANS(M);\r\
-    \n  int m = 0;\r\n  FOR(i, M) {\r\n    auto& e = G.edges[i];\r\n    if (in_mst[i])\r\
-    \n      ANS[i] = TM2.get(m++);\r\n    else\r\n      ANS[i] = TM1.prod_path(e.frm,\
-    \ e.to);\r\n  }\r\n  return {mst_cost, in_mst, MST, ANS};\r\n}\n#line 6 \"test/aoj/GRL_2_A.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, M);\n  Graph G(N);\n  G.read_graph(M, 1, 0);\n  auto\
-    \ [cost, in_mst, tree] = minimum_spanning_tree(G);\n  print(cost);\n}\n\nsigned\
-    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \ T, typename GT>\r\ntuple<T, vc<bool>, GT, vc<T>> minimum_spanning_tree_cycle_data(GT&\
+    \ G) {\r\n  int M = len(G.edges);\r\n  auto [mst_cost, in_mst, MST] = minimum_spanning_tree(G);\r\
+    \n  Tree<GT> tree(MST);\r\n  vc<T> dat;\r\n  FOR(i, M) if (in_mst[i]) dat.eb(G.edges[i].cost);\r\
+    \n  Tree_Monoid<decltype(tree), Monoid_Max<T>, 1> TM1(tree, dat);\r\n  Dual_Tree_Monoid<decltype(tree),\
+    \ Monoid_Min<T>, 1> TM2(tree);\r\n  FOR(i, M) {\r\n    if (!in_mst[i]) {\r\n \
+    \     auto& e = G.edges[i];\r\n      TM2.apply_path(e.frm, e.to, e.cost);\r\n\
+    \    }\r\n  }\r\n  vc<T> ANS(M);\r\n  int m = 0;\r\n  FOR(i, M) {\r\n    auto&\
+    \ e = G.edges[i];\r\n    if (in_mst[i])\r\n      ANS[i] = TM2.get(m++);\r\n  \
+    \  else\r\n      ANS[i] = TM1.prod_path(e.frm, e.to);\r\n  }\r\n  return {mst_cost,\
+    \ in_mst, MST, ANS};\r\n}\n#line 6 \"test/aoj/GRL_2_A.test.cpp\"\n\nvoid solve()\
+    \ {\n  LL(N, M);\n  Graph G(N);\n  G.read_graph(M, 1, 0);\n  auto [cost, in_mst,\
+    \ tree] = minimum_spanning_tree(G);\n  print(cost);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/minimum_spanning_tree.hpp\"\
     \n\nvoid solve() {\n  LL(N, M);\n  Graph G(N);\n  G.read_graph(M, 1, 0);\n  auto\
@@ -554,8 +554,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_2_A.test.cpp
   requiredBy: []
-  timestamp: '2023-11-30 16:31:51+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-01 04:47:59+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/GRL_2_A.test.cpp
 layout: document

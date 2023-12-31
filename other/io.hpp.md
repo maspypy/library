@@ -150,7 +150,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_C.test.cpp
     title: test/aoj/GRL_1_C.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -390,6 +390,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_freq.test.cpp
     title: test/library_checker/datastructure/static_range_freq.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/static_range_frequency.test.cpp
+    title: test/library_checker/datastructure/static_range_frequency.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
     title: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
@@ -831,6 +834,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/lca_fast.test.cpp
     title: test/library_checker/tree/lca_fast.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/tree/mst.test.cpp
+    title: test/library_checker/tree/mst.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/rerooting_dp.test.cpp
     title: test/library_checker/tree/rerooting_dp.test.cpp
@@ -1806,7 +1812,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc269ex2.test.cpp
     title: test_atcoder/abc269ex2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc270_f.test.cpp
     title: test_atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2319,6 +2325,7 @@ data:
   - test/library_checker/datastructure/sort_segtree.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
+  - test/library_checker/datastructure/static_range_frequency.test.cpp
   - test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
   - test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
@@ -2364,6 +2371,7 @@ data:
   - test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
   - test/library_checker/tree/cartesian_tree.test.cpp
+  - test/library_checker/tree/mst.test.cpp
   - test/library_checker/tree/lca_fast.test.cpp
   - test/library_checker/tree/tree_diameter.test.cpp
   - test/library_checker/tree/lca_directed.test.cpp
