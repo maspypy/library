@@ -502,6 +502,9 @@ data:
     path: test/mytest/splay_monoid.test.cpp
     title: test/mytest/splay_monoid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/st_numbering.test.cpp
+    title: test/mytest/st_numbering.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/stern_brocot.test.cpp
     title: test/mytest/stern_brocot.test.cpp
   - icon: ':heavy_check_mark:'
@@ -855,6 +858,7 @@ data:
   - test/mytest/maxplus_concave.test.cpp
   - test/mytest/wavelet_matrix.test.cpp
   - test/mytest/rbst_monoid_2.test.cpp
+  - test/mytest/st_numbering.test.cpp
   - test/mytest/conv_leq.test.cpp
   - test/mytest/min_poly.test.cpp
   - test/mytest/online_exp.test.cpp

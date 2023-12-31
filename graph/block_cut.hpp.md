@@ -13,6 +13,9 @@ data:
     path: test/library_checker/graph/biconnected_component.test.cpp
     title: test/library_checker/graph/biconnected_component.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/st_numbering.test.cpp
+    title: test/mytest/st_numbering.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1326.test.cpp
     title: test/yukicoder/1326.test.cpp
   - icon: ':heavy_check_mark:'
@@ -141,6 +144,7 @@ data:
   verifiedWith:
   - test/aoj/GRL_3_A.test.cpp
   - test/library_checker/graph/biconnected_component.test.cpp
+  - test/mytest/st_numbering.test.cpp
   - test/yukicoder/1326.test.cpp
   - test_atcoder/arc153f.test.cpp
 documentation_of: graph/block_cut.hpp

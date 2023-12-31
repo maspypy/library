@@ -15,6 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/tree_diameter.test.cpp
     title: test/library_checker/tree/tree_diameter.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/st_numbering.test.cpp
+    title: test/mytest/st_numbering.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -37,6 +40,7 @@ data:
   verifiedWith:
   - test/library_checker/tree/tree_diameter.test.cpp
   - test/library_checker/graph/shortest_path.test.cpp
+  - test/mytest/st_numbering.test.cpp
 documentation_of: graph/shortest_path/restore_path.hpp
 layout: document
 redirect_from:

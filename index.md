@@ -802,6 +802,9 @@ data:
       path: graph/scc_tounament_by_indegrees.hpp
       title: graph/scc_tounament_by_indegrees.hpp
     - icon: ':heavy_check_mark:'
+      path: graph/st_numbering.hpp
+      title: graph/st_numbering.hpp
+    - icon: ':heavy_check_mark:'
       path: graph/stable_matching.hpp
       title: graph/stable_matching.hpp
     - icon: ':heavy_check_mark:'
@@ -3073,6 +3076,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/splay_monoid.test.cpp
       title: test/mytest/splay_monoid.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/st_numbering.test.cpp
+      title: test/mytest/st_numbering.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/stern_brocot.test.cpp
       title: test/mytest/stern_brocot.test.cpp

@@ -210,6 +210,9 @@ data:
     path: graph/shortest_path/warshall_floyd.hpp
     title: graph/shortest_path/warshall_floyd.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/st_numbering.hpp
+    title: graph/st_numbering.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/steiner_tree.hpp
     title: graph/steiner_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -468,6 +471,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/scc_tournament.test.cpp
     title: test/mytest/scc_tournament.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/st_numbering.test.cpp
+    title: test/mytest/st_numbering.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
@@ -911,6 +917,7 @@ data:
   - graph/tree_of_unionfind.hpp
   - graph/directed_mst.hpp
   - graph/centroid_decomposition_old.hpp
+  - graph/st_numbering.hpp
   - graph/find_centroid.hpp
   - graph/compress_tree.hpp
   - graph/tree_walk_generating_function.hpp
@@ -1009,6 +1016,7 @@ data:
   - test/mytest/QOJ5445.test.cpp
   - test/mytest/mo_on_tree.test.cpp
   - test/mytest/count_clique.test.cpp
+  - test/mytest/st_numbering.test.cpp
   - test/mytest/tutte.test.cpp
   - test/mytest/matching_ve.test.cpp
   - test/mytest/matching_line_graph.test.cpp

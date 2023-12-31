@@ -109,6 +109,9 @@ data:
     path: test/mytest/matching_ve.test.cpp
     title: test/mytest/matching_ve.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/st_numbering.test.cpp
+    title: test/mytest/st_numbering.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/tree_walk_gf.test.cpp
     title: test/mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
@@ -263,6 +266,7 @@ data:
   - test/library_checker/graph/directed_mst.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp
   - test/mytest/count_clique.test.cpp
+  - test/mytest/st_numbering.test.cpp
   - test/mytest/tutte.test.cpp
   - test/mytest/matching_ve.test.cpp
   - test/mytest/matching_line_graph.test.cpp

@@ -46,6 +46,9 @@ data:
     path: test/library_checker/tree/tree_diameter.test.cpp
     title: test/library_checker/tree/tree_diameter.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/st_numbering.test.cpp
+    title: test/mytest/st_numbering.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/tree_walk_gf.test.cpp
     title: test/mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
@@ -192,6 +195,7 @@ data:
   - test/library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
   - test/library_checker/tree/tree_diameter.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
+  - test/mytest/st_numbering.test.cpp
   - test/mytest/tree_walk_gf.test.cpp
   - test/yukicoder/1718.test.cpp
   - test/yukicoder/1038.test.cpp

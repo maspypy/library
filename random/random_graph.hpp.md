@@ -28,6 +28,9 @@ data:
     path: test/mytest/matching_ve.test.cpp
     title: test/mytest/matching_ve.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/st_numbering.test.cpp
+    title: test/mytest/st_numbering.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/tree_walk_gf.test.cpp
     title: test/mytest/tree_walk_gf.test.cpp
   _isVerificationFailed: false
@@ -145,6 +148,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/count_clique.test.cpp
+  - test/mytest/st_numbering.test.cpp
   - test/mytest/matching_ve.test.cpp
   - test/mytest/matching_line_graph.test.cpp
   - test/mytest/find_odd_cycle.test.cpp
