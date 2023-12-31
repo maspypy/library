@@ -3,8 +3,10 @@
 // simple graph を仮定
 template <typename GT>
 ll count_K4(GT& G) {
+  static_assert(!GT::is_directed);
+  assert(G.is_prepared());
   const int N = G.N;
-  Graph<bool, 1> DAG(N);
+  Graph<int, 1> DAG(N);
   {
     auto deg = G.deg_array();
     auto comp = [&](int a, int b) -> bool {
