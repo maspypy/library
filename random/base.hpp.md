@@ -316,6 +316,9 @@ data:
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/geometric_sequence_sum.test.cpp
+    title: test/mytest/geometric_sequence_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/is_substring.test.cpp
     title: test/mytest/is_substring.test.cpp
   - icon: ':heavy_check_mark:'
@@ -859,6 +862,7 @@ data:
   - test/mytest/matching_ve.test.cpp
   - test/mytest/31bit_modint.test.cpp
   - test/mytest/online_division.test.cpp
+  - test/mytest/geometric_sequence_sum.test.cpp
   - test/mytest/max_min.test.cpp
   - test/mytest/range_closest_pair.test.cpp
   - test/mytest/minidx_add.test.cpp

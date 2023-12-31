@@ -1,50 +1,50 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/dual_segtree.hpp
     title: ds/segtree/dual_segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc270/tasks/abc270_f
@@ -529,38 +529,38 @@ data:
     \ in_mst, MST, ANS};\r\n}\n#line 6 \"test_atcoder/abc270_f.test.cpp\"\n\nvoid\
     \ solve() {\n  LL(N, M);\n  VEC(ll, X, N);\n  VEC(ll, Y, N);\n  using T = tuple<int,\
     \ int, int>;\n  VEC(T, dat, M);\n  for (auto&& [a, b, c]: dat) { --a, --b; }\n\
-    \n  vi cand;\n\n  {\n    Graph<ll> G(N);\n    for (auto&& [a, b, c]: dat) { G.add(a,\
-    \ b, c); }\n    G.build();\n    auto [val, used, tree] = minimum_spanning_tree(G);\n\
-    \    if (SUM<int>(used) == N - 1) cand.eb(val);\n  }\n  {\n    Graph<ll> G(N +\
-    \ 1);\n    FOR(i, N) G.add(i, N, X[i]);\n    for (auto&& [a, b, c]: dat) { G.add(a,\
-    \ b, c); }\n    G.build();\n    auto [val, used, tree] = minimum_spanning_tree(G);\n\
+    \n  vi cand;\n\n  {\n    Graph<int> G(N);\n    for (auto&& [a, b, c]: dat) { G.add(a,\
+    \ b, c); }\n    G.build();\n    auto [val, used, tree] = minimum_spanning_tree<ll>(G);\n\
+    \    if (SUM<int>(used) == N - 1) cand.eb(val);\n  }\n  {\n    Graph<int> G(N\
+    \ + 1);\n    FOR(i, N) G.add(i, N, X[i]);\n    for (auto&& [a, b, c]: dat) { G.add(a,\
+    \ b, c); }\n    G.build();\n    auto [val, used, tree] = minimum_spanning_tree<ll>(G);\n\
     \    if (SUM<int>(used) == N) cand.eb(val);\n    cand.eb(val);\n  }\n  {\n   \
-    \ Graph<ll> G(N + 1);\n    FOR(i, N) G.add(i, N, Y[i]);\n    for (auto&& [a, b,\
-    \ c]: dat) { G.add(a, b, c); }\n    G.build();\n    auto [val, used, tree] = minimum_spanning_tree(G);\n\
-    \    if (SUM<int>(used) == N) cand.eb(val);\n    cand.eb(val);\n  }\n  {\n   \
-    \ Graph<ll> G(N + 2);\n    FOR(i, N) G.add(i, N, X[i]);\n    FOR(i, N) G.add(i,\
-    \ N + 1, Y[i]);\n    for (auto&& [a, b, c]: dat) { G.add(a, b, c); }\n    G.build();\n\
-    \    auto [val, used, tree] = minimum_spanning_tree(G);\n    if (SUM<int>(used)\
-    \ == N + 1) cand.eb(val);\n  }\n\n  print(MIN(cand));\n}\n\nsigned main() {\n\
-    \  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\
-    \n  return 0;\n}\n"
+    \ Graph<int> G(N + 1);\n    FOR(i, N) G.add(i, N, Y[i]);\n    for (auto&& [a,\
+    \ b, c]: dat) { G.add(a, b, c); }\n    G.build();\n    auto [val, used, tree]\
+    \ = minimum_spanning_tree<ll>(G);\n    if (SUM<int>(used) == N) cand.eb(val);\n\
+    \    cand.eb(val);\n  }\n  {\n    Graph<int> G(N + 2);\n    FOR(i, N) G.add(i,\
+    \ N, X[i]);\n    FOR(i, N) G.add(i, N + 1, Y[i]);\n    for (auto&& [a, b, c]:\
+    \ dat) { G.add(a, b, c); }\n    G.build();\n    auto [val, used, tree] = minimum_spanning_tree<ll>(G);\n\
+    \    if (SUM<int>(used) == N + 1) cand.eb(val);\n  }\n\n  print(MIN(cand));\n\
+    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  //\
+    \ LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc270/tasks/abc270_f\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/minimum_spanning_tree.hpp\"\
     \n#include \"graph/base.hpp\"\n\nvoid solve() {\n  LL(N, M);\n  VEC(ll, X, N);\n\
     \  VEC(ll, Y, N);\n  using T = tuple<int, int, int>;\n  VEC(T, dat, M);\n  for\
-    \ (auto&& [a, b, c]: dat) { --a, --b; }\n\n  vi cand;\n\n  {\n    Graph<ll> G(N);\n\
+    \ (auto&& [a, b, c]: dat) { --a, --b; }\n\n  vi cand;\n\n  {\n    Graph<int> G(N);\n\
     \    for (auto&& [a, b, c]: dat) { G.add(a, b, c); }\n    G.build();\n    auto\
-    \ [val, used, tree] = minimum_spanning_tree(G);\n    if (SUM<int>(used) == N -\
-    \ 1) cand.eb(val);\n  }\n  {\n    Graph<ll> G(N + 1);\n    FOR(i, N) G.add(i,\
+    \ [val, used, tree] = minimum_spanning_tree<ll>(G);\n    if (SUM<int>(used) ==\
+    \ N - 1) cand.eb(val);\n  }\n  {\n    Graph<int> G(N + 1);\n    FOR(i, N) G.add(i,\
     \ N, X[i]);\n    for (auto&& [a, b, c]: dat) { G.add(a, b, c); }\n    G.build();\n\
-    \    auto [val, used, tree] = minimum_spanning_tree(G);\n    if (SUM<int>(used)\
-    \ == N) cand.eb(val);\n    cand.eb(val);\n  }\n  {\n    Graph<ll> G(N + 1);\n\
+    \    auto [val, used, tree] = minimum_spanning_tree<ll>(G);\n    if (SUM<int>(used)\
+    \ == N) cand.eb(val);\n    cand.eb(val);\n  }\n  {\n    Graph<int> G(N + 1);\n\
     \    FOR(i, N) G.add(i, N, Y[i]);\n    for (auto&& [a, b, c]: dat) { G.add(a,\
-    \ b, c); }\n    G.build();\n    auto [val, used, tree] = minimum_spanning_tree(G);\n\
+    \ b, c); }\n    G.build();\n    auto [val, used, tree] = minimum_spanning_tree<ll>(G);\n\
     \    if (SUM<int>(used) == N) cand.eb(val);\n    cand.eb(val);\n  }\n  {\n   \
-    \ Graph<ll> G(N + 2);\n    FOR(i, N) G.add(i, N, X[i]);\n    FOR(i, N) G.add(i,\
+    \ Graph<int> G(N + 2);\n    FOR(i, N) G.add(i, N, X[i]);\n    FOR(i, N) G.add(i,\
     \ N + 1, Y[i]);\n    for (auto&& [a, b, c]: dat) { G.add(a, b, c); }\n    G.build();\n\
-    \    auto [val, used, tree] = minimum_spanning_tree(G);\n    if (SUM<int>(used)\
+    \    auto [val, used, tree] = minimum_spanning_tree<ll>(G);\n    if (SUM<int>(used)\
     \ == N + 1) cand.eb(val);\n  }\n\n  print(MIN(cand));\n}\n\nsigned main() {\n\
     \  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\
     \n  return 0;\n}\n"
@@ -581,8 +581,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc270_f.test.cpp
   requiredBy: []
-  timestamp: '2024-01-01 04:47:59+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-01 05:05:44+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc270_f.test.cpp
 layout: document

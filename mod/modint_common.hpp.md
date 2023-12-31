@@ -59,7 +59,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':heavy_check_mark:'
@@ -104,7 +104,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -128,19 +128,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':heavy_check_mark:'
     path: poly/fps_inv_2d.hpp
     title: poly/fps_inv_2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -260,7 +260,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   - icon: ':heavy_check_mark:'
@@ -381,7 +381,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/sort_segtree_1.test.cpp
     title: test/library_checker/datastructure/sort_segtree_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_frequency.test.cpp
     title: test/library_checker/datastructure/static_range_frequency.test.cpp
   - icon: ':heavy_check_mark:'
@@ -648,6 +648,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/floor_sum_of_polynomial.test.cpp
     title: test/mytest/floor_sum_of_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/geometric_sequence_sum.test.cpp
+    title: test/mytest/geometric_sequence_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/graph_count.test.cpp
     title: test/mytest/graph_count.test.cpp
@@ -1155,7 +1158,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc105.test.cpp
     title: test_atcoder/arc105.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc130f.test.cpp
     title: test_atcoder/arc130f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1173,9 +1176,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -1350,7 +1353,7 @@ data:
   - poly/fps_inv_2d.hpp
   - poly/fps_log.hpp
   timestamp: '2023-11-01 19:15:19+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/NTL_2_C.test.cpp
   - test/aoj/NTL_2_B.test.cpp
@@ -1486,6 +1489,7 @@ data:
   - test/mytest/catalan_convolution.test.cpp
   - test/mytest/31bit_modint.test.cpp
   - test/mytest/online_division.test.cpp
+  - test/mytest/geometric_sequence_sum.test.cpp
   - test/mytest/bell.test.cpp
   - test/mytest/composition_log_1_minus_x.test.cpp
   - test/mytest/splay.test.cpp

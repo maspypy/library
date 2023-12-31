@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -75,6 +75,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/31bit_modint.test.cpp
     title: test/mytest/31bit_modint.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/geometric_sequence_sum.test.cpp
+    title: test/mytest/geometric_sequence_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
@@ -336,6 +339,7 @@ data:
   - test/library_checker/polynomial/inv_of_fps.test.cpp
   - test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
   - test/mytest/31bit_modint.test.cpp
+  - test/mytest/geometric_sequence_sum.test.cpp
   - test/yukicoder/1667.test.cpp
   - test/yukicoder/1339.test.cpp
   - test_atcoder/abc270_g.test.cpp

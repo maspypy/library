@@ -8,10 +8,13 @@ data:
     path: ds/to_small_key.hpp
     title: ds/to_small_key.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/static_range_frequency.test.cpp
+    title: test/library_checker/datastructure/static_range_frequency.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/static_range_frequency.hpp\"\n\n#line 2 \"ds/hashmap.hpp\"\
@@ -75,8 +78,9 @@ data:
   path: ds/static_range_frequency.hpp
   requiredBy: []
   timestamp: '2023-11-21 19:08:32+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/library_checker/datastructure/static_range_frequency.test.cpp
 documentation_of: ds/static_range_frequency.hpp
 layout: document
 redirect_from:

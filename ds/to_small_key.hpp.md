@@ -5,13 +5,16 @@ data:
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: ds/static_range_frequency.hpp
     title: ds/static_range_frequency.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_freq.test.cpp
     title: test/library_checker/datastructure/static_range_freq.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/static_range_frequency.test.cpp
+    title: test/library_checker/datastructure/static_range_frequency.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -59,6 +62,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/static_range_freq.test.cpp
+  - test/library_checker/datastructure/static_range_frequency.test.cpp
 documentation_of: ds/to_small_key.hpp
 layout: document
 redirect_from:

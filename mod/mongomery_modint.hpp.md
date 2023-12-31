@@ -178,6 +178,9 @@ data:
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/geometric_sequence_sum.test.cpp
+    title: test/mytest/geometric_sequence_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/three_square.test.cpp
     title: test/mytest/three_square.test.cpp
   - icon: ':heavy_check_mark:'
@@ -370,6 +373,7 @@ data:
   - test/mytest/four_square.test.cpp
   - test/mytest/count_bipartite.test.cpp
   - test/mytest/31bit_modint.test.cpp
+  - test/mytest/geometric_sequence_sum.test.cpp
   - test/mytest/three_square.test.cpp
   - test/yukicoder/1667.test.cpp
   - test/yukicoder/1728.test.cpp

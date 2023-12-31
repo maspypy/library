@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':heavy_check_mark:'
@@ -77,7 +77,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   - icon: ':heavy_check_mark:'
@@ -87,9 +87,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_1_D.test.cpp
     title: test/aoj/NTL_1_D.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/datastructure/static_range_frequency.test.cpp
-    title: test/library_checker/datastructure/static_range_frequency.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/counting_primes.test.cpp
     title: test/library_checker/math/counting_primes.test.cpp
@@ -228,9 +225,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
@@ -289,7 +286,7 @@ data:
   - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - poly/composition_f_1_minus_ex.hpp
   timestamp: '2023-08-06 03:59:07+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/NTL_1_D.test.cpp
   - test/library_checker/math/enumerate_primes.test.cpp
@@ -303,7 +300,6 @@ data:
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/lcm_convolution.test.cpp
   - test/library_checker/math/counting_primes.test.cpp
-  - test/library_checker/datastructure/static_range_frequency.test.cpp
   - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
   - test/mytest/eulerian_number.test.cpp
   - test/mytest/composition_1_minus_ex.test.cpp

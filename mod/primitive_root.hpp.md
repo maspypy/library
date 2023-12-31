@@ -91,6 +91,9 @@ data:
     path: test/mytest/31bit_modint.test.cpp
     title: test/mytest/31bit_modint.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/geometric_sequence_sum.test.cpp
+    title: test/mytest/geometric_sequence_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
   - icon: ':heavy_check_mark:'
@@ -269,6 +272,7 @@ data:
   - test/library_checker/polynomial/inv_of_fps.test.cpp
   - test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
   - test/mytest/31bit_modint.test.cpp
+  - test/mytest/geometric_sequence_sum.test.cpp
   - test/yukicoder/1667.test.cpp
   - test/yukicoder/2120.test.cpp
   - test/yukicoder/1783.test.cpp
