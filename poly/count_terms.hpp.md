@@ -29,7 +29,7 @@ data:
   - icon: ':warning:'
     path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
     title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
   - icon: ':heavy_check_mark:'
@@ -38,22 +38,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv_2d.hpp
     title: poly/fps_inv_2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -92,7 +92,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
   - icon: ':warning:'
@@ -426,18 +426,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc154f.test.cpp
     title: test_atcoder/arc154f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc160d.test.cpp
     title: test_atcoder/arc160d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
@@ -494,7 +494,7 @@ data:
   - poly/fps_inv_2d.hpp
   - poly/fps_log.hpp
   timestamp: '2022-05-02 13:06:30+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/library_checker/math/partition.test.cpp
