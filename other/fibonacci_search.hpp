@@ -1,6 +1,7 @@
+// returns: {fx, x}
 // [L, R) での極小値をひとつ求める、単峰は不要
 template <typename T, bool MINIMIZE, typename F>
-pair<ll, T> fibonacci_search(F f, ll L, ll R) {
+pair<T, ll> fibonacci_search(F f, ll L, ll R) {
   assert(L < R);
   --R;
   ll a = L, b = L + 1, c = L + 2, d = L + 3;
@@ -26,6 +27,6 @@ pair<ll, T> fibonacci_search(F f, ll L, ll R) {
   if (chmin(y, yb)) x = b;
   if (chmin(y, yc)) x = c;
   if (chmin(y, yd)) x = d;
-  if (MINIMIZE) return {x, y};
-  return {x, -y};
+  if (MINIMIZE) return {y, x};
+  return {-y, x};
 }
