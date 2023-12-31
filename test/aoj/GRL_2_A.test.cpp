@@ -6,20 +6,13 @@
 
 void solve() {
   LL(N, M);
-  Graph G(N);
+  Graph<int, 0> G(N);
   G.read_graph(M, 1, 0);
-  auto [cost, in_mst, tree] = minimum_spanning_tree(G);
+  auto [cost, in_mst, tree] = minimum_spanning_tree<ll>(G);
   print(cost);
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }
