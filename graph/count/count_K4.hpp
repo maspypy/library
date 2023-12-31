@@ -3,7 +3,6 @@
 // simple graph を仮定
 template <typename GT>
 ll count_K4(GT& G) {
-  assert(G.is_prepared() && !G.is_directed());
   const int N = G.N;
   Graph<bool, 1> DAG(N);
   {
