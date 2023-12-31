@@ -15,37 +15,37 @@ void solve() {
   vi cand;
 
   {
-    Graph<ll> G(N);
+    Graph<int> G(N);
     for (auto&& [a, b, c]: dat) { G.add(a, b, c); }
     G.build();
-    auto [val, used, tree] = minimum_spanning_tree(G);
+    auto [val, used, tree] = minimum_spanning_tree<ll>(G);
     if (SUM<int>(used) == N - 1) cand.eb(val);
   }
   {
-    Graph<ll> G(N + 1);
+    Graph<int> G(N + 1);
     FOR(i, N) G.add(i, N, X[i]);
     for (auto&& [a, b, c]: dat) { G.add(a, b, c); }
     G.build();
-    auto [val, used, tree] = minimum_spanning_tree(G);
+    auto [val, used, tree] = minimum_spanning_tree<ll>(G);
     if (SUM<int>(used) == N) cand.eb(val);
     cand.eb(val);
   }
   {
-    Graph<ll> G(N + 1);
+    Graph<int> G(N + 1);
     FOR(i, N) G.add(i, N, Y[i]);
     for (auto&& [a, b, c]: dat) { G.add(a, b, c); }
     G.build();
-    auto [val, used, tree] = minimum_spanning_tree(G);
+    auto [val, used, tree] = minimum_spanning_tree<ll>(G);
     if (SUM<int>(used) == N) cand.eb(val);
     cand.eb(val);
   }
   {
-    Graph<ll> G(N + 2);
+    Graph<int> G(N + 2);
     FOR(i, N) G.add(i, N, X[i]);
     FOR(i, N) G.add(i, N + 1, Y[i]);
     for (auto&& [a, b, c]: dat) { G.add(a, b, c); }
     G.build();
-    auto [val, used, tree] = minimum_spanning_tree(G);
+    auto [val, used, tree] = minimum_spanning_tree<ll>(G);
     if (SUM<int>(used) == N + 1) cand.eb(val);
   }
 
