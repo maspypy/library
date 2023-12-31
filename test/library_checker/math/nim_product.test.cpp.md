@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/nim_product.hpp
     title: nt/nim_product.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
