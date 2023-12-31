@@ -32,7 +32,8 @@ void test_sum() {
         mint ans = 0;
         mint pow = 1;
         FOR(i, n) { ans += pow, pow *= mint(r); }
-        assert(geometic_sequence_sum<mint>(r, n) == ans);
+        mint me = geometic_sequence_sum<mint>(r, n);
+        assert(ans == me);
       }
     }
   }
