@@ -420,8 +420,8 @@ data:
     \ = {i, A[i]};\n\n  CHT_monotone<ll, false> cht;\n  for (auto&& [L, R, a, b]:\
     \ Fenchel(XY, \"lower\", true)) {\n    if (L != -infty<ll>) { cht.add(L, b - a\
     \ * L); }\n    if (R != infty<ll>) { cht.add(R - 1, b - a * (R - 1)); }\n  }\n\
-    \n  FOR(i, N) A[i] = cht.query_monotone_inc(i);\n  print(SUM<ll>(A));\n}\n\nsigned\
-    \ main() {\n  solve();\n  return 0;\n}\n"
+    \n  FOR(i, N) A[i] = cht.query_monotone_inc(i).fi;\n  print(SUM<ll>(A));\n}\n\n\
+    signed main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/arc130/tasks/arc130_f\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
     \n#include \"convex/fenchel.hpp\"\n#include \"convex/cht_monotone.hpp\"\n\nusing\
@@ -429,7 +429,7 @@ data:
     \ XY(N);\n  FOR(i, N) XY[i] = {i, A[i]};\n\n  CHT_monotone<ll, false> cht;\n \
     \ for (auto&& [L, R, a, b]: Fenchel(XY, \"lower\", true)) {\n    if (L != -infty<ll>)\
     \ { cht.add(L, b - a * L); }\n    if (R != infty<ll>) { cht.add(R - 1, b - a *\
-    \ (R - 1)); }\n  }\n\n  FOR(i, N) A[i] = cht.query_monotone_inc(i);\n  print(SUM<ll>(A));\n\
+    \ (R - 1)); }\n  }\n\n  FOR(i, N) A[i] = cht.query_monotone_inc(i).fi;\n  print(SUM<ll>(A));\n\
     }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
@@ -443,7 +443,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/arc130f.test.cpp
   requiredBy: []
-  timestamp: '2023-12-21 22:18:31+09:00'
+  timestamp: '2024-01-01 04:23:34+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/arc130f.test.cpp
