@@ -1,12 +1,14 @@
+#define PROBLEM "https://judge.yosupo.jp/problem/static_range_frequency"
 #include "my_template.hpp"
 #include "other/io.hpp"
 
 #include "mod/modint.hpp"
-#include "seq/famous/stirling_number_2.hpp"
+#include "ds/static_range_frequency.hpp"
 
 void solve() {
-  LL(N, K);
-
+  LL(N, Q);
+  VEC(int, A, N);
+  Static_Range_Frequency<20> X(A);
   FOR(Q) {
     INT(l, r, x);
     print(X.query(l, r, x));
