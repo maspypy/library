@@ -23,7 +23,7 @@ void solve() {
     return res;
   };
 
-  auto [x, fx] = fibonacci_search<ll, false>(f, 0, len(I) + 1);
+  auto [fx, x] = fibonacci_search<ll, false>(f, 0, len(I) + 1);
   print(fx);
 }
 
