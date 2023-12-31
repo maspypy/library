@@ -407,6 +407,7 @@
 "test/mytest/splay_am.test.cpp": "2023-12-17 01:33:11 +0900",
 "test/mytest/splay_cm.test.cpp": "2023-12-17 01:33:11 +0900",
 "test/mytest/splay_monoid.test.cpp": "2023-12-17 01:33:11 +0900",
+"test/mytest/st_numbering.test.cpp": "2024-01-01 06:24:50 +0900",
 "test/mytest/stern_brocot.test.cpp": "2023-11-09 02:18:09 +0900",
 "test/mytest/subset_sum.test.cpp": "2023-12-21 22:18:31 +0900",
 "test/mytest/substring_abundant.test.cpp": "2023-11-09 02:18:09 +0900",
