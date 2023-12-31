@@ -50,7 +50,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/matrix_pow.hpp
     title: linalg/matrix_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
   - icon: ':warning:'
@@ -645,9 +645,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/floor_sum_of_polynomial.test.cpp
     title: test/mytest/floor_sum_of_polynomial.test.cpp
-  - icon: ':x:'
-    path: test/mytest/geometric_sequence_sum.test.cpp
-    title: test/mytest/geometric_sequence_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/graph_count.test.cpp
     title: test/mytest/graph_count.test.cpp
@@ -1485,7 +1482,6 @@ data:
   - test/mytest/catalan_convolution.test.cpp
   - test/mytest/31bit_modint.test.cpp
   - test/mytest/online_division.test.cpp
-  - test/mytest/geometric_sequence_sum.test.cpp
   - test/mytest/bell.test.cpp
   - test/mytest/composition_log_1_minus_x.test.cpp
   - test/mytest/splay.test.cpp

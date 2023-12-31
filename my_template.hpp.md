@@ -981,9 +981,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
-  - icon: ':x:'
-    path: test/mytest/geometric_sequence_sum.test.cpp
-    title: test/mytest/geometric_sequence_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/graph_count.test.cpp
     title: test/mytest/graph_count.test.cpp
@@ -2913,7 +2910,6 @@ data:
   - test/mytest/matching_ve.test.cpp
   - test/mytest/31bit_modint.test.cpp
   - test/mytest/online_division.test.cpp
-  - test/mytest/geometric_sequence_sum.test.cpp
   - test/mytest/max_min.test.cpp
   - test/mytest/floor_ceil.test.cpp
   - test/mytest/range_closest_pair.test.cpp

@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/binomial.hpp
     title: mod/binomial.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
   - icon: ':warning:'
@@ -23,13 +23,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
   - icon: ':heavy_check_mark:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':heavy_check_mark:'
@@ -138,9 +138,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
-  - icon: ':x:'
-    path: test/mytest/geometric_sequence_sum.test.cpp
-    title: test/mytest/geometric_sequence_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/three_square.test.cpp
     title: test/mytest/three_square.test.cpp
@@ -195,9 +192,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp
@@ -258,7 +255,7 @@ data:
   - poly/multivar_convolution_cyclic.hpp
   - poly/fps_sqrt.hpp
   timestamp: '2023-10-17 07:10:25+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/matrix/det_mod.test.cpp
   - test/library_checker/matrix/matrix_det.test.cpp
@@ -288,7 +285,6 @@ data:
   - test/mytest/four_square.test.cpp
   - test/mytest/count_bipartite.test.cpp
   - test/mytest/31bit_modint.test.cpp
-  - test/mytest/geometric_sequence_sum.test.cpp
   - test/mytest/three_square.test.cpp
   - test/yukicoder/1667.test.cpp
   - test/yukicoder/1593.test.cpp
