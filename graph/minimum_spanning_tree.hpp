@@ -7,21 +7,21 @@
 #include "alg/monoid/max.hpp"
 
 // return : {T mst_cost, vc<bool> in_mst, Graph MST}
-template <typename T>
-tuple<T, vc<bool>, Graph<T>> minimum_spanning_tree(Graph<T>& G) {
+template <typename T, typename GT>
+tuple<T, vc<bool>, GT> minimum_spanning_tree(GT& G) {
   int N = G.N;
   int M = len(G.edges);
-  vc<pair<T, int>> edges;
-  FOR(i, M) {
-    auto& e = G.edges[i];
-    edges.eb(e.cost, i);
-  }
-  sort(all(edges));
+  vc<int> I(M);
+  FOR(i, M) I[i] = i;
+  sort(all(I), [&](auto& a, auto& b) -> bool {
+    return (G.edges[a].cost) < (G.edges[b].cost);
+  });
+
   vc<bool> in_mst(M);
   UnionFind uf(N);
   T mst_cost = T(0);
-  Graph<T> MST(N);
-  for (auto&& [cost, i]: edges) {
+  GT MST(N);
+  for (auto& i: I) {
     auto& e = G.edges[i];
     if (uf.merge(e.frm, e.to)) {
       in_mst[i] = 1;
@@ -39,12 +39,11 @@ tuple<T, vc<bool>, Graph<T>> minimum_spanning_tree(Graph<T>& G) {
 // https://codeforces.com/contest/828/problem/F
 // return : {T mst_cost, vc<bool> in_mst, Graph MST, vc<T> dat}
 // dat : 辺ごとに、他の辺を保ったときに MST 辺になる最大重み
-template <typename T>
-tuple<T, vc<bool>, Graph<T>, vc<T>> minimum_spanning_tree_cycle_data(
-    Graph<T> G) {
+template <typename T, typename GT>
+tuple<T, vc<bool>, GT, vc<T>> minimum_spanning_tree_cycle_data(GT& G) {
   int M = len(G.edges);
   auto [mst_cost, in_mst, MST] = minimum_spanning_tree(G);
-  Tree<decltype(G)> tree(MST);
+  Tree<GT> tree(MST);
   vc<T> dat;
   FOR(i, M) if (in_mst[i]) dat.eb(G.edges[i].cost);
   Tree_Monoid<decltype(tree), Monoid_Max<T>, 1> TM1(tree, dat);
