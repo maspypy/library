@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/product.hpp
     title: enumerate/product.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/fibonacci_search.hpp
     title: other/fibonacci_search.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -121,16 +121,16 @@ data:
     \ p);\n      p.pop_back();\n    }\n  };\n  vc<int> p;\n  dfs(dfs, p);\n}\n#line\
     \ 5 \"test/mytest/fibonacci_search.test.cpp\"\n\nvoid test() {\n  // permutation\n\
     \  FOR(N, 1, 10) {\n    vc<int> A(N);\n    iota(all(A), 0);\n    do {\n      auto\
-    \ f = [&](int i) -> int { return A[i]; };\n      auto [i, y] = fibonacci_search<int,\
+    \ f = [&](int i) -> int { return A[i]; };\n      auto [y, i] = fibonacci_search<int,\
     \ true>(f, 0, N);\n      assert(0 <= i && i < N);\n      if (0 < i) assert(A[i]\
     \ < A[i - 1]);\n      if (i + 1 < N) assert(A[i] < A[i + 1]);\n    } while (next_permutation(all(A)));\n\
     \  }\n  // [0,1]\n  FOR(N, 1, 18) {\n    FOR(s, 1 << N) {\n      vc<int> A(N);\n\
     \      FOR(i, N) A[i] = s >> i & 1;\n      auto f = [&](int i) -> int { return\
-    \ A[i]; };\n      auto [i, y] = fibonacci_search<int, true>(f, 0, N);\n      assert(0\
+    \ A[i]; };\n      auto [y, i] = fibonacci_search<int, true>(f, 0, N);\n      assert(0\
     \ <= i && i < N);\n      if (0 < i) assert(A[i] <= A[i - 1]);\n      if (i + 1\
     \ < N) assert(A[i] <= A[i + 1]);\n    }\n  }\n  // [0,1,2]\n  FOR(N, 1, 13) {\n\
     \    enumerate_product(vc<int>(N, 3), [&](vc<int> A) -> void {\n      auto f =\
-    \ [&](int i) -> int { return A[i]; };\n      auto [i, y] = fibonacci_search<int,\
+    \ [&](int i) -> int { return A[i]; };\n      auto [y, i] = fibonacci_search<int,\
     \ true>(f, 0, N);\n      assert(0 <= i && i < N);\n      if (0 < i) assert(A[i]\
     \ <= A[i - 1]);\n      if (i + 1 < N) assert(A[i] <= A[i + 1]);\n    });\n  }\n\
     }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
@@ -139,16 +139,16 @@ data:
     \n#include \"other/fibonacci_search.hpp\"\n#include \"enumerate/product.hpp\"\n\
     \nvoid test() {\n  // permutation\n  FOR(N, 1, 10) {\n    vc<int> A(N);\n    iota(all(A),\
     \ 0);\n    do {\n      auto f = [&](int i) -> int { return A[i]; };\n      auto\
-    \ [i, y] = fibonacci_search<int, true>(f, 0, N);\n      assert(0 <= i && i < N);\n\
+    \ [y, i] = fibonacci_search<int, true>(f, 0, N);\n      assert(0 <= i && i < N);\n\
     \      if (0 < i) assert(A[i] < A[i - 1]);\n      if (i + 1 < N) assert(A[i] <\
     \ A[i + 1]);\n    } while (next_permutation(all(A)));\n  }\n  // [0,1]\n  FOR(N,\
     \ 1, 18) {\n    FOR(s, 1 << N) {\n      vc<int> A(N);\n      FOR(i, N) A[i] =\
     \ s >> i & 1;\n      auto f = [&](int i) -> int { return A[i]; };\n      auto\
-    \ [i, y] = fibonacci_search<int, true>(f, 0, N);\n      assert(0 <= i && i < N);\n\
+    \ [y, i] = fibonacci_search<int, true>(f, 0, N);\n      assert(0 <= i && i < N);\n\
     \      if (0 < i) assert(A[i] <= A[i - 1]);\n      if (i + 1 < N) assert(A[i]\
     \ <= A[i + 1]);\n    }\n  }\n  // [0,1,2]\n  FOR(N, 1, 13) {\n    enumerate_product(vc<int>(N,\
     \ 3), [&](vc<int> A) -> void {\n      auto f = [&](int i) -> int { return A[i];\
-    \ };\n      auto [i, y] = fibonacci_search<int, true>(f, 0, N);\n      assert(0\
+    \ };\n      auto [y, i] = fibonacci_search<int, true>(f, 0, N);\n      assert(0\
     \ <= i && i < N);\n      if (0 < i) assert(A[i] <= A[i - 1]);\n      if (i + 1\
     \ < N) assert(A[i] <= A[i + 1]);\n    });\n  }\n}\n\nvoid solve() {\n  int a,\
     \ b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
@@ -160,8 +160,8 @@ data:
   isVerificationFile: true
   path: test/mytest/fibonacci_search.test.cpp
   requiredBy: []
-  timestamp: '2024-01-01 07:01:30+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-01 07:25:48+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/fibonacci_search.test.cpp
 layout: document

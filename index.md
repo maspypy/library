@@ -527,7 +527,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: enumerate/partition.hpp
       title: enumerate/partition.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: enumerate/product.hpp
       title: enumerate/product.hpp
     - icon: ':heavy_check_mark:'
@@ -1218,7 +1218,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
   - name: new_poly
@@ -1356,7 +1356,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/dice.hpp
       title: other/dice.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/fibonacci_search.hpp
       title: other/fibonacci_search.hpp
     - icon: ':heavy_check_mark:'
@@ -2821,7 +2821,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/fenwick_raq.test.cpp
       title: test/mytest/fenwick_raq.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/fibonacci_search.test.cpp
       title: test/mytest/fibonacci_search.test.cpp
     - icon: ':heavy_check_mark:'

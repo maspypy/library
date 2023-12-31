@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/factorial107.hpp
     title: mod/factorial107.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
