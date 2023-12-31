@@ -2,13 +2,14 @@
 // sum_{i=0}^{n-1}r^i
 template <typename T>
 T geometic_sequence_sum(T r, ll n) {
+  if (n == 0) return T(0);
   // (r^n, 1+...+r^{n-1})
   auto dfs = [&](auto& dfs, ll n) -> pair<T, T> {
-    if (n == 0) return {r, T(0)};
+    if (n == 1) return {r, 1};
     auto [x, y] = dfs(dfs, n / 2);
     tie(x, y) = mp(x * x, x * y + y);
-    if (n & 1) { tie(x, y) = mp(x * r, y + x); }
-    return {x, y};
+    if (n % 2 == 0) return {x, y};
+    return {x * r, y + x};
   };
   return dfs(dfs, n).se;
 }
