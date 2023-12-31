@@ -23,6 +23,21 @@ void test() {
   }
 }
 
+void test_sum() {
+  using mint = dmint;
+  FOR(p, 1, 50) {
+    FOR(r, 50) {
+      FOR(n, 50) {
+        mint::set_mod(p);
+        mint ans = 0;
+        mint pow = 1;
+        FOR(i, n) { ans += pow, pow *= mint(r); }
+        assert(geometic_sequence_sum<mint>(r, n) == ans);
+      }
+    }
+  }
+}
+
 void solve() {
   int a, b;
   cin >> a >> b;
@@ -35,6 +50,7 @@ signed main() {
   test<2>();
   test<3>();
   test<4>();
+  test_sum();
   solve();
   return 0;
 }
