@@ -20,7 +20,7 @@ void solve() {
     if (R != infty<ll>) { cht.add(R - 1, b - a * (R - 1)); }
   }
 
-  FOR(i, N) A[i] = cht.query_monotone_inc(i);
+  FOR(i, N) A[i] = cht.query_monotone_inc(i).fi;
   print(SUM<ll>(A));
 }
 
