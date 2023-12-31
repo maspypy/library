@@ -90,6 +90,9 @@ data:
     path: graph/ds/range_edge_connected_component_query.hpp
     title: graph/ds/range_edge_connected_component_query.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/ds/remove_one_edge_connectivity.hpp
+    title: graph/ds/remove_one_edge_connectivity.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
   - icon: ':heavy_check_mark:'
@@ -468,6 +471,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/mo_on_tree.test.cpp
     title: test/mytest/mo_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/remove_one_edge.test.cpp
+    title: test/mytest/remove_one_edge.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/scc_tournament.test.cpp
     title: test/mytest/scc_tournament.test.cpp
@@ -885,6 +891,7 @@ data:
   - graph/ds/tree_monoid.hpp
   - graph/ds/tree_wavelet_matrix.hpp
   - graph/ds/mo_on_tree.hpp
+  - graph/ds/remove_one_edge_connectivity.hpp
   - graph/ds/lazy_tree_monoid.hpp
   - graph/ds/range_edge_connected_component_query.hpp
   - graph/ds/dynamic_tree_dp.hpp
@@ -1021,6 +1028,7 @@ data:
   - test/mytest/matching_ve.test.cpp
   - test/mytest/matching_line_graph.test.cpp
   - test/mytest/find_odd_cycle.test.cpp
+  - test/mytest/remove_one_edge.test.cpp
   - test/mytest/count_indep_set.test.cpp
   - test/mytest/tree_walk_gf.test.cpp
   - test/yukicoder/1796.test.cpp

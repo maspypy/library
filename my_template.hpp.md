@@ -1186,6 +1186,9 @@ data:
     path: test/mytest/reduce_intervals.test.cpp
     title: test/mytest/reduce_intervals.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/remove_one_edge.test.cpp
+    title: test/mytest/remove_one_edge.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/run_length.test.cpp
     title: test/mytest/run_length.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2940,6 +2943,7 @@ data:
   - test/mytest/splay.test.cpp
   - test/mytest/matching_line_graph.test.cpp
   - test/mytest/find_odd_cycle.test.cpp
+  - test/mytest/remove_one_edge.test.cpp
   - test/mytest/max_max.test.cpp
   - test/mytest/primesum_mod4.test.cpp
   - test/mytest/sparse_pow_2d.test.cpp

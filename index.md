@@ -932,6 +932,9 @@ data:
       path: graph/ds/range_edge_connected_component_query.hpp
       title: graph/ds/range_edge_connected_component_query.hpp
     - icon: ':heavy_check_mark:'
+      path: graph/ds/remove_one_edge_connectivity.hpp
+      title: graph/ds/remove_one_edge_connectivity.hpp
+    - icon: ':heavy_check_mark:'
       path: graph/ds/static_toptree.hpp
       title: graph/ds/static_toptree.hpp
     - icon: ':heavy_check_mark:'
@@ -3040,6 +3043,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/reduce_intervals.test.cpp
       title: test/mytest/reduce_intervals.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/remove_one_edge.test.cpp
+      title: test/mytest/remove_one_edge.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/run_length.test.cpp
       title: test/mytest/run_length.test.cpp

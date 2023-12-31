@@ -475,6 +475,9 @@ data:
     path: test/mytest/reduce_intervals.test.cpp
     title: test/mytest/reduce_intervals.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/remove_one_edge.test.cpp
+    title: test/mytest/remove_one_edge.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/scc_tournament.test.cpp
     title: test/mytest/scc_tournament.test.cpp
   - icon: ':heavy_check_mark:'
@@ -878,6 +881,7 @@ data:
   - test/mytest/splay.test.cpp
   - test/mytest/matching_line_graph.test.cpp
   - test/mytest/find_odd_cycle.test.cpp
+  - test/mytest/remove_one_edge.test.cpp
   - test/mytest/max_max.test.cpp
   - test/mytest/summin_assign.test.cpp
   - test/mytest/binom.test.cpp
