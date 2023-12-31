@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/geometric_sequence_sum.hpp
     title: seq/geometric_sequence_sum.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -318,9 +318,13 @@ data:
     \ A = geometic_sequence_sum_K<mint, K>(r, n);\n        FOR(k, K + 1) {\n     \
     \     mint ans = 0;\n          mint pow = 1;\n          FOR(i, n) { ans += pow\
     \ * mint(i).pow(k), pow *= mint(r); }\n          assert(A[k] == ans);\n      \
-    \  }\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
-    \  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test<0>();\n  test<1>();\n\
-    \  test<2>();\n  test<3>();\n  test<4>();\n  solve();\n  return 0;\n}\n"
+    \  }\n      }\n    }\n  }\n}\n\nvoid test_sum() {\n  using mint = dmint;\n  FOR(p,\
+    \ 1, 50) {\n    FOR(r, 50) {\n      FOR(n, 50) {\n        mint::set_mod(p);\n\
+    \        mint ans = 0;\n        mint pow = 1;\n        FOR(i, n) { ans += pow,\
+    \ pow *= mint(r); }\n        assert(geometic_sequence_sum<mint>(r, n) == ans);\n\
+    \      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
+    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test<0>();\n  test<1>();\n  test<2>();\n\
+    \  test<3>();\n  test<4>();\n  test_sum();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"mod/dynamic_modint.hpp\"\n#include \"seq/geometric_sequence_sum.hpp\"\
     \n\ntemplate <int K>\nvoid test() {\n  using mint = dmint;\n  FOR(p, 1, 50) {\n\
@@ -328,9 +332,13 @@ data:
     \ A = geometic_sequence_sum_K<mint, K>(r, n);\n        FOR(k, K + 1) {\n     \
     \     mint ans = 0;\n          mint pow = 1;\n          FOR(i, n) { ans += pow\
     \ * mint(i).pow(k), pow *= mint(r); }\n          assert(A[k] == ans);\n      \
-    \  }\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
-    \  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test<0>();\n  test<1>();\n\
-    \  test<2>();\n  test<3>();\n  test<4>();\n  solve();\n  return 0;\n}"
+    \  }\n      }\n    }\n  }\n}\n\nvoid test_sum() {\n  using mint = dmint;\n  FOR(p,\
+    \ 1, 50) {\n    FOR(r, 50) {\n      FOR(n, 50) {\n        mint::set_mod(p);\n\
+    \        mint ans = 0;\n        mint pow = 1;\n        FOR(i, n) { ans += pow,\
+    \ pow *= mint(r); }\n        assert(geometic_sequence_sum<mint>(r, n) == ans);\n\
+    \      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
+    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test<0>();\n  test<1>();\n  test<2>();\n\
+    \  test<3>();\n  test<4>();\n  test_sum();\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - mod/dynamic_modint.hpp
@@ -346,8 +354,8 @@ data:
   isVerificationFile: true
   path: test/mytest/geometric_sequence_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-11-21 22:50:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-12-31 16:29:42+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/geometric_sequence_sum.test.cpp
 layout: document
