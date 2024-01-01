@@ -1,3 +1,4 @@
+#include "graph/base.hpp"
 #include "random/base.hpp"
 #include "random/shuffle.hpp"
 #include "ds/unionfind/unionfind.hpp"

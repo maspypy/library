@@ -10,7 +10,7 @@ void test() {
   FOR(N, 20) {
     FOR(1000) {
       Graph<int, 0> G(N);
-      for (auto& [a, b]: random_graph<false>(N, true)) G.add(a, b);
+      for (auto& [a, b]: random_graph<false>(N, false)) G.add(a, b);
       G.build();
       Remove_One_Vertex_Connectivity X(G);
       FOR(rm, N) {
