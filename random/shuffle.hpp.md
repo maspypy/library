@@ -19,6 +19,9 @@ data:
     path: test/aoj/CGL_5_A.test.cpp
     title: test/aoj/CGL_5_A.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/count_K4.test.cpp
+    title: test/mytest/count_K4.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_clique.test.cpp
     title: test/mytest/count_clique.test.cpp
   - icon: ':heavy_check_mark:'
@@ -79,6 +82,7 @@ data:
   - test/mytest/count_clique.test.cpp
   - test/mytest/st_numbering.test.cpp
   - test/mytest/matching_ve.test.cpp
+  - test/mytest/count_K4.test.cpp
   - test/mytest/matching_line_graph.test.cpp
   - test/mytest/find_odd_cycle.test.cpp
   - test/mytest/remove_one_edge.test.cpp

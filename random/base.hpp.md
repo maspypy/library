@@ -274,6 +274,9 @@ data:
     path: test/mytest/coprime_factorization.test.cpp
     title: test/mytest/coprime_factorization.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/count_K4.test.cpp
+    title: test/mytest/count_K4.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_bipartite.test.cpp
     title: test/mytest/count_bipartite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -877,6 +880,7 @@ data:
   - test/mytest/max_min.test.cpp
   - test/mytest/range_closest_pair.test.cpp
   - test/mytest/minidx_add.test.cpp
+  - test/mytest/count_K4.test.cpp
   - test/mytest/kdtree_nns.test.cpp
   - test/mytest/composition_log_1_minus_x.test.cpp
   - test/mytest/binary_trie.test.cpp

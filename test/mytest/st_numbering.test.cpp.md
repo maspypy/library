@@ -223,7 +223,7 @@ data:
     \ x) {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int\
     \ y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n \
     \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
-    \    return true;\n  }\n};\n#line 4 \"random/random_graph.hpp\"\n\nvoid random_relabel(int\
+    \    return true;\n  }\n};\n#line 5 \"random/random_graph.hpp\"\n\nvoid random_relabel(int\
     \ N, vc<pair<int, int>>& G) {\n  shuffle(G);\n  vc<int> A(N);\n  FOR(i, N) A[i]\
     \ = i;\n  shuffle(A);\n  for (auto& [a, b]: G) a = A[a], b = A[b];\n}\n\ntemplate\
     \ <int DIRECTED>\nvc<pair<int, int>> random_graph(int n, bool simple) {\n  vc<pair<int,\
@@ -364,7 +364,7 @@ data:
   isVerificationFile: true
   path: test/mytest/st_numbering.test.cpp
   requiredBy: []
-  timestamp: '2024-01-01 06:24:50+09:00'
+  timestamp: '2024-01-01 21:22:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/st_numbering.test.cpp

@@ -8,8 +8,8 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/ds/remove_one_edge_connectivity.hpp
-    title: graph/ds/remove_one_edge_connectivity.hpp
+    path: graph/count/count_K4.hpp
+    title: graph/count/count_K4.hpp
   - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
@@ -32,28 +32,28 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/remove_one_edge.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if\
-    \ defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n#pragma GCC optimize(\"\
-    Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\
-    \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
-    \ u64 = unsigned long long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
-    using f128 = __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate\
-    \ <>\nconstexpr int infty<int> = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll>\
-    \ = ll(infty<int>) * infty<int> * 2;\ntemplate <>\nconstexpr u32 infty<u32> =\
-    \ infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\ntemplate <>\n\
-    constexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\ntemplate <>\nconstexpr\
-    \ double infty<double> = infty<ll>;\ntemplate <>\nconstexpr long double infty<long\
-    \ double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
-    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
-    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
-    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
-    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
-    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+  bundledCode: "#line 1 \"test/mytest/count_K4.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
+    )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
+    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
+    using u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class T>\n\
+    constexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int> = 1'000'000'000;\n\
+    template <>\nconstexpr ll infty<ll> = ll(infty<int>) * infty<int> * 2;\ntemplate\
+    \ <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
+    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\n\
+    template <>\nconstexpr double infty<double> = infty<ll>;\ntemplate <>\nconstexpr\
+    \ long double infty<long double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing\
+    \ vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
+    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
+    \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
+    template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
+    #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
+    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
+    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
+    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
+    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
@@ -112,20 +112,20 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 3 \"test/mytest/remove_one_edge.test.cpp\"\n\n\
-    #line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int frm,\
-    \ to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool directed =\
-    \ false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n  int\
-    \ N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
-    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg,\
-    \ vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class OutgoingEdges {\n  public:\n\
-    \    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n   \
-    \ const edge_type* begin() const {\n      if (l == r) { return 0; }\n      return\
-    \ &G->csr_edges[l];\n    }\n\n    const edge_type* end() const {\n      if (l\
-    \ == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n  private:\n \
-    \   const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared;\
-    \ }\n\n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
-    \ {}\n\n  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
+    \  return B;\n}\n#endif\n#line 3 \"test/mytest/count_K4.test.cpp\"\n\n#line 2\
+    \ \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n\
+    \  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool directed = false>\n\
+    struct Graph {\n  static constexpr bool is_directed = directed;\n  int N, M;\n\
+    \  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n\
+    \  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg, vc_indeg,\
+    \ vc_outdeg;\n  bool prepared;\n\n  class OutgoingEdges {\n  public:\n    OutgoingEdges(const\
+    \ Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin()\
+    \ const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[l];\n \
+    \   }\n\n    const edge_type* end() const {\n      if (l == r) { return 0; }\n\
+    \      return &G->csr_edges[r];\n    }\n\n  private:\n    const Graph* G;\n  \
+    \  int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n\n  Graph() :\
+    \ N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n\
+    \  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
     \    indptr.clear();\n    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n\
     \    vc_outdeg.clear();\n  }\n\n  void add(int frm, int to, T cost = 1, int i\
     \ = -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <= to && to < N);\n\
@@ -226,55 +226,44 @@ data:
     \ {\n    vc<int>& V = A[i];\n    for (auto& v: V) v = new_idx[v];\n    if (len(V)\
     \ == 2) {\n      G.eb(V[0], V[1]);\n    } else {\n      FOR(k, len(V)) { G.eb(V[k],\
     \ V[(1 + k) % len(V)]); }\n    }\n  }\n  random_relabel(N, G);\n  return G;\n\
-    }\n#line 2 \"graph/ds/remove_one_edge_connectivity.hpp\"\n\n// 1 \u8FBA\u6D88\u3057\
-    \u305F\u3068\u304D\u306B\n// u,v \u304C\u9023\u7D50\u304B / \u9023\u7D50\u6210\
-    \u5206\u6570 / v \u306E\u9023\u7D50\u6210\u5206\u30B5\u30A4\u30BA\nstruct Remove_One_Edge_Connectivity\
-    \ {\n  int N, M;\n  int n_comp_base;\n  vc<pair<int, int>> edge;\n  vc<int> root;\n\
-    \  vc<int> LID, RID;\n  vc<bool> bridge;\n\n  template <typename GT>\n  Remove_One_Edge_Connectivity(GT&\
-    \ G) {\n    build(G);\n  }\n\n  template <typename GT>\n  void build(GT& G) {\n\
-    \    N = G.N, M = G.M;\n    edge.resize(M);\n    for (auto& e: G.edges) edge[e.id]\
-    \ = {e.frm, e.to};\n    root.assign(N, -1);\n    LID.assign(N, -1), RID.assign(N,\
-    \ -1);\n    bridge.assign(M, 0);\n    vc<int> low(N, -1);\n    n_comp_base = 0;\n\
-    \    int p = 0;\n    auto dfs = [&](auto& dfs, int v, int last_e) -> void {\n\
-    \      low[v] = LID[v] = p++;\n      for (auto&& e: G[v]) {\n        if (e.id\
-    \ == last_e) continue;\n        if (root[e.to] == -1) {\n          root[e.to]\
-    \ = root[v];\n          dfs(dfs, e.to, e.id);\n          chmin(low[v], low[e.to]);\n\
-    \          bridge[e.id] = (low[e.to] == LID[e.to]);\n        } else {\n      \
-    \    chmin(low[v], LID[e.to]);\n        }\n      }\n      RID[v] = p;\n    };\n\
-    \    FOR(v, N) {\n      if (root[v] == -1) { n_comp_base++, root[v] = v, dfs(dfs,\
-    \ v, -1); }\n    }\n    for (auto& [a, b]: edge) {\n      if (in_subtree(a, b))\
-    \ swap(a, b);\n    }\n  }\n\n  int n_comp(int eid) { return n_comp_base + (bridge[eid]\
-    \ ? 1 : 0); }\n\n  bool is_connected(int eid, int u, int v) {\n    if (root[u]\
-    \ != root[v]) return false;\n    if (!bridge[eid]) return true;\n    auto [a,\
-    \ b] = edge[eid];\n    return (in_subtree(u, b) == in_subtree(v, b));\n  }\n\n\
-    \  int size(int eid, int v) {\n    int r = root[v];\n    if (!bridge[eid]) { return\
-    \ subtree_size(r); }\n    auto [a, b] = edge[eid];\n    if (root[a] != r) { return\
-    \ subtree_size(r); }\n    if (in_subtree(v, b)) return subtree_size(b);\n    return\
-    \ subtree_size(r) - subtree_size(b);\n  }\n\nprivate:\n  bool in_subtree(int a,\
-    \ int b) { return LID[b] <= LID[a] && LID[a] < RID[b]; }\n  int subtree_size(int\
-    \ v) { return RID[v] - LID[v]; }\n};\n#line 7 \"test/mytest/remove_one_edge.test.cpp\"\
-    \n\nvoid test() {\n  FOR(N, 20) {\n    FOR(1000) {\n      Graph<int, 0> G(N);\n\
-    \      for (auto& [a, b]: random_graph<false>(N, false)) G.add(a, b);\n      G.build();\n\
-    \      Remove_One_Edge_Connectivity X(G);\n      FOR(e, G.M) {\n        UnionFind\
-    \ uf(N);\n        FOR(i, G.M) {\n          if (e != i) uf.merge(G.edges[i].frm,\
-    \ G.edges[i].to);\n        }\n        assert(X.n_comp(e) == (uf.n_comp));\n  \
-    \      FOR(u, N) FOR(v, N) {\n          assert(X.is_connected(e, u, v) == (uf[u]\
-    \ == uf[v]));\n        }\n        FOR(v, N) assert(X.size(e, v) == uf.size(v));\n\
-    \      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
-    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
-    \ 0;\n}\n"
+    }\n#line 1 \"graph/count/count_K4.hpp\"\n\n// M^{1.5} + M^2/w\n// simple graph\
+    \ \u3092\u4EEE\u5B9A\ntemplate <typename GT>\nll count_K4(GT& G) {\n  static_assert(!GT::is_directed);\n\
+    \  assert(G.is_prepared());\n  const int N = G.N;\n  Graph<int, 1> DAG(N);\n \
+    \ {\n    auto deg = G.deg_array();\n    auto comp = [&](int a, int b) -> bool\
+    \ {\n      return (deg[a] == deg[b] ? a < b : deg[a] < deg[b]);\n    };\n    for\
+    \ (auto&& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (!comp(a, b))\
+    \ swap(a, b);\n      DAG.add(a, b);\n    }\n    DAG.build();\n  }\n\n  vc<int>\
+    \ new_idx(N, -1);\n  ll ANS = 0;\n  FOR(a, N) {\n    vc<int> V;\n    for (auto&&\
+    \ e: DAG[a]) V.eb(e.to);\n    FOR(i, len(V)) new_idx[V[i]] = i;\n    int n = len(V);\n\
+    \    Graph<bool, 1> H(n);\n    FOR(i, n) {\n      for (auto&& e: DAG[V[i]]) {\n\
+    \        int j = new_idx[e.to];\n        if (j == -1) continue;\n        H.add(i,\
+    \ j);\n      }\n    }\n    H.build();\n    FOR(b, ceil(n, 64)) {\n      int L\
+    \ = 64 * b;\n      int R = L + 64;\n      chmin(R, n);\n      vc<u64> dp(n);\n\
+    \      FOR(i, L, R) {\n        for (auto&& e: H[i]) { dp[e.to] |= u64(1) << (i\
+    \ - L); }\n      }\n      for (auto&& e: H.edges) { ANS += popcnt(dp[e.frm] &\
+    \ dp[e.to]); }\n    }\n    FOR(i, len(V)) new_idx[V[i]] = -1;\n  }\n  return ANS;\n\
+    }\n#line 6 \"test/mytest/count_K4.test.cpp\"\n\nvoid test() {\n  FOR(N, 20) {\n\
+    \    FOR(1000) {\n      Graph<int, 0> G(N);\n      for (auto& [a, b]: random_graph<false>(N,\
+    \ true)) G.add(a, b);\n      G.build();\n      vv(int, adj, N, N);\n      for\
+    \ (auto& e: G.edges) adj[e.frm][e.to] = adj[e.to][e.frm] = 1;\n      ll ans =\
+    \ 0;\n      FOR(d, N) FOR(c, d) FOR(b, c) FOR(a, b) {\n        ll n = 0;\n   \
+    \     n += adj[a][b];\n        n += adj[a][c];\n        n += adj[a][d];\n    \
+    \    n += adj[b][c];\n        n += adj[b][d];\n        n += adj[c][d];\n     \
+    \   ans += n == 6;\n      }\n      ll x = count_K4(G);\n      assert(ans == x);\n\
+    \    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a +\
+    \ b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n\n#include \"random/random_graph.hpp\"\n#include \"ds/unionfind/unionfind.hpp\"\
-    \n#include \"graph/ds/remove_one_edge_connectivity.hpp\"\n\nvoid test() {\n  FOR(N,\
-    \ 20) {\n    FOR(1000) {\n      Graph<int, 0> G(N);\n      for (auto& [a, b]:\
-    \ random_graph<false>(N, false)) G.add(a, b);\n      G.build();\n      Remove_One_Edge_Connectivity\
-    \ X(G);\n      FOR(e, G.M) {\n        UnionFind uf(N);\n        FOR(i, G.M) {\n\
-    \          if (e != i) uf.merge(G.edges[i].frm, G.edges[i].to);\n        }\n \
-    \       assert(X.n_comp(e) == (uf.n_comp));\n        FOR(u, N) FOR(v, N) {\n \
-    \         assert(X.is_connected(e, u, v) == (uf[u] == uf[v]));\n        }\n  \
-    \      FOR(v, N) assert(X.size(e, v) == uf.size(v));\n      }\n    }\n  }\n}\n\
-    \nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n\
-    }\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    \n\n#include \"random/random_graph.hpp\"\n#include \"graph/count/count_K4.hpp\"\
+    \n\nvoid test() {\n  FOR(N, 20) {\n    FOR(1000) {\n      Graph<int, 0> G(N);\n\
+    \      for (auto& [a, b]: random_graph<false>(N, true)) G.add(a, b);\n      G.build();\n\
+    \      vv(int, adj, N, N);\n      for (auto& e: G.edges) adj[e.frm][e.to] = adj[e.to][e.frm]\
+    \ = 1;\n      ll ans = 0;\n      FOR(d, N) FOR(c, d) FOR(b, c) FOR(a, b) {\n \
+    \       ll n = 0;\n        n += adj[a][b];\n        n += adj[a][c];\n        n\
+    \ += adj[a][d];\n        n += adj[b][c];\n        n += adj[b][d];\n        n +=\
+    \ adj[c][d];\n        ans += n == 6;\n      }\n      ll x = count_K4(G);\n   \
+    \   assert(ans == x);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
+    \ a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - random/random_graph.hpp
@@ -282,17 +271,17 @@ data:
   - random/base.hpp
   - random/shuffle.hpp
   - ds/unionfind/unionfind.hpp
-  - graph/ds/remove_one_edge_connectivity.hpp
+  - graph/count/count_K4.hpp
   isVerificationFile: true
-  path: test/mytest/remove_one_edge.test.cpp
+  path: test/mytest/count_K4.test.cpp
   requiredBy: []
   timestamp: '2024-01-01 21:22:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/mytest/remove_one_edge.test.cpp
+documentation_of: test/mytest/count_K4.test.cpp
 layout: document
 redirect_from:
-- /verify/test/mytest/remove_one_edge.test.cpp
-- /verify/test/mytest/remove_one_edge.test.cpp.html
-title: test/mytest/remove_one_edge.test.cpp
+- /verify/test/mytest/count_K4.test.cpp
+- /verify/test/mytest/count_K4.test.cpp.html
+title: test/mytest/count_K4.test.cpp
 ---

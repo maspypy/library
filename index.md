@@ -857,7 +857,7 @@ data:
     - icon: ':warning:'
       path: graph/count/count_C3_C4.hpp
       title: graph/count/count_C3_C4.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/count/count_K4.hpp
       title: graph/count/count_K4.hpp
     - icon: ':warning:'
@@ -2770,6 +2770,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/coprime_factorization.test.cpp
       title: test/mytest/coprime_factorization.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/count_K4.test.cpp
+      title: test/mytest/count_K4.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/count_bipartite.test.cpp
       title: test/mytest/count_bipartite.test.cpp

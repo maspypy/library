@@ -301,7 +301,7 @@ data:
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
     \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"random/shuffle.hpp\"\
     \n\ntemplate <typename T>\nvoid shuffle(vc<T>& A) {\n  FOR(i, len(A)) swap(A[i],\
-    \ A[RNG(0, i + 1)]);\n}\n#line 4 \"random/random_graph.hpp\"\n\nvoid random_relabel(int\
+    \ A[RNG(0, i + 1)]);\n}\n#line 5 \"random/random_graph.hpp\"\n\nvoid random_relabel(int\
     \ N, vc<pair<int, int>>& G) {\n  shuffle(G);\n  vc<int> A(N);\n  FOR(i, N) A[i]\
     \ = i;\n  shuffle(A);\n  for (auto& [a, b]: G) a = A[a], b = A[b];\n}\n\ntemplate\
     \ <int DIRECTED>\nvc<pair<int, int>> random_graph(int n, bool simple) {\n  vc<pair<int,\
@@ -381,7 +381,7 @@ data:
   isVerificationFile: true
   path: test/mytest/matching_ve.test.cpp
   requiredBy: []
-  timestamp: '2023-12-14 01:05:30+09:00'
+  timestamp: '2024-01-01 21:22:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/matching_ve.test.cpp

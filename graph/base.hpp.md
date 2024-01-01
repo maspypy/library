@@ -276,6 +276,9 @@ data:
     path: other/dice.hpp
     title: other/dice.hpp
   - icon: ':heavy_check_mark:'
+    path: random/random_graph.hpp
+    title: random/random_graph.hpp
+  - icon: ':heavy_check_mark:'
     path: string/suffix_automaton.hpp
     title: string/suffix_automaton.hpp
   - icon: ':heavy_check_mark:'
@@ -453,6 +456,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/QOJ5445.test.cpp
     title: test/mytest/QOJ5445.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_K4.test.cpp
+    title: test/mytest/count_K4.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_clique.test.cpp
     title: test/mytest/count_clique.test.cpp
@@ -874,6 +880,7 @@ data:
   requiredBy:
   - other/dice.hpp
   - game/graph_game.hpp
+  - random/random_graph.hpp
   - flow/bipartite.hpp
   - flow/rank_maximal_bipartite_matching.hpp
   - graph/find_odd_cycle.hpp
@@ -1034,6 +1041,7 @@ data:
   - test/mytest/st_numbering.test.cpp
   - test/mytest/tutte.test.cpp
   - test/mytest/matching_ve.test.cpp
+  - test/mytest/count_K4.test.cpp
   - test/mytest/matching_line_graph.test.cpp
   - test/mytest/find_odd_cycle.test.cpp
   - test/mytest/remove_one_edge.test.cpp
