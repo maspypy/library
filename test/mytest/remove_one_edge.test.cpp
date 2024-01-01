@@ -11,7 +11,7 @@ void test() {
       Graph<int, 0> G(N);
       for (auto& [a, b]: random_graph<false>(N, false)) G.add(a, b);
       G.build();
-      Remove_One_Edge_Connectivity<decltype(G)> X(G);
+      Remove_One_Edge_Connectivity X(G);
       FOR(e, G.M) {
         UnionFind uf(N);
         FOR(i, G.M) {
