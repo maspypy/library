@@ -324,6 +324,7 @@
 "test/mytest/factorial_digit.test.cpp": "2023-11-07 20:28:52 +0900",
 "test/mytest/fenwick_raq.test.cpp": "2023-11-07 20:28:52 +0900",
 "test/mytest/fibonacci_search.test.cpp": "2024-01-01 07:25:48 +0900",
+"test/mytest/find_C4.test.cpp": "2024-01-01 22:59:48 +0900",
 "test/mytest/find_odd_cycle.test.cpp": "2024-01-01 21:22:56 +0900",
 "test/mytest/floor_ceil.test.cpp": "2023-11-07 20:28:52 +0900",
 "test/mytest/floor_ceil_ranges.test.cpp": "2023-11-24 15:08:08 +0900",
