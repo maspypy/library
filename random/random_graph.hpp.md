@@ -31,6 +31,9 @@ data:
     path: test/mytest/remove_one_edge.test.cpp
     title: test/mytest/remove_one_edge.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/remove_one_vertex.test.cpp
+    title: test/mytest/remove_one_vertex.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/st_numbering.test.cpp
     title: test/mytest/st_numbering.test.cpp
   - icon: ':heavy_check_mark:'
@@ -150,6 +153,7 @@ data:
   timestamp: '2023-12-14 00:43:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/remove_one_vertex.test.cpp
   - test/mytest/count_clique.test.cpp
   - test/mytest/st_numbering.test.cpp
   - test/mytest/matching_ve.test.cpp

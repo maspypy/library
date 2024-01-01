@@ -1189,6 +1189,9 @@ data:
     path: test/mytest/remove_one_edge.test.cpp
     title: test/mytest/remove_one_edge.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/remove_one_vertex.test.cpp
+    title: test/mytest/remove_one_vertex.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/run_length.test.cpp
     title: test/mytest/run_length.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2849,6 +2852,7 @@ data:
   - test/mytest/three_triangular.test.cpp
   - test/mytest/mybitset.test.cpp
   - test/mytest/min_min.test.cpp
+  - test/mytest/remove_one_vertex.test.cpp
   - test/mytest/rbst_am_2.test.cpp
   - test/mytest/kdtree_am.test.cpp
   - test/mytest/matching.test.cpp

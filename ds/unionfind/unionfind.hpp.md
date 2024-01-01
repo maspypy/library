@@ -112,6 +112,9 @@ data:
     path: test/mytest/remove_one_edge.test.cpp
     title: test/mytest/remove_one_edge.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/remove_one_vertex.test.cpp
+    title: test/mytest/remove_one_vertex.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/st_numbering.test.cpp
     title: test/mytest/st_numbering.test.cpp
   - icon: ':heavy_check_mark:'
@@ -268,6 +271,7 @@ data:
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/graph/directed_mst.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp
+  - test/mytest/remove_one_vertex.test.cpp
   - test/mytest/count_clique.test.cpp
   - test/mytest/st_numbering.test.cpp
   - test/mytest/tutte.test.cpp
