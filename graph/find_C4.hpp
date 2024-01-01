@@ -4,7 +4,7 @@
 // https://codeforces.com/problemset/problem/1468/M
 template <typename GT>
 tuple<int, int, int, int> find_C4(GT& G) {
-  assert(!G.is_directed());
+  static_assert(!GT::is_directed);
   int N = G.N;
   auto deg = G.deg_array();
   auto I = argsort(deg);
