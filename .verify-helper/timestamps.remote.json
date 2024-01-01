@@ -394,6 +394,7 @@
 "test/mytest/rbst_test.test.cpp": "2023-11-09 01:44:55 +0900",
 "test/mytest/rect_add_pt_sum.test.cpp": "2023-11-21 19:08:32 +0900",
 "test/mytest/reduce_intervals.test.cpp": "2023-12-22 20:53:57 +0900",
+"test/mytest/remove_one_edge.test.cpp": "2024-01-01 08:39:54 +0900",
 "test/mytest/run_length.test.cpp": "2023-11-09 01:44:55 +0900",
 "test/mytest/scc_tournament.test.cpp": "2023-11-09 01:44:55 +0900",
 "test/mytest/seg2d.test.cpp": "2023-12-23 11:53:13 +0900",
