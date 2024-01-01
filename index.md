@@ -854,15 +854,15 @@ data:
       title: graph/vs_to_es.hpp
   - name: graph/count
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/count/count_C3_C4.hpp
       title: graph/count/count_C3_C4.hpp
     - icon: ':heavy_check_mark:'
       path: graph/count/count_K4.hpp
       title: graph/count/count_K4.hpp
-    - icon: ':warning:'
-      path: graph/count/count_P3_P4.hpp
-      title: graph/count/count_P3_P4.hpp
+    - icon: ':heavy_check_mark:'
+      path: graph/count/count_P3_P4_P5.hpp
+      title: graph/count/count_P3_P4_P5.hpp
     - icon: ':heavy_check_mark:'
       path: graph/count/count_bipartite.hpp
       title: graph/count/count_bipartite.hpp
@@ -2773,6 +2773,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/count_K4.test.cpp
       title: test/mytest/count_K4.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/count_P3P4P5.test.cpp
+      title: test/mytest/count_P3P4P5.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/count_bipartite.test.cpp
       title: test/mytest/count_bipartite.test.cpp

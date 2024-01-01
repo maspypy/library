@@ -277,6 +277,9 @@ data:
     path: test/mytest/count_K4.test.cpp
     title: test/mytest/count_K4.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/count_P3P4P5.test.cpp
+    title: test/mytest/count_P3P4P5.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_bipartite.test.cpp
     title: test/mytest/count_bipartite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -878,6 +881,7 @@ data:
   - test/mytest/online_division.test.cpp
   - test/mytest/geometric_sequence_sum.test.cpp
   - test/mytest/max_min.test.cpp
+  - test/mytest/count_P3P4P5.test.cpp
   - test/mytest/range_closest_pair.test.cpp
   - test/mytest/minidx_add.test.cpp
   - test/mytest/count_K4.test.cpp
