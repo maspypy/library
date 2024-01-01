@@ -83,6 +83,7 @@
         "concepts": "cpp",
         "coroutine": "cpp",
         "stop_token": "cpp",
-        "tmp": "cpp"
+        "tmp": "cpp",
+        "cassert": "cpp"
     }
 }
