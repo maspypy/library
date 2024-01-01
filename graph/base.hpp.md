@@ -119,7 +119,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/find_C4.hpp
     title: graph/find_C4.hpp
   - icon: ':heavy_check_mark:'
@@ -468,6 +468,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_indep_set.test.cpp
     title: test/mytest/count_indep_set.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/find_C4.test.cpp
+    title: test/mytest/find_C4.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/find_odd_cycle.test.cpp
     title: test/mytest/find_odd_cycle.test.cpp
@@ -1035,6 +1038,7 @@ data:
   - test/library_checker/graph/cycle_detection_undirected.test.cpp
   - test/library_checker/string/number_of_substrings2.test.cpp
   - test/mytest/remove_one_vertex.test.cpp
+  - test/mytest/find_C4.test.cpp
   - test/mytest/matching.test.cpp
   - test/mytest/scc_tournament.test.cpp
   - test/mytest/suffix_tree.test.cpp

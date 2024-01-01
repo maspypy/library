@@ -316,6 +316,9 @@ data:
     path: test/mytest/fenwick_raq.test.cpp
     title: test/mytest/fenwick_raq.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/find_C4.test.cpp
+    title: test/mytest/find_C4.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/find_odd_cycle.test.cpp
     title: test/mytest/find_odd_cycle.test.cpp
   - icon: ':heavy_check_mark:'
@@ -821,6 +824,7 @@ data:
   - test/mytest/remove_one_vertex.test.cpp
   - test/mytest/rbst_am_2.test.cpp
   - test/mytest/kdtree_am.test.cpp
+  - test/mytest/find_C4.test.cpp
   - test/mytest/matching.test.cpp
   - test/mytest/add_chmin_chmax.test.cpp
   - test/mytest/minplus_conv_triple.test.cpp

@@ -726,7 +726,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/fast_lca.hpp
       title: graph/fast_lca.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/find_C4.hpp
       title: graph/find_C4.hpp
     - icon: ':heavy_check_mark:'
@@ -2836,6 +2836,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/fibonacci_search.test.cpp
       title: test/mytest/fibonacci_search.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/find_C4.test.cpp
+      title: test/mytest/find_C4.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/find_odd_cycle.test.cpp
       title: test/mytest/find_odd_cycle.test.cpp

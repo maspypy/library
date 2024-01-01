@@ -5,10 +5,13 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/find_C4.test.cpp
+    title: test/mytest/find_C4.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/problemset/problem/1468/M
@@ -72,7 +75,7 @@ data:
     \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
     #line 2 \"graph/find_C4.hpp\"\n\n// \u7121\u5411\u30B0\u30E9\u30D5\u304B\u3089\
     \ C4 \u3092\u3072\u3068\u3064\u898B\u3064\u3051\u308B\n// https://codeforces.com/problemset/problem/1468/M\n\
-    template <typename GT>\ntuple<int, int, int, int> find_C4(GT& G) {\n  assert(!G.is_directed());\n\
+    template <typename GT>\ntuple<int, int, int, int> find_C4(GT& G) {\n  static_assert(!GT::is_directed);\n\
     \  int N = G.N;\n  auto deg = G.deg_array();\n  auto I = argsort(deg);\n  reverse(all(I));\n\
     \  vc<int> rk(N);\n  FOR(i, N) rk[I[i]] = i;\n\n  // \u9077\u79FB\u5148\u3092\u964D\
     \u9806\u306B\u4E26\u3079\u308B\n  vvc<int> TO(N);\n  for (auto&& e: G.edges) {\n\
@@ -85,7 +88,7 @@ data:
     \ = -1; }\n    }\n  }\n  return {-1, -1, -1, -1};\n}\n"
   code: "#include \"graph/base.hpp\"\n\n// \u7121\u5411\u30B0\u30E9\u30D5\u304B\u3089\
     \ C4 \u3092\u3072\u3068\u3064\u898B\u3064\u3051\u308B\n// https://codeforces.com/problemset/problem/1468/M\n\
-    template <typename GT>\ntuple<int, int, int, int> find_C4(GT& G) {\n  assert(!G.is_directed());\n\
+    template <typename GT>\ntuple<int, int, int, int> find_C4(GT& G) {\n  static_assert(!GT::is_directed);\n\
     \  int N = G.N;\n  auto deg = G.deg_array();\n  auto I = argsort(deg);\n  reverse(all(I));\n\
     \  vc<int> rk(N);\n  FOR(i, N) rk[I[i]] = i;\n\n  // \u9077\u79FB\u5148\u3092\u964D\
     \u9806\u306B\u4E26\u3079\u308B\n  vvc<int> TO(N);\n  for (auto&& e: G.edges) {\n\
@@ -101,9 +104,10 @@ data:
   isVerificationFile: false
   path: graph/find_C4.hpp
   requiredBy: []
-  timestamp: '2023-11-07 22:29:27+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2024-01-01 22:59:48+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/mytest/find_C4.test.cpp
 documentation_of: graph/find_C4.hpp
 layout: document
 redirect_from:
