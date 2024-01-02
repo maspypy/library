@@ -1,4 +1,4 @@
-#define PROBLEM "https://maspypy.github.io/library/test/yukicoder/2583"
+#define PROBLEM "https://yukicoder.me/problems/no/2583"
 #include "my_template.hpp"
 #include "other/io.hpp"
 
