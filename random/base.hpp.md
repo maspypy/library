@@ -322,6 +322,9 @@ data:
     path: test/mytest/find_odd_cycle.test.cpp
     title: test/mytest/find_odd_cycle.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/first_mod_range_of_linear.test.cpp
+    title: test/mytest/first_mod_range_of_linear.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
   - icon: ':heavy_check_mark:'
@@ -913,6 +916,7 @@ data:
   - test/mytest/summax_assign.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
   - test/mytest/dual_fenwick.test.cpp
+  - test/mytest/first_mod_range_of_linear.test.cpp
   - test/mytest/count_indep_set.test.cpp
   - test/mytest/min_max.test.cpp
   - test/mytest/pascal.test.cpp

@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: mod/first_mod_range_of_linear.hpp
+    title: mod/first_mod_range_of_linear.hpp
+  - icon: ':heavy_check_mark:'
     path: mod/max_of_linear_segments.hpp
     title: mod/max_of_linear_segments.hpp
   - icon: ':heavy_check_mark:'
@@ -12,6 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/min_of_mod_of_linear.test.cpp
     title: test/library_checker/math/min_of_mod_of_linear.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/first_mod_range_of_linear.test.cpp
+    title: test/mytest/first_mod_range_of_linear.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/max_of_linear_segments.test.cpp
     title: test/mytest/max_of_linear_segments.test.cpp
@@ -69,6 +75,7 @@ data:
   isVerificationFile: false
   path: mod/min_of_linear_segments.hpp
   requiredBy:
+  - mod/first_mod_range_of_linear.hpp
   - mod/max_of_linear_segments.hpp
   - mod/min_of_linear.hpp
   timestamp: '2022-08-16 06:06:14+09:00'
@@ -77,6 +84,7 @@ data:
   - test/library_checker/math/min_of_mod_of_linear.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp
+  - test/mytest/first_mod_range_of_linear.test.cpp
   - test/yukicoder/2259.test.cpp
 documentation_of: mod/min_of_linear_segments.hpp
 layout: document
