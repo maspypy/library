@@ -7,12 +7,11 @@ struct Incremental_Rectangle_Union {
   FastSet ss;
   vc<XY> ht;
   map<XY, XY> MP; // right end -> height
-  ll area;
+  AREA area;
 
   Incremental_Rectangle_Union() : area(AREA(0)) {
     static_assert(!SMALL_XY);
-    MP[0] = infty<XY>;
-    MP[infty<XY>] = 0;
+    MP[0] = infty<XY>, MP[infty<XY>] = 0;
   }
 
   Incremental_Rectangle_Union(int LIM)
@@ -25,6 +24,17 @@ struct Incremental_Rectangle_Union {
     if constexpr (SMALL_XY) add_fast(x, y);
     if constexpr (!SMALL_XY) add_MP(x, y);
     return area;
+  }
+
+  void reset() {
+    area = 0;
+    if constexpr (SMALL_XY) {
+      int LIM = len(ss) - 1;
+      ss.enumerate(0, LIM + 1, [&](int i) -> void { ss.erase(i); });
+      ht[0] = infty<XY>, ht[LIM] = 0, ss.insert(0), ss.insert(LIM);
+    } else {
+      MP.clear(), MP[0] = infty<XY>, MP[infty<XY>] = 0;
+    }
   }
 
 private:
