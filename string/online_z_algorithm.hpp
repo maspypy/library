@@ -1,9 +1,10 @@
 
 // https://heno239.hatenablog.com/entry/2020/07/07/140651
 // S[i] を追加すると，S[j:i] が lcp であるような j 全体の vector がかえる.
-template <typename STRING = string, typename CHAR = char>
+// https://codeforces.com/problemset/problem/1286/E
+template <typename CHAR = char>
 struct Online_Z_Algorithm {
-  string S;
+  vc<CHAR> S;
   vc<int> Z;
   queue<int> cur;
   vvc<int> memo;
