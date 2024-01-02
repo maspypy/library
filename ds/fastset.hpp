@@ -8,6 +8,8 @@ struct FastSet {
   FastSet() {}
   FastSet(int n) { build(n); }
 
+  int size() { return n; }
+
   template <typename F>
   FastSet(int n, F f) {
     build(n, f);
