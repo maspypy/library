@@ -6,9 +6,6 @@ data:
     path: graph/maximum_matching_size.hpp
     title: graph/maximum_matching_size.hpp
   - icon: ':heavy_check_mark:'
-    path: linalg/lowrank_update.hpp
-    title: linalg/lowrank_update.hpp
-  - icon: ':warning:'
     path: linalg/matrix_lowrank_update.hpp
     title: linalg/matrix_lowrank_update.hpp
   _extendedVerifiedWith:
@@ -57,7 +54,6 @@ data:
   path: linalg/matrix_rank.hpp
   requiredBy:
   - linalg/matrix_lowrank_update.hpp
-  - linalg/lowrank_update.hpp
   - graph/maximum_matching_size.hpp
   timestamp: '2023-11-15 20:12:22+09:00'
   verificationStatus: LIBRARY_ALL_AC

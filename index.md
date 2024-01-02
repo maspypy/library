@@ -1067,12 +1067,9 @@ data:
       path: linalg/hafnian.hpp
       title: linalg/hafnian.hpp
     - icon: ':heavy_check_mark:'
-      path: linalg/lowrank_update.hpp
-      title: linalg/lowrank_update.hpp
-    - icon: ':heavy_check_mark:'
       path: linalg/matrix_inv.hpp
       title: linalg/matrix_inv.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: linalg/matrix_lowrank_update.hpp
       title: linalg/matrix_lowrank_update.hpp
     - icon: ':heavy_check_mark:'

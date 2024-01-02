@@ -6,9 +6,6 @@ data:
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
   - icon: ':heavy_check_mark:'
-    path: linalg/lowrank_update.hpp
-    title: linalg/lowrank_update.hpp
-  - icon: ':warning:'
     path: linalg/matrix_lowrank_update.hpp
     title: linalg/matrix_lowrank_update.hpp
   _extendedVerifiedWith:
@@ -54,7 +51,6 @@ data:
   path: linalg/matrix_inv.hpp
   requiredBy:
   - linalg/matrix_lowrank_update.hpp
-  - linalg/lowrank_update.hpp
   - linalg/det_A_plus_xB.hpp
   timestamp: '2023-10-24 14:07:00+09:00'
   verificationStatus: LIBRARY_ALL_AC

@@ -8,10 +8,13 @@ data:
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1774.test.cpp
+    title: test/yukicoder/1774.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://en.wikipedia.org/wiki/Woodbury_matrix_identity
@@ -34,88 +37,93 @@ data:
     \ / a[rk][j];\n    FOR(k, j, m) a[rk][k] *= c;\n    FOR(i, rk + 1, n) {\n    \
     \  T c = a[i][j];\n      FOR3(k, j, m) { a[i][k] -= a[rk][k] * c; }\n    }\n \
     \   ++rk;\n  }\n  return rk;\n}\n#line 3 \"linalg/matrix_lowrank_update.hpp\"\n\
-    // https://en.wikipedia.org/wiki/Woodbury_matrix_identity\ntemplate <typename\
+    \n// https://en.wikipedia.org/wiki/Woodbury_matrix_identity\ntemplate <typename\
     \ T>\nstruct Lowrank_Update {\n  int n;\n  vvc<T> A, IA;\n  Lowrank_Update() {}\n\
     \  Lowrank_Update(vvc<T> A) : A(A) {\n    n = len(A);\n    T det;\n    tie(det,\
     \ IA) = matrix_inv(A);\n    assert(det != T(0));\n  }\n\n  // A + UV \u304C\u53EF\
     \u9006\u306A\u3089\u8DB3\u3057\u3066 true, \u305D\u3046\u3067\u306A\u3044\u306A\
-    \u3089\u4F55\u3082\u305B\u305A false.\n  bool update(vvc<T>& U, vvc<T>& V, bool\
+    \u3089\u4F55\u3082\u305B\u305A false.\n  bool update(vvc<T> &U, vvc<T> &V, bool\
     \ update_A) {\n    int r = len(V);\n    assert(len(U) == n && len(U[0]) == r);\n\
     \    assert(len(V) == r && len(V[0]) == n);\n    vc<T> X(n), Y(n);\n    FOR(k,\
     \ r) {\n      FOR(i, n) X[i] = U[i][k], Y[i] = V[k][i];\n      rank_one_update(X,\
     \ Y, update_A);\n    }\n  }\n\n  // A + c U transepose(V) \u304C\u53EF\u9006\u306A\
     \u3089\u8DB3\u3057\u3066 true, \u305D\u3046\u3067\u306A\u3044\u306A\u3089\u4F55\
-    \u3082\u305B\u305A false.\n  // O(n^2)\n  bool rank_one_update(T c, vc<T>& U,\
-    \ vc<T>& V, bool update_A) {\n    vc<int> I, J;\n    FOR(i, n) if (U[i] != T(0))\
-    \ I.eb(i);\n    FOR(i, n) if (V[i] != T(0)) J.eb(i);\n    T x = 0;\n    for (auto&\
-    \ j: J) {\n      for (auto& i: I) { x += V[j] * IA[j][i] * U[i]; }\n    }\n  \
-    \  x = T(1) + c * x;\n    if (x == T(0)) return false;\n    if (update_A) {\n\
-    \      for (auto& i: I) {\n        T t = c * U[i];\n        for (auto& j: J) {\
+    \u3082\u305B\u305A false.\n  // O(n^2)\n  bool rank_one_update(T c, vc<T> &U,\
+    \ vc<T> &V, bool update_A) {\n    vc<int> I, J;\n    FOR(i, n) if (U[i] != T(0))\
+    \ I.eb(i);\n    FOR(i, n) if (V[i] != T(0)) J.eb(i);\n    T x = 0;\n    for (auto\
+    \ &j: J) {\n      for (auto &i: I) { x += V[j] * IA[j][i] * U[i]; }\n    }\n \
+    \   x = T(1) + c * x;\n    if (x == T(0)) return false;\n    if (update_A) {\n\
+    \      for (auto &i: I) {\n        T t = c * U[i];\n        for (auto &j: J) {\
     \ A[i][j] += t * V[j]; }\n      }\n    }\n    x = c / x;\n    vc<T> L(n), R(n);\n\
-    \    for (auto& i: I) {\n      T u = U[i] * x;\n      FOR(j, n) L[j] += IA[j][i]\
-    \ * u;\n    }\n    for (auto& j: J) { FOR(i, n) R[i] += V[j] * IA[j][i]; }\n \
+    \    for (auto &i: I) {\n      T u = U[i] * x;\n      FOR(j, n) L[j] += IA[j][i]\
+    \ * u;\n    }\n    for (auto &j: J) { FOR(i, n) R[i] += V[j] * IA[j][i]; }\n \
     \   FOR(i, n) FOR(j, n) IA[i][j] -= L[i] * R[j];\n    return true;\n  }\n};\n\n\
     // lowrank update / rank query\ntemplate <typename mint>\nstruct Matrix_Rank_Lowrank_Update\
-    \ {\n  int n;\n  Lowrank_Update<mint> X;\n  vc<pair<vc<mint>, vc<mint>>> dat;\n\
-    \n  Matrix_Rank_Lowrank_Update(int n) : n(n) {\n    vv(mint, A, n, n, mint(0));\n\
-    \    build(A);\n  }\n  Matrix_Rank_Lowrank_Update(vvc<mint>& A) : n(len(A)) {\
-    \ build(A); }\n\n  void build(vvc<mint> A) {\n    int r = matrix_rank(A);\n  \
-    \  FOR(n - r) {\n      vc<mint> x(n), y(n);\n      FOR(i, n) x[i] = RNG(0, mint::get_mod());\n\
-    \      FOR(i, n) y[i] = RNG(0, mint::get_mod());\n      dat.eb(x, y);\n      FOR(i,\
-    \ n) FOR(j, n) A[i][j] += x[i] * y[j];\n    }\n    X = Lowrank_Update(A);\n  }\n\
-    \n  int rank() { return n - len(dat); }\n\n  int rank_one_update(mint c, vc<mint>&\
-    \ U, vc<mint>& V) {\n    while (!X.rank_one_update(c, U, V, false)) {\n      vc<mint>\
-    \ x(n), y(n);\n      FOR(i, n) x[i] = RNG(0, mint::get_mod());\n      FOR(i, n)\
-    \ y[i] = RNG(0, mint::get_mod());\n      dat.eb(x, y);\n      X.rank_one_update(1,\
-    \ x, y, false);\n    }\n    while (!dat.empty()) {\n      auto [x, y] = dat.back();\n\
-    \      if (!X.rank_one_update(-1, x, y, false)) break;\n      POP(dat);\n    }\n\
-    \    return rank();\n  }\n};\n"
+    \ {\n  int n;\n  bool is_prepared;\n  Lowrank_Update<mint> X;\n  vc<pair<vc<mint>,\
+    \ vc<mint>>> dat;\n\n  Matrix_Rank_Lowrank_Update(int n) : n(n) {\n    vv(mint,\
+    \ A, n, n, mint(0));\n    build(A, 0);\n  }\n  Matrix_Rank_Lowrank_Update(vvc<mint>\
+    \ &A) : n(len(A)) { build(A); }\n\n  void build(vvc<mint> A, int r = -1) {\n \
+    \   if (r == -1) r = matrix_rank(A);\n    FOR(n - r) {\n      vc<mint> x(n), y(n);\n\
+    \      FOR(i, n) x[i] = RNG(0, mint::get_mod());\n      FOR(i, n) y[i] = RNG(0,\
+    \ mint::get_mod());\n      dat.eb(x, y);\n      FOR(i, n) FOR(j, n) A[i][j] +=\
+    \ x[i] * y[j];\n    }\n    X = Lowrank_Update(A);\n    is_prepared = 1;\n  }\n\
+    \n  int rank() {\n    while (!is_prepared && !dat.empty()) {\n      auto [x, y]\
+    \ = dat.back();\n      if (!X.rank_one_update(-1, x, y, false)) break;\n     \
+    \ POP(dat);\n    }\n    is_prepared = 1;\n    return n - len(dat);\n  }\n\n  void\
+    \ rank_one_update(mint c, vc<mint> &U, vc<mint> &V) {\n    is_prepared = 0;\n\
+    \    while (!X.rank_one_update(c, U, V, false)) {\n      vc<mint> x(n), y(n);\n\
+    \      FOR(i, n) x[i] = RNG(0, mint::get_mod());\n      FOR(i, n) y[i] = RNG(0,\
+    \ mint::get_mod());\n      dat.eb(x, y);\n      X.rank_one_update(1, x, y, false);\n\
+    \    }\n  }\n};\n"
   code: "#include \"linalg/matrix_inv.hpp\"\n#include \"linalg/matrix_rank.hpp\"\n\
-    // https://en.wikipedia.org/wiki/Woodbury_matrix_identity\ntemplate <typename\
+    \n// https://en.wikipedia.org/wiki/Woodbury_matrix_identity\ntemplate <typename\
     \ T>\nstruct Lowrank_Update {\n  int n;\n  vvc<T> A, IA;\n  Lowrank_Update() {}\n\
     \  Lowrank_Update(vvc<T> A) : A(A) {\n    n = len(A);\n    T det;\n    tie(det,\
     \ IA) = matrix_inv(A);\n    assert(det != T(0));\n  }\n\n  // A + UV \u304C\u53EF\
     \u9006\u306A\u3089\u8DB3\u3057\u3066 true, \u305D\u3046\u3067\u306A\u3044\u306A\
-    \u3089\u4F55\u3082\u305B\u305A false.\n  bool update(vvc<T>& U, vvc<T>& V, bool\
+    \u3089\u4F55\u3082\u305B\u305A false.\n  bool update(vvc<T> &U, vvc<T> &V, bool\
     \ update_A) {\n    int r = len(V);\n    assert(len(U) == n && len(U[0]) == r);\n\
     \    assert(len(V) == r && len(V[0]) == n);\n    vc<T> X(n), Y(n);\n    FOR(k,\
     \ r) {\n      FOR(i, n) X[i] = U[i][k], Y[i] = V[k][i];\n      rank_one_update(X,\
     \ Y, update_A);\n    }\n  }\n\n  // A + c U transepose(V) \u304C\u53EF\u9006\u306A\
     \u3089\u8DB3\u3057\u3066 true, \u305D\u3046\u3067\u306A\u3044\u306A\u3089\u4F55\
-    \u3082\u305B\u305A false.\n  // O(n^2)\n  bool rank_one_update(T c, vc<T>& U,\
-    \ vc<T>& V, bool update_A) {\n    vc<int> I, J;\n    FOR(i, n) if (U[i] != T(0))\
-    \ I.eb(i);\n    FOR(i, n) if (V[i] != T(0)) J.eb(i);\n    T x = 0;\n    for (auto&\
-    \ j: J) {\n      for (auto& i: I) { x += V[j] * IA[j][i] * U[i]; }\n    }\n  \
-    \  x = T(1) + c * x;\n    if (x == T(0)) return false;\n    if (update_A) {\n\
-    \      for (auto& i: I) {\n        T t = c * U[i];\n        for (auto& j: J) {\
+    \u3082\u305B\u305A false.\n  // O(n^2)\n  bool rank_one_update(T c, vc<T> &U,\
+    \ vc<T> &V, bool update_A) {\n    vc<int> I, J;\n    FOR(i, n) if (U[i] != T(0))\
+    \ I.eb(i);\n    FOR(i, n) if (V[i] != T(0)) J.eb(i);\n    T x = 0;\n    for (auto\
+    \ &j: J) {\n      for (auto &i: I) { x += V[j] * IA[j][i] * U[i]; }\n    }\n \
+    \   x = T(1) + c * x;\n    if (x == T(0)) return false;\n    if (update_A) {\n\
+    \      for (auto &i: I) {\n        T t = c * U[i];\n        for (auto &j: J) {\
     \ A[i][j] += t * V[j]; }\n      }\n    }\n    x = c / x;\n    vc<T> L(n), R(n);\n\
-    \    for (auto& i: I) {\n      T u = U[i] * x;\n      FOR(j, n) L[j] += IA[j][i]\
-    \ * u;\n    }\n    for (auto& j: J) { FOR(i, n) R[i] += V[j] * IA[j][i]; }\n \
+    \    for (auto &i: I) {\n      T u = U[i] * x;\n      FOR(j, n) L[j] += IA[j][i]\
+    \ * u;\n    }\n    for (auto &j: J) { FOR(i, n) R[i] += V[j] * IA[j][i]; }\n \
     \   FOR(i, n) FOR(j, n) IA[i][j] -= L[i] * R[j];\n    return true;\n  }\n};\n\n\
     // lowrank update / rank query\ntemplate <typename mint>\nstruct Matrix_Rank_Lowrank_Update\
-    \ {\n  int n;\n  Lowrank_Update<mint> X;\n  vc<pair<vc<mint>, vc<mint>>> dat;\n\
-    \n  Matrix_Rank_Lowrank_Update(int n) : n(n) {\n    vv(mint, A, n, n, mint(0));\n\
-    \    build(A);\n  }\n  Matrix_Rank_Lowrank_Update(vvc<mint>& A) : n(len(A)) {\
-    \ build(A); }\n\n  void build(vvc<mint> A) {\n    int r = matrix_rank(A);\n  \
-    \  FOR(n - r) {\n      vc<mint> x(n), y(n);\n      FOR(i, n) x[i] = RNG(0, mint::get_mod());\n\
-    \      FOR(i, n) y[i] = RNG(0, mint::get_mod());\n      dat.eb(x, y);\n      FOR(i,\
-    \ n) FOR(j, n) A[i][j] += x[i] * y[j];\n    }\n    X = Lowrank_Update(A);\n  }\n\
-    \n  int rank() { return n - len(dat); }\n\n  int rank_one_update(mint c, vc<mint>&\
-    \ U, vc<mint>& V) {\n    while (!X.rank_one_update(c, U, V, false)) {\n      vc<mint>\
-    \ x(n), y(n);\n      FOR(i, n) x[i] = RNG(0, mint::get_mod());\n      FOR(i, n)\
-    \ y[i] = RNG(0, mint::get_mod());\n      dat.eb(x, y);\n      X.rank_one_update(1,\
-    \ x, y, false);\n    }\n    while (!dat.empty()) {\n      auto [x, y] = dat.back();\n\
-    \      if (!X.rank_one_update(-1, x, y, false)) break;\n      POP(dat);\n    }\n\
-    \    return rank();\n  }\n};\n"
+    \ {\n  int n;\n  bool is_prepared;\n  Lowrank_Update<mint> X;\n  vc<pair<vc<mint>,\
+    \ vc<mint>>> dat;\n\n  Matrix_Rank_Lowrank_Update(int n) : n(n) {\n    vv(mint,\
+    \ A, n, n, mint(0));\n    build(A, 0);\n  }\n  Matrix_Rank_Lowrank_Update(vvc<mint>\
+    \ &A) : n(len(A)) { build(A); }\n\n  void build(vvc<mint> A, int r = -1) {\n \
+    \   if (r == -1) r = matrix_rank(A);\n    FOR(n - r) {\n      vc<mint> x(n), y(n);\n\
+    \      FOR(i, n) x[i] = RNG(0, mint::get_mod());\n      FOR(i, n) y[i] = RNG(0,\
+    \ mint::get_mod());\n      dat.eb(x, y);\n      FOR(i, n) FOR(j, n) A[i][j] +=\
+    \ x[i] * y[j];\n    }\n    X = Lowrank_Update(A);\n    is_prepared = 1;\n  }\n\
+    \n  int rank() {\n    while (!is_prepared && !dat.empty()) {\n      auto [x, y]\
+    \ = dat.back();\n      if (!X.rank_one_update(-1, x, y, false)) break;\n     \
+    \ POP(dat);\n    }\n    is_prepared = 1;\n    return n - len(dat);\n  }\n\n  void\
+    \ rank_one_update(mint c, vc<mint> &U, vc<mint> &V) {\n    is_prepared = 0;\n\
+    \    while (!X.rank_one_update(c, U, V, false)) {\n      vc<mint> x(n), y(n);\n\
+    \      FOR(i, n) x[i] = RNG(0, mint::get_mod());\n      FOR(i, n) y[i] = RNG(0,\
+    \ mint::get_mod());\n      dat.eb(x, y);\n      X.rank_one_update(1, x, y, false);\n\
+    \    }\n  }\n};"
   dependsOn:
   - linalg/matrix_inv.hpp
   - linalg/matrix_rank.hpp
   isVerificationFile: false
   path: linalg/matrix_lowrank_update.hpp
   requiredBy: []
-  timestamp: '2023-11-15 20:12:22+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2024-01-02 22:17:45+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yukicoder/1774.test.cpp
 documentation_of: linalg/matrix_lowrank_update.hpp
 layout: document
 redirect_from:

@@ -42,9 +42,6 @@ data:
     path: linalg/implicit_matrix/min_poly.hpp
     title: linalg/implicit_matrix/min_poly.hpp
   - icon: ':heavy_check_mark:'
-    path: linalg/lowrank_update.hpp
-    title: linalg/lowrank_update.hpp
-  - icon: ':heavy_check_mark:'
     path: linalg/spmat_det.hpp
     title: linalg/spmat_det.hpp
   - icon: ':heavy_check_mark:'
@@ -750,7 +747,6 @@ data:
   - mod/primitive_root.hpp
   - linalg/spmat_min_poly.hpp
   - linalg/spmat_det.hpp
-  - linalg/lowrank_update.hpp
   - linalg/det_A_plus_xB.hpp
   - linalg/implicit_matrix/min_poly.hpp
   - linalg/implicit_matrix/det.hpp
