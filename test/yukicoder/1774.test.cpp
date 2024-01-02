@@ -2,8 +2,9 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "linalg/lowrank_update.hpp"
 #include "mod/modint.hpp"
+#include "random/base.hpp"
+#include "linalg/matrix_lowrank_update.hpp"
 
 using mint = modint107;
 
