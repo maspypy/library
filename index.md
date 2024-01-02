@@ -1779,6 +1779,9 @@ data:
       path: string/manacher.hpp
       title: string/manacher.hpp
     - icon: ':heavy_check_mark:'
+      path: string/online_z_algorithm.hpp
+      title: string/online_z_algorithm.hpp
+    - icon: ':heavy_check_mark:'
       path: string/palindrome_decomposition_dp.hpp
       title: string/palindrome_decomposition_dp.hpp
     - icon: ':heavy_check_mark:'
@@ -2646,6 +2649,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/string/number_of_substrings2.test.cpp
       title: test/library_checker/string/number_of_substrings2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/string/online_z.test.cpp
+      title: test/library_checker/string/online_z.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/string/prefix_substring_lcs.test.cpp
       title: test/library_checker/string/prefix_substring_lcs.test.cpp

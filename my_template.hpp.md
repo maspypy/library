@@ -793,6 +793,9 @@ data:
     path: test/library_checker/string/number_of_substrings2.test.cpp
     title: test/library_checker/string/number_of_substrings2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/string/online_z.test.cpp
+    title: test/library_checker/string/online_z.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/string/prefix_substring_lcs.test.cpp
     title: test/library_checker/string/prefix_substring_lcs.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2854,6 +2857,7 @@ data:
   - test/library_checker/string/number_of_subsequences.test.cpp
   - test/library_checker/string/longest_common_substring.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
+  - test/library_checker/string/online_z.test.cpp
   - test/library_checker/string/run_enumerate.test.cpp
   - test/library_checker/string/number_of_substrings.test.cpp
   - test/mytest/longest_common_substr.test.cpp
