@@ -1224,7 +1224,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/smawk.test.cpp
     title: test/mytest/smawk.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/sortable_array.test.cpp
     title: test/mytest/sortable_array.test.cpp
   - icon: ':heavy_check_mark:'

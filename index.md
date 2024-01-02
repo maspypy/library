@@ -299,7 +299,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/sliding_window_aggregation.hpp
       title: ds/sliding_window_aggregation.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/sortable_array.hpp
       title: ds/sortable_array.hpp
     - icon: ':heavy_check_mark:'
@@ -1587,7 +1587,7 @@ data:
       title: poly/online/online_square.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -3085,7 +3085,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/smawk.test.cpp
       title: test/mytest/smawk.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/sortable_array.test.cpp
       title: test/mytest/sortable_array.test.cpp
     - icon: ':heavy_check_mark:'
