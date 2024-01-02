@@ -407,6 +407,7 @@
 "test/mytest/simple_perm.test.cpp": "2023-12-29 16:32:29 +0900",
 "test/mytest/slice_rational_fps.test.cpp": "2023-12-29 16:32:29 +0900",
 "test/mytest/smawk.test.cpp": "2023-11-09 01:44:55 +0900",
+"test/mytest/sortable_array.test.cpp": "2024-01-03 01:35:18 +0900",
 "test/mytest/sparse_pow_2d.test.cpp": "2023-12-29 16:32:29 +0900",
 "test/mytest/splay.test.cpp": "2023-12-17 01:33:11 +0900",
 "test/mytest/splay_am.test.cpp": "2023-12-17 01:33:11 +0900",
