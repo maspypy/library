@@ -7,7 +7,7 @@
 void solve() {
   STR(S);
   ll N = len(S);
-  Online_Z_Algorithm<string, char> X;
+  Online_Z_Algorithm<char> X;
   vc<int> ANS(N, -1);
 
   FOR(i, N) {
