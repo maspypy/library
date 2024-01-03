@@ -7,14 +7,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/online_z_algorithm.hpp
     title: string/online_z_algorithm.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/zalgorithm
@@ -200,17 +200,16 @@ data:
     \ < i) {\n      for (int j: memo[i - p]) { del(j + p); }\n    }\n    return end;\n\
     \  }\n  int query(int i) { return (Z[i] == -1 ? len(S) - i : Z[i]); }\n};\n#line\
     \ 6 \"test/library_checker/string/online_z.test.cpp\"\n\nvoid solve() {\n  STR(S);\n\
-    \  ll N = len(S);\n  Online_Z_Algorithm<string, char> X;\n  vc<int> ANS(N, -1);\n\
-    \n  FOR(i, N) {\n    auto end = X.add(i, S[i]);\n    for (auto& j: end) { ANS[j]\
-    \ = i - j; }\n  }\n  FOR(i, N) if (ANS[i] == -1) ANS[i] = N - i;\n  print(ANS);\n\
-    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \  ll N = len(S);\n  Online_Z_Algorithm<char> X;\n  vc<int> ANS(N, -1);\n\n  FOR(i,\
+    \ N) {\n    auto end = X.add(i, S[i]);\n    for (auto& j: end) { ANS[j] = i -\
+    \ j; }\n  }\n  FOR(i, N) if (ANS[i] == -1) ANS[i] = N - i;\n  print(ANS);\n}\n\
+    \nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"string/online_z_algorithm.hpp\"\
-    \n\nvoid solve() {\n  STR(S);\n  ll N = len(S);\n  Online_Z_Algorithm<string,\
-    \ char> X;\n  vc<int> ANS(N, -1);\n\n  FOR(i, N) {\n    auto end = X.add(i, S[i]);\n\
-    \    for (auto& j: end) { ANS[j] = i - j; }\n  }\n  FOR(i, N) if (ANS[i] == -1)\
-    \ ANS[i] = N - i;\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
-    }\n"
+    \n\nvoid solve() {\n  STR(S);\n  ll N = len(S);\n  Online_Z_Algorithm<char> X;\n\
+    \  vc<int> ANS(N, -1);\n\n  FOR(i, N) {\n    auto end = X.add(i, S[i]);\n    for\
+    \ (auto& j: end) { ANS[j] = i - j; }\n  }\n  FOR(i, N) if (ANS[i] == -1) ANS[i]\
+    \ = N - i;\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -218,8 +217,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/online_z.test.cpp
   requiredBy: []
-  timestamp: '2024-01-03 08:11:06+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-03 14:40:49+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/string/online_z.test.cpp
 layout: document
