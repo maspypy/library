@@ -33,6 +33,9 @@ data:
     path: graph/implicit_graph/complement_graph_unionfind.hpp
     title: graph/implicit_graph/complement_graph_unionfind.hpp
   - icon: ':warning:'
+    path: graph/implicit_graph/interval_graph_unionfind.hpp
+    title: graph/implicit_graph/interval_graph_unionfind.hpp
+  - icon: ':warning:'
     path: graph/implicit_graph/mst.hpp
     title: graph/implicit_graph/mst.hpp
   - icon: ':heavy_check_mark:'
@@ -261,6 +264,7 @@ data:
   - graph/tree_of_unionfind.hpp
   - graph/directed_mst.hpp
   - graph/tree_walk_generating_function.hpp
+  - graph/implicit_graph/interval_graph_unionfind.hpp
   - graph/implicit_graph/unionfind.hpp
   - graph/implicit_graph/mst.hpp
   - graph/implicit_graph/complement_graph_unionfind.hpp

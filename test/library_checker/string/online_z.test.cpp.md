@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
@@ -189,21 +189,20 @@ data:
     // S[i] \u3092\u8FFD\u52A0\u3059\u308B\u3068\uFF0CS[j:i] \u304C lcp \u3067\u3042\
     \u308B\u3088\u3046\u306A j \u5168\u4F53\u306E vector \u304C\u304B\u3048\u308B\
     .\n// https://codeforces.com/problemset/problem/1286/E\ntemplate <typename CHAR\
-    \ = char>\nstruct Online_Z_Algorithm {\n  vc<CHAR> S;\n  vc<int> Z;\n  queue<int>\
-    \ cur;\n  vvc<int> memo;\n  int p;\n\n  Online_Z_Algorithm() : p(1){};\n\n  vc<int>\
-    \ add(int i, CHAR c) {\n    assert(i == len(S));\n    S.push_back(c);\n    int\
-    \ len = S.size();\n    Z.eb(-1);\n    memo.resize(1 + i);\n    vc<int> end;\n\n\
-    \    if (len == 1) return end;\n    if (S[0] != c) Z[i] = 0, end.eb(i);\n\n  \
-    \  auto del = [&](int j) -> void { Z[j] = i - j, memo[i].eb(j), end.eb(j); };\n\
-    \n    while (p <= i) {\n      if (Z[p] != -1) { ++p; }\n      elif (S[i - p] !=\
-    \ S[i]) { del(p++); }\n      else {\n        break;\n      }\n    }\n    if (p\
-    \ < i) {\n      for (int j: memo[i - p]) { del(j + p); }\n    }\n    return end;\n\
-    \  }\n  int query(int i) { return (Z[i] == -1 ? len(S) - i : Z[i]); }\n};\n#line\
-    \ 6 \"test/library_checker/string/online_z.test.cpp\"\n\nvoid solve() {\n  STR(S);\n\
-    \  ll N = len(S);\n  Online_Z_Algorithm<char> X;\n  vc<int> ANS(N, -1);\n\n  FOR(i,\
-    \ N) {\n    auto end = X.add(i, S[i]);\n    for (auto& j: end) { ANS[j] = i -\
-    \ j; }\n  }\n  FOR(i, N) if (ANS[i] == -1) ANS[i] = N - i;\n  print(ANS);\n}\n\
-    \nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ = char>\nstruct Online_Z_Algorithm {\n  vc<CHAR> S;\n  vc<int> Z;\n  vvc<int>\
+    \ memo;\n  int p;\n\n  Online_Z_Algorithm() : p(1){};\n\n  vc<int> add(int i,\
+    \ CHAR c) {\n    assert(i == len(S));\n    S.push_back(c);\n    int len = S.size();\n\
+    \    Z.eb(-1);\n    memo.resize(1 + i);\n    vc<int> end;\n\n    if (len == 1)\
+    \ return end;\n    if (S[0] != c) Z[i] = 0, end.eb(i);\n\n    auto del = [&](int\
+    \ j) -> void { Z[j] = i - j, memo[i].eb(j), end.eb(j); };\n\n    while (p <= i)\
+    \ {\n      if (Z[p] != -1) { ++p; }\n      elif (S[i - p] != S[i]) { del(p++);\
+    \ }\n      else {\n        break;\n      }\n    }\n    if (p < i) {\n      for\
+    \ (int j: memo[i - p]) { del(j + p); }\n    }\n    return end;\n  }\n  int query(int\
+    \ i) { return (Z[i] == -1 ? len(S) - i : Z[i]); }\n};\n#line 6 \"test/library_checker/string/online_z.test.cpp\"\
+    \n\nvoid solve() {\n  STR(S);\n  ll N = len(S);\n  Online_Z_Algorithm<char> X;\n\
+    \  vc<int> ANS(N, -1);\n\n  FOR(i, N) {\n    auto end = X.add(i, S[i]);\n    for\
+    \ (auto& j: end) { ANS[j] = i - j; }\n  }\n  FOR(i, N) if (ANS[i] == -1) ANS[i]\
+    \ = N - i;\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"string/online_z_algorithm.hpp\"\
     \n\nvoid solve() {\n  STR(S);\n  ll N = len(S);\n  Online_Z_Algorithm<char> X;\n\
@@ -217,7 +216,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/online_z.test.cpp
   requiredBy: []
-  timestamp: '2024-01-03 14:40:49+09:00'
+  timestamp: '2024-01-06 22:36:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/string/online_z.test.cpp
