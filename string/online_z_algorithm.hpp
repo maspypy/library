@@ -6,7 +6,6 @@ template <typename CHAR = char>
 struct Online_Z_Algorithm {
   vc<CHAR> S;
   vc<int> Z;
-  queue<int> cur;
   vvc<int> memo;
   int p;
 
