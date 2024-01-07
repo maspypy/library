@@ -967,6 +967,9 @@ data:
     path: test/mytest/enumerate_products.test.cpp
     title: test/mytest/enumerate_products.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/enumerate_unlabeled_tree.test.cpp
+    title: test/mytest/enumerate_unlabeled_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/eulerian_number.test.cpp
     title: test/mytest/eulerian_number.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2935,6 +2938,7 @@ data:
   - test/mytest/typical_dc.test.cpp
   - test/mytest/non_adj.test.cpp
   - test/mytest/composition_ex_minus_1.test.cpp
+  - test/mytest/enumerate_unlabeled_tree.test.cpp
   - test/mytest/bell_number.test.cpp
   - test/mytest/maxplus_concave.test.cpp
   - test/mytest/wavelet_matrix.test.cpp

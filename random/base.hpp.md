@@ -307,6 +307,9 @@ data:
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/enumerate_unlabeled_tree.test.cpp
+    title: test/mytest/enumerate_unlabeled_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
   - icon: ':heavy_check_mark:'
@@ -871,6 +874,7 @@ data:
   - test/mytest/typical_dc.test.cpp
   - test/mytest/non_adj.test.cpp
   - test/mytest/composition_ex_minus_1.test.cpp
+  - test/mytest/enumerate_unlabeled_tree.test.cpp
   - test/mytest/maxplus_concave.test.cpp
   - test/mytest/wavelet_matrix.test.cpp
   - test/mytest/rbst_monoid_2.test.cpp

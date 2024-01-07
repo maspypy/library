@@ -28,6 +28,9 @@ data:
     path: test/mytest/QOJ5445.test.cpp
     title: test/mytest/QOJ5445.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/enumerate_unlabeled_tree.test.cpp
+    title: test/mytest/enumerate_unlabeled_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1295.test.cpp
     title: test/yukicoder/1295.test.cpp
   - icon: ':heavy_check_mark:'
@@ -270,6 +273,7 @@ data:
   - test/library_checker/tree/rerooting_dp.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp
   - test/mytest/QOJ5445.test.cpp
+  - test/mytest/enumerate_unlabeled_tree.test.cpp
   - test/yukicoder/1976.test.cpp
   - test/yukicoder/1418.test.cpp
   - test/yukicoder/1718.test.cpp

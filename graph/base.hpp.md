@@ -469,6 +469,9 @@ data:
     path: test/mytest/count_indep_set.test.cpp
     title: test/mytest/count_indep_set.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/enumerate_unlabeled_tree.test.cpp
+    title: test/mytest/enumerate_unlabeled_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/find_C4.test.cpp
     title: test/mytest/find_C4.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1045,6 +1048,7 @@ data:
   - test/mytest/QOJ5445.test.cpp
   - test/mytest/mo_on_tree.test.cpp
   - test/mytest/count_clique.test.cpp
+  - test/mytest/enumerate_unlabeled_tree.test.cpp
   - test/mytest/st_numbering.test.cpp
   - test/mytest/tutte.test.cpp
   - test/mytest/matching_ve.test.cpp

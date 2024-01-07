@@ -46,6 +46,9 @@ data:
     path: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
     title: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/enumerate_unlabeled_tree.test.cpp
+    title: test/mytest/enumerate_unlabeled_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/matching.test.cpp
     title: test/mytest/matching.test.cpp
   - icon: ':heavy_check_mark:'
@@ -173,6 +176,7 @@ data:
   - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - test/mytest/matching.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
+  - test/mytest/enumerate_unlabeled_tree.test.cpp
   - test/mytest/tutte.test.cpp
   - test/mytest/matching_line_graph.test.cpp
   - test/yukicoder/2231.test.cpp

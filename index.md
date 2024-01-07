@@ -534,6 +534,9 @@ data:
       path: enumerate/triangle.hpp
       title: enumerate/triangle.hpp
     - icon: ':heavy_check_mark:'
+      path: enumerate/unlabeled_tree.hpp
+      title: enumerate/unlabeled_tree.hpp
+    - icon: ':heavy_check_mark:'
       path: enumerate/xor_range.hpp
       title: enumerate/xor_range.hpp
   - name: flow
@@ -2830,6 +2833,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/enumerate_products.test.cpp
       title: test/mytest/enumerate_products.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/enumerate_unlabeled_tree.test.cpp
+      title: test/mytest/enumerate_unlabeled_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/eulerian_number.test.cpp
       title: test/mytest/eulerian_number.test.cpp
