@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -14,6 +14,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/find_odd_cycle.hpp
     title: graph/find_odd_cycle.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/incremental_scc.hpp
+    title: graph/incremental_scc.hpp
   - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
@@ -48,6 +51,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/find_odd_cycle.test.cpp
     title: test/mytest/find_odd_cycle.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/incremental_scc.test.cpp
+    title: test/mytest/incremental_scc.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/matching_ve.test.cpp
     title: test/mytest/matching_ve.test.cpp
@@ -190,6 +196,7 @@ data:
   - graph/bipartite_edge_coloring.hpp
   - graph/maximum_antichain.hpp
   - graph/reachability.hpp
+  - graph/incremental_scc.hpp
   timestamp: '2023-11-07 22:29:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -204,6 +211,7 @@ data:
   - test/mytest/tutte.test.cpp
   - test/mytest/matching_ve.test.cpp
   - test/mytest/find_odd_cycle.test.cpp
+  - test/mytest/incremental_scc.test.cpp
   - test/yukicoder/1745.test.cpp
   - test/yukicoder/1744.test.cpp
   - test/yukicoder/1170.test.cpp

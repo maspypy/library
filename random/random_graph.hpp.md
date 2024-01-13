@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -33,6 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/find_odd_cycle.test.cpp
     title: test/mytest/find_odd_cycle.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/incremental_scc.test.cpp
+    title: test/mytest/incremental_scc.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/matching_line_graph.test.cpp
     title: test/mytest/matching_line_graph.test.cpp
@@ -233,6 +236,7 @@ data:
   - test/mytest/matching_line_graph.test.cpp
   - test/mytest/find_odd_cycle.test.cpp
   - test/mytest/remove_one_edge.test.cpp
+  - test/mytest/incremental_scc.test.cpp
   - test/mytest/count_indep_set.test.cpp
   - test/mytest/tree_walk_gf.test.cpp
 documentation_of: random/random_graph.hpp

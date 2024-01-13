@@ -1018,6 +1018,9 @@ data:
     path: test/mytest/incremental_ch.test.cpp
     title: test/mytest/incremental_ch.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/incremental_scc.test.cpp
+    title: test/mytest/incremental_scc.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/is_substring.test.cpp
     title: test/mytest/is_substring.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2400,7 +2403,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc154f.test.cpp
     title: test_atcoder/arc154f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc157a.test.cpp
     title: test_atcoder/arc157a.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2409,9 +2412,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://trap.jp/post/1224/
@@ -2579,7 +2582,7 @@ data:
   path: my_template.hpp
   requiredBy: []
   timestamp: '2023-10-29 16:21:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/0275.test.cpp
   - test/aoj/2842.test.cpp
@@ -3001,6 +3004,7 @@ data:
   - test/mytest/substring_abundant.test.cpp
   - test/mytest/enumerate_products.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
+  - test/mytest/incremental_scc.test.cpp
   - test/mytest/dual_fenwick.test.cpp
   - test/mytest/first_mod_range_of_linear.test.cpp
   - test/mytest/count_indep_set.test.cpp

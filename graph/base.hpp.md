@@ -113,7 +113,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/eulerwalk.hpp
     title: graph/eulerwalk.hpp
   - icon: ':heavy_check_mark:'
@@ -149,6 +149,9 @@ data:
   - icon: ':warning:'
     path: graph/implicit_graph/complement_graph_unionfind.hpp
     title: graph/implicit_graph/complement_graph_unionfind.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/incremental_scc.hpp
+    title: graph/incremental_scc.hpp
   - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
@@ -478,6 +481,9 @@ data:
     path: test/mytest/find_odd_cycle.test.cpp
     title: test/mytest/find_odd_cycle.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/incremental_scc.test.cpp
+    title: test/mytest/incremental_scc.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/matching.test.cpp
     title: test/mytest/matching.test.cpp
   - icon: ':heavy_check_mark:'
@@ -759,12 +765,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc157a.test.cpp
     title: test_atcoder/arc157a.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -966,6 +972,7 @@ data:
   - graph/count/count_independent_set.hpp
   - graph/reachability.hpp
   - graph/steiner_tree.hpp
+  - graph/incremental_scc.hpp
   - graph/dsu_on_tree.hpp
   - graph/tree_all_distances.hpp
   - graph/tree_diameter.hpp
@@ -982,7 +989,7 @@ data:
   - string/suffix_automaton.hpp
   - enumerate/triangle.hpp
   timestamp: '2023-11-07 22:29:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/0275.test.cpp
   - test/aoj/ITP1_11_D.test.cpp
@@ -1057,6 +1064,7 @@ data:
   - test/mytest/matching_line_graph.test.cpp
   - test/mytest/find_odd_cycle.test.cpp
   - test/mytest/remove_one_edge.test.cpp
+  - test/mytest/incremental_scc.test.cpp
   - test/mytest/count_indep_set.test.cpp
   - test/mytest/tree_walk_gf.test.cpp
   - test/yukicoder/1796.test.cpp

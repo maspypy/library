@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/rollback_mo.hpp
     title: ds/offline_query/rollback_mo.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -232,6 +232,7 @@ data:
     \ + k, t)) { i += k, s = t; }\n      }\n      k >>= 1;\n    }\n    return i;\n\
     \  }\n\n  int kth(E k) {\n    return max_right([&k](E x) -> bool { return x <=\
     \ k; });\n  }\n};\n#line 1 \"ds/offline_query/rollback_mo.hpp\"\n// https://codeforces.com/contest/620/problem/F\n\
+    // (10^5,3*10^5), mo+fastset 1300ms\n// https://codeforces.com/problemset/submission/765/240821486\n\
     struct Rollback_Mo {\n  vc<pair<int, int>> LR;\n  void add(int L, int R) { LR.emplace_back(L,\
     \ R); }\n\n  template <typename AL, typename AR, typename F1, typename F2, typename\
     \ F3,\n            typename O>\n  void calc(AL add_left, AR add_right, F1 reset,\
@@ -297,7 +298,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
+  timestamp: '2024-01-13 12:25:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp

@@ -331,6 +331,9 @@ data:
     path: test/mytest/geometric_sequence_sum.test.cpp
     title: test/mytest/geometric_sequence_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/incremental_scc.test.cpp
+    title: test/mytest/incremental_scc.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/is_substring.test.cpp
     title: test/mytest/is_substring.test.cpp
   - icon: ':heavy_check_mark:'
@@ -915,6 +918,7 @@ data:
   - test/mytest/tournament.test.cpp
   - test/mytest/summax_assign.test.cpp
   - test/mytest/range_freq_of_linear.test.cpp
+  - test/mytest/incremental_scc.test.cpp
   - test/mytest/dual_fenwick.test.cpp
   - test/mytest/first_mod_range_of_linear.test.cpp
   - test/mytest/count_indep_set.test.cpp
