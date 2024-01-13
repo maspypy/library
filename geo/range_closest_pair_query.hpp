@@ -6,6 +6,7 @@
 // O(KNlogKN + QlogN)
 // https://qoj.ac/problem/5463
 // https://codeforces.com/gym/104172/attachments/download/18933/Hong_Kong_Tutorial.pdf
+// 点群が 1 次元：https://codeforces.com/problemset/problem/765/F
 struct Range_Closest_Pair_Query {
   /*
   ・R を増やしながら、L ごとの答を管理する
