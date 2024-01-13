@@ -1,4 +1,6 @@
 // https://codeforces.com/contest/620/problem/F
+// (10^5,3*10^5), mo+fastset 1300ms
+// https://codeforces.com/problemset/submission/765/240821486
 struct Rollback_Mo {
   vc<pair<int, int>> LR;
   void add(int L, int R) { LR.emplace_back(L, R); }

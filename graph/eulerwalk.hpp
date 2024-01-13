@@ -1,3 +1,4 @@
+#include "ds/unionfind/unionfind.hpp"
 #include "graph/base.hpp"
 #include "graph/vs_to_es.hpp"
 
@@ -53,4 +54,51 @@ pair<vc<int>, vc<int>> euler_walk(GT& G, int s = -1) {
   reverse(all(vs));
   auto es = vs_to_es(G, vs, false);
   return {vs, es};
+}
+
+template <typename GT>
+bool has_euler_walk(GT& G, int s = -1) {
+  int N = G.N, M = G.M;
+  if (M == 0) return true;
+  if constexpr (!GT::is_directed) {
+    vc<int> odd(N);
+    for (auto& e: G.edges) odd[e.frm] ^= 1, odd[e.to] ^= 1;
+    int n_odd = 0;
+    for (auto x: odd) n_odd += x;
+
+    if (n_odd >= 4) return false;
+    if (s != -1 && n_odd == 2 && !odd[s]) return false;
+    UnionFind uf(N);
+    for (auto& e: G.edges) uf.merge(e.frm, e.to);
+    vector<int> cnt_edge(N);
+    for (auto& e: G.edges) cnt_edge[uf[e.frm]]++;
+    if (s != -1 && cnt_edge[uf[s]] == 0) return false;
+    // 辺がある成分を数える
+    int nc = 0;
+    for (int v = 0; v < N; ++v) {
+      if (uf[v] == v && cnt_edge[v] >= 1) ++nc;
+    }
+    return nc <= 1;
+  } else {
+    int N = G.N;
+    vc<int> in(N), out(N);
+    for (auto& e: G.edges) out[e.frm]++, in[e.to]++;
+
+    int ng = 0;
+    FOR(v, N) ng += abs(out[v] - in[v]);
+    if (ng >= 4) return false;
+    if (s != -1 && ng == 2 && out[s] != in[s] + 1) return false;
+
+    UnionFind uf(N);
+    for (auto& e: G.edges) uf.merge(e.frm, e.to);
+    vector<int> cnt_edge(N);
+    for (auto& e: G.edges) cnt_edge[uf[e.frm]]++;
+    if (s != -1 && cnt_edge[uf[s]] == 0) return false;
+    // 辺がある成分を数える
+    int nc = 0;
+    for (int v = 0; v < N; ++v) {
+      if (uf[v] == v && cnt_edge[v] >= 1) ++nc;
+    }
+    return nc <= 1;
+  }
 }
