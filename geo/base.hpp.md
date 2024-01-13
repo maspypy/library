@@ -38,10 +38,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/max_norm_sum.hpp
     title: geo/max_norm_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/minimum_enclosing_circle.hpp
     title: geo/minimum_enclosing_circle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
   - icon: ':heavy_check_mark:'
@@ -106,9 +106,12 @@ data:
     path: test/yukicoder/1777.test.cpp
     title: test/yukicoder/1777.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2602.test.cpp
+    title: test/yukicoder/2602.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc139f.test.cpp
     title: test_atcoder/abc139f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc151f.test.cpp
     title: test_atcoder/abc151f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -129,9 +132,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc130f.test.cpp
     title: test_atcoder/arc130f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -275,7 +278,7 @@ data:
   - geo/cross_point.hpp
   - geo/convex_hull.hpp
   timestamp: '2023-12-21 22:18:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/CGL_3_B.test.cpp
   - test/aoj/CGL_7_B.test.cpp
@@ -293,6 +296,7 @@ data:
   - test/mytest/count_points_in_triangles.test.cpp
   - test/mytest/incremental_ch.test.cpp
   - test/yukicoder/1777.test.cpp
+  - test/yukicoder/2602.test.cpp
   - test_atcoder/abc139f.test.cpp
   - test_atcoder/abc202_f.test.cpp
   - test_atcoder/abc220g.test.cpp

@@ -28,6 +28,9 @@ data:
     path: test/yukicoder/1678.test.cpp
     title: test/yukicoder/1678.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2604.test.cpp
+    title: test/yukicoder/2604.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc214h.test.cpp
     title: test_atcoder/abc214h.test.cpp
   _isVerificationFailed: false
@@ -257,6 +260,7 @@ data:
   - test/aoj/GRL_6_B.test.cpp
   - test/library_checker/graph/assignment_mcf.test.cpp
   - test/yukicoder/1341.test.cpp
+  - test/yukicoder/2604.test.cpp
   - test/yukicoder/1301.test.cpp
   - test/yukicoder/1324.test.cpp
   - test/yukicoder/1676.test.cpp

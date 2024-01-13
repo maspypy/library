@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/minimum_enclosing_circle.hpp
     title: geo/minimum_enclosing_circle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/triangle_area.hpp
     title: geo/triangle_area.hpp
   - icon: ':question:'
@@ -19,17 +19,17 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     ERROR: '0.000001'
@@ -273,13 +273,24 @@ data:
     \ A.x, c2 = C.y - A.y;\n  REAL bb = (b1 * b1 + b2 * b2) / 2;\n  REAL cc = (c1\
     \ * c1 + c2 * c2) / 2;\n\n  REAL det = b1 * c2 - b2 * c1;\n  REAL x = (bb * c2\
     \ - b2 * cc) / det;\n  REAL y = (b1 * cc - bb * c1) / det;\n  REAL r = sqrt(x\
-    \ * x + y * y);\n  x += A.x, y += A.y;\n  return Circle<REAL>(x, y, r);\n}\n#line\
-    \ 4 \"geo/minimum_enclosing_circle.hpp\"\n\n// randomize \u3092\u5229\u7528\u3057\
-    \u305F expected O(N) \u30A2\u30EB\u30B4\u30EA\u30BA\u30E0\n// Computational Geometry,\
-    \ Section 4.7\n// https://codeforces.com/problemset/problem/119/E\ntemplate <typename\
-    \ REAL, typename T>\nCircle<REAL> minimum_enclosing_circle(vc<Point<T>> points,\
-    \ REAL eps = 1e-12) {\n  using C = Circle<REAL>;\n  shuffle(points);\n  const\
-    \ int n = len(points);\n  assert(n >= 1);\n\n  if (n == 1) { return C(points[0].x,\
+    \ * x + y * y);\n  x += A.x, y += A.y;\n  return Circle<REAL>(x, y, r);\n}\n\n\
+    // ABC \u306E\u5916\u63A5\u5186\u306B\u5BFE\u3057\u3066\u5185\u5916\u3069\u3061\
+    \u3089\u306B\u3042\u308B\u304B\n// \u4E2D\uFF1A1, \u5883\u754C\uFF1A0, \u5916\uFF1A\
+    -1\n// \u5EA7\u6A19\u306E 4 \u4E57\u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\
+    \u3057\u306A\u3044\u3088\u3046\u306B\u3059\u308B\ntemplate <typename T>\nint outcircle_side(Point<T>\
+    \ A, Point<T> B, Point<T> C, Point<T> p) {\n  T d = (B - A).det(C - A);\n  assert(d\
+    \ != 0);\n  if (d < 0) swap(B, C);\n  array<Point<T>, 3> pts = {A, B, C};\n  array<array<T,\
+    \ 3>, 3> mat;\n  FOR(i, 3) {\n    T dx = pts[i].x - p.x, dy = pts[i].y - p.y;\n\
+    \    mat[i][0] = dx, mat[i][1] = dy, mat[i][2] = dx * dx + dy * dy;\n  }\n  T\
+    \ det = 0;\n  det += mat[0][0] * (mat[1][1] * mat[2][2] - mat[1][2] * mat[2][1]);\n\
+    \  det += mat[0][1] * (mat[1][2] * mat[2][0] - mat[1][0] * mat[2][2]);\n  det\
+    \ += mat[0][2] * (mat[1][0] * mat[2][1] - mat[1][1] * mat[2][0]);\n  if (det ==\
+    \ 0) return 0;\n  return (det > 0 ? 1 : -1);\n}\n#line 4 \"geo/minimum_enclosing_circle.hpp\"\
+    \n\n// randomize \u3092\u5229\u7528\u3057\u305F expected O(N) \u30A2\u30EB\u30B4\
+    \u30EA\u30BA\u30E0\n// Computational Geometry, Section 4.7\n// https://codeforces.com/problemset/problem/119/E\n\
+    template <typename REAL, typename T>\nCircle<REAL> minimum_enclosing_circle(vc<Point<T>>\
+    \ points, REAL eps = 1e-12) {\n  using C = Circle<REAL>;\n  shuffle(points);\n\
+    \  const int n = len(points);\n  assert(n >= 1);\n\n  if (n == 1) { return C(points[0].x,\
     \ points[0].y, 0); }\n  auto contain = [&](C& c, Point<T> p) -> bool {\n    REAL\
     \ x = c.O.x - p.x;\n    REAL y = c.O.y - p.y;\n    return x * x + y * y <= (1\
     \ + eps) * (c.r * c.r);\n  };\n  auto make2 = [&](int i, int j) -> C {\n    REAL\
@@ -313,8 +324,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc151f.test.cpp
   requiredBy: []
-  timestamp: '2023-12-21 22:18:31+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-13 13:20:17+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc151f.test.cpp
 layout: document

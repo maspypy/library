@@ -10,6 +10,9 @@ data:
     path: test/mytest/palindrome_decomposition_dp.test.cpp
     title: test/mytest/palindrome_decomposition_dp.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2606.test.cpp
+    title: test/yukicoder/2606.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/263.test.cpp
     title: test/yukicoder/263.test.cpp
   - icon: ':heavy_check_mark:'
@@ -78,6 +81,7 @@ data:
   - test/mytest/palindrome_decomposition_dp.test.cpp
   - test/yukicoder/263.test.cpp
   - test/yukicoder/465.test.cpp
+  - test/yukicoder/2606.test.cpp
 documentation_of: string/palindromic_tree.hpp
 layout: document
 redirect_from:
