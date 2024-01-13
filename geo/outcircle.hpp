@@ -15,3 +15,25 @@ Circle<REAL> outcircle(Point<T> A, Point<T> B, Point<T> C) {
   x += A.x, y += A.y;
   return Circle<REAL>(x, y, r);
 }
+
+// ABC の外接円に対して内外どちらにあるか
+// 中：1, 境界：0, 外：-1
+// 座標の 4 乗がオーバーフローしないようにする
+template <typename T>
+int outcircle_side(Point<T> A, Point<T> B, Point<T> C, Point<T> p) {
+  T d = (B - A).det(C - A);
+  assert(d != 0);
+  if (d < 0) swap(B, C);
+  array<Point<T>, 3> pts = {A, B, C};
+  array<array<T, 3>, 3> mat;
+  FOR(i, 3) {
+    T dx = pts[i].x - p.x, dy = pts[i].y - p.y;
+    mat[i][0] = dx, mat[i][1] = dy, mat[i][2] = dx * dx + dy * dy;
+  }
+  T det = 0;
+  det += mat[0][0] * (mat[1][1] * mat[2][2] - mat[1][2] * mat[2][1]);
+  det += mat[0][1] * (mat[1][2] * mat[2][0] - mat[1][0] * mat[2][2]);
+  det += mat[0][2] * (mat[1][0] * mat[2][1] - mat[1][1] * mat[2][0]);
+  if (det == 0) return 0;
+  return (det > 0 ? 1 : -1);
+}
