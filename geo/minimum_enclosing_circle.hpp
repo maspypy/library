@@ -3,45 +3,43 @@
 #include "geo/outcircle.hpp"
 
 // randomize を利用した expected O(N) アルゴリズム
-// Computational Geometry, Section 4.7
 // https://codeforces.com/problemset/problem/119/E
-template <typename REAL, typename T>
-Circle<REAL> minimum_enclosing_circle(vc<Point<T>> points, REAL eps = 1e-12) {
-  using C = Circle<REAL>;
-  shuffle(points);
+// 使う頂点のインデックスをかえす {0} or {i,j,-1} or {i,j,k}
+// Computational Geometry, Section 4.7
+template <typename T>
+tuple<int, int, int> minimum_enclosing_circle(vc<Point<T>> points) {
   const int n = len(points);
   assert(n >= 1);
+  if (n == 1) return {0, -1, -1};
+  vc<int> I(n);
+  FOR(i, n) I[i] = i;
+  shuffle(I);
 
-  if (n == 1) { return C(points[0].x, points[0].y, 0); }
-  auto contain = [&](C& c, Point<T> p) -> bool {
-    REAL x = c.O.x - p.x;
-    REAL y = c.O.y - p.y;
-    return x * x + y * y <= (1 + eps) * (c.r * c.r);
-  };
-  auto make2 = [&](int i, int j) -> C {
-    REAL x = (points[i].x + points[j].x) * 0.5;
-    REAL y = (points[i].y + points[j].y) * 0.5;
-    REAL r = dist<REAL, T>(points[i], points[j]) * 0.5;
-    return C(x, y, r);
-  };
-  auto make3 = [&](int i, int j, int k) -> C {
-    return outcircle<REAL, T>(points[i], points[j], points[k]);
+  points = rearrange(points, I);
+
+  tuple<int, int, int> c = {0, -1, -1};
+  auto contain = [&](Point<T> p) -> bool {
+    auto [i, j, k] = c;
+    if (j == -1) { return p == points[i]; }
+    if (k == -1) { return (points[i] - p).dot(points[j] - p) <= 0; }
+    return outcircle_side(points[i], points[j], points[k], p) >= 0;
   };
 
-  C c = make2(0, 1);
-  FOR(i, 2, n) {
-    if (contain(c, points[i])) continue;
-    // min disc with point i
-    c = make2(0, i);
+  FOR(i, 1, n) {
+    if (contain(points[i])) continue;
+    c = {0, i, -1};
     FOR(j, 1, i) {
-      if (contain(c, points[j])) continue;
-      // min disc with point i, j
-      c = make2(i, j);
+      if (contain(points[j])) continue;
+      c = {i, j, -1};
       FOR(k, j) {
-        if (contain(c, points[k])) continue;
-        c = make3(i, j, k);
+        if (contain(points[k])) continue;
+        c = {i, j, k};
       }
     }
   }
-  return c;
+  auto [i, j, k] = c;
+  if (i != -1) i = I[i];
+  if (j != -1) j = I[j];
+  if (k != -1) k = I[k];
+  return {i, j, k};
 }
