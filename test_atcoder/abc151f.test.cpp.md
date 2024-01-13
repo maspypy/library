@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/minimum_enclosing_circle.hpp
     title: geo/minimum_enclosing_circle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/triangle_area.hpp
     title: geo/triangle_area.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     ERROR: '0.000001'
@@ -37,9 +37,9 @@ data:
     links:
     - https://atcoder.jp/contests/abc151/tasks/abc151_f
   bundledCode: "#line 1 \"test_atcoder/abc151f.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc151/tasks/abc151_f\"\
-    \n#define ERROR 0.000001\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include\
-    \ <my_template_compiled.hpp>\n#else\n#pragma GCC optimize(\"Ofast\")\n#pragma\
-    \ GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace\
+    \n#define ERROR 0.000001\n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
+    #include <my_template_compiled.hpp>\n#else\n#pragma GCC optimize(\"Ofast\")\n\
+    #pragma GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing u64 = unsigned\
     \ long long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\nusing f128\
     \ = __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr\
@@ -287,31 +287,35 @@ data:
     \ += mat[0][2] * (mat[1][0] * mat[2][1] - mat[1][1] * mat[2][0]);\n  if (det ==\
     \ 0) return 0;\n  return (det > 0 ? 1 : -1);\n}\n#line 4 \"geo/minimum_enclosing_circle.hpp\"\
     \n\n// randomize \u3092\u5229\u7528\u3057\u305F expected O(N) \u30A2\u30EB\u30B4\
-    \u30EA\u30BA\u30E0\n// Computational Geometry, Section 4.7\n// https://codeforces.com/problemset/problem/119/E\n\
-    template <typename REAL, typename T>\nCircle<REAL> minimum_enclosing_circle(vc<Point<T>>\
-    \ points, REAL eps = 1e-12) {\n  using C = Circle<REAL>;\n  shuffle(points);\n\
-    \  const int n = len(points);\n  assert(n >= 1);\n\n  if (n == 1) { return C(points[0].x,\
-    \ points[0].y, 0); }\n  auto contain = [&](C& c, Point<T> p) -> bool {\n    REAL\
-    \ x = c.O.x - p.x;\n    REAL y = c.O.y - p.y;\n    return x * x + y * y <= (1\
-    \ + eps) * (c.r * c.r);\n  };\n  auto make2 = [&](int i, int j) -> C {\n    REAL\
-    \ x = (points[i].x + points[j].x) * 0.5;\n    REAL y = (points[i].y + points[j].y)\
-    \ * 0.5;\n    REAL r = dist<REAL, T>(points[i], points[j]) * 0.5;\n    return\
-    \ C(x, y, r);\n  };\n  auto make3 = [&](int i, int j, int k) -> C {\n    return\
-    \ outcircle<REAL, T>(points[i], points[j], points[k]);\n  };\n\n  C c = make2(0,\
-    \ 1);\n  FOR(i, 2, n) {\n    if (contain(c, points[i])) continue;\n    // min\
-    \ disc with point i\n    c = make2(0, i);\n    FOR(j, 1, i) {\n      if (contain(c,\
-    \ points[j])) continue;\n      // min disc with point i, j\n      c = make2(i,\
-    \ j);\n      FOR(k, j) {\n        if (contain(c, points[k])) continue;\n     \
-    \   c = make3(i, j, k);\n      }\n    }\n  }\n  return c;\n}\n#line 6 \"test_atcoder/abc151f.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  using Re = double;\n  using P = Point<Re>;\n \
-    \ VEC(P, points, N);\n  auto c = minimum_enclosing_circle<Re, Re>(points);\n \
-    \ print(c.r);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \u30EA\u30BA\u30E0\n// https://codeforces.com/problemset/problem/119/E\n// \u4F7F\
+    \u3046\u9802\u70B9\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\u3092\u304B\u3048\
+    \u3059 {0} or {i,j,-1} or {i,j,k}\n// Computational Geometry, Section 4.7\ntemplate\
+    \ <typename T>\ntuple<int, int, int> minimum_enclosing_circle(vc<Point<T>> points)\
+    \ {\n  const int n = len(points);\n  assert(n >= 1);\n  if (n == 1) return {0,\
+    \ -1, -1};\n  vc<int> I(n);\n  FOR(i, n) I[i] = i;\n  shuffle(I);\n\n  points\
+    \ = rearrange(points, I);\n\n  tuple<int, int, int> c = {0, -1, -1};\n  auto contain\
+    \ = [&](Point<T> p) -> bool {\n    auto [i, j, k] = c;\n    if (j == -1) { return\
+    \ p == points[i]; }\n    if (k == -1) { return (points[i] - p).dot(points[j] -\
+    \ p) <= 0; }\n    return outcircle_side(points[i], points[j], points[k], p) >=\
+    \ 0;\n  };\n\n  FOR(i, 1, n) {\n    if (contain(points[i])) continue;\n    c =\
+    \ {0, i, -1};\n    FOR(j, 1, i) {\n      if (contain(points[j])) continue;\n \
+    \     c = {i, j, -1};\n      FOR(k, j) {\n        if (contain(points[k])) continue;\n\
+    \        c = {i, j, k};\n      }\n    }\n  }\n  auto [i, j, k] = c;\n  if (i !=\
+    \ -1) i = I[i];\n  if (j != -1) j = I[j];\n  if (k != -1) k = I[k];\n  return\
+    \ {i, j, k};\n}\n#line 7 \"test_atcoder/abc151f.test.cpp\"\n\nvoid solve() {\n\
+    \  LL(N);\n  using Re = double;\n  using P = Point<Re>;\n  VEC(P, points, N);\n\
+    \  auto [i, j, k] = minimum_enclosing_circle(points);\n  if (k == -1) {\n    Re\
+    \ r = dist<Re>(points[i], points[j]);\n    print(r / 2);\n  } else {\n    auto\
+    \ c = outcircle<Re>(points[i], points[j], points[k]);\n    print(c.r);\n  }\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc151/tasks/abc151_f\"\n#define\
-    \ ERROR 0.000001\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include\
-    \ \"geo/minimum_enclosing_circle.hpp\"\n\nvoid solve() {\n  LL(N);\n  using Re\
-    \ = double;\n  using P = Point<Re>;\n  VEC(P, points, N);\n  auto c = minimum_enclosing_circle<Re,\
-    \ Re>(points);\n  print(c.r);\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
-    }"
+    \ ERROR 0.000001\n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\
+    #include \"geo/minimum_enclosing_circle.hpp\"\n\nvoid solve() {\n  LL(N);\n  using\
+    \ Re = double;\n  using P = Point<Re>;\n  VEC(P, points, N);\n  auto [i, j, k]\
+    \ = minimum_enclosing_circle(points);\n  if (k == -1) {\n    Re r = dist<Re>(points[i],\
+    \ points[j]);\n    print(r / 2);\n  } else {\n    auto c = outcircle<Re>(points[i],\
+    \ points[j], points[k]);\n    print(c.r);\n  }\n}\n\nsigned main() {\n  solve();\n\
+    \  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -324,8 +328,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc151f.test.cpp
   requiredBy: []
-  timestamp: '2024-01-13 13:20:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-13 13:39:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc151f.test.cpp
 layout: document
