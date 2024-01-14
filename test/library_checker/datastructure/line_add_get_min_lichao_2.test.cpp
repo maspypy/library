@@ -3,6 +3,13 @@
 #include "other/io.hpp"
 #include "convex/lichao.hpp"
 
+struct F {
+  using value_type = ll;
+  int a;
+  ll b;
+  ll operator()(ll x) { return a * x + b; }
+};
+
 void solve() {
   LL(N, Q);
   using T = tuple<int, int, ll>;
@@ -25,7 +32,7 @@ void solve() {
       points.eb(x);
     }
   }
-  LiChao_Tree<ll, 1, 1> X(points);
+  LiChao_Tree<F, 1, 1> X(points, {0, infty<ll>});
   for (auto&& [t, a, b]: query) {
     if (t == 0) X.add_line({a, b});
     if (t == 1) print(X.query(a).fi);
