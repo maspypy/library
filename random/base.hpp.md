@@ -17,6 +17,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/minimum_enclosing_circle.hpp
     title: geo/minimum_enclosing_circle.hpp
+  - icon: ':warning:'
+    path: graph/BEST.hpp
+    title: graph/BEST.hpp
   - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
@@ -769,6 +772,7 @@ data:
   - graph/chromatic.hpp
   - graph/find_path_through_specified.hpp
   - graph/maximum_matching_size.hpp
+  - graph/BEST.hpp
   - graph/tree_dp/subtree_hash.hpp
   - graph/count/count_bipartite.hpp
   - geo/closest_pair.hpp

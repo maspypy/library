@@ -17,6 +17,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/manhattan_mst.hpp
     title: geo/manhattan_mst.hpp
+  - icon: ':warning:'
+    path: graph/BEST.hpp
+    title: graph/BEST.hpp
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
@@ -933,6 +936,7 @@ data:
   - graph/maximum_antichain.hpp
   - graph/block_cut.hpp
   - graph/to_directed_tree.hpp
+  - graph/BEST.hpp
   - graph/unicyclic.hpp
   - graph/tree_dp/subtree_diameter.hpp
   - graph/tree_dp/tree_dp.hpp

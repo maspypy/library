@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/BEST.hpp
+    title: graph/BEST.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/implicit_matrix/det.hpp
     title: linalg/implicit_matrix/det.hpp
@@ -95,6 +98,7 @@ data:
   - linalg/implicit_matrix/min_poly.hpp
   - linalg/implicit_matrix/det.hpp
   - seq/interpolate_linear_rec.hpp
+  - graph/BEST.hpp
   timestamp: '2022-05-11 21:07:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

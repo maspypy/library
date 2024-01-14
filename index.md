@@ -666,6 +666,9 @@ data:
       title: geo3d/base.hpp
   - name: graph
     pages:
+    - icon: ':warning:'
+      path: graph/BEST.hpp
+      title: graph/BEST.hpp
     - icon: ':question:'
       path: graph/base.hpp
       title: graph/base.hpp

@@ -11,6 +11,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/manhattan_mst.hpp
     title: geo/manhattan_mst.hpp
+  - icon: ':warning:'
+    path: graph/BEST.hpp
+    title: graph/BEST.hpp
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
@@ -271,6 +274,7 @@ data:
   - graph/optimal_product_on_tree.hpp
   - graph/bipartite_edge_coloring.hpp
   - graph/maximum_antichain.hpp
+  - graph/BEST.hpp
   - graph/unicyclic.hpp
   - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - graph/bipartite_vertex_coloring.hpp

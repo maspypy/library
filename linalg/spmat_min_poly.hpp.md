@@ -8,6 +8,9 @@ data:
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/BEST.hpp
+    title: graph/BEST.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/spmat_det.hpp
     title: linalg/spmat_det.hpp
@@ -59,6 +62,7 @@ data:
   path: linalg/spmat_min_poly.hpp
   requiredBy:
   - linalg/spmat_det.hpp
+  - graph/BEST.hpp
   timestamp: '2023-05-20 02:22:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
