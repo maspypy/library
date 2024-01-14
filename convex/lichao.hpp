@@ -1,15 +1,21 @@
-// 評価点は ll、関数の値は T になっている
-// evaluate を書き変えると、totally monotone な関数群にも使える
-template <typename T, bool COMPRESS, bool MINIMIZE>
+/*
+struct F {
+  using value_type = ll;  // operator() の戻り値
+  int a;
+  ll b;
+  ll operator()(ll x) { return a * x + b; }
+};
+*/
+
+// 評価点は ll
+// FUNC f には T operator() を定義する, T は比較可能な型
+// 1次式：FUNC = LiChaoTree_Line
+template <typename FUNC, bool COMPRESS, bool MINIMIZE>
 struct LiChao_Tree {
-  using FUNC = pair<T, T>;
-  vc<FUNC> funcs;
-
-  static inline T evaluate(FUNC& f, ll x) { return f.fi * x + f.se; }
-
+  using T = typename FUNC::value_type;
   vc<ll> X;
   ll lo, hi;
-  vc<int> FID;
+  vc<FUNC> dat;
   int n, log, size;
 
   inline int get_idx(ll x) {
@@ -19,79 +25,71 @@ struct LiChao_Tree {
   }
 
   template <typename XY>
-  LiChao_Tree(const vc<XY>& pts) {
+  LiChao_Tree(const vc<XY>& pts, FUNC default_fn) {
     static_assert(COMPRESS);
     for (auto&& x: pts) X.eb(x);
     UNIQUE(X);
     n = len(X), log = 1;
     while ((1 << log) < n) ++log;
     size = 1 << log;
-    FID.assign(size << 1, -1);
+    dat.assign(size << 1, default_fn);
   }
 
-  LiChao_Tree(ll lo, ll hi) : lo(lo), hi(hi) {
+  LiChao_Tree(ll lo, ll hi, FUNC default_fn) : lo(lo), hi(hi) {
     static_assert(!COMPRESS);
     n = hi - lo, log = 1;
     while ((1 << log) < n) ++log;
     size = 1 << log;
-    FID.assign(size << 1, -1);
+    dat.assign(size << 1, default_fn);
   }
 
-  void add_line(FUNC f) {
-    int fid = len(funcs);
-    funcs.eb(f);
-    return add_line_at(1, fid);
-  }
+  void add_line(FUNC f) { return add_line_at(1, f); }
+
   void add_segment(ll xl, ll xr, FUNC f) {
-    int fid = len(funcs);
-    funcs.eb(f);
     xl = get_idx(xl), xr = get_idx(xr);
     xl += size, xr += size;
     while (xl < xr) {
-      if (xl & 1) add_line_at(xl++, fid);
-      if (xr & 1) add_line_at(--xr, fid);
+      if (xl & 1) add_line_at(xl++, f);
+      if (xr & 1) add_line_at(--xr, f);
       xl >>= 1, xr >>= 1;
     }
   }
 
-  // [fx, fid]
-  pair<T, int> query(ll x) {
-    x = get_idx(x);
-    int i = x + size;
-    pair<T, int> res;
-    if (!MINIMIZE) res = {-infty<T>, -1};
-    if (MINIMIZE) res = {infty<T>, -1};
+  // 最適な値と FUNC の pair
+  pair<T, FUNC> query(ll x) {
+    FUNC f = dat[0]; // default_fn
+    T fx = f(x);
+    int i = get_idx(x) + size;
     while (i) {
-      if (FID[i] != -1 && FID[i] != res.se) {
-        pair<T, int> res1 = {evaluate_inner(FID[i], x), FID[i]};
-        res = (MINIMIZE ? min(res, res1) : max(res, res1));
-      }
+      FUNC g = dat[i];
+      T gx = g(x);
+      if ((MINIMIZE && gx < fx) || (!MINIMIZE && gx > fx)) { f = g, fx = gx; }
       i >>= 1;
     }
-    return res;
+    return {fx, f};
   }
 
-  void add_line_at(int i, int fid) {
+  void add_line_at(int i, FUNC f) {
     int upper_bit = 31 - __builtin_clz(i);
     int l = (size >> upper_bit) * (i - (1 << upper_bit));
     int r = l + (size >> upper_bit);
     while (l < r) {
-      int gid = FID[i];
-      T fl = evaluate_inner(fid, l), fr = evaluate_inner(fid, r - 1);
-      T gl = evaluate_inner(gid, l), gr = evaluate_inner(gid, r - 1);
+      FUNC g = dat[i];
+      T fl = evaluate_inner(f, l), fr = evaluate_inner(f, r - 1);
+      T gl = evaluate_inner(g, l), gr = evaluate_inner(g, r - 1);
       bool bl = (MINIMIZE ? fl < gl : fl > gl);
       bool br = (MINIMIZE ? fr < gr : fr > gr);
       if (bl && br) {
-        FID[i] = fid;
+        dat[i] = f;
         return;
       }
       if (!bl && !br) return;
       int m = (l + r) / 2;
-      T fm = evaluate_inner(fid, m), gm = evaluate_inner(gid, m);
+      T fm = evaluate_inner(f, m), gm = evaluate_inner(g, m);
       bool bm = (MINIMIZE ? fm < gm : fm > gm);
       if (bm) {
-        FID[i] = fid;
-        fid = gid;
+        dat[i] = f;
+        f = g;
         if (!bl) { i = 2 * i + 0, r = m; }
         if (bl) { i = 2 * i + 1, l = m; }
       }
@@ -103,8 +101,7 @@ struct LiChao_Tree {
   }
 
 private:
-  T evaluate_inner(int fid, ll x) {
-    if (fid == -1) return (MINIMIZE ? infty<T> : -infty<T>);
-    return evaluate(funcs[fid], (COMPRESS ? X[min<int>(x, n - 1)] : x + lo));
+  inline T evaluate_inner(FUNC& f, ll x) {
+    return f((COMPRESS ? X[min<int>(x, n - 1)] : min<int>(x + lo, hi - 1)));
   }
 };

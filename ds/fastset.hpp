@@ -1,3 +1,5 @@
+#pragma once
+
 // 64-ary tree
 // space: (N/63) * u64
 struct FastSet {
