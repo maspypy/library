@@ -1,3 +1,5 @@
+#pragma once
+
 #include "poly/fps_inv.hpp"
 template <typename mint>
 pair<vc<mint>, vc<mint>> poly_divmod(vc<mint> f, vc<mint> g) {
