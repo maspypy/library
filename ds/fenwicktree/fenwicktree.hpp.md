@@ -58,6 +58,9 @@ data:
     path: test/library_checker/datastructure/point_add_range_sum.test.cpp
     title: test/library_checker/datastructure/point_add_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/predecessor_problem_2.test.cpp
+    title: test/library_checker/datastructure/predecessor_problem_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
   - icon: ':heavy_check_mark:'
@@ -243,6 +246,7 @@ data:
   - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
   - test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp
   - test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
+  - test/library_checker/datastructure/predecessor_problem_2.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp

@@ -4,16 +4,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/spmat_min_poly.hpp
     title: linalg/spmat_min_poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: graph/BEST.hpp
-    title: graph/BEST.hpp
+    path: graph/count/BEST.hpp
+    title: graph/count/BEST.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/sparse_matrix_det.test.cpp
@@ -62,7 +62,7 @@ data:
   isVerificationFile: false
   path: linalg/spmat_det.hpp
   requiredBy:
-  - graph/BEST.hpp
+  - graph/count/BEST.hpp
   timestamp: '2023-05-20 12:35:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

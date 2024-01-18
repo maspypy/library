@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/solve_linear.hpp
     title: linalg/solve_linear.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -289,7 +289,7 @@ data:
     \ntemplate <typename T>\nint matrix_rank(vc<vc<T>> a, int n = -1, int m = -1)\
     \ {\n  if (n == 0) return 0;\n  if (n == -1) { n = len(a), m = len(a[0]); }\n\
     \  assert(n == len(a) && m == len(a[0]));\n  int rk = 0;\n  FOR(j, m) {\n    if\
-    \ (rk == n) break;\n    if (a[rk][j] == 0) {\n      FOR3(i, rk + 1, n) if (a[i][j]\
+    \ (rk == n) break;\n    if (a[rk][j] == 0) {\n      FOR(i, rk + 1, n) if (a[i][j]\
     \ != T(0)) {\n        swap(a[rk], a[i]);\n        break;\n      }\n    }\n   \
     \ if (a[rk][j] == 0) continue;\n    T c = T(1) / a[rk][j];\n    FOR(k, j, m) a[rk][k]\
     \ *= c;\n    FOR(i, rk + 1, n) {\n      T c = a[i][j];\n      FOR3(k, j, m) {\
@@ -320,7 +320,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/solve_linear.test.cpp
   requiredBy: []
-  timestamp: '2023-11-21 19:08:32+09:00'
+  timestamp: '2024-01-19 02:38:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/matrix/solve_linear.test.cpp

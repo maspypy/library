@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -19,28 +19,28 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
   - icon: ':heavy_check_mark:'
@@ -221,12 +221,13 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\n\
-    int count_terms(const vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i]\
-    \ != mint(0)) ++t;\r\n  return t;\r\n}\n#line 2 \"mod/modint_common.hpp\"\n\n\
-    struct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
-    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
-    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ yes(!t); }\r\n#line 2 \"poly/poly_divmod.hpp\"\n\r\n#line 2 \"poly/count_terms.hpp\"\
+    \ntemplate<typename mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t =\
+    \ 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 2\
+    \ \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class T>\n \
+    \ static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n  template\
+    \ <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate <class\
+    \ T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
     \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
     \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
@@ -514,7 +515,7 @@ data:
     \n    m += m;\r\n  }\r\n  R.resize(N);\r\n  return R;\r\n}\r\n\r\ntemplate <typename\
     \ mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  assert(f[0] != mint(0));\r\
     \n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160 : 820);\r\n  return\
-    \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\n}\r\n#line 2\
+    \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\n}\r\n#line 4\
     \ \"poly/poly_divmod.hpp\"\ntemplate <typename mint>\r\npair<vc<mint>, vc<mint>>\
     \ poly_divmod(vc<mint> f, vc<mint> g) {\r\n  assert(g.back() != 0);\r\n  if (len(f)\
     \ < len(g)) { return {{}, f}; }\r\n  auto rf = f, rg = g;\r\n  reverse(all(rf)),\
@@ -557,14 +558,19 @@ data:
     \ntemplate <typename T>\r\ntuple<vc<T>, vc<T>, vc<T>> poly_extgcd(const vc<T>&\
     \ f, const vc<T>& g) {\r\n  mat<T> Q = step(poly_divmod(f, g).fi);\r\n  auto m\
     \ = Q;\r\n  auto ap = Q * arr<T>{f, g};\r\n  if (!ap[1].empty()) m = cgcd(ap)\
-    \ * m;\r\n  return {f * m[0] + g * m[1], m[0], m[1]};\r\n}\r\n} // namespace half_gcd\r\
-    \nusing half_gcd::poly_extgcd;\n#line 5 \"test/library_checker/polynomial/inv_of_polynomials.test.cpp\"\
-    \n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N, M);\r\n  VEC(mint,\
-    \ A, N);\r\n  VEC(mint, B, M);\r\n  auto [d, x, y] = poly_extgcd(A, B);\r\n  if\
-    \ (len(d) > 1) return print(-1);\r\n  mint c = mint(1) / d[0];\r\n  FOR(i, len(x))\
-    \ x[i] *= c;\r\n  print(len(x));\r\n  if (len(x)) print(x);\r\n}\r\n\r\nsigned\
-    \ main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout\
-    \ << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ * m;\r\n  return {f * m[0] + g * m[1], m[0], m[1]};\r\n}\r\n\r\ntemplate <typename\
+    \ T>\r\nvc<T> poly_gcd(vc<T> f, vc<T> g) {\r\n  while (len(f) && f.back() == T(0))\
+    \ POP(f);\r\n  while (len(g) && g.back() == T(0)) POP(g);\r\n  if (f.empty())\
+    \ return g;\r\n  if (g.empty()) return f;\r\n  auto F = get<0>(poly_extgcd(f,\
+    \ g));\r\n  T c = T(1) / F.back();\r\n  for (auto& f: F) f *= c;\r\n  return F;\r\
+    \n}\r\n} // namespace half_gcd\r\nusing half_gcd::poly_extgcd;\r\nusing half_gcd::poly_gcd;\r\
+    \n#line 5 \"test/library_checker/polynomial/inv_of_polynomials.test.cpp\"\n\r\n\
+    using mint = modint998;\r\nvoid solve() {\r\n  LL(N, M);\r\n  VEC(mint, A, N);\r\
+    \n  VEC(mint, B, M);\r\n  auto [d, x, y] = poly_extgcd(A, B);\r\n  if (len(d)\
+    \ > 1) return print(-1);\r\n  mint c = mint(1) / d[0];\r\n  FOR(i, len(x)) x[i]\
+    \ *= c;\r\n  print(len(x));\r\n  if (len(x)) print(x);\r\n}\r\n\r\nsigned main()\
+    \ {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
+    \n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_polynomials\"\r\n\
     #include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"poly/poly_gcd.hpp\"\
     \r\n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N, M);\r\n  VEC(mint,\
@@ -592,7 +598,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/polynomial/inv_of_polynomials.test.cpp
   requiredBy: []
-  timestamp: '2023-12-29 16:32:29+09:00'
+  timestamp: '2024-01-19 02:38:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/polynomial/inv_of_polynomials.test.cpp

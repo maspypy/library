@@ -1,59 +1,66 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: poly/finding_root_of_polynomial.hpp
+    title: poly/finding_root_of_polynomial.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/inv_of_polynomials.test.cpp
     title: test/library_checker/polynomial/inv_of_polynomials.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/poly_root_finding.test.cpp
+    title: test/mytest/poly_root_finding.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://people.eecs.berkeley.edu/~fateman/282/readings/yap-2.pdf
-  bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
-    \ vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\
-    \n  return t;\r\n}\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n\
-    \  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
-    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
-    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+  bundledCode: "#line 2 \"poly/poly_divmod.hpp\"\n\r\n#line 2 \"poly/count_terms.hpp\"\
+    \ntemplate<typename mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t =\
+    \ 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 2\
+    \ \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class T>\n \
+    \ static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n  template\
+    \ <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate <class\
+    \ T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
     \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
     \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
@@ -341,7 +348,7 @@ data:
     \n    m += m;\r\n  }\r\n  R.resize(N);\r\n  return R;\r\n}\r\n\r\ntemplate <typename\
     \ mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  assert(f[0] != mint(0));\r\
     \n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160 : 820);\r\n  return\
-    \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\n}\r\n#line 2\
+    \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\n}\r\n#line 4\
     \ \"poly/poly_divmod.hpp\"\ntemplate <typename mint>\r\npair<vc<mint>, vc<mint>>\
     \ poly_divmod(vc<mint> f, vc<mint> g) {\r\n  assert(g.back() != 0);\r\n  if (len(f)\
     \ < len(g)) { return {{}, f}; }\r\n  auto rf = f, rg = g;\r\n  reverse(all(rf)),\
@@ -384,8 +391,13 @@ data:
     \ntemplate <typename T>\r\ntuple<vc<T>, vc<T>, vc<T>> poly_extgcd(const vc<T>&\
     \ f, const vc<T>& g) {\r\n  mat<T> Q = step(poly_divmod(f, g).fi);\r\n  auto m\
     \ = Q;\r\n  auto ap = Q * arr<T>{f, g};\r\n  if (!ap[1].empty()) m = cgcd(ap)\
-    \ * m;\r\n  return {f * m[0] + g * m[1], m[0], m[1]};\r\n}\r\n} // namespace half_gcd\r\
-    \nusing half_gcd::poly_extgcd;\n"
+    \ * m;\r\n  return {f * m[0] + g * m[1], m[0], m[1]};\r\n}\r\n\r\ntemplate <typename\
+    \ T>\r\nvc<T> poly_gcd(vc<T> f, vc<T> g) {\r\n  while (len(f) && f.back() == T(0))\
+    \ POP(f);\r\n  while (len(g) && g.back() == T(0)) POP(g);\r\n  if (f.empty())\
+    \ return g;\r\n  if (g.empty()) return f;\r\n  auto F = get<0>(poly_extgcd(f,\
+    \ g));\r\n  T c = T(1) / F.back();\r\n  for (auto& f: F) f *= c;\r\n  return F;\r\
+    \n}\r\n} // namespace half_gcd\r\nusing half_gcd::poly_extgcd;\r\nusing half_gcd::poly_gcd;\r\
+    \n"
   code: "#include \"poly/poly_divmod.hpp\"\r\n\r\n// https://people.eecs.berkeley.edu/~fateman/282/readings/yap-2.pdf\r\
     \nnamespace half_gcd {\r\ntemplate <typename T>\r\nusing arr = array<vc<T>, 2>;\r\
     \n\r\ntemplate <typename T>\r\nusing mat = array<vc<T>, 4>;\r\n\r\ntemplate <typename\
@@ -421,8 +433,13 @@ data:
     \ntemplate <typename T>\r\ntuple<vc<T>, vc<T>, vc<T>> poly_extgcd(const vc<T>&\
     \ f, const vc<T>& g) {\r\n  mat<T> Q = step(poly_divmod(f, g).fi);\r\n  auto m\
     \ = Q;\r\n  auto ap = Q * arr<T>{f, g};\r\n  if (!ap[1].empty()) m = cgcd(ap)\
-    \ * m;\r\n  return {f * m[0] + g * m[1], m[0], m[1]};\r\n}\r\n} // namespace half_gcd\r\
-    \nusing half_gcd::poly_extgcd;"
+    \ * m;\r\n  return {f * m[0] + g * m[1], m[0], m[1]};\r\n}\r\n\r\ntemplate <typename\
+    \ T>\r\nvc<T> poly_gcd(vc<T> f, vc<T> g) {\r\n  while (len(f) && f.back() == T(0))\
+    \ POP(f);\r\n  while (len(g) && g.back() == T(0)) POP(g);\r\n  if (f.empty())\
+    \ return g;\r\n  if (g.empty()) return f;\r\n  auto F = get<0>(poly_extgcd(f,\
+    \ g));\r\n  T c = T(1) / F.back();\r\n  for (auto& f: F) f *= c;\r\n  return F;\r\
+    \n}\r\n} // namespace half_gcd\r\nusing half_gcd::poly_extgcd;\r\nusing half_gcd::poly_gcd;\r\
+    \n"
   dependsOn:
   - poly/poly_divmod.hpp
   - poly/fps_inv.hpp
@@ -438,11 +455,13 @@ data:
   - poly/fft.hpp
   isVerificationFile: false
   path: poly/poly_gcd.hpp
-  requiredBy: []
-  timestamp: '2023-12-29 16:32:29+09:00'
+  requiredBy:
+  - poly/finding_root_of_polynomial.hpp
+  timestamp: '2024-01-19 02:38:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/polynomial/inv_of_polynomials.test.cpp
+  - test/mytest/poly_root_finding.test.cpp
 documentation_of: poly/poly_gcd.hpp
 layout: document
 redirect_from:

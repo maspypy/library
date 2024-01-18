@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/cumsum_2d.hpp
     title: ds/cumsum_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree_2d_dense.hpp
     title: ds/segtree/segtree_2d_dense.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc228/tasks/abc228_f
@@ -210,48 +210,51 @@ data:
     \ : len(A[0]));\r\n    dat.assign(H * W, MX::unit());\r\n    FOR(x, H) FOR(y,\
     \ W) {\r\n      int k = W * x + y;\r\n      dat[k] = (y == 0 ? A[x][y] : MX::op(dat[k\
     \ - 1], A[x][y]));\r\n    }\r\n    FOR(i, W, H * W) dat[i] = MX::op(dat[i - W],\
-    \ dat[i]);\r\n  }\r\n\r\n  // [x1,x2) x [y1,y2)\r\n  X sum(int x1, int x2, int\
-    \ y1, int y2) {\r\n    if (x2 == 0 || y2 == 0) return MX::unit();\r\n    assert(0\
-    \ <= x1 && x1 <= x2 && x2 <= H);\r\n    assert(0 <= y1 && y1 <= y2 && y2 <= W);\r\
-    \n    --x1, --y1, --x2, --y2;\r\n    X a = (x1 >= 0 && y1 >= 0 ? dat[W * x1 +\
-    \ y1] : MX::unit());\r\n    X b = (x1 >= 0 && y2 >= 0 ? dat[W * x1 + y2] : MX::unit());\r\
-    \n    X c = (x2 >= 0 && y1 >= 0 ? dat[W * x2 + y1] : MX::unit());\r\n    X d =\
-    \ (x2 >= 0 && y2 >= 0 ? dat[W * x2 + y2] : MX::unit());\r\n    return MX::op(MX::op(a,\
-    \ d), MX::inverse(MX::op(b, c)));\r\n  }\r\n\r\n  X prefix_sum(int x, int y) {\r\
-    \n    return (x == 0 || y == 0) ? MX::unit() : dat[W * x + y - (W + 1)];\r\n \
-    \ }\r\n};\r\n#line 2 \"ds/segtree/segtree_2d_dense.hpp\"\n\ntemplate <class Monoid>\n\
-    struct SegTree_2D_Dense {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
-    \  using value_type = X;\n  static_assert(MX::commute);\n  int H, W;\n  vc<X>\
-    \ dat;\n\n  SegTree_2D_Dense() : SegTree_2D_Dense(0, 0) {}\n  SegTree_2D_Dense(int\
-    \ H, int W) : H(H), W(W), dat(4 * H * W, MX::unit()) {}\n  SegTree_2D_Dense(vc<vc<X>>\
-    \ &v) {\n    H = len(v), W = (H == 0 ? 0 : len(v[0]));\n    dat.assign(4 * H *\
-    \ W, MX::unit());\n    FOR(x, H) FOR(y, W) { dat[idx(H + x, W + y)] = v[x][y];\
-    \ }\n    FOR(y, W, W + W) FOR_R(x, H) {\n      dat[idx(x, y)] = MX::op(dat[idx(2\
-    \ * x + 0, y)], dat[idx(2 * x + 1, y)]);\n    }\n    FOR(x, H + H) FOR_R(y, W)\
-    \ {\n      dat[idx(x, y)] = MX::op(dat[idx(x, 2 * y + 0)], dat[idx(x, 2 * y +\
-    \ 1)]);\n    }\n  }\n\n  void set(int x, int y, X e) {\n    x += H, y += W;\n\
-    \    dat[idx(x, y)] = e;\n    int i = x;\n    while (i >>= 1) {\n      dat[idx(i,\
-    \ y)] = MX::op(dat[idx(2 * i + 0, y)], dat[idx(2 * i + 1, y)]);\n    }\n    i\
-    \ = x;\n    while (i) {\n      int j = y;\n      while (j >>= 1) {\n        dat[idx(i,\
-    \ j)] = MX::op(dat[idx(i, 2 * j + 0)], dat[idx(i, 2 * j + 1)]);\n      }\n   \
-    \   i >>= 1;\n    }\n  }\n\n  X prod(int xl, int xr, int yl, int yr) {\n    assert(0\
-    \ <= xl && xl <= xr && xr <= H);\n    assert(0 <= yl && yl <= yr && yr <= W);\n\
-    \    X res = MX::unit();\n    xl += H, xr += H;\n    while (xl < xr) {\n     \
-    \ if (xl & 1) res = MX::op(res, prod_x(xl++, yl, yr));\n      if (xr & 1) res\
-    \ = MX::op(res, prod_x(--xr, yl, yr));\n      xl >>= 1, xr >>= 1;\n    }\n   \
-    \ return res;\n  }\n\nprivate:\n  inline int idx(int x, int y) { return x * 2\
-    \ * W + y; }\n  X prod_x(int x, int yl, int yr) {\n    X res = MX::unit();\n \
-    \   yl += W, yr += W;\n    while (yl < yr) {\n      if (yl & 1) res = MX::op(res,\
-    \ dat[idx(x, yl++)]);\n      if (yr & 1) res = MX::op(res, dat[idx(x, --yr)]);\n\
-    \      yl >>= 1, yr >>= 1;\n    }\n    return res;\n  }\n};\n#line 8 \"test_atcoder/abc228f.test.cpp\"\
-    \n\nvoid solve() {\n  LL(H, W, h1, w1, h2, w2);\n  chmin(h2, h1), chmin(w2, w1);\n\
-    \  VV(ll, A, H, W);\n  Cumsum_2D<Monoid_Add<ll>> X(A);\n  vv(ll, B, H - h2 + 1,\
-    \ W - w2 + 1);\n  FOR(x, H - h2 + 1) FOR(y, W - w2 + 1) {\n    B[x][y] = X.sum(x,\
-    \ x + h2, y, y + w2);\n  }\n\n  ll ANS = 0;\n  SegTree_2D_Dense<Monoid_Max<ll>>\
-    \ seg(B);\n  FOR(x, H - h1 + 1) FOR(y, W - w1 + 1) {\n    ll a = X.sum(x, x +\
-    \ h1, y, y + w1);\n    ll b = seg.prod(x, x + h1 - h2 + 1, y, y + w1 - w2 + 1);\n\
-    \    chmax(ANS, a - b);\n  }\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n\
-    \  return 0;\n}\n"
+    \ dat[i]);\r\n  }\r\n\r\n  // [x1,x2) x [y1,y2)\r\n  template <bool allow_out_of_range\
+    \ = false>\r\n  X sum(int x1, int x2, int y1, int y2) {\r\n    if constexpr (allow_out_of_range)\
+    \ {\r\n      chmax(x1, 0), chmin(x2, H), chmax(y1, 0), chmin(y2, W);\r\n     \
+    \ if (x1 >= x2 || y1 >= y2) return MX::unit();\r\n    }\r\n    if (x2 == 0 ||\
+    \ y2 == 0) return MX::unit();\r\n    assert(0 <= x1 && x1 <= x2 && x2 <= H);\r\
+    \n    assert(0 <= y1 && y1 <= y2 && y2 <= W);\r\n    --x1, --y1, --x2, --y2;\r\
+    \n    X a = (x1 >= 0 && y1 >= 0 ? dat[W * x1 + y1] : MX::unit());\r\n    X b =\
+    \ (x1 >= 0 && y2 >= 0 ? dat[W * x1 + y2] : MX::unit());\r\n    X c = (x2 >= 0\
+    \ && y1 >= 0 ? dat[W * x2 + y1] : MX::unit());\r\n    X d = (x2 >= 0 && y2 >=\
+    \ 0 ? dat[W * x2 + y2] : MX::unit());\r\n    return MX::op(MX::op(a, d), MX::inverse(MX::op(b,\
+    \ c)));\r\n  }\r\n\r\n  X prefix_sum(int x, int y) {\r\n    return (x == 0 ||\
+    \ y == 0) ? MX::unit() : dat[W * x + y - (W + 1)];\r\n  }\r\n};\r\n#line 2 \"\
+    ds/segtree/segtree_2d_dense.hpp\"\n\ntemplate <class Monoid>\nstruct SegTree_2D_Dense\
+    \ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  using value_type\
+    \ = X;\n  static_assert(MX::commute);\n  int H, W;\n  vc<X> dat;\n\n  SegTree_2D_Dense()\
+    \ : SegTree_2D_Dense(0, 0) {}\n  SegTree_2D_Dense(int H, int W) : H(H), W(W),\
+    \ dat(4 * H * W, MX::unit()) {}\n  SegTree_2D_Dense(vc<vc<X>> &v) {\n    H = len(v),\
+    \ W = (H == 0 ? 0 : len(v[0]));\n    dat.assign(4 * H * W, MX::unit());\n    FOR(x,\
+    \ H) FOR(y, W) { dat[idx(H + x, W + y)] = v[x][y]; }\n    FOR(y, W, W + W) FOR_R(x,\
+    \ H) {\n      dat[idx(x, y)] = MX::op(dat[idx(2 * x + 0, y)], dat[idx(2 * x +\
+    \ 1, y)]);\n    }\n    FOR(x, H + H) FOR_R(y, W) {\n      dat[idx(x, y)] = MX::op(dat[idx(x,\
+    \ 2 * y + 0)], dat[idx(x, 2 * y + 1)]);\n    }\n  }\n\n  void set(int x, int y,\
+    \ X e) {\n    x += H, y += W;\n    dat[idx(x, y)] = e;\n    int i = x;\n    while\
+    \ (i >>= 1) {\n      dat[idx(i, y)] = MX::op(dat[idx(2 * i + 0, y)], dat[idx(2\
+    \ * i + 1, y)]);\n    }\n    i = x;\n    while (i) {\n      int j = y;\n     \
+    \ while (j >>= 1) {\n        dat[idx(i, j)] = MX::op(dat[idx(i, 2 * j + 0)], dat[idx(i,\
+    \ 2 * j + 1)]);\n      }\n      i >>= 1;\n    }\n  }\n\n  X prod(int xl, int xr,\
+    \ int yl, int yr) {\n    assert(0 <= xl && xl <= xr && xr <= H);\n    assert(0\
+    \ <= yl && yl <= yr && yr <= W);\n    X res = MX::unit();\n    xl += H, xr +=\
+    \ H;\n    while (xl < xr) {\n      if (xl & 1) res = MX::op(res, prod_x(xl++,\
+    \ yl, yr));\n      if (xr & 1) res = MX::op(res, prod_x(--xr, yl, yr));\n    \
+    \  xl >>= 1, xr >>= 1;\n    }\n    return res;\n  }\n\nprivate:\n  inline int\
+    \ idx(int x, int y) { return x * 2 * W + y; }\n  X prod_x(int x, int yl, int yr)\
+    \ {\n    X res = MX::unit();\n    yl += W, yr += W;\n    while (yl < yr) {\n \
+    \     if (yl & 1) res = MX::op(res, dat[idx(x, yl++)]);\n      if (yr & 1) res\
+    \ = MX::op(res, dat[idx(x, --yr)]);\n      yl >>= 1, yr >>= 1;\n    }\n    return\
+    \ res;\n  }\n};\n#line 8 \"test_atcoder/abc228f.test.cpp\"\n\nvoid solve() {\n\
+    \  LL(H, W, h1, w1, h2, w2);\n  chmin(h2, h1), chmin(w2, w1);\n  VV(ll, A, H,\
+    \ W);\n  Cumsum_2D<Monoid_Add<ll>> X(A);\n  vv(ll, B, H - h2 + 1, W - w2 + 1);\n\
+    \  FOR(x, H - h2 + 1) FOR(y, W - w2 + 1) {\n    B[x][y] = X.sum(x, x + h2, y,\
+    \ y + w2);\n  }\n\n  ll ANS = 0;\n  SegTree_2D_Dense<Monoid_Max<ll>> seg(B);\n\
+    \  FOR(x, H - h1 + 1) FOR(y, W - w1 + 1) {\n    ll a = X.sum(x, x + h1, y, y +\
+    \ w1);\n    ll b = seg.prod(x, x + h1 - h2 + 1, y, y + w1 - w2 + 1);\n    chmax(ANS,\
+    \ a - b);\n  }\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc228/tasks/abc228_f\"\n\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/monoid/max.hpp\"\
     \n#include \"ds/cumsum_2d.hpp\"\n#include \"ds/segtree/segtree_2d_dense.hpp\"\n\
@@ -273,8 +276,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc228f.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-19 02:38:11+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc228f.test.cpp
 layout: document

@@ -11,9 +11,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/manhattan_mst.hpp
     title: geo/manhattan_mst.hpp
-  - icon: ':warning:'
-    path: graph/BEST.hpp
-    title: graph/BEST.hpp
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
@@ -23,13 +20,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
+  - icon: ':warning:'
+    path: graph/count/BEST.hpp
+    title: graph/count/BEST.hpp
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
   - icon: ':heavy_check_mark:'
     path: graph/directed_mst.hpp
     title: graph/directed_mst.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/eulerwalk.hpp
     title: graph/eulerwalk.hpp
   - icon: ':heavy_check_mark:'
@@ -234,12 +234,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc023f.test.cpp
     title: test_atcoder/agc023f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc157a.test.cpp
     title: test_atcoder/arc157a.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int\
@@ -274,7 +274,6 @@ data:
   - graph/optimal_product_on_tree.hpp
   - graph/bipartite_edge_coloring.hpp
   - graph/maximum_antichain.hpp
-  - graph/BEST.hpp
   - graph/unicyclic.hpp
   - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - graph/bipartite_vertex_coloring.hpp
@@ -286,9 +285,10 @@ data:
   - graph/implicit_graph/mst.hpp
   - graph/implicit_graph/complement_graph_unionfind.hpp
   - graph/dag_path_cover.hpp
+  - graph/count/BEST.hpp
   - geo/manhattan_mst.hpp
   timestamp: '2023-06-11 17:06:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/2995.test.cpp
   - test/aoj/2251_1.test.cpp

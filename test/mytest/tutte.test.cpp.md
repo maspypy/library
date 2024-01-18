@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':heavy_check_mark:'
@@ -19,16 +19,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -159,8 +159,8 @@ data:
     \ a, int n = -1, int m = -1) {\n  if (n == 0) return 0;\n  if (n == -1) { n =\
     \ len(a), m = len(a[0]); }\n  assert(n == len(a) && m == len(a[0]));\n  int rk\
     \ = 0;\n  FOR(j, m) {\n    if (rk == n) break;\n    if (a[rk][j] == 0) {\n   \
-    \   FOR3(i, rk + 1, n) if (a[i][j] != T(0)) {\n        swap(a[rk], a[i]);\n  \
-    \      break;\n      }\n    }\n    if (a[rk][j] == 0) continue;\n    T c = T(1)\
+    \   FOR(i, rk + 1, n) if (a[i][j] != T(0)) {\n        swap(a[rk], a[i]);\n   \
+    \     break;\n      }\n    }\n    if (a[rk][j] == 0) continue;\n    T c = T(1)\
     \ / a[rk][j];\n    FOR(k, j, m) a[rk][k] *= c;\n    FOR(i, rk + 1, n) {\n    \
     \  T c = a[i][j];\n      FOR3(k, j, m) { a[i][k] -= a[rk][k] * c; }\n    }\n \
     \   ++rk;\n  }\n  return rk;\n}\n#line 4 \"graph/maximum_matching_size.hpp\"\n\
@@ -358,7 +358,7 @@ data:
   isVerificationFile: true
   path: test/mytest/tutte.test.cpp
   requiredBy: []
-  timestamp: '2023-12-22 20:53:57+09:00'
+  timestamp: '2024-01-19 02:38:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/tutte.test.cpp

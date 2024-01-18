@@ -41,7 +41,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/summin_add.hpp
     title: alg/acted_monoid/summin_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/cumsum_2d.hpp
     title: ds/cumsum_2d.hpp
   - icon: ':heavy_check_mark:'
@@ -180,6 +180,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
     title: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/predecessor_problem_2.test.cpp
+    title: test/library_checker/datastructure/predecessor_problem_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/predecessor_problem_3.test.cpp
+    title: test/library_checker/datastructure/predecessor_problem_3.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
     title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
@@ -384,7 +390,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2491.test.cpp
     title: test/yukicoder/2491.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/655.test.cpp
     title: test/yukicoder/655.test.cpp
   - icon: ':heavy_check_mark:'
@@ -420,7 +426,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc190f.test.cpp
     title: test_atcoder/abc190f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc228f.test.cpp
     title: test_atcoder/abc228f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -535,6 +541,7 @@ data:
   - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
   - test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
+  - test/library_checker/datastructure/predecessor_problem_3.test.cpp
   - test/library_checker/datastructure/double_ended_pq_2.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
@@ -543,6 +550,7 @@ data:
   - test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
+  - test/library_checker/datastructure/predecessor_problem_2.test.cpp
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp

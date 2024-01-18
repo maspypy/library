@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_inv.hpp
     title: linalg/matrix_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1774.test.cpp
     title: test/yukicoder/1774.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://en.wikipedia.org/wiki/Woodbury_matrix_identity
@@ -32,8 +32,8 @@ data:
     \ a, int n = -1, int m = -1) {\n  if (n == 0) return 0;\n  if (n == -1) { n =\
     \ len(a), m = len(a[0]); }\n  assert(n == len(a) && m == len(a[0]));\n  int rk\
     \ = 0;\n  FOR(j, m) {\n    if (rk == n) break;\n    if (a[rk][j] == 0) {\n   \
-    \   FOR3(i, rk + 1, n) if (a[i][j] != T(0)) {\n        swap(a[rk], a[i]);\n  \
-    \      break;\n      }\n    }\n    if (a[rk][j] == 0) continue;\n    T c = T(1)\
+    \   FOR(i, rk + 1, n) if (a[i][j] != T(0)) {\n        swap(a[rk], a[i]);\n   \
+    \     break;\n      }\n    }\n    if (a[rk][j] == 0) continue;\n    T c = T(1)\
     \ / a[rk][j];\n    FOR(k, j, m) a[rk][k] *= c;\n    FOR(i, rk + 1, n) {\n    \
     \  T c = a[i][j];\n      FOR3(k, j, m) { a[i][k] -= a[rk][k] * c; }\n    }\n \
     \   ++rk;\n  }\n  return rk;\n}\n#line 3 \"linalg/matrix_lowrank_update.hpp\"\n\
@@ -120,8 +120,8 @@ data:
   isVerificationFile: false
   path: linalg/matrix_lowrank_update.hpp
   requiredBy: []
-  timestamp: '2024-01-02 22:17:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-01-19 02:38:11+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1774.test.cpp
 documentation_of: linalg/matrix_lowrank_update.hpp

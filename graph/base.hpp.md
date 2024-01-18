@@ -17,9 +17,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/manhattan_mst.hpp
     title: geo/manhattan_mst.hpp
-  - icon: ':warning:'
-    path: graph/BEST.hpp
-    title: graph/BEST.hpp
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
@@ -44,6 +41,9 @@ data:
   - icon: ':warning:'
     path: graph/compress_tree.hpp
     title: graph/compress_tree.hpp
+  - icon: ':warning:'
+    path: graph/count/BEST.hpp
+    title: graph/count/BEST.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/count_clique.hpp
     title: graph/count/count_clique.hpp
@@ -116,7 +116,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/eulerwalk.hpp
     title: graph/eulerwalk.hpp
   - icon: ':heavy_check_mark:'
@@ -768,7 +768,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc157a.test.cpp
     title: test_atcoder/arc157a.test.cpp
   _isVerificationFailed: true
@@ -936,7 +936,6 @@ data:
   - graph/maximum_antichain.hpp
   - graph/block_cut.hpp
   - graph/to_directed_tree.hpp
-  - graph/BEST.hpp
   - graph/unicyclic.hpp
   - graph/tree_dp/subtree_diameter.hpp
   - graph/tree_dp/tree_dp.hpp
@@ -971,6 +970,7 @@ data:
   - graph/maximum_matching_of_line_graph.hpp
   - graph/centroid_decomposition.hpp
   - graph/count/count_clique.hpp
+  - graph/count/BEST.hpp
   - graph/count/count_connected_intervals.hpp
   - graph/count/count_cycle.hpp
   - graph/count/count_independent_set.hpp
