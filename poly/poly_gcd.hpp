@@ -98,5 +98,18 @@ tuple<vc<T>, vc<T>, vc<T>> poly_extgcd(const vc<T>& f, const vc<T>& g) {
   if (!ap[1].empty()) m = cgcd(ap) * m;
   return {f * m[0] + g * m[1], m[0], m[1]};
 }
+
+template <typename T>
+vc<T> poly_gcd(vc<T> f, vc<T> g) {
+  while (len(f) && f.back() == T(0)) POP(f);
+  while (len(g) && g.back() == T(0)) POP(g);
+  if (f.empty()) return g;
+  if (g.empty()) return f;
+  auto F = get<0>(poly_extgcd(f, g));
+  T c = T(1) / F.back();
+  for (auto& f: F) f *= c;
+  return F;
+}
 } // namespace half_gcd
 using half_gcd::poly_extgcd;
+using half_gcd::poly_gcd;

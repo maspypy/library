@@ -7,7 +7,7 @@ int matrix_rank(vc<vc<T>> a, int n = -1, int m = -1) {
   FOR(j, m) {
     if (rk == n) break;
     if (a[rk][j] == 0) {
-      FOR3(i, rk + 1, n) if (a[i][j] != T(0)) {
+      FOR(i, rk + 1, n) if (a[i][j] != T(0)) {
         swap(a[rk], a[i]);
         break;
       }

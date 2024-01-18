@@ -25,7 +25,12 @@ struct Cumsum_2D {
   }
 
   // [x1,x2) x [y1,y2)
+  template <bool allow_out_of_range = false>
   X sum(int x1, int x2, int y1, int y2) {
+    if constexpr (allow_out_of_range) {
+      chmax(x1, 0), chmin(x2, H), chmax(y1, 0), chmin(y2, W);
+      if (x1 >= x2 || y1 >= y2) return MX::unit();
+    }
     if (x2 == 0 || y2 == 0) return MX::unit();
     assert(0 <= x1 && x1 <= x2 && x2 <= H);
     assert(0 <= y1 && y1 <= y2 && y2 <= W);

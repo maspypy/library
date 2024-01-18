@@ -34,8 +34,7 @@ struct HashMap {
 
   Val get(const u64& k, Val default_value) {
     int i = index(k);
-    if (!used[i]) return default_value;
-    return val[i];
+    return (used[i] ? val[i] : default_value);
   }
 
   bool count(const u64& k) {
