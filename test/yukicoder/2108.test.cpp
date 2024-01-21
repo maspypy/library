@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 #include "mod/modint.hpp"
 #include "poly/convolution.hpp"
-#include "linalg/implicit_matrix/pascal.hpp"
+#include "linalg/blackbox/pascal.hpp"
 #include "linalg/transpose.hpp"
 
 using mint = modint998;

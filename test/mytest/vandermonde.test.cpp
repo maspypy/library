@@ -2,7 +2,7 @@
 
 #include "my_template.hpp"
 #include "random/base.hpp"
-#include "linalg/implicit_matrix/vandermonde.hpp"
+#include "linalg/blackbox/vandermonde.hpp"
 
 template <typename mint>
 vc<mint> naive(vc<mint> f, vc<mint> A, bool transpose) {
