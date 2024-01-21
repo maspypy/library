@@ -8,11 +8,15 @@ struct BigInteger {
   static constexpr int LOG = 9;
   static constexpr int MOD = TEN[LOG];
   using bint = BigInteger;
-  int sgn; // +1 or -1. 内部状態で -0 を許容する.
+  int sgn;
   vc<int> dat;
 
-  BigInteger() : sgn(1) {}
+  BigInteger() : sgn(0) {}
   BigInteger(i128 val) {
+    if (val == 0) {
+      sgn = 0;
+      return;
+    }
     sgn = 1;
     if (val != 0) {
       if (val < 0) sgn = -1, val = -val;
@@ -30,7 +34,10 @@ struct BigInteger {
       s.erase(s.begin());
       assert(!s.empty());
     }
-    if (s[0] == '0') s.clear();
+    if (s[0] == '0') {
+      sgn = 0;
+      return;
+    }
     reverse(all(s));
     int n = len(s);
     int m = ceil(n, LOG);
@@ -43,10 +50,8 @@ struct BigInteger {
     return *this;
   }
   bool operator<(const bint &p) const {
-    if (sgn != p.sgn) {
-      if (dat.empty() && p.dat.empty()) return false;
-      return sgn < p.sgn;
-    }
+    if (sgn != p.sgn) { return sgn < p.sgn; }
+    if (sgn == 0) return false;
     if (len(dat) != len(p.dat)) {
       if (sgn == 1) return len(dat) < len(p.dat);
       if (sgn == -1) return len(dat) > len(p.dat);
@@ -62,6 +67,8 @@ struct BigInteger {
   bool operator<=(const bint &p) const { return !(*this > p); }
   bool operator>=(const bint &p) const { return !(*this < p); }
   bint &operator+=(const bint p) {
+    if (sgn == 0) { return *this = (-p); }
+    if (p.sgn == 0) return *this;
     if (sgn != p.sgn) {
       *this -= (-p);
       return *this;
@@ -76,6 +83,8 @@ struct BigInteger {
     return *this;
   }
   bint &operator-=(const bint p) {
+    if (p.sgn == 0) return *this;
+    if (sgn == 0) return *this = (-p);
     if (sgn != p.sgn) {
       *this += (-p);
       return *this;
@@ -94,7 +103,11 @@ struct BigInteger {
   }
   bint &operator*=(const bint &p) {
     sgn *= p.sgn;
-    dat = convolve(dat, p.dat);
+    if (sgn == 0) {
+      dat.clear();
+    } else {
+      dat = convolve(dat, p.dat);
+    }
     return *this;
   }
   // bint &operator/=(const bint &p) { return *this; }
@@ -108,7 +121,6 @@ struct BigInteger {
   bint operator*(const bint &p) const { return bint(*this) *= p; }
   // bint operator/(const modint &p) const { return modint(*this) /= p; }
   bool operator==(const bint &p) const {
-    if (dat.empty() && p.dat.empty()) return true;
     return (sgn == p.sgn && dat == p.dat);
   }
   bool operator!=(const bint &p) const { return !((*this) == p); }
@@ -166,6 +178,7 @@ struct BigInteger {
 
   // https://codeforces.com/contest/504/problem/D
   string to_binary_string() {
+    assert(sgn >= 0);
     vc<u32> A(all(dat));
     string ANS;
     while (1) {
@@ -235,6 +248,7 @@ struct BigInteger {
 
   // https://codeforces.com/contest/986/problem/D
   bint pow(ll n) {
+    assert(n >= 0);
     auto dfs = [&](auto &dfs, ll n) -> bint {
       if (n == 1) return (*this);
       bint x = dfs(dfs, n / 2);
