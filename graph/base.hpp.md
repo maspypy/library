@@ -116,7 +116,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/eulerwalk.hpp
     title: graph/eulerwalk.hpp
   - icon: ':heavy_check_mark:'
@@ -405,6 +405,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/enumerate_triangles.test.cpp
     title: test/library_checker/graph/enumerate_triangles.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/eulerwalk_d.test.cpp
+    title: test/library_checker/graph/eulerwalk_d.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/eulerwalk_ud.test.cpp
+    title: test/library_checker/graph/eulerwalk_ud.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/general_matching.test.cpp
     title: test/library_checker/graph/general_matching.test.cpp
@@ -1032,6 +1038,7 @@ data:
   - test/library_checker/tree/rerooting_dp.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/graph/scc.test.cpp
+  - test/library_checker/graph/eulerwalk_ud.test.cpp
   - test/library_checker/graph/maximum_independent_set2.test.cpp
   - test/library_checker/graph/general_matching.test.cpp
   - test/library_checker/graph/domninator_tree.test.cpp
@@ -1046,6 +1053,7 @@ data:
   - test/library_checker/graph/K_shortest_walk.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp
+  - test/library_checker/graph/eulerwalk_d.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp
   - test/library_checker/graph/enumerate_cliques.test.cpp
   - test/library_checker/graph/cycle_detection.test.cpp

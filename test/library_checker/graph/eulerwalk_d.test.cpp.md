@@ -1,12 +1,21 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: alg/monoid/add.hpp
-    title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/fenwicktree/fenwicktree_2d_dense.hpp
-    title: ds/fenwicktree/fenwicktree_2d_dense.hpp
+  - icon: ':question:'
+    path: ds/hashmap.hpp
+    title: ds/hashmap.hpp
+  - icon: ':question:'
+    path: ds/unionfind/unionfind.hpp
+    title: ds/unionfind/unionfind.hpp
+  - icon: ':question:'
+    path: graph/base.hpp
+    title: graph/base.hpp
+  - icon: ':question:'
+    path: graph/eulerwalk.hpp
+    title: graph/eulerwalk.hpp
+  - icon: ':question:'
+    path: graph/vs_to_es.hpp
+    title: graph/vs_to_es.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -20,11 +29,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2842
+    PROBLEM: https://judge.yosupo.jp/problem/eulerian_trail_directed
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2842
-  bundledCode: "#line 1 \"test/aoj/2842.test.cpp\"\n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2842\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    - https://judge.yosupo.jp/problem/eulerian_trail_directed
+  bundledCode: "#line 1 \"test/library_checker/graph/eulerwalk_d.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/eulerian_trail_directed\"\n\n#line\
+    \ 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
     using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
@@ -187,81 +197,168 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\n\
-    struct Monoid_Add {\r\n  using value_type = X;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/fenwicktree/fenwicktree_2d_dense.hpp\"\
-    \n\r\ntemplate <typename Monoid>\r\nstruct FenwickTree_2D_Dense {\r\n  using G\
-    \ = Monoid;\r\n  using E = typename G::value_type;\r\n  static_assert(G::commute);\r\
-    \n  int H, W;\r\n  vc<E> dat;\r\n\r\n  FenwickTree_2D_Dense() {}\r\n  FenwickTree_2D_Dense(int\
-    \ H, int W) : H(H), W(W), dat(H * W, G::unit()) {}\r\n  FenwickTree_2D_Dense(int\
-    \ H, int W, vvc<E>& dat_raw) : H(H), W(W) {\r\n    build(H, W, [&](int x, int\
-    \ y) -> E { return dat_raw[x][y]; });\r\n  }\r\n  template <typename F>\r\n  FenwickTree_2D_Dense(int\
-    \ H, int W, F f) : H(H), W(W) {\r\n    build(H, W, f);\r\n  }\r\n\r\n  template\
-    \ <typename F>\r\n  void build(int H0, int W0, F f) {\r\n    H = H0, W = W0;\r\
-    \n    dat.assign(H * W, 0);\r\n    FOR(x, H) FOR(y, W) { dat[W * x + y] = f(x,\
-    \ y); }\r\n    FOR(x, 1, H + 1) {\r\n      FOR(y, 1, W + 1) {\r\n        int ny\
-    \ = y + (y & -y);\r\n        if (ny <= W) dat[idx(x, ny)] = G::op(dat[idx(x, ny)],\
-    \ dat[idx(x, y)]);\r\n      }\r\n    }\r\n    FOR(x, 1, H + 1) {\r\n      FOR(y,\
-    \ 1, W + 1) {\r\n        int nx = x + (x & -x);\r\n        if (nx <= H) dat[idx(nx,\
-    \ y)] = G::op(dat[idx(nx, y)], dat[idx(x, y)]);\r\n      }\r\n    }\r\n  }\r\n\
-    \r\n  void add(int x, int y, E val) {\r\n    ++x;\r\n    while (x <= H) { add_x(x,\
-    \ y, val), x += x & -x; }\r\n  }\r\n\r\n  E sum(int lx, int rx, int ly, int ry)\
-    \ { return prod(lx, rx, ly, ry); }\r\n  E prod(int lx, int rx, int ly, int ry)\
-    \ {\r\n    E pos = G::unit(), neg = G::unit();\r\n    while (lx < rx) { pos =\
-    \ G::op(pos, sum_x(rx, ly, ry)), rx -= rx & -rx; }\r\n    while (rx < lx) { neg\
-    \ = G::op(neg, sum_x(lx, ly, ry)), lx -= lx & -lx; }\r\n    return G::op(pos,\
-    \ G::inverse(neg));\r\n  }\r\n\r\n  E prefix_prod(int rx, int ry) { return prod(0,\
-    \ rx, 0, ry); }\r\n  E prefix_sum(int rx, int ry) {\r\n    E pos = G::unit();\r\
-    \n    while (rx) { pos = G::op(pos, prefix_sum_x(rx, ry)), rx -= rx & -rx; }\r\
-    \n    return pos;\r\n  }\r\n\r\nprivate:\r\n  inline int idx(int x, int y) { return\
-    \ W * (x - 1) + (y - 1); }\r\n\r\n  void add_x(int x, int y, E val) {\r\n    ++y;\r\
-    \n    while (y <= W) { dat[idx(x, y)] = G::op(dat[idx(x, y)], val), y += y & -y;\
-    \ }\r\n  }\r\n  E sum_x(int x, int ly, int ry) {\r\n    E pos = G::unit(), neg\
-    \ = G::unit();\r\n    while (ly < ry) { pos = G::op(pos, dat[idx(x, ry)]), ry\
-    \ -= ry & -ry; }\r\n    while (ry < ly) { neg = G::op(neg, dat[idx(x, ly)]), ly\
-    \ -= ly & -ly; }\r\n    return G::op(pos, G::inverse(neg));\r\n  }\r\n  E prefix_sum_x(int\
-    \ x, int ry) {\r\n    E pos = G::unit();\r\n    while (ry) { pos = G::op(pos,\
-    \ dat[idx(x, ry)]), ry -= ry & -ry; }\r\n    return pos;\r\n  }\r\n};\r\n#line\
-    \ 5 \"test/aoj/2842.test.cpp\"\n\nvoid solve() {\n  LL(H, W, T, Q);\n  deque<tuple<ll,\
-    \ ll, ll>> que;\n  vv(ll, time, H, W, infty<ll>);\n\n  FenwickTree_2D_Dense<Monoid_Add<ll>>\
-    \ A(H, W);\n  FenwickTree_2D_Dense<Monoid_Add<ll>> B(H, W);\n\n  deque<tuple<ll,\
-    \ ll, ll>> end;\n\n  FOR(Q) {\n    LL(t, c, x, y);\n    --x, --y;\n    while (len(end)\
-    \ && get<2>(end.front()) <= t) {\n      auto [x, y, t] = end.front();\n      end.pop_front();\n\
-    \      A.add(x, y, 1);\n      B.add(x, y, -1);\n    }\n    if (c == 0) {\n   \
-    \   B.add(x, y, 1);\n      end.eb(x, y, t + T);\n    }\n    elif (c == 1) {\n\
-    \      if (A.sum(x, x + 1, y, y + 1)) A.add(x, y, -1);\n    }\n    elif (c ==\
-    \ 2) {\n      LL(x2, y2);\n      print(A.sum(x, x2, y, y2), B.sum(x, x2, y, y2));\n\
-    \    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2842\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/fenwicktree/fenwicktree_2d_dense.hpp\"\
-    \n\nvoid solve() {\n  LL(H, W, T, Q);\n  deque<tuple<ll, ll, ll>> que;\n  vv(ll,\
-    \ time, H, W, infty<ll>);\n\n  FenwickTree_2D_Dense<Monoid_Add<ll>> A(H, W);\n\
-    \  FenwickTree_2D_Dense<Monoid_Add<ll>> B(H, W);\n\n  deque<tuple<ll, ll, ll>>\
-    \ end;\n\n  FOR(Q) {\n    LL(t, c, x, y);\n    --x, --y;\n    while (len(end)\
-    \ && get<2>(end.front()) <= t) {\n      auto [x, y, t] = end.front();\n      end.pop_front();\n\
-    \      A.add(x, y, 1);\n      B.add(x, y, -1);\n    }\n    if (c == 0) {\n   \
-    \   B.add(x, y, 1);\n      end.eb(x, y, t + T);\n    }\n    elif (c == 1) {\n\
-    \      if (A.sum(x, x + 1, y, y + 1)) A.add(x, y, -1);\n    }\n    elif (c ==\
-    \ 2) {\n      LL(x2, y2);\n      print(A.sum(x, x2, y, y2), B.sum(x, x2, y, y2));\n\
-    \    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ yes(!t); }\r\n#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n\
+    \  int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) {\
+    \ build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
+    \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n   \
+    \ while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return\
+    \ dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int\
+    \ x) {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int\
+    \ y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n \
+    \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
+    \    return true;\n  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\n\
+    struct Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename\
+    \ T = int, bool directed = false>\nstruct Graph {\n  static constexpr bool is_directed\
+    \ = directed;\n  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n\
+    \  vector<edge_type> edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n\
+    \  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class OutgoingEdges\
+    \ {\n  public:\n    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l),\
+    \ r(r) {}\n\n    const edge_type* begin() const {\n      if (l == r) { return\
+    \ 0; }\n      return &G->csr_edges[l];\n    }\n\n    const edge_type* end() const\
+    \ {\n      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n\
+    \  private:\n    const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared()\
+    \ { return prepared; }\n\n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int\
+    \ N) : N(N), M(0), prepared(0) {}\n\n  void build(int n) {\n    N = n, M = 0;\n\
+    \    prepared = 0;\n    edges.clear();\n    indptr.clear();\n    csr_edges.clear();\n\
+    \    vc_deg.clear();\n    vc_indeg.clear();\n    vc_outdeg.clear();\n  }\n\n \
+    \ void add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n\
+    \    assert(0 <= frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto\
+    \ e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n#ifdef\
+    \ FASTIO\n  // wt, off\n  void read_tree(bool wt = false, int off = 1) { read_graph(N\
+    \ - 1, wt, off); }\n\n  void read_graph(int M, bool wt = false, int off = 1) {\n\
+    \    for (int m = 0; m < M; ++m) {\n      INT(a, b);\n      a -= off, b -= off;\n\
+    \      if (!wt) {\n        add(a, b);\n      } else {\n        T c;\n        read(c);\n\
+    \        add(a, b, c);\n      }\n    }\n    build();\n  }\n#endif\n\n  void build()\
+    \ {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N + 1, 0);\n\
+    \    for (auto&& e: edges) {\n      indptr[e.frm + 1]++;\n      if (!directed)\
+    \ indptr[e.to + 1]++;\n    }\n    for (int v = 0; v < N; ++v) { indptr[v + 1]\
+    \ += indptr[v]; }\n    auto counter = indptr;\n    csr_edges.resize(indptr.back()\
+    \ + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n\
+    \      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm,\
+    \ e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n \
+    \   assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\n \
+    \ vc<int> deg_array() {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n\
+    \  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n    if (vc_indeg.empty())\
+    \ calc_deg_inout();\n    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v)\
+    \ {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n  int\
+    \ in_deg(int v) {\n    if (vc_indeg.empty()) calc_deg_inout();\n    return vc_indeg[v];\n\
+    \  }\n\n  int out_deg(int v) {\n    if (vc_outdeg.empty()) calc_deg_inout();\n\
+    \    return vc_outdeg[v];\n  }\n\n#ifdef FASTIO\n  void debug() {\n    print(\"\
+    Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&&\
+    \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
+    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n#endif\n\n  vc<int> new_idx;\n\
+    \  vc<bool> used_e;\n\n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\
+    \u3001\u65B0\u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\
+    \u306B\u3059\u308B\n  // {G, es}\n  Graph<T, directed> rearrange(vc<int> V, bool\
+    \ keep_eid = 0) {\n    if (len(new_idx) != N) new_idx.assign(N, -1);\n    if (len(used_e)\
+    \ != M) used_e.assign(M, 0);\n    int n = len(V);\n    FOR(i, n) new_idx[V[i]]\
+    \ = i;\n    Graph<T, directed> G(n);\n    vc<int> history;\n    FOR(i, n) {\n\
+    \      for (auto&& e: (*this)[V[i]]) {\n        if (used_e[e.id]) continue;\n\
+    \        int a = e.frm, b = e.to;\n        if (new_idx[a] != -1 && new_idx[b]\
+    \ != -1) {\n          history.eb(e.id);\n          used_e[e.id] = 1;\n       \
+    \   int eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b],\
+    \ e.cost, eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n\
+    \    for (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n\
+    \  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n\
+    \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
+    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
+    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
+    #line 2 \"graph/vs_to_es.hpp\"\n\n#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\
+    \ntemplate <typename Val, int LOG = 20, bool KEEP_IDS = false>\r\nstruct HashMap\
+    \ {\r\n  static constexpr int N = (1 << LOG);\r\n  u64* key;\r\n  Val* val;\r\n\
+    \  vc<int> IDS;\r\n  bitset<N> used;\r\n  const int shift;\r\n  const u64 r =\
+    \ 11995408973635179863ULL;\r\n  HashMap() : key(new u64[N]), val(new Val[N]),\
+    \ shift(64 - LOG) {}\r\n  u32 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\r\
+    \n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\n \
+    \   return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
+    \ u64& k) {\r\n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k;\
+    \ (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
+    \ u64& k) {\r\n    int i = index(k);\r\n    if (!used[i]) {\r\n      used[i] =\
+    \ 1, key[i] = k, val[i] = Val{};\r\n      if constexpr (KEEP_IDS) IDS.eb(i);\r\
+    \n    }\r\n    return val[i];\r\n  }\r\n\r\n  Val get(const u64& k, Val default_value)\
+    \ {\r\n    int i = index(k);\r\n    return (used[i] ? val[i] : default_value);\r\
+    \n  }\r\n\r\n  bool count(const u64& k) {\r\n    int i = index(k);\r\n    return\
+    \ used[i] && key[i] == k;\r\n  }\r\n\r\n  void reset() {\r\n    static_assert(KEEP_IDS);\r\
+    \n    for (auto&& i: IDS) used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  //\
+    \ f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F f) {\r\n  \
+    \  static_assert(KEEP_IDS);\r\n    for (auto&& i: IDS) f(key[i], val[i]);\r\n\
+    \  }\r\n};\r\n#line 4 \"graph/vs_to_es.hpp\"\n\ntemplate <typename GT>\nvc<int>\
+    \ vs_to_es(GT& G, vc<int>& vs, bool allow_use_twice = false) {\n  assert(!vs.empty());\n\
+    \n  static HashMap<int, 20, true> MP;\n  MP.reset();\n  vc<int> nxt(G.M, -1);\n\
+    \n  auto get = [&](ll a, ll b) -> u64 {\n    if (!GT::is_directed && a > b) swap(a,\
+    \ b);\n    return a * G.N + b;\n  };\n\n  FOR(eid, G.M) {\n    u64 k = get(G.edges[eid].frm,\
+    \ G.edges[eid].to);\n    int x = MP.get(k, -1);\n    nxt[eid] = x, MP[k] = eid;\n\
+    \  }\n  int n = len(vs);\n  vc<int> es(n - 1);\n  FOR(i, n - 1) {\n    u64 k =\
+    \ get(vs[i], vs[i + 1]);\n    int eid = MP.get(k, -1);\n    assert(eid != -1);\n\
+    \    es[i] = eid;\n    if (!allow_use_twice) { MP[k] = nxt[eid]; }\n  }\n  return\
+    \ es;\n}\n#line 4 \"graph/eulerwalk.hpp\"\n\r\n// (vs, es) or empty\r\ntemplate\
+    \ <typename GT>\r\npair<vc<int>, vc<int>> euler_walk(GT& G, int s = -1) {\r\n\
+    \  const int N = G.N, M = G.M;\r\n  assert(G.is_prepared());\r\n  assert(N > 0);\r\
+    \n\r\n  if (s == -1) {\r\n    vc<int> deg(N);\r\n    for (auto&& e: G.edges) {\r\
+    \n      if constexpr (GT::is_directed) {\r\n        deg[e.frm]++, deg[e.to]--;\r\
+    \n      } else {\r\n        deg[e.frm]++, deg[e.to]++;\r\n      }\r\n    }\r\n\
+    \    if constexpr (GT::is_directed) {\r\n      s = max_element(all(deg)) - deg.begin();\r\
+    \n      if (deg[s] == 0) s = (M == 0 ? 0 : G.edges[0].frm);\r\n    } else {\r\n\
+    \      s = [&]() -> int {\r\n        FOR(v, N) if (deg[v] & 1) return v;\r\n \
+    \       return (M == 0 ? 0 : G.edges[0].frm);\r\n      }();\r\n    }\r\n  }\r\n\
+    \r\n  if (M == 0) return {{s}, {}};\r\n  vc<int> D(N), its(N), eu(M), vs, st =\
+    \ {s};\r\n  FOR(v, N) its[v] = G.indptr[v];\r\n  ++D[s];\r\n  while (!st.empty())\
+    \ {\r\n    int x = st.back(), y, e, &it = its[x], end = G.indptr[x + 1];\r\n \
+    \   if (it == end) {\r\n      vs.eb(x);\r\n      st.pop_back();\r\n      continue;\r\
+    \n    }\r\n    auto& ee = G.csr_edges[it++];\r\n    y = ee.to, e = ee.id;\r\n\
+    \    if (!eu[e]) {\r\n      D[x]--, D[y]++;\r\n      eu[e] = 1;\r\n      st.eb(y);\r\
+    \n    }\r\n  }\r\n  for (auto&& x: D)\r\n    if (x < 0) return {{}, {}};\r\n \
+    \ if (len(vs) != M + 1) return {{}, {}};\r\n  reverse(all(vs));\r\n  auto es =\
+    \ vs_to_es(G, vs, false);\r\n  return {vs, es};\r\n}\r\n\r\ntemplate <typename\
+    \ GT>\r\nbool has_euler_walk(GT& G, int s = -1) {\r\n  int N = G.N, M = G.M;\r\
+    \n  if (M == 0) return true;\r\n  if constexpr (!GT::is_directed) {\r\n    vc<int>\
+    \ odd(N);\r\n    for (auto& e: G.edges) odd[e.frm] ^= 1, odd[e.to] ^= 1;\r\n \
+    \   int n_odd = 0;\r\n    for (auto x: odd) n_odd += x;\r\n\r\n    if (n_odd >=\
+    \ 4) return false;\r\n    if (s != -1 && n_odd == 2 && !odd[s]) return false;\r\
+    \n    UnionFind uf(N);\r\n    for (auto& e: G.edges) uf.merge(e.frm, e.to);\r\n\
+    \    vector<int> cnt_edge(N);\r\n    for (auto& e: G.edges) cnt_edge[uf[e.frm]]++;\r\
+    \n    if (s != -1 && cnt_edge[uf[s]] == 0) return false;\r\n    // \u8FBA\u304C\
+    \u3042\u308B\u6210\u5206\u3092\u6570\u3048\u308B\r\n    int nc = 0;\r\n    for\
+    \ (int v = 0; v < N; ++v) {\r\n      if (uf[v] == v && cnt_edge[v] >= 1) ++nc;\r\
+    \n    }\r\n    return nc <= 1;\r\n  } else {\r\n    int N = G.N;\r\n    vc<int>\
+    \ in(N), out(N);\r\n    for (auto& e: G.edges) out[e.frm]++, in[e.to]++;\r\n\r\
+    \n    int ng = 0;\r\n    FOR(v, N) ng += abs(out[v] - in[v]);\r\n    if (ng >=\
+    \ 4) return false;\r\n    if (s != -1 && ng == 2 && out[s] != in[s] + 1) return\
+    \ false;\r\n\r\n    UnionFind uf(N);\r\n    for (auto& e: G.edges) uf.merge(e.frm,\
+    \ e.to);\r\n    vector<int> cnt_edge(N);\r\n    for (auto& e: G.edges) cnt_edge[uf[e.frm]]++;\r\
+    \n    if (s != -1 && cnt_edge[uf[s]] == 0) return false;\r\n    // \u8FBA\u304C\
+    \u3042\u308B\u6210\u5206\u3092\u6570\u3048\u308B\r\n    int nc = 0;\r\n    for\
+    \ (int v = 0; v < N; ++v) {\r\n      if (uf[v] == v && cnt_edge[v] >= 1) ++nc;\r\
+    \n    }\r\n    return nc <= 1;\r\n  }\r\n}\n#line 6 \"test/library_checker/graph/eulerwalk_d.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, M);\n  Graph<int, 1> G(N);\n  G.read_graph(M, 0, 0);\n\
+    \  auto [vs, es] = euler_walk(G);\n  if (vs.empty()) return No();\n  Yes();\n\
+    \  print(vs);\n  print(es);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n\
+    \  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/eulerian_trail_directed\"\
+    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/eulerwalk.hpp\"\
+    \n\nvoid solve() {\n  LL(N, M);\n  Graph<int, 1> G(N);\n  G.read_graph(M, 0, 0);\n\
+    \  auto [vs, es] = euler_walk(G);\n  if (vs.empty()) return No();\n  Yes();\n\
+    \  print(vs);\n  print(es);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n\
+    \  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/fenwicktree/fenwicktree_2d_dense.hpp
-  - alg/monoid/add.hpp
+  - graph/eulerwalk.hpp
+  - ds/unionfind/unionfind.hpp
+  - graph/base.hpp
+  - graph/vs_to_es.hpp
+  - ds/hashmap.hpp
   isVerificationFile: true
-  path: test/aoj/2842.test.cpp
+  path: test/library_checker/graph/eulerwalk_d.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
+  timestamp: '2024-01-21 17:01:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/2842.test.cpp
+documentation_of: test/library_checker/graph/eulerwalk_d.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/2842.test.cpp
-- /verify/test/aoj/2842.test.cpp.html
-title: test/aoj/2842.test.cpp
+- /verify/test/library_checker/graph/eulerwalk_d.test.cpp
+- /verify/test/library_checker/graph/eulerwalk_d.test.cpp.html
+title: test/library_checker/graph/eulerwalk_d.test.cpp
 ---

@@ -373,6 +373,9 @@ data:
     path: test/library_checker/datastructure/range_reverse_range_sum.test.cpp
     title: test/library_checker/datastructure/range_reverse_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/rect_add_pt_get.test.cpp
+    title: test/library_checker/datastructure/rect_add_pt_get.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -504,6 +507,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/enumerate_triangles.test.cpp
     title: test/library_checker/graph/enumerate_triangles.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/eulerwalk_d.test.cpp
+    title: test/library_checker/graph/eulerwalk_d.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/eulerwalk_ud.test.cpp
+    title: test/library_checker/graph/eulerwalk_ud.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/general_matching.test.cpp
     title: test/library_checker/graph/general_matching.test.cpp
@@ -2187,7 +2196,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc227g.test.cpp
     title: test_atcoder/abc227g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc228f.test.cpp
     title: test_atcoder/abc228f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2214,10 +2223,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc237ex.test.cpp
     title: test_atcoder/abc237ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc237g.test.cpp
     title: test_atcoder/abc237g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc237g1.test.cpp
     title: test_atcoder/abc237g1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2244,13 +2253,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc253h.test.cpp
     title: test_atcoder/abc253h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc256d.test.cpp
     title: test_atcoder/abc256d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc256ex.test.cpp
     title: test_atcoder/abc256ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc256ex2.test.cpp
     title: test_atcoder/abc256ex2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2801,6 +2810,7 @@ data:
   - test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/library_checker/datastructure/persistent_queue.test.cpp
+  - test/library_checker/datastructure/rect_add_pt_get.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo.test.cpp
@@ -2846,6 +2856,7 @@ data:
   - test/library_checker/tree/rerooting_dp.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/graph/scc.test.cpp
+  - test/library_checker/graph/eulerwalk_ud.test.cpp
   - test/library_checker/graph/maximum_independent_set2.test.cpp
   - test/library_checker/graph/general_matching.test.cpp
   - test/library_checker/graph/domninator_tree.test.cpp
@@ -2864,6 +2875,7 @@ data:
   - test/library_checker/graph/manhattan_mst.test.cpp
   - test/library_checker/graph/assignment.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp
+  - test/library_checker/graph/eulerwalk_d.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp
   - test/library_checker/graph/enumerate_cliques.test.cpp
   - test/library_checker/graph/cycle_detection.test.cpp

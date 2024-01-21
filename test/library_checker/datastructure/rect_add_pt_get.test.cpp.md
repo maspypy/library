@@ -5,8 +5,8 @@ data:
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':heavy_check_mark:'
-    path: ds/fenwicktree/fenwicktree_2d_dense.hpp
-    title: ds/fenwicktree/fenwicktree_2d_dense.hpp
+    path: ds/fenwicktree/dual_fenwicktree_2d.hpp
+    title: ds/fenwicktree/dual_fenwicktree_2d.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -20,10 +20,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2842
+    PROBLEM: https://judge.yosupo.jp/problem/rectangle_add_point_get
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2842
-  bundledCode: "#line 1 \"test/aoj/2842.test.cpp\"\n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2842\"\
+    - https://judge.yosupo.jp/problem/rectangle_add_point_get
+  bundledCode: "#line 1 \"test/library_checker/datastructure/rect_add_pt_get.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_add_point_get\"\n\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -187,81 +188,81 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\n\
-    struct Monoid_Add {\r\n  using value_type = X;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/fenwicktree/fenwicktree_2d_dense.hpp\"\
-    \n\r\ntemplate <typename Monoid>\r\nstruct FenwickTree_2D_Dense {\r\n  using G\
-    \ = Monoid;\r\n  using E = typename G::value_type;\r\n  static_assert(G::commute);\r\
-    \n  int H, W;\r\n  vc<E> dat;\r\n\r\n  FenwickTree_2D_Dense() {}\r\n  FenwickTree_2D_Dense(int\
-    \ H, int W) : H(H), W(W), dat(H * W, G::unit()) {}\r\n  FenwickTree_2D_Dense(int\
-    \ H, int W, vvc<E>& dat_raw) : H(H), W(W) {\r\n    build(H, W, [&](int x, int\
-    \ y) -> E { return dat_raw[x][y]; });\r\n  }\r\n  template <typename F>\r\n  FenwickTree_2D_Dense(int\
-    \ H, int W, F f) : H(H), W(W) {\r\n    build(H, W, f);\r\n  }\r\n\r\n  template\
-    \ <typename F>\r\n  void build(int H0, int W0, F f) {\r\n    H = H0, W = W0;\r\
-    \n    dat.assign(H * W, 0);\r\n    FOR(x, H) FOR(y, W) { dat[W * x + y] = f(x,\
-    \ y); }\r\n    FOR(x, 1, H + 1) {\r\n      FOR(y, 1, W + 1) {\r\n        int ny\
-    \ = y + (y & -y);\r\n        if (ny <= W) dat[idx(x, ny)] = G::op(dat[idx(x, ny)],\
-    \ dat[idx(x, y)]);\r\n      }\r\n    }\r\n    FOR(x, 1, H + 1) {\r\n      FOR(y,\
-    \ 1, W + 1) {\r\n        int nx = x + (x & -x);\r\n        if (nx <= H) dat[idx(nx,\
-    \ y)] = G::op(dat[idx(nx, y)], dat[idx(x, y)]);\r\n      }\r\n    }\r\n  }\r\n\
-    \r\n  void add(int x, int y, E val) {\r\n    ++x;\r\n    while (x <= H) { add_x(x,\
-    \ y, val), x += x & -x; }\r\n  }\r\n\r\n  E sum(int lx, int rx, int ly, int ry)\
-    \ { return prod(lx, rx, ly, ry); }\r\n  E prod(int lx, int rx, int ly, int ry)\
-    \ {\r\n    E pos = G::unit(), neg = G::unit();\r\n    while (lx < rx) { pos =\
-    \ G::op(pos, sum_x(rx, ly, ry)), rx -= rx & -rx; }\r\n    while (rx < lx) { neg\
-    \ = G::op(neg, sum_x(lx, ly, ry)), lx -= lx & -lx; }\r\n    return G::op(pos,\
-    \ G::inverse(neg));\r\n  }\r\n\r\n  E prefix_prod(int rx, int ry) { return prod(0,\
-    \ rx, 0, ry); }\r\n  E prefix_sum(int rx, int ry) {\r\n    E pos = G::unit();\r\
-    \n    while (rx) { pos = G::op(pos, prefix_sum_x(rx, ry)), rx -= rx & -rx; }\r\
-    \n    return pos;\r\n  }\r\n\r\nprivate:\r\n  inline int idx(int x, int y) { return\
-    \ W * (x - 1) + (y - 1); }\r\n\r\n  void add_x(int x, int y, E val) {\r\n    ++y;\r\
-    \n    while (y <= W) { dat[idx(x, y)] = G::op(dat[idx(x, y)], val), y += y & -y;\
-    \ }\r\n  }\r\n  E sum_x(int x, int ly, int ry) {\r\n    E pos = G::unit(), neg\
-    \ = G::unit();\r\n    while (ly < ry) { pos = G::op(pos, dat[idx(x, ry)]), ry\
-    \ -= ry & -ry; }\r\n    while (ry < ly) { neg = G::op(neg, dat[idx(x, ly)]), ly\
-    \ -= ly & -ly; }\r\n    return G::op(pos, G::inverse(neg));\r\n  }\r\n  E prefix_sum_x(int\
-    \ x, int ry) {\r\n    E pos = G::unit();\r\n    while (ry) { pos = G::op(pos,\
-    \ dat[idx(x, ry)]), ry -= ry & -ry; }\r\n    return pos;\r\n  }\r\n};\r\n#line\
-    \ 5 \"test/aoj/2842.test.cpp\"\n\nvoid solve() {\n  LL(H, W, T, Q);\n  deque<tuple<ll,\
-    \ ll, ll>> que;\n  vv(ll, time, H, W, infty<ll>);\n\n  FenwickTree_2D_Dense<Monoid_Add<ll>>\
-    \ A(H, W);\n  FenwickTree_2D_Dense<Monoid_Add<ll>> B(H, W);\n\n  deque<tuple<ll,\
-    \ ll, ll>> end;\n\n  FOR(Q) {\n    LL(t, c, x, y);\n    --x, --y;\n    while (len(end)\
-    \ && get<2>(end.front()) <= t) {\n      auto [x, y, t] = end.front();\n      end.pop_front();\n\
-    \      A.add(x, y, 1);\n      B.add(x, y, -1);\n    }\n    if (c == 0) {\n   \
-    \   B.add(x, y, 1);\n      end.eb(x, y, t + T);\n    }\n    elif (c == 1) {\n\
-    \      if (A.sum(x, x + 1, y, y + 1)) A.add(x, y, -1);\n    }\n    elif (c ==\
-    \ 2) {\n      LL(x2, y2);\n      print(A.sum(x, x2, y, y2), B.sum(x, x2, y, y2));\n\
-    \    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2842\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/fenwicktree/fenwicktree_2d_dense.hpp\"\
-    \n\nvoid solve() {\n  LL(H, W, T, Q);\n  deque<tuple<ll, ll, ll>> que;\n  vv(ll,\
-    \ time, H, W, infty<ll>);\n\n  FenwickTree_2D_Dense<Monoid_Add<ll>> A(H, W);\n\
-    \  FenwickTree_2D_Dense<Monoid_Add<ll>> B(H, W);\n\n  deque<tuple<ll, ll, ll>>\
-    \ end;\n\n  FOR(Q) {\n    LL(t, c, x, y);\n    --x, --y;\n    while (len(end)\
-    \ && get<2>(end.front()) <= t) {\n      auto [x, y, t] = end.front();\n      end.pop_front();\n\
-    \      A.add(x, y, 1);\n      B.add(x, y, -1);\n    }\n    if (c == 0) {\n   \
-    \   B.add(x, y, 1);\n      end.eb(x, y, t + T);\n    }\n    elif (c == 1) {\n\
-    \      if (A.sum(x, x + 1, y, y + 1)) A.add(x, y, -1);\n    }\n    elif (c ==\
-    \ 2) {\n      LL(x2, y2);\n      print(A.sum(x, x2, y, y2), B.sum(x, x2, y, y2));\n\
-    \    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ yes(!t); }\r\n#line 5 \"test/library_checker/datastructure/rect_add_pt_get.test.cpp\"\
+    \n\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct Monoid_Add\
+    \ {\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const X\
+    \ &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept\
+    \ { return -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return\
+    \ X(n) * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 2 \"ds/fenwicktree/dual_fenwicktree_2d.hpp\"\
+    \n\ntemplate <typename Monoid, typename XY, bool SMALL_X = false>\nstruct Dual_FenwickTree_2D\
+    \ {\n  using G = Monoid;\n  using E = typename G::value_type;\n  static_assert(G::commute);\n\
+    \  int N;\n  vc<XY> keyX;\n  XY min_X;\n  vc<int> indptr;\n  vc<XY> keyY;\n  vc<E>\
+    \ dat;\n\n  Dual_FenwickTree_2D(vc<XY>& X, vc<XY>& Y) { build(X, Y); }\n\n  inline\
+    \ int xtoi(XY x) {\n    return (SMALL_X ? clamp<int>(x - min_X, 0, N) : LB(keyX,\
+    \ x));\n  }\n  inline int nxt(int i) { return i + ((i + 1) & -(i + 1)); }\n  inline\
+    \ int prev(int i) { return i - ((i + 1) & -(i + 1)); }\n\n  void build(vc<XY>&\
+    \ X, vc<XY>& Y) {\n    assert(len(X) == len(Y));\n    if (!SMALL_X) {\n      keyX\
+    \ = X;\n      UNIQUE(keyX);\n      N = len(keyX);\n    } else {\n      min_X =\
+    \ (len(X) == 0 ? 0 : MIN(X));\n      N = (len(X) == 0 ? 0 : MAX(X)) - min_X +\
+    \ 1;\n      keyX.resize(N);\n      FOR(i, N) keyX[i] = min_X + i;\n    }\n   \
+    \ vvc<XY> keyY_raw(N);\n    for (auto&& i: argsort(Y)) {\n      int ix = xtoi(X[i]);\n\
+    \      XY y = Y[i];\n      while (ix < N) {\n        auto& KY = keyY_raw[ix];\n\
+    \        if (len(KY) == 0 || KY.back() < y) { KY.eb(y); }\n        ix = nxt(ix);\n\
+    \      }\n    }\n\n    indptr.assign(N + 1, 0);\n    FOR(i, N) indptr[i + 1] =\
+    \ indptr[i] + len(keyY_raw[i]);\n    keyY.resize(indptr.back());\n    dat.assign(indptr.back(),\
+    \ G::unit());\n    FOR(i, N) FOR(j, indptr[i + 1] - indptr[i]) {\n      keyY[indptr[i]\
+    \ + j] = keyY_raw[i][j];\n    }\n  }\n\n  E get(XY x, XY y) {\n    E val = G::unit();\n\
+    \    int i = xtoi(x);\n    assert(keyX[i] == x);\n    while (i < N) { val = G::op(val,\
+    \ get_i(i, y)), i = nxt(i); }\n    return val;\n  }\n\n  void apply(XY lx, XY\
+    \ rx, XY ly, XY ry, E val) {\n    int L = xtoi(lx) - 1, R = xtoi(rx) - 1;\n  \
+    \  E neg = G::inverse(val);\n    while (L < R) { apply_i(R, ly, ry, val), R =\
+    \ prev(R); }\n    while (R < L) { apply_i(L, ly, ry, neg), L = prev(L); }\n  }\n\
+    \nprivate:\n  E get_i(int i, XY y) {\n    E val = G::unit();\n    int LID = indptr[i],\
+    \ n = indptr[i + 1] - indptr[i];\n    auto it = keyY.begin() + LID;\n    int j\
+    \ = lower_bound(it, it + n, y) - it;\n    vc<int> Y_sub = {it, it + n};\n    while\
+    \ (j < n) { val = G::op(val, dat[LID + j]), j = nxt(j); }\n    return val;\n \
+    \ }\n\n  void apply_i(int i, XY ly, XY ry, E val) {\n    E neg = G::inverse(val);\n\
+    \    int LID = indptr[i], n = indptr[i + 1] - indptr[i];\n    auto it = keyY.begin()\
+    \ + LID;\n    int L = lower_bound(it, it + n, ly) - it - 1;\n    int R = lower_bound(it,\
+    \ it + n, ry) - it - 1;\n    while (L < R) { dat[LID + R] = G::op(val, dat[LID\
+    \ + R]), R = prev(R); }\n    while (R < L) { dat[LID + L] = G::op(neg, dat[LID\
+    \ + L]), L = prev(L); }\n  }\n};\n#line 7 \"test/library_checker/datastructure/rect_add_pt_get.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  using T = tuple<int, int, int, int, int>;\n\
+    \  VEC(T, dat, N);\n  vc<T> QUERY;\n  vc<int> X, Y;\n  FOR(Q) {\n    INT(t);\n\
+    \    if (t == 0) {\n      LL(a, b, c, d, x);\n      QUERY.eb(a, b, c, d, x);\n\
+    \    }\n    if (t == 1) {\n      LL(x, y);\n      X.eb(x), Y.eb(y);\n      QUERY.eb(x,\
+    \ y, -1, -1, -1);\n    }\n  }\n\n  Dual_FenwickTree_2D<Monoid_Add<ll>, int, false>\
+    \ bit(X, Y);\n\n  for (auto& [a, b, c, d, x]: dat) bit.apply(a, c, b, d, x);\n\
+    \  for (auto& [a, b, c, d, x]: QUERY) {\n    if (x == -1) {\n      ll ans = bit.get(a,\
+    \ b);\n      print(ans);\n    } else {\n      bit.apply(a, c, b, d, x);\n    }\n\
+    \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_add_point_get\"\
+    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/fenwicktree/dual_fenwicktree_2d.hpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  using T = tuple<int, int, int, int, int>;\n\
+    \  VEC(T, dat, N);\n  vc<T> QUERY;\n  vc<int> X, Y;\n  FOR(Q) {\n    INT(t);\n\
+    \    if (t == 0) {\n      LL(a, b, c, d, x);\n      QUERY.eb(a, b, c, d, x);\n\
+    \    }\n    if (t == 1) {\n      LL(x, y);\n      X.eb(x), Y.eb(y);\n      QUERY.eb(x,\
+    \ y, -1, -1, -1);\n    }\n  }\n\n  Dual_FenwickTree_2D<Monoid_Add<ll>, int, false>\
+    \ bit(X, Y);\n\n  for (auto& [a, b, c, d, x]: dat) bit.apply(a, c, b, d, x);\n\
+    \  for (auto& [a, b, c, d, x]: QUERY) {\n    if (x == -1) {\n      ll ans = bit.get(a,\
+    \ b);\n      print(ans);\n    } else {\n      bit.apply(a, c, b, d, x);\n    }\n\
+    \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/fenwicktree/fenwicktree_2d_dense.hpp
+  - ds/fenwicktree/dual_fenwicktree_2d.hpp
   - alg/monoid/add.hpp
   isVerificationFile: true
-  path: test/aoj/2842.test.cpp
+  path: test/library_checker/datastructure/rect_add_pt_get.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
+  timestamp: '2024-01-21 17:01:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/2842.test.cpp
+documentation_of: test/library_checker/datastructure/rect_add_pt_get.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/2842.test.cpp
-- /verify/test/aoj/2842.test.cpp.html
-title: test/aoj/2842.test.cpp
+- /verify/test/library_checker/datastructure/rect_add_pt_get.test.cpp
+- /verify/test/library_checker/datastructure/rect_add_pt_get.test.cpp.html
+title: test/library_checker/datastructure/rect_add_pt_get.test.cpp
 ---
