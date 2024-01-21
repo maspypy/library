@@ -5,7 +5,10 @@ data:
   - icon: ':warning:'
     path: graph/count/BEST.hpp
     title: graph/count/BEST.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
+    path: linalg/blackbox/det.hpp
+    title: linalg/blackbox/det.hpp
+  - icon: ':x:'
     path: linalg/blackbox/min_poly.hpp
     title: linalg/blackbox/min_poly.hpp
   - icon: ':heavy_check_mark:'
@@ -45,6 +48,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2305.test.cpp
     title: test/yukicoder/2305.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/310.test.cpp
+    title: test/yukicoder/310.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/541.test.cpp
     title: test/yukicoder/541.test.cpp
@@ -54,9 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"seq/find_linear_rec.hpp\"\n\r\ntemplate <typename mint>\r\
@@ -84,10 +90,11 @@ data:
   - linalg/spmat_min_poly.hpp
   - linalg/spmat_det.hpp
   - linalg/blackbox/min_poly.hpp
+  - linalg/blackbox/det.hpp
   - seq/interpolate_linear_rec.hpp
   - graph/count/BEST.hpp
   timestamp: '2022-05-11 21:07:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
   - test/library_checker/math/find_linear_recurrence.test.cpp
@@ -101,6 +108,7 @@ data:
   - test/yukicoder/1755.test.cpp
   - test/yukicoder/578.test.cpp
   - test/yukicoder/1844.test.cpp
+  - test/yukicoder/310.test.cpp
 documentation_of: seq/find_linear_rec.hpp
 layout: document
 redirect_from:

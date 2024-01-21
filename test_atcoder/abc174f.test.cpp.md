@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/offline_query/uniqueproductquery.hpp
     title: ds/offline_query/uniqueproductquery.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc174/tasks/abc174_f
@@ -255,16 +255,15 @@ data:
     \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\n  static\
     \ constexpr X unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\
     \n};\r\n#line 6 \"test_atcoder/abc174f.test.cpp\"\n\nvoid solve() {\n  LL(N, Q);\n\
-    \  VEC(ll, C, N);\n  UniqueProductQuery<Monoid_Add<int>> X(C);\n\n  FOR(Q) {\n\
+    \  VEC(int, C, N);\n  UniqueProductQuery<Monoid_Add<int>> X(C);\n\n  FOR(Q) {\n\
     \    LL(l, r);\n    X.add(--l, r);\n  }\n  for (auto&& x: X.calc()) print(x);\n\
-    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n  solve();\n  return\
-    \ 0;\n}\n"
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc174/tasks/abc174_f\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/offline_query/uniqueproductquery.hpp\"\
-    \n#include \"alg/monoid/add.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, C,\
+    \n#include \"alg/monoid/add.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, C,\
     \ N);\n  UniqueProductQuery<Monoid_Add<int>> X(C);\n\n  FOR(Q) {\n    LL(l, r);\n\
     \    X.add(--l, r);\n  }\n  for (auto&& x: X.calc()) print(x);\n}\n\nsigned main()\
-    \ {\n  cout << fixed << setprecision(15);\n  solve();\n  return 0;\n}\n"
+    \ {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -274,8 +273,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc174f.test.cpp
   requiredBy: []
-  timestamp: '2024-01-21 19:07:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-21 22:04:07+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc174f.test.cpp
 layout: document

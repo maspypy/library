@@ -35,7 +35,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
+    path: linalg/blackbox/det.hpp
+    title: linalg/blackbox/det.hpp
+  - icon: ':x:'
     path: linalg/blackbox/min_poly.hpp
     title: linalg/blackbox/min_poly.hpp
   - icon: ':heavy_check_mark:'
@@ -65,7 +68,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modular_subset_sum.hpp
     title: mod/modular_subset_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':heavy_check_mark:'
@@ -86,7 +89,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':heavy_check_mark:'
@@ -672,6 +675,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/263.test.cpp
     title: test/yukicoder/263.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/310.test.cpp
+    title: test/yukicoder/310.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_1.test.cpp
     title: test/yukicoder/4_1.test.cpp
@@ -714,7 +720,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc281g.test.cpp
     title: test_atcoder/abc281g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
   _isVerificationFailed: true
@@ -755,6 +761,7 @@ data:
   - linalg/spmat_det.hpp
   - linalg/det_A_plus_xB.hpp
   - linalg/blackbox/min_poly.hpp
+  - linalg/blackbox/det.hpp
   - nt/factor.hpp
   - nt/all_lcm.hpp
   - nt/three_triangular.hpp
@@ -958,6 +965,7 @@ data:
   - test/yukicoder/2578.test.cpp
   - test/yukicoder/578.test.cpp
   - test/yukicoder/1575.test.cpp
+  - test/yukicoder/310.test.cpp
   - test/yukicoder/2264.test.cpp
   - test/yukicoder/1303.test.cpp
   - test/yukicoder/4_1.test.cpp

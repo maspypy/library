@@ -4,14 +4,20 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: linalg/blackbox/det.hpp
+    title: linalg/blackbox/det.hpp
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yukicoder/310.test.cpp
+    title: test/yukicoder/310.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"seq/find_linear_rec.hpp\"\n\r\ntemplate <typename mint>\r\
@@ -50,10 +56,12 @@ data:
   - random/base.hpp
   isVerificationFile: false
   path: linalg/blackbox/min_poly.hpp
-  requiredBy: []
+  requiredBy:
+  - linalg/blackbox/det.hpp
   timestamp: '2024-01-21 21:06:12+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yukicoder/310.test.cpp
 documentation_of: linalg/blackbox/min_poly.hpp
 layout: document
 redirect_from:
