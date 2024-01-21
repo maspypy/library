@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "random/base.hpp"
 #include "mod/modint.hpp"
-#include "linalg/implicit_matrix/pascal.hpp"
+#include "linalg/blackbox/pascal.hpp"
 
 using mint = modint998;
 

@@ -4,7 +4,7 @@
 // 行列 A をかけることを表す線形変換 f を渡す
 // auto f = [&](vc<mint> v) -> vc<mint> {};
 template <typename mint, typename F>
-vc<mint> blackbox__matrix_min_poly(int N, F f) {
+vc<mint> blackbox_min_poly(int N, F f) {
   vc<mint> S(N + N + 10);
   vc<mint> c(N);
   vc<mint> v(N);
