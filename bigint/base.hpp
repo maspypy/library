@@ -20,10 +20,7 @@ struct BigInteger {
     sgn = 1;
     if (val != 0) {
       if (val < 0) sgn = -1, val = -val;
-      while (val > 0) {
-        dat.eb(val % MOD);
-        val /= MOD;
-      }
+      while (val > 0) { dat.eb(val % MOD), val /= MOD; }
     }
   }
   BigInteger(string s) {
@@ -45,8 +42,7 @@ struct BigInteger {
     FOR(i, n) { dat[i / LOG] += TEN[i % LOG] * (s[i] - '0'); }
   }
   bint &operator=(const bint &p) {
-    sgn = p.sgn;
-    dat = p.dat;
+    sgn = p.sgn, dat = p.dat;
     return *this;
   }
   bool operator<(const bint &p) const {
@@ -67,7 +63,7 @@ struct BigInteger {
   bool operator<=(const bint &p) const { return !(*this > p); }
   bool operator>=(const bint &p) const { return !(*this < p); }
   bint &operator+=(const bint p) {
-    if (sgn == 0) { return *this = (-p); }
+    if (sgn == 0) { return *this = p; }
     if (p.sgn == 0) return *this;
     if (sgn != p.sgn) {
       *this -= (-p);
@@ -99,6 +95,7 @@ struct BigInteger {
       if (dat[i] < 0) dat[i] += MOD, dat[i + 1] -= 1;
     }
     while (len(dat) && dat.back() == 0) { dat.pop_back(); }
+    if (dat.empty()) sgn = 0;
     return *this;
   }
   bint &operator*=(const bint &p) {
