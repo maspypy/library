@@ -6,7 +6,7 @@
 
 void solve() {
   LL(N, Q);
-  VEC(ll, C, N);
+  VEC(int, C, N);
   UniqueProductQuery<Monoid_Add<int>> X(C);
 
   FOR(Q) {
@@ -17,7 +17,6 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
   solve();
   return 0;
 }
