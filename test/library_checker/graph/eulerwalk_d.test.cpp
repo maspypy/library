@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/eulerian_trail_directed"
+#define PROBLEM "https://judge.yosupo.jp/problem/count_points_in_triangle"
 
 #include "my_template.hpp"
 #include "other/io.hpp"
