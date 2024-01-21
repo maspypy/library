@@ -54,6 +54,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc260h.test.cpp
+    title: test_atcoder/abc260h.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -526,6 +529,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/vandermonde.test.cpp
+  - test_atcoder/abc260h.test.cpp
 documentation_of: linalg/blackbox/vandermonde.hpp
 layout: document
 redirect_from:
