@@ -1063,10 +1063,10 @@ data:
       title: linalg/bitset/solve_linear.hpp
   - name: linalg/blackbox
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: linalg/blackbox/det.hpp
       title: linalg/blackbox/det.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: linalg/blackbox/min_poly.hpp
       title: linalg/blackbox/min_poly.hpp
     - icon: ':heavy_check_mark:'
@@ -1095,7 +1095,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/matrix_lowrank_update.hpp
       title: linalg/matrix_lowrank_update.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: linalg/matrix_mul.hpp
       title: linalg/matrix_mul.hpp
     - icon: ':heavy_check_mark:'
@@ -1116,7 +1116,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/spmat_det.hpp
       title: linalg/spmat_det.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: linalg/spmat_min_poly.hpp
       title: linalg/spmat_min_poly.hpp
     - icon: ':heavy_check_mark:'
@@ -1198,13 +1198,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_sum_of_linear.hpp
       title: mod/mod_sum_of_linear.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint.hpp
       title: mod/modint.hpp
     - icon: ':heavy_check_mark:'
       path: mod/modint61.hpp
       title: mod/modint61.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint_common.hpp
       title: mod/modint_common.hpp
     - icon: ':heavy_check_mark:'
@@ -1239,7 +1239,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
   - name: new_poly
@@ -1380,7 +1380,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/golden_search.hpp
       title: other/golden_search.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -1605,7 +1605,7 @@ data:
       title: poly/online/online_square.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -1637,7 +1637,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/factorial_digit_system.hpp
       title: seq/factorial_digit_system.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: seq/find_linear_rec.hpp
       title: seq/find_linear_rec.hpp
     - icon: ':heavy_check_mark:'
@@ -2986,7 +2986,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/min_of_linear_segments.test.cpp
       title: test/mytest/min_of_linear_segments.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/min_poly.test.cpp
       title: test/mytest/min_poly.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3897,7 +3897,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/303.test.cpp
       title: test/yukicoder/303.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/310.test.cpp
       title: test/yukicoder/310.test.cpp
     - icon: ':heavy_check_mark:'

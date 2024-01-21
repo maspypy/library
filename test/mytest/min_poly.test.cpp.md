@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/min_poly.hpp
     title: linalg/blackbox/min_poly.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/spmat_min_poly.hpp
     title: linalg/spmat_min_poly.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -250,9 +250,9 @@ data:
     \ [&](vc<mint> a) -> vc<mint> {\n           vc<mint> b(2);\n           for (auto&&\
     \ [i, j, x]: A) b[j] += a[i] * x;\n           return b;\n         }));\n\n  A.clear();\n\
     \  f = spmat_min_poly<mint>(2, A);\n  assert(f == vc<mint>({mint(0), mint(1)}));\n\
-    \  assert(f == blackbox_matrix_min_poly<mint>(2, [&](vc<mint> a) -> vc<mint> {\n\
-    \           vc<mint> b(2);\n           for (auto&& [i, j, x]: A) b[j] += a[i]\
-    \ * x;\n           return b;\n         }));\n\n  A.clear();\n  f = spmat_min_poly<mint>(0,\
+    \  assert(f == blackbox_min_poly<mint>(2, [&](vc<mint> a) -> vc<mint> {\n    \
+    \       vc<mint> b(2);\n           for (auto&& [i, j, x]: A) b[j] += a[i] * x;\n\
+    \           return b;\n         }));\n\n  A.clear();\n  f = spmat_min_poly<mint>(0,\
     \ A);\n  assert(f == vc<mint>({mint(1)}));\n  assert(f == blackbox_min_poly<mint>(0,\
     \ [&](vc<mint> a) -> vc<mint> {\n           vc<mint> b(0);\n           for (auto&&\
     \ [i, j, x]: A) b[j] += a[i] * x;\n           return b;\n         }));\n\n  A.clear();\n\
@@ -270,7 +270,7 @@ data:
     \           return b;\n         }));\n\n  // random matrix\n  FOR(N, 1, 20) {\n\
     \    vv(mint, mat, N, N);\n    FOR(i, N) FOR(j, N) mat[i][j] = RNG(0, 998244353);\n\
     \    A.clear();\n    FOR(i, N) FOR(j, N) A.eb(i, j, mat[i][j]);\n    f = spmat_min_poly(N,\
-    \ A);\n    assert(f == implicit_matrix_min_poly<mint>(N, [&](vc<mint> a) -> vc<mint>\
+    \ A);\n    assert(f == blackbox_min_poly<mint>(N, [&](vc<mint> a) -> vc<mint>\
     \ {\n             vc<mint> b(N);\n             for (auto&& [i, j, x]: A) b[j]\
     \ += a[i] * x;\n             return b;\n           }));\n    vv(mint, B, N, N);\n\
     \    FOR(i, N) B[i][i] = 1;\n    vv(mint, C, N, N);\n    FOR(d, len(f)) {\n  \
@@ -289,9 +289,9 @@ data:
     \ [&](vc<mint> a) -> vc<mint> {\n           vc<mint> b(2);\n           for (auto&&\
     \ [i, j, x]: A) b[j] += a[i] * x;\n           return b;\n         }));\n\n  A.clear();\n\
     \  f = spmat_min_poly<mint>(2, A);\n  assert(f == vc<mint>({mint(0), mint(1)}));\n\
-    \  assert(f == blackbox_matrix_min_poly<mint>(2, [&](vc<mint> a) -> vc<mint> {\n\
-    \           vc<mint> b(2);\n           for (auto&& [i, j, x]: A) b[j] += a[i]\
-    \ * x;\n           return b;\n         }));\n\n  A.clear();\n  f = spmat_min_poly<mint>(0,\
+    \  assert(f == blackbox_min_poly<mint>(2, [&](vc<mint> a) -> vc<mint> {\n    \
+    \       vc<mint> b(2);\n           for (auto&& [i, j, x]: A) b[j] += a[i] * x;\n\
+    \           return b;\n         }));\n\n  A.clear();\n  f = spmat_min_poly<mint>(0,\
     \ A);\n  assert(f == vc<mint>({mint(1)}));\n  assert(f == blackbox_min_poly<mint>(0,\
     \ [&](vc<mint> a) -> vc<mint> {\n           vc<mint> b(0);\n           for (auto&&\
     \ [i, j, x]: A) b[j] += a[i] * x;\n           return b;\n         }));\n\n  A.clear();\n\
@@ -309,7 +309,7 @@ data:
     \           return b;\n         }));\n\n  // random matrix\n  FOR(N, 1, 20) {\n\
     \    vv(mint, mat, N, N);\n    FOR(i, N) FOR(j, N) mat[i][j] = RNG(0, 998244353);\n\
     \    A.clear();\n    FOR(i, N) FOR(j, N) A.eb(i, j, mat[i][j]);\n    f = spmat_min_poly(N,\
-    \ A);\n    assert(f == implicit_matrix_min_poly<mint>(N, [&](vc<mint> a) -> vc<mint>\
+    \ A);\n    assert(f == blackbox_min_poly<mint>(N, [&](vc<mint> a) -> vc<mint>\
     \ {\n             vc<mint> b(N);\n             for (auto&& [i, j, x]: A) b[j]\
     \ += a[i] * x;\n             return b;\n           }));\n    vv(mint, B, N, N);\n\
     \    FOR(i, N) B[i][i] = 1;\n    vv(mint, C, N, N);\n    FOR(d, len(f)) {\n  \
@@ -329,8 +329,8 @@ data:
   isVerificationFile: true
   path: test/mytest/min_poly.test.cpp
   requiredBy: []
-  timestamp: '2024-01-21 23:24:39+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-22 00:39:57+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/min_poly.test.cpp
 layout: document

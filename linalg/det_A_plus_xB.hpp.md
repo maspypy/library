@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/matrix_inv.hpp
     title: linalg/matrix_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
   - icon: ':heavy_check_mark:'
@@ -16,10 +16,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -46,7 +46,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

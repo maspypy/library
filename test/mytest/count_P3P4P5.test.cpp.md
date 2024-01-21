@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_P3_P4_P5.hpp
     title: graph/count/count_P3_P4_P5.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'

@@ -35,10 +35,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/det.hpp
     title: linalg/blackbox/det.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/min_poly.hpp
     title: linalg/blackbox/min_poly.hpp
   - icon: ':heavy_check_mark:'
@@ -47,7 +47,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/spmat_det.hpp
     title: linalg/spmat_det.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/spmat_min_poly.hpp
     title: linalg/spmat_min_poly.hpp
   - icon: ':heavy_check_mark:'
@@ -399,7 +399,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/min_of_linear_segments.test.cpp
     title: test/mytest/min_of_linear_segments.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/min_poly.test.cpp
     title: test/mytest/min_poly.test.cpp
   - icon: ':heavy_check_mark:'
@@ -687,7 +687,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/263.test.cpp
     title: test/yukicoder/263.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/310.test.cpp
     title: test/yukicoder/310.test.cpp
   - icon: ':heavy_check_mark:'
@@ -735,9 +735,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -801,7 +801,7 @@ data:
   - poly/fps_sqrt.hpp
   - alg/monoid/rollinghash.hpp
   timestamp: '2022-10-23 11:21:57+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/NTL_1_D.test.cpp
   - test/aoj/ITP1_D_D.test.cpp

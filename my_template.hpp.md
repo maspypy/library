@@ -1104,7 +1104,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/min_of_linear_segments.test.cpp
     title: test/mytest/min_of_linear_segments.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/min_poly.test.cpp
     title: test/mytest/min_poly.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2007,7 +2007,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/303.test.cpp
     title: test/yukicoder/303.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/310.test.cpp
     title: test/yukicoder/310.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2451,9 +2451,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://trap.jp/post/1224/
@@ -2621,7 +2621,7 @@ data:
   path: my_template.hpp
   requiredBy: []
   timestamp: '2023-10-29 16:21:41+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/0275.test.cpp
   - test/aoj/2842.test.cpp
