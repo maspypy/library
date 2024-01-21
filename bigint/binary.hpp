@@ -7,8 +7,12 @@ struct BigInteger_Binary {
   int sgn; // +1 or -1. 内部状態で -0 を許容する.
   vc<int> dat;
 
-  BigInteger_Binary() : sgn(1) {}
+  BigInteger_Binary() : sgn(0) {}
   BigInteger_Binary(i128 val) {
+    if (val == 0) {
+      sgn = 0;
+      return;
+    }
     sgn = 1;
     if (val != 0) {
       if (val < 0) sgn = -1, val = -val;
@@ -26,7 +30,10 @@ struct BigInteger_Binary {
       s.erase(s.begin());
       assert(!s.empty());
     }
-    if (s[0] == '0') s.clear();
+    if (s[0] == '0') {
+      sgn = 0;
+      return;
+    }
     reverse(all(s));
     int n = len(s);
     int m = ceil(n, LOG);
@@ -40,6 +47,7 @@ struct BigInteger_Binary {
   }
   bool operator<(const bint &p) const {
     if (sgn != p.sgn) return sgn < p.sgn;
+    if (sgn == 0) return false;
     if (len(dat) != len(p.dat)) {
       if (sgn == 1) return len(dat) < len(p.dat);
       if (sgn == -1) return len(dat) > len(p.dat);
@@ -55,6 +63,8 @@ struct BigInteger_Binary {
   bool operator<=(const bint &p) const { return !(*this > p); }
   bool operator>=(const bint &p) const { return !(*this < p); }
   bint &operator+=(const bint &p) {
+    if (sgn == 0) { return *this = p; }
+    if (p.sgn == 0) { return *this; }
     if (sgn != p.sgn) {
       *this -= (-p);
       return *this;
@@ -69,6 +79,8 @@ struct BigInteger_Binary {
     return *this;
   }
   bint &operator-=(const bint &p) {
+    if (sgn == 0) return *this = (-p);
+    if (p.sgn == 0) return *this;
     if (sgn != p.sgn) {
       *this += (-p);
       return *this;
@@ -83,6 +95,7 @@ struct BigInteger_Binary {
       if (dat[i] < 0) dat[i] += MOD, dat[i + 1] -= 1;
     }
     while (len(dat) && dat.back() == 0) { dat.pop_back(); }
+    if (dat.empty()) sgn = 0;
     return *this;
   }
   bint &operator*=(const bint &p) {
