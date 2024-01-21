@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 
 #include "mod/modint.hpp"
-#include "nt/multiplicative_convolution_mod2n.hpp"
+#include "mod/multiplicative_convolution_mod_2n.hpp"
 
 using mint = modint998;
 
@@ -11,7 +11,7 @@ void solve() {
   LL(N);
   VEC(mint, A, 1 << N);
   VEC(mint, B, 1 << N);
-  auto C = multiplicative_convolution_mod2n(A, B);
+  auto C = multiplicative_convolution_mod_2n(A, B);
   print(C);
 }
 
