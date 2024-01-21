@@ -11,13 +11,13 @@ vc<int> vs_to_es(GT& G, vc<int>& vs, bool allow_use_twice = false) {
   vc<int> nxt(G.M, -1);
 
   auto get = [&](ll a, ll b) -> u64 {
-    if (GT::is_directed && a > b) swap(a, b);
+    if (!GT::is_directed && a > b) swap(a, b);
     return a * G.N + b;
   };
 
   FOR(eid, G.M) {
     u64 k = get(G.edges[eid].frm, G.edges[eid].to);
-    int x = MP[k];
+    int x = MP.get(k, -1);
     nxt[eid] = x, MP[k] = eid;
   }
   int n = len(vs);
