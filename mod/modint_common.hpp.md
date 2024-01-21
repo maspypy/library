@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bigint/base.hpp
     title: bigint/base.hpp
   - icon: ':warning:'
@@ -297,7 +297,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_5_C.test.cpp
     title: test/aoj/DPL_5_C.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL_2_A.test.cpp
     title: test/aoj/NTL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -306,7 +306,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_2_C.test.cpp
     title: test/aoj/NTL_2_C.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/bigint/addition_of_bigintegers.test.cpp
     title: test/library_checker/bigint/addition_of_bigintegers.test.cpp
   - icon: ':heavy_check_mark:'
@@ -567,7 +567,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/sample/aplusb128.test.cpp
     title: test/library_checker/sample/aplusb128.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1008,7 +1008,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2587_2.test.cpp
     title: test/yukicoder/2587_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/303.test.cpp
     title: test/yukicoder/303.test.cpp
   - icon: ':heavy_check_mark:'
