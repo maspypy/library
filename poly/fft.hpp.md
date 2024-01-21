@@ -44,7 +44,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: mod/multiplicative_convolution_mod_2n.hpp
     title: mod/multiplicative_convolution_mod_2n.hpp
   - icon: ':heavy_check_mark:'
@@ -98,7 +98,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/convolution_leq.hpp
     title: poly/convolution_leq.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_u64.hpp
     title: poly/convolution_u64.hpp
   - icon: ':heavy_check_mark:'
@@ -271,11 +271,17 @@ data:
     path: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
     title: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/convolution/convolution_mod_2_64.test.cpp
+    title: test/library_checker/convolution/convolution_mod_2_64.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_dmint.test.cpp
     title: test/library_checker/convolution/convolution_mod_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_setntt.test.cpp
     title: test/library_checker/convolution/convolution_mod_setntt.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
+    title: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/multivariate_convolution.test.cpp
     title: test/library_checker/convolution/multivariate_convolution.test.cpp
@@ -880,6 +886,8 @@ data:
   - test/library_checker/convolution/convolution_mod.test.cpp
   - test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
   - test/library_checker/convolution/convolution_mod_dmint.test.cpp
+  - test/library_checker/convolution/mul_mod2n_convolution.test.cpp
+  - test/library_checker/convolution/convolution_mod_2_64.test.cpp
   - test/library_checker/convolution/subset_convolution_multivar.test.cpp
   - test/library_checker/convolution/convolution_mod_setntt.test.cpp
   - test/library_checker/convolution/convolution_huge.test.cpp

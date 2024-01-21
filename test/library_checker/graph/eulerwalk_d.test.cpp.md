@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/eulerwalk.hpp
     title: graph/eulerwalk.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/vs_to_es.hpp
     title: graph/vs_to_es.hpp
   - icon: ':question:'
@@ -24,16 +24,16 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/count_points_in_triangle
+    PROBLEM: https://judge.yosupo.jp/problem/eulerian_trail_directed
     links:
-    - https://judge.yosupo.jp/problem/count_points_in_triangle
+    - https://judge.yosupo.jp/problem/eulerian_trail_directed
   bundledCode: "#line 1 \"test/library_checker/graph/eulerwalk_d.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/count_points_in_triangle\"\n\n#line\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/eulerian_trail_directed\"\n\n#line\
     \ 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -335,7 +335,7 @@ data:
     \  auto [vs, es] = euler_walk(G);\n  if (vs.empty()) return No();\n  Yes();\n\
     \  print(vs);\n  print(es);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n\
     \  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/count_points_in_triangle\"\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/eulerian_trail_directed\"\
     \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/eulerwalk.hpp\"\
     \n\nvoid solve() {\n  LL(N, M);\n  Graph<int, 1> G(N);\n  G.read_graph(M, 0, 0);\n\
     \  auto [vs, es] = euler_walk(G);\n  if (vs.empty()) return No();\n  Yes();\n\
@@ -352,8 +352,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/eulerwalk_d.test.cpp
   requiredBy: []
-  timestamp: '2024-01-21 19:07:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-21 23:27:58+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/eulerwalk_d.test.cpp
 layout: document
