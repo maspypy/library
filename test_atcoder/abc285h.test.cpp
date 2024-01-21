@@ -5,7 +5,7 @@
 
 #include "mod/modint.hpp"
 #include "poly/fps_pow.hpp"
-#include "linalg/implicit_matrix/pascal.hpp"
+#include "linalg/blackbox/pascal.hpp"
 
 using mint = modint107;
 
