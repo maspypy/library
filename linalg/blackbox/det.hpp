@@ -1,4 +1,4 @@
-#include "linalg/blackbox_matrix/min_poly.hpp"
+#include "linalg/blackbox/min_poly.hpp"
 
 template <typename mint, typename F>
 mint blackbox_matrix_det(int N, F apply) {
