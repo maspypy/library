@@ -1,7 +1,7 @@
-#include "linalg/implicit_matrix/min_poly.hpp"
+#include "linalg/blackbox_matrix/min_poly.hpp"
 
 template <typename mint, typename F>
-mint implicit_matrix_det(int N, F apply) {
+mint blackbox_matrix_det(int N, F apply) {
   vc<mint> c(N);
   FOR(i, N) c[i] = RNG(1, mint::get_mod());
   mint r = 1;
