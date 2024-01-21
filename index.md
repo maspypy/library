@@ -1061,6 +1061,20 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/bitset/solve_linear.hpp
       title: linalg/bitset/solve_linear.hpp
+  - name: linalg/blackbox
+    pages:
+    - icon: ':warning:'
+      path: linalg/blackbox/det.hpp
+      title: linalg/blackbox/det.hpp
+    - icon: ':warning:'
+      path: linalg/blackbox/min_poly.hpp
+      title: linalg/blackbox/min_poly.hpp
+    - icon: ':warning:'
+      path: linalg/blackbox/pascal.hpp
+      title: linalg/blackbox/pascal.hpp
+    - icon: ':warning:'
+      path: linalg/blackbox/vandermonde.hpp
+      title: linalg/blackbox/vandermonde.hpp
   - name: linalg
     pages:
     - icon: ':heavy_check_mark:'
@@ -1105,23 +1119,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/spmat_min_poly.hpp
       title: linalg/spmat_min_poly.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: linalg/transpose.hpp
       title: linalg/transpose.hpp
-  - name: linalg/implicit_matrix
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: linalg/implicit_matrix/det.hpp
-      title: linalg/implicit_matrix/det.hpp
-    - icon: ':heavy_check_mark:'
-      path: linalg/implicit_matrix/min_poly.hpp
-      title: linalg/implicit_matrix/min_poly.hpp
-    - icon: ':heavy_check_mark:'
-      path: linalg/implicit_matrix/pascal.hpp
-      title: linalg/implicit_matrix/pascal.hpp
-    - icon: ':heavy_check_mark:'
-      path: linalg/implicit_matrix/vandermonde.hpp
-      title: linalg/implicit_matrix/vandermonde.hpp
   - name: linalg/xor
     pages:
     - icon: ':heavy_check_mark:'
@@ -2550,7 +2550,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/matrix/hafnian_of_matrix.test.cpp
       title: test/library_checker/matrix/hafnian_of_matrix.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/matrix/implicit_matrix.test.cpp
       title: test/library_checker/matrix/implicit_matrix.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2980,7 +2980,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/min_of_linear_segments.test.cpp
       title: test/mytest/min_of_linear_segments.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/mytest/min_poly.test.cpp
       title: test/mytest/min_poly.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3037,7 +3037,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/partizan.test.cpp
       title: test/mytest/partizan.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/mytest/pascal.test.cpp
       title: test/mytest/pascal.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3202,7 +3202,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/typical_dc.test.cpp
       title: test/mytest/typical_dc.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/mytest/vandermonde.test.cpp
       title: test/mytest/vandermonde.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3714,7 +3714,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/2102.test.cpp
       title: test/yukicoder/2102.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/2108.test.cpp
       title: test/yukicoder/2108.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3756,7 +3756,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/2242.test.cpp
       title: test/yukicoder/2242.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/2243.test.cpp
       title: test/yukicoder/2243.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3888,7 +3888,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/303.test.cpp
       title: test/yukicoder/303.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/310.test.cpp
       title: test/yukicoder/310.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4160,7 +4160,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc259g.test.cpp
       title: test_atcoder/abc259g.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_atcoder/abc260h.test.cpp
       title: test_atcoder/abc260h.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4175,7 +4175,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc266h_2.test.cpp
       title: test_atcoder/abc266h_2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_atcoder/abc267g.test.cpp
       title: test_atcoder/abc267g.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4232,7 +4232,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc283f.test.cpp
       title: test_atcoder/abc283f.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_atcoder/abc285h.test.cpp
       title: test_atcoder/abc285h.test.cpp
     - icon: ':heavy_check_mark:'

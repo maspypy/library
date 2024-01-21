@@ -5,12 +5,9 @@ data:
   - icon: ':warning:'
     path: graph/count/BEST.hpp
     title: graph/count/BEST.hpp
-  - icon: ':heavy_check_mark:'
-    path: linalg/implicit_matrix/det.hpp
-    title: linalg/implicit_matrix/det.hpp
-  - icon: ':heavy_check_mark:'
-    path: linalg/implicit_matrix/min_poly.hpp
-    title: linalg/implicit_matrix/min_poly.hpp
+  - icon: ':warning:'
+    path: linalg/blackbox/min_poly.hpp
+    title: linalg/blackbox/min_poly.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/spmat_det.hpp
     title: linalg/spmat_det.hpp
@@ -25,14 +22,8 @@ data:
     path: test/library_checker/math/find_linear_recurrence.test.cpp
     title: test/library_checker/math/find_linear_recurrence.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/matrix/implicit_matrix.test.cpp
-    title: test/library_checker/matrix/implicit_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/sparse_matrix_det.test.cpp
     title: test/library_checker/matrix/sparse_matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/min_poly.test.cpp
-    title: test/mytest/min_poly.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1500.test.cpp
     title: test/yukicoder/1500.test.cpp
@@ -54,9 +45,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2305.test.cpp
     title: test/yukicoder/2305.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/310.test.cpp
-    title: test/yukicoder/310.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/541.test.cpp
     title: test/yukicoder/541.test.cpp
@@ -95,17 +83,14 @@ data:
   requiredBy:
   - linalg/spmat_min_poly.hpp
   - linalg/spmat_det.hpp
-  - linalg/implicit_matrix/min_poly.hpp
-  - linalg/implicit_matrix/det.hpp
+  - linalg/blackbox/min_poly.hpp
   - seq/interpolate_linear_rec.hpp
   - graph/count/BEST.hpp
   timestamp: '2022-05-11 21:07:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
-  - test/library_checker/matrix/implicit_matrix.test.cpp
   - test/library_checker/math/find_linear_recurrence.test.cpp
-  - test/mytest/min_poly.test.cpp
   - test/yukicoder/1516.test.cpp
   - test/yukicoder/1547.test.cpp
   - test/yukicoder/1561.test.cpp
@@ -116,7 +101,6 @@ data:
   - test/yukicoder/1755.test.cpp
   - test/yukicoder/578.test.cpp
   - test/yukicoder/1844.test.cpp
-  - test/yukicoder/310.test.cpp
 documentation_of: seq/find_linear_rec.hpp
 layout: document
 redirect_from:

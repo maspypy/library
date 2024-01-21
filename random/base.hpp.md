@@ -35,15 +35,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
+  - icon: ':warning:'
+    path: linalg/blackbox/min_poly.hpp
+    title: linalg/blackbox/min_poly.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':heavy_check_mark:'
-    path: linalg/implicit_matrix/det.hpp
-    title: linalg/implicit_matrix/det.hpp
-  - icon: ':heavy_check_mark:'
-    path: linalg/implicit_matrix/min_poly.hpp
-    title: linalg/implicit_matrix/min_poly.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/spmat_det.hpp
     title: linalg/spmat_det.hpp
@@ -195,9 +192,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/matrix/implicit_matrix.test.cpp
-    title: test/library_checker/matrix/implicit_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/sparse_matrix_det.test.cpp
     title: test/library_checker/matrix/sparse_matrix_det.test.cpp
@@ -397,9 +391,6 @@ data:
     path: test/mytest/min_of_linear_segments.test.cpp
     title: test/mytest/min_of_linear_segments.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/min_poly.test.cpp
-    title: test/mytest/min_poly.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/minidx_add.test.cpp
     title: test/mytest/minidx_add.test.cpp
   - icon: ':heavy_check_mark:'
@@ -447,9 +438,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/partial_frac.test.cpp
     title: test/mytest/partial_frac.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/pascal.test.cpp
-    title: test/mytest/pascal.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/poly_root_finding.test.cpp
     title: test/mytest/poly_root_finding.test.cpp
@@ -580,9 +568,6 @@ data:
     path: test/mytest/typical_dc.test.cpp
     title: test/mytest/typical_dc.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/vandermonde.test.cpp
-    title: test/mytest/vandermonde.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/wavelet_matrix.test.cpp
     title: test/mytest/wavelet_matrix.test.cpp
   - icon: ':heavy_check_mark:'
@@ -682,9 +667,6 @@ data:
     path: test/yukicoder/263.test.cpp
     title: test/yukicoder/263.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/310.test.cpp
-    title: test/yukicoder/310.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_1.test.cpp
     title: test/yukicoder/4_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -766,8 +748,7 @@ data:
   - linalg/spmat_min_poly.hpp
   - linalg/spmat_det.hpp
   - linalg/det_A_plus_xB.hpp
-  - linalg/implicit_matrix/min_poly.hpp
-  - linalg/implicit_matrix/det.hpp
+  - linalg/blackbox/min_poly.hpp
   - nt/factor.hpp
   - nt/all_lcm.hpp
   - nt/three_triangular.hpp
@@ -801,7 +782,6 @@ data:
   - test/aoj/CGL_5_A.test.cpp
   - test/aoj/ALDS1_14_C.test.cpp
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
-  - test/library_checker/matrix/implicit_matrix.test.cpp
   - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/tetration.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
@@ -898,7 +878,6 @@ data:
   - test/mytest/rbst_monoid_2.test.cpp
   - test/mytest/st_numbering.test.cpp
   - test/mytest/conv_leq.test.cpp
-  - test/mytest/min_poly.test.cpp
   - test/mytest/online_exp.test.cpp
   - test/mytest/tutte.test.cpp
   - test/mytest/matching_ve.test.cpp
@@ -939,11 +918,9 @@ data:
   - test/mytest/first_mod_range_of_linear.test.cpp
   - test/mytest/count_indep_set.test.cpp
   - test/mytest/min_max.test.cpp
-  - test/mytest/pascal.test.cpp
   - test/mytest/dynamic_lazy_segtree.test.cpp
   - test/mytest/partial_frac.test.cpp
   - test/mytest/add_chmin.test.cpp
-  - test/mytest/vandermonde.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/tree_walk_gf.test.cpp
   - test/mytest/summin_add.test.cpp
@@ -973,7 +950,6 @@ data:
   - test/yukicoder/2578.test.cpp
   - test/yukicoder/578.test.cpp
   - test/yukicoder/1575.test.cpp
-  - test/yukicoder/310.test.cpp
   - test/yukicoder/2264.test.cpp
   - test/yukicoder/1303.test.cpp
   - test/yukicoder/4_1.test.cpp

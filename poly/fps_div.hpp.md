@@ -35,9 +35,9 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: linalg/implicit_matrix/vandermonde.hpp
-    title: linalg/implicit_matrix/vandermonde.hpp
+  - icon: ':warning:'
+    path: linalg/blackbox/vandermonde.hpp
+    title: linalg/blackbox/vandermonde.hpp
   - icon: ':question:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
@@ -87,9 +87,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/tree_walk_gf.test.cpp
     title: test/mytest/tree_walk_gf.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/vandermonde.test.cpp
-    title: test/mytest/vandermonde.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1145.test.cpp
     title: test/yukicoder/1145.test.cpp
@@ -150,9 +147,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test_atcoder/abc260h.test.cpp
-    title: test_atcoder/abc260h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc281g.test.cpp
     title: test_atcoder/abc281g.test.cpp
@@ -503,7 +497,7 @@ data:
   isVerificationFile: false
   path: poly/fps_div.hpp
   requiredBy:
-  - linalg/implicit_matrix/vandermonde.hpp
+  - linalg/blackbox/vandermonde.hpp
   - seq/famous/riemann_zeta_even.hpp
   - seq/famous/bernoulli.hpp
   - seq/famous/bell_number_large.hpp
@@ -522,7 +516,6 @@ data:
   - test/library_checker/math/bernoulli.test.cpp
   - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/bell.test.cpp
-  - test/mytest/vandermonde.test.cpp
   - test/mytest/tree_walk_gf.test.cpp
   - test/yukicoder/1533.test.cpp
   - test/yukicoder/1145.test.cpp
@@ -545,7 +538,6 @@ data:
   - test/yukicoder/1962.test.cpp
   - test/yukicoder/2122.test.cpp
   - test_atcoder/arc154f.test.cpp
-  - test_atcoder/abc260h.test.cpp
   - test_atcoder/agc013e.test.cpp
   - test_atcoder/abc281g.test.cpp
   - test_atcoder/agc058d2.test.cpp

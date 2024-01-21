@@ -5,9 +5,9 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: linalg/implicit_matrix/vandermonde.hpp
-    title: linalg/implicit_matrix/vandermonde.hpp
+  - icon: ':warning:'
+    path: linalg/blackbox/vandermonde.hpp
+    title: linalg/blackbox/vandermonde.hpp
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
@@ -67,9 +67,6 @@ data:
     path: test/mytest/typical_dc.test.cpp
     title: test/mytest/typical_dc.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/vandermonde.test.cpp
-    title: test/mytest/vandermonde.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1575.test.cpp
     title: test/yukicoder/1575.test.cpp
   - icon: ':heavy_check_mark:'
@@ -82,17 +79,8 @@ data:
     path: test/yukicoder/2231.test.cpp
     title: test/yukicoder/2231.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2243.test.cpp
-    title: test/yukicoder/2243.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc241h.test.cpp
     title: test_atcoder/abc241h.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test_atcoder/abc260h.test.cpp
-    title: test_atcoder/abc260h.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test_atcoder/abc267g.test.cpp
-    title: test_atcoder/abc267g.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc272_h.test.cpp
     title: test_atcoder/abc272_h.test.cpp
@@ -226,7 +214,7 @@ data:
   isVerificationFile: false
   path: poly/middle_product.hpp
   requiredBy:
-  - linalg/implicit_matrix/vandermonde.hpp
+  - linalg/blackbox/vandermonde.hpp
   - seq/count_grid_path.hpp
   - string/wildcard_pattern_matching.hpp
   - poly/multipoint.hpp
@@ -249,14 +237,10 @@ data:
   - test/mytest/typical_dc.test.cpp
   - test/mytest/composition_log_1_minus_x.test.cpp
   - test/mytest/partial_frac.test.cpp
-  - test/mytest/vandermonde.test.cpp
   - test/yukicoder/2231.test.cpp
   - test/yukicoder/2166.test.cpp
-  - test/yukicoder/2243.test.cpp
   - test/yukicoder/1575.test.cpp
   - test/yukicoder/1796_1.test.cpp
-  - test_atcoder/abc267g.test.cpp
-  - test_atcoder/abc260h.test.cpp
   - test_atcoder/agc013e.test.cpp
   - test_atcoder/agc058d2.test.cpp
   - test_atcoder/abc272_h.test.cpp

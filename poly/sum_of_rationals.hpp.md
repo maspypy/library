@@ -29,9 +29,9 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: linalg/implicit_matrix/vandermonde.hpp
-    title: linalg/implicit_matrix/vandermonde.hpp
+  - icon: ':warning:'
+    path: linalg/blackbox/vandermonde.hpp
+    title: linalg/blackbox/vandermonde.hpp
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
@@ -61,9 +61,6 @@ data:
     path: test/mytest/partial_frac.test.cpp
     title: test/mytest/partial_frac.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/vandermonde.test.cpp
-    title: test/mytest/vandermonde.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1145.test.cpp
     title: test/yukicoder/1145.test.cpp
   - icon: ':heavy_check_mark:'
@@ -78,9 +75,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2459.test.cpp
     title: test/yukicoder/2459.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test_atcoder/abc260h.test.cpp
-    title: test_atcoder/abc260h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc276_g.test.cpp
     title: test_atcoder/abc276_g.test.cpp
@@ -409,7 +403,7 @@ data:
   isVerificationFile: false
   path: poly/sum_of_rationals.hpp
   requiredBy:
-  - linalg/implicit_matrix/vandermonde.hpp
+  - linalg/blackbox/vandermonde.hpp
   - seq/sum_of_powers.hpp
   - poly/composition_f_ex_minus_1.hpp
   - poly/product_of_pow_of_linear.hpp
@@ -422,14 +416,12 @@ data:
   - test/mytest/composition_1_minus_ex.test.cpp
   - test/mytest/composition_ex_minus_1.test.cpp
   - test/mytest/partial_frac.test.cpp
-  - test/mytest/vandermonde.test.cpp
   - test/yukicoder/1145.test.cpp
   - test/yukicoder/2459.test.cpp
   - test/yukicoder/1875.test.cpp
   - test/yukicoder/1575.test.cpp
   - test/yukicoder/1962.test.cpp
   - test_atcoder/arc154f.test.cpp
-  - test_atcoder/abc260h.test.cpp
   - test_atcoder/abc276_g.test.cpp
   - test_atcoder/abc276_g_2.test.cpp
   - test_atcoder/abc281g.test.cpp

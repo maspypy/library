@@ -2,9 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: mod/all_inverse.hpp
-    title: mod/all_inverse.hpp
-  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
   - icon: ':question:'
@@ -26,49 +23,22 @@ data:
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
   - icon: ':question:'
-    path: poly/count_terms.hpp
-    title: poly/count_terms.hpp
-  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
   - icon: ':question:'
-    path: poly/fps_div.hpp
-    title: poly/fps_div.hpp
-  - icon: ':question:'
-    path: poly/fps_inv.hpp
-    title: poly/fps_inv.hpp
-  - icon: ':question:'
-    path: poly/middle_product.hpp
-    title: poly/middle_product.hpp
-  - icon: ':question:'
-    path: poly/multipoint.hpp
-    title: poly/multipoint.hpp
-  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/sum_of_rationals.hpp
-    title: poly/sum_of_rationals.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/vandermonde.test.cpp
-    title: test/mytest/vandermonde.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test_atcoder/abc260h.test.cpp
-    title: test_atcoder/abc260h.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"poly/multipoint.hpp\"\n\r\n#line 2 \"poly/count_terms.hpp\"\
-    \ntemplate<typename mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t =\
-    \ 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 2\
-    \ \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class T>\n \
-    \ static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n  template\
-    \ <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate <class\
-    \ T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+  bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
+    \ <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
+    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
+    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
     \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
     \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
@@ -333,182 +303,30 @@ data:
     \ m = len(b);\r\n  if (!n || !m) return {};\r\n  if (mint::can_ntt()) {\r\n  \
     \  if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n    return\
     \ convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\r\n  return convolution_garner(a, b);\r\n}\r\n#line 4 \"poly/fps_inv.hpp\"\
-    \n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv_sparse(const vc<mint>& f) {\r\
-    \n  int N = len(f);\r\n  vc<pair<int, mint>> dat;\r\n  FOR(i, 1, N) if (f[i] !=\
-    \ mint(0)) dat.eb(i, f[i]);\r\n  vc<mint> g(N);\r\n  mint g0 = mint(1) / f[0];\r\
-    \n  g[0] = g0;\r\n  FOR(n, 1, N) {\r\n    mint rhs = 0;\r\n    for (auto&& [k,\
-    \ fk]: dat) {\r\n      if (k > n) break;\r\n      rhs -= fk * g[n - k];\r\n  \
-    \  }\r\n    g[n] = rhs * g0;\r\n  }\r\n  return g;\r\n}\r\n\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> fps_inv_dense_ntt(const vc<mint>& F) {\r\n  vc<mint> G = {mint(1)\
-    \ / F[0]};\r\n  ll N = len(F), n = 1;\r\n  G.reserve(N);\r\n  while (n < N) {\r\
-    \n    vc<mint> f(2 * n), g(2 * n);\r\n    FOR(i, min(N, 2 * n)) f[i] = F[i];\r\
-    \n    FOR(i, n) g[i] = G[i];\r\n    ntt(f, false), ntt(g, false);\r\n    FOR(i,\
-    \ 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\n    FOR(i, n) f[i] = 0;\r\n   \
-    \ ntt(f, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\n \
-    \   FOR(i, n, min(N, 2 * n)) G.eb(-f[i]);\r\n    n *= 2;\r\n  }\r\n  return G;\r\
-    \n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv_dense(const vc<mint>&\
-    \ F) {\r\n  if (mint::can_ntt()) return fps_inv_dense_ntt(F);\r\n  const int N\
-    \ = len(F);\r\n  vc<mint> R = {mint(1) / F[0]};\r\n  vc<mint> p;\r\n  int m =\
-    \ 1;\r\n  while (m < N) {\r\n    p = convolution(R, R);\r\n    p.resize(m + m);\r\
-    \n    vc<mint> f = {F.begin(), F.begin() + min(m + m, N)};\r\n    p = convolution(p,\
-    \ f);\r\n    R.resize(m + m);\r\n    FOR(i, m + m) R[i] = R[i] + R[i] - p[i];\r\
-    \n    m += m;\r\n  }\r\n  R.resize(N);\r\n  return R;\r\n}\r\n\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  assert(f[0] != mint(0));\r\
-    \n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160 : 820);\r\n  return\
-    \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\n}\r\n#line 2\
-    \ \"poly/middle_product.hpp\"\n\n#line 4 \"poly/middle_product.hpp\"\n\n// n,\
-    \ m \u6B21\u591A\u9805\u5F0F (n>=m) a, b \u2192 n-m \u6B21\u591A\u9805\u5F0F c\n\
-    // c[i] = sum_j b[j]a[i+j]\ntemplate <typename mint>\nvc<mint> middle_product(vc<mint>&\
-    \ a, vc<mint>& b) {\n  assert(len(a) >= len(b));\n  if (b.empty()) return vc<mint>(len(a)\
-    \ - len(b) + 1);\n  if (min(len(b), len(a) - len(b) + 1) <= 60) {\n    return\
-    \ middle_product_naive(a, b);\n  }\n  if (!(mint::can_ntt())) {\n    return middle_product_garner(a,\
-    \ b);\n  } else {\n    int n = 1 << __lg(2 * len(a) - 1);\n    vc<mint> fa(n),\
-    \ fb(n);\n    copy(a.begin(), a.end(), fa.begin());\n    copy(b.rbegin(), b.rend(),\
-    \ fb.begin());\n    ntt(fa, 0), ntt(fb, 0);\n    FOR(i, n) fa[i] *= fb[i];\n \
-    \   ntt(fa, 1);\n    fa.resize(len(a));\n    fa.erase(fa.begin(), fa.begin() +\
-    \ len(b) - 1);\n    return fa;\n  }\n}\n\ntemplate <typename mint>\nvc<mint> middle_product_garner(vc<mint>&\
-    \ a, vc<mint> b) {\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
-    \  static const long long nttprimes[] = {754974721, 167772161, 469762049};\n \
-    \ using mint0 = modint<754974721>;\n  using mint1 = modint<167772161>;\n  using\
-    \ mint2 = modint<469762049>;\n  vc<mint0> a0(n), b0(m);\n  vc<mint1> a1(n), b1(m);\n\
-    \  vc<mint2> a2(n), b2(m);\n  FOR(i, n) a0[i] = a[i].val, a1[i] = a[i].val, a2[i]\
-    \ = a[i].val;\n  FOR(i, m) b0[i] = b[i].val, b1[i] = b[i].val, b2[i] = b[i].val;\n\
-    \  auto c0 = middle_product<mint0>(a0, b0);\n  auto c1 = middle_product<mint1>(a1,\
-    \ b1);\n  auto c2 = middle_product<mint2>(a2, b2);\n  const long long m01 = 1LL\
-    \ * nttprimes[0] * nttprimes[1];\n  const long long m0_inv_m1 = mint1(nttprimes[0]).inverse().val;\n\
-    \  const long long m01_inv_m2 = mint2(m01).inverse().val;\n  const int mod = mint::get_mod();\n\
-    \  auto garner = [&](mint0 x0, mint1 x1, mint2 x2) -> mint {\n    int r0 = x0.val,\
-    \ r1 = x1.val, r2 = x2.val;\n    int v1 = (m0_inv_m1 * (r1 + nttprimes[1] - r0))\
-    \ % nttprimes[1];\n    auto v2 = (mint2(r2) - r0 - mint2(nttprimes[0]) * v1) *\
-    \ mint2(m01_inv_m2);\n    return mint(r0 + 1LL * nttprimes[0] * v1 + m01 % mod\
-    \ * v2.val);\n  };\n  vc<mint> c(len(c0));\n  FOR(i, len(c)) c[i] = garner(c0[i],\
-    \ c1[i], c2[i]);\n  return c;\n}\n\ntemplate <typename mint>\nvc<mint> middle_product_naive(vc<mint>&\
-    \ a, vc<mint>& b) {\n  vc<mint> res(len(a) - len(b) + 1);\n  FOR(i, len(res))\
-    \ FOR(j, len(b)) res[i] += b[j] * a[i + j];\n  return res;\n}\n#line 2 \"mod/all_inverse.hpp\"\
-    \ntemplate <typename mint>\nvc<mint> all_inverse(vc<mint>& X) {\n  for (auto&&\
-    \ x: X) assert(x != mint(0));\n  int N = len(X);\n  vc<mint> res(N + 1);\n  res[0]\
-    \ = mint(1);\n  FOR(i, N) res[i + 1] = res[i] * X[i];\n  mint t = res.back().inverse();\n\
-    \  res.pop_back();\n  FOR_R(i, N) {\n    res[i] *= t;\n    t *= X[i];\n  }\n \
-    \ return res;\n}\n#line 6 \"poly/multipoint.hpp\"\n\r\ntemplate <typename mint>\r\
-    \nstruct SubproductTree {\r\n  int m;\r\n  int sz;\r\n  vc<vc<mint>> T;\r\n  SubproductTree(const\
-    \ vc<mint>& x) {\r\n    m = len(x);\r\n    sz = 1;\r\n    while (sz < m) sz *=\
-    \ 2;\r\n    T.resize(2 * sz);\r\n    FOR(i, sz) T[sz + i] = {1, (i < m ? -x[i]\
-    \ : 0)};\r\n    FOR3_R(i, 1, sz) T[i] = convolution(T[2 * i], T[2 * i + 1]);\r\
-    \n  }\r\n\r\n  vc<mint> evaluation(vc<mint> f) {\r\n    int n = len(f);\r\n  \
-    \  if (n == 0) return vc<mint>(m, mint(0));\r\n    f.resize(2 * n - 1);\r\n  \
-    \  vc<vc<mint>> g(2 * sz);\r\n    g[1] = T[1];\r\n    g[1].resize(n);\r\n    g[1]\
-    \ = fps_inv(g[1]);\r\n    g[1] = middle_product(f, g[1]);\r\n    g[1].resize(sz);\r\
-    \n\r\n    FOR3(i, 1, sz) {\r\n      g[2 * i] = middle_product(g[i], T[2 * i +\
-    \ 1]);\r\n      g[2 * i + 1] = middle_product(g[i], T[2 * i]);\r\n    }\r\n  \
-    \  vc<mint> vals(m);\r\n    FOR(i, m) vals[i] = g[sz + i][0];\r\n    return vals;\r\
-    \n  }\r\n\r\n  vc<mint> interpolation(vc<mint>& y) {\r\n    assert(len(y) == m);\r\
-    \n    vc<mint> a(m);\r\n    FOR(i, m) a[i] = T[1][m - i - 1] * (i + 1);\r\n\r\n\
-    \    a = evaluation(a);\r\n    vc<vc<mint>> t(2 * sz);\r\n    FOR(i, sz) t[sz\
-    \ + i] = {(i < m ? y[i] / a[i] : 0)};\r\n    FOR3_R(i, 1, sz) {\r\n      t[i]\
-    \ = convolution(t[2 * i], T[2 * i + 1]);\r\n      auto tt = convolution(t[2 *\
-    \ i + 1], T[2 * i]);\r\n      FOR(k, len(t[i])) t[i][k] += tt[k];\r\n    }\r\n\
-    \    t[1].resize(m);\r\n    reverse(all(t[1]));\r\n    return t[1];\r\n  }\r\n\
-    };\r\n\r\ntemplate <typename mint>\r\nvc<mint> multipoint_eval(vc<mint>& f, vc<mint>&\
-    \ x) {\r\n  if (x.empty()) return {};\r\n  SubproductTree<mint> F(x);\r\n  return\
-    \ F.evaluation(f);\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> multipoint_interpolate(vc<mint>&\
-    \ x, vc<mint>& y) {\r\n  if (x.empty()) return {};\r\n  SubproductTree<mint> F(x);\r\
-    \n  return F.interpolation(y);\r\n}\r\n\r\n// calculate f(ar^k) for 0 <= k < m\r\
-    \ntemplate <typename mint>\r\nvc<mint> multipoint_eval_on_geom_seq(vc<mint> f,\
-    \ mint a, mint r, int m) {\r\n  const int n = len(f);\r\n  if (m == 0) return\
-    \ {};\r\n\r\n  auto eval = [&](mint x) -> mint {\r\n    mint fx = 0;\r\n    mint\
-    \ pow = 1;\r\n    FOR(i, n) fx += f[i] * pow, pow *= x;\r\n    return fx;\r\n\
-    \  };\r\n\r\n  if (r == mint(0)) {\r\n    vc<mint> res(m);\r\n    FOR(i, 1, m)\
-    \ res[i] = f[0];\r\n    res[0] = eval(a);\r\n    return res;\r\n  }\r\n  if (n\
-    \ < 60 || m < 60) {\r\n    vc<mint> res(m);\r\n    FOR(i, m) res[i] = eval(a),\
-    \ a *= r;\r\n    return res;\r\n  }\r\n  assert(r != mint(0));\r\n  // a == 1\
-    \ \u306B\u5E30\u7740\r\n  mint pow_a = 1;\r\n  FOR(i, n) f[i] *= pow_a, pow_a\
-    \ *= a;\r\n\r\n  auto calc = [&](mint r, int m) -> vc<mint> {\r\n    // r^{t_i}\
-    \ \u306E\u8A08\u7B97\r\n    vc<mint> res(m);\r\n    mint pow = 1;\r\n    res[0]\
-    \ = 1;\r\n    FOR(i, m - 1) {\r\n      res[i + 1] = res[i] * pow;\r\n      pow\
-    \ *= r;\r\n    }\r\n    return res;\r\n  };\r\n\r\n  vc<mint> A = calc(r, n +\
-    \ m - 1), B = calc(r.inverse(), max(n, m));\r\n  FOR(i, n) f[i] *= B[i];\r\n \
-    \ f = middle_product(A, f);\r\n  FOR(i, m) f[i] *= B[i];\r\n  return f;\r\n}\r\
-    \n\r\n// Y[i] = f(ar^i)\r\ntemplate <typename mint>\r\nvc<mint> multipoint_interpolate_on_geom_seq(vc<mint>\
-    \ Y, mint a, mint r) {\r\n  const int n = len(Y);\r\n  if (n == 0) return {};\r\
-    \n  if (n == 1) return {Y[0]};\r\n  assert(r != mint(0));\r\n  mint ir = r.inverse();\r\
-    \n\r\n  vc<mint> POW(n + n - 1), tPOW(n + n - 1);\r\n  POW[0] = tPOW[0] = mint(1);\r\
-    \n  FOR(i, n + n - 2) POW[i + 1] = POW[i] * r, tPOW[i + 1] = tPOW[i] * POW[i];\r\
-    \n\r\n  vc<mint> iPOW(n + n - 1), itPOW(n + n - 1);\r\n  iPOW[0] = itPOW[0] =\
-    \ mint(1);\r\n  FOR(i, n) iPOW[i + 1] = iPOW[i] * ir, itPOW[i + 1] = itPOW[i]\
-    \ * iPOW[i];\r\n\r\n  // prod_[1,i] 1-r^k\r\n  vc<mint> S(n);\r\n  S[0] = mint(1);\r\
-    \n  FOR(i, 1, n) S[i] = S[i - 1] * (mint(1) - POW[i]);\r\n  vc<mint> iS = all_inverse<mint>(S);\r\
-    \n  mint sn = S[n - 1] * (mint(1) - POW[n]);\r\n\r\n  FOR(i, n) {\r\n    Y[i]\
-    \ = Y[i] * tPOW[n - 1 - i] * itPOW[n - 1] * iS[i] * iS[n - 1 - i];\r\n    if (i\
-    \ % 2 == 1) Y[i] = -Y[i];\r\n  }\r\n\r\n  // sum_i Y[i] / 1-r^ix\r\n  FOR(i, n)\
-    \ Y[i] *= itPOW[i];\r\n  vc<mint> f = middle_product(tPOW, Y);\r\n  FOR(i, n)\
-    \ f[i] *= itPOW[i];\r\n\r\n  // prod 1-r^ix\r\n  vc<mint> g(n);\r\n  g[0] = mint(1);\r\
-    \n  FOR(i, 1, n) {\r\n    g[i] = tPOW[i] * sn * iS[i] * iS[n - i];\r\n    if (i\
-    \ % 2 == 1) g[i] = -g[i];\r\n  }\r\n  f = convolution<mint>(f, g);\r\n  f.resize(n);\r\
-    \n\r\n  reverse(all(f));\r\n  mint ia = a.inverse();\r\n  mint pow = 1;\r\n  FOR(i,\
-    \ n) f[i] *= pow, pow *= ia;\r\n  return f;\r\n}\r\n#line 2 \"poly/sum_of_rationals.hpp\"\
-    \n\n#line 4 \"poly/sum_of_rationals.hpp\"\n\n// \u6709\u7406\u5F0F\u306E\u548C\
-    \u3092\u8A08\u7B97\u3059\u308B\u3002\u5206\u5272\u7D71\u6CBB O(Nlog^2N)\u3002\
-    N \u306F\u6B21\u6570\u306E\u548C\u3002\ntemplate <typename mint>\npair<vc<mint>,\
-    \ vc<mint>> sum_of_rationals(vc<pair<vc<mint>, vc<mint>>> dat) {\n  if (len(dat)\
-    \ == 0) {\n    vc<mint> f = {0}, g = {1};\n    return {f, g};\n  }\n  using P\
-    \ = pair<vc<mint>, vc<mint>>;\n  auto add = [&](P& a, P& b) -> P {\n    int na\
-    \ = len(a.fi) - 1, da = len(a.se) - 1;\n    int nb = len(b.fi) - 1, db = len(b.se)\
-    \ - 1;\n    int n = max(na + db, da + nb);\n    vc<mint> num(n + 1);\n    {\n\
-    \      auto f = convolution(a.fi, b.se);\n      FOR(i, len(f)) num[i] += f[i];\n\
-    \    }\n    {\n      auto f = convolution(a.se, b.fi);\n      FOR(i, len(f)) num[i]\
-    \ += f[i];\n    }\n    auto den = convolution(a.se, b.se);\n    return {num, den};\n\
-    \  };\n\n  while (len(dat) > 1) {\n    int n = len(dat);\n    FOR(i, 1, n, 2)\
-    \ { dat[i - 1] = add(dat[i - 1], dat[i]); }\n    FOR(i, ceil(n, 2)) dat[i] = dat[2\
-    \ * i];\n    dat.resize(ceil(n, 2));\n  }\n  return dat[0];\n}\n#line 2 \"poly/fps_div.hpp\"\
-    \n\n#line 5 \"poly/fps_div.hpp\"\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\u529B\
-    \u3055\u308C\u308B.\ntemplate <typename mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint>\
-    \ f, vc<mint> g) {\n  if (SPARSE || count_terms(g) < 200) return fps_div_sparse(f,\
-    \ g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n  f = convolution(f,\
-    \ g);\n  f.resize(n);\n  return f;\n}\n\n// f/g \u305F\u3060\u3057 g \u306F sparse\n\
-    template <typename mint>\nvc<mint> fps_div_sparse(vc<mint> f, vc<mint>& g) {\n\
-    \  if (g[0] != mint(1)) {\n    mint cf = g[0].inverse();\n    for (auto&& x: f)\
-    \ x *= cf;\n    for (auto&& x: g) x *= cf;\n  }\n\n  vc<pair<int, mint>> dat;\n\
-    \  FOR(i, 1, len(g)) if (g[i] != mint(0)) dat.eb(i, -g[i]);\n  FOR(i, len(f))\
-    \ {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i - j];\n\
-    \    }\n  }\n  return f;\n}\n#line 4 \"linalg/implicit_matrix/vandermonde.hpp\"\
-    \n\n// transpose = 0\uFF1Ag[p] = sum pow(ap,q) f[q]\n// transpose = 1\uFF1Ag[p]\
-    \ = sum pow(aq,p) f[q]\n// (false, false) = multipoint eval\n// (false, true)\
-    \ = multipoint interpolate\n// (true, false) = sum of rationals\n// (true, true)\
-    \ = partial frac decomposition (fps -> coefs)\ntemplate <typename mint>\nvc<mint>\
-    \ vandermonde(vc<mint> f, vc<mint> A, bool transpose, bool inverse) {\n  if (len(f)\
-    \ == 0) return vc<mint>();\n  int N = len(f);\n  using poly = vc<mint>;\n  if\
-    \ (!transpose) {\n    if (!inverse) { return multipoint_eval(f, A); }\n    if\
-    \ (inverse) { return multipoint_interpolate(A, f); }\n  }\n  if (!inverse) {\n\
-    \    vc<pair<poly, poly>> dat(N);\n    FOR(j, N) {\n      poly a{f[j]}, b{mint(1),\
-    \ mint(-A[j])};\n      dat[j] = {a, b};\n    }\n    auto [num, den] = sum_of_rationals(dat);\n\
-    \    num.resize(N);\n    return fps_div(num, den);\n  }\n  SubproductTree<mint>\
-    \ X(A);\n  vc<mint> g = X.T[1]; // prod(1-ax)\n  g.resize(N + 1);\n  f = convolution<mint>(f,\
-    \ g);\n  f.resize(N);\n  reverse(all(f));\n  reverse(all(g));\n  FOR(i, len(g)\
-    \ - 1) g[i] = g[i + 1] * mint(i + 1);\n  g.pop_back();\n  auto num = X.evaluation(f);\n\
-    \  auto den = X.evaluation(g);\n  vc<mint> B(len(A));\n  FOR(i, len(A)) B[i] =\
-    \ num[i] / den[i];\n  return B;\n}\n"
-  code: "#include \"poly/multipoint.hpp\"\n#include \"poly/sum_of_rationals.hpp\"\n\
-    #include \"poly/fps_div.hpp\"\n\n// transpose = 0\uFF1Ag[p] = sum pow(ap,q) f[q]\n\
-    // transpose = 1\uFF1Ag[p] = sum pow(aq,p) f[q]\n// (false, false) = multipoint\
-    \ eval\n// (false, true) = multipoint interpolate\n// (true, false) = sum of rationals\n\
-    // (true, true) = partial frac decomposition (fps -> coefs)\ntemplate <typename\
-    \ mint>\nvc<mint> vandermonde(vc<mint> f, vc<mint> A, bool transpose, bool inverse)\
-    \ {\n  if (len(f) == 0) return vc<mint>();\n  int N = len(f);\n  using poly =\
-    \ vc<mint>;\n  if (!transpose) {\n    if (!inverse) { return multipoint_eval(f,\
-    \ A); }\n    if (inverse) { return multipoint_interpolate(A, f); }\n  }\n  if\
-    \ (!inverse) {\n    vc<pair<poly, poly>> dat(N);\n    FOR(j, N) {\n      poly\
-    \ a{f[j]}, b{mint(1), mint(-A[j])};\n      dat[j] = {a, b};\n    }\n    auto [num,\
-    \ den] = sum_of_rationals(dat);\n    num.resize(N);\n    return fps_div(num, den);\n\
-    \  }\n  SubproductTree<mint> X(A);\n  vc<mint> g = X.T[1]; // prod(1-ax)\n  g.resize(N\
-    \ + 1);\n  f = convolution<mint>(f, g);\n  f.resize(N);\n  reverse(all(f));\n\
-    \  reverse(all(g));\n  FOR(i, len(g) - 1) g[i] = g[i + 1] * mint(i + 1);\n  g.pop_back();\n\
-    \  auto num = X.evaluation(f);\n  auto den = X.evaluation(g);\n  vc<mint> B(len(A));\n\
-    \  FOR(i, len(A)) B[i] = num[i] / den[i];\n  return B;\n}"
+    \ b);\r\n  return convolution_garner(a, b);\r\n}\r\n#line 2 \"linalg/blackbox/pascal.hpp\"\
+    \n\n// transpose = 0\uFF1Ag[p] = sum binom(p,q) f[q]\n// transpose = 1\uFF1Ag[p]\
+    \ = sum binom(q,p) f[q]\ntemplate <typename mint>\nvc<mint> pascal(vc<mint> f,\
+    \ bool transpose, bool inverse) {\n  if (!transpose) {\n    int n = len(f);\n\
+    \    vc<mint> g(n);\n    FOR(i, n) g[i] = fact_inv<mint>(i);\n    if (inverse)\
+    \ FOR(i, n) if (i & 1) g[i] = -g[i];\n    FOR(i, n) f[i] *= fact_inv<mint>(i);\n\
+    \    f = convolution(f, g);\n    f.resize(n);\n    FOR(i, n) f[i] *= fact<mint>(i);\n\
+    \    return f;\n  }\n  int n = len(f);\n  FOR(i, n) f[i] *= fact<mint>(i);\n \
+    \ reverse(all(f));\n  vc<mint> g(n);\n  FOR(i, n) g[i] = fact_inv<mint>(i);\n\
+    \  if (inverse) FOR(i, n) if (i & 1) g[i] = -g[i];\n  f = convolution(f, g);\n\
+    \  f.resize(n);\n  reverse(all(f));\n  FOR(i, n) f[i] *= fact_inv<mint>(i);\n\
+    \  return f;\n}\n"
+  code: "#include \"poly/convolution.hpp\"\n\n// transpose = 0\uFF1Ag[p] = sum binom(p,q)\
+    \ f[q]\n// transpose = 1\uFF1Ag[p] = sum binom(q,p) f[q]\ntemplate <typename mint>\n\
+    vc<mint> pascal(vc<mint> f, bool transpose, bool inverse) {\n  if (!transpose)\
+    \ {\n    int n = len(f);\n    vc<mint> g(n);\n    FOR(i, n) g[i] = fact_inv<mint>(i);\n\
+    \    if (inverse) FOR(i, n) if (i & 1) g[i] = -g[i];\n    FOR(i, n) f[i] *= fact_inv<mint>(i);\n\
+    \    f = convolution(f, g);\n    f.resize(n);\n    FOR(i, n) f[i] *= fact<mint>(i);\n\
+    \    return f;\n  }\n  int n = len(f);\n  FOR(i, n) f[i] *= fact<mint>(i);\n \
+    \ reverse(all(f));\n  vc<mint> g(n);\n  FOR(i, n) g[i] = fact_inv<mint>(i);\n\
+    \  if (inverse) FOR(i, n) if (i & 1) g[i] = -g[i];\n  f = convolution(f, g);\n\
+    \  f.resize(n);\n  reverse(all(f));\n  FOR(i, n) f[i] *= fact_inv<mint>(i);\n\
+    \  return f;\n}\n"
   dependsOn:
-  - poly/multipoint.hpp
-  - poly/fps_inv.hpp
-  - poly/count_terms.hpp
   - poly/convolution.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
@@ -518,22 +336,16 @@ data:
   - poly/convolution_karatsuba.hpp
   - poly/ntt.hpp
   - poly/fft.hpp
-  - poly/middle_product.hpp
-  - mod/all_inverse.hpp
-  - poly/sum_of_rationals.hpp
-  - poly/fps_div.hpp
   isVerificationFile: false
-  path: linalg/implicit_matrix/vandermonde.hpp
+  path: linalg/blackbox/pascal.hpp
   requiredBy: []
-  timestamp: '2023-12-29 16:32:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/mytest/vandermonde.test.cpp
-  - test_atcoder/abc260h.test.cpp
-documentation_of: linalg/implicit_matrix/vandermonde.hpp
+  timestamp: '2024-01-21 21:06:12+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: linalg/blackbox/pascal.hpp
 layout: document
 redirect_from:
-- /library/linalg/implicit_matrix/vandermonde.hpp
-- /library/linalg/implicit_matrix/vandermonde.hpp.html
-title: linalg/implicit_matrix/vandermonde.hpp
+- /library/linalg/blackbox/pascal.hpp
+- /library/linalg/blackbox/pascal.hpp.html
+title: linalg/blackbox/pascal.hpp
 ---

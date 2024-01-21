@@ -7,23 +7,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: linalg/implicit_matrix/det.hpp
-    title: linalg/implicit_matrix/det.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/matrix/implicit_matrix.test.cpp
-    title: test/library_checker/matrix/implicit_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/min_poly.test.cpp
-    title: test/mytest/min_poly.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/310.test.cpp
-    title: test/yukicoder/310.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"seq/find_linear_rec.hpp\"\n\r\ntemplate <typename mint>\r\
@@ -39,10 +27,10 @@ data:
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 3 \"linalg/implicit_matrix/min_poly.hpp\"\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 3 \"linalg/blackbox/min_poly.hpp\"\
     \n\r\n// \u884C\u5217 A \u3092\u304B\u3051\u308B\u3053\u3068\u3092\u8868\u3059\
     \u7DDA\u5F62\u5909\u63DB f \u3092\u6E21\u3059\r\n// auto f = [&](vc<mint> v) ->\
-    \ vc<mint> {};\r\ntemplate <typename mint, typename F>\r\nvc<mint> implicit_matrix_min_poly(int\
+    \ vc<mint> {};\r\ntemplate <typename mint, typename F>\r\nvc<mint> blackbox__matrix_min_poly(int\
     \ N, F f) {\r\n  vc<mint> S(N + N + 10);\r\n  vc<mint> c(N);\r\n  vc<mint> v(N);\r\
     \n  FOR(i, N) c[i] = RNG(0, mint::get_mod());\r\n  FOR(i, N) v[i] = RNG(0, mint::get_mod());\r\
     \n  FOR(k, N + N + 10) {\r\n    FOR(i, N) S[k] += c[i] * v[i];\r\n    v = f(v);\r\
@@ -51,7 +39,7 @@ data:
   code: "#include \"seq/find_linear_rec.hpp\"\r\n#include \"random/base.hpp\"\r\n\r\
     \n// \u884C\u5217 A \u3092\u304B\u3051\u308B\u3053\u3068\u3092\u8868\u3059\u7DDA\
     \u5F62\u5909\u63DB f \u3092\u6E21\u3059\r\n// auto f = [&](vc<mint> v) -> vc<mint>\
-    \ {};\r\ntemplate <typename mint, typename F>\r\nvc<mint> implicit_matrix_min_poly(int\
+    \ {};\r\ntemplate <typename mint, typename F>\r\nvc<mint> blackbox__matrix_min_poly(int\
     \ N, F f) {\r\n  vc<mint> S(N + N + 10);\r\n  vc<mint> c(N);\r\n  vc<mint> v(N);\r\
     \n  FOR(i, N) c[i] = RNG(0, mint::get_mod());\r\n  FOR(i, N) v[i] = RNG(0, mint::get_mod());\r\
     \n  FOR(k, N + N + 10) {\r\n    FOR(i, N) S[k] += c[i] * v[i];\r\n    v = f(v);\r\
@@ -61,19 +49,15 @@ data:
   - seq/find_linear_rec.hpp
   - random/base.hpp
   isVerificationFile: false
-  path: linalg/implicit_matrix/min_poly.hpp
-  requiredBy:
-  - linalg/implicit_matrix/det.hpp
-  timestamp: '2023-05-20 02:22:04+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/library_checker/matrix/implicit_matrix.test.cpp
-  - test/mytest/min_poly.test.cpp
-  - test/yukicoder/310.test.cpp
-documentation_of: linalg/implicit_matrix/min_poly.hpp
+  path: linalg/blackbox/min_poly.hpp
+  requiredBy: []
+  timestamp: '2024-01-21 21:06:12+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: linalg/blackbox/min_poly.hpp
 layout: document
 redirect_from:
-- /library/linalg/implicit_matrix/min_poly.hpp
-- /library/linalg/implicit_matrix/min_poly.hpp.html
-title: linalg/implicit_matrix/min_poly.hpp
+- /library/linalg/blackbox/min_poly.hpp
+- /library/linalg/blackbox/min_poly.hpp.html
+title: linalg/blackbox/min_poly.hpp
 ---
