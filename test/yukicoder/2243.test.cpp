@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"
-#include "linalg/implicit_matrix/pascal.hpp"
+#include "linalg/blackbox/pascal.hpp"
 #include "poly/convolution_all.hpp"
 #include "poly/multipoint.hpp"
 

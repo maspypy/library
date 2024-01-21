@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "linalg/implicit_matrix/det.hpp"
+#include "linalg/blackbox/det.hpp"
 #include "mod/modint.hpp"
 using mint = modint107;
 
