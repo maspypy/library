@@ -13,6 +13,9 @@ data:
     title: linalg/blackbox/det.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: test/mytest/min_poly.test.cpp
+    title: test/mytest/min_poly.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/310.test.cpp
     title: test/yukicoder/310.test.cpp
   _isVerificationFailed: true
@@ -36,7 +39,7 @@ data:
     \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 3 \"linalg/blackbox/min_poly.hpp\"\
     \n\r\n// \u884C\u5217 A \u3092\u304B\u3051\u308B\u3053\u3068\u3092\u8868\u3059\
     \u7DDA\u5F62\u5909\u63DB f \u3092\u6E21\u3059\r\n// auto f = [&](vc<mint> v) ->\
-    \ vc<mint> {};\r\ntemplate <typename mint, typename F>\r\nvc<mint> blackbox__matrix_min_poly(int\
+    \ vc<mint> {};\r\ntemplate <typename mint, typename F>\r\nvc<mint> blackbox_min_poly(int\
     \ N, F f) {\r\n  vc<mint> S(N + N + 10);\r\n  vc<mint> c(N);\r\n  vc<mint> v(N);\r\
     \n  FOR(i, N) c[i] = RNG(0, mint::get_mod());\r\n  FOR(i, N) v[i] = RNG(0, mint::get_mod());\r\
     \n  FOR(k, N + N + 10) {\r\n    FOR(i, N) S[k] += c[i] * v[i];\r\n    v = f(v);\r\
@@ -45,7 +48,7 @@ data:
   code: "#include \"seq/find_linear_rec.hpp\"\r\n#include \"random/base.hpp\"\r\n\r\
     \n// \u884C\u5217 A \u3092\u304B\u3051\u308B\u3053\u3068\u3092\u8868\u3059\u7DDA\
     \u5F62\u5909\u63DB f \u3092\u6E21\u3059\r\n// auto f = [&](vc<mint> v) -> vc<mint>\
-    \ {};\r\ntemplate <typename mint, typename F>\r\nvc<mint> blackbox__matrix_min_poly(int\
+    \ {};\r\ntemplate <typename mint, typename F>\r\nvc<mint> blackbox_min_poly(int\
     \ N, F f) {\r\n  vc<mint> S(N + N + 10);\r\n  vc<mint> c(N);\r\n  vc<mint> v(N);\r\
     \n  FOR(i, N) c[i] = RNG(0, mint::get_mod());\r\n  FOR(i, N) v[i] = RNG(0, mint::get_mod());\r\
     \n  FOR(k, N + N + 10) {\r\n    FOR(i, N) S[k] += c[i] * v[i];\r\n    v = f(v);\r\
@@ -58,9 +61,10 @@ data:
   path: linalg/blackbox/min_poly.hpp
   requiredBy:
   - linalg/blackbox/det.hpp
-  timestamp: '2024-01-21 21:06:12+09:00'
+  timestamp: '2024-01-21 23:24:39+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/mytest/min_poly.test.cpp
   - test/yukicoder/310.test.cpp
 documentation_of: linalg/blackbox/min_poly.hpp
 layout: document

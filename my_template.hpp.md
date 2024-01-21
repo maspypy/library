@@ -1098,6 +1098,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/min_of_linear_segments.test.cpp
     title: test/mytest/min_of_linear_segments.test.cpp
+  - icon: ':x:'
+    path: test/mytest/min_poly.test.cpp
+    title: test/mytest/min_poly.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/minidx_add.test.cpp
     title: test/mytest/minidx_add.test.cpp
@@ -1152,6 +1155,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/partizan.test.cpp
     title: test/mytest/partizan.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/pascal.test.cpp
+    title: test/mytest/pascal.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/poly_root_finding.test.cpp
     title: test/mytest/poly_root_finding.test.cpp
@@ -2980,6 +2986,7 @@ data:
   - test/mytest/st_numbering.test.cpp
   - test/mytest/conv_leq.test.cpp
   - test/mytest/simple_perm.test.cpp
+  - test/mytest/min_poly.test.cpp
   - test/mytest/online_exp.test.cpp
   - test/mytest/partizan.test.cpp
   - test/mytest/tutte.test.cpp
@@ -3041,6 +3048,7 @@ data:
   - test/mytest/first_mod_range_of_linear.test.cpp
   - test/mytest/count_indep_set.test.cpp
   - test/mytest/min_max.test.cpp
+  - test/mytest/pascal.test.cpp
   - test/mytest/dynamic_lazy_segtree.test.cpp
   - test/mytest/factorial_digit.test.cpp
   - test/mytest/partial_frac.test.cpp

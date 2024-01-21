@@ -44,7 +44,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
   - icon: ':heavy_check_mark:'
@@ -657,6 +657,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/graph_count.test.cpp
     title: test/mytest/graph_count.test.cpp
+  - icon: ':x:'
+    path: test/mytest/min_poly.test.cpp
+    title: test/mytest/min_poly.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/mo_on_tree.test.cpp
     title: test/mytest/mo_on_tree.test.cpp
@@ -684,6 +687,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/partial_frac.test.cpp
     title: test/mytest/partial_frac.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/pascal.test.cpp
+    title: test/mytest/pascal.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/poly_root_finding.test.cpp
     title: test/mytest/poly_root_finding.test.cpp
@@ -1489,6 +1495,7 @@ data:
   - test/mytest/rbst_monoid_2.test.cpp
   - test/mytest/conv_leq.test.cpp
   - test/mytest/simple_perm.test.cpp
+  - test/mytest/min_poly.test.cpp
   - test/mytest/online_exp.test.cpp
   - test/mytest/qbinom.test.cpp
   - test/mytest/catalan_convolution.test.cpp
@@ -1510,6 +1517,7 @@ data:
   - test/mytest/powerquery.test.cpp
   - test/mytest/enumerate_products.test.cpp
   - test/mytest/count_indep_set.test.cpp
+  - test/mytest/pascal.test.cpp
   - test/mytest/partial_frac.test.cpp
   - test/mytest/vandermonde.test.cpp
   - test/mytest/all_inverse.test.cpp

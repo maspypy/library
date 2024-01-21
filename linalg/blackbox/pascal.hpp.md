@@ -31,6 +31,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/mytest/pascal.test.cpp
+    title: test/mytest/pascal.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2108.test.cpp
     title: test/yukicoder/2108.test.cpp
   - icon: ':heavy_check_mark:'
@@ -357,6 +360,7 @@ data:
   timestamp: '2024-01-21 21:06:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/pascal.test.cpp
   - test/yukicoder/2108.test.cpp
   - test/yukicoder/2243.test.cpp
   - test_atcoder/abc267g.test.cpp

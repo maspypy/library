@@ -490,6 +490,9 @@ data:
     path: test/mytest/partial_frac.test.cpp
     title: test/mytest/partial_frac.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/pascal.test.cpp
+    title: test/mytest/pascal.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/poly_root_finding.test.cpp
     title: test/mytest/poly_root_finding.test.cpp
   - icon: ':heavy_check_mark:'
@@ -950,6 +953,7 @@ data:
   - test/mytest/graph_count.test.cpp
   - test/mytest/count_unlabeled_tree.test.cpp
   - test/mytest/count_indep_set.test.cpp
+  - test/mytest/pascal.test.cpp
   - test/mytest/partial_frac.test.cpp
   - test/mytest/vandermonde.test.cpp
   - test/mytest/tree_walk_gf.test.cpp
