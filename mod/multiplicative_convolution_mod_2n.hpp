@@ -1,7 +1,7 @@
 #include "poly/convolution.hpp"
 
 template <typename mint>
-vc<mint> multiplicative_convolution_mod2n(vc<mint>& A, vc<mint>& B){
+vc<mint> multiplicative_convolution_mod_2n(vc<mint>& A, vc<mint>& B){
   int N = 0;
   while((1<<N) < len(A)) ++N;
   assert((1<<N) == len(A) && (1<<N) == len(B));

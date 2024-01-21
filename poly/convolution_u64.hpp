@@ -1,6 +1,6 @@
 #include "poly/convolution.hpp"
 
-vector<u64> convolution_mod_2_64(const vector<u64>& a, const vector<u64>& b) {
+vector<u64> convolution_u64(const vector<u64>& a, const vector<u64>& b) {
   int n = len(a), m = len(b);
   if (!n || !m) return {};
   if (min(n, m) <= 12500) return convolution_karatsuba(a, b);
