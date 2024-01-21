@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':heavy_check_mark:'
@@ -156,6 +156,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_setntt.test.cpp
     title: test/library_checker/convolution/convolution_mod_setntt.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/geometry/count_points_in_triangles.test.cpp
+    title: test/library_checker/geometry/count_points_in_triangles.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/chromatic_number.test.cpp
     title: test/library_checker/graph/chromatic_number.test.cpp
@@ -702,7 +705,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc152e.test.cpp
     title: test_atcoder/abc152e.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -825,6 +828,7 @@ data:
   - test/library_checker/graph/general_matching.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp
+  - test/library_checker/geometry/count_points_in_triangles.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - test/mytest/longest_common_substr.test.cpp

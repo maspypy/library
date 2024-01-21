@@ -24,16 +24,16 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/eulerian_trail_directed
+    PROBLEM: https://judge.yosupo.jp/problem/count_points_in_triangle
     links:
-    - https://judge.yosupo.jp/problem/eulerian_trail_directed
+    - https://judge.yosupo.jp/problem/count_points_in_triangle
   bundledCode: "#line 1 \"test/library_checker/graph/eulerwalk_d.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/eulerian_trail_directed\"\n\n#line\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/count_points_in_triangle\"\n\n#line\
     \ 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -335,7 +335,7 @@ data:
     \  auto [vs, es] = euler_walk(G);\n  if (vs.empty()) return No();\n  Yes();\n\
     \  print(vs);\n  print(es);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n\
     \  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/eulerian_trail_directed\"\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/count_points_in_triangle\"\
     \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/eulerwalk.hpp\"\
     \n\nvoid solve() {\n  LL(N, M);\n  Graph<int, 1> G(N);\n  G.read_graph(M, 0, 0);\n\
     \  auto [vs, es] = euler_walk(G);\n  if (vs.empty()) return No();\n  Yes();\n\
@@ -352,8 +352,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/eulerwalk_d.test.cpp
   requiredBy: []
-  timestamp: '2024-01-21 17:01:49+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-21 19:07:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/eulerwalk_d.test.cpp
 layout: document

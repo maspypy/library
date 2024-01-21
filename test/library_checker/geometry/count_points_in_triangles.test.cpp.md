@@ -8,17 +8,17 @@ data:
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':question:'
-    path: graph/base.hpp
-    title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/planar_graph.hpp
-    title: graph/planar_graph.hpp
+    path: geo/count_points_in_triangles.hpp
+    title: geo/count_points_in_triangles.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
+  - icon: ':question:'
+    path: random/base.hpp
+    title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -26,11 +26,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1777
+    PROBLEM: https://judge.yosupo.jp/problem/count_points_in_triangle
     links:
-    - https://yukicoder.me/problems/no/1777
-  bundledCode: "#line 1 \"test/yukicoder/1777.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/1777\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    - https://judge.yosupo.jp/problem/count_points_in_triangle
+  bundledCode: "#line 1 \"test/library_checker/geometry/count_points_in_triangles.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/count_points_in_triangle\"\
+    \n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
     using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
@@ -193,67 +194,11 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge\
-    \ {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
-    \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
-    \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
-    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg,\
-    \ vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class OutgoingEdges {\n  public:\n\
-    \    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n   \
-    \ const edge_type* begin() const {\n      if (l == r) { return 0; }\n      return\
-    \ &G->csr_edges[l];\n    }\n\n    const edge_type* end() const {\n      if (l\
-    \ == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n  private:\n \
-    \   const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared;\
-    \ }\n\n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
-    \ {}\n\n  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
-    \    indptr.clear();\n    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n\
-    \    vc_outdeg.clear();\n  }\n\n  void add(int frm, int to, T cost = 1, int i\
-    \ = -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <= to && to < N);\n\
-    \    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n\
-    \    ++M;\n  }\n\n#ifdef FASTIO\n  // wt, off\n  void read_tree(bool wt = false,\
-    \ int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int M, bool\
-    \ wt = false, int off = 1) {\n    for (int m = 0; m < M; ++m) {\n      INT(a,\
-    \ b);\n      a -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n     \
-    \ } else {\n        T c;\n        read(c);\n        add(a, b, c);\n      }\n \
-    \   }\n    build();\n  }\n#endif\n\n  void build() {\n    assert(!prepared);\n\
-    \    prepared = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges)\
-    \ {\n      indptr[e.frm + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n  \
-    \  }\n    for (int v = 0; v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto\
-    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
-    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
-    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
-    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
-    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  vc<int> deg_array() {\n\
-    \    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n  }\n\n  pair<vc<int>,\
-    \ vc<int>> deg_array_inout() {\n    if (vc_indeg.empty()) calc_deg_inout();\n\
-    \    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v) {\n    if (vc_deg.empty())\
-    \ calc_deg();\n    return vc_deg[v];\n  }\n\n  int in_deg(int v) {\n    if (vc_indeg.empty())\
-    \ calc_deg_inout();\n    return vc_indeg[v];\n  }\n\n  int out_deg(int v) {\n\
-    \    if (vc_outdeg.empty()) calc_deg_inout();\n    return vc_outdeg[v];\n  }\n\
-    \n#ifdef FASTIO\n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n\
-    \      print(\"frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to,\
-    \ e.cost, e.id);\n    } else {\n      print(\"indptr\", indptr);\n      print(\"\
-    frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to,\
-    \ e.cost, e.id);\n    }\n  }\n#endif\n\n  vc<int> new_idx;\n  vc<bool> used_e;\n\
-    \n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\
-    \u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\n\
-    \  // {G, es}\n  Graph<T, directed> rearrange(vc<int> V, bool keep_eid = 0) {\n\
-    \    if (len(new_idx) != N) new_idx.assign(N, -1);\n    if (len(used_e) != M)\
-    \ used_e.assign(M, 0);\n    int n = len(V);\n    FOR(i, n) new_idx[V[i]] = i;\n\
-    \    Graph<T, directed> G(n);\n    vc<int> history;\n    FOR(i, n) {\n      for\
-    \ (auto&& e: (*this)[V[i]]) {\n        if (used_e[e.id]) continue;\n        int\
-    \ a = e.frm, b = e.to;\n        if (new_idx[a] != -1 && new_idx[b] != -1) {\n\
-    \          history.eb(e.id);\n          used_e[e.id] = 1;\n          int eid =\
-    \ (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b], e.cost, eid);\n\
-    \        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for (auto&&\
-    \ eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\nprivate:\n\
-    \  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n   \
-    \ for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
-    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
-    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n  T x, y;\n\n\
-    \  Point() : x(0), y(0) {}\n\n  template <typename A, typename B>\n  Point(A x,\
-    \ B y) : x(x), y(y) {}\n\n  template <typename A, typename B>\n  Point(pair<A,\
+    \ yes(!t); }\r\n#line 5 \"test/library_checker/geometry/count_points_in_triangles.test.cpp\"\
+    \n\n#line 1 \"geo/count_points_in_triangles.hpp\"\n\n#line 2 \"geo/angle_sort.hpp\"\
+    \n\r\n#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n  T x,\
+    \ y;\n\n  Point() : x(0), y(0) {}\n\n  template <typename A, typename B>\n  Point(A\
+    \ x, B y) : x(x), y(y) {}\n\n  template <typename A, typename B>\n  Point(pair<A,\
     \ B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+(Point p) const { return {x\
     \ + p.x, y + p.y}; }\n  Point operator-(Point p) const { return {x - p.x, y -\
     \ p.y}; }\n  bool operator==(Point p) const { return x == p.x && y == p.y; }\n\
@@ -310,129 +255,85 @@ data:
     \  void build() {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1\
     \ == len(points) ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n\
     \    if (a < 0) {\n      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n\
-    #line 2 \"geo/angle_sort.hpp\"\n\r\n#line 4 \"geo/angle_sort.hpp\"\n\r\n// \u504F\
-    \u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate <typename\
-    \ T>\r\nvector<int> angle_sort(vector<Point<T>>& P) {\r\n  vector<int> lower,\
-    \ origin, upper;\r\n  const Point<T> O = {0, 0};\r\n  FOR(i, len(P)) {\r\n   \
-    \ if (P[i] == O) origin.eb(i);\r\n    elif ((P[i].y < 0) || (P[i].y == 0 && P[i].x\
-    \ > 0)) lower.eb(i);\r\n    else upper.eb(i);\r\n  }\r\n  sort(all(lower), [&](auto&\
-    \ i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  sort(all(upper), [&](auto&\
-    \ i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  auto& I = lower;\r\n  I.insert(I.end(),\
-    \ all(origin));\r\n  I.insert(I.end(), all(upper));\r\n  return I;\r\n}\r\n\r\n\
-    // \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate\
-    \ <typename T>\r\nvector<int> angle_sort(vector<pair<T, T>>& P) {\r\n  vc<Point<T>>\
-    \ tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\n  return angle_sort<T>(tmp);\r\
-    \n}\r\n#line 4 \"graph/planar_graph.hpp\"\n\n/*\n\u30FB\u9023\u7D50\u5E73\u9762\
-    \u30B0\u30E9\u30D5\u306B\u306A\u3063\u3066\u3044\u306A\u3044\u3068\u304D\u306B\
-    \u3069\u3046\u52D5\u4F5C\u3059\u308B\u304B\u306F\u4F55\u3082\u8003\u3048\u3066\
-    \u3044\u306A\u3044\n\u30FBN=1 \u3082\u6271\u308F\u306A\u3044\n*/\ntemplate <typename\
-    \ XY>\nstruct Planar_Graph {\n  using P = Point<XY>;\n  int NV, NE, NF;\n  //\
-    \ \u9802\u70B9, \u8FBA\u304B\u3089\u306A\u308B\u30B0\u30E9\u30D5. \u6709\u5411\
-    \u8FBA\u3092 2 \u3064\u5165\u308C\u3066\u304A\u304F\n  Graph<int, 1> G;\n  //\
-    \ \u9802\u70B9\u5C5E\u6027\n  vc<P> point; // \u5EA7\u6A19\n  // \u8FBA\u5C5E\u6027\
-    \n  vc<int> left_face; // \u6709\u5411\u8FBA\u306E\u5DE6\u306B\u3042\u308B\u9762\
-    \u306E\u756A\u53F7\n  vc<int> nxt_edge;  // \u9762\u3092\u53CD\u6642\u8A08\u56DE\
-    \u308A\u306B\u307E\u308F\u308B\u3068\u304D\u306E\u6B21\u306E\u8FBA\n  // \u9762\
-    \u5C5E\u6027\n  vc<int> first_edge;\n\n  Planar_Graph(int N, vc<P> point) : NV(N),\
-    \ G(N), point(point) {\n    assert(N > 1);\n  }\n\n  void add(int a, int b) {\
-    \ G.add(a, b), G.add(b, a); }\n  void build() {\n    G.build();\n    NE = G.M\
-    \ / 2;\n    nxt_edge.assign(G.M, -1);\n    left_face.assign(G.M, -1);\n    int\
-    \ v0 = 0;\n    int e0 = 0;\n    FOR(v, NV) {\n      if (point[v] < point[v0])\
-    \ v0 = v;\n      vc<int> eid;\n      vc<P> dir;\n      for (auto& e: G[v]) {\n\
-    \        eid.eb(e.id);\n        dir.eb(point[e.to] - point[e.frm]);\n      }\n\
-    \      auto I = angle_sort(dir);\n      assert(len(I) > 0);\n      FOR(k, len(I))\
-    \ {\n        int i = (k == 0 ? I.back() : I[k - 1]);\n        int j = I[k];\n\
-    \        i = eid[i], j = eid[j];\n        nxt_edge[j ^ 1] = i;\n      }\n    \
-    \  if (v == v0) e0 = eid[I[0] ^ 1];\n    }\n    for (auto& x: nxt_edge) assert(x\
-    \ != -1);\n\n    auto make_face = [&](int e) -> void {\n      int p = len(first_edge);\n\
-    \      first_edge.eb(e);\n      while (left_face[e] == -1) {\n        left_face[e]\
-    \ = p;\n        e = nxt_edge[e];\n      }\n    };\n\n    make_face(e0);\n    FOR(e,\
-    \ 2 * NE) {\n      if (left_face[e] == -1) make_face(e);\n    }\n    NF = len(first_edge);\n\
-    \    assert(NV - NE + NF == 2);\n  }\n\n  // return {vs, es}\n  // vs = [v0,v1,v2,v0],\
-    \ es = [e0,e1,e2]\n  pair<vc<int>, vc<int>> get_face_data(int fid) {\n    vc<int>\
-    \ eid = {first_edge[fid]};\n    while (1) {\n      int e = nxt_edge[eid.back()];\n\
-    \      if (e == first_edge[fid]) break;\n      eid.eb(e);\n    }\n    vc<int>\
-    \ vid;\n    for (auto& e: eid) vid.eb(G.edges[e].frm);\n    vid.eb(vid[0]);\n\
-    \    return {vid, eid};\n  }\n};\n#line 5 \"test/yukicoder/1777.test.cpp\"\n\n\
-    /*\n\u30FB\u7B54\u306F 4 or 5 \u3067\u3042\u308B\n\u30FB4 \u3067\u5857\u308D\u3046\
-    \u3068\u3059\u308B\n\u30FB\u3042\u308B\u9762\u3068\u305D\u306E\u9802\u70B9\u304C\
-    \u78BA\u5B9A\u3059\u308B\u3001\u96A3\u63A5\u3059\u308B\u9762\u3082\u78BA\u5B9A\
-    \u3059\u308B\u306F\u305A\n\u30FB\u7D50\u5C40\u3001\u967D\u306B\u30B0\u30E9\u30D5\
-    \u3092\u4F5C\u3063\u3066\u3072\u3068\u3064\u306E\u9762\u3092\u5857\u3063\u305F\
-    \u3042\u3068\u3001\u78BA\u5B9A\u3059\u308B\u306F\u305A\u306E\u3068\u3053\u308D\
-    \u3092\u6C7A\u3081\u3066\u3044\u304F\n*/\n\nusing Re = double;\nconst Re PI =\
-    \ acos(-1);\nvoid solve() {\n  INT(N, M);\n  vc<Point<Re>> point(N);\n  FOR(i,\
-    \ N) point[i] = {cos(2 * PI / N * i), sin(2 * PI / N * i)};\n  Planar_Graph<double>\
-    \ PG(N, point);\n  FOR(i, N) { PG.add(i, (i + 1) % N); }\n  FOR(M) {\n    INT(a,\
-    \ b);\n    --a, --b;\n    PG.add(a, b);\n  }\n  PG.build();\n\n  int NF = PG.NF;\n\
-    \  Graph<int, 0> G(N + NF);\n  vc<pi> edges;\n  // v-v\n  for (auto& e: PG.G.edges)\
-    \ { edges.eb(e.frm, e.to); }\n  // v-f\n  FOR(f, NF) {\n    auto [vs, es] = PG.get_face_data(f);\n\
-    \    for (auto& v: vs) edges.eb(v, N + f);\n  }\n  // f-f\n  FOR(i, PG.NE) {\n\
-    \    int a = PG.left_face[2 * i + 0];\n    int b = PG.left_face[2 * i + 1];\n\
-    \    edges.eb(N + a, N + b);\n  }\n  for (auto& [a, b]: edges) {\n    if (a >\
-    \ b) swap(a, b);\n  }\n  UNIQUE(edges);\n\n  for (auto& [a, b]: edges) { G.add(a,\
-    \ b); }\n  G.build();\n\n  N = G.N;\n  vc<int> cand(N, 15);\n  vc<int> color(N,\
-    \ -1);\n\n  pqg<pi> que;\n  FOR(v, N) que.emplace(popcnt(cand[v]), v);\n\n  auto\
-    \ set_color = [&](int v, int k) -> void {\n    assert(color[v] == -1);\n    color[v]\
-    \ = k;\n    for (auto& e: G[v]) {\n      int w = e.to;\n      cand[w] &= ~(1 <<\
-    \ k);\n      if (color[w] == -1) que.emplace(popcnt(cand[w]), w);\n    }\n  };\n\
-    \n  set_color(PG.NV, 0); // outer\n  set_color(0, 1);\n  set_color(1, 2);\n\n\
-    \  // \u6C7A\u307E\u3089\u306A\u3044\u5834\u5408\u3082\u3042\u308B\u3089\u3057\
-    \u3044\u304C\u3084\u3063\u3066\u307F\u308B\n  while (len(que)) {\n    int v =\
-    \ POP(que).se;\n    if (color[v] != -1) continue;\n    if (cand[v] == 0) return\
-    \ print(5);\n    int k = topbit(cand[v]);\n    set_color(v, k);\n  }\n  for (auto&\
-    \ c: color)\n    if (c == -1) return print(5);\n  for (auto& e: G.edges)\n   \
-    \ if (color[e.frm] == color[e.to]) return print(5);\n  print(4);\n}\n\nsigned\
-    \ main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1777\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"graph/planar_graph.hpp\"\n\n/*\n\u30FB\
-    \u7B54\u306F 4 or 5 \u3067\u3042\u308B\n\u30FB4 \u3067\u5857\u308D\u3046\u3068\
-    \u3059\u308B\n\u30FB\u3042\u308B\u9762\u3068\u305D\u306E\u9802\u70B9\u304C\u78BA\
-    \u5B9A\u3059\u308B\u3001\u96A3\u63A5\u3059\u308B\u9762\u3082\u78BA\u5B9A\u3059\
-    \u308B\u306F\u305A\n\u30FB\u7D50\u5C40\u3001\u967D\u306B\u30B0\u30E9\u30D5\u3092\
-    \u4F5C\u3063\u3066\u3072\u3068\u3064\u306E\u9762\u3092\u5857\u3063\u305F\u3042\
-    \u3068\u3001\u78BA\u5B9A\u3059\u308B\u306F\u305A\u306E\u3068\u3053\u308D\u3092\
-    \u6C7A\u3081\u3066\u3044\u304F\n*/\n\nusing Re = double;\nconst Re PI = acos(-1);\n\
-    void solve() {\n  INT(N, M);\n  vc<Point<Re>> point(N);\n  FOR(i, N) point[i]\
-    \ = {cos(2 * PI / N * i), sin(2 * PI / N * i)};\n  Planar_Graph<double> PG(N,\
-    \ point);\n  FOR(i, N) { PG.add(i, (i + 1) % N); }\n  FOR(M) {\n    INT(a, b);\n\
-    \    --a, --b;\n    PG.add(a, b);\n  }\n  PG.build();\n\n  int NF = PG.NF;\n \
-    \ Graph<int, 0> G(N + NF);\n  vc<pi> edges;\n  // v-v\n  for (auto& e: PG.G.edges)\
-    \ { edges.eb(e.frm, e.to); }\n  // v-f\n  FOR(f, NF) {\n    auto [vs, es] = PG.get_face_data(f);\n\
-    \    for (auto& v: vs) edges.eb(v, N + f);\n  }\n  // f-f\n  FOR(i, PG.NE) {\n\
-    \    int a = PG.left_face[2 * i + 0];\n    int b = PG.left_face[2 * i + 1];\n\
-    \    edges.eb(N + a, N + b);\n  }\n  for (auto& [a, b]: edges) {\n    if (a >\
-    \ b) swap(a, b);\n  }\n  UNIQUE(edges);\n\n  for (auto& [a, b]: edges) { G.add(a,\
-    \ b); }\n  G.build();\n\n  N = G.N;\n  vc<int> cand(N, 15);\n  vc<int> color(N,\
-    \ -1);\n\n  pqg<pi> que;\n  FOR(v, N) que.emplace(popcnt(cand[v]), v);\n\n  auto\
-    \ set_color = [&](int v, int k) -> void {\n    assert(color[v] == -1);\n    color[v]\
-    \ = k;\n    for (auto& e: G[v]) {\n      int w = e.to;\n      cand[w] &= ~(1 <<\
-    \ k);\n      if (color[w] == -1) que.emplace(popcnt(cand[w]), w);\n    }\n  };\n\
-    \n  set_color(PG.NV, 0); // outer\n  set_color(0, 1);\n  set_color(1, 2);\n\n\
-    \  // \u6C7A\u307E\u3089\u306A\u3044\u5834\u5408\u3082\u3042\u308B\u3089\u3057\
-    \u3044\u304C\u3084\u3063\u3066\u307F\u308B\n  while (len(que)) {\n    int v =\
-    \ POP(que).se;\n    if (color[v] != -1) continue;\n    if (cand[v] == 0) return\
-    \ print(5);\n    int k = topbit(cand[v]);\n    set_color(v, k);\n  }\n  for (auto&\
-    \ c: color)\n    if (c == -1) return print(5);\n  for (auto& e: G.edges)\n   \
-    \ if (color[e.frm] == color[e.to]) return print(5);\n  print(4);\n}\n\nsigned\
-    \ main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
+    #line 4 \"geo/angle_sort.hpp\"\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\
+    \u3059\u308B argsort\r\ntemplate <typename T>\r\nvector<int> angle_sort(vector<Point<T>>&\
+    \ P) {\r\n  vector<int> lower, origin, upper;\r\n  const Point<T> O = {0, 0};\r\
+    \n  FOR(i, len(P)) {\r\n    if (P[i] == O) origin.eb(i);\r\n    elif ((P[i].y\
+    \ < 0) || (P[i].y == 0 && P[i].x > 0)) lower.eb(i);\r\n    else upper.eb(i);\r\
+    \n  }\r\n  sort(all(lower), [&](auto& i, auto& j) { return P[i].det(P[j]) > 0;\
+    \ });\r\n  sort(all(upper), [&](auto& i, auto& j) { return P[i].det(P[j]) > 0;\
+    \ });\r\n  auto& I = lower;\r\n  I.insert(I.end(), all(origin));\r\n  I.insert(I.end(),\
+    \ all(upper));\r\n  return I;\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\
+    \u5BFE\u3059\u308B argsort\r\ntemplate <typename T>\r\nvector<int> angle_sort(vector<pair<T,\
+    \ T>>& P) {\r\n  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\
+    \n  return angle_sort<T>(tmp);\r\n}\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
+    \ {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 5 \"geo/count_points_in_triangles.hpp\"\
+    \n\n// \u70B9\u7FA4 A, B \u3092\u5165\u529B \uFF08Point<ll>\uFF09\n// query(i,j,k)\uFF1A\
+    \u4E09\u89D2\u5F62 AiAjAk \u5185\u90E8\u306E Bl \u306E\u500B\u6570\uFF08\u975E\
+    \u8CA0\uFF09\u3092\u8FD4\u3059\n// \u524D\u8A08\u7B97 O(N^2M)\u3001\u30AF\u30A8\
+    \u30EA O(1)\n// https://codeforces.com/contest/13/problem/D\ntemplate <typename\
+    \ Point>\nstruct Count_Points_In_Triangles {\n  using P = Point;\n  const int\
+    \ LIM = 1'000'000'000 + 10;\n  vc<P> A, B;\n  vc<int> I, rk; // O \u304B\u3089\
+    \u898B\u305F\u504F\u89D2\u30BD\u30FC\u30C8\u9806\u3092\u7BA1\u7406\n  vc<int>\
+    \ point; // A[i] \u3068\u4E00\u81F4\u3059\u308B B[j] \u306E\u6570\u3048\u4E0A\u3052\
+    \n  vvc<int> seg;  // \u7DDA\u5206 A[i]A[j] \u5185\u306B\u3042\u308B B[k] \u306E\
+    \u6570\u3048\u4E0A\u3052\n  vvc<int> tri;  // OA[i]A[j] \u5185\u90E8\u306B\u3042\
+    \u308B B[k] \u306E\u6570\u3048\u4E0A\u3052\n  Count_Points_In_Triangles(vc<P>\
+    \ A, vc<P> B) : A(A), B(B) {\n    for (auto&& p: A) assert(-LIM < min(p.x, p.y)\
+    \ && max(p.x, p.y) < LIM);\n    for (auto&& p: B) assert(-LIM < min(p.x, p.y)\
+    \ && max(p.x, p.y) < LIM);\n    build();\n  }\n\n  int query(int i, int j, int\
+    \ k) {\n    i = rk[i], j = rk[j], k = rk[k];\n    if (i > j) swap(i, j);\n   \
+    \ if (j > k) swap(j, k);\n    if (i > j) swap(i, j);\n    assert(i <= j && j <=\
+    \ k);\n\n    ll d = (A[j] - A[i]).det(A[k] - A[i]);\n    if (d == 0) return 0;\n\
+    \    if (d > 0) { return tri[i][j] + tri[j][k] - tri[i][k] - seg[i][k]; }\n  \
+    \  int x = tri[i][k] - tri[i][j] - tri[j][k];\n    return x - seg[i][j] - seg[j][k]\
+    \ - point[j];\n  }\n\nprivate:\n  P take_origin() {\n    int N = len(A), M = len(B);\n\
+    \    while (1) {\n      P O = P{-LIM, RNG(-LIM, LIM)};\n      bool ok = 1;\n \
+    \     FOR(i, N) FOR(j, N) {\n        if (A[i] == A[j]) continue;\n        if ((A[i]\
+    \ - O).det(A[j] - O) == 0) ok = 0;\n      }\n      FOR(i, N) FOR(j, M) {\n   \
+    \     if (A[i] == B[j]) continue;\n        if ((A[i] - O).det(B[j] - O) == 0)\
+    \ ok = 0;\n      }\n      if (ok) return O;\n    }\n    return P{};\n  }\n\n \
+    \ void build() {\n    P O = take_origin();\n    for (auto&& p: A) p = p - O;\n\
+    \    for (auto&& p: B) p = p - O;\n    int N = len(A), M = len(B);\n    I.resize(N),\
+    \ rk.resize(N);\n    iota(all(I), 0);\n    sort(all(I), [&](auto& a, auto& b)\
+    \ -> bool { return A[a].det(A[b]) > 0; });\n    FOR(i, N) rk[I[i]] = i;\n    A\
+    \ = rearrange(A, I);\n    point.assign(N, 0);\n    seg.assign(N, vc<int>(N));\n\
+    \    tri.assign(N, vc<int>(N));\n\n    FOR(i, N) FOR(j, M) if (A[i] == B[j])++\
+    \ point[i];\n    FOR(i, N) FOR(j, i + 1, N) {\n      FOR(k, M) {\n        if (A[i].det(B[k])\
+    \ <= 0) continue;\n        if (A[j].det(B[k]) >= 0) continue;\n        ll d =\
+    \ (B[k] - A[i]).det(A[j] - A[i]);\n        if (d == 0) ++seg[i][j];\n        if\
+    \ (d < 0) ++tri[i][j];\n      }\n    }\n  }\n};\n#line 7 \"test/library_checker/geometry/count_points_in_triangles.test.cpp\"\
+    \n\nusing P = Point<ll>;\n\nvoid solve() {\n  LL(N);\n  vc<P> A(N);\n  FOR(i,\
+    \ N) read(A[i]);\n  LL(M);\n  vc<P> B(M);\n  FOR(i, M) read(B[i]);\n\n  Count_Points_In_Triangles<P>\
+    \ X(A, B);\n\n  LL(Q);\n  FOR(Q) {\n    INT(a, b, c);\n    print(X.query(a, b,\
+    \ c));\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/count_points_in_triangle\"\
+    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/count_points_in_triangles.hpp\"\
+    \n\nusing P = Point<ll>;\n\nvoid solve() {\n  LL(N);\n  vc<P> A(N);\n  FOR(i,\
+    \ N) read(A[i]);\n  LL(M);\n  vc<P> B(M);\n  FOR(i, M) read(B[i]);\n\n  Count_Points_In_Triangles<P>\
+    \ X(A, B);\n\n  LL(Q);\n  FOR(Q) {\n    INT(a, b, c);\n    print(X.query(a, b,\
+    \ c));\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - graph/planar_graph.hpp
-  - graph/base.hpp
-  - geo/base.hpp
+  - geo/count_points_in_triangles.hpp
   - geo/angle_sort.hpp
+  - geo/base.hpp
+  - random/base.hpp
   isVerificationFile: true
-  path: test/yukicoder/1777.test.cpp
+  path: test/library_checker/geometry/count_points_in_triangles.test.cpp
   requiredBy: []
-  timestamp: '2023-12-21 22:18:31+09:00'
+  timestamp: '2024-01-21 19:07:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yukicoder/1777.test.cpp
+documentation_of: test/library_checker/geometry/count_points_in_triangles.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/1777.test.cpp
-- /verify/test/yukicoder/1777.test.cpp.html
-title: test/yukicoder/1777.test.cpp
+- /verify/test/library_checker/geometry/count_points_in_triangles.test.cpp
+- /verify/test/library_checker/geometry/count_points_in_triangles.test.cpp.html
+title: test/library_checker/geometry/count_points_in_triangles.test.cpp
 ---

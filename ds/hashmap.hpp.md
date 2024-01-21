@@ -52,6 +52,9 @@ data:
     path: test/library_checker/datastructure/static_range_frequency.test.cpp
     title: test/library_checker/datastructure/static_range_frequency.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/static_range_mode_query.test.cpp
+    title: test/library_checker/datastructure/static_range_mode_query.test.cpp
+  - icon: ':x:'
     path: test/library_checker/graph/eulerwalk_d.test.cpp
     title: test/library_checker/graph/eulerwalk_d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -205,6 +208,7 @@ data:
   - test/aoj/CGL_5_A.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
+  - test/library_checker/datastructure/static_range_mode_query.test.cpp
   - test/library_checker/datastructure/set_xor_min.test.cpp
   - test/library_checker/datastructure/associative_array_hashmap.test.cpp
   - test/library_checker/datastructure/static_range_freq.test.cpp

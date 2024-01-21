@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':heavy_check_mark:'
@@ -15,6 +15,9 @@ data:
     path: graph/planar_graph.hpp
     title: graph/planar_graph.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/geometry/count_points_in_triangles.test.cpp
+    title: test/library_checker/geometry/count_points_in_triangles.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/sort_points_by_argument.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument.test.cpp
@@ -30,12 +33,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc139f.test.cpp
     title: test_atcoder/abc139f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/angle_sort.hpp\"\n\r\n#line 2 \"geo/base.hpp\"\ntemplate\
@@ -130,9 +133,10 @@ data:
   - geo/max_norm_sum.hpp
   - geo/count_points_in_triangles.hpp
   timestamp: '2023-12-21 22:18:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
+  - test/library_checker/geometry/count_points_in_triangles.test.cpp
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp
   - test/yukicoder/1777.test.cpp

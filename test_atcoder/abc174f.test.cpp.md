@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/offline_query/uniqueproductquery.hpp
     title: ds/offline_query/uniqueproductquery.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc174/tasks/abc174_f
@@ -236,29 +236,29 @@ data:
     \ \u30AF\u30A8\u30EA\u5148\u8AAD\u307F\u30BD\u30FC\u30C8\uFF0B\u30BB\u30B0\u6728\
     \r\n// \u30AF\u30A8\u30EA\u3092\u5168\u90E8 add(L,R) \u3059\u308B\r\n// calc(f)\
     \ \u3068\u3057\u3066\u547C\u3076\r\ntemplate <typename Mono>\r\nstruct UniqueProductQuery\
-    \ {\r\n  using X = typename Mono::value_type;\r\n  int N;\r\n  vc<ll> key;\r\n\
-    \  vc<pair<int, int>> query;\r\n\r\n  UniqueProductQuery(vc<ll>& key) : N(len(key)),\
-    \ key(key) {}\r\n\r\n  void add(int L, int R) {\r\n    assert(0 <= L && L <= R\
-    \ && R <= N);\r\n    query.eb(L, R);\r\n  }\r\n\r\n  template <typename F>\r\n\
-    \  vc<X> calc(F f) {\r\n    ll Q = len(query);\r\n    vc<X> ANS(Q);\r\n    vc<vc<int>>\
+    \ {\r\n  using X = typename Mono::value_type;\r\n  int N;\r\n  vc<int> A;\r\n\
+    \  vc<pair<int, int>> query;\r\n\r\n  UniqueProductQuery(vc<int>& A) : N(len(A)),\
+    \ A(A) {}\r\n\r\n  void add(int L, int R) {\r\n    assert(0 <= L && L <= R &&\
+    \ R <= N);\r\n    query.eb(L, R);\r\n  }\r\n\r\n  template <typename F>\r\n  vc<X>\
+    \ calc(F f) {\r\n    ll Q = len(query);\r\n    vc<X> ANS(Q);\r\n    vc<vc<int>>\
     \ IDS(N + 1);\r\n    FOR(q, Q) IDS[query[q].se].eb(q);\r\n    SegTree<Mono> seg(N);\r\
-    \n\r\n    unordered_map<ll, int> pos;\r\n    pos.reserve(N);\r\n\r\n    for (auto&&\
-    \ q: IDS[0]) { ANS[q] = Mono::unit(); }\r\n    FOR(i, N) {\r\n      ll x = key[i];\r\
+    \n\r\n    unordered_map<int, int> pos;\r\n    pos.reserve(N);\r\n\r\n    for (auto&&\
+    \ q: IDS[0]) { ANS[q] = Mono::unit(); }\r\n    FOR(i, N) {\r\n      int x = A[i];\r\
     \n      if (pos.count(x)) { seg.set(pos[x], Mono::unit()); }\r\n      pos[x] =\
-    \ i;\r\n      seg.set(i, f(key[i]));\r\n      for (auto&& q: IDS[i + 1]) {\r\n\
-    \        auto [L, R] = query[q];\r\n        ANS[q] = seg.prod(L, R);\r\n     \
-    \ }\r\n    }\r\n    return ANS;\r\n  }\r\n\r\n  vc<X> calc() {\r\n    auto f =\
-    \ [&](ll k) -> X { return 1; };\r\n    return calc(f);\r\n  }\r\n};\r\n#line 2\
-    \ \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct Monoid_Add {\r\n\
-    \  using value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
-    \ { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
-    \ -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return X(n)\
-    \ * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 6 \"test_atcoder/abc174f.test.cpp\"\n\n\
-    void solve() {\n  LL(N, Q);\n  VEC(ll, C, N);\n  UniqueProductQuery<Monoid_Add<int>>\
-    \ X(C);\n\n  FOR(Q) {\n    LL(l, r);\n    X.add(--l, r);\n  }\n  for (auto&& x:\
-    \ X.calc()) print(x);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \  solve();\n  return 0;\n}\n"
+    \ i;\r\n      seg.set(i, f(A[i]));\r\n      for (auto&& q: IDS[i + 1]) {\r\n \
+    \       auto [L, R] = query[q];\r\n        ANS[q] = seg.prod(L, R);\r\n      }\r\
+    \n    }\r\n    return ANS;\r\n  }\r\n\r\n  vc<X> calc() {\r\n    auto f = [&](ll\
+    \ k) -> X { return 1; };\r\n    return calc(f);\r\n  }\r\n};\r\n#line 2 \"alg/monoid/add.hpp\"\
+    \n\r\ntemplate <typename X>\r\nstruct Monoid_Add {\r\n  using value_type = X;\r\
+    \n  static constexpr X op(const X &x, const X &y) noexcept { return x + y; }\r\
+    \n  static constexpr X inverse(const X &x) noexcept { return -x; }\r\n  static\
+    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\n  static\
+    \ constexpr X unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\
+    \n};\r\n#line 6 \"test_atcoder/abc174f.test.cpp\"\n\nvoid solve() {\n  LL(N, Q);\n\
+    \  VEC(ll, C, N);\n  UniqueProductQuery<Monoid_Add<int>> X(C);\n\n  FOR(Q) {\n\
+    \    LL(l, r);\n    X.add(--l, r);\n  }\n  for (auto&& x: X.calc()) print(x);\n\
+    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n  solve();\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc174/tasks/abc174_f\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/offline_query/uniqueproductquery.hpp\"\
     \n#include \"alg/monoid/add.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, C,\
@@ -274,8 +274,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc174f.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-21 19:07:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc174f.test.cpp
 layout: document

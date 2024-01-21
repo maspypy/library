@@ -409,6 +409,9 @@ data:
     path: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
     title: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/static_range_mode_query.test.cpp
+    title: test/library_checker/datastructure/static_range_mode_query.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_sum.test.cpp
     title: test/library_checker/datastructure/static_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -453,6 +456,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/convex_layers.test.cpp
     title: test/library_checker/geometry/convex_layers.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/geometry/count_points_in_triangles.test.cpp
+    title: test/library_checker/geometry/count_points_in_triangles.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/sort_points_by_argument.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument.test.cpp
@@ -504,7 +510,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/enumerate_triangles.test.cpp
     title: test/library_checker/graph/enumerate_triangles.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/eulerwalk_d.test.cpp
     title: test/library_checker/graph/eulerwalk_d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1665,7 +1671,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc160f.test.cpp
     title: test_atcoder/abc160f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc174f.test.cpp
     title: test_atcoder/abc174f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1689,7 +1695,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc200f.test.cpp
     title: test_atcoder/abc200f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2334,6 +2340,7 @@ data:
   - test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
   - test/library_checker/datastructure/unionfind.test.cpp
+  - test/library_checker/datastructure/static_range_mode_query.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - test/library_checker/datastructure/set_xor_min.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
@@ -2443,6 +2450,7 @@ data:
   - test/library_checker/sample/many_aplusb.test.cpp
   - test/library_checker/sample/aplusb128.test.cpp
   - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
+  - test/library_checker/geometry/count_points_in_triangles.test.cpp
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
   - test/library_checker/geometry/convex_layers.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp

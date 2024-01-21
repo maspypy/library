@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: geo/angle_sort.hpp
-    title: geo/angle_sort.hpp
-  - icon: ':question:'
-    path: geo/base.hpp
-    title: geo/base.hpp
+    path: ds/hashmap.hpp
+    title: ds/hashmap.hpp
   - icon: ':heavy_check_mark:'
-    path: geo/max_norm_sum.hpp
-    title: geo/max_norm_sum.hpp
+    path: ds/offline_query/rollback_mo.hpp
+    title: ds/offline_query/rollback_mo.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/to_small_key.hpp
+    title: ds/to_small_key.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -23,32 +23,32 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    ERROR: 1e-10
-    PROBLEM: https://atcoder.jp/contests/abc139/tasks/abc139_f
+    PROBLEM: https://judge.yosupo.jp/problem/static_range_mode_query
     links:
-    - https://atcoder.jp/contests/abc139/tasks/abc139_f
-  bundledCode: "#line 1 \"test_atcoder/abc139f.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc139/tasks/abc139_f\"\
-    \n#define ERROR 1e-10\n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include\
-    \ <my_template_compiled.hpp>\n#else\n#pragma GCC optimize(\"Ofast\")\n#pragma\
-    \ GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\nusing namespace\
-    \ std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing u64 = unsigned\
-    \ long long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\nusing f128\
-    \ = __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr\
-    \ int infty<int> = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll> = ll(infty<int>)\
-    \ * infty<int> * 2;\ntemplate <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate\
-    \ <>\nconstexpr u64 infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128>\
-    \ = i128(infty<ll>) * infty<ll>;\ntemplate <>\nconstexpr double infty<double>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr long double infty<long double> = infty<ll>;\n\
-    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
-    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
-    \ greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h,\
-    \ vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>>\
-    \ name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define\
-    \ vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
-    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    - https://judge.yosupo.jp/problem/static_range_mode_query
+  bundledCode: "#line 1 \"test/library_checker/datastructure/static_range_mode_query.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_mode_query\"\n\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
+    )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
+    using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
+    using u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class T>\n\
+    constexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int> = 1'000'000'000;\n\
+    template <>\nconstexpr ll infty<ll> = ll(infty<int>) * infty<int> * 2;\ntemplate\
+    \ <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
+    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\n\
+    template <>\nconstexpr double infty<double> = infty<ll>;\ntemplate <>\nconstexpr\
+    \ long double infty<long double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing\
+    \ vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
+    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
+    \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
+    template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
+    #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
+    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
+    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
+    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
+    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
@@ -191,123 +191,103 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 6 \"test_atcoder/abc139f.test.cpp\"\n\n#line 2 \"geo/base.hpp\"\
-    \ntemplate <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\
-    \n  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n \
-    \ template <typename A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se)\
-    \ {}\n\n  Point operator+(Point p) const { return {x + p.x, y + p.y}; }\n  Point\
-    \ operator-(Point p) const { return {x - p.x, y - p.y}; }\n  bool operator==(Point\
-    \ p) const { return x == p.x && y == p.y; }\n  bool operator!=(Point p) const\
-    \ { return x != p.x || y != p.y; }\n  Point operator-() const { return {-x, -y};\
-    \ }\n  Point operator*(T t) const { return {x * t, y * t}; }\n  Point operator/(T\
-    \ t) const { return {x / t, y / t}; }\n\n  bool operator<(Point p) const {\n \
-    \   if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n  T dot(Point other)\
-    \ { return x * other.x + y * other.y; }\n  T det(Point other) { return x * other.y\
-    \ - y * other.x; }\n\n  double norm() { return sqrtl(x * x + y * y); }\n  double\
-    \ angle() { return atan2(y, x); }\n\n  Point rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n\
-    \    double c = cos(theta), s = sin(theta);\n    return Point{c * x - s * y, s\
-    \ * x + c * y};\n  }\n};\n\n#ifdef FASTIO\ntemplate <typename T>\nvoid rd(Point<T>&\
-    \ p) {\n  fastio::rd(p.x), fastio::rd(p.y);\n}\ntemplate <typename T>\nvoid wt(Point<T>&\
-    \ p) {\n  fastio::wt(p.x);\n  fastio::wt(' ');\n  fastio::wt(p.y);\n}\n#endif\n\
-    \n// A -> B -> C \u3068\u9032\u3080\u3068\u304D\u306B\u3001\u5DE6\u306B\u66F2\u304C\
-    \u308B\u306A\u3089\u3070 +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\u3089\u3070\
-    \ -1\ntemplate <typename T>\nint ccw(Point<T> A, Point<T> B, Point<T> C) {\n \
-    \ T x = (B - A).det(C - A);\n  if (x > 0) return 1;\n  if (x < 0) return -1;\n\
-    \  return 0;\n}\n\ntemplate <typename REAL, typename T>\nREAL dist(Point<T> A,\
-    \ Point<T> B) {\n  A = A - B;\n  T p = A.dot(A);\n  return sqrt(REAL(p));\n}\n\
-    \n// ax+by+c\ntemplate <typename T>\nstruct Line {\n  T a, b, c;\n\n  Line(T a,\
-    \ T b, T c) : a(a), b(b), c(c) {}\n  Line(Point<T> A, Point<T> B) {\n    a = A.y\
-    \ - B.y, b = B.x - A.x, c = A.x * B.y - A.y * B.x;\n  }\n  Line(T x1, T y1, T\
-    \ x2, T y2) : Line(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n  template <typename\
-    \ U>\n  U eval(Point<U> P) {\n    return a * P.x + b * P.y + c;\n  }\n\n  template\
-    \ <typename U>\n  T eval(U x, U y) {\n    return a * x + b * y + c;\n  }\n\n \
-    \ // \u540C\u3058\u76F4\u7DDA\u304C\u540C\u3058 a,b,c \u3067\u8868\u73FE\u3055\
-    \u308C\u308B\u3088\u3046\u306B\u3059\u308B\n  void normalize() {\n    static_assert(is_same_v<T,\
-    \ int> || is_same_v<T, long long>);\n    T g = gcd(gcd(abs(a), abs(b)), abs(c));\n\
-    \    a /= g, b /= g, c /= g;\n    if (b < 0) { a = -a, b = -b, c = -c; }\n   \
-    \ if (b == 0 && a < 0) { a = -a, b = -b, c = -c; }\n  }\n\n  bool is_parallel(Line\
-    \ other) { return a * other.b - b * other.a == 0; }\n  bool is_orthogonal(Line\
-    \ other) { return a * other.a + b * other.b == 0; }\n};\n\ntemplate <typename\
-    \ T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B)\
-    \ : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1,\
-    \ y1), Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    static_assert(is_integral<T>::value);\n\
-    \    T det = (C - A).det(B - A);\n    if (det != 0) return 0;\n    return (C -\
-    \ A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_Line() {\
-    \ return Line(A, B); }\n};\n\ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL>\
-    \ O;\n  REAL r;\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL\
-    \ x, REAL y, REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
-    \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
-    \ <= r * r;\n  }\n};\n\ntemplate <typename T>\nstruct Polygon {\n  vc<Point<T>>\
-    \ points;\n  T a;\n\n  template <typename A, typename B>\n  Polygon(vc<pair<A,\
-    \ B>> pairs) {\n    for (auto&& [a, b]: pairs) points.eb(Point<T>(a, b));\n  \
-    \  build();\n  }\n  Polygon(vc<Point<T>> points) : points(points) { build(); }\n\
-    \n  int size() { return len(points); }\n\n  template <typename REAL>\n  REAL area()\
-    \ {\n    return a * 0.5;\n  }\n\n  template <enable_if_t<is_integral<T>::value,\
-    \ int> = 0>\n  T area_2() {\n    return a;\n  }\n\n  bool is_convex() {\n    FOR(j,\
-    \ len(points)) {\n      int i = (j == 0 ? len(points) - 1 : j - 1);\n      int\
-    \ k = (j == len(points) - 1 ? 0 : j + 1);\n      if ((points[j] - points[i]).det(points[k]\
-    \ - points[j]) < 0) return false;\n    }\n    return true;\n  }\n\nprivate:\n\
-    \  void build() {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1\
-    \ == len(points) ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n\
-    \    if (a < 0) {\n      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n\
-    #line 2 \"geo/angle_sort.hpp\"\n\r\n#line 4 \"geo/angle_sort.hpp\"\n\r\n// \u504F\
-    \u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate <typename\
-    \ T>\r\nvector<int> angle_sort(vector<Point<T>>& P) {\r\n  vector<int> lower,\
-    \ origin, upper;\r\n  const Point<T> O = {0, 0};\r\n  FOR(i, len(P)) {\r\n   \
-    \ if (P[i] == O) origin.eb(i);\r\n    elif ((P[i].y < 0) || (P[i].y == 0 && P[i].x\
-    \ > 0)) lower.eb(i);\r\n    else upper.eb(i);\r\n  }\r\n  sort(all(lower), [&](auto&\
-    \ i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  sort(all(upper), [&](auto&\
-    \ i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  auto& I = lower;\r\n  I.insert(I.end(),\
-    \ all(origin));\r\n  I.insert(I.end(), all(upper));\r\n  return I;\r\n}\r\n\r\n\
-    // \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate\
-    \ <typename T>\r\nvector<int> angle_sort(vector<pair<T, T>>& P) {\r\n  vc<Point<T>>\
-    \ tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\n  return angle_sort<T>(tmp);\r\
-    \n}\r\n#line 3 \"geo/max_norm_sum.hpp\"\n\n// \u30D9\u30AF\u30C8\u30EB\u306E\u5217\
-    \u304C\u4E0E\u3048\u3089\u308C\u308B. \u90E8\u5206\u5217\u3092\u9078\u3093\u3067\
-    \uFF0C\u548C\u306E norm \u3092\u6700\u5C0F\u5316\u3059\u308B.\n// \u7DCF\u548C\
-    \u306E\u5EA7\u6A19\u306E 2 \u4E57\u548C\u304C SM \u3067\u30AA\u30FC\u30D0\u30FC\
-    \u30D5\u30ED\u30FC\u3057\u306A\u3044\u3088\u3046\u306B\u6CE8\u610F\u305B\u3088\
-    \uFF0E\n// https://atcoder.jp/contests/abc139/tasks/abc139_f\n// https://codeforces.com/contest/1841/problem/F\n\
-    template <typename SM, typename T>\npair<SM, vc<int>> max_norm_sum(vc<Point<T>>\
-    \ dat) {\n  auto I = angle_sort(dat);\n  {\n    vc<int> J;\n    for (auto&& i:\
-    \ I) {\n      if (dat[i].x != 0 || dat[i].y != 0) J.eb(i);\n    }\n    swap(I,\
-    \ J);\n  }\n  dat = rearrange(dat, I);\n  const int N = len(dat);\n\n  if (N ==\
-    \ 0) { return {0, {}}; }\n  SM ANS = 0;\n  pair<int, int> LR = {0, 0};\n\n  int\
-    \ L = 0, R = 1;\n  Point<T> c = dat[0];\n  auto eval = [&]() -> SM { return SM(c.x)\
-    \ * c.x + SM(c.y) * c.y; };\n  if (chmax(ANS, eval())) LR = {L, R};\n\n  while\
-    \ (L < N) {\n    Point<T>&A = dat[L], &B = dat[R % N];\n    if (R - L < N && (A.det(B)\
-    \ > 0 || (A.det(B) == 0 && A.dot(B) > 0))) {\n      c = c + B;\n      R++;\n \
-    \     if (chmax(ANS, eval())) LR = {L, R};\n    } else {\n      c = c - A;\n \
-    \     L++;\n      if (chmax(ANS, eval())) LR = {L, R};\n    }\n  }\n  vc<int>\
-    \ ids;\n  FOR(i, LR.fi, LR.se) { ids.eb(I[i % N]); }\n  return {ANS, ids};\n}\n\
-    #line 8 \"test_atcoder/abc139f.test.cpp\"\n\nusing P = Point<ll>;\n\nvoid solve()\
-    \ {\n  LL(N);\n  VEC(P, point, N);\n  auto [val, I] = max_norm_sum<ll, ll>(point);\n\
-    \  ll x = 0, y = 0;\n  for (auto&& i: I) x += point[i].x, y += point[i].y;\n \
-    \ assert(val == x * x + y * y);\n  double ANS = sqrtl(val);\n  print(ANS);\n}\n\
-    \nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc139/tasks/abc139_f\"\n#define\
-    \ ERROR 1e-10\n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include\
-    \ \"geo/max_norm_sum.hpp\"\n\nusing P = Point<ll>;\n\nvoid solve() {\n  LL(N);\n\
-    \  VEC(P, point, N);\n  auto [val, I] = max_norm_sum<ll, ll>(point);\n  ll x =\
-    \ 0, y = 0;\n  for (auto&& i: I) x += point[i].x, y += point[i].y;\n  assert(val\
-    \ == x * x + y * y);\n  double ANS = sqrtl(val);\n  print(ANS);\n}\n\nsigned main()\
-    \ {\n  solve();\n  return 0;\n}"
+    \ yes(!t); }\r\n#line 5 \"test/library_checker/datastructure/static_range_mode_query.test.cpp\"\
+    \n\n#line 1 \"ds/offline_query/rollback_mo.hpp\"\n// https://codeforces.com/contest/620/problem/F\n\
+    // (10^5,3*10^5), mo+fastset 1300ms\n// https://codeforces.com/problemset/submission/765/240821486\n\
+    struct Rollback_Mo {\n  vc<pair<int, int>> LR;\n  void add(int L, int R) { LR.emplace_back(L,\
+    \ R); }\n\n  template <typename AL, typename AR, typename F1, typename F2, typename\
+    \ F3,\n            typename O>\n  void calc(AL add_left, AR add_right, F1 reset,\
+    \ F2 save, F3 rollback,\n            O query) {\n    const int Q = len(LR);\n\
+    \    if (Q == 0) return;\n    int N = 0;\n    for (auto &&[L, R]: LR) chmax(N,\
+    \ R);\n    const int b_num = sqrt(Q);\n    const int b_sz = ceil(N, b_num);\n\
+    \    vvc<int> QID((N - 1) / b_sz + 1);\n    // \u5DE6\u7AEF\u306E\u5C5E\u3059\u308B\
+    \u30D6\u30ED\u30C3\u30AF\u3067\u5206\u985E\n    // \u5DE6\u7AEF\u3068\u53F3\u7AEF\
+    \u304C\u540C\u3058\u30D6\u30ED\u30C3\u30AF\u306B\u5C5E\u3059\u308B\u3082\u306E\
+    \u306F\u3001\u5148\u306B\u51E6\u7406\u3057\u3066\u3057\u307E\u3046\u3002\n   \
+    \ auto naive = [&](int qid) -> void {\n      save();\n      auto [L, R] = LR[qid];\n\
+    \      FOR(i, L, R) add_right(i);\n      query(qid);\n      rollback();\n    };\n\
+    \n    FOR(qid, Q) {\n      auto [L, R] = LR[qid];\n      int iL = L / b_sz, iR\
+    \ = R / b_sz;\n      if (iL == iR) {\n        naive(qid);\n        continue;\n\
+    \      }\n      QID[iL].eb(qid);\n    }\n\n    FOR(iL, len(QID)) {\n      auto\
+    \ &I = QID[iL];\n      if (I.empty()) continue;\n      sort(all(I),\n        \
+    \   [&](auto &a, auto &b) -> bool { return LR[a].se < LR[b].se; });\n      int\
+    \ LMAX = 0;\n      for (auto &&qid: I) {\n        auto [L, R] = LR[qid];\n   \
+    \     chmax(LMAX, L);\n      }\n      reset();\n      int l = LMAX, r = LMAX;\n\
+    \      for (auto &&qid: I) {\n        auto [L, R] = LR[qid];\n        while (r\
+    \ < R) add_right(r++);\n        save();\n        while (L < l) add_left(--l);\n\
+    \        query(qid);\n        rollback();\n        l = LMAX;\n      }\n    }\n\
+    \  }\n};\n#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
+    \ Val, int LOG = 20, bool KEEP_IDS = false>\r\nstruct HashMap {\r\n  static constexpr\
+    \ int N = (1 << LOG);\r\n  u64* key;\r\n  Val* val;\r\n  vc<int> IDS;\r\n  bitset<N>\
+    \ used;\r\n  const int shift;\r\n  const u64 r = 11995408973635179863ULL;\r\n\
+    \  HashMap() : key(new u64[N]), val(new Val[N]), shift(64 - LOG) {}\r\n  u32 hash(u64\
+    \ x) {\r\n    static const u64 FIXED_RANDOM\r\n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\
+    \n    return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
+    \ u64& k) {\r\n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k;\
+    \ (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
+    \ u64& k) {\r\n    int i = index(k);\r\n    if (!used[i]) {\r\n      used[i] =\
+    \ 1, key[i] = k, val[i] = Val{};\r\n      if constexpr (KEEP_IDS) IDS.eb(i);\r\
+    \n    }\r\n    return val[i];\r\n  }\r\n\r\n  Val get(const u64& k, Val default_value)\
+    \ {\r\n    int i = index(k);\r\n    return (used[i] ? val[i] : default_value);\r\
+    \n  }\r\n\r\n  bool count(const u64& k) {\r\n    int i = index(k);\r\n    return\
+    \ used[i] && key[i] == k;\r\n  }\r\n\r\n  void reset() {\r\n    static_assert(KEEP_IDS);\r\
+    \n    for (auto&& i: IDS) used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  //\
+    \ f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F f) {\r\n  \
+    \  static_assert(KEEP_IDS);\r\n    for (auto&& i: IDS) f(key[i], val[i]);\r\n\
+    \  }\r\n};\r\n#line 2 \"ds/to_small_key.hpp\"\n\n// [30,10,20,30] -> [0,1,2,0]\
+    \ etc.\ntemplate <int LOG = 20, bool USE_RESET = false>\nstruct To_Small_Key {\n\
+    \  int kind = 0;\n  HashMap<int, LOG, true> MP;\n\n  int set_key(u64 x) {\n  \
+    \  int idx = MP.index(x);\n    if (!MP.used[idx]) {\n      MP.used[idx] = 1;\n\
+    \      MP.key[idx] = x;\n      MP.val[idx] = kind++;\n    }\n    return MP.val[idx];\n\
+    \  }\n\n  int query(u64 x) { return MP.get(x, -1); }\n\n  void reset() {\n   \
+    \ static_assert(USE_RESET);\n    MP.reset();\n  }\n};\n#line 8 \"test/library_checker/datastructure/static_range_mode_query.test.cpp\"\
+    \n\nvoid solve() {\n  INT(N, Q);\n  VEC(int, A, N);\n  vc<int> key = A;\n  UNIQUE(key);\n\
+    \  for (auto& x: A) x = LB(key, x);\n\n  Rollback_Mo mo;\n  FOR(Q) {\n    LL(L,\
+    \ R);\n    mo.add(L, R);\n  }\n  vc<pair<int, int>> ANS(Q);\n\n  vc<int> CNT(N);\n\
+    \  int max_cnt = 0;\n  int max_key = 0;\n  vc<int> history;\n\n  auto add = [&](int\
+    \ i) -> void {\n    int x = A[i];\n    history.eb(x);\n    CNT[x]++;\n    if (chmax(max_cnt,\
+    \ CNT[x])) max_key = x;\n  };\n\n  auto reset = [&]() -> void {\n    for (auto&\
+    \ x: history) CNT[x] = 0;\n    history.clear();\n    max_cnt = 0, max_key = 0;\n\
+    \  };\n\n  int save_cnt = 0, save_key = 0;\n  int save_time = 0;\n  auto save\
+    \ = [&]() -> void {\n    save_time = len(history);\n    save_cnt = max_cnt, save_key\
+    \ = max_key;\n  };\n\n  auto rb = [&]() -> void {\n    while (len(history) > save_time)\
+    \ {\n      int x = POP(history);\n      CNT[x]--;\n    }\n    max_cnt = save_cnt,\
+    \ max_key = save_key;\n  };\n\n  auto query = [&](int q) -> void { ANS[q] = {key[max_key],\
+    \ max_cnt}; };\n\n  mo.calc(add, add, reset, save, rb, query);\n  for (auto& x:\
+    \ ANS) print(x);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_mode_query\"\
+    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/offline_query/rollback_mo.hpp\"\
+    \n#include \"ds/to_small_key.hpp\"\n\nvoid solve() {\n  INT(N, Q);\n  VEC(int,\
+    \ A, N);\n  vc<int> key = A;\n  UNIQUE(key);\n  for (auto& x: A) x = LB(key, x);\n\
+    \n  Rollback_Mo mo;\n  FOR(Q) {\n    LL(L, R);\n    mo.add(L, R);\n  }\n  vc<pair<int,\
+    \ int>> ANS(Q);\n\n  vc<int> CNT(N);\n  int max_cnt = 0;\n  int max_key = 0;\n\
+    \  vc<int> history;\n\n  auto add = [&](int i) -> void {\n    int x = A[i];\n\
+    \    history.eb(x);\n    CNT[x]++;\n    if (chmax(max_cnt, CNT[x])) max_key =\
+    \ x;\n  };\n\n  auto reset = [&]() -> void {\n    for (auto& x: history) CNT[x]\
+    \ = 0;\n    history.clear();\n    max_cnt = 0, max_key = 0;\n  };\n\n  int save_cnt\
+    \ = 0, save_key = 0;\n  int save_time = 0;\n  auto save = [&]() -> void {\n  \
+    \  save_time = len(history);\n    save_cnt = max_cnt, save_key = max_key;\n  };\n\
+    \n  auto rb = [&]() -> void {\n    while (len(history) > save_time) {\n      int\
+    \ x = POP(history);\n      CNT[x]--;\n    }\n    max_cnt = save_cnt, max_key =\
+    \ save_key;\n  };\n\n  auto query = [&](int q) -> void { ANS[q] = {key[max_key],\
+    \ max_cnt}; };\n\n  mo.calc(add, add, reset, save, rb, query);\n  for (auto& x:\
+    \ ANS) print(x);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - geo/max_norm_sum.hpp
-  - geo/base.hpp
-  - geo/angle_sort.hpp
+  - ds/offline_query/rollback_mo.hpp
+  - ds/to_small_key.hpp
+  - ds/hashmap.hpp
   isVerificationFile: true
-  path: test_atcoder/abc139f.test.cpp
+  path: test/library_checker/datastructure/static_range_mode_query.test.cpp
   requiredBy: []
-  timestamp: '2023-12-21 22:18:31+09:00'
+  timestamp: '2024-01-21 19:07:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test_atcoder/abc139f.test.cpp
+documentation_of: test/library_checker/datastructure/static_range_mode_query.test.cpp
 layout: document
 redirect_from:
-- /verify/test_atcoder/abc139f.test.cpp
-- /verify/test_atcoder/abc139f.test.cpp.html
-title: test_atcoder/abc139f.test.cpp
+- /verify/test/library_checker/datastructure/static_range_mode_query.test.cpp
+- /verify/test/library_checker/datastructure/static_range_mode_query.test.cpp.html
+title: test/library_checker/datastructure/static_range_mode_query.test.cpp
 ---
